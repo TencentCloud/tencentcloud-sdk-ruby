@@ -2615,6 +2615,15 @@ module TencentCloud
 
         # 注意：签名时间需要超过任务结束时间，避免因签名过期造成任务失败。
         # @type ToUrl: String
+        # @param FileIndex: 指定播放文件索引。
+        # 注意： 1. 从1开始，不大于SourceUrls中文件个数。
+        # 2. 该偏移仅在首次轮播时有效。
+        # 3. 提前创建的任务指定的偏移最长有效期为24小时，24小时后未开始的任务偏移失效。
+        # @type FileIndex: Integer
+        # @param OffsetTime: 指定播放文件偏移。
+        # 注意：
+        # 1. 单位：秒，配合FileIndex使用。
+        # @type OffsetTime: Integer
         # @param BackupSourceType: 备源的类型：
         # PullLivePushLive -直播，
         # PullVodPushLive -点播。
@@ -2644,9 +2653,9 @@ module TencentCloud
         # @param TranscodeTemplateName: 直播转码模板，使用云直播的转码功能进行转码后再转推出去。转码模板需在云直播控制台创建。
         # @type TranscodeTemplateName: String
 
-        attr_accessor :SourceType, :SourceUrls, :DomainName, :AppName, :StreamName, :StartTime, :EndTime, :Operator, :PushArgs, :CallbackEvents, :VodLoopTimes, :VodRefreshType, :CallbackUrl, :ExtraCmd, :SpecifyTaskId, :Comment, :ToUrl, :BackupSourceType, :BackupSourceUrl, :WatermarkList, :VodLocalMode, :RecordTemplateId, :BackupToUrl, :TranscodeTemplateName
+        attr_accessor :SourceType, :SourceUrls, :DomainName, :AppName, :StreamName, :StartTime, :EndTime, :Operator, :PushArgs, :CallbackEvents, :VodLoopTimes, :VodRefreshType, :CallbackUrl, :ExtraCmd, :SpecifyTaskId, :Comment, :ToUrl, :FileIndex, :OffsetTime, :BackupSourceType, :BackupSourceUrl, :WatermarkList, :VodLocalMode, :RecordTemplateId, :BackupToUrl, :TranscodeTemplateName
 
-        def initialize(sourcetype=nil, sourceurls=nil, domainname=nil, appname=nil, streamname=nil, starttime=nil, endtime=nil, operator=nil, pushargs=nil, callbackevents=nil, vodlooptimes=nil, vodrefreshtype=nil, callbackurl=nil, extracmd=nil, specifytaskid=nil, comment=nil, tourl=nil, backupsourcetype=nil, backupsourceurl=nil, watermarklist=nil, vodlocalmode=nil, recordtemplateid=nil, backuptourl=nil, transcodetemplatename=nil)
+        def initialize(sourcetype=nil, sourceurls=nil, domainname=nil, appname=nil, streamname=nil, starttime=nil, endtime=nil, operator=nil, pushargs=nil, callbackevents=nil, vodlooptimes=nil, vodrefreshtype=nil, callbackurl=nil, extracmd=nil, specifytaskid=nil, comment=nil, tourl=nil, fileindex=nil, offsettime=nil, backupsourcetype=nil, backupsourceurl=nil, watermarklist=nil, vodlocalmode=nil, recordtemplateid=nil, backuptourl=nil, transcodetemplatename=nil)
           @SourceType = sourcetype
           @SourceUrls = sourceurls
           @DomainName = domainname
@@ -2664,6 +2673,8 @@ module TencentCloud
           @SpecifyTaskId = specifytaskid
           @Comment = comment
           @ToUrl = tourl
+          @FileIndex = fileindex
+          @OffsetTime = offsettime
           @BackupSourceType = backupsourcetype
           @BackupSourceUrl = backupsourceurl
           @WatermarkList = watermarklist
@@ -2691,6 +2702,8 @@ module TencentCloud
           @SpecifyTaskId = params['SpecifyTaskId']
           @Comment = params['Comment']
           @ToUrl = params['ToUrl']
+          @FileIndex = params['FileIndex']
+          @OffsetTime = params['OffsetTime']
           @BackupSourceType = params['BackupSourceType']
           @BackupSourceUrl = params['BackupSourceUrl']
           unless params['WatermarkList'].nil?

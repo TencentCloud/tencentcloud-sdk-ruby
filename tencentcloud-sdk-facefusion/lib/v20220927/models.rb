@@ -363,15 +363,22 @@ module TencentCloud
         # 1：牙齿增强打开
         # 该参数仅对SwapModelType（模型类型）取值1-5生效
         # @type TeethEnhanceRadio: Float
+        # @param MakeupTransferRadio: 妆容迁移开关，默认取值为0。
+        # 将素材模板的妆容迁移到融合结果上。即：如果希望妆容效果与模板图保持一致，可以打开此开关。
+        # 0：妆容迁移关闭
+        # 1：妆容迁移打开
+        # 该参数仅对SwapModelType（模型类型）取值1-5生效
+        # @type MakeupTransferRadio: Float
 
-        attr_accessor :WarpRadio, :EnhanceRadio, :MpRadio, :BlurRadio, :TeethEnhanceRadio
+        attr_accessor :WarpRadio, :EnhanceRadio, :MpRadio, :BlurRadio, :TeethEnhanceRadio, :MakeupTransferRadio
 
-        def initialize(warpradio=nil, enhanceradio=nil, mpradio=nil, blurradio=nil, teethenhanceradio=nil)
+        def initialize(warpradio=nil, enhanceradio=nil, mpradio=nil, blurradio=nil, teethenhanceradio=nil, makeuptransferradio=nil)
           @WarpRadio = warpradio
           @EnhanceRadio = enhanceradio
           @MpRadio = mpradio
           @BlurRadio = blurradio
           @TeethEnhanceRadio = teethenhanceradio
+          @MakeupTransferRadio = makeuptransferradio
         end
 
         def deserialize(params)
@@ -380,6 +387,7 @@ module TencentCloud
           @MpRadio = params['MpRadio']
           @BlurRadio = params['BlurRadio']
           @TeethEnhanceRadio = params['TeethEnhanceRadio']
+          @MakeupTransferRadio = params['MakeupTransferRadio']
         end
       end
 

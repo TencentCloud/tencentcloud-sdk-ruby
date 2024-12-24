@@ -6750,6 +6750,53 @@ module TencentCloud
         end
       end
 
+      # CreateLiveRecordTemplate请求参数结构体
+      class CreateLiveRecordTemplateRequest < TencentCloud::Common::AbstractModel
+        # @param HLSConfigure: HLS 配置参数
+        # @type HLSConfigure: :class:`Tencentcloud::Mps.v20190612.models.HLSConfigureInfo`
+        # @param Name: 录制模板名称，长度限制：64 个字符。
+        # @type Name: String
+        # @param Comment: 模板描述信息，长度限制：256 个字符。
+        # @type Comment: String
+
+        attr_accessor :HLSConfigure, :Name, :Comment
+
+        def initialize(hlsconfigure=nil, name=nil, comment=nil)
+          @HLSConfigure = hlsconfigure
+          @Name = name
+          @Comment = comment
+        end
+
+        def deserialize(params)
+          unless params['HLSConfigure'].nil?
+            @HLSConfigure = HLSConfigureInfo.new
+            @HLSConfigure.deserialize(params['HLSConfigure'])
+          end
+          @Name = params['Name']
+          @Comment = params['Comment']
+        end
+      end
+
+      # CreateLiveRecordTemplate返回参数结构体
+      class CreateLiveRecordTemplateResponse < TencentCloud::Common::AbstractModel
+        # @param Definition: 录制模板唯一标识。
+        # @type Definition: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Definition, :RequestId
+
+        def initialize(definition=nil, requestid=nil)
+          @Definition = definition
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Definition = params['Definition']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 创建输出的配置信息。
       class CreateOutputInfo < TencentCloud::Common::AbstractModel
         # @param OutputName: 输出的名称。
@@ -8205,6 +8252,38 @@ module TencentCloud
         end
       end
 
+      # DeleteLiveRecordTemplate请求参数结构体
+      class DeleteLiveRecordTemplateRequest < TencentCloud::Common::AbstractModel
+        # @param Definition: 录制模板唯一标识。
+        # @type Definition: Integer
+
+        attr_accessor :Definition
+
+        def initialize(definition=nil)
+          @Definition = definition
+        end
+
+        def deserialize(params)
+          @Definition = params['Definition']
+        end
+      end
+
+      # DeleteLiveRecordTemplate返回参数结构体
+      class DeleteLiveRecordTemplateResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeletePersonSample请求参数结构体
       class DeletePersonSampleRequest < TencentCloud::Common::AbstractModel
         # @param PersonId: 素材 ID。
@@ -9443,6 +9522,71 @@ module TencentCloud
               @SourceAddresses << srtsourceaddressresp_tmp
             end
           end
+        end
+      end
+
+      # DescribeLiveRecordTemplates请求参数结构体
+      class DescribeLiveRecordTemplatesRequest < TencentCloud::Common::AbstractModel
+        # @param Definitions: 录制模板唯一标识过滤条件，数组长度限制：100。
+        # @type Definitions: Array
+        # @param Offset: 分页偏移量，默认值：0。
+        # @type Offset: Integer
+        # @param Limit: 返回记录条数，默认值：10，最大值：100。
+        # @type Limit: Integer
+        # @param Type: 模板类型过滤条件，不填则返回所有，可选值：
+        # * Preset：系统预置模板；
+        # * Custom：用户自定义模板。
+        # @type Type: String
+        # @param Name: 录制模板标识过滤条件，长度限制：64 个字符。
+        # @type Name: String
+
+        attr_accessor :Definitions, :Offset, :Limit, :Type, :Name
+
+        def initialize(definitions=nil, offset=nil, limit=nil, type=nil, name=nil)
+          @Definitions = definitions
+          @Offset = offset
+          @Limit = limit
+          @Type = type
+          @Name = name
+        end
+
+        def deserialize(params)
+          @Definitions = params['Definitions']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @Type = params['Type']
+          @Name = params['Name']
+        end
+      end
+
+      # DescribeLiveRecordTemplates返回参数结构体
+      class DescribeLiveRecordTemplatesResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 符合过滤条件的记录总数。
+        # @type TotalCount: Integer
+        # @param LiveRecordTemplateSet: 录制模板详情列表。
+        # @type LiveRecordTemplateSet: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :LiveRecordTemplateSet, :RequestId
+
+        def initialize(totalcount=nil, liverecordtemplateset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @LiveRecordTemplateSet = liverecordtemplateset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['LiveRecordTemplateSet'].nil?
+            @LiveRecordTemplateSet = []
+            params['LiveRecordTemplateSet'].each do |i|
+              liverecordtemplate_tmp = LiveRecordTemplate.new
+              liverecordtemplate_tmp.deserialize(i)
+              @LiveRecordTemplateSet << liverecordtemplate_tmp
+            end
+          end
+          @RequestId = params['RequestId']
         end
       end
 
@@ -12827,6 +12971,38 @@ module TencentCloud
         end
       end
 
+      # HLS配置参数
+      class HLSConfigureInfo < TencentCloud::Common::AbstractModel
+        # @param ItemDuration: 单个 TS 文件时长，单位：秒，取值范围 5-30 秒。
+
+        # 不填默认为 30 秒。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ItemDuration: Integer
+        # @param Interval: 录制周期，单位：秒，取值范围 10 分钟到  12 小时。
+
+        # 不填默认为 10分钟（3600 秒）。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Interval: Integer
+        # @param ContinueTimeout: 续录等待时间，单位：秒。取值范围为60秒-1800秒。
+        # 不填默认为0（不启用续录）。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ContinueTimeout: Integer
+
+        attr_accessor :ItemDuration, :Interval, :ContinueTimeout
+
+        def initialize(itemduration=nil, interval=nil, continuetimeout=nil)
+          @ItemDuration = itemduration
+          @Interval = interval
+          @ContinueTimeout = continuetimeout
+        end
+
+        def deserialize(params)
+          @ItemDuration = params['ItemDuration']
+          @Interval = params['Interval']
+          @ContinueTimeout = params['ContinueTimeout']
+        end
+      end
+
       # 创建的输入HLS拉流源站配置信息。
       class HLSPullSourceAddress < TencentCloud::Common::AbstractModel
         # @param Url: HLS源站的Url地址。
@@ -13474,6 +13650,51 @@ module TencentCloud
             @OutputStorage.deserialize(params['OutputStorage'])
           end
           @OutputObjectPath = params['OutputObjectPath']
+        end
+      end
+
+      # 直播录制模板详情
+      class LiveRecordTemplate < TencentCloud::Common::AbstractModel
+        # @param Definition: 录制模板唯一标识。
+        # @type Definition: Integer
+        # @param HLSConfigure: HLS 配置参数
+        # @type HLSConfigure: :class:`Tencentcloud::Mps.v20190612.models.HLSConfigureInfo`
+        # @param Name: 录制模板名称。
+        # @type Name: String
+        # @param Comment: 模板描述信息。
+        # @type Comment: String
+        # @param Type: 模板类型，取值：
+        # <li>Preset：系统预置模板；</li>
+        # <li>Custom：用户自定义模板。</li>
+        # @type Type: String
+        # @param CreateTime: 模板创建时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/862/37710#52)。
+        # @type CreateTime: String
+        # @param UpdateTime: 模板最后修改时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/862/37710#52)。
+        # @type UpdateTime: String
+
+        attr_accessor :Definition, :HLSConfigure, :Name, :Comment, :Type, :CreateTime, :UpdateTime
+
+        def initialize(definition=nil, hlsconfigure=nil, name=nil, comment=nil, type=nil, createtime=nil, updatetime=nil)
+          @Definition = definition
+          @HLSConfigure = hlsconfigure
+          @Name = name
+          @Comment = comment
+          @Type = type
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+        end
+
+        def deserialize(params)
+          @Definition = params['Definition']
+          unless params['HLSConfigure'].nil?
+            @HLSConfigure = HLSConfigureInfo.new
+            @HLSConfigure.deserialize(params['HLSConfigure'])
+          end
+          @Name = params['Name']
+          @Comment = params['Comment']
+          @Type = params['Type']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
         end
       end
 
@@ -16546,6 +16767,53 @@ module TencentCloud
             @RISTSettings.deserialize(params['RISTSettings'])
           end
           @InputRegion = params['InputRegion']
+        end
+      end
+
+      # ModifyLiveRecordTemplate请求参数结构体
+      class ModifyLiveRecordTemplateRequest < TencentCloud::Common::AbstractModel
+        # @param Definition: 录制模板唯一标识。
+        # @type Definition: Integer
+        # @param HLSConfigure: HLS 配置参数
+        # @type HLSConfigure: :class:`Tencentcloud::Mps.v20190612.models.HLSConfigureInfo`
+        # @param Name: 录制模板名称，长度限制：64 个字符。
+        # @type Name: String
+        # @param Comment: 模板描述信息，长度限制：256 个字符。
+        # @type Comment: String
+
+        attr_accessor :Definition, :HLSConfigure, :Name, :Comment
+
+        def initialize(definition=nil, hlsconfigure=nil, name=nil, comment=nil)
+          @Definition = definition
+          @HLSConfigure = hlsconfigure
+          @Name = name
+          @Comment = comment
+        end
+
+        def deserialize(params)
+          @Definition = params['Definition']
+          unless params['HLSConfigure'].nil?
+            @HLSConfigure = HLSConfigureInfo.new
+            @HLSConfigure.deserialize(params['HLSConfigure'])
+          end
+          @Name = params['Name']
+          @Comment = params['Comment']
+        end
+      end
+
+      # ModifyLiveRecordTemplate返回参数结构体
+      class ModifyLiveRecordTemplateResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 

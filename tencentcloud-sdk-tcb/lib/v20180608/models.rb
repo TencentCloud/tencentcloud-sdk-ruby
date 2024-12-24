@@ -6486,10 +6486,14 @@ module TencentCloud
         # @param ExtPackageType: 环境套餐类型
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExtPackageType: String
+        # @param EnvCharged: 是否付费期环境，可取值：yes/no。
+        # @type EnvCharged: String
+        # @param EnvActivated: 是否已激活，可取值：yes/no。
+        # @type EnvActivated: String
 
-        attr_accessor :EnvId, :PackageId, :IsAutoRenew, :Status, :PayMode, :IsolatedTime, :ExpireTime, :CreateTime, :UpdateTime, :IsAlwaysFree, :PaymentChannel, :OrderInfo, :FreeQuota, :EnableOverrun, :ExtPackageType
+        attr_accessor :EnvId, :PackageId, :IsAutoRenew, :Status, :PayMode, :IsolatedTime, :ExpireTime, :CreateTime, :UpdateTime, :IsAlwaysFree, :PaymentChannel, :OrderInfo, :FreeQuota, :EnableOverrun, :ExtPackageType, :EnvCharged, :EnvActivated
 
-        def initialize(envid=nil, packageid=nil, isautorenew=nil, status=nil, paymode=nil, isolatedtime=nil, expiretime=nil, createtime=nil, updatetime=nil, isalwaysfree=nil, paymentchannel=nil, orderinfo=nil, freequota=nil, enableoverrun=nil, extpackagetype=nil)
+        def initialize(envid=nil, packageid=nil, isautorenew=nil, status=nil, paymode=nil, isolatedtime=nil, expiretime=nil, createtime=nil, updatetime=nil, isalwaysfree=nil, paymentchannel=nil, orderinfo=nil, freequota=nil, enableoverrun=nil, extpackagetype=nil, envcharged=nil, envactivated=nil)
           @EnvId = envid
           @PackageId = packageid
           @IsAutoRenew = isautorenew
@@ -6505,6 +6509,8 @@ module TencentCloud
           @FreeQuota = freequota
           @EnableOverrun = enableoverrun
           @ExtPackageType = extpackagetype
+          @EnvCharged = envcharged
+          @EnvActivated = envactivated
         end
 
         def deserialize(params)
@@ -6526,6 +6532,8 @@ module TencentCloud
           @FreeQuota = params['FreeQuota']
           @EnableOverrun = params['EnableOverrun']
           @ExtPackageType = params['ExtPackageType']
+          @EnvCharged = params['EnvCharged']
+          @EnvActivated = params['EnvActivated']
         end
       end
 

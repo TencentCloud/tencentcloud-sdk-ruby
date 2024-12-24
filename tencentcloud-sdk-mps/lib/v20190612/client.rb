@@ -245,6 +245,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建直播录制模板
+
+        # @param request: Request instance for CreateLiveRecordTemplate.
+        # @type request: :class:`Tencentcloud::mps::V20190612::CreateLiveRecordTemplateRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::CreateLiveRecordTemplateResponse`
+        def CreateLiveRecordTemplate(request)
+          body = send_request('CreateLiveRecordTemplate', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateLiveRecordTemplateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 该接口用于创建素材样本，用于通过五官定位等技术，进行内容识别、内容不适宜等视频处理。
 
         # @param request: Request instance for CreatePersonSample.
@@ -774,6 +798,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 删除直播录制模板
+
+        # @param request: Request instance for DeleteLiveRecordTemplate.
+        # @type request: :class:`Tencentcloud::mps::V20190612::DeleteLiveRecordTemplateRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::DeleteLiveRecordTemplateResponse`
+        def DeleteLiveRecordTemplate(request)
+          body = send_request('DeleteLiveRecordTemplate', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteLiveRecordTemplateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 该接口用于根据素材 ID，删除素材样本。
 
         # @param request: Request instance for DeletePersonSample.
@@ -1192,6 +1240,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeImageSpriteTemplatesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取直播录制模板
+
+        # @param request: Request instance for DescribeLiveRecordTemplates.
+        # @type request: :class:`Tencentcloud::mps::V20190612::DescribeLiveRecordTemplatesRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::DescribeLiveRecordTemplatesResponse`
+        def DescribeLiveRecordTemplates(request)
+          body = send_request('DescribeLiveRecordTemplates', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeLiveRecordTemplatesResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -2144,6 +2216,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyImageSpriteTemplateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改直播录制模板
+
+        # @param request: Request instance for ModifyLiveRecordTemplate.
+        # @type request: :class:`Tencentcloud::mps::V20190612::ModifyLiveRecordTemplateRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::ModifyLiveRecordTemplateResponse`
+        def ModifyLiveRecordTemplate(request)
+          body = send_request('ModifyLiveRecordTemplate', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyLiveRecordTemplateResponse.new
             model.deserialize(response['Response'])
             model
           else

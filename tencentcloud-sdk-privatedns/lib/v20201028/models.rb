@@ -22,13 +22,10 @@ module TencentCloud
         # @param UniqVpcId: VpcId： vpc-xadsafsdasd
         # @type UniqVpcId: String
         # @param Region: Vpc所属地区: ap-guangzhou, ap-shanghai
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Region: String
         # @param Uin: Vpc所属账号: 123456789
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Uin: String
         # @param VpcName: vpc资源名称：testname
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VpcName: String
 
         attr_accessor :UniqVpcId, :Region, :Uin, :VpcName
@@ -151,7 +148,6 @@ module TencentCloud
         # @param AccountVpcSet: 本次新增的关联账号vpc
         # @type AccountVpcSet: Array
         # @param UniqId: 唯一id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UniqId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -628,7 +624,6 @@ module TencentCloud
         # @param AccountVpcSet: 本次删除的关联账户的VPC
         # @type AccountVpcSet: Array
         # @param UniqId: 唯一id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UniqId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

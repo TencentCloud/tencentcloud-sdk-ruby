@@ -3992,8 +3992,10 @@ module TencentCloud
       # 按机型归类的实例可售卖规格信息
       class InstanceSpec < TencentCloud::Common::AbstractModel
         # @param Machine: 设备型号
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Machine: String
         # @param SpecInfos: 该机型对应的可售卖规格列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SpecInfos: Array
 
         attr_accessor :Machine, :SpecInfos

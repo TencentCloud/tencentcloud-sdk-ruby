@@ -1999,13 +1999,10 @@ module TencentCloud
         # Available:可用
         # @type TieringState: String
         # @param TieringDetail: 分层存储详情
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TieringDetail: :class:`Tencentcloud::Cfs.v20190719.models.TieringDetailInfo`
         # @param AutoScaleUpRule: 文件系统自动扩容策略
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AutoScaleUpRule: :class:`Tencentcloud::Cfs.v20190719.models.AutoScaleUpRule`
         # @param Version: 文件系统版本
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Version: String
 
         attr_accessor :CreationTime, :CreationToken, :FileSystemId, :LifeCycleState, :SizeByte, :SizeLimit, :ZoneId, :Zone, :Protocol, :StorageType, :StorageResourcePkg, :BandwidthResourcePkg, :PGroup, :FsName, :Encrypted, :KmsKeyId, :AppId, :BandwidthLimit, :AutoSnapshotPolicyId, :SnapStatus, :Capacity, :Tags, :TieringState, :TieringDetail, :AutoScaleUpRule, :Version
@@ -2116,19 +2113,14 @@ module TencentCloud
         # @param MigrationMode: 迁移模式，默认为0。0: 全量迁移
         # @type MigrationMode: Integer
         # @param BucketName: 数据源桶名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BucketName: String
         # @param BucketRegion: 数据源桶地域
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BucketRegion: String
         # @param BucketAddress: 数据源桶地址
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BucketAddress: String
         # @param ListAddress: 清单地址
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ListAddress: String
         # @param FsName: 文件系统实例名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FsName: String
         # @param FileSystemId: 文件系统实例Id
         # @type FileSystemId: String
@@ -2139,39 +2131,28 @@ module TencentCloud
         # @param CreateTime: 创建时间
         # @type CreateTime: Integer
         # @param EndTime: 完成/终止时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EndTime: Integer
         # @param Status: 迁移状态。0: 已完成；1: 进行中；2: 已终止
         # @type Status: Integer
         # @param FileTotalCount: 文件数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FileTotalCount: Integer
         # @param FileMigratedCount: 已迁移文件数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FileMigratedCount: Integer
         # @param FileFailedCount: 迁移失败文件数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FileFailedCount: Integer
         # @param FileTotalSize: 文件容量，单位Byte
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FileTotalSize: Integer
         # @param FileMigratedSize: 已迁移文件容量，单位Byte
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FileMigratedSize: Integer
         # @param FileFailedSize: 迁移失败文件容量，单位Byte
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FileFailedSize: Integer
         # @param FileTotalList: 全部清单
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FileTotalList: String
         # @param FileCompletedList: 已完成文件清单
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FileCompletedList: String
         # @param FileFailedList: 失败文件清单
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FileFailedList: String
         # @param BucketPath: 源桶路径
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BucketPath: String
         # @param Direction: 迁移方向。0: 对象存储迁移至文件系统，1: 文件系统迁移至对象存储。默认 0
         # @type Direction: Integer
@@ -2779,7 +2760,6 @@ module TencentCloud
       # 分层存储详细信息
       class TieringDetailInfo < TencentCloud::Common::AbstractModel
         # @param TieringSizeInBytes: 低频存储容量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TieringSizeInBytes: Integer
         # @param SecondaryTieringSizeInBytes: 冷存储容量
         # @type SecondaryTieringSizeInBytes: Integer
@@ -3254,16 +3234,13 @@ module TencentCloud
         # @param FileSystemId: 文件系统ID
         # @type FileSystemId: String
         # @param CapacityUsed: 容量使用，单位GiB
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CapacityUsed: Integer
         # @param FileUsed: 文件使用个数，单位个
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FileUsed: Integer
         # @param DirectoryPath: 目录配额的目录绝对路径
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DirectoryPath: String
         # @param Status: 配置规则状态，inavailable---配置中，available --已生效，deleting--删除中，deleted 已删除，failed--配置失败
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: String
 
         attr_accessor :UserType, :UserId, :CapacityHardLimit, :FileHardLimit, :FileSystemId, :CapacityUsed, :FileUsed, :DirectoryPath, :Status

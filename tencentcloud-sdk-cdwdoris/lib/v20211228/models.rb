@@ -4376,10 +4376,12 @@ module TencentCloud
         # @param Zone: 可用区
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Zone: String
+        # @param CreateTime: 创建时间
+        # @type CreateTime: String
 
-        attr_accessor :NodeName, :Status, :Ip, :NodeRole, :ComponentName, :LastRestartTime, :Id, :Zone
+        attr_accessor :NodeName, :Status, :Ip, :NodeRole, :ComponentName, :LastRestartTime, :Id, :Zone, :CreateTime
 
-        def initialize(nodename=nil, status=nil, ip=nil, noderole=nil, componentname=nil, lastrestarttime=nil, id=nil, zone=nil)
+        def initialize(nodename=nil, status=nil, ip=nil, noderole=nil, componentname=nil, lastrestarttime=nil, id=nil, zone=nil, createtime=nil)
           @NodeName = nodename
           @Status = status
           @Ip = ip
@@ -4388,6 +4390,7 @@ module TencentCloud
           @LastRestartTime = lastrestarttime
           @Id = id
           @Zone = zone
+          @CreateTime = createtime
         end
 
         def deserialize(params)
@@ -4399,6 +4402,7 @@ module TencentCloud
           @LastRestartTime = params['LastRestartTime']
           @Id = params['Id']
           @Zone = params['Zone']
+          @CreateTime = params['CreateTime']
         end
       end
 

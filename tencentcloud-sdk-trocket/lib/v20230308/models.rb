@@ -2233,6 +2233,70 @@ module TencentCloud
         end
       end
 
+      # DescribeMessageTrace请求参数结构体
+      class DescribeMessageTraceRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 集群ID
+        # @type InstanceId: String
+        # @param Topic: 主题名称
+        # @type Topic: String
+        # @param MsgId: 消息ID
+        # @type MsgId: String
+        # @param QueryDeadLetterMessage: 是否是死信消息
+        # @type QueryDeadLetterMessage: Boolean
+        # @param QueryDelayMessage: 是否是延时消息
+        # @type QueryDelayMessage: Boolean
+
+        attr_accessor :InstanceId, :Topic, :MsgId, :QueryDeadLetterMessage, :QueryDelayMessage
+
+        def initialize(instanceid=nil, topic=nil, msgid=nil, querydeadlettermessage=nil, querydelaymessage=nil)
+          @InstanceId = instanceid
+          @Topic = topic
+          @MsgId = msgid
+          @QueryDeadLetterMessage = querydeadlettermessage
+          @QueryDelayMessage = querydelaymessage
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Topic = params['Topic']
+          @MsgId = params['MsgId']
+          @QueryDeadLetterMessage = params['QueryDeadLetterMessage']
+          @QueryDelayMessage = params['QueryDelayMessage']
+        end
+      end
+
+      # DescribeMessageTrace返回参数结构体
+      class DescribeMessageTraceResponse < TencentCloud::Common::AbstractModel
+        # @param ShowTopicName: 展示Topic名
+        # @type ShowTopicName: String
+        # @param Data: 轨迹详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ShowTopicName, :Data, :RequestId
+
+        def initialize(showtopicname=nil, data=nil, requestid=nil)
+          @ShowTopicName = showtopicname
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ShowTopicName = params['ShowTopicName']
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              messagetraceitem_tmp = MessageTraceItem.new
+              messagetraceitem_tmp.deserialize(i)
+              @Data << messagetraceitem_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeProductSKUs请求参数结构体
       class DescribeProductSKUsRequest < TencentCloud::Common::AbstractModel
 
@@ -3347,6 +3411,28 @@ module TencentCloud
           @Remark = params['Remark']
           @CreatedTime = params['CreatedTime']
           @ModifiedTime = params['ModifiedTime']
+        end
+      end
+
+      # 消息轨迹
+      class MessageTraceItem < TencentCloud::Common::AbstractModel
+        # @param Stage: 步骤
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Stage: String
+        # @param Data: 轨迹详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: String
+
+        attr_accessor :Stage, :Data
+
+        def initialize(stage=nil, data=nil)
+          @Stage = stage
+          @Data = data
+        end
+
+        def deserialize(params)
+          @Stage = params['Stage']
+          @Data = params['Data']
         end
       end
 

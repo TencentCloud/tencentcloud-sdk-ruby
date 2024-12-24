@@ -1493,6 +1493,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询实例秒级备份信息
+
+        # @param request: Request instance for DescribeSecondLevelBackupInfo.
+        # @type request: :class:`Tencentcloud::redis::V20180412::DescribeSecondLevelBackupInfoRequest`
+        # @rtype: :class:`Tencentcloud::redis::V20180412::DescribeSecondLevelBackupInfoResponse`
+        def DescribeSecondLevelBackupInfo(request)
+          body = send_request('DescribeSecondLevelBackupInfo', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeSecondLevelBackupInfoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（DescribeSlowLog）查询实例慢查询记录。
 
         # @param request: Request instance for DescribeSlowLog.
@@ -2009,6 +2033,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyInstanceAvailabilityZonesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改实例的备份模式
+
+        # @param request: Request instance for ModifyInstanceBackupMode.
+        # @type request: :class:`Tencentcloud::redis::V20180412::ModifyInstanceBackupModeRequest`
+        # @rtype: :class:`Tencentcloud::redis::V20180412::ModifyInstanceBackupModeResponse`
+        def ModifyInstanceBackupMode(request)
+          body = send_request('ModifyInstanceBackupMode', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyInstanceBackupModeResponse.new
             model.deserialize(response['Response'])
             model
           else

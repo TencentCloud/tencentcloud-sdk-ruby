@@ -567,10 +567,13 @@ module TencentCloud
         # @param ServiceNameKeyPosition: 微服务名参数位置，path，header或query，默认是path
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ServiceNameKeyPosition: String
+        # @param GatewayInstanceIdList: 网关实例ID列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GatewayInstanceIdList: Array
 
-        attr_accessor :GroupId, :GroupName, :GroupContext, :AuthType, :Status, :CreatedTime, :UpdatedTime, :BindedGatewayDeployGroups, :ApiCount, :AclMode, :Description, :GroupType, :GatewayInstanceType, :GatewayInstanceId, :NamespaceNameKey, :ServiceNameKey, :NamespaceNameKeyPosition, :ServiceNameKeyPosition
+        attr_accessor :GroupId, :GroupName, :GroupContext, :AuthType, :Status, :CreatedTime, :UpdatedTime, :BindedGatewayDeployGroups, :ApiCount, :AclMode, :Description, :GroupType, :GatewayInstanceType, :GatewayInstanceId, :NamespaceNameKey, :ServiceNameKey, :NamespaceNameKeyPosition, :ServiceNameKeyPosition, :GatewayInstanceIdList
 
-        def initialize(groupid=nil, groupname=nil, groupcontext=nil, authtype=nil, status=nil, createdtime=nil, updatedtime=nil, bindedgatewaydeploygroups=nil, apicount=nil, aclmode=nil, description=nil, grouptype=nil, gatewayinstancetype=nil, gatewayinstanceid=nil, namespacenamekey=nil, servicenamekey=nil, namespacenamekeyposition=nil, servicenamekeyposition=nil)
+        def initialize(groupid=nil, groupname=nil, groupcontext=nil, authtype=nil, status=nil, createdtime=nil, updatedtime=nil, bindedgatewaydeploygroups=nil, apicount=nil, aclmode=nil, description=nil, grouptype=nil, gatewayinstancetype=nil, gatewayinstanceid=nil, namespacenamekey=nil, servicenamekey=nil, namespacenamekeyposition=nil, servicenamekeyposition=nil, gatewayinstanceidlist=nil)
           @GroupId = groupid
           @GroupName = groupname
           @GroupContext = groupcontext
@@ -589,6 +592,7 @@ module TencentCloud
           @ServiceNameKey = servicenamekey
           @NamespaceNameKeyPosition = namespacenamekeyposition
           @ServiceNameKeyPosition = servicenamekeyposition
+          @GatewayInstanceIdList = gatewayinstanceidlist
         end
 
         def deserialize(params)
@@ -617,6 +621,7 @@ module TencentCloud
           @ServiceNameKey = params['ServiceNameKey']
           @NamespaceNameKeyPosition = params['NamespaceNameKeyPosition']
           @ServiceNameKeyPosition = params['ServiceNameKeyPosition']
+          @GatewayInstanceIdList = params['GatewayInstanceIdList']
         end
       end
 
@@ -4529,7 +4534,7 @@ module TencentCloud
 
       # CreateMicroserviceWithDetailResp返回参数结构体
       class CreateMicroserviceWithDetailRespResponse < TencentCloud::Common::AbstractModel
-        # @param Result: id
+        # @param Result: 微服务ID
         # @type Result: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -8564,7 +8569,7 @@ module TencentCloud
       class DescribeGatewayAllGroupApisRequest < TencentCloud::Common::AbstractModel
         # @param GatewayDeployGroupId: 网关部署组ID
         # @type GatewayDeployGroupId: String
-        # @param SearchWord: 搜索关键字，支持分组名称或API Path
+        # @param SearchWord: 搜索关键字，支持命名空间名称或服务名称
         # @type SearchWord: String
 
         attr_accessor :GatewayDeployGroupId, :SearchWord

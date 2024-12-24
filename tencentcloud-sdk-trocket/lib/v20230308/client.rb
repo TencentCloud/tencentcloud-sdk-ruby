@@ -870,6 +870,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 根据消息 ID 查询消息轨迹。
+
+        # @param request: Request instance for DescribeMessageTrace.
+        # @type request: :class:`Tencentcloud::trocket::V20230308::DescribeMessageTraceRequest`
+        # @rtype: :class:`Tencentcloud::trocket::V20230308::DescribeMessageTraceResponse`
+        def DescribeMessageTrace(request)
+          body = send_request('DescribeMessageTrace', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeMessageTraceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询产品售卖规格，针对 RocketMQ 5.x 集群。
 
         # @param request: Request instance for DescribeProductSKUs.

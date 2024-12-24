@@ -6018,10 +6018,10 @@ module TencentCloud
       class InquiryPriceRenewInstanceRequest < TencentCloud::Common::AbstractModel
         # @param TimeSpan: 实例续费的时长。需要结合TimeUnit一起使用。1表示续费一个月
         # @type TimeSpan: Integer
-        # @param ResourceIds: 待续费节点的资源ID列表。资源ID形如：emr-vm-xxxxxxxx。有效的资源ID可通过登录[控制台](https://console.cloud.tencent.com/emr)查询。
-        # @type ResourceIds: Array
         # @param PayMode: 实例计费模式。此处只支持取值为1，表示包年包月。
         # @type PayMode: Integer
+        # @param ResourceIds: 待续费节点的资源ID列表。资源ID形如：emr-vm-xxxxxxxx。有效的资源ID可通过登录[控制台](https://console.cloud.tencent.com/emr)查询。
+        # @type ResourceIds: Array
         # @param TimeUnit: 实例续费的时间单位。取值范围：
         # <li>m：表示月份。</li>
         # @type TimeUnit: String
@@ -6032,23 +6032,29 @@ module TencentCloud
         # @type Placement: :class:`Tencentcloud::Emr.v20190103.models.Placement`
         # @param ModifyPayMode: 是否按量转包年包月。0：否，1：是。
         # @type ModifyPayMode: Integer
+        # @param NeedDetail: 是否需要每个节点续费价格
+        # @type NeedDetail: Boolean
+        # @param InstanceId: 集群id，如果需要集群所有包年包月节点续费信息，可以填写该参数
+        # @type InstanceId: String
 
-        attr_accessor :TimeSpan, :ResourceIds, :PayMode, :TimeUnit, :Currency, :Placement, :ModifyPayMode
+        attr_accessor :TimeSpan, :PayMode, :ResourceIds, :TimeUnit, :Currency, :Placement, :ModifyPayMode, :NeedDetail, :InstanceId
 
-        def initialize(timespan=nil, resourceids=nil, paymode=nil, timeunit=nil, currency=nil, placement=nil, modifypaymode=nil)
+        def initialize(timespan=nil, paymode=nil, resourceids=nil, timeunit=nil, currency=nil, placement=nil, modifypaymode=nil, needdetail=nil, instanceid=nil)
           @TimeSpan = timespan
-          @ResourceIds = resourceids
           @PayMode = paymode
+          @ResourceIds = resourceids
           @TimeUnit = timeunit
           @Currency = currency
           @Placement = placement
           @ModifyPayMode = modifypaymode
+          @NeedDetail = needdetail
+          @InstanceId = instanceid
         end
 
         def deserialize(params)
           @TimeSpan = params['TimeSpan']
-          @ResourceIds = params['ResourceIds']
           @PayMode = params['PayMode']
+          @ResourceIds = params['ResourceIds']
           @TimeUnit = params['TimeUnit']
           @Currency = params['Currency']
           unless params['Placement'].nil?
@@ -6056,6 +6062,8 @@ module TencentCloud
             @Placement.deserialize(params['Placement'])
           end
           @ModifyPayMode = params['ModifyPayMode']
+          @NeedDetail = params['NeedDetail']
+          @InstanceId = params['InstanceId']
         end
       end
 
@@ -6074,16 +6082,20 @@ module TencentCloud
         # @param TimeSpan: 实例续费的时长。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TimeSpan: Integer
+        # @param PriceDetail: 价格详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PriceDetail: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :OriginalCost, :DiscountCost, :TimeUnit, :TimeSpan, :RequestId
+        attr_accessor :OriginalCost, :DiscountCost, :TimeUnit, :TimeSpan, :PriceDetail, :RequestId
 
-        def initialize(originalcost=nil, discountcost=nil, timeunit=nil, timespan=nil, requestid=nil)
+        def initialize(originalcost=nil, discountcost=nil, timeunit=nil, timespan=nil, pricedetail=nil, requestid=nil)
           @OriginalCost = originalcost
           @DiscountCost = discountcost
           @TimeUnit = timeunit
           @TimeSpan = timespan
+          @PriceDetail = pricedetail
           @RequestId = requestid
         end
 
@@ -6092,6 +6104,14 @@ module TencentCloud
           @DiscountCost = params['DiscountCost']
           @TimeUnit = params['TimeUnit']
           @TimeSpan = params['TimeSpan']
+          unless params['PriceDetail'].nil?
+            @PriceDetail = []
+            params['PriceDetail'].each do |i|
+              pricedetail_tmp = PriceDetail.new
+              pricedetail_tmp.deserialize(i)
+              @PriceDetail << pricedetail_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -10148,16 +10168,24 @@ module TencentCloud
         # @param TraceId: 查询流程状态，流程额外信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TraceId: String
+        # @param DealNames: 订单号。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DealNames: Array
+        # @param BillId: 大订单号。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BillId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :InstanceId, :ClientToken, :FlowId, :TraceId, :RequestId
+        attr_accessor :InstanceId, :ClientToken, :FlowId, :TraceId, :DealNames, :BillId, :RequestId
 
-        def initialize(instanceid=nil, clienttoken=nil, flowid=nil, traceid=nil, requestid=nil)
+        def initialize(instanceid=nil, clienttoken=nil, flowid=nil, traceid=nil, dealnames=nil, billid=nil, requestid=nil)
           @InstanceId = instanceid
           @ClientToken = clienttoken
           @FlowId = flowid
           @TraceId = traceid
+          @DealNames = dealnames
+          @BillId = billid
           @RequestId = requestid
         end
 
@@ -10166,6 +10194,8 @@ module TencentCloud
           @ClientToken = params['ClientToken']
           @FlowId = params['FlowId']
           @TraceId = params['TraceId']
+          @DealNames = params['DealNames']
+          @BillId = params['BillId']
           @RequestId = params['RequestId']
         end
       end

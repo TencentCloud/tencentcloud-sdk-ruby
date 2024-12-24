@@ -20,10 +20,8 @@ module TencentCloud
       # 数据库账号信息
       class Account < TencentCloud::Common::AbstractModel
         # @param User: 新账户的名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type User: String
         # @param Host: 新账户的域名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Host: String
 
         attr_accessor :User, :Host
@@ -637,12 +635,13 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TrxLivingTime: Integer
         # @param TemplateInfo: 日志命中规则模板的基本信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TemplateInfo: Array
+        # @param TrxId:  事务ID
+        # @type TrxId: Integer
 
-        attr_accessor :AffectRows, :ErrCode, :SqlType, :PolicyName, :DBName, :Sql, :Host, :User, :ExecTime, :Timestamp, :SentRows, :ThreadId, :CheckRows, :CpuTime, :IoWaitTime, :LockWaitTime, :NsTime, :TrxLivingTime, :TemplateInfo
+        attr_accessor :AffectRows, :ErrCode, :SqlType, :PolicyName, :DBName, :Sql, :Host, :User, :ExecTime, :Timestamp, :SentRows, :ThreadId, :CheckRows, :CpuTime, :IoWaitTime, :LockWaitTime, :NsTime, :TrxLivingTime, :TemplateInfo, :TrxId
 
-        def initialize(affectrows=nil, errcode=nil, sqltype=nil, policyname=nil, dbname=nil, sql=nil, host=nil, user=nil, exectime=nil, timestamp=nil, sentrows=nil, threadid=nil, checkrows=nil, cputime=nil, iowaittime=nil, lockwaittime=nil, nstime=nil, trxlivingtime=nil, templateinfo=nil)
+        def initialize(affectrows=nil, errcode=nil, sqltype=nil, policyname=nil, dbname=nil, sql=nil, host=nil, user=nil, exectime=nil, timestamp=nil, sentrows=nil, threadid=nil, checkrows=nil, cputime=nil, iowaittime=nil, lockwaittime=nil, nstime=nil, trxlivingtime=nil, templateinfo=nil, trxid=nil)
           @AffectRows = affectrows
           @ErrCode = errcode
           @SqlType = sqltype
@@ -662,6 +661,7 @@ module TencentCloud
           @NsTime = nstime
           @TrxLivingTime = trxlivingtime
           @TemplateInfo = templateinfo
+          @TrxId = trxid
         end
 
         def deserialize(params)
@@ -691,6 +691,7 @@ module TencentCloud
               @TemplateInfo << logruletemplateinfo_tmp
             end
           end
+          @TrxId = params['TrxId']
         end
       end
 
@@ -2136,12 +2137,16 @@ module TencentCloud
       # 列权限信息
       class ColumnPrivilege < TencentCloud::Common::AbstractModel
         # @param Database: 数据库名
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Database: String
         # @param Table: 数据库表名
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Table: String
         # @param Column: 数据库列名
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Column: String
         # @param Privileges: 权限信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Privileges: Array
 
         attr_accessor :Database, :Table, :Column, :Privileges
@@ -3752,8 +3757,10 @@ module TencentCloud
       # 数据库权限
       class DatabasePrivilege < TencentCloud::Common::AbstractModel
         # @param Privileges: 权限信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Privileges: Array
         # @param Database: 数据库名
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Database: String
 
         attr_accessor :Privileges, :Database
@@ -4608,7 +4615,7 @@ module TencentCloud
         # @type EndTime: String
         # @param Limit: 分页参数，单次返回的数据条数。默认值为100，最大值为100。
         # @type Limit: Integer
-        # @param Offset: 分页偏移量。
+        # @param Offset: 日志偏移量，最多支持偏移查询65535条日志。可填写范围：0 - 65535。
         # @type Offset: Integer
         # @param Order: 排序方式。支持值包括："ASC" - 升序，"DESC" - 降序。
         # @type Order: String
@@ -13898,10 +13905,13 @@ module TencentCloud
       # 数据库表权限
       class TablePrivilege < TencentCloud::Common::AbstractModel
         # @param Database: 数据库名
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Database: String
         # @param Table: 数据库表名
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Table: String
         # @param Privileges: 权限信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Privileges: Array
 
         attr_accessor :Database, :Table, :Privileges
@@ -14032,11 +14042,9 @@ module TencentCloud
       class TaskAttachInfo < TencentCloud::Common::AbstractModel
         # @param AttachKey: 升级任务：
         # ”FastUpgradeStatus“：表示升级类型。1-原地升级；0-普通升级。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AttachKey: String
         # @param AttachValue: 升级任务：
         # ”FastUpgradeStatus“：表示升级类型。1-原地升级；0-普通升级。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AttachValue: String
 
         attr_accessor :AttachKey, :AttachValue
@@ -14097,7 +14105,6 @@ module TencentCloud
         # @param AsyncRequestId: 异步任务的请求 ID。
         # @type AsyncRequestId: String
         # @param TaskAttachInfo: 任务的附加信息。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskAttachInfo: Array
 
         attr_accessor :Code, :Message, :JobId, :Progress, :TaskStatus, :TaskType, :StartTime, :EndTime, :InstanceIds, :AsyncRequestId, :TaskAttachInfo

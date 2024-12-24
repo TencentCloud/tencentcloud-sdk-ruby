@@ -4062,6 +4062,66 @@ module TencentCloud
         end
       end
 
+      # DescribeSecondLevelBackupInfo请求参数结构体
+      class DescribeSecondLevelBackupInfoRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 指定实例 ID。例如：crs-xjhsdj****。请登录Redis控制台在实例列表复制实例 ID。
+        # @type InstanceId: String
+        # @param BackupTimestamp: 秒级备份时间戳，7天内
+        # @type BackupTimestamp: Integer
+
+        attr_accessor :InstanceId, :BackupTimestamp
+
+        def initialize(instanceid=nil, backuptimestamp=nil)
+          @InstanceId = instanceid
+          @BackupTimestamp = backuptimestamp
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @BackupTimestamp = params['BackupTimestamp']
+        end
+      end
+
+      # DescribeSecondLevelBackupInfo返回参数结构体
+      class DescribeSecondLevelBackupInfoResponse < TencentCloud::Common::AbstractModel
+        # @param BackupId: 备份记录ID
+        # @type BackupId: String
+        # @param BackupTimestamp: 备份时间戳
+        # @type BackupTimestamp: Integer
+        # @param MissingTimestamps: 备份不存在的时间戳范围
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MissingTimestamps: Array
+        # @param StartTimestamp: 实例开启秒级备份的时间戳
+        # @type StartTimestamp: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :BackupId, :BackupTimestamp, :MissingTimestamps, :StartTimestamp, :RequestId
+
+        def initialize(backupid=nil, backuptimestamp=nil, missingtimestamps=nil, starttimestamp=nil, requestid=nil)
+          @BackupId = backupid
+          @BackupTimestamp = backuptimestamp
+          @MissingTimestamps = missingtimestamps
+          @StartTimestamp = starttimestamp
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @BackupId = params['BackupId']
+          @BackupTimestamp = params['BackupTimestamp']
+          unless params['MissingTimestamps'].nil?
+            @MissingTimestamps = []
+            params['MissingTimestamps'].each do |i|
+              secondlevelbackupmissingtimestamps_tmp = SecondLevelBackupMissingTimestamps.new
+              secondlevelbackupmissingtimestamps_tmp.deserialize(i)
+              @MissingTimestamps << secondlevelbackupmissingtimestamps_tmp
+            end
+          end
+          @StartTimestamp = params['StartTimestamp']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeSlowLog请求参数结构体
       class DescribeSlowLogRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 指定实例 ID。例如：crs-xjhsdj****。请登录[Redis控制台](https://console.cloud.tencent.com/redis)在实例列表复制实例 ID。
@@ -6392,6 +6452,48 @@ module TencentCloud
         end
       end
 
+      # ModifyInstanceBackupMode请求参数结构体
+      class ModifyInstanceBackupModeRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例的ID，长度在12-36之间。
+        # @type InstanceId: String
+        # @param BackupMode: 备份模式：
+        # - SecondLevelBackup   秒级备份
+        # - NormalLevelBackup    普通备份
+        # @type BackupMode: String
+
+        attr_accessor :InstanceId, :BackupMode
+
+        def initialize(instanceid=nil, backupmode=nil)
+          @InstanceId = instanceid
+          @BackupMode = backupmode
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @BackupMode = params['BackupMode']
+        end
+      end
+
+      # ModifyInstanceBackupMode返回参数结构体
+      class ModifyInstanceBackupModeResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务ID
+        # @type TaskId: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyInstanceEvent请求参数结构体
       class ModifyInstanceEventRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 指定实例 ID。例如：crs-xjhsdj****。请登录[Redis控制台](https://console.cloud.tencent.com/redis#/)在实例列表复制实例 ID。
@@ -7901,6 +8003,28 @@ module TencentCloud
         def deserialize(params)
           @TaskId = params['TaskId']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 秒级备份不存在的时间戳范围
+      class SecondLevelBackupMissingTimestamps < TencentCloud::Common::AbstractModel
+        # @param StartTimeStamp: 开始时间戳
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StartTimeStamp: Integer
+        # @param EndTimeStamp: 结束时间戳
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EndTimeStamp: Integer
+
+        attr_accessor :StartTimeStamp, :EndTimeStamp
+
+        def initialize(starttimestamp=nil, endtimestamp=nil)
+          @StartTimeStamp = starttimestamp
+          @EndTimeStamp = endtimestamp
+        end
+
+        def deserialize(params)
+          @StartTimeStamp = params['StartTimeStamp']
+          @EndTimeStamp = params['EndTimeStamp']
         end
       end
 

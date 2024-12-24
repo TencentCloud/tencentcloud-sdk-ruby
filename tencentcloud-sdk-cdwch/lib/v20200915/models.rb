@@ -397,7 +397,7 @@ module TencentCloud
         # @type UserVPCId: String
         # @param UserSubnetId: 子网
         # @type UserSubnetId: String
-        # @param ProductVersion: 版本
+        # @param ProductVersion: 系统版本
         # @type ProductVersion: String
         # @param ChargeProperties: 计费方式
         # @type ChargeProperties: :class:`Tencentcloud::Cdwch.v20200915.models.Charge`
@@ -412,7 +412,7 @@ module TencentCloud
         # @type ClsLogSetId: String
         # @param CosBucketName: COS桶名称
         # @type CosBucketName: String
-        # @param MountDiskType: 是否是裸盘挂载
+        # @param MountDiskType: 是否是裸盘挂载，默认值 0 为 未挂载，1 为挂载。
         # @type MountDiskType: Integer
         # @param HAZk: 是否是ZK高可用
         # @type HAZk: Boolean
@@ -424,8 +424,8 @@ module TencentCloud
 
         attr_accessor :Zone, :HaFlag, :UserVPCId, :UserSubnetId, :ProductVersion, :ChargeProperties, :InstanceName, :DataSpec, :Tags, :ClsLogSetId, :CosBucketName, :MountDiskType, :HAZk, :CommonSpec, :TagItems
         extend Gem::Deprecate
-        deprecate :Tags, :none, 2024, 11
-        deprecate :Tags=, :none, 2024, 11
+        deprecate :Tags, :none, 2024, 12
+        deprecate :Tags=, :none, 2024, 12
 
         def initialize(zone=nil, haflag=nil, uservpcid=nil, usersubnetid=nil, productversion=nil, chargeproperties=nil, instancename=nil, dataspec=nil, tags=nil, clslogsetid=nil, cosbucketname=nil, mountdisktype=nil, hazk=nil, commonspec=nil, tagitems=nil)
           @Zone = zone
@@ -2732,7 +2732,7 @@ module TencentCloud
 
       # 策略详情
       class ScheduleStrategy < TencentCloud::Common::AbstractModel
-        # @param CosBucketName: 备份桶列表
+        # @param CosBucketName: 备份桶名称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CosBucketName: String
         # @param RetainDays: 备份保留天数

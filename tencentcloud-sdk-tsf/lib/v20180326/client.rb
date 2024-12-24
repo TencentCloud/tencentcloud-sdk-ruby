@@ -1422,6 +1422,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # serverless 能力已下线。下线对应接口。
+
         # 删除Serverless部署组
 
         # @param request: Request instance for DeleteServerlessGroup.
