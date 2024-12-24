@@ -1217,10 +1217,13 @@ module TencentCloud
       # 查询过滤参数
       class Filter < TencentCloud::Common::AbstractModel
         # @param Type: 过滤方式（=, !=, in）
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: String
         # @param Key: 过滤维度名
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Key: String
         # @param Value: 过滤值，in过滤方式用逗号分割多个值
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: String
 
         attr_accessor :Type, :Key, :Value

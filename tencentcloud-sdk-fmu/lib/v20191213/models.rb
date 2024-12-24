@@ -21,12 +21,14 @@ module TencentCloud
       class BeautifyPicRequest < TencentCloud::Common::AbstractModel
         # @param Image: 图片 base64 数据，base64 编码后大小不可超过5M。
         # 支持PNG、JPG、JPEG、BMP，不支持 GIF 图片。
+        # 暂不支持带有alpha透明通道的图片。
         # @type Image: String
         # @param Url: 图片的 Url 。对应图片 base64 编码后大小不可超过5M。
         # Url、Image必须提供一个，如果都提供，只使用 Url。
         # 图片存储于腾讯云的Url可保障更高下载速度和稳定性，建议图片存储于腾讯云。
         # 非腾讯云存储的Url速度和稳定性可能受一定影响。
         # 支持PNG、JPG、JPEG、BMP，不支持 GIF 图片。
+        # 暂不支持带有alpha透明通道的图片。
         # @type Url: String
         # @param Whitening: 美白程度，取值范围[0,100]。0不美白，100代表最高程度。默认值30。
         # @type Whitening: Integer
@@ -545,12 +547,14 @@ module TencentCloud
         # @type FilterType: Integer
         # @param Image: 图片 base64 数据，base64 编码后大小不可超过5M。
         # 支持PNG、JPG、JPEG、BMP，不支持 GIF 图片。
+        # 暂不支持带有alpha透明通道的图片。
         # @type Image: String
         # @param Url: 图片的 Url ，对应图片 base64 编码后大小不可超过5M。
         # 图片的 Url、Image必须提供一个，如果都提供，只使用 Url。
         # 图片存储于腾讯云的 Url 可保障更高下载速度和稳定性，建议图片存储于腾讯云。
         # 非腾讯云存储的Url速度和稳定性可能受一定影响。
         # 支持PNG、JPG、JPEG、BMP 等图片格式，不支持 GIF 图片。
+        # 暂不支持带有alpha透明通道的图片。
         # @type Url: String
         # @param FilterDegree: 滤镜效果，取值[0,100]，0表示无效果，100表示满滤镜效果。默认值为80。
         # @type FilterDegree: Integer
@@ -609,12 +613,14 @@ module TencentCloud
         # @type FilterType: Integer
         # @param Image: 图片 base64 数据，base64 编码后大小不可超过5M。
         # 支持PNG、JPG、JPEG、BMP，不支持 GIF 图片。
+        # 暂不支持带有alpha透明通道的图片。
         # @type Image: String
         # @param Url: 图片的 Url ，对应图片 base64 编码后大小不可超过5M。
         # 图片的 Url、Image必须提供一个，如果都提供，只使用 Url。
         # 图片存储于腾讯云的 Url 可保障更高下载速度和稳定性，建议图片存储于腾讯云。
         # 非腾讯云存储的Url速度和稳定性可能受一定影响。
         # 支持PNG、JPG、JPEG、BMP 等图片格式，不支持 GIF 图片。
+        # 暂不支持带有alpha透明通道的图片。
         # @type Url: String
         # @param FilterDegree: 滤镜效果，取值[0,100]，0表示无效果，100表示满滤镜效果。默认值为80。
         # @type FilterDegree: Integer
@@ -673,12 +679,14 @@ module TencentCloud
         # @type LipColorInfos: Array
         # @param Image: 图片 base64 数据，base64 编码后大小不可超过6M。
         # 支持PNG、JPG、JPEG、BMP，不支持 GIF 图片。
+        # 暂不支持带有alpha透明通道的图片。
         # @type Image: String
         # @param Url: 图片的 Url ，对应图片 base64 编码后大小不可超过6M。
         # 图片的 Url、Image必须提供一个，如果都提供，只使用 Url。
         # 图片存储于腾讯云的 Url 可保障更高下载速度和稳定性，建议图片存储于腾讯云。
         # 非腾讯云存储的Url速度和稳定性可能受一定影响。
         # 支持PNG、JPG、JPEG、BMP，不支持 GIF 图片。
+        # 暂不支持带有alpha透明通道的图片。
         # @type Url: String
         # @param RspImgType: 返回图像方式（base64 或 url ) ，二选一。url有效期为1天。
         # @type RspImgType: String

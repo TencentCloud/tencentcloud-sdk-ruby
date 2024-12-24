@@ -29,6 +29,37 @@ module TencentCloud
         end
 
 
+        # 该接口用于结束动态签署方2.0的合同流程。
+
+
+        # **功能开通**
+        # - 动态签署方2.0功能的使用需要先<font color="red">联系产品经理开通模块化计费功能</font>，然后到控制台中打开此功能。详细的使用说明请参考<a href="https://qian.tencent.com/developers/company/dynamic_signer_v2" target="_blank">动态签署方2.0</a>文档。
+
+        # **使用条件**
+        # - 此接口只能在<font color="red">合同处于非终态且<b>所有的签署方都已经完成签署</b></font>。一旦合同进入终态（例如：过期、拒签、撤销或者调用过此接口成功过），将无法通过此接口结束合同流程。
+
+        # @param request: Request instance for ArchiveDynamicFlow.
+        # @type request: :class:`Tencentcloud::essbasic::V20210526::ArchiveDynamicFlowRequest`
+        # @rtype: :class:`Tencentcloud::essbasic::V20210526::ArchiveDynamicFlowResponse`
+        def ArchiveDynamicFlow(request)
+          body = send_request('ArchiveDynamicFlow', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ArchiveDynamicFlowResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 通过合同编号批量撤销合同，单次最多支持撤销100份合同。
 
         # 适用场景：如果某个合同当前**至少还有一方没有签署**，则可通过该接口取消该合同流程。常用于合同发错、内容填错，需要及时撤销的场景。
@@ -314,6 +345,37 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ChannelCreateConvertTaskApiResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 接口（ChannelCreateDynamicFlowApprover）用来补充<a href="https://qian.tencent.com/developers/partnerApis/startFlows/ChannelCreateFlowByFiles" target="_blank">用PDF文件创建签署流程</a>发起的动态合同的签署人信息
+        # **注**:
+        # <ul>
+        # <li>此接口需要保证：渠道企业已开启：模块化计费能力，</li>
+        # <li>此接口需要保证：渠道应用已开启：动态签署人2.0能力</li>
+        # <li>此接口需要保证：合同发起时指定开启了动态合同</li>
+        # <li>此接口补充的动态签署人传参规则，请参考接口：<a href="https://qian.tencent.com/developers/partnerApis/startFlows/ChannelCreateFlowByFiles" target="_blank">用PDF文件创建签署流程</a>的签署人传参规则</li>
+        # </ul>
+
+        # @param request: Request instance for ChannelCreateDynamicFlowApprover.
+        # @type request: :class:`Tencentcloud::essbasic::V20210526::ChannelCreateDynamicFlowApproverRequest`
+        # @rtype: :class:`Tencentcloud::essbasic::V20210526::ChannelCreateDynamicFlowApproverResponse`
+        def ChannelCreateDynamicFlowApprover(request)
+          body = send_request('ChannelCreateDynamicFlowApprover', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ChannelCreateDynamicFlowApproverResponse.new
             model.deserialize(response['Response'])
             model
           else

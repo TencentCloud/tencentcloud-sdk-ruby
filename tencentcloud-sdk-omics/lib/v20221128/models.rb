@@ -44,8 +44,8 @@ module TencentCloud
 
         attr_accessor :Type, :ApplicationVersionId, :Name, :Description, :Entrypoint, :CreateTime, :CreatorName, :CreatorId, :GitInfo, :GitSource, :CosSource
         extend Gem::Deprecate
-        deprecate :GitInfo, :none, 2024, 11
-        deprecate :GitInfo=, :none, 2024, 11
+        deprecate :GitInfo, :none, 2024, 12
+        deprecate :GitInfo=, :none, 2024, 12
 
         def initialize(type=nil, applicationversionid=nil, name=nil, description=nil, entrypoint=nil, createtime=nil, creatorname=nil, creatorid=nil, gitinfo=nil, gitsource=nil, cossource=nil)
           @Type = type
@@ -1536,8 +1536,8 @@ module TencentCloud
 
         attr_accessor :RunUuid, :ProjectId, :ApplicationId, :RunGroupId, :EnvironmentId, :UserDefinedId, :TableId, :TableRowUuid, :Status, :Input, :Option, :ExecutionTime, :Cache, :ErrorMessage, :CreateTime, :UpdateTime
         extend Gem::Deprecate
-        deprecate :Option, :none, 2024, 11
-        deprecate :Option=, :none, 2024, 11
+        deprecate :Option, :none, 2024, 12
+        deprecate :Option=, :none, 2024, 12
 
         def initialize(runuuid=nil, projectid=nil, applicationid=nil, rungroupid=nil, environmentid=nil, userdefinedid=nil, tableid=nil, tablerowuuid=nil, status=nil, input=nil, option=nil, executiontime=nil, cache=nil, errormessage=nil, createtime=nil, updatetime=nil)
           @RunUuid = runuuid
@@ -2054,10 +2054,12 @@ module TencentCloud
         # @type WorkDir: String
         # @param VolumeIds: 缓存卷ID，不填使用默认缓存卷，暂时仅支持Nextflow。
         # @type VolumeIds: Array
+        # @param Entrypoint: 工作流入口文件，不填使用默认入口文件。
+        # @type Entrypoint: String
 
-        attr_accessor :Name, :EnvironmentId, :GitSource, :Type, :NFOption, :ProjectId, :Description, :InputBase64, :InputCosUri, :CacheClearDelay, :WorkDir, :VolumeIds
+        attr_accessor :Name, :EnvironmentId, :GitSource, :Type, :NFOption, :ProjectId, :Description, :InputBase64, :InputCosUri, :CacheClearDelay, :WorkDir, :VolumeIds, :Entrypoint
 
-        def initialize(name=nil, environmentid=nil, gitsource=nil, type=nil, nfoption=nil, projectid=nil, description=nil, inputbase64=nil, inputcosuri=nil, cachecleardelay=nil, workdir=nil, volumeids=nil)
+        def initialize(name=nil, environmentid=nil, gitsource=nil, type=nil, nfoption=nil, projectid=nil, description=nil, inputbase64=nil, inputcosuri=nil, cachecleardelay=nil, workdir=nil, volumeids=nil, entrypoint=nil)
           @Name = name
           @EnvironmentId = environmentid
           @GitSource = gitsource
@@ -2070,6 +2072,7 @@ module TencentCloud
           @CacheClearDelay = cachecleardelay
           @WorkDir = workdir
           @VolumeIds = volumeids
+          @Entrypoint = entrypoint
         end
 
         def deserialize(params)
@@ -2091,6 +2094,7 @@ module TencentCloud
           @CacheClearDelay = params['CacheClearDelay']
           @WorkDir = params['WorkDir']
           @VolumeIds = params['VolumeIds']
+          @Entrypoint = params['Entrypoint']
         end
       end
 

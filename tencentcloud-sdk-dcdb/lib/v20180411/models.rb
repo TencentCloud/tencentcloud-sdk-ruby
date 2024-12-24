@@ -2947,9 +2947,9 @@ module TencentCloud
         # @type Tags: Array
         # @param FilterInstanceType: 实例类型过滤，1-独享实例，2-主实例，3-灾备实例，多个按逗号分隔
         # @type FilterInstanceType: String
-        # @param Status: 按实例状态筛选
+        # @param Status: 按实例状态筛选。状态值 -2：已删除； -1：已隔离；0：创建中；1：流程处理中；2：运行中
         # @type Status: Array
-        # @param ExcludeStatus: 排除实例状态
+        # @param ExcludeStatus: 排除实例状态。状态值 -2：已删除； -1：已隔离；0：创建中；1：流程处理中；2：运行中
         # @type ExcludeStatus: Array
 
         attr_accessor :InstanceIds, :SearchName, :SearchKey, :ProjectIds, :IsFilterVpc, :VpcId, :SubnetId, :OrderBy, :OrderByType, :Offset, :Limit, :ExclusterType, :IsFilterExcluster, :ExclusterIds, :TagKeys, :Tags, :FilterInstanceType, :Status, :ExcludeStatus

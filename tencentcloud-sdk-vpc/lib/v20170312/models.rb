@@ -2029,50 +2029,36 @@ module TencentCloud
         # @param QosLevel: 实例服务质量，’PT’：白金，'AU'：金，'AG'：银。
         # @type QosLevel: String
         # @param InstanceChargeType: 付费类型，PREPAID为预付费，POSTPAID为后付费。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceChargeType: String
         # @param BandwidthLimitType: 限速类型，`INTER_REGION_LIMIT` 为地域间限速；`OUTER_REGION_LIMIT` 为地域出口限速。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BandwidthLimitType: String
         # @param TagSet: 标签键值对。
         # @type TagSet: Array
         # @param RoutePriorityFlag: 是否支持云联网路由优先级的功能。`False`：不支持，`True`：支持。
         # @type RoutePriorityFlag: Boolean
         # @param RouteTableCount: 实例关联的路由表个数。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RouteTableCount: Integer
         # @param RouteTableFlag: 是否开启云联网多路由表特性。`False`：未开启，`True`：开启。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RouteTableFlag: Boolean
         # @param IsSecurityLock: `true`：实例已被封禁，流量不通，`false`:解封禁。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsSecurityLock: Boolean
         # @param RouteBroadcastPolicyFlag: 是否开启云联网路由传播策略。`False` 未开启，`True` 开启。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RouteBroadcastPolicyFlag: Boolean
         # @param RouteECMPFlag: 是否开启等价路由功能。`False` 未开启，`True` 开启。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RouteECMPFlag: Boolean
         # @param RouteOverlapFlag: 是否开启路由重叠功能。`False` 未开启，`True` 开启。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RouteOverlapFlag: Boolean
         # @param TrafficMarkingPolicyFlag: 是否开启QOS。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TrafficMarkingPolicyFlag: Boolean
         # @param RouteSelectPolicyFlag: 是否开启路由表选择策略。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RouteSelectPolicyFlag: Boolean
         # @param DirectConnectAccelerateChannelFlag: 是否开启二层云联网通道。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DirectConnectAccelerateChannelFlag: Boolean
         # @param Ipv6Flag: 是否支持ipv6路由表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Ipv6Flag: Boolean
         # @param MrtbAggregatePolicyFlag: 是否支持路由表聚合策略
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MrtbAggregatePolicyFlag: Boolean
         # @param MrtbPolicyValueFlag: 是否支持策略值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MrtbPolicyValueFlag: Boolean
 
         attr_accessor :CcnId, :CcnName, :CcnDescription, :InstanceCount, :CreateTime, :State, :QosLevel, :InstanceChargeType, :BandwidthLimitType, :TagSet, :RoutePriorityFlag, :RouteTableCount, :RouteTableFlag, :IsSecurityLock, :RouteBroadcastPolicyFlag, :RouteECMPFlag, :RouteOverlapFlag, :TrafficMarkingPolicyFlag, :RouteSelectPolicyFlag, :DirectConnectAccelerateChannelFlag, :Ipv6Flag, :MrtbAggregatePolicyFlag, :MrtbPolicyValueFlag

@@ -27,7 +27,7 @@ module TencentCloud
         # @type Description: String
         # @param CreateTime: 创建时间
         # @type CreateTime: String
-        # @param VpcType: VPC网络类型（1：CVM；2：黑石1.0）
+        # @param VpcType: VPC网络类型（1：CVM）
         # @type VpcType: Integer
         # @param VpcId: VPC网络ID
         # @type VpcId: String
@@ -125,7 +125,7 @@ module TencentCloud
       class CreateAccessGroupRequest < TencentCloud::Common::AbstractModel
         # @param AccessGroupName: 权限组名称
         # @type AccessGroupName: String
-        # @param VpcType: VPC网络类型（1：CVM；2：黑石1.0）
+        # @param VpcType: VPC网络类型（1：CVM）
         # @type VpcType: Integer
         # @param VpcId: VPC网络ID
         # @type VpcId: String

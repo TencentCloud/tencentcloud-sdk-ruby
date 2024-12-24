@@ -194,6 +194,68 @@ module TencentCloud
         end
       end
 
+      # ArchiveDynamicFlow请求参数结构体
+      class ArchiveDynamicFlowRequest < TencentCloud::Common::AbstractModel
+        # @param Agent: 关于渠道应用的相关信息，包括渠道应用标识、第三方平台子客企业标识及第三方平台子客企业中的员工标识等内容，您可以参阅开发者中心所提供的 Agent 结构体以获取详细定义。
+
+        # 此接口下面信息必填。
+        # <ul>
+        # <li>渠道应用标识:  Agent.AppId</li>
+        # <li>第三方平台子客企业标识: Agent.ProxyOrganizationOpenId</li>
+        # <li>第三方平台子客企业中的员工标识: Agent.ProxyOperator.OpenId</li>
+        # </ul>
+        # 第三方平台子客企业和员工必须已经过实名认证
+        # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
+        # @param FlowId: 合同流程ID
+        # @type FlowId: String
+
+        attr_accessor :Agent, :FlowId
+
+        def initialize(agent=nil, flowid=nil)
+          @Agent = agent
+          @FlowId = flowid
+        end
+
+        def deserialize(params)
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
+          @FlowId = params['FlowId']
+        end
+      end
+
+      # ArchiveDynamicFlow返回参数结构体
+      class ArchiveDynamicFlowResponse < TencentCloud::Common::AbstractModel
+        # @param FlowId: 合同流程ID
+        # @type FlowId: String
+        # @param Approvers: 动态签署人的参与人信息
+        # @type Approvers: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FlowId, :Approvers, :RequestId
+
+        def initialize(flowid=nil, approvers=nil, requestid=nil)
+          @FlowId = flowid
+          @Approvers = approvers
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+          unless params['Approvers'].nil?
+            @Approvers = []
+            params['Approvers'].each do |i|
+              channelarchivedynamicapproverdata_tmp = ChannelArchiveDynamicApproverData.new
+              channelarchivedynamicapproverdata_tmp.deserialize(i)
+              @Approvers << channelarchivedynamicapproverdata_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 授权出错信息
       class AuthFailMessage < TencentCloud::Common::AbstractModel
         # @param ProxyOrganizationOpenId: 第三方平台子客企业的唯一标识，长度不能超过64，只能由字母和数字组成。开发者可自定义此字段的值，并需要保存此 ID 以便进行后续操作。
@@ -514,6 +576,26 @@ module TencentCloud
           @Name = params['Name']
           @CcType = params['CcType']
           @CcPermission = params['CcPermission']
+        end
+      end
+
+      # 动态签署2.0合同参与人信息
+      class ChannelArchiveDynamicApproverData < TencentCloud::Common::AbstractModel
+        # @param SignId: 签署方唯一编号，一个全局唯一的标识符，不同的流程不会出现冲突。 可以使用签署方的唯一编号来生成签署链接（也可以通过RecipientId来生成签署链接）。
+        # @type SignId: String
+        # @param RecipientId: 签署方角色编号，签署方角色编号是用于区分同一个流程中不同签署方的唯一标识。不同的流程会出现同样的签署方角色编号。 填写控件和签署控件都与特定的角色编号关联。
+        # @type RecipientId: String
+
+        attr_accessor :SignId, :RecipientId
+
+        def initialize(signid=nil, recipientid=nil)
+          @SignId = signid
+          @RecipientId = recipientid
+        end
+
+        def deserialize(params)
+          @SignId = params['SignId']
+          @RecipientId = params['RecipientId']
         end
       end
 
@@ -1396,6 +1478,63 @@ module TencentCloud
         end
       end
 
+      # ChannelCreateDynamicFlowApprover请求参数结构体
+      class ChannelCreateDynamicFlowApproverRequest < TencentCloud::Common::AbstractModel
+        # @param FillDynamicFlowList: 动态合同信息
+        # @type FillDynamicFlowList: Array
+        # @param Agent: 关于渠道应用的相关信息，包括渠道应用标识、第三方平台子客企业标识及第三方平台子客企业中的员工标识等内容，您可以参阅开发者中心所提供的 Agent 结构体以获取详细定义。 此接口下面信息必填。 <ul> <li>渠道应用标识: Agent.AppId</li> <li>第三方平台子客企业标识: Agent.ProxyOrganizationOpenId</li> <li>第三方平台子客企业中的员工标识: Agent. ProxyOperator.OpenId</li> </ul> 第三方平台子客企业和员工必须已经经过实名认证
+        # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
+
+        attr_accessor :FillDynamicFlowList, :Agent
+
+        def initialize(filldynamicflowlist=nil, agent=nil)
+          @FillDynamicFlowList = filldynamicflowlist
+          @Agent = agent
+        end
+
+        def deserialize(params)
+          unless params['FillDynamicFlowList'].nil?
+            @FillDynamicFlowList = []
+            params['FillDynamicFlowList'].each do |i|
+              dynamicflowinfo_tmp = DynamicFlowInfo.new
+              dynamicflowinfo_tmp.deserialize(i)
+              @FillDynamicFlowList << dynamicflowinfo_tmp
+            end
+          end
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
+        end
+      end
+
+      # ChannelCreateDynamicFlowApprover返回参数结构体
+      class ChannelCreateDynamicFlowApproverResponse < TencentCloud::Common::AbstractModel
+        # @param DynamicFlowResultList: 动态合同补充结果列表
+        # @type DynamicFlowResultList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DynamicFlowResultList, :RequestId
+
+        def initialize(dynamicflowresultlist=nil, requestid=nil)
+          @DynamicFlowResultList = dynamicflowresultlist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['DynamicFlowResultList'].nil?
+            @DynamicFlowResultList = []
+            params['DynamicFlowResultList'].each do |i|
+              dynamicflowresult_tmp = DynamicFlowResult.new
+              dynamicflowresult_tmp.deserialize(i)
+              @DynamicFlowResultList << dynamicflowresult_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ChannelCreateEmbedWebUrl请求参数结构体
       class ChannelCreateEmbedWebUrlRequest < TencentCloud::Common::AbstractModel
         # @param Agent: 关于渠道应用的相关信息，包括渠道应用标识、第三方平台子客企业标识及第三方平台子客企业中的员工标识等内容，您可以参阅开发者中心所提供的 Agent 结构体以获取详细定义。
@@ -1710,15 +1849,19 @@ module TencentCloud
         # <li> **1** :H5链接 ,点开后在浏览器中展示合同的样子</li></ul>
         # 注: `此参数在NeedPreview 为true时有效`
         # @type PreviewType: Integer
+        # @param OpenDynamicFlow: 是否开启动态合同（动态签署人2.0）
+        # <ul><li> **false** :(默认) 不开启动态合同（动态签署人2.0）</li>
+        # <li> **true** :开启动态合同（动态签署人2.0）,发起后可继续追加合同签署人</li></ul>
+        # @type OpenDynamicFlow: Boolean
 
-        attr_accessor :Agent, :FlowName, :FlowDescription, :FlowApprovers, :FileIds, :Components, :Deadline, :CallbackUrl, :Unordered, :FlowType, :CustomShowMap, :CustomerData, :NeedSignReview, :ApproverVerifyType, :SignBeanTag, :CcInfos, :CcNotifyType, :AutoSignScene, :Operator, :FlowDisplayType, :NeedPreview, :PreviewType
+        attr_accessor :Agent, :FlowName, :FlowDescription, :FlowApprovers, :FileIds, :Components, :Deadline, :CallbackUrl, :Unordered, :FlowType, :CustomShowMap, :CustomerData, :NeedSignReview, :ApproverVerifyType, :SignBeanTag, :CcInfos, :CcNotifyType, :AutoSignScene, :Operator, :FlowDisplayType, :NeedPreview, :PreviewType, :OpenDynamicFlow
         extend Gem::Deprecate
         deprecate :CallbackUrl, :none, 2024, 12
         deprecate :CallbackUrl=, :none, 2024, 12
         deprecate :Operator, :none, 2024, 12
         deprecate :Operator=, :none, 2024, 12
 
-        def initialize(agent=nil, flowname=nil, flowdescription=nil, flowapprovers=nil, fileids=nil, components=nil, deadline=nil, callbackurl=nil, unordered=nil, flowtype=nil, customshowmap=nil, customerdata=nil, needsignreview=nil, approververifytype=nil, signbeantag=nil, ccinfos=nil, ccnotifytype=nil, autosignscene=nil, operator=nil, flowdisplaytype=nil, needpreview=nil, previewtype=nil)
+        def initialize(agent=nil, flowname=nil, flowdescription=nil, flowapprovers=nil, fileids=nil, components=nil, deadline=nil, callbackurl=nil, unordered=nil, flowtype=nil, customshowmap=nil, customerdata=nil, needsignreview=nil, approververifytype=nil, signbeantag=nil, ccinfos=nil, ccnotifytype=nil, autosignscene=nil, operator=nil, flowdisplaytype=nil, needpreview=nil, previewtype=nil, opendynamicflow=nil)
           @Agent = agent
           @FlowName = flowname
           @FlowDescription = flowdescription
@@ -1741,6 +1884,7 @@ module TencentCloud
           @FlowDisplayType = flowdisplaytype
           @NeedPreview = needpreview
           @PreviewType = previewtype
+          @OpenDynamicFlow = opendynamicflow
         end
 
         def deserialize(params)
@@ -1793,6 +1937,7 @@ module TencentCloud
           @FlowDisplayType = params['FlowDisplayType']
           @NeedPreview = params['NeedPreview']
           @PreviewType = params['PreviewType']
+          @OpenDynamicFlow = params['OpenDynamicFlow']
         end
       end
 
@@ -7925,6 +8070,92 @@ module TencentCloud
         def deserialize(params)
           @FileName = params['FileName']
           @FlowIdList = params['FlowIdList']
+        end
+      end
+
+      # 动态合同签署人结果
+      class DynamicFlowApproverResult < TencentCloud::Common::AbstractModel
+        # @param RecipientId: 签署流程签署人在模板中对应的签署人Id；在非单方签署、以及非B2C签署的场景下必传，用于指定当前签署方在签署流程中的位置；
+        # @type RecipientId: String
+        # @param SignId: 签署ID - 发起流程时系统自动补充 - 创建签署链接时，可以通过查询详情接口获得签署人的SignId，然后可传入此值为该签署人创建签署链接，无需再传姓名、手机号、证件号等其他信息
+        # @type SignId: String
+        # @param ApproverStatus: 签署人状态信息
+        # @type ApproverStatus: Integer
+
+        attr_accessor :RecipientId, :SignId, :ApproverStatus
+
+        def initialize(recipientid=nil, signid=nil, approverstatus=nil)
+          @RecipientId = recipientid
+          @SignId = signid
+          @ApproverStatus = approverstatus
+        end
+
+        def deserialize(params)
+          @RecipientId = params['RecipientId']
+          @SignId = params['SignId']
+          @ApproverStatus = params['ApproverStatus']
+        end
+      end
+
+      # 动态合同信息
+      class DynamicFlowInfo < TencentCloud::Common::AbstractModel
+        # @param FlowId: 合同流程ID，为32位字符串。 - 建议开发者妥善保存此流程ID，以便于顺利进行后续操作。 - 可登录腾讯电子签控制台，在 "合同"->"合同中心" 中查看某个合同的FlowId(在页面中展示为合同ID)。 - <font color="red">不建议继续使用</font>，请使用<a href="https://qian.tencent.com/developers/partnerApis/dataTypes/#fillapproverinfo/" target="_blank">补充签署人结构体</a>中的FlowId指定合同
+        # @type FlowId: String
+        # @param FlowApprovers: 合同流程的参与方列表, 最多可支持50个参与方，可在列表中指定企业B端签署方和个人C端签署方的联系和认证方式等信息，不同类型的签署方传参方式可以参考文档 [签署方入参指引](https://qian.tencent.com/developers/partner/flow_approver)。 如果合同流程是有序签署，Approvers列表中参与人的顺序就是默认的签署顺序, 请确保列表中参与人的顺序符合实际签署顺序。
+        # @type FlowApprovers: Array
+        # @param AutoSignScene: 个人自动签名的使用场景包括以下, 个人自动签署(即ApproverType设置成个人自动签署时)业务此值必传： <ul><li> **E_PRESCRIPTION_AUTO_SIGN**：电子处方单（医疗自动签） </li><li> **OTHER** : 通用场景</li></ul> 注: `个人自动签名场景是白名单功能，使用前请与对接的客户经理联系沟通。`
+        # @type AutoSignScene: String
+        # @param ApproverVerifyType: 签署人校验方式 VerifyCheck: 人脸识别（默认） MobileCheck：手机号验证，用户手机号和参与方手机号（ApproverMobile）相同即可查看合同内容（当手写签名方式为OCR_ESIGN时，该校验方式无效，因为这种签名方式依赖实名认证） 参数说明：可选人脸识别或手机号验证两种方式，若选择后者，未实名个人签署方在签署合同时，无需经过实名认证和意愿确认两次人脸识别，该能力仅适用于个人签署方。
+        # @type ApproverVerifyType: String
+
+        attr_accessor :FlowId, :FlowApprovers, :AutoSignScene, :ApproverVerifyType
+
+        def initialize(flowid=nil, flowapprovers=nil, autosignscene=nil, approververifytype=nil)
+          @FlowId = flowid
+          @FlowApprovers = flowapprovers
+          @AutoSignScene = autosignscene
+          @ApproverVerifyType = approververifytype
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+          unless params['FlowApprovers'].nil?
+            @FlowApprovers = []
+            params['FlowApprovers'].each do |i|
+              flowapproverinfo_tmp = FlowApproverInfo.new
+              flowapproverinfo_tmp.deserialize(i)
+              @FlowApprovers << flowapproverinfo_tmp
+            end
+          end
+          @AutoSignScene = params['AutoSignScene']
+          @ApproverVerifyType = params['ApproverVerifyType']
+        end
+      end
+
+      # 动态合同补充签署人结果
+      class DynamicFlowResult < TencentCloud::Common::AbstractModel
+        # @param FlowId: 合同流程ID，为32位字符串。 建议开发者妥善保存此流程ID，以便于顺利进行后续操作。 [点击查看FlowId在控制台上的位置](https://qcloudimg.tencent-cloud.cn/raw/05af26573d5106763b4cfbb9f7c64b41.png)
+        # @type FlowId: String
+        # @param DynamicFlowApproverList: 动态合同签署人补充结果信息列表
+        # @type DynamicFlowApproverList: Array
+
+        attr_accessor :FlowId, :DynamicFlowApproverList
+
+        def initialize(flowid=nil, dynamicflowapproverlist=nil)
+          @FlowId = flowid
+          @DynamicFlowApproverList = dynamicflowapproverlist
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+          unless params['DynamicFlowApproverList'].nil?
+            @DynamicFlowApproverList = []
+            params['DynamicFlowApproverList'].each do |i|
+              dynamicflowapproverresult_tmp = DynamicFlowApproverResult.new
+              dynamicflowapproverresult_tmp.deserialize(i)
+              @DynamicFlowApproverList << dynamicflowapproverresult_tmp
+            end
+          end
         end
       end
 

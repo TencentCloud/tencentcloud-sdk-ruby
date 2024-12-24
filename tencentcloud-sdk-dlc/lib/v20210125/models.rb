@@ -1718,8 +1718,8 @@ module TencentCloud
 
         attr_accessor :EngineType, :DataEngineName, :ClusterType, :Mode, :AutoResume, :MinClusters, :MaxClusters, :DefaultDataEngine, :CidrBlock, :Message, :Size, :PayMode, :TimeSpan, :TimeUnit, :AutoRenew, :Tags, :AutoSuspend, :CrontabResumeSuspend, :CrontabResumeSuspendStrategy, :EngineExecType, :MaxConcurrency, :TolerableQueueTime, :AutoSuspendTime, :ResourceType, :DataEngineConfigPairs, :ImageVersionName, :MainClusterName, :ElasticSwitch, :ElasticLimit, :SessionResourceTemplate, :AutoAuthorization, :EngineNetworkId, :EngineGeneration
         extend Gem::Deprecate
-        deprecate :DefaultDataEngine, :none, 2024, 11
-        deprecate :DefaultDataEngine=, :none, 2024, 11
+        deprecate :DefaultDataEngine, :none, 2024, 12
+        deprecate :DefaultDataEngine=, :none, 2024, 12
 
         def initialize(enginetype=nil, dataenginename=nil, clustertype=nil, mode=nil, autoresume=nil, minclusters=nil, maxclusters=nil, defaultdataengine=nil, cidrblock=nil, message=nil, size=nil, paymode=nil, timespan=nil, timeunit=nil, autorenew=nil, tags=nil, autosuspend=nil, crontabresumesuspend=nil, crontabresumesuspendstrategy=nil, engineexectype=nil, maxconcurrency=nil, tolerablequeuetime=nil, autosuspendtime=nil, resourcetype=nil, dataengineconfigpairs=nil, imageversionname=nil, mainclustername=nil, elasticswitch=nil, elasticlimit=nil, sessionresourcetemplate=nil, autoauthorization=nil, enginenetworkid=nil, enginegeneration=nil)
           @EngineType = enginetype
@@ -3816,10 +3816,25 @@ module TencentCloud
         # @param IsPoolMode: 是否使用预留池
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsPoolMode: String
+        # @param IsSupportAI: 是否支持AI，false: 不支持；true：支持
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsSupportAI: Boolean
+        # @param GatewayId: 网关id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GatewayId: String
+        # @param GatewayState: 网关状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GatewayState: Integer
+        # @param IsAIGateway: 是否能执行AI任务
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsAIGateway: Boolean
+        # @param IsAIEngine: 1:AI引擎，0:非AI引擎
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsAIEngine: Integer
 
-        attr_accessor :DataEngineName, :EngineType, :ClusterType, :QuotaId, :State, :CreateTime, :UpdateTime, :Size, :Mode, :MinClusters, :MaxClusters, :AutoResume, :SpendAfter, :CidrBlock, :DefaultDataEngine, :Message, :DataEngineId, :SubAccountUin, :ExpireTime, :IsolatedTime, :ReversalTime, :UserAlias, :TagList, :Permissions, :AutoSuspend, :CrontabResumeSuspend, :CrontabResumeSuspendStrategy, :EngineExecType, :RenewFlag, :AutoSuspendTime, :NetworkConnectionSet, :UiURL, :ResourceType, :ImageVersionId, :ChildImageVersionId, :ImageVersionName, :StartStandbyCluster, :ElasticSwitch, :ElasticLimit, :DefaultHouse, :MaxConcurrency, :TolerableQueueTime, :UserAppId, :UserUin, :SessionResourceTemplate, :AutoAuthorization, :EngineGeneration, :EngineTypeDetail, :EngineNetworkId, :EngineResourceGroupCount, :EngineResourceUsedCU, :AccessInfos, :EngineNetworkName, :IsPoolMode
+        attr_accessor :DataEngineName, :EngineType, :ClusterType, :QuotaId, :State, :CreateTime, :UpdateTime, :Size, :Mode, :MinClusters, :MaxClusters, :AutoResume, :SpendAfter, :CidrBlock, :DefaultDataEngine, :Message, :DataEngineId, :SubAccountUin, :ExpireTime, :IsolatedTime, :ReversalTime, :UserAlias, :TagList, :Permissions, :AutoSuspend, :CrontabResumeSuspend, :CrontabResumeSuspendStrategy, :EngineExecType, :RenewFlag, :AutoSuspendTime, :NetworkConnectionSet, :UiURL, :ResourceType, :ImageVersionId, :ChildImageVersionId, :ImageVersionName, :StartStandbyCluster, :ElasticSwitch, :ElasticLimit, :DefaultHouse, :MaxConcurrency, :TolerableQueueTime, :UserAppId, :UserUin, :SessionResourceTemplate, :AutoAuthorization, :EngineGeneration, :EngineTypeDetail, :EngineNetworkId, :EngineResourceGroupCount, :EngineResourceUsedCU, :AccessInfos, :EngineNetworkName, :IsPoolMode, :IsSupportAI, :GatewayId, :GatewayState, :IsAIGateway, :IsAIEngine
 
-        def initialize(dataenginename=nil, enginetype=nil, clustertype=nil, quotaid=nil, state=nil, createtime=nil, updatetime=nil, size=nil, mode=nil, minclusters=nil, maxclusters=nil, autoresume=nil, spendafter=nil, cidrblock=nil, defaultdataengine=nil, message=nil, dataengineid=nil, subaccountuin=nil, expiretime=nil, isolatedtime=nil, reversaltime=nil, useralias=nil, taglist=nil, permissions=nil, autosuspend=nil, crontabresumesuspend=nil, crontabresumesuspendstrategy=nil, engineexectype=nil, renewflag=nil, autosuspendtime=nil, networkconnectionset=nil, uiurl=nil, resourcetype=nil, imageversionid=nil, childimageversionid=nil, imageversionname=nil, startstandbycluster=nil, elasticswitch=nil, elasticlimit=nil, defaulthouse=nil, maxconcurrency=nil, tolerablequeuetime=nil, userappid=nil, useruin=nil, sessionresourcetemplate=nil, autoauthorization=nil, enginegeneration=nil, enginetypedetail=nil, enginenetworkid=nil, engineresourcegroupcount=nil, engineresourceusedcu=nil, accessinfos=nil, enginenetworkname=nil, ispoolmode=nil)
+        def initialize(dataenginename=nil, enginetype=nil, clustertype=nil, quotaid=nil, state=nil, createtime=nil, updatetime=nil, size=nil, mode=nil, minclusters=nil, maxclusters=nil, autoresume=nil, spendafter=nil, cidrblock=nil, defaultdataengine=nil, message=nil, dataengineid=nil, subaccountuin=nil, expiretime=nil, isolatedtime=nil, reversaltime=nil, useralias=nil, taglist=nil, permissions=nil, autosuspend=nil, crontabresumesuspend=nil, crontabresumesuspendstrategy=nil, engineexectype=nil, renewflag=nil, autosuspendtime=nil, networkconnectionset=nil, uiurl=nil, resourcetype=nil, imageversionid=nil, childimageversionid=nil, imageversionname=nil, startstandbycluster=nil, elasticswitch=nil, elasticlimit=nil, defaulthouse=nil, maxconcurrency=nil, tolerablequeuetime=nil, userappid=nil, useruin=nil, sessionresourcetemplate=nil, autoauthorization=nil, enginegeneration=nil, enginetypedetail=nil, enginenetworkid=nil, engineresourcegroupcount=nil, engineresourceusedcu=nil, accessinfos=nil, enginenetworkname=nil, ispoolmode=nil, issupportai=nil, gatewayid=nil, gatewaystate=nil, isaigateway=nil, isaiengine=nil)
           @DataEngineName = dataenginename
           @EngineType = enginetype
           @ClusterType = clustertype
@@ -3874,6 +3889,11 @@ module TencentCloud
           @AccessInfos = accessinfos
           @EngineNetworkName = enginenetworkname
           @IsPoolMode = ispoolmode
+          @IsSupportAI = issupportai
+          @GatewayId = gatewayid
+          @GatewayState = gatewaystate
+          @IsAIGateway = isaigateway
+          @IsAIEngine = isaiengine
         end
 
         def deserialize(params)
@@ -3958,6 +3978,11 @@ module TencentCloud
           end
           @EngineNetworkName = params['EngineNetworkName']
           @IsPoolMode = params['IsPoolMode']
+          @IsSupportAI = params['IsSupportAI']
+          @GatewayId = params['GatewayId']
+          @GatewayState = params['GatewayState']
+          @IsAIGateway = params['IsAIGateway']
+          @IsAIEngine = params['IsAIEngine']
         end
       end
 
@@ -10205,10 +10230,28 @@ module TencentCloud
         # @param ExecutorMaxNumbers: 指定的Executor数量（最大值），默认为1，当开启动态分配有效，若未开启，则该值等于ExecutorNumbers
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExecutorMaxNumbers: Integer
+        # @param SessionType: session类型，group：资源组下session independent：独立资源session， 不依赖资源组
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SessionType: String
+        # @param DataEngineId: 引擎id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DataEngineId: String
+        # @param ResourceGroupId: 资源组id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceGroupId: String
+        # @param ResourceGroupName: 资源组名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceGroupName: String
+        # @param PodSize: session，pod大小
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PodSize: Integer
+        # @param PodNumbers: pod数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PodNumbers: Integer
 
-        attr_accessor :Name, :Kind, :DataEngineName, :Arguments, :ProgramDependentFiles, :ProgramDependentJars, :ProgramDependentPython, :ProgramArchives, :DriverSize, :ExecutorSize, :ExecutorNumbers, :ProxyUser, :TimeoutInSecond, :SparkAppId, :SessionId, :State, :CreateTime, :AppInfo, :SparkUiUrl, :ExecutorMaxNumbers
+        attr_accessor :Name, :Kind, :DataEngineName, :Arguments, :ProgramDependentFiles, :ProgramDependentJars, :ProgramDependentPython, :ProgramArchives, :DriverSize, :ExecutorSize, :ExecutorNumbers, :ProxyUser, :TimeoutInSecond, :SparkAppId, :SessionId, :State, :CreateTime, :AppInfo, :SparkUiUrl, :ExecutorMaxNumbers, :SessionType, :DataEngineId, :ResourceGroupId, :ResourceGroupName, :PodSize, :PodNumbers
 
-        def initialize(name=nil, kind=nil, dataenginename=nil, arguments=nil, programdependentfiles=nil, programdependentjars=nil, programdependentpython=nil, programarchives=nil, driversize=nil, executorsize=nil, executornumbers=nil, proxyuser=nil, timeoutinsecond=nil, sparkappid=nil, sessionid=nil, state=nil, createtime=nil, appinfo=nil, sparkuiurl=nil, executormaxnumbers=nil)
+        def initialize(name=nil, kind=nil, dataenginename=nil, arguments=nil, programdependentfiles=nil, programdependentjars=nil, programdependentpython=nil, programarchives=nil, driversize=nil, executorsize=nil, executornumbers=nil, proxyuser=nil, timeoutinsecond=nil, sparkappid=nil, sessionid=nil, state=nil, createtime=nil, appinfo=nil, sparkuiurl=nil, executormaxnumbers=nil, sessiontype=nil, dataengineid=nil, resourcegroupid=nil, resourcegroupname=nil, podsize=nil, podnumbers=nil)
           @Name = name
           @Kind = kind
           @DataEngineName = dataenginename
@@ -10229,6 +10272,12 @@ module TencentCloud
           @AppInfo = appinfo
           @SparkUiUrl = sparkuiurl
           @ExecutorMaxNumbers = executormaxnumbers
+          @SessionType = sessiontype
+          @DataEngineId = dataengineid
+          @ResourceGroupId = resourcegroupid
+          @ResourceGroupName = resourcegroupname
+          @PodSize = podsize
+          @PodNumbers = podnumbers
         end
 
         def deserialize(params)
@@ -10266,6 +10315,12 @@ module TencentCloud
           end
           @SparkUiUrl = params['SparkUiUrl']
           @ExecutorMaxNumbers = params['ExecutorMaxNumbers']
+          @SessionType = params['SessionType']
+          @DataEngineId = params['DataEngineId']
+          @ResourceGroupId = params['ResourceGroupId']
+          @ResourceGroupName = params['ResourceGroupName']
+          @PodSize = params['PodSize']
+          @PodNumbers = params['PodNumbers']
         end
       end
 
@@ -10394,10 +10449,22 @@ module TencentCloud
         # @param SparkUiUrl: spark ui地址
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SparkUiUrl: String
+        # @param SessionType: session类型，group：资源组session independent：独立资源session，不依赖资源组
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SessionType: String
+        # @param DataEngineId: 引擎id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DataEngineId: String
+        # @param ResourceGroupId: 资源组id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceGroupId: String
+        # @param ResourceGroupName: 资源组名字
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceGroupName: String
 
-        attr_accessor :Kind, :SessionId, :ProxyUser, :State, :SparkAppId, :Name, :CreateTime, :DataEngineName, :LastRunningTime, :Creator, :SparkUiUrl
+        attr_accessor :Kind, :SessionId, :ProxyUser, :State, :SparkAppId, :Name, :CreateTime, :DataEngineName, :LastRunningTime, :Creator, :SparkUiUrl, :SessionType, :DataEngineId, :ResourceGroupId, :ResourceGroupName
 
-        def initialize(kind=nil, sessionid=nil, proxyuser=nil, state=nil, sparkappid=nil, name=nil, createtime=nil, dataenginename=nil, lastrunningtime=nil, creator=nil, sparkuiurl=nil)
+        def initialize(kind=nil, sessionid=nil, proxyuser=nil, state=nil, sparkappid=nil, name=nil, createtime=nil, dataenginename=nil, lastrunningtime=nil, creator=nil, sparkuiurl=nil, sessiontype=nil, dataengineid=nil, resourcegroupid=nil, resourcegroupname=nil)
           @Kind = kind
           @SessionId = sessionid
           @ProxyUser = proxyuser
@@ -10409,6 +10476,10 @@ module TencentCloud
           @LastRunningTime = lastrunningtime
           @Creator = creator
           @SparkUiUrl = sparkuiurl
+          @SessionType = sessiontype
+          @DataEngineId = dataengineid
+          @ResourceGroupId = resourcegroupid
+          @ResourceGroupName = resourcegroupname
         end
 
         def deserialize(params)
@@ -10423,6 +10494,10 @@ module TencentCloud
           @LastRunningTime = params['LastRunningTime']
           @Creator = params['Creator']
           @SparkUiUrl = params['SparkUiUrl']
+          @SessionType = params['SessionType']
+          @DataEngineId = params['DataEngineId']
+          @ResourceGroupId = params['ResourceGroupId']
+          @ResourceGroupName = params['ResourceGroupName']
         end
       end
 
@@ -12249,10 +12324,10 @@ module TencentCloud
 
         attr_accessor :DatabaseName, :TableName, :DatasourceConnectionName, :TableComment, :Type, :TableFormat, :UserAlias, :UserSubUin, :GovernPolicy, :DbGovernPolicyIsDisable, :SmartPolicy
         extend Gem::Deprecate
-        deprecate :GovernPolicy, :none, 2024, 11
-        deprecate :GovernPolicy=, :none, 2024, 11
-        deprecate :DbGovernPolicyIsDisable, :none, 2024, 11
-        deprecate :DbGovernPolicyIsDisable=, :none, 2024, 11
+        deprecate :GovernPolicy, :none, 2024, 12
+        deprecate :GovernPolicy=, :none, 2024, 12
+        deprecate :DbGovernPolicyIsDisable, :none, 2024, 12
+        deprecate :DbGovernPolicyIsDisable=, :none, 2024, 12
 
         def initialize(databasename=nil, tablename=nil, datasourceconnectionname=nil, tablecomment=nil, type=nil, tableformat=nil, useralias=nil, usersubuin=nil, governpolicy=nil, dbgovernpolicyisdisable=nil, smartpolicy=nil)
           @DatabaseName = databasename

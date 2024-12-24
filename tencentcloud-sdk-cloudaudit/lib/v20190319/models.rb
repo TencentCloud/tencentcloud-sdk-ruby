@@ -57,12 +57,16 @@ module TencentCloud
       # 跟踪集概览
       class AuditSummary < TencentCloud::Common::AbstractModel
         # @param AuditStatus: 跟踪集状态，1：开启，0：关闭
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AuditStatus: Integer
         # @param CosBucketName: COS存储桶名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CosBucketName: String
         # @param AuditName: 跟踪集名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AuditName: String
         # @param LogFilePrefix: 日志前缀
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LogFilePrefix: String
 
         attr_accessor :AuditStatus, :CosBucketName, :AuditName, :LogFilePrefix

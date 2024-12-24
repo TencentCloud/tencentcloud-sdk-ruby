@@ -713,6 +713,9 @@ module TencentCloud
         # @param Prompt: 对新背景的文本描述。
         # 最多支持256个 utf-8 字符，支持中、英文。
         # @type Prompt: String
+        # @param NegativePrompt: 反向提示词。
+        # 最多支持256个 utf-8 字符，支持中、英文。
+        # @type NegativePrompt: String
         # @param Product: 商品图中的商品主体名称。
         # 建议说明商品主体，否则影响生成效果。
         # @type Product: String
@@ -738,11 +741,12 @@ module TencentCloud
         # 生成图分辨率较大时建议选择 url，使用 base64 可能因图片过大导致返回失败。
         # @type RspImgType: String
 
-        attr_accessor :ProductUrl, :Prompt, :Product, :MaskUrl, :Resolution, :LogoAdd, :LogoParam, :RspImgType
+        attr_accessor :ProductUrl, :Prompt, :NegativePrompt, :Product, :MaskUrl, :Resolution, :LogoAdd, :LogoParam, :RspImgType
 
-        def initialize(producturl=nil, prompt=nil, product=nil, maskurl=nil, resolution=nil, logoadd=nil, logoparam=nil, rspimgtype=nil)
+        def initialize(producturl=nil, prompt=nil, negativeprompt=nil, product=nil, maskurl=nil, resolution=nil, logoadd=nil, logoparam=nil, rspimgtype=nil)
           @ProductUrl = producturl
           @Prompt = prompt
+          @NegativePrompt = negativeprompt
           @Product = product
           @MaskUrl = maskurl
           @Resolution = resolution
@@ -754,6 +758,7 @@ module TencentCloud
         def deserialize(params)
           @ProductUrl = params['ProductUrl']
           @Prompt = params['Prompt']
+          @NegativePrompt = params['NegativePrompt']
           @Product = params['Product']
           @MaskUrl = params['MaskUrl']
           @Resolution = params['Resolution']
@@ -1071,7 +1076,6 @@ module TencentCloud
         # 推荐使用且只使用一种风格。不传默认使用201（日系动漫风格）。
         # @type Styles: Array
         # @param ResultConfig: 生成图结果的配置，包括输出图片分辨率和尺寸等。
-
         # 支持生成以下分辨率的图片：768:768（1:1）、768:1024（3:4）、1024:768（4:3）、1024:1024（1:1）、720:1280（9:16）、1280:720（16:9）、768:1280（3:5）、1280:768（5:3）、1080:1920（9:16）、1920:1080（16:9），不传默认使用768:768。
         # @type ResultConfig: :class:`Tencentcloud::Aiart.v20221229.models.ResultConfig`
         # @param LogoAdd: 为生成结果图添加标识的开关，默认为1。

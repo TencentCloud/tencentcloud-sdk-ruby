@@ -1690,36 +1690,36 @@ module TencentCloud
         # @type SubscribeId: String
         # @param SubscribeName: 数据订阅实例的名称
         # @type SubscribeName: String
-        # @param ChannelId: 数据订阅实例绑定的通道ID
+        # @param ChannelId: 数据订阅实例绑定的通道ID。kafka版订阅就是kafka topic
         # @type ChannelId: String
-        # @param Product: 数据订阅绑定实例对应的产品名称
+        # @param Product: 订阅实例的类型，目前支持 cynosdbmysql,mariadb,mongodb,mysql,percona,tdpg,tdsqlpercona(tdsqlmysql)
         # @type Product: String
         # @param InstanceId: 数据订阅实例绑定的数据库实例ID
         # @type InstanceId: String
-        # @param InstanceStatus: 数据订阅实例绑定的数据库实例状态
+        # @param InstanceStatus: 云数据库状态：running 运行中，isolated 已隔离，offline 已下线。如果不是云上，此值为空
         # @type InstanceStatus: String
-        # @param SubsStatus: 数据订阅实例的配置状态，unconfigure - 未配置， configuring - 配置中，configured - 已配置
+        # @param SubsStatus: 数据订阅状态，可能的值为：未启动 notStarted, 校验中 checking, 校验不通过 checkNotPass, 校验通过 checkPass, 启动中 starting, 运行中 running, 异常出错 error
         # @type SubsStatus: String
-        # @param ModifyTime: 上次修改时间
+        # @param ModifyTime: 上次修改时间，时间格式如：Y-m-d h:m:s
         # @type ModifyTime: String
         # @param CreateTime: 创建时间
         # @type CreateTime: String
-        # @param IsolateTime: 隔离时间
+        # @param IsolateTime: 隔离时间，时间格式如：Y-m-d h:m:s
         # @type IsolateTime: String
-        # @param ExpireTime: 到期时间
+        # @param ExpireTime: 包年包月任务的到期时间，时间格式如：Y-m-d h:m:s。默认：0000-00-00 00:00:00
         # @type ExpireTime: String
         # @param OfflineTime: 下线时间
         # @type OfflineTime: String
         # @param ConsumeStartTime: 最近一次修改的消费时间起点，如果从未修改则为零值
         # @type ConsumeStartTime: String
-        # @param AutoRenewFlag: 自动续费标识。0-不自动续费，1-自动续费
+        # @param AutoRenewFlag: 自动续费标识。只有当 PayType=0，该值才有意义。枚举值：0-不自动续费，1-自动续费
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AutoRenewFlag: Integer
         # @param Region: 数据订阅实例所属地域
         # @type Region: String
         # @param PayType: 计费方式，0 - 包年包月，1 - 按量计费
         # @type PayType: Integer
-        # @param Vip: 数据订阅实例的Vip
+        # @param Vip: 旧版订阅通道的vip
         # @type Vip: String
         # @param Vport: 数据订阅实例的Vport
         # @type Vport: Integer
@@ -1727,7 +1727,7 @@ module TencentCloud
         # @type UniqVpcId: String
         # @param UniqSubnetId: 数据订阅实例Vip所在子网的唯一ID
         # @type UniqSubnetId: String
-        # @param Status: 数据订阅实例的状态，creating - 创建中，normal - 正常运行，isolating - 隔离中，isolated - 已隔离，offlining - 下线中，offline - 已下线
+        # @param Status: 数据订阅生命周期状态，可能的值为：正常 normal, 隔离中 isolating, 已隔离 isolated, 下线中 offlining, 按量转包年包月中 post2PrePayIng
         # @type Status: String
         # @param SdkConsumedTime: SDK最后一条确认消息的时间戳，如果SDK一直消费，也可以作为SDK当前消费时间点
         # @type SdkConsumedTime: String

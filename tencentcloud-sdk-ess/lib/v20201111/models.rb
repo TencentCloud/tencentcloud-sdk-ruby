@@ -7715,7 +7715,8 @@ module TencentCloud
         # <li>**1**：仅模板列表</li></ul>
         # @type ContentType: Integer
         # @param Filters: 搜索条件，本字段用于指定模板Id进行查询。
-        # Key：template-id Values：需要查询的模板Id列表
+        # - Key：template-id Values：需要查询的模板Id列表
+        # - Key：template-name Values：需要查询的模板名称列表
         # @type Filters: Array
         # @param Offset: 查询结果分页返回，指定从第几页返回数据，和Limit参数配合使用。
 

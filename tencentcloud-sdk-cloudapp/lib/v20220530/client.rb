@@ -29,7 +29,7 @@ module TencentCloud
         end
 
 
-        # 通过运行时roleId查询对应的软件 LICENSE
+        # 从软件进程读取 LICENSE。
 
         # @param request: Request instance for VerifyLicense.
         # @type request: :class:`Tencentcloud::cloudapp::V20220530::VerifyLicenseRequest`

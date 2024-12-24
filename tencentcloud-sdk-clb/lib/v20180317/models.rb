@@ -264,18 +264,23 @@ module TencentCloud
       class BatchDeregisterTargetsResponse < TencentCloud::Common::AbstractModel
         # @param FailListenerIdSet: 解绑失败的监听器ID。
         # @type FailListenerIdSet: Array
+        # @param Message: 解绑失败错误原因信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Message: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :FailListenerIdSet, :RequestId
+        attr_accessor :FailListenerIdSet, :Message, :RequestId
 
-        def initialize(faillisteneridset=nil, requestid=nil)
+        def initialize(faillisteneridset=nil, message=nil, requestid=nil)
           @FailListenerIdSet = faillisteneridset
+          @Message = message
           @RequestId = requestid
         end
 
         def deserialize(params)
           @FailListenerIdSet = params['FailListenerIdSet']
+          @Message = params['Message']
           @RequestId = params['RequestId']
         end
       end

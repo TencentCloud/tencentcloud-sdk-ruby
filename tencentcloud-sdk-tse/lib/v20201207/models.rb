@@ -2246,13 +2246,17 @@ module TencentCloud
         # @type DestinationPorts: Array
         # @param Headers: 路由的Headers
         # @type Headers: Array
+        # @param RequestBuffering: 是否缓存请求body，默认true
+        # @type RequestBuffering: Boolean
+        # @param ResponseBuffering: 是否缓存响应body，默认true
+        # @type ResponseBuffering: Boolean
 
-        attr_accessor :GatewayId, :ServiceID, :RouteName, :Methods, :Hosts, :Paths, :Protocols, :PreserveHost, :HttpsRedirectStatusCode, :StripPath, :ForceHttps, :DestinationPorts, :Headers
+        attr_accessor :GatewayId, :ServiceID, :RouteName, :Methods, :Hosts, :Paths, :Protocols, :PreserveHost, :HttpsRedirectStatusCode, :StripPath, :ForceHttps, :DestinationPorts, :Headers, :RequestBuffering, :ResponseBuffering
         extend Gem::Deprecate
         deprecate :ForceHttps, :none, 2024, 12
         deprecate :ForceHttps=, :none, 2024, 12
 
-        def initialize(gatewayid=nil, serviceid=nil, routename=nil, methods=nil, hosts=nil, paths=nil, protocols=nil, preservehost=nil, httpsredirectstatuscode=nil, strippath=nil, forcehttps=nil, destinationports=nil, headers=nil)
+        def initialize(gatewayid=nil, serviceid=nil, routename=nil, methods=nil, hosts=nil, paths=nil, protocols=nil, preservehost=nil, httpsredirectstatuscode=nil, strippath=nil, forcehttps=nil, destinationports=nil, headers=nil, requestbuffering=nil, responsebuffering=nil)
           @GatewayId = gatewayid
           @ServiceID = serviceid
           @RouteName = routename
@@ -2266,6 +2270,8 @@ module TencentCloud
           @ForceHttps = forcehttps
           @DestinationPorts = destinationports
           @Headers = headers
+          @RequestBuffering = requestbuffering
+          @ResponseBuffering = responsebuffering
         end
 
         def deserialize(params)
@@ -2289,6 +2295,8 @@ module TencentCloud
               @Headers << kvmapping_tmp
             end
           end
+          @RequestBuffering = params['RequestBuffering']
+          @ResponseBuffering = params['ResponseBuffering']
         end
       end
 
@@ -8627,13 +8635,17 @@ module TencentCloud
         # @param Headers: 路由的Headers
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Headers: Array
+        # @param RequestBuffering: 是否缓存请求body，默认true
+        # @type RequestBuffering: Boolean
+        # @param ResponseBuffering: 是否缓存响应body，默认true
+        # @type ResponseBuffering: Boolean
 
-        attr_accessor :ID, :Name, :Methods, :Paths, :Hosts, :Protocols, :PreserveHost, :HttpsRedirectStatusCode, :StripPath, :CreatedTime, :ForceHttps, :ServiceName, :ServiceID, :DestinationPorts, :Headers
+        attr_accessor :ID, :Name, :Methods, :Paths, :Hosts, :Protocols, :PreserveHost, :HttpsRedirectStatusCode, :StripPath, :CreatedTime, :ForceHttps, :ServiceName, :ServiceID, :DestinationPorts, :Headers, :RequestBuffering, :ResponseBuffering
         extend Gem::Deprecate
         deprecate :ForceHttps, :none, 2024, 12
         deprecate :ForceHttps=, :none, 2024, 12
 
-        def initialize(id=nil, name=nil, methods=nil, paths=nil, hosts=nil, protocols=nil, preservehost=nil, httpsredirectstatuscode=nil, strippath=nil, createdtime=nil, forcehttps=nil, servicename=nil, serviceid=nil, destinationports=nil, headers=nil)
+        def initialize(id=nil, name=nil, methods=nil, paths=nil, hosts=nil, protocols=nil, preservehost=nil, httpsredirectstatuscode=nil, strippath=nil, createdtime=nil, forcehttps=nil, servicename=nil, serviceid=nil, destinationports=nil, headers=nil, requestbuffering=nil, responsebuffering=nil)
           @ID = id
           @Name = name
           @Methods = methods
@@ -8649,6 +8661,8 @@ module TencentCloud
           @ServiceID = serviceid
           @DestinationPorts = destinationports
           @Headers = headers
+          @RequestBuffering = requestbuffering
+          @ResponseBuffering = responsebuffering
         end
 
         def deserialize(params)
@@ -8674,6 +8688,8 @@ module TencentCloud
               @Headers << kvmapping_tmp
             end
           end
+          @RequestBuffering = params['RequestBuffering']
+          @ResponseBuffering = params['ResponseBuffering']
         end
       end
 
@@ -9651,13 +9667,17 @@ module TencentCloud
         # @type DestinationPorts: Array
         # @param Headers: 路由的Headers
         # @type Headers: Array
+        # @param RequestBuffering: 是否缓存请求body，默认true
+        # @type RequestBuffering: Boolean
+        # @param ResponseBuffering: 是否缓存响应body，默认true
+        # @type ResponseBuffering: Boolean
 
-        attr_accessor :GatewayId, :ServiceID, :RouteID, :RouteName, :Methods, :Hosts, :Paths, :Protocols, :PreserveHost, :HttpsRedirectStatusCode, :StripPath, :ForceHttps, :DestinationPorts, :Headers
+        attr_accessor :GatewayId, :ServiceID, :RouteID, :RouteName, :Methods, :Hosts, :Paths, :Protocols, :PreserveHost, :HttpsRedirectStatusCode, :StripPath, :ForceHttps, :DestinationPorts, :Headers, :RequestBuffering, :ResponseBuffering
         extend Gem::Deprecate
         deprecate :ForceHttps, :none, 2024, 12
         deprecate :ForceHttps=, :none, 2024, 12
 
-        def initialize(gatewayid=nil, serviceid=nil, routeid=nil, routename=nil, methods=nil, hosts=nil, paths=nil, protocols=nil, preservehost=nil, httpsredirectstatuscode=nil, strippath=nil, forcehttps=nil, destinationports=nil, headers=nil)
+        def initialize(gatewayid=nil, serviceid=nil, routeid=nil, routename=nil, methods=nil, hosts=nil, paths=nil, protocols=nil, preservehost=nil, httpsredirectstatuscode=nil, strippath=nil, forcehttps=nil, destinationports=nil, headers=nil, requestbuffering=nil, responsebuffering=nil)
           @GatewayId = gatewayid
           @ServiceID = serviceid
           @RouteID = routeid
@@ -9672,6 +9692,8 @@ module TencentCloud
           @ForceHttps = forcehttps
           @DestinationPorts = destinationports
           @Headers = headers
+          @RequestBuffering = requestbuffering
+          @ResponseBuffering = responsebuffering
         end
 
         def deserialize(params)
@@ -9696,6 +9718,8 @@ module TencentCloud
               @Headers << kvmapping_tmp
             end
           end
+          @RequestBuffering = params['RequestBuffering']
+          @ResponseBuffering = params['ResponseBuffering']
         end
       end
 
