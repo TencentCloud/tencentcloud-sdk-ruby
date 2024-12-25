@@ -2233,6 +2233,206 @@ module TencentCloud
         end
       end
 
+      # DescribeMessageList请求参数结构体
+      class DescribeMessageListRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 集群ID
+        # @type InstanceId: String
+        # @param Topic: 主题名称
+        # @type Topic: String
+        # @param StartTime: 开始时间
+        # @type StartTime: Integer
+        # @param EndTime: 结束时间
+        # @type EndTime: Integer
+        # @param TaskRequestId: 一次查询标识
+        # @type TaskRequestId: String
+        # @param Offset: 查询起始位置
+        # @type Offset: Integer
+        # @param Limit: 查询结果限制数量
+        # @type Limit: Integer
+        # @param ConsumerGroup: 消费组名称
+        # @type ConsumerGroup: String
+        # @param MsgId: 消息 ID
+        # @type MsgId: String
+        # @param MsgKey: 消息 Key
+        # @type MsgKey: String
+        # @param RecentMessageNum: 查询最近N条消息 最大不超过1024，默认-1为其他查询条件
+        # @type RecentMessageNum: Integer
+        # @param QueryDeadLetterMessage: 是否查询死信消息
+        # @type QueryDeadLetterMessage: Boolean
+        # @param Tag: 消息 Tag
+        # @type Tag: String
+
+        attr_accessor :InstanceId, :Topic, :StartTime, :EndTime, :TaskRequestId, :Offset, :Limit, :ConsumerGroup, :MsgId, :MsgKey, :RecentMessageNum, :QueryDeadLetterMessage, :Tag
+
+        def initialize(instanceid=nil, topic=nil, starttime=nil, endtime=nil, taskrequestid=nil, offset=nil, limit=nil, consumergroup=nil, msgid=nil, msgkey=nil, recentmessagenum=nil, querydeadlettermessage=nil, tag=nil)
+          @InstanceId = instanceid
+          @Topic = topic
+          @StartTime = starttime
+          @EndTime = endtime
+          @TaskRequestId = taskrequestid
+          @Offset = offset
+          @Limit = limit
+          @ConsumerGroup = consumergroup
+          @MsgId = msgid
+          @MsgKey = msgkey
+          @RecentMessageNum = recentmessagenum
+          @QueryDeadLetterMessage = querydeadlettermessage
+          @Tag = tag
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Topic = params['Topic']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @TaskRequestId = params['TaskRequestId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @ConsumerGroup = params['ConsumerGroup']
+          @MsgId = params['MsgId']
+          @MsgKey = params['MsgKey']
+          @RecentMessageNum = params['RecentMessageNum']
+          @QueryDeadLetterMessage = params['QueryDeadLetterMessage']
+          @Tag = params['Tag']
+        end
+      end
+
+      # DescribeMessageList返回参数结构体
+      class DescribeMessageListResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 查询总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+        # @param Data: 消息记录列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: Array
+        # @param TaskRequestId: 一次查询ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskRequestId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Data, :TaskRequestId, :RequestId
+
+        def initialize(totalcount=nil, data=nil, taskrequestid=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Data = data
+          @TaskRequestId = taskrequestid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              messageitem_tmp = MessageItem.new
+              messageitem_tmp.deserialize(i)
+              @Data << messageitem_tmp
+            end
+          end
+          @TaskRequestId = params['TaskRequestId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeMessage请求参数结构体
+      class DescribeMessageRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 集群ID
+        # @type InstanceId: String
+        # @param Topic: 主题名称
+        # @type Topic: String
+        # @param MsgId: 消息ID
+        # @type MsgId: String
+        # @param Offset: 查询起始位置
+        # @type Offset: Integer
+        # @param Limit: 查询结果限制数量
+        # @type Limit: Integer
+        # @param QueryDeadLetterMessage: 是否是死信消息
+        # @type QueryDeadLetterMessage: Boolean
+        # @param QueryDelayMessage: 是否是延时消息
+        # @type QueryDelayMessage: Boolean
+
+        attr_accessor :InstanceId, :Topic, :MsgId, :Offset, :Limit, :QueryDeadLetterMessage, :QueryDelayMessage
+
+        def initialize(instanceid=nil, topic=nil, msgid=nil, offset=nil, limit=nil, querydeadlettermessage=nil, querydelaymessage=nil)
+          @InstanceId = instanceid
+          @Topic = topic
+          @MsgId = msgid
+          @Offset = offset
+          @Limit = limit
+          @QueryDeadLetterMessage = querydeadlettermessage
+          @QueryDelayMessage = querydelaymessage
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Topic = params['Topic']
+          @MsgId = params['MsgId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @QueryDeadLetterMessage = params['QueryDeadLetterMessage']
+          @QueryDelayMessage = params['QueryDelayMessage']
+        end
+      end
+
+      # DescribeMessage返回参数结构体
+      class DescribeMessageResponse < TencentCloud::Common::AbstractModel
+        # @param Body: 消息体
+        # @type Body: String
+        # @param Properties: 详情参数
+        # @type Properties: String
+        # @param ProduceTime: 生产时间
+        # @type ProduceTime: String
+        # @param MessageId: 消息ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MessageId: String
+        # @param ProducerAddr: 生产者地址
+        # @type ProducerAddr: String
+        # @param MessageTracks: 消息消费情况列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MessageTracks: Array
+        # @param ShowTopicName: Topic
+        # @type ShowTopicName: String
+        # @param MessageTracksCount: 消息消费情况列表总条数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MessageTracksCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Body, :Properties, :ProduceTime, :MessageId, :ProducerAddr, :MessageTracks, :ShowTopicName, :MessageTracksCount, :RequestId
+
+        def initialize(body=nil, properties=nil, producetime=nil, messageid=nil, produceraddr=nil, messagetracks=nil, showtopicname=nil, messagetrackscount=nil, requestid=nil)
+          @Body = body
+          @Properties = properties
+          @ProduceTime = producetime
+          @MessageId = messageid
+          @ProducerAddr = produceraddr
+          @MessageTracks = messagetracks
+          @ShowTopicName = showtopicname
+          @MessageTracksCount = messagetrackscount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Body = params['Body']
+          @Properties = params['Properties']
+          @ProduceTime = params['ProduceTime']
+          @MessageId = params['MessageId']
+          @ProducerAddr = params['ProducerAddr']
+          unless params['MessageTracks'].nil?
+            @MessageTracks = []
+            params['MessageTracks'].each do |i|
+              messagetrackitem_tmp = MessageTrackItem.new
+              messagetrackitem_tmp.deserialize(i)
+              @MessageTracks << messagetrackitem_tmp
+            end
+          end
+          @ShowTopicName = params['ShowTopicName']
+          @MessageTracksCount = params['MessageTracksCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeMessageTrace请求参数结构体
       class DescribeMessageTraceRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 集群ID
@@ -3414,6 +3614,53 @@ module TencentCloud
         end
       end
 
+      # 消息记录
+      class MessageItem < TencentCloud::Common::AbstractModel
+        # @param MsgId: 消息ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MsgId: String
+        # @param Tags: 消息tag
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: String
+        # @param Keys: 消息key
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Keys: String
+        # @param ProducerAddr: 客户端地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProducerAddr: String
+        # @param ProduceTime: 消息发送时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProduceTime: String
+        # @param DeadLetterResendTimes: 死信重发次数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeadLetterResendTimes: Integer
+        # @param DeadLetterResendSuccessTimes: 死信重发成功次数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeadLetterResendSuccessTimes: Integer
+
+        attr_accessor :MsgId, :Tags, :Keys, :ProducerAddr, :ProduceTime, :DeadLetterResendTimes, :DeadLetterResendSuccessTimes
+
+        def initialize(msgid=nil, tags=nil, keys=nil, produceraddr=nil, producetime=nil, deadletterresendtimes=nil, deadletterresendsuccesstimes=nil)
+          @MsgId = msgid
+          @Tags = tags
+          @Keys = keys
+          @ProducerAddr = produceraddr
+          @ProduceTime = producetime
+          @DeadLetterResendTimes = deadletterresendtimes
+          @DeadLetterResendSuccessTimes = deadletterresendsuccesstimes
+        end
+
+        def deserialize(params)
+          @MsgId = params['MsgId']
+          @Tags = params['Tags']
+          @Keys = params['Keys']
+          @ProducerAddr = params['ProducerAddr']
+          @ProduceTime = params['ProduceTime']
+          @DeadLetterResendTimes = params['DeadLetterResendTimes']
+          @DeadLetterResendSuccessTimes = params['DeadLetterResendSuccessTimes']
+        end
+      end
+
       # 消息轨迹
       class MessageTraceItem < TencentCloud::Common::AbstractModel
         # @param Stage: 步骤
@@ -3433,6 +3680,35 @@ module TencentCloud
         def deserialize(params)
           @Stage = params['Stage']
           @Data = params['Data']
+        end
+      end
+
+      # MessageTrack
+      class MessageTrackItem < TencentCloud::Common::AbstractModel
+        # @param ConsumerGroup: 消费组名称
+        # @type ConsumerGroup: String
+        # @param ConsumeStatus: 消费状态, CONSUMED: 已消费 CONSUMED_BUT_FILTERED: 已过滤 NOT_CONSUME: 未消费 ENTER_RETRY: 进入重试队列 ENTER_DLQ: 进入死信队列 UNKNOWN: 查询不到消费状态
+        # @type ConsumeStatus: String
+        # @param TrackType: track类型
+        # @type TrackType: String
+        # @param ExceptionDesc: 异常信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExceptionDesc: String
+
+        attr_accessor :ConsumerGroup, :ConsumeStatus, :TrackType, :ExceptionDesc
+
+        def initialize(consumergroup=nil, consumestatus=nil, tracktype=nil, exceptiondesc=nil)
+          @ConsumerGroup = consumergroup
+          @ConsumeStatus = consumestatus
+          @TrackType = tracktype
+          @ExceptionDesc = exceptiondesc
+        end
+
+        def deserialize(params)
+          @ConsumerGroup = params['ConsumerGroup']
+          @ConsumeStatus = params['ConsumeStatus']
+          @TrackType = params['TrackType']
+          @ExceptionDesc = params['ExceptionDesc']
         end
       end
 
@@ -4024,6 +4300,51 @@ module TencentCloud
           @IpRule = params['IpRule']
           @Allow = params['Allow']
           @Remark = params['Remark']
+        end
+      end
+
+      # ResendDeadLetterMessage请求参数结构体
+      class ResendDeadLetterMessageRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 集群ID
+        # @type InstanceId: String
+        # @param MessageIds: 死信消息ID列表
+        # @type MessageIds: Array
+        # @param ConsumerGroup: 消费组名称
+        # @type ConsumerGroup: String
+
+        attr_accessor :InstanceId, :MessageIds, :ConsumerGroup
+
+        def initialize(instanceid=nil, messageids=nil, consumergroup=nil)
+          @InstanceId = instanceid
+          @MessageIds = messageids
+          @ConsumerGroup = consumergroup
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @MessageIds = params['MessageIds']
+          @ConsumerGroup = params['ConsumerGroup']
+        end
+      end
+
+      # ResendDeadLetterMessage返回参数结构体
+      class ResendDeadLetterMessageResponse < TencentCloud::Common::AbstractModel
+        # @param ResendResult: 重发消息结果
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResendResult: Boolean
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ResendResult, :RequestId
+
+        def initialize(resendresult=nil, requestid=nil)
+          @ResendResult = resendresult
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ResendResult = params['ResendResult']
+          @RequestId = params['RequestId']
         end
       end
 

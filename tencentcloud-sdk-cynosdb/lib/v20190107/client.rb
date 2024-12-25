@@ -29,7 +29,7 @@ module TencentCloud
         end
 
 
-        # 本接口(ActivateInstance)用于恢复已隔离的实例访问。
+        # 本接口（ActivateInstance）用于恢复已隔离的实例访问。
 
         # @param request: Request instance for ActivateInstance.
         # @type request: :class:`Tencentcloud::cynosdb::V20190107::ActivateInstanceRequest`
@@ -221,7 +221,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 关闭数据库代理连接地址
+        # 本接口（CloseProxyEndPoint）用于关闭数据库代理连接地址。
 
         # @param request: Request instance for CloseProxyEndPoint.
         # @type request: :class:`Tencentcloud::cynosdb::V20190107::CloseProxyEndPointRequest`
@@ -893,7 +893,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 获取实例的审计规则
+        # 本接口（DescribeAuditRuleWithInstanceIds）用于获取实例的审计规则。
 
         # @param request: Request instance for DescribeAuditRuleWithInstanceIds.
         # @type request: :class:`Tencentcloud::cynosdb::V20190107::DescribeAuditRuleWithInstanceIdsRequest`
@@ -1589,7 +1589,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口(DescribeInstancesWithinSameCluster)用于查询同一集群下实例列表
+        # 本接口（DescribeInstancesWithinSameCluster）用于查询同一集群下实例列表
 
         # @param request: Request instance for DescribeInstancesWithinSameCluster.
         # @type request: :class:`Tencentcloud::cynosdb::V20190107::DescribeInstancesWithinSameClusterRequest`

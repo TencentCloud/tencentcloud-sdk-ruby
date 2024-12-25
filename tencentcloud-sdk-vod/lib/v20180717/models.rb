@@ -6942,15 +6942,19 @@ module TencentCloud
       class CreateDomainVerifyRecordRequest < TencentCloud::Common::AbstractModel
         # @param Domain: 需要接入点播的加速域名。
         # @type Domain: String
+        # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。从2024年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b>
+        # @type SubAppId: Integer
 
-        attr_accessor :Domain
+        attr_accessor :Domain, :SubAppId
 
-        def initialize(domain=nil)
+        def initialize(domain=nil, subappid=nil)
           @Domain = domain
+          @SubAppId = subappid
         end
 
         def deserialize(params)
           @Domain = params['Domain']
+          @SubAppId = params['SubAppId']
         end
       end
 
@@ -11569,6 +11573,7 @@ module TencentCloud
         # <li> MediaCast: 媒体转推</li>
         # <li>Transcode: 转码，包含普通转码、极速高清和视频编辑（不推荐使用）</li>
         # <li>VoiceTranslation: 语音翻译</li>
+        # <li>JITTranscoding: 即时转码</li>
         # @type Type: String
 
         attr_accessor :StartTime, :EndTime, :SubAppId, :Type
@@ -27455,6 +27460,7 @@ module TencentCloud
         # <li> QualityInspect: 音画质检测</li>
         # <li>Transcode: 转码，包含普通转码、极速高清和视频编辑（不推荐使用）</li>
         # <li>VoiceTranslation: 语音翻译</li>
+        # <li>JITTranscoding: 即时转码</li>
         # @type TaskType: String
         # @param Summary: 任务数统计数据概览，用量单位为秒。
         # @type Summary: Array
@@ -27511,6 +27517,13 @@ module TencentCloud
         # <li>4K: 短边 ≤ 2160px</li>
         # <li>8K: 短边 ≤ 4320px</li>
         # <li>Audio: 音频</li>
+        # 即时转码规格：
+        # <li>JITTranscoding.H264.SD: H.264编码方式标清即时转码</li>
+        # <li>JITTranscoding.H264.HD: H.264编码方式高清即时转码</li>
+        # <li>JITTranscoding.H264.FHD: H.264编码方式全高清即时转码</li>
+        # <li>JITTranscoding.H264.2K: H.264编码方式2K即时转码</li>
+        # <li>JITTranscoding.Audio: 音频即时转码</li>
+        # <li>JITTranscoding.Copy: 转封装即时转码</li>
         # @type Details: Array
 
         attr_accessor :TaskType, :Summary, :Details
@@ -28605,6 +28618,8 @@ module TencentCloud
       class VerifyDomainRecordRequest < TencentCloud::Common::AbstractModel
         # @param Domain: 需要接入点播的加速域名。
         # @type Domain: String
+        # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。从2024年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b>
+        # @type SubAppId: Integer
         # @param VerifyType: 验证方式：
         # <li>dns：DNS 解析验证；</li>
         # <li>fIle：文件验证。</li>
@@ -28612,15 +28627,17 @@ module TencentCloud
         # 默认值：dns。
         # @type VerifyType: String
 
-        attr_accessor :Domain, :VerifyType
+        attr_accessor :Domain, :SubAppId, :VerifyType
 
-        def initialize(domain=nil, verifytype=nil)
+        def initialize(domain=nil, subappid=nil, verifytype=nil)
           @Domain = domain
+          @SubAppId = subappid
           @VerifyType = verifytype
         end
 
         def deserialize(params)
           @Domain = params['Domain']
+          @SubAppId = params['SubAppId']
           @VerifyType = params['VerifyType']
         end
       end

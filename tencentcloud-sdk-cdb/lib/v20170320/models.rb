@@ -53,10 +53,12 @@ module TencentCloud
         # @type CreateTime: String
         # @param MaxUserConnections: 用户最大可用实例连接数
         # @type MaxUserConnections: Integer
+        # @param OpenCam: 用户账号是否开启了密码轮转
+        # @type OpenCam: Boolean
 
-        attr_accessor :Notes, :Host, :User, :ModifyTime, :ModifyPasswordTime, :CreateTime, :MaxUserConnections
+        attr_accessor :Notes, :Host, :User, :ModifyTime, :ModifyPasswordTime, :CreateTime, :MaxUserConnections, :OpenCam
 
-        def initialize(notes=nil, host=nil, user=nil, modifytime=nil, modifypasswordtime=nil, createtime=nil, maxuserconnections=nil)
+        def initialize(notes=nil, host=nil, user=nil, modifytime=nil, modifypasswordtime=nil, createtime=nil, maxuserconnections=nil, opencam=nil)
           @Notes = notes
           @Host = host
           @User = user
@@ -64,6 +66,7 @@ module TencentCloud
           @ModifyPasswordTime = modifypasswordtime
           @CreateTime = createtime
           @MaxUserConnections = maxuserconnections
+          @OpenCam = opencam
         end
 
         def deserialize(params)
@@ -74,6 +77,7 @@ module TencentCloud
           @ModifyPasswordTime = params['ModifyPasswordTime']
           @CreateTime = params['CreateTime']
           @MaxUserConnections = params['MaxUserConnections']
+          @OpenCam = params['OpenCam']
         end
       end
 
@@ -1000,19 +1004,14 @@ module TencentCloud
         # @param CreateAt: 规则模板创建时间。
         # @type CreateAt: String
         # @param AlarmLevel: 告警等级。1-低风险，2-中风险，3-高风险。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AlarmLevel: Integer
         # @param AlarmPolicy: 告警策略。0-不告警，1-告警。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AlarmPolicy: Integer
         # @param AffectedInstances: 规则模板应用在哪些在实例。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AffectedInstances: Array
         # @param Status: 模板状态。0-无任务 ，1-修改中。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
         # @param UpdateAt: 模板更新时间。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateAt: String
 
         attr_accessor :RuleTemplateId, :RuleTemplateName, :RuleFilters, :Description, :CreateAt, :AlarmLevel, :AlarmPolicy, :AffectedInstances, :Status, :UpdateAt
@@ -1151,7 +1150,6 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EncryptionFlag: String
         # @param ExecutedGTIDSet: 备份GTID点位
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExecutedGTIDSet: String
 
         attr_accessor :Name, :Size, :Date, :IntranetUrl, :InternetUrl, :Type, :BackupId, :Status, :FinishTime, :Creator, :StartTime, :Method, :Way, :ManualBackupName, :SaveMode, :Region, :RemoteInfo, :CosStorageType, :InstanceId, :EncryptionFlag, :ExecutedGTIDSet
@@ -2047,13 +2045,10 @@ module TencentCloud
       # 集群版节点信息
       class ClusterInfo < TencentCloud::Common::AbstractModel
         # @param NodeId: 节点id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NodeId: String
         # @param Role: 节点类型：主节点，从节点
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Role: String
         # @param Zone: 地域
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Zone: String
 
         attr_accessor :NodeId, :Role, :Zone
@@ -2527,18 +2522,21 @@ module TencentCloud
         # @param BackupMethod: 目标备份方法，可选的值：logical - 逻辑冷备，physical - 物理冷备，snapshot - 快照备份。基础版实例仅支持快照备份。
         # @type BackupMethod: String
         # @param BackupDBTableList: 需要备份的库表信息，如果不设置该参数，则默认整实例备份。在 BackupMethod=logical 逻辑备份中才可设置该参数。指定的库表必须存在，否则可能导致备份失败。
-        # 例：如果需要备份 db1 库的 tb1、tb2 表 和 db2 库。则该参数设置为 [{"Db": "db1", "Table": "tb1"}, {"Db": "db1", "Table": "tb2"}, {"Db": "db2"} ]。
+        # 例：如果需要备份 db1 库的 tb1、tb2 表 和 db2 库。则该参数设置为 [{"Db": "db1", "Table": "tb1"}, {"Db": "db1", "Table": "tb2"}, {"Db": "db2"}]。
         # @type BackupDBTableList: Array
         # @param ManualBackupName: 手动备份别名
         # @type ManualBackupName: String
+        # @param EncryptionFlag: 是否需要加密物理备份， 当BackupMethod为physical 时，该值才有意义。 不指定则使用实例备份默认加密策略。
+        # @type EncryptionFlag: String
 
-        attr_accessor :InstanceId, :BackupMethod, :BackupDBTableList, :ManualBackupName
+        attr_accessor :InstanceId, :BackupMethod, :BackupDBTableList, :ManualBackupName, :EncryptionFlag
 
-        def initialize(instanceid=nil, backupmethod=nil, backupdbtablelist=nil, manualbackupname=nil)
+        def initialize(instanceid=nil, backupmethod=nil, backupdbtablelist=nil, manualbackupname=nil, encryptionflag=nil)
           @InstanceId = instanceid
           @BackupMethod = backupmethod
           @BackupDBTableList = backupdbtablelist
           @ManualBackupName = manualbackupname
+          @EncryptionFlag = encryptionflag
         end
 
         def deserialize(params)
@@ -2553,6 +2551,7 @@ module TencentCloud
             end
           end
           @ManualBackupName = params['ManualBackupName']
+          @EncryptionFlag = params['EncryptionFlag']
         end
       end
 
@@ -4803,10 +4802,8 @@ module TencentCloud
       # DescribeAuditRuleTemplateModifyHistory返回参数结构体
       class DescribeAuditRuleTemplateModifyHistoryResponse < TencentCloud::Common::AbstractModel
         # @param TotalCount: 总的条数。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
         # @param Items: 变更详情。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Items: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6130,10 +6127,8 @@ module TencentCloud
       # DescribeDBInstanceLogToCLS返回参数结构体
       class DescribeDBInstanceLogToCLSResponse < TencentCloud::Common::AbstractModel
         # @param ErrorLog: 错误日志投递CLS配置
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrorLog: :class:`Tencentcloud::Cdb.v20170320.models.LogToCLSConfig`
         # @param SlowLog: 慢日志投递CLS配置
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SlowLog: :class:`Tencentcloud::Cdb.v20170320.models.LogToCLSConfig`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -7992,9 +7987,11 @@ module TencentCloud
       class DescribeSlowLogDataRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例 ID。
         # @type InstanceId: String
-        # @param StartTime: 开始时间戳。例如 1585142640 。
+        # @param StartTime: 开始时间戳。例如 1585142640。
+        # 说明：此参数单位为秒的时间戳。
         # @type StartTime: Integer
-        # @param EndTime: 结束时间戳。例如 1585142640 。
+        # @param EndTime: 结束时间戳。例如 1585142640。
+        # 说明：此参数单位为秒的时间戳。
         # @type EndTime: Integer
         # @param UserHosts: 客户端 Host 列表。
         # @type UserHosts: Array
@@ -8512,7 +8509,7 @@ module TencentCloud
         end
       end
 
-      #  CPU负载
+      # CPU负载
       class DeviceCpuInfo < TencentCloud::Common::AbstractModel
         # @param Rate: 实例CPU平均使用率
         # @type Rate: Array
@@ -8753,30 +8750,43 @@ module TencentCloud
       # 导入任务记录
       class ImportRecord < TencentCloud::Common::AbstractModel
         # @param Status: 状态值
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
         # @param Code: 状态值
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Code: Integer
         # @param CostTime: 执行时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CostTime: Integer
         # @param InstanceId: 实例ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceId: String
         # @param WorkId: 后端任务ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WorkId: String
         # @param FileName: 导入文件名
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FileName: String
         # @param Process: 执行进度
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Process: Integer
         # @param CreateTime: 任务创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
         # @param FileSize: 文件大小
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FileSize: String
         # @param Message: 任务执行信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Message: String
         # @param JobId: 任务ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type JobId: Integer
         # @param DbName: 导入库表名
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DbName: String
         # @param AsyncRequestId: 异步任务的请求ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AsyncRequestId: String
 
         attr_accessor :Status, :Code, :CostTime, :InstanceId, :WorkId, :FileName, :Process, :CreateTime, :FileSize, :Message, :JobId, :DbName, :AsyncRequestId
@@ -9048,7 +9058,6 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OldRule: Boolean
         # @param RuleTemplateIds: 实例所应用的规则模板。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleTemplateIds: Array
 
         attr_accessor :InstanceId, :AuditStatus, :AuditTask, :LogExpireDay, :HighLogExpireDay, :LowLogExpireDay, :BillingAmount, :HighRealStorage, :LowRealStorage, :AuditAll, :CreateAt, :InstanceInfo, :RealStorage, :OldRule, :RuleTemplateIds
@@ -9372,12 +9381,16 @@ module TencentCloud
       # 实例可回档时间范围
       class InstanceRollbackRangeTime < TencentCloud::Common::AbstractModel
         # @param Code: 查询数据库错误码
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Code: Integer
         # @param Message: 查询数据库错误信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Message: String
         # @param InstanceId: 实例ID列表，单个实例Id的格式如：cdb-c1nl9rpv。与云数据库控制台页面中显示的实例ID相同
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceId: String
         # @param Times: 可回档时间范围
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Times: Array
 
         attr_accessor :Code, :Message, :InstanceId, :Times
@@ -9516,16 +9529,12 @@ module TencentCloud
       # DB实例慢日志、错误日志投递CLS配置
       class LogToCLSConfig < TencentCloud::Common::AbstractModel
         # @param Status: 投递状态打开或者关闭
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: String
         # @param LogSetId: CLS日志集ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LogSetId: String
         # @param LogTopicId: 日志主题ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LogTopicId: String
         # @param ClsRegion: CLS服务所在地域
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClsRegion: String
 
         attr_accessor :Status, :LogSetId, :LogTopicId, :ClsRegion
@@ -11164,7 +11173,7 @@ module TencentCloud
 
       # ModifyProtectMode请求参数结构体
       class ModifyProtectModeRequest < TencentCloud::Common::AbstractModel
-        # @param ProtectMode: 无
+        # @param ProtectMode: 数据复制方式，默认为 0，支持值包括：0 - 表示异步复制，1 - 表示半同步复制，2 - 表示强同步复制。
         # @type ProtectMode: Integer
         # @param InstanceId: 实例ID。
         # @type InstanceId: String
@@ -11911,10 +11920,8 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProxyAllocation: Array
         # @param AccessMode: 接入模式
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AccessMode: String
         # @param AutoLoadBalance: 是否开启自动负载均衡
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AutoLoadBalance: Boolean
 
         attr_accessor :ProxyAddressId, :UniqVpcId, :UniqSubnetId, :Vip, :VPort, :WeightMode, :IsKickOut, :MinCount, :MaxDelay, :AutoAddRo, :ReadOnly, :TransSplit, :FailOver, :ConnectionPool, :Desc, :ProxyAllocation, :AccessMode, :AutoLoadBalance
@@ -12784,14 +12791,19 @@ module TencentCloud
       # 只读vip信息
       class RoVipInfo < TencentCloud::Common::AbstractModel
         # @param RoVipStatus: 只读vip状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RoVipStatus: Integer
         # @param RoSubnetId: 只读vip的子网
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RoSubnetId: Integer
         # @param RoVpcId: 只读vip的私有网络
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RoVpcId: Integer
         # @param RoVport: 只读vip的端口号
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RoVport: Integer
         # @param RoVip: 只读vip
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RoVip: String
 
         attr_accessor :RoVipStatus, :RoSubnetId, :RoVpcId, :RoVport, :RoVip
@@ -13002,8 +13014,10 @@ module TencentCloud
       # 可回档时间范围
       class RollbackTimeRange < TencentCloud::Common::AbstractModel
         # @param Begin: 实例可回档开始时间，时间格式：2016-10-29 01:06:04
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Begin: String
         # @param End: 实例可回档结束时间，时间格式：2016-11-02 11:44:47
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type End: String
 
         attr_accessor :Begin, :End
@@ -13068,22 +13082,16 @@ module TencentCloud
       # 规则模板内容
       class RuleTemplateInfo < TencentCloud::Common::AbstractModel
         # @param RuleTemplateId: 规则模板ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleTemplateId: String
         # @param RuleTemplateName: 规则模板名称。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleTemplateName: String
         # @param RuleFilters: 规则内容。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleFilters: Array
         # @param AlarmLevel: 告警等级。1-低风险，2-中风险，3-高风险。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AlarmLevel: Integer
         # @param AlarmPolicy: 告警策略。0-不告警，1-告警。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AlarmPolicy: Integer
         # @param Description: 规则描述。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
 
         attr_accessor :RuleTemplateId, :RuleTemplateName, :RuleFilters, :AlarmLevel, :AlarmPolicy, :Description
@@ -13117,22 +13125,16 @@ module TencentCloud
       # 规则模板变更记录信息
       class RuleTemplateRecordInfo < TencentCloud::Common::AbstractModel
         # @param TaskId: 任务ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskId: Integer
         # @param ModifyBeforeInfo: 修改前规则模板的详情。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ModifyBeforeInfo: :class:`Tencentcloud::Cdb.v20170320.models.RuleTemplateInfo`
         # @param ModifyAfterInfo: 修改后规则模板的详情。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ModifyAfterInfo: :class:`Tencentcloud::Cdb.v20170320.models.RuleTemplateInfo`
         # @param AffectedInstances: 影响的实例。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AffectedInstances: Array
         # @param Operator: 操作人，账号uin。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Operator: String
         # @param UpdateTime: 变更的时间。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: String
 
         attr_accessor :TaskId, :ModifyBeforeInfo, :ModifyAfterInfo, :AffectedInstances, :Operator, :UpdateTime
@@ -13165,18 +13167,25 @@ module TencentCloud
       # 安全组详情
       class SecurityGroup < TencentCloud::Common::AbstractModel
         # @param ProjectId: 项目ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProjectId: Integer
         # @param CreateTime: 创建时间，时间格式：yyyy-mm-dd hh:mm:ss
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
         # @param Inbound: 入站规则
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Inbound: Array
         # @param Outbound: 出站规则
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Outbound: Array
         # @param SecurityGroupId: 安全组ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SecurityGroupId: String
         # @param SecurityGroupName: 安全组名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SecurityGroupName: String
         # @param SecurityGroupRemark: 安全组备注
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SecurityGroupRemark: String
 
         attr_accessor :ProjectId, :CreateTime, :Inbound, :Outbound, :SecurityGroupId, :SecurityGroupName, :SecurityGroupRemark
@@ -13219,8 +13228,10 @@ module TencentCloud
       # 从库的配置信息
       class SlaveConfig < TencentCloud::Common::AbstractModel
         # @param ReplicationMode: 从库复制方式，可能的返回值：aysnc-异步，semisync-半同步
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReplicationMode: String
         # @param Zone: 从库可用区的正式名称，如ap-shanghai-1
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Zone: String
 
         attr_accessor :ReplicationMode, :Zone
@@ -14386,10 +14397,8 @@ module TencentCloud
       # 5.7升级8.0指定参数的结构
       class UpgradeEngineVersionParams < TencentCloud::Common::AbstractModel
         # @param Name: 参数名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Value: 参数值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: String
 
         attr_accessor :Name, :Value
@@ -14408,8 +14417,10 @@ module TencentCloud
       # 文件上传描述
       class UploadInfo < TencentCloud::Common::AbstractModel
         # @param AllSliceNum: 文件所有分片数
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AllSliceNum: Integer
         # @param CompleteNum: 已完成分片数
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CompleteNum: Integer
 
         attr_accessor :AllSliceNum, :CompleteNum
@@ -14468,12 +14479,16 @@ module TencentCloud
       # 多可用区信息
       class ZoneConf < TencentCloud::Common::AbstractModel
         # @param DeployMode: 可用区部署方式，可能的值为：0-单可用区；1-多可用区
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeployMode: Array
         # @param MasterZone: 主实例所在的可用区
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MasterZone: Array
         # @param SlaveZone: 实例为多可用区部署时，备库1所在的可用区
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SlaveZone: Array
         # @param BackupZone: 实例为多可用区部署时，备库2所在的可用区
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BackupZone: Array
 
         attr_accessor :DeployMode, :MasterZone, :SlaveZone, :BackupZone

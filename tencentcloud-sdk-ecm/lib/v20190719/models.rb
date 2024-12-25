@@ -588,7 +588,6 @@ module TencentCloud
       # AssignPrivateIpAddresses返回参数结构体
       class AssignPrivateIpAddressesResponse < TencentCloud::Common::AbstractModel
         # @param PrivateIpAddressSet: 内网IP详细信息。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PrivateIpAddressSet: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1751,7 +1750,6 @@ module TencentCloud
         # @param TotalCount: 新增的实例个数。
         # @type TotalCount: Integer
         # @param RouteTableSet: 路由表对象。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RouteTableSet: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3022,7 +3020,6 @@ module TencentCloud
         # @param TotalCount: 符合条件的对象数。
         # @type TotalCount: Integer
         # @param HaVipSet: HAVIP对象数组。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HaVipSet: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4229,7 +4226,6 @@ module TencentCloud
       # DescribeRouteConflicts返回参数结构体
       class DescribeRouteConflictsResponse < TencentCloud::Common::AbstractModel
         # @param RouteConflictSet: 路由策略冲突列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RouteConflictSet: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

@@ -1964,7 +1964,6 @@ module TencentCloud
         # 注：该地址仅供预览，不可分发。
         # @type PgmPlayUrl: String
         # @param CdnPlayUrl: 注：该字段已废弃，请结合腾讯云直播播放地址生成策略生成cdn播放地址
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CdnPlayUrl: String
         # @param CdnStreamId: 主监任务在腾讯云直播侧的流ID。
         # @type CdnStreamId: String
@@ -2022,19 +2021,15 @@ module TencentCloud
       class CreateCasterPgmResponse < TencentCloud::Common::AbstractModel
         # @param PgmPlayUrl: 主监任务的rtmp协议预览地址。
         # 注：该地址仅供预览，不可分发。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PgmPlayUrl: String
         # @param CdnPlayUrl: 注：该字段已废弃，请结合腾讯云直播播放地址生成策略生成cdn播放地址。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CdnPlayUrl: String
         # @param CdnStreamId: 主监任务在腾讯云直播侧的流ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CdnStreamId: String
         # @param PgmWebRTCPlayUrl: 主监任务的webrtc协议播放地址。
         # 注：
         # 1. 该预览地址仅作为预览，不可分发。
         # 2. webrtc播放地址需配合腾讯云快直播播放sdk使用。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PgmWebRTCPlayUrl: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4974,7 +4969,6 @@ module TencentCloud
       # DescribeBackupStreamList返回参数结构体
       class DescribeBackupStreamListResponse < TencentCloud::Common::AbstractModel
         # @param StreamInfoList: 主备流分组信息列表。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StreamInfoList: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6825,7 +6819,6 @@ module TencentCloud
       # DescribeLivePadProcessorList返回参数结构体
       class DescribeLivePadProcessorListResponse < TencentCloud::Common::AbstractModel
         # @param StreamNameList: 当前正在拉取垫片的流名称列表。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StreamNameList: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -8354,7 +8347,6 @@ module TencentCloud
       # DescribeLiveTranscodeTotalInfo返回参数结构体
       class DescribeLiveTranscodeTotalInfoResponse < TencentCloud::Common::AbstractModel
         # @param DataInfoList: 统计数据列表。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DataInfoList: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -14365,7 +14357,6 @@ module TencentCloud
       # StopLivePadProcessor返回参数结构体
       class StopLivePadProcessorResponse < TencentCloud::Common::AbstractModel
         # @param ResultMessage: 处理结果信息。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResultMessage: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

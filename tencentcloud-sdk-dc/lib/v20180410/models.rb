@@ -63,25 +63,22 @@ module TencentCloud
         # @type LineOperator: Array
         # @param RegionId: 接入点管理的大区ID。
         # @type RegionId: String
-        # @param AvailablePortType: 接入点可用的端口类型列表。1000BASE-T代表千兆电口，1000BASE-LX代表千兆单模光口10km，1000BASE-ZX代表千兆单模光口80km,10GBASE-LR代表万兆单模光口10km,10GBASE-ZR代表万兆单模光口80km,10GBASE-LH代表万兆单模光口40km,100GBASE-LR4代表100G单模光口10km
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param AvailablePortType: 接入点可用的端口类型列表。1000BASE-T代表千兆电口，1000BASE-LX代表千兆单模光口10km，1000BASE-ZX代表千兆单模光口80km,10GBASE-LR代表万兆单模光口10km,10GBASE-ZR代表万兆单模光口80km,10GBASE-LH代表万兆单模光口40km,100GBASE-LR4代表100G单模光口10km。
         # @type AvailablePortType: Array
-        # @param Coordinate: 接入点经纬度
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param Coordinate: 接入点经纬度。
         # @type Coordinate: :class:`Tencentcloud::Dc.v20180410.models.Coordinate`
-        # @param City: 接入点所在城市
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param City: 接入点所在城市。
         # @type City: String
-        # @param Area: 接入点地域名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param Area: 接入点地域名称。
         # @type Area: String
         # @param AccessPointType: 接入点类型。VXLAN/QCPL/QCAR
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AccessPointType: String
+        # @param AvailablePortInfo: 端口规格信息。
+        # @type AvailablePortInfo: Array
 
-        attr_accessor :AccessPointName, :AccessPointId, :State, :Location, :LineOperator, :RegionId, :AvailablePortType, :Coordinate, :City, :Area, :AccessPointType
+        attr_accessor :AccessPointName, :AccessPointId, :State, :Location, :LineOperator, :RegionId, :AvailablePortType, :Coordinate, :City, :Area, :AccessPointType, :AvailablePortInfo
 
-        def initialize(accesspointname=nil, accesspointid=nil, state=nil, location=nil, lineoperator=nil, regionid=nil, availableporttype=nil, coordinate=nil, city=nil, area=nil, accesspointtype=nil)
+        def initialize(accesspointname=nil, accesspointid=nil, state=nil, location=nil, lineoperator=nil, regionid=nil, availableporttype=nil, coordinate=nil, city=nil, area=nil, accesspointtype=nil, availableportinfo=nil)
           @AccessPointName = accesspointname
           @AccessPointId = accesspointid
           @State = state
@@ -93,6 +90,7 @@ module TencentCloud
           @City = city
           @Area = area
           @AccessPointType = accesspointtype
+          @AvailablePortInfo = availableportinfo
         end
 
         def deserialize(params)
@@ -110,6 +108,14 @@ module TencentCloud
           @City = params['City']
           @Area = params['Area']
           @AccessPointType = params['AccessPointType']
+          unless params['AvailablePortInfo'].nil?
+            @AvailablePortInfo = []
+            params['AvailablePortInfo'].each do |i|
+              portspecification_tmp = PortSpecification.new
+              portspecification_tmp.deserialize(i)
+              @AvailablePortInfo << portspecification_tmp
+            end
+          end
         end
       end
 
@@ -757,19 +763,30 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 返回数量，默认为20，最大值为100。
         # @type Limit: Integer
+        # @param Filters: 过滤参数，支持：access-point-id、isp
+        # @type Filters: Array
 
-        attr_accessor :RegionId, :Offset, :Limit
+        attr_accessor :RegionId, :Offset, :Limit, :Filters
 
-        def initialize(regionid=nil, offset=nil, limit=nil)
+        def initialize(regionid=nil, offset=nil, limit=nil, filters=nil)
           @RegionId = regionid
           @Offset = offset
           @Limit = limit
+          @Filters = filters
         end
 
         def deserialize(params)
           @RegionId = params['RegionId']
           @Offset = params['Offset']
           @Limit = params['Limit']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
         end
       end
 
@@ -2305,6 +2322,30 @@ module TencentCloud
           @ProbeFailedTimes = params['ProbeFailedTimes']
           @Interval = params['Interval']
           @DestinationIp = params['DestinationIp']
+        end
+      end
+
+      # 端口规格
+      class PortSpecification < TencentCloud::Common::AbstractModel
+        # @param InternationalName: 端口名称
+        # @type InternationalName: String
+        # @param Specification: 端口规格（M）
+        # @type Specification: Integer
+        # @param PortType: 端口类型：T-电口，X-光口
+        # @type PortType: String
+
+        attr_accessor :InternationalName, :Specification, :PortType
+
+        def initialize(internationalname=nil, specification=nil, porttype=nil)
+          @InternationalName = internationalname
+          @Specification = specification
+          @PortType = porttype
+        end
+
+        def deserialize(params)
+          @InternationalName = params['InternationalName']
+          @Specification = params['Specification']
+          @PortType = params['PortType']
         end
       end
 

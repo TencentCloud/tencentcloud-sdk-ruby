@@ -509,7 +509,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口(CutXEvents)用于手动切割阻塞日志和死锁日志。
+        # 本接口（CutXEvents）用于手动切割阻塞日志和死锁日志。
 
         # @param request: Request instance for CutXEvents.
         # @type request: :class:`Tencentcloud::sqlserver::V20180328::CutXEventsRequest`
@@ -845,7 +845,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口(DescribeBackupFiles)用于查询单库备份明细
+        # 本接口（DescribeBackupFiles）用于查询单库备份明细。
 
         # @param request: Request instance for DescribeBackupFiles.
         # @type request: :class:`Tencentcloud::sqlserver::V20180328::DescribeBackupFilesRequest`

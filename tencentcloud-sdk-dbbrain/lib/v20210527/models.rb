@@ -1545,9 +1545,9 @@ module TencentCloud
 
       # DescribeAuditLogFiles请求参数结构体
       class DescribeAuditLogFilesRequest < TencentCloud::Common::AbstractModel
-        # @param Product: 服务产品类型，支持值包括： "dcdb" - 云数据库 Tdsql， "mariadb" - 云数据库 MariaDB for MariaDB。
+        # @param Product: 服务产品类型，支持值包括： "dcdb" - 云数据库 Tdsql， "mariadb" - 云数据库 MariaDB for MariaDB， "mysql" - 云数据库 MySQL， "cynosdb" - 云数据库 CynosDB for MySQL， "postgres" - 云数据库 PostgreSQL
         # @type Product: String
-        # @param NodeRequestType: 与Product保持一致。如："dcdb" ,"mariadb"
+        # @param NodeRequestType: 该字段规则如下： 当product为"dcdb"则输入"dcdb"， 当product为"mariadb"则输入"mariadb"， 当product为"mysql"则输入"mysql"， 当product为"cynosdb"则输入"mysql"， 当product为"postgres"则输入"postgres"。
         # @type NodeRequestType: String
         # @param InstanceId: 实例 ID 。
         # @type InstanceId: String

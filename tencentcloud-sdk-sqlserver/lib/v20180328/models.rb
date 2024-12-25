@@ -1236,10 +1236,14 @@ module TencentCloud
         # @type Collation: String
         # @param TimeZone: 系统时区，默认：China Standard Time
         # @type TimeZone: String
+        # @param MultiNodes: 是否多节点架构实例，默认值为false。当MultiNodes = true时，参数MultiZones必须取值为true。
+        # @type MultiNodes: Boolean
+        # @param DrZones: 备节点可用区，默认为空。当MultiNodes = true时，主节点和备节点可用区不能全部相同。备机可用区集合最小为2个，最大不超过5个。
+        # @type DrZones: Array
 
-        attr_accessor :Zone, :Memory, :Storage, :Cpu, :MachineType, :InstanceChargeType, :ProjectId, :GoodsNum, :SubnetId, :VpcId, :Period, :AutoVoucher, :VoucherIds, :DBVersion, :AutoRenewFlag, :SecurityGroupList, :Weekly, :StartTime, :Span, :MultiZones, :ResourceTags, :Collation, :TimeZone
+        attr_accessor :Zone, :Memory, :Storage, :Cpu, :MachineType, :InstanceChargeType, :ProjectId, :GoodsNum, :SubnetId, :VpcId, :Period, :AutoVoucher, :VoucherIds, :DBVersion, :AutoRenewFlag, :SecurityGroupList, :Weekly, :StartTime, :Span, :MultiZones, :ResourceTags, :Collation, :TimeZone, :MultiNodes, :DrZones
 
-        def initialize(zone=nil, memory=nil, storage=nil, cpu=nil, machinetype=nil, instancechargetype=nil, projectid=nil, goodsnum=nil, subnetid=nil, vpcid=nil, period=nil, autovoucher=nil, voucherids=nil, dbversion=nil, autorenewflag=nil, securitygrouplist=nil, weekly=nil, starttime=nil, span=nil, multizones=nil, resourcetags=nil, collation=nil, timezone=nil)
+        def initialize(zone=nil, memory=nil, storage=nil, cpu=nil, machinetype=nil, instancechargetype=nil, projectid=nil, goodsnum=nil, subnetid=nil, vpcid=nil, period=nil, autovoucher=nil, voucherids=nil, dbversion=nil, autorenewflag=nil, securitygrouplist=nil, weekly=nil, starttime=nil, span=nil, multizones=nil, resourcetags=nil, collation=nil, timezone=nil, multinodes=nil, drzones=nil)
           @Zone = zone
           @Memory = memory
           @Storage = storage
@@ -1263,6 +1267,8 @@ module TencentCloud
           @ResourceTags = resourcetags
           @Collation = collation
           @TimeZone = timezone
+          @MultiNodes = multinodes
+          @DrZones = drzones
         end
 
         def deserialize(params)
@@ -1296,6 +1302,8 @@ module TencentCloud
           end
           @Collation = params['Collation']
           @TimeZone = params['TimeZone']
+          @MultiNodes = params['MultiNodes']
+          @DrZones = params['DrZones']
         end
       end
 
@@ -1500,10 +1508,14 @@ module TencentCloud
         # @type Collation: String
         # @param TimeZone: 系统时区，默认：China Standard Time
         # @type TimeZone: String
+        # @param MultiNodes: 是否多节点架构实例，默认值为false。当MultiNodes = true时，参数MultiZones必须取值为true。
+        # @type MultiNodes: Boolean
+        # @param DrZones: 备节点可用区，默认为空。当MultiNodes = true时，主节点和备节点可用区不能全部相同。备机可用区集合最小为2个，最大不超过5个。
+        # @type DrZones: Array
 
-        attr_accessor :Zone, :Memory, :Storage, :InstanceChargeType, :ProjectId, :GoodsNum, :SubnetId, :VpcId, :Period, :AutoVoucher, :VoucherIds, :DBVersion, :AutoRenewFlag, :SecurityGroupList, :Weekly, :StartTime, :Span, :HAType, :MultiZones, :ResourceTags, :Collation, :TimeZone
+        attr_accessor :Zone, :Memory, :Storage, :InstanceChargeType, :ProjectId, :GoodsNum, :SubnetId, :VpcId, :Period, :AutoVoucher, :VoucherIds, :DBVersion, :AutoRenewFlag, :SecurityGroupList, :Weekly, :StartTime, :Span, :HAType, :MultiZones, :ResourceTags, :Collation, :TimeZone, :MultiNodes, :DrZones
 
-        def initialize(zone=nil, memory=nil, storage=nil, instancechargetype=nil, projectid=nil, goodsnum=nil, subnetid=nil, vpcid=nil, period=nil, autovoucher=nil, voucherids=nil, dbversion=nil, autorenewflag=nil, securitygrouplist=nil, weekly=nil, starttime=nil, span=nil, hatype=nil, multizones=nil, resourcetags=nil, collation=nil, timezone=nil)
+        def initialize(zone=nil, memory=nil, storage=nil, instancechargetype=nil, projectid=nil, goodsnum=nil, subnetid=nil, vpcid=nil, period=nil, autovoucher=nil, voucherids=nil, dbversion=nil, autorenewflag=nil, securitygrouplist=nil, weekly=nil, starttime=nil, span=nil, hatype=nil, multizones=nil, resourcetags=nil, collation=nil, timezone=nil, multinodes=nil, drzones=nil)
           @Zone = zone
           @Memory = memory
           @Storage = storage
@@ -1526,6 +1538,8 @@ module TencentCloud
           @ResourceTags = resourcetags
           @Collation = collation
           @TimeZone = timezone
+          @MultiNodes = multinodes
+          @DrZones = drzones
         end
 
         def deserialize(params)
@@ -1558,6 +1572,8 @@ module TencentCloud
           end
           @Collation = params['Collation']
           @TimeZone = params['TimeZone']
+          @MultiNodes = params['MultiNodes']
+          @DrZones = params['DrZones']
         end
       end
 
@@ -2641,8 +2657,8 @@ module TencentCloud
 
         attr_accessor :IsSubscribed, :CollationName, :IsAutoCleanupOn, :IsBrokerEnabled, :IsCdcEnabled, :IsDbChainingOn, :IsEncrypted, :IsFulltextEnabled, :IsMirroring, :IsPublished, :IsReadCommittedSnapshotOn, :IsTrustworthyOn, :MirroringState, :Name, :RecoveryModelDesc, :RetentionPeriod, :StateDesc, :UserAccessDesc, :CreateTime, :IsFullTextEnabled
         extend Gem::Deprecate
-        deprecate :IsFulltextEnabled, :none, 2024, 11
-        deprecate :IsFulltextEnabled=, :none, 2024, 11
+        deprecate :IsFulltextEnabled, :none, 2024, 12
+        deprecate :IsFulltextEnabled=, :none, 2024, 12
 
         def initialize(issubscribed=nil, collationname=nil, isautocleanupon=nil, isbrokerenabled=nil, iscdcenabled=nil, isdbchainingon=nil, isencrypted=nil, ismirroring=nil, ispublished=nil, isreadcommittedsnapshoton=nil, istrustworthyon=nil, mirroringstate=nil, name=nil, recoverymodeldesc=nil, retentionperiod=nil, statedesc=nil, useraccessdesc=nil, createtime=nil, isfulltextenabled=nil)
           @IsSubscribed = issubscribed
@@ -5148,7 +5164,7 @@ module TencentCloud
         # @type Memory: Integer
         # @param Storage: 实例容量大小，单位：GB。
         # @type Storage: Integer
-        # @param InstanceType: 购买实例的类型 HA-高可用型(包括双机高可用，alwaysOn集群)，RO-只读副本型，SI-单节点型,cvmHA-新版高可用,cvmRO-新版只读
+        # @param InstanceType: 购买实例的类型 HA-高可用型(包括双机高可用，alwaysOn集群)，RO-只读副本型，SI-单节点型,cvmHA-新版高可用,cvmRO-新版只读，MultiHA-多节点，cvmMultiHA-云盘多节点
         # @type InstanceType: String
         # @param InstanceChargeType: 计费类型，取值支持 PREPAID，POSTPAID。
         # @type InstanceChargeType: String
@@ -5163,10 +5179,12 @@ module TencentCloud
         # @param MachineType: 购买实例的宿主机类型，PM-物理机, CLOUD_PREMIUM-云服务器高性能云盘，CLOUD_SSD-云服务器SSD云盘,
         # CLOUD_HSSD-云服务器加强型SSD云盘，CLOUD_TSSD-云服务器极速型SSD云盘，CLOUD_BSSD-云服务器通用型SSD云盘
         # @type MachineType: String
+        # @param DrZones: 备节点可用区，默认为空。如果是多节点架构时必传，并且备机可用区集合最小为2个，最大不超过5个。
+        # @type DrZones: Array
 
-        attr_accessor :Zone, :Memory, :Storage, :InstanceType, :InstanceChargeType, :Cpu, :Period, :GoodsNum, :DBVersion, :MachineType
+        attr_accessor :Zone, :Memory, :Storage, :InstanceType, :InstanceChargeType, :Cpu, :Period, :GoodsNum, :DBVersion, :MachineType, :DrZones
 
-        def initialize(zone=nil, memory=nil, storage=nil, instancetype=nil, instancechargetype=nil, cpu=nil, period=nil, goodsnum=nil, dbversion=nil, machinetype=nil)
+        def initialize(zone=nil, memory=nil, storage=nil, instancetype=nil, instancechargetype=nil, cpu=nil, period=nil, goodsnum=nil, dbversion=nil, machinetype=nil, drzones=nil)
           @Zone = zone
           @Memory = memory
           @Storage = storage
@@ -5177,6 +5195,7 @@ module TencentCloud
           @GoodsNum = goodsnum
           @DBVersion = dbversion
           @MachineType = machinetype
+          @DrZones = drzones
         end
 
         def deserialize(params)
@@ -5190,6 +5209,7 @@ module TencentCloud
           @GoodsNum = params['GoodsNum']
           @DBVersion = params['DBVersion']
           @MachineType = params['MachineType']
+          @DrZones = params['DrZones']
         end
       end
 
@@ -6723,8 +6743,8 @@ module TencentCloud
 
         attr_accessor :TotalCount, :Slowlogs, :SlowLogs, :RequestId
         extend Gem::Deprecate
-        deprecate :Slowlogs, :none, 2024, 11
-        deprecate :Slowlogs=, :none, 2024, 11
+        deprecate :Slowlogs, :none, 2024, 12
+        deprecate :Slowlogs=, :none, 2024, 12
 
         def initialize(totalcount=nil, slowlogs=nil, requestid=nil)
           @TotalCount = totalcount
@@ -6933,8 +6953,8 @@ module TencentCloud
 
         attr_accessor :BucketName, :Region, :Path, :TmpSecretId, :TmpSecretKey, :XCosSecurityToken, :StartTime, :ExpiredTime, :CosSecurityToken, :RequestId
         extend Gem::Deprecate
-        deprecate :XCosSecurityToken, :none, 2024, 11
-        deprecate :XCosSecurityToken=, :none, 2024, 11
+        deprecate :XCosSecurityToken, :none, 2024, 12
+        deprecate :XCosSecurityToken=, :none, 2024, 12
 
         def initialize(bucketname=nil, region=nil, path=nil, tmpsecretid=nil, tmpsecretkey=nil, xcossecuritytoken=nil, starttime=nil, expiredtime=nil, cossecuritytoken=nil, requestid=nil)
           @BucketName = bucketname
@@ -7012,8 +7032,8 @@ module TencentCloud
 
         attr_accessor :BucketName, :Region, :Path, :TmpSecretId, :TmpSecretKey, :XCosSecurityToken, :StartTime, :ExpiredTime, :CosSecurityToken, :RequestId
         extend Gem::Deprecate
-        deprecate :XCosSecurityToken, :none, 2024, 11
-        deprecate :XCosSecurityToken=, :none, 2024, 11
+        deprecate :XCosSecurityToken, :none, 2024, 12
+        deprecate :XCosSecurityToken=, :none, 2024, 12
 
         def initialize(bucketname=nil, region=nil, path=nil, tmpsecretid=nil, tmpsecretkey=nil, xcossecuritytoken=nil, starttime=nil, expiredtime=nil, cossecuritytoken=nil, requestid=nil)
           @BucketName = bucketname
@@ -8301,8 +8321,8 @@ module TencentCloud
 
         attr_accessor :Errno, :Msg, :Code, :RequestId
         extend Gem::Deprecate
-        deprecate :Errno, :none, 2024, 11
-        deprecate :Errno=, :none, 2024, 11
+        deprecate :Errno, :none, 2024, 12
+        deprecate :Errno=, :none, 2024, 12
 
         def initialize(errno=nil, msg=nil, code=nil, requestid=nil)
           @Errno = errno
@@ -8677,19 +8697,31 @@ module TencentCloud
         # @type Type: String
         # @param WaitSwitch: 操作设置。0-立即执行，1- 维护时间内执行，默认取值0。
         # @type WaitSwitch: Integer
+        # @param IsKMS: 是否被KMS加密保护，0-表示否，1表示被KMS保护，默认取值0
+        # @type IsKMS: Integer
+        # @param KeyId: IsKMS为1时必填
+        # @type KeyId: String
+        # @param KeyRegion: IsKMS为1时必填
+        # @type KeyRegion: String
 
-        attr_accessor :InstanceId, :Type, :WaitSwitch
+        attr_accessor :InstanceId, :Type, :WaitSwitch, :IsKMS, :KeyId, :KeyRegion
 
-        def initialize(instanceid=nil, type=nil, waitswitch=nil)
+        def initialize(instanceid=nil, type=nil, waitswitch=nil, iskms=nil, keyid=nil, keyregion=nil)
           @InstanceId = instanceid
           @Type = type
           @WaitSwitch = waitswitch
+          @IsKMS = iskms
+          @KeyId = keyid
+          @KeyRegion = keyregion
         end
 
         def deserialize(params)
           @InstanceId = params['InstanceId']
           @Type = params['Type']
           @WaitSwitch = params['WaitSwitch']
+          @IsKMS = params['IsKMS']
+          @KeyId = params['KeyId']
+          @KeyRegion = params['KeyRegion']
         end
       end
 
@@ -8846,17 +8878,20 @@ module TencentCloud
         # @type VpcId: String
         # @param SubnetId: 备机网络子网ID，不填默认和主实例保持一致
         # @type SubnetId: String
-        # @param Vip: 指定的备机只读vip，不填自动分配
+        # @param Vip: 指定的备机只读vip，不填自动分配。多节点SingleReadOnly模式不支持指定vip。
         # @type Vip: String
+        # @param ReadMode: 备机只读模式，多节点架构默认取值BalancedReadOnly。SingleReadOnly-每个备机各对应一个只读地址（多节点架构），BalancedReadOnly-所有备机共用一个只读地址。当实例是双节点架构时，固定取值SingleReadOnly。
+        # @type ReadMode: String
 
-        attr_accessor :InstanceId, :Type, :VpcId, :SubnetId, :Vip
+        attr_accessor :InstanceId, :Type, :VpcId, :SubnetId, :Vip, :ReadMode
 
-        def initialize(instanceid=nil, type=nil, vpcid=nil, subnetid=nil, vip=nil)
+        def initialize(instanceid=nil, type=nil, vpcid=nil, subnetid=nil, vip=nil, readmode=nil)
           @InstanceId = instanceid
           @Type = type
           @VpcId = vpcid
           @SubnetId = subnetid
           @Vip = vip
+          @ReadMode = readmode
         end
 
         def deserialize(params)
@@ -8865,6 +8900,7 @@ module TencentCloud
           @VpcId = params['VpcId']
           @SubnetId = params['SubnetId']
           @Vip = params['Vip']
+          @ReadMode = params['ReadMode']
         end
       end
 
@@ -9193,23 +9229,31 @@ module TencentCloud
       class ModifyInstanceEncryptAttributesRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID
         # @type InstanceId: String
-        # @param CertificateAttribution: 证书归属。self-表示使用该账号自身的证书，others-表示引用其他账号的证书，默认取值self。
+        # @param CertificateAttribution: 证书归属。self-表示使用该账号自身的证书，others-表示引用其他账号的证书，kms-表示使用kms的CMK证书，默认取值self。
         # @type CertificateAttribution: String
         # @param QuoteUin: 引用的其他主账号ID，当CertificateAttribution 为others时必填。
         # @type QuoteUin: String
+        # @param KeyId: CertificateAttribution为kms时必填
+        # @type KeyId: String
+        # @param KeyRegion: CertificateAttribution为kms时必填
+        # @type KeyRegion: String
 
-        attr_accessor :InstanceId, :CertificateAttribution, :QuoteUin
+        attr_accessor :InstanceId, :CertificateAttribution, :QuoteUin, :KeyId, :KeyRegion
 
-        def initialize(instanceid=nil, certificateattribution=nil, quoteuin=nil)
+        def initialize(instanceid=nil, certificateattribution=nil, quoteuin=nil, keyid=nil, keyregion=nil)
           @InstanceId = instanceid
           @CertificateAttribution = certificateattribution
           @QuoteUin = quoteuin
+          @KeyId = keyid
+          @KeyRegion = keyregion
         end
 
         def deserialize(params)
           @InstanceId = params['InstanceId']
           @CertificateAttribution = params['CertificateAttribution']
           @QuoteUin = params['QuoteUin']
+          @KeyId = params['KeyId']
+          @KeyRegion = params['KeyRegion']
         end
       end
 
@@ -10776,19 +10820,31 @@ module TencentCloud
         # @param SSLValidity: SSL证书有效性，0-无效，1-有效
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SSLValidity: Integer
+        # @param IsKMS: 是否是KMS的CMK证书
+        # @type IsKMS: Integer
+        # @param CMKId: KMS中购买的用户主密钥ID（CMK）
+        # @type CMKId: String
+        # @param CMKRegion: CMK所属的地域，不同地域的CMK数据不互通
+        # @type CMKRegion: String
 
-        attr_accessor :Encryption, :SSLValidityPeriod, :SSLValidity
+        attr_accessor :Encryption, :SSLValidityPeriod, :SSLValidity, :IsKMS, :CMKId, :CMKRegion
 
-        def initialize(encryption=nil, sslvalidityperiod=nil, sslvalidity=nil)
+        def initialize(encryption=nil, sslvalidityperiod=nil, sslvalidity=nil, iskms=nil, cmkid=nil, cmkregion=nil)
           @Encryption = encryption
           @SSLValidityPeriod = sslvalidityperiod
           @SSLValidity = sslvalidity
+          @IsKMS = iskms
+          @CMKId = cmkid
+          @CMKRegion = cmkregion
         end
 
         def deserialize(params)
           @Encryption = params['Encryption']
           @SSLValidityPeriod = params['SSLValidityPeriod']
           @SSLValidity = params['SSLValidity']
+          @IsKMS = params['IsKMS']
+          @CMKId = params['CMKId']
+          @CMKRegion = params['CMKRegion']
         end
       end
 
@@ -11035,7 +11091,8 @@ module TencentCloud
         # @type PostPid: Array
         # @param PayModeStatus: 此规格下支持的付费模式，POST-仅支持按量计费 PRE-仅支持包年包月 ALL-支持所有
         # @type PayModeStatus: String
-        # @param InstanceType: 产品类型，HA-高可用型(包括双机高可用，alwaysOn集群)，RO-只读副本型，SI-基础版本型
+        # @param InstanceType: 购买实例的类型 HA-本地盘高可用(包括双机高可用，alwaysOn集群)，RO-本地盘只读副本，SI-云盘版单节点,BI-商业智能服务，cvmHA-云盘版高可用，cvmRO-云盘版只读副本，MultiHA-多节点，cvmMultiHA-云盘多节点
+        # 示例值：HA
         # @type InstanceType: String
         # @param MultiZonesStatus: 跨可用区类型，MultiZones-只支持跨可用区，SameZones-只支持同可用区，ALL-支持所有
         # @type MultiZonesStatus: String
@@ -11089,11 +11146,12 @@ module TencentCloud
         # @type SpecId: Integer
         # @param PayModeStatus: 此规格下支持的付费模式，POST-仅支持按量计费 PRE-仅支持包年包月 ALL-支持所有
         # @type PayModeStatus: String
-        # @param InstanceType: 产品类型
+        # @param InstanceType: 产品类型，购买实例的类型 HA-本地盘高可用(包括双机高可用，alwaysOn集群)，RO-本地盘只读副本，SI-云盘版单节点,BI-商业智能服务，cvmHA-云盘版高可用，cvmRO-云盘版只读副本，MultiHA-多节点，cvmMultiHA-云盘多节点
         # @type InstanceType: String
         # @param MultiZonesStatus: 该规格支持的是否跨可用去，MultiZones-只支持跨可用区，SameZones-只支持同可用区，ALL-支持所有
         # @type MultiZonesStatus: String
-        # @param Architecture: 架构标识，SINGLE-单节点 DOUBLE-双节点 TRIPLE-三节点
+        # @param Architecture: 架构标识，SINGLE-单节点 DOUBLE-双节点 TRIPLE-三节点 MULTI-多节点
+        # 示例值：SINGLE
         # @type Architecture: String
         # @param Style: 类型标识，EXCLUSIVE-独享型，SHARED-共享型
         # @type Style: String
@@ -11524,19 +11582,27 @@ module TencentCloud
         # @param QuoteUin: 开通TDE加密时引用的其他主账号ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type QuoteUin: String
+        # @param CMKId: KMS中购买的用户主密钥ID（CMK）
+        # @type CMKId: String
+        # @param CMKRegion: CMK所属的地域，不同地域的CMK不互通
+        # @type CMKRegion: String
 
-        attr_accessor :Encryption, :CertificateAttribution, :QuoteUin
+        attr_accessor :Encryption, :CertificateAttribution, :QuoteUin, :CMKId, :CMKRegion
 
-        def initialize(encryption=nil, certificateattribution=nil, quoteuin=nil)
+        def initialize(encryption=nil, certificateattribution=nil, quoteuin=nil, cmkid=nil, cmkregion=nil)
           @Encryption = encryption
           @CertificateAttribution = certificateattribution
           @QuoteUin = quoteuin
+          @CMKId = cmkid
+          @CMKRegion = cmkregion
         end
 
         def deserialize(params)
           @Encryption = params['Encryption']
           @CertificateAttribution = params['CertificateAttribution']
           @QuoteUin = params['QuoteUin']
+          @CMKId = params['CMKId']
+          @CMKRegion = params['CMKRegion']
         end
       end
 

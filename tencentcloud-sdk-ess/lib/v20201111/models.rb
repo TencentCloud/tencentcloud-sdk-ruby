@@ -2109,10 +2109,16 @@ module TencentCloud
         # 2. <font color="red">手机应用APP 或 微信小程序需要监控界面的返回走后序逻辑</font>, 微信小程序的文档可以参考[这个](https://developers.weixin.qq.com/miniprogram/dev/reference/api/App.html#onShow-Object-object)
         # 3. <font color="red">电子签小程序跳转贵方APP，不支持自动跳转，必需用户手动点击完成按钮（微信的限制）</font>
         # @type AutoJumpBack: Boolean
+        # @param UrlUseEnv: 签署完成后，如需“返回应用”功能，在获取签署链接接口的 UrlUseEnv 参数需设置为 **WeChatOfficialAccounts**，小程序签署成功的结果页面中才会出现“返回应用”按钮。
 
-        attr_accessor :Operator, :Name, :Mobile, :Agent, :IdCardType, :IdCardNumber, :NotifyType, :FlowIds, :OrganizationName, :JumpToDetail, :FlowBatchUrlInfo, :AutoJumpBack
+        # 在用户点击“返回应用”按钮之后，会返回到公众号 H5。 此时，公众号 H5 可以处理页面的 [visibilitychange](https://developer.mozilla.org/en-US/docs/Web/API/Document/visibilitychange_event) 事件 与 [visibilityState](https://developer.mozilla.org/en-US/docs/Web/API/Document/visibilityState) 属性 来判断已经返回到当前页面。再通过电子签后台接口查询合同的签署状态，继续自己的业务流程。
 
-        def initialize(operator=nil, name=nil, mobile=nil, agent=nil, idcardtype=nil, idcardnumber=nil, notifytype=nil, flowids=nil, organizationname=nil, jumptodetail=nil, flowbatchurlinfo=nil, autojumpback=nil)
+        # 参考 [微信网页开发-开放标签跳转小程序](https://developers.weixin.qq.com/doc/offiaccount/OA_Web_Apps/Wechat_Open_Tag.html#%E5%BC%80%E6%94%BE%E6%A0%87%E7%AD%BE) 或 [自有 H5 跳转电子签小程序](https://test.qian.tencent.cn/developers/company/openwxminiprogram/#4%E8%87%AA%E6%9C%89-h5-%E8%B7%B3%E8%BD%AC%E7%94%B5%E5%AD%90%E7%AD%BE%E5%B0%8F%E7%A8%8B%E5%BA%8F)。
+        # @type UrlUseEnv: String
+
+        attr_accessor :Operator, :Name, :Mobile, :Agent, :IdCardType, :IdCardNumber, :NotifyType, :FlowIds, :OrganizationName, :JumpToDetail, :FlowBatchUrlInfo, :AutoJumpBack, :UrlUseEnv
+
+        def initialize(operator=nil, name=nil, mobile=nil, agent=nil, idcardtype=nil, idcardnumber=nil, notifytype=nil, flowids=nil, organizationname=nil, jumptodetail=nil, flowbatchurlinfo=nil, autojumpback=nil, urluseenv=nil)
           @Operator = operator
           @Name = name
           @Mobile = mobile
@@ -2125,6 +2131,7 @@ module TencentCloud
           @JumpToDetail = jumptodetail
           @FlowBatchUrlInfo = flowbatchurlinfo
           @AutoJumpBack = autojumpback
+          @UrlUseEnv = urluseenv
         end
 
         def deserialize(params)
@@ -2149,6 +2156,7 @@ module TencentCloud
             @FlowBatchUrlInfo.deserialize(params['FlowBatchUrlInfo'])
           end
           @AutoJumpBack = params['AutoJumpBack']
+          @UrlUseEnv = params['UrlUseEnv']
         end
       end
 
@@ -5607,10 +5615,17 @@ module TencentCloud
         # @type RecipientId: String
         # @param FlowGroupUrlInfo: 合同组相关信息，指定合同组子合同和签署方的信息，用于补充动态签署人。
         # @type FlowGroupUrlInfo: :class:`Tencentcloud::Ess.v20201111.models.FlowGroupUrlInfo`
+        # @param UrlUseEnv: 签署完成后，如需“返回应用”功能，在获取签署链接接口的 UrlUseEnv 参数需设置为 **WeChatOfficialAccounts**，小程序签署成功的结果页面中才会出现“返回应用”按钮。
 
-        attr_accessor :Operator, :OrganizationName, :Name, :Mobile, :IdCardType, :IdCardNumber, :EndPoint, :FlowId, :FlowGroupId, :PathType, :AutoJumpBack, :Agent, :Hides, :RecipientId, :FlowGroupUrlInfo
+        # 在用户点击“返回应用”按钮之后，会返回到公众号 H5。 此时，公众号 H5 可以处理页面的 [visibilitychange](https://developer.mozilla.org/en-US/docs/Web/API/Document/visibilitychange_event) 事件 与 [visibilityState](https://developer.mozilla.org/en-US/docs/Web/API/Document/visibilityState) 属性 来判断已经返回到当前页面。再通过电子签后台接口查询合同的签署状态，继续自己的业务流程。
 
-        def initialize(operator=nil, organizationname=nil, name=nil, mobile=nil, idcardtype=nil, idcardnumber=nil, endpoint=nil, flowid=nil, flowgroupid=nil, pathtype=nil, autojumpback=nil, agent=nil, hides=nil, recipientid=nil, flowgroupurlinfo=nil)
+        # 参考 [微信网页开发-开放标签跳转小程序](https://developers.weixin.qq.com/doc/offiaccount/OA_Web_Apps/Wechat_Open_Tag.html#%E5%BC%80%E6%94%BE%E6%A0%87%E7%AD%BE) 或 [自有 H5 跳转电子签小程序](https://test.qian.tencent.cn/developers/company/openwxminiprogram/#4%E8%87%AA%E6%9C%89-h5-%E8%B7%B3%E8%BD%AC%E7%94%B5%E5%AD%90%E7%AD%BE%E5%B0%8F%E7%A8%8B%E5%BA%8F)。
+
+        # @type UrlUseEnv: String
+
+        attr_accessor :Operator, :OrganizationName, :Name, :Mobile, :IdCardType, :IdCardNumber, :EndPoint, :FlowId, :FlowGroupId, :PathType, :AutoJumpBack, :Agent, :Hides, :RecipientId, :FlowGroupUrlInfo, :UrlUseEnv
+
+        def initialize(operator=nil, organizationname=nil, name=nil, mobile=nil, idcardtype=nil, idcardnumber=nil, endpoint=nil, flowid=nil, flowgroupid=nil, pathtype=nil, autojumpback=nil, agent=nil, hides=nil, recipientid=nil, flowgroupurlinfo=nil, urluseenv=nil)
           @Operator = operator
           @OrganizationName = organizationname
           @Name = name
@@ -5626,6 +5641,7 @@ module TencentCloud
           @Hides = hides
           @RecipientId = recipientid
           @FlowGroupUrlInfo = flowgroupurlinfo
+          @UrlUseEnv = urluseenv
         end
 
         def deserialize(params)
@@ -5653,6 +5669,7 @@ module TencentCloud
             @FlowGroupUrlInfo = FlowGroupUrlInfo.new
             @FlowGroupUrlInfo.deserialize(params['FlowGroupUrlInfo'])
           end
+          @UrlUseEnv = params['UrlUseEnv']
         end
       end
 
@@ -6158,8 +6175,8 @@ module TencentCloud
         # @type IdCardType: String
         # @param IdCardNumber: 要修改手机号用户的身份证号码，应符合以下规则
         # <ul><li>中国大陆居民身份证号码应为18位字符串，由数字和大写字母X组成（如存在X，请大写）。</li>
-        # <li>港澳居民来往内地通行证号码共11位。第1位为字母，“H”字头签发给中国香港居民，“M”字头签发给中国澳门居民；第2位至第11位为数字。</li>
-        # <li>港澳台居民居住证号码编码规则与中国大陆身份证相同，应为18位字符串。</li></ul>
+        # <li>中国港澳居民来往内地通行证号码共11位。第1位为字母，“H”字头签发给中国香港居民，“M”字头签发给中国澳门居民；第2位至第11位为数字。</li>
+        # <li>中国港澳台居民居住证号码编码规则与中国大陆身份证相同，应为18位字符串。</li></ul>
         # 如果没有传递 userId且 userAccountType 是 0 或者没有传递， 此参数为<b>必填项。</b>
         # @type IdCardNumber: String
         # @param Endpoint: 要跳转的链接类型
@@ -9185,8 +9202,8 @@ module TencentCloud
         # @type OrganizationName: String
         # @param ApproverIdCardType: 签署方经办人的证件类型，支持以下类型
         # <ul><li>ID_CARD 中国大陆居民身份证</li>
-        # <li>HONGKONG_AND_MACAO 港澳居民来往内地通行证</li>
-        # <li>HONGKONG_MACAO_AND_TAIWAN 港澳台居民居住证(格式同居民身份证)</li>
+        # <li>HONGKONG_AND_MACAO 中国港澳居民来往内地通行证</li>
+        # <li>HONGKONG_MACAO_AND_TAIWAN 中国港澳台居民居住证(格式同中国大陆居民身份证)</li>
         # <li>OTHER_CARD_TYPE 其他证件</li></ul>
 
         # 注: `1.其他证件类型为白名单功能，使用前请联系对接的客户经理沟通。`
@@ -11269,8 +11286,8 @@ module TencentCloud
         # @type ApproverMobile: String
         # @param ApproverIdCardType: 签署方经办人的证件类型，支持以下类型
         # <ul><li>ID_CARD 中国大陆居民身份证  (默认值)</li>
-        # <li>HONGKONG_AND_MACAO 港澳居民来往内地通行证</li>
-        # <li>HONGKONG_MACAO_AND_TAIWAN 港澳台居民居住证(格式同居民身份证)</li>
+        # <li>HONGKONG_AND_MACAO 中国港澳居民来往内地通行证</li>
+        # <li>HONGKONG_MACAO_AND_TAIWAN 中国港澳台居民居住证(格式同居民身份证)</li>
         # <li>OTHER_CARD_TYPE 其他证件</li></ul>
 
         # 注: `其他证件类型为白名单功能，使用前请联系对接的客户经理沟通。`

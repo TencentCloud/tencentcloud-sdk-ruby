@@ -178,7 +178,7 @@ module TencentCloud
 
       # 备份信息
       class BackupInfo < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
+        # @param InstanceId: 实例ID。
         # @type InstanceId: String
         # @param BackupType: 备份方式，0-自动备份，1-手动备份
         # @type BackupType: Integer
@@ -2322,7 +2322,6 @@ module TencentCloud
       # FlashBackDBInstance返回参数结构体
       class FlashBackDBInstanceResponse < TencentCloud::Common::AbstractModel
         # @param FlowId: 回档数据异步任务 ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FlowId: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3181,16 +3180,19 @@ module TencentCloud
         # @param KeyOrigin: 密钥来源。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type KeyOrigin: String
+        # @param KmsRegion: kms所在地域。
+        # @type KmsRegion: String
 
-        attr_accessor :KeyId, :KeyName, :CreateTime, :Status, :KeyUsage, :KeyOrigin
+        attr_accessor :KeyId, :KeyName, :CreateTime, :Status, :KeyUsage, :KeyOrigin, :KmsRegion
 
-        def initialize(keyid=nil, keyname=nil, createtime=nil, status=nil, keyusage=nil, keyorigin=nil)
+        def initialize(keyid=nil, keyname=nil, createtime=nil, status=nil, keyusage=nil, keyorigin=nil, kmsregion=nil)
           @KeyId = keyid
           @KeyName = keyname
           @CreateTime = createtime
           @Status = status
           @KeyUsage = keyusage
           @KeyOrigin = keyorigin
+          @KmsRegion = kmsregion
         end
 
         def deserialize(params)
@@ -3200,6 +3202,7 @@ module TencentCloud
           @Status = params['Status']
           @KeyUsage = params['KeyUsage']
           @KeyOrigin = params['KeyOrigin']
+          @KmsRegion = params['KmsRegion']
         end
       end
 

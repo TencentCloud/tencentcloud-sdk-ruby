@@ -11293,6 +11293,50 @@ module TencentCloud
         end
       end
 
+      # RetryRocketMQDlqMessage请求参数结构体
+      class RetryRocketMQDlqMessageRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群id
+        # @type ClusterId: String
+        # @param NamespaceId: 命名空间名称
+        # @type NamespaceId: String
+        # @param GroupName: group名称
+        # @type GroupName: String
+        # @param MessageIds: 死信消息ID
+        # @type MessageIds: Array
+
+        attr_accessor :ClusterId, :NamespaceId, :GroupName, :MessageIds
+
+        def initialize(clusterid=nil, namespaceid=nil, groupname=nil, messageids=nil)
+          @ClusterId = clusterid
+          @NamespaceId = namespaceid
+          @GroupName = groupname
+          @MessageIds = messageids
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @NamespaceId = params['NamespaceId']
+          @GroupName = params['GroupName']
+          @MessageIds = params['MessageIds']
+        end
+      end
+
+      # RetryRocketMQDlqMessage返回参数结构体
+      class RetryRocketMQDlqMessageResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # RewindCmqQueue请求参数结构体
       class RewindCmqQueueRequest < TencentCloud::Common::AbstractModel
         # @param QueueName: 队列名字，在单个地域同一账号下唯一。队列名称是一个不超过64个字符的字符串，必须以字母为首字符，剩余部分可以包含字母、数字和横划线(-)。

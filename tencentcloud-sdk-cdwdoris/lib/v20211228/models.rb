@@ -4611,10 +4611,27 @@ module TencentCloud
         # @type RecoverScope: String
         # @param RecoverDatabase: 恢复库：如果是按库备份，则需要该字段，库之间用","分割
         # @type RecoverDatabase: String
+        # @param ReserveStoragePolicy: 1:恢复后，不保留降冷策略，数据变为热数据；
+        # 2:恢复后，沿用备份表的降冷策略；
+        # 0:默认值，该版本没有这个配置（2.1版本2.1.8之前；2.0版本2.0.16之前）
+        # @type ReserveStoragePolicy: Integer
 
-        attr_accessor :InstanceId, :BackUpJobId, :ReplicationNum, :ReserveSourceConfig, :RecoverType, :CosSourceInfo, :ScheduleType, :NextTime, :ScheduleName, :OperationType, :RecoverScope, :RecoverDatabase
+        attr_accessor :InstanceId, :BackUpJobId, :ReplicationNum, :ReserveSourceConfig, :RecoverType, :CosSourceInfo, :ScheduleType, :NextTime, :ScheduleName, :OperationType, :RecoverScope, :RecoverDatabase, :ReserveStoragePolicy
+        extend Gem::Deprecate
+        deprecate :RecoverType, :none, 2024, 12
+        deprecate :RecoverType=, :none, 2024, 12
+        deprecate :CosSourceInfo, :none, 2024, 12
+        deprecate :CosSourceInfo=, :none, 2024, 12
+        deprecate :ScheduleType, :none, 2024, 12
+        deprecate :ScheduleType=, :none, 2024, 12
+        deprecate :NextTime, :none, 2024, 12
+        deprecate :NextTime=, :none, 2024, 12
+        deprecate :ScheduleName, :none, 2024, 12
+        deprecate :ScheduleName=, :none, 2024, 12
+        deprecate :OperationType, :none, 2024, 12
+        deprecate :OperationType=, :none, 2024, 12
 
-        def initialize(instanceid=nil, backupjobid=nil, replicationnum=nil, reservesourceconfig=nil, recovertype=nil, cossourceinfo=nil, scheduletype=nil, nexttime=nil, schedulename=nil, operationtype=nil, recoverscope=nil, recoverdatabase=nil)
+        def initialize(instanceid=nil, backupjobid=nil, replicationnum=nil, reservesourceconfig=nil, recovertype=nil, cossourceinfo=nil, scheduletype=nil, nexttime=nil, schedulename=nil, operationtype=nil, recoverscope=nil, recoverdatabase=nil, reservestoragepolicy=nil)
           @InstanceId = instanceid
           @BackUpJobId = backupjobid
           @ReplicationNum = replicationnum
@@ -4627,6 +4644,7 @@ module TencentCloud
           @OperationType = operationtype
           @RecoverScope = recoverscope
           @RecoverDatabase = recoverdatabase
+          @ReserveStoragePolicy = reservestoragepolicy
         end
 
         def deserialize(params)
@@ -4645,6 +4663,7 @@ module TencentCloud
           @OperationType = params['OperationType']
           @RecoverScope = params['RecoverScope']
           @RecoverDatabase = params['RecoverDatabase']
+          @ReserveStoragePolicy = params['ReserveStoragePolicy']
         end
       end
 

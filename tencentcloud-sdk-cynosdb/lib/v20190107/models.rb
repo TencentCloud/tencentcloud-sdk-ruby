@@ -7949,7 +7949,7 @@ module TencentCloud
         # @type FileType: String
         # @param OrderBy: 可选值Timestamp
         # @type OrderBy: String
-        # @param OrderByType: ASC或DESC
+        # @param OrderByType: 排序类型，ASC 或 DESC。
         # @type OrderByType: String
 
         attr_accessor :InstanceId, :StartTime, :EndTime, :Limit, :Offset, :LogLevels, :KeyWords, :FileType, :OrderBy, :OrderByType
@@ -8484,7 +8484,7 @@ module TencentCloud
 
         # 等于、不等于： sqlType - SQL类型； errCode - 错误码； threadId - 线程ID；
 
-        # 范围搜索（时间类型统一为微秒）： execTime - 执行时间； lockWaitTime - 执行时间； ioWaitTime - IO等待时间； trxLivingTime - 事物持续时间； cpuTime - cpu时间； checkRows - 扫描行数； affectRows - 影响行数； sentRows - 返回行数。
+        # 范围搜索（时间类型统一为微秒）： execTime - 执行时间； lockWaitTime - 执行时间； ioWaitTime - IO等待时间； trxLivingTime - 事务持续时间； cpuTime - cpu时间； checkRows - 扫描行数； affectRows - 影响行数； sentRows - 返回行数。
         # @type Type: String
         # @param Compare: 过滤条件。支持以下条件：
         # WINC-包含（分词维度），

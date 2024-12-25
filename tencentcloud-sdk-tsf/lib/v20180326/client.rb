@@ -4502,6 +4502,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 后端服务已经删除这个接口,  API 接口下线处理
+
         # 重关联业务日志配置
 
         # @param request: Request instance for ReassociateBusinessLogConfig.

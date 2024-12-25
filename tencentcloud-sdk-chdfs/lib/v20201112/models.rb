@@ -231,12 +231,12 @@ module TencentCloud
       class CreateFileSystemRequest < TencentCloud::Common::AbstractModel
         # @param FileSystemName: 文件系统名称
         # @type FileSystemName: String
-        # @param CapacityQuota: 文件系统容量（byte），下限为1GB，上限为1PB，且必须是1GB的整数倍
-        # @type CapacityQuota: Integer
         # @param PosixAcl: 是否校验POSIX ACL
         # @type PosixAcl: Boolean
         # @param Description: 文件系统描述，默认为空字符串
         # @type Description: String
+        # @param CapacityQuota: 文件系统容量（byte），下限为1GB，上限为1PB，且必须是1GB的整数倍
+        # @type CapacityQuota: Integer
         # @param SuperUsers: 超级用户名列表，默认为空数组
         # @type SuperUsers: Array
         # @param RootInodeUser: 根目录Inode用户名，默认为hadoop
@@ -250,13 +250,13 @@ module TencentCloud
         # @param Tags: 多个资源标签，可以为空数组
         # @type Tags: Array
 
-        attr_accessor :FileSystemName, :CapacityQuota, :PosixAcl, :Description, :SuperUsers, :RootInodeUser, :RootInodeGroup, :EnableRanger, :RangerServiceAddresses, :Tags
+        attr_accessor :FileSystemName, :PosixAcl, :Description, :CapacityQuota, :SuperUsers, :RootInodeUser, :RootInodeGroup, :EnableRanger, :RangerServiceAddresses, :Tags
 
-        def initialize(filesystemname=nil, capacityquota=nil, posixacl=nil, description=nil, superusers=nil, rootinodeuser=nil, rootinodegroup=nil, enableranger=nil, rangerserviceaddresses=nil, tags=nil)
+        def initialize(filesystemname=nil, posixacl=nil, description=nil, capacityquota=nil, superusers=nil, rootinodeuser=nil, rootinodegroup=nil, enableranger=nil, rangerserviceaddresses=nil, tags=nil)
           @FileSystemName = filesystemname
-          @CapacityQuota = capacityquota
           @PosixAcl = posixacl
           @Description = description
+          @CapacityQuota = capacityquota
           @SuperUsers = superusers
           @RootInodeUser = rootinodeuser
           @RootInodeGroup = rootinodegroup
@@ -267,9 +267,9 @@ module TencentCloud
 
         def deserialize(params)
           @FileSystemName = params['FileSystemName']
-          @CapacityQuota = params['CapacityQuota']
           @PosixAcl = params['PosixAcl']
           @Description = params['Description']
+          @CapacityQuota = params['CapacityQuota']
           @SuperUsers = params['SuperUsers']
           @RootInodeUser = params['RootInodeUser']
           @RootInodeGroup = params['RootInodeGroup']
@@ -1552,22 +1552,16 @@ module TencentCloud
       # 生命周期规则当前路径具体存储量信息
       class Summary < TencentCloud::Common::AbstractModel
         # @param CapacityUsed: 已使用容量（byte）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CapacityUsed: Integer
         # @param StandardCapacityUsed: 已使用COS标准存储容量（byte）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StandardCapacityUsed: Integer
         # @param DegradeCapacityUsed: 已使用COS低频存储容量（byte）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DegradeCapacityUsed: Integer
         # @param ArchiveCapacityUsed: 已使用COS归档存储容量（byte）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ArchiveCapacityUsed: Integer
         # @param DeepArchiveCapacityUsed: 已使用COS深度归档存储容量（byte）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeepArchiveCapacityUsed: Integer
         # @param IntelligentCapacityUsed: 已使用COS智能分层存储容量（byte）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IntelligentCapacityUsed: Integer
 
         attr_accessor :CapacityUsed, :StandardCapacityUsed, :DegradeCapacityUsed, :ArchiveCapacityUsed, :DeepArchiveCapacityUsed, :IntelligentCapacityUsed

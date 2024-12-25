@@ -141,10 +141,15 @@ module TencentCloud
         # @type ForceSearchEnhancement: Boolean
         # @param Stop: 自定义结束生成字符串
         # @type Stop: Array
+        # @param EnableRecommendedQuestions: 推荐问答开关。
+        # 说明：
+        # 1. 未传值时默认关闭。
+        # 2. 开启后，返回值里将增加 RecommendedQuestions 字段返回推荐问答， 最多只返回3条。
+        # @type EnableRecommendedQuestions: Boolean
 
-        attr_accessor :Model, :Messages, :Stream, :StreamModeration, :TopP, :Temperature, :EnableEnhancement, :Tools, :ToolChoice, :CustomTool, :SearchInfo, :Citation, :EnableSpeedSearch, :EnableMultimedia, :EnableDeepSearch, :Seed, :ForceSearchEnhancement, :Stop
+        attr_accessor :Model, :Messages, :Stream, :StreamModeration, :TopP, :Temperature, :EnableEnhancement, :Tools, :ToolChoice, :CustomTool, :SearchInfo, :Citation, :EnableSpeedSearch, :EnableMultimedia, :EnableDeepSearch, :Seed, :ForceSearchEnhancement, :Stop, :EnableRecommendedQuestions
 
-        def initialize(model=nil, messages=nil, stream=nil, streammoderation=nil, topp=nil, temperature=nil, enableenhancement=nil, tools=nil, toolchoice=nil, customtool=nil, searchinfo=nil, citation=nil, enablespeedsearch=nil, enablemultimedia=nil, enabledeepsearch=nil, seed=nil, forcesearchenhancement=nil, stop=nil)
+        def initialize(model=nil, messages=nil, stream=nil, streammoderation=nil, topp=nil, temperature=nil, enableenhancement=nil, tools=nil, toolchoice=nil, customtool=nil, searchinfo=nil, citation=nil, enablespeedsearch=nil, enablemultimedia=nil, enabledeepsearch=nil, seed=nil, forcesearchenhancement=nil, stop=nil, enablerecommendedquestions=nil)
           @Model = model
           @Messages = messages
           @Stream = stream
@@ -163,6 +168,7 @@ module TencentCloud
           @Seed = seed
           @ForceSearchEnhancement = forcesearchenhancement
           @Stop = stop
+          @EnableRecommendedQuestions = enablerecommendedquestions
         end
 
         def deserialize(params)
@@ -201,6 +207,7 @@ module TencentCloud
           @Seed = params['Seed']
           @ForceSearchEnhancement = params['ForceSearchEnhancement']
           @Stop = params['Stop']
+          @EnableRecommendedQuestions = params['EnableRecommendedQuestions']
         end
       end
 
@@ -230,12 +237,14 @@ module TencentCloud
         # 1. 可以用多媒体信息替换回复内容里的占位符，得到完整的消息。
         # 2. 可能会出现回复内容里存在占位符，但是因为审核等原因没有返回多媒体信息。
         # @type Replaces: Array
+        # @param RecommendedQuestions: 推荐问答。
+        # @type RecommendedQuestions: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。本接口为流式响应接口，当请求成功时，RequestId 会被放在 HTTP 响应的 Header "X-TC-RequestId" 中。
         # @type RequestId: String
 
-        attr_accessor :Created, :Usage, :Note, :Id, :Choices, :ErrorMsg, :ModerationLevel, :SearchInfo, :Replaces, :RequestId
+        attr_accessor :Created, :Usage, :Note, :Id, :Choices, :ErrorMsg, :ModerationLevel, :SearchInfo, :Replaces, :RecommendedQuestions, :RequestId
 
-        def initialize(created=nil, usage=nil, note=nil, id=nil, choices=nil, errormsg=nil, moderationlevel=nil, searchinfo=nil, replaces=nil, requestid=nil)
+        def initialize(created=nil, usage=nil, note=nil, id=nil, choices=nil, errormsg=nil, moderationlevel=nil, searchinfo=nil, replaces=nil, recommendedquestions=nil, requestid=nil)
           @Created = created
           @Usage = usage
           @Note = note
@@ -245,6 +254,7 @@ module TencentCloud
           @ModerationLevel = moderationlevel
           @SearchInfo = searchinfo
           @Replaces = replaces
+          @RecommendedQuestions = recommendedquestions
           @RequestId = requestid
         end
 
@@ -281,6 +291,7 @@ module TencentCloud
               @Replaces << replace_tmp
             end
           end
+          @RecommendedQuestions = params['RecommendedQuestions']
           @RequestId = params['RequestId']
         end
       end
@@ -447,6 +458,7 @@ module TencentCloud
         # @param Type: 内容类型
         # 注意：
         # 当前只支持传入单张图片，传入多张图片时，以第一个图片为准。
+        # 参数值可选范围：[text", "image_url"]
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: String
         # @param Text: 当 Type 为 text 时使用，表示具体的文本内容

@@ -3558,7 +3558,7 @@ module TencentCloud
 
       # DescribeProductInfo返回参数结构体
       class DescribeProductInfoResponse < TencentCloud::Common::AbstractModel
-        # @param RegionSet: 地域售卖信息。
+        # @param RegionSet: 地域售卖信息。即使指定具体地域，也返回所有地域的售卖信息。
         # @type RegionSet: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

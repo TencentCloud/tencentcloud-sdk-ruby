@@ -4810,27 +4810,27 @@ module TencentCloud
         # @type AccountName: String
         # @param ConsumerGroupName: 消费组名称。实际的消费组全称形如：consumer-grp-#{SubscribeId}-#{ConsumerGroupName}
         # @type ConsumerGroupName: String
-        # @param OldPassword: 旧密码
-        # @type OldPassword: String
         # @param NewPassword: 新密码。字符长度不小于3，不大于32
         # @type NewPassword: String
+        # @param OldPassword: 旧密码，非必选
+        # @type OldPassword: String
 
-        attr_accessor :SubscribeId, :AccountName, :ConsumerGroupName, :OldPassword, :NewPassword
+        attr_accessor :SubscribeId, :AccountName, :ConsumerGroupName, :NewPassword, :OldPassword
 
-        def initialize(subscribeid=nil, accountname=nil, consumergroupname=nil, oldpassword=nil, newpassword=nil)
+        def initialize(subscribeid=nil, accountname=nil, consumergroupname=nil, newpassword=nil, oldpassword=nil)
           @SubscribeId = subscribeid
           @AccountName = accountname
           @ConsumerGroupName = consumergroupname
-          @OldPassword = oldpassword
           @NewPassword = newpassword
+          @OldPassword = oldpassword
         end
 
         def deserialize(params)
           @SubscribeId = params['SubscribeId']
           @AccountName = params['AccountName']
           @ConsumerGroupName = params['ConsumerGroupName']
-          @OldPassword = params['OldPassword']
           @NewPassword = params['NewPassword']
+          @OldPassword = params['OldPassword']
         end
       end
 
@@ -5483,7 +5483,7 @@ module TencentCloud
         # @param AutoRetryTimeRangeMinutes: 自动重试的时间窗口设置
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AutoRetryTimeRangeMinutes: Integer
-        # @param StartPosition: 同步到kafka链路指定位点。目前只支持时间格式：yyyy-mm-dd hh:mm:ss。如果没有指定位点，为空。
+        # @param StartPosition: 同步到kafka链路指定位点。目前只支持时间格式：2023-12-20T19:24:23+08:00。如果没有指定位点，为空。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StartPosition: String
         # @param FilterBeginCommit: 同步到kafka链路是否过滤掉begin和commit消息。目前仅mysql2kafka链路支持
