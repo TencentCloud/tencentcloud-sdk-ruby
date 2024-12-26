@@ -712,6 +712,146 @@ module TencentCloud
         end
       end
 
+      # 集群列表
+
+      # 集群防护状态，左边枚举,右边为显示
+      # 集群防护状态
+      # 0:未接入
+      # 1:未防护
+      # 2:部分防护
+      # 3:防护中
+      # 4:接入异常
+      # 5:接入中
+      # 6:卸载中
+      # 7:卸载异常
+      class AssetCluster < TencentCloud::Common::AbstractModel
+        # @param AppId: 租户id
+        # @type AppId: Integer
+        # @param Uin: 租户uin
+        # @type Uin: String
+        # @param Nick: 租户昵称
+        # @type Nick: String
+        # @param Region: 地域
+        # @type Region: String
+        # @param AssetId: 集群id
+        # @type AssetId: String
+        # @param AssetName: 集群名称
+        # @type AssetName: String
+        # @param AssetType: 集群类型
+        # @type AssetType: String
+        # @param InstanceCreateTime: 集群创建时间
+        # @type InstanceCreateTime: String
+        # @param Status: 状态
+        # @type Status: String
+        # @param ProtectStatus: 集群防护状态，左边枚举,右边为显示
+        # 集群防护状态
+        # 0:未接入
+        # 1:未防护
+        # 2:部分防护
+        # 3:防护中
+        # 4:接入异常
+        # 5:接入中
+        # 6:卸载中
+        # 7:卸载异常
+        # @type ProtectStatus: Integer
+        # @param ProtectInfo: 接入信息，不为空表示有接入异常信息
+        # @type ProtectInfo: String
+        # @param VpcId: 私有网络id
+        # @type VpcId: String
+        # @param VpcName: 私有网络名称
+        # @type VpcName: String
+        # @param KubernetesVersion: kubernetes版本
+        # @type KubernetesVersion: String
+        # @param Component: 运行时组件
+        # @type Component: String
+        # @param ComponentVersion: 运行时组件版本
+        # @type ComponentVersion: String
+        # @param ComponentStatus: 组件状态
+        # @type ComponentStatus: String
+        # @param CheckTime: 体检时间
+        # @type CheckTime: String
+        # @param MachineCount: 关联主机数
+        # @type MachineCount: Integer
+        # @param PodCount: 关联pod数
+        # @type PodCount: Integer
+        # @param ServiceCount: 关联service数
+        # @type ServiceCount: Integer
+        # @param VulRisk: 漏洞风险
+        # @type VulRisk: Integer
+        # @param CFGRisk: 配置风险
+        # @type CFGRisk: Integer
+        # @param CheckCount: 体检数
+        # @type CheckCount: Integer
+        # @param IsCore: 是否核心：1:核心，2:非核心
+        # @type IsCore: Integer
+        # @param IsNewAsset: 是否新资产 1新
+        # @type IsNewAsset: Integer
+        # @param CloudType: 云资产类型：0：腾讯云，1：aws，2：azure
+        # @type CloudType: Integer
+
+        attr_accessor :AppId, :Uin, :Nick, :Region, :AssetId, :AssetName, :AssetType, :InstanceCreateTime, :Status, :ProtectStatus, :ProtectInfo, :VpcId, :VpcName, :KubernetesVersion, :Component, :ComponentVersion, :ComponentStatus, :CheckTime, :MachineCount, :PodCount, :ServiceCount, :VulRisk, :CFGRisk, :CheckCount, :IsCore, :IsNewAsset, :CloudType
+
+        def initialize(appid=nil, uin=nil, nick=nil, region=nil, assetid=nil, assetname=nil, assettype=nil, instancecreatetime=nil, status=nil, protectstatus=nil, protectinfo=nil, vpcid=nil, vpcname=nil, kubernetesversion=nil, component=nil, componentversion=nil, componentstatus=nil, checktime=nil, machinecount=nil, podcount=nil, servicecount=nil, vulrisk=nil, cfgrisk=nil, checkcount=nil, iscore=nil, isnewasset=nil, cloudtype=nil)
+          @AppId = appid
+          @Uin = uin
+          @Nick = nick
+          @Region = region
+          @AssetId = assetid
+          @AssetName = assetname
+          @AssetType = assettype
+          @InstanceCreateTime = instancecreatetime
+          @Status = status
+          @ProtectStatus = protectstatus
+          @ProtectInfo = protectinfo
+          @VpcId = vpcid
+          @VpcName = vpcname
+          @KubernetesVersion = kubernetesversion
+          @Component = component
+          @ComponentVersion = componentversion
+          @ComponentStatus = componentstatus
+          @CheckTime = checktime
+          @MachineCount = machinecount
+          @PodCount = podcount
+          @ServiceCount = servicecount
+          @VulRisk = vulrisk
+          @CFGRisk = cfgrisk
+          @CheckCount = checkcount
+          @IsCore = iscore
+          @IsNewAsset = isnewasset
+          @CloudType = cloudtype
+        end
+
+        def deserialize(params)
+          @AppId = params['AppId']
+          @Uin = params['Uin']
+          @Nick = params['Nick']
+          @Region = params['Region']
+          @AssetId = params['AssetId']
+          @AssetName = params['AssetName']
+          @AssetType = params['AssetType']
+          @InstanceCreateTime = params['InstanceCreateTime']
+          @Status = params['Status']
+          @ProtectStatus = params['ProtectStatus']
+          @ProtectInfo = params['ProtectInfo']
+          @VpcId = params['VpcId']
+          @VpcName = params['VpcName']
+          @KubernetesVersion = params['KubernetesVersion']
+          @Component = params['Component']
+          @ComponentVersion = params['ComponentVersion']
+          @ComponentStatus = params['ComponentStatus']
+          @CheckTime = params['CheckTime']
+          @MachineCount = params['MachineCount']
+          @PodCount = params['PodCount']
+          @ServiceCount = params['ServiceCount']
+          @VulRisk = params['VulRisk']
+          @CFGRisk = params['CFGRisk']
+          @CheckCount = params['CheckCount']
+          @IsCore = params['IsCore']
+          @IsNewAsset = params['IsNewAsset']
+          @CloudType = params['CloudType']
+        end
+      end
+
       # 集群pod列表
       class AssetClusterPod < TencentCloud::Common::AbstractModel
         # @param AppId: 租户id
@@ -1976,6 +2116,31 @@ module TencentCloud
         end
       end
 
+      # 多云账户统计信息
+      class CloudCountDesc < TencentCloud::Common::AbstractModel
+        # @param CloudType: 0表示腾讯云
+        # 1表示AWS
+        # @type CloudType: Integer
+        # @param CloudCount: 账户数量
+        # @type CloudCount: Integer
+        # @param CloudDesc: 该云账号类型描述
+        # @type CloudDesc: String
+
+        attr_accessor :CloudType, :CloudCount, :CloudDesc
+
+        def initialize(cloudtype=nil, cloudcount=nil, clouddesc=nil)
+          @CloudType = cloudtype
+          @CloudCount = cloudcount
+          @CloudDesc = clouddesc
+        end
+
+        def deserialize(params)
+          @CloudType = params['CloudType']
+          @CloudCount = params['CloudCount']
+          @CloudDesc = params['CloudDesc']
+        end
+      end
+
       # CreateDomainAndIp请求参数结构体
       class CreateDomainAndIpRequest < TencentCloud::Common::AbstractModel
         # @param Content: 公网IP/域名
@@ -3000,6 +3165,137 @@ module TencentCloud
         end
       end
 
+      # DescribeClusterAssets请求参数结构体
+      class DescribeClusterAssetsRequest < TencentCloud::Common::AbstractModel
+        # @param MemberId: 集团账号的成员id
+        # @type MemberId: Array
+        # @param Filter: 过滤
+        # @type Filter: :class:`Tencentcloud::Csip.v20221121.models.Filter`
+
+        attr_accessor :MemberId, :Filter
+
+        def initialize(memberid=nil, filter=nil)
+          @MemberId = memberid
+          @Filter = filter
+        end
+
+        def deserialize(params)
+          @MemberId = params['MemberId']
+          unless params['Filter'].nil?
+            @Filter = Filter.new
+            @Filter.deserialize(params['Filter'])
+          end
+        end
+      end
+
+      # DescribeClusterAssets返回参数结构体
+      class DescribeClusterAssetsResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 列表
+        # @type Data: Array
+        # @param TotalCount: 总数
+        # @type TotalCount: Integer
+        # @param ClusterTypeList: 集群类型枚举
+        # @type ClusterTypeList: Array
+        # @param ClusterStatusList: 集群状态枚举
+        # @type ClusterStatusList: Array
+        # @param ComponentStatusList: 组件状态枚举
+        # @type ComponentStatusList: Array
+        # @param VpcList: 私有网络枚举
+        # @type VpcList: Array
+        # @param RegionList: 地域枚举
+        # @type RegionList: Array
+        # @param AppIdList: 租户枚举
+        # @type AppIdList: Array
+        # @param ProtectStatusList: 集群防护状态枚举
+        # @type ProtectStatusList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :TotalCount, :ClusterTypeList, :ClusterStatusList, :ComponentStatusList, :VpcList, :RegionList, :AppIdList, :ProtectStatusList, :RequestId
+
+        def initialize(data=nil, totalcount=nil, clustertypelist=nil, clusterstatuslist=nil, componentstatuslist=nil, vpclist=nil, regionlist=nil, appidlist=nil, protectstatuslist=nil, requestid=nil)
+          @Data = data
+          @TotalCount = totalcount
+          @ClusterTypeList = clustertypelist
+          @ClusterStatusList = clusterstatuslist
+          @ComponentStatusList = componentstatuslist
+          @VpcList = vpclist
+          @RegionList = regionlist
+          @AppIdList = appidlist
+          @ProtectStatusList = protectstatuslist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              assetcluster_tmp = AssetCluster.new
+              assetcluster_tmp.deserialize(i)
+              @Data << assetcluster_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          unless params['ClusterTypeList'].nil?
+            @ClusterTypeList = []
+            params['ClusterTypeList'].each do |i|
+              filterdataobject_tmp = FilterDataObject.new
+              filterdataobject_tmp.deserialize(i)
+              @ClusterTypeList << filterdataobject_tmp
+            end
+          end
+          unless params['ClusterStatusList'].nil?
+            @ClusterStatusList = []
+            params['ClusterStatusList'].each do |i|
+              filterdataobject_tmp = FilterDataObject.new
+              filterdataobject_tmp.deserialize(i)
+              @ClusterStatusList << filterdataobject_tmp
+            end
+          end
+          unless params['ComponentStatusList'].nil?
+            @ComponentStatusList = []
+            params['ComponentStatusList'].each do |i|
+              filterdataobject_tmp = FilterDataObject.new
+              filterdataobject_tmp.deserialize(i)
+              @ComponentStatusList << filterdataobject_tmp
+            end
+          end
+          unless params['VpcList'].nil?
+            @VpcList = []
+            params['VpcList'].each do |i|
+              filterdataobject_tmp = FilterDataObject.new
+              filterdataobject_tmp.deserialize(i)
+              @VpcList << filterdataobject_tmp
+            end
+          end
+          unless params['RegionList'].nil?
+            @RegionList = []
+            params['RegionList'].each do |i|
+              filterdataobject_tmp = FilterDataObject.new
+              filterdataobject_tmp.deserialize(i)
+              @RegionList << filterdataobject_tmp
+            end
+          end
+          unless params['AppIdList'].nil?
+            @AppIdList = []
+            params['AppIdList'].each do |i|
+              filterdataobject_tmp = FilterDataObject.new
+              filterdataobject_tmp.deserialize(i)
+              @AppIdList << filterdataobject_tmp
+            end
+          end
+          unless params['ProtectStatusList'].nil?
+            @ProtectStatusList = []
+            params['ProtectStatusList'].each do |i|
+              filterdataobject_tmp = FilterDataObject.new
+              filterdataobject_tmp.deserialize(i)
+              @ProtectStatusList << filterdataobject_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeClusterPodAssets请求参数结构体
       class DescribeClusterPodAssetsRequest < TencentCloud::Common::AbstractModel
         # @param MemberId: 集团账号的成员id
@@ -3603,6 +3899,53 @@ module TencentCloud
               filterdataobject_tmp = FilterDataObject.new
               filterdataobject_tmp.deserialize(i)
               @AppIdList << filterdataobject_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeOrganizationInfo请求参数结构体
+      class DescribeOrganizationInfoRequest < TencentCloud::Common::AbstractModel
+        # @param MemberId: 集团账号的成员id
+        # @type MemberId: Array
+
+        attr_accessor :MemberId
+
+        def initialize(memberid=nil)
+          @MemberId = memberid
+        end
+
+        def deserialize(params)
+          @MemberId = params['MemberId']
+        end
+      end
+
+      # DescribeOrganizationInfo返回参数结构体
+      class DescribeOrganizationInfoResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总条数
+        # @type TotalCount: Integer
+        # @param Data: 集团用户列表
+        # @type Data: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Data, :RequestId
+
+        def initialize(totalcount=nil, data=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              organizationinfo_tmp = OrganizationInfo.new
+              organizationinfo_tmp.deserialize(i)
+              @Data << organizationinfo_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -4881,6 +5224,82 @@ module TencentCloud
         end
       end
 
+      # DescribeSubUserInfo请求参数结构体
+      class DescribeSubUserInfoRequest < TencentCloud::Common::AbstractModel
+        # @param MemberId: 集团账号的成员id
+        # @type MemberId: Array
+        # @param Filter: 过滤内容
+        # @type Filter: :class:`Tencentcloud::Csip.v20221121.models.Filter`
+
+        attr_accessor :MemberId, :Filter
+
+        def initialize(memberid=nil, filter=nil)
+          @MemberId = memberid
+          @Filter = filter
+        end
+
+        def deserialize(params)
+          @MemberId = params['MemberId']
+          unless params['Filter'].nil?
+            @Filter = Filter.new
+            @Filter.deserialize(params['Filter'])
+          end
+        end
+      end
+
+      # DescribeSubUserInfo返回参数结构体
+      class DescribeSubUserInfoResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总数
+        # @type TotalCount: Integer
+        # @param Data: 子用户列表
+        # @type Data: Array
+        # @param CloudTypeLst: 厂商枚举列表
+        # @type CloudTypeLst: Array
+        # @param OwnerAppIDLst: 所属主账号appid枚举
+        # @type OwnerAppIDLst: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Data, :CloudTypeLst, :OwnerAppIDLst, :RequestId
+
+        def initialize(totalcount=nil, data=nil, cloudtypelst=nil, ownerappidlst=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Data = data
+          @CloudTypeLst = cloudtypelst
+          @OwnerAppIDLst = ownerappidlst
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              subuserinfo_tmp = SubUserInfo.new
+              subuserinfo_tmp.deserialize(i)
+              @Data << subuserinfo_tmp
+            end
+          end
+          unless params['CloudTypeLst'].nil?
+            @CloudTypeLst = []
+            params['CloudTypeLst'].each do |i|
+              filterdataobject_tmp = FilterDataObject.new
+              filterdataobject_tmp.deserialize(i)
+              @CloudTypeLst << filterdataobject_tmp
+            end
+          end
+          unless params['OwnerAppIDLst'].nil?
+            @OwnerAppIDLst = []
+            params['OwnerAppIDLst'].each do |i|
+              filterdataobject_tmp = FilterDataObject.new
+              filterdataobject_tmp.deserialize(i)
+              @OwnerAppIDLst << filterdataobject_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeSubnetAssets请求参数结构体
       class DescribeSubnetAssetsRequest < TencentCloud::Common::AbstractModel
         # @param MemberId: 集团账号的成员id
@@ -5151,6 +5570,71 @@ module TencentCloud
               tagcount_tmp = TagCount.new
               tagcount_tmp.deserialize(i)
               @TopAttackInfo << tagcount_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeUebaRule请求参数结构体
+      class DescribeUebaRuleRequest < TencentCloud::Common::AbstractModel
+        # @param MemberId: 集团账号的成员id
+        # @type MemberId: Array
+        # @param Filter: 过滤条件
+        # @type Filter: :class:`Tencentcloud::Csip.v20221121.models.Filter`
+
+        attr_accessor :MemberId, :Filter
+
+        def initialize(memberid=nil, filter=nil)
+          @MemberId = memberid
+          @Filter = filter
+        end
+
+        def deserialize(params)
+          @MemberId = params['MemberId']
+          unless params['Filter'].nil?
+            @Filter = Filter.new
+            @Filter.deserialize(params['Filter'])
+          end
+        end
+      end
+
+      # DescribeUebaRule返回参数结构体
+      class DescribeUebaRuleResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总数
+        # @type TotalCount: Integer
+        # @param Data: 策略列表
+        # @type Data: Array
+        # @param AlterType: 自定义策略对应的告警类别枚举
+        # @type AlterType: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Data, :AlterType, :RequestId
+
+        def initialize(totalcount=nil, data=nil, altertype=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Data = data
+          @AlterType = altertype
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              uebarule_tmp = UebaRule.new
+              uebarule_tmp.deserialize(i)
+              @Data << uebarule_tmp
+            end
+          end
+          unless params['AlterType'].nil?
+            @AlterType = []
+            params['AlterType'].each do |i|
+              filterdataobject_tmp = FilterDataObject.new
+              filterdataobject_tmp.deserialize(i)
+              @AlterType << filterdataobject_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -6297,6 +6781,54 @@ module TencentCloud
         end
       end
 
+      # ModifyUebaRuleSwitch请求参数结构体
+      class ModifyUebaRuleSwitchRequest < TencentCloud::Common::AbstractModel
+        # @param RuleID: 策略ID
+        # @type RuleID: String
+        # @param Status: 开关状态
+        # @type Status: Boolean
+        # @param MemberId: 集团账号的成员id
+        # @type MemberId: Array
+
+        attr_accessor :RuleID, :Status, :MemberId
+
+        def initialize(ruleid=nil, status=nil, memberid=nil)
+          @RuleID = ruleid
+          @Status = status
+          @MemberId = memberid
+        end
+
+        def deserialize(params)
+          @RuleID = params['RuleID']
+          @Status = params['Status']
+          @MemberId = params['MemberId']
+        end
+      end
+
+      # ModifyUebaRuleSwitch返回参数结构体
+      class ModifyUebaRuleSwitchResponse < TencentCloud::Common::AbstractModel
+        # @param Code: 0成功，1失败
+        # @type Code: Integer
+        # @param Msg: 返回信息
+        # @type Msg: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Code, :Msg, :RequestId
+
+        def initialize(code=nil, msg=nil, requestid=nil)
+          @Code = code
+          @Msg = msg
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Code = params['Code']
+          @Msg = params['Msg']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 网卡资产
       class NICAsset < TencentCloud::Common::AbstractModel
         # @param AppId: appid
@@ -6457,6 +6989,133 @@ module TencentCloud
           @Key = params['Key']
           @Date = params['Date']
           @Status = params['Status']
+        end
+      end
+
+      # 集团账号详情
+      class OrganizationInfo < TencentCloud::Common::AbstractModel
+        # @param NickName: 成员账号名称
+        # @type NickName: String
+        # @param NodeName: 部门节点名称，账号所属部门
+        # @type NodeName: String
+        # @param Role: Member/Admin/DelegatedAdmin/EntityAdmin; 成员/管理员/委派管理员/主体管理员
+        # @type Role: String
+        # @param MemberId: 成员账号id
+        # @type MemberId: String
+        # @param JoinType: 账号加入方式,create/invite
+        # @type JoinType: String
+        # @param GroupName: 集团名称
+        # @type GroupName: String
+        # @param AdminName: 管理员账号名称
+        # @type AdminName: String
+        # @param AdminUin: 管理员Uin
+        # @type AdminUin: String
+        # @param CreateTime: 创建时间
+        # @type CreateTime: String
+        # @param NodeCount: 部门数
+        # @type NodeCount: Integer
+        # @param MemberCount: 成员数
+        # @type MemberCount: Integer
+        # @param SubAccountCount: 子账号数
+        # @type SubAccountCount: Integer
+        # @param AbnormalSubUserCount: 异常子账号数量
+        # @type AbnormalSubUserCount: Integer
+        # @param GroupPermission: 集团关系策略权限
+        # @type GroupPermission: Array
+        # @param MemberPermission: 成员关系策略权限
+        # @type MemberPermission: Array
+        # @param GroupPayMode: 集团付费模式；0/自付费，1/代付费
+        # @type GroupPayMode: Integer
+        # @param MemberPayMode: 个人付费模式；0/自付费，1/代付费
+        # @type MemberPayMode: Integer
+        # @param CFWProtect: 空则未开启，否则不同字符串对应不同版本，common为通用，不区分版本
+        # @type CFWProtect: String
+        # @param WAFProtect: 空则未开启，否则不同字符串对应不同版本，common为通用，不区分版本
+        # @type WAFProtect: String
+        # @param CWPProtect: 空则未开启，否则不同字符串对应不同版本，common为通用，不区分版本
+        # @type CWPProtect: String
+        # @param Departments: 所有部门的集合数组
+        # @type Departments: Array
+        # @param MemberCreateTime: 成员创建时间
+        # @type MemberCreateTime: String
+        # @param CSIPProtect: Advanced/Enterprise/Ultimate
+        # @type CSIPProtect: String
+        # @param QuotaConsumer: 1表示配额消耗方
+        # @type QuotaConsumer: Integer
+        # @param EnableAdminCount: 管理员/委派管理员 已开启数量
+        # @type EnableAdminCount: Integer
+        # @param CloudCountDesc: 账户多云信息统计，数组形式，具体参考CloudCountDesc描述
+        # @type CloudCountDesc: Array
+        # @param AdminCount: 管理员/委派管理员 总数量
+        # @type AdminCount: Integer
+
+        attr_accessor :NickName, :NodeName, :Role, :MemberId, :JoinType, :GroupName, :AdminName, :AdminUin, :CreateTime, :NodeCount, :MemberCount, :SubAccountCount, :AbnormalSubUserCount, :GroupPermission, :MemberPermission, :GroupPayMode, :MemberPayMode, :CFWProtect, :WAFProtect, :CWPProtect, :Departments, :MemberCreateTime, :CSIPProtect, :QuotaConsumer, :EnableAdminCount, :CloudCountDesc, :AdminCount
+
+        def initialize(nickname=nil, nodename=nil, role=nil, memberid=nil, jointype=nil, groupname=nil, adminname=nil, adminuin=nil, createtime=nil, nodecount=nil, membercount=nil, subaccountcount=nil, abnormalsubusercount=nil, grouppermission=nil, memberpermission=nil, grouppaymode=nil, memberpaymode=nil, cfwprotect=nil, wafprotect=nil, cwpprotect=nil, departments=nil, membercreatetime=nil, csipprotect=nil, quotaconsumer=nil, enableadmincount=nil, cloudcountdesc=nil, admincount=nil)
+          @NickName = nickname
+          @NodeName = nodename
+          @Role = role
+          @MemberId = memberid
+          @JoinType = jointype
+          @GroupName = groupname
+          @AdminName = adminname
+          @AdminUin = adminuin
+          @CreateTime = createtime
+          @NodeCount = nodecount
+          @MemberCount = membercount
+          @SubAccountCount = subaccountcount
+          @AbnormalSubUserCount = abnormalsubusercount
+          @GroupPermission = grouppermission
+          @MemberPermission = memberpermission
+          @GroupPayMode = grouppaymode
+          @MemberPayMode = memberpaymode
+          @CFWProtect = cfwprotect
+          @WAFProtect = wafprotect
+          @CWPProtect = cwpprotect
+          @Departments = departments
+          @MemberCreateTime = membercreatetime
+          @CSIPProtect = csipprotect
+          @QuotaConsumer = quotaconsumer
+          @EnableAdminCount = enableadmincount
+          @CloudCountDesc = cloudcountdesc
+          @AdminCount = admincount
+        end
+
+        def deserialize(params)
+          @NickName = params['NickName']
+          @NodeName = params['NodeName']
+          @Role = params['Role']
+          @MemberId = params['MemberId']
+          @JoinType = params['JoinType']
+          @GroupName = params['GroupName']
+          @AdminName = params['AdminName']
+          @AdminUin = params['AdminUin']
+          @CreateTime = params['CreateTime']
+          @NodeCount = params['NodeCount']
+          @MemberCount = params['MemberCount']
+          @SubAccountCount = params['SubAccountCount']
+          @AbnormalSubUserCount = params['AbnormalSubUserCount']
+          @GroupPermission = params['GroupPermission']
+          @MemberPermission = params['MemberPermission']
+          @GroupPayMode = params['GroupPayMode']
+          @MemberPayMode = params['MemberPayMode']
+          @CFWProtect = params['CFWProtect']
+          @WAFProtect = params['WAFProtect']
+          @CWPProtect = params['CWPProtect']
+          @Departments = params['Departments']
+          @MemberCreateTime = params['MemberCreateTime']
+          @CSIPProtect = params['CSIPProtect']
+          @QuotaConsumer = params['QuotaConsumer']
+          @EnableAdminCount = params['EnableAdminCount']
+          unless params['CloudCountDesc'].nil?
+            @CloudCountDesc = []
+            params['CloudCountDesc'].each do |i|
+              cloudcountdesc_tmp = CloudCountDesc.new
+              cloudcountdesc_tmp.deserialize(i)
+              @CloudCountDesc << cloudcountdesc_tmp
+            end
+          end
+          @AdminCount = params['AdminCount']
         end
       end
 
@@ -7339,6 +7998,31 @@ module TencentCloud
         end
       end
 
+      # 用户行为分析 统计条件
+      class StatisticalFilter < TencentCloud::Common::AbstractModel
+        # @param OperatorType: 0:不基于统计检测
+        # 1:发生次数高于固定值
+        # 2:发生次数高于周期平均值的百分之
+        # 3:发生次数高于用户平均值的百分之
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OperatorType: Integer
+        # @param Value: 统计值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Value: Float
+
+        attr_accessor :OperatorType, :Value
+
+        def initialize(operatortype=nil, value=nil)
+          @OperatorType = operatortype
+          @Value = value
+        end
+
+        def deserialize(params)
+          @OperatorType = params['OperatorType']
+          @Value = params['Value']
+        end
+      end
+
       # StopRiskCenterTask请求参数结构体
       class StopRiskCenterTaskRequest < TencentCloud::Common::AbstractModel
         # @param TaskIdList: 任务id 列表
@@ -7383,6 +8067,91 @@ module TencentCloud
         def deserialize(params)
           @Status = params['Status']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 子账号详情
+      class SubUserInfo < TencentCloud::Common::AbstractModel
+        # @param ID: 主键ID，无业务意义
+        # 仅作为唯一键
+        # @type ID: Integer
+        # @param AppID: 子账号Appid
+        # @type AppID: String
+        # @param Uin: 子账号UIn
+        # @type Uin: String
+        # @param NickName: 子账号名称
+        # @type NickName: String
+        # @param OwnerAppID: 主账号Appid
+        # @type OwnerAppID: String
+        # @param OwnerUin: 主账号Uin
+        # @type OwnerUin: String
+        # @param OwnerNickName: 主账号名称
+        # @type OwnerNickName: String
+        # @param OwnerMemberID: 所属主账号memberid
+        # @type OwnerMemberID: String
+        # @param CloudType: 账户类型，0为腾讯云账户，1为AWS账户
+        # @type CloudType: Integer
+        # @param ServiceCount: 可访问服务数量
+        # @type ServiceCount: Integer
+        # @param InterfaceCount: 可访问接口数量
+        # @type InterfaceCount: Integer
+        # @param AssetCount: 可访问资源数量
+        # @type AssetCount: Integer
+        # @param LogCount: 访问/行为日志数量
+        # @type LogCount: Integer
+        # @param ConfigRiskCount: 权限配置风险
+        # @type ConfigRiskCount: Integer
+        # @param ActionRiskCount: 危险行为告警
+        # @type ActionRiskCount: Integer
+        # @param IsAccessCloudAudit: 是否接入云审计日志
+        # @type IsAccessCloudAudit: Boolean
+        # @param IsAccessCheck: 是否配置风险的安全体检
+        # @type IsAccessCheck: Boolean
+        # @param IsAccessUeba: 是否配置用户行为管理策略
+        # @type IsAccessUeba: Boolean
+
+        attr_accessor :ID, :AppID, :Uin, :NickName, :OwnerAppID, :OwnerUin, :OwnerNickName, :OwnerMemberID, :CloudType, :ServiceCount, :InterfaceCount, :AssetCount, :LogCount, :ConfigRiskCount, :ActionRiskCount, :IsAccessCloudAudit, :IsAccessCheck, :IsAccessUeba
+
+        def initialize(id=nil, appid=nil, uin=nil, nickname=nil, ownerappid=nil, owneruin=nil, ownernickname=nil, ownermemberid=nil, cloudtype=nil, servicecount=nil, interfacecount=nil, assetcount=nil, logcount=nil, configriskcount=nil, actionriskcount=nil, isaccesscloudaudit=nil, isaccesscheck=nil, isaccessueba=nil)
+          @ID = id
+          @AppID = appid
+          @Uin = uin
+          @NickName = nickname
+          @OwnerAppID = ownerappid
+          @OwnerUin = owneruin
+          @OwnerNickName = ownernickname
+          @OwnerMemberID = ownermemberid
+          @CloudType = cloudtype
+          @ServiceCount = servicecount
+          @InterfaceCount = interfacecount
+          @AssetCount = assetcount
+          @LogCount = logcount
+          @ConfigRiskCount = configriskcount
+          @ActionRiskCount = actionriskcount
+          @IsAccessCloudAudit = isaccesscloudaudit
+          @IsAccessCheck = isaccesscheck
+          @IsAccessUeba = isaccessueba
+        end
+
+        def deserialize(params)
+          @ID = params['ID']
+          @AppID = params['AppID']
+          @Uin = params['Uin']
+          @NickName = params['NickName']
+          @OwnerAppID = params['OwnerAppID']
+          @OwnerUin = params['OwnerUin']
+          @OwnerNickName = params['OwnerNickName']
+          @OwnerMemberID = params['OwnerMemberID']
+          @CloudType = params['CloudType']
+          @ServiceCount = params['ServiceCount']
+          @InterfaceCount = params['InterfaceCount']
+          @AssetCount = params['AssetCount']
+          @LogCount = params['LogCount']
+          @ConfigRiskCount = params['ConfigRiskCount']
+          @ActionRiskCount = params['ActionRiskCount']
+          @IsAccessCloudAudit = params['IsAccessCloudAudit']
+          @IsAccessCheck = params['IsAccessCheck']
+          @IsAccessUeba = params['IsAccessUeba']
         end
       end
 
@@ -7806,6 +8575,205 @@ module TencentCloud
           @LogId = params['LogId']
           @TaskLogName = params['TaskLogName']
           @AppId = params['AppId']
+        end
+      end
+
+      # 用户行为分析  自定义策略结构体
+      class UebaCustomRule < TencentCloud::Common::AbstractModel
+        # @param RuleName: 策略名称
+        # @type RuleName: String
+        # @param UserType: 1: 云账号
+        # 2: 自定义用户
+        # @type UserType: Integer
+        # @param TimeInterval: 发生时间
+        # 1：10分钟
+        # 2：1小时
+        # 3：一天
+        # 4：一周
+        # 5：一个月
+        # @type TimeInterval: Integer
+        # @param EventContent: 发生事件
+        # @type EventContent: :class:`Tencentcloud::Csip.v20221121.models.UebaEventContent`
+        # @param AlertName: 告警名称
+        # @type AlertName: String
+        # @param AlterLevel: 告警类型
+        # 0:  提示
+        # 1:  低危
+        # 2:  中危
+        # 3:  高危
+        # 4:  严重
+        # @type AlterLevel: Integer
+        # @param Operator: 操作者
+        # @type Operator: Array
+        # @param OperateObject: 操作对象
+        # @type OperateObject: Array
+        # @param OperateMethod: 操作方式
+        # @type OperateMethod: Array
+        # @param LogType: 日志类型
+        # @type LogType: String
+        # @param LogTypeStr: 日志中文名
+        # @type LogTypeStr: String
+
+        attr_accessor :RuleName, :UserType, :TimeInterval, :EventContent, :AlertName, :AlterLevel, :Operator, :OperateObject, :OperateMethod, :LogType, :LogTypeStr
+
+        def initialize(rulename=nil, usertype=nil, timeinterval=nil, eventcontent=nil, alertname=nil, alterlevel=nil, operator=nil, operateobject=nil, operatemethod=nil, logtype=nil, logtypestr=nil)
+          @RuleName = rulename
+          @UserType = usertype
+          @TimeInterval = timeinterval
+          @EventContent = eventcontent
+          @AlertName = alertname
+          @AlterLevel = alterlevel
+          @Operator = operator
+          @OperateObject = operateobject
+          @OperateMethod = operatemethod
+          @LogType = logtype
+          @LogTypeStr = logtypestr
+        end
+
+        def deserialize(params)
+          @RuleName = params['RuleName']
+          @UserType = params['UserType']
+          @TimeInterval = params['TimeInterval']
+          unless params['EventContent'].nil?
+            @EventContent = UebaEventContent.new
+            @EventContent.deserialize(params['EventContent'])
+          end
+          @AlertName = params['AlertName']
+          @AlterLevel = params['AlterLevel']
+          @Operator = params['Operator']
+          @OperateObject = params['OperateObject']
+          @OperateMethod = params['OperateMethod']
+          @LogType = params['LogType']
+          @LogTypeStr = params['LogTypeStr']
+        end
+      end
+
+      # 用户行为分析 发生事件结构体
+      class UebaEventContent < TencentCloud::Common::AbstractModel
+        # @param EventType: 发生事件类型
+        # 1:语句检索
+        # 2:过滤检索
+        # @type EventType: Integer
+        # @param Content: 语句检索内容
+        # @type Content: String
+        # @param Filters: 检索条件
+        # @type Filters: Array
+        # @param StatisticalFilter: 统计条件
+        # @type StatisticalFilter: :class:`Tencentcloud::Csip.v20221121.models.StatisticalFilter`
+
+        attr_accessor :EventType, :Content, :Filters, :StatisticalFilter
+
+        def initialize(eventtype=nil, content=nil, filters=nil, statisticalfilter=nil)
+          @EventType = eventtype
+          @Content = content
+          @Filters = filters
+          @StatisticalFilter = statisticalfilter
+        end
+
+        def deserialize(params)
+          @EventType = params['EventType']
+          @Content = params['Content']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              wherefilter_tmp = WhereFilter.new
+              wherefilter_tmp.deserialize(i)
+              @Filters << wherefilter_tmp
+            end
+          end
+          unless params['StatisticalFilter'].nil?
+            @StatisticalFilter = StatisticalFilter.new
+            @StatisticalFilter.deserialize(params['StatisticalFilter'])
+          end
+        end
+      end
+
+      # 用户行为分析策略
+      class UebaRule < TencentCloud::Common::AbstractModel
+        # @param RuleID: 策略id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuleID: String
+        # @param RuleName: 规则名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuleName: String
+        # @param RuleType: 策略类型
+        # 0:系统策略
+        # 1:自定义策略
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuleType: Integer
+        # @param RuleLevel: 策略等级
+        # 0:提示
+        # 1:低危
+        # 2:中危
+        # 3:高危
+        # 4:严重
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuleLevel: Integer
+        # @param RuleContent: 策略内容
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuleContent: String
+        # @param RuleStatus: 策略开关
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuleStatus: Boolean
+        # @param HitCount: 命中次数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HitCount: Integer
+        # @param AppID: 所属账号Appid
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AppID: String
+        # @param MemberID: 多账号，成员ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MemberID: String
+        # @param Uin: Uin
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Uin: String
+        # @param Nickname: 昵称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Nickname: String
+        # @param CustomRuleDetail: 自定义规则具体内容
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CustomRuleDetail: :class:`Tencentcloud::Csip.v20221121.models.UebaCustomRule`
+        # @param CloudType: 云类型
+        # 腾讯云：0
+        # aws：1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CloudType: Integer
+
+        attr_accessor :RuleID, :RuleName, :RuleType, :RuleLevel, :RuleContent, :RuleStatus, :HitCount, :AppID, :MemberID, :Uin, :Nickname, :CustomRuleDetail, :CloudType
+
+        def initialize(ruleid=nil, rulename=nil, ruletype=nil, rulelevel=nil, rulecontent=nil, rulestatus=nil, hitcount=nil, appid=nil, memberid=nil, uin=nil, nickname=nil, customruledetail=nil, cloudtype=nil)
+          @RuleID = ruleid
+          @RuleName = rulename
+          @RuleType = ruletype
+          @RuleLevel = rulelevel
+          @RuleContent = rulecontent
+          @RuleStatus = rulestatus
+          @HitCount = hitcount
+          @AppID = appid
+          @MemberID = memberid
+          @Uin = uin
+          @Nickname = nickname
+          @CustomRuleDetail = customruledetail
+          @CloudType = cloudtype
+        end
+
+        def deserialize(params)
+          @RuleID = params['RuleID']
+          @RuleName = params['RuleName']
+          @RuleType = params['RuleType']
+          @RuleLevel = params['RuleLevel']
+          @RuleContent = params['RuleContent']
+          @RuleStatus = params['RuleStatus']
+          @HitCount = params['HitCount']
+          @AppID = params['AppID']
+          @MemberID = params['MemberID']
+          @Uin = params['Uin']
+          @Nickname = params['Nickname']
+          unless params['CustomRuleDetail'].nil?
+            @CustomRuleDetail = UebaCustomRule.new
+            @CustomRuleDetail.deserialize(params['CustomRuleDetail'])
+          end
+          @CloudType = params['CloudType']
         end
       end
 
