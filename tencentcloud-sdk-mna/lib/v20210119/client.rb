@@ -173,6 +173,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 产品下线
+
         # 移动网络发起Qos加速过程
 
         # @param request: Request instance for CreateQos.
@@ -269,6 +271,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 产品下线
+
         # 移动网络停止Qos加速过程
 
         # @param request: Request instance for DeleteQos.
@@ -292,6 +296,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 产品下线
 
         # 获取Qos加速状态
 

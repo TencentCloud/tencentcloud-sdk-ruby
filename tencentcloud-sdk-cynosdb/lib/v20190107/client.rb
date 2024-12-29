@@ -581,7 +581,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口(DeleteAuditLogFile)用于删除云数据库实例的审计日志文件。
+        # 本接口（DeleteAuditLogFile）用于删除云数据库实例的审计日志文件。
 
         # @param request: Request instance for DeleteAuditLogFile.
         # @type request: :class:`Tencentcloud::cynosdb::V20190107::DeleteAuditLogFileRequest`
@@ -845,7 +845,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口(DescribeAuditLogs)用于查询数据库审计日志。
+        # 本接口（DescribeAuditLogs）用于查询数据库审计日志。
 
         # @param request: Request instance for DescribeAuditLogs.
         # @type request: :class:`Tencentcloud::cynosdb::V20190107::DescribeAuditLogsRequest`
@@ -1613,7 +1613,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口(DescribeIsolatedInstances)用于查询回收站实例列表。
+        # 本接口（DescribeIsolatedInstances）用于查询回收站实例列表。
 
         # @param request: Request instance for DescribeIsolatedInstances.
         # @type request: :class:`Tencentcloud::cynosdb::V20190107::DescribeIsolatedInstancesRequest`

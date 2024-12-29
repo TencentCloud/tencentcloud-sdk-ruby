@@ -173,7 +173,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 获取区块内的交易列表
+        # 获取区块内交易列表
 
         # @param request: Request instance for GetBlockTransactionListForUser.
         # @type request: :class:`Tencentcloud::tbaas::V20180416::GetBlockTransactionListForUserRequest`
@@ -293,7 +293,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 获取交易详情
+        # 获取交易的详情
 
         # @param request: Request instance for GetTransactionDetailForUser.
         # @type request: :class:`Tencentcloud::tbaas::V20180416::GetTransactionDetailForUserRequest`

@@ -2094,7 +2094,7 @@ module TencentCloud
 
       # DescribeCertificateBindResourceTaskDetail请求参数结构体
       class DescribeCertificateBindResourceTaskDetailRequest < TencentCloud::Common::AbstractModel
-        # @param TaskId: 任务ID，根据任务ID查询绑定云资源结果
+        # @param TaskId: 任务ID，根据CreateCertificateBindResourceSyncTask得到的任务ID查询绑定云资源结果
         # @type TaskId: String
         # @param Limit: 每页展示数量， 默认10，最大值100; 分页总数为云资源地域下实例总数， 即第一页会拉群每个云资源的地域下面Limit数量实例
         # @type Limit: String
@@ -3955,7 +3955,7 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 每页数量，默认10。
         # @type Limit: Integer
-        # @param AsyncCache: 是否异步
+        # @param AsyncCache: 是否异步，1表示是，0表示否，默认为0
         # @type AsyncCache: Integer
 
         attr_accessor :CertificateId, :ResourceType, :IsCache, :Filters, :OldCertificateId, :Offset, :Limit, :AsyncCache
@@ -3992,7 +3992,7 @@ module TencentCloud
 
       # DescribeHostTeoInstanceList返回参数结构体
       class DescribeHostTeoInstanceListResponse < TencentCloud::Common::AbstractModel
-        # @param InstanceList: teo实例列表
+        # @param InstanceList: teo实例列表，如取不到值返回空数组
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceList: Array
         # @param TotalCount: 总数

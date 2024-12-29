@@ -6820,6 +6820,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（InquiryPriceAllocateAddresses）用于新购弹性公网IP询价。
+
+        # @param request: Request instance for InquiryPriceAllocateAddresses.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::InquiryPriceAllocateAddressesRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::InquiryPriceAllocateAddressesResponse`
+        def InquiryPriceAllocateAddresses(request)
+          body = send_request('InquiryPriceAllocateAddresses', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = InquiryPriceAllocateAddressesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（InquiryPriceCreateVpnGateway）用于创建VPN网关询价。
 
         # @param request: Request instance for InquiryPriceCreateVpnGateway.
@@ -6830,6 +6854,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = InquiryPriceCreateVpnGatewayResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # EIP修改带宽询价
+
+        # @param request: Request instance for InquiryPriceModifyAddressesBandwidth.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::InquiryPriceModifyAddressesBandwidthRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::InquiryPriceModifyAddressesBandwidthResponse`
+        def InquiryPriceModifyAddressesBandwidth(request)
+          body = send_request('InquiryPriceModifyAddressesBandwidth', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = InquiryPriceModifyAddressesBandwidthResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（InquiryPriceRenewAddresses）用于续费预付费弹性公网IP询价。
+
+        # @param request: Request instance for InquiryPriceRenewAddresses.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::InquiryPriceRenewAddressesRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::InquiryPriceRenewAddressesResponse`
+        def InquiryPriceRenewAddresses(request)
+          body = send_request('InquiryPriceRenewAddresses', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = InquiryPriceRenewAddressesResponse.new
             model.deserialize(response['Response'])
             model
           else

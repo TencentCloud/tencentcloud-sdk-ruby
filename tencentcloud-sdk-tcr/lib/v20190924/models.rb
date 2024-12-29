@@ -6141,14 +6141,17 @@ module TencentCloud
         # @type Override: Boolean
         # @param Filters: 同步过滤条件
         # @type Filters: Array
+        # @param Deletion: 是否同步删除事件
+        # @type Deletion: Boolean
 
-        attr_accessor :Name, :DestNamespace, :Override, :Filters
+        attr_accessor :Name, :DestNamespace, :Override, :Filters, :Deletion
 
-        def initialize(name=nil, destnamespace=nil, override=nil, filters=nil)
+        def initialize(name=nil, destnamespace=nil, override=nil, filters=nil, deletion=nil)
           @Name = name
           @DestNamespace = destnamespace
           @Override = override
           @Filters = filters
+          @Deletion = deletion
         end
 
         def deserialize(params)
@@ -6163,6 +6166,7 @@ module TencentCloud
               @Filters << replicationfilter_tmp
             end
           end
+          @Deletion = params['Deletion']
         end
       end
 

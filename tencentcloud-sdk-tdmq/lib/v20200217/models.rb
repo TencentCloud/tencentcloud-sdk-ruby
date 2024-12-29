@@ -2459,10 +2459,12 @@ module TencentCloud
         # @type PulsarTopicType: Integer
         # @param MsgTTL: 未消费消息过期时间，单位：秒，取值范围：60秒~15天。
         # @type MsgTTL: Integer
+        # @param UnackPolicy: 不传默认是原生策略，DefaultPolicy表示当订阅下达到最大未确认消息数 5000 时，服务端将不再向当前订阅下的所有消费者推送消息，DynamicPolicy表示动态调整订阅下的最大未确认消息数，具体配额是在 5000 和消费者数量*20之间取最大值。每个消费者默认最大 unack 消息数为 20，超过该限制时仅影响该消费者，不影响其他消费者。
+        # @type UnackPolicy: String
 
-        attr_accessor :EnvironmentId, :TopicName, :Partitions, :ClusterId, :Remark, :TopicType, :PulsarTopicType, :MsgTTL
+        attr_accessor :EnvironmentId, :TopicName, :Partitions, :ClusterId, :Remark, :TopicType, :PulsarTopicType, :MsgTTL, :UnackPolicy
 
-        def initialize(environmentid=nil, topicname=nil, partitions=nil, clusterid=nil, remark=nil, topictype=nil, pulsartopictype=nil, msgttl=nil)
+        def initialize(environmentid=nil, topicname=nil, partitions=nil, clusterid=nil, remark=nil, topictype=nil, pulsartopictype=nil, msgttl=nil, unackpolicy=nil)
           @EnvironmentId = environmentid
           @TopicName = topicname
           @Partitions = partitions
@@ -2471,6 +2473,7 @@ module TencentCloud
           @TopicType = topictype
           @PulsarTopicType = pulsartopictype
           @MsgTTL = msgttl
+          @UnackPolicy = unackpolicy
         end
 
         def deserialize(params)
@@ -2482,6 +2485,7 @@ module TencentCloud
           @TopicType = params['TopicType']
           @PulsarTopicType = params['PulsarTopicType']
           @MsgTTL = params['MsgTTL']
+          @UnackPolicy = params['UnackPolicy']
         end
       end
 
@@ -9538,16 +9542,19 @@ module TencentCloud
         # @type Remark: String
         # @param MsgTTL: 未消费消息过期时间，单位：秒，取值范围：60秒~15天。
         # @type MsgTTL: Integer
+        # @param UnackPolicy: 不传默认是原生策略，DefaultPolicy表示当订阅下达到最大未确认消息数 5000 时，服务端将不再向当前订阅下的所有消费者推送消息，DynamicPolicy表示动态调整订阅下的最大未确认消息数，具体配额是在 5000 和消费者数量*20之间取最大值。每个消费者默认最大 unack 消息数为 20，超过该限制时仅影响该消费者，不影响其他消费者。
+        # @type UnackPolicy: String
 
-        attr_accessor :EnvironmentId, :TopicName, :Partitions, :ClusterId, :Remark, :MsgTTL
+        attr_accessor :EnvironmentId, :TopicName, :Partitions, :ClusterId, :Remark, :MsgTTL, :UnackPolicy
 
-        def initialize(environmentid=nil, topicname=nil, partitions=nil, clusterid=nil, remark=nil, msgttl=nil)
+        def initialize(environmentid=nil, topicname=nil, partitions=nil, clusterid=nil, remark=nil, msgttl=nil, unackpolicy=nil)
           @EnvironmentId = environmentid
           @TopicName = topicname
           @Partitions = partitions
           @ClusterId = clusterid
           @Remark = remark
           @MsgTTL = msgttl
+          @UnackPolicy = unackpolicy
         end
 
         def deserialize(params)
@@ -9557,6 +9564,7 @@ module TencentCloud
           @ClusterId = params['ClusterId']
           @Remark = params['Remark']
           @MsgTTL = params['MsgTTL']
+          @UnackPolicy = params['UnackPolicy']
         end
       end
 

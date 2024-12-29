@@ -20498,10 +20498,18 @@ module TencentCloud
         # @param EndTime: 直播切片对应直播结束时间点，采用 ISO 日期格式。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EndTime: String
+        # @param AudioUrl: 直播拆条用，音频url。
+        # @type AudioUrl: String
+        # @param AudioBeginTime: 直播拆条用，音频对应起始时间戳；
+        # @type AudioBeginTime: Float
+        # @param AudioEndTime: 直播拆条用，音频对应结束时间戳。
+        # @type AudioEndTime: Float
+        # @param PersonPositionUrl: 直播拆条用，人物位置参考信息用于横转竖。
+        # @type PersonPositionUrl: String
 
-        attr_accessor :Confidence, :StartTimeOffset, :EndTimeOffset, :SegmentUrl, :CovImgUrl, :Title, :Summary, :Keywords, :BeginTime, :EndTime
+        attr_accessor :Confidence, :StartTimeOffset, :EndTimeOffset, :SegmentUrl, :CovImgUrl, :Title, :Summary, :Keywords, :BeginTime, :EndTime, :AudioUrl, :AudioBeginTime, :AudioEndTime, :PersonPositionUrl
 
-        def initialize(confidence=nil, starttimeoffset=nil, endtimeoffset=nil, segmenturl=nil, covimgurl=nil, title=nil, summary=nil, keywords=nil, begintime=nil, endtime=nil)
+        def initialize(confidence=nil, starttimeoffset=nil, endtimeoffset=nil, segmenturl=nil, covimgurl=nil, title=nil, summary=nil, keywords=nil, begintime=nil, endtime=nil, audiourl=nil, audiobegintime=nil, audioendtime=nil, personpositionurl=nil)
           @Confidence = confidence
           @StartTimeOffset = starttimeoffset
           @EndTimeOffset = endtimeoffset
@@ -20512,6 +20520,10 @@ module TencentCloud
           @Keywords = keywords
           @BeginTime = begintime
           @EndTime = endtime
+          @AudioUrl = audiourl
+          @AudioBeginTime = audiobegintime
+          @AudioEndTime = audioendtime
+          @PersonPositionUrl = personpositionurl
         end
 
         def deserialize(params)
@@ -20525,6 +20537,10 @@ module TencentCloud
           @Keywords = params['Keywords']
           @BeginTime = params['BeginTime']
           @EndTime = params['EndTime']
+          @AudioUrl = params['AudioUrl']
+          @AudioBeginTime = params['AudioBeginTime']
+          @AudioEndTime = params['AudioEndTime']
+          @PersonPositionUrl = params['PersonPositionUrl']
         end
       end
 

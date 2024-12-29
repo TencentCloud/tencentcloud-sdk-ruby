@@ -29,7 +29,7 @@ module TencentCloud
         end
 
 
-        # 业务购买APM实例，调用该接口创建
+        # 业务购买 APM 业务系统，调用该接口创建
 
         # @param request: Request instance for CreateApmInstance.
         # @type request: :class:`Tencentcloud::apm::V20210622::CreateApmInstanceRequest`
@@ -53,7 +53,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 获取APM Agent信息
+        # 获取 APM Agent信息
 
         # @param request: Request instance for DescribeApmAgent.
         # @type request: :class:`Tencentcloud::apm::V20210622::DescribeApmAgentRequest`
@@ -198,7 +198,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 服务概览数据拉取
+        # 应用概览数据拉取
 
         # @param request: Request instance for DescribeServiceOverview.
         # @type request: :class:`Tencentcloud::apm::V20210622::DescribeServiceOverviewRequest`
@@ -246,7 +246,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 修改APM实例接口
+        # 修改APM业务系统接口
 
         # @param request: Request instance for ModifyApmInstance.
         # @type request: :class:`Tencentcloud::apm::V20210622::ModifyApmInstanceRequest`
@@ -294,7 +294,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # apm销毁实例
+        # 销毁 APM 业务系统
 
         # @param request: Request instance for TerminateApmInstance.
         # @type request: :class:`Tencentcloud::apm::V20210622::TerminateApmInstanceRequest`

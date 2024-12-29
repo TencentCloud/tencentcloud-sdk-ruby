@@ -9857,10 +9857,14 @@ module TencentCloud
         # @type ApplicableProducts: :class:`Tencentcloud::Billing.v20180709.models.ApplicableProducts`
         # @param ExcludedProducts: 不适用商品信息
         # @type ExcludedProducts: Array
+        # @param PolicyRemark: 使用说明/批次备注
+        # @type PolicyRemark: String
+        # @param CreateTime: 发券时间
+        # @type CreateTime: String
 
-        attr_accessor :OwnerUin, :Status, :NominalValue, :Balance, :VoucherId, :PayMode, :PayScene, :BeginTime, :EndTime, :ApplicableProducts, :ExcludedProducts
+        attr_accessor :OwnerUin, :Status, :NominalValue, :Balance, :VoucherId, :PayMode, :PayScene, :BeginTime, :EndTime, :ApplicableProducts, :ExcludedProducts, :PolicyRemark, :CreateTime
 
-        def initialize(owneruin=nil, status=nil, nominalvalue=nil, balance=nil, voucherid=nil, paymode=nil, payscene=nil, begintime=nil, endtime=nil, applicableproducts=nil, excludedproducts=nil)
+        def initialize(owneruin=nil, status=nil, nominalvalue=nil, balance=nil, voucherid=nil, paymode=nil, payscene=nil, begintime=nil, endtime=nil, applicableproducts=nil, excludedproducts=nil, policyremark=nil, createtime=nil)
           @OwnerUin = owneruin
           @Status = status
           @NominalValue = nominalvalue
@@ -9872,6 +9876,8 @@ module TencentCloud
           @EndTime = endtime
           @ApplicableProducts = applicableproducts
           @ExcludedProducts = excludedproducts
+          @PolicyRemark = policyremark
+          @CreateTime = createtime
         end
 
         def deserialize(params)
@@ -9896,6 +9902,8 @@ module TencentCloud
               @ExcludedProducts << excludedproducts_tmp
             end
           end
+          @PolicyRemark = params['PolicyRemark']
+          @CreateTime = params['CreateTime']
         end
       end
 

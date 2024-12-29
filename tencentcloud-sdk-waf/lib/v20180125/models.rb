@@ -77,8 +77,8 @@ module TencentCloud
 
         attr_accessor :BTime, :Count, :BeginTime
         extend Gem::Deprecate
-        deprecate :BTime, :none, 2024, 11
-        deprecate :BTime=, :none, 2024, 11
+        deprecate :BTime, :none, 2024, 12
+        deprecate :BTime=, :none, 2024, 12
 
         def initialize(btime=nil, count=nil, begintime=nil)
           @BTime = btime
@@ -1305,6 +1305,80 @@ module TencentCloud
         end
       end
 
+      # 地域信息
+      class Area < TencentCloud::Common::AbstractModel
+        # @param Country: 国家，除了标准的国家外还支持国内、国外这两个特殊的标识
+        # @type Country: String
+        # @param Region: 省份
+        # @type Region: String
+        # @param City: 城市
+        # @type City: String
+
+        attr_accessor :Country, :Region, :City
+
+        def initialize(country=nil, region=nil, city=nil)
+          @Country = country
+          @Region = region
+          @City = city
+        end
+
+        def deserialize(params)
+          @Country = params['Country']
+          @Region = params['Region']
+          @City = params['City']
+        end
+      end
+
+      # 地域封禁规则详情
+      class AreaBanRule < TencentCloud::Common::AbstractModel
+        # @param Status: 状态 0：未开启地域封禁、1：开启地域封禁
+        # @type Status: Integer
+        # @param Source: 数据来源 custom：自定义(默认)、batch：批量防护
+        # @type Source: String
+        # @param Areas: 配置的地域列表
+        # @type Areas: Array
+        # @param JobType: 规则执行的方式，TimedJob为定时执行，CronJob为周期执行
+        # @type JobType: String
+        # @param JobDateTime: 定时任务配置
+        # @type JobDateTime: :class:`Tencentcloud::Waf.v20180125.models.JobDateTime`
+        # @param CronType: 如果是周期任务类型，那么表示周期的类型，支持 Week：按周、Month：按月
+        # @type CronType: String
+        # @param Lang: 地域信息的语言，支持cn、en，默认为中文cn
+        # @type Lang: String
+
+        attr_accessor :Status, :Source, :Areas, :JobType, :JobDateTime, :CronType, :Lang
+
+        def initialize(status=nil, source=nil, areas=nil, jobtype=nil, jobdatetime=nil, crontype=nil, lang=nil)
+          @Status = status
+          @Source = source
+          @Areas = areas
+          @JobType = jobtype
+          @JobDateTime = jobdatetime
+          @CronType = crontype
+          @Lang = lang
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @Source = params['Source']
+          unless params['Areas'].nil?
+            @Areas = []
+            params['Areas'].each do |i|
+              area_tmp = Area.new
+              area_tmp.deserialize(i)
+              @Areas << area_tmp
+            end
+          end
+          @JobType = params['JobType']
+          unless params['JobDateTime'].nil?
+            @JobDateTime = JobDateTime.new
+            @JobDateTime.deserialize(params['JobDateTime'])
+          end
+          @CronType = params['CronType']
+          @Lang = params['Lang']
+        end
+      end
+
       # 攻击日志详情
       class AttackLogInfo < TencentCloud::Common::AbstractModel
         # @param Content: 攻击日志的详情内容
@@ -2253,6 +2327,64 @@ module TencentCloud
         end
       end
 
+      # CreateAreaBanRule请求参数结构体
+      class CreateAreaBanRuleRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 需要修改的域名
+        # @type Domain: String
+        # @param Areas: 需要新增的封禁地域
+        # @type Areas: Array
+        # @param JobType: 规则执行的方式，TimedJob为定时执行，CronJob为周期执行
+        # @type JobType: String
+        # @param JobDateTime: 定时任务配置
+        # @type JobDateTime: :class:`Tencentcloud::Waf.v20180125.models.JobDateTime`
+        # @param Lang: 地域信息的语言，支持cn、en，默认为中文cn
+        # @type Lang: String
+
+        attr_accessor :Domain, :Areas, :JobType, :JobDateTime, :Lang
+
+        def initialize(domain=nil, areas=nil, jobtype=nil, jobdatetime=nil, lang=nil)
+          @Domain = domain
+          @Areas = areas
+          @JobType = jobtype
+          @JobDateTime = jobdatetime
+          @Lang = lang
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          unless params['Areas'].nil?
+            @Areas = []
+            params['Areas'].each do |i|
+              area_tmp = Area.new
+              area_tmp.deserialize(i)
+              @Areas << area_tmp
+            end
+          end
+          @JobType = params['JobType']
+          unless params['JobDateTime'].nil?
+            @JobDateTime = JobDateTime.new
+            @JobDateTime.deserialize(params['JobDateTime'])
+          end
+          @Lang = params['Lang']
+        end
+      end
+
+      # CreateAreaBanRule返回参数结构体
+      class CreateAreaBanRuleResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 计费下单接口出入参Goods
       class CreateDealsGoods < TencentCloud::Common::AbstractModel
         # @param GoodsNum: 商品数量
@@ -2519,8 +2651,8 @@ module TencentCloud
 
         attr_accessor :Domain, :IpList, :ActionType, :ValidTS, :InstanceId, :Edition, :SourceType, :Note, :JobType, :JobDateTime
         extend Gem::Deprecate
-        deprecate :ValidTS, :none, 2024, 11
-        deprecate :ValidTS=, :none, 2024, 11
+        deprecate :ValidTS, :none, 2024, 12
+        deprecate :ValidTS=, :none, 2024, 12
 
         def initialize(domain=nil, iplist=nil, actiontype=nil, validts=nil, instanceid=nil, edition=nil, sourcetype=nil, note=nil, jobtype=nil, jobdatetime=nil)
           @Domain = domain
@@ -3309,8 +3441,8 @@ module TencentCloud
 
         attr_accessor :From, :To, :Query, :FieldName, :TopicId, :Sort, :Count
         extend Gem::Deprecate
-        deprecate :TopicId, :none, 2024, 11
-        deprecate :TopicId=, :none, 2024, 11
+        deprecate :TopicId, :none, 2024, 12
+        deprecate :TopicId=, :none, 2024, 12
 
         def initialize(from=nil, to=nil, query=nil, fieldname=nil, topicid=nil, sort=nil, count=nil)
           @From = from
@@ -3486,7 +3618,7 @@ module TencentCloud
         # @type Filters: Array
         # @param Order: asc或者desc
         # @type Order: String
-        # @param By: 目前支持根据ts排序
+        # @param By: 目前支持根据create_time、modify_time、id排序
         # @type By: String
 
         attr_accessor :Domain, :Offset, :Limit, :Filters, :Order, :By
@@ -3965,6 +4097,45 @@ module TencentCloud
             @JobDateTime.deserialize(params['JobDateTime'])
           end
           @CronType = params['CronType']
+        end
+      end
+
+      # DescribeAreaBanRule请求参数结构体
+      class DescribeAreaBanRuleRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 需要查询的域名
+        # @type Domain: String
+
+        attr_accessor :Domain
+
+        def initialize(domain=nil)
+          @Domain = domain
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+        end
+      end
+
+      # DescribeAreaBanRule返回参数结构体
+      class DescribeAreaBanRuleResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 规则内容
+        # @type Data: :class:`Tencentcloud::Waf.v20180125.models.AreaBanRule`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = AreaBanRule.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
         end
       end
 
@@ -5724,10 +5895,10 @@ module TencentCloud
 
         attr_accessor :Domain, :Count, :ActionType, :VtsMin, :VtsMax, :CtsMin, :CtsMax, :OffSet, :Limit, :Source, :Sort, :Ip, :ValidStatus, :ValidTimeStampMin, :ValidTimeStampMax, :RuleId, :TimerType
         extend Gem::Deprecate
-        deprecate :VtsMin, :none, 2024, 11
-        deprecate :VtsMin=, :none, 2024, 11
-        deprecate :VtsMax, :none, 2024, 11
-        deprecate :VtsMax=, :none, 2024, 11
+        deprecate :VtsMin, :none, 2024, 12
+        deprecate :VtsMin=, :none, 2024, 12
+        deprecate :VtsMax, :none, 2024, 12
+        deprecate :VtsMax=, :none, 2024, 12
 
         def initialize(domain=nil, count=nil, actiontype=nil, vtsmin=nil, vtsmax=nil, ctsmin=nil, ctsmax=nil, offset=nil, limit=nil, source=nil, sort=nil, ip=nil, validstatus=nil, validtimestampmin=nil, validtimestampmax=nil, ruleid=nil, timertype=nil)
           @Domain = domain
@@ -5830,10 +6001,10 @@ module TencentCloud
 
         attr_accessor :Domain, :Count, :Category, :VtsMin, :VtsMax, :CtsMin, :CtsMax, :Skip, :Limit, :Name, :Sort, :Ip, :ValidTimeStampMin, :ValidTimeStampMax
         extend Gem::Deprecate
-        deprecate :VtsMin, :none, 2024, 11
-        deprecate :VtsMin=, :none, 2024, 11
-        deprecate :VtsMax, :none, 2024, 11
-        deprecate :VtsMax=, :none, 2024, 11
+        deprecate :VtsMin, :none, 2024, 12
+        deprecate :VtsMin=, :none, 2024, 12
+        deprecate :VtsMax, :none, 2024, 12
+        deprecate :VtsMax=, :none, 2024, 12
 
         def initialize(domain=nil, count=nil, category=nil, vtsmin=nil, vtsmax=nil, ctsmin=nil, ctsmax=nil, skip=nil, limit=nil, name=nil, sort=nil, ip=nil, validtimestampmin=nil, validtimestampmax=nil)
           @Domain = domain
@@ -10070,6 +10241,64 @@ module TencentCloud
         end
       end
 
+      # ModifyAreaBanRule请求参数结构体
+      class ModifyAreaBanRuleRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 需要修改的域名
+        # @type Domain: String
+        # @param Areas: 需要新增的封禁地域
+        # @type Areas: Array
+        # @param JobType: 规则执行的方式，TimedJob为定时执行，CronJob为周期执行
+        # @type JobType: String
+        # @param JobDateTime: 定时任务配置
+        # @type JobDateTime: :class:`Tencentcloud::Waf.v20180125.models.JobDateTime`
+        # @param Lang: 地域信息的语言，支持cn、en，默认为中文cn
+        # @type Lang: String
+
+        attr_accessor :Domain, :Areas, :JobType, :JobDateTime, :Lang
+
+        def initialize(domain=nil, areas=nil, jobtype=nil, jobdatetime=nil, lang=nil)
+          @Domain = domain
+          @Areas = areas
+          @JobType = jobtype
+          @JobDateTime = jobdatetime
+          @Lang = lang
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          unless params['Areas'].nil?
+            @Areas = []
+            params['Areas'].each do |i|
+              area_tmp = Area.new
+              area_tmp.deserialize(i)
+              @Areas << area_tmp
+            end
+          end
+          @JobType = params['JobType']
+          unless params['JobDateTime'].nil?
+            @JobDateTime = JobDateTime.new
+            @JobDateTime.deserialize(params['JobDateTime'])
+          end
+          @Lang = params['Lang']
+        end
+      end
+
+      # ModifyAreaBanRule返回参数结构体
+      class ModifyAreaBanRuleResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyAreaBanStatus请求参数结构体
       class ModifyAreaBanStatusRequest < TencentCloud::Common::AbstractModel
         # @param Domain: 需要修改的域名
@@ -11171,8 +11400,8 @@ module TencentCloud
 
         attr_accessor :Domain, :IpList, :ActionType, :RuleId, :ValidTS, :InstanceId, :Edition, :SourceType, :Note, :JobType, :JobDateTime
         extend Gem::Deprecate
-        deprecate :ValidTS, :none, 2024, 11
-        deprecate :ValidTS=, :none, 2024, 11
+        deprecate :ValidTS, :none, 2024, 12
+        deprecate :ValidTS=, :none, 2024, 12
 
         def initialize(domain=nil, iplist=nil, actiontype=nil, ruleid=nil, validts=nil, instanceid=nil, edition=nil, sourcetype=nil, note=nil, jobtype=nil, jobdatetime=nil)
           @Domain = domain
@@ -11338,7 +11567,7 @@ module TencentCloud
       class ModifyProtectionStatusRequest < TencentCloud::Common::AbstractModel
         # @param Domain: 域名
         # @type Domain: String
-        # @param Status: 状态
+        # @param Status: 1：开启WAF开关，0：关闭WAF开关
         # @type Status: Integer
         # @param Edition: WAF的版本，clb-waf代表负载均衡WAF、sparta-waf代表SaaS WAF，默认是sparta-waf。
         # @type Edition: String
@@ -12556,10 +12785,10 @@ module TencentCloud
 
         attr_accessor :Context, :ListOver, :Analysis, :ColNames, :Results, :AnalysisResults, :RequestId
         extend Gem::Deprecate
-        deprecate :ColNames, :none, 2024, 11
-        deprecate :ColNames=, :none, 2024, 11
-        deprecate :AnalysisResults, :none, 2024, 11
-        deprecate :AnalysisResults=, :none, 2024, 11
+        deprecate :ColNames, :none, 2024, 12
+        deprecate :ColNames=, :none, 2024, 12
+        deprecate :AnalysisResults, :none, 2024, 12
+        deprecate :AnalysisResults=, :none, 2024, 12
 
         def initialize(context=nil, listover=nil, analysis=nil, colnames=nil, results=nil, analysisresults=nil, requestid=nil)
           @Context = context

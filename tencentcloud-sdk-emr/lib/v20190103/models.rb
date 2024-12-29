@@ -67,6 +67,84 @@ module TencentCloud
         end
       end
 
+      # AddNodeResourceConfig请求参数结构体
+      class AddNodeResourceConfigRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 集群实例Id
+        # @type InstanceId: String
+        # @param ResourceType: 节点类型 CORE TASK ROUTER
+        # @type ResourceType: String
+        # @param ResourceConfig: 资源详情
+        # @type ResourceConfig: :class:`Tencentcloud::Emr.v20190103.models.Resource`
+        # @param PayMode: 付费模式
+        # @type PayMode: Integer
+        # @param IsDefault: 是否默认配置,DEFAULT,BACKUP,不填默认不是默认配置
+        # @type IsDefault: String
+        # @param ZoneId: 地域ID
+        # @type ZoneId: Integer
+        # @param MultipleResourceConfig: 添加多个规格时，第1个规格详情在ResourceConfig参数，第2-n个在MultipleResourceConfig参数
+        # @type MultipleResourceConfig: Array
+        # @param ResourceBaseType: 类型为ComputeResource和EMR以及默认，默认为EMR
+        # @type ResourceBaseType: String
+        # @param ComputeResourceId: 计算资源id
+        # @type ComputeResourceId: String
+        # @param HardwareResourceType: 硬件类型
+        # @type HardwareResourceType: String
+
+        attr_accessor :InstanceId, :ResourceType, :ResourceConfig, :PayMode, :IsDefault, :ZoneId, :MultipleResourceConfig, :ResourceBaseType, :ComputeResourceId, :HardwareResourceType
+
+        def initialize(instanceid=nil, resourcetype=nil, resourceconfig=nil, paymode=nil, isdefault=nil, zoneid=nil, multipleresourceconfig=nil, resourcebasetype=nil, computeresourceid=nil, hardwareresourcetype=nil)
+          @InstanceId = instanceid
+          @ResourceType = resourcetype
+          @ResourceConfig = resourceconfig
+          @PayMode = paymode
+          @IsDefault = isdefault
+          @ZoneId = zoneid
+          @MultipleResourceConfig = multipleresourceconfig
+          @ResourceBaseType = resourcebasetype
+          @ComputeResourceId = computeresourceid
+          @HardwareResourceType = hardwareresourcetype
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @ResourceType = params['ResourceType']
+          unless params['ResourceConfig'].nil?
+            @ResourceConfig = Resource.new
+            @ResourceConfig.deserialize(params['ResourceConfig'])
+          end
+          @PayMode = params['PayMode']
+          @IsDefault = params['IsDefault']
+          @ZoneId = params['ZoneId']
+          unless params['MultipleResourceConfig'].nil?
+            @MultipleResourceConfig = []
+            params['MultipleResourceConfig'].each do |i|
+              resource_tmp = Resource.new
+              resource_tmp.deserialize(i)
+              @MultipleResourceConfig << resource_tmp
+            end
+          end
+          @ResourceBaseType = params['ResourceBaseType']
+          @ComputeResourceId = params['ComputeResourceId']
+          @HardwareResourceType = params['HardwareResourceType']
+        end
+      end
+
+      # AddNodeResourceConfig返回参数结构体
+      class AddNodeResourceConfigResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # AddUsersForUserManager请求参数结构体
       class AddUsersForUserManagerRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 集群字符串ID
@@ -247,6 +325,72 @@ module TencentCloud
         def deserialize(params)
           @Key = params['Key']
           @Values = params['Values']
+        end
+      end
+
+      # AttachDisks请求参数结构体
+      class AttachDisksRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: EMR集群实例ID
+        # @type InstanceId: String
+        # @param DiskIds: 需要挂载的云盘ID
+        # @type DiskIds: Array
+        # @param AlignType: 挂载模式，取值范围：
+        # AUTO_RENEW：自动续费
+        # ALIGN_DEADLINE：自动对其到期时间
+        # @type AlignType: String
+        # @param CvmInstanceIds: 需要挂载的cvm节点id列表
+        # @type CvmInstanceIds: Array
+        # @param CreateDisk: 是否是新购云盘进行挂载
+        # @type CreateDisk: Boolean
+        # @param DiskSpec: 新购云盘规格
+        # @type DiskSpec: :class:`Tencentcloud::Emr.v20190103.models.NodeSpecDiskV2`
+        # @param DeleteWithInstance: 可选参数，不传该参数则仅执行挂载操作。传入True时，会在挂载成功后将云硬盘设置为随云主机销毁模式，仅对按量计费云硬盘有效。
+        # @type DeleteWithInstance: Boolean
+
+        attr_accessor :InstanceId, :DiskIds, :AlignType, :CvmInstanceIds, :CreateDisk, :DiskSpec, :DeleteWithInstance
+
+        def initialize(instanceid=nil, diskids=nil, aligntype=nil, cvminstanceids=nil, createdisk=nil, diskspec=nil, deletewithinstance=nil)
+          @InstanceId = instanceid
+          @DiskIds = diskids
+          @AlignType = aligntype
+          @CvmInstanceIds = cvminstanceids
+          @CreateDisk = createdisk
+          @DiskSpec = diskspec
+          @DeleteWithInstance = deletewithinstance
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @DiskIds = params['DiskIds']
+          @AlignType = params['AlignType']
+          @CvmInstanceIds = params['CvmInstanceIds']
+          @CreateDisk = params['CreateDisk']
+          unless params['DiskSpec'].nil?
+            @DiskSpec = NodeSpecDiskV2.new
+            @DiskSpec.deserialize(params['DiskSpec'])
+          end
+          @DeleteWithInstance = params['DeleteWithInstance']
+        end
+      end
+
+      # AttachDisks返回参数结构体
+      class AttachDisksResponse < TencentCloud::Common::AbstractModel
+        # @param FlowId: 流程id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FlowId: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FlowId, :RequestId
+
+        def initialize(flowid=nil, requestid=nil)
+          @FlowId = flowid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+          @RequestId = params['RequestId']
         end
       end
 
@@ -440,6 +584,93 @@ module TencentCloud
           @Path = params['Path']
           @WhenRun = params['WhenRun']
           @Args = params['Args']
+        end
+      end
+
+      # CBS实例信息
+      class CBSInstance < TencentCloud::Common::AbstractModel
+        # @param DiskId: 云硬盘ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DiskId: String
+        # @param DiskUsage: 云硬盘类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DiskUsage: String
+        # @param DiskName: 云硬盘名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DiskName: String
+        # @param DiskSize: 云硬盘大小
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DiskSize: Integer
+        # @param DiskType: 云盘介质类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DiskType: String
+        # @param DeleteWithInstance: 是否跟随实例删除
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeleteWithInstance: Boolean
+        # @param DiskChargeType: 云硬盘收费类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DiskChargeType: String
+        # @param DiskState: 云硬盘运行状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DiskState: String
+        # @param RenewFlag: 是否自动续费
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RenewFlag: String
+        # @param DeadlineTime: 到期时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeadlineTime: String
+        # @param Attached: 云盘是否挂载到云主机上
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Attached: Boolean
+        # @param DifferDaysOfDeadline: 当前时间距离盘到期的天数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DifferDaysOfDeadline: Integer
+        # @param InstanceIdList: 该云盘当前被挂载到的CVM实例InstanceId
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceIdList: Array
+        # @param InstanceId: 云硬盘挂载的云主机ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceId: String
+        # @param Shareable: 云盘是否为共享型云盘。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Shareable: Boolean
+
+        attr_accessor :DiskId, :DiskUsage, :DiskName, :DiskSize, :DiskType, :DeleteWithInstance, :DiskChargeType, :DiskState, :RenewFlag, :DeadlineTime, :Attached, :DifferDaysOfDeadline, :InstanceIdList, :InstanceId, :Shareable
+
+        def initialize(diskid=nil, diskusage=nil, diskname=nil, disksize=nil, disktype=nil, deletewithinstance=nil, diskchargetype=nil, diskstate=nil, renewflag=nil, deadlinetime=nil, attached=nil, differdaysofdeadline=nil, instanceidlist=nil, instanceid=nil, shareable=nil)
+          @DiskId = diskid
+          @DiskUsage = diskusage
+          @DiskName = diskname
+          @DiskSize = disksize
+          @DiskType = disktype
+          @DeleteWithInstance = deletewithinstance
+          @DiskChargeType = diskchargetype
+          @DiskState = diskstate
+          @RenewFlag = renewflag
+          @DeadlineTime = deadlinetime
+          @Attached = attached
+          @DifferDaysOfDeadline = differdaysofdeadline
+          @InstanceIdList = instanceidlist
+          @InstanceId = instanceid
+          @Shareable = shareable
+        end
+
+        def deserialize(params)
+          @DiskId = params['DiskId']
+          @DiskUsage = params['DiskUsage']
+          @DiskName = params['DiskName']
+          @DiskSize = params['DiskSize']
+          @DiskType = params['DiskType']
+          @DeleteWithInstance = params['DeleteWithInstance']
+          @DiskChargeType = params['DiskChargeType']
+          @DiskState = params['DiskState']
+          @RenewFlag = params['RenewFlag']
+          @DeadlineTime = params['DeadlineTime']
+          @Attached = params['Attached']
+          @DifferDaysOfDeadline = params['DifferDaysOfDeadline']
+          @InstanceIdList = params['InstanceIdList']
+          @InstanceId = params['InstanceId']
+          @Shareable = params['Shareable']
         end
       end
 
@@ -2154,6 +2385,54 @@ module TencentCloud
         end
       end
 
+      # DeleteNodeResourceConfig请求参数结构体
+      class DeleteNodeResourceConfigRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 集群实例Id
+        # @type InstanceId: String
+        # @param ResourceConfigId: 节点配置Id
+        # @type ResourceConfigId: Integer
+        # @param ResourceType: 节点类型 CORE TASK ROUTER
+        # @type ResourceType: String
+        # @param ResourceBaseType: 类型为ComputeResource和EMR以及默认，默认为EMR
+        # @type ResourceBaseType: String
+        # @param ComputeResourceId: 计算资源id
+        # @type ComputeResourceId: String
+
+        attr_accessor :InstanceId, :ResourceConfigId, :ResourceType, :ResourceBaseType, :ComputeResourceId
+
+        def initialize(instanceid=nil, resourceconfigid=nil, resourcetype=nil, resourcebasetype=nil, computeresourceid=nil)
+          @InstanceId = instanceid
+          @ResourceConfigId = resourceconfigid
+          @ResourceType = resourcetype
+          @ResourceBaseType = resourcebasetype
+          @ComputeResourceId = computeresourceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @ResourceConfigId = params['ResourceConfigId']
+          @ResourceType = params['ResourceType']
+          @ResourceBaseType = params['ResourceBaseType']
+          @ComputeResourceId = params['ComputeResourceId']
+        end
+      end
+
+      # DeleteNodeResourceConfig返回参数结构体
+      class DeleteNodeResourceConfigResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteUserManagerUserList请求参数结构体
       class DeleteUserManagerUserListRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 集群实例ID
@@ -3640,6 +3919,152 @@ module TencentCloud
             end
           end
           @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeNodeDataDisks请求参数结构体
+      class DescribeNodeDataDisksRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: EMR集群实例ID
+        # @type InstanceId: String
+        # @param CvmInstanceIds: 节点CVM实例Id列表
+        # @type CvmInstanceIds: Array
+
+        attr_accessor :InstanceId, :CvmInstanceIds
+
+        def initialize(instanceid=nil, cvminstanceids=nil)
+          @InstanceId = instanceid
+          @CvmInstanceIds = cvminstanceids
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @CvmInstanceIds = params['CvmInstanceIds']
+        end
+      end
+
+      # DescribeNodeDataDisks返回参数结构体
+      class DescribeNodeDataDisksResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总数量
+        # @type TotalCount: Integer
+        # @param CBSList: 云盘列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CBSList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :CBSList, :RequestId
+
+        def initialize(totalcount=nil, cbslist=nil, requestid=nil)
+          @TotalCount = totalcount
+          @CBSList = cbslist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['CBSList'].nil?
+            @CBSList = []
+            params['CBSList'].each do |i|
+              cbsinstance_tmp = CBSInstance.new
+              cbsinstance_tmp.deserialize(i)
+              @CBSList << cbsinstance_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeNodeResourceConfigFast请求参数结构体
+      class DescribeNodeResourceConfigFastRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 集群实例Id
+        # @type InstanceId: String
+        # @param ResourceType: 节点类型 CORE TASK ROUTER ALL
+        # @type ResourceType: String
+        # @param PayMode: 计费类型
+        # @type PayMode: Integer
+        # @param ZoneId: 可用区ID
+        # @type ZoneId: Integer
+        # @param ResourceBaseType: 类型为ComputeResource和EMR以及默认，默认为EMR
+        # @type ResourceBaseType: String
+        # @param ComputeResourceId: 计算资源id
+        # @type ComputeResourceId: String
+        # @param HardwareResourceType: 硬件类型
+        # @type HardwareResourceType: String
+
+        attr_accessor :InstanceId, :ResourceType, :PayMode, :ZoneId, :ResourceBaseType, :ComputeResourceId, :HardwareResourceType
+
+        def initialize(instanceid=nil, resourcetype=nil, paymode=nil, zoneid=nil, resourcebasetype=nil, computeresourceid=nil, hardwareresourcetype=nil)
+          @InstanceId = instanceid
+          @ResourceType = resourcetype
+          @PayMode = paymode
+          @ZoneId = zoneid
+          @ResourceBaseType = resourcebasetype
+          @ComputeResourceId = computeresourceid
+          @HardwareResourceType = hardwareresourcetype
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @ResourceType = params['ResourceType']
+          @PayMode = params['PayMode']
+          @ZoneId = params['ZoneId']
+          @ResourceBaseType = params['ResourceBaseType']
+          @ComputeResourceId = params['ComputeResourceId']
+          @HardwareResourceType = params['HardwareResourceType']
+        end
+      end
+
+      # DescribeNodeResourceConfigFast返回参数结构体
+      class DescribeNodeResourceConfigFastResponse < TencentCloud::Common::AbstractModel
+        # @param Data: DescribeResourceConfig接口返回值
+        # @type Data: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              describeresourceconfig_tmp = DescribeResourceConfig.new
+              describeresourceconfig_tmp.deserialize(i)
+              @Data << describeresourceconfig_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeResourceConfig接口出参
+      class DescribeResourceConfig < TencentCloud::Common::AbstractModel
+        # @param ResourceType: 规格管理类型
+        # @type ResourceType: String
+        # @param ResourceData: 规格管理数据
+        # @type ResourceData: Array
+
+        attr_accessor :ResourceType, :ResourceData
+
+        def initialize(resourcetype=nil, resourcedata=nil)
+          @ResourceType = resourcetype
+          @ResourceData = resourcedata
+        end
+
+        def deserialize(params)
+          @ResourceType = params['ResourceType']
+          unless params['ResourceData'].nil?
+            @ResourceData = []
+            params['ResourceData'].each do |i|
+              noderesource_tmp = NodeResource.new
+              noderesource_tmp.deserialize(i)
+              @ResourceData << noderesource_tmp
+            end
+          end
         end
       end
 
@@ -7148,6 +7573,50 @@ module TencentCloud
         end
       end
 
+      # ModifyInstanceBasic请求参数结构体
+      class ModifyInstanceBasicRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 集群实例ID
+        # @type InstanceId: String
+        # @param ClusterName: 集群名称
+        # @type ClusterName: String
+        # @param ResourceBaseType: 用来标注修改计算资源
+        # @type ResourceBaseType: String
+        # @param ComputeResourceId: 需要修改的计算资源id，与ResourceBaseType 配合使用
+        # @type ComputeResourceId: String
+
+        attr_accessor :InstanceId, :ClusterName, :ResourceBaseType, :ComputeResourceId
+
+        def initialize(instanceid=nil, clustername=nil, resourcebasetype=nil, computeresourceid=nil)
+          @InstanceId = instanceid
+          @ClusterName = clustername
+          @ResourceBaseType = resourcebasetype
+          @ComputeResourceId = computeresourceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @ClusterName = params['ClusterName']
+          @ResourceBaseType = params['ResourceBaseType']
+          @ComputeResourceId = params['ComputeResourceId']
+        end
+      end
+
+      # ModifyInstanceBasic返回参数结构体
+      class ModifyInstanceBasicResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyPodNum请求参数结构体
       class ModifyPodNumRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 集群Id
@@ -7245,6 +7714,67 @@ module TencentCloud
         def deserialize(params)
           @IsDraft = params['IsDraft']
           @ErrorMsg = params['ErrorMsg']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyResource请求参数结构体
+      class ModifyResourceRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param PayMode: 计费类型
+        # @type PayMode: Integer
+        # @param NewCpu: 变配CPU
+        # @type NewCpu: Integer
+        # @param NewMem: 变配内存
+        # @type NewMem: Integer
+        # @param ClientToken: Token
+        # @type ClientToken: String
+        # @param InstanceType: 变配机器规格
+        # @type InstanceType: String
+        # @param ResourceIdList: 节点ID列表
+        # @type ResourceIdList: Array
+
+        attr_accessor :InstanceId, :PayMode, :NewCpu, :NewMem, :ClientToken, :InstanceType, :ResourceIdList
+
+        def initialize(instanceid=nil, paymode=nil, newcpu=nil, newmem=nil, clienttoken=nil, instancetype=nil, resourceidlist=nil)
+          @InstanceId = instanceid
+          @PayMode = paymode
+          @NewCpu = newcpu
+          @NewMem = newmem
+          @ClientToken = clienttoken
+          @InstanceType = instancetype
+          @ResourceIdList = resourceidlist
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @PayMode = params['PayMode']
+          @NewCpu = params['NewCpu']
+          @NewMem = params['NewMem']
+          @ClientToken = params['ClientToken']
+          @InstanceType = params['InstanceType']
+          @ResourceIdList = params['ResourceIdList']
+        end
+      end
+
+      # ModifyResource返回参数结构体
+      class ModifyResourceResponse < TencentCloud::Common::AbstractModel
+        # @param TraceId: 流程traceId
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TraceId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TraceId, :RequestId
+
+        def initialize(traceid=nil, requestid=nil)
+          @TraceId = traceid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TraceId = params['TraceId']
           @RequestId = params['RequestId']
         end
       end
@@ -7716,12 +8246,24 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Count: Integer
         # @param Type: 磁盘类型
+        # 1  :本地盘
+        # 2  :云硬盘
+        # 3  : 本地SSD
+        # 4  : 云SSD
+        # 5  : 高效云盘
+        # 6  : 增强型SSD云硬盘
+        # 11 : 吞吐型云硬盘
+        # 12 : 极速型SSD云硬盘
+        # 13 : 通用型SSD云硬盘
+        # 14 : 大数据型云硬盘
+        # 15 : 高IO型云硬盘
+        # 16 : 远端SSD盘
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: Integer
         # @param Size: 磁盘大小
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Size: String
-        # @param Volume: 云盘大小
+        # @param Volume: 云盘大小,单位b
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Volume: Integer
 
@@ -8199,6 +8741,55 @@ module TencentCloud
         end
       end
 
+      # 规格管理，规格类型描述
+      class NodeResource < TencentCloud::Common::AbstractModel
+        # @param ResourceConfigId: 配置Id
+        # @type ResourceConfigId: Integer
+        # @param Resource: Resource
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Resource: :class:`Tencentcloud::Emr.v20190103.models.Resource`
+        # @param CreateTime: 创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param UpdateTime: 更新时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTime: String
+        # @param IsDefault: 是否默认配置,DEFAULT,BACKUP
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsDefault: String
+        # @param MaxResourceNum: 该类型剩余
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MaxResourceNum: Integer
+        # @param PrepaidUnderwritePeriods: 支持的包销时长
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PrepaidUnderwritePeriods: Array
+
+        attr_accessor :ResourceConfigId, :Resource, :CreateTime, :UpdateTime, :IsDefault, :MaxResourceNum, :PrepaidUnderwritePeriods
+
+        def initialize(resourceconfigid=nil, resource=nil, createtime=nil, updatetime=nil, isdefault=nil, maxresourcenum=nil, prepaidunderwriteperiods=nil)
+          @ResourceConfigId = resourceconfigid
+          @Resource = resource
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @IsDefault = isdefault
+          @MaxResourceNum = maxresourcenum
+          @PrepaidUnderwritePeriods = prepaidunderwriteperiods
+        end
+
+        def deserialize(params)
+          @ResourceConfigId = params['ResourceConfigId']
+          unless params['Resource'].nil?
+            @Resource = Resource.new
+            @Resource.deserialize(params['Resource'])
+          end
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          @IsDefault = params['IsDefault']
+          @MaxResourceNum = params['MaxResourceNum']
+          @PrepaidUnderwritePeriods = params['PrepaidUnderwritePeriods']
+        end
+      end
+
       # 资源详情
       class NodeResourceSpec < TencentCloud::Common::AbstractModel
         # @param InstanceType: 规格类型，如S2.MEDIUM8
@@ -8336,6 +8927,38 @@ module TencentCloud
               @MatchExpressions << nodeselectorrequirement_tmp
             end
           end
+        end
+      end
+
+      # 节点磁盘类型
+      class NodeSpecDiskV2 < TencentCloud::Common::AbstractModel
+        # @param Count: 数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Count: Integer
+        # @param Name: 名字
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param DiskType: 磁盘类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DiskType: String
+        # @param DefaultDiskSize: 指定磁盘大小
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DefaultDiskSize: Integer
+
+        attr_accessor :Count, :Name, :DiskType, :DefaultDiskSize
+
+        def initialize(count=nil, name=nil, disktype=nil, defaultdisksize=nil)
+          @Count = count
+          @Name = name
+          @DiskType = disktype
+          @DefaultDiskSize = defaultdisksize
+        end
+
+        def deserialize(params)
+          @Count = params['Count']
+          @Name = params['Name']
+          @DiskType = params['DiskType']
+          @DefaultDiskSize = params['DefaultDiskSize']
         end
       end
 
@@ -9621,6 +10244,55 @@ module TencentCloud
         end
       end
 
+      # ResizeDataDisks请求参数结构体
+      class ResizeDataDisksRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: EMR集群实例ID
+        # @type InstanceId: String
+        # @param DiskIds: 需要扩容的云盘ID
+        # @type DiskIds: Array
+        # @param DiskSize: 需要扩充的容量值，容量值需要大于原容量，并且为10的整数倍
+        # @type DiskSize: Integer
+        # @param CvmInstanceIds: 需要扩容的节点ID列表
+        # @type CvmInstanceIds: Array
+
+        attr_accessor :InstanceId, :DiskIds, :DiskSize, :CvmInstanceIds
+
+        def initialize(instanceid=nil, diskids=nil, disksize=nil, cvminstanceids=nil)
+          @InstanceId = instanceid
+          @DiskIds = diskids
+          @DiskSize = disksize
+          @CvmInstanceIds = cvminstanceids
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @DiskIds = params['DiskIds']
+          @DiskSize = params['DiskSize']
+          @CvmInstanceIds = params['CvmInstanceIds']
+        end
+      end
+
+      # ResizeDataDisks返回参数结构体
+      class ResizeDataDisksResponse < TencentCloud::Common::AbstractModel
+        # @param FlowId: 流程Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FlowId: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FlowId, :RequestId
+
+        def initialize(flowid=nil, requestid=nil)
+          @FlowId = flowid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 资源详情
       class Resource < TencentCloud::Common::AbstractModel
         # @param Spec: 节点规格描述，如CVM.SA2。
@@ -9632,7 +10304,7 @@ module TencentCloud
         # <li>5：表示高效云盘。</li>
         # <li>6：表示增强型SSD云硬盘。</li>
         # <li>11：表示吞吐型云硬盘。</li>
-        # <li>12：表示极速型SSD云硬盘。</li>
+        # <li>12：表示极速型SSD云硬盘。</li>：创建时该类型无效，会根据数据盘类型和节点类型自动判断
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StorageType: Integer
         # @param DiskType: 磁盘类型
@@ -10810,6 +11482,58 @@ module TencentCloud
         end
       end
 
+      # SetNodeResourceConfigDefault请求参数结构体
+      class SetNodeResourceConfigDefaultRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 集群实例Id
+        # @type InstanceId: String
+        # @param ResourceConfigId: 配置Id
+        # @type ResourceConfigId: Integer
+        # @param ResourceType: 规格节点类型 CORE TASK ROUTER
+        # @type ResourceType: String
+        # @param ResourceBaseType: 类型为ComputeResource和EMR以及默认，默认为EMR
+        # @type ResourceBaseType: String
+        # @param ComputeResourceId: 计算资源id
+        # @type ComputeResourceId: String
+        # @param HardwareResourceType: 硬件类型
+        # @type HardwareResourceType: String
+
+        attr_accessor :InstanceId, :ResourceConfigId, :ResourceType, :ResourceBaseType, :ComputeResourceId, :HardwareResourceType
+
+        def initialize(instanceid=nil, resourceconfigid=nil, resourcetype=nil, resourcebasetype=nil, computeresourceid=nil, hardwareresourcetype=nil)
+          @InstanceId = instanceid
+          @ResourceConfigId = resourceconfigid
+          @ResourceType = resourcetype
+          @ResourceBaseType = resourcebasetype
+          @ComputeResourceId = computeresourceid
+          @HardwareResourceType = hardwareresourcetype
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @ResourceConfigId = params['ResourceConfigId']
+          @ResourceType = params['ResourceType']
+          @ResourceBaseType = params['ResourceBaseType']
+          @ComputeResourceId = params['ComputeResourceId']
+          @HardwareResourceType = params['HardwareResourceType']
+        end
+      end
+
+      # SetNodeResourceConfigDefault返回参数结构体
+      class SetNodeResourceConfigDefaultResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 节点信息
       class ShortNodeInfo < TencentCloud::Common::AbstractModel
         # @param NodeType: 节点类型，Master/Core/Task/Router/Common
@@ -10937,7 +11661,7 @@ module TencentCloud
 
       # 任务步骤详情
       class StageInfoDetail < TencentCloud::Common::AbstractModel
-        # @param Stage: 步骤id
+        # @param Stage: 步骤
         # @type Stage: String
         # @param Name: 步骤名
         # 注意：此字段可能返回 null，表示取不到有效值。

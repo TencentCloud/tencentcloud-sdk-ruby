@@ -22,24 +22,18 @@ module TencentCloud
         # @param IsSupportSlaveZone: 是否支持从可用区
         # @type IsSupportSlaveZone: String
         # @param NonsupportSlaveZoneReason: 不支持从可用区的原因
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NonsupportSlaveZoneReason: String
         # @param IsSupportRo: 是否支持RO实例
         # @type IsSupportRo: String
         # @param NonsupportRoReason: 不支持RO实例的原因
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NonsupportRoReason: String
         # @param IsSupportManualSnapshot: 是否支持手动发起快照备份
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsSupportManualSnapshot: String
         # @param IsSupportTransparentDataEncryption: 是否支持透明数据加密
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsSupportTransparentDataEncryption: String
         # @param NoSupportTransparentDataEncryptionReason: 不支持透明数据加密原因
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NoSupportTransparentDataEncryptionReason: String
         # @param IsSupportManualLogic: 是否支持手动发起逻辑备份
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsSupportManualLogic: String
 
         attr_accessor :IsSupportSlaveZone, :NonsupportSlaveZoneReason, :IsSupportRo, :NonsupportRoReason, :IsSupportManualSnapshot, :IsSupportTransparentDataEncryption, :NoSupportTransparentDataEncryptionReason, :IsSupportManualLogic
@@ -497,7 +491,7 @@ module TencentCloud
         # @param LockWaitTime: 锁等待时间，微秒。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LockWaitTime: Integer
-        # @param TrxLivingTime: 事物持续等待时间，微秒。
+        # @param TrxLivingTime: 事务持续等待时间，微秒。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TrxLivingTime: Integer
         # @param NsTime: 开始时间，与timestamp构成一个精确到纳秒的时间。
@@ -582,13 +576,10 @@ module TencentCloud
         # "success" - 已生成;
         # @type Status: String
         # @param FileSize: 文件大小，单位为 KB。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FileSize: Integer
         # @param DownloadUrl: 审计日志下载地址。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DownloadUrl: String
         # @param ErrMsg: 错误信息。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrMsg: String
 
         attr_accessor :FileName, :CreateTime, :Status, :FileSize, :DownloadUrl, :ErrMsg
@@ -3315,13 +3306,10 @@ module TencentCloud
       # 实例错误日志返回类型
       class CynosdbErrorLogItem < TencentCloud::Common::AbstractModel
         # @param Timestamp: 日志时间戳
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Timestamp: Integer
         # @param Level: 日志等级
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Level: String
         # @param Content: 日志内容
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Content: String
 
         attr_accessor :Timestamp, :Level, :Content
@@ -3694,7 +3682,6 @@ module TencentCloud
         # @param MaxCpu: serverless实例cpu上限
         # @type MaxCpu: Float
         # @param DbMode: Db类型:<li>NORMAL</li><li>SERVERLESS</li>
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DbMode: String
 
         attr_accessor :Uin, :AppId, :ClusterId, :ClusterName, :InstanceId, :InstanceName, :ProjectId, :Region, :Zone, :Status, :StatusDesc, :ServerlessStatus, :DbType, :DbVersion, :Cpu, :Memory, :Storage, :InstanceType, :InstanceRole, :UpdateTime, :CreateTime, :PayMode, :PeriodEndTime, :NetType, :VpcId, :SubnetId, :Vip, :Vport, :WanDomain, :Charset, :CynosVersion, :RenewFlag, :MinCpu, :MaxCpu, :DbMode
@@ -3790,7 +3777,7 @@ module TencentCloud
         # @type InstanceGroupId: String
         # @param Status: 状态
         # @type Status: String
-        # @param Type: 实例组类型。ha-ha组；ro-只读组
+        # @param Type: 实例组（网络）类型。ha-ha组；ro-只读组；proxy-代理；singleRo-只读实例独占
         # @type Type: String
         # @param UpdatedTime: 更新时间
         # @type UpdatedTime: String
@@ -4771,7 +4758,7 @@ module TencentCloud
 
       # DescribeAuditLogs请求参数结构体
       class DescribeAuditLogsRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
+        # @param InstanceId: 实例 ID。
         # @type InstanceId: String
         # @param StartTime: 开始时间，格式为："2017-07-12 10:29:20"。
         # @type StartTime: String
@@ -4789,6 +4776,7 @@ module TencentCloud
         # @param Limit: 分页参数，单次返回的数据条数。默认值为100，最大值为100。
         # @type Limit: Integer
         # @param Offset: 分页偏移量。
+        # 说明：Limit 和 Offset 的取值之和需小于等于65536。
         # @type Offset: Integer
         # @param LogFilter: 过滤条件。多个值之前是且的关系。
         # @type LogFilter: Array

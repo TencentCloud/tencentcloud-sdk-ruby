@@ -12348,10 +12348,20 @@ module TencentCloud
         # @type VatElectronicItems: Array
         # @param ServiceTypeLabel: 业务类型标志
         # @type ServiceTypeLabel: String
+        # @param TotalCnMark: 价税合计(大写)前符号
+        # @type TotalCnMark: String
+        # @param TotalMark: 价税合计(小写)前字样
+        # @type TotalMark: String
+        # @param PretaxAmountMark: 合计金额前字样
+        # @type PretaxAmountMark: String
+        # @param TaxMark: 合计税额前字样
+        # @type TaxMark: String
+        # @param CompanySealMark: 是否有公司印章（0：没有，1：有）
+        # @type CompanySealMark: Integer
 
-        attr_accessor :Title, :Number, :Date, :PretaxAmount, :Tax, :Total, :TotalCn, :Seller, :SellerTaxID, :Buyer, :BuyerTaxID, :Issuer, :Remark, :SubTotal, :SubTax, :VatElectronicItems, :ServiceTypeLabel
+        attr_accessor :Title, :Number, :Date, :PretaxAmount, :Tax, :Total, :TotalCn, :Seller, :SellerTaxID, :Buyer, :BuyerTaxID, :Issuer, :Remark, :SubTotal, :SubTax, :VatElectronicItems, :ServiceTypeLabel, :TotalCnMark, :TotalMark, :PretaxAmountMark, :TaxMark, :CompanySealMark
 
-        def initialize(title=nil, number=nil, date=nil, pretaxamount=nil, tax=nil, total=nil, totalcn=nil, seller=nil, sellertaxid=nil, buyer=nil, buyertaxid=nil, issuer=nil, remark=nil, subtotal=nil, subtax=nil, vatelectronicitems=nil, servicetypelabel=nil)
+        def initialize(title=nil, number=nil, date=nil, pretaxamount=nil, tax=nil, total=nil, totalcn=nil, seller=nil, sellertaxid=nil, buyer=nil, buyertaxid=nil, issuer=nil, remark=nil, subtotal=nil, subtax=nil, vatelectronicitems=nil, servicetypelabel=nil, totalcnmark=nil, totalmark=nil, pretaxamountmark=nil, taxmark=nil, companysealmark=nil)
           @Title = title
           @Number = number
           @Date = date
@@ -12369,6 +12379,11 @@ module TencentCloud
           @SubTax = subtax
           @VatElectronicItems = vatelectronicitems
           @ServiceTypeLabel = servicetypelabel
+          @TotalCnMark = totalcnmark
+          @TotalMark = totalmark
+          @PretaxAmountMark = pretaxamountmark
+          @TaxMark = taxmark
+          @CompanySealMark = companysealmark
         end
 
         def deserialize(params)
@@ -12396,6 +12411,11 @@ module TencentCloud
             end
           end
           @ServiceTypeLabel = params['ServiceTypeLabel']
+          @TotalCnMark = params['TotalCnMark']
+          @TotalMark = params['TotalMark']
+          @PretaxAmountMark = params['PretaxAmountMark']
+          @TaxMark = params['TaxMark']
+          @CompanySealMark = params['CompanySealMark']
         end
       end
 

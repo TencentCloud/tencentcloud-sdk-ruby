@@ -35,10 +35,12 @@ module TencentCloud
         # @type AccountType: String
         # @param IsCam: 是否开启CAM验证
         # @type IsCam: Boolean
+        # @param EncryptedVersion: 加密密钥版本号，0表示不使用加密
+        # @type EncryptedVersion: Integer
 
-        attr_accessor :UserName, :Password, :DBPrivileges, :Remark, :IsAdmin, :Authentication, :AccountType, :IsCam
+        attr_accessor :UserName, :Password, :DBPrivileges, :Remark, :IsAdmin, :Authentication, :AccountType, :IsCam, :EncryptedVersion
 
-        def initialize(username=nil, password=nil, dbprivileges=nil, remark=nil, isadmin=nil, authentication=nil, accounttype=nil, iscam=nil)
+        def initialize(username=nil, password=nil, dbprivileges=nil, remark=nil, isadmin=nil, authentication=nil, accounttype=nil, iscam=nil, encryptedversion=nil)
           @UserName = username
           @Password = password
           @DBPrivileges = dbprivileges
@@ -47,6 +49,7 @@ module TencentCloud
           @Authentication = authentication
           @AccountType = accounttype
           @IsCam = iscam
+          @EncryptedVersion = encryptedversion
         end
 
         def deserialize(params)
@@ -65,6 +68,7 @@ module TencentCloud
           @Authentication = params['Authentication']
           @AccountType = params['AccountType']
           @IsCam = params['IsCam']
+          @EncryptedVersion = params['EncryptedVersion']
         end
       end
 
@@ -145,17 +149,21 @@ module TencentCloud
         # @type UserName: String
         # @param Password: 密码
         # @type Password: String
+        # @param EncryptedVersion: 加密密钥版本号，0表示不使用加密
+        # @type EncryptedVersion: Integer
 
-        attr_accessor :UserName, :Password
+        attr_accessor :UserName, :Password, :EncryptedVersion
 
-        def initialize(username=nil, password=nil)
+        def initialize(username=nil, password=nil, encryptedversion=nil)
           @UserName = username
           @Password = password
+          @EncryptedVersion = encryptedversion
         end
 
         def deserialize(params)
           @UserName = params['UserName']
           @Password = params['Password']
+          @EncryptedVersion = params['EncryptedVersion']
         end
       end
 
@@ -536,7 +544,6 @@ module TencentCloud
       # 实例变配检查条目
       class CheckItem < TencentCloud::Common::AbstractModel
         # @param CheckName: 检查项目名称，CK_CPU-变配后CPU风险检查；CK_MASTER_STORAGE-只读副本变配下，只读副本磁盘空间不小于主实例空间检查；CK_MEMORY-变配后内存风险检查；CK_STORAGE-变配后磁盘空间风险检查；CK_UPGRATE-变配是否需要迁移检查；
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CheckName: String
         # @param CurrentValue: 检查项目返回值，CK_CPU-当前CPU近7天最大的使用率(%) ；CK_MASTER_STORAGE-主实例的磁盘空间(GB)；CK_MEMORY-当前内存近7天最大的使用值（GB)；
         # CK_STORAGE-当前磁盘近7天最大的使用值（GB)；CK_UPGRATE- 当前变配检查是否需要迁移，MIGRATE需要迁移变配，LOCAL本地变配；
@@ -1115,10 +1122,8 @@ module TencentCloud
         # @param DealName: 订单名称
         # @type DealName: String
         # @param FlowId: 流程ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FlowId: Integer
         # @param InstanceIdSet: 实例ID集合
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceIdSet: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2230,7 +2235,7 @@ module TencentCloud
         # @type VersionName: String
         # @param RenewFlag: 实例续费标记，0-正常续费，1-自动续费，2-到期不续费
         # @type RenewFlag: Integer
-        # @param Model: 实例高可用， 1-双机高可用，2-单机，3-跨可用区，4-集群跨可用区，5-集群，9-自研机房
+        # @param Model: 实例高可用， 1-双机高可用，2-单机，3-跨可用区，4-集群跨可用区，5-集群，6-多节点集群，7-多节点集群跨可用区，9-自研机房
         # @type Model: Integer
         # @param Region: 实例所在地域名称，如 ap-guangzhou
         # @type Region: String
@@ -2255,25 +2260,19 @@ module TencentCloud
         # @param UniqSubnetId: 实例所属子网的唯一字符串ID，格式如： subnet-xxx，基础网络时为空字符串
         # @type UniqSubnetId: String
         # @param IsolateOperator: 实例隔离操作
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsolateOperator: String
         # @param SubFlag: 发布订阅标识，SUB-订阅实例，PUB-发布实例，空值-没有发布订阅的普通实例
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubFlag: String
         # @param ROFlag: 只读标识，RO-只读实例，MASTER-有RO实例的主实例，空值-没有只读组的非RO实例
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ROFlag: String
         # @param HAFlag: 容灾类型，MIRROR-镜像，ALWAYSON-AlwaysOn, SINGLE-单例
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HAFlag: String
         # @param ResourceTags: 实例绑定的标签列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceTags: Array
         # @param BackupModel: 备份模式，master_pkg-主节点打包备份(默认) ；master_no_pkg-主节点不打包备份；slave_pkg-从节点打包备份(always on集群有效)；slave_no_pkg-从节点不打包备份(always on集群有效)；只读副本对该值无效。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BackupModel: String
         # @param InstanceNote: 实例备份信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceNote: String
         # @param BackupCycle: 备份周期
         # @type BackupCycle: Array
@@ -2281,7 +2280,7 @@ module TencentCloud
         # @type BackupCycleType: String
         # @param BackupSaveDays: 数据(日志)备份保留时间
         # @type BackupSaveDays: Integer
-        # @param InstanceType: 实例类型 HA-高可用 RO-只读实例 SI-基础版 BI-商业智能服务
+        # @param InstanceType: 实例类型 HA-高可用，RO-只读实例，SI-基础版，BI-商业智能服务，cvmHA-云盘高可用，cvmRO-云盘只读实例，MultiHA-多节点，cvmMultiHA-云盘多节点
         # @type InstanceType: String
         # @param CrossRegions: 跨地域备份目的地域，如果为空，则表示未开启跨地域备份
         # @type CrossRegions: Array
@@ -2299,19 +2298,18 @@ module TencentCloud
         # @type TimeZone: String
         # @param IsDrZone: 是否跨AZ
         # @type IsDrZone: Boolean
-        # @param SlaveZones: 备可用区信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param SlaveZones: 双节点实例备可用区信息
         # @type SlaveZones: :class:`Tencentcloud::Sqlserver.v20180328.models.SlaveZones`
         # @param Architecture: 架构标识，SINGLE-单节点 DOUBLE-双节点
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Architecture: String
         # @param Style: 类型标识，EXCLUSIVE-独享型，SHARED-共享型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Style: String
+        # @param MultiSlaveZones: 多节点实例备可用区信息
+        # @type MultiSlaveZones: Array
 
-        attr_accessor :InstanceId, :Name, :ProjectId, :RegionId, :ZoneId, :VpcId, :SubnetId, :Status, :Vip, :Vport, :CreateTime, :UpdateTime, :StartTime, :EndTime, :IsolateTime, :Memory, :UsedStorage, :Storage, :VersionName, :RenewFlag, :Model, :Region, :Zone, :BackupTime, :PayMode, :Uid, :Cpu, :Version, :Type, :Pid, :UniqVpcId, :UniqSubnetId, :IsolateOperator, :SubFlag, :ROFlag, :HAFlag, :ResourceTags, :BackupModel, :InstanceNote, :BackupCycle, :BackupCycleType, :BackupSaveDays, :InstanceType, :CrossRegions, :CrossBackupEnabled, :CrossBackupSaveDays, :DnsPodDomain, :TgwWanVPort, :Collation, :TimeZone, :IsDrZone, :SlaveZones, :Architecture, :Style
+        attr_accessor :InstanceId, :Name, :ProjectId, :RegionId, :ZoneId, :VpcId, :SubnetId, :Status, :Vip, :Vport, :CreateTime, :UpdateTime, :StartTime, :EndTime, :IsolateTime, :Memory, :UsedStorage, :Storage, :VersionName, :RenewFlag, :Model, :Region, :Zone, :BackupTime, :PayMode, :Uid, :Cpu, :Version, :Type, :Pid, :UniqVpcId, :UniqSubnetId, :IsolateOperator, :SubFlag, :ROFlag, :HAFlag, :ResourceTags, :BackupModel, :InstanceNote, :BackupCycle, :BackupCycleType, :BackupSaveDays, :InstanceType, :CrossRegions, :CrossBackupEnabled, :CrossBackupSaveDays, :DnsPodDomain, :TgwWanVPort, :Collation, :TimeZone, :IsDrZone, :SlaveZones, :Architecture, :Style, :MultiSlaveZones
 
-        def initialize(instanceid=nil, name=nil, projectid=nil, regionid=nil, zoneid=nil, vpcid=nil, subnetid=nil, status=nil, vip=nil, vport=nil, createtime=nil, updatetime=nil, starttime=nil, endtime=nil, isolatetime=nil, memory=nil, usedstorage=nil, storage=nil, versionname=nil, renewflag=nil, model=nil, region=nil, zone=nil, backuptime=nil, paymode=nil, uid=nil, cpu=nil, version=nil, type=nil, pid=nil, uniqvpcid=nil, uniqsubnetid=nil, isolateoperator=nil, subflag=nil, roflag=nil, haflag=nil, resourcetags=nil, backupmodel=nil, instancenote=nil, backupcycle=nil, backupcycletype=nil, backupsavedays=nil, instancetype=nil, crossregions=nil, crossbackupenabled=nil, crossbackupsavedays=nil, dnspoddomain=nil, tgwwanvport=nil, collation=nil, timezone=nil, isdrzone=nil, slavezones=nil, architecture=nil, style=nil)
+        def initialize(instanceid=nil, name=nil, projectid=nil, regionid=nil, zoneid=nil, vpcid=nil, subnetid=nil, status=nil, vip=nil, vport=nil, createtime=nil, updatetime=nil, starttime=nil, endtime=nil, isolatetime=nil, memory=nil, usedstorage=nil, storage=nil, versionname=nil, renewflag=nil, model=nil, region=nil, zone=nil, backuptime=nil, paymode=nil, uid=nil, cpu=nil, version=nil, type=nil, pid=nil, uniqvpcid=nil, uniqsubnetid=nil, isolateoperator=nil, subflag=nil, roflag=nil, haflag=nil, resourcetags=nil, backupmodel=nil, instancenote=nil, backupcycle=nil, backupcycletype=nil, backupsavedays=nil, instancetype=nil, crossregions=nil, crossbackupenabled=nil, crossbackupsavedays=nil, dnspoddomain=nil, tgwwanvport=nil, collation=nil, timezone=nil, isdrzone=nil, slavezones=nil, architecture=nil, style=nil, multislavezones=nil)
           @InstanceId = instanceid
           @Name = name
           @ProjectId = projectid
@@ -2366,6 +2364,7 @@ module TencentCloud
           @SlaveZones = slavezones
           @Architecture = architecture
           @Style = style
+          @MultiSlaveZones = multislavezones
         end
 
         def deserialize(params)
@@ -2433,6 +2432,14 @@ module TencentCloud
           end
           @Architecture = params['Architecture']
           @Style = params['Style']
+          unless params['MultiSlaveZones'].nil?
+            @MultiSlaveZones = []
+            params['MultiSlaveZones'].each do |i|
+              slavezones_tmp = SlaveZones.new
+              slavezones_tmp.deserialize(i)
+              @MultiSlaveZones << slavezones_tmp
+            end
+          end
         end
       end
 
@@ -2652,7 +2659,6 @@ module TencentCloud
         # @param CreateTime: 数据库创建时间
         # @type CreateTime: String
         # @param IsFullTextEnabled: 是否全文启用 0：否 1：是
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsFullTextEnabled: String
 
         attr_accessor :IsSubscribed, :CollationName, :IsAutoCleanupOn, :IsBrokerEnabled, :IsCdcEnabled, :IsDbChainingOn, :IsEncrypted, :IsFulltextEnabled, :IsMirroring, :IsPublished, :IsReadCommittedSnapshotOn, :IsTrustworthyOn, :MirroringState, :Name, :RecoveryModelDesc, :RetentionPeriod, :StateDesc, :UserAccessDesc, :CreateTime, :IsFullTextEnabled
@@ -5216,7 +5222,6 @@ module TencentCloud
       # DescribeInquiryPriceParameter返回参数结构体
       class DescribeInquiryPriceParameterResponse < TencentCloud::Common::AbstractModel
         # @param Parameter: 计费参数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Parameter: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5448,7 +5453,7 @@ module TencentCloud
         # @type Memory: Integer
         # @param Storage: 实例磁盘大小，单位GB
         # @type Storage: Integer
-        # @param InstanceType: 购买实例的类型 HA-高可用型(包括双机高可用，alwaysOn集群)，RO-只读副本型，SI-单节点型,BI-商业智能服务,cvmHA-新版高可用,cvmRO-新版只读
+        # @param InstanceType: 购买实例的类型 HA-高可用型(包括双机高可用，alwaysOn集群)，RO-只读副本型，SI-单节点型,BI-商业智能服务,cvmHA-新版高可用,cvmRO-新版只读，MultiHA-多节点，cvmMultiHA-云盘多节点
         # @type InstanceType: String
         # @param MachineType: 购买实例的宿主机磁盘类型,CLOUD_HSSD-云服务器加强型SSD云盘，CLOUD_TSSD-云服务器极速型SSD云盘，CLOUD_BSSD-云服务器通用型SSD云盘
         # @type MachineType: String
@@ -5484,10 +5489,14 @@ module TencentCloud
         # @type TimeZone: String
         # @param Collation: 系统字符集排序规则，默认：Chinese_PRC_CI_AS
         # @type Collation: String
+        # @param MultiNodes: 是否多节点架构，默认值为false
+        # @type MultiNodes: Boolean
+        # @param DrZones: 备节点可用区，默认为空。如果是多节点架构时必传，并且当MultiZones=true时备节点可用区不能全部相同。备机可用区集合最小为2个，最大不超过5个。
+        # @type DrZones: Array
 
-        attr_accessor :Zone, :Cpu, :Memory, :Storage, :InstanceType, :MachineType, :InstanceChargeType, :ProjectId, :GoodsNum, :DBVersion, :SubnetId, :VpcId, :Period, :SecurityGroupList, :AutoRenewFlag, :Weekly, :StartTime, :Span, :MultiZones, :ResourceTags, :TimeZone, :Collation
+        attr_accessor :Zone, :Cpu, :Memory, :Storage, :InstanceType, :MachineType, :InstanceChargeType, :ProjectId, :GoodsNum, :DBVersion, :SubnetId, :VpcId, :Period, :SecurityGroupList, :AutoRenewFlag, :Weekly, :StartTime, :Span, :MultiZones, :ResourceTags, :TimeZone, :Collation, :MultiNodes, :DrZones
 
-        def initialize(zone=nil, cpu=nil, memory=nil, storage=nil, instancetype=nil, machinetype=nil, instancechargetype=nil, projectid=nil, goodsnum=nil, dbversion=nil, subnetid=nil, vpcid=nil, period=nil, securitygrouplist=nil, autorenewflag=nil, weekly=nil, starttime=nil, span=nil, multizones=nil, resourcetags=nil, timezone=nil, collation=nil)
+        def initialize(zone=nil, cpu=nil, memory=nil, storage=nil, instancetype=nil, machinetype=nil, instancechargetype=nil, projectid=nil, goodsnum=nil, dbversion=nil, subnetid=nil, vpcid=nil, period=nil, securitygrouplist=nil, autorenewflag=nil, weekly=nil, starttime=nil, span=nil, multizones=nil, resourcetags=nil, timezone=nil, collation=nil, multinodes=nil, drzones=nil)
           @Zone = zone
           @Cpu = cpu
           @Memory = memory
@@ -5510,6 +5519,8 @@ module TencentCloud
           @ResourceTags = resourcetags
           @TimeZone = timezone
           @Collation = collation
+          @MultiNodes = multinodes
+          @DrZones = drzones
         end
 
         def deserialize(params)
@@ -5542,13 +5553,14 @@ module TencentCloud
           end
           @TimeZone = params['TimeZone']
           @Collation = params['Collation']
+          @MultiNodes = params['MultiNodes']
+          @DrZones = params['DrZones']
         end
       end
 
       # DescribeInstanceTradeParameter返回参数结构体
       class DescribeInstanceTradeParameterResponse < TencentCloud::Common::AbstractModel
         # @param Parameter: 计费参数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Parameter: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -7209,43 +7221,62 @@ module TencentCloud
 
       # 备机只读信息
       class DrReadableInfo < TencentCloud::Common::AbstractModel
-        # @param SlaveStatus: 备机状态，enable-运行中，disable-不可用
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param DrInstanceId: 备机资源ID
+        # @type DrInstanceId: String
+        # @param Zone: 备机可用区
+        # @type Zone: String
+        # @param SlaveStatus: 备机状态
+        # DR_CREATING-备机创建中
+        # DR_RUNNING-备机运行中
+        # DR_UNAVAILABLE-备机不可用
+        # DR_ISOLATED-备机已隔离
+        # DR_RECYCLING-备机回收中
+        # DR_RECYCLED-备机已回收
+        # DR_JOB_RUNNING-备机执行任务中
+        # DR_OFFLINE-备机已下线
+        # DR_FAIL_OVER-备机只读故障转移中
         # @type SlaveStatus: String
         # @param ReadableStatus: 备机可读状态，enable-已开启，disable-已关闭
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReadableStatus: String
         # @param Vip: 备机只读vip
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Vip: String
         # @param VPort: 备机只读端口
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VPort: Integer
         # @param UniqVpcId: 备机所在私有网络ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UniqVpcId: String
         # @param UniqSubnetId: 备机所在私有网络子网ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UniqSubnetId: String
+        # @param RoWeight: 备机只读权重
+        # @type RoWeight: Integer
+        # @param ReadMode: 备机只读模式，BalancedReadOnly-多备一读模式，SingleReadOnly-一备一读模式
+        # @type ReadMode: String
 
-        attr_accessor :SlaveStatus, :ReadableStatus, :Vip, :VPort, :UniqVpcId, :UniqSubnetId
+        attr_accessor :DrInstanceId, :Zone, :SlaveStatus, :ReadableStatus, :Vip, :VPort, :UniqVpcId, :UniqSubnetId, :RoWeight, :ReadMode
 
-        def initialize(slavestatus=nil, readablestatus=nil, vip=nil, vport=nil, uniqvpcid=nil, uniqsubnetid=nil)
+        def initialize(drinstanceid=nil, zone=nil, slavestatus=nil, readablestatus=nil, vip=nil, vport=nil, uniqvpcid=nil, uniqsubnetid=nil, roweight=nil, readmode=nil)
+          @DrInstanceId = drinstanceid
+          @Zone = zone
           @SlaveStatus = slavestatus
           @ReadableStatus = readablestatus
           @Vip = vip
           @VPort = vport
           @UniqVpcId = uniqvpcid
           @UniqSubnetId = uniqsubnetid
+          @RoWeight = roweight
+          @ReadMode = readmode
         end
 
         def deserialize(params)
+          @DrInstanceId = params['DrInstanceId']
+          @Zone = params['Zone']
           @SlaveStatus = params['SlaveStatus']
           @ReadableStatus = params['ReadableStatus']
           @Vip = params['Vip']
           @VPort = params['VPort']
           @UniqVpcId = params['UniqVpcId']
           @UniqSubnetId = params['UniqSubnetId']
+          @RoWeight = params['RoWeight']
+          @ReadMode = params['ReadMode']
         end
       end
 
@@ -7871,7 +7902,6 @@ module TencentCloud
         # @param MigrationId: 备份导入任务ID 或 增量导入任务ID
         # @type MigrationId: String
         # @param MigrationName: 备份导入名称，增量导入任务该字段为空
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MigrationName: String
         # @param AppId: 应用ID
         # @type AppId: Integer
@@ -7900,7 +7930,6 @@ module TencentCloud
         # @param Action: 当前状态允许的操作
         # @type Action: :class:`Tencentcloud::Sqlserver.v20180328.models.MigrationAction`
         # @param IsRecovery: 是否是最终恢复，全量导入任务该字段为空
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsRecovery: String
         # @param DBRename: 重命名的数据库名称集合
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -7991,7 +8020,6 @@ module TencentCloud
         # @param Progress: 总进度,如："30"表示30%
         # @type Progress: Integer
         # @param StepInfo: 步骤信息，null表示还未开始迁移
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StepInfo: Array
 
         attr_accessor :StepAll, :StepNow, :Progress, :StepInfo
@@ -9646,7 +9674,6 @@ module TencentCloud
         # @param RecycleTime: ip回收时间
         # @type RecycleTime: String
         # @param OldIpRetainTime: 旧IP保留时间小时数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OldIpRetainTime: Integer
 
         attr_accessor :Vip, :RecycleTime, :OldIpRetainTime
@@ -9818,16 +9845,12 @@ module TencentCloud
       # 参考价格，该价格为CPU、内存规格价格，不包括磁盘用量，实际价格以询价接口为准。
       class Price < TencentCloud::Common::AbstractModel
         # @param PrepaidPrice: 包年包月参考价格，单位-分
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PrepaidPrice: Integer
         # @param PrepaidPriceUnit: 包年包月价格单位，M-月
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PrepaidPriceUnit: String
         # @param PostpaidPrice: 按量付费价格，单位-分
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PostpaidPrice: Integer
         # @param PostpaidPriceUnit: 按量付费价格单位，H-小时
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PostpaidPriceUnit: String
 
         attr_accessor :PrepaidPrice, :PrepaidPriceUnit, :PostpaidPrice, :PostpaidPriceUnit
@@ -10812,13 +10835,10 @@ module TencentCloud
         # disable_doing-关闭中
         # renew_doing-更新中
         # wait_doing-等待维护时间内执行
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Encryption: String
         # @param SSLValidityPeriod: SSL证书有效期，时间格式 YYYY-MM-DD HH:MM:SS
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SSLValidityPeriod: String
         # @param SSLValidity: SSL证书有效性，0-无效，1-有效
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SSLValidity: Integer
         # @param IsKMS: 是否是KMS的CMK证书
         # @type IsKMS: Integer
@@ -10956,17 +10976,21 @@ module TencentCloud
         # @type SlaveZone: String
         # @param SlaveZoneName: 备可用区
         # @type SlaveZoneName: String
+        # @param DrInstanceId: 备机资源ID
+        # @type DrInstanceId: String
 
-        attr_accessor :SlaveZone, :SlaveZoneName
+        attr_accessor :SlaveZone, :SlaveZoneName, :DrInstanceId
 
-        def initialize(slavezone=nil, slavezonename=nil)
+        def initialize(slavezone=nil, slavezonename=nil, drinstanceid=nil)
           @SlaveZone = slavezone
           @SlaveZoneName = slavezonename
+          @DrInstanceId = drinstanceid
         end
 
         def deserialize(params)
           @SlaveZone = params['SlaveZone']
           @SlaveZoneName = params['SlaveZoneName']
+          @DrInstanceId = params['DrInstanceId']
         end
       end
 
@@ -10987,7 +11011,6 @@ module TencentCloud
         # @param ExternalAddr: 外网下载地址
         # @type ExternalAddr: String
         # @param Status: 状态（1成功 2失败）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
 
         attr_accessor :Id, :StartTime, :EndTime, :Size, :Count, :InternalAddr, :ExternalAddr, :Status
@@ -11087,7 +11110,6 @@ module TencentCloud
         # @param Pid: 此规格对应的包年包月Pid
         # @type Pid: Integer
         # @param PostPid: 此规格对应的按量计费Pid列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PostPid: Array
         # @param PayModeStatus: 此规格下支持的付费模式，POST-仅支持按量计费 PRE-仅支持包年包月 ALL-支持所有
         # @type PayModeStatus: String
@@ -11539,19 +11561,14 @@ module TencentCloud
       # 主备切换日志
       class SwitchLog < TencentCloud::Common::AbstractModel
         # @param EventId: 切换事件ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EventId: String
         # @param SwitchType: 切换模式 0-系统自动切换，1-手动切换
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SwitchType: Integer
         # @param StartTime: 切换开始时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StartTime: String
         # @param EndTime: 切换结束时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EndTime: String
         # @param Reason: 机器故障导致自动切换
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Reason: String
 
         attr_accessor :EventId, :SwitchType, :StartTime, :EndTime, :Reason
@@ -11580,7 +11597,6 @@ module TencentCloud
         # @param CertificateAttribution: 证书归属。self-表示使用该账号自身的证书，others-表示引用其他账号的证书，none-表示没有证书
         # @type CertificateAttribution: String
         # @param QuoteUin: 开通TDE加密时引用的其他主账号ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type QuoteUin: String
         # @param CMKId: KMS中购买的用户主密钥ID（CMK）
         # @type CMKId: String

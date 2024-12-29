@@ -1342,14 +1342,17 @@ module TencentCloud
         # @param JsonParse: tke的pod字段信息解析
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type JsonParse: String
+        # @param Type: 字段类型 0:str 1:list
+        # @type Type: Integer
 
-        attr_accessor :Key, :Header, :Transfer, :JsonParse
+        attr_accessor :Key, :Header, :Transfer, :JsonParse, :Type
 
-        def initialize(key=nil, header=nil, transfer=nil, jsonparse=nil)
+        def initialize(key=nil, header=nil, transfer=nil, jsonparse=nil, type=nil)
           @Key = key
           @Header = header
           @Transfer = transfer
           @JsonParse = jsonparse
+          @Type = type
         end
 
         def deserialize(params)
@@ -1357,6 +1360,7 @@ module TencentCloud
           @Header = params['Header']
           @Transfer = params['Transfer']
           @JsonParse = params['JsonParse']
+          @Type = params['Type']
         end
       end
 

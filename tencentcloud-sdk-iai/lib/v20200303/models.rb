@@ -1363,6 +1363,90 @@ module TencentCloud
         end
       end
 
+      # DetectFaceSimilarity请求参数结构体
+      class DetectFaceSimilarityRequest < TencentCloud::Common::AbstractModel
+        # @param ImageA: A 图片 base64 数据。
+        # - base64 编码后大小不可超过5M。
+        # - jpg格式长边像素不可超过4000，其他格式图片长边像素不可超2000。所有格式的图片短边像素不小于64。
+        # - 若图片中包含多张人脸，只选取其中置信度最高的人脸。
+        # - 支持PNG、JPG、JPEG、BMP，不支持 GIF 图片。
+        # @type ImageA: String
+        # @param ImageB: B 图片 base64 数据。
+        # - base64 编码后大小不可超过5M。
+        # - jpg格式长边像素不可超过4000，其他格式图片长边像素不可超2000。所有格式的图片短边像素不小于64。
+        # - 若图片中包含多张人脸，只选取其中置信度最高的人脸。
+        # - 支持PNG、JPG、JPEG、BMP，不支持 GIF 图片。
+        # @type ImageB: String
+        # @param UrlA: A 图片的 Url。
+        # - 对应图片 base64 编码后大小不可超过5M。
+        # - jpg格式长边像素不可超过4000，其他格式图片长边像素不可超2000。所有格式的图片短边像素不小于64。
+        # - A 图片的 Url、Image必须提供一个，如果都提供，只使用 Url。
+        # - 图片存储于腾讯云的Url可保障更高下载速度和稳定性，建议图片存储于腾讯云。
+        # - 非腾讯云存储的Url速度和稳定性可能受一定影响。
+        # - 若图片中包含多张人脸，只选取其中人脸面积最大的人脸。
+        # - 支持PNG、JPG、JPEG、BMP，不支持 GIF 图片。
+        # @type UrlA: String
+        # @param UrlB: B 图片的 Url 。
+        # - 对应图片 base64 编码后大小不可超过5M。
+        # - jpg格式长边像素不可超过4000，其他格式图片长边像素不可超2000。所有格式的图片短边像素不小于64。
+        # - B 图片的 Url、Image必须提供一个，如果都提供，只使用 Url。
+        # - 图片存储于腾讯云的Url可保障更高下载速度和稳定性，建议图片存储于腾讯云。
+        # - 非腾讯云存储的Url速度和稳定性可能受一定影响。
+        # - 若图片中包含多张人脸，只选取其中人脸面积最大的人脸。
+        # - 支持PNG、JPG、JPEG、BMP，不支持 GIF 图片。
+        # @type UrlB: String
+        # @param QualityControl: 图片质量控制。
+        # - 取值范围：
+        # 0: 不进行控制；
+        # 1: 较低的质量要求，图像存在非常模糊，眼睛鼻子嘴巴遮挡至少其中一种或多种的情况；
+        # 2: 一般的质量要求，图像存在偏亮，偏暗，模糊或一般模糊，眉毛遮挡，脸颊遮挡，下巴遮挡，至少其中三种的情况；
+        # 3: 较高的质量要求，图像存在偏亮，偏暗，一般模糊，眉毛遮挡，脸颊遮挡，下巴遮挡，其中一到两种的情况；
+        # 4: 很高的质量要求，各个维度均为最好或最多，在某一维度上存在轻微问题；
+        # 默认 0。
+
+        # - 若图片质量不满足要求，则返回结果中会提示图片质量检测不符要求。
+        # @type QualityControl: Integer
+
+        attr_accessor :ImageA, :ImageB, :UrlA, :UrlB, :QualityControl
+
+        def initialize(imagea=nil, imageb=nil, urla=nil, urlb=nil, qualitycontrol=nil)
+          @ImageA = imagea
+          @ImageB = imageb
+          @UrlA = urla
+          @UrlB = urlb
+          @QualityControl = qualitycontrol
+        end
+
+        def deserialize(params)
+          @ImageA = params['ImageA']
+          @ImageB = params['ImageB']
+          @UrlA = params['UrlA']
+          @UrlB = params['UrlB']
+          @QualityControl = params['QualityControl']
+        end
+      end
+
+      # DetectFaceSimilarity返回参数结构体
+      class DetectFaceSimilarityResponse < TencentCloud::Common::AbstractModel
+        # @param Score: 取值范围 [0.00, 100.00]。
+        # 推荐相似度大于等于70时可判断为同一人，可根据具体场景自行调整阈值（阈值70的误通过率为千分之一，阈值80的误通过率是万分之一）。
+        # @type Score: Float
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Score, :RequestId
+
+        def initialize(score=nil, requestid=nil)
+          @Score = score
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Score = params['Score']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DetectLiveFaceAccurate请求参数结构体
       class DetectLiveFaceAccurateRequest < TencentCloud::Common::AbstractModel
         # @param Image: 图片 base64 数据。

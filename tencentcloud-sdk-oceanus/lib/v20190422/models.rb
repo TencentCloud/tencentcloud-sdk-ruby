@@ -250,10 +250,18 @@ module TencentCloud
         # @type MemRatio: Integer
         # @param CrossTenantEniMode: 是否开启跨租户弹性网卡
         # @type CrossTenantEniMode: Integer
+        # @param TotalCpu: 总的CPU
+        # @type TotalCpu: Float
+        # @param TotalMem: 总的内存
+        # @type TotalMem: Float
+        # @param RunningCpu: 运行的CPU
+        # @type RunningCpu: Float
+        # @param RunningMem: 运行的内存
+        # @type RunningMem: Float
 
-        attr_accessor :ClusterId, :Name, :Region, :AppId, :OwnerUin, :CreatorUin, :Status, :Remark, :CreateTime, :UpdateTime, :CuNum, :CuMem, :Zone, :StatusDesc, :CCNs, :NetEnvironmentType, :FreeCuNum, :Tags, :IsolatedTime, :ExpireTime, :SecondsUntilExpiry, :AutoRenewFlag, :DefaultCOSBucket, :CLSLogSet, :CLSTopicId, :CLSLogName, :CLSTopicName, :Version, :FreeCu, :DefaultLogCollectConf, :CustomizedDNSEnabled, :Correlations, :RunningCu, :PayMode, :IsNeedManageNode, :ClusterSessions, :ArchGeneration, :ClusterType, :Orders, :SqlGateways, :WebUIType, :Type, :SubEks, :AgentSerialId, :ResourceType, :BillingResourceMode, :MemRatio, :CrossTenantEniMode
+        attr_accessor :ClusterId, :Name, :Region, :AppId, :OwnerUin, :CreatorUin, :Status, :Remark, :CreateTime, :UpdateTime, :CuNum, :CuMem, :Zone, :StatusDesc, :CCNs, :NetEnvironmentType, :FreeCuNum, :Tags, :IsolatedTime, :ExpireTime, :SecondsUntilExpiry, :AutoRenewFlag, :DefaultCOSBucket, :CLSLogSet, :CLSTopicId, :CLSLogName, :CLSTopicName, :Version, :FreeCu, :DefaultLogCollectConf, :CustomizedDNSEnabled, :Correlations, :RunningCu, :PayMode, :IsNeedManageNode, :ClusterSessions, :ArchGeneration, :ClusterType, :Orders, :SqlGateways, :WebUIType, :Type, :SubEks, :AgentSerialId, :ResourceType, :BillingResourceMode, :MemRatio, :CrossTenantEniMode, :TotalCpu, :TotalMem, :RunningCpu, :RunningMem
 
-        def initialize(clusterid=nil, name=nil, region=nil, appid=nil, owneruin=nil, creatoruin=nil, status=nil, remark=nil, createtime=nil, updatetime=nil, cunum=nil, cumem=nil, zone=nil, statusdesc=nil, ccns=nil, netenvironmenttype=nil, freecunum=nil, tags=nil, isolatedtime=nil, expiretime=nil, secondsuntilexpiry=nil, autorenewflag=nil, defaultcosbucket=nil, clslogset=nil, clstopicid=nil, clslogname=nil, clstopicname=nil, version=nil, freecu=nil, defaultlogcollectconf=nil, customizeddnsenabled=nil, correlations=nil, runningcu=nil, paymode=nil, isneedmanagenode=nil, clustersessions=nil, archgeneration=nil, clustertype=nil, orders=nil, sqlgateways=nil, webuitype=nil, type=nil, subeks=nil, agentserialid=nil, resourcetype=nil, billingresourcemode=nil, memratio=nil, crosstenantenimode=nil)
+        def initialize(clusterid=nil, name=nil, region=nil, appid=nil, owneruin=nil, creatoruin=nil, status=nil, remark=nil, createtime=nil, updatetime=nil, cunum=nil, cumem=nil, zone=nil, statusdesc=nil, ccns=nil, netenvironmenttype=nil, freecunum=nil, tags=nil, isolatedtime=nil, expiretime=nil, secondsuntilexpiry=nil, autorenewflag=nil, defaultcosbucket=nil, clslogset=nil, clstopicid=nil, clslogname=nil, clstopicname=nil, version=nil, freecu=nil, defaultlogcollectconf=nil, customizeddnsenabled=nil, correlations=nil, runningcu=nil, paymode=nil, isneedmanagenode=nil, clustersessions=nil, archgeneration=nil, clustertype=nil, orders=nil, sqlgateways=nil, webuitype=nil, type=nil, subeks=nil, agentserialid=nil, resourcetype=nil, billingresourcemode=nil, memratio=nil, crosstenantenimode=nil, totalcpu=nil, totalmem=nil, runningcpu=nil, runningmem=nil)
           @ClusterId = clusterid
           @Name = name
           @Region = region
@@ -302,6 +310,10 @@ module TencentCloud
           @BillingResourceMode = billingresourcemode
           @MemRatio = memratio
           @CrossTenantEniMode = crosstenantenimode
+          @TotalCpu = totalcpu
+          @TotalMem = totalmem
+          @RunningCpu = runningcpu
+          @RunningMem = runningmem
         end
 
         def deserialize(params)
@@ -401,6 +413,10 @@ module TencentCloud
           @BillingResourceMode = params['BillingResourceMode']
           @MemRatio = params['MemRatio']
           @CrossTenantEniMode = params['CrossTenantEniMode']
+          @TotalCpu = params['TotalCpu']
+          @TotalMem = params['TotalMem']
+          @RunningCpu = params['RunningCpu']
+          @RunningMem = params['RunningMem']
         end
       end
 
@@ -450,10 +466,18 @@ module TencentCloud
         # @param BillingResourceMode: 默认 "" 包销模式 "exclusiveSale"
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BillingResourceMode: String
+        # @param TotalCpu: TotalCpu
+        # @type TotalCpu: Float
+        # @param TotalMem: TotalMem
+        # @type TotalMem: Float
+        # @param RunningCpu: RunningCpu
+        # @type RunningCpu: Float
+        # @param RunningMem: RunningMem
+        # @type RunningMem: Float
 
-        attr_accessor :ClusterId, :Name, :Region, :Zone, :AppId, :OwnerUin, :CreatorUin, :CuNum, :CuMem, :Status, :StatusDesc, :CreateTime, :UpdateTime, :Remark, :NetEnvironmentType, :FreeCuNum, :FreeCu, :RunningCu, :PayMode, :SubEks, :BillingResourceMode
+        attr_accessor :ClusterId, :Name, :Region, :Zone, :AppId, :OwnerUin, :CreatorUin, :CuNum, :CuMem, :Status, :StatusDesc, :CreateTime, :UpdateTime, :Remark, :NetEnvironmentType, :FreeCuNum, :FreeCu, :RunningCu, :PayMode, :SubEks, :BillingResourceMode, :TotalCpu, :TotalMem, :RunningCpu, :RunningMem
 
-        def initialize(clusterid=nil, name=nil, region=nil, zone=nil, appid=nil, owneruin=nil, creatoruin=nil, cunum=nil, cumem=nil, status=nil, statusdesc=nil, createtime=nil, updatetime=nil, remark=nil, netenvironmenttype=nil, freecunum=nil, freecu=nil, runningcu=nil, paymode=nil, subeks=nil, billingresourcemode=nil)
+        def initialize(clusterid=nil, name=nil, region=nil, zone=nil, appid=nil, owneruin=nil, creatoruin=nil, cunum=nil, cumem=nil, status=nil, statusdesc=nil, createtime=nil, updatetime=nil, remark=nil, netenvironmenttype=nil, freecunum=nil, freecu=nil, runningcu=nil, paymode=nil, subeks=nil, billingresourcemode=nil, totalcpu=nil, totalmem=nil, runningcpu=nil, runningmem=nil)
           @ClusterId = clusterid
           @Name = name
           @Region = region
@@ -475,6 +499,10 @@ module TencentCloud
           @PayMode = paymode
           @SubEks = subeks
           @BillingResourceMode = billingresourcemode
+          @TotalCpu = totalcpu
+          @TotalMem = totalmem
+          @RunningCpu = runningcpu
+          @RunningMem = runningmem
         end
 
         def deserialize(params)
@@ -502,6 +530,10 @@ module TencentCloud
             @SubEks.deserialize(params['SubEks'])
           end
           @BillingResourceMode = params['BillingResourceMode']
+          @TotalCpu = params['TotalCpu']
+          @TotalMem = params['TotalMem']
+          @RunningCpu = params['RunningCpu']
+          @RunningMem = params['RunningMem']
         end
       end
 
@@ -909,10 +941,18 @@ module TencentCloud
         # @type EsServerlessSpace: String
         # @param FlinkVersion: flink版本
         # @type FlinkVersion: String
+        # @param JobManagerCpu: JobManager cpu
+        # @type JobManagerCpu: Float
+        # @param JobManagerMem: JobManager 内存
+        # @type JobManagerMem: Float
+        # @param TaskManagerCpu: TaskManager cpu
+        # @type TaskManagerCpu: Float
+        # @param TaskManagerMem: TaskManager 内存
+        # @type TaskManagerMem: Float
 
-        attr_accessor :JobId, :EntrypointClass, :ProgramArgs, :Remark, :ResourceRefs, :DefaultParallelism, :Properties, :AutoDelete, :COSBucket, :LogCollect, :JobManagerSpec, :TaskManagerSpec, :ClsLogsetId, :ClsTopicId, :LogCollectType, :PythonVersion, :WorkSpaceId, :LogLevel, :AutoRecover, :ClazzLevels, :ExpertModeOn, :ExpertModeConfiguration, :TraceModeOn, :TraceModeConfiguration, :CheckpointRetainedNum, :JobGraph, :EsServerlessIndex, :EsServerlessSpace, :FlinkVersion
+        attr_accessor :JobId, :EntrypointClass, :ProgramArgs, :Remark, :ResourceRefs, :DefaultParallelism, :Properties, :AutoDelete, :COSBucket, :LogCollect, :JobManagerSpec, :TaskManagerSpec, :ClsLogsetId, :ClsTopicId, :LogCollectType, :PythonVersion, :WorkSpaceId, :LogLevel, :AutoRecover, :ClazzLevels, :ExpertModeOn, :ExpertModeConfiguration, :TraceModeOn, :TraceModeConfiguration, :CheckpointRetainedNum, :JobGraph, :EsServerlessIndex, :EsServerlessSpace, :FlinkVersion, :JobManagerCpu, :JobManagerMem, :TaskManagerCpu, :TaskManagerMem
 
-        def initialize(jobid=nil, entrypointclass=nil, programargs=nil, remark=nil, resourcerefs=nil, defaultparallelism=nil, properties=nil, autodelete=nil, cosbucket=nil, logcollect=nil, jobmanagerspec=nil, taskmanagerspec=nil, clslogsetid=nil, clstopicid=nil, logcollecttype=nil, pythonversion=nil, workspaceid=nil, loglevel=nil, autorecover=nil, clazzlevels=nil, expertmodeon=nil, expertmodeconfiguration=nil, tracemodeon=nil, tracemodeconfiguration=nil, checkpointretainednum=nil, jobgraph=nil, esserverlessindex=nil, esserverlessspace=nil, flinkversion=nil)
+        def initialize(jobid=nil, entrypointclass=nil, programargs=nil, remark=nil, resourcerefs=nil, defaultparallelism=nil, properties=nil, autodelete=nil, cosbucket=nil, logcollect=nil, jobmanagerspec=nil, taskmanagerspec=nil, clslogsetid=nil, clstopicid=nil, logcollecttype=nil, pythonversion=nil, workspaceid=nil, loglevel=nil, autorecover=nil, clazzlevels=nil, expertmodeon=nil, expertmodeconfiguration=nil, tracemodeon=nil, tracemodeconfiguration=nil, checkpointretainednum=nil, jobgraph=nil, esserverlessindex=nil, esserverlessspace=nil, flinkversion=nil, jobmanagercpu=nil, jobmanagermem=nil, taskmanagercpu=nil, taskmanagermem=nil)
           @JobId = jobid
           @EntrypointClass = entrypointclass
           @ProgramArgs = programargs
@@ -942,6 +982,10 @@ module TencentCloud
           @EsServerlessIndex = esserverlessindex
           @EsServerlessSpace = esserverlessspace
           @FlinkVersion = flinkversion
+          @JobManagerCpu = jobmanagercpu
+          @JobManagerMem = jobmanagermem
+          @TaskManagerCpu = taskmanagercpu
+          @TaskManagerMem = taskmanagermem
         end
 
         def deserialize(params)
@@ -1004,6 +1048,10 @@ module TencentCloud
           @EsServerlessIndex = params['EsServerlessIndex']
           @EsServerlessSpace = params['EsServerlessSpace']
           @FlinkVersion = params['FlinkVersion']
+          @JobManagerCpu = params['JobManagerCpu']
+          @JobManagerMem = params['JobManagerMem']
+          @TaskManagerCpu = params['TaskManagerCpu']
+          @TaskManagerMem = params['TaskManagerMem']
         end
       end
 
@@ -2309,15 +2357,18 @@ module TencentCloud
         # @type Filters: Array
         # @param WorkSpaceId: 工作空间 SerialId
         # @type WorkSpaceId: String
+        # @param SystemResource: 资源类型，0=用户，1系统connector，2=用户自定义connector
+        # @type SystemResource: Integer
 
-        attr_accessor :ResourceIds, :Offset, :Limit, :Filters, :WorkSpaceId
+        attr_accessor :ResourceIds, :Offset, :Limit, :Filters, :WorkSpaceId, :SystemResource
 
-        def initialize(resourceids=nil, offset=nil, limit=nil, filters=nil, workspaceid=nil)
+        def initialize(resourceids=nil, offset=nil, limit=nil, filters=nil, workspaceid=nil, systemresource=nil)
           @ResourceIds = resourceids
           @Offset = offset
           @Limit = limit
           @Filters = filters
           @WorkSpaceId = workspaceid
+          @SystemResource = systemresource
         end
 
         def deserialize(params)
@@ -2333,6 +2384,7 @@ module TencentCloud
             end
           end
           @WorkSpaceId = params['WorkSpaceId']
+          @SystemResource = params['SystemResource']
         end
       end
 
@@ -2381,16 +2433,19 @@ module TencentCloud
         # @type ClusterId: String
         # @param FlinkVersion: 查询对应Flink版本的内置connector
         # @type FlinkVersion: String
+        # @param WorkSpaceId: 空间
+        # @type WorkSpaceId: String
 
-        attr_accessor :ResourceIds, :Offset, :Limit, :Filters, :ClusterId, :FlinkVersion
+        attr_accessor :ResourceIds, :Offset, :Limit, :Filters, :ClusterId, :FlinkVersion, :WorkSpaceId
 
-        def initialize(resourceids=nil, offset=nil, limit=nil, filters=nil, clusterid=nil, flinkversion=nil)
+        def initialize(resourceids=nil, offset=nil, limit=nil, filters=nil, clusterid=nil, flinkversion=nil, workspaceid=nil)
           @ResourceIds = resourceids
           @Offset = offset
           @Limit = limit
           @Filters = filters
           @ClusterId = clusterid
           @FlinkVersion = flinkversion
+          @WorkSpaceId = workspaceid
         end
 
         def deserialize(params)
@@ -2407,6 +2462,7 @@ module TencentCloud
           end
           @ClusterId = params['ClusterId']
           @FlinkVersion = params['FlinkVersion']
+          @WorkSpaceId = params['WorkSpaceId']
         end
       end
 
@@ -3135,10 +3191,25 @@ module TencentCloud
         # @param FlinkVersion: flink 版本
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FlinkVersion: String
+        # @param JobManagerCpu: jm使用cpu数目
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type JobManagerCpu: Float
+        # @param JobManagerMem: jm使用内存数目
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type JobManagerMem: Float
+        # @param TaskManagerCpu: tm使用cpu数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskManagerCpu: Float
+        # @param TaskManagerMem: tm使用mem数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskManagerMem: Float
+        # @param JobConfigItem: 运行中配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type JobConfigItem: :class:`Tencentcloud::Oceanus.v20190422.models.JobConfig`
 
-        attr_accessor :JobId, :EntrypointClass, :ProgramArgs, :Remark, :CreateTime, :Version, :DefaultParallelism, :Properties, :ResourceRefDetails, :CreatorUin, :UpdateTime, :COSBucket, :LogCollect, :MaxParallelism, :JobManagerSpec, :TaskManagerSpec, :ClsLogsetId, :ClsTopicId, :PythonVersion, :AutoRecover, :LogLevel, :ClazzLevels, :ExpertModeOn, :ExpertModeConfiguration, :TraceModeOn, :TraceModeConfiguration, :CheckpointRetainedNum, :JobGraph, :EsServerlessIndex, :EsServerlessSpace, :IndexName, :WorkspaceName, :FlinkVersion
+        attr_accessor :JobId, :EntrypointClass, :ProgramArgs, :Remark, :CreateTime, :Version, :DefaultParallelism, :Properties, :ResourceRefDetails, :CreatorUin, :UpdateTime, :COSBucket, :LogCollect, :MaxParallelism, :JobManagerSpec, :TaskManagerSpec, :ClsLogsetId, :ClsTopicId, :PythonVersion, :AutoRecover, :LogLevel, :ClazzLevels, :ExpertModeOn, :ExpertModeConfiguration, :TraceModeOn, :TraceModeConfiguration, :CheckpointRetainedNum, :JobGraph, :EsServerlessIndex, :EsServerlessSpace, :IndexName, :WorkspaceName, :FlinkVersion, :JobManagerCpu, :JobManagerMem, :TaskManagerCpu, :TaskManagerMem, :JobConfigItem
 
-        def initialize(jobid=nil, entrypointclass=nil, programargs=nil, remark=nil, createtime=nil, version=nil, defaultparallelism=nil, properties=nil, resourcerefdetails=nil, creatoruin=nil, updatetime=nil, cosbucket=nil, logcollect=nil, maxparallelism=nil, jobmanagerspec=nil, taskmanagerspec=nil, clslogsetid=nil, clstopicid=nil, pythonversion=nil, autorecover=nil, loglevel=nil, clazzlevels=nil, expertmodeon=nil, expertmodeconfiguration=nil, tracemodeon=nil, tracemodeconfiguration=nil, checkpointretainednum=nil, jobgraph=nil, esserverlessindex=nil, esserverlessspace=nil, indexname=nil, workspacename=nil, flinkversion=nil)
+        def initialize(jobid=nil, entrypointclass=nil, programargs=nil, remark=nil, createtime=nil, version=nil, defaultparallelism=nil, properties=nil, resourcerefdetails=nil, creatoruin=nil, updatetime=nil, cosbucket=nil, logcollect=nil, maxparallelism=nil, jobmanagerspec=nil, taskmanagerspec=nil, clslogsetid=nil, clstopicid=nil, pythonversion=nil, autorecover=nil, loglevel=nil, clazzlevels=nil, expertmodeon=nil, expertmodeconfiguration=nil, tracemodeon=nil, tracemodeconfiguration=nil, checkpointretainednum=nil, jobgraph=nil, esserverlessindex=nil, esserverlessspace=nil, indexname=nil, workspacename=nil, flinkversion=nil, jobmanagercpu=nil, jobmanagermem=nil, taskmanagercpu=nil, taskmanagermem=nil, jobconfigitem=nil)
           @JobId = jobid
           @EntrypointClass = entrypointclass
           @ProgramArgs = programargs
@@ -3172,6 +3243,11 @@ module TencentCloud
           @IndexName = indexname
           @WorkspaceName = workspacename
           @FlinkVersion = flinkversion
+          @JobManagerCpu = jobmanagercpu
+          @JobManagerMem = jobmanagermem
+          @TaskManagerCpu = taskmanagercpu
+          @TaskManagerMem = taskmanagermem
+          @JobConfigItem = jobconfigitem
         end
 
         def deserialize(params)
@@ -3238,6 +3314,14 @@ module TencentCloud
           @IndexName = params['IndexName']
           @WorkspaceName = params['WorkspaceName']
           @FlinkVersion = params['FlinkVersion']
+          @JobManagerCpu = params['JobManagerCpu']
+          @JobManagerMem = params['JobManagerMem']
+          @TaskManagerCpu = params['TaskManagerCpu']
+          @TaskManagerMem = params['TaskManagerMem']
+          unless params['JobConfigItem'].nil?
+            @JobConfigItem = JobConfig.new
+            @JobConfigItem.deserialize(params['JobConfigItem'])
+          end
         end
       end
 
@@ -4082,7 +4166,6 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RefJobCount: Integer
         # @param IsJobRun: 作业运行状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsJobRun: Integer
         # @param FileName: 文件名
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -4093,10 +4176,24 @@ module TencentCloud
         # @param RefJobStatusCountSet: 分状态统计关联作业数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RefJobStatusCountSet: Array
+        # @param Connector: 连接器名称
+        # @type Connector: String
+        # @param ConnectorVersion: 连接器版本
+        # @type ConnectorVersion: String
+        # @param ConnectionMethod: 连接方式
+        # @type ConnectionMethod: String
+        # @param RelatedResourceId: connector关联的资源id
+        # @type RelatedResourceId: String
+        # @param Icon: 图标
+        # @type Icon: String
+        # @param ConnectorName: 连接器中文名
+        # @type ConnectorName: String
+        # @param ConnectorUrl: 连接器官网链接
+        # @type ConnectorUrl: String
 
-        attr_accessor :ResourceId, :Name, :ResourceType, :ResourceLoc, :Region, :AppId, :OwnerUin, :CreatorUin, :CreateTime, :UpdateTime, :LatestResourceConfigVersion, :Remark, :VersionCount, :RefJobCount, :IsJobRun, :FileName, :WorkSpaceId, :RefJobStatusCountSet
+        attr_accessor :ResourceId, :Name, :ResourceType, :ResourceLoc, :Region, :AppId, :OwnerUin, :CreatorUin, :CreateTime, :UpdateTime, :LatestResourceConfigVersion, :Remark, :VersionCount, :RefJobCount, :IsJobRun, :FileName, :WorkSpaceId, :RefJobStatusCountSet, :Connector, :ConnectorVersion, :ConnectionMethod, :RelatedResourceId, :Icon, :ConnectorName, :ConnectorUrl
 
-        def initialize(resourceid=nil, name=nil, resourcetype=nil, resourceloc=nil, region=nil, appid=nil, owneruin=nil, creatoruin=nil, createtime=nil, updatetime=nil, latestresourceconfigversion=nil, remark=nil, versioncount=nil, refjobcount=nil, isjobrun=nil, filename=nil, workspaceid=nil, refjobstatuscountset=nil)
+        def initialize(resourceid=nil, name=nil, resourcetype=nil, resourceloc=nil, region=nil, appid=nil, owneruin=nil, creatoruin=nil, createtime=nil, updatetime=nil, latestresourceconfigversion=nil, remark=nil, versioncount=nil, refjobcount=nil, isjobrun=nil, filename=nil, workspaceid=nil, refjobstatuscountset=nil, connector=nil, connectorversion=nil, connectionmethod=nil, relatedresourceid=nil, icon=nil, connectorname=nil, connectorurl=nil)
           @ResourceId = resourceid
           @Name = name
           @ResourceType = resourcetype
@@ -4115,6 +4212,13 @@ module TencentCloud
           @FileName = filename
           @WorkSpaceId = workspaceid
           @RefJobStatusCountSet = refjobstatuscountset
+          @Connector = connector
+          @ConnectorVersion = connectorversion
+          @ConnectionMethod = connectionmethod
+          @RelatedResourceId = relatedresourceid
+          @Icon = icon
+          @ConnectorName = connectorname
+          @ConnectorUrl = connectorurl
         end
 
         def deserialize(params)
@@ -4146,6 +4250,13 @@ module TencentCloud
               @RefJobStatusCountSet << refjobstatuscountitem_tmp
             end
           end
+          @Connector = params['Connector']
+          @ConnectorVersion = params['ConnectorVersion']
+          @ConnectionMethod = params['ConnectionMethod']
+          @RelatedResourceId = params['RelatedResourceId']
+          @Icon = params['Icon']
+          @ConnectorName = params['ConnectorName']
+          @ConnectorUrl = params['ConnectorUrl']
         end
       end
 
@@ -4233,15 +4344,18 @@ module TencentCloud
         # @type Type: Integer
         # @param SystemProvide: 1: 系统内置资源
         # @type SystemProvide: Integer
+        # @param Connector: Connector
+        # @type Connector: String
 
-        attr_accessor :ResourceId, :Version, :Name, :Type, :SystemProvide
+        attr_accessor :ResourceId, :Version, :Name, :Type, :SystemProvide, :Connector
 
-        def initialize(resourceid=nil, version=nil, name=nil, type=nil, systemprovide=nil)
+        def initialize(resourceid=nil, version=nil, name=nil, type=nil, systemprovide=nil, connector=nil)
           @ResourceId = resourceid
           @Version = version
           @Name = name
           @Type = type
           @SystemProvide = systemprovide
+          @Connector = connector
         end
 
         def deserialize(params)
@@ -4250,6 +4364,7 @@ module TencentCloud
           @Name = params['Name']
           @Type = params['Type']
           @SystemProvide = params['SystemProvide']
+          @Connector = params['Connector']
         end
       end
 
@@ -4755,10 +4870,14 @@ module TencentCloud
         # @param Properties: 配置参数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Properties: Array
+        # @param Cpu: Cpu
+        # @type Cpu: Float
+        # @param Mem: Mem
+        # @type Mem: Float
 
-        attr_accessor :SerialId, :FlinkVersion, :Status, :CreatorUin, :ResourceRefs, :CuSpec, :CreateTime, :UpdateTime, :Properties
+        attr_accessor :SerialId, :FlinkVersion, :Status, :CreatorUin, :ResourceRefs, :CuSpec, :CreateTime, :UpdateTime, :Properties, :Cpu, :Mem
 
-        def initialize(serialid=nil, flinkversion=nil, status=nil, creatoruin=nil, resourcerefs=nil, cuspec=nil, createtime=nil, updatetime=nil, properties=nil)
+        def initialize(serialid=nil, flinkversion=nil, status=nil, creatoruin=nil, resourcerefs=nil, cuspec=nil, createtime=nil, updatetime=nil, properties=nil, cpu=nil, mem=nil)
           @SerialId = serialid
           @FlinkVersion = flinkversion
           @Status = status
@@ -4768,6 +4887,8 @@ module TencentCloud
           @CreateTime = createtime
           @UpdateTime = updatetime
           @Properties = properties
+          @Cpu = cpu
+          @Mem = mem
         end
 
         def deserialize(params)
@@ -4794,6 +4915,8 @@ module TencentCloud
               @Properties << property_tmp
             end
           end
+          @Cpu = params['Cpu']
+          @Mem = params['Mem']
         end
       end
 
@@ -4918,15 +5041,27 @@ module TencentCloud
         # @param RunningCu: 运行cu
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RunningCu: Float
+        # @param TotalCpu: 总的CPU
+        # @type TotalCpu: Float
+        # @param TotalMem: 总的内存
+        # @type TotalMem: Float
+        # @param RunningCpu: 运行的CPU
+        # @type RunningCpu: Float
+        # @param RunningMem: 运行的内存
+        # @type RunningMem: Float
 
-        attr_accessor :SerialId, :CuNum, :Status, :StatusDesc, :RunningCu
+        attr_accessor :SerialId, :CuNum, :Status, :StatusDesc, :RunningCu, :TotalCpu, :TotalMem, :RunningCpu, :RunningMem
 
-        def initialize(serialid=nil, cunum=nil, status=nil, statusdesc=nil, runningcu=nil)
+        def initialize(serialid=nil, cunum=nil, status=nil, statusdesc=nil, runningcu=nil, totalcpu=nil, totalmem=nil, runningcpu=nil, runningmem=nil)
           @SerialId = serialid
           @CuNum = cunum
           @Status = status
           @StatusDesc = statusdesc
           @RunningCu = runningcu
+          @TotalCpu = totalcpu
+          @TotalMem = totalmem
+          @RunningCpu = runningcpu
+          @RunningMem = runningmem
         end
 
         def deserialize(params)
@@ -4935,6 +5070,10 @@ module TencentCloud
           @Status = params['Status']
           @StatusDesc = params['StatusDesc']
           @RunningCu = params['RunningCu']
+          @TotalCpu = params['TotalCpu']
+          @TotalMem = params['TotalMem']
+          @RunningCpu = params['RunningCpu']
+          @RunningMem = params['RunningMem']
         end
       end
 
@@ -4972,16 +5111,19 @@ module TencentCloud
         # @type Region: String
         # @param LatestResourceConfigVersion: 资源的最新版本
         # @type LatestResourceConfigVersion: Integer
+        # @param SystemProvide: 1 是系统提供资源 2 用户提供CONNECTOR
+        # @type SystemProvide: Integer
 
-        attr_accessor :ResourceId, :Name, :ResourceType, :Remark, :Region, :LatestResourceConfigVersion
+        attr_accessor :ResourceId, :Name, :ResourceType, :Remark, :Region, :LatestResourceConfigVersion, :SystemProvide
 
-        def initialize(resourceid=nil, name=nil, resourcetype=nil, remark=nil, region=nil, latestresourceconfigversion=nil)
+        def initialize(resourceid=nil, name=nil, resourcetype=nil, remark=nil, region=nil, latestresourceconfigversion=nil, systemprovide=nil)
           @ResourceId = resourceid
           @Name = name
           @ResourceType = resourcetype
           @Remark = remark
           @Region = region
           @LatestResourceConfigVersion = latestresourceconfigversion
+          @SystemProvide = systemprovide
         end
 
         def deserialize(params)
@@ -4991,6 +5133,7 @@ module TencentCloud
           @Remark = params['Remark']
           @Region = params['Region']
           @LatestResourceConfigVersion = params['LatestResourceConfigVersion']
+          @SystemProvide = params['SystemProvide']
         end
       end
 
@@ -5060,15 +5203,26 @@ module TencentCloud
         # @param Status: 作业状态 启动或者停止或者暂停
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
+        # @param ScalingType: 0:代表没开启调优任务，1:开启智能调优，2:代表定时调优
 
-        attr_accessor :JobId, :Name, :JobType, :RunningCu, :Status
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ScalingType: Integer
+        # @param RunningCpu: RunningCpu
+        # @type RunningCpu: Float
+        # @param RunningMem: RunningMem
+        # @type RunningMem: Float
 
-        def initialize(jobid=nil, name=nil, jobtype=nil, runningcu=nil, status=nil)
+        attr_accessor :JobId, :Name, :JobType, :RunningCu, :Status, :ScalingType, :RunningCpu, :RunningMem
+
+        def initialize(jobid=nil, name=nil, jobtype=nil, runningcu=nil, status=nil, scalingtype=nil, runningcpu=nil, runningmem=nil)
           @JobId = jobid
           @Name = name
           @JobType = jobtype
           @RunningCu = runningcu
           @Status = status
+          @ScalingType = scalingtype
+          @RunningCpu = runningcpu
+          @RunningMem = runningmem
         end
 
         def deserialize(params)
@@ -5077,6 +5231,9 @@ module TencentCloud
           @JobType = params['JobType']
           @RunningCu = params['RunningCu']
           @Status = params['Status']
+          @ScalingType = params['ScalingType']
+          @RunningCpu = params['RunningCpu']
+          @RunningMem = params['RunningMem']
         end
       end
 

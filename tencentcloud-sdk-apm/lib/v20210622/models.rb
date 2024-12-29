@@ -511,17 +511,17 @@ module TencentCloud
 
       # CreateApmInstance请求参数结构体
       class CreateApmInstanceRequest < TencentCloud::Common::AbstractModel
-        # @param Name: 实例名
+        # @param Name: 业务系统名
         # @type Name: String
-        # @param Description: 实例描述信息
+        # @param Description: 业务系统描述信息
         # @type Description: String
         # @param TraceDuration: Trace数据保存时长，单位为天默认存储为3天
         # @type TraceDuration: Integer
         # @param Tags: 标签列表
         # @type Tags: Array
-        # @param SpanDailyCounters: 实例上报额度值，默认赋值为0表示不限制上报额度
+        # @param SpanDailyCounters: 业务系统上报额度值，默认赋值为0表示不限制上报额度
         # @type SpanDailyCounters: Integer
-        # @param PayMode: 实例的计费模式
+        # @param PayMode: 业务系统的计费模式
         # @type PayMode: Integer
         # @param Free: （0=付费版；1=tsf受限免费版；2=免费版）
         # @type Free: Integer
@@ -558,7 +558,7 @@ module TencentCloud
 
       # CreateApmInstance返回参数结构体
       class CreateApmInstanceResponse < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
+        # @param InstanceId: 业务系统ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
@@ -579,7 +579,7 @@ module TencentCloud
 
       # DescribeApmAgent请求参数结构体
       class DescribeApmAgentRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
+        # @param InstanceId: 业务系统ID
         # @type InstanceId: String
         # @param AgentType: 接入方式
         # @type AgentType: String
@@ -847,7 +847,7 @@ module TencentCloud
         # @type OrderBy: :class:`Tencentcloud::Apm.v20210622.models.OrderBy`
         # @param StartTime: span查询开始时间戳（单位:秒）
         # @type StartTime: Integer
-        # @param InstanceId: 实例名
+        # @param InstanceId: 业务系统ID
         # @type InstanceId: String
         # @param Filters: 通用过滤参数
         # @type Filters: Array
@@ -932,7 +932,7 @@ module TencentCloud
         # @type GroupBy: Array
         # @param OrderBy: 排序
         # @type OrderBy: :class:`Tencentcloud::Apm.v20210622.models.OrderBy`
-        # @param InstanceId: 实例ID
+        # @param InstanceId: 业务系统ID
         # @type InstanceId: String
         # @param Limit: 每页大小
         # @type Limit: Integer
@@ -1057,7 +1057,7 @@ module TencentCloud
         # @type GroupBy: Array
         # @param OrderBy: 排序
         # @type OrderBy: :class:`Tencentcloud::Apm.v20210622.models.OrderBy`
-        # @param InstanceId: 实例ID
+        # @param InstanceId: 业务系统ID
         # @type InstanceId: String
         # @param Limit: 每页大小
         # @type Limit: Integer
@@ -1144,7 +1144,7 @@ module TencentCloud
       class DescribeTagValuesRequest < TencentCloud::Common::AbstractModel
         # @param TagKey: 维度名
         # @type TagKey: String
-        # @param InstanceId: 实例ID
+        # @param InstanceId: 业务系统ID
         # @type InstanceId: String
         # @param EndTime: 结束时间
         # @type EndTime: Integer
@@ -1326,19 +1326,19 @@ module TencentCloud
 
       # ModifyApmInstance请求参数结构体
       class ModifyApmInstanceRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
+        # @param InstanceId: 业务系统ID
         # @type InstanceId: String
-        # @param Name: 实例名
+        # @param Name: 业务系统名
         # @type Name: String
         # @param Tags: 标签列表
         # @type Tags: Array
-        # @param Description: 实例详情
+        # @param Description: 业务系统详情
         # @type Description: String
         # @param TraceDuration: Trace数据保存时长
         # @type TraceDuration: Integer
         # @param OpenBilling: 是否开启计费
         # @type OpenBilling: Boolean
-        # @param SpanDailyCounters: 实例上报额度
+        # @param SpanDailyCounters: 业务系统上报额度
         # @type SpanDailyCounters: Integer
         # @param ErrRateThreshold: 错误率阈值
         # @type ErrRateThreshold: Integer
@@ -1756,7 +1756,7 @@ module TencentCloud
 
       # TerminateApmInstance请求参数结构体
       class TerminateApmInstanceRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
+        # @param InstanceId: 业务系统ID
         # @type InstanceId: String
 
         attr_accessor :InstanceId

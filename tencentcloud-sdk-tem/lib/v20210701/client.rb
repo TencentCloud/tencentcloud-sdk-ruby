@@ -1040,6 +1040,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 此接口没有被使用了
+
         # 创建或者更新 Ingress 规则
 
         # @param request: Request instance for ModifyIngress.

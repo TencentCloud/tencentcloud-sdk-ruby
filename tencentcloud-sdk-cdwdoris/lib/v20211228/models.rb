@@ -1716,15 +1716,18 @@ module TencentCloud
         # @param ErrorMsg: 错误信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrorMsg: String
+        # @param HasCN: 是否包含CN节点
+        # @type HasCN: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ClusterConfList, :BuildVersion, :ErrorMsg, :RequestId
+        attr_accessor :ClusterConfList, :BuildVersion, :ErrorMsg, :HasCN, :RequestId
 
-        def initialize(clusterconflist=nil, buildversion=nil, errormsg=nil, requestid=nil)
+        def initialize(clusterconflist=nil, buildversion=nil, errormsg=nil, hascn=nil, requestid=nil)
           @ClusterConfList = clusterconflist
           @BuildVersion = buildversion
           @ErrorMsg = errormsg
+          @HasCN = hascn
           @RequestId = requestid
         end
 
@@ -1739,6 +1742,7 @@ module TencentCloud
           end
           @BuildVersion = params['BuildVersion']
           @ErrorMsg = params['ErrorMsg']
+          @HasCN = params['HasCN']
           @RequestId = params['RequestId']
         end
       end
@@ -3485,13 +3489,18 @@ module TencentCloud
         # @param AccountType: 账户类型 0:普通用户 1:CAM用户
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AccountType: Integer
+        # @param MonitorMode: 监控模式 0: 老监控 1：新监控
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MonitorMode: Integer
+        # @param CNSummary: cn节点信息
+        # @type CNSummary: :class:`Tencentcloud::Cdwdoris.v20211228.models.NodesSummary`
 
-        attr_accessor :InstanceId, :InstanceName, :Status, :Version, :Region, :Zone, :VpcId, :SubnetId, :PayMode, :CreateTime, :ExpireTime, :MasterSummary, :CoreSummary, :HA, :HaType, :AccessInfo, :Id, :RegionId, :ZoneDesc, :FlowMsg, :StatusDesc, :RenewFlag, :Tags, :Monitor, :HasClsTopic, :ClsTopicId, :ClsLogSetId, :EnableXMLConfig, :RegionDesc, :Eip, :CosMoveFactor, :Kind, :CosBucketName, :CanAttachCbs, :BuildVersion, :Components, :IfExistCatalog, :Characteristic, :RestartTimeout, :GraceShutdownWaitSeconds, :CaseSensitive, :IsWhiteSGs, :BindSGs, :EnableMultiZones, :UserNetworkInfos, :EnableCoolDown, :CoolDownBucket, :Details, :EnableDlc, :AccountType
+        attr_accessor :InstanceId, :InstanceName, :Status, :Version, :Region, :Zone, :VpcId, :SubnetId, :PayMode, :CreateTime, :ExpireTime, :MasterSummary, :CoreSummary, :HA, :HaType, :AccessInfo, :Id, :RegionId, :ZoneDesc, :FlowMsg, :StatusDesc, :RenewFlag, :Tags, :Monitor, :HasClsTopic, :ClsTopicId, :ClsLogSetId, :EnableXMLConfig, :RegionDesc, :Eip, :CosMoveFactor, :Kind, :CosBucketName, :CanAttachCbs, :BuildVersion, :Components, :IfExistCatalog, :Characteristic, :RestartTimeout, :GraceShutdownWaitSeconds, :CaseSensitive, :IsWhiteSGs, :BindSGs, :EnableMultiZones, :UserNetworkInfos, :EnableCoolDown, :CoolDownBucket, :Details, :EnableDlc, :AccountType, :MonitorMode, :CNSummary
         extend Gem::Deprecate
         deprecate :IfExistCatalog, :none, 2024, 12
         deprecate :IfExistCatalog=, :none, 2024, 12
 
-        def initialize(instanceid=nil, instancename=nil, status=nil, version=nil, region=nil, zone=nil, vpcid=nil, subnetid=nil, paymode=nil, createtime=nil, expiretime=nil, mastersummary=nil, coresummary=nil, ha=nil, hatype=nil, accessinfo=nil, id=nil, regionid=nil, zonedesc=nil, flowmsg=nil, statusdesc=nil, renewflag=nil, tags=nil, monitor=nil, hasclstopic=nil, clstopicid=nil, clslogsetid=nil, enablexmlconfig=nil, regiondesc=nil, eip=nil, cosmovefactor=nil, kind=nil, cosbucketname=nil, canattachcbs=nil, buildversion=nil, components=nil, ifexistcatalog=nil, characteristic=nil, restarttimeout=nil, graceshutdownwaitseconds=nil, casesensitive=nil, iswhitesgs=nil, bindsgs=nil, enablemultizones=nil, usernetworkinfos=nil, enablecooldown=nil, cooldownbucket=nil, details=nil, enabledlc=nil, accounttype=nil)
+        def initialize(instanceid=nil, instancename=nil, status=nil, version=nil, region=nil, zone=nil, vpcid=nil, subnetid=nil, paymode=nil, createtime=nil, expiretime=nil, mastersummary=nil, coresummary=nil, ha=nil, hatype=nil, accessinfo=nil, id=nil, regionid=nil, zonedesc=nil, flowmsg=nil, statusdesc=nil, renewflag=nil, tags=nil, monitor=nil, hasclstopic=nil, clstopicid=nil, clslogsetid=nil, enablexmlconfig=nil, regiondesc=nil, eip=nil, cosmovefactor=nil, kind=nil, cosbucketname=nil, canattachcbs=nil, buildversion=nil, components=nil, ifexistcatalog=nil, characteristic=nil, restarttimeout=nil, graceshutdownwaitseconds=nil, casesensitive=nil, iswhitesgs=nil, bindsgs=nil, enablemultizones=nil, usernetworkinfos=nil, enablecooldown=nil, cooldownbucket=nil, details=nil, enabledlc=nil, accounttype=nil, monitormode=nil, cnsummary=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @Status = status
@@ -3542,6 +3551,8 @@ module TencentCloud
           @Details = details
           @EnableDlc = enabledlc
           @AccountType = accounttype
+          @MonitorMode = monitormode
+          @CNSummary = cnsummary
         end
 
         def deserialize(params)
@@ -3611,6 +3622,11 @@ module TencentCloud
           end
           @EnableDlc = params['EnableDlc']
           @AccountType = params['AccountType']
+          @MonitorMode = params['MonitorMode']
+          unless params['CNSummary'].nil?
+            @CNSummary = NodesSummary.new
+            @CNSummary.deserialize(params['CNSummary'])
+          end
         end
       end
 
@@ -3645,10 +3661,12 @@ module TencentCloud
         # @param Zone: 可用区
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Zone: String
+        # @param CreateTime: 创建时间
+        # @type CreateTime: String
 
-        attr_accessor :Ip, :Spec, :Core, :Memory, :DiskType, :DiskSize, :Role, :Status, :Rip, :FeRole, :UUID, :Zone
+        attr_accessor :Ip, :Spec, :Core, :Memory, :DiskType, :DiskSize, :Role, :Status, :Rip, :FeRole, :UUID, :Zone, :CreateTime
 
-        def initialize(ip=nil, spec=nil, core=nil, memory=nil, disktype=nil, disksize=nil, role=nil, status=nil, rip=nil, ferole=nil, uuid=nil, zone=nil)
+        def initialize(ip=nil, spec=nil, core=nil, memory=nil, disktype=nil, disksize=nil, role=nil, status=nil, rip=nil, ferole=nil, uuid=nil, zone=nil, createtime=nil)
           @Ip = ip
           @Spec = spec
           @Core = core
@@ -3661,6 +3679,7 @@ module TencentCloud
           @FeRole = ferole
           @UUID = uuid
           @Zone = zone
+          @CreateTime = createtime
         end
 
         def deserialize(params)
@@ -3676,6 +3695,7 @@ module TencentCloud
           @FeRole = params['FeRole']
           @UUID = params['UUID']
           @Zone = params['Zone']
+          @CreateTime = params['CreateTime']
         end
       end
 

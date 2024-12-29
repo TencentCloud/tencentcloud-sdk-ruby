@@ -17774,6 +17774,77 @@ module TencentCloud
         end
       end
 
+      # InquiryPriceAllocateAddresses请求参数结构体
+      class InquiryPriceAllocateAddressesRequest < TencentCloud::Common::AbstractModel
+        # @param InternetChargeType: EIP计费方式。
+        # <ul style="margin:0"><li>账号为标准账户类型的用户，可选值：<ul>
+        # <li>BANDWIDTH_POSTPAID_BY_HOUR：带宽按小时后付费</li>
+        # <li>BANDWIDTH_PREPAID_BY_MONTH：包月按带宽预付费</li>
+        # <li>TRAFFIC_POSTPAID_BY_HOUR：流量按小时后付费</li></ul>默认值：TRAFFIC_POSTPAID_BY_HOUR。</li>
+        # </ul>
+        # @type InternetChargeType: String
+        # @param InternetMaxBandwidthOut: EIP出带宽上限，单位：Mbps。
+        # <ul style="margin:0"><li>账号为标准账户类型的用户，可选值范围取决于EIP计费方式：<ul>
+        # <li>BANDWIDTH_POSTPAID_BY_HOUR：1 Mbps 至 100 Mbps</li>
+        # <li>BANDWIDTH_PREPAID_BY_MONTH：1 Mbps 至 200 Mbps</li>
+        # <li>TRAFFIC_POSTPAID_BY_HOUR：1 Mbps 至 100 Mbps</li></ul>默认值：1 Mbps。</li>
+        # <li>账号为传统账户类型的用户，EIP出带宽上限取决于与其绑定的实例的公网出带宽上限，无需传递此参数。</li></ul>
+        # @type InternetMaxBandwidthOut: Integer
+        # @param AddressChargePrepaid: 包月按带宽预付费EIP的计费参数。EIP为包月按带宽预付费时，该参数必传，其余场景不需传递
+        # @type AddressChargePrepaid: :class:`Tencentcloud::Vpc.v20170312.models.AddressChargePrepaid`
+        # @param AddressType: EIP类型。默认值：EIP。
+
+        # <ul style="margin:0"><li>精品IP，可选值：<ul><li>HighQualityEIP：精品IP</li></ul>注意：仅部分地域支持精品IP。</li></ul><ul style="margin:0">
+        #         <li>高防IP，可选值：<ul>
+        #                 <li>AntiDDoSEIP：高防IP</li>
+        #             </ul>
+        #         </li>
+        #     </ul>
+        # @type AddressType: String
+
+        attr_accessor :InternetChargeType, :InternetMaxBandwidthOut, :AddressChargePrepaid, :AddressType
+
+        def initialize(internetchargetype=nil, internetmaxbandwidthout=nil, addresschargeprepaid=nil, addresstype=nil)
+          @InternetChargeType = internetchargetype
+          @InternetMaxBandwidthOut = internetmaxbandwidthout
+          @AddressChargePrepaid = addresschargeprepaid
+          @AddressType = addresstype
+        end
+
+        def deserialize(params)
+          @InternetChargeType = params['InternetChargeType']
+          @InternetMaxBandwidthOut = params['InternetMaxBandwidthOut']
+          unless params['AddressChargePrepaid'].nil?
+            @AddressChargePrepaid = AddressChargePrepaid.new
+            @AddressChargePrepaid.deserialize(params['AddressChargePrepaid'])
+          end
+          @AddressType = params['AddressType']
+        end
+      end
+
+      # InquiryPriceAllocateAddresses返回参数结构体
+      class InquiryPriceAllocateAddressesResponse < TencentCloud::Common::AbstractModel
+        # @param Price: 弹性公网IP价格
+        # @type Price: :class:`Tencentcloud::Vpc.v20170312.models.InternetPrice`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Price, :RequestId
+
+        def initialize(price=nil, requestid=nil)
+          @Price = price
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Price'].nil?
+            @Price = InternetPrice.new
+            @Price.deserialize(params['Price'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # InquiryPriceCreateVpnGateway请求参数结构体
       class InquiryPriceCreateVpnGatewayRequest < TencentCloud::Common::AbstractModel
         # @param InternetMaxBandwidthOut: 公网带宽设置。可选带宽规格：5, 10, 20, 50, 100, 200, 500, 1000, 3000；单位：Mbps。
@@ -17826,6 +17897,95 @@ module TencentCloud
         def deserialize(params)
           unless params['Price'].nil?
             @Price = Price.new
+            @Price.deserialize(params['Price'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # InquiryPriceModifyAddressesBandwidth请求参数结构体
+      class InquiryPriceModifyAddressesBandwidthRequest < TencentCloud::Common::AbstractModel
+        # @param AddressIds: EIP唯一ID
+        # @type AddressIds: Array
+        # @param InternetMaxBandwidthOut: 新带宽值
+        # @type InternetMaxBandwidthOut: Integer
+
+        attr_accessor :AddressIds, :InternetMaxBandwidthOut
+
+        def initialize(addressids=nil, internetmaxbandwidthout=nil)
+          @AddressIds = addressids
+          @InternetMaxBandwidthOut = internetmaxbandwidthout
+        end
+
+        def deserialize(params)
+          @AddressIds = params['AddressIds']
+          @InternetMaxBandwidthOut = params['InternetMaxBandwidthOut']
+        end
+      end
+
+      # InquiryPriceModifyAddressesBandwidth返回参数结构体
+      class InquiryPriceModifyAddressesBandwidthResponse < TencentCloud::Common::AbstractModel
+        # @param Price: 弹性公网IP调整带宽询价结果
+        # @type Price: :class:`Tencentcloud::Vpc.v20170312.models.InternetPrice`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Price, :RequestId
+
+        def initialize(price=nil, requestid=nil)
+          @Price = price
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Price'].nil?
+            @Price = InternetPrice.new
+            @Price.deserialize(params['Price'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # InquiryPriceRenewAddresses请求参数结构体
+      class InquiryPriceRenewAddressesRequest < TencentCloud::Common::AbstractModel
+        # @param AddressIds: 续费资源实例ID。
+        # @type AddressIds: Array
+        # @param AddressChargePrepaid: 包月按带宽预付费EIP的计费参数。EIP为包月按带宽预付费时，该参数必传，其余场景不需传递。
+        # @type AddressChargePrepaid: :class:`Tencentcloud::Vpc.v20170312.models.AddressChargePrepaid`
+
+        attr_accessor :AddressIds, :AddressChargePrepaid
+
+        def initialize(addressids=nil, addresschargeprepaid=nil)
+          @AddressIds = addressids
+          @AddressChargePrepaid = addresschargeprepaid
+        end
+
+        def deserialize(params)
+          @AddressIds = params['AddressIds']
+          unless params['AddressChargePrepaid'].nil?
+            @AddressChargePrepaid = AddressChargePrepaid.new
+            @AddressChargePrepaid.deserialize(params['AddressChargePrepaid'])
+          end
+        end
+      end
+
+      # InquiryPriceRenewAddresses返回参数结构体
+      class InquiryPriceRenewAddressesResponse < TencentCloud::Common::AbstractModel
+        # @param Price: 弹性公网IP续费价格。
+        # @type Price: :class:`Tencentcloud::Vpc.v20170312.models.InternetPrice`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Price, :RequestId
+
+        def initialize(price=nil, requestid=nil)
+          @Price = price
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Price'].nil?
+            @Price = InternetPrice.new
             @Price.deserialize(params['Price'])
           end
           @RequestId = params['RequestId']
@@ -18015,6 +18175,55 @@ module TencentCloud
         def deserialize(params)
           @InstanceType = params['InstanceType']
           @InstanceCount = params['InstanceCount']
+        end
+      end
+
+      # 公网询价出参
+      class InternetPrice < TencentCloud::Common::AbstractModel
+        # @param AddressPrice: 公网IP询价详细参数。
+        # @type AddressPrice: :class:`Tencentcloud::Vpc.v20170312.models.InternetPriceDetail`
+
+        attr_accessor :AddressPrice
+
+        def initialize(addressprice=nil)
+          @AddressPrice = addressprice
+        end
+
+        def deserialize(params)
+          unless params['AddressPrice'].nil?
+            @AddressPrice = InternetPriceDetail.new
+            @AddressPrice.deserialize(params['AddressPrice'])
+          end
+        end
+      end
+
+      # 公网IP询价出参
+      class InternetPriceDetail < TencentCloud::Common::AbstractModel
+        # @param UnitPrice: 付费单价，单位：元，仅后付费价格查询返回。
+        # @type UnitPrice: Float
+        # @param DiscountPrice: 折扣后的价格，单位：元。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DiscountPrice: Float
+        # @param ChargeUnit: 计价单元，可取值范围：<ul> <li>HOUR：表示计价单元是按每小时来计算。当前涉及该计价单元的场景有：流量按小时后付费（TRAFFIC_POSTPAID_BY_HOUR）、带宽按小时后付费（BANDWIDTH_POSTPAID_BY_HOUR）。</li></ul>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ChargeUnit: String
+        # @param OriginalPrice: 原价，单位：元，仅预付费价格查询返回。
+        # @type OriginalPrice: Float
+
+        attr_accessor :UnitPrice, :DiscountPrice, :ChargeUnit, :OriginalPrice
+
+        def initialize(unitprice=nil, discountprice=nil, chargeunit=nil, originalprice=nil)
+          @UnitPrice = unitprice
+          @DiscountPrice = discountprice
+          @ChargeUnit = chargeunit
+          @OriginalPrice = originalprice
+        end
+
+        def deserialize(params)
+          @UnitPrice = params['UnitPrice']
+          @DiscountPrice = params['DiscountPrice']
+          @ChargeUnit = params['ChargeUnit']
+          @OriginalPrice = params['OriginalPrice']
         end
       end
 

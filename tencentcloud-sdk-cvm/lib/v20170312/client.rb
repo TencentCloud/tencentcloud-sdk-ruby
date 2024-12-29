@@ -1172,78 +1172,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口(DescribeReservedInstances)可提供列出用户已购买的预留实例
-
-        # @param request: Request instance for DescribeReservedInstances.
-        # @type request: :class:`Tencentcloud::cvm::V20170312::DescribeReservedInstancesRequest`
-        # @rtype: :class:`Tencentcloud::cvm::V20170312::DescribeReservedInstancesResponse`
-        def DescribeReservedInstances(request)
-          body = send_request('DescribeReservedInstances', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeReservedInstancesResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 本接口(DescribeReservedInstancesConfigInfos)供用户列出可购买预留实例机型配置。预留实例当前只针对国际站白名单用户开放。
-
-        # @param request: Request instance for DescribeReservedInstancesConfigInfos.
-        # @type request: :class:`Tencentcloud::cvm::V20170312::DescribeReservedInstancesConfigInfosRequest`
-        # @rtype: :class:`Tencentcloud::cvm::V20170312::DescribeReservedInstancesConfigInfosResponse`
-        def DescribeReservedInstancesConfigInfos(request)
-          body = send_request('DescribeReservedInstancesConfigInfos', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeReservedInstancesConfigInfosResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 本接口(DescribeReservedInstancesOfferings)供用户列出可购买的预留实例配置
-
-        # @param request: Request instance for DescribeReservedInstancesOfferings.
-        # @type request: :class:`Tencentcloud::cvm::V20170312::DescribeReservedInstancesOfferingsRequest`
-        # @rtype: :class:`Tencentcloud::cvm::V20170312::DescribeReservedInstancesOfferingsResponse`
-        def DescribeReservedInstancesOfferings(request)
-          body = send_request('DescribeReservedInstancesOfferings', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeReservedInstancesOfferingsResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 本接口 (DescribeTaskInfo) 用于查询云服务器维修任务列表及详细信息。
 
         # - 可以根据实例ID、实例名称或任务状态等信息来查询维修任务列表。过滤信息详情可参考入参说明。
@@ -1507,30 +1435,6 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ImportKeyPairResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 本接口(InquirePricePurchaseReservedInstancesOffering)用于创建预留实例询价。本接口仅允许针对购买限制范围内的预留实例配置进行询价。预留实例当前只针对国际站白名单用户开放。
-
-        # @param request: Request instance for InquirePricePurchaseReservedInstancesOffering.
-        # @type request: :class:`Tencentcloud::cvm::V20170312::InquirePricePurchaseReservedInstancesOfferingRequest`
-        # @rtype: :class:`Tencentcloud::cvm::V20170312::InquirePricePurchaseReservedInstancesOfferingResponse`
-        def InquirePricePurchaseReservedInstancesOffering(request)
-          body = send_request('InquirePricePurchaseReservedInstancesOffering', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = InquirePricePurchaseReservedInstancesOfferingResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -2176,30 +2080,6 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ProgramFpgaImageResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 本接口(PurchaseReservedInstancesOffering)用于用户购买一个或者多个指定配置的预留实例
-
-        # @param request: Request instance for PurchaseReservedInstancesOffering.
-        # @type request: :class:`Tencentcloud::cvm::V20170312::PurchaseReservedInstancesOfferingRequest`
-        # @rtype: :class:`Tencentcloud::cvm::V20170312::PurchaseReservedInstancesOfferingResponse`
-        def PurchaseReservedInstancesOffering(request)
-          body = send_request('PurchaseReservedInstancesOffering', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = PurchaseReservedInstancesOfferingResponse.new
             model.deserialize(response['Response'])
             model
           else

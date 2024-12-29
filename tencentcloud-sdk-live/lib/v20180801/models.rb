@@ -3142,10 +3142,14 @@ module TencentCloud
         # @type AiFormatDiagnose: Integer
         # @param AiQualityControl: 是否开启内容质检。
         # @type AiQualityControl: Integer
+        # @param CasterId: 导播台监播对应的导播台场次id。
+        # @type CasterId: String
+        # @param PullPushTaskId: 拉流转推监播任务对应的拉流转推场次id
+        # @type PullPushTaskId: String
 
-        attr_accessor :OutputInfo, :InputList, :MonitorName, :NotifyPolicy, :AsrLanguage, :OcrLanguage, :AiAsrInputIndexList, :AiOcrInputIndexList, :CheckStreamBroken, :CheckStreamLowFrameRate, :AllowMonitorReport, :AiFormatDiagnose, :AiQualityControl
+        attr_accessor :OutputInfo, :InputList, :MonitorName, :NotifyPolicy, :AsrLanguage, :OcrLanguage, :AiAsrInputIndexList, :AiOcrInputIndexList, :CheckStreamBroken, :CheckStreamLowFrameRate, :AllowMonitorReport, :AiFormatDiagnose, :AiQualityControl, :CasterId, :PullPushTaskId
 
-        def initialize(outputinfo=nil, inputlist=nil, monitorname=nil, notifypolicy=nil, asrlanguage=nil, ocrlanguage=nil, aiasrinputindexlist=nil, aiocrinputindexlist=nil, checkstreambroken=nil, checkstreamlowframerate=nil, allowmonitorreport=nil, aiformatdiagnose=nil, aiqualitycontrol=nil)
+        def initialize(outputinfo=nil, inputlist=nil, monitorname=nil, notifypolicy=nil, asrlanguage=nil, ocrlanguage=nil, aiasrinputindexlist=nil, aiocrinputindexlist=nil, checkstreambroken=nil, checkstreamlowframerate=nil, allowmonitorreport=nil, aiformatdiagnose=nil, aiqualitycontrol=nil, casterid=nil, pullpushtaskid=nil)
           @OutputInfo = outputinfo
           @InputList = inputlist
           @MonitorName = monitorname
@@ -3159,6 +3163,8 @@ module TencentCloud
           @AllowMonitorReport = allowmonitorreport
           @AiFormatDiagnose = aiformatdiagnose
           @AiQualityControl = aiqualitycontrol
+          @CasterId = casterid
+          @PullPushTaskId = pullpushtaskid
         end
 
         def deserialize(params)
@@ -3188,13 +3194,14 @@ module TencentCloud
           @AllowMonitorReport = params['AllowMonitorReport']
           @AiFormatDiagnose = params['AiFormatDiagnose']
           @AiQualityControl = params['AiQualityControl']
+          @CasterId = params['CasterId']
+          @PullPushTaskId = params['PullPushTaskId']
         end
       end
 
       # CreateLiveStreamMonitor返回参数结构体
       class CreateLiveStreamMonitorResponse < TencentCloud::Common::AbstractModel
         # @param MonitorId: 监播任务ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MonitorId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5223,16 +5230,12 @@ module TencentCloud
         # 1：无预监，有主监
         # 2：有预监，无主监
         # 3：有预监，有主监
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
         # @param PvwDisplayInfo: 预监使用的展示参数。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PvwDisplayInfo: :class:`Tencentcloud::Live.v20180801.models.CasterDisplayInfo`
         # @param PgmDisplayInfo: 主监使用的展示参数。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PgmDisplayInfo: :class:`Tencentcloud::Live.v20180801.models.CasterDisplayInfo`
         # @param StartLiveTime: 启动直播的时间，值为unix时间戳。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StartLiveTime: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5362,7 +5365,6 @@ module TencentCloud
       # DescribeCasterList返回参数结构体
       class DescribeCasterListResponse < TencentCloud::Common::AbstractModel
         # @param CasterList: 用户对应的导播台简要信息列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CasterList: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5406,7 +5408,6 @@ module TencentCloud
       # DescribeCasterMarkPicInfos返回参数结构体
       class DescribeCasterMarkPicInfosResponse < TencentCloud::Common::AbstractModel
         # @param MarkPicInfos: 导播台的水印信息列表。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MarkPicInfos: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5450,7 +5451,6 @@ module TencentCloud
       # DescribeCasterMarkWordInfos返回参数结构体
       class DescribeCasterMarkWordInfosResponse < TencentCloud::Common::AbstractModel
         # @param MarkWordInfos: 导播台的文本信息列表。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MarkWordInfos: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5494,7 +5494,6 @@ module TencentCloud
       # DescribeCasterOutputInfos返回参数结构体
       class DescribeCasterOutputInfosResponse < TencentCloud::Common::AbstractModel
         # @param OutputInfos: 导播台的推流信息列表。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OutputInfos: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5552,12 +5551,10 @@ module TencentCloud
       class DescribeCasterPlayUrlResponse < TencentCloud::Common::AbstractModel
         # @param PlayUrl: 播放url。
         # 当导播台不存在预监或主监时，若请求预监或主监的播放地址，该字段为空。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PlayUrl: String
         # @param WebRTCPlayUrl: webrtc协议播放地址。
         # 当导播台不存在预监或主监时，若请求预监或主监的webrtc播放地址，该字段为空。
         # 注：webrtc协议播放地址需配合腾讯云快直播播放sdk方可使用。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WebRTCPlayUrl: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5635,7 +5632,6 @@ module TencentCloud
       # DescribeCasterTransitionTypes返回参数结构体
       class DescribeCasterTransitionTypesResponse < TencentCloud::Common::AbstractModel
         # @param TransitionTypes: 转场信息列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TransitionTypes: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6439,7 +6435,6 @@ module TencentCloud
       # DescribeLiveDomain返回参数结构体
       class DescribeLiveDomainResponse < TencentCloud::Common::AbstractModel
         # @param DomainInfo: 域名信息。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DomainInfo: :class:`Tencentcloud::Live.v20180801.models.DomainInfo`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6510,10 +6505,8 @@ module TencentCloud
         # @param DomainList: 域名详细信息列表。
         # @type DomainList: Array
         # @param CreateLimitCount: 可继续添加域名数量。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateLimitCount: Integer
         # @param PlayTypeCount: 启用的播放域名加速区域统计，数组元素分别为：中国大陆（境内），全球地区，国际/港澳台（境外）域名数量。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PlayTypeCount: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6728,7 +6721,6 @@ module TencentCloud
       # DescribeLivePackageInfo返回参数结构体
       class DescribeLivePackageInfoResponse < TencentCloud::Common::AbstractModel
         # @param LivePackageInfoList: 套餐包信息。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LivePackageInfoList: Array
         # @param PackageBillMode: 套餐包当前计费方式:
         # -1: 无计费方式或获取失败
@@ -6740,7 +6732,6 @@ module TencentCloud
         # 205: 日结时长
         # 206: 月结时长
         # 304: 日结流量。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PackageBillMode: Integer
         # @param TotalPage: 总页数。
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -6759,7 +6750,6 @@ module TencentCloud
         # 标准直播，国际/港澳台（境外多地区）计费方式。
         # 快直播，中国大陆（境内全地区）计费方式。
         # 快直播，国际/港澳台（境外多地区）计费方式。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FluxPackageBillMode: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -7521,10 +7511,8 @@ module TencentCloud
       # DescribeLiveStreamMonitorList返回参数结构体
       class DescribeLiveStreamMonitorListResponse < TencentCloud::Common::AbstractModel
         # @param TotalNum: 账号下的直播流监播任务个数。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalNum: Integer
         # @param LiveStreamMonitors: 直播流监播任务列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LiveStreamMonitors: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -7570,7 +7558,6 @@ module TencentCloud
       # DescribeLiveStreamMonitor返回参数结构体
       class DescribeLiveStreamMonitorResponse < TencentCloud::Common::AbstractModel
         # @param LiveStreamMonitor: 直播监播任务相关信息。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LiveStreamMonitor: :class:`Tencentcloud::Live.v20180801.models.LiveStreamMonitorInfo`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -8644,10 +8631,8 @@ module TencentCloud
       # DescribeMonitorReport返回参数结构体
       class DescribeMonitorReportResponse < TencentCloud::Common::AbstractModel
         # @param MPSResult: 媒体处理结果信息。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MPSResult: :class:`Tencentcloud::Live.v20180801.models.MPSResult`
         # @param DiagnoseResult: 媒体诊断结果信息。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DiagnoseResult: :class:`Tencentcloud::Live.v20180801.models.DiagnoseResult`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -9758,7 +9743,6 @@ module TencentCloud
       # DescribeTimeShiftRecordDetail返回参数结构体
       class DescribeTimeShiftRecordDetailResponse < TencentCloud::Common::AbstractModel
         # @param RecordList: 时移录制会话数组。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RecordList: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -9829,7 +9813,6 @@ module TencentCloud
         # @param TotalSize: 时间段内所有的数据量。
         # @type TotalSize: Integer
         # @param StreamList: 流列表。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StreamList: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -11050,10 +11033,14 @@ module TencentCloud
         # @param AiQualityControl: 是否开启内容质检。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AiQualityControl: Integer
+        # @param CasterId: 导播台监播对应的导播台场次id
+        # @type CasterId: String
+        # @param PullPushTaskId: 拉流转推监播对应的拉流转推任务id
+        # @type PullPushTaskId: String
 
-        attr_accessor :MonitorId, :MonitorName, :OutputInfo, :InputList, :Status, :StartTime, :StopTime, :CreateTime, :UpdateTime, :NotifyPolicy, :AudibleInputIndexList, :AiAsrInputIndexList, :CheckStreamBroken, :CheckStreamLowFrameRate, :AsrLanguage, :OcrLanguage, :AiOcrInputIndexList, :AllowMonitorReport, :AiFormatDiagnose, :AiQualityControl
+        attr_accessor :MonitorId, :MonitorName, :OutputInfo, :InputList, :Status, :StartTime, :StopTime, :CreateTime, :UpdateTime, :NotifyPolicy, :AudibleInputIndexList, :AiAsrInputIndexList, :CheckStreamBroken, :CheckStreamLowFrameRate, :AsrLanguage, :OcrLanguage, :AiOcrInputIndexList, :AllowMonitorReport, :AiFormatDiagnose, :AiQualityControl, :CasterId, :PullPushTaskId
 
-        def initialize(monitorid=nil, monitorname=nil, outputinfo=nil, inputlist=nil, status=nil, starttime=nil, stoptime=nil, createtime=nil, updatetime=nil, notifypolicy=nil, audibleinputindexlist=nil, aiasrinputindexlist=nil, checkstreambroken=nil, checkstreamlowframerate=nil, asrlanguage=nil, ocrlanguage=nil, aiocrinputindexlist=nil, allowmonitorreport=nil, aiformatdiagnose=nil, aiqualitycontrol=nil)
+        def initialize(monitorid=nil, monitorname=nil, outputinfo=nil, inputlist=nil, status=nil, starttime=nil, stoptime=nil, createtime=nil, updatetime=nil, notifypolicy=nil, audibleinputindexlist=nil, aiasrinputindexlist=nil, checkstreambroken=nil, checkstreamlowframerate=nil, asrlanguage=nil, ocrlanguage=nil, aiocrinputindexlist=nil, allowmonitorreport=nil, aiformatdiagnose=nil, aiqualitycontrol=nil, casterid=nil, pullpushtaskid=nil)
           @MonitorId = monitorid
           @MonitorName = monitorname
           @OutputInfo = outputinfo
@@ -11074,6 +11061,8 @@ module TencentCloud
           @AllowMonitorReport = allowmonitorreport
           @AiFormatDiagnose = aiformatdiagnose
           @AiQualityControl = aiqualitycontrol
+          @CasterId = casterid
+          @PullPushTaskId = pullpushtaskid
         end
 
         def deserialize(params)
@@ -11110,6 +11099,8 @@ module TencentCloud
           @AllowMonitorReport = params['AllowMonitorReport']
           @AiFormatDiagnose = params['AiFormatDiagnose']
           @AiQualityControl = params['AiQualityControl']
+          @CasterId = params['CasterId']
+          @PullPushTaskId = params['PullPushTaskId']
         end
       end
 
@@ -11130,15 +11121,21 @@ module TencentCloud
         # @param Description: 描述。256字节以内。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
+        # @param CasterInputIndex: 导播台输入源索引（10000 pvw， 10001 pgm， 其余代表输入下标）
+        # @type CasterInputIndex: Integer
+        # @param NeedMonitor: 该输入源是否正在监播
+        # @type NeedMonitor: Boolean
 
-        attr_accessor :InputStreamName, :InputDomain, :InputApp, :InputUrl, :Description
+        attr_accessor :InputStreamName, :InputDomain, :InputApp, :InputUrl, :Description, :CasterInputIndex, :NeedMonitor
 
-        def initialize(inputstreamname=nil, inputdomain=nil, inputapp=nil, inputurl=nil, description=nil)
+        def initialize(inputstreamname=nil, inputdomain=nil, inputapp=nil, inputurl=nil, description=nil, casterinputindex=nil, needmonitor=nil)
           @InputStreamName = inputstreamname
           @InputDomain = inputdomain
           @InputApp = inputapp
           @InputUrl = inputurl
           @Description = description
+          @CasterInputIndex = casterinputindex
+          @NeedMonitor = needmonitor
         end
 
         def deserialize(params)
@@ -11147,6 +11144,8 @@ module TencentCloud
           @InputApp = params['InputApp']
           @InputUrl = params['InputUrl']
           @Description = params['Description']
+          @CasterInputIndex = params['CasterInputIndex']
+          @NeedMonitor = params['NeedMonitor']
         end
       end
 
@@ -11245,23 +11244,28 @@ module TencentCloud
 
       # 媒体处理结果，包含智能语音识别、智能文字识别结果
       class MPSResult < TencentCloud::Common::AbstractModel
-        # @param AiAsrResults: 智能语音识别结果
+        # @param AiAsrResults: 智能语音识别结果。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AiAsrResults: Array
-        # @param AiOcrResults: 智能文字识别结果
+        # @param AiOcrResults: 智能文字识别结果。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AiOcrResults: Array
+        # @param StreamQuaCtrlResults: 内容质检结果。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StreamQuaCtrlResults: Array
 
-        attr_accessor :AiAsrResults, :AiOcrResults
+        attr_accessor :AiAsrResults, :AiOcrResults, :StreamQuaCtrlResults
 
-        def initialize(aiasrresults=nil, aiocrresults=nil)
+        def initialize(aiasrresults=nil, aiocrresults=nil, streamquactrlresults=nil)
           @AiAsrResults = aiasrresults
           @AiOcrResults = aiocrresults
+          @StreamQuaCtrlResults = streamquactrlresults
         end
 
         def deserialize(params)
           @AiAsrResults = params['AiAsrResults']
           @AiOcrResults = params['AiOcrResults']
+          @StreamQuaCtrlResults = params['StreamQuaCtrlResults']
         end
       end
 
@@ -11734,7 +11738,6 @@ module TencentCloud
         # @param MismatchedDomainNames: DomainNames 入参中，与证书不匹配的域名列表，将会跳过处理。
         # @type MismatchedDomainNames: Array
         # @param Errors: 操作失败的域名及错误码，错误信息，包括MismatchedDomainNames中的域名。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Errors: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

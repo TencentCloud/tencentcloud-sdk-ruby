@@ -9472,22 +9472,26 @@ module TencentCloud
         # @param ExpireTime: 过期时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExpireTime: Integer
+        # @param PkgType: 类型
+        # @type PkgType: Integer
 
-        attr_accessor :ModelId, :Sn, :ExpireTime
+        attr_accessor :ModelId, :Sn, :ExpireTime, :PkgType
         extend Gem::Deprecate
         deprecate :ModelId, :none, 2024, 12
         deprecate :ModelId=, :none, 2024, 12
 
-        def initialize(modelid=nil, sn=nil, expiretime=nil)
+        def initialize(modelid=nil, sn=nil, expiretime=nil, pkgtype=nil)
           @ModelId = modelid
           @Sn = sn
           @ExpireTime = expiretime
+          @PkgType = pkgtype
         end
 
         def deserialize(params)
           @ModelId = params['ModelId']
           @Sn = params['Sn']
           @ExpireTime = params['ExpireTime']
+          @PkgType = params['PkgType']
         end
       end
 

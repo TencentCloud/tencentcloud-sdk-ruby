@@ -11065,7 +11065,7 @@ module TencentCloud
         # - 如需同时检索多个日志主题，请使用Topics参数。
         # - TopicId 和 Topics 不能同时使用，在一次请求中有且只能选择一个。
         # @type TopicId: String
-        # @param Topics: - 要检索分析的日志主题列表，最大支持20个日志主题。
+        # @param Topics: - 要检索分析的日志主题列表，最大支持50个日志主题。
         # - 检索单个日志主题时请使用TopicId。
         # - TopicId 和 Topics 不能同时使用，在一次请求中有且只能选择一个。
         # @type Topics: Array

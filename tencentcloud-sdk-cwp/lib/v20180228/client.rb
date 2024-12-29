@@ -4840,32 +4840,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 接口已废弃
-
-        # 获取索引列表
-
-        # @param request: Request instance for DescribeIndexList.
-        # @type request: :class:`Tencentcloud::cwp::V20180228::DescribeIndexListRequest`
-        # @rtype: :class:`Tencentcloud::cwp::V20180228::DescribeIndexListResponse`
-        def DescribeIndexList(request)
-          body = send_request('DescribeIndexList', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeIndexListResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 查询java内存马事件详细信息
 
         # @param request: Request instance for DescribeJavaMemShellInfo.

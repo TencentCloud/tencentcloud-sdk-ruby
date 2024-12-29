@@ -29,6 +29,8 @@ module TencentCloud
         end
 
 
+        # 下线老cmq云API 3.0 无调用量接口
+
         # 清除queue中的所有消息
 
         # @param request: Request instance for ClearQueue.
@@ -52,6 +54,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 下线老cmq云API 3.0 无调用量接口
 
         # 清空订阅者消息标签
 
@@ -100,6 +104,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 下线老cmq云API 3.0 无调用量接口
 
         # 创建订阅接口
 
@@ -173,6 +179,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 下线老cmq云API 3.0 无调用量接口
+
         # 删除订阅
 
         # @param request: Request instance for DeleteSubscribe.
@@ -197,6 +205,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 下线老cmq云API 3.0 无调用量接口
+
         # 删除主题
 
         # @param request: Request instance for DeleteTopic.
@@ -220,6 +230,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 下线老cmq云API 3.0 无调用量接口
 
         # 枚举死信队列源队列
 
@@ -341,6 +353,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 下线老cmq云API 3.0 无调用量接口
+
         # 修改订阅属性
 
         # @param request: Request instance for ModifySubscriptionAttribute.
@@ -364,6 +378,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 下线老cmq云API 3.0 无调用量接口
 
         # 修改主题属性
 
@@ -389,6 +405,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 下线老cmq云API 3.0 无调用量接口
+
         # 回溯队列
 
         # @param request: Request instance for RewindQueue.
@@ -412,6 +430,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 下线老cmq云API 3.0 无调用量接口
 
         # 解绑死信队列
 

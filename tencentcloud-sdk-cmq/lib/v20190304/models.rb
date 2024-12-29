@@ -1125,38 +1125,18 @@ module TencentCloud
 
       # 订阅返回参数
       class Subscription < TencentCloud::Common::AbstractModel
-        # @param SubscriptionName: 订阅名字，在单个地域同一帐号的同一主题下唯一。订阅名称是一个不超过64个字符的字符串，必须以字母为首字符，剩余部分可以包含字母、数字和横划线(-)。
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type SubscriptionName: String
-        # @param SubscriptionId: 订阅 ID。订阅 ID 在拉取监控数据时会用到。
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type SubscriptionId: String
-        # @param TopicOwner: 订阅拥有者的 APPID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type TopicOwner: Integer
         # @param MsgCount: 该订阅待投递的消息数。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MsgCount: Integer
-        # @param LastModifyTime: 最后一次修改订阅属性的时间。返回 Unix 时间戳，精确到秒。
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type LastModifyTime: Integer
-        # @param CreateTime: 订阅的创建时间。返回 Unix 时间戳，精确到秒。
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type CreateTime: Integer
         # @param BindingKey: 表示订阅接收消息的过滤策略。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BindingKey: Array
         # @param Endpoint: 接收通知的 endpoint，根据协议 protocol 区分：对于 HTTP，endpoint 必须以http://开头，host 可以是域名或 IP；对于 queue，则填 queueName。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Endpoint: String
-        # @param FilterTags: 描述用户创建订阅时选择的过滤策略：
-        # filterType = 1表示用户使用 filterTag 标签过滤
-        # filterType = 2表示用户使用 bindingKey 过滤。
+        # @param TopicOwner: 订阅拥有者的 APPID。
         # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type FilterTags: Array
-        # @param Protocol: 订阅的协议，目前支持两种协议：HTTP、queue。使用 HTTP 协议，用户需自己搭建接受消息的 Web Server。使用 queue，消息会自动推送到 CMQ queue，用户可以并发地拉取消息。
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Protocol: String
+        # @type TopicOwner: Integer
         # @param NotifyStrategy: 向 endpoint 推送消息出现错误时，CMQ 推送服务器的重试策略。取值有：
         # （1）BACKOFF_RETRY，退避重试。每隔一定时间重试一次，重试够一定次数后，就把该消息丢弃，继续推送下一条消息；
         # （2）EXPONENTIAL_DECAY_RETRY，指数衰退重试。每次重试的间隔是指数递增的，例如开始 1s，后面是 2s，4s，8s...由于 Topic 消息的周期是一天，所以最多重试一天就把消息丢弃。默认值是 EXPONENTIAL_DECAY_RETRY。
@@ -1165,37 +1145,57 @@ module TencentCloud
         # @param NotifyContentFormat: 推送内容的格式。取值：（1）JSON；（2）SIMPLIFIED，即 raw 格式。如果 protocol 是 queue，则取值必须为 SIMPLIFIED。如果 protocol 是 HTTP，两个值均可以，默认值是 JSON。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NotifyContentFormat: String
+        # @param LastModifyTime: 最后一次修改订阅属性的时间。返回 Unix 时间戳，精确到秒。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LastModifyTime: Integer
+        # @param FilterTags: 描述用户创建订阅时选择的过滤策略：
+        # filterType = 1表示用户使用 filterTag 标签过滤
+        # filterType = 2表示用户使用 bindingKey 过滤。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FilterTags: Array
+        # @param SubscriptionName: 订阅名字，在单个地域同一账号的同一主题下唯一。订阅名称是一个不超过64个字符的字符串，必须以字母为首字符，剩余部分可以包含字母、数字和横划线(-)。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubscriptionName: String
+        # @param Protocol: 订阅的协议，目前支持两种协议：HTTP、queue。使用 HTTP 协议，用户需自己搭建接受消息的 Web Server。使用 queue，消息会自动推送到 CMQ queue，用户可以并发地拉取消息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Protocol: String
+        # @param SubscriptionId: 订阅 ID。订阅 ID 在拉取监控数据时会用到。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubscriptionId: String
+        # @param CreateTime: 订阅的创建时间。返回 Unix 时间戳，精确到秒。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: Integer
 
-        attr_accessor :SubscriptionName, :SubscriptionId, :TopicOwner, :MsgCount, :LastModifyTime, :CreateTime, :BindingKey, :Endpoint, :FilterTags, :Protocol, :NotifyStrategy, :NotifyContentFormat
+        attr_accessor :MsgCount, :BindingKey, :Endpoint, :TopicOwner, :NotifyStrategy, :NotifyContentFormat, :LastModifyTime, :FilterTags, :SubscriptionName, :Protocol, :SubscriptionId, :CreateTime
 
-        def initialize(subscriptionname=nil, subscriptionid=nil, topicowner=nil, msgcount=nil, lastmodifytime=nil, createtime=nil, bindingkey=nil, endpoint=nil, filtertags=nil, protocol=nil, notifystrategy=nil, notifycontentformat=nil)
-          @SubscriptionName = subscriptionname
-          @SubscriptionId = subscriptionid
-          @TopicOwner = topicowner
+        def initialize(msgcount=nil, bindingkey=nil, endpoint=nil, topicowner=nil, notifystrategy=nil, notifycontentformat=nil, lastmodifytime=nil, filtertags=nil, subscriptionname=nil, protocol=nil, subscriptionid=nil, createtime=nil)
           @MsgCount = msgcount
-          @LastModifyTime = lastmodifytime
-          @CreateTime = createtime
           @BindingKey = bindingkey
           @Endpoint = endpoint
-          @FilterTags = filtertags
-          @Protocol = protocol
+          @TopicOwner = topicowner
           @NotifyStrategy = notifystrategy
           @NotifyContentFormat = notifycontentformat
+          @LastModifyTime = lastmodifytime
+          @FilterTags = filtertags
+          @SubscriptionName = subscriptionname
+          @Protocol = protocol
+          @SubscriptionId = subscriptionid
+          @CreateTime = createtime
         end
 
         def deserialize(params)
-          @SubscriptionName = params['SubscriptionName']
-          @SubscriptionId = params['SubscriptionId']
-          @TopicOwner = params['TopicOwner']
           @MsgCount = params['MsgCount']
-          @LastModifyTime = params['LastModifyTime']
-          @CreateTime = params['CreateTime']
           @BindingKey = params['BindingKey']
           @Endpoint = params['Endpoint']
-          @FilterTags = params['FilterTags']
-          @Protocol = params['Protocol']
+          @TopicOwner = params['TopicOwner']
           @NotifyStrategy = params['NotifyStrategy']
           @NotifyContentFormat = params['NotifyContentFormat']
+          @LastModifyTime = params['LastModifyTime']
+          @FilterTags = params['FilterTags']
+          @SubscriptionName = params['SubscriptionName']
+          @Protocol = params['Protocol']
+          @SubscriptionId = params['SubscriptionId']
+          @CreateTime = params['CreateTime']
         end
       end
 

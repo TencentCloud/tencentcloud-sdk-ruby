@@ -5931,16 +5931,19 @@ module TencentCloud
         # @type InstanceId: String
         # @param Name: 根据命名空间名称过滤。
         # @type Name: String
+        # @param SyncToGlobalRegistry: 是否开启同步到全局注册中心
+        # @type SyncToGlobalRegistry: String
         # @param Offset: 偏移量，默认为0。
         # @type Offset: Integer
         # @param Limit: 返回数量，默认为20，最大值为100。
         # @type Limit: Integer
 
-        attr_accessor :InstanceId, :Name, :Offset, :Limit
+        attr_accessor :InstanceId, :Name, :SyncToGlobalRegistry, :Offset, :Limit
 
-        def initialize(instanceid=nil, name=nil, offset=nil, limit=nil)
+        def initialize(instanceid=nil, name=nil, synctoglobalregistry=nil, offset=nil, limit=nil)
           @InstanceId = instanceid
           @Name = name
+          @SyncToGlobalRegistry = synctoglobalregistry
           @Offset = offset
           @Limit = limit
         end
@@ -5948,6 +5951,7 @@ module TencentCloud
         def deserialize(params)
           @InstanceId = params['InstanceId']
           @Name = params['Name']
+          @SyncToGlobalRegistry = params['SyncToGlobalRegistry']
           @Offset = params['Offset']
           @Limit = params['Limit']
         end
@@ -6141,10 +6145,12 @@ module TencentCloud
         # @type Host: String
         # @param OnlyExistHealthyInstance: 是否只查询存在健康实例的服务
         # @type OnlyExistHealthyInstance: Boolean
+        # @param SyncToGlobalRegistry: 是否开启同步到全局注册中心
+        # @type SyncToGlobalRegistry: String
 
-        attr_accessor :Name, :Namespace, :Metadatas, :Offset, :Limit, :InstanceId, :Department, :Business, :Host, :OnlyExistHealthyInstance
+        attr_accessor :Name, :Namespace, :Metadatas, :Offset, :Limit, :InstanceId, :Department, :Business, :Host, :OnlyExistHealthyInstance, :SyncToGlobalRegistry
 
-        def initialize(name=nil, namespace=nil, metadatas=nil, offset=nil, limit=nil, instanceid=nil, department=nil, business=nil, host=nil, onlyexisthealthyinstance=nil)
+        def initialize(name=nil, namespace=nil, metadatas=nil, offset=nil, limit=nil, instanceid=nil, department=nil, business=nil, host=nil, onlyexisthealthyinstance=nil, synctoglobalregistry=nil)
           @Name = name
           @Namespace = namespace
           @Metadatas = metadatas
@@ -6155,6 +6161,7 @@ module TencentCloud
           @Business = business
           @Host = host
           @OnlyExistHealthyInstance = onlyexisthealthyinstance
+          @SyncToGlobalRegistry = synctoglobalregistry
         end
 
         def deserialize(params)
@@ -6175,6 +6182,7 @@ module TencentCloud
           @Business = params['Business']
           @Host = params['Host']
           @OnlyExistHealthyInstance = params['OnlyExistHealthyInstance']
+          @SyncToGlobalRegistry = params['SyncToGlobalRegistry']
         end
       end
 
@@ -7910,10 +7918,13 @@ module TencentCloud
         # @param RemoveGroupIds: 移除可以操作此命名空间的用户组ID列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RemoveGroupIds: Array
+        # @param ServiceExportTo: 该命名空间下的服务对哪些命名空间可见
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ServiceExportTo: Array
 
-        attr_accessor :Name, :Comment, :CreateTime, :ModifyTime, :TotalServiceCount, :TotalHealthInstanceCount, :TotalInstanceCount, :Id, :Editable, :UserIds, :GroupIds, :RemoveUserIds, :RemoveGroupIds
+        attr_accessor :Name, :Comment, :CreateTime, :ModifyTime, :TotalServiceCount, :TotalHealthInstanceCount, :TotalInstanceCount, :Id, :Editable, :UserIds, :GroupIds, :RemoveUserIds, :RemoveGroupIds, :ServiceExportTo
 
-        def initialize(name=nil, comment=nil, createtime=nil, modifytime=nil, totalservicecount=nil, totalhealthinstancecount=nil, totalinstancecount=nil, id=nil, editable=nil, userids=nil, groupids=nil, removeuserids=nil, removegroupids=nil)
+        def initialize(name=nil, comment=nil, createtime=nil, modifytime=nil, totalservicecount=nil, totalhealthinstancecount=nil, totalinstancecount=nil, id=nil, editable=nil, userids=nil, groupids=nil, removeuserids=nil, removegroupids=nil, serviceexportto=nil)
           @Name = name
           @Comment = comment
           @CreateTime = createtime
@@ -7927,6 +7938,7 @@ module TencentCloud
           @GroupIds = groupids
           @RemoveUserIds = removeuserids
           @RemoveGroupIds = removegroupids
+          @ServiceExportTo = serviceexportto
         end
 
         def deserialize(params)
@@ -7943,6 +7955,7 @@ module TencentCloud
           @GroupIds = params['GroupIds']
           @RemoveUserIds = params['RemoveUserIds']
           @RemoveGroupIds = params['RemoveGroupIds']
+          @ServiceExportTo = params['ServiceExportTo']
         end
       end
 
@@ -7960,16 +7973,22 @@ module TencentCloud
         # @type RemoveUserIds: Array
         # @param RemoveGroupIds: 移除可以操作此命名空间的用户组ID列表
         # @type RemoveGroupIds: Array
+        # @param ServiceExportTo: 该命名空间下的服务对哪些命名空间下可见，
+        # 1、为空或者不填写，表示仅当前命名空间可见
+        # 2、列表内容仅一个元素，且为字符 *，表示所有命名空间可见（包括新增）
+        # 3、列表内容为部份命名空间名称，则只对这些命名空间下可见
+        # @type ServiceExportTo: Array
 
-        attr_accessor :Name, :Comment, :UserIds, :GroupIds, :RemoveUserIds, :RemoveGroupIds
+        attr_accessor :Name, :Comment, :UserIds, :GroupIds, :RemoveUserIds, :RemoveGroupIds, :ServiceExportTo
 
-        def initialize(name=nil, comment=nil, userids=nil, groupids=nil, removeuserids=nil, removegroupids=nil)
+        def initialize(name=nil, comment=nil, userids=nil, groupids=nil, removeuserids=nil, removegroupids=nil, serviceexportto=nil)
           @Name = name
           @Comment = comment
           @UserIds = userids
           @GroupIds = groupids
           @RemoveUserIds = removeuserids
           @RemoveGroupIds = removegroupids
+          @ServiceExportTo = serviceexportto
         end
 
         def deserialize(params)
@@ -7979,6 +7998,7 @@ module TencentCloud
           @GroupIds = params['GroupIds']
           @RemoveUserIds = params['RemoveUserIds']
           @RemoveGroupIds = params['RemoveGroupIds']
+          @ServiceExportTo = params['ServiceExportTo']
         end
       end
 

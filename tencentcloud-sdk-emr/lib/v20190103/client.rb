@@ -53,6 +53,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 增加当前集群的节点规格配置
+
+        # @param request: Request instance for AddNodeResourceConfig.
+        # @type request: :class:`Tencentcloud::emr::V20190103::AddNodeResourceConfigRequest`
+        # @rtype: :class:`Tencentcloud::emr::V20190103::AddNodeResourceConfigResponse`
+        def AddNodeResourceConfig(request)
+          body = send_request('AddNodeResourceConfig', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = AddNodeResourceConfigResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 该接口支持安装了OpenLdap组件的集群。
         # 新增用户列表（用户管理）。
 
@@ -64,6 +88,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = AddUsersForUserManagerResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 云盘挂载
+
+        # @param request: Request instance for AttachDisks.
+        # @type request: :class:`Tencentcloud::emr::V20190103::AttachDisksRequest`
+        # @rtype: :class:`Tencentcloud::emr::V20190103::AttachDisksResponse`
+        def AttachDisks(request)
+          body = send_request('AttachDisks', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = AttachDisksResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -186,6 +234,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteAutoScaleStrategyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除当前集群的节点规格配置
+
+        # @param request: Request instance for DeleteNodeResourceConfig.
+        # @type request: :class:`Tencentcloud::emr::V20190103::DeleteNodeResourceConfigRequest`
+        # @rtype: :class:`Tencentcloud::emr::V20190103::DeleteNodeResourceConfigResponse`
+        def DeleteNodeResourceConfig(request)
+          body = send_request('DeleteNodeResourceConfig', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteNodeResourceConfigResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -704,6 +776,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询节点数据盘信息
+
+        # @param request: Request instance for DescribeNodeDataDisks.
+        # @type request: :class:`Tencentcloud::emr::V20190103::DescribeNodeDataDisksRequest`
+        # @rtype: :class:`Tencentcloud::emr::V20190103::DescribeNodeDataDisksResponse`
+        def DescribeNodeDataDisks(request)
+          body = send_request('DescribeNodeDataDisks', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeNodeDataDisksResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 快速获取当前集群的节点规格配置
+
+        # @param request: Request instance for DescribeNodeResourceConfigFast.
+        # @type request: :class:`Tencentcloud::emr::V20190103::DescribeNodeResourceConfigFastRequest`
+        # @rtype: :class:`Tencentcloud::emr::V20190103::DescribeNodeResourceConfigFastResponse`
+        def DescribeNodeResourceConfigFast(request)
+          body = send_request('DescribeNodeResourceConfigFast', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeNodeResourceConfigFastResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询YARN资源调度数据信息。已废弃，请使用`DescribeYarnQueue`去查询队列信息。
 
         # @param request: Request instance for DescribeResourceSchedule.
@@ -1186,6 +1306,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 修改集群名称
+
+        # @param request: Request instance for ModifyInstanceBasic.
+        # @type request: :class:`Tencentcloud::emr::V20190103::ModifyInstanceBasicRequest`
+        # @rtype: :class:`Tencentcloud::emr::V20190103::ModifyInstanceBasicResponse`
+        def ModifyInstanceBasic(request)
+          body = send_request('ModifyInstanceBasic', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyInstanceBasicResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 调整Pod数量
 
         # @param request: Request instance for ModifyPodNum.
@@ -1196,6 +1340,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyPodNumResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 变配实例
+
+        # @param request: Request instance for ModifyResource.
+        # @type request: :class:`Tencentcloud::emr::V20190103::ModifyResourceRequest`
+        # @rtype: :class:`Tencentcloud::emr::V20190103::ModifyResourceResponse`
+        def ModifyResource(request)
+          body = send_request('ModifyResource', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyResourceResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1428,6 +1596,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 云盘扩容
+
+        # @param request: Request instance for ResizeDataDisks.
+        # @type request: :class:`Tencentcloud::emr::V20190103::ResizeDataDisksRequest`
+        # @rtype: :class:`Tencentcloud::emr::V20190103::ResizeDataDisksResponse`
+        def ResizeDataDisks(request)
+          body = send_request('ResizeDataDisks', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ResizeDataDisksResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建流程作业
 
         # @param request: Request instance for RunJobFlow.
@@ -1486,6 +1678,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ScaleOutInstanceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 设置当前集群的某个节点规格配置为默认或取消默认
+
+        # @param request: Request instance for SetNodeResourceConfigDefault.
+        # @type request: :class:`Tencentcloud::emr::V20190103::SetNodeResourceConfigDefaultRequest`
+        # @rtype: :class:`Tencentcloud::emr::V20190103::SetNodeResourceConfigDefaultResponse`
+        def SetNodeResourceConfigDefault(request)
+          body = send_request('SetNodeResourceConfigDefault', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = SetNodeResourceConfigDefaultResponse.new
             model.deserialize(response['Response'])
             model
           else

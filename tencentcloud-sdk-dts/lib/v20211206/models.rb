@@ -7223,6 +7223,9 @@ module TencentCloud
         # @param OfflineTime: 下线时间，格式为 yyyy-mm-dd hh:mm:ss
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OfflineTime: String
+        # @param OptObjStatus: 动态修改对象，修改任务的状态等
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OptObjStatus: String
         # @param AutoRetryTimeRangeMinutes: 自动重试时间段设置
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AutoRetryTimeRangeMinutes: Integer
@@ -7230,9 +7233,9 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DumperResumeCtrl: String
 
-        attr_accessor :JobId, :JobName, :PayMode, :RunMode, :ExpectRunTime, :AllActions, :Actions, :Options, :Objects, :Specification, :ExpireTime, :SrcRegion, :SrcDatabaseType, :SrcAccessType, :SrcInfo, :SrcNodeType, :SrcInfos, :DstRegion, :DstDatabaseType, :DstAccessType, :DstInfo, :DstNodeType, :DstInfos, :CreateTime, :StartTime, :Status, :EndTime, :Tags, :Detail, :TradeStatus, :InstanceClass, :AutoRenew, :OfflineTime, :AutoRetryTimeRangeMinutes, :DumperResumeCtrl
+        attr_accessor :JobId, :JobName, :PayMode, :RunMode, :ExpectRunTime, :AllActions, :Actions, :Options, :Objects, :Specification, :ExpireTime, :SrcRegion, :SrcDatabaseType, :SrcAccessType, :SrcInfo, :SrcNodeType, :SrcInfos, :DstRegion, :DstDatabaseType, :DstAccessType, :DstInfo, :DstNodeType, :DstInfos, :CreateTime, :StartTime, :Status, :EndTime, :Tags, :Detail, :TradeStatus, :InstanceClass, :AutoRenew, :OfflineTime, :OptObjStatus, :AutoRetryTimeRangeMinutes, :DumperResumeCtrl
 
-        def initialize(jobid=nil, jobname=nil, paymode=nil, runmode=nil, expectruntime=nil, allactions=nil, actions=nil, options=nil, objects=nil, specification=nil, expiretime=nil, srcregion=nil, srcdatabasetype=nil, srcaccesstype=nil, srcinfo=nil, srcnodetype=nil, srcinfos=nil, dstregion=nil, dstdatabasetype=nil, dstaccesstype=nil, dstinfo=nil, dstnodetype=nil, dstinfos=nil, createtime=nil, starttime=nil, status=nil, endtime=nil, tags=nil, detail=nil, tradestatus=nil, instanceclass=nil, autorenew=nil, offlinetime=nil, autoretrytimerangeminutes=nil, dumperresumectrl=nil)
+        def initialize(jobid=nil, jobname=nil, paymode=nil, runmode=nil, expectruntime=nil, allactions=nil, actions=nil, options=nil, objects=nil, specification=nil, expiretime=nil, srcregion=nil, srcdatabasetype=nil, srcaccesstype=nil, srcinfo=nil, srcnodetype=nil, srcinfos=nil, dstregion=nil, dstdatabasetype=nil, dstaccesstype=nil, dstinfo=nil, dstnodetype=nil, dstinfos=nil, createtime=nil, starttime=nil, status=nil, endtime=nil, tags=nil, detail=nil, tradestatus=nil, instanceclass=nil, autorenew=nil, offlinetime=nil, optobjstatus=nil, autoretrytimerangeminutes=nil, dumperresumectrl=nil)
           @JobId = jobid
           @JobName = jobname
           @PayMode = paymode
@@ -7266,6 +7269,7 @@ module TencentCloud
           @InstanceClass = instanceclass
           @AutoRenew = autorenew
           @OfflineTime = offlinetime
+          @OptObjStatus = optobjstatus
           @AutoRetryTimeRangeMinutes = autoretrytimerangeminutes
           @DumperResumeCtrl = dumperresumectrl
         end
@@ -7332,6 +7336,7 @@ module TencentCloud
           @InstanceClass = params['InstanceClass']
           @AutoRenew = params['AutoRenew']
           @OfflineTime = params['OfflineTime']
+          @OptObjStatus = params['OptObjStatus']
           @AutoRetryTimeRangeMinutes = params['AutoRetryTimeRangeMinutes']
           @DumperResumeCtrl = params['DumperResumeCtrl']
         end

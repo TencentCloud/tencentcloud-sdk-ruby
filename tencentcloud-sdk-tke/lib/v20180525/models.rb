@@ -299,15 +299,18 @@ module TencentCloud
         # @param Reason: addon失败的原因
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Reason: String
+        # @param CreateTime: addon的创建时间
+        # @type CreateTime: String
 
-        attr_accessor :AddonName, :AddonVersion, :RawValues, :Phase, :Reason
+        attr_accessor :AddonName, :AddonVersion, :RawValues, :Phase, :Reason, :CreateTime
 
-        def initialize(addonname=nil, addonversion=nil, rawvalues=nil, phase=nil, reason=nil)
+        def initialize(addonname=nil, addonversion=nil, rawvalues=nil, phase=nil, reason=nil, createtime=nil)
           @AddonName = addonname
           @AddonVersion = addonversion
           @RawValues = rawvalues
           @Phase = phase
           @Reason = reason
+          @CreateTime = createtime
         end
 
         def deserialize(params)
@@ -316,6 +319,7 @@ module TencentCloud
           @RawValues = params['RawValues']
           @Phase = params['Phase']
           @Reason = params['Reason']
+          @CreateTime = params['CreateTime']
         end
       end
 
@@ -5150,9 +5154,9 @@ module TencentCloud
 
       # DescribeAddonValues返回参数结构体
       class DescribeAddonValuesResponse < TencentCloud::Common::AbstractModel
-        # @param Values: 参数列表，如果addon已安装，会使用已设置的参数做渲染，是一个json格式的字符串
+        # @param Values: 参数列表，如果addon已安装，会使用已设置的参数和chart里的默认参数做渲染，是一个json格式的字符串，未安装addon时返回为空值。
         # @type Values: String
-        # @param DefaultValues: addon支持的参数列表，使用默认值，是一个json格式的字符串
+        # @param DefaultValues: addon支持的参数列表，值为chart的默认值，是一个json格式的字符串。
         # @type DefaultValues: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -12625,7 +12629,7 @@ module TencentCloud
 
       # InstallAddon请求参数结构体
       class InstallAddonRequest < TencentCloud::Common::AbstractModel
-        # @param ClusterId: 集群ID
+        # @param ClusterId: 集群ID（仅支持标准tke集群）
         # @type ClusterId: String
         # @param AddonName: addon名称
         # @type AddonName: String
