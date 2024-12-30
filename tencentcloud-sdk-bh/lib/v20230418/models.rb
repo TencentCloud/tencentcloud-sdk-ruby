@@ -1687,12 +1687,14 @@ module TencentCloud
         # @type Status: Integer
         # @param DepartmentId: 部门ID，用于过滤属于某个部门的访问权限
         # @type DepartmentId: String
+        # @param ExactAccount: 是否根据AuthorizedDeviceIdSet,对资产账号进行精确匹配，默认false, 设置true时，确保AuthorizedDeviceIdSet只有一个元素
+        # @type ExactAccount: Boolean
         # @param Filters: 过滤数组
         # @type Filters: Array
 
-        attr_accessor :IdSet, :Name, :Offset, :Limit, :Exact, :AuthorizedUserIdSet, :AuthorizedDeviceIdSet, :Status, :DepartmentId, :Filters
+        attr_accessor :IdSet, :Name, :Offset, :Limit, :Exact, :AuthorizedUserIdSet, :AuthorizedDeviceIdSet, :Status, :DepartmentId, :ExactAccount, :Filters
 
-        def initialize(idset=nil, name=nil, offset=nil, limit=nil, exact=nil, authorizeduseridset=nil, authorizeddeviceidset=nil, status=nil, departmentid=nil, filters=nil)
+        def initialize(idset=nil, name=nil, offset=nil, limit=nil, exact=nil, authorizeduseridset=nil, authorizeddeviceidset=nil, status=nil, departmentid=nil, exactaccount=nil, filters=nil)
           @IdSet = idset
           @Name = name
           @Offset = offset
@@ -1702,6 +1704,7 @@ module TencentCloud
           @AuthorizedDeviceIdSet = authorizeddeviceidset
           @Status = status
           @DepartmentId = departmentid
+          @ExactAccount = exactaccount
           @Filters = filters
         end
 
@@ -1715,6 +1718,7 @@ module TencentCloud
           @AuthorizedDeviceIdSet = params['AuthorizedDeviceIdSet']
           @Status = params['Status']
           @DepartmentId = params['DepartmentId']
+          @ExactAccount = params['ExactAccount']
           unless params['Filters'].nil?
             @Filters = []
             params['Filters'].each do |i|

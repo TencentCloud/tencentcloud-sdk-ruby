@@ -3968,6 +3968,92 @@ module TencentCloud
         end
       end
 
+      # GetOCRResult请求参数结构体
+      class GetOCRResultRequest < TencentCloud::Common::AbstractModel
+        # @param OCRToken: token值
+        # @type OCRToken: String
+
+        attr_accessor :OCRToken
+
+        def initialize(ocrtoken=nil)
+          @OCRToken = ocrtoken
+        end
+
+        def deserialize(params)
+          @OCRToken = params['OCRToken']
+        end
+      end
+
+      # GetOCRResult返回参数结构体
+      class GetOCRResultResponse < TencentCloud::Common::AbstractModel
+        # @param Type: ocr业务类型
+        # @type Type: String
+        # @param OCRResult: ocr结果
+        # @type OCRResult: :class:`Tencentcloud::Ocr.v20181119.models.OCRResult`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Type, :OCRResult, :RequestId
+
+        def initialize(type=nil, ocrresult=nil, requestid=nil)
+          @Type = type
+          @OCRResult = ocrresult
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          unless params['OCRResult'].nil?
+            @OCRResult = OCRResult.new
+            @OCRResult.deserialize(params['OCRResult'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # GetOCRToken请求参数结构体
+      class GetOCRTokenRequest < TencentCloud::Common::AbstractModel
+        # @param Type: 业务类型，如身份证识别为IDCardOCR
+        # @type Type: String
+        # @param IDCardConfig: 身份证配置信息
+        # @type IDCardConfig: :class:`Tencentcloud::Ocr.v20181119.models.IDCardConfig`
+
+        attr_accessor :Type, :IDCardConfig
+
+        def initialize(type=nil, idcardconfig=nil)
+          @Type = type
+          @IDCardConfig = idcardconfig
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          unless params['IDCardConfig'].nil?
+            @IDCardConfig = IDCardConfig.new
+            @IDCardConfig.deserialize(params['IDCardConfig'])
+          end
+        end
+      end
+
+      # GetOCRToken返回参数结构体
+      class GetOCRTokenResponse < TencentCloud::Common::AbstractModel
+        # @param OCRToken: token值
+        # @type OCRToken: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :OCRToken, :RequestId
+
+        def initialize(ocrtoken=nil, requestid=nil)
+          @OCRToken = ocrtoken
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @OCRToken = params['OCRToken']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # GetTaskState请求参数结构体
       class GetTaskStateRequest < TencentCloud::Common::AbstractModel
         # @param TaskId: 智慧表单任务唯一身份ID
@@ -4264,6 +4350,46 @@ module TencentCloud
         end
       end
 
+      # 身份证配置信息
+      class IDCardConfig < TencentCloud::Common::AbstractModel
+        # @param CopyWarn: 默认为false
+        # @type CopyWarn: Boolean
+        # @param BorderCheckWarn: 默认为false
+        # @type BorderCheckWarn: Boolean
+        # @param ReshootWarn: 默认为false
+        # @type ReshootWarn: Boolean
+        # @param DetectPsWarn: 默认为false
+        # @type DetectPsWarn: Boolean
+        # @param TempIdWarn: 默认为false
+        # @type TempIdWarn: Boolean
+        # @param InvalidDateWarn: 默认为false
+        # @type InvalidDateWarn: Boolean
+        # @param ReflectWarn: 默认为false
+        # @type ReflectWarn: Boolean
+
+        attr_accessor :CopyWarn, :BorderCheckWarn, :ReshootWarn, :DetectPsWarn, :TempIdWarn, :InvalidDateWarn, :ReflectWarn
+
+        def initialize(copywarn=nil, bordercheckwarn=nil, reshootwarn=nil, detectpswarn=nil, tempidwarn=nil, invaliddatewarn=nil, reflectwarn=nil)
+          @CopyWarn = copywarn
+          @BorderCheckWarn = bordercheckwarn
+          @ReshootWarn = reshootwarn
+          @DetectPsWarn = detectpswarn
+          @TempIdWarn = tempidwarn
+          @InvalidDateWarn = invaliddatewarn
+          @ReflectWarn = reflectwarn
+        end
+
+        def deserialize(params)
+          @CopyWarn = params['CopyWarn']
+          @BorderCheckWarn = params['BorderCheckWarn']
+          @ReshootWarn = params['ReshootWarn']
+          @DetectPsWarn = params['DetectPsWarn']
+          @TempIdWarn = params['TempIdWarn']
+          @InvalidDateWarn = params['InvalidDateWarn']
+          @ReflectWarn = params['ReflectWarn']
+        end
+      end
+
       # 身份证信息返回
       class IDCardInfo < TencentCloud::Common::AbstractModel
         # @param Name: 姓名（人像面）
@@ -4350,6 +4476,82 @@ module TencentCloud
             @PortraitImage = ContentInfo.new
             @PortraitImage.deserialize(params['PortraitImage'])
           end
+        end
+      end
+
+      # 身份证ocr信息结果
+      class IDCardInfoResult < TencentCloud::Common::AbstractModel
+        # @param WarnCodes: 警告代码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WarnCodes: Array
+        # @param Address: 地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Address: String
+        # @param Authority: 签发机关
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Authority: String
+        # @param Birth: 出生日期
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Birth: String
+        # @param IdNum: 身份证号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IdNum: String
+        # @param Name: 名字
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Nation: 地区
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Nation: String
+        # @param Sex: 性别
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Sex: String
+        # @param ValidDate: 到期时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ValidDate: String
+        # @param RequestId: 请求的id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RequestId: String
+        # @param ErrorCode: 错误码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorCode: String
+        # @param ErrorMessage: 错误信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorMessage: String
+        # @param ImageUrl: 原图地址
+        # @type ImageUrl: String
+
+        attr_accessor :WarnCodes, :Address, :Authority, :Birth, :IdNum, :Name, :Nation, :Sex, :ValidDate, :RequestId, :ErrorCode, :ErrorMessage, :ImageUrl
+
+        def initialize(warncodes=nil, address=nil, authority=nil, birth=nil, idnum=nil, name=nil, nation=nil, sex=nil, validdate=nil, requestid=nil, errorcode=nil, errormessage=nil, imageurl=nil)
+          @WarnCodes = warncodes
+          @Address = address
+          @Authority = authority
+          @Birth = birth
+          @IdNum = idnum
+          @Name = name
+          @Nation = nation
+          @Sex = sex
+          @ValidDate = validdate
+          @RequestId = requestid
+          @ErrorCode = errorcode
+          @ErrorMessage = errormessage
+          @ImageUrl = imageurl
+        end
+
+        def deserialize(params)
+          @WarnCodes = params['WarnCodes']
+          @Address = params['Address']
+          @Authority = params['Authority']
+          @Birth = params['Birth']
+          @IdNum = params['IdNum']
+          @Name = params['Name']
+          @Nation = params['Nation']
+          @Sex = params['Sex']
+          @ValidDate = params['ValidDate']
+          @RequestId = params['RequestId']
+          @ErrorCode = params['ErrorCode']
+          @ErrorMessage = params['ErrorMessage']
+          @ImageUrl = params['ImageUrl']
         end
       end
 
@@ -4493,6 +4695,34 @@ module TencentCloud
             end
           end
           @RequestId = params['RequestId']
+        end
+      end
+
+      # IDCardResult
+      class IDCardResult < TencentCloud::Common::AbstractModel
+        # @param Front: 正面结果
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Front: :class:`Tencentcloud::Ocr.v20181119.models.IDCardInfoResult`
+        # @param Back: 反面结果
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Back: :class:`Tencentcloud::Ocr.v20181119.models.IDCardInfoResult`
+
+        attr_accessor :Front, :Back
+
+        def initialize(front=nil, back=nil)
+          @Front = front
+          @Back = back
+        end
+
+        def deserialize(params)
+          unless params['Front'].nil?
+            @Front = IDCardInfoResult.new
+            @Front.deserialize(params['Front'])
+          end
+          unless params['Back'].nil?
+            @Back = IDCardInfoResult.new
+            @Back.deserialize(params['Back'])
+          end
         end
       end
 
@@ -6458,6 +6688,26 @@ module TencentCloud
           @Quantity = params['Quantity']
           @Standard = params['Standard']
           @Total = params['Total']
+        end
+      end
+
+      # ocr结果信息
+      class OCRResult < TencentCloud::Common::AbstractModel
+        # @param IDCardResult: 身份证结果
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IDCardResult: :class:`Tencentcloud::Ocr.v20181119.models.IDCardResult`
+
+        attr_accessor :IDCardResult
+
+        def initialize(idcardresult=nil)
+          @IDCardResult = idcardresult
+        end
+
+        def deserialize(params)
+          unless params['IDCardResult'].nil?
+            @IDCardResult = IDCardResult.new
+            @IDCardResult.deserialize(params['IDCardResult'])
+          end
         end
       end
 
@@ -13277,7 +13527,7 @@ module TencentCloud
         # @type InvoiceNo: String
         # @param InvoiceDate: 开票日期（不支持当天发票查询，支持五年以内开具的发票），格式：“YYYY-MM-DD”，如：2019-12-20。
         # @type InvoiceDate: String
-        # @param InvoiceCode: 发票代码（10或12 位），全电发票为空。查验未成功超过5次后当日无法再查。
+        # @param InvoiceCode: 发票代码（10或12 位），全电发票为空。查验超过5次后当日无法再查。
         # @type InvoiceCode: String
         # @param InvoiceKind: 票种类型 01:增值税专用发票， 02:货运运输业增值税专用发 票， 03:机动车销售统一发票， 04:增值税普通发票， 08:增值税电子专用发票(含全电)， 10:增值税电子普通发票(含全电)， 11:增值税普通发票(卷式)， 14:增值税电子(通行费)发 票， 15:二手车销售统一发票，16:财务发票， 32:深圳区块链发票(云南区块链因业务调整现已下线)。
         # @type InvoiceKind: String
@@ -13293,9 +13543,7 @@ module TencentCloud
         # @type SellerTaxCode: String
         # @param EnableCommonElectronic: 是否开启通用机打电子发票，默认为关闭。
         # @type EnableCommonElectronic: Boolean
-        # @param EnableTodayInvoice: 是否允许查验当日发票，默认值为false。
-
-        # 请注意，发票从开具到录入税局需要一定的时间来更新和验证发票信息，打开后仅支持查验已成功录入到税局中的发票。
+        # @param EnableTodayInvoice: 是否允许查验当日发票，默认值为false。请注意，发票从开具到录入税局需要一定的时间来更新和验证发票信息，打开后仅支持查验已成功录入到税局中的当日发票。
         # @type EnableTodayInvoice: Boolean
 
         attr_accessor :InvoiceNo, :InvoiceDate, :InvoiceCode, :InvoiceKind, :CheckCode, :Amount, :RegionCode, :SellerTaxCode, :EnableCommonElectronic, :EnableTodayInvoice

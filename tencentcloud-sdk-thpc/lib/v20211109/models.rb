@@ -202,12 +202,12 @@ module TencentCloud
 
       # 计算节点信息。
       class ComputeNode < TencentCloud::Common::AbstractModel
-        # @param InstanceChargeType: 节点[计费类型](https://cloud.tencent.com/document/product/213/2180)。<br><li>PREPAID：预付费，即包年包月<br><li>POSTPAID_BY_HOUR：按小时后付费<br><li>SPOTPAID：竞价付费<br>默认值：POSTPAID_BY_HOUR。
+        # @param InstanceChargeType: 节点[计费类型](https://cloud.tencent.com/document/product/213/2180)。<br><li>PREPAID：预付费，即包年包月</li><br><li>POSTPAID_BY_HOUR：按小时后付费</li><br><li>SPOTPAID：竞价付费<br>默认值：POSTPAID_BY_HOUR。</li>
         # @type InstanceChargeType: String
         # @param InstanceChargePrepaid: 预付费模式，即包年包月相关参数设置。通过该参数可以指定包年包月节点的购买时长、是否设置自动续费等属性。若指定节点的付费模式为预付费则该参数必传。
         # @type InstanceChargePrepaid: :class:`Tencentcloud::Thpc.v20211109.models.InstanceChargePrepaid`
         # @param InstanceType: 节点机型。不同实例机型指定了不同的资源规格。
-        # <br><li>具体取值可通过调用接口[DescribeInstanceTypeConfigs](https://cloud.tencent.com/document/api/213/15749)来获得最新的规格表或参见[实例规格](https://cloud.tencent.com/document/product/213/11518)描述。
+        # <br><li>具体取值可通过调用接口[DescribeInstanceTypeConfigs](https://cloud.tencent.com/document/api/213/15749)来获得最新的规格表或参见[实例规格](https://cloud.tencent.com/document/product/213/11518)描述。</li>
         # @type InstanceType: String
         # @param SystemDisk: 节点系统盘配置信息。若不指定该参数，则按照系统默认值进行分配。
         # @type SystemDisk: :class:`Tencentcloud::Thpc.v20211109.models.SystemDisk`
@@ -217,7 +217,7 @@ module TencentCloud
         # @type InternetAccessible: :class:`Tencentcloud::Thpc.v20211109.models.InternetAccessible`
         # @param InstanceName: 节点显示名称。<br><li>
         # 不指定节点显示名称则默认显示‘未命名’。
-        # 最多支持60个字符。
+        # 最多支持60个字符。</li>
         # @type InstanceName: String
 
         attr_accessor :InstanceChargeType, :InstanceChargePrepaid, :InstanceType, :SystemDisk, :DataDisks, :InternetAccessible, :InstanceName
@@ -288,7 +288,7 @@ module TencentCloud
         # @type ComputeNode: :class:`Tencentcloud::Thpc.v20211109.models.ComputeNode`
         # @param ComputeNodeCount: 指定计算节点的数量。默认取值：0。
         # @type ComputeNodeCount: Integer
-        # @param SchedulerType: 调度器类型。<br><li>SGE：SGE调度器。<br><li>SLURM：SLURM调度器。
+        # @param SchedulerType: 调度器类型。<br><li>SGE：SGE调度器。</li><br><li>SLURM：SLURM调度器。</li>
         # @type SchedulerType: String
         # @param ImageId: 指定有效的[镜像](https://cloud.tencent.com/document/product/213/4940)ID，格式形如`img-xxx`。目前仅支持公有镜像。
         # @type ImageId: String
@@ -306,8 +306,7 @@ module TencentCloud
         # 如果检查通过，则返回RequestId.
         # false（默认）：发送正常请求，通过检查后直接创建实例
         # @type DryRun: Boolean
-        # @param AccountType: 域名字服务类型。默认值：NIS
-        # <li>NIS：NIS域名字服务。
+        # @param AccountType: 域名字服务类型。默认值：NIS<li>NIS：NIS域名字服务。</li>
         # @type AccountType: String
         # @param ClusterName: 集群显示名称。
         # @type ClusterName: String

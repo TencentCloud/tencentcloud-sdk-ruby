@@ -2165,6 +2165,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 废弃接口
+
         # 描述WAF自动封禁模块详情
 
         # @param request: Request instance for DescribeWafAutoDenyStatus.

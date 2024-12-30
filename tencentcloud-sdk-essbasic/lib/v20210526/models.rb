@@ -5989,13 +5989,26 @@ module TencentCloud
         # <b>注</b>：如果<b>应用扩展服务</b>中的<b>自动激活子客企业</b>为打开态， 则忽略本接口的AutoActive这个参数（若持有的许可证充足，子客户企业注册完成后将自动激活），具体位置参考下图：
         # ![image](https://qcloudimg.tencent-cloud.cn/raw/c3639b05503d3735bac483d17aa6b0a3.png)
         # @type AutoActive: Boolean
+        # @param BusinessLicense: 营业执照正面照（支持PNG或JPG格式）需以base64格式提供，且文件大小不得超过5MB。
+        # @type BusinessLicense: String
+        # @param ProxyAddress: 组织机构企业注册地址。 请确认该企业注册地址与企业营业执照中注册的地址一致。
+        # @type ProxyAddress: String
+        # @param ProxyLegalName: 组织机构法人的姓名。 请确认该企业统一社会信用代码与企业营业执照中注册的法人姓名一致。
+        # @type ProxyLegalName: String
+        # @param PowerOfAttorneys: 授权书(PNG或JPG或PDF) base64格式, 大小不超过8M 。
+        #  p.s. 如果上传授权书 ，需遵循以下条件
+        # 1. 超管的信息（超管姓名，超管手机号）必须为必填参数。
+        # 2. 认证方式AuthorizationTypes必须只能是上传授权书方式
+        # @type PowerOfAttorneys: Array
+        # @param OrganizationAuthorizationOptions: 企业认证时个性化能力信息
+        # @type OrganizationAuthorizationOptions: :class:`Tencentcloud::Essbasic.v20210526.models.OrganizationAuthorizationOptions`
 
-        attr_accessor :Agent, :ProxyOrganizationName, :UniformSocialCreditCode, :ProxyOperatorName, :ProxyOperatorMobile, :Module, :ModuleId, :MenuStatus, :Endpoint, :AutoJumpBackEvent, :AuthorizationTypes, :Operator, :ProxyOperatorIdCardNumber, :AutoJumpUrl, :TopNavigationStatus, :AutoActive
+        attr_accessor :Agent, :ProxyOrganizationName, :UniformSocialCreditCode, :ProxyOperatorName, :ProxyOperatorMobile, :Module, :ModuleId, :MenuStatus, :Endpoint, :AutoJumpBackEvent, :AuthorizationTypes, :Operator, :ProxyOperatorIdCardNumber, :AutoJumpUrl, :TopNavigationStatus, :AutoActive, :BusinessLicense, :ProxyAddress, :ProxyLegalName, :PowerOfAttorneys, :OrganizationAuthorizationOptions
         extend Gem::Deprecate
         deprecate :Operator, :none, 2024, 12
         deprecate :Operator=, :none, 2024, 12
 
-        def initialize(agent=nil, proxyorganizationname=nil, uniformsocialcreditcode=nil, proxyoperatorname=nil, proxyoperatormobile=nil, _module=nil, moduleid=nil, menustatus=nil, endpoint=nil, autojumpbackevent=nil, authorizationtypes=nil, operator=nil, proxyoperatoridcardnumber=nil, autojumpurl=nil, topnavigationstatus=nil, autoactive=nil)
+        def initialize(agent=nil, proxyorganizationname=nil, uniformsocialcreditcode=nil, proxyoperatorname=nil, proxyoperatormobile=nil, _module=nil, moduleid=nil, menustatus=nil, endpoint=nil, autojumpbackevent=nil, authorizationtypes=nil, operator=nil, proxyoperatoridcardnumber=nil, autojumpurl=nil, topnavigationstatus=nil, autoactive=nil, businesslicense=nil, proxyaddress=nil, proxylegalname=nil, powerofattorneys=nil, organizationauthorizationoptions=nil)
           @Agent = agent
           @ProxyOrganizationName = proxyorganizationname
           @UniformSocialCreditCode = uniformsocialcreditcode
@@ -6012,6 +6025,11 @@ module TencentCloud
           @AutoJumpUrl = autojumpurl
           @TopNavigationStatus = topnavigationstatus
           @AutoActive = autoactive
+          @BusinessLicense = businesslicense
+          @ProxyAddress = proxyaddress
+          @ProxyLegalName = proxylegalname
+          @PowerOfAttorneys = powerofattorneys
+          @OrganizationAuthorizationOptions = organizationauthorizationoptions
         end
 
         def deserialize(params)
@@ -6037,6 +6055,14 @@ module TencentCloud
           @AutoJumpUrl = params['AutoJumpUrl']
           @TopNavigationStatus = params['TopNavigationStatus']
           @AutoActive = params['AutoActive']
+          @BusinessLicense = params['BusinessLicense']
+          @ProxyAddress = params['ProxyAddress']
+          @ProxyLegalName = params['ProxyLegalName']
+          @PowerOfAttorneys = params['PowerOfAttorneys']
+          unless params['OrganizationAuthorizationOptions'].nil?
+            @OrganizationAuthorizationOptions = OrganizationAuthorizationOptions.new
+            @OrganizationAuthorizationOptions.deserialize(params['OrganizationAuthorizationOptions'])
+          end
         end
       end
 
@@ -10314,6 +10340,33 @@ module TencentCloud
         def deserialize(params)
           @AuthUrl = params['AuthUrl']
           @ErrorMessage = params['ErrorMessage']
+        end
+      end
+
+      # 企业认证可选项，其中包括 社会信用代码是否一致，企业名称是否一致，法人是否一致等信息。
+      # 代表生成链接的时候指定的这些信息不能被用户修改。
+
+      # p.s. 注意这些选项一旦传递，相关的信息也不会被上传的营业执照里面包含的信息所覆盖。
+      class OrganizationAuthorizationOptions < TencentCloud::Common::AbstractModel
+        # @param UniformSocialCreditCodeSame: 对方打开链接认证时，对方填写的营业执照的社会信用代码是否与接口上传上来的要保持一致。<ul><li><b>false（默认值）</b>：关闭状态，实际认证时允许与接口传递的信息存在不一致。</li><li><b>true</b>：启用状态，实际认证时必须与接口传递的信息完全相符。</li></ul>
+        # @type UniformSocialCreditCodeSame: Boolean
+        # @param OrganizationNameSame: 对方打开链接认证时，企业名称是否要与接口传递上来的保持一致。<ul><li><b>false（默认值）</b>：关闭状态，实际认证时允许与接口传递的信息存在不一致。</li><li><b>true</b>：启用状态，实际认证时必须与接口传递的信息完全相符。</li></ul>p.s. 仅在企业名称不为空时有效
+        # @type OrganizationNameSame: Boolean
+        # @param LegalNameSame: 对方打开链接认证时，法人姓名是否要与接口传递上来的保持一致。<ul><li><b>false（默认值）</b>：关闭状态，实际认证时允许与接口传递的信息存在不一致。</li><li><b>true</b>：启用状态，实际认证时必须与接口传递的信息完全相符。</li></ul>p.s. 仅在法人姓名不为空时有效
+        # @type LegalNameSame: Boolean
+
+        attr_accessor :UniformSocialCreditCodeSame, :OrganizationNameSame, :LegalNameSame
+
+        def initialize(uniformsocialcreditcodesame=nil, organizationnamesame=nil, legalnamesame=nil)
+          @UniformSocialCreditCodeSame = uniformsocialcreditcodesame
+          @OrganizationNameSame = organizationnamesame
+          @LegalNameSame = legalnamesame
+        end
+
+        def deserialize(params)
+          @UniformSocialCreditCodeSame = params['UniformSocialCreditCodeSame']
+          @OrganizationNameSame = params['OrganizationNameSame']
+          @LegalNameSame = params['LegalNameSame']
         end
       end
 

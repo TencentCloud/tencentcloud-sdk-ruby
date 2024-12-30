@@ -2838,6 +2838,46 @@ module TencentCloud
         end
       end
 
+      # DeleteRabbitMQPermission请求参数结构体
+      class DeleteRabbitMQPermissionRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 集群实例Id
+        # @type InstanceId: String
+        # @param User: 用户名，登录时使用
+        # @type User: String
+        # @param VirtualHost: vhost名
+        # @type VirtualHost: String
+
+        attr_accessor :InstanceId, :User, :VirtualHost
+
+        def initialize(instanceid=nil, user=nil, virtualhost=nil)
+          @InstanceId = instanceid
+          @User = user
+          @VirtualHost = virtualhost
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @User = params['User']
+          @VirtualHost = params['VirtualHost']
+        end
+      end
+
+      # DeleteRabbitMQPermission返回参数结构体
+      class DeleteRabbitMQPermissionResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteRabbitMQUser请求参数结构体
       class DeleteRabbitMQUserRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 集群实例Id
@@ -5088,6 +5128,69 @@ module TencentCloud
               rabbitmqprivatenode_tmp = RabbitMQPrivateNode.new
               rabbitmqprivatenode_tmp.deserialize(i)
               @NodeList << rabbitmqprivatenode_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeRabbitMQPermission请求参数结构体
+      class DescribeRabbitMQPermissionRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 集群实例id
+        # @type InstanceId: String
+        # @param User: 用户名，用于查询过滤，不传则查询全部
+        # @type User: String
+        # @param VirtualHost: vhost名，用于查询过滤，不传则查询全部
+        # @type VirtualHost: String
+        # @param Offset: 分页Offset
+        # @type Offset: Integer
+        # @param Limit: 分页Limit
+        # @type Limit: Integer
+
+        attr_accessor :InstanceId, :User, :VirtualHost, :Offset, :Limit
+
+        def initialize(instanceid=nil, user=nil, virtualhost=nil, offset=nil, limit=nil)
+          @InstanceId = instanceid
+          @User = user
+          @VirtualHost = virtualhost
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @User = params['User']
+          @VirtualHost = params['VirtualHost']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeRabbitMQPermission返回参数结构体
+      class DescribeRabbitMQPermissionResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 返回权限数量
+        # @type TotalCount: Integer
+        # @param RabbitMQPermissionList: 权限详情列表
+        # @type RabbitMQPermissionList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :RabbitMQPermissionList, :RequestId
+
+        def initialize(totalcount=nil, rabbitmqpermissionlist=nil, requestid=nil)
+          @TotalCount = totalcount
+          @RabbitMQPermissionList = rabbitmqpermissionlist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['RabbitMQPermissionList'].nil?
+            @RabbitMQPermissionList = []
+            params['RabbitMQPermissionList'].each do |i|
+              rabbitmqpermission_tmp = RabbitMQPermission.new
+              rabbitmqpermission_tmp.deserialize(i)
+              @RabbitMQPermissionList << rabbitmqpermission_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -8931,6 +9034,58 @@ module TencentCloud
         end
       end
 
+      # ModifyRabbitMQPermission请求参数结构体
+      class ModifyRabbitMQPermissionRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 集群实例Id
+        # @type InstanceId: String
+        # @param User: 用户名，权限关联的用户
+        # @type User: String
+        # @param VirtualHost: vhost名称
+        # @type VirtualHost: String
+        # @param ConfigRegexp: 权限类型，declare相关操作，该用户可操作该vhost下的资源名称正则表达式
+        # @type ConfigRegexp: String
+        # @param WriteRegexp: 权限类型，消息写入相关操作，该用户可操作该vhost下的资源名称正则表达式
+        # @type WriteRegexp: String
+        # @param ReadRegexp: 权限类型，消息读取相关操作，该用户可操作该vhost下的资源名称正则表达式
+        # @type ReadRegexp: String
+
+        attr_accessor :InstanceId, :User, :VirtualHost, :ConfigRegexp, :WriteRegexp, :ReadRegexp
+
+        def initialize(instanceid=nil, user=nil, virtualhost=nil, configregexp=nil, writeregexp=nil, readregexp=nil)
+          @InstanceId = instanceid
+          @User = user
+          @VirtualHost = virtualhost
+          @ConfigRegexp = configregexp
+          @WriteRegexp = writeregexp
+          @ReadRegexp = readregexp
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @User = params['User']
+          @VirtualHost = params['VirtualHost']
+          @ConfigRegexp = params['ConfigRegexp']
+          @WriteRegexp = params['WriteRegexp']
+          @ReadRegexp = params['ReadRegexp']
+        end
+      end
+
+      # ModifyRabbitMQPermission返回参数结构体
+      class ModifyRabbitMQPermissionResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyRabbitMQUser请求参数结构体
       class ModifyRabbitMQUserRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 集群实例Id
@@ -10633,6 +10788,55 @@ module TencentCloud
           @Policy = params['Policy']
           @Arguments = params['Arguments']
           @MessagesDelayed = params['MessagesDelayed']
+        end
+      end
+
+      # RabbitMQ权限详情
+      class RabbitMQPermission < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 集群实例Id
+        # @type InstanceId: String
+        # @param User: 用户名，权限关联的用户
+        # @type User: String
+        # @param VirtualHost: vhost名
+        # @type VirtualHost: String
+        # @param ConfigRegexp: 权限类型，declare相关操作，该用户可操作该vhost下的资源名称正则表达式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConfigRegexp: String
+        # @param WriteRegexp: 权限类型，消息写入相关操作，该用户可操作该vhost下的资源名称正则表达式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WriteRegexp: String
+        # @param ReadRegexp: 权限类型，消息读取相关操作，该用户可操作该vhost下的资源名称正则表达式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReadRegexp: String
+        # @param CreateTime: 创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param ModifyTime: 修改时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModifyTime: String
+
+        attr_accessor :InstanceId, :User, :VirtualHost, :ConfigRegexp, :WriteRegexp, :ReadRegexp, :CreateTime, :ModifyTime
+
+        def initialize(instanceid=nil, user=nil, virtualhost=nil, configregexp=nil, writeregexp=nil, readregexp=nil, createtime=nil, modifytime=nil)
+          @InstanceId = instanceid
+          @User = user
+          @VirtualHost = virtualhost
+          @ConfigRegexp = configregexp
+          @WriteRegexp = writeregexp
+          @ReadRegexp = readregexp
+          @CreateTime = createtime
+          @ModifyTime = modifytime
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @User = params['User']
+          @VirtualHost = params['VirtualHost']
+          @ConfigRegexp = params['ConfigRegexp']
+          @WriteRegexp = params['WriteRegexp']
+          @ReadRegexp = params['ReadRegexp']
+          @CreateTime = params['CreateTime']
+          @ModifyTime = params['ModifyTime']
         end
       end
 

@@ -74,6 +74,39 @@ module TencentCloud
         end
       end
 
+      # 消费者客户端
+      class ConsumerClient < TencentCloud::Common::AbstractModel
+        # @param ClientId: 客户端ID
+        # @type ClientId: String
+        # @param ClientAddr: 客户端地址
+        # @type ClientAddr: String
+        # @param Language: 客户端SDK语言
+        # @type Language: String
+        # @param Version: 客户端SDK版本
+        # @type Version: String
+        # @param ConsumerLag: 客户端消费堆积
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConsumerLag: Integer
+
+        attr_accessor :ClientId, :ClientAddr, :Language, :Version, :ConsumerLag
+
+        def initialize(clientid=nil, clientaddr=nil, language=nil, version=nil, consumerlag=nil)
+          @ClientId = clientid
+          @ClientAddr = clientaddr
+          @Language = language
+          @Version = version
+          @ConsumerLag = consumerlag
+        end
+
+        def deserialize(params)
+          @ClientId = params['ClientId']
+          @ClientAddr = params['ClientAddr']
+          @Language = params['Language']
+          @Version = params['Version']
+          @ConsumerLag = params['ConsumerLag']
+        end
+      end
+
       # CreateConsumerGroup请求参数结构体
       class CreateConsumerGroupRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 集群ID
@@ -916,6 +949,85 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeConsumerClient请求参数结构体
+      class DescribeConsumerClientRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 集群ID
+        # @type InstanceId: String
+        # @param ClientId: 客户端ID
+        # @type ClientId: String
+        # @param Filters: 查询条件列表
+        # @type Filters: Array
+        # @param Offset: 查询起始位置
+        # @type Offset: Integer
+        # @param Limit: 查询结果限制数量
+        # @type Limit: Integer
+        # @param ConsumerGroup: 消费组名称
+        # @type ConsumerGroup: String
+
+        attr_accessor :InstanceId, :ClientId, :Filters, :Offset, :Limit, :ConsumerGroup
+
+        def initialize(instanceid=nil, clientid=nil, filters=nil, offset=nil, limit=nil, consumergroup=nil)
+          @InstanceId = instanceid
+          @ClientId = clientid
+          @Filters = filters
+          @Offset = offset
+          @Limit = limit
+          @ConsumerGroup = consumergroup
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @ClientId = params['ClientId']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @ConsumerGroup = params['ConsumerGroup']
+        end
+      end
+
+      # DescribeConsumerClient返回参数结构体
+      class DescribeConsumerClientResponse < TencentCloud::Common::AbstractModel
+        # @param Client: 客户端详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Client: :class:`Tencentcloud::Trocket.v20230308.models.ConsumerClient`
+        # @param TopicList: 主题消费信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TopicList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Client, :TopicList, :RequestId
+
+        def initialize(client=nil, topiclist=nil, requestid=nil)
+          @Client = client
+          @TopicList = topiclist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Client'].nil?
+            @Client = ConsumerClient.new
+            @Client.deserialize(params['Client'])
+          end
+          unless params['TopicList'].nil?
+            @TopicList = []
+            params['TopicList'].each do |i|
+              topicconsumestats_tmp = TopicConsumeStats.new
+              topicconsumestats_tmp.deserialize(i)
+              @TopicList << topicconsumestats_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -4689,6 +4801,43 @@ module TencentCloud
         def deserialize(params)
           @TagKey = params['TagKey']
           @TagValues = params['TagValues']
+        end
+      end
+
+      # 主题消费进度
+      class TopicConsumeStats < TencentCloud::Common::AbstractModel
+        # @param Topic: 主题名称
+        # @type Topic: String
+        # @param TopicType: 主题类型
+        # @type TopicType: String
+        # @param QueueNum: 单节点主题队列数量
+        # @type QueueNum: Integer
+        # @param ConsumerLag: 消费堆积
+        # @type ConsumerLag: Integer
+        # @param SubString: 订阅规则
+        # @type SubString: String
+        # @param LastUpdateTime: 最后消费进度更新时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LastUpdateTime: Integer
+
+        attr_accessor :Topic, :TopicType, :QueueNum, :ConsumerLag, :SubString, :LastUpdateTime
+
+        def initialize(topic=nil, topictype=nil, queuenum=nil, consumerlag=nil, substring=nil, lastupdatetime=nil)
+          @Topic = topic
+          @TopicType = topictype
+          @QueueNum = queuenum
+          @ConsumerLag = consumerlag
+          @SubString = substring
+          @LastUpdateTime = lastupdatetime
+        end
+
+        def deserialize(params)
+          @Topic = params['Topic']
+          @TopicType = params['TopicType']
+          @QueueNum = params['QueueNum']
+          @ConsumerLag = params['ConsumerLag']
+          @SubString = params['SubString']
+          @LastUpdateTime = params['LastUpdateTime']
         end
       end
 

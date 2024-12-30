@@ -365,9 +365,9 @@ module TencentCloud
         # @type ClusterId: String
         # @param ActivityId: 集群活动ID。
         # @type ActivityId: String
-        # @param ActivityType: 集群活动类型。取值范围：<br><li>CreateAndAddNodes：创建实例并添加进集群<br><li>RemoveNodesFromCluster：从集群移除实例<br><li>TerminateNodes：销毁实例<br><li>MountStorageOption：增加挂载选项并进行挂载<br><li>UmountStorageOption：删除集群挂载存储选项并解挂载
+        # @param ActivityType: 集群活动类型。取值范围：<br><li>CreateAndAddNodes：创建实例并添加进集群</li><br><li>RemoveNodesFromCluster：从集群移除实例</li><br><li>TerminateNodes：销毁实例</li><br><li>MountStorageOption：增加挂载选项并进行挂载</li><br><li>UmountStorageOption：删除集群挂载存储选项并解挂载</li>
         # @type ActivityType: String
-        # @param ActivityStatus: 集群活动状态。取值范围：<br><li>PENDING：等待运行<br><li>RUNNING：运行中<br><li>SUCCESSFUL：活动成功<br><li>PARTIALLY_SUCCESSFUL：活动部分成功<br><li>FAILED：活动失败
+        # @param ActivityStatus: 集群活动状态。取值范围：<br><li>PENDING：等待运行</li><br><li>RUNNING：运行中</li><br><li>SUCCESSFUL：活动成功</li><br><li>PARTIALLY_SUCCESSFUL：活动部分成功</li><br><li>FAILED：活动失败</li>
         # @type ActivityStatus: String
         # @param ActivityStatusCode: 集群活动状态码。
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -777,7 +777,7 @@ module TencentCloud
         # @type Placement: :class:`Tencentcloud::Thpc.v20230321.models.SpacePlacement`
         # @param SpaceChargePrepaid: 预付费模式，即包年包月相关参数设置。通过该参数可以指定包年包月实例的购买时长、是否设置自动续费等属性。若指定实例的付费模式为预付费则该参数必传。
         # @type SpaceChargePrepaid: :class:`Tencentcloud::Thpc.v20230321.models.SpaceChargePrepaid`
-        # @param SpaceChargeType: 工作空间计费类型
+        # @param SpaceChargeType: 工作空间计费类型，包括：PREPAID，UNDERWRITE。工作空间计费类型，包括：PREPAID，UNDERWRITE。
         # @type SpaceChargeType: String
         # @param SpaceType: 工作空间规格
         # @type SpaceType: String
@@ -1614,12 +1614,12 @@ module TencentCloud
       class ExpansionNodeConfig < TencentCloud::Common::AbstractModel
         # @param Placement: 扩容实例所在的位置。
         # @type Placement: :class:`Tencentcloud::Thpc.v20230321.models.Placement`
-        # @param InstanceChargeType: 节点[计费类型](https://cloud.tencent.com/document/product/213/2180)。<br><li>PREPAID：预付费，即包年包月<br><li>POSTPAID_BY_HOUR：按小时后付费<br><li>SPOTPAID：竞价付费<br>默认值：POSTPAID_BY_HOUR。
+        # @param InstanceChargeType: 节点[计费类型](https://cloud.tencent.com/document/product/213/2180)。<br><li>PREPAID：预付费，即包年包月</li><br><li>POSTPAID_BY_HOUR：按小时后付费</li><br><li>SPOTPAID：竞价付费<br>默认值：POSTPAID_BY_HOUR。</li>
         # @type InstanceChargeType: String
         # @param InstanceChargePrepaid: 预付费模式，即包年包月相关参数设置。通过该参数可以指定包年包月节点的购买时长、是否设置自动续费等属性。若指定节点的付费模式为预付费则该参数必传。
         # @type InstanceChargePrepaid: :class:`Tencentcloud::Thpc.v20230321.models.InstanceChargePrepaid`
         # @param InstanceType: 节点机型。不同实例机型指定了不同的资源规格。
-        # <br><li>具体取值可通过调用接口[DescribeInstanceTypeConfigs](https://cloud.tencent.com/document/api/213/15749)来获得最新的规格表或参见[实例规格](https://cloud.tencent.com/document/product/213/11518)描述。
+        # <br><li>具体取值可通过调用接口[DescribeInstanceTypeConfigs](https://cloud.tencent.com/document/api/213/15749)来获得最新的规格表或参见[实例规格](https://cloud.tencent.com/document/product/213/11518)描述。</li>
         # @type InstanceType: String
         # @param VirtualPrivateCloud: 私有网络相关信息配置。
         # @type VirtualPrivateCloud: :class:`Tencentcloud::Thpc.v20230321.models.VirtualPrivateCloud`
@@ -2173,7 +2173,7 @@ module TencentCloud
         # @param NodeInstanceId: 节点活动所在的实例ID。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NodeInstanceId: String
-        # @param NodeActivityStatus: 节点活动状态。取值范围：<br><li>RUNNING：运行中<br><li>SUCCESSFUL：活动成功<br><li>FAILED：活动失败
+        # @param NodeActivityStatus: 节点活动状态。取值范围：<br><li>RUNNING：运行中</li><br><li>SUCCESSFUL：活动成功</li><br><li>FAILED：活动失败</li>
         # @type NodeActivityStatus: String
         # @param NodeActivityStatusCode: 节点活动状态码。
         # 注意：此字段可能返回 null，表示取不到有效值。

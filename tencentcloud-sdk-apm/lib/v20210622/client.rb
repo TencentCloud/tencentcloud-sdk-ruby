@@ -77,7 +77,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # APM实例列表拉取
+        # 拉取 APM 业务系统列表
 
         # @param request: Request instance for DescribeApmInstances.
         # @type request: :class:`Tencentcloud::apm::V20210622::DescribeApmInstancesRequest`

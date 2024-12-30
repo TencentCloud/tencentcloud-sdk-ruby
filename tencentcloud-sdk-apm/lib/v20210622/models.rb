@@ -17,13 +17,11 @@
 module TencentCloud
   module Apm
     module V20210622
-      # APM浮点数类型键值对
+      # APM 浮点数类型键值对
       class APMKV < TencentCloud::Common::AbstractModel
-        # @param Key: Key值定义
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param Key: Key 值定义
         # @type Key: String
-        # @param Value: Value值定义
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param Value: Value 值定义
         # @type Value: Float
 
         attr_accessor :Key, :Value
@@ -39,13 +37,11 @@ module TencentCloud
         end
       end
 
-      # Apm通用KV结构
+      # APM 通用 KV 结构
       class APMKVItem < TencentCloud::Common::AbstractModel
-        # @param Key: Key值定义
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param Key: Key 值定义
         # @type Key: String
-        # @param Value: Value值定义
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param Value: Value 值定义
         # @type Value: String
 
         attr_accessor :Key, :Value
@@ -61,25 +57,19 @@ module TencentCloud
         end
       end
 
-      # apm Agent信息
+      # APM Agent 信息
       class ApmAgentInfo < TencentCloud::Common::AbstractModel
-        # @param AgentDownloadURL: Agent下载地址
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param AgentDownloadURL: Agent 下载地址
         # @type AgentDownloadURL: String
-        # @param CollectorURL: Collector上报地址
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param CollectorURL: Collector 上报地址
         # @type CollectorURL: String
-        # @param Token: Token信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param Token: Token 信息
         # @type Token: String
         # @param PublicCollectorURL: 外网上报地址
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PublicCollectorURL: String
-        # @param InnerCollectorURL: 自研VPC上报地址
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param InnerCollectorURL: 自研 VPC 上报地址
         # @type InnerCollectorURL: String
-        # @param PrivateLinkCollectorURL: 内网上报地址(Private Link上报地址)
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param PrivateLinkCollectorURL: 内网上报地址( Private Link 上报地址)
         # @type PrivateLinkCollectorURL: String
 
         attr_accessor :AgentDownloadURL, :CollectorURL, :Token, :PublicCollectorURL, :InnerCollectorURL, :PrivateLinkCollectorURL
@@ -105,7 +95,7 @@ module TencentCloud
 
       # 应用相关的配置列表项
       class ApmApplicationConfigView < TencentCloud::Common::AbstractModel
-        # @param InstanceKey: 业务系统ID
+        # @param InstanceKey: 业务系统 ID
         # @type InstanceKey: String
         # @param ServiceName: 应用名
         # @type ServiceName: String
@@ -113,23 +103,21 @@ module TencentCloud
         # @type OperationNameFilter: String
         # @param ExceptionFilter: 错误类型过滤
         # @type ExceptionFilter: String
-        # @param ErrorCodeFilter: HTTP状态码过滤
+        # @param ErrorCodeFilter: HTTP 状态码过滤
         # @type ErrorCodeFilter: String
         # @param EventEnable: 应用诊断开关（已废弃）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EventEnable: Boolean
-        # @param UrlConvergenceSwitch: URL收敛开关 0 关 1 开
+        # @param UrlConvergenceSwitch: URL 收敛开关 0 关 1 开
         # @type UrlConvergenceSwitch: Integer
-        # @param UrlConvergenceThreshold: URL收敛阈值
+        # @param UrlConvergenceThreshold: URL 收敛阈值
         # @type UrlConvergenceThreshold: Integer
-        # @param UrlConvergence: URL收敛规则正则
+        # @param UrlConvergence: URL 收敛规则正则
         # @type UrlConvergence: String
-        # @param UrlExclude: URL排除规则正则
+        # @param UrlExclude: URL 排除规则正则
         # @type UrlExclude: String
         # @param IsRelatedLog: 是否开启日志 0 关 1 开
         # @type IsRelatedLog: Integer
         # @param LogSource: 日志源
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LogSource: String
         # @param LogSet: 日志集
         # @type LogSet: String
@@ -142,7 +130,6 @@ module TencentCloud
         # @param AgentEnable: 探针总开关
         # @type AgentEnable: Boolean
         # @param InstrumentList: 组件列表开关（已废弃）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstrumentList: Array
         # @param TraceSquash: 链路压缩开关（已废弃）
         # @type TraceSquash: Boolean
@@ -204,16 +191,13 @@ module TencentCloud
       # 指标维度信息
       class ApmField < TencentCloud::Common::AbstractModel
         # @param CompareVal: 昨日同比指标值，已弃用，不建议使用
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CompareVal: String
         # @param CompareVals: Compare值结果数组，推荐使用
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CompareVals: Array
         # @param Value: 指标值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: Float
         # @param Unit: 指标所对应的单位
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Unit: String
         # @param Key: 请求数
         # @type Key: String
@@ -256,115 +240,81 @@ module TencentCloud
         end
       end
 
-      # apm实例信息
+      # APM 业务系统信息
       class ApmInstanceDetail < TencentCloud::Common::AbstractModel
-        # @param AmountOfUsedStorage: 存储使用量(MB)
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param AmountOfUsedStorage: 存储使用量( MB )
         # @type AmountOfUsedStorage: Float
-        # @param Name: 实例名
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param Name: 业务系统名
         # @type Name: String
-        # @param Tags: 实例所属tag列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param Tags: 业务系统所属 Tag 列表
         # @type Tags: Array
-        # @param InstanceId: 实例ID
+        # @param InstanceId: 业务系统 ID
         # @type InstanceId: String
-        # @param CreateUin: 创建人Uin
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param CreateUin: 创建人 Uin
         # @type CreateUin: String
-        # @param ServiceCount: 该实例已上报的服务端应用数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param ServiceCount: 该业务系统已上报的服务端应用数量
         # @type ServiceCount: Integer
-        # @param CountOfReportSpanPerDay: 日均上报Span数
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param CountOfReportSpanPerDay: 日均上报 Span 数
         # @type CountOfReportSpanPerDay: Integer
-        # @param AppId: AppId信息
+        # @param AppId: AppID 信息
         # @type AppId: Integer
-        # @param TraceDuration: Trace数据保存时长
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param TraceDuration: Trace 数据保存时长
         # @type TraceDuration: Integer
-        # @param Description: 实例描述信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param Description: 业务系统描述信息
         # @type Description: String
-        # @param Status: 实例状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param Status: 业务系统状态
         # @type Status: Integer
-        # @param Region: 实例所属地域
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param Region: 业务系统所属地域
         # @type Region: String
-        # @param SpanDailyCounters: 实例上报额度
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param SpanDailyCounters: 业务系统上报额度
         # @type SpanDailyCounters: Integer
-        # @param BillingInstance: 实例是否开通计费
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param BillingInstance: 业务系统是否开通计费
         # @type BillingInstance: Integer
         # @param ErrRateThreshold: 错误率阈值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrRateThreshold: Integer
         # @param SampleRate: 采样率阈值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SampleRate: Integer
         # @param ErrorSample: 是否开启错误采样 0  关 1 开
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrorSample: Integer
         # @param SlowRequestSavedThreshold: 慢调用保存阈值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SlowRequestSavedThreshold: Integer
-        # @param LogRegion: cls日志所在地域
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param LogRegion: CLS 日志所在地域
         # @type LogRegion: String
         # @param LogSource: 日志来源
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LogSource: String
         # @param IsRelatedLog: 日志功能开关 0 关 | 1 开
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsRelatedLog: Integer
         # @param LogTopicID: 日志主题ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LogTopicID: String
         # @param ClientCount: 该实例已上报的客户端应用数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClientCount: Integer
         # @param TotalCount: 该实例已上报的总应用数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
-        # @param LogSet: CLS日志集 | ES集群ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param LogSet: CLS 日志集 | ES 集群ID
         # @type LogSet: String
-        # @param MetricDuration: Metric数据保存时长
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param MetricDuration: Metric 数据保存时长
         # @type MetricDuration: Integer
         # @param CustomShowTags: 用户自定义展示标签列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CustomShowTags: Array
-        # @param PayMode: 实例计费模式
+        # @param PayMode: 业务系统计费模式
         # 1为预付费
         # 0为按量付费
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PayMode: Integer
-        # @param PayModeEffective: 实例计费模式是否生效
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param PayModeEffective: 业务系统计费模式是否生效
         # @type PayModeEffective: Boolean
         # @param ResponseDurationWarningThreshold: 响应时间满意阈值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResponseDurationWarningThreshold: Integer
         # @param Free: 是否免费（0=否，1=限额免费，2=完全免费），默认0
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Free: Integer
-        # @param DefaultTSF: 是否tsf默认业务系统（0=否，1-是）
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param DefaultTSF: 是否 tsf 默认业务系统（0=否，1-是）
         # @type DefaultTSF: Integer
-        # @param IsRelatedDashboard: 是否关联dashboard： 0 关 1 开
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param IsRelatedDashboard: 是否关联 Dashboard： 0 关 1 开
         # @type IsRelatedDashboard: Integer
-        # @param DashboardTopicID: dashboard ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param DashboardTopicID: Dashboard ID
         # @type DashboardTopicID: String
         # @param IsInstrumentationVulnerabilityScan: 是否开启组件漏洞检测
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsInstrumentationVulnerabilityScan: Integer
-        # @param IsSqlInjectionAnalysis: 是否开启SQL注入分析
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param IsSqlInjectionAnalysis: 是否开启 SQL 注入分析
         # @type IsSqlInjectionAnalysis: Integer
 
         attr_accessor :AmountOfUsedStorage, :Name, :Tags, :InstanceId, :CreateUin, :ServiceCount, :CountOfReportSpanPerDay, :AppId, :TraceDuration, :Description, :Status, :Region, :SpanDailyCounters, :BillingInstance, :ErrRateThreshold, :SampleRate, :ErrorSample, :SlowRequestSavedThreshold, :LogRegion, :LogSource, :IsRelatedLog, :LogTopicID, :ClientCount, :TotalCount, :LogSet, :MetricDuration, :CustomShowTags, :PayMode, :PayModeEffective, :ResponseDurationWarningThreshold, :Free, :DefaultTSF, :IsRelatedDashboard, :DashboardTopicID, :IsInstrumentationVulnerabilityScan, :IsSqlInjectionAnalysis
@@ -515,7 +465,7 @@ module TencentCloud
         # @type Name: String
         # @param Description: 业务系统描述信息
         # @type Description: String
-        # @param TraceDuration: Trace数据保存时长，单位为天默认存储为3天
+        # @param TraceDuration: Trace 数据保存时长，单位为天默认存储为3天
         # @type TraceDuration: Integer
         # @param Tags: 标签列表
         # @type Tags: Array
@@ -523,7 +473,7 @@ module TencentCloud
         # @type SpanDailyCounters: Integer
         # @param PayMode: 业务系统的计费模式
         # @type PayMode: Integer
-        # @param Free: （0=付费版；1=tsf受限免费版；2=免费版）
+        # @param Free: （0=付费版；1=tsf 受限免费版；2=免费版）
         # @type Free: Integer
 
         attr_accessor :Name, :Description, :TraceDuration, :Tags, :SpanDailyCounters, :PayMode, :Free
@@ -558,8 +508,7 @@ module TencentCloud
 
       # CreateApmInstance返回参数结构体
       class CreateApmInstanceResponse < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 业务系统ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param InstanceId: 业务系统 ID
         # @type InstanceId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -579,7 +528,7 @@ module TencentCloud
 
       # DescribeApmAgent请求参数结构体
       class DescribeApmAgentRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 业务系统ID
+        # @param InstanceId: 业务系统 ID
         # @type InstanceId: String
         # @param AgentType: 接入方式
         # @type AgentType: String
@@ -611,8 +560,7 @@ module TencentCloud
 
       # DescribeApmAgent返回参数结构体
       class DescribeApmAgentResponse < TencentCloud::Common::AbstractModel
-        # @param ApmAgent: Agent信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param ApmAgent: Agent 信息
         # @type ApmAgent: :class:`Tencentcloud::Apm.v20210622.models.ApmAgentInfo`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -635,15 +583,15 @@ module TencentCloud
 
       # DescribeApmInstances请求参数结构体
       class DescribeApmInstancesRequest < TencentCloud::Common::AbstractModel
-        # @param Tags: Tag列表
+        # @param Tags: Tag 列表
         # @type Tags: Array
-        # @param InstanceName: 搜索实例名
+        # @param InstanceName: 搜索业务系统名
         # @type InstanceName: String
-        # @param InstanceIds: 过滤实例ID
+        # @param InstanceIds: 过滤业务系统 ID
         # @type InstanceIds: Array
-        # @param DemoInstanceFlag: 是否查询官方demo实例
+        # @param DemoInstanceFlag: 是否查询官方 Demo 业务系统
         # @type DemoInstanceFlag: Integer
-        # @param AllRegionsFlag: 是否查询全地域实例
+        # @param AllRegionsFlag: 是否查询全地域业务系统
         # @type AllRegionsFlag: Integer
 
         attr_accessor :Tags, :InstanceName, :InstanceIds, :DemoInstanceFlag, :AllRegionsFlag
@@ -674,8 +622,7 @@ module TencentCloud
 
       # DescribeApmInstances返回参数结构体
       class DescribeApmInstancesResponse < TencentCloud::Common::AbstractModel
-        # @param Instances: apm实例列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param Instances: APM 业务系统列表
         # @type Instances: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -812,7 +759,6 @@ module TencentCloud
       # DescribeGeneralMetricData返回参数结构体
       class DescribeGeneralMetricDataResponse < TencentCloud::Common::AbstractModel
         # @param Records: 指标结果集
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Records: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -845,15 +791,15 @@ module TencentCloud
         # @type Limit: Integer
         # @param OrderBy: 排序
         # @type OrderBy: :class:`Tencentcloud::Apm.v20210622.models.OrderBy`
-        # @param StartTime: span查询开始时间戳（单位:秒）
+        # @param StartTime: Span查询开始时间戳（单位:秒）
         # @type StartTime: Integer
-        # @param InstanceId: 业务系统ID
+        # @param InstanceId: 业务系统 ID
         # @type InstanceId: String
         # @param Filters: 通用过滤参数
         # @type Filters: Array
         # @param BusinessName: 业务自身服务名
         # @type BusinessName: String
-        # @param EndTime: span查询结束时间戳（单位:秒）
+        # @param EndTime: Span查询结束时间戳（单位:秒）
         # @type EndTime: Integer
 
         attr_accessor :Offset, :Limit, :OrderBy, :StartTime, :InstanceId, :Filters, :BusinessName, :EndTime
@@ -895,7 +841,7 @@ module TencentCloud
       class DescribeGeneralSpanListResponse < TencentCloud::Common::AbstractModel
         # @param TotalCount: 总数量
         # @type TotalCount: Integer
-        # @param Spans: Span分页列表
+        # @param Spans: Span 分页列表
         # @type Spans: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1017,10 +963,8 @@ module TencentCloud
       # DescribeMetricRecords返回参数结构体
       class DescribeMetricRecordsResponse < TencentCloud::Common::AbstractModel
         # @param Records: 指标结果集
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Records: Array
         # @param TotalCount: 查询指标结果集条数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1115,7 +1059,6 @@ module TencentCloud
       # DescribeServiceOverview返回参数结构体
       class DescribeServiceOverviewResponse < TencentCloud::Common::AbstractModel
         # @param Records: 指标结果集
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Records: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1217,13 +1160,10 @@ module TencentCloud
       # 查询过滤参数
       class Filter < TencentCloud::Common::AbstractModel
         # @param Type: 过滤方式（=, !=, in）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: String
         # @param Key: 过滤维度名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Key: String
         # @param Value: 过滤值，in过滤方式用逗号分割多个值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: String
 
         attr_accessor :Type, :Key, :Value
@@ -1264,10 +1204,8 @@ module TencentCloud
       # 组件
       class Instrument < TencentCloud::Common::AbstractModel
         # @param Name: 组件名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Enable: 组件开关
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Enable: Boolean
 
         attr_accessor :Name, :Enable
@@ -1292,10 +1230,8 @@ module TencentCloud
         # @param TimeSerial: 时间序列
         # @type TimeSerial: Array
         # @param DataSerial: 数据序列
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DataSerial: Array
         # @param Tags: 维度列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
 
         attr_accessor :MetricName, :MetricNameCN, :TimeSerial, :DataSerial, :Tags
@@ -1553,43 +1489,31 @@ module TencentCloud
         end
       end
 
-      # Span对象
+      # Span 对象
       class Span < TencentCloud::Common::AbstractModel
-        # @param TraceID: Trace Id
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param TraceID: Trace ID
         # @type TraceID: String
         # @param Logs: 日志
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Logs: Array
         # @param Tags: 标签
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
         # @param Process: 上报应用服务信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Process: :class:`Tencentcloud::Apm.v20210622.models.SpanProcess`
         # @param Timestamp: 产生时间戳(毫秒)
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Timestamp: Integer
-        # @param OperationName: Span名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param OperationName: Span 名称
         # @type OperationName: String
         # @param References: 关联关系
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type References: Array
         # @param StartTime: 产生时间戳(微秒)
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StartTime: Integer
         # @param Duration: 持续耗时(微妙)
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Duration: Integer
-        # @param SpanID: Span Id
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param SpanID: Span ID
         # @type SpanID: String
         # @param StartTimeMillis: 产生时间戳(毫秒)
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StartTimeMillis: Integer
-        # @param ParentSpanID: Parent Span Id
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param ParentSpanID: Parent Span ID
         # @type ParentSpanID: String
 
         attr_accessor :TraceID, :Logs, :Tags, :Process, :Timestamp, :OperationName, :References, :StartTime, :Duration, :SpanID, :StartTimeMillis, :ParentSpanID

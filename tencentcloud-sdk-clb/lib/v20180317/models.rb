@@ -79,10 +79,13 @@ module TencentCloud
         # @type LoadBalancerName: String
         # @param ListenerName: 监听器名称
         # @type ListenerName: String
+        # @param Weight: 关联目标组的权重， 该参数只有v2新版目标组生效。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Weight: Integer
 
-        attr_accessor :LoadBalancerId, :ListenerId, :LocationId, :Protocol, :Port, :Domain, :Url, :LoadBalancerName, :ListenerName
+        attr_accessor :LoadBalancerId, :ListenerId, :LocationId, :Protocol, :Port, :Domain, :Url, :LoadBalancerName, :ListenerName, :Weight
 
-        def initialize(loadbalancerid=nil, listenerid=nil, locationid=nil, protocol=nil, port=nil, domain=nil, url=nil, loadbalancername=nil, listenername=nil)
+        def initialize(loadbalancerid=nil, listenerid=nil, locationid=nil, protocol=nil, port=nil, domain=nil, url=nil, loadbalancername=nil, listenername=nil, weight=nil)
           @LoadBalancerId = loadbalancerid
           @ListenerId = listenerid
           @LocationId = locationid
@@ -92,6 +95,7 @@ module TencentCloud
           @Url = url
           @LoadBalancerName = loadbalancername
           @ListenerName = listenername
+          @Weight = weight
         end
 
         def deserialize(params)
@@ -104,6 +108,7 @@ module TencentCloud
           @Url = params['Url']
           @LoadBalancerName = params['LoadBalancerName']
           @ListenerName = params['ListenerName']
+          @Weight = params['Weight']
         end
       end
 
@@ -219,17 +224,21 @@ module TencentCloud
         # @type TargetGroupId: String
         # @param TargetGroupName: 目标组名称
         # @type TargetGroupName: String
+        # @param Weight: 权重
+        # @type Weight: Integer
 
-        attr_accessor :TargetGroupId, :TargetGroupName
+        attr_accessor :TargetGroupId, :TargetGroupName, :Weight
 
-        def initialize(targetgroupid=nil, targetgroupname=nil)
+        def initialize(targetgroupid=nil, targetgroupname=nil, weight=nil)
           @TargetGroupId = targetgroupid
           @TargetGroupName = targetgroupname
+          @Weight = weight
         end
 
         def deserialize(params)
           @TargetGroupId = params['TargetGroupId']
           @TargetGroupName = params['TargetGroupName']
+          @Weight = params['Weight']
         end
       end
 

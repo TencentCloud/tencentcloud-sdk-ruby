@@ -7921,10 +7921,13 @@ module TencentCloud
         # @param ServiceExportTo: 该命名空间下的服务对哪些命名空间可见
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ServiceExportTo: Array
+        # @param SyncToGlobalRegistry: 是否开启同步到全局注册中心
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SyncToGlobalRegistry: Boolean
 
-        attr_accessor :Name, :Comment, :CreateTime, :ModifyTime, :TotalServiceCount, :TotalHealthInstanceCount, :TotalInstanceCount, :Id, :Editable, :UserIds, :GroupIds, :RemoveUserIds, :RemoveGroupIds, :ServiceExportTo
+        attr_accessor :Name, :Comment, :CreateTime, :ModifyTime, :TotalServiceCount, :TotalHealthInstanceCount, :TotalInstanceCount, :Id, :Editable, :UserIds, :GroupIds, :RemoveUserIds, :RemoveGroupIds, :ServiceExportTo, :SyncToGlobalRegistry
 
-        def initialize(name=nil, comment=nil, createtime=nil, modifytime=nil, totalservicecount=nil, totalhealthinstancecount=nil, totalinstancecount=nil, id=nil, editable=nil, userids=nil, groupids=nil, removeuserids=nil, removegroupids=nil, serviceexportto=nil)
+        def initialize(name=nil, comment=nil, createtime=nil, modifytime=nil, totalservicecount=nil, totalhealthinstancecount=nil, totalinstancecount=nil, id=nil, editable=nil, userids=nil, groupids=nil, removeuserids=nil, removegroupids=nil, serviceexportto=nil, synctoglobalregistry=nil)
           @Name = name
           @Comment = comment
           @CreateTime = createtime
@@ -7939,6 +7942,7 @@ module TencentCloud
           @RemoveUserIds = removeuserids
           @RemoveGroupIds = removegroupids
           @ServiceExportTo = serviceexportto
+          @SyncToGlobalRegistry = synctoglobalregistry
         end
 
         def deserialize(params)
@@ -7956,6 +7960,7 @@ module TencentCloud
           @RemoveUserIds = params['RemoveUserIds']
           @RemoveGroupIds = params['RemoveGroupIds']
           @ServiceExportTo = params['ServiceExportTo']
+          @SyncToGlobalRegistry = params['SyncToGlobalRegistry']
         end
       end
 
@@ -8056,10 +8061,12 @@ module TencentCloud
         # @param Revision: 该服务信息摘要签名
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Revision: String
+        # @param SyncToGlobalRegistry: 是否开启同步到全局注册中心
+        # @type SyncToGlobalRegistry: Boolean
 
-        attr_accessor :Name, :Namespace, :Metadatas, :Comment, :CreateTime, :ModifyTime, :Department, :Business, :HealthyInstanceCount, :TotalInstanceCount, :Id, :Editable, :UserIds, :GroupIds, :RemoveUserIds, :RemoveGroupIds, :ExportTo, :Revision
+        attr_accessor :Name, :Namespace, :Metadatas, :Comment, :CreateTime, :ModifyTime, :Department, :Business, :HealthyInstanceCount, :TotalInstanceCount, :Id, :Editable, :UserIds, :GroupIds, :RemoveUserIds, :RemoveGroupIds, :ExportTo, :Revision, :SyncToGlobalRegistry
 
-        def initialize(name=nil, namespace=nil, metadatas=nil, comment=nil, createtime=nil, modifytime=nil, department=nil, business=nil, healthyinstancecount=nil, totalinstancecount=nil, id=nil, editable=nil, userids=nil, groupids=nil, removeuserids=nil, removegroupids=nil, exportto=nil, revision=nil)
+        def initialize(name=nil, namespace=nil, metadatas=nil, comment=nil, createtime=nil, modifytime=nil, department=nil, business=nil, healthyinstancecount=nil, totalinstancecount=nil, id=nil, editable=nil, userids=nil, groupids=nil, removeuserids=nil, removegroupids=nil, exportto=nil, revision=nil, synctoglobalregistry=nil)
           @Name = name
           @Namespace = namespace
           @Metadatas = metadatas
@@ -8078,6 +8085,7 @@ module TencentCloud
           @RemoveGroupIds = removegroupids
           @ExportTo = exportto
           @Revision = revision
+          @SyncToGlobalRegistry = synctoglobalregistry
         end
 
         def deserialize(params)
@@ -8106,6 +8114,7 @@ module TencentCloud
           @RemoveGroupIds = params['RemoveGroupIds']
           @ExportTo = params['ExportTo']
           @Revision = params['Revision']
+          @SyncToGlobalRegistry = params['SyncToGlobalRegistry']
         end
       end
 

@@ -4994,27 +4994,27 @@ module TencentCloud
         # @type RecordId: Integer
         # @param RecordLine: 记录线路，通过 API 记录线路获得，中文，比如：默认。
         # @type RecordLine: String
-        # @param Value: 记录值，如 IP : 200.200.200.200， CNAME : cname.dnspod.com.， MX : mail.dnspod.com.。
-        # @type Value: String
         # @param DomainId: 域名 ID 。参数 DomainId 优先级比参数 Domain 高，如果传递参数 DomainId 将忽略参数 Domain 。可以通过接口DescribeDomainList查到所有的Domain以及DomainId
         # @type DomainId: Integer
         # @param SubDomain: 主机记录，如 www，如果不传，默认为 @。
         # @type SubDomain: String
         # @param RecordLineId: 线路的 ID，通过 API 记录线路获得，英文字符串，比如：10=1。参数RecordLineId优先级高于RecordLine，如果同时传递二者，优先使用RecordLineId参数。
         # @type RecordLineId: String
+        # @param Value: IP 地址，支持 IPv4、IPv6，例如 119.29.29.29 或者 2402:4e00::
+        # @type Value: String
         # @param Ttl: TTL值，如果不传，默认为域名的TTL值。
         # @type Ttl: Integer
 
-        attr_accessor :Domain, :RecordId, :RecordLine, :Value, :DomainId, :SubDomain, :RecordLineId, :Ttl
+        attr_accessor :Domain, :RecordId, :RecordLine, :DomainId, :SubDomain, :RecordLineId, :Value, :Ttl
 
-        def initialize(domain=nil, recordid=nil, recordline=nil, value=nil, domainid=nil, subdomain=nil, recordlineid=nil, ttl=nil)
+        def initialize(domain=nil, recordid=nil, recordline=nil, domainid=nil, subdomain=nil, recordlineid=nil, value=nil, ttl=nil)
           @Domain = domain
           @RecordId = recordid
           @RecordLine = recordline
-          @Value = value
           @DomainId = domainid
           @SubDomain = subdomain
           @RecordLineId = recordlineid
+          @Value = value
           @Ttl = ttl
         end
 
@@ -5022,10 +5022,10 @@ module TencentCloud
           @Domain = params['Domain']
           @RecordId = params['RecordId']
           @RecordLine = params['RecordLine']
-          @Value = params['Value']
           @DomainId = params['DomainId']
           @SubDomain = params['SubDomain']
           @RecordLineId = params['RecordLineId']
+          @Value = params['Value']
           @Ttl = params['Ttl']
         end
       end
@@ -6648,40 +6648,40 @@ module TencentCloud
 
       # Whois联系信息地址
       class WhoisContactAddress < TencentCloud::Common::AbstractModel
-        # @param City: 无
+        # @param City: 城市
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type City: String
-        # @param Country: 无
+        # @param Country: 国家
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Country: String
-        # @param Email: 无
+        # @param Email: 电子邮箱
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Email: String
-        # @param Fax: 无
+        # @param Fax: 传真
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Fax: String
-        # @param FaxExt: 无
+        # @param FaxExt: 传真分机号
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FaxExt: String
         # @param Handle: 无
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Handle: String
-        # @param Name: 无
+        # @param Name: 名称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
-        # @param Organization: 无
+        # @param Organization: 组织机构
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Organization: String
-        # @param Phone: 无
+        # @param Phone: 电话
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Phone: String
-        # @param PostalCode: 无
+        # @param PostalCode: 邮编
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PostalCode: String
-        # @param State: 无
+        # @param State: 省份/州
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type State: String
-        # @param Street: 无
+        # @param Street: 街道地址
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Street: String
 

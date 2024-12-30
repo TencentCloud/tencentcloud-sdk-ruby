@@ -797,6 +797,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 删除RabbitMQ的权限
+
+        # @param request: Request instance for DeleteRabbitMQPermission.
+        # @type request: :class:`Tencentcloud::tdmq::V20200217::DeleteRabbitMQPermissionRequest`
+        # @rtype: :class:`Tencentcloud::tdmq::V20200217::DeleteRabbitMQPermissionResponse`
+        def DeleteRabbitMQPermission(request)
+          body = send_request('DeleteRabbitMQPermission', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteRabbitMQPermissionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 删除RabbitMQ的用户
 
         # @param request: Request instance for DeleteRabbitMQUser.
@@ -1721,6 +1745,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeRabbitMQNodeListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询RabbitMQ权限列表
+
+        # @param request: Request instance for DescribeRabbitMQPermission.
+        # @type request: :class:`Tencentcloud::tdmq::V20200217::DescribeRabbitMQPermissionRequest`
+        # @rtype: :class:`Tencentcloud::tdmq::V20200217::DescribeRabbitMQPermissionResponse`
+        def DescribeRabbitMQPermission(request)
+          body = send_request('DescribeRabbitMQPermission', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeRabbitMQPermissionResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -2877,6 +2925,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyPublicNetworkSecurityPolicyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改RabbitMQ的权限
+
+        # @param request: Request instance for ModifyRabbitMQPermission.
+        # @type request: :class:`Tencentcloud::tdmq::V20200217::ModifyRabbitMQPermissionRequest`
+        # @rtype: :class:`Tencentcloud::tdmq::V20200217::ModifyRabbitMQPermissionResponse`
+        def ModifyRabbitMQPermission(request)
+          body = send_request('ModifyRabbitMQPermission', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyRabbitMQPermissionResponse.new
             model.deserialize(response['Response'])
             model
           else

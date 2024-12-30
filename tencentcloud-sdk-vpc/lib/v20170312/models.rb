@@ -105,7 +105,6 @@ module TencentCloud
         # @param UpdateTime: 更新时间
         # @type UpdateTime: String
         # @param Remark: Remark
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Remark: String
 
         attr_accessor :TargetCidr, :VpnGatewayIdSslAccessPolicyId, :ForAllClient, :UserGroupIds, :UpdateTime, :Remark
@@ -1978,19 +1977,14 @@ module TencentCloud
       # VPN通道BGP配置
       class BgpConfigAndAsn < TencentCloud::Common::AbstractModel
         # @param TunnelCidr: BGP通道CIDR
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TunnelCidr: String
         # @param LocalBgpIp: 本端BGP IP
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LocalBgpIp: String
         # @param RemoteBgpIp: 对端BGP IP
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RemoteBgpIp: String
         # @param LocalBgpAsn: 本端BGP ASN号
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LocalBgpAsn: String
         # @param RemoteBgpAsn: 对端BGP ASN号
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RemoteBgpAsn: String
 
         attr_accessor :TunnelCidr, :LocalBgpIp, :RemoteBgpIp, :LocalBgpAsn, :RemoteBgpAsn
@@ -2280,33 +2274,29 @@ module TencentCloud
       # 用于描述云联网地域间限速带宽实例的信息。
       class CcnBandwidthInfo < TencentCloud::Common::AbstractModel
         # @param CcnId: 带宽所属的云联网ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CcnId: String
         # @param CreatedTime: 实例的创建时间。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreatedTime: String
         # @param ExpiredTime: 实例的过期时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExpiredTime: String
         # @param RegionFlowControlId: 带宽实例的唯一ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RegionFlowControlId: String
         # @param RenewFlag: 带宽是否自动续费的标记。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RenewFlag: String
         # @param CcnRegionBandwidthLimit: 描述带宽的地域和限速上限信息。在地域间限速的情况下才会返回参数，出口限速模式不返回。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CcnRegionBandwidthLimit: :class:`Tencentcloud::Vpc.v20170312.models.CcnRegionBandwidthLimit`
         # @param MarketId: 云市场实例ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MarketId: String
         # @param TagSet: 资源绑定的标签列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TagSet: Array
+        # @param DefaultQosBandwidthFlag: `true表示`Qos默认带宽；`false`表示非Qos默认带宽；
+        # @type DefaultQosBandwidthFlag: Boolean
+        # @param QosLevel: 服务等级信息。
+        # @type QosLevel: String
 
-        attr_accessor :CcnId, :CreatedTime, :ExpiredTime, :RegionFlowControlId, :RenewFlag, :CcnRegionBandwidthLimit, :MarketId, :TagSet
+        attr_accessor :CcnId, :CreatedTime, :ExpiredTime, :RegionFlowControlId, :RenewFlag, :CcnRegionBandwidthLimit, :MarketId, :TagSet, :DefaultQosBandwidthFlag, :QosLevel
 
-        def initialize(ccnid=nil, createdtime=nil, expiredtime=nil, regionflowcontrolid=nil, renewflag=nil, ccnregionbandwidthlimit=nil, marketid=nil, tagset=nil)
+        def initialize(ccnid=nil, createdtime=nil, expiredtime=nil, regionflowcontrolid=nil, renewflag=nil, ccnregionbandwidthlimit=nil, marketid=nil, tagset=nil, defaultqosbandwidthflag=nil, qoslevel=nil)
           @CcnId = ccnid
           @CreatedTime = createdtime
           @ExpiredTime = expiredtime
@@ -2315,6 +2305,8 @@ module TencentCloud
           @CcnRegionBandwidthLimit = ccnregionbandwidthlimit
           @MarketId = marketid
           @TagSet = tagset
+          @DefaultQosBandwidthFlag = defaultqosbandwidthflag
+          @QosLevel = qoslevel
         end
 
         def deserialize(params)
@@ -2336,6 +2328,8 @@ module TencentCloud
               @TagSet << tag_tmp
             end
           end
+          @DefaultQosBandwidthFlag = params['DefaultQosBandwidthFlag']
+          @QosLevel = params['QosLevel']
         end
       end
 
@@ -2402,10 +2396,8 @@ module TencentCloud
         # @param Description: 备注
         # @type Description: String
         # @param RouteTableId: 实例关联的路由表ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RouteTableId: String
         # @param OrderType: 实例付费方式
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OrderType: String
 
         attr_accessor :InstanceId, :InstanceRegion, :InstanceType, :Description, :RouteTableId, :OrderType
@@ -2431,12 +2423,17 @@ module TencentCloud
 
       # 云联网实例对象，该对象特用于运营端使用，不建议给租户的接口中提供该复杂类型。
       class CcnInstanceInfo < TencentCloud::Common::AbstractModel
+        # @param CcnId: 云联网唯一ID。
+        # @type CcnId: String
 
+        attr_accessor :CcnId
 
-        def initialize()
+        def initialize(ccnid=nil)
+          @CcnId = ccnid
         end
 
         def deserialize(params)
+          @CcnId = params['CcnId']
         end
       end
 
@@ -2476,7 +2473,6 @@ module TencentCloud
         # @param IsBm: 是否黑石地域，默认`false`。
         # @type IsBm: Boolean
         # @param DstRegion: 目的地域，例如：ap-shanghai
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DstRegion: String
         # @param DstIsBm: 目的地域是否为黑石地域，默认`false`。
         # @type DstIsBm: Boolean
@@ -2503,13 +2499,10 @@ module TencentCloud
       # 云联网（CCN）地域出带宽上限。
       class CcnRegionBandwidthLimitInfo < TencentCloud::Common::AbstractModel
         # @param SourceRegion: 源地域，例如：ap-shanghai
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SourceRegion: String
         # @param DestinationRegion: 目的地域， 例如：ap-shanghai
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DestinationRegion: String
         # @param BandwidthLimit: 出带宽上限，单位：Mbps。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BandwidthLimit: Integer
 
         attr_accessor :SourceRegion, :DestinationRegion, :BandwidthLimit
@@ -2556,10 +2549,8 @@ module TencentCloud
         # @param InstanceExtraName: 下一跳扩展名称（关联实例的扩展名称）
         # @type InstanceExtraName: String
         # @param AliasType: 实例类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AliasType: String
         # @param AliasInstanceId: 实例id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AliasInstanceId: String
 
         attr_accessor :RouteId, :DestinationCidrBlock, :InstanceType, :InstanceId, :InstanceName, :InstanceRegion, :UpdateTime, :Enabled, :InstanceUin, :ExtraState, :IsBgp, :RoutePriority, :InstanceExtraName, :AliasType, :AliasInstanceId
@@ -2672,16 +2663,12 @@ module TencentCloud
         # @param Description: 策略描述
         # @type Description: String
         # @param OperateAsPath: as-path操作
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OperateAsPath: String
         # @param AsPathOperateMode: as-path操作模式
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AsPathOperateMode: String
         # @param OperateCommunitySet: community操作
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OperateCommunitySet: Array
         # @param CommunityOperateMode: community操作模式
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CommunityOperateMode: String
 
         attr_accessor :RouteConditions, :BroadcastConditions, :Action, :Description, :OperateAsPath, :AsPathOperateMode, :OperateCommunitySet, :CommunityOperateMode
@@ -2796,13 +2783,10 @@ module TencentCloud
       # 云联网路由接收策略列表
       class CcnRouteTableInputPolicys < TencentCloud::Common::AbstractModel
         # @param Policys: 策略列表。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Policys: Array
         # @param PolicyVersion: 版本号。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PolicyVersion: Integer
         # @param CreateTime: 创建时间。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
 
         attr_accessor :Policys, :PolicyVersion, :CreateTime
@@ -6748,10 +6732,8 @@ module TencentCloud
         # @param CreatedTime: 审批单创建时间。
         # @type CreatedTime: String
         # @param LegalPersonId: 法定代表人身份证号。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LegalPersonId: String
         # @param LegalPersonIdCard: 法定代表人身份证。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LegalPersonIdCard: String
 
         attr_accessor :ServiceProvider, :ComplianceId, :Company, :UniformSocialCreditCode, :LegalPerson, :IssuingAuthority, :BusinessLicense, :BusinessAddress, :PostCode, :Manager, :ManagerId, :ManagerIdCard, :ManagerAddress, :ManagerTelephone, :Email, :ServiceHandlingForm, :AuthorizationLetter, :SafetyCommitment, :ServiceStartDate, :ServiceEndDate, :State, :CreatedTime, :LegalPersonId, :LegalPersonIdCard
@@ -6874,10 +6856,13 @@ module TencentCloud
       # 对端网关厂商信息对象。
       class CustomerGatewayVendor < TencentCloud::Common::AbstractModel
         # @param Platform: 平台。
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Platform: String
         # @param SoftwareVersion: 软件版本。
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SoftwareVersion: String
         # @param VendorName: 供应商名称。
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VendorName: String
 
         attr_accessor :Platform, :SoftwareVersion, :VendorName
@@ -10203,7 +10188,6 @@ module TencentCloud
       # DescribeCrossBorderFlowMonitor返回参数结构体
       class DescribeCrossBorderFlowMonitorResponse < TencentCloud::Common::AbstractModel
         # @param CrossBorderFlowMonitorData: 云联网跨境带宽监控数据
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CrossBorderFlowMonitorData: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -14081,7 +14065,6 @@ module TencentCloud
       # DescribeTenantCcns返回参数结构体
       class DescribeTenantCcnsResponse < TencentCloud::Common::AbstractModel
         # @param CcnSet: 云联网（CCN）对象。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CcnSet: Array
         # @param TotalCount: 符合条件的对象总数。
         # @type TotalCount: Integer
@@ -15150,7 +15133,6 @@ module TencentCloud
         # @param Routes: VPN网关目的路由。
         # @type Routes: Array
         # @param TotalCount: 路由条数。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -17252,10 +17234,8 @@ module TencentCloud
       # GetCcnRegionBandwidthLimits返回参数结构体
       class GetCcnRegionBandwidthLimitsResponse < TencentCloud::Common::AbstractModel
         # @param CcnBandwidthSet: 云联网（CCN）各地域出带宽详情。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CcnBandwidthSet: Array
         # @param TotalCount: 符合条件的对象数。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -21652,7 +21632,6 @@ module TencentCloud
       # ModifyVpnGatewayRoutes返回参数结构体
       class ModifyVpnGatewayRoutesResponse < TencentCloud::Common::AbstractModel
         # @param Routes: VPN路由信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Routes: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -24740,7 +24719,6 @@ module TencentCloud
         # @param SourceCidrBlock: 源端cidr。
         # @type SourceCidrBlock: String
         # @param Description: 路由表描述。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
         # @param InstanceId: 实例ID。
         # @type InstanceId: String
@@ -26847,24 +26825,18 @@ module TencentCloud
         # @param HealthCheckStatus: 通道健康检查状态，AVAILABLE：正常，UNAVAILABLE：不正常。 未配置健康检查不返回该对象
         # @type HealthCheckStatus: String
         # @param DpdEnable: DPD探测开关。默认为0，表示关闭DPD探测。可选值：0（关闭），1（开启）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DpdEnable: Integer
         # @param DpdTimeout: DPD超时时间。即探测确认对端不存在需要的时间。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DpdTimeout: String
         # @param DpdAction: DPD超时后的动作。默认为clear。dpdEnable为1（开启）时有效。可取值为clear（断开）和restart（重试）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DpdAction: String
         # @param TagSet: 标签键值对数组
         # @type TagSet: Array
         # @param NegotiationType: 协商类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NegotiationType: String
         # @param BgpConfig: Bgp配置信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BgpConfig: :class:`Tencentcloud::Vpc.v20170312.models.BgpConfigAndAsn`
         # @param HealthCheckConfig: Nqa配置信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HealthCheckConfig: :class:`Tencentcloud::Vpc.v20170312.models.HealthCheckConfig`
 
         attr_accessor :VpnConnectionId, :VpnConnectionName, :VpcId, :VpnGatewayId, :CustomerGatewayId, :PreShareKey, :VpnProto, :EncryptProto, :RouteType, :CreatedTime, :State, :NetStatus, :SecurityPolicyDatabaseSet, :IKEOptionsSpecification, :IPSECOptionsSpecification, :EnableHealthCheck, :HealthCheckLocalIp, :HealthCheckRemoteIp, :HealthCheckStatus, :DpdEnable, :DpdTimeout, :DpdAction, :TagSet, :NegotiationType, :BgpConfig, :HealthCheckConfig

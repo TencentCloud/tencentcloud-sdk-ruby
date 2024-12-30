@@ -660,6 +660,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 该接口用于创建告警渠道回调配置。
+
+        # @param request: Request instance for CreateWebCallback.
+        # @type request: :class:`Tencentcloud::cls::V20201016::CreateWebCallbackRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::CreateWebCallbackResponse`
+        def CreateWebCallback(request)
+          body = send_request('CreateWebCallback', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateWebCallbackResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口用于删除告警策略。
 
         # @param request: Request instance for DeleteAlarm.
@@ -1150,6 +1174,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteTopicResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 该接口用于删除告警渠道回调配置。
+
+        # @param request: Request instance for DeleteWebCallback.
+        # @type request: :class:`Tencentcloud::cls::V20201016::DeleteWebCallbackRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::DeleteWebCallbackResponse`
+        def DeleteWebCallback(request)
+          body = send_request('DeleteWebCallback', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteWebCallbackResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1885,6 +1933,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取告警渠道回调配置列表。
+
+        # @param request: Request instance for DescribeWebCallbacks.
+        # @type request: :class:`Tencentcloud::cls::V20201016::DescribeWebCallbacksRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::DescribeWebCallbacksResponse`
+        def DescribeWebCallbacks(request)
+          body = send_request('DescribeWebCallbacks', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeWebCallbacksResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口用于获取告警策略执行详情
 
         # @param request: Request instance for GetAlarmLog.
@@ -2399,6 +2471,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyTopicResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 该接口用于修改告警渠道回调配置。
+
+        # @param request: Request instance for ModifyWebCallback.
+        # @type request: :class:`Tencentcloud::cls::V20201016::ModifyWebCallbackRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::ModifyWebCallbackResponse`
+        def ModifyWebCallback(request)
+          body = send_request('ModifyWebCallback', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyWebCallbackResponse.new
             model.deserialize(response['Response'])
             model
           else

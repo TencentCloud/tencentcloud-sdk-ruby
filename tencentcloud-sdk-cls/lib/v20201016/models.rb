@@ -727,7 +727,6 @@ module TencentCloud
         #     "Key": "SyntaxRule", // 查不到这个字段也是老语法
         #     "Value": "0"//0:Lucene, 1:CQL
         # }
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ConfigInfo: Array
 
         attr_accessor :Name, :Type, :Content, :ConfigInfo
@@ -2338,7 +2337,7 @@ module TencentCloud
         # @type ContainerFile: :class:`Tencentcloud::Cls.v20201016.models.ContainerFileInfo`
         # @param ContainerStdout: 容器标准输出类型配置。
         # @type ContainerStdout: :class:`Tencentcloud::Cls.v20201016.models.ContainerStdoutInfo`
-        # @param LogFormat: 日志格式化方式，用于容器采集场景。
+        # @param LogFormat: 日志格式化方式，用于容器采集场景。 - 已废弃
         # - stdout-docker-json：用于docker容器采集场景
         # - stdout-containerd：用于containerd容器采集场景
         # @type LogFormat: String
@@ -3606,6 +3605,62 @@ module TencentCloud
         end
       end
 
+      # CreateWebCallback请求参数结构体
+      class CreateWebCallbackRequest < TencentCloud::Common::AbstractModel
+        # @param Name: 通知内容名称。
+        # @type Name: String
+        # @param Type: 渠道类型。
+
+        # WeCom:企业微信;DingTalk:钉钉;Lark:飞书;Http:自定义回调。
+        # @type Type: String
+        # @param Webhook: Webhook地址。
+        # @type Webhook: String
+        # @param Method: 请求方式。 支持POST、PUT。
+
+        # 当Type为Http时，必填。
+        # @type Method: String
+        # @param Key: 秘钥。
+        # @type Key: String
+
+        attr_accessor :Name, :Type, :Webhook, :Method, :Key
+
+        def initialize(name=nil, type=nil, webhook=nil, method=nil, key=nil)
+          @Name = name
+          @Type = type
+          @Webhook = webhook
+          @Method = method
+          @Key = key
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Type = params['Type']
+          @Webhook = params['Webhook']
+          @Method = params['Method']
+          @Key = params['Key']
+        end
+      end
+
+      # CreateWebCallback返回参数结构体
+      class CreateWebCallbackResponse < TencentCloud::Common::AbstractModel
+        # @param WebCallbackId: 回调配置ID。
+        # @type WebCallbackId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :WebCallbackId, :RequestId
+
+        def initialize(webcallbackid=nil, requestid=nil)
+          @WebCallbackId = webcallbackid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @WebCallbackId = params['WebCallbackId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # csv内容描述
       class CsvInfo < TencentCloud::Common::AbstractModel
         # @param PrintKey: csv首行是否打印key
@@ -4668,6 +4723,38 @@ module TencentCloud
 
       # DeleteTopic返回参数结构体
       class DeleteTopicResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteWebCallback请求参数结构体
+      class DeleteWebCallbackRequest < TencentCloud::Common::AbstractModel
+        # @param WebCallbackId: 告警渠道回调配置ID。
+        # @type WebCallbackId: String
+
+        attr_accessor :WebCallbackId
+
+        def initialize(webcallbackid=nil)
+          @WebCallbackId = webcallbackid
+        end
+
+        def deserialize(params)
+          @WebCallbackId = params['WebCallbackId']
+        end
+      end
+
+      # DeleteWebCallback返回参数结构体
+      class DeleteWebCallbackResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -6744,8 +6831,8 @@ module TencentCloud
         # <li>3: topicName 和logsetName 都精确匹配</li></ul>
         # @type PreciseSearch: Integer
         # @param BizType: 主题类型
-        # <ul><li>0:日志主题，默认值</li>
-        # <li>1:指标主题</li></ul>
+        # - 0:日志主题，默认值
+        # - 1:指标主题
         # @type BizType: Integer
 
         attr_accessor :Filters, :Offset, :Limit, :PreciseSearch, :BizType
@@ -6798,6 +6885,82 @@ module TencentCloud
               topicinfo_tmp = TopicInfo.new
               topicinfo_tmp.deserialize(i)
               @Topics << topicinfo_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeWebCallbacks请求参数结构体
+      class DescribeWebCallbacksRequest < TencentCloud::Common::AbstractModel
+        # @param Filters: <li> name
+        # 按照【告警渠道回调配置名称】进行过滤。
+        # 类型：String
+        # 必选：否
+        # <li> webCallbackId
+        # 按照【告警渠道回调配置ID】进行过滤。
+        # 类型：String
+        # 必选：否
+        # <li> type
+        # 按照【告警渠道回调配置渠道类型】进行过滤。
+        # 类型：String
+        # 必选：否
+
+        # 每次请求的Filters的上限为10，Filter.Values的上限为100。
+        # @type Filters: Array
+        # @param Offset: 分页的偏移量，默认值为0。
+        # @type Offset: Integer
+        # @param Limit: 分页单页限制数目，默认值为20，最大值100。
+        # @type Limit: Integer
+
+        attr_accessor :Filters, :Offset, :Limit
+
+        def initialize(filters=nil, offset=nil, limit=nil)
+          @Filters = filters
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeWebCallbacks返回参数结构体
+      class DescribeWebCallbacksResponse < TencentCloud::Common::AbstractModel
+        # @param WebCallbacks: 告警渠道回调配置列表。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WebCallbacks: Array
+        # @param TotalCount: 符合条件的通知内容配置总数。
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :WebCallbacks, :TotalCount, :RequestId
+
+        def initialize(webcallbacks=nil, totalcount=nil, requestid=nil)
+          @WebCallbacks = webcallbacks
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['WebCallbacks'].nil?
+            @WebCallbacks = []
+            params['WebCallbacks'].each do |i|
+              webcallbackinfo_tmp = WebCallbackInfo.new
+              webcallbackinfo_tmp.deserialize(i)
+              @WebCallbacks << webcallbackinfo_tmp
             end
           end
           @TotalCount = params['TotalCount']
@@ -9833,6 +9996,64 @@ module TencentCloud
         end
       end
 
+      # ModifyWebCallback请求参数结构体
+      class ModifyWebCallbackRequest < TencentCloud::Common::AbstractModel
+        # @param WebCallbackId: 告警渠道回调配置ID。
+        # @type WebCallbackId: String
+        # @param Name: 告警渠道回调配置名称。
+        # @type Name: String
+        # @param Type: 渠道类型
+
+        # WeCom:企业微信;DingTalk:钉钉;Lark:飞书;Http:自定义回调;
+        # @type Type: String
+        # @param Webhook: 回调地址。
+        # @type Webhook: String
+        # @param Method: 请求方式。
+
+        # 支持POST、PUT。
+
+        # 注意：当Type为Http时，必填。
+        # @type Method: String
+        # @param Key: 秘钥信息。
+        # @type Key: String
+
+        attr_accessor :WebCallbackId, :Name, :Type, :Webhook, :Method, :Key
+
+        def initialize(webcallbackid=nil, name=nil, type=nil, webhook=nil, method=nil, key=nil)
+          @WebCallbackId = webcallbackid
+          @Name = name
+          @Type = type
+          @Webhook = webhook
+          @Method = method
+          @Key = key
+        end
+
+        def deserialize(params)
+          @WebCallbackId = params['WebCallbackId']
+          @Name = params['Name']
+          @Type = params['Type']
+          @Webhook = params['Webhook']
+          @Method = params['Method']
+          @Key = params['Key']
+        end
+      end
+
+      # ModifyWebCallback返回参数结构体
+      class ModifyWebCallbackResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 告警策略中监控任务的执行时间点
       class MonitorTime < TencentCloud::Common::AbstractModel
         # @param Type: 执行周期， 可选值：`Period`、`Fixed`、`Cron`。
@@ -11868,6 +12089,70 @@ module TencentCloud
           @Headers = params['Headers']
           @Body = params['Body']
           @Index = params['Index']
+        end
+      end
+
+      # 告警渠道回调配置信息
+      class WebCallbackInfo < TencentCloud::Common::AbstractModel
+        # @param WebCallbackId: 告警渠道回调配置id。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WebCallbackId: String
+        # @param Name: 告警渠道回调配置名称。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Type: 渠道类型
+
+        # WeCom:企业微信;DingTalk:钉钉;Lark:飞书;Http:自定义回调;
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+        # @param Webhook: 回调地址。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Webhook: String
+        # @param Method: 请求方式。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Method: String
+        # @param Key: 秘钥信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Key: String
+        # @param Uin: 主账号。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Uin: Integer
+        # @param SubUin: 子账号。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubUin: Integer
+        # @param CreateTime: 创建时间。秒级时间戳
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: Integer
+        # @param UpdateTime: 更新时间。秒级时间戳
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTime: Integer
+
+        attr_accessor :WebCallbackId, :Name, :Type, :Webhook, :Method, :Key, :Uin, :SubUin, :CreateTime, :UpdateTime
+
+        def initialize(webcallbackid=nil, name=nil, type=nil, webhook=nil, method=nil, key=nil, uin=nil, subuin=nil, createtime=nil, updatetime=nil)
+          @WebCallbackId = webcallbackid
+          @Name = name
+          @Type = type
+          @Webhook = webhook
+          @Method = method
+          @Key = key
+          @Uin = uin
+          @SubUin = subuin
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+        end
+
+        def deserialize(params)
+          @WebCallbackId = params['WebCallbackId']
+          @Name = params['Name']
+          @Type = params['Type']
+          @Webhook = params['Webhook']
+          @Method = params['Method']
+          @Key = params['Key']
+          @Uin = params['Uin']
+          @SubUin = params['SubUin']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
         end
       end
 

@@ -5106,19 +5106,31 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 本次返回结果的最大个数，默认为50，最大值为50
         # @type Limit: Integer
+        # @param QueryFromConnectResource: 是否从连接查询topic列表
+        # @type QueryFromConnectResource: Boolean
+        # @param ConnectResourceId: 连接的ID
+        # @type ConnectResourceId: String
+        # @param TopicRegularExpression: topic资源表达式
+        # @type TopicRegularExpression: String
 
-        attr_accessor :SearchWord, :Offset, :Limit
+        attr_accessor :SearchWord, :Offset, :Limit, :QueryFromConnectResource, :ConnectResourceId, :TopicRegularExpression
 
-        def initialize(searchword=nil, offset=nil, limit=nil)
+        def initialize(searchword=nil, offset=nil, limit=nil, queryfromconnectresource=nil, connectresourceid=nil, topicregularexpression=nil)
           @SearchWord = searchword
           @Offset = offset
           @Limit = limit
+          @QueryFromConnectResource = queryfromconnectresource
+          @ConnectResourceId = connectresourceid
+          @TopicRegularExpression = topicregularexpression
         end
 
         def deserialize(params)
           @SearchWord = params['SearchWord']
           @Offset = params['Offset']
           @Limit = params['Limit']
+          @QueryFromConnectResource = params['QueryFromConnectResource']
+          @ConnectResourceId = params['ConnectResourceId']
+          @TopicRegularExpression = params['TopicRegularExpression']
         end
       end
 

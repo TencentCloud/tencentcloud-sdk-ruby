@@ -39230,7 +39230,7 @@ module TencentCloud
         # @type StartTime: Integer
         # @param EndTime: 要检索分析的日志的结束时间，Unix时间戳（毫秒）
         # @type EndTime: Integer
-        # @param QueryString: 检索分析语句，最大长度为12KB
+        # @param QueryString: 检索分析语句，最大长度为12KB，查询语法可参考文档https://cloud.tencent.com/document/product/296/50508
         # @type QueryString: String
         # @param Count: 表示单次查询返回的原始日志条数，最大值为1000，获取后续日志需使用Context参数
         # @type Count: Integer

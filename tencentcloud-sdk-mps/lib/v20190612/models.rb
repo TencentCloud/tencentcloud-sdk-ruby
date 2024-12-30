@@ -16844,10 +16844,12 @@ module TencentCloud
         # @type Zones: Array
         # @param RISTSettings: 转推RIST的配置。
         # @type RISTSettings: :class:`Tencentcloud::Mps.v20190612.models.CreateOutputRistSettings`
+        # @param OutputType: 输出类型：Internet/TencentCSS/StreamLive
+        # @type OutputType: String
 
-        attr_accessor :OutputId, :OutputName, :Description, :Protocol, :SRTSettings, :RTPSettings, :RTMPSettings, :AllowIpList, :MaxConcurrent, :SecurityGroupIds, :Zones, :RISTSettings
+        attr_accessor :OutputId, :OutputName, :Description, :Protocol, :SRTSettings, :RTPSettings, :RTMPSettings, :AllowIpList, :MaxConcurrent, :SecurityGroupIds, :Zones, :RISTSettings, :OutputType
 
-        def initialize(outputid=nil, outputname=nil, description=nil, protocol=nil, srtsettings=nil, rtpsettings=nil, rtmpsettings=nil, allowiplist=nil, maxconcurrent=nil, securitygroupids=nil, zones=nil, ristsettings=nil)
+        def initialize(outputid=nil, outputname=nil, description=nil, protocol=nil, srtsettings=nil, rtpsettings=nil, rtmpsettings=nil, allowiplist=nil, maxconcurrent=nil, securitygroupids=nil, zones=nil, ristsettings=nil, outputtype=nil)
           @OutputId = outputid
           @OutputName = outputname
           @Description = description
@@ -16860,6 +16862,7 @@ module TencentCloud
           @SecurityGroupIds = securitygroupids
           @Zones = zones
           @RISTSettings = ristsettings
+          @OutputType = outputtype
         end
 
         def deserialize(params)
@@ -16887,6 +16890,7 @@ module TencentCloud
             @RISTSettings = CreateOutputRistSettings.new
             @RISTSettings.deserialize(params['RISTSettings'])
           end
+          @OutputType = params['OutputType']
         end
       end
 

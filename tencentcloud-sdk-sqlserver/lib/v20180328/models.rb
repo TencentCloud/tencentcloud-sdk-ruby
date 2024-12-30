@@ -5890,7 +5890,7 @@ module TencentCloud
       class DescribeProductConfigRequest < TencentCloud::Common::AbstractModel
         # @param Zone: 可用区英文ID，形如ap-guangzhou-1
         # @type Zone: String
-        # @param InstanceType: 购买实例的类型 HA-本地盘高可用(包括双机高可用，alwaysOn集群)，RO-本地盘只读副本，SI-云盘版单节点,BI-商业智能服务，cvmHA-云盘版高可用，cvmRO-云盘版只读副本
+        # @param InstanceType: 购买实例的类型 HA-本地盘高可用(包括双机高可用，alwaysOn集群)，RO-本地盘只读副本，SI-云盘版单节点,BI-商业智能服务，cvmHA-云盘版高可用，cvmRO-云盘版只读副本，MultiHA-多节点，cvmMultiHA-云盘多节点
         # @type InstanceType: String
 
         attr_accessor :Zone, :InstanceType
@@ -6857,10 +6857,12 @@ module TencentCloud
         # @type HAType: String
         # @param MultiZones: 实例变配后的跨可用区类型，可选值： SameZones-修改为同可用区 MultiZones-修改为跨可用区，不填则不修改
         # @type MultiZones: String
+        # @param DrZones: 多节点架构实例的备节点可用区，默认为空。如果需要在变配的同时修改指定备节点的可用区时必传，当MultiZones = MultiZones时主节点和备节点可用区不能全部相同。备机可用区集合最小为2个，最大不超过5个。
+        # @type DrZones: Array
 
-        attr_accessor :InstanceId, :Cpu, :Memory, :Storage, :DBVersion, :HAType, :MultiZones
+        attr_accessor :InstanceId, :Cpu, :Memory, :Storage, :DBVersion, :HAType, :MultiZones, :DrZones
 
-        def initialize(instanceid=nil, cpu=nil, memory=nil, storage=nil, dbversion=nil, hatype=nil, multizones=nil)
+        def initialize(instanceid=nil, cpu=nil, memory=nil, storage=nil, dbversion=nil, hatype=nil, multizones=nil, drzones=nil)
           @InstanceId = instanceid
           @Cpu = cpu
           @Memory = memory
@@ -6868,6 +6870,7 @@ module TencentCloud
           @DBVersion = dbversion
           @HAType = hatype
           @MultiZones = multizones
+          @DrZones = drzones
         end
 
         def deserialize(params)
@@ -6878,6 +6881,14 @@ module TencentCloud
           @DBVersion = params['DBVersion']
           @HAType = params['HAType']
           @MultiZones = params['MultiZones']
+          unless params['DrZones'].nil?
+            @DrZones = []
+            params['DrZones'].each do |i|
+              drzoneinfo_tmp = DrZoneInfo.new
+              drzoneinfo_tmp.deserialize(i)
+              @DrZones << drzoneinfo_tmp
+            end
+          end
         end
       end
 
@@ -7277,6 +7288,26 @@ module TencentCloud
           @UniqSubnetId = params['UniqSubnetId']
           @RoWeight = params['RoWeight']
           @ReadMode = params['ReadMode']
+        end
+      end
+
+      # 备机可用区信息
+      class DrZoneInfo < TencentCloud::Common::AbstractModel
+        # @param DrInstanceId: 备机资源ID
+        # @type DrInstanceId: String
+        # @param Zone: 备机可用区
+        # @type Zone: String
+
+        attr_accessor :DrInstanceId, :Zone
+
+        def initialize(drinstanceid=nil, zone=nil)
+          @DrInstanceId = drinstanceid
+          @Zone = zone
+        end
+
+        def deserialize(params)
+          @DrInstanceId = params['DrInstanceId']
+          @Zone = params['Zone']
         end
       end
 

@@ -97,10 +97,12 @@ module TencentCloud
         # - 0表示当服务端语音识别检测出的完整一句话后，自动触发一轮新的对话。
         # - 1表示客户端在收到字幕消息后，自行决定是否手动发送聊天信令触发一轮新的对话。
         # @type TurnDetectionMode: Integer
+        # @param FilterOneWord: 是否过滤掉用户只说了一个字的句子，true表示过滤，false表示不过滤，默认值为true
+        # @type FilterOneWord: Boolean
 
-        attr_accessor :UserId, :UserSig, :TargetUserId, :MaxIdleTime, :WelcomeMessage, :InterruptMode, :InterruptSpeechDuration, :TurnDetectionMode
+        attr_accessor :UserId, :UserSig, :TargetUserId, :MaxIdleTime, :WelcomeMessage, :InterruptMode, :InterruptSpeechDuration, :TurnDetectionMode, :FilterOneWord
 
-        def initialize(userid=nil, usersig=nil, targetuserid=nil, maxidletime=nil, welcomemessage=nil, interruptmode=nil, interruptspeechduration=nil, turndetectionmode=nil)
+        def initialize(userid=nil, usersig=nil, targetuserid=nil, maxidletime=nil, welcomemessage=nil, interruptmode=nil, interruptspeechduration=nil, turndetectionmode=nil, filteroneword=nil)
           @UserId = userid
           @UserSig = usersig
           @TargetUserId = targetuserid
@@ -109,6 +111,7 @@ module TencentCloud
           @InterruptMode = interruptmode
           @InterruptSpeechDuration = interruptspeechduration
           @TurnDetectionMode = turndetectionmode
+          @FilterOneWord = filteroneword
         end
 
         def deserialize(params)
@@ -120,6 +123,7 @@ module TencentCloud
           @InterruptMode = params['InterruptMode']
           @InterruptSpeechDuration = params['InterruptSpeechDuration']
           @TurnDetectionMode = params['TurnDetectionMode']
+          @FilterOneWord = params['FilterOneWord']
         end
       end
 
@@ -5514,6 +5518,7 @@ module TencentCloud
         # @param TargetUserId: TranscriptionMode为1时必填，机器人只会拉该userid的流，忽略房间里其他用户。
         # @type TargetUserId: String
         # @param TargetUserIdList: 机器人订阅的用户列表
+        # 仅 TranscriptionMode 为 1或者 TranscriptionMode 为无限上麦模式支持传入多个用户列表
         # @type TargetUserIdList: Array
 
         attr_accessor :UserId, :UserSig, :IMAdminUserId, :IMAdminUserSig, :MaxIdleTime, :TranscriptionMode, :TargetUserId, :TargetUserIdList
