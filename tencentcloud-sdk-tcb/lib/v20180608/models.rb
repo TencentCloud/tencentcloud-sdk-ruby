@@ -4782,7 +4782,6 @@ module TencentCloud
       # DescribeEndUserLoginStatistic返回参数结构体
       class DescribeEndUserLoginStatisticResponse < TencentCloud::Common::AbstractModel
         # @param LoginStatistics: 环境终端用户新增与登录统计
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LoginStatistics: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4826,7 +4825,6 @@ module TencentCloud
       # DescribeEndUserStatistic返回参数结构体
       class DescribeEndUserStatisticResponse < TencentCloud::Common::AbstractModel
         # @param PlatformStatistics: 终端用户各平台统计
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PlatformStatistics: Array
         # @param TotalCount: 终端用户总数
         # @type TotalCount: Integer
@@ -7399,16 +7397,12 @@ module TencentCloud
       # 终端用户登录新增统计
       class LoginStatistic < TencentCloud::Common::AbstractModel
         # @param StatisticalType: 统计类型 新增NEWUSER 和登录 LOGIN
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StatisticalType: String
         # @param StatisticalCycle: 统计周期：日DAY，周WEEK，月MONTH
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StatisticalCycle: String
         # @param Count: 统计总量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Count: Integer
         # @param UpdateTime: 更新时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: String
 
         attr_accessor :StatisticalType, :StatisticalCycle, :Count, :UpdateTime

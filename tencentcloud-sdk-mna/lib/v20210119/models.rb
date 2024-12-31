@@ -3133,29 +3133,22 @@ module TencentCloud
       # 厂商硬件详细信息
       class VendorHardware < TencentCloud::Common::AbstractModel
         # @param HardwareId: 硬件id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HardwareId: String
         # @param SN: 硬件序列号
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SN: String
         # @param CreateTime: 创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
         # @param Status: 激活状态， 空：全部； 1:待激活； 2:已激活
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
         # @param ActiveTime: 激活时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ActiveTime: String
         # @param Description: 厂商备注
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
         # @param DeviceId: 设备id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeviceId: String
         # @param LicenseChargingMode: license计费模式： 1，租户月付费 2，厂商月付费 3，license永久授权
         # 注：设备为租户付费且未激活（未选择月付还是永久付费）时，此参数返回1，仅代表租户付费。后续将废弃此参数，新接入请使用LicensePayMode和Payer
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LicenseChargingMode: Integer
         # @param LastOnlineTime: 最后在线时间
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -3164,12 +3157,10 @@ module TencentCloud
         # 0：月度授权
         # 1：永久授权
         # -1：未知
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LicensePayMode: Integer
         # @param Payer: 付费方
         # 0：客户付费
         # 1：厂商付费
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Payer: Integer
 
         attr_accessor :HardwareId, :SN, :CreateTime, :Status, :ActiveTime, :Description, :DeviceId, :LicenseChargingMode, :LastOnlineTime, :LicensePayMode, :Payer

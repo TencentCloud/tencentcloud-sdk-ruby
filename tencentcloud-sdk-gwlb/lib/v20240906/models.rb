@@ -770,7 +770,6 @@ module TencentCloud
         # @param LoadBalancerName: 网关负载均衡实例的名称。
         # @type LoadBalancerName: String
         # @param VpcId: 网关负载均衡所属私有网络。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VpcId: String
         # @param SubnetId: 网关负载均衡所属子网。
         # @type SubnetId: String
@@ -780,24 +779,18 @@ module TencentCloud
         # 0：创建中，1：正常运行，3：删除中。
         # @type Status: Integer
         # @param TargetGroupId: 关联的目标组唯一ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TargetGroupId: String
         # @param DeleteProtect: 是否开启删除保护功能。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeleteProtect: Boolean
         # @param Tags: 负载均衡实例的标签信息。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
         # @param CreateTime: 创建时间。
         # @type CreateTime: String
         # @param ChargeType: 网关负载均衡实例的计费类型，POSTPAID_BY_HOUR：按量计费
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ChargeType: String
         # @param Isolation: 0：表示未被隔离，1：表示被隔离。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Isolation: Integer
         # @param IsolatedTime: 负载均衡实例被隔离的时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsolatedTime: String
 
         attr_accessor :LoadBalancerId, :LoadBalancerName, :VpcId, :SubnetId, :Vips, :Status, :TargetGroupId, :DeleteProtect, :Tags, :CreateTime, :ChargeType, :Isolation, :IsolatedTime

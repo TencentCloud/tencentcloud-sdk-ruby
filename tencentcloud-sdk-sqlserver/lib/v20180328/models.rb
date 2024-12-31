@@ -2663,8 +2663,8 @@ module TencentCloud
 
         attr_accessor :IsSubscribed, :CollationName, :IsAutoCleanupOn, :IsBrokerEnabled, :IsCdcEnabled, :IsDbChainingOn, :IsEncrypted, :IsFulltextEnabled, :IsMirroring, :IsPublished, :IsReadCommittedSnapshotOn, :IsTrustworthyOn, :MirroringState, :Name, :RecoveryModelDesc, :RetentionPeriod, :StateDesc, :UserAccessDesc, :CreateTime, :IsFullTextEnabled
         extend Gem::Deprecate
-        deprecate :IsFulltextEnabled, :none, 2024, 12
-        deprecate :IsFulltextEnabled=, :none, 2024, 12
+        deprecate :IsFulltextEnabled, :none, 2025, 1
+        deprecate :IsFulltextEnabled=, :none, 2025, 1
 
         def initialize(issubscribed=nil, collationname=nil, isautocleanupon=nil, isbrokerenabled=nil, iscdcenabled=nil, isdbchainingon=nil, isencrypted=nil, ismirroring=nil, ispublished=nil, isreadcommittedsnapshoton=nil, istrustworthyon=nil, mirroringstate=nil, name=nil, recoverymodeldesc=nil, retentionperiod=nil, statedesc=nil, useraccessdesc=nil, createtime=nil, isfulltextenabled=nil)
           @IsSubscribed = issubscribed
@@ -6755,8 +6755,8 @@ module TencentCloud
 
         attr_accessor :TotalCount, :Slowlogs, :SlowLogs, :RequestId
         extend Gem::Deprecate
-        deprecate :Slowlogs, :none, 2024, 12
-        deprecate :Slowlogs=, :none, 2024, 12
+        deprecate :Slowlogs, :none, 2025, 1
+        deprecate :Slowlogs=, :none, 2025, 1
 
         def initialize(totalcount=nil, slowlogs=nil, requestid=nil)
           @TotalCount = totalcount
@@ -6976,8 +6976,8 @@ module TencentCloud
 
         attr_accessor :BucketName, :Region, :Path, :TmpSecretId, :TmpSecretKey, :XCosSecurityToken, :StartTime, :ExpiredTime, :CosSecurityToken, :RequestId
         extend Gem::Deprecate
-        deprecate :XCosSecurityToken, :none, 2024, 12
-        deprecate :XCosSecurityToken=, :none, 2024, 12
+        deprecate :XCosSecurityToken, :none, 2025, 1
+        deprecate :XCosSecurityToken=, :none, 2025, 1
 
         def initialize(bucketname=nil, region=nil, path=nil, tmpsecretid=nil, tmpsecretkey=nil, xcossecuritytoken=nil, starttime=nil, expiredtime=nil, cossecuritytoken=nil, requestid=nil)
           @BucketName = bucketname
@@ -7055,8 +7055,8 @@ module TencentCloud
 
         attr_accessor :BucketName, :Region, :Path, :TmpSecretId, :TmpSecretKey, :XCosSecurityToken, :StartTime, :ExpiredTime, :CosSecurityToken, :RequestId
         extend Gem::Deprecate
-        deprecate :XCosSecurityToken, :none, 2024, 12
-        deprecate :XCosSecurityToken=, :none, 2024, 12
+        deprecate :XCosSecurityToken, :none, 2025, 1
+        deprecate :XCosSecurityToken=, :none, 2025, 1
 
         def initialize(bucketname=nil, region=nil, path=nil, tmpsecretid=nil, tmpsecretkey=nil, xcossecuritytoken=nil, starttime=nil, expiredtime=nil, cossecuritytoken=nil, requestid=nil)
           @BucketName = bucketname
@@ -7417,15 +7417,17 @@ module TencentCloud
         # @type DBVersion: String
         # @param Cpu: 预购买实例的CPU核心数
         # @type Cpu: Integer
-        # @param InstanceType: 购买实例的类型 HA-高可用型(包括双机高可用，alwaysOn集群)，RO-只读副本型，SI-单节点型,cvmHA-虚拟机双机高可用,cvmRO-虚拟机只读
+        # @param InstanceType: 购买实例的类型 HA-高可用型(包括双机高可用，alwaysOn集群)，RO-只读副本型，SI-单节点型,cvmHA-虚拟机双机高可用,cvmRO-虚拟机只读，MultiHA-多节点，cvmMultiHA-云盘
         # @type InstanceType: String
         # @param MachineType: 购买实例的宿主机类型，PM-物理机, CLOUD_PREMIUM-虚拟机高性能云盘，CLOUD_SSD-虚拟机SSD云盘,
         # CLOUD_HSSD-虚拟机加强型SSD云盘，CLOUD_TSSD-虚拟机极速型SSD云盘，CLOUD_BSSD-虚拟机通用型SSD云盘
         # @type MachineType: String
+        # @param DrZones: 备节点可用区，默认为空。如果是多节点架构时必传，并且备机可用区集合最小为2个，最大不超过5个。
+        # @type DrZones: Array
 
-        attr_accessor :Zone, :Memory, :Storage, :InstanceChargeType, :Period, :GoodsNum, :DBVersion, :Cpu, :InstanceType, :MachineType
+        attr_accessor :Zone, :Memory, :Storage, :InstanceChargeType, :Period, :GoodsNum, :DBVersion, :Cpu, :InstanceType, :MachineType, :DrZones
 
-        def initialize(zone=nil, memory=nil, storage=nil, instancechargetype=nil, period=nil, goodsnum=nil, dbversion=nil, cpu=nil, instancetype=nil, machinetype=nil)
+        def initialize(zone=nil, memory=nil, storage=nil, instancechargetype=nil, period=nil, goodsnum=nil, dbversion=nil, cpu=nil, instancetype=nil, machinetype=nil, drzones=nil)
           @Zone = zone
           @Memory = memory
           @Storage = storage
@@ -7436,6 +7438,7 @@ module TencentCloud
           @Cpu = cpu
           @InstanceType = instancetype
           @MachineType = machinetype
+          @DrZones = drzones
         end
 
         def deserialize(params)
@@ -7449,6 +7452,7 @@ module TencentCloud
           @Cpu = params['Cpu']
           @InstanceType = params['InstanceType']
           @MachineType = params['MachineType']
+          @DrZones = params['DrZones']
         end
       end
 
@@ -8380,8 +8384,8 @@ module TencentCloud
 
         attr_accessor :Errno, :Msg, :Code, :RequestId
         extend Gem::Deprecate
-        deprecate :Errno, :none, 2024, 12
-        deprecate :Errno=, :none, 2024, 12
+        deprecate :Errno, :none, 2025, 1
+        deprecate :Errno=, :none, 2025, 1
 
         def initialize(errno=nil, msg=nil, code=nil, requestid=nil)
           @Errno = errno
@@ -10072,10 +10076,14 @@ module TencentCloud
         # @type DnsPodDomain: String
         # @param TgwWanVPort: RO组外网地址端口
         # @type TgwWanVPort: Integer
+        # @param ReadOnlyGroupType: RO只读组类型，1-按照一个实例一个只读组的方式发货，2-新建只读组后发货的所有实例都在这个只读组下面， 3-发货的所有实例都在已有的只读组下面
+        # @type ReadOnlyGroupType: Integer
+        # @param ReadOnlyGroupForcedUpgrade: 部署RO副本模式，0-默认不升级主实例，1-强制升级主实例完成RO部署
+        # @type ReadOnlyGroupForcedUpgrade: Integer
 
-        attr_accessor :ReadOnlyGroupId, :ReadOnlyGroupName, :RegionId, :ZoneId, :IsOfflineDelay, :ReadOnlyMaxDelayTime, :MinReadOnlyInGroup, :Vip, :Vport, :VpcId, :SubnetId, :Status, :MasterInstanceId, :ReadOnlyInstanceSet, :DnsPodDomain, :TgwWanVPort
+        attr_accessor :ReadOnlyGroupId, :ReadOnlyGroupName, :RegionId, :ZoneId, :IsOfflineDelay, :ReadOnlyMaxDelayTime, :MinReadOnlyInGroup, :Vip, :Vport, :VpcId, :SubnetId, :Status, :MasterInstanceId, :ReadOnlyInstanceSet, :DnsPodDomain, :TgwWanVPort, :ReadOnlyGroupType, :ReadOnlyGroupForcedUpgrade
 
-        def initialize(readonlygroupid=nil, readonlygroupname=nil, regionid=nil, zoneid=nil, isofflinedelay=nil, readonlymaxdelaytime=nil, minreadonlyingroup=nil, vip=nil, vport=nil, vpcid=nil, subnetid=nil, status=nil, masterinstanceid=nil, readonlyinstanceset=nil, dnspoddomain=nil, tgwwanvport=nil)
+        def initialize(readonlygroupid=nil, readonlygroupname=nil, regionid=nil, zoneid=nil, isofflinedelay=nil, readonlymaxdelaytime=nil, minreadonlyingroup=nil, vip=nil, vport=nil, vpcid=nil, subnetid=nil, status=nil, masterinstanceid=nil, readonlyinstanceset=nil, dnspoddomain=nil, tgwwanvport=nil, readonlygrouptype=nil, readonlygroupforcedupgrade=nil)
           @ReadOnlyGroupId = readonlygroupid
           @ReadOnlyGroupName = readonlygroupname
           @RegionId = regionid
@@ -10092,6 +10100,8 @@ module TencentCloud
           @ReadOnlyInstanceSet = readonlyinstanceset
           @DnsPodDomain = dnspoddomain
           @TgwWanVPort = tgwwanvport
+          @ReadOnlyGroupType = readonlygrouptype
+          @ReadOnlyGroupForcedUpgrade = readonlygroupforcedupgrade
         end
 
         def deserialize(params)
@@ -10118,6 +10128,8 @@ module TencentCloud
           end
           @DnsPodDomain = params['DnsPodDomain']
           @TgwWanVPort = params['TgwWanVPort']
+          @ReadOnlyGroupType = params['ReadOnlyGroupType']
+          @ReadOnlyGroupForcedUpgrade = params['ReadOnlyGroupForcedUpgrade']
         end
       end
 

@@ -2386,8 +2386,8 @@ module TencentCloud
 
         attr_accessor :ReturnCode, :ReturnMessage, :Data, :DeleteRouteTimestamp
         extend Gem::Deprecate
-        deprecate :DeleteRouteTimestamp, :none, 2024, 12
-        deprecate :DeleteRouteTimestamp=, :none, 2024, 12
+        deprecate :DeleteRouteTimestamp, :none, 2025, 1
+        deprecate :DeleteRouteTimestamp=, :none, 2025, 1
 
         def initialize(returncode=nil, returnmessage=nil, data=nil, deleteroutetimestamp=nil)
           @ReturnCode = returncode
@@ -8634,10 +8634,13 @@ module TencentCloud
         # @param KeepPartition: 数据同步专用参数, 当通过时,希望下游的消息写入分区与上游的一致,则填true,但下游分区小于上游时,会报错; 不需要一致则为false, 默认为false
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type KeepPartition: Boolean
+        # @param TopicRegularExpression: 正则匹配Topic列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TopicRegularExpression: String
 
-        attr_accessor :SelfBuilt, :Resource, :Topic, :OffsetType, :StartTime, :ResourceName, :ZoneId, :TopicId, :PartitionNum, :EnableToleration, :QpsLimit, :TableMappings, :UseTableMapping, :UseAutoCreateTopic, :CompressionType, :MsgMultiple, :ConnectorSyncType, :KeepPartition
+        attr_accessor :SelfBuilt, :Resource, :Topic, :OffsetType, :StartTime, :ResourceName, :ZoneId, :TopicId, :PartitionNum, :EnableToleration, :QpsLimit, :TableMappings, :UseTableMapping, :UseAutoCreateTopic, :CompressionType, :MsgMultiple, :ConnectorSyncType, :KeepPartition, :TopicRegularExpression
 
-        def initialize(selfbuilt=nil, resource=nil, topic=nil, offsettype=nil, starttime=nil, resourcename=nil, zoneid=nil, topicid=nil, partitionnum=nil, enabletoleration=nil, qpslimit=nil, tablemappings=nil, usetablemapping=nil, useautocreatetopic=nil, compressiontype=nil, msgmultiple=nil, connectorsynctype=nil, keeppartition=nil)
+        def initialize(selfbuilt=nil, resource=nil, topic=nil, offsettype=nil, starttime=nil, resourcename=nil, zoneid=nil, topicid=nil, partitionnum=nil, enabletoleration=nil, qpslimit=nil, tablemappings=nil, usetablemapping=nil, useautocreatetopic=nil, compressiontype=nil, msgmultiple=nil, connectorsynctype=nil, keeppartition=nil, topicregularexpression=nil)
           @SelfBuilt = selfbuilt
           @Resource = resource
           @Topic = topic
@@ -8656,6 +8659,7 @@ module TencentCloud
           @MsgMultiple = msgmultiple
           @ConnectorSyncType = connectorsynctype
           @KeepPartition = keeppartition
+          @TopicRegularExpression = topicregularexpression
         end
 
         def deserialize(params)
@@ -8684,6 +8688,7 @@ module TencentCloud
           @MsgMultiple = params['MsgMultiple']
           @ConnectorSyncType = params['ConnectorSyncType']
           @KeepPartition = params['KeepPartition']
+          @TopicRegularExpression = params['TopicRegularExpression']
         end
       end
 
@@ -9273,8 +9278,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :MsgRetentionTime, :InstanceName, :Config, :DynamicRetentionConfig, :RebalanceTime, :PublicNetwork, :DynamicDiskConfig, :MaxMessageByte
         extend Gem::Deprecate
-        deprecate :DynamicDiskConfig, :none, 2024, 12
-        deprecate :DynamicDiskConfig=, :none, 2024, 12
+        deprecate :DynamicDiskConfig, :none, 2025, 1
+        deprecate :DynamicDiskConfig=, :none, 2025, 1
 
         def initialize(instanceid=nil, msgretentiontime=nil, instancename=nil, config=nil, dynamicretentionconfig=nil, rebalancetime=nil, publicnetwork=nil, dynamicdiskconfig=nil, maxmessagebyte=nil)
           @InstanceId = instanceid
@@ -12453,8 +12458,8 @@ module TencentCloud
 
         attr_accessor :ZoneId, :IsInternalApp, :AppId, :Flag, :ZoneName, :ZoneStatus, :Exflag, :SoldOut, :SalesInfo, :ExtraFlag
         extend Gem::Deprecate
-        deprecate :Exflag, :none, 2024, 12
-        deprecate :Exflag=, :none, 2024, 12
+        deprecate :Exflag, :none, 2025, 1
+        deprecate :Exflag=, :none, 2025, 1
 
         def initialize(zoneid=nil, isinternalapp=nil, appid=nil, flag=nil, zonename=nil, zonestatus=nil, exflag=nil, soldout=nil, salesinfo=nil, extraflag=nil)
           @ZoneId = zoneid

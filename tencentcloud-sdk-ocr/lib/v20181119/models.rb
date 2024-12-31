@@ -1731,8 +1731,8 @@ module TencentCloud
 
         attr_accessor :PageNumber, :Angle, :Height, :Width, :OriginHeight, :OriginWidth, :Elements, :RotatedAngle
         extend Gem::Deprecate
-        deprecate :Angle, :none, 2024, 12
-        deprecate :Angle=, :none, 2024, 12
+        deprecate :Angle, :none, 2025, 1
+        deprecate :Angle=, :none, 2025, 1
 
         def initialize(pagenumber=nil, angle=nil, height=nil, width=nil, originheight=nil, originwidth=nil, elements=nil, rotatedangle=nil)
           @PageNumber = pagenumber
@@ -3546,8 +3546,8 @@ module TencentCloud
 
         attr_accessor :TextDetections, :Angel, :Angle, :RequestId
         extend Gem::Deprecate
-        deprecate :Angel, :none, 2024, 12
-        deprecate :Angel=, :none, 2024, 12
+        deprecate :Angel, :none, 2025, 1
+        deprecate :Angel=, :none, 2025, 1
 
         def initialize(textdetections=nil, angel=nil, angle=nil, requestid=nil)
           @TextDetections = textdetections
@@ -3653,8 +3653,8 @@ module TencentCloud
 
         attr_accessor :TextDetections, :Language, :Angel, :PdfPageSize, :Angle, :RequestId
         extend Gem::Deprecate
-        deprecate :Angel, :none, 2024, 12
-        deprecate :Angel=, :none, 2024, 12
+        deprecate :Angel, :none, 2025, 1
+        deprecate :Angel=, :none, 2025, 1
 
         def initialize(textdetections=nil, language=nil, angel=nil, pdfpagesize=nil, angle=nil, requestid=nil)
           @TextDetections = textdetections
@@ -3866,8 +3866,8 @@ module TencentCloud
 
         attr_accessor :TextDetections, :Angel, :Angle, :RequestId
         extend Gem::Deprecate
-        deprecate :Angel, :none, 2024, 12
-        deprecate :Angel=, :none, 2024, 12
+        deprecate :Angel, :none, 2025, 1
+        deprecate :Angel=, :none, 2025, 1
 
         def initialize(textdetections=nil, angel=nil, angle=nil, requestid=nil)
           @TextDetections = textdetections
@@ -4137,8 +4137,8 @@ module TencentCloud
 
         attr_accessor :ReturnHeadImage, :DetectFake, :ImageBase64, :ImageUrl
         extend Gem::Deprecate
-        deprecate :DetectFake, :none, 2024, 12
-        deprecate :DetectFake=, :none, 2024, 12
+        deprecate :DetectFake, :none, 2025, 1
+        deprecate :DetectFake=, :none, 2025, 1
 
         def initialize(returnheadimage=nil, detectfake=nil, imagebase64=nil, imageurl=nil)
           @ReturnHeadImage = returnheadimage
@@ -4207,10 +4207,10 @@ module TencentCloud
 
         attr_accessor :CnName, :EnName, :TelexCode, :Sex, :Birthday, :Permanent, :IdNum, :Symbol, :FirstIssueDate, :CurrentIssueDate, :FakeDetectResult, :HeadImage, :WarningCode, :WarnCardInfos, :RequestId
         extend Gem::Deprecate
-        deprecate :FakeDetectResult, :none, 2024, 12
-        deprecate :FakeDetectResult=, :none, 2024, 12
-        deprecate :WarningCode, :none, 2024, 12
-        deprecate :WarningCode=, :none, 2024, 12
+        deprecate :FakeDetectResult, :none, 2025, 1
+        deprecate :FakeDetectResult=, :none, 2025, 1
+        deprecate :WarningCode, :none, 2025, 1
+        deprecate :WarningCode=, :none, 2025, 1
 
         def initialize(cnname=nil, enname=nil, telexcode=nil, sex=nil, birthday=nil, permanent=nil, idnum=nil, symbol=nil, firstissuedate=nil, currentissuedate=nil, fakedetectresult=nil, headimage=nil, warningcode=nil, warncardinfos=nil, requestid=nil)
           @CnName = cnname
@@ -5552,8 +5552,8 @@ module TencentCloud
 
         attr_accessor :ID, :Name, :Address, :Sex, :Warn, :Image, :AdvancedInfo, :Type, :Birthday, :MyKadNumber, :WarnCardInfos, :RequestId
         extend Gem::Deprecate
-        deprecate :Warn, :none, 2024, 12
-        deprecate :Warn=, :none, 2024, 12
+        deprecate :Warn, :none, 2025, 1
+        deprecate :Warn=, :none, 2025, 1
 
         def initialize(id=nil, name=nil, address=nil, sex=nil, warn=nil, image=nil, advancedinfo=nil, type=nil, birthday=nil, mykadnumber=nil, warncardinfos=nil, requestid=nil)
           @ID = id
@@ -10464,16 +10464,19 @@ module TencentCloud
         # @type ReturnFullText: Boolean
         # @param ConfigId: 配置id支持：General -- 通用场景 InvoiceEng -- 海运提单、国际invoice模版 WayBillEng --海运订单模板
         # @type ConfigId: String
+        # @param EnableCoord: 是否开启全文字段坐标值的识别
+        # @type EnableCoord: Boolean
 
-        attr_accessor :ImageUrl, :ImageBase64, :PdfPageNumber, :ItemNames, :ReturnFullText, :ConfigId
+        attr_accessor :ImageUrl, :ImageBase64, :PdfPageNumber, :ItemNames, :ReturnFullText, :ConfigId, :EnableCoord
 
-        def initialize(imageurl=nil, imagebase64=nil, pdfpagenumber=nil, itemnames=nil, returnfulltext=nil, configid=nil)
+        def initialize(imageurl=nil, imagebase64=nil, pdfpagenumber=nil, itemnames=nil, returnfulltext=nil, configid=nil, enablecoord=nil)
           @ImageUrl = imageurl
           @ImageBase64 = imagebase64
           @PdfPageNumber = pdfpagenumber
           @ItemNames = itemnames
           @ReturnFullText = returnfulltext
           @ConfigId = configid
+          @EnableCoord = enablecoord
         end
 
         def deserialize(params)
@@ -10483,6 +10486,7 @@ module TencentCloud
           @ItemNames = params['ItemNames']
           @ReturnFullText = params['ReturnFullText']
           @ConfigId = params['ConfigId']
+          @EnableCoord = params['EnableCoord']
         end
       end
 

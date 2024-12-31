@@ -4573,8 +4573,8 @@ module TencentCloud
 
         attr_accessor :Id, :Uuid, :Name, :Level, :Rule, :Decription, :Operator, :IsGlobal, :Status, :CreateTime, :ModifyTime, :Hostip, :Uuids, :White, :DealOldEvents, :Description
         extend Gem::Deprecate
-        deprecate :Decription, :none, 2024, 12
-        deprecate :Decription=, :none, 2024, 12
+        deprecate :Decription, :none, 2025, 1
+        deprecate :Decription=, :none, 2025, 1
 
         def initialize(id=nil, uuid=nil, name=nil, level=nil, rule=nil, decription=nil, operator=nil, isglobal=nil, status=nil, createtime=nil, modifytime=nil, hostip=nil, uuids=nil, white=nil, dealoldevents=nil, description=nil)
           @Id = id
@@ -17718,16 +17718,16 @@ module TencentCloud
 
         attr_accessor :MachineCnt, :TencentCloudMachineCnt, :AliCloudMachineCnt, :BaiduCloudMachineCnt, :IDCMachineCnt, :OtherCloudMachineCnt, :ProtectMachineCnt, :BaseMachineCnt, :SpecialtyMachineCnt, :FlagshipMachineCnt, :RiskMachineCnt, :CompareYesterdayRiskMachineCnt, :CompareYesterdayNotProtectMachineCnt, :CompareYesterdayDeadlineMachineCnt, :DeadlineMachineCnt, :NotProtectMachineCnt, :LHGeneralDiscountCnt, :CompareYesterdayMachineCnt, :MachineDestroyAfterOfflineHours, :CloudFrom, :RequestId
         extend Gem::Deprecate
-        deprecate :TencentCloudMachineCnt, :none, 2024, 12
-        deprecate :TencentCloudMachineCnt=, :none, 2024, 12
-        deprecate :AliCloudMachineCnt, :none, 2024, 12
-        deprecate :AliCloudMachineCnt=, :none, 2024, 12
-        deprecate :BaiduCloudMachineCnt, :none, 2024, 12
-        deprecate :BaiduCloudMachineCnt=, :none, 2024, 12
-        deprecate :IDCMachineCnt, :none, 2024, 12
-        deprecate :IDCMachineCnt=, :none, 2024, 12
-        deprecate :OtherCloudMachineCnt, :none, 2024, 12
-        deprecate :OtherCloudMachineCnt=, :none, 2024, 12
+        deprecate :TencentCloudMachineCnt, :none, 2025, 1
+        deprecate :TencentCloudMachineCnt=, :none, 2025, 1
+        deprecate :AliCloudMachineCnt, :none, 2025, 1
+        deprecate :AliCloudMachineCnt=, :none, 2025, 1
+        deprecate :BaiduCloudMachineCnt, :none, 2025, 1
+        deprecate :BaiduCloudMachineCnt=, :none, 2025, 1
+        deprecate :IDCMachineCnt, :none, 2025, 1
+        deprecate :IDCMachineCnt=, :none, 2025, 1
+        deprecate :OtherCloudMachineCnt, :none, 2025, 1
+        deprecate :OtherCloudMachineCnt=, :none, 2025, 1
 
         def initialize(machinecnt=nil, tencentcloudmachinecnt=nil, alicloudmachinecnt=nil, baiducloudmachinecnt=nil, idcmachinecnt=nil, othercloudmachinecnt=nil, protectmachinecnt=nil, basemachinecnt=nil, specialtymachinecnt=nil, flagshipmachinecnt=nil, riskmachinecnt=nil, compareyesterdayriskmachinecnt=nil, compareyesterdaynotprotectmachinecnt=nil, compareyesterdaydeadlinemachinecnt=nil, deadlinemachinecnt=nil, notprotectmachinecnt=nil, lhgeneraldiscountcnt=nil, compareyesterdaymachinecnt=nil, machinedestroyafterofflinehours=nil, cloudfrom=nil, requestid=nil)
           @MachineCnt = machinecnt
@@ -28125,8 +28125,8 @@ module TencentCloud
 
         attr_accessor :Filters, :Fileds, :Fields
         extend Gem::Deprecate
-        deprecate :Fileds, :none, 2024, 12
-        deprecate :Fileds=, :none, 2024, 12
+        deprecate :Fileds, :none, 2025, 1
+        deprecate :Fileds=, :none, 2025, 1
 
         def initialize(filters=nil, fileds=nil, fields=nil)
           @Filters = filters
@@ -39230,7 +39230,7 @@ module TencentCloud
         # @type StartTime: Integer
         # @param EndTime: 要检索分析的日志的结束时间，Unix时间戳（毫秒）
         # @type EndTime: Integer
-        # @param QueryString: 检索分析语句，最大长度为12KB，查询语法可参考文档https://cloud.tencent.com/document/product/296/50508
+        # @param QueryString: 检索分析语句，最大长度为12KB，查询语法可参考文档 https://cloud.tencent.com/document/product/296/50508
         # @type QueryString: String
         # @param Count: 表示单次查询返回的原始日志条数，最大值为1000，获取后续日志需使用Context参数
         # @type Count: Integer
