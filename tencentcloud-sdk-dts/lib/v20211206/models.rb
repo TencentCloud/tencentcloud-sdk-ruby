@@ -1351,6 +1351,8 @@ module TencentCloud
         # @type DstRegion: String
         # @param Specification: 同步任务规格，Standard:标准版
         # @type Specification: String
+        # @param TimeSpan: 购买时长（单位：月），当PayMode值为PrePay则此项配置有意义，默认为1月，取值范围为[1,100]
+        # @type TimeSpan: Integer
         # @param Tags: 标签信息
         # @type Tags: Array
         # @param Count: 一次购买的同步任务数量，取值范围为[1, 10]，默认为1
@@ -1364,15 +1366,16 @@ module TencentCloud
         # @param ExistedJobId: 创建类似任务的现有任务Id
         # @type ExistedJobId: String
 
-        attr_accessor :PayMode, :SrcDatabaseType, :SrcRegion, :DstDatabaseType, :DstRegion, :Specification, :Tags, :Count, :AutoRenew, :InstanceClass, :JobName, :ExistedJobId
+        attr_accessor :PayMode, :SrcDatabaseType, :SrcRegion, :DstDatabaseType, :DstRegion, :Specification, :TimeSpan, :Tags, :Count, :AutoRenew, :InstanceClass, :JobName, :ExistedJobId
 
-        def initialize(paymode=nil, srcdatabasetype=nil, srcregion=nil, dstdatabasetype=nil, dstregion=nil, specification=nil, tags=nil, count=nil, autorenew=nil, instanceclass=nil, jobname=nil, existedjobid=nil)
+        def initialize(paymode=nil, srcdatabasetype=nil, srcregion=nil, dstdatabasetype=nil, dstregion=nil, specification=nil, timespan=nil, tags=nil, count=nil, autorenew=nil, instanceclass=nil, jobname=nil, existedjobid=nil)
           @PayMode = paymode
           @SrcDatabaseType = srcdatabasetype
           @SrcRegion = srcregion
           @DstDatabaseType = dstdatabasetype
           @DstRegion = dstregion
           @Specification = specification
+          @TimeSpan = timespan
           @Tags = tags
           @Count = count
           @AutoRenew = autorenew
@@ -1388,6 +1391,7 @@ module TencentCloud
           @DstDatabaseType = params['DstDatabaseType']
           @DstRegion = params['DstRegion']
           @Specification = params['Specification']
+          @TimeSpan = params['TimeSpan']
           unless params['Tags'].nil?
             @Tags = []
             params['Tags'].each do |i|

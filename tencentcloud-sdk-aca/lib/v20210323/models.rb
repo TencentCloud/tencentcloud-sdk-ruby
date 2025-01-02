@@ -45,7 +45,7 @@ module TencentCloud
       class CommonHeader < TencentCloud::Common::AbstractModel
         # @param HospitalId: 机构ID
         # @type HospitalId: String
-        # @param Token: 合作方ID
+        # @param Token: token
         # @type Token: String
 
         attr_accessor :HospitalId, :Token
@@ -108,19 +108,14 @@ module TencentCloud
       # 科室信息
       class Department < TencentCloud::Common::AbstractModel
         # @param Id: 科室ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Id: String
         # @param Name: 科室名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Scope: 科室类型 0:门诊  1:住院  2:门诊+住院
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Scope: Integer
         # @param OutpatientOn: 门诊区开关 true:此科室对应的门诊区开启智能审方功能, false:此科室对应的门诊区关闭智能审方功能; 仅对scope为0/2的科室生效
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OutpatientOn: Boolean
         # @param InHospitalOn: 住院区开关 true:此科室对应的住院区开启智能审方功能, false:此科室对应的住院区关闭智能审方功能; 仅对scope为1/2的科室生效
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InHospitalOn: Boolean
 
         attr_accessor :Id, :Name, :Scope, :OutpatientOn, :InHospitalOn

@@ -3938,7 +3938,7 @@ module TencentCloud
         # @type All: Boolean
         # @param EmbedPermission: 是否填充权限信息
         # @type EmbedPermission: Boolean
-        # @param Filters: 过滤条件
+        # @param Filters: 过滤条件，key 目前只支持ServiceAccountName
         # @type Filters: Array
         # @param Offset: 偏移量,默认0
         # @type Offset: Integer
@@ -7411,10 +7411,13 @@ module TencentCloud
         # @type Description: String
         # @param NamespaceId: 触发器所属命名空间 Id
         # @type NamespaceId: Integer
+        # @param NamespaceName: 触发器所属命名空间名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NamespaceName: String
 
-        attr_accessor :Name, :Targets, :EventTypes, :Condition, :Enabled, :Id, :Description, :NamespaceId
+        attr_accessor :Name, :Targets, :EventTypes, :Condition, :Enabled, :Id, :Description, :NamespaceId, :NamespaceName
 
-        def initialize(name=nil, targets=nil, eventtypes=nil, condition=nil, enabled=nil, id=nil, description=nil, namespaceid=nil)
+        def initialize(name=nil, targets=nil, eventtypes=nil, condition=nil, enabled=nil, id=nil, description=nil, namespaceid=nil, namespacename=nil)
           @Name = name
           @Targets = targets
           @EventTypes = eventtypes
@@ -7423,6 +7426,7 @@ module TencentCloud
           @Id = id
           @Description = description
           @NamespaceId = namespaceid
+          @NamespaceName = namespacename
         end
 
         def deserialize(params)
@@ -7441,6 +7445,7 @@ module TencentCloud
           @Id = params['Id']
           @Description = params['Description']
           @NamespaceId = params['NamespaceId']
+          @NamespaceName = params['NamespaceName']
         end
       end
 

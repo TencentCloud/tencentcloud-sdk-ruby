@@ -44,16 +44,12 @@ module TencentCloud
         # @param Name: 别名的名称
         # @type Name: String
         # @param RoutingConfig: 别名的路由信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RoutingConfig: :class:`Tencentcloud::Scf.v20180416.models.RoutingConfig`
         # @param Description: 描述信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
         # @param AddTime: 创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AddTime: String
         # @param ModTime: 更新时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ModTime: String
 
         attr_accessor :FunctionVersion, :Name, :RoutingConfig, :Description, :AddTime, :ModTime
@@ -170,7 +166,6 @@ module TencentCloud
       # 证书配置
       class CertConf < TencentCloud::Common::AbstractModel
         # @param CertificateId: ssl证书ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CertificateId: String
 
         attr_accessor :CertificateId
@@ -464,7 +459,7 @@ module TencentCloud
         # @type Protocol: String
         # @param EndpointsConfig: 路由配置
         # @type EndpointsConfig: Array
-        # @param CertConfig: 证书配置信息，HTTPS协议必穿
+        # @param CertConfig: 证书配置信息，有使用HTTPS协议时候必须传
         # @type CertConfig: :class:`Tencentcloud::Scf.v20180416.models.CertConf`
         # @param WafConfig: web 应用防火墙配置
         # @type WafConfig: :class:`Tencentcloud::Scf.v20180416.models.WafConf`
@@ -960,6 +955,50 @@ module TencentCloud
         end
       end
 
+      # DeleteFunctionVersion请求参数结构体
+      class DeleteFunctionVersionRequest < TencentCloud::Common::AbstractModel
+        # @param FunctionName: 要删除的函数名称
+        # @type FunctionName: String
+        # @param Qualifier: 填写需要删除的版本号
+        # @type Qualifier: String
+        # @param Namespace: 函数所属命名空间
+        # @type Namespace: String
+        # @param ForceDelete: 强制删除标记，传true会直接删除容器，并强制关闭还在执行中的函数
+        # @type ForceDelete: String
+
+        attr_accessor :FunctionName, :Qualifier, :Namespace, :ForceDelete
+
+        def initialize(functionname=nil, qualifier=nil, namespace=nil, forcedelete=nil)
+          @FunctionName = functionname
+          @Qualifier = qualifier
+          @Namespace = namespace
+          @ForceDelete = forcedelete
+        end
+
+        def deserialize(params)
+          @FunctionName = params['FunctionName']
+          @Qualifier = params['Qualifier']
+          @Namespace = params['Namespace']
+          @ForceDelete = params['ForceDelete']
+        end
+      end
+
+      # DeleteFunctionVersion返回参数结构体
+      class DeleteFunctionVersionResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteLayerVersion请求参数结构体
       class DeleteLayerVersionRequest < TencentCloud::Common::AbstractModel
         # @param LayerName: 层名称
@@ -1163,13 +1202,10 @@ module TencentCloud
         # @param Protocol: 协议，取值范围：HTTP, HTTPS, HTTP&HTTPS
         # @type Protocol: String
         # @param EndpointsConfig: 路由配置信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EndpointsConfig: Array
         # @param CertConfig: 证书配置信息，HTTPS协议必传路由配置
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CertConfig: :class:`Tencentcloud::Scf.v20180416.models.CertConf`
         # @param WafConfig: web 应用防火墙配置
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WafConfig: :class:`Tencentcloud::Scf.v20180416.models.WafConf`
 
         attr_accessor :Domain, :Protocol, :EndpointsConfig, :CertConfig, :WafConfig
@@ -1225,7 +1261,6 @@ module TencentCloud
         # @param EipStatus: 是否是固定IP，["ENABLE","DISABLE"]
         # @type EipStatus: String
         # @param EipAddress: IP列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EipAddress: Array
 
         attr_accessor :EipStatus, :EipAddress
@@ -1264,16 +1299,12 @@ module TencentCloud
       # 后端路由配置信息
       class EndpointsConf < TencentCloud::Common::AbstractModel
         # @param Namespace: 函数命名空间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Namespace: String
         # @param FunctionName: 函数名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FunctionName: String
         # @param Qualifier: 函数别名或版本
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Qualifier: String
         # @param PathMatch: 路径,取值规范：/，/*，/xxx，/xxx/a，/xxx/*"
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PathMatch: String
         # @param PathRewrite: 路径重写策略
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -1476,6 +1507,11 @@ module TencentCloud
         # @type RetryNum: Integer
 
         attr_accessor :FunctionName, :RetMsg, :RequestId, :StartTime, :RetCode, :InvokeFinished, :Duration, :BillDuration, :MemUsage, :Log, :Level, :Source, :RetryNum
+        extend Gem::Deprecate
+        deprecate :Level, :none, 2025, 1
+        deprecate :Level=, :none, 2025, 1
+        deprecate :Source, :none, 2025, 1
+        deprecate :Source=, :none, 2025, 1
 
         def initialize(functionname=nil, retmsg=nil, requestid=nil, starttime=nil, retcode=nil, invokefinished=nil, duration=nil, billduration=nil, memusage=nil, log=nil, level=nil, source=nil, retrynum=nil)
           @FunctionName = functionname
@@ -1620,13 +1656,10 @@ module TencentCloud
         # @param RoutingConfig: 别名的路由信息
         # @type RoutingConfig: :class:`Tencentcloud::Scf.v20180416.models.RoutingConfig`
         # @param Description: 别名的描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
         # @param AddTime: 创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AddTime: String
         # @param ModTime: 更新时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ModTime: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2068,24 +2101,18 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OnsEnable: String
         # @param CfsConfig: 文件系统配置参数，用于云函数挂载文件系统
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CfsConfig: :class:`Tencentcloud::Scf.v20180416.models.CfsConfig`
         # @param AvailableStatus: 函数的计费状态，状态值[参考此处](https://cloud.tencent.com/document/product/583/47175#.E5.87.BD.E6.95.B0.E8.AE.A1.E8.B4.B9.E7.8A.B6.E6.80.81)
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AvailableStatus: String
         # @param Qualifier: 函数版本
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Qualifier: String
         # @param InitTimeout: 函数初始化超时时间
         # @type InitTimeout: Integer
         # @param StatusReasons: 函数状态失败原因
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StatusReasons: Array
         # @param AsyncRunEnable: 是否开启异步属性
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AsyncRunEnable: String
         # @param TraceEnable: 是否开启事件追踪
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TraceEnable: String
         # @param ImageConfig: 镜像配置
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -2097,7 +2124,6 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProtocolParams: :class:`Tencentcloud::Scf.v20180416.models.ProtocolParams`
         # @param DnsCache: 是否开启DNS缓存
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DnsCache: String
         # @param IntranetConfig: 内网访问配置
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -2801,12 +2827,10 @@ module TencentCloud
       # 层版本信息
       class LayerVersionInfo < TencentCloud::Common::AbstractModel
         # @param CompatibleRuntimes: 版本适用的运行时
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CompatibleRuntimes: Array
         # @param AddTime: 创建时间
         # @type AddTime: String
         # @param Description: 版本描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
         # @param LicenseInfo: 许可证信息
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -2818,7 +2842,6 @@ module TencentCloud
         # @param Status: 层的具体版本当前状态，状态值[参考此处](https://cloud.tencent.com/document/product/583/47175#.E5.B1.82.EF.BC.88layer.EF.BC.89.E7.8A.B6.E6.80.81)
         # @type Status: String
         # @param Stamp: Stamp
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Stamp: String
         # @param Tags: 返回层绑定的标签信息
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -2942,7 +2965,6 @@ module TencentCloud
         # @param Aliases: 别名列表
         # @type Aliases: Array
         # @param TotalCount: 别名总数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3153,10 +3175,7 @@ module TencentCloud
         # @type Namespace: String
         # @param Description: 函数描述，支持模糊搜索
         # @type Description: String
-        # @param Filters: 过滤条件。
-        # - tag:tag-key - String - 是否必填：否 - （过滤条件）按照标签键值对进行过滤。 tag-key使用具体的标签键进行替换。
-
-        # 每次请求的Filters的上限为10，Filter.Values的上限为5。
+        # @param Filters: `过滤特定属性或者有特定标签的函数。`- 传值方式key-value 进行传值  例如："Filters": [{ "Name": "Status", "Values": ["CreateFailed","Creating"]}, {"Name": "Type","Values": ["HTTP"]}]上述条件的函数是，函数状态为创建失败或者创建中，且函数类型为 HTTP 函数`如果通过标签进行过滤：`- tag:tag-key - String - 是否必填：否 - （过滤条件）按照标签键值对进行过滤。 tag-key使用具体的标签键进行替换。示例值："Filters": [{"Name":"tag-dmtest","Values":["dmtest"]}]`入参限制：`1.每次请求的Filters的上限为10，Filter.Values的上限为5。2.[VpcId', 'SubnetId', 'ClsTopicId', 'ClsLogsetId', 'Role', 'CfsId', 'CfsMountInsId', 'Eip'] 过滤的Name 为这些属性时， values 只能传一个值3.['Status', 'Runtime', 'Type', 'PublicNetStatus', 'AsyncRunEnable', 'TraceEnable', 'Stamp'] 过滤的Name 为这些属性时 ，values 可以传多个值
         # @type Filters: Array
 
         attr_accessor :Order, :Orderby, :Offset, :Limit, :SearchKey, :Namespace, :Description, :Filters
@@ -3519,10 +3538,8 @@ module TencentCloud
         # @param FunctionVersion: 函数版本。
         # @type FunctionVersion: Array
         # @param Versions: 函数版本列表。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Versions: Array
         # @param TotalCount: 函数版本总数。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3788,13 +3805,10 @@ module TencentCloud
         # @param FunctionsCount: 命名空间函数个数
         # @type FunctionsCount: Integer
         # @param TotalConcurrencyMem: 命名空间配额总量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalConcurrencyMem: Integer
         # @param TotalAllocatedConcurrencyMem: 命名空间并发使用量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalAllocatedConcurrencyMem: Integer
         # @param TotalAllocatedProvisionedMem: 命名空间预置使用量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalAllocatedProvisionedMem: Integer
 
         attr_accessor :Functions, :Namespace, :FunctionsCount, :TotalConcurrencyMem, :TotalAllocatedConcurrencyMem, :TotalAllocatedProvisionedMem
@@ -3821,13 +3835,10 @@ module TencentCloud
       # 路径路由重写规则
       class PathRewriteRule < TencentCloud::Common::AbstractModel
         # @param Path: 需要重路由的路径，取值规范：/，/*，/xxx，/xxx/a，/xxx/*
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Path: String
         # @param Type: 匹配规，取值范围： WildcardRules 通配符匹配， ExactRules 精确匹配
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: String
         # @param Rewrite: 替换值：比如/, /$
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Rewrite: String
 
         attr_accessor :Path, :Type, :Rewrite
@@ -4496,12 +4507,12 @@ module TencentCloud
 
         attr_accessor :ModTime, :Type, :TriggerDesc, :TriggerName, :AddTime, :Enable, :CustomArgument, :AvailableStatus, :ResourceId, :BindStatus, :TriggerAttribute, :Qualifier, :Description
         extend Gem::Deprecate
-        deprecate :ResourceId, :none, 2024, 12
-        deprecate :ResourceId=, :none, 2024, 12
-        deprecate :BindStatus, :none, 2024, 12
-        deprecate :BindStatus=, :none, 2024, 12
-        deprecate :TriggerAttribute, :none, 2024, 12
-        deprecate :TriggerAttribute=, :none, 2024, 12
+        deprecate :ResourceId, :none, 2025, 1
+        deprecate :ResourceId=, :none, 2025, 1
+        deprecate :BindStatus, :none, 2025, 1
+        deprecate :BindStatus=, :none, 2025, 1
+        deprecate :TriggerAttribute, :none, 2025, 1
+        deprecate :TriggerAttribute=, :none, 2025, 1
 
         def initialize(modtime=nil, type=nil, triggerdesc=nil, triggername=nil, addtime=nil, enable=nil, customargument=nil, availablestatus=nil, resourceid=nil, bindstatus=nil, triggerattribute=nil, qualifier=nil, description=nil)
           @ModTime = modtime
@@ -4539,13 +4550,10 @@ module TencentCloud
       # 预置定时任务动作
       class TriggerAction < TencentCloud::Common::AbstractModel
         # @param TriggerName: 定时预置名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TriggerName: String
         # @param TriggerProvisionedConcurrencyNum: 定时预置并发数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TriggerProvisionedConcurrencyNum: Integer
         # @param TriggerCronConfig: 设置定时触发器的时间配置，cron表达式。Cron 表达式有七个必需字段，按空格分隔。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TriggerCronConfig: String
         # @param ProvisionedType: 预置类型 Default
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -4593,7 +4601,6 @@ module TencentCloud
         # @param Vod: Vod触发器数量
         # @type Vod: Integer
         # @param Eb: Eb触发器数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Eb: Integer
 
         attr_accessor :Cos, :Timer, :Cmq, :Total, :Ckafka, :Apigw, :Cls, :Clb, :Mps, :Cm, :Vod, :Eb
@@ -4662,12 +4669,12 @@ module TencentCloud
 
         attr_accessor :Enable, :Qualifier, :TriggerName, :Type, :TriggerDesc, :AvailableStatus, :CustomArgument, :AddTime, :ModTime, :ResourceId, :BindStatus, :TriggerAttribute, :Description
         extend Gem::Deprecate
-        deprecate :ResourceId, :none, 2024, 12
-        deprecate :ResourceId=, :none, 2024, 12
-        deprecate :BindStatus, :none, 2024, 12
-        deprecate :BindStatus=, :none, 2024, 12
-        deprecate :TriggerAttribute, :none, 2024, 12
-        deprecate :TriggerAttribute=, :none, 2024, 12
+        deprecate :ResourceId, :none, 2025, 1
+        deprecate :ResourceId=, :none, 2025, 1
+        deprecate :BindStatus, :none, 2025, 1
+        deprecate :BindStatus=, :none, 2025, 1
+        deprecate :TriggerAttribute, :none, 2025, 1
+        deprecate :TriggerAttribute=, :none, 2025, 1
 
         def initialize(enable=nil, qualifier=nil, triggername=nil, type=nil, triggerdesc=nil, availablestatus=nil, customargument=nil, addtime=nil, modtime=nil, resourceid=nil, bindstatus=nil, triggerattribute=nil, description=nil)
           @Enable = enable
@@ -5450,10 +5457,8 @@ module TencentCloud
       # web应用防火墙配置信息
       class WafConf < TencentCloud::Common::AbstractModel
         # @param WafOpen: web应用防火墙是否打开， 取值范围:OPEN, CLOSE
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WafOpen: String
         # @param WafInstanceId: web应用防火墙实例ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WafInstanceId: String
 
         attr_accessor :WafOpen, :WafInstanceId

@@ -643,10 +643,12 @@ module TencentCloud
         # @type DiskBackupQuota: Integer
         # @param BurstPerformance: 创建云盘时是否开启性能突发
         # @type BurstPerformance: Boolean
+        # @param EncryptType: 指定云硬盘加密类型，取值为ENCRYPT_V1和ENCRYPT_V2，分别表示第一代和第二代加密技术，两种加密技术互不兼容。推荐优先使用第二代加密技术ENCRYPT_V2，第一代加密技术仅支持在部分老旧机型使用。该参数仅当创建加密云硬盘时有效。
+        # @type EncryptType: String
 
-        attr_accessor :Placement, :DiskChargeType, :DiskType, :DiskName, :Tags, :SnapshotId, :DiskCount, :ThroughputPerformance, :DiskSize, :Shareable, :ClientToken, :Encrypt, :DiskChargePrepaid, :DeleteSnapshot, :AutoMountConfiguration, :DiskBackupQuota, :BurstPerformance
+        attr_accessor :Placement, :DiskChargeType, :DiskType, :DiskName, :Tags, :SnapshotId, :DiskCount, :ThroughputPerformance, :DiskSize, :Shareable, :ClientToken, :Encrypt, :DiskChargePrepaid, :DeleteSnapshot, :AutoMountConfiguration, :DiskBackupQuota, :BurstPerformance, :EncryptType
 
-        def initialize(placement=nil, diskchargetype=nil, disktype=nil, diskname=nil, tags=nil, snapshotid=nil, diskcount=nil, throughputperformance=nil, disksize=nil, shareable=nil, clienttoken=nil, encrypt=nil, diskchargeprepaid=nil, deletesnapshot=nil, automountconfiguration=nil, diskbackupquota=nil, burstperformance=nil)
+        def initialize(placement=nil, diskchargetype=nil, disktype=nil, diskname=nil, tags=nil, snapshotid=nil, diskcount=nil, throughputperformance=nil, disksize=nil, shareable=nil, clienttoken=nil, encrypt=nil, diskchargeprepaid=nil, deletesnapshot=nil, automountconfiguration=nil, diskbackupquota=nil, burstperformance=nil, encrypttype=nil)
           @Placement = placement
           @DiskChargeType = diskchargetype
           @DiskType = disktype
@@ -664,6 +666,7 @@ module TencentCloud
           @AutoMountConfiguration = automountconfiguration
           @DiskBackupQuota = diskbackupquota
           @BurstPerformance = burstperformance
+          @EncryptType = encrypttype
         end
 
         def deserialize(params)
@@ -700,6 +703,7 @@ module TencentCloud
           end
           @DiskBackupQuota = params['DiskBackupQuota']
           @BurstPerformance = params['BurstPerformance']
+          @EncryptType = params['EncryptType']
         end
       end
 

@@ -252,6 +252,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 该接口根据传入参数删除函数的指定版本。
+
+        # @param request: Request instance for DeleteFunctionVersion.
+        # @type request: :class:`Tencentcloud::scf::V20180416::DeleteFunctionVersionRequest`
+        # @rtype: :class:`Tencentcloud::scf::V20180416::DeleteFunctionVersionResponse`
+        def DeleteFunctionVersion(request)
+          body = send_request('DeleteFunctionVersion', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteFunctionVersionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 删除指定层的指定版本，被删除的版本无法再关联到函数上，但不会影响正在引用这个层的函数。
 
         # @param request: Request instance for DeleteLayerVersion.

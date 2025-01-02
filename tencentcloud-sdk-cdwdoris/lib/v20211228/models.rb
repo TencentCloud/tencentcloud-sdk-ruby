@@ -515,8 +515,8 @@ module TencentCloud
 
         attr_accessor :FileName, :FileConf, :KeyConf, :OriParam, :NeedRestart, :FilePath, :FileKeyValues, :FileKeyValuesNew
         extend Gem::Deprecate
-        deprecate :FileKeyValues, :none, 2024, 12
-        deprecate :FileKeyValues=, :none, 2024, 12
+        deprecate :FileKeyValues, :none, 2025, 1
+        deprecate :FileKeyValues=, :none, 2025, 1
 
         def initialize(filename=nil, fileconf=nil, keyconf=nil, oriparam=nil, needrestart=nil, filepath=nil, filekeyvalues=nil, filekeyvaluesnew=nil)
           @FileName = filename
@@ -773,10 +773,10 @@ module TencentCloud
 
         attr_accessor :InstanceId, :OperationType, :ScheduleId, :WeekDays, :ExecuteHour, :BackUpTables, :BackupType, :DorisSourceInfo, :BackupTimeType, :RestoreType, :AuthType, :CosSourceInfo, :ScheduleName, :ScheduleInfo, :UpdateStatus, :CosBucket
         extend Gem::Deprecate
-        deprecate :WeekDays, :none, 2024, 12
-        deprecate :WeekDays=, :none, 2024, 12
-        deprecate :ExecuteHour, :none, 2024, 12
-        deprecate :ExecuteHour=, :none, 2024, 12
+        deprecate :WeekDays, :none, 2025, 1
+        deprecate :WeekDays=, :none, 2025, 1
+        deprecate :ExecuteHour, :none, 2025, 1
+        deprecate :ExecuteHour=, :none, 2025, 1
 
         def initialize(instanceid=nil, operationtype=nil, scheduleid=nil, weekdays=nil, executehour=nil, backuptables=nil, backuptype=nil, dorissourceinfo=nil, backuptimetype=nil, restoretype=nil, authtype=nil, cossourceinfo=nil, schedulename=nil, scheduleinfo=nil, updatestatus=nil, cosbucket=nil)
           @InstanceId = instanceid
@@ -2207,14 +2207,17 @@ module TencentCloud
         # @param InstanceNodesList: 实例节点总数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceNodesList: Array
+        # @param NodeRoles: 节点类型
+        # @type NodeRoles: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TotalCount, :InstanceNodesList, :RequestId
+        attr_accessor :TotalCount, :InstanceNodesList, :NodeRoles, :RequestId
 
-        def initialize(totalcount=nil, instancenodeslist=nil, requestid=nil)
+        def initialize(totalcount=nil, instancenodeslist=nil, noderoles=nil, requestid=nil)
           @TotalCount = totalcount
           @InstanceNodesList = instancenodeslist
+          @NodeRoles = noderoles
           @RequestId = requestid
         end
 
@@ -2228,6 +2231,7 @@ module TencentCloud
               @InstanceNodesList << instancenode_tmp
             end
           end
+          @NodeRoles = params['NodeRoles']
           @RequestId = params['RequestId']
         end
       end
@@ -2502,8 +2506,8 @@ module TencentCloud
 
         attr_accessor :InstanceID, :Input
         extend Gem::Deprecate
-        deprecate :InstanceID, :none, 2024, 12
-        deprecate :InstanceID=, :none, 2024, 12
+        deprecate :InstanceID, :none, 2025, 1
+        deprecate :InstanceID=, :none, 2025, 1
 
         def initialize(instanceid=nil, input=nil)
           @InstanceID = instanceid
@@ -2879,22 +2883,25 @@ module TencentCloud
 
       # DescribeSpec返回参数结构体
       class DescribeSpecResponse < TencentCloud::Common::AbstractModel
-        # @param MasterSpec: zookeeper节点规格描述
+        # @param MasterSpec: fe节点规格描述
         # @type MasterSpec: Array
-        # @param CoreSpec: 数据节点规格描述
+        # @param CoreSpec: be节点规格描述
         # @type CoreSpec: Array
         # @param AttachCBSSpec: 云盘列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AttachCBSSpec: Array
+        # @param CNSpec: cn节点列表
+        # @type CNSpec: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :MasterSpec, :CoreSpec, :AttachCBSSpec, :RequestId
+        attr_accessor :MasterSpec, :CoreSpec, :AttachCBSSpec, :CNSpec, :RequestId
 
-        def initialize(masterspec=nil, corespec=nil, attachcbsspec=nil, requestid=nil)
+        def initialize(masterspec=nil, corespec=nil, attachcbsspec=nil, cnspec=nil, requestid=nil)
           @MasterSpec = masterspec
           @CoreSpec = corespec
           @AttachCBSSpec = attachcbsspec
+          @CNSpec = cnspec
           @RequestId = requestid
         end
 
@@ -2921,6 +2928,14 @@ module TencentCloud
               diskspec_tmp = DiskSpec.new
               diskspec_tmp.deserialize(i)
               @AttachCBSSpec << diskspec_tmp
+            end
+          end
+          unless params['CNSpec'].nil?
+            @CNSpec = []
+            params['CNSpec'].each do |i|
+              resourcespec_tmp = ResourceSpec.new
+              resourcespec_tmp.deserialize(i)
+              @CNSpec << resourcespec_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -3497,8 +3512,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :InstanceName, :Status, :Version, :Region, :Zone, :VpcId, :SubnetId, :PayMode, :CreateTime, :ExpireTime, :MasterSummary, :CoreSummary, :HA, :HaType, :AccessInfo, :Id, :RegionId, :ZoneDesc, :FlowMsg, :StatusDesc, :RenewFlag, :Tags, :Monitor, :HasClsTopic, :ClsTopicId, :ClsLogSetId, :EnableXMLConfig, :RegionDesc, :Eip, :CosMoveFactor, :Kind, :CosBucketName, :CanAttachCbs, :BuildVersion, :Components, :IfExistCatalog, :Characteristic, :RestartTimeout, :GraceShutdownWaitSeconds, :CaseSensitive, :IsWhiteSGs, :BindSGs, :EnableMultiZones, :UserNetworkInfos, :EnableCoolDown, :CoolDownBucket, :Details, :EnableDlc, :AccountType, :MonitorMode, :CNSummary
         extend Gem::Deprecate
-        deprecate :IfExistCatalog, :none, 2024, 12
-        deprecate :IfExistCatalog=, :none, 2024, 12
+        deprecate :IfExistCatalog, :none, 2025, 1
+        deprecate :IfExistCatalog=, :none, 2025, 1
 
         def initialize(instanceid=nil, instancename=nil, status=nil, version=nil, region=nil, zone=nil, vpcid=nil, subnetid=nil, paymode=nil, createtime=nil, expiretime=nil, mastersummary=nil, coresummary=nil, ha=nil, hatype=nil, accessinfo=nil, id=nil, regionid=nil, zonedesc=nil, flowmsg=nil, statusdesc=nil, renewflag=nil, tags=nil, monitor=nil, hasclstopic=nil, clstopicid=nil, clslogsetid=nil, enablexmlconfig=nil, regiondesc=nil, eip=nil, cosmovefactor=nil, kind=nil, cosbucketname=nil, canattachcbs=nil, buildversion=nil, components=nil, ifexistcatalog=nil, characteristic=nil, restarttimeout=nil, graceshutdownwaitseconds=nil, casesensitive=nil, iswhitesgs=nil, bindsgs=nil, enablemultizones=nil, usernetworkinfos=nil, enablecooldown=nil, cooldownbucket=nil, details=nil, enabledlc=nil, accounttype=nil, monitormode=nil, cnsummary=nil)
           @InstanceId = instanceid
@@ -4638,18 +4653,18 @@ module TencentCloud
 
         attr_accessor :InstanceId, :BackUpJobId, :ReplicationNum, :ReserveSourceConfig, :RecoverType, :CosSourceInfo, :ScheduleType, :NextTime, :ScheduleName, :OperationType, :RecoverScope, :RecoverDatabase, :ReserveStoragePolicy
         extend Gem::Deprecate
-        deprecate :RecoverType, :none, 2024, 12
-        deprecate :RecoverType=, :none, 2024, 12
-        deprecate :CosSourceInfo, :none, 2024, 12
-        deprecate :CosSourceInfo=, :none, 2024, 12
-        deprecate :ScheduleType, :none, 2024, 12
-        deprecate :ScheduleType=, :none, 2024, 12
-        deprecate :NextTime, :none, 2024, 12
-        deprecate :NextTime=, :none, 2024, 12
-        deprecate :ScheduleName, :none, 2024, 12
-        deprecate :ScheduleName=, :none, 2024, 12
-        deprecate :OperationType, :none, 2024, 12
-        deprecate :OperationType=, :none, 2024, 12
+        deprecate :RecoverType, :none, 2025, 1
+        deprecate :RecoverType=, :none, 2025, 1
+        deprecate :CosSourceInfo, :none, 2025, 1
+        deprecate :CosSourceInfo=, :none, 2025, 1
+        deprecate :ScheduleType, :none, 2025, 1
+        deprecate :ScheduleType=, :none, 2025, 1
+        deprecate :NextTime, :none, 2025, 1
+        deprecate :NextTime=, :none, 2025, 1
+        deprecate :ScheduleName, :none, 2025, 1
+        deprecate :ScheduleName=, :none, 2025, 1
+        deprecate :OperationType, :none, 2025, 1
+        deprecate :OperationType=, :none, 2025, 1
 
         def initialize(instanceid=nil, backupjobid=nil, replicationnum=nil, reservesourceconfig=nil, recovertype=nil, cossourceinfo=nil, scheduletype=nil, nexttime=nil, schedulename=nil, operationtype=nil, recoverscope=nil, recoverdatabase=nil, reservestoragepolicy=nil)
           @InstanceId = instanceid

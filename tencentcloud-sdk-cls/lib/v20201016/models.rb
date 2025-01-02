@@ -6894,15 +6894,17 @@ module TencentCloud
 
       # DescribeWebCallbacks请求参数结构体
       class DescribeWebCallbacksRequest < TencentCloud::Common::AbstractModel
-        # @param Filters: <li> name
+        # @param Filters: - name
         # 按照【告警渠道回调配置名称】进行过滤。
         # 类型：String
         # 必选：否
-        # <li> webCallbackId
+
+        # - webCallbackId
         # 按照【告警渠道回调配置ID】进行过滤。
         # 类型：String
         # 必选：否
-        # <li> type
+
+        # - type
         # 按照【告警渠道回调配置渠道类型】进行过滤。
         # 类型：String
         # 必选：否
@@ -7054,6 +7056,10 @@ module TencentCloud
         # @param Timestamp: 时间，用户选择自定义时间类型时，需要指定时间
         # @type Timestamp: Integer
         # @param EventIDs: 事件ID过滤列表
+
+        # 选填，为空表示不做过滤
+        # 支持正向过滤单个值（例：20）或范围（例：0-20），也支持反向过滤单个值(例：-20)
+        # 多个过滤项之间可由逗号隔开，例：1-200,-100表示采集1-200范围内除了100以外的事件日志
         # @type EventIDs: Array
 
         attr_accessor :EventChannel, :TimeType, :Timestamp, :EventIDs
@@ -7239,6 +7245,12 @@ module TencentCloud
         # - COS导入不支持此字段。
         # @type MetadataType: Integer
         # @param PathRegex: 采集配置路径正则表达式。
+
+        # ```
+        # 请用"()"标识路径中目标字段对应的正则表达式，解析时将"()"视为捕获组，并以__TAG__.{i}:{目标字段}的形式与日志一起上报，其中i为捕获组的序号。
+        # 若不希望以序号为键名，可以通过命名捕获组"(?<{键名}>{正则})"自定义键名，并以__TAG__.{键名}:{目标字段}的形式与日志一起上报。最多支持5个捕获组
+        # ```
+
         # 注意：
         # - MetadataType为3时必填。
         # - COS导入不支持此字段。
@@ -10091,7 +10103,8 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Condition: String
         # @param AlarmLevel: 告警级别。0:警告(Warn); 1:提醒(Info); 2:紧急 (Critical)。
-        # <li> 不填则默认为0。
+
+        # - 不填则默认为0。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AlarmLevel: Integer
 
@@ -10678,8 +10691,8 @@ module TencentCloud
 
         attr_accessor :LogContent, :LineNum, :DstTopicId, :FailReason, :Time, :DstTopicName
         extend Gem::Deprecate
-        deprecate :DstTopicName, :none, 2024, 12
-        deprecate :DstTopicName=, :none, 2024, 12
+        deprecate :DstTopicName, :none, 2025, 1
+        deprecate :DstTopicName=, :none, 2025, 1
 
         def initialize(logcontent=nil, linenum=nil, dsttopicid=nil, failreason=nil, time=nil, dsttopicname=nil)
           @LogContent = logcontent
@@ -11950,8 +11963,8 @@ module TencentCloud
 
         attr_accessor :TopicId, :HashKey, :CompressType
         extend Gem::Deprecate
-        deprecate :HashKey, :none, 2024, 12
-        deprecate :HashKey=, :none, 2024, 12
+        deprecate :HashKey, :none, 2025, 1
+        deprecate :HashKey=, :none, 2025, 1
 
         def initialize(topicid=nil, hashkey=nil, compresstype=nil)
           @TopicId = topicid

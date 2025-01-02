@@ -2202,37 +2202,26 @@ module TencentCloud
         # @param CcnId: 带宽所属的云联网ID。
         # @type CcnId: String
         # @param CreatedTime: 实例的创建时间。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreatedTime: String
         # @param ExpiredTime: 实例的过期时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExpiredTime: String
         # @param RegionFlowControlId: 带宽实例的唯一ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RegionFlowControlId: String
         # @param RenewFlag: 带宽是否自动续费的标记。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RenewFlag: String
         # @param CcnRegionBandwidthLimit: 描述带宽的地域和限速上限信息。在地域间限速的情况下才会返回参数，出口限速模式不返回。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CcnRegionBandwidthLimit: :class:`Tencentcloud::Vpc.v20170312.models.CcnRegionBandwidthLimitInfo`
         # @param MarketId: 云市场实例ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MarketId: String
         # @param UserAccountID: 实例所属用户主账号ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UserAccountID: String
         # @param IsCrossBorder: 是否跨境，`true`表示跨境，反之不跨境。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsCrossBorder: Boolean
         # @param IsSecurityLock: `true`表示封禁，地域间流量不通，`false`解禁，地域间流量正常
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsSecurityLock: Boolean
         # @param InstanceChargeType: `POSTPAID`表示后付费，`PREPAID`表示预付费。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceChargeType: String
         # @param UpdateTime: 实例更新时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: String
 
         attr_accessor :CcnId, :CreatedTime, :ExpiredTime, :RegionFlowControlId, :RenewFlag, :CcnRegionBandwidthLimit, :MarketId, :UserAccountID, :IsCrossBorder, :IsSecurityLock, :InstanceChargeType, :UpdateTime
@@ -4001,21 +3990,27 @@ module TencentCloud
         # @type GatewayType: String
         # @param ModeType: 云联网路由发布模式，可选值：`standard`（标准模式）、`exquisite`（精细模式）。只有云联网类型专线网关才支持`ModeType`。
         # @type ModeType: String
+        # @param GatewayAsn: 专线网关自定义ASN，范围：45090，64512-65534 和4200000000-4294967294
+        # @type GatewayAsn: Integer
         # @param Zone: 专线网关可用区
         # @type Zone: String
         # @param HaZoneGroupId: 专线网关高可用区容灾组ID
         # @type HaZoneGroupId: String
+        # @param Tags: 标签
+        # @type Tags: Array
 
-        attr_accessor :DirectConnectGatewayName, :NetworkType, :NetworkInstanceId, :GatewayType, :ModeType, :Zone, :HaZoneGroupId
+        attr_accessor :DirectConnectGatewayName, :NetworkType, :NetworkInstanceId, :GatewayType, :ModeType, :GatewayAsn, :Zone, :HaZoneGroupId, :Tags
 
-        def initialize(directconnectgatewayname=nil, networktype=nil, networkinstanceid=nil, gatewaytype=nil, modetype=nil, zone=nil, hazonegroupid=nil)
+        def initialize(directconnectgatewayname=nil, networktype=nil, networkinstanceid=nil, gatewaytype=nil, modetype=nil, gatewayasn=nil, zone=nil, hazonegroupid=nil, tags=nil)
           @DirectConnectGatewayName = directconnectgatewayname
           @NetworkType = networktype
           @NetworkInstanceId = networkinstanceid
           @GatewayType = gatewaytype
           @ModeType = modetype
+          @GatewayAsn = gatewayasn
           @Zone = zone
           @HaZoneGroupId = hazonegroupid
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -4024,8 +4019,17 @@ module TencentCloud
           @NetworkInstanceId = params['NetworkInstanceId']
           @GatewayType = params['GatewayType']
           @ModeType = params['ModeType']
+          @GatewayAsn = params['GatewayAsn']
           @Zone = params['Zone']
           @HaZoneGroupId = params['HaZoneGroupId']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
         end
       end
 
@@ -6856,13 +6860,10 @@ module TencentCloud
       # 对端网关厂商信息对象。
       class CustomerGatewayVendor < TencentCloud::Common::AbstractModel
         # @param Platform: 平台。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Platform: String
         # @param SoftwareVersion: 软件版本。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SoftwareVersion: String
         # @param VendorName: 供应商名称。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VendorName: String
 
         attr_accessor :Platform, :SoftwareVersion, :VendorName
@@ -15739,46 +15740,38 @@ module TencentCloud
         # @param EnableBGPCommunity: 开启和关闭BGP的community属性。
         # @type EnableBGPCommunity: Boolean
         # @param NatGatewayId: 绑定的NAT网关ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NatGatewayId: String
         # @param VXLANSupport: 专线网关是否支持VXLAN架构
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VXLANSupport: Array
         # @param ModeType: 云联网路由发布模式：`standard`（标准模式）、`exquisite`（精细模式）。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ModeType: String
         # @param LocalZone: 是否为localZone专线网关。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LocalZone: Boolean
         # @param Zone: 专线网关所在可用区
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Zone: String
         # @param EnableFlowDetails: 网关流控明细启用状态：
         # 0：关闭
         # 1：开启
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EnableFlowDetails: Integer
         # @param FlowDetailsUpdateTime: 开启、关闭网关流控明细时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FlowDetailsUpdateTime: String
         # @param NewAfc: 是否支持开启网关流控明细
         # 0：不支持
         # 1：支持
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NewAfc: Integer
         # @param AccessNetworkType: 专线网关接入网络类型：
         # <li>`VXLAN` - VXLAN类型。</li>
         # <li>`MPLS` - MPLS类型。</li>
         # <li>`Hybrid` - Hybrid类型。</li>
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AccessNetworkType: String
         # @param HaZoneList: 跨可用区容灾专线网关的可用区列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HaZoneList: Array
+        # @param GatewayAsn: 专线网关自定义ASN
+        # @type GatewayAsn: Integer
 
-        attr_accessor :DirectConnectGatewayId, :DirectConnectGatewayName, :VpcId, :NetworkType, :NetworkInstanceId, :GatewayType, :CreateTime, :DirectConnectGatewayIp, :CcnId, :CcnRouteType, :EnableBGP, :EnableBGPCommunity, :NatGatewayId, :VXLANSupport, :ModeType, :LocalZone, :Zone, :EnableFlowDetails, :FlowDetailsUpdateTime, :NewAfc, :AccessNetworkType, :HaZoneList
+        attr_accessor :DirectConnectGatewayId, :DirectConnectGatewayName, :VpcId, :NetworkType, :NetworkInstanceId, :GatewayType, :CreateTime, :DirectConnectGatewayIp, :CcnId, :CcnRouteType, :EnableBGP, :EnableBGPCommunity, :NatGatewayId, :VXLANSupport, :ModeType, :LocalZone, :Zone, :EnableFlowDetails, :FlowDetailsUpdateTime, :NewAfc, :AccessNetworkType, :HaZoneList, :GatewayAsn
 
-        def initialize(directconnectgatewayid=nil, directconnectgatewayname=nil, vpcid=nil, networktype=nil, networkinstanceid=nil, gatewaytype=nil, createtime=nil, directconnectgatewayip=nil, ccnid=nil, ccnroutetype=nil, enablebgp=nil, enablebgpcommunity=nil, natgatewayid=nil, vxlansupport=nil, modetype=nil, localzone=nil, zone=nil, enableflowdetails=nil, flowdetailsupdatetime=nil, newafc=nil, accessnetworktype=nil, hazonelist=nil)
+        def initialize(directconnectgatewayid=nil, directconnectgatewayname=nil, vpcid=nil, networktype=nil, networkinstanceid=nil, gatewaytype=nil, createtime=nil, directconnectgatewayip=nil, ccnid=nil, ccnroutetype=nil, enablebgp=nil, enablebgpcommunity=nil, natgatewayid=nil, vxlansupport=nil, modetype=nil, localzone=nil, zone=nil, enableflowdetails=nil, flowdetailsupdatetime=nil, newafc=nil, accessnetworktype=nil, hazonelist=nil, gatewayasn=nil)
           @DirectConnectGatewayId = directconnectgatewayid
           @DirectConnectGatewayName = directconnectgatewayname
           @VpcId = vpcid
@@ -15801,6 +15794,7 @@ module TencentCloud
           @NewAfc = newafc
           @AccessNetworkType = accessnetworktype
           @HaZoneList = hazonelist
+          @GatewayAsn = gatewayasn
         end
 
         def deserialize(params)
@@ -15826,6 +15820,7 @@ module TencentCloud
           @NewAfc = params['NewAfc']
           @AccessNetworkType = params['AccessNetworkType']
           @HaZoneList = params['HaZoneList']
+          @GatewayAsn = params['GatewayAsn']
         end
       end
 
@@ -17457,16 +17452,12 @@ module TencentCloud
       # VPN通道健康检查配置
       class HealthCheckConfig < TencentCloud::Common::AbstractModel
         # @param ProbeType: 探测模式，默认值NQA，不可修改。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProbeType: String
         # @param ProbeInterval: 探测间隔，腾讯云两次健康检查间隔时间，范围【1000-5000】，单位ms。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProbeInterval: Integer
         # @param ProbeThreshold: 探测次数，连续N次健康检查失败后执行路由切换，范围【3-8】，单位次。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProbeThreshold: Integer
         # @param ProbeTimeout: 探测超时时间，范围【10-5000】，单位ms。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProbeTimeout: Integer
 
         attr_accessor :ProbeType, :ProbeInterval, :ProbeThreshold, :ProbeTimeout
@@ -25124,10 +25115,8 @@ module TencentCloud
       # SecurityPolicyDatabase策略
       class SecurityPolicyDatabase < TencentCloud::Common::AbstractModel
         # @param LocalCidrBlock: 本端网段
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LocalCidrBlock: String
         # @param RemoteCidrBlock: 对端网段
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RemoteCidrBlock: Array
 
         attr_accessor :LocalCidrBlock, :RemoteCidrBlock
@@ -25656,7 +25645,6 @@ module TencentCloud
       # SSL-VPN-SERVER 出参
       class SslVpnSever < TencentCloud::Common::AbstractModel
         # @param VpcId: VPC实例ID.
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VpcId: String
         # @param SslVpnServerId: SSL-VPN-SERVER 实例ID。
         # @type SslVpnServerId: String
@@ -25703,7 +25691,6 @@ module TencentCloud
         # @param AccessPolicy: 策略信息
         # @type AccessPolicy: Array
         # @param SpName: CAM服务提供商Name
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SpName: String
 
         attr_accessor :VpcId, :SslVpnServerId, :VpnGatewayId, :SslVpnServerName, :LocalAddress, :RemoteAddress, :MaxConnection, :WanIp, :SslVpnProtocol, :SslVpnPort, :EncryptAlgorithm, :IntegrityAlgorithm, :Compress, :CreateTime, :State, :SsoEnabled, :EiamApplicationId, :AccessPolicyEnabled, :AccessPolicy, :SpName
@@ -26041,22 +26028,16 @@ module TencentCloud
       # 流量调度规则
       class TrafficQosPolicySet < TencentCloud::Common::AbstractModel
         # @param CcnId: CCN实例ID。形如：ccn-f49l6u0z。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CcnId: String
         # @param QosId: qos id。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type QosId: Integer
         # @param QosPolicyDescription: 描述。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type QosPolicyDescription: String
         # @param QosPolicyName: 名称。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type QosPolicyName: String
         # @param Bandwidth: 带宽。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Bandwidth: Integer
         # @param QosPolicyId: 流量调度策略ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type QosPolicyId: String
 
         attr_accessor :CcnId, :QosId, :QosPolicyDescription, :QosPolicyName, :Bandwidth, :QosPolicyId
