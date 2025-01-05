@@ -989,6 +989,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 热Key分析
+
+        # @param request: Request instance for DescribeRedisTopHotKeys.
+        # @type request: :class:`Tencentcloud::dbbrain::V20210527::DescribeRedisTopHotKeysRequest`
+        # @rtype: :class:`Tencentcloud::dbbrain::V20210527::DescribeRedisTopHotKeysResponse`
+        def DescribeRedisTopHotKeys(request)
+          body = send_request('DescribeRedisTopHotKeys', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeRedisTopHotKeysResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询redis实例top key前缀列表。
 
         # @param request: Request instance for DescribeRedisTopKeyPrefixList.

@@ -1554,10 +1554,14 @@ module TencentCloud
         # @type MigrateFlag: Integer
         # @param EbSubject: 事件配置的告警
         # @type EbSubject: String
+        # @param AdditionalAlarmContent: 附加告警内容
+        # @type AdditionalAlarmContent: String
+        # @param NoticeContentTmplBindInfos: 通知模板绑定信息
+        # @type NoticeContentTmplBindInfos: Array
 
-        attr_accessor :Module, :PolicyName, :MonitorType, :Namespace, :Remark, :Enable, :ProjectId, :ConditionTemplateId, :Condition, :EventCondition, :NoticeIds, :TriggerTasks, :Filter, :GroupBy, :Tags, :LogAlarmReqInfo, :HierarchicalNotices, :MigrateFlag, :EbSubject
+        attr_accessor :Module, :PolicyName, :MonitorType, :Namespace, :Remark, :Enable, :ProjectId, :ConditionTemplateId, :Condition, :EventCondition, :NoticeIds, :TriggerTasks, :Filter, :GroupBy, :Tags, :LogAlarmReqInfo, :HierarchicalNotices, :MigrateFlag, :EbSubject, :AdditionalAlarmContent, :NoticeContentTmplBindInfos
 
-        def initialize(_module=nil, policyname=nil, monitortype=nil, namespace=nil, remark=nil, enable=nil, projectid=nil, conditiontemplateid=nil, condition=nil, eventcondition=nil, noticeids=nil, triggertasks=nil, filter=nil, groupby=nil, tags=nil, logalarmreqinfo=nil, hierarchicalnotices=nil, migrateflag=nil, ebsubject=nil)
+        def initialize(_module=nil, policyname=nil, monitortype=nil, namespace=nil, remark=nil, enable=nil, projectid=nil, conditiontemplateid=nil, condition=nil, eventcondition=nil, noticeids=nil, triggertasks=nil, filter=nil, groupby=nil, tags=nil, logalarmreqinfo=nil, hierarchicalnotices=nil, migrateflag=nil, ebsubject=nil, additionalalarmcontent=nil, noticecontenttmplbindinfos=nil)
           @Module = _module
           @PolicyName = policyname
           @MonitorType = monitortype
@@ -1577,6 +1581,8 @@ module TencentCloud
           @HierarchicalNotices = hierarchicalnotices
           @MigrateFlag = migrateflag
           @EbSubject = ebsubject
+          @AdditionalAlarmContent = additionalalarmcontent
+          @NoticeContentTmplBindInfos = noticecontenttmplbindinfos
         end
 
         def deserialize(params)
@@ -1632,6 +1638,15 @@ module TencentCloud
           end
           @MigrateFlag = params['MigrateFlag']
           @EbSubject = params['EbSubject']
+          @AdditionalAlarmContent = params['AdditionalAlarmContent']
+          unless params['NoticeContentTmplBindInfos'].nil?
+            @NoticeContentTmplBindInfos = []
+            params['NoticeContentTmplBindInfos'].each do |i|
+              noticecontenttmplbindinfo_tmp = NoticeContentTmplBindInfo.new
+              noticecontenttmplbindinfo_tmp.deserialize(i)
+              @NoticeContentTmplBindInfos << noticecontenttmplbindinfo_tmp
+            end
+          end
         end
       end
 
@@ -10706,15 +10721,18 @@ module TencentCloud
         # @type PolicyIds: Array
         # @param HierarchicalNotices: 告警分级通知规则配置
         # @type HierarchicalNotices: Array
+        # @param NoticeContentTmplBindInfos: 通知内容模板绑定信息
+        # @type NoticeContentTmplBindInfos: Array
 
-        attr_accessor :Module, :PolicyId, :NoticeIds, :PolicyIds, :HierarchicalNotices
+        attr_accessor :Module, :PolicyId, :NoticeIds, :PolicyIds, :HierarchicalNotices, :NoticeContentTmplBindInfos
 
-        def initialize(_module=nil, policyid=nil, noticeids=nil, policyids=nil, hierarchicalnotices=nil)
+        def initialize(_module=nil, policyid=nil, noticeids=nil, policyids=nil, hierarchicalnotices=nil, noticecontenttmplbindinfos=nil)
           @Module = _module
           @PolicyId = policyid
           @NoticeIds = noticeids
           @PolicyIds = policyids
           @HierarchicalNotices = hierarchicalnotices
+          @NoticeContentTmplBindInfos = noticecontenttmplbindinfos
         end
 
         def deserialize(params)
@@ -10728,6 +10746,14 @@ module TencentCloud
               alarmhierarchicalnotice_tmp = AlarmHierarchicalNotice.new
               alarmhierarchicalnotice_tmp.deserialize(i)
               @HierarchicalNotices << alarmhierarchicalnotice_tmp
+            end
+          end
+          unless params['NoticeContentTmplBindInfos'].nil?
+            @NoticeContentTmplBindInfos = []
+            params['NoticeContentTmplBindInfos'].each do |i|
+              noticecontenttmplbindinfo_tmp = NoticeContentTmplBindInfo.new
+              noticecontenttmplbindinfo_tmp.deserialize(i)
+              @NoticeContentTmplBindInfos << noticecontenttmplbindinfo_tmp
             end
           end
         end
@@ -11495,6 +11521,26 @@ module TencentCloud
         def deserialize(params)
           @NoticeId = params['NoticeId']
           @PolicyIds = params['PolicyIds']
+        end
+      end
+
+      # 通知内容模板绑定信息
+      class NoticeContentTmplBindInfo < TencentCloud::Common::AbstractModel
+        # @param ContentTmplID: 通知内容模板ID
+        # @type ContentTmplID: String
+        # @param NoticeID: 通知模板ID
+        # @type NoticeID: String
+
+        attr_accessor :ContentTmplID, :NoticeID
+
+        def initialize(contenttmplid=nil, noticeid=nil)
+          @ContentTmplID = contenttmplid
+          @NoticeID = noticeid
+        end
+
+        def deserialize(params)
+          @ContentTmplID = params['ContentTmplID']
+          @NoticeID = params['NoticeID']
         end
       end
 

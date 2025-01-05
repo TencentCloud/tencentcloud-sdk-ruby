@@ -77,8 +77,8 @@ module TencentCloud
 
         attr_accessor :BTime, :Count, :BeginTime
         extend Gem::Deprecate
-        deprecate :BTime, :none, 2024, 12
-        deprecate :BTime=, :none, 2024, 12
+        deprecate :BTime, :none, 2025, 1
+        deprecate :BTime=, :none, 2025, 1
 
         def initialize(btime=nil, count=nil, begintime=nil)
           @BTime = btime
@@ -2651,8 +2651,8 @@ module TencentCloud
 
         attr_accessor :Domain, :IpList, :ActionType, :ValidTS, :InstanceId, :Edition, :SourceType, :Note, :JobType, :JobDateTime
         extend Gem::Deprecate
-        deprecate :ValidTS, :none, 2024, 12
-        deprecate :ValidTS=, :none, 2024, 12
+        deprecate :ValidTS, :none, 2025, 1
+        deprecate :ValidTS=, :none, 2025, 1
 
         def initialize(domain=nil, iplist=nil, actiontype=nil, validts=nil, instanceid=nil, edition=nil, sourcetype=nil, note=nil, jobtype=nil, jobdatetime=nil)
           @Domain = domain
@@ -3441,8 +3441,8 @@ module TencentCloud
 
         attr_accessor :From, :To, :Query, :FieldName, :TopicId, :Sort, :Count
         extend Gem::Deprecate
-        deprecate :TopicId, :none, 2024, 12
-        deprecate :TopicId=, :none, 2024, 12
+        deprecate :TopicId, :none, 2025, 1
+        deprecate :TopicId=, :none, 2025, 1
 
         def initialize(from=nil, to=nil, query=nil, fieldname=nil, topicid=nil, sort=nil, count=nil)
           @From = from
@@ -5895,10 +5895,10 @@ module TencentCloud
 
         attr_accessor :Domain, :Count, :ActionType, :VtsMin, :VtsMax, :CtsMin, :CtsMax, :OffSet, :Limit, :Source, :Sort, :Ip, :ValidStatus, :ValidTimeStampMin, :ValidTimeStampMax, :RuleId, :TimerType
         extend Gem::Deprecate
-        deprecate :VtsMin, :none, 2024, 12
-        deprecate :VtsMin=, :none, 2024, 12
-        deprecate :VtsMax, :none, 2024, 12
-        deprecate :VtsMax=, :none, 2024, 12
+        deprecate :VtsMin, :none, 2025, 1
+        deprecate :VtsMin=, :none, 2025, 1
+        deprecate :VtsMax, :none, 2025, 1
+        deprecate :VtsMax=, :none, 2025, 1
 
         def initialize(domain=nil, count=nil, actiontype=nil, vtsmin=nil, vtsmax=nil, ctsmin=nil, ctsmax=nil, offset=nil, limit=nil, source=nil, sort=nil, ip=nil, validstatus=nil, validtimestampmin=nil, validtimestampmax=nil, ruleid=nil, timertype=nil)
           @Domain = domain
@@ -6001,10 +6001,10 @@ module TencentCloud
 
         attr_accessor :Domain, :Count, :Category, :VtsMin, :VtsMax, :CtsMin, :CtsMax, :Skip, :Limit, :Name, :Sort, :Ip, :ValidTimeStampMin, :ValidTimeStampMax
         extend Gem::Deprecate
-        deprecate :VtsMin, :none, 2024, 12
-        deprecate :VtsMin=, :none, 2024, 12
-        deprecate :VtsMax, :none, 2024, 12
-        deprecate :VtsMax=, :none, 2024, 12
+        deprecate :VtsMin, :none, 2025, 1
+        deprecate :VtsMin=, :none, 2025, 1
+        deprecate :VtsMax, :none, 2025, 1
+        deprecate :VtsMax=, :none, 2025, 1
 
         def initialize(domain=nil, count=nil, category=nil, vtsmin=nil, vtsmax=nil, ctsmin=nil, ctsmax=nil, skip=nil, limit=nil, name=nil, sort=nil, ip=nil, validtimestampmin=nil, validtimestampmax=nil)
           @Domain = domain
@@ -11400,8 +11400,8 @@ module TencentCloud
 
         attr_accessor :Domain, :IpList, :ActionType, :RuleId, :ValidTS, :InstanceId, :Edition, :SourceType, :Note, :JobType, :JobDateTime
         extend Gem::Deprecate
-        deprecate :ValidTS, :none, 2024, 12
-        deprecate :ValidTS=, :none, 2024, 12
+        deprecate :ValidTS, :none, 2025, 1
+        deprecate :ValidTS=, :none, 2025, 1
 
         def initialize(domain=nil, iplist=nil, actiontype=nil, ruleid=nil, validts=nil, instanceid=nil, edition=nil, sourcetype=nil, note=nil, jobtype=nil, jobdatetime=nil)
           @Domain = domain
@@ -12785,10 +12785,10 @@ module TencentCloud
 
         attr_accessor :Context, :ListOver, :Analysis, :ColNames, :Results, :AnalysisResults, :RequestId
         extend Gem::Deprecate
-        deprecate :ColNames, :none, 2024, 12
-        deprecate :ColNames=, :none, 2024, 12
-        deprecate :AnalysisResults, :none, 2024, 12
-        deprecate :AnalysisResults=, :none, 2024, 12
+        deprecate :ColNames, :none, 2025, 1
+        deprecate :ColNames=, :none, 2025, 1
+        deprecate :AnalysisResults, :none, 2025, 1
+        deprecate :AnalysisResults=, :none, 2025, 1
 
         def initialize(context=nil, listover=nil, analysis=nil, colnames=nil, results=nil, analysisresults=nil, requestid=nil)
           @Context = context
@@ -13047,7 +13047,7 @@ module TencentCloud
         end
       end
 
-      # 自定义规则的匹配条件结构体
+      # 规则的匹配条件结构体
       class Strategy < TencentCloud::Common::AbstractModel
         # @param Field: 匹配字段
 

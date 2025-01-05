@@ -2715,6 +2715,77 @@ module TencentCloud
         end
       end
 
+      # DescribeTopicListByGroup请求参数结构体
+      class DescribeTopicListByGroupRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 集群ID
+        # @type InstanceId: String
+        # @param Offset: 查询起始位置
+        # @type Offset: Integer
+        # @param Limit: 查询结果限制数量
+        # @type Limit: Integer
+        # @param ConsumerGroup: 消费组名称
+        # @type ConsumerGroup: String
+        # @param Filters: 查询条件列表
+        # @type Filters: Array
+
+        attr_accessor :InstanceId, :Offset, :Limit, :ConsumerGroup, :Filters
+
+        def initialize(instanceid=nil, offset=nil, limit=nil, consumergroup=nil, filters=nil)
+          @InstanceId = instanceid
+          @Offset = offset
+          @Limit = limit
+          @ConsumerGroup = consumergroup
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @ConsumerGroup = params['ConsumerGroup']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeTopicListByGroup返回参数结构体
+      class DescribeTopicListByGroupResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 查询总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+        # @param Data: 主题列表
+        # @type Data: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Data, :RequestId
+
+        def initialize(totalcount=nil, data=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              subscriptiondata_tmp = SubscriptionData.new
+              subscriptiondata_tmp.deserialize(i)
+              @Data << subscriptiondata_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeTopicList请求参数结构体
       class DescribeTopicListRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 集群ID

@@ -2753,6 +2753,69 @@ module TencentCloud
         end
       end
 
+      # DescribeRedisTopHotKeys请求参数结构体
+      class DescribeRedisTopHotKeysRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例 ID 。
+        # @type InstanceId: String
+        # @param StartTime: 开始时间，如“2024-09-22T00:00:00+00:00”。0天 < 当前服务器时间 - 开始时间 <= 10天。
+        # @type StartTime: String
+        # @param EndTime: 结束时间，如“2024-09-22T01:00:00+00:00”，0天 < 结束时间 - 开始时间 <= 10天。
+        # @type EndTime: String
+        # @param Product: 服务产品类型，仅仅支持值 "redis" - 云数据库 Redis。
+        # @type Product: String
+        # @param InstanceNodeIds: Redis 节点数组。
+        # @type InstanceNodeIds: Array
+        # @param Limit: top 数目，默认为20，最大值为100。
+        # @type Limit: Integer
+
+        attr_accessor :InstanceId, :StartTime, :EndTime, :Product, :InstanceNodeIds, :Limit
+
+        def initialize(instanceid=nil, starttime=nil, endtime=nil, product=nil, instancenodeids=nil, limit=nil)
+          @InstanceId = instanceid
+          @StartTime = starttime
+          @EndTime = endtime
+          @Product = product
+          @InstanceNodeIds = instancenodeids
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Product = params['Product']
+          @InstanceNodeIds = params['InstanceNodeIds']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeRedisTopHotKeys返回参数结构体
+      class DescribeRedisTopHotKeysResponse < TencentCloud::Common::AbstractModel
+        # @param TopHotKeys: 热Key分析结果
+        # @type TopHotKeys: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TopHotKeys, :RequestId
+
+        def initialize(tophotkeys=nil, requestid=nil)
+          @TopHotKeys = tophotkeys
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['TopHotKeys'].nil?
+            @TopHotKeys = []
+            params['TopHotKeys'].each do |i|
+              tophotkeys_tmp = TopHotKeys.new
+              tophotkeys_tmp.deserialize(i)
+              @TopHotKeys << tophotkeys_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeRedisTopKeyPrefixList请求参数结构体
       class DescribeRedisTopKeyPrefixListRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID。
@@ -5968,6 +6031,38 @@ module TencentCloud
         def deserialize(params)
           @Count = params['Count']
           @Timestamp = params['Timestamp']
+        end
+      end
+
+      # 热key分析返回信息
+      class TopHotKeys < TencentCloud::Common::AbstractModel
+        # @param Count: 访问频次。
+        # @type Count: Integer
+        # @param Db: 热Key所属数据库。
+        # @type Db: String
+        # @param InstanceNodeId: Redis节点。
+        # @type InstanceNodeId: String
+        # @param Key: 热Key。
+        # @type Key: String
+        # @param Type: 数据类型。
+        # @type Type: String
+
+        attr_accessor :Count, :Db, :InstanceNodeId, :Key, :Type
+
+        def initialize(count=nil, db=nil, instancenodeid=nil, key=nil, type=nil)
+          @Count = count
+          @Db = db
+          @InstanceNodeId = instancenodeid
+          @Key = key
+          @Type = type
+        end
+
+        def deserialize(params)
+          @Count = params['Count']
+          @Db = params['Db']
+          @InstanceNodeId = params['InstanceNodeId']
+          @Key = params['Key']
+          @Type = params['Type']
         end
       end
 

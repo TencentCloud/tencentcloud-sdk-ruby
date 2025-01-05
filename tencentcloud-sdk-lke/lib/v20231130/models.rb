@@ -2268,20 +2268,24 @@ module TencentCloud
         # @type AvailableCharSize: String
         # @param ExceedCharSize: 超过可用字符数上限的字符数
         # @type ExceedCharSize: String
+        # @param UsedCharSize: 知识库使用字符总数
+        # @type UsedCharSize: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :AvailableCharSize, :ExceedCharSize, :RequestId
+        attr_accessor :AvailableCharSize, :ExceedCharSize, :UsedCharSize, :RequestId
 
-        def initialize(availablecharsize=nil, exceedcharsize=nil, requestid=nil)
+        def initialize(availablecharsize=nil, exceedcharsize=nil, usedcharsize=nil, requestid=nil)
           @AvailableCharSize = availablecharsize
           @ExceedCharSize = exceedcharsize
+          @UsedCharSize = usedcharsize
           @RequestId = requestid
         end
 
         def deserialize(params)
           @AvailableCharSize = params['AvailableCharSize']
           @ExceedCharSize = params['ExceedCharSize']
+          @UsedCharSize = params['UsedCharSize']
           @RequestId = params['RequestId']
         end
       end
@@ -3004,18 +3008,24 @@ module TencentCloud
         # @type SearchUsage: Float
         # @param PageUsage: 文档解析消耗页数
         # @type PageUsage: Integer
+        # @param SplitTokenUsage: 拆分token消耗量
+        # @type SplitTokenUsage: Float
+        # @param RagSearchUsage: Rag检索次数
+        # @type RagSearchUsage: Float
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TotalTokenUsage, :InputTokenUsage, :OutputTokenUsage, :ApiCallStats, :SearchUsage, :PageUsage, :RequestId
+        attr_accessor :TotalTokenUsage, :InputTokenUsage, :OutputTokenUsage, :ApiCallStats, :SearchUsage, :PageUsage, :SplitTokenUsage, :RagSearchUsage, :RequestId
 
-        def initialize(totaltokenusage=nil, inputtokenusage=nil, outputtokenusage=nil, apicallstats=nil, searchusage=nil, pageusage=nil, requestid=nil)
+        def initialize(totaltokenusage=nil, inputtokenusage=nil, outputtokenusage=nil, apicallstats=nil, searchusage=nil, pageusage=nil, splittokenusage=nil, ragsearchusage=nil, requestid=nil)
           @TotalTokenUsage = totaltokenusage
           @InputTokenUsage = inputtokenusage
           @OutputTokenUsage = outputtokenusage
           @ApiCallStats = apicallstats
           @SearchUsage = searchusage
           @PageUsage = pageusage
+          @SplitTokenUsage = splittokenusage
+          @RagSearchUsage = ragsearchusage
           @RequestId = requestid
         end
 
@@ -3026,6 +3036,8 @@ module TencentCloud
           @ApiCallStats = params['ApiCallStats']
           @SearchUsage = params['SearchUsage']
           @PageUsage = params['PageUsage']
+          @SplitTokenUsage = params['SplitTokenUsage']
+          @RagSearchUsage = params['RagSearchUsage']
           @RequestId = params['RequestId']
         end
       end
@@ -7175,8 +7187,8 @@ module TencentCloud
 
         attr_accessor :Name, :Url, :TaskId, :Policy, :Operate
         extend Gem::Deprecate
-        deprecate :Operate, :none, 2024, 12
-        deprecate :Operate=, :none, 2024, 12
+        deprecate :Operate, :none, 2025, 1
+        deprecate :Operate=, :none, 2025, 1
 
         def initialize(name=nil, url=nil, taskid=nil, policy=nil, operate=nil)
           @Name = name
@@ -8343,10 +8355,10 @@ module TencentCloud
 
         attr_accessor :Query, :Docs, :Model, :DataList, :Online
         extend Gem::Deprecate
-        deprecate :DataList, :none, 2024, 12
-        deprecate :DataList=, :none, 2024, 12
-        deprecate :Online, :none, 2024, 12
-        deprecate :Online=, :none, 2024, 12
+        deprecate :DataList, :none, 2025, 1
+        deprecate :DataList=, :none, 2025, 1
+        deprecate :Online, :none, 2025, 1
+        deprecate :Online=, :none, 2025, 1
 
         def initialize(query=nil, docs=nil, model=nil, datalist=nil, online=nil)
           @Query = query

@@ -11414,7 +11414,7 @@ module TencentCloud
         # @type SubnetIds: Array
         # @param K8SVersion: k8s 版本号
         # @type K8SVersion: String
-        # @param Status: 集群状态(running运行中，initializing 初始化中，failed异常)
+        # @param Status: 集群状态(running 运行中，initializing 初始化中，Failed 异常，Idling 空闲中，Activating 激活中，Terminating 删除中)
         # @type Status: String
         # @param ClusterDesc: 集群描述信息
         # @type ClusterDesc: String
@@ -15981,7 +15981,7 @@ module TencentCloud
 
       # 与云监控融合托管prometheus实例，关联集群基础信息
       class PrometheusClusterAgentBasic < TencentCloud::Common::AbstractModel
-        # @param Region: 集群ID
+        # @param Region: 地域
         # @type Region: String
         # @param ClusterType: 集群类型
         # @type ClusterType: String
@@ -17219,10 +17219,19 @@ module TencentCloud
         # @param ComputedValues: 应用参数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ComputedValues: String
+        # @param ChartFrom: chart 的来源， tke-market, others
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ChartFrom: String
+        # @param ChartURL: 第三方chart 的安装地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ChartURL: String
+        # @param Resources: 通过chart 创建的资源
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Resources: String
 
-        attr_accessor :Name, :Namespace, :Version, :Status, :Description, :Notes, :Config, :Manifest, :ChartVersion, :ChartName, :ChartDescription, :AppVersion, :FirstDeployedTime, :LastDeployedTime, :ComputedValues
+        attr_accessor :Name, :Namespace, :Version, :Status, :Description, :Notes, :Config, :Manifest, :ChartVersion, :ChartName, :ChartDescription, :AppVersion, :FirstDeployedTime, :LastDeployedTime, :ComputedValues, :ChartFrom, :ChartURL, :Resources
 
-        def initialize(name=nil, namespace=nil, version=nil, status=nil, description=nil, notes=nil, config=nil, manifest=nil, chartversion=nil, chartname=nil, chartdescription=nil, appversion=nil, firstdeployedtime=nil, lastdeployedtime=nil, computedvalues=nil)
+        def initialize(name=nil, namespace=nil, version=nil, status=nil, description=nil, notes=nil, config=nil, manifest=nil, chartversion=nil, chartname=nil, chartdescription=nil, appversion=nil, firstdeployedtime=nil, lastdeployedtime=nil, computedvalues=nil, chartfrom=nil, charturl=nil, resources=nil)
           @Name = name
           @Namespace = namespace
           @Version = version
@@ -17238,6 +17247,9 @@ module TencentCloud
           @FirstDeployedTime = firstdeployedtime
           @LastDeployedTime = lastdeployedtime
           @ComputedValues = computedvalues
+          @ChartFrom = chartfrom
+          @ChartURL = charturl
+          @Resources = resources
         end
 
         def deserialize(params)
@@ -17256,6 +17268,9 @@ module TencentCloud
           @FirstDeployedTime = params['FirstDeployedTime']
           @LastDeployedTime = params['LastDeployedTime']
           @ComputedValues = params['ComputedValues']
+          @ChartFrom = params['ChartFrom']
+          @ChartURL = params['ChartURL']
+          @Resources = params['Resources']
         end
       end
 

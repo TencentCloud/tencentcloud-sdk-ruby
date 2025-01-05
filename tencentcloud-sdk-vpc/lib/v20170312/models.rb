@@ -942,13 +942,13 @@ module TencentCloud
 
       # AllocateIp6AddressesBandwidth请求参数结构体
       class AllocateIp6AddressesBandwidthRequest < TencentCloud::Common::AbstractModel
-        # @param Ip6Addresses: 需要开通公网访问能力的IPV6地址
+        # @param Ip6Addresses: 需要开通公网访问能力的IPv6地址
         # @type Ip6Addresses: Array
         # @param InternetMaxBandwidthOut: 带宽，单位Mbps。默认是1Mbps
         # @type InternetMaxBandwidthOut: Integer
-        # @param InternetChargeType: 网络计费模式。IPV6当前支持"TRAFFIC_POSTPAID_BY_HOUR"，"BANDWIDTH_PACKAGE"。默认网络计费模式是"TRAFFIC_POSTPAID_BY_HOUR"。
+        # @param InternetChargeType: 网络计费模式。IPv6当前支持"TRAFFIC_POSTPAID_BY_HOUR"，"BANDWIDTH_PACKAGE"。默认网络计费模式是"TRAFFIC_POSTPAID_BY_HOUR"。
         # @type InternetChargeType: String
-        # @param BandwidthPackageId: 带宽包id，上移账号，申请带宽包计费模式的ipv6地址需要传入.
+        # @param BandwidthPackageId: 带宽包id，上移账号，申请带宽包计费模式的IPv6地址需要传入.
         # @type BandwidthPackageId: String
         # @param Tags: 需要关联的标签列表。
         # @type Tags: Array
@@ -981,7 +981,7 @@ module TencentCloud
 
       # AllocateIp6AddressesBandwidth返回参数结构体
       class AllocateIp6AddressesBandwidthResponse < TencentCloud::Common::AbstractModel
-        # @param AddressSet: 弹性公网 IPV6 的唯一 ID 列表。
+        # @param AddressSet: 传统弹性公网 IPv6 的唯一 ID 列表。
         # @type AddressSet: Array
         # @param TaskId: 异步任务TaskId。可以使用[DescribeTaskResult](https://cloud.tencent.com/document/api/215/36271)接口查询任务状态。
         # @type TaskId: String
@@ -1273,7 +1273,7 @@ module TencentCloud
         # @type PrivateIpAddress: String
         # @param EipDirectConnection: 指定绑定时是否设置直通。弹性公网 IP 直通请参见 [EIP 直通](https://cloud.tencent.com/document/product/1199/41709)。取值：True、False，默认值为 False。当绑定 CVM 实例、EKS 弹性集群时，可设定此参数为 True。此参数目前处于内测中，如需使用，请提交 [工单申请](https://console.cloud.tencent.com/workorder/category?level1_id=6&level2_id=163&source=0&data_title=%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1%20CLB&level3_id=1071&queue=96&scene_code=34639&step=2)。
         # @type EipDirectConnection: Boolean
-        # @param InstanceRegion: 要绑定的实例所在的地域
+        # @param InstanceRegion: 要绑定的实例所在地域。默认无需填写，仅限GAAP特殊场景需指定实例所在地域。
         # @type InstanceRegion: String
 
         attr_accessor :AddressId, :InstanceId, :NetworkInterfaceId, :PrivateIpAddress, :EipDirectConnection, :InstanceRegion
@@ -11133,10 +11133,10 @@ module TencentCloud
 
       # DescribeIp6Addresses请求参数结构体
       class DescribeIp6AddressesRequest < TencentCloud::Common::AbstractModel
-        # @param Ip6AddressIds: 标识 IPV6 的唯一 ID 列表。IPV6 唯一 ID 形如：`eip-11112222`。参数不支持同时指定`Ip6AddressIds`和`Filters`。
+        # @param Ip6AddressIds: 标识 IPv6 的唯一 ID 列表。IPv6 唯一 ID 形如：`eip-11112222`。参数不支持同时指定`Ip6AddressIds`和`Filters`。
         # @type Ip6AddressIds: Array
         # @param Filters: 每次请求的`Filters`的上限为10，`Filter.Values`的上限为100。参数不支持同时指定`AddressIds`和`Filters`。详细的过滤条件如下：
-        # <li> address-ip - String - 是否必填：否 - （过滤条件）按照 IPV6 的 IP 地址过滤。</li>
+        # <li> address-ip - String - 是否必填：否 - （过滤条件）按照 IPv6 的 IP 地址过滤。</li>
         # <li> network-interface-id - String - 是否必填：否 - （过滤条件）按照弹性网卡的唯一ID过滤。</li>
         # @type Filters: Array
         # @param Offset: 偏移量，默认为0。关于`Offset`的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/api/213/11646)中的相关小节。
@@ -11170,9 +11170,9 @@ module TencentCloud
 
       # DescribeIp6Addresses返回参数结构体
       class DescribeIp6AddressesResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 符合条件的 IPV6 数量。
+        # @param TotalCount: 符合条件的 IPv6 数量。
         # @type TotalCount: Integer
-        # @param AddressSet: IPV6 详细信息列表。
+        # @param AddressSet: IPv6 详细信息列表。
         # @type AddressSet: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -19869,9 +19869,9 @@ module TencentCloud
       class ModifyIp6AddressesBandwidthRequest < TencentCloud::Common::AbstractModel
         # @param InternetMaxBandwidthOut: 修改的目标带宽，单位Mbps
         # @type InternetMaxBandwidthOut: Integer
-        # @param Ip6Addresses: IPV6地址。Ip6Addresses和Ip6AddressId必须且只能传一个
+        # @param Ip6Addresses: IPv6地址。Ip6Addresses和Ip6AddressId必须且只能传一个
         # @type Ip6Addresses: Array
-        # @param Ip6AddressIds: IPV6地址对应的唯一ID，形如eip-xxxxxxxx。Ip6Addresses和Ip6AddressId必须且只能传一个
+        # @param Ip6AddressIds: IPv6地址对应的唯一ID，形如eip-xxxxxxxx。Ip6Addresses和Ip6AddressId必须且只能传一个
         # @type Ip6AddressIds: Array
 
         attr_accessor :InternetMaxBandwidthOut, :Ip6Addresses, :Ip6AddressIds
@@ -23282,9 +23282,9 @@ module TencentCloud
 
       # ReleaseIp6AddressesBandwidth请求参数结构体
       class ReleaseIp6AddressesBandwidthRequest < TencentCloud::Common::AbstractModel
-        # @param Ip6Addresses: IPV6地址。Ip6Addresses和Ip6AddressIds必须且只能传一个
+        # @param Ip6Addresses: IPv6地址。Ip6Addresses和Ip6AddressIds必须且只能传一个
         # @type Ip6Addresses: Array
-        # @param Ip6AddressIds: IPV6地址对应的唯一ID，形如eip-xxxxxxxx。Ip6Addresses和Ip6AddressIds必须且只能传一个。
+        # @param Ip6AddressIds: IPv6地址对应的唯一ID，形如eip-xxxxxxxx。Ip6Addresses和Ip6AddressIds必须且只能传一个。
         # @type Ip6AddressIds: Array
 
         attr_accessor :Ip6Addresses, :Ip6AddressIds
