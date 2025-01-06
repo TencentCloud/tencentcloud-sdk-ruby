@@ -135,7 +135,7 @@ module TencentCloud
         end
       end
 
-      # 新套餐套餐详情
+      # 云开发新套餐详情
       class BaasPackageInfo < TencentCloud::Common::AbstractModel
         # @param PackageName: DAU产品套餐ID
         # 注意：此字段可能返回 null，表示取不到有效值。

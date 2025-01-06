@@ -393,10 +393,19 @@ module TencentCloud
         # @param AlarmReason: 告警原因
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AlarmReason: String
+        # @param IndicatorTimeRangeValue: 近范围值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IndicatorTimeRangeValue: Integer
+        # @param IndicatorTimeRangeUnit: 近范围单位
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IndicatorTimeRangeUnit: String
+        # @param SyncType: 同步类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SyncType: Integer
 
-        attr_accessor :AlarmId, :AlarmTime, :TaskId, :RegularName, :AlarmLevel, :AlarmWay, :AlarmRecipientId, :ProjectId, :AlarmIndicator, :AlarmIndicatorDesc, :TriggerType, :EstimatedTime, :InstanceId, :TaskName, :IsSendSuccess, :InQuitePeriods, :RecordId, :MessageId, :Operator, :RegularId, :AlarmRecipientName, :TaskType, :SendResult, :MonitorObjectId, :MonitorObjectName, :Threshold, :AlarmReason
+        attr_accessor :AlarmId, :AlarmTime, :TaskId, :RegularName, :AlarmLevel, :AlarmWay, :AlarmRecipientId, :ProjectId, :AlarmIndicator, :AlarmIndicatorDesc, :TriggerType, :EstimatedTime, :InstanceId, :TaskName, :IsSendSuccess, :InQuitePeriods, :RecordId, :MessageId, :Operator, :RegularId, :AlarmRecipientName, :TaskType, :SendResult, :MonitorObjectId, :MonitorObjectName, :Threshold, :AlarmReason, :IndicatorTimeRangeValue, :IndicatorTimeRangeUnit, :SyncType
 
-        def initialize(alarmid=nil, alarmtime=nil, taskid=nil, regularname=nil, alarmlevel=nil, alarmway=nil, alarmrecipientid=nil, projectid=nil, alarmindicator=nil, alarmindicatordesc=nil, triggertype=nil, estimatedtime=nil, instanceid=nil, taskname=nil, issendsuccess=nil, inquiteperiods=nil, recordid=nil, messageid=nil, operator=nil, regularid=nil, alarmrecipientname=nil, tasktype=nil, sendresult=nil, monitorobjectid=nil, monitorobjectname=nil, threshold=nil, alarmreason=nil)
+        def initialize(alarmid=nil, alarmtime=nil, taskid=nil, regularname=nil, alarmlevel=nil, alarmway=nil, alarmrecipientid=nil, projectid=nil, alarmindicator=nil, alarmindicatordesc=nil, triggertype=nil, estimatedtime=nil, instanceid=nil, taskname=nil, issendsuccess=nil, inquiteperiods=nil, recordid=nil, messageid=nil, operator=nil, regularid=nil, alarmrecipientname=nil, tasktype=nil, sendresult=nil, monitorobjectid=nil, monitorobjectname=nil, threshold=nil, alarmreason=nil, indicatortimerangevalue=nil, indicatortimerangeunit=nil, synctype=nil)
           @AlarmId = alarmid
           @AlarmTime = alarmtime
           @TaskId = taskid
@@ -424,6 +433,9 @@ module TencentCloud
           @MonitorObjectName = monitorobjectname
           @Threshold = threshold
           @AlarmReason = alarmreason
+          @IndicatorTimeRangeValue = indicatortimerangevalue
+          @IndicatorTimeRangeUnit = indicatortimerangeunit
+          @SyncType = synctype
         end
 
         def deserialize(params)
@@ -454,6 +466,9 @@ module TencentCloud
           @MonitorObjectName = params['MonitorObjectName']
           @Threshold = params['Threshold']
           @AlarmReason = params['AlarmReason']
+          @IndicatorTimeRangeValue = params['IndicatorTimeRangeValue']
+          @IndicatorTimeRangeUnit = params['IndicatorTimeRangeUnit']
+          @SyncType = params['SyncType']
         end
       end
 
@@ -2247,8 +2262,8 @@ module TencentCloud
 
         attr_accessor :ProjectId, :AlarmRegularName, :TaskId, :Id, :TaskType, :MonitorType
         extend Gem::Deprecate
-        deprecate :TaskId, :none, 2024, 12
-        deprecate :TaskId=, :none, 2024, 12
+        deprecate :TaskId, :none, 2025, 1
+        deprecate :TaskId=, :none, 2025, 1
 
         def initialize(projectid=nil, alarmregularname=nil, taskid=nil, id=nil, tasktype=nil, monitortype=nil)
           @ProjectId = projectid
@@ -4554,7 +4569,16 @@ module TencentCloud
         # @type WorkflowId: String
         # @param ParentFolderId: 父文件夹ID
         # @type ParentFolderId: String
-        # @param TaskNodeType: 目录分类
+        # @param TaskNodeType: 目录分类，该值必传，枚举值如下：
+        # ETL：数据集成
+        # EMR：EMR
+        # TBDS：TBDS
+        # DLC：DLC
+        # TDSQL：TDSQL
+        # TCHOUSE：TCHOUSE
+        # GENERAL：通用
+        # TI_ONE：TI-ONE机器学习
+        # ACROSS_WORKFLOWS：跨工作流
         # @type TaskNodeType: String
 
         attr_accessor :ProjectId, :FolderName, :WorkflowId, :ParentFolderId, :TaskNodeType
@@ -8677,12 +8701,12 @@ module TencentCloud
 
         attr_accessor :ProjectId, :Category, :PageNumber, :PageSize, :EventName, :EventType, :EventSubType, :EventBroadcastType, :Status, :CreationTimeStart, :CreationTimeEnd, :EventTriggeredTimeStart, :EventTriggeredTimeEnd, :LogTimeStart, :LogTimeEnd, :Dimension, :TimeToLive, :SortItem, :SortType
         extend Gem::Deprecate
-        deprecate :EventType, :none, 2024, 12
-        deprecate :EventType=, :none, 2024, 12
-        deprecate :EventBroadcastType, :none, 2024, 12
-        deprecate :EventBroadcastType=, :none, 2024, 12
-        deprecate :Status, :none, 2024, 12
-        deprecate :Status=, :none, 2024, 12
+        deprecate :EventType, :none, 2025, 1
+        deprecate :EventType=, :none, 2025, 1
+        deprecate :EventBroadcastType, :none, 2025, 1
+        deprecate :EventBroadcastType=, :none, 2025, 1
+        deprecate :Status, :none, 2025, 1
+        deprecate :Status=, :none, 2025, 1
 
         def initialize(projectid=nil, category=nil, pagenumber=nil, pagesize=nil, eventname=nil, eventtype=nil, eventsubtype=nil, eventbroadcasttype=nil, status=nil, creationtimestart=nil, creationtimeend=nil, eventtriggeredtimestart=nil, eventtriggeredtimeend=nil, logtimestart=nil, logtimeend=nil, dimension=nil, timetolive=nil, sortitem=nil, sorttype=nil)
           @ProjectId = projectid
@@ -14764,8 +14788,8 @@ module TencentCloud
 
         attr_accessor :DimType, :Count, :QualityDim
         extend Gem::Deprecate
-        deprecate :DimType, :none, 2024, 12
-        deprecate :DimType=, :none, 2024, 12
+        deprecate :DimType, :none, 2025, 1
+        deprecate :DimType=, :none, 2025, 1
 
         def initialize(dimtype=nil, count=nil, qualitydim=nil)
           @DimType = dimtype
@@ -20427,8 +20451,8 @@ module TencentCloud
 
         attr_accessor :ProjectId, :TaskId, :DelayTime, :StartupTime, :SelfDepend, :StartTime, :EndTime, :TaskAction, :CycleType, :CycleStep, :CrontabExpression, :ExecutionStartTime, :ExecutionEndTime, :TaskName, :RetryWait, :TryLimit, :Retriable, :RunPriority, :TaskExt, :ResourceGroup, :YarnQueue, :BrokerIp, :InCharge, :Notes, :TaskParamInfos, :SourceServer, :TargetServer, :DependencyWorkflow, :DependencyConfigDTOs, :ExecutionTTL, :ScriptChange, :InChargeIds
         extend Gem::Deprecate
-        deprecate :InCharge, :none, 2024, 12
-        deprecate :InCharge=, :none, 2024, 12
+        deprecate :InCharge, :none, 2025, 1
+        deprecate :InCharge=, :none, 2025, 1
 
         def initialize(projectid=nil, taskid=nil, delaytime=nil, startuptime=nil, selfdepend=nil, starttime=nil, endtime=nil, taskaction=nil, cycletype=nil, cyclestep=nil, crontabexpression=nil, executionstarttime=nil, executionendtime=nil, taskname=nil, retrywait=nil, trylimit=nil, retriable=nil, runpriority=nil, taskext=nil, resourcegroup=nil, yarnqueue=nil, brokerip=nil, incharge=nil, notes=nil, taskparaminfos=nil, sourceserver=nil, targetserver=nil, dependencyworkflow=nil, dependencyconfigdtos=nil, executionttl=nil, scriptchange=nil, inchargeids=nil)
           @ProjectId = projectid

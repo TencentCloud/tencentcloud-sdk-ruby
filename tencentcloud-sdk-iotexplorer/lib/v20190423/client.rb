@@ -3153,6 +3153,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 暂停设备
+
+        # @param request: Request instance for PauseTWeCallDevice.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::PauseTWeCallDeviceRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::PauseTWeCallDeviceResponse`
+        def PauseTWeCallDevice(request)
+          body = send_request('PauseTWeCallDevice', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = PauseTWeCallDeviceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 发布广播消息、发布RRPC消息属于早期服务，目前已停止维护，需要从官网下线。
 
         # 发布广播消息
@@ -3373,6 +3397,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 重置设备
+
+        # @param request: Request instance for ResetTWeCallDevice.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::ResetTWeCallDeviceRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::ResetTWeCallDeviceResponse`
+        def ResetTWeCallDevice(request)
+          body = send_request('ResetTWeCallDevice', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ResetTWeCallDeviceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 恢复设备
+
+        # @param request: Request instance for ResumeWeCallDevice.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::ResumeWeCallDeviceRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::ResumeWeCallDeviceResponse`
+        def ResumeWeCallDevice(request)
+          body = send_request('ResumeWeCallDevice', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ResumeWeCallDeviceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 搜索位置空间
 
         # @param request: Request instance for SearchPositionSpace.
@@ -3455,6 +3527,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = TransferCloudStorageResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 转移设备
+
+        # @param request: Request instance for TransferTWeCallDevice.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::TransferTWeCallDeviceRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::TransferTWeCallDeviceResponse`
+        def TransferTWeCallDevice(request)
+          body = send_request('TransferTWeCallDevice', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = TransferTWeCallDeviceResponse.new
             model.deserialize(response['Response'])
             model
           else

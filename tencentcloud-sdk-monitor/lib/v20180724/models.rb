@@ -577,10 +577,12 @@ module TencentCloud
         # @param TagOperation: 多标签交/并集关系
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TagOperation: String
+        # @param NoticeTmplBindInfos: 通知模板绑定内容模板信息
+        # @type NoticeTmplBindInfos: Array
 
-        attr_accessor :PolicyId, :PolicyName, :Remark, :MonitorType, :Enable, :UseSum, :ProjectId, :ProjectName, :Namespace, :ConditionTemplateId, :Condition, :EventCondition, :NoticeIds, :Notices, :TriggerTasks, :ConditionsTemp, :LastEditUin, :UpdateTime, :InsertTime, :Region, :NamespaceShowName, :IsDefault, :CanSetDefault, :InstanceGroupId, :InstanceSum, :InstanceGroupName, :RuleType, :OriginId, :TagInstances, :Filter, :GroupBy, :FilterDimensionsParam, :IsOneClick, :OneClickStatus, :AdvancedMetricNumber, :IsBindAll, :Tags, :IsSupportAlarmTag, :TagOperation
+        attr_accessor :PolicyId, :PolicyName, :Remark, :MonitorType, :Enable, :UseSum, :ProjectId, :ProjectName, :Namespace, :ConditionTemplateId, :Condition, :EventCondition, :NoticeIds, :Notices, :TriggerTasks, :ConditionsTemp, :LastEditUin, :UpdateTime, :InsertTime, :Region, :NamespaceShowName, :IsDefault, :CanSetDefault, :InstanceGroupId, :InstanceSum, :InstanceGroupName, :RuleType, :OriginId, :TagInstances, :Filter, :GroupBy, :FilterDimensionsParam, :IsOneClick, :OneClickStatus, :AdvancedMetricNumber, :IsBindAll, :Tags, :IsSupportAlarmTag, :TagOperation, :NoticeTmplBindInfos
 
-        def initialize(policyid=nil, policyname=nil, remark=nil, monitortype=nil, enable=nil, usesum=nil, projectid=nil, projectname=nil, namespace=nil, conditiontemplateid=nil, condition=nil, eventcondition=nil, noticeids=nil, notices=nil, triggertasks=nil, conditionstemp=nil, lastedituin=nil, updatetime=nil, inserttime=nil, region=nil, namespaceshowname=nil, isdefault=nil, cansetdefault=nil, instancegroupid=nil, instancesum=nil, instancegroupname=nil, ruletype=nil, originid=nil, taginstances=nil, filter=nil, groupby=nil, filterdimensionsparam=nil, isoneclick=nil, oneclickstatus=nil, advancedmetricnumber=nil, isbindall=nil, tags=nil, issupportalarmtag=nil, tagoperation=nil)
+        def initialize(policyid=nil, policyname=nil, remark=nil, monitortype=nil, enable=nil, usesum=nil, projectid=nil, projectname=nil, namespace=nil, conditiontemplateid=nil, condition=nil, eventcondition=nil, noticeids=nil, notices=nil, triggertasks=nil, conditionstemp=nil, lastedituin=nil, updatetime=nil, inserttime=nil, region=nil, namespaceshowname=nil, isdefault=nil, cansetdefault=nil, instancegroupid=nil, instancesum=nil, instancegroupname=nil, ruletype=nil, originid=nil, taginstances=nil, filter=nil, groupby=nil, filterdimensionsparam=nil, isoneclick=nil, oneclickstatus=nil, advancedmetricnumber=nil, isbindall=nil, tags=nil, issupportalarmtag=nil, tagoperation=nil, noticetmplbindinfos=nil)
           @PolicyId = policyid
           @PolicyName = policyname
           @Remark = remark
@@ -620,6 +622,7 @@ module TencentCloud
           @Tags = tags
           @IsSupportAlarmTag = issupportalarmtag
           @TagOperation = tagoperation
+          @NoticeTmplBindInfos = noticetmplbindinfos
         end
 
         def deserialize(params)
@@ -709,6 +712,14 @@ module TencentCloud
           end
           @IsSupportAlarmTag = params['IsSupportAlarmTag']
           @TagOperation = params['TagOperation']
+          unless params['NoticeTmplBindInfos'].nil?
+            @NoticeTmplBindInfos = []
+            params['NoticeTmplBindInfos'].each do |i|
+              noticecontenttmplbindinfo_tmp = NoticeContentTmplBindInfo.new
+              noticecontenttmplbindinfo_tmp.deserialize(i)
+              @NoticeTmplBindInfos << noticecontenttmplbindinfo_tmp
+            end
+          end
         end
       end
 
@@ -4370,10 +4381,12 @@ module TencentCloud
         # @type PromInsId: String
         # @param ReceiverOnCallFormIDs: 根据排班表搜索
         # @type ReceiverOnCallFormIDs: Array
+        # @param NoticeContentTmplIDs: 通知内容模板ID筛选
+        # @type NoticeContentTmplIDs: Array
 
-        attr_accessor :Module, :PageNumber, :PageSize, :PolicyName, :MonitorTypes, :Namespaces, :Dimensions, :ReceiverUids, :ReceiverGroups, :PolicyType, :Field, :Order, :ProjectIds, :NoticeIds, :RuleTypes, :Enable, :NotBindingNoticeRule, :InstanceGroupId, :NeedCorrespondence, :TriggerTasks, :OneClickPolicyType, :NotBindAll, :NotInstanceGroup, :Tags, :PromInsId, :ReceiverOnCallFormIDs
+        attr_accessor :Module, :PageNumber, :PageSize, :PolicyName, :MonitorTypes, :Namespaces, :Dimensions, :ReceiverUids, :ReceiverGroups, :PolicyType, :Field, :Order, :ProjectIds, :NoticeIds, :RuleTypes, :Enable, :NotBindingNoticeRule, :InstanceGroupId, :NeedCorrespondence, :TriggerTasks, :OneClickPolicyType, :NotBindAll, :NotInstanceGroup, :Tags, :PromInsId, :ReceiverOnCallFormIDs, :NoticeContentTmplIDs
 
-        def initialize(_module=nil, pagenumber=nil, pagesize=nil, policyname=nil, monitortypes=nil, namespaces=nil, dimensions=nil, receiveruids=nil, receivergroups=nil, policytype=nil, field=nil, order=nil, projectids=nil, noticeids=nil, ruletypes=nil, enable=nil, notbindingnoticerule=nil, instancegroupid=nil, needcorrespondence=nil, triggertasks=nil, oneclickpolicytype=nil, notbindall=nil, notinstancegroup=nil, tags=nil, prominsid=nil, receiveroncallformids=nil)
+        def initialize(_module=nil, pagenumber=nil, pagesize=nil, policyname=nil, monitortypes=nil, namespaces=nil, dimensions=nil, receiveruids=nil, receivergroups=nil, policytype=nil, field=nil, order=nil, projectids=nil, noticeids=nil, ruletypes=nil, enable=nil, notbindingnoticerule=nil, instancegroupid=nil, needcorrespondence=nil, triggertasks=nil, oneclickpolicytype=nil, notbindall=nil, notinstancegroup=nil, tags=nil, prominsid=nil, receiveroncallformids=nil, noticecontenttmplids=nil)
           @Module = _module
           @PageNumber = pagenumber
           @PageSize = pagesize
@@ -4400,6 +4413,7 @@ module TencentCloud
           @Tags = tags
           @PromInsId = prominsid
           @ReceiverOnCallFormIDs = receiveroncallformids
+          @NoticeContentTmplIDs = noticecontenttmplids
         end
 
         def deserialize(params)
@@ -4443,6 +4457,7 @@ module TencentCloud
           end
           @PromInsId = params['PromInsId']
           @ReceiverOnCallFormIDs = params['ReceiverOnCallFormIDs']
+          @NoticeContentTmplIDs = params['NoticeContentTmplIDs']
         end
       end
 

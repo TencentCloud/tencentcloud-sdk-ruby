@@ -5701,8 +5701,8 @@ module TencentCloud
 
         attr_accessor :Type, :ExpandCpu, :AutoStrategy, :RequestId
         extend Gem::Deprecate
-        deprecate :AutoStrategy, :none, 2024, 12
-        deprecate :AutoStrategy=, :none, 2024, 12
+        deprecate :AutoStrategy, :none, 2025, 1
+        deprecate :AutoStrategy=, :none, 2025, 1
 
         def initialize(type=nil, expandcpu=nil, autostrategy=nil, requestid=nil)
           @Type = type
@@ -8097,6 +8097,54 @@ module TencentCloud
           @DatabaseSupportedPrivileges = params['DatabaseSupportedPrivileges']
           @TableSupportedPrivileges = params['TableSupportedPrivileges']
           @ColumnSupportedPrivileges = params['ColumnSupportedPrivileges']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeTableColumns请求参数结构体
+      class DescribeTableColumnsRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID，格式如：cdb-c1nl9rpv，与云数据库控制台页面中显示的实例ID相同，可使用[查询实例列表](https://cloud.tencent.com/document/api/236/15872) 接口获取，其值为输出参数中字段 InstanceId 的值。
+        # @type InstanceId: String
+        # @param Database: 数据库名称，可使用[查询数据库](https://cloud.tencent.com/document/api/253/7167)接口获得。
+        # @type Database: String
+        # @param Table: 数据库中的表的名称。
+        # @type Table: String
+
+        attr_accessor :InstanceId, :Database, :Table
+
+        def initialize(instanceid=nil, database=nil, table=nil)
+          @InstanceId = instanceid
+          @Database = database
+          @Table = table
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Database = params['Database']
+          @Table = params['Table']
+        end
+      end
+
+      # DescribeTableColumns返回参数结构体
+      class DescribeTableColumnsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 符合查询条件的实例总数。
+        # @type TotalCount: Integer
+        # @param Items: 返回的数据库列信息。
+        # @type Items: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Items, :RequestId
+
+        def initialize(totalcount=nil, items=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Items = items
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          @Items = params['Items']
           @RequestId = params['RequestId']
         end
       end
@@ -11598,8 +11646,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :ParamName, :OldValue, :NewValue, :IsSucess, :ModifyTime, :IsSuccess
         extend Gem::Deprecate
-        deprecate :IsSucess, :none, 2024, 12
-        deprecate :IsSucess=, :none, 2024, 12
+        deprecate :IsSucess, :none, 2025, 1
+        deprecate :IsSucess=, :none, 2025, 1
 
         def initialize(instanceid=nil, paramname=nil, oldvalue=nil, newvalue=nil, issucess=nil, modifytime=nil, issuccess=nil)
           @InstanceId = instanceid

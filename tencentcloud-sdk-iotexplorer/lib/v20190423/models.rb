@@ -19,7 +19,7 @@ module TencentCloud
     module V20190423
       # ActivateTWeCallLicense请求参数结构体
       class ActivateTWeCallLicenseRequest < TencentCloud::Common::AbstractModel
-        # @param PkgType: TWecall类型：1-家庭安防场景； 2-穿戴类场景； 3-生活娱乐场景； 4-对讲及其它场景
+        # @param PkgType: TWecall类型：0-体验套餐；1-家庭安防场景； 2-穿戴类场景； 3-生活娱乐场景； 4-对讲及其它场景
         # @type PkgType: Integer
         # @param MiniProgramAppId: 参数已弃用，不用传参
         # @type MiniProgramAppId: String
@@ -28,8 +28,8 @@ module TencentCloud
 
         attr_accessor :PkgType, :MiniProgramAppId, :DeviceList
         extend Gem::Deprecate
-        deprecate :MiniProgramAppId, :none, 2024, 12
-        deprecate :MiniProgramAppId=, :none, 2024, 12
+        deprecate :MiniProgramAppId, :none, 2025, 1
+        deprecate :MiniProgramAppId=, :none, 2025, 1
 
         def initialize(pkgtype=nil, miniprogramappid=nil, devicelist=nil)
           @PkgType = pkgtype
@@ -5122,8 +5122,8 @@ module TencentCloud
 
         attr_accessor :ModelId, :Sn, :ErrCode, :ExpireTime
         extend Gem::Deprecate
-        deprecate :ModelId, :none, 2024, 12
-        deprecate :ModelId=, :none, 2024, 12
+        deprecate :ModelId, :none, 2025, 1
+        deprecate :ModelId=, :none, 2025, 1
 
         def initialize(modelid=nil, sn=nil, errcode=nil, expiretime=nil)
           @ModelId = modelid
@@ -6744,8 +6744,8 @@ module TencentCloud
 
         attr_accessor :MiniProgramAppId, :DeviceList
         extend Gem::Deprecate
-        deprecate :MiniProgramAppId, :none, 2024, 12
-        deprecate :MiniProgramAppId=, :none, 2024, 12
+        deprecate :MiniProgramAppId, :none, 2025, 1
+        deprecate :MiniProgramAppId=, :none, 2025, 1
 
         def initialize(miniprogramappid=nil, devicelist=nil)
           @MiniProgramAppId = miniprogramappid
@@ -6807,8 +6807,8 @@ module TencentCloud
 
         attr_accessor :MiniProgramAppId, :PkgType, :Status, :Offset, :Limit
         extend Gem::Deprecate
-        deprecate :MiniProgramAppId, :none, 2024, 12
-        deprecate :MiniProgramAppId=, :none, 2024, 12
+        deprecate :MiniProgramAppId, :none, 2025, 1
+        deprecate :MiniProgramAppId=, :none, 2025, 1
 
         def initialize(miniprogramappid=nil, pkgtype=nil, status=nil, offset=nil, limit=nil)
           @MiniProgramAppId = miniprogramappid
@@ -8407,6 +8407,45 @@ module TencentCloud
         end
       end
 
+      # PauseTWeCallDevice请求参数结构体
+      class PauseTWeCallDeviceRequest < TencentCloud::Common::AbstractModel
+        # @param DeviceList: 设备列表
+        # @type DeviceList: Array
+
+        attr_accessor :DeviceList
+
+        def initialize(devicelist=nil)
+          @DeviceList = devicelist
+        end
+
+        def deserialize(params)
+          unless params['DeviceList'].nil?
+            @DeviceList = []
+            params['DeviceList'].each do |i|
+              twecallinfo_tmp = TWeCallInfo.new
+              twecallinfo_tmp.deserialize(i)
+              @DeviceList << twecallinfo_tmp
+            end
+          end
+        end
+      end
+
+      # PauseTWeCallDevice返回参数结构体
+      class PauseTWeCallDeviceResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 围栏详细信息(包含创建时间及更新时间)
       class PositionFenceInfo < TencentCloud::Common::AbstractModel
         # @param GeoFence: 围栏信息
@@ -9223,6 +9262,84 @@ module TencentCloud
         end
       end
 
+      # ResetTWeCallDevice请求参数结构体
+      class ResetTWeCallDeviceRequest < TencentCloud::Common::AbstractModel
+        # @param DeviceList: 设备列表
+        # @type DeviceList: Array
+
+        attr_accessor :DeviceList
+
+        def initialize(devicelist=nil)
+          @DeviceList = devicelist
+        end
+
+        def deserialize(params)
+          unless params['DeviceList'].nil?
+            @DeviceList = []
+            params['DeviceList'].each do |i|
+              twecallinfo_tmp = TWeCallInfo.new
+              twecallinfo_tmp.deserialize(i)
+              @DeviceList << twecallinfo_tmp
+            end
+          end
+        end
+      end
+
+      # ResetTWeCallDevice返回参数结构体
+      class ResetTWeCallDeviceResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ResumeWeCallDevice请求参数结构体
+      class ResumeWeCallDeviceRequest < TencentCloud::Common::AbstractModel
+        # @param DeviceList: 设备列表
+        # @type DeviceList: Array
+
+        attr_accessor :DeviceList
+
+        def initialize(devicelist=nil)
+          @DeviceList = devicelist
+        end
+
+        def deserialize(params)
+          unless params['DeviceList'].nil?
+            @DeviceList = []
+            params['DeviceList'].each do |i|
+              twecallinfo_tmp = TWeCallInfo.new
+              twecallinfo_tmp.deserialize(i)
+              @DeviceList << twecallinfo_tmp
+            end
+          end
+        end
+      end
+
+      # ResumeWeCallDevice返回参数结构体
+      class ResumeWeCallDeviceResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 搜索关键词
       class SearchKeyword < TencentCloud::Common::AbstractModel
         # @param Key: 搜索条件的Key
@@ -9477,8 +9594,8 @@ module TencentCloud
 
         attr_accessor :ModelId, :Sn, :ExpireTime, :PkgType
         extend Gem::Deprecate
-        deprecate :ModelId, :none, 2024, 12
-        deprecate :ModelId=, :none, 2024, 12
+        deprecate :ModelId, :none, 2025, 1
+        deprecate :ModelId=, :none, 2025, 1
 
         def initialize(modelid=nil, sn=nil, expiretime=nil, pkgtype=nil)
           @ModelId = modelid
@@ -9536,10 +9653,10 @@ module TencentCloud
 
         attr_accessor :Sn, :ModelId, :ActiveNum
         extend Gem::Deprecate
-        deprecate :ModelId, :none, 2024, 12
-        deprecate :ModelId=, :none, 2024, 12
-        deprecate :ActiveNum, :none, 2024, 12
-        deprecate :ActiveNum=, :none, 2024, 12
+        deprecate :ModelId, :none, 2025, 1
+        deprecate :ModelId=, :none, 2025, 1
+        deprecate :ActiveNum, :none, 2025, 1
+        deprecate :ActiveNum=, :none, 2025, 1
 
         def initialize(sn=nil, modelid=nil, activenum=nil)
           @Sn = sn
@@ -9812,6 +9929,42 @@ module TencentCloud
 
       # TransferCloudStorage返回参数结构体
       class TransferCloudStorageResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # TransferTWeCallDevice请求参数结构体
+      class TransferTWeCallDeviceRequest < TencentCloud::Common::AbstractModel
+        # @param TransferInDevice: sn信息，product_deviceName
+        # @type TransferInDevice: String
+        # @param TransferOutDevice: sn信息，product_deviceName
+        # @type TransferOutDevice: String
+
+        attr_accessor :TransferInDevice, :TransferOutDevice
+
+        def initialize(transferindevice=nil, transferoutdevice=nil)
+          @TransferInDevice = transferindevice
+          @TransferOutDevice = transferoutdevice
+        end
+
+        def deserialize(params)
+          @TransferInDevice = params['TransferInDevice']
+          @TransferOutDevice = params['TransferOutDevice']
+        end
+      end
+
+      # TransferTWeCallDevice返回参数结构体
+      class TransferTWeCallDeviceResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 

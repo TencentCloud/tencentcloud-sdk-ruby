@@ -4358,16 +4358,20 @@ module TencentCloud
         # @type TDEConfig: :class:`Tencentcloud::Sqlserver.v20180328.models.TDEConfigAttribute`
         # @param SSLConfig: SSL加密
         # @type SSLConfig: :class:`Tencentcloud::Sqlserver.v20180328.models.SSLConfig`
-        # @param DrReadableInfo: 备机只读信息
+        # @param DrReadableInfo: 双节点备机只读信息
         # @type DrReadableInfo: :class:`Tencentcloud::Sqlserver.v20180328.models.DrReadableInfo`
         # @param OldVipList: 等待回收的IP列表
         # @type OldVipList: Array
+        # @param XEventStatus: 操作日志采集状态，enable-采集中，disable-不可用，renew_doing-配置开启或关闭中
+        # @type XEventStatus: String
+        # @param MultiDrReadableInfo: 多节点备机只读信息
+        # @type MultiDrReadableInfo: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :InstanceId, :RegularBackupEnable, :RegularBackupSaveDays, :RegularBackupStrategy, :RegularBackupCounts, :RegularBackupStartTime, :BlockedThreshold, :EventSaveDays, :TDEConfig, :SSLConfig, :DrReadableInfo, :OldVipList, :RequestId
+        attr_accessor :InstanceId, :RegularBackupEnable, :RegularBackupSaveDays, :RegularBackupStrategy, :RegularBackupCounts, :RegularBackupStartTime, :BlockedThreshold, :EventSaveDays, :TDEConfig, :SSLConfig, :DrReadableInfo, :OldVipList, :XEventStatus, :MultiDrReadableInfo, :RequestId
 
-        def initialize(instanceid=nil, regularbackupenable=nil, regularbackupsavedays=nil, regularbackupstrategy=nil, regularbackupcounts=nil, regularbackupstarttime=nil, blockedthreshold=nil, eventsavedays=nil, tdeconfig=nil, sslconfig=nil, drreadableinfo=nil, oldviplist=nil, requestid=nil)
+        def initialize(instanceid=nil, regularbackupenable=nil, regularbackupsavedays=nil, regularbackupstrategy=nil, regularbackupcounts=nil, regularbackupstarttime=nil, blockedthreshold=nil, eventsavedays=nil, tdeconfig=nil, sslconfig=nil, drreadableinfo=nil, oldviplist=nil, xeventstatus=nil, multidrreadableinfo=nil, requestid=nil)
           @InstanceId = instanceid
           @RegularBackupEnable = regularbackupenable
           @RegularBackupSaveDays = regularbackupsavedays
@@ -4380,6 +4384,8 @@ module TencentCloud
           @SSLConfig = sslconfig
           @DrReadableInfo = drreadableinfo
           @OldVipList = oldviplist
+          @XEventStatus = xeventstatus
+          @MultiDrReadableInfo = multidrreadableinfo
           @RequestId = requestid
         end
 
@@ -4410,6 +4416,15 @@ module TencentCloud
               oldvip_tmp = OldVip.new
               oldvip_tmp.deserialize(i)
               @OldVipList << oldvip_tmp
+            end
+          end
+          @XEventStatus = params['XEventStatus']
+          unless params['MultiDrReadableInfo'].nil?
+            @MultiDrReadableInfo = []
+            params['MultiDrReadableInfo'].each do |i|
+              drreadableinfo_tmp = DrReadableInfo.new
+              drreadableinfo_tmp.deserialize(i)
+              @MultiDrReadableInfo << drreadableinfo_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -4460,7 +4475,7 @@ module TencentCloud
         # @type SearchKey: String
         # @param UidSet: 实例唯一Uid列表
         # @type UidSet: Array
-        # @param InstanceType: 实例类型 HA-高可用 RO-只读实例 SI-基础版 BI-商业智能服务
+        # @param InstanceType: 实例类型 HA-高可用 RO-只读实例 SI-基础版 BI-商业智能服务,cvmHA-云盘双机高可用，cvmRO-云盘只读副本,MultiHA-多节点,cvmMultiHA-云盘多节点
         # @type InstanceType: String
         # @param PaginationType: 分页查询方式 offset-按照偏移量分页查询，pageNumber-按照页数分页查询，默认取值pageNumber
         # @type PaginationType: String
@@ -8591,16 +8606,19 @@ module TencentCloud
         # @type Vip: String
         # @param DRNetwork: 目标节点，0-修改主节点网络，1-修改备节点网络，默认取值0
         # @type DRNetwork: Integer
+        # @param DrInstanceId: 备机资源ID。当DRNetwork = 1时必填
+        # @type DrInstanceId: String
 
-        attr_accessor :InstanceId, :NewVpcId, :NewSubnetId, :OldIpRetainTime, :Vip, :DRNetwork
+        attr_accessor :InstanceId, :NewVpcId, :NewSubnetId, :OldIpRetainTime, :Vip, :DRNetwork, :DrInstanceId
 
-        def initialize(instanceid=nil, newvpcid=nil, newsubnetid=nil, oldipretaintime=nil, vip=nil, drnetwork=nil)
+        def initialize(instanceid=nil, newvpcid=nil, newsubnetid=nil, oldipretaintime=nil, vip=nil, drnetwork=nil, drinstanceid=nil)
           @InstanceId = instanceid
           @NewVpcId = newvpcid
           @NewSubnetId = newsubnetid
           @OldIpRetainTime = oldipretaintime
           @Vip = vip
           @DRNetwork = drnetwork
+          @DrInstanceId = drinstanceid
         end
 
         def deserialize(params)
@@ -8610,6 +8628,7 @@ module TencentCloud
           @OldIpRetainTime = params['OldIpRetainTime']
           @Vip = params['Vip']
           @DRNetwork = params['DRNetwork']
+          @DrInstanceId = params['DrInstanceId']
         end
       end
 
@@ -11719,10 +11738,12 @@ module TencentCloud
         # @type MultiZones: String
         # @param WaitSwitch: 执行变配的方式，默认为 1。支持值包括：0 - 立刻执行，1 - 维护时间窗执行
         # @type WaitSwitch: Integer
+        # @param DrZones: 多节点架构实例的备节点可用区，默认为空。如果需要在变配的同时修改指定备节点的可用区时必传，当MultiZones = MultiZones时主节点和备节点可用区不能全部相同。备机可用区集合最小为2个，最大不超过5个。
+        # @type DrZones: Array
 
-        attr_accessor :InstanceId, :Memory, :Storage, :AutoVoucher, :VoucherIds, :Cpu, :DBVersion, :HAType, :MultiZones, :WaitSwitch
+        attr_accessor :InstanceId, :Memory, :Storage, :AutoVoucher, :VoucherIds, :Cpu, :DBVersion, :HAType, :MultiZones, :WaitSwitch, :DrZones
 
-        def initialize(instanceid=nil, memory=nil, storage=nil, autovoucher=nil, voucherids=nil, cpu=nil, dbversion=nil, hatype=nil, multizones=nil, waitswitch=nil)
+        def initialize(instanceid=nil, memory=nil, storage=nil, autovoucher=nil, voucherids=nil, cpu=nil, dbversion=nil, hatype=nil, multizones=nil, waitswitch=nil, drzones=nil)
           @InstanceId = instanceid
           @Memory = memory
           @Storage = storage
@@ -11733,6 +11754,7 @@ module TencentCloud
           @HAType = hatype
           @MultiZones = multizones
           @WaitSwitch = waitswitch
+          @DrZones = drzones
         end
 
         def deserialize(params)
@@ -11746,6 +11768,14 @@ module TencentCloud
           @HAType = params['HAType']
           @MultiZones = params['MultiZones']
           @WaitSwitch = params['WaitSwitch']
+          unless params['DrZones'].nil?
+            @DrZones = []
+            params['DrZones'].each do |i|
+              drzoneinfo_tmp = DrZoneInfo.new
+              drzoneinfo_tmp.deserialize(i)
+              @DrZones << drzoneinfo_tmp
+            end
+          end
         end
       end
 
