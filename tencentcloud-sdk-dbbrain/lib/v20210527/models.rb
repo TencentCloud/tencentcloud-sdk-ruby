@@ -2824,16 +2824,19 @@ module TencentCloud
         # @type Date: String
         # @param Product: 服务产品类型，支持值包括 "redis" - 云数据库 Redis。
         # @type Product: String
-        # @param Limit: 查询数目，默认为20，最大值为100。
+        # @param Limit: 查询数目，默认为20，最大值为500。
         # @type Limit: Integer
+        # @param ShardIds: 分片ID数组。
+        # @type ShardIds: Array
 
-        attr_accessor :InstanceId, :Date, :Product, :Limit
+        attr_accessor :InstanceId, :Date, :Product, :Limit, :ShardIds
 
-        def initialize(instanceid=nil, date=nil, product=nil, limit=nil)
+        def initialize(instanceid=nil, date=nil, product=nil, limit=nil, shardids=nil)
           @InstanceId = instanceid
           @Date = date
           @Product = product
           @Limit = limit
+          @ShardIds = shardids
         end
 
         def deserialize(params)
@@ -2841,6 +2844,7 @@ module TencentCloud
           @Date = params['Date']
           @Product = params['Product']
           @Limit = params['Limit']
+          @ShardIds = params['ShardIds']
         end
       end
 

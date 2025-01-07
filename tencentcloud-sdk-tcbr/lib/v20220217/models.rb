@@ -27,14 +27,17 @@ module TencentCloud
         # @type RepoLanguage: String
         # @param UploadFilename: 上传文件名
         # @type UploadFilename: String
+        # @param LanguageVersion: 语言版本
+        # @type LanguageVersion: String
 
-        attr_accessor :BaseImage, :EntryPoint, :RepoLanguage, :UploadFilename
+        attr_accessor :BaseImage, :EntryPoint, :RepoLanguage, :UploadFilename, :LanguageVersion
 
-        def initialize(baseimage=nil, entrypoint=nil, repolanguage=nil, uploadfilename=nil)
+        def initialize(baseimage=nil, entrypoint=nil, repolanguage=nil, uploadfilename=nil, languageversion=nil)
           @BaseImage = baseimage
           @EntryPoint = entrypoint
           @RepoLanguage = repolanguage
           @UploadFilename = uploadfilename
+          @LanguageVersion = languageversion
         end
 
         def deserialize(params)
@@ -42,6 +45,7 @@ module TencentCloud
           @EntryPoint = params['EntryPoint']
           @RepoLanguage = params['RepoLanguage']
           @UploadFilename = params['UploadFilename']
+          @LanguageVersion = params['LanguageVersion']
         end
       end
 
@@ -91,11 +95,11 @@ module TencentCloud
         # @type SubNetIds: Array
         # @param ReqKey: 请求key 用于防重
         # @type ReqKey: String
-        # @param Source: 来源：wechat | cloud
+        # @param Source: 来源：wechat | cloud | weda
         # @type Source: String
-        # @param Channel: 渠道：wechat | cloud
+        # @param Channel: 渠道：wechat | cloud | weda
         # @type Channel: String
-        # @param EnvId: 环境ID
+        # @param EnvId: 环境ID 云开发平台必填
         # @type EnvId: String
 
         attr_accessor :PackageType, :Alias, :FreeQuota, :Flag, :VpcId, :SubNetIds, :ReqKey, :Source, :Channel, :EnvId
@@ -474,13 +478,16 @@ module TencentCloud
       class DescribeEnvBaseInfoResponse < TencentCloud::Common::AbstractModel
         # @param EnvBaseInfo: 环境基础信息
         # @type EnvBaseInfo: :class:`Tencentcloud::Tcbr.v20220217.models.EnvBaseInfo`
+        # @param IsExist: 是否存在
+        # @type IsExist: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :EnvBaseInfo, :RequestId
+        attr_accessor :EnvBaseInfo, :IsExist, :RequestId
 
-        def initialize(envbaseinfo=nil, requestid=nil)
+        def initialize(envbaseinfo=nil, isexist=nil, requestid=nil)
           @EnvBaseInfo = envbaseinfo
+          @IsExist = isexist
           @RequestId = requestid
         end
 
@@ -489,6 +496,7 @@ module TencentCloud
             @EnvBaseInfo = EnvBaseInfo.new
             @EnvBaseInfo.deserialize(params['EnvBaseInfo'])
           end
+          @IsExist = params['IsExist']
           @RequestId = params['RequestId']
         end
       end
@@ -1118,10 +1126,12 @@ module TencentCloud
         # @type AccessTypes: Array
         # @param CustomDomainNames: 展示自定义域名
         # @type CustomDomainNames: Array
+        # @param ServerType: 服务类型: function 云函数2.0；container 容器服务
+        # @type ServerType: String
 
-        attr_accessor :ServerName, :DefaultDomainName, :CustomDomainName, :Status, :UpdateTime, :AccessTypes, :CustomDomainNames
+        attr_accessor :ServerName, :DefaultDomainName, :CustomDomainName, :Status, :UpdateTime, :AccessTypes, :CustomDomainNames, :ServerType
 
-        def initialize(servername=nil, defaultdomainname=nil, customdomainname=nil, status=nil, updatetime=nil, accesstypes=nil, customdomainnames=nil)
+        def initialize(servername=nil, defaultdomainname=nil, customdomainname=nil, status=nil, updatetime=nil, accesstypes=nil, customdomainnames=nil, servertype=nil)
           @ServerName = servername
           @DefaultDomainName = defaultdomainname
           @CustomDomainName = customdomainname
@@ -1129,6 +1139,7 @@ module TencentCloud
           @UpdateTime = updatetime
           @AccessTypes = accesstypes
           @CustomDomainNames = customdomainnames
+          @ServerType = servertype
         end
 
         def deserialize(params)
@@ -1139,6 +1150,7 @@ module TencentCloud
           @UpdateTime = params['UpdateTime']
           @AccessTypes = params['AccessTypes']
           @CustomDomainNames = params['CustomDomainNames']
+          @ServerType = params['ServerType']
         end
       end
 

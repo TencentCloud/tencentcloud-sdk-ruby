@@ -433,12 +433,12 @@ module TencentCloud
 
         attr_accessor :InstanceId, :Name, :AppId, :Region, :Zone, :Product, :Networks, :ShardNum, :ReplicaNum, :Cpu, :Memory, :Disk, :HealthScore, :Warning, :Project, :ResourceTags, :CreatedAt, :Status, :EngineName, :EngineVersion, :ApiVersion, :PayMode, :Extend, :ExpiredAt, :IsNoExpired, :WanAddress, :IsolateAt, :AutoRenew
         extend Gem::Deprecate
-        deprecate :HealthScore, :none, 2024, 12
-        deprecate :HealthScore=, :none, 2024, 12
-        deprecate :Warning, :none, 2024, 12
-        deprecate :Warning=, :none, 2024, 12
-        deprecate :Project, :none, 2024, 12
-        deprecate :Project=, :none, 2024, 12
+        deprecate :HealthScore, :none, 2025, 1
+        deprecate :HealthScore=, :none, 2025, 1
+        deprecate :Warning, :none, 2025, 1
+        deprecate :Warning=, :none, 2025, 1
+        deprecate :Project, :none, 2025, 1
+        deprecate :Project=, :none, 2025, 1
 
         def initialize(instanceid=nil, name=nil, appid=nil, region=nil, zone=nil, product=nil, networks=nil, shardnum=nil, replicanum=nil, cpu=nil, memory=nil, disk=nil, healthscore=nil, warning=nil, project=nil, resourcetags=nil, createdat=nil, status=nil, enginename=nil, engineversion=nil, apiversion=nil, paymode=nil, extend=nil, expiredat=nil, isnoexpired=nil, wanaddress=nil, isolateat=nil, autorenew=nil)
           @InstanceId = instanceid

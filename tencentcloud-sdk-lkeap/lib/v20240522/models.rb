@@ -1010,6 +1010,26 @@ module TencentCloud
         end
       end
 
+      # 会话内容
+      class Message < TencentCloud::Common::AbstractModel
+        # @param Role: 角色
+        # @type Role: String
+        # @param Content: 内容
+        # @type Content: String
+
+        attr_accessor :Role, :Content
+
+        def initialize(role=nil, content=nil)
+          @Role = role
+          @Content = content
+        end
+
+        def deserialize(params)
+          @Role = params['Role']
+          @Content = params['Content']
+        end
+      end
+
       # ModifyAttributeLabel请求参数结构体
       class ModifyAttributeLabelRequest < TencentCloud::Common::AbstractModel
         # @param Labels: 属性标签
@@ -1134,6 +1154,60 @@ module TencentCloud
           end
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
+        end
+      end
+
+      # QueryRewrite请求参数结构体
+      class QueryRewriteRequest < TencentCloud::Common::AbstractModel
+        # @param Messages: 需要改写的多轮历史会话，每轮历史对话需要包含user（问）和assistant（答）成对输入，由于模型字符限制，最多提供4轮对话。针对最后一轮对话进行改写
+        # @type Messages: Array
+        # @param Model: 模型名称
+        # @type Model: String
+
+        attr_accessor :Messages, :Model
+
+        def initialize(messages=nil, model=nil)
+          @Messages = messages
+          @Model = model
+        end
+
+        def deserialize(params)
+          unless params['Messages'].nil?
+            @Messages = []
+            params['Messages'].each do |i|
+              message_tmp = Message.new
+              message_tmp.deserialize(i)
+              @Messages << message_tmp
+            end
+          end
+          @Model = params['Model']
+        end
+      end
+
+      # QueryRewrite返回参数结构体
+      class QueryRewriteResponse < TencentCloud::Common::AbstractModel
+        # @param Content: 改写结果
+        # @type Content: String
+        # @param Usage: 消耗量，返回输入token数，输出token数以及总token数
+        # @type Usage: :class:`Tencentcloud::Lkeap.v20240522.models.Usage`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Content, :Usage, :RequestId
+
+        def initialize(content=nil, usage=nil, requestid=nil)
+          @Content = content
+          @Usage = usage
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Content = params['Content']
+          unless params['Usage'].nil?
+            @Usage = Usage.new
+            @Usage.deserialize(params['Usage'])
+          end
+          @RequestId = params['RequestId']
         end
       end
 

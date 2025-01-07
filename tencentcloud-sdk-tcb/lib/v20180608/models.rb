@@ -2166,7 +2166,6 @@ module TencentCloud
         # @param TranId: 后付费订单号
         # @type TranId: String
         # @param EnvId: 环境ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EnvId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2265,7 +2264,6 @@ module TencentCloud
       # CreateStaticStore返回参数结构体
       class CreateStaticStoreResponse < TencentCloud::Common::AbstractModel
         # @param Result: 创建静态资源结果(succ/fail)
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4729,13 +4727,10 @@ module TencentCloud
       # DescribeDownloadFile返回参数结构体
       class DescribeDownloadFileResponse < TencentCloud::Common::AbstractModel
         # @param FilePath: 文件路径，该字段已废弃
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FilePath: String
         # @param CustomKey: 加密key，用于计算下载加密文件的header。参考SSE-C https://cloud.tencent.com/document/product/436/7728#sse-c
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CustomKey: String
         # @param DownloadUrl: 下载链接
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DownloadUrl: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5008,7 +5003,6 @@ module TencentCloud
       # DescribeEnvFreeQuota返回参数结构体
       class DescribeEnvFreeQuotaResponse < TencentCloud::Common::AbstractModel
         # @param QuotaItems: 免费抵扣配额详情
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type QuotaItems: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5147,7 +5141,6 @@ module TencentCloud
       # DescribeEnvPostpaidDeduct返回参数结构体
       class DescribeEnvPostpaidDeductResponse < TencentCloud::Common::AbstractModel
         # @param PostPaidEnvDeductInfoList: 指标抵扣详情列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PostPaidEnvDeductInfoList: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5615,7 +5608,6 @@ module TencentCloud
       # DescribePostpayFreeQuotas返回参数结构体
       class DescribePostpayFreeQuotasResponse < TencentCloud::Common::AbstractModel
         # @param FreequotaInfoList: 免费量资源信息列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FreequotaInfoList: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5663,7 +5655,6 @@ module TencentCloud
       # DescribePostpayPackageFreeQuotas返回参数结构体
       class DescribePostpayPackageFreeQuotasResponse < TencentCloud::Common::AbstractModel
         # @param PackageFreeQuotaInfos: 免费量资源信息列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PackageFreeQuotaInfos: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5720,6 +5711,10 @@ module TencentCloud
         # <li> TkeMemUsedPkgDay: 当天容器托管内存使用量，单位MB*秒 </li>
         # <li> CodingBuildTimePkgDay: 当天容器托管构建时间使用量，单位毫秒 </li>
         # <li> TkeHttpServiceNatPkgDay: 当天容器托管流量使用量，单位B </li>
+        # <li> CynosdbCcupkg: 当月微信云托管MySQL CCU使用量，单位个  （需要除以1000）</li>
+        # <li> CynosdbStoragepkg: 当月微信云托管MySQL 存储使用量，单位MB  （需要除以1000）</li>
+        # <li> CynosdbCcupkgDay: 当天微信云托管MySQL 存储使用量，单位个 （需要除以1000） </li>
+        # <li> CynosdbStoragepkgDay: 当天微信云托管MySQL 存储使用量，单位MB （需要除以1000） </li>
         # @type MetricName: String
         # @param ResourceID: 资源ID, 目前仅对云函数、容器托管相关的指标有意义。云函数(FunctionInvocationpkg, FunctionGBspkg, FunctionFluxpkg)、容器托管（服务名称）。如果想查询某个云函数的指标则在ResourceId中传入函数名; 如果只想查询整个namespace的指标, 则留空或不传。
         # @type ResourceID: String
@@ -5746,7 +5741,6 @@ module TencentCloud
         # @param Value: 指标的值
         # @type Value: Integer
         # @param SubValue: 指标的附加值信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubValue: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5787,7 +5781,6 @@ module TencentCloud
       # DescribeSmsQuotas返回参数结构体
       class DescribeSmsQuotasResponse < TencentCloud::Common::AbstractModel
         # @param SmsFreeQuotaList: 短信免费量信息列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SmsFreeQuotaList: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5839,7 +5832,6 @@ module TencentCloud
       # DescribeSpecialCostItems返回参数结构体
       class DescribeSpecialCostItemsResponse < TencentCloud::Common::AbstractModel
         # @param SpecialCostItems: 1分钱抵扣详情
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SpecialCostItems: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6009,7 +6001,6 @@ module TencentCloud
         # @param GroupTimeLeft: 拼团剩余时间，单位为s.1元钱裂变需求中即为time(成团时间)+24H-Now()，过期后为0，即返回必为自然数
         # @type GroupTimeLeft: Integer
         # @param NickNameList: 昵称列表,通过","拼接， 1元钱裂变活动中与Notes中uin一一对应
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NickNameList: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6890,7 +6881,9 @@ module TencentCloud
         # @type CodeUri: String
         # @param UploadUrl: 上传文件的临时地址，含签名
         # @type UploadUrl: String
-        # @param CustomKey: 自定义密钥。如果为空，则表示不需要加密
+        # @param CustomKey: 自定义密钥。如果为空，则表示不需要加密。
+        # 参考cos预签名url上传https://cloud.tencent.com/document/product/436/36121
+        # 上传的时候要按照 SSE-C 的方式设置header：https://cloud.tencent.com/document/product/436/7728
         # @type CustomKey: String
         # @param MaxSize: 文件大小限制，单位M，客户端上传前需要主动检查文件大小，超过限制的文件会被删除。
         # @type MaxSize: Integer

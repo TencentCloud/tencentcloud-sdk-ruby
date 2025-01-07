@@ -2024,7 +2024,7 @@ module TencentCloud
       class DescribeUserSAMLConfigResponse < TencentCloud::Common::AbstractModel
         # @param SAMLMetadata: SAML元数据文档
         # @type SAMLMetadata: String
-        # @param Status: 状态：0:未设置，1:已开启，2:已禁用
+        # @param Status: 状态：0:未设置，11:已开启，2:已禁用
         # @type Status: Integer
         # @param AuxiliaryDomain: 辅助域名
         # @type AuxiliaryDomain: String
@@ -2223,8 +2223,8 @@ module TencentCloud
 
         attr_accessor :Policies, :Roles, :Idps, :User, :Group, :Member, :IdentityProviders, :RequestId
         extend Gem::Deprecate
-        deprecate :Idps, :none, 2024, 12
-        deprecate :Idps=, :none, 2024, 12
+        deprecate :Idps, :none, 2025, 1
+        deprecate :Idps=, :none, 2025, 1
 
         def initialize(policies=nil, roles=nil, idps=nil, user=nil, group=nil, member=nil, identityproviders=nil, requestid=nil)
           @Policies = policies

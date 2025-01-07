@@ -89,13 +89,13 @@ module TencentCloud
         # @type SecondaryNum: Integer
         # @param EngineVersion: MongoDB引擎版本，值包括MONGO_3_WT 、MONGO_3_ROCKS和MONGO_36_WT
         # @type EngineVersion: String
-        # @param Machine: 实例类型，GIO：高IO版；TGIO：高IO万兆
+        # @param Machine: 实例类型，HIO10G：高IO万兆。
         # @type Machine: String
         # @param GoodsNum: 实例数量，默认值为1, 最小值1，最大值为10
         # @type GoodsNum: Integer
         # @param Zone: 可用区信息，格式如：ap-guangzhou-2
         # @type Zone: String
-        # @param InstanceRole: 实例角色，支持值包括：MASTER-表示主实例，DR-表示灾备实例，RO-表示只读实例
+        # @param InstanceRole: 实例角色，默认传MASTER即可
         # @type InstanceRole: String
         # @param InstanceType: 实例类型，REPLSET-副本集，SHARD-分片集群
         # @type InstanceType: String
@@ -109,10 +109,14 @@ module TencentCloud
         # @type ProjectId: Integer
         # @param SecurityGroup: 安全组参数
         # @type SecurityGroup: Array
+        # @param UniqVpcId: 私有网络ID，如果不传则默认选择基础网络
+        # @type UniqVpcId: String
+        # @param UniqSubnetId: 私有网络下的子网ID，如果设置了 VpcId，则 SubnetId必填
+        # @type UniqSubnetId: String
 
-        attr_accessor :Memory, :Volume, :ReplicateSetNum, :SecondaryNum, :EngineVersion, :Machine, :GoodsNum, :Zone, :InstanceRole, :InstanceType, :Encrypt, :VpcId, :SubnetId, :ProjectId, :SecurityGroup
+        attr_accessor :Memory, :Volume, :ReplicateSetNum, :SecondaryNum, :EngineVersion, :Machine, :GoodsNum, :Zone, :InstanceRole, :InstanceType, :Encrypt, :VpcId, :SubnetId, :ProjectId, :SecurityGroup, :UniqVpcId, :UniqSubnetId
 
-        def initialize(memory=nil, volume=nil, replicatesetnum=nil, secondarynum=nil, engineversion=nil, machine=nil, goodsnum=nil, zone=nil, instancerole=nil, instancetype=nil, encrypt=nil, vpcid=nil, subnetid=nil, projectid=nil, securitygroup=nil)
+        def initialize(memory=nil, volume=nil, replicatesetnum=nil, secondarynum=nil, engineversion=nil, machine=nil, goodsnum=nil, zone=nil, instancerole=nil, instancetype=nil, encrypt=nil, vpcid=nil, subnetid=nil, projectid=nil, securitygroup=nil, uniqvpcid=nil, uniqsubnetid=nil)
           @Memory = memory
           @Volume = volume
           @ReplicateSetNum = replicatesetnum
@@ -128,6 +132,8 @@ module TencentCloud
           @SubnetId = subnetid
           @ProjectId = projectid
           @SecurityGroup = securitygroup
+          @UniqVpcId = uniqvpcid
+          @UniqSubnetId = uniqsubnetid
         end
 
         def deserialize(params)
@@ -146,6 +152,8 @@ module TencentCloud
           @SubnetId = params['SubnetId']
           @ProjectId = params['ProjectId']
           @SecurityGroup = params['SecurityGroup']
+          @UniqVpcId = params['UniqVpcId']
+          @UniqSubnetId = params['UniqSubnetId']
         end
       end
 
@@ -284,10 +292,8 @@ module TencentCloud
       # DescribeClientConnections返回参数结构体
       class DescribeClientConnectionsResponse < TencentCloud::Common::AbstractModel
         # @param Clients: 客户端连接信息，包括客户端IP和对应IP的连接数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Clients: Array
         # @param TotalCount: 连接数总结
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -587,19 +593,14 @@ module TencentCloud
         # @param ReplicaSets: 分片信息
         # @type ReplicaSets: Array
         # @param ReadonlyInstances: 只读实例信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReadonlyInstances: Array
         # @param StandbyInstances: 灾备实例信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StandbyInstances: Array
         # @param CloneInstances: 临时实例信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CloneInstances: Array
         # @param RelatedInstance: 关联实例信息，对于正式实例，该字段表示它的临时实例信息；对于临时实例，则表示它的正式实例信息;如果为只读/灾备实例,则表示他的主实例信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RelatedInstance: :class:`Tencentcloud::Mongodb.v20180408.models.MongoDBInstance`
         # @param Tags: 实例标签信息集合
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
         # @param InstanceVer: 实例标记
         # @type InstanceVer: Integer
@@ -903,46 +904,67 @@ module TencentCloud
       # mongodb售卖规格
       class SpecItem < TencentCloud::Common::AbstractModel
         # @param SpecCode: 规格信息标识
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SpecCode: String
         # @param Status: 规格有效标志，取值：0-停止售卖，1-开放售卖
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
         # @param MachineType: 机器类型，取值：0-HIO，4-HIO10G
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MachineType: String
         # @param Cpu: cpu核心数
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Cpu: Integer
         # @param Memory: 内存规格，单位为MB
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Memory: Integer
         # @param DefaultStorage: 默认磁盘规格，单位MB
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DefaultStorage: Integer
         # @param MaxStorage: 最大磁盘规格，单位MB
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaxStorage: Integer
         # @param MinStorage: 最小磁盘规格，单位MB
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MinStorage: Integer
         # @param Qps: 可承载qps信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Qps: Integer
         # @param Conns: 连接数限制
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Conns: Integer
         # @param MongoVersionCode: 实例mongodb版本信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MongoVersionCode: String
         # @param MongoVersionValue: 实例mongodb版本号
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MongoVersionValue: Integer
         # @param Version: 实例mongodb版本号（短）
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Version: String
         # @param EngineName: 存储引擎
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EngineName: String
         # @param ClusterType: 集群类型，取值：1-分片集群，0-副本集集群
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterType: Integer
         # @param MinNodeNum: 最小副本集从节点数
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MinNodeNum: Integer
         # @param MaxNodeNum: 最大副本集从节点数
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaxNodeNum: Integer
         # @param MinReplicateSetNum: 最小分片数
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MinReplicateSetNum: Integer
         # @param MaxReplicateSetNum: 最大分片数
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaxReplicateSetNum: Integer
         # @param MinReplicateSetNodeNum: 最小分片从节点数
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MinReplicateSetNodeNum: Integer
         # @param MaxReplicateSetNodeNum: 最大分片从节点数
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaxReplicateSetNodeNum: Integer
 
         attr_accessor :SpecCode, :Status, :MachineType, :Cpu, :Memory, :DefaultStorage, :MaxStorage, :MinStorage, :Qps, :Conns, :MongoVersionCode, :MongoVersionValue, :Version, :EngineName, :ClusterType, :MinNodeNum, :MaxNodeNum, :MinReplicateSetNum, :MaxReplicateSetNum, :MinReplicateSetNodeNum, :MaxReplicateSetNodeNum

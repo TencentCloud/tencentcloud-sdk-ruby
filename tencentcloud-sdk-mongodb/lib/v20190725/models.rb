@@ -124,12 +124,17 @@ module TencentCloud
         # @param BackupMethod: 备份文件备份类型，0-逻辑备份，1-物理备份
         # @type BackupMethod: Integer
         # @param BackupDesc: 发起备份时指定的备注信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BackupDesc: String
+        # @param Region: 地区信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Region: String
+        # @param Bucket: Bucket信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Bucket: String
 
-        attr_accessor :CreateTime, :BackupName, :ReplicaSetId, :BackupSize, :Status, :Percent, :TimeSpend, :Url, :BackupMethod, :BackupDesc
+        attr_accessor :CreateTime, :BackupName, :ReplicaSetId, :BackupSize, :Status, :Percent, :TimeSpend, :Url, :BackupMethod, :BackupDesc, :Region, :Bucket
 
-        def initialize(createtime=nil, backupname=nil, replicasetid=nil, backupsize=nil, status=nil, percent=nil, timespend=nil, url=nil, backupmethod=nil, backupdesc=nil)
+        def initialize(createtime=nil, backupname=nil, replicasetid=nil, backupsize=nil, status=nil, percent=nil, timespend=nil, url=nil, backupmethod=nil, backupdesc=nil, region=nil, bucket=nil)
           @CreateTime = createtime
           @BackupName = backupname
           @ReplicaSetId = replicasetid
@@ -140,6 +145,8 @@ module TencentCloud
           @Url = url
           @BackupMethod = backupmethod
           @BackupDesc = backupdesc
+          @Region = region
+          @Bucket = bucket
         end
 
         def deserialize(params)
@@ -153,6 +160,8 @@ module TencentCloud
           @Url = params['Url']
           @BackupMethod = params['BackupMethod']
           @BackupDesc = params['BackupDesc']
+          @Region = params['Region']
+          @Bucket = params['Bucket']
         end
       end
 
@@ -185,16 +194,12 @@ module TencentCloud
         # @param BackupName: 备份名称
         # @type BackupName: String
         # @param BackupDesc: 备份备注
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BackupDesc: String
         # @param BackupSize: 备份文件大小，单位KB
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BackupSize: Integer
         # @param StartTime: 备份开始时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StartTime: String
         # @param EndTime: 备份结束时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EndTime: String
         # @param Status: 备份状态，1-备份中，2-备份成功
         # @type Status: Integer
@@ -205,7 +210,6 @@ module TencentCloud
         # @param DeleteTime: 备份删除时间
         # @type DeleteTime: String
         # @param BackupRegion: 异地备份地域
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BackupRegion: String
 
         attr_accessor :InstanceId, :BackupType, :BackupName, :BackupDesc, :BackupSize, :StartTime, :EndTime, :Status, :BackupMethod, :BackId, :DeleteTime, :BackupRegion
@@ -948,7 +952,6 @@ module TencentCloud
       # 数据库实例价格
       class DBInstancePrice < TencentCloud::Common::AbstractModel
         # @param UnitPrice: 单价
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UnitPrice: Float
         # @param OriginalPrice: 原价
         # @type OriginalPrice: Float
@@ -1523,7 +1526,6 @@ module TencentCloud
       # DescribeDBInstanceNodeProperty返回参数结构体
       class DescribeDBInstanceNodePropertyResponse < TencentCloud::Common::AbstractModel
         # @param Mongos: Mongos节点属性。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Mongos: Array
         # @param ReplicateSets: 副本集节点信息。
         # @type ReplicateSets: Array
@@ -1582,28 +1584,20 @@ module TencentCloud
       # DescribeDBInstanceParamTplDetail返回参数结构体
       class DescribeDBInstanceParamTplDetailResponse < TencentCloud::Common::AbstractModel
         # @param InstanceEnumParams: 枚举类参数详情列表。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceEnumParams: Array
         # @param InstanceIntegerParams: 整形参数详情列表。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceIntegerParams: Array
         # @param InstanceTextParams: 文本参数详情列表。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceTextParams: Array
         # @param InstanceMultiParams: 多值参数详情列表。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceMultiParams: Array
         # @param TotalCount: 参数总个数。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
         # @param MongoVersion: 模板适配实例版本。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MongoVersion: String
         # @param ClusterType: 模板适配集群类型，副本集或分片。。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterType: String
         # @param TplName: 参数模板名称。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TplName: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1694,10 +1688,8 @@ module TencentCloud
       # DescribeDBInstanceParamTpl返回参数结构体
       class DescribeDBInstanceParamTplResponse < TencentCloud::Common::AbstractModel
         # @param ParamTpls: 参数模板列表信息。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ParamTpls: Array
         # @param TotalCount: 参数模板总数。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2075,7 +2067,6 @@ module TencentCloud
         # @param Count: 慢日志总数
         # @type Count: Integer
         # @param SlowLogs: 慢日志详情
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SlowLogs: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2758,31 +2749,22 @@ module TencentCloud
         # @param RealInstanceId: 实例对应的物理实例id，回档并替换过的实例有不同的InstanceId和RealInstanceId，从barad获取监控数据等场景下需要用物理id获取
         # @type RealInstanceId: String
         # @param ZoneList: 实例当前可用区信息。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ZoneList: Array
         # @param MongosNodeNum: mongos节点个数。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MongosNodeNum: Integer
         # @param MongosMemory: mongos节点内存。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MongosMemory: Integer
         # @param MongosCpuNum: mongos节点CPU核数。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MongosCpuNum: Integer
         # @param ConfigServerNodeNum: Config Server节点个数。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ConfigServerNodeNum: Integer
         # @param ConfigServerMemory: Config Server节点内存。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ConfigServerMemory: Integer
         # @param ConfigServerVolume: Config Server节点磁盘大小。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ConfigServerVolume: Integer
         # @param ConfigServerCpuNum: Config Server节点CPU核数。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ConfigServerCpuNum: Integer
         # @param ReadonlyNodeNum: readonly节点个数。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReadonlyNodeNum: Integer
 
         attr_accessor :InstanceId, :InstanceName, :PayMode, :ProjectId, :ClusterType, :Region, :Zone, :NetType, :VpcId, :SubnetId, :Status, :Vip, :Vport, :CreateTime, :DeadLine, :MongoVersion, :Memory, :Volume, :CpuNum, :MachineType, :SecondaryNum, :ReplicationSetNum, :AutoRenewFlag, :UsedVolume, :MaintenanceStart, :MaintenanceEnd, :ReplicaSets, :ReadonlyInstances, :StandbyInstances, :CloneInstances, :RelatedInstance, :Tags, :InstanceVer, :ClusterVer, :Protocol, :InstanceType, :InstanceStatusDesc, :RealInstanceId, :ZoneList, :MongosNodeNum, :MongosMemory, :MongosCpuNum, :ConfigServerNodeNum, :ConfigServerMemory, :ConfigServerVolume, :ConfigServerCpuNum, :ReadonlyNodeNum
@@ -3163,22 +3145,16 @@ module TencentCloud
       # KMS密钥信息
       class KMSInfoDetail < TencentCloud::Common::AbstractModel
         # @param KeyId: 主密钥 ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type KeyId: String
         # @param KeyName: 主密钥名称。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type KeyName: String
         # @param CreateTime: 实例与密钥绑定时间。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
         # @param Status: 密钥状态。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: String
         # @param KeyUsage: 密钥用途。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type KeyUsage: String
         # @param KeyOrigin: 密钥来源。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type KeyOrigin: String
         # @param KmsRegion: kms所在地域。
         # @type KmsRegion: String
@@ -3600,45 +3576,37 @@ module TencentCloud
       # 节点属性
       class NodeProperty < TencentCloud::Common::AbstractModel
         # @param Zone: 节点所在的可用区。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Zone: String
         # @param NodeName: 节点名称。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NodeName: String
         # @param Address: 节点访问地址。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Address: String
+        # @param WanServiceAddress: 节点公网访问地址(IP或域名)。
+        # @type WanServiceAddress: String
         # @param Role: 角色。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Role: String
         # @param Hidden: 是否为Hidden节点
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Hidden: Boolean
         # @param Status: 节点状态，包括：ORMAL/STARTUP/RECOVERING/STARTUP2/UNKNOWN/DOWN/ROLLBACK/REMOVED等。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: String
         # @param SlaveDelay: 主从延迟，单位秒。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SlaveDelay: Integer
         # @param Priority: 节点优先级。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Priority: Integer
         # @param Votes: 节点投票权。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Votes: Integer
         # @param Tags: 节点标签。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
         # @param ReplicateSetId: 副本集Id。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReplicateSetId: String
 
-        attr_accessor :Zone, :NodeName, :Address, :Role, :Hidden, :Status, :SlaveDelay, :Priority, :Votes, :Tags, :ReplicateSetId
+        attr_accessor :Zone, :NodeName, :Address, :WanServiceAddress, :Role, :Hidden, :Status, :SlaveDelay, :Priority, :Votes, :Tags, :ReplicateSetId
 
-        def initialize(zone=nil, nodename=nil, address=nil, role=nil, hidden=nil, status=nil, slavedelay=nil, priority=nil, votes=nil, tags=nil, replicatesetid=nil)
+        def initialize(zone=nil, nodename=nil, address=nil, wanserviceaddress=nil, role=nil, hidden=nil, status=nil, slavedelay=nil, priority=nil, votes=nil, tags=nil, replicatesetid=nil)
           @Zone = zone
           @NodeName = nodename
           @Address = address
+          @WanServiceAddress = wanserviceaddress
           @Role = role
           @Hidden = hidden
           @Status = status
@@ -3653,6 +3621,7 @@ module TencentCloud
           @Zone = params['Zone']
           @NodeName = params['NodeName']
           @Address = params['Address']
+          @WanServiceAddress = params['WanServiceAddress']
           @Role = params['Role']
           @Hidden = params['Hidden']
           @Status = params['Status']
@@ -3674,10 +3643,8 @@ module TencentCloud
       # 节点Tag
       class NodeTag < TencentCloud::Common::AbstractModel
         # @param TagKey: 节点Tag key
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TagKey: String
         # @param TagValue: 节点Tag Value
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TagValue: String
 
         attr_accessor :TagKey, :TagValue
@@ -3935,7 +3902,6 @@ module TencentCloud
       # 副本集信息
       class ReplicateSetInfo < TencentCloud::Common::AbstractModel
         # @param Nodes: 节点属性
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Nodes: Array
 
         attr_accessor :Nodes

@@ -6397,8 +6397,8 @@ module TencentCloud
 
         attr_accessor :ClusterId, :EnvironmentId, :TopicName, :MsgId, :PulsarMsgId, :QueryDlqMsg, :QueryDeadLetterMessage, :Offset, :Limit, :FilterTrackGroup
         extend Gem::Deprecate
-        deprecate :QueryDlqMsg, :none, 2024, 12
-        deprecate :QueryDlqMsg=, :none, 2024, 12
+        deprecate :QueryDlqMsg, :none, 2025, 1
+        deprecate :QueryDlqMsg=, :none, 2025, 1
 
         def initialize(clusterid=nil, environmentid=nil, topicname=nil, msgid=nil, pulsarmsgid=nil, querydlqmsg=nil, querydeadlettermessage=nil, offset=nil, limit=nil, filtertrackgroup=nil)
           @ClusterId = clusterid
@@ -6503,8 +6503,8 @@ module TencentCloud
 
         attr_accessor :ClusterId, :EnvironmentId, :TopicName, :MsgId, :GroupName, :QueryDLQMsg, :QueryDeadLetterMessage
         extend Gem::Deprecate
-        deprecate :QueryDLQMsg, :none, 2024, 12
-        deprecate :QueryDLQMsg=, :none, 2024, 12
+        deprecate :QueryDLQMsg, :none, 2025, 1
+        deprecate :QueryDLQMsg=, :none, 2025, 1
 
         def initialize(clusterid=nil, environmentid=nil, topicname=nil, msgid=nil, groupname=nil, querydlqmsg=nil, querydeadlettermessage=nil)
           @ClusterId = clusterid
@@ -7282,8 +7282,8 @@ module TencentCloud
 
         attr_accessor :ClusterId, :EnvironmentId, :TopicName, :StartTime, :EndTime, :MsgId, :MsgKey, :Offset, :Limit, :TaskRequestId, :QueryDlqMsg, :NumOfLatestMsg, :Tag, :QueryDeadLetterMessage
         extend Gem::Deprecate
-        deprecate :QueryDlqMsg, :none, 2024, 12
-        deprecate :QueryDlqMsg=, :none, 2024, 12
+        deprecate :QueryDlqMsg, :none, 2025, 1
+        deprecate :QueryDlqMsg=, :none, 2025, 1
 
         def initialize(clusterid=nil, environmentid=nil, topicname=nil, starttime=nil, endtime=nil, msgid=nil, msgkey=nil, offset=nil, limit=nil, taskrequestid=nil, querydlqmsg=nil, numoflatestmsg=nil, tag=nil, querydeadlettermessage=nil)
           @ClusterId = clusterid
@@ -8252,6 +8252,65 @@ module TencentCloud
           @ConsumerHasBacklog = params['ConsumerHasBacklog']
           @ConsumerHasExpired = params['ConsumerHasExpired']
           @SubscriptionNames = params['SubscriptionNames']
+        end
+      end
+
+      # GetTopicList请求参数结构体
+      class GetTopicListRequest < TencentCloud::Common::AbstractModel
+        # @param EnvironmentId: 环境（命名空间）名称。
+        # @type EnvironmentId: String
+        # @param ClusterId: Pulsar 集群的ID
+        # @type ClusterId: String
+        # @param Offset: 起始下标，不填默认为0。
+        # @type Offset: Integer
+        # @param Limit: 返回数量，不填则默认为10，最大值为20。
+        # @type Limit: Integer
+
+        attr_accessor :EnvironmentId, :ClusterId, :Offset, :Limit
+
+        def initialize(environmentid=nil, clusterid=nil, offset=nil, limit=nil)
+          @EnvironmentId = environmentid
+          @ClusterId = clusterid
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @EnvironmentId = params['EnvironmentId']
+          @ClusterId = params['ClusterId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # GetTopicList返回参数结构体
+      class GetTopicListResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 主题数量。
+        # @type TotalCount: Integer
+        # @param TopicList: 主题列表
+        # @type TopicList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :TopicList, :RequestId
+
+        def initialize(totalcount=nil, topiclist=nil, requestid=nil)
+          @TotalCount = totalcount
+          @TopicList = topiclist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['TopicList'].nil?
+            @TopicList = []
+            params['TopicList'].each do |i|
+              topic_simplification_tmp = Topic_Simplification.new
+              topic_simplification_tmp.deserialize(i)
+              @TopicList << topic_simplification_tmp
+            end
+          end
+          @RequestId = params['RequestId']
         end
       end
 
@@ -11614,8 +11673,8 @@ module TencentCloud
 
         attr_accessor :MaxTpsPerNamespace, :MaxNamespaceNum, :UsedNamespaceNum, :MaxTopicNum, :UsedTopicNum, :MaxGroupNum, :UsedGroupNum, :MaxRetentionTime, :MaxLatencyTime, :MaxQueuesPerTopic, :TopicDistribution
         extend Gem::Deprecate
-        deprecate :MaxTpsPerNamespace, :none, 2024, 12
-        deprecate :MaxTpsPerNamespace=, :none, 2024, 12
+        deprecate :MaxTpsPerNamespace, :none, 2025, 1
+        deprecate :MaxTpsPerNamespace=, :none, 2025, 1
 
         def initialize(maxtpspernamespace=nil, maxnamespacenum=nil, usednamespacenum=nil, maxtopicnum=nil, usedtopicnum=nil, maxgroupnum=nil, usedgroupnum=nil, maxretentiontime=nil, maxlatencytime=nil, maxqueuespertopic=nil, topicdistribution=nil)
           @MaxTpsPerNamespace = maxtpspernamespace
@@ -13587,6 +13646,31 @@ module TencentCloud
           @MaxOffset = params['MaxOffset']
           @MessageCount = params['MessageCount']
           @LastUpdateTimestamp = params['LastUpdateTimestamp']
+        end
+      end
+
+      # 主题实例
+      class Topic_Simplification < TencentCloud::Common::AbstractModel
+        # @param TopicName: 主题名称。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TopicName: String
+        # @param PulsarTopicType: 0: 非持久非分区
+        # 1: 非持久分区
+        # 2: 持久非分区
+        # 3: 持久分区
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PulsarTopicType: Integer
+
+        attr_accessor :TopicName, :PulsarTopicType
+
+        def initialize(topicname=nil, pulsartopictype=nil)
+          @TopicName = topicname
+          @PulsarTopicType = pulsartopictype
+        end
+
+        def deserialize(params)
+          @TopicName = params['TopicName']
+          @PulsarTopicType = params['PulsarTopicType']
         end
       end
 

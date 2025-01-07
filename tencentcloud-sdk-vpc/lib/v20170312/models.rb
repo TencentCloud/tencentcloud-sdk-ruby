@@ -587,9 +587,9 @@ module TencentCloud
       class AddressTemplateItem < TencentCloud::Common::AbstractModel
         # @param AddressTemplateId: IP地址模板ID
         # @type AddressTemplateId: String
-        # @param AddressTemplateName: IP模板名称
+        # @param AddressTemplateName: IP模板名称。
         # @type AddressTemplateName: String
-        # @param From: 废弃字段
+        # @param From: 废弃字段。
         # @type From: String
         # @param To: 废弃字段
         # @type To: String
@@ -17392,27 +17392,27 @@ module TencentCloud
 
       # HaVip绑定的子机/网卡（用于限制HaVip飘移的范围，并不是真正的飘移动作）。
       class HaVipAssociation < TencentCloud::Common::AbstractModel
-        # @param HaVipId: HaVip实例唯一ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type HaVipId: String
         # @param InstanceId: HaVip绑定的子机或网卡唯一ID。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceId: String
+        # @param HaVipId: HaVip实例唯一ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HaVipId: String
         # @param InstanceType: HaVip绑定的类型。取值:CVM, ENI。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceType: String
 
-        attr_accessor :HaVipId, :InstanceId, :InstanceType
+        attr_accessor :InstanceId, :HaVipId, :InstanceType
 
-        def initialize(havipid=nil, instanceid=nil, instancetype=nil)
-          @HaVipId = havipid
+        def initialize(instanceid=nil, havipid=nil, instancetype=nil)
           @InstanceId = instanceid
+          @HaVipId = havipid
           @InstanceType = instancetype
         end
 
         def deserialize(params)
-          @HaVipId = params['HaVipId']
           @InstanceId = params['InstanceId']
+          @HaVipId = params['HaVipId']
           @InstanceType = params['InstanceType']
         end
       end
@@ -22454,6 +22454,14 @@ module TencentCloud
         # <li>`DETACHING`：解绑中</li>
         # <li>`DELETING`：删除中</li>
         # @type State: String
+        # @param NetworkInterfaceState: 弹性网卡状态：
+        # <li>`PENDING`：创建中</li>
+        # <li>`AVAILABLE`：可用的</li>
+        # <li>`ATTACHING`：绑定中</li>
+        # <li>`DETACHING`：解绑中</li>
+        # <li>`DELETING`：删除中</li>
+        # <li>`INUSE`：已绑定</li>
+        # @type NetworkInterfaceState: String
         # @param PrivateIpAddressSet: 内网IP信息。
         # @type PrivateIpAddressSet: Array
         # @param Attachment: 绑定的云服务器对象。
@@ -22489,9 +22497,9 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type QosLevel: String
 
-        attr_accessor :NetworkInterfaceId, :NetworkInterfaceName, :NetworkInterfaceDescription, :SubnetId, :VpcId, :GroupSet, :Primary, :MacAddress, :State, :PrivateIpAddressSet, :Attachment, :Zone, :CreatedTime, :Ipv6AddressSet, :TagSet, :EniType, :Business, :CdcId, :AttachType, :ResourceId, :QosLevel
+        attr_accessor :NetworkInterfaceId, :NetworkInterfaceName, :NetworkInterfaceDescription, :SubnetId, :VpcId, :GroupSet, :Primary, :MacAddress, :State, :NetworkInterfaceState, :PrivateIpAddressSet, :Attachment, :Zone, :CreatedTime, :Ipv6AddressSet, :TagSet, :EniType, :Business, :CdcId, :AttachType, :ResourceId, :QosLevel
 
-        def initialize(networkinterfaceid=nil, networkinterfacename=nil, networkinterfacedescription=nil, subnetid=nil, vpcid=nil, groupset=nil, primary=nil, macaddress=nil, state=nil, privateipaddressset=nil, attachment=nil, zone=nil, createdtime=nil, ipv6addressset=nil, tagset=nil, enitype=nil, business=nil, cdcid=nil, attachtype=nil, resourceid=nil, qoslevel=nil)
+        def initialize(networkinterfaceid=nil, networkinterfacename=nil, networkinterfacedescription=nil, subnetid=nil, vpcid=nil, groupset=nil, primary=nil, macaddress=nil, state=nil, networkinterfacestate=nil, privateipaddressset=nil, attachment=nil, zone=nil, createdtime=nil, ipv6addressset=nil, tagset=nil, enitype=nil, business=nil, cdcid=nil, attachtype=nil, resourceid=nil, qoslevel=nil)
           @NetworkInterfaceId = networkinterfaceid
           @NetworkInterfaceName = networkinterfacename
           @NetworkInterfaceDescription = networkinterfacedescription
@@ -22501,6 +22509,7 @@ module TencentCloud
           @Primary = primary
           @MacAddress = macaddress
           @State = state
+          @NetworkInterfaceState = networkinterfacestate
           @PrivateIpAddressSet = privateipaddressset
           @Attachment = attachment
           @Zone = zone
@@ -22525,6 +22534,7 @@ module TencentCloud
           @Primary = params['Primary']
           @MacAddress = params['MacAddress']
           @State = params['State']
+          @NetworkInterfaceState = params['NetworkInterfaceState']
           unless params['PrivateIpAddressSet'].nil?
             @PrivateIpAddressSet = []
             params['PrivateIpAddressSet'].each do |i|
@@ -25259,7 +25269,6 @@ module TencentCloud
         # @param Service: 协议端口。
         # @type Service: String
         # @param Description: 备注。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
 
         attr_accessor :Service, :Description

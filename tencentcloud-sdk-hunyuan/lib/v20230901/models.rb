@@ -453,19 +453,19 @@ module TencentCloud
         end
       end
 
-      # 可以传入多种类型的内容，如图片或文本。当前只支持传入单张图片，传入多张图片时，以第一个图片为准。
+      # 可以传入多种类型的内容，如图片或文本。
       class Content < TencentCloud::Common::AbstractModel
         # @param Type: 内容类型
         # 注意：
-        # 当前只支持传入单张图片，传入多张图片时，以第一个图片为准。
+        # 需包含至少一个 Type 为"text"的参数及至少一个 Type 为"image_url"的参数。
         # 参数值可选范围：[text", "image_url"]
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: String
-        # @param Text: 当 Type 为 text 时使用，表示具体的文本内容
+        # @param Text: 当 Type 为 text 时使用，表示具体的文本内容。当 Type 为 image_url 时，当前字段内容需保持为空，传递内容不生效。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Text: String
         # @param ImageUrl: 图片的url，当 Type 为 image_url 时使用，表示具体的图片内容
-        # 如"https://example.com/1.png" 或 图片的base64（注意 "data:image/jpeg;base64," 为必要部分）："data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAA......"
+        # 如"https://example.com/1.png" 或 图片的base64（注意 "data:image/jpeg;base64," 为必要部分）："data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAA......"。当 Type 为 text 时，当前字段内容需保持为空，传递内容不生效。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ImageUrl: :class:`Tencentcloud::Hunyuan.v20230901.models.ImageUrl`
 
