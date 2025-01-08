@@ -144,15 +144,19 @@ module TencentCloud
         # @type Tracks: Array
         # @param PlaybackPolicy: 播放策略参数。
         # @type PlaybackPolicy: :class:`Tencentcloud::Drm.v20181115.models.PlaybackPolicy`
+        # @param WidevineSecurityLevel: Widevine安全级别，接口取值[L1, L2, L3]。
+        # 安全级别定义参考Widevine安全级别定义。
+        # @type WidevineSecurityLevel: String
 
-        attr_accessor :DrmType, :LicenseRequest, :ContentType, :Tracks, :PlaybackPolicy
+        attr_accessor :DrmType, :LicenseRequest, :ContentType, :Tracks, :PlaybackPolicy, :WidevineSecurityLevel
 
-        def initialize(drmtype=nil, licenserequest=nil, contenttype=nil, tracks=nil, playbackpolicy=nil)
+        def initialize(drmtype=nil, licenserequest=nil, contenttype=nil, tracks=nil, playbackpolicy=nil, widevinesecuritylevel=nil)
           @DrmType = drmtype
           @LicenseRequest = licenserequest
           @ContentType = contenttype
           @Tracks = tracks
           @PlaybackPolicy = playbackpolicy
+          @WidevineSecurityLevel = widevinesecuritylevel
         end
 
         def deserialize(params)
@@ -164,6 +168,7 @@ module TencentCloud
             @PlaybackPolicy = PlaybackPolicy.new
             @PlaybackPolicy.deserialize(params['PlaybackPolicy'])
           end
+          @WidevineSecurityLevel = params['WidevineSecurityLevel']
         end
       end
 

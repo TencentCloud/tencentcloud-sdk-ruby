@@ -904,67 +904,46 @@ module TencentCloud
       # mongodb售卖规格
       class SpecItem < TencentCloud::Common::AbstractModel
         # @param SpecCode: 规格信息标识
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SpecCode: String
         # @param Status: 规格有效标志，取值：0-停止售卖，1-开放售卖
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
         # @param MachineType: 机器类型，取值：0-HIO，4-HIO10G
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MachineType: String
         # @param Cpu: cpu核心数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Cpu: Integer
         # @param Memory: 内存规格，单位为MB
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Memory: Integer
         # @param DefaultStorage: 默认磁盘规格，单位MB
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DefaultStorage: Integer
         # @param MaxStorage: 最大磁盘规格，单位MB
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaxStorage: Integer
         # @param MinStorage: 最小磁盘规格，单位MB
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MinStorage: Integer
         # @param Qps: 可承载qps信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Qps: Integer
         # @param Conns: 连接数限制
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Conns: Integer
         # @param MongoVersionCode: 实例mongodb版本信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MongoVersionCode: String
         # @param MongoVersionValue: 实例mongodb版本号
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MongoVersionValue: Integer
         # @param Version: 实例mongodb版本号（短）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Version: String
         # @param EngineName: 存储引擎
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EngineName: String
         # @param ClusterType: 集群类型，取值：1-分片集群，0-副本集集群
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterType: Integer
         # @param MinNodeNum: 最小副本集从节点数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MinNodeNum: Integer
         # @param MaxNodeNum: 最大副本集从节点数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaxNodeNum: Integer
         # @param MinReplicateSetNum: 最小分片数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MinReplicateSetNum: Integer
         # @param MaxReplicateSetNum: 最大分片数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaxReplicateSetNum: Integer
         # @param MinReplicateSetNodeNum: 最小分片从节点数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MinReplicateSetNodeNum: Integer
         # @param MaxReplicateSetNodeNum: 最大分片从节点数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaxReplicateSetNodeNum: Integer
 
         attr_accessor :SpecCode, :Status, :MachineType, :Cpu, :Memory, :DefaultStorage, :MaxStorage, :MinStorage, :Qps, :Conns, :MongoVersionCode, :MongoVersionValue, :Version, :EngineName, :ClusterType, :MinNodeNum, :MaxNodeNum, :MinReplicateSetNum, :MaxReplicateSetNum, :MinReplicateSetNodeNum, :MaxReplicateSetNodeNum
@@ -1107,7 +1086,7 @@ module TencentCloud
 
       # UpgradeDBInstanceHour请求参数结构体
       class UpgradeDBInstanceHourRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID，格式如：cmgo-p8vnipr5
+        # @param InstanceId: 实例ID，格式如：cmgo-iga0****
         # @type InstanceId: String
         # @param Memory: 升级后的内存大小，单位：GB
         # @type Memory: Integer

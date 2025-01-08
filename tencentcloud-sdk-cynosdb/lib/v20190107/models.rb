@@ -243,8 +243,8 @@ module TencentCloud
 
         attr_accessor :ClusterId, :Cpu, :Memory, :ReadOnlyCount, :DeviceType, :InstanceGrpId, :VpcId, :SubnetId, :Port, :InstanceName, :AutoVoucher, :DbType, :OrderSource, :DealMode, :ParamTemplateId, :InstanceParams, :SecurityGroupIds, :UpgradeProxy
         extend Gem::Deprecate
-        deprecate :InstanceGrpId, :none, 2024, 12
-        deprecate :InstanceGrpId=, :none, 2024, 12
+        deprecate :InstanceGrpId, :none, 2025, 1
+        deprecate :InstanceGrpId=, :none, 2025, 1
 
         def initialize(clusterid=nil, cpu=nil, memory=nil, readonlycount=nil, devicetype=nil, instancegrpid=nil, vpcid=nil, subnetid=nil, port=nil, instancename=nil, autovoucher=nil, dbtype=nil, ordersource=nil, dealmode=nil, paramtemplateid=nil, instanceparams=nil, securitygroupids=nil, upgradeproxy=nil)
           @ClusterId = clusterid
@@ -1059,15 +1059,17 @@ module TencentCloud
 
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceCLSDeliveryInfos: Array
+        # @param TaskProgressInfo: 任务进度信息
+        # @type TaskProgressInfo: :class:`Tencentcloud::Cynosdb.v20190107.models.TaskProgressInfo`
 
-        attr_accessor :ID, :AppId, :ClusterId, :Region, :CreateTime, :DelayTime, :ErrMsg, :FlowId, :Input, :InstanceGrpId, :InstanceGroupId, :InstanceId, :ObjectId, :ObjectType, :Operator, :Output, :Status, :TaskType, :TriggerTaskId, :UpdateTime, :StartTime, :EndTime, :ClusterName, :InstanceName, :Process, :ModifyParamsData, :CreateClustersData, :RollbackData, :ModifyInstanceData, :ManualBackupData, :ModifyDbVersionData, :ClusterSlaveData, :SwitchClusterLogBin, :ModifyInstanceParamsData, :TaskMaintainInfo, :InstanceCLSDeliveryInfos
+        attr_accessor :ID, :AppId, :ClusterId, :Region, :CreateTime, :DelayTime, :ErrMsg, :FlowId, :Input, :InstanceGrpId, :InstanceGroupId, :InstanceId, :ObjectId, :ObjectType, :Operator, :Output, :Status, :TaskType, :TriggerTaskId, :UpdateTime, :StartTime, :EndTime, :ClusterName, :InstanceName, :Process, :ModifyParamsData, :CreateClustersData, :RollbackData, :ModifyInstanceData, :ManualBackupData, :ModifyDbVersionData, :ClusterSlaveData, :SwitchClusterLogBin, :ModifyInstanceParamsData, :TaskMaintainInfo, :InstanceCLSDeliveryInfos, :TaskProgressInfo
         extend Gem::Deprecate
-        deprecate :InstanceGrpId, :none, 2024, 12
-        deprecate :InstanceGrpId=, :none, 2024, 12
-        deprecate :ModifyParamsData, :none, 2024, 12
-        deprecate :ModifyParamsData=, :none, 2024, 12
+        deprecate :InstanceGrpId, :none, 2025, 1
+        deprecate :InstanceGrpId=, :none, 2025, 1
+        deprecate :ModifyParamsData, :none, 2025, 1
+        deprecate :ModifyParamsData=, :none, 2025, 1
 
-        def initialize(id=nil, appid=nil, clusterid=nil, region=nil, createtime=nil, delaytime=nil, errmsg=nil, flowid=nil, input=nil, instancegrpid=nil, instancegroupid=nil, instanceid=nil, objectid=nil, objecttype=nil, operator=nil, output=nil, status=nil, tasktype=nil, triggertaskid=nil, updatetime=nil, starttime=nil, endtime=nil, clustername=nil, instancename=nil, process=nil, modifyparamsdata=nil, createclustersdata=nil, rollbackdata=nil, modifyinstancedata=nil, manualbackupdata=nil, modifydbversiondata=nil, clusterslavedata=nil, switchclusterlogbin=nil, modifyinstanceparamsdata=nil, taskmaintaininfo=nil, instanceclsdeliveryinfos=nil)
+        def initialize(id=nil, appid=nil, clusterid=nil, region=nil, createtime=nil, delaytime=nil, errmsg=nil, flowid=nil, input=nil, instancegrpid=nil, instancegroupid=nil, instanceid=nil, objectid=nil, objecttype=nil, operator=nil, output=nil, status=nil, tasktype=nil, triggertaskid=nil, updatetime=nil, starttime=nil, endtime=nil, clustername=nil, instancename=nil, process=nil, modifyparamsdata=nil, createclustersdata=nil, rollbackdata=nil, modifyinstancedata=nil, manualbackupdata=nil, modifydbversiondata=nil, clusterslavedata=nil, switchclusterlogbin=nil, modifyinstanceparamsdata=nil, taskmaintaininfo=nil, instanceclsdeliveryinfos=nil, taskprogressinfo=nil)
           @ID = id
           @AppId = appid
           @ClusterId = clusterid
@@ -1104,6 +1106,7 @@ module TencentCloud
           @ModifyInstanceParamsData = modifyinstanceparamsdata
           @TaskMaintainInfo = taskmaintaininfo
           @InstanceCLSDeliveryInfos = instanceclsdeliveryinfos
+          @TaskProgressInfo = taskprogressinfo
         end
 
         def deserialize(params)
@@ -1183,6 +1186,10 @@ module TencentCloud
               instanceclsdeliveryinfo_tmp.deserialize(i)
               @InstanceCLSDeliveryInfos << instanceclsdeliveryinfo_tmp
             end
+          end
+          unless params['TaskProgressInfo'].nil?
+            @TaskProgressInfo = TaskProgressInfo.new
+            @TaskProgressInfo.deserialize(params['TaskProgressInfo'])
           end
         end
       end
@@ -1472,8 +1479,8 @@ module TencentCloud
 
         attr_accessor :InstanceGrpId, :InstanceGroupId, :InstanceId
         extend Gem::Deprecate
-        deprecate :InstanceGrpId, :none, 2024, 12
-        deprecate :InstanceGrpId=, :none, 2024, 12
+        deprecate :InstanceGrpId, :none, 2025, 1
+        deprecate :InstanceGrpId=, :none, 2025, 1
 
         def initialize(instancegrpid=nil, instancegroupid=nil, instanceid=nil)
           @InstanceGrpId = instancegrpid
@@ -5706,8 +5713,8 @@ module TencentCloud
 
         attr_accessor :TotalCount, :InstanceGrpInfoList, :InstanceGroupInfoList, :RequestId
         extend Gem::Deprecate
-        deprecate :InstanceGrpInfoList, :none, 2024, 12
-        deprecate :InstanceGrpInfoList=, :none, 2024, 12
+        deprecate :InstanceGrpInfoList, :none, 2025, 1
+        deprecate :InstanceGrpInfoList=, :none, 2025, 1
 
         def initialize(totalcount=nil, instancegrpinfolist=nil, instancegroupinfolist=nil, requestid=nil)
           @TotalCount = totalcount
@@ -6069,8 +6076,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :InstanceGroupId
         extend Gem::Deprecate
-        deprecate :InstanceId, :none, 2024, 12
-        deprecate :InstanceId=, :none, 2024, 12
+        deprecate :InstanceId, :none, 2025, 1
+        deprecate :InstanceId=, :none, 2025, 1
 
         def initialize(instanceid=nil, instancegroupid=nil)
           @InstanceId = instanceid
@@ -6394,10 +6401,12 @@ module TencentCloud
         # @type OrderBy: String
         # @param OrderByType: 排序类型，可选值：asc,desc
         # @type OrderByType: String
+        # @param SqlText: sql语句
+        # @type SqlText: String
 
-        attr_accessor :InstanceId, :StartTime, :EndTime, :Limit, :Offset, :Username, :Host, :Database, :OrderBy, :OrderByType
+        attr_accessor :InstanceId, :StartTime, :EndTime, :Limit, :Offset, :Username, :Host, :Database, :OrderBy, :OrderByType, :SqlText
 
-        def initialize(instanceid=nil, starttime=nil, endtime=nil, limit=nil, offset=nil, username=nil, host=nil, database=nil, orderby=nil, orderbytype=nil)
+        def initialize(instanceid=nil, starttime=nil, endtime=nil, limit=nil, offset=nil, username=nil, host=nil, database=nil, orderby=nil, orderbytype=nil, sqltext=nil)
           @InstanceId = instanceid
           @StartTime = starttime
           @EndTime = endtime
@@ -6408,6 +6417,7 @@ module TencentCloud
           @Database = database
           @OrderBy = orderby
           @OrderByType = orderbytype
+          @SqlText = sqltext
         end
 
         def deserialize(params)
@@ -6421,6 +6431,7 @@ module TencentCloud
           @Database = params['Database']
           @OrderBy = params['OrderBy']
           @OrderByType = params['OrderByType']
+          @SqlText = params['SqlText']
         end
       end
 
@@ -10736,8 +10747,8 @@ module TencentCloud
 
         attr_accessor :ClusterId, :InstanceGrpId, :InstanceGroupId, :Vip, :Vport, :DbType, :OldIpReserveHours
         extend Gem::Deprecate
-        deprecate :InstanceGrpId, :none, 2024, 12
-        deprecate :InstanceGrpId=, :none, 2024, 12
+        deprecate :InstanceGrpId, :none, 2025, 1
+        deprecate :InstanceGrpId=, :none, 2025, 1
 
         def initialize(clusterid=nil, instancegrpid=nil, instancegroupid=nil, vip=nil, vport=nil, dbtype=nil, oldipreservehours=nil)
           @ClusterId = clusterid
@@ -11317,8 +11328,8 @@ module TencentCloud
 
         attr_accessor :InstanceGrpId, :InstanceId, :InstanceGroupId
         extend Gem::Deprecate
-        deprecate :InstanceGrpId, :none, 2024, 12
-        deprecate :InstanceGrpId=, :none, 2024, 12
+        deprecate :InstanceGrpId, :none, 2025, 1
+        deprecate :InstanceGrpId=, :none, 2025, 1
 
         def initialize(instancegrpid=nil, instanceid=nil, instancegroupid=nil)
           @InstanceGrpId = instancegrpid
@@ -13236,10 +13247,12 @@ module TencentCloud
         # @type RollbackTables: Array
         # @param OriginalROInstanceList: 原ro实例信息
         # @type OriginalROInstanceList: Array
+        # @param ProjectId: 项目id
+        # @type ProjectId: Integer
 
-        attr_accessor :Zone, :OriginalClusterId, :UniqVpcId, :UniqSubnetId, :ClusterName, :RollbackId, :ExpectTime, :AutoVoucher, :ResourceTags, :DbMode, :MinCpu, :MaxCpu, :AutoPause, :AutoPauseDelay, :SecurityGroupIds, :AlarmPolicyIds, :ClusterParams, :ParamTemplateId, :InstanceInitInfos, :DealMode, :PayMode, :TimeSpan, :TimeUnit, :RollbackDatabases, :RollbackTables, :OriginalROInstanceList
+        attr_accessor :Zone, :OriginalClusterId, :UniqVpcId, :UniqSubnetId, :ClusterName, :RollbackId, :ExpectTime, :AutoVoucher, :ResourceTags, :DbMode, :MinCpu, :MaxCpu, :AutoPause, :AutoPauseDelay, :SecurityGroupIds, :AlarmPolicyIds, :ClusterParams, :ParamTemplateId, :InstanceInitInfos, :DealMode, :PayMode, :TimeSpan, :TimeUnit, :RollbackDatabases, :RollbackTables, :OriginalROInstanceList, :ProjectId
 
-        def initialize(zone=nil, originalclusterid=nil, uniqvpcid=nil, uniqsubnetid=nil, clustername=nil, rollbackid=nil, expecttime=nil, autovoucher=nil, resourcetags=nil, dbmode=nil, mincpu=nil, maxcpu=nil, autopause=nil, autopausedelay=nil, securitygroupids=nil, alarmpolicyids=nil, clusterparams=nil, paramtemplateid=nil, instanceinitinfos=nil, dealmode=nil, paymode=nil, timespan=nil, timeunit=nil, rollbackdatabases=nil, rollbacktables=nil, originalroinstancelist=nil)
+        def initialize(zone=nil, originalclusterid=nil, uniqvpcid=nil, uniqsubnetid=nil, clustername=nil, rollbackid=nil, expecttime=nil, autovoucher=nil, resourcetags=nil, dbmode=nil, mincpu=nil, maxcpu=nil, autopause=nil, autopausedelay=nil, securitygroupids=nil, alarmpolicyids=nil, clusterparams=nil, paramtemplateid=nil, instanceinitinfos=nil, dealmode=nil, paymode=nil, timespan=nil, timeunit=nil, rollbackdatabases=nil, rollbacktables=nil, originalroinstancelist=nil, projectid=nil)
           @Zone = zone
           @OriginalClusterId = originalclusterid
           @UniqVpcId = uniqvpcid
@@ -13266,6 +13279,7 @@ module TencentCloud
           @RollbackDatabases = rollbackdatabases
           @RollbackTables = rollbacktables
           @OriginalROInstanceList = originalroinstancelist
+          @ProjectId = projectid
         end
 
         def deserialize(params)
@@ -13330,6 +13344,7 @@ module TencentCloud
             end
           end
           @OriginalROInstanceList = params['OriginalROInstanceList']
+          @ProjectId = params['ProjectId']
         end
       end
 
@@ -14361,6 +14376,30 @@ module TencentCloud
           @MaintainStartTime = params['MaintainStartTime']
           @MaintainDuration = params['MaintainDuration']
           @MaintainWeekDays = params['MaintainWeekDays']
+        end
+      end
+
+      # 任务进度查询
+      class TaskProgressInfo < TencentCloud::Common::AbstractModel
+        # @param CurrentStep: 当前步骤
+        # @type CurrentStep: String
+        # @param CurrentStepProgress: 当前进度
+        # @type CurrentStepProgress: Integer
+        # @param CurrentStepRemainingTime: 预估时间
+        # @type CurrentStepRemainingTime: String
+
+        attr_accessor :CurrentStep, :CurrentStepProgress, :CurrentStepRemainingTime
+
+        def initialize(currentstep=nil, currentstepprogress=nil, currentstepremainingtime=nil)
+          @CurrentStep = currentstep
+          @CurrentStepProgress = currentstepprogress
+          @CurrentStepRemainingTime = currentstepremainingtime
+        end
+
+        def deserialize(params)
+          @CurrentStep = params['CurrentStep']
+          @CurrentStepProgress = params['CurrentStepProgress']
+          @CurrentStepRemainingTime = params['CurrentStepRemainingTime']
         end
       end
 

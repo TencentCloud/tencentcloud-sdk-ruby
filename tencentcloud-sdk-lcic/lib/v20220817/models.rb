@@ -3139,7 +3139,7 @@ module TencentCloud
         # @type SdkAppId: Integer
         # @param Page: 起始页，1开始。keyword为空时有效。
         # @type Page: Integer
-        # @param Limit: 每页个数。keyword为空时有效。一次性最多200条。
+        # @param Limit: 每页个数。keyword为空时有效。一次性最多100条。
         # @type Limit: Integer
         # @param Keyword: 搜索事件类型。有以下事件类型:
         # RoomStart:房间开始

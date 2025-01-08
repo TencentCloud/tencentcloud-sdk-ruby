@@ -1737,7 +1737,7 @@ module TencentCloud
         # @type DrugRoute: String
         # @param DrugBasicCode: 药品本位码
         # @type DrugBasicCode: String
-        # @param OctTag: OCT标签
+        # @param OctTag: OTC标签
         # @type OctTag: String
 
         attr_accessor :DrugId, :SequenceId, :DrugHashId, :ImgUrl, :DrugName, :TradeName, :EnglishName, :EnglishTradeName, :Pinyin, :OtherNames, :ChemicalName, :EnglishChemicalName, :ApprovalNumber, :Property, :Ingredients, :PhenotypicTrait, :Indications, :Specifications, :UsageAndDosage, :RecommendedUsage, :AdverseReaction, :Contraindication, :Attentions, :Overdose, :PregnantAndLactatingWomen, :ElderlyPatients, :PediatricDrugs, :Interactions, :ClinicalResearch, :PharmacologyToxicology, :Pharmacokinetics, :Warning, :ExpireDate, :Storage, :Pack, :Manufacturer, :ManufacturerAddress, :ManufacturerPhone, :ManufacturerEmail, :ManufacturerWebsite, :DocRevisionTime, :References, :DrugDosageForm, :DrugRoute, :DrugBasicCode, :OctTag

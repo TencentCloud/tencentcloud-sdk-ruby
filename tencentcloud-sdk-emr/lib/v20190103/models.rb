@@ -21,7 +21,7 @@ module TencentCloud
       class AddMetricScaleStrategyRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID。
         # @type InstanceId: String
-        # @param StrategyType: 1表示按负载规则扩容，2表示按时间规则扩容。必须填写，并且和下面的规则策略匹配
+        # @param StrategyType: 1表示按负载规则扩缩容，2表示按时间规则扩缩容。必须填写，并且和下面的规则策略匹配
         # @type StrategyType: Integer
         # @param LoadAutoScaleStrategy: 按负载扩容的规则。
         # @type LoadAutoScaleStrategy: :class:`Tencentcloud::Emr.v20190103.models.LoadAutoScaleStrategy`
@@ -213,16 +213,12 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CommonResourceSpec: :class:`Tencentcloud::Emr.v20190103.models.NodeResourceSpec`
         # @param MasterCount: Master节点数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MasterCount: Integer
         # @param CoreCount: Corer节点数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CoreCount: Integer
         # @param TaskCount: Task节点数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskCount: Integer
         # @param CommonCount: Common节点数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CommonCount: Integer
 
         attr_accessor :MasterResourceSpec, :CoreResourceSpec, :TaskResourceSpec, :CommonResourceSpec, :MasterCount, :CoreCount, :TaskCount, :CommonCount
@@ -375,7 +371,6 @@ module TencentCloud
       # AttachDisks返回参数结构体
       class AttachDisksResponse < TencentCloud::Common::AbstractModel
         # @param FlowId: 流程id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FlowId: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -730,49 +725,34 @@ module TencentCloud
       # 出参
       class CdbInfo < TencentCloud::Common::AbstractModel
         # @param InstanceName: 数据库实例
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceName: String
         # @param Ip: 数据库IP
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Ip: String
         # @param Port: 数据库端口
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Port: Integer
         # @param MemSize: 数据库内存规格
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MemSize: Integer
         # @param Volume: 数据库磁盘规格
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Volume: Integer
         # @param Service: 服务标识
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Service: String
         # @param ExpireTime: 过期时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExpireTime: String
         # @param ApplyTime: 申请时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApplyTime: String
         # @param PayType: 付费类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PayType: Integer
         # @param ExpireFlag: 过期标识
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExpireFlag: Boolean
         # @param Status: 数据库状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
         # @param IsAutoRenew: 续费标识
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsAutoRenew: Integer
         # @param SerialNo: 数据库字符串
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SerialNo: String
         # @param ZoneId: ZoneId
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ZoneId: Integer
         # @param RegionId: RegionId
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RegionId: Integer
 
         attr_accessor :InstanceName, :Ip, :Port, :MemSize, :Volume, :Service, :ExpireTime, :ApplyTime, :PayType, :ExpireFlag, :Status, :IsAutoRenew, :SerialNo, :ZoneId, :RegionId
@@ -825,7 +805,6 @@ module TencentCloud
         # @param LimitMemory: 内存请求数量最大值
         # @type LimitMemory: Integer
         # @param Service: 服务名称，如HIVE
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Service: String
         # @param VolumeDir: 数据卷目录设置
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -934,37 +913,27 @@ module TencentCloud
       # 集群实例信息
       class ClusterInstancesInfo < TencentCloud::Common::AbstractModel
         # @param Id: ID号
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Id: Integer
         # @param ClusterId: 集群ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterId: String
         # @param Ftitle: 标题
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Ftitle: String
         # @param ClusterName: 集群名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterName: String
         # @param RegionId: 地域ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RegionId: Integer
         # @param ZoneId: 地区ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ZoneId: Integer
         # @param AppId: 用户APPID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AppId: Integer
         # @param Uin: 用户UIN
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Uin: String
         # @param ProjectId: 项目Id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProjectId: Integer
         # @param VpcId: 集群VPCID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VpcId: Integer
         # @param SubnetId: 子网ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubnetId: Integer
         # @param Status: 实例的状态码。取值范围：
         # <li>2：表示集群运行中。</li>
@@ -994,116 +963,90 @@ module TencentCloud
         # <li>34：表示集群已退费。</li>
         # <li>301：表示创建失败。</li>
         # <li>302：表示扩容失败。</li>
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
         # @param AddTime: 添加时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AddTime: String
         # @param RunTime: 已经运行时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RunTime: String
         # @param Config: 集群产品配置信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Config: :class:`Tencentcloud::Emr.v20190103.models.EmrProductConfigOutter`
         # @param MasterIp: 主节点外网IP
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MasterIp: String
         # @param EmrVersion: EMR版本
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EmrVersion: String
         # @param ChargeType: 收费类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ChargeType: Integer
         # @param TradeVersion: 交易版本
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TradeVersion: Integer
         # @param ResourceOrderId: 资源订单ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceOrderId: Integer
         # @param IsTradeCluster: 是否计费集群
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsTradeCluster: Integer
         # @param AlarmInfo: 集群错误状态告警信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AlarmInfo: String
         # @param IsWoodpeckerCluster: 是否采用新架构
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsWoodpeckerCluster: Integer
         # @param MetaDb: 元数据库信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MetaDb: String
         # @param Tags: 标签信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
         # @param HiveMetaDb: Hive元数据信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HiveMetaDb: String
         # @param ServiceClass: 集群类型:EMR,CLICKHOUSE,DRUID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ServiceClass: String
         # @param AliasInfo: 集群所有节点的别名序列化
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AliasInfo: String
         # @param ProductId: 集群版本Id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProductId: Integer
         # @param Zone: 地区ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Zone: String
         # @param SceneName: 场景名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SceneName: String
         # @param SceneServiceClass: 场景化集群类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SceneServiceClass: String
         # @param SceneEmrVersion: 场景化EMR版本
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SceneEmrVersion: String
         # @param DisplayName: 场景化集群类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DisplayName: String
         # @param VpcName: vpc name
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VpcName: String
         # @param SubnetName: subnet name
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubnetName: String
         # @param ClusterExternalServiceInfo: 集群依赖关系
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterExternalServiceInfo: Array
         # @param UniqVpcId: 集群vpcid 字符串类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UniqVpcId: String
         # @param UniqSubnetId: 子网id 字符串类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UniqSubnetId: String
         # @param TopologyInfoList: 节点信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TopologyInfoList: Array
         # @param IsMultiZoneCluster: 是否是跨AZ集群
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsMultiZoneCluster: Boolean
         # @param IsCvmReplace: 是否开通异常节点自动补偿
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsCvmReplace: Boolean
         # @param ClusterTitle: 标题
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterTitle: String
         # @param ConfigDetail: 集群产品配置信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ConfigDetail: :class:`Tencentcloud::Emr.v20190103.models.EmrProductConfigDetail`
         # @param BindFileSystemNum: 集群绑定的文件系统数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BindFileSystemNum: Integer
+        # @param ClusterRelationInfoList: rss集群的绑定列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterRelationInfoList: Array
 
-        attr_accessor :Id, :ClusterId, :Ftitle, :ClusterName, :RegionId, :ZoneId, :AppId, :Uin, :ProjectId, :VpcId, :SubnetId, :Status, :AddTime, :RunTime, :Config, :MasterIp, :EmrVersion, :ChargeType, :TradeVersion, :ResourceOrderId, :IsTradeCluster, :AlarmInfo, :IsWoodpeckerCluster, :MetaDb, :Tags, :HiveMetaDb, :ServiceClass, :AliasInfo, :ProductId, :Zone, :SceneName, :SceneServiceClass, :SceneEmrVersion, :DisplayName, :VpcName, :SubnetName, :ClusterExternalServiceInfo, :UniqVpcId, :UniqSubnetId, :TopologyInfoList, :IsMultiZoneCluster, :IsCvmReplace, :ClusterTitle, :ConfigDetail, :BindFileSystemNum
+        attr_accessor :Id, :ClusterId, :Ftitle, :ClusterName, :RegionId, :ZoneId, :AppId, :Uin, :ProjectId, :VpcId, :SubnetId, :Status, :AddTime, :RunTime, :Config, :MasterIp, :EmrVersion, :ChargeType, :TradeVersion, :ResourceOrderId, :IsTradeCluster, :AlarmInfo, :IsWoodpeckerCluster, :MetaDb, :Tags, :HiveMetaDb, :ServiceClass, :AliasInfo, :ProductId, :Zone, :SceneName, :SceneServiceClass, :SceneEmrVersion, :DisplayName, :VpcName, :SubnetName, :ClusterExternalServiceInfo, :UniqVpcId, :UniqSubnetId, :TopologyInfoList, :IsMultiZoneCluster, :IsCvmReplace, :ClusterTitle, :ConfigDetail, :BindFileSystemNum, :ClusterRelationInfoList
         extend Gem::Deprecate
         deprecate :Ftitle, :none, 2025, 1
         deprecate :Ftitle=, :none, 2025, 1
         deprecate :Config, :none, 2025, 1
         deprecate :Config=, :none, 2025, 1
 
-        def initialize(id=nil, clusterid=nil, ftitle=nil, clustername=nil, regionid=nil, zoneid=nil, appid=nil, uin=nil, projectid=nil, vpcid=nil, subnetid=nil, status=nil, addtime=nil, runtime=nil, config=nil, masterip=nil, emrversion=nil, chargetype=nil, tradeversion=nil, resourceorderid=nil, istradecluster=nil, alarminfo=nil, iswoodpeckercluster=nil, metadb=nil, tags=nil, hivemetadb=nil, serviceclass=nil, aliasinfo=nil, productid=nil, zone=nil, scenename=nil, sceneserviceclass=nil, sceneemrversion=nil, displayname=nil, vpcname=nil, subnetname=nil, clusterexternalserviceinfo=nil, uniqvpcid=nil, uniqsubnetid=nil, topologyinfolist=nil, ismultizonecluster=nil, iscvmreplace=nil, clustertitle=nil, configdetail=nil, bindfilesystemnum=nil)
+        def initialize(id=nil, clusterid=nil, ftitle=nil, clustername=nil, regionid=nil, zoneid=nil, appid=nil, uin=nil, projectid=nil, vpcid=nil, subnetid=nil, status=nil, addtime=nil, runtime=nil, config=nil, masterip=nil, emrversion=nil, chargetype=nil, tradeversion=nil, resourceorderid=nil, istradecluster=nil, alarminfo=nil, iswoodpeckercluster=nil, metadb=nil, tags=nil, hivemetadb=nil, serviceclass=nil, aliasinfo=nil, productid=nil, zone=nil, scenename=nil, sceneserviceclass=nil, sceneemrversion=nil, displayname=nil, vpcname=nil, subnetname=nil, clusterexternalserviceinfo=nil, uniqvpcid=nil, uniqsubnetid=nil, topologyinfolist=nil, ismultizonecluster=nil, iscvmreplace=nil, clustertitle=nil, configdetail=nil, bindfilesystemnum=nil, clusterrelationinfolist=nil)
           @Id = id
           @ClusterId = clusterid
           @Ftitle = ftitle
@@ -1149,6 +1092,7 @@ module TencentCloud
           @ClusterTitle = clustertitle
           @ConfigDetail = configdetail
           @BindFileSystemNum = bindfilesystemnum
+          @ClusterRelationInfoList = clusterrelationinfolist
         end
 
         def deserialize(params)
@@ -1224,6 +1168,36 @@ module TencentCloud
             @ConfigDetail.deserialize(params['ConfigDetail'])
           end
           @BindFileSystemNum = params['BindFileSystemNum']
+          unless params['ClusterRelationInfoList'].nil?
+            @ClusterRelationInfoList = []
+            params['ClusterRelationInfoList'].each do |i|
+              clusterrelationmeta_tmp = ClusterRelationMeta.new
+              clusterrelationmeta_tmp.deserialize(i)
+              @ClusterRelationInfoList << clusterrelationmeta_tmp
+            end
+          end
+        end
+      end
+
+      # 集群间绑定使用信息
+      class ClusterRelationMeta < TencentCloud::Common::AbstractModel
+        # @param ClusterType: 集群类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterType: String
+        # @param ClusterIdList: 集群id列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterIdList: Array
+
+        attr_accessor :ClusterType, :ClusterIdList
+
+        def initialize(clustertype=nil, clusteridlist=nil)
+          @ClusterType = clustertype
+          @ClusterIdList = clusteridlist
+        end
+
+        def deserialize(params)
+          @ClusterType = params['ClusterType']
+          @ClusterIdList = params['ClusterIdList']
         end
       end
 
@@ -2522,7 +2496,6 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GroupGlobalConfs: Array
         # @param TotalCount: 总数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2553,7 +2526,10 @@ module TencentCloud
       class DescribeAutoScaleRecordsRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID。
         # @type InstanceId: String
-        # @param Filters: 记录过滤参数，目前仅能为“StartTime”,“EndTime”和“StrategyName”。StartTime和EndTime支持2006-01-02 15:04:05 或者2006/01/02 15:04:05的时间格式
+        # @param Filters: 记录过滤参数，目前仅能为“StartTime”,“EndTime”和“StrategyName”、ActionStatus、ScaleAction。
+        # StartTime和EndTime支持2006-01-02 15:04:05 或者2006/01/02 15:04:05的时间格式
+        # ActionStatus：0:INITED,1:SUCCESS, 2:FAILED,3:LIMITED_SUCCESSED,4:IN_PROCESS,5:IN_RETRY
+        # ScaleAction：1:扩容  2:缩容
         # @type Filters: Array
         # @param Offset: 分页参数。
         # @type Offset: Integer
@@ -2561,15 +2537,18 @@ module TencentCloud
         # @type Limit: Integer
         # @param RecordSource: 表示是自动(0)还是托管伸缩(1)
         # @type RecordSource: Integer
+        # @param Asc: 是否升序，1:升序，0:降序
+        # @type Asc: Integer
 
-        attr_accessor :InstanceId, :Filters, :Offset, :Limit, :RecordSource
+        attr_accessor :InstanceId, :Filters, :Offset, :Limit, :RecordSource, :Asc
 
-        def initialize(instanceid=nil, filters=nil, offset=nil, limit=nil, recordsource=nil)
+        def initialize(instanceid=nil, filters=nil, offset=nil, limit=nil, recordsource=nil, asc=nil)
           @InstanceId = instanceid
           @Filters = filters
           @Offset = offset
           @Limit = limit
           @RecordSource = recordsource
+          @Asc = asc
         end
 
         def deserialize(params)
@@ -2585,6 +2564,7 @@ module TencentCloud
           @Offset = params['Offset']
           @Limit = params['Limit']
           @RecordSource = params['RecordSource']
+          @Asc = params['Asc']
         end
       end
 
@@ -2716,11 +2696,9 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FlowDesc: Array
         # @param FlowName: 任务名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FlowName: String
         # @param FlowTotalProgress: 总任务流程进度：
         # 例如：0.8
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FlowTotalProgress: Float
         # @param FlowTotalStatus: 定义流程总状态：
         # 0:初始化，
@@ -2729,7 +2707,6 @@ module TencentCloud
         # 3:完成（存在跳过步骤），
         # -1:失败，
         # -3:阻塞，
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FlowTotalStatus: Integer
         # @param FlowExtraDetail: 流程额外信息
         # NeedExtraDetail为true时返回
@@ -3293,7 +3270,6 @@ module TencentCloud
       # DescribeHDFSStorageInfo返回参数结构体
       class DescribeHDFSStorageInfoResponse < TencentCloud::Common::AbstractModel
         # @param SampleTime: 采样时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SampleTime: Integer
         # @param StorageSummaryDistribution: hdfs存储详情
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -4343,7 +4319,7 @@ module TencentCloud
         # 0代表所有状态
         # 1代表处于维护状态
         # @type DataNodeMaintenanceId: Integer
-        # @param SearchFields: 支持搜索的字段
+        # @param SearchFields: 支持搜索的字段，目前支持 SearchType	：ipv4
         # @type SearchFields: Array
 
         attr_accessor :InstanceId, :Offset, :Limit, :SearchText, :ConfStatus, :MaintainStateId, :OperatorStateId, :HealthStateId, :ServiceName, :NodeTypeName, :DataNodeMaintenanceId, :SearchFields
@@ -5354,19 +5330,15 @@ module TencentCloud
       # Emr询价描述
       class EmrPrice < TencentCloud::Common::AbstractModel
         # @param OriginalCost: 刊例价格
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OriginalCost: String
         # @param DiscountCost: 折扣价格
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DiscountCost: String
         # @param Unit: 单位
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Unit: String
         # @param PriceSpec: 询价配置
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PriceSpec: :class:`Tencentcloud::Emr.v20190103.models.PriceResource`
         # @param SupportSpotPaid: 是否支持竞价实例
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SupportSpotPaid: Boolean
 
         attr_accessor :OriginalCost, :DiscountCost, :Unit, :PriceSpec, :SupportSpotPaid
@@ -6110,17 +6082,13 @@ module TencentCloud
       # InquirePriceRenewEmr返回参数结构体
       class InquirePriceRenewEmrResponse < TencentCloud::Common::AbstractModel
         # @param OriginalCost: 原价，单位为元。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OriginalCost: Float
         # @param DiscountCost: 折扣价，单位为元。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DiscountCost: Float
         # @param TimeUnit: 实例续费的时间单位。取值范围：
         # <li>m：表示月份。</li>
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TimeUnit: String
         # @param TimeSpan: 实例续费的时长。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TimeSpan: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6265,18 +6233,14 @@ module TencentCloud
       # InquiryPriceCreateInstance返回参数结构体
       class InquiryPriceCreateInstanceResponse < TencentCloud::Common::AbstractModel
         # @param OriginalCost: 原价，单位为元。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OriginalCost: Float
         # @param DiscountCost: 折扣价，单位为元。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DiscountCost: Float
         # @param TimeUnit: 购买实例的时间单位。取值范围：
         # <li>s：表示秒。</li>
         # <li>m：表示月份。</li>
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TimeUnit: String
         # @param TimeSpan: 购买实例的时长。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TimeSpan: Integer
         # @param PriceList: 价格清单
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -6368,17 +6332,13 @@ module TencentCloud
       # InquiryPriceRenewInstance返回参数结构体
       class InquiryPriceRenewInstanceResponse < TencentCloud::Common::AbstractModel
         # @param OriginalCost: 原价，单位为元。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OriginalCost: Float
         # @param DiscountCost: 折扣价，单位为元。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DiscountCost: Float
         # @param TimeUnit: 实例续费的时间单位。取值范围：
         # <li>m：表示月份。</li>
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TimeUnit: String
         # @param TimeSpan: 实例续费的时长。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TimeSpan: Integer
         # @param PriceDetail: 价格详情
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -6488,15 +6448,12 @@ module TencentCloud
       # InquiryPriceScaleOutInstance返回参数结构体
       class InquiryPriceScaleOutInstanceResponse < TencentCloud::Common::AbstractModel
         # @param OriginalCost: 原价，单位为元。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OriginalCost: String
         # @param DiscountCost: 折扣价，单位为元。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DiscountCost: String
         # @param Unit: 扩容的时间单位。取值范围：
         # <li>s：表示秒。</li>
         # <li>m：表示月份。</li>
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Unit: String
         # @param PriceSpec: 询价的节点规格。
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -6594,18 +6551,14 @@ module TencentCloud
       # InquiryPriceUpdateInstance返回参数结构体
       class InquiryPriceUpdateInstanceResponse < TencentCloud::Common::AbstractModel
         # @param OriginalCost: 原价，单位为元。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OriginalCost: Float
         # @param DiscountCost: 折扣价，单位为元。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DiscountCost: Float
         # @param TimeUnit: 变配的时间单位。取值范围：
         # <li>s：表示秒。</li>
         # <li>m：表示月份。</li>
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TimeUnit: String
         # @param TimeSpan: 变配的时长。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TimeSpan: Integer
         # @param PriceDetail: 价格详情
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -7020,31 +6973,22 @@ module TencentCloud
       # 自动扩缩容基于负载指标的规则
       class LoadAutoScaleStrategy < TencentCloud::Common::AbstractModel
         # @param StrategyId: 规则ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StrategyId: Integer
         # @param StrategyName: 规则名称。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StrategyName: String
         # @param CalmDownTime: 规则生效冷却时间。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CalmDownTime: Integer
         # @param ScaleAction: 扩缩容动作，1表示扩容，2表示缩容。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScaleAction: Integer
         # @param ScaleNum: 每次规则生效时的扩缩容数量。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScaleNum: Integer
         # @param ProcessMethod: 指标处理方法，1表示MAX，2表示MIN，3表示AVG。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProcessMethod: Integer
         # @param Priority: 规则优先级，添加时无效，默认为自增。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Priority: Integer
         # @param StrategyStatus: 规则状态，1表示启动，3表示禁用。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StrategyStatus: Integer
         # @param YarnNodeLabel: 规则扩容指定 yarn node label
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type YarnNodeLabel: String
         # @param PeriodValid: 规则生效的有效时间
         # @type PeriodValid: String
@@ -7056,14 +7000,12 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
         # @param ConfigGroupAssigned: 预设配置组
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ConfigGroupAssigned: String
         # @param MeasureMethod: 扩容资源计算方法，"DEFAULT","INSTANCE", "CPU", "MEMORYGB"。
         # "DEFAULT"表示默认方式，与"INSTANCE"意义相同。
         # "INSTANCE"表示按照节点计算，默认方式。
         # "CPU"表示按照机器的核数计算。
         # "MEMORYGB"表示按照机器内存数计算。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MeasureMethod: String
         # @param LoadMetricsConditions: 多指标触发条件
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -7123,16 +7065,12 @@ module TencentCloud
       # 负载指标条件
       class LoadMetricsCondition < TencentCloud::Common::AbstractModel
         # @param StatisticPeriod: 规则统计周期，提供1min,3min,5min。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StatisticPeriod: Integer
         # @param TriggerThreshold: 触发次数，当连续触发超过TriggerThreshold次后才开始扩缩容。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TriggerThreshold: Integer
         # @param LoadMetrics: 扩缩容负载指标。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LoadMetrics: String
         # @param MetricId: 规则元数据记录ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MetricId: Integer
         # @param Conditions: 触发条件
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -7487,10 +7425,8 @@ module TencentCloud
       # ModifyPodNum返回参数结构体
       class ModifyPodNumResponse < TencentCloud::Common::AbstractModel
         # @param InstanceId: 集群Id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceId: String
         # @param FlowId: 流程Id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FlowId: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -7537,7 +7473,6 @@ module TencentCloud
         # @param IsDraft: false表示不是草稿，提交刷新请求成功
         # @type IsDraft: Boolean
         # @param ErrorMsg: 扩展字段，暂时没用
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrorMsg: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -7600,7 +7535,6 @@ module TencentCloud
       # ModifyResource返回参数结构体
       class ModifyResourceResponse < TencentCloud::Common::AbstractModel
         # @param TraceId: 流程traceId
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TraceId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -7647,10 +7581,8 @@ module TencentCloud
         # @param IsDraft: true为草稿，表示还没有刷新资源池
         # @type IsDraft: Boolean
         # @param ErrorMsg: 校验错误信息，如果不为空，则说明校验失败，配置没有成功
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrorMsg: String
         # @param Data: 返回数据
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -8055,13 +7987,10 @@ module TencentCloud
         # <li>CLOUD_SSD：表示云SSD。</li>
         # <li>CLOUD_PREMIUM：表示高效云盘。</li>
         # <li>CLOUD_HSSD：表示增强型SSD云硬盘。</li>
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DiskType: String
         # @param Volume: 云盘大小
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Volume: Integer
         # @param Count: 该类型云盘个数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Count: Integer
 
         attr_accessor :DiskType, :Volume, :Count
@@ -8122,7 +8051,6 @@ module TencentCloud
       # 各个可用区的参数信息
       class MultiZoneSetting < TencentCloud::Common::AbstractModel
         # @param ZoneTag: "master"、"standby"、"third-party"
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ZoneTag: String
         # @param VPCSettings: 无
         # @type VPCSettings: :class:`Tencentcloud::Emr.v20190103.models.VPCSettings`
@@ -8583,16 +8511,12 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Resource: :class:`Tencentcloud::Emr.v20190103.models.Resource`
         # @param CreateTime: 创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
         # @param UpdateTime: 更新时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: String
         # @param IsDefault: 是否默认配置,DEFAULT,BACKUP
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsDefault: String
         # @param MaxResourceNum: 该类型剩余
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaxResourceNum: Integer
         # @param PrepaidUnderwritePeriods: 支持的包销时长
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -9027,19 +8951,23 @@ module TencentCloud
         # @type DiskType: String
         # @param DiskNum: 磁盘数量
         # @type DiskNum: Integer
+        # @param ExtraPerformance: 云盘额外性能
+        # @type ExtraPerformance: Integer
 
-        attr_accessor :DiskSize, :DiskType, :DiskNum
+        attr_accessor :DiskSize, :DiskType, :DiskNum, :ExtraPerformance
 
-        def initialize(disksize=nil, disktype=nil, disknum=nil)
+        def initialize(disksize=nil, disktype=nil, disknum=nil, extraperformance=nil)
           @DiskSize = disksize
           @DiskType = disktype
           @DiskNum = disknum
+          @ExtraPerformance = extraperformance
         end
 
         def deserialize(params)
           @DiskSize = params['DiskSize']
           @DiskType = params['DiskType']
           @DiskNum = params['DiskNum']
+          @ExtraPerformance = params['ExtraPerformance']
         end
       end
 
@@ -9452,13 +9380,10 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DynamicPodSpec: :class:`Tencentcloud::Emr.v20190103.models.DynamicPodSpec`
         # @param VpcId: 代表vpc网络唯一id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VpcId: String
         # @param SubnetId: 代表vpc子网唯一id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubnetId: String
         # @param PodName: pod name
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PodName: String
 
         attr_accessor :ResourceProviderIdentifier, :ResourceProviderType, :NodeType, :Cpu, :Memory, :DataVolumes, :CpuType, :PodVolumes, :IsDynamicSpec, :DynamicPodSpec, :VpcId, :SubnetId, :PodName
@@ -9743,43 +9668,32 @@ module TencentCloud
       # 询价资源
       class PriceResource < TencentCloud::Common::AbstractModel
         # @param Spec: 需要的规格
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Spec: String
         # @param StorageType: 硬盘类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StorageType: Integer
         # @param DiskType: 硬盘类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DiskType: String
         # @param RootSize: 系统盘大小
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RootSize: Integer
         # @param MemSize: 内存大小
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MemSize: Integer
         # @param Cpu: 核心数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Cpu: Integer
         # @param DiskSize: 硬盘大小
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DiskSize: Integer
         # @param MultiDisks: 云盘列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MultiDisks: Array
         # @param DiskCnt: 磁盘数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DiskCnt: Integer
         # @param InstanceType: 规格
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceType: String
         # @param Tags: 标签
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
         # @param DiskNum: 磁盘数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DiskNum: Integer
         # @param LocalDiskNum: 本地盘的数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LocalDiskNum: Integer
 
         attr_accessor :Spec, :StorageType, :DiskType, :RootSize, :MemSize, :Cpu, :DiskSize, :MultiDisks, :DiskCnt, :InstanceType, :Tags, :DiskNum, :LocalDiskNum
@@ -9967,16 +9881,19 @@ module TencentCloud
         # @param Expire: 规则过期时间，超过该时间后，规则将自动置为暂停状态，形式为"2020-07-23 00:00:00"。必须填写
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Expire: String
+        # @param StartTime: 周期性规则开始时间
+        # @type StartTime: String
 
-        attr_accessor :RepeatType, :DayRepeat, :WeekRepeat, :MonthRepeat, :NotRepeat, :Expire
+        attr_accessor :RepeatType, :DayRepeat, :WeekRepeat, :MonthRepeat, :NotRepeat, :Expire, :StartTime
 
-        def initialize(repeattype=nil, dayrepeat=nil, weekrepeat=nil, monthrepeat=nil, notrepeat=nil, expire=nil)
+        def initialize(repeattype=nil, dayrepeat=nil, weekrepeat=nil, monthrepeat=nil, notrepeat=nil, expire=nil, starttime=nil)
           @RepeatType = repeattype
           @DayRepeat = dayrepeat
           @WeekRepeat = weekrepeat
           @MonthRepeat = monthrepeat
           @NotRepeat = notrepeat
           @Expire = expire
+          @StartTime = starttime
         end
 
         def deserialize(params)
@@ -9998,6 +9915,7 @@ module TencentCloud
             @NotRepeat.deserialize(params['NotRepeat'])
           end
           @Expire = params['Expire']
+          @StartTime = params['StartTime']
         end
       end
 
@@ -10072,7 +9990,6 @@ module TencentCloud
       # ResizeDataDisks返回参数结构体
       class ResizeDataDisksResponse < TencentCloud::Common::AbstractModel
         # @param FlowId: 流程Id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FlowId: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -10093,7 +10010,6 @@ module TencentCloud
       # 资源详情
       class Resource < TencentCloud::Common::AbstractModel
         # @param Spec: 节点规格描述，如CVM.SA2。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Spec: String
         # @param StorageType: 存储类型
         # 取值范围：
@@ -10102,26 +10018,20 @@ module TencentCloud
         # <li>6：表示增强型SSD云硬盘。</li>
         # <li>11：表示吞吐型云硬盘。</li>
         # <li>12：表示极速型SSD云硬盘。</li>：创建时该类型无效，会根据数据盘类型和节点类型自动判断
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StorageType: Integer
         # @param DiskType: 磁盘类型
         # 取值范围：
         # <li>CLOUD_SSD：表示云SSD。</li>
         # <li>CLOUD_PREMIUM：表示高效云盘。</li>
         # <li>CLOUD_BASIC：表示云硬盘。</li>
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DiskType: String
         # @param MemSize: 内存容量,单位为M
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MemSize: Integer
         # @param Cpu: CPU核数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Cpu: Integer
         # @param DiskSize: 数据盘容量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DiskSize: Integer
         # @param RootSize: 系统盘容量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RootSize: Integer
         # @param MultiDisks: 云盘列表，当数据盘为一块云盘时，直接使用DiskType和DiskSize参数，超出部分使用MultiDisks
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -10130,13 +10040,10 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
         # @param InstanceType: 规格类型，如S2.MEDIUM8
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceType: String
         # @param LocalDiskNum: 本地盘数量，该字段已废弃
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LocalDiskNum: Integer
         # @param DiskNum: 本地盘数量，如2
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DiskNum: Integer
 
         attr_accessor :Spec, :StorageType, :DiskType, :MemSize, :Cpu, :DiskSize, :RootSize, :MultiDisks, :Tags, :InstanceType, :LocalDiskNum, :DiskNum
@@ -10620,19 +10527,15 @@ module TencentCloud
         # @param InstanceId: 实例ID。
         # @type InstanceId: String
         # @param ClientToken: 客户端Token。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClientToken: String
         # @param FlowId: 扩容流程ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FlowId: Integer
         # @param TraceId: 查询流程状态，流程额外信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TraceId: String
         # @param DealNames: 订单号。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DealNames: Array
         # @param BillId: 大订单号。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BillId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -10823,16 +10726,12 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DealNames: Array
         # @param ClientToken: 客户端Token。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClientToken: String
         # @param FlowId: 扩容流程ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FlowId: Integer
         # @param BillId: 大订单号。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BillId: String
         # @param TraceId: 扩容TraceId
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TraceId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -12056,56 +11955,42 @@ module TencentCloud
       # 时间扩缩容规则
       class TimeAutoScaleStrategy < TencentCloud::Common::AbstractModel
         # @param StrategyName: 策略名字，集群内唯一。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StrategyName: String
         # @param IntervalTime: 策略触发后的冷却时间，该段时间内，将不能触发弹性扩缩容。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IntervalTime: Integer
         # @param ScaleAction: 扩缩容动作，1表示扩容，2表示缩容。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScaleAction: Integer
         # @param ScaleNum: 扩缩容数量。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScaleNum: Integer
         # @param StrategyStatus: 规则状态，1表示有效，2表示无效，3表示暂停。必须填写
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StrategyStatus: Integer
         # @param Priority: 规则优先级，越小越高。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Priority: Integer
         # @param RetryValidTime: 当多条规则同时触发，其中某些未真正执行时，在该时间范围内，将会重试。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RetryValidTime: Integer
         # @param RepeatStrategy: 时间扩缩容重复策略
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RepeatStrategy: :class:`Tencentcloud::Emr.v20190103.models.RepeatStrategy`
         # @param StrategyId: 策略唯一ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StrategyId: Integer
         # @param GraceDownFlag: 优雅缩容开关
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GraceDownFlag: Boolean
         # @param GraceDownTime: 优雅缩容等待时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GraceDownTime: Integer
         # @param Tags: 绑定标签列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
         # @param ConfigGroupAssigned: 预设配置组
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ConfigGroupAssigned: String
         # @param MeasureMethod: 扩容资源计算方法，"DEFAULT","INSTANCE", "CPU", "MEMORYGB"。
         # "DEFAULT"表示默认方式，与"INSTANCE"意义相同。
         # "INSTANCE"表示按照节点计算，默认方式。
         # "CPU"表示按照机器的核数计算。
         # "MEMORYGB"表示按照机器内存数计算。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MeasureMethod: String
         # @param TerminatePolicy: 销毁策略, "DEFAULT",默认销毁策略，由缩容规则触发缩容，"TIMING"表示定时销毁
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TerminatePolicy: String
         # @param MaxUse: 最长使用时间， 秒数，最短1小时，最长24小时
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaxUse: Integer
         # @param SoftDeployInfo: 节点部署服务列表。部署服务仅填写HDFS、YARN。[组件名对应的映射关系表](https://cloud.tencent.com/document/product/589/98760)
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -12114,10 +11999,8 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ServiceNodeInfo: Array
         # @param CompensateFlag: 补偿扩容，0表示不开启，1表示开启
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CompensateFlag: Integer
         # @param GroupId: 伸缩组id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GroupId: Integer
 
         attr_accessor :StrategyName, :IntervalTime, :ScaleAction, :ScaleNum, :StrategyStatus, :Priority, :RetryValidTime, :RepeatStrategy, :StrategyId, :GraceDownFlag, :GraceDownTime, :Tags, :ConfigGroupAssigned, :MeasureMethod, :TerminatePolicy, :MaxUse, :SoftDeployInfo, :ServiceNodeInfo, :CompensateFlag, :GroupId
@@ -12228,7 +12111,6 @@ module TencentCloud
         # @param CompareMethod: 条件比较方法，1表示大于，2表示小于，3表示大于等于，4表示小于等于。
         # @type CompareMethod: Integer
         # @param Threshold: 条件阈值。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Threshold: Float
 
         attr_accessor :CompareMethod, :Threshold

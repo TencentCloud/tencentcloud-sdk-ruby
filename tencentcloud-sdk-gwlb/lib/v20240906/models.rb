@@ -1157,7 +1157,7 @@ module TencentCloud
       class TargetGroupBackend < TencentCloud::Common::AbstractModel
         # @param TargetGroupId: 目标组ID
         # @type TargetGroupId: String
-        # @param Type: 后端服务的类型，可取：CVM、ENI（即将支持）
+        # @param Type: 后端服务的类型，可取：CVM、ENI
         # @type Type: String
         # @param InstanceId: 后端服务的唯一 ID
         # @type InstanceId: String

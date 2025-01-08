@@ -773,7 +773,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询云应用服务版本容器列表
+        # 查询云托管服务版本容器列表
 
         # @param request: Request instance for DescribeCloudBaseRunPodList.
         # @type request: :class:`Tencentcloud::tcb::V20180608::DescribeCloudBaseRunPodListRequest`

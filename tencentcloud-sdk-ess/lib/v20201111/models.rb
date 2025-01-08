@@ -9373,10 +9373,15 @@ module TencentCloud
         # @param ApproverRoleName: 自定义签署人角色
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApproverRoleName: String
+        # @param RecipientId: 模板配置中的参与方ID,与控件绑定
+        # @type RecipientId: String
 
-        attr_accessor :ApproveMessage, :ApproveName, :ApproveStatus, :ReceiptId, :CustomUserId, :Mobile, :SignOrder, :ApproveTime, :ApproveType, :ApproverSource, :CustomApproverTag, :OrganizationId, :OrganizationName, :SignId, :ApproverRoleName
+        attr_accessor :ApproveMessage, :ApproveName, :ApproveStatus, :ReceiptId, :CustomUserId, :Mobile, :SignOrder, :ApproveTime, :ApproveType, :ApproverSource, :CustomApproverTag, :OrganizationId, :OrganizationName, :SignId, :ApproverRoleName, :RecipientId
+        extend Gem::Deprecate
+        deprecate :ReceiptId, :none, 2025, 1
+        deprecate :ReceiptId=, :none, 2025, 1
 
-        def initialize(approvemessage=nil, approvename=nil, approvestatus=nil, receiptid=nil, customuserid=nil, mobile=nil, signorder=nil, approvetime=nil, approvetype=nil, approversource=nil, customapprovertag=nil, organizationid=nil, organizationname=nil, signid=nil, approverrolename=nil)
+        def initialize(approvemessage=nil, approvename=nil, approvestatus=nil, receiptid=nil, customuserid=nil, mobile=nil, signorder=nil, approvetime=nil, approvetype=nil, approversource=nil, customapprovertag=nil, organizationid=nil, organizationname=nil, signid=nil, approverrolename=nil, recipientid=nil)
           @ApproveMessage = approvemessage
           @ApproveName = approvename
           @ApproveStatus = approvestatus
@@ -9392,6 +9397,7 @@ module TencentCloud
           @OrganizationName = organizationname
           @SignId = signid
           @ApproverRoleName = approverrolename
+          @RecipientId = recipientid
         end
 
         def deserialize(params)
@@ -9410,6 +9416,7 @@ module TencentCloud
           @OrganizationName = params['OrganizationName']
           @SignId = params['SignId']
           @ApproverRoleName = params['ApproverRoleName']
+          @RecipientId = params['RecipientId']
         end
       end
 
@@ -12049,10 +12056,15 @@ module TencentCloud
         # @type ApproverSignRole: String
         # @param ApproverSignSealId: 印章Id，签署控件类型为印章时，用于指定本企业签署方在解除协议中使用那个印章进行签署
         # @type ApproverSignSealId: String
+        # @param RelievedApproverRecipientId: 要更换的原合同参与人RecipientId编号。(可通过接口<a href="https://qian.tencent.com/developers/companyApis/queryFlows/DescribeFlowInfo/">DescribeFlowInfo</a>查询签署人的RecipientId编号)<br/>
+        # @type RelievedApproverRecipientId: String
 
-        attr_accessor :Name, :Mobile, :RelievedApproverReceiptId, :ApproverType, :ApproverSignComponentType, :ApproverSignRole, :ApproverSignSealId
+        attr_accessor :Name, :Mobile, :RelievedApproverReceiptId, :ApproverType, :ApproverSignComponentType, :ApproverSignRole, :ApproverSignSealId, :RelievedApproverRecipientId
+        extend Gem::Deprecate
+        deprecate :RelievedApproverReceiptId, :none, 2025, 1
+        deprecate :RelievedApproverReceiptId=, :none, 2025, 1
 
-        def initialize(name=nil, mobile=nil, relievedapproverreceiptid=nil, approvertype=nil, approversigncomponenttype=nil, approversignrole=nil, approversignsealid=nil)
+        def initialize(name=nil, mobile=nil, relievedapproverreceiptid=nil, approvertype=nil, approversigncomponenttype=nil, approversignrole=nil, approversignsealid=nil, relievedapproverrecipientid=nil)
           @Name = name
           @Mobile = mobile
           @RelievedApproverReceiptId = relievedapproverreceiptid
@@ -12060,6 +12072,7 @@ module TencentCloud
           @ApproverSignComponentType = approversigncomponenttype
           @ApproverSignRole = approversignrole
           @ApproverSignSealId = approversignsealid
+          @RelievedApproverRecipientId = relievedapproverrecipientid
         end
 
         def deserialize(params)
@@ -12070,6 +12083,7 @@ module TencentCloud
           @ApproverSignComponentType = params['ApproverSignComponentType']
           @ApproverSignRole = params['ApproverSignRole']
           @ApproverSignSealId = params['ApproverSignSealId']
+          @RelievedApproverRecipientId = params['RelievedApproverRecipientId']
         end
       end
 

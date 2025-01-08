@@ -184,14 +184,17 @@ module TencentCloud
         # @param AlarmLevel: 告警级别。0:警告(Warn);1:提醒(Info);2:紧急 (Critical)。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AlarmLevel: Integer
+        # @param Classifications: 告警附加分类字段。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Classifications: Array
         # @param MultiConditions: 多触发条件。与
         # Condition互斥。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MultiConditions: Array
 
-        attr_accessor :Name, :AlarmTargets, :MonitorTime, :Condition, :TriggerCount, :AlarmPeriod, :AlarmNoticeIds, :Status, :AlarmId, :CreateTime, :UpdateTime, :MessageTemplate, :CallBack, :Analysis, :GroupTriggerStatus, :GroupTriggerCondition, :MonitorObjectType, :AlarmLevel, :MultiConditions
+        attr_accessor :Name, :AlarmTargets, :MonitorTime, :Condition, :TriggerCount, :AlarmPeriod, :AlarmNoticeIds, :Status, :AlarmId, :CreateTime, :UpdateTime, :MessageTemplate, :CallBack, :Analysis, :GroupTriggerStatus, :GroupTriggerCondition, :MonitorObjectType, :AlarmLevel, :Classifications, :MultiConditions
 
-        def initialize(name=nil, alarmtargets=nil, monitortime=nil, condition=nil, triggercount=nil, alarmperiod=nil, alarmnoticeids=nil, status=nil, alarmid=nil, createtime=nil, updatetime=nil, messagetemplate=nil, callback=nil, analysis=nil, grouptriggerstatus=nil, grouptriggercondition=nil, monitorobjecttype=nil, alarmlevel=nil, multiconditions=nil)
+        def initialize(name=nil, alarmtargets=nil, monitortime=nil, condition=nil, triggercount=nil, alarmperiod=nil, alarmnoticeids=nil, status=nil, alarmid=nil, createtime=nil, updatetime=nil, messagetemplate=nil, callback=nil, analysis=nil, grouptriggerstatus=nil, grouptriggercondition=nil, monitorobjecttype=nil, alarmlevel=nil, classifications=nil, multiconditions=nil)
           @Name = name
           @AlarmTargets = alarmtargets
           @MonitorTime = monitortime
@@ -210,6 +213,7 @@ module TencentCloud
           @GroupTriggerCondition = grouptriggercondition
           @MonitorObjectType = monitorobjecttype
           @AlarmLevel = alarmlevel
+          @Classifications = classifications
           @MultiConditions = multiconditions
         end
 
@@ -252,6 +256,14 @@ module TencentCloud
           @GroupTriggerCondition = params['GroupTriggerCondition']
           @MonitorObjectType = params['MonitorObjectType']
           @AlarmLevel = params['AlarmLevel']
+          unless params['Classifications'].nil?
+            @Classifications = []
+            params['Classifications'].each do |i|
+              alarmclassification_tmp = AlarmClassification.new
+              alarmclassification_tmp.deserialize(i)
+              @Classifications << alarmclassification_tmp
+            end
+          end
           unless params['MultiConditions'].nil?
             @MultiConditions = []
             params['MultiConditions'].each do |i|

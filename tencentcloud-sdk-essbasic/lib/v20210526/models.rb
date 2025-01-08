@@ -1868,15 +1868,19 @@ module TencentCloud
         # <ul><li> **false** :(默认) 不开启动态合同（动态签署人2.0）</li>
         # <li> **true** :开启动态合同（动态签署人2.0）,发起后可继续追加合同签署人</li></ul>
         # @type OpenDynamicFlow: Boolean
+        # @param OpenDynamicSignFlow: 是否开启动态合同（动态签署人2.0）<ul><li> **false** :(默认) 不开启动态合同（动态签署人2.0）</li><li> **true** :开启动态合同（动态签署人2.0）,发起后可继续追加合同签署人</li></ul>
+        # @type OpenDynamicSignFlow: Boolean
 
-        attr_accessor :Agent, :FlowName, :FlowDescription, :FlowApprovers, :FileIds, :Components, :Deadline, :CallbackUrl, :Unordered, :FlowType, :CustomShowMap, :CustomerData, :NeedSignReview, :ApproverVerifyType, :SignBeanTag, :CcInfos, :CcNotifyType, :AutoSignScene, :Operator, :FlowDisplayType, :NeedPreview, :PreviewType, :OpenDynamicFlow
+        attr_accessor :Agent, :FlowName, :FlowDescription, :FlowApprovers, :FileIds, :Components, :Deadline, :CallbackUrl, :Unordered, :FlowType, :CustomShowMap, :CustomerData, :NeedSignReview, :ApproverVerifyType, :SignBeanTag, :CcInfos, :CcNotifyType, :AutoSignScene, :Operator, :FlowDisplayType, :NeedPreview, :PreviewType, :OpenDynamicFlow, :OpenDynamicSignFlow
         extend Gem::Deprecate
         deprecate :CallbackUrl, :none, 2025, 1
         deprecate :CallbackUrl=, :none, 2025, 1
         deprecate :Operator, :none, 2025, 1
         deprecate :Operator=, :none, 2025, 1
+        deprecate :OpenDynamicFlow, :none, 2025, 1
+        deprecate :OpenDynamicFlow=, :none, 2025, 1
 
-        def initialize(agent=nil, flowname=nil, flowdescription=nil, flowapprovers=nil, fileids=nil, components=nil, deadline=nil, callbackurl=nil, unordered=nil, flowtype=nil, customshowmap=nil, customerdata=nil, needsignreview=nil, approververifytype=nil, signbeantag=nil, ccinfos=nil, ccnotifytype=nil, autosignscene=nil, operator=nil, flowdisplaytype=nil, needpreview=nil, previewtype=nil, opendynamicflow=nil)
+        def initialize(agent=nil, flowname=nil, flowdescription=nil, flowapprovers=nil, fileids=nil, components=nil, deadline=nil, callbackurl=nil, unordered=nil, flowtype=nil, customshowmap=nil, customerdata=nil, needsignreview=nil, approververifytype=nil, signbeantag=nil, ccinfos=nil, ccnotifytype=nil, autosignscene=nil, operator=nil, flowdisplaytype=nil, needpreview=nil, previewtype=nil, opendynamicflow=nil, opendynamicsignflow=nil)
           @Agent = agent
           @FlowName = flowname
           @FlowDescription = flowdescription
@@ -1900,6 +1904,7 @@ module TencentCloud
           @NeedPreview = needpreview
           @PreviewType = previewtype
           @OpenDynamicFlow = opendynamicflow
+          @OpenDynamicSignFlow = opendynamicsignflow
         end
 
         def deserialize(params)
@@ -1953,6 +1958,7 @@ module TencentCloud
           @NeedPreview = params['NeedPreview']
           @PreviewType = params['PreviewType']
           @OpenDynamicFlow = params['OpenDynamicFlow']
+          @OpenDynamicSignFlow = params['OpenDynamicSignFlow']
         end
       end
 
@@ -8458,10 +8464,15 @@ module TencentCloud
         # @param SignId: 签署参与人在本流程中的编号ID（每个流程不同），可用此ID来定位签署参与人在本流程的签署节点。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SignId: String
+        # @param RecipientId: 模板配置时候的签署人角色ID(用PDF文件发起也可以指定,如果不指定则自动生成此角色ID), 所有的填写控件和签署控件都归属不同的角色
+        # @type RecipientId: String
 
-        attr_accessor :ReceiptId, :ProxyOrganizationOpenId, :ProxyOperatorOpenId, :ProxyOrganizationName, :Mobile, :SignOrder, :ApproveName, :ApproveStatus, :ApproveMessage, :ApproveTime, :ApproveType, :ApproverRoleName, :SignId
+        attr_accessor :ReceiptId, :ProxyOrganizationOpenId, :ProxyOperatorOpenId, :ProxyOrganizationName, :Mobile, :SignOrder, :ApproveName, :ApproveStatus, :ApproveMessage, :ApproveTime, :ApproveType, :ApproverRoleName, :SignId, :RecipientId
+        extend Gem::Deprecate
+        deprecate :ReceiptId, :none, 2025, 1
+        deprecate :ReceiptId=, :none, 2025, 1
 
-        def initialize(receiptid=nil, proxyorganizationopenid=nil, proxyoperatoropenid=nil, proxyorganizationname=nil, mobile=nil, signorder=nil, approvename=nil, approvestatus=nil, approvemessage=nil, approvetime=nil, approvetype=nil, approverrolename=nil, signid=nil)
+        def initialize(receiptid=nil, proxyorganizationopenid=nil, proxyoperatoropenid=nil, proxyorganizationname=nil, mobile=nil, signorder=nil, approvename=nil, approvestatus=nil, approvemessage=nil, approvetime=nil, approvetype=nil, approverrolename=nil, signid=nil, recipientid=nil)
           @ReceiptId = receiptid
           @ProxyOrganizationOpenId = proxyorganizationopenid
           @ProxyOperatorOpenId = proxyoperatoropenid
@@ -8475,6 +8486,7 @@ module TencentCloud
           @ApproveType = approvetype
           @ApproverRoleName = approverrolename
           @SignId = signid
+          @RecipientId = recipientid
         end
 
         def deserialize(params)
@@ -8491,6 +8503,7 @@ module TencentCloud
           @ApproveType = params['ApproveType']
           @ApproverRoleName = params['ApproverRoleName']
           @SignId = params['SignId']
+          @RecipientId = params['RecipientId']
         end
       end
 

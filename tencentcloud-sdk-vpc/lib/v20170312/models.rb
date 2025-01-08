@@ -6143,7 +6143,6 @@ module TencentCloud
       # CreateVpcPeeringConnection返回参数结构体
       class CreateVpcPeeringConnectionResponse < TencentCloud::Common::AbstractModel
         # @param PeeringConnectionId: 对等连接ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PeeringConnectionId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -22673,15 +22672,15 @@ module TencentCloud
         # @param TagSet: 资源标签数据。
         # @type TagSet: Array
         # @param QosLevel: 服务分级：PT、AU、AG。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type QosLevel: String
         # @param Type: 互通类型，VPC_PEER：VPC间互通；VPC_BM_PEER：VPC与黑石网络互通。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: String
+        # @param DestinationVpcId: 对端VPC唯一ID。
+        # @type DestinationVpcId: String
 
-        attr_accessor :SourceVpcId, :PeerVpcId, :PeeringConnectionId, :PeeringConnectionName, :State, :IsNgw, :Bandwidth, :SourceRegion, :DestinationRegion, :CreateTime, :AppId, :PeerAppId, :ChargeType, :SourceUin, :DestinationUin, :TagSet, :QosLevel, :Type
+        attr_accessor :SourceVpcId, :PeerVpcId, :PeeringConnectionId, :PeeringConnectionName, :State, :IsNgw, :Bandwidth, :SourceRegion, :DestinationRegion, :CreateTime, :AppId, :PeerAppId, :ChargeType, :SourceUin, :DestinationUin, :TagSet, :QosLevel, :Type, :DestinationVpcId
 
-        def initialize(sourcevpcid=nil, peervpcid=nil, peeringconnectionid=nil, peeringconnectionname=nil, state=nil, isngw=nil, bandwidth=nil, sourceregion=nil, destinationregion=nil, createtime=nil, appid=nil, peerappid=nil, chargetype=nil, sourceuin=nil, destinationuin=nil, tagset=nil, qoslevel=nil, type=nil)
+        def initialize(sourcevpcid=nil, peervpcid=nil, peeringconnectionid=nil, peeringconnectionname=nil, state=nil, isngw=nil, bandwidth=nil, sourceregion=nil, destinationregion=nil, createtime=nil, appid=nil, peerappid=nil, chargetype=nil, sourceuin=nil, destinationuin=nil, tagset=nil, qoslevel=nil, type=nil, destinationvpcid=nil)
           @SourceVpcId = sourcevpcid
           @PeerVpcId = peervpcid
           @PeeringConnectionId = peeringconnectionid
@@ -22700,6 +22699,7 @@ module TencentCloud
           @TagSet = tagset
           @QosLevel = qoslevel
           @Type = type
+          @DestinationVpcId = destinationvpcid
         end
 
         def deserialize(params)
@@ -22728,6 +22728,7 @@ module TencentCloud
           end
           @QosLevel = params['QosLevel']
           @Type = params['Type']
+          @DestinationVpcId = params['DestinationVpcId']
         end
       end
 

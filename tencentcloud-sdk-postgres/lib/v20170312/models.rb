@@ -3974,6 +3974,54 @@ module TencentCloud
         end
       end
 
+      # DescribeMaintainTimeWindow请求参数结构体
+      class DescribeMaintainTimeWindowRequest < TencentCloud::Common::AbstractModel
+        # @param DBInstanceId: 实例ID
+        # @type DBInstanceId: String
+
+        attr_accessor :DBInstanceId
+
+        def initialize(dbinstanceid=nil)
+          @DBInstanceId = dbinstanceid
+        end
+
+        def deserialize(params)
+          @DBInstanceId = params['DBInstanceId']
+        end
+      end
+
+      # DescribeMaintainTimeWindow返回参数结构体
+      class DescribeMaintainTimeWindowResponse < TencentCloud::Common::AbstractModel
+        # @param DBInstanceId: 实例ID
+        # @type DBInstanceId: String
+        # @param MaintainStartTime: 维护开始时间。时区为东八区（UTC+8）
+        # @type MaintainStartTime: String
+        # @param MaintainDuration: 维护持续时间。单位：小时
+        # @type MaintainDuration: Integer
+        # @param MaintainWeekDays: 维护周期
+        # @type MaintainWeekDays: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DBInstanceId, :MaintainStartTime, :MaintainDuration, :MaintainWeekDays, :RequestId
+
+        def initialize(dbinstanceid=nil, maintainstarttime=nil, maintainduration=nil, maintainweekdays=nil, requestid=nil)
+          @DBInstanceId = dbinstanceid
+          @MaintainStartTime = maintainstarttime
+          @MaintainDuration = maintainduration
+          @MaintainWeekDays = maintainweekdays
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @DBInstanceId = params['DBInstanceId']
+          @MaintainStartTime = params['MaintainStartTime']
+          @MaintainDuration = params['MaintainDuration']
+          @MaintainWeekDays = params['MaintainWeekDays']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeOrders请求参数结构体
       class DescribeOrdersRequest < TencentCloud::Common::AbstractModel
         # @param DealNames: 订单名集合
@@ -6044,6 +6092,50 @@ module TencentCloud
 
       # ModifyDatabaseOwner返回参数结构体
       class ModifyDatabaseOwnerResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyMaintainTimeWindow请求参数结构体
+      class ModifyMaintainTimeWindowRequest < TencentCloud::Common::AbstractModel
+        # @param DBInstanceId: 实例ID
+        # @type DBInstanceId: String
+        # @param MaintainStartTime: 维护开始时间。时区为东八区（UTC+8）
+        # @type MaintainStartTime: String
+        # @param MaintainDuration: 维护持续时间。单位：小时
+        # @type MaintainDuration: Integer
+        # @param MaintainWeekDays: 维护周期
+        # @type MaintainWeekDays: Array
+
+        attr_accessor :DBInstanceId, :MaintainStartTime, :MaintainDuration, :MaintainWeekDays
+
+        def initialize(dbinstanceid=nil, maintainstarttime=nil, maintainduration=nil, maintainweekdays=nil)
+          @DBInstanceId = dbinstanceid
+          @MaintainStartTime = maintainstarttime
+          @MaintainDuration = maintainduration
+          @MaintainWeekDays = maintainweekdays
+        end
+
+        def deserialize(params)
+          @DBInstanceId = params['DBInstanceId']
+          @MaintainStartTime = params['MaintainStartTime']
+          @MaintainDuration = params['MaintainDuration']
+          @MaintainWeekDays = params['MaintainWeekDays']
+        end
+      end
+
+      # ModifyMaintainTimeWindow返回参数结构体
+      class ModifyMaintainTimeWindowResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 

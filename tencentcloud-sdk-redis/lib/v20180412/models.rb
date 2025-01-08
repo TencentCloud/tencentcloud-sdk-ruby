@@ -938,7 +938,7 @@ module TencentCloud
         # @type ZoneId: Integer
         # @param Password: 访问实例的密码。
         # - 当输入参数**NoAuth**为**true**时，指设置实例为免密码访问，Password可不用配置，否则Password为必填参数。
-        # - 当实例类型**TypeId**为Redis 2.8 内存版标准架构、Redis 4.0、5.0、6.0内存版标准架构或集群架构时，其密码复杂度要求为：8-64个字符，至少包含小写字母、大写字母、数字和字符()`~!@#$%^&*-+=_|{}[]:;<>,.?/ 中的2种，不能以"/"开头。
+        # - 当实例类型**TypeId**为Redis 2.8 内存版标准架构、Redis 4.0、5.0、6.2、7.0内存版标准架构或集群架构时，其密码复杂度要求为：8-64个字符，至少包含小写字母、大写字母、数字和字符()`~!@#$%^&*-+=_|{}[]:;<>,.?/ 中的2种，不能以"/"开头。
         # - 当实例类型**TypeId**为CKV 3.2 内存版标准架构或集群架构时，其密码复杂度为：8-30个字符，必须包含字母和数字，且不包含其他字符。
         # @type Password: String
         # @param VpcId: 私有网络ID。如果不配置该参数则默认选择基础网络。请登录 [私有网络](https://console.cloud.tencent.com/vpc)控制台查询具体的ID。
@@ -2627,7 +2627,7 @@ module TencentCloud
 
       # DescribeInstanceMonitorTopNCmd请求参数结构体
       class DescribeInstanceMonitorTopNCmdRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例 ID。
+        # @param InstanceId: 实例 ID，请登录[Redis控制台](https://console.cloud.tencent.com/redis/instance/list)在实例列表复制实例 ID。
         # @type InstanceId: String
         # @param SpanType: 时间范围。
         # - 1：实时。
@@ -6081,7 +6081,7 @@ module TencentCloud
         # @param OldPassword: 实例旧密码。
         # @type OldPassword: String
         # @param Password: 实例新密码。密码复杂度要求如下：
-        # - 长度8 - 30位, 推荐使用12位以上的密码。
+        # - 长度8 - 64位, 推荐使用12位以上的密码。
         # - 不能以"/"开头。
         # - 至少包含小写字母a - z、大写字母A - Z、数字0 - 9、特殊字符 ()~!@#$%^&*-+=_|{}[]:;<>,.?/中的两项。
         # @type Password: String

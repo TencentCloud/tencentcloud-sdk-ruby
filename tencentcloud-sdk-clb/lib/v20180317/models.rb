@@ -1762,14 +1762,24 @@ module TencentCloud
         # @type Port: Integer
         # @param TargetGroupInstances: 目标组绑定的后端服务器
         # @type TargetGroupInstances: Array
+        # @param Tags: 标签。
+        # @type Tags: Array
+        # @param Weight: 后端服务默认权重。
+        # <ul>
+        #     <li>取值范围[0, 100]</li>
+        #     <li>设置该值后，添加后端服务到目标组时， 若后端服务不单独设置权重， 则使用这里的默认权重。 </li>
+        # </ul>
+        # @type Weight: Integer
 
-        attr_accessor :TargetGroupName, :VpcId, :Port, :TargetGroupInstances
+        attr_accessor :TargetGroupName, :VpcId, :Port, :TargetGroupInstances, :Tags, :Weight
 
-        def initialize(targetgroupname=nil, vpcid=nil, port=nil, targetgroupinstances=nil)
+        def initialize(targetgroupname=nil, vpcid=nil, port=nil, targetgroupinstances=nil, tags=nil, weight=nil)
           @TargetGroupName = targetgroupname
           @VpcId = vpcid
           @Port = port
           @TargetGroupInstances = targetgroupinstances
+          @Tags = tags
+          @Weight = weight
         end
 
         def deserialize(params)
@@ -1784,6 +1794,15 @@ module TencentCloud
               @TargetGroupInstances << targetgroupinstance_tmp
             end
           end
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              taginfo_tmp = TagInfo.new
+              taginfo_tmp.deserialize(i)
+              @Tags << taginfo_tmp
+            end
+          end
+          @Weight = params['Weight']
         end
       end
 
@@ -6441,19 +6460,27 @@ module TencentCloud
         # @type TargetGroupName: String
         # @param Port: 目标组的新默认端口。
         # @type Port: Integer
+        # @param Weight: 后端服务默认权重。
+        # <ul>
+        #     <li>取值范围[0, 100]</li>
+        #     <li>设置该值后，添加后端服务到目标组时， 若后端服务不单独设置权重， 则使用这里的默认权重。 </li>
+        # </ul>
+        # @type Weight: Integer
 
-        attr_accessor :TargetGroupId, :TargetGroupName, :Port
+        attr_accessor :TargetGroupId, :TargetGroupName, :Port, :Weight
 
-        def initialize(targetgroupid=nil, targetgroupname=nil, port=nil)
+        def initialize(targetgroupid=nil, targetgroupname=nil, port=nil, weight=nil)
           @TargetGroupId = targetgroupid
           @TargetGroupName = targetgroupname
           @Port = port
+          @Weight = weight
         end
 
         def deserialize(params)
           @TargetGroupId = params['TargetGroupId']
           @TargetGroupName = params['TargetGroupName']
           @Port = params['Port']
+          @Weight = params['Weight']
         end
       end
 

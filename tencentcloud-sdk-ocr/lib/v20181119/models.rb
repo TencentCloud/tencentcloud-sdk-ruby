@@ -4352,19 +4352,19 @@ module TencentCloud
 
       # 身份证配置信息
       class IDCardConfig < TencentCloud::Common::AbstractModel
-        # @param CopyWarn: 默认为false
+        # @param CopyWarn: 复印件告警，默认为false
         # @type CopyWarn: Boolean
-        # @param BorderCheckWarn: 默认为false
+        # @param BorderCheckWarn: 边框和框内遮挡告警，默认为false
         # @type BorderCheckWarn: Boolean
-        # @param ReshootWarn: 默认为false
+        # @param ReshootWarn: 翻拍告警，默认为false
         # @type ReshootWarn: Boolean
-        # @param DetectPsWarn: 默认为false
+        # @param DetectPsWarn: 疑似存在PS痕迹告警，默认为false
         # @type DetectPsWarn: Boolean
-        # @param TempIdWarn: 默认为false
+        # @param TempIdWarn: 临时身份证告警，默认为false
         # @type TempIdWarn: Boolean
-        # @param InvalidDateWarn: 默认为false
+        # @param InvalidDateWarn: 身份证有效日期不合法告警，默认为false
         # @type InvalidDateWarn: Boolean
-        # @param ReflectWarn: 默认为false
+        # @param ReflectWarn: 是否开启反光检测，默认为false
         # @type ReflectWarn: Boolean
 
         attr_accessor :CopyWarn, :BorderCheckWarn, :ReshootWarn, :DetectPsWarn, :TempIdWarn, :InvalidDateWarn, :ReflectWarn

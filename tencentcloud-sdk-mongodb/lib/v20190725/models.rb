@@ -126,10 +126,8 @@ module TencentCloud
         # @param BackupDesc: 发起备份时指定的备注信息
         # @type BackupDesc: String
         # @param Region: 地区信息。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Region: String
         # @param Bucket: Bucket信息。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Bucket: String
 
         attr_accessor :CreateTime, :BackupName, :ReplicaSetId, :BackupSize, :Status, :Percent, :TimeSpend, :Url, :BackupMethod, :BackupDesc, :Region, :Bucket
@@ -872,32 +870,24 @@ module TencentCloud
       # 云数据库实例当前操作
       class CurrentOp < TencentCloud::Common::AbstractModel
         # @param OpId: 操作序号。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OpId: Integer
         # @param Ns: 操作所在的命名空间，形式如db.collection。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Ns: String
         # @param Query: 操作执行语句。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Query: String
         # @param Op: 操作类型，可能的取值：aggregate、count、delete、distinct、find、findAndModify、getMore、insert、mapReduce、update和command。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Op: String
         # @param ReplicaSetName: 操作所在的分片名称。
         # @type ReplicaSetName: String
         # @param NodeName: 操作所在的节点名称。
         # @type NodeName: String
         # @param Operation: 操作详细信息。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Operation: String
         # @param State: 筛选条件，节点状态，可能的取值为：Primary、Secondary。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type State: String
         # @param MicrosecsRunning: 操作已执行时间（ms）。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MicrosecsRunning: Integer
         # @param ExecNode: 当前操作所在节点信息。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExecNode: String
 
         attr_accessor :OpId, :Ns, :Query, :Op, :ReplicaSetName, :NodeName, :Operation, :State, :MicrosecsRunning, :ExecNode
@@ -3581,7 +3571,7 @@ module TencentCloud
         # @type NodeName: String
         # @param Address: 节点访问地址。
         # @type Address: String
-        # @param WanServiceAddress: 节点公网访问地址(IP或域名)。
+        # @param WanServiceAddress: 节点公网访问外网地址(IP或域名，示例为IP方式)。
         # @type WanServiceAddress: String
         # @param Role: 角色。
         # @type Role: String

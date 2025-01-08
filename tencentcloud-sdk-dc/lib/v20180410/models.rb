@@ -208,23 +208,25 @@ module TencentCloud
         end
       end
 
-      # bgp参数，包括Asn，AuthKey
+      # bgp参数，包括CloudAsn，Asn，AuthKey
       class BgpPeer < TencentCloud::Common::AbstractModel
+        # @param CloudAsn: 腾讯侧BGP ASN
+        # @type CloudAsn: String
         # @param Asn: 用户侧BGP ASN
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Asn: Integer
         # @param AuthKey: 用户侧BGP密钥
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AuthKey: String
 
-        attr_accessor :Asn, :AuthKey
+        attr_accessor :CloudAsn, :Asn, :AuthKey
 
-        def initialize(asn=nil, authkey=nil)
+        def initialize(cloudasn=nil, asn=nil, authkey=nil)
+          @CloudAsn = cloudasn
           @Asn = asn
           @AuthKey = authkey
         end
 
         def deserialize(params)
+          @CloudAsn = params['CloudAsn']
           @Asn = params['Asn']
           @AuthKey = params['AuthKey']
         end
@@ -1263,74 +1265,52 @@ module TencentCloud
         # @param PortType: 用户侧物理专线接入端口类型,取值：100Base-T：百兆电口,1000Base-T（默认值）：千兆电口,1000Base-LX：千兆单模光口（10千米）,10GBase-T：万兆电口10GBase-LR：万兆单模光口（10千米），默认值，千兆单模光口（10千米）
         # @type PortType: String
         # @param CircuitCode: 运营商或者服务商为物理专线提供的电路编码。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CircuitCode: String
         # @param RedundantDirectConnectId: 冗余物理专线的ID。
         # @type RedundantDirectConnectId: String
         # @param Vlan: 物理专线调试VLAN。默认开启VLAN，自动分配VLAN。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Vlan: Integer
         # @param TencentAddress: 物理专线调试腾讯侧互联IP。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TencentAddress: String
         # @param CustomerAddress: 物理专线调试用户侧互联IP。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CustomerAddress: String
         # @param CustomerName: 物理专线申请者姓名。默认从账户体系获取。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CustomerName: String
         # @param CustomerContactMail: 物理专线申请者联系邮箱。默认从账户体系获取。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CustomerContactMail: String
         # @param CustomerContactNumber: 物理专线申请者联系号码。默认从账户体系获取。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CustomerContactNumber: String
         # @param ExpiredTime: 物理专线的过期时间。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExpiredTime: String
         # @param ChargeType: 物理专线计费类型。 NON_RECURRING_CHARGE：一次性接入费用；PREPAID_BY_YEAR：按年预付费。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ChargeType: String
         # @param FaultReportContactPerson: 报障联系人。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FaultReportContactPerson: String
         # @param FaultReportContactNumber: 报障联系电话。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FaultReportContactNumber: String
         # @param TagSet: 标签键值对
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TagSet: Array
         # @param AccessPointType: 物理专线的接入点类型。
         # @type AccessPointType: String
         # @param IdcCity: IDC所在城市
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IdcCity: String
         # @param ChargeState: 计费状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ChargeState: String
         # @param StartTime: 物理专线开通时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StartTime: String
         # @param SignLaw: 物理专线是否已签署用户协议
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SignLaw: Boolean
         # @param LocalZone: 物理专线是否为LocalZone
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LocalZone: Boolean
         # @param VlanZeroDirectConnectTunnelCount: 该物理专线下vlan 0的专用通道数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VlanZeroDirectConnectTunnelCount: Integer
         # @param OtherVlanDirectConnectTunnelCount: 该物理专线下非vlan 0的专用通道数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OtherVlanDirectConnectTunnelCount: Integer
         # @param MinBandwidth: 物理专线最小带宽
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MinBandwidth: Integer
         # @param Construct: 建设模式
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Construct: Integer
         # @param AccessPointName: 物理专线的接入点名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AccessPointName: String
 
         attr_accessor :DirectConnectId, :DirectConnectName, :AccessPointId, :State, :CreatedTime, :EnabledTime, :LineOperator, :Location, :Bandwidth, :PortType, :CircuitCode, :RedundantDirectConnectId, :Vlan, :TencentAddress, :CustomerAddress, :CustomerName, :CustomerContactMail, :CustomerContactNumber, :ExpiredTime, :ChargeType, :FaultReportContactPerson, :FaultReportContactNumber, :TagSet, :AccessPointType, :IdcCity, :ChargeState, :StartTime, :SignLaw, :LocalZone, :VlanZeroDirectConnectTunnelCount, :OtherVlanDirectConnectTunnelCount, :MinBandwidth, :Construct, :AccessPointName
@@ -1449,7 +1429,7 @@ module TencentCloud
         # @type DirectConnectGatewayId: String
         # @param RouteType: BGP ：BGP路由 STATIC：静态 默认为 BGP 路由
         # @type RouteType: String
-        # @param BgpPeer: 用户侧BGP，Asn，AuthKey
+        # @param BgpPeer: 用户侧BGP，包括： CloudAsn，Asn，AuthKey
         # @type BgpPeer: :class:`Tencentcloud::Dc.v20180410.models.BgpPeer`
         # @param RouteFilterPrefixes: 用户侧网段地址
         # @type RouteFilterPrefixes: Array
@@ -1468,40 +1448,28 @@ module TencentCloud
         # @param TagSet: 专用通道标签值
         # @type TagSet: Array
         # @param NetDetectId: 关联的网络自定义探测ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NetDetectId: String
         # @param EnableBGPCommunity: BGP community开关
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EnableBGPCommunity: Boolean
         # @param NatType: 是否为Nat通道
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NatType: Integer
         # @param VpcRegion: VPC地域简码，如gz、cd
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VpcRegion: String
         # @param BfdEnable: 是否开启BFD
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BfdEnable: Integer
         # @param AccessPointType: 专用通道接入点类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AccessPointType: String
         # @param DirectConnectGatewayName: 专线网关名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DirectConnectGatewayName: String
         # @param VpcName: VPC名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VpcName: String
         # @param TencentBackupAddress: TencentBackupAddress，腾讯侧备用互联 IP
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TencentBackupAddress: String
         # @param SignLaw: 专用通道关联的物理专线是否签署了用户协议
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SignLaw: Boolean
         # @param CloudAttachId: 高速上云服务ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CloudAttachId: String
         # @param ShareOrNot: 是否共享通道
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ShareOrNot: Integer
 
         attr_accessor :DirectConnectTunnelId, :DirectConnectId, :State, :DirectConnectOwnerAccount, :OwnerAccount, :NetworkType, :NetworkRegion, :VpcId, :DirectConnectGatewayId, :RouteType, :BgpPeer, :RouteFilterPrefixes, :Vlan, :TencentAddress, :CustomerAddress, :DirectConnectTunnelName, :CreatedTime, :Bandwidth, :TagSet, :NetDetectId, :EnableBGPCommunity, :NatType, :VpcRegion, :BfdEnable, :AccessPointType, :DirectConnectGatewayName, :VpcName, :TencentBackupAddress, :SignLaw, :CloudAttachId, :ShareOrNot
@@ -1671,25 +1639,18 @@ module TencentCloud
         # @param BgpStatus: BGP状态
         # @type BgpStatus: :class:`Tencentcloud::Dc.v20180410.models.BGPStatus`
         # @param IPv6Enable: 是否开启IPv6
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IPv6Enable: Integer
         # @param TencentIPv6Address: 腾讯侧互联IPv6地址
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TencentIPv6Address: String
         # @param TencentBackupIPv6Address: 腾讯侧备用互联IPv6地址
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TencentBackupIPv6Address: String
         # @param BgpIPv6Status: BGPv6状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BgpIPv6Status: :class:`Tencentcloud::Dc.v20180410.models.BGPStatus`
         # @param CustomerIPv6Address: 用户侧互联IPv6地址
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CustomerIPv6Address: String
         # @param JumboEnable: 专用通道是否支持巨帧。1 支持，0 不支持
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type JumboEnable: Integer
         # @param HighPrecisionBFDEnable: 专用通道是否支持高精度BFD。1支持，0不支持
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HighPrecisionBFDEnable: Integer
 
         attr_accessor :DirectConnectTunnelId, :DirectConnectId, :State, :DirectConnectOwnerAccount, :OwnerAccount, :NetworkType, :NetworkRegion, :VpcId, :DirectConnectGatewayId, :RouteType, :BgpPeer, :RouteFilterPrefixes, :PublicAddresses, :Vlan, :TencentAddress, :TencentBackupAddress, :CustomerAddress, :DirectConnectTunnelName, :CreatedTime, :Bandwidth, :NetDetectId, :EnableBGPCommunity, :NatType, :VpcRegion, :BfdEnable, :NqaEnable, :AccessPointType, :DirectConnectGatewayName, :VpcName, :SignLaw, :BfdInfo, :NqaInfo, :BgpStatus, :IPv6Enable, :TencentIPv6Address, :TencentBackupIPv6Address, :BgpIPv6Status, :CustomerIPv6Address, :JumboEnable, :HighPrecisionBFDEnable
@@ -1824,16 +1785,23 @@ module TencentCloud
         # @type ASPath: Array
         # @param NextHop: 路由下一跳IP
         # @type NextHop: String
+        # @param UpdateTime: 路由更新时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTime: String
+        # @param ApplyOnTunnelEnable: 是否配置在通道上
+        # @type ApplyOnTunnelEnable: Boolean
 
-        attr_accessor :RouteId, :DestinationCidrBlock, :RouteType, :Status, :ASPath, :NextHop
+        attr_accessor :RouteId, :DestinationCidrBlock, :RouteType, :Status, :ASPath, :NextHop, :UpdateTime, :ApplyOnTunnelEnable
 
-        def initialize(routeid=nil, destinationcidrblock=nil, routetype=nil, status=nil, aspath=nil, nexthop=nil)
+        def initialize(routeid=nil, destinationcidrblock=nil, routetype=nil, status=nil, aspath=nil, nexthop=nil, updatetime=nil, applyontunnelenable=nil)
           @RouteId = routeid
           @DestinationCidrBlock = destinationcidrblock
           @RouteType = routetype
           @Status = status
           @ASPath = aspath
           @NextHop = nexthop
+          @UpdateTime = updatetime
+          @ApplyOnTunnelEnable = applyontunnelenable
         end
 
         def deserialize(params)
@@ -1843,6 +1811,8 @@ module TencentCloud
           @Status = params['Status']
           @ASPath = params['ASPath']
           @NextHop = params['NextHop']
+          @UpdateTime = params['UpdateTime']
+          @ApplyOnTunnelEnable = params['ApplyOnTunnelEnable']
         end
       end
 
@@ -1933,44 +1903,33 @@ module TencentCloud
       # 互联网地址详细信息
       class InternetAddressDetail < TencentCloud::Common::AbstractModel
         # @param InstanceId: 互联网地址ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceId: String
         # @param Subnet: 互联网网络地址
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Subnet: String
         # @param MaskLen: 网络地址掩码长度
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaskLen: Integer
         # @param AddrType: 0:BGP
         # 1:电信
         # 2:移动
         # 3:联通
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AddrType: Integer
         # @param Status: 0:使用中
         # 1:已停用
         # 2:已退还
         # @type Status: Integer
         # @param ApplyTime: 申请时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApplyTime: String
         # @param StopTime: 停用时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StopTime: String
         # @param ReleaseTime: 退还时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReleaseTime: String
         # @param Region: 地域信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Region: String
         # @param AppId: 用户ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AppId: Integer
         # @param AddrProto: 0:IPv4 1:IPv6
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AddrProto: Integer
         # @param ReserveTime: 释放状态的IP地址保留的天数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReserveTime: Integer
 
         attr_accessor :InstanceId, :Subnet, :MaskLen, :AddrType, :Status, :ApplyTime, :StopTime, :ReleaseTime, :Region, :AppId, :AddrProto, :ReserveTime
@@ -2009,10 +1968,8 @@ module TencentCloud
       # 互联网公网地址统计
       class InternetAddressStatistics < TencentCloud::Common::AbstractModel
         # @param Region: 地域
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Region: String
         # @param SubnetNum: 互联网公网地址数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubnetNum: Integer
 
         attr_accessor :Region, :SubnetNum
@@ -2416,7 +2373,6 @@ module TencentCloud
       # 用户侧网段地址
       class RouteFilterPrefix < TencentCloud::Common::AbstractModel
         # @param Cidr: 用户侧网段地址
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Cidr: String
 
         attr_accessor :Cidr
@@ -2433,10 +2389,8 @@ module TencentCloud
       # 标签键值对
       class Tag < TencentCloud::Common::AbstractModel
         # @param Key: 标签键
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Key: String
         # @param Value: 标签值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: String
 
         attr_accessor :Key, :Value

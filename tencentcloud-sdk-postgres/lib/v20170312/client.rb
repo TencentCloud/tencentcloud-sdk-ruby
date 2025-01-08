@@ -1233,6 +1233,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口 (DescribeMaintainTimeWindow) 用于查询实例的维护时间窗口
+
+        # @param request: Request instance for DescribeMaintainTimeWindow.
+        # @type request: :class:`Tencentcloud::postgres::V20170312::DescribeMaintainTimeWindowRequest`
+        # @rtype: :class:`Tencentcloud::postgres::V20170312::DescribeMaintainTimeWindowResponse`
+        def DescribeMaintainTimeWindow(request)
+          body = send_request('DescribeMaintainTimeWindow', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeMaintainTimeWindowResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（DescribeOrders）用于查询订单信息。
 
         # @param request: Request instance for DescribeOrders.
@@ -2037,6 +2061,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyDatabaseOwnerResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口 (ModifyMaintainTimeWindow) 用于实例维护时间窗口的修改。
+
+        # @param request: Request instance for ModifyMaintainTimeWindow.
+        # @type request: :class:`Tencentcloud::postgres::V20170312::ModifyMaintainTimeWindowRequest`
+        # @rtype: :class:`Tencentcloud::postgres::V20170312::ModifyMaintainTimeWindowResponse`
+        def ModifyMaintainTimeWindow(request)
+          body = send_request('ModifyMaintainTimeWindow', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyMaintainTimeWindowResponse.new
             model.deserialize(response['Response'])
             model
           else

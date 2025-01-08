@@ -1148,9 +1148,9 @@ module TencentCloud
         # @type UserName: String
         # @param RealName: 用户姓名，最大长度20个字符，不能包含空白字符
         # @type RealName: String
-        # @param Phone: 大陆手机号直接填写，如果是其他国家、地区号码， 按照"国家地区代码|手机号"的格式输入。如: "+852|xxxxxxxx"
+        # @param Phone: 按照"国家地区代码|手机号"的格式输入，如: "+86|xxxxxxxx"。手机号和邮箱参数至少传一项
         # @type Phone: String
-        # @param Email: 电子邮件
+        # @param Email: 电子邮件。手机号和邮箱参数至少传一项
         # @type Email: String
         # @param ValidateFrom: 用户生效时间，如:"2021-09-22T00:00:00+00:00"
         # 生效、失效时间不填则用户长期有效

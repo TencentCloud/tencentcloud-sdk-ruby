@@ -3100,6 +3100,8 @@ module TencentCloud
       class DescribeSubscribeJobsRequest < TencentCloud::Common::AbstractModel
         # @param SubscribeId: 订阅 ID 筛选，精确匹配
         # @type SubscribeId: String
+        # @param SubscribeIds: 订阅 ID 筛选，精确匹配
+        # @type SubscribeIds: Array
         # @param SubscribeName: 订阅名称，前缀模糊匹配
         # @type SubscribeName: String
         # @param InstanceId: 订阅的云上数据库实例的 ID，精确匹配
@@ -3123,10 +3125,11 @@ module TencentCloud
         # @param TagFilters: tag 过滤条件，多个 TagFilter 之间关系为且
         # @type TagFilters: Array
 
-        attr_accessor :SubscribeId, :SubscribeName, :InstanceId, :Topic, :PayType, :Product, :Status, :SubsStatus, :Offset, :Limit, :OrderDirection, :TagFilters
+        attr_accessor :SubscribeId, :SubscribeIds, :SubscribeName, :InstanceId, :Topic, :PayType, :Product, :Status, :SubsStatus, :Offset, :Limit, :OrderDirection, :TagFilters
 
-        def initialize(subscribeid=nil, subscribename=nil, instanceid=nil, topic=nil, paytype=nil, product=nil, status=nil, subsstatus=nil, offset=nil, limit=nil, orderdirection=nil, tagfilters=nil)
+        def initialize(subscribeid=nil, subscribeids=nil, subscribename=nil, instanceid=nil, topic=nil, paytype=nil, product=nil, status=nil, subsstatus=nil, offset=nil, limit=nil, orderdirection=nil, tagfilters=nil)
           @SubscribeId = subscribeid
+          @SubscribeIds = subscribeids
           @SubscribeName = subscribename
           @InstanceId = instanceid
           @Topic = topic
@@ -3142,6 +3145,7 @@ module TencentCloud
 
         def deserialize(params)
           @SubscribeId = params['SubscribeId']
+          @SubscribeIds = params['SubscribeIds']
           @SubscribeName = params['SubscribeName']
           @InstanceId = params['InstanceId']
           @Topic = params['Topic']
@@ -3239,6 +3243,8 @@ module TencentCloud
       class DescribeSyncJobsRequest < TencentCloud::Common::AbstractModel
         # @param JobId: 同步任务id，如sync-werwfs23
         # @type JobId: String
+        # @param JobIds: 同步任务id列表，如sync-werwfs23
+        # @type JobIds: Array
         # @param JobName: 同步任务名
         # @type JobName: String
         # @param Order: 排序字段，可以取值为CreateTime
@@ -3259,11 +3265,16 @@ module TencentCloud
         # @type PayMode: String
         # @param TagFilters: tag
         # @type TagFilters: Array
+        # @param SrcInfoPattern: 源端数据库连接信息，可以输入实例ID或者IP等
+        # @type SrcInfoPattern: String
+        # @param DstInfoPattern: 目标端数据库连接信息，可以输入实例ID或者IP等
+        # @type DstInfoPattern: String
 
-        attr_accessor :JobId, :JobName, :Order, :OrderSeq, :Offset, :Limit, :Status, :RunMode, :JobType, :PayMode, :TagFilters
+        attr_accessor :JobId, :JobIds, :JobName, :Order, :OrderSeq, :Offset, :Limit, :Status, :RunMode, :JobType, :PayMode, :TagFilters, :SrcInfoPattern, :DstInfoPattern
 
-        def initialize(jobid=nil, jobname=nil, order=nil, orderseq=nil, offset=nil, limit=nil, status=nil, runmode=nil, jobtype=nil, paymode=nil, tagfilters=nil)
+        def initialize(jobid=nil, jobids=nil, jobname=nil, order=nil, orderseq=nil, offset=nil, limit=nil, status=nil, runmode=nil, jobtype=nil, paymode=nil, tagfilters=nil, srcinfopattern=nil, dstinfopattern=nil)
           @JobId = jobid
+          @JobIds = jobids
           @JobName = jobname
           @Order = order
           @OrderSeq = orderseq
@@ -3274,10 +3285,13 @@ module TencentCloud
           @JobType = jobtype
           @PayMode = paymode
           @TagFilters = tagfilters
+          @SrcInfoPattern = srcinfopattern
+          @DstInfoPattern = dstinfopattern
         end
 
         def deserialize(params)
           @JobId = params['JobId']
+          @JobIds = params['JobIds']
           @JobName = params['JobName']
           @Order = params['Order']
           @OrderSeq = params['OrderSeq']
@@ -3295,6 +3309,8 @@ module TencentCloud
               @TagFilters << tagfilter_tmp
             end
           end
+          @SrcInfoPattern = params['SrcInfoPattern']
+          @DstInfoPattern = params['DstInfoPattern']
         end
       end
 
@@ -3987,7 +4003,10 @@ module TencentCloud
         # @param CcnOwnerUin: 云联网网关所属的主账号uin、跨账号云联网需要。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CcnOwnerUin: String
-        # @param ExtraAttr: 为业务添加的额外信息。参数名作key，参数值作value。 tdpg必填参数：PgDatabase-订阅的库名。
+        # @param ExtraAttr: 为业务添加的额外信息。参数名作key，参数值作value。
+        # tdpg必填参数：PgDatabase-订阅的库名；
+        # mongo选填参数：InstanceType-实例类型：replicaset-副本集，cluster-分片集，主要用于控制台跳转到mongo实例页面，如不填不影响任务运行；
+        # 全业务选填参数：EngineVersion-内核版本。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExtraAttr: Array
         # @param ChildInstanceId: 数据库为cynos、且是cynos集群内的一个子数据库实例时、该参数为该子实例的ID

@@ -4826,10 +4826,13 @@ module TencentCloud
         # @type SubUinName: String
         # @param JobCreateTime: 任务实例创建时间
         # @type JobCreateTime: String
+        # @param AppId: Appid
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AppId: String
 
-        attr_accessor :Id, :Name, :LifecycleScriptId, :PodName, :UpdateTime, :DirectInternetAccess, :ResourceGroupId, :Tags, :AutoStopping, :AdditionalCodeRepoIds, :AutomaticStopTime, :ResourceConf, :DefaultCodeRepoId, :EndTime, :LogEnable, :LogConfig, :VpcId, :SubnetId, :Status, :RuntimeInSeconds, :CreateTime, :StartTime, :ChargeStatus, :RootAccess, :BillingInfos, :VolumeSizeInGB, :FailureReason, :ChargeType, :InstanceTypeAlias, :ResourceGroupName, :VolumeSourceType, :VolumeSourceCFS, :DataConfigs, :Message, :DataSource, :ImageInfo, :ImageType, :SSHConfig, :VolumeSourceGooseFS, :SubUin, :ResourceGroupInstanceId, :SubUinName, :JobCreateTime
+        attr_accessor :Id, :Name, :LifecycleScriptId, :PodName, :UpdateTime, :DirectInternetAccess, :ResourceGroupId, :Tags, :AutoStopping, :AdditionalCodeRepoIds, :AutomaticStopTime, :ResourceConf, :DefaultCodeRepoId, :EndTime, :LogEnable, :LogConfig, :VpcId, :SubnetId, :Status, :RuntimeInSeconds, :CreateTime, :StartTime, :ChargeStatus, :RootAccess, :BillingInfos, :VolumeSizeInGB, :FailureReason, :ChargeType, :InstanceTypeAlias, :ResourceGroupName, :VolumeSourceType, :VolumeSourceCFS, :DataConfigs, :Message, :DataSource, :ImageInfo, :ImageType, :SSHConfig, :VolumeSourceGooseFS, :SubUin, :ResourceGroupInstanceId, :SubUinName, :JobCreateTime, :AppId
 
-        def initialize(id=nil, name=nil, lifecyclescriptid=nil, podname=nil, updatetime=nil, directinternetaccess=nil, resourcegroupid=nil, tags=nil, autostopping=nil, additionalcoderepoids=nil, automaticstoptime=nil, resourceconf=nil, defaultcoderepoid=nil, endtime=nil, logenable=nil, logconfig=nil, vpcid=nil, subnetid=nil, status=nil, runtimeinseconds=nil, createtime=nil, starttime=nil, chargestatus=nil, rootaccess=nil, billinginfos=nil, volumesizeingb=nil, failurereason=nil, chargetype=nil, instancetypealias=nil, resourcegroupname=nil, volumesourcetype=nil, volumesourcecfs=nil, dataconfigs=nil, message=nil, datasource=nil, imageinfo=nil, imagetype=nil, sshconfig=nil, volumesourcegoosefs=nil, subuin=nil, resourcegroupinstanceid=nil, subuinname=nil, jobcreatetime=nil)
+        def initialize(id=nil, name=nil, lifecyclescriptid=nil, podname=nil, updatetime=nil, directinternetaccess=nil, resourcegroupid=nil, tags=nil, autostopping=nil, additionalcoderepoids=nil, automaticstoptime=nil, resourceconf=nil, defaultcoderepoid=nil, endtime=nil, logenable=nil, logconfig=nil, vpcid=nil, subnetid=nil, status=nil, runtimeinseconds=nil, createtime=nil, starttime=nil, chargestatus=nil, rootaccess=nil, billinginfos=nil, volumesizeingb=nil, failurereason=nil, chargetype=nil, instancetypealias=nil, resourcegroupname=nil, volumesourcetype=nil, volumesourcecfs=nil, dataconfigs=nil, message=nil, datasource=nil, imageinfo=nil, imagetype=nil, sshconfig=nil, volumesourcegoosefs=nil, subuin=nil, resourcegroupinstanceid=nil, subuinname=nil, jobcreatetime=nil, appid=nil)
           @Id = id
           @Name = name
           @LifecycleScriptId = lifecyclescriptid
@@ -4873,6 +4876,7 @@ module TencentCloud
           @ResourceGroupInstanceId = resourcegroupinstanceid
           @SubUinName = subuinname
           @JobCreateTime = jobcreatetime
+          @AppId = appid
         end
 
         def deserialize(params)
@@ -4951,6 +4955,7 @@ module TencentCloud
           @ResourceGroupInstanceId = params['ResourceGroupInstanceId']
           @SubUinName = params['SubUinName']
           @JobCreateTime = params['JobCreateTime']
+          @AppId = params['AppId']
         end
       end
 
@@ -5035,10 +5040,13 @@ module TencentCloud
         # @type VolumeSourceGooseFS: :class:`Tencentcloud::Tione.v20211111.models.GooseFS`
         # @param SubUinName: 子用户名称
         # @type SubUinName: String
+        # @param AppId: AppId
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AppId: String
 
-        attr_accessor :Id, :Name, :ChargeType, :ResourceConf, :ResourceGroupId, :VolumeSizeInGB, :BillingInfos, :Tags, :CreateTime, :StartTime, :UpdateTime, :RuntimeInSeconds, :ChargeStatus, :Status, :FailureReason, :EndTime, :PodName, :InstanceTypeAlias, :ResourceGroupName, :AutoStopping, :AutomaticStopTime, :VolumeSourceType, :VolumeSourceCFS, :Message, :UserTypes, :SSHConfig, :VolumeSourceGooseFS, :SubUinName
+        attr_accessor :Id, :Name, :ChargeType, :ResourceConf, :ResourceGroupId, :VolumeSizeInGB, :BillingInfos, :Tags, :CreateTime, :StartTime, :UpdateTime, :RuntimeInSeconds, :ChargeStatus, :Status, :FailureReason, :EndTime, :PodName, :InstanceTypeAlias, :ResourceGroupName, :AutoStopping, :AutomaticStopTime, :VolumeSourceType, :VolumeSourceCFS, :Message, :UserTypes, :SSHConfig, :VolumeSourceGooseFS, :SubUinName, :AppId
 
-        def initialize(id=nil, name=nil, chargetype=nil, resourceconf=nil, resourcegroupid=nil, volumesizeingb=nil, billinginfos=nil, tags=nil, createtime=nil, starttime=nil, updatetime=nil, runtimeinseconds=nil, chargestatus=nil, status=nil, failurereason=nil, endtime=nil, podname=nil, instancetypealias=nil, resourcegroupname=nil, autostopping=nil, automaticstoptime=nil, volumesourcetype=nil, volumesourcecfs=nil, message=nil, usertypes=nil, sshconfig=nil, volumesourcegoosefs=nil, subuinname=nil)
+        def initialize(id=nil, name=nil, chargetype=nil, resourceconf=nil, resourcegroupid=nil, volumesizeingb=nil, billinginfos=nil, tags=nil, createtime=nil, starttime=nil, updatetime=nil, runtimeinseconds=nil, chargestatus=nil, status=nil, failurereason=nil, endtime=nil, podname=nil, instancetypealias=nil, resourcegroupname=nil, autostopping=nil, automaticstoptime=nil, volumesourcetype=nil, volumesourcecfs=nil, message=nil, usertypes=nil, sshconfig=nil, volumesourcegoosefs=nil, subuinname=nil, appid=nil)
           @Id = id
           @Name = name
           @ChargeType = chargetype
@@ -5067,6 +5075,7 @@ module TencentCloud
           @SSHConfig = sshconfig
           @VolumeSourceGooseFS = volumesourcegoosefs
           @SubUinName = subuinname
+          @AppId = appid
         end
 
         def deserialize(params)
@@ -5117,6 +5126,7 @@ module TencentCloud
             @VolumeSourceGooseFS.deserialize(params['VolumeSourceGooseFS'])
           end
           @SubUinName = params['SubUinName']
+          @AppId = params['AppId']
         end
       end
 
@@ -5827,10 +5837,10 @@ module TencentCloud
 
         attr_accessor :ServiceGroupId, :ServiceId, :ServiceGroupName, :ServiceDescription, :ServiceInfo, :ClusterId, :Region, :Namespace, :ChargeType, :ResourceGroupId, :ResourceGroupName, :Tags, :IngressName, :CreatedBy, :CreateTime, :UpdateTime, :Uin, :SubUin, :AppId, :BusinessStatus, :ServiceLimit, :ScheduledAction, :CreateFailedReason, :Status, :BillingInfo, :Weight, :CreateSource, :Version, :LatestVersion, :ResourceGroupSWType, :ArchiveStatus, :DeployType, :InstancePerReplicas
         extend Gem::Deprecate
-        deprecate :ServiceLimit, :none, 2024, 12
-        deprecate :ServiceLimit=, :none, 2024, 12
-        deprecate :ScheduledAction, :none, 2024, 12
-        deprecate :ScheduledAction=, :none, 2024, 12
+        deprecate :ServiceLimit, :none, 2025, 1
+        deprecate :ServiceLimit=, :none, 2025, 1
+        deprecate :ScheduledAction, :none, 2025, 1
+        deprecate :ScheduledAction=, :none, 2025, 1
 
         def initialize(servicegroupid=nil, serviceid=nil, servicegroupname=nil, servicedescription=nil, serviceinfo=nil, clusterid=nil, region=nil, namespace=nil, chargetype=nil, resourcegroupid=nil, resourcegroupname=nil, tags=nil, ingressname=nil, createdby=nil, createtime=nil, updatetime=nil, uin=nil, subuin=nil, appid=nil, businessstatus=nil, servicelimit=nil, scheduledaction=nil, createfailedreason=nil, status=nil, billinginfo=nil, weight=nil, createsource=nil, version=nil, latestversion=nil, resourcegroupswtype=nil, archivestatus=nil, deploytype=nil, instanceperreplicas=nil)
           @ServiceGroupId = servicegroupid
@@ -6294,10 +6304,10 @@ module TencentCloud
 
         attr_accessor :Replicas, :ImageInfo, :Env, :Resources, :InstanceType, :ModelInfo, :LogEnable, :LogConfig, :AuthorizationEnable, :HorizontalPodAutoscaler, :Status, :Weight, :ResourceTotal, :OldReplicas, :HybridBillingPrepaidReplicas, :OldHybridBillingPrepaidReplicas, :ModelHotUpdateEnable, :InstanceAlias, :ScaleMode, :CronScaleJobs, :ScaleStrategy, :ScheduledAction, :PodList, :Pods, :PodInfos, :ServiceLimit, :ModelTurboEnable, :VolumeMount, :InferCodeInfo, :Command, :ServiceEIP, :ServicePort
         extend Gem::Deprecate
-        deprecate :PodList, :none, 2024, 12
-        deprecate :PodList=, :none, 2024, 12
-        deprecate :Pods, :none, 2024, 12
-        deprecate :Pods=, :none, 2024, 12
+        deprecate :PodList, :none, 2025, 1
+        deprecate :PodList=, :none, 2025, 1
+        deprecate :Pods, :none, 2025, 1
+        deprecate :Pods=, :none, 2025, 1
 
         def initialize(replicas=nil, imageinfo=nil, env=nil, resources=nil, instancetype=nil, modelinfo=nil, logenable=nil, logconfig=nil, authorizationenable=nil, horizontalpodautoscaler=nil, status=nil, weight=nil, resourcetotal=nil, oldreplicas=nil, hybridbillingprepaidreplicas=nil, oldhybridbillingprepaidreplicas=nil, modelhotupdateenable=nil, instancealias=nil, scalemode=nil, cronscalejobs=nil, scalestrategy=nil, scheduledaction=nil, podlist=nil, pods=nil, podinfos=nil, servicelimit=nil, modelturboenable=nil, volumemount=nil, infercodeinfo=nil, command=nil, serviceeip=nil, serviceport=nil)
           @Replicas = replicas
@@ -7408,8 +7418,8 @@ module TencentCloud
 
         attr_accessor :Replicas, :UpdatedReplicas, :ReadyReplicas, :AvailableReplicas, :UnavailableReplicas, :Status, :StatefulSetCondition, :Conditions, :Reason
         extend Gem::Deprecate
-        deprecate :StatefulSetCondition, :none, 2024, 12
-        deprecate :StatefulSetCondition=, :none, 2024, 12
+        deprecate :StatefulSetCondition, :none, 2025, 1
+        deprecate :StatefulSetCondition=, :none, 2025, 1
 
         def initialize(replicas=nil, updatedreplicas=nil, readyreplicas=nil, availablereplicas=nil, unavailablereplicas=nil, status=nil, statefulsetcondition=nil, conditions=nil, reason=nil)
           @Replicas = replicas

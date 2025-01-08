@@ -77,6 +77,50 @@ module TencentCloud
         end
       end
 
+      # CreateMuskPrompt请求参数结构体
+      class CreateMuskPromptRequest < TencentCloud::Common::AbstractModel
+        # @param WorkgroupId: workgroup id
+        # @type WorkgroupId: String
+        # @param WorkflowId: workflow id
+        # @type WorkflowId: String
+        # @param PromptParams: prompt 参数
+        # @type PromptParams: String
+
+        attr_accessor :WorkgroupId, :WorkflowId, :PromptParams
+
+        def initialize(workgroupid=nil, workflowid=nil, promptparams=nil)
+          @WorkgroupId = workgroupid
+          @WorkflowId = workflowid
+          @PromptParams = promptparams
+        end
+
+        def deserialize(params)
+          @WorkgroupId = params['WorkgroupId']
+          @WorkflowId = params['WorkflowId']
+          @PromptParams = params['PromptParams']
+        end
+      end
+
+      # CreateMuskPrompt返回参数结构体
+      class CreateMuskPromptResponse < TencentCloud::Common::AbstractModel
+        # @param PromptId: prompt id
+        # @type PromptId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :PromptId, :RequestId
+
+        def initialize(promptid=nil, requestid=nil)
+          @PromptId = promptid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @PromptId = params['PromptId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeApplications请求参数结构体
       class DescribeApplicationsRequest < TencentCloud::Common::AbstractModel
         # @param ApplicationIds: 应用id列表
