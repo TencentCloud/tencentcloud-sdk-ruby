@@ -321,6 +321,76 @@ module TencentCloud
         end
       end
 
+      # DescribeMuskPrompts请求参数结构体
+      class DescribeMuskPromptsRequest < TencentCloud::Common::AbstractModel
+        # @param WorkgroupId: workgroup id
+        # @type WorkgroupId: String
+        # @param WorkflowId: workflow id
+        # @type WorkflowId: String
+        # @param Offset: offset
+        # @type Offset: Integer
+        # @param Limit: limit
+        # @type Limit: Integer
+        # @param Filters: 过滤参数 支持过滤的键值： PromptId，Status
+        # @type Filters: Array
+
+        attr_accessor :WorkgroupId, :WorkflowId, :Offset, :Limit, :Filters
+
+        def initialize(workgroupid=nil, workflowid=nil, offset=nil, limit=nil, filters=nil)
+          @WorkgroupId = workgroupid
+          @WorkflowId = workflowid
+          @Offset = offset
+          @Limit = limit
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @WorkgroupId = params['WorkgroupId']
+          @WorkflowId = params['WorkflowId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeMuskPrompts返回参数结构体
+      class DescribeMuskPromptsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: total count
+        # @type TotalCount: Integer
+        # @param MuskPromptInfos: prompt列表详情
+        # @type MuskPromptInfos: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :MuskPromptInfos, :RequestId
+
+        def initialize(totalcount=nil, muskpromptinfos=nil, requestid=nil)
+          @TotalCount = totalcount
+          @MuskPromptInfos = muskpromptinfos
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['MuskPromptInfos'].nil?
+            @MuskPromptInfos = []
+            params['MuskPromptInfos'].each do |i|
+              muskpromptinfo_tmp = MuskPromptInfo.new
+              muskpromptinfo_tmp.deserialize(i)
+              @MuskPromptInfos << muskpromptinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeRegions请求参数结构体
       class DescribeRegionsRequest < TencentCloud::Common::AbstractModel
 
@@ -844,6 +914,57 @@ module TencentCloud
         def deserialize(params)
           @ServiceName = params['ServiceName']
           @Url = params['Url']
+        end
+      end
+
+      # musk prompt详情
+      class MuskPromptInfo < TencentCloud::Common::AbstractModel
+        # @param WorkflowId: workflow id
+        # @type WorkflowId: String
+        # @param WorkgroupId: workgroup id
+        # @type WorkgroupId: String
+        # @param PromptId: prompt id
+        # @type PromptId: String
+        # @param OutputResource: 生成的内容
+        # @type OutputResource: Array
+        # @param Status: prompt status
+        # 0: 执行中
+        # 1: 执行成功
+        # 2: 执行失败
+        # @type Status: Integer
+        # @param CreateTime: 创建时间
+        # @type CreateTime: String
+        # @param UpdateTime: 更新时间
+        # @type UpdateTime: String
+        # @param Cost: 任务执行耗时，单位毫秒
+        # @type Cost: Integer
+        # @param ErrorMessage: 任务执行失败错误信息
+        # @type ErrorMessage: String
+
+        attr_accessor :WorkflowId, :WorkgroupId, :PromptId, :OutputResource, :Status, :CreateTime, :UpdateTime, :Cost, :ErrorMessage
+
+        def initialize(workflowid=nil, workgroupid=nil, promptid=nil, outputresource=nil, status=nil, createtime=nil, updatetime=nil, cost=nil, errormessage=nil)
+          @WorkflowId = workflowid
+          @WorkgroupId = workgroupid
+          @PromptId = promptid
+          @OutputResource = outputresource
+          @Status = status
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @Cost = cost
+          @ErrorMessage = errormessage
+        end
+
+        def deserialize(params)
+          @WorkflowId = params['WorkflowId']
+          @WorkgroupId = params['WorkgroupId']
+          @PromptId = params['PromptId']
+          @OutputResource = params['OutputResource']
+          @Status = params['Status']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          @Cost = params['Cost']
+          @ErrorMessage = params['ErrorMessage']
         end
       end
 

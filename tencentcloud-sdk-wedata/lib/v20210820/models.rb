@@ -504,10 +504,16 @@ module TencentCloud
         # @param Threshold: 指标阈值
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Threshold: Float
+        # @param IndicatorTimeRangeUnit: 时间范围单位
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IndicatorTimeRangeUnit: String
+        # @param IndicatorTimeRangeValue: 时间范围值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IndicatorTimeRangeValue: Integer
 
-        attr_accessor :Id, :AlarmIndicator, :AlarmIndicatorDesc, :TriggerType, :EstimatedTime, :Operator, :AlarmIndicatorUnit, :Duration, :DurationUnit, :MaxTimes, :Threshold
+        attr_accessor :Id, :AlarmIndicator, :AlarmIndicatorDesc, :TriggerType, :EstimatedTime, :Operator, :AlarmIndicatorUnit, :Duration, :DurationUnit, :MaxTimes, :Threshold, :IndicatorTimeRangeUnit, :IndicatorTimeRangeValue
 
-        def initialize(id=nil, alarmindicator=nil, alarmindicatordesc=nil, triggertype=nil, estimatedtime=nil, operator=nil, alarmindicatorunit=nil, duration=nil, durationunit=nil, maxtimes=nil, threshold=nil)
+        def initialize(id=nil, alarmindicator=nil, alarmindicatordesc=nil, triggertype=nil, estimatedtime=nil, operator=nil, alarmindicatorunit=nil, duration=nil, durationunit=nil, maxtimes=nil, threshold=nil, indicatortimerangeunit=nil, indicatortimerangevalue=nil)
           @Id = id
           @AlarmIndicator = alarmindicator
           @AlarmIndicatorDesc = alarmindicatordesc
@@ -519,6 +525,8 @@ module TencentCloud
           @DurationUnit = durationunit
           @MaxTimes = maxtimes
           @Threshold = threshold
+          @IndicatorTimeRangeUnit = indicatortimerangeunit
+          @IndicatorTimeRangeValue = indicatortimerangevalue
         end
 
         def deserialize(params)
@@ -533,6 +541,8 @@ module TencentCloud
           @DurationUnit = params['DurationUnit']
           @MaxTimes = params['MaxTimes']
           @Threshold = params['Threshold']
+          @IndicatorTimeRangeUnit = params['IndicatorTimeRangeUnit']
+          @IndicatorTimeRangeValue = params['IndicatorTimeRangeValue']
         end
       end
 
@@ -3818,10 +3828,14 @@ module TencentCloud
         # @type SchemaName: String
         # @param Async: 是否异步建表
         # @type Async: Boolean
+        # @param DataOptimizationResource: 数据优化使用的资源
+        # @type DataOptimizationResource: String
+        # @param SmartOptimizerWritten: 是否开启数据优化
+        # @type SmartOptimizerWritten: String
 
-        attr_accessor :DatasourceId, :Database, :DDLSql, :Privilege, :ProjectId, :Type, :Incharge, :SchemaName, :Async
+        attr_accessor :DatasourceId, :Database, :DDLSql, :Privilege, :ProjectId, :Type, :Incharge, :SchemaName, :Async, :DataOptimizationResource, :SmartOptimizerWritten
 
-        def initialize(datasourceid=nil, database=nil, ddlsql=nil, privilege=nil, projectid=nil, type=nil, incharge=nil, schemaname=nil, async=nil)
+        def initialize(datasourceid=nil, database=nil, ddlsql=nil, privilege=nil, projectid=nil, type=nil, incharge=nil, schemaname=nil, async=nil, dataoptimizationresource=nil, smartoptimizerwritten=nil)
           @DatasourceId = datasourceid
           @Database = database
           @DDLSql = ddlsql
@@ -3831,6 +3845,8 @@ module TencentCloud
           @Incharge = incharge
           @SchemaName = schemaname
           @Async = async
+          @DataOptimizationResource = dataoptimizationresource
+          @SmartOptimizerWritten = smartoptimizerwritten
         end
 
         def deserialize(params)
@@ -3843,6 +3859,8 @@ module TencentCloud
           @Incharge = params['Incharge']
           @SchemaName = params['SchemaName']
           @Async = params['Async']
+          @DataOptimizationResource = params['DataOptimizationResource']
+          @SmartOptimizerWritten = params['SmartOptimizerWritten']
         end
       end
 
@@ -3884,16 +3902,22 @@ module TencentCloud
         # @type ProjectId: String
         # @param Incharge: 责任人
         # @type Incharge: String
+        # @param DataOptimizationResource: 数据优化引擎
+        # @type DataOptimizationResource: String
+        # @param SmartOptimizerWritten: 是否开启数据优化
+        # @type SmartOptimizerWritten: String
 
-        attr_accessor :DatasourceId, :Database, :DDLSql, :Privilege, :ProjectId, :Incharge
+        attr_accessor :DatasourceId, :Database, :DDLSql, :Privilege, :ProjectId, :Incharge, :DataOptimizationResource, :SmartOptimizerWritten
 
-        def initialize(datasourceid=nil, database=nil, ddlsql=nil, privilege=nil, projectid=nil, incharge=nil)
+        def initialize(datasourceid=nil, database=nil, ddlsql=nil, privilege=nil, projectid=nil, incharge=nil, dataoptimizationresource=nil, smartoptimizerwritten=nil)
           @DatasourceId = datasourceid
           @Database = database
           @DDLSql = ddlsql
           @Privilege = privilege
           @ProjectId = projectid
           @Incharge = incharge
+          @DataOptimizationResource = dataoptimizationresource
+          @SmartOptimizerWritten = smartoptimizerwritten
         end
 
         def deserialize(params)
@@ -3903,6 +3927,8 @@ module TencentCloud
           @Privilege = params['Privilege']
           @ProjectId = params['ProjectId']
           @Incharge = params['Incharge']
+          @DataOptimizationResource = params['DataOptimizationResource']
+          @SmartOptimizerWritten = params['SmartOptimizerWritten']
         end
       end
 
@@ -16483,10 +16509,12 @@ module TencentCloud
         # @type TableBaseInfo: :class:`Tencentcloud::Wedata.v20210820.models.TableBaseInfo`
         # @param SinkSchemaName: 目标端schema名称
         # @type SinkSchemaName: String
+        # @param Env: 获取源信息的环境
+        # @type Env: String
 
-        attr_accessor :ProjectId, :SinkDatabase, :Id, :MsType, :DatasourceId, :SourceDatabase, :TableName, :SinkType, :SchemaName, :SourceFieldInfoList, :Partitions, :Properties, :TableMode, :TableVersion, :UpsertFlag, :TableComment, :AddDataFiles, :AddEqualityDeletes, :AddPositionDeletes, :AddDeleteFiles, :TargetDatasourceId, :UpsertKeys, :TableBaseInfo, :SinkSchemaName
+        attr_accessor :ProjectId, :SinkDatabase, :Id, :MsType, :DatasourceId, :SourceDatabase, :TableName, :SinkType, :SchemaName, :SourceFieldInfoList, :Partitions, :Properties, :TableMode, :TableVersion, :UpsertFlag, :TableComment, :AddDataFiles, :AddEqualityDeletes, :AddPositionDeletes, :AddDeleteFiles, :TargetDatasourceId, :UpsertKeys, :TableBaseInfo, :SinkSchemaName, :Env
 
-        def initialize(projectid=nil, sinkdatabase=nil, id=nil, mstype=nil, datasourceid=nil, sourcedatabase=nil, tablename=nil, sinktype=nil, schemaname=nil, sourcefieldinfolist=nil, partitions=nil, properties=nil, tablemode=nil, tableversion=nil, upsertflag=nil, tablecomment=nil, adddatafiles=nil, addequalitydeletes=nil, addpositiondeletes=nil, adddeletefiles=nil, targetdatasourceid=nil, upsertkeys=nil, tablebaseinfo=nil, sinkschemaname=nil)
+        def initialize(projectid=nil, sinkdatabase=nil, id=nil, mstype=nil, datasourceid=nil, sourcedatabase=nil, tablename=nil, sinktype=nil, schemaname=nil, sourcefieldinfolist=nil, partitions=nil, properties=nil, tablemode=nil, tableversion=nil, upsertflag=nil, tablecomment=nil, adddatafiles=nil, addequalitydeletes=nil, addpositiondeletes=nil, adddeletefiles=nil, targetdatasourceid=nil, upsertkeys=nil, tablebaseinfo=nil, sinkschemaname=nil, env=nil)
           @ProjectId = projectid
           @SinkDatabase = sinkdatabase
           @Id = id
@@ -16511,6 +16539,7 @@ module TencentCloud
           @UpsertKeys = upsertkeys
           @TableBaseInfo = tablebaseinfo
           @SinkSchemaName = sinkschemaname
+          @Env = env
         end
 
         def deserialize(params)
@@ -16562,6 +16591,7 @@ module TencentCloud
             @TableBaseInfo.deserialize(params['TableBaseInfo'])
           end
           @SinkSchemaName = params['SinkSchemaName']
+          @Env = params['Env']
         end
       end
 
@@ -27967,10 +27997,13 @@ module TencentCloud
         # @param DingDingWebHooks: 钉钉群Hook地址，多个hook地址使用,隔开
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DingDingWebHooks: String
+        # @param BusinessType: 业务类型, 0-非默认, 1-默认
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BusinessType: Integer
 
-        attr_accessor :TaskId, :RegularName, :RegularStatus, :AlarmLevel, :AlarmWay, :TaskType, :Id, :RegularId, :AlarmIndicator, :TriggerType, :EstimatedTime, :AlarmRecipientId, :ProjectId, :Creater, :AlarmRecipientName, :AlarmIndicatorDesc, :Operator, :NodeId, :NodeName, :AlarmIndicatorInfos, :AlarmRecipientType, :QuietPeriods, :WeComHook, :UpdateTime, :OperatorUin, :TaskCount, :MonitorType, :MonitorObjectIds, :LatestAlarmInstanceId, :LatestAlarmTime, :Description, :LarkWebHooks, :DingDingWebHooks
+        attr_accessor :TaskId, :RegularName, :RegularStatus, :AlarmLevel, :AlarmWay, :TaskType, :Id, :RegularId, :AlarmIndicator, :TriggerType, :EstimatedTime, :AlarmRecipientId, :ProjectId, :Creater, :AlarmRecipientName, :AlarmIndicatorDesc, :Operator, :NodeId, :NodeName, :AlarmIndicatorInfos, :AlarmRecipientType, :QuietPeriods, :WeComHook, :UpdateTime, :OperatorUin, :TaskCount, :MonitorType, :MonitorObjectIds, :LatestAlarmInstanceId, :LatestAlarmTime, :Description, :LarkWebHooks, :DingDingWebHooks, :BusinessType
 
-        def initialize(taskid=nil, regularname=nil, regularstatus=nil, alarmlevel=nil, alarmway=nil, tasktype=nil, id=nil, regularid=nil, alarmindicator=nil, triggertype=nil, estimatedtime=nil, alarmrecipientid=nil, projectid=nil, creater=nil, alarmrecipientname=nil, alarmindicatordesc=nil, operator=nil, nodeid=nil, nodename=nil, alarmindicatorinfos=nil, alarmrecipienttype=nil, quietperiods=nil, wecomhook=nil, updatetime=nil, operatoruin=nil, taskcount=nil, monitortype=nil, monitorobjectids=nil, latestalarminstanceid=nil, latestalarmtime=nil, description=nil, larkwebhooks=nil, dingdingwebhooks=nil)
+        def initialize(taskid=nil, regularname=nil, regularstatus=nil, alarmlevel=nil, alarmway=nil, tasktype=nil, id=nil, regularid=nil, alarmindicator=nil, triggertype=nil, estimatedtime=nil, alarmrecipientid=nil, projectid=nil, creater=nil, alarmrecipientname=nil, alarmindicatordesc=nil, operator=nil, nodeid=nil, nodename=nil, alarmindicatorinfos=nil, alarmrecipienttype=nil, quietperiods=nil, wecomhook=nil, updatetime=nil, operatoruin=nil, taskcount=nil, monitortype=nil, monitorobjectids=nil, latestalarminstanceid=nil, latestalarmtime=nil, description=nil, larkwebhooks=nil, dingdingwebhooks=nil, businesstype=nil)
           @TaskId = taskid
           @RegularName = regularname
           @RegularStatus = regularstatus
@@ -28004,6 +28037,7 @@ module TencentCloud
           @Description = description
           @LarkWebHooks = larkwebhooks
           @DingDingWebHooks = dingdingwebhooks
+          @BusinessType = businesstype
         end
 
         def deserialize(params)
@@ -28054,6 +28088,7 @@ module TencentCloud
           @Description = params['Description']
           @LarkWebHooks = params['LarkWebHooks']
           @DingDingWebHooks = params['DingDingWebHooks']
+          @BusinessType = params['BusinessType']
         end
       end
 

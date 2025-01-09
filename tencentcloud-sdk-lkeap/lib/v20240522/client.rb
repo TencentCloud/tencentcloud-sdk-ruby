@@ -128,7 +128,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 创建文档拆分任务
+        # 用于创建一个文档拆分任务，支持多种文件类型，具备mllm能力，能够解析并深入理解图表中的信息。
 
         # @param request: Request instance for CreateSplitDocumentFlow.
         # @type request: :class:`Tencentcloud::lkeap::V20240522::CreateSplitDocumentFlowRequest`

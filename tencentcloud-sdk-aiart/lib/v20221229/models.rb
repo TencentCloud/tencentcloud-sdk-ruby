@@ -595,6 +595,59 @@ module TencentCloud
         end
       end
 
+      # QueryMemeJob请求参数结构体
+      class QueryMemeJobRequest < TencentCloud::Common::AbstractModel
+        # @param JobId: 查询表情动图生成任务 ID。
+        # @type JobId: String
+
+        attr_accessor :JobId
+
+        def initialize(jobid=nil)
+          @JobId = jobid
+        end
+
+        def deserialize(params)
+          @JobId = params['JobId']
+        end
+      end
+
+      # QueryMemeJob返回参数结构体
+      class QueryMemeJobResponse < TencentCloud::Common::AbstractModel
+        # @param JobStatusCode: 当前任务状态码：
+        # 1：等待中、2：运行中、4：处理失败、5：处理完成。
+        # @type JobStatusCode: String
+        # @param JobStatusMsg: 当前任务状态：排队中、处理中、处理失败或者处理完成。
+        # @type JobStatusMsg: String
+        # @param JobErrorCode: 任务处理失败错误码。
+        # @type JobErrorCode: String
+        # @param JobErrorMsg: 任务处理失败错误信息。
+        # @type JobErrorMsg: String
+        # @param ResultImage: 生成图 URL，有效期1小时，请及时保存。
+        # @type ResultImage: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :JobStatusCode, :JobStatusMsg, :JobErrorCode, :JobErrorMsg, :ResultImage, :RequestId
+
+        def initialize(jobstatuscode=nil, jobstatusmsg=nil, joberrorcode=nil, joberrormsg=nil, resultimage=nil, requestid=nil)
+          @JobStatusCode = jobstatuscode
+          @JobStatusMsg = jobstatusmsg
+          @JobErrorCode = joberrorcode
+          @JobErrorMsg = joberrormsg
+          @ResultImage = resultimage
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @JobStatusCode = params['JobStatusCode']
+          @JobStatusMsg = params['JobStatusMsg']
+          @JobErrorCode = params['JobErrorCode']
+          @JobErrorMsg = params['JobErrorMsg']
+          @ResultImage = params['ResultImage']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # QueryTextToImageProJob请求参数结构体
       class QueryTextToImageProJobRequest < TencentCloud::Common::AbstractModel
         # @param JobId: 任务 ID。
@@ -940,6 +993,91 @@ module TencentCloud
       # SubmitDrawPortraitJob返回参数结构体
       class SubmitDrawPortraitJobResponse < TencentCloud::Common::AbstractModel
         # @param JobId: 提交生成写真图片任务 ID。
+        # @type JobId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :JobId, :RequestId
+
+        def initialize(jobid=nil, requestid=nil)
+          @JobId = jobid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @JobId = params['JobId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # SubmitMemeJob请求参数结构体
+      class SubmitMemeJobRequest < TencentCloud::Common::AbstractModel
+        # @param Pose: 表情模板。
+        # 请在 [表情动图模板列表](https://cloud.tencent.com/document/product/1668/115327)  中选择期望的模板，传入 Pose 名称。
+        # @type Pose: String
+        # @param InputImage: 人像参考图 Base64 数据。
+        # Base64 和 Url 必须提供一个，如果都提供以 Url 为准。
+        # 图片限制：单边分辨率小于5000，转成 Base64 字符串后小于 6MB，格式支持 jpg、jpeg、png、bmp、tiff、webp。
+        # @type InputImage: String
+        # @param InputUrl: 人像参考图 Url。
+        # Base64 和 Url 必须提供一个，如果都提供以 Url 为准。
+        # 图片限制：单边分辨率小于5000，转成 Base64 字符串后小于 6MB，格式支持 jpg、jpeg、png、bmp、tiff、webp。
+        # @type InputUrl: String
+        # @param Resolution: 生成分辨率。
+        # 真人类型支持256、512，默认为256，
+        # 卡通类型仅支持512。
+        # @type Resolution: Integer
+        # @param Text: 自定义文案。
+        # 仅对真人类型的 Pose 生效，将在生成的表情动图中显示指定的文字。如果传入的字符串长度大于10，只截取前10个显示。
+        # 如果不传，默认使用自带的文案。
+        # 如果 text = "" 空字符串，代表不在表情动图中添加文案。
+        # @type Text: String
+        # @param Haircut: 头发遮罩开关。
+        # true：裁剪过长的头发。
+        # false：不裁剪过长的头发。
+        # 仅对卡通类型的 Pose 生效，默认为 false。
+        # @type Haircut: Boolean
+        # @param LogoAdd: 为生成结果图添加标识的开关，默认为1。
+        # 1：添加标识。
+        # 0：不添加标识。
+        # 其他数值：默认按1处理。
+        # 建议您使用显著标识来提示结果图是 AI 生成的图片。
+        # @type LogoAdd: Integer
+        # @param LogoParam: 标识内容设置。
+        # 默认在生成结果图右下角添加“图片由 AI 生成”字样，您可根据自身需要替换为其他的标识图片。
+        # @type LogoParam: :class:`Tencentcloud::Aiart.v20221229.models.LogoParam`
+
+        attr_accessor :Pose, :InputImage, :InputUrl, :Resolution, :Text, :Haircut, :LogoAdd, :LogoParam
+
+        def initialize(pose=nil, inputimage=nil, inputurl=nil, resolution=nil, text=nil, haircut=nil, logoadd=nil, logoparam=nil)
+          @Pose = pose
+          @InputImage = inputimage
+          @InputUrl = inputurl
+          @Resolution = resolution
+          @Text = text
+          @Haircut = haircut
+          @LogoAdd = logoadd
+          @LogoParam = logoparam
+        end
+
+        def deserialize(params)
+          @Pose = params['Pose']
+          @InputImage = params['InputImage']
+          @InputUrl = params['InputUrl']
+          @Resolution = params['Resolution']
+          @Text = params['Text']
+          @Haircut = params['Haircut']
+          @LogoAdd = params['LogoAdd']
+          unless params['LogoParam'].nil?
+            @LogoParam = LogoParam.new
+            @LogoParam.deserialize(params['LogoParam'])
+          end
+        end
+      end
+
+      # SubmitMemeJob返回参数结构体
+      class SubmitMemeJobResponse < TencentCloud::Common::AbstractModel
+        # @param JobId: 任务id
         # @type JobId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

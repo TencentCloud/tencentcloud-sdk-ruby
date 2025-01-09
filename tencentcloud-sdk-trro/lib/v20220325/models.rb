@@ -908,10 +908,12 @@ module TencentCloud
         # @param MonthlyRemainTime: 每月license的限定时长
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MonthlyRemainTime: Integer
+        # @param LimitedTime: 月封顶时长（分钟)
+        # @type LimitedTime: Integer
 
-        attr_accessor :DeviceId, :DeviceName, :LicenseCount, :RemainDay, :ExpireTime, :Duration, :LicenseIds, :MonthlyRemainTime
+        attr_accessor :DeviceId, :DeviceName, :LicenseCount, :RemainDay, :ExpireTime, :Duration, :LicenseIds, :MonthlyRemainTime, :LimitedTime
 
-        def initialize(deviceid=nil, devicename=nil, licensecount=nil, remainday=nil, expiretime=nil, duration=nil, licenseids=nil, monthlyremaintime=nil)
+        def initialize(deviceid=nil, devicename=nil, licensecount=nil, remainday=nil, expiretime=nil, duration=nil, licenseids=nil, monthlyremaintime=nil, limitedtime=nil)
           @DeviceId = deviceid
           @DeviceName = devicename
           @LicenseCount = licensecount
@@ -920,6 +922,7 @@ module TencentCloud
           @Duration = duration
           @LicenseIds = licenseids
           @MonthlyRemainTime = monthlyremaintime
+          @LimitedTime = limitedtime
         end
 
         def deserialize(params)
@@ -931,6 +934,7 @@ module TencentCloud
           @Duration = params['Duration']
           @LicenseIds = params['LicenseIds']
           @MonthlyRemainTime = params['MonthlyRemainTime']
+          @LimitedTime = params['LimitedTime']
         end
       end
 
@@ -1590,8 +1594,8 @@ module TencentCloud
 
         attr_accessor :DeviceType, :StartTime, :EndTime, :SessionId, :Rate, :Fps, :Lost, :NetworkLatency, :VideoLatency, :CpuUsed, :MemUsed, :TimeOffset, :ProjectId, :DeviceId, :Ver, :SdkMode, :DecodeCost, :RenderConst, :K100, :K150, :NACK, :BitRateEstimate, :Width, :Height, :EncodeCost, :CaptureCost, :RenderCost, :ConfigWidth, :ConfigHeight, :FrameDelta, :MaxFrameDelta, :TotalBitrateEstimate, :Lag100Duration, :Lag150Duration, :MultiMode, :MultiNet
         extend Gem::Deprecate
-        deprecate :RenderConst, :none, 2024, 12
-        deprecate :RenderConst=, :none, 2024, 12
+        deprecate :RenderConst, :none, 2025, 1
+        deprecate :RenderConst=, :none, 2025, 1
 
         def initialize(devicetype=nil, starttime=nil, endtime=nil, sessionid=nil, rate=nil, fps=nil, lost=nil, networklatency=nil, videolatency=nil, cpuused=nil, memused=nil, timeoffset=nil, projectid=nil, deviceid=nil, ver=nil, sdkmode=nil, decodecost=nil, renderconst=nil, k100=nil, k150=nil, nack=nil, bitrateestimate=nil, width=nil, height=nil, encodecost=nil, capturecost=nil, rendercost=nil, configwidth=nil, configheight=nil, framedelta=nil, maxframedelta=nil, totalbitrateestimate=nil, lag100duration=nil, lag150duration=nil, multimode=nil, multinet=nil)
           @DeviceType = devicetype

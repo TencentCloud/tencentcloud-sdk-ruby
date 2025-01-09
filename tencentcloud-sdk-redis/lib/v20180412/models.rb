@@ -5485,7 +5485,9 @@ module TencentCloud
         # @type InstanceTitle: String
         # @param OfflineTime: 已隔离实例默认下线时间。按量计费实例隔离后默认两小时后下线，包年包月默认7天后下线。格式如：2020-02-15 10:20:00。
         # @type OfflineTime: String
-        # @param SubStatus: 流程中的实例，返回子状态。
+        # @param SubStatus: 流程中的实例返回的子状态。
+        # - 0：磁盘读写状态。
+        # - 1：磁盘超限只读状态。
         # @type SubStatus: Integer
         # @param Tags: 反亲和性标签。
         # @type Tags: Array

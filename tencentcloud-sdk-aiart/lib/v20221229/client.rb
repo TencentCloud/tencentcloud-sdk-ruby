@@ -185,6 +185,34 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 表情动图生成接口将静态照片制作成动态的表情包。分为提交任务和查询任务2个接口。
+        # - 提交任务：提交一个表情动图生成异步任务，获得任务 ID。
+        # - 查询任务：根据任务 ID 查询任务的处理状态、处理结果，任务处理完成后可获得生成图像结果。
+
+        # 表情动图生成默认提供1个并发，代表最多能同时处理1个已提交的任务，上一个任务处理完毕后才能开始处理下一个任务。
+
+        # @param request: Request instance for QueryMemeJob.
+        # @type request: :class:`Tencentcloud::aiart::V20221229::QueryMemeJobRequest`
+        # @rtype: :class:`Tencentcloud::aiart::V20221229::QueryMemeJobResponse`
+        def QueryMemeJob(request)
+          body = send_request('QueryMemeJob', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = QueryMemeJobResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口已迁移至腾讯混元大模型-混元生图，即将停止此处维护，可切换至 [混元生图 API](https://cloud.tencent.com/document/product/1729/105970) 继续使用。
         # 文生图（高级版）接口基于高级版文生图大模型，将根据输入的文本描述，智能生成与之相关的结果图。分为提交任务和查询任务2个接口。
         # 提交任务：输入文本等，提交一个文生图（高级版）异步任务，获得任务 ID。
@@ -312,6 +340,35 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = SubmitDrawPortraitJobResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 表情动图生成接口将静态照片制作成动态的表情包。分为提交任务和查询任务2个接口。
+
+        # - 提交任务：提交一个表情动图生成异步任务，获得任务 ID。
+        # - 查询任务：根据任务 ID 查询任务的处理状态、处理结果，任务处理完成后可获得生成图像结果。
+
+        # 表情动图生成默认提供1个并发，代表最多能同时处理1个已提交的任务，上一个任务处理完毕后才能开始处理下一个任务。
+
+        # @param request: Request instance for SubmitMemeJob.
+        # @type request: :class:`Tencentcloud::aiart::V20221229::SubmitMemeJobRequest`
+        # @rtype: :class:`Tencentcloud::aiart::V20221229::SubmitMemeJobResponse`
+        def SubmitMemeJob(request)
+          body = send_request('SubmitMemeJob', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = SubmitMemeJobResponse.new
             model.deserialize(response['Response'])
             model
           else

@@ -20,15 +20,12 @@ module TencentCloud
       # 激活设备
       class ActivateHardware < TencentCloud::Common::AbstractModel
         # @param Vendor: 厂商名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Vendor: String
         # @param SN: 设备SN序列号
         # @type SN: String
         # @param DeviceName: 设备名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeviceName: String
         # @param Description: 备注
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
         # @param DataKey: 设备密钥
         # @type DataKey: String
@@ -39,20 +36,14 @@ module TencentCloud
         # 1，永久授权
         # 若不传则默认为月度授权。
         # 当付费方为厂商时，此参数无效
-
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LicensePayMode: Integer
         # @param GroupId: 设备分组ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GroupId: String
         # @param GroupName: 设备分组名称，预留参数，需要分组时传入GroupId
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GroupName: String
         # @param FlowTrunc: 设备无流量包处理方式，0: 按量付费，1: 截断加速
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FlowTrunc: Integer
         # @param DeviceId: 激活后的设备ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeviceId: String
 
         attr_accessor :Vendor, :SN, :DeviceName, :Description, :DataKey, :AccessScope, :LicensePayMode, :GroupId, :GroupName, :FlowTrunc, :DeviceId
@@ -774,10 +765,8 @@ module TencentCloud
         # @param AccessScope: 接入环境。0：公有云网关；1：自有网关；2：公有云网关和自有网关。默认公有云网关。 具体含义： 公有云网关：即该设备只能接入公有云网关（就近接入） 自有网关：即该设备只能接入已经注册上线的自有网关（就近接入或固定ip接入） 公有云网关和自有网关：即该设备同时可以接入公有云网关和已经注册上线的自有网关（就近接入或固定ip接入）
         # @type AccessScope: Integer
         # @param LicensePayMode: license授权有效期 0：月度授权 1：永久授权
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LicensePayMode: Integer
         # @param Payer: 付费方 0：厂商付费 1：客户付费
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Payer: Integer
         # @param GroupId: 设备分组ID
         # 注意：此字段可能返回 null，表示取不到有效值。

@@ -3032,10 +3032,8 @@ module TencentCloud
       # 私有网络和基础网络互通设备
       class ClassicLinkInstance < TencentCloud::Common::AbstractModel
         # @param VpcId: VPC实例ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VpcId: String
         # @param InstanceId: 云服务器实例唯一ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceId: String
 
         attr_accessor :VpcId, :InstanceId
@@ -15662,7 +15660,6 @@ module TencentCloud
         # @param CreatedTime: 创建时间。
         # @type CreatedTime: String
         # @param TagSet: 标签键值对。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TagSet: Array
 
         attr_accessor :DhcpIpId, :VpcId, :SubnetId, :DhcpIpName, :PrivateIpAddress, :AddressIp, :NetworkInterfaceId, :InstanceId, :State, :CreatedTime, :TagSet
@@ -18511,7 +18508,7 @@ module TencentCloud
       class Ipv6SubnetCidrBlock < TencentCloud::Common::AbstractModel
         # @param SubnetId: 子网实例`ID`。形如：`subnet-pxir56ns`。
         # @type SubnetId: String
-        # @param Ipv6CidrBlock: `IPv6`子网段。形如：`3402:4e00:20:1001::/64`
+        # @param Ipv6CidrBlock: `IPv6`子网段。形如：`3402:4e00:20:1001::/64`。作为AssignIpv6SubnetCidrBlock接口入参时，该参数必填。
         # @type Ipv6CidrBlock: String
 
         attr_accessor :SubnetId, :Ipv6CidrBlock
@@ -22064,10 +22061,8 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NetDetectDescription: String
         # @param CreateTime: 创建时间。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
         # @param TagSet: 标签键值对。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TagSet: Array
 
         attr_accessor :VpcId, :VpcName, :SubnetId, :SubnetName, :NetDetectId, :NetDetectName, :DetectDestinationIp, :DetectSourceIp, :NextHopType, :NextHopDestination, :NextHopName, :NetDetectDescription, :CreateTime, :TagSet

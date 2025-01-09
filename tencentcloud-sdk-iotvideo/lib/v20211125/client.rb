@@ -1613,6 +1613,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询云存卡套餐信息
+
+        # @param request: Request instance for DescribeFreeCloudStorageNum.
+        # @type request: :class:`Tencentcloud::iotvideo::V20211125::DescribeFreeCloudStorageNumRequest`
+        # @rtype: :class:`Tencentcloud::iotvideo::V20211125::DescribeFreeCloudStorageNumResponse`
+        def DescribeFreeCloudStorageNum(request)
+          body = send_request('DescribeFreeCloudStorageNum', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeFreeCloudStorageNumResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询设备消息数量统计
 
         # @param request: Request instance for DescribeMessageDataStats.

@@ -14144,10 +14144,17 @@ module TencentCloud
         # @type ClusterTopology: :class:`Tencentcloud::Cdb.v20170320.models.ClusterTopology`
         # @param CheckFastUpgradeReboot: 检查原地升级是否需要重启，1 检查， 0 不检查。如果值为1，检查为原地升级需要重启，则会停止升级并进行返回提示，如果为原地升级不重启，则正常执行升级流程。
         # @type CheckFastUpgradeReboot: Integer
+        # @param DataCheckSensitive: 数据校验敏感度，非极速变配时使用此参数，敏感度根据当前实例规格计算迁移过程中的数据对比使用的cpu资源
+        # 对应的选项为: "high"、"normal"、"low"，默认为空
+        # 参数详解，：
+        # "high": 对应控制台中的高，数据库负载过高不建议使用
+        # "normal"：对应控制台中的标准
+        # "low"：对应控制台中的低
+        # @type DataCheckSensitive: String
 
-        attr_accessor :InstanceId, :Memory, :Volume, :ProtectMode, :DeployMode, :SlaveZone, :EngineVersion, :WaitSwitch, :BackupZone, :InstanceRole, :DeviceType, :Cpu, :FastUpgrade, :MaxDelayTime, :CrossCluster, :ZoneId, :RoTransType, :ClusterTopology, :CheckFastUpgradeReboot
+        attr_accessor :InstanceId, :Memory, :Volume, :ProtectMode, :DeployMode, :SlaveZone, :EngineVersion, :WaitSwitch, :BackupZone, :InstanceRole, :DeviceType, :Cpu, :FastUpgrade, :MaxDelayTime, :CrossCluster, :ZoneId, :RoTransType, :ClusterTopology, :CheckFastUpgradeReboot, :DataCheckSensitive
 
-        def initialize(instanceid=nil, memory=nil, volume=nil, protectmode=nil, deploymode=nil, slavezone=nil, engineversion=nil, waitswitch=nil, backupzone=nil, instancerole=nil, devicetype=nil, cpu=nil, fastupgrade=nil, maxdelaytime=nil, crosscluster=nil, zoneid=nil, rotranstype=nil, clustertopology=nil, checkfastupgradereboot=nil)
+        def initialize(instanceid=nil, memory=nil, volume=nil, protectmode=nil, deploymode=nil, slavezone=nil, engineversion=nil, waitswitch=nil, backupzone=nil, instancerole=nil, devicetype=nil, cpu=nil, fastupgrade=nil, maxdelaytime=nil, crosscluster=nil, zoneid=nil, rotranstype=nil, clustertopology=nil, checkfastupgradereboot=nil, datachecksensitive=nil)
           @InstanceId = instanceid
           @Memory = memory
           @Volume = volume
@@ -14167,6 +14174,7 @@ module TencentCloud
           @RoTransType = rotranstype
           @ClusterTopology = clustertopology
           @CheckFastUpgradeReboot = checkfastupgradereboot
+          @DataCheckSensitive = datachecksensitive
         end
 
         def deserialize(params)
@@ -14192,6 +14200,7 @@ module TencentCloud
             @ClusterTopology.deserialize(params['ClusterTopology'])
           end
           @CheckFastUpgradeReboot = params['CheckFastUpgradeReboot']
+          @DataCheckSensitive = params['DataCheckSensitive']
         end
       end
 

@@ -3812,7 +3812,6 @@ module TencentCloud
         # @param TotalCount: 符合条件的实例数量。
         # @type TotalCount: Integer
         # @param NetworkInterfaceSet: 实例详细信息列表。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NetworkInterfaceSet: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4298,7 +4297,6 @@ module TencentCloud
         # @param TotalCount: 符合条件的实例数量
         # @type TotalCount: Integer
         # @param RouteTableSet: 路由表列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RouteTableSet: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4645,7 +4643,6 @@ module TencentCloud
         # @param TotalCount: 符合条件的实例数量。
         # @type TotalCount: Integer
         # @param SubnetSet: 子网对象。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubnetSet: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4922,7 +4919,6 @@ module TencentCloud
         # @param TotalCount: 符合条件的对象数。
         # @type TotalCount: Integer
         # @param VpcSet: 私有网络对象。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VpcSet: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -9157,7 +9153,6 @@ module TencentCloud
         # @param PrivateIpAddress: 内网IP地址。
         # @type PrivateIpAddress: String
         # @param Primary: 是否是主IP。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Primary: Boolean
         # @param PublicIpAddress: 公网IP地址。
         # @type PublicIpAddress: String
@@ -9166,7 +9161,6 @@ module TencentCloud
         # @param Description: 内网IP描述信息。
         # @type Description: String
         # @param IsWanIpBlocked: 公网IP是否被封堵。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsWanIpBlocked: Boolean
         # @param State: IP状态：
         # PENDING：生产中
@@ -10427,7 +10421,6 @@ module TencentCloud
         # @param PolicyDescription: 安全组规则描述。
         # @type PolicyDescription: String
         # @param ModifyTime: 修改时间，例如 2020-07-22 19：27：23
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ModifyTime: String
         # @param Ipv6CidrBlock: 网段或IPv6(互斥)。
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -10988,10 +10981,8 @@ module TencentCloud
       # 标签信息。
       class Tag < TencentCloud::Common::AbstractModel
         # @param Key: 标签健。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Key: String
         # @param Value: 标签值。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: String
 
         attr_accessor :Key, :Value

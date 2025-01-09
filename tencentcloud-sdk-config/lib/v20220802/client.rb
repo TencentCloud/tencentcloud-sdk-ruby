@@ -29,6 +29,30 @@ module TencentCloud
         end
 
 
+        # 账号组资源详情
+
+        # @param request: Request instance for DescribeAggregateDiscoveredResource.
+        # @type request: :class:`Tencentcloud::config::V20220802::DescribeAggregateDiscoveredResourceRequest`
+        # @rtype: :class:`Tencentcloud::config::V20220802::DescribeAggregateDiscoveredResourceResponse`
+        def DescribeAggregateDiscoveredResource(request)
+          body = send_request('DescribeAggregateDiscoveredResource', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAggregateDiscoveredResourceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 资源详情
 
         # @param request: Request instance for DescribeDiscoveredResource.
@@ -63,6 +87,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ListAggregateConfigRulesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 账号组获取资源列表
+
+        # @param request: Request instance for ListAggregateDiscoveredResources.
+        # @type request: :class:`Tencentcloud::config::V20220802::ListAggregateDiscoveredResourcesRequest`
+        # @rtype: :class:`Tencentcloud::config::V20220802::ListAggregateDiscoveredResourcesResponse`
+        def ListAggregateDiscoveredResources(request)
+          body = send_request('ListAggregateDiscoveredResources', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ListAggregateDiscoveredResourcesResponse.new
             model.deserialize(response['Response'])
             model
           else

@@ -2333,10 +2333,8 @@ module TencentCloud
 
         # 注: `1.如果是预览模式(即NeedPreview设置为true)时, 才会有此预览链接URL`
         # `2.当使用的模板中存在动态表格控件时，预览结果中没有动态表格的填写内容`
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PreviewFileUrl: String
         # @param Approvers: 签署方信息，如角色ID、角色名称等
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Approvers: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2713,7 +2711,6 @@ module TencentCloud
         # @param FillError: 批量补充签署人时，补充失败的报错说明
 
         # 注:`目前仅补充动态签署人时会返回补充失败的原因`
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FillError: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3015,10 +3012,8 @@ module TencentCloud
         # @param PreviewUrl: 合同预览链接URL。
 
         # 注：如果是预览模式(即NeedPreview设置为true)时, 才会有此预览链接URL
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PreviewUrl: String
         # @param Approvers: 签署方信息，如角色ID、角色名称等
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Approvers: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3089,7 +3084,6 @@ module TencentCloud
       # CreateFlowEvidenceReport返回参数结构体
       class CreateFlowEvidenceReportResponse < TencentCloud::Common::AbstractModel
         # @param ReportId: 出证报告 ID，可用于<a href="https://qian.tencent.com/developers/companyApis/certificate/DescribeFlowEvidenceReport" target="_blank">获取出证报告任务执行结果</a>查询出证任务结果和出证PDF的下载URL
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReportId: String
         # @param Status: 出证任务执行的状态, 状态含义如下：
 
@@ -3272,10 +3266,8 @@ module TencentCloud
       # CreateFlowGroupByTemplates返回参数结构体
       class CreateFlowGroupByTemplatesResponse < TencentCloud::Common::AbstractModel
         # @param FlowGroupId: 合同(流程)组的合同组Id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FlowGroupId: String
         # @param FlowIds: 合同(流程)组中子合同列表.
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FlowIds: Array
         # @param Approvers: 合同组签署人信息。
         # @type Approvers: Array
@@ -5076,18 +5068,14 @@ module TencentCloud
         # 该编号会合成到个人用户证书证明图片。
 
         # 注: `个人用户认证证书的编号和证明图片绑定, 获取新的证明图片编号会变动`
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ImageCertId: String
         # @param SerialNumber: 在数字证书申请过程中，系统会自动生成一个独一无二的序列号。请注意，当证书到期并自动续期时，该序列号将会发生变化。值得注意的是，此序列号不会被合成至个人用户证书的证明图片中。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SerialNumber: String
         # @param ValidFrom: CA证书颁发时间，格式为Unix标准时间戳（秒）
         # 该时间格式化后会合成到个人用户证书证明图片
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ValidFrom: Integer
         # @param ValidTo: CA证书有效截止时间，格式为Unix标准时间戳（秒）
         # 该时间格式化后会合成到个人用户证书证明图片
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ValidTo: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -7060,7 +7048,6 @@ module TencentCloud
         # @param Summary: 企业套餐余额及使用情况
         # @type Summary: Array
         # @param SubOrgSummary: 集团子企业套餐使用情况
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubOrgSummary: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -7529,7 +7516,6 @@ module TencentCloud
       # DescribeFlowComponents返回参数结构体
       class DescribeFlowComponentsResponse < TencentCloud::Common::AbstractModel
         # @param RecipientComponentInfos: 合同流程关联的填写控件信息，包括填写控件的归属方以及是否填写等内容。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RecipientComponentInfos: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -7595,7 +7581,6 @@ module TencentCloud
       # DescribeFlowEvidenceReport返回参数结构体
       class DescribeFlowEvidenceReportResponse < TencentCloud::Common::AbstractModel
         # @param ReportUrl: 出证报告PDF的下载 URL，`有效期为5分钟`，超过有效期后将无法再下载。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReportUrl: String
         # @param Status: 出证任务执行的状态, 状态含义如下：
 
@@ -7917,7 +7902,7 @@ module TencentCloud
         #   <li>Key:**"RoleId"**，根据电子签角色ID查询员工，Values为指定的角色ID，满足其中任意一个角色即可：**["RoleId1","RoleId2",...]**</li>
         # </ul>
         # @type Filters: Array
-        # @param Offset: 指定分页返回第几页的数据，如果不传默认返回第一页。页码从 0 开始，即首页为 0，最大20000。
+        # @param Offset: 偏移量，默认为0，最大20000。。关于<code>Offset</code>的更进一步介绍请参考 API <a href="https://cloud.tencent.com/document/api/213/15688" target="_blank">简介</a>中的相关小节。
         # @type Offset: Integer
 
         attr_accessor :Operator, :Limit, :Agent, :Filters, :Offset
@@ -7955,10 +7940,8 @@ module TencentCloud
       # DescribeIntegrationEmployees返回参数结构体
       class DescribeIntegrationEmployeesResponse < TencentCloud::Common::AbstractModel
         # @param Employees: 员工信息列表。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Employees: Array
-        # @param Offset: 指定分页返回第几页的数据。页码从 0 开始，即首页为 0，最大20000。
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param Offset: 偏移量
         # @type Offset: Integer
         # @param Limit: 指定分页每页返回的数据条数，单页最大支持 20。
         # @type Limit: Integer
@@ -8527,10 +8510,8 @@ module TencentCloud
       # DescribeSignFaceVideo返回参数结构体
       class DescribeSignFaceVideoResponse < TencentCloud::Common::AbstractModel
         # @param VideoData: 核身视频结果。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VideoData: :class:`Tencentcloud::Ess.v20201111.models.DetectInfoVideoData`
         # @param IntentionQuestionResult: 意愿核身问答模式结果。若未使用该意愿核身功能，该字段返回值可以不处理。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IntentionQuestionResult: :class:`Tencentcloud::Ess.v20201111.models.IntentionQuestionResult`
         # @param IntentionActionResult: 意愿核身点头确认模式的结果信息，若未使用该意愿核身功能，该字段返回值可以不处理。
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -10430,8 +10411,7 @@ module TencentCloud
 
       # GetTaskResultApi请求参数结构体
       class GetTaskResultApiRequest < TencentCloud::Common::AbstractModel
-        # @param TaskId: 转换任务Id，通过接口<a href="https://qian.tencent.com/developers/companyApis/templatesAndFiles/CreateConvertTaskApi" target="_blank">创建文件转换任务接口</a>或<a href="https://qian.tencent.com/developers/companyApis/templatesAndFiles/CreateMergeFileTask" target="_blank">创建多文件转换任务接口</a>
-        # 得到的转换任务id
+        # @param TaskId: 转换任务Id，通过接口<a href="https://qian.tencent.com/developers/companyApis/templatesAndFiles/CreateConvertTaskApi" target="_blank">创建文件转换任务接口</a>得到的转换任务id
         # @type TaskId: String
         # @param Operator: 执行本接口操作的员工信息。
         # 注: `在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。`

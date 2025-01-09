@@ -714,6 +714,34 @@ module TencentCloud
         end
       end
 
+      # 云存套餐包信息
+      class CloudStoragePackageInfo < TencentCloud::Common::AbstractModel
+        # @param PackageId: 套餐包id
+        # @type PackageId: String
+        # @param PackageName: 套餐包名字
+        # @type PackageName: String
+        # @param Num: 套餐包数量
+        # @type Num: Integer
+        # @param UsedNum: 已使用数量
+        # @type UsedNum: Integer
+
+        attr_accessor :PackageId, :PackageName, :Num, :UsedNum
+
+        def initialize(packageid=nil, packagename=nil, num=nil, usednum=nil)
+          @PackageId = packageid
+          @PackageName = packagename
+          @Num = num
+          @UsedNum = usednum
+        end
+
+        def deserialize(params)
+          @PackageId = params['PackageId']
+          @PackageName = params['PackageName']
+          @Num = params['Num']
+          @UsedNum = params['UsedNum']
+        end
+      end
+
       # 云存时间轴接口返回数据
       class CloudStorageTimeData < TencentCloud::Common::AbstractModel
         # @param TimeList: 云存时间轴信息列表
@@ -4181,6 +4209,44 @@ module TencentCloud
           @InstanceId = params['InstanceId']
           @InstanceName = params['InstanceName']
           @ErrMsg = params['ErrMsg']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeFreeCloudStorageNum请求参数结构体
+      class DescribeFreeCloudStorageNumRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeFreeCloudStorageNum返回参数结构体
+      class DescribeFreeCloudStorageNumResponse < TencentCloud::Common::AbstractModel
+        # @param PackageInfos: 套餐包信息
+        # @type PackageInfos: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :PackageInfos, :RequestId
+
+        def initialize(packageinfos=nil, requestid=nil)
+          @PackageInfos = packageinfos
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['PackageInfos'].nil?
+            @PackageInfos = []
+            params['PackageInfos'].each do |i|
+              cloudstoragepackageinfo_tmp = CloudStoragePackageInfo.new
+              cloudstoragepackageinfo_tmp.deserialize(i)
+              @PackageInfos << cloudstoragepackageinfo_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end

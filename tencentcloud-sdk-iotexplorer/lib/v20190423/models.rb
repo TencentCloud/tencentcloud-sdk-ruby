@@ -17,6 +17,47 @@
 module TencentCloud
   module Iotexplorer
     module V20190423
+      # 设备激活详情信息
+      class ActivateDeviceInfo < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param InstanceType: 实例类型
+        # @type InstanceType: Integer
+        # @param DeviceActivationDetails: 设备激活信息
+        # @type DeviceActivationDetails: :class:`Tencentcloud::Iotexplorer.v20190423.models.DeviceActivationDetail`
+        # @param RegisteredDeviceType: 已注册设备类型信息
+        # @type RegisteredDeviceType: :class:`Tencentcloud::Iotexplorer.v20190423.models.RegisteredDeviceTypeInfo`
+        # @param RegisteredDeviceNetType: 已注册设备通信类型信息
+        # @type RegisteredDeviceNetType: :class:`Tencentcloud::Iotexplorer.v20190423.models.RegisteredDeviceNetTypeInfo`
+
+        attr_accessor :InstanceId, :InstanceType, :DeviceActivationDetails, :RegisteredDeviceType, :RegisteredDeviceNetType
+
+        def initialize(instanceid=nil, instancetype=nil, deviceactivationdetails=nil, registereddevicetype=nil, registereddevicenettype=nil)
+          @InstanceId = instanceid
+          @InstanceType = instancetype
+          @DeviceActivationDetails = deviceactivationdetails
+          @RegisteredDeviceType = registereddevicetype
+          @RegisteredDeviceNetType = registereddevicenettype
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @InstanceType = params['InstanceType']
+          unless params['DeviceActivationDetails'].nil?
+            @DeviceActivationDetails = DeviceActivationDetail.new
+            @DeviceActivationDetails.deserialize(params['DeviceActivationDetails'])
+          end
+          unless params['RegisteredDeviceType'].nil?
+            @RegisteredDeviceType = RegisteredDeviceTypeInfo.new
+            @RegisteredDeviceType.deserialize(params['RegisteredDeviceType'])
+          end
+          unless params['RegisteredDeviceNetType'].nil?
+            @RegisteredDeviceNetType = RegisteredDeviceNetTypeInfo.new
+            @RegisteredDeviceNetType.deserialize(params['RegisteredDeviceNetType'])
+          end
+        end
+      end
+
       # ActivateTWeCallLicense请求参数结构体
       class ActivateTWeCallLicenseRequest < TencentCloud::Common::AbstractModel
         # @param PkgType: TWecall类型：0-体验套餐；1-家庭安防场景； 2-穿戴类场景； 3-生活娱乐场景； 4-对讲及其它场景
@@ -775,6 +816,34 @@ module TencentCloud
           @EventId = params['EventId']
           @UploadStatus = params['UploadStatus']
           @Data = params['Data']
+        end
+      end
+
+      # 云存套餐包信息
+      class CloudStoragePackageInfo < TencentCloud::Common::AbstractModel
+        # @param PackageId: 套餐包id
+        # @type PackageId: String
+        # @param PackageName: 套餐包名字
+        # @type PackageName: String
+        # @param Num: 套餐包数量
+        # @type Num: Integer
+        # @param UsedNum: 已使用数量
+        # @type UsedNum: Integer
+
+        attr_accessor :PackageId, :PackageName, :Num, :UsedNum
+
+        def initialize(packageid=nil, packagename=nil, num=nil, usednum=nil)
+          @PackageId = packageid
+          @PackageName = packagename
+          @Num = num
+          @UsedNum = usednum
+        end
+
+        def deserialize(params)
+          @PackageId = params['PackageId']
+          @PackageName = params['PackageName']
+          @Num = params['Num']
+          @UsedNum = params['UsedNum']
         end
       end
 
@@ -2429,6 +2498,94 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeActivateDevice请求参数结构体
+      class DescribeActivateDeviceRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DescribeActivateDevice返回参数结构体
+      class DescribeActivateDeviceResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 设备激活详情信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: :class:`Tencentcloud::Iotexplorer.v20190423.models.ActivateDeviceInfo`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = ActivateDeviceInfo.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeActivateLicenseService请求参数结构体
+      class DescribeActivateLicenseServiceRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param LicenseType: 激活码类型
+        # @type LicenseType: String
+
+        attr_accessor :InstanceId, :LicenseType
+
+        def initialize(instanceid=nil, licensetype=nil)
+          @InstanceId = instanceid
+          @LicenseType = licensetype
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @LicenseType = params['LicenseType']
+        end
+      end
+
+      # DescribeActivateLicenseService返回参数结构体
+      class DescribeActivateLicenseServiceResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 增值服务激活码信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              licenseservicenuminfo_tmp = LicenseServiceNumInfo.new
+              licenseservicenuminfo_tmp.deserialize(i)
+              @Data << licenseservicenuminfo_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -4357,6 +4514,44 @@ module TencentCloud
         end
       end
 
+      # DescribeFreeCloudStorageNum请求参数结构体
+      class DescribeFreeCloudStorageNumRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeFreeCloudStorageNum返回参数结构体
+      class DescribeFreeCloudStorageNumResponse < TencentCloud::Common::AbstractModel
+        # @param PackageInfos: 套餐包信息
+        # @type PackageInfos: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :PackageInfos, :RequestId
+
+        def initialize(packageinfos=nil, requestid=nil)
+          @PackageInfos = packageinfos
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['PackageInfos'].nil?
+            @PackageInfos = []
+            params['PackageInfos'].each do |i|
+              cloudstoragepackageinfo_tmp = CloudStoragePackageInfo.new
+              cloudstoragepackageinfo_tmp.deserialize(i)
+              @PackageInfos << cloudstoragepackageinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeGatewayBindDevices请求参数结构体
       class DescribeGatewayBindDevicesRequest < TencentCloud::Common::AbstractModel
         # @param GatewayProductId: 网关设备的产品ID
@@ -5102,6 +5297,86 @@ module TencentCloud
             end
           end
           @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeVideoLicense请求参数结构体
+      class DescribeVideoLicenseRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DescribeVideoLicense返回参数结构体
+      class DescribeVideoLicenseResponse < TencentCloud::Common::AbstractModel
+        # @param License: 视频激活码分类概览
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type License: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :License, :RequestId
+
+        def initialize(license=nil, requestid=nil)
+          @License = license
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['License'].nil?
+            @License = []
+            params['License'].each do |i|
+              videolicenseentity_tmp = VideoLicenseEntity.new
+              videolicenseentity_tmp.deserialize(i)
+              @License << videolicenseentity_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 设备激活详情信息
+      class DeviceActivationDetail < TencentCloud::Common::AbstractModel
+        # @param TotalDeviceNum: 可注册设备数
+        # @type TotalDeviceNum: Integer
+        # @param UsedDeviceNum: 已注册设备数
+        # @type UsedDeviceNum: Integer
+        # @param TotalNormalLicense: 设备授权数
+        # @type TotalNormalLicense: Integer
+        # @param UsedNormalLicense: 已使用设备授权数
+        # @type UsedNormalLicense: Integer
+        # @param TotalBluetoothLicense: 蓝牙授权数
+        # @type TotalBluetoothLicense: Integer
+        # @param UsedBluetoothLicense: 已使用蓝牙授权数
+        # @type UsedBluetoothLicense: Integer
+
+        attr_accessor :TotalDeviceNum, :UsedDeviceNum, :TotalNormalLicense, :UsedNormalLicense, :TotalBluetoothLicense, :UsedBluetoothLicense
+
+        def initialize(totaldevicenum=nil, useddevicenum=nil, totalnormallicense=nil, usednormallicense=nil, totalbluetoothlicense=nil, usedbluetoothlicense=nil)
+          @TotalDeviceNum = totaldevicenum
+          @UsedDeviceNum = useddevicenum
+          @TotalNormalLicense = totalnormallicense
+          @UsedNormalLicense = usednormallicense
+          @TotalBluetoothLicense = totalbluetoothlicense
+          @UsedBluetoothLicense = usedbluetoothlicense
+        end
+
+        def deserialize(params)
+          @TotalDeviceNum = params['TotalDeviceNum']
+          @UsedDeviceNum = params['UsedDeviceNum']
+          @TotalNormalLicense = params['TotalNormalLicense']
+          @UsedNormalLicense = params['UsedNormalLicense']
+          @TotalBluetoothLicense = params['TotalBluetoothLicense']
+          @UsedBluetoothLicense = params['UsedBluetoothLicense']
         end
       end
 
@@ -7295,6 +7570,42 @@ module TencentCloud
         end
       end
 
+      # 增值服务数量统计
+      class LicenseServiceNumInfo < TencentCloud::Common::AbstractModel
+        # @param LicenseType: 服务类型
+        # @type LicenseType: String
+        # @param TotalNum: 授权总数
+        # @type TotalNum: Integer
+        # @param UsedNum: 已使用授权数
+        # @type UsedNum: Integer
+        # @param TWeCallLicense: TWeCall激活码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TWeCallLicense: Array
+
+        attr_accessor :LicenseType, :TotalNum, :UsedNum, :TWeCallLicense
+
+        def initialize(licensetype=nil, totalnum=nil, usednum=nil, twecalllicense=nil)
+          @LicenseType = licensetype
+          @TotalNum = totalnum
+          @UsedNum = usednum
+          @TWeCallLicense = twecalllicense
+        end
+
+        def deserialize(params)
+          @LicenseType = params['LicenseType']
+          @TotalNum = params['TotalNum']
+          @UsedNum = params['UsedNum']
+          unless params['TWeCallLicense'].nil?
+            @TWeCallLicense = []
+            params['TWeCallLicense'].each do |i|
+              twecalllicenseinfo_tmp = TWeCallLicenseInfo.new
+              twecalllicenseinfo_tmp.deserialize(i)
+              @TWeCallLicense << twecalllicenseinfo_tmp
+            end
+          end
+        end
+      end
+
       # ListEventHistory请求参数结构体
       class ListEventHistoryRequest < TencentCloud::Common::AbstractModel
         # @param ProductId: 产品ID
@@ -9052,6 +9363,50 @@ module TencentCloud
         end
       end
 
+      # 已注册通信类型信息
+      class RegisteredDeviceNetTypeInfo < TencentCloud::Common::AbstractModel
+        # @param NormalDeviceNum: 普通设备数
+        # @type NormalDeviceNum: Integer
+        # @param BluetoothDeviceNum: 蓝牙设备数
+        # @type BluetoothDeviceNum: Integer
+
+        attr_accessor :NormalDeviceNum, :BluetoothDeviceNum
+
+        def initialize(normaldevicenum=nil, bluetoothdevicenum=nil)
+          @NormalDeviceNum = normaldevicenum
+          @BluetoothDeviceNum = bluetoothdevicenum
+        end
+
+        def deserialize(params)
+          @NormalDeviceNum = params['NormalDeviceNum']
+          @BluetoothDeviceNum = params['BluetoothDeviceNum']
+        end
+      end
+
+      # 已注册设备类型信息
+      class RegisteredDeviceTypeInfo < TencentCloud::Common::AbstractModel
+        # @param NormalDeviceNum: 已注册设备数
+        # @type NormalDeviceNum: Integer
+        # @param GatewayDeviceNum: 已注册网关数
+        # @type GatewayDeviceNum: Integer
+        # @param SubDeviceNum: 已注册子设备数
+        # @type SubDeviceNum: Integer
+
+        attr_accessor :NormalDeviceNum, :GatewayDeviceNum, :SubDeviceNum
+
+        def initialize(normaldevicenum=nil, gatewaydevicenum=nil, subdevicenum=nil)
+          @NormalDeviceNum = normaldevicenum
+          @GatewayDeviceNum = gatewaydevicenum
+          @SubDeviceNum = subdevicenum
+        end
+
+        def deserialize(params)
+          @NormalDeviceNum = params['NormalDeviceNum']
+          @GatewayDeviceNum = params['GatewayDeviceNum']
+          @SubDeviceNum = params['SubDeviceNum']
+        end
+      end
+
       # ReleaseStudioProduct请求参数结构体
       class ReleaseStudioProductRequest < TencentCloud::Common::AbstractModel
         # @param ProductId: 产品ID
@@ -9671,6 +10026,33 @@ module TencentCloud
         end
       end
 
+      # TWeCall信息
+      class TWeCallLicenseInfo < TencentCloud::Common::AbstractModel
+        # @param TWeCallType: voip类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TWeCallType: String
+        # @param TotalNum: 总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalNum: Integer
+        # @param UsedNum: 已使用
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UsedNum: Integer
+
+        attr_accessor :TWeCallType, :TotalNum, :UsedNum
+
+        def initialize(twecalltype=nil, totalnum=nil, usednum=nil)
+          @TWeCallType = twecalltype
+          @TotalNum = totalnum
+          @UsedNum = usednum
+        end
+
+        def deserialize(params)
+          @TWeCallType = params['TWeCallType']
+          @TotalNum = params['TotalNum']
+          @UsedNum = params['UsedNum']
+        end
+      end
+
       # TWeCall设备信息
       class TWeCallPkgInfo < TencentCloud::Common::AbstractModel
         # @param PkgId: 包ID
@@ -10265,6 +10647,34 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 视频设备激活码统计
+      class VideoLicenseEntity < TencentCloud::Common::AbstractModel
+        # @param Type: 激活码类型，取值范围如下：0_5_mbps、1_mbps、1_5_mbps、2_mbps
+        # @type Type: String
+        # @param TotalCount: 有效激活码总数
+        # @type TotalCount: Integer
+        # @param UsedCount: 待使用的激活码数量
+        # @type UsedCount: Integer
+        # @param ExpiresSoonCount: 即将过期的激活码数量
+        # @type ExpiresSoonCount: Integer
+
+        attr_accessor :Type, :TotalCount, :UsedCount, :ExpiresSoonCount
+
+        def initialize(type=nil, totalcount=nil, usedcount=nil, expiressooncount=nil)
+          @Type = type
+          @TotalCount = totalcount
+          @UsedCount = usedcount
+          @ExpiresSoonCount = expiressooncount
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @TotalCount = params['TotalCount']
+          @UsedCount = params['UsedCount']
+          @ExpiresSoonCount = params['ExpiresSoonCount']
         end
       end
 

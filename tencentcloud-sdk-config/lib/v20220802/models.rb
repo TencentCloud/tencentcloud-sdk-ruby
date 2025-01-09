@@ -17,6 +17,81 @@
 module TencentCloud
   module Config
     module V20220802
+      # 资源列列表信息
+      class AggregateResourceInfo < TencentCloud::Common::AbstractModel
+        # @param ResourceType: 资源类型
+        # @type ResourceType: String
+        # @param ResourceName: 资源名称
+        # @type ResourceName: String
+        # @param ResourceId: 资源ID
+        # @type ResourceId: String
+        # @param ResourceRegion: 地域
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceRegion: String
+        # @param ResourceStatus: 资源状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceStatus: String
+        # @param ResourceDelete: 是否删除 1:已删除 0:未删除
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceDelete: Integer
+        # @param ResourceCreateTime: 资源创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceCreateTime: String
+        # @param Tags: 标签信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: Array
+        # @param ResourceZone: 可用区
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceZone: String
+        # @param ComplianceResult: 合规状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ComplianceResult: String
+        # @param ResourceOwnerId: 资源所属用户ID
+        # @type ResourceOwnerId: Integer
+        # @param ResourceOwnerName: 用户昵称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceOwnerName: String
+
+        attr_accessor :ResourceType, :ResourceName, :ResourceId, :ResourceRegion, :ResourceStatus, :ResourceDelete, :ResourceCreateTime, :Tags, :ResourceZone, :ComplianceResult, :ResourceOwnerId, :ResourceOwnerName
+
+        def initialize(resourcetype=nil, resourcename=nil, resourceid=nil, resourceregion=nil, resourcestatus=nil, resourcedelete=nil, resourcecreatetime=nil, tags=nil, resourcezone=nil, complianceresult=nil, resourceownerid=nil, resourceownername=nil)
+          @ResourceType = resourcetype
+          @ResourceName = resourcename
+          @ResourceId = resourceid
+          @ResourceRegion = resourceregion
+          @ResourceStatus = resourcestatus
+          @ResourceDelete = resourcedelete
+          @ResourceCreateTime = resourcecreatetime
+          @Tags = tags
+          @ResourceZone = resourcezone
+          @ComplianceResult = complianceresult
+          @ResourceOwnerId = resourceownerid
+          @ResourceOwnerName = resourceownername
+        end
+
+        def deserialize(params)
+          @ResourceType = params['ResourceType']
+          @ResourceName = params['ResourceName']
+          @ResourceId = params['ResourceId']
+          @ResourceRegion = params['ResourceRegion']
+          @ResourceStatus = params['ResourceStatus']
+          @ResourceDelete = params['ResourceDelete']
+          @ResourceCreateTime = params['ResourceCreateTime']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
+          @ResourceZone = params['ResourceZone']
+          @ComplianceResult = params['ComplianceResult']
+          @ResourceOwnerId = params['ResourceOwnerId']
+          @ResourceOwnerName = params['ResourceOwnerName']
+        end
+      end
+
       # 合规详情
       class Annotation < TencentCloud::Common::AbstractModel
         # @param Configuration: 资源当前实际配置。长度为0~256位字符，即资源不合规配置
@@ -242,6 +317,106 @@ module TencentCloud
           @AccountGroupName = params['AccountGroupName']
           @RuleOwnerId = params['RuleOwnerId']
           @ManageTriggerType = params['ManageTriggerType']
+        end
+      end
+
+      # DescribeAggregateDiscoveredResource请求参数结构体
+      class DescribeAggregateDiscoveredResourceRequest < TencentCloud::Common::AbstractModel
+        # @param ResourceId: 资源ID
+        # @type ResourceId: String
+        # @param ResourceType: 资源类型
+        # @type ResourceType: String
+        # @param ResourceRegion: 资源地域
+        # @type ResourceRegion: String
+        # @param AccountGroupId: 账号组ID
+        # @type AccountGroupId: String
+        # @param ResourceOwnerId: 资源所属用户ID
+        # @type ResourceOwnerId: Integer
+
+        attr_accessor :ResourceId, :ResourceType, :ResourceRegion, :AccountGroupId, :ResourceOwnerId
+
+        def initialize(resourceid=nil, resourcetype=nil, resourceregion=nil, accountgroupid=nil, resourceownerid=nil)
+          @ResourceId = resourceid
+          @ResourceType = resourcetype
+          @ResourceRegion = resourceregion
+          @AccountGroupId = accountgroupid
+          @ResourceOwnerId = resourceownerid
+        end
+
+        def deserialize(params)
+          @ResourceId = params['ResourceId']
+          @ResourceType = params['ResourceType']
+          @ResourceRegion = params['ResourceRegion']
+          @AccountGroupId = params['AccountGroupId']
+          @ResourceOwnerId = params['ResourceOwnerId']
+        end
+      end
+
+      # DescribeAggregateDiscoveredResource返回参数结构体
+      class DescribeAggregateDiscoveredResourceResponse < TencentCloud::Common::AbstractModel
+        # @param ResourceId: 资源Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceId: String
+        # @param ResourceType: 资源类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceType: String
+        # @param ResourceName: 资源名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceName: String
+        # @param ResourceRegion: 资源地域
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceRegion: String
+        # @param ResourceZone: 资源可用区
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceZone: String
+        # @param Configuration: 资源配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Configuration: String
+        # @param ResourceCreateTime: 资源创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceCreateTime: String
+        # @param Tags: 资源标签
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: Array
+        # @param UpdateTime: 资源更新时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTime: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ResourceId, :ResourceType, :ResourceName, :ResourceRegion, :ResourceZone, :Configuration, :ResourceCreateTime, :Tags, :UpdateTime, :RequestId
+
+        def initialize(resourceid=nil, resourcetype=nil, resourcename=nil, resourceregion=nil, resourcezone=nil, configuration=nil, resourcecreatetime=nil, tags=nil, updatetime=nil, requestid=nil)
+          @ResourceId = resourceid
+          @ResourceType = resourcetype
+          @ResourceName = resourcename
+          @ResourceRegion = resourceregion
+          @ResourceZone = resourcezone
+          @Configuration = configuration
+          @ResourceCreateTime = resourcecreatetime
+          @Tags = tags
+          @UpdateTime = updatetime
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ResourceId = params['ResourceId']
+          @ResourceType = params['ResourceType']
+          @ResourceName = params['ResourceName']
+          @ResourceRegion = params['ResourceRegion']
+          @ResourceZone = params['ResourceZone']
+          @Configuration = params['Configuration']
+          @ResourceCreateTime = params['ResourceCreateTime']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
+          @UpdateTime = params['UpdateTime']
+          @RequestId = params['RequestId']
         end
       end
 
@@ -537,6 +712,88 @@ module TencentCloud
               @Items << configrule_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ListAggregateDiscoveredResources请求参数结构体
+      class ListAggregateDiscoveredResourcesRequest < TencentCloud::Common::AbstractModel
+        # @param MaxResults: 每页显示数量
+        # @type MaxResults: Integer
+        # @param AccountGroupId: 账号组ID
+        # @type AccountGroupId: String
+        # @param Filters: resourceName：资源名  resourceId ：资源ID
+        # @type Filters: Array
+        # @param Tags: 标签
+        # @type Tags: Array
+        # @param NextToken: 下一页token
+        # @type NextToken: String
+        # @param OrderType: 排序方式 asc、desc
+        # @type OrderType: String
+
+        attr_accessor :MaxResults, :AccountGroupId, :Filters, :Tags, :NextToken, :OrderType
+
+        def initialize(maxresults=nil, accountgroupid=nil, filters=nil, tags=nil, nexttoken=nil, ordertype=nil)
+          @MaxResults = maxresults
+          @AccountGroupId = accountgroupid
+          @Filters = filters
+          @Tags = tags
+          @NextToken = nexttoken
+          @OrderType = ordertype
+        end
+
+        def deserialize(params)
+          @MaxResults = params['MaxResults']
+          @AccountGroupId = params['AccountGroupId']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
+          @NextToken = params['NextToken']
+          @OrderType = params['OrderType']
+        end
+      end
+
+      # ListAggregateDiscoveredResources返回参数结构体
+      class ListAggregateDiscoveredResourcesResponse < TencentCloud::Common::AbstractModel
+        # @param Items: 详情
+        # @type Items: Array
+        # @param NextToken: 下一页
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NextToken: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Items, :NextToken, :RequestId
+
+        def initialize(items=nil, nexttoken=nil, requestid=nil)
+          @Items = items
+          @NextToken = nexttoken
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              aggregateresourceinfo_tmp = AggregateResourceInfo.new
+              aggregateresourceinfo_tmp.deserialize(i)
+              @Items << aggregateresourceinfo_tmp
+            end
+          end
+          @NextToken = params['NextToken']
           @RequestId = params['RequestId']
         end
       end

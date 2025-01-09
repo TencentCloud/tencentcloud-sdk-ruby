@@ -2621,7 +2621,7 @@ module TencentCloud
         # @type IsDeleteImage: Boolean
         # @param IsForce: 是否强制删除
         # @type IsForce: Boolean
-        # @param OperatorRemark: 操作记录
+        # @param OperatorRemark: 操作者记录
         # @type OperatorRemark: String
 
         attr_accessor :EnvId, :GatewayId, :VersionName, :IsDeleteServer, :IsDeleteImage, :IsForce, :OperatorRemark
@@ -6108,10 +6108,8 @@ module TencentCloud
       # DescribeWxGatewayRoutes返回参数结构体
       class DescribeWxGatewayRoutesResponse < TencentCloud::Common::AbstractModel
         # @param TotalCount: 返回的服务个数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
         # @param WxGatewayRouteSet: 返回的服务列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WxGatewayRouteSet: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6173,10 +6171,8 @@ module TencentCloud
       # DescribeWxGateways返回参数结构体
       class DescribeWxGatewaysResponse < TencentCloud::Common::AbstractModel
         # @param Gateways: 返回的服务列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Gateways: Array
         # @param TotalCount: 网关总数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6946,10 +6942,8 @@ module TencentCloud
       # 安全网关版本路由信息限额配置
       class FrequencyLimitConfig < TencentCloud::Common::AbstractModel
         # @param LimitObject: 限额对象 "ConnectionsLimit" 或 "QPSLimit"
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LimitObject: String
         # @param LimitConfig: 限额配置
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LimitConfig: String
 
         attr_accessor :LimitObject, :LimitConfig
@@ -6991,79 +6985,54 @@ module TencentCloud
         # @param Uin: 用户uin
         # @type Uin: String
         # @param AppId: 用户appid
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AppId: Integer
         # @param WxAppId: WxAppId
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WxAppId: String
         # @param EnvId: 环境id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EnvId: String
         # @param GatewayId: Gateway唯一id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GatewayId: String
         # @param GatewayName: Gateway名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GatewayName: String
         # @param GatewayType: Gateway类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GatewayType: String
         # @param GatewayDesc: Gateway描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GatewayDesc: String
         # @param PackageVersion: 套餐版本
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PackageVersion: String
         # @param PackageId: 套餐唯一id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PackageId: Integer
         # @param VpcId: vpc唯一id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VpcId: String
         # @param SubnetIds: 子网id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubnetIds: Array
         # @param Status: 网关状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: String
         # @param L5Addr: l5地址
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type L5Addr: String
         # @param Region: 地域
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Region: String
         # @param CanRenew: 是否可以续费
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CanRenew: Boolean
         # @param AutoRenewFlag: 自动续费标志
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AutoRenewFlag: Integer
         # @param IsolateTime: 隔离时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsolateTime: String
         # @param ExpireTime: 到期时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExpireTime: String
         # @param CreateTime: 创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
         # @param UpdateTime: 变更时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: String
         # @param CanDowngrade: 是否可以降配
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CanDowngrade: Boolean
         # @param AllowUncertified: 允许未登录访问
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AllowUncertified: Integer
         # @param VersionNumLimit: 网关版本限额
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VersionNumLimit: Integer
         # @param LongAccessId: Donut接入ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LongAccessId: String
         # @param AccessDomain: Donut接入域名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AccessDomain: String
 
         attr_accessor :Uin, :AppId, :WxAppId, :EnvId, :GatewayId, :GatewayName, :GatewayType, :GatewayDesc, :PackageVersion, :PackageId, :VpcId, :SubnetIds, :Status, :L5Addr, :Region, :CanRenew, :AutoRenewFlag, :IsolateTime, :ExpireTime, :CreateTime, :UpdateTime, :CanDowngrade, :AllowUncertified, :VersionNumLimit, :LongAccessId, :AccessDomain
@@ -8762,37 +8731,26 @@ module TencentCloud
         # @param GatewayRouteCreateTime: 安全网关创建时间
         # @type GatewayRouteCreateTime: String
         # @param FrequencyLimitConfig: 安全网关路由限制
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FrequencyLimitConfig: Array
         # @param GatewayRouteServerType: ip代表绑定后端ip。cbr代表云托管服务
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GatewayRouteServerType: String
         # @param GatewayRouteServerName: 服务名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GatewayRouteServerName: String
         # @param GatewayRewriteHost: ip
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GatewayRewriteHost: String
         # @param GatewayVersion: 网关版本
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GatewayVersion: String
         # @param GatewayRoutePath: 请求路径
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GatewayRoutePath: String
         # @param GatewayRouteMethod: 请求模式
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GatewayRouteMethod: String
         # @param GatewayRoutePort: 4层端口
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GatewayRoutePort: Integer
         # @param GatewayRouteEnvId: 路由环境ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GatewayRouteEnvId: String
         # @param GatewayRoutePathMatchType: 路径匹配类型，支持prefix(前缀匹配)，regex(正则匹配)， 默认prefix
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GatewayRoutePathMatchType: String
         # @param CustomHeader: 安全网关自定义头部
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CustomHeader: :class:`Tencentcloud::Tcb.v20180608.models.CustomHeader`
 
         attr_accessor :GatewayRouteName, :GatewayRouteProtocol, :GatewayRouteAddr, :GatewayRouteDesc, :GatewayRouteClusterId, :GatewayRouteCreateTime, :FrequencyLimitConfig, :GatewayRouteServerType, :GatewayRouteServerName, :GatewayRewriteHost, :GatewayVersion, :GatewayRoutePath, :GatewayRouteMethod, :GatewayRoutePort, :GatewayRouteEnvId, :GatewayRoutePathMatchType, :CustomHeader

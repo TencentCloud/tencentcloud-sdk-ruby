@@ -75,10 +75,12 @@ module TencentCloud
         # @type CommissionImage: String
         # @param Remark: 签名的申请备注。
         # @type Remark: String
+        # @param QualificationId: 已审核通过的国内短信的资质 ID。资质 ID 信息可前往国内短信的 [实名资质管理](https://console.cloud.tencent.com/smsv2/enterprise) 页查看。<dx-alert infotype="notice" title="说明"><ul><li>国内短信需填写资质ID，国际短信无需填写。</li></ul></dx-alert>
+        # @type QualificationId: Integer
 
-        attr_accessor :SignName, :SignType, :DocumentType, :International, :SignPurpose, :ProofImage, :CommissionImage, :Remark
+        attr_accessor :SignName, :SignType, :DocumentType, :International, :SignPurpose, :ProofImage, :CommissionImage, :Remark, :QualificationId
 
-        def initialize(signname=nil, signtype=nil, documenttype=nil, international=nil, signpurpose=nil, proofimage=nil, commissionimage=nil, remark=nil)
+        def initialize(signname=nil, signtype=nil, documenttype=nil, international=nil, signpurpose=nil, proofimage=nil, commissionimage=nil, remark=nil, qualificationid=nil)
           @SignName = signname
           @SignType = signtype
           @DocumentType = documenttype
@@ -87,6 +89,7 @@ module TencentCloud
           @ProofImage = proofimage
           @CommissionImage = commissionimage
           @Remark = remark
+          @QualificationId = qualificationid
         end
 
         def deserialize(params)
@@ -98,6 +101,7 @@ module TencentCloud
           @ProofImage = params['ProofImage']
           @CommissionImage = params['CommissionImage']
           @Remark = params['Remark']
+          @QualificationId = params['QualificationId']
         end
       end
 
@@ -480,16 +484,28 @@ module TencentCloud
         # @type SignName: String
         # @param CreateTime: 提交审核时间，UNIX 时间戳（单位：秒）。
         # @type CreateTime: Integer
+        # @param QualificationId: 国内短信的资质 ID。资质 ID 信息可前往国内短信的 [实名资质管理](https://console.cloud.tencent.com/smsv2/enterprise) 页查看。
+        # 注：国际短信不涉及，默认为0。
+        # @type QualificationId: Integer
+        # @param QualificationName: 国内短信的资质名称。
+        # 注：国际短信不涉及，默认为空。
+        # @type QualificationName: String
+        # @param QualificationStatusCode: 国内短信的资质状态。其中0表示待审核，1表示已通过，2表示已拒绝，3表示待补充后提交，4表示变更后待审核，5表示变更后被驳回。可参考 [实名资质审核状态说明](https://cloud.tencent.com/document/product/382/13444#.E5.AE.A1.E6.A0.B8.E7.8A.B6.E6.80.81.E8.AF.B4.E6.98.8E) 。
+        # 注：国际短信不涉及，默认为0。
+        # @type QualificationStatusCode: Integer
 
-        attr_accessor :SignId, :International, :StatusCode, :ReviewReply, :SignName, :CreateTime
+        attr_accessor :SignId, :International, :StatusCode, :ReviewReply, :SignName, :CreateTime, :QualificationId, :QualificationName, :QualificationStatusCode
 
-        def initialize(signid=nil, international=nil, statuscode=nil, reviewreply=nil, signname=nil, createtime=nil)
+        def initialize(signid=nil, international=nil, statuscode=nil, reviewreply=nil, signname=nil, createtime=nil, qualificationid=nil, qualificationname=nil, qualificationstatuscode=nil)
           @SignId = signid
           @International = international
           @StatusCode = statuscode
           @ReviewReply = reviewreply
           @SignName = signname
           @CreateTime = createtime
+          @QualificationId = qualificationid
+          @QualificationName = qualificationname
+          @QualificationStatusCode = qualificationstatuscode
         end
 
         def deserialize(params)
@@ -499,6 +515,9 @@ module TencentCloud
           @ReviewReply = params['ReviewReply']
           @SignName = params['SignName']
           @CreateTime = params['CreateTime']
+          @QualificationId = params['QualificationId']
+          @QualificationName = params['QualificationName']
+          @QualificationStatusCode = params['QualificationStatusCode']
         end
       end
 
@@ -712,10 +731,12 @@ module TencentCloud
         # @type CommissionImage: String
         # @param Remark: 签名的申请备注。
         # @type Remark: String
+        # @param QualificationId: 已审核通过的国内短信的资质 ID。资质 ID 信息可前往国内短信的 [实名资质管理](https://console.cloud.tencent.com/smsv2/enterprise) 页查看。<dx-alert infotype="notice" title="说明"><ul><li>国内短信需填写资质ID，国际短信无需填写。</li></ul></dx-alert>
+        # @type QualificationId: Integer
 
-        attr_accessor :SignId, :SignName, :SignType, :DocumentType, :International, :SignPurpose, :ProofImage, :CommissionImage, :Remark
+        attr_accessor :SignId, :SignName, :SignType, :DocumentType, :International, :SignPurpose, :ProofImage, :CommissionImage, :Remark, :QualificationId
 
-        def initialize(signid=nil, signname=nil, signtype=nil, documenttype=nil, international=nil, signpurpose=nil, proofimage=nil, commissionimage=nil, remark=nil)
+        def initialize(signid=nil, signname=nil, signtype=nil, documenttype=nil, international=nil, signpurpose=nil, proofimage=nil, commissionimage=nil, remark=nil, qualificationid=nil)
           @SignId = signid
           @SignName = signname
           @SignType = signtype
@@ -725,6 +746,7 @@ module TencentCloud
           @ProofImage = proofimage
           @CommissionImage = commissionimage
           @Remark = remark
+          @QualificationId = qualificationid
         end
 
         def deserialize(params)
@@ -737,6 +759,7 @@ module TencentCloud
           @ProofImage = params['ProofImage']
           @CommissionImage = params['CommissionImage']
           @Remark = params['Remark']
+          @QualificationId = params['QualificationId']
         end
       end
 
