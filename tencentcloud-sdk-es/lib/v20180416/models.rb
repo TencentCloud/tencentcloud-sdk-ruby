@@ -3583,6 +3583,9 @@ module TencentCloud
         # @param IndexSettingsField: 索引配置字段
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IndexSettingsField: :class:`Tencentcloud::Es.v20180416.models.IndexSettingsField`
+        # @param IndexAliasesField: 索引别名字段
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IndexAliasesField: Array
         # @param AppId: 索引所属集群APP ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AppId: Integer
@@ -3590,9 +3593,9 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IndexDocs: Integer
 
-        attr_accessor :IndexType, :IndexName, :IndexMetaJson, :IndexStatus, :IndexStorage, :IndexCreateTime, :BackingIndices, :ClusterId, :ClusterName, :ClusterVersion, :IndexPolicyField, :IndexOptionsField, :IndexSettingsField, :AppId, :IndexDocs
+        attr_accessor :IndexType, :IndexName, :IndexMetaJson, :IndexStatus, :IndexStorage, :IndexCreateTime, :BackingIndices, :ClusterId, :ClusterName, :ClusterVersion, :IndexPolicyField, :IndexOptionsField, :IndexSettingsField, :IndexAliasesField, :AppId, :IndexDocs
 
-        def initialize(indextype=nil, indexname=nil, indexmetajson=nil, indexstatus=nil, indexstorage=nil, indexcreatetime=nil, backingindices=nil, clusterid=nil, clustername=nil, clusterversion=nil, indexpolicyfield=nil, indexoptionsfield=nil, indexsettingsfield=nil, appid=nil, indexdocs=nil)
+        def initialize(indextype=nil, indexname=nil, indexmetajson=nil, indexstatus=nil, indexstorage=nil, indexcreatetime=nil, backingindices=nil, clusterid=nil, clustername=nil, clusterversion=nil, indexpolicyfield=nil, indexoptionsfield=nil, indexsettingsfield=nil, indexaliasesfield=nil, appid=nil, indexdocs=nil)
           @IndexType = indextype
           @IndexName = indexname
           @IndexMetaJson = indexmetajson
@@ -3606,6 +3609,7 @@ module TencentCloud
           @IndexPolicyField = indexpolicyfield
           @IndexOptionsField = indexoptionsfield
           @IndexSettingsField = indexsettingsfield
+          @IndexAliasesField = indexaliasesfield
           @AppId = appid
           @IndexDocs = indexdocs
         end
@@ -3640,6 +3644,7 @@ module TencentCloud
             @IndexSettingsField = IndexSettingsField.new
             @IndexSettingsField.deserialize(params['IndexSettingsField'])
           end
+          @IndexAliasesField = params['IndexAliasesField']
           @AppId = params['AppId']
           @IndexDocs = params['IndexDocs']
         end

@@ -368,7 +368,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（DescribePublicDirectConnectTunnelRoutes）用于查询互联网通道路由列表
+        # 查询互联网通道路由列表。
 
         # @param request: Request instance for DescribePublicDirectConnectTunnelRoutes.
         # @type request: :class:`Tencentcloud::dc::V20180410::DescribePublicDirectConnectTunnelRoutesRequest`

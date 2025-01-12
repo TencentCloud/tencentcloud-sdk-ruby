@@ -150,7 +150,6 @@ module TencentCloud
       # ApplyInternetAddress返回参数结构体
       class ApplyInternetAddressResponse < TencentCloud::Common::AbstractModel
         # @param InstanceId: 互联网公网地址ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -974,7 +973,6 @@ module TencentCloud
         # @param TotalCount: 符合物理专线列表数量。
         # @type TotalCount: Integer
         # @param AllSignLaw: 用户名下物理专线是否都签署了用户协议。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AllSignLaw: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1017,19 +1015,14 @@ module TencentCloud
       # DescribeInternetAddressQuota返回参数结构体
       class DescribeInternetAddressQuotaResponse < TencentCloud::Common::AbstractModel
         # @param Ipv6PrefixLen: IPv6互联网公网允许的最小前缀长度
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Ipv6PrefixLen: Integer
         # @param Ipv4BgpQuota: BGP类型IPv4互联网地址配额
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Ipv4BgpQuota: Integer
         # @param Ipv4OtherQuota: 非BGP类型IPv4互联网地址配额
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Ipv4OtherQuota: Integer
         # @param Ipv4BgpNum: BGP类型IPv4互联网地址已使用数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Ipv4BgpNum: Integer
         # @param Ipv4OtherNum: 非BGP类型互联网地址已使用数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Ipv4OtherNum: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1139,7 +1132,6 @@ module TencentCloud
         # @param TotalCount: 互联网公网地址统计信息数量
         # @type TotalCount: Integer
         # @param InternetAddressStatistics: 互联网公网地址统计信息列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InternetAddressStatistics: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1168,15 +1160,15 @@ module TencentCloud
 
       # DescribePublicDirectConnectTunnelRoutes请求参数结构体
       class DescribePublicDirectConnectTunnelRoutesRequest < TencentCloud::Common::AbstractModel
-        # @param DirectConnectTunnelId: 专用通道ID
+        # @param DirectConnectTunnelId: 专用通道ID。
         # @type DirectConnectTunnelId: String
         # @param Filters: 过滤条件：
-        # route-type：路由类型，取值：BGP/STATIC
-        # route-subnet：路由cidr，取值如：192.68.1.0/24
+        # route-type：路由类型，取值：BGP/STATIC；
+        # route-subnet：路由cidr，取值如：192.68.1.0/24。
         # @type Filters: Array
-        # @param Offset: 偏移量，默认为0
+        # @param Offset: 偏移量，默认为0。
         # @type Offset: Integer
-        # @param Limit: 返回数量，默认为20，最大值为100
+        # @param Limit: 返回数量，默认为20，最大值为100。
         # @type Limit: Integer
 
         attr_accessor :DirectConnectTunnelId, :Filters, :Offset, :Limit
@@ -1205,9 +1197,9 @@ module TencentCloud
 
       # DescribePublicDirectConnectTunnelRoutes返回参数结构体
       class DescribePublicDirectConnectTunnelRoutesResponse < TencentCloud::Common::AbstractModel
-        # @param Routes: 互联网通道路由列表
+        # @param Routes: 互联网通道路由列表。
         # @type Routes: Array
-        # @param TotalCount: 记录总数
+        # @param TotalCount: 路由总数量。
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1786,7 +1778,6 @@ module TencentCloud
         # @param NextHop: 路由下一跳IP
         # @type NextHop: String
         # @param UpdateTime: 路由更新时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: String
         # @param ApplyOnTunnelEnable: 是否配置在通道上
         # @type ApplyOnTunnelEnable: Boolean

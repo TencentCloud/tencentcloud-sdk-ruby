@@ -17718,10 +17718,8 @@ module TencentCloud
       # InquirePriceCreateDirectConnectGateway返回参数结构体
       class InquirePriceCreateDirectConnectGatewayResponse < TencentCloud::Common::AbstractModel
         # @param TotalCost: 专线网关标准接入费用
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCost: Integer
         # @param RealTotalCost: 专线网关真实接入费用
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RealTotalCost: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
