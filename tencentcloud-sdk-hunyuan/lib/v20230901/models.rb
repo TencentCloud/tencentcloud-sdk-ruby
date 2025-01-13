@@ -1817,19 +1817,27 @@ module TencentCloud
         # @param Url: 搜索引文链接
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Url: String
+        # @param Text: 搜索引文站点名
+        # @type Text: String
+        # @param Icon: 搜索引文图标
+        # @type Icon: String
 
-        attr_accessor :Index, :Title, :Url
+        attr_accessor :Index, :Title, :Url, :Text, :Icon
 
-        def initialize(index=nil, title=nil, url=nil)
+        def initialize(index=nil, title=nil, url=nil, text=nil, icon=nil)
           @Index = index
           @Title = title
           @Url = url
+          @Text = text
+          @Icon = icon
         end
 
         def deserialize(params)
           @Index = params['Index']
           @Title = params['Title']
           @Url = params['Url']
+          @Text = params['Text']
+          @Icon = params['Icon']
         end
       end
 

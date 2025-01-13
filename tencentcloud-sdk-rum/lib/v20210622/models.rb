@@ -4143,7 +4143,7 @@ module TencentCloud
         # @type PageUv: String
         # @param ApiDuration: 请求次数
         # @type ApiDuration: String
-        # @param Score: 分数
+        # @param Score: 项目总分
         # @type Score: String
         # @param PageError: error
         # @type PageError: String
@@ -4156,10 +4156,22 @@ module TencentCloud
         # @param CreateTime: 时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
+        # @param PagePerformanceScore: 页面性能评分
+        # @type PagePerformanceScore: String
+        # @param JsErrorScore: js错误评分
+        # @type JsErrorScore: String
+        # @param ApiPerformanceScore: API性能评分
+        # @type ApiPerformanceScore: String
+        # @param ApiAvaliableScore: API可用性评分
+        # @type ApiAvaliableScore: String
+        # @param StaticPerformanceScore: 静态资源性能评分
+        # @type StaticPerformanceScore: String
+        # @param StaticAvaliableScore: 静态资源可用性评分
+        # @type StaticAvaliableScore: String
 
-        attr_accessor :StaticDuration, :PagePv, :ApiFail, :ApiNum, :StaticFail, :ProjectID, :PageUv, :ApiDuration, :Score, :PageError, :StaticNum, :RecordNum, :PageDuration, :CreateTime
+        attr_accessor :StaticDuration, :PagePv, :ApiFail, :ApiNum, :StaticFail, :ProjectID, :PageUv, :ApiDuration, :Score, :PageError, :StaticNum, :RecordNum, :PageDuration, :CreateTime, :PagePerformanceScore, :JsErrorScore, :ApiPerformanceScore, :ApiAvaliableScore, :StaticPerformanceScore, :StaticAvaliableScore
 
-        def initialize(staticduration=nil, pagepv=nil, apifail=nil, apinum=nil, staticfail=nil, projectid=nil, pageuv=nil, apiduration=nil, score=nil, pageerror=nil, staticnum=nil, recordnum=nil, pageduration=nil, createtime=nil)
+        def initialize(staticduration=nil, pagepv=nil, apifail=nil, apinum=nil, staticfail=nil, projectid=nil, pageuv=nil, apiduration=nil, score=nil, pageerror=nil, staticnum=nil, recordnum=nil, pageduration=nil, createtime=nil, pageperformancescore=nil, jserrorscore=nil, apiperformancescore=nil, apiavaliablescore=nil, staticperformancescore=nil, staticavaliablescore=nil)
           @StaticDuration = staticduration
           @PagePv = pagepv
           @ApiFail = apifail
@@ -4174,6 +4186,12 @@ module TencentCloud
           @RecordNum = recordnum
           @PageDuration = pageduration
           @CreateTime = createtime
+          @PagePerformanceScore = pageperformancescore
+          @JsErrorScore = jserrorscore
+          @ApiPerformanceScore = apiperformancescore
+          @ApiAvaliableScore = apiavaliablescore
+          @StaticPerformanceScore = staticperformancescore
+          @StaticAvaliableScore = staticavaliablescore
         end
 
         def deserialize(params)
@@ -4191,6 +4209,12 @@ module TencentCloud
           @RecordNum = params['RecordNum']
           @PageDuration = params['PageDuration']
           @CreateTime = params['CreateTime']
+          @PagePerformanceScore = params['PagePerformanceScore']
+          @JsErrorScore = params['JsErrorScore']
+          @ApiPerformanceScore = params['ApiPerformanceScore']
+          @ApiAvaliableScore = params['ApiAvaliableScore']
+          @StaticPerformanceScore = params['StaticPerformanceScore']
+          @StaticAvaliableScore = params['StaticAvaliableScore']
         end
       end
 

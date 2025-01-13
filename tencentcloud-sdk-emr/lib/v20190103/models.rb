@@ -1611,7 +1611,6 @@ module TencentCloud
       # CreateCloudInstance返回参数结构体
       class CreateCloudInstanceResponse < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1787,7 +1786,6 @@ module TencentCloud
       # CreateCluster返回参数结构体
       class CreateClusterResponse < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -7962,7 +7960,6 @@ module TencentCloud
       # 定时伸缩每月重复任务策略
       class MonthRepeatStrategy < TencentCloud::Common::AbstractModel
         # @param ExecuteAtTimeOfDay: 重复任务执行的具体时刻，例如"01:02:00"
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExecuteAtTimeOfDay: String
         # @param DaysOfMonthRange: 每月中的天数时间段描述，长度只能为2，例如[2,10]表示每月2-10号。
         # 注意：此字段可能返回 null，表示取不到有效值。

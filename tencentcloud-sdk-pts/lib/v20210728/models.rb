@@ -160,10 +160,8 @@ module TencentCloud
       # 告警通知渠道
       class AlertChannel < TencentCloud::Common::AbstractModel
         # @param NoticeId: 通知模板ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NoticeId: String
         # @param AMPConsumerId: AMP consumer ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AMPConsumerId: String
 
         attr_accessor :NoticeId, :AMPConsumerId
@@ -182,31 +180,22 @@ module TencentCloud
       # 告警通知接收组
       class AlertChannelRecord < TencentCloud::Common::AbstractModel
         # @param NoticeId: Notice ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NoticeId: String
         # @param AMPConsumerId: Consumer ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AMPConsumerId: String
         # @param ProjectId: 项目 ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProjectId: String
         # @param Status: 状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
         # @param CreatedAt: 创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreatedAt: String
         # @param UpdatedAt: 更新时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdatedAt: String
         # @param AppId: App ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AppId: Integer
         # @param Uin: 主账号
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Uin: String
         # @param SubAccountUin: 子账号
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubAccountUin: String
 
         attr_accessor :NoticeId, :AMPConsumerId, :ProjectId, :Status, :CreatedAt, :UpdatedAt, :AppId, :Uin, :SubAccountUin
@@ -242,43 +231,30 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AlertRecordId: String
         # @param ProjectId: 项目 ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProjectId: String
         # @param ScenarioId: 场景 ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScenarioId: String
         # @param Status: 状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: :class:`Tencentcloud::Pts.v20210728.models.AlertRecordStatus`
         # @param CreatedAt: 创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreatedAt: String
         # @param UpdatedAt: 修改时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdatedAt: String
         # @param JobId: 任务 ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type JobId: String
         # @param AppId: App ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AppId: Integer
         # @param Uin: 主账号
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Uin: String
         # @param SubAccountUin: 子账号
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubAccountUin: String
         # @param ScenarioName: 场景名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScenarioName: String
         # @param Target: 告警对象
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Target: String
         # @param JobSLAId: 告警规则 ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type JobSLAId: String
         # @param JobSLADescription: 告警规则描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type JobSLADescription: String
 
         attr_accessor :AlertRecordId, :ProjectId, :ScenarioId, :Status, :CreatedAt, :UpdatedAt, :JobId, :AppId, :Uin, :SubAccountUin, :ScenarioName, :Target, :JobSLAId, :JobSLADescription
@@ -324,10 +300,8 @@ module TencentCloud
       # 告警历史项的状态
       class AlertRecordStatus < TencentCloud::Common::AbstractModel
         # @param AbortJob: 停止压测任务成功与否
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AbortJob: Integer
         # @param SendNotice: 发送告警通知成功与否
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SendNotice: Integer
 
         attr_accessor :AbortJob, :SendNotice
@@ -346,19 +320,14 @@ module TencentCloud
       # 采样日志附带属性
       class Attributes < TencentCloud::Common::AbstractModel
         # @param Status: 采用请求返回码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: String
         # @param Result: 采样请求结果码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: String
         # @param Service: 采样请求API
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Service: String
         # @param Method: 采样请求调用方法
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Method: String
         # @param Duration: 采样请求延时时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Duration: String
 
         attr_accessor :Status, :Result, :Service, :Method, :Duration
@@ -418,16 +387,12 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Stages: Array
         # @param IterationCount: 运行次数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IterationCount: Integer
         # @param MaxRequestsPerSecond: 最大RPS
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaxRequestsPerSecond: Integer
         # @param GracefulStopSeconds: 优雅终止任务的等待时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GracefulStopSeconds: Integer
         # @param Resources: 资源数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Resources: Integer
 
         attr_accessor :Stages, :IterationCount, :MaxRequestsPerSecond, :GracefulStopSeconds, :Resources
@@ -947,31 +912,23 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CronJobId: String
         # @param Name: 定时任务名字
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param ProjectId: 项目ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProjectId: String
         # @param ScenarioId: 场景ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScenarioId: String
         # @param ScenarioName: 场景名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScenarioName: String
         # @param CronExpression: cron 表达式
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CronExpression: String
         # @param EndTime: 结束时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EndTime: String
         # @param AbortReason: 中止原因
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AbortReason: Integer
         # @param Status: 定时任务状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
         # @param NoticeId: Notice ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NoticeId: String
         # @param CreatedAt: 创建时间
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -980,22 +937,16 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdatedAt: String
         # @param FrequencyType: 执行频率类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FrequencyType: Integer
         # @param Note: 备注
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Note: String
         # @param JobOwner: tom
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type JobOwner: String
         # @param AppId: App ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AppId: Integer
         # @param Uin: 主账号
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Uin: String
         # @param SubAccountUin: 子账号
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubAccountUin: String
 
         attr_accessor :CronJobId, :Name, :ProjectId, :ScenarioId, :ScenarioName, :CronExpression, :EndTime, :AbortReason, :Status, :NoticeId, :CreatedAt, :UpdatedAt, :FrequencyType, :Note, :JobOwner, :AppId, :Uin, :SubAccountUin
@@ -1060,7 +1011,6 @@ module TencentCloud
         # @param Unit: 指标对应的单位，当前单位有：s,bytes,bytes/s,reqs,reqs/s,checks,checks/s,iters,iters/s,VUs, %
         # @type Unit: String
         # @param Name: 指标序列名字
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
 
         attr_accessor :Metric, :Aggregation, :Labels, :Value, :Timestamp, :Unit, :Name
@@ -1100,7 +1050,6 @@ module TencentCloud
         # @param Aggregation: 聚合函数
         # @type Aggregation: String
         # @param Unit: 指标单位
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Unit: String
         # @param Streams: 指标序列数组
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -1444,7 +1393,6 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AlertChannelSet: Array
         # @param Total: 告警通知接收组数目
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Total: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1521,7 +1469,6 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AlertRecordSet: Array
         # @param Total: 告警历史记录的总数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Total: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1846,7 +1793,6 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FileSet: Array
         # @param Total: 文件总数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Total: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1935,7 +1881,6 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type JobSet: Array
         # @param Total: 任务数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Total: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2126,7 +2071,6 @@ module TencentCloud
       # DescribeNormalLogs返回参数结构体
       class DescribeNormalLogsResponse < TencentCloud::Common::AbstractModel
         # @param Context: 日志上下文，加载更多日志时使用，透传上次返回的Context值，获取后续的日志内容。过期时间1小时
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Context: String
         # @param NormalLogs: 日志数组
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -2478,7 +2422,6 @@ module TencentCloud
         # @param Total: 日志总数
         # @type Total: Integer
         # @param Context: 日志上下文，加载更多日志时使用，透传上次返回的Context值，获取后续的日志内容。过期时间1小时
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Context: String
         # @param SampleLogs: 采样日志数组
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -2925,22 +2868,16 @@ module TencentCloud
       # 错误信息汇总
       class ErrorSummary < TencentCloud::Common::AbstractModel
         # @param Status: 状态码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: String
         # @param Result: 结果码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: String
         # @param Count: 错误出现次数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Count: Integer
         # @param Rate: 错误率
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Rate: Float
         # @param Message: 错误信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Message: String
         # @param Proto: 请求协议类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Proto: String
 
         attr_accessor :Status, :Result, :Count, :Rate, :Message, :Proto
@@ -2979,7 +2916,6 @@ module TencentCloud
         # @param UpdatedAt: 更新时间
         # @type UpdatedAt: String
         # @param LineCount: 文件行数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LineCount: Integer
         # @param HeadLines: 头部数据行
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -2988,7 +2924,6 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TailLines: Array
         # @param HeaderInFile: 首行是否为参数名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HeaderInFile: Boolean
         # @param HeaderColumns: 参数名数组
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -3000,25 +2935,19 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScenarioSet: Array
         # @param Status: 文件状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
         # @param CreatedAt: 创建时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreatedAt: String
         # @param ProjectId: 项目 ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProjectId: String
         # @param AppID: 此字段不再使用
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AppID: Integer
         # @param Uin: 用户主账号
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Uin: String
         # @param SubAccountUin: 用户子账号
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubAccountUin: String
         # @param AppId: 用户账号的 App ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AppId: Integer
 
         attr_accessor :FileId, :Kind, :Name, :Size, :Type, :UpdatedAt, :LineCount, :HeadLines, :TailLines, :HeaderInFile, :HeaderColumns, :FileInfos, :ScenarioSet, :Status, :CreatedAt, :ProjectId, :AppID, :Uin, :SubAccountUin, :AppId
@@ -3087,19 +3016,15 @@ module TencentCloud
       # 文件基本信息
       class FileInfo < TencentCloud::Common::AbstractModel
         # @param Name: 文件名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Size: 文件大小
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Size: Integer
         # @param Type: 文件类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: String
         # @param UpdatedAt: 更新时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdatedAt: String
         # @param FileId: 文件 ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FileId: String
 
         attr_accessor :Name, :Size, :Type, :UpdatedAt, :FileId
@@ -3238,7 +3163,6 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HostNames: Array
         # @param IP: 需绑定的 IP 地址
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IP: String
 
         attr_accessor :HostNames, :IP
@@ -3306,10 +3230,8 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type JobId: String
         # @param ScenarioId: 任务的场景ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScenarioId: String
         # @param Load: 任务的施压配置
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Load: :class:`Tencentcloud::Pts.v20210728.models.Load`
         # @param Configs: 此字段不再使用
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -3323,7 +3245,6 @@ module TencentCloud
         # @param Status: 任务的运行状态, JobUnknown: 0,JobCreated:1,JobPending:2, JobPreparing:3,JobSelectClustering:4,JobCreateTasking:5,JobSyncTasking:6
         # JobRunning:11,JobFinished:12,JobPrepareException:13,JobFinishException:14,JobAborting:15,JobAborted:16,JobAbortException:17,JobDeleted:18,
         # JobSelectClusterException:19,JobCreateTaskException:20,JobSyncTaskException:21
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
         # @param StartTime: 任务的开始时间
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -3332,52 +3253,38 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EndTime: String
         # @param MaxVirtualUserCount: 任务的最大VU数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaxVirtualUserCount: Integer
         # @param Note: 任务的备注信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Note: String
         # @param ErrorRate: 错误率百分比
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrorRate: Float
         # @param JobOwner: 任务发起人
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type JobOwner: String
         # @param LoadSources: 此字段不再使用
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LoadSources: :class:`Tencentcloud::Pts.v20210728.models.LoadSource`
         # @param Duration: 任务时长
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Duration: Integer
         # @param MaxRequestsPerSecond: 最大每秒请求数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaxRequestsPerSecond: Integer
         # @param RequestTotal: 总请求数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RequestTotal: Float
         # @param RequestsPerSecond: 平均每秒请求数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RequestsPerSecond: Float
         # @param ResponseTimeAverage: 平均响应时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResponseTimeAverage: Float
         # @param ResponseTimeP99: 响应时间第99百分位
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResponseTimeP99: Float
         # @param ResponseTimeP95: 响应时间第95百分位
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResponseTimeP95: Float
         # @param ResponseTimeP90: 响应时间第90百分位
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResponseTimeP90: Float
         # @param Scripts: 此字段不再使用
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Scripts: Array
         # @param ResponseTimeMax: 最大响应时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResponseTimeMax: Float
         # @param ResponseTimeMin: 最小响应时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResponseTimeMin: Float
         # @param LoadSourceInfos: 发压host信息
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -3395,49 +3302,36 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Plugins: Array
         # @param CronId: 定时任务ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CronId: String
         # @param Type: 场景类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: String
         # @param DomainNameConfig: 域名绑定配置
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DomainNameConfig: :class:`Tencentcloud::Pts.v20210728.models.DomainNameConfig`
         # @param Debug: false
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Debug: Boolean
         # @param AbortReason: 中断原因
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AbortReason: Integer
         # @param CreatedAt: 任务的创建时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreatedAt: String
         # @param ProjectId: 项目ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProjectId: String
         # @param NotificationHooks: 通知事件回调
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NotificationHooks: Array
         # @param NetworkReceiveRate: 每秒接收字节数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NetworkReceiveRate: Float
         # @param NetworkSendRate: 每秒发送字节数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NetworkSendRate: Float
         # @param Message: 任务状态描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Message: String
         # @param ProjectName: test-project
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProjectName: String
         # @param ScenarioName: test-scenario
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScenarioName: String
         # @param PayMode: 付费类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PayMode: Integer
         # @param Usage: job VUM用量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Usage: Integer
 
         attr_accessor :JobId, :ScenarioId, :Load, :Configs, :Datasets, :Extensions, :Status, :StartTime, :EndTime, :MaxVirtualUserCount, :Note, :ErrorRate, :JobOwner, :LoadSources, :Duration, :MaxRequestsPerSecond, :RequestTotal, :RequestsPerSecond, :ResponseTimeAverage, :ResponseTimeP99, :ResponseTimeP95, :ResponseTimeP90, :Scripts, :ResponseTimeMax, :ResponseTimeMin, :LoadSourceInfos, :TestScripts, :Protocols, :RequestFiles, :Plugins, :CronId, :Type, :DomainNameConfig, :Debug, :AbortReason, :CreatedAt, :ProjectId, :NotificationHooks, :NetworkReceiveRate, :NetworkSendRate, :Message, :ProjectName, :ScenarioName, :PayMode, :Usage
@@ -3640,7 +3534,6 @@ module TencentCloud
       # 施压配置
       class Load < TencentCloud::Common::AbstractModel
         # @param LoadSpec: 施压配置
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LoadSpec: :class:`Tencentcloud::Pts.v20210728.models.LoadSpec`
         # @param VpcLoadDistribution: 压力来源
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -3680,13 +3573,10 @@ module TencentCloud
       # 发压host来源
       class LoadSource < TencentCloud::Common::AbstractModel
         # @param IP: 发压host的IP
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IP: String
         # @param PodName: 发压host所在的pod
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PodName: String
         # @param Region: 所属地域
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Region: String
 
         attr_accessor :IP, :PodName, :Region
@@ -3747,7 +3637,6 @@ module TencentCloud
         # @param Alias: 前台展示指标名称
         # @type Alias: String
         # @param Description: 指标描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
         # @param MetricType: 指标类型
         # @type MetricType: String
@@ -3818,13 +3707,10 @@ module TencentCloud
       # 通用日志
       class NormalLog < TencentCloud::Common::AbstractModel
         # @param Timestamp: 毫秒时间戳
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Timestamp: String
         # @param SeverityText: 日志级别
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SeverityText: String
         # @param Body: 日志输出内容
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Body: String
 
         attr_accessor :Timestamp, :SeverityText, :Body
@@ -3868,7 +3754,6 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Events: Array
         # @param URL: 回调 URL
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type URL: String
 
         attr_accessor :Events, :URL
@@ -3891,7 +3776,6 @@ module TencentCloud
         # @param Name: 项目名
         # @type Name: String
         # @param Description: 项目描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
         # @param Tags: 标签数组
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -3948,19 +3832,15 @@ module TencentCloud
       # 协议文件详情
       class ProtocolInfo < TencentCloud::Common::AbstractModel
         # @param Name: 协议详情
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Size: 文件大小
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Size: Integer
         # @param Type: 文件类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: String
         # @param UpdatedAt: 更新时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdatedAt: String
         # @param FileId: 文件 ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FileId: String
 
         attr_accessor :Name, :Size, :Type, :UpdatedAt, :FileId
@@ -4113,25 +3993,18 @@ module TencentCloud
       # RPS模式的施压配置
       class RequestsPerSecond < TencentCloud::Common::AbstractModel
         # @param MaxRequestsPerSecond: 最大RPS
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaxRequestsPerSecond: Integer
         # @param DurationSeconds: 施压时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DurationSeconds: Integer
         # @param TargetVirtualUsers: deprecated
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TargetVirtualUsers: Integer
         # @param Resources: 资源数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Resources: Integer
         # @param StartRequestsPerSecond: 起始RPS
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StartRequestsPerSecond: Integer
         # @param TargetRequestsPerSecond: 目标RPS，入参无效
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TargetRequestsPerSecond: Integer
         # @param GracefulStopSeconds: 优雅关停的等待时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GracefulStopSeconds: Integer
 
         attr_accessor :MaxRequestsPerSecond, :DurationSeconds, :TargetVirtualUsers, :Resources, :StartRequestsPerSecond, :TargetRequestsPerSecond, :GracefulStopSeconds
@@ -4196,10 +4069,8 @@ module TencentCloud
       # SLA 标签
       class SLALabel < TencentCloud::Common::AbstractModel
         # @param LabelName: 标签名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LabelName: String
         # @param LabelValue: 标签值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LabelValue: String
 
         attr_accessor :LabelName, :LabelValue
@@ -4250,25 +4121,19 @@ module TencentCloud
       # SLA 规则
       class SLARule < TencentCloud::Common::AbstractModel
         # @param Metric: 压测指标
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Metric: String
         # @param Aggregation: 压测指标聚合方法
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Aggregation: String
         # @param Condition: 压测指标条件判断符号
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Condition: String
         # @param Value: 阈值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: Float
         # @param LabelFilter: 标签
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LabelFilter: Array
         # @param AbortFlag: 是否停止压测任务
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AbortFlag: Boolean
         # @param For: 持续时长
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type For: String
 
         attr_accessor :Metric, :Aggregation, :Condition, :Value, :LabelFilter, :AbortFlag, :For
@@ -4304,13 +4169,10 @@ module TencentCloud
       # 采样日志
       class SampleLog < TencentCloud::Common::AbstractModel
         # @param Timestamp: 日志毫秒时间戳
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Timestamp: String
         # @param Attributes: 采样日志属性
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Attributes: :class:`Tencentcloud::Pts.v20210728.models.Attributes`
         # @param Body: har格式的采样请求
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Body: String
 
         attr_accessor :Timestamp, :Attributes, :Body
@@ -4359,7 +4221,6 @@ module TencentCloud
         # @param Values: 指标采样数组
         # @type Values: Array
         # @param Name: 指标序列名字
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
 
         attr_accessor :Labels, :Values, :Name
@@ -4398,19 +4259,14 @@ module TencentCloud
         # @param Name: 场景名
         # @type Name: String
         # @param Description: 场景描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
         # @param Type: 场景类型，如pts-http, pts-js, pts-trpc, pts-jmeter
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: String
         # @param Status: 场景状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
         # @param Load: 施压配置
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Load: :class:`Tencentcloud::Pts.v20210728.models.Load`
         # @param EncodedScripts: deprecated
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EncodedScripts: String
         # @param Configs: deprecated
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -4422,26 +4278,20 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Datasets: Array
         # @param SLAId: SLA规则的ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SLAId: String
         # @param CronId: Cron Job规则的ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CronId: String
         # @param CreatedAt: 场景创建时间
         # @type CreatedAt: String
         # @param UpdatedAt: 场景修改时间
         # @type UpdatedAt: String
         # @param ProjectId: 项目ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProjectId: String
         # @param AppId: App ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AppId: Integer
         # @param Uin: 用户ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Uin: String
         # @param SubAccountUin: 子用户ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubAccountUin: String
         # @param TestScripts: 测试脚本信息
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -4453,22 +4303,18 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RequestFiles: Array
         # @param SLAPolicy: SLA 策略
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SLAPolicy: :class:`Tencentcloud::Pts.v20210728.models.SLAPolicy`
         # @param Plugins: 扩展包信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Plugins: Array
         # @param DomainNameConfig: 域名解析配置
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DomainNameConfig: :class:`Tencentcloud::Pts.v20210728.models.DomainNameConfig`
         # @param NotificationHooks: 通知事件回调
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NotificationHooks: Array
         # @param Owner: 创建人员
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Owner: String
         # @param ProjectName: 场景所在的项目的名字
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProjectName: String
 
         attr_accessor :ScenarioId, :Name, :Description, :Type, :Status, :Load, :EncodedScripts, :Configs, :Extensions, :Datasets, :SLAId, :CronId, :CreatedAt, :UpdatedAt, :ProjectId, :AppId, :Uin, :SubAccountUin, :TestScripts, :Protocols, :RequestFiles, :SLAPolicy, :Plugins, :DomainNameConfig, :NotificationHooks, :Owner, :ProjectName
@@ -4616,7 +4462,6 @@ module TencentCloud
       # 带已执行任务的scenario
       class ScenarioWithJobs < TencentCloud::Common::AbstractModel
         # @param Scenario: scecario结果
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Scenario: :class:`Tencentcloud::Pts.v20210728.models.Scenario`
         # @param Jobs: job结果
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -4648,28 +4493,21 @@ module TencentCloud
       # 脚本信息
       class ScriptInfo < TencentCloud::Common::AbstractModel
         # @param Name: 文件名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Size: 文件大小
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Size: Integer
         # @param Type: 文件类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: String
         # @param UpdatedAt: 更新时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdatedAt: String
         # @param EncodedContent: base64编码后的文件内容
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EncodedContent: String
         # @param EncodedHttpArchive: base64编码后的har结构体
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EncodedHttpArchive: String
         # @param LoadWeight: 脚本权重，范围 1-100
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LoadWeight: Integer
         # @param FileId: 文件 ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FileId: String
 
         attr_accessor :Name, :Size, :Type, :UpdatedAt, :EncodedContent, :EncodedHttpArchive, :LoadWeight, :FileId
@@ -4724,10 +4562,8 @@ module TencentCloud
       # 分阶段施压时，对单个阶段的配置
       class Stage < TencentCloud::Common::AbstractModel
         # @param DurationSeconds: 施压时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DurationSeconds: Integer
         # @param TargetVirtualUsers: 虚拟用户数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TargetVirtualUsers: Integer
 
         attr_accessor :DurationSeconds, :TargetVirtualUsers
@@ -4798,10 +4634,8 @@ module TencentCloud
       # 标签
       class TagSpec < TencentCloud::Common::AbstractModel
         # @param TagKey: 标签键
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TagKey: String
         # @param TagValue: 标签值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TagValue: String
 
         attr_accessor :TagKey, :TagValue
@@ -4820,25 +4654,20 @@ module TencentCloud
       # 测试数据集
       class TestData < TencentCloud::Common::AbstractModel
         # @param Name: 测试数据集所在的文件名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Split: 测试数据集是否分片
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Split: Boolean
         # @param HeaderInFile: 首行是否为参数名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HeaderInFile: Boolean
         # @param HeaderColumns: 参数名数组
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HeaderColumns: Array
         # @param LineCount: 文件行数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LineCount: Integer
         # @param UpdatedAt: 更新时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdatedAt: String
         # @param Size: 文件字节数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Size: Integer
         # @param HeadLines: 头部数据行
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -4847,10 +4676,8 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TailLines: Array
         # @param Type: 文件类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: String
         # @param FileId: 文件 ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FileId: String
 
         attr_accessor :Name, :Split, :HeaderInFile, :HeaderColumns, :LineCount, :UpdatedAt, :Size, :HeadLines, :TailLines, :Type, :FileId
@@ -5296,7 +5123,6 @@ module TencentCloud
         # @param Region: 地域
         # @type Region: String
         # @param VpcId: VPC ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VpcId: String
         # @param SubnetIds: 子网ID列表
         # 注意：此字段可能返回 null，表示取不到有效值。
