@@ -765,6 +765,7 @@ module TencentCloud
         # @type ProductUrl: String
         # @param Prompt: 对新背景的文本描述。
         # 最多支持256个 utf-8 字符，支持中、英文。
+        # 如果 Prompt = "BackgroundTemplate" 代表启用背景模板，需要在参数 BackgroundTemplate 中指定一个背景名称。
         # @type Prompt: String
         # @param NegativePrompt: 反向提示词。
         # 最多支持256个 utf-8 字符，支持中、英文。
@@ -772,6 +773,9 @@ module TencentCloud
         # @param Product: 商品图中的商品主体名称。
         # 建议说明商品主体，否则影响生成效果。
         # @type Product: String
+        # @param BackgroundTemplate: 背景模板。
+        # 仅当 Prompt = "BackgroundTemplate" 时生效，可支持的模板详见 [商品背景模板列表](https://cloud.tencent.com/document/product/1668/115391) ，请传入字段“背景名称”中的值。
+        # @type BackgroundTemplate: String
         # @param MaskUrl: 商品 Mask 图 Url，要求背景透明，保留商品主体。
         # 如果不传，将自动使用内置的商品分割算法得到 Mask。
         # 支持自定义上传 Mask，如果该参数不为空，则以实际上传的数据为准。
@@ -794,13 +798,14 @@ module TencentCloud
         # 生成图分辨率较大时建议选择 url，使用 base64 可能因图片过大导致返回失败。
         # @type RspImgType: String
 
-        attr_accessor :ProductUrl, :Prompt, :NegativePrompt, :Product, :MaskUrl, :Resolution, :LogoAdd, :LogoParam, :RspImgType
+        attr_accessor :ProductUrl, :Prompt, :NegativePrompt, :Product, :BackgroundTemplate, :MaskUrl, :Resolution, :LogoAdd, :LogoParam, :RspImgType
 
-        def initialize(producturl=nil, prompt=nil, negativeprompt=nil, product=nil, maskurl=nil, resolution=nil, logoadd=nil, logoparam=nil, rspimgtype=nil)
+        def initialize(producturl=nil, prompt=nil, negativeprompt=nil, product=nil, backgroundtemplate=nil, maskurl=nil, resolution=nil, logoadd=nil, logoparam=nil, rspimgtype=nil)
           @ProductUrl = producturl
           @Prompt = prompt
           @NegativePrompt = negativeprompt
           @Product = product
+          @BackgroundTemplate = backgroundtemplate
           @MaskUrl = maskurl
           @Resolution = resolution
           @LogoAdd = logoadd
@@ -813,6 +818,7 @@ module TencentCloud
           @Prompt = params['Prompt']
           @NegativePrompt = params['NegativePrompt']
           @Product = params['Product']
+          @BackgroundTemplate = params['BackgroundTemplate']
           @MaskUrl = params['MaskUrl']
           @Resolution = params['Resolution']
           @LogoAdd = params['LogoAdd']

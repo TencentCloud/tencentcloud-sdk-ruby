@@ -12935,9 +12935,9 @@ module TencentCloud
         # @type Name: String
         # @param UpdateTime: 最近更新时间
         # @type UpdateTime: String
-        # @param TemplateId: Yaml内容
+        # @param TemplateId: 如果该聚合规则来至模板，则TemplateId为模板id
         # @type TemplateId: String
-        # @param Content: 如果该聚合规则来至模板，则TemplateId为模板id
+        # @param Content: Yaml内容
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Content: String
         # @param ClusterId: 该聚合规则如果来源于用户集群crd资源定义，则ClusterId为所属集群ID
@@ -13177,12 +13177,24 @@ module TencentCloud
 
       # prometheus一个抓取目标的信息
       class PrometheusTarget < TencentCloud::Common::AbstractModel
+        # @param Url: 抓取目标的URL
+        # @type Url: String
+        # @param State: target当前状态,当前支持
+        # up = 健康
+        # down = 不健康
+        # unknown = 未知
+        # @type State: String
 
+        attr_accessor :Url, :State
 
-        def initialize()
+        def initialize(url=nil, state=nil)
+          @Url = url
+          @State = state
         end
 
         def deserialize(params)
+          @Url = params['Url']
+          @State = params['State']
         end
       end
 

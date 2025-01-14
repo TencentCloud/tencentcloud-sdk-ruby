@@ -278,25 +278,18 @@ module TencentCloud
       # 备份表信息
       class BackupTableContent < TencentCloud::Common::AbstractModel
         # @param Database: 数据库
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Database: String
         # @param Table: 表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Table: String
         # @param TotalBytes: 表总字节数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalBytes: Integer
         # @param SingleReplicaBytes: 表单个副本的大小
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SingleReplicaBytes: String
         # @param BackupStatus: 备份状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BackupStatus: Integer
         # @param BackupErrorMsg: 备份的错误信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BackupErrorMsg: String
         # @param IsOpenCoolDown: 该库表是否绑定降冷策略
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsOpenCoolDown: Boolean
 
         attr_accessor :Database, :Table, :TotalBytes, :SingleReplicaBytes, :BackupStatus, :BackupErrorMsg, :IsOpenCoolDown
@@ -388,16 +381,12 @@ module TencentCloud
       # 集群计费相关信息
       class ChargeProperties < TencentCloud::Common::AbstractModel
         # @param ChargeType: 计费类型，“PREPAID” 预付费，“POSTPAID_BY_HOUR” 后付费
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ChargeType: String
         # @param RenewFlag: 是否自动续费，1表示自动续费开启
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RenewFlag: Integer
         # @param TimeSpan: 计费时间长度
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TimeSpan: Integer
         # @param TimeUnit: 计费时间单位，“m”表示月等
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TimeUnit: String
 
         attr_accessor :ChargeType, :RenewFlag, :TimeSpan, :TimeUnit
@@ -436,7 +425,6 @@ module TencentCloud
       # CheckCoolDownWorkingVariableConfigCorrect返回参数结构体
       class CheckCoolDownWorkingVariableConfigCorrectResponse < TencentCloud::Common::AbstractModel
         # @param ErrorMsg: 错误信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrorMsg: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -463,7 +451,6 @@ module TencentCloud
         # @param OldConfValue: 修改前的配置文件内容，base64编码
         # @type OldConfValue: String
         # @param Remark: 修改原因
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Remark: String
         # @param ModifyTime: 修改时间
         # @type ModifyTime: String
@@ -504,13 +491,11 @@ module TencentCloud
         # @param NeedRestart: 用于表示当前配置文件是不是有过修改后没有重启，提醒用户需要重启
         # @type NeedRestart: Integer
         # @param FilePath: 配置文件路径
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FilePath: String
         # @param FileKeyValues: 配置文件kv值
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FileKeyValues: String
         # @param FileKeyValuesNew: 配置文件kv值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FileKeyValuesNew: Array
 
         attr_accessor :FileName, :FileConf, :KeyConf, :OriParam, :NeedRestart, :FilePath, :FileKeyValues, :FileKeyValuesNew
@@ -551,19 +536,14 @@ module TencentCloud
       # 返回配置的文件内容（key-value）
       class ConfigKeyValue < TencentCloud::Common::AbstractModel
         # @param KeyName: key
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type KeyName: String
         # @param Value: 值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: String
         # @param Message: 备注
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Message: String
         # @param Display: 1-只读，2-可修改但不可删除，3-可删除
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Display: Integer
         # @param SupportHotUpdate: 0不支持 1支持热更新
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SupportHotUpdate: Integer
 
         attr_accessor :KeyName, :Value, :Message, :Display, :SupportHotUpdate
@@ -616,16 +596,12 @@ module TencentCloud
       # 冷热分层backend节点信息
       class CoolDownBackend < TencentCloud::Common::AbstractModel
         # @param Host: 字段：Host
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Host: String
         # @param DataUsedCapacity: 字段：DataUsedCapacity
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DataUsedCapacity: String
         # @param TotalCapacity: 字段：TotalCapacity
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCapacity: String
         # @param RemoteUsedCapacity: 字段：RemoteUsedCapacity
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RemoteUsedCapacity: String
 
         attr_accessor :Host, :DataUsedCapacity, :TotalCapacity, :RemoteUsedCapacity
@@ -648,13 +624,10 @@ module TencentCloud
       # 冷热分层策略
       class CoolDownPolicyInfo < TencentCloud::Common::AbstractModel
         # @param PolicyName: 策略名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PolicyName: String
         # @param CooldownDatetime: cooldown_ttl
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CooldownDatetime: String
         # @param CooldownTtl: cooldown_datetime
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CooldownTtl: String
 
         attr_accessor :PolicyName, :CooldownDatetime, :CooldownTtl
@@ -675,16 +648,12 @@ module TencentCloud
       # 冷热分层Table数据信息
       class CoolDownTableDataInfo < TencentCloud::Common::AbstractModel
         # @param DatabaseName: 列：DatabaseName
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DatabaseName: String
         # @param TableName: 列：TableName
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TableName: String
         # @param Size: 列：Size
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Size: String
         # @param RemoteSize: 列：RemoteSize
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RemoteSize: String
 
         attr_accessor :DatabaseName, :TableName, :Size, :RemoteSize
@@ -707,13 +676,10 @@ module TencentCloud
       # 客户提供cos认证信息。
       class CosSourceInfo < TencentCloud::Common::AbstractModel
         # @param SecretId: cos认证中的Id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SecretId: String
         # @param SecretKey: cos认证中的key
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SecretKey: String
         # @param CosPath: cos认证中的路径
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CosPath: String
 
         attr_accessor :SecretId, :SecretKey, :CosPath
@@ -836,7 +802,6 @@ module TencentCloud
       # CreateBackUpSchedule返回参数结构体
       class CreateBackUpScheduleResponse < TencentCloud::Common::AbstractModel
         # @param ErrorMsg: 错误信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrorMsg: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -885,7 +850,6 @@ module TencentCloud
       # CreateCoolDownPolicy返回参数结构体
       class CreateCoolDownPolicyResponse < TencentCloud::Common::AbstractModel
         # @param ErrorMsg: 错误信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrorMsg: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1095,51 +1059,39 @@ module TencentCloud
       # 数据库审计
       class DataBaseAuditRecord < TencentCloud::Common::AbstractModel
         # @param OsUser: 查询用户
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OsUser: String
         # @param InitialQueryId: 查询ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InitialQueryId: String
         # @param Sql: SQL语句
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Sql: String
         # @param QueryStartTime: 开始时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type QueryStartTime: String
         # @param DurationMs: 执行耗时
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DurationMs: Integer
         # @param ReadRows: 读取行数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReadRows: Integer
         # @param ResultRows: 读取字节数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResultRows: Integer
         # @param ResultBytes: 结果字节数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResultBytes: Integer
         # @param MemoryUsage: 内存
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MemoryUsage: Integer
         # @param InitialAddress: 初始查询IP
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InitialAddress: String
         # @param DbName: 数据库
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DbName: String
         # @param SqlType: sql类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SqlType: String
         # @param Catalog: catalog名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Catalog: String
         # @param State: 状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type State: String
+        # @param IsQuery: 是否是查询
+        # @type IsQuery: Boolean
 
-        attr_accessor :OsUser, :InitialQueryId, :Sql, :QueryStartTime, :DurationMs, :ReadRows, :ResultRows, :ResultBytes, :MemoryUsage, :InitialAddress, :DbName, :SqlType, :Catalog, :State
+        attr_accessor :OsUser, :InitialQueryId, :Sql, :QueryStartTime, :DurationMs, :ReadRows, :ResultRows, :ResultBytes, :MemoryUsage, :InitialAddress, :DbName, :SqlType, :Catalog, :State, :IsQuery
 
-        def initialize(osuser=nil, initialqueryid=nil, sql=nil, querystarttime=nil, durationms=nil, readrows=nil, resultrows=nil, resultbytes=nil, memoryusage=nil, initialaddress=nil, dbname=nil, sqltype=nil, catalog=nil, state=nil)
+        def initialize(osuser=nil, initialqueryid=nil, sql=nil, querystarttime=nil, durationms=nil, readrows=nil, resultrows=nil, resultbytes=nil, memoryusage=nil, initialaddress=nil, dbname=nil, sqltype=nil, catalog=nil, state=nil, isquery=nil)
           @OsUser = osuser
           @InitialQueryId = initialqueryid
           @Sql = sql
@@ -1154,6 +1106,7 @@ module TencentCloud
           @SqlType = sqltype
           @Catalog = catalog
           @State = state
+          @IsQuery = isquery
         end
 
         def deserialize(params)
@@ -1171,6 +1124,7 @@ module TencentCloud
           @SqlType = params['SqlType']
           @Catalog = params['Catalog']
           @State = params['State']
+          @IsQuery = params['IsQuery']
         end
       end
 
@@ -2016,10 +1970,12 @@ module TencentCloud
         # @type SqlTypes: Array
         # @param Catalogs: catalog名称（多选）
         # @type Catalogs: Array
+        # @param IsQuery: 是否是查询
+        # @type IsQuery: Array
 
-        attr_accessor :InstanceId, :StartTime, :EndTime, :PageSize, :PageNum, :OrderType, :User, :DbName, :SqlType, :Sql, :Users, :DbNames, :SqlTypes, :Catalogs
+        attr_accessor :InstanceId, :StartTime, :EndTime, :PageSize, :PageNum, :OrderType, :User, :DbName, :SqlType, :Sql, :Users, :DbNames, :SqlTypes, :Catalogs, :IsQuery
 
-        def initialize(instanceid=nil, starttime=nil, endtime=nil, pagesize=nil, pagenum=nil, ordertype=nil, user=nil, dbname=nil, sqltype=nil, sql=nil, users=nil, dbnames=nil, sqltypes=nil, catalogs=nil)
+        def initialize(instanceid=nil, starttime=nil, endtime=nil, pagesize=nil, pagenum=nil, ordertype=nil, user=nil, dbname=nil, sqltype=nil, sql=nil, users=nil, dbnames=nil, sqltypes=nil, catalogs=nil, isquery=nil)
           @InstanceId = instanceid
           @StartTime = starttime
           @EndTime = endtime
@@ -2034,6 +1990,7 @@ module TencentCloud
           @DbNames = dbnames
           @SqlTypes = sqltypes
           @Catalogs = catalogs
+          @IsQuery = isquery
         end
 
         def deserialize(params)
@@ -2051,6 +2008,7 @@ module TencentCloud
           @DbNames = params['DbNames']
           @SqlTypes = params['SqlTypes']
           @Catalogs = params['Catalogs']
+          @IsQuery = params['IsQuery']
         end
       end
 
@@ -2061,10 +2019,8 @@ module TencentCloud
         # @param SlowQueryRecords: 记录列表
         # @type SlowQueryRecords: :class:`Tencentcloud::Cdwdoris.v20211228.models.DataBaseAuditRecord`
         # @param Records: 记录列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Records: Array
         # @param ErrorMsg: 错误信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrorMsg: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5392,30 +5348,25 @@ module TencentCloud
         # @param InitialAddress: 初始查询IP
         # @type InitialAddress: String
         # @param DbName: 数据库名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DbName: String
         # @param IsQuery: 是否是查询，0：否，1：查询语句
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsQuery: Integer
         # @param ResultBytesMB: ResultBytes的MB格式
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResultBytesMB: Float
         # @param MemoryUsageMB: MemoryUsage的MB表示
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MemoryUsageMB: Float
         # @param DurationSec: DurationMs的秒表示
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DurationSec: Float
         # @param State: 状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type State: String
         # @param CatalogName: Catalog  Name
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CatalogName: String
+        # @param CpuTimeMs: cpu执行时间
+        # @type CpuTimeMs: Integer
 
-        attr_accessor :OsUser, :InitialQueryId, :Sql, :QueryStartTime, :DurationMs, :ReadRows, :ResultRows, :ResultBytes, :MemoryUsage, :InitialAddress, :DbName, :IsQuery, :ResultBytesMB, :MemoryUsageMB, :DurationSec, :State, :CatalogName
+        attr_accessor :OsUser, :InitialQueryId, :Sql, :QueryStartTime, :DurationMs, :ReadRows, :ResultRows, :ResultBytes, :MemoryUsage, :InitialAddress, :DbName, :IsQuery, :ResultBytesMB, :MemoryUsageMB, :DurationSec, :State, :CatalogName, :CpuTimeMs
 
-        def initialize(osuser=nil, initialqueryid=nil, sql=nil, querystarttime=nil, durationms=nil, readrows=nil, resultrows=nil, resultbytes=nil, memoryusage=nil, initialaddress=nil, dbname=nil, isquery=nil, resultbytesmb=nil, memoryusagemb=nil, durationsec=nil, state=nil, catalogname=nil)
+        def initialize(osuser=nil, initialqueryid=nil, sql=nil, querystarttime=nil, durationms=nil, readrows=nil, resultrows=nil, resultbytes=nil, memoryusage=nil, initialaddress=nil, dbname=nil, isquery=nil, resultbytesmb=nil, memoryusagemb=nil, durationsec=nil, state=nil, catalogname=nil, cputimems=nil)
           @OsUser = osuser
           @InitialQueryId = initialqueryid
           @Sql = sql
@@ -5433,6 +5384,7 @@ module TencentCloud
           @DurationSec = durationsec
           @State = state
           @CatalogName = catalogname
+          @CpuTimeMs = cputimems
         end
 
         def deserialize(params)
@@ -5453,6 +5405,7 @@ module TencentCloud
           @DurationSec = params['DurationSec']
           @State = params['State']
           @CatalogName = params['CatalogName']
+          @CpuTimeMs = params['CpuTimeMs']
         end
       end
 

@@ -10578,10 +10578,13 @@ module TencentCloud
         # @param DefaultWeight: 分组默认权重
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DefaultWeight: Integer
+        # @param ElasticNumber: 弹性节点
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ElasticNumber: Integer
 
-        attr_accessor :GroupId, :Name, :Description, :NodeConfig, :Status, :CreateTime, :IsFirstGroup, :BindingStrategy, :GatewayId, :InternetMaxBandwidthOut, :ModifyTime, :SubnetIds, :DefaultWeight
+        attr_accessor :GroupId, :Name, :Description, :NodeConfig, :Status, :CreateTime, :IsFirstGroup, :BindingStrategy, :GatewayId, :InternetMaxBandwidthOut, :ModifyTime, :SubnetIds, :DefaultWeight, :ElasticNumber
 
-        def initialize(groupid=nil, name=nil, description=nil, nodeconfig=nil, status=nil, createtime=nil, isfirstgroup=nil, bindingstrategy=nil, gatewayid=nil, internetmaxbandwidthout=nil, modifytime=nil, subnetids=nil, defaultweight=nil)
+        def initialize(groupid=nil, name=nil, description=nil, nodeconfig=nil, status=nil, createtime=nil, isfirstgroup=nil, bindingstrategy=nil, gatewayid=nil, internetmaxbandwidthout=nil, modifytime=nil, subnetids=nil, defaultweight=nil, elasticnumber=nil)
           @GroupId = groupid
           @Name = name
           @Description = description
@@ -10595,6 +10598,7 @@ module TencentCloud
           @ModifyTime = modifytime
           @SubnetIds = subnetids
           @DefaultWeight = defaultweight
+          @ElasticNumber = elasticnumber
         end
 
         def deserialize(params)
@@ -10617,6 +10621,7 @@ module TencentCloud
           @ModifyTime = params['ModifyTime']
           @SubnetIds = params['SubnetIds']
           @DefaultWeight = params['DefaultWeight']
+          @ElasticNumber = params['ElasticNumber']
         end
       end
 

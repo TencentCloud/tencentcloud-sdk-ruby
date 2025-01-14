@@ -3103,7 +3103,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 通过yaml的方式修改Prometheus聚合实例
+        # 通过yaml的方式修改Prometheus预聚合规则
 
         # @param request: Request instance for ModifyPrometheusRecordRuleYaml.
         # @type request: :class:`Tencentcloud::monitor::V20180724::ModifyPrometheusRecordRuleYamlRequest`

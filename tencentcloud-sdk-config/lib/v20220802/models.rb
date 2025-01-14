@@ -722,7 +722,7 @@ module TencentCloud
         # @type MaxResults: Integer
         # @param AccountGroupId: 账号组ID
         # @type AccountGroupId: String
-        # @param Filters: resourceName：资源名  resourceId ：资源ID
+        # @param Filters: resourceName：资源名  resourceId ：资源ID resourceType：资源类型
         # @type Filters: Array
         # @param Tags: 标签
         # @type Tags: Array

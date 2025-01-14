@@ -105,6 +105,32 @@ module TencentCloud
 
         # 发起通话前，请先确认您的AI模型是否兼容 OpenAI、Azure 或 Minimax 协议，并前往模型服务商网站获取相关鉴权信息。 具体功能说明请参考文档 [腾讯云联络中心AI通话平台](https://cloud.tencent.com/document/product/679/112100)。
 
+        # @param request: Request instance for CreateAIAgentCall.
+        # @type request: :class:`Tencentcloud::ccc::V20200210::CreateAIAgentCallRequest`
+        # @rtype: :class:`Tencentcloud::ccc::V20200210::CreateAIAgentCallResponse`
+        def CreateAIAgentCall(request)
+          body = send_request('CreateAIAgentCall', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateAIAgentCallResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 用于调用AI模型发起外呼通话，仅限自有电话号码使用，目前开通高级版座席**限时**免费体验。
+
+        # 发起通话前，请先确认您的AI模型是否兼容 OpenAI、Azure 或 Minimax 协议，并前往模型服务商网站获取相关鉴权信息。 具体功能说明请参考文档 [腾讯云联络中心AI通话平台](https://cloud.tencent.com/document/product/679/112100)。
+
         # @param request: Request instance for CreateAICall.
         # @type request: :class:`Tencentcloud::ccc::V20200210::CreateAICallRequest`
         # @rtype: :class:`Tencentcloud::ccc::V20200210::CreateAICallResponse`

@@ -4196,14 +4196,17 @@ module TencentCloud
         # @type CustomParam: String
         # @param VadSilenceTime: 语音识别vad的时间，范围为240-2000，默认为1000，单位为ms。更小的值会让语音识别分句更快。
         # @type VadSilenceTime: Integer
+        # @param HotWordList: 热词表：该参数用于提升识别准确率。 单个热词限制："热词|权重"，单个热词不超过30个字符（最多10个汉字），权重[1-11]或者100，如：“腾讯云|5” 或 “ASR|11”； 热词表限制：多个热词用英文逗号分割，最多支持128个热词，如：“腾讯云|10,语音识别|5,ASR|11”；
+        # @type HotWordList: String
 
-        attr_accessor :Language, :AlternativeLanguage, :CustomParam, :VadSilenceTime
+        attr_accessor :Language, :AlternativeLanguage, :CustomParam, :VadSilenceTime, :HotWordList
 
-        def initialize(language=nil, alternativelanguage=nil, customparam=nil, vadsilencetime=nil)
+        def initialize(language=nil, alternativelanguage=nil, customparam=nil, vadsilencetime=nil, hotwordlist=nil)
           @Language = language
           @AlternativeLanguage = alternativelanguage
           @CustomParam = customparam
           @VadSilenceTime = vadsilencetime
+          @HotWordList = hotwordlist
         end
 
         def deserialize(params)
@@ -4211,6 +4214,7 @@ module TencentCloud
           @AlternativeLanguage = params['AlternativeLanguage']
           @CustomParam = params['CustomParam']
           @VadSilenceTime = params['VadSilenceTime']
+          @HotWordList = params['HotWordList']
         end
       end
 

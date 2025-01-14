@@ -496,6 +496,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建安全组，数量限制5个。
+
+        # @param request: Request instance for CreateStreamLinkSecurityGroup.
+        # @type request: :class:`Tencentcloud::mps::V20190612::CreateStreamLinkSecurityGroupRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::CreateStreamLinkSecurityGroupResponse`
+        def CreateStreamLinkSecurityGroup(request)
+          body = send_request('CreateStreamLinkSecurityGroup', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateStreamLinkSecurityGroupResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建用户自定义转码模板，数量上限：1000
 
         # @param request: Request instance for CreateTranscodeTemplate.
@@ -1014,6 +1038,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 删除安全组。
+
+        # @param request: Request instance for DeleteStreamLinkSecurityGroup.
+        # @type request: :class:`Tencentcloud::mps::V20190612::DeleteStreamLinkSecurityGroupRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::DeleteStreamLinkSecurityGroupResponse`
+        def DeleteStreamLinkSecurityGroup(request)
+          body = send_request('DeleteStreamLinkSecurityGroup', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteStreamLinkSecurityGroupResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 删除用户自定义转码模板。
 
         # @param request: Request instance for DeleteTranscodeTemplate.
@@ -1216,6 +1264,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeContentReviewTemplatesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 根据安全组反差关联的Flow信息。
+
+        # @param request: Request instance for DescribeGroupAttachFlowsById.
+        # @type request: :class:`Tencentcloud::mps::V20190612::DescribeGroupAttachFlowsByIdRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::DescribeGroupAttachFlowsByIdResponse`
+        def DescribeGroupAttachFlowsById(request)
+          body = send_request('DescribeGroupAttachFlowsById', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeGroupAttachFlowsByIdResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1710,6 +1782,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 批量查询安全组信息。
+
+        # @param request: Request instance for DescribeStreamLinkSecurityGroups.
+        # @type request: :class:`Tencentcloud::mps::V20190612::DescribeStreamLinkSecurityGroupsRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::DescribeStreamLinkSecurityGroupsResponse`
+        def DescribeStreamLinkSecurityGroups(request)
+          body = send_request('DescribeStreamLinkSecurityGroups', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeStreamLinkSecurityGroupsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 通过任务 ID 查询任务的执行状态和结果的详细信息（最多可以查询7天之内提交的任务）。
 
         # @param request: Request instance for DescribeTaskDetail.
@@ -1938,6 +2034,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DisableWorkflowResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 批量解绑安全组下面关联的输入输出。
+
+        # @param request: Request instance for DisassociateSecurityGroup.
+        # @type request: :class:`Tencentcloud::mps::V20190612::DisassociateSecurityGroupRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::DisassociateSecurityGroupResponse`
+        def DisassociateSecurityGroup(request)
+          body = send_request('DisassociateSecurityGroup', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DisassociateSecurityGroupResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -2456,6 +2576,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyStreamLinkOutputInfoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 更新安全组。
+
+        # @param request: Request instance for ModifyStreamLinkSecurityGroup.
+        # @type request: :class:`Tencentcloud::mps::V20190612::ModifyStreamLinkSecurityGroupRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::ModifyStreamLinkSecurityGroupResponse`
+        def ModifyStreamLinkSecurityGroup(request)
+          body = send_request('ModifyStreamLinkSecurityGroup', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyStreamLinkSecurityGroupResponse.new
             model.deserialize(response['Response'])
             model
           else

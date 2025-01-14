@@ -1127,10 +1127,12 @@ module TencentCloud
         # @type EncryptionFlag: String
         # @param ExecutedGTIDSet: 备份GTID点位
         # @type ExecutedGTIDSet: String
+        # @param MD5: 备份文件MD5值
+        # @type MD5: String
 
-        attr_accessor :Name, :Size, :Date, :IntranetUrl, :InternetUrl, :Type, :BackupId, :Status, :FinishTime, :Creator, :StartTime, :Method, :Way, :ManualBackupName, :SaveMode, :Region, :RemoteInfo, :CosStorageType, :InstanceId, :EncryptionFlag, :ExecutedGTIDSet
+        attr_accessor :Name, :Size, :Date, :IntranetUrl, :InternetUrl, :Type, :BackupId, :Status, :FinishTime, :Creator, :StartTime, :Method, :Way, :ManualBackupName, :SaveMode, :Region, :RemoteInfo, :CosStorageType, :InstanceId, :EncryptionFlag, :ExecutedGTIDSet, :MD5
 
-        def initialize(name=nil, size=nil, date=nil, intraneturl=nil, interneturl=nil, type=nil, backupid=nil, status=nil, finishtime=nil, creator=nil, starttime=nil, method=nil, way=nil, manualbackupname=nil, savemode=nil, region=nil, remoteinfo=nil, cosstoragetype=nil, instanceid=nil, encryptionflag=nil, executedgtidset=nil)
+        def initialize(name=nil, size=nil, date=nil, intraneturl=nil, interneturl=nil, type=nil, backupid=nil, status=nil, finishtime=nil, creator=nil, starttime=nil, method=nil, way=nil, manualbackupname=nil, savemode=nil, region=nil, remoteinfo=nil, cosstoragetype=nil, instanceid=nil, encryptionflag=nil, executedgtidset=nil, md5=nil)
           @Name = name
           @Size = size
           @Date = date
@@ -1152,6 +1154,7 @@ module TencentCloud
           @InstanceId = instanceid
           @EncryptionFlag = encryptionflag
           @ExecutedGTIDSet = executedgtidset
+          @MD5 = md5
         end
 
         def deserialize(params)
@@ -1183,6 +1186,7 @@ module TencentCloud
           @InstanceId = params['InstanceId']
           @EncryptionFlag = params['EncryptionFlag']
           @ExecutedGTIDSet = params['ExecutedGTIDSet']
+          @MD5 = params['MD5']
         end
       end
 

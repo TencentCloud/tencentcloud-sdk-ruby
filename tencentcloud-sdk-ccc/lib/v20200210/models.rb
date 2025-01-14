@@ -680,6 +680,65 @@ module TencentCloud
         end
       end
 
+      # CreateAIAgentCall请求参数结构体
+      class CreateAIAgentCallRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
+        # @type SdkAppId: Integer
+        # @param AIAgentId: AI智能体ID
+        # @type AIAgentId: Integer
+        # @param Callee: 被叫号码
+        # @type Callee: String
+        # @param Callers: 主叫号码列表
+        # @type Callers: Array
+        # @param PromptVariables: 提示词变量
+        # @type PromptVariables: Array
+
+        attr_accessor :SdkAppId, :AIAgentId, :Callee, :Callers, :PromptVariables
+
+        def initialize(sdkappid=nil, aiagentid=nil, callee=nil, callers=nil, promptvariables=nil)
+          @SdkAppId = sdkappid
+          @AIAgentId = aiagentid
+          @Callee = callee
+          @Callers = callers
+          @PromptVariables = promptvariables
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @AIAgentId = params['AIAgentId']
+          @Callee = params['Callee']
+          @Callers = params['Callers']
+          unless params['PromptVariables'].nil?
+            @PromptVariables = []
+            params['PromptVariables'].each do |i|
+              variable_tmp = Variable.new
+              variable_tmp.deserialize(i)
+              @PromptVariables << variable_tmp
+            end
+          end
+        end
+      end
+
+      # CreateAIAgentCall返回参数结构体
+      class CreateAIAgentCallResponse < TencentCloud::Common::AbstractModel
+        # @param SessionId: 新创建的会话 ID
+        # @type SessionId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :SessionId, :RequestId
+
+        def initialize(sessionid=nil, requestid=nil)
+          @SessionId = sessionid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @SessionId = params['SessionId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateAICall请求参数结构体
       class CreateAICallRequest < TencentCloud::Common::AbstractModel
         # @param SdkAppId: 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
@@ -895,10 +954,12 @@ module TencentCloud
         # @type CustomTTSConfig: String
         # @param PromptVariables: 提示词变量
         # @type PromptVariables: Array
+        # @param VadSilenceTime: 语音识别vad的时间，范围为240-2000，默认为1000，单位为ms。更小的值会让语音识别分句更快。
+        # @type VadSilenceTime: Integer
 
-        attr_accessor :SdkAppId, :Callee, :SystemPrompt, :LLMType, :Model, :APIKey, :APIUrl, :VoiceType, :Callers, :WelcomeMessage, :WelcomeType, :MaxDuration, :Languages, :InterruptMode, :InterruptSpeechDuration, :EndFunctionEnable, :EndFunctionDesc, :TransferFunctionEnable, :TransferItems, :NotifyDuration, :NotifyMessage, :NotifyMaxCount, :CustomTTSConfig, :PromptVariables
+        attr_accessor :SdkAppId, :Callee, :SystemPrompt, :LLMType, :Model, :APIKey, :APIUrl, :VoiceType, :Callers, :WelcomeMessage, :WelcomeType, :MaxDuration, :Languages, :InterruptMode, :InterruptSpeechDuration, :EndFunctionEnable, :EndFunctionDesc, :TransferFunctionEnable, :TransferItems, :NotifyDuration, :NotifyMessage, :NotifyMaxCount, :CustomTTSConfig, :PromptVariables, :VadSilenceTime
 
-        def initialize(sdkappid=nil, callee=nil, systemprompt=nil, llmtype=nil, model=nil, apikey=nil, apiurl=nil, voicetype=nil, callers=nil, welcomemessage=nil, welcometype=nil, maxduration=nil, languages=nil, interruptmode=nil, interruptspeechduration=nil, endfunctionenable=nil, endfunctiondesc=nil, transferfunctionenable=nil, transferitems=nil, notifyduration=nil, notifymessage=nil, notifymaxcount=nil, customttsconfig=nil, promptvariables=nil)
+        def initialize(sdkappid=nil, callee=nil, systemprompt=nil, llmtype=nil, model=nil, apikey=nil, apiurl=nil, voicetype=nil, callers=nil, welcomemessage=nil, welcometype=nil, maxduration=nil, languages=nil, interruptmode=nil, interruptspeechduration=nil, endfunctionenable=nil, endfunctiondesc=nil, transferfunctionenable=nil, transferitems=nil, notifyduration=nil, notifymessage=nil, notifymaxcount=nil, customttsconfig=nil, promptvariables=nil, vadsilencetime=nil)
           @SdkAppId = sdkappid
           @Callee = callee
           @SystemPrompt = systemprompt
@@ -923,6 +984,7 @@ module TencentCloud
           @NotifyMaxCount = notifymaxcount
           @CustomTTSConfig = customttsconfig
           @PromptVariables = promptvariables
+          @VadSilenceTime = vadsilencetime
         end
 
         def deserialize(params)
@@ -964,6 +1026,7 @@ module TencentCloud
               @PromptVariables << variable_tmp
             end
           end
+          @VadSilenceTime = params['VadSilenceTime']
         end
       end
 

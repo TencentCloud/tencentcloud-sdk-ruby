@@ -246,7 +246,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 暂停拨测任务
+        # 暂停任务
 
         # @param request: Request instance for SuspendProbeTask.
         # @type request: :class:`Tencentcloud::cat::V20180409::SuspendProbeTaskRequest`

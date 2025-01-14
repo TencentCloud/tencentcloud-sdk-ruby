@@ -2028,8 +2028,8 @@ module TencentCloud
 
         attr_accessor :SegmentSet, :SubtitlePath, :OutputStorage
         extend Gem::Deprecate
-        deprecate :OutputStorage, :none, 2024, 12
-        deprecate :OutputStorage=, :none, 2024, 12
+        deprecate :OutputStorage, :none, 2025, 1
+        deprecate :OutputStorage=, :none, 2025, 1
 
         def initialize(segmentset=nil, subtitlepath=nil, outputstorage=nil)
           @SegmentSet = segmentset
@@ -7002,13 +7002,13 @@ module TencentCloud
         # @type Destinations: Array
         # @param StreamId: 转推SRT的流Id，可选大小写字母、数字和特殊字符（.#!:&,=_-），长度为0~512。
         # @type StreamId: String
-        # @param Latency: 转推SRT的总延迟，默认0，单位ms，范围为[0, 3000]。
+        # @param Latency: 转推SRT的总延迟，默认0，单位ms，范围为[0, 3000]。此参数同时设置了发送方和接收方的延迟（recvlatency和peerlatency）为相同的值。建议配置为至少3倍RTT，以确保在网络拥塞时能够有效处理数据包的重传和确认
         # @type Latency: Integer
-        # @param RecvLatency: 转推SRT的接收延迟，默认120，单位ms，范围为[0, 3000]。
+        # @param RecvLatency: 转推SRT的接收延迟，默认120，单位ms，范围为[0, 3000]。 此参数表示接收方用于缓存数据包的时间长度
         # @type RecvLatency: Integer
-        # @param PeerLatency: 转推SRT的对端延迟，默认0，单位ms，范围为[0, 3000]。
+        # @param PeerLatency: 转推SRT的对端延迟，默认0，单位ms，范围为[0, 3000]。 此参数由发送方设置，用于告知接收方其期望的延迟缓冲时间
         # @type PeerLatency: Integer
-        # @param PeerIdleTimeout: 转推SRT的对端空闲超时时间，默认5000，单位ms，范围为[1000, 10000]。
+        # @param PeerIdleTimeout: 转推SRT的对端空闲超时时间，默认5000，单位ms，范围为[1000, 10000]。 如果连接在设定的超时时间内没有活动，将会被关闭
         # @type PeerIdleTimeout: Integer
         # @param Passphrase: 转推SRT的加密密钥，默认为空，表示不加密。只可填ascii码值，长度为[10, 79]。
         # @type Passphrase: String
@@ -7632,6 +7632,46 @@ module TencentCloud
             @Info = DescribeOutput.new
             @Info.deserialize(params['Info'])
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateStreamLinkSecurityGroup请求参数结构体
+      class CreateStreamLinkSecurityGroupRequest < TencentCloud::Common::AbstractModel
+        # @param Name: 安全组名称，限制大小写、数字和下划线，Region下唯一。
+        # @type Name: String
+        # @param Whitelist: 白名单列表，数量限制[1, 10]。
+        # @type Whitelist: Array
+
+        attr_accessor :Name, :Whitelist
+
+        def initialize(name=nil, whitelist=nil)
+          @Name = name
+          @Whitelist = whitelist
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Whitelist = params['Whitelist']
+        end
+      end
+
+      # CreateStreamLinkSecurityGroup返回参数结构体
+      class CreateStreamLinkSecurityGroupResponse < TencentCloud::Common::AbstractModel
+        # @param Id: 安全组 ID。
+        # @type Id: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Id, :RequestId
+
+        def initialize(id=nil, requestid=nil)
+          @Id = id
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
           @RequestId = params['RequestId']
         end
       end
@@ -8544,6 +8584,38 @@ module TencentCloud
         end
       end
 
+      # DeleteStreamLinkSecurityGroup请求参数结构体
+      class DeleteStreamLinkSecurityGroupRequest < TencentCloud::Common::AbstractModel
+        # @param Id: 安全组 ID。
+        # @type Id: String
+
+        attr_accessor :Id
+
+        def initialize(id=nil)
+          @Id = id
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+        end
+      end
+
+      # DeleteStreamLinkSecurityGroup返回参数结构体
+      class DeleteStreamLinkSecurityGroupResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteTranscodeTemplate请求参数结构体
       class DeleteTranscodeTemplateRequest < TencentCloud::Common::AbstractModel
         # @param Definition: 转码模板唯一标识。
@@ -8815,6 +8887,7 @@ module TencentCloud
         # <li>Custom：用户自定义模板。</li>
         # @type Type: String
         # @param PureAudio: 是否为纯音频，0表示视频，1表示纯音频
+        # 默认值：0
         # @type PureAudio: Integer
         # @param Name: 自适应转码模板标识过滤条件，长度限制：64 个字符
         # @type Name: String
@@ -9123,6 +9196,49 @@ module TencentCloud
         def deserialize(params)
           @FlowId = params['FlowId']
           @Region = params['Region']
+        end
+      end
+
+      # DescribeGroupAttachFlowsById请求参数结构体
+      class DescribeGroupAttachFlowsByIdRequest < TencentCloud::Common::AbstractModel
+        # @param Id: 媒体传输安全组ID。
+        # @type Id: String
+
+        attr_accessor :Id
+
+        def initialize(id=nil)
+          @Id = id
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+        end
+      end
+
+      # DescribeGroupAttachFlowsById返回参数结构体
+      class DescribeGroupAttachFlowsByIdResponse < TencentCloud::Common::AbstractModel
+        # @param Infos: 安全组反查的Flow信息列表。
+        # @type Infos: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Infos, :RequestId
+
+        def initialize(infos=nil, requestid=nil)
+          @Infos = infos
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Infos'].nil?
+            @Infos = []
+            params['Infos'].each do |i|
+              flowinoutresp_tmp = FlowInOutResp.new
+              flowinoutresp_tmp.deserialize(i)
+              @Infos << flowinoutresp_tmp
+            end
+          end
+          @RequestId = params['RequestId']
         end
       end
 
@@ -11111,6 +11227,44 @@ module TencentCloud
         end
       end
 
+      # DescribeStreamLinkSecurityGroups请求参数结构体
+      class DescribeStreamLinkSecurityGroupsRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeStreamLinkSecurityGroups返回参数结构体
+      class DescribeStreamLinkSecurityGroupsResponse < TencentCloud::Common::AbstractModel
+        # @param Infos: 安全组信息列表。
+        # @type Infos: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Infos, :RequestId
+
+        def initialize(infos=nil, requestid=nil)
+          @Infos = infos
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Infos'].nil?
+            @Infos = []
+            params['Infos'].each do |i|
+              securitygroupinfo_tmp = SecurityGroupInfo.new
+              securitygroupinfo_tmp.deserialize(i)
+              @Infos << securitygroupinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeTaskDetail请求参数结构体
       class DescribeTaskDetailRequest < TencentCloud::Common::AbstractModel
         # @param TaskId: 视频处理任务的任务 ID。
@@ -11872,6 +12026,49 @@ module TencentCloud
         end
       end
 
+      # DisassociateSecurityGroup请求参数结构体
+      class DisassociateSecurityGroupRequest < TencentCloud::Common::AbstractModel
+        # @param Id: 媒体传输安全组ID。
+        # @type Id: String
+        # @param UnattachInOutInfos: 要解绑的输入输出信息列表。
+        # @type UnattachInOutInfos: Array
+
+        attr_accessor :Id, :UnattachInOutInfos
+
+        def initialize(id=nil, unattachinoutinfos=nil)
+          @Id = id
+          @UnattachInOutInfos = unattachinoutinfos
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          unless params['UnattachInOutInfos'].nil?
+            @UnattachInOutInfos = []
+            params['UnattachInOutInfos'].each do |i|
+              unattachsecuritygroupinoutinfo_tmp = UnattachSecurityGroupInOutInfo.new
+              unattachsecuritygroupinoutinfo_tmp.deserialize(i)
+              @UnattachInOutInfos << unattachsecuritygroupinoutinfo_tmp
+            end
+          end
+        end
+      end
+
+      # DisassociateSecurityGroup返回参数结构体
+      class DisassociateSecurityGroupResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # Drm 加密信息。
       class DrmInfo < TencentCloud::Common::AbstractModel
         # @param Type: 加密类型：
@@ -12428,6 +12625,60 @@ module TencentCloud
           @Fps = params['Fps']
           @Rate = params['Rate']
           @Pid = params['Pid']
+        end
+      end
+
+      # 查询Flow的配置信息。
+      class FlowInOutResp < TencentCloud::Common::AbstractModel
+        # @param FlowId: 流Id。
+        # @type FlowId: String
+        # @param FlowName: 流名称。
+        # @type FlowName: String
+        # @param EventId: 该Flow关联的媒体传输事件EventId。
+        # @type EventId: String
+        # @param FlowRegion: 媒体传输输入流所属的区域，取值和InputRegion相同。
+        # @type FlowRegion: String
+        # @param OutputRegion: 当返回是输出类型时非空，output所在Region。
+        # @type OutputRegion: String
+        # @param EventName: EventName。
+        # @type EventName: String
+        # @param InputName: InOutType为Input有效。
+        # @type InputName: String
+        # @param OutputName: InOutType为Output有效。
+        # @type OutputName: String
+        # @param InOutId: Input或者Output的Id。
+        # @type InOutId: String
+        # @param InOutType: 输入/输出类型，可选值：
+        # Input：输入
+        # Outpu：输出。
+        # @type InOutType: String
+
+        attr_accessor :FlowId, :FlowName, :EventId, :FlowRegion, :OutputRegion, :EventName, :InputName, :OutputName, :InOutId, :InOutType
+
+        def initialize(flowid=nil, flowname=nil, eventid=nil, flowregion=nil, outputregion=nil, eventname=nil, inputname=nil, outputname=nil, inoutid=nil, inouttype=nil)
+          @FlowId = flowid
+          @FlowName = flowname
+          @EventId = eventid
+          @FlowRegion = flowregion
+          @OutputRegion = outputregion
+          @EventName = eventname
+          @InputName = inputname
+          @OutputName = outputname
+          @InOutId = inoutid
+          @InOutType = inouttype
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+          @FlowName = params['FlowName']
+          @EventId = params['EventId']
+          @FlowRegion = params['FlowRegion']
+          @OutputRegion = params['OutputRegion']
+          @EventName = params['EventName']
+          @InputName = params['InputName']
+          @OutputName = params['OutputName']
+          @InOutId = params['InOutId']
+          @InOutType = params['InOutType']
         end
       end
 
@@ -13877,10 +14128,10 @@ module TencentCloud
 
         attr_accessor :QualityControlResults, :DiagnoseResults, :QualityControlResultSet, :DiagnoseResultSet
         extend Gem::Deprecate
-        deprecate :QualityControlResults, :none, 2024, 12
-        deprecate :QualityControlResults=, :none, 2024, 12
-        deprecate :DiagnoseResults, :none, 2024, 12
-        deprecate :DiagnoseResults=, :none, 2024, 12
+        deprecate :QualityControlResults, :none, 2025, 1
+        deprecate :QualityControlResults=, :none, 2025, 1
+        deprecate :DiagnoseResults, :none, 2025, 1
+        deprecate :DiagnoseResults=, :none, 2025, 1
 
         def initialize(qualitycontrolresults=nil, diagnoseresults=nil, qualitycontrolresultset=nil, diagnoseresultset=nil)
           @QualityControlResults = qualitycontrolresults
@@ -17439,6 +17690,46 @@ module TencentCloud
         end
       end
 
+      # ModifyStreamLinkSecurityGroup请求参数结构体
+      class ModifyStreamLinkSecurityGroupRequest < TencentCloud::Common::AbstractModel
+        # @param Id: 安全组Id。
+        # @type Id: String
+        # @param Name: 安全组名称，限制大小写、数字和下划线，长度[1, 32]，Region下唯一。
+        # @type Name: String
+        # @param Whitelist: 白名单列表，最多10个。
+        # @type Whitelist: Array
+
+        attr_accessor :Id, :Name, :Whitelist
+
+        def initialize(id=nil, name=nil, whitelist=nil)
+          @Id = id
+          @Name = name
+          @Whitelist = whitelist
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Name = params['Name']
+          @Whitelist = params['Whitelist']
+        end
+      end
+
+      # ModifyStreamLinkSecurityGroup返回参数结构体
+      class ModifyStreamLinkSecurityGroupResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyTranscodeTemplate请求参数结构体
       class ModifyTranscodeTemplateRequest < TencentCloud::Common::AbstractModel
         # @param Definition: 转码模板唯一标识。
@@ -20474,6 +20765,44 @@ module TencentCloud
         end
       end
 
+      # 安全组信息。
+      class SecurityGroupInfo < TencentCloud::Common::AbstractModel
+        # @param Id: 安全组 ID。
+        # @type Id: String
+        # @param Name: 安全组名称。
+        # @type Name: String
+        # @param Whitelist: 白名单列表。
+        # @type Whitelist: Array
+        # @param OccupiedInputs: 绑定的输入流列表。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OccupiedInputs: Array
+        # @param Region: 安全组地址。
+        # @type Region: String
+        # @param OccupiedOutputs: 绑定的输出流列表。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OccupiedOutputs: Array
+
+        attr_accessor :Id, :Name, :Whitelist, :OccupiedInputs, :Region, :OccupiedOutputs
+
+        def initialize(id=nil, name=nil, whitelist=nil, occupiedinputs=nil, region=nil, occupiedoutputs=nil)
+          @Id = id
+          @Name = name
+          @Whitelist = whitelist
+          @OccupiedInputs = occupiedinputs
+          @Region = region
+          @OccupiedOutputs = occupiedoutputs
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Name = params['Name']
+          @Whitelist = params['Whitelist']
+          @OccupiedInputs = params['OccupiedInputs']
+          @Region = params['Region']
+          @OccupiedOutputs = params['OccupiedOutputs']
+        end
+      end
+
       # 智能拆条片段。
       class SegmentRecognitionItem < TencentCloud::Common::AbstractModel
         # @param Confidence: 置信度。
@@ -21754,6 +22083,36 @@ module TencentCloud
         end
       end
 
+      # 安全组解绑输入/输出请求信息。
+      class UnattachSecurityGroupInOutInfo < TencentCloud::Common::AbstractModel
+        # @param FlowId: 该安全组关联的FlowId。
+        # @type FlowId: String
+        # @param InOutId: 要解绑的输入/输出ID。
+        # @type InOutId: String
+        # @param InOutType: 输入/输出类型，可选值：
+        # Input：输入
+        # Output：输出。
+        # @type InOutType: String
+        # @param FlowRegion: Flow所在的Region，和input共用。
+        # @type FlowRegion: String
+
+        attr_accessor :FlowId, :InOutId, :InOutType, :FlowRegion
+
+        def initialize(flowid=nil, inoutid=nil, inouttype=nil, flowregion=nil)
+          @FlowId = flowid
+          @InOutId = inoutid
+          @InOutType = inouttype
+          @FlowRegion = flowregion
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+          @InOutId = params['InOutId']
+          @InOutType = params['InOutType']
+          @FlowRegion = params['FlowRegion']
+        end
+      end
+
       # 媒体处理 URL 对象信息。
       class UrlInputInfo < TencentCloud::Common::AbstractModel
         # @param Url: 视频的 URL。
@@ -22205,6 +22564,7 @@ module TencentCloud
         # <li>当 Width 非 0，Height 为 0，则 Height 按比例缩放；</li>
         # <li>当 Width、Height 均非 0，则分辨率按用户指定。</li>
         # 默认值：0。
+        # 注意：Codec为MV-HEVC时可以支持到7680
         # @type Width: Integer
         # @param Height: 视频流高度（或短边）的最大值，取值范围：0 和 [128, 4096]，单位：px。
         # <li>当 Width、Height 均为 0，则分辨率同源；</li>
@@ -22212,6 +22572,7 @@ module TencentCloud
         # <li>当 Width 非 0，Height 为 0，则 Height 按比例缩放；</li>
         # <li>当 Width、Height 均非 0，则分辨率按用户指定。</li>
         # 默认值：0。
+        # 注意：Codec为MV-HEVC时可以支持到7680
         # @type Height: Integer
         # @param Gop: 关键帧 I 帧之间的间隔，允许按帧或秒自定义GOP长度，取值范围：0 和 [1, 100000]，
         # 当填 0 或不填时，系统将自动设置 gop 长度。
@@ -22448,9 +22809,11 @@ module TencentCloud
         # <li>当 Width 为 0，Height 非 0，则 Width 按比例缩放；</li>
         # <li>当 Width 非 0，Height 为 0，则 Height 按比例缩放；</li>
         # <li>当 Width、Height 均非 0，则分辨率按用户指定。</li>
+        # 注意：Codec为MV-HEVC时可以支持到7680
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Width: Integer
         # @param Height: 视频流高度（或短边）的最大值，取值范围：0 和 [128, 4096]，单位：px。
+        # 注意：Codec为MV-HEVC时可以支持到7680
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Height: Integer
         # @param Gop: 关键帧 I 帧之间的间隔，允许按帧或秒自定义GOP长度，取值范围：0 和 [1, 100000]。
