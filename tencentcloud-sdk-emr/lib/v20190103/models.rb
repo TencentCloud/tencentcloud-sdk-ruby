@@ -8200,95 +8200,65 @@ module TencentCloud
       # 节点硬件信息
       class NodeHardwareInfo < TencentCloud::Common::AbstractModel
         # @param AppId: 用户APPID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AppId: Integer
         # @param SerialNo: 序列号
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SerialNo: String
         # @param OrderNo: 机器实例ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OrderNo: String
         # @param WanIp: master节点绑定外网IP
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WanIp: String
         # @param Flag: 节点类型。0:common节点；1:master节点
         # ；2:core节点；3:task节点
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Flag: Integer
         # @param Spec: 节点规格
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Spec: String
         # @param CpuNum: 节点核数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CpuNum: Integer
-        # @param MemSize: 节点内存
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param MemSize: 节点内存,单位b
         # @type MemSize: Integer
-        # @param MemDesc: 节点内存描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param MemDesc: 节点内存描述，单位GB
         # @type MemDesc: String
         # @param RegionId: 节点所在region
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RegionId: Integer
         # @param ZoneId: 节点所在Zone
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ZoneId: Integer
         # @param ApplyTime: 申请时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApplyTime: String
         # @param FreeTime: 释放时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FreeTime: String
         # @param DiskSize: 硬盘大小
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DiskSize: String
         # @param NameTag: 节点描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NameTag: String
         # @param Services: 节点部署服务
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Services: String
-        # @param StorageType: 磁盘类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param StorageType: 磁盘类型，1 :本地盘 2 :云硬盘 3 : 本地SSD 4 : 云SSD 5 : 高效云盘 6 : 增强型SSD云硬盘 11 : 吞吐型云硬盘 12 : 极速型SSD云硬盘 13 : 通用型SSD云硬盘 14 : 大数据型云硬盘 15 : 高IO型云硬盘 16 : 远端SSD盘
         # @type StorageType: Integer
-        # @param RootSize: 系统盘大小
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param RootSize: 系统盘大小，单位GB
         # @type RootSize: Integer
-        # @param ChargeType: 付费类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param ChargeType: 付费类型，0：按量计费；1：包年包月
         # @type ChargeType: Integer
         # @param CdbIp: 数据库IP
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CdbIp: String
         # @param CdbPort: 数据库端口
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CdbPort: Integer
-        # @param HwDiskSize: 硬盘容量
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param HwDiskSize: 硬盘容量,单位b
         # @type HwDiskSize: Integer
         # @param HwDiskSizeDesc: 硬盘容量描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HwDiskSizeDesc: String
-        # @param HwMemSize: 内存容量
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param HwMemSize: 内存容量，单位b
         # @type HwMemSize: Integer
         # @param HwMemSizeDesc: 内存容量描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HwMemSizeDesc: String
         # @param ExpireTime: 过期时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExpireTime: String
         # @param EmrResourceId: 节点资源ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EmrResourceId: String
         # @param IsAutoRenew: 续费标志
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsAutoRenew: Integer
         # @param DeviceClass: 设备标识
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeviceClass: String
         # @param Mutable: 支持变配
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Mutable: Integer
         # @param MCMultiDisk: 多云盘
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -8297,75 +8267,59 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CdbNodeInfo: :class:`Tencentcloud::Emr.v20190103.models.CdbInfo`
         # @param Ip: 内网IP
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Ip: String
         # @param Destroyable: 此节点是否可销毁，1可销毁，0不可销毁
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Destroyable: Integer
         # @param Tags: 节点绑定的标签
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
         # @param AutoFlag: 是否是自动扩缩容节点，0为普通节点，1为自动扩缩容节点。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AutoFlag: Integer
         # @param HardwareResourceType: 资源类型, host/pod
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HardwareResourceType: String
         # @param IsDynamicSpec: 是否浮动规格，1是，0否
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsDynamicSpec: Integer
         # @param DynamicPodSpec: 浮动规格值json字符串
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DynamicPodSpec: String
         # @param SupportModifyPayMode: 是否支持变更计费类型 1是，0否
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SupportModifyPayMode: Integer
-        # @param RootStorageType: 系统盘类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param RootStorageType: 系统盘类型，1 :本地盘 2 :云硬盘 3 : 本地SSD 4 : 云SSD 5 : 高效云盘 6 : 增强型SSD云硬盘 11 : 吞吐型云硬盘 12 : 极速型SSD云硬盘 13 : 通用型SSD云硬盘 14 : 大数据型云硬盘 15 : 高IO型云硬盘 16 : 远端SSD盘
         # @type RootStorageType: Integer
         # @param Zone: 可用区信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Zone: String
         # @param SubnetInfo: 子网
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubnetInfo: :class:`Tencentcloud::Emr.v20190103.models.SubnetInfo`
         # @param Clients: 客户端
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Clients: String
         # @param CurrentTime: 系统当前时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CurrentTime: String
         # @param IsFederation: 是否用于联邦 ,1是，0否
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsFederation: Integer
         # @param DeviceName: 设备名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeviceName: String
         # @param ServiceClient: 服务
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ServiceClient: String
         # @param DisableApiTermination: 该实例是否开启实例保护，true为开启 false为关闭
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DisableApiTermination: Boolean
         # @param TradeVersion: 0表示老计费，1表示新计费
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TradeVersion: Integer
         # @param ServicesStatus: 各组件状态，Zookeeper:STARTED,ResourceManager:STARTED，STARTED已启动，STOPED已停止
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ServicesStatus: String
         # @param Remark: 备注
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Remark: String
         # @param SharedClusterId: 共享集群id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SharedClusterId: String
         # @param SharedClusterIdDesc: 共享集群id描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SharedClusterIdDesc: String
+        # @param TimingResource: 是否是定时销毁资源
+        # @type TimingResource: Boolean
+        # @param TkeClusterId: 资源类型（HardwareResourceType）为pod时，对应的TKE集群id
+        # @type TkeClusterId: String
 
-        attr_accessor :AppId, :SerialNo, :OrderNo, :WanIp, :Flag, :Spec, :CpuNum, :MemSize, :MemDesc, :RegionId, :ZoneId, :ApplyTime, :FreeTime, :DiskSize, :NameTag, :Services, :StorageType, :RootSize, :ChargeType, :CdbIp, :CdbPort, :HwDiskSize, :HwDiskSizeDesc, :HwMemSize, :HwMemSizeDesc, :ExpireTime, :EmrResourceId, :IsAutoRenew, :DeviceClass, :Mutable, :MCMultiDisk, :CdbNodeInfo, :Ip, :Destroyable, :Tags, :AutoFlag, :HardwareResourceType, :IsDynamicSpec, :DynamicPodSpec, :SupportModifyPayMode, :RootStorageType, :Zone, :SubnetInfo, :Clients, :CurrentTime, :IsFederation, :DeviceName, :ServiceClient, :DisableApiTermination, :TradeVersion, :ServicesStatus, :Remark, :SharedClusterId, :SharedClusterIdDesc
+        attr_accessor :AppId, :SerialNo, :OrderNo, :WanIp, :Flag, :Spec, :CpuNum, :MemSize, :MemDesc, :RegionId, :ZoneId, :ApplyTime, :FreeTime, :DiskSize, :NameTag, :Services, :StorageType, :RootSize, :ChargeType, :CdbIp, :CdbPort, :HwDiskSize, :HwDiskSizeDesc, :HwMemSize, :HwMemSizeDesc, :ExpireTime, :EmrResourceId, :IsAutoRenew, :DeviceClass, :Mutable, :MCMultiDisk, :CdbNodeInfo, :Ip, :Destroyable, :Tags, :AutoFlag, :HardwareResourceType, :IsDynamicSpec, :DynamicPodSpec, :SupportModifyPayMode, :RootStorageType, :Zone, :SubnetInfo, :Clients, :CurrentTime, :IsFederation, :DeviceName, :ServiceClient, :DisableApiTermination, :TradeVersion, :ServicesStatus, :Remark, :SharedClusterId, :SharedClusterIdDesc, :TimingResource, :TkeClusterId
 
-        def initialize(appid=nil, serialno=nil, orderno=nil, wanip=nil, flag=nil, spec=nil, cpunum=nil, memsize=nil, memdesc=nil, regionid=nil, zoneid=nil, applytime=nil, freetime=nil, disksize=nil, nametag=nil, services=nil, storagetype=nil, rootsize=nil, chargetype=nil, cdbip=nil, cdbport=nil, hwdisksize=nil, hwdisksizedesc=nil, hwmemsize=nil, hwmemsizedesc=nil, expiretime=nil, emrresourceid=nil, isautorenew=nil, deviceclass=nil, mutable=nil, mcmultidisk=nil, cdbnodeinfo=nil, ip=nil, destroyable=nil, tags=nil, autoflag=nil, hardwareresourcetype=nil, isdynamicspec=nil, dynamicpodspec=nil, supportmodifypaymode=nil, rootstoragetype=nil, zone=nil, subnetinfo=nil, clients=nil, currenttime=nil, isfederation=nil, devicename=nil, serviceclient=nil, disableapitermination=nil, tradeversion=nil, servicesstatus=nil, remark=nil, sharedclusterid=nil, sharedclusteriddesc=nil)
+        def initialize(appid=nil, serialno=nil, orderno=nil, wanip=nil, flag=nil, spec=nil, cpunum=nil, memsize=nil, memdesc=nil, regionid=nil, zoneid=nil, applytime=nil, freetime=nil, disksize=nil, nametag=nil, services=nil, storagetype=nil, rootsize=nil, chargetype=nil, cdbip=nil, cdbport=nil, hwdisksize=nil, hwdisksizedesc=nil, hwmemsize=nil, hwmemsizedesc=nil, expiretime=nil, emrresourceid=nil, isautorenew=nil, deviceclass=nil, mutable=nil, mcmultidisk=nil, cdbnodeinfo=nil, ip=nil, destroyable=nil, tags=nil, autoflag=nil, hardwareresourcetype=nil, isdynamicspec=nil, dynamicpodspec=nil, supportmodifypaymode=nil, rootstoragetype=nil, zone=nil, subnetinfo=nil, clients=nil, currenttime=nil, isfederation=nil, devicename=nil, serviceclient=nil, disableapitermination=nil, tradeversion=nil, servicesstatus=nil, remark=nil, sharedclusterid=nil, sharedclusteriddesc=nil, timingresource=nil, tkeclusterid=nil)
           @AppId = appid
           @SerialNo = serialno
           @OrderNo = orderno
@@ -8420,6 +8374,8 @@ module TencentCloud
           @Remark = remark
           @SharedClusterId = sharedclusterid
           @SharedClusterIdDesc = sharedclusteriddesc
+          @TimingResource = timingresource
+          @TkeClusterId = tkeclusterid
         end
 
         def deserialize(params)
@@ -8497,6 +8453,8 @@ module TencentCloud
           @Remark = params['Remark']
           @SharedClusterId = params['SharedClusterId']
           @SharedClusterIdDesc = params['SharedClusterIdDesc']
+          @TimingResource = params['TimingResource']
+          @TkeClusterId = params['TkeClusterId']
         end
       end
 

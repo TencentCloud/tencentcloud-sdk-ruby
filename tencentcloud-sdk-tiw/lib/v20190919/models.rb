@@ -462,6 +462,9 @@ module TencentCloud
 
         # 12: 存在不兼容的多倍行距设置
         # -- 自动处理方式： 不支持处理
+
+        # 13: 存在带有特殊符号内容的datetime类型的a:fld标签元素
+        # -- 自动处理方式： a:fld标签替换为普通文本
         # @type AutoHandleUnsupportedElementTypes: Array
         # @param ExcelParam: Excel表格转码参数，可设置转码时表格纸张大小及纸张方向等参数（仅对转码文件为Excel表格文件的静态转码任务生效）
         # @type ExcelParam: :class:`Tencentcloud::Tiw.v20190919.models.ExcelParam`

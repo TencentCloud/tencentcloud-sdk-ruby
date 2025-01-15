@@ -110,7 +110,6 @@ module TencentCloud
       # 产品可用性事件详情列表
       class ProductEventList < TencentCloud::Common::AbstractModel
         # @param EventList: 事件详情列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EventList: Array
 
         attr_accessor :EventList

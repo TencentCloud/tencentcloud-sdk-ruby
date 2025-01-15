@@ -8887,24 +8887,32 @@ module TencentCloud
         # @param ImageBase64: 图片的 Base64 值。要求图片经Base64编码后不超过 7M，分辨率建议500*800以上，支持PNG、JPG、JPEG、BMP格式。建议卡片部分占据图片2/3以上。
         # 图片的 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。
         # @type ImageBase64: String
+        # @param BackImageBase64: 卡证背面图片的 Base64 值。支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。支持的图片大小：所下载图片经Base64编码后不超过 7M。图片下载时间不超过 3 秒。图片的 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。
+        # @type BackImageBase64: String
         # @param ImageUrl: 图片的 Url 地址。要求图片经Base64编码后不超过 7M，分辨率建议500*800以上，支持PNG、JPG、JPEG、BMP格式。建议卡片部分占据图片2/3以上。
         # 建议图片存储于腾讯云，可保障更高的下载速度和稳定性。
         # @type ImageUrl: String
+        # @param BackImageUrl: 卡证背面图片的 Url 地址。支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。支持的图片大小：所下载图片经 Base64 编码后不超过 7M。图片下载时间不超过 3 秒。图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。非腾讯云存储的 Url 速度和稳定性可能受一定影响。
+        # @type BackImageUrl: String
         # @param CropPortrait: 图片开关。默认为false，不返回泰国身份证头像照片的base64编码。
         # 设置为true时，返回旋转矫正后的泰国身份证头像照片的base64编码
         # @type CropPortrait: Boolean
 
-        attr_accessor :ImageBase64, :ImageUrl, :CropPortrait
+        attr_accessor :ImageBase64, :BackImageBase64, :ImageUrl, :BackImageUrl, :CropPortrait
 
-        def initialize(imagebase64=nil, imageurl=nil, cropportrait=nil)
+        def initialize(imagebase64=nil, backimagebase64=nil, imageurl=nil, backimageurl=nil, cropportrait=nil)
           @ImageBase64 = imagebase64
+          @BackImageBase64 = backimagebase64
           @ImageUrl = imageurl
+          @BackImageUrl = backimageurl
           @CropPortrait = cropportrait
         end
 
         def deserialize(params)
           @ImageBase64 = params['ImageBase64']
+          @BackImageBase64 = params['BackImageBase64']
           @ImageUrl = params['ImageUrl']
+          @BackImageUrl = params['BackImageUrl']
           @CropPortrait = params['CropPortrait']
         end
       end
@@ -8937,6 +8945,8 @@ module TencentCloud
         # @type SerialNumber: String
         # @param Address: 地址
         # @type Address: String
+        # @param LaserID: 背面号码
+        # @type LaserID: String
         # @param PortraitImage: 证件人像照片抠取
         # @type PortraitImage: String
         # @param WarnCardInfos: 告警码
@@ -8960,9 +8970,9 @@ module TencentCloud
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ID, :ThaiName, :EnFirstName, :EnLastName, :IssueDate, :ExpirationDate, :EnIssueDate, :EnExpirationDate, :Birthday, :EnBirthday, :Religion, :SerialNumber, :Address, :PortraitImage, :WarnCardInfos, :AdvancedInfo, :RequestId
+        attr_accessor :ID, :ThaiName, :EnFirstName, :EnLastName, :IssueDate, :ExpirationDate, :EnIssueDate, :EnExpirationDate, :Birthday, :EnBirthday, :Religion, :SerialNumber, :Address, :LaserID, :PortraitImage, :WarnCardInfos, :AdvancedInfo, :RequestId
 
-        def initialize(id=nil, thainame=nil, enfirstname=nil, enlastname=nil, issuedate=nil, expirationdate=nil, enissuedate=nil, enexpirationdate=nil, birthday=nil, enbirthday=nil, religion=nil, serialnumber=nil, address=nil, portraitimage=nil, warncardinfos=nil, advancedinfo=nil, requestid=nil)
+        def initialize(id=nil, thainame=nil, enfirstname=nil, enlastname=nil, issuedate=nil, expirationdate=nil, enissuedate=nil, enexpirationdate=nil, birthday=nil, enbirthday=nil, religion=nil, serialnumber=nil, address=nil, laserid=nil, portraitimage=nil, warncardinfos=nil, advancedinfo=nil, requestid=nil)
           @ID = id
           @ThaiName = thainame
           @EnFirstName = enfirstname
@@ -8976,6 +8986,7 @@ module TencentCloud
           @Religion = religion
           @SerialNumber = serialnumber
           @Address = address
+          @LaserID = laserid
           @PortraitImage = portraitimage
           @WarnCardInfos = warncardinfos
           @AdvancedInfo = advancedinfo
@@ -8996,6 +9007,7 @@ module TencentCloud
           @Religion = params['Religion']
           @SerialNumber = params['SerialNumber']
           @Address = params['Address']
+          @LaserID = params['LaserID']
           @PortraitImage = params['PortraitImage']
           @WarnCardInfos = params['WarnCardInfos']
           @AdvancedInfo = params['AdvancedInfo']

@@ -918,24 +918,35 @@ module TencentCloud
         # @param FirstID: 第一条消息 ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FirstID: String
-        # @param LastID: 最后一条消息 ID
+        # @param LastID: 已废弃
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LastID: Integer
         # @param HasMore: 是否还有更多消息
         # @type HasMore: Boolean
         # @param Object: 对象类型
         # @type Object: String
+        # @param FirstMsgID: 第一条消息 ID
+        # @type FirstMsgID: String
+        # @param LastMsgID: 最后一条消息 ID
+        # @type LastMsgID: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。本接口为流式响应接口，当请求成功时，RequestId 会被放在 HTTP 响应的 Header "X-TC-RequestId" 中。
         # @type RequestId: String
 
-        attr_accessor :Data, :FirstID, :LastID, :HasMore, :Object, :RequestId
+        attr_accessor :Data, :FirstID, :LastID, :HasMore, :Object, :FirstMsgID, :LastMsgID, :RequestId
+        extend Gem::Deprecate
+        deprecate :FirstID, :none, 2025, 1
+        deprecate :FirstID=, :none, 2025, 1
+        deprecate :LastID, :none, 2025, 1
+        deprecate :LastID=, :none, 2025, 1
 
-        def initialize(data=nil, firstid=nil, lastid=nil, hasmore=nil, object=nil, requestid=nil)
+        def initialize(data=nil, firstid=nil, lastid=nil, hasmore=nil, object=nil, firstmsgid=nil, lastmsgid=nil, requestid=nil)
           @Data = data
           @FirstID = firstid
           @LastID = lastid
           @HasMore = hasmore
           @Object = object
+          @FirstMsgID = firstmsgid
+          @LastMsgID = lastmsgid
           @RequestId = requestid
         end
 
@@ -952,6 +963,8 @@ module TencentCloud
           @LastID = params['LastID']
           @HasMore = params['HasMore']
           @Object = params['Object']
+          @FirstMsgID = params['FirstMsgID']
+          @LastMsgID = params['LastMsgID']
           @RequestId = params['RequestId']
         end
       end

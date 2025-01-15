@@ -1718,8 +1718,8 @@ module TencentCloud
 
         attr_accessor :EngineType, :DataEngineName, :ClusterType, :Mode, :AutoResume, :MinClusters, :MaxClusters, :DefaultDataEngine, :CidrBlock, :Message, :Size, :PayMode, :TimeSpan, :TimeUnit, :AutoRenew, :Tags, :AutoSuspend, :CrontabResumeSuspend, :CrontabResumeSuspendStrategy, :EngineExecType, :MaxConcurrency, :TolerableQueueTime, :AutoSuspendTime, :ResourceType, :DataEngineConfigPairs, :ImageVersionName, :MainClusterName, :ElasticSwitch, :ElasticLimit, :SessionResourceTemplate, :AutoAuthorization, :EngineNetworkId, :EngineGeneration
         extend Gem::Deprecate
-        deprecate :DefaultDataEngine, :none, 2024, 12
-        deprecate :DefaultDataEngine=, :none, 2024, 12
+        deprecate :DefaultDataEngine, :none, 2025, 1
+        deprecate :DefaultDataEngine=, :none, 2025, 1
 
         def initialize(enginetype=nil, dataenginename=nil, clustertype=nil, mode=nil, autoresume=nil, minclusters=nil, maxclusters=nil, defaultdataengine=nil, cidrblock=nil, message=nil, size=nil, paymode=nil, timespan=nil, timeunit=nil, autorenew=nil, tags=nil, autosuspend=nil, crontabresumesuspend=nil, crontabresumesuspendstrategy=nil, engineexectype=nil, maxconcurrency=nil, tolerablequeuetime=nil, autosuspendtime=nil, resourcetype=nil, dataengineconfigpairs=nil, imageversionname=nil, mainclustername=nil, elasticswitch=nil, elasticlimit=nil, sessionresourcetemplate=nil, autoauthorization=nil, enginenetworkid=nil, enginegeneration=nil)
           @EngineType = enginetype
@@ -11397,6 +11397,23 @@ module TencentCloud
         end
       end
 
+      # 混合表中，change表的数据保存时间，单位为天
+      class SmartOptimizerChangeTablePolicy < TencentCloud::Common::AbstractModel
+        # @param DataRetentionTime: change表的数据保存时间，单位为天
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DataRetentionTime: Integer
+
+        attr_accessor :DataRetentionTime
+
+        def initialize(dataretentiontime=nil)
+          @DataRetentionTime = dataretentiontime
+        end
+
+        def deserialize(params)
+          @DataRetentionTime = params['DataRetentionTime']
+        end
+      end
+
       # SmartOptimizerIndexPolicy
       class SmartOptimizerIndexPolicy < TencentCloud::Common::AbstractModel
         # @param IndexEnable: 开启索引
@@ -11468,15 +11485,19 @@ module TencentCloud
         # @param Index: SmartOptimizerIndexPolicy
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Index: :class:`Tencentcloud::Dlc.v20210125.models.SmartOptimizerIndexPolicy`
+        # @param ChangeTable: SmartOptimizerChangeTablePolicy
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ChangeTable: :class:`Tencentcloud::Dlc.v20210125.models.SmartOptimizerChangeTablePolicy`
 
-        attr_accessor :Inherit, :Resources, :Written, :Lifecycle, :Index
+        attr_accessor :Inherit, :Resources, :Written, :Lifecycle, :Index, :ChangeTable
 
-        def initialize(inherit=nil, resources=nil, written=nil, lifecycle=nil, index=nil)
+        def initialize(inherit=nil, resources=nil, written=nil, lifecycle=nil, index=nil, changetable=nil)
           @Inherit = inherit
           @Resources = resources
           @Written = written
           @Lifecycle = lifecycle
           @Index = index
+          @ChangeTable = changetable
         end
 
         def deserialize(params)
@@ -11500,6 +11521,10 @@ module TencentCloud
           unless params['Index'].nil?
             @Index = SmartOptimizerIndexPolicy.new
             @Index.deserialize(params['Index'])
+          end
+          unless params['ChangeTable'].nil?
+            @ChangeTable = SmartOptimizerChangeTablePolicy.new
+            @ChangeTable.deserialize(params['ChangeTable'])
           end
         end
       end
@@ -12321,15 +12346,18 @@ module TencentCloud
         # @param SmartPolicy: 智能数据治理配置项
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SmartPolicy: :class:`Tencentcloud::Dlc.v20210125.models.SmartPolicy`
+        # @param PrimaryKeys: T-ICEBERG表的主键
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PrimaryKeys: Array
 
-        attr_accessor :DatabaseName, :TableName, :DatasourceConnectionName, :TableComment, :Type, :TableFormat, :UserAlias, :UserSubUin, :GovernPolicy, :DbGovernPolicyIsDisable, :SmartPolicy
+        attr_accessor :DatabaseName, :TableName, :DatasourceConnectionName, :TableComment, :Type, :TableFormat, :UserAlias, :UserSubUin, :GovernPolicy, :DbGovernPolicyIsDisable, :SmartPolicy, :PrimaryKeys
         extend Gem::Deprecate
-        deprecate :GovernPolicy, :none, 2024, 12
-        deprecate :GovernPolicy=, :none, 2024, 12
-        deprecate :DbGovernPolicyIsDisable, :none, 2024, 12
-        deprecate :DbGovernPolicyIsDisable=, :none, 2024, 12
+        deprecate :GovernPolicy, :none, 2025, 1
+        deprecate :GovernPolicy=, :none, 2025, 1
+        deprecate :DbGovernPolicyIsDisable, :none, 2025, 1
+        deprecate :DbGovernPolicyIsDisable=, :none, 2025, 1
 
-        def initialize(databasename=nil, tablename=nil, datasourceconnectionname=nil, tablecomment=nil, type=nil, tableformat=nil, useralias=nil, usersubuin=nil, governpolicy=nil, dbgovernpolicyisdisable=nil, smartpolicy=nil)
+        def initialize(databasename=nil, tablename=nil, datasourceconnectionname=nil, tablecomment=nil, type=nil, tableformat=nil, useralias=nil, usersubuin=nil, governpolicy=nil, dbgovernpolicyisdisable=nil, smartpolicy=nil, primarykeys=nil)
           @DatabaseName = databasename
           @TableName = tablename
           @DatasourceConnectionName = datasourceconnectionname
@@ -12341,6 +12369,7 @@ module TencentCloud
           @GovernPolicy = governpolicy
           @DbGovernPolicyIsDisable = dbgovernpolicyisdisable
           @SmartPolicy = smartpolicy
+          @PrimaryKeys = primarykeys
         end
 
         def deserialize(params)
@@ -12361,6 +12390,7 @@ module TencentCloud
             @SmartPolicy = SmartPolicy.new
             @SmartPolicy.deserialize(params['SmartPolicy'])
           end
+          @PrimaryKeys = params['PrimaryKeys']
         end
       end
 
@@ -12453,10 +12483,12 @@ module TencentCloud
         # @param HeatValue: 访问热点
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HeatValue: Integer
+        # @param InputFormatShort: InputFormat的缩写
+        # @type InputFormatShort: String
 
-        attr_accessor :TableBaseInfo, :Columns, :Partitions, :Location, :Properties, :ModifiedTime, :CreateTime, :InputFormat, :StorageSize, :RecordCount, :MapMaterializedViewName, :HeatValue
+        attr_accessor :TableBaseInfo, :Columns, :Partitions, :Location, :Properties, :ModifiedTime, :CreateTime, :InputFormat, :StorageSize, :RecordCount, :MapMaterializedViewName, :HeatValue, :InputFormatShort
 
-        def initialize(tablebaseinfo=nil, columns=nil, partitions=nil, location=nil, properties=nil, modifiedtime=nil, createtime=nil, inputformat=nil, storagesize=nil, recordcount=nil, mapmaterializedviewname=nil, heatvalue=nil)
+        def initialize(tablebaseinfo=nil, columns=nil, partitions=nil, location=nil, properties=nil, modifiedtime=nil, createtime=nil, inputformat=nil, storagesize=nil, recordcount=nil, mapmaterializedviewname=nil, heatvalue=nil, inputformatshort=nil)
           @TableBaseInfo = tablebaseinfo
           @Columns = columns
           @Partitions = partitions
@@ -12469,6 +12501,7 @@ module TencentCloud
           @RecordCount = recordcount
           @MapMaterializedViewName = mapmaterializedviewname
           @HeatValue = heatvalue
+          @InputFormatShort = inputformatshort
         end
 
         def deserialize(params)
@@ -12508,6 +12541,7 @@ module TencentCloud
           @RecordCount = params['RecordCount']
           @MapMaterializedViewName = params['MapMaterializedViewName']
           @HeatValue = params['HeatValue']
+          @InputFormatShort = params['InputFormatShort']
         end
       end
 

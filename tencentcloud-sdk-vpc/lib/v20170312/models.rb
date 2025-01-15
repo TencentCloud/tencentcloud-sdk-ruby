@@ -465,19 +465,22 @@ module TencentCloud
         # @param Address: ip地址。
         # @type Address: String
         # @param Description: 备注。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
+        # @param UpdatedTime: 更新时间。
+        # @type UpdatedTime: String
 
-        attr_accessor :Address, :Description
+        attr_accessor :Address, :Description, :UpdatedTime
 
-        def initialize(address=nil, description=nil)
+        def initialize(address=nil, description=nil, updatedtime=nil)
           @Address = address
           @Description = description
+          @UpdatedTime = updatedtime
         end
 
         def deserialize(params)
           @Address = params['Address']
           @Description = params['Description']
+          @UpdatedTime = params['UpdatedTime']
         end
       end
 
@@ -491,19 +494,21 @@ module TencentCloud
         # @type AddressSet: Array
         # @param CreatedTime: 创建时间。
         # @type CreatedTime: String
+        # @param UpdatedTime: 最后更新时间。
+        # @type UpdatedTime: String
         # @param AddressExtraSet: 带备注的IP地址信息。
         # @type AddressExtraSet: Array
         # @param TagSet: 标签键值对。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TagSet: Array
 
-        attr_accessor :AddressTemplateName, :AddressTemplateId, :AddressSet, :CreatedTime, :AddressExtraSet, :TagSet
+        attr_accessor :AddressTemplateName, :AddressTemplateId, :AddressSet, :CreatedTime, :UpdatedTime, :AddressExtraSet, :TagSet
 
-        def initialize(addresstemplatename=nil, addresstemplateid=nil, addressset=nil, createdtime=nil, addressextraset=nil, tagset=nil)
+        def initialize(addresstemplatename=nil, addresstemplateid=nil, addressset=nil, createdtime=nil, updatedtime=nil, addressextraset=nil, tagset=nil)
           @AddressTemplateName = addresstemplatename
           @AddressTemplateId = addresstemplateid
           @AddressSet = addressset
           @CreatedTime = createdtime
+          @UpdatedTime = updatedtime
           @AddressExtraSet = addressextraset
           @TagSet = tagset
         end
@@ -513,6 +518,7 @@ module TencentCloud
           @AddressTemplateId = params['AddressTemplateId']
           @AddressSet = params['AddressSet']
           @CreatedTime = params['CreatedTime']
+          @UpdatedTime = params['UpdatedTime']
           unless params['AddressExtraSet'].nil?
             @AddressExtraSet = []
             params['AddressExtraSet'].each do |i|
@@ -542,19 +548,21 @@ module TencentCloud
         # @type AddressTemplateIdSet: Array
         # @param CreatedTime: 创建时间。
         # @type CreatedTime: String
+        # @param UpdatedTime: 最后更新时间。
+        # @type UpdatedTime: String
         # @param AddressTemplateSet: IP地址模板实例。
         # @type AddressTemplateSet: Array
         # @param TagSet: 标签键值对。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TagSet: Array
 
-        attr_accessor :AddressTemplateGroupName, :AddressTemplateGroupId, :AddressTemplateIdSet, :CreatedTime, :AddressTemplateSet, :TagSet
+        attr_accessor :AddressTemplateGroupName, :AddressTemplateGroupId, :AddressTemplateIdSet, :CreatedTime, :UpdatedTime, :AddressTemplateSet, :TagSet
 
-        def initialize(addresstemplategroupname=nil, addresstemplategroupid=nil, addresstemplateidset=nil, createdtime=nil, addresstemplateset=nil, tagset=nil)
+        def initialize(addresstemplategroupname=nil, addresstemplategroupid=nil, addresstemplateidset=nil, createdtime=nil, updatedtime=nil, addresstemplateset=nil, tagset=nil)
           @AddressTemplateGroupName = addresstemplategroupname
           @AddressTemplateGroupId = addresstemplategroupid
           @AddressTemplateIdSet = addresstemplateidset
           @CreatedTime = createdtime
+          @UpdatedTime = updatedtime
           @AddressTemplateSet = addresstemplateset
           @TagSet = tagset
         end
@@ -564,6 +572,7 @@ module TencentCloud
           @AddressTemplateGroupId = params['AddressTemplateGroupId']
           @AddressTemplateIdSet = params['AddressTemplateIdSet']
           @CreatedTime = params['CreatedTime']
+          @UpdatedTime = params['UpdatedTime']
           unless params['AddressTemplateSet'].nil?
             @AddressTemplateSet = []
             params['AddressTemplateSet'].each do |i|
@@ -587,20 +596,26 @@ module TencentCloud
       class AddressTemplateItem < TencentCloud::Common::AbstractModel
         # @param AddressTemplateId: IP地址模板ID
         # @type AddressTemplateId: String
-        # @param AddressTemplateName: IP模板名称。
+        # @param AddressTemplateName: IP模板名称，废弃字段。
         # @type AddressTemplateName: String
         # @param From: 废弃字段。
         # @type From: String
         # @param To: 废弃字段
         # @type To: String
+        # @param Description: 备注。
+        # @type Description: String
+        # @param UpdatedTime: 最后更新时间。
+        # @type UpdatedTime: String
 
-        attr_accessor :AddressTemplateId, :AddressTemplateName, :From, :To
+        attr_accessor :AddressTemplateId, :AddressTemplateName, :From, :To, :Description, :UpdatedTime
 
-        def initialize(addresstemplateid=nil, addresstemplatename=nil, from=nil, to=nil)
+        def initialize(addresstemplateid=nil, addresstemplatename=nil, from=nil, to=nil, description=nil, updatedtime=nil)
           @AddressTemplateId = addresstemplateid
           @AddressTemplateName = addresstemplatename
           @From = from
           @To = to
+          @Description = description
+          @UpdatedTime = updatedtime
         end
 
         def deserialize(params)
@@ -608,6 +623,8 @@ module TencentCloud
           @AddressTemplateName = params['AddressTemplateName']
           @From = params['From']
           @To = params['To']
+          @Description = params['Description']
+          @UpdatedTime = params['UpdatedTime']
         end
       end
 
@@ -8866,14 +8883,26 @@ module TencentCloud
         # @type Limit: String
         # @param NeedMemberInfo: 是否查询IP地址模板成员标识。
         # @type NeedMemberInfo: Boolean
+        # @param OrderField: 排序字段。支持：`AddressTemplateGroupId ` `CreatedTime` `UpdateTime`。注意：该字段没有默认值。
+        # @type OrderField: String
+        # @param OrderDirection: 排序方法。升序：`ASC`，倒序：`DESC`。注意：该字段没有默认值。
+        # @type OrderDirection: String
+        # @param MemberOrderField: IP地址成员排序字段。支持：`AddressTemplateId` `UpdateTime`。注意：该字段没有默认值。
+        # @type MemberOrderField: String
+        # @param MemberOrderDirection: IP地址成员排序方法。升序：`ASC`，倒序：`DESC`。注意：该字段没有默认值。
+        # @type MemberOrderDirection: String
 
-        attr_accessor :Filters, :Offset, :Limit, :NeedMemberInfo
+        attr_accessor :Filters, :Offset, :Limit, :NeedMemberInfo, :OrderField, :OrderDirection, :MemberOrderField, :MemberOrderDirection
 
-        def initialize(filters=nil, offset=nil, limit=nil, needmemberinfo=nil)
+        def initialize(filters=nil, offset=nil, limit=nil, needmemberinfo=nil, orderfield=nil, orderdirection=nil, memberorderfield=nil, memberorderdirection=nil)
           @Filters = filters
           @Offset = offset
           @Limit = limit
           @NeedMemberInfo = needmemberinfo
+          @OrderField = orderfield
+          @OrderDirection = orderdirection
+          @MemberOrderField = memberorderfield
+          @MemberOrderDirection = memberorderdirection
         end
 
         def deserialize(params)
@@ -8888,6 +8917,10 @@ module TencentCloud
           @Offset = params['Offset']
           @Limit = params['Limit']
           @NeedMemberInfo = params['NeedMemberInfo']
+          @OrderField = params['OrderField']
+          @OrderDirection = params['OrderDirection']
+          @MemberOrderField = params['MemberOrderField']
+          @MemberOrderDirection = params['MemberOrderDirection']
         end
       end
 
@@ -8935,14 +8968,26 @@ module TencentCloud
         # @type Limit: String
         # @param NeedMemberInfo: 是否获取IP地址模板成员标识。
         # @type NeedMemberInfo: Boolean
+        # @param OrderField: 排序字段。支持：`AddressTemplateId` `CreatedTime` `UpdateTime`。注意：该字段没有默认值。
+        # @type OrderField: String
+        # @param OrderDirection: 排序方法。升序：`ASC`，倒序：`DESC`。注意：该字段没有默认值。
+        # @type OrderDirection: String
+        # @param MemberOrderField: IP成员排序字段。支持：`Address` `UpdateTime`。注意：该字段没有默认值。
+        # @type MemberOrderField: String
+        # @param MemberOrderDirection: IP成员排序方法。升序：`ASC`，倒序：`DESC`。注意：该字段没有默认值。
+        # @type MemberOrderDirection: String
 
-        attr_accessor :Filters, :Offset, :Limit, :NeedMemberInfo
+        attr_accessor :Filters, :Offset, :Limit, :NeedMemberInfo, :OrderField, :OrderDirection, :MemberOrderField, :MemberOrderDirection
 
-        def initialize(filters=nil, offset=nil, limit=nil, needmemberinfo=nil)
+        def initialize(filters=nil, offset=nil, limit=nil, needmemberinfo=nil, orderfield=nil, orderdirection=nil, memberorderfield=nil, memberorderdirection=nil)
           @Filters = filters
           @Offset = offset
           @Limit = limit
           @NeedMemberInfo = needmemberinfo
+          @OrderField = orderfield
+          @OrderDirection = orderdirection
+          @MemberOrderField = memberorderfield
+          @MemberOrderDirection = memberorderdirection
         end
 
         def deserialize(params)
@@ -8957,6 +9002,10 @@ module TencentCloud
           @Offset = params['Offset']
           @Limit = params['Limit']
           @NeedMemberInfo = params['NeedMemberInfo']
+          @OrderField = params['OrderField']
+          @OrderDirection = params['OrderDirection']
+          @MemberOrderField = params['MemberOrderField']
+          @MemberOrderDirection = params['MemberOrderDirection']
         end
       end
 
@@ -13334,14 +13383,26 @@ module TencentCloud
         # @type Limit: String
         # @param NeedMemberInfo: 是否获取协议端口模板成员标识。
         # @type NeedMemberInfo: Boolean
+        # @param OrderField: 排序字段。支持：`ServiceTemplateGroupId ` `CreatedTime` `UpdateTime`。注意：该字段没有默认值。
+        # @type OrderField: String
+        # @param OrderDirection: 排序方法。升序：`ASC`，倒序：`DESC`。注意：该字段没有默认值。
+        # @type OrderDirection: String
+        # @param MemberOrderField: 协议端口成员排序字段。支持：`ServiceTemplateId ` `UpdateTime`。注意：该字段没有默认值。
+        # @type MemberOrderField: String
+        # @param MemberOrderDirection: 协议端口成员排序方法。升序：`ASC`，倒序：`DESC`。注意：该字段没有默认值。
+        # @type MemberOrderDirection: String
 
-        attr_accessor :Filters, :Offset, :Limit, :NeedMemberInfo
+        attr_accessor :Filters, :Offset, :Limit, :NeedMemberInfo, :OrderField, :OrderDirection, :MemberOrderField, :MemberOrderDirection
 
-        def initialize(filters=nil, offset=nil, limit=nil, needmemberinfo=nil)
+        def initialize(filters=nil, offset=nil, limit=nil, needmemberinfo=nil, orderfield=nil, orderdirection=nil, memberorderfield=nil, memberorderdirection=nil)
           @Filters = filters
           @Offset = offset
           @Limit = limit
           @NeedMemberInfo = needmemberinfo
+          @OrderField = orderfield
+          @OrderDirection = orderdirection
+          @MemberOrderField = memberorderfield
+          @MemberOrderDirection = memberorderdirection
         end
 
         def deserialize(params)
@@ -13356,6 +13417,10 @@ module TencentCloud
           @Offset = params['Offset']
           @Limit = params['Limit']
           @NeedMemberInfo = params['NeedMemberInfo']
+          @OrderField = params['OrderField']
+          @OrderDirection = params['OrderDirection']
+          @MemberOrderField = params['MemberOrderField']
+          @MemberOrderDirection = params['MemberOrderDirection']
         end
       end
 
@@ -13403,14 +13468,26 @@ module TencentCloud
         # @type Limit: String
         # @param NeedMemberInfo: 是否获取协议端口成员标识。
         # @type NeedMemberInfo: Boolean
+        # @param OrderField: 排序字段。支持：`ServiceTemplateId ` `CreatedTime` `UpdateTime`。注意：该字段没有默认值。
+        # @type OrderField: String
+        # @param OrderDirection: 排序方法。升序：`ASC`，倒序：`DESC`。注意：该字段没有默认值。
+        # @type OrderDirection: String
+        # @param MemberOrderField: 协议端口排序字段。支持：`Service ` `UpdateTime`。注意：该字段没有默认值。
+        # @type MemberOrderField: String
+        # @param MemberOrderDirection: 协议端口排序方法。升序：`ASC`，倒序：`DESC`。注意：该字段没有默认值。
+        # @type MemberOrderDirection: String
 
-        attr_accessor :Filters, :Offset, :Limit, :NeedMemberInfo
+        attr_accessor :Filters, :Offset, :Limit, :NeedMemberInfo, :OrderField, :OrderDirection, :MemberOrderField, :MemberOrderDirection
 
-        def initialize(filters=nil, offset=nil, limit=nil, needmemberinfo=nil)
+        def initialize(filters=nil, offset=nil, limit=nil, needmemberinfo=nil, orderfield=nil, orderdirection=nil, memberorderfield=nil, memberorderdirection=nil)
           @Filters = filters
           @Offset = offset
           @Limit = limit
           @NeedMemberInfo = needmemberinfo
+          @OrderField = orderfield
+          @OrderDirection = orderdirection
+          @MemberOrderField = memberorderfield
+          @MemberOrderDirection = memberorderdirection
         end
 
         def deserialize(params)
@@ -13425,6 +13502,10 @@ module TencentCloud
           @Offset = params['Offset']
           @Limit = params['Limit']
           @NeedMemberInfo = params['NeedMemberInfo']
+          @OrderField = params['OrderField']
+          @OrderDirection = params['OrderDirection']
+          @MemberOrderField = params['MemberOrderField']
+          @MemberOrderDirection = params['MemberOrderDirection']
         end
       end
 
@@ -25141,19 +25222,21 @@ module TencentCloud
         # @type ServiceSet: Array
         # @param CreatedTime: 创建时间。
         # @type CreatedTime: String
+        # @param UpdatedTime: 最后更新时间。
+        # @type UpdatedTime: String
         # @param ServiceExtraSet: 带备注的协议端口信息。
         # @type ServiceExtraSet: Array
         # @param TagSet: 标签键值对。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TagSet: Array
 
-        attr_accessor :ServiceTemplateId, :ServiceTemplateName, :ServiceSet, :CreatedTime, :ServiceExtraSet, :TagSet
+        attr_accessor :ServiceTemplateId, :ServiceTemplateName, :ServiceSet, :CreatedTime, :UpdatedTime, :ServiceExtraSet, :TagSet
 
-        def initialize(servicetemplateid=nil, servicetemplatename=nil, serviceset=nil, createdtime=nil, serviceextraset=nil, tagset=nil)
+        def initialize(servicetemplateid=nil, servicetemplatename=nil, serviceset=nil, createdtime=nil, updatedtime=nil, serviceextraset=nil, tagset=nil)
           @ServiceTemplateId = servicetemplateid
           @ServiceTemplateName = servicetemplatename
           @ServiceSet = serviceset
           @CreatedTime = createdtime
+          @UpdatedTime = updatedtime
           @ServiceExtraSet = serviceextraset
           @TagSet = tagset
         end
@@ -25163,6 +25246,7 @@ module TencentCloud
           @ServiceTemplateName = params['ServiceTemplateName']
           @ServiceSet = params['ServiceSet']
           @CreatedTime = params['CreatedTime']
+          @UpdatedTime = params['UpdatedTime']
           unless params['ServiceExtraSet'].nil?
             @ServiceExtraSet = []
             params['ServiceExtraSet'].each do |i|
@@ -25192,19 +25276,21 @@ module TencentCloud
         # @type ServiceTemplateIdSet: Array
         # @param CreatedTime: 创建时间。
         # @type CreatedTime: String
+        # @param UpdatedTime: 最后更新时间。
+        # @type UpdatedTime: String
         # @param ServiceTemplateSet: 协议端口模板实例信息。
         # @type ServiceTemplateSet: Array
         # @param TagSet: 标签键值对。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TagSet: Array
 
-        attr_accessor :ServiceTemplateGroupId, :ServiceTemplateGroupName, :ServiceTemplateIdSet, :CreatedTime, :ServiceTemplateSet, :TagSet
+        attr_accessor :ServiceTemplateGroupId, :ServiceTemplateGroupName, :ServiceTemplateIdSet, :CreatedTime, :UpdatedTime, :ServiceTemplateSet, :TagSet
 
-        def initialize(servicetemplategroupid=nil, servicetemplategroupname=nil, servicetemplateidset=nil, createdtime=nil, servicetemplateset=nil, tagset=nil)
+        def initialize(servicetemplategroupid=nil, servicetemplategroupname=nil, servicetemplateidset=nil, createdtime=nil, updatedtime=nil, servicetemplateset=nil, tagset=nil)
           @ServiceTemplateGroupId = servicetemplategroupid
           @ServiceTemplateGroupName = servicetemplategroupname
           @ServiceTemplateIdSet = servicetemplateidset
           @CreatedTime = createdtime
+          @UpdatedTime = updatedtime
           @ServiceTemplateSet = servicetemplateset
           @TagSet = tagset
         end
@@ -25214,6 +25300,7 @@ module TencentCloud
           @ServiceTemplateGroupName = params['ServiceTemplateGroupName']
           @ServiceTemplateIdSet = params['ServiceTemplateIdSet']
           @CreatedTime = params['CreatedTime']
+          @UpdatedTime = params['UpdatedTime']
           unless params['ServiceTemplateSet'].nil?
             @ServiceTemplateSet = []
             params['ServiceTemplateSet'].each do |i|
@@ -25259,17 +25346,21 @@ module TencentCloud
         # @type Service: String
         # @param Description: 备注。
         # @type Description: String
+        # @param UpdatedTime: 更新时间。
+        # @type UpdatedTime: String
 
-        attr_accessor :Service, :Description
+        attr_accessor :Service, :Description, :UpdatedTime
 
-        def initialize(service=nil, description=nil)
+        def initialize(service=nil, description=nil, updatedtime=nil)
           @Service = service
           @Description = description
+          @UpdatedTime = updatedtime
         end
 
         def deserialize(params)
           @Service = params['Service']
           @Description = params['Description']
+          @UpdatedTime = params['UpdatedTime']
         end
       end
 

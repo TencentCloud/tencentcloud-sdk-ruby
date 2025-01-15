@@ -7491,10 +7491,12 @@ module TencentCloud
         # @type Source: Integer
         # @param QueryAnswer: 查询答案
         # @type QueryAnswer: String
+        # @param QueryType: 查询类型 filename 名称、 attribute 标签
+        # @type QueryType: String
 
-        attr_accessor :PageNumber, :PageSize, :BotBizId, :Query, :CateBizId, :AcceptStatus, :ReleaseStatus, :DocBizId, :QaBizId, :Source, :QueryAnswer
+        attr_accessor :PageNumber, :PageSize, :BotBizId, :Query, :CateBizId, :AcceptStatus, :ReleaseStatus, :DocBizId, :QaBizId, :Source, :QueryAnswer, :QueryType
 
-        def initialize(pagenumber=nil, pagesize=nil, botbizid=nil, query=nil, catebizid=nil, acceptstatus=nil, releasestatus=nil, docbizid=nil, qabizid=nil, source=nil, queryanswer=nil)
+        def initialize(pagenumber=nil, pagesize=nil, botbizid=nil, query=nil, catebizid=nil, acceptstatus=nil, releasestatus=nil, docbizid=nil, qabizid=nil, source=nil, queryanswer=nil, querytype=nil)
           @PageNumber = pagenumber
           @PageSize = pagesize
           @BotBizId = botbizid
@@ -7506,6 +7508,7 @@ module TencentCloud
           @QaBizId = qabizid
           @Source = source
           @QueryAnswer = queryanswer
+          @QueryType = querytype
         end
 
         def deserialize(params)
@@ -7520,6 +7523,7 @@ module TencentCloud
           @QaBizId = params['QaBizId']
           @Source = params['Source']
           @QueryAnswer = params['QueryAnswer']
+          @QueryType = params['QueryType']
         end
       end
 

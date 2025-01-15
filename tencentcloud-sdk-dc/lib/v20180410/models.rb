@@ -259,7 +259,6 @@ module TencentCloud
         # @param ApplyTime: 敏捷上云申请的时间
         # @type ApplyTime: String
         # @param ReadyTime: 敏捷上云建设完成的时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReadyTime: String
         # @param ExpireTime: 敏捷上云过期时间
         # @type ExpireTime: String
@@ -281,10 +280,12 @@ module TencentCloud
         # @type CloudAttachServiceGatewaysSupport: Boolean
         # @param BUpdateBandwidth: 敏捷上云服务是否处于升降配中
         # @type BUpdateBandwidth: Boolean
+        # @param ArRegion: 接入地域
+        # @type ArRegion: String
 
-        attr_accessor :InstanceId, :Name, :IapId, :IdcAddress, :IdcType, :Bandwidth, :Telephone, :Status, :ApplyTime, :ReadyTime, :ExpireTime, :Remarks, :RegionStatus, :AppId, :Uin, :CustomerAuthName, :DirectConnectId, :CloudAttachServiceGatewaysSupport, :BUpdateBandwidth
+        attr_accessor :InstanceId, :Name, :IapId, :IdcAddress, :IdcType, :Bandwidth, :Telephone, :Status, :ApplyTime, :ReadyTime, :ExpireTime, :Remarks, :RegionStatus, :AppId, :Uin, :CustomerAuthName, :DirectConnectId, :CloudAttachServiceGatewaysSupport, :BUpdateBandwidth, :ArRegion
 
-        def initialize(instanceid=nil, name=nil, iapid=nil, idcaddress=nil, idctype=nil, bandwidth=nil, telephone=nil, status=nil, applytime=nil, readytime=nil, expiretime=nil, remarks=nil, regionstatus=nil, appid=nil, uin=nil, customerauthname=nil, directconnectid=nil, cloudattachservicegatewayssupport=nil, bupdatebandwidth=nil)
+        def initialize(instanceid=nil, name=nil, iapid=nil, idcaddress=nil, idctype=nil, bandwidth=nil, telephone=nil, status=nil, applytime=nil, readytime=nil, expiretime=nil, remarks=nil, regionstatus=nil, appid=nil, uin=nil, customerauthname=nil, directconnectid=nil, cloudattachservicegatewayssupport=nil, bupdatebandwidth=nil, arregion=nil)
           @InstanceId = instanceid
           @Name = name
           @IapId = iapid
@@ -304,6 +305,7 @@ module TencentCloud
           @DirectConnectId = directconnectid
           @CloudAttachServiceGatewaysSupport = cloudattachservicegatewayssupport
           @BUpdateBandwidth = bupdatebandwidth
+          @ArRegion = arregion
         end
 
         def deserialize(params)
@@ -326,6 +328,7 @@ module TencentCloud
           @DirectConnectId = params['DirectConnectId']
           @CloudAttachServiceGatewaysSupport = params['CloudAttachServiceGatewaysSupport']
           @BUpdateBandwidth = params['BUpdateBandwidth']
+          @ArRegion = params['ArRegion']
         end
       end
 
@@ -363,16 +366,19 @@ module TencentCloud
         # @type Telephone: String
         # @param Remarks: 备注信息
         # @type Remarks: String
+        # @param ArRegion: 接入地域
+        # @type ArRegion: String
 
-        attr_accessor :Name, :IdcAddress, :IdcType, :Bandwidth, :Telephone, :Remarks
+        attr_accessor :Name, :IdcAddress, :IdcType, :Bandwidth, :Telephone, :Remarks, :ArRegion
 
-        def initialize(name=nil, idcaddress=nil, idctype=nil, bandwidth=nil, telephone=nil, remarks=nil)
+        def initialize(name=nil, idcaddress=nil, idctype=nil, bandwidth=nil, telephone=nil, remarks=nil, arregion=nil)
           @Name = name
           @IdcAddress = idcaddress
           @IdcType = idctype
           @Bandwidth = bandwidth
           @Telephone = telephone
           @Remarks = remarks
+          @ArRegion = arregion
         end
 
         def deserialize(params)
@@ -382,6 +388,7 @@ module TencentCloud
           @Bandwidth = params['Bandwidth']
           @Telephone = params['Telephone']
           @Remarks = params['Remarks']
+          @ArRegion = params['ArRegion']
         end
       end
 

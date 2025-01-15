@@ -845,7 +845,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 购买页拉取集群的数据节点和zookeeper节点的规格列表
+        # 拉取集群节点规格列表
 
         # @param request: Request instance for DescribeSpec.
         # @type request: :class:`Tencentcloud::cdwdoris::V20211228::DescribeSpecRequest`
