@@ -1517,7 +1517,7 @@ module TencentCloud
 
       # DeleteDisasterRecoverGroups请求参数结构体
       class DeleteDisasterRecoverGroupsRequest < TencentCloud::Common::AbstractModel
-        # @param DisasterRecoverGroupIds: 分散置放群组ID列表，可通过[DescribeDisasterRecoverGroups](https://cloud.tencent.com/document/api/213/17810)接口获取。每次请求允许操作的分散置放群组数量上限是100。
+        # @param DisasterRecoverGroupIds: 分散置放群组ID列表，可通过[DescribeDisasterRecoverGroups](https://cloud.tencent.com/document/api/213/17810)接口获取。每次请求允许操作的分散置放群组数量上限是10。
         # @type DisasterRecoverGroupIds: Array
 
         attr_accessor :DisasterRecoverGroupIds
@@ -1975,7 +1975,7 @@ module TencentCloud
 
       # DescribeDisasterRecoverGroups请求参数结构体
       class DescribeDisasterRecoverGroupsRequest < TencentCloud::Common::AbstractModel
-        # @param DisasterRecoverGroupIds: 分散置放群组ID列表。每次请求允许操作的分散置放群组数量上限是100。
+        # @param DisasterRecoverGroupIds: 分散置放群组ID列表。每次请求允许操作的分散置放群组数量上限是10。
         # @type DisasterRecoverGroupIds: Array
         # @param Name: 分散置放群组名称，支持模糊匹配。
         # @type Name: String
@@ -6537,6 +6537,46 @@ module TencentCloud
 
       # ModifyInstancesChargeType返回参数结构体
       class ModifyInstancesChargeTypeResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyInstancesDisasterRecoverGroup请求参数结构体
+      class ModifyInstancesDisasterRecoverGroupRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceIds: 一个或多个待操作的实例ID。可通过[`DescribeInstances`](https://cloud.tencent.com/document/api/213/15728)接口返回值中的`InstanceId`获取。每次请求批量实例的上限为1
+        # @type InstanceIds: Array
+        # @param DisasterRecoverGroupId: 分散置放群组ID，可使用[DescribeDisasterRecoverGroups](https://cloud.tencent.com/document/api/213/17810)接口获取
+        # @type DisasterRecoverGroupId: String
+        # @param Force: 是否强制更换实例宿主机。取值范围：<br><li>true：表示允许实例更换宿主机，允许重启实例。本地盘子机不支持指定此参数。</li><br><li>false：不允许实例更换宿主机，只在当前宿主机上加入置放群组。这可能导致更换置放群组失败。</li><br><br>默认取值：false
+        # @type Force: Boolean
+
+        attr_accessor :InstanceIds, :DisasterRecoverGroupId, :Force
+
+        def initialize(instanceids=nil, disasterrecovergroupid=nil, force=nil)
+          @InstanceIds = instanceids
+          @DisasterRecoverGroupId = disasterrecovergroupid
+          @Force = force
+        end
+
+        def deserialize(params)
+          @InstanceIds = params['InstanceIds']
+          @DisasterRecoverGroupId = params['DisasterRecoverGroupId']
+          @Force = params['Force']
+        end
+      end
+
+      # ModifyInstancesDisasterRecoverGroup返回参数结构体
+      class ModifyInstancesDisasterRecoverGroupResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 

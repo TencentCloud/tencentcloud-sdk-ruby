@@ -9858,7 +9858,7 @@ module TencentCloud
         # @type Content: String
         # @param Description: 集成描述
         # @type Description: String
-        # @param GrafanaURL: Grafana 跳转地址
+        # @param GrafanaURL: Grafana 跳转地址(目前未使用，默认为空)
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GrafanaURL: String
 

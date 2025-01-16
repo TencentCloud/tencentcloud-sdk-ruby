@@ -1272,8 +1272,7 @@ module TencentCloud
         # @param Question: 拒答问题
 
         # @type Question: String
-        # @param BusinessSource: 拒答问题来源的数据源唯一id，取值1，2
-
+        # @param BusinessSource: 拒答问题来源的数据源唯一id， - 拒答来源于不满意回复  2 - 拒答来源于手动添加
         # @type BusinessSource: Integer
         # @param BusinessId: 拒答问题来源的数据源唯一id
 
@@ -2520,7 +2519,7 @@ module TencentCloud
 
       # DescribeReleaseInfo请求参数结构体
       class DescribeReleaseInfoRequest < TencentCloud::Common::AbstractModel
-        # @param BotBizId: 机器人ID
+        # @param BotBizId: 应用ID
         # @type BotBizId: String
 
         attr_accessor :BotBizId
@@ -2538,9 +2537,9 @@ module TencentCloud
       class DescribeReleaseInfoResponse < TencentCloud::Common::AbstractModel
         # @param LastTime: 最后发布时间
         # @type LastTime: String
-        # @param Status: 发布状态
+        # @param Status: 发布状态 ， 1-待发布 , 2-发布中 , 3-发布成功 , 4-发布失败 , 5-审核中 , 6-审核成功 , 7-审核失败 , 8-发布成功回调处理中 , 9-发布暂停 , 10-申诉审核中 , 11-申诉审核通过 , 12-申诉审核不通过
         # @type Status: Integer
-        # @param IsUpdated: 是否编辑过
+        # @param IsUpdated: 是否编辑过, 当为true的时候表示可以发布
         # @type IsUpdated: Boolean
         # @param Msg: 失败原因
         # @type Msg: String

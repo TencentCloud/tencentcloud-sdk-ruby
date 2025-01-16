@@ -189,7 +189,6 @@ module TencentCloud
         # @param DeviceId: 设备ID
         # @type DeviceId: String
         # @param Signature: 签名字符串
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Signature: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -768,19 +767,14 @@ module TencentCloud
         # @param Payer: 付费方 0：厂商付费 1：客户付费
         # @type Payer: Integer
         # @param GroupId: 设备分组ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GroupId: String
         # @param GroupName: 设备分组名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GroupName: String
         # @param FlowTrunc: 设备无流量包处理方式，0: 按量付费，1: 截断加速
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FlowTrunc: Integer
         # @param Sn: 设备sn
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Sn: String
         # @param Vendor: 厂商
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Vendor: String
 
         attr_accessor :DeviceId, :DeviceName, :CreateTime, :LastTime, :Remark, :AccessScope, :LicensePayMode, :Payer, :GroupId, :GroupName, :FlowTrunc, :Sn, :Vendor
@@ -823,16 +817,12 @@ module TencentCloud
         # @param DeviceBaseInfo: 设备基本信息
         # @type DeviceBaseInfo: :class:`Tencentcloud::Mna.v20210119.models.DeviceBaseInfo`
         # @param DeviceNetInfo: 设备网络信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeviceNetInfo: Array
         # @param GatewaySite: 聚合服务器地址
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GatewaySite: String
         # @param BusinessDownRate: 业务下行速率
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BusinessDownRate: Float
         # @param BusinessUpRate: 业务上行速率
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BusinessUpRate: Float
 
         attr_accessor :DeviceBaseInfo, :DeviceNetInfo, :GatewaySite, :BusinessDownRate, :BusinessUpRate
@@ -916,7 +906,6 @@ module TencentCloud
         # 0:数据
         # 1:Wi-Fi
         # 2:有线
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: Integer
         # @param DataEnable: 启用/禁用
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -1344,13 +1333,10 @@ module TencentCloud
       # GetFlowAlarmInfo返回参数结构体
       class GetFlowAlarmInfoResponse < TencentCloud::Common::AbstractModel
         # @param AlarmValue: 流量包的告警阈值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AlarmValue: Integer
         # @param NotifyUrl: 告警通知回调url
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NotifyUrl: String
         # @param CallbackKey: 告警通知回调key
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CallbackKey: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2021,7 +2007,6 @@ module TencentCloud
       # GetNetMonitor返回参数结构体
       class GetNetMonitorResponse < TencentCloud::Common::AbstractModel
         # @param MonitorData: 监控数据
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MonitorData: Array
         # @param AccessRegion: 接入区域。取值范围：['MC','AP','EU','AM']
         # MC=中国大陆

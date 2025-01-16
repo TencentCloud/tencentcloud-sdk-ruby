@@ -53,7 +53,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 获取 APM Agent信息
+        # 获取 APM 接入点
 
         # @param request: Request instance for DescribeApmAgent.
         # @type request: :class:`Tencentcloud::apm::V20210622::DescribeApmAgentRequest`
@@ -77,7 +77,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 拉取 APM 业务系统列表
+        # 获取 APM 业务系统列表
 
         # @param request: Request instance for DescribeApmInstances.
         # @type request: :class:`Tencentcloud::apm::V20210622::DescribeApmInstancesRequest`
@@ -174,7 +174,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 拉取通用指标列表
+        # 查询指标列表接口，查询指标更推荐使用DescribeGeneralMetricData接口
 
         # @param request: Request instance for DescribeMetricRecords.
         # @type request: :class:`Tencentcloud::apm::V20210622::DescribeMetricRecordsRequest`

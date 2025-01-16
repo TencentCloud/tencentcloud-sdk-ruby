@@ -2182,8 +2182,8 @@ module TencentCloud
 
         attr_accessor :Name, :SegmentSet, :RecognitionSegmentSet
         extend Gem::Deprecate
-        deprecate :SegmentSet, :none, 2024, 12
-        deprecate :SegmentSet=, :none, 2024, 12
+        deprecate :SegmentSet, :none, 2025, 1
+        deprecate :SegmentSet=, :none, 2025, 1
 
         def initialize(name=nil, segmentset=nil, recognitionsegmentset=nil)
           @Name = name
@@ -10658,8 +10658,8 @@ module TencentCloud
 
         attr_accessor :DomainName, :Domain, :Scheme, :PlayKey, :RequestId
         extend Gem::Deprecate
-        deprecate :DomainName, :none, 2024, 12
-        deprecate :DomainName=, :none, 2024, 12
+        deprecate :DomainName, :none, 2025, 1
+        deprecate :DomainName=, :none, 2025, 1
 
         def initialize(domainname=nil, domain=nil, scheme=nil, playkey=nil, requestid=nil)
           @DomainName = domainname
@@ -13792,7 +13792,7 @@ module TencentCloud
         # <li>av1：AOMedia Video 1 编码；</li>
         # <li>H.266：H.266 编码。</li>
         # @type Codec: String
-        # @param Bitrate: 视频流的码率，取值范围：0 和 [128, 35000]，单位：kbps。
+        # @param Bitrate: 视频流的码率，取值范围：0 和 [128, 100000]，单位：kbps。
         # 当取值为 0 或不填时，表示自动选择最佳视频码率。
         # @type Bitrate: Integer
         # @param ResolutionAdaptive: 分辨率自适应，可选值：
@@ -18458,8 +18458,8 @@ module TencentCloud
 
         attr_accessor :Duration, :Transitions, :MediaTransitions
         extend Gem::Deprecate
-        deprecate :Transitions, :none, 2024, 12
-        deprecate :Transitions=, :none, 2024, 12
+        deprecate :Transitions, :none, 2025, 1
+        deprecate :Transitions=, :none, 2025, 1
 
         def initialize(duration=nil, transitions=nil, mediatransitions=nil)
           @Duration = duration
@@ -22417,8 +22417,8 @@ module TencentCloud
 
         attr_accessor :ProductType, :StartTime, :ExpireTime, :ProductInstanceId, :LastConsumeDate, :BindStatus, :ProductInstanceResourceSet, :ResourceSet, :ProductInstanceStatus, :RefundStatus, :RenewStatus
         extend Gem::Deprecate
-        deprecate :ProductInstanceResourceSet, :none, 2024, 12
-        deprecate :ProductInstanceResourceSet=, :none, 2024, 12
+        deprecate :ProductInstanceResourceSet, :none, 2025, 1
+        deprecate :ProductInstanceResourceSet=, :none, 2025, 1
 
         def initialize(producttype=nil, starttime=nil, expiretime=nil, productinstanceid=nil, lastconsumedate=nil, bindstatus=nil, productinstanceresourceset=nil, resourceset=nil, productinstancestatus=nil, refundstatus=nil, renewstatus=nil)
           @ProductType = producttype
@@ -28813,7 +28813,7 @@ module TencentCloud
         # @param Fps: 视频帧率，取值范围：[0, 100]，单位：Hz。
         # 当取值为 0，表示帧率和原始视频保持一致。
         # @type Fps: Integer
-        # @param Bitrate: 视频流的码率，取值范围：0 和 [128, 35000]，单位：kbps。
+        # @param Bitrate: 视频流的码率，取值范围：0 和 [128, 100000]，单位：kbps。
         # 当取值为 0，表示视频码率和原始视频保持一致。
         # @type Bitrate: Integer
         # @param ResolutionAdaptive: 分辨率自适应，可选值：
@@ -28908,7 +28908,7 @@ module TencentCloud
         # @param Fps: 视频帧率，取值范围：[0, 100]，单位：Hz。
         # 当取值为 0，表示帧率和原始视频保持一致。
         # @type Fps: Integer
-        # @param Bitrate: 视频流的码率，取值范围：0 和 [128, 35000]，单位：kbps。
+        # @param Bitrate: 视频流的码率，取值范围：0 和 [128, 100000]，单位：kbps。
         # 当取值为 0，表示视频码率和原始视频保持一致。
         # @type Bitrate: Integer
         # @param ResolutionAdaptive: 分辨率自适应，可选值：

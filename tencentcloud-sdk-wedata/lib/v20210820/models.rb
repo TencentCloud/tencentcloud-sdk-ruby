@@ -3814,7 +3814,7 @@ module TencentCloud
         # @type DatasourceId: String
         # @param Database: 数据库
         # @type Database: String
-        # @param DDLSql: 建hive表ddl
+        # @param DDLSql: 建hive表ddl的base64编码
         # @type DDLSql: String
         # @param Privilege: 表权限 ，默认为0:项目共享;1:仅个人与管理员
         # @type Privilege: Integer
@@ -4155,6 +4155,7 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ArrangeSpaceTaskId: String
         # @param Data: 结果
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -14273,6 +14274,100 @@ module TencentCloud
         end
       end
 
+      # DescribeTaskTableMetricOverview请求参数结构体
+      class DescribeTaskTableMetricOverviewRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务TaskId
+        # @type TaskId: String
+        # @param NodeType: 来源类型，支持枚举： SOURCE、SINK
+        # @type NodeType: String
+        # @param PageNumber: 页码
+        # @type PageNumber: Integer
+        # @param PageSize: 页大小
+        # @type PageSize: Integer
+        # @param ProjectId: 项目ID
+        # @type ProjectId: String
+        # @param TaskType: 任务类型：201. stream, 202. offline，当前只支持实时201
+        # @type TaskType: Integer
+        # @param Filters: 根据SchemaName来模糊搜索
+        # @type Filters: Array
+        # @param OrderFields: 排序
+        # @type OrderFields: Array
+
+        attr_accessor :TaskId, :NodeType, :PageNumber, :PageSize, :ProjectId, :TaskType, :Filters, :OrderFields
+
+        def initialize(taskid=nil, nodetype=nil, pagenumber=nil, pagesize=nil, projectid=nil, tasktype=nil, filters=nil, orderfields=nil)
+          @TaskId = taskid
+          @NodeType = nodetype
+          @PageNumber = pagenumber
+          @PageSize = pagesize
+          @ProjectId = projectid
+          @TaskType = tasktype
+          @Filters = filters
+          @OrderFields = orderfields
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @NodeType = params['NodeType']
+          @PageNumber = params['PageNumber']
+          @PageSize = params['PageSize']
+          @ProjectId = params['ProjectId']
+          @TaskType = params['TaskType']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          unless params['OrderFields'].nil?
+            @OrderFields = []
+            params['OrderFields'].each do |i|
+              orderfields_tmp = OrderFields.new
+              orderfields_tmp.deserialize(i)
+              @OrderFields << orderfields_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeTaskTableMetricOverview返回参数结构体
+      class DescribeTaskTableMetricOverviewResponse < TencentCloud::Common::AbstractModel
+        # @param TaskTableMetricInfos: 表粒度指标集合
+        # @type TaskTableMetricInfos: Array
+        # @param TotalCount: 总数
+        # @type TotalCount: Integer
+        # @param MetricType: 返回列表类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MetricType: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskTableMetricInfos, :TotalCount, :MetricType, :RequestId
+
+        def initialize(tasktablemetricinfos=nil, totalcount=nil, metrictype=nil, requestid=nil)
+          @TaskTableMetricInfos = tasktablemetricinfos
+          @TotalCount = totalcount
+          @MetricType = metrictype
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['TaskTableMetricInfos'].nil?
+            @TaskTableMetricInfos = []
+            params['TaskTableMetricInfos'].each do |i|
+              tasktablemetricinfo_tmp = TaskTableMetricInfo.new
+              tasktablemetricinfo_tmp.deserialize(i)
+              @TaskTableMetricInfos << tasktablemetricinfo_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @MetricType = params['MetricType']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeTemplateDimCount请求参数结构体
       class DescribeTemplateDimCountRequest < TencentCloud::Common::AbstractModel
         # @param Type: 模板类型
@@ -21690,6 +21785,26 @@ module TencentCloud
         # @param Name: 排序字段名称
         # @type Name: String
         # @param Direction: 排序方向：ASC|DESC
+        # @type Direction: String
+
+        attr_accessor :Name, :Direction
+
+        def initialize(name=nil, direction=nil)
+          @Name = name
+          @Direction = direction
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Direction = params['Direction']
+        end
+      end
+
+      # 排序
+      class OrderFields < TencentCloud::Common::AbstractModel
+        # @param Name: 字段
+        # @type Name: String
+        # @param Direction: 排序
         # @type Direction: String
 
         attr_accessor :Name, :Direction
@@ -29168,6 +29283,158 @@ module TencentCloud
           @ProjectName = params['ProjectName']
           @InChargeId = params['InChargeId']
           @InCharge = params['InCharge']
+        end
+      end
+
+      # 任务表粒度指标信息
+      class TaskTableMetricInfo < TencentCloud::Common::AbstractModel
+        # @param DatabaseName: 数据库名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DatabaseName: String
+        # @param TableName: 表名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TableName: String
+        # @param TotalRecordNum: 总记录数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalRecordNum: Integer
+        # @param TotalRecordByteNum: 总字节数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalRecordByteNum: Integer
+        # @param TotalDirtyRecordNum: 总脏记录数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalDirtyRecordNum: Integer
+        # @param SchemaName: Schema名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SchemaName: String
+        # @param Topic: topic名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Topic: String
+        # @param Collection: Collection名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Collection: String
+        # @param DataSourceName: 数据源名称
+        # @type DataSourceName: String
+        # @param NodeId: 节点id
+        # @type NodeId: String
+        # @param LogicDatabase: 逻辑库名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LogicDatabase: String
+        # @param LogicTable: 逻辑表名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LogicTable: String
+        # @param LogicSchema: 逻辑schema名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LogicSchema: String
+        # @param TaskTableMetricInfos: 物理表信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskTableMetricInfos: Array
+        # @param SyncStatus: 同步状态，0-未知，1-正常， 2-异常
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SyncStatus: Integer
+        # @param TargetDatabaseName: Target数据库名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TargetDatabaseName: String
+        # @param TargetTableName: Target表名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TargetTableName: String
+        # @param WriteTotalRecordNum: Write总记录数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WriteTotalRecordNum: Integer
+        # @param WriteTotalRecordByteNum: Write总字节数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WriteTotalRecordByteNum: String
+        # @param TargetSchemaName: TargetSchema名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TargetSchemaName: String
+        # @param TargetTopic: Targettopic名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TargetTopic: String
+        # @param TargetCollection: TargetCollection名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TargetCollection: String
+        # @param TargetDataSourceName: 数据源名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TargetDataSourceName: String
+        # @param TargetNodeId: 节点id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TargetNodeId: String
+        # @param TotalRecordSpeed: 读取条数的速度
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalRecordSpeed: Float
+        # @param WriteTotalRecordSpeed: 写入条数的速度
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WriteTotalRecordSpeed: Float
+        # @param ExceptionReason: 异常原因
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExceptionReason: String
+
+        attr_accessor :DatabaseName, :TableName, :TotalRecordNum, :TotalRecordByteNum, :TotalDirtyRecordNum, :SchemaName, :Topic, :Collection, :DataSourceName, :NodeId, :LogicDatabase, :LogicTable, :LogicSchema, :TaskTableMetricInfos, :SyncStatus, :TargetDatabaseName, :TargetTableName, :WriteTotalRecordNum, :WriteTotalRecordByteNum, :TargetSchemaName, :TargetTopic, :TargetCollection, :TargetDataSourceName, :TargetNodeId, :TotalRecordSpeed, :WriteTotalRecordSpeed, :ExceptionReason
+
+        def initialize(databasename=nil, tablename=nil, totalrecordnum=nil, totalrecordbytenum=nil, totaldirtyrecordnum=nil, schemaname=nil, topic=nil, collection=nil, datasourcename=nil, nodeid=nil, logicdatabase=nil, logictable=nil, logicschema=nil, tasktablemetricinfos=nil, syncstatus=nil, targetdatabasename=nil, targettablename=nil, writetotalrecordnum=nil, writetotalrecordbytenum=nil, targetschemaname=nil, targettopic=nil, targetcollection=nil, targetdatasourcename=nil, targetnodeid=nil, totalrecordspeed=nil, writetotalrecordspeed=nil, exceptionreason=nil)
+          @DatabaseName = databasename
+          @TableName = tablename
+          @TotalRecordNum = totalrecordnum
+          @TotalRecordByteNum = totalrecordbytenum
+          @TotalDirtyRecordNum = totaldirtyrecordnum
+          @SchemaName = schemaname
+          @Topic = topic
+          @Collection = collection
+          @DataSourceName = datasourcename
+          @NodeId = nodeid
+          @LogicDatabase = logicdatabase
+          @LogicTable = logictable
+          @LogicSchema = logicschema
+          @TaskTableMetricInfos = tasktablemetricinfos
+          @SyncStatus = syncstatus
+          @TargetDatabaseName = targetdatabasename
+          @TargetTableName = targettablename
+          @WriteTotalRecordNum = writetotalrecordnum
+          @WriteTotalRecordByteNum = writetotalrecordbytenum
+          @TargetSchemaName = targetschemaname
+          @TargetTopic = targettopic
+          @TargetCollection = targetcollection
+          @TargetDataSourceName = targetdatasourcename
+          @TargetNodeId = targetnodeid
+          @TotalRecordSpeed = totalrecordspeed
+          @WriteTotalRecordSpeed = writetotalrecordspeed
+          @ExceptionReason = exceptionreason
+        end
+
+        def deserialize(params)
+          @DatabaseName = params['DatabaseName']
+          @TableName = params['TableName']
+          @TotalRecordNum = params['TotalRecordNum']
+          @TotalRecordByteNum = params['TotalRecordByteNum']
+          @TotalDirtyRecordNum = params['TotalDirtyRecordNum']
+          @SchemaName = params['SchemaName']
+          @Topic = params['Topic']
+          @Collection = params['Collection']
+          @DataSourceName = params['DataSourceName']
+          @NodeId = params['NodeId']
+          @LogicDatabase = params['LogicDatabase']
+          @LogicTable = params['LogicTable']
+          @LogicSchema = params['LogicSchema']
+          unless params['TaskTableMetricInfos'].nil?
+            @TaskTableMetricInfos = []
+            params['TaskTableMetricInfos'].each do |i|
+              tasktablemetricinfo_tmp = TaskTableMetricInfo.new
+              tasktablemetricinfo_tmp.deserialize(i)
+              @TaskTableMetricInfos << tasktablemetricinfo_tmp
+            end
+          end
+          @SyncStatus = params['SyncStatus']
+          @TargetDatabaseName = params['TargetDatabaseName']
+          @TargetTableName = params['TargetTableName']
+          @WriteTotalRecordNum = params['WriteTotalRecordNum']
+          @WriteTotalRecordByteNum = params['WriteTotalRecordByteNum']
+          @TargetSchemaName = params['TargetSchemaName']
+          @TargetTopic = params['TargetTopic']
+          @TargetCollection = params['TargetCollection']
+          @TargetDataSourceName = params['TargetDataSourceName']
+          @TargetNodeId = params['TargetNodeId']
+          @TotalRecordSpeed = params['TotalRecordSpeed']
+          @WriteTotalRecordSpeed = params['WriteTotalRecordSpeed']
+          @ExceptionReason = params['ExceptionReason']
         end
       end
 

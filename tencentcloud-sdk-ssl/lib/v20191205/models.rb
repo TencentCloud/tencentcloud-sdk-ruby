@@ -2971,10 +2971,12 @@ module TencentCloud
         # @type Tags: Array
         # @param IsPendingIssue: 是否筛选等待签发的证书，传1是筛选，0和null不筛选
         # @type IsPendingIssue: Integer
+        # @param CertIds: 筛选指定证书ID的证书，只支持有权限的证书ID
+        # @type CertIds: Array
 
-        attr_accessor :Offset, :Limit, :SearchKey, :CertificateType, :ProjectId, :ExpirationSort, :CertificateStatus, :Deployable, :Upload, :Renew, :FilterSource, :IsSM, :FilterExpiring, :Hostable, :Tags, :IsPendingIssue
+        attr_accessor :Offset, :Limit, :SearchKey, :CertificateType, :ProjectId, :ExpirationSort, :CertificateStatus, :Deployable, :Upload, :Renew, :FilterSource, :IsSM, :FilterExpiring, :Hostable, :Tags, :IsPendingIssue, :CertIds
 
-        def initialize(offset=nil, limit=nil, searchkey=nil, certificatetype=nil, projectid=nil, expirationsort=nil, certificatestatus=nil, deployable=nil, upload=nil, renew=nil, filtersource=nil, issm=nil, filterexpiring=nil, hostable=nil, tags=nil, ispendingissue=nil)
+        def initialize(offset=nil, limit=nil, searchkey=nil, certificatetype=nil, projectid=nil, expirationsort=nil, certificatestatus=nil, deployable=nil, upload=nil, renew=nil, filtersource=nil, issm=nil, filterexpiring=nil, hostable=nil, tags=nil, ispendingissue=nil, certids=nil)
           @Offset = offset
           @Limit = limit
           @SearchKey = searchkey
@@ -2991,6 +2993,7 @@ module TencentCloud
           @Hostable = hostable
           @Tags = tags
           @IsPendingIssue = ispendingissue
+          @CertIds = certids
         end
 
         def deserialize(params)
@@ -3017,6 +3020,7 @@ module TencentCloud
             end
           end
           @IsPendingIssue = params['IsPendingIssue']
+          @CertIds = params['CertIds']
         end
       end
 

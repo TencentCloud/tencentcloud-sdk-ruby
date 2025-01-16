@@ -190,34 +190,36 @@ module TencentCloud
 
       # 指标维度信息
       class ApmField < TencentCloud::Common::AbstractModel
-        # @param CompareVal: 昨日同比指标值，已弃用，不建议使用
-        # @type CompareVal: String
-        # @param CompareVals: Compare值结果数组，推荐使用
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type CompareVals: Array
-        # @param Value: 指标值
+        # @param Key: 指标名
+        # @type Key: String
+        # @param Value: 指标数值
         # @type Value: Float
         # @param Unit: 指标所对应的单位
         # @type Unit: String
-        # @param Key: 请求数
-        # @type Key: String
-        # @param LastPeriodValue: 同环比上周期具体数值
+        # @param CompareVals: 同比结果数组，推荐使用
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CompareVals: Array
+        # @param LastPeriodValue: 同比上一个周期的具体指标数值
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LastPeriodValue: Array
+        # @param CompareVal: 同比指标值，已弃用，不建议使用
+        # @type CompareVal: String
 
-        attr_accessor :CompareVal, :CompareVals, :Value, :Unit, :Key, :LastPeriodValue
+        attr_accessor :Key, :Value, :Unit, :CompareVals, :LastPeriodValue, :CompareVal
 
-        def initialize(compareval=nil, comparevals=nil, value=nil, unit=nil, key=nil, lastperiodvalue=nil)
-          @CompareVal = compareval
-          @CompareVals = comparevals
+        def initialize(key=nil, value=nil, unit=nil, comparevals=nil, lastperiodvalue=nil, compareval=nil)
+          @Key = key
           @Value = value
           @Unit = unit
-          @Key = key
+          @CompareVals = comparevals
           @LastPeriodValue = lastperiodvalue
+          @CompareVal = compareval
         end
 
         def deserialize(params)
-          @CompareVal = params['CompareVal']
+          @Key = params['Key']
+          @Value = params['Value']
+          @Unit = params['Unit']
           unless params['CompareVals'].nil?
             @CompareVals = []
             params['CompareVals'].each do |i|
@@ -226,9 +228,6 @@ module TencentCloud
               @CompareVals << apmkvitem_tmp
             end
           end
-          @Value = params['Value']
-          @Unit = params['Unit']
-          @Key = params['Key']
           unless params['LastPeriodValue'].nil?
             @LastPeriodValue = []
             params['LastPeriodValue'].each do |i|
@@ -237,101 +236,100 @@ module TencentCloud
               @LastPeriodValue << apmkv_tmp
             end
           end
+          @CompareVal = params['CompareVal']
         end
       end
 
       # APM 业务系统信息
       class ApmInstanceDetail < TencentCloud::Common::AbstractModel
-        # @param AmountOfUsedStorage: 存储使用量( MB )
-        # @type AmountOfUsedStorage: Float
-        # @param Name: 业务系统名
-        # @type Name: String
-        # @param Tags: 业务系统所属 Tag 列表
-        # @type Tags: Array
         # @param InstanceId: 业务系统 ID
         # @type InstanceId: String
-        # @param CreateUin: 创建人 Uin
-        # @type CreateUin: String
-        # @param ServiceCount: 该业务系统已上报的服务端应用数量
-        # @type ServiceCount: Integer
-        # @param CountOfReportSpanPerDay: 日均上报 Span 数
-        # @type CountOfReportSpanPerDay: Integer
-        # @param AppId: AppID 信息
-        # @type AppId: Integer
-        # @param TraceDuration: Trace 数据保存时长
-        # @type TraceDuration: Integer
+        # @param Name: 业务系统名
+        # @type Name: String
         # @param Description: 业务系统描述信息
         # @type Description: String
         # @param Status: 业务系统状态
         # @type Status: Integer
         # @param Region: 业务系统所属地域
         # @type Region: String
+        # @param Tags: 业务系统 Tag 列表
+        # @type Tags: Array
+        # @param AppId: AppID 信息
+        # @type AppId: Integer
+        # @param CreateUin: 创建人 Uin
+        # @type CreateUin: String
+        # @param AmountOfUsedStorage: 存储使用量(单位：MB)
+        # @type AmountOfUsedStorage: Float
+        # @param ServiceCount: 该业务系统服务端应用数量
+        # @type ServiceCount: Integer
+        # @param CountOfReportSpanPerDay: 日均上报 Span 数
+        # @type CountOfReportSpanPerDay: Integer
+        # @param TraceDuration: Trace 数据保存时长（单位：天）
+        # @type TraceDuration: Integer
         # @param SpanDailyCounters: 业务系统上报额度
         # @type SpanDailyCounters: Integer
-        # @param BillingInstance: 业务系统是否开通计费
+        # @param BillingInstance: 业务系统是否已开通计费（0=未开通，1=已开通）
         # @type BillingInstance: Integer
-        # @param ErrRateThreshold: 错误率阈值
+        # @param ErrRateThreshold: 错误警示线（单位：%）
         # @type ErrRateThreshold: Integer
-        # @param SampleRate: 采样率阈值
+        # @param SampleRate: 采样率（单位：%）
         # @type SampleRate: Integer
-        # @param ErrorSample: 是否开启错误采样 0  关 1 开
+        # @param ErrorSample: 是否开启错误采样（0=关, 1=开）
         # @type ErrorSample: Integer
-        # @param SlowRequestSavedThreshold: 慢调用保存阈值
+        # @param SlowRequestSavedThreshold: 采样慢调用保存阈值（单位：ms）
         # @type SlowRequestSavedThreshold: Integer
         # @param LogRegion: CLS 日志所在地域
         # @type LogRegion: String
-        # @param LogSource: 日志来源
+        # @param LogSource: 日志源
         # @type LogSource: String
-        # @param IsRelatedLog: 日志功能开关 0 关 | 1 开
+        # @param IsRelatedLog: 日志功能开关（0=关， 1=开）
         # @type IsRelatedLog: Integer
-        # @param LogTopicID: 日志主题ID
+        # @param LogTopicID: 日志主题 ID
         # @type LogTopicID: String
-        # @param ClientCount: 该实例已上报的客户端应用数量
+        # @param ClientCount: 该业务系统客户端应用数量
         # @type ClientCount: Integer
-        # @param TotalCount: 该实例已上报的总应用数量
+        # @param TotalCount: 该业务系统最近2天活跃应用数量
         # @type TotalCount: Integer
-        # @param LogSet: CLS 日志集 | ES 集群ID
+        # @param LogSet: CLS 日志集
         # @type LogSet: String
-        # @param MetricDuration: Metric 数据保存时长
+        # @param MetricDuration: Metric 数据保存时长（单位：天）
         # @type MetricDuration: Integer
         # @param CustomShowTags: 用户自定义展示标签列表
         # @type CustomShowTags: Array
-        # @param PayMode: 业务系统计费模式
-        # 1为预付费
-        # 0为按量付费
+        # @param PayMode: 业务系统计费模式（1为预付费，0为按量付费）
         # @type PayMode: Integer
         # @param PayModeEffective: 业务系统计费模式是否生效
         # @type PayModeEffective: Boolean
-        # @param ResponseDurationWarningThreshold: 响应时间满意阈值
+        # @param ResponseDurationWarningThreshold: 响应时间警示线（单位：ms）
         # @type ResponseDurationWarningThreshold: Integer
         # @param Free: 是否免费（0=否，1=限额免费，2=完全免费），默认0
         # @type Free: Integer
-        # @param DefaultTSF: 是否 tsf 默认业务系统（0=否，1-是）
+        # @param DefaultTSF: 是否 TSF 默认业务系统（0=否，1=是）
         # @type DefaultTSF: Integer
-        # @param IsRelatedDashboard: 是否关联 Dashboard： 0 关 1 开
+        # @param IsRelatedDashboard: 是否关联 Dashboard（0=关, 1=开）
         # @type IsRelatedDashboard: Integer
-        # @param DashboardTopicID: Dashboard ID
+        # @param DashboardTopicID: 关联的 Dashboard ID
         # @type DashboardTopicID: String
-        # @param IsInstrumentationVulnerabilityScan: 是否开启组件漏洞检测
+        # @param IsInstrumentationVulnerabilityScan: 是否开启组件漏洞检测（0=关， 1=开）
         # @type IsInstrumentationVulnerabilityScan: Integer
-        # @param IsSqlInjectionAnalysis: 是否开启 SQL 注入分析
+        # @param IsSqlInjectionAnalysis: 是否开启 SQL 注入分析（0=关， 1=开）
         # @type IsSqlInjectionAnalysis: Integer
 
-        attr_accessor :AmountOfUsedStorage, :Name, :Tags, :InstanceId, :CreateUin, :ServiceCount, :CountOfReportSpanPerDay, :AppId, :TraceDuration, :Description, :Status, :Region, :SpanDailyCounters, :BillingInstance, :ErrRateThreshold, :SampleRate, :ErrorSample, :SlowRequestSavedThreshold, :LogRegion, :LogSource, :IsRelatedLog, :LogTopicID, :ClientCount, :TotalCount, :LogSet, :MetricDuration, :CustomShowTags, :PayMode, :PayModeEffective, :ResponseDurationWarningThreshold, :Free, :DefaultTSF, :IsRelatedDashboard, :DashboardTopicID, :IsInstrumentationVulnerabilityScan, :IsSqlInjectionAnalysis
+        attr_accessor :InstanceId, :Name, :Description, :Status, :Region, :Tags, :AppId, :CreateUin, :AmountOfUsedStorage, :ServiceCount, :CountOfReportSpanPerDay, :TraceDuration, :SpanDailyCounters, :BillingInstance, :ErrRateThreshold, :SampleRate, :ErrorSample, :SlowRequestSavedThreshold, :LogRegion, :LogSource, :IsRelatedLog, :LogTopicID, :ClientCount, :TotalCount, :LogSet, :MetricDuration, :CustomShowTags, :PayMode, :PayModeEffective, :ResponseDurationWarningThreshold, :Free, :DefaultTSF, :IsRelatedDashboard, :DashboardTopicID, :IsInstrumentationVulnerabilityScan, :IsSqlInjectionAnalysis
 
-        def initialize(amountofusedstorage=nil, name=nil, tags=nil, instanceid=nil, createuin=nil, servicecount=nil, countofreportspanperday=nil, appid=nil, traceduration=nil, description=nil, status=nil, region=nil, spandailycounters=nil, billinginstance=nil, errratethreshold=nil, samplerate=nil, errorsample=nil, slowrequestsavedthreshold=nil, logregion=nil, logsource=nil, isrelatedlog=nil, logtopicid=nil, clientcount=nil, totalcount=nil, logset=nil, metricduration=nil, customshowtags=nil, paymode=nil, paymodeeffective=nil, responsedurationwarningthreshold=nil, free=nil, defaulttsf=nil, isrelateddashboard=nil, dashboardtopicid=nil, isinstrumentationvulnerabilityscan=nil, issqlinjectionanalysis=nil)
-          @AmountOfUsedStorage = amountofusedstorage
-          @Name = name
-          @Tags = tags
+        def initialize(instanceid=nil, name=nil, description=nil, status=nil, region=nil, tags=nil, appid=nil, createuin=nil, amountofusedstorage=nil, servicecount=nil, countofreportspanperday=nil, traceduration=nil, spandailycounters=nil, billinginstance=nil, errratethreshold=nil, samplerate=nil, errorsample=nil, slowrequestsavedthreshold=nil, logregion=nil, logsource=nil, isrelatedlog=nil, logtopicid=nil, clientcount=nil, totalcount=nil, logset=nil, metricduration=nil, customshowtags=nil, paymode=nil, paymodeeffective=nil, responsedurationwarningthreshold=nil, free=nil, defaulttsf=nil, isrelateddashboard=nil, dashboardtopicid=nil, isinstrumentationvulnerabilityscan=nil, issqlinjectionanalysis=nil)
           @InstanceId = instanceid
-          @CreateUin = createuin
-          @ServiceCount = servicecount
-          @CountOfReportSpanPerDay = countofreportspanperday
-          @AppId = appid
-          @TraceDuration = traceduration
+          @Name = name
           @Description = description
           @Status = status
           @Region = region
+          @Tags = tags
+          @AppId = appid
+          @CreateUin = createuin
+          @AmountOfUsedStorage = amountofusedstorage
+          @ServiceCount = servicecount
+          @CountOfReportSpanPerDay = countofreportspanperday
+          @TraceDuration = traceduration
           @SpanDailyCounters = spandailycounters
           @BillingInstance = billinginstance
           @ErrRateThreshold = errratethreshold
@@ -359,8 +357,11 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @AmountOfUsedStorage = params['AmountOfUsedStorage']
+          @InstanceId = params['InstanceId']
           @Name = params['Name']
+          @Description = params['Description']
+          @Status = params['Status']
+          @Region = params['Region']
           unless params['Tags'].nil?
             @Tags = []
             params['Tags'].each do |i|
@@ -369,15 +370,12 @@ module TencentCloud
               @Tags << apmtag_tmp
             end
           end
-          @InstanceId = params['InstanceId']
+          @AppId = params['AppId']
           @CreateUin = params['CreateUin']
+          @AmountOfUsedStorage = params['AmountOfUsedStorage']
           @ServiceCount = params['ServiceCount']
           @CountOfReportSpanPerDay = params['CountOfReportSpanPerDay']
-          @AppId = params['AppId']
           @TraceDuration = params['TraceDuration']
-          @Description = params['Description']
-          @Status = params['Status']
-          @Region = params['Region']
           @SpanDailyCounters = params['SpanDailyCounters']
           @BillingInstance = params['BillingInstance']
           @ErrRateThreshold = params['ErrRateThreshold']
@@ -407,9 +405,9 @@ module TencentCloud
 
       # 指标列表单元
       class ApmMetricRecord < TencentCloud::Common::AbstractModel
-        # @param Fields: field数组
+        # @param Fields: field数组，用于指标的查询结果
         # @type Fields: Array
-        # @param Tags: tag数组
+        # @param Tags: tag数组，用于区分 Groupby 的对象
         # @type Tags: Array
 
         attr_accessor :Fields, :Tags
@@ -465,15 +463,15 @@ module TencentCloud
         # @type Name: String
         # @param Description: 业务系统描述信息
         # @type Description: String
-        # @param TraceDuration: Trace 数据保存时长，单位为天默认存储为3天
+        # @param TraceDuration: Trace 数据保存时长（单位：天，默认存储时长为3天）
         # @type TraceDuration: Integer
-        # @param Tags: 标签列表
+        # @param Tags: 业务系统 Tag 列表
         # @type Tags: Array
-        # @param SpanDailyCounters: 业务系统上报额度值，默认赋值为0表示不限制上报额度
+        # @param SpanDailyCounters: 业务系统上报额度值，默认赋值为0表示不限制上报额度，已废弃
         # @type SpanDailyCounters: Integer
-        # @param PayMode: 业务系统的计费模式
+        # @param PayMode: 业务系统的计费模式（0=按量付费，1=预付费）
         # @type PayMode: Integer
-        # @param Free: （0=付费版；1=tsf 受限免费版；2=免费版）
+        # @param Free: 是否为免费版业务系统（0=付费版；1=TSF 受限免费版；2=免费版）
         # @type Free: Integer
 
         attr_accessor :Name, :Description, :TraceDuration, :Tags, :SpanDailyCounters, :PayMode, :Free
@@ -530,13 +528,13 @@ module TencentCloud
       class DescribeApmAgentRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 业务系统 ID
         # @type InstanceId: String
-        # @param AgentType: 接入方式
+        # @param AgentType: 接入方式，现支持 skywalking, ot, ebpf 方式接入上报，不填默认为 ot
         # @type AgentType: String
-        # @param NetworkMode: 环境
+        # @param NetworkMode: 上报环境，现支持 pl (内网上报), public (外网), inner (自研 VPC )环境上报，不传默认为 public
         # @type NetworkMode: String
-        # @param LanguageEnvironment: 语言
+        # @param LanguageEnvironment: 语言，现支持 java, golang, php, python, dotNet, nodejs 语言上报，不传默认为 golang
         # @type LanguageEnvironment: String
-        # @param ReportMethod: 上报方式
+        # @param ReportMethod: 上报方式，已弃用
         # @type ReportMethod: String
 
         attr_accessor :InstanceId, :AgentType, :NetworkMode, :LanguageEnvironment, :ReportMethod
@@ -585,13 +583,13 @@ module TencentCloud
       class DescribeApmInstancesRequest < TencentCloud::Common::AbstractModel
         # @param Tags: Tag 列表
         # @type Tags: Array
-        # @param InstanceName: 搜索业务系统名
+        # @param InstanceName: 按业务系统名过滤
         # @type InstanceName: String
-        # @param InstanceIds: 过滤业务系统 ID
+        # @param InstanceIds: 按业务系统 ID 过滤
         # @type InstanceIds: Array
-        # @param DemoInstanceFlag: 是否查询官方 Demo 业务系统
+        # @param DemoInstanceFlag: 是否查询官方 Demo 业务系统（0=非 Demo 业务系统，1=Demo 业务系统，默认为0）
         # @type DemoInstanceFlag: Integer
-        # @param AllRegionsFlag: 是否查询全地域业务系统
+        # @param AllRegionsFlag: 是否查询全地域业务系统（0=不查询全地域，1=查询全地域，默认为0）
         # @type AllRegionsFlag: Integer
 
         attr_accessor :Tags, :InstanceName, :InstanceIds, :DemoInstanceFlag, :AllRegionsFlag
@@ -694,7 +692,7 @@ module TencentCloud
       class DescribeGeneralMetricDataRequest < TencentCloud::Common::AbstractModel
         # @param Metrics: 需要查询的指标名称，不可自定义输入，[详情请见。](https://cloud.tencent.com/document/product/248/101681)
         # @type Metrics: Array
-        # @param InstanceId: 业务系统ID
+        # @param InstanceId: 业务系统 ID
         # @type InstanceId: String
         # @param ViewName: 视图名称，不可自定义输入。[详情请见。](https://cloud.tencent.com/document/product/248/101681)
         # @type ViewName: String
@@ -702,16 +700,21 @@ module TencentCloud
         # @type Filters: Array
         # @param GroupBy: 聚合维度，不同视图有对应的指标维度，[详情请见。](https://cloud.tencent.com/document/product/248/101681)
         # @type GroupBy: Array
-        # @param StartTime: 起始时间的时间戳，单位为秒，只支持查询2天内最多1小时的指标数据。
+        # @param StartTime: 起始时间的时间戳，支持查询30天内的指标数据。（单位：秒）
         # @type StartTime: Integer
-        # @param EndTime: 结束时间的时间戳，单位为秒，只支持查询2天内最多1小时的指标数据。
+        # @param EndTime: 结束时间的时间戳，支持查询30天内的指标数据。（单位：秒）
         # @type EndTime: Integer
-        # @param Period: 聚合粒度，单位为秒，最小为60s，即一分钟的聚合粒度；如果为空或0则计算开始时间到截止时间的指标数据，上报其他值会报错。
+        # @param Period: 是否按固定时间跨度聚合，填入1及大于1的值按1处理，不填按0处理。
+        # - 填入0，则计算开始时间到截止时间的指标数据。
+        # - 填入1，则会按照开始时间到截止时间的时间跨度选择聚合粒度：
+        #  - 时间跨度 (0,12) 小时，则按一分钟粒度聚合。
+        #  - 时间跨度 [12,48] 小时，则按五分钟粒度聚合。
+        #  - 时间跨度 (48, +∞) 小时，则按一小时粒度聚合。
         # @type Period: Integer
         # @param OrderBy: 对查询指标进行排序：
         # Key 填写云 API 指标名称，[详情请见。](https://cloud.tencent.com/document/product/248/101681)
         # Value 填写排序方式：
-        # - asc:对查询指标进行升序排序
+        # - asc：对查询指标进行升序排序
         # - desc：对查询指标进行降序排序
         # @type OrderBy: :class:`Tencentcloud::Apm.v20210622.models.OrderBy`
         # @param PageSize: 查询指标的限制条数，目前最多展示50条数据，PageSize取值为1-50，上送PageSize则根据PageSize的值展示限制条数。
@@ -785,45 +788,50 @@ module TencentCloud
 
       # DescribeGeneralSpanList请求参数结构体
       class DescribeGeneralSpanListRequest < TencentCloud::Common::AbstractModel
-        # @param Offset: 分页
-        # @type Offset: Integer
-        # @param Limit: 列表项个数
-        # @type Limit: Integer
-        # @param OrderBy: 排序
-        # @type OrderBy: :class:`Tencentcloud::Apm.v20210622.models.OrderBy`
-        # @param StartTime: Span查询开始时间戳（单位:秒）
-        # @type StartTime: Integer
         # @param InstanceId: 业务系统 ID
         # @type InstanceId: String
+        # @param StartTime: Span 查询开始时间戳（单位：秒）
+        # @type StartTime: Integer
+        # @param EndTime: Span 查询结束时间戳（单位：秒）
+        # @type EndTime: Integer
         # @param Filters: 通用过滤参数
         # @type Filters: Array
-        # @param BusinessName: 业务自身服务名
+        # @param OrderBy: 排序
+        # 现支持的 Key 有：
+
+        # - startTime(开始时间)
+        # - endTime(结束时间)
+        # - duration(响应时间)
+
+        # 现支持的 Value 有：
+
+        # - desc(降序排序)
+        # - asc(升序排序)
+        # @type OrderBy: :class:`Tencentcloud::Apm.v20210622.models.OrderBy`
+        # @param BusinessName: 业务自身服务名，控制台用户请填写taw
         # @type BusinessName: String
-        # @param EndTime: Span查询结束时间戳（单位:秒）
-        # @type EndTime: Integer
+        # @param Limit: 单页项目个数，默认为10000，合法取值范围为0～10000
+        # @type Limit: Integer
+        # @param Offset: 分页
+        # @type Offset: Integer
 
-        attr_accessor :Offset, :Limit, :OrderBy, :StartTime, :InstanceId, :Filters, :BusinessName, :EndTime
+        attr_accessor :InstanceId, :StartTime, :EndTime, :Filters, :OrderBy, :BusinessName, :Limit, :Offset
 
-        def initialize(offset=nil, limit=nil, orderby=nil, starttime=nil, instanceid=nil, filters=nil, businessname=nil, endtime=nil)
-          @Offset = offset
-          @Limit = limit
-          @OrderBy = orderby
-          @StartTime = starttime
+        def initialize(instanceid=nil, starttime=nil, endtime=nil, filters=nil, orderby=nil, businessname=nil, limit=nil, offset=nil)
           @InstanceId = instanceid
-          @Filters = filters
-          @BusinessName = businessname
+          @StartTime = starttime
           @EndTime = endtime
+          @Filters = filters
+          @OrderBy = orderby
+          @BusinessName = businessname
+          @Limit = limit
+          @Offset = offset
         end
 
         def deserialize(params)
-          @Offset = params['Offset']
-          @Limit = params['Limit']
-          unless params['OrderBy'].nil?
-            @OrderBy = OrderBy.new
-            @OrderBy.deserialize(params['OrderBy'])
-          end
-          @StartTime = params['StartTime']
           @InstanceId = params['InstanceId']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
           unless params['Filters'].nil?
             @Filters = []
             params['Filters'].each do |i|
@@ -832,8 +840,13 @@ module TencentCloud
               @Filters << filter_tmp
             end
           end
+          unless params['OrderBy'].nil?
+            @OrderBy = OrderBy.new
+            @OrderBy.deserialize(params['OrderBy'])
+          end
           @BusinessName = params['BusinessName']
-          @EndTime = params['EndTime']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
         end
       end
 
@@ -870,63 +883,65 @@ module TencentCloud
 
       # DescribeMetricRecords请求参数结构体
       class DescribeMetricRecordsRequest < TencentCloud::Common::AbstractModel
-        # @param Filters: 过滤条件
-        # @type Filters: Array
         # @param Metrics: 指标列表
         # @type Metrics: Array
+        # @param InstanceId: 业务系统 ID
+        # @type InstanceId: String
+        # @param StartTime: 开始时间（单位为秒）
+        # @type StartTime: Integer
+        # @param EndTime: 结束时间（单位为秒）
+        # @type EndTime: Integer
+        # @param Filters: 过滤条件
+        # @type Filters: Array
+        # @param OrFilters: Or 过滤条件
+        # @type OrFilters: Array
         # @param GroupBy: 聚合维度
         # @type GroupBy: Array
         # @param OrderBy: 排序
+        # 现支持的 Key 有：
+
+        # - startTime(开始时间)
+        # - endTime(结束时间)
+        # - duration(响应时间)
+
+        # 现支持的 Value 有：
+
+        # - desc(降序排序)
+        # - asc(升序排序)
         # @type OrderBy: :class:`Tencentcloud::Apm.v20210622.models.OrderBy`
-        # @param InstanceId: 业务系统ID
-        # @type InstanceId: String
-        # @param Limit: 每页大小
+        # @param BusinessName: 业务名称，控制台用户请填写taw。
+        # @type BusinessName: String
+        # @param Type: 特殊处理查询结果
+        # @type Type: String
+        # @param Limit: 每页大小，默认为1000，合法取值范围为0~1000
         # @type Limit: Integer
-        # @param StartTime: 开始时间
-        # @type StartTime: Integer
         # @param Offset: 分页起始点
         # @type Offset: Integer
-        # @param EndTime: 结束时间
-        # @type EndTime: Integer
-        # @param BusinessName: 业务名称（默认值：taw）
-        # @type BusinessName: String
         # @param PageIndex: 页码
         # @type PageIndex: Integer
         # @param PageSize: 页长
         # @type PageSize: Integer
-        # @param OrFilters: Or过滤条件
-        # @type OrFilters: Array
-        # @param Type: 数据来源
-        # @type Type: String
 
-        attr_accessor :Filters, :Metrics, :GroupBy, :OrderBy, :InstanceId, :Limit, :StartTime, :Offset, :EndTime, :BusinessName, :PageIndex, :PageSize, :OrFilters, :Type
+        attr_accessor :Metrics, :InstanceId, :StartTime, :EndTime, :Filters, :OrFilters, :GroupBy, :OrderBy, :BusinessName, :Type, :Limit, :Offset, :PageIndex, :PageSize
 
-        def initialize(filters=nil, metrics=nil, groupby=nil, orderby=nil, instanceid=nil, limit=nil, starttime=nil, offset=nil, endtime=nil, businessname=nil, pageindex=nil, pagesize=nil, orfilters=nil, type=nil)
-          @Filters = filters
+        def initialize(metrics=nil, instanceid=nil, starttime=nil, endtime=nil, filters=nil, orfilters=nil, groupby=nil, orderby=nil, businessname=nil, type=nil, limit=nil, offset=nil, pageindex=nil, pagesize=nil)
           @Metrics = metrics
+          @InstanceId = instanceid
+          @StartTime = starttime
+          @EndTime = endtime
+          @Filters = filters
+          @OrFilters = orfilters
           @GroupBy = groupby
           @OrderBy = orderby
-          @InstanceId = instanceid
-          @Limit = limit
-          @StartTime = starttime
-          @Offset = offset
-          @EndTime = endtime
           @BusinessName = businessname
+          @Type = type
+          @Limit = limit
+          @Offset = offset
           @PageIndex = pageindex
           @PageSize = pagesize
-          @OrFilters = orfilters
-          @Type = type
         end
 
         def deserialize(params)
-          unless params['Filters'].nil?
-            @Filters = []
-            params['Filters'].each do |i|
-              filter_tmp = Filter.new
-              filter_tmp.deserialize(i)
-              @Filters << filter_tmp
-            end
-          end
           unless params['Metrics'].nil?
             @Metrics = []
             params['Metrics'].each do |i|
@@ -935,19 +950,17 @@ module TencentCloud
               @Metrics << querymetricitem_tmp
             end
           end
-          @GroupBy = params['GroupBy']
-          unless params['OrderBy'].nil?
-            @OrderBy = OrderBy.new
-            @OrderBy.deserialize(params['OrderBy'])
-          end
           @InstanceId = params['InstanceId']
-          @Limit = params['Limit']
           @StartTime = params['StartTime']
-          @Offset = params['Offset']
           @EndTime = params['EndTime']
-          @BusinessName = params['BusinessName']
-          @PageIndex = params['PageIndex']
-          @PageSize = params['PageSize']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
           unless params['OrFilters'].nil?
             @OrFilters = []
             params['OrFilters'].each do |i|
@@ -956,7 +969,17 @@ module TencentCloud
               @OrFilters << filter_tmp
             end
           end
+          @GroupBy = params['GroupBy']
+          unless params['OrderBy'].nil?
+            @OrderBy = OrderBy.new
+            @OrderBy.deserialize(params['OrderBy'])
+          end
+          @BusinessName = params['BusinessName']
           @Type = params['Type']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @PageIndex = params['PageIndex']
+          @PageSize = params['PageSize']
         end
       end
 
@@ -993,48 +1016,43 @@ module TencentCloud
 
       # DescribeServiceOverview请求参数结构体
       class DescribeServiceOverviewRequest < TencentCloud::Common::AbstractModel
-        # @param Filters: 过滤条件
-        # @type Filters: Array
         # @param Metrics: 指标列表
         # @type Metrics: Array
+        # @param InstanceId: 业务系统 ID
+        # @type InstanceId: String
+        # @param Filters: 过滤条件
+        # @type Filters: Array
         # @param GroupBy: 聚合维度
         # @type GroupBy: Array
-        # @param OrderBy: 排序
+        # @param StartTime: 开始时间（单位：秒）
+        # @type StartTime: Integer
+        # @param EndTime: 结束时间（单位：秒）
+        # @type EndTime: Integer
+        # @param OrderBy: 排序方式
+        # Value 填写：
+        # - asc：对查询指标进行升序排序
+        # - desc：对查询指标进行降序排序
         # @type OrderBy: :class:`Tencentcloud::Apm.v20210622.models.OrderBy`
-        # @param InstanceId: 业务系统ID
-        # @type InstanceId: String
         # @param Limit: 每页大小
         # @type Limit: Integer
-        # @param StartTime: 开始时间
-        # @type StartTime: Integer
         # @param Offset: 分页起始点
         # @type Offset: Integer
-        # @param EndTime: 结束时间
-        # @type EndTime: Integer
 
-        attr_accessor :Filters, :Metrics, :GroupBy, :OrderBy, :InstanceId, :Limit, :StartTime, :Offset, :EndTime
+        attr_accessor :Metrics, :InstanceId, :Filters, :GroupBy, :StartTime, :EndTime, :OrderBy, :Limit, :Offset
 
-        def initialize(filters=nil, metrics=nil, groupby=nil, orderby=nil, instanceid=nil, limit=nil, starttime=nil, offset=nil, endtime=nil)
-          @Filters = filters
+        def initialize(metrics=nil, instanceid=nil, filters=nil, groupby=nil, starttime=nil, endtime=nil, orderby=nil, limit=nil, offset=nil)
           @Metrics = metrics
-          @GroupBy = groupby
-          @OrderBy = orderby
           @InstanceId = instanceid
-          @Limit = limit
+          @Filters = filters
+          @GroupBy = groupby
           @StartTime = starttime
-          @Offset = offset
           @EndTime = endtime
+          @OrderBy = orderby
+          @Limit = limit
+          @Offset = offset
         end
 
         def deserialize(params)
-          unless params['Filters'].nil?
-            @Filters = []
-            params['Filters'].each do |i|
-              filter_tmp = Filter.new
-              filter_tmp.deserialize(i)
-              @Filters << filter_tmp
-            end
-          end
           unless params['Metrics'].nil?
             @Metrics = []
             params['Metrics'].each do |i|
@@ -1043,16 +1061,24 @@ module TencentCloud
               @Metrics << querymetricitem_tmp
             end
           end
+          @InstanceId = params['InstanceId']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
           @GroupBy = params['GroupBy']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
           unless params['OrderBy'].nil?
             @OrderBy = OrderBy.new
             @OrderBy.deserialize(params['OrderBy'])
           end
-          @InstanceId = params['InstanceId']
           @Limit = params['Limit']
-          @StartTime = params['StartTime']
           @Offset = params['Offset']
-          @EndTime = params['EndTime']
         end
       end
 
@@ -1087,27 +1113,27 @@ module TencentCloud
       class DescribeTagValuesRequest < TencentCloud::Common::AbstractModel
         # @param TagKey: 维度名
         # @type TagKey: String
-        # @param InstanceId: 业务系统ID
+        # @param InstanceId: 业务系统 ID
         # @type InstanceId: String
-        # @param EndTime: 结束时间
-        # @type EndTime: Integer
         # @param Filters: 过滤条件
         # @type Filters: Array
-        # @param StartTime: 开始时间
+        # @param StartTime: 开始时间（单位为秒）
         # @type StartTime: Integer
-        # @param OrFilters: Or过滤条件
+        # @param EndTime: 结束时间（单位为秒）
+        # @type EndTime: Integer
+        # @param OrFilters: Or 过滤条件
         # @type OrFilters: Array
         # @param Type: 使用类型
         # @type Type: String
 
-        attr_accessor :TagKey, :InstanceId, :EndTime, :Filters, :StartTime, :OrFilters, :Type
+        attr_accessor :TagKey, :InstanceId, :Filters, :StartTime, :EndTime, :OrFilters, :Type
 
-        def initialize(tagkey=nil, instanceid=nil, endtime=nil, filters=nil, starttime=nil, orfilters=nil, type=nil)
+        def initialize(tagkey=nil, instanceid=nil, filters=nil, starttime=nil, endtime=nil, orfilters=nil, type=nil)
           @TagKey = tagkey
           @InstanceId = instanceid
-          @EndTime = endtime
           @Filters = filters
           @StartTime = starttime
+          @EndTime = endtime
           @OrFilters = orfilters
           @Type = type
         end
@@ -1115,7 +1141,6 @@ module TencentCloud
         def deserialize(params)
           @TagKey = params['TagKey']
           @InstanceId = params['InstanceId']
-          @EndTime = params['EndTime']
           unless params['Filters'].nil?
             @Filters = []
             params['Filters'].each do |i|
@@ -1125,6 +1150,7 @@ module TencentCloud
             end
           end
           @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
           unless params['OrFilters'].nil?
             @OrFilters = []
             params['OrFilters'].each do |i|
@@ -1262,55 +1288,53 @@ module TencentCloud
 
       # ModifyApmInstance请求参数结构体
       class ModifyApmInstanceRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 业务系统ID
+        # @param InstanceId: 业务系统 ID
         # @type InstanceId: String
         # @param Name: 业务系统名
         # @type Name: String
-        # @param Tags: 标签列表
+        # @param Tags: Tag 列表
         # @type Tags: Array
-        # @param Description: 业务系统详情
+        # @param Description: 业务系统描述
         # @type Description: String
-        # @param TraceDuration: Trace数据保存时长
+        # @param TraceDuration: Trace 数据保存时长（单位：天）
         # @type TraceDuration: Integer
         # @param OpenBilling: 是否开启计费
         # @type OpenBilling: Boolean
         # @param SpanDailyCounters: 业务系统上报额度
         # @type SpanDailyCounters: Integer
-        # @param ErrRateThreshold: 错误率阈值
+        # @param ErrRateThreshold: 错误率警示线，当应用的平均错误率超出该阈值时，系统会给出异常提示。
         # @type ErrRateThreshold: Integer
-        # @param SampleRate: 采样率
+        # @param SampleRate: 采样率（单位：%）
         # @type SampleRate: Integer
-        # @param ErrorSample: 是否开启错误采样 0 关 1 开
+        # @param ErrorSample: 是否开启错误采样（0=关, 1=开）
         # @type ErrorSample: Integer
-        # @param SlowRequestSavedThreshold: 慢请求阈值
+        # @param SlowRequestSavedThreshold: 采样慢调用保存阈值（单位：ms）
         # @type SlowRequestSavedThreshold: Integer
-        # @param IsRelatedLog: 是否开启日志功能 0 关 1 开
+        # @param IsRelatedLog: 是否开启日志功能（0=关, 1=开）
         # @type IsRelatedLog: Integer
-        # @param LogRegion: 日志地域
+        # @param LogRegion: 日志地域，开启日志功能后才会生效
         # @type LogRegion: String
-        # @param LogTopicID: CLS日志主题ID | ES 索引名
+        # @param LogTopicID: CLS 日志主题 ID，开启日志功能后才会生效
         # @type LogTopicID: String
-        # @param LogSet: CLS日志集 | ES集群ID
+        # @param LogSet: 日志集，开启日志功能后才会生效
         # @type LogSet: String
-        # @param LogSource: CLS | ES
+        # @param LogSource: 日志源，开启日志功能后才会生效
         # @type LogSource: String
         # @param CustomShowTags: 用户自定义展示标签列表
         # @type CustomShowTags: Array
-        # @param PayMode: 修改计费模式
-        # 1为预付费
-        # 0为按量付费
+        # @param PayMode: 修改计费模式（1为预付费，0为按量付费）
         # @type PayMode: Integer
-        # @param ResponseDurationWarningThreshold: 响应时间满意阈值
+        # @param ResponseDurationWarningThreshold: 响应时间警示线
         # @type ResponseDurationWarningThreshold: Integer
-        # @param Free: （0=付费版；1=tsf受限免费版；2=免费版）
+        # @param Free: 是否免费（0=付费版；1=TSF 受限免费版；2=免费版），默认0
         # @type Free: Integer
-        # @param IsRelatedDashboard: 是否关联dashboard： 0 关 1 开
+        # @param IsRelatedDashboard: 是否关联 Dashboard（0=关,1=开）
         # @type IsRelatedDashboard: Integer
-        # @param DashboardTopicID: dashboard ID
+        # @param DashboardTopicID: 关联的 Dashboard ID，开启关联 Dashboard 后才会生效
         # @type DashboardTopicID: String
-        # @param IsSqlInjectionAnalysis: 是否开启SQL注入检测
+        # @param IsSqlInjectionAnalysis: 是否开启 SQL 注入检测（0=关,1=开）
         # @type IsSqlInjectionAnalysis: Integer
-        # @param IsInstrumentationVulnerabilityScan: 是否开启组件漏洞检测
+        # @param IsInstrumentationVulnerabilityScan: 是否开启组件漏洞检测（0=关,1=开）
         # @type IsInstrumentationVulnerabilityScan: Integer
 
         attr_accessor :InstanceId, :Name, :Tags, :Description, :TraceDuration, :OpenBilling, :SpanDailyCounters, :ErrRateThreshold, :SampleRate, :ErrorSample, :SlowRequestSavedThreshold, :IsRelatedLog, :LogRegion, :LogTopicID, :LogSet, :LogSource, :CustomShowTags, :PayMode, :ResponseDurationWarningThreshold, :Free, :IsRelatedDashboard, :DashboardTopicID, :IsSqlInjectionAnalysis, :IsInstrumentationVulnerabilityScan
@@ -1445,11 +1469,11 @@ module TencentCloud
         end
       end
 
-      # sql排序字段
+      # 排序字段
       class OrderBy < TencentCloud::Common::AbstractModel
-        # @param Key: 需要排序的字段
+        # @param Key: 需要排序的字段，现支持 startTIme, endTime, duration
         # @type Key: String
-        # @param Value: 顺序排序/倒序排序
+        # @param Value: asc 顺序排序 / desc 倒序排序
         # @type Value: String
 
         attr_accessor :Key, :Value
@@ -1469,23 +1493,23 @@ module TencentCloud
       class QueryMetricItem < TencentCloud::Common::AbstractModel
         # @param MetricName: 指标名
         # @type MetricName: String
+        # @param Compares: 同比，现支持 CompareByYesterday (与昨天相比)和CompareByLastWeek (与上周相比)
+        # @type Compares: Array
         # @param Compare: 同比，已弃用，不建议使用
         # @type Compare: String
-        # @param Compares: 同比，支持多种同比方式
-        # @type Compares: Array
 
-        attr_accessor :MetricName, :Compare, :Compares
+        attr_accessor :MetricName, :Compares, :Compare
 
-        def initialize(metricname=nil, compare=nil, compares=nil)
+        def initialize(metricname=nil, compares=nil, compare=nil)
           @MetricName = metricname
-          @Compare = compare
           @Compares = compares
+          @Compare = compare
         end
 
         def deserialize(params)
           @MetricName = params['MetricName']
-          @Compare = params['Compare']
           @Compares = params['Compares']
+          @Compare = params['Compare']
         end
       end
 

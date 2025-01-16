@@ -620,16 +620,19 @@ module TencentCloud
         # @param ClearInstanceTags: 是否清空实例标签列表，非必填，默认为 false。
         # 填 true 代表清空实例标签列表，清空后基于此新创建的云主机将不会绑定列表中的标签。
         # @type ClearInstanceTags: Boolean
+        # @param ClearMetadata: 是否清空 MetaData，非必填，默认为 false。填 true 代表清空 MetaData，清空后基于此新创建的云主机将不会关联自定义的 Metadata。
+        # @type ClearMetadata: Boolean
 
-        attr_accessor :LaunchConfigurationId, :ClearDataDisks, :ClearHostNameSettings, :ClearInstanceNameSettings, :ClearDisasterRecoverGroupIds, :ClearInstanceTags
+        attr_accessor :LaunchConfigurationId, :ClearDataDisks, :ClearHostNameSettings, :ClearInstanceNameSettings, :ClearDisasterRecoverGroupIds, :ClearInstanceTags, :ClearMetadata
 
-        def initialize(launchconfigurationid=nil, cleardatadisks=nil, clearhostnamesettings=nil, clearinstancenamesettings=nil, cleardisasterrecovergroupids=nil, clearinstancetags=nil)
+        def initialize(launchconfigurationid=nil, cleardatadisks=nil, clearhostnamesettings=nil, clearinstancenamesettings=nil, cleardisasterrecovergroupids=nil, clearinstancetags=nil, clearmetadata=nil)
           @LaunchConfigurationId = launchconfigurationid
           @ClearDataDisks = cleardatadisks
           @ClearHostNameSettings = clearhostnamesettings
           @ClearInstanceNameSettings = clearinstancenamesettings
           @ClearDisasterRecoverGroupIds = cleardisasterrecovergroupids
           @ClearInstanceTags = clearinstancetags
+          @ClearMetadata = clearmetadata
         end
 
         def deserialize(params)
@@ -639,6 +642,7 @@ module TencentCloud
           @ClearInstanceNameSettings = params['ClearInstanceNameSettings']
           @ClearDisasterRecoverGroupIds = params['ClearDisasterRecoverGroupIds']
           @ClearInstanceTags = params['ClearInstanceTags']
+          @ClearMetadata = params['ClearMetadata']
         end
       end
 
@@ -1011,10 +1015,12 @@ module TencentCloud
         # @type ImageFamily: String
         # @param DedicatedClusterId: 本地专用集群ID。
         # @type DedicatedClusterId: String
+        # @param Metadata: 自定义metadata。
+        # @type Metadata: :class:`Tencentcloud::As.v20180419.models.Metadata`
 
-        attr_accessor :LaunchConfigurationName, :ImageId, :ProjectId, :InstanceType, :SystemDisk, :DataDisks, :InternetAccessible, :LoginSettings, :SecurityGroupIds, :EnhancedService, :UserData, :InstanceChargeType, :InstanceMarketOptions, :InstanceTypes, :CamRoleName, :InstanceTypesCheckPolicy, :InstanceTags, :Tags, :HostNameSettings, :InstanceNameSettings, :InstanceChargePrepaid, :DiskTypePolicy, :HpcClusterId, :IPv6InternetAccessible, :DisasterRecoverGroupIds, :ImageFamily, :DedicatedClusterId
+        attr_accessor :LaunchConfigurationName, :ImageId, :ProjectId, :InstanceType, :SystemDisk, :DataDisks, :InternetAccessible, :LoginSettings, :SecurityGroupIds, :EnhancedService, :UserData, :InstanceChargeType, :InstanceMarketOptions, :InstanceTypes, :CamRoleName, :InstanceTypesCheckPolicy, :InstanceTags, :Tags, :HostNameSettings, :InstanceNameSettings, :InstanceChargePrepaid, :DiskTypePolicy, :HpcClusterId, :IPv6InternetAccessible, :DisasterRecoverGroupIds, :ImageFamily, :DedicatedClusterId, :Metadata
 
-        def initialize(launchconfigurationname=nil, imageid=nil, projectid=nil, instancetype=nil, systemdisk=nil, datadisks=nil, internetaccessible=nil, loginsettings=nil, securitygroupids=nil, enhancedservice=nil, userdata=nil, instancechargetype=nil, instancemarketoptions=nil, instancetypes=nil, camrolename=nil, instancetypescheckpolicy=nil, instancetags=nil, tags=nil, hostnamesettings=nil, instancenamesettings=nil, instancechargeprepaid=nil, disktypepolicy=nil, hpcclusterid=nil, ipv6internetaccessible=nil, disasterrecovergroupids=nil, imagefamily=nil, dedicatedclusterid=nil)
+        def initialize(launchconfigurationname=nil, imageid=nil, projectid=nil, instancetype=nil, systemdisk=nil, datadisks=nil, internetaccessible=nil, loginsettings=nil, securitygroupids=nil, enhancedservice=nil, userdata=nil, instancechargetype=nil, instancemarketoptions=nil, instancetypes=nil, camrolename=nil, instancetypescheckpolicy=nil, instancetags=nil, tags=nil, hostnamesettings=nil, instancenamesettings=nil, instancechargeprepaid=nil, disktypepolicy=nil, hpcclusterid=nil, ipv6internetaccessible=nil, disasterrecovergroupids=nil, imagefamily=nil, dedicatedclusterid=nil, metadata=nil)
           @LaunchConfigurationName = launchconfigurationname
           @ImageId = imageid
           @ProjectId = projectid
@@ -1042,6 +1048,7 @@ module TencentCloud
           @DisasterRecoverGroupIds = disasterrecovergroupids
           @ImageFamily = imagefamily
           @DedicatedClusterId = dedicatedclusterid
+          @Metadata = metadata
         end
 
         def deserialize(params)
@@ -1120,6 +1127,10 @@ module TencentCloud
           @DisasterRecoverGroupIds = params['DisasterRecoverGroupIds']
           @ImageFamily = params['ImageFamily']
           @DedicatedClusterId = params['DedicatedClusterId']
+          unless params['Metadata'].nil?
+            @Metadata = Metadata.new
+            @Metadata.deserialize(params['Metadata'])
+          end
         end
       end
 
@@ -3642,6 +3653,49 @@ module TencentCloud
         end
       end
 
+      # 自定义 Metadata
+      class Metadata < TencentCloud::Common::AbstractModel
+        # @param Items: 自定义 Metadata 键值对列表
+        # @type Items: Array
+
+        attr_accessor :Items
+
+        def initialize(items=nil)
+          @Items = items
+        end
+
+        def deserialize(params)
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              metadataitem_tmp = MetadataItem.new
+              metadataitem_tmp.deserialize(i)
+              @Items << metadataitem_tmp
+            end
+          end
+        end
+      end
+
+      # 自定义 Metadata 的一组键值对信息
+      class MetadataItem < TencentCloud::Common::AbstractModel
+        # @param Key: 自定义 MetaData 键
+        # @type Key: String
+        # @param Value: 自定义 MetaData 值
+        # @type Value: String
+
+        attr_accessor :Key, :Value
+
+        def initialize(key=nil, value=nil)
+          @Key = key
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Value = params['Value']
+        end
+      end
+
       # 弹性伸缩告警指标
       class MetricAlarm < TencentCloud::Common::AbstractModel
         # @param ComparisonOperator: 比较运算符，可选值：<br><li>GREATER_THAN：大于</li><li>GREATER_THAN_OR_EQUAL_TO：大于或等于</li><li>LESS_THAN：小于</li><li> LESS_THAN_OR_EQUAL_TO：小于或等于</li><li> EQUAL_TO：等于</li> <li>NOT_EQUAL_TO：不等于</li>
@@ -3958,10 +4012,12 @@ module TencentCloud
         # @type ImageFamily: String
         # @param DedicatedClusterId: 本地专用集群ID。
         # @type DedicatedClusterId: String
+        # @param Metadata: 自定义metadata。
+        # @type Metadata: :class:`Tencentcloud::As.v20180419.models.Metadata`
 
-        attr_accessor :LaunchConfigurationId, :ImageId, :InstanceTypes, :InstanceTypesCheckPolicy, :LaunchConfigurationName, :UserData, :SecurityGroupIds, :InternetAccessible, :InstanceChargeType, :InstanceChargePrepaid, :InstanceMarketOptions, :DiskTypePolicy, :SystemDisk, :DataDisks, :HostNameSettings, :InstanceNameSettings, :EnhancedService, :CamRoleName, :HpcClusterId, :IPv6InternetAccessible, :DisasterRecoverGroupIds, :LoginSettings, :InstanceTags, :ImageFamily, :DedicatedClusterId
+        attr_accessor :LaunchConfigurationId, :ImageId, :InstanceTypes, :InstanceTypesCheckPolicy, :LaunchConfigurationName, :UserData, :SecurityGroupIds, :InternetAccessible, :InstanceChargeType, :InstanceChargePrepaid, :InstanceMarketOptions, :DiskTypePolicy, :SystemDisk, :DataDisks, :HostNameSettings, :InstanceNameSettings, :EnhancedService, :CamRoleName, :HpcClusterId, :IPv6InternetAccessible, :DisasterRecoverGroupIds, :LoginSettings, :InstanceTags, :ImageFamily, :DedicatedClusterId, :Metadata
 
-        def initialize(launchconfigurationid=nil, imageid=nil, instancetypes=nil, instancetypescheckpolicy=nil, launchconfigurationname=nil, userdata=nil, securitygroupids=nil, internetaccessible=nil, instancechargetype=nil, instancechargeprepaid=nil, instancemarketoptions=nil, disktypepolicy=nil, systemdisk=nil, datadisks=nil, hostnamesettings=nil, instancenamesettings=nil, enhancedservice=nil, camrolename=nil, hpcclusterid=nil, ipv6internetaccessible=nil, disasterrecovergroupids=nil, loginsettings=nil, instancetags=nil, imagefamily=nil, dedicatedclusterid=nil)
+        def initialize(launchconfigurationid=nil, imageid=nil, instancetypes=nil, instancetypescheckpolicy=nil, launchconfigurationname=nil, userdata=nil, securitygroupids=nil, internetaccessible=nil, instancechargetype=nil, instancechargeprepaid=nil, instancemarketoptions=nil, disktypepolicy=nil, systemdisk=nil, datadisks=nil, hostnamesettings=nil, instancenamesettings=nil, enhancedservice=nil, camrolename=nil, hpcclusterid=nil, ipv6internetaccessible=nil, disasterrecovergroupids=nil, loginsettings=nil, instancetags=nil, imagefamily=nil, dedicatedclusterid=nil, metadata=nil)
           @LaunchConfigurationId = launchconfigurationid
           @ImageId = imageid
           @InstanceTypes = instancetypes
@@ -3987,6 +4043,7 @@ module TencentCloud
           @InstanceTags = instancetags
           @ImageFamily = imagefamily
           @DedicatedClusterId = dedicatedclusterid
+          @Metadata = metadata
         end
 
         def deserialize(params)
@@ -4056,6 +4113,10 @@ module TencentCloud
           end
           @ImageFamily = params['ImageFamily']
           @DedicatedClusterId = params['DedicatedClusterId']
+          unless params['Metadata'].nil?
+            @Metadata = Metadata.new
+            @Metadata.deserialize(params['Metadata'])
+          end
         end
       end
 

@@ -4566,16 +4566,28 @@ module TencentCloud
 
       # RecoverBackUpJob返回参数结构体
       class RecoverBackUpJobResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 恢复任务总数量
+        # @type TotalCount: Integer
+        # @param DuplicateTables: 重复的表名
+        # @type DuplicateTables: Array
+        # @param ErrorMsg: 错误信息
+        # @type ErrorMsg: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :TotalCount, :DuplicateTables, :ErrorMsg, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(totalcount=nil, duplicatetables=nil, errormsg=nil, requestid=nil)
+          @TotalCount = totalcount
+          @DuplicateTables = duplicatetables
+          @ErrorMsg = errormsg
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @TotalCount = params['TotalCount']
+          @DuplicateTables = params['DuplicateTables']
+          @ErrorMsg = params['ErrorMsg']
           @RequestId = params['RequestId']
         end
       end
@@ -4676,15 +4688,12 @@ module TencentCloud
         # @param RegionId: 地域唯一标记
         # @type RegionId: Integer
         # @param Zones: 地域下所有可用区列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Zones: Array
         # @param Count: 该地域下集群数目
         # @type Count: Integer
         # @param IsInternationalSite: 0代表是国际站 1代表不是
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsInternationalSite: Integer
         # @param Bucket: 桶
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Bucket: String
 
         attr_accessor :Name, :Desc, :RegionId, :Zones, :Count, :IsInternationalSite, :Bucket
@@ -4780,22 +4789,16 @@ module TencentCloud
         # @param Type: 分类标记，STANDARD/BIGDATA/HIGHIO分别表示标准型/大数据型/高IO
         # @type Type: String
         # @param SystemDisk: 系统盘描述信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SystemDisk: :class:`Tencentcloud::Cdwdoris.v20211228.models.DiskSpec`
         # @param DataDisk: 数据盘描述信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DataDisk: :class:`Tencentcloud::Cdwdoris.v20211228.models.DiskSpec`
         # @param MaxNodeSize: 最大节点数目限制
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaxNodeSize: Integer
         # @param Available: 是否可用，false代表售罄
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Available: Boolean
         # @param ComputeSpecDesc: 规格描述信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ComputeSpecDesc: String
         # @param InstanceQuota: cvm库存
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceQuota: Integer
 
         attr_accessor :Name, :Cpu, :Mem, :Type, :SystemDisk, :DataDisk, :MaxNodeSize, :Available, :ComputeSpecDesc, :InstanceQuota
@@ -4982,10 +4985,8 @@ module TencentCloud
         # @param ReserveDynamicPartitionEnable: 是否保持源表中的动态分区
         # @type ReserveDynamicPartitionEnable: Boolean
         # @param BackupJobId: 备份实例id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BackupJobId: Integer
         # @param TaskId: 实例对应snapshot的id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskId: Integer
 
         attr_accessor :JobId, :Label, :Timestamp, :DbName, :State, :AllowLoad, :ReplicationNum, :ReplicaAllocation, :RestoreObjects, :CreateTime, :MetaPreparedTime, :SnapshotFinishedTime, :DownloadFinishedTime, :FinishedTime, :UnfinishedTasks, :Progress, :TaskErrMsg, :Status, :Timeout, :ReserveReplica, :ReserveDynamicPartitionEnable, :BackupJobId, :TaskId
@@ -5154,34 +5155,26 @@ module TencentCloud
       # 调度信息
       class ScheduleInfo < TencentCloud::Common::AbstractModel
         # @param EffectivePeriod: 生效周期
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EffectivePeriod: String
         # @param ScheduleType: 调度类型，不传该参数时为立即执行：
         # Day-天
         # Week-周
         # Month-月
         # Once-单次
-
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScheduleType: String
         # @param ScheduleData: 执行调度的日期。调度类型为周和月时以英文逗号分隔；
         # 调度类型为单次时，该值是个日期
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScheduleData: String
         # @param ScheduleHour: 执行时间：时
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScheduleHour: Integer
         # @param ScheduleMin: 执行时间：分
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScheduleMin: Integer
         # @param BackupScope: 备份粒度：
         # All-全量
         # Database-按库
         # Table-按表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BackupScope: String
         # @param BackupDatabase: 备份库：如果是按库备份，则需要该字段，库之间用英文逗号分割
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BackupDatabase: String
 
         attr_accessor :EffectivePeriod, :ScheduleType, :ScheduleData, :ScheduleHour, :ScheduleMin, :BackupScope, :BackupDatabase
@@ -5362,7 +5355,6 @@ module TencentCloud
       # UpdateCoolDown返回参数结构体
       class UpdateCoolDownResponse < TencentCloud::Common::AbstractModel
         # @param ErrorMsg: 错误信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrorMsg: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5447,10 +5439,8 @@ module TencentCloud
       # 用户绑定资源组信息
       class UserWorkloadGroup < TencentCloud::Common::AbstractModel
         # @param UserName: test
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UserName: String
         # @param WorkloadGroupName: normal
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WorkloadGroupName: String
 
         attr_accessor :UserName, :WorkloadGroupName
@@ -5469,19 +5459,14 @@ module TencentCloud
       # 资源组相关配置
       class WorkloadGroupConfig < TencentCloud::Common::AbstractModel
         # @param WorkloadGroupName: 资源组名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WorkloadGroupName: String
         # @param CpuShare: CPU权重
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CpuShare: Integer
         # @param MemoryLimit: 内存限制，所有资源组的内存限制值之和应该小于等于100
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MemoryLimit: Integer
         # @param EnableMemoryOverCommit: 是否允许超配分配
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EnableMemoryOverCommit: Boolean
         # @param CpuHardLimit: cpu硬限制
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CpuHardLimit: String
 
         attr_accessor :WorkloadGroupName, :CpuShare, :MemoryLimit, :EnableMemoryOverCommit, :CpuHardLimit
@@ -5512,10 +5497,8 @@ module TencentCloud
         # @param ZoneId: 可用区唯一标记
         # @type ZoneId: Integer
         # @param Encrypt: Encryptid
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Encrypt: Integer
         # @param Main: 是否为主力园区
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Main: Boolean
 
         attr_accessor :Name, :Desc, :ZoneId, :Encrypt, :Main
