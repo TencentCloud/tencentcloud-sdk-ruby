@@ -173,13 +173,10 @@ module TencentCloud
       # 备份实例中关于cos的信息
       class BackupCosInfo < TencentCloud::Common::AbstractModel
         # @param CosBucket: 备份文件所在的cos桶
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CosBucket: String
         # @param CosPath: 备份文件所在的完整cos路径
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CosPath: String
         # @param SnapShotPath: 备份文件名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SnapShotPath: String
 
         attr_accessor :CosBucket, :CosPath, :SnapShotPath
@@ -228,10 +225,8 @@ module TencentCloud
         # @param Timeout: 超时信息
         # @type Timeout: Integer
         # @param BackupJobId: 备份实例id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BackupJobId: Integer
         # @param TaskId: 实例对应snapshoit的id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskId: Integer
 
         attr_accessor :JobId, :SnapshotName, :DbName, :State, :BackupObjects, :CreateTime, :SnapshotFinishedTime, :UploadFinishedTime, :FinishedTime, :UnfinishedTasks, :Progress, :TaskErrMsg, :Status, :Timeout, :BackupJobId, :TaskId
@@ -318,10 +313,8 @@ module TencentCloud
       # 资源组绑定的用户信息，需要username和host信息进行授权
       class BindUser < TencentCloud::Common::AbstractModel
         # @param UserName: 用户名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UserName: String
         # @param Host: 主机信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Host: String
 
         attr_accessor :UserName, :Host
@@ -1881,10 +1874,12 @@ module TencentCloud
         # @type SqlTypes: Array
         # @param Catalogs: catalog名称 （多选）
         # @type Catalogs: Array
+        # @param IsQuery: 是否是查询
+        # @type IsQuery: Array
 
-        attr_accessor :InstanceId, :StartTime, :EndTime, :PageSize, :PageNum, :OrderType, :User, :DbName, :SqlType, :Sql, :Users, :DbNames, :SqlTypes, :Catalogs
+        attr_accessor :InstanceId, :StartTime, :EndTime, :PageSize, :PageNum, :OrderType, :User, :DbName, :SqlType, :Sql, :Users, :DbNames, :SqlTypes, :Catalogs, :IsQuery
 
-        def initialize(instanceid=nil, starttime=nil, endtime=nil, pagesize=nil, pagenum=nil, ordertype=nil, user=nil, dbname=nil, sqltype=nil, sql=nil, users=nil, dbnames=nil, sqltypes=nil, catalogs=nil)
+        def initialize(instanceid=nil, starttime=nil, endtime=nil, pagesize=nil, pagenum=nil, ordertype=nil, user=nil, dbname=nil, sqltype=nil, sql=nil, users=nil, dbnames=nil, sqltypes=nil, catalogs=nil, isquery=nil)
           @InstanceId = instanceid
           @StartTime = starttime
           @EndTime = endtime
@@ -1899,6 +1894,7 @@ module TencentCloud
           @DbNames = dbnames
           @SqlTypes = sqltypes
           @Catalogs = catalogs
+          @IsQuery = isquery
         end
 
         def deserialize(params)
@@ -1916,6 +1912,7 @@ module TencentCloud
           @DbNames = params['DbNames']
           @SqlTypes = params['SqlTypes']
           @Catalogs = params['Catalogs']
+          @IsQuery = params['IsQuery']
         end
       end
 
@@ -2645,10 +2642,14 @@ module TencentCloud
         # @type DbName: Array
         # @param CatalogName: catalog名称
         # @type CatalogName: Array
+        # @param SortField: 排序字段
+        # @type SortField: String
+        # @param SortOrder: 排序方式
+        # @type SortOrder: String
 
-        attr_accessor :InstanceId, :QueryDurationMs, :StartTime, :EndTime, :DurationMs, :Sql, :ReadRows, :ResultBytes, :MemoryUsage, :IsQuery, :DbName, :CatalogName
+        attr_accessor :InstanceId, :QueryDurationMs, :StartTime, :EndTime, :DurationMs, :Sql, :ReadRows, :ResultBytes, :MemoryUsage, :IsQuery, :DbName, :CatalogName, :SortField, :SortOrder
 
-        def initialize(instanceid=nil, querydurationms=nil, starttime=nil, endtime=nil, durationms=nil, sql=nil, readrows=nil, resultbytes=nil, memoryusage=nil, isquery=nil, dbname=nil, catalogname=nil)
+        def initialize(instanceid=nil, querydurationms=nil, starttime=nil, endtime=nil, durationms=nil, sql=nil, readrows=nil, resultbytes=nil, memoryusage=nil, isquery=nil, dbname=nil, catalogname=nil, sortfield=nil, sortorder=nil)
           @InstanceId = instanceid
           @QueryDurationMs = querydurationms
           @StartTime = starttime
@@ -2661,6 +2662,8 @@ module TencentCloud
           @IsQuery = isquery
           @DbName = dbname
           @CatalogName = catalogname
+          @SortField = sortfield
+          @SortOrder = sortorder
         end
 
         def deserialize(params)
@@ -2676,6 +2679,8 @@ module TencentCloud
           @IsQuery = params['IsQuery']
           @DbName = params['DbName']
           @CatalogName = params['CatalogName']
+          @SortField = params['SortField']
+          @SortOrder = params['SortOrder']
         end
       end
 
@@ -2729,10 +2734,14 @@ module TencentCloud
         # @type ResultBytes: String
         # @param MemoryUsage: MemoryUsage排序字段
         # @type MemoryUsage: String
+        # @param SortField: 排序字段
+        # @type SortField: String
+        # @param SortOrder: 排序方式
+        # @type SortOrder: String
 
-        attr_accessor :InstanceId, :QueryDurationMs, :StartTime, :EndTime, :PageSize, :PageNum, :DurationMs, :DbName, :IsQuery, :CatalogName, :Sql, :ReadRows, :ResultBytes, :MemoryUsage
+        attr_accessor :InstanceId, :QueryDurationMs, :StartTime, :EndTime, :PageSize, :PageNum, :DurationMs, :DbName, :IsQuery, :CatalogName, :Sql, :ReadRows, :ResultBytes, :MemoryUsage, :SortField, :SortOrder
 
-        def initialize(instanceid=nil, querydurationms=nil, starttime=nil, endtime=nil, pagesize=nil, pagenum=nil, durationms=nil, dbname=nil, isquery=nil, catalogname=nil, sql=nil, readrows=nil, resultbytes=nil, memoryusage=nil)
+        def initialize(instanceid=nil, querydurationms=nil, starttime=nil, endtime=nil, pagesize=nil, pagenum=nil, durationms=nil, dbname=nil, isquery=nil, catalogname=nil, sql=nil, readrows=nil, resultbytes=nil, memoryusage=nil, sortfield=nil, sortorder=nil)
           @InstanceId = instanceid
           @QueryDurationMs = querydurationms
           @StartTime = starttime
@@ -2747,6 +2756,8 @@ module TencentCloud
           @ReadRows = readrows
           @ResultBytes = resultbytes
           @MemoryUsage = memoryusage
+          @SortField = sortfield
+          @SortOrder = sortorder
         end
 
         def deserialize(params)
@@ -2764,6 +2775,8 @@ module TencentCloud
           @ReadRows = params['ReadRows']
           @ResultBytes = params['ResultBytes']
           @MemoryUsage = params['MemoryUsage']
+          @SortField = params['SortField']
+          @SortOrder = params['SortOrder']
         end
       end
 
@@ -2774,10 +2787,8 @@ module TencentCloud
         # @param SlowQueryRecords: 记录列表
         # @type SlowQueryRecords: Array
         # @param DBNameList: 所有数据库名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DBNameList: Array
         # @param CatalogNameList: 所有catalog名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CatalogNameList: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

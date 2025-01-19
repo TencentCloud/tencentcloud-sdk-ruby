@@ -6493,7 +6493,7 @@ module TencentCloud
       class CreateInput < TencentCloud::Common::AbstractModel
         # @param InputName: 输入名称，可填大小写、数字和下划线，长度为[1, 32]。
         # @type InputName: String
-        # @param Protocol: 输入的协议，可选[SRT|RTP|RTMP|RTMP_PULL|RTSP_PULL|RIST]。
+        # @param Protocol: 输入的协议，可选[SRT|RTP|RTMP_PUSH|RTMP_PULL|RTSP_PULL|RIST]。
         # @type Protocol: String
         # @param Description: 输入描述，长度为[0, 255]。
         # @type Description: String
@@ -16935,10 +16935,7 @@ module TencentCloud
         # @type SRTSettings: :class:`Tencentcloud::Mps.v20190612.models.CreateInputSRTSettings`
         # @param RTPSettings: RTP的配置信息。
         # @type RTPSettings: :class:`Tencentcloud::Mps.v20190612.models.CreateInputRTPSettings`
-        # @param Protocol: 输入的协议，可选[SRT|RTP|RTMP|RTMP_PULL|RTSP_PULL|RIST]。
-        # 当输出包含RTP时，输入只能是RTP。
-        # 当输出包含RTMP时，输入可以是SRT/RTMP。
-        # 当输出包含SRT时，输入只能是SRT。
+        # @param Protocol: 输入的协议，可选[SRT|RTP|RTMP_PUSH|RTMP_PULL|RTSP_PULL|RIST]。	-
         # @type Protocol: String
         # @param FailOver: 输入的主备开关，可选[OPEN|CLOSE]。
         # @type FailOver: String

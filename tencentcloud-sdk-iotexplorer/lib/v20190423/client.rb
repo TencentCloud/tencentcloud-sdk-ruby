@@ -1255,6 +1255,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 拉取云存事件列表
+
+        # @param request: Request instance for DescribeCloudStorageEventsWithAITasks.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::DescribeCloudStorageEventsWithAITasksRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::DescribeCloudStorageEventsWithAITasksResponse`
+        def DescribeCloudStorageEventsWithAITasks(request)
+          body = send_request('DescribeCloudStorageEventsWithAITasks', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCloudStorageEventsWithAITasksResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 拉取多个云存事件缩略图
 
         # @param request: Request instance for DescribeCloudStorageMultiThumbnail.

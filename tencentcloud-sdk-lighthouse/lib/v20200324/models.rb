@@ -1068,10 +1068,14 @@ module TencentCloud
         # @type Tags: Array
         # @param InitCommand: 创建实例后自动执行的命令。
         # @type InitCommand: :class:`Tencentcloud::Lighthouse.v20200324.models.Command`
+        # @param DomainName: 主域名。
+        # @type DomainName: String
+        # @param Subdomain: 子域名。
+        # @type Subdomain: String
 
-        attr_accessor :BundleId, :BlueprintId, :InstanceChargePrepaid, :InstanceName, :InstanceCount, :Zones, :DryRun, :ClientToken, :LoginConfiguration, :Containers, :AutoVoucher, :FirewallTemplateId, :Tags, :InitCommand
+        attr_accessor :BundleId, :BlueprintId, :InstanceChargePrepaid, :InstanceName, :InstanceCount, :Zones, :DryRun, :ClientToken, :LoginConfiguration, :Containers, :AutoVoucher, :FirewallTemplateId, :Tags, :InitCommand, :DomainName, :Subdomain
 
-        def initialize(bundleid=nil, blueprintid=nil, instancechargeprepaid=nil, instancename=nil, instancecount=nil, zones=nil, dryrun=nil, clienttoken=nil, loginconfiguration=nil, containers=nil, autovoucher=nil, firewalltemplateid=nil, tags=nil, initcommand=nil)
+        def initialize(bundleid=nil, blueprintid=nil, instancechargeprepaid=nil, instancename=nil, instancecount=nil, zones=nil, dryrun=nil, clienttoken=nil, loginconfiguration=nil, containers=nil, autovoucher=nil, firewalltemplateid=nil, tags=nil, initcommand=nil, domainname=nil, subdomain=nil)
           @BundleId = bundleid
           @BlueprintId = blueprintid
           @InstanceChargePrepaid = instancechargeprepaid
@@ -1086,6 +1090,8 @@ module TencentCloud
           @FirewallTemplateId = firewalltemplateid
           @Tags = tags
           @InitCommand = initcommand
+          @DomainName = domainname
+          @Subdomain = subdomain
         end
 
         def deserialize(params)
@@ -1126,6 +1132,8 @@ module TencentCloud
             @InitCommand = Command.new
             @InitCommand.deserialize(params['InitCommand'])
           end
+          @DomainName = params['DomainName']
+          @Subdomain = params['Subdomain']
         end
       end
 

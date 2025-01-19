@@ -728,6 +728,7 @@ module TencentCloud
 
         # - `RealtimeObjectDetect`：目标检测
         # - `Highlight`：视频浓缩
+        # - `VideoToText`：视频语义理解
         # @type ServiceType: String
         # @param StartTime: 对应云存视频的起始时间
         # @type StartTime: Integer
@@ -816,6 +817,53 @@ module TencentCloud
           @EventId = params['EventId']
           @UploadStatus = params['UploadStatus']
           @Data = params['Data']
+        end
+      end
+
+      # 云存事件及其关联的云存 AI 任务
+      class CloudStorageEventWithAITasks < TencentCloud::Common::AbstractModel
+        # @param StartTime: 事件起始时间（Unix 时间戳，秒级
+        # @type StartTime: Integer
+        # @param EndTime: 事件结束时间（Unix 时间戳，秒级
+        # @type EndTime: Integer
+        # @param Thumbnail: 事件缩略图
+        # @type Thumbnail: String
+        # @param EventId: 事件ID
+        # @type EventId: String
+        # @param UploadStatus: 事件录像上传状态，Finished: 全部上传成功 Partial: 部分上传成功 Failed: 上传失败
+        # @type UploadStatus: String
+        # @param Data: 事件自定义数据
+        # @type Data: String
+        # @param AITasks: 事件关联的云存 AI 任务列表
+        # @type AITasks: Array
+
+        attr_accessor :StartTime, :EndTime, :Thumbnail, :EventId, :UploadStatus, :Data, :AITasks
+
+        def initialize(starttime=nil, endtime=nil, thumbnail=nil, eventid=nil, uploadstatus=nil, data=nil, aitasks=nil)
+          @StartTime = starttime
+          @EndTime = endtime
+          @Thumbnail = thumbnail
+          @EventId = eventid
+          @UploadStatus = uploadstatus
+          @Data = data
+          @AITasks = aitasks
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Thumbnail = params['Thumbnail']
+          @EventId = params['EventId']
+          @UploadStatus = params['UploadStatus']
+          @Data = params['Data']
+          unless params['AITasks'].nil?
+            @AITasks = []
+            params['AITasks'].each do |i|
+              cloudstorageaiservicetask_tmp = CloudStorageAIServiceTask.new
+              cloudstorageaiservicetask_tmp.deserialize(i)
+              @AITasks << cloudstorageaiservicetask_tmp
+            end
+          end
         end
       end
 
@@ -2895,6 +2943,7 @@ module TencentCloud
         # @param ServiceType: 云存 AI 服务类型。可选值：
         # - `RealtimeObjectDetect`：目标检测
         # - `Highlight`：视频浓缩
+        # - `VideoToText`：视频语义理解
         # @type ServiceType: String
         # @param Limit: 分页拉取数量
         # @type Limit: Integer
@@ -3097,6 +3146,105 @@ module TencentCloud
               cloudstorageevent_tmp = CloudStorageEvent.new
               cloudstorageevent_tmp.deserialize(i)
               @Events << cloudstorageevent_tmp
+            end
+          end
+          @Context = params['Context']
+          @Listover = params['Listover']
+          @Total = params['Total']
+          @VideoURL = params['VideoURL']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCloudStorageEventsWithAITasks请求参数结构体
+      class DescribeCloudStorageEventsWithAITasksRequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: 产品ID
+        # @type ProductId: String
+        # @param DeviceName: 设备名称
+        # @type DeviceName: String
+        # @param ServiceTypes: 事件关联的视频 AI 分析服务类型（支持多选）。可选值：
+
+        # - `RealtimeObjectDetect`：目标检测
+        # - `Highlight`：视频浓缩
+        # - `VideoToText`：视频语义理解
+        # @type ServiceTypes: Array
+        # @param StartTime: 起始时间（Unix 时间戳，秒级）, 为0 表示 当前时间 - 24h
+        # @type StartTime: Integer
+        # @param EndTime: 结束时间（Unix 时间戳，秒级）, 为0 表示当前时间
+        # @type EndTime: Integer
+        # @param Context: 请求上下文, 用作查询游标
+        # @type Context: String
+        # @param Size: 查询数据项目的最大数量, 默认为10。假设传Size=10，返回的实际事件数量为N，则 5 <= N <= 10。
+        # @type Size: Integer
+        # @param EventId: 事件标识符，可以用来指定查询特定的事件，如果不指定，则查询所有事件。
+        # @type EventId: String
+        # @param UserId: 用户ID
+        # @type UserId: String
+        # @param ChannelId: 通道ID 非NVR设备则不填 NVR设备则必填 默认为无
+        # @type ChannelId: Integer
+
+        attr_accessor :ProductId, :DeviceName, :ServiceTypes, :StartTime, :EndTime, :Context, :Size, :EventId, :UserId, :ChannelId
+
+        def initialize(productid=nil, devicename=nil, servicetypes=nil, starttime=nil, endtime=nil, context=nil, size=nil, eventid=nil, userid=nil, channelid=nil)
+          @ProductId = productid
+          @DeviceName = devicename
+          @ServiceTypes = servicetypes
+          @StartTime = starttime
+          @EndTime = endtime
+          @Context = context
+          @Size = size
+          @EventId = eventid
+          @UserId = userid
+          @ChannelId = channelid
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @DeviceName = params['DeviceName']
+          @ServiceTypes = params['ServiceTypes']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Context = params['Context']
+          @Size = params['Size']
+          @EventId = params['EventId']
+          @UserId = params['UserId']
+          @ChannelId = params['ChannelId']
+        end
+      end
+
+      # DescribeCloudStorageEventsWithAITasks返回参数结构体
+      class DescribeCloudStorageEventsWithAITasksResponse < TencentCloud::Common::AbstractModel
+        # @param Events: 云存事件列表
+        # @type Events: Array
+        # @param Context: 请求上下文, 用作查询游标
+        # @type Context: String
+        # @param Listover: 拉取结果是否已经结束
+        # @type Listover: Boolean
+        # @param Total: 内部结果数量，并不等同于事件总数。
+        # @type Total: Integer
+        # @param VideoURL: 视频播放URL
+        # @type VideoURL: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Events, :Context, :Listover, :Total, :VideoURL, :RequestId
+
+        def initialize(events=nil, context=nil, listover=nil, total=nil, videourl=nil, requestid=nil)
+          @Events = events
+          @Context = context
+          @Listover = listover
+          @Total = total
+          @VideoURL = videourl
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Events'].nil?
+            @Events = []
+            params['Events'].each do |i|
+              cloudstorageeventwithaitasks_tmp = CloudStorageEventWithAITasks.new
+              cloudstorageeventwithaitasks_tmp.deserialize(i)
+              @Events << cloudstorageeventwithaitasks_tmp
             end
           end
           @Context = params['Context']

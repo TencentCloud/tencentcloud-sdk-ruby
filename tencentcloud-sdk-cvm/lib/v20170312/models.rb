@@ -868,15 +868,18 @@ module TencentCloud
         # @type HpcClusterType: String
         # @param HpcClusterBusinessId: 高性能计算集群对应的业务场景标识，当前只支持CDC。
         # @type HpcClusterBusinessId: String
+        # @param TagSpecification: 标签描述列表。通过指定该参数可以同时绑定标签到相应的HPC高性能集群。
+        # @type TagSpecification: Array
 
-        attr_accessor :Zone, :Name, :Remark, :HpcClusterType, :HpcClusterBusinessId
+        attr_accessor :Zone, :Name, :Remark, :HpcClusterType, :HpcClusterBusinessId, :TagSpecification
 
-        def initialize(zone=nil, name=nil, remark=nil, hpcclustertype=nil, hpcclusterbusinessid=nil)
+        def initialize(zone=nil, name=nil, remark=nil, hpcclustertype=nil, hpcclusterbusinessid=nil, tagspecification=nil)
           @Zone = zone
           @Name = name
           @Remark = remark
           @HpcClusterType = hpcclustertype
           @HpcClusterBusinessId = hpcclusterbusinessid
+          @TagSpecification = tagspecification
         end
 
         def deserialize(params)
@@ -885,6 +888,14 @@ module TencentCloud
           @Remark = params['Remark']
           @HpcClusterType = params['HpcClusterType']
           @HpcClusterBusinessId = params['HpcClusterBusinessId']
+          unless params['TagSpecification'].nil?
+            @TagSpecification = []
+            params['TagSpecification'].each do |i|
+              tagspecification_tmp = TagSpecification.new
+              tagspecification_tmp.deserialize(i)
+              @TagSpecification << tagspecification_tmp
+            end
+          end
         end
       end
 
@@ -2123,10 +2134,14 @@ module TencentCloud
         # @type HpcClusterType: String
         # @param HpcClusterBusinessId: 高性能计算集群对应的业务场景标识，当前只支持CDC。
         # @type HpcClusterBusinessId: String
+        # @param InstanceType: 高性能计算集群实例类型
+        # @type InstanceType: String
+        # @param Filters: <li><strong>tag-key</strong></li> <p style="padding-left: 30px;">按照【<strong>标签键</strong>】进行过滤。</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p> <li><strong>tag-value</strong></li> <p style="padding-left: 30px;">按照【<strong>标签值</strong>】进行过滤。</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p> <li><strong>tag:tag-key</strong></li> <p style="padding-left: 30px;">按照【<strong>标签键值对</strong>】进行过滤。tag-key使用具体的标签键进行替换。</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p> 每次请求的`Filters`的上限为10，`Filter.Values`的上限为5。
+        # @type Filters: Array
 
-        attr_accessor :HpcClusterIds, :Name, :Zone, :Offset, :Limit, :HpcClusterType, :HpcClusterBusinessId
+        attr_accessor :HpcClusterIds, :Name, :Zone, :Offset, :Limit, :HpcClusterType, :HpcClusterBusinessId, :InstanceType, :Filters
 
-        def initialize(hpcclusterids=nil, name=nil, zone=nil, offset=nil, limit=nil, hpcclustertype=nil, hpcclusterbusinessid=nil)
+        def initialize(hpcclusterids=nil, name=nil, zone=nil, offset=nil, limit=nil, hpcclustertype=nil, hpcclusterbusinessid=nil, instancetype=nil, filters=nil)
           @HpcClusterIds = hpcclusterids
           @Name = name
           @Zone = zone
@@ -2134,6 +2149,8 @@ module TencentCloud
           @Limit = limit
           @HpcClusterType = hpcclustertype
           @HpcClusterBusinessId = hpcclusterbusinessid
+          @InstanceType = instancetype
+          @Filters = filters
         end
 
         def deserialize(params)
@@ -2144,6 +2161,15 @@ module TencentCloud
           @Limit = params['Limit']
           @HpcClusterType = params['HpcClusterType']
           @HpcClusterBusinessId = params['HpcClusterBusinessId']
+          @InstanceType = params['InstanceType']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
         end
       end
 
@@ -4012,10 +4038,14 @@ module TencentCloud
         # @param HpcClusterBusinessId: 高性能计算集群对应的业务场景标识，当前只支持CDC。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HpcClusterBusinessId: String
+        # @param HpcClusterNetMode: 高性能计算集群网络模式
+        # @type HpcClusterNetMode: Integer
+        # @param Tags: 高性能计算集群关联的标签列表
+        # @type Tags: Array
 
-        attr_accessor :HpcClusterId, :Name, :Remark, :CvmQuotaTotal, :Zone, :CurrentNum, :CreateTime, :InstanceIds, :HpcClusterType, :HpcClusterBusinessId
+        attr_accessor :HpcClusterId, :Name, :Remark, :CvmQuotaTotal, :Zone, :CurrentNum, :CreateTime, :InstanceIds, :HpcClusterType, :HpcClusterBusinessId, :HpcClusterNetMode, :Tags
 
-        def initialize(hpcclusterid=nil, name=nil, remark=nil, cvmquotatotal=nil, zone=nil, currentnum=nil, createtime=nil, instanceids=nil, hpcclustertype=nil, hpcclusterbusinessid=nil)
+        def initialize(hpcclusterid=nil, name=nil, remark=nil, cvmquotatotal=nil, zone=nil, currentnum=nil, createtime=nil, instanceids=nil, hpcclustertype=nil, hpcclusterbusinessid=nil, hpcclusternetmode=nil, tags=nil)
           @HpcClusterId = hpcclusterid
           @Name = name
           @Remark = remark
@@ -4026,6 +4056,8 @@ module TencentCloud
           @InstanceIds = instanceids
           @HpcClusterType = hpcclustertype
           @HpcClusterBusinessId = hpcclusterbusinessid
+          @HpcClusterNetMode = hpcclusternetmode
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -4039,6 +4071,15 @@ module TencentCloud
           @InstanceIds = params['InstanceIds']
           @HpcClusterType = params['HpcClusterType']
           @HpcClusterBusinessId = params['HpcClusterBusinessId']
+          @HpcClusterNetMode = params['HpcClusterNetMode']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
         end
       end
 

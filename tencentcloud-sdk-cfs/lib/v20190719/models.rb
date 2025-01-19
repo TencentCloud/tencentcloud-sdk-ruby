@@ -316,6 +316,42 @@ module TencentCloud
         end
       end
 
+      # CreateAccessCert请求参数结构体
+      class CreateAccessCertRequest < TencentCloud::Common::AbstractModel
+        # @param CertDesc: 证书描述
+        # @type CertDesc: String
+
+        attr_accessor :CertDesc
+
+        def initialize(certdesc=nil)
+          @CertDesc = certdesc
+        end
+
+        def deserialize(params)
+          @CertDesc = params['CertDesc']
+        end
+      end
+
+      # CreateAccessCert返回参数结构体
+      class CreateAccessCertResponse < TencentCloud::Common::AbstractModel
+        # @param CertId: 凭证唯一标识
+        # @type CertId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :CertId, :RequestId
+
+        def initialize(certid=nil, requestid=nil)
+          @CertId = certid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @CertId = params['CertId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateAutoSnapshotPolicy请求参数结构体
       class CreateAutoSnapshotPolicyRequest < TencentCloud::Common::AbstractModel
         # @param Hour: 快照重复时间点,0-23

@@ -53,6 +53,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建用于访问文件系统的凭证
+
+        # @param request: Request instance for CreateAccessCert.
+        # @type request: :class:`Tencentcloud::cfs::V20190719::CreateAccessCertRequest`
+        # @rtype: :class:`Tencentcloud::cfs::V20190719::CreateAccessCertResponse`
+        def CreateAccessCert(request)
+          body = send_request('CreateAccessCert', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateAccessCertResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建定期快照策略
 
         # @param request: Request instance for CreateAutoSnapshotPolicy.

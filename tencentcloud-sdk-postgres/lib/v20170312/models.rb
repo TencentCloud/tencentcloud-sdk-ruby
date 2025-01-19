@@ -4767,12 +4767,12 @@ module TencentCloud
         # @param DBInstanceIdSet: 实例ID列表。注意：当前已不支持同时解隔离多个实例，这里只能传入单个实例ID。
         # @type DBInstanceIdSet: Array
         # @param Period: 购买时长，单位：月。
-        # <li>预付费：支持1,2,3,4,5,6,7,8,9,10,11,12,24,36
-        # <li>后付费：只支持1
+        # <li>预付费：支持1,2,3,4,5,6,7,8,9,10,11,12,24,36</li>
+        # <li>后付费：只支持1</li>
         # @type Period: Integer
         # @param AutoVoucher: 是否使用代金券：
-        # <li>true：使用
-        # <li>false：不使用
+        # <li>true：使用</li>
+        # <li>false：不使用</li>
         # 默认值：false
         # @type AutoVoucher: Boolean
         # @param VoucherIds: 代金券id列表。
@@ -5510,20 +5510,26 @@ module TencentCloud
         # @type MaxBackupStartTime: String
         # @param BaseBackupRetentionPeriod: 实例备份保留时长，取值范围为7-1830，单位是天
         # @type BaseBackupRetentionPeriod: Integer
-        # @param BackupPeriod: 实例备份周期，按照星期维度，格式为小写星期英文单词
+        # @param BackupPeriod: 实例备份周期，若是星期维度，格式为小写星期英文单词；若是按月维度，格式为数字字符，如["1","2"]。
         # @type BackupPeriod: Array
         # @param LogBackupRetentionPeriod: 实例日志备份保留时长，取值范围为7-1830，单位是天
         # @type LogBackupRetentionPeriod: Integer
+        # @param PlanId: 备份计划ID，用于指明要修改哪个备份计划，不传则是修改默认备份计划。
+        # @type PlanId: String
+        # @param PlanName: 要修改的备份计划名称。
+        # @type PlanName: String
 
-        attr_accessor :DBInstanceId, :MinBackupStartTime, :MaxBackupStartTime, :BaseBackupRetentionPeriod, :BackupPeriod, :LogBackupRetentionPeriod
+        attr_accessor :DBInstanceId, :MinBackupStartTime, :MaxBackupStartTime, :BaseBackupRetentionPeriod, :BackupPeriod, :LogBackupRetentionPeriod, :PlanId, :PlanName
 
-        def initialize(dbinstanceid=nil, minbackupstarttime=nil, maxbackupstarttime=nil, basebackupretentionperiod=nil, backupperiod=nil, logbackupretentionperiod=nil)
+        def initialize(dbinstanceid=nil, minbackupstarttime=nil, maxbackupstarttime=nil, basebackupretentionperiod=nil, backupperiod=nil, logbackupretentionperiod=nil, planid=nil, planname=nil)
           @DBInstanceId = dbinstanceid
           @MinBackupStartTime = minbackupstarttime
           @MaxBackupStartTime = maxbackupstarttime
           @BaseBackupRetentionPeriod = basebackupretentionperiod
           @BackupPeriod = backupperiod
           @LogBackupRetentionPeriod = logbackupretentionperiod
+          @PlanId = planid
+          @PlanName = planname
         end
 
         def deserialize(params)
@@ -5533,6 +5539,8 @@ module TencentCloud
           @BaseBackupRetentionPeriod = params['BaseBackupRetentionPeriod']
           @BackupPeriod = params['BackupPeriod']
           @LogBackupRetentionPeriod = params['LogBackupRetentionPeriod']
+          @PlanId = params['PlanId']
+          @PlanName = params['PlanName']
         end
       end
 
@@ -5597,22 +5605,22 @@ module TencentCloud
         # @param DBInstanceId: 实例ID，形如postgres-6fego161
         # @type DBInstanceId: String
         # @param InstanceChargeType: 实例计费类型，目前支持：
-        # <li>PREPAID：预付费，即包年包月
-        # <li>POSTPAID_BY_HOUR：后付费，即按量计费
+        # <li>PREPAID：预付费，即包年包月</li>
+        # <li>POSTPAID_BY_HOUR：后付费，即按量计费</li>
         # 默认值：PREPAID
         # @type InstanceChargeType: String
         # @param Period: 购买时长，单位：月。
-        # <li>预付费：支持1,2,3,4,5,6,7,8,9,10,11,12,24,36
-        # <li>后付费：只支持1
+        # <li>预付费：支持1,2,3,4,5,6,7,8,9,10,11,12,24,36</li>
+        # <li>后付费：只支持1</li>
         # @type Period: Integer
         # @param AutoRenewFlag: 续费标记：
-        # <li>0：手动续费
-        # <li>1：自动续费
+        # <li>0：手动续费</li>
+        # <li>1：自动续费</li>
         # 默认值：0
         # @type AutoRenewFlag: Integer
         # @param AutoVoucher: 是否自动使用代金券：
-        # <li>0：否
-        # <li>1：是
+        # <li>0：否</li>
+        # <li>1：是</li>
         # 默认值：0
         # @type AutoVoucher: Integer
 
@@ -7131,9 +7139,14 @@ module TencentCloud
       class RenewInstanceRequest < TencentCloud::Common::AbstractModel
         # @param DBInstanceId: 实例ID，形如postgres-6fego161
         # @type DBInstanceId: String
-        # @param Period: 续费多少个月
+        # @param Period: 购买时长，单位：月。
+        # <li>预付费：支持1,2,3,4,5,6,7,8,9,10,11,12,24,36</li>
+        # <li>后付费：只支持1</li>
         # @type Period: Integer
-        # @param AutoVoucher: 是否自动使用代金券,1是,0否，默认不使用
+        # @param AutoVoucher: 是否自动使用代金券：
+        # <li>0：否</li>
+        # <li>1：是</li>
+        # 默认值：0
         # @type AutoVoucher: Integer
         # @param VoucherIds: 代金券ID列表，目前仅支持指定一张代金券
         # @type VoucherIds: Array
@@ -8040,6 +8053,7 @@ module TencentCloud
         # @type SupportedFeatureNames: Array
         # @param Status: 数据库版本状态，包括：
         # AVAILABLE：可用；
+        # UPGRADE_ONLY：不可创建，此版本仅可升级至高版本；
         # DEPRECATED：已弃用。
         # @type Status: String
         # @param AvailableUpgradeTarget: 该数据库版本（DBKernelVersion）可以升级到的版本号列表。其中包含可升级的小版本号和可升级的大版本号（完整内核版本格式示例：v15.1_v1.6）。
