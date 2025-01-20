@@ -4550,6 +4550,46 @@ module TencentCloud
         end
       end
 
+      # DescribeCloudNativeAPIGatewayInfoByIp请求参数结构体
+      class DescribeCloudNativeAPIGatewayInfoByIpRequest < TencentCloud::Common::AbstractModel
+        # @param PublicNetworkIP: 云原生网关的公网ip
+        # @type PublicNetworkIP: String
+
+        attr_accessor :PublicNetworkIP
+
+        def initialize(publicnetworkip=nil)
+          @PublicNetworkIP = publicnetworkip
+        end
+
+        def deserialize(params)
+          @PublicNetworkIP = params['PublicNetworkIP']
+        end
+      end
+
+      # DescribeCloudNativeAPIGatewayInfoByIp返回参数结构体
+      class DescribeCloudNativeAPIGatewayInfoByIpResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 出参
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Tse.v20201207.models.DescribeInstanceInfoByIpResult`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = DescribeInstanceInfoByIpResult.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeCloudNativeAPIGatewayNodes请求参数结构体
       class DescribeCloudNativeAPIGatewayNodesRequest < TencentCloud::Common::AbstractModel
         # @param GatewayId: 云原生API网关实例ID。
@@ -6214,6 +6254,28 @@ module TencentCloud
             end
           end
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 根据公网IP查询云原生网关实例信息出参
+      class DescribeInstanceInfoByIpResult < TencentCloud::Common::AbstractModel
+        # @param GatewayId: 实例id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GatewayId: String
+        # @param GroupId: 分组id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GroupId: String
+
+        attr_accessor :GatewayId, :GroupId
+
+        def initialize(gatewayid=nil, groupid=nil)
+          @GatewayId = gatewayid
+          @GroupId = groupid
+        end
+
+        def deserialize(params)
+          @GatewayId = params['GatewayId']
+          @GroupId = params['GroupId']
         end
       end
 

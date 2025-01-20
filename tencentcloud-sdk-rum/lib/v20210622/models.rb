@@ -4154,7 +4154,6 @@ module TencentCloud
         # @param PageDuration: Duration
         # @type PageDuration: String
         # @param CreateTime: 时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
         # @param PagePerformanceScore: 页面性能评分
         # @type PagePerformanceScore: String

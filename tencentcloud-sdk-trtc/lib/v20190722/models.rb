@@ -99,10 +99,12 @@ module TencentCloud
         # @type TurnDetectionMode: Integer
         # @param FilterOneWord: 是否过滤掉用户只说了一个字的句子，true表示过滤，false表示不过滤，默认值为true
         # @type FilterOneWord: Boolean
+        # @param WelcomeMessagePriority: 欢迎消息优先级，0默认，1高优，高优不能被打断。
+        # @type WelcomeMessagePriority: Integer
 
-        attr_accessor :UserId, :UserSig, :TargetUserId, :MaxIdleTime, :WelcomeMessage, :InterruptMode, :InterruptSpeechDuration, :TurnDetectionMode, :FilterOneWord
+        attr_accessor :UserId, :UserSig, :TargetUserId, :MaxIdleTime, :WelcomeMessage, :InterruptMode, :InterruptSpeechDuration, :TurnDetectionMode, :FilterOneWord, :WelcomeMessagePriority
 
-        def initialize(userid=nil, usersig=nil, targetuserid=nil, maxidletime=nil, welcomemessage=nil, interruptmode=nil, interruptspeechduration=nil, turndetectionmode=nil, filteroneword=nil)
+        def initialize(userid=nil, usersig=nil, targetuserid=nil, maxidletime=nil, welcomemessage=nil, interruptmode=nil, interruptspeechduration=nil, turndetectionmode=nil, filteroneword=nil, welcomemessagepriority=nil)
           @UserId = userid
           @UserSig = usersig
           @TargetUserId = targetuserid
@@ -112,6 +114,7 @@ module TencentCloud
           @InterruptSpeechDuration = interruptspeechduration
           @TurnDetectionMode = turndetectionmode
           @FilterOneWord = filteroneword
+          @WelcomeMessagePriority = welcomemessagepriority
         end
 
         def deserialize(params)
@@ -124,6 +127,7 @@ module TencentCloud
           @InterruptSpeechDuration = params['InterruptSpeechDuration']
           @TurnDetectionMode = params['TurnDetectionMode']
           @FilterOneWord = params['FilterOneWord']
+          @WelcomeMessagePriority = params['WelcomeMessagePriority']
         end
       end
 

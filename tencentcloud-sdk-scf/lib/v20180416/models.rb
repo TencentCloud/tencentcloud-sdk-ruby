@@ -1419,7 +1419,7 @@ module TencentCloud
         # @type FunctionId: String
         # @param Namespace: 命名空间
         # @type Namespace: String
-        # @param Status: 函数状态，状态值及流转[参考此处](https://cloud.tencent.com/document/product/583/47175)
+        # @param Status: 函数状态，状态值及流转[参考此处](https://cloud.tencent.com/document/product/583/17244)
         # @type Status: String
         # @param StatusDesc: 函数状态详情
         # @type StatusDesc: String
@@ -2859,7 +2859,7 @@ module TencentCloud
         # @type LayerVersion: Integer
         # @param LayerName: 层名称
         # @type LayerName: String
-        # @param Status: 层的具体版本当前状态，状态值[参考此处](https://cloud.tencent.com/document/product/583/47175#.E5.B1.82.EF.BC.88layer.EF.BC.89.E7.8A.B6.E6.80.81)
+        # @param Status: 层的具体版本当前状态，状态值[参考此处](https://cloud.tencent.com/document/product/583/115197#.E5.B1.82.EF.BC.88Layer.EF.BC.89.E7.8A.B6.E6.80.81)
         # @type Status: String
         # @param Stamp: Stamp
         # @type Stamp: String
