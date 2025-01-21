@@ -12277,11 +12277,11 @@ module TencentCloud
         # @type Type: String
         # @param Comment: 字段描述
         # @type Comment: String
-        # @param PartitionType: 分区类型
+        # @param PartitionType: 分区类型（已废弃）
         # @type PartitionType: String
-        # @param PartitionFormat: 分区格式
+        # @param PartitionFormat: 分区格式（已废弃）
         # @type PartitionFormat: String
-        # @param PartitionDot: 分区分隔数
+        # @param PartitionDot: 分区分隔数（已废弃）
         # @type PartitionDot: Integer
         # @param Transform: 分区转换策略
         # @type Transform: String

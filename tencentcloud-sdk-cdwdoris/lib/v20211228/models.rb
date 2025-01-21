@@ -102,7 +102,6 @@ module TencentCloud
         # @param BackUpSize: 备份数据量
         # @type BackUpSize: Integer
         # @param BackUpSingleSize: 备份单副本数据量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BackUpSingleSize: Integer
         # @param BackUpTime: 实例创建时间
         # @type BackUpTime: String
@@ -111,27 +110,23 @@ module TencentCloud
         # @param JobStatus: 实例状态
         # @type JobStatus: String
         # @param BackupType: 0为默认。1时是对远端的doris进行备份，不周期，一次性
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BackupType: Integer
         # @param BackupTimeType: 0为默认。1时是立即备份。2时是迁移
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BackupTimeType: Integer
         # @param DorisSourceInfo: 远端doris的连接信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DorisSourceInfo: :class:`Tencentcloud::Cdwdoris.v20211228.models.DorisSourceInfo`
         # @param JobStatusNum: 实例状态对应的数值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type JobStatusNum: Integer
         # @param BackupCosInfo: 备份实例中关于cos的信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BackupCosInfo: :class:`Tencentcloud::Cdwdoris.v20211228.models.BackupCosInfo`
         # @param IsUserDefineBucket: 是否使用的自定义桶
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsUserDefineBucket: Boolean
+        # @param ErrorReason: 错误原因
+        # @type ErrorReason: String
 
-        attr_accessor :JobId, :Snapshot, :BackUpSize, :BackUpSingleSize, :BackUpTime, :ExpireTime, :JobStatus, :BackupType, :BackupTimeType, :DorisSourceInfo, :JobStatusNum, :BackupCosInfo, :IsUserDefineBucket
+        attr_accessor :JobId, :Snapshot, :BackUpSize, :BackUpSingleSize, :BackUpTime, :ExpireTime, :JobStatus, :BackupType, :BackupTimeType, :DorisSourceInfo, :JobStatusNum, :BackupCosInfo, :IsUserDefineBucket, :ErrorReason
 
-        def initialize(jobid=nil, snapshot=nil, backupsize=nil, backupsinglesize=nil, backuptime=nil, expiretime=nil, jobstatus=nil, backuptype=nil, backuptimetype=nil, dorissourceinfo=nil, jobstatusnum=nil, backupcosinfo=nil, isuserdefinebucket=nil)
+        def initialize(jobid=nil, snapshot=nil, backupsize=nil, backupsinglesize=nil, backuptime=nil, expiretime=nil, jobstatus=nil, backuptype=nil, backuptimetype=nil, dorissourceinfo=nil, jobstatusnum=nil, backupcosinfo=nil, isuserdefinebucket=nil, errorreason=nil)
           @JobId = jobid
           @Snapshot = snapshot
           @BackUpSize = backupsize
@@ -145,6 +140,7 @@ module TencentCloud
           @JobStatusNum = jobstatusnum
           @BackupCosInfo = backupcosinfo
           @IsUserDefineBucket = isuserdefinebucket
+          @ErrorReason = errorreason
         end
 
         def deserialize(params)
@@ -167,6 +163,7 @@ module TencentCloud
             @BackupCosInfo.deserialize(params['BackupCosInfo'])
           end
           @IsUserDefineBucket = params['IsUserDefineBucket']
+          @ErrorReason = params['ErrorReason']
         end
       end
 
@@ -894,10 +891,15 @@ module TencentCloud
         # @type EnableMultiZones: Boolean
         # @param UserMultiZoneInfos: 开启多可用区后，用户的所有可用区和子网信息
         # @type UserMultiZoneInfos: :class:`Tencentcloud::Cdwdoris.v20211228.models.NetworkInfo`
+        # @param UserMultiZoneInfoArr: 开启多可用区后，用户的所有可用区和子网信息
+        # @type UserMultiZoneInfoArr: Array
 
-        attr_accessor :Zone, :FeSpec, :BeSpec, :HaFlag, :UserVPCId, :UserSubnetId, :ProductVersion, :ChargeProperties, :InstanceName, :DorisUserPwd, :Tags, :HaType, :CaseSensitive, :EnableMultiZones, :UserMultiZoneInfos
+        attr_accessor :Zone, :FeSpec, :BeSpec, :HaFlag, :UserVPCId, :UserSubnetId, :ProductVersion, :ChargeProperties, :InstanceName, :DorisUserPwd, :Tags, :HaType, :CaseSensitive, :EnableMultiZones, :UserMultiZoneInfos, :UserMultiZoneInfoArr
+        extend Gem::Deprecate
+        deprecate :UserMultiZoneInfos, :none, 2025, 1
+        deprecate :UserMultiZoneInfos=, :none, 2025, 1
 
-        def initialize(zone=nil, fespec=nil, bespec=nil, haflag=nil, uservpcid=nil, usersubnetid=nil, productversion=nil, chargeproperties=nil, instancename=nil, dorisuserpwd=nil, tags=nil, hatype=nil, casesensitive=nil, enablemultizones=nil, usermultizoneinfos=nil)
+        def initialize(zone=nil, fespec=nil, bespec=nil, haflag=nil, uservpcid=nil, usersubnetid=nil, productversion=nil, chargeproperties=nil, instancename=nil, dorisuserpwd=nil, tags=nil, hatype=nil, casesensitive=nil, enablemultizones=nil, usermultizoneinfos=nil, usermultizoneinfoarr=nil)
           @Zone = zone
           @FeSpec = fespec
           @BeSpec = bespec
@@ -913,6 +915,7 @@ module TencentCloud
           @CaseSensitive = casesensitive
           @EnableMultiZones = enablemultizones
           @UserMultiZoneInfos = usermultizoneinfos
+          @UserMultiZoneInfoArr = usermultizoneinfoarr
         end
 
         def deserialize(params)
@@ -949,6 +952,14 @@ module TencentCloud
           unless params['UserMultiZoneInfos'].nil?
             @UserMultiZoneInfos = NetworkInfo.new
             @UserMultiZoneInfos.deserialize(params['UserMultiZoneInfos'])
+          end
+          unless params['UserMultiZoneInfoArr'].nil?
+            @UserMultiZoneInfoArr = []
+            params['UserMultiZoneInfoArr'].each do |i|
+              networkinfo_tmp = NetworkInfo.new
+              networkinfo_tmp.deserialize(i)
+              @UserMultiZoneInfoArr << networkinfo_tmp
+            end
           end
         end
       end
@@ -1221,10 +1232,8 @@ module TencentCloud
         # @param Items: 地域列表
         # @type Items: Array
         # @param FrontEndRules: 前端规则描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FrontEndRules: Array
         # @param AvailableWhiteListNames: 返回可用的白名单名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AvailableWhiteListNames: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1283,15 +1292,23 @@ module TencentCloud
       # DescribeBackUpJobDetail返回参数结构体
       class DescribeBackUpJobDetailResponse < TencentCloud::Common::AbstractModel
         # @param TableContents: 备份表详情
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TableContents: Array
+        # @param ErrorMsg: 错误信息
+        # @type ErrorMsg: String
+        # @param IsUnknownVersion: 是否是未知版本
+        # @type IsUnknownVersion: Boolean
+        # @param Msg: 返回对象用字符串表示
+        # @type Msg: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TableContents, :RequestId
+        attr_accessor :TableContents, :ErrorMsg, :IsUnknownVersion, :Msg, :RequestId
 
-        def initialize(tablecontents=nil, requestid=nil)
+        def initialize(tablecontents=nil, errormsg=nil, isunknownversion=nil, msg=nil, requestid=nil)
           @TableContents = tablecontents
+          @ErrorMsg = errormsg
+          @IsUnknownVersion = isunknownversion
+          @Msg = msg
           @RequestId = requestid
         end
 
@@ -1304,6 +1321,9 @@ module TencentCloud
               @TableContents << backuptablecontent_tmp
             end
           end
+          @ErrorMsg = params['ErrorMsg']
+          @IsUnknownVersion = params['IsUnknownVersion']
+          @Msg = params['Msg']
           @RequestId = params['RequestId']
         end
       end
@@ -1354,13 +1374,10 @@ module TencentCloud
       # DescribeBackUpJob返回参数结构体
       class DescribeBackUpJobResponse < TencentCloud::Common::AbstractModel
         # @param BackUpJobs: 任务列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BackUpJobs: Array
         # @param ErrorMsg: 错误信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrorMsg: String
         # @param TotalCount: 总数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1463,13 +1480,10 @@ module TencentCloud
         # @param AvailableTables: 可备份表列表
         # @type AvailableTables: Array
         # @param Msg: msg
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Msg: String
         # @param IsUnknownVersion: 未知version
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsUnknownVersion: Boolean
         # @param ErrorMsg: 错误信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrorMsg: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1523,10 +1537,8 @@ module TencentCloud
       # DescribeBackUpTaskDetail返回参数结构体
       class DescribeBackUpTaskDetailResponse < TencentCloud::Common::AbstractModel
         # @param BackupStatus: 备份任务进度详情
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BackupStatus: Array
         # @param ErrorMsg: 错误信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrorMsg: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1660,7 +1672,6 @@ module TencentCloud
         # @param BuildVersion: 返回当前内核版本 如果不存在则返回空字符串
         # @type BuildVersion: String
         # @param ErrorMsg: 错误信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrorMsg: String
         # @param HasCN: 是否包含CN节点
         # @type HasCN: Boolean
@@ -1712,10 +1723,8 @@ module TencentCloud
       # DescribeCoolDownBackends返回参数结构体
       class DescribeCoolDownBackendsResponse < TencentCloud::Common::AbstractModel
         # @param ErrorMsg: 错误信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrorMsg: String
         # @param List: 节点信息列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type List: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1761,10 +1770,8 @@ module TencentCloud
       # DescribeCoolDownPolicies返回参数结构体
       class DescribeCoolDownPoliciesResponse < TencentCloud::Common::AbstractModel
         # @param ErrorMsg: 错误信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrorMsg: String
         # @param List: 冷热分层策略列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type List: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1814,10 +1821,8 @@ module TencentCloud
       # DescribeCoolDownTableData返回参数结构体
       class DescribeCoolDownTableDataResponse < TencentCloud::Common::AbstractModel
         # @param ErrorMsg: 错误信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrorMsg: String
         # @param List: 冷热分层Table数据列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type List: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2069,18 +2074,14 @@ module TencentCloud
       # DescribeInstanceNodesInfo返回参数结构体
       class DescribeInstanceNodesInfoResponse < TencentCloud::Common::AbstractModel
         # @param BeNodes: Be节点
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BeNodes: Array
         # @param FeNodes: Fe节点
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FeNodes: Array
         # @param FeMaster: Fe master节点
         # @type FeMaster: String
         # @param BeNodeInfos: Be节点信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BeNodeInfos: Array
         # @param FeNodeInfos: Fe节点信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FeNodeInfos: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2157,7 +2158,6 @@ module TencentCloud
         # @param TotalCount: 总数
         # @type TotalCount: Integer
         # @param InstanceNodesList: 实例节点总数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceNodesList: Array
         # @param NodeRoles: 节点类型
         # @type NodeRoles: Array
@@ -2280,7 +2280,6 @@ module TencentCloud
         # @param TotalCount: 操作记录总数
         # @type TotalCount: Integer
         # @param Operations: 操作记录具体数据
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Operations: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2367,19 +2366,14 @@ module TencentCloud
         # @param InstanceState: 集群状态，例如：Serving
         # @type InstanceState: String
         # @param FlowCreateTime: 集群操作创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FlowCreateTime: String
         # @param FlowName: 集群操作名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FlowName: String
         # @param FlowProgress: 集群操作进度
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FlowProgress: Float
         # @param InstanceStateDesc: 集群状态描述，例如：运行中
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceStateDesc: String
         # @param FlowMsg: 集群流程错误信息，例如：“创建失败，资源不足”
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FlowMsg: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2426,10 +2420,8 @@ module TencentCloud
       # DescribeInstanceUsedSubnets返回参数结构体
       class DescribeInstanceUsedSubnetsResponse < TencentCloud::Common::AbstractModel
         # @param VpcId: 集群使用的vpc信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VpcId: String
         # @param UsedSubnets: 集群使用的subnet信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UsedSubnets: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2475,7 +2467,6 @@ module TencentCloud
       # DescribeInstancesHealthState返回参数结构体
       class DescribeInstancesHealthStateResponse < TencentCloud::Common::AbstractModel
         # @param Data: base64编码后的数据，包含了集群的健康信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2586,10 +2577,8 @@ module TencentCloud
       # DescribeRestoreTaskDetail返回参数结构体
       class DescribeRestoreTaskDetailResponse < TencentCloud::Common::AbstractModel
         # @param RestoreStatus: 恢复任务进度详情
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RestoreStatus: Array
         # @param ErrorMsg: 错误信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrorMsg: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

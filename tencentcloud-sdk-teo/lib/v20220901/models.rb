@@ -35,6 +35,24 @@ module TencentCloud
         end
       end
 
+      # 中国大陆加速优化配置。
+      class AccelerateMainlandParameters < TencentCloud::Common::AbstractModel
+        # @param Switch: 中国大陆加速优化配置开关，取值有：
+        # <li>on：开启；</li>
+        # <li>off：关闭。</li>
+        # @type Switch: String
+
+        attr_accessor :Switch
+
+        def initialize(switch=nil)
+          @Switch = switch
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
+        end
+      end
+
       # 加速类型
       class AccelerateType < TencentCloud::Common::AbstractModel
         # @param Switch: 加速开关。取值范围：
@@ -188,6 +206,71 @@ module TencentCloud
             @UpstreamCertInfo = UpstreamCertInfo.new
             @UpstreamCertInfo.deserialize(params['UpstreamCertInfo'])
           end
+        end
+      end
+
+      # 访问 URL 重定向 配置参数。
+      class AccessURLRedirectParameters < TencentCloud::Common::AbstractModel
+        # @param StatusCode: 状态码，取值为 301、302、303、307、308 之一。
+        # @type StatusCode: Integer
+        # @param Protocol: 目标请求协议，取值有：
+        # <li>http：目标请求协议 HTTP；</li>
+        # <li>https：目标请求协议 HTTPS；</li>
+        # <li>follow：跟随请求。</li>
+        # @type Protocol: String
+        # @param HostName: 目标 HostName 。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HostName: :class:`Tencentcloud::Teo.v20220901.models.HostName`
+        # @param URLPath: 目标路径。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type URLPath: :class:`Tencentcloud::Teo.v20220901.models.URLPath`
+        # @param QueryString: 携带查询参数。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type QueryString: :class:`Tencentcloud::Teo.v20220901.models.AccessURLRedirectQueryString`
+
+        attr_accessor :StatusCode, :Protocol, :HostName, :URLPath, :QueryString
+
+        def initialize(statuscode=nil, protocol=nil, hostname=nil, urlpath=nil, querystring=nil)
+          @StatusCode = statuscode
+          @Protocol = protocol
+          @HostName = hostname
+          @URLPath = urlpath
+          @QueryString = querystring
+        end
+
+        def deserialize(params)
+          @StatusCode = params['StatusCode']
+          @Protocol = params['Protocol']
+          unless params['HostName'].nil?
+            @HostName = HostName.new
+            @HostName.deserialize(params['HostName'])
+          end
+          unless params['URLPath'].nil?
+            @URLPath = URLPath.new
+            @URLPath.deserialize(params['URLPath'])
+          end
+          unless params['QueryString'].nil?
+            @QueryString = AccessURLRedirectQueryString.new
+            @QueryString.deserialize(params['QueryString'])
+          end
+        end
+      end
+
+      # 访问 URL 重定向 配置参数。
+      class AccessURLRedirectQueryString < TencentCloud::Common::AbstractModel
+        # @param Action: 执行动作，取值有：
+        # <li>full：全部保留；</li>
+        # <li>ignore：全部忽略。</li>
+        # @type Action: String
+
+        attr_accessor :Action
+
+        def initialize(action=nil)
+          @Action = action
+        end
+
+        def deserialize(params)
+          @Action = params['Action']
         end
       end
 
@@ -962,6 +1045,56 @@ module TencentCloud
         end
       end
 
+      # Token 鉴权 配置参数。
+      class AuthenticationParameters < TencentCloud::Common::AbstractModel
+        # @param AuthType: 鉴权类型。取值有：
+
+        # <li>TypeA：鉴权方式 A 类型，具体含义请参考 [鉴权方式 A](https://cloud.tencent.com/document/product/1552/109329)；</li>
+        # <li>TypeB：鉴权方式 B 类型，具体含义请参考 [鉴权方式 B](https://cloud.tencent.com/document/product/1552/109330)；</li>
+        # <li>TypeC：鉴权方式 C 类型，具体含义请参考 [鉴权方式 C](https://cloud.tencent.com/document/product/1552/109331)；</li>
+        # <li>TypeD：鉴权方式 D 类型，具体含义请参考 [鉴权方式 D](https://cloud.tencent.com/document/product/1552/109332)；</li>
+        # <li>TypeVOD：鉴权方式 V 类型，具体含义请参考 [鉴权方式 V](https://cloud.tencent.com/document/product/1552/109333)。</li>
+        # @type AuthType: String
+        # @param SecretKey: 主鉴权密钥，由 6～40 位大小写英文字母或数字组成，不能包含 " 和 $。
+        # @type SecretKey: String
+        # @param Timeout: 鉴权 URL 的有效时长，单位为秒，取值：1～630720000。用于判断客户端访问请求是否过期：
+        # <li>若当前时间超过 “timestamp + 有效时长” 时间，则为过期请求，直接返回 403。</li>
+        # <li>若当前时间未超过 “timestamp + 有效时长” 时间，则请求未过期，继续校验 md5 字符串。</li>注意：当 AuthType 为 TypeA、TypeB、TypeC、TypeD 之一时，此字段必填。
+        # @type Timeout: Integer
+        # @param BackupSecretKey: 备鉴权密钥，由 6～40 位大小写英文字母或数字组成，不能包含 " 和 $。
+        # @type BackupSecretKey: String
+        # @param AuthParam: 鉴权参数名称，节点将校验此参数名对应的值。由 1～100 位大小写字母、数字或下划线组成。<br>注意：当 AuthType 为 TypeA、TypeD 之一时，此字段必填。
+        # @type AuthParam: String
+        # @param TimeParam: 鉴权时间戳，和 AuthParam 字段的值不能相同。<br>注意：当 AuthType 为 TypeD 时，此字段必填。
+        # @type TimeParam: String
+        # @param TimeFormat: 鉴权时间格式，取值有：
+        # <li>dec：十进制；</li>
+        # <li>hex：十六进制。</li>注意：当 AuthType 为 TypeD 时，此字段必填。默认为 hex。
+        # @type TimeFormat: String
+
+        attr_accessor :AuthType, :SecretKey, :Timeout, :BackupSecretKey, :AuthParam, :TimeParam, :TimeFormat
+
+        def initialize(authtype=nil, secretkey=nil, timeout=nil, backupsecretkey=nil, authparam=nil, timeparam=nil, timeformat=nil)
+          @AuthType = authtype
+          @SecretKey = secretkey
+          @Timeout = timeout
+          @BackupSecretKey = backupsecretkey
+          @AuthParam = authparam
+          @TimeParam = timeparam
+          @TimeFormat = timeformat
+        end
+
+        def deserialize(params)
+          @AuthType = params['AuthType']
+          @SecretKey = params['SecretKey']
+          @Timeout = params['Timeout']
+          @BackupSecretKey = params['BackupSecretKey']
+          @AuthParam = params['AuthParam']
+          @TimeParam = params['TimeParam']
+          @TimeFormat = params['TimeFormat']
+        end
+      end
+
       # 计费数据项
       class BillingData < TencentCloud::Common::AbstractModel
         # @param Time: 时间。
@@ -1573,6 +1706,64 @@ module TencentCloud
         end
       end
 
+      # 节点缓存 TTL 自定义缓存时间配置参数。
+      class CacheConfigCustomTime < TencentCloud::Common::AbstractModel
+        # @param Switch: 自定义缓存时间开关，取值有：
+        # <li>on：开启；</li>
+        # <li>off：关闭。</li>
+        # @type Switch: String
+        # @param CacheTime: 自定义缓存时间数值，单位为秒，取值：0-315360000。<br>注意：当 Switch 为 on 时，此字段必填；当 Switch 为 off 时，无需填写此字段，若填写则不生效。
+        # @type CacheTime: Integer
+
+        attr_accessor :Switch, :CacheTime
+
+        def initialize(switch=nil, cachetime=nil)
+          @Switch = switch
+          @CacheTime = cachetime
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
+          @CacheTime = params['CacheTime']
+        end
+      end
+
+      # 节点缓存 TTL 配置参数。
+      class CacheConfigParameters < TencentCloud::Common::AbstractModel
+        # @param FollowOrigin: 遵循源站缓存配置。FollowOrigin、NoCache、CustomTime 最多只能配置一个 Switch 为 on。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FollowOrigin: :class:`Tencentcloud::Teo.v20220901.models.FollowOrigin`
+        # @param NoCache: 不缓存配置。FollowOrigin、NoCache、CustomTime 最多只能配置一个 Switch 为 on。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NoCache: :class:`Tencentcloud::Teo.v20220901.models.NoCache`
+        # @param CustomTime: 自定义缓存时间配置。FollowOrigin、NoCache、CustomTime 最多只能配置一个 Switch 为 on。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CustomTime: :class:`Tencentcloud::Teo.v20220901.models.CacheConfigCustomTime`
+
+        attr_accessor :FollowOrigin, :NoCache, :CustomTime
+
+        def initialize(followorigin=nil, nocache=nil, customtime=nil)
+          @FollowOrigin = followorigin
+          @NoCache = nocache
+          @CustomTime = customtime
+        end
+
+        def deserialize(params)
+          unless params['FollowOrigin'].nil?
+            @FollowOrigin = FollowOrigin.new
+            @FollowOrigin.deserialize(params['FollowOrigin'])
+          end
+          unless params['NoCache'].nil?
+            @NoCache = NoCache.new
+            @NoCache.deserialize(params['NoCache'])
+          end
+          unless params['CustomTime'].nil?
+            @CustomTime = CacheConfigCustomTime.new
+            @CustomTime.deserialize(params['CustomTime'])
+          end
+        end
+      end
+
       # 缓存键配置。
       class CacheKey < TencentCloud::Common::AbstractModel
         # @param FullUrlCache: 是否开启全路径缓存，取值有：
@@ -1607,6 +1798,259 @@ module TencentCloud
         end
       end
 
+      # 缓存键配置。
+      class CacheKeyConfigParameters < TencentCloud::Common::AbstractModel
+        # @param FullURLCache: 是否开启全路径缓存，取值有：
+        # <li>on：开启全路径缓存（即关闭参数忽略）；</li>
+        # <li>off：关闭全路径缓存（即开启参数忽略）。</li>
+        # @type FullURLCache: String
+        # @param IgnoreCase: 是否忽略大小写缓存，取值有：
+        # <li>on：忽略；</li>
+        # <li>off：不忽略。</li>
+        # @type IgnoreCase: String
+        # @param QueryString: 查询字符串保留配置参数。此字段和 FullURLCache 必须同时设置，但不能同为 on。
+        # @type QueryString: :class:`Tencentcloud::Teo.v20220901.models.CacheKeyQueryString`
+
+        attr_accessor :FullURLCache, :IgnoreCase, :QueryString
+
+        def initialize(fullurlcache=nil, ignorecase=nil, querystring=nil)
+          @FullURLCache = fullurlcache
+          @IgnoreCase = ignorecase
+          @QueryString = querystring
+        end
+
+        def deserialize(params)
+          @FullURLCache = params['FullURLCache']
+          @IgnoreCase = params['IgnoreCase']
+          unless params['QueryString'].nil?
+            @QueryString = CacheKeyQueryString.new
+            @QueryString.deserialize(params['QueryString'])
+          end
+        end
+      end
+
+      # 自定义 Cache Key Cookie 配置参数。
+      class CacheKeyCookie < TencentCloud::Common::AbstractModel
+        # @param Switch: 功能开关，取值有：
+        # <li>on：开启；</li>
+        # <li>off：关闭。</li>
+        # @type Switch: String
+        # @param Action: 缓存动作，取值有：
+        # <li>full：全部保留；</li>
+        # <li> ignore：全部忽略；</li>
+        # <li> includeCustom：保留指定参数；</li>
+        # <li>excludeCustom：忽略指定参数。</li>注意：当 Switch 为 on 时，此字段必填；当 Switch 为 off 时，无需填写此字段，若填写则不生效。
+        # @type Action: String
+        # @param Values: 自定义 Cache Key Cookie 名称列表。<br>注意：当 Action 为 includeCustom 或 excludeCustom 时，此字段必填；当 Action 为 full 或 ignore 时，无需填写此字段，若填写则不生效。
+        # @type Values: Array
+
+        attr_accessor :Switch, :Action, :Values
+
+        def initialize(switch=nil, action=nil, values=nil)
+          @Switch = switch
+          @Action = action
+          @Values = values
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
+          @Action = params['Action']
+          @Values = params['Values']
+        end
+      end
+
+      # 自定义 Cache Key HTTP 请求头配置参数。
+      class CacheKeyHeader < TencentCloud::Common::AbstractModel
+        # @param Switch: 功能开关，取值有：
+        # <li>on：开启；</li>
+        # <li>off：关闭。</li>
+        # @type Switch: String
+        # @param Values: 自定义 Cache Key HTTP 请求头列表。<br>注意：当 Switch 为 on 时，此字段必填；当 Switch 为 off 时，无需填写此字段，若填写则不生效。
+        # @type Values: Array
+
+        attr_accessor :Switch, :Values
+
+        def initialize(switch=nil, values=nil)
+          @Switch = switch
+          @Values = values
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
+          @Values = params['Values']
+        end
+      end
+
+      # 自定义 Cache Key 配置参数。该配置参数的 FullURLCache 和 QueryString 采用组合表达，具体示例可以参考：
+      # - 查询字符串全部保留。开启忽略大小写。
+      # ```
+      # {
+      #   "CacheKey": {
+      #     "FullURLCache": "on",
+      #     "QueryString": {
+      #       "Switch": "off"
+      #     },
+      #     "IgnoreCase": "on"
+      #   }
+      # }
+      # ```
+      # - 查询字符串全部忽略。开启忽略大小写。
+      # ```
+      # {
+      #   "CacheKey": {
+      #     "FullURLCache": "off",
+      #     "QueryString": {
+      #       "Switch": "off"
+      #     },
+      #     "IgnoreCase": "on"
+      #   }
+      # }
+      # ```
+      # - 查询字符串保留指定参数。关闭忽略大小写。
+      # ```
+      # {
+      #   "CacheKey": {
+      #     "FullURLCache": "off",
+      #     "QueryString": {
+      #         "Switch": "on",
+      #         "Action": "includeCustom",
+      #         "Values": ["name1","name2","name3"]
+      #     },
+      #     "IgnoreCase": "off"
+      #   }
+      # }
+      # ```
+      # - 查询字符串忽略指定参数。关闭忽略大小写。
+      # ```
+      # {
+      #   "CacheKey": {
+      #     "FullURLCache": "off",
+      #     "QueryString": {
+      #         "Switch": "on",
+      #         "Action": "excludeCustom",
+      #         "Values": ["name1","name2","name3"]
+      #     },
+      #     "IgnoreCase": "off"
+      #   }
+      # }
+      # ```
+      class CacheKeyParameters < TencentCloud::Common::AbstractModel
+        # @param FullURLCache: 查询字符串全部保留开关，取值有：
+        # <li>on：开启；</li>
+        # <li>off：关闭。</li>注意：FullURLCache、IgnoreCase、Header、Scheme、Cookie 至少设置一个配置。此字段和 QueryString.Switch 必须同时设置，但不能同为 on。
+        # @type FullURLCache: String
+        # @param QueryString: 查询字符串保留配置参数。此字段和 FullURLCache 必须同时设置，但不能同为 on。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type QueryString: :class:`Tencentcloud::Teo.v20220901.models.CacheKeyQueryString`
+        # @param IgnoreCase: 忽略大小写开关，取值有：
+        # <li>on：开启；</li>
+        # <li>off：关闭。</li>注意：FullURLCache、IgnoreCase、Header、Scheme、Cookie 至少设置一个配置。
+        # @type IgnoreCase: String
+        # @param Header: HTTP 请求头配置参数。FullURLCache、IgnoreCase、Header、Scheme、Cookie 至少设置一个配置。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Header: :class:`Tencentcloud::Teo.v20220901.models.CacheKeyHeader`
+        # @param Scheme: 请求协议开关，取值有：
+        # <li>on：开启；</li>
+        # <li>off：关闭。</li>注意：FullURLCache、IgnoreCase、Header、Scheme、Cookie 至少设置一个配置。
+        # @type Scheme: String
+        # @param Cookie: Cookie 配置参数。FullURLCache、IgnoreCase、Header、Scheme、Cookie 至少设置一个配置。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Cookie: :class:`Tencentcloud::Teo.v20220901.models.CacheKeyCookie`
+
+        attr_accessor :FullURLCache, :QueryString, :IgnoreCase, :Header, :Scheme, :Cookie
+
+        def initialize(fullurlcache=nil, querystring=nil, ignorecase=nil, header=nil, scheme=nil, cookie=nil)
+          @FullURLCache = fullurlcache
+          @QueryString = querystring
+          @IgnoreCase = ignorecase
+          @Header = header
+          @Scheme = scheme
+          @Cookie = cookie
+        end
+
+        def deserialize(params)
+          @FullURLCache = params['FullURLCache']
+          unless params['QueryString'].nil?
+            @QueryString = CacheKeyQueryString.new
+            @QueryString.deserialize(params['QueryString'])
+          end
+          @IgnoreCase = params['IgnoreCase']
+          unless params['Header'].nil?
+            @Header = CacheKeyHeader.new
+            @Header.deserialize(params['Header'])
+          end
+          @Scheme = params['Scheme']
+          unless params['Cookie'].nil?
+            @Cookie = CacheKeyCookie.new
+            @Cookie.deserialize(params['Cookie'])
+          end
+        end
+      end
+
+      # 自定义 Cache Key 查询字符串配置参数。
+      class CacheKeyQueryString < TencentCloud::Common::AbstractModel
+        # @param Switch: 查询字符串保留/忽略指定参数开关，取值有：
+        # <li>on：开启；</li>
+        # <li>off：关闭。</li>
+        # @type Switch: String
+        # @param Action: 查询字符串保留/忽略指定参数动作。取值有：
+        # <li>includeCustom：表示保留部分参数；</li>
+        # <li>excludeCustom：表示忽略部分参数。</li>注意：当 Switch 为 on 时，此字段必填；当 Switch 为 off 时，无需填写此字段，若填写则不生效。
+        # @type Action: String
+        # @param Values: 查询字符串中需保留/忽略的参数名列表。<br>注意：当 Switch 为 on 时，此字段必填；当 Switch 为 off 时，无需填写此字段，若填写则不生效。
+        # @type Values: Array
+
+        attr_accessor :Switch, :Action, :Values
+
+        def initialize(switch=nil, action=nil, values=nil)
+          @Switch = switch
+          @Action = action
+          @Values = values
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
+          @Action = params['Action']
+          @Values = params['Values']
+        end
+      end
+
+      # 节点缓存 TTL 配置参数。
+      class CacheParameters < TencentCloud::Common::AbstractModel
+        # @param FollowOrigin: 缓存遵循源站。不填表示不设置该配置，FollowOrigin、NoCache、CustomTime 最多只能配置一个 Switch 为 on。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FollowOrigin: :class:`Tencentcloud::Teo.v20220901.models.FollowOrigin`
+        # @param NoCache: 不缓存。不填表示不设置该配置，FollowOrigin、NoCache、CustomTime 最多只能配置一个 Switch 为 on。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NoCache: :class:`Tencentcloud::Teo.v20220901.models.NoCache`
+        # @param CustomTime: 自定义缓存时间。不填表示不设置该配置，FollowOrigin、NoCache、CustomTime 最多只能配置一个 Switch 为 on。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CustomTime: :class:`Tencentcloud::Teo.v20220901.models.CustomTime`
+
+        attr_accessor :FollowOrigin, :NoCache, :CustomTime
+
+        def initialize(followorigin=nil, nocache=nil, customtime=nil)
+          @FollowOrigin = followorigin
+          @NoCache = nocache
+          @CustomTime = customtime
+        end
+
+        def deserialize(params)
+          unless params['FollowOrigin'].nil?
+            @FollowOrigin = FollowOrigin.new
+            @FollowOrigin.deserialize(params['FollowOrigin'])
+          end
+          unless params['NoCache'].nil?
+            @NoCache = NoCache.new
+            @NoCache.deserialize(params['NoCache'])
+          end
+          unless params['CustomTime'].nil?
+            @CustomTime = CustomTime.new
+            @CustomTime.deserialize(params['CustomTime'])
+          end
+        end
+      end
+
       # 缓存预刷新
       class CachePrefresh < TencentCloud::Common::AbstractModel
         # @param Switch: 缓存预刷新配置开关，取值有：
@@ -1627,6 +2071,28 @@ module TencentCloud
         def deserialize(params)
           @Switch = params['Switch']
           @Percent = params['Percent']
+        end
+      end
+
+      # 缓存预刷新 配置参数。
+      class CachePrefreshParameters < TencentCloud::Common::AbstractModel
+        # @param Switch: 缓存预刷新开关，取值有：
+        # <li>on：开启；</li>
+        # <li>off：关闭。</li>
+        # @type Switch: String
+        # @param CacheTimePercent: 预刷新时间设置为节点缓存时间的百分比数值，取值：1～99。<br>注意：当 Switch 为 on 时，此字段必填；当 Switch 为 off 时，无需填写此字段，若填写则不生效。
+        # @type CacheTimePercent: Integer
+
+        attr_accessor :Switch, :CacheTimePercent
+
+        def initialize(switch=nil, cachetimepercent=nil)
+          @Switch = switch
+          @CacheTimePercent = cachetimepercent
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
+          @CacheTimePercent = params['CacheTimePercent']
         end
       end
 
@@ -1775,6 +2241,50 @@ module TencentCloud
         end
       end
 
+      # 回源时携带客户端 IP 所属地域信息，值的格式为 ISO-3166-1 两位字母代码。
+      class ClientIPCountryParameters < TencentCloud::Common::AbstractModel
+        # @param Switch: 配置开关，取值有：
+        # <li>on：开启；</li>
+        # <li>off：关闭。</li>
+        # @type Switch: String
+        # @param HeaderName: 存放客户端 IP 所属地域信息的请求头名称，当 Switch=on 时有效。为空则使用默认值：EO-Client-IPCountry。
+        # @type HeaderName: String
+
+        attr_accessor :Switch, :HeaderName
+
+        def initialize(switch=nil, headername=nil)
+          @Switch = switch
+          @HeaderName = headername
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
+          @HeaderName = params['HeaderName']
+        end
+      end
+
+      # 存储客户端请求IP的头部信息配置。
+      class ClientIPHeaderParameters < TencentCloud::Common::AbstractModel
+        # @param Switch: 配置开关，取值有：
+        # <li>on：开启；</li>
+        # <li>off：关闭。</li>
+        # @type Switch: String
+        # @param HeaderName: 回源时，存放客户端 IP 的请求头名称。当 Switch 为 on 时，该参数必填。该参数不允许填写 X-Forwarded-For。
+        # @type HeaderName: String
+
+        attr_accessor :Switch, :HeaderName
+
+        def initialize(switch=nil, headername=nil)
+          @Switch = switch
+          @HeaderName = headername
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
+          @HeaderName = params['HeaderName']
+        end
+      end
+
       # 回源时携带客户端IP所属地域信息，值的格式为ISO-3166-1两位字母代码。
       class ClientIpCountry < TencentCloud::Common::AbstractModel
         # @param Switch: 配置开关，取值有：
@@ -1886,6 +2396,30 @@ module TencentCloud
         # <li>brotli：brotli算法；</li>
         # <li>gzip：gzip算法。</li>
         # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Algorithms: Array
+
+        attr_accessor :Switch, :Algorithms
+
+        def initialize(switch=nil, algorithms=nil)
+          @Switch = switch
+          @Algorithms = algorithms
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
+          @Algorithms = params['Algorithms']
+        end
+      end
+
+      # 智能压缩配置。
+      class CompressionParameters < TencentCloud::Common::AbstractModel
+        # @param Switch: 智能压缩配置开关，取值有：
+        # <li>on：开启；</li>
+        # <li>off：关闭。</li>
+        # @type Switch: String
+        # @param Algorithms: 支持的压缩算法列表。当 Switch 为 on 时，此字段必填，否则此字段不生效。取值有：
+        # <li>brotli：brotli 算法；</li>
+        # <li>gzip：gzip 算法。</li>
         # @type Algorithms: Array
 
         attr_accessor :Switch, :Algorithms
@@ -2801,6 +3335,53 @@ module TencentCloud
         end
       end
 
+      # CreateL7AccRules请求参数结构体
+      class CreateL7AccRulesRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点 ID。
+        # @type ZoneId: String
+        # @param Rules: 规则内容。
+        # @type Rules: Array
+
+        attr_accessor :ZoneId, :Rules
+
+        def initialize(zoneid=nil, rules=nil)
+          @ZoneId = zoneid
+          @Rules = rules
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          unless params['Rules'].nil?
+            @Rules = []
+            params['Rules'].each do |i|
+              ruleengineitem_tmp = RuleEngineItem.new
+              ruleengineitem_tmp.deserialize(i)
+              @Rules << ruleengineitem_tmp
+            end
+          end
+        end
+      end
+
+      # CreateL7AccRules返回参数结构体
+      class CreateL7AccRulesResponse < TencentCloud::Common::AbstractModel
+        # @param RuleIds: 规则 ID 列表。
+        # @type RuleIds: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RuleIds, :RequestId
+
+        def initialize(ruleids=nil, requestid=nil)
+          @RuleIds = ruleids
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RuleIds = params['RuleIds']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateLoadBalancer请求参数结构体
       class CreateLoadBalancerRequest < TencentCloud::Common::AbstractModel
         # @param ZoneId: 站点 ID。
@@ -3703,6 +4284,34 @@ module TencentCloud
         end
       end
 
+      # 节点缓存 TTL 自定义缓存时间参数配置。
+      class CustomTime < TencentCloud::Common::AbstractModel
+        # @param Switch: 自定义缓存时间开关，取值有：
+        # <li>on：开启；</li>
+        # <li>off：关闭。</li>
+        # @type Switch: String
+        # @param IgnoreCacheControl: 忽略源站 CacheControl 开关，取值有：
+        # <li>on：开启；</li>
+        # <li>off：关闭。</li>注意：当 Switch 为 on 时，此字段必填；当 Switch 为 off 时，无需填写此字段，若填写则不生效。
+        # @type IgnoreCacheControl: String
+        # @param CacheTime: 自定义缓存时间数值，单位为秒，取值：0～315360000。<br>注意：当 Switch 为 on 时，此字段必填；当 Switch 为 off 时，无需填写此字段，若填写则不生效。
+        # @type CacheTime: Integer
+
+        attr_accessor :Switch, :IgnoreCacheControl, :CacheTime
+
+        def initialize(switch=nil, ignorecachecontrol=nil, cachetime=nil)
+          @Switch = switch
+          @IgnoreCacheControl = ignorecachecontrol
+          @CacheTime = cachetime
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
+          @IgnoreCacheControl = params['IgnoreCacheControl']
+          @CacheTime = params['CacheTime']
+        end
+      end
+
       # 负载均衡实例 HTTP/HTTPS 健康检查策略下可配置的自定义头部。
       class CustomizedHeader < TencentCloud::Common::AbstractModel
         # @param Key: 自定义头部 Key。
@@ -4330,6 +4939,42 @@ module TencentCloud
 
       # DeleteL4ProxyRules返回参数结构体
       class DeleteL4ProxyRulesResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteL7AccRules请求参数结构体
+      class DeleteL7AccRulesRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点 ID。
+        # @type ZoneId: String
+        # @param RuleIds: 需要删除的规则 ID 列表。您可以通过 DescribeL7AccRules 获取 Ruleid。
+        # @type RuleIds: Array
+
+        attr_accessor :ZoneId, :RuleIds
+
+        def initialize(zoneid=nil, ruleids=nil)
+          @ZoneId = zoneid
+          @RuleIds = ruleids
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @RuleIds = params['RuleIds']
+        end
+      end
+
+      # DeleteL7AccRules返回参数结构体
+      class DeleteL7AccRulesResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -6398,6 +7043,114 @@ module TencentCloud
         end
       end
 
+      # DescribeL7AccRules请求参数结构体
+      class DescribeL7AccRulesRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点 ID。
+        # @type ZoneId: String
+        # @param Filters: 过滤条件，Filters.Values 的上限为 20，不填写此参数时默认按顺序返回站点下的规则。详细的过滤条件如下：
+        # <li>rule-id：按照规则 ID 进行过滤。</li>
+        # @type Filters: Array
+        # @param Limit: 分页查询限制数目，默认值：20，上限：1000。
+        # @type Limit: Integer
+        # @param Offset: 分页查询偏移量，默认为 0。
+        # @type Offset: Integer
+
+        attr_accessor :ZoneId, :Filters, :Limit, :Offset
+
+        def initialize(zoneid=nil, filters=nil, limit=nil, offset=nil)
+          @ZoneId = zoneid
+          @Filters = filters
+          @Limit = limit
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+        end
+      end
+
+      # DescribeL7AccRules返回参数结构体
+      class DescribeL7AccRulesResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 规则总数。
+        # @type TotalCount: Integer
+        # @param Rules: 规则列表，规则按照从上到下的顺序执行，详情参考[规则生效优先级](https://cloud.tencent.com/document/product/1552/70901#.E4.BC.98.E5.85.88.E7.BA.A7)。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Rules: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Rules, :RequestId
+
+        def initialize(totalcount=nil, rules=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Rules = rules
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Rules'].nil?
+            @Rules = []
+            params['Rules'].each do |i|
+              ruleengineitem_tmp = RuleEngineItem.new
+              ruleengineitem_tmp.deserialize(i)
+              @Rules << ruleengineitem_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeL7AccSetting请求参数结构体
+      class DescribeL7AccSettingRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点 ID。
+        # @type ZoneId: String
+
+        attr_accessor :ZoneId
+
+        def initialize(zoneid=nil)
+          @ZoneId = zoneid
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+        end
+      end
+
+      # DescribeL7AccSetting返回参数结构体
+      class DescribeL7AccSettingResponse < TencentCloud::Common::AbstractModel
+        # @param ZoneSetting: 站点加速全局配置。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ZoneSetting: :class:`Tencentcloud::Teo.v20220901.models.ZoneConfigParameters`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ZoneSetting, :RequestId
+
+        def initialize(zonesetting=nil, requestid=nil)
+          @ZoneSetting = zonesetting
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ZoneSetting'].nil?
+            @ZoneSetting = ZoneConfigParameters.new
+            @ZoneSetting.deserialize(params['ZoneSetting'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeLoadBalancerList请求参数结构体
       class DescribeLoadBalancerListRequest < TencentCloud::Common::AbstractModel
         # @param ZoneId: 站点 ID。
@@ -6987,7 +7740,7 @@ module TencentCloud
         # @param ZoneId: 站点 ID。
         # @type ZoneId: String
         # @param Filters: 过滤条件，Filters.Values的上限为20。详细的过滤条件如下：
-        # <li>rule-id<br>   按照【<strong>规则ID</strong>】进行过滤。<br>   类型：string<br>   必选：否</li>
+        # <li>rule-id：按照规则 ID 进行过滤。</li>
         # @type Filters: Array
 
         attr_accessor :ZoneId, :Filters
@@ -8552,6 +9305,50 @@ module TencentCloud
         end
       end
 
+      # 自定义错误页面。
+      class ErrorPage < TencentCloud::Common::AbstractModel
+        # @param StatusCode: 状态码。支持范围为 400、403、404、405、414、416、451、500、501、502、503、504。
+        # @type StatusCode: Integer
+        # @param RedirectURL: 重定向 URL，需要为完整跳转路径，如 https://www.test.com/error.html。
+        # @type RedirectURL: String
+
+        attr_accessor :StatusCode, :RedirectURL
+
+        def initialize(statuscode=nil, redirecturl=nil)
+          @StatusCode = statuscode
+          @RedirectURL = redirecturl
+        end
+
+        def deserialize(params)
+          @StatusCode = params['StatusCode']
+          @RedirectURL = params['RedirectURL']
+        end
+      end
+
+      # 自定义错误页面配置参数。
+      class ErrorPageParameters < TencentCloud::Common::AbstractModel
+        # @param ErrorPageParams: 自定义错误页面配置列表。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorPageParams: Array
+
+        attr_accessor :ErrorPageParams
+
+        def initialize(errorpageparams=nil)
+          @ErrorPageParams = errorpageparams
+        end
+
+        def deserialize(params)
+          unless params['ErrorPageParams'].nil?
+            @ErrorPageParams = []
+            params['ErrorPageParams'].each do |i|
+              errorpage_tmp = ErrorPage.new
+              errorpage_tmp.deserialize(i)
+              @ErrorPageParams << errorpage_tmp
+            end
+          end
+        end
+      end
+
       # 自定义错误页面被引用的来源
       class ErrorPageReference < TencentCloud::Common::AbstractModel
         # @param BusinessId: 引用的业务 ID，如自定义拦截规则 ID。
@@ -8970,6 +9767,30 @@ module TencentCloud
         end
       end
 
+      # 访问协议强制 HTTPS 跳转配置。
+      class ForceRedirectHTTPSParameters < TencentCloud::Common::AbstractModel
+        # @param Switch: 访问强制跳转配置开关，取值有：
+        # <li>on：开启；</li>
+        # <li>off：关闭。</li>
+        # @type Switch: String
+        # @param RedirectStatusCode: 重定向状态码。当 Switch 为 on 时，此字段必填，否则此字段不生效。取值有：
+        # <li>301：301跳转；</li>
+        # <li>302：302跳转。</li>
+        # @type RedirectStatusCode: Integer
+
+        attr_accessor :Switch, :RedirectStatusCode
+
+        def initialize(switch=nil, redirectstatuscode=nil)
+          @Switch = switch
+          @RedirectStatusCode = redirectstatuscode
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
+          @RedirectStatusCode = params['RedirectStatusCode']
+        end
+      end
+
       # 边缘函数详情
       class Function < TencentCloud::Common::AbstractModel
         # @param FunctionId: 函数 ID。
@@ -9132,6 +9953,112 @@ module TencentCloud
         end
       end
 
+      # gRPC 配置项。
+      class GrpcParameters < TencentCloud::Common::AbstractModel
+        # @param Switch: gRPC 配置开关，取值有：
+        # <li>on：开启；</li>
+        # <li>off：关闭。</li>
+        # @type Switch: String
+
+        attr_accessor :Switch
+
+        def initialize(switch=nil)
+          @Switch = switch
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
+        end
+      end
+
+      # HSTS 配置参数。
+      class HSTSParameters < TencentCloud::Common::AbstractModel
+        # @param Switch: HSTS 配置开关，取值有：
+        # <li>on：开启；</li>
+        # <li>off：关闭。</li>
+        # @type Switch: String
+        # @param Timeout: 缓存 HSTS 头部时间，单位为秒，取值：1-31536000。<br>注意：当 Switch 为 on 时，此字段必填；当 Switch 为 off 时，无需填写此字段，若填写则不生效。
+        # @type Timeout: Integer
+        # @param IncludeSubDomains: 是否允许其他子域名继承相同的 HSTS 头部，取值有：
+        # <li>on：允许其他子域名继承相同的 HSTS 头部；</li>
+        # <li>off：不允许其他子域名继承相同的 HSTS 头部。</li>注意：当 Switch 为 on 时，此字段必填；当 Switch 为 off 时，无需填写此字段，若填写则不生效。
+        # @type IncludeSubDomains: String
+        # @param Preload: 是否允许浏览器预加载 HSTS 头部，取值有：
+        # <li>on：允许浏览器预加载 HSTS 头部；</li>
+        # <li>off：不允许浏览器预加载 HSTS 头部。</li>注意：当 Switch 为 on 时，此字段必填；当 Switch 为 off 时，无需填写此字段，若填写则不生效。
+        # @type Preload: String
+
+        attr_accessor :Switch, :Timeout, :IncludeSubDomains, :Preload
+
+        def initialize(switch=nil, timeout=nil, includesubdomains=nil, preload=nil)
+          @Switch = switch
+          @Timeout = timeout
+          @IncludeSubDomains = includesubdomains
+          @Preload = preload
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
+          @Timeout = params['Timeout']
+          @IncludeSubDomains = params['IncludeSubDomains']
+          @Preload = params['Preload']
+        end
+      end
+
+      # HTTP2 接入配置参数。
+      class HTTP2Parameters < TencentCloud::Common::AbstractModel
+        # @param Switch: HTTP2 接入配置开关，取值有：
+        # <li>on：开启；</li>
+        # <li>off：关闭。</li>
+        # @type Switch: String
+
+        attr_accessor :Switch
+
+        def initialize(switch=nil)
+          @Switch = switch
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
+        end
+      end
+
+      # HTTP 应答配置参数。
+      class HTTPResponseParameters < TencentCloud::Common::AbstractModel
+        # @param StatusCode: 响应状态码。支持 2XX、4XX、5XX，不包括 499、514、101、301、302、303、509、520-599。
+        # @type StatusCode: Integer
+        # @param ResponsePage: 响应页面 ID。
+        # @type ResponsePage: String
+
+        attr_accessor :StatusCode, :ResponsePage
+
+        def initialize(statuscode=nil, responsepage=nil)
+          @StatusCode = statuscode
+          @ResponsePage = responsepage
+        end
+
+        def deserialize(params)
+          @StatusCode = params['StatusCode']
+          @ResponsePage = params['ResponsePage']
+        end
+      end
+
+      # 七层回源超时配置。
+      class HTTPUpstreamTimeoutParameters < TencentCloud::Common::AbstractModel
+        # @param ResponseTimeout: HTTP 应答超时时间，单位为秒，取值：5～600。
+        # @type ResponseTimeout: Integer
+
+        attr_accessor :ResponseTimeout
+
+        def initialize(responsetimeout=nil)
+          @ResponseTimeout = responsetimeout
+        end
+
+        def deserialize(params)
+          @ResponseTimeout = params['ResponseTimeout']
+        end
+      end
+
       # HandleFunctionRuntimeEnvironment请求参数结构体
       class HandleFunctionRuntimeEnvironmentRequest < TencentCloud::Common::AbstractModel
         # @param ZoneId: 站点 ID。
@@ -9202,6 +10129,33 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @Name = params['Name']
+          @Value = params['Value']
+        end
+      end
+
+      # HTTP 头部设置规则。
+      class HeaderAction < TencentCloud::Common::AbstractModel
+        # @param Action: HTTP 头部设置方式。取值有：
+        # <li>set：设置。变更指定头部参数的取值为设置后的值；</li>
+        # <li>del：删除。删除指定的头部参数；</li>
+        # <li>add：增加。增加指定的头部参数。</li>
+        # @type Action: String
+        # @param Name: HTTP 头部名称。
+        # @type Name: String
+        # @param Value: HTTP 头部值。当 Action 取值为 set 或者 add 时，该参数必填；当 Action 取值为 del 时，该参数无需填写。
+        # @type Value: String
+
+        attr_accessor :Action, :Name, :Value
+
+        def initialize(action=nil, name=nil, value=nil)
+          @Action = action
+          @Name = name
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Action = params['Action']
           @Name = params['Name']
           @Value = params['Value']
         end
@@ -9284,6 +10238,50 @@ module TencentCloud
           @FollowRedirect = params['FollowRedirect']
           @SendContext = params['SendContext']
           @RecvContext = params['RecvContext']
+        end
+      end
+
+      # Host Header 重写配置参数。
+      class HostHeaderParameters < TencentCloud::Common::AbstractModel
+        # @param Action: 执行动作，取值有：
+        # <li>followOrigin：跟随源站域名；</li>
+        # <li>custom：自定义。</li>
+        # @type Action: String
+        # @param ServerName: Host Header 重写，需要填写完整域名。<br>注意：当 Switch 为 on 时，此字段必填；当 Switch 为 off 时，无需填写此字段，若填写则不生效。
+        # @type ServerName: String
+
+        attr_accessor :Action, :ServerName
+
+        def initialize(action=nil, servername=nil)
+          @Action = action
+          @ServerName = servername
+        end
+
+        def deserialize(params)
+          @Action = params['Action']
+          @ServerName = params['ServerName']
+        end
+      end
+
+      # 访问 URL 重定向 HostName 配置参数。
+      class HostName < TencentCloud::Common::AbstractModel
+        # @param Action: 目标 HostName 配置，取值有：
+        # <li>follow：跟随请求；</li>
+        # <li>custom：自定义。</li>
+        # @type Action: String
+        # @param Value: 目标 HostName 自定义取值，最大长度 1024。<br>注意：当 Action 为 custom 时，此字段必填；当 Action 为 follow 时，此字段不生效。
+        # @type Value: String
+
+        attr_accessor :Action, :Value
+
+        def initialize(action=nil, value=nil)
+          @Action = action
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Action = params['Action']
+          @Value = params['Value']
         end
       end
 
@@ -9457,6 +10455,24 @@ module TencentCloud
         def deserialize(params)
           @IPv4 = params['IPv4']
           @IPv6 = params['IPv6']
+        end
+      end
+
+      # IPv6 访问配置。
+      class IPv6Parameters < TencentCloud::Common::AbstractModel
+        # @param Switch: IPv6 访问功能配置，取值有：
+        # <li>on：开启 IPv6 访问功能；</li>
+        # <li>off：关闭 IPv6 访问功能。</li>
+        # @type Switch: String
+
+        attr_accessor :Switch
+
+        def initialize(switch=nil)
+          @Switch = switch
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
         end
       end
 
@@ -10300,6 +11316,28 @@ module TencentCloud
         def deserialize(params)
           @FollowOrigin = params['FollowOrigin']
           @MaxAgeTime = params['MaxAgeTime']
+        end
+      end
+
+      # 浏览器缓存 TTL 配置参数。
+      class MaxAgeParameters < TencentCloud::Common::AbstractModel
+        # @param FollowOrigin: 遵循源站 Cache-Control 开关，取值有：
+        # <li>on：遵循源站，忽略 CacheTime 时间设置；</li>
+        # <li>off：不遵循源站，使用 CacheTime 时间设置。</li>
+        # @type FollowOrigin: String
+        # @param CacheTime: 自定义缓存时间数值，单位为秒，取值：0～315360000。<br>注意：当 FollowOrigin 为 off 时，表示不遵循源站，使用 CacheTime 设置缓存时间，否则此字段不生效。
+        # @type CacheTime: Integer
+
+        attr_accessor :FollowOrigin, :CacheTime
+
+        def initialize(followorigin=nil, cachetime=nil)
+          @FollowOrigin = followorigin
+          @CacheTime = cachetime
+        end
+
+        def deserialize(params)
+          @FollowOrigin = params['FollowOrigin']
+          @CacheTime = params['CacheTime']
         end
       end
 
@@ -11320,6 +12358,85 @@ module TencentCloud
         end
       end
 
+      # ModifyL7AccRule请求参数结构体
+      class ModifyL7AccRuleRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点 ID。
+        # @type ZoneId: String
+        # @param Rule: 需要修改的规则。您可以先通过 DescribeL7AccRules 接口来获取需要修改的规则的 Ruleid，然后传入修改后的规则内容，原规则内容会被覆盖式更新。
+        # @type Rule: :class:`Tencentcloud::Teo.v20220901.models.RuleEngineItem`
+
+        attr_accessor :ZoneId, :Rule
+
+        def initialize(zoneid=nil, rule=nil)
+          @ZoneId = zoneid
+          @Rule = rule
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          unless params['Rule'].nil?
+            @Rule = RuleEngineItem.new
+            @Rule.deserialize(params['Rule'])
+          end
+        end
+      end
+
+      # ModifyL7AccRule返回参数结构体
+      class ModifyL7AccRuleResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyL7AccSetting请求参数结构体
+      class ModifyL7AccSettingRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点 ID。
+        # @type ZoneId: String
+        # @param ZoneConfig: 站点加速全局配置，该参数中的配置会对站点下的所有域名生效。您只需直接修改所需的配置，未传入的其他配置将保持原有状态。
+
+        # @type ZoneConfig: :class:`Tencentcloud::Teo.v20220901.models.ZoneConfig`
+
+        attr_accessor :ZoneId, :ZoneConfig
+
+        def initialize(zoneid=nil, zoneconfig=nil)
+          @ZoneId = zoneid
+          @ZoneConfig = zoneconfig
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          unless params['ZoneConfig'].nil?
+            @ZoneConfig = ZoneConfig.new
+            @ZoneConfig.deserialize(params['ZoneConfig'])
+          end
+        end
+      end
+
+      # ModifyL7AccSetting返回参数结构体
+      class ModifyL7AccSettingResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyLoadBalancer请求参数结构体
       class ModifyLoadBalancerRequest < TencentCloud::Common::AbstractModel
         # @param ZoneId: 站点 ID。
@@ -11447,6 +12564,65 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 修改源站配置参数。
+      class ModifyOriginParameters < TencentCloud::Common::AbstractModel
+        # @param OriginType: 源站类型。取值有：
+        # <li>IPDomain：IPV4、IPV6 或域名类型源站；</li>
+        # <li>OriginGroup：源站组类型源站；</li>
+        # <li>LoadBalance：负载均衡，该功能内测中，如需使用，请提工单或联系智能客服；</li>
+        # <li>COS：腾讯云 COS 对象存储源站；</li>
+        # <li>AWSS3：支持 AWS S3 协议的所有对象存储源站。</li>
+        # @type OriginType: String
+        # @param Origin: 源站地址，根据 OriginType 的取值分为以下情况：
+        # <li>当 OriginType = IPDomain 时，该参数请填写 IPV4、IPV6 地址或域名；</li>
+        # <li>当 OriginType = COS 时，该参数请填写 COS 桶的访问域名；</li>
+        # <li>当 OriginType = AWSS3，该参数请填写 S3 桶的访问域名；</li>
+        # <li>当 OriginType = OriginGroup 时，该参数请填写源站组 ID；</li>
+        # <li>当 OriginType = LoadBalance 时，该参数请填写负载均衡实例 ID，该功能当前仅白名单开放。</li>
+        # @type Origin: String
+        # @param OriginProtocol: 回源协议配置。当 OriginType 取值为 IPDomain、OriginGroup、LoadBalance 时该参数必填。取值有：
+        # <li>http：使用 HTTP 协议；</li>
+        # <li>https：使用 HTTPS 协议；</li>
+        # <li>follow：协议跟随。</li>
+        # @type OriginProtocol: String
+        # @param HTTPOriginPort: HTTP 回源端口，取值范围 1～65535。该参数仅当回源协议 OriginProtocol 为 http 或者 follow 时生效。
+        # @type HTTPOriginPort: Integer
+        # @param HTTPSOriginPort: HTTPS 回源端口，取值范围 1～65535。该参数仅当回源协议 OriginProtocol 为 https 或者 follow 时生效。
+        # @type HTTPSOriginPort: Integer
+        # @param PrivateAccess: 指定是否允许访问私有对象存储源站，该参数仅当源站类型 OriginType = COS 或 AWSS3 时会生效，取值有：
+        # <li>on：使用私有鉴权；</li>
+        # <li>off：不使用私有鉴权。</li>不填写时，默认值为off。
+        # @type PrivateAccess: String
+        # @param PrivateParameters: 私有鉴权使用参数，该参数仅当 OriginType = AWSS3 且 PrivateAccess = on 时会生效。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PrivateParameters: :class:`Tencentcloud::Teo.v20220901.models.OriginPrivateParameters`
+
+        attr_accessor :OriginType, :Origin, :OriginProtocol, :HTTPOriginPort, :HTTPSOriginPort, :PrivateAccess, :PrivateParameters
+
+        def initialize(origintype=nil, origin=nil, originprotocol=nil, httporiginport=nil, httpsoriginport=nil, privateaccess=nil, privateparameters=nil)
+          @OriginType = origintype
+          @Origin = origin
+          @OriginProtocol = originprotocol
+          @HTTPOriginPort = httporiginport
+          @HTTPSOriginPort = httpsoriginport
+          @PrivateAccess = privateaccess
+          @PrivateParameters = privateparameters
+        end
+
+        def deserialize(params)
+          @OriginType = params['OriginType']
+          @Origin = params['Origin']
+          @OriginProtocol = params['OriginProtocol']
+          @HTTPOriginPort = params['HTTPOriginPort']
+          @HTTPSOriginPort = params['HTTPSOriginPort']
+          @PrivateAccess = params['PrivateAccess']
+          unless params['PrivateParameters'].nil?
+            @PrivateParameters = OriginPrivateParameters.new
+            @PrivateParameters.deserialize(params['PrivateParameters'])
+          end
         end
       end
 
@@ -11590,6 +12766,54 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 修改 HTTP 回源请求头配置参数。
+      class ModifyRequestHeaderParameters < TencentCloud::Common::AbstractModel
+        # @param HeaderActions: HTTP 头部设置规则列表。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HeaderActions: Array
+
+        attr_accessor :HeaderActions
+
+        def initialize(headeractions=nil)
+          @HeaderActions = headeractions
+        end
+
+        def deserialize(params)
+          unless params['HeaderActions'].nil?
+            @HeaderActions = []
+            params['HeaderActions'].each do |i|
+              headeraction_tmp = HeaderAction.new
+              headeraction_tmp.deserialize(i)
+              @HeaderActions << headeraction_tmp
+            end
+          end
+        end
+      end
+
+      # 修改 HTTP 节点响应头配置参数。
+      class ModifyResponseHeaderParameters < TencentCloud::Common::AbstractModel
+        # @param HeaderActions: HTTP 回源头部规则列表。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HeaderActions: Array
+
+        attr_accessor :HeaderActions
+
+        def initialize(headeractions=nil)
+          @HeaderActions = headeractions
+        end
+
+        def deserialize(params)
+          unless params['HeaderActions'].nil?
+            @HeaderActions = []
+            params['HeaderActions'].each do |i|
+              headeraction_tmp = HeaderAction.new
+              headeraction_tmp.deserialize(i)
+              @HeaderActions << headeraction_tmp
+            end
+          end
         end
       end
 
@@ -12145,9 +13369,45 @@ module TencentCloud
         end
       end
 
+      # OCSP 装订配置参数。
+      class OCSPStaplingParameters < TencentCloud::Common::AbstractModel
+        # @param Switch: OCSP 装订配置开关，取值有：
+        # <li>on：开启；</li>
+        # <li>off：关闭。</li>
+        # @type Switch: String
+
+        attr_accessor :Switch
+
+        def initialize(switch=nil)
+          @Switch = switch
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
+        end
+      end
+
       # 离线缓存是否开启
       class OfflineCache < TencentCloud::Common::AbstractModel
         # @param Switch: 离线缓存是否开启，取值有：
+        # <li>on：开启；</li>
+        # <li>off：关闭。</li>
+        # @type Switch: String
+
+        attr_accessor :Switch
+
+        def initialize(switch=nil)
+          @Switch = switch
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
+        end
+      end
+
+      # 离线缓存是否开启。
+      class OfflineCacheParameters < TencentCloud::Common::AbstractModel
+        # @param Switch: 离线缓存开关，取值有：
         # <li>on：开启；</li>
         # <li>off：关闭。</li>
         # @type Switch: String
@@ -12573,6 +13833,36 @@ module TencentCloud
         end
       end
 
+      # 对象存储源站私有鉴权参数。
+      class OriginPrivateParameters < TencentCloud::Common::AbstractModel
+        # @param AccessKeyId: 鉴权参数 Access Key ID。
+        # @type AccessKeyId: String
+        # @param SecretAccessKey: 鉴权参数 Secret Access Key。
+        # @type SecretAccessKey: String
+        # @param SignatureVersion: 鉴权版本。取值有：
+        # <li>v2：v2版本；</li>
+        # <li>v4：v4版本。</li>
+        # @type SignatureVersion: String
+        # @param Region: 存储桶地域。
+        # @type Region: String
+
+        attr_accessor :AccessKeyId, :SecretAccessKey, :SignatureVersion, :Region
+
+        def initialize(accesskeyid=nil, secretaccesskey=nil, signatureversion=nil, region=nil)
+          @AccessKeyId = accesskeyid
+          @SecretAccessKey = secretaccesskey
+          @SignatureVersion = signatureversion
+          @Region = region
+        end
+
+        def deserialize(params)
+          @AccessKeyId = params['AccessKeyId']
+          @SecretAccessKey = params['SecretAccessKey']
+          @SignatureVersion = params['SignatureVersion']
+          @Region = params['Region']
+        end
+      end
+
       # 源站防护信息
       class OriginProtectionInfo < TencentCloud::Common::AbstractModel
         # @param ZoneId: 站点ID。
@@ -12830,6 +14120,26 @@ module TencentCloud
         end
       end
 
+      # POST 请求上传文件流式传输最大限制。
+      class PostMaxSizeParameters < TencentCloud::Common::AbstractModel
+        # @param Switch: 是否开启 POST 请求上传文件限制，单位为 Byte，平台默认为限制为 32 * 2<sup>20</sup> Byte，取值有：<li>on：开启限制；</li><li>off：关闭限制。</li>
+        # @type Switch: String
+        # @param MaxSize: POST 请求上传文件流式传输最大限制，单位为 Byte，取值：1 * 2<sup>20</sup> Byte～500 * 2<sup>20</sup> Byte。
+        # @type MaxSize: Integer
+
+        attr_accessor :Switch, :MaxSize
+
+        def initialize(switch=nil, maxsize=nil)
+          @Switch = switch
+          @MaxSize = maxsize
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
+          @MaxSize = params['MaxSize']
+        end
+      end
+
       # 预付费套餐计费参数
       class PrepaidPlanParam < TencentCloud::Common::AbstractModel
         # @param Period: 订阅预付费套餐的周期，单位：月，取值有：1，2，3，4，5，6，7，8，9，10，11，12，24，36。
@@ -12876,6 +14186,24 @@ module TencentCloud
         def deserialize(params)
           @Name = params['Name']
           @Value = params['Value']
+        end
+      end
+
+      # QUIC 配置项。
+      class QUICParameters < TencentCloud::Common::AbstractModel
+        # @param Switch: QUIC 配置开关，取值有：
+        # <li>on：开启；</li>
+        # <li>off：关闭。</li>
+        # @type Switch: String
+
+        attr_accessor :Switch
+
+        def initialize(switch=nil)
+          @Switch = switch
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
         end
       end
 
@@ -12989,6 +14317,24 @@ module TencentCloud
           @Daily = params['Daily']
           @DailyAvailable = params['DailyAvailable']
           @Type = params['Type']
+        end
+      end
+
+      # 分片回源配置参数。
+      class RangeOriginPullParameters < TencentCloud::Common::AbstractModel
+        # @param Switch: 分片回源开关，取值有：
+        # <li>on：开启；</li>
+        # <li>off：关闭。</li>
+        # @type Switch: String
+
+        attr_accessor :Switch
+
+        def initialize(switch=nil)
+          @Switch = switch
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
         end
       end
 
@@ -13517,6 +14863,33 @@ module TencentCloud
         end
       end
 
+      # 单连接下载限速配置参数。
+      class ResponseSpeedLimitParameters < TencentCloud::Common::AbstractModel
+        # @param Mode: 下载限速模式，取值有：
+        # <li>LimitUponDownload：全过程下载限速；</li>
+        # <li>LimitAfterSpecificBytesDownloaded：全速下载特定字节后开始限速；</li>
+        # <li>LimitAfterSpecificSecondsDownloaded：全速下载特定时间后开始限速。</li>
+        # @type Mode: String
+        # @param MaxSpeed: 限速值，单位为：KB/s，填写数值，指定限速大小。
+        # @type MaxSpeed: String
+        # @param StartAt: 限速开始值，可以为下载大小或指定时长，单位为：KB或s，当 Mode 取值为 LimitAfterSpecificBytesDownloaded 或 LimitAfterSpecificSecondsDownloaded 时，该参数必填。填写数值，指定下载大小或指定时长。
+        # @type StartAt: String
+
+        attr_accessor :Mode, :MaxSpeed, :StartAt
+
+        def initialize(mode=nil, maxspeed=nil, startat=nil)
+          @Mode = mode
+          @MaxSpeed = maxspeed
+          @StartAt = startat
+        end
+
+        def deserialize(params)
+          @Mode = params['Mode']
+          @MaxSpeed = params['MaxSpeed']
+          @StartAt = params['StartAt']
+        end
+      end
+
       # 规则引擎HTTP请求头/响应头类型的动作
       class RewriteAction < TencentCloud::Common::AbstractModel
         # @param Action: 功能名称，功能名称填写规范可调用接口 [查询规则引擎的设置参数](https://cloud.tencent.com/document/product/1552/80618) 查看。
@@ -13608,6 +14981,47 @@ module TencentCloud
               rulecondition_tmp = RuleCondition.new
               rulecondition_tmp.deserialize(i)
               @Conditions << rulecondition_tmp
+            end
+          end
+        end
+      end
+
+      # 子规则分支。
+      class RuleBranch < TencentCloud::Common::AbstractModel
+        # @param Condition: [匹配条件
+        # ](https://cloud.tencent.com/document/product/1552/90438#33f65828-c6c6-4b66-a011-25a20b548d5d)。
+        # @type Condition: String
+        # @param Actions: [操作](https://cloud.tencent.com/document/product/1552/90438#c7bd7e02-9247-4a72-b0e4-11c27cadb198)。<br>注意：Actions 和 SubRules 不可同时为空。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Actions: Array
+        # @param SubRules: 子规则列表。此列表中时存在多条规则，按照从上往下的顺序依次执行。<br>注意：SubRules 和 Actions 不可同时为空。且当前只支持填写一层 SubRules。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubRules: Array
+
+        attr_accessor :Condition, :Actions, :SubRules
+
+        def initialize(condition=nil, actions=nil, subrules=nil)
+          @Condition = condition
+          @Actions = actions
+          @SubRules = subrules
+        end
+
+        def deserialize(params)
+          @Condition = params['Condition']
+          unless params['Actions'].nil?
+            @Actions = []
+            params['Actions'].each do |i|
+              ruleengineaction_tmp = RuleEngineAction.new
+              ruleengineaction_tmp.deserialize(i)
+              @Actions << ruleengineaction_tmp
+            end
+          end
+          unless params['SubRules'].nil?
+            @SubRules = []
+            params['SubRules'].each do |i|
+              ruleenginesubrule_tmp = RuleEngineSubRule.new
+              ruleenginesubrule_tmp.deserialize(i)
+              @SubRules << ruleenginesubrule_tmp
             end
           end
         end
@@ -13747,6 +15161,403 @@ module TencentCloud
           @IgnoreCase = params['IgnoreCase']
           @Name = params['Name']
           @IgnoreNameCase = params['IgnoreNameCase']
+        end
+      end
+
+      # 规则引擎操作。
+      class RuleEngineAction < TencentCloud::Common::AbstractModel
+        # @param Name: 操作名称。名称需要与参数结构体对应，例如 Name=Cache，则 CacheParameters 必填。
+        # <li>Cache：节点缓存 TTL；</li>
+        # <li>CacheKey：自定义 Cache Key；</li>
+        # <li>CachePrefresh：缓存预刷新；</li>
+        # <li>AccessURLRedirect：访问 URL 重定向；</li>
+        # <li>UpstreamURLRewrite：回源 URL 重写；</li>
+        # <li>QUIC：QUIC；</li>
+        # <li>WebSocket：WebSocket；</li>
+        # <li>Authentication：Token 鉴权；</li>
+        # <li>MaxAge：浏览器缓存 TTL；</li>
+        # <li>StatusCodeCache：状态码缓存 TTL；</li>
+        # <li>OfflineCache：离线缓存；</li>
+        # <li>SmartRouting：智能加速；</li>
+        # <li>RangeOriginPull：分片回源 ；</li>
+        # <li>UpstreamHTTP2：HTTP2 回源；</li>
+        # <li>HostHeader：Host Header 重写；</li>
+        # <li>ForceRedirectHTTPS：访问协议强制 HTTPS 跳转配置；</li>
+        # <li>OriginPullProtocol：回源 HTTPS；</li>
+        # <li>Compression：智能压缩配置；</li>
+        # <li>HSTS：HSTS；</li>
+        # <li>ClientIPHeader：存储客户端请求 IP 的头部信息配置；</li>
+        # <li>OCSPStapling：OCSP 装订；</li>
+        # <li>HTTP2：HTTP2 接入；</li>
+        # <li>PostMaxSize：POST 请求上传文件流式传输最大限制配置；</li>
+        # <li>ClientIPCountry：回源时携带客户端 IP 所属地域信息；</li>
+        # <li>UpstreamFollowRedirect：回源跟随重定向参数配置；</li>
+        # <li>UpstreamRequest：回源请求参数；</li>
+        # <li>TLSConfig：SSL/TLS 安全；</li>
+        # <li>ModifyOrigin：修改源站；</li>
+        # <li>HTTPUpstreamTimeout：七层回源超时配置；</li>
+        # <li>HttpResponse：HTTP 应答；</li>
+        # <li>ErrorPage：自定义错误页面；</li>
+        # <li>ModifyResponseHeader：修改 HTTP 节点响应头；</li>
+        # <li>ModifyRequestHeader：修改 HTTP 节点请求头；</li>
+        # <li>ResponseSpeedLimit：单连接下载限速。</li>
+        # <li>SetContentIdentifierParameters：设置内容标识符。</li>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param CacheParameters: 节点缓存 TTL 配置参数，当 Name 取值为 Cache 时，该参数必填。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CacheParameters: :class:`Tencentcloud::Teo.v20220901.models.CacheParameters`
+        # @param CacheKeyParameters: 自定义 Cache Key 配置参数，当 Name 取值为 CacheKey 时，该参数必填。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CacheKeyParameters: :class:`Tencentcloud::Teo.v20220901.models.CacheKeyParameters`
+        # @param CachePrefreshParameters: 缓存预刷新配置参数，当 Name 取值为 CachePrefresh 时，该参数必填。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CachePrefreshParameters: :class:`Tencentcloud::Teo.v20220901.models.CachePrefreshParameters`
+        # @param AccessURLRedirectParameters: 访问 URL 重定向配置参数，当 Name 取值为 AccessURLRedirect 时，该参数必填。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AccessURLRedirectParameters: :class:`Tencentcloud::Teo.v20220901.models.AccessURLRedirectParameters`
+        # @param UpstreamURLRewriteParameters: 回源 URL 重写配置参数，当 Name 取值为 UpstreamURLRewrite 时，该参数必填。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpstreamURLRewriteParameters: :class:`Tencentcloud::Teo.v20220901.models.UpstreamURLRewriteParameters`
+        # @param QUICParameters: QUIC 配置参数，当 Name 取值为 QUIC 时，该参数必填。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type QUICParameters: :class:`Tencentcloud::Teo.v20220901.models.QUICParameters`
+        # @param WebSocketParameters: WebSocket 配置参数，当 Name 取值为 WebSocket 时，该参数必填。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WebSocketParameters: :class:`Tencentcloud::Teo.v20220901.models.WebSocketParameters`
+        # @param AuthenticationParameters: Token 鉴权配置参数，当 Name 取值为 Authentication 时，该参数必填。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AuthenticationParameters: :class:`Tencentcloud::Teo.v20220901.models.AuthenticationParameters`
+        # @param MaxAgeParameters: 浏览器缓存 TTL 配置参数，当 Name 取值为 MaxAge 时，该参数必填。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MaxAgeParameters: :class:`Tencentcloud::Teo.v20220901.models.MaxAgeParameters`
+        # @param StatusCodeCacheParameters: 状态码缓存 TTL 配置参数，当 Name 取值为 StatusCodeCache 时，该参数必填。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StatusCodeCacheParameters: :class:`Tencentcloud::Teo.v20220901.models.StatusCodeCacheParameters`
+        # @param OfflineCacheParameters: 离线缓存配置参数，当 Name 取值为 OfflineCache 时，该参数必填。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OfflineCacheParameters: :class:`Tencentcloud::Teo.v20220901.models.OfflineCacheParameters`
+        # @param SmartRoutingParameters: 智能加速配置参数，当 Name 取值为 SmartRouting 时，该参数必填。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SmartRoutingParameters: :class:`Tencentcloud::Teo.v20220901.models.SmartRoutingParameters`
+        # @param RangeOriginPullParameters: 分片回源配置参数，当 Name 取值为 RangeOriginPull 时，该参数必填。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RangeOriginPullParameters: :class:`Tencentcloud::Teo.v20220901.models.RangeOriginPullParameters`
+        # @param UpstreamHTTP2Parameters: HTTP2 回源配置参数，当 Name 取值为 UpstreamHTTP2 时，该参数必填。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpstreamHTTP2Parameters: :class:`Tencentcloud::Teo.v20220901.models.UpstreamHTTP2Parameters`
+        # @param HostHeaderParameters: Host Header 重写配置参数，当 Name 取值为 HostHeader 时，该参数必填。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HostHeaderParameters: :class:`Tencentcloud::Teo.v20220901.models.HostHeaderParameters`
+        # @param ForceRedirectHTTPSParameters: 访问协议强制 HTTPS 跳转配置，当 Name 取值为 ForceRedirectHTTPS 时，该参数必填。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ForceRedirectHTTPSParameters: :class:`Tencentcloud::Teo.v20220901.models.ForceRedirectHTTPSParameters`
+        # @param CompressionParameters: 智能压缩配置，当 Name 取值为 Compression 时，该参数必填。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CompressionParameters: :class:`Tencentcloud::Teo.v20220901.models.CompressionParameters`
+        # @param HSTSParameters: HSTS 配置参数，当 Name 取值为 HSTS 时，该参数必填。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HSTSParameters: :class:`Tencentcloud::Teo.v20220901.models.HSTSParameters`
+        # @param ClientIPHeaderParameters: 存储客户端请求 IP 的头部信息配置，当 Name 取值为 ClientIPHeader 时，该参数必填。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClientIPHeaderParameters: :class:`Tencentcloud::Teo.v20220901.models.ClientIPHeaderParameters`
+        # @param OCSPStaplingParameters: OCSP 装订配置参数，当 Name 取值为 OCSPStapling 时，该参数必填。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OCSPStaplingParameters: :class:`Tencentcloud::Teo.v20220901.models.OCSPStaplingParameters`
+        # @param HTTP2Parameters: HTTP2 接入配置参数，当 Name 取值为 HTTP2 时，该参数必填。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HTTP2Parameters: :class:`Tencentcloud::Teo.v20220901.models.HTTP2Parameters`
+        # @param PostMaxSizeParameters: POST 请求上传文件流式传输最大限制配置，当 Name 取值为 PostMaxSize 时，该参数必填。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PostMaxSizeParameters: :class:`Tencentcloud::Teo.v20220901.models.PostMaxSizeParameters`
+        # @param ClientIPCountryParameters: 回源时携带客户端 IP 所属地域信息配置参数，当 Name 取值为 ClientIPCountry 时，该参数必填。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClientIPCountryParameters: :class:`Tencentcloud::Teo.v20220901.models.ClientIPCountryParameters`
+        # @param UpstreamFollowRedirectParameters: 回源跟随重定向参数配置，当 Name 取值为 UpstreamFollowRedirect 时，该参数必填。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpstreamFollowRedirectParameters: :class:`Tencentcloud::Teo.v20220901.models.UpstreamFollowRedirectParameters`
+        # @param UpstreamRequestParameters: 回源请求参数配置参数，当 Name 取值为 UpstreamRequest 时，该参数必填。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpstreamRequestParameters: :class:`Tencentcloud::Teo.v20220901.models.UpstreamRequestParameters`
+        # @param TLSConfigParameters: SSL/TLS 安全配置参数，当 Name 取值为 TLSConfig 时，该参数必填。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TLSConfigParameters: :class:`Tencentcloud::Teo.v20220901.models.TLSConfigParameters`
+        # @param ModifyOriginParameters: 修改源站配置参数，当 Name 取值为 ModifyOrigin 时，该参数必填。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModifyOriginParameters: :class:`Tencentcloud::Teo.v20220901.models.ModifyOriginParameters`
+        # @param HTTPUpstreamTimeoutParameters: 七层回源超时配置，当 Name 取值为 HTTPUpstreamTimeout 时，该参数必填。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HTTPUpstreamTimeoutParameters: :class:`Tencentcloud::Teo.v20220901.models.HTTPUpstreamTimeoutParameters`
+        # @param HttpResponseParameters: HTTP 应答配置参数，当 Name 取值为 HttpResponse 时，该参数必填。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HttpResponseParameters: :class:`Tencentcloud::Teo.v20220901.models.HTTPResponseParameters`
+        # @param ErrorPageParameters: 自定义错误页面配置参数，当 Name 取值为 ErrorPage 时，该参数必填。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorPageParameters: :class:`Tencentcloud::Teo.v20220901.models.ErrorPageParameters`
+        # @param ModifyResponseHeaderParameters: 修改 HTTP 节点响应头配置参数，当 Name 取值为 ModifyResponseHeader 时，该参数必填。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModifyResponseHeaderParameters: :class:`Tencentcloud::Teo.v20220901.models.ModifyResponseHeaderParameters`
+        # @param ModifyRequestHeaderParameters: 修改 HTTP 节点请求头配置参数，当 Name 取值为 ModifyRequestHeader 时，该参数必填。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModifyRequestHeaderParameters: :class:`Tencentcloud::Teo.v20220901.models.ModifyRequestHeaderParameters`
+        # @param ResponseSpeedLimitParameters: 单连接下载限速配置参数，当 Name 取值为 ResponseSpeedLimit 时，该参数必填。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResponseSpeedLimitParameters: :class:`Tencentcloud::Teo.v20220901.models.ResponseSpeedLimitParameters`
+        # @param SetContentIdentifierParameters: 内容标识配置参数，当 Name 取值为 HttpResponse 时，该参数必填。
+
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SetContentIdentifierParameters: :class:`Tencentcloud::Teo.v20220901.models.SetContentIdentifierParameters`
+
+        attr_accessor :Name, :CacheParameters, :CacheKeyParameters, :CachePrefreshParameters, :AccessURLRedirectParameters, :UpstreamURLRewriteParameters, :QUICParameters, :WebSocketParameters, :AuthenticationParameters, :MaxAgeParameters, :StatusCodeCacheParameters, :OfflineCacheParameters, :SmartRoutingParameters, :RangeOriginPullParameters, :UpstreamHTTP2Parameters, :HostHeaderParameters, :ForceRedirectHTTPSParameters, :CompressionParameters, :HSTSParameters, :ClientIPHeaderParameters, :OCSPStaplingParameters, :HTTP2Parameters, :PostMaxSizeParameters, :ClientIPCountryParameters, :UpstreamFollowRedirectParameters, :UpstreamRequestParameters, :TLSConfigParameters, :ModifyOriginParameters, :HTTPUpstreamTimeoutParameters, :HttpResponseParameters, :ErrorPageParameters, :ModifyResponseHeaderParameters, :ModifyRequestHeaderParameters, :ResponseSpeedLimitParameters, :SetContentIdentifierParameters
+
+        def initialize(name=nil, cacheparameters=nil, cachekeyparameters=nil, cacheprefreshparameters=nil, accessurlredirectparameters=nil, upstreamurlrewriteparameters=nil, quicparameters=nil, websocketparameters=nil, authenticationparameters=nil, maxageparameters=nil, statuscodecacheparameters=nil, offlinecacheparameters=nil, smartroutingparameters=nil, rangeoriginpullparameters=nil, upstreamhttp2parameters=nil, hostheaderparameters=nil, forceredirecthttpsparameters=nil, compressionparameters=nil, hstsparameters=nil, clientipheaderparameters=nil, ocspstaplingparameters=nil, http2parameters=nil, postmaxsizeparameters=nil, clientipcountryparameters=nil, upstreamfollowredirectparameters=nil, upstreamrequestparameters=nil, tlsconfigparameters=nil, modifyoriginparameters=nil, httpupstreamtimeoutparameters=nil, httpresponseparameters=nil, errorpageparameters=nil, modifyresponseheaderparameters=nil, modifyrequestheaderparameters=nil, responsespeedlimitparameters=nil, setcontentidentifierparameters=nil)
+          @Name = name
+          @CacheParameters = cacheparameters
+          @CacheKeyParameters = cachekeyparameters
+          @CachePrefreshParameters = cacheprefreshparameters
+          @AccessURLRedirectParameters = accessurlredirectparameters
+          @UpstreamURLRewriteParameters = upstreamurlrewriteparameters
+          @QUICParameters = quicparameters
+          @WebSocketParameters = websocketparameters
+          @AuthenticationParameters = authenticationparameters
+          @MaxAgeParameters = maxageparameters
+          @StatusCodeCacheParameters = statuscodecacheparameters
+          @OfflineCacheParameters = offlinecacheparameters
+          @SmartRoutingParameters = smartroutingparameters
+          @RangeOriginPullParameters = rangeoriginpullparameters
+          @UpstreamHTTP2Parameters = upstreamhttp2parameters
+          @HostHeaderParameters = hostheaderparameters
+          @ForceRedirectHTTPSParameters = forceredirecthttpsparameters
+          @CompressionParameters = compressionparameters
+          @HSTSParameters = hstsparameters
+          @ClientIPHeaderParameters = clientipheaderparameters
+          @OCSPStaplingParameters = ocspstaplingparameters
+          @HTTP2Parameters = http2parameters
+          @PostMaxSizeParameters = postmaxsizeparameters
+          @ClientIPCountryParameters = clientipcountryparameters
+          @UpstreamFollowRedirectParameters = upstreamfollowredirectparameters
+          @UpstreamRequestParameters = upstreamrequestparameters
+          @TLSConfigParameters = tlsconfigparameters
+          @ModifyOriginParameters = modifyoriginparameters
+          @HTTPUpstreamTimeoutParameters = httpupstreamtimeoutparameters
+          @HttpResponseParameters = httpresponseparameters
+          @ErrorPageParameters = errorpageparameters
+          @ModifyResponseHeaderParameters = modifyresponseheaderparameters
+          @ModifyRequestHeaderParameters = modifyrequestheaderparameters
+          @ResponseSpeedLimitParameters = responsespeedlimitparameters
+          @SetContentIdentifierParameters = setcontentidentifierparameters
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          unless params['CacheParameters'].nil?
+            @CacheParameters = CacheParameters.new
+            @CacheParameters.deserialize(params['CacheParameters'])
+          end
+          unless params['CacheKeyParameters'].nil?
+            @CacheKeyParameters = CacheKeyParameters.new
+            @CacheKeyParameters.deserialize(params['CacheKeyParameters'])
+          end
+          unless params['CachePrefreshParameters'].nil?
+            @CachePrefreshParameters = CachePrefreshParameters.new
+            @CachePrefreshParameters.deserialize(params['CachePrefreshParameters'])
+          end
+          unless params['AccessURLRedirectParameters'].nil?
+            @AccessURLRedirectParameters = AccessURLRedirectParameters.new
+            @AccessURLRedirectParameters.deserialize(params['AccessURLRedirectParameters'])
+          end
+          unless params['UpstreamURLRewriteParameters'].nil?
+            @UpstreamURLRewriteParameters = UpstreamURLRewriteParameters.new
+            @UpstreamURLRewriteParameters.deserialize(params['UpstreamURLRewriteParameters'])
+          end
+          unless params['QUICParameters'].nil?
+            @QUICParameters = QUICParameters.new
+            @QUICParameters.deserialize(params['QUICParameters'])
+          end
+          unless params['WebSocketParameters'].nil?
+            @WebSocketParameters = WebSocketParameters.new
+            @WebSocketParameters.deserialize(params['WebSocketParameters'])
+          end
+          unless params['AuthenticationParameters'].nil?
+            @AuthenticationParameters = AuthenticationParameters.new
+            @AuthenticationParameters.deserialize(params['AuthenticationParameters'])
+          end
+          unless params['MaxAgeParameters'].nil?
+            @MaxAgeParameters = MaxAgeParameters.new
+            @MaxAgeParameters.deserialize(params['MaxAgeParameters'])
+          end
+          unless params['StatusCodeCacheParameters'].nil?
+            @StatusCodeCacheParameters = StatusCodeCacheParameters.new
+            @StatusCodeCacheParameters.deserialize(params['StatusCodeCacheParameters'])
+          end
+          unless params['OfflineCacheParameters'].nil?
+            @OfflineCacheParameters = OfflineCacheParameters.new
+            @OfflineCacheParameters.deserialize(params['OfflineCacheParameters'])
+          end
+          unless params['SmartRoutingParameters'].nil?
+            @SmartRoutingParameters = SmartRoutingParameters.new
+            @SmartRoutingParameters.deserialize(params['SmartRoutingParameters'])
+          end
+          unless params['RangeOriginPullParameters'].nil?
+            @RangeOriginPullParameters = RangeOriginPullParameters.new
+            @RangeOriginPullParameters.deserialize(params['RangeOriginPullParameters'])
+          end
+          unless params['UpstreamHTTP2Parameters'].nil?
+            @UpstreamHTTP2Parameters = UpstreamHTTP2Parameters.new
+            @UpstreamHTTP2Parameters.deserialize(params['UpstreamHTTP2Parameters'])
+          end
+          unless params['HostHeaderParameters'].nil?
+            @HostHeaderParameters = HostHeaderParameters.new
+            @HostHeaderParameters.deserialize(params['HostHeaderParameters'])
+          end
+          unless params['ForceRedirectHTTPSParameters'].nil?
+            @ForceRedirectHTTPSParameters = ForceRedirectHTTPSParameters.new
+            @ForceRedirectHTTPSParameters.deserialize(params['ForceRedirectHTTPSParameters'])
+          end
+          unless params['CompressionParameters'].nil?
+            @CompressionParameters = CompressionParameters.new
+            @CompressionParameters.deserialize(params['CompressionParameters'])
+          end
+          unless params['HSTSParameters'].nil?
+            @HSTSParameters = HSTSParameters.new
+            @HSTSParameters.deserialize(params['HSTSParameters'])
+          end
+          unless params['ClientIPHeaderParameters'].nil?
+            @ClientIPHeaderParameters = ClientIPHeaderParameters.new
+            @ClientIPHeaderParameters.deserialize(params['ClientIPHeaderParameters'])
+          end
+          unless params['OCSPStaplingParameters'].nil?
+            @OCSPStaplingParameters = OCSPStaplingParameters.new
+            @OCSPStaplingParameters.deserialize(params['OCSPStaplingParameters'])
+          end
+          unless params['HTTP2Parameters'].nil?
+            @HTTP2Parameters = HTTP2Parameters.new
+            @HTTP2Parameters.deserialize(params['HTTP2Parameters'])
+          end
+          unless params['PostMaxSizeParameters'].nil?
+            @PostMaxSizeParameters = PostMaxSizeParameters.new
+            @PostMaxSizeParameters.deserialize(params['PostMaxSizeParameters'])
+          end
+          unless params['ClientIPCountryParameters'].nil?
+            @ClientIPCountryParameters = ClientIPCountryParameters.new
+            @ClientIPCountryParameters.deserialize(params['ClientIPCountryParameters'])
+          end
+          unless params['UpstreamFollowRedirectParameters'].nil?
+            @UpstreamFollowRedirectParameters = UpstreamFollowRedirectParameters.new
+            @UpstreamFollowRedirectParameters.deserialize(params['UpstreamFollowRedirectParameters'])
+          end
+          unless params['UpstreamRequestParameters'].nil?
+            @UpstreamRequestParameters = UpstreamRequestParameters.new
+            @UpstreamRequestParameters.deserialize(params['UpstreamRequestParameters'])
+          end
+          unless params['TLSConfigParameters'].nil?
+            @TLSConfigParameters = TLSConfigParameters.new
+            @TLSConfigParameters.deserialize(params['TLSConfigParameters'])
+          end
+          unless params['ModifyOriginParameters'].nil?
+            @ModifyOriginParameters = ModifyOriginParameters.new
+            @ModifyOriginParameters.deserialize(params['ModifyOriginParameters'])
+          end
+          unless params['HTTPUpstreamTimeoutParameters'].nil?
+            @HTTPUpstreamTimeoutParameters = HTTPUpstreamTimeoutParameters.new
+            @HTTPUpstreamTimeoutParameters.deserialize(params['HTTPUpstreamTimeoutParameters'])
+          end
+          unless params['HttpResponseParameters'].nil?
+            @HttpResponseParameters = HTTPResponseParameters.new
+            @HttpResponseParameters.deserialize(params['HttpResponseParameters'])
+          end
+          unless params['ErrorPageParameters'].nil?
+            @ErrorPageParameters = ErrorPageParameters.new
+            @ErrorPageParameters.deserialize(params['ErrorPageParameters'])
+          end
+          unless params['ModifyResponseHeaderParameters'].nil?
+            @ModifyResponseHeaderParameters = ModifyResponseHeaderParameters.new
+            @ModifyResponseHeaderParameters.deserialize(params['ModifyResponseHeaderParameters'])
+          end
+          unless params['ModifyRequestHeaderParameters'].nil?
+            @ModifyRequestHeaderParameters = ModifyRequestHeaderParameters.new
+            @ModifyRequestHeaderParameters.deserialize(params['ModifyRequestHeaderParameters'])
+          end
+          unless params['ResponseSpeedLimitParameters'].nil?
+            @ResponseSpeedLimitParameters = ResponseSpeedLimitParameters.new
+            @ResponseSpeedLimitParameters.deserialize(params['ResponseSpeedLimitParameters'])
+          end
+          unless params['SetContentIdentifierParameters'].nil?
+            @SetContentIdentifierParameters = SetContentIdentifierParameters.new
+            @SetContentIdentifierParameters.deserialize(params['SetContentIdentifierParameters'])
+          end
+        end
+      end
+
+      # 规则引擎规则详情。
+      class RuleEngineItem < TencentCloud::Common::AbstractModel
+        # @param Status: 规则状态。取值有：<li> enable: 启用； </li><li> disable: 未启用。</li>
+        # @type Status: String
+        # @param RuleId: 规则 ID。规则的唯一性标识，当调用 ModifyL7AccRules 时，该参数必填。
+        # @type RuleId: String
+        # @param RuleName: 规则名称。名称长度限制不超过 255 个字符。
+        # @type RuleName: String
+        # @param Description: 规则注释。可以填写多个注释。
+        # @type Description: Array
+        # @param Branches: 子规则分支。此列表当前只支持填写一项规则，多填无效。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Branches: Array
+        # @param RulePriority: 规则优先级。仅作为出参使用。
+        # @type RulePriority: Integer
+
+        attr_accessor :Status, :RuleId, :RuleName, :Description, :Branches, :RulePriority
+
+        def initialize(status=nil, ruleid=nil, rulename=nil, description=nil, branches=nil, rulepriority=nil)
+          @Status = status
+          @RuleId = ruleid
+          @RuleName = rulename
+          @Description = description
+          @Branches = branches
+          @RulePriority = rulepriority
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @RuleId = params['RuleId']
+          @RuleName = params['RuleName']
+          @Description = params['Description']
+          unless params['Branches'].nil?
+            @Branches = []
+            params['Branches'].each do |i|
+              rulebranch_tmp = RuleBranch.new
+              rulebranch_tmp.deserialize(i)
+              @Branches << rulebranch_tmp
+            end
+          end
+          @RulePriority = params['RulePriority']
+        end
+      end
+
+      # 子规则。
+      class RuleEngineSubRule < TencentCloud::Common::AbstractModel
+        # @param Branches: 子规则分支
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Branches: Array
+        # @param Description: 规则注释。
+        # @type Description: Array
+
+        attr_accessor :Branches, :Description
+
+        def initialize(branches=nil, description=nil)
+          @Branches = branches
+          @Description = description
+        end
+
+        def deserialize(params)
+          unless params['Branches'].nil?
+            @Branches = []
+            params['Branches'].each do |i|
+              rulebranch_tmp = RuleBranch.new
+              rulebranch_tmp.deserialize(i)
+              @Branches << rulebranch_tmp
+            end
+          end
+          @Description = params['Description']
         end
       end
 
@@ -14282,6 +16093,22 @@ module TencentCloud
         end
       end
 
+      # 内容标识配置参数。
+      class SetContentIdentifierParameters < TencentCloud::Common::AbstractModel
+        # @param ContentIdentifier: 内容标识id
+        # @type ContentIdentifier: String
+
+        attr_accessor :ContentIdentifier
+
+        def initialize(contentidentifier=nil)
+          @ContentIdentifier = contentidentifier
+        end
+
+        def deserialize(params)
+          @ContentIdentifier = params['ContentIdentifier']
+        end
+      end
+
       # 例外规则的跳过匹配条件，即在例外时根据本匹配条件，略过指定字段及内容。
       class SkipCondition < TencentCloud::Common::AbstractModel
         # @param Type: 例外跳过类型，取值为：
@@ -14429,6 +16256,24 @@ module TencentCloud
         end
       end
 
+      # 智能加速配置。
+      class SmartRoutingParameters < TencentCloud::Common::AbstractModel
+        # @param Switch: 智能加速配置开关，取值有：
+        # <li>on：开启；</li>
+        # <li>off：关闭。</li>
+        # @type Switch: String
+
+        attr_accessor :Switch
+
+        def initialize(switch=nil)
+          @Switch = switch
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
+        end
+      end
+
       # 支持标准debug结构体
       class StandardDebug < TencentCloud::Common::AbstractModel
         # @param Switch: Debug 功能开关，取值有：
@@ -14452,6 +16297,76 @@ module TencentCloud
           @Switch = params['Switch']
           @AllowClientIPList = params['AllowClientIPList']
           @ExpireTime = params['ExpireTime']
+        end
+      end
+
+      # Debug 调试结构体。
+      class StandardDebugParameters < TencentCloud::Common::AbstractModel
+        # @param Switch: Debug 功能开关，取值有：
+        # <li>on：开启；</li>
+        # <li>off：关闭。</li>
+        # @type Switch: String
+        # @param AllowClientIPList: 允许的客户端来源。支持填写 IPv4 以及 IPv6 的 IP 网段。0.0.0.0/0 表示允许所有 IPv4 客户端进行调试；::/0 表示允许所有 IPv6 客户端进行调试；不能填写 127.0.0.1。<br>注意：当 Switch 字段为 on 时，此字段必填，且填写个数为 1～100；当 Switch 为 off 时，无需填写此字段，若填写则不生效。
+        # @type AllowClientIPList: Array
+        # @param Expires: Debug 功能到期时间。超出设置的时间，则功能失效。<br>注意：当 Switch 为 on 时，此字段必填；当 Switch 为 off 时，无需填写此字段，若填写则不生效。
+        # @type Expires: String
+
+        attr_accessor :Switch, :AllowClientIPList, :Expires
+
+        def initialize(switch=nil, allowclientiplist=nil, expires=nil)
+          @Switch = switch
+          @AllowClientIPList = allowclientiplist
+          @Expires = expires
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
+          @AllowClientIPList = params['AllowClientIPList']
+          @Expires = params['Expires']
+        end
+      end
+
+      # 状态码缓存 TTL 配置参数内部结构。
+      class StatusCodeCacheParam < TencentCloud::Common::AbstractModel
+        # @param StatusCode: 状态码，取值为 400、 401、403、 404、 405、 407、 414、 500、 501、 502、 503、 504、 509、 514 之一。
+        # @type StatusCode: Integer
+        # @param CacheTime: 缓存时间数值，单位为秒，取值：0～31536000。
+        # @type CacheTime: Integer
+
+        attr_accessor :StatusCode, :CacheTime
+
+        def initialize(statuscode=nil, cachetime=nil)
+          @StatusCode = statuscode
+          @CacheTime = cachetime
+        end
+
+        def deserialize(params)
+          @StatusCode = params['StatusCode']
+          @CacheTime = params['CacheTime']
+        end
+      end
+
+      # 状态码缓存 TTL 配置参数。
+      class StatusCodeCacheParameters < TencentCloud::Common::AbstractModel
+        # @param StatusCodeCacheParams: 状态码缓存 TTL 。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StatusCodeCacheParams: Array
+
+        attr_accessor :StatusCodeCacheParams
+
+        def initialize(statuscodecacheparams=nil)
+          @StatusCodeCacheParams = statuscodecacheparams
+        end
+
+        def deserialize(params)
+          unless params['StatusCodeCacheParams'].nil?
+            @StatusCodeCacheParams = []
+            params['StatusCodeCacheParams'].each do |i|
+              statuscodecacheparam_tmp = StatusCodeCacheParam.new
+              statuscodecacheparam_tmp.deserialize(i)
+              @StatusCodeCacheParams << statuscodecacheparam_tmp
+            end
+          end
         end
       end
 
@@ -14572,6 +16487,26 @@ module TencentCloud
 
         def deserialize(params)
           @WebSwitch = params['WebSwitch']
+        end
+      end
+
+      # SSL/TLS 安全配置参数。
+      class TLSConfigParameters < TencentCloud::Common::AbstractModel
+        # @param Version: TLS 版本。至少填写一个，如果是多个时，需要为连续版本号，例如：开启 TLS1、1.1、1.2 和 1.3，不可仅开启 1 和 1.2 而关闭 1.1。取值有：<li>TLSv1：TLSv1 版本；</li><li>TLSv1.1：TLSv1.1 版本；</li><li>TLSv1.2：TLSv1.2 版本；</li><li>TLSv1.3：TLSv1.3 版本。</li>
+        # @type Version: Array
+        # @param CipherSuite: 密码套件。详细介绍请参考 [TLS 版本及密码套件说明](https://cloud.tencent.com/document/product/1552/86545)。取值有：<li>loose-v2023：loose-v2023 密码套件；</li><li>general-v2023：general-v2023 密码套件；</li><li>strict-v2023：strict-v2023 密码套件。</li>
+        # @type CipherSuite: String
+
+        attr_accessor :Version, :CipherSuite
+
+        def initialize(version=nil, ciphersuite=nil)
+          @Version = version
+          @CipherSuite = ciphersuite
+        end
+
+        def deserialize(params)
+          @Version = params['Version']
+          @CipherSuite = params['CipherSuite']
         end
       end
 
@@ -14874,6 +16809,33 @@ module TencentCloud
         end
       end
 
+      # 访问 URL 重定向路径配置参数。
+      class URLPath < TencentCloud::Common::AbstractModel
+        # @param Action: 执行动作，取值有：
+        # <li>follow：跟随请求；</li>
+        # <li>custom：自定义；</li>
+        # <li>regex：正则匹配。</li>
+        # @type Action: String
+        # @param Regex: 正则匹配的表达式，长度范围为 1～1024。<br>注意：当 Action 为 regex 时，此字段必填；当 Action 为 follow 或 custom 时，无需填写此字段，若填写则不生效。
+        # @type Regex: String
+        # @param Value: 重定向的目标URL，长度范围为 1～1024。<br>注意：当 Action 为 regex 或 custom 时，此字段必填；当 Action 为 follow 时，无需填写此字段，若填写则不生效。
+        # @type Value: String
+
+        attr_accessor :Action, :Regex, :Value
+
+        def initialize(action=nil, regex=nil, value=nil)
+          @Action = action
+          @Regex = regex
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Action = params['Action']
+          @Regex = params['Regex']
+          @Value = params['Value']
+        end
+      end
+
       # UpgradePlan请求参数结构体
       class UpgradePlanRequest < TencentCloud::Common::AbstractModel
         # @param PlanId: 套餐 ID，形如 edgeone-2unuvzjmmn2q。
@@ -14937,6 +16899,47 @@ module TencentCloud
         end
       end
 
+      # 回源跟随重定向参数配置。
+      class UpstreamFollowRedirectParameters < TencentCloud::Common::AbstractModel
+        # @param Switch: 回源跟随重定向配置开关，取值有：
+        # <li>on：开启；</li>
+        # <li>off：关闭。</li>
+        # @type Switch: String
+        # @param MaxTimes: 最大重定向次数。取值为 1-5。
+        # 注意：当 Switch 为 on 时，此字段必填；当 Switch 为 off 时，无需填写此字段，若填写则不生效。
+        # @type MaxTimes: Integer
+
+        attr_accessor :Switch, :MaxTimes
+
+        def initialize(switch=nil, maxtimes=nil)
+          @Switch = switch
+          @MaxTimes = maxtimes
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
+          @MaxTimes = params['MaxTimes']
+        end
+      end
+
+      # HTTP2 回源配置。
+      class UpstreamHTTP2Parameters < TencentCloud::Common::AbstractModel
+        # @param Switch: HTTP2 回源配置开关，取值有：
+        # <li>on：开启；</li>
+        # <li>off：关闭。</li>
+        # @type Switch: String
+
+        attr_accessor :Switch
+
+        def initialize(switch=nil)
+          @Switch = switch
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
+        end
+      end
+
       # Http2回源配置
       class UpstreamHttp2 < TencentCloud::Common::AbstractModel
         # @param Switch: http2 回源配置开关，取值有：
@@ -14952,6 +16955,121 @@ module TencentCloud
 
         def deserialize(params)
           @Switch = params['Switch']
+        end
+      end
+
+      # 回源请求参数 Cookie 配置。
+      class UpstreamRequestCookie < TencentCloud::Common::AbstractModel
+        # @param Switch: 回源请求参数 Cookie 配置开关，取值有：
+        # <li>on：开启；</li>
+        # <li>off：关闭。</li>
+        # @type Switch: String
+        # @param Action: 回源请求参数 Cookie 模式。当 Switch 为 on 时，该参数必填。取值有：
+        # <li>full：表示全部保留；</li>
+        # <li>ignore：表示全部忽略；</li>
+        # <li>includeCustom：表示保留部分参数；</li>
+        # <li>excludeCustom：表示忽略部分参数。</li>
+        # @type Action: String
+        # @param Values: 指定参数值。仅当查询字符串模式 Action 为 includeCustom 或者 excludeCustom 时该参数生效，用于指定需要保留或者忽略的参数。最大支持 10 个参数。
+        # @type Values: Array
+
+        attr_accessor :Switch, :Action, :Values
+
+        def initialize(switch=nil, action=nil, values=nil)
+          @Switch = switch
+          @Action = action
+          @Values = values
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
+          @Action = params['Action']
+          @Values = params['Values']
+        end
+      end
+
+      # 回源请求参数配置参数。
+      class UpstreamRequestParameters < TencentCloud::Common::AbstractModel
+        # @param QueryString: 查询字符串配置。可选配置项，不填表示不配置。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type QueryString: :class:`Tencentcloud::Teo.v20220901.models.UpstreamRequestQueryString`
+        # @param Cookie: Cookie 配置。可选配置项，不填表示不配置。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Cookie: :class:`Tencentcloud::Teo.v20220901.models.UpstreamRequestCookie`
+
+        attr_accessor :QueryString, :Cookie
+
+        def initialize(querystring=nil, cookie=nil)
+          @QueryString = querystring
+          @Cookie = cookie
+        end
+
+        def deserialize(params)
+          unless params['QueryString'].nil?
+            @QueryString = UpstreamRequestQueryString.new
+            @QueryString.deserialize(params['QueryString'])
+          end
+          unless params['Cookie'].nil?
+            @Cookie = UpstreamRequestCookie.new
+            @Cookie.deserialize(params['Cookie'])
+          end
+        end
+      end
+
+      # 回源请求参数查询字符串配置。
+      class UpstreamRequestQueryString < TencentCloud::Common::AbstractModel
+        # @param Switch: 回源请求参数查询字符串配置开关，取值有：
+        # <li>on：开启；</li>
+        # <li>off：关闭。</li>
+        # @type Switch: String
+        # @param Action: 查询字符串模式。当 Switch 为 on 时，该参数必填。取值有：
+        # <li>full：全部保留；</li>
+        # <li>ignore：全部忽略；</li>
+        # <li>includeCustom：保留部分参数；</li>
+        # <li>excludeCustom：忽略部分参数。</li>
+        # @type Action: String
+        # @param Values: 指定参数值。仅当查询字符串模式 Action 为 includeCustom 或者 excludeCustom 时该参数生效，用于指定需要保留或者忽略的参数。最大支持 10 个参数。
+        # @type Values: Array
+
+        attr_accessor :Switch, :Action, :Values
+
+        def initialize(switch=nil, action=nil, values=nil)
+          @Switch = switch
+          @Action = action
+          @Values = values
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
+          @Action = params['Action']
+          @Values = params['Values']
+        end
+      end
+
+      # 回源 URL 重写 配置参数。
+      class UpstreamURLRewriteParameters < TencentCloud::Common::AbstractModel
+        # @param Type: 回源 URL 重写类型，仅支持填写 Path。
+        # @type Type: String
+        # @param Action: 回源 URL 重写动作。取值有：
+        # <li>replace：替换路径前缀；</li>
+        # <li>addPrefix：增加路径前缀；</li>
+        # <li>rmvPrefix：移除路径前缀。</li>
+        # @type Action: String
+        # @param Value: 回源 URL 重写值，最大长度 1024，必须以 / 开头。<br>注意：当 Action 为 addPrefix 时，不能以 / 结尾；当 Action 为 rmvPrefix 时，不能存在 *。
+        # @type Value: String
+
+        attr_accessor :Type, :Action, :Value
+
+        def initialize(type=nil, action=nil, value=nil)
+          @Type = type
+          @Action = action
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @Action = params['Action']
+          @Value = params['Value']
         end
       end
 
@@ -15156,6 +17274,28 @@ module TencentCloud
         end
       end
 
+      # WebSocket 配置。
+      class WebSocketParameters < TencentCloud::Common::AbstractModel
+        # @param Switch: WebSocket 超时时间配置开关，取值有：
+        # <li>on：使用 Timeout 作为 WebSocket 超时时间；</li>
+        # <li>off：平台仍支持 WebSocket 连接，此时使用系统默认的 15 秒为超时时间。</li>
+        # @type Switch: String
+        # @param Timeout: 超时时间，单位为秒，最大超时时间 120 秒。<br>注意：当 Switch 为 on 时，此字段必填，否则此字段不生效。
+        # @type Timeout: Integer
+
+        attr_accessor :Switch, :Timeout
+
+        def initialize(switch=nil, timeout=nil)
+          @Switch = switch
+          @Timeout = timeout
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
+          @Timeout = params['Timeout']
+        end
+      end
+
       # 站点信息
       class Zone < TencentCloud::Common::AbstractModel
         # @param ZoneId: 站点 ID。
@@ -15299,6 +17439,218 @@ module TencentCloud
           unless params['OwnershipVerification'].nil?
             @OwnershipVerification = OwnershipVerification.new
             @OwnershipVerification.deserialize(params['OwnershipVerification'])
+          end
+        end
+      end
+
+      # 站点加速配置。
+      class ZoneConfig < TencentCloud::Common::AbstractModel
+        # @param SmartRouting: 智能加速配置。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SmartRouting: :class:`Tencentcloud::Teo.v20220901.models.SmartRoutingParameters`
+        # @param Cache: 缓存过期时间配置。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Cache: :class:`Tencentcloud::Teo.v20220901.models.CacheConfigParameters`
+        # @param MaxAge: 浏览器缓存配置。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MaxAge: :class:`Tencentcloud::Teo.v20220901.models.MaxAgeParameters`
+        # @param CacheKey: 节点缓存键配置。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CacheKey: :class:`Tencentcloud::Teo.v20220901.models.CacheKeyConfigParameters`
+        # @param CachePrefresh: 缓存预刷新配置。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CachePrefresh: :class:`Tencentcloud::Teo.v20220901.models.CachePrefreshParameters`
+        # @param OfflineCache: 离线缓存配置。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OfflineCache: :class:`Tencentcloud::Teo.v20220901.models.OfflineCacheParameters`
+        # @param Compression: 智能压缩配置。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Compression: :class:`Tencentcloud::Teo.v20220901.models.CompressionParameters`
+        # @param ForceRedirectHTTPS: 访问协议强制 HTTPS 跳转配置。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ForceRedirectHTTPS: :class:`Tencentcloud::Teo.v20220901.models.ForceRedirectHTTPSParameters`
+        # @param HSTS: HSTS 相关配置。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HSTS: :class:`Tencentcloud::Teo.v20220901.models.HSTSParameters`
+        # @param TLSConfig: TLS 相关配置。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TLSConfig: :class:`Tencentcloud::Teo.v20220901.models.TLSConfigParameters`
+        # @param OCSPStapling: OCSP 装订配置。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OCSPStapling: :class:`Tencentcloud::Teo.v20220901.models.OCSPStaplingParameters`
+        # @param HTTP2: HTTP2 相关配置。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HTTP2: :class:`Tencentcloud::Teo.v20220901.models.HTTP2Parameters`
+        # @param QUIC: QUIC 访问配置。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type QUIC: :class:`Tencentcloud::Teo.v20220901.models.QUICParameters`
+        # @param UpstreamHTTP2: HTTP2 回源配置。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpstreamHTTP2: :class:`Tencentcloud::Teo.v20220901.models.UpstreamHTTP2Parameters`
+        # @param IPv6: IPv6 访问配置。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IPv6: :class:`Tencentcloud::Teo.v20220901.models.IPv6Parameters`
+        # @param WebSocket: WebSocket 配置。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WebSocket: :class:`Tencentcloud::Teo.v20220901.models.WebSocketParameters`
+        # @param PostMaxSize: POST 请求传输配置。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PostMaxSize: :class:`Tencentcloud::Teo.v20220901.models.PostMaxSizeParameters`
+        # @param ClientIPHeader: 客户端 IP 回源请求头配置。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClientIPHeader: :class:`Tencentcloud::Teo.v20220901.models.ClientIPHeaderParameters`
+        # @param ClientIPCountry: 回源时是否携带客户端 IP 所属地域信息的配置。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClientIPCountry: :class:`Tencentcloud::Teo.v20220901.models.ClientIPCountryParameters`
+        # @param Grpc: gRPC 协议支持配置。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Grpc: :class:`Tencentcloud::Teo.v20220901.models.GrpcParameters`
+        # @param AccelerateMainland: 中国大陆加速优化配置。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AccelerateMainland: :class:`Tencentcloud::Teo.v20220901.models.AccelerateMainlandParameters`
+        # @param StandardDebug: 标准 Debug 配置。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StandardDebug: :class:`Tencentcloud::Teo.v20220901.models.StandardDebugParameters`
+
+        attr_accessor :SmartRouting, :Cache, :MaxAge, :CacheKey, :CachePrefresh, :OfflineCache, :Compression, :ForceRedirectHTTPS, :HSTS, :TLSConfig, :OCSPStapling, :HTTP2, :QUIC, :UpstreamHTTP2, :IPv6, :WebSocket, :PostMaxSize, :ClientIPHeader, :ClientIPCountry, :Grpc, :AccelerateMainland, :StandardDebug
+
+        def initialize(smartrouting=nil, cache=nil, maxage=nil, cachekey=nil, cacheprefresh=nil, offlinecache=nil, compression=nil, forceredirecthttps=nil, hsts=nil, tlsconfig=nil, ocspstapling=nil, http2=nil, quic=nil, upstreamhttp2=nil, ipv6=nil, websocket=nil, postmaxsize=nil, clientipheader=nil, clientipcountry=nil, grpc=nil, acceleratemainland=nil, standarddebug=nil)
+          @SmartRouting = smartrouting
+          @Cache = cache
+          @MaxAge = maxage
+          @CacheKey = cachekey
+          @CachePrefresh = cacheprefresh
+          @OfflineCache = offlinecache
+          @Compression = compression
+          @ForceRedirectHTTPS = forceredirecthttps
+          @HSTS = hsts
+          @TLSConfig = tlsconfig
+          @OCSPStapling = ocspstapling
+          @HTTP2 = http2
+          @QUIC = quic
+          @UpstreamHTTP2 = upstreamhttp2
+          @IPv6 = ipv6
+          @WebSocket = websocket
+          @PostMaxSize = postmaxsize
+          @ClientIPHeader = clientipheader
+          @ClientIPCountry = clientipcountry
+          @Grpc = grpc
+          @AccelerateMainland = acceleratemainland
+          @StandardDebug = standarddebug
+        end
+
+        def deserialize(params)
+          unless params['SmartRouting'].nil?
+            @SmartRouting = SmartRoutingParameters.new
+            @SmartRouting.deserialize(params['SmartRouting'])
+          end
+          unless params['Cache'].nil?
+            @Cache = CacheConfigParameters.new
+            @Cache.deserialize(params['Cache'])
+          end
+          unless params['MaxAge'].nil?
+            @MaxAge = MaxAgeParameters.new
+            @MaxAge.deserialize(params['MaxAge'])
+          end
+          unless params['CacheKey'].nil?
+            @CacheKey = CacheKeyConfigParameters.new
+            @CacheKey.deserialize(params['CacheKey'])
+          end
+          unless params['CachePrefresh'].nil?
+            @CachePrefresh = CachePrefreshParameters.new
+            @CachePrefresh.deserialize(params['CachePrefresh'])
+          end
+          unless params['OfflineCache'].nil?
+            @OfflineCache = OfflineCacheParameters.new
+            @OfflineCache.deserialize(params['OfflineCache'])
+          end
+          unless params['Compression'].nil?
+            @Compression = CompressionParameters.new
+            @Compression.deserialize(params['Compression'])
+          end
+          unless params['ForceRedirectHTTPS'].nil?
+            @ForceRedirectHTTPS = ForceRedirectHTTPSParameters.new
+            @ForceRedirectHTTPS.deserialize(params['ForceRedirectHTTPS'])
+          end
+          unless params['HSTS'].nil?
+            @HSTS = HSTSParameters.new
+            @HSTS.deserialize(params['HSTS'])
+          end
+          unless params['TLSConfig'].nil?
+            @TLSConfig = TLSConfigParameters.new
+            @TLSConfig.deserialize(params['TLSConfig'])
+          end
+          unless params['OCSPStapling'].nil?
+            @OCSPStapling = OCSPStaplingParameters.new
+            @OCSPStapling.deserialize(params['OCSPStapling'])
+          end
+          unless params['HTTP2'].nil?
+            @HTTP2 = HTTP2Parameters.new
+            @HTTP2.deserialize(params['HTTP2'])
+          end
+          unless params['QUIC'].nil?
+            @QUIC = QUICParameters.new
+            @QUIC.deserialize(params['QUIC'])
+          end
+          unless params['UpstreamHTTP2'].nil?
+            @UpstreamHTTP2 = UpstreamHTTP2Parameters.new
+            @UpstreamHTTP2.deserialize(params['UpstreamHTTP2'])
+          end
+          unless params['IPv6'].nil?
+            @IPv6 = IPv6Parameters.new
+            @IPv6.deserialize(params['IPv6'])
+          end
+          unless params['WebSocket'].nil?
+            @WebSocket = WebSocketParameters.new
+            @WebSocket.deserialize(params['WebSocket'])
+          end
+          unless params['PostMaxSize'].nil?
+            @PostMaxSize = PostMaxSizeParameters.new
+            @PostMaxSize.deserialize(params['PostMaxSize'])
+          end
+          unless params['ClientIPHeader'].nil?
+            @ClientIPHeader = ClientIPHeaderParameters.new
+            @ClientIPHeader.deserialize(params['ClientIPHeader'])
+          end
+          unless params['ClientIPCountry'].nil?
+            @ClientIPCountry = ClientIPCountryParameters.new
+            @ClientIPCountry.deserialize(params['ClientIPCountry'])
+          end
+          unless params['Grpc'].nil?
+            @Grpc = GrpcParameters.new
+            @Grpc.deserialize(params['Grpc'])
+          end
+          unless params['AccelerateMainland'].nil?
+            @AccelerateMainland = AccelerateMainlandParameters.new
+            @AccelerateMainland.deserialize(params['AccelerateMainland'])
+          end
+          unless params['StandardDebug'].nil?
+            @StandardDebug = StandardDebugParameters.new
+            @StandardDebug.deserialize(params['StandardDebug'])
+          end
+        end
+      end
+
+      # 站点配置相关信息。
+      class ZoneConfigParameters < TencentCloud::Common::AbstractModel
+        # @param ZoneName: 站点名称。
+        # @type ZoneName: String
+        # @param ZoneConfig: 站点配置信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ZoneConfig: :class:`Tencentcloud::Teo.v20220901.models.ZoneConfig`
+
+        attr_accessor :ZoneName, :ZoneConfig
+
+        def initialize(zonename=nil, zoneconfig=nil)
+          @ZoneName = zonename
+          @ZoneConfig = zoneconfig
+        end
+
+        def deserialize(params)
+          @ZoneName = params['ZoneName']
+          unless params['ZoneConfig'].nil?
+            @ZoneConfig = ZoneConfig.new
+            @ZoneConfig.deserialize(params['ZoneConfig'])
           end
         end
       end

@@ -440,6 +440,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口用于在[规则引擎](https://cloud.tencent.com/document/product/1552/70901)中创建规则，支持批量创建。
+
+        # @param request: Request instance for CreateL7AccRules.
+        # @type request: :class:`Tencentcloud::teo::V20220901::CreateL7AccRulesRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::CreateL7AccRulesResponse`
+        def CreateL7AccRules(request)
+          body = send_request('CreateL7AccRules', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateL7AccRulesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建负载均衡实例。详情请参考 [快速创建负载均衡实例](https://cloud.tencent.com/document/product/1552/104223)。负载均衡功能内测中，如您需要使用请 [联系我们](https://cloud.tencent.com/online-service)。
 
         # @param request: Request instance for CreateLoadBalancer.
@@ -975,6 +999,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口用于删除[规则引擎](https://cloud.tencent.com/document/product/1552/70901)的规则，支持批量删除。
+
+        # @param request: Request instance for DeleteL7AccRules.
+        # @type request: :class:`Tencentcloud::teo::V20220901::DeleteL7AccRulesRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::DeleteL7AccRulesResponse`
+        def DeleteL7AccRules(request)
+          body = send_request('DeleteL7AccRules', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteL7AccRulesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 删除负载均衡实例，若负载均衡示例被其他服务（例如：四层代理等）引用的时候，示例无法被删除，需要先解除引用关系。负载均衡功能内测中，如您需要使用请 [联系我们](https://cloud.tencent.com/online-service)。
 
         # @param request: Request instance for DeleteLoadBalancer.
@@ -1047,7 +1095,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 批量删除规则引擎规则。
+        # 本接口为旧版，EdgeOne 已对规则引擎相关接口全面升级，详情请参考 [DeleteL7AccRules](https://cloud.tencent.com/document/product/1552/115821)。
 
         # @param request: Request instance for DeleteRules.
         # @type request: :class:`Tencentcloud::teo::V20220901::DeleteRulesRequest`
@@ -1647,7 +1695,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 用于查询域名配置信息
+        # 本接口为旧版，EdgeOne 已对规则引擎相关接口全面升级，可通过 [DescribeL7AccSetting](https://cloud.tencent.com/document/product/1552/115819) 和 [DescribeL7AccRules](https://cloud.tencent.com/document/product/1552/115820) 来获取域名的详细配置。
 
         # @param request: Request instance for DescribeHostsSetting.
         # @type request: :class:`Tencentcloud::teo::V20220901::DescribeHostsSettingRequest`
@@ -1753,6 +1801,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeL4ProxyRulesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口用于查询[规则引擎](https://cloud.tencent.com/document/product/1552/70901)的规则列表。
+
+        # @param request: Request instance for DescribeL7AccRules.
+        # @type request: :class:`Tencentcloud::teo::V20220901::DescribeL7AccRulesRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::DescribeL7AccRulesResponse`
+        def DescribeL7AccRules(request)
+          body = send_request('DescribeL7AccRules', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeL7AccRulesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口用于查询[站点加速](https://cloud.tencent.com/document/product/1552/96193)全局配置。
+
+        # @param request: Request instance for DescribeL7AccSetting.
+        # @type request: :class:`Tencentcloud::teo::V20220901::DescribeL7AccSettingRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::DescribeL7AccSettingResponse`
+        def DescribeL7AccSetting(request)
+          body = send_request('DescribeL7AccSetting', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeL7AccSettingResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1959,7 +2055,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询规则引擎规则。
+        # 本接口为旧版，EdgeOne 已对规则引擎相关接口全面升级，详情请参考 [DescribeL7AccRules](https://cloud.tencent.com/document/product/1552/115820)。
 
         # @param request: Request instance for DescribeRules.
         # @type request: :class:`Tencentcloud::teo::V20220901::DescribeRulesRequest`
@@ -1983,7 +2079,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 返回规则引擎可应用匹配请求的设置列表及其详细建议配置信息
+        # 本接口为旧版，EdgeOne 已对规则引擎相关接口全面升级，详情请参考 [RuleEngineAction](https://cloud.tencent.com/document/product/1552/80721#RuleEngineAction)。
 
         # @param request: Request instance for DescribeRulesSetting.
         # @type request: :class:`Tencentcloud::teo::V20220901::DescribeRulesSettingRequest`
@@ -2226,7 +2322,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 用于查询站点的所有配置信息。
+        # 本接口为旧版，EdgeOne 已对规则引擎相关接口全面升级，详情请参考 [DescribeL7AccSetting](https://cloud.tencent.com/document/product/1552/115819)。
 
         # @param request: Request instance for DescribeZoneSetting.
         # @type request: :class:`Tencentcloud::teo::V20220901::DescribeZoneSettingRequest`
@@ -2960,6 +3056,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口用于修改[规则引擎](https://cloud.tencent.com/document/product/1552/70901)中的规则，单次仅支持修改单条规则。
+
+        # @param request: Request instance for ModifyL7AccRule.
+        # @type request: :class:`Tencentcloud::teo::V20220901::ModifyL7AccRuleRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::ModifyL7AccRuleResponse`
+        def ModifyL7AccRule(request)
+          body = send_request('ModifyL7AccRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyL7AccRuleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口用于修改[站点加速](https://cloud.tencent.com/document/product/1552/96193)全局配置。
+
+        # @param request: Request instance for ModifyL7AccSetting.
+        # @type request: :class:`Tencentcloud::teo::V20220901::ModifyL7AccSettingRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::ModifyL7AccSettingResponse`
+        def ModifyL7AccSetting(request)
+          body = send_request('ModifyL7AccSetting', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyL7AccSettingResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 修改负载均衡实例配置。负载均衡功能内测中，如您需要使用请 [联系我们](https://cloud.tencent.com/online-service)。
 
         # @param request: Request instance for ModifyLoadBalancer.
@@ -3152,7 +3296,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 用于修改站点配置
+        # 本接口为旧版，EdgeOne 已对规则引擎相关接口全面升级，详情请参考 [ModifyL7AccSetting](https://cloud.tencent.com/document/product/1552/115817)。
 
         # @param request: Request instance for ModifyZoneSetting.
         # @type request: :class:`Tencentcloud::teo::V20220901::ModifyZoneSettingRequest`

@@ -243,8 +243,7 @@ module TencentCloud
       class CreateTawInstanceResponse < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例Id
         # @type InstanceId: String
-        # @param DealName: 预付费订单 id
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param DealName: 预付费订单 ，预付费不为null，后付费为null
         # @type DealName: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -422,7 +421,7 @@ module TencentCloud
 
       # DeleteStarProject请求参数结构体
       class DeleteStarProjectRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceID: 实例ID：taw-123
+        # @param InstanceID: 实例ID：****-1792
         # @type InstanceID: String
         # @param ID: 项目ID
         # @type ID: Integer
@@ -442,8 +441,7 @@ module TencentCloud
 
       # DeleteStarProject返回参数结构体
       class DeleteStarProjectResponse < TencentCloud::Common::AbstractModel
-        # @param Msg: 返回消息
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param Msg: 返回消息,请求成功才会返回，出现异常默认为null
         # @type Msg: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2843,7 +2841,6 @@ module TencentCloud
       # DescribePvList返回参数结构体
       class DescribePvListResponse < TencentCloud::Common::AbstractModel
         # @param ProjectPvSet: pv列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProjectPvSet: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3584,6 +3581,52 @@ module TencentCloud
         end
       end
 
+      # 旁路kafka配置
+      class Kafka < TencentCloud::Common::AbstractModel
+        # @param EnableKafka: 1：开启
+        # 0：关闭
+        # @type EnableKafka: Integer
+        # @param KafkaHost: host地址
+        # @type KafkaHost: String
+        # @param KafkaTopic: topic
+        # @type KafkaTopic: String
+        # @param KafkaVersion: 版本
+        # @type KafkaVersion: String
+        # @param SaslUserName: username
+        # @type SaslUserName: String
+        # @param SaslPassword: password
+        # @type SaslPassword: String
+        # @param SaslMechanism: ssl
+        # @type SaslMechanism: String
+        # @param SinkId: 默认算子id为0新增算子
+        # 一旦算子新增成功会返回正确的算子id值
+        # @type SinkId: Integer
+
+        attr_accessor :EnableKafka, :KafkaHost, :KafkaTopic, :KafkaVersion, :SaslUserName, :SaslPassword, :SaslMechanism, :SinkId
+
+        def initialize(enablekafka=nil, kafkahost=nil, kafkatopic=nil, kafkaversion=nil, saslusername=nil, saslpassword=nil, saslmechanism=nil, sinkid=nil)
+          @EnableKafka = enablekafka
+          @KafkaHost = kafkahost
+          @KafkaTopic = kafkatopic
+          @KafkaVersion = kafkaversion
+          @SaslUserName = saslusername
+          @SaslPassword = saslpassword
+          @SaslMechanism = saslmechanism
+          @SinkId = sinkid
+        end
+
+        def deserialize(params)
+          @EnableKafka = params['EnableKafka']
+          @KafkaHost = params['KafkaHost']
+          @KafkaTopic = params['KafkaTopic']
+          @KafkaVersion = params['KafkaVersion']
+          @SaslUserName = params['SaslUserName']
+          @SaslPassword = params['SaslPassword']
+          @SaslMechanism = params['SaslMechanism']
+          @SinkId = params['SinkId']
+        end
+      end
+
       # ModifyInstance请求参数结构体
       class ModifyInstanceRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 要修改的实例id
@@ -3659,7 +3702,6 @@ module TencentCloud
       # ModifyProjectLimit返回参数结构体
       class ModifyProjectLimitResponse < TencentCloud::Common::AbstractModel
         # @param Msg: 返回信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Msg: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3792,7 +3834,6 @@ module TencentCloud
         # @param FileHash: 文件哈希值
         # @type FileHash: String
         # @param ID: 文件 id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ID: Integer
 
         attr_accessor :Version, :FileKey, :FileName, :FileHash, :ID
@@ -3945,7 +3986,6 @@ module TencentCloud
         # @param CreatedAt: 创建时间
         # @type CreatedAt: String
         # @param InstanceType: 实例类型 1:原web相关类型 2:app端类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceType: Integer
 
         attr_accessor :InstanceStatus, :AreaId, :Tags, :InstanceId, :ClusterId, :InstanceDesc, :ChargeStatus, :ChargeType, :UpdatedAt, :DataRetentionDays, :InstanceName, :CreatedAt, :InstanceType
@@ -4003,10 +4043,8 @@ module TencentCloud
         # @param CreateTime: 创建时间
         # @type CreateTime: String
         # @param Repo: 项目仓库地址
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Repo: String
         # @param URL: 项目网址地址
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type URL: String
         # @param Rate: 项目采样频率
         # @type Rate: String
@@ -4021,21 +4059,19 @@ module TencentCloud
         # @param InstanceKey: 实例 key
         # @type InstanceKey: String
         # @param Desc: 项目描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Desc: String
         # @param IsStar: 是否星标  1:是 0:否
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsStar: Integer
         # @param ProjectStatus: 项目状态(1 创建中，2 运行中，3 异常，4 重启中，5 停止中，6 已停止， 7 销毁中，8 已销毁)
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProjectStatus: Integer
         # @param AccessPoint: 日志接入点，用户忽略。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AccessPoint: String
+        # @param Kafka: kafka旁路配置信息
+        # @type Kafka: :class:`Tencentcloud::Rum.v20210622.models.Kafka`
 
-        attr_accessor :Name, :Creator, :InstanceID, :Type, :CreateTime, :Repo, :URL, :Rate, :Key, :EnableURLGroup, :InstanceName, :ID, :InstanceKey, :Desc, :IsStar, :ProjectStatus, :AccessPoint
+        attr_accessor :Name, :Creator, :InstanceID, :Type, :CreateTime, :Repo, :URL, :Rate, :Key, :EnableURLGroup, :InstanceName, :ID, :InstanceKey, :Desc, :IsStar, :ProjectStatus, :AccessPoint, :Kafka
 
-        def initialize(name=nil, creator=nil, instanceid=nil, type=nil, createtime=nil, repo=nil, url=nil, rate=nil, key=nil, enableurlgroup=nil, instancename=nil, id=nil, instancekey=nil, desc=nil, isstar=nil, projectstatus=nil, accesspoint=nil)
+        def initialize(name=nil, creator=nil, instanceid=nil, type=nil, createtime=nil, repo=nil, url=nil, rate=nil, key=nil, enableurlgroup=nil, instancename=nil, id=nil, instancekey=nil, desc=nil, isstar=nil, projectstatus=nil, accesspoint=nil, kafka=nil)
           @Name = name
           @Creator = creator
           @InstanceID = instanceid
@@ -4053,6 +4089,7 @@ module TencentCloud
           @IsStar = isstar
           @ProjectStatus = projectstatus
           @AccessPoint = accesspoint
+          @Kafka = kafka
         end
 
         def deserialize(params)
@@ -4073,6 +4110,10 @@ module TencentCloud
           @IsStar = params['IsStar']
           @ProjectStatus = params['ProjectStatus']
           @AccessPoint = params['AccessPoint']
+          unless params['Kafka'].nil?
+            @Kafka = Kafka.new
+            @Kafka.deserialize(params['Kafka'])
+          end
         end
       end
 
@@ -4081,7 +4122,6 @@ module TencentCloud
         # @param ProjectId: 项目ID
         # @type ProjectId: Integer
         # @param Pv: pv访问量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Pv: String
         # @param CreateTime: 时间
         # @type CreateTime: String

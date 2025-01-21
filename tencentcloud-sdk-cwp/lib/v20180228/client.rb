@@ -2962,58 +2962,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 已废弃
-
-        # 查询攻击溯源
-
-        # @param request: Request instance for DescribeAttackSource.
-        # @type request: :class:`Tencentcloud::cwp::V20180228::DescribeAttackSourceRequest`
-        # @rtype: :class:`Tencentcloud::cwp::V20180228::DescribeAttackSourceResponse`
-        def DescribeAttackSource(request)
-          body = send_request('DescribeAttackSource', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeAttackSourceResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 已废弃
-
-        # 查询攻击溯源事件
-
-        # @param request: Request instance for DescribeAttackSourceEvents.
-        # @type request: :class:`Tencentcloud::cwp::V20180228::DescribeAttackSourceEventsRequest`
-        # @rtype: :class:`Tencentcloud::cwp::V20180228::DescribeAttackSourceEventsResponse`
-        def DescribeAttackSourceEvents(request)
-          body = send_request('DescribeAttackSourceEvents', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeAttackSourceEventsResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 网络攻击数据统计
 
         # @param request: Request instance for DescribeAttackStatistics.

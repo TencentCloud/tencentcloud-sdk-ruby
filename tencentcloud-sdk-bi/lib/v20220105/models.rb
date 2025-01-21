@@ -389,10 +389,14 @@ module TencentCloud
         # @type VpcId: String
         # @param OperationAuthLimit: 操作权限限制
         # @type OperationAuthLimit: Array
+        # @param UseVPC: 开启vpc
+        # @type UseVPC: Boolean
+        # @param RegionId: 地域
+        # @type RegionId: String
 
-        attr_accessor :DbHost, :DbPort, :ServiceType, :DbType, :Charset, :DbUser, :DbPwd, :DbName, :SourceName, :ProjectId, :Catalog, :DataOrigin, :DataOriginProjectId, :DataOriginDatasourceId, :ExtraParam, :UniqVpcId, :Vip, :Vport, :VpcId, :OperationAuthLimit
+        attr_accessor :DbHost, :DbPort, :ServiceType, :DbType, :Charset, :DbUser, :DbPwd, :DbName, :SourceName, :ProjectId, :Catalog, :DataOrigin, :DataOriginProjectId, :DataOriginDatasourceId, :ExtraParam, :UniqVpcId, :Vip, :Vport, :VpcId, :OperationAuthLimit, :UseVPC, :RegionId
 
-        def initialize(dbhost=nil, dbport=nil, servicetype=nil, dbtype=nil, charset=nil, dbuser=nil, dbpwd=nil, dbname=nil, sourcename=nil, projectid=nil, catalog=nil, dataorigin=nil, dataoriginprojectid=nil, dataorigindatasourceid=nil, extraparam=nil, uniqvpcid=nil, vip=nil, vport=nil, vpcid=nil, operationauthlimit=nil)
+        def initialize(dbhost=nil, dbport=nil, servicetype=nil, dbtype=nil, charset=nil, dbuser=nil, dbpwd=nil, dbname=nil, sourcename=nil, projectid=nil, catalog=nil, dataorigin=nil, dataoriginprojectid=nil, dataorigindatasourceid=nil, extraparam=nil, uniqvpcid=nil, vip=nil, vport=nil, vpcid=nil, operationauthlimit=nil, usevpc=nil, regionid=nil)
           @DbHost = dbhost
           @DbPort = dbport
           @ServiceType = servicetype
@@ -413,6 +417,8 @@ module TencentCloud
           @Vport = vport
           @VpcId = vpcid
           @OperationAuthLimit = operationauthlimit
+          @UseVPC = usevpc
+          @RegionId = regionid
         end
 
         def deserialize(params)
@@ -436,6 +442,8 @@ module TencentCloud
           @Vport = params['Vport']
           @VpcId = params['VpcId']
           @OperationAuthLimit = params['OperationAuthLimit']
+          @UseVPC = params['UseVPC']
+          @RegionId = params['RegionId']
         end
       end
 
@@ -997,10 +1005,13 @@ module TencentCloud
         # @param DbTypeName: 数据源名称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DbTypeName: String
+        # @param UseVPC: 开启vpc
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UseVPC: Boolean
 
-        attr_accessor :Id, :DbName, :ServiceType, :SourceName, :DbType, :DbHost, :DbPort, :DbUser, :Charset, :CreatedAt, :UpdatedAt, :CreatedUser, :Catalog, :ConnectType, :ProjectId, :Desc, :Status, :SourcePlat, :ExtraParam, :AddInfo, :ProjectName, :EngineType, :Manager, :OperatorWhitelist, :VpcId, :UniqVpcId, :RegionId, :StateAction, :UpdatedUser, :PermissionList, :AuthList, :DataOrigin, :DataOriginProjectId, :DataOriginDatasourceId, :ClusterId, :DbTypeName
+        attr_accessor :Id, :DbName, :ServiceType, :SourceName, :DbType, :DbHost, :DbPort, :DbUser, :Charset, :CreatedAt, :UpdatedAt, :CreatedUser, :Catalog, :ConnectType, :ProjectId, :Desc, :Status, :SourcePlat, :ExtraParam, :AddInfo, :ProjectName, :EngineType, :Manager, :OperatorWhitelist, :VpcId, :UniqVpcId, :RegionId, :StateAction, :UpdatedUser, :PermissionList, :AuthList, :DataOrigin, :DataOriginProjectId, :DataOriginDatasourceId, :ClusterId, :DbTypeName, :UseVPC
 
-        def initialize(id=nil, dbname=nil, servicetype=nil, sourcename=nil, dbtype=nil, dbhost=nil, dbport=nil, dbuser=nil, charset=nil, createdat=nil, updatedat=nil, createduser=nil, catalog=nil, connecttype=nil, projectid=nil, desc=nil, status=nil, sourceplat=nil, extraparam=nil, addinfo=nil, projectname=nil, enginetype=nil, manager=nil, operatorwhitelist=nil, vpcid=nil, uniqvpcid=nil, regionid=nil, stateaction=nil, updateduser=nil, permissionlist=nil, authlist=nil, dataorigin=nil, dataoriginprojectid=nil, dataorigindatasourceid=nil, clusterid=nil, dbtypename=nil)
+        def initialize(id=nil, dbname=nil, servicetype=nil, sourcename=nil, dbtype=nil, dbhost=nil, dbport=nil, dbuser=nil, charset=nil, createdat=nil, updatedat=nil, createduser=nil, catalog=nil, connecttype=nil, projectid=nil, desc=nil, status=nil, sourceplat=nil, extraparam=nil, addinfo=nil, projectname=nil, enginetype=nil, manager=nil, operatorwhitelist=nil, vpcid=nil, uniqvpcid=nil, regionid=nil, stateaction=nil, updateduser=nil, permissionlist=nil, authlist=nil, dataorigin=nil, dataoriginprojectid=nil, dataorigindatasourceid=nil, clusterid=nil, dbtypename=nil, usevpc=nil)
           @Id = id
           @DbName = dbname
           @ServiceType = servicetype
@@ -1037,6 +1048,7 @@ module TencentCloud
           @DataOriginDatasourceId = dataorigindatasourceid
           @ClusterId = clusterid
           @DbTypeName = dbtypename
+          @UseVPC = usevpc
         end
 
         def deserialize(params)
@@ -1086,6 +1098,7 @@ module TencentCloud
           @DataOriginDatasourceId = params['DataOriginDatasourceId']
           @ClusterId = params['ClusterId']
           @DbTypeName = params['DbTypeName']
+          @UseVPC = params['UseVPC']
         end
       end
 
@@ -2310,10 +2323,14 @@ module TencentCloud
         # @type Vport: String
         # @param VpcId: 腾讯云私有网络标识
         # @type VpcId: String
+        # @param UseVPC: 开启vpc
+        # @type UseVPC: Boolean
+        # @param RegionId: 地域
+        # @type RegionId: String
 
-        attr_accessor :DbHost, :DbPort, :ServiceType, :DbType, :Charset, :DbUser, :DbPwd, :DbName, :SourceName, :Id, :ProjectId, :Catalog, :DataOrigin, :DataOriginProjectId, :DataOriginDatasourceId, :ExtraParam, :UniqVpcId, :Vip, :Vport, :VpcId
+        attr_accessor :DbHost, :DbPort, :ServiceType, :DbType, :Charset, :DbUser, :DbPwd, :DbName, :SourceName, :Id, :ProjectId, :Catalog, :DataOrigin, :DataOriginProjectId, :DataOriginDatasourceId, :ExtraParam, :UniqVpcId, :Vip, :Vport, :VpcId, :UseVPC, :RegionId
 
-        def initialize(dbhost=nil, dbport=nil, servicetype=nil, dbtype=nil, charset=nil, dbuser=nil, dbpwd=nil, dbname=nil, sourcename=nil, id=nil, projectid=nil, catalog=nil, dataorigin=nil, dataoriginprojectid=nil, dataorigindatasourceid=nil, extraparam=nil, uniqvpcid=nil, vip=nil, vport=nil, vpcid=nil)
+        def initialize(dbhost=nil, dbport=nil, servicetype=nil, dbtype=nil, charset=nil, dbuser=nil, dbpwd=nil, dbname=nil, sourcename=nil, id=nil, projectid=nil, catalog=nil, dataorigin=nil, dataoriginprojectid=nil, dataorigindatasourceid=nil, extraparam=nil, uniqvpcid=nil, vip=nil, vport=nil, vpcid=nil, usevpc=nil, regionid=nil)
           @DbHost = dbhost
           @DbPort = dbport
           @ServiceType = servicetype
@@ -2334,6 +2351,8 @@ module TencentCloud
           @Vip = vip
           @Vport = vport
           @VpcId = vpcid
+          @UseVPC = usevpc
+          @RegionId = regionid
         end
 
         def deserialize(params)
@@ -2357,6 +2376,8 @@ module TencentCloud
           @Vip = params['Vip']
           @Vport = params['Vport']
           @VpcId = params['VpcId']
+          @UseVPC = params['UseVPC']
+          @RegionId = params['RegionId']
         end
       end
 
@@ -2583,10 +2604,16 @@ module TencentCloud
         # @type AppUserId: String
         # @param LoginSecurityStatus: 是否开启手机验证码登录（0 关闭，1 开启）
         # @type LoginSecurityStatus: Integer
+        # @param ResetPassWordTip: 是否开启密码过期提醒（0 关闭，1 开启
+        # @type ResetPassWordTip: Integer
+        # @param ForceResetPassWord: 强制修改密码（0 关闭，1 开启）
+        # @type ForceResetPassWord: Integer
+        # @param PasswordExpired: 密码过期提醒时间，30、60、90（默认）、180天
+        # @type PasswordExpired: Integer
 
-        attr_accessor :UserId, :RoleIdList, :Email, :UserName, :PhoneNumber, :AreaCode, :AppUserId, :LoginSecurityStatus
+        attr_accessor :UserId, :RoleIdList, :Email, :UserName, :PhoneNumber, :AreaCode, :AppUserId, :LoginSecurityStatus, :ResetPassWordTip, :ForceResetPassWord, :PasswordExpired
 
-        def initialize(userid=nil, roleidlist=nil, email=nil, username=nil, phonenumber=nil, areacode=nil, appuserid=nil, loginsecuritystatus=nil)
+        def initialize(userid=nil, roleidlist=nil, email=nil, username=nil, phonenumber=nil, areacode=nil, appuserid=nil, loginsecuritystatus=nil, resetpasswordtip=nil, forceresetpassword=nil, passwordexpired=nil)
           @UserId = userid
           @RoleIdList = roleidlist
           @Email = email
@@ -2595,6 +2622,9 @@ module TencentCloud
           @AreaCode = areacode
           @AppUserId = appuserid
           @LoginSecurityStatus = loginsecuritystatus
+          @ResetPassWordTip = resetpasswordtip
+          @ForceResetPassWord = forceresetpassword
+          @PasswordExpired = passwordexpired
         end
 
         def deserialize(params)
@@ -2606,6 +2636,9 @@ module TencentCloud
           @AreaCode = params['AreaCode']
           @AppUserId = params['AppUserId']
           @LoginSecurityStatus = params['LoginSecurityStatus']
+          @ResetPassWordTip = params['ResetPassWordTip']
+          @ForceResetPassWord = params['ForceResetPassWord']
+          @PasswordExpired = params['PasswordExpired']
         end
       end
 

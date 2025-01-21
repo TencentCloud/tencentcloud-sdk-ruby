@@ -2844,7 +2844,7 @@ module TencentCloud
         # @type InstanceId: String
         # @param User: 用户名，登录时使用
         # @type User: String
-        # @param VirtualHost: vhost名
+        # @param VirtualHost: vhost名称
         # @type VirtualHost: String
 
         attr_accessor :InstanceId, :User, :VirtualHost

@@ -250,6 +250,9 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Created, :Usage, :Note, :Id, :Choices, :ErrorMsg, :ModerationLevel, :SearchInfo, :Replaces, :RecommendedQuestions, :RequestId
+        extend Gem::Deprecate
+        deprecate :ModerationLevel, :none, 2025, 1
+        deprecate :ModerationLevel=, :none, 2025, 1
 
         def initialize(created=nil, usage=nil, note=nil, id=nil, choices=nil, errormsg=nil, moderationlevel=nil, searchinfo=nil, replaces=nil, recommendedquestions=nil, requestid=nil)
           @Created = created
@@ -436,14 +439,17 @@ module TencentCloud
         # @type Message: :class:`Tencentcloud::Hunyuan.v20230901.models.Message`
         # @param Index: 索引值，流式调用时使用该字段。
         # @type Index: Integer
+        # @param ModerationLevel: 多轮会话风险审核，值为1时，表明存在信息安全风险，建议终止客户多轮会话。
+        # @type ModerationLevel: String
 
-        attr_accessor :FinishReason, :Delta, :Message, :Index
+        attr_accessor :FinishReason, :Delta, :Message, :Index, :ModerationLevel
 
-        def initialize(finishreason=nil, delta=nil, message=nil, index=nil)
+        def initialize(finishreason=nil, delta=nil, message=nil, index=nil, moderationlevel=nil)
           @FinishReason = finishreason
           @Delta = delta
           @Message = message
           @Index = index
+          @ModerationLevel = moderationlevel
         end
 
         def deserialize(params)
@@ -457,6 +463,7 @@ module TencentCloud
             @Message.deserialize(params['Message'])
           end
           @Index = params['Index']
+          @ModerationLevel = params['ModerationLevel']
         end
       end
 

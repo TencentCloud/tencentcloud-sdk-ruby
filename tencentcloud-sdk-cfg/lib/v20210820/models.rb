@@ -793,10 +793,12 @@ module TencentCloud
         # @type TaskStatusList: Array
         # @param ArchId: 架构ID
         # @type ArchId: String
+        # @param ArchName: 架构名称
+        # @type ArchName: String
 
-        attr_accessor :Limit, :Offset, :TaskTitle, :TaskTag, :TaskStatus, :TaskStartTime, :TaskEndTime, :TaskUpdateTime, :Tags, :Filters, :TaskId, :ApplicationId, :ApplicationName, :TaskStatusList, :ArchId
+        attr_accessor :Limit, :Offset, :TaskTitle, :TaskTag, :TaskStatus, :TaskStartTime, :TaskEndTime, :TaskUpdateTime, :Tags, :Filters, :TaskId, :ApplicationId, :ApplicationName, :TaskStatusList, :ArchId, :ArchName
 
-        def initialize(limit=nil, offset=nil, tasktitle=nil, tasktag=nil, taskstatus=nil, taskstarttime=nil, taskendtime=nil, taskupdatetime=nil, tags=nil, filters=nil, taskid=nil, applicationid=nil, applicationname=nil, taskstatuslist=nil, archid=nil)
+        def initialize(limit=nil, offset=nil, tasktitle=nil, tasktag=nil, taskstatus=nil, taskstarttime=nil, taskendtime=nil, taskupdatetime=nil, tags=nil, filters=nil, taskid=nil, applicationid=nil, applicationname=nil, taskstatuslist=nil, archid=nil, archname=nil)
           @Limit = limit
           @Offset = offset
           @TaskTitle = tasktitle
@@ -812,6 +814,7 @@ module TencentCloud
           @ApplicationName = applicationname
           @TaskStatusList = taskstatuslist
           @ArchId = archid
+          @ArchName = archname
         end
 
         def deserialize(params)
@@ -844,6 +847,7 @@ module TencentCloud
           @ApplicationName = params['ApplicationName']
           @TaskStatusList = params['TaskStatusList']
           @ArchId = params['ArchId']
+          @ArchName = params['ArchName']
         end
       end
 
@@ -2099,8 +2103,8 @@ module TencentCloud
 
         attr_accessor :TaskGroupInstanceId, :TaskGroupInstanceObjectId, :TaskGroupInstanceStatus, :TaskGroupInstanceCreateTime, :TaskGroupInstanceUpdateTime, :TaskGroupInstanceStatusType, :TaskGroupInstanceStartTime, :TaskGroupInstanceEndTime, :TaskGroupInstanceExecuteLog, :TaskGroupInstanceIsRedo, :TaskGroupInstanceExecuteTime
         extend Gem::Deprecate
-        deprecate :TaskGroupInstanceExecuteLog, :none, 2024, 12
-        deprecate :TaskGroupInstanceExecuteLog=, :none, 2024, 12
+        deprecate :TaskGroupInstanceExecuteLog, :none, 2025, 1
+        deprecate :TaskGroupInstanceExecuteLog=, :none, 2025, 1
 
         def initialize(taskgroupinstanceid=nil, taskgroupinstanceobjectid=nil, taskgroupinstancestatus=nil, taskgroupinstancecreatetime=nil, taskgroupinstanceupdatetime=nil, taskgroupinstancestatustype=nil, taskgroupinstancestarttime=nil, taskgroupinstanceendtime=nil, taskgroupinstanceexecutelog=nil, taskgroupinstanceisredo=nil, taskgroupinstanceexecutetime=nil)
           @TaskGroupInstanceId = taskgroupinstanceid
@@ -2196,10 +2200,14 @@ module TencentCloud
         # @param TaskStatusType: 状态类型: 0 -- 无状态，1 -- 成功，2-- 失败，3--终止
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskStatusType: Integer
+        # @param ArchId: 架构ID
+        # @type ArchId: String
+        # @param ArchName: 架构名称
+        # @type ArchName: String
 
-        attr_accessor :TaskId, :TaskTitle, :TaskDescription, :TaskTag, :TaskStatus, :TaskCreateTime, :TaskUpdateTime, :TaskPreCheckStatus, :TaskPreCheckSuccess, :TaskExpect, :ApplicationId, :ApplicationName, :VerifyId, :TaskStatusType
+        attr_accessor :TaskId, :TaskTitle, :TaskDescription, :TaskTag, :TaskStatus, :TaskCreateTime, :TaskUpdateTime, :TaskPreCheckStatus, :TaskPreCheckSuccess, :TaskExpect, :ApplicationId, :ApplicationName, :VerifyId, :TaskStatusType, :ArchId, :ArchName
 
-        def initialize(taskid=nil, tasktitle=nil, taskdescription=nil, tasktag=nil, taskstatus=nil, taskcreatetime=nil, taskupdatetime=nil, taskprecheckstatus=nil, taskprechecksuccess=nil, taskexpect=nil, applicationid=nil, applicationname=nil, verifyid=nil, taskstatustype=nil)
+        def initialize(taskid=nil, tasktitle=nil, taskdescription=nil, tasktag=nil, taskstatus=nil, taskcreatetime=nil, taskupdatetime=nil, taskprecheckstatus=nil, taskprechecksuccess=nil, taskexpect=nil, applicationid=nil, applicationname=nil, verifyid=nil, taskstatustype=nil, archid=nil, archname=nil)
           @TaskId = taskid
           @TaskTitle = tasktitle
           @TaskDescription = taskdescription
@@ -2214,6 +2222,8 @@ module TencentCloud
           @ApplicationName = applicationname
           @VerifyId = verifyid
           @TaskStatusType = taskstatustype
+          @ArchId = archid
+          @ArchName = archname
         end
 
         def deserialize(params)
@@ -2231,6 +2241,8 @@ module TencentCloud
           @ApplicationName = params['ApplicationName']
           @VerifyId = params['VerifyId']
           @TaskStatusType = params['TaskStatusType']
+          @ArchId = params['ArchId']
+          @ArchName = params['ArchName']
         end
       end
 
