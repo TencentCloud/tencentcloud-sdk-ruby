@@ -1766,7 +1766,7 @@ module TencentCloud
         # @param ErrorInfo: 自定义错误信息对象
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrorInfo: :class:`Tencentcloud::Bi.v20220105.models.ErrorInfo`
-        # @param Extra: 扩展
+        # @param Extra: 扩展描述信息(提供更多异常信息,用于辅助判断)
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Extra: String
         # @param Data: 数据

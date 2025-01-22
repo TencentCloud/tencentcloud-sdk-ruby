@@ -149,6 +149,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 根据证书内容检测当前账号下是否存在一致的证书， 存在则返回证书ID， 不存在则返回空
+
+        # @param request: Request instance for CheckCertificateExist.
+        # @type request: :class:`Tencentcloud::ssl::V20191205::CheckCertificateExistRequest`
+        # @rtype: :class:`Tencentcloud::ssl::V20191205::CheckCertificateExistResponse`
+        def CheckCertificateExist(request)
+          body = send_request('CheckCertificateExist', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CheckCertificateExistResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 提交证书订单到CA机构。
 
         # @param request: Request instance for CommitCertificateInformation.

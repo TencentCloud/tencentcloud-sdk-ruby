@@ -2767,16 +2767,19 @@ module TencentCloud
         # @type InstanceNodeIds: Array
         # @param Limit: top 数目，默认为20，最大值为100。
         # @type Limit: Integer
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
 
-        attr_accessor :InstanceId, :StartTime, :EndTime, :Product, :InstanceNodeIds, :Limit
+        attr_accessor :InstanceId, :StartTime, :EndTime, :Product, :InstanceNodeIds, :Limit, :Offset
 
-        def initialize(instanceid=nil, starttime=nil, endtime=nil, product=nil, instancenodeids=nil, limit=nil)
+        def initialize(instanceid=nil, starttime=nil, endtime=nil, product=nil, instancenodeids=nil, limit=nil, offset=nil)
           @InstanceId = instanceid
           @StartTime = starttime
           @EndTime = endtime
           @Product = product
           @InstanceNodeIds = instancenodeids
           @Limit = limit
+          @Offset = offset
         end
 
         def deserialize(params)
@@ -2786,6 +2789,7 @@ module TencentCloud
           @Product = params['Product']
           @InstanceNodeIds = params['InstanceNodeIds']
           @Limit = params['Limit']
+          @Offset = params['Offset']
         end
       end
 

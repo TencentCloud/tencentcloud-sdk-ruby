@@ -958,6 +958,43 @@ module TencentCloud
         end
       end
 
+      # CheckCertificateExist请求参数结构体
+      class CheckCertificateExistRequest < TencentCloud::Common::AbstractModel
+        # @param CertificatePublicKey: 证书公钥内容， 包含证书链
+        # @type CertificatePublicKey: String
+
+        attr_accessor :CertificatePublicKey
+
+        def initialize(certificatepublickey=nil)
+          @CertificatePublicKey = certificatepublickey
+        end
+
+        def deserialize(params)
+          @CertificatePublicKey = params['CertificatePublicKey']
+        end
+      end
+
+      # CheckCertificateExist返回参数结构体
+      class CheckCertificateExistResponse < TencentCloud::Common::AbstractModel
+        # @param RepeatCertId: 重复的证书ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RepeatCertId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RepeatCertId, :RequestId
+
+        def initialize(repeatcertid=nil, requestid=nil)
+          @RepeatCertId = repeatcertid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RepeatCertId = params['RepeatCertId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # clb实例详情
       class ClbInstanceDetail < TencentCloud::Common::AbstractModel
         # @param LoadBalancerId: CLB实例ID

@@ -5515,6 +5515,81 @@ module TencentCloud
         end
       end
 
+      # CreateBatchOrganizationAuthorizationUrl请求参数结构体
+      class CreateBatchOrganizationAuthorizationUrlRequest < TencentCloud::Common::AbstractModel
+        # @param Agent: 应用相关信息。 此接口Agent.AppId 必填。
+        # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
+        # @param AdminName: 组织机构超管姓名。 在注册流程中，必须是超管本人进行操作。此参数需要跟[创建子企业批量认证链接](https://qian.tencent.com/developers/partnerApis/accounts/CreateBatchOrganizationRegistrationTasks)中 AdminName 保持一致。
+        # @type AdminName: String
+        # @param AdminMobile: 组织机构超管手机号。 在注册流程中，必须是超管本人进行操作。此参数需要跟[创建子企业批量认证链接](https://qian.tencent.com/developers/partnerApis/accounts/CreateBatchOrganizationRegistrationTasks)中 Admin Mobile保持一致。
+        # @type AdminMobile: String
+        # @param SubTaskIds: 企业批量认证链接的子任务 SubTaskId，该 SubTaskId 是通过接口 查询企业批量认证链接 DescribeBatchOrganizationRegistrationUrls 获得。此参数需与超管个人三要素（AdminName，AdminMobile，AdminIdCardNumber）配合使用。若 SubTaskId 不属于传入的超级管理员，将进行筛选。
+        # @type SubTaskIds: Array
+        # @param AdminIdCardType: 组织机构超管证件类型支持以下类型
+        # - ID_CARD : 居民身份证 (默认值)
+        # -  HONGKONG_AND_MACAO : 港澳居民来往内地通行证
+        # - HONGKONG_MACAO_AND_TAIWAN : 港澳台居民居住证(格式同居民身份证)
+        # 此参数需要跟[创建子企业批量认证链接](https://qian.tencent.com/developers/partnerApis/accounts/CreateBatchOrganizationRegistrationTasks)中 AdminIdCardType保持一致。
+        # @type AdminIdCardType: String
+        # @param AdminIdCardNumber: 组织机构超管证件号。 在注册流程中，必须是超管本人进行操作。此参数需要跟[创建子企业批量认证链接](https://qian.tencent.com/developers/partnerApis/accounts/CreateBatchOrganizationRegistrationTasks)中 AdminIdCardNumber保持一致。
+        # @type AdminIdCardNumber: String
+        # @param Endpoint: 要跳转的链接类型<ul><li> **HTTP**：跳转电子签小程序的http_url, 短信通知或者H5跳转适合此类型  ，此时返回长链 (默认类型)</li><li>**HTTP_SHORT_URL**：跳转电子签小程序的http_url, 短信通知或者H5跳转适合此类型，此时返回短链</li><li>**APP**： 第三方APP或小程序跳转电子签小程序的path,  APP或者小程序跳转适合此类型</li><li>**QR_CODE**： 跳转电子签小程序的http_url的二维码形式,  可以在页面展示适合此类型</li></ul>
+        # @type Endpoint: String
+
+        attr_accessor :Agent, :AdminName, :AdminMobile, :SubTaskIds, :AdminIdCardType, :AdminIdCardNumber, :Endpoint
+
+        def initialize(agent=nil, adminname=nil, adminmobile=nil, subtaskids=nil, adminidcardtype=nil, adminidcardnumber=nil, endpoint=nil)
+          @Agent = agent
+          @AdminName = adminname
+          @AdminMobile = adminmobile
+          @SubTaskIds = subtaskids
+          @AdminIdCardType = adminidcardtype
+          @AdminIdCardNumber = adminidcardnumber
+          @Endpoint = endpoint
+        end
+
+        def deserialize(params)
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
+          @AdminName = params['AdminName']
+          @AdminMobile = params['AdminMobile']
+          @SubTaskIds = params['SubTaskIds']
+          @AdminIdCardType = params['AdminIdCardType']
+          @AdminIdCardNumber = params['AdminIdCardNumber']
+          @Endpoint = params['Endpoint']
+        end
+      end
+
+      # CreateBatchOrganizationAuthorizationUrl返回参数结构体
+      class CreateBatchOrganizationAuthorizationUrlResponse < TencentCloud::Common::AbstractModel
+        # @param AuthUrl: 批量企业注册链接-单链接包含多条认证流，根据Endpoint的不同设置，返回不同的链接地址。失效时间：7天跳转链接, 链接的有效期根据企业,员工状态和终端等有区别, 可以参考下表<table> <thead> <tr> <th>Endpoint</th> <th>示例</th> <th>链接有效期限</th> </tr> </thead>  <tbody> <tr> <td>HTTP</td> <td>https://res.ess.tencent.cn/cdn/h5-activity-dev/jump-mp.html?to=AUTHORIZATION_ENTERPRISE_FOR_BATCH_SUBMIT&shortKey=yDCHHURDfBxSB2rj2Bfa</td> <td>7天</td> </tr> <tr> <td>HTTP_SHORT_URL</td> <td>https://test.essurl.cn/8gDKUBAWK8</td> <td>7天</td> </tr> <tr> <td>APP</td> <td>pages/guide/index?to=AUTHORIZATION_ENTERPRISE_FOR_BATCH_SUBMIT&shortKey=yDCHpURDfR6iEkdpsDde</td> <td>7天</td> </tr><tr> <td>QR_CODE</td> <td>https://dyn.test.ess.tencent.cn/imgs/qrcode_urls/authorization_enterprise_for_batch_submit/yDCHHUUckpbdauq9UEjnoFDCCumAMmv1.png</td> <td>7天</td> </tr> </tbody> </table>注： `1.创建的链接应避免被转义，如：&被转义为\u0026；如使用Postman请求后，请选择响应类型为 JSON，否则链接将被转义`
+        # @type AuthUrl: String
+        # @param ErrorMessages: 认证流认证失败信息
+        # @type ErrorMessages: Array
+        # @param ExpireTime: 链接过期时间，为 7 天后，创建时间，格式为Unix标准时间戳（秒）。
+        # @type ExpireTime: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :AuthUrl, :ErrorMessages, :ExpireTime, :RequestId
+
+        def initialize(authurl=nil, errormessages=nil, expiretime=nil, requestid=nil)
+          @AuthUrl = authurl
+          @ErrorMessages = errormessages
+          @ExpireTime = expiretime
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @AuthUrl = params['AuthUrl']
+          @ErrorMessages = params['ErrorMessages']
+          @ExpireTime = params['ExpireTime']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateBatchOrganizationRegistrationTasks请求参数结构体
       class CreateBatchOrganizationRegistrationTasksRequest < TencentCloud::Common::AbstractModel
         # @param Agent: 关于渠道应用的相关信息，包括渠道应用标识、第三方平台子客企业标识及第三方平台子客企业中的员工标识等内容，您可以参阅开发者中心所提供的 Agent 结构体以获取详细定义。
