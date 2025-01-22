@@ -40,10 +40,8 @@ module TencentCloud
 
       def refresh
         if @expire_t - Time.now.to_i > SES_DUR / 10
-          puts "not refresh #{@expire_t}, #{Time.now.to_i}"
           return
         end
-        puts "refresh #{@expire_t}, #{Time.now.to_i}"
 
         initialize_args
 
