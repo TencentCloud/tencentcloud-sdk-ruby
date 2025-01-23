@@ -1813,7 +1813,7 @@ module TencentCloud
 
       # GetEidResult请求参数结构体
       class GetEidResultRequest < TencentCloud::Common::AbstractModel
-        # @param EidToken: E证通流程的唯一标识，调用GetEidToken接口时生成。
+        # @param EidToken: E证通流程的唯一标识，调用[GetEidToken](https://cloud.tencent.com/document/product/1007/54089)接口时生成。
         # @type EidToken: String
         # @param InfoType: 指定拉取的结果信息。
         # - 取值范围：

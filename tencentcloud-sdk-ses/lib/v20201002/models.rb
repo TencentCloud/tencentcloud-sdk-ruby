@@ -405,16 +405,36 @@ module TencentCloud
 
       # CreateReceiverDetail返回参数结构体
       class CreateReceiverDetailResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 收件人总数
+        # @type TotalCount: Integer
+        # @param ValidCount: 实际上传数量
+        # @type ValidCount: Integer
+        # @param TooLongCount: 数据过长数量
+        # @type TooLongCount: Integer
+        # @param EmptyEmailCount: 邮件地址为空数量
+        # @type EmptyEmailCount: Integer
+        # @param RepeatCount: 重复数量
+        # @type RepeatCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :TotalCount, :ValidCount, :TooLongCount, :EmptyEmailCount, :RepeatCount, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(totalcount=nil, validcount=nil, toolongcount=nil, emptyemailcount=nil, repeatcount=nil, requestid=nil)
+          @TotalCount = totalcount
+          @ValidCount = validcount
+          @TooLongCount = toolongcount
+          @EmptyEmailCount = emptyemailcount
+          @RepeatCount = repeatcount
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @TotalCount = params['TotalCount']
+          @ValidCount = params['ValidCount']
+          @TooLongCount = params['TooLongCount']
+          @EmptyEmailCount = params['EmptyEmailCount']
+          @RepeatCount = params['RepeatCount']
           @RequestId = params['RequestId']
         end
       end
@@ -812,24 +832,26 @@ module TencentCloud
         # @param EmailAddress: 发信地址
         # @type EmailAddress: String
         # @param EmailSenderName: 发信人别名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EmailSenderName: String
         # @param CreatedTimestamp: 创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreatedTimestamp: Integer
+        # @param SmtpPwdType: smtp密码类型,0=没有设置密码,1=已经设置了密码
+        # @type SmtpPwdType: Integer
 
-        attr_accessor :EmailAddress, :EmailSenderName, :CreatedTimestamp
+        attr_accessor :EmailAddress, :EmailSenderName, :CreatedTimestamp, :SmtpPwdType
 
-        def initialize(emailaddress=nil, emailsendername=nil, createdtimestamp=nil)
+        def initialize(emailaddress=nil, emailsendername=nil, createdtimestamp=nil, smtppwdtype=nil)
           @EmailAddress = emailaddress
           @EmailSenderName = emailsendername
           @CreatedTimestamp = createdtimestamp
+          @SmtpPwdType = smtppwdtype
         end
 
         def deserialize(params)
           @EmailAddress = params['EmailAddress']
           @EmailSenderName = params['EmailSenderName']
           @CreatedTimestamp = params['CreatedTimestamp']
+          @SmtpPwdType = params['SmtpPwdType']
         end
       end
 
@@ -1192,7 +1214,6 @@ module TencentCloud
       # ListEmailAddress返回参数结构体
       class ListEmailAddressResponse < TencentCloud::Common::AbstractModel
         # @param EmailSenders: 发信地址列表详情
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EmailSenders: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1630,7 +1651,7 @@ module TencentCloud
         # @type ReplyToAddresses: String
         # @param Cc: 抄送人邮箱地址，最多支持抄送20人。
         # @type Cc: Array
-        # @param Bcc: 密送人邮箱地址，最多支持抄送20人。
+        # @param Bcc: 密送人邮箱地址，最多支持抄送20人,Bcc和Destination不能重复。
         # @type Bcc: Array
         # @param Template: 使用模板发送时，填写模板相关参数。
         # <dx-alert infotype="notice" title="注意"> 如您未申请过特殊配置，则该字段为必填 </dx-alert>

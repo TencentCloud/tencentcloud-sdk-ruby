@@ -17,6 +17,105 @@
 module TencentCloud
   module Ccc
     module V20200210
+      # AI 通话提取配置项
+      class AICallExtractConfigElement < TencentCloud::Common::AbstractModel
+        # @param InfoType: 配置项类型，包括
+        # Text 文本
+        # Selector 选项
+        # Boolean 布尔值
+        # Number 数字
+        # @type InfoType: String
+        # @param InfoName: 配置项名称，不可重复
+        # @type InfoName: String
+        # @param InfoContent: 配置项具体内容
+        # @type InfoContent: String
+        # @param Examples: 配置项提取内容示例
+        # @type Examples: Array
+        # @param Choices: InfoType 为 Selector，需要配置此字段
+        # @type Choices: Array
+
+        attr_accessor :InfoType, :InfoName, :InfoContent, :Examples, :Choices
+
+        def initialize(infotype=nil, infoname=nil, infocontent=nil, examples=nil, choices=nil)
+          @InfoType = infotype
+          @InfoName = infoname
+          @InfoContent = infocontent
+          @Examples = examples
+          @Choices = choices
+        end
+
+        def deserialize(params)
+          @InfoType = params['InfoType']
+          @InfoName = params['InfoName']
+          @InfoContent = params['InfoContent']
+          @Examples = params['Examples']
+          @Choices = params['Choices']
+        end
+      end
+
+      # AI 通话提取结果。
+      class AICallExtractResultElement < TencentCloud::Common::AbstractModel
+        # @param InfoType: 提取信息的类型
+        # Text 文本
+        # Selector 选项
+        # Boolean 布尔值
+        # Number 数字
+        # @type InfoType: String
+        # @param InfoName: 提取信息的名称
+        # @type InfoName: String
+        # @param InfoContent: 提取信息的具体描述
+        # @type InfoContent: String
+        # @param Result: 提取信息的具体结果
+        # @type Result: :class:`Tencentcloud::Ccc.v20200210.models.AICallExtractResultInfo`
+
+        attr_accessor :InfoType, :InfoName, :InfoContent, :Result
+
+        def initialize(infotype=nil, infoname=nil, infocontent=nil, result=nil)
+          @InfoType = infotype
+          @InfoName = infoname
+          @InfoContent = infocontent
+          @Result = result
+        end
+
+        def deserialize(params)
+          @InfoType = params['InfoType']
+          @InfoName = params['InfoName']
+          @InfoContent = params['InfoContent']
+          unless params['Result'].nil?
+            @Result = AICallExtractResultInfo.new
+            @Result.deserialize(params['Result'])
+          end
+        end
+      end
+
+      # AI 通话结果具体信息
+      class AICallExtractResultInfo < TencentCloud::Common::AbstractModel
+        # @param Text: 提取的类型是文本
+        # @type Text: String
+        # @param Chosen: 提取的内型是选项
+        # @type Chosen: Array
+        # @param Boolean: 提取类型是布尔值
+        # @type Boolean: Boolean
+        # @param Number: 提取类型是数字
+        # @type Number: Float
+
+        attr_accessor :Text, :Chosen, :Boolean, :Number
+
+        def initialize(text=nil, chosen=nil, boolean=nil, number=nil)
+          @Text = text
+          @Chosen = chosen
+          @Boolean = boolean
+          @Number = number
+        end
+
+        def deserialize(params)
+          @Text = params['Text']
+          @Chosen = params['Chosen']
+          @Boolean = params['Boolean']
+          @Number = params['Number']
+        end
+      end
+
       # AI转人工配置项
       class AITransferItem < TencentCloud::Common::AbstractModel
         # @param TransferFunctionName: 转人工的function calling 名称
@@ -827,6 +926,8 @@ module TencentCloud
         # @param WelcomeType: 0：使用welcomeMessage(为空时，被叫先说话；不为空时，机器人先说话)
         # 1:   使用ai根据prompt自动生成welcomeMessage并先说话
         # @type WelcomeType: Integer
+        # @param WelcomeMessagePriority: 0: 默认可打断， 1：高优先不可打断
+        # @type WelcomeMessagePriority: Integer
         # @param MaxDuration: 最大等待时长(毫秒)，默认60秒，超过这个时间用户没说话，自动挂断
         # @type MaxDuration: Integer
         # @param Languages: 语音识别支持的语言, 默认是"zh" 中文,
@@ -854,7 +955,7 @@ module TencentCloud
         # 19. Italian = "it" # 意大利语
         # 20. Russian = "ru" # 俄语
         # @type Languages: Array
-        # @param InterruptMode: 打断AI说话模式，默认为0，0表示服务端自动打断，1表示服务端不打断，由端上发送打断信令进行打断
+        # @param InterruptMode: 打断AI说话模式，默认为0，0表示自动打断，1表示不打断。
         # @type InterruptMode: Integer
         # @param InterruptSpeechDuration: InterruptMode为0时使用，单位为毫秒，默认为500ms。表示服务端检测到持续InterruptSpeechDuration毫秒的人声则进行打断。
         # @type InterruptSpeechDuration: Integer
@@ -956,10 +1057,12 @@ module TencentCloud
         # @type PromptVariables: Array
         # @param VadSilenceTime: 语音识别vad的时间，范围为240-2000，默认为1000，单位为ms。更小的值会让语音识别分句更快。
         # @type VadSilenceTime: Integer
+        # @param ExtractConfig: 通话内容提取配置
+        # @type ExtractConfig: Array
 
-        attr_accessor :SdkAppId, :Callee, :SystemPrompt, :LLMType, :Model, :APIKey, :APIUrl, :VoiceType, :Callers, :WelcomeMessage, :WelcomeType, :MaxDuration, :Languages, :InterruptMode, :InterruptSpeechDuration, :EndFunctionEnable, :EndFunctionDesc, :TransferFunctionEnable, :TransferItems, :NotifyDuration, :NotifyMessage, :NotifyMaxCount, :CustomTTSConfig, :PromptVariables, :VadSilenceTime
+        attr_accessor :SdkAppId, :Callee, :SystemPrompt, :LLMType, :Model, :APIKey, :APIUrl, :VoiceType, :Callers, :WelcomeMessage, :WelcomeType, :WelcomeMessagePriority, :MaxDuration, :Languages, :InterruptMode, :InterruptSpeechDuration, :EndFunctionEnable, :EndFunctionDesc, :TransferFunctionEnable, :TransferItems, :NotifyDuration, :NotifyMessage, :NotifyMaxCount, :CustomTTSConfig, :PromptVariables, :VadSilenceTime, :ExtractConfig
 
-        def initialize(sdkappid=nil, callee=nil, systemprompt=nil, llmtype=nil, model=nil, apikey=nil, apiurl=nil, voicetype=nil, callers=nil, welcomemessage=nil, welcometype=nil, maxduration=nil, languages=nil, interruptmode=nil, interruptspeechduration=nil, endfunctionenable=nil, endfunctiondesc=nil, transferfunctionenable=nil, transferitems=nil, notifyduration=nil, notifymessage=nil, notifymaxcount=nil, customttsconfig=nil, promptvariables=nil, vadsilencetime=nil)
+        def initialize(sdkappid=nil, callee=nil, systemprompt=nil, llmtype=nil, model=nil, apikey=nil, apiurl=nil, voicetype=nil, callers=nil, welcomemessage=nil, welcometype=nil, welcomemessagepriority=nil, maxduration=nil, languages=nil, interruptmode=nil, interruptspeechduration=nil, endfunctionenable=nil, endfunctiondesc=nil, transferfunctionenable=nil, transferitems=nil, notifyduration=nil, notifymessage=nil, notifymaxcount=nil, customttsconfig=nil, promptvariables=nil, vadsilencetime=nil, extractconfig=nil)
           @SdkAppId = sdkappid
           @Callee = callee
           @SystemPrompt = systemprompt
@@ -971,6 +1074,7 @@ module TencentCloud
           @Callers = callers
           @WelcomeMessage = welcomemessage
           @WelcomeType = welcometype
+          @WelcomeMessagePriority = welcomemessagepriority
           @MaxDuration = maxduration
           @Languages = languages
           @InterruptMode = interruptmode
@@ -985,6 +1089,7 @@ module TencentCloud
           @CustomTTSConfig = customttsconfig
           @PromptVariables = promptvariables
           @VadSilenceTime = vadsilencetime
+          @ExtractConfig = extractconfig
         end
 
         def deserialize(params)
@@ -999,6 +1104,7 @@ module TencentCloud
           @Callers = params['Callers']
           @WelcomeMessage = params['WelcomeMessage']
           @WelcomeType = params['WelcomeType']
+          @WelcomeMessagePriority = params['WelcomeMessagePriority']
           @MaxDuration = params['MaxDuration']
           @Languages = params['Languages']
           @InterruptMode = params['InterruptMode']
@@ -1027,6 +1133,14 @@ module TencentCloud
             end
           end
           @VadSilenceTime = params['VadSilenceTime']
+          unless params['ExtractConfig'].nil?
+            @ExtractConfig = []
+            params['ExtractConfig'].each do |i|
+              aicallextractconfigelement_tmp = AICallExtractConfigElement.new
+              aicallextractconfigelement_tmp.deserialize(i)
+              @ExtractConfig << aicallextractconfigelement_tmp
+            end
+          end
         end
       end
 
@@ -1927,6 +2041,61 @@ module TencentCloud
 
         def deserialize(params)
           @OnlineStaffList = params['OnlineStaffList']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAICallExtractResult请求参数结构体
+      class DescribeAICallExtractResultRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
+        # @type SdkAppId: Integer
+        # @param SessionId: 会话 ID
+        # @type SessionId: String
+        # @param StartTime: 查找起始时间
+        # @type StartTime: Integer
+        # @param EndTime: 查找结束时间
+        # @type EndTime: Integer
+
+        attr_accessor :SdkAppId, :SessionId, :StartTime, :EndTime
+
+        def initialize(sdkappid=nil, sessionid=nil, starttime=nil, endtime=nil)
+          @SdkAppId = sdkappid
+          @SessionId = sessionid
+          @StartTime = starttime
+          @EndTime = endtime
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @SessionId = params['SessionId']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+        end
+      end
+
+      # DescribeAICallExtractResult返回参数结构体
+      class DescribeAICallExtractResultResponse < TencentCloud::Common::AbstractModel
+        # @param ResultList: 结果列表
+        # @type ResultList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ResultList, :RequestId
+
+        def initialize(resultlist=nil, requestid=nil)
+          @ResultList = resultlist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ResultList'].nil?
+            @ResultList = []
+            params['ResultList'].each do |i|
+              aicallextractresultelement_tmp = AICallExtractResultElement.new
+              aicallextractresultelement_tmp.deserialize(i)
+              @ResultList << aicallextractresultelement_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end

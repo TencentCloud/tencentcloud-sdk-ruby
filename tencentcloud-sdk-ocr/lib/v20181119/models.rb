@@ -2586,6 +2586,49 @@ module TencentCloud
         end
       end
 
+      # 试题识别结果-元素内容
+      class Element < TencentCloud::Common::AbstractModel
+        # @param Text: 元素内容，当type为figure时该字段内容为图片的位置
+        # @type Text: String
+        # @param Coord: 元素坐标
+        # @type Coord: :class:`Tencentcloud::Ocr.v20181119.models.Polygon`
+        # @param GroupType: 元素group类型，包括multiple-choice(选择题)、fill-in-the-blank(填空题)、problem-solving(解答题)、arithmetic(算术题)
+        # @type GroupType: String
+        # @param ResultList: 结果列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResultList: Array
+        # @param Index: 元素索引
+        # @type Index: Integer
+
+        attr_accessor :Text, :Coord, :GroupType, :ResultList, :Index
+
+        def initialize(text=nil, coord=nil, grouptype=nil, resultlist=nil, index=nil)
+          @Text = text
+          @Coord = coord
+          @GroupType = grouptype
+          @ResultList = resultlist
+          @Index = index
+        end
+
+        def deserialize(params)
+          @Text = params['Text']
+          unless params['Coord'].nil?
+            @Coord = Polygon.new
+            @Coord.deserialize(params['Coord'])
+          end
+          @GroupType = params['GroupType']
+          unless params['ResultList'].nil?
+            @ResultList = []
+            params['ResultList'].each do |i|
+              resultlist_tmp = ResultList.new
+              resultlist_tmp.deserialize(i)
+              @ResultList << resultlist_tmp
+            end
+          end
+          @Index = params['Index']
+        end
+      end
+
       # 敏感数据加密
       class Encryption < TencentCloud::Common::AbstractModel
         # @param CiphertextBlob: 有加密需求的用户，接入传入kms的CiphertextBlob（Base64编码），关于数据加密可查阅[敏感数据加密指引](https://cloud.tencent.com/document/product/866/106048)文档。
@@ -3679,37 +3722,6 @@ module TencentCloud
           @PdfPageSize = params['PdfPageSize']
           @Angle = params['Angle']
           @RequestId = params['RequestId']
-        end
-      end
-
-      # 通用卡证鉴伪告警信息
-      class GeneralCardWarnInfo < TencentCloud::Common::AbstractModel
-        # @param IsWarn: 是否存在该告警
-        # @type IsWarn: Boolean
-        # @param RiskConfidence: 风险程度
-        # @type RiskConfidence: Float
-        # @param Polygon: 告警位置四点坐标
-        # @type Polygon: Array
-
-        attr_accessor :IsWarn, :RiskConfidence, :Polygon
-
-        def initialize(iswarn=nil, riskconfidence=nil, polygon=nil)
-          @IsWarn = iswarn
-          @RiskConfidence = riskconfidence
-          @Polygon = polygon
-        end
-
-        def deserialize(params)
-          @IsWarn = params['IsWarn']
-          @RiskConfidence = params['RiskConfidence']
-          unless params['Polygon'].nil?
-            @Polygon = []
-            params['Polygon'].each do |i|
-              polygon_tmp = Polygon.new
-              polygon_tmp.deserialize(i)
-              @Polygon << polygon_tmp
-            end
-          end
         end
       end
 
@@ -7636,6 +7648,113 @@ module TencentCloud
         end
       end
 
+      # 试题识别结果
+      class QuestionInfo < TencentCloud::Common::AbstractModel
+        # @param Angle: 旋转角度
+        # @type Angle: Float
+        # @param Height: 预处理后图片高度
+        # @type Height: Integer
+        # @param Width: 预处理后图片宽度
+        # @type Width: Integer
+        # @param ResultList: 文档元素
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResultList: Array
+        # @param OrgHeight: 输入图片高度
+        # @type OrgHeight: Integer
+        # @param OrgWidth: 输入图片宽度
+        # @type OrgWidth: Integer
+        # @param ImageBase64: 预处理后的图片base64编码
+        # @type ImageBase64: String
+
+        attr_accessor :Angle, :Height, :Width, :ResultList, :OrgHeight, :OrgWidth, :ImageBase64
+
+        def initialize(angle=nil, height=nil, width=nil, resultlist=nil, orgheight=nil, orgwidth=nil, imagebase64=nil)
+          @Angle = angle
+          @Height = height
+          @Width = width
+          @ResultList = resultlist
+          @OrgHeight = orgheight
+          @OrgWidth = orgwidth
+          @ImageBase64 = imagebase64
+        end
+
+        def deserialize(params)
+          @Angle = params['Angle']
+          @Height = params['Height']
+          @Width = params['Width']
+          unless params['ResultList'].nil?
+            @ResultList = []
+            params['ResultList'].each do |i|
+              resultlist_tmp = ResultList.new
+              resultlist_tmp.deserialize(i)
+              @ResultList << resultlist_tmp
+            end
+          end
+          @OrgHeight = params['OrgHeight']
+          @OrgWidth = params['OrgWidth']
+          @ImageBase64 = params['ImageBase64']
+        end
+      end
+
+      # QuestionOCR请求参数结构体
+      class QuestionOCRRequest < TencentCloud::Common::AbstractModel
+        # @param ImageUrl: 图片的 Url 地址。支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。支持的图片大小：所下载图片经 Base64 编码后不超过 10M。图片下载时间不超过 3 秒。支持的图片像素：需介于20-10000px之间。图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。非腾讯云存储的 Url 速度和稳定性可能受一定影响。
+        # @type ImageUrl: String
+        # @param ImageBase64: 图片的 Base64 值。支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。支持的图片大小：所下载图片经Base64编码后不超过 10M。图片下载时间不超过 3 秒。支持的图片像素：需介于20-10000px之间。图片的 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。
+        # @type ImageBase64: String
+        # @param IsPdf: 是否开启PDF识别，默认值为false，开启后可同时支持图片和PDF的识别。
+        # @type IsPdf: Boolean
+        # @param PdfPageNumber: 需要识别的PDF页面的对应页码，仅支持PDF单页识别，当上传文件为PDF且IsPdf参数值为true时有效，默认值为1。
+        # @type PdfPageNumber: Integer
+        # @param EnableImageCrop: 是否开启切边增强和弯曲矫正,默认为false不开启
+        # @type EnableImageCrop: Boolean
+
+        attr_accessor :ImageUrl, :ImageBase64, :IsPdf, :PdfPageNumber, :EnableImageCrop
+
+        def initialize(imageurl=nil, imagebase64=nil, ispdf=nil, pdfpagenumber=nil, enableimagecrop=nil)
+          @ImageUrl = imageurl
+          @ImageBase64 = imagebase64
+          @IsPdf = ispdf
+          @PdfPageNumber = pdfpagenumber
+          @EnableImageCrop = enableimagecrop
+        end
+
+        def deserialize(params)
+          @ImageUrl = params['ImageUrl']
+          @ImageBase64 = params['ImageBase64']
+          @IsPdf = params['IsPdf']
+          @PdfPageNumber = params['PdfPageNumber']
+          @EnableImageCrop = params['EnableImageCrop']
+        end
+      end
+
+      # QuestionOCR返回参数结构体
+      class QuestionOCRResponse < TencentCloud::Common::AbstractModel
+        # @param QuestionInfo: 检测到的文本信息
+        # @type QuestionInfo: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :QuestionInfo, :RequestId
+
+        def initialize(questioninfo=nil, requestid=nil)
+          @QuestionInfo = questioninfo
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['QuestionInfo'].nil?
+            @QuestionInfo = []
+            params['QuestionInfo'].each do |i|
+              questioninfo_tmp = QuestionInfo.new
+              questioninfo_tmp.deserialize(i)
+              @QuestionInfo << questioninfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 试题识别结构化信息
       class QuestionObj < TencentCloud::Common::AbstractModel
         # @param QuestionTextNo: 题号
@@ -7679,6 +7798,65 @@ module TencentCloud
               @QuestionImageCoords << rect_tmp
             end
           end
+        end
+      end
+
+      # QuestionSplitOCR请求参数结构体
+      class QuestionSplitOCRRequest < TencentCloud::Common::AbstractModel
+        # @param ImageUrl: 图片的 Url 地址。支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。支持的图片大小：所下载图片经 Base64 编码后不超过 10M。图片下载时间不超过 3 秒。支持的图片像素：需介于20-10000px之间。图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。非腾讯云存储的 Url 速度和稳定性可能受一定影响。
+        # @type ImageUrl: String
+        # @param ImageBase64: 图片的 Base64 值。支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。支持的图片大小：所下载图片经Base64编码后不超过 10M。图片下载时间不超过 3 秒。支持的图片像素：需介于20-10000px之间。图片的 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。
+        # @type ImageBase64: String
+        # @param IsPdf: 是否开启PDF识别，默认值为false，开启后可同时支持图片和PDF的识别。
+        # @type IsPdf: Boolean
+        # @param PdfPageNumber: 需要识别的PDF页面的对应页码，仅支持PDF单页识别，当上传文件为PDF且IsPdf参数值为true时有效，默认值为1。
+        # @type PdfPageNumber: Integer
+        # @param EnableImageCrop: 是否开启切边增强和弯曲矫正,默认为false不开启
+        # @type EnableImageCrop: Boolean
+
+        attr_accessor :ImageUrl, :ImageBase64, :IsPdf, :PdfPageNumber, :EnableImageCrop
+
+        def initialize(imageurl=nil, imagebase64=nil, ispdf=nil, pdfpagenumber=nil, enableimagecrop=nil)
+          @ImageUrl = imageurl
+          @ImageBase64 = imagebase64
+          @IsPdf = ispdf
+          @PdfPageNumber = pdfpagenumber
+          @EnableImageCrop = enableimagecrop
+        end
+
+        def deserialize(params)
+          @ImageUrl = params['ImageUrl']
+          @ImageBase64 = params['ImageBase64']
+          @IsPdf = params['IsPdf']
+          @PdfPageNumber = params['PdfPageNumber']
+          @EnableImageCrop = params['EnableImageCrop']
+        end
+      end
+
+      # QuestionSplitOCR返回参数结构体
+      class QuestionSplitOCRResponse < TencentCloud::Common::AbstractModel
+        # @param QuestionInfo: 检测到的文本信息
+        # @type QuestionInfo: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :QuestionInfo, :RequestId
+
+        def initialize(questioninfo=nil, requestid=nil)
+          @QuestionInfo = questioninfo
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['QuestionInfo'].nil?
+            @QuestionInfo = []
+            params['QuestionInfo'].each do |i|
+              questioninfo_tmp = QuestionInfo.new
+              questioninfo_tmp.deserialize(i)
+              @QuestionInfo << questioninfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
         end
       end
 
@@ -8284,35 +8462,22 @@ module TencentCloud
         end
       end
 
-      # RecognizeGeneralCardWarn请求参数结构体
-      class RecognizeGeneralCardWarnRequest < TencentCloud::Common::AbstractModel
-        # @param ImageUrl: 图片链接
+      # RecognizeFormulaOCR请求参数结构体
+      class RecognizeFormulaOCRRequest < TencentCloud::Common::AbstractModel
+        # @param ImageUrl: 图片的 Url 地址。支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。支持的图片大小：所下载图片经 Base64 编码后不超过 10M。图片下载时间不超过 3 秒。支持的图片像素：需介于20-10000px之间。图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。非腾讯云存储的 Url 速度和稳定性可能受一定影响。
         # @type ImageUrl: String
-        # @param ImageBase64: 图片base64
+        # @param ImageBase64: 图片的 Base64 值。支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。支持的图片大小：所下载图片经Base64编码后不超过 10M。图片下载时间不超过 3 秒。支持的图片像素：需介于20-10000px之间。图片的 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。
         # @type ImageBase64: String
-        # @param CardType: 卡证类型参数，包含以下范围：
-        # default：通用卡证
-        # idcard：身份证
-        # passport：护照
-        # bizlicense：营业执照
-        # regcertificate：登记证书
-        # residpermit：居住证
-        # transpermit：通行证
-        # signboard：门头照
-        # bankcard：银行卡
-        # drivinglicense：驾驶证、行驶证
-        # @type CardType: String
         # @param IsPdf: 是否开启PDF识别，默认值为false，开启后可同时支持图片和PDF的识别。
         # @type IsPdf: Boolean
         # @param PdfPageNumber: 需要识别的PDF页面的对应页码，仅支持PDF单页识别，当上传文件为PDF且IsPdf参数值为true时有效，默认值为1。
         # @type PdfPageNumber: Integer
 
-        attr_accessor :ImageUrl, :ImageBase64, :CardType, :IsPdf, :PdfPageNumber
+        attr_accessor :ImageUrl, :ImageBase64, :IsPdf, :PdfPageNumber
 
-        def initialize(imageurl=nil, imagebase64=nil, cardtype=nil, ispdf=nil, pdfpagenumber=nil)
+        def initialize(imageurl=nil, imagebase64=nil, ispdf=nil, pdfpagenumber=nil)
           @ImageUrl = imageurl
           @ImageBase64 = imagebase64
-          @CardType = cardtype
           @IsPdf = ispdf
           @PdfPageNumber = pdfpagenumber
         end
@@ -8320,79 +8485,37 @@ module TencentCloud
         def deserialize(params)
           @ImageUrl = params['ImageUrl']
           @ImageBase64 = params['ImageBase64']
-          @CardType = params['CardType']
           @IsPdf = params['IsPdf']
           @PdfPageNumber = params['PdfPageNumber']
         end
       end
 
-      # RecognizeGeneralCardWarn返回参数结构体
-      class RecognizeGeneralCardWarnResponse < TencentCloud::Common::AbstractModel
-        # @param CardType: 卡证类型参数，包含以下范围：
-        # default：通用卡证
-        # idcard：身份证
-        # passport：护照
-        # bizlicense：营业执照
-        # regcertificate：登记证书
-        # residpermit：居住证
-        # transpermit：通行证
-        # signboard：门头照
-        # bankcard：银行卡
-        # drivinglicense：驾驶证、行驶证
-        # @type CardType: String
-        # @param Blur: 模糊信息
-        # @type Blur: :class:`Tencentcloud::Ocr.v20181119.models.GeneralCardWarnInfo`
-        # @param BorderIncomplete: 边框不完整信息
-        # @type BorderIncomplete: :class:`Tencentcloud::Ocr.v20181119.models.GeneralCardWarnInfo`
-        # @param Copy: 复印件信息
-        # @type Copy: :class:`Tencentcloud::Ocr.v20181119.models.GeneralCardWarnInfo`
-        # @param Ps: ps篡改信息
-        # @type Ps: :class:`Tencentcloud::Ocr.v20181119.models.GeneralCardWarnInfo`
-        # @param Reflection: 反光信息
-        # @type Reflection: :class:`Tencentcloud::Ocr.v20181119.models.GeneralCardWarnInfo`
-        # @param Reprint: 翻拍件信息
-        # @type Reprint: :class:`Tencentcloud::Ocr.v20181119.models.GeneralCardWarnInfo`
+      # RecognizeFormulaOCR返回参数结构体
+      class RecognizeFormulaOCRResponse < TencentCloud::Common::AbstractModel
+        # @param Angle: 图片旋转角度(角度制)，文本的水平方向为 0；顺时针为正，逆时针为负
+        # @type Angle: Float
+        # @param FormulaInfoList: 检测到的文本信息
+        # @type FormulaInfoList: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :CardType, :Blur, :BorderIncomplete, :Copy, :Ps, :Reflection, :Reprint, :RequestId
+        attr_accessor :Angle, :FormulaInfoList, :RequestId
 
-        def initialize(cardtype=nil, blur=nil, borderincomplete=nil, copy=nil, ps=nil, reflection=nil, reprint=nil, requestid=nil)
-          @CardType = cardtype
-          @Blur = blur
-          @BorderIncomplete = borderincomplete
-          @Copy = copy
-          @Ps = ps
-          @Reflection = reflection
-          @Reprint = reprint
+        def initialize(angle=nil, formulainfolist=nil, requestid=nil)
+          @Angle = angle
+          @FormulaInfoList = formulainfolist
           @RequestId = requestid
         end
 
         def deserialize(params)
-          @CardType = params['CardType']
-          unless params['Blur'].nil?
-            @Blur = GeneralCardWarnInfo.new
-            @Blur.deserialize(params['Blur'])
-          end
-          unless params['BorderIncomplete'].nil?
-            @BorderIncomplete = GeneralCardWarnInfo.new
-            @BorderIncomplete.deserialize(params['BorderIncomplete'])
-          end
-          unless params['Copy'].nil?
-            @Copy = GeneralCardWarnInfo.new
-            @Copy.deserialize(params['Copy'])
-          end
-          unless params['Ps'].nil?
-            @Ps = GeneralCardWarnInfo.new
-            @Ps.deserialize(params['Ps'])
-          end
-          unless params['Reflection'].nil?
-            @Reflection = GeneralCardWarnInfo.new
-            @Reflection.deserialize(params['Reflection'])
-          end
-          unless params['Reprint'].nil?
-            @Reprint = GeneralCardWarnInfo.new
-            @Reprint.deserialize(params['Reprint'])
+          @Angle = params['Angle']
+          unless params['FormulaInfoList'].nil?
+            @FormulaInfoList = []
+            params['FormulaInfoList'].each do |i|
+              textformulainfo_tmp = TextFormulaInfo.new
+              textformulainfo_tmp.deserialize(i)
+              @FormulaInfoList << textformulainfo_tmp
+            end
           end
           @RequestId = params['RequestId']
         end
@@ -9752,6 +9875,90 @@ module TencentCloud
           unless params['IssueNum'].nil?
             @IssueNum = ContentInfo.new
             @IssueNum.deserialize(params['IssueNum'])
+          end
+        end
+      end
+
+      # 结果列表
+      class ResultList < TencentCloud::Common::AbstractModel
+        # @param Question: 题干
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Question: Array
+        # @param Option: 选项
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Option: Array
+        # @param Figure: 插图
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Figure: Array
+        # @param Table: 表格
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Table: Array
+        # @param Answer: 答案
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Answer: Array
+        # @param Coord: 整题的坐标
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Coord: Array
+
+        attr_accessor :Question, :Option, :Figure, :Table, :Answer, :Coord
+
+        def initialize(question=nil, option=nil, figure=nil, table=nil, answer=nil, coord=nil)
+          @Question = question
+          @Option = option
+          @Figure = figure
+          @Table = table
+          @Answer = answer
+          @Coord = coord
+        end
+
+        def deserialize(params)
+          unless params['Question'].nil?
+            @Question = []
+            params['Question'].each do |i|
+              element_tmp = Element.new
+              element_tmp.deserialize(i)
+              @Question << element_tmp
+            end
+          end
+          unless params['Option'].nil?
+            @Option = []
+            params['Option'].each do |i|
+              element_tmp = Element.new
+              element_tmp.deserialize(i)
+              @Option << element_tmp
+            end
+          end
+          unless params['Figure'].nil?
+            @Figure = []
+            params['Figure'].each do |i|
+              element_tmp = Element.new
+              element_tmp.deserialize(i)
+              @Figure << element_tmp
+            end
+          end
+          unless params['Table'].nil?
+            @Table = []
+            params['Table'].each do |i|
+              element_tmp = Element.new
+              element_tmp.deserialize(i)
+              @Table << element_tmp
+            end
+          end
+          unless params['Answer'].nil?
+            @Answer = []
+            params['Answer'].each do |i|
+              element_tmp = Element.new
+              element_tmp.deserialize(i)
+              @Answer << element_tmp
+            end
+          end
+          unless params['Coord'].nil?
+            @Coord = []
+            params['Coord'].each do |i|
+              polygon_tmp = Polygon.new
+              polygon_tmp.deserialize(i)
+              @Coord << polygon_tmp
+            end
           end
         end
       end
@@ -11607,6 +11814,29 @@ module TencentCloud
 
         def deserialize(params)
           @DetectedText = params['DetectedText']
+        end
+      end
+
+      # 公式识别结果
+      class TextFormulaInfo < TencentCloud::Common::AbstractModel
+        # @param DetectedText: 识别出的文本行内容
+        # @type DetectedText: String
+        # @param Coord: 识别出的文本行内容坐标
+        # @type Coord: :class:`Tencentcloud::Ocr.v20181119.models.Polygon`
+
+        attr_accessor :DetectedText, :Coord
+
+        def initialize(detectedtext=nil, coord=nil)
+          @DetectedText = detectedtext
+          @Coord = coord
+        end
+
+        def deserialize(params)
+          @DetectedText = params['DetectedText']
+          unless params['Coord'].nil?
+            @Coord = Polygon.new
+            @Coord.deserialize(params['Coord'])
+          end
         end
       end
 
