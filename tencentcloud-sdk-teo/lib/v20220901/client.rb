@@ -636,7 +636,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 规则引擎创建规则。
+        # 本接口为旧版，EdgeOne 已对规则引擎相关接口全面升级，详情请参考 [CreateL7AccRules](https://cloud.tencent.com/document/product/1552/115822)。
 
         # @param request: Request instance for CreateRule.
         # @type request: :class:`Tencentcloud::teo::V20220901::CreateRuleRequest`
@@ -3200,7 +3200,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 修改规则引擎规则。
+        # 本接口为旧版，EdgeOne 已对规则引擎相关接口全面升级，详情请参考 [ModifyL7AccRule](https://cloud.tencent.com/document/product/1552/115818)。
 
         # @param request: Request instance for ModifyRule.
         # @type request: :class:`Tencentcloud::teo::V20220901::ModifyRuleRequest`

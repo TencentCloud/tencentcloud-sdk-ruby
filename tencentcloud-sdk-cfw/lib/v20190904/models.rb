@@ -6407,42 +6407,6 @@ module TencentCloud
         end
       end
 
-      # ModifyAllVPCSwitchStatus请求参数结构体
-      class ModifyAllVPCSwitchStatusRequest < TencentCloud::Common::AbstractModel
-        # @param Status: 状态，0：关闭，1：开启
-        # @type Status: Integer
-        # @param FireWallVpcIds: 选中的防火墙开关Id
-        # @type FireWallVpcIds: Array
-
-        attr_accessor :Status, :FireWallVpcIds
-
-        def initialize(status=nil, firewallvpcids=nil)
-          @Status = status
-          @FireWallVpcIds = firewallvpcids
-        end
-
-        def deserialize(params)
-          @Status = params['Status']
-          @FireWallVpcIds = params['FireWallVpcIds']
-        end
-      end
-
-      # ModifyAllVPCSwitchStatus返回参数结构体
-      class ModifyAllVPCSwitchStatusResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :RequestId
-
-        def initialize(requestid=nil)
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @RequestId = params['RequestId']
-        end
-      end
-
       # ModifyAssetScan请求参数结构体
       class ModifyAssetScanRequest < TencentCloud::Common::AbstractModel
         # @param ScanRange: 扫描范围：1端口, 2端口+漏扫

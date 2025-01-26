@@ -1831,32 +1831,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 该接口已不再使用
-
-        # VPC防火墙一键开关
-
-        # @param request: Request instance for ModifyAllVPCSwitchStatus.
-        # @type request: :class:`Tencentcloud::cfw::V20190904::ModifyAllVPCSwitchStatusRequest`
-        # @rtype: :class:`Tencentcloud::cfw::V20190904::ModifyAllVPCSwitchStatusResponse`
-        def ModifyAllVPCSwitchStatus(request)
-          body = send_request('ModifyAllVPCSwitchStatus', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = ModifyAllVPCSwitchStatusResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 资产扫描
 
         # @param request: Request instance for ModifyAssetScan.
