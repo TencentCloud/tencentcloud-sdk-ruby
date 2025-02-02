@@ -23,7 +23,9 @@
     $ gem build tencentcloud-sdk-cvm.gemspec
     $ gem install tencentcloud-sdk-cvm-1.0.0.gem 
 
-注意：上述版本号请以实际为准。
+注意：
+具体产品的包名缩写请参考 [products.md](./products.md) 中的包名字段。
+上述版本号请以实际为准。
 
 # 示例
 
