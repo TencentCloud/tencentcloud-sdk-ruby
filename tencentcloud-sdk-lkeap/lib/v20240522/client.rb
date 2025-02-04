@@ -29,6 +29,30 @@ module TencentCloud
         end
 
 
+        # 对话
+
+        # @param request: Request instance for ChatCompletions.
+        # @type request: :class:`Tencentcloud::lkeap::V20240522::ChatCompletionsRequest`
+        # @rtype: :class:`Tencentcloud::lkeap::V20240522::ChatCompletionsResponse`
+        def ChatCompletions(request)
+          body = send_request('ChatCompletions', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ChatCompletionsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 用于为问答对创建属性标签，以便对内容进行分类和管理。 使用场景：当需要为问答对添加分类标签和属性标记时使用，比如为问答对添加“售后”标签。
 
         # @param request: Request instance for CreateAttributeLabel.

@@ -100,6 +100,53 @@ module TencentCloud
         end
       end
 
+      # ChatCompletions请求参数结构体
+      class ChatCompletionsRequest < TencentCloud::Common::AbstractModel
+        # @param Model: 模型名称
+        # @type Model: String
+        # @param Messages: 会话列表
+        # @type Messages: Array
+        # @param Stream: 是否流式输出
+        # @type Stream: Boolean
+
+        attr_accessor :Model, :Messages, :Stream
+
+        def initialize(model=nil, messages=nil, stream=nil)
+          @Model = model
+          @Messages = messages
+          @Stream = stream
+        end
+
+        def deserialize(params)
+          @Model = params['Model']
+          unless params['Messages'].nil?
+            @Messages = []
+            params['Messages'].each do |i|
+              message_tmp = Message.new
+              message_tmp.deserialize(i)
+              @Messages << message_tmp
+            end
+          end
+          @Stream = params['Stream']
+        end
+      end
+
+      # ChatCompletions返回参数结构体
+      class ChatCompletionsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。本接口为流式响应接口，当请求成功时，RequestId 会被放在 HTTP 响应的 Header "X-TC-RequestId" 中。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateAttributeLabel请求参数结构体
       class CreateAttributeLabelRequest < TencentCloud::Common::AbstractModel
         # @param Labels: 属性标签信息
@@ -337,10 +384,10 @@ module TencentCloud
 
         attr_accessor :TableResultType, :ResultType, :EnableMllm, :MaxChunkSize
         extend Gem::Deprecate
-        deprecate :TableResultType, :none, 2025, 1
-        deprecate :TableResultType=, :none, 2025, 1
-        deprecate :ResultType, :none, 2025, 1
-        deprecate :ResultType=, :none, 2025, 1
+        deprecate :TableResultType, :none, 2025, 2
+        deprecate :TableResultType=, :none, 2025, 2
+        deprecate :ResultType, :none, 2025, 2
+        deprecate :ResultType=, :none, 2025, 2
 
         def initialize(tableresulttype=nil, resulttype=nil, enablemllm=nil, maxchunksize=nil)
           @TableResultType = tableresulttype
@@ -393,8 +440,8 @@ module TencentCloud
 
         attr_accessor :FileType, :FileUrl, :FileName, :FileBase64, :FileStartPageNumber, :FileEndPageNumber, :Config
         extend Gem::Deprecate
-        deprecate :FileBase64, :none, 2025, 1
-        deprecate :FileBase64=, :none, 2025, 1
+        deprecate :FileBase64, :none, 2025, 2
+        deprecate :FileBase64=, :none, 2025, 2
 
         def initialize(filetype=nil, fileurl=nil, filename=nil, filebase64=nil, filestartpagenumber=nil, fileendpagenumber=nil, config=nil)
           @FileType = filetype
@@ -654,8 +701,8 @@ module TencentCloud
 
         attr_accessor :PageNumber, :TotalToken, :TotalTokens
         extend Gem::Deprecate
-        deprecate :TotalToken, :none, 2025, 1
-        deprecate :TotalToken=, :none, 2025, 1
+        deprecate :TotalToken, :none, 2025, 2
+        deprecate :TotalToken=, :none, 2025, 2
 
         def initialize(pagenumber=nil, totaltoken=nil, totaltokens=nil)
           @PageNumber = pagenumber
@@ -838,8 +885,8 @@ module TencentCloud
 
         attr_accessor :Status, :DocumentRecognizeResultUrl, :FailedPages, :Usage, :RequestId
         extend Gem::Deprecate
-        deprecate :FailedPages, :none, 2025, 1
-        deprecate :FailedPages=, :none, 2025, 1
+        deprecate :FailedPages, :none, 2025, 2
+        deprecate :FailedPages=, :none, 2025, 2
 
         def initialize(status=nil, documentrecognizeresulturl=nil, failedpages=nil, usage=nil, requestid=nil)
           @Status = status
@@ -1679,8 +1726,8 @@ module TencentCloud
 
         attr_accessor :KnowledgeBaseId, :FileName, :FileType, :FileUrl, :AttributeLabel, :AttributeLabels, :Config
         extend Gem::Deprecate
-        deprecate :AttributeLabel, :none, 2025, 1
-        deprecate :AttributeLabel=, :none, 2025, 1
+        deprecate :AttributeLabel, :none, 2025, 2
+        deprecate :AttributeLabel=, :none, 2025, 2
 
         def initialize(knowledgebaseid=nil, filename=nil, filetype=nil, fileurl=nil, attributelabel=nil, attributelabels=nil, config=nil)
           @KnowledgeBaseId = knowledgebaseid
