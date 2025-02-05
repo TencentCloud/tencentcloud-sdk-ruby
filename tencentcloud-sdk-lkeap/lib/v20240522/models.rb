@@ -108,13 +108,19 @@ module TencentCloud
         # @type Messages: Array
         # @param Stream: 是否流式输出
         # @type Stream: Boolean
+        # @param Temperature: 控制生成的随机性，较高的值会产生更多样化的输出。
+        # @type Temperature: Float
+        # @param MaxTokens: 最大生成的token数量
+        # @type MaxTokens: Integer
 
-        attr_accessor :Model, :Messages, :Stream
+        attr_accessor :Model, :Messages, :Stream, :Temperature, :MaxTokens
 
-        def initialize(model=nil, messages=nil, stream=nil)
+        def initialize(model=nil, messages=nil, stream=nil, temperature=nil, maxtokens=nil)
           @Model = model
           @Messages = messages
           @Stream = stream
+          @Temperature = temperature
+          @MaxTokens = maxtokens
         end
 
         def deserialize(params)
@@ -128,22 +134,116 @@ module TencentCloud
             end
           end
           @Stream = params['Stream']
+          @Temperature = params['Temperature']
+          @MaxTokens = params['MaxTokens']
         end
       end
 
       # ChatCompletions返回参数结构体
       class ChatCompletionsResponse < TencentCloud::Common::AbstractModel
+        # @param Created: Unix 时间戳，单位为秒。
+        # @type Created: Integer
+        # @param Usage: Token 统计信息。
+        # 按照总 Token 数量计费。
+        # @type Usage: :class:`Tencentcloud::Lkeap.v20240522.models.ChatUsage`
+        # @param Id: 本次请求的 RequestId。
+        # @type Id: String
+        # @param Choices: 回复内容。
+        # @type Choices: Array
+        # @param Model: 模型名称。
+        # @type Model: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。本接口为流式响应接口，当请求成功时，RequestId 会被放在 HTTP 响应的 Header "X-TC-RequestId" 中。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :Created, :Usage, :Id, :Choices, :Model, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(created=nil, usage=nil, id=nil, choices=nil, model=nil, requestid=nil)
+          @Created = created
+          @Usage = usage
+          @Id = id
+          @Choices = choices
+          @Model = model
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @Created = params['Created']
+          unless params['Usage'].nil?
+            @Usage = ChatUsage.new
+            @Usage.deserialize(params['Usage'])
+          end
+          @Id = params['Id']
+          unless params['Choices'].nil?
+            @Choices = []
+            params['Choices'].each do |i|
+              choice_tmp = Choice.new
+              choice_tmp.deserialize(i)
+              @Choices << choice_tmp
+            end
+          end
+          @Model = params['Model']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 消耗量
+      class ChatUsage < TencentCloud::Common::AbstractModel
+        # @param PromptTokens: 输入token数
+        # @type PromptTokens: Integer
+        # @param CompletionTokens: 输出token数
+        # @type CompletionTokens: Integer
+        # @param TotalTokens: 总token数
+        # @type TotalTokens: Integer
+
+        attr_accessor :PromptTokens, :CompletionTokens, :TotalTokens
+
+        def initialize(prompttokens=nil, completiontokens=nil, totaltokens=nil)
+          @PromptTokens = prompttokens
+          @CompletionTokens = completiontokens
+          @TotalTokens = totaltokens
+        end
+
+        def deserialize(params)
+          @PromptTokens = params['PromptTokens']
+          @CompletionTokens = params['CompletionTokens']
+          @TotalTokens = params['TotalTokens']
+        end
+      end
+
+      # 返回的回复, 支持多个
+      class Choice < TencentCloud::Common::AbstractModel
+        # @param FinishReason: 结束标志位，可能为 stop、 sensitive或者tool_calls。
+        # stop 表示输出正常结束。
+        # sensitive 只在开启流式输出审核时会出现，表示安全审核未通过。
+        # tool_calls 标识函数调用。
+        # @type FinishReason: String
+        # @param Delta: 增量返回值，流式调用时使用该字段。
+        # @type Delta: :class:`Tencentcloud::Lkeap.v20240522.models.Delta`
+        # @param Message: 返回值，非流式调用时使用该字段。
+        # @type Message: :class:`Tencentcloud::Lkeap.v20240522.models.Message`
+        # @param Index: 索引值，流式调用时使用该字段。
+        # @type Index: Integer
+
+        attr_accessor :FinishReason, :Delta, :Message, :Index
+
+        def initialize(finishreason=nil, delta=nil, message=nil, index=nil)
+          @FinishReason = finishreason
+          @Delta = delta
+          @Message = message
+          @Index = index
+        end
+
+        def deserialize(params)
+          @FinishReason = params['FinishReason']
+          unless params['Delta'].nil?
+            @Delta = Delta.new
+            @Delta.deserialize(params['Delta'])
+          end
+          unless params['Message'].nil?
+            @Message = Message.new
+            @Message.deserialize(params['Message'])
+          end
+          @Index = params['Index']
         end
       end
 
@@ -598,6 +698,26 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 返回的内容
+      class Delta < TencentCloud::Common::AbstractModel
+        # @param Role: 角色名称。
+        # @type Role: String
+        # @param Content: 内容详情。
+        # @type Content: String
+
+        attr_accessor :Role, :Content
+
+        def initialize(role=nil, content=nil)
+          @Role = role
+          @Content = content
+        end
+
+        def deserialize(params)
+          @Role = params['Role']
+          @Content = params['Content']
         end
       end
 
@@ -1082,17 +1202,22 @@ module TencentCloud
         # @type Role: String
         # @param Content: 内容
         # @type Content: String
+        # @param ReasoningContent: 思维链内容。
+        # ReasoningConent参数仅支持出参，且只有deepseek-r1模型会返回。
+        # @type ReasoningContent: String
 
-        attr_accessor :Role, :Content
+        attr_accessor :Role, :Content, :ReasoningContent
 
-        def initialize(role=nil, content=nil)
+        def initialize(role=nil, content=nil, reasoningcontent=nil)
           @Role = role
           @Content = content
+          @ReasoningContent = reasoningcontent
         end
 
         def deserialize(params)
           @Role = params['Role']
           @Content = params['Content']
+          @ReasoningContent = params['ReasoningContent']
         end
       end
 

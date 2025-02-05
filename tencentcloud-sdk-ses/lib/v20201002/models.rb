@@ -179,7 +179,6 @@ module TencentCloud
         # @param EmailAddress: 被拉黑的邮箱地址
         # @type EmailAddress: String
         # @param IspDesc: 被拉黑的理由
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IspDesc: String
 
         attr_accessor :BounceTime, :EmailAddress, :IspDesc
@@ -469,19 +468,14 @@ module TencentCloud
       # CreateReceiverDetailWithData返回参数结构体
       class CreateReceiverDetailWithDataResponse < TencentCloud::Common::AbstractModel
         # @param TotalCount: 收件人总数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
         # @param ValidCount: 实际上传数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ValidCount: Integer
         # @param TooLongCount: 数据过长数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TooLongCount: Integer
         # @param EmptyEmailCount: 邮件地址为空数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EmptyEmailCount: Integer
         # @param RepeatCount: 重复数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RepeatCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1545,15 +1539,12 @@ module TencentCloud
         # @param Count: 收件人地址总数
         # @type Count: Integer
         # @param Desc: 收件人列表描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Desc: String
         # @param ReceiversStatus: 列表状态(1 待上传 2 上传中 3 上传完成)
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReceiversStatus: Integer
         # @param CreateTime: 创建时间,如:2021-09-28 16:40:35
         # @type CreateTime: String
         # @param InvalidCount: 无效收件人数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InvalidCount: Integer
 
         attr_accessor :ReceiverId, :ReceiversName, :Count, :Desc, :ReceiversStatus, :CreateTime, :InvalidCount
@@ -1588,13 +1579,10 @@ module TencentCloud
         # @param TemplateData: 模板参数
         # @type TemplateData: String
         # @param Reason: 无效原因
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Reason: String
         # @param Status: 1:有效，2:无效
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
         # @param EmailId: 收件人地址id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EmailId: Integer
 
         attr_accessor :Email, :CreateTime, :TemplateData, :Reason, :Status, :EmailId
