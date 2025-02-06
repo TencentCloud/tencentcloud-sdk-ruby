@@ -6734,10 +6734,16 @@ module TencentCloud
         # @param MaxTokens: 最多能生成的token数量
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaxTokens: :class:`Tencentcloud::Lke.v20231130.models.ModelParameter`
+        # @param Source: 模型来源 Hunyuan：腾讯混元大模型,Industry：腾讯云行业大模型,Experience：新模型体验
+        # @type Source: String
+        # @param Icon: 模型图标
+        # @type Icon: String
+        # @param IsFree: 是否免费
+        # @type IsFree: Boolean
 
-        attr_accessor :ModelName, :ModelDesc, :AliasName, :ResourceStatus, :PromptWordsLimit, :TopP, :Temperature, :MaxTokens
+        attr_accessor :ModelName, :ModelDesc, :AliasName, :ResourceStatus, :PromptWordsLimit, :TopP, :Temperature, :MaxTokens, :Source, :Icon, :IsFree
 
-        def initialize(modelname=nil, modeldesc=nil, aliasname=nil, resourcestatus=nil, promptwordslimit=nil, topp=nil, temperature=nil, maxtokens=nil)
+        def initialize(modelname=nil, modeldesc=nil, aliasname=nil, resourcestatus=nil, promptwordslimit=nil, topp=nil, temperature=nil, maxtokens=nil, source=nil, icon=nil, isfree=nil)
           @ModelName = modelname
           @ModelDesc = modeldesc
           @AliasName = aliasname
@@ -6746,6 +6752,9 @@ module TencentCloud
           @TopP = topp
           @Temperature = temperature
           @MaxTokens = maxtokens
+          @Source = source
+          @Icon = icon
+          @IsFree = isfree
         end
 
         def deserialize(params)
@@ -6766,6 +6775,9 @@ module TencentCloud
             @MaxTokens = ModelParameter.new
             @MaxTokens.deserialize(params['MaxTokens'])
           end
+          @Source = params['Source']
+          @Icon = params['Icon']
+          @IsFree = params['IsFree']
         end
       end
 
@@ -7607,8 +7619,8 @@ module TencentCloud
 
         attr_accessor :Name, :Url, :TaskId, :Policy, :Operate
         extend Gem::Deprecate
-        deprecate :Operate, :none, 2025, 1
-        deprecate :Operate=, :none, 2025, 1
+        deprecate :Operate, :none, 2025, 2
+        deprecate :Operate=, :none, 2025, 2
 
         def initialize(name=nil, url=nil, taskid=nil, policy=nil, operate=nil)
           @Name = name
@@ -8822,10 +8834,10 @@ module TencentCloud
 
         attr_accessor :Query, :Docs, :Model, :DataList, :Online
         extend Gem::Deprecate
-        deprecate :DataList, :none, 2025, 1
-        deprecate :DataList=, :none, 2025, 1
-        deprecate :Online, :none, 2025, 1
-        deprecate :Online=, :none, 2025, 1
+        deprecate :DataList, :none, 2025, 2
+        deprecate :DataList=, :none, 2025, 2
+        deprecate :Online, :none, 2025, 2
+        deprecate :Online=, :none, 2025, 2
 
         def initialize(query=nil, docs=nil, model=nil, datalist=nil, online=nil)
           @Query = query

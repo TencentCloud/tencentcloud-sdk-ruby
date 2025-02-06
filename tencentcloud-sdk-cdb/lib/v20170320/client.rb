@@ -1587,6 +1587,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # DescribeCpuExpandStrategy
+
         # 通过该 API 可以查询实例的 CPU 弹性扩容策略
 
         # @param request: Request instance for DescribeCpuExpandStrategy.

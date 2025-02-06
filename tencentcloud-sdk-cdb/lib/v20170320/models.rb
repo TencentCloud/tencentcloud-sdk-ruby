@@ -5705,8 +5705,8 @@ module TencentCloud
 
         attr_accessor :Type, :ExpandCpu, :AutoStrategy, :RequestId
         extend Gem::Deprecate
-        deprecate :AutoStrategy, :none, 2025, 1
-        deprecate :AutoStrategy=, :none, 2025, 1
+        deprecate :AutoStrategy, :none, 2025, 2
+        deprecate :AutoStrategy=, :none, 2025, 2
 
         def initialize(type=nil, expandcpu=nil, autostrategy=nil, requestid=nil)
           @Type = type
@@ -11650,8 +11650,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :ParamName, :OldValue, :NewValue, :IsSucess, :ModifyTime, :IsSuccess
         extend Gem::Deprecate
-        deprecate :IsSucess, :none, 2025, 1
-        deprecate :IsSucess=, :none, 2025, 1
+        deprecate :IsSucess, :none, 2025, 2
+        deprecate :IsSucess=, :none, 2025, 2
 
         def initialize(instanceid=nil, paramname=nil, oldvalue=nil, newvalue=nil, issucess=nil, modifytime=nil, issuccess=nil)
           @InstanceId = instanceid

@@ -3948,6 +3948,62 @@ module TencentCloud
         end
       end
 
+      # ModifyInstanceEndpoint请求参数结构体
+      class ModifyInstanceEndpointRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 集群ID
+        # @type InstanceId: String
+        # @param Type: 接入点类型，
+        # PUBLIC 公网
+        # @type Type: String
+        # @param Bandwidth: 公网带宽，Mbps为单位
+        # @type Bandwidth: Integer
+        # @param IpRules: 公网安全组信息
+        # @type IpRules: Array
+        # @param BillingFlow: 公网是否按流量计费
+        # @type BillingFlow: Boolean
+
+        attr_accessor :InstanceId, :Type, :Bandwidth, :IpRules, :BillingFlow
+
+        def initialize(instanceid=nil, type=nil, bandwidth=nil, iprules=nil, billingflow=nil)
+          @InstanceId = instanceid
+          @Type = type
+          @Bandwidth = bandwidth
+          @IpRules = iprules
+          @BillingFlow = billingflow
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Type = params['Type']
+          @Bandwidth = params['Bandwidth']
+          unless params['IpRules'].nil?
+            @IpRules = []
+            params['IpRules'].each do |i|
+              iprule_tmp = IpRule.new
+              iprule_tmp.deserialize(i)
+              @IpRules << iprule_tmp
+            end
+          end
+          @BillingFlow = params['BillingFlow']
+        end
+      end
+
+      # ModifyInstanceEndpoint返回参数结构体
+      class ModifyInstanceEndpointResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyInstance请求参数结构体
       class ModifyInstanceRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 集群ID

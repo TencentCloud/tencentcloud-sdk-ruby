@@ -320,19 +320,28 @@ module TencentCloud
 
       # Tcc数据目录连接配置
       class TccConnection < TencentCloud::Common::AbstractModel
-        # @param EndpointServiceId: 终端节点服务Id
+        # @param EndpointServiceId: 引擎终端节点服务Id
         # @type EndpointServiceId: String
         # @param MetaStoreUrl: 元数据连接串
         # @type MetaStoreUrl: String
-        # @param NetWork: 	网络信息
+        # @param NetWork: 网络信息
         # @type NetWork: :class:`Tencentcloud::Tccatalog.v20241024.models.NetWork`
+        # @param HiveVersion: hive版本
+        # @type HiveVersion: String
+        # @param Location: hive location
+        # @type Location: String
+        # @param HmsEndpointServiceId: HMS终端节点服务
+        # @type HmsEndpointServiceId: String
 
-        attr_accessor :EndpointServiceId, :MetaStoreUrl, :NetWork
+        attr_accessor :EndpointServiceId, :MetaStoreUrl, :NetWork, :HiveVersion, :Location, :HmsEndpointServiceId
 
-        def initialize(endpointserviceid=nil, metastoreurl=nil, network=nil)
+        def initialize(endpointserviceid=nil, metastoreurl=nil, network=nil, hiveversion=nil, location=nil, hmsendpointserviceid=nil)
           @EndpointServiceId = endpointserviceid
           @MetaStoreUrl = metastoreurl
           @NetWork = network
+          @HiveVersion = hiveversion
+          @Location = location
+          @HmsEndpointServiceId = hmsendpointserviceid
         end
 
         def deserialize(params)
@@ -342,6 +351,9 @@ module TencentCloud
             @NetWork = NetWork.new
             @NetWork.deserialize(params['NetWork'])
           end
+          @HiveVersion = params['HiveVersion']
+          @Location = params['Location']
+          @HmsEndpointServiceId = params['HmsEndpointServiceId']
         end
       end
 

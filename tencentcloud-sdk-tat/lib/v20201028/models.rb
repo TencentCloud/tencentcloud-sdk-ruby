@@ -409,13 +409,16 @@ module TencentCloud
 
       # CreateRegisterCode请求参数结构体
       class CreateRegisterCodeRequest < TencentCloud::Common::AbstractModel
-        # @param Description: 注册码描述。
+        # @param Description: 注册码描述。最大长度为 128 字符。
         # @type Description: String
-        # @param InstanceNamePrefix: 注册实例名称前缀。
+        # @param InstanceNamePrefix: 注册实例名称前缀。最大长度为 32 字符。
         # @type InstanceNamePrefix: String
-        # @param RegisterLimit: 该注册码允许注册的实例数目。默认限制为10个。
+        # @param RegisterLimit: 该注册码允许注册的实例数目。默认值为 10，最小值为 1，最大值为 10000。
         # @type RegisterLimit: Integer
-        # @param EffectiveTime: 该注册码的有效时间，单位为小时。默认为4小时。
+        # @param EffectiveTime: 该注册码的有效时间，单位为小时。默认值为 4。
+
+        # - 若传入值小于等于 99999，则以小时为单位设置有效时间。
+        # - 若传入值大于 99999，则设置为长期有效。
         # @type EffectiveTime: Integer
         # @param IpAddressRange: 该注册码限制tat_agent只能从IpAddressRange所描述公网出口进行注册。默认不做限制。
         # @type IpAddressRange: String
