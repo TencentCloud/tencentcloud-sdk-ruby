@@ -4628,17 +4628,23 @@ module TencentCloud
 
         # 和Ipv6CidrBlock互斥，两者都不指定时，如果Protocol不是ICMPv6，则取默认值0.0.0.0/0。
         # @type CidrBlock: String
+        # @param Ipv6CidrBlock: IPv6网段或IPv6地址(互斥)。
+        # 示例值：::/0。
+
+        # 和CidrBlock互斥，两者都不指定时，如果Protocol是ICMPv6，则取默认值::/0。
+        # @type Ipv6CidrBlock: String
         # @param Action: 取值：ACCEPT，DROP。默认为 ACCEPT。
         # @type Action: String
         # @param FirewallRuleDescription: 防火墙规则描述。
         # @type FirewallRuleDescription: String
 
-        attr_accessor :Protocol, :Port, :CidrBlock, :Action, :FirewallRuleDescription
+        attr_accessor :Protocol, :Port, :CidrBlock, :Ipv6CidrBlock, :Action, :FirewallRuleDescription
 
-        def initialize(protocol=nil, port=nil, cidrblock=nil, action=nil, firewallruledescription=nil)
+        def initialize(protocol=nil, port=nil, cidrblock=nil, ipv6cidrblock=nil, action=nil, firewallruledescription=nil)
           @Protocol = protocol
           @Port = port
           @CidrBlock = cidrblock
+          @Ipv6CidrBlock = ipv6cidrblock
           @Action = action
           @FirewallRuleDescription = firewallruledescription
         end
@@ -4647,6 +4653,7 @@ module TencentCloud
           @Protocol = params['Protocol']
           @Port = params['Port']
           @CidrBlock = params['CidrBlock']
+          @Ipv6CidrBlock = params['Ipv6CidrBlock']
           @Action = params['Action']
           @FirewallRuleDescription = params['FirewallRuleDescription']
         end
@@ -4665,18 +4672,24 @@ module TencentCloud
 
         # 和Ipv6CidrBlock互斥，两者都不指定时，如果Protocol不是ICMPv6，则取默认值0.0.0.0/0。
         # @type CidrBlock: String
+        # @param Ipv6CidrBlock: IPv6网段或IPv6地址(互斥)。
+        # 示例值：::/0。
+
+        # 和CidrBlock互斥，两者都不指定时，如果Protocol是ICMPv6，则取默认值::/0。
+        # @type Ipv6CidrBlock: String
         # @param Action: 取值：ACCEPT，DROP。默认为 ACCEPT。
         # @type Action: String
         # @param FirewallRuleDescription: 防火墙规则描述。
         # @type FirewallRuleDescription: String
 
-        attr_accessor :AppType, :Protocol, :Port, :CidrBlock, :Action, :FirewallRuleDescription
+        attr_accessor :AppType, :Protocol, :Port, :CidrBlock, :Ipv6CidrBlock, :Action, :FirewallRuleDescription
 
-        def initialize(apptype=nil, protocol=nil, port=nil, cidrblock=nil, action=nil, firewallruledescription=nil)
+        def initialize(apptype=nil, protocol=nil, port=nil, cidrblock=nil, ipv6cidrblock=nil, action=nil, firewallruledescription=nil)
           @AppType = apptype
           @Protocol = protocol
           @Port = port
           @CidrBlock = cidrblock
+          @Ipv6CidrBlock = ipv6cidrblock
           @Action = action
           @FirewallRuleDescription = firewallruledescription
         end
@@ -4686,6 +4699,7 @@ module TencentCloud
           @Protocol = params['Protocol']
           @Port = params['Port']
           @CidrBlock = params['CidrBlock']
+          @Ipv6CidrBlock = params['Ipv6CidrBlock']
           @Action = params['Action']
           @FirewallRuleDescription = params['FirewallRuleDescription']
         end
@@ -5283,15 +5297,19 @@ module TencentCloud
         # @param InstanceRestrictState: 实例封禁状态。取值范围：
         # <li>NORMAL实例正常。</li><li>NETWORK_RESTRICT：网络封禁。</li>
         # @type InstanceRestrictState: String
+        # @param SupportIpv6Detail: 描述实例是否支持IPv6。
+        # @type SupportIpv6Detail: :class:`Tencentcloud::Lighthouse.v20200324.models.SupportIpv6Detail`
+        # @param PublicIpv6Addresses: 公网IPv6地址列表。
+        # @type PublicIpv6Addresses: Array
         # @param InitInvocationId: 创建实例后自动执行TAT命令的调用ID。
         # @type InitInvocationId: String
         # @param InstanceViolationDetail: 实例违规详情。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceViolationDetail: :class:`Tencentcloud::Lighthouse.v20200324.models.InstanceViolationDetail`
 
-        attr_accessor :InstanceId, :BundleId, :BlueprintId, :CPU, :Memory, :InstanceName, :InstanceChargeType, :SystemDisk, :PrivateAddresses, :PublicAddresses, :InternetAccessible, :RenewFlag, :LoginSettings, :InstanceState, :Uuid, :LatestOperation, :LatestOperationState, :LatestOperationRequestId, :LatestOperationStartedTime, :IsolatedTime, :CreatedTime, :ExpiredTime, :PlatformType, :Platform, :OsName, :Zone, :Tags, :InstanceRestrictState, :InitInvocationId, :InstanceViolationDetail
+        attr_accessor :InstanceId, :BundleId, :BlueprintId, :CPU, :Memory, :InstanceName, :InstanceChargeType, :SystemDisk, :PrivateAddresses, :PublicAddresses, :InternetAccessible, :RenewFlag, :LoginSettings, :InstanceState, :Uuid, :LatestOperation, :LatestOperationState, :LatestOperationRequestId, :LatestOperationStartedTime, :IsolatedTime, :CreatedTime, :ExpiredTime, :PlatformType, :Platform, :OsName, :Zone, :Tags, :InstanceRestrictState, :SupportIpv6Detail, :PublicIpv6Addresses, :InitInvocationId, :InstanceViolationDetail
 
-        def initialize(instanceid=nil, bundleid=nil, blueprintid=nil, cpu=nil, memory=nil, instancename=nil, instancechargetype=nil, systemdisk=nil, privateaddresses=nil, publicaddresses=nil, internetaccessible=nil, renewflag=nil, loginsettings=nil, instancestate=nil, uuid=nil, latestoperation=nil, latestoperationstate=nil, latestoperationrequestid=nil, latestoperationstartedtime=nil, isolatedtime=nil, createdtime=nil, expiredtime=nil, platformtype=nil, platform=nil, osname=nil, zone=nil, tags=nil, instancerestrictstate=nil, initinvocationid=nil, instanceviolationdetail=nil)
+        def initialize(instanceid=nil, bundleid=nil, blueprintid=nil, cpu=nil, memory=nil, instancename=nil, instancechargetype=nil, systemdisk=nil, privateaddresses=nil, publicaddresses=nil, internetaccessible=nil, renewflag=nil, loginsettings=nil, instancestate=nil, uuid=nil, latestoperation=nil, latestoperationstate=nil, latestoperationrequestid=nil, latestoperationstartedtime=nil, isolatedtime=nil, createdtime=nil, expiredtime=nil, platformtype=nil, platform=nil, osname=nil, zone=nil, tags=nil, instancerestrictstate=nil, supportipv6detail=nil, publicipv6addresses=nil, initinvocationid=nil, instanceviolationdetail=nil)
           @InstanceId = instanceid
           @BundleId = bundleid
           @BlueprintId = blueprintid
@@ -5320,6 +5338,8 @@ module TencentCloud
           @Zone = zone
           @Tags = tags
           @InstanceRestrictState = instancerestrictstate
+          @SupportIpv6Detail = supportipv6detail
+          @PublicIpv6Addresses = publicipv6addresses
           @InitInvocationId = initinvocationid
           @InstanceViolationDetail = instanceviolationdetail
         end
@@ -5369,6 +5389,11 @@ module TencentCloud
             end
           end
           @InstanceRestrictState = params['InstanceRestrictState']
+          unless params['SupportIpv6Detail'].nil?
+            @SupportIpv6Detail = SupportIpv6Detail.new
+            @SupportIpv6Detail.deserialize(params['SupportIpv6Detail'])
+          end
+          @PublicIpv6Addresses = params['PublicIpv6Addresses']
           @InitInvocationId = params['InitInvocationId']
           unless params['InstanceViolationDetail'].nil?
             @InstanceViolationDetail = InstanceViolationDetail.new
@@ -7543,6 +7568,50 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 实例支持IPv6详情描述。
+      class SupportIpv6Detail < TencentCloud::Common::AbstractModel
+        # @param IsSupport: 是否支持开启IPv6。
+        # @type IsSupport: Boolean
+        # @param Detail: 详情。
+
+        # 当IsSupport为True，Detail枚举值为:
+
+        # EFFECTIVE_IMMEDIATELY: 立即生效
+
+        # EFFECTIVE_AFTER_REBOOT: 分配过程需要开关机，用户需备份数据
+
+
+
+        # 当IsSupport为False，Detail枚举值为:
+
+        # HAD_BEEN_ASSIGNED: 已分配IPv6地址
+
+        # REGION_NOT_SUPPORT: 地域不支持
+
+        # BLUEPRINT_NOT_SUPPORT: 镜像不支持
+
+        # BUNDLE_INSTANCE_NOT_SUPPORT: 套餐实例不支持
+
+        # BUNDLE_BANDWIDTH_NOT_SUPPORT: 套餐带宽不支持
+        # @type Detail: String
+        # @param Message: 提示信息。
+        # @type Message: String
+
+        attr_accessor :IsSupport, :Detail, :Message
+
+        def initialize(issupport=nil, detail=nil, message=nil)
+          @IsSupport = issupport
+          @Detail = detail
+          @Message = message
+        end
+
+        def deserialize(params)
+          @IsSupport = params['IsSupport']
+          @Detail = params['Detail']
+          @Message = params['Message']
         end
       end
 

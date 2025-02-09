@@ -4419,8 +4419,8 @@ module TencentCloud
 
         attr_accessor :Id, :Uuid, :Name, :Level, :Rule, :Decription, :Operator, :IsGlobal, :Status, :CreateTime, :ModifyTime, :Hostip, :Uuids, :White, :DealOldEvents, :Description
         extend Gem::Deprecate
-        deprecate :Decription, :none, 2025, 1
-        deprecate :Decription=, :none, 2025, 1
+        deprecate :Decription, :none, 2025, 2
+        deprecate :Decription=, :none, 2025, 2
 
         def initialize(id=nil, uuid=nil, name=nil, level=nil, rule=nil, decription=nil, operator=nil, isglobal=nil, status=nil, createtime=nil, modifytime=nil, hostip=nil, uuids=nil, white=nil, dealoldevents=nil, description=nil)
           @Id = id
@@ -5363,40 +5363,6 @@ module TencentCloud
         def deserialize(params)
           @Exe = params['Exe']
           @Cmdline = params['Cmdline']
-        end
-      end
-
-      # 组件统计数据。
-      class ComponentStatistics < TencentCloud::Common::AbstractModel
-        # @param Id: 组件ID。
-        # @type Id: Integer
-        # @param MachineNum: 主机数量。
-        # @type MachineNum: Integer
-        # @param ComponentName: 组件名称。
-        # @type ComponentName: String
-        # @param ComponentType: 组件类型。
-        # <li>WEB：Web组件</li>
-        # <li>SYSTEM：系统组件</li>
-        # @type ComponentType: String
-        # @param Description: 组件描述。
-        # @type Description: String
-
-        attr_accessor :Id, :MachineNum, :ComponentName, :ComponentType, :Description
-
-        def initialize(id=nil, machinenum=nil, componentname=nil, componenttype=nil, description=nil)
-          @Id = id
-          @MachineNum = machinenum
-          @ComponentName = componentname
-          @ComponentType = componenttype
-          @Description = description
-        end
-
-        def deserialize(params)
-          @Id = params['Id']
-          @MachineNum = params['MachineNum']
-          @ComponentName = params['ComponentName']
-          @ComponentType = params['ComponentType']
-          @Description = params['Description']
         end
       end
 
@@ -6359,81 +6325,6 @@ module TencentCloud
         def deserialize(params)
           @StrategyName = params['StrategyName']
           @StrategyId = params['StrategyId']
-        end
-      end
-
-      # 网络攻击日志
-      class DefendAttackLog < TencentCloud::Common::AbstractModel
-        # @param Id: 日志ID
-        # @type Id: Integer
-        # @param Uuid: 客户端ID
-        # @type Uuid: String
-        # @param SrcIp: 来源IP
-        # @type SrcIp: String
-        # @param SrcPort: 来源端口
-        # @type SrcPort: Integer
-        # @param HttpMethod: 攻击方式
-        # @type HttpMethod: String
-        # @param HttpCgi: 攻击描述
-        # @type HttpCgi: String
-        # @param HttpParam: 攻击参数
-        # @type HttpParam: String
-        # @param VulType: 威胁类型
-        # @type VulType: String
-        # @param CreatedAt: 攻击时间
-        # @type CreatedAt: String
-        # @param MachineIp: 目标服务器IP
-        # @type MachineIp: String
-        # @param MachineName: 目标服务器名称
-        # @type MachineName: String
-        # @param DstIp: 目标IP
-        # @type DstIp: String
-        # @param DstPort: 目标端口
-        # @type DstPort: Integer
-        # @param HttpContent: 攻击内容
-        # @type HttpContent: String
-        # @param MachineExtraInfo: 主机额外信息
-        # @type MachineExtraInfo: :class:`Tencentcloud::Cwp.v20180228.models.MachineExtraInfo`
-
-        attr_accessor :Id, :Uuid, :SrcIp, :SrcPort, :HttpMethod, :HttpCgi, :HttpParam, :VulType, :CreatedAt, :MachineIp, :MachineName, :DstIp, :DstPort, :HttpContent, :MachineExtraInfo
-
-        def initialize(id=nil, uuid=nil, srcip=nil, srcport=nil, httpmethod=nil, httpcgi=nil, httpparam=nil, vultype=nil, createdat=nil, machineip=nil, machinename=nil, dstip=nil, dstport=nil, httpcontent=nil, machineextrainfo=nil)
-          @Id = id
-          @Uuid = uuid
-          @SrcIp = srcip
-          @SrcPort = srcport
-          @HttpMethod = httpmethod
-          @HttpCgi = httpcgi
-          @HttpParam = httpparam
-          @VulType = vultype
-          @CreatedAt = createdat
-          @MachineIp = machineip
-          @MachineName = machinename
-          @DstIp = dstip
-          @DstPort = dstport
-          @HttpContent = httpcontent
-          @MachineExtraInfo = machineextrainfo
-        end
-
-        def deserialize(params)
-          @Id = params['Id']
-          @Uuid = params['Uuid']
-          @SrcIp = params['SrcIp']
-          @SrcPort = params['SrcPort']
-          @HttpMethod = params['HttpMethod']
-          @HttpCgi = params['HttpCgi']
-          @HttpParam = params['HttpParam']
-          @VulType = params['VulType']
-          @CreatedAt = params['CreatedAt']
-          @MachineIp = params['MachineIp']
-          @MachineName = params['MachineName']
-          @DstIp = params['DstIp']
-          @DstPort = params['DstPort']
-          @HttpContent = params['HttpContent']
-          unless params['MachineExtraInfo'].nil?
-            @MachineExtraInfo = MachineExtraInfo.new
-            @MachineExtraInfo.deserialize(params['MachineExtraInfo'])
-          end
         end
       end
 
@@ -11314,84 +11205,6 @@ module TencentCloud
         end
       end
 
-      # DescribeAttackLogs请求参数结构体
-      class DescribeAttackLogsRequest < TencentCloud::Common::AbstractModel
-        # @param Limit: 返回数量，最大值为100。
-        # @type Limit: Integer
-        # @param Offset: 偏移量，默认为0。
-        # @type Offset: Integer
-        # @param Filters: 过滤条件。
-        # <li>HttpMethod - String - 是否必填：否 - 攻击方法(POST|GET)</li>
-        # <li>DateRange - String - 是否必填：否 - 时间范围(存储最近3个月的数据)，如最近一个月["2019-11-17", "2019-12-17"]</li>
-        # <li>VulType - String 威胁类型 - 是否必填: 否</li>
-        # <li>SrcIp - String 攻击源IP - 是否必填: 否</li>
-        # <li>DstIp - String 攻击目标IP - 是否必填: 否</li>
-        # <li>SrcPort - String 攻击源端口 - 是否必填: 否</li>
-        # <li>DstPort - String 攻击目标端口 - 是否必填: 否</li>
-        # @type Filters: Array
-        # @param Uuid: 主机安全客户端ID
-        # @type Uuid: String
-        # @param Quuid: 云主机机器ID
-        # @type Quuid: String
-
-        attr_accessor :Limit, :Offset, :Filters, :Uuid, :Quuid
-
-        def initialize(limit=nil, offset=nil, filters=nil, uuid=nil, quuid=nil)
-          @Limit = limit
-          @Offset = offset
-          @Filters = filters
-          @Uuid = uuid
-          @Quuid = quuid
-        end
-
-        def deserialize(params)
-          @Limit = params['Limit']
-          @Offset = params['Offset']
-          unless params['Filters'].nil?
-            @Filters = []
-            params['Filters'].each do |i|
-              filter_tmp = Filter.new
-              filter_tmp.deserialize(i)
-              @Filters << filter_tmp
-            end
-          end
-          @Uuid = params['Uuid']
-          @Quuid = params['Quuid']
-        end
-      end
-
-      # DescribeAttackLogs返回参数结构体
-      class DescribeAttackLogsResponse < TencentCloud::Common::AbstractModel
-        # @param AttackLogs: 日志列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type AttackLogs: Array
-        # @param TotalCount: 总条数
-        # @type TotalCount: Integer
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :AttackLogs, :TotalCount, :RequestId
-
-        def initialize(attacklogs=nil, totalcount=nil, requestid=nil)
-          @AttackLogs = attacklogs
-          @TotalCount = totalcount
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          unless params['AttackLogs'].nil?
-            @AttackLogs = []
-            params['AttackLogs'].each do |i|
-              defendattacklog_tmp = DefendAttackLog.new
-              defendattacklog_tmp.deserialize(i)
-              @AttackLogs << defendattacklog_tmp
-            end
-          end
-          @TotalCount = params['TotalCount']
-          @RequestId = params['RequestId']
-        end
-      end
-
       # DescribeAttackStatistics请求参数结构体
       class DescribeAttackStatisticsRequest < TencentCloud::Common::AbstractModel
 
@@ -14361,69 +14174,6 @@ module TencentCloud
               recordinfo_tmp = RecordInfo.new
               recordinfo_tmp.deserialize(i)
               @Records << recordinfo_tmp
-            end
-          end
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # DescribeComponentStatistics请求参数结构体
-      class DescribeComponentStatisticsRequest < TencentCloud::Common::AbstractModel
-        # @param Limit: 返回数量，默认为10，最大值为100。
-        # @type Limit: Integer
-        # @param Offset: 偏移量，默认为0。
-        # @type Offset: Integer
-        # @param Filters: 过滤条件。
-        # ComponentName - String - 是否必填：否 - 组件名称
-        # @type Filters: Array
-
-        attr_accessor :Limit, :Offset, :Filters
-
-        def initialize(limit=nil, offset=nil, filters=nil)
-          @Limit = limit
-          @Offset = offset
-          @Filters = filters
-        end
-
-        def deserialize(params)
-          @Limit = params['Limit']
-          @Offset = params['Offset']
-          unless params['Filters'].nil?
-            @Filters = []
-            params['Filters'].each do |i|
-              filter_tmp = Filter.new
-              filter_tmp.deserialize(i)
-              @Filters << filter_tmp
-            end
-          end
-        end
-      end
-
-      # DescribeComponentStatistics返回参数结构体
-      class DescribeComponentStatisticsResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 组件统计列表记录总数。
-        # @type TotalCount: Integer
-        # @param ComponentStatistics: 组件统计列表数据数组。
-        # @type ComponentStatistics: Array
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :TotalCount, :ComponentStatistics, :RequestId
-
-        def initialize(totalcount=nil, componentstatistics=nil, requestid=nil)
-          @TotalCount = totalcount
-          @ComponentStatistics = componentstatistics
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @TotalCount = params['TotalCount']
-          unless params['ComponentStatistics'].nil?
-            @ComponentStatistics = []
-            params['ComponentStatistics'].each do |i|
-              componentstatistics_tmp = ComponentStatistics.new
-              componentstatistics_tmp.deserialize(i)
-              @ComponentStatistics << componentstatistics_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -17450,16 +17200,16 @@ module TencentCloud
 
         attr_accessor :MachineCnt, :TencentCloudMachineCnt, :AliCloudMachineCnt, :BaiduCloudMachineCnt, :IDCMachineCnt, :OtherCloudMachineCnt, :ProtectMachineCnt, :BaseMachineCnt, :SpecialtyMachineCnt, :FlagshipMachineCnt, :RiskMachineCnt, :CompareYesterdayRiskMachineCnt, :CompareYesterdayNotProtectMachineCnt, :CompareYesterdayDeadlineMachineCnt, :DeadlineMachineCnt, :NotProtectMachineCnt, :LHGeneralDiscountCnt, :CompareYesterdayMachineCnt, :MachineDestroyAfterOfflineHours, :CloudFrom, :RequestId
         extend Gem::Deprecate
-        deprecate :TencentCloudMachineCnt, :none, 2025, 1
-        deprecate :TencentCloudMachineCnt=, :none, 2025, 1
-        deprecate :AliCloudMachineCnt, :none, 2025, 1
-        deprecate :AliCloudMachineCnt=, :none, 2025, 1
-        deprecate :BaiduCloudMachineCnt, :none, 2025, 1
-        deprecate :BaiduCloudMachineCnt=, :none, 2025, 1
-        deprecate :IDCMachineCnt, :none, 2025, 1
-        deprecate :IDCMachineCnt=, :none, 2025, 1
-        deprecate :OtherCloudMachineCnt, :none, 2025, 1
-        deprecate :OtherCloudMachineCnt=, :none, 2025, 1
+        deprecate :TencentCloudMachineCnt, :none, 2025, 2
+        deprecate :TencentCloudMachineCnt=, :none, 2025, 2
+        deprecate :AliCloudMachineCnt, :none, 2025, 2
+        deprecate :AliCloudMachineCnt=, :none, 2025, 2
+        deprecate :BaiduCloudMachineCnt, :none, 2025, 2
+        deprecate :BaiduCloudMachineCnt=, :none, 2025, 2
+        deprecate :IDCMachineCnt, :none, 2025, 2
+        deprecate :IDCMachineCnt=, :none, 2025, 2
+        deprecate :OtherCloudMachineCnt, :none, 2025, 2
+        deprecate :OtherCloudMachineCnt=, :none, 2025, 2
 
         def initialize(machinecnt=nil, tencentcloudmachinecnt=nil, alicloudmachinecnt=nil, baiducloudmachinecnt=nil, idcmachinecnt=nil, othercloudmachinecnt=nil, protectmachinecnt=nil, basemachinecnt=nil, specialtymachinecnt=nil, flagshipmachinecnt=nil, riskmachinecnt=nil, compareyesterdayriskmachinecnt=nil, compareyesterdaynotprotectmachinecnt=nil, compareyesterdaydeadlinemachinecnt=nil, deadlinemachinecnt=nil, notprotectmachinecnt=nil, lhgeneraldiscountcnt=nil, compareyesterdaymachinecnt=nil, machinedestroyafterofflinehours=nil, cloudfrom=nil, requestid=nil)
           @MachineCnt = machinecnt
@@ -27857,8 +27607,8 @@ module TencentCloud
 
         attr_accessor :Filters, :Fileds, :Fields
         extend Gem::Deprecate
-        deprecate :Fileds, :none, 2025, 1
-        deprecate :Fileds=, :none, 2025, 1
+        deprecate :Fileds, :none, 2025, 2
+        deprecate :Fileds=, :none, 2025, 2
 
         def initialize(filters=nil, fileds=nil, fields=nil)
           @Filters = filters

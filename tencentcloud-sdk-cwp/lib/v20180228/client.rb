@@ -2936,32 +2936,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # DescribeAttackEvents 代替
-
-        # 按分页形式展示网络攻击日志列表
-
-        # @param request: Request instance for DescribeAttackLogs.
-        # @type request: :class:`Tencentcloud::cwp::V20180228::DescribeAttackLogsRequest`
-        # @rtype: :class:`Tencentcloud::cwp::V20180228::DescribeAttackLogsResponse`
-        def DescribeAttackLogs(request)
-          body = send_request('DescribeAttackLogs', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeAttackLogsResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 网络攻击数据统计
 
         # @param request: Request instance for DescribeAttackStatistics.
@@ -4148,32 +4122,6 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeClientExceptionResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 接口已无效
-
-        # 本接口 (DescribeComponentStatistics) 用于获取组件统计列表数据。
-
-        # @param request: Request instance for DescribeComponentStatistics.
-        # @type request: :class:`Tencentcloud::cwp::V20180228::DescribeComponentStatisticsRequest`
-        # @rtype: :class:`Tencentcloud::cwp::V20180228::DescribeComponentStatisticsResponse`
-        def DescribeComponentStatistics(request)
-          body = send_request('DescribeComponentStatistics', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeComponentStatisticsResponse.new
             model.deserialize(response['Response'])
             model
           else

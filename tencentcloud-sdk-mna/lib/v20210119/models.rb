@@ -908,37 +908,28 @@ module TencentCloud
         # 2:有线
         # @type Type: Integer
         # @param DataEnable: 启用/禁用
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DataEnable: Boolean
         # @param UploadLimit: 上行限速
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UploadLimit: String
         # @param DownloadLimit: 下行限速
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DownloadLimit: String
         # @param DataRx: 接收实时速率
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DataRx: Integer
         # @param DataTx: 发送实时速率
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DataTx: Integer
         # @param Vendor: 运营商类型：
         # 1: 中国移动；
         # 2: 中国电信;
         # 3: 中国联通
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Vendor: Integer
         # @param State: 连接状态：
         # 0:无连接
         # 1:连接中
         # 2:已连接
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type State: Integer
         # @param PublicIp: 公网IP
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PublicIp: String
         # @param SignalStrength: 信号强度/单位：dbm
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SignalStrength: Integer
         # @param Rat: 数据网络类型：
         # -1 ：无效值
@@ -946,7 +937,6 @@ module TencentCloud
         # 3：3G
         # 4：4G
         # 5：5G
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Rat: Integer
         # @param NetInfoName: 网卡名
         # 注意：此字段可能返回 null，表示取不到有效值。

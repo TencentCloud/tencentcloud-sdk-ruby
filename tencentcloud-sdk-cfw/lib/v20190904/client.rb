@@ -29,32 +29,6 @@ module TencentCloud
         end
 
 
-        # 接口不再使用，已有新接口AddAclRule
-
-        # 添加互联网边界规则
-
-        # @param request: Request instance for AddAcRule.
-        # @type request: :class:`Tencentcloud::cfw::V20190904::AddAcRuleRequest`
-        # @rtype: :class:`Tencentcloud::cfw::V20190904::AddAcRuleResponse`
-        def AddAcRule(request)
-          body = send_request('AddAcRule', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = AddAcRuleResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 添加互联网边界访问控制规则
 
         # @param request: Request instance for AddAclRule.

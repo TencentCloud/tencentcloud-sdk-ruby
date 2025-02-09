@@ -2386,8 +2386,8 @@ module TencentCloud
 
         attr_accessor :ReturnCode, :ReturnMessage, :Data, :DeleteRouteTimestamp
         extend Gem::Deprecate
-        deprecate :DeleteRouteTimestamp, :none, 2025, 1
-        deprecate :DeleteRouteTimestamp=, :none, 2025, 1
+        deprecate :DeleteRouteTimestamp, :none, 2025, 2
+        deprecate :DeleteRouteTimestamp=, :none, 2025, 2
 
         def initialize(returncode=nil, returnmessage=nil, data=nil, deleteroutetimestamp=nil)
           @ReturnCode = returncode
@@ -9267,7 +9267,7 @@ module TencentCloud
         # @type Config: :class:`Tencentcloud::Ckafka.v20190819.models.ModifyInstanceAttributesConfig`
         # @param DynamicRetentionConfig: 动态消息保留策略配置
         # @type DynamicRetentionConfig: :class:`Tencentcloud::Ckafka.v20190819.models.DynamicRetentionTime`
-        # @param RebalanceTime: 升配Rebalance时间 参数已废弃,忽略不填!!!
+        # @param RebalanceTime: 用于修改升级版本或升配定时任务的执行时间，Unix时间戳，精确到秒
         # @type RebalanceTime: Integer
         # @param PublicNetwork: 公网带宽 最小3Mbps  最大999Mbps 仅专业版支持填写
         # @type PublicNetwork: Integer
@@ -9275,13 +9275,15 @@ module TencentCloud
         # @type DynamicDiskConfig: :class:`Tencentcloud::Ckafka.v20190819.models.DynamicDiskConfig`
         # @param MaxMessageByte: 实例级别单条消息大小（单位byte)  最大 12582912(不包含)  最小1024(不包含)
         # @type MaxMessageByte: Integer
+        # @param UncleanLeaderElectionEnable: 集群topic默认 unclean.leader.election.enable配置: 1 开启  0 关闭
+        # @type UncleanLeaderElectionEnable: Integer
 
-        attr_accessor :InstanceId, :MsgRetentionTime, :InstanceName, :Config, :DynamicRetentionConfig, :RebalanceTime, :PublicNetwork, :DynamicDiskConfig, :MaxMessageByte
+        attr_accessor :InstanceId, :MsgRetentionTime, :InstanceName, :Config, :DynamicRetentionConfig, :RebalanceTime, :PublicNetwork, :DynamicDiskConfig, :MaxMessageByte, :UncleanLeaderElectionEnable
         extend Gem::Deprecate
-        deprecate :DynamicDiskConfig, :none, 2025, 1
-        deprecate :DynamicDiskConfig=, :none, 2025, 1
+        deprecate :DynamicDiskConfig, :none, 2025, 2
+        deprecate :DynamicDiskConfig=, :none, 2025, 2
 
-        def initialize(instanceid=nil, msgretentiontime=nil, instancename=nil, config=nil, dynamicretentionconfig=nil, rebalancetime=nil, publicnetwork=nil, dynamicdiskconfig=nil, maxmessagebyte=nil)
+        def initialize(instanceid=nil, msgretentiontime=nil, instancename=nil, config=nil, dynamicretentionconfig=nil, rebalancetime=nil, publicnetwork=nil, dynamicdiskconfig=nil, maxmessagebyte=nil, uncleanleaderelectionenable=nil)
           @InstanceId = instanceid
           @MsgRetentionTime = msgretentiontime
           @InstanceName = instancename
@@ -9291,6 +9293,7 @@ module TencentCloud
           @PublicNetwork = publicnetwork
           @DynamicDiskConfig = dynamicdiskconfig
           @MaxMessageByte = maxmessagebyte
+          @UncleanLeaderElectionEnable = uncleanleaderelectionenable
         end
 
         def deserialize(params)
@@ -9312,6 +9315,7 @@ module TencentCloud
             @DynamicDiskConfig.deserialize(params['DynamicDiskConfig'])
           end
           @MaxMessageByte = params['MaxMessageByte']
+          @UncleanLeaderElectionEnable = params['UncleanLeaderElectionEnable']
         end
       end
 
@@ -12458,8 +12462,8 @@ module TencentCloud
 
         attr_accessor :ZoneId, :IsInternalApp, :AppId, :Flag, :ZoneName, :ZoneStatus, :Exflag, :SoldOut, :SalesInfo, :ExtraFlag
         extend Gem::Deprecate
-        deprecate :Exflag, :none, 2025, 1
-        deprecate :Exflag=, :none, 2025, 1
+        deprecate :Exflag, :none, 2025, 2
+        deprecate :Exflag=, :none, 2025, 2
 
         def initialize(zoneid=nil, isinternalapp=nil, appid=nil, flag=nil, zonename=nil, zonestatus=nil, exflag=nil, soldout=nil, salesinfo=nil, extraflag=nil)
           @ZoneId = zoneid

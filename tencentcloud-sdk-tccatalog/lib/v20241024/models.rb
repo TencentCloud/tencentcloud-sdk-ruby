@@ -209,14 +209,20 @@ module TencentCloud
         # @type SubnetId: String
         # @param SubnetCidrBlock: 子网网段
         # @type SubnetCidrBlock: String
+        # @param ClbIp: 服务clbip
+        # @type ClbIp: String
+        # @param ClbPort: 服务clbPort
+        # @type ClbPort: String
 
-        attr_accessor :VpcId, :VpcCidrBlock, :SubnetId, :SubnetCidrBlock
+        attr_accessor :VpcId, :VpcCidrBlock, :SubnetId, :SubnetCidrBlock, :ClbIp, :ClbPort
 
-        def initialize(vpcid=nil, vpccidrblock=nil, subnetid=nil, subnetcidrblock=nil)
+        def initialize(vpcid=nil, vpccidrblock=nil, subnetid=nil, subnetcidrblock=nil, clbip=nil, clbport=nil)
           @VpcId = vpcid
           @VpcCidrBlock = vpccidrblock
           @SubnetId = subnetid
           @SubnetCidrBlock = subnetcidrblock
+          @ClbIp = clbip
+          @ClbPort = clbport
         end
 
         def deserialize(params)
@@ -224,6 +230,8 @@ module TencentCloud
           @VpcCidrBlock = params['VpcCidrBlock']
           @SubnetId = params['SubnetId']
           @SubnetCidrBlock = params['SubnetCidrBlock']
+          @ClbIp = params['ClbIp']
+          @ClbPort = params['ClbPort']
         end
       end
 

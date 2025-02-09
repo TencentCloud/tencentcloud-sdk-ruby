@@ -882,11 +882,11 @@ module TencentCloud
         # @type Prompt: String
         # @param InputImage: 线稿图 Base64 数据。
         # Base64 和 Url 必须提供一个，如果都提供以Url 为准。
-        # 图片限制：黑白线稿图片，单边分辨率小于5000且大于512（分辨率过小会导致效果受损），转成 Base64 字符串后小于 6MB，格式支持 jpg、jpeg、png、bmp、tiff、webp。
+        # 图片限制：黑白线稿图片，单边分辨率小于5000且大于128（分辨率过小会导致效果受损），转成 Base64 字符串后小于 6MB，格式支持 jpg、jpeg、png、bmp、tiff、webp。
         # @type InputImage: String
         # @param InputUrl: 线稿图 Url。
         # Base64 和 Url 必须提供一个，如果都提供以Url 为准。
-        # 图片限制：黑白线稿图片，单边分辨率小于5000且大于512（分辨率过小会导致效果受损），转成 Base64 字符串后小于 6MB，格式支持 jpg、jpeg、png、bmp、tiff、webp。
+        # 图片限制：黑白线稿图片，单边分辨率小于5000且大于128（分辨率过小会导致效果受损），转成 Base64 字符串后小于 6MB，格式支持 jpg、jpeg、png、bmp、tiff、webp。
         # @type InputUrl: String
         # @param LogoAdd: 为生成结果图添加标识的开关，默认为1。
         # 1：添加标识。
