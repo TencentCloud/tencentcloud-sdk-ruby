@@ -24,6 +24,10 @@ module TencentCloud
         @secret_key = secret_key
         @token = token
       end
+
+      def credential
+        [@secret_id, @secret_key, @token]
+      end
     end
   end
 end

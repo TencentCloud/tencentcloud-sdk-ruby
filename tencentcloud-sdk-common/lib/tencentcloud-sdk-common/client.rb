@@ -13,8 +13,6 @@ module TencentCloud
       include Log
 
       def initialize(credential, region, api_version, api_endpoint, sdk_version, profile = nil)
-        raise TencentCloudSDKException.new('InvalidCredential', 'Credential is None or invalid') unless credential
-
         @credential = credential
         @region = region
         @api_version = api_version
@@ -85,7 +83,6 @@ module TencentCloud
         req.header['X-TC-Version'] = @api_version
         req.header['X-TC-Region'] = @region
         req.header['X-TC-Language'] = @profile.language
-        req.header['X-TC-Token'] = @credential.token if @credential.token
         req.header['X-TC-Content-SHA256'] = 'UNSIGNED-PAYLOAD' if @profile.unsigned_payload
         req.header['X-TC-TraceId'] = SecureRandom.uuid
         if req.method == 'GET'
@@ -128,9 +125,15 @@ module TencentCloud
         payload = 'UNSIGNED-PAYLOAD' if @profile.unsigned_payload
         hashed_payload = Digest::SHA256.hexdigest(payload)
 
-        authorization = Sign.sign_v3(content_type, endpoint, @profile.http_profile.req_method, req.uri,
-                                     canonical_querystring, hashed_payload, req.header['X-TC-Timestamp'],
-                                     @credential.secret_id, @credential.secret_key)
+        if @credential.nil?
+          authorization = "SKIP"
+        else
+          secret_id, secret_key, token = @credential.credential
+          authorization = Sign.sign_v3(content_type, endpoint, @profile.http_profile.req_method, req.uri,
+                                       canonical_querystring, hashed_payload, req.header['X-TC-Timestamp'],
+                                       secret_id, secret_key)
+          req.header['X-TC-Token'] = token if token
+        end
         req.header['Authorization'] = authorization
       end
     end

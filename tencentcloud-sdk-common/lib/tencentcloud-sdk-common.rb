@@ -9,6 +9,7 @@ require_relative 'tencentcloud-sdk-common/models'
 require_relative 'tencentcloud-sdk-common/sign'
 require_relative 'tencentcloud-sdk-common/http/request'
 require_relative 'tencentcloud-sdk-common/client'
+require_relative 'tencentcloud-sdk-common/oidc_credential'
 
 module TencentCloud
   # sdk common module
