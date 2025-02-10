@@ -625,7 +625,7 @@ module TencentCloud
         # @type DiskCount: Integer
         # @param ThroughputPerformance: 可选参数。使用此参数可给云硬盘购买额外的性能。<br>当前仅支持极速型云盘（CLOUD_TSSD）和增强型SSD云硬盘（CLOUD_HSSD）
         # @type ThroughputPerformance: Integer
-        # @param DiskSize: 云硬盘大小，单位为GB。<br><li>如果传入`SnapshotId`则可不传`DiskSize`，此时新建云盘的大小为快照大小</li><br><li>如果传入`SnapshotId`同时传入`DiskSize`，则云盘大小必须大于或等于快照大小</li><br><li>云盘大小取值范围参见云硬盘[产品分类](/document/product/362/2353)的说明。</li>
+        # @param DiskSize: 云硬盘大小，单位为GiB。<br><li>如果传入`SnapshotId`则可不传`DiskSize`，此时新建云盘的大小为快照大小</li><br><li>如果传入`SnapshotId`同时传入`DiskSize`，则云盘大小必须大于或等于快照大小</li><br><li>云盘大小取值范围参见云硬盘[产品分类](/document/product/362/2353)的说明。</li>
         # @type DiskSize: Integer
         # @param Shareable: 可选参数，默认为False。传入True时，云盘将创建为共享型云盘。
         # @type Shareable: Boolean
@@ -1677,7 +1677,7 @@ module TencentCloud
         # @type DeadlineTime: String
         # @param Attached: 云盘是否挂载到云主机上。取值范围：<br><li>false:表示未挂载</li><li>true:表示已挂载。</li>
         # @type Attached: Boolean
-        # @param DiskSize: 云硬盘大小，单位GB。
+        # @param DiskSize: 云硬盘大小，单位GiB。
         # @type DiskSize: Integer
         # @param MigratePercent: 云盘类型变更的迁移进度，取值0到100。
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -1722,10 +1722,13 @@ module TencentCloud
         # @param BurstPerformance: 云盘是否开启性能突发
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BurstPerformance: Boolean
+        # @param EncryptType: 云硬盘加密类型，值为ENCRYPT_V1和ENCRYPT_V2，分别表示第一代和第二代加密技术，两种加密技术互不兼容
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EncryptType: String
 
-        attr_accessor :DeleteWithInstance, :RenewFlag, :DiskType, :DiskState, :SnapshotCount, :AutoRenewFlagError, :Rollbacking, :InstanceIdList, :Encrypt, :DiskName, :BackupDisk, :Tags, :InstanceId, :AttachMode, :AutoSnapshotPolicyIds, :ThroughputPerformance, :Migrating, :DiskId, :SnapshotSize, :Placement, :IsReturnable, :DeadlineTime, :Attached, :DiskSize, :MigratePercent, :DiskUsage, :DiskChargeType, :Portable, :SnapshotAbility, :DeadlineError, :RollbackPercent, :DifferDaysOfDeadline, :ReturnFailCode, :Shareable, :CreateTime, :DeleteSnapshot, :DiskBackupQuota, :DiskBackupCount, :InstanceType, :LastAttachInsId, :ErrorPrompt, :BurstPerformance
+        attr_accessor :DeleteWithInstance, :RenewFlag, :DiskType, :DiskState, :SnapshotCount, :AutoRenewFlagError, :Rollbacking, :InstanceIdList, :Encrypt, :DiskName, :BackupDisk, :Tags, :InstanceId, :AttachMode, :AutoSnapshotPolicyIds, :ThroughputPerformance, :Migrating, :DiskId, :SnapshotSize, :Placement, :IsReturnable, :DeadlineTime, :Attached, :DiskSize, :MigratePercent, :DiskUsage, :DiskChargeType, :Portable, :SnapshotAbility, :DeadlineError, :RollbackPercent, :DifferDaysOfDeadline, :ReturnFailCode, :Shareable, :CreateTime, :DeleteSnapshot, :DiskBackupQuota, :DiskBackupCount, :InstanceType, :LastAttachInsId, :ErrorPrompt, :BurstPerformance, :EncryptType
 
-        def initialize(deletewithinstance=nil, renewflag=nil, disktype=nil, diskstate=nil, snapshotcount=nil, autorenewflagerror=nil, rollbacking=nil, instanceidlist=nil, encrypt=nil, diskname=nil, backupdisk=nil, tags=nil, instanceid=nil, attachmode=nil, autosnapshotpolicyids=nil, throughputperformance=nil, migrating=nil, diskid=nil, snapshotsize=nil, placement=nil, isreturnable=nil, deadlinetime=nil, attached=nil, disksize=nil, migratepercent=nil, diskusage=nil, diskchargetype=nil, portable=nil, snapshotability=nil, deadlineerror=nil, rollbackpercent=nil, differdaysofdeadline=nil, returnfailcode=nil, shareable=nil, createtime=nil, deletesnapshot=nil, diskbackupquota=nil, diskbackupcount=nil, instancetype=nil, lastattachinsid=nil, errorprompt=nil, burstperformance=nil)
+        def initialize(deletewithinstance=nil, renewflag=nil, disktype=nil, diskstate=nil, snapshotcount=nil, autorenewflagerror=nil, rollbacking=nil, instanceidlist=nil, encrypt=nil, diskname=nil, backupdisk=nil, tags=nil, instanceid=nil, attachmode=nil, autosnapshotpolicyids=nil, throughputperformance=nil, migrating=nil, diskid=nil, snapshotsize=nil, placement=nil, isreturnable=nil, deadlinetime=nil, attached=nil, disksize=nil, migratepercent=nil, diskusage=nil, diskchargetype=nil, portable=nil, snapshotability=nil, deadlineerror=nil, rollbackpercent=nil, differdaysofdeadline=nil, returnfailcode=nil, shareable=nil, createtime=nil, deletesnapshot=nil, diskbackupquota=nil, diskbackupcount=nil, instancetype=nil, lastattachinsid=nil, errorprompt=nil, burstperformance=nil, encrypttype=nil)
           @DeleteWithInstance = deletewithinstance
           @RenewFlag = renewflag
           @DiskType = disktype
@@ -1768,6 +1771,7 @@ module TencentCloud
           @LastAttachInsId = lastattachinsid
           @ErrorPrompt = errorprompt
           @BurstPerformance = burstperformance
+          @EncryptType = encrypttype
         end
 
         def deserialize(params)
@@ -1823,6 +1827,7 @@ module TencentCloud
           @LastAttachInsId = params['LastAttachInsId']
           @ErrorPrompt = params['ErrorPrompt']
           @BurstPerformance = params['BurstPerformance']
+          @EncryptType = params['EncryptType']
         end
       end
 

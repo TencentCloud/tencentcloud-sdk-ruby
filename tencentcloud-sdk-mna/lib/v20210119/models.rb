@@ -939,13 +939,10 @@ module TencentCloud
         # 5：5G
         # @type Rat: Integer
         # @param NetInfoName: 网卡名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NetInfoName: String
         # @param DownRate: 下行实时速率（浮点数类型代替上一版本DataRx的整型）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DownRate: Float
         # @param UpRate: 上行实时速率（浮点数类型代替上一版本TxRate的整型）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpRate: Float
 
         attr_accessor :Type, :DataEnable, :UploadLimit, :DownloadLimit, :DataRx, :DataTx, :Vendor, :State, :PublicIp, :SignalStrength, :Rat, :NetInfoName, :DownRate, :UpRate
@@ -1043,19 +1040,14 @@ module TencentCloud
       # 设备流量信息
       class FlowDetails < TencentCloud::Common::AbstractModel
         # @param NetDetails: 流量数据点
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NetDetails: Array
         # @param DeviceId: 设备ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeviceId: String
         # @param MaxValue: 流量最大值（单位：bytes）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaxValue: Float
         # @param AvgValue: 流量平均值（单位：bytes）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AvgValue: Float
         # @param TotalValue: 流量总值（单位：bytes）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalValue: Float
 
         attr_accessor :NetDetails, :DeviceId, :MaxValue, :AvgValue, :TotalValue

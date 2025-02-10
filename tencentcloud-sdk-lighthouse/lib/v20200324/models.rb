@@ -1839,7 +1839,6 @@ module TencentCloud
       # DescribeCcnAttachedInstances返回参数结构体
       class DescribeCcnAttachedInstancesResponse < TencentCloud::Common::AbstractModel
         # @param CcnAttachedInstanceSet: 云联网关联的实例列表。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CcnAttachedInstanceSet: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5171,10 +5170,8 @@ module TencentCloud
         # @param Price: 询价信息。默认为列表中第一个实例的价格信息。
         # @type Price: :class:`Tencentcloud::Lighthouse.v20200324.models.Price`
         # @param DataDiskPriceSet: 数据盘价格信息列表。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DataDiskPriceSet: Array
         # @param InstancePriceDetailSet: 待续费实例价格列表。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstancePriceDetailSet: Array
         # @param TotalPrice: 总计价格。
         # @type TotalPrice: :class:`Tencentcloud::Lighthouse.v20200324.models.TotalPrice`

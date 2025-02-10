@@ -22,7 +22,6 @@ module TencentCloud
         # @param AbnormalEventId: 异常事件ID，具体值查看附录：异常体验ID映射表：https://cloud.tencent.com/document/product/647/44916
         # @type AbnormalEventId: Integer
         # @param PeerId: 远端用户ID,""：表示异常事件不是由远端用户产生
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PeerId: String
 
         attr_accessor :AbnormalEventId, :PeerId
@@ -3825,7 +3824,6 @@ module TencentCloud
         # @param UserId: 用户ID
         # @type UserId: String
         # @param PeerId: 对端Id,为空时表示上行数据
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PeerId: String
         # @param DataType: 数据类型
         # @type DataType: String

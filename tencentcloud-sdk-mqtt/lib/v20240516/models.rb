@@ -245,6 +245,156 @@ module TencentCloud
         end
       end
 
+      # CreateInsPublicEndpoint请求参数结构体
+      class CreateInsPublicEndpointRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param Bandwidth: 带宽,单位Mbps
+        # @type Bandwidth: Integer
+        # @param Rules: 公网访问规则
+        # @type Rules: Array
+
+        attr_accessor :InstanceId, :Bandwidth, :Rules
+
+        def initialize(instanceid=nil, bandwidth=nil, rules=nil)
+          @InstanceId = instanceid
+          @Bandwidth = bandwidth
+          @Rules = rules
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Bandwidth = params['Bandwidth']
+          unless params['Rules'].nil?
+            @Rules = []
+            params['Rules'].each do |i|
+              publicaccessrule_tmp = PublicAccessRule.new
+              publicaccessrule_tmp.deserialize(i)
+              @Rules << publicaccessrule_tmp
+            end
+          end
+        end
+      end
+
+      # CreateInsPublicEndpoint返回参数结构体
+      class CreateInsPublicEndpointResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateInstance请求参数结构体
+      class CreateInstanceRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceType: 实例类型，
+        # BASIC 基础版
+        # PRO  专业版
+        # @type InstanceType: String
+        # @param Name: 实例名称
+        # @type Name: String
+        # @param SkuCode: 商品规格，可用规格可通过接口DescribeProductSKUList查询
+        # @type SkuCode: String
+        # @param Remark: 备注信息
+        # @type Remark: String
+        # @param TagList: 标签列表
+        # @type TagList: Array
+        # @param VpcList: 实例绑定的VPC信息
+        # @type VpcList: Array
+        # @param EnablePublic: 是否开启公网
+        # @type EnablePublic: Boolean
+        # @param Bandwidth: 公网带宽（单位：兆）
+        # @type Bandwidth: Integer
+        # @param IpRules: 公网访问白名单
+        # @type IpRules: Array
+        # @param RenewFlag: 是否自动续费（0: 不自动续费；1: 自动续费）
+        # @type RenewFlag: Integer
+        # @param TimeSpan: 购买时长（单位：月）
+        # @type TimeSpan: Integer
+        # @param PayMode: 付费模式（0: 后付费；1: 预付费）
+        # @type PayMode: Integer
+
+        attr_accessor :InstanceType, :Name, :SkuCode, :Remark, :TagList, :VpcList, :EnablePublic, :Bandwidth, :IpRules, :RenewFlag, :TimeSpan, :PayMode
+
+        def initialize(instancetype=nil, name=nil, skucode=nil, remark=nil, taglist=nil, vpclist=nil, enablepublic=nil, bandwidth=nil, iprules=nil, renewflag=nil, timespan=nil, paymode=nil)
+          @InstanceType = instancetype
+          @Name = name
+          @SkuCode = skucode
+          @Remark = remark
+          @TagList = taglist
+          @VpcList = vpclist
+          @EnablePublic = enablepublic
+          @Bandwidth = bandwidth
+          @IpRules = iprules
+          @RenewFlag = renewflag
+          @TimeSpan = timespan
+          @PayMode = paymode
+        end
+
+        def deserialize(params)
+          @InstanceType = params['InstanceType']
+          @Name = params['Name']
+          @SkuCode = params['SkuCode']
+          @Remark = params['Remark']
+          unless params['TagList'].nil?
+            @TagList = []
+            params['TagList'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @TagList << tag_tmp
+            end
+          end
+          unless params['VpcList'].nil?
+            @VpcList = []
+            params['VpcList'].each do |i|
+              vpcinfo_tmp = VpcInfo.new
+              vpcinfo_tmp.deserialize(i)
+              @VpcList << vpcinfo_tmp
+            end
+          end
+          @EnablePublic = params['EnablePublic']
+          @Bandwidth = params['Bandwidth']
+          unless params['IpRules'].nil?
+            @IpRules = []
+            params['IpRules'].each do |i|
+              iprule_tmp = IpRule.new
+              iprule_tmp.deserialize(i)
+              @IpRules << iprule_tmp
+            end
+          end
+          @RenewFlag = params['RenewFlag']
+          @TimeSpan = params['TimeSpan']
+          @PayMode = params['PayMode']
+        end
+      end
+
+      # CreateInstance返回参数结构体
+      class CreateInstanceResponse < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :InstanceId, :RequestId
+
+        def initialize(instanceid=nil, requestid=nil)
+          @InstanceId = instanceid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateJWKSAuthenticator请求参数结构体
       class CreateJWKSAuthenticatorRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID
@@ -407,6 +557,50 @@ module TencentCloud
         end
       end
 
+      # CreateUser请求参数结构体
+      class CreateUserRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param Username: 用户名
+        # @type Username: String
+        # @param Password: 密码，该字段为空时候则后端会默认生成
+        # @type Password: String
+        # @param Remark: 备注
+        # @type Remark: String
+
+        attr_accessor :InstanceId, :Username, :Password, :Remark
+
+        def initialize(instanceid=nil, username=nil, password=nil, remark=nil)
+          @InstanceId = instanceid
+          @Username = username
+          @Password = password
+          @Remark = remark
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Username = params['Username']
+          @Password = params['Password']
+          @Remark = params['Remark']
+        end
+      end
+
+      # CreateUser返回参数结构体
+      class CreateUserResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeactivateDeviceCertificate请求参数结构体
       class DeactivateDeviceCertificateRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 集群id
@@ -554,6 +748,70 @@ module TencentCloud
         end
       end
 
+      # DeleteInsPublicEndpoint请求参数结构体
+      class DeleteInsPublicEndpointRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DeleteInsPublicEndpoint返回参数结构体
+      class DeleteInsPublicEndpointResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteInstance请求参数结构体
+      class DeleteInstanceRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DeleteInstance返回参数结构体
+      class DeleteInstanceResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteTopic请求参数结构体
       class DeleteTopicRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID
@@ -576,6 +834,42 @@ module TencentCloud
 
       # DeleteTopic返回参数结构体
       class DeleteTopicResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteUser请求参数结构体
+      class DeleteUserRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param Username: 用户名
+        # @type Username: String
+
+        attr_accessor :InstanceId, :Username
+
+        def initialize(instanceid=nil, username=nil)
+          @InstanceId = instanceid
+          @Username = username
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Username = params['Username']
+        end
+      end
+
+      # DeleteUser返回参数结构体
+      class DeleteUserResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -843,6 +1137,77 @@ module TencentCloud
               @Data << devicecertificateitem_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeInsPublicEndpoints请求参数结构体
+      class DescribeInsPublicEndpointsRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DescribeInsPublicEndpoints返回参数结构体
+      class DescribeInsPublicEndpointsResponse < TencentCloud::Common::AbstractModel
+        # @param Endpoints: 接入点
+        # @type Endpoints: Array
+        # @param InstanceId: 实例id
+        # @type InstanceId: String
+        # @param Bandwidth: 带宽
+        # @type Bandwidth: Integer
+        # @param Rules: 公网访问规则
+        # @type Rules: Array
+        # @param Status: 公网状态：
+        #     NORMAL-正常
+        #     CLOSING-关闭中
+        #     MODIFYING-修改中
+        #     CREATING-开启中
+        #     CLOSE-关闭
+        # @type Status: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Endpoints, :InstanceId, :Bandwidth, :Rules, :Status, :RequestId
+
+        def initialize(endpoints=nil, instanceid=nil, bandwidth=nil, rules=nil, status=nil, requestid=nil)
+          @Endpoints = endpoints
+          @InstanceId = instanceid
+          @Bandwidth = bandwidth
+          @Rules = rules
+          @Status = status
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Endpoints'].nil?
+            @Endpoints = []
+            params['Endpoints'].each do |i|
+              mqttendpointitem_tmp = MQTTEndpointItem.new
+              mqttendpointitem_tmp.deserialize(i)
+              @Endpoints << mqttendpointitem_tmp
+            end
+          end
+          @InstanceId = params['InstanceId']
+          @Bandwidth = params['Bandwidth']
+          unless params['Rules'].nil?
+            @Rules = []
+            params['Rules'].each do |i|
+              publicaccessrule_tmp = PublicAccessRule.new
+              publicaccessrule_tmp.deserialize(i)
+              @Rules << publicaccessrule_tmp
+            end
+          end
+          @Status = params['Status']
           @RequestId = params['RequestId']
         end
       end
@@ -1172,6 +1537,74 @@ module TencentCloud
         end
       end
 
+      # DescribeUserList请求参数结构体
+      class DescribeUserListRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param Filters: 查询条件列表支持字段
+        # Username：Username模糊查询
+        # @type Filters: Array
+        # @param Offset: 查询起始位置
+        # @type Offset: Integer
+        # @param Limit: 查询结果限制数量
+        # @type Limit: Integer
+
+        attr_accessor :InstanceId, :Filters, :Offset, :Limit
+
+        def initialize(instanceid=nil, filters=nil, offset=nil, limit=nil)
+          @InstanceId = instanceid
+          @Filters = filters
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeUserList返回参数结构体
+      class DescribeUserListResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 查询总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+        # @param Data: 角色信息列表
+        # @type Data: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Data, :RequestId
+
+        def initialize(totalcount=nil, data=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              mqttuseritem_tmp = MQTTUserItem.new
+              mqttuseritem_tmp.deserialize(i)
+              @Data << mqttuseritem_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 设备证书信息
       class DeviceCertificateItem < TencentCloud::Common::AbstractModel
         # @param ClientId: 客户端id
@@ -1273,6 +1706,31 @@ module TencentCloud
         end
       end
 
+      # IP规则
+      class IpRule < TencentCloud::Common::AbstractModel
+        # @param Ip: IP地址
+        # @type Ip: String
+        # @param Allow: 是否允许放行
+        # @type Allow: Boolean
+        # @param Remark: 备注信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Remark: String
+
+        attr_accessor :Ip, :Allow, :Remark
+
+        def initialize(ip=nil, allow=nil, remark=nil)
+          @Ip = ip
+          @Allow = allow
+          @Remark = remark
+        end
+
+        def deserialize(params)
+          @Ip = params['Ip']
+          @Allow = params['Allow']
+          @Remark = params['Remark']
+        end
+      end
+
       # MQTT认证器信息
       class MQTTAuthenticatorItem < TencentCloud::Common::AbstractModel
         # @param Type: 认证器类型: JWT：JWT认证器 JWKS：JWKS认证器 BYOC：一端一证认证器
@@ -1307,6 +1765,53 @@ module TencentCloud
           @Status = params['Status']
           @CreateTime = params['CreateTime']
           @Remark = params['Remark']
+        end
+      end
+
+      # MQTTEndpoint
+      class MQTTEndpointItem < TencentCloud::Common::AbstractModel
+        # @param Type: 类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+        # @param Url: 接入点
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Url: String
+        # @param VpcId: vpc信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VpcId: String
+        # @param SubnetId: 子网信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubnetId: String
+        # @param Host: 主机
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Host: String
+        # @param Port: 端口
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Port: Integer
+        # @param Ip: 接入点ip
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Ip: String
+
+        attr_accessor :Type, :Url, :VpcId, :SubnetId, :Host, :Port, :Ip
+
+        def initialize(type=nil, url=nil, vpcid=nil, subnetid=nil, host=nil, port=nil, ip=nil)
+          @Type = type
+          @Url = url
+          @VpcId = vpcid
+          @SubnetId = subnetid
+          @Host = host
+          @Port = port
+          @Ip = ip
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @Url = params['Url']
+          @VpcId = params['VpcId']
+          @SubnetId = params['SubnetId']
+          @Host = params['Host']
+          @Port = params['Port']
+          @Ip = params['Ip']
         end
       end
 
@@ -1453,6 +1958,38 @@ module TencentCloud
         end
       end
 
+      # MQTT集群用户信息
+      class MQTTUserItem < TencentCloud::Common::AbstractModel
+        # @param Username: 用户名
+        # @type Username: String
+        # @param Password: 密码
+        # @type Password: String
+        # @param Remark: 备注信息
+        # @type Remark: String
+        # @param CreatedTime: 创建时间，秒为单位
+        # @type CreatedTime: Integer
+        # @param ModifiedTime: 修改时间，秒为单位
+        # @type ModifiedTime: Integer
+
+        attr_accessor :Username, :Password, :Remark, :CreatedTime, :ModifiedTime
+
+        def initialize(username=nil, password=nil, remark=nil, createdtime=nil, modifiedtime=nil)
+          @Username = username
+          @Password = password
+          @Remark = remark
+          @CreatedTime = createdtime
+          @ModifiedTime = modifiedtime
+        end
+
+        def deserialize(params)
+          @Username = params['Username']
+          @Password = params['Password']
+          @Remark = params['Remark']
+          @CreatedTime = params['CreatedTime']
+          @ModifiedTime = params['ModifiedTime']
+        end
+      end
+
       # ModifyAuthorizationPolicy请求参数结构体
       class ModifyAuthorizationPolicyRequest < TencentCloud::Common::AbstractModel
         # @param Id: 策略
@@ -1523,6 +2060,107 @@ module TencentCloud
 
       # ModifyAuthorizationPolicy返回参数结构体
       class ModifyAuthorizationPolicyResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyInsPublicEndpoint请求参数结构体
+      class ModifyInsPublicEndpointRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param Bandwidth: 带宽，单位：Mbps
+        # @type Bandwidth: Integer
+        # @param Rules: 公网访问规则
+        # @type Rules: Array
+
+        attr_accessor :InstanceId, :Bandwidth, :Rules
+
+        def initialize(instanceid=nil, bandwidth=nil, rules=nil)
+          @InstanceId = instanceid
+          @Bandwidth = bandwidth
+          @Rules = rules
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Bandwidth = params['Bandwidth']
+          unless params['Rules'].nil?
+            @Rules = []
+            params['Rules'].each do |i|
+              publicaccessrule_tmp = PublicAccessRule.new
+              publicaccessrule_tmp.deserialize(i)
+              @Rules << publicaccessrule_tmp
+            end
+          end
+        end
+      end
+
+      # ModifyInsPublicEndpoint返回参数结构体
+      class ModifyInsPublicEndpointResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyInstance请求参数结构体
+      class ModifyInstanceRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param Name: 要修改实例名称
+        # @type Name: String
+        # @param Remark: 要修改的备注信息
+        # @type Remark: String
+        # @param SkuCode: 要变更的配置规格
+        # @type SkuCode: String
+        # @param DeviceCertificateProvisionType: 客户端证书注册方式：
+        # JITP：自动注册
+        # API：手动通过API注册
+        # @type DeviceCertificateProvisionType: String
+        # @param AutomaticActivation: 自动注册证书是否自动激活
+        # @type AutomaticActivation: Boolean
+
+        attr_accessor :InstanceId, :Name, :Remark, :SkuCode, :DeviceCertificateProvisionType, :AutomaticActivation
+
+        def initialize(instanceid=nil, name=nil, remark=nil, skucode=nil, devicecertificateprovisiontype=nil, automaticactivation=nil)
+          @InstanceId = instanceid
+          @Name = name
+          @Remark = remark
+          @SkuCode = skucode
+          @DeviceCertificateProvisionType = devicecertificateprovisiontype
+          @AutomaticActivation = automaticactivation
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Name = params['Name']
+          @Remark = params['Remark']
+          @SkuCode = params['SkuCode']
+          @DeviceCertificateProvisionType = params['DeviceCertificateProvisionType']
+          @AutomaticActivation = params['AutomaticActivation']
+        end
+      end
+
+      # ModifyInstance返回参数结构体
+      class ModifyInstanceResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -1691,6 +2329,73 @@ module TencentCloud
         end
       end
 
+      # ModifyUser请求参数结构体
+      class ModifyUserRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param Username: 用户名
+        # @type Username: String
+        # @param Remark: 备注
+        # @type Remark: String
+
+        attr_accessor :InstanceId, :Username, :Remark
+
+        def initialize(instanceid=nil, username=nil, remark=nil)
+          @InstanceId = instanceid
+          @Username = username
+          @Remark = remark
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Username = params['Username']
+          @Remark = params['Remark']
+        end
+      end
+
+      # ModifyUser返回参数结构体
+      class ModifyUserResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 公网访问安全规则
+      class PublicAccessRule < TencentCloud::Common::AbstractModel
+        # @param IpRule: ip网段信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IpRule: String
+        # @param Allow: 允许或者拒绝
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Allow: Boolean
+        # @param Remark: 备注信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Remark: String
+
+        attr_accessor :IpRule, :Allow, :Remark
+
+        def initialize(iprule=nil, allow=nil, remark=nil)
+          @IpRule = iprule
+          @Allow = allow
+          @Remark = remark
+        end
+
+        def deserialize(params)
+          @IpRule = params['IpRule']
+          @Allow = params['Allow']
+          @Remark = params['Remark']
+        end
+      end
+
       # RegisterDeviceCertificate请求参数结构体
       class RegisterDeviceCertificateRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 集群id
@@ -1779,6 +2484,28 @@ module TencentCloud
         end
       end
 
+      # 标签数据
+      class Tag < TencentCloud::Common::AbstractModel
+        # @param TagKey: 标签名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TagKey: String
+        # @param TagValue: 标签值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TagValue: String
+
+        attr_accessor :TagKey, :TagValue
+
+        def initialize(tagkey=nil, tagvalue=nil)
+          @TagKey = tagkey
+          @TagValue = tagvalue
+        end
+
+        def deserialize(params)
+          @TagKey = params['TagKey']
+          @TagValue = params['TagValue']
+        end
+      end
+
       # 标签过滤器
       class TagFilter < TencentCloud::Common::AbstractModel
         # @param TagKey: 标签键名称
@@ -1839,6 +2566,26 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # VPC信息
+      class VpcInfo < TencentCloud::Common::AbstractModel
+        # @param VpcId: VPC ID
+        # @type VpcId: String
+        # @param SubnetId: 子网ID
+        # @type SubnetId: String
+
+        attr_accessor :VpcId, :SubnetId
+
+        def initialize(vpcid=nil, subnetid=nil)
+          @VpcId = vpcid
+          @SubnetId = subnetid
+        end
+
+        def deserialize(params)
+          @VpcId = params['VpcId']
+          @SubnetId = params['SubnetId']
         end
       end
 

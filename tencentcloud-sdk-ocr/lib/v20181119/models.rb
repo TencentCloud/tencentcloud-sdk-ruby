@@ -12147,10 +12147,16 @@ module TencentCloud
         # @param Seal: 印章
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Seal: String
+        # @param StateElectronic: 状态
+        # @type StateElectronic: String
+        # @param InspectionValidityTimeElectronic: 检验有效期
+        # @type InspectionValidityTimeElectronic: String
+        # @param GenerationTimeElectronic: 生成时间
+        # @type GenerationTimeElectronic: String
 
-        attr_accessor :PlateNo, :VehicleType, :Owner, :Address, :UseCharacter, :Model, :Vin, :EngineNo, :RegisterDate, :IssueDate, :Seal
+        attr_accessor :PlateNo, :VehicleType, :Owner, :Address, :UseCharacter, :Model, :Vin, :EngineNo, :RegisterDate, :IssueDate, :Seal, :StateElectronic, :InspectionValidityTimeElectronic, :GenerationTimeElectronic
 
-        def initialize(plateno=nil, vehicletype=nil, owner=nil, address=nil, usecharacter=nil, model=nil, vin=nil, engineno=nil, registerdate=nil, issuedate=nil, seal=nil)
+        def initialize(plateno=nil, vehicletype=nil, owner=nil, address=nil, usecharacter=nil, model=nil, vin=nil, engineno=nil, registerdate=nil, issuedate=nil, seal=nil, stateelectronic=nil, inspectionvaliditytimeelectronic=nil, generationtimeelectronic=nil)
           @PlateNo = plateno
           @VehicleType = vehicletype
           @Owner = owner
@@ -12162,6 +12168,9 @@ module TencentCloud
           @RegisterDate = registerdate
           @IssueDate = issuedate
           @Seal = seal
+          @StateElectronic = stateelectronic
+          @InspectionValidityTimeElectronic = inspectionvaliditytimeelectronic
+          @GenerationTimeElectronic = generationtimeelectronic
         end
 
         def deserialize(params)
@@ -12176,6 +12185,9 @@ module TencentCloud
           @RegisterDate = params['RegisterDate']
           @IssueDate = params['IssueDate']
           @Seal = params['Seal']
+          @StateElectronic = params['StateElectronic']
+          @InspectionValidityTimeElectronic = params['InspectionValidityTimeElectronic']
+          @GenerationTimeElectronic = params['GenerationTimeElectronic']
         end
       end
 

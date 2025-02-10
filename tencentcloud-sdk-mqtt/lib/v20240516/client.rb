@@ -77,6 +77,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 为MQTT实例创建公网接入点
+
+        # @param request: Request instance for CreateInsPublicEndpoint.
+        # @type request: :class:`Tencentcloud::mqtt::V20240516::CreateInsPublicEndpointRequest`
+        # @rtype: :class:`Tencentcloud::mqtt::V20240516::CreateInsPublicEndpointResponse`
+        def CreateInsPublicEndpoint(request)
+          body = send_request('CreateInsPublicEndpoint', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateInsPublicEndpointResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 购买新的MQTT实例
+
+        # @param request: Request instance for CreateInstance.
+        # @type request: :class:`Tencentcloud::mqtt::V20240516::CreateInstanceRequest`
+        # @rtype: :class:`Tencentcloud::mqtt::V20240516::CreateInstanceResponse`
+        def CreateInstance(request)
+          body = send_request('CreateInstance', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateInstanceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建一个jwks的认证
 
         # @param request: Request instance for CreateJWKSAuthenticator.
@@ -135,6 +183,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CreateTopicResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 添加mqtt角色
+
+        # @param request: Request instance for CreateUser.
+        # @type request: :class:`Tencentcloud::mqtt::V20240516::CreateUserRequest`
+        # @rtype: :class:`Tencentcloud::mqtt::V20240516::CreateUserResponse`
+        def CreateUser(request)
+          body = send_request('CreateUser', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateUserResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -245,6 +317,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 删除MQTT实例的公网接入点
+
+        # @param request: Request instance for DeleteInsPublicEndpoint.
+        # @type request: :class:`Tencentcloud::mqtt::V20240516::DeleteInsPublicEndpointRequest`
+        # @rtype: :class:`Tencentcloud::mqtt::V20240516::DeleteInsPublicEndpointResponse`
+        def DeleteInsPublicEndpoint(request)
+          body = send_request('DeleteInsPublicEndpoint', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteInsPublicEndpointResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除MQTT实例
+
+        # @param request: Request instance for DeleteInstance.
+        # @type request: :class:`Tencentcloud::mqtt::V20240516::DeleteInstanceRequest`
+        # @rtype: :class:`Tencentcloud::mqtt::V20240516::DeleteInstanceResponse`
+        def DeleteInstance(request)
+          body = send_request('DeleteInstance', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteInstanceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 删除MQTT主题
 
         # @param request: Request instance for DeleteTopic.
@@ -255,6 +375,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteTopicResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除MQTT访问用户
+
+        # @param request: Request instance for DeleteUser.
+        # @type request: :class:`Tencentcloud::mqtt::V20240516::DeleteUserRequest`
+        # @rtype: :class:`Tencentcloud::mqtt::V20240516::DeleteUserResponse`
+        def DeleteUser(request)
+          body = send_request('DeleteUser', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteUserResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -351,6 +495,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeDeviceCertificatesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询MQTT实例公网接入点
+
+        # @param request: Request instance for DescribeInsPublicEndpoints.
+        # @type request: :class:`Tencentcloud::mqtt::V20240516::DescribeInsPublicEndpointsRequest`
+        # @rtype: :class:`Tencentcloud::mqtt::V20240516::DescribeInsPublicEndpointsResponse`
+        def DescribeInsPublicEndpoints(request)
+          body = send_request('DescribeInsPublicEndpoints', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeInsPublicEndpointsResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -469,6 +637,32 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询用户列表，Filter参数使用说明如下：
+
+        # 1. Username，用户名称模糊搜索
+
+        # @param request: Request instance for DescribeUserList.
+        # @type request: :class:`Tencentcloud::mqtt::V20240516::DescribeUserListRequest`
+        # @rtype: :class:`Tencentcloud::mqtt::V20240516::DescribeUserListResponse`
+        def DescribeUserList(request)
+          body = send_request('DescribeUserList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeUserListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 修改策略规则
 
         # @param request: Request instance for ModifyAuthorizationPolicy.
@@ -479,6 +673,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyAuthorizationPolicyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 更新MQTT实例公网接入点
+
+        # @param request: Request instance for ModifyInsPublicEndpoint.
+        # @type request: :class:`Tencentcloud::mqtt::V20240516::ModifyInsPublicEndpointRequest`
+        # @rtype: :class:`Tencentcloud::mqtt::V20240516::ModifyInsPublicEndpointResponse`
+        def ModifyInsPublicEndpoint(request)
+          body = send_request('ModifyInsPublicEndpoint', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyInsPublicEndpointResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改实例属性
+
+        # @param request: Request instance for ModifyInstance.
+        # @type request: :class:`Tencentcloud::mqtt::V20240516::ModifyInstanceRequest`
+        # @rtype: :class:`Tencentcloud::mqtt::V20240516::ModifyInstanceResponse`
+        def ModifyInstance(request)
+          body = send_request('ModifyInstance', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyInstanceResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -551,6 +793,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyTopicResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改MQTT角色
+
+        # @param request: Request instance for ModifyUser.
+        # @type request: :class:`Tencentcloud::mqtt::V20240516::ModifyUserRequest`
+        # @rtype: :class:`Tencentcloud::mqtt::V20240516::ModifyUserResponse`
+        def ModifyUser(request)
+          body = send_request('ModifyUser', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyUserResponse.new
             model.deserialize(response['Response'])
             model
           else

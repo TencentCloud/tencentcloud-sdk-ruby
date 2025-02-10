@@ -2028,8 +2028,8 @@ module TencentCloud
 
         attr_accessor :SegmentSet, :SubtitlePath, :OutputStorage
         extend Gem::Deprecate
-        deprecate :OutputStorage, :none, 2025, 1
-        deprecate :OutputStorage=, :none, 2025, 1
+        deprecate :OutputStorage, :none, 2025, 2
+        deprecate :OutputStorage=, :none, 2025, 2
 
         def initialize(segmentset=nil, subtitlepath=nil, outputstorage=nil)
           @SegmentSet = segmentset
@@ -6826,10 +6826,12 @@ module TencentCloud
         # @type OutputType: String
         # @param RISTSettings: 输出的RIST的配置。
         # @type RISTSettings: :class:`Tencentcloud::Mps.v20190612.models.CreateOutputRistSettings`
+        # @param PidSelector: 对于含有多个音/视频轨的流，可以指定需要使用的轨道
+        # @type PidSelector: :class:`Tencentcloud::Mps.v20190612.models.PidSelector`
 
-        attr_accessor :OutputName, :Description, :Protocol, :OutputRegion, :SRTSettings, :RTMPSettings, :RTPSettings, :AllowIpList, :MaxConcurrent, :SecurityGroupIds, :Zones, :OutputType, :RISTSettings
+        attr_accessor :OutputName, :Description, :Protocol, :OutputRegion, :SRTSettings, :RTMPSettings, :RTPSettings, :AllowIpList, :MaxConcurrent, :SecurityGroupIds, :Zones, :OutputType, :RISTSettings, :PidSelector
 
-        def initialize(outputname=nil, description=nil, protocol=nil, outputregion=nil, srtsettings=nil, rtmpsettings=nil, rtpsettings=nil, allowiplist=nil, maxconcurrent=nil, securitygroupids=nil, zones=nil, outputtype=nil, ristsettings=nil)
+        def initialize(outputname=nil, description=nil, protocol=nil, outputregion=nil, srtsettings=nil, rtmpsettings=nil, rtpsettings=nil, allowiplist=nil, maxconcurrent=nil, securitygroupids=nil, zones=nil, outputtype=nil, ristsettings=nil, pidselector=nil)
           @OutputName = outputname
           @Description = description
           @Protocol = protocol
@@ -6843,6 +6845,7 @@ module TencentCloud
           @Zones = zones
           @OutputType = outputtype
           @RISTSettings = ristsettings
+          @PidSelector = pidselector
         end
 
         def deserialize(params)
@@ -6870,6 +6873,10 @@ module TencentCloud
           unless params['RISTSettings'].nil?
             @RISTSettings = CreateOutputRistSettings.new
             @RISTSettings.deserialize(params['RISTSettings'])
+          end
+          unless params['PidSelector'].nil?
+            @PidSelector = PidSelector.new
+            @PidSelector.deserialize(params['PidSelector'])
           end
         end
       end
@@ -9139,10 +9146,14 @@ module TencentCloud
         # @type EventId: String
         # @param Region: 媒体传输输入流所属的区域，取值和InputRegion相同。
         # @type Region: String
+        # @param AllowedInputProtocols: 该Flow允许创建的输入协议
+        # @type AllowedInputProtocols: Array
+        # @param AllowedOutputProtocols: 该Flow允许创建的输出协议
+        # @type AllowedOutputProtocols: Array
 
-        attr_accessor :FlowId, :FlowName, :State, :MaxBandwidth, :InputGroup, :OutputGroup, :EventId, :Region
+        attr_accessor :FlowId, :FlowName, :State, :MaxBandwidth, :InputGroup, :OutputGroup, :EventId, :Region, :AllowedInputProtocols, :AllowedOutputProtocols
 
-        def initialize(flowid=nil, flowname=nil, state=nil, maxbandwidth=nil, inputgroup=nil, outputgroup=nil, eventid=nil, region=nil)
+        def initialize(flowid=nil, flowname=nil, state=nil, maxbandwidth=nil, inputgroup=nil, outputgroup=nil, eventid=nil, region=nil, allowedinputprotocols=nil, allowedoutputprotocols=nil)
           @FlowId = flowid
           @FlowName = flowname
           @State = state
@@ -9151,6 +9162,8 @@ module TencentCloud
           @OutputGroup = outputgroup
           @EventId = eventid
           @Region = region
+          @AllowedInputProtocols = allowedinputprotocols
+          @AllowedOutputProtocols = allowedoutputprotocols
         end
 
         def deserialize(params)
@@ -9176,6 +9189,8 @@ module TencentCloud
           end
           @EventId = params['EventId']
           @Region = params['Region']
+          @AllowedInputProtocols = params['AllowedInputProtocols']
+          @AllowedOutputProtocols = params['AllowedOutputProtocols']
         end
       end
 
@@ -9798,10 +9813,12 @@ module TencentCloud
         # @param RISTSettings: 输出的RIST配置信息。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RISTSettings: :class:`Tencentcloud::Mps.v20190612.models.DescribeOutputRISTSettings`
+        # @param PidSelector: 对于含有多个音/视频轨的流，可以指定需要使用的轨道
+        # @type PidSelector: :class:`Tencentcloud::Mps.v20190612.models.PidSelector`
 
-        attr_accessor :OutputId, :OutputName, :OutputType, :Description, :Protocol, :OutputAddressList, :OutputRegion, :SRTSettings, :RTPSettings, :RTMPSettings, :RTMPPullSettings, :AllowIpList, :RTSPPullSettings, :HLSPullSettings, :MaxConcurrent, :SecurityGroupIds, :Zones, :RISTSettings
+        attr_accessor :OutputId, :OutputName, :OutputType, :Description, :Protocol, :OutputAddressList, :OutputRegion, :SRTSettings, :RTPSettings, :RTMPSettings, :RTMPPullSettings, :AllowIpList, :RTSPPullSettings, :HLSPullSettings, :MaxConcurrent, :SecurityGroupIds, :Zones, :RISTSettings, :PidSelector
 
-        def initialize(outputid=nil, outputname=nil, outputtype=nil, description=nil, protocol=nil, outputaddresslist=nil, outputregion=nil, srtsettings=nil, rtpsettings=nil, rtmpsettings=nil, rtmppullsettings=nil, allowiplist=nil, rtsppullsettings=nil, hlspullsettings=nil, maxconcurrent=nil, securitygroupids=nil, zones=nil, ristsettings=nil)
+        def initialize(outputid=nil, outputname=nil, outputtype=nil, description=nil, protocol=nil, outputaddresslist=nil, outputregion=nil, srtsettings=nil, rtpsettings=nil, rtmpsettings=nil, rtmppullsettings=nil, allowiplist=nil, rtsppullsettings=nil, hlspullsettings=nil, maxconcurrent=nil, securitygroupids=nil, zones=nil, ristsettings=nil, pidselector=nil)
           @OutputId = outputid
           @OutputName = outputname
           @OutputType = outputtype
@@ -9820,6 +9837,7 @@ module TencentCloud
           @SecurityGroupIds = securitygroupids
           @Zones = zones
           @RISTSettings = ristsettings
+          @PidSelector = pidselector
         end
 
         def deserialize(params)
@@ -9868,6 +9886,10 @@ module TencentCloud
           unless params['RISTSettings'].nil?
             @RISTSettings = DescribeOutputRISTSettings.new
             @RISTSettings.deserialize(params['RISTSettings'])
+          end
+          unless params['PidSelector'].nil?
+            @PidSelector = PidSelector.new
+            @PidSelector.deserialize(params['PidSelector'])
           end
         end
       end
@@ -14128,10 +14150,10 @@ module TencentCloud
 
         attr_accessor :QualityControlResults, :DiagnoseResults, :QualityControlResultSet, :DiagnoseResultSet
         extend Gem::Deprecate
-        deprecate :QualityControlResults, :none, 2025, 1
-        deprecate :QualityControlResults=, :none, 2025, 1
-        deprecate :DiagnoseResults, :none, 2025, 1
-        deprecate :DiagnoseResults=, :none, 2025, 1
+        deprecate :QualityControlResults, :none, 2025, 2
+        deprecate :QualityControlResults=, :none, 2025, 2
+        deprecate :DiagnoseResults, :none, 2025, 2
+        deprecate :DiagnoseResults=, :none, 2025, 2
 
         def initialize(qualitycontrolresults=nil, diagnoseresults=nil, qualitycontrolresultset=nil, diagnoseresultset=nil)
           @QualityControlResults = qualitycontrolresults
@@ -17094,10 +17116,12 @@ module TencentCloud
         # @type RISTSettings: :class:`Tencentcloud::Mps.v20190612.models.CreateOutputRistSettings`
         # @param OutputType: 输出类型：Internet/TencentCSS/StreamLive
         # @type OutputType: String
+        # @param PidSelector: 对于含有多个音/视频轨的流，可以指定需要使用的轨道
+        # @type PidSelector: :class:`Tencentcloud::Mps.v20190612.models.PidSelector`
 
-        attr_accessor :OutputId, :OutputName, :Description, :Protocol, :SRTSettings, :RTPSettings, :RTMPSettings, :AllowIpList, :MaxConcurrent, :SecurityGroupIds, :Zones, :RISTSettings, :OutputType
+        attr_accessor :OutputId, :OutputName, :Description, :Protocol, :SRTSettings, :RTPSettings, :RTMPSettings, :AllowIpList, :MaxConcurrent, :SecurityGroupIds, :Zones, :RISTSettings, :OutputType, :PidSelector
 
-        def initialize(outputid=nil, outputname=nil, description=nil, protocol=nil, srtsettings=nil, rtpsettings=nil, rtmpsettings=nil, allowiplist=nil, maxconcurrent=nil, securitygroupids=nil, zones=nil, ristsettings=nil, outputtype=nil)
+        def initialize(outputid=nil, outputname=nil, description=nil, protocol=nil, srtsettings=nil, rtpsettings=nil, rtmpsettings=nil, allowiplist=nil, maxconcurrent=nil, securitygroupids=nil, zones=nil, ristsettings=nil, outputtype=nil, pidselector=nil)
           @OutputId = outputid
           @OutputName = outputname
           @Description = description
@@ -17111,6 +17135,7 @@ module TencentCloud
           @Zones = zones
           @RISTSettings = ristsettings
           @OutputType = outputtype
+          @PidSelector = pidselector
         end
 
         def deserialize(params)
@@ -17139,6 +17164,10 @@ module TencentCloud
             @RISTSettings.deserialize(params['RISTSettings'])
           end
           @OutputType = params['OutputType']
+          unless params['PidSelector'].nil?
+            @PidSelector = PidSelector.new
+            @PidSelector.deserialize(params['PidSelector'])
+          end
         end
       end
 
@@ -18453,6 +18482,28 @@ module TencentCloud
           @Timestamp = params['Timestamp']
           @Sign = params['Sign']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 对于含有多个音/视频轨的流，可以指定需要使用的轨道
+      class PidSelector < TencentCloud::Common::AbstractModel
+        # @param AudioPID: 对于含有多音轨的流, 可以通过输入PID来指定需要使用的音轨，PID可以输入1到8191之间的正整数。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AudioPID: Array
+        # @param VideoPID: 对于含有多个视频轨的流，可以通过输入PID来指定需要使用的视频轨，PID可以输入1到8191之间的正整数。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VideoPID: Array
+
+        attr_accessor :AudioPID, :VideoPID
+
+        def initialize(audiopid=nil, videopid=nil)
+          @AudioPID = audiopid
+          @VideoPID = videopid
+        end
+
+        def deserialize(params)
+          @AudioPID = params['AudioPID']
+          @VideoPID = params['VideoPID']
         end
       end
 

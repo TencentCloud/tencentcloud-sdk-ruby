@@ -107,10 +107,12 @@ module TencentCloud
         # @type WhiteCmds: Array
         # @param AllowKeyboardLogger: 是否允许记录键盘
         # @type AllowKeyboardLogger: Boolean
+        # @param AppAssetSet: 关联的应用资产列表
+        # @type AppAssetSet: Array
 
-        attr_accessor :Id, :Name, :AllowDiskRedirect, :AllowClipFileUp, :AllowClipFileDown, :AllowClipTextUp, :AllowClipTextDown, :AllowFileUp, :MaxFileUpSize, :AllowFileDown, :MaxFileDownSize, :AllowAnyAccount, :UserSet, :UserGroupSet, :DeviceSet, :DeviceGroupSet, :AccountSet, :CmdTemplateSet, :AllowDiskFileUp, :AllowDiskFileDown, :AllowShellFileUp, :AllowShellFileDown, :AllowFileDel, :ValidateFrom, :ValidateTo, :Status, :Department, :AllowAccessCredential, :ACTemplateSet, :WhiteCmds, :AllowKeyboardLogger
+        attr_accessor :Id, :Name, :AllowDiskRedirect, :AllowClipFileUp, :AllowClipFileDown, :AllowClipTextUp, :AllowClipTextDown, :AllowFileUp, :MaxFileUpSize, :AllowFileDown, :MaxFileDownSize, :AllowAnyAccount, :UserSet, :UserGroupSet, :DeviceSet, :DeviceGroupSet, :AccountSet, :CmdTemplateSet, :AllowDiskFileUp, :AllowDiskFileDown, :AllowShellFileUp, :AllowShellFileDown, :AllowFileDel, :ValidateFrom, :ValidateTo, :Status, :Department, :AllowAccessCredential, :ACTemplateSet, :WhiteCmds, :AllowKeyboardLogger, :AppAssetSet
 
-        def initialize(id=nil, name=nil, allowdiskredirect=nil, allowclipfileup=nil, allowclipfiledown=nil, allowcliptextup=nil, allowcliptextdown=nil, allowfileup=nil, maxfileupsize=nil, allowfiledown=nil, maxfiledownsize=nil, allowanyaccount=nil, userset=nil, usergroupset=nil, deviceset=nil, devicegroupset=nil, accountset=nil, cmdtemplateset=nil, allowdiskfileup=nil, allowdiskfiledown=nil, allowshellfileup=nil, allowshellfiledown=nil, allowfiledel=nil, validatefrom=nil, validateto=nil, status=nil, department=nil, allowaccesscredential=nil, actemplateset=nil, whitecmds=nil, allowkeyboardlogger=nil)
+        def initialize(id=nil, name=nil, allowdiskredirect=nil, allowclipfileup=nil, allowclipfiledown=nil, allowcliptextup=nil, allowcliptextdown=nil, allowfileup=nil, maxfileupsize=nil, allowfiledown=nil, maxfiledownsize=nil, allowanyaccount=nil, userset=nil, usergroupset=nil, deviceset=nil, devicegroupset=nil, accountset=nil, cmdtemplateset=nil, allowdiskfileup=nil, allowdiskfiledown=nil, allowshellfileup=nil, allowshellfiledown=nil, allowfiledel=nil, validatefrom=nil, validateto=nil, status=nil, department=nil, allowaccesscredential=nil, actemplateset=nil, whitecmds=nil, allowkeyboardlogger=nil, appassetset=nil)
           @Id = id
           @Name = name
           @AllowDiskRedirect = allowdiskredirect
@@ -142,6 +144,7 @@ module TencentCloud
           @ACTemplateSet = actemplateset
           @WhiteCmds = whitecmds
           @AllowKeyboardLogger = allowkeyboardlogger
+          @AppAssetSet = appassetset
         end
 
         def deserialize(params)
@@ -221,6 +224,14 @@ module TencentCloud
           end
           @WhiteCmds = params['WhiteCmds']
           @AllowKeyboardLogger = params['AllowKeyboardLogger']
+          unless params['AppAssetSet'].nil?
+            @AppAssetSet = []
+            params['AppAssetSet'].each do |i|
+              appasset_tmp = AppAsset.new
+              appasset_tmp.deserialize(i)
+              @AppAssetSet << appasset_tmp
+            end
+          end
         end
       end
 
@@ -293,6 +304,107 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 应用资产信息
+      class AppAsset < TencentCloud::Common::AbstractModel
+        # @param Id: 应用资产id
+        # @type Id: Integer
+        # @param InstanceId: 实例id
+        # @type InstanceId: String
+        # @param Name: 资产名称
+        # @type Name: String
+        # @param DeviceId: 应用服务器id
+        # @type DeviceId: Integer
+        # @param DeviceAccountId: 应用服务器账号id
+        # @type DeviceAccountId: Integer
+        # @param Kind: 应用资产类型。1-web应用
+        # @type Kind: Integer
+        # @param ClientAppPath: 客户端工具路径
+        # @type ClientAppPath: String
+        # @param ClientAppKind: 客户端工具类型
+        # @type ClientAppKind: String
+        # @param Url: 应用资产url
+        # @type Url: String
+        # @param BindStatus: 托管状态。0-未托管，1-已托管
+        # @type BindStatus: Integer
+        # @param DeviceInstanceId: 应用服务器实例id
+        # @type DeviceInstanceId: String
+        # @param DeviceName: 应用服务器名称
+        # @type DeviceName: String
+        # @param DeviceAccountName: 应用服务器账号名称
+        # @type DeviceAccountName: String
+        # @param ResourceId: 堡垒机实例id
+        # @type ResourceId: String
+        # @param Resource: 堡垒机实例信息
+        # @type Resource: :class:`Tencentcloud::Bh.v20230418.models.Resource`
+        # @param DomainId: 网络域id
+        # @type DomainId: String
+        # @param DomainName: 网络域名称
+        # @type DomainName: String
+        # @param GroupSet: 资产组信息
+        # @type GroupSet: Array
+        # @param Department: 资产所属部门
+        # @type Department: :class:`Tencentcloud::Bh.v20230418.models.Department`
+
+        attr_accessor :Id, :InstanceId, :Name, :DeviceId, :DeviceAccountId, :Kind, :ClientAppPath, :ClientAppKind, :Url, :BindStatus, :DeviceInstanceId, :DeviceName, :DeviceAccountName, :ResourceId, :Resource, :DomainId, :DomainName, :GroupSet, :Department
+
+        def initialize(id=nil, instanceid=nil, name=nil, deviceid=nil, deviceaccountid=nil, kind=nil, clientapppath=nil, clientappkind=nil, url=nil, bindstatus=nil, deviceinstanceid=nil, devicename=nil, deviceaccountname=nil, resourceid=nil, resource=nil, domainid=nil, domainname=nil, groupset=nil, department=nil)
+          @Id = id
+          @InstanceId = instanceid
+          @Name = name
+          @DeviceId = deviceid
+          @DeviceAccountId = deviceaccountid
+          @Kind = kind
+          @ClientAppPath = clientapppath
+          @ClientAppKind = clientappkind
+          @Url = url
+          @BindStatus = bindstatus
+          @DeviceInstanceId = deviceinstanceid
+          @DeviceName = devicename
+          @DeviceAccountName = deviceaccountname
+          @ResourceId = resourceid
+          @Resource = resource
+          @DomainId = domainid
+          @DomainName = domainname
+          @GroupSet = groupset
+          @Department = department
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @InstanceId = params['InstanceId']
+          @Name = params['Name']
+          @DeviceId = params['DeviceId']
+          @DeviceAccountId = params['DeviceAccountId']
+          @Kind = params['Kind']
+          @ClientAppPath = params['ClientAppPath']
+          @ClientAppKind = params['ClientAppKind']
+          @Url = params['Url']
+          @BindStatus = params['BindStatus']
+          @DeviceInstanceId = params['DeviceInstanceId']
+          @DeviceName = params['DeviceName']
+          @DeviceAccountName = params['DeviceAccountName']
+          @ResourceId = params['ResourceId']
+          unless params['Resource'].nil?
+            @Resource = Resource.new
+            @Resource.deserialize(params['Resource'])
+          end
+          @DomainId = params['DomainId']
+          @DomainName = params['DomainName']
+          unless params['GroupSet'].nil?
+            @GroupSet = []
+            params['GroupSet'].each do |i|
+              group_tmp = Group.new
+              group_tmp.deserialize(i)
+              @GroupSet << group_tmp
+            end
+          end
+          unless params['Department'].nil?
+            @Department = Department.new
+            @Department.deserialize(params['Department'])
+          end
         end
       end
 
@@ -643,6 +755,8 @@ module TencentCloud
         # @type UserGroupIdSet: Array
         # @param DeviceIdSet: 关联的资产ID集合
         # @type DeviceIdSet: Array
+        # @param AppAssetIdSet: 关联的应用资产ID集合
+        # @type AppAssetIdSet: Array
         # @param DeviceGroupIdSet: 关联的资产组ID
         # @type DeviceGroupIdSet: Array
         # @param AccountSet: 关联的账号
@@ -674,9 +788,9 @@ module TencentCloud
         # @param AllowKeyboardLogger: 是否允许键盘记录
         # @type AllowKeyboardLogger: Boolean
 
-        attr_accessor :Name, :AllowDiskRedirect, :AllowAnyAccount, :AllowClipFileUp, :AllowClipFileDown, :AllowClipTextUp, :AllowClipTextDown, :AllowFileUp, :MaxFileUpSize, :AllowFileDown, :MaxFileDownSize, :UserIdSet, :UserGroupIdSet, :DeviceIdSet, :DeviceGroupIdSet, :AccountSet, :CmdTemplateIdSet, :ACTemplateIdSet, :AllowDiskFileUp, :AllowDiskFileDown, :AllowShellFileUp, :AllowShellFileDown, :AllowFileDel, :ValidateFrom, :ValidateTo, :DepartmentId, :AllowAccessCredential, :AllowKeyboardLogger
+        attr_accessor :Name, :AllowDiskRedirect, :AllowAnyAccount, :AllowClipFileUp, :AllowClipFileDown, :AllowClipTextUp, :AllowClipTextDown, :AllowFileUp, :MaxFileUpSize, :AllowFileDown, :MaxFileDownSize, :UserIdSet, :UserGroupIdSet, :DeviceIdSet, :AppAssetIdSet, :DeviceGroupIdSet, :AccountSet, :CmdTemplateIdSet, :ACTemplateIdSet, :AllowDiskFileUp, :AllowDiskFileDown, :AllowShellFileUp, :AllowShellFileDown, :AllowFileDel, :ValidateFrom, :ValidateTo, :DepartmentId, :AllowAccessCredential, :AllowKeyboardLogger
 
-        def initialize(name=nil, allowdiskredirect=nil, allowanyaccount=nil, allowclipfileup=nil, allowclipfiledown=nil, allowcliptextup=nil, allowcliptextdown=nil, allowfileup=nil, maxfileupsize=nil, allowfiledown=nil, maxfiledownsize=nil, useridset=nil, usergroupidset=nil, deviceidset=nil, devicegroupidset=nil, accountset=nil, cmdtemplateidset=nil, actemplateidset=nil, allowdiskfileup=nil, allowdiskfiledown=nil, allowshellfileup=nil, allowshellfiledown=nil, allowfiledel=nil, validatefrom=nil, validateto=nil, departmentid=nil, allowaccesscredential=nil, allowkeyboardlogger=nil)
+        def initialize(name=nil, allowdiskredirect=nil, allowanyaccount=nil, allowclipfileup=nil, allowclipfiledown=nil, allowcliptextup=nil, allowcliptextdown=nil, allowfileup=nil, maxfileupsize=nil, allowfiledown=nil, maxfiledownsize=nil, useridset=nil, usergroupidset=nil, deviceidset=nil, appassetidset=nil, devicegroupidset=nil, accountset=nil, cmdtemplateidset=nil, actemplateidset=nil, allowdiskfileup=nil, allowdiskfiledown=nil, allowshellfileup=nil, allowshellfiledown=nil, allowfiledel=nil, validatefrom=nil, validateto=nil, departmentid=nil, allowaccesscredential=nil, allowkeyboardlogger=nil)
           @Name = name
           @AllowDiskRedirect = allowdiskredirect
           @AllowAnyAccount = allowanyaccount
@@ -691,6 +805,7 @@ module TencentCloud
           @UserIdSet = useridset
           @UserGroupIdSet = usergroupidset
           @DeviceIdSet = deviceidset
+          @AppAssetIdSet = appassetidset
           @DeviceGroupIdSet = devicegroupidset
           @AccountSet = accountset
           @CmdTemplateIdSet = cmdtemplateidset
@@ -722,6 +837,7 @@ module TencentCloud
           @UserIdSet = params['UserIdSet']
           @UserGroupIdSet = params['UserGroupIdSet']
           @DeviceIdSet = params['DeviceIdSet']
+          @AppAssetIdSet = params['AppAssetIdSet']
           @DeviceGroupIdSet = params['DeviceGroupIdSet']
           @AccountSet = params['AccountSet']
           @CmdTemplateIdSet = params['CmdTemplateIdSet']
@@ -1683,6 +1799,8 @@ module TencentCloud
         # @type AuthorizedUserIdSet: Array
         # @param AuthorizedDeviceIdSet: 有访问权限的资产ID集合
         # @type AuthorizedDeviceIdSet: Array
+        # @param AuthorizedAppAssetIdSet: 有访问权限的应用资产ID集合
+        # @type AuthorizedAppAssetIdSet: Array
         # @param Status: 访问权限状态，1 - 已生效，2 - 未生效，3 - 已过期
         # @type Status: Integer
         # @param DepartmentId: 部门ID，用于过滤属于某个部门的访问权限
@@ -1692,9 +1810,9 @@ module TencentCloud
         # @param Filters: 过滤数组
         # @type Filters: Array
 
-        attr_accessor :IdSet, :Name, :Offset, :Limit, :Exact, :AuthorizedUserIdSet, :AuthorizedDeviceIdSet, :Status, :DepartmentId, :ExactAccount, :Filters
+        attr_accessor :IdSet, :Name, :Offset, :Limit, :Exact, :AuthorizedUserIdSet, :AuthorizedDeviceIdSet, :AuthorizedAppAssetIdSet, :Status, :DepartmentId, :ExactAccount, :Filters
 
-        def initialize(idset=nil, name=nil, offset=nil, limit=nil, exact=nil, authorizeduseridset=nil, authorizeddeviceidset=nil, status=nil, departmentid=nil, exactaccount=nil, filters=nil)
+        def initialize(idset=nil, name=nil, offset=nil, limit=nil, exact=nil, authorizeduseridset=nil, authorizeddeviceidset=nil, authorizedappassetidset=nil, status=nil, departmentid=nil, exactaccount=nil, filters=nil)
           @IdSet = idset
           @Name = name
           @Offset = offset
@@ -1702,6 +1820,7 @@ module TencentCloud
           @Exact = exact
           @AuthorizedUserIdSet = authorizeduseridset
           @AuthorizedDeviceIdSet = authorizeddeviceidset
+          @AuthorizedAppAssetIdSet = authorizedappassetidset
           @Status = status
           @DepartmentId = departmentid
           @ExactAccount = exactaccount
@@ -1716,6 +1835,7 @@ module TencentCloud
           @Exact = params['Exact']
           @AuthorizedUserIdSet = params['AuthorizedUserIdSet']
           @AuthorizedDeviceIdSet = params['AuthorizedDeviceIdSet']
+          @AuthorizedAppAssetIdSet = params['AuthorizedAppAssetIdSet']
           @Status = params['Status']
           @DepartmentId = params['DepartmentId']
           @ExactAccount = params['ExactAccount']
@@ -2067,14 +2187,16 @@ module TencentCloud
         # @type Limit: Integer
         # @param Kind: 资产类型，1 - Linux，2 - Windows，3 - MySQL，4 - SQLServer
         # @type Kind: Integer
+        # @param KindSet: 资产类型集合，1 - Linux，2 - Windows，3 - MySQL，4 - SQLServer
+        # @type KindSet: Array
         # @param DepartmentId: 所属部门ID
         # @type DepartmentId: String
         # @param TagFilters: 过滤条件，可按照标签键、标签进行过滤。如果同时指定标签键和标签过滤条件，它们之间为“AND”的关系
         # @type TagFilters: Array
 
-        attr_accessor :Bound, :Id, :IdSet, :Name, :Offset, :Limit, :Kind, :DepartmentId, :TagFilters
+        attr_accessor :Bound, :Id, :IdSet, :Name, :Offset, :Limit, :Kind, :KindSet, :DepartmentId, :TagFilters
 
-        def initialize(bound=nil, id=nil, idset=nil, name=nil, offset=nil, limit=nil, kind=nil, departmentid=nil, tagfilters=nil)
+        def initialize(bound=nil, id=nil, idset=nil, name=nil, offset=nil, limit=nil, kind=nil, kindset=nil, departmentid=nil, tagfilters=nil)
           @Bound = bound
           @Id = id
           @IdSet = idset
@@ -2082,6 +2204,7 @@ module TencentCloud
           @Offset = offset
           @Limit = limit
           @Kind = kind
+          @KindSet = kindset
           @DepartmentId = departmentid
           @TagFilters = tagfilters
         end
@@ -2094,6 +2217,7 @@ module TencentCloud
           @Offset = params['Offset']
           @Limit = params['Limit']
           @Kind = params['Kind']
+          @KindSet = params['KindSet']
           @DepartmentId = params['DepartmentId']
           unless params['TagFilters'].nil?
             @TagFilters = []
@@ -2746,6 +2870,8 @@ module TencentCloud
         # @type Email: String
         # @param AuthorizedDeviceIdSet: 查询具有指定资产ID访问权限的用户
         # @type AuthorizedDeviceIdSet: Array
+        # @param AuthorizedAppAssetIdSet: 查询具有指定应用资产ID访问权限的用户
+        # @type AuthorizedAppAssetIdSet: Array
         # @param AuthTypeSet: 认证方式，0 - 本地, 1 - LDAP, 2 - OAuth, 不传为全部
         # @type AuthTypeSet: Array
         # @param DepartmentId: 部门ID，用于过滤属于某个部门的用户
@@ -2753,9 +2879,9 @@ module TencentCloud
         # @param Filters: 参数过滤数组
         # @type Filters: Array
 
-        attr_accessor :IdSet, :Name, :Offset, :Limit, :UserName, :Phone, :Email, :AuthorizedDeviceIdSet, :AuthTypeSet, :DepartmentId, :Filters
+        attr_accessor :IdSet, :Name, :Offset, :Limit, :UserName, :Phone, :Email, :AuthorizedDeviceIdSet, :AuthorizedAppAssetIdSet, :AuthTypeSet, :DepartmentId, :Filters
 
-        def initialize(idset=nil, name=nil, offset=nil, limit=nil, username=nil, phone=nil, email=nil, authorizeddeviceidset=nil, authtypeset=nil, departmentid=nil, filters=nil)
+        def initialize(idset=nil, name=nil, offset=nil, limit=nil, username=nil, phone=nil, email=nil, authorizeddeviceidset=nil, authorizedappassetidset=nil, authtypeset=nil, departmentid=nil, filters=nil)
           @IdSet = idset
           @Name = name
           @Offset = offset
@@ -2764,6 +2890,7 @@ module TencentCloud
           @Phone = phone
           @Email = email
           @AuthorizedDeviceIdSet = authorizeddeviceidset
+          @AuthorizedAppAssetIdSet = authorizedappassetidset
           @AuthTypeSet = authtypeset
           @DepartmentId = departmentid
           @Filters = filters
@@ -2778,6 +2905,7 @@ module TencentCloud
           @Phone = params['Phone']
           @Email = params['Email']
           @AuthorizedDeviceIdSet = params['AuthorizedDeviceIdSet']
+          @AuthorizedAppAssetIdSet = params['AuthorizedAppAssetIdSet']
           @AuthTypeSet = params['AuthTypeSet']
           @DepartmentId = params['DepartmentId']
           unless params['Filters'].nil?
@@ -3187,6 +3315,8 @@ module TencentCloud
         # @type UserGroupIdSet: Array
         # @param DeviceIdSet: 关联的资产ID
         # @type DeviceIdSet: Array
+        # @param AppAssetIdSet: 关联的应用资产ID集合
+        # @type AppAssetIdSet: Array
         # @param DeviceGroupIdSet: 关联的资产组ID
         # @type DeviceGroupIdSet: Array
         # @param AccountSet: 关联的账号
@@ -3218,9 +3348,9 @@ module TencentCloud
         # @param AllowKeyboardLogger: 是否允许键盘记录
         # @type AllowKeyboardLogger: Boolean
 
-        attr_accessor :Name, :AllowDiskRedirect, :AllowAnyAccount, :Id, :AllowClipFileUp, :AllowClipFileDown, :AllowClipTextUp, :AllowClipTextDown, :AllowFileUp, :MaxFileUpSize, :AllowFileDown, :MaxFileDownSize, :UserIdSet, :UserGroupIdSet, :DeviceIdSet, :DeviceGroupIdSet, :AccountSet, :CmdTemplateIdSet, :ACTemplateIdSet, :AllowDiskFileUp, :AllowDiskFileDown, :AllowShellFileUp, :AllowShellFileDown, :AllowFileDel, :ValidateFrom, :ValidateTo, :DepartmentId, :AllowAccessCredential, :AllowKeyboardLogger
+        attr_accessor :Name, :AllowDiskRedirect, :AllowAnyAccount, :Id, :AllowClipFileUp, :AllowClipFileDown, :AllowClipTextUp, :AllowClipTextDown, :AllowFileUp, :MaxFileUpSize, :AllowFileDown, :MaxFileDownSize, :UserIdSet, :UserGroupIdSet, :DeviceIdSet, :AppAssetIdSet, :DeviceGroupIdSet, :AccountSet, :CmdTemplateIdSet, :ACTemplateIdSet, :AllowDiskFileUp, :AllowDiskFileDown, :AllowShellFileUp, :AllowShellFileDown, :AllowFileDel, :ValidateFrom, :ValidateTo, :DepartmentId, :AllowAccessCredential, :AllowKeyboardLogger
 
-        def initialize(name=nil, allowdiskredirect=nil, allowanyaccount=nil, id=nil, allowclipfileup=nil, allowclipfiledown=nil, allowcliptextup=nil, allowcliptextdown=nil, allowfileup=nil, maxfileupsize=nil, allowfiledown=nil, maxfiledownsize=nil, useridset=nil, usergroupidset=nil, deviceidset=nil, devicegroupidset=nil, accountset=nil, cmdtemplateidset=nil, actemplateidset=nil, allowdiskfileup=nil, allowdiskfiledown=nil, allowshellfileup=nil, allowshellfiledown=nil, allowfiledel=nil, validatefrom=nil, validateto=nil, departmentid=nil, allowaccesscredential=nil, allowkeyboardlogger=nil)
+        def initialize(name=nil, allowdiskredirect=nil, allowanyaccount=nil, id=nil, allowclipfileup=nil, allowclipfiledown=nil, allowcliptextup=nil, allowcliptextdown=nil, allowfileup=nil, maxfileupsize=nil, allowfiledown=nil, maxfiledownsize=nil, useridset=nil, usergroupidset=nil, deviceidset=nil, appassetidset=nil, devicegroupidset=nil, accountset=nil, cmdtemplateidset=nil, actemplateidset=nil, allowdiskfileup=nil, allowdiskfiledown=nil, allowshellfileup=nil, allowshellfiledown=nil, allowfiledel=nil, validatefrom=nil, validateto=nil, departmentid=nil, allowaccesscredential=nil, allowkeyboardlogger=nil)
           @Name = name
           @AllowDiskRedirect = allowdiskredirect
           @AllowAnyAccount = allowanyaccount
@@ -3236,6 +3366,7 @@ module TencentCloud
           @UserIdSet = useridset
           @UserGroupIdSet = usergroupidset
           @DeviceIdSet = deviceidset
+          @AppAssetIdSet = appassetidset
           @DeviceGroupIdSet = devicegroupidset
           @AccountSet = accountset
           @CmdTemplateIdSet = cmdtemplateidset
@@ -3268,6 +3399,7 @@ module TencentCloud
           @UserIdSet = params['UserIdSet']
           @UserGroupIdSet = params['UserGroupIdSet']
           @DeviceIdSet = params['DeviceIdSet']
+          @AppAssetIdSet = params['AppAssetIdSet']
           @DeviceGroupIdSet = params['DeviceGroupIdSet']
           @AccountSet = params['AccountSet']
           @CmdTemplateIdSet = params['CmdTemplateIdSet']
@@ -4931,10 +5063,14 @@ module TencentCloud
         # @type Status: Integer
         # @param Id: 若入参为Id，则其他入参字段不作为搜索依据，仅按照Id来搜索会话
         # @type Id: String
+        # @param AppAssetKindSet: 应用资产类型, 1-web
+        # @type AppAssetKindSet: Array
+        # @param AppAssetUrl: 应用资产Url
+        # @type AppAssetUrl: String
 
-        attr_accessor :PrivateIp, :PublicIp, :UserName, :Account, :FromIp, :StartTime, :EndTime, :Kind, :Offset, :Limit, :RealName, :DeviceName, :Status, :Id
+        attr_accessor :PrivateIp, :PublicIp, :UserName, :Account, :FromIp, :StartTime, :EndTime, :Kind, :Offset, :Limit, :RealName, :DeviceName, :Status, :Id, :AppAssetKindSet, :AppAssetUrl
 
-        def initialize(privateip=nil, publicip=nil, username=nil, account=nil, fromip=nil, starttime=nil, endtime=nil, kind=nil, offset=nil, limit=nil, realname=nil, devicename=nil, status=nil, id=nil)
+        def initialize(privateip=nil, publicip=nil, username=nil, account=nil, fromip=nil, starttime=nil, endtime=nil, kind=nil, offset=nil, limit=nil, realname=nil, devicename=nil, status=nil, id=nil, appassetkindset=nil, appasseturl=nil)
           @PrivateIp = privateip
           @PublicIp = publicip
           @UserName = username
@@ -4949,6 +5085,8 @@ module TencentCloud
           @DeviceName = devicename
           @Status = status
           @Id = id
+          @AppAssetKindSet = appassetkindset
+          @AppAssetUrl = appasseturl
         end
 
         def deserialize(params)
@@ -4966,6 +5104,8 @@ module TencentCloud
           @DeviceName = params['DeviceName']
           @Status = params['Status']
           @Id = params['Id']
+          @AppAssetKindSet = params['AppAssetKindSet']
+          @AppAssetUrl = params['AppAssetUrl']
         end
       end
 
@@ -4973,19 +5113,122 @@ module TencentCloud
       class SearchSessionResponse < TencentCloud::Common::AbstractModel
         # @param TotalCount: 记录数
         # @type TotalCount: Integer
+        # @param SessionSet: 会话信息列表
+        # @type SessionSet: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TotalCount, :RequestId
+        attr_accessor :TotalCount, :SessionSet, :RequestId
 
-        def initialize(totalcount=nil, requestid=nil)
+        def initialize(totalcount=nil, sessionset=nil, requestid=nil)
           @TotalCount = totalcount
+          @SessionSet = sessionset
           @RequestId = requestid
         end
 
         def deserialize(params)
           @TotalCount = params['TotalCount']
+          unless params['SessionSet'].nil?
+            @SessionSet = []
+            params['SessionSet'].each do |i|
+              sessionresult_tmp = SessionResult.new
+              sessionresult_tmp.deserialize(i)
+              @SessionSet << sessionresult_tmp
+            end
+          end
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 搜索字符或图形会话时返回的SessionResul结构体
+      class SessionResult < TencentCloud::Common::AbstractModel
+        # @param UserName: 用户名
+        # @type UserName: String
+        # @param RealName: 姓名
+        # @type RealName: String
+        # @param Account: 主机账号
+        # @type Account: String
+        # @param StartTime: 开始时间
+        # @type StartTime: String
+        # @param EndTime: 结束时间
+        # @type EndTime: String
+        # @param Size: 会话大小
+        # @type Size: Integer
+        # @param InstanceId: 设备ID
+        # @type InstanceId: String
+        # @param DeviceName: 设备名
+        # @type DeviceName: String
+        # @param PrivateIp: 内部Ip
+        # @type PrivateIp: String
+        # @param PublicIp: 外部Ip
+        # @type PublicIp: String
+        # @param FromIp: 来源Ip
+        # @type FromIp: String
+        # @param Duration: 会话持续时长
+        # @type Duration: Float
+        # @param Count: 该会话内命令数量 ，搜索图形会话时该字段无意义
+        # @type Count: Integer
+        # @param DangerCount: 该会话内高危命令数，搜索图形时该字段无意义
+        # @type DangerCount: Integer
+        # @param Status: 会话状态，如1会话活跃  2会话结束  3强制离线  4其他错误
+        # @type Status: Integer
+        # @param Id: 会话Id
+        # @type Id: String
+        # @param ApCode: 设备所属的地域
+        # @type ApCode: String
+        # @param Protocol: 会话协议
+        # @type Protocol: String
+        # @param AppAssetKind: 应用资产类型：1-web
+        # @type AppAssetKind: Integer
+        # @param AppAssetUrl: 应用资产url
+        # @type AppAssetUrl: String
+
+        attr_accessor :UserName, :RealName, :Account, :StartTime, :EndTime, :Size, :InstanceId, :DeviceName, :PrivateIp, :PublicIp, :FromIp, :Duration, :Count, :DangerCount, :Status, :Id, :ApCode, :Protocol, :AppAssetKind, :AppAssetUrl
+
+        def initialize(username=nil, realname=nil, account=nil, starttime=nil, endtime=nil, size=nil, instanceid=nil, devicename=nil, privateip=nil, publicip=nil, fromip=nil, duration=nil, count=nil, dangercount=nil, status=nil, id=nil, apcode=nil, protocol=nil, appassetkind=nil, appasseturl=nil)
+          @UserName = username
+          @RealName = realname
+          @Account = account
+          @StartTime = starttime
+          @EndTime = endtime
+          @Size = size
+          @InstanceId = instanceid
+          @DeviceName = devicename
+          @PrivateIp = privateip
+          @PublicIp = publicip
+          @FromIp = fromip
+          @Duration = duration
+          @Count = count
+          @DangerCount = dangercount
+          @Status = status
+          @Id = id
+          @ApCode = apcode
+          @Protocol = protocol
+          @AppAssetKind = appassetkind
+          @AppAssetUrl = appasseturl
+        end
+
+        def deserialize(params)
+          @UserName = params['UserName']
+          @RealName = params['RealName']
+          @Account = params['Account']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Size = params['Size']
+          @InstanceId = params['InstanceId']
+          @DeviceName = params['DeviceName']
+          @PrivateIp = params['PrivateIp']
+          @PublicIp = params['PublicIp']
+          @FromIp = params['FromIp']
+          @Duration = params['Duration']
+          @Count = params['Count']
+          @DangerCount = params['DangerCount']
+          @Status = params['Status']
+          @Id = params['Id']
+          @ApCode = params['ApCode']
+          @Protocol = params['Protocol']
+          @AppAssetKind = params['AppAssetKind']
+          @AppAssetUrl = params['AppAssetUrl']
         end
       end
 

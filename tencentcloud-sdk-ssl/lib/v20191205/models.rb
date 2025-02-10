@@ -555,6 +555,238 @@ module TencentCloud
         end
       end
 
+      # CertificateInfoSubmit请求参数结构体
+      class CertificateInfoSubmitRequest < TencentCloud::Common::AbstractModel
+        # @param CertId: 证书 ID。
+        # @type CertId: String
+        # @param GenCsrType: CSR 生成方式：online = 在线生成, upload = 手动上传。
+        # @type GenCsrType: String
+        # @param CertCommonName: 绑定证书的主域名。
+        # @type CertCommonName: String
+        # @param CompanyType: 组织信息类型：1，个人； 2， 公司；
+        # @type CompanyType: Integer
+        # @param OrgIdType: 公司证件类型（）
+        # @type OrgIdType: String
+        # @param OrgIdNumber: 公司证件号码
+        # @type OrgIdNumber: String
+        # @param AdminIdType: 管理人证件类型
+        # @type AdminIdType: String
+        # @param AdminIdNumber: 管理人证件号码
+        # @type AdminIdNumber: String
+        # @param TechIdType: 联系人证件类型
+        # @type TechIdType: String
+        # @param TechIdNumber: 联系人证件号码
+        # @type TechIdNumber: String
+        # @param CompanyId: 公司ID
+        # @type CompanyId: String
+        # @param Csr: 上传的 CSR 内容。如果GenCsrType为upload则该字段必传
+        # @type Csr: String
+        # @param DnsNames: 域名数组（多域名证书可以上传）。
+        # @type DnsNames: Array
+        # @param KeyPass: 私钥密码（非必填）。
+        # @type KeyPass: String
+        # @param OrgOrganization: 公司名称。
+        # @type OrgOrganization: String
+        # @param OrgDivision: 部门名称。
+        # @type OrgDivision: String
+        # @param OrgAddress: 公司详细地址。
+        # @type OrgAddress: String
+        # @param OrgCountry: 国家名称，如中国：CN 。
+        # @type OrgCountry: String
+        # @param OrgCity: 公司所在城市。
+        # @type OrgCity: String
+        # @param OrgRegion: 公司所在省份。
+        # @type OrgRegion: String
+        # @param OrgPhoneArea: 公司座机区号。
+        # @type OrgPhoneArea: String
+        # @param OrgPhoneNumber: 公司座机号码。
+        # @type OrgPhoneNumber: String
+        # @param VerifyType: 证书验证方式。验证类型：DNS_AUTO = 自动DNS验证（仅支持在腾讯云解析且解析状态正常的域名使用该验证类型），DNS = 手动DNS验证，FILE = 文件验证。
+        # @type VerifyType: String
+        # @param AdminFirstName: 管理人名。
+        # @type AdminFirstName: String
+        # @param AdminLastName: 管理人姓。
+        # @type AdminLastName: String
+        # @param AdminPhone: 管理人手机号码。
+        # @type AdminPhone: String
+        # @param AdminEmail: 管理人邮箱地址。
+        # @type AdminEmail: String
+        # @param AdminTitle: 管理人职位。
+        # @type AdminTitle: String
+        # @param TechFirstName: 联系人名。
+        # @type TechFirstName: String
+        # @param TechLastName: 联系人姓。
+        # @type TechLastName: String
+        # @param ContactEmail: 联系人邮箱地址。
+        # @type ContactEmail: String
+        # @param AutoRenewFlag: 是否开启自动续费： 0， 不开启；  1， 开启； 默认为0
+        # @type AutoRenewFlag: Integer
+        # @param CsrKeyParameter: 证书加密参数
+        # @type CsrKeyParameter: String
+        # @param CsrEncryptAlgo: 证书加密方式
+        # @type CsrEncryptAlgo: String
+        # @param ManagerId: 管理人ID
+        # @type ManagerId: String
+        # @param TechPhone: 联系人电话
+        # @type TechPhone: String
+        # @param TechEmail: 联系人邮箱
+        # @type TechEmail: String
+        # @param TechTitle: 联系人职位
+        # @type TechTitle: String
+
+        attr_accessor :CertId, :GenCsrType, :CertCommonName, :CompanyType, :OrgIdType, :OrgIdNumber, :AdminIdType, :AdminIdNumber, :TechIdType, :TechIdNumber, :CompanyId, :Csr, :DnsNames, :KeyPass, :OrgOrganization, :OrgDivision, :OrgAddress, :OrgCountry, :OrgCity, :OrgRegion, :OrgPhoneArea, :OrgPhoneNumber, :VerifyType, :AdminFirstName, :AdminLastName, :AdminPhone, :AdminEmail, :AdminTitle, :TechFirstName, :TechLastName, :ContactEmail, :AutoRenewFlag, :CsrKeyParameter, :CsrEncryptAlgo, :ManagerId, :TechPhone, :TechEmail, :TechTitle
+
+        def initialize(certid=nil, gencsrtype=nil, certcommonname=nil, companytype=nil, orgidtype=nil, orgidnumber=nil, adminidtype=nil, adminidnumber=nil, techidtype=nil, techidnumber=nil, companyid=nil, csr=nil, dnsnames=nil, keypass=nil, orgorganization=nil, orgdivision=nil, orgaddress=nil, orgcountry=nil, orgcity=nil, orgregion=nil, orgphonearea=nil, orgphonenumber=nil, verifytype=nil, adminfirstname=nil, adminlastname=nil, adminphone=nil, adminemail=nil, admintitle=nil, techfirstname=nil, techlastname=nil, contactemail=nil, autorenewflag=nil, csrkeyparameter=nil, csrencryptalgo=nil, managerid=nil, techphone=nil, techemail=nil, techtitle=nil)
+          @CertId = certid
+          @GenCsrType = gencsrtype
+          @CertCommonName = certcommonname
+          @CompanyType = companytype
+          @OrgIdType = orgidtype
+          @OrgIdNumber = orgidnumber
+          @AdminIdType = adminidtype
+          @AdminIdNumber = adminidnumber
+          @TechIdType = techidtype
+          @TechIdNumber = techidnumber
+          @CompanyId = companyid
+          @Csr = csr
+          @DnsNames = dnsnames
+          @KeyPass = keypass
+          @OrgOrganization = orgorganization
+          @OrgDivision = orgdivision
+          @OrgAddress = orgaddress
+          @OrgCountry = orgcountry
+          @OrgCity = orgcity
+          @OrgRegion = orgregion
+          @OrgPhoneArea = orgphonearea
+          @OrgPhoneNumber = orgphonenumber
+          @VerifyType = verifytype
+          @AdminFirstName = adminfirstname
+          @AdminLastName = adminlastname
+          @AdminPhone = adminphone
+          @AdminEmail = adminemail
+          @AdminTitle = admintitle
+          @TechFirstName = techfirstname
+          @TechLastName = techlastname
+          @ContactEmail = contactemail
+          @AutoRenewFlag = autorenewflag
+          @CsrKeyParameter = csrkeyparameter
+          @CsrEncryptAlgo = csrencryptalgo
+          @ManagerId = managerid
+          @TechPhone = techphone
+          @TechEmail = techemail
+          @TechTitle = techtitle
+        end
+
+        def deserialize(params)
+          @CertId = params['CertId']
+          @GenCsrType = params['GenCsrType']
+          @CertCommonName = params['CertCommonName']
+          @CompanyType = params['CompanyType']
+          @OrgIdType = params['OrgIdType']
+          @OrgIdNumber = params['OrgIdNumber']
+          @AdminIdType = params['AdminIdType']
+          @AdminIdNumber = params['AdminIdNumber']
+          @TechIdType = params['TechIdType']
+          @TechIdNumber = params['TechIdNumber']
+          @CompanyId = params['CompanyId']
+          @Csr = params['Csr']
+          @DnsNames = params['DnsNames']
+          @KeyPass = params['KeyPass']
+          @OrgOrganization = params['OrgOrganization']
+          @OrgDivision = params['OrgDivision']
+          @OrgAddress = params['OrgAddress']
+          @OrgCountry = params['OrgCountry']
+          @OrgCity = params['OrgCity']
+          @OrgRegion = params['OrgRegion']
+          @OrgPhoneArea = params['OrgPhoneArea']
+          @OrgPhoneNumber = params['OrgPhoneNumber']
+          @VerifyType = params['VerifyType']
+          @AdminFirstName = params['AdminFirstName']
+          @AdminLastName = params['AdminLastName']
+          @AdminPhone = params['AdminPhone']
+          @AdminEmail = params['AdminEmail']
+          @AdminTitle = params['AdminTitle']
+          @TechFirstName = params['TechFirstName']
+          @TechLastName = params['TechLastName']
+          @ContactEmail = params['ContactEmail']
+          @AutoRenewFlag = params['AutoRenewFlag']
+          @CsrKeyParameter = params['CsrKeyParameter']
+          @CsrEncryptAlgo = params['CsrEncryptAlgo']
+          @ManagerId = params['ManagerId']
+          @TechPhone = params['TechPhone']
+          @TechEmail = params['TechEmail']
+          @TechTitle = params['TechTitle']
+        end
+      end
+
+      # CertificateInfoSubmit返回参数结构体
+      class CertificateInfoSubmitResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CertificateOrderSubmit请求参数结构体
+      class CertificateOrderSubmitRequest < TencentCloud::Common::AbstractModel
+        # @param CertId: 证书 ID。
+        # @type CertId: String
+        # @param DeleteDnsAutoRecord: 是否删除自动DNS验证值：0，不删除； 1，删除； 默认不删除
+        # @type DeleteDnsAutoRecord: Integer
+        # @param VerifyType: 域名验证方式：DNS_AUTO 自动DNS验证， DNS DNS验证， FILE 文件验证
+        # @type VerifyType: String
+
+        attr_accessor :CertId, :DeleteDnsAutoRecord, :VerifyType
+
+        def initialize(certid=nil, deletednsautorecord=nil, verifytype=nil)
+          @CertId = certid
+          @DeleteDnsAutoRecord = deletednsautorecord
+          @VerifyType = verifytype
+        end
+
+        def deserialize(params)
+          @CertId = params['CertId']
+          @DeleteDnsAutoRecord = params['DeleteDnsAutoRecord']
+          @VerifyType = params['VerifyType']
+        end
+      end
+
+      # CertificateOrderSubmit返回参数结构体
+      class CertificateOrderSubmitResponse < TencentCloud::Common::AbstractModel
+        # @param OrderId: CA机构侧订单号。
+        # @type OrderId: String
+        # @param Status: 证书状态：0 = 审核中，1 = 已通过，2 = 审核失败，3 = 已过期，4 = 已添加DNS记录，5 = 企业证书，待提交，6 = 订单取消中，7 = 已取消，8 = 已提交资料， 待上传确认函，9 = 证书吊销中，10 = 已吊销，11 = 重颁发中，12 = 待上传吊销确认函，13 = 免费证书待提交资料。
+        # @type Status: Integer
+        # @param IsAudited: 是否预审核
+        # @type IsAudited: Boolean
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :OrderId, :Status, :IsAudited, :RequestId
+
+        def initialize(orderid=nil, status=nil, isaudited=nil, requestid=nil)
+          @OrderId = orderid
+          @Status = status
+          @IsAudited = isaudited
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @OrderId = params['OrderId']
+          @Status = params['Status']
+          @IsAudited = params['IsAudited']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 获取证书列表（DescribeCertificates）返回参数键为 Certificates 的内容。
       class Certificates < TencentCloud::Common::AbstractModel
         # @param OwnerUin: 用户 UIN。
@@ -3952,8 +4184,8 @@ module TencentCloud
 
         attr_accessor :CertificateId, :IsCache, :Filters, :ResourceType, :OldCertificateId
         extend Gem::Deprecate
-        deprecate :ResourceType, :none, 2025, 1
-        deprecate :ResourceType=, :none, 2025, 1
+        deprecate :ResourceType, :none, 2025, 2
+        deprecate :ResourceType=, :none, 2025, 2
 
         def initialize(certificateid=nil, iscache=nil, filters=nil, resourcetype=nil, oldcertificateid=nil)
           @CertificateId = certificateid
@@ -4333,8 +4565,8 @@ module TencentCloud
 
         attr_accessor :CertificateId, :IsCache, :Filters, :ResourceType, :OldCertificateId
         extend Gem::Deprecate
-        deprecate :ResourceType, :none, 2025, 1
-        deprecate :ResourceType=, :none, 2025, 1
+        deprecate :ResourceType, :none, 2025, 2
+        deprecate :ResourceType=, :none, 2025, 2
 
         def initialize(certificateid=nil, iscache=nil, filters=nil, resourcetype=nil, oldcertificateid=nil)
           @CertificateId = certificateid
@@ -4408,8 +4640,8 @@ module TencentCloud
 
         attr_accessor :CertificateId, :IsCache, :Filters, :ResourceType, :OldCertificateId
         extend Gem::Deprecate
-        deprecate :ResourceType, :none, 2025, 1
-        deprecate :ResourceType=, :none, 2025, 1
+        deprecate :ResourceType, :none, 2025, 2
+        deprecate :ResourceType=, :none, 2025, 2
 
         def initialize(certificateid=nil, iscache=nil, filters=nil, resourcetype=nil, oldcertificateid=nil)
           @CertificateId = certificateid
@@ -4474,10 +4706,10 @@ module TencentCloud
 
         attr_accessor :ManagerId, :Limit, :Offset
         extend Gem::Deprecate
-        deprecate :Limit, :none, 2025, 1
-        deprecate :Limit=, :none, 2025, 1
-        deprecate :Offset, :none, 2025, 1
-        deprecate :Offset=, :none, 2025, 1
+        deprecate :Limit, :none, 2025, 2
+        deprecate :Limit=, :none, 2025, 2
+        deprecate :Offset, :none, 2025, 2
+        deprecate :Offset=, :none, 2025, 2
 
         def initialize(managerid=nil, limit=nil, offset=nil)
           @ManagerId = managerid
@@ -6815,8 +7047,8 @@ module TencentCloud
 
         attr_accessor :OldCertificateId, :ResourceTypes, :CertificateId, :Regions, :ResourceTypesRegions, :CertificatePublicKey, :CertificatePrivateKey, :ExpiringNotificationSwitch, :Repeatable, :AllowDownload, :Tags, :ProjectId
         extend Gem::Deprecate
-        deprecate :Regions, :none, 2025, 1
-        deprecate :Regions=, :none, 2025, 1
+        deprecate :Regions, :none, 2025, 2
+        deprecate :Regions=, :none, 2025, 2
 
         def initialize(oldcertificateid=nil, resourcetypes=nil, certificateid=nil, regions=nil, resourcetypesregions=nil, certificatepublickey=nil, certificateprivatekey=nil, expiringnotificationswitch=nil, repeatable=nil, allowdownload=nil, tags=nil, projectid=nil)
           @OldCertificateId = oldcertificateid

@@ -101,6 +101,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 付费提交证书资料
+
+        # @param request: Request instance for CertificateInfoSubmit.
+        # @type request: :class:`Tencentcloud::ssl::V20191205::CertificateInfoSubmitRequest`
+        # @rtype: :class:`Tencentcloud::ssl::V20191205::CertificateInfoSubmitResponse`
+        def CertificateInfoSubmit(request)
+          body = send_request('CertificateInfoSubmit', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CertificateInfoSubmitResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 提交付费证书订单
+
+        # @param request: Request instance for CertificateOrderSubmit.
+        # @type request: :class:`Tencentcloud::ssl::V20191205::CertificateOrderSubmitRequest`
+        # @rtype: :class:`Tencentcloud::ssl::V20191205::CertificateOrderSubmitResponse`
+        def CertificateOrderSubmit(request)
+          body = send_request('CertificateOrderSubmit', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CertificateOrderSubmitResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（CheckCertificateChain）用于检查证书链是否完整。
 
         # @param request: Request instance for CheckCertificateChain.
