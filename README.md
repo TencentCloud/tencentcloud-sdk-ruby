@@ -136,16 +136,16 @@ end
 
 ## TKE OIDC凭证
 
-    有关 TKE OIDC 凭证的相关示例请参阅：[Pod 使用 CAM 对数据库身份验证](https://cloud.tencent.com/document/product/457/81989)
+有关 TKE OIDC 凭证的相关示例请参阅：[Pod 使用 CAM 对数据库身份验证](https://cloud.tencent.com/document/product/457/81989)
 
-    示例代码
-    ```ruby
-    require 'tencentcloud-sdk-common'
-    require 'tencentcloud-sdk-cvm'
+示例代码
+```ruby
+require 'tencentcloud-sdk-common'
+require 'tencentcloud-sdk-cvm'
 
-    include TencentCloud::Common
-    include TencentCloud::Cvm::V20170312
-    
-    cred = OIDCCredential.new
-    cli = Client.new(cred, 'ap-guangzhou')
-    ```
+include TencentCloud::Common
+include TencentCloud::Cvm::V20170312
+
+cred = OIDCCredential.new
+cli = Client.new(cred, 'ap-guangzhou')
+```
