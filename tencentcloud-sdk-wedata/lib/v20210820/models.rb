@@ -2272,8 +2272,8 @@ module TencentCloud
 
         attr_accessor :ProjectId, :AlarmRegularName, :TaskId, :Id, :TaskType, :MonitorType
         extend Gem::Deprecate
-        deprecate :TaskId, :none, 2025, 1
-        deprecate :TaskId=, :none, 2025, 1
+        deprecate :TaskId, :none, 2025, 2
+        deprecate :TaskId=, :none, 2025, 2
 
         def initialize(projectid=nil, alarmregularname=nil, taskid=nil, id=nil, tasktype=nil, monitortype=nil)
           @ProjectId = projectid
@@ -8750,12 +8750,12 @@ module TencentCloud
 
         attr_accessor :ProjectId, :Category, :PageNumber, :PageSize, :EventName, :EventType, :EventSubType, :EventBroadcastType, :Status, :CreationTimeStart, :CreationTimeEnd, :EventTriggeredTimeStart, :EventTriggeredTimeEnd, :LogTimeStart, :LogTimeEnd, :Dimension, :TimeToLive, :SortItem, :SortType
         extend Gem::Deprecate
-        deprecate :EventType, :none, 2025, 1
-        deprecate :EventType=, :none, 2025, 1
-        deprecate :EventBroadcastType, :none, 2025, 1
-        deprecate :EventBroadcastType=, :none, 2025, 1
-        deprecate :Status, :none, 2025, 1
-        deprecate :Status=, :none, 2025, 1
+        deprecate :EventType, :none, 2025, 2
+        deprecate :EventType=, :none, 2025, 2
+        deprecate :EventBroadcastType, :none, 2025, 2
+        deprecate :EventBroadcastType=, :none, 2025, 2
+        deprecate :Status, :none, 2025, 2
+        deprecate :Status=, :none, 2025, 2
 
         def initialize(projectid=nil, category=nil, pagenumber=nil, pagesize=nil, eventname=nil, eventtype=nil, eventsubtype=nil, eventbroadcasttype=nil, status=nil, creationtimestart=nil, creationtimeend=nil, eventtriggeredtimestart=nil, eventtriggeredtimeend=nil, logtimestart=nil, logtimeend=nil, dimension=nil, timetolive=nil, sortitem=nil, sorttype=nil)
           @ProjectId = projectid
@@ -9257,6 +9257,77 @@ module TencentCloud
               taskbycycle_tmp = TaskByCycle.new
               taskbycycle_tmp.deserialize(i)
               @Data << taskbycycle_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeInstanceDetailInfo请求参数结构体
+      class DescribeInstanceDetailInfoRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务ID
+        # @type TaskId: String
+        # @param CurRunDate: 实例数据时间
+        # @type CurRunDate: String
+        # @param ProjectId: 项目id
+        # @type ProjectId: String
+        # @param LifeRound: 实例的第几次执行
+        # @type LifeRound: Integer
+        # @param LifeRoundStartIndex: 生命周期查询起始index
+        # @type LifeRoundStartIndex: Integer
+        # @param LifeRoundSize: 生命周期查询批次数量
+        # @type LifeRoundSize: Integer
+        # @param TotalLifeRound: 生命周期总数，可省略
+        # @type TotalLifeRound: String
+        # @param Dynamic: 动态加载日志标识
+        # @type Dynamic: Boolean
+
+        attr_accessor :TaskId, :CurRunDate, :ProjectId, :LifeRound, :LifeRoundStartIndex, :LifeRoundSize, :TotalLifeRound, :Dynamic
+
+        def initialize(taskid=nil, currundate=nil, projectid=nil, liferound=nil, liferoundstartindex=nil, liferoundsize=nil, totalliferound=nil, dynamic=nil)
+          @TaskId = taskid
+          @CurRunDate = currundate
+          @ProjectId = projectid
+          @LifeRound = liferound
+          @LifeRoundStartIndex = liferoundstartindex
+          @LifeRoundSize = liferoundsize
+          @TotalLifeRound = totalliferound
+          @Dynamic = dynamic
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @CurRunDate = params['CurRunDate']
+          @ProjectId = params['ProjectId']
+          @LifeRound = params['LifeRound']
+          @LifeRoundStartIndex = params['LifeRoundStartIndex']
+          @LifeRoundSize = params['LifeRoundSize']
+          @TotalLifeRound = params['TotalLifeRound']
+          @Dynamic = params['Dynamic']
+        end
+      end
+
+      # DescribeInstanceDetailInfo返回参数结构体
+      class DescribeInstanceDetailInfoResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 生命周期结果
+        # @type Data: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              instancelifecycleopsdto_tmp = InstanceLifeCycleOpsDto.new
+              instancelifecycleopsdto_tmp.deserialize(i)
+              @Data << instancelifecycleopsdto_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -14989,8 +15060,8 @@ module TencentCloud
 
         attr_accessor :DimType, :Count, :QualityDim
         extend Gem::Deprecate
-        deprecate :DimType, :none, 2025, 1
-        deprecate :DimType=, :none, 2025, 1
+        deprecate :DimType, :none, 2025, 2
+        deprecate :DimType=, :none, 2025, 2
 
         def initialize(dimtype=nil, count=nil, qualitydim=nil)
           @DimType = dimtype
@@ -20684,8 +20755,8 @@ module TencentCloud
 
         attr_accessor :ProjectId, :TaskId, :DelayTime, :StartupTime, :SelfDepend, :StartTime, :EndTime, :TaskAction, :CycleType, :CycleStep, :CrontabExpression, :ExecutionStartTime, :ExecutionEndTime, :TaskName, :RetryWait, :TryLimit, :Retriable, :RunPriority, :TaskExt, :ResourceGroup, :YarnQueue, :BrokerIp, :InCharge, :Notes, :TaskParamInfos, :SourceServer, :TargetServer, :DependencyWorkflow, :DependencyConfigDTOs, :ExecutionTTL, :ScriptChange, :InChargeIds
         extend Gem::Deprecate
-        deprecate :InCharge, :none, 2025, 1
-        deprecate :InCharge=, :none, 2025, 1
+        deprecate :InCharge, :none, 2025, 2
+        deprecate :InCharge=, :none, 2025, 2
 
         def initialize(projectid=nil, taskid=nil, delaytime=nil, startuptime=nil, selfdepend=nil, starttime=nil, endtime=nil, taskaction=nil, cycletype=nil, cyclestep=nil, crontabexpression=nil, executionstarttime=nil, executionendtime=nil, taskname=nil, retrywait=nil, trylimit=nil, retriable=nil, runpriority=nil, taskext=nil, resourcegroup=nil, yarnqueue=nil, brokerip=nil, incharge=nil, notes=nil, taskparaminfos=nil, sourceserver=nil, targetserver=nil, dependencyworkflow=nil, dependencyconfigdtos=nil, executionttl=nil, scriptchange=nil, inchargeids=nil)
           @ProjectId = projectid

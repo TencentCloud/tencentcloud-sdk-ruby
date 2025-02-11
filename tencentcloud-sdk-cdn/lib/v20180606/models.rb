@@ -1584,7 +1584,7 @@ module TencentCloud
         # @param AccessKey: 访问ID。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AccessKey: String
-        # @param SecretKey: 密钥。
+        # @param SecretKey: 密钥，字段为脱敏返回。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SecretKey: String
         # @param Region: 地域
@@ -8151,7 +8151,7 @@ module TencentCloud
         # @param AccessKey: 访问 ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AccessKey: String
-        # @param SecretKey: 密钥
+        # @param SecretKey: 密钥，字段为脱敏返回。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SecretKey: String
         # @param Bucket: bucketname
@@ -10264,7 +10264,7 @@ module TencentCloud
         # @param AccessKey: 访问ID。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AccessKey: String
-        # @param SecretKey: 密钥。
+        # @param SecretKey: 密钥，字段为脱敏返回。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SecretKey: String
         # @param Region: 地域
@@ -10302,7 +10302,7 @@ module TencentCloud
         # @param AccessKey: 访问ID。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AccessKey: String
-        # @param SecretKey: 密钥。
+        # @param SecretKey: 密钥，字段位脱敏返回。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SecretKey: String
         # @param Region: 地域。
@@ -11031,7 +11031,7 @@ module TencentCloud
         # @param AccessKey: 访问 ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AccessKey: String
-        # @param SecretKey: 密钥
+        # @param SecretKey: 密钥，字段为脱敏返回。
         # @type SecretKey: String
 
         attr_accessor :Switch, :AccessKey, :SecretKey

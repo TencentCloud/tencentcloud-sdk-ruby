@@ -253,16 +253,28 @@ module TencentCloud
 
       # CreateAttributeLabel请求参数结构体
       class CreateAttributeLabelRequest < TencentCloud::Common::AbstractModel
+        # @param KnowledgeBaseId: 知识库ID
+        # @type KnowledgeBaseId: String
+        # @param AttributeKey: 属性标识，最大40个英文字符，如style
+        # @type AttributeKey: String
+        # @param AttributeName: 属性名称，最大80个英文字符，如风格
+        # @type AttributeName: String
         # @param Labels: 属性标签信息
         # @type Labels: Array
 
-        attr_accessor :Labels
+        attr_accessor :KnowledgeBaseId, :AttributeKey, :AttributeName, :Labels
 
-        def initialize(labels=nil)
+        def initialize(knowledgebaseid=nil, attributekey=nil, attributename=nil, labels=nil)
+          @KnowledgeBaseId = knowledgebaseid
+          @AttributeKey = attributekey
+          @AttributeName = attributename
           @Labels = labels
         end
 
         def deserialize(params)
+          @KnowledgeBaseId = params['KnowledgeBaseId']
+          @AttributeKey = params['AttributeKey']
+          @AttributeName = params['AttributeName']
           unless params['Labels'].nil?
             @Labels = []
             params['Labels'].each do |i|
@@ -323,16 +335,28 @@ module TencentCloud
 
       # CreateQA请求参数结构体
       class CreateQARequest < TencentCloud::Common::AbstractModel
+        # @param KnowledgeBaseId: 知识库ID
+        # @type KnowledgeBaseId: String
+        # @param Question: 问题，最大1000个英文字符
+        # @type Question: String
+        # @param Answer: 答案，最大4000个英文字符
+        # @type Answer: String
         # @param AttributeLabels: 属性标签
         # @type AttributeLabels: Array
 
-        attr_accessor :AttributeLabels
+        attr_accessor :KnowledgeBaseId, :Question, :Answer, :AttributeLabels
 
-        def initialize(attributelabels=nil)
+        def initialize(knowledgebaseid=nil, question=nil, answer=nil, attributelabels=nil)
+          @KnowledgeBaseId = knowledgebaseid
+          @Question = question
+          @Answer = answer
           @AttributeLabels = attributelabels
         end
 
         def deserialize(params)
+          @KnowledgeBaseId = params['KnowledgeBaseId']
+          @Question = params['Question']
+          @Answer = params['Answer']
           unless params['AttributeLabels'].nil?
             @AttributeLabels = []
             params['AttributeLabels'].each do |i|
@@ -346,16 +370,20 @@ module TencentCloud
 
       # CreateQA返回参数结构体
       class CreateQAResponse < TencentCloud::Common::AbstractModel
+        # @param QaId: 问答对ID
+        # @type QaId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :QaId, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(qaid=nil, requestid=nil)
+          @QaId = qaid
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @QaId = params['QaId']
           @RequestId = params['RequestId']
         end
       end
@@ -594,12 +622,21 @@ module TencentCloud
 
       # DeleteAttributeLabels请求参数结构体
       class DeleteAttributeLabelsRequest < TencentCloud::Common::AbstractModel
+        # @param KnowledgeBaseId: 知识库ID
+        # @type KnowledgeBaseId: String
+        # @param AttributeIds: 属性ID
+        # @type AttributeIds: Array
 
+        attr_accessor :KnowledgeBaseId, :AttributeIds
 
-        def initialize()
+        def initialize(knowledgebaseid=nil, attributeids=nil)
+          @KnowledgeBaseId = knowledgebaseid
+          @AttributeIds = attributeids
         end
 
         def deserialize(params)
+          @KnowledgeBaseId = params['KnowledgeBaseId']
+          @AttributeIds = params['AttributeIds']
         end
       end
 
@@ -621,12 +658,21 @@ module TencentCloud
 
       # DeleteDocs请求参数结构体
       class DeleteDocsRequest < TencentCloud::Common::AbstractModel
+        # @param KnowledgeBaseId: 知识库ID
+        # @type KnowledgeBaseId: String
+        # @param DocIds: 文档ID列表。支持批量删除，数量不超过100
+        # @type DocIds: Array
 
+        attr_accessor :KnowledgeBaseId, :DocIds
 
-        def initialize()
+        def initialize(knowledgebaseid=nil, docids=nil)
+          @KnowledgeBaseId = knowledgebaseid
+          @DocIds = docids
         end
 
         def deserialize(params)
+          @KnowledgeBaseId = params['KnowledgeBaseId']
+          @DocIds = params['DocIds']
         end
       end
 
@@ -680,12 +726,21 @@ module TencentCloud
 
       # DeleteQAs请求参数结构体
       class DeleteQAsRequest < TencentCloud::Common::AbstractModel
+        # @param KnowledgeBaseId: 知识库ID
+        # @type KnowledgeBaseId: String
+        # @param QaIds: 问答对ID列表。支持批量删除，数量不超过100
+        # @type QaIds: Array
 
+        attr_accessor :KnowledgeBaseId, :QaIds
 
-        def initialize()
+        def initialize(knowledgebaseid=nil, qaids=nil)
+          @KnowledgeBaseId = knowledgebaseid
+          @QaIds = qaids
         end
 
         def deserialize(params)
+          @KnowledgeBaseId = params['KnowledgeBaseId']
+          @QaIds = params['QaIds']
         end
       end
 
@@ -727,30 +782,64 @@ module TencentCloud
 
       # DescribeDoc请求参数结构体
       class DescribeDocRequest < TencentCloud::Common::AbstractModel
+        # @param KnowledgeBaseId: 知识库ID
+        # @type KnowledgeBaseId: String
+        # @param DocId: 文档ID
+        # @type DocId: String
 
+        attr_accessor :KnowledgeBaseId, :DocId
 
-        def initialize()
+        def initialize(knowledgebaseid=nil, docid=nil)
+          @KnowledgeBaseId = knowledgebaseid
+          @DocId = docid
         end
 
         def deserialize(params)
+          @KnowledgeBaseId = params['KnowledgeBaseId']
+          @DocId = params['DocId']
         end
       end
 
       # DescribeDoc返回参数结构体
       class DescribeDocResponse < TencentCloud::Common::AbstractModel
+        # @param DocId: 文档ID
+        # @type DocId: String
+        # @param Status: 状态，
+
+        # - Uploading  上传中
+        # - Auditing 审核中
+        # - Parsing 解析中
+        # - ParseFailed 解析失败
+        # - Indexing 创建索引中
+        # - IndexFailed 创建索引失败
+        # - Success  发布成功
+        # - Failed  失败
+        # @type Status: String
+        # @param FileName: 文件名
+        # @type FileName: String
+        # @param UpdateTime: 更新时间
+        # @type UpdateTime: String
         # @param AttributeLabels: 属性标签
         # @type AttributeLabels: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :AttributeLabels, :RequestId
+        attr_accessor :DocId, :Status, :FileName, :UpdateTime, :AttributeLabels, :RequestId
 
-        def initialize(attributelabels=nil, requestid=nil)
+        def initialize(docid=nil, status=nil, filename=nil, updatetime=nil, attributelabels=nil, requestid=nil)
+          @DocId = docid
+          @Status = status
+          @FileName = filename
+          @UpdateTime = updatetime
           @AttributeLabels = attributelabels
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @DocId = params['DocId']
+          @Status = params['Status']
+          @FileName = params['FileName']
+          @UpdateTime = params['UpdateTime']
           unless params['AttributeLabels'].nil?
             @AttributeLabels = []
             params['AttributeLabels'].each do |i|
@@ -770,6 +859,7 @@ module TencentCloud
         # @type DocId: String
         # @param Status:  状态，
         # - Uploading  上传中
+        # - Auditing 审核中
         # - Parsing 解析中
         # - ParseFailed 解析失败
         # - Indexing 创建索引中
@@ -1041,12 +1131,30 @@ module TencentCloud
 
       # ImportQAs请求参数结构体
       class ImportQAsRequest < TencentCloud::Common::AbstractModel
+        # @param KnowledgeBaseId: 知识库ID
+        # @type KnowledgeBaseId: String
+        # @param FileName: 文件名
+        # @type FileName: String
+        # @param FileUrl: 文件的 Url 地址。文件存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议文件存储于腾讯云。 非腾讯云存储的 Url 速度和稳定性可能受一定影响。
+        # 导入模板：https://cdn.xiaowei.qq.com/lke/assets//static/批量导入问答模板v6.xlsx
+        # @type FileUrl: String
+        # @param FileType: 文件类型，仅支持XLSX格式，请使用模板
+        # @type FileType: String
 
+        attr_accessor :KnowledgeBaseId, :FileName, :FileUrl, :FileType
 
-        def initialize()
+        def initialize(knowledgebaseid=nil, filename=nil, fileurl=nil, filetype=nil)
+          @KnowledgeBaseId = knowledgebaseid
+          @FileName = filename
+          @FileUrl = fileurl
+          @FileType = filetype
         end
 
         def deserialize(params)
+          @KnowledgeBaseId = params['KnowledgeBaseId']
+          @FileName = params['FileName']
+          @FileUrl = params['FileUrl']
+          @FileType = params['FileType']
         end
       end
 
@@ -1088,30 +1196,47 @@ module TencentCloud
 
       # ListAttributeLabels请求参数结构体
       class ListAttributeLabelsRequest < TencentCloud::Common::AbstractModel
+        # @param KnowledgeBaseId: 知识库ID
+        # @type KnowledgeBaseId: String
+        # @param PageNumber: 页码，默认1
+        # @type PageNumber: Integer
+        # @param PageSize: 每页数目，最大50，默认20
+        # @type PageSize: Integer
 
+        attr_accessor :KnowledgeBaseId, :PageNumber, :PageSize
 
-        def initialize()
+        def initialize(knowledgebaseid=nil, pagenumber=nil, pagesize=nil)
+          @KnowledgeBaseId = knowledgebaseid
+          @PageNumber = pagenumber
+          @PageSize = pagesize
         end
 
         def deserialize(params)
+          @KnowledgeBaseId = params['KnowledgeBaseId']
+          @PageNumber = params['PageNumber']
+          @PageSize = params['PageSize']
         end
       end
 
       # ListAttributeLabels返回参数结构体
       class ListAttributeLabelsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 属性总数
+        # @type TotalCount: Integer
         # @param List: 属性标签列表
         # @type List: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :List, :RequestId
+        attr_accessor :TotalCount, :List, :RequestId
 
-        def initialize(list=nil, requestid=nil)
+        def initialize(totalcount=nil, list=nil, requestid=nil)
+          @TotalCount = totalcount
           @List = list
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @TotalCount = params['TotalCount']
           unless params['List'].nil?
             @List = []
             params['List'].each do |i|
@@ -1126,30 +1251,47 @@ module TencentCloud
 
       # ListDocs请求参数结构体
       class ListDocsRequest < TencentCloud::Common::AbstractModel
+        # @param KnowledgeBaseId: 知识库ID
+        # @type KnowledgeBaseId: String
+        # @param PageNumber: 页码，默认1
+        # @type PageNumber: Integer
+        # @param PageSize: 每页数目，最大50，默认20
+        # @type PageSize: Integer
 
+        attr_accessor :KnowledgeBaseId, :PageNumber, :PageSize
 
-        def initialize()
+        def initialize(knowledgebaseid=nil, pagenumber=nil, pagesize=nil)
+          @KnowledgeBaseId = knowledgebaseid
+          @PageNumber = pagenumber
+          @PageSize = pagesize
         end
 
         def deserialize(params)
+          @KnowledgeBaseId = params['KnowledgeBaseId']
+          @PageNumber = params['PageNumber']
+          @PageSize = params['PageSize']
         end
       end
 
       # ListDocs返回参数结构体
       class ListDocsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 文档总数
+        # @type TotalCount: Integer
         # @param List: 文档信息
         # @type List: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :List, :RequestId
+        attr_accessor :TotalCount, :List, :RequestId
 
-        def initialize(list=nil, requestid=nil)
+        def initialize(totalcount=nil, list=nil, requestid=nil)
+          @TotalCount = totalcount
           @List = list
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @TotalCount = params['TotalCount']
           unless params['List'].nil?
             @List = []
             params['List'].each do |i|
@@ -1164,30 +1306,47 @@ module TencentCloud
 
       # ListQAs请求参数结构体
       class ListQAsRequest < TencentCloud::Common::AbstractModel
+        # @param KnowledgeBaseId: 知识库ID
+        # @type KnowledgeBaseId: String
+        # @param PageNumber: 页码，默认1
+        # @type PageNumber: Integer
+        # @param PageSize: 每页数目，最大50，默认20
+        # @type PageSize: Integer
 
+        attr_accessor :KnowledgeBaseId, :PageNumber, :PageSize
 
-        def initialize()
+        def initialize(knowledgebaseid=nil, pagenumber=nil, pagesize=nil)
+          @KnowledgeBaseId = knowledgebaseid
+          @PageNumber = pagenumber
+          @PageSize = pagesize
         end
 
         def deserialize(params)
+          @KnowledgeBaseId = params['KnowledgeBaseId']
+          @PageNumber = params['PageNumber']
+          @PageSize = params['PageSize']
         end
       end
 
       # ListQAs返回参数结构体
       class ListQAsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 问答对总数量
+        # @type TotalCount: Integer
         # @param List: 问答对信息
         # @type List: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :List, :RequestId
+        attr_accessor :TotalCount, :List, :RequestId
 
-        def initialize(list=nil, requestid=nil)
+        def initialize(totalcount=nil, list=nil, requestid=nil)
+          @TotalCount = totalcount
           @List = list
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @TotalCount = params['TotalCount']
           unless params['List'].nil?
             @List = []
             params['List'].each do |i|
@@ -1227,16 +1386,32 @@ module TencentCloud
 
       # ModifyAttributeLabel请求参数结构体
       class ModifyAttributeLabelRequest < TencentCloud::Common::AbstractModel
+        # @param KnowledgeBaseId: 知识库ID
+        # @type KnowledgeBaseId: String
+        # @param AttributeId: 属性ID
+        # @type AttributeId: String
+        # @param AttributeKey: 属性标识，最大40个英文字符，如style
+        # @type AttributeKey: String
+        # @param AttributeName: 属性名称，最大80个英文字符，如风格
+        # @type AttributeName: String
         # @param Labels: 属性标签
         # @type Labels: Array
 
-        attr_accessor :Labels
+        attr_accessor :KnowledgeBaseId, :AttributeId, :AttributeKey, :AttributeName, :Labels
 
-        def initialize(labels=nil)
+        def initialize(knowledgebaseid=nil, attributeid=nil, attributekey=nil, attributename=nil, labels=nil)
+          @KnowledgeBaseId = knowledgebaseid
+          @AttributeId = attributeid
+          @AttributeKey = attributekey
+          @AttributeName = attributename
           @Labels = labels
         end
 
         def deserialize(params)
+          @KnowledgeBaseId = params['KnowledgeBaseId']
+          @AttributeId = params['AttributeId']
+          @AttributeKey = params['AttributeKey']
+          @AttributeName = params['AttributeName']
           unless params['Labels'].nil?
             @Labels = []
             params['Labels'].each do |i|
@@ -1266,16 +1441,32 @@ module TencentCloud
 
       # ModifyQA请求参数结构体
       class ModifyQARequest < TencentCloud::Common::AbstractModel
+        # @param KnowledgeBaseId: 知识库ID
+        # @type KnowledgeBaseId: String
+        # @param QaId: 问答对ID
+        # @type QaId: String
+        # @param Question: 问题，最大1000个英文字符
+        # @type Question: String
+        # @param Answer: 答案，最大4000个英文字符
+        # @type Answer: String
         # @param AttributeLabels: 属性标签
         # @type AttributeLabels: Array
 
-        attr_accessor :AttributeLabels
+        attr_accessor :KnowledgeBaseId, :QaId, :Question, :Answer, :AttributeLabels
 
-        def initialize(attributelabels=nil)
+        def initialize(knowledgebaseid=nil, qaid=nil, question=nil, answer=nil, attributelabels=nil)
+          @KnowledgeBaseId = knowledgebaseid
+          @QaId = qaid
+          @Question = question
+          @Answer = answer
           @AttributeLabels = attributelabels
         end
 
         def deserialize(params)
+          @KnowledgeBaseId = params['KnowledgeBaseId']
+          @QaId = params['QaId']
+          @Question = params['Question']
+          @Answer = params['Answer']
           unless params['AttributeLabels'].nil?
             @AttributeLabels = []
             params['AttributeLabels'].each do |i|

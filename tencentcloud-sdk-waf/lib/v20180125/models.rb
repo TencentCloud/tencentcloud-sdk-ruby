@@ -77,8 +77,8 @@ module TencentCloud
 
         attr_accessor :BTime, :Count, :BeginTime
         extend Gem::Deprecate
-        deprecate :BTime, :none, 2025, 1
-        deprecate :BTime=, :none, 2025, 1
+        deprecate :BTime, :none, 2025, 2
+        deprecate :BTime=, :none, 2025, 2
 
         def initialize(btime=nil, count=nil, begintime=nil)
           @BTime = btime
@@ -2651,8 +2651,8 @@ module TencentCloud
 
         attr_accessor :Domain, :IpList, :ActionType, :ValidTS, :InstanceId, :Edition, :SourceType, :Note, :JobType, :JobDateTime
         extend Gem::Deprecate
-        deprecate :ValidTS, :none, 2025, 1
-        deprecate :ValidTS=, :none, 2025, 1
+        deprecate :ValidTS, :none, 2025, 2
+        deprecate :ValidTS=, :none, 2025, 2
 
         def initialize(domain=nil, iplist=nil, actiontype=nil, validts=nil, instanceid=nil, edition=nil, sourcetype=nil, note=nil, jobtype=nil, jobdatetime=nil)
           @Domain = domain
@@ -3441,8 +3441,8 @@ module TencentCloud
 
         attr_accessor :From, :To, :Query, :FieldName, :TopicId, :Sort, :Count
         extend Gem::Deprecate
-        deprecate :TopicId, :none, 2025, 1
-        deprecate :TopicId=, :none, 2025, 1
+        deprecate :TopicId, :none, 2025, 2
+        deprecate :TopicId=, :none, 2025, 2
 
         def initialize(from=nil, to=nil, query=nil, fieldname=nil, topicid=nil, sort=nil, count=nil)
           @From = from
@@ -5895,10 +5895,10 @@ module TencentCloud
 
         attr_accessor :Domain, :Count, :ActionType, :VtsMin, :VtsMax, :CtsMin, :CtsMax, :OffSet, :Limit, :Source, :Sort, :Ip, :ValidStatus, :ValidTimeStampMin, :ValidTimeStampMax, :RuleId, :TimerType
         extend Gem::Deprecate
-        deprecate :VtsMin, :none, 2025, 1
-        deprecate :VtsMin=, :none, 2025, 1
-        deprecate :VtsMax, :none, 2025, 1
-        deprecate :VtsMax=, :none, 2025, 1
+        deprecate :VtsMin, :none, 2025, 2
+        deprecate :VtsMin=, :none, 2025, 2
+        deprecate :VtsMax, :none, 2025, 2
+        deprecate :VtsMax=, :none, 2025, 2
 
         def initialize(domain=nil, count=nil, actiontype=nil, vtsmin=nil, vtsmax=nil, ctsmin=nil, ctsmax=nil, offset=nil, limit=nil, source=nil, sort=nil, ip=nil, validstatus=nil, validtimestampmin=nil, validtimestampmax=nil, ruleid=nil, timertype=nil)
           @Domain = domain
@@ -6001,10 +6001,10 @@ module TencentCloud
 
         attr_accessor :Domain, :Count, :Category, :VtsMin, :VtsMax, :CtsMin, :CtsMax, :Skip, :Limit, :Name, :Sort, :Ip, :ValidTimeStampMin, :ValidTimeStampMax
         extend Gem::Deprecate
-        deprecate :VtsMin, :none, 2025, 1
-        deprecate :VtsMin=, :none, 2025, 1
-        deprecate :VtsMax, :none, 2025, 1
-        deprecate :VtsMax=, :none, 2025, 1
+        deprecate :VtsMin, :none, 2025, 2
+        deprecate :VtsMin=, :none, 2025, 2
+        deprecate :VtsMax, :none, 2025, 2
+        deprecate :VtsMax=, :none, 2025, 2
 
         def initialize(domain=nil, count=nil, category=nil, vtsmin=nil, vtsmax=nil, ctsmin=nil, ctsmax=nil, skip=nil, limit=nil, name=nil, sort=nil, ip=nil, validtimestampmin=nil, validtimestampmax=nil)
           @Domain = domain
@@ -9208,10 +9208,14 @@ module TencentCloud
         # @type BillingItem: String
         # @param FreeDelayFlag: 实例延期释放标识
         # @type FreeDelayFlag: Integer
+        # @param Last3MaxQPS: 最近3天最大qps
+        # @type Last3MaxQPS: Integer
+        # @param Last3MaxBandwidth: 最近3天最大带宽
+        # @type Last3MaxBandwidth: Integer
 
-        attr_accessor :InstanceId, :InstanceName, :ResourceIds, :Region, :PayMode, :RenewFlag, :Mode, :Level, :ValidTime, :BeginTime, :DomainCount, :SubDomainLimit, :MainDomainCount, :MainDomainLimit, :MaxQPS, :QPS, :DomainPkg, :AppId, :Edition, :FraudPkg, :BotPkg, :BotQPS, :ElasticBilling, :AttackLogPost, :MaxBandwidth, :APISecurity, :QpsStandard, :BandwidthStandard, :Status, :SandboxQps, :IsAPISecurityTrial, :MajorEventsPkg, :HybridPkg, :ApiPkg, :MiniPkg, :MiniQpsStandard, :MiniMaxQPS, :LastQpsExceedTime, :MiniExtendPkg, :BillingItem, :FreeDelayFlag
+        attr_accessor :InstanceId, :InstanceName, :ResourceIds, :Region, :PayMode, :RenewFlag, :Mode, :Level, :ValidTime, :BeginTime, :DomainCount, :SubDomainLimit, :MainDomainCount, :MainDomainLimit, :MaxQPS, :QPS, :DomainPkg, :AppId, :Edition, :FraudPkg, :BotPkg, :BotQPS, :ElasticBilling, :AttackLogPost, :MaxBandwidth, :APISecurity, :QpsStandard, :BandwidthStandard, :Status, :SandboxQps, :IsAPISecurityTrial, :MajorEventsPkg, :HybridPkg, :ApiPkg, :MiniPkg, :MiniQpsStandard, :MiniMaxQPS, :LastQpsExceedTime, :MiniExtendPkg, :BillingItem, :FreeDelayFlag, :Last3MaxQPS, :Last3MaxBandwidth
 
-        def initialize(instanceid=nil, instancename=nil, resourceids=nil, region=nil, paymode=nil, renewflag=nil, mode=nil, level=nil, validtime=nil, begintime=nil, domaincount=nil, subdomainlimit=nil, maindomaincount=nil, maindomainlimit=nil, maxqps=nil, qps=nil, domainpkg=nil, appid=nil, edition=nil, fraudpkg=nil, botpkg=nil, botqps=nil, elasticbilling=nil, attacklogpost=nil, maxbandwidth=nil, apisecurity=nil, qpsstandard=nil, bandwidthstandard=nil, status=nil, sandboxqps=nil, isapisecuritytrial=nil, majoreventspkg=nil, hybridpkg=nil, apipkg=nil, minipkg=nil, miniqpsstandard=nil, minimaxqps=nil, lastqpsexceedtime=nil, miniextendpkg=nil, billingitem=nil, freedelayflag=nil)
+        def initialize(instanceid=nil, instancename=nil, resourceids=nil, region=nil, paymode=nil, renewflag=nil, mode=nil, level=nil, validtime=nil, begintime=nil, domaincount=nil, subdomainlimit=nil, maindomaincount=nil, maindomainlimit=nil, maxqps=nil, qps=nil, domainpkg=nil, appid=nil, edition=nil, fraudpkg=nil, botpkg=nil, botqps=nil, elasticbilling=nil, attacklogpost=nil, maxbandwidth=nil, apisecurity=nil, qpsstandard=nil, bandwidthstandard=nil, status=nil, sandboxqps=nil, isapisecuritytrial=nil, majoreventspkg=nil, hybridpkg=nil, apipkg=nil, minipkg=nil, miniqpsstandard=nil, minimaxqps=nil, lastqpsexceedtime=nil, miniextendpkg=nil, billingitem=nil, freedelayflag=nil, last3maxqps=nil, last3maxbandwidth=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @ResourceIds = resourceids
@@ -9253,6 +9257,8 @@ module TencentCloud
           @MiniExtendPkg = miniextendpkg
           @BillingItem = billingitem
           @FreeDelayFlag = freedelayflag
+          @Last3MaxQPS = last3maxqps
+          @Last3MaxBandwidth = last3maxbandwidth
         end
 
         def deserialize(params)
@@ -9327,6 +9333,8 @@ module TencentCloud
           end
           @BillingItem = params['BillingItem']
           @FreeDelayFlag = params['FreeDelayFlag']
+          @Last3MaxQPS = params['Last3MaxQPS']
+          @Last3MaxBandwidth = params['Last3MaxBandwidth']
         end
       end
 
@@ -11400,8 +11408,8 @@ module TencentCloud
 
         attr_accessor :Domain, :IpList, :ActionType, :RuleId, :ValidTS, :InstanceId, :Edition, :SourceType, :Note, :JobType, :JobDateTime
         extend Gem::Deprecate
-        deprecate :ValidTS, :none, 2025, 1
-        deprecate :ValidTS=, :none, 2025, 1
+        deprecate :ValidTS, :none, 2025, 2
+        deprecate :ValidTS=, :none, 2025, 2
 
         def initialize(domain=nil, iplist=nil, actiontype=nil, ruleid=nil, validts=nil, instanceid=nil, edition=nil, sourcetype=nil, note=nil, jobtype=nil, jobdatetime=nil)
           @Domain = domain
@@ -12785,10 +12793,10 @@ module TencentCloud
 
         attr_accessor :Context, :ListOver, :Analysis, :ColNames, :Results, :AnalysisResults, :RequestId
         extend Gem::Deprecate
-        deprecate :ColNames, :none, 2025, 1
-        deprecate :ColNames=, :none, 2025, 1
-        deprecate :AnalysisResults, :none, 2025, 1
-        deprecate :AnalysisResults=, :none, 2025, 1
+        deprecate :ColNames, :none, 2025, 2
+        deprecate :ColNames=, :none, 2025, 2
+        deprecate :AnalysisResults, :none, 2025, 2
+        deprecate :AnalysisResults=, :none, 2025, 2
 
         def initialize(context=nil, listover=nil, analysis=nil, colnames=nil, results=nil, analysisresults=nil, requestid=nil)
           @Context = context

@@ -3112,7 +3112,7 @@ module TencentCloud
         # @type RemoteRegion: String
         # @param Tags: 指定绑定的标签列表，例如：[{"Key": "city", "Value": "shanghai"}]。
         # 若指定Tags入参且指定IsCloneTags为true，会合并源安全组的标签和新增的标签。
-        # @type Tags: :class:`Tencentcloud::Vpc.v20170312.models.Tag`
+        # @type Tags: Array
 
         attr_accessor :SecurityGroupId, :GroupName, :GroupDescription, :ProjectId, :RemoteRegion, :Tags
 
@@ -3132,8 +3132,12 @@ module TencentCloud
           @ProjectId = params['ProjectId']
           @RemoteRegion = params['RemoteRegion']
           unless params['Tags'].nil?
-            @Tags = Tag.new
-            @Tags.deserialize(params['Tags'])
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
           end
         end
       end
@@ -4533,8 +4537,8 @@ module TencentCloud
 
         attr_accessor :NatGatewayName, :VpcId, :InternetMaxBandwidthOut, :MaxConcurrentConnection, :AddressCount, :PublicIpAddresses, :Zone, :Tags, :SubnetId, :StockPublicIpAddressesBandwidthOut, :PublicIpAddressesBandwidthOut, :PublicIpFromSameZone, :NatProductVersion
         extend Gem::Deprecate
-        deprecate :SubnetId, :none, 2025, 1
-        deprecate :SubnetId=, :none, 2025, 1
+        deprecate :SubnetId, :none, 2025, 2
+        deprecate :SubnetId=, :none, 2025, 2
 
         def initialize(natgatewayname=nil, vpcid=nil, internetmaxbandwidthout=nil, maxconcurrentconnection=nil, addresscount=nil, publicipaddresses=nil, zone=nil, tags=nil, subnetid=nil, stockpublicipaddressesbandwidthout=nil, publicipaddressesbandwidthout=nil, publicipfromsamezone=nil, natproductversion=nil)
           @NatGatewayName = natgatewayname
@@ -17824,8 +17828,8 @@ module TencentCloud
 
         attr_accessor :EncryptAlgorithm, :IntegrityAlgorith, :IPSECSaLifetimeSeconds, :PfsDhGroup, :IPSECSaLifetimeTraffic, :IntegrityAlgorithm
         extend Gem::Deprecate
-        deprecate :IntegrityAlgorith, :none, 2025, 1
-        deprecate :IntegrityAlgorith=, :none, 2025, 1
+        deprecate :IntegrityAlgorith, :none, 2025, 2
+        deprecate :IntegrityAlgorith=, :none, 2025, 2
 
         def initialize(encryptalgorithm=nil, integrityalgorith=nil, ipsecsalifetimeseconds=nil, pfsdhgroup=nil, ipsecsalifetimetraffic=nil, integrityalgorithm=nil)
           @EncryptAlgorithm = encryptalgorithm

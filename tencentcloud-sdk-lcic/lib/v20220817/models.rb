@@ -521,7 +521,6 @@ module TencentCloud
       # BatchRegister返回参数结构体
       class BatchRegisterResponse < TencentCloud::Common::AbstractModel
         # @param Users: 注册成功的用户列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Users: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -940,10 +939,10 @@ module TencentCloud
 
         attr_accessor :Name, :StartTime, :EndTime, :SdkAppId, :Resolution, :MaxMicNumber, :SubType, :TeacherId, :AutoMic, :TurnOffMic, :AudioQuality, :DisableRecord, :Assistants, :RTCAudienceNumber, :AudienceType, :RecordLayout, :GroupId, :EnableDirectControl, :InteractionMode, :VideoOrientation, :IsGradingRequiredPostClass, :RoomType, :EndDelayTime, :LiveType, :RecordLiveUrl, :EnableAutoStart, :RecordBackground, :RecordScene, :RecordLang, :RecordStream
         extend Gem::Deprecate
-        deprecate :RTCAudienceNumber, :none, 2025, 1
-        deprecate :RTCAudienceNumber=, :none, 2025, 1
-        deprecate :RecordLang, :none, 2025, 1
-        deprecate :RecordLang=, :none, 2025, 1
+        deprecate :RTCAudienceNumber, :none, 2025, 2
+        deprecate :RTCAudienceNumber=, :none, 2025, 2
+        deprecate :RecordLang, :none, 2025, 2
+        deprecate :RecordLang=, :none, 2025, 2
 
         def initialize(name=nil, starttime=nil, endtime=nil, sdkappid=nil, resolution=nil, maxmicnumber=nil, subtype=nil, teacherid=nil, automic=nil, turnoffmic=nil, audioquality=nil, disablerecord=nil, assistants=nil, rtcaudiencenumber=nil, audiencetype=nil, recordlayout=nil, groupid=nil, enabledirectcontrol=nil, interactionmode=nil, videoorientation=nil, isgradingrequiredpostclass=nil, roomtype=nil, enddelaytime=nil, livetype=nil, recordliveurl=nil, enableautostart=nil, recordbackground=nil, recordscene=nil, recordlang=nil, recordstream=nil)
           @Name = name
@@ -2325,7 +2324,6 @@ module TencentCloud
       # DescribeRoomForbiddenUser返回参数结构体
       class DescribeRoomForbiddenUserResponse < TencentCloud::Common::AbstractModel
         # @param MutedAccountList: 禁言用户信息数组，内容包括被禁言的成员 ID，及其被禁言到的时间（使用 UTC 时间，即世界协调时间）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MutedAccountList: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2643,7 +2641,6 @@ module TencentCloud
         # @param Total: 总数
         # @type Total: Integer
         # @param Scores: 课堂评分列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Scores: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2699,7 +2696,6 @@ module TencentCloud
         # @param Total: 用户总数
         # @type Total: Integer
         # @param Users: 当前获取用户信息数组列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Users: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3999,8 +3995,8 @@ module TencentCloud
 
         attr_accessor :RoomId, :SdkAppId, :StartTime, :EndTime, :TeacherId, :Name, :Resolution, :MaxMicNumber, :AutoMic, :AudioQuality, :SubType, :DisableRecord, :Assistants, :GroupId, :EnableDirectControl, :InteractionMode, :VideoOrientation, :IsGradingRequiredPostClass, :RoomType, :RecordLayout, :EndDelayTime, :LiveType, :RecordLiveUrl, :EnableAutoStart, :RecordScene, :RecordLang
         extend Gem::Deprecate
-        deprecate :RecordLang, :none, 2025, 1
-        deprecate :RecordLang=, :none, 2025, 1
+        deprecate :RecordLang, :none, 2025, 2
+        deprecate :RecordLang=, :none, 2025, 2
 
         def initialize(roomid=nil, sdkappid=nil, starttime=nil, endtime=nil, teacherid=nil, name=nil, resolution=nil, maxmicnumber=nil, automic=nil, audioquality=nil, subtype=nil, disablerecord=nil, assistants=nil, groupid=nil, enabledirectcontrol=nil, interactionmode=nil, videoorientation=nil, isgradingrequiredpostclass=nil, roomtype=nil, recordlayout=nil, enddelaytime=nil, livetype=nil, recordliveurl=nil, enableautostart=nil, recordscene=nil, recordlang=nil)
           @RoomId = roomid
@@ -4346,10 +4342,10 @@ module TencentCloud
 
         attr_accessor :Name, :StartTime, :EndTime, :Resolution, :MaxMicNumber, :SubType, :TeacherId, :AutoMic, :TurnOffMic, :AudioQuality, :DisableRecord, :Assistants, :RTCAudienceNumber, :AudienceType, :RecordLayout, :GroupId, :EnableDirectControl, :InteractionMode, :VideoOrientation, :IsGradingRequiredPostClass, :RoomType, :EndDelayTime, :LiveType, :RecordLiveUrl, :EnableAutoStart, :RecordBackground, :RecordScene, :RecordLang, :RecordStream
         extend Gem::Deprecate
-        deprecate :RTCAudienceNumber, :none, 2025, 1
-        deprecate :RTCAudienceNumber=, :none, 2025, 1
-        deprecate :RecordLang, :none, 2025, 1
-        deprecate :RecordLang=, :none, 2025, 1
+        deprecate :RTCAudienceNumber, :none, 2025, 2
+        deprecate :RTCAudienceNumber=, :none, 2025, 2
+        deprecate :RecordLang, :none, 2025, 2
+        deprecate :RecordLang=, :none, 2025, 2
 
         def initialize(name=nil, starttime=nil, endtime=nil, resolution=nil, maxmicnumber=nil, subtype=nil, teacherid=nil, automic=nil, turnoffmic=nil, audioquality=nil, disablerecord=nil, assistants=nil, rtcaudiencenumber=nil, audiencetype=nil, recordlayout=nil, groupid=nil, enabledirectcontrol=nil, interactionmode=nil, videoorientation=nil, isgradingrequiredpostclass=nil, roomtype=nil, enddelaytime=nil, livetype=nil, recordliveurl=nil, enableautostart=nil, recordbackground=nil, recordscene=nil, recordlang=nil, recordstream=nil)
           @Name = name

@@ -971,6 +971,36 @@ module TencentCloud
         end
       end
 
+      # 数据库实例 URI 形式的连接串访问地址示例。
+      class DbURL < TencentCloud::Common::AbstractModel
+        # @param URLType: 指 URI 类别，包括：，
+        # - CLUSTER_ALL：指通过该 URI 连接库实例的主节点，可读写。
+        # - CLUSTER_READ_READONLY：指通过该 URI 连接实例只读节点。
+        # - CLUSTER_READ_SECONDARY：指通过该 URI 连接实例从节点。
+        # - CLUSTER_READ_SECONDARY_AND_READONLY：指通过该 URI 连接实例只读从节点。
+        # - CLUSTER_PRIMARY_AND_SECONDARY：指通过该 URI 连接实例 主节点与从节点。
+        # - MONGOS_ALL：指通过该  URI 连接每个 Mongos 节点，可读写。
+        # - MONGOS_READ_READONLY：指通过该 URI 连接 Mongos 的只读节点。
+        # - MONGOS_READ_SECONDARY：指通过该 URI 连接 Mongos 的从节点。
+        # - MONGOS_READ_PRIMARY_AND_SECONDARY：指通过该URI 连接 Mongos 的主节点与从节点。
+        # - MONGOS_READ_SECONDARY_AND_READONLY：指通过该URI 连接 Mongos 的从节点与只读节点。
+        # @type URLType: String
+        # @param Address: 实例 URI 形式的连接串访问地址示例。
+        # @type Address: String
+
+        attr_accessor :URLType, :Address
+
+        def initialize(urltype=nil, address=nil)
+          @URLType = urltype
+          @Address = address
+        end
+
+        def deserialize(params)
+          @URLType = params['URLType']
+          @Address = params['Address']
+        end
+      end
+
       # DeleteAccountUser请求参数结构体
       class DeleteAccountUserRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 指定待删除账号的实例 ID。例如：cmgo-p8vn****。请登录 [MongoDB 控制台](https://console.cloud.tencent.com/mongodb)在实例列表复制实例 ID。
@@ -1710,6 +1740,49 @@ module TencentCloud
             end
           end
           @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDBInstanceURL请求参数结构体
+      class DescribeDBInstanceURLRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例 ID。请登录 [MongoDB 控制台](https://console.cloud.tencent.com/mongodb#/)在实例列表复制实例 ID。
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DescribeDBInstanceURL返回参数结构体
+      class DescribeDBInstanceURLResponse < TencentCloud::Common::AbstractModel
+        # @param Urls: 实例 URI 形式的连接串访问地址示例。包含：URI 类型及连接串地址。
+        # @type Urls: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Urls, :RequestId
+
+        def initialize(urls=nil, requestid=nil)
+          @Urls = urls
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Urls'].nil?
+            @Urls = []
+            params['Urls'].each do |i|
+              dburl_tmp = DbURL.new
+              dburl_tmp.deserialize(i)
+              @Urls << dburl_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end

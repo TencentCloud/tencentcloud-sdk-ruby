@@ -12637,14 +12637,17 @@ module TencentCloud
         # @type AddonVersion: String
         # @param RawValues: addon的参数，是一个json格式的base64转码后的字符串（addon参数由DescribeAddonValues获取）
         # @type RawValues: String
+        # @param DryRun: 是否仅做安装检查，设置为true时仅做检查，不会安装组件
+        # @type DryRun: Boolean
 
-        attr_accessor :ClusterId, :AddonName, :AddonVersion, :RawValues
+        attr_accessor :ClusterId, :AddonName, :AddonVersion, :RawValues, :DryRun
 
-        def initialize(clusterid=nil, addonname=nil, addonversion=nil, rawvalues=nil)
+        def initialize(clusterid=nil, addonname=nil, addonversion=nil, rawvalues=nil, dryrun=nil)
           @ClusterId = clusterid
           @AddonName = addonname
           @AddonVersion = addonversion
           @RawValues = rawvalues
+          @DryRun = dryrun
         end
 
         def deserialize(params)
@@ -12652,6 +12655,7 @@ module TencentCloud
           @AddonName = params['AddonName']
           @AddonVersion = params['AddonVersion']
           @RawValues = params['RawValues']
+          @DryRun = params['DryRun']
         end
       end
 
@@ -18826,15 +18830,18 @@ module TencentCloud
         # @type RawValues: String
         # @param UpdateStrategy: addon参数的更新策略，支持replace和merge两种策略，默认值为merge，兼容旧版本API。replace：使用新RawValues全量替换addon原RawValues，merge：根据新RawValues新增或更新addon原RawValues中对应参数。
         # @type UpdateStrategy: String
+        # @param DryRun: 是否仅做更新检查，设置为true时仅做检查，不会更新组件
+        # @type DryRun: Boolean
 
-        attr_accessor :ClusterId, :AddonName, :AddonVersion, :RawValues, :UpdateStrategy
+        attr_accessor :ClusterId, :AddonName, :AddonVersion, :RawValues, :UpdateStrategy, :DryRun
 
-        def initialize(clusterid=nil, addonname=nil, addonversion=nil, rawvalues=nil, updatestrategy=nil)
+        def initialize(clusterid=nil, addonname=nil, addonversion=nil, rawvalues=nil, updatestrategy=nil, dryrun=nil)
           @ClusterId = clusterid
           @AddonName = addonname
           @AddonVersion = addonversion
           @RawValues = rawvalues
           @UpdateStrategy = updatestrategy
+          @DryRun = dryrun
         end
 
         def deserialize(params)
@@ -18843,6 +18850,7 @@ module TencentCloud
           @AddonVersion = params['AddonVersion']
           @RawValues = params['RawValues']
           @UpdateStrategy = params['UpdateStrategy']
+          @DryRun = params['DryRun']
         end
       end
 

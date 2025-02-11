@@ -8216,22 +8216,16 @@ module TencentCloud
       # DescribeOrganizationGroupOrganizations返回参数结构体
       class DescribeOrganizationGroupOrganizationsResponse < TencentCloud::Common::AbstractModel
         # @param Total: 符合查询条件的资源实例总数量。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Total: Integer
         # @param JoinedTotal: 已授权待激活的子企业总数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type JoinedTotal: Integer
         # @param ActivedTotal: 已加入的企业数量(废弃,请使用ActivatedTotal)
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ActivedTotal: Integer
         # @param ExportUrl: 如果入参Export为 true 时使用，表示导出Excel的url
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExportUrl: String
         # @param List: 成员企业信息列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type List: Array
         # @param ActivatedTotal: 已加入的子企业总数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ActivatedTotal: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

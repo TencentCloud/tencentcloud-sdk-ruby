@@ -371,7 +371,7 @@ module TencentCloud
         # @type Domain: String
         # @param CertId: 已部署证书ID
         # @type CertId: String
-        # @param Status: 域名状态
+        # @param Status: 域名状态 rejected：域名审核未通过，域名备案过期/被注销导致，processing：部署中，online：已启动，offline：已关闭
         # @type Status: String
         # @param HttpsBillingSwitch: 域名计费状态
         # @type HttpsBillingSwitch: String
@@ -4107,7 +4107,7 @@ module TencentCloud
         # @type CertificateId: String
         # @param IsCache: 是否查询缓存，1：是； 0：否， 默认为查询缓存，缓存半小时
         # @type IsCache: Integer
-        # @param Filters: 过滤参数列表
+        # @param Filters: 过滤参数列表； FilterKey：domainMatch（查询域名是否匹配的实例列表） FilterValue：1，表示查询匹配； 0，表示查询不匹配； 默认查询匹配
         # @type Filters: Array
         # @param ResourceType: 部署资源类型 lighthouse
         # @type ResourceType: String
@@ -4556,7 +4556,7 @@ module TencentCloud
         # @type CertificateId: String
         # @param IsCache: 是否查询缓存，1：是； 0：否， 默认为查询缓存，缓存半小时
         # @type IsCache: Integer
-        # @param Filters: 过滤参数列表
+        # @param Filters: 过滤参数列表； FilterKey：domainMatch（查询域名是否匹配的实例列表） FilterValue：1，表示查询匹配； 0，表示查询不匹配； 默认查询匹配
         # @type Filters: Array
         # @param ResourceType: 部署资源类型 vod
         # @type ResourceType: String
@@ -4981,26 +4981,26 @@ module TencentCloud
         end
       end
 
-      # 域名验证结果
+      # 证书域名验证结果
       class DomainValidationResult < TencentCloud::Common::AbstractModel
-        # @param Domain: 域名。
+        # @param Domain: 证书绑定的域名。
         # @type Domain: String
-        # @param VerifyType: 验证类型。
+        # @param VerifyType: 域名验证类型。 取值为：DNS、FILE、DNS_AUTO、DNS_PROXY、FILE_PROXY
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VerifyType: String
-        # @param LocalCheck: 本地检查结果。
+        # @param LocalCheck: 腾讯云检测结果，取值：1（验证通过）； -1（被限频或者 txt record not found）；-2（txt record not match）；-3（ns record not found）；-4（file not found）；-5（file not match）；-6（cname record not found）；-7（cname record not match）；-8（ns record not found）-9（file not found）；-10（file not match）
         # @type LocalCheck: Integer
-        # @param CaCheck: CA检查结果。
+        # @param CaCheck: CA检查结果。取值： -1（未检测通过）；2（检测通过）
         # @type CaCheck: Integer
-        # @param LocalCheckFailReason: 检查失败原因。
+        # @param LocalCheckFailReason: 检查失败原因。状态LocalCheck的具体描述
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LocalCheckFailReason: String
         # @param CheckValue: 检查到的值。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CheckValue: Array
-        # @param Frequently: 是否频繁请求。
+        # @param Frequently: 是否被限频拦截， 取值：false（未被限频）；true（被限频）
         # @type Frequently: Boolean
-        # @param Issued: 是否已经签发。
+        # @param Issued: 证书是否已经签发。取值： false（未签发）；true（已签发）
         # @type Issued: Boolean
 
         attr_accessor :Domain, :VerifyType, :LocalCheck, :CaCheck, :LocalCheckFailReason, :CheckValue, :Frequently, :Issued
@@ -6803,6 +6803,11 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ZoneId: String
         # @param Status: 域名状态
+        # deployed：已部署；
+        # processing：部署中；
+        # applying：申请中；
+        # failed：申请失败；
+        # issued：绑定失败。
         # @type Status: String
 
         attr_accessor :Host, :CertId, :ZoneId, :Status
