@@ -131,3 +131,21 @@ end
 2. 需要设置系统环境变量 `https_proxy`
 
 否则可能无法正常调用，抛出连接超时的异常。
+
+# 凭证管理
+
+## TKE OIDC凭证
+
+有关 TKE OIDC 凭证的相关示例请参阅：[Pod 使用 CAM 对数据库身份验证](https://cloud.tencent.com/document/product/457/81989)
+
+示例代码
+```ruby
+require 'tencentcloud-sdk-common'
+require 'tencentcloud-sdk-cvm'
+
+include TencentCloud::Common
+include TencentCloud::Cvm::V20170312
+
+cred = OIDCCredential.new
+cli = Client.new(cred, 'ap-guangzhou')
+```
