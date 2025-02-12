@@ -3024,6 +3024,61 @@ module TencentCloud
         end
       end
 
+      # CheckTrafficMirror请求参数结构体
+      class CheckTrafficMirrorRequest < TencentCloud::Common::AbstractModel
+        # @param VpcId: 流量镜像所属的vpc
+        # @type VpcId: String
+        # @param TrafficMirrorId: 流量镜像的实例id
+        # @type TrafficMirrorId: String
+        # @param CollectorSources: 流量镜像的采集端IP列表
+        # @type CollectorSources: Array
+        # @param SubnetId: 流量镜像的接收端的子网
+        # @type SubnetId: String
+        # @param CollectorTarget: 流量镜像采集端的
+        # @type CollectorTarget: Array
+
+        attr_accessor :VpcId, :TrafficMirrorId, :CollectorSources, :SubnetId, :CollectorTarget
+
+        def initialize(vpcid=nil, trafficmirrorid=nil, collectorsources=nil, subnetid=nil, collectortarget=nil)
+          @VpcId = vpcid
+          @TrafficMirrorId = trafficmirrorid
+          @CollectorSources = collectorsources
+          @SubnetId = subnetid
+          @CollectorTarget = collectortarget
+        end
+
+        def deserialize(params)
+          @VpcId = params['VpcId']
+          @TrafficMirrorId = params['TrafficMirrorId']
+          @CollectorSources = params['CollectorSources']
+          @SubnetId = params['SubnetId']
+          unless params['CollectorTarget'].nil?
+            @CollectorTarget = []
+            params['CollectorTarget'].each do |i|
+              trafficmirrortarget_tmp = TrafficMirrorTarget.new
+              trafficmirrortarget_tmp.deserialize(i)
+              @CollectorTarget << trafficmirrortarget_tmp
+            end
+          end
+        end
+      end
+
+      # CheckTrafficMirror返回参数结构体
+      class CheckTrafficMirrorResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 用于发布云联网的cidr信息
       class CidrForCcn < TencentCloud::Common::AbstractModel
         # @param Cidr: local cidr值。
@@ -3363,12 +3418,14 @@ module TencentCloud
         # @type Tags: Array
         # @param AttachType: 绑定类型：0 标准型 1 扩展型。
         # @type AttachType: Integer
+        # @param IsRdma: 是否创建RDMA弹性网卡，true:创建rdma弹性网卡，false:普通弹性网卡。不填默认为false。
+        # @type IsRdma: Boolean
         # @param ClientToken: 用于保证请求幂等性的字符串。该字符串由客户生成，需保证不同请求之间唯一，最大值不超过64个ASCII字符。若不指定该参数，则无法保证请求的幂等性。
         # @type ClientToken: String
 
-        attr_accessor :VpcId, :NetworkInterfaceName, :SubnetId, :InstanceId, :PrivateIpAddresses, :SecondaryPrivateIpAddressCount, :QosLevel, :SecurityGroupIds, :NetworkInterfaceDescription, :Tags, :AttachType, :ClientToken
+        attr_accessor :VpcId, :NetworkInterfaceName, :SubnetId, :InstanceId, :PrivateIpAddresses, :SecondaryPrivateIpAddressCount, :QosLevel, :SecurityGroupIds, :NetworkInterfaceDescription, :Tags, :AttachType, :IsRdma, :ClientToken
 
-        def initialize(vpcid=nil, networkinterfacename=nil, subnetid=nil, instanceid=nil, privateipaddresses=nil, secondaryprivateipaddresscount=nil, qoslevel=nil, securitygroupids=nil, networkinterfacedescription=nil, tags=nil, attachtype=nil, clienttoken=nil)
+        def initialize(vpcid=nil, networkinterfacename=nil, subnetid=nil, instanceid=nil, privateipaddresses=nil, secondaryprivateipaddresscount=nil, qoslevel=nil, securitygroupids=nil, networkinterfacedescription=nil, tags=nil, attachtype=nil, isrdma=nil, clienttoken=nil)
           @VpcId = vpcid
           @NetworkInterfaceName = networkinterfacename
           @SubnetId = subnetid
@@ -3380,6 +3437,7 @@ module TencentCloud
           @NetworkInterfaceDescription = networkinterfacedescription
           @Tags = tags
           @AttachType = attachtype
+          @IsRdma = isrdma
           @ClientToken = clienttoken
         end
 
@@ -3409,6 +3467,7 @@ module TencentCloud
             end
           end
           @AttachType = params['AttachType']
+          @IsRdma = params['IsRdma']
           @ClientToken = params['ClientToken']
         end
       end
@@ -4901,12 +4960,14 @@ module TencentCloud
         # @type Tags: Array
         # @param TrunkingFlag: 网卡trunking模式设置，Enable-开启，Disable--关闭，默认关闭。
         # @type TrunkingFlag: String
+        # @param IsRdma: 是否创建RDMA弹性网卡，true:创建rdma弹性网卡，false:普通弹性网卡。不填默认为false
+        # @type IsRdma: Boolean
         # @param ClientToken: 用于保证请求幂等性的字符串。该字符串由客户生成，需保证不同请求之间唯一，最大值不超过64个ASCII字符。若不指定该参数，则无法保证请求的幂等性。
         # @type ClientToken: String
 
-        attr_accessor :VpcId, :NetworkInterfaceName, :SubnetId, :NetworkInterfaceDescription, :SecondaryPrivateIpAddressCount, :QosLevel, :SecurityGroupIds, :PrivateIpAddresses, :Tags, :TrunkingFlag, :ClientToken
+        attr_accessor :VpcId, :NetworkInterfaceName, :SubnetId, :NetworkInterfaceDescription, :SecondaryPrivateIpAddressCount, :QosLevel, :SecurityGroupIds, :PrivateIpAddresses, :Tags, :TrunkingFlag, :IsRdma, :ClientToken
 
-        def initialize(vpcid=nil, networkinterfacename=nil, subnetid=nil, networkinterfacedescription=nil, secondaryprivateipaddresscount=nil, qoslevel=nil, securitygroupids=nil, privateipaddresses=nil, tags=nil, trunkingflag=nil, clienttoken=nil)
+        def initialize(vpcid=nil, networkinterfacename=nil, subnetid=nil, networkinterfacedescription=nil, secondaryprivateipaddresscount=nil, qoslevel=nil, securitygroupids=nil, privateipaddresses=nil, tags=nil, trunkingflag=nil, isrdma=nil, clienttoken=nil)
           @VpcId = vpcid
           @NetworkInterfaceName = networkinterfacename
           @SubnetId = subnetid
@@ -4917,6 +4978,7 @@ module TencentCloud
           @PrivateIpAddresses = privateipaddresses
           @Tags = tags
           @TrunkingFlag = trunkingflag
+          @IsRdma = isrdma
           @ClientToken = clienttoken
         end
 
@@ -4945,6 +5007,7 @@ module TencentCloud
             end
           end
           @TrunkingFlag = params['TrunkingFlag']
+          @IsRdma = params['IsRdma']
           @ClientToken = params['ClientToken']
         end
       end
@@ -5861,6 +5924,106 @@ module TencentCloud
               subnet_tmp.deserialize(i)
               @SubnetSet << subnet_tmp
             end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateTrafficMirror请求参数结构体
+      class CreateTrafficMirrorRequest < TencentCloud::Common::AbstractModel
+        # @param VpcId: VPC实例ID。
+        # @type VpcId: String
+        # @param TrafficMirrorName: 流量镜像名字。
+        # @type TrafficMirrorName: String
+        # @param TrafficMirrorDescribe: 流量镜像描述。
+        # @type TrafficMirrorDescribe: String
+        # @param State: 流量镜像状态, 支持RUNNING/STOPED（vpc），RUNNING（公网IP），当采集vpc流量镜像时，此参数为必填。
+        # @type State: String
+        # @param Direction: 流量镜像采集方向，支持EGRESS/INGRESS/ALL（vpc），ALL（公网IP）。
+        # @type Direction: String
+        # @param CollectorSrcs: 流量镜像的采集对象，支持eni_xxxx。
+        # @type CollectorSrcs: Array
+        # @param NatId: 流量镜像过滤的natgw实例。
+        # @type NatId: String
+        # @param CollectorNormalFilters: 需要过滤的五元组规则。
+        # @type CollectorNormalFilters: Array
+        # @param CollectorTarget: 流量镜像的目的地址。
+        # @type CollectorTarget: :class:`Tencentcloud::Vpc.v20170312.models.TrafficMirrorTarget`
+        # @param SubnetId: 流量镜像采集流量的发送端所属子网ID。
+        # @type SubnetId: String
+        # @param Type: 创建的流量镜像的类型，支持VPC/PUBLICIP，默认为VPC类型。
+        # @type Type: String
+        # @param Tags: 指定绑定的标签列表，例如：[{"Key": "city", "Value": "shanghai"}]。
+        # @type Tags: Array
+
+        attr_accessor :VpcId, :TrafficMirrorName, :TrafficMirrorDescribe, :State, :Direction, :CollectorSrcs, :NatId, :CollectorNormalFilters, :CollectorTarget, :SubnetId, :Type, :Tags
+
+        def initialize(vpcid=nil, trafficmirrorname=nil, trafficmirrordescribe=nil, state=nil, direction=nil, collectorsrcs=nil, natid=nil, collectornormalfilters=nil, collectortarget=nil, subnetid=nil, type=nil, tags=nil)
+          @VpcId = vpcid
+          @TrafficMirrorName = trafficmirrorname
+          @TrafficMirrorDescribe = trafficmirrordescribe
+          @State = state
+          @Direction = direction
+          @CollectorSrcs = collectorsrcs
+          @NatId = natid
+          @CollectorNormalFilters = collectornormalfilters
+          @CollectorTarget = collectortarget
+          @SubnetId = subnetid
+          @Type = type
+          @Tags = tags
+        end
+
+        def deserialize(params)
+          @VpcId = params['VpcId']
+          @TrafficMirrorName = params['TrafficMirrorName']
+          @TrafficMirrorDescribe = params['TrafficMirrorDescribe']
+          @State = params['State']
+          @Direction = params['Direction']
+          @CollectorSrcs = params['CollectorSrcs']
+          @NatId = params['NatId']
+          unless params['CollectorNormalFilters'].nil?
+            @CollectorNormalFilters = []
+            params['CollectorNormalFilters'].each do |i|
+              trafficmirrorfilter_tmp = TrafficMirrorFilter.new
+              trafficmirrorfilter_tmp.deserialize(i)
+              @CollectorNormalFilters << trafficmirrorfilter_tmp
+            end
+          end
+          unless params['CollectorTarget'].nil?
+            @CollectorTarget = TrafficMirrorTarget.new
+            @CollectorTarget.deserialize(params['CollectorTarget'])
+          end
+          @SubnetId = params['SubnetId']
+          @Type = params['Type']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
+        end
+      end
+
+      # CreateTrafficMirror返回参数结构体
+      class CreateTrafficMirrorResponse < TencentCloud::Common::AbstractModel
+        # @param TrafficMirror: 流量镜像实例
+        # @type TrafficMirror: :class:`Tencentcloud::Vpc.v20170312.models.TrafficMirror`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TrafficMirror, :RequestId
+
+        def initialize(trafficmirror=nil, requestid=nil)
+          @TrafficMirror = trafficmirror
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['TrafficMirror'].nil?
+            @TrafficMirror = TrafficMirror.new
+            @TrafficMirror.deserialize(params['TrafficMirror'])
           end
           @RequestId = params['RequestId']
         end
@@ -8409,6 +8572,38 @@ module TencentCloud
 
       # DeleteTemplateMember返回参数结构体
       class DeleteTemplateMemberResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteTrafficMirror请求参数结构体
+      class DeleteTrafficMirrorRequest < TencentCloud::Common::AbstractModel
+        # @param TrafficMirrorId: 流量镜像实例ID
+        # @type TrafficMirrorId: String
+
+        attr_accessor :TrafficMirrorId
+
+        def initialize(trafficmirrorid=nil)
+          @TrafficMirrorId = trafficmirrorid
+        end
+
+        def deserialize(params)
+          @TrafficMirrorId = params['TrafficMirrorId']
+        end
+      end
+
+      # DeleteTrafficMirror返回参数结构体
+      class DeleteTrafficMirrorResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -14238,6 +14433,64 @@ module TencentCloud
             end
           end
           @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeTrafficMirrors请求参数结构体
+      class DescribeTrafficMirrorsRequest < TencentCloud::Common::AbstractModel
+        # @param TrafficMirrorIds: 流量镜像实例ID集合
+        # @type TrafficMirrorIds: Array
+        # @param Filters: 流量镜像查询过滤调节
+        # @type Filters: :class:`Tencentcloud::Vpc.v20170312.models.Filter`
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
+        # @param Limit: 返回数量，默认为20，最大值为100。
+        # @type Limit: Integer
+
+        attr_accessor :TrafficMirrorIds, :Filters, :Offset, :Limit
+
+        def initialize(trafficmirrorids=nil, filters=nil, offset=nil, limit=nil)
+          @TrafficMirrorIds = trafficmirrorids
+          @Filters = filters
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @TrafficMirrorIds = params['TrafficMirrorIds']
+          unless params['Filters'].nil?
+            @Filters = Filter.new
+            @Filters.deserialize(params['Filters'])
+          end
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeTrafficMirrors返回参数结构体
+      class DescribeTrafficMirrorsResponse < TencentCloud::Common::AbstractModel
+        # @param TrafficMirrorSet: 流量镜像实例信息
+        # @type TrafficMirrorSet: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TrafficMirrorSet, :RequestId
+
+        def initialize(trafficmirrorset=nil, requestid=nil)
+          @TrafficMirrorSet = trafficmirrorset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['TrafficMirrorSet'].nil?
+            @TrafficMirrorSet = []
+            params['TrafficMirrorSet'].each do |i|
+              trafficmirror_tmp = TrafficMirror.new
+              trafficmirror_tmp.deserialize(i)
+              @TrafficMirrorSet << trafficmirror_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -21314,6 +21567,46 @@ module TencentCloud
         end
       end
 
+      # ModifyTrafficMirrorAttribute请求参数结构体
+      class ModifyTrafficMirrorAttributeRequest < TencentCloud::Common::AbstractModel
+        # @param TrafficMirrorId: 流量镜像实例ID
+        # @type TrafficMirrorId: String
+        # @param TrafficMirrorName: 流量镜像实例名称
+        # @type TrafficMirrorName: String
+        # @param TrafficMirrorDescription: 流量镜像实例描述信息
+        # @type TrafficMirrorDescription: String
+
+        attr_accessor :TrafficMirrorId, :TrafficMirrorName, :TrafficMirrorDescription
+
+        def initialize(trafficmirrorid=nil, trafficmirrorname=nil, trafficmirrordescription=nil)
+          @TrafficMirrorId = trafficmirrorid
+          @TrafficMirrorName = trafficmirrorname
+          @TrafficMirrorDescription = trafficmirrordescription
+        end
+
+        def deserialize(params)
+          @TrafficMirrorId = params['TrafficMirrorId']
+          @TrafficMirrorName = params['TrafficMirrorName']
+          @TrafficMirrorDescription = params['TrafficMirrorDescription']
+        end
+      end
+
+      # ModifyTrafficMirrorAttribute返回参数结构体
+      class ModifyTrafficMirrorAttributeResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyVpcAttribute请求参数结构体
       class ModifyVpcAttributeRequest < TencentCloud::Common::AbstractModel
         # @param VpcId: VPC实例ID。形如：vpc-f49l6u0z。
@@ -24299,6 +24592,132 @@ module TencentCloud
         end
       end
 
+      # ResetTrafficMirrorFilter请求参数结构体
+      class ResetTrafficMirrorFilterRequest < TencentCloud::Common::AbstractModel
+        # @param TrafficMirrorId: 流量镜像实例ID
+        # @type TrafficMirrorId: String
+        # @param NatId: 流量镜像需要过滤的natgw实例ID
+        # @type NatId: String
+        # @param CollectorNormalFilters: 流量镜像需要过滤的五元组规则
+        # @type CollectorNormalFilters: Array
+
+        attr_accessor :TrafficMirrorId, :NatId, :CollectorNormalFilters
+
+        def initialize(trafficmirrorid=nil, natid=nil, collectornormalfilters=nil)
+          @TrafficMirrorId = trafficmirrorid
+          @NatId = natid
+          @CollectorNormalFilters = collectornormalfilters
+        end
+
+        def deserialize(params)
+          @TrafficMirrorId = params['TrafficMirrorId']
+          @NatId = params['NatId']
+          unless params['CollectorNormalFilters'].nil?
+            @CollectorNormalFilters = []
+            params['CollectorNormalFilters'].each do |i|
+              trafficmirrorfilter_tmp = TrafficMirrorFilter.new
+              trafficmirrorfilter_tmp.deserialize(i)
+              @CollectorNormalFilters << trafficmirrorfilter_tmp
+            end
+          end
+        end
+      end
+
+      # ResetTrafficMirrorFilter返回参数结构体
+      class ResetTrafficMirrorFilterResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ResetTrafficMirrorSrcs请求参数结构体
+      class ResetTrafficMirrorSrcsRequest < TencentCloud::Common::AbstractModel
+        # @param TrafficMirrorId: 流量镜像实例ID
+        # @type TrafficMirrorId: String
+        # @param CollectorSrcs: 流量镜像采集对象
+        # @type CollectorSrcs: Array
+
+        attr_accessor :TrafficMirrorId, :CollectorSrcs
+
+        def initialize(trafficmirrorid=nil, collectorsrcs=nil)
+          @TrafficMirrorId = trafficmirrorid
+          @CollectorSrcs = collectorsrcs
+        end
+
+        def deserialize(params)
+          @TrafficMirrorId = params['TrafficMirrorId']
+          @CollectorSrcs = params['CollectorSrcs']
+        end
+      end
+
+      # ResetTrafficMirrorSrcs返回参数结构体
+      class ResetTrafficMirrorSrcsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ResetTrafficMirrorTarget请求参数结构体
+      class ResetTrafficMirrorTargetRequest < TencentCloud::Common::AbstractModel
+        # @param TrafficMirrorId: 流量镜像实例ID
+        # @type TrafficMirrorId: String
+        # @param CollectorTarget: 流量镜像的接收目的信息
+        # @type CollectorTarget: :class:`Tencentcloud::Vpc.v20170312.models.TrafficMirrorTarget`
+        # @param SubnetId: 公网IP类型的流量镜像采集流量的发送端所属子网
+        # @type SubnetId: String
+
+        attr_accessor :TrafficMirrorId, :CollectorTarget, :SubnetId
+
+        def initialize(trafficmirrorid=nil, collectortarget=nil, subnetid=nil)
+          @TrafficMirrorId = trafficmirrorid
+          @CollectorTarget = collectortarget
+          @SubnetId = subnetid
+        end
+
+        def deserialize(params)
+          @TrafficMirrorId = params['TrafficMirrorId']
+          unless params['CollectorTarget'].nil?
+            @CollectorTarget = TrafficMirrorTarget.new
+            @CollectorTarget.deserialize(params['CollectorTarget'])
+          end
+          @SubnetId = params['SubnetId']
+        end
+      end
+
+      # ResetTrafficMirrorTarget返回参数结构体
+      class ResetTrafficMirrorTargetResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ResetVpnConnection请求参数结构体
       class ResetVpnConnectionRequest < TencentCloud::Common::AbstractModel
         # @param VpnGatewayId: VPN网关实例ID。
@@ -25908,6 +26327,70 @@ module TencentCloud
         end
       end
 
+      # StartTrafficMirror请求参数结构体
+      class StartTrafficMirrorRequest < TencentCloud::Common::AbstractModel
+        # @param TrafficMirrorId: 流量镜像实例ID
+        # @type TrafficMirrorId: String
+
+        attr_accessor :TrafficMirrorId
+
+        def initialize(trafficmirrorid=nil)
+          @TrafficMirrorId = trafficmirrorid
+        end
+
+        def deserialize(params)
+          @TrafficMirrorId = params['TrafficMirrorId']
+        end
+      end
+
+      # StartTrafficMirror返回参数结构体
+      class StartTrafficMirrorResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # StopTrafficMirror请求参数结构体
+      class StopTrafficMirrorRequest < TencentCloud::Common::AbstractModel
+        # @param TrafficMirrorId: 流量镜像实例ID
+        # @type TrafficMirrorId: String
+
+        attr_accessor :TrafficMirrorId
+
+        def initialize(trafficmirrorid=nil)
+          @TrafficMirrorId = trafficmirrorid
+        end
+
+        def deserialize(params)
+          @TrafficMirrorId = params['TrafficMirrorId']
+        end
+      end
+
+      # StopTrafficMirror返回参数结构体
+      class StopTrafficMirrorResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 子网对象
       class Subnet < TencentCloud::Common::AbstractModel
         # @param VpcId: `VPC`实例`ID`。
@@ -26120,6 +26603,176 @@ module TencentCloud
           @Value = params['Value']
           @FormatValue = params['FormatValue']
           @FormatUnit = params['FormatUnit']
+        end
+      end
+
+      # 流量镜像实例
+      class TrafficMirror < TencentCloud::Common::AbstractModel
+        # @param VpcId: VPC实例ID。
+        # @type VpcId: String
+        # @param TrafficMirrorId: 流量镜像实例。
+        # @type TrafficMirrorId: String
+        # @param TrafficMirrorName: 流量镜像名字。
+        # @type TrafficMirrorName: String
+        # @param TrafficMirrorDescribe: 流量镜像描述。
+        # @type TrafficMirrorDescribe: String
+        # @param State: 流量镜像状态。
+        # @type State: String
+        # @param Direction: 流量镜像采集方向。
+        # @type Direction: String
+        # @param CollectorSrcs: 流量镜像采集对象。
+        # @type CollectorSrcs: Array
+        # @param NatId: 流量镜像过滤的nat网关实例ID。
+        # @type NatId: String
+        # @param CollectorNormalFilters: 流量镜像过滤的五元组规则。
+        # @type CollectorNormalFilters: Array
+        # @param CollectorTarget: 流量镜接收目标。
+        # @type CollectorTarget: :class:`Tencentcloud::Vpc.v20170312.models.TrafficMirrorTarget`
+        # @param CreateTime: 流量镜像创建时间。
+        # @type CreateTime: String
+        # @param Type: 流量镜像的类型。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+        # @param SubnetId: 流量镜像所属的子网ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubnetId: String
+        # @param TargetInfo: 流量镜接收目标资源信息，当接收目标为ENI和CLB时返回。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TargetInfo: Array
+
+        attr_accessor :VpcId, :TrafficMirrorId, :TrafficMirrorName, :TrafficMirrorDescribe, :State, :Direction, :CollectorSrcs, :NatId, :CollectorNormalFilters, :CollectorTarget, :CreateTime, :Type, :SubnetId, :TargetInfo
+
+        def initialize(vpcid=nil, trafficmirrorid=nil, trafficmirrorname=nil, trafficmirrordescribe=nil, state=nil, direction=nil, collectorsrcs=nil, natid=nil, collectornormalfilters=nil, collectortarget=nil, createtime=nil, type=nil, subnetid=nil, targetinfo=nil)
+          @VpcId = vpcid
+          @TrafficMirrorId = trafficmirrorid
+          @TrafficMirrorName = trafficmirrorname
+          @TrafficMirrorDescribe = trafficmirrordescribe
+          @State = state
+          @Direction = direction
+          @CollectorSrcs = collectorsrcs
+          @NatId = natid
+          @CollectorNormalFilters = collectornormalfilters
+          @CollectorTarget = collectortarget
+          @CreateTime = createtime
+          @Type = type
+          @SubnetId = subnetid
+          @TargetInfo = targetinfo
+        end
+
+        def deserialize(params)
+          @VpcId = params['VpcId']
+          @TrafficMirrorId = params['TrafficMirrorId']
+          @TrafficMirrorName = params['TrafficMirrorName']
+          @TrafficMirrorDescribe = params['TrafficMirrorDescribe']
+          @State = params['State']
+          @Direction = params['Direction']
+          @CollectorSrcs = params['CollectorSrcs']
+          @NatId = params['NatId']
+          unless params['CollectorNormalFilters'].nil?
+            @CollectorNormalFilters = []
+            params['CollectorNormalFilters'].each do |i|
+              trafficmirrorfilter_tmp = TrafficMirrorFilter.new
+              trafficmirrorfilter_tmp.deserialize(i)
+              @CollectorNormalFilters << trafficmirrorfilter_tmp
+            end
+          end
+          unless params['CollectorTarget'].nil?
+            @CollectorTarget = TrafficMirrorTarget.new
+            @CollectorTarget.deserialize(params['CollectorTarget'])
+          end
+          @CreateTime = params['CreateTime']
+          @Type = params['Type']
+          @SubnetId = params['SubnetId']
+          unless params['TargetInfo'].nil?
+            @TargetInfo = []
+            params['TargetInfo'].each do |i|
+              trafficmirrortargetresourceinfo_tmp = TrafficMirrorTargetResourceInfo.new
+              trafficmirrortargetresourceinfo_tmp.deserialize(i)
+              @TargetInfo << trafficmirrortargetresourceinfo_tmp
+            end
+          end
+        end
+      end
+
+      # 流量镜像五元组过滤规则对象
+      class TrafficMirrorFilter < TencentCloud::Common::AbstractModel
+        # @param SrcNet: 过滤规则的源网段
+        # @type SrcNet: String
+        # @param DstNet: 过滤规则的目的网段
+        # @type DstNet: String
+        # @param Protocol: 过滤规则的协议
+        # @type Protocol: String
+        # @param SrcPort: 过滤规则的源端口，默认值1-65535
+        # @type SrcPort: String
+        # @param DstPort: 过滤规则的目的端口，默认值1-65535
+        # @type DstPort: String
+
+        attr_accessor :SrcNet, :DstNet, :Protocol, :SrcPort, :DstPort
+
+        def initialize(srcnet=nil, dstnet=nil, protocol=nil, srcport=nil, dstport=nil)
+          @SrcNet = srcnet
+          @DstNet = dstnet
+          @Protocol = protocol
+          @SrcPort = srcport
+          @DstPort = dstport
+        end
+
+        def deserialize(params)
+          @SrcNet = params['SrcNet']
+          @DstNet = params['DstNet']
+          @Protocol = params['Protocol']
+          @SrcPort = params['SrcPort']
+          @DstPort = params['DstPort']
+        end
+      end
+
+      # 流量镜像采集目标类型
+      class TrafficMirrorTarget < TencentCloud::Common::AbstractModel
+        # @param TargetIps: 流量镜像的接收IP
+        # @type TargetIps: Array
+        # @param AlgHash: 流量镜像接收IP组，均衡规则，支持ENI/FIVE_TUPLE_FLOW（vpc），FIVE_TUPLE_FLOW（公网IP）
+        # @type AlgHash: String
+        # @param TargetEndPoints: 流量镜像的接收endpoint（公网IP）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TargetEndPoints: Array
+        # @param TargetType: 流量镜像的接收类型，分别为：IP/ENI/CLB
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TargetType: String
+
+        attr_accessor :TargetIps, :AlgHash, :TargetEndPoints, :TargetType
+
+        def initialize(targetips=nil, alghash=nil, targetendpoints=nil, targettype=nil)
+          @TargetIps = targetips
+          @AlgHash = alghash
+          @TargetEndPoints = targetendpoints
+          @TargetType = targettype
+        end
+
+        def deserialize(params)
+          @TargetIps = params['TargetIps']
+          @AlgHash = params['AlgHash']
+          @TargetEndPoints = params['TargetEndPoints']
+          @TargetType = params['TargetType']
+        end
+      end
+
+      # 流量镜像接收流量信息，当接收目标为ENI和CLB时返回
+      class TrafficMirrorTargetResourceInfo < TencentCloud::Common::AbstractModel
+        # @param TargetId: 接收目标的资源Id
+        # @type TargetId: String
+        # @param TargetName: 接收目标的资源名称
+        # @type TargetName: String
+
+        attr_accessor :TargetId, :TargetName
+
+        def initialize(targetid=nil, targetname=nil)
+          @TargetId = targetid
+          @TargetName = targetname
+        end
+
+        def deserialize(params)
+          @TargetId = params['TargetId']
+          @TargetName = params['TargetName']
         end
       end
 
@@ -26639,6 +27292,97 @@ module TencentCloud
 
       # UnlockCcns返回参数结构体
       class UnlockCcnsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # UpdateTrafficMirrorAllFilter请求参数结构体
+      class UpdateTrafficMirrorAllFilterRequest < TencentCloud::Common::AbstractModel
+        # @param TrafficMirrorId: 流量镜像实例ID
+        # @type TrafficMirrorId: String
+        # @param Direction: 流量镜像采集方向
+        # @type Direction: String
+        # @param CollectorSrcs: 流量镜像采集对象
+        # @type CollectorSrcs: Array
+        # @param NatId: 流量镜像需要过滤的natgw实例
+        # @type NatId: String
+        # @param CollectorNormalFilters: 流量镜像需要过滤的五元组规则
+        # @type CollectorNormalFilters: Array
+
+        attr_accessor :TrafficMirrorId, :Direction, :CollectorSrcs, :NatId, :CollectorNormalFilters
+
+        def initialize(trafficmirrorid=nil, direction=nil, collectorsrcs=nil, natid=nil, collectornormalfilters=nil)
+          @TrafficMirrorId = trafficmirrorid
+          @Direction = direction
+          @CollectorSrcs = collectorsrcs
+          @NatId = natid
+          @CollectorNormalFilters = collectornormalfilters
+        end
+
+        def deserialize(params)
+          @TrafficMirrorId = params['TrafficMirrorId']
+          @Direction = params['Direction']
+          @CollectorSrcs = params['CollectorSrcs']
+          @NatId = params['NatId']
+          unless params['CollectorNormalFilters'].nil?
+            @CollectorNormalFilters = []
+            params['CollectorNormalFilters'].each do |i|
+              trafficmirrorfilter_tmp = TrafficMirrorFilter.new
+              trafficmirrorfilter_tmp.deserialize(i)
+              @CollectorNormalFilters << trafficmirrorfilter_tmp
+            end
+          end
+        end
+      end
+
+      # UpdateTrafficMirrorAllFilter返回参数结构体
+      class UpdateTrafficMirrorAllFilterResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # UpdateTrafficMirrorDirection请求参数结构体
+      class UpdateTrafficMirrorDirectionRequest < TencentCloud::Common::AbstractModel
+        # @param TrafficMirrorId: 流量镜像实例ID
+        # @type TrafficMirrorId: String
+        # @param Direction: 流量镜像采集方向
+        # @type Direction: String
+
+        attr_accessor :TrafficMirrorId, :Direction
+
+        def initialize(trafficmirrorid=nil, direction=nil)
+          @TrafficMirrorId = trafficmirrorid
+          @Direction = direction
+        end
+
+        def deserialize(params)
+          @TrafficMirrorId = params['TrafficMirrorId']
+          @Direction = params['Direction']
+        end
+      end
+
+      # UpdateTrafficMirrorDirection返回参数结构体
+      class UpdateTrafficMirrorDirectionResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 

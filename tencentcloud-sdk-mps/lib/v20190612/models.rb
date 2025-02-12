@@ -1817,6 +1817,10 @@ module TencentCloud
         # @param Summary: 分段摘要
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Summary: String
+        # @param Title: 分段标题
+        # @type Title: String
+        # @param Keywords: 分段关键词
+        # @type Keywords: Array
         # @param StartTimeOffset: 分段起始时间点，秒
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StartTimeOffset: Float
@@ -1824,16 +1828,20 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EndTimeOffset: Float
 
-        attr_accessor :Summary, :StartTimeOffset, :EndTimeOffset
+        attr_accessor :Summary, :Title, :Keywords, :StartTimeOffset, :EndTimeOffset
 
-        def initialize(summary=nil, starttimeoffset=nil, endtimeoffset=nil)
+        def initialize(summary=nil, title=nil, keywords=nil, starttimeoffset=nil, endtimeoffset=nil)
           @Summary = summary
+          @Title = title
+          @Keywords = keywords
           @StartTimeOffset = starttimeoffset
           @EndTimeOffset = endtimeoffset
         end
 
         def deserialize(params)
           @Summary = params['Summary']
+          @Title = params['Title']
+          @Keywords = params['Keywords']
           @StartTimeOffset = params['StartTimeOffset']
           @EndTimeOffset = params['EndTimeOffset']
         end
@@ -15149,21 +15157,29 @@ module TencentCloud
         # @type Description: String
         # @param Confidence: 智能描述的可信度，取值范围是 0 到 100。
         # @type Confidence: Float
+        # @param Title: 智能描述标题
+        # @type Title: String
+        # @param Keywords: 智能描述关键词
+        # @type Keywords: Array
         # @param Paragraphs: 分段结果。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Paragraphs: Array
 
-        attr_accessor :Description, :Confidence, :Paragraphs
+        attr_accessor :Description, :Confidence, :Title, :Keywords, :Paragraphs
 
-        def initialize(description=nil, confidence=nil, paragraphs=nil)
+        def initialize(description=nil, confidence=nil, title=nil, keywords=nil, paragraphs=nil)
           @Description = description
           @Confidence = confidence
+          @Title = title
+          @Keywords = keywords
           @Paragraphs = paragraphs
         end
 
         def deserialize(params)
           @Description = params['Description']
           @Confidence = params['Confidence']
+          @Title = params['Title']
+          @Keywords = params['Keywords']
           unless params['Paragraphs'].nil?
             @Paragraphs = []
             params['Paragraphs'].each do |i|

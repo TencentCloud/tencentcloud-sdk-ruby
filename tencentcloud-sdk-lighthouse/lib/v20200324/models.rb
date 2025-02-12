@@ -5509,7 +5509,6 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstancePrice: :class:`Tencentcloud::Lighthouse.v20200324.models.InstancePrice`
         # @param DiscountDetail: 折扣梯度详情，每个梯度包含的信息有：时长，折扣数，总价，折扣价，折扣详情（用户折扣、官网折扣、最终折扣）。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DiscountDetail: Array
 
         attr_accessor :InstanceId, :InstancePrice, :DiscountDetail
@@ -5595,16 +5594,12 @@ module TencentCloud
       # 实例违规详情。
       class InstanceViolationDetail < TencentCloud::Common::AbstractModel
         # @param Source:  来源：RESTRICT：封禁、FREEZW：冻结
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Source: String
         # @param State: 是否允许自助解封：1是，2否
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type State: String
         # @param Reason: 违规类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Reason: String
         # @param Content: 违规内容（URL、关联域名）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Content: String
 
         attr_accessor :Source, :State, :Reason, :Content

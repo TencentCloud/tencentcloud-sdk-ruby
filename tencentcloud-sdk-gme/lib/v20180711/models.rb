@@ -68,27 +68,20 @@ module TencentCloud
       # 应用用量统计数据
       class AppStatisticsItem < TencentCloud::Common::AbstractModel
         # @param RealtimeSpeechStatisticsItem: 实时语音统计数据
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RealtimeSpeechStatisticsItem: :class:`Tencentcloud::Gme.v20180711.models.RealTimeSpeechStatisticsItem`
         # @param VoiceMessageStatisticsItem: 语音消息统计数据
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VoiceMessageStatisticsItem: :class:`Tencentcloud::Gme.v20180711.models.VoiceMessageStatisticsItem`
         # @param VoiceFilterStatisticsItem: 语音过滤统计数据
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VoiceFilterStatisticsItem: :class:`Tencentcloud::Gme.v20180711.models.VoiceFilterStatisticsItem`
         # @param Date: 统计时间
         # @type Date: String
         # @param AudioTextStatisticsItem: 录音转文本用量统计数据
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AudioTextStatisticsItem: :class:`Tencentcloud::Gme.v20180711.models.AudioTextStatisticsItem`
         # @param StreamTextStatisticsItem: 流式转文本用量数据
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StreamTextStatisticsItem: :class:`Tencentcloud::Gme.v20180711.models.StreamTextStatisticsItem`
         # @param OverseaTextStatisticsItem: 海外转文本用量数据
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OverseaTextStatisticsItem: :class:`Tencentcloud::Gme.v20180711.models.OverseaTextStatisticsItem`
         # @param RealtimeTextStatisticsItem: 实时语音转文本用量数据
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RealtimeTextStatisticsItem: :class:`Tencentcloud::Gme.v20180711.models.RealtimeTextStatisticsItem`
 
         attr_accessor :RealtimeSpeechStatisticsItem, :VoiceMessageStatisticsItem, :VoiceFilterStatisticsItem, :Date, :AudioTextStatisticsItem, :StreamTextStatisticsItem, :OverseaTextStatisticsItem, :RealtimeTextStatisticsItem
@@ -326,7 +319,6 @@ module TencentCloud
       # 录音转文本用量统计数据
       class AudioTextStatisticsItem < TencentCloud::Common::AbstractModel
         # @param Data: 统计值，单位：秒
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: Float
 
         attr_accessor :Data
@@ -1863,7 +1855,6 @@ module TencentCloud
       # 海外转文本用量数据
       class OverseaTextStatisticsItem < TencentCloud::Common::AbstractModel
         # @param Data: 统计值，单位：秒
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: Float
 
         attr_accessor :Data
@@ -1936,7 +1927,6 @@ module TencentCloud
       # 实时语音转文本用量数据
       class RealtimeTextStatisticsItem < TencentCloud::Common::AbstractModel
         # @param Data: 统计值，单位：秒
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: Float
 
         attr_accessor :Data
@@ -2207,12 +2197,27 @@ module TencentCloud
       # 'VoiceMessage','语音消息',
       # 'GMECloudApi':'GME云API接口'
       class SceneInfo < TencentCloud::Common::AbstractModel
+        # @param SceneId: 'RealTime','实时语音分析',
+        # 'VoiceMessage','语音消息',
+        # 'GMECloudApi':'GME云API接口'
+        # @type SceneId: String
+        # @param Status: 开关状态，true开启/false关闭
+        # @type Status: Boolean
+        # @param CallbackUrl: 用户回调地址
+        # @type CallbackUrl: String
 
+        attr_accessor :SceneId, :Status, :CallbackUrl
 
-        def initialize()
+        def initialize(sceneid=nil, status=nil, callbackurl=nil)
+          @SceneId = sceneid
+          @Status = status
+          @CallbackUrl = callbackurl
         end
 
         def deserialize(params)
+          @SceneId = params['SceneId']
+          @Status = params['Status']
+          @CallbackUrl = params['CallbackUrl']
         end
       end
 
@@ -2402,7 +2407,6 @@ module TencentCloud
       # 流式转文本用量数据
       class StreamTextStatisticsItem < TencentCloud::Common::AbstractModel
         # @param Data: 统计值，单位：秒
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: Float
 
         attr_accessor :Data
@@ -2441,10 +2445,8 @@ module TencentCloud
       # 标签列表
       class Tag < TencentCloud::Common::AbstractModel
         # @param TagKey: 标签键
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TagKey: String
         # @param TagValue: 标签值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TagValue: String
 
         attr_accessor :TagKey, :TagValue

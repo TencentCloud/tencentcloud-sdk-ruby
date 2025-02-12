@@ -2646,6 +2646,79 @@ module TencentCloud
         end
       end
 
+      # CreateFileCounterSign请求参数结构体
+      class CreateFileCounterSignRequest < TencentCloud::Common::AbstractModel
+        # @param FileId: 需要加签的文件Id。
+
+        # 注: `暂时只支持pdf类型的文件`
+        # @type FileId: String
+        # @param Operator: 执行本接口操作的员工信息。注: `在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。`
+        # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
+        # @param Agent: 代理企业和员工的信息。在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
+        # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
+        # @param SyncMode: 是否使用同步模式。
+        # <ul><li><b>false</b>:异步模式，返回taskId。需要使用taskId轮询结果查询接口。</li>
+        # <li><b>true</b>: 同步模式，此接口将直接返回taskId和ResultFileId(加签后文件id)。</li></ul>
+        # 注：
+        # 1. 当加签文件较大的时候，建议使用异步接口进行操作。否则文件加签时间过长会导致接口超时。
+        # @type SyncMode: Boolean
+
+        attr_accessor :FileId, :Operator, :Agent, :SyncMode
+
+        def initialize(fileid=nil, operator=nil, agent=nil, syncmode=nil)
+          @FileId = fileid
+          @Operator = operator
+          @Agent = agent
+          @SyncMode = syncmode
+        end
+
+        def deserialize(params)
+          @FileId = params['FileId']
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
+          @SyncMode = params['SyncMode']
+        end
+      end
+
+      # CreateFileCounterSign返回参数结构体
+      class CreateFileCounterSignResponse < TencentCloud::Common::AbstractModel
+        # @param Status: 加签任务的状态。
+
+        # <ul>
+        # <li><b>PROCESSING</b>: 任务正在执行中。</li>
+        # <li><b>FINISHED</b>: 已执行成功</li>
+        # </ul>
+        # @type Status: String
+        # @param ResultFileId: 加签完成后新的文件Id
+        # @type ResultFileId: String
+        # @param TaskId: 异步模式下用于轮询状态的任务Id
+        # @type TaskId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Status, :ResultFileId, :TaskId, :RequestId
+
+        def initialize(status=nil, resultfileid=nil, taskid=nil, requestid=nil)
+          @Status = status
+          @ResultFileId = resultfileid
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @ResultFileId = params['ResultFileId']
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateFlowApprovers请求参数结构体
       class CreateFlowApproversRequest < TencentCloud::Common::AbstractModel
         # @param Operator: 执行本接口操作的员工信息。
@@ -7303,27 +7376,78 @@ module TencentCloud
         end
       end
 
+      # DescribeFileCounterSignResult请求参数结构体
+      class DescribeFileCounterSignResultRequest < TencentCloud::Common::AbstractModel
+        # @param Operator: 执行本接口操作的员工信息。注: `在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。`
+        # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
+        # @param Agent: 代理企业和员工的信息。在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
+        # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
+        # @param TaskId: 加签任务Id
+        # @type TaskId: String
+
+        attr_accessor :Operator, :Agent, :TaskId
+
+        def initialize(operator=nil, agent=nil, taskid=nil)
+          @Operator = operator
+          @Agent = agent
+          @TaskId = taskid
+        end
+
+        def deserialize(params)
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
+          @TaskId = params['TaskId']
+        end
+      end
+
+      # DescribeFileCounterSignResult返回参数结构体
+      class DescribeFileCounterSignResultResponse < TencentCloud::Common::AbstractModel
+        # @param Status: 加签任务的状态。
+
+        # <ul>
+        # <li><b>PROCESSING</b>: 任务正在执行中。</li>
+        # <li><b>FINISHED</b>: 已执行成功</li>
+        # <li><b>FAILED</b>: 执行失败</li>
+        # </ul>
+        # @type Status: String
+        # @param ResultFileId: 加签完成后新的文件Id
+        # @type ResultFileId: String
+        # @param ErrorDetail: 失败的错误信息，加签任务失败的情况下会返回。
+        # @type ErrorDetail: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Status, :ResultFileId, :ErrorDetail, :RequestId
+
+        def initialize(status=nil, resultfileid=nil, errordetail=nil, requestid=nil)
+          @Status = status
+          @ResultFileId = resultfileid
+          @ErrorDetail = errordetail
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @ResultFileId = params['ResultFileId']
+          @ErrorDetail = params['ErrorDetail']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeFileUrls请求参数结构体
       class DescribeFileUrlsRequest < TencentCloud::Common::AbstractModel
         # @param Operator: 执行本接口操作的员工信息。
         # 注: `在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。`
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
-        # @param BusinessType: 文件对应的业务类型，目前支持：
-        # <ul>
-        # <li>**FLOW ** : <font color="red">如需下载合同文件请选择此项</font></li>
-        # <li>**TEMPLATE ** : 如需下载模板文件请选择此项</li>
-        # <li>**DOCUMENT  **: 如需下载文档文件请选择此项</li>
-        # <li>**SEAL  **: 如需下载印章图片请选择此项</li>
-        # </ul>
+        # @param BusinessType: 文件对应的业务类型，目前支持：<ul><li>**FLOW ** : <font color="red">如需下载合同文件请选择此项</font></li><li>**TEMPLATE ** : 如需下载模板文件请选择此项</li><li>**DOCUMENT  **: 如需下载文档文件请选择此项</li><li>**SEAL  **: 如需下载印章图片请选择此项</li><li>**DIGITFILE**: 如需下载加签文件请选择此项</li></ul>
         # @type BusinessType: String
-        # @param BusinessIds: 业务编号的数组，取值如下：
-        # <ul>
-        # <li>流程编号</li>
-        # <li>模板编号</li>
-        # <li>文档编号</li>
-        # <li>印章编号</li>
-        # <li>如需下载合同文件请传入FlowId，最大支持20个资源</li>
-        # </ul>
+        # @param BusinessIds: 业务编号的数组，取值如下：<ul><li>流程编号</li><li>模板编号</li><li>文档编号</li><li>印章编号</li><li>加签文件编号</li><li>如需下载合同文件请传入FlowId，最大支持20个资源</li></ul>
         # @type BusinessIds: Array
         # @param FileName: 下载后的文件命名，只有FileType为zip的时候生效
         # @type FileName: String
@@ -13236,6 +13360,121 @@ module TencentCloud
           @Name = params['Name']
           @IdCardType = params['IdCardType']
           @IdCardNumber = params['IdCardNumber']
+        end
+      end
+
+      # VerifyDigitFile请求参数结构体
+      class VerifyDigitFileRequest < TencentCloud::Common::AbstractModel
+        # @param Operator: 执行本接口操作的员工信息。注: `在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。
+        # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
+        # @param Agent: 代理企业和员工的信息。在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
+        # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
+        # @param FileId: 加签接口返回的文件Id
+        # @type FileId: String
+
+        attr_accessor :Operator, :Agent, :FileId
+
+        def initialize(operator=nil, agent=nil, fileid=nil)
+          @Operator = operator
+          @Agent = agent
+          @FileId = fileid
+        end
+
+        def deserialize(params)
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
+          @FileId = params['FileId']
+        end
+      end
+
+      # VerifyDigitFile返回参数结构体
+      class VerifyDigitFileResponse < TencentCloud::Common::AbstractModel
+        # @param PdfResourceMd5: 加签文件MD5哈希值
+        # @type PdfResourceMd5: String
+        # @param VerifyResult: 验签结果代码，代码的含义如下：<ul><li>**1**：文件验证成功。</li><li>**2**：文件验证失败。</li></ul>
+        # @type VerifyResult: Integer
+        # @param VerifySerialNo: 验签序列号, 为11为数组组成的字符串
+        # @type VerifySerialNo: String
+        # @param VerifyDigitFileResults: 验签结果详情，每个签名域对应的验签结果。
+        # @type VerifyDigitFileResults: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :PdfResourceMd5, :VerifyResult, :VerifySerialNo, :VerifyDigitFileResults, :RequestId
+
+        def initialize(pdfresourcemd5=nil, verifyresult=nil, verifyserialno=nil, verifydigitfileresults=nil, requestid=nil)
+          @PdfResourceMd5 = pdfresourcemd5
+          @VerifyResult = verifyresult
+          @VerifySerialNo = verifyserialno
+          @VerifyDigitFileResults = verifydigitfileresults
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @PdfResourceMd5 = params['PdfResourceMd5']
+          @VerifyResult = params['VerifyResult']
+          @VerifySerialNo = params['VerifySerialNo']
+          unless params['VerifyDigitFileResults'].nil?
+            @VerifyDigitFileResults = []
+            params['VerifyDigitFileResults'].each do |i|
+              verifydigitfileresult_tmp = VerifyDigitFileResult.new
+              verifydigitfileresult_tmp.deserialize(i)
+              @VerifyDigitFileResults << verifydigitfileresult_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 数字加签文件验签结果
+      class VerifyDigitFileResult < TencentCloud::Common::AbstractModel
+        # @param CertNotBefore: 证书起始时间的Unix时间戳，单位毫秒
+        # @type CertNotBefore: Integer
+        # @param CertNotAfter: 证书过期时间的时间戳，单位毫秒
+        # @type CertNotAfter: Integer
+        # @param CertSn: 证书序列号，在数字证书申请过程中，系统会自动生成一个独一无二的序号。
+        # @type CertSn: String
+        # @param SignAlgorithm: 证书签名算法, 如SHA1withRSA等算法
+        # @type SignAlgorithm: String
+        # @param SignTime: 签署时间的Unix时间戳，单位毫秒
+        # @type SignTime: Integer
+        # @param SignType: 签名类型。0表示带签章的数字签名，1表示仅数字签名
+        # @type SignType: Integer
+        # @param SignerName: 申请证书的主体的名字
+
+        # 如果是在腾讯电子签平台签署, 则对应的主体的名字个数如下
+        # **企业**:  ESS@企业名称@编码
+        # **个人**: ESS@个人姓名@证件号@808854
+
+        # 如果在其他平台签署的, 主体的名字参考其他平台的说明
+        # @type SignerName: String
+
+        attr_accessor :CertNotBefore, :CertNotAfter, :CertSn, :SignAlgorithm, :SignTime, :SignType, :SignerName
+
+        def initialize(certnotbefore=nil, certnotafter=nil, certsn=nil, signalgorithm=nil, signtime=nil, signtype=nil, signername=nil)
+          @CertNotBefore = certnotbefore
+          @CertNotAfter = certnotafter
+          @CertSn = certsn
+          @SignAlgorithm = signalgorithm
+          @SignTime = signtime
+          @SignType = signtype
+          @SignerName = signername
+        end
+
+        def deserialize(params)
+          @CertNotBefore = params['CertNotBefore']
+          @CertNotAfter = params['CertNotAfter']
+          @CertSn = params['CertSn']
+          @SignAlgorithm = params['SignAlgorithm']
+          @SignTime = params['SignTime']
+          @SignType = params['SignType']
+          @SignerName = params['SignerName']
         end
       end
 

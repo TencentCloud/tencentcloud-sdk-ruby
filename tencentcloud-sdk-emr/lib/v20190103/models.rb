@@ -10246,7 +10246,7 @@ module TencentCloud
         end
       end
 
-      # Serverless HBase 实例信息
+      # Serverless HBase实例信息
       class SLInstanceInfo < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群实例字符串ID
         # @type ClusterId: String
@@ -10254,6 +10254,8 @@ module TencentCloud
         # @type Id: Integer
         # @param StatusDesc: 状态描述
         # @type StatusDesc: String
+        # @param HealthStatus: 健康状态
+        # @type HealthStatus: String
         # @param ClusterName: 实例名称
         # @type ClusterName: String
         # @param RegionId: 地域ID
@@ -10287,12 +10289,13 @@ module TencentCloud
         # @param ExpireTime: 过期时间，后付费返回0000-00-00 00:00:00
         # @type ExpireTime: String
 
-        attr_accessor :ClusterId, :Id, :StatusDesc, :ClusterName, :RegionId, :ZoneId, :Zone, :AppId, :VpcId, :SubnetId, :Status, :AddTime, :PayMode, :ZoneSettings, :Tags, :AutoRenewFlag, :IsolateTime, :ExpireTime
+        attr_accessor :ClusterId, :Id, :StatusDesc, :HealthStatus, :ClusterName, :RegionId, :ZoneId, :Zone, :AppId, :VpcId, :SubnetId, :Status, :AddTime, :PayMode, :ZoneSettings, :Tags, :AutoRenewFlag, :IsolateTime, :ExpireTime
 
-        def initialize(clusterid=nil, id=nil, statusdesc=nil, clustername=nil, regionid=nil, zoneid=nil, zone=nil, appid=nil, vpcid=nil, subnetid=nil, status=nil, addtime=nil, paymode=nil, zonesettings=nil, tags=nil, autorenewflag=nil, isolatetime=nil, expiretime=nil)
+        def initialize(clusterid=nil, id=nil, statusdesc=nil, healthstatus=nil, clustername=nil, regionid=nil, zoneid=nil, zone=nil, appid=nil, vpcid=nil, subnetid=nil, status=nil, addtime=nil, paymode=nil, zonesettings=nil, tags=nil, autorenewflag=nil, isolatetime=nil, expiretime=nil)
           @ClusterId = clusterid
           @Id = id
           @StatusDesc = statusdesc
+          @HealthStatus = healthstatus
           @ClusterName = clustername
           @RegionId = regionid
           @ZoneId = zoneid
@@ -10314,6 +10317,7 @@ module TencentCloud
           @ClusterId = params['ClusterId']
           @Id = params['Id']
           @StatusDesc = params['StatusDesc']
+          @HealthStatus = params['HealthStatus']
           @ClusterName = params['ClusterName']
           @RegionId = params['RegionId']
           @ZoneId = params['ZoneId']

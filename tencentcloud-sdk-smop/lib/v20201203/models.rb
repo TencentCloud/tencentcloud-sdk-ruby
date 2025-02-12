@@ -60,16 +60,12 @@ module TencentCloud
       # SubmitTaskEvent返回参数结构体
       class SubmitTaskEventResponse < TencentCloud::Common::AbstractModel
         # @param OrderId: 任务的唯一订单号
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OrderId: String
         # @param Code: 信息码。0表示成功，-1标识失败
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Code: Integer
         # @param Message: 提示信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Message: String
         # @param Data: 任务处理结果列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -103,43 +99,30 @@ module TencentCloud
       # 后端提交任务事件返回Data复杂类型
       class TaskEventData < TencentCloud::Common::AbstractModel
         # @param Code: 状态码，0为成功，-1为失败
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Code: Integer
         # @param Message: 提示信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Message: String
         # @param TaskId: 任务ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskId: Integer
         # @param TaskOrderId: 当前完成或正在完成的安心用户运营平台的任务订单ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskOrderId: String
         # @param TaskCode: 当前任务订单状态码。1代表未完成；2代表已完成但未提交任务；3表示已完成，且已提交获得积分任务；4表示过期任务，提交后不获得积分。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskCode: Integer
         # @param TaskCoinNumber: 获得积分数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskCoinNumber: Integer
         # @param TaskType: 任务类型后台代码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskType: Integer
         # @param TotalCoin: 用户的当前积分
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCoin: Integer
         # @param Attach: 用户透传的附加数据
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Attach: String
         # @param DoneTimes: 计次任务当前完成次数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DoneTimes: Integer
         # @param TotalTimes: 计次任务当前所需完成次数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalTimes: Integer
         # @param TaskName: 任务名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskName: String
         # @param GrowScore: 用户当前成长值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GrowScore: Integer
 
         attr_accessor :Code, :Message, :TaskId, :TaskOrderId, :TaskCode, :TaskCoinNumber, :TaskType, :TotalCoin, :Attach, :DoneTimes, :TotalTimes, :TaskName, :GrowScore

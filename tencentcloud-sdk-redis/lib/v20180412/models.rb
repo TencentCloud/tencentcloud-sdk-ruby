@@ -1635,7 +1635,6 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Filenames: Array
         # @param BackupInfos: 备份文件信息列表。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BackupInfos: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1929,10 +1928,8 @@ module TencentCloud
       # DescribeInstanceAccount返回参数结构体
       class DescribeInstanceAccountResponse < TencentCloud::Common::AbstractModel
         # @param Accounts: 账号详细信息。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Accounts: Array
         # @param TotalCount: 账号个数。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2055,28 +2052,20 @@ module TencentCloud
       # DescribeInstanceDTSInfo返回参数结构体
       class DescribeInstanceDTSInfoResponse < TencentCloud::Common::AbstractModel
         # @param JobId: DTS任务ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type JobId: String
         # @param JobName: DTS任务名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type JobName: String
         # @param Status: 任务状态,取值为：1-创建中(Creating),3-校验中(Checking)4-校验通过(CheckPass),5-校验不通过（CheckNotPass）,7-任务运行(Running),8-准备完成（ReadyComplete）,9-任务成功（Success）,10-任务失败（Failed）,11-撤销中（Stopping）,12-完成中（Completing）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
         # @param StatusDesc: 状态描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StatusDesc: String
         # @param Offset: 同步时延，单位：字节
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Offset: Integer
         # @param CutDownTime: 断开时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CutDownTime: String
         # @param SrcInfo: 源实例信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SrcInfo: :class:`Tencentcloud::Redis.v20180412.models.DescribeInstanceDTSInstanceInfo`
         # @param DstInfo: 目标实例信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DstInfo: :class:`Tencentcloud::Redis.v20180412.models.DescribeInstanceDTSInstanceInfo`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2756,17 +2745,14 @@ module TencentCloud
         # @param ProxyCount: Proxy节点数量。
         # @type ProxyCount: Integer
         # @param Proxy: Proxy节点信息。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Proxy: Array
         # @param RedisCount: Redis节点数量。
         # @type RedisCount: Integer
         # @param Redis: Redis节点信息。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Redis: Array
         # @param TendisCount: 该参数不再使用，请忽略。
         # @type TendisCount: Integer
         # @param Tendis: 该参数不再使用，请忽略。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tendis: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4572,7 +4558,6 @@ module TencentCloud
       # DisableReplicaReadonly返回参数结构体
       class DisableReplicaReadonlyResponse < TencentCloud::Common::AbstractModel
         # @param TaskId: 任务ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskId: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4656,10 +4641,8 @@ module TencentCloud
       # EnableReplicaReadonly返回参数结构体
       class EnableReplicaReadonlyResponse < TencentCloud::Common::AbstractModel
         # @param Status: 错误：ERROR，正确OK（已废弃）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: String
         # @param TaskId: 任务ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskId: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4898,7 +4881,6 @@ module TencentCloud
       # InquiryPriceCreateInstance返回参数结构体
       class InquiryPriceCreateInstanceResponse < TencentCloud::Common::AbstractModel
         # @param Price: 价格，单位：分
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Price: Float
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4939,7 +4921,6 @@ module TencentCloud
       # InquiryPriceRenewInstance返回参数结构体
       class InquiryPriceRenewInstanceResponse < TencentCloud::Common::AbstractModel
         # @param Price: 价格，单位：分。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Price: Float
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4988,7 +4969,6 @@ module TencentCloud
       # InquiryPriceUpgradeInstance返回参数结构体
       class InquiryPriceUpgradeInstanceResponse < TencentCloud::Common::AbstractModel
         # @param Price: 价格，单位：分
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Price: Float
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

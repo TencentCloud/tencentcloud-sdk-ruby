@@ -780,6 +780,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 检查流量镜像的采集端接收端（公网IP类型）
+
+        # @param request: Request instance for CheckTrafficMirror.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::CheckTrafficMirrorRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::CheckTrafficMirrorResponse`
+        def CheckTrafficMirror(request)
+          body = send_request('CheckTrafficMirror', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CheckTrafficMirrorResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（ClearRouteTableSelectionPolicies）用于清空指定云联网的路由表选择策略。
 
         # @param request: Request instance for ClearRouteTableSelectionPolicies.
@@ -1946,6 +1970,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CreateSubnetsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（CreateTrafficMirror）用于创建流量镜像实例。
+
+        # @param request: Request instance for CreateTrafficMirror.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::CreateTrafficMirrorRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::CreateTrafficMirrorResponse`
+        def CreateTrafficMirror(request)
+          body = send_request('CreateTrafficMirror', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateTrafficMirrorResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -3204,6 +3252,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteTemplateMemberResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（DeleteTrafficMirror）用于删除流量镜像实例。
+
+        # @param request: Request instance for DeleteTrafficMirror.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::DeleteTrafficMirrorRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::DeleteTrafficMirrorResponse`
+        def DeleteTrafficMirror(request)
+          body = send_request('DeleteTrafficMirror', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteTrafficMirrorResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -5526,6 +5598,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeTenantCcnsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（DescribeTrafficMirrors）用于查询流量镜像实例信息。
+
+        # @param request: Request instance for DescribeTrafficMirrors.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::DescribeTrafficMirrorsRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::DescribeTrafficMirrorsResponse`
+        def DescribeTrafficMirrors(request)
+          body = send_request('DescribeTrafficMirrors', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeTrafficMirrorsResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -8447,6 +8543,31 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（ModifyTrafficMirrorAttribute）用于修改流量镜像实例属性。
+        # 注意：只支持修改名字和描述信息
+
+        # @param request: Request instance for ModifyTrafficMirrorAttribute.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::ModifyTrafficMirrorAttributeRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::ModifyTrafficMirrorAttributeResponse`
+        def ModifyTrafficMirrorAttribute(request)
+          body = send_request('ModifyTrafficMirrorAttribute', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyTrafficMirrorAttributeResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（ModifyVpcAttribute）用于修改私有网络（VPC）的相关属性。
 
         # @param request: Request instance for ModifyVpcAttribute.
@@ -9334,6 +9455,79 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（ResetTrafficMirrorFilter）用于更新流量镜像实例过滤规则。
+        # 注意：每一个流量镜像实例，不能同时支持按nat网关和五元组两种规则过滤
+
+        # @param request: Request instance for ResetTrafficMirrorFilter.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::ResetTrafficMirrorFilterRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::ResetTrafficMirrorFilterResponse`
+        def ResetTrafficMirrorFilter(request)
+          body = send_request('ResetTrafficMirrorFilter', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ResetTrafficMirrorFilterResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（ResetTrafficMirrorSrcs）用于重置流量镜像实例采集对象。
+
+        # @param request: Request instance for ResetTrafficMirrorSrcs.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::ResetTrafficMirrorSrcsRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::ResetTrafficMirrorSrcsResponse`
+        def ResetTrafficMirrorSrcs(request)
+          body = send_request('ResetTrafficMirrorSrcs', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ResetTrafficMirrorSrcsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（ResetTrafficMirrorTarget）用于更新流量镜像实例的接收目的信息。
+
+        # @param request: Request instance for ResetTrafficMirrorTarget.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::ResetTrafficMirrorTargetRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::ResetTrafficMirrorTargetResponse`
+        def ResetTrafficMirrorTarget(request)
+          body = send_request('ResetTrafficMirrorTarget', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ResetTrafficMirrorTargetResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（ResetVpnConnection）用于重置VPN通道。
 
         # @param request: Request instance for ResetVpnConnection.
@@ -9465,6 +9659,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = SetVpnGatewaysRenewFlagResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（StartTrafficMirror）用于开启流量镜像实例。
+
+        # @param request: Request instance for StartTrafficMirror.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::StartTrafficMirrorRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::StartTrafficMirrorResponse`
+        def StartTrafficMirror(request)
+          body = send_request('StartTrafficMirror', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = StartTrafficMirrorResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（StopTrafficMirror）用于关闭流量镜像实例。
+
+        # @param request: Request instance for StopTrafficMirror.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::StopTrafficMirrorRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::StopTrafficMirrorResponse`
+        def StopTrafficMirror(request)
+          body = send_request('StopTrafficMirror', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = StopTrafficMirrorResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -9646,6 +9888,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = UnlockCcnsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（UpdateTrafficMirrorAllFilter）用于更新流量镜像实例的过滤规则或者采集对象。
+
+        # @param request: Request instance for UpdateTrafficMirrorAllFilter.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::UpdateTrafficMirrorAllFilterRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::UpdateTrafficMirrorAllFilterResponse`
+        def UpdateTrafficMirrorAllFilter(request)
+          body = send_request('UpdateTrafficMirrorAllFilter', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdateTrafficMirrorAllFilterResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（UpdateTrafficMirrorDirection）用于更新流量镜像实例的采集方向。
+
+        # @param request: Request instance for UpdateTrafficMirrorDirection.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::UpdateTrafficMirrorDirectionRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::UpdateTrafficMirrorDirectionResponse`
+        def UpdateTrafficMirrorDirection(request)
+          body = send_request('UpdateTrafficMirrorDirection', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdateTrafficMirrorDirectionResponse.new
             model.deserialize(response['Response'])
             model
           else

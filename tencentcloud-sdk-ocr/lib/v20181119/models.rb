@@ -1430,22 +1430,32 @@ module TencentCloud
         # @type Content: String
         # @param Confidence: 结果置信度
         # @type Confidence: Integer
-        # @param IsInComplete: 字段是否不完整
+        # @param IsInComplete: 字段是否不完整（value内容）
         # 0 字段正常
         # 1 字段不完整
         # @type IsInComplete: Integer
-        # @param IsReflect: 字段反光
+        # @param IsReflect: 字段反光（value内容）
         # 0 字段正常
         # 1 字段有反光
         # @type IsReflect: Integer
+        # @param IsKeyInComplete: 字段是否不完整（key内容）
+        # 0 字段正常
+        # 1 字段不完整
+        # @type IsKeyInComplete: Integer
+        # @param IsKeyReflect: 字段反光（key内容）
+        # 0 字段正常
+        # 1 字段有反光
+        # @type IsKeyReflect: Integer
 
-        attr_accessor :Content, :Confidence, :IsInComplete, :IsReflect
+        attr_accessor :Content, :Confidence, :IsInComplete, :IsReflect, :IsKeyInComplete, :IsKeyReflect
 
-        def initialize(content=nil, confidence=nil, isincomplete=nil, isreflect=nil)
+        def initialize(content=nil, confidence=nil, isincomplete=nil, isreflect=nil, iskeyincomplete=nil, iskeyreflect=nil)
           @Content = content
           @Confidence = confidence
           @IsInComplete = isincomplete
           @IsReflect = isreflect
+          @IsKeyInComplete = iskeyincomplete
+          @IsKeyReflect = iskeyreflect
         end
 
         def deserialize(params)
@@ -1453,6 +1463,8 @@ module TencentCloud
           @Confidence = params['Confidence']
           @IsInComplete = params['IsInComplete']
           @IsReflect = params['IsReflect']
+          @IsKeyInComplete = params['IsKeyInComplete']
+          @IsKeyReflect = params['IsKeyReflect']
         end
       end
 

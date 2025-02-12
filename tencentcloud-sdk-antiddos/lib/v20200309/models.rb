@@ -1473,7 +1473,7 @@ module TencentCloud
         # @type UnBoundDevList: Array
         # @param CopyPolicy: 已弃用，不填
         # @type CopyPolicy: String
-        # @param FilterRegion: 如果该资源实例为域名化资产则，该参数必填
+        # @param FilterRegion: 如果该资源实例为域名化资产以及跨地域绑定则，该参数必填
         # @type FilterRegion: String
 
         attr_accessor :Business, :Id, :BoundDevList, :UnBoundDevList, :CopyPolicy, :FilterRegion

@@ -2566,10 +2566,8 @@ module TencentCloud
         # @param MemberRecords: 成员记录列表。
         # @type MemberRecords: Array
         # @param RealStartTime: 秒级unix时间戳，实际房间开始时间。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RealStartTime: Integer
         # @param RealEndTime: 秒级unix时间戳，实际房间结束时间。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RealEndTime: Integer
         # @param MessageCount: 房间消息总数。
         # @type MessageCount: Integer
@@ -2809,7 +2807,6 @@ module TencentCloud
         # @param Avatar: 用户头像Url。
         # @type Avatar: String
         # @param OriginId: 用户在客户系统的Id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OriginId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3177,7 +3174,6 @@ module TencentCloud
         # @param Total: 该房间的事件总数，keyword搜索不影响该值。
         # @type Total: Integer
         # @param Events: 详细事件内容。包含相应的类型、发生的时间戳。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Events: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3345,16 +3341,12 @@ module TencentCloud
       # GetWatermark返回参数结构体
       class GetWatermarkResponse < TencentCloud::Common::AbstractModel
         # @param TeacherLogo: 老师视频区域的水印参数配置
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TeacherLogo: :class:`Tencentcloud::Lcic.v20220817.models.WatermarkConfig`
         # @param BoardLogo: 白板区域的水印参数配置
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BoardLogo: :class:`Tencentcloud::Lcic.v20220817.models.WatermarkConfig`
         # @param BackgroundPicture: 背景图片配置
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BackgroundPicture: :class:`Tencentcloud::Lcic.v20220817.models.BackgroundPictureConfig`
         # @param Text: 文字水印配置
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Text: :class:`Tencentcloud::Lcic.v20220817.models.TextMarkConfig`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
