@@ -1540,7 +1540,7 @@ module TencentCloud
         # @type InstanceId: String
         # @param Ip: IP值
         # @type Ip: String
-        # @param Protocol: 协议， 可取值HTTP，HTTPS
+        # @param Protocol: 协议， 可取值http，https，http/https
         # @type Protocol: String
         # @param Domain: 域名
         # @type Domain: String
@@ -1599,13 +1599,13 @@ module TencentCloud
         # @type InstanceId: String
         # @param Ip: IP值
         # @type Ip: String
-        # @param Protocol: 协议，可取值HTTP，HTTPS
+        # @param Protocol: 协议，可取值http, https, http/https
         # @type Protocol: String
         # @param Domain: 域名
         # @type Domain: String
         # @param Policy: 策略项
         # @type Policy: :class:`Tencentcloud::Antiddos.v20200309.models.CCReqLimitPolicyRecord`
-        # @param IsGlobal: 是否为兜底频控
+        # @param IsGlobal: 是否为兜底频控 0表示不是 1表示是
         # @type IsGlobal: Integer
 
         attr_accessor :InstanceId, :Ip, :Protocol, :Domain, :Policy, :IsGlobal
@@ -3313,7 +3313,7 @@ module TencentCloud
         # @type StartTime: String
         # @param EndTime: 统计结束时间。 例：“2020-09-22 00:00:00”，注意该时间必须为5分钟的倍数
         # @type EndTime: String
-        # @param MetricName: 统计纬度，可取值intraffic, outtraffic, inpkg, outpkg
+        # @param MetricName: 统计维度，可取值intraffic, outtraffic, inpkg, outpkg； intraffic：入流量 outtraffic：出流量 inpkg：入包速率 outpkg：出包速率
         # @type MetricName: String
         # @param InstanceId: 资源实例ID
         # @type InstanceId: String
@@ -6889,7 +6889,7 @@ module TencentCloud
         # @type InstanceId: String
         # @param PolicyId: 策略Id
         # @type PolicyId: String
-        # @param PolicyAction: 策略方式。可取值：alg、drop。alg指返回验证码方式验证，drop表示该访问丢弃。
+        # @param PolicyAction: 策略方式。可取值：alg、drop、trans。alg指返回验证码方式验证，drop表示该访问丢弃，trans表示该访问放行。
         # @type PolicyAction: String
         # @param PolicyList: 策略记录
         # @type PolicyList: Array
@@ -6985,7 +6985,7 @@ module TencentCloud
         # @type Ip: String
         # @param Domain: 域名
         # @type Domain: String
-        # @param Protocol: 协议，可取值HTTP，HTTPS
+        # @param Protocol: 协议，可取值http，https，http/https
         # @type Protocol: String
         # @param Threshold: 清洗阈值，-1表示开启“默认”模式
         # @type Threshold: Integer
@@ -7751,8 +7751,8 @@ module TencentCloud
         # drop(丢弃)
         # transmit(放行)
         # drop_black(丢弃并拉黑)
-        # drop_rst(拦截)
-        # drop_black_rst(拦截并拉黑)
+        # drop_rst(拦截)（已废弃，不支持drop_rst）
+        # drop_black_rst(拦截并拉黑)（已废弃，不支持drop_black_rst）
         # forward(继续防护)
         # ]
         # @type Action: String
@@ -7765,13 +7765,10 @@ module TencentCloud
         # @type MatchBegin: String
         # @param MatchType: 检测类型，取值[
         # sunday(关键字)
-        # pcre(正则表达式)
+        # pcre(正则表达式) （已废弃，仅支持sunday）
         # ]
         # @type MatchType: String
-        # @param Str: 检测值，关键字符串或正则表达式,取值[
-        # 当检测类型为sunday时，请填写字符串或者16进制字节码，例如\x313233对应的是字符串"123"的16进制字节码;
-        # 当检测类型为pcre时, 请填写正则表达式字符串;
-        # ]
+        # @param Str: 检测值，关键字符串或正则表达式,取值[ 当检测类型为sunday时，请填写字符串或者16进制字节码，例如\x313233对应的是字符串"123"的16进制字节码; 最多支持63位; ]
         # @type Str: String
         # @param Depth: 从检测位置开始的检测深度，取值[0,1500]
         # @type Depth: Integer
@@ -7779,39 +7776,27 @@ module TencentCloud
         # @type Offset: Integer
         # @param IsNot: 是否包含检测值，取值[
         # 0(包含)
-        # 1(不包含)
+        # 1(不包含) （已废弃，仅支持0）
         # ]
         # @type IsNot: Integer
         # @param MatchLogic: 当有第二个检测条件时，与第一检测条件的且或关系，取值[
-        # and(且的关系)
+        # and(且的关系) （已废弃，仅支持none）
         # none(当没有第二个检测条件时填写此值)
         # ]
         # @type MatchLogic: String
-        # @param MatchBegin2: 第二个检测位置，取值[
-        # begin_l5(载荷)
-        # no_match(不匹配)
-        # ]
+        # @param MatchBegin2: （已废弃）
         # @type MatchBegin2: String
-        # @param MatchType2: 第二个检测类型，取值[
-        # sunday(关键字)
-        # pcre(正则表达式)
-        # ]
+        # @param MatchType2: （已废弃）
         # @type MatchType2: String
-        # @param Str2: 第二个检测值，关键字符串或正则表达式,取值[
-        # 当检测类型为sunday时，请填写字符串或者16进制字节码，例如\x313233对应的是字符串"123"的16进制字节码;
-        # 当检测类型为pcre时, 请填写正则表达式字符串;
-        # ]
+        # @param Str2: （已废弃）
         # @type Str2: String
-        # @param Depth2: 从第二个检测位置开始的第二个检测深度，取值[0,1500]
+        # @param Depth2: （已废弃）
         # @type Depth2: Integer
-        # @param Offset2: 从第二个检测位置开始的偏移量，取值范围[0,Depth2]
+        # @param Offset2: （已废弃）
         # @type Offset2: Integer
-        # @param IsNot2: 第二个检测是否包含检测值，取值[
-        # 0(包含)
-        # 1(不包含)
-        # ]
+        # @param IsNot2: （已废弃）
         # @type IsNot2: Integer
-        # @param Id: 特征过滤配置添加成功后自动生成的规则ID，当添加新特征过滤配置时，此字段不用填写；
+        # @param Id: 特征过滤配置添加成功后自动生成的规则ID，当添加新特征过滤配置时，此字段不用填写；当修改/删除新特征过滤配置时，此字段必填；
         # @type Id: String
         # @param PktLenGT: 大于报文长度，取值1+
         # @type PktLenGT: Integer
@@ -8458,7 +8443,6 @@ module TencentCloud
         # ]
         # @type Verify: String
         # @param CloudSdkProxy: 是否开启代理，1开启则忽略IP+端口校验；0关闭则需要IP+端口校验
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CloudSdkProxy: Integer
 
         attr_accessor :Offset, :OpenStatus, :Listeners, :Keys, :Verify, :CloudSdkProxy

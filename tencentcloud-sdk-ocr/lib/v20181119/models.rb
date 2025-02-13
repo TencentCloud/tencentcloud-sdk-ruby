@@ -4421,10 +4421,12 @@ module TencentCloud
         # @type InvalidDateWarn: Boolean
         # @param ReflectWarn: 是否开启反光检测，默认为false
         # @type ReflectWarn: Boolean
+        # @param CropPortrait: 是否开启头像剪切
+        # @type CropPortrait: Boolean
 
-        attr_accessor :CopyWarn, :BorderCheckWarn, :ReshootWarn, :DetectPsWarn, :TempIdWarn, :InvalidDateWarn, :ReflectWarn
+        attr_accessor :CopyWarn, :BorderCheckWarn, :ReshootWarn, :DetectPsWarn, :TempIdWarn, :InvalidDateWarn, :ReflectWarn, :CropPortrait
 
-        def initialize(copywarn=nil, bordercheckwarn=nil, reshootwarn=nil, detectpswarn=nil, tempidwarn=nil, invaliddatewarn=nil, reflectwarn=nil)
+        def initialize(copywarn=nil, bordercheckwarn=nil, reshootwarn=nil, detectpswarn=nil, tempidwarn=nil, invaliddatewarn=nil, reflectwarn=nil, cropportrait=nil)
           @CopyWarn = copywarn
           @BorderCheckWarn = bordercheckwarn
           @ReshootWarn = reshootwarn
@@ -4432,6 +4434,7 @@ module TencentCloud
           @TempIdWarn = tempidwarn
           @InvalidDateWarn = invaliddatewarn
           @ReflectWarn = reflectwarn
+          @CropPortrait = cropportrait
         end
 
         def deserialize(params)
@@ -4442,6 +4445,7 @@ module TencentCloud
           @TempIdWarn = params['TempIdWarn']
           @InvalidDateWarn = params['InvalidDateWarn']
           @ReflectWarn = params['ReflectWarn']
+          @CropPortrait = params['CropPortrait']
         end
       end
 
@@ -4539,28 +4543,28 @@ module TencentCloud
         # @param WarnCodes: 警告代码
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WarnCodes: Array
-        # @param Address: 地址
+        # @param Address: 地址（人像面）
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Address: String
-        # @param Authority: 签发机关
+        # @param Authority: 发证机关（国徽面）
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Authority: String
-        # @param Birth: 出生日期
+        # @param Birth: 出生日期（人像面）
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Birth: String
-        # @param IdNum: 身份证号
+        # @param IdNum: 身份证号（人像面）
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IdNum: String
-        # @param Name: 名字
+        # @param Name: 名字（人像面）
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
-        # @param Nation: 地区
+        # @param Nation: 民族（人像面）
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Nation: String
-        # @param Sex: 性别
+        # @param Sex: 性别（人像面）
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Sex: String
-        # @param ValidDate: 到期时间
+        # @param ValidDate: 证件有效期（国徽面）
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ValidDate: String
         # @param RequestId: 请求的id
@@ -4574,10 +4578,12 @@ module TencentCloud
         # @type ErrorMessage: String
         # @param ImageUrl: 原图地址
         # @type ImageUrl: String
+        # @param PortraitUrl: 身份证头像照片的地址（人像面）
+        # @type PortraitUrl: String
 
-        attr_accessor :WarnCodes, :Address, :Authority, :Birth, :IdNum, :Name, :Nation, :Sex, :ValidDate, :RequestId, :ErrorCode, :ErrorMessage, :ImageUrl
+        attr_accessor :WarnCodes, :Address, :Authority, :Birth, :IdNum, :Name, :Nation, :Sex, :ValidDate, :RequestId, :ErrorCode, :ErrorMessage, :ImageUrl, :PortraitUrl
 
-        def initialize(warncodes=nil, address=nil, authority=nil, birth=nil, idnum=nil, name=nil, nation=nil, sex=nil, validdate=nil, requestid=nil, errorcode=nil, errormessage=nil, imageurl=nil)
+        def initialize(warncodes=nil, address=nil, authority=nil, birth=nil, idnum=nil, name=nil, nation=nil, sex=nil, validdate=nil, requestid=nil, errorcode=nil, errormessage=nil, imageurl=nil, portraiturl=nil)
           @WarnCodes = warncodes
           @Address = address
           @Authority = authority
@@ -4591,6 +4597,7 @@ module TencentCloud
           @ErrorCode = errorcode
           @ErrorMessage = errormessage
           @ImageUrl = imageurl
+          @PortraitUrl = portraiturl
         end
 
         def deserialize(params)
@@ -4607,6 +4614,7 @@ module TencentCloud
           @ErrorCode = params['ErrorCode']
           @ErrorMessage = params['ErrorMessage']
           @ImageUrl = params['ImageUrl']
+          @PortraitUrl = params['PortraitUrl']
         end
       end
 

@@ -2414,7 +2414,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 解除数据库账号的锁定，解锁后账号可以登陆数据库。
+        # 解除数据库账号的锁定，解锁后账号可以登录数据库。
 
         # @param request: Request instance for UnlockAccount.
         # @type request: :class:`Tencentcloud::postgres::V20170312::UnlockAccountRequest`

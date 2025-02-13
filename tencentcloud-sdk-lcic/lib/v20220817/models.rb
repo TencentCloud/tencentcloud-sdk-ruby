@@ -2301,6 +2301,46 @@ module TencentCloud
         end
       end
 
+      # DescribeRecordTask请求参数结构体
+      class DescribeRecordTaskRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: 学校ID
+        # @type SdkAppId: Integer
+        # @param RoomId: 房间ID
+        # @type RoomId: Integer
+
+        attr_accessor :SdkAppId, :RoomId
+
+        def initialize(sdkappid=nil, roomid=nil)
+          @SdkAppId = sdkappid
+          @RoomId = roomid
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @RoomId = params['RoomId']
+        end
+      end
+
+      # DescribeRecordTask返回参数结构体
+      class DescribeRecordTaskResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务ID
+        # @type TaskId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeRoomForbiddenUser请求参数结构体
       class DescribeRoomForbiddenUserRequest < TencentCloud::Common::AbstractModel
         # @param SdkAppId: 低代码互动课堂的SdkAppId。

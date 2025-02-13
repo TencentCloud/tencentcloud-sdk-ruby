@@ -1959,14 +1959,17 @@ module TencentCloud
         # @type Permissions: Array
         # @param ClusterId: 必填字段，集群的ID
         # @type ClusterId: String
+        # @param DetailedPerms: Topic&Group维度权限配置
+        # @type DetailedPerms: Array
 
-        attr_accessor :EnvironmentId, :RoleName, :Permissions, :ClusterId
+        attr_accessor :EnvironmentId, :RoleName, :Permissions, :ClusterId, :DetailedPerms
 
-        def initialize(environmentid=nil, rolename=nil, permissions=nil, clusterid=nil)
+        def initialize(environmentid=nil, rolename=nil, permissions=nil, clusterid=nil, detailedperms=nil)
           @EnvironmentId = environmentid
           @RoleName = rolename
           @Permissions = permissions
           @ClusterId = clusterid
+          @DetailedPerms = detailedperms
         end
 
         def deserialize(params)
@@ -1974,6 +1977,14 @@ module TencentCloud
           @RoleName = params['RoleName']
           @Permissions = params['Permissions']
           @ClusterId = params['ClusterId']
+          unless params['DetailedPerms'].nil?
+            @DetailedPerms = []
+            params['DetailedPerms'].each do |i|
+              detailedroleperm_tmp = DetailedRolePerm.new
+              detailedroleperm_tmp.deserialize(i)
+              @DetailedPerms << detailedroleperm_tmp
+            end
+          end
         end
       end
 
@@ -2109,19 +2120,23 @@ module TencentCloud
         # @type ClusterId: String
         # @param Remark: 备注说明，长度必须大等于0且小等于128。
         # @type Remark: String
+        # @param PermType: 角色授权类型（集群：Cluster; 主题或消费组：TopicAndGroup）
+        # @type PermType: String
 
-        attr_accessor :RoleName, :ClusterId, :Remark
+        attr_accessor :RoleName, :ClusterId, :Remark, :PermType
 
-        def initialize(rolename=nil, clusterid=nil, remark=nil)
+        def initialize(rolename=nil, clusterid=nil, remark=nil, permtype=nil)
           @RoleName = rolename
           @ClusterId = clusterid
           @Remark = remark
+          @PermType = permtype
         end
 
         def deserialize(params)
           @RoleName = params['RoleName']
           @ClusterId = params['ClusterId']
           @Remark = params['Remark']
+          @PermType = params['PermType']
         end
       end
 
@@ -6397,8 +6412,8 @@ module TencentCloud
 
         attr_accessor :ClusterId, :EnvironmentId, :TopicName, :MsgId, :PulsarMsgId, :QueryDlqMsg, :QueryDeadLetterMessage, :Offset, :Limit, :FilterTrackGroup
         extend Gem::Deprecate
-        deprecate :QueryDlqMsg, :none, 2025, 1
-        deprecate :QueryDlqMsg=, :none, 2025, 1
+        deprecate :QueryDlqMsg, :none, 2025, 2
+        deprecate :QueryDlqMsg=, :none, 2025, 2
 
         def initialize(clusterid=nil, environmentid=nil, topicname=nil, msgid=nil, pulsarmsgid=nil, querydlqmsg=nil, querydeadlettermessage=nil, offset=nil, limit=nil, filtertrackgroup=nil)
           @ClusterId = clusterid
@@ -6503,8 +6518,8 @@ module TencentCloud
 
         attr_accessor :ClusterId, :EnvironmentId, :TopicName, :MsgId, :GroupName, :QueryDLQMsg, :QueryDeadLetterMessage
         extend Gem::Deprecate
-        deprecate :QueryDLQMsg, :none, 2025, 1
-        deprecate :QueryDLQMsg=, :none, 2025, 1
+        deprecate :QueryDLQMsg, :none, 2025, 2
+        deprecate :QueryDLQMsg=, :none, 2025, 2
 
         def initialize(clusterid=nil, environmentid=nil, topicname=nil, msgid=nil, groupname=nil, querydlqmsg=nil, querydeadlettermessage=nil)
           @ClusterId = clusterid
@@ -7282,8 +7297,8 @@ module TencentCloud
 
         attr_accessor :ClusterId, :EnvironmentId, :TopicName, :StartTime, :EndTime, :MsgId, :MsgKey, :Offset, :Limit, :TaskRequestId, :QueryDlqMsg, :NumOfLatestMsg, :Tag, :QueryDeadLetterMessage
         extend Gem::Deprecate
-        deprecate :QueryDlqMsg, :none, 2025, 1
-        deprecate :QueryDlqMsg=, :none, 2025, 1
+        deprecate :QueryDlqMsg, :none, 2025, 2
+        deprecate :QueryDlqMsg=, :none, 2025, 2
 
         def initialize(clusterid=nil, environmentid=nil, topicname=nil, starttime=nil, endtime=nil, msgid=nil, msgkey=nil, offset=nil, limit=nil, taskrequestid=nil, querydlqmsg=nil, numoflatestmsg=nil, tag=nil, querydeadlettermessage=nil)
           @ClusterId = clusterid
@@ -7959,6 +7974,38 @@ module TencentCloud
           end
           @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # Topic&Group维度的权限配置
+      class DetailedRolePerm < TencentCloud::Common::AbstractModel
+        # @param Resource: 权限对应的资源
+        # @type Resource: String
+        # @param PermWrite: 是否开启生产权限
+        # @type PermWrite: Boolean
+        # @param PermRead: 是否开启消费权限
+        # @type PermRead: Boolean
+        # @param ResourceType: 授权资源类型（Topic:主题; Group:消费组）
+        # @type ResourceType: String
+        # @param Remark: 资源备注
+        # @type Remark: String
+
+        attr_accessor :Resource, :PermWrite, :PermRead, :ResourceType, :Remark
+
+        def initialize(resource=nil, permwrite=nil, permread=nil, resourcetype=nil, remark=nil)
+          @Resource = resource
+          @PermWrite = permwrite
+          @PermRead = permread
+          @ResourceType = resourcetype
+          @Remark = remark
+        end
+
+        def deserialize(params)
+          @Resource = params['Resource']
+          @PermWrite = params['PermWrite']
+          @PermRead = params['PermRead']
+          @ResourceType = params['ResourceType']
+          @Remark = params['Remark']
         end
       end
 
@@ -9344,14 +9391,17 @@ module TencentCloud
         # @type Permissions: Array
         # @param ClusterId: 必填字段，集群的ID
         # @type ClusterId: String
+        # @param DetailedPerms: Topic&Group维度权限配置
+        # @type DetailedPerms: Array
 
-        attr_accessor :EnvironmentId, :RoleName, :Permissions, :ClusterId
+        attr_accessor :EnvironmentId, :RoleName, :Permissions, :ClusterId, :DetailedPerms
 
-        def initialize(environmentid=nil, rolename=nil, permissions=nil, clusterid=nil)
+        def initialize(environmentid=nil, rolename=nil, permissions=nil, clusterid=nil, detailedperms=nil)
           @EnvironmentId = environmentid
           @RoleName = rolename
           @Permissions = permissions
           @ClusterId = clusterid
+          @DetailedPerms = detailedperms
         end
 
         def deserialize(params)
@@ -9359,6 +9409,14 @@ module TencentCloud
           @RoleName = params['RoleName']
           @Permissions = params['Permissions']
           @ClusterId = params['ClusterId']
+          unless params['DetailedPerms'].nil?
+            @DetailedPerms = []
+            params['DetailedPerms'].each do |i|
+              detailedroleperm_tmp = DetailedRolePerm.new
+              detailedroleperm_tmp.deserialize(i)
+              @DetailedPerms << detailedroleperm_tmp
+            end
+          end
         end
       end
 
@@ -9591,19 +9649,23 @@ module TencentCloud
         # @type ClusterId: String
         # @param Remark: 备注说明，长度必须大等于0且小等于128。
         # @type Remark: String
+        # @param PermType: 权限类型，默认按集群授权（Cluster：集群级别；TopicAndGroup：主题&消费组级别）
+        # @type PermType: String
 
-        attr_accessor :RoleName, :ClusterId, :Remark
+        attr_accessor :RoleName, :ClusterId, :Remark, :PermType
 
-        def initialize(rolename=nil, clusterid=nil, remark=nil)
+        def initialize(rolename=nil, clusterid=nil, remark=nil, permtype=nil)
           @RoleName = rolename
           @ClusterId = clusterid
           @Remark = remark
+          @PermType = permtype
         end
 
         def deserialize(params)
           @RoleName = params['RoleName']
           @ClusterId = params['ClusterId']
           @Remark = params['Remark']
+          @PermType = params['PermType']
         end
       end
 
@@ -11673,8 +11735,8 @@ module TencentCloud
 
         attr_accessor :MaxTpsPerNamespace, :MaxNamespaceNum, :UsedNamespaceNum, :MaxTopicNum, :UsedTopicNum, :MaxGroupNum, :UsedGroupNum, :MaxRetentionTime, :MaxLatencyTime, :MaxQueuesPerTopic, :TopicDistribution
         extend Gem::Deprecate
-        deprecate :MaxTpsPerNamespace, :none, 2025, 1
-        deprecate :MaxTpsPerNamespace=, :none, 2025, 1
+        deprecate :MaxTpsPerNamespace, :none, 2025, 2
+        deprecate :MaxTpsPerNamespace=, :none, 2025, 2
 
         def initialize(maxtpspernamespace=nil, maxnamespacenum=nil, usednamespacenum=nil, maxtopicnum=nil, usedtopicnum=nil, maxgroupnum=nil, usedgroupnum=nil, maxretentiontime=nil, maxlatencytime=nil, maxqueuespertopic=nil, topicdistribution=nil)
           @MaxTpsPerNamespace = maxtpspernamespace

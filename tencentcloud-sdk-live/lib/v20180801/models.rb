@@ -756,10 +756,14 @@ module TencentCloud
         # @param AudioAuditNotifyUrl: 音频审核回调 URL。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AudioAuditNotifyUrl: String
+        # @param RecordExceptionNotifyUrl: 录制异常回调 URL。
+        # @type RecordExceptionNotifyUrl: String
+        # @param RecordExceptionLevels: 录制异常回调级别，可选择：error: 错误。alarm: 告警。
+        # @type RecordExceptionLevels: Array
 
-        attr_accessor :TemplateId, :TemplateName, :Description, :StreamBeginNotifyUrl, :StreamMixNotifyUrl, :StreamEndNotifyUrl, :RecordNotifyUrl, :SnapshotNotifyUrl, :PornCensorshipNotifyUrl, :CallbackKey, :PushExceptionNotifyUrl, :AudioAuditNotifyUrl
+        attr_accessor :TemplateId, :TemplateName, :Description, :StreamBeginNotifyUrl, :StreamMixNotifyUrl, :StreamEndNotifyUrl, :RecordNotifyUrl, :SnapshotNotifyUrl, :PornCensorshipNotifyUrl, :CallbackKey, :PushExceptionNotifyUrl, :AudioAuditNotifyUrl, :RecordExceptionNotifyUrl, :RecordExceptionLevels
 
-        def initialize(templateid=nil, templatename=nil, description=nil, streambeginnotifyurl=nil, streammixnotifyurl=nil, streamendnotifyurl=nil, recordnotifyurl=nil, snapshotnotifyurl=nil, porncensorshipnotifyurl=nil, callbackkey=nil, pushexceptionnotifyurl=nil, audioauditnotifyurl=nil)
+        def initialize(templateid=nil, templatename=nil, description=nil, streambeginnotifyurl=nil, streammixnotifyurl=nil, streamendnotifyurl=nil, recordnotifyurl=nil, snapshotnotifyurl=nil, porncensorshipnotifyurl=nil, callbackkey=nil, pushexceptionnotifyurl=nil, audioauditnotifyurl=nil, recordexceptionnotifyurl=nil, recordexceptionlevels=nil)
           @TemplateId = templateid
           @TemplateName = templatename
           @Description = description
@@ -772,6 +776,8 @@ module TencentCloud
           @CallbackKey = callbackkey
           @PushExceptionNotifyUrl = pushexceptionnotifyurl
           @AudioAuditNotifyUrl = audioauditnotifyurl
+          @RecordExceptionNotifyUrl = recordexceptionnotifyurl
+          @RecordExceptionLevels = recordexceptionlevels
         end
 
         def deserialize(params)
@@ -787,6 +793,8 @@ module TencentCloud
           @CallbackKey = params['CallbackKey']
           @PushExceptionNotifyUrl = params['PushExceptionNotifyUrl']
           @AudioAuditNotifyUrl = params['AudioAuditNotifyUrl']
+          @RecordExceptionNotifyUrl = params['RecordExceptionNotifyUrl']
+          @RecordExceptionLevels = params['RecordExceptionLevels']
         end
       end
 
@@ -2344,10 +2352,14 @@ module TencentCloud
         # @type PushExceptionNotifyUrl: String
         # @param AudioAuditNotifyUrl: 音频审核回调 URL。
         # @type AudioAuditNotifyUrl: String
+        # @param RecordExceptionNotifyUrl: 录制异常回调 URL。
+        # @type RecordExceptionNotifyUrl: String
+        # @param RecordExceptionLevels: 录制异常回调级别，可选择：error、warning、info。
+        # @type RecordExceptionLevels: Array
 
-        attr_accessor :TemplateName, :Description, :StreamBeginNotifyUrl, :StreamEndNotifyUrl, :RecordNotifyUrl, :RecordStatusNotifyUrl, :SnapshotNotifyUrl, :PornCensorshipNotifyUrl, :CallbackKey, :StreamMixNotifyUrl, :PushExceptionNotifyUrl, :AudioAuditNotifyUrl
+        attr_accessor :TemplateName, :Description, :StreamBeginNotifyUrl, :StreamEndNotifyUrl, :RecordNotifyUrl, :RecordStatusNotifyUrl, :SnapshotNotifyUrl, :PornCensorshipNotifyUrl, :CallbackKey, :StreamMixNotifyUrl, :PushExceptionNotifyUrl, :AudioAuditNotifyUrl, :RecordExceptionNotifyUrl, :RecordExceptionLevels
 
-        def initialize(templatename=nil, description=nil, streambeginnotifyurl=nil, streamendnotifyurl=nil, recordnotifyurl=nil, recordstatusnotifyurl=nil, snapshotnotifyurl=nil, porncensorshipnotifyurl=nil, callbackkey=nil, streammixnotifyurl=nil, pushexceptionnotifyurl=nil, audioauditnotifyurl=nil)
+        def initialize(templatename=nil, description=nil, streambeginnotifyurl=nil, streamendnotifyurl=nil, recordnotifyurl=nil, recordstatusnotifyurl=nil, snapshotnotifyurl=nil, porncensorshipnotifyurl=nil, callbackkey=nil, streammixnotifyurl=nil, pushexceptionnotifyurl=nil, audioauditnotifyurl=nil, recordexceptionnotifyurl=nil, recordexceptionlevels=nil)
           @TemplateName = templatename
           @Description = description
           @StreamBeginNotifyUrl = streambeginnotifyurl
@@ -2360,6 +2372,8 @@ module TencentCloud
           @StreamMixNotifyUrl = streammixnotifyurl
           @PushExceptionNotifyUrl = pushexceptionnotifyurl
           @AudioAuditNotifyUrl = audioauditnotifyurl
+          @RecordExceptionNotifyUrl = recordexceptionnotifyurl
+          @RecordExceptionLevels = recordexceptionlevels
         end
 
         def deserialize(params)
@@ -2375,6 +2389,8 @@ module TencentCloud
           @StreamMixNotifyUrl = params['StreamMixNotifyUrl']
           @PushExceptionNotifyUrl = params['PushExceptionNotifyUrl']
           @AudioAuditNotifyUrl = params['AudioAuditNotifyUrl']
+          @RecordExceptionNotifyUrl = params['RecordExceptionNotifyUrl']
+          @RecordExceptionLevels = params['RecordExceptionLevels']
         end
       end
 
@@ -11640,10 +11656,14 @@ module TencentCloud
         # @type PushExceptionNotifyUrl: String
         # @param AudioAuditNotifyUrl: 音频审核回调 URL。
         # @type AudioAuditNotifyUrl: String
+        # @param RecordExceptionNotifyUrl: 录制异常回调 URL。
+        # @type RecordExceptionNotifyUrl: String
+        # @param RecordExceptionLevels: 录制异常回调级别，可选择：error、warning、info。
+        # @type RecordExceptionLevels: Array
 
-        attr_accessor :TemplateId, :TemplateName, :Description, :StreamBeginNotifyUrl, :StreamEndNotifyUrl, :RecordNotifyUrl, :RecordStatusNotifyUrl, :SnapshotNotifyUrl, :PornCensorshipNotifyUrl, :CallbackKey, :PushExceptionNotifyUrl, :AudioAuditNotifyUrl
+        attr_accessor :TemplateId, :TemplateName, :Description, :StreamBeginNotifyUrl, :StreamEndNotifyUrl, :RecordNotifyUrl, :RecordStatusNotifyUrl, :SnapshotNotifyUrl, :PornCensorshipNotifyUrl, :CallbackKey, :PushExceptionNotifyUrl, :AudioAuditNotifyUrl, :RecordExceptionNotifyUrl, :RecordExceptionLevels
 
-        def initialize(templateid=nil, templatename=nil, description=nil, streambeginnotifyurl=nil, streamendnotifyurl=nil, recordnotifyurl=nil, recordstatusnotifyurl=nil, snapshotnotifyurl=nil, porncensorshipnotifyurl=nil, callbackkey=nil, pushexceptionnotifyurl=nil, audioauditnotifyurl=nil)
+        def initialize(templateid=nil, templatename=nil, description=nil, streambeginnotifyurl=nil, streamendnotifyurl=nil, recordnotifyurl=nil, recordstatusnotifyurl=nil, snapshotnotifyurl=nil, porncensorshipnotifyurl=nil, callbackkey=nil, pushexceptionnotifyurl=nil, audioauditnotifyurl=nil, recordexceptionnotifyurl=nil, recordexceptionlevels=nil)
           @TemplateId = templateid
           @TemplateName = templatename
           @Description = description
@@ -11656,6 +11676,8 @@ module TencentCloud
           @CallbackKey = callbackkey
           @PushExceptionNotifyUrl = pushexceptionnotifyurl
           @AudioAuditNotifyUrl = audioauditnotifyurl
+          @RecordExceptionNotifyUrl = recordexceptionnotifyurl
+          @RecordExceptionLevels = recordexceptionlevels
         end
 
         def deserialize(params)
@@ -11671,6 +11693,8 @@ module TencentCloud
           @CallbackKey = params['CallbackKey']
           @PushExceptionNotifyUrl = params['PushExceptionNotifyUrl']
           @AudioAuditNotifyUrl = params['AudioAuditNotifyUrl']
+          @RecordExceptionNotifyUrl = params['RecordExceptionNotifyUrl']
+          @RecordExceptionLevels = params['RecordExceptionLevels']
         end
       end
 

@@ -225,16 +225,12 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AccountUserId: String
         # @param Comment: 备注。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Comment: String
         # @param Nickname: 昵称。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Nickname: String
         # @param Avatar: 用户头像地址。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Avatar: String
         # @param Customize: 自定义信息。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Customize: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -714,10 +710,15 @@ module TencentCloud
         # @param SuperAdminAccount: 超级管理员账号，如果未选择查询实例绑定的超级管理员账号或当前实例未绑定超级管理员账号，则该属性为 null。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SuperAdminAccount: String
+        # @param Bucket: 自选桶模式下，展示存储桶使用
+        # @type Bucket: String
+        # @param LogBucket: 自选桶模式下，展示日志桶使用
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LogBucket: String
 
-        attr_accessor :InstanceId, :Domain, :EffectiveTime, :ExpireTime, :UserLimit, :StorageLimit, :StorageLimitGB, :Isolated, :AutoRenew, :SuperAdminAccount
+        attr_accessor :InstanceId, :Domain, :EffectiveTime, :ExpireTime, :UserLimit, :StorageLimit, :StorageLimitGB, :Isolated, :AutoRenew, :SuperAdminAccount, :Bucket, :LogBucket
 
-        def initialize(instanceid=nil, domain=nil, effectivetime=nil, expiretime=nil, userlimit=nil, storagelimit=nil, storagelimitgb=nil, isolated=nil, autorenew=nil, superadminaccount=nil)
+        def initialize(instanceid=nil, domain=nil, effectivetime=nil, expiretime=nil, userlimit=nil, storagelimit=nil, storagelimitgb=nil, isolated=nil, autorenew=nil, superadminaccount=nil, bucket=nil, logbucket=nil)
           @InstanceId = instanceid
           @Domain = domain
           @EffectiveTime = effectivetime
@@ -728,6 +729,8 @@ module TencentCloud
           @Isolated = isolated
           @AutoRenew = autorenew
           @SuperAdminAccount = superadminaccount
+          @Bucket = bucket
+          @LogBucket = logbucket
         end
 
         def deserialize(params)
@@ -741,6 +744,8 @@ module TencentCloud
           @Isolated = params['Isolated']
           @AutoRenew = params['AutoRenew']
           @SuperAdminAccount = params['SuperAdminAccount']
+          @Bucket = params['Bucket']
+          @LogBucket = params['LogBucket']
         end
       end
 

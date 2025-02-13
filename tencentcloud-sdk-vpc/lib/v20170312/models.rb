@@ -5941,7 +5941,7 @@ module TencentCloud
         # @type State: String
         # @param Direction: 流量镜像采集方向，支持EGRESS/INGRESS/ALL（vpc），ALL（公网IP）。
         # @type Direction: String
-        # @param CollectorSrcs: 流量镜像的采集对象，支持eni_xxxx。
+        # @param CollectorSrcs: 流量镜像的采集对象。
         # @type CollectorSrcs: Array
         # @param NatId: 流量镜像过滤的natgw实例。
         # @type NatId: String
@@ -6789,9 +6789,9 @@ module TencentCloud
         # @type SslVpnProtocol: String
         # @param SslVpnPort: SSL VPN服务端监听协议端口，默认1194。
         # @type SslVpnPort: Integer
-        # @param IntegrityAlgorithm: 认证算法。可选 'SHA1', 'MD5', 'NONE'，默认NONE。
+        # @param IntegrityAlgorithm: 认证算法。可选 'SHA1'，默认SHA1。
         # @type IntegrityAlgorithm: String
-        # @param EncryptAlgorithm: 加密算法。可选 'AES-128-CBC','AES-192-CBC', 'AES-256-CBC', 'NONE'，默认NONE。
+        # @param EncryptAlgorithm: 加密算法。可选 'AES-128-CBC','AES-192-CBC', 'AES-256-CBC', 默认AES-128-CBC。
         # @type EncryptAlgorithm: String
         # @param Compress: 是否支持压缩。当前不支持压缩，默认False。
         # @type Compress: Boolean
@@ -14441,7 +14441,11 @@ module TencentCloud
       class DescribeTrafficMirrorsRequest < TencentCloud::Common::AbstractModel
         # @param TrafficMirrorIds: 流量镜像实例ID集合
         # @type TrafficMirrorIds: Array
-        # @param Filters: 流量镜像查询过滤调节
+        # @param Filters: 流量镜像查询过滤调节。
+        # vpc-id ：VPC实例ID，例如：vpc-f49l6u0z。
+        # traffic-mirror-id：流量镜像实例ID。
+        # traffic-mirror-name：流量镜像名称。
+        # tag-key ：按照标签键进行过滤。
         # @type Filters: :class:`Tencentcloud::Vpc.v20170312.models.Filter`
         # @param Offset: 偏移量，默认为0。
         # @type Offset: Integer
@@ -22130,9 +22134,9 @@ module TencentCloud
         # @type SslVpnProtocol: String
         # @param SslVpnPort: SSL VPN服务端监听协议端口。
         # @type SslVpnPort: Integer
-        # @param EncryptAlgorithm: 加密算法。可选 'AES-128-CBC', 'AES-192-CBC', 'AES-256-CBC', 'NONE'。默认NONE
+        # @param EncryptAlgorithm: 加密算法。可选 'AES-128-CBC','AES-192-CBC', 'AES-256-CBC', 默认AES-128-CBC。
         # @type EncryptAlgorithm: String
-        # @param IntegrityAlgorithm: 认证算法。可选 'SHA1', 'MD5', 'NONE'。默认NONE
+        # @param IntegrityAlgorithm: 认证算法。可选 'SHA1'，默认SHA1。
         # @type IntegrityAlgorithm: String
         # @param Compress: 是否支持压缩。当前不支持压缩。默认False。
         # @type Compress: Boolean

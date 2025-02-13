@@ -993,6 +993,7 @@ module TencentCloud
         # 查询角色列表，Filter参数使用说明如下：
 
         # 1. RoleName，角色名称模糊搜索
+        # 2. AccessKey，AccessKey模糊搜索
 
         # @param request: Request instance for DescribeRoleList.
         # @type request: :class:`Tencentcloud::trocket::V20230308::DescribeRoleListRequest`

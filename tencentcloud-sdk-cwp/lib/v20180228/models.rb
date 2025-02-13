@@ -7850,7 +7850,7 @@ module TencentCloud
         # @type VpcId: String
         # @param TagIds: 标签ID列表，IsCloud=false时才会生效
         # @type TagIds: Array
-        # @param ExpireDate: 命令有效期，非腾讯云时必填
+        # @param ExpireDate: 命令有效期，非腾讯云时必填（已废弃，命令永久生效）
         # @type ExpireDate: String
         # @param Vip: 代理方式接入的vip
         # @type Vip: String
@@ -34175,16 +34175,20 @@ module TencentCloud
 
       # ModifyRiskDnsPolicy返回参数结构体
       class ModifyRiskDnsPolicyResponse < TencentCloud::Common::AbstractModel
+        # @param Repeat: 0：没有重复，1：和现有策略重复
+        # @type Repeat: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :Repeat, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(repeat=nil, requestid=nil)
+          @Repeat = repeat
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @Repeat = params['Repeat']
           @RequestId = params['RequestId']
         end
       end

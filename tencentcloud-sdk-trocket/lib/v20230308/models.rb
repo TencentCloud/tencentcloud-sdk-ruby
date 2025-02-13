@@ -544,29 +544,44 @@ module TencentCloud
         # @type InstanceId: String
         # @param Role: 角色名称
         # @type Role: String
-        # @param Remark: 备注
-        # @type Remark: String
         # @param PermWrite: 是否开启生产权限
         # @type PermWrite: Boolean
         # @param PermRead: 是否开启消费权限
         # @type PermRead: Boolean
+        # @param Remark: 备注
+        # @type Remark: String
+        # @param PermType: 权限类型，默认按集群授权（Cluster：集群级别；TopicAndGroup：主题&消费组级别）
+        # @type PermType: String
+        # @param DetailedPerms: Topic&Group维度权限配置
+        # @type DetailedPerms: Array
 
-        attr_accessor :InstanceId, :Role, :Remark, :PermWrite, :PermRead
+        attr_accessor :InstanceId, :Role, :PermWrite, :PermRead, :Remark, :PermType, :DetailedPerms
 
-        def initialize(instanceid=nil, role=nil, remark=nil, permwrite=nil, permread=nil)
+        def initialize(instanceid=nil, role=nil, permwrite=nil, permread=nil, remark=nil, permtype=nil, detailedperms=nil)
           @InstanceId = instanceid
           @Role = role
-          @Remark = remark
           @PermWrite = permwrite
           @PermRead = permread
+          @Remark = remark
+          @PermType = permtype
+          @DetailedPerms = detailedperms
         end
 
         def deserialize(params)
           @InstanceId = params['InstanceId']
           @Role = params['Role']
-          @Remark = params['Remark']
           @PermWrite = params['PermWrite']
           @PermRead = params['PermRead']
+          @Remark = params['Remark']
+          @PermType = params['PermType']
+          unless params['DetailedPerms'].nil?
+            @DetailedPerms = []
+            params['DetailedPerms'].each do |i|
+              detailedroleperm_tmp = DetailedRolePerm.new
+              detailedroleperm_tmp.deserialize(i)
+              @DetailedPerms << detailedroleperm_tmp
+            end
+          end
         end
       end
 
@@ -2956,6 +2971,38 @@ module TencentCloud
         end
       end
 
+      # Topic&Group维度的权限配置
+      class DetailedRolePerm < TencentCloud::Common::AbstractModel
+        # @param Resource: 权限对应的资源
+        # @type Resource: String
+        # @param PermWrite: 是否开启生产权限
+        # @type PermWrite: Boolean
+        # @param PermRead: 是否开启消费权限
+        # @type PermRead: Boolean
+        # @param ResourceType: 授权资源类型（Topic:主题; Group:消费组）
+        # @type ResourceType: String
+        # @param Remark: 资源备注
+        # @type Remark: String
+
+        attr_accessor :Resource, :PermWrite, :PermRead, :ResourceType, :Remark
+
+        def initialize(resource=nil, permwrite=nil, permread=nil, resourcetype=nil, remark=nil)
+          @Resource = resource
+          @PermWrite = permwrite
+          @PermRead = permread
+          @ResourceType = resourcetype
+          @Remark = remark
+        end
+
+        def deserialize(params)
+          @Resource = params['Resource']
+          @PermWrite = params['PermWrite']
+          @PermRead = params['PermRead']
+          @ResourceType = params['ResourceType']
+          @Remark = params['Remark']
+        end
+      end
+
       # 接入点信息
       class Endpoint < TencentCloud::Common::AbstractModel
         # @param Type: 接入点类型，枚举值如下
@@ -4297,17 +4344,23 @@ module TencentCloud
         # @type PermRead: Boolean
         # @param PermWrite: 是否开启生产
         # @type PermWrite: Boolean
+        # @param PermType: 权限类型，默认按集群授权（Cluster：集群维度；TopicAndGroup：主题和消费组维度）
+        # @type PermType: String
         # @param Remark: 备注
         # @type Remark: String
+        # @param DetailedPerms: Topic&Group维度权限配置
+        # @type DetailedPerms: Array
 
-        attr_accessor :InstanceId, :Role, :PermRead, :PermWrite, :Remark
+        attr_accessor :InstanceId, :Role, :PermRead, :PermWrite, :PermType, :Remark, :DetailedPerms
 
-        def initialize(instanceid=nil, role=nil, permread=nil, permwrite=nil, remark=nil)
+        def initialize(instanceid=nil, role=nil, permread=nil, permwrite=nil, permtype=nil, remark=nil, detailedperms=nil)
           @InstanceId = instanceid
           @Role = role
           @PermRead = permread
           @PermWrite = permwrite
+          @PermType = permtype
           @Remark = remark
+          @DetailedPerms = detailedperms
         end
 
         def deserialize(params)
@@ -4315,7 +4368,16 @@ module TencentCloud
           @Role = params['Role']
           @PermRead = params['PermRead']
           @PermWrite = params['PermWrite']
+          @PermType = params['PermType']
           @Remark = params['Remark']
+          unless params['DetailedPerms'].nil?
+            @DetailedPerms = []
+            params['DetailedPerms'].each do |i|
+              detailedroleperm_tmp = DetailedRolePerm.new
+              detailedroleperm_tmp.deserialize(i)
+              @DetailedPerms << detailedroleperm_tmp
+            end
+          end
         end
       end
 
@@ -4605,10 +4667,15 @@ module TencentCloud
         # @type CreatedTime: Integer
         # @param ModifiedTime: 修改时间，秒为单位
         # @type ModifiedTime: Integer
+        # @param PermType: 权限类型，默认按集群授权（Cluster：集群级别；TopicAndGroup：主题&消费组级别）
+        # @type PermType: String
+        # @param DetailedRolePerms: Topic和Group维度权限配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DetailedRolePerms: Array
 
-        attr_accessor :RoleName, :PermRead, :PermWrite, :AccessKey, :SecretKey, :Remark, :CreatedTime, :ModifiedTime
+        attr_accessor :RoleName, :PermRead, :PermWrite, :AccessKey, :SecretKey, :Remark, :CreatedTime, :ModifiedTime, :PermType, :DetailedRolePerms
 
-        def initialize(rolename=nil, permread=nil, permwrite=nil, accesskey=nil, secretkey=nil, remark=nil, createdtime=nil, modifiedtime=nil)
+        def initialize(rolename=nil, permread=nil, permwrite=nil, accesskey=nil, secretkey=nil, remark=nil, createdtime=nil, modifiedtime=nil, permtype=nil, detailedroleperms=nil)
           @RoleName = rolename
           @PermRead = permread
           @PermWrite = permwrite
@@ -4617,6 +4684,8 @@ module TencentCloud
           @Remark = remark
           @CreatedTime = createdtime
           @ModifiedTime = modifiedtime
+          @PermType = permtype
+          @DetailedRolePerms = detailedroleperms
         end
 
         def deserialize(params)
@@ -4628,6 +4697,15 @@ module TencentCloud
           @Remark = params['Remark']
           @CreatedTime = params['CreatedTime']
           @ModifiedTime = params['ModifiedTime']
+          @PermType = params['PermType']
+          unless params['DetailedRolePerms'].nil?
+            @DetailedRolePerms = []
+            params['DetailedRolePerms'].each do |i|
+              detailedroleperm_tmp = DetailedRolePerm.new
+              detailedroleperm_tmp.deserialize(i)
+              @DetailedRolePerms << detailedroleperm_tmp
+            end
+          end
         end
       end
 

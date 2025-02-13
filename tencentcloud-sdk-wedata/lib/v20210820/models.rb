@@ -6303,11 +6303,11 @@ module TencentCloud
       class DeleteResourceFilesRequest < TencentCloud::Common::AbstractModel
         # @param ProjectId: 项目id
         # @type ProjectId: String
-        # @param UseStatus: 使用状态
+        # @param UseStatus: 使用状态， 为ture 判断资源的使用状态，如果使用中则不能删除
         # @type UseStatus: Boolean
         # @param ResourceIds: 资源id列表
         # @type ResourceIds: Array
-        # @param FilePaths: 资源路径列表
+        # @param FilePaths: 需要删除的资源路径列表 即资源管理中的目录结构
         # @type FilePaths: Array
 
         attr_accessor :ProjectId, :UseStatus, :ResourceIds, :FilePaths
@@ -17778,10 +17778,12 @@ module TencentCloud
         # @type FileSize: String
         # @param MatchedBrokerIp: 日志匹配节点信息
         # @type MatchedBrokerIp: String
+        # @param ExecutionExtendedProps: 执行平台通用协议
+        # @type ExecutionExtendedProps: Array
 
-        attr_accessor :LogInfo, :YarnLogInfo, :DataLogInfo, :ThirdTaskRunLogInfo, :ThirdTaskLogUrlDesc, :LineCount, :ExtInfo, :IsEnd, :FileSize, :MatchedBrokerIp
+        attr_accessor :LogInfo, :YarnLogInfo, :DataLogInfo, :ThirdTaskRunLogInfo, :ThirdTaskLogUrlDesc, :LineCount, :ExtInfo, :IsEnd, :FileSize, :MatchedBrokerIp, :ExecutionExtendedProps
 
-        def initialize(loginfo=nil, yarnloginfo=nil, dataloginfo=nil, thirdtaskrunloginfo=nil, thirdtasklogurldesc=nil, linecount=nil, extinfo=nil, isend=nil, filesize=nil, matchedbrokerip=nil)
+        def initialize(loginfo=nil, yarnloginfo=nil, dataloginfo=nil, thirdtaskrunloginfo=nil, thirdtasklogurldesc=nil, linecount=nil, extinfo=nil, isend=nil, filesize=nil, matchedbrokerip=nil, executionextendedprops=nil)
           @LogInfo = loginfo
           @YarnLogInfo = yarnloginfo
           @DataLogInfo = dataloginfo
@@ -17792,6 +17794,7 @@ module TencentCloud
           @IsEnd = isend
           @FileSize = filesize
           @MatchedBrokerIp = matchedbrokerip
+          @ExecutionExtendedProps = executionextendedprops
         end
 
         def deserialize(params)
@@ -17805,6 +17808,14 @@ module TencentCloud
           @IsEnd = params['IsEnd']
           @FileSize = params['FileSize']
           @MatchedBrokerIp = params['MatchedBrokerIp']
+          unless params['ExecutionExtendedProps'].nil?
+            @ExecutionExtendedProps = []
+            params['ExecutionExtendedProps'].each do |i|
+              pairdto_tmp = PairDto.new
+              pairdto_tmp.deserialize(i)
+              @ExecutionExtendedProps << pairdto_tmp
+            end
+          end
         end
       end
 
@@ -22121,17 +22132,21 @@ module TencentCloud
         # @param Value: 值
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: String
+        # @param Description: 描述
+        # @type Description: String
 
-        attr_accessor :Key, :Value
+        attr_accessor :Key, :Value, :Description
 
-        def initialize(key=nil, value=nil)
+        def initialize(key=nil, value=nil, description=nil)
           @Key = key
           @Value = value
+          @Description = description
         end
 
         def deserialize(params)
           @Key = params['Key']
           @Value = params['Value']
+          @Description = params['Description']
         end
       end
 

@@ -3403,6 +3403,8 @@ module TencentCloud
 
         attr_accessor :ChargeStatuses, :ChargeTypes, :Limit, :Offset, :AreaIds, :InstanceStatuses, :InstanceIds, :Filters, :IsDemo
         extend Gem::Deprecate
+        deprecate :InstanceStatuses, :none, 2025, 2
+        deprecate :InstanceStatuses=, :none, 2025, 2
         deprecate :InstanceIds, :none, 2025, 2
         deprecate :InstanceIds=, :none, 2025, 2
         deprecate :IsDemo, :none, 2025, 2
