@@ -1991,12 +1991,43 @@ module TencentCloud
 
       # UploadDocRealtime请求参数结构体
       class UploadDocRealtimeRequest < TencentCloud::Common::AbstractModel
+        # @param KnowledgeBaseId: 知识库ID
+        # @type KnowledgeBaseId: String
+        # @param FileName: 文件名，可选。
+        # **需带文件类型后缀**，当文件名无法从传入的`FileUrl`获取时需要通过该字段来明确。
+        # @type FileName: String
+        # @param FileType: 文件类型。
+        # **支持的文件类型：**
+        # - `PDF`、`DOC`、`DOCX`、`XLS`、`XLSX`、`PPT`、`PPTX`、`MD`、`TXT`、`PNG`、`JPG`、`JPEG`、`CSV`、`HTML`、`EPUB`
 
+        # **支持的文件大小：**
+        #  - `PDF`、`DOCX`、`DOC`、`PPT`、`PPTX` 最大 200M
+        #  - `TXT`、`MD` 最大10M
+        #  - 其他 最大20M
+        # @type FileType: String
+        # @param FileUrl: 文件的 URL 地址。
+        # 文件存储于腾讯云的 URL 可保障更高的下载速度和稳定性，建议文件存储于腾讯云。 非腾讯云存储的 URL 速度和稳定性可能受一定影响。
+        # 参考：[腾讯云COS文档](https://cloud.tencent.com/document/product/436/7749)
+        # @type FileUrl: String
+        # @param ExpireTime: 过期时间的秒数，最长24小时，默认24小时
+        # @type ExpireTime: Integer
 
-        def initialize()
+        attr_accessor :KnowledgeBaseId, :FileName, :FileType, :FileUrl, :ExpireTime
+
+        def initialize(knowledgebaseid=nil, filename=nil, filetype=nil, fileurl=nil, expiretime=nil)
+          @KnowledgeBaseId = knowledgebaseid
+          @FileName = filename
+          @FileType = filetype
+          @FileUrl = fileurl
+          @ExpireTime = expiretime
         end
 
         def deserialize(params)
+          @KnowledgeBaseId = params['KnowledgeBaseId']
+          @FileName = params['FileName']
+          @FileType = params['FileType']
+          @FileUrl = params['FileUrl']
+          @ExpireTime = params['ExpireTime']
         end
       end
 

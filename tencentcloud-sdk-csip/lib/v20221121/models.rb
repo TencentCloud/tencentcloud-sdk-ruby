@@ -8004,10 +8004,8 @@ module TencentCloud
         # 1:发生次数高于固定值
         # 2:发生次数高于周期平均值的百分之
         # 3:发生次数高于用户平均值的百分之
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OperatorType: Integer
         # @param Value: 统计值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: Float
 
         attr_accessor :OperatorType, :Value
@@ -8691,15 +8689,12 @@ module TencentCloud
       # 用户行为分析策略
       class UebaRule < TencentCloud::Common::AbstractModel
         # @param RuleID: 策略id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleID: String
         # @param RuleName: 规则名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleName: String
         # @param RuleType: 策略类型
         # 0:系统策略
         # 1:自定义策略
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleType: Integer
         # @param RuleLevel: 策略等级
         # 0:提示
@@ -8707,36 +8702,26 @@ module TencentCloud
         # 2:中危
         # 3:高危
         # 4:严重
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleLevel: Integer
         # @param RuleContent: 策略内容
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleContent: String
         # @param RuleStatus: 策略开关
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleStatus: Boolean
         # @param HitCount: 命中次数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HitCount: Integer
         # @param AppID: 所属账号Appid
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AppID: String
         # @param MemberID: 多账号，成员ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MemberID: String
         # @param Uin: Uin
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Uin: String
         # @param Nickname: 昵称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Nickname: String
         # @param CustomRuleDetail: 自定义规则具体内容
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CustomRuleDetail: :class:`Tencentcloud::Csip.v20221121.models.UebaCustomRule`
         # @param CloudType: 云类型
         # 腾讯云：0
         # aws：1
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CloudType: Integer
 
         attr_accessor :RuleID, :RuleName, :RuleType, :RuleLevel, :RuleContent, :RuleStatus, :HitCount, :AppID, :MemberID, :Uin, :Nickname, :CustomRuleDetail, :CloudType

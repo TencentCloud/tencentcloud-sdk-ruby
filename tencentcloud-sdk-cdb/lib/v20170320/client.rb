@@ -3423,6 +3423,7 @@ module TencentCloud
         end
 
         # 该接口（ModifyProtectMode）用于修改实例的同步方式。
+        # 说明：仅专属集群可调用，该接口即将下线。
 
         # @param request: Request instance for ModifyProtectMode.
         # @type request: :class:`Tencentcloud::cdb::V20170320::ModifyProtectModeRequest`

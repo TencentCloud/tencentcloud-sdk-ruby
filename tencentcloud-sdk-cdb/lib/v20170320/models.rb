@@ -1027,31 +1027,46 @@ module TencentCloud
         end
       end
 
-      # CPU弹性扩容的自动扩容策略
+      # CPU 弹性扩容的自动扩容策略。
       class AutoStrategy < TencentCloud::Common::AbstractModel
-        # @param ExpandThreshold: 自动扩容阈值，可选值70、80、90，代表CPU利用率达到70%、80%、90%时后台进行自动扩容
+        # @param ExpandThreshold: 自动扩容阈值，可选值40、50、60、70、80、90，代表 CPU 利用率达到40%、50%、60%、70%、80%、90%时后台进行自动扩容。
         # @type ExpandThreshold: Integer
-        # @param ExpandPeriod: 自动扩容观测周期，单位是分钟，可选值1、3、5、10、15、30。后台会按照配置的周期进行扩容判断。
-        # @type ExpandPeriod: Integer
         # @param ShrinkThreshold: 自动缩容阈值，可选值10、20、30，代表CPU利用率达到10%、20%、30%时后台进行自动缩容
         # @type ShrinkThreshold: Integer
+        # @param ExpandPeriod: 自动扩容观测周期，单位是分钟，可选值1、3、5、10、15、30。后台会按照配置的周期进行扩容判断。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExpandPeriod: Integer
         # @param ShrinkPeriod: 自动缩容观测周期，单位是分钟，可选值5、10、15、30。后台会按照配置的周期进行缩容判断。
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ShrinkPeriod: Integer
+        # @param ExpandSecondPeriod: 弹性扩容观测周期（秒级）
+        # @type ExpandSecondPeriod: Integer
+        # @param ShrinkSecondPeriod: 缩容观测周期（秒级）
+        # @type ShrinkSecondPeriod: Integer
 
-        attr_accessor :ExpandThreshold, :ExpandPeriod, :ShrinkThreshold, :ShrinkPeriod
+        attr_accessor :ExpandThreshold, :ShrinkThreshold, :ExpandPeriod, :ShrinkPeriod, :ExpandSecondPeriod, :ShrinkSecondPeriod
+        extend Gem::Deprecate
+        deprecate :ExpandPeriod, :none, 2025, 2
+        deprecate :ExpandPeriod=, :none, 2025, 2
+        deprecate :ShrinkPeriod, :none, 2025, 2
+        deprecate :ShrinkPeriod=, :none, 2025, 2
 
-        def initialize(expandthreshold=nil, expandperiod=nil, shrinkthreshold=nil, shrinkperiod=nil)
+        def initialize(expandthreshold=nil, shrinkthreshold=nil, expandperiod=nil, shrinkperiod=nil, expandsecondperiod=nil, shrinksecondperiod=nil)
           @ExpandThreshold = expandthreshold
-          @ExpandPeriod = expandperiod
           @ShrinkThreshold = shrinkthreshold
+          @ExpandPeriod = expandperiod
           @ShrinkPeriod = shrinkperiod
+          @ExpandSecondPeriod = expandsecondperiod
+          @ShrinkSecondPeriod = shrinksecondperiod
         end
 
         def deserialize(params)
           @ExpandThreshold = params['ExpandThreshold']
-          @ExpandPeriod = params['ExpandPeriod']
           @ShrinkThreshold = params['ShrinkThreshold']
+          @ExpandPeriod = params['ExpandPeriod']
           @ShrinkPeriod = params['ShrinkPeriod']
+          @ExpandSecondPeriod = params['ExpandSecondPeriod']
+          @ShrinkSecondPeriod = params['ShrinkSecondPeriod']
         end
       end
 

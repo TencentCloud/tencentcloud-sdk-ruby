@@ -89,35 +89,38 @@ module TencentCloud
 
       # ApplyCertificate请求参数结构体
       class ApplyCertificateRequest < TencentCloud::Common::AbstractModel
-        # @param DvAuthMethod: 验证方式：DNS_AUTO = 自动DNS验证，DNS = 手动DNS验证，FILE = 文件验证。
+        # @param DvAuthMethod: 证书域名验证方式：
+        # DNS_AUTO： 自动添加域名DNS验证， 需用户域名解析托管在『[云解析DNS](https://console.cloud.tencent.com/cns)』，且与申请证书归属同一个腾讯云账号
+        # DNS：手动添加域名DNS验证，需用户手动去域名解析服务商添加验证值
+        # FILE：手动添加域名文件验证。 需要用户手动在域名站点根目录添加指定路径文件进行文件验证， http&https任一通过即可；且域名站点需海外CA机构能访问， 具体访问白名单为：64.78.193.238，216.168.247.9，216.168.249.9，54.189.196.217
         # @type DvAuthMethod: String
-        # @param DomainName: 域名。
+        # @param DomainName: 证书绑定的域名。
         # @type DomainName: String
-        # @param ProjectId: 项目 ID。
+        # @param ProjectId: 证书关联的项目 ID。 默认为0（默认项目）
         # @type ProjectId: Integer
-        # @param PackageType: 证书类型，目前仅支持类型83。83 = TrustAsia C1 DV Free。
+        # @param PackageType: 证书类型， 可不传，目前仅支持类型83。83 = TrustAsia C1 DV Free。
         # @type PackageType: String
-        # @param ContactEmail: 邮箱。
+        # @param ContactEmail: 证书订单关联邮箱。默认为腾讯云账号邮箱， 不存在则关联固定邮箱
         # @type ContactEmail: String
-        # @param ContactPhone: 手机。
+        # @param ContactPhone: 证书关联手机号码，  不存在则关联固定手机号码
         # @type ContactPhone: String
-        # @param ValidityPeriod: 有效期，默认3个月，目前仅支持3个月。
+        # @param ValidityPeriod: 证书有效期，默认3（月），目前仅支持3个月。
         # @type ValidityPeriod: String
-        # @param CsrEncryptAlgo: 加密算法，支持 RSA及ECC。
+        # @param CsrEncryptAlgo: 加密算法，取值为ECC、RSA， 默认为RSA
         # @type CsrEncryptAlgo: String
         # @param CsrKeyParameter: 密钥对参数，RSA仅支持2048。ECC仅支持prime256v1。加密算法选择ECC时，此参数必填
         # @type CsrKeyParameter: String
-        # @param CsrKeyPassword: CSR 的加密密码。
+        # @param CsrKeyPassword: 私钥密码， 目前仅使用在生成jks、pfx格式证书时密码； 其他格式私钥证书未加密
         # @type CsrKeyPassword: String
-        # @param Alias: 备注名称。
+        # @param Alias: 证书别名
         # @type Alias: String
-        # @param OldCertificateId: 原证书 ID，用于重新申请。
+        # @param OldCertificateId: 旧证书 ID，用于证书续费（证书有效期在30天内，且未过期），会建立续费关系， 可用于托管； 不传则表示新申请证书
         # @type OldCertificateId: String
-        # @param PackageId: 权益包ID，用于免费证书扩容包使用
+        # @param PackageId: 权益包ID，用于免费证书扩容包使用， 免费证书扩容包已下线
         # @type PackageId: String
         # @param DeleteDnsAutoRecord: 签发后是否删除自动域名验证记录， 默认为否；仅域名为DNS_AUTO验证类型支持传参
         # @type DeleteDnsAutoRecord: Boolean
-        # @param DnsNames: 域名数组（多域名证书可以上传）。
+        # @param DnsNames: 证书绑定的其他域名，待开放。目前不支持此参数
         # @type DnsNames: Array
 
         attr_accessor :DvAuthMethod, :DomainName, :ProjectId, :PackageType, :ContactEmail, :ContactPhone, :ValidityPeriod, :CsrEncryptAlgo, :CsrKeyParameter, :CsrKeyPassword, :Alias, :OldCertificateId, :PackageId, :DeleteDnsAutoRecord, :DnsNames
@@ -161,7 +164,7 @@ module TencentCloud
 
       # ApplyCertificate返回参数结构体
       class ApplyCertificateResponse < TencentCloud::Common::AbstractModel
-        # @param CertificateId: 证书 ID。
+        # @param CertificateId: 新申请成功的证书 ID。
         # @type CertificateId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -373,7 +376,7 @@ module TencentCloud
         # @type CertId: String
         # @param Status: 域名状态 rejected：域名审核未通过，域名备案过期/被注销导致，processing：部署中，online：已启动，offline：已关闭
         # @type Status: String
-        # @param HttpsBillingSwitch: 域名计费状态
+        # @param HttpsBillingSwitch: 域名计费状态，on表示开启，off表示关闭。
         # @type HttpsBillingSwitch: String
 
         attr_accessor :Domain, :CertId, :Status, :HttpsBillingSwitch
@@ -513,22 +516,22 @@ module TencentCloud
         # @param DomainNumber: 证书可配置域名数量。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DomainNumber: String
-        # @param OriginCertificateId: 原始证书 ID。
+        # @param OriginCertificateId: 续费原证书 ID。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OriginCertificateId: String
         # @param ReplacedBy: 重颁发证书原始 ID。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReplacedBy: String
-        # @param ReplacedFor: 重颁发证书新 ID。
+        # @param ReplacedFor: 重颁发证书ID。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReplacedFor: String
-        # @param RenewOrder: 新订单证书 ID。
+        # @param RenewOrder: 续费证书 ID。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RenewOrder: String
         # @param SMCert: 是否是国密证书
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SMCert: Integer
-        # @param CompanyType: 公司类型
+        # @param CompanyType: 公司类型，取值：1（个人）；2（公司）
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CompanyType: Integer
 
@@ -557,97 +560,120 @@ module TencentCloud
 
       # CertificateInfoSubmit请求参数结构体
       class CertificateInfoSubmitRequest < TencentCloud::Common::AbstractModel
-        # @param CertId: 证书 ID。
+        # @param CertId: 待提交资料的付费证书 ID。
         # @type CertId: String
-        # @param GenCsrType: CSR 生成方式：online = 在线生成, upload = 手动上传。
+        # @param GenCsrType: 此字段必传。 CSR 生成方式， 取值为：
+        # - online：腾讯云提交的填写的参数信息生成CSR和私钥，并由腾讯云加密存储
+        # - parse：自行生成CSR和私钥，并通过上传CSR申请证书
         # @type GenCsrType: String
-        # @param CertCommonName: 绑定证书的主域名。
+        # @param CertCommonName: 证书绑定的通用名称， 若是上传的CSR，则该域名需与CSR解析的通用名称一致
         # @type CertCommonName: String
-        # @param CompanyType: 组织信息类型：1，个人； 2， 公司；
+        # @param CompanyType: 组织信息类型， 取值范围：
+        # 1（个人）：仅DV类型证书可设置为1， 个人类型证书组织信息字段可不传：Org开头，Admin开头，Tech开头
+        # 2（公司）：所有类型证书都可设置为2， 按需传组织信息字段
         # @type CompanyType: Integer
-        # @param OrgIdType: 公司证件类型（）
-        # @type OrgIdType: String
-        # @param OrgIdNumber: 公司证件号码
-        # @type OrgIdNumber: String
-        # @param AdminIdType: 管理人证件类型
-        # @type AdminIdType: String
-        # @param AdminIdNumber: 管理人证件号码
-        # @type AdminIdNumber: String
-        # @param TechIdType: 联系人证件类型
-        # @type TechIdType: String
-        # @param TechIdNumber: 联系人证件号码
-        # @type TechIdNumber: String
-        # @param CompanyId: 公司ID
+        # @param CompanyId: 公司ID，在 [腾讯云控制台](https://console.cloud.tencent.com/ssl/info) 可进行查看，若无满足的公司信息， 则本参数传0 ； 若存在满足当前订单的公司信息， 可以根据 [DescribeCompanies](https://cloud.tencent.com/document/product/400/90375) 查看公司ID； 若传了公司ID，则Org开头的参数可不传
+
         # @type CompanyId: String
-        # @param Csr: 上传的 CSR 内容。如果GenCsrType为upload则该字段必传
+        # @param OrgIdType: 公司证件类型，取值范围：
+        # TYDMZ（统一社会信用代码 ）：仅CFCA类型证书需要使用本字段， 其他类型证书不需要使用本字段
+        # OTHERS（其他）
+        # @type OrgIdType: String
+        # @param OrgIdNumber: 公司证件号码，取值范围：
+        # TYDMZ（统一社会信用代码 ）：11532xxxxxxxx24820
+        # @type OrgIdNumber: String
+        # @param AdminIdType: 管理人证件类型，取值范围：
+        # SFZ（身份证）：仅CFCA类型证书需要使用本字段， 其他类型证书不需要使用本字段
+        # HZ（护照）：仅CFCA类型证书需要使用本字段， 其他类型证书不需要使用本字段
+        # @type AdminIdType: String
+        # @param AdminIdNumber: 管理人证件号码，仅CFCA类型证书需要使用本字段， 其他类型证书不需要使用本字段， 取值范围：
+        # SFZ（身份证）：110000xxxxxxxx1242
+        # HZ（护照）:EFxxxxxxx
+        # @type AdminIdNumber: String
+        # @param TechIdType: 联系人证件类型，取值范围：
+        # SFZ（身份证）：仅CFCA类型证书需要使用本字段， 其他类型证书不需要使用本字段
+        # HZ（护照）：仅CFCA类型证书需要使用本字段， 其他类型证书不需要使用本字段
+        # @type TechIdType: String
+        # @param TechIdNumber: 联系人证件号码，仅CFCA类型证书需要使用本字段， 其他类型证书不需要使用本字段，取值范围：
+        # SFZ（身份证）：110000xxxxxxxx1242
+        # HZ（护照）:EFxxxxxxx
+        # @type TechIdNumber: String
+        # @param Csr: 上传的 CSR 内容。
+        # 若GenCsrType为parse， 则此字段必传。
         # @type Csr: String
-        # @param DnsNames: 域名数组（多域名证书可以上传）。
+        # @param DnsNames: 证书绑定的其他域名， 单域名、泛域名证书无需提供。 多域名、多泛域名必填
         # @type DnsNames: Array
-        # @param KeyPass: 私钥密码（非必填）。
+        # @param KeyPass: 私钥密码， 目前仅使用在生成jks、pfx格式证书时密码； 其他格式私钥证书未加密
         # @type KeyPass: String
-        # @param OrgOrganization: 公司名称。
+        # @param OrgOrganization: 公司名称。若没有传CompanyId或者ManagerId， 则此字段必传
         # @type OrgOrganization: String
-        # @param OrgDivision: 部门名称。
+        # @param OrgDivision: 部门名称。若没有传CompanyId或者ManagerId， 则此字段必传
         # @type OrgDivision: String
-        # @param OrgAddress: 公司详细地址。
+        # @param OrgAddress: 公司详细地址。若没有传CompanyId或者ManagerId， 则此字段必传
         # @type OrgAddress: String
-        # @param OrgCountry: 国家名称，如中国：CN 。
+        # @param OrgCountry: 国家名称，如中国：CN 。若没有传CompanyId或者ManagerId， 则此字段必传
         # @type OrgCountry: String
-        # @param OrgCity: 公司所在城市。
+        # @param OrgCity: 公司所在城市。若没有传CompanyId或者ManagerId， 则此字段必传
         # @type OrgCity: String
-        # @param OrgRegion: 公司所在省份。
+        # @param OrgRegion: 公司所在省份。若没有传CompanyId或者ManagerId， 则此字段必传
         # @type OrgRegion: String
-        # @param OrgPhoneArea: 公司座机区号。
+        # @param OrgPhoneArea: 公司所属区号。若没有传CompanyId或者ManagerId， 则此字段必传
+        # 如：021。  手机号码传 86
         # @type OrgPhoneArea: String
-        # @param OrgPhoneNumber: 公司座机号码。
+        # @param OrgPhoneNumber: 公司所属号码。若没有传CompanyId或者ManagerId， 则此字段必传
         # @type OrgPhoneNumber: String
-        # @param VerifyType: 证书验证方式。验证类型：DNS_AUTO = 自动DNS验证（仅支持在腾讯云解析且解析状态正常的域名使用该验证类型），DNS = 手动DNS验证，FILE = 文件验证。
+        # @param VerifyType: 证书域名验证方式：
+        # DNS_AUTO： 自动添加域名DNS验证， 需用户域名解析托管在『[云解析DNS](https://console.cloud.tencent.com/cns)』，且与申请证书归属同一个腾讯云账号
+        # DNS：手动添加域名DNS验证，需用户手动去域名解析服务商添加验证值
+        # FILE：手动添加域名文件验证。 需要用户手动在域名站点根目录添加指定路径文件进行文件验证， http&https任一通过即可；且域名站点需海外CA机构能访问， 具体访问白名单为：64.78.193.238，216.168.247.9，216.168.249.9，54.189.196.217
         # @type VerifyType: String
-        # @param AdminFirstName: 管理人名。
+        # @param AdminFirstName: 管理人名。若没有传ManagerId， 则此字段必传
         # @type AdminFirstName: String
-        # @param AdminLastName: 管理人姓。
+        # @param AdminLastName: 管理人姓。若没有传ManagerId， 则此字段必传
         # @type AdminLastName: String
-        # @param AdminPhone: 管理人手机号码。
+        # @param AdminPhone: 管理人手机号码。若没有传ManagerId， 则此字段必传
         # @type AdminPhone: String
-        # @param AdminEmail: 管理人邮箱地址。
+        # @param AdminEmail: 管理人邮箱地址。若没有传ManagerId， 则此字段必传
         # @type AdminEmail: String
-        # @param AdminTitle: 管理人职位。
+        # @param AdminTitle: 管理人职位。若没有传ManagerId， 则此字段必传
         # @type AdminTitle: String
-        # @param TechFirstName: 联系人名。
+        # @param TechFirstName: 联系人名。若没有传ManagerId， 则此字段必传
         # @type TechFirstName: String
-        # @param TechLastName: 联系人姓。
+        # @param TechLastName: 联系人姓。若没有传ManagerId， 则此字段必传
         # @type TechLastName: String
-        # @param ContactEmail: 联系人邮箱地址。
+        # @param ContactEmail: 联系人邮箱地址。CompanyType为1时， 此字段必传
         # @type ContactEmail: String
         # @param AutoRenewFlag: 是否开启自动续费： 0， 不开启；  1， 开启； 默认为0
         # @type AutoRenewFlag: Integer
-        # @param CsrKeyParameter: 证书加密参数
+        # @param CsrKeyParameter: 密钥对参数，RSA支持2048，4096。ECC仅支持prime256v1。加密算法选择ECC时，此参数必填
+        # 国密证书类型本字段不用传
         # @type CsrKeyParameter: String
-        # @param CsrEncryptAlgo: 证书加密方式
+        # @param CsrEncryptAlgo: 加密算法，取值为ECC、RSA， 默认为RSA
+        # 国密证书类型本字段不用传
         # @type CsrEncryptAlgo: String
-        # @param ManagerId: 管理人ID
+        # @param ManagerId: 管理人ID，在 [腾讯云控制台](https://console.cloud.tencent.com/ssl/info) 可进行查看，若无满足的管理人信息， 则本参数传0 ； 若存在满足当前订单的管理人信息， 可以根据 [DescribeManagers](https://cloud.tencent.com/document/product/400/52672) 查看管理人ID； 若传了管理人ID，则Org开头、Admin开头、Tech开头的参数可不传； 管理人ID会包含公司信息
         # @type ManagerId: String
-        # @param TechPhone: 联系人电话
+        # @param TechPhone: 联系人电话。若没有传ManagerId， 则此字段必传
         # @type TechPhone: String
         # @param TechEmail: 联系人邮箱
         # @type TechEmail: String
-        # @param TechTitle: 联系人职位
+        # @param TechTitle: 联系人职位。若没有传ManagerId， 则此字段必传
         # @type TechTitle: String
 
-        attr_accessor :CertId, :GenCsrType, :CertCommonName, :CompanyType, :OrgIdType, :OrgIdNumber, :AdminIdType, :AdminIdNumber, :TechIdType, :TechIdNumber, :CompanyId, :Csr, :DnsNames, :KeyPass, :OrgOrganization, :OrgDivision, :OrgAddress, :OrgCountry, :OrgCity, :OrgRegion, :OrgPhoneArea, :OrgPhoneNumber, :VerifyType, :AdminFirstName, :AdminLastName, :AdminPhone, :AdminEmail, :AdminTitle, :TechFirstName, :TechLastName, :ContactEmail, :AutoRenewFlag, :CsrKeyParameter, :CsrEncryptAlgo, :ManagerId, :TechPhone, :TechEmail, :TechTitle
+        attr_accessor :CertId, :GenCsrType, :CertCommonName, :CompanyType, :CompanyId, :OrgIdType, :OrgIdNumber, :AdminIdType, :AdminIdNumber, :TechIdType, :TechIdNumber, :Csr, :DnsNames, :KeyPass, :OrgOrganization, :OrgDivision, :OrgAddress, :OrgCountry, :OrgCity, :OrgRegion, :OrgPhoneArea, :OrgPhoneNumber, :VerifyType, :AdminFirstName, :AdminLastName, :AdminPhone, :AdminEmail, :AdminTitle, :TechFirstName, :TechLastName, :ContactEmail, :AutoRenewFlag, :CsrKeyParameter, :CsrEncryptAlgo, :ManagerId, :TechPhone, :TechEmail, :TechTitle
 
-        def initialize(certid=nil, gencsrtype=nil, certcommonname=nil, companytype=nil, orgidtype=nil, orgidnumber=nil, adminidtype=nil, adminidnumber=nil, techidtype=nil, techidnumber=nil, companyid=nil, csr=nil, dnsnames=nil, keypass=nil, orgorganization=nil, orgdivision=nil, orgaddress=nil, orgcountry=nil, orgcity=nil, orgregion=nil, orgphonearea=nil, orgphonenumber=nil, verifytype=nil, adminfirstname=nil, adminlastname=nil, adminphone=nil, adminemail=nil, admintitle=nil, techfirstname=nil, techlastname=nil, contactemail=nil, autorenewflag=nil, csrkeyparameter=nil, csrencryptalgo=nil, managerid=nil, techphone=nil, techemail=nil, techtitle=nil)
+        def initialize(certid=nil, gencsrtype=nil, certcommonname=nil, companytype=nil, companyid=nil, orgidtype=nil, orgidnumber=nil, adminidtype=nil, adminidnumber=nil, techidtype=nil, techidnumber=nil, csr=nil, dnsnames=nil, keypass=nil, orgorganization=nil, orgdivision=nil, orgaddress=nil, orgcountry=nil, orgcity=nil, orgregion=nil, orgphonearea=nil, orgphonenumber=nil, verifytype=nil, adminfirstname=nil, adminlastname=nil, adminphone=nil, adminemail=nil, admintitle=nil, techfirstname=nil, techlastname=nil, contactemail=nil, autorenewflag=nil, csrkeyparameter=nil, csrencryptalgo=nil, managerid=nil, techphone=nil, techemail=nil, techtitle=nil)
           @CertId = certid
           @GenCsrType = gencsrtype
           @CertCommonName = certcommonname
           @CompanyType = companytype
+          @CompanyId = companyid
           @OrgIdType = orgidtype
           @OrgIdNumber = orgidnumber
           @AdminIdType = adminidtype
           @AdminIdNumber = adminidnumber
           @TechIdType = techidtype
           @TechIdNumber = techidnumber
-          @CompanyId = companyid
           @Csr = csr
           @DnsNames = dnsnames
           @KeyPass = keypass
@@ -682,13 +708,13 @@ module TencentCloud
           @GenCsrType = params['GenCsrType']
           @CertCommonName = params['CertCommonName']
           @CompanyType = params['CompanyType']
+          @CompanyId = params['CompanyId']
           @OrgIdType = params['OrgIdType']
           @OrgIdNumber = params['OrgIdNumber']
           @AdminIdType = params['AdminIdType']
           @AdminIdNumber = params['AdminIdNumber']
           @TechIdType = params['TechIdType']
           @TechIdNumber = params['TechIdNumber']
-          @CompanyId = params['CompanyId']
           @Csr = params['Csr']
           @DnsNames = params['DnsNames']
           @KeyPass = params['KeyPass']
@@ -737,11 +763,14 @@ module TencentCloud
 
       # CertificateOrderSubmit请求参数结构体
       class CertificateOrderSubmitRequest < TencentCloud::Common::AbstractModel
-        # @param CertId: 证书 ID。
+        # @param CertId: 待提交资料的付费证书 ID。
         # @type CertId: String
         # @param DeleteDnsAutoRecord: 是否删除自动DNS验证值：0，不删除； 1，删除； 默认不删除
         # @type DeleteDnsAutoRecord: Integer
-        # @param VerifyType: 域名验证方式：DNS_AUTO 自动DNS验证， DNS DNS验证， FILE 文件验证
+        # @param VerifyType: 证书域名验证方式：
+        # DNS_AUTO： 自动添加域名DNS验证， 需用户域名解析托管在『[云解析DNS](https://console.cloud.tencent.com/cns)』，且与申请证书归属同一个腾讯云账号
+        # DNS：手动添加域名DNS验证，需用户手动去域名解析服务商添加验证值
+        # FILE：手动添加域名文件验证。 需要用户手动在域名站点根目录添加指定路径文件进行文件验证， http&https任一通过即可；且域名站点需海外CA机构能访问， 具体访问白名单见控制台页面
         # @type VerifyType: String
 
         attr_accessor :CertId, :DeleteDnsAutoRecord, :VerifyType
@@ -795,17 +824,104 @@ module TencentCloud
         # @param ProjectId: 项目 ID。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProjectId: String
-        # @param From: 证书来源。
+        # @param From: 证书来源：
+        # trustasia：亚洲诚信，
+        # upload：用户上传。
+        # wosign：沃通
+        # sheca：上海CA
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type From: String
         # @param PackageType: 证书套餐类型：
-        # 2 = TrustAsia TLS RSA CA，3 = SecureSite 增强型企业版（EV Pro）， 4 = SecureSite 增强型（EV）， 5 = SecureSite 企业型专业版（OV Pro）， 6 = SecureSite 企业型（OV）， 7 = SecureSite 企业型（OV）通配符， 8 = Geotrust 增强型（EV）， 9 = Geotrust 企业型（OV）， 10 = Geotrust 企业型（OV）通配符， 11 = TrustAsia 域名型多域名 SSL 证书， 12 = TrustAsia 域名型（DV）通配符， 13 = TrustAsia 企业型通配符（OV）SSL 证书（D3）， 14 = TrustAsia 企业型（OV）SSL 证书（D3）， 15 = TrustAsia 企业型多域名 （OV）SSL 证书（D3）， 16 = TrustAsia 增强型 （EV）SSL 证书（D3）， 17 = TrustAsia 增强型多域名（EV）SSL 证书（D3）， 18 = GlobalSign 企业型（OV）SSL 证书， 19 = GlobalSign 企业型通配符 （OV）SSL 证书， 20 = GlobalSign 增强型 （EV）SSL 证书， 21 = TrustAsia 企业型通配符多域名（OV）SSL 证书（D3）， 22 = GlobalSign 企业型多域名（OV）SSL 证书， 23 = GlobalSign 企业型通配符多域名（OV）SSL 证书， 24 = GlobalSign 增强型多域名（EV）SSL 证书，25 = Wotrus 域名型证书，26 = Wotrus 域名型多域名证书，27 = Wotrus 域名型通配符证书，28 = Wotrus 企业型证书，29 = Wotrus 企业型多域名证书，30 = Wotrus 企业型通配符证书，31 = Wotrus 增强型证书，32 = Wotrus 增强型多域名证书，33 = Wotrus 国密域名型证书，34 = Wotrus 国密域名型多域名证书，35 = Wotrus 国密域名型通配符证书，37 = Wotrus 国密企业型证书，38 = Wotrus 国密企业型多域名证书，39 = Wotrus 国密企业型通配符证书，40 = Wotrus 国密增强型证书，41 = Wotrus 国密增强型多域名证书，42 = TrustAsia 域名型通配符多域名证书，43 = DNSPod-企业型(OV)SSL证书，44 = DNSPod-企业型(OV)通配符SSL证书，45 = DNSPod-企业型(OV)多域名SSL证书， 46 = DNSPod-增强型(EV)SSL证书，47 = DNSPod-增强型(EV)多域名SSL证书，48 = DNSPod-域名型(DV)SSL证书，49 = DNSPod-域名型(DV)通配符SSL证书，50 = DNSPod-域名型(DV)多域名SSL证书，51 = DNSPod（国密）-企业型(OV)SSL证书，52 = DNSPod（国密）-企业型(OV)通配符SSL证书，53 = DNSPod（国密）-企业型(OV)多域名SSL证书，54 = DNSPod（国密）-域名型(DV)SSL证书，55 = DNSPod（国密）-域名型(DV)通配符SSL证书， 56 = DNSPod（国密）-域名型(DV)多域名SSL证书，57 = SecureSite 企业型专业版多域名(OV Pro)，58 = SecureSite 企业型多域名(OV)，59 = SecureSite 增强型专业版多域名(EV Pro)，60 = SecureSite 增强型多域名(EV)，61 = Geotrust 增强型多域名(EV)，83 = TrustAsia C1 DV Free
+        # null：用户上传证书（没有套餐类型），
+        # 2：TrustAsia TLS RSA CA，
+        # 3：SecureSite 增强型企业版（EV Pro），
+        # 4：SecureSite 增强型（EV），
+        # 5：SecureSite 企业型专业版（OV Pro），
+        # 6：SecureSite 企业型（OV），
+        # 7：SecureSite 企业型（OV）通配符，
+        # 8：Geotrust 增强型（EV），
+        # 9：Geotrust 企业型（OV），
+        # 10：Geotrust 企业型（OV）通配符，
+        # 11：TrustAsia 域名型多域名 SSL 证书，
+        # 12：TrustAsia 域名型（DV）通配符，
+        # 13：TrustAsia 企业型通配符（OV）SSL 证书（D3），
+        # 14：TrustAsia 企业型（OV）SSL 证书（D3），
+        # 15：TrustAsia 企业型多域名 （OV）SSL 证书（D3），
+        # 16：TrustAsia 增强型 （EV）SSL 证书（D3），
+        # 17：TrustAsia 增强型多域名（EV）SSL 证书（D3），
+        # 18：GlobalSign 企业型（OV）SSL 证书，
+        # 19：GlobalSign 企业型通配符 （OV）SSL 证书，
+        # 20：GlobalSign 增强型 （EV）SSL 证书，
+        # 21：TrustAsia 企业型通配符多域名（OV）SSL 证书（D3），
+        # 22：GlobalSign 企业型多域名（OV）SSL 证书，
+        # 23：GlobalSign 企业型通配符多域名（OV）SSL 证书，
+        # 24：GlobalSign 增强型多域名（EV）SSL 证书，
+        # 25：Wotrus 域名型证书，
+        # 26：Wotrus 域名型多域名证书，
+        # 27：Wotrus 域名型通配符证书，
+        # 28：Wotrus 企业型证书，
+        # 29：Wotrus 企业型多域名证书，
+        # 30：Wotrus 企业型通配符证书，
+        # 31：Wotrus 增强型证书，
+        # 32：Wotrus 增强型多域名证书，
+        # 33：WoTrus-国密域名型证书，
+        # 34：WoTrus-国密域名型证书（多域名），
+        # 35：WoTrus-国密域名型证书（通配符），
+        # 37：WoTrus-国密企业型证书，
+        # 38：WoTrus-国密企业型证书（多域名），
+        # 39：WoTrus-国密企业型证书（通配符），
+        # 40：WoTrus-国密增强型证书，
+        # 41：WoTrus-国密增强型证书（多域名），
+        # 42：TrustAsia-域名型证书（通配符多域名），
+        # 43：DNSPod-企业型(OV)SSL证书
+        # 44：DNSPod-企业型(OV)通配符SSL证书
+        # 45：DNSPod-企业型(OV)多域名SSL证书
+        # 46：DNSPod-增强型(EV)SSL证书
+        # 47：DNSPod-增强型(EV)多域名SSL证书
+        # 48：DNSPod-域名型(DV)SSL证书
+        # 49：DNSPod-域名型(DV)通配符SSL证书
+        # 50：DNSPod-域名型(DV)多域名SSL证书
+        # 51：DNSPod（国密）-企业型(OV)SSL证书
+        # 52：DNSPod（国密）-企业型(OV)通配符SSL证书
+        # 53：DNSPod（国密）-企业型(OV)多域名SSL证书
+        # 54：DNSPod（国密）-域名型(DV)SSL证书
+        # 55：DNSPod（国密）-域名型(DV)通配符SSL证书
+        # 56：DNSPod（国密）-域名型(DV)多域名SSL证书
+        # 57：SecureSite 企业型专业版多域名(OV Pro)
+        # 58：SecureSite 企业型多域名(OV)
+        # 59：SecureSite 增强型专业版多域名(EV Pro)
+        # 60：SecureSite 增强型多域名(EV)
+        # 61：Geotrust 增强型多域名(EV)
+        # 75：SecureSite 企业型(OV)
+        # 76：SecureSite 企业型(OV)通配符
+        # 77：SecureSite 增强型(EV)
+        # 78：Geotrust 企业型(OV)
+        # 79：Geotrust 企业型(OV)通配符
+        # 80：Geotrust 增强型(EV)
+        # 81：GlobalSign 企业型（OV）SSL证书
+        # 82：GlobalSign 企业型通配符 （OV）SSL证书
+        # 83：TrustAsia C1 DV Free
+        # 85：GlobalSign 增强型 （EV）SSL证书
+        # 88：GlobalSign 企业型通配符多域名 （OV）SSL证书
+        # 89：GlobalSign 企业型多域名 （OV）SSL证书
+        # 90：GlobalSign 增强型多域名（EV） SSL证书
+        # 91：Geotrust 增强型多域名(EV)
+        # 92：SecureSite 企业型专业版多域名(OV Pro)
+        # 93：SecureSite 企业型多域名(OV)
+        # 94：SecureSite 增强型专业版多域名(EV Pro)
+        # 95：SecureSite 增强型多域名(EV)
+        # 96：SecureSite 增强型专业版(EV Pro)
+        # 97：SecureSite 企业型专业版(OV Pro)
+        # 98：CFCA 企业型(OV)SSL证书
+        # 99：CFCA 企业型多域名(OV)SSL证书
+        # 100：CFCA 企业型通配符(OV)SSL证书
+        # 101：CFCA 增强型(EV)SSL证书
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PackageType: String
         # @param CertificateType: 证书类型：CA = 客户端证书，SVR = 服务器证书。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CertificateType: String
-        # @param ProductZhName: 颁发者。
+        # @param ProductZhName: 证书产品名称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProductZhName: String
         # @param Domain: 主域名。
@@ -814,7 +930,7 @@ module TencentCloud
         # @param Alias: 备注名称。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Alias: String
-        # @param Status: 状态。0：审核中，1：已通过，2：审核失败，3：已过期，4：验证方式为 DNS_AUTO 类型的证书， 已添加DNS记录，5：企业证书，待提交，6：订单取消中，7：已取消，8：已提交资料， 待上传确认函，9：证书吊销中，10：已吊销，11：重颁发中，12：待上传吊销确认函，13：免费证书待提交资料状态，14：已退款，
+        # @param Status: 证书状态：0 = 审核中，1 = 已通过，2 = 审核失败，3 = 已过期，4 = 自动添加DNS记录，5 = 企业证书，待提交资料，6 = 订单取消中，7 = 已取消，8 = 已提交资料， 待上传确认函，9 = 证书吊销中，10 = 已吊销，11 = 重颁发中，12 = 待上传吊销确认函，13 = 免费证书待提交资料。14 = 证书已退款。 15 = 证书迁移中
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
         # @param CertificateExtra: 证书扩展信息。
@@ -826,7 +942,7 @@ module TencentCloud
         # @param StatusMsg: 状态信息。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StatusMsg: String
-        # @param VerifyType: 验证类型：DNS_AUTO = 自动DNS验证，DNS = 手动DNS验证，FILE = 文件验证，EMAIL = 邮件验证。
+        # @param VerifyType: 验证类型：DNS_AUTO = 自动DNS验证，DNS = 手动DNS验证，FILE = 文件验证，DNS_PROXY = DNS代理验证。FILE_PROXY = 文件代理验证
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VerifyType: String
         # @param CertBeginTime: 证书生效时间。
@@ -1164,7 +1280,7 @@ module TencentCloud
 
       # CheckCertificateDomainVerification返回参数结构体
       class CheckCertificateDomainVerificationResponse < TencentCloud::Common::AbstractModel
-        # @param VerificationResults: 域名验证结果
+        # @param VerificationResults: 证书域名验证结果列表， 证书若绑定了多个域名， 则返回数组有多份
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VerificationResults: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
@@ -1393,9 +1509,12 @@ module TencentCloud
 
       # CommitCertificateInformation请求参数结构体
       class CommitCertificateInformationRequest < TencentCloud::Common::AbstractModel
-        # @param CertificateId: 证书 ID。
+        # @param CertificateId: 待提交资料的付费证书 ID。
         # @type CertificateId: String
-        # @param VerifyType: 域名验证方式，如 DNS,DNS_AUTO,FILE
+        # @param VerifyType: 证书域名验证方式：
+        # DNS_AUTO： 自动添加域名DNS验证， 需用户域名解析托管在『[云解析DNS](https://console.cloud.tencent.com/cns)』，且与申请证书归属同一个腾讯云账号
+        # DNS：手动添加域名DNS验证，需用户手动去域名解析服务商添加验证值
+        # FILE：手动添加域名文件验证。 需要用户手动在域名站点根目录添加指定路径文件进行文件验证， http&https任一通过即可；且域名站点需海外CA机构能访问， 具体访问白名单为：64.78.193.238，216.168.247.9，216.168.249.9，54.189.196.217
         # @type VerifyType: String
 
         attr_accessor :CertificateId, :VerifyType
@@ -1451,10 +1570,13 @@ module TencentCloud
         # @type CompanyAddress: String
         # @param CompanyPhone: 公司电话
         # @type CompanyPhone: String
-        # @param IdType: 类型
+        # @param IdType: 公司证件类型，取值范围：
+        # TYDMZ（统一社会信用代码 ）：仅CFCA类型证书需要使用本字段， 其他类型证书不需要使用本字段
+        # OTHERS（其他）
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IdType: String
-        # @param IdNumber: ID号
+        # @param IdNumber: 公司证件号码，取值范围：
+        # TYDMZ（统一社会信用代码 ）：11532xxxxxxxx24820
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IdNumber: String
         # @param Tags: 标签
@@ -1618,7 +1740,68 @@ module TencentCloud
 
       # CreateCertificateByPackage请求参数结构体
       class CreateCertificateByPackageRequest < TencentCloud::Common::AbstractModel
-        # @param ProductPid: 证书产品PID。
+        # @param ProductPid: 证书产品PID，以下是对每个PID及其对应的证书文字说明：
+        # 1. 1022451 - CFCA-增强型(EV)SSL证书
+        # 2. 1022449 - CFCA-企业型(OV) SSL证书(通配符)
+        # 3. 1022447 - CFCA-企业型(OV)SSL证书
+        # 4. 1014028 - DNSPod亚信国密-企业型(OV)通配符证书
+        # 5. 1014030 - DNSPod亚信国密-企业型(OV)多域名证书
+        # 6. 1014026 - DNSPod亚信国密-企业型(OV)证书
+        # 7. 1014022 - DNSPod亚信国密-域名型(DV)通配符证书
+        # 8. 1014024 - DNSPod亚信国密-域名型(DV)多域名证书
+        # 9. 1014020 - DNSPod亚信国密-域名型(DV)证书
+        # 10. 1013949 - DNSPod SSL 域名型SSL证书(C1)
+        # 11. 1013953 - DNSPod SSL域名型多域名SSL证书(C1)
+        # 12. 1013951 - DNSPod-SSL域名型DV（泛域名）
+        # 13. 1013955 - DNSPod 企业型SSL证书(C1)
+        # 14. 1013959 - DNSPod 企业型多域名SSL证书(C1)
+        # 15. 1013957 - DNSPod 企业型通配符SSL证书(C1)
+        # 16. 1013961 - DNSPod 增强型 SSL 证书(C1)
+        # 17. 1013963 - DNSPod 增强型多域名SSL证书(C1)
+        # 18. 1005919 - TrustAsia-域名型DV（通配符多域名）
+        # 19. 1013882 - SecureSite-增强型专业版EVPro（多域名）
+        # 20. 1018559 - SecureSite-增强型专业版EVPro（单域名）
+        # 21. 1013910 - GlobalSign-增强型EV（多域名）
+        # 22. 1013904 - GlobalSign-增强型EV（单域名）
+        # 23. 1013898 - TrustAsia-增强型EV（多域名）
+        # 24. 1013888 - TrustAsia-增强型EV（单域名）
+        # 25. 1013886 - GeoTrust-增强型EV（多域名）
+        # 26. 1018529 - GeoTrust-增强型EV（单域名）
+        # 27. 1013880 - SecureSite-增强型EV（多域名）
+        # 28. 1018557 - SecureSite-增强型EV（单域名）
+        # 29. 1018586 - TrustAsia-域名型DV（泛域名）
+        # 30. 1018584 - TrustAsia-域名型DV（多域名）
+        # 31. 1013878 - SecureSite-企业型专业版OV Pro（多域名）
+        # 32. 1018582 - SecureSite-企业型专业版OV Pro（单域名）
+        # 33. 1013908 - GlobalSign-企业型OV（通配符多域名）
+        # 34. 1013902 - GlobalSign-企业型OV（泛域名）
+        # 35. 1013906 - GlobalSign-企业型OV（多域名）
+        # 36. 1013900 - GlobalSign-企业型OV（单域名）
+        # 37. 1013896 - TrustAsia-企业型OV（通配符多域名）
+        # 38. 1013892 - TrustAsia-企业型OV（泛域名）
+        # 39. 1013894 - TrustAsia-企业型OV（多域名）
+        # 40. 1013890 - TrustAsia-企业型OV（单域名）
+        # 41. 1004360 - GeoTrust-企业型OV（泛域名）
+        # 42. 1013884 - GeoTrust-企业型OV（单域名）
+        # 43. 1013874 - SecureSite-企业型OV（泛域名）
+        # 44. 1013876 - SecureSite-企业型OV（多域名）
+        # 45. 1018580 - SecureSite-企业型OV（单域名）
+        # 46. 1004460 - DNSPod-国密增强型证书（多域名）
+        # 47. 1004458 - DNSPod-国密增强型证书
+        # 48. 1004370 - DNSPod-国密企业型证书（通配符）
+        # 49. 1004368 - DNSPod-国密企业型证书（多域名）
+        # 50. 1004366 - DNSPod-国密企业型证书
+        # 51. 1004362 - DNSPod-国密域名型证书（通配符）
+        # 52. 1004364 - DNSPod-国密域名型证书（多域名）
+        # 53. 1004358 - DNSPod-国密域名型证书
+        # 54. 1004456 - WoTrus-增强型证书（多域名）
+        # 55. 1004454 - WoTrus-增强型证书
+        # 56. 1004168 - WoTrus-企业型证书（通配符）
+        # 57. 1004166 - WoTrus-企业型证书（多域名）
+        # 58. 1004164 - WoTrus-企业型证书
+        # 59. 1004159 - WoTrus-域名型证书（通配符）
+        # 60. 1004161 - WoTrus-域名型证书（多域名）
+        # 61. 1004157 - WoTrus-域名型证书
         # @type ProductPid: Integer
         # @param PackageIds: 要消耗的权益包ID。
         # @type PackageIds: Array
@@ -1632,9 +1815,9 @@ module TencentCloud
         # @type RenewGenCsrMethod: String
         # @param RenewCsr: 续费时选择上传CSR时填写CSR。
         # @type RenewCsr: String
-        # @param RenewAlgorithmType: 续费证书CSR的算法类型。
+        # @param RenewAlgorithmType: 续费证书CSR的算法类型：RSA,ECC,SM2
         # @type RenewAlgorithmType: String
-        # @param RenewAlgorithmParam: 续费证书CSR的算法参数。
+        # @param RenewAlgorithmParam: 续费证书CSR的算法参数:2048,4096,prime256v1
         # @type RenewAlgorithmParam: String
         # @param ProjectId: 项目ID。
         # @type ProjectId: Integer
@@ -1652,7 +1835,68 @@ module TencentCloud
         # @type CompanyId: Integer
         # @param VerifyType: 验证方式
         # @type VerifyType: String
-        # @param PriceKey: 询价参数
+        # @param PriceKey: 询价参数，以下是对每个询价参数及其对应的证书文字说明：
+        # 1. sv_ssl_cost_cfca_ca_ev - CFCA-增强型(EV)SSL证书
+        # 2. sv_ssl_cost_cfca_ca_ovwildcard - CFCA-企业型(OV) SSL证书(通配符)
+        # 3. sv_ssl_cost_cfca_ca_ov - CFCA-企业型(OV)SSL证书
+        # 4. sv_ssl_cost_dnspod_ca_sm2_ovwildcard - DNSPod亚信国密-企业型(OV)通配符证书
+        # 5. sv_ssl_cost_dnspod_ca_sm2_ovmultidomain - DNSPod亚信国密-企业型(OV)多域名证书
+        # 6. sv_ssl_cost_dnspod_ca_sm2_ov - DNSPod亚信国密-企业型(OV)证书
+        # 7. sv_ssl_cost_dnspod_ca_sm2_dvwildcard - DNSPod亚信国密-域名型(DV)通配符证书
+        # 8. sv_ssl_cost_dnspod_ca_sm2_dvmultidomain - DNSPod亚信国密-域名型(DV)多域名证书
+        # 9. sv_ssl_cost_dnspod_ca_sm2_dv - DNSPod亚信国密-域名型(DV)证书
+        # 10. sv_ssl_cost_dnspod_ca_dv - DNSPod SSL 域名型SSL证书(C1)
+        # 11. sv_ssl_cost_dnspod_ca_dvmultidomain - DNSPod SSL域名型多域名SSL证书(C1)
+        # 12. sv_ssl_cost_dnspod_ca_dvwildcard - DNSPod-SSL域名型DV（泛域名）
+        # 13. sv_ssl_cost_dnspod_ca_ov - DNSPod 企业型SSL证书(C1)
+        # 14. sv_ssl_cost_dnspod_ca_ovmultidomain - DNSPod 企业型多域名SSL证书(C1)
+        # 15. sv_ssl_cost_dnspod_ca_ovwildcard - DNSPod 企业型通配符SSL证书(C1)
+        # 16. sv_ssl_cost_dnspod_ca_ev - DNSPod 增强型 SSL 证书(C1)
+        # 17. sv_ssl_cost_dnspod_ca_evmultidomain - DNSPod 增强型多域名SSL证书(C1)
+        # 18. sv_ssl_cost_trustasia_dvwildcardmulti - TrustAsia-域名型DV（通配符多域名）
+        # 19. sv_ssl_cost_securesiteevpromul_sh - SecureSite-增强型专业版EVPro（多域名）
+        # 20. sv_ssl_cost_symantec_evpro - SecureSite-增强型专业版EVPro（单域名）
+        # 21. sv_ssl_cost_globalsign_ev_mul_sh - GlobalSign-增强型EV（多域名）
+        # 22. sv_ssl_cost_globalsign_ev - GlobalSign-增强型EV（单域名）
+        # 23. sv_ssl_cost_trustasia_evmultidomain - TrustAsia-增强型EV（多域名）
+        # 24. sv_ssl_cost_trustasia_ev - TrustAsia-增强型EV（单域名）
+        # 25. sv_ssl_cost_geotrust_evmultidomain - GeoTrust-增强型EV（多域名）
+        # 26. sv_ssl_cost_geotrust_ev - GeoTrust-增强型EV（单域名）
+        # 27. sv_ssl_cost_symantec_evmultidomain - SecureSite-增强型EV（多域名）
+        # 28. sv_ssl_cost_symantec_ev - SecureSite-增强型EV（单域名）
+        # 29. sv_ssl_cost_trustasia_dvwildcard - TrustAsia-域名型DV（泛域名）
+        # 30. sv_ssl_cost_trustasia_dvmultidomain - TrustAsia-域名型DV（多域名）
+        # 31. sv_ssl_cost_symantec_ovpromultidomain - SecureSite-企业型专业版OV Pro（多域名）
+        # 32. sv_ssl_cost_symantec_ovpro - SecureSite-企业型专业版OV Pro（单域名）
+        # 33. sv_ssl_cost_globalsign_ovwildcardmulti - GlobalSign-企业型OV（通配符多域名）
+        # 34. sv_ssl_cost_globalsign_ovwildcard - GlobalSign-企业型OV（泛域名）
+        # 35. sv_ssl_cost_globalsign_ovmultidomain - GlobalSign-企业型OV（多域名）
+        # 36. sv_ssl_cost_globalsign_ov - GlobalSign-企业型OV（单域名）
+        # 37. sv_ssl_cost_trustasia_ovwildcardmulti - TrustAsia-企业型OV（通配符多域名）
+        # 38. sv_ssl_cost_trustasia_ovwildcard - TrustAsia-企业型OV（泛域名）
+        # 39. sv_ssl_cost_trustasia_ovmultidomain - TrustAsia-企业型OV（多域名）
+        # 40. sv_ssl_cost_trustasia_ov - TrustAsia-企业型OV（单域名）
+        # 41. sv_ssl_cost_geotrust_ovwildcard - GeoTrust-企业型OV（泛域名）
+        # 42. sv_ssl_cost_geotrust_ov - GeoTrust-企业型OV（单域名）
+        # 43. sv_ssl_cost_symantec_ovwildcard - SecureSite-企业型OV（泛域名）
+        # 44. sv_ssl_cost_symantec_ovmultidomain - SecureSite-企业型OV（多域名）
+        # 45. sv_ssl_cost_symantec_ov - SecureSite-企业型OV（单域名）
+        # 46. sv_ssl_cost_dnspod_evmultidomain - DNSPod-国密增强型证书（多域名）
+        # 47. sv_ssl_cost_dnspod_ev - DNSPod-国密增强型证书
+        # 48. sv_ssl_cost_dnspod_ovwildcard - DNSPod-国密企业型证书（通配符）
+        # 49. sv_ssl_cost_dnspod_ovmultidomain - DNSPod-国密企业型证书（多域名）
+        # 50. sv_ssl_cost_dnspod_ov - DNSPod-国密企业型证书
+        # 51. sv_ssl_cost_dnspod_dvwildcard - DNSPod-国密域名型证书（通配符）
+        # 52. sv_ssl_cost_dnspod_dvmultidomain - DNSPod-国密域名型证书（多域名）
+        # 53. sv_ssl_cost_dnspod_dv - DNSPod-国密域名型证书
+        # 54. sv_ssl_cost_wotrus_evmultidomain - WoTrus-增强型证书（多域名）
+        # 55. sv_ssl_cost_wotrus_ev - WoTrus-增强型证书
+        # 56. sv_ssl_cost_wotrus_ovwildcard - WoTrus-企业型证书（通配符）
+        # 57. sv_ssl_cost_wotrus_ovmultidomain - WoTrus-企业型证书（多域名）
+        # 58. sv_ssl_cost_wotrus_ov - WoTrus-企业型证书
+        # 59. sv_ssl_cost_wotrus_dvwildcard - WoTrus-域名型证书（通配符）
+        # 60. sv_ssl_cost_wotrus_dvmultidomain - WoTrus-域名型证书（多域名）
+        # 61. sv_ssl_cost_wotrus_dv - WoTrus-域名型证书
         # @type PriceKey: String
 
         attr_accessor :ProductPid, :PackageIds, :DomainCount, :Period, :OldCertificateId, :RenewGenCsrMethod, :RenewCsr, :RenewAlgorithmType, :RenewAlgorithmParam, :ProjectId, :Tags, :RenewKeyPass, :DomainNames, :CertificateCount, :ManagerId, :CompanyId, :VerifyType, :PriceKey
@@ -1909,7 +2153,7 @@ module TencentCloud
       class DeleteCertificatesRequest < TencentCloud::Common::AbstractModel
         # @param CertificateIds: 要删除的证书ID。单次最多100个
         # @type CertificateIds: Array
-        # @param IsSync: 删除时是否检查证书关联了云资源。默认不检查。如需要检查关联云资源 (需授权服务角色SSL_QCSLinkedRoleInReplaceLoadCertificate)，完成授权后，删除将变成异步任务，接口会返回异步任务ID。需搭配 DescribeDeleteCertificatesTaskResult接口使用，查询删除任务是否成功。
+        # @param IsSync: 删除时是否检查证书关联了云资源。默认不检查。如需要检查关联云资源 (需授权服务角色SSL_QCSLinkedRoleInReplaceLoadCertificate)，完成授权后且该参数传true，删除将变成异步任务，接口会返回异步任务ID。需搭配 DescribeDeleteCertificatesTaskResult接口使用，查询删除任务是否成功。
         # @type IsSync: Boolean
 
         attr_accessor :CertificateIds, :IsSync
@@ -2168,7 +2412,7 @@ module TencentCloud
 
       # DeployCertificateRecordRollback请求参数结构体
       class DeployCertificateRecordRollbackRequest < TencentCloud::Common::AbstractModel
-        # @param DeployRecordId: 待重试部署记录ID,就是通过DeployCertificateInstance返回的DeployRecordId
+        # @param DeployRecordId: 待重试部署记录ID, 就是通过DeployCertificateInstance返回的DeployRecordId
         # @type DeployRecordId: Integer
 
         attr_accessor :DeployRecordId
@@ -2324,7 +2568,7 @@ module TencentCloud
         # @type ResourceType: String
         # @param Region: 部署地域
         # @type Region: String
-        # @param Status: 部署状态
+        # @param Status: 部署状态:0 未开始， 1 成功， 2 失败
         # @type Status: Integer
         # @param CreateTime: 部署时间
         # @type CreateTime: String
@@ -2394,11 +2638,23 @@ module TencentCloud
         # @type TaskId: String
         # @param Limit: 每页展示数量， 默认10，最大值100; 分页总数为云资源地域下实例总数， 即第一页会拉群每个云资源的地域下面Limit数量实例
         # @type Limit: String
-        # @param Offset: 当前偏移量
+        # @param Offset: 当前偏移量，默认为0
         # @type Offset: String
-        # @param ResourceTypes: 查询资源类型的结果详情， 不传则查询所有
+        # @param ResourceTypes: 查询资源类型的结果详情， 不传则查询所有，取值支持：
+        # - clb
+        # - cdn
+        # - ddos
+        # - live
+        # - vod
+        # - waf
+        # - apigateway
+        # - teo
+        # - tke
+        # - cos
+        # - tse
+        # - tcb
         # @type ResourceTypes: Array
-        # @param Regions: 查询地域列表的数据，CLB、TKE、WAF、APIGATEWAY、TCB支持地域查询， 其他资源类型不支持
+        # @param Regions: 查询地域列表的数据，clb、tke、waf、apigateway、tcb、cos、tse支持地域查询， 其他资源类型不支持
         # @type Regions: Array
 
         attr_accessor :TaskId, :Limit, :Offset, :ResourceTypes, :Regions
@@ -2650,34 +2906,134 @@ module TencentCloud
 
       # DescribeCertificateDetail返回参数结构体
       class DescribeCertificateDetailResponse < TencentCloud::Common::AbstractModel
-        # @param OwnerUin: 用户 UIN。
+        # @param OwnerUin: 证书所属用户主账号 UIN。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OwnerUin: String
         # @param ProjectId: 项目 ID。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProjectId: String
-        # @param From: 证书来源：trustasia = 亚洲诚信，upload = 用户上传。
+        # @param From: 证书来源：
+        # trustasia：亚洲诚信，
+        # upload：用户上传。
+        # wosign：沃通
+        # sheca：上海CA
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type From: String
         # @param CertificateType: 证书类型：CA = 客户端证书，SVR = 服务器证书。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CertificateType: String
-        # @param PackageType: 证书套餐类型：null = 用户上传证书（没有套餐类型），1 = GeoTrust DV SSL CA - G3， 2 = TrustAsia TLS RSA CA， 3 = SecureSite 增强型企业版（EV Pro）， 4 = SecureSite 增强型（EV）， 5 = SecureSite 企业型专业版（OV Pro）， 6 = SecureSite 企业型（OV）， 7 = SecureSite 企业型（OV）通配符， 8 = Geotrust 增强型（EV）， 9 = Geotrust 企业型（OV）， 10 = Geotrust 企业型（OV）通配符， 11 = TrustAsia 域名型多域名 SSL 证书， 12 = TrustAsia 域名型（DV）通配符， 13 = TrustAsia 企业型通配符（OV）SSL 证书（D3）， 14 = TrustAsia 企业型（OV）SSL 证书（D3）， 15 = TrustAsia 企业型多域名 （OV）SSL 证书（D3）， 16 = TrustAsia 增强型 （EV）SSL 证书（D3）， 17 = TrustAsia 增强型多域名（EV）SSL 证书（D3）， 18 = GlobalSign 企业型（OV）SSL 证书， 19 = GlobalSign 企业型通配符 （OV）SSL 证书， 20 = GlobalSign 增强型 （EV）SSL 证书， 21 = TrustAsia 企业型通配符多域名（OV）SSL 证书（D3）， 22 = GlobalSign 企业型多域名（OV）SSL 证书， 23 = GlobalSign 企业型通配符多域名（OV）SSL 证书， 24 = GlobalSign 增强型多域名（EV）SSL 证书，25 = Wotrus 域名型证书，26 = Wotrus 域名型多域名证书，27 = Wotrus 域名型通配符证书，28 = Wotrus 企业型证书，29 = Wotrus 企业型多域名证书，30 = Wotrus 企业型通配符证书，31 = Wotrus 增强型证书，32 = Wotrus 增强型多域名证书，33 = DNSPod 国密域名型证书，34 = DNSPod 国密域名型多域名证书，35 = DNSPod 国密域名型通配符证书，37 = DNSPod 国密企业型证书，38 = DNSPod 国密企业型多域名证书，39 = DNSPod 国密企业型通配符证书，40 = DNSPod 国密增强型证书，41 = DNSPod 国密增强型多域名证书，42 = TrustAsia 域名型通配符多域名证书。
+        # @param PackageType: 证书套餐类型：
+        # null：用户上传证书（没有套餐类型），
+        # 2：TrustAsia TLS RSA CA，
+        # 3：SecureSite 增强型企业版（EV Pro），
+        # 4：SecureSite 增强型（EV），
+        # 5：SecureSite 企业型专业版（OV Pro），
+        # 6：SecureSite 企业型（OV），
+        # 7：SecureSite 企业型（OV）通配符，
+        # 8：Geotrust 增强型（EV），
+        # 9：Geotrust 企业型（OV），
+        # 10：Geotrust 企业型（OV）通配符，
+        # 11：TrustAsia 域名型多域名 SSL 证书，
+        # 12：TrustAsia 域名型（DV）通配符，
+        # 13：TrustAsia 企业型通配符（OV）SSL 证书（D3），
+        # 14：TrustAsia 企业型（OV）SSL 证书（D3），
+        # 15：TrustAsia 企业型多域名 （OV）SSL 证书（D3），
+        # 16：TrustAsia 增强型 （EV）SSL 证书（D3），
+        # 17：TrustAsia 增强型多域名（EV）SSL 证书（D3），
+        # 18：GlobalSign 企业型（OV）SSL 证书，
+        # 19：GlobalSign 企业型通配符 （OV）SSL 证书，
+        # 20：GlobalSign 增强型 （EV）SSL 证书，
+        # 21：TrustAsia 企业型通配符多域名（OV）SSL 证书（D3），
+        # 22：GlobalSign 企业型多域名（OV）SSL 证书，
+        # 23：GlobalSign 企业型通配符多域名（OV）SSL 证书，
+        # 24：GlobalSign 增强型多域名（EV）SSL 证书，
+        # 25：Wotrus 域名型证书，
+        # 26：Wotrus 域名型多域名证书，
+        # 27：Wotrus 域名型通配符证书，
+        # 28：Wotrus 企业型证书，
+        # 29：Wotrus 企业型多域名证书，
+        # 30：Wotrus 企业型通配符证书，
+        # 31：Wotrus 增强型证书，
+        # 32：Wotrus 增强型多域名证书，
+        # 33：WoTrus-国密域名型证书，
+        # 34：WoTrus-国密域名型证书（多域名），
+        # 35：WoTrus-国密域名型证书（通配符），
+        # 37：WoTrus-国密企业型证书，
+        # 38：WoTrus-国密企业型证书（多域名），
+        # 39：WoTrus-国密企业型证书（通配符），
+        # 40：WoTrus-国密增强型证书，
+        # 41：WoTrus-国密增强型证书（多域名），
+        # 42：TrustAsia-域名型证书（通配符多域名），
+        # 43：DNSPod-企业型(OV)SSL证书
+        # 44：DNSPod-企业型(OV)通配符SSL证书
+        # 45：DNSPod-企业型(OV)多域名SSL证书
+        # 46：DNSPod-增强型(EV)SSL证书
+        # 47：DNSPod-增强型(EV)多域名SSL证书
+        # 48：DNSPod-域名型(DV)SSL证书
+        # 49：DNSPod-域名型(DV)通配符SSL证书
+        # 50：DNSPod-域名型(DV)多域名SSL证书
+        # 51：DNSPod（国密）-企业型(OV)SSL证书
+        # 52：DNSPod（国密）-企业型(OV)通配符SSL证书
+        # 53：DNSPod（国密）-企业型(OV)多域名SSL证书
+        # 54：DNSPod（国密）-域名型(DV)SSL证书
+        # 55：DNSPod（国密）-域名型(DV)通配符SSL证书
+        # 56：DNSPod（国密）-域名型(DV)多域名SSL证书
+        # 57：SecureSite 企业型专业版多域名(OV Pro)
+        # 58：SecureSite 企业型多域名(OV)
+        # 59：SecureSite 增强型专业版多域名(EV Pro)
+        # 60：SecureSite 增强型多域名(EV)
+        # 61：Geotrust 增强型多域名(EV)
+        # 75：SecureSite 企业型(OV)
+        # 76：SecureSite 企业型(OV)通配符
+        # 77：SecureSite 增强型(EV)
+        # 78：Geotrust 企业型(OV)
+        # 79：Geotrust 企业型(OV)通配符
+        # 80：Geotrust 增强型(EV)
+        # 81：GlobalSign 企业型（OV）SSL证书
+        # 82：GlobalSign 企业型通配符 （OV）SSL证书
+        # 83：TrustAsia C1 DV Free
+        # 85：GlobalSign 增强型 （EV）SSL证书
+        # 88：GlobalSign 企业型通配符多域名 （OV）SSL证书
+        # 89：GlobalSign 企业型多域名 （OV）SSL证书
+        # 90：GlobalSign 增强型多域名（EV） SSL证书
+        # 91：Geotrust 增强型多域名(EV)
+        # 92：SecureSite 企业型专业版多域名(OV Pro)
+        # 93：SecureSite 企业型多域名(OV)
+        # 94：SecureSite 增强型专业版多域名(EV Pro)
+        # 95：SecureSite 增强型多域名(EV)
+        # 96：SecureSite 增强型专业版(EV Pro)
+        # 97：SecureSite 企业型专业版(OV Pro)
+        # 98：CFCA 企业型(OV)SSL证书
+        # 99：CFCA 企业型多域名(OV)SSL证书
+        # 100：CFCA 企业型通配符(OV)SSL证书
+        # 101：CFCA 增强型(EV)SSL证书
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PackageType: String
-        # @param ProductZhName: 颁发者。
+        # @param ProductZhName: 证书产品名称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProductZhName: String
-        # @param Domain: 域名。
+        # @param Domain: 证书绑定通用名称域名。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Domain: String
         # @param Alias: 备注名称。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Alias: String
-        # @param Status: 证书状态：0 = 审核中，1 = 已通过，2 = 审核失败，3 = 已过期，4 = 已添加DNS记录，5 = 企业证书，待提交，6 = 订单取消中，7 = 已取消，8 = 已提交资料， 待上传确认函，9 = 证书吊销中，10 = 已吊销，11 = 重颁发中，12 = 待上传吊销确认函，13 = 免费证书待提交资料。
+        # @param Status: 证书状态：0 = 审核中，1 = 已通过，2 = 审核失败，3 = 已过期，4 = 自动添加DNS记录，5 = 企业证书，待提交资料，6 = 订单取消中，7 = 已取消，8 = 已提交资料， 待上传确认函，9 = 证书吊销中，10 = 已吊销，11 = 重颁发中，12 = 待上传吊销确认函，13 = 免费证书待提交资料。14 = 证书已退款。 15 = 证书迁移中
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
-        # @param StatusMsg: 状态信息。
+        # @param StatusMsg: 状态信息。 取值范围：
+        # //通用状态信息
+        # 1、PRE-REVIEWING：预审核中
+        # 2、LEGAL-REVIEWING：法务审核中
+        # 3、CA-REVIEWING：CA审核中
+        # 4、PENDING-DCV：域名验证中
+        # 5、WAIT-ISSUE：等待签发（域名验证已通过）
+        # //证书审核失败状态信息
+        # 1、订单审核失败
+        # 2、CA审核失败，域名未通过安全审查
+        # 3、域名验证超时，订单自动关闭，请您重新进行证书申请
+        # 4、证书资料未通过证书CA机构审核，审核人员会致电您证书预留的联系方式，请您留意来电。后续可通过“修改资料”重新提交资料
+        # 待持续完善
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StatusMsg: String
         # @param VerifyType: 验证类型：DNS_AUTO = 自动DNS验证，DNS = 手动DNS验证，FILE = 文件验证，EMAIL = 邮件验证。
@@ -2695,22 +3051,22 @@ module TencentCloud
         # @param ValidityPeriod: 证书有效期：单位（月）。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ValidityPeriod: String
-        # @param InsertTime: 申请时间。
+        # @param InsertTime: 证书申请时间。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InsertTime: String
-        # @param OrderId: 订单 ID。
+        # @param OrderId: CA订单 ID。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OrderId: String
         # @param CertificateExtra: 证书扩展信息。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CertificateExtra: :class:`Tencentcloud::Ssl.v20191205.models.CertificateExtra`
-        # @param CertificatePrivateKey: 证书私钥
+        # @param CertificatePrivateKey: 私钥证书， 国密证书则为签名证书中的私钥证书
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CertificatePrivateKey: String
-        # @param CertificatePublicKey: 证书公钥（即证书内容）
+        # @param CertificatePublicKey: 公钥证书， 国密则为签名证书中的公钥证书
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CertificatePublicKey: String
-        # @param DvAuthDetail: DV 认证信息。
+        # @param DvAuthDetail: 证书域名验证信息。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DvAuthDetail: :class:`Tencentcloud::Ssl.v20191205.models.DvAuthDetail`
         # @param VulnerabilityReport: 漏洞扫描评估报告。
@@ -2740,7 +3096,7 @@ module TencentCloud
         # @param IsVulnerability: 是否启用了漏洞扫描功能。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsVulnerability: Boolean
-        # @param SubmittedData: 提交的资料信息。
+        # @param SubmittedData: 付费证书提交的资料信息。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubmittedData: :class:`Tencentcloud::Ssl.v20191205.models.SubmittedData`
         # @param RenewAble: 是否可续费。
@@ -2755,10 +3111,10 @@ module TencentCloud
         # @param RootCert: 根证书。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RootCert: :class:`Tencentcloud::Ssl.v20191205.models.RootCertificates`
-        # @param EncryptCert: 国密加密证书
+        # @param EncryptCert: 国密加密证书公钥， 仅国密证书有值
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EncryptCert: String
-        # @param EncryptPrivateKey: 国密加密私钥
+        # @param EncryptPrivateKey: 国密加密私钥证书， 仅国密证书有值
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EncryptPrivateKey: String
         # @param CertFingerprint: 签名证书 SHA1指纹
@@ -2767,7 +3123,7 @@ module TencentCloud
         # @param EncryptCertFingerprint: 加密证书 SHA1指纹 （国密证书特有）
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EncryptCertFingerprint: String
-        # @param EncryptAlgorithm: 证书算法
+        # @param EncryptAlgorithm: 证书加密算法（国密证书特有）
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EncryptAlgorithm: String
         # @param DvRevokeAuthDetail: DV证书吊销验证值
@@ -2911,7 +3267,7 @@ module TencentCloud
       class DescribeCertificateOperateLogsRequest < TencentCloud::Common::AbstractModel
         # @param Offset: 偏移量，默认为0。
         # @type Offset: Integer
-        # @param Limit: 请求日志数量，默认为20。
+        # @param Limit: 请求日志数量，默认为20, 最大值为1000，如超过1000按照1000处理。
         # @type Limit: Integer
         # @param StartTime: 开始时间，默认15天前。
         # @type StartTime: String
@@ -2995,16 +3351,104 @@ module TencentCloud
         # @param ProjectId: 项目 ID。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProjectId: String
-        # @param From: 证书来源：trustasia = 亚洲诚信，upload = 用户上传。
+        # @param From: 证书来源：
+        # trustasia：亚洲诚信，
+        # upload：用户上传。
+        # wosign：沃通
+        # sheca：上海CA
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type From: String
         # @param CertificateType: 证书类型：CA = 客户端证书，SVR = 服务器证书。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CertificateType: String
-        # @param PackageType: 证书套餐类型： 2 = TrustAsia TLS RSA CA，3 = SecureSite 增强型企业版（EV Pro）， 4 = SecureSite 增强型（EV）， 5 = SecureSite 企业型专业版（OV Pro）， 6 = SecureSite 企业型（OV）， 7 = SecureSite 企业型（OV）通配符， 8 = Geotrust 增强型（EV）， 9 = Geotrust 企业型（OV）， 10 = Geotrust 企业型（OV）通配符， 11 = TrustAsia 域名型多域名 SSL 证书， 12 = TrustAsia 域名型（DV）通配符， 13 = TrustAsia 企业型通配符（OV）SSL 证书（D3）， 14 = TrustAsia 企业型（OV）SSL 证书（D3）， 15 = TrustAsia 企业型多域名 （OV）SSL 证书（D3）， 16 = TrustAsia 增强型 （EV）SSL 证书（D3）， 17 = TrustAsia 增强型多域名（EV）SSL 证书（D3）， 18 = GlobalSign 企业型（OV）SSL 证书， 19 = GlobalSign 企业型通配符 （OV）SSL 证书， 20 = GlobalSign 增强型 （EV）SSL 证书， 21 = TrustAsia 企业型通配符多域名（OV）SSL 证书（D3）， 22 = GlobalSign 企业型多域名（OV）SSL 证书， 23 = GlobalSign 企业型通配符多域名（OV）SSL 证书， 24 = GlobalSign 增强型多域名（EV）SSL 证书，25 = Wotrus 域名型证书，26 = Wotrus 域名型多域名证书，27 = Wotrus 域名型通配符证书，28 = Wotrus 企业型证书，29 = Wotrus 企业型多域名证书，30 = Wotrus 企业型通配符证书，31 = Wotrus 增强型证书，32 = Wotrus 增强型多域名证书，33 = Wotrus 国密域名型证书，34 = Wotrus 国密域名型多域名证书，35 = Wotrus 国密域名型通配符证书，37 = Wotrus 国密企业型证书，38 = Wotrus 国密企业型多域名证书，39 = Wotrus 国密企业型通配符证书，40 = Wotrus 国密增强型证书，41 = Wotrus 国密增强型多域名证书，42 = TrustAsia 域名型通配符多域名证书，43 = DNSPod-企业型(OV)SSL证书，44 = DNSPod-企业型(OV)通配符SSL证书，45 = DNSPod-企业型(OV)多域名SSL证书， 46 = DNSPod-增强型(EV)SSL证书，47 = DNSPod-增强型(EV)多域名SSL证书，48 = DNSPod-域名型(DV)SSL证书，49 = DNSPod-域名型(DV)通配符SSL证书，50 = DNSPod-域名型(DV)多域名SSL证书，51 = DNSPod（国密）-企业型(OV)SSL证书，52 = DNSPod（国密）-企业型(OV)通配符SSL证书，53 = DNSPod（国密）-企业型(OV)多域名SSL证书，54 = DNSPod（国密）-域名型(DV)SSL证书，55 = DNSPod（国密）-域名型(DV)通配符SSL证书， 56 = DNSPod（国密）-域名型(DV)多域名SSL证书，57 = SecureSite 企业型专业版多域名(OV Pro)，58 = SecureSite 企业型多域名(OV)，59 = SecureSite 增强型专业版多域名(EV Pro)，60 = SecureSite 增强型多域名(EV)，61 = Geotrust 增强型多域名(EV)
+        # @param PackageType: 证书套餐类型：
+        # null：用户上传证书（没有套餐类型），
+        # 2：TrustAsia TLS RSA CA，
+        # 3：SecureSite 增强型企业版（EV Pro），
+        # 4：SecureSite 增强型（EV），
+        # 5：SecureSite 企业型专业版（OV Pro），
+        # 6：SecureSite 企业型（OV），
+        # 7：SecureSite 企业型（OV）通配符，
+        # 8：Geotrust 增强型（EV），
+        # 9：Geotrust 企业型（OV），
+        # 10：Geotrust 企业型（OV）通配符，
+        # 11：TrustAsia 域名型多域名 SSL 证书，
+        # 12：TrustAsia 域名型（DV）通配符，
+        # 13：TrustAsia 企业型通配符（OV）SSL 证书（D3），
+        # 14：TrustAsia 企业型（OV）SSL 证书（D3），
+        # 15：TrustAsia 企业型多域名 （OV）SSL 证书（D3），
+        # 16：TrustAsia 增强型 （EV）SSL 证书（D3），
+        # 17：TrustAsia 增强型多域名（EV）SSL 证书（D3），
+        # 18：GlobalSign 企业型（OV）SSL 证书，
+        # 19：GlobalSign 企业型通配符 （OV）SSL 证书，
+        # 20：GlobalSign 增强型 （EV）SSL 证书，
+        # 21：TrustAsia 企业型通配符多域名（OV）SSL 证书（D3），
+        # 22：GlobalSign 企业型多域名（OV）SSL 证书，
+        # 23：GlobalSign 企业型通配符多域名（OV）SSL 证书，
+        # 24：GlobalSign 增强型多域名（EV）SSL 证书，
+        # 25：Wotrus 域名型证书，
+        # 26：Wotrus 域名型多域名证书，
+        # 27：Wotrus 域名型通配符证书，
+        # 28：Wotrus 企业型证书，
+        # 29：Wotrus 企业型多域名证书，
+        # 30：Wotrus 企业型通配符证书，
+        # 31：Wotrus 增强型证书，
+        # 32：Wotrus 增强型多域名证书，
+        # 33：WoTrus-国密域名型证书，
+        # 34：WoTrus-国密域名型证书（多域名），
+        # 35：WoTrus-国密域名型证书（通配符），
+        # 37：WoTrus-国密企业型证书，
+        # 38：WoTrus-国密企业型证书（多域名），
+        # 39：WoTrus-国密企业型证书（通配符），
+        # 40：WoTrus-国密增强型证书，
+        # 41：WoTrus-国密增强型证书（多域名），
+        # 42：TrustAsia-域名型证书（通配符多域名），
+        # 43：DNSPod-企业型(OV)SSL证书
+        # 44：DNSPod-企业型(OV)通配符SSL证书
+        # 45：DNSPod-企业型(OV)多域名SSL证书
+        # 46：DNSPod-增强型(EV)SSL证书
+        # 47：DNSPod-增强型(EV)多域名SSL证书
+        # 48：DNSPod-域名型(DV)SSL证书
+        # 49：DNSPod-域名型(DV)通配符SSL证书
+        # 50：DNSPod-域名型(DV)多域名SSL证书
+        # 51：DNSPod（国密）-企业型(OV)SSL证书
+        # 52：DNSPod（国密）-企业型(OV)通配符SSL证书
+        # 53：DNSPod（国密）-企业型(OV)多域名SSL证书
+        # 54：DNSPod（国密）-域名型(DV)SSL证书
+        # 55：DNSPod（国密）-域名型(DV)通配符SSL证书
+        # 56：DNSPod（国密）-域名型(DV)多域名SSL证书
+        # 57：SecureSite 企业型专业版多域名(OV Pro)
+        # 58：SecureSite 企业型多域名(OV)
+        # 59：SecureSite 增强型专业版多域名(EV Pro)
+        # 60：SecureSite 增强型多域名(EV)
+        # 61：Geotrust 增强型多域名(EV)
+        # 75：SecureSite 企业型(OV)
+        # 76：SecureSite 企业型(OV)通配符
+        # 77：SecureSite 增强型(EV)
+        # 78：Geotrust 企业型(OV)
+        # 79：Geotrust 企业型(OV)通配符
+        # 80：Geotrust 增强型(EV)
+        # 81：GlobalSign 企业型（OV）SSL证书
+        # 82：GlobalSign 企业型通配符 （OV）SSL证书
+        # 83：TrustAsia C1 DV Free
+        # 85：GlobalSign 增强型 （EV）SSL证书
+        # 88：GlobalSign 企业型通配符多域名 （OV）SSL证书
+        # 89：GlobalSign 企业型多域名 （OV）SSL证书
+        # 90：GlobalSign 增强型多域名（EV） SSL证书
+        # 91：Geotrust 增强型多域名(EV)
+        # 92：SecureSite 企业型专业版多域名(OV Pro)
+        # 93：SecureSite 企业型多域名(OV)
+        # 94：SecureSite 增强型专业版多域名(EV Pro)
+        # 95：SecureSite 增强型多域名(EV)
+        # 96：SecureSite 增强型专业版(EV Pro)
+        # 97：SecureSite 企业型专业版(OV Pro)
+        # 98：CFCA 企业型(OV)SSL证书
+        # 99：CFCA 企业型多域名(OV)SSL证书
+        # 100：CFCA 企业型通配符(OV)SSL证书
+        # 101：CFCA 增强型(EV)SSL证书
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PackageType: String
-        # @param ProductZhName: 证书颁发者名称。
+        # @param ProductZhName: 证书产品名称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProductZhName: String
         # @param Domain: 域名。
@@ -3013,13 +3457,25 @@ module TencentCloud
         # @param Alias: 备注名称。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Alias: String
-        # @param Status: 证书状态：0 = 审核中，1 = 已通过，2 = 审核失败，3 = 已过期，4 = 已添加DNS记录，5 = 企业证书，待提交，6 = 订单取消中，7 = 已取消，8 = 已提交资料， 待上传确认函，9 = 证书吊销中，10 = 已吊销，11 = 重颁发中，12 = 待上传吊销确认函。
+        # @param Status: 证书状态：0 = 审核中，1 = 已通过，2 = 审核失败，3 = 已过期，4 = 自动添加DNS记录，5 = 企业证书，待提交资料，6 = 订单取消中，7 = 已取消，8 = 已提交资料， 待上传确认函，9 = 证书吊销中，10 = 已吊销，11 = 重颁发中，12 = 待上传吊销确认函，13 = 免费证书待提交资料。14 = 证书已退款。 15 = 证书迁移中
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
-        # @param StatusMsg: 状态信息。
+        # @param StatusMsg: 状态信息。 取值范围：
+        # //通用状态信息
+        # 1、PRE-REVIEWING：预审核中
+        # 2、LEGAL-REVIEWING：法务审核中
+        # 3、CA-REVIEWING：CA审核中
+        # 4、PENDING-DCV：域名验证中
+        # 5、WAIT-ISSUE：等待签发（域名验证已通过）
+        # //证书审核失败状态信息
+        # 1、订单审核失败
+        # 2、CA审核失败，域名未通过安全审查
+        # 3、域名验证超时，订单自动关闭，请您重新进行证书申请
+        # 4、证书资料未通过证书CA机构审核，审核人员会致电您证书预留的联系方式，请您留意来电。后续可通过“修改资料”重新提交资料
+        # 待持续完善
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StatusMsg: String
-        # @param VerifyType: 验证类型：DNS_AUTO = 自动DNS验证，DNS = 手动DNS验证，FILE = 文件验证，EMAIL = 邮件验证。
+        # @param VerifyType: 验证类型：DNS_AUTO = 自动DNS验证，DNS = 手动DNS验证，FILE = 文件验证，DNS_PROXY = DNS代理验证。FILE_PROXY = 文件代理验证
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VerifyType: String
         # @param VulnerabilityStatus: 漏洞扫描状态。
@@ -3085,13 +3541,13 @@ module TencentCloud
         # @param Tags: 标签列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
-        # @param CAEncryptAlgorithms: CA证书的所有加密方式
+        # @param CAEncryptAlgorithms: CA证书的所有加密方式。仅证书类型CertificateType为CA有效
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CAEncryptAlgorithms: Array
-        # @param CACommonNames: CA证书的所有通用名称
+        # @param CACommonNames: CA证书的所有通用名称。仅证书类型CertificateType为CA有效
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CACommonNames: Array
-        # @param CAEndTimes: CA证书所有的到期时间
+        # @param CAEndTimes: CA证书所有的到期时间。仅证书类型CertificateType为CA有效
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CAEndTimes: Array
         # @param DvRevokeAuthDetail: DV证书吊销验证值
@@ -3208,19 +3664,19 @@ module TencentCloud
 
       # DescribeCertificates请求参数结构体
       class DescribeCertificatesRequest < TencentCloud::Common::AbstractModel
-        # @param Offset: 分页偏移量，从0开始。
+        # @param Offset: 分页偏移量，从0开始。 默认为0
         # @type Offset: Integer
         # @param Limit: 每页数量，默认10。最大值1000，如超过1000按1000处理
         # @type Limit: Integer
-        # @param SearchKey: 搜索关键词，可搜索证书 ID、备注名称、域名。例如： a8xHcaIs。
+        # @param SearchKey: 搜索关键词，模糊匹配证书 ID、备注名称、证书域名
         # @type SearchKey: String
         # @param CertificateType: 证书类型：CA = 客户端证书，SVR = 服务器证书。
         # @type CertificateType: String
         # @param ProjectId: 项目 ID。
         # @type ProjectId: Integer
-        # @param ExpirationSort: 按到期时间排序：DESC = 降序， ASC = 升序。
+        # @param ExpirationSort: 默认按照证书申请时间降序； 若传排序则按到期时间排序：DESC = 证书到期时间降序， ASC = 证书到期时间升序。
         # @type ExpirationSort: String
-        # @param CertificateStatus: 证书状态：0 = 审核中，1 = 已通过，2 = 审核失败，3 = 已过期，4 = 已添加DNS记录，5 = 企业证书，待提交，6 = 订单取消中，7 = 已取消，8 = 已提交资料， 待上传确认函，9 = 证书吊销中，10 = 已吊销，11 = 重颁发中，12 = 待上传吊销确认函，13 = 免费证书待提交资料。
+        # @param CertificateStatus: 证书状态：0 = 审核中，1 = 已通过，2 = 审核失败，3 = 已过期，4 = 已添加DNS记录，5 = 企业证书，待提交，6 = 订单取消中，7 = 已取消，8 = 已提交资料， 待上传确认函，9 = 证书吊销中，10 = 已吊销，11 = 重颁发中，12 = 待上传吊销确认函，13 = 免费证书待提交资料。14 = 已退款。 15 = 证书迁移中
         # @type CertificateStatus: Array
         # @param Deployable: 是否可部署，可选值：1 = 可部署，0 =  不可部署。
         # @type Deployable: Integer
@@ -3328,9 +3784,9 @@ module TencentCloud
 
       # DescribeCompanies请求参数结构体
       class DescribeCompaniesRequest < TencentCloud::Common::AbstractModel
-        # @param Offset: 分页偏移量
+        # @param Offset: 分页偏移量，默认值为0.
         # @type Offset: Integer
-        # @param Limit: 分页每页限制数
+        # @param Limit: 分页每页限制数，默认值为0，最大值1000.
         # @type Limit: Integer
         # @param CompanyId: 公司ID
         # @type CompanyId: Integer
@@ -3429,7 +3885,7 @@ module TencentCloud
       class DescribeDeployedResourcesRequest < TencentCloud::Common::AbstractModel
         # @param CertificateIds: 证书ID
         # @type CertificateIds: Array
-        # @param ResourceType: 资源类型:clb,cdn,live,waf,antiddos
+        # @param ResourceType: 资源类型:clb,cdn,live,waf,antiddos,teo
         # @type ResourceType: String
 
         attr_accessor :CertificateIds, :ResourceType
@@ -3528,12 +3984,15 @@ module TencentCloud
         # @type ResourceType: String
         # @param OldCertificateId: 已部署的证书ID
         # @type OldCertificateId: String
-        # @param Limit: 每页数量，默认10。
+        # @param Limit: 每页数量，默认10，最大值为200。
         # @type Limit: Integer
-        # @param Offset: 分页偏移量，从0开始。
+        # @param Offset: 分页偏移量，默认值为0。
         # @type Offset: String
 
         attr_accessor :CertificateId, :IsCache, :Filters, :ResourceType, :OldCertificateId, :Limit, :Offset
+        extend Gem::Deprecate
+        deprecate :ResourceType, :none, 2025, 2
+        deprecate :ResourceType=, :none, 2025, 2
 
         def initialize(certificateid=nil, iscache=nil, filters=nil, resourcetype=nil, oldcertificateid=nil, limit=nil, offset=nil)
           @CertificateId = certificateid
@@ -3607,14 +4066,17 @@ module TencentCloud
         # @type ResourceType: String
         # @param OldCertificateId: 原证书ID
         # @type OldCertificateId: String
-        # @param Offset: 分页偏移量，从0开始。
+        # @param Offset: 分页偏移量，默认值为0。
         # @type Offset: Integer
-        # @param Limit: 每页数量，默认10。
+        # @param Limit: 每页数量，默认10，最大值为200。
         # @type Limit: Integer
         # @param AsyncCache: 是否异步,0表示否，1表示是，默认为0
         # @type AsyncCache: Integer
 
         attr_accessor :CertificateId, :IsCache, :Filters, :ResourceType, :OldCertificateId, :Offset, :Limit, :AsyncCache
+        extend Gem::Deprecate
+        deprecate :ResourceType, :none, 2025, 2
+        deprecate :ResourceType=, :none, 2025, 2
 
         def initialize(certificateid=nil, iscache=nil, filters=nil, resourcetype=nil, oldcertificateid=nil, offset=nil, limit=nil, asynccache=nil)
           @CertificateId = certificateid
@@ -3970,11 +4432,11 @@ module TencentCloud
 
       # DescribeHostDeployRecordDetail请求参数结构体
       class DescribeHostDeployRecordDetailRequest < TencentCloud::Common::AbstractModel
-        # @param DeployRecordId: 部署记录ID
+        # @param DeployRecordId: 部署记录ID，通过调用DeployCertificateInstance接口返回的记录ID， 或者通过DeployCertificateRecordRollback回滚接口返回的记录ID
         # @type DeployRecordId: String
-        # @param Offset: 分页偏移量，从0开始。
+        # @param Offset: 分页偏移量，从0开始。默认为0
         # @type Offset: Integer
-        # @param Limit: 每页数量，默认10。
+        # @param Limit: 每页数量，默认10。最大值为200
         # @type Limit: Integer
 
         attr_accessor :DeployRecordId, :Offset, :Limit
@@ -3994,7 +4456,7 @@ module TencentCloud
 
       # DescribeHostDeployRecordDetail返回参数结构体
       class DescribeHostDeployRecordDetailResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 总数
+        # @param TotalCount: 部署记录总数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
         # @param DeployRecordDetailList: 证书部署记录列表
@@ -4048,7 +4510,7 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 每页数量，默认10。
         # @type Limit: Integer
-        # @param ResourceType: 支持的资源类型如下,clb,cdn,ddos,waf,apigateway,teo,tke,cos,lighthouse,vod,tcb,tse
+        # @param ResourceType: 支持的资源类型如下,clb,cdn,ddos,waf,apigateway,teo,tke,cos,lighthouse,vod,tcb,tse,live
         # @type ResourceType: String
 
         attr_accessor :CertificateId, :Offset, :Limit, :ResourceType
@@ -4113,6 +4575,9 @@ module TencentCloud
         # @type ResourceType: String
 
         attr_accessor :CertificateId, :IsCache, :Filters, :ResourceType
+        extend Gem::Deprecate
+        deprecate :ResourceType, :none, 2025, 2
+        deprecate :ResourceType=, :none, 2025, 2
 
         def initialize(certificateid=nil, iscache=nil, filters=nil, resourcetype=nil)
           @CertificateId = certificateid
@@ -4251,14 +4716,17 @@ module TencentCloud
         # @type Filters: Array
         # @param OldCertificateId: 已部署的证书ID
         # @type OldCertificateId: String
-        # @param Offset: 分页偏移量，从0开始。
+        # @param Offset: 分页偏移量，默认值为0.
         # @type Offset: Integer
-        # @param Limit: 每页数量，默认10。
+        # @param Limit: 每页数量，默认10，最大值为200。
         # @type Limit: Integer
         # @param AsyncCache: 是否异步，1表示是，0表示否，默认为0
         # @type AsyncCache: Integer
 
         attr_accessor :CertificateId, :ResourceType, :IsCache, :Filters, :OldCertificateId, :Offset, :Limit, :AsyncCache
+        extend Gem::Deprecate
+        deprecate :ResourceType, :none, 2025, 2
+        deprecate :ResourceType=, :none, 2025, 2
 
         def initialize(certificateid=nil, resourcetype=nil, iscache=nil, filters=nil, oldcertificateid=nil, offset=nil, limit=nil, asynccache=nil)
           @CertificateId = certificateid
@@ -4419,11 +4887,11 @@ module TencentCloud
 
       # DescribeHostUpdateRecordDetail请求参数结构体
       class DescribeHostUpdateRecordDetailRequest < TencentCloud::Common::AbstractModel
-        # @param DeployRecordId: 一键更新记录ID,从接口UpdateCertificateInstance获得
+        # @param DeployRecordId: 部署记录ID，通过调用UpdateCertificateInstance接口返回的记录ID， 或者通过UpdateCertificateRecordRollback回滚接口返回的记录ID
         # @type DeployRecordId: String
-        # @param Limit: 每页数量，默认10。
+        # @param Limit: 每页数量，默认10。最大值为200
         # @type Limit: String
-        # @param Offset: 分页偏移量，从0开始。
+        # @param Offset: 分页偏移量，从0开始。默认为0
         # @type Offset: String
 
         attr_accessor :DeployRecordId, :Limit, :Offset
@@ -4832,9 +5300,9 @@ module TencentCloud
       class DescribeManagersRequest < TencentCloud::Common::AbstractModel
         # @param CompanyId: 公司ID,可以从DescribeCompanies接口获取
         # @type CompanyId: Integer
-        # @param Offset: 分页偏移量
+        # @param Offset: 分页偏移量，如果不传默认值为0
         # @type Offset: Integer
-        # @param Limit: 分页每页数量
+        # @param Limit: 分页每页数量，如果不传默认值为10，最大值为1000
         # @type Limit: Integer
         # @param ManagerName: 管理人姓名（将废弃），请使用SearchKey
         # @type ManagerName: String
@@ -4849,7 +5317,7 @@ module TencentCloud
         # 'expiring'  即将过期
         # 'expired' 已过期
         # @type Status: String
-        # @param SearchKey: 管理人姓/管理人名/邮箱/部门精准匹配
+        # @param SearchKey: 根据这样的格式:管理人姓|管理人名|邮箱|部门 ,进行精准匹配
         # @type SearchKey: String
 
         attr_accessor :CompanyId, :Offset, :Limit, :ManagerName, :ManagerMail, :Status, :SearchKey
@@ -4912,13 +5380,13 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 限制数目，默认20。
         # @type Limit: Integer
-        # @param Status: 按状态筛选。
+        # @param Status: 按状态筛选。状态值包括usable(可用)，used(已用)，expired(已过期)，refund(已退款)
         # @type Status: String
-        # @param ExpireTime: 按过期时间升序或降序排列。
+        # @param ExpireTime: 按过期时间升序或降序排列，可选值为asc(升序)和desc(降序)
         # @type ExpireTime: String
         # @param PackageId: 按权益包ID搜索。
         # @type PackageId: String
-        # @param Type: 按权益包类型搜索。
+        # @param Type: 按权益包类型搜索。类型包括：ssl_100(证书批量权益100点)，ssl_500(证书批量权益500点），ssl_2000(证书批量权益2000点）
         # @type Type: String
         # @param Pid: 子产品编号
         # @type Pid: Integer
@@ -5072,22 +5540,22 @@ module TencentCloud
 
       # 获取证书列表（DescribeCertificate）返回参数键为 DvAuthDetail 的内容。
       class DvAuthDetail < TencentCloud::Common::AbstractModel
-        # @param DvAuthKey: DV 认证密钥。
+        # @param DvAuthKey: 证书域名验证记录Key
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DvAuthKey: String
-        # @param DvAuthValue: DV 认证值。
+        # @param DvAuthValue: 证书域名验证记录值
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DvAuthValue: String
-        # @param DvAuthDomain: DV 认证值域名。
+        # @param DvAuthDomain: 证书域名验证域名值
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DvAuthDomain: String
-        # @param DvAuthPath: DV 认证值路径。
+        # @param DvAuthPath: 证书域名验证文件路径， 仅FILE、FILE_PROXY使用
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DvAuthPath: String
-        # @param DvAuthKeySubDomain: DV 认证子域名。
+        # @param DvAuthKeySubDomain: 证书域名验证子域名
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DvAuthKeySubDomain: String
-        # @param DvAuths: DV 认证信息。
+        # @param DvAuths: 证书域名验证信息， 存在多个域名验证使用本字段
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DvAuths: Array
 
@@ -5121,22 +5589,25 @@ module TencentCloud
 
       # 返回参数键为 DvAuths 的内容。
       class DvAuths < TencentCloud::Common::AbstractModel
-        # @param DvAuthKey: DV 认证密钥。
+        # @param DvAuthKey: 证书域名验证记录Key
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DvAuthKey: String
-        # @param DvAuthValue: DV 认证值。
+        # @param DvAuthValue: 证书域名验证记录值
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DvAuthValue: String
-        # @param DvAuthDomain: DV 认证值域名。
+        # @param DvAuthDomain: 证书域名验证域名值
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DvAuthDomain: String
-        # @param DvAuthPath: DV 认证值路径。
+        # @param DvAuthPath: 证书域名验证文件路径， 仅FILE、FILE_PROXY使用
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DvAuthPath: String
-        # @param DvAuthSubDomain: DV 认证子域名，
+        # @param DvAuthSubDomain: 证书域名验证子域名
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DvAuthSubDomain: String
-        # @param DvAuthVerifyType: DV 认证类型。
+        # @param DvAuthVerifyType: 证书域名验证类型，取值：
+        # TXT：DNS域名验证添加TXT记录
+        # FILE：域名文件验证
+        # CNAME：DNS域名验证添加CNAME记录
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DvAuthVerifyType: String
 
@@ -5663,7 +6134,33 @@ module TencentCloud
         # @param CertId: 证书ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CertId: String
-        # @param Type: 操作
+        # @param Type: 每个操作类型都对应一个具体的操作描述。以下是对每个操作类型及其描述的文字说明：
+        # 1. apply - 表示申请一个免费的证书。
+        # 2. delete - 表示删除操作。
+        # 3. download - 表示下载操作。
+        # 4. upload - 表示上传操作。
+        # 5. revoke - 表示吊销证书。
+        # 6. cancelRevoke - 表示取消吊销操作。
+        # 7. updateAlias - 表示更新备注信息。
+        # 8. changeProject - 表示将证书分配到某个项目。
+        # 9. uploadConfirmLetter - 表示上传确认函。
+        # 10. cancel - 表示取消订单操作。
+        # 11. replace - 表示重颁发证书。
+        # 12. downloadConfirmLetter - 表示下载证书吊销确认函。
+        # 13. editRevokeLetter - 表示上传证书吊销确认函。
+        # 14. renewVIP - 表示续费付费证书。
+        # 15. applyVIP - 表示申请付费证书。
+        # 16. submitInfo - 表示提交资料。
+        # 17. downloadConfirmLetter - 表示下载确认函模版。
+        # 18. uploadFromYunAPI - 表示通过云 API 上传。
+        # 19. transferIn - 表示证书转入操作。
+        # 20. transferOut - 表示证书转出操作。
+        # 21. refund - 表示申请退款。
+        # 22. multiYearsRenew - 表示多年期自动续期。
+        # 23. modifyDownloadLimit - 表示修改下载限制开关。
+        # 24. issued - 表示证书签发。
+        # 25. domainValidationPassed - 表示域名验证完成。
+        # 26. Resubmit - 表示证书重新申请。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: String
 
@@ -5885,7 +6382,7 @@ module TencentCloud
         # @type ValidType: String
         # @param CsrType: 类型，默认 Original。可选项：Original = 原证书 CSR，Upload = 手动上传，Online = 在线生成。
         # @type CsrType: String
-        # @param CsrContent: CSR 内容。
+        # @param CsrContent: CSR 内容，手动上传的时候需要。
         # @type CsrContent: String
         # @param CsrkeyPassword: KEY 密码。
         # @type CsrkeyPassword: String
@@ -5944,7 +6441,7 @@ module TencentCloud
 
       # 云资源地域列表
       class ResourceTypeRegions < TencentCloud::Common::AbstractModel
-        # @param ResourceType: 云资源类型
+        # @param ResourceType: 云资源类型，支持clb、waf、apigateway、cos、tke、tse、tcb
         # @type ResourceType: String
         # @param Regions: 地域列表
         # @type Regions: Array
@@ -6010,7 +6507,7 @@ module TencentCloud
         end
       end
 
-      # 返回参数键为 RevokeDomainValidateAuths 的内容。
+      # 吊销证书域名验证信息。
       class RevokeDomainValidateAuths < TencentCloud::Common::AbstractModel
         # @param DomainValidateAuthPath: DV 认证值路径。
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -6107,57 +6604,60 @@ module TencentCloud
 
       # SubmitCertificateInformation请求参数结构体
       class SubmitCertificateInformationRequest < TencentCloud::Common::AbstractModel
-        # @param CertificateId: 证书 ID。
+        # @param CertificateId: 待提交资料的付费证书 ID。
         # @type CertificateId: String
-        # @param CsrType: CSR 生成方式：online = 在线生成, parse = 手动上传。
+        # @param CsrType: 此字段必传。 CSR 生成方式， 取值为：
+        # online：腾讯云提交的填写的参数信息生成CSR和私钥， 并由腾讯云加密存储
+        # parse：自行生成CSR和私钥， 并通过上传CSR申请证书
         # @type CsrType: String
         # @param CsrContent: 上传的 CSR 内容。
+        # 若CstType为parse， 则此字段必传。
         # @type CsrContent: String
-        # @param CertificateDomain: 绑定证书的域名。
+        # @param CertificateDomain: 证书绑定的通用名称， 若是上传的CSR，则该域名需与CSR解析的通用名称一致
         # @type CertificateDomain: String
-        # @param DomainList: 上传的域名数组（多域名证书可以上传）。
+        # @param DomainList: 证书绑定的其他域名， 单域名、泛域名证书无需提供。 多域名、多泛域名必填
         # @type DomainList: Array
-        # @param KeyPassword: 私钥密码（非必填）。
+        # @param KeyPassword: 私钥密码， 目前仅使用在生成jks、pfx格式证书时密码； 其他格式私钥证书未加密
         # @type KeyPassword: String
-        # @param OrganizationName: 公司名称。
+        # @param OrganizationName: 字段必传， 公司名称。
         # @type OrganizationName: String
-        # @param OrganizationDivision: 部门名称。
+        # @param OrganizationDivision: 字段必传， 部门名称。
         # @type OrganizationDivision: String
-        # @param OrganizationAddress: 公司详细地址。
+        # @param OrganizationAddress: 字段必传， 公司详细地址。
         # @type OrganizationAddress: String
-        # @param OrganizationCountry: 国家名称，如中国：CN 。
+        # @param OrganizationCountry: 字段必传， 国家名称，传CN即可
         # @type OrganizationCountry: String
-        # @param OrganizationCity: 公司所在城市。
+        # @param OrganizationCity: 字段必传， 公司所在城市。
         # @type OrganizationCity: String
-        # @param OrganizationRegion: 公司所在省份。
+        # @param OrganizationRegion: 字段必传， 公司所在省份。
         # @type OrganizationRegion: String
         # @param PostalCode: 公司邮编。
         # @type PostalCode: String
-        # @param PhoneAreaCode: 公司座机区号。
+        # @param PhoneAreaCode: 字段必传， 公司座机区号。
         # @type PhoneAreaCode: String
-        # @param PhoneNumber: 公司座机号码。
+        # @param PhoneNumber: 字段必传， 公司座机号码。
         # @type PhoneNumber: String
         # @param VerifyType: 证书验证方式。验证类型：DNS_AUTO = 自动DNS验证（仅支持在腾讯云解析且解析状态正常的域名使用该验证类型），DNS = 手动DNS验证，FILE = 文件验证。
         # @type VerifyType: String
-        # @param AdminFirstName: 管理人名。
+        # @param AdminFirstName: 字段必传，管理人名。
         # @type AdminFirstName: String
-        # @param AdminLastName: 管理人姓。
+        # @param AdminLastName: 字段必传，管理人姓。
         # @type AdminLastName: String
-        # @param AdminPhoneNum: 管理人手机号码。
+        # @param AdminPhoneNum: 字段必传，管理人手机号码。
         # @type AdminPhoneNum: String
-        # @param AdminEmail: 管理人邮箱地址。
+        # @param AdminEmail: 字段必传，管理人邮箱地址。
         # @type AdminEmail: String
-        # @param AdminPosition: 管理人职位。
+        # @param AdminPosition: 字段必传，管理人职位。
         # @type AdminPosition: String
-        # @param ContactFirstName: 联系人名。
+        # @param ContactFirstName: 字段必传，联系人名。
         # @type ContactFirstName: String
-        # @param ContactLastName: 联系人姓。
+        # @param ContactLastName: 字段必传，联系人姓。
         # @type ContactLastName: String
-        # @param ContactEmail: 联系人邮箱地址。
+        # @param ContactEmail: 字段必传，联系人邮箱地址。
         # @type ContactEmail: String
-        # @param ContactNumber: 联系人手机号码。
+        # @param ContactNumber: 字段必传，联系人手机号码。
         # @type ContactNumber: String
-        # @param ContactPosition: 联系人职位。
+        # @param ContactPosition: 字段必传，联系人职位。
         # @type ContactPosition: String
         # @param IsDV: 是否DV证书。默认false
         # @type IsDV: Boolean
@@ -7025,29 +7525,29 @@ module TencentCloud
 
       # UpdateCertificateInstance请求参数结构体
       class UpdateCertificateInstanceRequest < TencentCloud::Common::AbstractModel
-        # @param OldCertificateId: 一键更新原证书ID， 查询绑定该证书的云资源然后进行证书更新
+        # @param OldCertificateId: 一键更新的旧证书ID。 通过查询该证书ID绑定的云资源，然后使用新证书对这些云资源进行更新
         # @type OldCertificateId: String
         # @param ResourceTypes: 需要部署的资源类型，参数值可选（小写）：clb、cdn、waf、live、ddos、teo、apigateway、vod、tke、tcb、tse、cos
         # @type ResourceTypes: Array
-        # @param CertificateId: 一键更新新证书ID，不传则证书公钥和私钥必传
+        # @param CertificateId: 一键更新的新证书ID。 不传该参数，则公钥证书和私钥证书必传
         # @type CertificateId: String
         # @param Regions: 需要部署的地域列表（废弃）
         # @type Regions: Array
-        # @param ResourceTypesRegions: 云资源需要部署的地域列表，支持地域的云资源类型必传，如：clb、tke、apigateway、waf、tcb、tse等
+        # @param ResourceTypesRegions: 云资源需要部署的地域列表，支持地域的云资源类型必传，取值：clb、tke、apigateway、waf、tcb、tse、cos
         # @type ResourceTypesRegions: Array
-        # @param CertificatePublicKey: 证书公钥， 若上传证书公钥， 则CertificateId不用传
+        # @param CertificatePublicKey: 公钥证书， 若上传公钥证书，那么私钥证书必传。  则CertificateId不用传
         # @type CertificatePublicKey: String
-        # @param CertificatePrivateKey: 证书私钥，若上传证书公钥， 则CertificateId不用传
+        # @param CertificatePrivateKey: 私钥证书，若上传私钥证书， 那么公钥证书必传；  则CertificateId不用传
         # @type CertificatePrivateKey: String
         # @param ExpiringNotificationSwitch: 旧证书是否忽略到期提醒  0:不忽略通知。1:忽略通知，忽略OldCertificateId到期提醒
         # @type ExpiringNotificationSwitch: Integer
-        # @param Repeatable: 相同的证书是否允许重复上传，若选择上传证书， 则可以配置该参数
+        # @param Repeatable: 相同的证书是否允许重复上传，若选择上传公钥私钥证书， 则可以配置该参数。 若存在相同重复证书，则更新任务会失败
         # @type Repeatable: Boolean
-        # @param AllowDownload: 是否允许下载，若选择上传证书， 则可以配置该参数
+        # @param AllowDownload: 是否允许下载，若选择上传公私钥证书， 则可以配置该参数
         # @type AllowDownload: Boolean
-        # @param Tags: 标签列表，若选择上传证书， 则可以配置该参数
+        # @param Tags: 标签列表，若选择上传公私钥证书， 则可以配置该参数
         # @type Tags: Array
-        # @param ProjectId: 项目 ID，若选择上传证书， 则可以配置该参数
+        # @param ProjectId: 项目 ID，若选择上传公私钥证书， 则可以配置该参数
         # @type ProjectId: Integer
 
         attr_accessor :OldCertificateId, :ResourceTypes, :CertificateId, :Regions, :ResourceTypesRegions, :CertificatePublicKey, :CertificatePrivateKey, :ExpiringNotificationSwitch, :Repeatable, :AllowDownload, :Tags, :ProjectId
@@ -7102,10 +7602,10 @@ module TencentCloud
 
       # UpdateCertificateInstance返回参数结构体
       class UpdateCertificateInstanceResponse < TencentCloud::Common::AbstractModel
-        # @param DeployRecordId: 云资源部署任务ID
+        # @param DeployRecordId: 云资源更新任务ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeployRecordId: Integer
-        # @param DeployStatus: 部署状态，1表示部署成功，0表示部署失败
+        # @param DeployStatus: 更新任务创建状态；1表示创建成功； 0表示当前存在更新中的任务，未创建新的更新任务；返回值DeployRecordId为更新中的任务ID
         # @type DeployStatus: Integer
         # @param UpdateSyncProgress: 更新异步创建任务进度详情
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -7139,9 +7639,9 @@ module TencentCloud
 
       # UpdateCertificateRecordRetry请求参数结构体
       class UpdateCertificateRecordRetryRequest < TencentCloud::Common::AbstractModel
-        # @param DeployRecordId: 待重试部署记录ID,通过UpdateCertificateInstance得到部署记录ID
+        # @param DeployRecordId: 待重试部署记录ID,通过UpdateCertificateInstance得到部署记录ID。 本参数不传的话，则DeployRecordDetailId必传
         # @type DeployRecordId: Integer
-        # @param DeployRecordDetailId: 待重试部署记录详情ID,通过DescribeHostUpdateRecordDetail接口获得
+        # @param DeployRecordDetailId: 待重试部署记录详情ID,通过DescribeHostUpdateRecordDetail接口获得， 本参数不传的话， 则DeployRecordId必传
         # @type DeployRecordDetailId: Integer
 
         attr_accessor :DeployRecordId, :DeployRecordDetailId
@@ -7175,7 +7675,7 @@ module TencentCloud
 
       # UpdateCertificateRecordRollback请求参数结构体
       class UpdateCertificateRecordRollbackRequest < TencentCloud::Common::AbstractModel
-        # @param DeployRecordId: 待重试部署记录ID,通过UpdateCertificateInstance获得
+        # @param DeployRecordId: 更新证书待回滚的记录ID, 通过UpdateCertificateInstance获得
         # @type DeployRecordId: Integer
 
         attr_accessor :DeployRecordId
@@ -7191,7 +7691,7 @@ module TencentCloud
 
       # UpdateCertificateRecordRollback返回参数结构体
       class UpdateCertificateRecordRollbackResponse < TencentCloud::Common::AbstractModel
-        # @param DeployRecordId: 回滚部署记录ID
+        # @param DeployRecordId: 新生成的回滚部署任务的记录ID
         # @type DeployRecordId: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -7211,21 +7711,40 @@ module TencentCloud
 
       # 更新记录详情
       class UpdateRecordDetail < TencentCloud::Common::AbstractModel
-        # @param Id: 详情记录id
+        # @param Id: 更新详情记录id
         # @type Id: Integer
-        # @param CertId: 新证书ID
+        # @param CertId: 新旧证书更新 - 新证书ID
         # @type CertId: String
-        # @param OldCertId: 旧证书ID
+        # @param OldCertId: 新旧证书更新 - 旧证书ID
         # @type OldCertId: String
         # @param Domains: 部署域名列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Domains: Array
-        # @param ResourceType: 部署资源类型
+        # @param ResourceType: 新旧证书更新云资源的云资源类型：
+        # - clb
+        # - cdn
+        # - ddos
+        # - live
+        # - vod
+        # - waf
+        # - apigateway
+        # - teo
+        # - tke
+        # - cos
+        # - tse
+        # - tcb
         # @type ResourceType: String
         # @param Region: 部署地域
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Region: String
-        # @param Status: 部署状态
+        # @param Status: 部署状态， 取值范围：
+        # 0：待部署
+        # 1：部署成功
+        # 2：部署失败
+        # 3：部署中
+        # 4：回滚成功
+        # 5：回滚失败
+        # 6：无资源，无需部署
         # @type Status: Integer
         # @param ErrorMsg: 部署错误信息
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -7329,13 +7848,25 @@ module TencentCloud
         end
       end
 
-      # 更新记录详情列表
+      # 更新记录详情
       class UpdateRecordDetails < TencentCloud::Common::AbstractModel
-        # @param ResourceType: 部署资源类型
+        # @param ResourceType: 新旧证书更新云资源的云资源类型：
+        # - clb
+        # - cdn
+        # - ddos
+        # - live
+        # - vod
+        # - waf
+        # - apigateway
+        # - teo
+        # - tke
+        # - cos
+        # - tse
+        # - tcb
         # @type ResourceType: String
-        # @param List: 部署资源详情列表
+        # @param List: 该云资源更新详情
         # @type List: Array
-        # @param TotalCount: 该部署资源总数
+        # @param TotalCount: 该云资源更新资源总数
         # @type TotalCount: Integer
 
         attr_accessor :ResourceType, :List, :TotalCount

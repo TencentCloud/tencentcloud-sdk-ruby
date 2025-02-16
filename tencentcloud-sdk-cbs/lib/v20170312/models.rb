@@ -633,6 +633,8 @@ module TencentCloud
         # @type DiskCount: Integer
         # @param ThroughputPerformance: 可选参数。使用此参数可给云硬盘购买额外的性能。<br>当前仅支持极速型云盘（CLOUD_TSSD）和增强型SSD云硬盘（CLOUD_HSSD）
         # @type ThroughputPerformance: Integer
+        # @param KmsKeyId: 可选参数。购买加密盘时自定义密钥， 当传入该参数时, Encrypt入参不为空
+        # @type KmsKeyId: String
         # @param DiskSize: 云硬盘大小，单位为GiB。<br><li>如果传入`SnapshotId`则可不传`DiskSize`，此时新建云盘的大小为快照大小</li><br><li>如果传入`SnapshotId`同时传入`DiskSize`，则云盘大小必须大于或等于快照大小</li><br><li>云盘大小取值范围参见云硬盘[产品分类](/document/product/362/2353)的说明。</li>
         # @type DiskSize: Integer
         # @param Shareable: 可选参数，默认为False。传入True时，云盘将创建为共享型云盘。
@@ -654,9 +656,9 @@ module TencentCloud
         # @param EncryptType: 指定云硬盘加密类型，取值为ENCRYPT_V1和ENCRYPT_V2，分别表示第一代和第二代加密技术，两种加密技术互不兼容。推荐优先使用第二代加密技术ENCRYPT_V2，第一代加密技术仅支持在部分老旧机型使用。该参数仅当创建加密云硬盘时有效。
         # @type EncryptType: String
 
-        attr_accessor :Placement, :DiskChargeType, :DiskType, :DiskName, :Tags, :SnapshotId, :DiskCount, :ThroughputPerformance, :DiskSize, :Shareable, :ClientToken, :Encrypt, :DiskChargePrepaid, :DeleteSnapshot, :AutoMountConfiguration, :DiskBackupQuota, :BurstPerformance, :EncryptType
+        attr_accessor :Placement, :DiskChargeType, :DiskType, :DiskName, :Tags, :SnapshotId, :DiskCount, :ThroughputPerformance, :KmsKeyId, :DiskSize, :Shareable, :ClientToken, :Encrypt, :DiskChargePrepaid, :DeleteSnapshot, :AutoMountConfiguration, :DiskBackupQuota, :BurstPerformance, :EncryptType
 
-        def initialize(placement=nil, diskchargetype=nil, disktype=nil, diskname=nil, tags=nil, snapshotid=nil, diskcount=nil, throughputperformance=nil, disksize=nil, shareable=nil, clienttoken=nil, encrypt=nil, diskchargeprepaid=nil, deletesnapshot=nil, automountconfiguration=nil, diskbackupquota=nil, burstperformance=nil, encrypttype=nil)
+        def initialize(placement=nil, diskchargetype=nil, disktype=nil, diskname=nil, tags=nil, snapshotid=nil, diskcount=nil, throughputperformance=nil, kmskeyid=nil, disksize=nil, shareable=nil, clienttoken=nil, encrypt=nil, diskchargeprepaid=nil, deletesnapshot=nil, automountconfiguration=nil, diskbackupquota=nil, burstperformance=nil, encrypttype=nil)
           @Placement = placement
           @DiskChargeType = diskchargetype
           @DiskType = disktype
@@ -665,6 +667,7 @@ module TencentCloud
           @SnapshotId = snapshotid
           @DiskCount = diskcount
           @ThroughputPerformance = throughputperformance
+          @KmsKeyId = kmskeyid
           @DiskSize = disksize
           @Shareable = shareable
           @ClientToken = clienttoken
@@ -696,6 +699,7 @@ module TencentCloud
           @SnapshotId = params['SnapshotId']
           @DiskCount = params['DiskCount']
           @ThroughputPerformance = params['ThroughputPerformance']
+          @KmsKeyId = params['KmsKeyId']
           @DiskSize = params['DiskSize']
           @Shareable = params['Shareable']
           @ClientToken = params['ClientToken']

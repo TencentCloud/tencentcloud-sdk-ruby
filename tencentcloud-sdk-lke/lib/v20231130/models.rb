@@ -46,10 +46,16 @@ module TencentCloud
         # @param Elapsed: 当前请求执行时间, 单位 ms
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Elapsed: Integer
+        # @param NodeName: 工作流节点名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NodeName: String
+        # @param ReplyIndex: 用于展示思考放在哪个回复气泡中
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReplyIndex: Integer
 
-        attr_accessor :Index, :Name, :Title, :Status, :Icon, :Debugging, :Switch, :WorkflowName, :Elapsed
+        attr_accessor :Index, :Name, :Title, :Status, :Icon, :Debugging, :Switch, :WorkflowName, :Elapsed, :NodeName, :ReplyIndex
 
-        def initialize(index=nil, name=nil, title=nil, status=nil, icon=nil, debugging=nil, switch=nil, workflowname=nil, elapsed=nil)
+        def initialize(index=nil, name=nil, title=nil, status=nil, icon=nil, debugging=nil, switch=nil, workflowname=nil, elapsed=nil, nodename=nil, replyindex=nil)
           @Index = index
           @Name = name
           @Title = title
@@ -59,6 +65,8 @@ module TencentCloud
           @Switch = switch
           @WorkflowName = workflowname
           @Elapsed = elapsed
+          @NodeName = nodename
+          @ReplyIndex = replyindex
         end
 
         def deserialize(params)
@@ -74,6 +82,8 @@ module TencentCloud
           @Switch = params['Switch']
           @WorkflowName = params['WorkflowName']
           @Elapsed = params['Elapsed']
+          @NodeName = params['NodeName']
+          @ReplyIndex = params['ReplyIndex']
         end
       end
 

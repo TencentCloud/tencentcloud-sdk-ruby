@@ -114,22 +114,16 @@ module TencentCloud
         # @param ApplicationId: 应用ID
         # @type ApplicationId: String
         # @param AppName: 应用名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AppName: String
         # @param State: 应用状态 1正常 2停用
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type State: Integer
         # @param AppVersion: 1试用 2轻量版 3标准版 4旗舰版
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AppVersion: Integer
         # @param CreatedAt: 创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreatedAt: String
         # @param Callback: 回调
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Callback: String
         # @param CallbackKey: 回调Key
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CallbackKey: String
 
         attr_accessor :ApplicationId, :AppName, :State, :AppVersion, :CreatedAt, :Callback, :CallbackKey
@@ -190,7 +184,6 @@ module TencentCloud
       # 背景图片配置
       class BackgroundPictureConfig < TencentCloud::Common::AbstractModel
         # @param Url: 背景图片的url
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Url: String
 
         attr_accessor :Url
