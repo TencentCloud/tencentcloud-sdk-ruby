@@ -3737,6 +3737,37 @@ module TencentCloud
         end
       end
 
+      # 通用卡证鉴伪告警信息
+      class GeneralCardWarnInfo < TencentCloud::Common::AbstractModel
+        # @param IsWarn: 是否存在该告警
+        # @type IsWarn: Boolean
+        # @param RiskConfidence: 风险程度
+        # @type RiskConfidence: Float
+        # @param Polygon: 告警位置四点坐标
+        # @type Polygon: Array
+
+        attr_accessor :IsWarn, :RiskConfidence, :Polygon
+
+        def initialize(iswarn=nil, riskconfidence=nil, polygon=nil)
+          @IsWarn = iswarn
+          @RiskConfidence = riskconfidence
+          @Polygon = polygon
+        end
+
+        def deserialize(params)
+          @IsWarn = params['IsWarn']
+          @RiskConfidence = params['RiskConfidence']
+          unless params['Polygon'].nil?
+            @Polygon = []
+            params['Polygon'].each do |i|
+              polygon_tmp = Polygon.new
+              polygon_tmp.deserialize(i)
+              @Polygon << polygon_tmp
+            end
+          end
+        end
+      end
+
       # GeneralEfficientOCR请求参数结构体
       class GeneralEfficientOCRRequest < TencentCloud::Common::AbstractModel
         # @param ImageBase64: 图片的 Base64 值。
@@ -8536,6 +8567,120 @@ module TencentCloud
               textformulainfo_tmp.deserialize(i)
               @FormulaInfoList << textformulainfo_tmp
             end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # RecognizeGeneralCardWarn请求参数结构体
+      class RecognizeGeneralCardWarnRequest < TencentCloud::Common::AbstractModel
+        # @param ImageUrl: 图片链接
+        # @type ImageUrl: String
+        # @param ImageBase64: 图片base64
+        # @type ImageBase64: String
+        # @param CardType: 卡证类型参数，包含以下范围：
+        # General：通用卡证
+        # IDCard：身份证
+        # Passport：护照
+        # BankCard：银行卡
+        # VehicleLicense：行驶证
+        # DriverLicense：驾驶证
+        # BizLicense：营业执照
+        # HmtResidentPermit：港澳台居住证
+        # ForeignPermanentResident：外国人永居证
+        # MainlandPermit：港澳台来往内地通行证
+        # @type CardType: String
+        # @param IsPdf: 是否开启PDF识别，默认值为false，开启后可同时支持图片和PDF的识别。
+        # @type IsPdf: Boolean
+        # @param PdfPageNumber: 需要识别的PDF页面的对应页码，仅支持PDF单页识别，当上传文件为PDF且IsPdf参数值为true时有效，默认值为1。
+        # @type PdfPageNumber: Integer
+
+        attr_accessor :ImageUrl, :ImageBase64, :CardType, :IsPdf, :PdfPageNumber
+
+        def initialize(imageurl=nil, imagebase64=nil, cardtype=nil, ispdf=nil, pdfpagenumber=nil)
+          @ImageUrl = imageurl
+          @ImageBase64 = imagebase64
+          @CardType = cardtype
+          @IsPdf = ispdf
+          @PdfPageNumber = pdfpagenumber
+        end
+
+        def deserialize(params)
+          @ImageUrl = params['ImageUrl']
+          @ImageBase64 = params['ImageBase64']
+          @CardType = params['CardType']
+          @IsPdf = params['IsPdf']
+          @PdfPageNumber = params['PdfPageNumber']
+        end
+      end
+
+      # RecognizeGeneralCardWarn返回参数结构体
+      class RecognizeGeneralCardWarnResponse < TencentCloud::Common::AbstractModel
+        # @param CardType: 卡证类型参数，包含以下范围：
+        # General：通用卡证
+        # IDCard：身份证
+        # Passport：护照
+        # BankCard：银行卡
+        # VehicleLicense：行驶证
+        # DriverLicense：驾驶证
+        # BizLicense：营业执照
+        # HmtResidentPermit：港澳台居住证
+        # ForeignPermanentResident：外国人永居证
+        # MainlandPermit：港澳台来往内地通行证
+        # @type CardType: String
+        # @param Blur: 模糊信息
+        # @type Blur: :class:`Tencentcloud::Ocr.v20181119.models.GeneralCardWarnInfo`
+        # @param BorderIncomplete: 边框不完整信息
+        # @type BorderIncomplete: :class:`Tencentcloud::Ocr.v20181119.models.GeneralCardWarnInfo`
+        # @param Copy: 复印件信息
+        # @type Copy: :class:`Tencentcloud::Ocr.v20181119.models.GeneralCardWarnInfo`
+        # @param Ps: ps篡改信息
+        # @type Ps: :class:`Tencentcloud::Ocr.v20181119.models.GeneralCardWarnInfo`
+        # @param Reflection: 反光信息
+        # @type Reflection: :class:`Tencentcloud::Ocr.v20181119.models.GeneralCardWarnInfo`
+        # @param Reprint: 翻拍件信息
+        # @type Reprint: :class:`Tencentcloud::Ocr.v20181119.models.GeneralCardWarnInfo`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :CardType, :Blur, :BorderIncomplete, :Copy, :Ps, :Reflection, :Reprint, :RequestId
+
+        def initialize(cardtype=nil, blur=nil, borderincomplete=nil, copy=nil, ps=nil, reflection=nil, reprint=nil, requestid=nil)
+          @CardType = cardtype
+          @Blur = blur
+          @BorderIncomplete = borderincomplete
+          @Copy = copy
+          @Ps = ps
+          @Reflection = reflection
+          @Reprint = reprint
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @CardType = params['CardType']
+          unless params['Blur'].nil?
+            @Blur = GeneralCardWarnInfo.new
+            @Blur.deserialize(params['Blur'])
+          end
+          unless params['BorderIncomplete'].nil?
+            @BorderIncomplete = GeneralCardWarnInfo.new
+            @BorderIncomplete.deserialize(params['BorderIncomplete'])
+          end
+          unless params['Copy'].nil?
+            @Copy = GeneralCardWarnInfo.new
+            @Copy.deserialize(params['Copy'])
+          end
+          unless params['Ps'].nil?
+            @Ps = GeneralCardWarnInfo.new
+            @Ps.deserialize(params['Ps'])
+          end
+          unless params['Reflection'].nil?
+            @Reflection = GeneralCardWarnInfo.new
+            @Reflection.deserialize(params['Reflection'])
+          end
+          unless params['Reprint'].nil?
+            @Reprint = GeneralCardWarnInfo.new
+            @Reprint.deserialize(params['Reprint'])
           end
           @RequestId = params['RequestId']
         end

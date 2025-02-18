@@ -149,6 +149,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 此接口用于创建备份策略。
+
+        # @param request: Request instance for CreateBackupPlan.
+        # @type request: :class:`Tencentcloud::postgres::V20170312::CreateBackupPlanRequest`
+        # @rtype: :class:`Tencentcloud::postgres::V20170312::CreateBackupPlanResponse`
+        def CreateBackupPlan(request)
+          body = send_request('CreateBackupPlan', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateBackupPlanResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（CreateBaseBackup）用于创建实例的数据备份。
 
         # @param request: Request instance for CreateBaseBackup.
@@ -401,6 +425,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteAccountResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除备份策略
+
+        # @param request: Request instance for DeleteBackupPlan.
+        # @type request: :class:`Tencentcloud::postgres::V20170312::DeleteBackupPlanRequest`
+        # @rtype: :class:`Tencentcloud::postgres::V20170312::DeleteBackupPlanResponse`
+        def DeleteBackupPlan(request)
+          body = send_request('DeleteBackupPlan', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteBackupPlanResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -969,6 +1017,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口用于查询实例SSL状态
+
+        # @param request: Request instance for DescribeDBInstanceSSLConfig.
+        # @type request: :class:`Tencentcloud::postgres::V20170312::DescribeDBInstanceSSLConfigRequest`
+        # @rtype: :class:`Tencentcloud::postgres::V20170312::DescribeDBInstanceSSLConfigResponse`
+        def DescribeDBInstanceSSLConfig(request)
+          body = send_request('DescribeDBInstanceSSLConfig', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDBInstanceSSLConfigResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（DescribeDBInstanceSecurityGroups）用于查询实例安全组。
 
         # @param request: Request instance for DescribeDBInstanceSecurityGroups.
@@ -1497,6 +1569,31 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（DescribeTasks）用于查询任务列表，展示异步任务的执行进度。
+        # 注：本接口中展示的步骤为总结性步骤，可能伴随着版本迭代进行调整，不建议作为关键逻辑使用
+
+        # @param request: Request instance for DescribeTasks.
+        # @type request: :class:`Tencentcloud::postgres::V20170312::DescribeTasksRequest`
+        # @rtype: :class:`Tencentcloud::postgres::V20170312::DescribeTasksResponse`
+        def DescribeTasks(request)
+          body = send_request('DescribeTasks', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeTasksResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口 (DescribeZones) 用于查询支持的可用区信息。
 
         # @param request: Request instance for DescribeZones.
@@ -1979,6 +2076,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口用于修改实例SSL配置，功能包含开启、关闭、修改SSL证书保护的连接地址。
+
+        # @param request: Request instance for ModifyDBInstanceSSLConfig.
+        # @type request: :class:`Tencentcloud::postgres::V20170312::ModifyDBInstanceSSLConfigRequest`
+        # @rtype: :class:`Tencentcloud::postgres::V20170312::ModifyDBInstanceSSLConfigResponse`
+        def ModifyDBInstanceSSLConfig(request)
+          body = send_request('ModifyDBInstanceSSLConfig', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyDBInstanceSSLConfigResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（ModifyDBInstanceSecurityGroups）用于修改实例安全组。
 
         # @param request: Request instance for ModifyDBInstanceSecurityGroups.
@@ -2109,6 +2230,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyParameterTemplateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（ModifyReadOnlyDBInstanceWeight）用于修改只读实例权重
+
+        # @param request: Request instance for ModifyReadOnlyDBInstanceWeight.
+        # @type request: :class:`Tencentcloud::postgres::V20170312::ModifyReadOnlyDBInstanceWeightRequest`
+        # @rtype: :class:`Tencentcloud::postgres::V20170312::ModifyReadOnlyDBInstanceWeightResponse`
+        def ModifyReadOnlyDBInstanceWeight(request)
+          body = send_request('ModifyReadOnlyDBInstanceWeight', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyReadOnlyDBInstanceWeightResponse.new
             model.deserialize(response['Response'])
             model
           else

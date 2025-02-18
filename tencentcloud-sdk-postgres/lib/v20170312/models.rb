@@ -203,14 +203,35 @@ module TencentCloud
         # @type MinBackupStartTime: String
         # @param MaxBackupStartTime: 开始备份的最晚时间
         # @type MaxBackupStartTime: String
+        # @param PlanId: 备份计划ID
+        # @type PlanId: String
+        # @param PlanName: 备份计划自定义名称。
+        # @type PlanName: String
+        # @param LogBackupRetentionPeriod: 日志备份保留时长。
+        # @type LogBackupRetentionPeriod: Integer
+        # @param CreatedTime: 创建时间。
+        # @type CreatedTime: String
+        # @param UpdatedTime: 最近一次的修改时间。
+        # @type UpdatedTime: String
+        # @param PlanType: 备份计划类型。系统默认创建的为default，自定义的为custom。
+        # @type PlanType: String
+        # @param BackupPeriodType: 备份周期类型。当前支持week、month。
+        # @type BackupPeriodType: String
 
-        attr_accessor :BackupPeriod, :BaseBackupRetentionPeriod, :MinBackupStartTime, :MaxBackupStartTime
+        attr_accessor :BackupPeriod, :BaseBackupRetentionPeriod, :MinBackupStartTime, :MaxBackupStartTime, :PlanId, :PlanName, :LogBackupRetentionPeriod, :CreatedTime, :UpdatedTime, :PlanType, :BackupPeriodType
 
-        def initialize(backupperiod=nil, basebackupretentionperiod=nil, minbackupstarttime=nil, maxbackupstarttime=nil)
+        def initialize(backupperiod=nil, basebackupretentionperiod=nil, minbackupstarttime=nil, maxbackupstarttime=nil, planid=nil, planname=nil, logbackupretentionperiod=nil, createdtime=nil, updatedtime=nil, plantype=nil, backupperiodtype=nil)
           @BackupPeriod = backupperiod
           @BaseBackupRetentionPeriod = basebackupretentionperiod
           @MinBackupStartTime = minbackupstarttime
           @MaxBackupStartTime = maxbackupstarttime
+          @PlanId = planid
+          @PlanName = planname
+          @LogBackupRetentionPeriod = logbackupretentionperiod
+          @CreatedTime = createdtime
+          @UpdatedTime = updatedtime
+          @PlanType = plantype
+          @BackupPeriodType = backupperiodtype
         end
 
         def deserialize(params)
@@ -218,6 +239,13 @@ module TencentCloud
           @BaseBackupRetentionPeriod = params['BaseBackupRetentionPeriod']
           @MinBackupStartTime = params['MinBackupStartTime']
           @MaxBackupStartTime = params['MaxBackupStartTime']
+          @PlanId = params['PlanId']
+          @PlanName = params['PlanName']
+          @LogBackupRetentionPeriod = params['LogBackupRetentionPeriod']
+          @CreatedTime = params['CreatedTime']
+          @UpdatedTime = params['UpdatedTime']
+          @PlanType = params['PlanType']
+          @BackupPeriodType = params['BackupPeriodType']
         end
       end
 
@@ -633,6 +661,66 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateBackupPlan请求参数结构体
+      class CreateBackupPlanRequest < TencentCloud::Common::AbstractModel
+        # @param DBInstanceId: 实例ID。
+        # @type DBInstanceId: String
+        # @param PlanName: 备份计划名称。
+        # @type PlanName: String
+        # @param BackupPeriodType: 创建的备份计划类型，当前仅支持month创建。
+        # @type BackupPeriodType: String
+        # @param BackupPeriod: 备份的日期，示例是每个月的2号开启备份。
+        # @type BackupPeriod: Array
+        # @param MinBackupStartTime: 备份开始时间，不传跟随默认备份计划。
+        # @type MinBackupStartTime: String
+        # @param MaxBackupStartTime: 备份结束时间，不传跟随默认计划。
+        # @type MaxBackupStartTime: String
+        # @param BaseBackupRetentionPeriod: 数据备份保留时长，week默认是7,month为30。
+        # @type BaseBackupRetentionPeriod: Integer
+
+        attr_accessor :DBInstanceId, :PlanName, :BackupPeriodType, :BackupPeriod, :MinBackupStartTime, :MaxBackupStartTime, :BaseBackupRetentionPeriod
+
+        def initialize(dbinstanceid=nil, planname=nil, backupperiodtype=nil, backupperiod=nil, minbackupstarttime=nil, maxbackupstarttime=nil, basebackupretentionperiod=nil)
+          @DBInstanceId = dbinstanceid
+          @PlanName = planname
+          @BackupPeriodType = backupperiodtype
+          @BackupPeriod = backupperiod
+          @MinBackupStartTime = minbackupstarttime
+          @MaxBackupStartTime = maxbackupstarttime
+          @BaseBackupRetentionPeriod = basebackupretentionperiod
+        end
+
+        def deserialize(params)
+          @DBInstanceId = params['DBInstanceId']
+          @PlanName = params['PlanName']
+          @BackupPeriodType = params['BackupPeriodType']
+          @BackupPeriod = params['BackupPeriod']
+          @MinBackupStartTime = params['MinBackupStartTime']
+          @MaxBackupStartTime = params['MaxBackupStartTime']
+          @BaseBackupRetentionPeriod = params['BaseBackupRetentionPeriod']
+        end
+      end
+
+      # CreateBackupPlan返回参数结构体
+      class CreateBackupPlanResponse < TencentCloud::Common::AbstractModel
+        # @param PlanId: 备份策略的ID.
+        # @type PlanId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :PlanId, :RequestId
+
+        def initialize(planid=nil, requestid=nil)
+          @PlanId = planid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @PlanId = params['PlanId']
           @RequestId = params['RequestId']
         end
       end
@@ -2115,6 +2203,42 @@ module TencentCloud
         end
       end
 
+      # DeleteBackupPlan请求参数结构体
+      class DeleteBackupPlanRequest < TencentCloud::Common::AbstractModel
+        # @param DBInstanceId: 实例ID。
+        # @type DBInstanceId: String
+        # @param PlanId: 备份计划的ID。
+        # @type PlanId: String
+
+        attr_accessor :DBInstanceId, :PlanId
+
+        def initialize(dbinstanceid=nil, planid=nil)
+          @DBInstanceId = dbinstanceid
+          @PlanId = planid
+        end
+
+        def deserialize(params)
+          @DBInstanceId = params['DBInstanceId']
+          @PlanId = params['PlanId']
+        end
+      end
+
+      # DeleteBackupPlan返回参数结构体
+      class DeleteBackupPlanResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteBaseBackup请求参数结构体
       class DeleteBaseBackupRequest < TencentCloud::Common::AbstractModel
         # @param DBInstanceId: 实例ID。
@@ -3309,6 +3433,50 @@ module TencentCloud
               @Detail << paraminfo_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDBInstanceSSLConfig请求参数结构体
+      class DescribeDBInstanceSSLConfigRequest < TencentCloud::Common::AbstractModel
+        # @param DBInstanceId: 实例ID，形如postgres-6bwgamo3
+        # @type DBInstanceId: String
+
+        attr_accessor :DBInstanceId
+
+        def initialize(dbinstanceid=nil)
+          @DBInstanceId = dbinstanceid
+        end
+
+        def deserialize(params)
+          @DBInstanceId = params['DBInstanceId']
+        end
+      end
+
+      # DescribeDBInstanceSSLConfig返回参数结构体
+      class DescribeDBInstanceSSLConfigResponse < TencentCloud::Common::AbstractModel
+        # @param SSLEnabled: true 代表开通 ，false 代表未开通
+        # @type SSLEnabled: Boolean
+        # @param CAUrl: 云端根证书下载链接
+        # @type CAUrl: String
+        # @param ConnectAddress: 服务器证书中配置的内网或外网连接地址
+        # @type ConnectAddress: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :SSLEnabled, :CAUrl, :ConnectAddress, :RequestId
+
+        def initialize(sslenabled=nil, caurl=nil, connectaddress=nil, requestid=nil)
+          @SSLEnabled = sslenabled
+          @CAUrl = caurl
+          @ConnectAddress = connectaddress
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @SSLEnabled = params['SSLEnabled']
+          @CAUrl = params['CAUrl']
+          @ConnectAddress = params['ConnectAddress']
           @RequestId = params['RequestId']
         end
       end
@@ -4656,6 +4824,81 @@ module TencentCloud
         end
       end
 
+      # DescribeTasks请求参数结构体
+      class DescribeTasksRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: 按照任务ID进行查询。其余云API中返回的FlowId和TaskId等价。
+        # @type TaskId: Integer
+        # @param DBInstanceId: 按照数据库实例ID进行查询。
+        # @type DBInstanceId: String
+        # @param MinStartTime: 任务的最早开始时间，形如2024-08-23 00:00:00,默认只展示180天内的数据。
+        # @type MinStartTime: String
+        # @param MaxStartTime: 任务的最晚开始时间，形如2024-08-23 00:00:00，默认为当前时间。
+        # @type MaxStartTime: String
+        # @param Limit: 每页显示数量，取值范围为1-100，默认为返回20条。
+        # @type Limit: Integer
+        # @param Offset: 数据偏移量，从0开始。
+        # @type Offset: Integer
+        # @param OrderBy: 排序字段，支持StartTime,EndTime，默认为StartTime。
+        # @type OrderBy: String
+        # @param OrderByType: 排序方式，包括升序：asc，降序：desc，默认为desc。
+        # @type OrderByType: String
+
+        attr_accessor :TaskId, :DBInstanceId, :MinStartTime, :MaxStartTime, :Limit, :Offset, :OrderBy, :OrderByType
+
+        def initialize(taskid=nil, dbinstanceid=nil, minstarttime=nil, maxstarttime=nil, limit=nil, offset=nil, orderby=nil, orderbytype=nil)
+          @TaskId = taskid
+          @DBInstanceId = dbinstanceid
+          @MinStartTime = minstarttime
+          @MaxStartTime = maxstarttime
+          @Limit = limit
+          @Offset = offset
+          @OrderBy = orderby
+          @OrderByType = orderbytype
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @DBInstanceId = params['DBInstanceId']
+          @MinStartTime = params['MinStartTime']
+          @MaxStartTime = params['MaxStartTime']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @OrderBy = params['OrderBy']
+          @OrderByType = params['OrderByType']
+        end
+      end
+
+      # DescribeTasks返回参数结构体
+      class DescribeTasksResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 查询到的任务数量
+        # @type TotalCount: Integer
+        # @param TaskSet: 任务信息列表
+        # @type TaskSet: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :TaskSet, :RequestId
+
+        def initialize(totalcount=nil, taskset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @TaskSet = taskset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['TaskSet'].nil?
+            @TaskSet = []
+            params['TaskSet'].each do |i|
+              taskset_tmp = TaskSet.new
+              taskset_tmp.deserialize(i)
+              @TaskSet << taskset_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeZones请求参数结构体
       class DescribeZonesRequest < TencentCloud::Common::AbstractModel
 
@@ -5910,6 +6153,50 @@ module TencentCloud
         end
       end
 
+      # ModifyDBInstanceSSLConfig请求参数结构体
+      class ModifyDBInstanceSSLConfigRequest < TencentCloud::Common::AbstractModel
+        # @param DBInstanceId: 实例 ID
+        # @type DBInstanceId: String
+        # @param SSLEnabled: 开启或关闭SSL
+        # @type SSLEnabled: Boolean
+        # @param ConnectAddress: SSL证书保护的唯一连接地址，若为主实例，可设置为内外网IP地址；若为只读实例，可设置为实例IP或只读组IP。在开启SSL或修改SSL保护的连接地址时，该参数为必传项；在关闭SSL时，该参数将被忽略。
+        # @type ConnectAddress: String
+
+        attr_accessor :DBInstanceId, :SSLEnabled, :ConnectAddress
+
+        def initialize(dbinstanceid=nil, sslenabled=nil, connectaddress=nil)
+          @DBInstanceId = dbinstanceid
+          @SSLEnabled = sslenabled
+          @ConnectAddress = connectaddress
+        end
+
+        def deserialize(params)
+          @DBInstanceId = params['DBInstanceId']
+          @SSLEnabled = params['SSLEnabled']
+          @ConnectAddress = params['ConnectAddress']
+        end
+      end
+
+      # ModifyDBInstanceSSLConfig返回参数结构体
+      class ModifyDBInstanceSSLConfigResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务ID
+        # @type TaskId: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyDBInstanceSecurityGroups请求参数结构体
       class ModifyDBInstanceSecurityGroupsRequest < TencentCloud::Common::AbstractModel
         # @param SecurityGroupIdSet: 实例或只读组要绑定的安全组列表。
@@ -6240,6 +6527,46 @@ module TencentCloud
           end
           @ModifyType = params['ModifyType']
           @IsCascade = params['IsCascade']
+        end
+      end
+
+      # ModifyReadOnlyDBInstanceWeight请求参数结构体
+      class ModifyReadOnlyDBInstanceWeightRequest < TencentCloud::Common::AbstractModel
+        # @param DBInstanceId: 实例ID
+        # @type DBInstanceId: String
+        # @param ReadOnlyGroupId: 只读组ID
+        # @type ReadOnlyGroupId: String
+        # @param Weight: 只读实例在只读组中的流量权重(1-50)
+        # @type Weight: Integer
+
+        attr_accessor :DBInstanceId, :ReadOnlyGroupId, :Weight
+
+        def initialize(dbinstanceid=nil, readonlygroupid=nil, weight=nil)
+          @DBInstanceId = dbinstanceid
+          @ReadOnlyGroupId = readonlygroupid
+          @Weight = weight
+        end
+
+        def deserialize(params)
+          @DBInstanceId = params['DBInstanceId']
+          @ReadOnlyGroupId = params['ReadOnlyGroupId']
+          @Weight = params['Weight']
+        end
+      end
+
+      # ModifyReadOnlyDBInstanceWeight返回参数结构体
+      class ModifyReadOnlyDBInstanceWeightResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 
@@ -7788,6 +8115,106 @@ module TencentCloud
         def deserialize(params)
           @TagKey = params['TagKey']
           @TagValue = params['TagValue']
+        end
+      end
+
+      # 任务的详情信息
+      class TaskDetail < TencentCloud::Common::AbstractModel
+        # @param CurrentStep: 当前执行的子任务步骤名称。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CurrentStep: String
+        # @param AllSteps: 当前任务所拥有的子步骤描述。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AllSteps: String
+        # @param Input: 任务的输入参数。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Input: String
+        # @param Output: 任务的输出参数。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Output: String
+        # @param SwitchTag: 指定实例配置完成变更后的切换时间，默认值：0
+        # 0:   此任务不需要切换
+        # 1：立即切换
+        # 2：指定时间切换
+        # 3：维护时间窗口内切换。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SwitchTag: Integer
+        # @param SwitchTime: 指定的切换时间。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SwitchTime: String
+        # @param Message: 任务的提示信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Message: String
+
+        attr_accessor :CurrentStep, :AllSteps, :Input, :Output, :SwitchTag, :SwitchTime, :Message
+
+        def initialize(currentstep=nil, allsteps=nil, input=nil, output=nil, switchtag=nil, switchtime=nil, message=nil)
+          @CurrentStep = currentstep
+          @AllSteps = allsteps
+          @Input = input
+          @Output = output
+          @SwitchTag = switchtag
+          @SwitchTime = switchtime
+          @Message = message
+        end
+
+        def deserialize(params)
+          @CurrentStep = params['CurrentStep']
+          @AllSteps = params['AllSteps']
+          @Input = params['Input']
+          @Output = params['Output']
+          @SwitchTag = params['SwitchTag']
+          @SwitchTime = params['SwitchTime']
+          @Message = params['Message']
+        end
+      end
+
+      # 任务列表信息
+      class TaskSet < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务ID。
+        # @type TaskId: Integer
+        # @param TaskType: 任务的类型。
+        # @type TaskType: String
+        # @param DBInstanceId: 任务实例的实例ID。
+        # @type DBInstanceId: String
+        # @param StartTime: 任务的开始时间。
+        # @type StartTime: String
+        # @param EndTime: 任务的结束时间。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EndTime: String
+        # @param Status: 任务的运行状态，包括Running,Success,WaitSwitch,Fail,Pause。
+        # @type Status: String
+        # @param Progress: 任务的执行进度，取值范围0-100。
+        # @type Progress: Integer
+        # @param TaskDetail: 任务的详情信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskDetail: :class:`Tencentcloud::Postgres.v20170312.models.TaskDetail`
+
+        attr_accessor :TaskId, :TaskType, :DBInstanceId, :StartTime, :EndTime, :Status, :Progress, :TaskDetail
+
+        def initialize(taskid=nil, tasktype=nil, dbinstanceid=nil, starttime=nil, endtime=nil, status=nil, progress=nil, taskdetail=nil)
+          @TaskId = taskid
+          @TaskType = tasktype
+          @DBInstanceId = dbinstanceid
+          @StartTime = starttime
+          @EndTime = endtime
+          @Status = status
+          @Progress = progress
+          @TaskDetail = taskdetail
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @TaskType = params['TaskType']
+          @DBInstanceId = params['DBInstanceId']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Status = params['Status']
+          @Progress = params['Progress']
+          unless params['TaskDetail'].nil?
+            @TaskDetail = TaskDetail.new
+            @TaskDetail.deserialize(params['TaskDetail'])
+          end
         end
       end
 

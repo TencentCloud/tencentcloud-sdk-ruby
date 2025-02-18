@@ -1275,10 +1275,8 @@ module TencentCloud
         # @param Live: 是否为流
         # @type Live: Boolean
         # @param Msg: 业务返回描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Msg: String
         # @param ScanPiece: 检测结果，Code 为 0 时返回
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScanPiece: Array
         # @param ScanStartTime: 提交检测的时间戳
         # @type ScanStartTime: Integer
@@ -1974,13 +1972,10 @@ module TencentCloud
         # @param RoomId: 房间id
         # @type RoomId: Integer
         # @param Uins: 房间里用户uin列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Uins: Array
         # @param StrRoomId: 字符串房间id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StrRoomId: String
         # @param StrUins: 房间里用户字符串uin列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StrUins: Array
 
         attr_accessor :RoomId, :Uins, :StrRoomId, :StrUins
@@ -2035,32 +2030,24 @@ module TencentCloud
       # 语音检测结果，Code 为 0 时返回
       class ScanPiece < TencentCloud::Common::AbstractModel
         # @param DumpUrl: 流检测时返回，音频转存地址，保留30min
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DumpUrl: String
         # @param HitFlag: 是否违规
         # @type HitFlag: Boolean
         # @param MainType: 违规主要类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MainType: String
         # @param ScanDetail: 语音检测详情
         # @type ScanDetail: Array
         # @param RoomId: gme实时语音房间ID，透传任务传入时的RoomId
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RoomId: String
         # @param OpenId: gme实时语音用户ID，透传任务传入时的OpenId
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OpenId: String
         # @param Info: 备注
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Info: String
         # @param Offset: 流检测时分片在流中的偏移时间，单位毫秒
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Offset: Integer
         # @param Duration: 流检测时分片时长
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Duration: Integer
         # @param PieceStartTime: 分片开始检测时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PieceStartTime: Integer
 
         attr_accessor :DumpUrl, :HitFlag, :MainType, :ScanDetail, :RoomId, :OpenId, :Info, :Offset, :Duration, :PieceStartTime
@@ -2608,7 +2595,6 @@ module TencentCloud
         # @param Status: 语音过滤服务开关，取值：open/close
         # @type Status: String
         # @param SceneInfos: 场景配置信息，如开关状态，回调地址。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SceneInfos: Array
 
         attr_accessor :Status, :SceneInfos

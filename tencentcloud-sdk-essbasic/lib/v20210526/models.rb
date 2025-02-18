@@ -11068,10 +11068,10 @@ module TencentCloud
         # 如果签署方是企业签署方(approverType = 0 或者 approverType = 3)， 则企业名称必填。
         # @type OrganizationName: String
         # @param OrganizationOpenId: 第三方平台子客企业的唯一标识，定义Agent中的ProxyOrganizationOpenId一样, 可以参考<a href="https://qian.tencent.com/developers/partnerApis/dataTypes/#agent" target="_blank">Agent结构体</a>。
-        # 当为子客企业指定经办人时，此OrganizationOpenId必传。
+        # <font color="red">当为子客企业指定经办人时，此OrganizationOpenId必传。</font>
         # @type OrganizationOpenId: String
         # @param OpenId: 第三方平台子客企业员工的唯一标识，长度不能超过64，只能由字母和数字组成。
-        # 当签署方为同一第三方平台下的员工时，此OpenId必传。
+        # <font color="red">当签署方为同一第三方平台下的员工时，此OpenId必传。</font>
         # @type OpenId: String
         # @param ApproverSignComponentType: 签署控件类型，支持自定义企业签署方的签署控件类型
         # <ul><li> **SIGN_SEAL**：默认为印章控件类型(默认值)</li>

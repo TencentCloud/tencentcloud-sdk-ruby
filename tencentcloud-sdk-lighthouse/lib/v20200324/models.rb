@@ -332,14 +332,12 @@ module TencentCloud
         # @param RequiredMemorySize: 镜像所需内存大小, 单位: GB
         # @type RequiredMemorySize: Integer
         # @param ImageId: CVM镜像共享到轻量应用服务器轻量应用服务器后的CVM镜像ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ImageId: String
         # @param CommunityUrl: 官方网站Url。
         # @type CommunityUrl: String
         # @param GuideUrl: 指导文章Url。
         # @type GuideUrl: String
         # @param SceneIdSet: 镜像关联使用场景Id列表。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SceneIdSet: Array
         # @param DockerVersion: Docker版本号。
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -500,7 +498,6 @@ module TencentCloud
         # <li>BEFAST_BUNDLE：蜂驰型 </li>
         # @type BundleType: String
         # @param BundleTypeDescription: 套餐类型描述信息。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BundleTypeDescription: String
         # @param BundleDisplayLabel: 套餐展示标签.
         # 取值范围:
@@ -662,8 +659,10 @@ module TencentCloud
       # 容器环境变量
       class ContainerEnv < TencentCloud::Common::AbstractModel
         # @param Key: 环境变量Key
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Key: String
         # @param Value: 环境变量值
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: String
 
         attr_accessor :Key, :Value
@@ -1211,7 +1210,6 @@ module TencentCloud
         # @param DiscountPrice: 折后总价。
         # @type DiscountPrice: Float
         # @param InstanceId: 数据盘挂载的实例ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceId: String
 
         attr_accessor :DiskId, :OriginalDiskPrice, :OriginalPrice, :Discount, :DiscountPrice, :InstanceId
@@ -4144,13 +4142,10 @@ module TencentCloud
         # @param Percent: 创建或回滚云硬盘备份点进度百分比，成功后此字段取值为 100。
         # @type Percent: Integer
         # @param LatestOperation: 上一次操作
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LatestOperation: String
         # @param LatestOperationState: 上一次操作状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LatestOperationState: String
         # @param LatestOperationRequestId: 上一次请求ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LatestOperationRequestId: String
         # @param CreatedTime: 创建时间。按照 ISO8601 标准表示，并且使用 UTC 时间。
         # 格式为： YYYY-MM-DDThh:mm:ssZ。
@@ -4387,7 +4382,6 @@ module TencentCloud
         # @param CreatedTime: 创建时间。按照 ISO8601 标准表示，并且使用 UTC 时间。
         # @type CreatedTime: String
         # @param EndTime: 结束时间。按照 ISO8601 标准表示，并且使用 UTC 时间。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EndTime: String
 
         attr_accessor :ActivityId, :ActivityName, :ActivityState, :ActivityCommandOutput, :ContainerIds, :CreatedTime, :EndTime
@@ -4543,10 +4537,8 @@ module TencentCloud
         # @param ContainerPort: 容器端口
         # @type ContainerPort: Integer
         # @param Ip: 对外绑定IP，默认0.0.0.0
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Ip: String
         # @param Protocol: 协议，默认tcp，支持tcp/udp/sctp
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Protocol: String
 
         attr_accessor :HostPort, :ContainerPort, :Ip, :Protocol
@@ -5301,7 +5293,6 @@ module TencentCloud
         # @param InitInvocationId: 创建实例后自动执行TAT命令的调用ID。
         # @type InitInvocationId: String
         # @param InstanceViolationDetail: 实例违规详情。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceViolationDetail: :class:`Tencentcloud::Lighthouse.v20200324.models.InstanceViolationDetail`
 
         attr_accessor :InstanceId, :BundleId, :BlueprintId, :CPU, :Memory, :InstanceName, :InstanceChargeType, :SystemDisk, :PrivateAddresses, :PublicAddresses, :InternetAccessible, :RenewFlag, :LoginSettings, :InstanceState, :Uuid, :LatestOperation, :LatestOperationState, :LatestOperationRequestId, :LatestOperationStartedTime, :IsolatedTime, :CreatedTime, :ExpiredTime, :PlatformType, :Platform, :OsName, :Zone, :Tags, :InstanceRestrictState, :SupportIpv6Detail, :PublicIpv6Addresses, :InitInvocationId, :InstanceViolationDetail
@@ -5422,7 +5413,6 @@ module TencentCloud
       # 实例操作限制列表。
       class InstanceDeniedActions < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例 ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceId: String
         # @param DeniedActions: 操作限制列表。
         # @type DeniedActions: Array
@@ -5478,7 +5468,6 @@ module TencentCloud
         # @param DiscountPrice: 折后价。
         # @type DiscountPrice: Float
         # @param Currency: 价格货币单位。取值范围CNY:人民币。USD:美元。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Currency: String
 
         attr_accessor :OriginalBundlePrice, :OriginalPrice, :Discount, :DiscountPrice, :Currency
@@ -5503,10 +5492,8 @@ module TencentCloud
       # 实例价格详细信息
       class InstancePriceDetail < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceId: String
         # @param InstancePrice: 询价信息。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstancePrice: :class:`Tencentcloud::Lighthouse.v20200324.models.InstancePrice`
         # @param DiscountDetail: 折扣梯度详情，每个梯度包含的信息有：时长，折扣数，总价，折扣价，折扣详情（用户折扣、官网折扣、最终折扣）。
         # @type DiscountDetail: Array
@@ -7721,10 +7708,8 @@ module TencentCloud
       # 总计价格信息
       class TotalPrice < TencentCloud::Common::AbstractModel
         # @param OriginalPrice: 原始总计价格。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OriginalPrice: Float
         # @param DiscountPrice: 折扣总计价格。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DiscountPrice: Float
 
         attr_accessor :OriginalPrice, :DiscountPrice
@@ -7754,15 +7739,12 @@ module TencentCloud
         # @type TrafficOverflow: Integer
         # @param StartTime: 流量包生效周期开始时间。按照 ISO8601 标准表示，并且使用 UTC 时间。
         # 格式为： YYYY-MM-DDThh:mm:ssZ。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StartTime: String
         # @param EndTime: 流量包生效周期结束时间。按照 ISO8601 标准表示，并且使用 UTC 时间。
         # 格式为： YYYY-MM-DDThh:mm:ssZ。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EndTime: String
         # @param Deadline: 流量包到期时间。按照 ISO8601 标准表示，并且使用 UTC 时间。
         # 格式为： YYYY-MM-DDThh:mm:ssZ。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Deadline: String
         # @param Status: 流量包状态：
         # <li>NETWORK_NORMAL：正常</li>

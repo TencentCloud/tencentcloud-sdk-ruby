@@ -26,7 +26,6 @@ module TencentCloud
         # @param Domain: 域名
         # @type Domain: String
         # @param CertId: 证书ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CertId: String
         # @param Protocol: 使用协议
         # @type Protocol: String
@@ -55,12 +54,10 @@ module TencentCloud
         # @param Region: 地域
         # @type Region: String
         # @param InstanceList: apigateway实例详情
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceList: Array
         # @param TotalCount: 该地域下apigateway实例总数
         # @type TotalCount: Integer
         # @param Error: 是否查询异常
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Error: String
 
         attr_accessor :Region, :InstanceList, :TotalCount, :Error
@@ -185,10 +182,8 @@ module TencentCloud
       # 批量删除失败的项
       class BatchDeleteFail < TencentCloud::Common::AbstractModel
         # @param CertId: 失败的证书ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CertId: String
         # @param Msg: 失败的原因
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Msg: String
 
         attr_accessor :CertId, :Msg
@@ -207,12 +202,10 @@ module TencentCloud
       # 绑定资源地域结果
       class BindResourceRegionResult < TencentCloud::Common::AbstractModel
         # @param Region: 地域
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Region: String
         # @param TotalCount: 关联资源总数
         # @type TotalCount: Integer
         # @param Error: 是否查询异常
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Error: String
 
         attr_accessor :Region, :TotalCount, :Error
@@ -260,16 +253,12 @@ module TencentCloud
       # cos实例详情 - 异步关联云资源数据结构
       class COSInstanceList < TencentCloud::Common::AbstractModel
         # @param Region: 地域
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Region: String
         # @param InstanceList: 实例详情
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceList: Array
         # @param TotalCount: 地域下总数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
         # @param Error: 错误信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Error: String
 
         attr_accessor :Region, :InstanceList, :TotalCount, :Error
@@ -401,10 +390,8 @@ module TencentCloud
         # @param TotalCount: 该地域下CDN域名总数
         # @type TotalCount: Integer
         # @param InstanceList: cdn域名详情
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceList: Array
         # @param Error: 是否查询异常
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Error: String
 
         attr_accessor :TotalCount, :InstanceList, :Error
@@ -488,10 +475,8 @@ module TencentCloud
         # @param DnsNames: 证书绑定的域名
         # @type DnsNames: Array
         # @param CertCaId: 根证书ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CertCaId: String
         # @param SSLMode: 证书认证模式：UNIDIRECTIONAL单向认证，MUTUAL双向认证
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SSLMode: String
 
         attr_accessor :CertId, :DnsNames, :CertCaId, :SSLMode
@@ -514,7 +499,6 @@ module TencentCloud
       # 获取证书列表（DescribeCertificates）返回参数键为 Certificates 数组下，key为CertificateExtra 的内容。
       class CertificateExtra < TencentCloud::Common::AbstractModel
         # @param DomainNumber: 证书可配置域名数量。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DomainNumber: String
         # @param OriginCertificateId: 续费原证书 ID。
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -529,10 +513,8 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RenewOrder: String
         # @param SMCert: 是否是国密证书
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SMCert: Integer
         # @param CompanyType: 公司类型，取值：1（个人）；2（公司）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CompanyType: Integer
 
         attr_accessor :DomainNumber, :OriginCertificateId, :ReplacedBy, :ReplacedFor, :RenewOrder, :SMCert, :CompanyType
@@ -819,17 +801,14 @@ module TencentCloud
       # 获取证书列表（DescribeCertificates）返回参数键为 Certificates 的内容。
       class Certificates < TencentCloud::Common::AbstractModel
         # @param OwnerUin: 用户 UIN。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OwnerUin: String
         # @param ProjectId: 项目 ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProjectId: String
         # @param From: 证书来源：
         # trustasia：亚洲诚信，
         # upload：用户上传。
         # wosign：沃通
         # sheca：上海CA
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type From: String
         # @param PackageType: 证书套餐类型：
         # null：用户上传证书（没有套餐类型），
@@ -916,163 +895,110 @@ module TencentCloud
         # 99：CFCA 企业型多域名(OV)SSL证书
         # 100：CFCA 企业型通配符(OV)SSL证书
         # 101：CFCA 增强型(EV)SSL证书
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PackageType: String
         # @param CertificateType: 证书类型：CA = 客户端证书，SVR = 服务器证书。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CertificateType: String
         # @param ProductZhName: 证书产品名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProductZhName: String
         # @param Domain: 主域名。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Domain: String
         # @param Alias: 备注名称。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Alias: String
         # @param Status: 证书状态：0 = 审核中，1 = 已通过，2 = 审核失败，3 = 已过期，4 = 自动添加DNS记录，5 = 企业证书，待提交资料，6 = 订单取消中，7 = 已取消，8 = 已提交资料， 待上传确认函，9 = 证书吊销中，10 = 已吊销，11 = 重颁发中，12 = 待上传吊销确认函，13 = 免费证书待提交资料。14 = 证书已退款。 15 = 证书迁移中
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
         # @param CertificateExtra: 证书扩展信息。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CertificateExtra: :class:`Tencentcloud::Ssl.v20191205.models.CertificateExtra`
         # @param VulnerabilityStatus: 漏洞扫描状态：INACTIVE = 未开启，ACTIVE = 已开启
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VulnerabilityStatus: String
         # @param StatusMsg: 状态信息。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StatusMsg: String
         # @param VerifyType: 验证类型：DNS_AUTO = 自动DNS验证，DNS = 手动DNS验证，FILE = 文件验证，DNS_PROXY = DNS代理验证。FILE_PROXY = 文件代理验证
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VerifyType: String
         # @param CertBeginTime: 证书生效时间。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CertBeginTime: String
         # @param CertEndTime: 证书过期时间。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CertEndTime: String
         # @param ValidityPeriod: 证书有效期，单位（月）。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ValidityPeriod: String
         # @param InsertTime: 创建时间。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InsertTime: String
         # @param CertificateId: 证书 ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CertificateId: String
         # @param SubjectAltName: 证书包含的多个域名（包含主域名）。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubjectAltName: Array
         # @param PackageTypeName: 证书类型名称。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PackageTypeName: String
         # @param StatusName: 状态名称。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StatusName: String
         # @param IsVip: 是否为 VIP 客户。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsVip: Boolean
         # @param IsDv: 是否为 DV 版证书。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsDv: Boolean
         # @param IsWildcard: 是否为泛域名证书。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsWildcard: Boolean
         # @param IsVulnerability: 是否启用了漏洞扫描功能。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsVulnerability: Boolean
         # @param RenewAble: 是否可续费。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RenewAble: Boolean
         # @param ProjectInfo: 项目信息。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProjectInfo: :class:`Tencentcloud::Ssl.v20191205.models.ProjectInfo`
         # @param BoundResource: 关联的云资源，暂不可用
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BoundResource: Array
         # @param Deployable: 是否可部署。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Deployable: Boolean
         # @param Tags: 标签列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
         # @param IsIgnore: 是否已忽略到期通知
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsIgnore: Boolean
         # @param IsSM: 是否国密证书
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsSM: Boolean
         # @param EncryptAlgorithm: 证书算法
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EncryptAlgorithm: String
         # @param CAEncryptAlgorithms: 上传CA证书的加密算法
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CAEncryptAlgorithms: Array
         # @param CAEndTimes: 上传CA证书的过期时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CAEndTimes: Array
         # @param CACommonNames: 上传CA证书的通用名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CACommonNames: Array
         # @param PreAuditInfo: 证书预审核信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PreAuditInfo: :class:`Tencentcloud::Ssl.v20191205.models.PreAuditInfo`
         # @param AutoRenewFlag: 是否自动续费
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AutoRenewFlag: Integer
         # @param HostingStatus: 托管状态，0，托管中，5，资源替换中， 10， 托管完成， -1未托管
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HostingStatus: Integer
         # @param HostingCompleteTime: 托管完成时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HostingCompleteTime: String
         # @param HostingRenewCertId: 托管新证书ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HostingRenewCertId: String
         # @param HasRenewOrder: 存在的续费证书ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HasRenewOrder: String
         # @param ReplaceOriCertIsDelete: 重颁发证书原证书是否删除
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReplaceOriCertIsDelete: Boolean
         # @param IsExpiring: 是否即将过期， 证书即将到期的30天内为即将过期
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsExpiring: Boolean
         # @param DVAuthDeadline: DV证书添加验证截止时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DVAuthDeadline: String
         # @param ValidationPassedTime: 域名验证通过时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ValidationPassedTime: String
         # @param CertSANs: 证书关联的多域名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CertSANs: Array
         # @param AwaitingValidationMsg: 域名验证驳回信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AwaitingValidationMsg: String
         # @param AllowDownload: 是否允许下载
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AllowDownload: Boolean
         # @param IsDNSPODResolve: 证书域名是否全部在DNSPOD托管解析
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsDNSPODResolve: Boolean
         # @param IsPackage: 是否是权益点购买的证书
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsPackage: Boolean
         # @param KeyPasswordCustomFlag: 是否存在私钥密码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type KeyPasswordCustomFlag: Boolean
         # @param SupportDownloadType: 支持下载的WEB服务器类型： nginx、apache、iis、tomcat、jks、root、other
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SupportDownloadType: :class:`Tencentcloud::Ssl.v20191205.models.SupportDownloadType`
         # @param CertRevokedTime: 证书吊销完成时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CertRevokedTime: String
         # @param HostingResourceTypes: 托管资源类型列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HostingResourceTypes: Array
         # @param HostingConfig: 托管配置信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HostingConfig: :class:`Tencentcloud::Ssl.v20191205.models.HostingConfig`
 
         attr_accessor :OwnerUin, :ProjectId, :From, :PackageType, :CertificateType, :ProductZhName, :Domain, :Alias, :Status, :CertificateExtra, :VulnerabilityStatus, :StatusMsg, :VerifyType, :CertBeginTime, :CertEndTime, :ValidityPeriod, :InsertTime, :CertificateId, :SubjectAltName, :PackageTypeName, :StatusName, :IsVip, :IsDv, :IsWildcard, :IsVulnerability, :RenewAble, :ProjectInfo, :BoundResource, :Deployable, :Tags, :IsIgnore, :IsSM, :EncryptAlgorithm, :CAEncryptAlgorithms, :CAEndTimes, :CACommonNames, :PreAuditInfo, :AutoRenewFlag, :HostingStatus, :HostingCompleteTime, :HostingRenewCertId, :HasRenewOrder, :ReplaceOriCertIsDelete, :IsExpiring, :DVAuthDeadline, :ValidationPassedTime, :CertSANs, :AwaitingValidationMsg, :AllowDownload, :IsDNSPODResolve, :IsPackage, :KeyPasswordCustomFlag, :SupportDownloadType, :CertRevokedTime, :HostingResourceTypes, :HostingConfig
@@ -1350,7 +1276,6 @@ module TencentCloud
         # @param LoadBalancerName: CLB实例名称
         # @type LoadBalancerName: String
         # @param Listeners: CLB监听器列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Listeners: Array
 
         attr_accessor :LoadBalancerId, :LoadBalancerName, :Listeners
@@ -1380,12 +1305,10 @@ module TencentCloud
         # @param Region: 地域
         # @type Region: String
         # @param InstanceList: clb实例详情
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceList: Array
         # @param TotalCount: 该地域下Clb实例总数
         # @type TotalCount: Integer
         # @param Error: 是否查询异常
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Error: String
 
         attr_accessor :Region, :InstanceList, :TotalCount, :Error
@@ -1423,13 +1346,10 @@ module TencentCloud
         # @param Protocol: 监听器协议类型， HTTPS|TCP_SSL
         # @type Protocol: String
         # @param Certificate: 监听器绑定的证书数据
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Certificate: :class:`Tencentcloud::Ssl.v20191205.models.Certificate`
         # @param Rules: 监听器规则列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Rules: Array
         # @param NoMatchDomains: 不匹配域名列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NoMatchDomains: Array
 
         attr_accessor :ListenerId, :ListenerName, :SniSwitch, :Protocol, :Certificate, :Rules, :NoMatchDomains
@@ -1474,13 +1394,10 @@ module TencentCloud
         # @param IsMatch: 规则是否匹配待绑定证书的域名
         # @type IsMatch: Boolean
         # @param Certificate: 规则已绑定的证书数据
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Certificate: :class:`Tencentcloud::Ssl.v20191205.models.Certificate`
         # @param NoMatchDomains: 不匹配域名列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NoMatchDomains: Array
         # @param Url: 规则绑定的路径
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Url: String
 
         attr_accessor :LocationId, :Domain, :IsMatch, :Certificate, :NoMatchDomains, :Url
@@ -1573,14 +1490,11 @@ module TencentCloud
         # @param IdType: 公司证件类型，取值范围：
         # TYDMZ（统一社会信用代码 ）：仅CFCA类型证书需要使用本字段， 其他类型证书不需要使用本字段
         # OTHERS（其他）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IdType: String
         # @param IdNumber: 公司证件号码，取值范围：
         # TYDMZ（统一社会信用代码 ）：11532xxxxxxxx24820
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IdNumber: String
         # @param Tags: 标签
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
 
         attr_accessor :CompanyName, :CompanyId, :CompanyCountry, :CompanyProvince, :CompanyCity, :CompanyAddress, :CompanyPhone, :IdType, :IdNumber, :Tags
@@ -1660,16 +1574,13 @@ module TencentCloud
         # @param Domain: 域名
         # @type Domain: String
         # @param CertId: 已绑定的证书ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CertId: String
         # @param Status: ENABLED: 域名上线状态
         # DISABLED:域名下线状态
         # @type Status: String
         # @param Bucket: 存储桶名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Bucket: String
         # @param Region: 存储桶地域
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Region: String
 
         attr_accessor :Domain, :CertId, :Status, :Bucket, :Region
@@ -2047,7 +1958,6 @@ module TencentCloud
         # @param Protocol: 协议类型
         # @type Protocol: String
         # @param CertId: 证书ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CertId: String
         # @param VirtualPort: 转发端口
         # @type VirtualPort: String
@@ -2076,10 +1986,8 @@ module TencentCloud
         # @param TotalCount: 该地域下ddos域名总数
         # @type TotalCount: Integer
         # @param InstanceList: ddos实例详情
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceList: Array
         # @param Error: 是否查询异常
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Error: String
 
         attr_accessor :TotalCount, :InstanceList, :Error
@@ -2256,13 +2164,10 @@ module TencentCloud
         # @param Status: 异步查询结果： 0表示任务进行中、 1表示任务成功、 2表示任务失败、3表示未授权服务角色导致任务失败、4表示有未解绑的云资源导致任务失败、5表示查询关联云资源超时导致任务失败
         # @type Status: Integer
         # @param Error: 错误信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Error: String
         # @param CacheTime: 当前结果缓存时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CacheTime: String
         # @param Domains: 包含的域名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Domains: Array
 
         attr_accessor :TaskId, :CertId, :Status, :Error, :CacheTime, :Domains
@@ -2453,24 +2358,20 @@ module TencentCloud
         # @param CertId: 部署证书ID
         # @type CertId: String
         # @param OldCertId: 原绑定证书ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OldCertId: String
         # @param InstanceId: 部署实例ID
         # @type InstanceId: String
         # @param InstanceName: 部署实例名称
         # @type InstanceName: String
         # @param ListenerId: 部署监听器ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ListenerId: String
         # @param Domains: 部署域名列表
         # @type Domains: Array
         # @param Protocol: 部署监听器协议
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Protocol: String
         # @param Status: 部署状态
         # @type Status: Integer
         # @param ErrorMsg: 部署错误信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrorMsg: String
         # @param CreateTime: 部署记录详情创建时间
         # @type CreateTime: String
@@ -2481,28 +2382,20 @@ module TencentCloud
         # @param SniSwitch: 是否开启SNI
         # @type SniSwitch: Integer
         # @param Bucket: COS存储桶名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Bucket: String
         # @param Namespace: 命名空间名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Namespace: String
         # @param SecretName: secret名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SecretName: String
         # @param Port: 端口
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Port: Integer
         # @param EnvId: TCB环境ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EnvId: String
         # @param TCBType: 部署的TCB类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TCBType: String
         # @param Region: 部署的TCB地域
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Region: String
         # @param Url: 部署CLB监听器的Url
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Url: Array
 
         attr_accessor :Id, :CertId, :OldCertId, :InstanceId, :InstanceName, :ListenerId, :Domains, :Protocol, :Status, :ErrorMsg, :CreateTime, :UpdateTime, :ListenerName, :SniSwitch, :Bucket, :Namespace, :SecretName, :Port, :EnvId, :TCBType, :Region, :Url
@@ -2607,10 +2500,8 @@ module TencentCloud
         # @param Type: 资源标识:clb,cdn,live,waf,antiddos
         # @type Type: String
         # @param ResourceIds: 不建议使用。字段返回和Resources相同。本字段后续只返回null
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceIds: Array
         # @param Resources: 关联资源ID或关联域名。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Resources: Array
 
         attr_accessor :CertificateId, :Count, :Type, :ResourceIds, :Resources
@@ -5020,7 +4911,7 @@ module TencentCloud
 
       # DescribeHostVodInstanceList请求参数结构体
       class DescribeHostVodInstanceListRequest < TencentCloud::Common::AbstractModel
-        # @param CertificateId: 待部署的证书ID
+        # @param CertificateId: 待部署的证书ID,必填选项
         # @type CertificateId: String
         # @param IsCache: 是否查询缓存，1：是； 0：否， 默认为查询缓存，缓存半小时
         # @type IsCache: Integer
@@ -5238,6 +5129,9 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Status, :ManagerFirstName, :ManagerMail, :ContactFirstName, :ManagerLastName, :ContactPosition, :ManagerPosition, :VerifyTime, :CreateTime, :ExpireTime, :ContactLastName, :ManagerPhone, :ContactPhone, :ContactMail, :ManagerDepartment, :CompanyInfo, :CompanyId, :ManagerId, :StatusInfo, :RequestId
+        extend Gem::Deprecate
+        deprecate :Status, :none, 2025, 2
+        deprecate :Status=, :none, 2025, 2
 
         def initialize(status=nil, managerfirstname=nil, managermail=nil, contactfirstname=nil, managerlastname=nil, contactposition=nil, managerposition=nil, verifytime=nil, createtime=nil, expiretime=nil, contactlastname=nil, managerphone=nil, contactphone=nil, contactmail=nil, managerdepartment=nil, companyinfo=nil, companyid=nil, managerid=nil, statusinfo=nil, requestid=nil)
           @Status = status
@@ -5454,17 +5348,14 @@ module TencentCloud
         # @param Domain: 证书绑定的域名。
         # @type Domain: String
         # @param VerifyType: 域名验证类型。 取值为：DNS、FILE、DNS_AUTO、DNS_PROXY、FILE_PROXY
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VerifyType: String
         # @param LocalCheck: 腾讯云检测结果，取值：1（验证通过）； -1（被限频或者 txt record not found）；-2（txt record not match）；-3（ns record not found）；-4（file not found）；-5（file not match）；-6（cname record not found）；-7（cname record not match）；-8（ns record not found）-9（file not found）；-10（file not match）
         # @type LocalCheck: Integer
         # @param CaCheck: CA检查结果。取值： -1（未检测通过）；2（检测通过）
         # @type CaCheck: Integer
         # @param LocalCheckFailReason: 检查失败原因。状态LocalCheck的具体描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LocalCheckFailReason: String
         # @param CheckValue: 检查到的值。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CheckValue: Array
         # @param Frequently: 是否被限频拦截， 取值：false（未被限频）；true（被限频）
         # @type Frequently: Boolean
@@ -6259,7 +6150,6 @@ module TencentCloud
         # @param TransferCount: 本次转移点数。
         # @type TransferCount: Integer
         # @param ReceivePackageId: 转入的PackageID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReceivePackageId: String
         # @param ExpireTime: 本次转移过期时间。
         # @type ExpireTime: String
@@ -6270,10 +6160,8 @@ module TencentCloud
         # @param TransferStatus: 转移状态。
         # @type TransferStatus: String
         # @param ReceiverUin: 接收者uin。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReceiverUin: Integer
         # @param ReceiveTime: 接收时间。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReceiveTime: String
 
         attr_accessor :PackageId, :TransferCode, :TransferCount, :ReceivePackageId, :ExpireTime, :CreateTime, :UpdateTime, :TransferStatus, :ReceiverUin, :ReceiveTime

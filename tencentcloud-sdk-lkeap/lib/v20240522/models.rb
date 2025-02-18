@@ -436,6 +436,7 @@ module TencentCloud
         # 参考：[腾讯云COS文档](https://cloud.tencent.com/document/product/436/7749)
         # @type FileUrl: String
         # @param FileBase64: 文件的 Base64 值。
+        # 支持的文件类型： PNG、JPG、JPEG、PDF、GIF、BMP、TIFF
         # 支持的文件大小：所下载文件经Base64编码后不超过 8M。文件下载时间不超过 3 秒。
         # 支持的图片像素：单边介于20-10000px之间。
         # 文件的 FileUrl、FileBase64 必须提供一个，如果都提供，只使用 FileUrl。
@@ -2051,8 +2052,8 @@ module TencentCloud
       class UploadDocRequest < TencentCloud::Common::AbstractModel
         # @param KnowledgeBaseId: 知识库ID
         # @type KnowledgeBaseId: String
-        # @param FileName: 文件名，可选。
-        # **需带文件类型后缀**，当文件名无法从传入的`FileUrl`获取时需要通过该字段来明确。
+        # @param FileName: 文件名。
+        # **需带文件类型后缀**
         # @type FileName: String
         # @param FileType: 文件类型。
 
