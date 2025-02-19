@@ -29,6 +29,30 @@ module TencentCloud
         end
 
 
+        # 激活Ca证书
+
+        # @param request: Request instance for ActivateCaCertificate.
+        # @type request: :class:`Tencentcloud::mqtt::V20240516::ActivateCaCertificateRequest`
+        # @rtype: :class:`Tencentcloud::mqtt::V20240516::ActivateCaCertificateResponse`
+        def ActivateCaCertificate(request)
+          body = send_request('ActivateCaCertificate', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ActivateCaCertificateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 生效设备证书
 
         # @param request: Request instance for ActivateDeviceCertificate.
@@ -39,6 +63,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ActivateDeviceCertificateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 申请ca注册码
+
+        # @param request: Request instance for ApplyRegistrationCode.
+        # @type request: :class:`Tencentcloud::mqtt::V20240516::ApplyRegistrationCodeRequest`
+        # @rtype: :class:`Tencentcloud::mqtt::V20240516::ApplyRegistrationCodeResponse`
+        def ApplyRegistrationCode(request)
+          body = send_request('ApplyRegistrationCode', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ApplyRegistrationCodeResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -223,6 +271,30 @@ module TencentCloud
 
         # 失效Ca证书
 
+        # @param request: Request instance for DeactivateCaCertificate.
+        # @type request: :class:`Tencentcloud::mqtt::V20240516::DeactivateCaCertificateRequest`
+        # @rtype: :class:`Tencentcloud::mqtt::V20240516::DeactivateCaCertificateResponse`
+        def DeactivateCaCertificate(request)
+          body = send_request('DeactivateCaCertificate', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeactivateCaCertificateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 失效Ca证书
+
         # @param request: Request instance for DeactivateDeviceCertificate.
         # @type request: :class:`Tencentcloud::mqtt::V20240516::DeactivateDeviceCertificateRequest`
         # @rtype: :class:`Tencentcloud::mqtt::V20240516::DeactivateDeviceCertificateResponse`
@@ -279,6 +351,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteAuthorizationPolicyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除Ca证书
+
+        # @param request: Request instance for DeleteCaCertificate.
+        # @type request: :class:`Tencentcloud::mqtt::V20240516::DeleteCaCertificateRequest`
+        # @rtype: :class:`Tencentcloud::mqtt::V20240516::DeleteCaCertificateResponse`
+        def DeleteCaCertificate(request)
+          body = send_request('DeleteCaCertificate', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteCaCertificateResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -447,6 +543,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeAuthorizationPoliciesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询Ca证书详情接口
+
+        # @param request: Request instance for DescribeCaCertificate.
+        # @type request: :class:`Tencentcloud::mqtt::V20240516::DescribeCaCertificateRequest`
+        # @rtype: :class:`Tencentcloud::mqtt::V20240516::DescribeCaCertificateResponse`
+        def DescribeCaCertificate(request)
+          body = send_request('DescribeCaCertificate', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCaCertificateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询集群下的ca证书信息
+
+        # @param request: Request instance for DescribeCaCertificates.
+        # @type request: :class:`Tencentcloud::mqtt::V20240516::DescribeCaCertificatesRequest`
+        # @rtype: :class:`Tencentcloud::mqtt::V20240516::DescribeCaCertificatesResponse`
+        def DescribeCaCertificates(request)
+          body = send_request('DescribeCaCertificates', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCaCertificatesResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -735,6 +879,31 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 更新MQTT集群绑定证书
+        # 参数传空，则为删除证书
+
+        # @param request: Request instance for ModifyInstanceCertBinding.
+        # @type request: :class:`Tencentcloud::mqtt::V20240516::ModifyInstanceCertBindingRequest`
+        # @rtype: :class:`Tencentcloud::mqtt::V20240516::ModifyInstanceCertBindingResponse`
+        def ModifyInstanceCertBinding(request)
+          body = send_request('ModifyInstanceCertBinding', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyInstanceCertBindingResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 修改MQTT JWKS 认证器
 
         # @param request: Request instance for ModifyJWKSAuthenticator.
@@ -817,6 +986,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyUserResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 注册ca证书
+
+        # @param request: Request instance for RegisterCaCertificate.
+        # @type request: :class:`Tencentcloud::mqtt::V20240516::RegisterCaCertificateRequest`
+        # @rtype: :class:`Tencentcloud::mqtt::V20240516::RegisterCaCertificateResponse`
+        def RegisterCaCertificate(request)
+          body = send_request('RegisterCaCertificate', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = RegisterCaCertificateResponse.new
             model.deserialize(response['Response'])
             model
           else

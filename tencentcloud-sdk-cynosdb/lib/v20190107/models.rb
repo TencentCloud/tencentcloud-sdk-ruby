@@ -243,8 +243,8 @@ module TencentCloud
 
         attr_accessor :ClusterId, :Cpu, :Memory, :ReadOnlyCount, :DeviceType, :InstanceGrpId, :VpcId, :SubnetId, :Port, :InstanceName, :AutoVoucher, :DbType, :OrderSource, :DealMode, :ParamTemplateId, :InstanceParams, :SecurityGroupIds, :UpgradeProxy
         extend Gem::Deprecate
-        deprecate :InstanceGrpId, :none, 2025, 1
-        deprecate :InstanceGrpId=, :none, 2025, 1
+        deprecate :InstanceGrpId, :none, 2025, 2
+        deprecate :InstanceGrpId=, :none, 2025, 2
 
         def initialize(clusterid=nil, cpu=nil, memory=nil, readonlycount=nil, devicetype=nil, instancegrpid=nil, vpcid=nil, subnetid=nil, port=nil, instancename=nil, autovoucher=nil, dbtype=nil, ordersource=nil, dealmode=nil, paramtemplateid=nil, instanceparams=nil, securitygroupids=nil, upgradeproxy=nil)
           @ClusterId = clusterid
@@ -1064,10 +1064,10 @@ module TencentCloud
 
         attr_accessor :ID, :AppId, :ClusterId, :Region, :CreateTime, :DelayTime, :ErrMsg, :FlowId, :Input, :InstanceGrpId, :InstanceGroupId, :InstanceId, :ObjectId, :ObjectType, :Operator, :Output, :Status, :TaskType, :TriggerTaskId, :UpdateTime, :StartTime, :EndTime, :ClusterName, :InstanceName, :Process, :ModifyParamsData, :CreateClustersData, :RollbackData, :ModifyInstanceData, :ManualBackupData, :ModifyDbVersionData, :ClusterSlaveData, :SwitchClusterLogBin, :ModifyInstanceParamsData, :TaskMaintainInfo, :InstanceCLSDeliveryInfos, :TaskProgressInfo
         extend Gem::Deprecate
-        deprecate :InstanceGrpId, :none, 2025, 1
-        deprecate :InstanceGrpId=, :none, 2025, 1
-        deprecate :ModifyParamsData, :none, 2025, 1
-        deprecate :ModifyParamsData=, :none, 2025, 1
+        deprecate :InstanceGrpId, :none, 2025, 2
+        deprecate :InstanceGrpId=, :none, 2025, 2
+        deprecate :ModifyParamsData, :none, 2025, 2
+        deprecate :ModifyParamsData=, :none, 2025, 2
 
         def initialize(id=nil, appid=nil, clusterid=nil, region=nil, createtime=nil, delaytime=nil, errmsg=nil, flowid=nil, input=nil, instancegrpid=nil, instancegroupid=nil, instanceid=nil, objectid=nil, objecttype=nil, operator=nil, output=nil, status=nil, tasktype=nil, triggertaskid=nil, updatetime=nil, starttime=nil, endtime=nil, clustername=nil, instancename=nil, process=nil, modifyparamsdata=nil, createclustersdata=nil, rollbackdata=nil, modifyinstancedata=nil, manualbackupdata=nil, modifydbversiondata=nil, clusterslavedata=nil, switchclusterlogbin=nil, modifyinstanceparamsdata=nil, taskmaintaininfo=nil, instanceclsdeliveryinfos=nil, taskprogressinfo=nil)
           @ID = id
@@ -1479,8 +1479,8 @@ module TencentCloud
 
         attr_accessor :InstanceGrpId, :InstanceGroupId, :InstanceId
         extend Gem::Deprecate
-        deprecate :InstanceGrpId, :none, 2025, 1
-        deprecate :InstanceGrpId=, :none, 2025, 1
+        deprecate :InstanceGrpId, :none, 2025, 2
+        deprecate :InstanceGrpId=, :none, 2025, 2
 
         def initialize(instancegrpid=nil, instancegroupid=nil, instanceid=nil)
           @InstanceGrpId = instancegrpid
@@ -5713,8 +5713,8 @@ module TencentCloud
 
         attr_accessor :TotalCount, :InstanceGrpInfoList, :InstanceGroupInfoList, :RequestId
         extend Gem::Deprecate
-        deprecate :InstanceGrpInfoList, :none, 2025, 1
-        deprecate :InstanceGrpInfoList=, :none, 2025, 1
+        deprecate :InstanceGrpInfoList, :none, 2025, 2
+        deprecate :InstanceGrpInfoList=, :none, 2025, 2
 
         def initialize(totalcount=nil, instancegrpinfolist=nil, instancegroupinfolist=nil, requestid=nil)
           @TotalCount = totalcount
@@ -6076,8 +6076,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :InstanceGroupId
         extend Gem::Deprecate
-        deprecate :InstanceId, :none, 2025, 1
-        deprecate :InstanceId=, :none, 2025, 1
+        deprecate :InstanceId, :none, 2025, 2
+        deprecate :InstanceId=, :none, 2025, 2
 
         def initialize(instanceid=nil, instancegroupid=nil)
           @InstanceId = instanceid
@@ -10747,8 +10747,8 @@ module TencentCloud
 
         attr_accessor :ClusterId, :InstanceGrpId, :InstanceGroupId, :Vip, :Vport, :DbType, :OldIpReserveHours
         extend Gem::Deprecate
-        deprecate :InstanceGrpId, :none, 2025, 1
-        deprecate :InstanceGrpId=, :none, 2025, 1
+        deprecate :InstanceGrpId, :none, 2025, 2
+        deprecate :InstanceGrpId=, :none, 2025, 2
 
         def initialize(clusterid=nil, instancegrpid=nil, instancegroupid=nil, vip=nil, vport=nil, dbtype=nil, oldipreservehours=nil)
           @ClusterId = clusterid
@@ -11328,8 +11328,8 @@ module TencentCloud
 
         attr_accessor :InstanceGrpId, :InstanceId, :InstanceGroupId
         extend Gem::Deprecate
-        deprecate :InstanceGrpId, :none, 2025, 1
-        deprecate :InstanceGrpId=, :none, 2025, 1
+        deprecate :InstanceGrpId, :none, 2025, 2
+        deprecate :InstanceGrpId=, :none, 2025, 2
 
         def initialize(instancegrpid=nil, instanceid=nil, instancegroupid=nil)
           @InstanceGrpId = instancegrpid

@@ -7490,7 +7490,7 @@ module TencentCloud
 
       # UpdateCertificateInstance返回参数结构体
       class UpdateCertificateInstanceResponse < TencentCloud::Common::AbstractModel
-        # @param DeployRecordId: 云资源更新任务ID
+        # @param DeployRecordId: 云资源更新任务ID， DeployRecordId为0表示任务进行中， 重复请求这个接口， 当返回DeployRecordId大于0则表示任务创建成功。 未创建成功则会抛出异常
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeployRecordId: Integer
         # @param DeployStatus: 更新任务创建状态；1表示创建成功； 0表示当前存在更新中的任务，未创建新的更新任务；返回值DeployRecordId为更新中的任务ID

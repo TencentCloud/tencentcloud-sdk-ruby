@@ -7864,15 +7864,18 @@ module TencentCloud
         # @type PdfPageNumber: Integer
         # @param EnableImageCrop: 是否开启切边增强和弯曲矫正,默认为false不开启
         # @type EnableImageCrop: Boolean
+        # @param EnableOnlyDetectBorder: 是否只返回检测框，默认false
+        # @type EnableOnlyDetectBorder: Boolean
 
-        attr_accessor :ImageUrl, :ImageBase64, :IsPdf, :PdfPageNumber, :EnableImageCrop
+        attr_accessor :ImageUrl, :ImageBase64, :IsPdf, :PdfPageNumber, :EnableImageCrop, :EnableOnlyDetectBorder
 
-        def initialize(imageurl=nil, imagebase64=nil, ispdf=nil, pdfpagenumber=nil, enableimagecrop=nil)
+        def initialize(imageurl=nil, imagebase64=nil, ispdf=nil, pdfpagenumber=nil, enableimagecrop=nil, enableonlydetectborder=nil)
           @ImageUrl = imageurl
           @ImageBase64 = imagebase64
           @IsPdf = ispdf
           @PdfPageNumber = pdfpagenumber
           @EnableImageCrop = enableimagecrop
+          @EnableOnlyDetectBorder = enableonlydetectborder
         end
 
         def deserialize(params)
@@ -7881,6 +7884,7 @@ module TencentCloud
           @IsPdf = params['IsPdf']
           @PdfPageNumber = params['PdfPageNumber']
           @EnableImageCrop = params['EnableImageCrop']
+          @EnableOnlyDetectBorder = params['EnableOnlyDetectBorder']
         end
       end
 

@@ -29,6 +29,30 @@ module TencentCloud
         end
 
 
+        # 添加项目用户角色
+
+        # @param request: Request instance for AddProjectUserRole.
+        # @type request: :class:`Tencentcloud::wedata::V20210820::AddProjectUserRoleRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20210820::AddProjectUserRoleResponse`
+        def AddProjectUserRole(request)
+          body = send_request('AddProjectUserRole', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = AddProjectUserRoleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 批量创建任务告警规则
 
         # @param request: Request instance for BatchCreateIntegrationTaskAlarms.

@@ -127,6 +127,26 @@ module TencentCloud
         end
       end
 
+      # 激活设备数统计
+      class ActiveDeviceList < TencentCloud::Common::AbstractModel
+        # @param Count: 数量
+        # @type Count: Integer
+        # @param Time: 时间
+        # @type Time: String
+
+        attr_accessor :Count, :Time
+
+        def initialize(count=nil, time=nil)
+          @Count = count
+          @Time = time
+        end
+
+        def deserialize(params)
+          @Count = params['Count']
+          @Time = params['Time']
+        end
+      end
+
       # AddDevice请求参数结构体
       class AddDeviceRequest < TencentCloud::Common::AbstractModel
         # @param DeviceName: 新建设备的名称
@@ -1013,6 +1033,58 @@ module TencentCloud
         end
       end
 
+      # DownloadActiveDeviceCount请求参数结构体
+      class DownloadActiveDeviceCountRequest < TencentCloud::Common::AbstractModel
+        # @param Period: 查询粒度。0:day, 1:week, 2:month, 不传默认为day
+        # @type Period: Integer
+        # @param StartTime: 开始时间。单位秒
+        # @type StartTime: Integer
+        # @param EndTime: 结束时间。单位秒
+        # @type EndTime: Integer
+        # @param DevGroup: 设备组, 不传查询全部
+        # @type DevGroup: String
+        # @param LicenseType: license类型, 不传查询全部, 1: 租户月付，2：厂商月付，3：永久授权
+        # @type LicenseType: Integer
+
+        attr_accessor :Period, :StartTime, :EndTime, :DevGroup, :LicenseType
+
+        def initialize(period=nil, starttime=nil, endtime=nil, devgroup=nil, licensetype=nil)
+          @Period = period
+          @StartTime = starttime
+          @EndTime = endtime
+          @DevGroup = devgroup
+          @LicenseType = licensetype
+        end
+
+        def deserialize(params)
+          @Period = params['Period']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @DevGroup = params['DevGroup']
+          @LicenseType = params['LicenseType']
+        end
+      end
+
+      # DownloadActiveDeviceCount返回参数结构体
+      class DownloadActiveDeviceCountResponse < TencentCloud::Common::AbstractModel
+        # @param FilePath: URL地址
+        # @type FilePath: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FilePath, :RequestId
+
+        def initialize(filepath=nil, requestid=nil)
+          @FilePath = filepath
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FilePath = params['FilePath']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 用户期望门限
       class ExpectedThreshold < TencentCloud::Common::AbstractModel
         # @param RTT: 期望发起加速的时延阈值
@@ -1150,6 +1222,89 @@ module TencentCloud
           @ModifyStatus = params['ModifyStatus']
           @TruncFlag = params['TruncFlag']
           @CapacityRemainPrecise = params['CapacityRemainPrecise']
+        end
+      end
+
+      # GetActiveDeviceCount请求参数结构体
+      class GetActiveDeviceCountRequest < TencentCloud::Common::AbstractModel
+        # @param Period: 查询粒度。0:day, 1:week, 2:month, 不传默认为day
+        # @type Period: Integer
+        # @param StartTime: 开始时间。单位秒
+        # @type StartTime: Integer
+        # @param EndTime: 结束时间。单位秒
+        # @type EndTime: Integer
+        # @param DevGroup: 设备组, 不传查询全部
+        # @type DevGroup: String
+        # @param LicenseType: license类型, 不传查询全部, 1: 租户月付，2：厂商月付，3：永久授权
+        # @type LicenseType: Integer
+
+        attr_accessor :Period, :StartTime, :EndTime, :DevGroup, :LicenseType
+
+        def initialize(period=nil, starttime=nil, endtime=nil, devgroup=nil, licensetype=nil)
+          @Period = period
+          @StartTime = starttime
+          @EndTime = endtime
+          @DevGroup = devgroup
+          @LicenseType = licensetype
+        end
+
+        def deserialize(params)
+          @Period = params['Period']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @DevGroup = params['DevGroup']
+          @LicenseType = params['LicenseType']
+        end
+      end
+
+      # GetActiveDeviceCount返回参数结构体
+      class GetActiveDeviceCountResponse < TencentCloud::Common::AbstractModel
+        # @param ActiveDeviceList: 激活设备统计
+        # @type ActiveDeviceList: Array
+        # @param Period: 查询粒度，0:day, 1:week, 2:month, 不传默认为day
+        # @type Period: Integer
+        # @param StartTime: 开始时间
+        # @type StartTime: String
+        # @param EndTime: 结束时间
+        # @type EndTime: String
+        # @param DevGroup: 设备组
+        # @type DevGroup: String
+        # @param LicenseType: license类型, 不传查询全部, 1: 租户月付，2：厂商月付，3：永久授权
+        # @type LicenseType: String
+        # @param AppId: 租户ID
+        # @type AppId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ActiveDeviceList, :Period, :StartTime, :EndTime, :DevGroup, :LicenseType, :AppId, :RequestId
+
+        def initialize(activedevicelist=nil, period=nil, starttime=nil, endtime=nil, devgroup=nil, licensetype=nil, appid=nil, requestid=nil)
+          @ActiveDeviceList = activedevicelist
+          @Period = period
+          @StartTime = starttime
+          @EndTime = endtime
+          @DevGroup = devgroup
+          @LicenseType = licensetype
+          @AppId = appid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ActiveDeviceList'].nil?
+            @ActiveDeviceList = []
+            params['ActiveDeviceList'].each do |i|
+              activedevicelist_tmp = ActiveDeviceList.new
+              activedevicelist_tmp.deserialize(i)
+              @ActiveDeviceList << activedevicelist_tmp
+            end
+          end
+          @Period = params['Period']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @DevGroup = params['DevGroup']
+          @LicenseType = params['LicenseType']
+          @AppId = params['AppId']
+          @RequestId = params['RequestId']
         end
       end
 

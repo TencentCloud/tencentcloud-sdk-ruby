@@ -2362,9 +2362,9 @@ module TencentCloud
 
       # DescribeDockerContainerConfiguration请求参数结构体
       class DescribeDockerContainerConfigurationRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID。
+        # @param InstanceId: 实例ID。可通过[DescribeInstances](https://cloud.tencent.com/document/product/1207/47573)接口返回值中的InstanceId获取。
         # @type InstanceId: String
-        # @param ContainerId: 容器ID。
+        # @param ContainerId: 容器ID。可通过[DescribeDockerContainers](https://cloud.tencent.com/document/product/1207/95473)接口返回值中的ContainerId获取。
         # @type ContainerId: String
 
         attr_accessor :InstanceId, :ContainerId
@@ -5712,7 +5712,6 @@ module TencentCloud
         # @param PublicKey: 密钥对的纯文本公钥。
         # @type PublicKey: String
         # @param AssociatedInstanceIds: 密钥对关联的实例 ID 列表。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AssociatedInstanceIds: Array
         # @param CreatedTime: 创建时间。按照 ISO8601 标准表示，并且使用 UTC 时间。格式为：YYYY-MM-DDThh:mm:ssZ
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -5847,7 +5846,6 @@ module TencentCloud
         # @param Bundle: 套餐信息。
         # @type Bundle: :class:`Tencentcloud::Lighthouse.v20200324.models.Bundle`
         # @param NotSupportModifyMessage: 不支持套餐变更原因信息。变更套餐状态为"AVAILABLE"时, 该信息为空
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NotSupportModifyMessage: String
 
         attr_accessor :ModifyPrice, :ModifyBundleState, :Bundle, :NotSupportModifyMessage
@@ -7269,20 +7267,16 @@ module TencentCloud
         # @type Percent: Integer
         # @param LatestOperation: 快照的最新操作，只有创建、回滚快照时记录。
         # 取值如 CreateInstanceSnapshot，RollbackInstanceSnapshot。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LatestOperation: String
         # @param LatestOperationState: 快照的最新操作状态，只有创建、回滚快照时记录。
         # 取值范围：
         # <li>SUCCESS：表示操作成功</li>
         # <li>OPERATING：表示操作执行中</li>
         # <li>FAILED：表示操作失败</li>
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LatestOperationState: String
         # @param LatestOperationRequestId: 快照最新操作的唯一请求 ID，只有创建、回滚快照时记录。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LatestOperationRequestId: String
         # @param CreatedTime: 快照的创建时间。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreatedTime: String
 
         attr_accessor :SnapshotId, :DiskUsage, :DiskId, :DiskSize, :SnapshotName, :SnapshotState, :Percent, :LatestOperation, :LatestOperationState, :LatestOperationRequestId, :CreatedTime

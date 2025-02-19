@@ -53,32 +53,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 接口迁移到其他业务
-
-        # 创建节省计划订单，创建订单完成需调用PayDeals接口完成订单支付
-
-        # @param request: Request instance for CreateSavingPlanOrder.
-        # @type request: :class:`Tencentcloud::billing::V20180709::CreateSavingPlanOrderRequest`
-        # @rtype: :class:`Tencentcloud::billing::V20180709::CreateSavingPlanOrderResponse`
-        def CreateSavingPlanOrder(request)
-          body = send_request('CreateSavingPlanOrder', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = CreateSavingPlanOrderResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 批量取消设置分账标签
 
         # @param request: Request instance for DeleteAllocationTag.
@@ -974,32 +948,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 接口迁移到其他业务
-
-        # 查用当前用户明细节省计划总览查询时段内的使用情况
-
-        # @param request: Request instance for DescribeSavingPlanOverview.
-        # @type request: :class:`Tencentcloud::billing::V20180709::DescribeSavingPlanOverviewRequest`
-        # @rtype: :class:`Tencentcloud::billing::V20180709::DescribeSavingPlanOverviewResponse`
-        def DescribeSavingPlanOverview(request)
-          body = send_request('DescribeSavingPlanOverview', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeSavingPlanOverviewResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 查询节省计划详情
 
         # @param request: Request instance for DescribeSavingPlanResourceInfo.
@@ -1010,32 +958,6 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeSavingPlanResourceInfoResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 接口迁移到其他业务
-
-        # 查用当前用户明细节省计划查询时段内的使用情况
-
-        # @param request: Request instance for DescribeSavingPlanUsage.
-        # @type request: :class:`Tencentcloud::billing::V20180709::DescribeSavingPlanUsageRequest`
-        # @rtype: :class:`Tencentcloud::billing::V20180709::DescribeSavingPlanUsageResponse`
-        def DescribeSavingPlanUsage(request)
-          body = send_request('DescribeSavingPlanUsage', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeSavingPlanUsageResponse.new
             model.deserialize(response['Response'])
             model
           else

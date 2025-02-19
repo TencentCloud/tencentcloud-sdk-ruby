@@ -2663,8 +2663,8 @@ module TencentCloud
 
         attr_accessor :IsSubscribed, :CollationName, :IsAutoCleanupOn, :IsBrokerEnabled, :IsCdcEnabled, :IsDbChainingOn, :IsEncrypted, :IsFulltextEnabled, :IsMirroring, :IsPublished, :IsReadCommittedSnapshotOn, :IsTrustworthyOn, :MirroringState, :Name, :RecoveryModelDesc, :RetentionPeriod, :StateDesc, :UserAccessDesc, :CreateTime, :IsFullTextEnabled
         extend Gem::Deprecate
-        deprecate :IsFulltextEnabled, :none, 2025, 1
-        deprecate :IsFulltextEnabled=, :none, 2025, 1
+        deprecate :IsFulltextEnabled, :none, 2025, 2
+        deprecate :IsFulltextEnabled=, :none, 2025, 2
 
         def initialize(issubscribed=nil, collationname=nil, isautocleanupon=nil, isbrokerenabled=nil, iscdcenabled=nil, isdbchainingon=nil, isencrypted=nil, ismirroring=nil, ispublished=nil, isreadcommittedsnapshoton=nil, istrustworthyon=nil, mirroringstate=nil, name=nil, recoverymodeldesc=nil, retentionperiod=nil, statedesc=nil, useraccessdesc=nil, createtime=nil, isfulltextenabled=nil)
           @IsSubscribed = issubscribed
@@ -6770,8 +6770,8 @@ module TencentCloud
 
         attr_accessor :TotalCount, :Slowlogs, :SlowLogs, :RequestId
         extend Gem::Deprecate
-        deprecate :Slowlogs, :none, 2025, 1
-        deprecate :Slowlogs=, :none, 2025, 1
+        deprecate :Slowlogs, :none, 2025, 2
+        deprecate :Slowlogs=, :none, 2025, 2
 
         def initialize(totalcount=nil, slowlogs=nil, requestid=nil)
           @TotalCount = totalcount
@@ -6991,8 +6991,8 @@ module TencentCloud
 
         attr_accessor :BucketName, :Region, :Path, :TmpSecretId, :TmpSecretKey, :XCosSecurityToken, :StartTime, :ExpiredTime, :CosSecurityToken, :RequestId
         extend Gem::Deprecate
-        deprecate :XCosSecurityToken, :none, 2025, 1
-        deprecate :XCosSecurityToken=, :none, 2025, 1
+        deprecate :XCosSecurityToken, :none, 2025, 2
+        deprecate :XCosSecurityToken=, :none, 2025, 2
 
         def initialize(bucketname=nil, region=nil, path=nil, tmpsecretid=nil, tmpsecretkey=nil, xcossecuritytoken=nil, starttime=nil, expiredtime=nil, cossecuritytoken=nil, requestid=nil)
           @BucketName = bucketname
@@ -7070,8 +7070,8 @@ module TencentCloud
 
         attr_accessor :BucketName, :Region, :Path, :TmpSecretId, :TmpSecretKey, :XCosSecurityToken, :StartTime, :ExpiredTime, :CosSecurityToken, :RequestId
         extend Gem::Deprecate
-        deprecate :XCosSecurityToken, :none, 2025, 1
-        deprecate :XCosSecurityToken=, :none, 2025, 1
+        deprecate :XCosSecurityToken, :none, 2025, 2
+        deprecate :XCosSecurityToken=, :none, 2025, 2
 
         def initialize(bucketname=nil, region=nil, path=nil, tmpsecretid=nil, tmpsecretkey=nil, xcossecuritytoken=nil, starttime=nil, expiredtime=nil, cossecuritytoken=nil, requestid=nil)
           @BucketName = bucketname
@@ -8399,8 +8399,8 @@ module TencentCloud
 
         attr_accessor :Errno, :Msg, :Code, :RequestId
         extend Gem::Deprecate
-        deprecate :Errno, :none, 2025, 1
-        deprecate :Errno=, :none, 2025, 1
+        deprecate :Errno, :none, 2025, 2
+        deprecate :Errno=, :none, 2025, 2
 
         def initialize(errno=nil, msg=nil, code=nil, requestid=nil)
           @Errno = errno

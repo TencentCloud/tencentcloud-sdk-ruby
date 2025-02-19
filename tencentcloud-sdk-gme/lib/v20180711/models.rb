@@ -2211,22 +2211,16 @@ module TencentCloud
       # 服务开关状态
       class ServiceStatus < TencentCloud::Common::AbstractModel
         # @param RealTimeSpeech: 实时语音服务开关状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RealTimeSpeech: :class:`Tencentcloud::Gme.v20180711.models.StatusInfo`
         # @param VoiceMessage: 语音消息服务开关状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VoiceMessage: :class:`Tencentcloud::Gme.v20180711.models.StatusInfo`
         # @param Porn: 语音内容安全服务开关状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Porn: :class:`Tencentcloud::Gme.v20180711.models.StatusInfo`
         # @param Live: 语音录制服务开关状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Live: :class:`Tencentcloud::Gme.v20180711.models.StatusInfo`
         # @param RealTimeAsr: 语音转文本服务开关状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RealTimeAsr: :class:`Tencentcloud::Gme.v20180711.models.StatusInfo`
         # @param TextTranslate: 文本翻译服务开关状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TextTranslate: :class:`Tencentcloud::Gme.v20180711.models.StatusInfo`
 
         attr_accessor :RealTimeSpeech, :VoiceMessage, :Porn, :Live, :RealTimeAsr, :TextTranslate

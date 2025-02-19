@@ -543,10 +543,8 @@ module TencentCloud
         # @param SdkAppId: 低代码互动课堂的SdkAppId。
         # @type SdkAppId: Integer
         # @param UserId: 用户ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UserId: String
         # @param OriginId: 用户在客户系统的Id。 若用户注册时该字段为空，则默认为 UserId 值一致。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OriginId: String
 
         attr_accessor :SdkAppId, :UserId, :OriginId
