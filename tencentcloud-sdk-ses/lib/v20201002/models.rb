@@ -801,15 +801,18 @@ module TencentCloud
         # @type CurrentReputationLevel: Integer
         # @param DailyQuota: 当日最高发信量
         # @type DailyQuota: Integer
+        # @param SendIp: 域名配置的独立ip
+        # @type SendIp: Array
 
-        attr_accessor :IdentityName, :IdentityType, :SendingEnabled, :CurrentReputationLevel, :DailyQuota
+        attr_accessor :IdentityName, :IdentityType, :SendingEnabled, :CurrentReputationLevel, :DailyQuota, :SendIp
 
-        def initialize(identityname=nil, identitytype=nil, sendingenabled=nil, currentreputationlevel=nil, dailyquota=nil)
+        def initialize(identityname=nil, identitytype=nil, sendingenabled=nil, currentreputationlevel=nil, dailyquota=nil, sendip=nil)
           @IdentityName = identityname
           @IdentityType = identitytype
           @SendingEnabled = sendingenabled
           @CurrentReputationLevel = currentreputationlevel
           @DailyQuota = dailyquota
+          @SendIp = sendip
         end
 
         def deserialize(params)
@@ -818,6 +821,7 @@ module TencentCloud
           @SendingEnabled = params['SendingEnabled']
           @CurrentReputationLevel = params['CurrentReputationLevel']
           @DailyQuota = params['DailyQuota']
+          @SendIp = params['SendIp']
         end
       end
 

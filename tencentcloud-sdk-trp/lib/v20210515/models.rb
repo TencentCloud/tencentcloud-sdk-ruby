@@ -121,10 +121,8 @@ module TencentCloud
       # 上链数据
       class Chain < TencentCloud::Common::AbstractModel
         # @param Code: 码url
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Code: String
         # @param Data: 上链数据
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: Array
 
         attr_accessor :Code, :Data
@@ -150,13 +148,10 @@ module TencentCloud
       # 上链数据
       class ChainData < TencentCloud::Common::AbstractModel
         # @param BlockHash: 区块hash
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BlockHash: String
         # @param BlockHeight: 区块高度
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BlockHeight: String
         # @param BlockTime: 区块时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BlockTime: String
 
         attr_accessor :BlockHash, :BlockHeight, :BlockTime
@@ -177,13 +172,10 @@ module TencentCloud
       # 上链数据 key-value
       class ChainValue < TencentCloud::Common::AbstractModel
         # @param Label: 标题名字
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Label: String
         # @param Type: 类型，文字："text"，图片："image"
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: String
         # @param Value: 值，文字类型："abc"，图片类型：""/images/img.png"
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: String
 
         attr_accessor :Label, :Type, :Value
@@ -204,52 +196,37 @@ module TencentCloud
       # 批次
       class CodeBatch < TencentCloud::Common::AbstractModel
         # @param BatchId: 批次号
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BatchId: String
         # @param CorpId: 企业ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CorpId: Integer
         # @param BatchCode: 批次编码(未使用)
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BatchCode: String
         # @param CodeCnt: 码数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CodeCnt: Integer
         # @param MerchantId: 所属商户ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MerchantId: String
         # @param ProductId: 产品ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProductId: String
         # @param BatchType: 批次类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BatchType: Integer
         # @param Remark: 备注
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Remark: String
         # @param MpTpl: 微信模板
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MpTpl: String
         # @param Status: 批次状态 0: 未激活 1: 已激活 -1: 已冻结
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
         # @param CreateTime: 创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
         # @param UpdateTime: 修改时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: String
         # @param MerchantName: 所属商户名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MerchantName: String
         # @param ProductName: 产品名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProductName: String
         # @param Ext: 未使用
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Ext: :class:`Tencentcloud::Trp.v20210515.models.Ext`
         # @param TplName: 模板名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TplName: String
         # @param Job: 调度任务
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -265,8 +242,8 @@ module TencentCloud
 
         attr_accessor :BatchId, :CorpId, :BatchCode, :CodeCnt, :MerchantId, :ProductId, :BatchType, :Remark, :MpTpl, :Status, :CreateTime, :UpdateTime, :MerchantName, :ProductName, :Ext, :TplName, :Job, :ProductionDate, :ValidDate, :Attrs
         extend Gem::Deprecate
-        deprecate :Ext, :none, 2024, 11
-        deprecate :Ext=, :none, 2024, 11
+        deprecate :Ext, :none, 2025, 2
+        deprecate :Ext=, :none, 2025, 2
 
         def initialize(batchid=nil, corpid=nil, batchcode=nil, codecnt=nil, merchantid=nil, productid=nil, batchtype=nil, remark=nil, mptpl=nil, status=nil, createtime=nil, updatetime=nil, merchantname=nil, productname=nil, ext=nil, tplname=nil, job=nil, productiondate=nil, validdate=nil, attrs=nil)
           @BatchId = batchid
@@ -347,91 +324,63 @@ module TencentCloud
       # 码包类型
       class CodePack < TencentCloud::Common::AbstractModel
         # @param PackId: 码id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PackId: String
         # @param CorpId: 企业id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CorpId: Integer
         # @param MerchantId: 商户id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MerchantId: String
         # @param CreateTime: 创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
         # @param UpdateTime: 更新时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: String
         # @param Status: 制码状态 init: 初始化, pending: 执行中, done: 完成, error: 失败
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: String
         # @param Log: 执行日志
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Log: String
         # @param CreateUser: 创建人
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateUser: String
         # @param Amount: 码数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Amount: Integer
         # @param CodeLength: 防伪码长度
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CodeLength: Integer
         # @param CodeType: 码类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CodeType: String
         # @param Cipher: 是否暗码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Cipher: Integer
         # @param TextUrl: [弃用] 文字码地址，通过另一个接口查
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TextUrl: String
         # @param PackUrl: [弃用] 二维码地址，通过另一个接口查
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PackUrl: String
         # @param MerchantName: 商户名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MerchantName: String
         # @param RuleType: 码规则类型 0: 默认, 1: 自定义
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleType: Integer
         # @param CustomId: 自定义码规则ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CustomId: String
         # @param PackType: 码包类型 0: 普通码包 1: 层级码包
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PackType: Integer
         # @param PackLevel: 生码层级
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PackLevel: Integer
         # @param PackSpec: 层级码配置
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PackSpec: Array
         # @param ProductName: 商品名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProductName: String
         # @param ProductSpecification: 商品规格
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProductSpecification: String
         # @param ProductId: 商品ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProductId: String
         # @param RelateType: 码关系是否预关联
         # 0:否, 1:是
         # @type RelateType: Integer
         # @param SceneCode: 场景码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SceneCode: Integer
         # @param CodeRule: 码规则
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CodeRule: String
         # @param UsedAmount: 已使用码数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UsedAmount: Integer
         # @param SerialStart: 开始流水号
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SerialStart: Integer
         # @param SerialEnd: 结束流水号
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SerialEnd: Integer
 
         attr_accessor :PackId, :CorpId, :MerchantId, :CreateTime, :UpdateTime, :Status, :Log, :CreateUser, :Amount, :CodeLength, :CodeType, :Cipher, :TextUrl, :PackUrl, :MerchantName, :RuleType, :CustomId, :PackType, :PackLevel, :PackSpec, :ProductName, :ProductSpecification, :ProductId, :RelateType, :SceneCode, :CodeRule, :UsedAmount, :SerialStart, :SerialEnd
@@ -511,18 +460,14 @@ module TencentCloud
       # 码段配置
       class CodePart < TencentCloud::Common::AbstractModel
         # @param Name: 码段名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Type: 码段类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: String
         # @param Value: 码段内容
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: String
         # @param Length: 码段长度
         # @type Length: Integer
         # @param Ext: 扩展字段
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Ext: String
 
         attr_accessor :Name, :Type, :Value, :Length, :Ext
@@ -839,7 +784,6 @@ module TencentCloud
       # CreateCorporationOrder返回参数结构体
       class CreateCorporationOrderResponse < TencentCloud::Common::AbstractModel
         # @param CorpId: 企业ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CorpId: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -999,7 +943,6 @@ module TencentCloud
       # CreateCustomRule返回参数结构体
       class CreateCustomRuleResponse < TencentCloud::Common::AbstractModel
         # @param CustomId: 码规则ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CustomId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1052,7 +995,6 @@ module TencentCloud
       # CreateMerchant返回参数结构体
       class CreateMerchantResponse < TencentCloud::Common::AbstractModel
         # @param MerchantId: 商户标识码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MerchantId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1120,7 +1062,6 @@ module TencentCloud
       # CreateProduct返回参数结构体
       class CreateProductResponse < TencentCloud::Common::AbstractModel
         # @param ProductId: 商品ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProductId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1205,7 +1146,6 @@ module TencentCloud
       # CreateTraceCodesAsync返回参数结构体
       class CreateTraceCodesAsyncResponse < TencentCloud::Common::AbstractModel
         # @param BatchId: 批次ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BatchId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1385,13 +1325,10 @@ module TencentCloud
         # @param CustomId: 码规则ID
         # @type CustomId: String
         # @param Name: 码规则名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param CorpId: 企业ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CorpId: Integer
         # @param MerchantId: 商户ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MerchantId: String
         # @param CodeLength: 码ID长度
         # @type CodeLength: Integer
@@ -1501,7 +1438,6 @@ module TencentCloud
       # DeleteMerchant返回参数结构体
       class DeleteMerchantResponse < TencentCloud::Common::AbstractModel
         # @param MerchantId: 商户标识码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MerchantId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1542,7 +1478,6 @@ module TencentCloud
       # DeleteProduct返回参数结构体
       class DeleteProductResponse < TencentCloud::Common::AbstractModel
         # @param ProductId: 商品ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProductId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1583,7 +1518,6 @@ module TencentCloud
       # DeleteTraceData返回参数结构体
       class DeleteTraceDataResponse < TencentCloud::Common::AbstractModel
         # @param TraceId: 溯源id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TraceId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1810,10 +1744,8 @@ module TencentCloud
       # DescribeCodeBatchs返回参数结构体
       class DescribeCodeBatchsResponse < TencentCloud::Common::AbstractModel
         # @param CodeBatchs: 批次列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CodeBatchs: Array
         # @param TotalCount: 总条数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1863,7 +1795,6 @@ module TencentCloud
       # DescribeCodePackStatus返回参数结构体
       class DescribeCodePackStatusResponse < TencentCloud::Common::AbstractModel
         # @param Status: 码包状态 init: 初始化, pending: 执行中, done: 完成, error: 失败
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1904,13 +1835,10 @@ module TencentCloud
       # DescribeCodePackUrl返回参数结构体
       class DescribeCodePackUrlResponse < TencentCloud::Common::AbstractModel
         # @param Url: 文字码包地址
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Url: String
         # @param ImgUrl: 图片码包地址，可能为空
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ImgUrl: String
         # @param FileKey: 文字码包Key，用于上传导入
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FileKey: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2036,7 +1964,6 @@ module TencentCloud
       # DescribeCodesByPack返回参数结构体
       class DescribeCodesByPackResponse < TencentCloud::Common::AbstractModel
         # @param Codes: 码列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Codes: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2092,10 +2019,8 @@ module TencentCloud
       # DescribeCorpQuotas返回参数结构体
       class DescribeCorpQuotasResponse < TencentCloud::Common::AbstractModel
         # @param CorpQuotas: 子企业额度使用情况
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CorpQuotas: Array
         # @param Total: 记录总数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Total: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2145,7 +2070,6 @@ module TencentCloud
       # DescribeCustomRuleById返回参数结构体
       class DescribeCustomRuleByIdResponse < TencentCloud::Common::AbstractModel
         # @param CustomRule: 码规则信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CustomRule: :class:`Tencentcloud::Trp.v20210515.models.CustomRule`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2205,10 +2129,8 @@ module TencentCloud
       # DescribeCustomRules返回参数结构体
       class DescribeCustomRulesResponse < TencentCloud::Common::AbstractModel
         # @param CustomRules: 码规则列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CustomRules: Array
         # @param TotalCount: 总数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2258,7 +2180,6 @@ module TencentCloud
       # DescribeJobFileUrl返回参数结构体
       class DescribeJobFileUrlResponse < TencentCloud::Common::AbstractModel
         # @param Url: 码包地址
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Url: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2299,7 +2220,6 @@ module TencentCloud
       # DescribeMerchantById返回参数结构体
       class DescribeMerchantByIdResponse < TencentCloud::Common::AbstractModel
         # @param Merchant: 商户信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Merchant: :class:`Tencentcloud::Trp.v20210515.models.Merchant`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2355,10 +2275,8 @@ module TencentCloud
       # DescribeMerchants返回参数结构体
       class DescribeMerchantsResponse < TencentCloud::Common::AbstractModel
         # @param Merchants: 商户列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Merchants: Array
         # @param TotalCount: 总数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2538,7 +2456,6 @@ module TencentCloud
       # DescribeProductById返回参数结构体
       class DescribeProductByIdResponse < TencentCloud::Common::AbstractModel
         # @param Product: 商品信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Product: :class:`Tencentcloud::Trp.v20210515.models.Product`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2598,10 +2515,8 @@ module TencentCloud
       # DescribeProducts返回参数结构体
       class DescribeProductsResponse < TencentCloud::Common::AbstractModel
         # @param Products: 商品列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Products: Array
         # @param TotalCount: 总数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2738,8 +2653,8 @@ module TencentCloud
 
         attr_accessor :Products, :TotalCount, :ScanLogs, :RequestId
         extend Gem::Deprecate
-        deprecate :Products, :none, 2024, 11
-        deprecate :Products=, :none, 2024, 11
+        deprecate :Products, :none, 2025, 2
+        deprecate :Products=, :none, 2025, 2
 
         def initialize(products=nil, totalcount=nil, scanlogs=nil, requestid=nil)
           @Products = products
@@ -2856,7 +2771,6 @@ module TencentCloud
       # DescribeTmpToken返回参数结构体
       class DescribeTmpTokenResponse < TencentCloud::Common::AbstractModel
         # @param Token: 临时token
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Token: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2956,10 +2870,8 @@ module TencentCloud
       # DescribeTraceCodes返回参数结构体
       class DescribeTraceCodesResponse < TencentCloud::Common::AbstractModel
         # @param TraceCodes: 标识列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TraceCodes: Array
         # @param TotalCount: 条数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3150,8 +3062,8 @@ module TencentCloud
 
         attr_accessor :Value
         extend Gem::Deprecate
-        deprecate :Value, :none, 2024, 11
-        deprecate :Value=, :none, 2024, 11
+        deprecate :Value, :none, 2025, 2
+        deprecate :Value=, :none, 2025, 2
 
         def initialize(value=nil)
           @Value = value
@@ -3229,7 +3141,6 @@ module TencentCloud
         # @param Name: 商户名称
         # @type Name: String
         # @param Remark: 备注
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Remark: String
         # @param CreateTime: 创建时间
         # @type CreateTime: String
@@ -3240,7 +3151,6 @@ module TencentCloud
         # @param CodeType: 码来源类型 0: 安心平台 1: 第三方码
         # @type CodeType: Integer
         # @param CodeUrl: 第三方码域名前缀
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CodeUrl: String
 
         attr_accessor :MerchantId, :CorpId, :Name, :Remark, :CreateTime, :UpdateTime, :CodeRule, :CodeType, :CodeUrl
@@ -3384,7 +3294,6 @@ module TencentCloud
       # ModifyCustomRule返回参数结构体
       class ModifyCustomRuleResponse < TencentCloud::Common::AbstractModel
         # @param CustomId: 码规则ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CustomId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3429,7 +3338,6 @@ module TencentCloud
       # ModifyCustomRuleStatus返回参数结构体
       class ModifyCustomRuleStatusResponse < TencentCloud::Common::AbstractModel
         # @param CustomId: 码规则ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CustomId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3486,7 +3394,6 @@ module TencentCloud
       # ModifyMerchant返回参数结构体
       class ModifyMerchantResponse < TencentCloud::Common::AbstractModel
         # @param MerchantId: 商户标识码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MerchantId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3550,7 +3457,6 @@ module TencentCloud
       # ModifyProduct返回参数结构体
       class ModifyProductResponse < TencentCloud::Common::AbstractModel
         # @param ProductId: 商品ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProductId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3691,7 +3597,6 @@ module TencentCloud
       # ModifyTraceDataRanks返回参数结构体
       class ModifyTraceDataRanksResponse < TencentCloud::Common::AbstractModel
         # @param BatchId: 批次ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BatchId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3825,13 +3730,10 @@ module TencentCloud
       # 业务出参
       class OutputAuthorizedTransfer < TencentCloud::Common::AbstractModel
         # @param Code: 推送状态，0表示成功。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Code: Integer
         # @param Message: 错误码。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Message: String
         # @param Value: 错误信息描述。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: String
 
         attr_accessor :Code, :Message, :Value
@@ -3858,16 +3760,12 @@ module TencentCloud
         # @param Amount: 数量
         # @type Amount: Integer
         # @param CustomId: 码规则ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CustomId: String
         # @param CodeParts: 码段配置
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CodeParts: Array
         # @param Unit: 包装单位
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Unit: String
         # @param SceneCode: 场景值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SceneCode: Integer
 
         attr_accessor :Level, :Rate, :Amount, :CustomId, :CodeParts, :Unit, :SceneCode
@@ -3903,22 +3801,16 @@ module TencentCloud
       # 环节数据
       class PhaseData < TencentCloud::Common::AbstractModel
         # @param HeadEnabled: 启用头
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HeadEnabled: Boolean
         # @param HeadTitle: 标题
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HeadTitle: String
         # @param Key: 标识符
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Key: String
         # @param AppId: 小程序AppId
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AppId: String
         # @param AppPath: 小程序AppPath
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AppPath: String
         # @param AppName: 小程序名称AppName
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AppName: String
 
         attr_accessor :HeadEnabled, :HeadTitle, :Key, :AppId, :AppPath, :AppName
@@ -3945,10 +3837,8 @@ module TencentCloud
       # 安心计划二维码
       class PlanQRCode < TencentCloud::Common::AbstractModel
         # @param Url: 二维码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Url: String
         # @param Status: 状态，0:未激活 1:已激活 2:已冻结
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
 
         attr_accessor :Url, :Status
@@ -3967,25 +3857,18 @@ module TencentCloud
       # 安心计划二维码扫码记录
       class PlanQRCodeRecord < TencentCloud::Common::AbstractModel
         # @param Url: 二维码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Url: String
         # @param OpenId: OpenID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OpenId: String
         # @param ScanTime: 扫码时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScanTime: String
         # @param Ip: IP 地址
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Ip: String
         # @param Country: 国家
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Country: String
         # @param Province: 省份
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Province: String
         # @param City: 城市
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type City: String
 
         attr_accessor :Url, :OpenId, :ScanTime, :Ip, :Country, :Province, :City
@@ -4024,25 +3907,20 @@ module TencentCloud
         # @param ProductCode: 商品编号
         # @type ProductCode: String
         # @param Specification: 商品规格
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Specification: String
         # @param Remark: 备注
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Remark: String
         # @param Logo: 商品图片
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Logo: Array
         # @param CreateTime: 创建时间
         # @type CreateTime: String
         # @param UpdateTime: 修改时间
         # @type UpdateTime: String
         # @param Ext: 预留字段
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Ext: :class:`Tencentcloud::Trp.v20210515.models.Ext`
         # @param MerchantName: 商户名称
         # @type MerchantName: String
         # @param CertState: 认证状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CertState: Integer
 
         attr_accessor :MerchantId, :Name, :ProductId, :CorpId, :ProductCode, :Specification, :Remark, :Logo, :CreateTime, :UpdateTime, :Ext, :MerchantName, :CertState
@@ -4086,52 +3964,36 @@ module TencentCloud
       # 企业配额信息
       class Quota < TencentCloud::Common::AbstractModel
         # @param StartTime: 服务开始时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StartTime: String
         # @param EndTime: 服务结束时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EndTime: String
         # @param QuotaId: 配额ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type QuotaId: Integer
         # @param CorpId: 企业ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CorpId: Integer
         # @param Services: 开通服务
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Services: Array
         # @param FactoryQuota: 商户配额
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FactoryQuota: Integer
         # @param ItemQuota: 商品配额
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ItemQuota: Integer
         # @param TrackQuota: 溯源码配额
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TrackQuota: Integer
         # @param SaleQuota: 销售码配额
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SaleQuota: Integer
         # @param ChainQuota: 上链配额
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ChainQuota: Integer
         # @param RiskQuota: 风控配额
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RiskQuota: Integer
         # @param AigcTextQuota: AI文字数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AigcTextQuota: Integer
         # @param AigcImageQuota: AI图片数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AigcImageQuota: Integer
         # @param TrackType: 溯源类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TrackType: Integer
         # @param Version: 开通版本 lite:轻量版, basic:基础版, standard:标准版
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Version: String
         # @param ProductCertify: 是否开启企业认证
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProductCertify: Integer
 
         attr_accessor :StartTime, :EndTime, :QuotaId, :CorpId, :Services, :FactoryQuota, :ItemQuota, :TrackQuota, :SaleQuota, :ChainQuota, :RiskQuota, :AigcTextQuota, :AigcImageQuota, :TrackType, :Version, :ProductCertify
@@ -4180,7 +4042,6 @@ module TencentCloud
         # @param LogId: 日志ID
         # @type LogId: Integer
         # @param Openid: 微信小程序openid
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Openid: String
         # @param CreateTime: 扫码时间
         # @type CreateTime: String
@@ -4189,22 +4050,16 @@ module TencentCloud
         # @param CorpId: 企业ID
         # @type CorpId: Integer
         # @param MerchantId: 商户ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MerchantId: String
         # @param ProductId: 商品ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProductId: String
         # @param BatchId: 批次ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BatchId: String
         # @param Province: 省份
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Province: String
         # @param City: 地市
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type City: String
         # @param District: 区/县
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type District: String
 
         attr_accessor :LogId, :Openid, :CreateTime, :Code, :CorpId, :MerchantId, :ProductId, :BatchId, :Province, :City, :District
@@ -4285,60 +4140,42 @@ module TencentCloud
         # @param LogId: 行ID
         # @type LogId: Integer
         # @param Openid: 微信openid
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Openid: String
         # @param Nickname: 微信昵称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Nickname: String
         # @param CreateTime: 创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
         # @param Code: 码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Code: String
         # @param CorpId: 企业ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CorpId: Integer
         # @param MerchantId: 商户ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MerchantId: String
         # @param ProductId: 商品ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProductId: String
         # @param Ip: ip地址
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Ip: String
         # @param Country: 国家
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Country: String
         # @param Province: 省份
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Province: String
         # @param City: 城市
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type City: String
         # @param District: 县/区
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type District: String
         # @param Unionid: 微信 unionid
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Unionid: String
         # @param First: 首次扫码 0:否, 1:是
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type First: Integer
         # @param BatchId: 批次ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BatchId: String
         # @param Type: 扫码类型 0:无效扫码 1: 小程序扫码 2: 商家扫码
         # @type Type: Integer
         # @param MerchantName: 商户名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MerchantName: String
         # @param ProductName: 产品名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProductName: String
         # @param ProductLogo: 产品Logo
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProductLogo: String
         # @param Status: 风险状态
         # 0: 未知, 1:通过, 2:失败/风险, 3:存疑
@@ -4485,13 +4322,10 @@ module TencentCloud
         # @param Level: 码层级 0: 最小级, 1: 一级, 2: 二级
         # @type Level: Integer
         # @param PackSpec: 码层级详情
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PackSpec: Array
         # @param SceneCode: 场景码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SceneCode: Integer
         # @param SerialCode: 流水码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SerialCode: Integer
 
         attr_accessor :Code, :CorpId, :PackId, :BatchId, :MerchantId, :ProductId, :Status, :CreateTime, :UpdateTime, :MerchantName, :ProductName, :AgentId, :Level, :PackSpec, :SceneCode, :SerialCode
@@ -4551,7 +4385,6 @@ module TencentCloud
         # @param Type: 码类型 0: 批次, 1: 码, 2: 生产任务
         # @type Type: Integer
         # @param Code: 码值，跟码类型一一对应
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Code: String
         # @param Rank: 排序，在Phase相同情况下，值越小排名靠前
         # @type Rank: Integer
@@ -4560,22 +4393,16 @@ module TencentCloud
         # @param PhaseName: 溯源环节名称
         # @type PhaseName: String
         # @param TraceTime: 溯源时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TraceTime: String
         # @param CreateTime: 创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
         # @param ChainStatus: 上链状态 0: 未上链 1: 上链中 2: 已上链 -1: 异常
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ChainStatus: Integer
         # @param ChainTime: 上链时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ChainTime: String
         # @param ChainData: 上链数据
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ChainData: :class:`Tencentcloud::Trp.v20210515.models.ChainData`
         # @param PhaseData: 溯源阶段配置
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PhaseData: :class:`Tencentcloud::Trp.v20210515.models.PhaseData`
         # @param Status: 溯源阶段状态 0: 无效, 1: 有效
         # @type Status: Integer
@@ -4717,34 +4544,27 @@ module TencentCloud
       # 付费信息使用量
       class UsageQuota < TencentCloud::Common::AbstractModel
         # @param CorpId: 企业ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CorpId: Integer
         # @param FactoryCnt: 商户配额
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FactoryCnt: Integer
         # @param ItemCnt: 商品数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ItemCnt: Integer
         # @param TrackCnt: 溯源码量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TrackCnt: Integer
         # @param SaleCnt: 营销码额度
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SaleCnt: Integer
         # @param ChainCnt: 区块链上链次数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ChainCnt: Integer
         # @param RiskCnt: 风险检测次数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RiskCnt: Integer
         # @param UpdateTime: 时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: String
 
         attr_accessor :CorpId, :FactoryCnt, :ItemCnt, :TrackCnt, :SaleCnt, :ChainCnt, :RiskCnt, :UpdateTime
         extend Gem::Deprecate
-        deprecate :RiskCnt, :none, 2024, 11
-        deprecate :RiskCnt=, :none, 2024, 11
+        deprecate :RiskCnt, :none, 2025, 2
+        deprecate :RiskCnt=, :none, 2025, 2
 
         def initialize(corpid=nil, factorycnt=nil, itemcnt=nil, trackcnt=nil, salecnt=nil, chaincnt=nil, riskcnt=nil, updatetime=nil)
           @CorpId = corpid

@@ -1932,6 +1932,30 @@ module TencentCloud
         end
       end
 
+      # 带宽上下限。
+      class BandwidthRange < TencentCloud::Common::AbstractModel
+        # @param ResourceId: 资源ID。
+        # @type ResourceId: String
+        # @param BandwidthLowerLimit: 带宽下限，单位：Mbps。
+        # @type BandwidthLowerLimit: Integer
+        # @param BandwidthUpperLimit: 带宽上限，单位：Mbps。
+        # @type BandwidthUpperLimit: Integer
+
+        attr_accessor :ResourceId, :BandwidthLowerLimit, :BandwidthUpperLimit
+
+        def initialize(resourceid=nil, bandwidthlowerlimit=nil, bandwidthupperlimit=nil)
+          @ResourceId = resourceid
+          @BandwidthLowerLimit = bandwidthlowerlimit
+          @BandwidthUpperLimit = bandwidthupperlimit
+        end
+
+        def deserialize(params)
+          @ResourceId = params['ResourceId']
+          @BandwidthLowerLimit = params['BandwidthLowerLimit']
+          @BandwidthUpperLimit = params['BandwidthUpperLimit']
+        end
+      end
+
       # 批量修改快照策略信息
       class BatchModifySnapshotPolicy < TencentCloud::Common::AbstractModel
         # @param SnapshotPolicyId: 快照策略Id。
@@ -9032,6 +9056,49 @@ module TencentCloud
         end
       end
 
+      # DescribeAddressBandwidthRange请求参数结构体
+      class DescribeAddressBandwidthRangeRequest < TencentCloud::Common::AbstractModel
+        # @param AddressIds: EIP资源ID列表，单次查询上限20。
+        # @type AddressIds: Array
+
+        attr_accessor :AddressIds
+
+        def initialize(addressids=nil)
+          @AddressIds = addressids
+        end
+
+        def deserialize(params)
+          @AddressIds = params['AddressIds']
+        end
+      end
+
+      # DescribeAddressBandwidthRange返回参数结构体
+      class DescribeAddressBandwidthRangeResponse < TencentCloud::Common::AbstractModel
+        # @param BandwidthRangeSet: EIP带宽上下限详细信息。
+        # @type BandwidthRangeSet: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :BandwidthRangeSet, :RequestId
+
+        def initialize(bandwidthrangeset=nil, requestid=nil)
+          @BandwidthRangeSet = bandwidthrangeset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['BandwidthRangeSet'].nil?
+            @BandwidthRangeSet = []
+            params['BandwidthRangeSet'].each do |i|
+              bandwidthrange_tmp = BandwidthRange.new
+              bandwidthrange_tmp.deserialize(i)
+              @BandwidthRangeSet << bandwidthrange_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeAddressQuota请求参数结构体
       class DescribeAddressQuotaRequest < TencentCloud::Common::AbstractModel
 
@@ -9382,6 +9449,49 @@ module TencentCloud
             end
           end
           @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeBandwidthPackageBandwidthRange请求参数结构体
+      class DescribeBandwidthPackageBandwidthRangeRequest < TencentCloud::Common::AbstractModel
+        # @param BandwidthPackageIds: 带宽包资源ID列表，单次查询上限20。
+        # @type BandwidthPackageIds: Array
+
+        attr_accessor :BandwidthPackageIds
+
+        def initialize(bandwidthpackageids=nil)
+          @BandwidthPackageIds = bandwidthpackageids
+        end
+
+        def deserialize(params)
+          @BandwidthPackageIds = params['BandwidthPackageIds']
+        end
+      end
+
+      # DescribeBandwidthPackageBandwidthRange返回参数结构体
+      class DescribeBandwidthPackageBandwidthRangeResponse < TencentCloud::Common::AbstractModel
+        # @param BandwidthRangeSet: 带宽包带宽上下限详细信息。
+        # @type BandwidthRangeSet: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :BandwidthRangeSet, :RequestId
+
+        def initialize(bandwidthrangeset=nil, requestid=nil)
+          @BandwidthRangeSet = bandwidthrangeset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['BandwidthRangeSet'].nil?
+            @BandwidthRangeSet = []
+            params['BandwidthRangeSet'].each do |i|
+              bandwidthrange_tmp = BandwidthRange.new
+              bandwidthrange_tmp.deserialize(i)
+              @BandwidthRangeSet << bandwidthrange_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end

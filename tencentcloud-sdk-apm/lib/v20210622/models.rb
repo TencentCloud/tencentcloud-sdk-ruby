@@ -248,7 +248,8 @@ module TencentCloud
         # @type Name: String
         # @param Description: 业务系统描述信息
         # @type Description: String
-        # @param Status: 业务系统状态
+        # @param Status: 业务系统状态。{
+        # 1: 初始化中; 2: 运行中; 4: 限流}
         # @type Status: Integer
         # @param Region: 业务系统所属地域
         # @type Region: String
@@ -314,10 +315,17 @@ module TencentCloud
         # @type IsInstrumentationVulnerabilityScan: Integer
         # @param IsSqlInjectionAnalysis: 是否开启 SQL 注入分析（0=关， 1=开）
         # @type IsSqlInjectionAnalysis: Integer
+        # @param StopReason: 限流原因。{
+        # 1: 正式版限额;
+        # 2: 试用版限额;
+        # 4: 试用版到期;
+        # 8: 账号欠费
+        # }
+        # @type StopReason: Integer
 
-        attr_accessor :InstanceId, :Name, :Description, :Status, :Region, :Tags, :AppId, :CreateUin, :AmountOfUsedStorage, :ServiceCount, :CountOfReportSpanPerDay, :TraceDuration, :SpanDailyCounters, :BillingInstance, :ErrRateThreshold, :SampleRate, :ErrorSample, :SlowRequestSavedThreshold, :LogRegion, :LogSource, :IsRelatedLog, :LogTopicID, :ClientCount, :TotalCount, :LogSet, :MetricDuration, :CustomShowTags, :PayMode, :PayModeEffective, :ResponseDurationWarningThreshold, :Free, :DefaultTSF, :IsRelatedDashboard, :DashboardTopicID, :IsInstrumentationVulnerabilityScan, :IsSqlInjectionAnalysis
+        attr_accessor :InstanceId, :Name, :Description, :Status, :Region, :Tags, :AppId, :CreateUin, :AmountOfUsedStorage, :ServiceCount, :CountOfReportSpanPerDay, :TraceDuration, :SpanDailyCounters, :BillingInstance, :ErrRateThreshold, :SampleRate, :ErrorSample, :SlowRequestSavedThreshold, :LogRegion, :LogSource, :IsRelatedLog, :LogTopicID, :ClientCount, :TotalCount, :LogSet, :MetricDuration, :CustomShowTags, :PayMode, :PayModeEffective, :ResponseDurationWarningThreshold, :Free, :DefaultTSF, :IsRelatedDashboard, :DashboardTopicID, :IsInstrumentationVulnerabilityScan, :IsSqlInjectionAnalysis, :StopReason
 
-        def initialize(instanceid=nil, name=nil, description=nil, status=nil, region=nil, tags=nil, appid=nil, createuin=nil, amountofusedstorage=nil, servicecount=nil, countofreportspanperday=nil, traceduration=nil, spandailycounters=nil, billinginstance=nil, errratethreshold=nil, samplerate=nil, errorsample=nil, slowrequestsavedthreshold=nil, logregion=nil, logsource=nil, isrelatedlog=nil, logtopicid=nil, clientcount=nil, totalcount=nil, logset=nil, metricduration=nil, customshowtags=nil, paymode=nil, paymodeeffective=nil, responsedurationwarningthreshold=nil, free=nil, defaulttsf=nil, isrelateddashboard=nil, dashboardtopicid=nil, isinstrumentationvulnerabilityscan=nil, issqlinjectionanalysis=nil)
+        def initialize(instanceid=nil, name=nil, description=nil, status=nil, region=nil, tags=nil, appid=nil, createuin=nil, amountofusedstorage=nil, servicecount=nil, countofreportspanperday=nil, traceduration=nil, spandailycounters=nil, billinginstance=nil, errratethreshold=nil, samplerate=nil, errorsample=nil, slowrequestsavedthreshold=nil, logregion=nil, logsource=nil, isrelatedlog=nil, logtopicid=nil, clientcount=nil, totalcount=nil, logset=nil, metricduration=nil, customshowtags=nil, paymode=nil, paymodeeffective=nil, responsedurationwarningthreshold=nil, free=nil, defaulttsf=nil, isrelateddashboard=nil, dashboardtopicid=nil, isinstrumentationvulnerabilityscan=nil, issqlinjectionanalysis=nil, stopreason=nil)
           @InstanceId = instanceid
           @Name = name
           @Description = description
@@ -354,6 +362,7 @@ module TencentCloud
           @DashboardTopicID = dashboardtopicid
           @IsInstrumentationVulnerabilityScan = isinstrumentationvulnerabilityscan
           @IsSqlInjectionAnalysis = issqlinjectionanalysis
+          @StopReason = stopreason
         end
 
         def deserialize(params)
@@ -400,6 +409,7 @@ module TencentCloud
           @DashboardTopicID = params['DashboardTopicID']
           @IsInstrumentationVulnerabilityScan = params['IsInstrumentationVulnerabilityScan']
           @IsSqlInjectionAnalysis = params['IsSqlInjectionAnalysis']
+          @StopReason = params['StopReason']
         end
       end
 

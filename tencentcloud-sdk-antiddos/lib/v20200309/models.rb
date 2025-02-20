@@ -3709,7 +3709,7 @@ module TencentCloud
         # @type Ip: String
         # @param Domain: 域名
         # @type Domain: String
-        # @param Protocol: 协议，可取值HTTP，HTTPS
+        # @param Protocol: 协议，可取值http、https、http/https
         # @type Protocol: String
 
         attr_accessor :InstanceId, :Ip, :Domain, :Protocol
@@ -4697,7 +4697,7 @@ module TencentCloud
         # @type FilterAssetIpList: Array
         # @param FilterBasicPlusFlag: 是否包含基础防护增强版 0: 不包含 1: 包含
         # @type FilterBasicPlusFlag: Integer
-        # @param FilterPlanCntFlag: 是否商业模式优化-普惠版 0: 包含商业模式优化-普惠版 1: 只查询商业模式优化-普惠版
+        # @param FilterPlanCntFlag: 是否标准版2.0 0: 包含标准版2.0 0 1: 只查询标准版2.0 0 2: 不查标准版2.0
         # @type FilterPlanCntFlag: Integer
         # @param FilterTransRegionFlag: 是否跨区域产品 0: 不包含跨区域产品 1: 中国大陆跨区域产品 2: 非中国大陆跨区域产品 3: 包含全部
         # @type FilterTransRegionFlag: Integer
@@ -6843,7 +6843,7 @@ module TencentCloud
         # @type Ip: String
         # @param Domain: 域名
         # @type Domain: String
-        # @param Protocol: 协议，可取值HTTP，HTTPS
+        # @param Protocol: 协议，可取值http、https、http/https
         # @type Protocol: String
         # @param Level: CC防护等级，可取值loose表示宽松，strict表示严格，normal表示适中， emergency表示攻击紧急， sup_loose表示超级宽松，default表示默认策略（无频控配置下发），customized表示自定义策略
         # @type Level: String
@@ -7563,8 +7563,12 @@ module TencentCloud
         # @type CCStatus: Integer
         # @param CCEnable: HTTPS协议的CC防护状态，取值[0(关闭), 1(开启)]
         # @type CCEnable: Integer
-        # @param CCThreshold: HTTPS协议的CC防护阈值
+        # @param CCThreshold: HTTPS协议的CC防护阈值（已废弃）
         # @type CCThreshold: Integer
+        # @param CCThresholdNew: HTTPS协议的CC防护阈值 -1：默认防御阈值
+        # 0: 关闭
+        # 大于0：自定义防护阈值
+        # @type CCThresholdNew: Integer
         # @param CCLevel: HTTPS协议的CC防护等级
         # @type CCLevel: String
         # @param ModifyTime: 修改时间
@@ -7582,9 +7586,9 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Version: Integer
 
-        attr_accessor :Protocol, :Domain, :LbType, :KeepEnable, :KeepTime, :SourceType, :SourceList, :Region, :Id, :Ip, :RuleId, :RuleName, :CertType, :SSLId, :Cert, :PrivateKey, :Status, :CCStatus, :CCEnable, :CCThreshold, :CCLevel, :ModifyTime, :HttpsToHttpEnable, :VirtualPort, :RewriteHttps, :ErrCode, :Version
+        attr_accessor :Protocol, :Domain, :LbType, :KeepEnable, :KeepTime, :SourceType, :SourceList, :Region, :Id, :Ip, :RuleId, :RuleName, :CertType, :SSLId, :Cert, :PrivateKey, :Status, :CCStatus, :CCEnable, :CCThreshold, :CCThresholdNew, :CCLevel, :ModifyTime, :HttpsToHttpEnable, :VirtualPort, :RewriteHttps, :ErrCode, :Version
 
-        def initialize(protocol=nil, domain=nil, lbtype=nil, keepenable=nil, keeptime=nil, sourcetype=nil, sourcelist=nil, region=nil, id=nil, ip=nil, ruleid=nil, rulename=nil, certtype=nil, sslid=nil, cert=nil, privatekey=nil, status=nil, ccstatus=nil, ccenable=nil, ccthreshold=nil, cclevel=nil, modifytime=nil, httpstohttpenable=nil, virtualport=nil, rewritehttps=nil, errcode=nil, version=nil)
+        def initialize(protocol=nil, domain=nil, lbtype=nil, keepenable=nil, keeptime=nil, sourcetype=nil, sourcelist=nil, region=nil, id=nil, ip=nil, ruleid=nil, rulename=nil, certtype=nil, sslid=nil, cert=nil, privatekey=nil, status=nil, ccstatus=nil, ccenable=nil, ccthreshold=nil, ccthresholdnew=nil, cclevel=nil, modifytime=nil, httpstohttpenable=nil, virtualport=nil, rewritehttps=nil, errcode=nil, version=nil)
           @Protocol = protocol
           @Domain = domain
           @LbType = lbtype
@@ -7605,6 +7609,7 @@ module TencentCloud
           @CCStatus = ccstatus
           @CCEnable = ccenable
           @CCThreshold = ccthreshold
+          @CCThresholdNew = ccthresholdnew
           @CCLevel = cclevel
           @ModifyTime = modifytime
           @HttpsToHttpEnable = httpstohttpenable
@@ -7642,6 +7647,7 @@ module TencentCloud
           @CCStatus = params['CCStatus']
           @CCEnable = params['CCEnable']
           @CCThreshold = params['CCThreshold']
+          @CCThresholdNew = params['CCThresholdNew']
           @CCLevel = params['CCLevel']
           @ModifyTime = params['ModifyTime']
           @HttpsToHttpEnable = params['HttpsToHttpEnable']

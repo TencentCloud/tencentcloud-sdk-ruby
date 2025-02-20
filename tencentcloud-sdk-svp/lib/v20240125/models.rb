@@ -425,10 +425,8 @@ module TencentCloud
         # @param Region: 地域
         # @type Region: Array
         # @param PayType: 支付类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PayType: Integer
         # @param BuyTime: 购买时间 yyyy-mm-dd HH:mm:ss格式
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BuyTime: String
 
         attr_accessor :SpType, :PayAmount, :StartTime, :EndTime, :Status, :SavingAmount, :Region, :PayType, :BuyTime
@@ -479,7 +477,6 @@ module TencentCloud
         # @param CostAmount: 累计成本金额（单位：元）
         # @type CostAmount: String
         # @param Region: 地域
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Region: Array
 
         attr_accessor :SpType, :Status, :DeductAmount, :PromiseAmount, :NetSavings, :UtilizationRate, :LossAmount, :DosageAmount, :CostAmount, :Region

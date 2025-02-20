@@ -3542,18 +3542,14 @@ module TencentCloud
         # @param UpdateTime: 更新时间
         # @type UpdateTime: Integer
         # @param Message: 返回信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Message: String
         # @param DataEngineId: 引擎id
         # @type DataEngineId: String
         # @param DataEngineType: 引擎类型，有效值：PrestoSQL/SparkSQL/SparkBatch
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DataEngineType: String
         # @param AppId: 用户ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AppId: Integer
         # @param UserUin: 账号ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UserUin: String
 
         attr_accessor :DataEngineName, :State, :CreateTime, :UpdateTime, :Message, :DataEngineId, :DataEngineType, :AppId, :UserUin
@@ -3621,10 +3617,8 @@ module TencentCloud
       # 引擎配置
       class DataEngineConfigPair < TencentCloud::Common::AbstractModel
         # @param ConfigItem: 配置项
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ConfigItem: String
         # @param ConfigValue: 配置值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ConfigValue: String
 
         attr_accessor :ConfigItem, :ConfigValue
@@ -4013,13 +4007,10 @@ module TencentCloud
       # 引擎规格详情
       class DataEngineScaleInfo < TencentCloud::Common::AbstractModel
         # @param DataEngineId: 引擎ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DataEngineId: String
         # @param DataEngineName: 引擎名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DataEngineName: String
         # @param ScaleDetail: 引擎规格详情
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScaleDetail: Array
 
         attr_accessor :DataEngineId, :DataEngineName, :ScaleDetail
@@ -4047,13 +4038,10 @@ module TencentCloud
       # 引擎规格详情
       class DataEngineScaleInfoDetail < TencentCloud::Common::AbstractModel
         # @param StartTime: 统计开始时间，格式为：yyyy-MM-dd HH:mm:ss
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StartTime: String
         # @param EndTime: 统计结束时间，格式为：yyyy-MM-dd HH:mm:ss
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EndTime: String
         # @param CU: 当前统计时间段，引擎规格
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CU: Integer
 
         attr_accessor :StartTime, :EndTime, :CU

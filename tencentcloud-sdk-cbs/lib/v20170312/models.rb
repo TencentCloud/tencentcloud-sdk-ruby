@@ -49,6 +49,26 @@ module TencentCloud
         end
       end
 
+      # 本参数用于快照组回滚接口的入参，表示回滚的云盘、快照列表。
+      class ApplyDisk < TencentCloud::Common::AbstractModel
+        # @param SnapshotId: 快照组关联的快照ID。
+        # @type SnapshotId: String
+        # @param DiskId: 快照组关联快照对应的原云硬盘ID。
+        # @type DiskId: String
+
+        attr_accessor :SnapshotId, :DiskId
+
+        def initialize(snapshotid=nil, diskid=nil)
+          @SnapshotId = snapshotid
+          @DiskId = diskid
+        end
+
+        def deserialize(params)
+          @SnapshotId = params['SnapshotId']
+          @DiskId = params['DiskId']
+        end
+      end
+
       # ApplyDiskBackup请求参数结构体
       class ApplyDiskBackupRequest < TencentCloud::Common::AbstractModel
         # @param DiskBackupId: 云硬盘备份点ID，可通过 DescribeDiskBackups 查询。
@@ -79,6 +99,57 @@ module TencentCloud
 
       # ApplyDiskBackup返回参数结构体
       class ApplyDiskBackupResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ApplySnapshotGroup请求参数结构体
+      class ApplySnapshotGroupRequest < TencentCloud::Common::AbstractModel
+        # @param SnapshotGroupId: 回滚的快照组ID。
+        # @type SnapshotGroupId: String
+        # @param ApplyDisks: 回滚的快照组关联的快照ID，及快照对应的原云硬盘ID列表。
+        # @type ApplyDisks: Array
+        # @param AutoStopInstance: 回滚前是否执行自动关机。
+        # @type AutoStopInstance: Boolean
+        # @param AutoStartInstance: 回滚完成后是否自动开机。
+        # @type AutoStartInstance: Boolean
+
+        attr_accessor :SnapshotGroupId, :ApplyDisks, :AutoStopInstance, :AutoStartInstance
+
+        def initialize(snapshotgroupid=nil, applydisks=nil, autostopinstance=nil, autostartinstance=nil)
+          @SnapshotGroupId = snapshotgroupid
+          @ApplyDisks = applydisks
+          @AutoStopInstance = autostopinstance
+          @AutoStartInstance = autostartinstance
+        end
+
+        def deserialize(params)
+          @SnapshotGroupId = params['SnapshotGroupId']
+          unless params['ApplyDisks'].nil?
+            @ApplyDisks = []
+            params['ApplyDisks'].each do |i|
+              applydisk_tmp = ApplyDisk.new
+              applydisk_tmp.deserialize(i)
+              @ApplyDisks << applydisk_tmp
+            end
+          end
+          @AutoStopInstance = params['AutoStopInstance']
+          @AutoStartInstance = params['AutoStartInstance']
+        end
+      end
+
+      # ApplySnapshotGroup返回参数结构体
+      class ApplySnapshotGroupResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -740,6 +811,57 @@ module TencentCloud
         end
       end
 
+      # CreateSnapshotGroup请求参数结构体
+      class CreateSnapshotGroupRequest < TencentCloud::Common::AbstractModel
+        # @param DiskIds: 需要创建快照组的云硬盘ID列表，必须选择挂载在同一实例上的盘列表。
+        # @type DiskIds: Array
+        # @param SnapshotGroupName: 快照组名称，快照组关联的快照也会继承快照组的名称。例如：快照组名称为testSnapshotGroup，快照组关联两个快照，则两个快照的名称分别为testSnapshotGroup_0，testSnapshotGroup_1。
+        # @type SnapshotGroupName: String
+        # @param Tags: 快照组需要绑定的标签列表。
+        # @type Tags: Array
+
+        attr_accessor :DiskIds, :SnapshotGroupName, :Tags
+
+        def initialize(diskids=nil, snapshotgroupname=nil, tags=nil)
+          @DiskIds = diskids
+          @SnapshotGroupName = snapshotgroupname
+          @Tags = tags
+        end
+
+        def deserialize(params)
+          @DiskIds = params['DiskIds']
+          @SnapshotGroupName = params['SnapshotGroupName']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
+        end
+      end
+
+      # CreateSnapshotGroup返回参数结构体
+      class CreateSnapshotGroupResponse < TencentCloud::Common::AbstractModel
+        # @param SnapshotGroupId: 创建成功的快照组ID。
+        # @type SnapshotGroupId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :SnapshotGroupId, :RequestId
+
+        def initialize(snapshotgroupid=nil, requestid=nil)
+          @SnapshotGroupId = snapshotgroupid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @SnapshotGroupId = params['SnapshotGroupId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateSnapshot请求参数结构体
       class CreateSnapshotRequest < TencentCloud::Common::AbstractModel
         # @param DiskId: 需要创建快照的云硬盘ID，可通过[DescribeDisks](/document/product/362/16315)接口查询。
@@ -850,6 +972,46 @@ module TencentCloud
 
       # DeleteDiskBackups返回参数结构体
       class DeleteDiskBackupsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteSnapshotGroup请求参数结构体
+      class DeleteSnapshotGroupRequest < TencentCloud::Common::AbstractModel
+        # @param SnapshotGroupId: 快照组ID。
+        # @type SnapshotGroupId: String
+        # @param SnapshotGroupIds: 快照组ID 列表。此参数与快照组 ID 至少传 1 个，同时传会与快照组 ID 合并。
+        # @type SnapshotGroupIds: Array
+        # @param DeleteBindImages: 是否同时删除快照组关联的镜像；取值为false，表示不删除快照组绑定的镜像，此时，如果快照组有绑定的镜像，删除会失败；取值为true，表示同时删除快照组绑定的镜像；默认值为false。
+        # @type DeleteBindImages: Boolean
+
+        attr_accessor :SnapshotGroupId, :SnapshotGroupIds, :DeleteBindImages
+
+        def initialize(snapshotgroupid=nil, snapshotgroupids=nil, deletebindimages=nil)
+          @SnapshotGroupId = snapshotgroupid
+          @SnapshotGroupIds = snapshotgroupids
+          @DeleteBindImages = deletebindimages
+        end
+
+        def deserialize(params)
+          @SnapshotGroupId = params['SnapshotGroupId']
+          @SnapshotGroupIds = params['SnapshotGroupIds']
+          @DeleteBindImages = params['DeleteBindImages']
+        end
+      end
+
+      # DeleteSnapshotGroup返回参数结构体
+      class DeleteSnapshotGroupResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -1362,6 +1524,68 @@ module TencentCloud
               attachdetail_tmp = AttachDetail.new
               attachdetail_tmp.deserialize(i)
               @AttachDetail << attachdetail_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeSnapshotGroups请求参数结构体
+      class DescribeSnapshotGroupsRequest < TencentCloud::Common::AbstractModel
+        # @param Filters: 过滤条件。<br><li>snapshot-group-id - Array of String - 是否必填：否 -（过滤条件）按快照组ID过滤 <br><li>snapshot-group-state - Array of String - 是否必填：否 -（过滤条件）按快照组状态过滤。(NORMAL: 正常 | CREATING:创建中 | ROLLBACKING:回滚中) <br><li>snapshot-group-name - Array of String - 是否必填：否 -（过滤条件）按快照组名称过滤 <br><li>snapshot-id - Array of String - 是否必填：否 -（过滤条件）按快照组内的快照ID过滤
+        # @type Filters: Array
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
+        # @param Limit: 返回数量，默认为20，最大值为100。
+        # @type Limit: Integer
+
+        attr_accessor :Filters, :Offset, :Limit
+
+        def initialize(filters=nil, offset=nil, limit=nil)
+          @Filters = filters
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeSnapshotGroups返回参数结构体
+      class DescribeSnapshotGroupsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 符合条件的总数量。
+        # @type TotalCount: Integer
+        # @param SnapshotGroupSet: 快照组列表详情。
+        # @type SnapshotGroupSet: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :SnapshotGroupSet, :RequestId
+
+        def initialize(totalcount=nil, snapshotgroupset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @SnapshotGroupSet = snapshotgroupset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['SnapshotGroupSet'].nil?
+            @SnapshotGroupSet = []
+            params['SnapshotGroupSet'].each do |i|
+              snapshotgroup_tmp = SnapshotGroup.new
+              snapshotgroup_tmp.deserialize(i)
+              @SnapshotGroupSet << snapshotgroup_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -2954,7 +3178,7 @@ module TencentCloud
       class ResizeDiskRequest < TencentCloud::Common::AbstractModel
         # @param DiskSize: 云硬盘扩容后的大小，单位为GB，必须大于当前云硬盘大小。云盘大小取值范围参见云硬盘[产品分类](/document/product/362/2353)的说明。
         # @type DiskSize: Integer
-        # @param DiskId: 云硬盘ID， 通过[DescribeDisks](/document/product/362/16315)接口查询。
+        # @param DiskId: 云硬盘ID， 通过[DescribeDisks](/document/product/362/16315)接口查询。该字段仅供单块云硬盘扩容时传入。
         # @type DiskId: String
 
         attr_accessor :DiskSize, :DiskId
@@ -3164,6 +3388,78 @@ module TencentCloud
           @Message = params['Message']
           @Code = params['Code']
           @DestinationRegion = params['DestinationRegion']
+        end
+      end
+
+      # 描述快照组详情
+      class SnapshotGroup < TencentCloud::Common::AbstractModel
+        # @param SnapshotGroupId: 快照组ID。
+        # @type SnapshotGroupId: String
+        # @param SnapshotGroupType: 快照组类型。NORMAL: 普通快照组，非一致性快照。
+        # @type SnapshotGroupType: String
+        # @param ContainRootSnapshot: 快照组是否包含系统盘快照。
+        # @type ContainRootSnapshot: Boolean
+        # @param SnapshotIdSet: 快照组包含的快照ID列表。
+        # @type SnapshotIdSet: Array
+        # @param SnapshotGroupState: 快照组状态。<br><li>NORMAL: 正常<br><li>CREATING:创建中<br><li>ROLLBACKING:回滚中
+        # @type SnapshotGroupState: String
+        # @param Percent: 快照组创建进度。
+        # @type Percent: Integer
+        # @param CreateTime: 快照组创建时间。
+        # @type CreateTime: String
+        # @param ModifyTime: 快照组最新修改时间
+        # @type ModifyTime: String
+        # @param Images: 快照组关联的镜像列表。
+        # @type Images: Array
+        # @param SnapshotGroupName: 快照组名称。
+        # @type SnapshotGroupName: String
+        # @param ImageCount: 快照组关联的镜像数量。
+        # @type ImageCount: Integer
+        # @param IsPermanent: 快照组是否永久保留
+        # @type IsPermanent: Boolean
+        # @param DeadlineTime: 快照组到期时间。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeadlineTime: String
+
+        attr_accessor :SnapshotGroupId, :SnapshotGroupType, :ContainRootSnapshot, :SnapshotIdSet, :SnapshotGroupState, :Percent, :CreateTime, :ModifyTime, :Images, :SnapshotGroupName, :ImageCount, :IsPermanent, :DeadlineTime
+
+        def initialize(snapshotgroupid=nil, snapshotgrouptype=nil, containrootsnapshot=nil, snapshotidset=nil, snapshotgroupstate=nil, percent=nil, createtime=nil, modifytime=nil, images=nil, snapshotgroupname=nil, imagecount=nil, ispermanent=nil, deadlinetime=nil)
+          @SnapshotGroupId = snapshotgroupid
+          @SnapshotGroupType = snapshotgrouptype
+          @ContainRootSnapshot = containrootsnapshot
+          @SnapshotIdSet = snapshotidset
+          @SnapshotGroupState = snapshotgroupstate
+          @Percent = percent
+          @CreateTime = createtime
+          @ModifyTime = modifytime
+          @Images = images
+          @SnapshotGroupName = snapshotgroupname
+          @ImageCount = imagecount
+          @IsPermanent = ispermanent
+          @DeadlineTime = deadlinetime
+        end
+
+        def deserialize(params)
+          @SnapshotGroupId = params['SnapshotGroupId']
+          @SnapshotGroupType = params['SnapshotGroupType']
+          @ContainRootSnapshot = params['ContainRootSnapshot']
+          @SnapshotIdSet = params['SnapshotIdSet']
+          @SnapshotGroupState = params['SnapshotGroupState']
+          @Percent = params['Percent']
+          @CreateTime = params['CreateTime']
+          @ModifyTime = params['ModifyTime']
+          unless params['Images'].nil?
+            @Images = []
+            params['Images'].each do |i|
+              image_tmp = Image.new
+              image_tmp.deserialize(i)
+              @Images << image_tmp
+            end
+          end
+          @SnapshotGroupName = params['SnapshotGroupName']
+          @ImageCount = params['ImageCount']
+          @IsPermanent = params['IsPermanent']
+          @DeadlineTime = params['DeadlineTime']
         end
       end
 

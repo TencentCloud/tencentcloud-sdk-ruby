@@ -8136,10 +8136,12 @@ module TencentCloud
         # @param Keys: 日志Key列表，RechargeType为full_regex_log时必填
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Keys: Array
+        # @param ParseArray: json解析模式，开启首层数据解析
+        # @type ParseArray: Boolean
 
-        attr_accessor :RechargeType, :EncodingFormat, :DefaultTimeSwitch, :LogRegex, :UnMatchLogSwitch, :UnMatchLogKey, :UnMatchLogTimeSrc, :DefaultTimeSrc, :TimeKey, :TimeRegex, :TimeFormat, :TimeZone, :Metadata, :Keys
+        attr_accessor :RechargeType, :EncodingFormat, :DefaultTimeSwitch, :LogRegex, :UnMatchLogSwitch, :UnMatchLogKey, :UnMatchLogTimeSrc, :DefaultTimeSrc, :TimeKey, :TimeRegex, :TimeFormat, :TimeZone, :Metadata, :Keys, :ParseArray
 
-        def initialize(rechargetype=nil, encodingformat=nil, defaulttimeswitch=nil, logregex=nil, unmatchlogswitch=nil, unmatchlogkey=nil, unmatchlogtimesrc=nil, defaulttimesrc=nil, timekey=nil, timeregex=nil, timeformat=nil, timezone=nil, metadata=nil, keys=nil)
+        def initialize(rechargetype=nil, encodingformat=nil, defaulttimeswitch=nil, logregex=nil, unmatchlogswitch=nil, unmatchlogkey=nil, unmatchlogtimesrc=nil, defaulttimesrc=nil, timekey=nil, timeregex=nil, timeformat=nil, timezone=nil, metadata=nil, keys=nil, parsearray=nil)
           @RechargeType = rechargetype
           @EncodingFormat = encodingformat
           @DefaultTimeSwitch = defaulttimeswitch
@@ -8154,6 +8156,7 @@ module TencentCloud
           @TimeZone = timezone
           @Metadata = metadata
           @Keys = keys
+          @ParseArray = parsearray
         end
 
         def deserialize(params)
@@ -8171,6 +8174,7 @@ module TencentCloud
           @TimeZone = params['TimeZone']
           @Metadata = params['Metadata']
           @Keys = params['Keys']
+          @ParseArray = params['ParseArray']
         end
       end
 

@@ -1549,6 +1549,33 @@ module TencentCloud
         end
       end
 
+      # 海关缴款书
+      class CustomsPaymentReceipt < TencentCloud::Common::AbstractModel
+        # @param Title: 发票名称
+        # @type Title: String
+        # @param Content: 识别出的字段名称(关键字)，支持以下字段： 税号 、纳税人识别号 、纳税人名称 、金额合计大写 、金额合计小写 、填发日期 、税务机关 、填票人。 示例值：纳税人识别号
+        # @type Content: Array
+
+        attr_accessor :Title, :Content
+
+        def initialize(title=nil, content=nil)
+          @Title = title
+          @Content = content
+        end
+
+        def deserialize(params)
+          @Title = params['Title']
+          unless params['Content'].nil?
+            @Content = []
+            params['Content'].each do |i|
+              otherinvoiceitem_tmp = OtherInvoiceItem.new
+              otherinvoiceitem_tmp.deserialize(i)
+              @Content << otherinvoiceitem_tmp
+            end
+          end
+        end
+      end
+
       # 机票详细信息元组
       class DetailInformationOfAirTicketTupleList < TencentCloud::Common::AbstractModel
         # @param DepartureStation: 出发站（自）
@@ -5268,6 +5295,8 @@ module TencentCloud
         # 15：非税发票
         # 16：全电发票
         # 17：医疗发票
+        # 18：完税凭证
+        # 19：海关缴款书
         # @type Type: Integer
         # @param Polygon: 该发票在原图片中的四点坐标。
         # @type Polygon: :class:`Tencentcloud::Ocr.v20181119.models.Polygon`
@@ -10646,10 +10675,16 @@ module TencentCloud
         # @param ElectronicFlightTicketFull: 电子发票（机票行程单）
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ElectronicFlightTicketFull: :class:`Tencentcloud::Ocr.v20181119.models.ElectronicFlightTicketFull`
+        # @param TaxPayment: 完税凭证
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaxPayment: :class:`Tencentcloud::Ocr.v20181119.models.TaxPayment`
+        # @param CustomsPaymentReceipt: 海关缴款
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CustomsPaymentReceipt: :class:`Tencentcloud::Ocr.v20181119.models.CustomsPaymentReceipt`
 
-        attr_accessor :VatSpecialInvoice, :VatCommonInvoice, :VatElectronicCommonInvoice, :VatElectronicSpecialInvoice, :VatElectronicInvoiceBlockchain, :VatElectronicInvoiceToll, :VatElectronicSpecialInvoiceFull, :VatElectronicInvoiceFull, :MachinePrintedInvoice, :BusInvoice, :ShippingInvoice, :TollInvoice, :OtherInvoice, :MotorVehicleSaleInvoice, :UsedCarPurchaseInvoice, :VatInvoiceRoll, :TaxiTicket, :QuotaInvoice, :AirTransport, :NonTaxIncomeGeneralBill, :NonTaxIncomeElectronicBill, :TrainTicket, :MedicalOutpatientInvoice, :MedicalHospitalizedInvoice, :VatSalesList, :ElectronicTrainTicketFull, :ElectronicFlightTicketFull
+        attr_accessor :VatSpecialInvoice, :VatCommonInvoice, :VatElectronicCommonInvoice, :VatElectronicSpecialInvoice, :VatElectronicInvoiceBlockchain, :VatElectronicInvoiceToll, :VatElectronicSpecialInvoiceFull, :VatElectronicInvoiceFull, :MachinePrintedInvoice, :BusInvoice, :ShippingInvoice, :TollInvoice, :OtherInvoice, :MotorVehicleSaleInvoice, :UsedCarPurchaseInvoice, :VatInvoiceRoll, :TaxiTicket, :QuotaInvoice, :AirTransport, :NonTaxIncomeGeneralBill, :NonTaxIncomeElectronicBill, :TrainTicket, :MedicalOutpatientInvoice, :MedicalHospitalizedInvoice, :VatSalesList, :ElectronicTrainTicketFull, :ElectronicFlightTicketFull, :TaxPayment, :CustomsPaymentReceipt
 
-        def initialize(vatspecialinvoice=nil, vatcommoninvoice=nil, vatelectroniccommoninvoice=nil, vatelectronicspecialinvoice=nil, vatelectronicinvoiceblockchain=nil, vatelectronicinvoicetoll=nil, vatelectronicspecialinvoicefull=nil, vatelectronicinvoicefull=nil, machineprintedinvoice=nil, businvoice=nil, shippinginvoice=nil, tollinvoice=nil, otherinvoice=nil, motorvehiclesaleinvoice=nil, usedcarpurchaseinvoice=nil, vatinvoiceroll=nil, taxiticket=nil, quotainvoice=nil, airtransport=nil, nontaxincomegeneralbill=nil, nontaxincomeelectronicbill=nil, trainticket=nil, medicaloutpatientinvoice=nil, medicalhospitalizedinvoice=nil, vatsaleslist=nil, electronictrainticketfull=nil, electronicflightticketfull=nil)
+        def initialize(vatspecialinvoice=nil, vatcommoninvoice=nil, vatelectroniccommoninvoice=nil, vatelectronicspecialinvoice=nil, vatelectronicinvoiceblockchain=nil, vatelectronicinvoicetoll=nil, vatelectronicspecialinvoicefull=nil, vatelectronicinvoicefull=nil, machineprintedinvoice=nil, businvoice=nil, shippinginvoice=nil, tollinvoice=nil, otherinvoice=nil, motorvehiclesaleinvoice=nil, usedcarpurchaseinvoice=nil, vatinvoiceroll=nil, taxiticket=nil, quotainvoice=nil, airtransport=nil, nontaxincomegeneralbill=nil, nontaxincomeelectronicbill=nil, trainticket=nil, medicaloutpatientinvoice=nil, medicalhospitalizedinvoice=nil, vatsaleslist=nil, electronictrainticketfull=nil, electronicflightticketfull=nil, taxpayment=nil, customspaymentreceipt=nil)
           @VatSpecialInvoice = vatspecialinvoice
           @VatCommonInvoice = vatcommoninvoice
           @VatElectronicCommonInvoice = vatelectroniccommoninvoice
@@ -10677,6 +10712,8 @@ module TencentCloud
           @VatSalesList = vatsaleslist
           @ElectronicTrainTicketFull = electronictrainticketfull
           @ElectronicFlightTicketFull = electronicflightticketfull
+          @TaxPayment = taxpayment
+          @CustomsPaymentReceipt = customspaymentreceipt
         end
 
         def deserialize(params)
@@ -10787,6 +10824,14 @@ module TencentCloud
           unless params['ElectronicFlightTicketFull'].nil?
             @ElectronicFlightTicketFull = ElectronicFlightTicketFull.new
             @ElectronicFlightTicketFull.deserialize(params['ElectronicFlightTicketFull'])
+          end
+          unless params['TaxPayment'].nil?
+            @TaxPayment = TaxPayment.new
+            @TaxPayment.deserialize(params['TaxPayment'])
+          end
+          unless params['CustomsPaymentReceipt'].nil?
+            @CustomsPaymentReceipt = CustomsPaymentReceipt.new
+            @CustomsPaymentReceipt.deserialize(params['CustomsPaymentReceipt'])
           end
         end
       end
@@ -11426,6 +11471,35 @@ module TencentCloud
 
         def deserialize(params)
           @Text = params['Text']
+        end
+      end
+
+      # 完税凭证
+      class TaxPayment < TencentCloud::Common::AbstractModel
+        # @param Title: 发票名称
+        # @type Title: String
+        # @param Content: 识别出的字段名称(关键字)，支持以下字段：
+        # 税号 、纳税人识别号 、纳税人名称 、金额合计大写 、金额合计小写 、填发日期 、税务机关 、填票人。
+        # 示例值：纳税人识别号
+        # @type Content: Array
+
+        attr_accessor :Title, :Content
+
+        def initialize(title=nil, content=nil)
+          @Title = title
+          @Content = content
+        end
+
+        def deserialize(params)
+          @Title = params['Title']
+          unless params['Content'].nil?
+            @Content = []
+            params['Content'].each do |i|
+              otherinvoiceitem_tmp = OtherInvoiceItem.new
+              otherinvoiceitem_tmp.deserialize(i)
+              @Content << otherinvoiceitem_tmp
+            end
+          end
         end
       end
 

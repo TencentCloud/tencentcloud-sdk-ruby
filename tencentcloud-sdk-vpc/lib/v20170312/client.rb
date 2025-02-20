@@ -3582,6 +3582,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询指定EIP的带宽上下限范围。
+
+        # @param request: Request instance for DescribeAddressBandwidthRange.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::DescribeAddressBandwidthRangeRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::DescribeAddressBandwidthRangeResponse`
+        def DescribeAddressBandwidthRange(request)
+          body = send_request('DescribeAddressBandwidthRange', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAddressBandwidthRangeResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口 (DescribeAddressQuota) 用于查询您账户的[弹性公网IP](https://cloud.tencent.com/document/product/213/1941)（简称 EIP）在当前地域的配额信息。配额详情可参见 [EIP 产品简介](https://cloud.tencent.com/document/product/213/5733)。
 
         # @param request: Request instance for DescribeAddressQuota.
@@ -3689,6 +3713,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeAssistantCidrResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询指定带宽包的带宽上下限范围
+
+        # @param request: Request instance for DescribeBandwidthPackageBandwidthRange.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::DescribeBandwidthPackageBandwidthRangeRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::DescribeBandwidthPackageBandwidthRangeResponse`
+        def DescribeBandwidthPackageBandwidthRange(request)
+          body = send_request('DescribeBandwidthPackageBandwidthRange', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeBandwidthPackageBandwidthRangeResponse.new
             model.deserialize(response['Response'])
             model
           else

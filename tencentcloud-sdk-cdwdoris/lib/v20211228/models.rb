@@ -1640,19 +1640,22 @@ module TencentCloud
         # @type ConfigType: Integer
         # @param FileName: 模糊搜索关键字文件
         # @type FileName: String
-        # @param ClusterConfigType: 0集群维度 1节点维度
+        # @param ClusterConfigType: 0集群维度 1节点维度 2启动脚本 3计算组维度
         # @type ClusterConfigType: Integer
         # @param IPAddress: eth0的ip地址
         # @type IPAddress: String
+        # @param ComputeGroupId: 计算组id
+        # @type ComputeGroupId: String
 
-        attr_accessor :InstanceId, :ConfigType, :FileName, :ClusterConfigType, :IPAddress
+        attr_accessor :InstanceId, :ConfigType, :FileName, :ClusterConfigType, :IPAddress, :ComputeGroupId
 
-        def initialize(instanceid=nil, configtype=nil, filename=nil, clusterconfigtype=nil, ipaddress=nil)
+        def initialize(instanceid=nil, configtype=nil, filename=nil, clusterconfigtype=nil, ipaddress=nil, computegroupid=nil)
           @InstanceId = instanceid
           @ConfigType = configtype
           @FileName = filename
           @ClusterConfigType = clusterconfigtype
           @IPAddress = ipaddress
+          @ComputeGroupId = computegroupid
         end
 
         def deserialize(params)
@@ -1661,6 +1664,7 @@ module TencentCloud
           @FileName = params['FileName']
           @ClusterConfigType = params['ClusterConfigType']
           @IPAddress = params['IPAddress']
+          @ComputeGroupId = params['ComputeGroupId']
         end
       end
 

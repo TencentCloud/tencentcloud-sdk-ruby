@@ -1172,7 +1172,6 @@ module TencentCloud
       # DescribeRecordInfo返回参数结构体
       class DescribeRecordInfoResponse < TencentCloud::Common::AbstractModel
         # @param RecordInfo: 录制信息。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RecordInfo: Array
         # @param RecordMode: 录制类型：1代表单流 2代表混流 3代表单流和混流。
         # @type RecordMode: Integer
@@ -1232,10 +1231,8 @@ module TencentCloud
       # DescribeRoomInfo返回参数结构体
       class DescribeRoomInfoResponse < TencentCloud::Common::AbstractModel
         # @param Result: 操作结果, 0成功, 非0失败
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: Integer
         # @param RoomUsers: 房间用户信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RoomUsers: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1363,7 +1360,6 @@ module TencentCloud
       # DescribeScanResultList返回参数结构体
       class DescribeScanResultListResponse < TencentCloud::Common::AbstractModel
         # @param Data: 要查询的语音检测任务的结果
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1411,13 +1407,10 @@ module TencentCloud
       # DescribeTaskInfo返回参数结构体
       class DescribeTaskInfoResponse < TencentCloud::Common::AbstractModel
         # @param TaskId: 进行中的任务taskid（StartRecord接口返回）。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskId: Integer
         # @param RecordMode: 录制类型：1代表单流 2代表混流 3代表单流和混流。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RecordMode: Integer
         # @param SubscribeRecordUserIds: 指定订阅流白名单或者黑名单。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubscribeRecordUserIds: :class:`Tencentcloud::Gme.v20180711.models.SubscribeRecordUserIds`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1544,7 +1537,6 @@ module TencentCloud
       # GetCustomizationList返回参数结构体
       class GetCustomizationListResponse < TencentCloud::Common::AbstractModel
         # @param CustomizationConfigs: 语音消息转文本热句模型配置
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CustomizationConfigs: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2498,7 +2490,6 @@ module TencentCloud
       # UpdateScanRooms返回参数结构体
       class UpdateScanRoomsResponse < TencentCloud::Common::AbstractModel
         # @param ErrorCode: 返回结果码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrorCode: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

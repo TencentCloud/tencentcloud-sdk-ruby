@@ -85,6 +85,33 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（ApplySnapshotGroup）用于回滚快照组，将实例恢复到创建快照组时刻的状态。
+        # * 1.可选择快照组全部或部分盘进行回滚；
+        # * 2.如果回滚的盘中包含已挂载的盘，要求这些盘必须挂载在同一实例上，且要求该实例已关机才能回滚；
+        # * 3.回滚为异步操作，接口返回成功不代表回滚成功，可通过调DescribeSnapshotGroups接口查询快照组的状态。
+
+        # @param request: Request instance for ApplySnapshotGroup.
+        # @type request: :class:`Tencentcloud::cbs::V20170312::ApplySnapshotGroupRequest`
+        # @rtype: :class:`Tencentcloud::cbs::V20170312::ApplySnapshotGroupResponse`
+        def ApplySnapshotGroup(request)
+          body = send_request('ApplySnapshotGroup', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ApplySnapshotGroupResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（AttachDisks）用于挂载云硬盘。
 
         # * 支持批量操作，将多块云盘挂载到同一云主机。如果多个云盘中存在不允许挂载的云盘，则操作不执行，返回特定的错误码。
@@ -273,6 +300,32 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（CreateSnapshotGroup）用于创建快照组。
+        # * 创建快照组的云硬盘列表必须挂载在同一实例上；
+        # * 可选择挂载在实例上的全部或部分盘创建快照组。
+
+        # @param request: Request instance for CreateSnapshotGroup.
+        # @type request: :class:`Tencentcloud::cbs::V20170312::CreateSnapshotGroupRequest`
+        # @rtype: :class:`Tencentcloud::cbs::V20170312::CreateSnapshotGroupResponse`
+        def CreateSnapshotGroup(request)
+          body = send_request('CreateSnapshotGroup', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateSnapshotGroupResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（DeleteAutoSnapshotPolicies）用于删除定期快照策略。
 
         # *  支持批量操作。如果多个定期快照策略存在无法删除的，则操作不执行，以特定错误码返回。
@@ -309,6 +362,32 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteDiskBackupsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（DeleteSnapshotGroup）用于删除快照组，一次调用仅支持删除一个快照组。
+        # * 默认会删除快照组内的所有快照；
+        # * 如果快照组内的快照有关联镜像，则删除失败，所有快照均不会删除；如果需要同时删除快照绑定的镜像，可传入参数DeleteBindImages等于true。
+
+        # @param request: Request instance for DeleteSnapshotGroup.
+        # @type request: :class:`Tencentcloud::cbs::V20170312::DeleteSnapshotGroupRequest`
+        # @rtype: :class:`Tencentcloud::cbs::V20170312::DeleteSnapshotGroupResponse`
+        def DeleteSnapshotGroup(request)
+          body = send_request('DeleteSnapshotGroup', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteSnapshotGroupResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -518,6 +597,32 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeInstancesDiskNumResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（DescribeSnapshotGroups）用于查询快照组列表。
+        # * 可以根据快照组ID、快照组状态、快照组关联的快照ID等来查询快照组列表，不同条件之间为与(AND)的关系，过滤信息详细请见过滤器`Filter`。
+        # * 如果参数为空，返回当前用户一定数量（`Limit`所指定的数量，默认为20）的快照组列表。
+
+        # @param request: Request instance for DescribeSnapshotGroups.
+        # @type request: :class:`Tencentcloud::cbs::V20170312::DescribeSnapshotGroupsRequest`
+        # @rtype: :class:`Tencentcloud::cbs::V20170312::DescribeSnapshotGroupsResponse`
+        def DescribeSnapshotGroups(request)
+          body = send_request('DescribeSnapshotGroups', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeSnapshotGroupsResponse.new
             model.deserialize(response['Response'])
             model
           else
