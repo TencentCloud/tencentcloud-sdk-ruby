@@ -730,6 +730,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取产品售卖规格
+
+        # @param request: Request instance for DescribeProductSKUList.
+        # @type request: :class:`Tencentcloud::mqtt::V20240516::DescribeProductSKUListRequest`
+        # @rtype: :class:`Tencentcloud::mqtt::V20240516::DescribeProductSKUListResponse`
+        def DescribeProductSKUList(request)
+          body = send_request('DescribeProductSKUList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeProductSKUListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询mqtt主题详情
 
         # @param request: Request instance for DescribeTopic.

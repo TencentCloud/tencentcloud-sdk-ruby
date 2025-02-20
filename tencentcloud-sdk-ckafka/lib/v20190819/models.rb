@@ -7995,10 +7995,12 @@ module TencentCloud
         # @type ElasticFloatBandwidth: Integer
         # @param CustomCertId: ssl自定义证书id
         # @type CustomCertId: String
+        # @param UncleanLeaderElectionEnable: 集群topic默认 unclean.leader.election.enable配置: 1 开启 0 关闭
+        # @type UncleanLeaderElectionEnable: Integer
 
-        attr_accessor :InstanceId, :InstanceName, :VipList, :Vip, :Vport, :Status, :Bandwidth, :DiskSize, :ZoneId, :VpcId, :SubnetId, :Healthy, :HealthyMessage, :CreateTime, :MsgRetentionTime, :Config, :RemainderPartitions, :RemainderTopics, :CreatedPartitions, :CreatedTopics, :Tags, :ExpireTime, :ZoneIds, :Version, :MaxGroupNum, :Cvm, :InstanceType, :Features, :RetentionTimeConfig, :MaxConnection, :PublicNetwork, :DeleteRouteTimestamp, :RemainingPartitions, :RemainingTopics, :DynamicDiskConfig, :InstanceChargeType, :ClusterType, :FreePartitionNumber, :ElasticFloatBandwidth, :CustomCertId
+        attr_accessor :InstanceId, :InstanceName, :VipList, :Vip, :Vport, :Status, :Bandwidth, :DiskSize, :ZoneId, :VpcId, :SubnetId, :Healthy, :HealthyMessage, :CreateTime, :MsgRetentionTime, :Config, :RemainderPartitions, :RemainderTopics, :CreatedPartitions, :CreatedTopics, :Tags, :ExpireTime, :ZoneIds, :Version, :MaxGroupNum, :Cvm, :InstanceType, :Features, :RetentionTimeConfig, :MaxConnection, :PublicNetwork, :DeleteRouteTimestamp, :RemainingPartitions, :RemainingTopics, :DynamicDiskConfig, :InstanceChargeType, :ClusterType, :FreePartitionNumber, :ElasticFloatBandwidth, :CustomCertId, :UncleanLeaderElectionEnable
 
-        def initialize(instanceid=nil, instancename=nil, viplist=nil, vip=nil, vport=nil, status=nil, bandwidth=nil, disksize=nil, zoneid=nil, vpcid=nil, subnetid=nil, healthy=nil, healthymessage=nil, createtime=nil, msgretentiontime=nil, config=nil, remainderpartitions=nil, remaindertopics=nil, createdpartitions=nil, createdtopics=nil, tags=nil, expiretime=nil, zoneids=nil, version=nil, maxgroupnum=nil, cvm=nil, instancetype=nil, features=nil, retentiontimeconfig=nil, maxconnection=nil, publicnetwork=nil, deleteroutetimestamp=nil, remainingpartitions=nil, remainingtopics=nil, dynamicdiskconfig=nil, instancechargetype=nil, clustertype=nil, freepartitionnumber=nil, elasticfloatbandwidth=nil, customcertid=nil)
+        def initialize(instanceid=nil, instancename=nil, viplist=nil, vip=nil, vport=nil, status=nil, bandwidth=nil, disksize=nil, zoneid=nil, vpcid=nil, subnetid=nil, healthy=nil, healthymessage=nil, createtime=nil, msgretentiontime=nil, config=nil, remainderpartitions=nil, remaindertopics=nil, createdpartitions=nil, createdtopics=nil, tags=nil, expiretime=nil, zoneids=nil, version=nil, maxgroupnum=nil, cvm=nil, instancetype=nil, features=nil, retentiontimeconfig=nil, maxconnection=nil, publicnetwork=nil, deleteroutetimestamp=nil, remainingpartitions=nil, remainingtopics=nil, dynamicdiskconfig=nil, instancechargetype=nil, clustertype=nil, freepartitionnumber=nil, elasticfloatbandwidth=nil, customcertid=nil, uncleanleaderelectionenable=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @VipList = viplist
@@ -8039,6 +8041,7 @@ module TencentCloud
           @FreePartitionNumber = freepartitionnumber
           @ElasticFloatBandwidth = elasticfloatbandwidth
           @CustomCertId = customcertid
+          @UncleanLeaderElectionEnable = uncleanleaderelectionenable
         end
 
         def deserialize(params)
@@ -8105,6 +8108,7 @@ module TencentCloud
           @FreePartitionNumber = params['FreePartitionNumber']
           @ElasticFloatBandwidth = params['ElasticFloatBandwidth']
           @CustomCertId = params['CustomCertId']
+          @UncleanLeaderElectionEnable = params['UncleanLeaderElectionEnable']
         end
       end
 

@@ -272,7 +272,7 @@ module TencentCloud
         # @type DomesticInternationalTag: String
         # @param DateStart: 客票生效日期
         # @type DateStart: String
-        # @param DateEnd: 有效截至日期
+        # @param DateEnd: 有效截止日期
         # @type DateEnd: String
         # @param Endorsement: 签注
         # @type Endorsement: String
@@ -3458,10 +3458,14 @@ module TencentCloud
         # @type FareBasis: String
         # @param Allow: 免费行李额
         # @type Allow: String
+        # @param DateStart: 客票生效日期
+        # @type DateStart: String
+        # @param DateEnd: 有效截止日期
+        # @type DateEnd: String
 
-        attr_accessor :TerminalGetOn, :TerminalGetOff, :Carrier, :FlightNumber, :Seat, :DateGetOn, :TimeGetOn, :FareBasis, :Allow
+        attr_accessor :TerminalGetOn, :TerminalGetOff, :Carrier, :FlightNumber, :Seat, :DateGetOn, :TimeGetOn, :FareBasis, :Allow, :DateStart, :DateEnd
 
-        def initialize(terminalgeton=nil, terminalgetoff=nil, carrier=nil, flightnumber=nil, seat=nil, dategeton=nil, timegeton=nil, farebasis=nil, allow=nil)
+        def initialize(terminalgeton=nil, terminalgetoff=nil, carrier=nil, flightnumber=nil, seat=nil, dategeton=nil, timegeton=nil, farebasis=nil, allow=nil, datestart=nil, dateend=nil)
           @TerminalGetOn = terminalgeton
           @TerminalGetOff = terminalgetoff
           @Carrier = carrier
@@ -3471,6 +3475,8 @@ module TencentCloud
           @TimeGetOn = timegeton
           @FareBasis = farebasis
           @Allow = allow
+          @DateStart = datestart
+          @DateEnd = dateend
         end
 
         def deserialize(params)
@@ -3483,6 +3489,8 @@ module TencentCloud
           @TimeGetOn = params['TimeGetOn']
           @FareBasis = params['FareBasis']
           @Allow = params['Allow']
+          @DateStart = params['DateStart']
+          @DateEnd = params['DateEnd']
         end
       end
 
@@ -13277,10 +13285,18 @@ module TencentCloud
         # @type EstateNumber: String
         # @param AreaUnit: 面积单位，仅不动产经营租赁服务发票返回
         # @type AreaUnit: String
+        # @param Traveler: 出行人，仅旅客运输服务发票返回
+        # @type Traveler: String
+        # @param TravelerID: 有效身份证件号，仅旅客运输服务发票返回
+        # @type TravelerID: String
+        # @param TravelDate: 出行日期，仅旅客运输服务发票返回
+        # @type TravelDate: String
+        # @param TravelLevel: 等级，仅旅客运输服务发票返回
+        # @type TravelLevel: String
 
-        attr_accessor :Name, :Quantity, :Specification, :Price, :Total, :TaxRate, :Tax, :Unit, :VehicleType, :VehicleBrand, :DeparturePlace, :ArrivalPlace, :TransportItemsName, :PlaceOfBuildingService, :BuildingName, :EstateNumber, :AreaUnit
+        attr_accessor :Name, :Quantity, :Specification, :Price, :Total, :TaxRate, :Tax, :Unit, :VehicleType, :VehicleBrand, :DeparturePlace, :ArrivalPlace, :TransportItemsName, :PlaceOfBuildingService, :BuildingName, :EstateNumber, :AreaUnit, :Traveler, :TravelerID, :TravelDate, :TravelLevel
 
-        def initialize(name=nil, quantity=nil, specification=nil, price=nil, total=nil, taxrate=nil, tax=nil, unit=nil, vehicletype=nil, vehiclebrand=nil, departureplace=nil, arrivalplace=nil, transportitemsname=nil, placeofbuildingservice=nil, buildingname=nil, estatenumber=nil, areaunit=nil)
+        def initialize(name=nil, quantity=nil, specification=nil, price=nil, total=nil, taxrate=nil, tax=nil, unit=nil, vehicletype=nil, vehiclebrand=nil, departureplace=nil, arrivalplace=nil, transportitemsname=nil, placeofbuildingservice=nil, buildingname=nil, estatenumber=nil, areaunit=nil, traveler=nil, travelerid=nil, traveldate=nil, travellevel=nil)
           @Name = name
           @Quantity = quantity
           @Specification = specification
@@ -13298,6 +13314,10 @@ module TencentCloud
           @BuildingName = buildingname
           @EstateNumber = estatenumber
           @AreaUnit = areaunit
+          @Traveler = traveler
+          @TravelerID = travelerid
+          @TravelDate = traveldate
+          @TravelLevel = travellevel
         end
 
         def deserialize(params)
@@ -13318,6 +13338,10 @@ module TencentCloud
           @BuildingName = params['BuildingName']
           @EstateNumber = params['EstateNumber']
           @AreaUnit = params['AreaUnit']
+          @Traveler = params['Traveler']
+          @TravelerID = params['TravelerID']
+          @TravelDate = params['TravelDate']
+          @TravelLevel = params['TravelLevel']
         end
       end
 

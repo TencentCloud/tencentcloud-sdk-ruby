@@ -101,6 +101,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 取消 Online DDL 任务
+
+        # @param request: Request instance for CancelOnlineDDLJob.
+        # @type request: :class:`Tencentcloud::dcdb::V20180411::CancelOnlineDDLJobRequest`
+        # @rtype: :class:`Tencentcloud::dcdb::V20180411::CancelOnlineDDLJobResponse`
+        def CancelOnlineDDLJob(request)
+          body = send_request('CancelOnlineDDLJob', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CancelOnlineDDLJobResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（CloneAccount）用于克隆实例账户。
 
         # @param request: Request instance for CloneAccount.
@@ -978,6 +1002,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeLogFileRetentionPeriodResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询Online DDL 任务详情
+
+        # @param request: Request instance for DescribeOnlineDDLJob.
+        # @type request: :class:`Tencentcloud::dcdb::V20180411::DescribeOnlineDDLJobRequest`
+        # @rtype: :class:`Tencentcloud::dcdb::V20180411::DescribeOnlineDDLJobResponse`
+        def DescribeOnlineDDLJob(request)
+          body = send_request('DescribeOnlineDDLJob', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeOnlineDDLJobResponse.new
             model.deserialize(response['Response'])
             model
           else

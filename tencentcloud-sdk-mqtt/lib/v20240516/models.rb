@@ -1765,6 +1765,50 @@ module TencentCloud
         end
       end
 
+      # DescribeProductSKUList请求参数结构体
+      class DescribeProductSKUListRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeProductSKUList返回参数结构体
+      class DescribeProductSKUListResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 查询总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+        # @param MQTTProductSkuList: mqtt商品配置信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MQTTProductSkuList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :MQTTProductSkuList, :RequestId
+
+        def initialize(totalcount=nil, mqttproductskulist=nil, requestid=nil)
+          @TotalCount = totalcount
+          @MQTTProductSkuList = mqttproductskulist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['MQTTProductSkuList'].nil?
+            @MQTTProductSkuList = []
+            params['MQTTProductSkuList'].each do |i|
+              productskuitem_tmp = ProductSkuItem.new
+              productskuitem_tmp.deserialize(i)
+              @MQTTProductSkuList << productskuitem_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeTopicList请求参数结构体
       class DescribeTopicListRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID
@@ -2771,6 +2815,101 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 价格标签信息
+      class PriceTag < TencentCloud::Common::AbstractModel
+        # @param Name: 计价名称
+        # @type Name: String
+        # @param Category: 计价类别
+        # @type Category: String
+        # @param Code: 计费项标签
+        # @type Code: String
+        # @param Step: 步长
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Step: Integer
+
+        attr_accessor :Name, :Category, :Code, :Step
+
+        def initialize(name=nil, category=nil, code=nil, step=nil)
+          @Name = name
+          @Category = category
+          @Code = code
+          @Step = step
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Category = params['Category']
+          @Code = params['Code']
+          @Step = params['Step']
+        end
+      end
+
+      # MQTT ProductSkuItem
+      class ProductSkuItem < TencentCloud::Common::AbstractModel
+        # @param InstanceType: 规格类型
+        # BASIC：基础版
+        # PRO ：专业版
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceType: String
+        # @param SkuCode: 规格代码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SkuCode: String
+        # @param OnSale: 是否售卖
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OnSale: Boolean
+        # @param TopicNumLimit: topic num限制
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TopicNumLimit: Integer
+        # @param TpsLimit: tps
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TpsLimit: Integer
+        # @param ClientNumLimit: 客户端连接数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClientNumLimit: Integer
+        # @param MaxSubscriptionPerClient: 单客户端最大订阅数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MaxSubscriptionPerClient: Integer
+        # @param AuthorizationPolicyLimit: 授权规则条数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AuthorizationPolicyLimit: Integer
+        # @param PriceTags: 计费项信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PriceTags: Array
+
+        attr_accessor :InstanceType, :SkuCode, :OnSale, :TopicNumLimit, :TpsLimit, :ClientNumLimit, :MaxSubscriptionPerClient, :AuthorizationPolicyLimit, :PriceTags
+
+        def initialize(instancetype=nil, skucode=nil, onsale=nil, topicnumlimit=nil, tpslimit=nil, clientnumlimit=nil, maxsubscriptionperclient=nil, authorizationpolicylimit=nil, pricetags=nil)
+          @InstanceType = instancetype
+          @SkuCode = skucode
+          @OnSale = onsale
+          @TopicNumLimit = topicnumlimit
+          @TpsLimit = tpslimit
+          @ClientNumLimit = clientnumlimit
+          @MaxSubscriptionPerClient = maxsubscriptionperclient
+          @AuthorizationPolicyLimit = authorizationpolicylimit
+          @PriceTags = pricetags
+        end
+
+        def deserialize(params)
+          @InstanceType = params['InstanceType']
+          @SkuCode = params['SkuCode']
+          @OnSale = params['OnSale']
+          @TopicNumLimit = params['TopicNumLimit']
+          @TpsLimit = params['TpsLimit']
+          @ClientNumLimit = params['ClientNumLimit']
+          @MaxSubscriptionPerClient = params['MaxSubscriptionPerClient']
+          @AuthorizationPolicyLimit = params['AuthorizationPolicyLimit']
+          unless params['PriceTags'].nil?
+            @PriceTags = []
+            params['PriceTags'].each do |i|
+              pricetag_tmp = PriceTag.new
+              pricetag_tmp.deserialize(i)
+              @PriceTags << pricetag_tmp
+            end
+          end
         end
       end
 

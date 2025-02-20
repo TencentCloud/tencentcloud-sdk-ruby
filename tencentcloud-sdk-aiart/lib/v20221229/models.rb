@@ -96,6 +96,29 @@ module TencentCloud
         end
       end
 
+      # 融合信息
+      class FaceInfo < TencentCloud::Common::AbstractModel
+        # @param ImageUrls: 用户图 URL 列表
+        # @type ImageUrls: Array
+        # @param TemplateFaceRect: 模版图人脸坐标。
+        # @type TemplateFaceRect: :class:`Tencentcloud::Aiart.v20221229.models.Rect`
+
+        attr_accessor :ImageUrls, :TemplateFaceRect
+
+        def initialize(imageurls=nil, templatefacerect=nil)
+          @ImageUrls = imageurls
+          @TemplateFaceRect = templatefacerect
+        end
+
+        def deserialize(params)
+          @ImageUrls = params['ImageUrls']
+          unless params['TemplateFaceRect'].nil?
+            @TemplateFaceRect = Rect.new
+            @TemplateFaceRect.deserialize(params['TemplateFaceRect'])
+          end
+        end
+      end
+
       # 训练图像质量过滤开关配置。
       # 支持开启或关闭对训练图像分辨率下限、脸部区域大小、脸部遮挡、脸部角度的过滤，默认开启以上过滤。
       # 如果训练图像内包含多人脸或无人脸、和 Base 人像不为同一人也将被过滤，不可关闭该过滤条件。
@@ -595,6 +618,63 @@ module TencentCloud
         end
       end
 
+      # QueryGlamPicJob请求参数结构体
+      class QueryGlamPicJobRequest < TencentCloud::Common::AbstractModel
+        # @param JobId: 任务ID。
+        # @type JobId: String
+
+        attr_accessor :JobId
+
+        def initialize(jobid=nil)
+          @JobId = jobid
+        end
+
+        def deserialize(params)
+          @JobId = params['JobId']
+        end
+      end
+
+      # QueryGlamPicJob返回参数结构体
+      class QueryGlamPicJobResponse < TencentCloud::Common::AbstractModel
+        # @param JobStatusCode: 当前任务状态码：
+        # 1：等待中、2：运行中、4：处理失败、5：处理完成。
+        # @type JobStatusCode: String
+        # @param JobStatusMsg: 当前任务状态：排队中、处理中、处理失败或者处理完成。
+        # @type JobStatusMsg: String
+        # @param JobErrorCode: 任务处理失败错误码。
+        # @type JobErrorCode: String
+        # @param JobErrorMsg: 任务处理失败错误信息。
+        # @type JobErrorMsg: String
+        # @param ResultImage: 生成图 URL 列表，有效期1小时，请及时保存。
+        # @type ResultImage: Array
+        # @param ResultDetails: 结果 detail 数组，Success 代表成功。
+        # @type ResultDetails: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :JobStatusCode, :JobStatusMsg, :JobErrorCode, :JobErrorMsg, :ResultImage, :ResultDetails, :RequestId
+
+        def initialize(jobstatuscode=nil, jobstatusmsg=nil, joberrorcode=nil, joberrormsg=nil, resultimage=nil, resultdetails=nil, requestid=nil)
+          @JobStatusCode = jobstatuscode
+          @JobStatusMsg = jobstatusmsg
+          @JobErrorCode = joberrorcode
+          @JobErrorMsg = joberrormsg
+          @ResultImage = resultimage
+          @ResultDetails = resultdetails
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @JobStatusCode = params['JobStatusCode']
+          @JobStatusMsg = params['JobStatusMsg']
+          @JobErrorCode = params['JobErrorCode']
+          @JobErrorMsg = params['JobErrorMsg']
+          @ResultImage = params['ResultImage']
+          @ResultDetails = params['ResultDetails']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # QueryMemeJob请求参数结构体
       class QueryMemeJobRequest < TencentCloud::Common::AbstractModel
         # @param JobId: 查询表情动图生成任务 ID。
@@ -755,6 +835,34 @@ module TencentCloud
           @JobErrorCode = params['JobErrorCode']
           @JobErrorMsg = params['JobErrorMsg']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 人脸框坐标
+      class Rect < TencentCloud::Common::AbstractModel
+        # @param X: 人脸框左上角横坐标。
+        # @type X: Integer
+        # @param Y: 人脸框左上角纵坐标。
+        # @type Y: Integer
+        # @param Width: 人脸框宽度。
+        # @type Width: Integer
+        # @param Height: 人脸框高度。
+        # @type Height: Integer
+
+        attr_accessor :X, :Y, :Width, :Height
+
+        def initialize(x=nil, y=nil, width=nil, height=nil)
+          @X = x
+          @Y = y
+          @Width = width
+          @Height = height
+        end
+
+        def deserialize(params)
+          @X = params['X']
+          @Y = params['Y']
+          @Width = params['Width']
+          @Height = params['Height']
         end
       end
 
@@ -999,6 +1107,96 @@ module TencentCloud
       # SubmitDrawPortraitJob返回参数结构体
       class SubmitDrawPortraitJobResponse < TencentCloud::Common::AbstractModel
         # @param JobId: 提交生成写真图片任务 ID。
+        # @type JobId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :JobId, :RequestId
+
+        def initialize(jobid=nil, requestid=nil)
+          @JobId = jobid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @JobId = params['JobId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # SubmitGlamPicJob请求参数结构体
+      class SubmitGlamPicJobRequest < TencentCloud::Common::AbstractModel
+        # @param TemplateUrl: 美照模板图 URL。
+        # 图片限制：模板图中最多出现5张人脸，单边分辨率大于300，转成 Base64 字符串后小于 10MB，格式支持 jpg、jpeg、png、bmp、tiff、webp。
+        # @type TemplateUrl: String
+        # @param FaceInfos: 用户图 URL 列表，以及模板图中需要替换成用户的人脸框信息。
+        # 一张美照中可包含1 ~ 5个用户形象。每个用户需上传1 ~ 6张照片，如果图中存在多个人脸将取最大人脸。
+        # 模板图中的人脸数量需要大于等于用户个数。如果不传每个用户在模板图中的人脸框位置，默认按照模板图人脸框从大到小的顺序进行替换。如需自定义顺序，需要依次上传每个用户在模板图中的人脸框位置。
+        # 图片限制：每张图片转成 Base64 字符串后小于 10MB，格式支持 jpg、jpeg、png、bmp、tiff、webp。建议使用单人、正脸、脸部区域占比较大、脸部清晰无遮挡、无大角度偏转、无夸张表情的用户图。
+        # @type FaceInfos: Array
+        # @param Num: 美照生成数量。
+        # 支持1 ~ 4张，默认生成4张。
+        # @type Num: Integer
+        # @param Style: 美照生成风格。
+        # 仅对单人美照生效，单人可支持选择不同风格。需按照美照生成数量，在数组中逐一填入每张美照的风格名称。如果不传，默认取不重复的随机风格顺序。
+        # 多人美照只支持 balanced 一种风格，该参数不生效。
+        # 可选风格：<ul><li>real：面部相似度更高。</li><li>balanced：平衡面部真实感和美观度。</li><li>extured：脸部皮肤更具真实感。</li><li>beautiful：脸部美观度更高。</li></ul>
+        # @type Style: Array
+        # @param Similarity: 相似度系数，越高越像用户图。
+        # 取值范围[0, 1]，默认为0.6。
+        # @type Similarity: Float
+        # @param Clarity: 超分选项，默认不做超分，可选开启。
+        # x2：2倍超分
+        # x4：4倍超分
+        # @type Clarity: String
+        # @param LogoAdd: 为生成结果图添加标识的开关，默认为1。
+        # 1：添加标识。
+        # 0：不添加标识。
+        # 其他数值：默认按1处理。
+        # 建议您使用显著标识来提示结果图是 AI 生成的图片。
+        # @type LogoAdd: Integer
+        # @param LogoParam: 标识内容设置。
+        # 默认在生成结果图右下角添加“图片由 AI 生成”字样，您可根据自身需要替换为其他的标识图片。
+        # @type LogoParam: :class:`Tencentcloud::Aiart.v20221229.models.LogoParam`
+
+        attr_accessor :TemplateUrl, :FaceInfos, :Num, :Style, :Similarity, :Clarity, :LogoAdd, :LogoParam
+
+        def initialize(templateurl=nil, faceinfos=nil, num=nil, style=nil, similarity=nil, clarity=nil, logoadd=nil, logoparam=nil)
+          @TemplateUrl = templateurl
+          @FaceInfos = faceinfos
+          @Num = num
+          @Style = style
+          @Similarity = similarity
+          @Clarity = clarity
+          @LogoAdd = logoadd
+          @LogoParam = logoparam
+        end
+
+        def deserialize(params)
+          @TemplateUrl = params['TemplateUrl']
+          unless params['FaceInfos'].nil?
+            @FaceInfos = []
+            params['FaceInfos'].each do |i|
+              faceinfo_tmp = FaceInfo.new
+              faceinfo_tmp.deserialize(i)
+              @FaceInfos << faceinfo_tmp
+            end
+          end
+          @Num = params['Num']
+          @Style = params['Style']
+          @Similarity = params['Similarity']
+          @Clarity = params['Clarity']
+          @LogoAdd = params['LogoAdd']
+          unless params['LogoParam'].nil?
+            @LogoParam = LogoParam.new
+            @LogoParam.deserialize(params['LogoParam'])
+          end
+        end
+      end
+
+      # SubmitGlamPicJob返回参数结构体
+      class SubmitGlamPicJobResponse < TencentCloud::Common::AbstractModel
+        # @param JobId: 任务ID。
         # @type JobId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

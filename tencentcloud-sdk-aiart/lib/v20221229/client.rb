@@ -185,6 +185,34 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # AI 美照接口将根据模板为用户生成精美照片。分为提交任务和查询任务2个接口。
+        # - 提交任务：提交一个美照生成异步任务，获得任务 ID。
+        # - 查询任务：根据任务 ID 查询任务的处理状态、处理结果，任务处理完成后可获得生成图像结果。
+
+        # AI 美照默认提供1个并发，代表最多能同时处理1个已提交的任务，上一个任务处理完毕后才能开始处理下一个任务。
+
+        # @param request: Request instance for QueryGlamPicJob.
+        # @type request: :class:`Tencentcloud::aiart::V20221229::QueryGlamPicJobRequest`
+        # @rtype: :class:`Tencentcloud::aiart::V20221229::QueryGlamPicJobResponse`
+        def QueryGlamPicJob(request)
+          body = send_request('QueryGlamPicJob', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = QueryGlamPicJobResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 表情动图生成接口将静态照片制作成动态的表情包。分为提交任务和查询任务2个接口。
         # - 提交任务：提交一个表情动图生成异步任务，获得任务 ID。
         # - 查询任务：根据任务 ID 查询任务的处理状态、处理结果，任务处理完成后可获得生成图像结果。
@@ -340,6 +368,34 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = SubmitDrawPortraitJobResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # AI 美照接口将根据模板为用户生成精美照片。分为提交任务和查询任务2个接口。
+        # - 提交任务：提交一个美照生成异步任务，获得任务 ID。
+        # - 查询任务：根据任务 ID 查询任务的处理状态、处理结果，任务处理完成后可获得生成图像结果。
+
+        # AI 美照默认提供1个并发，代表最多能同时处理1个已提交的任务，上一个任务处理完毕后才能开始处理下一个任务。
+
+        # @param request: Request instance for SubmitGlamPicJob.
+        # @type request: :class:`Tencentcloud::aiart::V20221229::SubmitGlamPicJobRequest`
+        # @rtype: :class:`Tencentcloud::aiart::V20221229::SubmitGlamPicJobResponse`
+        def SubmitGlamPicJob(request)
+          body = send_request('SubmitGlamPicJob', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = SubmitGlamPicJobResponse.new
             model.deserialize(response['Response'])
             model
           else

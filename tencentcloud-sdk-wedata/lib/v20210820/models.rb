@@ -5254,6 +5254,58 @@ module TencentCloud
         end
       end
 
+      # 数据源环境信息
+      class DataSourceEnvInfo < TencentCloud::Common::AbstractModel
+        # @param Env: 环境
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Env: String
+        # @param DataSourceType: 数据源类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DataSourceType: String
+        # @param ClusterId: 集群id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterId: String
+        # @param Params: 配置信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Params: String
+        # @param ProjectId: 项目id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProjectId: String
+        # @param DataSourceId: 数据源id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DataSourceId: String
+        # @param EnvDataSourceId: env环境的数据源id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnvDataSourceId: String
+        # @param BizParams: 配置信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BizParams: String
+
+        attr_accessor :Env, :DataSourceType, :ClusterId, :Params, :ProjectId, :DataSourceId, :EnvDataSourceId, :BizParams
+
+        def initialize(env=nil, datasourcetype=nil, clusterid=nil, params=nil, projectid=nil, datasourceid=nil, envdatasourceid=nil, bizparams=nil)
+          @Env = env
+          @DataSourceType = datasourcetype
+          @ClusterId = clusterid
+          @Params = params
+          @ProjectId = projectid
+          @DataSourceId = datasourceid
+          @EnvDataSourceId = envdatasourceid
+          @BizParams = bizparams
+        end
+
+        def deserialize(params)
+          @Env = params['Env']
+          @DataSourceType = params['DataSourceType']
+          @ClusterId = params['ClusterId']
+          @Params = params['Params']
+          @ProjectId = params['ProjectId']
+          @DataSourceId = params['DataSourceId']
+          @EnvDataSourceId = params['EnvDataSourceId']
+          @BizParams = params['BizParams']
+        end
+      end
+
       # 数据源对象
       class DataSourceInfo < TencentCloud::Common::AbstractModel
         # @param DatabaseName: 若数据源列表为绑定数据库，则为db名称
@@ -5361,10 +5413,25 @@ module TencentCloud
         # @param ConnectStatus: 数据源连接状态
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ConnectStatus: :class:`Tencentcloud::Wedata.v20210820.models.DataSourceConnectStatus`
+        # @param DisplayType: 数据源展示类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DisplayType: String
+        # @param Env: 数据源环境
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Env: String
+        # @param DatasourceUrn: 数据源唯一标识
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DatasourceUrn: String
+        # @param Model: 是否标准模式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Model: String
+        # @param DataSourceEnvInfos:  数据源环境信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DataSourceEnvInfos: Array
 
-        attr_accessor :DatabaseName, :Description, :ID, :Instance, :Name, :Region, :Type, :ClusterId, :AppId, :BizParams, :Category, :Display, :OwnerAccount, :Params, :Status, :OwnerAccountName, :ClusterName, :OwnerProjectId, :OwnerProjectName, :OwnerProjectIdent, :AuthorityProjectName, :AuthorityUserName, :Edit, :Author, :Deliver, :DataSourceStatus, :CreateTime, :ParamsString, :BizParamsString, :ModifiedTime, :ShowType, :ProductId, :DevelopmentId, :DevelopmentParams, :ConnectStatus
+        attr_accessor :DatabaseName, :Description, :ID, :Instance, :Name, :Region, :Type, :ClusterId, :AppId, :BizParams, :Category, :Display, :OwnerAccount, :Params, :Status, :OwnerAccountName, :ClusterName, :OwnerProjectId, :OwnerProjectName, :OwnerProjectIdent, :AuthorityProjectName, :AuthorityUserName, :Edit, :Author, :Deliver, :DataSourceStatus, :CreateTime, :ParamsString, :BizParamsString, :ModifiedTime, :ShowType, :ProductId, :DevelopmentId, :DevelopmentParams, :ConnectStatus, :DisplayType, :Env, :DatasourceUrn, :Model, :DataSourceEnvInfos
 
-        def initialize(databasename=nil, description=nil, id=nil, instance=nil, name=nil, region=nil, type=nil, clusterid=nil, appid=nil, bizparams=nil, category=nil, display=nil, owneraccount=nil, params=nil, status=nil, owneraccountname=nil, clustername=nil, ownerprojectid=nil, ownerprojectname=nil, ownerprojectident=nil, authorityprojectname=nil, authorityusername=nil, edit=nil, author=nil, deliver=nil, datasourcestatus=nil, createtime=nil, paramsstring=nil, bizparamsstring=nil, modifiedtime=nil, showtype=nil, productid=nil, developmentid=nil, developmentparams=nil, connectstatus=nil)
+        def initialize(databasename=nil, description=nil, id=nil, instance=nil, name=nil, region=nil, type=nil, clusterid=nil, appid=nil, bizparams=nil, category=nil, display=nil, owneraccount=nil, params=nil, status=nil, owneraccountname=nil, clustername=nil, ownerprojectid=nil, ownerprojectname=nil, ownerprojectident=nil, authorityprojectname=nil, authorityusername=nil, edit=nil, author=nil, deliver=nil, datasourcestatus=nil, createtime=nil, paramsstring=nil, bizparamsstring=nil, modifiedtime=nil, showtype=nil, productid=nil, developmentid=nil, developmentparams=nil, connectstatus=nil, displaytype=nil, env=nil, datasourceurn=nil, model=nil, datasourceenvinfos=nil)
           @DatabaseName = databasename
           @Description = description
           @ID = id
@@ -5400,6 +5467,11 @@ module TencentCloud
           @DevelopmentId = developmentid
           @DevelopmentParams = developmentparams
           @ConnectStatus = connectstatus
+          @DisplayType = displaytype
+          @Env = env
+          @DatasourceUrn = datasourceurn
+          @Model = model
+          @DataSourceEnvInfos = datasourceenvinfos
         end
 
         def deserialize(params)
@@ -5440,6 +5512,18 @@ module TencentCloud
           unless params['ConnectStatus'].nil?
             @ConnectStatus = DataSourceConnectStatus.new
             @ConnectStatus.deserialize(params['ConnectStatus'])
+          end
+          @DisplayType = params['DisplayType']
+          @Env = params['Env']
+          @DatasourceUrn = params['DatasourceUrn']
+          @Model = params['Model']
+          unless params['DataSourceEnvInfos'].nil?
+            @DataSourceEnvInfos = []
+            params['DataSourceEnvInfos'].each do |i|
+              datasourceenvinfo_tmp = DataSourceEnvInfo.new
+              datasourceenvinfo_tmp.deserialize(i)
+              @DataSourceEnvInfos << datasourceenvinfo_tmp
+            end
           end
         end
       end
@@ -22370,10 +22454,13 @@ module TencentCloud
         # @param Model: 项目类型，SIMPLE：简单模式 STANDARD：标准模式
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Model: String
+        # @param SecondModuleList: 二级菜单
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SecondModuleList: Array
 
-        attr_accessor :TenantId, :ProjectId, :ProjectName, :DisplayName, :Region, :Description, :CreateTime, :Creator, :Tenant, :AdminUsers, :Clusters, :Params, :Status, :Model
+        attr_accessor :TenantId, :ProjectId, :ProjectName, :DisplayName, :Region, :Description, :CreateTime, :Creator, :Tenant, :AdminUsers, :Clusters, :Params, :Status, :Model, :SecondModuleList
 
-        def initialize(tenantid=nil, projectid=nil, projectname=nil, displayname=nil, region=nil, description=nil, createtime=nil, creator=nil, tenant=nil, adminusers=nil, clusters=nil, params=nil, status=nil, model=nil)
+        def initialize(tenantid=nil, projectid=nil, projectname=nil, displayname=nil, region=nil, description=nil, createtime=nil, creator=nil, tenant=nil, adminusers=nil, clusters=nil, params=nil, status=nil, model=nil, secondmodulelist=nil)
           @TenantId = tenantid
           @ProjectId = projectid
           @ProjectName = projectname
@@ -22388,6 +22475,7 @@ module TencentCloud
           @Params = params
           @Status = status
           @Model = model
+          @SecondModuleList = secondmodulelist
         end
 
         def deserialize(params)
@@ -22425,6 +22513,7 @@ module TencentCloud
           @Params = params['Params']
           @Status = params['Status']
           @Model = params['Model']
+          @SecondModuleList = params['SecondModuleList']
         end
       end
 

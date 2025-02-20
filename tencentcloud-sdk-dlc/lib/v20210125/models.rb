@@ -165,14 +165,17 @@ module TencentCloud
         # @type Location: String
         # @param Asset: 基础对象
         # @type Asset: :class:`Tencentcloud::Dlc.v20210125.models.Asset`
+        # @param DatasourceConnectionName: 数据源连接名
+        # @type DatasourceConnectionName: String
 
-        attr_accessor :CurrentName, :SchemaName, :Location, :Asset
+        attr_accessor :CurrentName, :SchemaName, :Location, :Asset, :DatasourceConnectionName
 
-        def initialize(currentname=nil, schemaname=nil, location=nil, asset=nil)
+        def initialize(currentname=nil, schemaname=nil, location=nil, asset=nil, datasourceconnectionname=nil)
           @CurrentName = currentname
           @SchemaName = schemaname
           @Location = location
           @Asset = asset
+          @DatasourceConnectionName = datasourceconnectionname
         end
 
         def deserialize(params)
@@ -183,6 +186,7 @@ module TencentCloud
             @Asset = Asset.new
             @Asset.deserialize(params['Asset'])
           end
+          @DatasourceConnectionName = params['DatasourceConnectionName']
         end
       end
 
@@ -212,14 +216,17 @@ module TencentCloud
         # @type CurrentValues: String
         # @param Partition: 分区
         # @type Partition: :class:`Tencentcloud::Dlc.v20210125.models.DMSPartition`
+        # @param DatasourceConnectionName: 数据源连接名
+        # @type DatasourceConnectionName: String
 
-        attr_accessor :CurrentDbName, :CurrentTableName, :CurrentValues, :Partition
+        attr_accessor :CurrentDbName, :CurrentTableName, :CurrentValues, :Partition, :DatasourceConnectionName
 
-        def initialize(currentdbname=nil, currenttablename=nil, currentvalues=nil, partition=nil)
+        def initialize(currentdbname=nil, currenttablename=nil, currentvalues=nil, partition=nil, datasourceconnectionname=nil)
           @CurrentDbName = currentdbname
           @CurrentTableName = currenttablename
           @CurrentValues = currentvalues
           @Partition = partition
+          @DatasourceConnectionName = datasourceconnectionname
         end
 
         def deserialize(params)
@@ -230,6 +237,7 @@ module TencentCloud
             @Partition = DMSPartition.new
             @Partition.deserialize(params['Partition'])
           end
+          @DatasourceConnectionName = params['DatasourceConnectionName']
         end
       end
 
@@ -287,10 +295,12 @@ module TencentCloud
         # @type Partitions: Array
         # @param Name: 当前表名
         # @type Name: String
+        # @param DatasourceConnectionName: 数据源连接名
+        # @type DatasourceConnectionName: String
 
-        attr_accessor :CurrentName, :CurrentDbName, :Asset, :Type, :DbName, :StorageSize, :RecordCount, :LifeTime, :DataUpdateTime, :StructUpdateTime, :LastAccessTime, :Sds, :Columns, :PartitionKeys, :ViewOriginalText, :ViewExpandedText, :Partitions, :Name
+        attr_accessor :CurrentName, :CurrentDbName, :Asset, :Type, :DbName, :StorageSize, :RecordCount, :LifeTime, :DataUpdateTime, :StructUpdateTime, :LastAccessTime, :Sds, :Columns, :PartitionKeys, :ViewOriginalText, :ViewExpandedText, :Partitions, :Name, :DatasourceConnectionName
 
-        def initialize(currentname=nil, currentdbname=nil, asset=nil, type=nil, dbname=nil, storagesize=nil, recordcount=nil, lifetime=nil, dataupdatetime=nil, structupdatetime=nil, lastaccesstime=nil, sds=nil, columns=nil, partitionkeys=nil, vieworiginaltext=nil, viewexpandedtext=nil, partitions=nil, name=nil)
+        def initialize(currentname=nil, currentdbname=nil, asset=nil, type=nil, dbname=nil, storagesize=nil, recordcount=nil, lifetime=nil, dataupdatetime=nil, structupdatetime=nil, lastaccesstime=nil, sds=nil, columns=nil, partitionkeys=nil, vieworiginaltext=nil, viewexpandedtext=nil, partitions=nil, name=nil, datasourceconnectionname=nil)
           @CurrentName = currentname
           @CurrentDbName = currentdbname
           @Asset = asset
@@ -309,6 +319,7 @@ module TencentCloud
           @ViewExpandedText = viewexpandedtext
           @Partitions = partitions
           @Name = name
+          @DatasourceConnectionName = datasourceconnectionname
         end
 
         def deserialize(params)
@@ -357,6 +368,7 @@ module TencentCloud
             end
           end
           @Name = params['Name']
+          @DatasourceConnectionName = params['DatasourceConnectionName']
         end
       end
 
@@ -1491,14 +1503,17 @@ module TencentCloud
         # @type Location: String
         # @param Name: 数据库名称
         # @type Name: String
+        # @param DatasourceConnectionName: 数据源连接名
+        # @type DatasourceConnectionName: String
 
-        attr_accessor :Asset, :SchemaName, :Location, :Name
+        attr_accessor :Asset, :SchemaName, :Location, :Name, :DatasourceConnectionName
 
-        def initialize(asset=nil, schemaname=nil, location=nil, name=nil)
+        def initialize(asset=nil, schemaname=nil, location=nil, name=nil, datasourceconnectionname=nil)
           @Asset = asset
           @SchemaName = schemaname
           @Location = location
           @Name = name
+          @DatasourceConnectionName = datasourceconnectionname
         end
 
         def deserialize(params)
@@ -1509,6 +1524,7 @@ module TencentCloud
           @SchemaName = params['SchemaName']
           @Location = params['Location']
           @Name = params['Name']
+          @DatasourceConnectionName = params['DatasourceConnectionName']
         end
       end
 
@@ -1562,10 +1578,12 @@ module TencentCloud
         # @type Partitions: Array
         # @param Name: 表名称
         # @type Name: String
+        # @param DatasourceConnectionName: 数据源连接名
+        # @type DatasourceConnectionName: String
 
-        attr_accessor :Asset, :Type, :DbName, :StorageSize, :RecordCount, :LifeTime, :DataUpdateTime, :StructUpdateTime, :LastAccessTime, :Sds, :Columns, :PartitionKeys, :ViewOriginalText, :ViewExpandedText, :Partitions, :Name
+        attr_accessor :Asset, :Type, :DbName, :StorageSize, :RecordCount, :LifeTime, :DataUpdateTime, :StructUpdateTime, :LastAccessTime, :Sds, :Columns, :PartitionKeys, :ViewOriginalText, :ViewExpandedText, :Partitions, :Name, :DatasourceConnectionName
 
-        def initialize(asset=nil, type=nil, dbname=nil, storagesize=nil, recordcount=nil, lifetime=nil, dataupdatetime=nil, structupdatetime=nil, lastaccesstime=nil, sds=nil, columns=nil, partitionkeys=nil, vieworiginaltext=nil, viewexpandedtext=nil, partitions=nil, name=nil)
+        def initialize(asset=nil, type=nil, dbname=nil, storagesize=nil, recordcount=nil, lifetime=nil, dataupdatetime=nil, structupdatetime=nil, lastaccesstime=nil, sds=nil, columns=nil, partitionkeys=nil, vieworiginaltext=nil, viewexpandedtext=nil, partitions=nil, name=nil, datasourceconnectionname=nil)
           @Asset = asset
           @Type = type
           @DbName = dbname
@@ -1582,6 +1600,7 @@ module TencentCloud
           @ViewExpandedText = viewexpandedtext
           @Partitions = partitions
           @Name = name
+          @DatasourceConnectionName = datasourceconnectionname
         end
 
         def deserialize(params)
@@ -1628,6 +1647,7 @@ module TencentCloud
             end
           end
           @Name = params['Name']
+          @DatasourceConnectionName = params['DatasourceConnectionName']
         end
       end
 
@@ -3199,10 +3219,12 @@ module TencentCloud
         # @type Params: Array
         # @param Sds: 存储对象
         # @type Sds: :class:`Tencentcloud::Dlc.v20210125.models.DMSSds`
+        # @param DatasourceConnectionName: 数据源连接名
+        # @type DatasourceConnectionName: String
 
-        attr_accessor :DatabaseName, :SchemaName, :TableName, :DataVersion, :Name, :Values, :StorageSize, :RecordCount, :CreateTime, :ModifiedTime, :LastAccessTime, :Params, :Sds
+        attr_accessor :DatabaseName, :SchemaName, :TableName, :DataVersion, :Name, :Values, :StorageSize, :RecordCount, :CreateTime, :ModifiedTime, :LastAccessTime, :Params, :Sds, :DatasourceConnectionName
 
-        def initialize(databasename=nil, schemaname=nil, tablename=nil, dataversion=nil, name=nil, values=nil, storagesize=nil, recordcount=nil, createtime=nil, modifiedtime=nil, lastaccesstime=nil, params=nil, sds=nil)
+        def initialize(databasename=nil, schemaname=nil, tablename=nil, dataversion=nil, name=nil, values=nil, storagesize=nil, recordcount=nil, createtime=nil, modifiedtime=nil, lastaccesstime=nil, params=nil, sds=nil, datasourceconnectionname=nil)
           @DatabaseName = databasename
           @SchemaName = schemaname
           @TableName = tablename
@@ -3216,6 +3238,7 @@ module TencentCloud
           @LastAccessTime = lastaccesstime
           @Params = params
           @Sds = sds
+          @DatasourceConnectionName = datasourceconnectionname
         end
 
         def deserialize(params)
@@ -3242,6 +3265,7 @@ module TencentCloud
             @Sds = DMSSds.new
             @Sds.deserialize(params['Sds'])
           end
+          @DatasourceConnectionName = params['DatasourceConnectionName']
         end
       end
 
@@ -5016,21 +5040,25 @@ module TencentCloud
         # @type Name: String
         # @param SchemaName: schema名称
         # @type SchemaName: String
-        # @param Pattern: 匹配规则
+        # @param Pattern: 匹配规则，只支持填*
         # @type Pattern: String
+        # @param DatasourceConnectionName: 数据源连接名
+        # @type DatasourceConnectionName: String
 
-        attr_accessor :Name, :SchemaName, :Pattern
+        attr_accessor :Name, :SchemaName, :Pattern, :DatasourceConnectionName
 
-        def initialize(name=nil, schemaname=nil, pattern=nil)
+        def initialize(name=nil, schemaname=nil, pattern=nil, datasourceconnectionname=nil)
           @Name = name
           @SchemaName = schemaname
           @Pattern = pattern
+          @DatasourceConnectionName = datasourceconnectionname
         end
 
         def deserialize(params)
           @Name = params['Name']
           @SchemaName = params['SchemaName']
           @Pattern = params['Pattern']
+          @DatasourceConnectionName = params['DatasourceConnectionName']
         end
       end
 
@@ -5099,10 +5127,12 @@ module TencentCloud
         # @type Limit: Integer
         # @param Expression: 表达式
         # @type Expression: String
+        # @param DatasourceConnectionName: 数据源连接名
+        # @type DatasourceConnectionName: String
 
-        attr_accessor :DatabaseName, :TableName, :SchemaName, :Name, :Values, :PartitionNames, :PartValues, :Filter, :MaxParts, :Offset, :Limit, :Expression
+        attr_accessor :DatabaseName, :TableName, :SchemaName, :Name, :Values, :PartitionNames, :PartValues, :Filter, :MaxParts, :Offset, :Limit, :Expression, :DatasourceConnectionName
 
-        def initialize(databasename=nil, tablename=nil, schemaname=nil, name=nil, values=nil, partitionnames=nil, partvalues=nil, filter=nil, maxparts=nil, offset=nil, limit=nil, expression=nil)
+        def initialize(databasename=nil, tablename=nil, schemaname=nil, name=nil, values=nil, partitionnames=nil, partvalues=nil, filter=nil, maxparts=nil, offset=nil, limit=nil, expression=nil, datasourceconnectionname=nil)
           @DatabaseName = databasename
           @TableName = tablename
           @SchemaName = schemaname
@@ -5115,6 +5145,7 @@ module TencentCloud
           @Offset = offset
           @Limit = limit
           @Expression = expression
+          @DatasourceConnectionName = datasourceconnectionname
         end
 
         def deserialize(params)
@@ -5130,6 +5161,7 @@ module TencentCloud
           @Offset = params['Offset']
           @Limit = params['Limit']
           @Expression = params['Expression']
+          @DatasourceConnectionName = params['DatasourceConnectionName']
         end
       end
 
@@ -5172,18 +5204,20 @@ module TencentCloud
         # @type SchemaName: String
         # @param Name: 表名称
         # @type Name: String
-        # @param Catalog: 数据目录
+        # @param Catalog: catalog类型
         # @type Catalog: String
         # @param Keyword: 查询关键词
         # @type Keyword: String
-        # @param Pattern: 查询模式
+        # @param Pattern: 查询模式，只支持填*
         # @type Pattern: String
         # @param Type: 表类型
         # @type Type: String
+        # @param DatasourceConnectionName: 数据源连接名
+        # @type DatasourceConnectionName: String
 
-        attr_accessor :DbName, :SchemaName, :Name, :Catalog, :Keyword, :Pattern, :Type
+        attr_accessor :DbName, :SchemaName, :Name, :Catalog, :Keyword, :Pattern, :Type, :DatasourceConnectionName
 
-        def initialize(dbname=nil, schemaname=nil, name=nil, catalog=nil, keyword=nil, pattern=nil, type=nil)
+        def initialize(dbname=nil, schemaname=nil, name=nil, catalog=nil, keyword=nil, pattern=nil, type=nil, datasourceconnectionname=nil)
           @DbName = dbname
           @SchemaName = schemaname
           @Name = name
@@ -5191,6 +5225,7 @@ module TencentCloud
           @Keyword = keyword
           @Pattern = pattern
           @Type = type
+          @DatasourceConnectionName = datasourceconnectionname
         end
 
         def deserialize(params)
@@ -5201,6 +5236,7 @@ module TencentCloud
           @Keyword = params['Keyword']
           @Pattern = params['Pattern']
           @Type = params['Type']
+          @DatasourceConnectionName = params['DatasourceConnectionName']
         end
       end
 
@@ -5345,11 +5381,11 @@ module TencentCloud
         # @type SchemaName: String
         # @param Name: 表名称
         # @type Name: String
-        # @param Catalog: 数据目录
+        # @param Catalog: catalog类型
         # @type Catalog: String
         # @param Keyword: 查询关键词
         # @type Keyword: String
-        # @param Pattern: 查询模式
+        # @param Pattern: 查询模式，只支持填*
         # @type Pattern: String
         # @param Type: 表类型
         # @type Type: String
@@ -5365,10 +5401,12 @@ module TencentCloud
         # @type Sort: String
         # @param Asc: 排序字段：true：升序（默认），false：降序
         # @type Asc: Boolean
+        # @param DatasourceConnectionName: 数据源连接名
+        # @type DatasourceConnectionName: String
 
-        attr_accessor :DbName, :SchemaName, :Name, :Catalog, :Keyword, :Pattern, :Type, :StartTime, :EndTime, :Limit, :Offset, :Sort, :Asc
+        attr_accessor :DbName, :SchemaName, :Name, :Catalog, :Keyword, :Pattern, :Type, :StartTime, :EndTime, :Limit, :Offset, :Sort, :Asc, :DatasourceConnectionName
 
-        def initialize(dbname=nil, schemaname=nil, name=nil, catalog=nil, keyword=nil, pattern=nil, type=nil, starttime=nil, endtime=nil, limit=nil, offset=nil, sort=nil, asc=nil)
+        def initialize(dbname=nil, schemaname=nil, name=nil, catalog=nil, keyword=nil, pattern=nil, type=nil, starttime=nil, endtime=nil, limit=nil, offset=nil, sort=nil, asc=nil, datasourceconnectionname=nil)
           @DbName = dbname
           @SchemaName = schemaname
           @Name = name
@@ -5382,6 +5420,7 @@ module TencentCloud
           @Offset = offset
           @Sort = sort
           @Asc = asc
+          @DatasourceConnectionName = datasourceconnectionname
         end
 
         def deserialize(params)
@@ -5398,6 +5437,7 @@ module TencentCloud
           @Offset = params['Offset']
           @Sort = params['Sort']
           @Asc = params['Asc']
+          @DatasourceConnectionName = params['DatasourceConnectionName']
         end
       end
 
@@ -8573,19 +8613,23 @@ module TencentCloud
         # @type DeleteData: Boolean
         # @param Cascade: 是否级联删除
         # @type Cascade: Boolean
+        # @param DatasourceConnectionName: 数据源连接名
+        # @type DatasourceConnectionName: String
 
-        attr_accessor :Name, :DeleteData, :Cascade
+        attr_accessor :Name, :DeleteData, :Cascade, :DatasourceConnectionName
 
-        def initialize(name=nil, deletedata=nil, cascade=nil)
+        def initialize(name=nil, deletedata=nil, cascade=nil, datasourceconnectionname=nil)
           @Name = name
           @DeleteData = deletedata
           @Cascade = cascade
+          @DatasourceConnectionName = datasourceconnectionname
         end
 
         def deserialize(params)
           @Name = params['Name']
           @DeleteData = params['DeleteData']
           @Cascade = params['Cascade']
+          @DatasourceConnectionName = params['DatasourceConnectionName']
         end
       end
 
@@ -8619,16 +8663,19 @@ module TencentCloud
         # @type Values: Array
         # @param DeleteData: 是否删除分区数据
         # @type DeleteData: Boolean
+        # @param DatasourceConnectionName: 数据源连接名
+        # @type DatasourceConnectionName: String
 
-        attr_accessor :DatabaseName, :SchemaName, :TableName, :Name, :Values, :DeleteData
+        attr_accessor :DatabaseName, :SchemaName, :TableName, :Name, :Values, :DeleteData, :DatasourceConnectionName
 
-        def initialize(databasename=nil, schemaname=nil, tablename=nil, name=nil, values=nil, deletedata=nil)
+        def initialize(databasename=nil, schemaname=nil, tablename=nil, name=nil, values=nil, deletedata=nil, datasourceconnectionname=nil)
           @DatabaseName = databasename
           @SchemaName = schemaname
           @TableName = tablename
           @Name = name
           @Values = values
           @DeleteData = deletedata
+          @DatasourceConnectionName = datasourceconnectionname
         end
 
         def deserialize(params)
@@ -8638,6 +8685,7 @@ module TencentCloud
           @Name = params['Name']
           @Values = params['Values']
           @DeleteData = params['DeleteData']
+          @DatasourceConnectionName = params['DatasourceConnectionName']
         end
       end
 
@@ -8671,14 +8719,17 @@ module TencentCloud
         # @type DeleteData: Boolean
         # @param EnvProps: 环境属性
         # @type EnvProps: :class:`Tencentcloud::Dlc.v20210125.models.KVPair`
+        # @param DatasourceConnectionName: 数据目录信息
+        # @type DatasourceConnectionName: String
 
-        attr_accessor :DbName, :Name, :DeleteData, :EnvProps
+        attr_accessor :DbName, :Name, :DeleteData, :EnvProps, :DatasourceConnectionName
 
-        def initialize(dbname=nil, name=nil, deletedata=nil, envprops=nil)
+        def initialize(dbname=nil, name=nil, deletedata=nil, envprops=nil, datasourceconnectionname=nil)
           @DbName = dbname
           @Name = name
           @DeleteData = deletedata
           @EnvProps = envprops
+          @DatasourceConnectionName = datasourceconnectionname
         end
 
         def deserialize(params)
@@ -8689,6 +8740,7 @@ module TencentCloud
             @EnvProps = KVPair.new
             @EnvProps.deserialize(params['EnvProps'])
           end
+          @DatasourceConnectionName = params['DatasourceConnectionName']
         end
       end
 

@@ -636,19 +636,14 @@ module TencentCloud
       # 课堂评分字段
       class ClassScoreItem < TencentCloud::Common::AbstractModel
         # @param RoomId: 课堂iD
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RoomId: Integer
         # @param UserId: 用户ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UserId: String
         # @param CreateTime: 评分时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: Integer
         # @param Score: 课堂评分
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Score: Integer
         # @param ScoreMsg: 课堂评价
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScoreMsg: String
 
         attr_accessor :RoomId, :UserId, :CreateTime, :Score, :ScoreMsg
@@ -1061,13 +1056,10 @@ module TencentCloud
       # 自定义消息
       class CustomMsgContent < TencentCloud::Common::AbstractModel
         # @param Data: 自定义消息数据。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: String
         # @param Desc: 自定义消息描述信息。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Desc: String
         # @param Ext: 扩展字段。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Ext: String
 
         attr_accessor :Data, :Desc, :Ext
@@ -2866,67 +2858,46 @@ module TencentCloud
       # 文档信息
       class DocumentInfo < TencentCloud::Common::AbstractModel
         # @param DocumentId: 文档Id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DocumentId: String
         # @param DocumentUrl: 文档原址url
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DocumentUrl: String
         # @param DocumentName: 文档名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DocumentName: String
         # @param Owner: 文档所有者UserId
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Owner: String
         # @param SdkAppId: 应用Id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SdkAppId: Integer
         # @param Permission: 文档权限，0：私有课件 1：公共课件
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Permission: Integer
         # @param TranscodeResult: 转码结果，无需转码为空，转码成功为结果url，转码失败为错误码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TranscodeResult: String
         # @param TranscodeType: 转码类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TranscodeType: Integer
         # @param TranscodeProgress: 转码进度， 0 - 100 表示（0% - 100%）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TranscodeProgress: Integer
         # @param TranscodeState: 转码状态，0为无需转码，1为正在转码，2为转码失败，3为转码成功
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TranscodeState: Integer
         # @param TranscodeInfo: 转码失败后的错误信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TranscodeInfo: String
         # @param DocumentType: 文档类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DocumentType: String
         # @param DocumentSize: 文档大小，单位：字节
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DocumentSize: Integer
         # @param UpdateTime: 更新的UNIX时间戳
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: Integer
         # @param Pages: 课件页数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Pages: Integer
         # @param Width: 宽，仅在静态转码的课件有效
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Width: Integer
         # @param Height: 高，仅在静态转码的课件有效
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Height: Integer
         # @param Cover: 封面，仅转码的课件会生成封面
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Cover: String
         # @param Preview: 课件预览地址
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Preview: String
         # @param Resolution: 文档的分辨率
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Resolution: String
         # @param MinScaleResolution: 转码后文档的最小分辨率，和创建文档时传入的参数一致。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MinScaleResolution: String
 
         attr_accessor :DocumentId, :DocumentUrl, :DocumentName, :Owner, :SdkAppId, :Permission, :TranscodeResult, :TranscodeType, :TranscodeProgress, :TranscodeState, :TranscodeInfo, :DocumentType, :DocumentSize, :UpdateTime, :Pages, :Width, :Height, :Cover, :Preview, :Resolution, :MinScaleResolution
@@ -3015,22 +2986,16 @@ module TencentCloud
       # 房间事件对应的信息。
       class EventDataInfo < TencentCloud::Common::AbstractModel
         # @param RoomId: 事件发生的房间号。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RoomId: Integer
         # @param UserId: 事件发生的用户。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UserId: String
         # @param Device: 用户设备类型。0: Unknown; 1: Windows; 2: macOS; 3: Android; 4: iOS; 5: Web; 6: Mobile webpage; 7: Weixin Mini Program.
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Device: Integer
         # @param Duration: 录制时长。单位：秒
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Duration: Integer
         # @param RecordSize: 录制文件大小
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RecordSize: Integer
         # @param RecordUrl: 录制url
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RecordUrl: String
 
         attr_accessor :RoomId, :UserId, :Device, :Duration, :RecordSize, :RecordUrl
@@ -3070,7 +3035,6 @@ module TencentCloud
         # VisibleOff: 页面不可见
         # @type EventType: String
         # @param EventData: 事件详细内容，包含房间号,成员类型事件包含用户Id。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EventData: :class:`Tencentcloud::Lcic.v20220817.models.EventDataInfo`
 
         attr_accessor :Timestamp, :EventType, :EventData
@@ -3436,18 +3400,14 @@ module TencentCloud
       # 获取群组列表返回的群组信息
       class GroupInfo < TencentCloud::Common::AbstractModel
         # @param GroupId: 群组ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GroupId: String
         # @param GroupName: 群组名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GroupName: String
         # @param TeacherId: 群组主讲人ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TeacherId: String
         # @param GroupType: 群组类型
         # 0-基础群组
         # 1-组合群组，若为1时会返回子群组ID列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GroupType: Integer
         # @param SubGroupIds: 子群组ID列表，如有。
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -3719,10 +3679,8 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubGroupId: Array
         # @param Stage: 用户的上台状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Stage: Integer
         # @param CurrentState: 用户状态。0为未到，1为在线，2为离线，3为被踢，4为永久被踢，5为暂时掉线
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CurrentState: Integer
 
         attr_accessor :UserId, :UserName, :PresentTime, :Camera, :Mic, :Silence, :AnswerQuestions, :HandUps, :FirstJoinTimestamp, :LastQuitTimestamp, :Rewords, :IPAddress, :Location, :Device, :PerMemberMicCount, :PerMemberMessageCount, :Role, :GroupId, :SubGroupId, :Stage, :CurrentState
@@ -3779,16 +3737,12 @@ module TencentCloud
       # 单条消息体内容
       class MessageItem < TencentCloud::Common::AbstractModel
         # @param MessageType: 消息类型。0表示文本消息，1表示图片消息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MessageType: Integer
         # @param TextMessage: 文本消息内容。message type为0时有效。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TextMessage: String
         # @param ImageMessage: 图片消息URL。 message type为1时有效。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ImageMessage: String
         # @param CustomMessage: 自定义消息内容。message type为2时有效。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CustomMessage: :class:`Tencentcloud::Lcic.v20220817.models.CustomMsgContent`
 
         attr_accessor :MessageType, :TextMessage, :ImageMessage, :CustomMessage
@@ -3814,16 +3768,12 @@ module TencentCloud
       # 历史消息列表
       class MessageList < TencentCloud::Common::AbstractModel
         # @param Timestamp: 消息时间戳
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Timestamp: Integer
         # @param FromAccount: 消息发送者
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FromAccount: String
         # @param Seq: 消息序列号，当前课堂内唯一且单调递增
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Seq: Integer
         # @param MessageBody: 历史消息列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MessageBody: Array
 
         attr_accessor :Timestamp, :FromAccount, :Seq, :MessageBody
@@ -4187,10 +4137,8 @@ module TencentCloud
       # 禁言用户信息数组，内容包括被禁言的成员 ID，及其被禁言到的时间（使用 UTC 时间，即世界协调时间）
       class MutedAccountList < TencentCloud::Common::AbstractModel
         # @param MemberAccount: 用户 ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MemberAccount: String
         # @param MutedUntil: 禁言到的时间（使用 UTC 时间，即世界协调时间）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MutedUntil: Integer
 
         attr_accessor :MemberAccount, :MutedUntil
@@ -4217,7 +4165,6 @@ module TencentCloud
         # @param CorrectAnswer: 正确答案（按照位表示是否选择，如0x1表示选择A，0x11表示选择AB）
         # @type CorrectAnswer: Integer
         # @param AnswerStats: 每个选项答题人数统计
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AnswerStats: Array
 
         attr_accessor :QuestionId, :QuestionContent, :Duration, :CorrectAnswer, :AnswerStats
@@ -4575,16 +4522,12 @@ module TencentCloud
         # @param Scene: 场景名称
         # @type Scene: String
         # @param LogoUrl: logo地址
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LogoUrl: String
         # @param HomeUrl: 主页地址
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HomeUrl: String
         # @param JSUrl: 自定义的js
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type JSUrl: String
         # @param CSSUrl: 自定义的css
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CSSUrl: String
 
         attr_accessor :Scene, :LogoUrl, :HomeUrl, :JSUrl, :CSSUrl
@@ -4915,31 +4858,22 @@ module TencentCloud
       # 录制流信息
       class SingleStreamInfo < TencentCloud::Common::AbstractModel
         # @param UserId: 用户ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UserId: String
         # @param StartTime: 开始时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StartTime: Integer
         # @param StopTime: 结束时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StopTime: Integer
         # @param Duration: 总时长
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Duration: Integer
         # @param FileFormat: 文件格式
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FileFormat: String
         # @param RecordUrl: 流url
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RecordUrl: String
         # @param RecordSize: 流大小
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RecordSize: Integer
         # @param VideoId: 流ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VideoId: String
         # @param Role: 流类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Role: String
 
         attr_accessor :UserId, :StartTime, :StopTime, :Duration, :FileFormat, :RecordUrl, :RecordSize, :VideoId, :Role
@@ -5084,10 +5018,8 @@ module TencentCloud
       # 文字水印配置
       class TextMarkConfig < TencentCloud::Common::AbstractModel
         # @param Text: 文字水印内容
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Text: String
         # @param Color: 文字水印颜色
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Color: String
 
         attr_accessor :Text, :Color
@@ -5215,19 +5147,14 @@ module TencentCloud
       # 用户信息结构体
       class UserInfo < TencentCloud::Common::AbstractModel
         # @param SdkAppId: 应用Id。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SdkAppId: Integer
         # @param UserId: 用户Id。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UserId: String
         # @param Name: 用户昵称。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Avatar: 用户头像Url。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Avatar: String
         # @param OriginId: 用户在客户系统的Id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OriginId: String
 
         attr_accessor :SdkAppId, :UserId, :Name, :Avatar, :OriginId
@@ -5252,19 +5179,14 @@ module TencentCloud
       # 水印配置
       class WatermarkConfig < TencentCloud::Common::AbstractModel
         # @param Url: 水印图片的url
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Url: String
         # @param Width: 水印宽。为比例值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Width: Float
         # @param Height: 水印高。为比例值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Height: Float
         # @param LocationX: 水印X偏移, 取值:0-100, 表示区域X方向的百分比。比如50，则表示位于X轴中间。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LocationX: Float
         # @param LocationY: 水印Y偏移, 取值:0-100, 表示区域Y方向的百分比。比如50，则表示位于Y轴中间。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LocationY: Float
 
         attr_accessor :Url, :Width, :Height, :LocationX, :LocationY

@@ -8033,7 +8033,7 @@ module TencentCloud
         #   <li>Key:**"RoleId"**，根据电子签角色ID查询员工，Values为指定的角色ID，满足其中任意一个角色即可：**["RoleId1","RoleId2",...]**</li>
         # </ul>
         # @type Filters: Array
-        # @param Offset: 偏移量，默认为0，最大20000。。关于<code>Offset</code>的更进一步介绍请参考 API <a href="https://cloud.tencent.com/document/api/213/15688" target="_blank">简介</a>中的相关小节。
+        # @param Offset: 偏移量，默认为0，最大20000。关于<code>Offset</code>的更进一步介绍请参考 API <a href="https://cloud.tencent.com/document/api/213/15688" target="_blank">简介</a>中的相关小节。
         # @type Offset: Integer
 
         attr_accessor :Operator, :Limit, :Agent, :Filters, :Offset

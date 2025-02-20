@@ -3630,6 +3630,7 @@ module TencentCloud
       # CreatePrefetchTask请求参数结构体
       class CreatePrefetchTaskRequest < TencentCloud::Common::AbstractModel
         # @param ZoneId: 站点 ID。
+        # 若您希望快速提交不同站点下的 Targets Url，可以将其填写为 *，但前提是调用该 API 的账号必须具备主账号下全部站点资源的权限。
         # @type ZoneId: String
         # @param Targets: 要预热的资源列表，每个元素格式类似如下:
         # http://www.example.com/example.txt。参数值当前必填。
@@ -3641,6 +3642,9 @@ module TencentCloud
         # @type Headers: Array
 
         attr_accessor :ZoneId, :Targets, :EncodeUrl, :Headers
+        extend Gem::Deprecate
+        deprecate :EncodeUrl, :none, 2025, 2
+        deprecate :EncodeUrl=, :none, 2025, 2
 
         def initialize(zoneid=nil, targets=nil, encodeurl=nil, headers=nil)
           @ZoneId = zoneid

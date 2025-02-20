@@ -316,8 +316,8 @@ module TencentCloud
 
         attr_accessor :ReqTime, :Seq, :IdCard, :Idcard, :Name, :Sim, :IsNeedCharge, :ChargeType, :ErrorCode, :ErrorMessage
         extend Gem::Deprecate
-        deprecate :Idcard, :none, 2025, 1
-        deprecate :Idcard=, :none, 2025, 1
+        deprecate :Idcard, :none, 2025, 2
+        deprecate :Idcard=, :none, 2025, 2
 
         def initialize(reqtime=nil, seq=nil, idcard=nil, name=nil, sim=nil, isneedcharge=nil, chargetype=nil, errorcode=nil, errormessage=nil)
           @ReqTime = reqtime
@@ -871,11 +871,11 @@ module TencentCloud
         # @type IntentionVerifyText: String
         # @param IntentionQuestions: 意愿核身（语音播报+语音回答模式）使用的文案。
         # - 包括：系统语音播报的文本、需要核验的标准文本。
-        # - 当前仅支持1轮问答。
+        # - 问答模式支持1-10轮（不超过10轮）的意愿确认。
         # @type IntentionQuestions: Array
         # @param IntentionActions: 意愿核身（点头确认模式）使用的文案。
         # - 若未使用意愿核身（点头确认模式），则该字段无需传入。
-        # - 当前仅支持一个提示文本。
+        # - 点头确认模式支持1-10轮（不超过10轮）的意愿确认。
         # @type IntentionActions: Array
         # @param Config: 意愿核身流程配置。
         # @type Config: :class:`Tencentcloud::Faceid.v20180301.models.RuleIdConfig`
@@ -1965,11 +1965,12 @@ module TencentCloud
         # - 默认为空，最长可接受120的字符串长度。
         # @type IntentionVerifyText: String
         # @param IntentionQuestions: 意愿核身问答模式的配置列表。
-        # - 当前仅支持一个问答。
+        # - 问答模式支持1-10轮（不超过10轮）的意愿确认。
         # @type IntentionQuestions: Array
         # @param IntentionActions: 意愿核身（点头确认模式）使用的文案。
         # - 若未使用意愿核身（点头确认模式），则该字段无需传入。
         # - 默认为空，最长可接受150的字符串长度。
+        # - 点头确认模式支持1-10轮（不超过10轮）的意愿确认。
         # @type IntentionActions: Array
         # @param IntentionRecognition: 意愿核身过程中识别用户的回答意图。
         # - 开启后除了IntentionQuestions的Answers列表中的标准回答会通过，近似意图的回答也会通过。
@@ -3101,8 +3102,8 @@ module TencentCloud
 
         attr_accessor :IntentionVerifyVideo, :AsrResult, :ErrorCode, :ErrorMessage, :IntentionVerifyBestFrame, :AsrResultSimilarity
         extend Gem::Deprecate
-        deprecate :AsrResultSimilarity, :none, 2025, 1
-        deprecate :AsrResultSimilarity=, :none, 2025, 1
+        deprecate :AsrResultSimilarity, :none, 2025, 2
+        deprecate :AsrResultSimilarity=, :none, 2025, 2
 
         def initialize(intentionverifyvideo=nil, asrresult=nil, errorcode=nil, errormessage=nil, intentionverifybestframe=nil, asrresultsimilarity=nil)
           @IntentionVerifyVideo = intentionverifyvideo

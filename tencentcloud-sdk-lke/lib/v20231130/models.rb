@@ -5831,14 +5831,16 @@ module TencentCloud
         # @type Source: Integer
         # @param QueryAnswer: 查询答案
         # @type QueryAnswer: String
+        # @param CateBizId: 分类ID
+        # @type CateBizId: String
         # @param QaBizIds: QA业务ID列表
         # @type QaBizIds: Array
         # @param QueryType: 查询类型 filename 名称、 attribute 标签
         # @type QueryType: String
 
-        attr_accessor :BotBizId, :PageNumber, :PageSize, :Query, :AcceptStatus, :ReleaseStatus, :DocBizId, :Source, :QueryAnswer, :QaBizIds, :QueryType
+        attr_accessor :BotBizId, :PageNumber, :PageSize, :Query, :AcceptStatus, :ReleaseStatus, :DocBizId, :Source, :QueryAnswer, :CateBizId, :QaBizIds, :QueryType
 
-        def initialize(botbizid=nil, pagenumber=nil, pagesize=nil, query=nil, acceptstatus=nil, releasestatus=nil, docbizid=nil, source=nil, queryanswer=nil, qabizids=nil, querytype=nil)
+        def initialize(botbizid=nil, pagenumber=nil, pagesize=nil, query=nil, acceptstatus=nil, releasestatus=nil, docbizid=nil, source=nil, queryanswer=nil, catebizid=nil, qabizids=nil, querytype=nil)
           @BotBizId = botbizid
           @PageNumber = pagenumber
           @PageSize = pagesize
@@ -5848,6 +5850,7 @@ module TencentCloud
           @DocBizId = docbizid
           @Source = source
           @QueryAnswer = queryanswer
+          @CateBizId = catebizid
           @QaBizIds = qabizids
           @QueryType = querytype
         end
@@ -5862,6 +5865,7 @@ module TencentCloud
           @DocBizId = params['DocBizId']
           @Source = params['Source']
           @QueryAnswer = params['QueryAnswer']
+          @CateBizId = params['CateBizId']
           @QaBizIds = params['QaBizIds']
           @QueryType = params['QueryType']
         end

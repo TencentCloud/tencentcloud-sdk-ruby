@@ -250,6 +250,42 @@ module TencentCloud
         end
       end
 
+      # CancelOnlineDDLJob请求参数结构体
+      class CancelOnlineDDLJobRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例Id
+        # @type InstanceId: String
+        # @param FlowId: 要暂停的 Online DDL 任务对应的流程Id。创建任务时，CreateOnlineDDLJob 会返回此流程Id
+        # @type FlowId: Integer
+
+        attr_accessor :InstanceId, :FlowId
+
+        def initialize(instanceid=nil, flowid=nil)
+          @InstanceId = instanceid
+          @FlowId = flowid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @FlowId = params['FlowId']
+        end
+      end
+
+      # CancelOnlineDDLJob返回参数结构体
+      class CancelOnlineDDLJobResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CloneAccount请求参数结构体
       class CloneAccountRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID
@@ -1555,6 +1591,54 @@ module TencentCloud
           @ShardSlaveZones = params['ShardSlaveZones']
           @Cpu = params['Cpu']
           @Range = params['Range']
+        end
+      end
+
+      # DDL任务执行详情
+      class DDLDetail < TencentCloud::Common::AbstractModel
+        # @param ShardSerialId: 分片Id
+        # @type ShardSerialId: String
+        # @param DbName: 数据库
+        # @type DbName: String
+        # @param Table: 表
+        # @type Table: String
+        # @param Alter: 执行的DDL任务内容
+        # @type Alter: String
+        # @param BeginTime: 开始执行时间
+        # @type BeginTime: String
+        # @param Status: 当前任务状态。0 成功； 1失败；  2进行中
+        # @type Status: Integer
+        # @param Desc: 任务详细描述信息
+        # @type Desc: String
+        # @param Stage: 任务当前所处阶段
+        # @type Stage: String
+        # @param SwitchStatus: 切换状态：1: 未到切换阶段；2：正在等待进行表切换；3: 正在进行切换；4: 切换成功；5: 切换失败
+        # @type SwitchStatus: Integer
+
+        attr_accessor :ShardSerialId, :DbName, :Table, :Alter, :BeginTime, :Status, :Desc, :Stage, :SwitchStatus
+
+        def initialize(shardserialid=nil, dbname=nil, table=nil, alter=nil, begintime=nil, status=nil, desc=nil, stage=nil, switchstatus=nil)
+          @ShardSerialId = shardserialid
+          @DbName = dbname
+          @Table = table
+          @Alter = alter
+          @BeginTime = begintime
+          @Status = status
+          @Desc = desc
+          @Stage = stage
+          @SwitchStatus = switchstatus
+        end
+
+        def deserialize(params)
+          @ShardSerialId = params['ShardSerialId']
+          @DbName = params['DbName']
+          @Table = params['Table']
+          @Alter = params['Alter']
+          @BeginTime = params['BeginTime']
+          @Status = params['Status']
+          @Desc = params['Desc']
+          @Stage = params['Stage']
+          @SwitchStatus = params['SwitchStatus']
         end
       end
 
@@ -3721,6 +3805,65 @@ module TencentCloud
         def deserialize(params)
           @InstanceId = params['InstanceId']
           @Days = params['Days']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeOnlineDDLJob请求参数结构体
+      class DescribeOnlineDDLJobRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例Id
+        # @type InstanceId: String
+        # @param FlowId: Online DDL 对应的流程Id。创建任务时，CreateOnlineDDLJob 会返回此流程Id
+        # @type FlowId: Integer
+
+        attr_accessor :InstanceId, :FlowId
+
+        def initialize(instanceid=nil, flowid=nil)
+          @InstanceId = instanceid
+          @FlowId = flowid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @FlowId = params['FlowId']
+        end
+      end
+
+      # DescribeOnlineDDLJob返回参数结构体
+      class DescribeOnlineDDLJobResponse < TencentCloud::Common::AbstractModel
+        # @param Status: 任务状态。0：成功；1：失败；大于1：进行中
+        # @type Status: Integer
+        # @param Process: 任务进度百分比
+        # @type Process: Integer
+        # @param ErrorMessage: 错误信息或提示信息
+        # @type ErrorMessage: String
+        # @param DDLDetails: 各分片DDL执行详情
+        # @type DDLDetails: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Status, :Process, :ErrorMessage, :DDLDetails, :RequestId
+
+        def initialize(status=nil, process=nil, errormessage=nil, ddldetails=nil, requestid=nil)
+          @Status = status
+          @Process = process
+          @ErrorMessage = errormessage
+          @DDLDetails = ddldetails
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @Process = params['Process']
+          @ErrorMessage = params['ErrorMessage']
+          unless params['DDLDetails'].nil?
+            @DDLDetails = []
+            params['DDLDetails'].each do |i|
+              ddldetail_tmp = DDLDetail.new
+              ddldetail_tmp.deserialize(i)
+              @DDLDetails << ddldetail_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end

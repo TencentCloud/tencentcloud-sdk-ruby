@@ -7400,32 +7400,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 接口已无效
-
-        # 获取安全防护状态汇总
-
-        # @param request: Request instance for DescribeSecurityProtectionStat.
-        # @type request: :class:`Tencentcloud::cwp::V20180228::DescribeSecurityProtectionStatRequest`
-        # @rtype: :class:`Tencentcloud::cwp::V20180228::DescribeSecurityProtectionStatResponse`
-        def DescribeSecurityProtectionStat(request)
-          body = send_request('DescribeSecurityProtectionStat', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeSecurityProtectionStatResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 本接口 (DescribeSecurityTrends) 用于获取安全事件统计数据。
 
         # @param request: Request instance for DescribeSecurityTrends.
