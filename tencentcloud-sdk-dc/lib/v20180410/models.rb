@@ -75,10 +75,12 @@ module TencentCloud
         # @type AccessPointType: String
         # @param AvailablePortInfo: 端口规格信息。
         # @type AvailablePortInfo: Array
+        # @param Address: 接入点地址。
+        # @type Address: String
 
-        attr_accessor :AccessPointName, :AccessPointId, :State, :Location, :LineOperator, :RegionId, :AvailablePortType, :Coordinate, :City, :Area, :AccessPointType, :AvailablePortInfo
+        attr_accessor :AccessPointName, :AccessPointId, :State, :Location, :LineOperator, :RegionId, :AvailablePortType, :Coordinate, :City, :Area, :AccessPointType, :AvailablePortInfo, :Address
 
-        def initialize(accesspointname=nil, accesspointid=nil, state=nil, location=nil, lineoperator=nil, regionid=nil, availableporttype=nil, coordinate=nil, city=nil, area=nil, accesspointtype=nil, availableportinfo=nil)
+        def initialize(accesspointname=nil, accesspointid=nil, state=nil, location=nil, lineoperator=nil, regionid=nil, availableporttype=nil, coordinate=nil, city=nil, area=nil, accesspointtype=nil, availableportinfo=nil, address=nil)
           @AccessPointName = accesspointname
           @AccessPointId = accesspointid
           @State = state
@@ -91,6 +93,7 @@ module TencentCloud
           @Area = area
           @AccessPointType = accesspointtype
           @AvailablePortInfo = availableportinfo
+          @Address = address
         end
 
         def deserialize(params)
@@ -116,6 +119,7 @@ module TencentCloud
               @AvailablePortInfo << portspecification_tmp
             end
           end
+          @Address = params['Address']
         end
       end
 

@@ -796,6 +796,94 @@ module TencentCloud
         end
       end
 
+      # DescribeGeneralOTSpanList请求参数结构体
+      class DescribeGeneralOTSpanListRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 业务系统 ID
+        # @type InstanceId: String
+        # @param StartTime: Span 查询开始时间戳（单位：秒）
+        # @type StartTime: Integer
+        # @param EndTime: Span 查询结束时间戳（单位：秒）
+        # @type EndTime: Integer
+        # @param Filters: 通用过滤参数
+        # @type Filters: Array
+        # @param OrderBy: 排序
+        # 现支持的 Key 有：
+
+        # - startTime(开始时间)
+        # - endTime(结束时间)
+        # - duration(响应时间)
+
+        # 现支持的 Value 有：
+
+        # - desc(降序排序)
+        # - asc(升序排序)
+        # @type OrderBy: :class:`Tencentcloud::Apm.v20210622.models.OrderBy`
+        # @param BusinessName: 业务自身服务名，控制台用户请填写taw
+        # @type BusinessName: String
+        # @param Limit: 单页项目个数，默认为10000，合法取值范围为0～10000
+        # @type Limit: Integer
+        # @param Offset: 分页
+        # @type Offset: Integer
+
+        attr_accessor :InstanceId, :StartTime, :EndTime, :Filters, :OrderBy, :BusinessName, :Limit, :Offset
+
+        def initialize(instanceid=nil, starttime=nil, endtime=nil, filters=nil, orderby=nil, businessname=nil, limit=nil, offset=nil)
+          @InstanceId = instanceid
+          @StartTime = starttime
+          @EndTime = endtime
+          @Filters = filters
+          @OrderBy = orderby
+          @BusinessName = businessname
+          @Limit = limit
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          unless params['OrderBy'].nil?
+            @OrderBy = OrderBy.new
+            @OrderBy.deserialize(params['OrderBy'])
+          end
+          @BusinessName = params['BusinessName']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+        end
+      end
+
+      # DescribeGeneralOTSpanList返回参数结构体
+      class DescribeGeneralOTSpanListResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总数量
+        # @type TotalCount: Integer
+        # @param Spans: 装有查询结果 Spans 的 Trace 结构体。OpenTelemetry 标准 Trace 结构体哈希后的字符串，先将 Trace 利用 ptrace.JSONMarshaler 转换成 Json 字符串，再用 gzip 压缩，最后转换成 base64 标准的字符串。
+        # @type Spans: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Spans, :RequestId
+
+        def initialize(totalcount=nil, spans=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Spans = spans
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          @Spans = params['Spans']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeGeneralSpanList请求参数结构体
       class DescribeGeneralSpanListRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 业务系统 ID

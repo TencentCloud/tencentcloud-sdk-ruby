@@ -1013,7 +1013,6 @@ module TencentCloud
         # @param PayModeDesc: 付费模式描述
         # @type PayModeDesc: String
         # @param ResourceId: 流量包ID，仅当付费模式为流量包类型时才有。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceId: String
 
         attr_accessor :DeviceId, :PayMode, :PayModeDesc, :ResourceId
@@ -1167,7 +1166,6 @@ module TencentCloud
         # @param Status: 流量包状态，0：未生效，1：有效期内，2：已过期
         # @type Status: Integer
         # @param CreateTime: 购买时间，Unix时间戳格式，单位：秒
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: Integer
         # @param ActiveTime: 生效时间，Unix时间戳格式，单位：秒
         # @type ActiveTime: Integer
@@ -2430,7 +2428,6 @@ module TencentCloud
         # @param UpdateTime: 分组更新的时间，单位：ms
         # @type UpdateTime: String
         # @param Description: 分组描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
         # @param DeviceNum: 分组中的设备数量
         # @type DeviceNum: Integer
@@ -2459,19 +2456,15 @@ module TencentCloud
       # 新建Hardware入参
       class Hardware < TencentCloud::Common::AbstractModel
         # @param SN: 硬件序列号
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SN: String
         # @param LicenseChargingMode: license计费模式：
         # 1，租户付费
         # 2，厂商月付费
         # 3，厂商永久授权
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LicenseChargingMode: Integer
         # @param Description: 设备描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
         # @param HardwareId: 硬件ID，入参无需传递
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HardwareId: String
 
         attr_accessor :SN, :LicenseChargingMode, :Description, :HardwareId
@@ -2494,51 +2487,37 @@ module TencentCloud
       # 硬件信息
       class HardwareInfo < TencentCloud::Common::AbstractModel
         # @param DeviceId: 设备ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeviceId: String
         # @param DeviceName: 设备名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeviceName: String
         # @param ActiveTime: 激活时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ActiveTime: String
         # @param LastOnlineTime: 最后在线时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LastOnlineTime: String
         # @param Description: 备注
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
         # @param VendorDescription: 厂商备注
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VendorDescription: String
         # @param LicenseChargingMode: license计费模式： 1，租户月付费 2，厂商月付费 3，license永久授权
         # 注：后续将废弃此参数，新接入请使用LicensePayMode和Payer
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LicenseChargingMode: Integer
         # @param CreateTime: 创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
         # @param SN: 硬件序列号
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SN: String
         # @param LicensePayMode: license授权有效期
         # 0：月度授权
         # 1：永久授权
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LicensePayMode: Integer
         # @param Payer: 付费方
         # 0：客户付费
         # 1：厂商付费
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Payer: Integer
         # @param GroupId: 设备分组ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GroupId: String
         # @param GroupName: 设备分组名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GroupName: String
         # @param FlowTrunc: 设备无流量包处理方式，0: 按量付费，1: 截断加速
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FlowTrunc: Integer
 
         attr_accessor :DeviceId, :DeviceName, :ActiveTime, :LastOnlineTime, :Description, :VendorDescription, :LicenseChargingMode, :CreateTime, :SN, :LicensePayMode, :Payer, :GroupId, :GroupName, :FlowTrunc
@@ -2593,7 +2572,6 @@ module TencentCloud
         # @param Enable: 互通规则启用状态
         # @type Enable: Boolean
         # @param Description: 互通规则描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
 
         attr_accessor :L3ConnId, :DeviceId1, :Cidr1, :DeviceId2, :Cidr2, :Enable, :Description
@@ -2660,10 +2638,8 @@ module TencentCloud
         # @param Time: 时间点：s
         # @type Time: String
         # @param BusinessMetrics: 业务指标（bps/ms/%）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BusinessMetrics: Float
         # @param SlotNetInfo: 网卡状态信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SlotNetInfo: Array
 
         attr_accessor :Time, :BusinessMetrics, :SlotNetInfo
@@ -2907,13 +2883,10 @@ module TencentCloud
       # 网卡流量指标数据
       class SlotNetInfo < TencentCloud::Common::AbstractModel
         # @param NetInfoName: 网卡名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NetInfoName: String
         # @param PublicIP: 公网IP
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PublicIP: String
         # @param Current: 指标数据（bps/ms/%）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Current: Float
 
         attr_accessor :NetInfoName, :PublicIP, :Current
@@ -3251,7 +3224,6 @@ module TencentCloud
         # @param Status: 激活状态， 空：全部； 1:待激活； 2:已激活
         # @type Status: Integer
         # @param ActiveTime: 激活时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ActiveTime: String
         # @param Description: 厂商备注
         # @type Description: String
@@ -3261,7 +3233,6 @@ module TencentCloud
         # 注：设备为租户付费且未激活（未选择月付还是永久付费）时，此参数返回1，仅代表租户付费。后续将废弃此参数，新接入请使用LicensePayMode和Payer
         # @type LicenseChargingMode: Integer
         # @param LastOnlineTime: 最后在线时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LastOnlineTime: String
         # @param LicensePayMode: license授权有效期
         # 0：月度授权

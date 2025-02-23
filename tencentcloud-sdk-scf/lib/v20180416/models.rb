@@ -1528,10 +1528,10 @@ module TencentCloud
 
         attr_accessor :FunctionName, :RetMsg, :RequestId, :StartTime, :RetCode, :InvokeFinished, :Duration, :BillDuration, :MemUsage, :Log, :Level, :Source, :RetryNum
         extend Gem::Deprecate
-        deprecate :Level, :none, 2025, 1
-        deprecate :Level=, :none, 2025, 1
-        deprecate :Source, :none, 2025, 1
-        deprecate :Source=, :none, 2025, 1
+        deprecate :Level, :none, 2025, 2
+        deprecate :Level=, :none, 2025, 2
+        deprecate :Source, :none, 2025, 2
+        deprecate :Source=, :none, 2025, 2
 
         def initialize(functionname=nil, retmsg=nil, requestid=nil, starttime=nil, retcode=nil, invokefinished=nil, duration=nil, billduration=nil, memusage=nil, log=nil, level=nil, source=nil, retrynum=nil)
           @FunctionName = functionname
@@ -2352,7 +2352,7 @@ module TencentCloud
         # @type LayerVersion: Integer
         # @param LayerName: 层名称
         # @type LayerName: String
-        # @param Status: 层的具体版本当前状态，状态值[参考此处](https://cloud.tencent.com/document/product/583/115197#.E5.B1.82.EF.BC.88layer.EF.BC.89.E7.8A.B6.E6.80.81)
+        # @param Status: 层的具体版本当前状态，状态值[参考此处](https://cloud.tencent.com/document/product/583/115197#.E5.B1.82.EF.BC.88Layer.EF.BC.89.E7.8A.B6.E6.80.81)
         # @type Status: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4527,12 +4527,12 @@ module TencentCloud
 
         attr_accessor :ModTime, :Type, :TriggerDesc, :TriggerName, :AddTime, :Enable, :CustomArgument, :AvailableStatus, :ResourceId, :BindStatus, :TriggerAttribute, :Qualifier, :Description
         extend Gem::Deprecate
-        deprecate :ResourceId, :none, 2025, 1
-        deprecate :ResourceId=, :none, 2025, 1
-        deprecate :BindStatus, :none, 2025, 1
-        deprecate :BindStatus=, :none, 2025, 1
-        deprecate :TriggerAttribute, :none, 2025, 1
-        deprecate :TriggerAttribute=, :none, 2025, 1
+        deprecate :ResourceId, :none, 2025, 2
+        deprecate :ResourceId=, :none, 2025, 2
+        deprecate :BindStatus, :none, 2025, 2
+        deprecate :BindStatus=, :none, 2025, 2
+        deprecate :TriggerAttribute, :none, 2025, 2
+        deprecate :TriggerAttribute=, :none, 2025, 2
 
         def initialize(modtime=nil, type=nil, triggerdesc=nil, triggername=nil, addtime=nil, enable=nil, customargument=nil, availablestatus=nil, resourceid=nil, bindstatus=nil, triggerattribute=nil, qualifier=nil, description=nil)
           @ModTime = modtime
@@ -4689,12 +4689,12 @@ module TencentCloud
 
         attr_accessor :Enable, :Qualifier, :TriggerName, :Type, :TriggerDesc, :AvailableStatus, :CustomArgument, :AddTime, :ModTime, :ResourceId, :BindStatus, :TriggerAttribute, :Description
         extend Gem::Deprecate
-        deprecate :ResourceId, :none, 2025, 1
-        deprecate :ResourceId=, :none, 2025, 1
-        deprecate :BindStatus, :none, 2025, 1
-        deprecate :BindStatus=, :none, 2025, 1
-        deprecate :TriggerAttribute, :none, 2025, 1
-        deprecate :TriggerAttribute=, :none, 2025, 1
+        deprecate :ResourceId, :none, 2025, 2
+        deprecate :ResourceId=, :none, 2025, 2
+        deprecate :BindStatus, :none, 2025, 2
+        deprecate :BindStatus=, :none, 2025, 2
+        deprecate :TriggerAttribute, :none, 2025, 2
+        deprecate :TriggerAttribute=, :none, 2025, 2
 
         def initialize(enable=nil, qualifier=nil, triggername=nil, type=nil, triggerdesc=nil, availablestatus=nil, customargument=nil, addtime=nil, modtime=nil, resourceid=nil, bindstatus=nil, triggerattribute=nil, description=nil)
           @Enable = enable

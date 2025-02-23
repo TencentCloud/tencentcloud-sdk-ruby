@@ -150,6 +150,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 通用查询 OpenTelemetry 调用链列表
+
+        # @param request: Request instance for DescribeGeneralOTSpanList.
+        # @type request: :class:`Tencentcloud::apm::V20210622::DescribeGeneralOTSpanListRequest`
+        # @rtype: :class:`Tencentcloud::apm::V20210622::DescribeGeneralOTSpanListResponse`
+        def DescribeGeneralOTSpanList(request)
+          body = send_request('DescribeGeneralOTSpanList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeGeneralOTSpanListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 通用查询调用链列表
 
         # @param request: Request instance for DescribeGeneralSpanList.

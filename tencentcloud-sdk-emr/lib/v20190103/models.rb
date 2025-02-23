@@ -7005,13 +7005,28 @@ module TencentCloud
         # "CPU"表示按照机器的核数计算。
         # "MEMORYGB"表示按照机器内存数计算。
         # @type MeasureMethod: String
+        # @param SoftDeployDesc: 节点部署服务列表，例如["HDFS-3.1.2","YARN-3.1.2"]。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SoftDeployDesc: Array
+        # @param ServiceNodeDesc: 启动进程列表，例如["NodeManager"]。
+        # @type ServiceNodeDesc: String
+        # @param ServiceNodeInfo: 启动进程列表。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ServiceNodeInfo: Array
+        # @param SoftDeployInfo: 节点部署服务列表。部署服务仅填写HDFS、YARN。[组件名对应的映射关系表](https://cloud.tencent.com/document/product/589/98760)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SoftDeployInfo: Array
         # @param LoadMetricsConditions: 多指标触发条件
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LoadMetricsConditions: :class:`Tencentcloud::Emr.v20190103.models.LoadMetricsConditions`
+        # @param GroupId: 伸缩组Id
+        # @type GroupId: Integer
+        # @param Soft: soft例如yarn
+        # @type Soft: String
 
-        attr_accessor :StrategyId, :StrategyName, :CalmDownTime, :ScaleAction, :ScaleNum, :ProcessMethod, :Priority, :StrategyStatus, :YarnNodeLabel, :PeriodValid, :GraceDownFlag, :GraceDownTime, :Tags, :ConfigGroupAssigned, :MeasureMethod, :LoadMetricsConditions
+        attr_accessor :StrategyId, :StrategyName, :CalmDownTime, :ScaleAction, :ScaleNum, :ProcessMethod, :Priority, :StrategyStatus, :YarnNodeLabel, :PeriodValid, :GraceDownFlag, :GraceDownTime, :Tags, :ConfigGroupAssigned, :MeasureMethod, :SoftDeployDesc, :ServiceNodeDesc, :ServiceNodeInfo, :SoftDeployInfo, :LoadMetricsConditions, :GroupId, :Soft
 
-        def initialize(strategyid=nil, strategyname=nil, calmdowntime=nil, scaleaction=nil, scalenum=nil, processmethod=nil, priority=nil, strategystatus=nil, yarnnodelabel=nil, periodvalid=nil, gracedownflag=nil, gracedowntime=nil, tags=nil, configgroupassigned=nil, measuremethod=nil, loadmetricsconditions=nil)
+        def initialize(strategyid=nil, strategyname=nil, calmdowntime=nil, scaleaction=nil, scalenum=nil, processmethod=nil, priority=nil, strategystatus=nil, yarnnodelabel=nil, periodvalid=nil, gracedownflag=nil, gracedowntime=nil, tags=nil, configgroupassigned=nil, measuremethod=nil, softdeploydesc=nil, servicenodedesc=nil, servicenodeinfo=nil, softdeployinfo=nil, loadmetricsconditions=nil, groupid=nil, soft=nil)
           @StrategyId = strategyid
           @StrategyName = strategyname
           @CalmDownTime = calmdowntime
@@ -7027,7 +7042,13 @@ module TencentCloud
           @Tags = tags
           @ConfigGroupAssigned = configgroupassigned
           @MeasureMethod = measuremethod
+          @SoftDeployDesc = softdeploydesc
+          @ServiceNodeDesc = servicenodedesc
+          @ServiceNodeInfo = servicenodeinfo
+          @SoftDeployInfo = softdeployinfo
           @LoadMetricsConditions = loadmetricsconditions
+          @GroupId = groupid
+          @Soft = soft
         end
 
         def deserialize(params)
@@ -7053,10 +7074,16 @@ module TencentCloud
           end
           @ConfigGroupAssigned = params['ConfigGroupAssigned']
           @MeasureMethod = params['MeasureMethod']
+          @SoftDeployDesc = params['SoftDeployDesc']
+          @ServiceNodeDesc = params['ServiceNodeDesc']
+          @ServiceNodeInfo = params['ServiceNodeInfo']
+          @SoftDeployInfo = params['SoftDeployInfo']
           unless params['LoadMetricsConditions'].nil?
             @LoadMetricsConditions = LoadMetricsConditions.new
             @LoadMetricsConditions.deserialize(params['LoadMetricsConditions'])
           end
+          @GroupId = params['GroupId']
+          @Soft = params['Soft']
         end
       end
 
