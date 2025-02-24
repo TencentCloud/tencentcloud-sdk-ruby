@@ -103,14 +103,10 @@ module TencentCloud
       # 数据授权信息
       class DataAuthorizationInfo < TencentCloud::Common::AbstractModel
         # @param DataProviderName: 数据委托方、需求方：客户主体名称。
-
-        # 示例值：某某有限公司。
         # @type DataProviderName: String
         # @param DataRecipientName: 数据受托方、提供方：腾讯云主体名称。
 
         # 固定填：腾讯云计算（北京）有限责任公司
-
-        # 示例值：腾讯云计算（北京）有限责任公司
         # @type DataRecipientName: String
         # @param UserDataType: 客户请求RCE所提供的用户数据类型，支持多选。实际以接口请求传参为准。
 
@@ -123,32 +119,22 @@ module TencentCloud
         # 4-IP地址；
 
         # 999-其它；
-
-        # 示例值：[1, 4]
         # @type UserDataType: Array
         # @param IsAuthorize: 客户是否已按[合规指南](https://rule.tencent.com/rule/202409130001)要求获取用户授权，同意客户委托腾讯云处理入参信息
         # 1-已授权；其它值为未授权。
-        # 示例值：1
         # @type IsAuthorize: Integer
         # @param IsOrderHandling: 客户是否已按[合规指南](https://rule.tencent.com/rule/202409130001)要求获取用户授权，同意腾讯云结合客户提供的信息，对已合法收集的用户数据进行必要处理得出服务结果，并返回给客户。
         # 1-已授权；其它值为未授权。
-        # 示例值：1
         # @type IsOrderHandling: Integer
         # @param AuthorizationTerm: 客户获得的用户授权期限时间戳（单位秒）。
 
         # 不填默认无固定期限。
-
-        # 示例值：1719805604
         # @type AuthorizationTerm: Integer
         # @param PrivacyPolicyLink: 客户获得用户授权所依赖的协议地址。
-
-        # 示例值：https://www.*****.com/*
         # @type PrivacyPolicyLink: String
         # @param IsPersonalData: 是否是用户个人敏感数据（不推荐使用）。
 
         # 固定填：1。
-
-        # 示例值：1
         # @type IsPersonalData: Integer
 
         attr_accessor :DataProviderName, :DataRecipientName, :UserDataType, :IsAuthorize, :IsOrderHandling, :AuthorizationTerm, :PrivacyPolicyLink, :IsPersonalData
@@ -182,9 +168,9 @@ module TencentCloud
         # @type DataContent: String
         # @param DataRemark: 名单数据描述
         # @type DataRemark: String
-        # @param StartTime: 名单数据开始时间，时间格式示例"2024-05-05 12:10:15"
+        # @param StartTime: 名单数据开始时间
         # @type StartTime: String
-        # @param EndTime: 名单数据结束时间，时间格式示例"2024-05-05 12:10:15"
+        # @param EndTime: 名单数据结束时间
         # @type EndTime: String
 
         attr_accessor :DataContent, :DataRemark, :StartTime, :EndTime
@@ -889,9 +875,9 @@ module TencentCloud
         # @type NameListDataId: Integer
         # @param DataContent: 名单数据内容
         # @type DataContent: String
-        # @param StartTime: 名单数据开始时间，时间格式示例"2024-05-05 12:10:15"
+        # @param StartTime: 名单数据开始时间
         # @type StartTime: String
-        # @param EndTime: 名单数据结束时间，时间格式示例"2024-05-05 12:10:15"
+        # @param EndTime: 名单数据结束时间
         # @type EndTime: String
         # @param Status: 记录状态 [1 启用 2 停用]
         # @type Status: Integer
@@ -1087,7 +1073,9 @@ module TencentCloud
         # 0：对话。
         # 1：广播。
         # @type ContentType: Integer
-        # @param FraudType: 类型
+        # @param FraudType: 账号类型
+        # 1：手机号
+        # 2：uin账号
         # @type FraudType: Integer
         # @param FraudAccount: 账号
         # @type FraudAccount: String
@@ -1145,7 +1133,6 @@ module TencentCloud
       # 黑白名单数据列表信息
       class OuntputDescribeDataListInfo < TencentCloud::Common::AbstractModel
         # @param Count: 数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Count: Integer
         # @param List: 列表
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -1199,10 +1186,8 @@ module TencentCloud
       # 删除黑白名单出参
       class OutputDeleteNameListData < TencentCloud::Common::AbstractModel
         # @param Code: 错误码，0 表示成功，非0表示失败错误码。 0：成功 1002：参数错误 4300：未开通服务 6000：系统内部错误
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Code: Integer
         # @param Message: 错误信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Message: String
         # @param Value: 空数组
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -1258,23 +1243,19 @@ module TencentCloud
         # @type DataContent: String
         # @param DataSource: 数据来源，固定传2（手工录入）
         # @type DataSource: Integer
-        # @param StartTime: 名单数据开始时间，时间格式示例"2024-05-05 12:10:15"
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param StartTime: 名单数据开始时间
         # @type StartTime: String
-        # @param EndTime: 名单数据结束时间，时间格式示例"2024-05-05 12:10:15"
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param EndTime: 名单数据结束时间
         # @type EndTime: String
         # @param Status: 名单数据状态 [1 启用 2 停用]
         # @type Status: Integer
         # @param Remark: 名单数据描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Remark: String
-        # @param CreateTime: 名单数据创建时间，时间格式示例"2024-05-05 12:10:15"
+        # @param CreateTime: 名单数据创建时间
         # @type CreateTime: String
-        # @param UpdateTime: 名单数据更新时间，时间格式示例"2024-05-05 12:10:15"
+        # @param UpdateTime: 名单数据更新时间
         # @type UpdateTime: String
         # @param EncryptDataContent: 加密名单数据内容
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EncryptDataContent: String
 
         attr_accessor :NameListDataId, :NameListId, :DataContent, :DataSource, :StartTime, :EndTime, :Status, :Remark, :CreateTime, :UpdateTime, :EncryptDataContent
@@ -1361,10 +1342,10 @@ module TencentCloud
         # @param Remark: 描述
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Remark: String
-        # @param CreateTime: 创建时间，时间格式示例"2024-05-05 12:10:15"
+        # @param CreateTime: 创建时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
-        # @param UpdateTime: 更新时间，时间格式示例"2024-05-05 12:10:15"
+        # @param UpdateTime: 更新时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: String
         # @param EncryptionType: 加密类型 [0 无需加密，1 MD5加密，2 SHA256加密]
@@ -1447,9 +1428,9 @@ module TencentCloud
         # @param Remark: 描述
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Remark: String
-        # @param CreateTime: 创建时间，时间格式示例"2024-05-05 12:10:15"
+        # @param CreateTime: 创建时间
         # @type CreateTime: String
-        # @param UpdateTime: 更新时间，时间格式示例"2024-05-05 12:10:15"
+        # @param UpdateTime: 更新时间
         # @type UpdateTime: String
         # @param EffectCount: 有效数据/数据总数
         # @type EffectCount: String

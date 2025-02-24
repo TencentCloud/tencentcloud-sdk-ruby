@@ -590,10 +590,15 @@ module TencentCloud
         # @type Status: Integer
         # @param PageId: 拦截页面id
         # @type PageId: String
+        # @param LogicalOp: 匹配条件的逻辑关系，支持and、or，分别表示多个逻辑匹配条件是与、或的关系
+        # @type LogicalOp: String
 
-        attr_accessor :Name, :SortId, :Strategies, :Domain, :ActionType, :Redirect, :ExpireTime, :Edition, :Bypass, :EventId, :JobType, :JobDateTime, :Source, :Label, :Status, :PageId
+        attr_accessor :Name, :SortId, :Strategies, :Domain, :ActionType, :Redirect, :ExpireTime, :Edition, :Bypass, :EventId, :JobType, :JobDateTime, :Source, :Label, :Status, :PageId, :LogicalOp
+        extend Gem::Deprecate
+        deprecate :Bypass, :none, 2025, 2
+        deprecate :Bypass=, :none, 2025, 2
 
-        def initialize(name=nil, sortid=nil, strategies=nil, domain=nil, actiontype=nil, redirect=nil, expiretime=nil, edition=nil, bypass=nil, eventid=nil, jobtype=nil, jobdatetime=nil, source=nil, label=nil, status=nil, pageid=nil)
+        def initialize(name=nil, sortid=nil, strategies=nil, domain=nil, actiontype=nil, redirect=nil, expiretime=nil, edition=nil, bypass=nil, eventid=nil, jobtype=nil, jobdatetime=nil, source=nil, label=nil, status=nil, pageid=nil, logicalop=nil)
           @Name = name
           @SortId = sortid
           @Strategies = strategies
@@ -610,6 +615,7 @@ module TencentCloud
           @Label = label
           @Status = status
           @PageId = pageid
+          @LogicalOp = logicalop
         end
 
         def deserialize(params)
@@ -639,6 +645,7 @@ module TencentCloud
           @Label = params['Label']
           @Status = params['Status']
           @PageId = params['PageId']
+          @LogicalOp = params['LogicalOp']
         end
       end
 
@@ -675,28 +682,28 @@ module TencentCloud
         # @type Name: String
         # @param SortId: 优先级
         # @type SortId: String
-        # @param ExpireTime: 过期时间
-        # @type ExpireTime: String
         # @param Strategies: 策略详情
         # @type Strategies: Array
         # @param Domain: 需要添加策略的域名
         # @type Domain: String
-        # @param Bypass: 放行的详情
+        # @param Bypass: 放行的模块，多个模块之间用逗号连接。支持的模块：acl（自定义规则）、owasp（规则引擎）、webshell（恶意文件检测）、geoip（地域封禁）、bwip（IP黑白名单）、cc、botrpc（BOT防护）、antileakage（信息防泄露）、api（API安全）、ai（AI引擎）、ip_auto_deny（IP封禁）、applet（小程序流量风控）
         # @type Bypass: String
+        # @param ExpireTime: 如果没有设置JobDateTime字段则用此字段，0表示永久生效，其它表示定时生效的截止时间（单位为秒）
+        # @type ExpireTime: String
         # @param JobType: 规则执行的方式，TimedJob为定时执行，CronJob为周期执行
         # @type JobType: String
         # @param JobDateTime: 定时任务配置
         # @type JobDateTime: :class:`Tencentcloud::Waf.v20180125.models.JobDateTime`
 
-        attr_accessor :Name, :SortId, :ExpireTime, :Strategies, :Domain, :Bypass, :JobType, :JobDateTime
+        attr_accessor :Name, :SortId, :Strategies, :Domain, :Bypass, :ExpireTime, :JobType, :JobDateTime
 
-        def initialize(name=nil, sortid=nil, expiretime=nil, strategies=nil, domain=nil, bypass=nil, jobtype=nil, jobdatetime=nil)
+        def initialize(name=nil, sortid=nil, strategies=nil, domain=nil, bypass=nil, expiretime=nil, jobtype=nil, jobdatetime=nil)
           @Name = name
           @SortId = sortid
-          @ExpireTime = expiretime
           @Strategies = strategies
           @Domain = domain
           @Bypass = bypass
+          @ExpireTime = expiretime
           @JobType = jobtype
           @JobDateTime = jobdatetime
         end
@@ -704,7 +711,6 @@ module TencentCloud
         def deserialize(params)
           @Name = params['Name']
           @SortId = params['SortId']
-          @ExpireTime = params['ExpireTime']
           unless params['Strategies'].nil?
             @Strategies = []
             params['Strategies'].each do |i|
@@ -715,6 +721,7 @@ module TencentCloud
           end
           @Domain = params['Domain']
           @Bypass = params['Bypass']
+          @ExpireTime = params['ExpireTime']
           @JobType = params['JobType']
           unless params['JobDateTime'].nil?
             @JobDateTime = JobDateTime.new
@@ -934,10 +941,14 @@ module TencentCloud
         # @type GmEncPrivateKey: String
         # @param GmSSLId: GmCertType为2时，需要填充此参数，表示腾讯云SSL平台托管的证书id
         # @type GmSSLId: String
+        # @param UpstreamPolicy: 回源策略，支持负载均衡回源和分流回源两种方式。0：默认值，负载均衡回源；1：分流回源
+        # @type UpstreamPolicy: Integer
+        # @param UpstreamRules: 分流回源时生效，分流回源的规则。
+        # @type UpstreamRules: Array
 
-        attr_accessor :Domain, :CertType, :IsCdn, :UpstreamType, :IsWebsocket, :LoadBalance, :Ports, :IsKeepAlive, :InstanceID, :Cert, :PrivateKey, :SSLId, :ResourceId, :IpHeaders, :UpstreamScheme, :HttpsUpstreamPort, :IsGray, :GrayAreas, :HttpsRewrite, :UpstreamDomain, :SrcList, :IsHttp2, :Edition, :Anycast, :Weights, :ActiveCheck, :TLSVersion, :CipherTemplate, :Ciphers, :ProxyReadTimeout, :ProxySendTimeout, :SniType, :SniHost, :XFFReset, :Note, :UpstreamHost, :ProxyBuffer, :ProbeStatus, :GmType, :GmCertType, :GmCert, :GmPrivateKey, :GmEncCert, :GmEncPrivateKey, :GmSSLId
+        attr_accessor :Domain, :CertType, :IsCdn, :UpstreamType, :IsWebsocket, :LoadBalance, :Ports, :IsKeepAlive, :InstanceID, :Cert, :PrivateKey, :SSLId, :ResourceId, :IpHeaders, :UpstreamScheme, :HttpsUpstreamPort, :IsGray, :GrayAreas, :HttpsRewrite, :UpstreamDomain, :SrcList, :IsHttp2, :Edition, :Anycast, :Weights, :ActiveCheck, :TLSVersion, :CipherTemplate, :Ciphers, :ProxyReadTimeout, :ProxySendTimeout, :SniType, :SniHost, :XFFReset, :Note, :UpstreamHost, :ProxyBuffer, :ProbeStatus, :GmType, :GmCertType, :GmCert, :GmPrivateKey, :GmEncCert, :GmEncPrivateKey, :GmSSLId, :UpstreamPolicy, :UpstreamRules
 
-        def initialize(domain=nil, certtype=nil, iscdn=nil, upstreamtype=nil, iswebsocket=nil, loadbalance=nil, ports=nil, iskeepalive=nil, instanceid=nil, cert=nil, privatekey=nil, sslid=nil, resourceid=nil, ipheaders=nil, upstreamscheme=nil, httpsupstreamport=nil, isgray=nil, grayareas=nil, httpsrewrite=nil, upstreamdomain=nil, srclist=nil, ishttp2=nil, edition=nil, anycast=nil, weights=nil, activecheck=nil, tlsversion=nil, ciphertemplate=nil, ciphers=nil, proxyreadtimeout=nil, proxysendtimeout=nil, snitype=nil, snihost=nil, xffreset=nil, note=nil, upstreamhost=nil, proxybuffer=nil, probestatus=nil, gmtype=nil, gmcerttype=nil, gmcert=nil, gmprivatekey=nil, gmenccert=nil, gmencprivatekey=nil, gmsslid=nil)
+        def initialize(domain=nil, certtype=nil, iscdn=nil, upstreamtype=nil, iswebsocket=nil, loadbalance=nil, ports=nil, iskeepalive=nil, instanceid=nil, cert=nil, privatekey=nil, sslid=nil, resourceid=nil, ipheaders=nil, upstreamscheme=nil, httpsupstreamport=nil, isgray=nil, grayareas=nil, httpsrewrite=nil, upstreamdomain=nil, srclist=nil, ishttp2=nil, edition=nil, anycast=nil, weights=nil, activecheck=nil, tlsversion=nil, ciphertemplate=nil, ciphers=nil, proxyreadtimeout=nil, proxysendtimeout=nil, snitype=nil, snihost=nil, xffreset=nil, note=nil, upstreamhost=nil, proxybuffer=nil, probestatus=nil, gmtype=nil, gmcerttype=nil, gmcert=nil, gmprivatekey=nil, gmenccert=nil, gmencprivatekey=nil, gmsslid=nil, upstreampolicy=nil, upstreamrules=nil)
           @Domain = domain
           @CertType = certtype
           @IsCdn = iscdn
@@ -983,6 +994,8 @@ module TencentCloud
           @GmEncCert = gmenccert
           @GmEncPrivateKey = gmencprivatekey
           @GmSSLId = gmsslid
+          @UpstreamPolicy = upstreampolicy
+          @UpstreamRules = upstreamrules
         end
 
         def deserialize(params)
@@ -1038,6 +1051,15 @@ module TencentCloud
           @GmEncCert = params['GmEncCert']
           @GmEncPrivateKey = params['GmEncPrivateKey']
           @GmSSLId = params['GmSSLId']
+          @UpstreamPolicy = params['UpstreamPolicy']
+          unless params['UpstreamRules'].nil?
+            @UpstreamRules = []
+            params['UpstreamRules'].each do |i|
+              upstreamrule_tmp = UpstreamRule.new
+              upstreamrule_tmp.deserialize(i)
+              @UpstreamRules << upstreamrule_tmp
+            end
+          end
         end
       end
 
@@ -1480,7 +1502,7 @@ module TencentCloud
         # @type Ip: String
         # @param Note: 备注
         # @type Note: String
-        # @param Source: 添加路径
+        # @param Source: batch为批量域名，batch-group为防护对象组
         # @type Source: String
         # @param TsVersion: 修改时间
         # @type TsVersion: Integer
@@ -1502,10 +1524,17 @@ module TencentCloud
         # @type JobDateTime: :class:`Tencentcloud::Waf.v20180125.models.JobDateTime`
         # @param ValidStatus: 生效状态
         # @type ValidStatus: Integer
+        # @param GroupIds: 防护对象组ID列表，如果绑定的是防护对象组
+        # @type GroupIds: Array
 
-        attr_accessor :Id, :ActionType, :Ip, :Note, :Source, :TsVersion, :ValidTs, :Hosts, :RuleId, :IpList, :CreateTime, :JobType, :CronType, :JobDateTime, :ValidStatus
+        attr_accessor :Id, :ActionType, :Ip, :Note, :Source, :TsVersion, :ValidTs, :Hosts, :RuleId, :IpList, :CreateTime, :JobType, :CronType, :JobDateTime, :ValidStatus, :GroupIds
+        extend Gem::Deprecate
+        deprecate :Id, :none, 2025, 2
+        deprecate :Id=, :none, 2025, 2
+        deprecate :Ip, :none, 2025, 2
+        deprecate :Ip=, :none, 2025, 2
 
-        def initialize(id=nil, actiontype=nil, ip=nil, note=nil, source=nil, tsversion=nil, validts=nil, hosts=nil, ruleid=nil, iplist=nil, createtime=nil, jobtype=nil, crontype=nil, jobdatetime=nil, validstatus=nil)
+        def initialize(id=nil, actiontype=nil, ip=nil, note=nil, source=nil, tsversion=nil, validts=nil, hosts=nil, ruleid=nil, iplist=nil, createtime=nil, jobtype=nil, crontype=nil, jobdatetime=nil, validstatus=nil, groupids=nil)
           @Id = id
           @ActionType = actiontype
           @Ip = ip
@@ -1521,6 +1550,7 @@ module TencentCloud
           @CronType = crontype
           @JobDateTime = jobdatetime
           @ValidStatus = validstatus
+          @GroupIds = groupids
         end
 
         def deserialize(params)
@@ -1542,6 +1572,7 @@ module TencentCloud
             @JobDateTime.deserialize(params['JobDateTime'])
           end
           @ValidStatus = params['ValidStatus']
+          @GroupIds = params['GroupIds']
         end
       end
 
@@ -4488,7 +4519,7 @@ module TencentCloud
 
       # DescribeBatchIpAccessControl请求参数结构体
       class DescribeBatchIpAccessControlRequest < TencentCloud::Common::AbstractModel
-        # @param Filters: 筛选条件，支持 ActionType，可选的值为40（白名单）42（黑名单），ValidStatus，可选的值为1（生效）0（过期）
+        # @param Filters: 筛选条件，支持 ActionType（可选的值为40：白名单，42：黑名单），ValidStatus（可选的值0：全部，1：生效，2：过期），Ip，Domains（域名列表），GroupId（防护对象组ID），GroupName（防护对象组名），RuleId（规则ID），TimerType（生效方式，1：永久生效，2：定时生效，3：按周周期生效，4：按月周期生效）
         # @type Filters: Array
         # @param OffSet: 偏移
         # @type OffSet: Integer
@@ -4957,10 +4988,12 @@ module TencentCloud
         # @type PageId: String
         # @param Domain: 域名
         # @type Domain: String
+        # @param LogicalOp: 匹配条件的逻辑关系，支持and、or，分别表示多个逻辑匹配条件是与、或的关系
+        # @type LogicalOp: String
 
-        attr_accessor :ActionType, :Bypass, :CreateTime, :ExpireTime, :Name, :Redirect, :RuleId, :SortId, :Status, :Strategies, :EventId, :ModifyTime, :ValidStatus, :Source, :JobType, :JobDateTime, :CronType, :Label, :PageId, :Domain
+        attr_accessor :ActionType, :Bypass, :CreateTime, :ExpireTime, :Name, :Redirect, :RuleId, :SortId, :Status, :Strategies, :EventId, :ModifyTime, :ValidStatus, :Source, :JobType, :JobDateTime, :CronType, :Label, :PageId, :Domain, :LogicalOp
 
-        def initialize(actiontype=nil, bypass=nil, createtime=nil, expiretime=nil, name=nil, redirect=nil, ruleid=nil, sortid=nil, status=nil, strategies=nil, eventid=nil, modifytime=nil, validstatus=nil, source=nil, jobtype=nil, jobdatetime=nil, crontype=nil, label=nil, pageid=nil, domain=nil)
+        def initialize(actiontype=nil, bypass=nil, createtime=nil, expiretime=nil, name=nil, redirect=nil, ruleid=nil, sortid=nil, status=nil, strategies=nil, eventid=nil, modifytime=nil, validstatus=nil, source=nil, jobtype=nil, jobdatetime=nil, crontype=nil, label=nil, pageid=nil, domain=nil, logicalop=nil)
           @ActionType = actiontype
           @Bypass = bypass
           @CreateTime = createtime
@@ -4981,6 +5014,7 @@ module TencentCloud
           @Label = label
           @PageId = pageid
           @Domain = domain
+          @LogicalOp = logicalop
         end
 
         def deserialize(params)
@@ -5014,6 +5048,7 @@ module TencentCloud
           @Label = params['Label']
           @PageId = params['PageId']
           @Domain = params['Domain']
+          @LogicalOp = params['LogicalOp']
         end
       end
 
@@ -5882,7 +5917,7 @@ module TencentCloud
         # @type Sort: String
         # @param Ip: IP
         # @type Ip: String
-        # @param ValidStatus: 生效状态
+        # @param ValidStatus: 生效状态，1表示生效中，2表示过期，0表示全部
         # @type ValidStatus: Integer
         # @param ValidTimeStampMin: 最小有效时间的时间戳
         # @type ValidTimeStampMin: String
@@ -5890,7 +5925,7 @@ module TencentCloud
         # @type ValidTimeStampMax: String
         # @param RuleId: 规则ID
         # @type RuleId: Integer
-        # @param TimerType: 定时任务类型筛选0 1 2 3 4
+        # @param TimerType: 0表示全部，1表示永久生效，2表示定时生效，3表示周粒度生效，4表示月粒度生效
         # @type TimerType: Integer
 
         attr_accessor :Domain, :Count, :ActionType, :VtsMin, :VtsMax, :CtsMin, :CtsMax, :OffSet, :Limit, :Source, :Sort, :Ip, :ValidStatus, :ValidTimeStampMin, :ValidTimeStampMax, :RuleId, :TimerType
@@ -5986,13 +6021,13 @@ module TencentCloud
         # @type CtsMax: Integer
         # @param Skip: 偏移参数
         # @type Skip: Integer
-        # @param Limit: 限制数目
+        # @param Limit: 限制数目，category不等于threat_intelligence时，该值需要必传
         # @type Limit: Integer
         # @param Name: 策略名称
         # @type Name: String
         # @param Sort: 排序参数
         # @type Sort: String
-        # @param Ip: IP
+        # @param Ip: IP,category传threat_intelligence的时候，该值必传
         # @type Ip: String
         # @param ValidTimeStampMin: 有效时间最小时间戳
         # @type ValidTimeStampMin: Integer
@@ -7926,10 +7961,16 @@ module TencentCloud
         # @type Labels: Array
         # @param ProbeStatus: 拨测状态。 0: 禁用拨测, 1: 启用拨测
         # @type ProbeStatus: Integer
+        # @param UpstreamPolicy: 回源策略。
+        # 0：负载均衡回源
+        # 1：分流回源
+        # @type UpstreamPolicy: Integer
+        # @param UpstreamRules: 分流回源策略
+        # @type UpstreamRules: Array
 
-        attr_accessor :Domain, :DomainId, :InstanceId, :Edition, :InstanceName, :Cert, :CreateTime, :Engine, :HttpsRewrite, :HttpsUpstreamPort, :IsCdn, :IsGray, :IsHttp2, :IsWebsocket, :LoadBalance, :Mode, :PrivateKey, :SSLId, :UpstreamDomain, :UpstreamType, :SrcList, :Ports, :CertType, :UpstreamScheme, :Cls, :Cname, :IsKeepAlive, :ActiveCheck, :TLSVersion, :Ciphers, :CipherTemplate, :ProxyReadTimeout, :ProxySendTimeout, :SniType, :SniHost, :Weights, :IpHeaders, :XFFReset, :Note, :UpstreamHost, :Level, :ProxyBuffer, :GmType, :GmCertType, :GmCert, :GmPrivateKey, :GmEncCert, :GmEncPrivateKey, :GmSSLId, :Labels, :ProbeStatus
+        attr_accessor :Domain, :DomainId, :InstanceId, :Edition, :InstanceName, :Cert, :CreateTime, :Engine, :HttpsRewrite, :HttpsUpstreamPort, :IsCdn, :IsGray, :IsHttp2, :IsWebsocket, :LoadBalance, :Mode, :PrivateKey, :SSLId, :UpstreamDomain, :UpstreamType, :SrcList, :Ports, :CertType, :UpstreamScheme, :Cls, :Cname, :IsKeepAlive, :ActiveCheck, :TLSVersion, :Ciphers, :CipherTemplate, :ProxyReadTimeout, :ProxySendTimeout, :SniType, :SniHost, :Weights, :IpHeaders, :XFFReset, :Note, :UpstreamHost, :Level, :ProxyBuffer, :GmType, :GmCertType, :GmCert, :GmPrivateKey, :GmEncCert, :GmEncPrivateKey, :GmSSLId, :Labels, :ProbeStatus, :UpstreamPolicy, :UpstreamRules
 
-        def initialize(domain=nil, domainid=nil, instanceid=nil, edition=nil, instancename=nil, cert=nil, createtime=nil, engine=nil, httpsrewrite=nil, httpsupstreamport=nil, iscdn=nil, isgray=nil, ishttp2=nil, iswebsocket=nil, loadbalance=nil, mode=nil, privatekey=nil, sslid=nil, upstreamdomain=nil, upstreamtype=nil, srclist=nil, ports=nil, certtype=nil, upstreamscheme=nil, cls=nil, cname=nil, iskeepalive=nil, activecheck=nil, tlsversion=nil, ciphers=nil, ciphertemplate=nil, proxyreadtimeout=nil, proxysendtimeout=nil, snitype=nil, snihost=nil, weights=nil, ipheaders=nil, xffreset=nil, note=nil, upstreamhost=nil, level=nil, proxybuffer=nil, gmtype=nil, gmcerttype=nil, gmcert=nil, gmprivatekey=nil, gmenccert=nil, gmencprivatekey=nil, gmsslid=nil, labels=nil, probestatus=nil)
+        def initialize(domain=nil, domainid=nil, instanceid=nil, edition=nil, instancename=nil, cert=nil, createtime=nil, engine=nil, httpsrewrite=nil, httpsupstreamport=nil, iscdn=nil, isgray=nil, ishttp2=nil, iswebsocket=nil, loadbalance=nil, mode=nil, privatekey=nil, sslid=nil, upstreamdomain=nil, upstreamtype=nil, srclist=nil, ports=nil, certtype=nil, upstreamscheme=nil, cls=nil, cname=nil, iskeepalive=nil, activecheck=nil, tlsversion=nil, ciphers=nil, ciphertemplate=nil, proxyreadtimeout=nil, proxysendtimeout=nil, snitype=nil, snihost=nil, weights=nil, ipheaders=nil, xffreset=nil, note=nil, upstreamhost=nil, level=nil, proxybuffer=nil, gmtype=nil, gmcerttype=nil, gmcert=nil, gmprivatekey=nil, gmenccert=nil, gmencprivatekey=nil, gmsslid=nil, labels=nil, probestatus=nil, upstreampolicy=nil, upstreamrules=nil)
           @Domain = domain
           @DomainId = domainid
           @InstanceId = instanceid
@@ -7981,6 +8022,8 @@ module TencentCloud
           @GmSSLId = gmsslid
           @Labels = labels
           @ProbeStatus = probestatus
+          @UpstreamPolicy = upstreampolicy
+          @UpstreamRules = upstreamrules
         end
 
         def deserialize(params)
@@ -8042,6 +8085,15 @@ module TencentCloud
           @GmSSLId = params['GmSSLId']
           @Labels = params['Labels']
           @ProbeStatus = params['ProbeStatus']
+          @UpstreamPolicy = params['UpstreamPolicy']
+          unless params['UpstreamRules'].nil?
+            @UpstreamRules = []
+            params['UpstreamRules'].each do |i|
+              upstreamrule_tmp = UpstreamRule.new
+              upstreamrule_tmp.deserialize(i)
+              @UpstreamRules << upstreamrule_tmp
+            end
+          end
         end
       end
 
@@ -9530,10 +9582,13 @@ module TencentCloud
       # 规则执行的时间结构体
       class JobDateTime < TencentCloud::Common::AbstractModel
         # @param Timed: 定时执行的时间参数
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Timed: Array
         # @param Cron: 周期执行的时间参数
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Cron: Array
         # @param TimeTZone: 时区
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TimeTZone: String
 
         attr_accessor :Timed, :Cron, :TimeTZone
@@ -10525,10 +10580,15 @@ module TencentCloud
         # @type Status: Integer
         # @param PageId: 拦截页面id
         # @type PageId: String
+        # @param LogicalOp: 匹配条件的逻辑关系，支持and、or，分别表示多个逻辑匹配条件是与、或的关系
+        # @type LogicalOp: String
 
-        attr_accessor :Domain, :RuleId, :RuleName, :RuleAction, :Strategies, :Edition, :Redirect, :Bypass, :SortId, :ExpireTime, :JobType, :JobDateTime, :Source, :Status, :PageId
+        attr_accessor :Domain, :RuleId, :RuleName, :RuleAction, :Strategies, :Edition, :Redirect, :Bypass, :SortId, :ExpireTime, :JobType, :JobDateTime, :Source, :Status, :PageId, :LogicalOp
+        extend Gem::Deprecate
+        deprecate :Bypass, :none, 2025, 2
+        deprecate :Bypass=, :none, 2025, 2
 
-        def initialize(domain=nil, ruleid=nil, rulename=nil, ruleaction=nil, strategies=nil, edition=nil, redirect=nil, bypass=nil, sortid=nil, expiretime=nil, jobtype=nil, jobdatetime=nil, source=nil, status=nil, pageid=nil)
+        def initialize(domain=nil, ruleid=nil, rulename=nil, ruleaction=nil, strategies=nil, edition=nil, redirect=nil, bypass=nil, sortid=nil, expiretime=nil, jobtype=nil, jobdatetime=nil, source=nil, status=nil, pageid=nil, logicalop=nil)
           @Domain = domain
           @RuleId = ruleid
           @RuleName = rulename
@@ -10544,6 +10604,7 @@ module TencentCloud
           @Source = source
           @Status = status
           @PageId = pageid
+          @LogicalOp = logicalop
         end
 
         def deserialize(params)
@@ -10572,6 +10633,7 @@ module TencentCloud
           @Source = params['Source']
           @Status = params['Status']
           @PageId = params['PageId']
+          @LogicalOp = params['LogicalOp']
         end
       end
 
@@ -10672,7 +10734,7 @@ module TencentCloud
         # @type Bypass: String
         # @param SortId: 优先级，1~100的整数，数字越小，代表这条规则的执行优先级越高。
         # @type SortId: Integer
-        # @param ExpireTime: 规则生效截止时间，0：永久生效，其它值为对应时间的时间戳。
+        # @param ExpireTime: 如果没有设置JobDateTime字段则用此字段，0表示永久生效，其它表示定时生效的截止时间（单位为秒）
         # @type ExpireTime: Integer
         # @param Strategies: 匹配条件数组
         # @type Strategies: Array
@@ -11757,10 +11819,14 @@ module TencentCloud
         # @type GmEncPrivateKey: String
         # @param GmSSLId: GmCertType为2时，需要填充此参数，表示腾讯云SSL平台托管的证书id
         # @type GmSSLId: String
+        # @param UpstreamPolicy: 回源策略，支持负载均衡回源和分流回源两种方式。0：默认值，负载均衡回源；1：分流回源
+        # @type UpstreamPolicy: Integer
+        # @param UpstreamRules: 分流回源时生效，分流回源的规则。
+        # @type UpstreamRules: Array
 
-        attr_accessor :Domain, :DomainId, :InstanceID, :CertType, :Cert, :PrivateKey, :SSLId, :IsCdn, :UpstreamScheme, :HttpsUpstreamPort, :HttpsRewrite, :UpstreamType, :UpstreamDomain, :SrcList, :IsHttp2, :IsWebsocket, :LoadBalance, :IsGray, :Edition, :Ports, :IsKeepAlive, :Anycast, :Weights, :ActiveCheck, :TLSVersion, :Ciphers, :CipherTemplate, :ProxyReadTimeout, :ProxySendTimeout, :SniType, :SniHost, :IpHeaders, :XFFReset, :Note, :UpstreamHost, :ProxyBuffer, :ProbeStatus, :GmType, :GmCertType, :GmCert, :GmPrivateKey, :GmEncCert, :GmEncPrivateKey, :GmSSLId
+        attr_accessor :Domain, :DomainId, :InstanceID, :CertType, :Cert, :PrivateKey, :SSLId, :IsCdn, :UpstreamScheme, :HttpsUpstreamPort, :HttpsRewrite, :UpstreamType, :UpstreamDomain, :SrcList, :IsHttp2, :IsWebsocket, :LoadBalance, :IsGray, :Edition, :Ports, :IsKeepAlive, :Anycast, :Weights, :ActiveCheck, :TLSVersion, :Ciphers, :CipherTemplate, :ProxyReadTimeout, :ProxySendTimeout, :SniType, :SniHost, :IpHeaders, :XFFReset, :Note, :UpstreamHost, :ProxyBuffer, :ProbeStatus, :GmType, :GmCertType, :GmCert, :GmPrivateKey, :GmEncCert, :GmEncPrivateKey, :GmSSLId, :UpstreamPolicy, :UpstreamRules
 
-        def initialize(domain=nil, domainid=nil, instanceid=nil, certtype=nil, cert=nil, privatekey=nil, sslid=nil, iscdn=nil, upstreamscheme=nil, httpsupstreamport=nil, httpsrewrite=nil, upstreamtype=nil, upstreamdomain=nil, srclist=nil, ishttp2=nil, iswebsocket=nil, loadbalance=nil, isgray=nil, edition=nil, ports=nil, iskeepalive=nil, anycast=nil, weights=nil, activecheck=nil, tlsversion=nil, ciphers=nil, ciphertemplate=nil, proxyreadtimeout=nil, proxysendtimeout=nil, snitype=nil, snihost=nil, ipheaders=nil, xffreset=nil, note=nil, upstreamhost=nil, proxybuffer=nil, probestatus=nil, gmtype=nil, gmcerttype=nil, gmcert=nil, gmprivatekey=nil, gmenccert=nil, gmencprivatekey=nil, gmsslid=nil)
+        def initialize(domain=nil, domainid=nil, instanceid=nil, certtype=nil, cert=nil, privatekey=nil, sslid=nil, iscdn=nil, upstreamscheme=nil, httpsupstreamport=nil, httpsrewrite=nil, upstreamtype=nil, upstreamdomain=nil, srclist=nil, ishttp2=nil, iswebsocket=nil, loadbalance=nil, isgray=nil, edition=nil, ports=nil, iskeepalive=nil, anycast=nil, weights=nil, activecheck=nil, tlsversion=nil, ciphers=nil, ciphertemplate=nil, proxyreadtimeout=nil, proxysendtimeout=nil, snitype=nil, snihost=nil, ipheaders=nil, xffreset=nil, note=nil, upstreamhost=nil, proxybuffer=nil, probestatus=nil, gmtype=nil, gmcerttype=nil, gmcert=nil, gmprivatekey=nil, gmenccert=nil, gmencprivatekey=nil, gmsslid=nil, upstreampolicy=nil, upstreamrules=nil)
           @Domain = domain
           @DomainId = domainid
           @InstanceID = instanceid
@@ -11805,6 +11871,8 @@ module TencentCloud
           @GmEncCert = gmenccert
           @GmEncPrivateKey = gmencprivatekey
           @GmSSLId = gmsslid
+          @UpstreamPolicy = upstreampolicy
+          @UpstreamRules = upstreamrules
         end
 
         def deserialize(params)
@@ -11859,6 +11927,15 @@ module TencentCloud
           @GmEncCert = params['GmEncCert']
           @GmEncPrivateKey = params['GmEncPrivateKey']
           @GmSSLId = params['GmSSLId']
+          @UpstreamPolicy = params['UpstreamPolicy']
+          unless params['UpstreamRules'].nil?
+            @UpstreamRules = []
+            params['UpstreamRules'].each do |i|
+              upstreamrule_tmp = UpstreamRule.new
+              upstreamrule_tmp.deserialize(i)
+              @UpstreamRules << upstreamrule_tmp
+            end
+          end
         end
       end
 
@@ -13061,7 +13138,8 @@ module TencentCloud
 
         #     匹配字段不同，相应的匹配参数、逻辑符号、匹配内容有所不同
         # 具体如下所示：
-        # <table><thead><tr><th>匹配字段</th><th>匹配参数</th><th>逻辑符号</th><th>匹配内容</th></tr></thead><tbody><tr><td>IP（来源IP）</td><td>不支持参数</td><td>ipmatch（匹配）<br/>ipnmatch（不匹配）</td><td>多个IP以英文逗号隔开,最多20个</td></tr><tr><td>IPV6（来源IPv6）</td><td>不支持参数</td><td>ipmatch（匹配）<br/>ipnmatch（不匹配）</td><td>支持单个IPV6地址</td></tr><tr><td>Referer（Referer）</td><td>不支持参数</td><td>empty（内容为空）<br/>null（不存在）<br/>eq（等于）<br/>neq（不等于）<br/>contains（包含）<br/>ncontains（不包含）<br/>len_eq（长度等于）<br/>len_gt（长度大于）<br/>len_lt（长度小于）<br/>strprefix（前缀匹配）<br/>strsuffix（后缀匹配）<br/>rematch（正则匹配）</td><td>请输入内容,512个字符以内</td></tr><tr><td>URL（请求路径）</td><td>不支持参数</td><td>eq（等于）<br/>neq（不等于）<br/>contains（包含）<br/>ncontains（不包含）<br/>len_eq（长度等于）<br/>len_gt（长度大于）<br/>len_lt（长度小于）<br/>strprefix（前缀匹配）<br/>strsuffix（后缀匹配）<br/>rematch（正则匹配）<br/></td><td>请以/开头,512个字符以内</td></tr><tr><td>UserAgent（UserAgent）</td><td>不支持参数</td><td>同匹配字段<font color="Red">Referer</font>逻辑符号</td><td>请输入内容,512个字符以内</td></tr><tr><td>HTTP_METHOD（HTTP请求方法）</td><td>不支持参数</td><td>eq（等于）<br/>neq（不等于）</td><td>请输入方法名称,建议大写</td></tr><tr><td>QUERY_STRING（请求字符串）</td><td>不支持参数</td><td>同匹配字段<font color="Red">请求路径</font>逻辑符号</td><td>请输入内容,512个字符以内</td></tr><tr><td>GET（GET参数值）</td><td>支持参数录入</td><td>contains（包含）<br/>ncontains（不包含）<br/>len_eq（长度等于）<br/>len_gt（长度大于）<br/>len_lt（长度小于）<br/>strprefix（前缀匹配）<br/>strsuffix（后缀匹配）</td><td>请输入内容,512个字符以内</td></tr><tr><td>GET_PARAMS_NAMES（GET参数名）</td><td>不支持参数</td><td>exsit（存在参数）<br/>nexsit（不存在参数）<br/>len_eq（长度等于）<br/>len_gt（长度大于）<br/>len_lt（长度小于）<br/>strprefix（前缀匹配）<br/>strsuffix（后缀匹配）</td><td>请输入内容,512个字符以内</td></tr><tr><td>POST（POST参数值）</td><td>支持参数录入</td><td>同匹配字段<font color="Red">GET参数值</font>逻辑符号</td><td>请输入内容,512个字符以内</td></tr><tr><td>GET_POST_NAMES（POST参数名）</td><td>不支持参数</td><td>同匹配字段<font color="Red">GET参数名</font>逻辑符号</td><td>请输入内容,512个字符以内</td></tr><tr><td>POST_BODY（完整BODY）</td><td>不支持参数</td><td>同匹配字段<font color="Red">请求路径</font>逻辑符号</td><td>请输入BODY内容,512个字符以内</td></tr><tr><td>COOKIE（Cookie）</td><td>不支持参数</td><td>empty（内容为空）<br/>null（不存在）<br/>rematch（正则匹配）</td><td><font color="Red">暂不支持</font></td></tr><tr><td>GET_COOKIES_NAMES（Cookie参数名）</td><td>不支持参数</td><td>同匹配字段<font color="Red">GET参数名</font>逻辑符号</td><td>请输入内容,512个字符以内</td></tr><tr><td>ARGS_COOKIE（Cookie参数值）</td><td>支持参数录入</td><td>同匹配字段<font color="Red">GET参数值</font>逻辑符号</td><td>请输入内容,512个字符以内</td></tr><tr><td>GET_HEADERS_NAMES（Header参数名）</td><td>不支持参数</td><td>exsit（存在参数）<br/>nexsit（不存在参数）<br/>len_eq（长度等于）<br/>len_gt（长度大于）<br/>len_lt（长度小于）<br/>strprefix（前缀匹配）<br/>strsuffix（后缀匹配）<br/>rematch（正则匹配）</td><td>请输入内容,建议小写,512个字符以内</td></tr><tr><td>ARGS_HEADER（Header参数值）</td><td>支持参数录入</td><td>contains（包含）<br/>ncontains（不包含）<br/>len_eq（长度等于）<br/>len_gt（长度大于）<br/>len_lt（长度小于）<br/>strprefix（前缀匹配）<br/>strsuffix（后缀匹配）<br/>rematch（正则匹配）</td><td>请输入内容,512个字符以内</td></tr></tbody></table>
+        # <table><thead><tr><th>匹配字段</th><th>匹配参数</th><th>逻辑符号</th><th>匹配内容</th></tr></thead><tbody><tr><td>IP（来源IP）</td><td>不支持参数</td><td>ipmatch（匹配）<br/>ipnmatch（不匹配）</td><td>多个IP以英文逗号隔开,最多20个</td></tr><tr><td>IPV6（来源IPv6）</td><td>不支持参数</td><td>ipmatch（匹配）<br/>ipnmatch（不匹配）</td><td>支持单个IPV6地址</td></tr><tr><td>Referer（Referer）</td><td>不支持参数</td><td>empty（内容为空）<br/>null（不存在）<br/>eq（等于）<br/>neq（不等于）<br/>contains（包含）<br/>ncontains（不包含）<br/>len_eq（长度等于）<br/>len_gt（长度大于）<br/>len_lt（长度小于）<br/>strprefix（前缀匹配）<br/>strsuffix（后缀匹配）<br/>rematch（正则匹配）</td><td>请输入内容,512个字符以内</td></tr><tr><td>URL（请求路径）</td><td>不支持参数</td><td>eq（等于）<br/>neq（不等于）<br/>contains（包含）<br/>ncontains（不包含）<br/>len_eq（长度等于）<br/>len_gt（长度大于）<br/>len_lt（长度小于）<br/>strprefix（前缀匹配）<br/>strsuffix（后缀匹配）<br/>rematch（正则匹配）<br/></td><td>请以/开头,512个字符以内</td></tr><tr><td>UserAgent（UserAgent）</td><td>不支持参数</td><td>同匹配字段<font color="Red">Referer</font>逻辑符号</td><td>请输入内容,512个字符以内</td></tr><tr><td>HTTP_METHOD（HTTP请求方法）</td><td>不支持参数</td><td>eq（等于）<br/>neq（不等于）</td><td>请输入方法名称,建议大写</td></tr><tr><td>QUERY_STRING（请求字符串）</td><td>不支持参数</td><td>同匹配字段<font color="Red">请求路径</font>逻辑符号</td><td>请输入内容,512个字符以内</td></tr><tr><td>GET（GET参数值）</td><td>支持参数录入</td><td>contains（包含）<br/>ncontains（不包含）<br/>len_eq（长度等于）<br/>len_gt（长度大于）<br/>len_lt（长度小于）<br/>strprefix（前缀匹配）<br/>strsuffix（后缀匹配）</td><td>请输入内容,512个字符以内</td></tr><tr><td>GET_PARAMS_NAMES（GET参数名）</td><td>不支持参数</td><td>exsit（存在参数）<br/>nexsit（不存在参数）<br/>len_eq（长度等于）<br/>len_gt（长度大于）<br/>len_lt（长度小于）<br/>strprefix（前缀匹配）<br/>strsuffix（后缀匹配）</td><td>请输入内容,512个字符以内</td></tr><tr><td>POST（POST参数值）</td><td>支持参数录入</td><td>同匹配字段<font color="Red">GET参数值</font>逻辑符号</td><td>请输入内容,512个字符以内</td></tr><tr><td>GET_POST_NAMES（POST参数名）</td><td>不支持参数</td><td>同匹配字段<font color="Red">GET参数名</font>逻辑符号</td><td>请输入内容,512个字符以内</td></tr><tr><td>POST_BODY（完整BODY）</td><td>不支持参数</td><td>同匹配字段<font color="Red">请求路径</font>逻辑符号</td><td>请输入BODY内容,512个字符以内</td></tr><tr><td>COOKIE（Cookie）</td><td>不支持参数</td><td>empty（内容为空）<br/>null（不存在）<br/>rematch（正则匹配）</td><td><font color="Red">暂不支持</font></td></tr><tr><td>GET_COOKIES_NAMES（Cookie参数名）</td><td>不支持参数</td><td>同匹配字段<font color="Red">GET参数名</font>逻辑符号</td><td>请输入内容,512个字符以内</td></tr><tr><td>ARGS_COOKIE（Cookie参数值）</td><td>支持参数录入</td><td>同匹配字段<font color="Red">GET参数值</font>逻辑符号</td><td>请输入内容,512个字符以内</td></tr><tr><td>GET_HEADERS_NAMES（Header参数名）</td><td>不支持参数</td><td>exsit（存在参数）<br/>nexsit（不存在参数）<br/>len_eq（长度等于）<br/>len_gt（长度大于）<br/>len_lt（长度小于）<br/>strprefix（前缀匹配）<br/>strsuffix（后缀匹配）<br/>rematch（正则匹配）</td><td>请输入内容,建议小写,512个字符以内</td></tr><tr><td>ARGS_HEADER（Header参数值）</td><td>支持参数录入</td><td>contains（包含）<br/>ncontains（不包含）<br/>len_eq（长度等于）<br/>len_gt（长度大于）<br/>len_lt（长度小于）<br/>strprefix（前缀匹配）<br/>strsuffix（后缀匹配）<br/>rematch（正则匹配）</td><td>请输入内容,512个字符以内</td></tr><tr><td>CONTENT_LENGTH（Content-length）</td><td>支持参数录入</td><td>numgt（数值大于）<br/>numlt（数值小于）<br/>numeq（数值等于）<br/></td><td>请输入0-9999999999999之间的整数</td></tr><tr><td>IP_GEO（来源IP归属地）</td><td>支持参数录入</td><td>geo_in（属于）<br/>geo_not_in（不属于）<br/></td><td>请输入内容,10240字符以内，格式为序列化的JSON，格式为：[{"Country":"中国","Region":"广东","City":"深圳"}]</td></tr>
+        # </tbody></table>
         # @type Field: String
         # @param CompareFunc: 逻辑符号
 
@@ -13079,6 +13157,11 @@ module TencentCloud
         #         len_lt （ 长度小于）
         #         ipmatch （ 属于）
         #         ipnmatch （ 不属于）
+        #         numgt （ 数值大于）
+        #         numlt （ 数值小于）
+        #         numeq （ 数值等于）
+        #         geo_in （ IP地理属于）
+        #         geo_not_in （ IP地理不属于）
         #     各匹配字段对应的逻辑符号不同，详见上述匹配字段表格
         # @type CompareFunc: String
         # @param Content: 匹配内容
@@ -13399,7 +13482,7 @@ module TencentCloud
         # @type Interval: String
         # @param Url: 检测Url
         # @type Url: String
-        # @param MatchFunc: 匹配方法，0表示等于，1表示前缀匹配，2表示包含
+        # @param MatchFunc: 匹配方法，0表示等于，1表示前缀匹配，2表示包含，3表示不等于，6表示后缀匹配，7表示不包含
         # @type MatchFunc: Integer
         # @param ActionType: 动作，20表示观察，21表示人机识别，22表示拦截，23表示精准拦截，26表示精准人机识别，27表示JS校验
         # @type ActionType: String
@@ -13407,7 +13490,7 @@ module TencentCloud
         # @type Priority: Integer
         # @param ValidTime: 动作有效时间
         # @type ValidTime: Integer
-        # @param OptionsArr: 附加参数
+        # @param OptionsArr: [{\"key\":\"Method\",\"args\":[\"=R0VU\"],\"match\":\"0\",\"encodeflag\":true}] Key可选值为 Method、Post、Referer、Cookie、User-Agent、CustomHeader match可选值为，当Key为Method的时候可选值为0（等于）、3（不等于）。 Key为Post的时候可选值为0（等于）、3（不等于），Key为Cookie的时候可选值为0（等于）、2（包含），3（不等于）、7（不包含）、 当Key为Referer的时候可选值为0（等于）、3（不等于）、1（前缀匹配）、6（后缀匹配）、2（包含）、7（不包含）、12（存在）、5（不存在）、4（内容为空）， 当Key为Cookie的时候可选值为0（等于）、3（不等于）、2（包含）、7（不包含）、12（存在）、5（不存在）、4（内容为空）， 当Key为User-Agent的时候可选值为0（等于）、3（不等于）、1（前缀匹配）、6（后缀匹配）、2（包含）、7（不包含）、12（存在）、5（不存在）、4（内容为空）， 当Key为CustomHeader的时候可选值为0（等于）、3（不等于）、2（包含）、7（不包含）、12（存在）、5（不存在）、4（内容为空）。 args用来表示匹配内容，需要设置encodeflag为true，当Key为Post、Cookie、CustomHeader时，用等号=来分别串接Key和Value，并分别用Base64编码，类似YWJj=YWJj。当Key为Referer、User-Agent时，用等号=来串接Value，类似=YWJj。
         # @type OptionsArr: String
         # @param Edition: waf版本，sparta-waf或者clb-waf
         # @type Edition: String
@@ -13629,6 +13712,44 @@ module TencentCloud
           @Data = params['Data']
           @SessionID = params['SessionID']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # SAASWAF规则回源时的规则数据结构
+      class UpstreamRule < TencentCloud::Common::AbstractModel
+        # @param KeyName: 匹配的关键字。目前支持host、uri两种
+        # @type KeyName: String
+        # @param Symbol: 逻辑符号。
+        # equal：等于
+        # not equal：不等于
+        # belong：属于
+        # not belong：不属于
+        # @type Symbol: String
+        # @param ContentList: 匹配的内容。equal和not equal时，数组只能有一个元素
+        # @type ContentList: Array
+        # @param AddressList: 规则匹配后生效的回源地址。
+        # @type AddressList: Array
+        # @param BalanceType: 回源负载均衡类型，仅多个回源地址时生效。
+        # 0：轮询
+        # 1：IP_HASH
+        # @type BalanceType: Integer
+
+        attr_accessor :KeyName, :Symbol, :ContentList, :AddressList, :BalanceType
+
+        def initialize(keyname=nil, symbol=nil, contentlist=nil, addresslist=nil, balancetype=nil)
+          @KeyName = keyname
+          @Symbol = symbol
+          @ContentList = contentlist
+          @AddressList = addresslist
+          @BalanceType = balancetype
+        end
+
+        def deserialize(params)
+          @KeyName = params['KeyName']
+          @Symbol = params['Symbol']
+          @ContentList = params['ContentList']
+          @AddressList = params['AddressList']
+          @BalanceType = params['BalanceType']
         end
       end
 

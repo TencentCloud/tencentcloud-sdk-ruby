@@ -2213,6 +2213,30 @@ module TencentCloud
         end
       end
 
+      # DAG信息
+      class DAGInfo < TencentCloud::Common::AbstractModel
+        # @param ID: 查询ID
+        # @type ID: String
+        # @param Type: DAG类型，目前只支持starrocks
+        # @type Type: String
+        # @param Content: 返回的DAG的JSON字符串
+        # @type Content: String
+
+        attr_accessor :ID, :Type, :Content
+
+        def initialize(id=nil, type=nil, content=nil)
+          @ID = id
+          @Type = type
+          @Content = content
+        end
+
+        def deserialize(params)
+          @ID = params['ID']
+          @Type = params['Type']
+          @Content = params['Content']
+        end
+      end
+
       # 弹性扩缩容按天重复任务描述
       class DayRepeatStrategy < TencentCloud::Common::AbstractModel
         # @param ExecuteAtTimeOfDay: 重复任务执行的具体时刻，例如"01:02:00"
@@ -2931,6 +2955,62 @@ module TencentCloud
               podsalespec_tmp = PodSaleSpec.new
               podsalespec_tmp.deserialize(i)
               @EksQuotaSet << podsalespec_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDAGInfo请求参数结构体
+      class DescribeDAGInfoRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceID: 集群ID
+        # @type InstanceID: String
+        # @param Type: DAG类型，目前只支持STARROCKS
+        # @type Type: String
+        # @param IDList: 查询ID列表,最大长度为1
+        # @type IDList: Array
+
+        attr_accessor :InstanceID, :Type, :IDList
+
+        def initialize(instanceid=nil, type=nil, idlist=nil)
+          @InstanceID = instanceid
+          @Type = type
+          @IDList = idlist
+        end
+
+        def deserialize(params)
+          @InstanceID = params['InstanceID']
+          @Type = params['Type']
+          @IDList = params['IDList']
+        end
+      end
+
+      # DescribeDAGInfo返回参数结构体
+      class DescribeDAGInfoResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总数，分页查询时使用
+        # @type TotalCount: Integer
+        # @param DAGInfoList: Starrocks 查询信息列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DAGInfoList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :DAGInfoList, :RequestId
+
+        def initialize(totalcount=nil, daginfolist=nil, requestid=nil)
+          @TotalCount = totalcount
+          @DAGInfoList = daginfolist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['DAGInfoList'].nil?
+            @DAGInfoList = []
+            params['DAGInfoList'].each do |i|
+              daginfo_tmp = DAGInfo.new
+              daginfo_tmp.deserialize(i)
+              @DAGInfoList << daginfo_tmp
             end
           end
           @RequestId = params['RequestId']

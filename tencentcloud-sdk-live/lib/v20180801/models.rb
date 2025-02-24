@@ -11141,10 +11141,12 @@ module TencentCloud
         # @type CasterInputIndex: Integer
         # @param NeedMonitor: 该输入源是否正在监播
         # @type NeedMonitor: Boolean
+        # @param CdnStreamId: 导播台pvw pgm的cdn流id
+        # @type CdnStreamId: String
 
-        attr_accessor :InputStreamName, :InputDomain, :InputApp, :InputUrl, :Description, :CasterInputIndex, :NeedMonitor
+        attr_accessor :InputStreamName, :InputDomain, :InputApp, :InputUrl, :Description, :CasterInputIndex, :NeedMonitor, :CdnStreamId
 
-        def initialize(inputstreamname=nil, inputdomain=nil, inputapp=nil, inputurl=nil, description=nil, casterinputindex=nil, needmonitor=nil)
+        def initialize(inputstreamname=nil, inputdomain=nil, inputapp=nil, inputurl=nil, description=nil, casterinputindex=nil, needmonitor=nil, cdnstreamid=nil)
           @InputStreamName = inputstreamname
           @InputDomain = inputdomain
           @InputApp = inputapp
@@ -11152,6 +11154,7 @@ module TencentCloud
           @Description = description
           @CasterInputIndex = casterinputindex
           @NeedMonitor = needmonitor
+          @CdnStreamId = cdnstreamid
         end
 
         def deserialize(params)
@@ -11162,6 +11165,7 @@ module TencentCloud
           @Description = params['Description']
           @CasterInputIndex = params['CasterInputIndex']
           @NeedMonitor = params['NeedMonitor']
+          @CdnStreamId = params['CdnStreamId']
         end
       end
 
