@@ -5938,7 +5938,6 @@ module TencentCloud
         # @param Status: 实例创建过程状态
         # @type Status: String
         # @param Reason: 转换到该过程的简明原因
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Reason: String
 
         attr_accessor :Type, :Status, :Reason
@@ -6058,22 +6057,16 @@ module TencentCloud
       # 同步日志
       class ReplicationLog < TencentCloud::Common::AbstractModel
         # @param ResourceType: 资源类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceType: String
         # @param Source: 源资源
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Source: String
         # @param Destination: 目的资源
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Destination: String
         # @param Status: 同步状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: String
         # @param StartTime: 开始时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StartTime: String
         # @param EndTime: 结束时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EndTime: String
 
         attr_accessor :ResourceType, :Source, :Destination, :Status, :StartTime, :EndTime

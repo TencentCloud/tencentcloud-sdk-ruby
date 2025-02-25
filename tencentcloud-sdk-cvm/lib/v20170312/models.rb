@@ -3770,13 +3770,10 @@ module TencentCloud
       # 扩展数据
       class Externals < TencentCloud::Common::AbstractModel
         # @param ReleaseAddress: 释放地址
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReleaseAddress: Boolean
         # @param UnsupportNetworks: 不支持的网络类型，取值范围：<br><li>BASIC：基础网络</li><li>VPC1.0：私有网络VPC1.0</li>
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UnsupportNetworks: Array
         # @param StorageBlockAttr: HDD本地存储属性
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StorageBlockAttr: :class:`Tencentcloud::Cvm.v20170312.models.StorageBlock`
 
         attr_accessor :ReleaseAddress, :UnsupportNetworks, :StorageBlockAttr
@@ -5457,7 +5454,6 @@ module TencentCloud
         # @param NetworkCard: 网卡类型，例如：25代表25G网卡
         # @type NetworkCard: Integer
         # @param Externals: 扩展属性。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Externals: :class:`Tencentcloud::Cvm.v20170312.models.Externals`
         # @param Cpu: 实例的CPU核数，单位：核。
         # @type Cpu: Integer
@@ -5474,7 +5470,6 @@ module TencentCloud
         # @param Price: 实例的售卖价格。
         # @type Price: :class:`Tencentcloud::Cvm.v20170312.models.ItemPrice`
         # @param SoldOutReason: 售罄原因。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SoldOutReason: String
         # @param InstanceBandwidth: 内网带宽，单位Gbps。
         # @type InstanceBandwidth: Float
@@ -5499,7 +5494,6 @@ module TencentCloud
         # <li>NormalStock：表示对应库存供应有保障</li>
         # <li> UnderStock：表示对应库存即将售罄</li>
         # <li>WithoutStock：表示对应库存已经售罄</li>
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StatusCategory: String
 
         attr_accessor :Zone, :InstanceType, :InstanceChargeType, :NetworkCard, :Externals, :Cpu, :Memory, :InstanceFamily, :TypeName, :LocalDiskTypeList, :Status, :Price, :SoldOutReason, :InstanceBandwidth, :InstancePps, :StorageBlockAmount, :CpuType, :Gpu, :Fpga, :Remark, :GpuCount, :Frequency, :StatusCategory
@@ -5650,69 +5644,50 @@ module TencentCloud
       # 描述了单项的价格信息
       class ItemPrice < TencentCloud::Common::AbstractModel
         # @param UnitPrice: 后续合计费用的原价，后付费模式使用，单位：元。<br><li>如返回了其他时间区间项，如UnitPriceSecondStep，则本项代表时间区间在(0, 96)小时；若未返回其他时间区间项，则本项代表全时段，即(0, ∞)小时</li>
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UnitPrice: Float
         # @param ChargeUnit: 后续计价单元，后付费模式使用，可取值范围： <br><li>HOUR：表示计价单元是按每小时来计算。当前涉及该计价单元的场景有：实例按小时后付费（POSTPAID_BY_HOUR）、带宽按小时后付费（BANDWIDTH_POSTPAID_BY_HOUR）：</li><li>GB：表示计价单元是按每GB来计算。当前涉及该计价单元的场景有：流量按小时后付费（TRAFFIC_POSTPAID_BY_HOUR）。</li>
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ChargeUnit: String
         # @param OriginalPrice: 预支合计费用的原价，预付费模式使用，单位：元。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OriginalPrice: Float
         # @param DiscountPrice: 预支合计费用的折扣价，预付费模式使用，单位：元。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DiscountPrice: Float
         # @param Discount: 折扣，如20.0代表2折。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Discount: Float
         # @param UnitPriceDiscount: 后续合计费用的折扣价，后付费模式使用，单位：元<br><li>如返回了其他时间区间项，如UnitPriceDiscountSecondStep，则本项代表时间区间在(0, 96)小时；若未返回其他时间区间项，则本项代表全时段，即(0, ∞)小时</li>
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UnitPriceDiscount: Float
         # @param UnitPriceSecondStep: 使用时间区间在(96, 360)小时的后续合计费用的原价，后付费模式使用，单位：元。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UnitPriceSecondStep: Float
         # @param UnitPriceDiscountSecondStep: 使用时间区间在(96, 360)小时的后续合计费用的折扣价，后付费模式使用，单位：元
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UnitPriceDiscountSecondStep: Float
         # @param UnitPriceThirdStep: 使用时间区间在(360, ∞)小时的后续合计费用的原价，后付费模式使用，单位：元。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UnitPriceThirdStep: Float
         # @param UnitPriceDiscountThirdStep: 使用时间区间在(360, ∞)小时的后续合计费用的折扣价，后付费模式使用，单位：元
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UnitPriceDiscountThirdStep: Float
         # @param OriginalPriceThreeYear: 预支三年合计费用的原价，预付费模式使用，单位：元。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OriginalPriceThreeYear: Float
         # @param DiscountPriceThreeYear: 预支三年合计费用的折扣价，预付费模式使用，单位：元。
         # 注意：此字段可能返回 null，表示取不到有效值。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DiscountPriceThreeYear: Float
         # @param DiscountThreeYear: 预支三年应用的折扣，如20.0代表2折。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DiscountThreeYear: Float
         # @param OriginalPriceFiveYear: 预支五年合计费用的原价，预付费模式使用，单位：元。
         # 注意：此字段可能返回 null，表示取不到有效值。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OriginalPriceFiveYear: Float
         # @param DiscountPriceFiveYear: 预支五年合计费用的折扣价，预付费模式使用，单位：元。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DiscountPriceFiveYear: Float
         # @param DiscountFiveYear: 预支五年应用的折扣，如20.0代表2折。
         # 注意：此字段可能返回 null，表示取不到有效值。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DiscountFiveYear: Float
         # @param OriginalPriceOneYear: 预支一年合计费用的原价，预付费模式使用，单位：元。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OriginalPriceOneYear: Float
         # @param DiscountPriceOneYear: 预支一年合计费用的折扣价，预付费模式使用，单位：元。
         # 注意：此字段可能返回 null，表示取不到有效值。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DiscountPriceOneYear: Float
         # @param DiscountOneYear: 预支一年应用的折扣，如20.0代表2折。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DiscountOneYear: Float
 
@@ -8164,13 +8139,10 @@ module TencentCloud
       # HDD的本地存储信息
       class StorageBlock < TencentCloud::Common::AbstractModel
         # @param Type: HDD本地存储类型，值为：LOCAL_PRO.
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: String
         # @param MinSize: HDD本地存储的最小容量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MinSize: Integer
         # @param MaxSize: HDD本地存储的最大容量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaxSize: Integer
 
         attr_accessor :Type, :MinSize, :MaxSize

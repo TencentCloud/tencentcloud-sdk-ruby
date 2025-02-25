@@ -1292,13 +1292,10 @@ module TencentCloud
       # 查询黑白名单数据出参
       class OutputDescribeDataListFrontData < TencentCloud::Common::AbstractModel
         # @param Code: 错误码，0 表示成功，非0表示失败错误码。 0：成功 1002：参数错误 4300：未开通服务 6000：系统内部错误
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Code: Integer
         # @param Message: 错误信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Message: String
         # @param Value: 黑白名单数据信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: :class:`Tencentcloud::Rce.v20201103.models.OuntputDescribeDataListInfo`
 
         attr_accessor :Code, :Message, :Value
@@ -1322,34 +1319,24 @@ module TencentCloud
       # 黑白名单详情出参
       class OutputDescribeNameListDetail < TencentCloud::Common::AbstractModel
         # @param NameListId: 名单ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NameListId: Integer
         # @param ListName: 名单名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ListName: String
         # @param ListType: 名单类型 [1 黑名单 2 白名单]
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ListType: Integer
         # @param DataType: 数据类型[1 手机号 2 qqOpenId 3 2echatOpenId 4 ip 6 idfa 7 imei]
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DataType: Integer
         # @param SceneCode: 场景Code
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SceneCode: String
         # @param Status: 名单列表状态 [1 启用 2 停用]
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
         # @param Remark: 描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Remark: String
         # @param CreateTime: 创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
         # @param UpdateTime: 更新时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: String
         # @param EncryptionType: 加密类型 [0 无需加密，1 MD5加密，2 SHA256加密]
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EncryptionType: Integer
 
         attr_accessor :NameListId, :ListName, :ListType, :DataType, :SceneCode, :Status, :Remark, :CreateTime, :UpdateTime, :EncryptionType
@@ -1384,10 +1371,8 @@ module TencentCloud
       # 查询列表详情出参
       class OutputDescribeNameListDetailFront < TencentCloud::Common::AbstractModel
         # @param Code: 错误码，0 表示成功，非0表示失败错误码。 0：成功 1002：参数错误 4300：未开通服务 6000：系统内部错误
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Code: Integer
         # @param Message: 错误信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Message: String
         # @param Value: 列表详情信息
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -1416,17 +1401,14 @@ module TencentCloud
         # @param NameListId: 名单ID
         # @type NameListId: Integer
         # @param ListName: 名单名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ListName: String
         # @param ListType: 名单类型 [1 黑名单 2 白名单]
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ListType: Integer
         # @param DataType: 数据类型[1 手机号 2 qqOpenId 3 2echatOpenId 4 ip 6 idfa 7 imei]
         # @type DataType: Integer
         # @param Status: 记录状态 [1 启用 2 停用]
         # @type Status: Integer
         # @param Remark: 描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Remark: String
         # @param CreateTime: 创建时间
         # @type CreateTime: String
@@ -1435,10 +1417,8 @@ module TencentCloud
         # @param EffectCount: 有效数据/数据总数
         # @type EffectCount: String
         # @param EncryptionType: 加密类型[0 无需加密 1 MD5加密 2 SHA256加密]
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EncryptionType: Integer
         # @param SceneCode: 场景Code，all_scene代表全部场景
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SceneCode: String
 
         attr_accessor :NameListId, :ListName, :ListType, :DataType, :Status, :Remark, :CreateTime, :UpdateTime, :EffectCount, :EncryptionType, :SceneCode
@@ -1475,14 +1455,10 @@ module TencentCloud
       # 查询黑白名单出参
       class OutputDescribeNameListFrontFixListData < TencentCloud::Common::AbstractModel
         # @param Code: 错误码，0 表示成功，非0表示失败错误码。 0：成功 1002：参数错误 4300：未开通服务 6000：系统内部错误
-
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Code: Integer
         # @param Message: 错误信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Message: String
         # @param Value: 黑白名单列表信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: :class:`Tencentcloud::Rce.v20201103.models.OutputDescribeNameListInfo`
 
         attr_accessor :Code, :Message, :Value
@@ -1506,7 +1482,6 @@ module TencentCloud
       # 黑白名单信息
       class OutputDescribeNameListInfo < TencentCloud::Common::AbstractModel
         # @param Count: 总数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Count: Integer
         # @param List: 列表
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -1535,25 +1510,18 @@ module TencentCloud
       # 预付费 后付费 总数显示接口出参
       class OutputDescribeUserUsageCnt < TencentCloud::Common::AbstractModel
         # @param PayMode: 当前付费模式，0 后付费 1 预付费
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PayMode: Integer
         # @param AfterPayModeThisMonthUsedCnt: 后付费本月使用量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AfterPayModeThisMonthUsedCnt: Integer
         # @param CreateTime: 创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
         # @param ExpireTime: 超出时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExpireTime: String
         # @param AfterPayModeLastMonthUsedCnt: 后付费上月使用量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AfterPayModeLastMonthUsedCnt: Integer
         # @param BeforePayModeTotalUsedCnt: 预付费总量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BeforePayModeTotalUsedCnt: Integer
         # @param BeforePayModeRemainUsedCnt: 预付费剩余用量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BeforePayModeRemainUsedCnt: Integer
 
         attr_accessor :PayMode, :AfterPayModeThisMonthUsedCnt, :CreateTime, :ExpireTime, :AfterPayModeLastMonthUsedCnt, :BeforePayModeTotalUsedCnt, :BeforePayModeRemainUsedCnt
