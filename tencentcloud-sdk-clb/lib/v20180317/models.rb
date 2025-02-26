@@ -1892,6 +1892,8 @@ module TencentCloud
         # @type Port: Integer
         # @param TargetGroupInstances: 目标组绑定的后端服务器
         # @type TargetGroupInstances: Array
+        # @param Type: 目标组类型，当前支持v1(旧版目标组), v2(新版目标组), 默认为v1(旧版目标组)。
+        # @type Type: String
         # @param Tags: 标签。
         # @type Tags: Array
         # @param Weight: 后端服务默认权重。
@@ -1901,13 +1903,14 @@ module TencentCloud
         # </ul>
         # @type Weight: Integer
 
-        attr_accessor :TargetGroupName, :VpcId, :Port, :TargetGroupInstances, :Tags, :Weight
+        attr_accessor :TargetGroupName, :VpcId, :Port, :TargetGroupInstances, :Type, :Tags, :Weight
 
-        def initialize(targetgroupname=nil, vpcid=nil, port=nil, targetgroupinstances=nil, tags=nil, weight=nil)
+        def initialize(targetgroupname=nil, vpcid=nil, port=nil, targetgroupinstances=nil, type=nil, tags=nil, weight=nil)
           @TargetGroupName = targetgroupname
           @VpcId = vpcid
           @Port = port
           @TargetGroupInstances = targetgroupinstances
+          @Type = type
           @Tags = tags
           @Weight = weight
         end
@@ -1924,6 +1927,7 @@ module TencentCloud
               @TargetGroupInstances << targetgroupinstance_tmp
             end
           end
+          @Type = params['Type']
           unless params['Tags'].nil?
             @Tags = []
             params['Tags'].each do |i|

@@ -2506,11 +2506,17 @@ module TencentCloud
 
       # GetWeChatBillDetails请求参数结构体
       class GetWeChatBillDetailsRequest < TencentCloud::Common::AbstractModel
-        # @param Date: 拉取的日期（YYYY-MM-DD）。最大可追溯到365天前。当天6点后才能拉取前一天的数据。
+        # @param Date: 拉取的日期（YYYY-MM-DD）。
+        # - 最大可追溯到365天前。
+        # - 当天6点后才能拉取前一天的数据。
         # @type Date: String
-        # @param Cursor: 游标。用于分页，取第一页时传0，取后续页面时，传入本接口响应中返回的NextCursor字段的值。
+        # @param Cursor: 游标。
+        # - 用于分页。
+        # - 取第一页时传0，取后续页面时，传入本接口响应中返回的NextCursor字段的值。
         # @type Cursor: Integer
-        # @param RuleId: 需要拉取账单详情业务对应的RuleId。不传会返回所有RuleId数据。默认为空字符串。
+        # @param RuleId: 需要拉取账单详情业务对应的RuleId。
+        # - 不传会返回所有RuleId数据。
+        # - 默认为空字符串。
         # @type RuleId: String
 
         attr_accessor :Date, :Cursor, :RuleId
@@ -2530,11 +2536,12 @@ module TencentCloud
 
       # GetWeChatBillDetails返回参数结构体
       class GetWeChatBillDetailsResponse < TencentCloud::Common::AbstractModel
-        # @param HasNextPage: 是否还有下一页。该字段为true时，需要将NextCursor的值作为入参Cursor继续调用本接口。
+        # @param HasNextPage: 是否还有下一页。
+        # - 该字段为true时，需要将NextCursor的值作为入参Cursor继续调用本接口。
         # @type HasNextPage: Boolean
-        # @param NextCursor: 下一页的游标。用于分页。
+        # @param NextCursor: 下一页的游标，用于分页。
         # @type NextCursor: Integer
-        # @param WeChatBillDetails: 数据
+        # @param WeChatBillDetails: 数据。
         # @type WeChatBillDetails: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

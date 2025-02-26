@@ -1019,7 +1019,12 @@ module TencentCloud
 
       # GetReconstructDocumentResult返回参数结构体
       class GetReconstructDocumentResultResponse < TencentCloud::Common::AbstractModel
-        # @param Status: 任务状态。- `Success`：执行完成- `Processing`：执行中- `Pause`: 暂停- `Failed`：执行失败- `WaitExecute`：等待执行
+        # @param Status: 任务状态。
+        # - `Success`：执行完成
+        # - `Processing`：执行中
+        # -  `Pause`: 暂停
+        # -  `Failed`：执行失败
+        # -  `WaitExecute`：等待执行
         # @type Status: String
         # @param DocumentRecognizeResultUrl: 解析结果的临时下载地址。文件类型为zip压缩包，下载链接有效期30分钟
         # @type DocumentRecognizeResultUrl: String

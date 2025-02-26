@@ -390,7 +390,6 @@ module TencentCloud
         # @param CaptchaCode: 成功返回0 其它失败
         # @type CaptchaCode: Integer
         # @param CaptchaMsg: 返回操作信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CaptchaMsg: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -469,10 +468,8 @@ module TencentCloud
         # @param CaptchaCode: 返回码 0 成功 其它失败
         # @type CaptchaCode: Integer
         # @param Data: 数据数组
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: Array
         # @param CaptchaMsg: 返回信息描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CaptchaMsg: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -536,7 +533,6 @@ module TencentCloud
         # @param AttackSum: 拦截攻击量
         # @type AttackSum: Integer
         # @param CaptchaMsg: 返回信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CaptchaMsg: String
         # @param CaptchaCode: 成功返回0  其它失败
         # @type CaptchaCode: Integer
@@ -611,10 +607,8 @@ module TencentCloud
         # @param CaptchaCode: 返回码 0 成功 其它失败
         # @type CaptchaCode: Integer
         # @param Data: 数据数组
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: Array
         # @param CaptchaMsg: 返回信息描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CaptchaMsg: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -670,31 +664,22 @@ module TencentCloud
       # DescribeCaptchaMiniDataSum返回参数结构体
       class DescribeCaptchaMiniDataSumResponse < TencentCloud::Common::AbstractModel
         # @param GetSum: 请求总量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GetSum: Integer
         # @param VfySuccSum: 请求验证成功量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VfySuccSum: Integer
         # @param VfySum: 请求验证量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VfySum: Integer
         # @param AttackSum: 拦截攻击量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AttackSum: Integer
         # @param CaptchaMsg: 返回信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CaptchaMsg: String
         # @param CaptchaCode: 成功返回0  其它失败
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CaptchaCode: Integer
         # @param CheckTicketSum: 票据校验总量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CheckTicketSum: Integer
         # @param TicketThroughputSum: 票据验证通过量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TicketThroughputSum: Integer
         # @param TicketInterceptSum: 票据验证拦截量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TicketInterceptSum: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -761,10 +746,8 @@ module TencentCloud
         # @param CaptchaCode: 成功返回 0 其它失败
         # @type CaptchaCode: Integer
         # @param CaptchaMsg: 返回信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CaptchaMsg: String
         # @param Data: 用户操作数据
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: :class:`Tencentcloud::Captcha.v20190722.models.CaptchaOperDataRes`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1005,10 +988,8 @@ module TencentCloud
         # @param CaptchaCode: 成功返回 0 其它失败
         # @type CaptchaCode: Integer
         # @param CaptchaMsg: 返回信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CaptchaMsg: String
         # @param Data: 用户操作数据
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: :class:`Tencentcloud::Captcha.v20190722.models.CaptchaOperDataRes`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1293,10 +1274,8 @@ module TencentCloud
         # @param CaptchaCode: 成功返回 0 其它失败
         # @type CaptchaCode: Integer
         # @param CaptchaMsg: 返回信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CaptchaMsg: String
         # @param Data: 验证码票据信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: :class:`Tencentcloud::Captcha.v20190722.models.CaptchaTicketDataRes`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1335,12 +1314,10 @@ module TencentCloud
       # DescribeCaptchaUserAllAppId返回参数结构体
       class DescribeCaptchaUserAllAppIdResponse < TencentCloud::Common::AbstractModel
         # @param Data: 用户注册的所有Appid和应用名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: Array
         # @param CaptchaCode: 成功返回 0  其它失败
         # @type CaptchaCode: Integer
         # @param CaptchaMsg: 返回操作信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CaptchaMsg: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1946,7 +1923,6 @@ module TencentCloud
         # @param CaptchaCode: 返回码 0 成功，其它失败
         # @type CaptchaCode: Integer
         # @param CaptchaMsg: 返回操作信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CaptchaMsg: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

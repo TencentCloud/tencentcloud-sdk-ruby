@@ -17,6 +17,46 @@
 module TencentCloud
   module Lowcode
     module V20210108
+      # CreateKnowledgeSet请求参数结构体
+      class CreateKnowledgeSetRequest < TencentCloud::Common::AbstractModel
+        # @param Name: 知识库标识
+        # @type Name: String
+        # @param Title: 知识库名称
+        # @type Title: String
+        # @param Desc: 描述
+        # @type Desc: String
+
+        attr_accessor :Name, :Title, :Desc
+
+        def initialize(name=nil, title=nil, desc=nil)
+          @Name = name
+          @Title = title
+          @Desc = desc
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Title = params['Title']
+          @Desc = params['Desc']
+        end
+      end
+
+      # CreateKnowledgeSet返回参数结构体
+      class CreateKnowledgeSetResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 数据源详情列表
       class DataSourceDetail < TencentCloud::Common::AbstractModel
         # @param Id: 数据源 ID
@@ -28,19 +68,18 @@ module TencentCloud
         # @param Type: 数据源类型
         # @type Type: String
         # @param Description: 数据源描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
         # @param Schema: 数据源配置
         # @type Schema: String
         # @param CmsProject: cms 项目状态, 0: 重新获取详情信息，1： 不需要重新获取详情信息
         # @type CmsProject: String
         # @param PkgId: 当前为环境 id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PkgId: String
         # @param SchemaVersion: schema 版本信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SchemaVersion: String
         # @param CreatorId: 创建者用户 ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreatorId: String
         # @param CreatedAt: 创建时间
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -49,7 +88,6 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdatedAt: String
         # @param EnvId: 环境 id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EnvId: String
         # @param DataSourceVersion: 版本
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -58,7 +96,6 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AppUsageList: Array
         # @param PublishedAt: 发布时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PublishedAt: String
         # @param ChildDataSourceIds: 子数据源ids
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -67,16 +104,13 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Fun: String
         # @param ScfStatus: 云函数状态 1 Active 2 Creating 3 Updating 4 Deleting  9 Deleted 11 CreatFailed  12 UpdateFailed 13 DeleteFailed 21 UpdateTimeOut
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScfStatus: Integer
         # @param Methods: 自定义方法
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Methods: String
         # @param ChildDataSourceNames: 子数据源名数组
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ChildDataSourceNames: Array
         # @param IsNewDataSource: 是否旧数据源 1 新 0 旧
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsNewDataSource: Integer
         # @param ViewId: 数据源视图id
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -97,7 +131,6 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PublishViewId: String
         # @param SubType: 数据源子类型   "database" 标准模型 "custom-database" 自定义模型 "system" 系统模型 "connector" 连接器 "custom-connector" 自定义连接器 "hidden" 隐藏数据源
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubType: String
         # @param AuthStatus: 授权状态  0 授权无效 1 授权有效
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -105,10 +138,32 @@ module TencentCloud
         # @param AuthInfo: 数据源授权信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AuthInfo: :class:`Tencentcloud::Lowcode.v20210108.models.TicketAuthInfo`
+        # @param PublishStatus: 1发布0未发布
+        # @type PublishStatus: Integer
+        # @param UpdateVersion: 更新版本
+        # @type UpdateVersion: Integer
+        # @param RelationFieldList: 模型关联关系字段列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RelationFieldList: Array
+        # @param DbInstanceType: db实例类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DbInstanceType: String
+        # @param PreviewTableName: 体验环境db表名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PreviewTableName: String
+        # @param PublishedTableName: 正式环境db表名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PublishedTableName: String
+        # @param DbSourceType: DB来源类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DbSourceType: String
 
-        attr_accessor :Id, :Title, :Name, :Type, :Description, :Schema, :CmsProject, :PkgId, :SchemaVersion, :CreatorId, :CreatedAt, :UpdatedAt, :EnvId, :DataSourceVersion, :AppUsageList, :PublishedAt, :ChildDataSourceIds, :Fun, :ScfStatus, :Methods, :ChildDataSourceNames, :IsNewDataSource, :ViewId, :Configuration, :TemplateCode, :Source, :PublishVersion, :PublishViewId, :SubType, :AuthStatus, :AuthInfo
+        attr_accessor :Id, :Title, :Name, :Type, :Description, :Schema, :CmsProject, :PkgId, :SchemaVersion, :CreatorId, :CreatedAt, :UpdatedAt, :EnvId, :DataSourceVersion, :AppUsageList, :PublishedAt, :ChildDataSourceIds, :Fun, :ScfStatus, :Methods, :ChildDataSourceNames, :IsNewDataSource, :ViewId, :Configuration, :TemplateCode, :Source, :PublishVersion, :PublishViewId, :SubType, :AuthStatus, :AuthInfo, :PublishStatus, :UpdateVersion, :RelationFieldList, :DbInstanceType, :PreviewTableName, :PublishedTableName, :DbSourceType
+        extend Gem::Deprecate
+        deprecate :PublishVersion, :none, 2025, 2
+        deprecate :PublishVersion=, :none, 2025, 2
 
-        def initialize(id=nil, title=nil, name=nil, type=nil, description=nil, schema=nil, cmsproject=nil, pkgid=nil, schemaversion=nil, creatorid=nil, createdat=nil, updatedat=nil, envid=nil, datasourceversion=nil, appusagelist=nil, publishedat=nil, childdatasourceids=nil, fun=nil, scfstatus=nil, methods=nil, childdatasourcenames=nil, isnewdatasource=nil, viewid=nil, configuration=nil, templatecode=nil, source=nil, publishversion=nil, publishviewid=nil, subtype=nil, authstatus=nil, authinfo=nil)
+        def initialize(id=nil, title=nil, name=nil, type=nil, description=nil, schema=nil, cmsproject=nil, pkgid=nil, schemaversion=nil, creatorid=nil, createdat=nil, updatedat=nil, envid=nil, datasourceversion=nil, appusagelist=nil, publishedat=nil, childdatasourceids=nil, fun=nil, scfstatus=nil, methods=nil, childdatasourcenames=nil, isnewdatasource=nil, viewid=nil, configuration=nil, templatecode=nil, source=nil, publishversion=nil, publishviewid=nil, subtype=nil, authstatus=nil, authinfo=nil, publishstatus=nil, updateversion=nil, relationfieldlist=nil, dbinstancetype=nil, previewtablename=nil, publishedtablename=nil, dbsourcetype=nil)
           @Id = id
           @Title = title
           @Name = name
@@ -140,6 +195,13 @@ module TencentCloud
           @SubType = subtype
           @AuthStatus = authstatus
           @AuthInfo = authinfo
+          @PublishStatus = publishstatus
+          @UpdateVersion = updateversion
+          @RelationFieldList = relationfieldlist
+          @DbInstanceType = dbinstancetype
+          @PreviewTableName = previewtablename
+          @PublishedTableName = publishedtablename
+          @DbSourceType = dbsourcetype
         end
 
         def deserialize(params)
@@ -184,6 +246,20 @@ module TencentCloud
             @AuthInfo = TicketAuthInfo.new
             @AuthInfo.deserialize(params['AuthInfo'])
           end
+          @PublishStatus = params['PublishStatus']
+          @UpdateVersion = params['UpdateVersion']
+          unless params['RelationFieldList'].nil?
+            @RelationFieldList = []
+            params['RelationFieldList'].each do |i|
+              relationfield_tmp = RelationField.new
+              relationfield_tmp.deserialize(i)
+              @RelationFieldList << relationfield_tmp
+            end
+          end
+          @DbInstanceType = params['DbInstanceType']
+          @PreviewTableName = params['PreviewTableName']
+          @PublishedTableName = params['PublishedTableName']
+          @DbSourceType = params['DbSourceType']
         end
       end
 
@@ -219,26 +295,25 @@ module TencentCloud
         # @param Id: 应用Id
         # @type Id: String
         # @param Title: 应用名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Title: String
         # @param EditStatusUse: 是否编辑状态使用
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EditStatusUse: Integer
         # @param PreviewStatusUse: 是否预览状态使用
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PreviewStatusUse: Integer
         # @param OnlineStatusUse: 是否正式状态使用
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OnlineStatusUse: Integer
+        # @param DataSourceId: 数据源ID
+        # @type DataSourceId: String
 
-        attr_accessor :Id, :Title, :EditStatusUse, :PreviewStatusUse, :OnlineStatusUse
+        attr_accessor :Id, :Title, :EditStatusUse, :PreviewStatusUse, :OnlineStatusUse, :DataSourceId
 
-        def initialize(id=nil, title=nil, editstatususe=nil, previewstatususe=nil, onlinestatususe=nil)
+        def initialize(id=nil, title=nil, editstatususe=nil, previewstatususe=nil, onlinestatususe=nil, datasourceid=nil)
           @Id = id
           @Title = title
           @EditStatusUse = editstatususe
           @PreviewStatusUse = previewstatususe
           @OnlineStatusUse = onlinestatususe
+          @DataSourceId = datasourceid
         end
 
         def deserialize(params)
@@ -247,6 +322,7 @@ module TencentCloud
           @EditStatusUse = params['EditStatusUse']
           @PreviewStatusUse = params['PreviewStatusUse']
           @OnlineStatusUse = params['OnlineStatusUse']
+          @DataSourceId = params['DataSourceId']
         end
       end
 
@@ -267,6 +343,101 @@ module TencentCloud
         def deserialize(params)
           @LikeName = params['LikeName']
           @LikeTitle = params['LikeTitle']
+        end
+      end
+
+      # DeleteKnowledgeDocumentSet请求参数结构体
+      class DeleteKnowledgeDocumentSetRequest < TencentCloud::Common::AbstractModel
+        # @param CollectionView: 知识库标识
+        # @type CollectionView: String
+        # @param Query: 删除时制定的条件
+        # @type Query: :class:`Tencentcloud::Lowcode.v20210108.models.DocumentQuery`
+
+        attr_accessor :CollectionView, :Query
+
+        def initialize(collectionview=nil, query=nil)
+          @CollectionView = collectionview
+          @Query = query
+        end
+
+        def deserialize(params)
+          @CollectionView = params['CollectionView']
+          unless params['Query'].nil?
+            @Query = DocumentQuery.new
+            @Query.deserialize(params['Query'])
+          end
+        end
+      end
+
+      # DeleteKnowledgeDocumentSet返回参数结构体
+      class DeleteKnowledgeDocumentSetResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 新增文件返回信息
+        # @type Data: :class:`Tencentcloud::Lowcode.v20210108.models.DeleteKnowledgeDocumentSetRsp`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = DeleteKnowledgeDocumentSetRsp.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 删除文档出参
+      class DeleteKnowledgeDocumentSetRsp < TencentCloud::Common::AbstractModel
+        # @param AffectedCount: 删除文档数量。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AffectedCount: Integer
+
+        attr_accessor :AffectedCount
+
+        def initialize(affectedcount=nil)
+          @AffectedCount = affectedcount
+        end
+
+        def deserialize(params)
+          @AffectedCount = params['AffectedCount']
+        end
+      end
+
+      # DeleteKnowledgeSet请求参数结构体
+      class DeleteKnowledgeSetRequest < TencentCloud::Common::AbstractModel
+        # @param Name: 知识库标识
+        # @type Name: String
+
+        attr_accessor :Name
+
+        def initialize(name=nil)
+          @Name = name
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+        end
+      end
+
+      # DeleteKnowledgeSet返回参数结构体
+      class DeleteKnowledgeSetResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 
@@ -296,12 +467,22 @@ module TencentCloud
         # @type QueryBindToApp: Integer
         # @param QueryConnector: 查询连接器 0 数据模型 1 连接器 2 自定义连接器
         # @type QueryConnector: Integer
-        # @param NotQuerySubTypeList: 查询数据源黑名单机制，比如不想要系统数据源["system"]
+        # @param NotQuerySubTypeList: 废弃中
         # @type NotQuerySubTypeList: Array
+        # @param ChannelList: 查询channelList
+        # @type ChannelList: Array
+        # @param QueryDataSourceRelationList: 是否查询数据源关联关系
+        # @type QueryDataSourceRelationList: Boolean
+        # @param DbInstanceType: db实例类型
+        # @type DbInstanceType: String
+        # @param DatabaseTableNames: 数据库表名列表
+        # @type DatabaseTableNames: Array
+        # @param QuerySystemModel: 是否查询系统模型，默认为true，需要显示设置为False才能过滤系统模型
+        # @type QuerySystemModel: Boolean
 
-        attr_accessor :PageSize, :PageIndex, :EnvId, :Appids, :DataSourceIds, :DataSourceNames, :DataSourceType, :QueryOption, :ViewIds, :AppLinkStatus, :QueryBindToApp, :QueryConnector, :NotQuerySubTypeList
+        attr_accessor :PageSize, :PageIndex, :EnvId, :Appids, :DataSourceIds, :DataSourceNames, :DataSourceType, :QueryOption, :ViewIds, :AppLinkStatus, :QueryBindToApp, :QueryConnector, :NotQuerySubTypeList, :ChannelList, :QueryDataSourceRelationList, :DbInstanceType, :DatabaseTableNames, :QuerySystemModel
 
-        def initialize(pagesize=nil, pageindex=nil, envid=nil, appids=nil, datasourceids=nil, datasourcenames=nil, datasourcetype=nil, queryoption=nil, viewids=nil, applinkstatus=nil, querybindtoapp=nil, queryconnector=nil, notquerysubtypelist=nil)
+        def initialize(pagesize=nil, pageindex=nil, envid=nil, appids=nil, datasourceids=nil, datasourcenames=nil, datasourcetype=nil, queryoption=nil, viewids=nil, applinkstatus=nil, querybindtoapp=nil, queryconnector=nil, notquerysubtypelist=nil, channellist=nil, querydatasourcerelationlist=nil, dbinstancetype=nil, databasetablenames=nil, querysystemmodel=nil)
           @PageSize = pagesize
           @PageIndex = pageindex
           @EnvId = envid
@@ -315,6 +496,11 @@ module TencentCloud
           @QueryBindToApp = querybindtoapp
           @QueryConnector = queryconnector
           @NotQuerySubTypeList = notquerysubtypelist
+          @ChannelList = channellist
+          @QueryDataSourceRelationList = querydatasourcerelationlist
+          @DbInstanceType = dbinstancetype
+          @DatabaseTableNames = databasetablenames
+          @QuerySystemModel = querysystemmodel
         end
 
         def deserialize(params)
@@ -334,6 +520,11 @@ module TencentCloud
           @QueryBindToApp = params['QueryBindToApp']
           @QueryConnector = params['QueryConnector']
           @NotQuerySubTypeList = params['NotQuerySubTypeList']
+          @ChannelList = params['ChannelList']
+          @QueryDataSourceRelationList = params['QueryDataSourceRelationList']
+          @DbInstanceType = params['DbInstanceType']
+          @DatabaseTableNames = params['DatabaseTableNames']
+          @QuerySystemModel = params['QuerySystemModel']
         end
       end
 
@@ -341,7 +532,7 @@ module TencentCloud
       class DescribeDataSourceListResponse < TencentCloud::Common::AbstractModel
         # @param Data: data 数据
         # @type Data: :class:`Tencentcloud::Lowcode.v20210108.models.DataSourceDetailItems`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Data, :RequestId
@@ -360,6 +551,763 @@ module TencentCloud
         end
       end
 
+      # DescribeKnowledgeDocumentSetDetail请求参数结构体
+      class DescribeKnowledgeDocumentSetDetailRequest < TencentCloud::Common::AbstractModel
+        # @param CollectionView: 知识库标识
+        # @type CollectionView: String
+        # @param DocumentSetName: 文件名
+        # @type DocumentSetName: String
+        # @param DocumentSetId: 文件id
+        # @type DocumentSetId: String
+
+        attr_accessor :CollectionView, :DocumentSetName, :DocumentSetId
+
+        def initialize(collectionview=nil, documentsetname=nil, documentsetid=nil)
+          @CollectionView = collectionview
+          @DocumentSetName = documentsetname
+          @DocumentSetId = documentsetid
+        end
+
+        def deserialize(params)
+          @CollectionView = params['CollectionView']
+          @DocumentSetName = params['DocumentSetName']
+          @DocumentSetId = params['DocumentSetId']
+        end
+      end
+
+      # DescribeKnowledgeDocumentSetDetail返回参数结构体
+      class DescribeKnowledgeDocumentSetDetailResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 新增文件返回信息
+        # @type Data: :class:`Tencentcloud::Lowcode.v20210108.models.DescribeKnowledgeDocumentSetDetailRsp`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = DescribeKnowledgeDocumentSetDetailRsp.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 上传知识库文档返回结果
+      class DescribeKnowledgeDocumentSetDetailRsp < TencentCloud::Common::AbstractModel
+        # @param Count: 获取的数量。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Count: Integer
+        # @param DocumentSet: 文档信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DocumentSet: :class:`Tencentcloud::Lowcode.v20210108.models.KnowledgeDocumentSet`
+
+        attr_accessor :Count, :DocumentSet
+
+        def initialize(count=nil, documentset=nil)
+          @Count = count
+          @DocumentSet = documentset
+        end
+
+        def deserialize(params)
+          @Count = params['Count']
+          unless params['DocumentSet'].nil?
+            @DocumentSet = KnowledgeDocumentSet.new
+            @DocumentSet.deserialize(params['DocumentSet'])
+          end
+        end
+      end
+
+      # DescribeKnowledgeDocumentSetList请求参数结构体
+      class DescribeKnowledgeDocumentSetListRequest < TencentCloud::Common::AbstractModel
+        # @param CollectionView: 知识库标识
+        # @type CollectionView: String
+        # @param Query: 查询条件
+        # @type Query: :class:`Tencentcloud::Lowcode.v20210108.models.PageQuery`
+
+        attr_accessor :CollectionView, :Query
+
+        def initialize(collectionview=nil, query=nil)
+          @CollectionView = collectionview
+          @Query = query
+        end
+
+        def deserialize(params)
+          @CollectionView = params['CollectionView']
+          unless params['Query'].nil?
+            @Query = PageQuery.new
+            @Query.deserialize(params['Query'])
+          end
+        end
+      end
+
+      # DescribeKnowledgeDocumentSetList返回参数结构体
+      class DescribeKnowledgeDocumentSetListResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 新增文件返回信息
+        # @type Data: :class:`Tencentcloud::Lowcode.v20210108.models.DescribeKnowledgeDocumentSetListRsp`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = DescribeKnowledgeDocumentSetListRsp.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 删除文档出参
+      class DescribeKnowledgeDocumentSetListRsp < TencentCloud::Common::AbstractModel
+        # @param DocumentSets: 文件集
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DocumentSets: Array
+        # @param Count: 条数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Count: Integer
+
+        attr_accessor :DocumentSets, :Count
+
+        def initialize(documentsets=nil, count=nil)
+          @DocumentSets = documentsets
+          @Count = count
+        end
+
+        def deserialize(params)
+          unless params['DocumentSets'].nil?
+            @DocumentSets = []
+            params['DocumentSets'].each do |i|
+              qureyknowledgedocumentset_tmp = QureyKnowledgeDocumentSet.new
+              qureyknowledgedocumentset_tmp.deserialize(i)
+              @DocumentSets << qureyknowledgedocumentset_tmp
+            end
+          end
+          @Count = params['Count']
+        end
+      end
+
+      # DescribeKnowledgeSetList请求参数结构体
+      class DescribeKnowledgeSetListRequest < TencentCloud::Common::AbstractModel
+        # @param Name: 知识库标识，精准查询
+        # @type Name: String
+        # @param Title: 知识库名称，精准查询
+        # @type Title: String
+        # @param Limit: 查询条数
+        # @type Limit: Integer
+        # @param QueryMode: NoPage标识不分页
+        # @type QueryMode: String
+
+        attr_accessor :Name, :Title, :Limit, :QueryMode
+
+        def initialize(name=nil, title=nil, limit=nil, querymode=nil)
+          @Name = name
+          @Title = title
+          @Limit = limit
+          @QueryMode = querymode
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Title = params['Title']
+          @Limit = params['Limit']
+          @QueryMode = params['QueryMode']
+        end
+      end
+
+      # DescribeKnowledgeSetList返回参数结构体
+      class DescribeKnowledgeSetListResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 知识库列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: :class:`Tencentcloud::Lowcode.v20210108.models.KnowledgeSetRsp`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = KnowledgeSetRsp.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 删除文档时查询入参
+      class DocumentQuery < TencentCloud::Common::AbstractModel
+        # @param DocumentSetId: 文件ids
+        # @type DocumentSetId: Array
+        # @param DocumentSetName: 文件名集合
+        # @type DocumentSetName: Array
+        # @param Filter: 使用创建 CollectionView 指定的 Filter 索引的字段设置查询过滤表达式
+        # @type Filter: String
+
+        attr_accessor :DocumentSetId, :DocumentSetName, :Filter
+
+        def initialize(documentsetid=nil, documentsetname=nil, filter=nil)
+          @DocumentSetId = documentsetid
+          @DocumentSetName = documentsetname
+          @Filter = filter
+        end
+
+        def deserialize(params)
+          @DocumentSetId = params['DocumentSetId']
+          @DocumentSetName = params['DocumentSetName']
+          @Filter = params['Filter']
+        end
+      end
+
+      # 文档信息
+      class KnowledgeDocumentSet < TencentCloud::Common::AbstractModel
+        # @param DocumentSetId: 文档id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DocumentSetId: String
+        # @param DocumentSetName: 文档名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DocumentSetName: String
+        # @param Text: 文件完整内容。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Text: String
+        # @param TextPrefix: 文件内容前 200个字符。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TextPrefix: String
+        # @param DocumentSetInfo: 文件详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DocumentSetInfo: :class:`Tencentcloud::Lowcode.v20210108.models.KnowledgeDocumentSetInfo`
+        # @param SplitterPreprocess: 文件拆分信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SplitterPreprocess: :class:`Tencentcloud::Lowcode.v20210108.models.KnowledgeSplitterPreprocess`
+        # @param Name: 未使用
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param FileTitle: 文档标题
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FileTitle: String
+        # @param FileMetaData: 文档元信息，必须为jsonstring
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FileMetaData: String
+        # @param Author: 作者
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Author: String
+
+        attr_accessor :DocumentSetId, :DocumentSetName, :Text, :TextPrefix, :DocumentSetInfo, :SplitterPreprocess, :Name, :FileTitle, :FileMetaData, :Author
+
+        def initialize(documentsetid=nil, documentsetname=nil, text=nil, textprefix=nil, documentsetinfo=nil, splitterpreprocess=nil, name=nil, filetitle=nil, filemetadata=nil, author=nil)
+          @DocumentSetId = documentsetid
+          @DocumentSetName = documentsetname
+          @Text = text
+          @TextPrefix = textprefix
+          @DocumentSetInfo = documentsetinfo
+          @SplitterPreprocess = splitterpreprocess
+          @Name = name
+          @FileTitle = filetitle
+          @FileMetaData = filemetadata
+          @Author = author
+        end
+
+        def deserialize(params)
+          @DocumentSetId = params['DocumentSetId']
+          @DocumentSetName = params['DocumentSetName']
+          @Text = params['Text']
+          @TextPrefix = params['TextPrefix']
+          unless params['DocumentSetInfo'].nil?
+            @DocumentSetInfo = KnowledgeDocumentSetInfo.new
+            @DocumentSetInfo.deserialize(params['DocumentSetInfo'])
+          end
+          unless params['SplitterPreprocess'].nil?
+            @SplitterPreprocess = KnowledgeSplitterPreprocess.new
+            @SplitterPreprocess.deserialize(params['SplitterPreprocess'])
+          end
+          @Name = params['Name']
+          @FileTitle = params['FileTitle']
+          @FileMetaData = params['FileMetaData']
+          @Author = params['Author']
+        end
+      end
+
+      # 文档信息
+      class KnowledgeDocumentSetInfo < TencentCloud::Common::AbstractModel
+        # @param TextLength: 文件的字符数。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TextLength: Integer
+        # @param ByteLength: 文件的字节数。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ByteLength: Integer
+        # @param IndexedProgress: 文件被预处理、Embedding 向量化的进度。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IndexedProgress: Integer
+        # @param IndexedStatus: 文件预处理、Embedding 向量化的状态。
+        # New：等待解析。
+        # Loading：文件解析中。
+        # Failure：文件解析、写入出错。
+        # Ready：文件解析、写入完成。
+
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IndexedStatus: String
+        # @param CreateTime: 文件创建时间。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param LastUpdateTime: 文件最后更新时间。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LastUpdateTime: String
+        # @param Keywords: 文件关键字。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Keywords: String
+
+        attr_accessor :TextLength, :ByteLength, :IndexedProgress, :IndexedStatus, :CreateTime, :LastUpdateTime, :Keywords
+
+        def initialize(textlength=nil, bytelength=nil, indexedprogress=nil, indexedstatus=nil, createtime=nil, lastupdatetime=nil, keywords=nil)
+          @TextLength = textlength
+          @ByteLength = bytelength
+          @IndexedProgress = indexedprogress
+          @IndexedStatus = indexedstatus
+          @CreateTime = createtime
+          @LastUpdateTime = lastupdatetime
+          @Keywords = keywords
+        end
+
+        def deserialize(params)
+          @TextLength = params['TextLength']
+          @ByteLength = params['ByteLength']
+          @IndexedProgress = params['IndexedProgress']
+          @IndexedStatus = params['IndexedStatus']
+          @CreateTime = params['CreateTime']
+          @LastUpdateTime = params['LastUpdateTime']
+          @Keywords = params['Keywords']
+        end
+      end
+
+      # 知识库信息
+      class KnowledgeSet < TencentCloud::Common::AbstractModel
+        # @param Name: 知识库标识
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Title: 知识库名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Title: String
+        # @param Desc: 描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Desc: String
+        # @param Active: 状态，
+        # NOT_ENABLED未启用
+        # ENABLED 已启用
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Active: String
+        # @param CreateTime: 创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param UpdateTime: 更新时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTime: String
+
+        attr_accessor :Name, :Title, :Desc, :Active, :CreateTime, :UpdateTime
+
+        def initialize(name=nil, title=nil, desc=nil, active=nil, createtime=nil, updatetime=nil)
+          @Name = name
+          @Title = title
+          @Desc = desc
+          @Active = active
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Title = params['Title']
+          @Desc = params['Desc']
+          @Active = params['Active']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+        end
+      end
+
+      # 查询知识库列表返回
+      class KnowledgeSetRsp < TencentCloud::Common::AbstractModel
+        # @param Total: 总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Total: Integer
+        # @param KnowledgeSets: 知识库列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type KnowledgeSets: Array
+
+        attr_accessor :Total, :KnowledgeSets
+
+        def initialize(total=nil, knowledgesets=nil)
+          @Total = total
+          @KnowledgeSets = knowledgesets
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          unless params['KnowledgeSets'].nil?
+            @KnowledgeSets = []
+            params['KnowledgeSets'].each do |i|
+              knowledgeset_tmp = KnowledgeSet.new
+              knowledgeset_tmp.deserialize(i)
+              @KnowledgeSets << knowledgeset_tmp
+            end
+          end
+        end
+      end
+
+      # 文件拆分信息
+      class KnowledgeSplitterPreprocess < TencentCloud::Common::AbstractModel
+        # @param AppendTitleToChunk: 在对文件拆分时，配置是否将 Title 追加到切分后的段落后面一并 Embedding。取值如下所示：
+        # false：不追加。
+        # true：将段落 Title 追加到切分后的段落。
+
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AppendTitleToChunk: Boolean
+        # @param AppendKeywordsToChunk: 在对文件拆分时，配置是否将关键字 keywords 追加到切分后的段落一并 Embedding。取值如下所示：
+        # false：不追加。
+        # true：将全文的 keywords 追加到切分后的段落。
+
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AppendKeywordsToChunk: Boolean
+
+        attr_accessor :AppendTitleToChunk, :AppendKeywordsToChunk
+
+        def initialize(appendtitletochunk=nil, appendkeywordstochunk=nil)
+          @AppendTitleToChunk = appendtitletochunk
+          @AppendKeywordsToChunk = appendkeywordstochunk
+        end
+
+        def deserialize(params)
+          @AppendTitleToChunk = params['AppendTitleToChunk']
+          @AppendKeywordsToChunk = params['AppendKeywordsToChunk']
+        end
+      end
+
+      # 查询条件
+      class PageQuery < TencentCloud::Common::AbstractModel
+        # @param DocumentSetId: 文件id数组，表示要查询的文件的所有 ID，支持批量查询，数组元素范围[1,20]。
+        # @type DocumentSetId: Array
+        # @param DocumentSetName: 表示要查询的文档名称，支持批量查询，数组元素范围[1,20]。
+        # @type DocumentSetName: Array
+        # @param Limit: 取值范围：[1,16384]
+        # @type Limit: Integer
+        # @param Offset: 设置分页偏移量，用于控制分页查询返回结果的起始位置，方便用户对数据进行分页展示和浏览。
+        # 取值：为 limit 整数倍。
+        # 计算公式：offset=limit*(page-1)。
+        # 例如：当 limit = 10，page = 2 时，分页偏移量 offset = 10 * (2 - 1) = 10，表示从查询结果的第 11 条记录开始返回数据。
+        # @type Offset: Integer
+        # @param OutputFields: 设置后，其他字段为空值
+        # @type OutputFields: Array
+        # @param Filter: 使用创建 CollectionView 指定的 Filter 索引的字段设置查询过滤表达式。
+        # @type Filter: String
+
+        attr_accessor :DocumentSetId, :DocumentSetName, :Limit, :Offset, :OutputFields, :Filter
+
+        def initialize(documentsetid=nil, documentsetname=nil, limit=nil, offset=nil, outputfields=nil, filter=nil)
+          @DocumentSetId = documentsetid
+          @DocumentSetName = documentsetname
+          @Limit = limit
+          @Offset = offset
+          @OutputFields = outputfields
+          @Filter = filter
+        end
+
+        def deserialize(params)
+          @DocumentSetId = params['DocumentSetId']
+          @DocumentSetName = params['DocumentSetName']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @OutputFields = params['OutputFields']
+          @Filter = params['Filter']
+        end
+      end
+
+      # 搜索数据的集合
+      class QureyKnowledgeDocumentSet < TencentCloud::Common::AbstractModel
+        # @param DocumentSetId: 文件id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DocumentSetId: String
+        # @param DocumentSetName: 文件名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DocumentSetName: String
+        # @param TextPrefix: 文件内容前 200个字符。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TextPrefix: String
+        # @param SplitterPreprocess: 文件拆分信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SplitterPreprocess: :class:`Tencentcloud::Lowcode.v20210108.models.KnowledgeSplitterPreprocess`
+        # @param DocumentSetInfo: 文件详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DocumentSetInfo: :class:`Tencentcloud::Lowcode.v20210108.models.QureyKnowledgeDocumentSetInfo`
+        # @param FileTitle: 文件标题
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FileTitle: String
+        # @param FileMetaData: 文件元信息，必须为jsonstring
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FileMetaData: String
+        # @param Name: name
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Author: 作者
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Author: String
+
+        attr_accessor :DocumentSetId, :DocumentSetName, :TextPrefix, :SplitterPreprocess, :DocumentSetInfo, :FileTitle, :FileMetaData, :Name, :Author
+
+        def initialize(documentsetid=nil, documentsetname=nil, textprefix=nil, splitterpreprocess=nil, documentsetinfo=nil, filetitle=nil, filemetadata=nil, name=nil, author=nil)
+          @DocumentSetId = documentsetid
+          @DocumentSetName = documentsetname
+          @TextPrefix = textprefix
+          @SplitterPreprocess = splitterpreprocess
+          @DocumentSetInfo = documentsetinfo
+          @FileTitle = filetitle
+          @FileMetaData = filemetadata
+          @Name = name
+          @Author = author
+        end
+
+        def deserialize(params)
+          @DocumentSetId = params['DocumentSetId']
+          @DocumentSetName = params['DocumentSetName']
+          @TextPrefix = params['TextPrefix']
+          unless params['SplitterPreprocess'].nil?
+            @SplitterPreprocess = KnowledgeSplitterPreprocess.new
+            @SplitterPreprocess.deserialize(params['SplitterPreprocess'])
+          end
+          unless params['DocumentSetInfo'].nil?
+            @DocumentSetInfo = QureyKnowledgeDocumentSetInfo.new
+            @DocumentSetInfo.deserialize(params['DocumentSetInfo'])
+          end
+          @FileTitle = params['FileTitle']
+          @FileMetaData = params['FileMetaData']
+          @Name = params['Name']
+          @Author = params['Author']
+        end
+      end
+
+      # 查询文件集合信息详情
+      class QureyKnowledgeDocumentSetInfo < TencentCloud::Common::AbstractModel
+        # @param TextLength: 文件的字符数。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TextLength: Integer
+        # @param ByteLength: 文件的字节数。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ByteLength: Integer
+        # @param IndexedProgress: 文件被预处理、Embedding 向量化的进度。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IndexedProgress: Integer
+        # @param IndexedStatus: 文件预处理、Embedding 向量化的状态。
+        # New：等待解析。
+        # Loading：文件解析中。
+        # Failure：文件解析、写入出错。
+        # Ready：文件解析、写入完成。
+
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IndexedStatus: String
+        # @param IndexedErrorMsg: 错误信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IndexedErrorMsg: String
+        # @param CreateTime: 文件创建时间。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param LastUpdateTime: 文件最后更新时间。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LastUpdateTime: String
+        # @param Keywords: 文件关键字。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Keywords: String
+
+        attr_accessor :TextLength, :ByteLength, :IndexedProgress, :IndexedStatus, :IndexedErrorMsg, :CreateTime, :LastUpdateTime, :Keywords
+
+        def initialize(textlength=nil, bytelength=nil, indexedprogress=nil, indexedstatus=nil, indexederrormsg=nil, createtime=nil, lastupdatetime=nil, keywords=nil)
+          @TextLength = textlength
+          @ByteLength = bytelength
+          @IndexedProgress = indexedprogress
+          @IndexedStatus = indexedstatus
+          @IndexedErrorMsg = indexederrormsg
+          @CreateTime = createtime
+          @LastUpdateTime = lastupdatetime
+          @Keywords = keywords
+        end
+
+        def deserialize(params)
+          @TextLength = params['TextLength']
+          @ByteLength = params['ByteLength']
+          @IndexedProgress = params['IndexedProgress']
+          @IndexedStatus = params['IndexedStatus']
+          @IndexedErrorMsg = params['IndexedErrorMsg']
+          @CreateTime = params['CreateTime']
+          @LastUpdateTime = params['LastUpdateTime']
+          @Keywords = params['Keywords']
+        end
+      end
+
+      # 数据源关联的的信息
+      class RelationField < TencentCloud::Common::AbstractModel
+        # @param Field: 关联关系字段
+        # @type Field: String
+        # @param Format: 关联关系格式
+        # @type Format: String
+        # @param RelateDataSourceName: 关联数据源名称
+        # @type RelateDataSourceName: String
+
+        attr_accessor :Field, :Format, :RelateDataSourceName
+
+        def initialize(field=nil, format=nil, relatedatasourcename=nil)
+          @Field = field
+          @Format = format
+          @RelateDataSourceName = relatedatasourcename
+        end
+
+        def deserialize(params)
+          @Field = params['Field']
+          @Format = params['Format']
+          @RelateDataSourceName = params['RelateDataSourceName']
+        end
+      end
+
+      # 知识库搜索文档信息
+      class SearchDocInfo < TencentCloud::Common::AbstractModel
+        # @param CollectionViewName: 知识库名称
+        # @type CollectionViewName: String
+        # @param DocSetId: 文档Id
+        # @type DocSetId: String
+        # @param DocSetName: 文档Name
+        # @type DocSetName: String
+        # @param DocType: 文档类型
+        # @type DocType: String
+        # @param FileTitle: 文档标题
+        # @type FileTitle: String
+        # @param FileMetaData: 文档元信息
+        # @type FileMetaData: String
+        # @param DocDesc: 文档描述
+        # @type DocDesc: String
+        # @param FileSize: 文档大小
+        # @type FileSize: Integer
+
+        attr_accessor :CollectionViewName, :DocSetId, :DocSetName, :DocType, :FileTitle, :FileMetaData, :DocDesc, :FileSize
+
+        def initialize(collectionviewname=nil, docsetid=nil, docsetname=nil, doctype=nil, filetitle=nil, filemetadata=nil, docdesc=nil, filesize=nil)
+          @CollectionViewName = collectionviewname
+          @DocSetId = docsetid
+          @DocSetName = docsetname
+          @DocType = doctype
+          @FileTitle = filetitle
+          @FileMetaData = filemetadata
+          @DocDesc = docdesc
+          @FileSize = filesize
+        end
+
+        def deserialize(params)
+          @CollectionViewName = params['CollectionViewName']
+          @DocSetId = params['DocSetId']
+          @DocSetName = params['DocSetName']
+          @DocType = params['DocType']
+          @FileTitle = params['FileTitle']
+          @FileMetaData = params['FileMetaData']
+          @DocDesc = params['DocDesc']
+          @FileSize = params['FileSize']
+        end
+      end
+
+      # SearchDocList请求参数结构体
+      class SearchDocListRequest < TencentCloud::Common::AbstractModel
+        # @param EnvId: 环境ID
+        # @type EnvId: String
+        # @param CollectionView: 知识库名称
+        # @type CollectionView: String
+        # @param SearchKey: 搜索模式
+        # @type SearchKey: String
+        # @param SearchValue: 搜索值
+        # @type SearchValue: String
+        # @param PageNo: 页码
+        # @type PageNo: Integer
+        # @param PageSize: 页大小
+        # @type PageSize: Integer
+
+        attr_accessor :EnvId, :CollectionView, :SearchKey, :SearchValue, :PageNo, :PageSize
+
+        def initialize(envid=nil, collectionview=nil, searchkey=nil, searchvalue=nil, pageno=nil, pagesize=nil)
+          @EnvId = envid
+          @CollectionView = collectionview
+          @SearchKey = searchkey
+          @SearchValue = searchvalue
+          @PageNo = pageno
+          @PageSize = pagesize
+        end
+
+        def deserialize(params)
+          @EnvId = params['EnvId']
+          @CollectionView = params['CollectionView']
+          @SearchKey = params['SearchKey']
+          @SearchValue = params['SearchValue']
+          @PageNo = params['PageNo']
+          @PageSize = params['PageSize']
+        end
+      end
+
+      # SearchDocList返回参数结构体
+      class SearchDocListResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 知识库文档搜索数据
+        # @type Data: :class:`Tencentcloud::Lowcode.v20210108.models.SearchDocRsp`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = SearchDocRsp.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 知识库文档搜索结果
+      class SearchDocRsp < TencentCloud::Common::AbstractModel
+        # @param DocInfos: 文档基本信息
+        # @type DocInfos: Array
+        # @param Total: 文档总数
+        # @type Total: Integer
+
+        attr_accessor :DocInfos, :Total
+
+        def initialize(docinfos=nil, total=nil)
+          @DocInfos = docinfos
+          @Total = total
+        end
+
+        def deserialize(params)
+          unless params['DocInfos'].nil?
+            @DocInfos = []
+            params['DocInfos'].each do |i|
+              searchdocinfo_tmp = SearchDocInfo.new
+              searchdocinfo_tmp.deserialize(i)
+              @DocInfos << searchdocinfo_tmp
+            end
+          end
+          @Total = params['Total']
+        end
+      end
+
       # 数据源授权信息
       class TicketAuthInfo < TencentCloud::Common::AbstractModel
         # @param AuthUser: 授权用户
@@ -373,6 +1321,149 @@ module TencentCloud
 
         def deserialize(params)
           @AuthUser = params['AuthUser']
+        end
+      end
+
+      # UpdateKnowledgeSet请求参数结构体
+      class UpdateKnowledgeSetRequest < TencentCloud::Common::AbstractModel
+        # @param Name: 知识库标识
+        # @type Name: String
+        # @param Title: 知识库名称
+        # @type Title: String
+        # @param Desc: 描述
+        # @type Desc: String
+        # @param Active: 状态;ENABLED启用；NOT_ENABLED不启用
+        # @type Active: String
+
+        attr_accessor :Name, :Title, :Desc, :Active
+
+        def initialize(name=nil, title=nil, desc=nil, active=nil)
+          @Name = name
+          @Title = title
+          @Desc = desc
+          @Active = active
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Title = params['Title']
+          @Desc = params['Desc']
+          @Active = params['Active']
+        end
+      end
+
+      # UpdateKnowledgeSet返回参数结构体
+      class UpdateKnowledgeSetResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # UploadKnowledgeDocumentSet请求参数结构体
+      class UploadKnowledgeDocumentSetRequest < TencentCloud::Common::AbstractModel
+        # @param CollectionView: 知识库标识
+        # @type CollectionView: String
+        # @param FileName: 状态;ENABLED启用；NOT_ENABLED不启用
+        # @type FileName: String
+        # @param CosUrl: 文件存储位置的可读地址
+        # @type CosUrl: String
+        # @param DocumentType: 文件类型，例如: .docx, .md
+        # @type DocumentType: String
+        # @param DocumentDesc: 对文件的描述
+        # @type DocumentDesc: String
+        # @param FileTitle: 文件标题
+        # @type FileTitle: String
+        # @param FileMetaData: 	文件元信息，为jsonstring
+        # @type FileMetaData: String
+        # @param DocumentSetId: 文件id
+        # @type DocumentSetId: String
+
+        attr_accessor :CollectionView, :FileName, :CosUrl, :DocumentType, :DocumentDesc, :FileTitle, :FileMetaData, :DocumentSetId
+
+        def initialize(collectionview=nil, filename=nil, cosurl=nil, documenttype=nil, documentdesc=nil, filetitle=nil, filemetadata=nil, documentsetid=nil)
+          @CollectionView = collectionview
+          @FileName = filename
+          @CosUrl = cosurl
+          @DocumentType = documenttype
+          @DocumentDesc = documentdesc
+          @FileTitle = filetitle
+          @FileMetaData = filemetadata
+          @DocumentSetId = documentsetid
+        end
+
+        def deserialize(params)
+          @CollectionView = params['CollectionView']
+          @FileName = params['FileName']
+          @CosUrl = params['CosUrl']
+          @DocumentType = params['DocumentType']
+          @DocumentDesc = params['DocumentDesc']
+          @FileTitle = params['FileTitle']
+          @FileMetaData = params['FileMetaData']
+          @DocumentSetId = params['DocumentSetId']
+        end
+      end
+
+      # UploadKnowledgeDocumentSet返回参数结构体
+      class UploadKnowledgeDocumentSetResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 新增文件返回信息
+        # @type Data: :class:`Tencentcloud::Lowcode.v20210108.models.UploadKnowledgeDocumentSetRsp`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = UploadKnowledgeDocumentSetRsp.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 上传知识库文档返回结果
+      class UploadKnowledgeDocumentSetRsp < TencentCloud::Common::AbstractModel
+        # @param DocumentSetId: 给文件分配的 ID 信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DocumentSetId: String
+        # @param DocumentSetName: 文件名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DocumentSetName: String
+        # @param FileTitle: 文件标题
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FileTitle: String
+        # @param FileMetaData: 文件元信息，为jsonstring
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FileMetaData: String
+
+        attr_accessor :DocumentSetId, :DocumentSetName, :FileTitle, :FileMetaData
+
+        def initialize(documentsetid=nil, documentsetname=nil, filetitle=nil, filemetadata=nil)
+          @DocumentSetId = documentsetid
+          @DocumentSetName = documentsetname
+          @FileTitle = filetitle
+          @FileMetaData = filemetadata
+        end
+
+        def deserialize(params)
+          @DocumentSetId = params['DocumentSetId']
+          @DocumentSetName = params['DocumentSetName']
+          @FileTitle = params['FileTitle']
+          @FileMetaData = params['FileMetaData']
         end
       end
 

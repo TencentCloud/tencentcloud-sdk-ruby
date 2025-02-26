@@ -9651,6 +9651,96 @@ module TencentCloud
         end
       end
 
+      # GetTopNMonitorData请求参数结构体
+      class GetTopNMonitorDataRequest < TencentCloud::Common::AbstractModel
+        # @param N: topN
+        # @type N: Integer
+        # @param StartTime: 起始时间
+        # @type StartTime: String
+        # @param EndTime: 截止时间
+        # @type EndTime: String
+        # @param Instances: 实例对象的维度组合，格式为key-value键值对形式的集合。不同类型的实例字段完全不同，如CVM为[{"Name":"InstanceId","Value":"ins-j0hk02zo"}]，Ckafka为[{"Name":"instanceId","Value":"ckafka-l49k54dd"}]，COS为[{"Name":"appid","Value":"1258344699"},{"Name":"bucket","Value":"rig-1258344699"}]。各个云产品的维度请参阅各个产品监控指标文档，对应的维度列即为维度组合的key，value为key对应的值。单请求最多支持批量拉取50个实例的监控数据。
+        # @type Instances: Array
+        # @param MetricName: 指标名称，如Bwpresourcebandwidthin，仅支持单指标拉取。各个云产品的详细指标说明请参阅各个产品监控指标文档，对应的指标英文名即为MetricName
+        # @type MetricName: String
+        # @param Namespace: 命名空间，如QCE/CVM。各个云产品的详细命名空间说明请参阅各个产品监控指标文档
+        # @type Namespace: String
+        # @param Period: 监控统计周期，如60。默认为取值为60，单位为s。每个指标支持的统计周期不一定相同，各个云产品支持的统计周期请参阅各个产品监控指标文档，对应的统计周期列即为支持的统计周期。
+        # @type Period: Integer
+
+        attr_accessor :N, :StartTime, :EndTime, :Instances, :MetricName, :Namespace, :Period
+
+        def initialize(n=nil, starttime=nil, endtime=nil, instances=nil, metricname=nil, namespace=nil, period=nil)
+          @N = n
+          @StartTime = starttime
+          @EndTime = endtime
+          @Instances = instances
+          @MetricName = metricname
+          @Namespace = namespace
+          @Period = period
+        end
+
+        def deserialize(params)
+          @N = params['N']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          unless params['Instances'].nil?
+            @Instances = []
+            params['Instances'].each do |i|
+              instance_tmp = Instance.new
+              instance_tmp.deserialize(i)
+              @Instances << instance_tmp
+            end
+          end
+          @MetricName = params['MetricName']
+          @Namespace = params['Namespace']
+          @Period = params['Period']
+        end
+      end
+
+      # GetTopNMonitorData返回参数结构体
+      class GetTopNMonitorDataResponse < TencentCloud::Common::AbstractModel
+        # @param MetricName: 指标名
+        # @type MetricName: String
+        # @param Period: 统计周期
+        # @type Period: Integer
+        # @param N: topN
+        # @type N: Integer
+        # @param OrderedDataPoints: 排序的监控数据
+        # @type OrderedDataPoints: Array
+        # @param Msg: 返回信息
+        # @type Msg: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :MetricName, :Period, :N, :OrderedDataPoints, :Msg, :RequestId
+
+        def initialize(metricname=nil, period=nil, n=nil, ordereddatapoints=nil, msg=nil, requestid=nil)
+          @MetricName = metricname
+          @Period = period
+          @N = n
+          @OrderedDataPoints = ordereddatapoints
+          @Msg = msg
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @MetricName = params['MetricName']
+          @Period = params['Period']
+          @N = params['N']
+          unless params['OrderedDataPoints'].nil?
+            @OrderedDataPoints = []
+            params['OrderedDataPoints'].each do |i|
+              singleordereddatapoint_tmp = SingleOrderedDataPoint.new
+              singleordereddatapoint_tmp.deserialize(i)
+              @OrderedDataPoints << singleordereddatapoint_tmp
+            end
+          end
+          @Msg = params['Msg']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # Grafana可视化服务 授权账户信息
       class GrafanaAccountInfo < TencentCloud::Common::AbstractModel
         # @param UserId: 用户账号ID
@@ -13826,6 +13916,45 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 单个有序数据点
+      class SingleOrderedDataPoint < TencentCloud::Common::AbstractModel
+        # @param Dimensions: 实例对象维度组合
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Dimensions: Array
+        # @param Value: 监控数据值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Value: Float
+        # @param Timestamp: 监控数据时间戳
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Timestamp: Integer
+        # @param Order: 排序序号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Order: Integer
+
+        attr_accessor :Dimensions, :Value, :Timestamp, :Order
+
+        def initialize(dimensions=nil, value=nil, timestamp=nil, order=nil)
+          @Dimensions = dimensions
+          @Value = value
+          @Timestamp = timestamp
+          @Order = order
+        end
+
+        def deserialize(params)
+          unless params['Dimensions'].nil?
+            @Dimensions = []
+            params['Dimensions'].each do |i|
+              dimension_tmp = Dimension.new
+              dimension_tmp.deserialize(i)
+              @Dimensions << dimension_tmp
+            end
+          end
+          @Value = params['Value']
+          @Timestamp = params['Timestamp']
+          @Order = params['Order']
         end
       end
 

@@ -2743,6 +2743,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 支持TopN查询，对于给定的监控指标和时间区间，按照指标大小按序返回不同维度组合及数据。
+
+        # @param request: Request instance for GetTopNMonitorData.
+        # @type request: :class:`Tencentcloud::monitor::V20180724::GetTopNMonitorDataRequest`
+        # @rtype: :class:`Tencentcloud::monitor::V20180724::GetTopNMonitorDataResponse`
+        def GetTopNMonitorData(request)
+          body = send_request('GetTopNMonitorData', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GetTopNMonitorDataResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 安装 Grafana Plugin
 
         # @param request: Request instance for InstallPlugins.

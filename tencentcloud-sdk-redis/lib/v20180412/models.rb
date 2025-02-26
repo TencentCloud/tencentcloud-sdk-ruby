@@ -20,33 +20,26 @@ module TencentCloud
       # 子账号信息
       class Account < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例 ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceId: String
         # @param AccountName: 账号名称。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AccountName: String
         # @param Remark: 账号描述信息。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Remark: String
         # @param Privilege: 读写权限策略。
         # - r：只读。
         # - w：只写。
         # - rw：读写。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Privilege: String
         # @param ReadonlyPolicy: 只读路由策略。
         # - master：主节点。
         # - replication：从节点。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReadonlyPolicy: Array
         # @param Status: 子账号状态.
         # - 1：账号变更中。
         # - 2：账号有效。
         # - 4：账号已删除。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
         # @param CreateTime: 创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
 
         attr_accessor :InstanceId, :AccountName, :Remark, :Privilege, :ReadonlyPolicy, :Status, :CreateTime
@@ -239,10 +232,8 @@ module TencentCloud
       # 可使用的地域信息
       class AvailableRegion < TencentCloud::Common::AbstractModel
         # @param Region: 地域
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Region: String
         # @param AvailableZones: 可用区信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AvailableZones: Array
 
         attr_accessor :Region, :AvailableZones
@@ -2106,28 +2097,20 @@ module TencentCloud
       # 详细DTS实例信息
       class DescribeInstanceDTSInstanceInfo < TencentCloud::Common::AbstractModel
         # @param RegionId: 地域 ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RegionId: Integer
         # @param InstanceId: 实例 ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceId: String
         # @param SetId: 仓库ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SetId: Integer
         # @param ZoneId: 可用区ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ZoneId: Integer
         # @param Type: 实例类型。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: Integer
         # @param InstanceName: 实例名称。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceName: String
         # @param Vip: 实例访问地址。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Vip: String
         # @param Status: 状态。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
 
         attr_accessor :RegionId, :InstanceId, :SetId, :ZoneId, :Type, :InstanceName, :Vip, :Status
@@ -4687,7 +4670,6 @@ module TencentCloud
         # @param GroupId: 复制组 ID。格式如：crs-rpl-deind****。
         # @type GroupId: String
         # @param GroupName: 复制组名称。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GroupName: String
         # @param Status: 复制组状态。
         # - 37：绑定复制组中。
@@ -4699,10 +4681,8 @@ module TencentCloud
         # @param InstanceCount: 复制组数量。
         # @type InstanceCount: Integer
         # @param Instances: 复制组中的实例信息。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Instances: Array
         # @param Remark: 备注信息。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Remark: String
 
         attr_accessor :AppId, :RegionId, :GroupId, :GroupName, :Status, :InstanceCount, :Instances, :Remark
@@ -5182,7 +5162,6 @@ module TencentCloud
         # @param Status: 参数状态, 1: 修改中， 2：修改完成
         # @type Status: Integer
         # @param Unit: 参数单位
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Unit: String
 
         attr_accessor :ParamName, :ValueType, :NeedRestart, :DefaultValue, :CurrentValue, :Tips, :Min, :Max, :Status, :Unit
@@ -5486,85 +5465,58 @@ module TencentCloud
         # @param SlaveReadWeight: 从节点读取权重。
         # @type SlaveReadWeight: Integer
         # @param InstanceTags: 实例关联的标签信息。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceTags: Array
         # @param ProjectName: 项目名称。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProjectName: String
         # @param NoAuth: 是否为免密实例。<ul><li>true：免密实例。</li><li>false：非免密实例。</li></ul>
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NoAuth: Boolean
         # @param ClientLimit: 客户端连接数。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClientLimit: Integer
         # @param DtsStatus: DTS状态（内部参数，用户可忽略）。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DtsStatus: Integer
         # @param NetLimit: 分片带宽上限，单位MB。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NetLimit: Integer
         # @param PasswordFree: 免密实例标识（内部参数，用户可忽略）。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PasswordFree: Integer
         # @param Vip6: 该参数存在命名不规范问题，建议用参数IPv6取代。内部参数，用户可忽略。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Vip6: String
         # @param IPv6: 内部参数，用户可忽略。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IPv6: String
         # @param ReadOnly: 实例只读标识（内部参数，用户可忽略）。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReadOnly: Integer
         # @param RemainBandwidthDuration: 内部参数，用户可忽略。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RemainBandwidthDuration: String
         # @param DiskSize: Redis实例请忽略该参数。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DiskSize: Integer
         # @param MonitorVersion: 监控版本。<ul><li>1m：1分钟粒度监控。目前该监控粒度已下线，具体信息，请参见[云数据库 Redis 1分钟粒度下线公告](https://cloud.tencent.com/document/product/239/80653)。</li><li>5s：5秒粒度监控。</li></ul>
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MonitorVersion: String
         # @param ClientLimitMin: 客户端最大连接数可设置的最小值。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClientLimitMin: Integer
         # @param ClientLimitMax: 客户端最大连接数可设置的最大值。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClientLimitMax: Integer
         # @param NodeSet: 实例的节点详细信息。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NodeSet: Array
         # @param Region: 实例所在的地域信息，比如ap-guangzhou。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Region: String
         # @param WanAddress: 外网地址。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WanAddress: String
         # @param PolarisServer: 北极星服务地址，内部使用。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PolarisServer: String
         # @param RedisClusterId: CDC Redis集群ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RedisClusterId: String
         # @param DedicatedClusterId: CDC 集群ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DedicatedClusterId: String
         # @param ProductVersion: 产品版本。<ul><li>local：本地盘。</li><li>cloud：云盘版。</li><li>cdc：CDC 集群版本。</li></ul>
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProductVersion: String
         # @param CurrentProxyVersion: 实例当前Proxy版本。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CurrentProxyVersion: String
         # @param CurrentRedisVersion: 实例当前Cache小版本。如果实例加入全球复制组，显示全球复制的内核版本。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CurrentRedisVersion: String
         # @param UpgradeProxyVersion: 实例可升级Proxy版本。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpgradeProxyVersion: String
         # @param UpgradeRedisVersion: 实例可升级Cache小版本。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpgradeRedisVersion: String
         # @param BackupMode: 备份模式：- SecondLevelBackup   秒级备份- NormalLevelBackup    普通备份
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BackupMode: String
 
         attr_accessor :InstanceName, :InstanceId, :Appid, :ProjectId, :RegionId, :ZoneId, :VpcId, :SubnetId, :Status, :WanIp, :Port, :Createtime, :Size, :SizeUsed, :Type, :AutoRenewFlag, :DeadlineTime, :Engine, :ProductType, :UniqVpcId, :UniqSubnetId, :BillingMode, :InstanceTitle, :OfflineTime, :SubStatus, :Tags, :InstanceNode, :RedisShardSize, :RedisShardNum, :RedisReplicasNum, :PriceId, :CloseTime, :SlaveReadWeight, :InstanceTags, :ProjectName, :NoAuth, :ClientLimit, :DtsStatus, :NetLimit, :PasswordFree, :Vip6, :IPv6, :ReadOnly, :RemainBandwidthDuration, :DiskSize, :MonitorVersion, :ClientLimitMin, :ClientLimitMax, :NodeSet, :Region, :WanAddress, :PolarisServer, :RedisClusterId, :DedicatedClusterId, :ProductVersion, :CurrentProxyVersion, :CurrentRedisVersion, :UpgradeProxyVersion, :UpgradeRedisVersion, :BackupMode
@@ -5840,7 +5792,6 @@ module TencentCloud
         # @param RedisShardSize: 分片内存大小。
         # @type RedisShardSize: Integer
         # @param DiskSize: 实例的磁盘大小。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DiskSize: Integer
         # @param Engine: 引擎：社区版Redis、腾讯云CKV。
         # @type Engine: String
@@ -5849,10 +5800,8 @@ module TencentCloud
         # @param Vip: 实例 VIP 地址。
         # @type Vip: String
         # @param Vip6: 该参数存在命名不规范问题，建议用参数IPv6取代。内部参数，用户可忽略。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Vip6: String
         # @param IPv6: 内部参数，用户可忽略。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IPv6: String
         # @param VpcID: VPC 网络ID，如：75101。
         # @type VpcID: Integer
@@ -5980,16 +5929,12 @@ module TencentCloud
       # 日志投递信息
       class LogDeliveryInfo < TencentCloud::Common::AbstractModel
         # @param Enabled: 日志投递开启状态，开启：true，关闭：false
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Enabled: Boolean
         # @param LogsetId: 日志集ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LogsetId: String
         # @param TopicId: 日志主题ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TopicId: String
         # @param LogRegion: 日志集所在地域
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LogRegion: String
 
         attr_accessor :Enabled, :LogsetId, :TopicId, :LogRegion

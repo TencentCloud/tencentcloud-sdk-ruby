@@ -83,7 +83,6 @@ module TencentCloud
       # AddClusterInstances返回参数结构体
       class AddClusterInstancesResponse < TencentCloud::Common::AbstractModel
         # @param Result: 添加云主机的返回列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: :class:`Tencentcloud::Tsf.v20180326.models.AddInstanceResult`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -187,7 +186,6 @@ module TencentCloud
       # AddInstances返回参数结构体
       class AddInstancesResponse < TencentCloud::Common::AbstractModel
         # @param Result: 添加云主机是否成功
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1051,7 +1049,6 @@ module TencentCloud
       # AssociateBusinessLogConfig返回参数结构体
       class AssociateBusinessLogConfigResponse < TencentCloud::Common::AbstractModel
         # @param Result: 操作结果
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1115,7 +1112,6 @@ module TencentCloud
       # AssociateConfigWithGroup返回参数结构体
       class AssociateConfigWithGroupResponse < TencentCloud::Common::AbstractModel
         # @param Result: 绑定是否成功
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1349,8 +1345,8 @@ module TencentCloud
 
         attr_accessor :ConfigId, :ConfigName, :ConfigPath, :ConfigDesc, :ConfigTags, :ConfigPipeline, :ConfigCreateTime, :ConfigUpdateTime, :ConfigSchema, :ConfigAssociatedGroups, :ConfigAssociatedGroupList
         extend Gem::Deprecate
-        deprecate :ConfigAssociatedGroups, :none, 2024, 12
-        deprecate :ConfigAssociatedGroups=, :none, 2024, 12
+        deprecate :ConfigAssociatedGroups, :none, 2025, 2
+        deprecate :ConfigAssociatedGroups=, :none, 2025, 2
 
         def initialize(configid=nil, configname=nil, configpath=nil, configdesc=nil, configtags=nil, configpipeline=nil, configcreatetime=nil, configupdatetime=nil, configschema=nil, configassociatedgroups=nil, configassociatedgrouplist=nil)
           @ConfigId = configid
@@ -3565,7 +3561,6 @@ module TencentCloud
       # CreateApplication返回参数结构体
       class CreateApplicationResponse < TencentCloud::Common::AbstractModel
         # @param Result: 应用ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3666,7 +3661,6 @@ module TencentCloud
       # CreateCluster返回参数结构体
       class CreateClusterResponse < TencentCloud::Common::AbstractModel
         # @param Result: 集群ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4324,7 +4318,6 @@ module TencentCloud
       # CreateGroup返回参数结构体
       class CreateGroupResponse < TencentCloud::Common::AbstractModel
         # @param Result: groupId， null表示创建失败
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4603,7 +4596,6 @@ module TencentCloud
       # CreateNamespace返回参数结构体
       class CreateNamespaceResponse < TencentCloud::Common::AbstractModel
         # @param Result: 成功时为命名空间ID，失败为null
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4919,7 +4911,6 @@ module TencentCloud
       # CreateRepository返回参数结构体
       class CreateRepositoryResponse < TencentCloud::Common::AbstractModel
         # @param Result: 创建仓库是否成功
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4982,7 +4973,6 @@ module TencentCloud
       # CreateTaskFlow返回参数结构体
       class CreateTaskFlowResponse < TencentCloud::Common::AbstractModel
         # @param Result: 工作流 ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5092,7 +5082,6 @@ module TencentCloud
       # CreateTask返回参数结构体
       class CreateTaskResponse < TencentCloud::Common::AbstractModel
         # @param Result: 任务ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5727,7 +5716,6 @@ module TencentCloud
         # @param Result: 删除部署组操作是否成功。
         # true：操作成功。
         # false：操作失败。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6103,7 +6091,6 @@ module TencentCloud
       # DeleteRepository返回参数结构体
       class DeleteRepositoryResponse < TencentCloud::Common::AbstractModel
         # @param Result: 删除仓库是否成功
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6519,8 +6506,8 @@ module TencentCloud
 
         attr_accessor :GroupId, :TagName, :InstanceNum, :Server, :Reponame, :CpuLimit, :MemLimit, :JvmOpts, :CpuRequest, :MemRequest, :DoNotStart, :RepoName, :UpdateType, :UpdateIvl, :AgentCpuRequest, :AgentCpuLimit, :AgentMemRequest, :AgentMemLimit, :IstioCpuRequest, :IstioCpuLimit, :IstioMemRequest, :IstioMemLimit, :MaxSurge, :MaxUnavailable, :HealthCheckSettings, :Envs, :ServiceSetting, :DeployAgent, :SchedulingStrategy, :IncrementalDeployment, :RepoType, :VolumeInfos, :VolumeMountInfos, :VolumeInfoList, :VolumeMountInfoList, :VolumeClean, :AgentProfileList, :WarmupSetting
         extend Gem::Deprecate
-        deprecate :Reponame, :none, 2024, 12
-        deprecate :Reponame=, :none, 2024, 12
+        deprecate :Reponame, :none, 2025, 2
+        deprecate :Reponame=, :none, 2025, 2
 
         def initialize(groupid=nil, tagname=nil, instancenum=nil, server=nil, cpulimit=nil, memlimit=nil, jvmopts=nil, cpurequest=nil, memrequest=nil, donotstart=nil, reponame=nil, updatetype=nil, updateivl=nil, agentcpurequest=nil, agentcpulimit=nil, agentmemrequest=nil, agentmemlimit=nil, istiocpurequest=nil, istiocpulimit=nil, istiomemrequest=nil, istiomemlimit=nil, maxsurge=nil, maxunavailable=nil, healthchecksettings=nil, envs=nil, servicesetting=nil, deployagent=nil, schedulingstrategy=nil, incrementaldeployment=nil, repotype=nil, volumeinfos=nil, volumemountinfos=nil, volumeinfolist=nil, volumemountinfolist=nil, volumeclean=nil, agentprofilelist=nil, warmupsetting=nil)
           @GroupId = groupid
@@ -6781,7 +6768,6 @@ module TencentCloud
       # DeployGroup返回参数结构体
       class DeployGroupResponse < TencentCloud::Common::AbstractModel
         # @param Result: 任务ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: :class:`Tencentcloud::Tsf.v20180326.models.TaskId`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -7248,7 +7234,6 @@ module TencentCloud
       # DescribeApplications返回参数结构体
       class DescribeApplicationsResponse < TencentCloud::Common::AbstractModel
         # @param Result: 应用分页列表信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: :class:`Tencentcloud::Tsf.v20180326.models.TsfPageApplication`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -7444,7 +7429,6 @@ module TencentCloud
       # DescribeClusterInstances返回参数结构体
       class DescribeClusterInstancesResponse < TencentCloud::Common::AbstractModel
         # @param Result: 集群机器实例分页信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: :class:`Tencentcloud::Tsf.v20180326.models.TsfPageInstance`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -7508,7 +7492,6 @@ module TencentCloud
       # DescribeClusters返回参数结构体
       class DescribeClustersResponse < TencentCloud::Common::AbstractModel
         # @param Result: Cluster分页信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: :class:`Tencentcloud::Tsf.v20180326.models.TsfPageClusterV2`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -7923,7 +7906,6 @@ module TencentCloud
       # DescribeContainerEvents返回参数结构体
       class DescribeContainerEventsResponse < TencentCloud::Common::AbstractModel
         # @param Result: events 分页列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: :class:`Tencentcloud::Tsf.v20180326.models.TsfPageContainerEvent`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -8282,7 +8264,6 @@ module TencentCloud
       # DescribeDeliveryConfigs返回参数结构体
       class DescribeDeliveryConfigsResponse < TencentCloud::Common::AbstractModel
         # @param Result: 投递项关联部署组信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: :class:`Tencentcloud::Tsf.v20180326.models.DeliveryConfigBindGroups`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -8725,7 +8706,6 @@ module TencentCloud
       # DescribeGroupAttribute返回参数结构体
       class DescribeGroupAttributeResponse < TencentCloud::Common::AbstractModel
         # @param Result: 虚拟机部署组信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: :class:`Tencentcloud::Tsf.v20180326.models.VmGroupOther`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -8927,7 +8907,6 @@ module TencentCloud
       # DescribeGroupInstances返回参数结构体
       class DescribeGroupInstancesResponse < TencentCloud::Common::AbstractModel
         # @param Result: 部署组机器信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: :class:`Tencentcloud::Tsf.v20180326.models.TsfPageInstance`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -9142,7 +9121,6 @@ module TencentCloud
       # DescribeGroups返回参数结构体
       class DescribeGroupsResponse < TencentCloud::Common::AbstractModel
         # @param Result: 虚拟机部署组分页信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: :class:`Tencentcloud::Tsf.v20180326.models.TsfPageVmGroup`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -9476,7 +9454,6 @@ module TencentCloud
       # DescribeInstances返回参数结构体
       class DescribeInstancesResponse < TencentCloud::Common::AbstractModel
         # @param Result: 机器列表信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: :class:`Tencentcloud::Tsf.v20180326.models.InstanceEnrichedInfoPage`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -9554,7 +9531,6 @@ module TencentCloud
       # DescribeInvocationMetricDataCurve返回参数结构体
       class DescribeInvocationMetricDataCurveResponse < TencentCloud::Common::AbstractModel
         # @param Result: 指标监控数据曲线集合
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -9698,7 +9674,6 @@ module TencentCloud
       # DescribeInvocationMetricDataPoint返回参数结构体
       class DescribeInvocationMetricDataPointResponse < TencentCloud::Common::AbstractModel
         # @param Result: 单值指标列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -10928,7 +10903,6 @@ module TencentCloud
       # DescribeRepository返回参数结构体
       class DescribeRepositoryResponse < TencentCloud::Common::AbstractModel
         # @param Result: 查询的仓库信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: :class:`Tencentcloud::Tsf.v20180326.models.RepositoryInfo`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -11039,7 +11013,6 @@ module TencentCloud
       # DescribeSimpleApplications返回参数结构体
       class DescribeSimpleApplicationsResponse < TencentCloud::Common::AbstractModel
         # @param Result: 简单应用分页对象
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: :class:`Tencentcloud::Tsf.v20180326.models.TsfPageSimpleApplication`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -11099,7 +11072,6 @@ module TencentCloud
       # DescribeSimpleClusters返回参数结构体
       class DescribeSimpleClustersResponse < TencentCloud::Common::AbstractModel
         # @param Result: TSF集群分页对象
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: :class:`Tencentcloud::Tsf.v20180326.models.TsfPageCluster`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -11171,7 +11143,6 @@ module TencentCloud
       # DescribeSimpleGroups返回参数结构体
       class DescribeSimpleGroupsResponse < TencentCloud::Common::AbstractModel
         # @param Result: 简单部署组列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: :class:`Tencentcloud::Tsf.v20180326.models.TsfPageSimpleGroup`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -11251,7 +11222,6 @@ module TencentCloud
       # DescribeSimpleNamespaces返回参数结构体
       class DescribeSimpleNamespacesResponse < TencentCloud::Common::AbstractModel
         # @param Result: 命名空间分页列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: :class:`Tencentcloud::Tsf.v20180326.models.TsfPageNamespace`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -11358,7 +11328,6 @@ module TencentCloud
       # DescribeStatistics返回参数结构体
       class DescribeStatisticsResponse < TencentCloud::Common::AbstractModel
         # @param Result: 查询服务统计结果
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: :class:`Tencentcloud::Tsf.v20180326.models.ServiceStatisticsResults`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -11508,7 +11477,6 @@ module TencentCloud
       # DescribeTaskRecords返回参数结构体
       class DescribeTaskRecordsResponse < TencentCloud::Common::AbstractModel
         # @param Result: 任务记录列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: :class:`Tencentcloud::Tsf.v20180326.models.TaskRecordPage`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -12125,7 +12093,6 @@ module TencentCloud
       # DisassociateBusinessLogConfig返回参数结构体
       class DisassociateBusinessLogConfigResponse < TencentCloud::Common::AbstractModel
         # @param Result: 操作结果
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -12166,7 +12133,6 @@ module TencentCloud
       # DisassociateKafkaConfig返回参数结构体
       class DisassociateKafkaConfigResponse < TencentCloud::Common::AbstractModel
         # @param Result: 解除绑定是否成功
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -12600,7 +12566,6 @@ module TencentCloud
       # ExpandGroup返回参数结构体
       class ExpandGroupResponse < TencentCloud::Common::AbstractModel
         # @param Result: 任务ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: :class:`Tencentcloud::Tsf.v20180326.models.TaskId`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -15465,7 +15430,6 @@ module TencentCloud
       class ModifyApplicationResponse < TencentCloud::Common::AbstractModel
         # @param Result: true：操作成功
         # false：操作失败
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -15684,7 +15648,6 @@ module TencentCloud
         # @param Result: 更新部署组详情是否成功。
         # true：操作成功。
         # false：操作失败。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -15887,7 +15850,6 @@ module TencentCloud
       # ModifyNamespace返回参数结构体
       class ModifyNamespaceResponse < TencentCloud::Common::AbstractModel
         # @param Result: Result
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -16112,7 +16074,6 @@ module TencentCloud
       # ModifyTask返回参数结构体
       class ModifyTaskResponse < TencentCloud::Common::AbstractModel
         # @param Result: 更新是否成功
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -17601,7 +17562,6 @@ module TencentCloud
       # RemoveInstances返回参数结构体
       class RemoveInstancesResponse < TencentCloud::Common::AbstractModel
         # @param Result: 集群移除机器是否成功
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -18742,7 +18702,6 @@ module TencentCloud
       # ShrinkGroup返回参数结构体
       class ShrinkGroupResponse < TencentCloud::Common::AbstractModel
         # @param Result: 任务ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: :class:`Tencentcloud::Tsf.v20180326.models.TaskId`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -19039,7 +18998,6 @@ module TencentCloud
       # StartGroup返回参数结构体
       class StartGroupResponse < TencentCloud::Common::AbstractModel
         # @param Result: 任务ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: :class:`Tencentcloud::Tsf.v20180326.models.TaskId`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -19149,7 +19107,6 @@ module TencentCloud
       # StopGroup返回参数结构体
       class StopGroupResponse < TencentCloud::Common::AbstractModel
         # @param Result: 任务ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: :class:`Tencentcloud::Tsf.v20180326.models.TaskId`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -21237,7 +21194,6 @@ module TencentCloud
       # UpdateRepository返回参数结构体
       class UpdateRepositoryResponse < TencentCloud::Common::AbstractModel
         # @param Result: 更新仓库是否成功
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

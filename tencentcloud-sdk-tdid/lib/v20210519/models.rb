@@ -79,14 +79,17 @@ module TencentCloud
         # @type PolicyJson: String
         # @param DAPId: DID应用ID
         # @type DAPId: Integer
+        # @param UAPId: 用户应用ID
+        # @type UAPId: Integer
 
-        attr_accessor :PolicyId, :CredentialData, :PolicyJson, :DAPId
+        attr_accessor :PolicyId, :CredentialData, :PolicyJson, :DAPId, :UAPId
 
-        def initialize(policyid=nil, credentialdata=nil, policyjson=nil, dapid=nil)
+        def initialize(policyid=nil, credentialdata=nil, policyjson=nil, dapid=nil, uapid=nil)
           @PolicyId = policyid
           @CredentialData = credentialdata
           @PolicyJson = policyjson
           @DAPId = dapid
+          @UAPId = uapid
         end
 
         def deserialize(params)
@@ -94,6 +97,7 @@ module TencentCloud
           @CredentialData = params['CredentialData']
           @PolicyJson = params['PolicyJson']
           @DAPId = params['DAPId']
+          @UAPId = params['UAPId']
         end
       end
 
@@ -121,6 +125,8 @@ module TencentCloud
       class CreatePresentationRequest < TencentCloud::Common::AbstractModel
         # @param DAPId: DID应用id
         # @type DAPId: Integer
+        # @param UAPId: 用户应用id
+        # @type UAPId: Integer
         # @param Credentials: 凭证列表
         # @type Credentials: Array
         # @param Did: VP持有人的DID标识
@@ -134,10 +140,11 @@ module TencentCloud
         # @param CredentialList: 可验证凭证证明列表
         # @type CredentialList: Array
 
-        attr_accessor :DAPId, :Credentials, :Did, :VerifyCode, :PolicyJson, :Unsigned, :CredentialList
+        attr_accessor :DAPId, :UAPId, :Credentials, :Did, :VerifyCode, :PolicyJson, :Unsigned, :CredentialList
 
-        def initialize(dapid=nil, credentials=nil, did=nil, verifycode=nil, policyjson=nil, unsigned=nil, credentiallist=nil)
+        def initialize(dapid=nil, uapid=nil, credentials=nil, did=nil, verifycode=nil, policyjson=nil, unsigned=nil, credentiallist=nil)
           @DAPId = dapid
+          @UAPId = uapid
           @Credentials = credentials
           @Did = did
           @VerifyCode = verifycode
@@ -148,6 +155,7 @@ module TencentCloud
 
         def deserialize(params)
           @DAPId = params['DAPId']
+          @UAPId = params['UAPId']
           @Credentials = params['Credentials']
           @Did = params['Did']
           @VerifyCode = params['VerifyCode']
@@ -354,6 +362,30 @@ module TencentCloud
         end
       end
 
+      # 设置凭证状态信息
+      class CredentialStatusInfo < TencentCloud::Common::AbstractModel
+        # @param Id: 凭证唯一id
+        # @type Id: String
+        # @param Issuer: 凭证状态（0：吊销；1：有效）
+        # @type Issuer: String
+        # @param Status: 凭证颁发者Did
+        # @type Status: Integer
+
+        attr_accessor :Id, :Issuer, :Status
+
+        def initialize(id=nil, issuer=nil, status=nil)
+          @Id = id
+          @Issuer = issuer
+          @Status = status
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Issuer = params['Issuer']
+          @Status = params['Status']
+        end
+      end
+
       # DeactivateTDid请求参数结构体
       class DeactivateTDidRequest < TencentCloud::Common::AbstractModel
         # @param Did: DID标识符
@@ -444,10 +476,8 @@ module TencentCloud
       # GetAppSummary返回参数结构体
       class GetAppSummaryResponse < TencentCloud::Common::AbstractModel
         # @param AppCounter: 用户参与应用的统计指标
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AppCounter: :class:`Tencentcloud::Tdid.v20210519.models.ResourceCounterData`
         # @param UserCounter: 用户创建资源的统计指标
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UserCounter: :class:`Tencentcloud::Tdid.v20210519.models.ResourceCounterData`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -496,7 +526,6 @@ module TencentCloud
       # GetCredentialState返回参数结构体
       class GetCredentialStateResponse < TencentCloud::Common::AbstractModel
         # @param CredentialState: 凭证状态信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CredentialState: :class:`Tencentcloud::Tdid.v20210519.models.CredentialState`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -598,7 +627,6 @@ module TencentCloud
       # GetTDidByObjectId返回参数结构体
       class GetTDidByObjectIdResponse < TencentCloud::Common::AbstractModel
         # @param Did: DID标识
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Did: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -846,19 +874,14 @@ module TencentCloud
       # 资源计数统计数据
       class ResourceCounterData < TencentCloud::Common::AbstractModel
         # @param DidCnt: DID总数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DidCnt: Integer
         # @param VCCnt: VC总数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VCCnt: Integer
         # @param CPTCnt: CPT总数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CPTCnt: Integer
         # @param VerifyCnt:  VC验证总数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VerifyCnt: Integer
         # @param AuthCnt: 权威机构数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AuthCnt: Integer
 
         attr_accessor :DidCnt, :VCCnt, :CPTCnt, :VerifyCnt, :AuthCnt
@@ -942,26 +965,36 @@ module TencentCloud
       class UpdateCredentialStateRequest < TencentCloud::Common::AbstractModel
         # @param DAPId: DID应用Id
         # @type DAPId: Integer
-        # @param OperateCredential: 更新VC状态的临时凭证内容，通过创建凭证接口(CreateCredential)生成并签名，凭证类型为：OperateCredential, 为安全起见凭证过期时间不适合太长，建议设置为1分钟内
+        # @param OperateCredential: 更新VC状态的临时凭证内容，通过创建凭证接口(CreateCredential)生成并签名，凭证类型为：OperateCredential, 为安全起见凭证过期时间不适合太长，如设置为1分钟内
         # @type OperateCredential: String
+        # @param OriginCredential: 待更新凭证状态的原始凭证内容
+        # @type OriginCredential: String
+        # @param CredentialStatus: 凭证状态信息
+        # @type CredentialStatus: :class:`Tencentcloud::Tdid.v20210519.models.CredentialStatusInfo`
 
-        attr_accessor :DAPId, :OperateCredential
+        attr_accessor :DAPId, :OperateCredential, :OriginCredential, :CredentialStatus
 
-        def initialize(dapid=nil, operatecredential=nil)
+        def initialize(dapid=nil, operatecredential=nil, origincredential=nil, credentialstatus=nil)
           @DAPId = dapid
           @OperateCredential = operatecredential
+          @OriginCredential = origincredential
+          @CredentialStatus = credentialstatus
         end
 
         def deserialize(params)
           @DAPId = params['DAPId']
           @OperateCredential = params['OperateCredential']
+          @OriginCredential = params['OriginCredential']
+          unless params['CredentialStatus'].nil?
+            @CredentialStatus = CredentialStatusInfo.new
+            @CredentialStatus.deserialize(params['CredentialStatus'])
+          end
         end
       end
 
       # UpdateCredentialState返回参数结构体
       class UpdateCredentialStateResponse < TencentCloud::Common::AbstractModel
         # @param Result: 更新是否成功
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

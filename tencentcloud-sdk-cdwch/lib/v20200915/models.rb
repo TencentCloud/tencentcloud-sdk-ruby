@@ -424,8 +424,8 @@ module TencentCloud
 
         attr_accessor :Zone, :HaFlag, :UserVPCId, :UserSubnetId, :ProductVersion, :ChargeProperties, :InstanceName, :DataSpec, :Tags, :ClsLogSetId, :CosBucketName, :MountDiskType, :HAZk, :CommonSpec, :TagItems
         extend Gem::Deprecate
-        deprecate :Tags, :none, 2024, 12
-        deprecate :Tags=, :none, 2024, 12
+        deprecate :Tags, :none, 2025, 2
+        deprecate :Tags=, :none, 2025, 2
 
         def initialize(zone=nil, haflag=nil, uservpcid=nil, usersubnetid=nil, productversion=nil, chargeproperties=nil, instancename=nil, dataspec=nil, tags=nil, clslogsetid=nil, cosbucketname=nil, mountdisktype=nil, hazk=nil, commonspec=nil, tagitems=nil)
           @Zone = zone
@@ -1917,10 +1917,24 @@ module TencentCloud
         # @param IsCHProxy: ture的时候表示该节点上部署了chproxy进程
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsCHProxy: Boolean
+        # @param Status: 节点状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: String
+        # @param UUID: 节点uuid
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UUID: String
+        # @param Zone: 区
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Zone: String
+        # @param ZoneDesc: 区描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ZoneDesc: String
+        # @param RealResourceId: 真实资源id
+        # @type RealResourceId: String
 
-        attr_accessor :Ip, :Spec, :Core, :Memory, :DiskType, :DiskSize, :Cluster, :NodeGroups, :Rip, :IsCHProxy
+        attr_accessor :Ip, :Spec, :Core, :Memory, :DiskType, :DiskSize, :Cluster, :NodeGroups, :Rip, :IsCHProxy, :Status, :UUID, :Zone, :ZoneDesc, :RealResourceId
 
-        def initialize(ip=nil, spec=nil, core=nil, memory=nil, disktype=nil, disksize=nil, cluster=nil, nodegroups=nil, rip=nil, ischproxy=nil)
+        def initialize(ip=nil, spec=nil, core=nil, memory=nil, disktype=nil, disksize=nil, cluster=nil, nodegroups=nil, rip=nil, ischproxy=nil, status=nil, uuid=nil, zone=nil, zonedesc=nil, realresourceid=nil)
           @Ip = ip
           @Spec = spec
           @Core = core
@@ -1931,6 +1945,11 @@ module TencentCloud
           @NodeGroups = nodegroups
           @Rip = rip
           @IsCHProxy = ischproxy
+          @Status = status
+          @UUID = uuid
+          @Zone = zone
+          @ZoneDesc = zonedesc
+          @RealResourceId = realresourceid
         end
 
         def deserialize(params)
@@ -1951,6 +1970,11 @@ module TencentCloud
           end
           @Rip = params['Rip']
           @IsCHProxy = params['IsCHProxy']
+          @Status = params['Status']
+          @UUID = params['UUID']
+          @Zone = params['Zone']
+          @ZoneDesc = params['ZoneDesc']
+          @RealResourceId = params['RealResourceId']
         end
       end
 

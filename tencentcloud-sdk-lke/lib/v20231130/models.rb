@@ -431,10 +431,13 @@ module TencentCloud
         # @param TopP: 模型TopP
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TopP: String
+        # @param ResourceStatus: 模型资源状态 1：资源可用；2：资源已用尽
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceStatus: Integer
 
-        attr_accessor :Name, :Desc, :ContextLimit, :AliasName, :TokenBalance, :IsUseContext, :HistoryLimit, :UsageType, :Temperature, :TopP
+        attr_accessor :Name, :Desc, :ContextLimit, :AliasName, :TokenBalance, :IsUseContext, :HistoryLimit, :UsageType, :Temperature, :TopP, :ResourceStatus
 
-        def initialize(name=nil, desc=nil, contextlimit=nil, aliasname=nil, tokenbalance=nil, isusecontext=nil, historylimit=nil, usagetype=nil, temperature=nil, topp=nil)
+        def initialize(name=nil, desc=nil, contextlimit=nil, aliasname=nil, tokenbalance=nil, isusecontext=nil, historylimit=nil, usagetype=nil, temperature=nil, topp=nil, resourcestatus=nil)
           @Name = name
           @Desc = desc
           @ContextLimit = contextlimit
@@ -445,6 +448,7 @@ module TencentCloud
           @UsageType = usagetype
           @Temperature = temperature
           @TopP = topp
+          @ResourceStatus = resourcestatus
         end
 
         def deserialize(params)
@@ -458,6 +462,7 @@ module TencentCloud
           @UsageType = params['UsageType']
           @Temperature = params['Temperature']
           @TopP = params['TopP']
+          @ResourceStatus = params['ResourceStatus']
         end
       end
 
@@ -1299,7 +1304,7 @@ module TencentCloud
       class CreateQACateRequest < TencentCloud::Common::AbstractModel
         # @param BotBizId: 应用ID
         # @type BotBizId: String
-        # @param ParentBizId: 父级业务ID
+        # @param ParentBizId: 父级业务ID，创建顶级分类时传字符串"0"
         # @type ParentBizId: String
         # @param Name: 分类名称
         # @type Name: String
@@ -2302,19 +2307,31 @@ module TencentCloud
       class DescribeCorpResponse < TencentCloud::Common::AbstractModel
         # @param CorpBizId: 企业ID
         # @type CorpBizId: String
-        # @param RobotQuota: 机器人配额
+        # @param RobotQuota: 应用配额
         # @type RobotQuota: Integer
         # @param FullName: 企业全称
         # @type FullName: String
+        # @param IsTrial: 是否试用
+        # @type IsTrial: Boolean
+        # @param IsTrialExpired: 是否试用过期
+        # @type IsTrialExpired: Boolean
+        # @param AvailableAppQuota: 可用应用数量
+        # @type AvailableAppQuota: Integer
+        # @param IsSupportCustomModel: 是否支持自定义模型配置
+        # @type IsSupportCustomModel: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :CorpBizId, :RobotQuota, :FullName, :RequestId
+        attr_accessor :CorpBizId, :RobotQuota, :FullName, :IsTrial, :IsTrialExpired, :AvailableAppQuota, :IsSupportCustomModel, :RequestId
 
-        def initialize(corpbizid=nil, robotquota=nil, fullname=nil, requestid=nil)
+        def initialize(corpbizid=nil, robotquota=nil, fullname=nil, istrial=nil, istrialexpired=nil, availableappquota=nil, issupportcustommodel=nil, requestid=nil)
           @CorpBizId = corpbizid
           @RobotQuota = robotquota
           @FullName = fullname
+          @IsTrial = istrial
+          @IsTrialExpired = istrialexpired
+          @AvailableAppQuota = availableappquota
+          @IsSupportCustomModel = issupportcustommodel
           @RequestId = requestid
         end
 
@@ -2322,6 +2339,10 @@ module TencentCloud
           @CorpBizId = params['CorpBizId']
           @RobotQuota = params['RobotQuota']
           @FullName = params['FullName']
+          @IsTrial = params['IsTrial']
+          @IsTrialExpired = params['IsTrialExpired']
+          @AvailableAppQuota = params['AvailableAppQuota']
+          @IsSupportCustomModel = params['IsSupportCustomModel']
           @RequestId = params['RequestId']
         end
       end
@@ -5563,10 +5584,16 @@ module TencentCloud
         # @param IsAllowRetry: 是否允许重试，0：否，1：是
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsAllowRetry: Boolean
+        # @param Processing: 0:文档比对处理 1:文档生成问答
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Processing: Array
+        # @param CreateTime: 文档创建落库时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
 
-        attr_accessor :DocBizId, :FileName, :NewName, :FileType, :CosUrl, :UpdateTime, :Status, :StatusDesc, :Reason, :IsRefer, :QaNum, :IsDeleted, :Source, :SourceDesc, :IsAllowRestart, :IsDeletedQa, :IsCreatingQa, :IsAllowDelete, :IsAllowRefer, :IsCreatedQa, :DocCharSize, :AttrRange, :AttrLabels, :IsAllowEdit, :ReferUrlType, :WebUrl, :ExpireStart, :ExpireEnd, :IsAllowRetry
+        attr_accessor :DocBizId, :FileName, :NewName, :FileType, :CosUrl, :UpdateTime, :Status, :StatusDesc, :Reason, :IsRefer, :QaNum, :IsDeleted, :Source, :SourceDesc, :IsAllowRestart, :IsDeletedQa, :IsCreatingQa, :IsAllowDelete, :IsAllowRefer, :IsCreatedQa, :DocCharSize, :AttrRange, :AttrLabels, :IsAllowEdit, :ReferUrlType, :WebUrl, :ExpireStart, :ExpireEnd, :IsAllowRetry, :Processing, :CreateTime
 
-        def initialize(docbizid=nil, filename=nil, newname=nil, filetype=nil, cosurl=nil, updatetime=nil, status=nil, statusdesc=nil, reason=nil, isrefer=nil, qanum=nil, isdeleted=nil, source=nil, sourcedesc=nil, isallowrestart=nil, isdeletedqa=nil, iscreatingqa=nil, isallowdelete=nil, isallowrefer=nil, iscreatedqa=nil, doccharsize=nil, attrrange=nil, attrlabels=nil, isallowedit=nil, referurltype=nil, weburl=nil, expirestart=nil, expireend=nil, isallowretry=nil)
+        def initialize(docbizid=nil, filename=nil, newname=nil, filetype=nil, cosurl=nil, updatetime=nil, status=nil, statusdesc=nil, reason=nil, isrefer=nil, qanum=nil, isdeleted=nil, source=nil, sourcedesc=nil, isallowrestart=nil, isdeletedqa=nil, iscreatingqa=nil, isallowdelete=nil, isallowrefer=nil, iscreatedqa=nil, doccharsize=nil, attrrange=nil, attrlabels=nil, isallowedit=nil, referurltype=nil, weburl=nil, expirestart=nil, expireend=nil, isallowretry=nil, processing=nil, createtime=nil)
           @DocBizId = docbizid
           @FileName = filename
           @NewName = newname
@@ -5596,6 +5623,8 @@ module TencentCloud
           @ExpireStart = expirestart
           @ExpireEnd = expireend
           @IsAllowRetry = isallowretry
+          @Processing = processing
+          @CreateTime = createtime
         end
 
         def deserialize(params)
@@ -5635,6 +5664,8 @@ module TencentCloud
           @ExpireStart = params['ExpireStart']
           @ExpireEnd = params['ExpireEnd']
           @IsAllowRetry = params['IsAllowRetry']
+          @Processing = params['Processing']
+          @CreateTime = params['CreateTime']
         end
       end
 
