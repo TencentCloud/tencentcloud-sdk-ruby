@@ -3833,14 +3833,20 @@ module TencentCloud
         # @type TextDetections: Array
         # @param Angel: 图片旋转角度（角度制），文本的水平方向为0°；顺时针为正，逆时针为负。点击查看<a href="https://cloud.tencent.com/document/product/866/45139">如何纠正倾斜文本</a>
         # @type Angel: Float
+        # @param Angle: 图片旋转角度（角度制），文本的水平方向为0°；顺时针为正，逆时针为负。点击查看<a href="https://cloud.tencent.com/document/product/866/45139">如何纠正倾斜文本</a>
+        # @type Angle: Float
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TextDetections, :Angel, :RequestId
+        attr_accessor :TextDetections, :Angel, :Angle, :RequestId
+        extend Gem::Deprecate
+        deprecate :Angel, :none, 2025, 2
+        deprecate :Angel=, :none, 2025, 2
 
-        def initialize(textdetections=nil, angel=nil, requestid=nil)
+        def initialize(textdetections=nil, angel=nil, angle=nil, requestid=nil)
           @TextDetections = textdetections
           @Angel = angel
+          @Angle = angle
           @RequestId = requestid
         end
 
@@ -3854,6 +3860,7 @@ module TencentCloud
             end
           end
           @Angel = params['Angel']
+          @Angle = params['Angle']
           @RequestId = params['RequestId']
         end
       end
@@ -8758,6 +8765,8 @@ module TencentCloud
         # 15：非税发票
         # 16：全电发票
         # 17：医疗发票
+        # 18：完税凭证
+        # 19：海关缴款书
         # -1：其他发票
         # @type Types: Array
         # @param EnableOther: 是否开启其他票识别，默认值为true，开启后可支持其他发票的智能识别。

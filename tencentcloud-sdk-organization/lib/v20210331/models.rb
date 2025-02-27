@@ -5970,10 +5970,12 @@ module TencentCloud
         # @type PermissionStatus: String
         # @param Tags: 成员标签列表
         # @type Tags: Array
+        # @param NickName: 腾讯云昵称
+        # @type NickName: String
 
-        attr_accessor :MemberUin, :Name, :MemberType, :OrgPolicyType, :OrgPolicyName, :OrgPermission, :NodeId, :NodeName, :Remark, :CreateTime, :UpdateTime, :IsAllowQuit, :PayUin, :PayName, :OrgIdentity, :BindStatus, :PermissionStatus, :Tags
+        attr_accessor :MemberUin, :Name, :MemberType, :OrgPolicyType, :OrgPolicyName, :OrgPermission, :NodeId, :NodeName, :Remark, :CreateTime, :UpdateTime, :IsAllowQuit, :PayUin, :PayName, :OrgIdentity, :BindStatus, :PermissionStatus, :Tags, :NickName
 
-        def initialize(memberuin=nil, name=nil, membertype=nil, orgpolicytype=nil, orgpolicyname=nil, orgpermission=nil, nodeid=nil, nodename=nil, remark=nil, createtime=nil, updatetime=nil, isallowquit=nil, payuin=nil, payname=nil, orgidentity=nil, bindstatus=nil, permissionstatus=nil, tags=nil)
+        def initialize(memberuin=nil, name=nil, membertype=nil, orgpolicytype=nil, orgpolicyname=nil, orgpermission=nil, nodeid=nil, nodename=nil, remark=nil, createtime=nil, updatetime=nil, isallowquit=nil, payuin=nil, payname=nil, orgidentity=nil, bindstatus=nil, permissionstatus=nil, tags=nil, nickname=nil)
           @MemberUin = memberuin
           @Name = name
           @MemberType = membertype
@@ -5992,6 +5994,7 @@ module TencentCloud
           @BindStatus = bindstatus
           @PermissionStatus = permissionstatus
           @Tags = tags
+          @NickName = nickname
         end
 
         def deserialize(params)
@@ -6034,6 +6037,7 @@ module TencentCloud
               @Tags << tag_tmp
             end
           end
+          @NickName = params['NickName']
         end
       end
 
@@ -6465,8 +6469,8 @@ module TencentCloud
 
         attr_accessor :ProductResourceId, :ResourceGrantLast
         extend Gem::Deprecate
-        deprecate :ResourceGrantLast, :none, 2024, 12
-        deprecate :ResourceGrantLast=, :none, 2024, 12
+        deprecate :ResourceGrantLast, :none, 2025, 2
+        deprecate :ResourceGrantLast=, :none, 2025, 2
 
         def initialize(productresourceid=nil, resourcegrantlast=nil)
           @ProductResourceId = productresourceid
@@ -7301,8 +7305,8 @@ module TencentCloud
 
         attr_accessor :ResourceId, :ProductResourceId
         extend Gem::Deprecate
-        deprecate :ResourceId, :none, 2024, 12
-        deprecate :ResourceId=, :none, 2024, 12
+        deprecate :ResourceId, :none, 2025, 2
+        deprecate :ResourceId=, :none, 2025, 2
 
         def initialize(resourceid=nil, productresourceid=nil)
           @ResourceId = resourceid
@@ -7740,10 +7744,12 @@ module TencentCloud
         # @type IsAllowQuit: String
         # @param PayUin: 代付者Uin。成员财务权限有代付费时需要，取值为成员对应主体的主体管理员Uin
         # @type PayUin: String
+        # @param IsModifyNickName: 是否同步组织成员名称到成员账号昵称。取值： 1-同步 0-不同步
+        # @type IsModifyNickName: Integer
 
-        attr_accessor :MemberUin, :Name, :Remark, :PolicyType, :PermissionIds, :IsAllowQuit, :PayUin
+        attr_accessor :MemberUin, :Name, :Remark, :PolicyType, :PermissionIds, :IsAllowQuit, :PayUin, :IsModifyNickName
 
-        def initialize(memberuin=nil, name=nil, remark=nil, policytype=nil, permissionids=nil, isallowquit=nil, payuin=nil)
+        def initialize(memberuin=nil, name=nil, remark=nil, policytype=nil, permissionids=nil, isallowquit=nil, payuin=nil, ismodifynickname=nil)
           @MemberUin = memberuin
           @Name = name
           @Remark = remark
@@ -7751,6 +7757,7 @@ module TencentCloud
           @PermissionIds = permissionids
           @IsAllowQuit = isallowquit
           @PayUin = payuin
+          @IsModifyNickName = ismodifynickname
         end
 
         def deserialize(params)
@@ -7761,6 +7768,7 @@ module TencentCloud
           @PermissionIds = params['PermissionIds']
           @IsAllowQuit = params['IsAllowQuit']
           @PayUin = params['PayUin']
+          @IsModifyNickName = params['IsModifyNickName']
         end
       end
 

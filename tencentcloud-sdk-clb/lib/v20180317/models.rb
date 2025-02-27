@@ -730,6 +730,8 @@ module TencentCloud
       class CertificateInput < TencentCloud::Common::AbstractModel
         # @param SSLMode: 认证类型，UNIDIRECTIONAL：单向认证，MUTUAL：双向认证
         # @type SSLMode: String
+        # @param SSLVerifyClient: 双向认证时，是否开启客户端认证，ON:开启，OPTIONAL:自适应，默认ON。
+        # @type SSLVerifyClient: String
         # @param CertId: 服务端证书的 ID，如果不填写此项则必须上传证书，包括 CertContent，CertKey，CertName。
         # @type CertId: String
         # @param CertCaId: 客户端证书的 ID，当监听器采用双向认证，即 SSLMode=MUTUAL 时，如果不填写此项则必须上传客户端证书，包括 CertCaContent，CertCaName。
@@ -745,10 +747,11 @@ module TencentCloud
         # @param CertCaContent: 上传客户端证书的内容，如果 SSLMode=mutual，如果没有 CertCaId，则此项必传。
         # @type CertCaContent: String
 
-        attr_accessor :SSLMode, :CertId, :CertCaId, :CertName, :CertKey, :CertContent, :CertCaName, :CertCaContent
+        attr_accessor :SSLMode, :SSLVerifyClient, :CertId, :CertCaId, :CertName, :CertKey, :CertContent, :CertCaName, :CertCaContent
 
-        def initialize(sslmode=nil, certid=nil, certcaid=nil, certname=nil, certkey=nil, certcontent=nil, certcaname=nil, certcacontent=nil)
+        def initialize(sslmode=nil, sslverifyclient=nil, certid=nil, certcaid=nil, certname=nil, certkey=nil, certcontent=nil, certcaname=nil, certcacontent=nil)
           @SSLMode = sslmode
+          @SSLVerifyClient = sslverifyclient
           @CertId = certid
           @CertCaId = certcaid
           @CertName = certname
@@ -760,6 +763,7 @@ module TencentCloud
 
         def deserialize(params)
           @SSLMode = params['SSLMode']
+          @SSLVerifyClient = params['SSLVerifyClient']
           @CertId = params['CertId']
           @CertCaId = params['CertCaId']
           @CertName = params['CertName']
@@ -774,6 +778,8 @@ module TencentCloud
       class CertificateOutput < TencentCloud::Common::AbstractModel
         # @param SSLMode: 认证类型，UNIDIRECTIONAL：单向认证，MUTUAL：双向认证
         # @type SSLMode: String
+        # @param SSLVerifyClient: 是否开启客户端证书验证，只在双向认证时生效。
+        # @type SSLVerifyClient: String
         # @param CertId: 服务端证书的ID。
         # @type CertId: String
         # @param CertCaId: 客户端证书的 ID。
@@ -783,10 +789,11 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExtCertIds: Array
 
-        attr_accessor :SSLMode, :CertId, :CertCaId, :ExtCertIds
+        attr_accessor :SSLMode, :SSLVerifyClient, :CertId, :CertCaId, :ExtCertIds
 
-        def initialize(sslmode=nil, certid=nil, certcaid=nil, extcertids=nil)
+        def initialize(sslmode=nil, sslverifyclient=nil, certid=nil, certcaid=nil, extcertids=nil)
           @SSLMode = sslmode
+          @SSLVerifyClient = sslverifyclient
           @CertId = certid
           @CertCaId = certcaid
           @ExtCertIds = extcertids
@@ -794,6 +801,7 @@ module TencentCloud
 
         def deserialize(params)
           @SSLMode = params['SSLMode']
+          @SSLVerifyClient = params['SSLVerifyClient']
           @CertId = params['CertId']
           @CertCaId = params['CertCaId']
           @ExtCertIds = params['ExtCertIds']
@@ -6968,12 +6976,15 @@ module TencentCloud
         # @type SSLMode: String
         # @param CertList: 监听器或规则证书列表，单双向认证，多本服务端证书算法类型不能重复;若SSLMode为双向认证，证书列表必须包含一本ca证书。
         # @type CertList: Array
+        # @param SSLVerifyClient: 双向认证时，是否开启客户端认证，ON:开启，OPTIONAL:自适应，默认ON
+        # @type SSLVerifyClient: String
 
-        attr_accessor :SSLMode, :CertList
+        attr_accessor :SSLMode, :CertList, :SSLVerifyClient
 
-        def initialize(sslmode=nil, certlist=nil)
+        def initialize(sslmode=nil, certlist=nil, sslverifyclient=nil)
           @SSLMode = sslmode
           @CertList = certlist
+          @SSLVerifyClient = sslverifyclient
         end
 
         def deserialize(params)
@@ -6986,6 +6997,7 @@ module TencentCloud
               @CertList << certinfo_tmp
             end
           end
+          @SSLVerifyClient = params['SSLVerifyClient']
         end
       end
 

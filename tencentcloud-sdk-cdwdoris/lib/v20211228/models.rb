@@ -432,6 +432,8 @@ module TencentCloud
 
       # 集群的配置文件的修改历史
       class ClusterConfigsHistory < TencentCloud::Common::AbstractModel
+        # @param ComputeGroupId: 计算组id
+        # @type ComputeGroupId: String
         # @param FileName: 配置文件名称
         # @type FileName: String
         # @param NewConfValue: 修改后的配置文件内容，base64编码
@@ -445,9 +447,10 @@ module TencentCloud
         # @param UserUin: 修改子账号id
         # @type UserUin: String
 
-        attr_accessor :FileName, :NewConfValue, :OldConfValue, :Remark, :ModifyTime, :UserUin
+        attr_accessor :ComputeGroupId, :FileName, :NewConfValue, :OldConfValue, :Remark, :ModifyTime, :UserUin
 
-        def initialize(filename=nil, newconfvalue=nil, oldconfvalue=nil, remark=nil, modifytime=nil, useruin=nil)
+        def initialize(computegroupid=nil, filename=nil, newconfvalue=nil, oldconfvalue=nil, remark=nil, modifytime=nil, useruin=nil)
+          @ComputeGroupId = computegroupid
           @FileName = filename
           @NewConfValue = newconfvalue
           @OldConfValue = oldconfvalue
@@ -457,6 +460,7 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @ComputeGroupId = params['ComputeGroupId']
           @FileName = params['FileName']
           @NewConfValue = params['NewConfValue']
           @OldConfValue = params['OldConfValue']
@@ -1579,16 +1583,19 @@ module TencentCloud
         # @param ConfigFileNames: 需要查询的配置文件名称数组，如果为空则查询全部历史记录。目前支持的配置文件名称有：
         # apache_hdfs_broker.conf、be.conf、fe.conf、core-site.xml、hdfs-site.xml、odbcinst.ini
         # @type ConfigFileNames: Array
+        # @param ComputeGroupIds: 需要查询的计算组列表
+        # @type ComputeGroupIds: Array
 
-        attr_accessor :InstanceId, :Offset, :Limit, :StartTime, :EndTime, :ConfigFileNames
+        attr_accessor :InstanceId, :Offset, :Limit, :StartTime, :EndTime, :ConfigFileNames, :ComputeGroupIds
 
-        def initialize(instanceid=nil, offset=nil, limit=nil, starttime=nil, endtime=nil, configfilenames=nil)
+        def initialize(instanceid=nil, offset=nil, limit=nil, starttime=nil, endtime=nil, configfilenames=nil, computegroupids=nil)
           @InstanceId = instanceid
           @Offset = offset
           @Limit = limit
           @StartTime = starttime
           @EndTime = endtime
           @ConfigFileNames = configfilenames
+          @ComputeGroupIds = computegroupids
         end
 
         def deserialize(params)
@@ -1598,6 +1605,7 @@ module TencentCloud
           @StartTime = params['StartTime']
           @EndTime = params['EndTime']
           @ConfigFileNames = params['ConfigFileNames']
+          @ComputeGroupIds = params['ComputeGroupIds']
         end
       end
 

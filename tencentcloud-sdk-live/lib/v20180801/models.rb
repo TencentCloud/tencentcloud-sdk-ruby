@@ -806,11 +806,11 @@ module TencentCloud
         # 2）yyyy-MM-dd HH:mm:ss：使用此格式时，默认代表北京时间。
         # 接口返回的时间格式和查询请求传入的时间格式一致。
         # @type EventTime: String
-        # @param EventType: 事件类型
+        # @param EventType: 事件类型。
         # @type EventType: Integer
-        # @param Request: 回调请求
+        # @param Request: 回调请求。
         # @type Request: String
-        # @param Response: 回调响应
+        # @param Response: 回调响应。
         # @type Response: String
         # @param ResponseTime: 客户接口响应时间。
         # 接口返回支持两种时间格式：
@@ -818,9 +818,9 @@ module TencentCloud
         # 2）yyyy-MM-dd HH:mm:ss：使用此格式时，默认代表北京时间。
         # 接口返回的时间格式和查询请求传入的时间格式一致。
         # @type ResponseTime: String
-        # @param ResultCode: 回调结果
+        # @param ResultCode: 回调结果。
         # @type ResultCode: Integer
-        # @param StreamId: 流名称
+        # @param StreamId: 流名称。
         # @type StreamId: String
 
         attr_accessor :EventTime, :EventType, :Request, :Response, :ResponseTime, :ResultCode, :StreamId
@@ -884,34 +884,26 @@ module TencentCloud
         # @param CasterId: 导播台ID
         # @type CasterId: Integer
         # @param CasterName: 导播台名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CasterName: String
         # @param Description: 导播台的描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
         # @param StartBillingTime: 开始计费时间，值为unix时间戳
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StartBillingTime: Integer
         # @param StopBillingTime: 结束计费时间，值为unix时间戳
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StopBillingTime: Integer
         # @param CreateTime: 创建时间，值为unix时间戳
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: Integer
         # @param Status: 导播台状态
         # 0：停止状态，无预监，无主监
         # 1：无预监，有主监
         # 2：有预监，无主监
         # 3：有预监，有主监
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
         # @param ExpireTime: 导播台的过期时间，值为-1或unix时间戳。
         # 当值为-1时，代表永不过期。
         # 当值为特定unix时间戳时，代表过期时间为对应的时间，导播台在该时间自动停止。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExpireTime: Integer
         # @param FeeType: 计费字段，该字段暂无作用
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FeeType: Integer
 
         attr_accessor :CasterId, :CasterName, :Description, :StartBillingTime, :StopBillingTime, :CreateTime, :Status, :ExpireTime, :FeeType
@@ -946,37 +938,30 @@ module TencentCloud
         # @param LayoutIndex: 布局Index。
         # 如果使用自定义布局，为自定义布局下标。
         # 如果使用单输入布局，如使用输入1，则LayoutIndexType=1， 且LayoutIndex=1，以此类推。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LayoutIndex: Integer
         # @param MarkPicIndexList: 使用的水印Index列表。
         # 注：当作为入参使用时，列表中的水印Index需要已经存在。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MarkPicIndexList: Array
         # @param MarkWordIndexList: 使用的文字水印Index列表。
         # 注：作为入参使用时，列表中的Index需要已经存在。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MarkWordIndexList: Array
         # @param TransitionType: 使用的转场类型。
         # 注：支持的转场类型可通过DescribeCasterTransitionTypes接口获取。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TransitionType: String
         # @param AudioIndexList: 使用的音频输入Index列表。
         # 注：当该字段非空时，表示使用布局中对应的输入源的视频，AudioIndexList中对应的输入源的音频。且这些输入源需已存在。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AudioIndexList: Array
         # @param InputStartType: 作为入参时，表示使用点播输入源，单画面输入时，点播文件是否从头开始播放。
         # 默认为0。
         # 有效值，0,1。
         # 0代表不从头播放
         # 1代表从头播放
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InputStartType: Integer
         # @param LayoutIndexType: LayoutIndex类型，
         # 默认值:0
         # 可选值[0,1]
         # 0:默认类型，代表普通布局
         # 1:单输入类型，代表单输入布局
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LayoutIndexType: Integer
 
         attr_accessor :LayoutIndex, :MarkPicIndexList, :MarkWordIndexList, :TransitionType, :AudioIndexList, :InputStartType, :LayoutIndexType
@@ -1110,38 +1095,30 @@ module TencentCloud
         # @param InputUrl: 输入源的源地址。
         # 最大允许长度512。
         # 当InputType为0（推流地址），2（直播拉流地址），3（图片地址）,4（webrtc推流地址）这几种类型时，URL需填入该字段。
-
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InputUrl: String
         # @param Description: 输入源描述。
         # 最大允许长度256字符。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
         # @param InputUrls: 点播地址列表。仅当input type为1（点播地址）时，将一个或多个点播地址，填入该字段。
         # 单个地址最大允许长度512字符。
         # 最多允许同时填入5个地址。
         # 注：此时需保持InputUrl字段为空。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InputUrls: Array
         # @param LoopEnable: 是否启用点播无限循环播放。
         # 注：当前该字段未生效，默认为True。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LoopEnable: Boolean
         # @param LoopNumber: 点播循环次数。
         # 允许值-1或正整数。
         # 当值为-1时，表示无限循环。
         # 当值为其他正整数时，表示循环对应次数。
         # 注：该字段暂未生效。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LoopNumber: Integer
         # @param PullPushEnable: 是否启用拉取到导播台。
         # 注：该字段默认强制为true。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PullPushEnable: Boolean
         # @param Volume: 输入源音量百分比。
         # 默认为100。表示音量为原始大小。
         # 允许值[0,200]。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Volume: Integer
 
         attr_accessor :InputIndex, :InputType, :InputUrl, :Description, :InputUrls, :LoopEnable, :LoopNumber, :PullPushEnable, :Volume
@@ -1187,11 +1164,9 @@ module TencentCloud
         # @param LayoutWidth: 布局输出的宽度，单位为像素。
         # 默认为1280像素。
         # 注：该值仅在画中画布局，且未设置PgmWidth时生效。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LayoutWidth: Integer
         # @param LayoutHeight: 布局输出的高度，单位为像素。
         # 注：该参数仅在画中画布局，且未设置PgmHeight时生效。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LayoutHeight: Integer
 
         attr_accessor :LayoutIndex, :LayoutTemplateId, :InputIndexList, :LayoutParams, :LayoutWidth, :LayoutHeight
@@ -1244,7 +1219,6 @@ module TencentCloud
         # 当该值为小于1大于0的小数时，单位为百分比，表示该层在最终画面Y坐标上所占的比例值。
         # @type LayerLocationY: Float
         # @param UsePortraitSegment: 是否启用抠图。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UsePortraitSegment: Boolean
 
         attr_accessor :LayerId, :LayerWidth, :LayerHeight, :LayerLocationX, :LayerLocationY, :UsePortraitSegment
@@ -1273,7 +1247,6 @@ module TencentCloud
         # @param MarkPicIndex: 水印图片Index。
         # @type MarkPicIndex: Integer
         # @param MarkPicId: 注：该字段已废弃。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MarkPicId: Integer
         # @param MarkPicWidth: 水印图片在输出时的宽度。
         # 当该值为大于1的整数值时，单位为像素，允许范围[1,1920]。
@@ -1293,15 +1266,12 @@ module TencentCloud
         # @type MarkPicLocationY: Float
         # @param MarkPicUrl: 水印地址。
         # 最大长度256字符，且url需以jpg、jpeg、png、bmp、gif后缀结尾。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MarkPicUrl: String
         # @param Description: 水印描述。
         # 最大允许长度为256。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
         # @param IsEqualProportion: 是否启用了等比例缩放。
         # 注：该字段仅做状态保存，无实际效果。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsEqualProportion: Boolean
 
         attr_accessor :MarkPicIndex, :MarkPicId, :MarkPicWidth, :MarkPicHeight, :MarkPicLocationX, :MarkPicLocationY, :MarkPicUrl, :Description, :IsEqualProportion
@@ -1336,54 +1306,41 @@ module TencentCloud
         # @param MarkWordIndex: 文字水印Index。
         # @type MarkWordIndex: Integer
         # @param MarkWordText: 文字水印内容。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MarkWordText: String
         # @param MarkWordFontSize: 文字水印的字号。
         # 范围[16, 60]
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MarkWordFontSize: Integer
         # @param MarkWordFontColor: 文字水印的颜色，值为HEX颜色代码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MarkWordFontColor: String
         # @param MarkWordFontType: 文字水印的字体类型。
         # 范围[1,2]。
         # 1. 宋体
         # 2. 黑体
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MarkWordFontType: Integer
         # @param MarkWordLocationX: 文字水印的x坐标位置，单位百分比。
         # 范围[0.0, 1.0]
-
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MarkWordLocationX: Float
         # @param MarkWordLocationY: 文字水印的Y坐标位置，单位百分比。
         # 范围[0.0, 1.0]
-
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MarkWordLocationY: Float
         # @param MarkWordRollEnable: 是否开启文字跑马灯功能。
         # 默认为false。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MarkWordRollEnable: Boolean
         # @param MarkWordRollOnceTime: 跑马灯文字显示一遍的时间，单位为秒。
         # 默认为5s。
         # 范围[5, 600]。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MarkWordRollOnceTime: Integer
         # @param MarkWordRollDirection: 跑马灯文字的方向。
         # 默认值为0。
         # 范围[0,1]。
         # 0 从左到右
         # 1 从右到左
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MarkWordRollDirection: Integer
         # @param MarkWordRollStartLocationX: 跑马灯文字显示的起始x坐标，单位百分比。
         # 范围[0.0, 1.0]
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MarkWordRollStartLocationX: Float
         # @param MarkWordRollEndLocationX: 跑马灯文字显示的截止x坐标，单位百分比。
         # 范围[0.0, 1.0]
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MarkWordRollEndLocationX: Float
 
         attr_accessor :MarkWordIndex, :MarkWordText, :MarkWordFontSize, :MarkWordFontColor, :MarkWordFontType, :MarkWordLocationX, :MarkWordLocationY, :MarkWordRollEnable, :MarkWordRollOnceTime, :MarkWordRollDirection, :MarkWordRollStartLocationX, :MarkWordRollEndLocationX
@@ -1430,12 +1387,10 @@ module TencentCloud
         # 最大允许长度512字符。
         # @type OutputUrl: String
         # @param Description: 描述信息。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
         # @param OutputStreamId: 推流到腾讯云直播源站时，使用的流ID。
         # 仅当OutputType为1时生效。
         # 最大允许128字符。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OutputStreamId: String
         # @param OutputType: 推流类型。
         # 范围[1,2]
@@ -1445,17 +1400,14 @@ module TencentCloud
         # @param OutputDomainName: 推到腾讯云直播源站时，使用的域名。
         # 最大允许128字符，且域名需属于当前账号绑定的云直播推流域名。
         # 仅在OutputType为1时生效。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OutputDomainName: String
         # @param OutputAppName: 推到腾讯云直播源站时，使用的AppName。
         # 最大允许64字符。
         # 仅在OutputType为1时生效。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OutputAppName: String
         # @param OutputParam: 推到腾讯云直播源站时需要添加的推流参数。
         # 最大允许长度256字符。
         # 仅在OutputType为1时生效。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OutputParam: String
 
         attr_accessor :OutputIndex, :OutputUrl, :Description, :OutputStreamId, :OutputType, :OutputDomainName, :OutputAppName, :OutputParam
@@ -13621,7 +13573,6 @@ module TencentCloud
         # @param Flux: 流量，单位MB。
         # @type Flux: Float
         # @param ServerIp: 推流服务端 IP。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ServerIp: String
 
         attr_accessor :Time, :PushDomain, :AppName, :ClientIp, :BeginPushTime, :Resolution, :VCodec, :ACodec, :Sequence, :VideoFps, :VideoRate, :AudioFps, :AudioRate, :LocalTs, :VideoTs, :AudioTs, :MetaVideoRate, :MetaAudioRate, :MateFps, :StreamParam, :Bandwidth, :Flux, :ServerIp
@@ -14651,7 +14602,6 @@ module TencentCloud
         # @param PushToDelay: 流是否推送到延播。
         # 0 - 无延播，
         # 1 - 有延播。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PushToDelay: Integer
 
         attr_accessor :StreamName, :PublishTimeList, :AppName, :DomainName, :PushToDelay
@@ -15285,13 +15235,10 @@ module TencentCloud
       # 转场信息
       class TransitionTypeInfo < TencentCloud::Common::AbstractModel
         # @param TransitionType: 转场名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TransitionType: String
         # @param SourceUrl: 素材url
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SourceUrl: String
         # @param Index: 转场的下标，可用来排序，从1开始递增
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Index: Integer
 
         attr_accessor :TransitionType, :SourceUrl, :Index

@@ -7170,7 +7170,6 @@ module TencentCloud
       # 保存or修改设备分组回包
       class SaveDeviceGroupRes < TencentCloud::Common::AbstractModel
         # @param Id: 保存or修改设备分组回包信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Id: Integer
 
         attr_accessor :Id
@@ -7210,13 +7209,10 @@ module TencentCloud
       # 场景信息
       class SceneInfo < TencentCloud::Common::AbstractModel
         # @param SceneId: 场景id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SceneId: String
         # @param SceneName: 场景名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SceneName: String
         # @param Version: 场景版本
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Version: String
 
         attr_accessor :SceneId, :SceneName, :Version
@@ -7285,16 +7281,12 @@ module TencentCloud
       # 项目空间楼栋数量与建筑面积出参
       class SpaceDataStats < TencentCloud::Common::AbstractModel
         # @param WorkspaceId: 工作空间ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WorkspaceId: String
         # @param WorkspaceName: 工作空间名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WorkspaceName: String
         # @param BuildingCount: 楼栋数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BuildingCount: Integer
         # @param BuildingArea: 建筑面积
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BuildingArea: Float
 
         attr_accessor :WorkspaceId, :WorkspaceName, :BuildingCount, :BuildingArea
@@ -7317,10 +7309,8 @@ module TencentCloud
       # 查询租户楼栋数量和楼栋建筑面积相应体
       class SpaceDataTotalStatsRes < TencentCloud::Common::AbstractModel
         # @param BuildingCount: 总楼栋数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BuildingCount: Integer
         # @param BuildingArea: 总建筑面积
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BuildingArea: Float
 
         attr_accessor :BuildingCount, :BuildingArea

@@ -1647,7 +1647,7 @@ module TencentCloud
         # @type UserId: String
         # @param PostTime: 操作时间戳，单位秒（对应输入参数）。
         # @type PostTime: Integer
-        # @param AssociateAccount: 业务参数。
+        # @param AssociateAccount: 业务预留参数（暂无实际业务含义， 无需关注返回值）
         # @type AssociateAccount: String
         # @param UserIp: 操作来源的外网IP（对应输入参数）。
         # @type UserIp: String

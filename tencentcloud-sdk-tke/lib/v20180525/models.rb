@@ -541,7 +541,6 @@ module TencentCloud
       # CancelClusterRelease返回参数结构体
       class CancelClusterReleaseResponse < TencentCloud::Common::AbstractModel
         # @param Release: 应用信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Release: :class:`Tencentcloud::Tke.v20180525.models.PendingRelease`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -707,10 +706,8 @@ module TencentCloud
         # @param LatestVersion: 集群master对应的大版本目前最新小版本
         # @type LatestVersion: String
         # @param UpgradeAbleInstances: 可升级节点列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpgradeAbleInstances: Array
         # @param Total: 总数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Total: Integer
         # @param UnavailableVersionReason: 不可升级原因
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -2291,7 +2288,6 @@ module TencentCloud
       # CreateClusterRelease返回参数结构体
       class CreateClusterReleaseResponse < TencentCloud::Common::AbstractModel
         # @param Release: 应用详情
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Release: :class:`Tencentcloud::Tke.v20180525.models.PendingRelease`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4638,7 +4634,6 @@ module TencentCloud
       # DeleteLogConfigs返回参数结构体
       class DeleteLogConfigsResponse < TencentCloud::Common::AbstractModel
         # @param Message: 删除采集规则遇到错误时返回错误原因
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Message: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5202,7 +5197,6 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Versions: Array
         # @param Clusters: 集群信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Clusters: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5338,13 +5332,11 @@ module TencentCloud
       # DescribeBatchModifyTagsStatus返回参数结构体
       class DescribeBatchModifyTagsStatusResponse < TencentCloud::Common::AbstractModel
         # @param FailedResources: 失败资源列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FailedResources: Array
         # @param Status: 任务状态：
         # - running 运行中
         # - failed 失败
         # - done 成功
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: String
         # @param SyncSubresource: 是否同步集群内子资源标签
         # @type SyncSubresource: Boolean
@@ -5405,7 +5397,6 @@ module TencentCloud
       # DescribeClusterAsGroupOption返回参数结构体
       class DescribeClusterAsGroupOptionResponse < TencentCloud::Common::AbstractModel
         # @param ClusterAsGroupOption: 集群弹性伸缩属性
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterAsGroupOption: :class:`Tencentcloud::Tke.v20180525.models.ClusterAsGroupOption`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5504,13 +5495,10 @@ module TencentCloud
       # DescribeClusterAuthenticationOptions返回参数结构体
       class DescribeClusterAuthenticationOptionsResponse < TencentCloud::Common::AbstractModel
         # @param ServiceAccounts: ServiceAccount认证配置
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ServiceAccounts: :class:`Tencentcloud::Tke.v20180525.models.ServiceAccountAuthenticationOptions`
         # @param LatestOperationState: 最近一次修改操作结果，返回值可能为：Updating，Success，Failed，TimeOut
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LatestOperationState: String
         # @param OIDCConfig: OIDC认证配置
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OIDCConfig: :class:`Tencentcloud::Tke.v20180525.models.OIDCConfigAuthenticationOptions`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5655,10 +5643,8 @@ module TencentCloud
       # DescribeClusterEndpointStatus返回参数结构体
       class DescribeClusterEndpointStatusResponse < TencentCloud::Common::AbstractModel
         # @param Status: 查询集群访问端口状态（Created 开启成功，Creating 开启中，NotFound 未开启）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: String
         # @param ErrorMsg: 开启访问入口失败信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrorMsg: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5699,7 +5685,6 @@ module TencentCloud
         # @param Status: 端口操作状态 (Creating 创建中  CreateFailed 创建失败 Created 创建完成 Deleting 删除中 DeletedFailed 删除失败 Deleted 已删除 NotFound 未发现操作 )
         # @type Status: String
         # @param ErrorMsg: 操作失败的原因
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrorMsg: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5744,22 +5729,17 @@ module TencentCloud
         # @param ClusterIntranetEndpoint: 集群APIServer的内网访问地址
         # @type ClusterIntranetEndpoint: String
         # @param ClusterDomain: 集群APIServer的域名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterDomain: String
         # @param ClusterExternalACL: 集群APIServer的外网访问ACL列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterExternalACL: Array
         # @param ClusterExternalDomain: 外网域名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterExternalDomain: String
         # @param ClusterIntranetDomain: 内网域名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterIntranetDomain: String
         # @param SecurityGroup: 外网安全组
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SecurityGroup: String
         # @param ClusterIntranetSubnetId: 内网访问所属子网
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterIntranetSubnetId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5812,7 +5792,6 @@ module TencentCloud
       # DescribeClusterExtraArgs返回参数结构体
       class DescribeClusterExtraArgsResponse < TencentCloud::Common::AbstractModel
         # @param ClusterExtraArgs: 集群自定义参数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterExtraArgs: :class:`Tencentcloud::Tke.v20180525.models.ClusterExtraArgs`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6217,7 +6196,6 @@ module TencentCloud
       # DescribeClusterNodePools返回参数结构体
       class DescribeClusterNodePoolsResponse < TencentCloud::Common::AbstractModel
         # @param NodePoolSet: NodePools（节点池列表）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NodePoolSet: Array
         # @param TotalCount: 资源总数
         # @type TotalCount: Integer
@@ -6277,16 +6255,12 @@ module TencentCloud
       # DescribeClusterPendingReleases返回参数结构体
       class DescribeClusterPendingReleasesResponse < TencentCloud::Common::AbstractModel
         # @param ReleaseSet: 正在安装中应用列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReleaseSet: Array
         # @param Limit: 每页返回数量限制
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Limit: Integer
         # @param Offset: 页偏移量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Offset: Integer
         # @param Total: 总数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Total: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6348,7 +6322,6 @@ module TencentCloud
       # DescribeClusterReleaseDetails返回参数结构体
       class DescribeClusterReleaseDetailsResponse < TencentCloud::Common::AbstractModel
         # @param Release: 应用详情
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Release: :class:`Tencentcloud::Tke.v20180525.models.ReleaseDetails`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6400,10 +6373,8 @@ module TencentCloud
       # DescribeClusterReleaseHistory返回参数结构体
       class DescribeClusterReleaseHistoryResponse < TencentCloud::Common::AbstractModel
         # @param ReleaseHistorySet: 已安装应用版本历史
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReleaseHistorySet: Array
         # @param Total: 总数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Total: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6473,16 +6444,12 @@ module TencentCloud
       # DescribeClusterReleases返回参数结构体
       class DescribeClusterReleasesResponse < TencentCloud::Common::AbstractModel
         # @param Limit: 数量限制
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Limit: Integer
         # @param Offset: 偏移量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Offset: Integer
         # @param ReleaseSet: 已安装应用列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReleaseSet: Array
         # @param Total: 已安装应用总数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Total: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6647,7 +6614,6 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SecurityPolicy: Array
         # @param Kubeconfig: 集群Kubeconfig文件
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Kubeconfig: String
         # @param JnsGwEndpoint: 集群JnsGw的访问地址
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -6750,10 +6716,8 @@ module TencentCloud
       # DescribeClusterVirtualNodePools返回参数结构体
       class DescribeClusterVirtualNodePoolsResponse < TencentCloud::Common::AbstractModel
         # @param TotalCount: 节点池总数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
         # @param NodePoolSet: 虚拟节点池列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NodePoolSet: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6807,10 +6771,8 @@ module TencentCloud
       # DescribeClusterVirtualNode返回参数结构体
       class DescribeClusterVirtualNodeResponse < TencentCloud::Common::AbstractModel
         # @param Nodes: 节点列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Nodes: Array
         # @param TotalCount: 节点总数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -7658,7 +7620,6 @@ module TencentCloud
         # @param Status: 任务进度的描述：Running/Succeed/Failed
         # @type Status: String
         # @param ErrorMessage: 当任务进度为Failed时，对任务状态的进一步描述，例如IPAMD组件安装失败
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrorMessage: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -7772,7 +7733,6 @@ module TencentCloud
       # DescribeExistedInstances返回参数结构体
       class DescribeExistedInstancesResponse < TencentCloud::Common::AbstractModel
         # @param ExistedInstanceSet: 已经存在的实例信息数组。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExistedInstanceSet: Array
         # @param TotalCount: 符合条件的实例数量。
         # @type TotalCount: Integer
@@ -7928,25 +7888,19 @@ module TencentCloud
         # @param EnableIPAMD: 是否安装了eniipamd组件
         # @type EnableIPAMD: Boolean
         # @param EnableCustomizedPodCidr: 是否开启自定义podcidr，默认为false，已安装eniipamd组件才意义
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EnableCustomizedPodCidr: Boolean
         # @param DisableVpcCniMode: 是否不开启vpccni模式，默认为false，已安装eniipamd组件才意义
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DisableVpcCniMode: Boolean
         # @param Phase: 组件状态，已安装eniipamd组件才会有值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Phase: String
         # @param Reason: 错误信息，已安装eniipamd组件且状态为非running才会有错误信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Reason: String
         # @param SubnetIds: 子网信息，已安装eniipamd组件才会有值
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubnetIds: Array
         # @param ClaimExpiredDuration: 固定ip回收时间，已安装eniipamd组件才会有值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClaimExpiredDuration: String
         # @param EnableTrunkingENI: 是否开启了中继网卡模式
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EnableTrunkingENI: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -8065,10 +8019,8 @@ module TencentCloud
       # DescribeImages返回参数结构体
       class DescribeImagesResponse < TencentCloud::Common::AbstractModel
         # @param TotalCount: 镜像数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
         # @param ImageInstanceSet: 镜像信息列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ImageInstanceSet: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -8130,13 +8082,10 @@ module TencentCloud
       # DescribeLogConfigs返回参数结构体
       class DescribeLogConfigsResponse < TencentCloud::Common::AbstractModel
         # @param Total: 分页查找时返回采集规则总数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Total: Integer
         # @param Message: 指定采集规则名称查找，部分失败时返回失败采集规则名称及最后一个失败原因
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Message: String
         # @param LogConfigs: 采集规则查询结果
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LogConfigs: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -9771,10 +9720,8 @@ module TencentCloud
       # DescribeRegions返回参数结构体
       class DescribeRegionsResponse < TencentCloud::Common::AbstractModel
         # @param TotalCount: 地域的数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
         # @param RegionInstanceSet: 地域列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RegionInstanceSet: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -10069,7 +10016,6 @@ module TencentCloud
         # @param HasConflict: 路由表是否冲突。
         # @type HasConflict: Boolean
         # @param RouteTableConflictSet: 路由表冲突列表。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RouteTableConflictSet: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -10115,7 +10061,6 @@ module TencentCloud
       # DescribeSupportedRuntime返回参数结构体
       class DescribeSupportedRuntimeResponse < TencentCloud::Common::AbstractModel
         # @param OptionalRuntimes: 可选运行时列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OptionalRuntimes: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -10454,10 +10399,8 @@ module TencentCloud
       # DescribeVersions返回参数结构体
       class DescribeVersionsResponse < TencentCloud::Common::AbstractModel
         # @param TotalCount: 版本数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
         # @param VersionInstanceSet: 版本列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VersionInstanceSet: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -10511,10 +10454,8 @@ module TencentCloud
       # DescribeVpcCniPodLimits返回参数结构体
       class DescribeVpcCniPodLimitsResponse < TencentCloud::Common::AbstractModel
         # @param TotalCount: 机型数据数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
         # @param PodLimitsInstanceSet: 机型信息及其可支持的最大VPC-CNI模式Pod数量信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PodLimitsInstanceSet: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -13851,25 +13792,18 @@ module TencentCloud
       # ModifyClusterAttribute返回参数结构体
       class ModifyClusterAttributeResponse < TencentCloud::Common::AbstractModel
         # @param ProjectId: 集群所属项目
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProjectId: Integer
         # @param ClusterName: 集群名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterName: String
         # @param ClusterDesc: 集群描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterDesc: String
         # @param ClusterLevel: 集群等级
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterLevel: String
         # @param AutoUpgradeClusterLevel: 自动变配集群等级
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AutoUpgradeClusterLevel: :class:`Tencentcloud::Tke.v20180525.models.AutoUpgradeClusterLevel`
         # @param QGPUShareEnable: 是否开启QGPU共享
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type QGPUShareEnable: Boolean
         # @param ClusterProperty: 集群属性
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterProperty: :class:`Tencentcloud::Tke.v20180525.models.ClusterProperty`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -17767,7 +17701,6 @@ module TencentCloud
       # RollbackClusterRelease返回参数结构体
       class RollbackClusterReleaseResponse < TencentCloud::Common::AbstractModel
         # @param Release: 应用详情
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Release: :class:`Tencentcloud::Tke.v20180525.models.PendingRelease`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -18223,7 +18156,6 @@ module TencentCloud
       # SetNodePoolNodeProtection返回参数结构体
       class SetNodePoolNodeProtectionResponse < TencentCloud::Common::AbstractModel
         # @param SucceedInstanceIds: 成功设置的节点id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SucceedInstanceIds: Array
         # @param FailedInstanceIds: 没有成功设置的节点id
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -18733,7 +18665,6 @@ module TencentCloud
       # UninstallClusterRelease返回参数结构体
       class UninstallClusterReleaseResponse < TencentCloud::Common::AbstractModel
         # @param Release: 应用详情
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Release: :class:`Tencentcloud::Tke.v20180525.models.PendingRelease`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -18893,7 +18824,6 @@ module TencentCloud
       # UpdateClusterKubeconfig返回参数结构体
       class UpdateClusterKubeconfigResponse < TencentCloud::Common::AbstractModel
         # @param UpdatedSubAccounts: 已更新的子账户Uin列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdatedSubAccounts: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -19497,7 +19427,6 @@ module TencentCloud
       # UpgradeClusterRelease返回参数结构体
       class UpgradeClusterReleaseResponse < TencentCloud::Common::AbstractModel
         # @param Release: 应用详情
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Release: :class:`Tencentcloud::Tke.v20180525.models.PendingRelease`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

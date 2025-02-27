@@ -411,19 +411,27 @@ module TencentCloud
         # @type PageSize: Integer
         # @param PageNum: 不传或传0时 会默认为1
         # @type PageNum: Integer
+        # @param ServerName: 服务名
+        # @type ServerName: String
+        # @param ServerType: 服务类型：function | container
+        # @type ServerType: String
 
-        attr_accessor :EnvId, :PageSize, :PageNum
+        attr_accessor :EnvId, :PageSize, :PageNum, :ServerName, :ServerType
 
-        def initialize(envid=nil, pagesize=nil, pagenum=nil)
+        def initialize(envid=nil, pagesize=nil, pagenum=nil, servername=nil, servertype=nil)
           @EnvId = envid
           @PageSize = pagesize
           @PageNum = pagenum
+          @ServerName = servername
+          @ServerType = servertype
         end
 
         def deserialize(params)
           @EnvId = params['EnvId']
           @PageSize = params['PageSize']
           @PageNum = params['PageNum']
+          @ServerName = params['ServerName']
+          @ServerType = params['ServerType']
         end
       end
 

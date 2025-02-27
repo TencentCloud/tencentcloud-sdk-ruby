@@ -546,7 +546,6 @@ module TencentCloud
         # @param InstanceSet: 集群中实例列表
         # @type InstanceSet: Array
         # @param Errors: 错误信息集合
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Errors: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -619,7 +618,6 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HealthCheckPolicies: Array
         # @param TotalCount: 数组总数目
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -690,7 +688,6 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HealthCheckPolicyBindings: Array
         # @param TotalCount: 健康检测规则数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -808,7 +805,6 @@ module TencentCloud
       # DescribeNodePools返回参数结构体
       class DescribeNodePoolsResponse < TencentCloud::Common::AbstractModel
         # @param NodePools: 节点池列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NodePools: Array
         # @param TotalCount: 资源总数
         # @type TotalCount: Integer
