@@ -4419,9 +4419,9 @@ module TencentCloud
 
       # GetWsToken请求参数结构体
       class GetWsTokenRequest < TencentCloud::Common::AbstractModel
-        # @param Type: 接入类型
+        # @param Type: 接入类型，当前请填写5
         # @type Type: Integer
-        # @param BotAppKey: 应用AppKey（应用发布后在应用页面[发布管理]-[调用信息]-[API管理]处获取）
+        # @param BotAppKey: 当Type=5时，必填；应用AppKey（应用发布后在应用页面[发布管理]-[调用信息]-[API管理]处获取）
         # @type BotAppKey: String
         # @param VisitorBizId: 访客ID（外部输入，建议唯一，标识当前接入会话的用户）
         # @type VisitorBizId: String
@@ -7664,8 +7664,8 @@ module TencentCloud
 
         attr_accessor :Name, :Url, :TaskId, :Policy, :Operate
         extend Gem::Deprecate
-        deprecate :Operate, :none, 2025, 2
-        deprecate :Operate=, :none, 2025, 2
+        deprecate :Operate, :none, 2025, 3
+        deprecate :Operate=, :none, 2025, 3
 
         def initialize(name=nil, url=nil, taskid=nil, policy=nil, operate=nil)
           @Name = name
@@ -8673,6 +8673,54 @@ module TencentCloud
         end
       end
 
+      # RenameDoc请求参数结构体
+      class RenameDocRequest < TencentCloud::Common::AbstractModel
+        # @param LoginUin: 登录用户主账号(集成商模式必填)
+        # @type LoginUin: String
+        # @param LoginSubAccountUin: 登录用户子账号(集成商模式必填)
+        # @type LoginSubAccountUin: String
+        # @param BotBizId: 应用ID
+        # @type BotBizId: String
+        # @param DocBizId: 文档ID
+        # @type DocBizId: String
+        # @param NewName: 新文档名，需要带上后缀
+        # @type NewName: String
+
+        attr_accessor :LoginUin, :LoginSubAccountUin, :BotBizId, :DocBizId, :NewName
+
+        def initialize(loginuin=nil, loginsubaccountuin=nil, botbizid=nil, docbizid=nil, newname=nil)
+          @LoginUin = loginuin
+          @LoginSubAccountUin = loginsubaccountuin
+          @BotBizId = botbizid
+          @DocBizId = docbizid
+          @NewName = newname
+        end
+
+        def deserialize(params)
+          @LoginUin = params['LoginUin']
+          @LoginSubAccountUin = params['LoginSubAccountUin']
+          @BotBizId = params['BotBizId']
+          @DocBizId = params['DocBizId']
+          @NewName = params['NewName']
+        end
+      end
+
+      # RenameDoc返回参数结构体
+      class RenameDocResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ResetSession请求参数结构体
       class ResetSessionRequest < TencentCloud::Common::AbstractModel
         # @param SessionId: 会话ID
@@ -8879,10 +8927,10 @@ module TencentCloud
 
         attr_accessor :Query, :Docs, :Model, :DataList, :Online
         extend Gem::Deprecate
-        deprecate :DataList, :none, 2025, 2
-        deprecate :DataList=, :none, 2025, 2
-        deprecate :Online, :none, 2025, 2
-        deprecate :Online=, :none, 2025, 2
+        deprecate :DataList, :none, 2025, 3
+        deprecate :DataList=, :none, 2025, 3
+        deprecate :Online, :none, 2025, 3
+        deprecate :Online=, :none, 2025, 3
 
         def initialize(query=nil, docs=nil, model=nil, datalist=nil, online=nil)
           @Query = query

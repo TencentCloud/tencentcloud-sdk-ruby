@@ -110,13 +110,10 @@ module TencentCloud
       # 定时任务
       class ActionTimer < TencentCloud::Common::AbstractModel
         # @param TimerAction: 定时器动作，目前仅支持销毁一个值：TerminateInstances。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TimerAction: String
         # @param ActionTime: 执行时间，按照ISO8601标准表示，并且使用UTC时间。格式为 YYYY-MM-DDThh:mm:ssZ。例如 2018-05-29T11:26:40Z，执行时间必须大于当前时间5分钟。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ActionTime: String
         # @param Externals: 扩展数据
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Externals: :class:`Tencentcloud::Cvm.v20170312.models.Externals`
         # @param ActionTimerId: 定时器ID。
         # @type ActionTimerId: String
@@ -1129,10 +1126,12 @@ module TencentCloud
         # @type InstanceChargePrepaid: :class:`Tencentcloud::Cvm.v20170312.models.InstanceChargePrepaid`
         # @param DisableApiTermination: 实例销毁保护标志，表示是否允许通过api接口删除实例。取值范围：<br><li>TRUE：表示开启实例保护，不允许通过api接口删除实例</li><li>FALSE：表示关闭实例保护，允许通过api接口删除实例<br></li>默认取值：FALSE。
         # @type DisableApiTermination: Boolean
+        # @param LaunchTemplateTagSpecification: 标签描述列表。通过指定该参数可以绑定标签到实例启动模板。
+        # @type LaunchTemplateTagSpecification: Array
 
-        attr_accessor :LaunchTemplateName, :Placement, :ImageId, :LaunchTemplateVersionDescription, :InstanceType, :SystemDisk, :DataDisks, :VirtualPrivateCloud, :InternetAccessible, :InstanceCount, :InstanceName, :LoginSettings, :SecurityGroupIds, :EnhancedService, :ClientToken, :HostName, :ActionTimer, :DisasterRecoverGroupIds, :TagSpecification, :InstanceMarketOptions, :UserData, :DryRun, :CamRoleName, :HpcClusterId, :InstanceChargeType, :InstanceChargePrepaid, :DisableApiTermination
+        attr_accessor :LaunchTemplateName, :Placement, :ImageId, :LaunchTemplateVersionDescription, :InstanceType, :SystemDisk, :DataDisks, :VirtualPrivateCloud, :InternetAccessible, :InstanceCount, :InstanceName, :LoginSettings, :SecurityGroupIds, :EnhancedService, :ClientToken, :HostName, :ActionTimer, :DisasterRecoverGroupIds, :TagSpecification, :InstanceMarketOptions, :UserData, :DryRun, :CamRoleName, :HpcClusterId, :InstanceChargeType, :InstanceChargePrepaid, :DisableApiTermination, :LaunchTemplateTagSpecification
 
-        def initialize(launchtemplatename=nil, placement=nil, imageid=nil, launchtemplateversiondescription=nil, instancetype=nil, systemdisk=nil, datadisks=nil, virtualprivatecloud=nil, internetaccessible=nil, instancecount=nil, instancename=nil, loginsettings=nil, securitygroupids=nil, enhancedservice=nil, clienttoken=nil, hostname=nil, actiontimer=nil, disasterrecovergroupids=nil, tagspecification=nil, instancemarketoptions=nil, userdata=nil, dryrun=nil, camrolename=nil, hpcclusterid=nil, instancechargetype=nil, instancechargeprepaid=nil, disableapitermination=nil)
+        def initialize(launchtemplatename=nil, placement=nil, imageid=nil, launchtemplateversiondescription=nil, instancetype=nil, systemdisk=nil, datadisks=nil, virtualprivatecloud=nil, internetaccessible=nil, instancecount=nil, instancename=nil, loginsettings=nil, securitygroupids=nil, enhancedservice=nil, clienttoken=nil, hostname=nil, actiontimer=nil, disasterrecovergroupids=nil, tagspecification=nil, instancemarketoptions=nil, userdata=nil, dryrun=nil, camrolename=nil, hpcclusterid=nil, instancechargetype=nil, instancechargeprepaid=nil, disableapitermination=nil, launchtemplatetagspecification=nil)
           @LaunchTemplateName = launchtemplatename
           @Placement = placement
           @ImageId = imageid
@@ -1160,6 +1159,7 @@ module TencentCloud
           @InstanceChargeType = instancechargetype
           @InstanceChargePrepaid = instancechargeprepaid
           @DisableApiTermination = disableapitermination
+          @LaunchTemplateTagSpecification = launchtemplatetagspecification
         end
 
         def deserialize(params)
@@ -1231,6 +1231,14 @@ module TencentCloud
             @InstanceChargePrepaid.deserialize(params['InstanceChargePrepaid'])
           end
           @DisableApiTermination = params['DisableApiTermination']
+          unless params['LaunchTemplateTagSpecification'].nil?
+            @LaunchTemplateTagSpecification = []
+            params['LaunchTemplateTagSpecification'].each do |i|
+              tagspecification_tmp = TagSpecification.new
+              tagspecification_tmp.deserialize(i)
+              @LaunchTemplateTagSpecification << tagspecification_tmp
+            end
+          end
         end
       end
 
@@ -1460,10 +1468,8 @@ module TencentCloud
         #   默认取值：true<br />
         #   该参数目前仅用于 `RunInstances` 接口。
         # </li>
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeleteWithInstance: Boolean
         # @param SnapshotId: 数据盘快照ID。选择的数据盘快照大小需小于数据盘大小。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SnapshotId: String
         # @param Encrypt: 数据盘是加密。取值范围：
         # <li>true：加密</li>
@@ -1472,23 +1478,18 @@ module TencentCloud
         #   默认取值：false<br />
         #   该参数目前仅用于 `RunInstances` 接口。
         # </li>
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Encrypt: Boolean
         # @param KmsKeyId: 自定义CMK对应的ID，取值为UUID或者类似kms-abcd1234。用于加密云盘。
 
         # 该参数目前仅用于 `RunInstances` 接口。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type KmsKeyId: String
         # @param ThroughputPerformance: 云硬盘性能，单位：MB/s
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ThroughputPerformance: Integer
         # @param CdcId: 所属的独享集群ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CdcId: String
         # @param BurstPerformance: 突发性能
 
         #  <b>注：内测中。</b>
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BurstPerformance: Boolean
         # @param DiskName: 磁盘名称，长度不超过128 个字符。
 
@@ -5302,10 +5303,8 @@ module TencentCloud
       # 竞价请求相关选项
       class InstanceMarketOptionsRequest < TencentCloud::Common::AbstractModel
         # @param SpotOptions: 竞价相关选项
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SpotOptions: :class:`Tencentcloud::Cvm.v20170312.models.SpotMarketOptions`
         # @param MarketType: 市场选项类型，当前只支持取值：spot
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MarketType: String
 
         attr_accessor :SpotOptions, :MarketType
@@ -6124,7 +6123,6 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type KeyIds: Array
         # @param KeepImageLogin: 保持镜像的原始设置。该参数与Password或KeyIds.N不能同时指定。只有使用自定义镜像、共享镜像或外部导入镜像创建实例时才能指定该参数为true。取值范围：<li>true：表示保持镜像的登录设置</li><li>false：表示不保持镜像的登录设置</li>默认取值：false。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type KeepImageLogin: String
 
         attr_accessor :Password, :KeyIds, :KeepImageLogin
@@ -7931,8 +7929,7 @@ module TencentCloud
 
       # 描述了 “云监控” 服务相关的信息
       class RunMonitorServiceEnabled < TencentCloud::Common::AbstractModel
-        # @param Enabled: 是否开启[云监控](/document/product/248)服务。取值范围：<br><li>true：表示开启云监控服务<br><li>false：表示不开启云监控服务<br><br>默认取值：true。
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param Enabled: 是否开启[云监控](/document/product/248)服务。取值范围：<br><li>true：表示开启云监控服务</li><li>false：表示不开启云监控服务</li><br>默认取值：true。
         # @type Enabled: Boolean
 
         attr_accessor :Enabled
@@ -8011,10 +8008,8 @@ module TencentCloud
       # 竞价相关选项
       class SpotMarketOptions < TencentCloud::Common::AbstractModel
         # @param MaxPrice: 竞价出价
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaxPrice: String
         # @param SpotInstanceType: 竞价请求类型，当前仅支持类型：one-time
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SpotInstanceType: String
 
         attr_accessor :MaxPrice, :SpotInstanceType
@@ -8320,10 +8315,8 @@ module TencentCloud
       # 创建资源实例时同时绑定的标签对说明
       class TagSpecification < TencentCloud::Common::AbstractModel
         # @param ResourceType: 标签绑定的资源类型，云服务器为“instance”，专用宿主机为“host”，镜像为“image”，密钥为“keypair”
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceType: String
         # @param Tags: 标签对列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
 
         attr_accessor :ResourceType, :Tags

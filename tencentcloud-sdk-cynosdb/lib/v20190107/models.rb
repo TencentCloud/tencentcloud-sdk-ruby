@@ -243,8 +243,8 @@ module TencentCloud
 
         attr_accessor :ClusterId, :Cpu, :Memory, :ReadOnlyCount, :DeviceType, :InstanceGrpId, :VpcId, :SubnetId, :Port, :InstanceName, :AutoVoucher, :DbType, :OrderSource, :DealMode, :ParamTemplateId, :InstanceParams, :SecurityGroupIds, :UpgradeProxy
         extend Gem::Deprecate
-        deprecate :InstanceGrpId, :none, 2025, 2
-        deprecate :InstanceGrpId=, :none, 2025, 2
+        deprecate :InstanceGrpId, :none, 2025, 3
+        deprecate :InstanceGrpId=, :none, 2025, 3
 
         def initialize(clusterid=nil, cpu=nil, memory=nil, readonlycount=nil, devicetype=nil, instancegrpid=nil, vpcid=nil, subnetid=nil, port=nil, instancename=nil, autovoucher=nil, dbtype=nil, ordersource=nil, dealmode=nil, paramtemplateid=nil, instanceparams=nil, securitygroupids=nil, upgradeproxy=nil)
           @ClusterId = clusterid
@@ -1064,10 +1064,10 @@ module TencentCloud
 
         attr_accessor :ID, :AppId, :ClusterId, :Region, :CreateTime, :DelayTime, :ErrMsg, :FlowId, :Input, :InstanceGrpId, :InstanceGroupId, :InstanceId, :ObjectId, :ObjectType, :Operator, :Output, :Status, :TaskType, :TriggerTaskId, :UpdateTime, :StartTime, :EndTime, :ClusterName, :InstanceName, :Process, :ModifyParamsData, :CreateClustersData, :RollbackData, :ModifyInstanceData, :ManualBackupData, :ModifyDbVersionData, :ClusterSlaveData, :SwitchClusterLogBin, :ModifyInstanceParamsData, :TaskMaintainInfo, :InstanceCLSDeliveryInfos, :TaskProgressInfo
         extend Gem::Deprecate
-        deprecate :InstanceGrpId, :none, 2025, 2
-        deprecate :InstanceGrpId=, :none, 2025, 2
-        deprecate :ModifyParamsData, :none, 2025, 2
-        deprecate :ModifyParamsData=, :none, 2025, 2
+        deprecate :InstanceGrpId, :none, 2025, 3
+        deprecate :InstanceGrpId=, :none, 2025, 3
+        deprecate :ModifyParamsData, :none, 2025, 3
+        deprecate :ModifyParamsData=, :none, 2025, 3
 
         def initialize(id=nil, appid=nil, clusterid=nil, region=nil, createtime=nil, delaytime=nil, errmsg=nil, flowid=nil, input=nil, instancegrpid=nil, instancegroupid=nil, instanceid=nil, objectid=nil, objecttype=nil, operator=nil, output=nil, status=nil, tasktype=nil, triggertaskid=nil, updatetime=nil, starttime=nil, endtime=nil, clustername=nil, instancename=nil, process=nil, modifyparamsdata=nil, createclustersdata=nil, rollbackdata=nil, modifyinstancedata=nil, manualbackupdata=nil, modifydbversiondata=nil, clusterslavedata=nil, switchclusterlogbin=nil, modifyinstanceparamsdata=nil, taskmaintaininfo=nil, instanceclsdeliveryinfos=nil, taskprogressinfo=nil)
           @ID = id
@@ -1479,8 +1479,8 @@ module TencentCloud
 
         attr_accessor :InstanceGrpId, :InstanceGroupId, :InstanceId
         extend Gem::Deprecate
-        deprecate :InstanceGrpId, :none, 2025, 2
-        deprecate :InstanceGrpId=, :none, 2025, 2
+        deprecate :InstanceGrpId, :none, 2025, 3
+        deprecate :InstanceGrpId=, :none, 2025, 3
 
         def initialize(instancegrpid=nil, instancegroupid=nil, instanceid=nil)
           @InstanceGrpId = instancegrpid
@@ -5006,18 +5006,22 @@ module TencentCloud
         # @param LogicCrossRegionsConfigUpdateTime: 跨地域逻辑备份配置修改时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LogicCrossRegionsConfigUpdateTime: String
+        # @param LogicBackupConfig: 自动逻辑备份配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LogicBackupConfig: :class:`Tencentcloud::Cynosdb.v20190107.models.LogicBackupConfigInfo`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :BackupTimeBeg, :BackupTimeEnd, :ReserveDuration, :BackupFreq, :BackupType, :LogicCrossRegionsConfigUpdateTime, :RequestId
+        attr_accessor :BackupTimeBeg, :BackupTimeEnd, :ReserveDuration, :BackupFreq, :BackupType, :LogicCrossRegionsConfigUpdateTime, :LogicBackupConfig, :RequestId
 
-        def initialize(backuptimebeg=nil, backuptimeend=nil, reserveduration=nil, backupfreq=nil, backuptype=nil, logiccrossregionsconfigupdatetime=nil, requestid=nil)
+        def initialize(backuptimebeg=nil, backuptimeend=nil, reserveduration=nil, backupfreq=nil, backuptype=nil, logiccrossregionsconfigupdatetime=nil, logicbackupconfig=nil, requestid=nil)
           @BackupTimeBeg = backuptimebeg
           @BackupTimeEnd = backuptimeend
           @ReserveDuration = reserveduration
           @BackupFreq = backupfreq
           @BackupType = backuptype
           @LogicCrossRegionsConfigUpdateTime = logiccrossregionsconfigupdatetime
+          @LogicBackupConfig = logicbackupconfig
           @RequestId = requestid
         end
 
@@ -5028,6 +5032,10 @@ module TencentCloud
           @BackupFreq = params['BackupFreq']
           @BackupType = params['BackupType']
           @LogicCrossRegionsConfigUpdateTime = params['LogicCrossRegionsConfigUpdateTime']
+          unless params['LogicBackupConfig'].nil?
+            @LogicBackupConfig = LogicBackupConfigInfo.new
+            @LogicBackupConfig.deserialize(params['LogicBackupConfig'])
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -5713,8 +5721,8 @@ module TencentCloud
 
         attr_accessor :TotalCount, :InstanceGrpInfoList, :InstanceGroupInfoList, :RequestId
         extend Gem::Deprecate
-        deprecate :InstanceGrpInfoList, :none, 2025, 2
-        deprecate :InstanceGrpInfoList=, :none, 2025, 2
+        deprecate :InstanceGrpInfoList, :none, 2025, 3
+        deprecate :InstanceGrpInfoList=, :none, 2025, 3
 
         def initialize(totalcount=nil, instancegrpinfolist=nil, instancegroupinfolist=nil, requestid=nil)
           @TotalCount = totalcount
@@ -6069,15 +6077,15 @@ module TencentCloud
 
       # DescribeDBSecurityGroups请求参数结构体
       class DescribeDBSecurityGroupsRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
+        # @param InstanceId: 实例ID（InstanceId与InstanceGroupId必须任选一个传入）
         # @type InstanceId: String
-        # @param InstanceGroupId: 实例组ID
+        # @param InstanceGroupId: 实例组ID（InstanceId与InstanceGroupId必须任选一个传入）
         # @type InstanceGroupId: String
 
         attr_accessor :InstanceId, :InstanceGroupId
         extend Gem::Deprecate
-        deprecate :InstanceId, :none, 2025, 2
-        deprecate :InstanceId=, :none, 2025, 2
+        deprecate :InstanceId, :none, 2025, 3
+        deprecate :InstanceId=, :none, 2025, 3
 
         def initialize(instanceid=nil, instancegroupid=nil)
           @InstanceId = instanceid
@@ -10747,8 +10755,8 @@ module TencentCloud
 
         attr_accessor :ClusterId, :InstanceGrpId, :InstanceGroupId, :Vip, :Vport, :DbType, :OldIpReserveHours
         extend Gem::Deprecate
-        deprecate :InstanceGrpId, :none, 2025, 2
-        deprecate :InstanceGrpId=, :none, 2025, 2
+        deprecate :InstanceGrpId, :none, 2025, 3
+        deprecate :InstanceGrpId=, :none, 2025, 3
 
         def initialize(clusterid=nil, instancegrpid=nil, instancegroupid=nil, vip=nil, vport=nil, dbtype=nil, oldipreservehours=nil)
           @ClusterId = clusterid
@@ -11328,8 +11336,8 @@ module TencentCloud
 
         attr_accessor :InstanceGrpId, :InstanceId, :InstanceGroupId
         extend Gem::Deprecate
-        deprecate :InstanceGrpId, :none, 2025, 2
-        deprecate :InstanceGrpId=, :none, 2025, 2
+        deprecate :InstanceGrpId, :none, 2025, 3
+        deprecate :InstanceGrpId=, :none, 2025, 3
 
         def initialize(instancegrpid=nil, instanceid=nil, instancegroupid=nil)
           @InstanceGrpId = instancegrpid

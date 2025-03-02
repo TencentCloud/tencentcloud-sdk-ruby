@@ -1652,8 +1652,8 @@ module TencentCloud
 
         attr_accessor :Switch, :CacheTime, :IgnoreCacheControl
         extend Gem::Deprecate
-        deprecate :IgnoreCacheControl, :none, 2025, 2
-        deprecate :IgnoreCacheControl=, :none, 2025, 2
+        deprecate :IgnoreCacheControl, :none, 2025, 3
+        deprecate :IgnoreCacheControl=, :none, 2025, 3
 
         def initialize(switch=nil, cachetime=nil, ignorecachecontrol=nil)
           @Switch = switch
@@ -3643,8 +3643,8 @@ module TencentCloud
 
         attr_accessor :ZoneId, :Targets, :EncodeUrl, :Headers
         extend Gem::Deprecate
-        deprecate :EncodeUrl, :none, 2025, 2
-        deprecate :EncodeUrl=, :none, 2025, 2
+        deprecate :EncodeUrl, :none, 2025, 3
+        deprecate :EncodeUrl=, :none, 2025, 3
 
         def initialize(zoneid=nil, targets=nil, encodeurl=nil, headers=nil)
           @ZoneId = zoneid
@@ -3724,8 +3724,8 @@ module TencentCloud
 
         attr_accessor :ZoneId, :Type, :Method, :Targets, :EncodeUrl, :CacheTag
         extend Gem::Deprecate
-        deprecate :EncodeUrl, :none, 2025, 2
-        deprecate :EncodeUrl=, :none, 2025, 2
+        deprecate :EncodeUrl, :none, 2025, 3
+        deprecate :EncodeUrl=, :none, 2025, 3
 
         def initialize(zoneid=nil, type=nil, method=nil, targets=nil, encodeurl=nil, cachetag=nil)
           @ZoneId = zoneid
@@ -4092,10 +4092,10 @@ module TencentCloud
 
         attr_accessor :Type, :ZoneName, :Area, :PlanId, :AliasZoneName, :Tags, :AllowDuplicates, :JumpStart
         extend Gem::Deprecate
-        deprecate :AllowDuplicates, :none, 2025, 2
-        deprecate :AllowDuplicates=, :none, 2025, 2
-        deprecate :JumpStart, :none, 2025, 2
-        deprecate :JumpStart=, :none, 2025, 2
+        deprecate :AllowDuplicates, :none, 2025, 3
+        deprecate :AllowDuplicates=, :none, 2025, 3
+        deprecate :JumpStart, :none, 2025, 3
+        deprecate :JumpStart=, :none, 2025, 3
 
         def initialize(type=nil, zonename=nil, area=nil, planid=nil, aliaszonename=nil, tags=nil, allowduplicates=nil, jumpstart=nil)
           @Type = type
@@ -5655,7 +5655,14 @@ module TencentCloud
         # <li>quic_request: QUIC 请求，单位为次；</li>
         # <li>bot_request_clean: Bot 请求，单位为次；</li>
         # <li>cls_count: 实时日志推送条数，单位为条；</li>
-        # <li>ddos_bandwidth: 弹性 DDoS 防护带宽，单位为 bps。</li>
+        # <li>ddos_bandwidth: 弹性 DDoS 防护带宽，单位为 bps；</li>
+        # <li>total_transcode：所有规格音频，视频即时转码，转封装时长，单位为秒；</li>
+        # <li>remux：转封装时长，单位为秒；</li>
+        # <li>transcode_audio：音频转码时长，单位为秒；</li>
+        # <li>transcode_H264_SD：H.264 编码方式的标清视频（短边 <= 480 px）时长，单位为秒；</li>
+        # <li>transcode_H264_HD：H.264 编码方式的高清视频（短边 <= 720 px）时长，单位为秒；</li>
+        # <li>transcode_H264_FHD：H.264 编码方式的全高清视频（短边 <= 1080 px）时长，单位为秒；</li>
+        # <li>transcode_H264_2K：H.264 编码方式的 2K 视频（短边 <= 1440 px）时长，单位为秒。</li>
         # @type MetricName: String
         # @param Interval: 查询时间粒度，取值有：
         # <li>5min：5 分钟粒度；</li>
@@ -8627,7 +8634,7 @@ module TencentCloud
         # @param Limit: 分页查询限制数目。默认值：20，最大值：100。
         # @type Limit: Integer
         # @param Filters: 过滤条件，Filters.Values 的上限为 20。该参数不填写时，返回当前 appid 下有权限的所有站点信息。详细的过滤条件如下：
-        # <li>zone-name：按照站点名称进行过滤；</li><li>zone-id：按照站点 ID进行过滤。站点 ID 形如：zone-2noz78a8ev6k；</li><li>status：按照站点状态进行过滤；</li><li>tag-key：按照标签键进行过滤；</li><li>tag-value： 按照标签值进行过滤。</li>模糊查询时仅支持过滤字段名为 zone-name。
+        # <li>zone-name：按照站点名称进行过滤；</li><li>zone-id：按照站点 ID进行过滤。站点 ID 形如：zone-2noz78a8ev6k；</li><li>status：按照站点状态进行过滤；</li><li>tag-key：按照标签键进行过滤；</li><li>tag-value： 按照标签值进行过滤。</li><li>alias-zone-name： 按照同名站点标识进行过滤。</li>模糊查询时支持过滤字段名为 zone-name 或 alias-zone-name。
         # @type Filters: Array
         # @param Order: 可根据该字段对返回结果进行排序，取值有：
         # <li> type：接入类型；</li>
@@ -12128,8 +12135,8 @@ module TencentCloud
 
         attr_accessor :ZoneId, :Hosts, :Mode, :ServerCertInfo, :ApplyType, :ClientCertInfo
         extend Gem::Deprecate
-        deprecate :ApplyType, :none, 2025, 2
-        deprecate :ApplyType=, :none, 2025, 2
+        deprecate :ApplyType, :none, 2025, 3
+        deprecate :ApplyType=, :none, 2025, 3
 
         def initialize(zoneid=nil, hosts=nil, mode=nil, servercertinfo=nil, applytype=nil, clientcertinfo=nil)
           @ZoneId = zoneid
@@ -13508,12 +13515,12 @@ module TencentCloud
 
         attr_accessor :OriginType, :Origin, :BackupOrigin, :OriginGroupName, :BackOriginGroupName, :PrivateAccess, :PrivateParameters, :VodeoSubAppId, :VodeoDistributionRange, :VodeoBucketId, :VodOriginScope, :VodBucketId
         extend Gem::Deprecate
-        deprecate :VodeoSubAppId, :none, 2025, 2
-        deprecate :VodeoSubAppId=, :none, 2025, 2
-        deprecate :VodeoDistributionRange, :none, 2025, 2
-        deprecate :VodeoDistributionRange=, :none, 2025, 2
-        deprecate :VodeoBucketId, :none, 2025, 2
-        deprecate :VodeoBucketId=, :none, 2025, 2
+        deprecate :VodeoSubAppId, :none, 2025, 3
+        deprecate :VodeoSubAppId=, :none, 2025, 3
+        deprecate :VodeoDistributionRange, :none, 2025, 3
+        deprecate :VodeoDistributionRange=, :none, 2025, 3
+        deprecate :VodeoBucketId, :none, 2025, 3
+        deprecate :VodeoBucketId=, :none, 2025, 3
 
         def initialize(origintype=nil, origin=nil, backuporigin=nil, origingroupname=nil, backorigingroupname=nil, privateaccess=nil, privateparameters=nil, vodeosubappid=nil, vodeodistributionrange=nil, vodeobucketid=nil, vodoriginscope=nil, vodbucketid=nil)
           @OriginType = origintype
@@ -13812,12 +13819,12 @@ module TencentCloud
 
         attr_accessor :OriginType, :Origin, :BackupOrigin, :PrivateAccess, :PrivateParameters, :VodeoSubAppId, :VodeoDistributionRange, :VodeoBucketId, :VodOriginScope, :VodBucketId
         extend Gem::Deprecate
-        deprecate :VodeoSubAppId, :none, 2025, 2
-        deprecate :VodeoSubAppId=, :none, 2025, 2
-        deprecate :VodeoDistributionRange, :none, 2025, 2
-        deprecate :VodeoDistributionRange=, :none, 2025, 2
-        deprecate :VodeoBucketId, :none, 2025, 2
-        deprecate :VodeoBucketId=, :none, 2025, 2
+        deprecate :VodeoSubAppId, :none, 2025, 3
+        deprecate :VodeoSubAppId=, :none, 2025, 3
+        deprecate :VodeoDistributionRange, :none, 2025, 3
+        deprecate :VodeoDistributionRange=, :none, 2025, 3
+        deprecate :VodeoBucketId, :none, 2025, 3
+        deprecate :VodeoBucketId=, :none, 2025, 3
 
         def initialize(origintype=nil, origin=nil, backuporigin=nil, privateaccess=nil, privateparameters=nil, vodeosubappid=nil, vodeodistributionrange=nil, vodeobucketid=nil, vodoriginscope=nil, vodbucketid=nil)
           @OriginType = origintype
@@ -15161,8 +15168,8 @@ module TencentCloud
 
         attr_accessor :Operator, :Target, :Values, :IgnoreCase, :Name, :IgnoreNameCase
         extend Gem::Deprecate
-        deprecate :IgnoreNameCase, :none, 2025, 2
-        deprecate :IgnoreNameCase=, :none, 2025, 2
+        deprecate :IgnoreNameCase, :none, 2025, 3
+        deprecate :IgnoreNameCase=, :none, 2025, 3
 
         def initialize(operator=nil, target=nil, values=nil, ignorecase=nil, name=nil, ignorenamecase=nil)
           @Operator = operator

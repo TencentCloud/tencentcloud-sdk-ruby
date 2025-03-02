@@ -46,7 +46,6 @@ module TencentCloud
         # @param Code: 返回码（0，成功，其他失败）
         # @type Code: Integer
         # @param Message: 返回码对应的信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Message: String
         # @param Value: 结果
         # 注意：此字段可能返回 null，表示取不到有效值。

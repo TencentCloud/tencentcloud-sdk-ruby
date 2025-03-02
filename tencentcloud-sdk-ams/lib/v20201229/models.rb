@@ -209,8 +209,8 @@ module TencentCloud
 
         attr_accessor :Label, :Score, :StartTime, :EndTime, :SubLabelCode, :SubLabel, :Suggestion
         extend Gem::Deprecate
-        deprecate :SubLabelCode, :none, 2025, 1
-        deprecate :SubLabelCode=, :none, 2025, 1
+        deprecate :SubLabelCode, :none, 2025, 3
+        deprecate :SubLabelCode=, :none, 2025, 3
 
         def initialize(label=nil, score=nil, starttime=nil, endtime=nil, sublabelcode=nil, sublabel=nil, suggestion=nil)
           @Label = label
@@ -863,6 +863,41 @@ module TencentCloud
         end
       end
 
+      # 关键词命中位置信息
+      class HitInfo < TencentCloud::Common::AbstractModel
+        # @param Type: 标识模型命中还是关键词命中
+        # @type Type: String
+        # @param Keyword: 命中关键词
+        # @type Keyword: String
+        # @param LibName: 自定义词库名称
+        # @type LibName: String
+        # @param Positions: 	位置信息
+        # @type Positions: Array
+
+        attr_accessor :Type, :Keyword, :LibName, :Positions
+
+        def initialize(type=nil, keyword=nil, libname=nil, positions=nil)
+          @Type = type
+          @Keyword = keyword
+          @LibName = libname
+          @Positions = positions
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @Keyword = params['Keyword']
+          @LibName = params['LibName']
+          unless params['Positions'].nil?
+            @Positions = []
+            params['Positions'].each do |i|
+              position_tmp = Position.new
+              position_tmp.deserialize(i)
+              @Positions << position_tmp
+            end
+          end
+        end
+      end
+
       # 输入信息详情
       class InputInfo < TencentCloud::Common::AbstractModel
         # @param Type: 该字段表示文件访问类型，取值为**URL**（资源链接）和**COS** (腾讯云对象存储)。
@@ -1010,6 +1045,26 @@ module TencentCloud
           @StartTime = params['StartTime']
           @EndTime = params['EndTime']
           @SubLabel = params['SubLabel']
+        end
+      end
+
+      # 标识命中的违规关键词位置信息
+      class Position < TencentCloud::Common::AbstractModel
+        # @param Start: 关键词起始位置
+        # @type Start: Integer
+        # @param End: 关键词结束位置
+        # @type End: Integer
+
+        attr_accessor :Start, :End
+
+        def initialize(start=nil, _end=nil)
+          @Start = start
+          @End = _end
+        end
+
+        def deserialize(params)
+          @Start = params['Start']
+          @End = params['End']
         end
       end
 
@@ -1372,10 +1427,12 @@ module TencentCloud
         # 注意：此字段可能返回null，表示取不到有效值。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubLabel: String
+        # @param HitInfos: 该字段用于返回违规文本命中信息
+        # @type HitInfos: Array
 
-        attr_accessor :Label, :Keywords, :LibId, :LibName, :Score, :Suggestion, :LibType, :SubLabel
+        attr_accessor :Label, :Keywords, :LibId, :LibName, :Score, :Suggestion, :LibType, :SubLabel, :HitInfos
 
-        def initialize(label=nil, keywords=nil, libid=nil, libname=nil, score=nil, suggestion=nil, libtype=nil, sublabel=nil)
+        def initialize(label=nil, keywords=nil, libid=nil, libname=nil, score=nil, suggestion=nil, libtype=nil, sublabel=nil, hitinfos=nil)
           @Label = label
           @Keywords = keywords
           @LibId = libid
@@ -1384,6 +1441,7 @@ module TencentCloud
           @Suggestion = suggestion
           @LibType = libtype
           @SubLabel = sublabel
+          @HitInfos = hitinfos
         end
 
         def deserialize(params)
@@ -1395,6 +1453,14 @@ module TencentCloud
           @Suggestion = params['Suggestion']
           @LibType = params['LibType']
           @SubLabel = params['SubLabel']
+          unless params['HitInfos'].nil?
+            @HitInfos = []
+            params['HitInfos'].each do |i|
+              hitinfo_tmp = HitInfo.new
+              hitinfo_tmp.deserialize(i)
+              @HitInfos << hitinfo_tmp
+            end
+          end
         end
       end
 

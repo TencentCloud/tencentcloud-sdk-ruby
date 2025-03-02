@@ -271,6 +271,29 @@ module TencentCloud
         end
       end
 
+      # 灰度规则 Priority - Rule
+      class CanaryPriorityRule < TencentCloud::Common::AbstractModel
+        # @param Priority: 优先级
+        # @type Priority: Integer
+        # @param CanaryRule: 灰度规则配置
+        # @type CanaryRule: :class:`Tencentcloud::Tse.v20201207.models.CloudNativeAPIGatewayCanaryRule`
+
+        attr_accessor :Priority, :CanaryRule
+
+        def initialize(priority=nil, canaryrule=nil)
+          @Priority = priority
+          @CanaryRule = canaryrule
+        end
+
+        def deserialize(params)
+          @Priority = params['Priority']
+          unless params['CanaryRule'].nil?
+            @CanaryRule = CloudNativeAPIGatewayCanaryRule.new
+            @CanaryRule.deserialize(params['CanaryRule'])
+          end
+        end
+      end
+
       # 证书信息
       class CertificateInfo < TencentCloud::Common::AbstractModel
         # @param Id: 唯一id
@@ -878,8 +901,8 @@ module TencentCloud
 
         attr_accessor :StrategyId, :StrategyName, :CreateTime, :ModifyTime, :Description, :Config, :GatewayId, :CronConfig, :MaxReplicas
         extend Gem::Deprecate
-        deprecate :MaxReplicas, :none, 2025, 2
-        deprecate :MaxReplicas=, :none, 2025, 2
+        deprecate :MaxReplicas, :none, 2025, 3
+        deprecate :MaxReplicas=, :none, 2025, 3
 
         def initialize(strategyid=nil, strategyname=nil, createtime=nil, modifytime=nil, description=nil, config=nil, gatewayid=nil, cronconfig=nil, maxreplicas=nil)
           @StrategyId = strategyid
@@ -941,16 +964,16 @@ module TencentCloud
 
         attr_accessor :MaxReplicas, :Metrics, :Enabled, :CreateTime, :ModifyTime, :StrategyId, :AutoScalerId, :Behavior
         extend Gem::Deprecate
-        deprecate :Enabled, :none, 2025, 2
-        deprecate :Enabled=, :none, 2025, 2
-        deprecate :CreateTime, :none, 2025, 2
-        deprecate :CreateTime=, :none, 2025, 2
-        deprecate :ModifyTime, :none, 2025, 2
-        deprecate :ModifyTime=, :none, 2025, 2
-        deprecate :StrategyId, :none, 2025, 2
-        deprecate :StrategyId=, :none, 2025, 2
-        deprecate :AutoScalerId, :none, 2025, 2
-        deprecate :AutoScalerId=, :none, 2025, 2
+        deprecate :Enabled, :none, 2025, 3
+        deprecate :Enabled=, :none, 2025, 3
+        deprecate :CreateTime, :none, 2025, 3
+        deprecate :CreateTime=, :none, 2025, 3
+        deprecate :ModifyTime, :none, 2025, 3
+        deprecate :ModifyTime=, :none, 2025, 3
+        deprecate :StrategyId, :none, 2025, 3
+        deprecate :StrategyId=, :none, 2025, 3
+        deprecate :AutoScalerId, :none, 2025, 3
+        deprecate :AutoScalerId=, :none, 2025, 3
 
         def initialize(maxreplicas=nil, metrics=nil, enabled=nil, createtime=nil, modifytime=nil, strategyid=nil, autoscalerid=nil, behavior=nil)
           @MaxReplicas = maxreplicas
@@ -1079,14 +1102,14 @@ module TencentCloud
 
         attr_accessor :Enabled, :Params, :CreateTime, :ModifyTime, :StrategyId
         extend Gem::Deprecate
-        deprecate :Enabled, :none, 2025, 2
-        deprecate :Enabled=, :none, 2025, 2
-        deprecate :CreateTime, :none, 2025, 2
-        deprecate :CreateTime=, :none, 2025, 2
-        deprecate :ModifyTime, :none, 2025, 2
-        deprecate :ModifyTime=, :none, 2025, 2
-        deprecate :StrategyId, :none, 2025, 2
-        deprecate :StrategyId=, :none, 2025, 2
+        deprecate :Enabled, :none, 2025, 3
+        deprecate :Enabled=, :none, 2025, 3
+        deprecate :CreateTime, :none, 2025, 3
+        deprecate :CreateTime=, :none, 2025, 3
+        deprecate :ModifyTime, :none, 2025, 3
+        deprecate :ModifyTime=, :none, 2025, 3
+        deprecate :StrategyId, :none, 2025, 3
+        deprecate :StrategyId=, :none, 2025, 3
 
         def initialize(enabled=nil, params=nil, createtime=nil, modifytime=nil, strategyid=nil)
           @Enabled = enabled
@@ -1791,10 +1814,10 @@ module TencentCloud
 
         attr_accessor :GatewayId, :StrategyName, :Description, :Config, :CronScalerConfig, :MaxReplicas, :CronConfig
         extend Gem::Deprecate
-        deprecate :CronScalerConfig, :none, 2025, 2
-        deprecate :CronScalerConfig=, :none, 2025, 2
-        deprecate :MaxReplicas, :none, 2025, 2
-        deprecate :MaxReplicas=, :none, 2025, 2
+        deprecate :CronScalerConfig, :none, 2025, 3
+        deprecate :CronScalerConfig=, :none, 2025, 3
+        deprecate :MaxReplicas, :none, 2025, 3
+        deprecate :MaxReplicas=, :none, 2025, 3
 
         def initialize(gatewayid=nil, strategyname=nil, description=nil, config=nil, cronscalerconfig=nil, maxreplicas=nil, cronconfig=nil)
           @GatewayId = gatewayid
@@ -1838,8 +1861,8 @@ module TencentCloud
 
         attr_accessor :Result, :StrategyId, :RequestId
         extend Gem::Deprecate
-        deprecate :Result, :none, 2025, 2
-        deprecate :Result=, :none, 2025, 2
+        deprecate :Result, :none, 2025, 3
+        deprecate :Result=, :none, 2025, 3
 
         def initialize(result=nil, strategyid=nil, requestid=nil)
           @Result = result
@@ -1862,13 +1885,16 @@ module TencentCloud
         # @type ServiceId: String
         # @param CanaryRule: 灰度规则配置
         # @type CanaryRule: :class:`Tencentcloud::Tse.v20201207.models.CloudNativeAPIGatewayCanaryRule`
+        # @param CanaryRuleList: 灰度规则配置列表，如果配置了此参数，将以此参数为准，忽略CanaryRule参数
+        # @type CanaryRuleList: Array
 
-        attr_accessor :GatewayId, :ServiceId, :CanaryRule
+        attr_accessor :GatewayId, :ServiceId, :CanaryRule, :CanaryRuleList
 
-        def initialize(gatewayid=nil, serviceid=nil, canaryrule=nil)
+        def initialize(gatewayid=nil, serviceid=nil, canaryrule=nil, canaryrulelist=nil)
           @GatewayId = gatewayid
           @ServiceId = serviceid
           @CanaryRule = canaryrule
+          @CanaryRuleList = canaryrulelist
         end
 
         def deserialize(params)
@@ -1877,6 +1903,14 @@ module TencentCloud
           unless params['CanaryRule'].nil?
             @CanaryRule = CloudNativeAPIGatewayCanaryRule.new
             @CanaryRule.deserialize(params['CanaryRule'])
+          end
+          unless params['CanaryRuleList'].nil?
+            @CanaryRuleList = []
+            params['CanaryRuleList'].each do |i|
+              cloudnativeapigatewaycanaryrule_tmp = CloudNativeAPIGatewayCanaryRule.new
+              cloudnativeapigatewaycanaryrule_tmp.deserialize(i)
+              @CanaryRuleList << cloudnativeapigatewaycanaryrule_tmp
+            end
           end
         end
       end
@@ -1914,10 +1948,10 @@ module TencentCloud
 
         attr_accessor :GatewayId, :BindDomains, :CertId, :Name, :Key, :Crt
         extend Gem::Deprecate
-        deprecate :Key, :none, 2025, 2
-        deprecate :Key=, :none, 2025, 2
-        deprecate :Crt, :none, 2025, 2
-        deprecate :Crt=, :none, 2025, 2
+        deprecate :Key, :none, 2025, 3
+        deprecate :Key=, :none, 2025, 3
+        deprecate :Crt, :none, 2025, 3
+        deprecate :Crt=, :none, 2025, 3
 
         def initialize(gatewayid=nil, binddomains=nil, certid=nil, name=nil, key=nil, crt=nil)
           @GatewayId = gatewayid
@@ -2250,13 +2284,15 @@ module TencentCloud
         # @type RequestBuffering: Boolean
         # @param ResponseBuffering: 是否缓存响应body，默认true
         # @type ResponseBuffering: Boolean
+        # @param RegexPriority: 正则优先级
+        # @type RegexPriority: Integer
 
-        attr_accessor :GatewayId, :ServiceID, :RouteName, :Methods, :Hosts, :Paths, :Protocols, :PreserveHost, :HttpsRedirectStatusCode, :StripPath, :ForceHttps, :DestinationPorts, :Headers, :RequestBuffering, :ResponseBuffering
+        attr_accessor :GatewayId, :ServiceID, :RouteName, :Methods, :Hosts, :Paths, :Protocols, :PreserveHost, :HttpsRedirectStatusCode, :StripPath, :ForceHttps, :DestinationPorts, :Headers, :RequestBuffering, :ResponseBuffering, :RegexPriority
         extend Gem::Deprecate
-        deprecate :ForceHttps, :none, 2025, 2
-        deprecate :ForceHttps=, :none, 2025, 2
+        deprecate :ForceHttps, :none, 2025, 3
+        deprecate :ForceHttps=, :none, 2025, 3
 
-        def initialize(gatewayid=nil, serviceid=nil, routename=nil, methods=nil, hosts=nil, paths=nil, protocols=nil, preservehost=nil, httpsredirectstatuscode=nil, strippath=nil, forcehttps=nil, destinationports=nil, headers=nil, requestbuffering=nil, responsebuffering=nil)
+        def initialize(gatewayid=nil, serviceid=nil, routename=nil, methods=nil, hosts=nil, paths=nil, protocols=nil, preservehost=nil, httpsredirectstatuscode=nil, strippath=nil, forcehttps=nil, destinationports=nil, headers=nil, requestbuffering=nil, responsebuffering=nil, regexpriority=nil)
           @GatewayId = gatewayid
           @ServiceID = serviceid
           @RouteName = routename
@@ -2272,6 +2308,7 @@ module TencentCloud
           @Headers = headers
           @RequestBuffering = requestbuffering
           @ResponseBuffering = responsebuffering
+          @RegexPriority = regexpriority
         end
 
         def deserialize(params)
@@ -2297,6 +2334,7 @@ module TencentCloud
           end
           @RequestBuffering = params['RequestBuffering']
           @ResponseBuffering = params['ResponseBuffering']
+          @RegexPriority = params['RegexPriority']
         end
       end
 
@@ -3286,19 +3324,23 @@ module TencentCloud
         # @type ServiceId: String
         # @param Priority: 优先级
         # @type Priority: Integer
+        # @param PriorityList: 优先级列表，如果配置了此参数，将以此参数为准，忽略Priority参数
+        # @type PriorityList: Array
 
-        attr_accessor :GatewayId, :ServiceId, :Priority
+        attr_accessor :GatewayId, :ServiceId, :Priority, :PriorityList
 
-        def initialize(gatewayid=nil, serviceid=nil, priority=nil)
+        def initialize(gatewayid=nil, serviceid=nil, priority=nil, prioritylist=nil)
           @GatewayId = gatewayid
           @ServiceId = serviceid
           @Priority = priority
+          @PriorityList = prioritylist
         end
 
         def deserialize(params)
           @GatewayId = params['GatewayId']
           @ServiceId = params['ServiceId']
           @Priority = params['Priority']
+          @PriorityList = params['PriorityList']
         end
       end
 
@@ -7135,8 +7177,8 @@ module TencentCloud
 
         attr_accessor :GatewayId, :Type, :TypeList
         extend Gem::Deprecate
-        deprecate :Type, :none, 2025, 2
-        deprecate :Type=, :none, 2025, 2
+        deprecate :Type, :none, 2025, 3
+        deprecate :Type=, :none, 2025, 3
 
         def initialize(gatewayid=nil, type=nil, typelist=nil)
           @GatewayId = gatewayid
@@ -8578,8 +8620,8 @@ module TencentCloud
 
         attr_accessor :Total, :CertificatesList, :Pages
         extend Gem::Deprecate
-        deprecate :Pages, :none, 2025, 2
-        deprecate :Pages=, :none, 2025, 2
+        deprecate :Pages, :none, 2025, 3
+        deprecate :Pages=, :none, 2025, 3
 
         def initialize(total=nil, certificateslist=nil, pages=nil)
           @Total = total
@@ -8738,13 +8780,15 @@ module TencentCloud
         # @type RequestBuffering: Boolean
         # @param ResponseBuffering: 是否缓存响应body，默认true
         # @type ResponseBuffering: Boolean
+        # @param RegexPriority: 正则优先级
+        # @type RegexPriority: Integer
 
-        attr_accessor :ID, :Name, :Methods, :Paths, :Hosts, :Protocols, :PreserveHost, :HttpsRedirectStatusCode, :StripPath, :CreatedTime, :ForceHttps, :ServiceName, :ServiceID, :DestinationPorts, :Headers, :RequestBuffering, :ResponseBuffering
+        attr_accessor :ID, :Name, :Methods, :Paths, :Hosts, :Protocols, :PreserveHost, :HttpsRedirectStatusCode, :StripPath, :CreatedTime, :ForceHttps, :ServiceName, :ServiceID, :DestinationPorts, :Headers, :RequestBuffering, :ResponseBuffering, :RegexPriority
         extend Gem::Deprecate
-        deprecate :ForceHttps, :none, 2025, 2
-        deprecate :ForceHttps=, :none, 2025, 2
+        deprecate :ForceHttps, :none, 2025, 3
+        deprecate :ForceHttps=, :none, 2025, 3
 
-        def initialize(id=nil, name=nil, methods=nil, paths=nil, hosts=nil, protocols=nil, preservehost=nil, httpsredirectstatuscode=nil, strippath=nil, createdtime=nil, forcehttps=nil, servicename=nil, serviceid=nil, destinationports=nil, headers=nil, requestbuffering=nil, responsebuffering=nil)
+        def initialize(id=nil, name=nil, methods=nil, paths=nil, hosts=nil, protocols=nil, preservehost=nil, httpsredirectstatuscode=nil, strippath=nil, createdtime=nil, forcehttps=nil, servicename=nil, serviceid=nil, destinationports=nil, headers=nil, requestbuffering=nil, responsebuffering=nil, regexpriority=nil)
           @ID = id
           @Name = name
           @Methods = methods
@@ -8762,6 +8806,7 @@ module TencentCloud
           @Headers = headers
           @RequestBuffering = requestbuffering
           @ResponseBuffering = responsebuffering
+          @RegexPriority = regexpriority
         end
 
         def deserialize(params)
@@ -8789,6 +8834,7 @@ module TencentCloud
           end
           @RequestBuffering = params['RequestBuffering']
           @ResponseBuffering = params['ResponseBuffering']
+          @RegexPriority = params['RegexPriority']
         end
       end
 
@@ -9455,10 +9501,10 @@ module TencentCloud
 
         attr_accessor :GatewayId, :StrategyId, :StrategyName, :Description, :Config, :CronScalerConfig, :MaxReplicas, :CronConfig
         extend Gem::Deprecate
-        deprecate :CronScalerConfig, :none, 2025, 2
-        deprecate :CronScalerConfig=, :none, 2025, 2
-        deprecate :MaxReplicas, :none, 2025, 2
-        deprecate :MaxReplicas=, :none, 2025, 2
+        deprecate :CronScalerConfig, :none, 2025, 3
+        deprecate :CronScalerConfig=, :none, 2025, 3
+        deprecate :MaxReplicas, :none, 2025, 3
+        deprecate :MaxReplicas=, :none, 2025, 3
 
         def initialize(gatewayid=nil, strategyid=nil, strategyname=nil, description=nil, config=nil, cronscalerconfig=nil, maxreplicas=nil, cronconfig=nil)
           @GatewayId = gatewayid
@@ -9522,14 +9568,17 @@ module TencentCloud
         # @type Priority: Integer
         # @param CanaryRule: 灰度规则配置
         # @type CanaryRule: :class:`Tencentcloud::Tse.v20201207.models.CloudNativeAPIGatewayCanaryRule`
+        # @param CanaryRuleList: 灰度规则配置列表，如果配置了此参数，将以此参数为准，忽略Priority和CanaryRule参数
+        # @type CanaryRuleList: Array
 
-        attr_accessor :GatewayId, :ServiceId, :Priority, :CanaryRule
+        attr_accessor :GatewayId, :ServiceId, :Priority, :CanaryRule, :CanaryRuleList
 
-        def initialize(gatewayid=nil, serviceid=nil, priority=nil, canaryrule=nil)
+        def initialize(gatewayid=nil, serviceid=nil, priority=nil, canaryrule=nil, canaryrulelist=nil)
           @GatewayId = gatewayid
           @ServiceId = serviceid
           @Priority = priority
           @CanaryRule = canaryrule
+          @CanaryRuleList = canaryrulelist
         end
 
         def deserialize(params)
@@ -9539,6 +9588,14 @@ module TencentCloud
           unless params['CanaryRule'].nil?
             @CanaryRule = CloudNativeAPIGatewayCanaryRule.new
             @CanaryRule.deserialize(params['CanaryRule'])
+          end
+          unless params['CanaryRuleList'].nil?
+            @CanaryRuleList = []
+            params['CanaryRuleList'].each do |i|
+              canarypriorityrule_tmp = CanaryPriorityRule.new
+              canarypriorityrule_tmp.deserialize(i)
+              @CanaryRuleList << canarypriorityrule_tmp
+            end
           end
         end
       end
@@ -9582,10 +9639,10 @@ module TencentCloud
 
         attr_accessor :GatewayId, :Id, :Name, :Key, :Crt, :BindDomains, :CertId, :CertSource
         extend Gem::Deprecate
-        deprecate :Name, :none, 2025, 2
-        deprecate :Name=, :none, 2025, 2
-        deprecate :BindDomains, :none, 2025, 2
-        deprecate :BindDomains=, :none, 2025, 2
+        deprecate :Name, :none, 2025, 3
+        deprecate :Name=, :none, 2025, 3
+        deprecate :BindDomains, :none, 2025, 3
+        deprecate :BindDomains=, :none, 2025, 3
 
         def initialize(gatewayid=nil, id=nil, name=nil, key=nil, crt=nil, binddomains=nil, certid=nil, certsource=nil)
           @GatewayId = gatewayid
@@ -9770,13 +9827,15 @@ module TencentCloud
         # @type RequestBuffering: Boolean
         # @param ResponseBuffering: 是否缓存响应body，默认true
         # @type ResponseBuffering: Boolean
+        # @param RegexPriority: 增加优先级
+        # @type RegexPriority: Integer
 
-        attr_accessor :GatewayId, :ServiceID, :RouteID, :RouteName, :Methods, :Hosts, :Paths, :Protocols, :PreserveHost, :HttpsRedirectStatusCode, :StripPath, :ForceHttps, :DestinationPorts, :Headers, :RequestBuffering, :ResponseBuffering
+        attr_accessor :GatewayId, :ServiceID, :RouteID, :RouteName, :Methods, :Hosts, :Paths, :Protocols, :PreserveHost, :HttpsRedirectStatusCode, :StripPath, :ForceHttps, :DestinationPorts, :Headers, :RequestBuffering, :ResponseBuffering, :RegexPriority
         extend Gem::Deprecate
-        deprecate :ForceHttps, :none, 2025, 2
-        deprecate :ForceHttps=, :none, 2025, 2
+        deprecate :ForceHttps, :none, 2025, 3
+        deprecate :ForceHttps=, :none, 2025, 3
 
-        def initialize(gatewayid=nil, serviceid=nil, routeid=nil, routename=nil, methods=nil, hosts=nil, paths=nil, protocols=nil, preservehost=nil, httpsredirectstatuscode=nil, strippath=nil, forcehttps=nil, destinationports=nil, headers=nil, requestbuffering=nil, responsebuffering=nil)
+        def initialize(gatewayid=nil, serviceid=nil, routeid=nil, routename=nil, methods=nil, hosts=nil, paths=nil, protocols=nil, preservehost=nil, httpsredirectstatuscode=nil, strippath=nil, forcehttps=nil, destinationports=nil, headers=nil, requestbuffering=nil, responsebuffering=nil, regexpriority=nil)
           @GatewayId = gatewayid
           @ServiceID = serviceid
           @RouteID = routeid
@@ -9793,6 +9852,7 @@ module TencentCloud
           @Headers = headers
           @RequestBuffering = requestbuffering
           @ResponseBuffering = responsebuffering
+          @RegexPriority = regexpriority
         end
 
         def deserialize(params)
@@ -9819,6 +9879,7 @@ module TencentCloud
           end
           @RequestBuffering = params['RequestBuffering']
           @ResponseBuffering = params['ResponseBuffering']
+          @RegexPriority = params['RegexPriority']
         end
       end
 
@@ -12034,8 +12095,8 @@ module TencentCloud
 
         attr_accessor :EnableActiveHealthCheck, :ActiveHealthCheck, :EnablePassiveHealthCheck, :PassiveHealthCheck, :Successes, :Failures, :Timeouts, :HealthyHttpStatuses, :UnhealthyHttpStatuses, :IgnoreZeroWeightNodes, :ZeroWeightHeathCheck
         extend Gem::Deprecate
-        deprecate :IgnoreZeroWeightNodes, :none, 2025, 2
-        deprecate :IgnoreZeroWeightNodes=, :none, 2025, 2
+        deprecate :IgnoreZeroWeightNodes, :none, 2025, 3
+        deprecate :IgnoreZeroWeightNodes=, :none, 2025, 3
 
         def initialize(enableactivehealthcheck=nil, activehealthcheck=nil, enablepassivehealthcheck=nil, passivehealthcheck=nil, successes=nil, failures=nil, timeouts=nil, healthyhttpstatuses=nil, unhealthyhttpstatuses=nil, ignorezeroweightnodes=nil, zeroweightheathcheck=nil)
           @EnableActiveHealthCheck = enableactivehealthcheck

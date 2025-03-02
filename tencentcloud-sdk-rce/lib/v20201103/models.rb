@@ -104,20 +104,13 @@ module TencentCloud
       class DataAuthorizationInfo < TencentCloud::Common::AbstractModel
         # @param DataProviderName: 数据委托方、需求方：客户主体名称。
         # @type DataProviderName: String
-        # @param DataRecipientName: 数据受托方、提供方：腾讯云主体名称。
-
-        # 固定填：腾讯云计算（北京）有限责任公司
+        # @param DataRecipientName: 数据受托方、提供方：腾讯云主体名称。固定填：腾讯云计算（北京）有限责任公司
         # @type DataRecipientName: String
         # @param UserDataType: 客户请求RCE所提供的用户数据类型，支持多选。实际以接口请求传参为准。
-
         # 1-手机号；
-
         # 2-微信开放账号；
-
         # 3-QQ开放账号；
-
         # 4-IP地址；
-
         # 999-其它；
         # @type UserDataType: Array
         # @param IsAuthorize: 客户是否已按[合规指南](https://rule.tencent.com/rule/202409130001)要求获取用户授权，同意客户委托腾讯云处理入参信息
@@ -126,15 +119,11 @@ module TencentCloud
         # @param IsOrderHandling: 客户是否已按[合规指南](https://rule.tencent.com/rule/202409130001)要求获取用户授权，同意腾讯云结合客户提供的信息，对已合法收集的用户数据进行必要处理得出服务结果，并返回给客户。
         # 1-已授权；其它值为未授权。
         # @type IsOrderHandling: Integer
-        # @param AuthorizationTerm: 客户获得的用户授权期限时间戳（单位秒）。
-
-        # 不填默认无固定期限。
+        # @param AuthorizationTerm: 客户获得的用户授权期限时间戳（单位秒）。不填默认无固定期限。
         # @type AuthorizationTerm: Integer
         # @param PrivacyPolicyLink: 客户获得用户授权所依赖的协议地址。
         # @type PrivacyPolicyLink: String
-        # @param IsPersonalData: 是否是用户个人敏感数据（不推荐使用）。
-
-        # 固定填：1。
+        # @param IsPersonalData: 是否是用户个人敏感数据（不推荐使用）。固定填：1。
         # @type IsPersonalData: Integer
 
         attr_accessor :DataProviderName, :DataRecipientName, :UserDataType, :IsAuthorize, :IsOrderHandling, :AuthorizationTerm, :PrivacyPolicyLink, :IsPersonalData
@@ -515,8 +504,7 @@ module TencentCloud
       # 全栈式风控引擎入参
       class InputCryptoManageMarketingRisk < TencentCloud::Common::AbstractModel
         # @param IsAuthorized: 是否授权：1已授权，否则未授权。
-        #  调用全栈式风控引擎接口服务时，客户需先明确授权
-
+        #  调用全栈式风控引擎接口服务时，客户需先明确授权。
         # @type IsAuthorized: String
         # @param CryptoType: 加密类型：1AES加密
         # @type CryptoType: String
@@ -1454,11 +1442,11 @@ module TencentCloud
 
       # 查询黑白名单出参
       class OutputDescribeNameListFrontFixListData < TencentCloud::Common::AbstractModel
-        # @param Code: 错误码，0 表示成功，非0表示失败错误码。 0：成功 1002：参数错误 4300：未开通服务 6000：系统内部错误
+        # @param Code: 错误码，0 表示成功，非0表示失败错误码。 0：成功 1002：参数错误 4300：未开通服务 6000：系统内部错误。
         # @type Code: Integer
-        # @param Message: 错误信息
+        # @param Message: 错误信息。
         # @type Message: String
-        # @param Value: 黑白名单列表信息
+        # @param Value: 黑白名单列表信息。
         # @type Value: :class:`Tencentcloud::Rce.v20201103.models.OutputDescribeNameListInfo`
 
         attr_accessor :Code, :Message, :Value

@@ -755,10 +755,8 @@ module TencentCloud
         #   默认取值：true<br />
         #   该参数目前仅用于 `RunInstances` 接口。
         # </li>
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeleteWithInstance: Boolean
         # @param SnapshotId: 数据盘快照ID。选择的数据盘快照大小需小于数据盘大小。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SnapshotId: String
         # @param Encrypt: 数据盘是加密。取值范围：
         # <li>true：加密</li>
@@ -767,23 +765,18 @@ module TencentCloud
         #   默认取值：false<br />
         #   该参数目前仅用于 `RunInstances` 接口。
         # </li>
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Encrypt: Boolean
         # @param KmsKeyId: 自定义CMK对应的ID，取值为UUID或者类似kms-abcd1234。用于加密云盘。
 
         # 该参数目前仅用于 `RunInstances` 接口。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type KmsKeyId: String
         # @param ThroughputPerformance: 云硬盘性能，单位：MB/s
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ThroughputPerformance: Integer
         # @param CdcId: 所属的独享集群ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CdcId: String
         # @param BurstPerformance: 突发性能
 
         #  <b>注：内测中。</b>
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BurstPerformance: Boolean
         # @param DiskName: 磁盘名称，长度不超过128 个字符。
 
@@ -2585,10 +2578,8 @@ module TencentCloud
       # 竞价请求相关选项
       class InstanceMarketOptionsRequest < TencentCloud::Common::AbstractModel
         # @param SpotOptions: 竞价相关选项
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SpotOptions: :class:`Tencentcloud::Batch.v20170312.models.SpotMarketOptions`
         # @param MarketType: 市场选项类型，当前只支持取值：spot
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MarketType: String
 
         attr_accessor :SpotOptions, :MarketType
@@ -3717,8 +3708,7 @@ module TencentCloud
 
       # 描述了 “云监控” 服务相关的信息
       class RunMonitorServiceEnabled < TencentCloud::Common::AbstractModel
-        # @param Enabled: 是否开启[云监控](/document/product/248)服务。取值范围：<br><li>true：表示开启云监控服务<br><li>false：表示不开启云监控服务<br><br>默认取值：true。
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param Enabled: 是否开启[云监控](/document/product/248)服务。取值范围：<br><li>true：表示开启云监控服务</li><li>false：表示不开启云监控服务</li><br>默认取值：true。
         # @type Enabled: Boolean
 
         attr_accessor :Enabled
@@ -3751,10 +3741,8 @@ module TencentCloud
       # 竞价相关选项
       class SpotMarketOptions < TencentCloud::Common::AbstractModel
         # @param MaxPrice: 竞价出价
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaxPrice: String
         # @param SpotInstanceType: 竞价请求类型，当前仅支持类型：one-time
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SpotInstanceType: String
 
         attr_accessor :MaxPrice, :SpotInstanceType

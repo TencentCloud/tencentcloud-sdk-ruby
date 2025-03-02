@@ -341,6 +341,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # CreateIdsWhiteRule
+
         # 创建入侵防御规则白名单接口
 
         # @param request: Request instance for CreateIdsWhiteRule.
@@ -580,6 +582,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 历史方案，业务已迁移，接口不再适用
 
         # 删除入侵防御规则白名单接口
 
@@ -1156,6 +1160,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 历史方案，业务已迁移，接口不再适用
 
         # 查询入侵防御规则白名单接口
 

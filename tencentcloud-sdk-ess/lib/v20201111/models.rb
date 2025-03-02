@@ -20,12 +20,9 @@ module TencentCloud
       # 企业超管信息
       class Admin < TencentCloud::Common::AbstractModel
         # @param Name: 超管名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Mobile: 超管手机号，打码显示
         # 示例值：138****1569
-
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Mobile: String
 
         attr_accessor :Name, :Mobile
@@ -54,12 +51,12 @@ module TencentCloud
 
         attr_accessor :AppId, :ProxyAppId, :ProxyOrganizationId, :ProxyOperator
         extend Gem::Deprecate
-        deprecate :AppId, :none, 2025, 2
-        deprecate :AppId=, :none, 2025, 2
-        deprecate :ProxyAppId, :none, 2025, 2
-        deprecate :ProxyAppId=, :none, 2025, 2
-        deprecate :ProxyOperator, :none, 2025, 2
-        deprecate :ProxyOperator=, :none, 2025, 2
+        deprecate :AppId, :none, 2025, 3
+        deprecate :AppId=, :none, 2025, 3
+        deprecate :ProxyAppId, :none, 2025, 3
+        deprecate :ProxyAppId=, :none, 2025, 3
+        deprecate :ProxyOperator, :none, 2025, 3
+        deprecate :ProxyOperator=, :none, 2025, 3
 
         def initialize(appid=nil, proxyappid=nil, proxyorganizationid=nil, proxyoperator=nil)
           @AppId = appid
@@ -337,13 +334,10 @@ module TencentCloud
       # 签署方信息，发起合同后可获取到对应的签署方信息，如角色ID，角色名称
       class ApproverItem < TencentCloud::Common::AbstractModel
         # @param SignId: 签署方唯一编号
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SignId: String
         # @param RecipientId: 签署方角色编号
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RecipientId: String
         # @param ApproverRoleName: 签署方角色名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApproverRoleName: String
 
         attr_accessor :SignId, :RecipientId, :ApproverRoleName
@@ -453,13 +447,10 @@ module TencentCloud
         # @param SignId: 签署方唯一编号，一个全局唯一的标识符，不同的流程不会出现冲突。
 
         # 可以使用签署方的唯一编号来生成签署链接（也可以通过RecipientId来生成签署链接）。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SignId: String
         # @param RecipientId: 签署方角色编号，签署方角色编号是用于区分同一个流程中不同签署方的唯一标识。不同的流程会出现同样的签署方角色编号。
 
         # 填写控件和签署控件都与特定的角色编号关联。
-
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RecipientId: String
 
         attr_accessor :SignId, :RecipientId
@@ -543,22 +534,16 @@ module TencentCloud
       # 企业扩展服务授权列表详情
       class AuthInfoDetail < TencentCloud::Common::AbstractModel
         # @param Type: 扩展服务类型，和入参一致
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: String
         # @param Name: 扩展服务名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param HasAuthUserList: 授权员工列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HasAuthUserList: Array
         # @param HasAuthOrganizationList: 授权企业列表（企业自动签时，该字段有值）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HasAuthOrganizationList: Array
         # @param AuthUserTotal: 授权员工列表总数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AuthUserTotal: Integer
         # @param AuthOrganizationTotal: 授权企业列表总数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AuthOrganizationTotal: Integer
 
         attr_accessor :Type, :Name, :HasAuthUserList, :HasAuthOrganizationList, :AuthUserTotal, :AuthOrganizationTotal
@@ -696,8 +681,8 @@ module TencentCloud
 
         attr_accessor :UserInfo, :CertInfoCallback, :UserDefineSeal, :SealImgCallback, :CallbackUrl, :VerifyChannels, :LicenseType, :JumpUrl
         extend Gem::Deprecate
-        deprecate :CallbackUrl, :none, 2025, 2
-        deprecate :CallbackUrl=, :none, 2025, 2
+        deprecate :CallbackUrl, :none, 2025, 3
+        deprecate :CallbackUrl=, :none, 2025, 3
 
         def initialize(userinfo=nil, certinfocallback=nil, userdefineseal=nil, sealimgcallback=nil, callbackurl=nil, verifychannels=nil, licensetype=nil, jumpurl=nil)
           @UserInfo = userinfo
@@ -890,8 +875,8 @@ module TencentCloud
 
         attr_accessor :CallbackUrl, :Token, :CallbackKey, :CallbackToken
         extend Gem::Deprecate
-        deprecate :Token, :none, 2025, 2
-        deprecate :Token=, :none, 2025, 2
+        deprecate :Token, :none, 2025, 3
+        deprecate :Token=, :none, 2025, 3
 
         def initialize(callbackurl=nil, token=nil, callbackkey=nil, callbacktoken=nil)
           @CallbackUrl = callbackurl
@@ -921,12 +906,12 @@ module TencentCloud
 
         attr_accessor :ApplicationId, :OrganizationId, :OperatorId, :SubOrganizationId
         extend Gem::Deprecate
-        deprecate :ApplicationId, :none, 2025, 2
-        deprecate :ApplicationId=, :none, 2025, 2
-        deprecate :OrganizationId, :none, 2025, 2
-        deprecate :OrganizationId=, :none, 2025, 2
-        deprecate :SubOrganizationId, :none, 2025, 2
-        deprecate :SubOrganizationId=, :none, 2025, 2
+        deprecate :ApplicationId, :none, 2025, 3
+        deprecate :ApplicationId=, :none, 2025, 3
+        deprecate :OrganizationId, :none, 2025, 3
+        deprecate :OrganizationId=, :none, 2025, 3
+        deprecate :SubOrganizationId, :none, 2025, 3
+        deprecate :SubOrganizationId=, :none, 2025, 3
 
         def initialize(applicationid=nil, organizationid=nil, operatorid=nil, suborganizationid=nil)
           @ApplicationId = applicationid
@@ -1401,11 +1386,9 @@ module TencentCloud
         # @type ComponentValue: String
         # @param OffsetX: **如果控件是关键字定位方式**，可以对关键字定位出来的区域进行横坐标方向的调整，单位为pt（点）。例如，如果关键字定位出来的区域偏左或偏右，可以通过调整横坐标方向的参数来使控件位置更加准确。
         # 注意： `向左调整设置为负数， 向右调整设置成正数`
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OffsetX: Float
         # @param OffsetY: **如果控件是关键字定位方式**，可以对关键字定位出来的区域进行纵坐标方向的调整，单位为pt（点）。例如，如果关键字定位出来的区域偏上或偏下，可以通过调整纵坐标方向的参数来使控件位置更加准确。
         # 注意： `向上调整设置为负数， 向下调整设置成正数`
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OffsetY: Float
         # @param KeywordOrder: **如果控件是关键字定位方式**，指定关键字排序规则时，可以选择Positive或Reverse两种排序方式。
         # <ul><li> <b>Positive</b> :表示正序，即根据关键字在PDF文件内的顺序进行排列</li>
@@ -1430,12 +1413,10 @@ module TencentCloud
         # @param LockComponentValue: **web嵌入发起合同场景下**， 是否锁定填写和签署控件值不允许嵌入页面进行编辑
         # <ul><li>false（默认）：不锁定控件值，允许在页面编辑控件值</li>
         # <li>true：锁定控件值，在页面编辑控件值</li></ul>
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LockComponentValue: Boolean
         # @param ForbidMoveAndDelete: **web嵌入发起合同场景下**，是否禁止移动和删除填写和签署控件
         # <ul><li> <b>false（默认）</b> :不禁止移动和删除控件</li>
         # <li> <b>true</b> : 可以移动和删除控件</li></ul>
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ForbidMoveAndDelete: Boolean
         # @param ComponentDateFontSize: <font color="red">【暂未使用】</font>日期签署控件的字号，默认为 12
         # @type ComponentDateFontSize: Integer
@@ -2195,8 +2176,8 @@ module TencentCloud
 
         attr_accessor :ResourceType, :ResourceName, :ResourceId, :Operator, :Agent, :Organization
         extend Gem::Deprecate
-        deprecate :Organization, :none, 2025, 2
-        deprecate :Organization=, :none, 2025, 2
+        deprecate :Organization, :none, 2025, 3
+        deprecate :Organization=, :none, 2025, 3
 
         def initialize(resourcetype=nil, resourcename=nil, resourceid=nil, operator=nil, agent=nil, organization=nil)
           @ResourceType = resourcetype
@@ -2535,6 +2516,65 @@ module TencentCloud
 
         def deserialize(params)
           @WebUrl = params['WebUrl']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateEmployeeChangeUrl请求参数结构体
+      class CreateEmployeeChangeUrlRequest < TencentCloud::Common::AbstractModel
+        # @param Agent: 代理企业和员工的信息。<br/>在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
+        # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
+        # @param Operator: 执行本接口操作的员工信息。<br/>注: `在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。`
+        # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
+        # @param UserId: 待修改的员工UserId
+        # @type UserId: String
+        # @param NewMobile: 待修改的员工手机号
+        # @type NewMobile: String
+
+        attr_accessor :Agent, :Operator, :UserId, :NewMobile
+
+        def initialize(agent=nil, operator=nil, userid=nil, newmobile=nil)
+          @Agent = agent
+          @Operator = operator
+          @UserId = userid
+          @NewMobile = newmobile
+        end
+
+        def deserialize(params)
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
+          @UserId = params['UserId']
+          @NewMobile = params['NewMobile']
+        end
+      end
+
+      # CreateEmployeeChangeUrl返回参数结构体
+      class CreateEmployeeChangeUrlResponse < TencentCloud::Common::AbstractModel
+        # @param MiniAppPath: 修改员工信息的小程序链接<br>跳转到腾讯电子签小程序的实现可以参考微信的官方文档:<a href="https://developers.weixin.qq.com/miniprogram/dev/framework/open-ability/launchApp.html" target="_blank">开放能力/打开 App</a>
+        # @type MiniAppPath: String
+        # @param ExpireTime: 链接过期时间以 Unix 时间戳格式表示，从生成链接时间起，往后7天有效期。过期后短链将失效，无法打开。
+
+        # @type ExpireTime: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :MiniAppPath, :ExpireTime, :RequestId
+
+        def initialize(miniapppath=nil, expiretime=nil, requestid=nil)
+          @MiniAppPath = miniapppath
+          @ExpireTime = expiretime
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @MiniAppPath = params['MiniAppPath']
+          @ExpireTime = params['ExpireTime']
           @RequestId = params['RequestId']
         end
       end
@@ -3175,8 +3215,8 @@ module TencentCloud
 
         attr_accessor :ReportId, :Status, :ReportUrl, :RequestId
         extend Gem::Deprecate
-        deprecate :ReportUrl, :none, 2025, 2
-        deprecate :ReportUrl=, :none, 2025, 2
+        deprecate :ReportUrl, :none, 2025, 3
+        deprecate :ReportUrl=, :none, 2025, 3
 
         def initialize(reportid=nil, status=nil, reporturl=nil, requestid=nil)
           @ReportId = reportid
@@ -3748,10 +3788,10 @@ module TencentCloud
 
         attr_accessor :Operator, :FlowName, :Approvers, :FlowDescription, :FlowType, :ClientToken, :DeadLine, :RemindedOn, :UserData, :Unordered, :CustomShowMap, :NeedSignReview, :Agent, :CcInfos, :AutoSignScene, :RelatedFlowId, :CallbackUrl, :FlowDisplayType
         extend Gem::Deprecate
-        deprecate :RelatedFlowId, :none, 2025, 2
-        deprecate :RelatedFlowId=, :none, 2025, 2
-        deprecate :CallbackUrl, :none, 2025, 2
-        deprecate :CallbackUrl=, :none, 2025, 2
+        deprecate :RelatedFlowId, :none, 2025, 3
+        deprecate :RelatedFlowId=, :none, 2025, 3
+        deprecate :CallbackUrl, :none, 2025, 3
+        deprecate :CallbackUrl=, :none, 2025, 3
 
         def initialize(operator=nil, flowname=nil, approvers=nil, flowdescription=nil, flowtype=nil, clienttoken=nil, deadline=nil, remindedon=nil, userdata=nil, unordered=nil, customshowmap=nil, needsignreview=nil, agent=nil, ccinfos=nil, autosignscene=nil, relatedflowid=nil, callbackurl=nil, flowdisplaytype=nil)
           @Operator = operator
@@ -3960,8 +4000,8 @@ module TencentCloud
 
         attr_accessor :FlowId, :Operator, :Agent, :FlowApproverInfos, :Organization, :JumpUrl, :UrlType
         extend Gem::Deprecate
-        deprecate :Organization, :none, 2025, 2
-        deprecate :Organization=, :none, 2025, 2
+        deprecate :Organization, :none, 2025, 3
+        deprecate :Organization=, :none, 2025, 3
 
         def initialize(flowid=nil, operator=nil, agent=nil, flowapproverinfos=nil, organization=nil, jumpurl=nil, urltype=nil)
           @FlowId = flowid
@@ -4378,8 +4418,8 @@ module TencentCloud
 
         attr_accessor :Operator, :Agent, :Organization
         extend Gem::Deprecate
-        deprecate :Organization, :none, 2025, 2
-        deprecate :Organization=, :none, 2025, 2
+        deprecate :Organization, :none, 2025, 3
+        deprecate :Organization=, :none, 2025, 3
 
         def initialize(operator=nil, agent=nil, organization=nil)
           @Operator = operator
@@ -4473,10 +4513,10 @@ module TencentCloud
 
         attr_accessor :Operator, :TemplateId, :FlowName, :MaxFlowNum, :QrEffectiveDay, :FlowEffectiveDay, :Restrictions, :UserData, :CallbackUrl, :Agent, :ApproverRestrictions, :ApproverComponentLimitTypes, :ForbidPersonalMultipleSign, :FlowNameAppendScannerInfo
         extend Gem::Deprecate
-        deprecate :CallbackUrl, :none, 2025, 2
-        deprecate :CallbackUrl=, :none, 2025, 2
-        deprecate :ApproverRestrictions, :none, 2025, 2
-        deprecate :ApproverRestrictions=, :none, 2025, 2
+        deprecate :CallbackUrl, :none, 2025, 3
+        deprecate :CallbackUrl=, :none, 2025, 3
+        deprecate :ApproverRestrictions, :none, 2025, 3
+        deprecate :ApproverRestrictions=, :none, 2025, 3
 
         def initialize(operator=nil, templateid=nil, flowname=nil, maxflownum=nil, qreffectiveday=nil, floweffectiveday=nil, restrictions=nil, userdata=nil, callbackurl=nil, agent=nil, approverrestrictions=nil, approvercomponentlimittypes=nil, forbidpersonalmultiplesign=nil, flownameappendscannerinfo=nil)
           @Operator = operator
@@ -5426,8 +5466,8 @@ module TencentCloud
 
         attr_accessor :UserName, :IdCardNumber, :SealName, :Operator, :IdCardType, :SealImage, :SealImageCompress, :Mobile, :EnableAutoSign, :SealColor, :ProcessSeal, :FileId, :Agent, :LicenseType, :SceneKey
         extend Gem::Deprecate
-        deprecate :SealImage, :none, 2025, 2
-        deprecate :SealImage=, :none, 2025, 2
+        deprecate :SealImage, :none, 2025, 3
+        deprecate :SealImage=, :none, 2025, 3
 
         def initialize(username=nil, idcardnumber=nil, sealname=nil, operator=nil, idcardtype=nil, sealimage=nil, sealimagecompress=nil, mobile=nil, enableautosign=nil, sealcolor=nil, processseal=nil, fileid=nil, agent=nil, licensetype=nil, scenekey=nil)
           @UserName = username
@@ -5968,10 +6008,8 @@ module TencentCloud
       # 创建员工的结果
       class CreateStaffResult < TencentCloud::Common::AbstractModel
         # @param SuccessEmployeeData: 创建员工的成功列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SuccessEmployeeData: Array
         # @param FailedEmployeeData: 创建员工的失败列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FailedEmployeeData: Array
 
         attr_accessor :SuccessEmployeeData, :FailedEmployeeData
@@ -6895,10 +6933,8 @@ module TencentCloud
       # 删除员工结果
       class DeleteStaffsResult < TencentCloud::Common::AbstractModel
         # @param SuccessEmployeeData: 删除员工的成功数据
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SuccessEmployeeData: Array
         # @param FailedEmployeeData: 删除员工的失败数据
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FailedEmployeeData: Array
 
         attr_accessor :SuccessEmployeeData, :FailedEmployeeData
@@ -7474,10 +7510,10 @@ module TencentCloud
 
         attr_accessor :Operator, :BusinessType, :BusinessIds, :FileName, :FileType, :Offset, :Limit, :UrlTtl, :CcToken, :Scene, :Agent
         extend Gem::Deprecate
-        deprecate :CcToken, :none, 2025, 2
-        deprecate :CcToken=, :none, 2025, 2
-        deprecate :Scene, :none, 2025, 2
-        deprecate :Scene=, :none, 2025, 2
+        deprecate :CcToken, :none, 2025, 3
+        deprecate :CcToken=, :none, 2025, 3
+        deprecate :Scene, :none, 2025, 3
+        deprecate :Scene=, :none, 2025, 3
 
         def initialize(operator=nil, businesstype=nil, businessids=nil, filename=nil, filetype=nil, offset=nil, limit=nil, urlttl=nil, cctoken=nil, scene=nil, agent=nil)
           @Operator = operator
@@ -7858,12 +7894,12 @@ module TencentCloud
 
         attr_accessor :Operator, :Agent, :ContentType, :Filters, :Offset, :Limit, :ApplicationId, :IsChannel, :Organization, :GenerateSource, :WithPreviewUrl
         extend Gem::Deprecate
-        deprecate :IsChannel, :none, 2025, 2
-        deprecate :IsChannel=, :none, 2025, 2
-        deprecate :Organization, :none, 2025, 2
-        deprecate :Organization=, :none, 2025, 2
-        deprecate :GenerateSource, :none, 2025, 2
-        deprecate :GenerateSource=, :none, 2025, 2
+        deprecate :IsChannel, :none, 2025, 3
+        deprecate :IsChannel=, :none, 2025, 3
+        deprecate :Organization, :none, 2025, 3
+        deprecate :Organization=, :none, 2025, 3
+        deprecate :GenerateSource, :none, 2025, 3
+        deprecate :GenerateSource=, :none, 2025, 3
 
         def initialize(operator=nil, agent=nil, contenttype=nil, filters=nil, offset=nil, limit=nil, applicationid=nil, ischannel=nil, organization=nil, generatesource=nil, withpreviewurl=nil)
           @Operator = operator
@@ -8356,8 +8392,8 @@ module TencentCloud
 
         attr_accessor :Total, :JoinedTotal, :ActivedTotal, :ExportUrl, :List, :ActivatedTotal, :RequestId
         extend Gem::Deprecate
-        deprecate :ActivedTotal, :none, 2025, 2
-        deprecate :ActivedTotal=, :none, 2025, 2
+        deprecate :ActivedTotal, :none, 2025, 3
+        deprecate :ActivedTotal=, :none, 2025, 3
 
         def initialize(total=nil, joinedtotal=nil, activedtotal=nil, exporturl=nil, list=nil, activatedtotal=nil, requestid=nil)
           @Total = total
@@ -8868,7 +8904,6 @@ module TencentCloud
         # @param LiveNessVideo: 活体视频的base64编码，mp4格式
 
         # 注:`需进行base64解码获取活体视频文件`
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LiveNessVideo: String
 
         attr_accessor :LiveNessVideo
@@ -8945,13 +8980,10 @@ module TencentCloud
         # 填写控件和签署控件都与特定的角色编号关联。
 
         # 在进行新增签署方操作时，建议记录下该签署方的角色编号。后续可以拉取流程信息，用来判断该签署方的当前状态。
-
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RecipientId: String
         # @param SignId: 签署方唯一编号，一个全局唯一的标识符，不同的流程不会出现冲突。
 
         # 可以使用签署方的唯一编号来生成签署链接（也可以通过RecipientId来生成签署链接）。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SignId: String
         # @param ApproverStatus: 签署方当前状态，会出现下面的状态
 
@@ -8965,7 +8997,6 @@ module TencentCloud
         # 10：填写完成
         # 15：已解除
         # 19：转他人处理
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApproverStatus: Integer
 
         attr_accessor :RecipientId, :SignId, :ApproverStatus
@@ -9042,13 +9073,10 @@ module TencentCloud
         # </ul>
         # @type Status: String
         # @param OperatorUserId: 操作扩展服务的操作人UserId，员工在腾讯电子签平台的唯一身份标识，为32位字符串。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OperatorUserId: String
         # @param OperateOn: 扩展服务的操作时间，格式为Unix标准时间戳（秒）。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OperateOn: Integer
         # @param HasAuthUserList: 该扩展服务若可以授权，此参数对应授权人员的列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HasAuthUserList: Array
 
         attr_accessor :Type, :Name, :Status, :OperatorUserId, :OperateOn, :HasAuthUserList
@@ -9082,13 +9110,10 @@ module TencentCloud
       # 印章扩展信息
       class ExtendScene < TencentCloud::Common::AbstractModel
         # @param GenerateType: 印章来源类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GenerateType: String
         # @param GenerateTypeDesc: 印章来源类型描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GenerateTypeDesc: String
         # @param GenerateTypeLogo: 印章来源logo
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GenerateTypeLogo: String
 
         attr_accessor :GenerateType, :GenerateTypeDesc, :GenerateTypeLogo
@@ -9109,10 +9134,8 @@ module TencentCloud
       # 绑定角色失败信息
       class FailedCreateRoleData < TencentCloud::Common::AbstractModel
         # @param UserId: 用户userId
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UserId: String
         # @param RoleIds: 角色id列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RoleIds: Array
 
         attr_accessor :UserId, :RoleIds
@@ -9248,7 +9271,6 @@ module TencentCloud
         # @param Url: 下载文件的URL，有效期为输入的UrlTtl，默认5分钟
         # @type Url: String
         # @param Option: 下载文件的附加信息。如果是pdf文件，会返回pdf文件每页的有效高宽
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Option: String
 
         attr_accessor :Url, :Option
@@ -9339,13 +9361,10 @@ module TencentCloud
       # 批量补充签署人时，补充失败的报错说明
       class FillError < TencentCloud::Common::AbstractModel
         # @param RecipientId: 为签署方经办人在签署合同中的参与方ID，与控件绑定，是控件的归属方，ID为32位字符串。与入参中补充的签署人角色ID对应，批量补充部分失败返回对应的错误信息。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RecipientId: String
         # @param ErrMessage: 补充失败错误说明
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrMessage: String
         # @param FlowId: 合同流程ID，为32位字符串。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FlowId: String
 
         attr_accessor :RecipientId, :ErrMessage, :FlowId
@@ -9366,22 +9385,16 @@ module TencentCloud
       # 文档内的填充控件返回结构体，返回控件的基本信息和填写内容值
       class FilledComponent < TencentCloud::Common::AbstractModel
         # @param ComponentId: 控件Id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ComponentId: String
         # @param ComponentName: 控件名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ComponentName: String
         # @param ComponentFillStatus: 控件填写状态；0-未填写；1-已填写
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ComponentFillStatus: String
         # @param ComponentValue: 控件填写内容
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ComponentValue: String
         # @param ComponentRecipientId: 控件所属参与方Id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ComponentRecipientId: String
         # @param ImageUrl: 图片填充控件下载链接，如果是图片填充控件时，这里返回图片的下载链接。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ImageUrl: String
 
         attr_accessor :ComponentId, :ComponentName, :ComponentFillStatus, :ComponentValue, :ComponentRecipientId, :ImageUrl
@@ -9428,7 +9441,6 @@ module TencentCloud
       # 签署人详情信息
       class FlowApproverDetail < TencentCloud::Common::AbstractModel
         # @param ApproveMessage: 签署时的相关信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApproveMessage: String
         # @param ApproveName: 签署方姓名
         # @type ApproveName: String
@@ -9450,7 +9462,6 @@ module TencentCloud
         # @param ReceiptId: 模板配置中的参与方ID,与控件绑定
         # @type ReceiptId: String
         # @param CustomUserId: 客户自定义的用户ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CustomUserId: String
         # @param Mobile: 签署人手机号
         # @type Mobile: String
@@ -9459,33 +9470,26 @@ module TencentCloud
         # @param ApproveTime: 签署人签署时间，时间戳，单位秒
         # @type ApproveTime: Integer
         # @param ApproveType: 签署方类型，ORGANIZATION-企业员工，PERSON-个人，ENTERPRISESERVER-企业静默签
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApproveType: String
         # @param ApproverSource: 签署方侧用户来源，如WEWORKAPP-企业微信等
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApproverSource: String
         # @param CustomApproverTag: 客户自定义签署方标识
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CustomApproverTag: String
         # @param OrganizationId: 签署方企业Id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OrganizationId: String
         # @param OrganizationName: 签署方企业名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OrganizationName: String
         # @param SignId: 签署参与人在本流程中的编号ID（每个流程不同），可用此ID来定位签署参与人在本流程的签署节点，也可用于后续创建签署链接等操作。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SignId: String
         # @param ApproverRoleName: 自定义签署人角色
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApproverRoleName: String
         # @param RecipientId: 模板配置中的参与方ID,与控件绑定
         # @type RecipientId: String
 
         attr_accessor :ApproveMessage, :ApproveName, :ApproveStatus, :ReceiptId, :CustomUserId, :Mobile, :SignOrder, :ApproveTime, :ApproveType, :ApproverSource, :CustomApproverTag, :OrganizationId, :OrganizationName, :SignId, :ApproverRoleName, :RecipientId
         extend Gem::Deprecate
-        deprecate :ReceiptId, :none, 2025, 2
-        deprecate :ReceiptId=, :none, 2025, 2
+        deprecate :ReceiptId, :none, 2025, 3
+        deprecate :ReceiptId=, :none, 2025, 3
 
         def initialize(approvemessage=nil, approvename=nil, approvestatus=nil, receiptid=nil, customuserid=nil, mobile=nil, signorder=nil, approvetime=nil, approvetype=nil, approversource=nil, customapprovertag=nil, organizationid=nil, organizationname=nil, signid=nil, approverrolename=nil, recipientid=nil)
           @ApproveMessage = approvemessage
@@ -9617,7 +9621,6 @@ module TencentCloud
         # @param FlowName: 合同流程的名称。
         # @type FlowName: String
         # @param FlowDescription: 合同流程描述信息。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FlowDescription: String
         # @param FlowType: 合同流程的类别分类（如销售合同/入职合同等）。
         # @type FlowType: String
@@ -9634,19 +9637,14 @@ module TencentCloud
         # <li> **9** : 部分填写</li>
         # <li> **10** : 已拒填</li>
         # <li> **21** : 已解除</li></ul>
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FlowStatus: Integer
         # @param CreatedOn: 合同流程创建时间，格式为Unix标准时间戳（秒）。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreatedOn: Integer
         # @param FlowMessage: 当合同流程状态为已拒签（即 FlowStatus=3）或已撤销（即 FlowStatus=6）时，此字段 FlowMessage 为拒签或撤销原因。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FlowMessage: String
         # @param Creator:  合同流程发起方的员工编号, 即员工在腾讯电子签平台的唯一身份标识。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Creator: String
         # @param Deadline: 合同流程的签署截止时间，格式为Unix标准时间戳（秒）。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Deadline: Integer
 
         attr_accessor :FlowId, :FlowName, :FlowDescription, :FlowType, :FlowStatus, :CreatedOn, :FlowMessage, :Creator, :Deadline
@@ -9863,8 +9861,8 @@ module TencentCloud
 
         attr_accessor :ApproverType, :OrganizationName, :ApproverName, :ApproverMobile, :ApproverIdCardType, :ApproverIdCardNumber, :RecipientId, :VerifyChannel, :NotifyType, :IsFullText, :PreReadTime, :UserId, :Required, :ApproverSource, :CustomApproverTag, :RegisterInfo, :ApproverOption, :JumpUrl, :SignId, :ApproverNeedSignReview, :SignComponents, :Components, :ComponentLimitType, :ApproverVerifyTypes, :ApproverSignTypes, :SignTypeSelector, :Deadline, :Intention, :SignEndpoints
         extend Gem::Deprecate
-        deprecate :JumpUrl, :none, 2025, 2
-        deprecate :JumpUrl=, :none, 2025, 2
+        deprecate :JumpUrl, :none, 2025, 3
+        deprecate :JumpUrl=, :none, 2025, 3
 
         def initialize(approvertype=nil, organizationname=nil, approvername=nil, approvermobile=nil, approveridcardtype=nil, approveridcardnumber=nil, recipientid=nil, verifychannel=nil, notifytype=nil, isfulltext=nil, prereadtime=nil, userid=nil, required=nil, approversource=nil, customapprovertag=nil, registerinfo=nil, approveroption=nil, jumpurl=nil, signid=nil, approverneedsignreview=nil, signcomponents=nil, components=nil, componentlimittype=nil, approververifytypes=nil, approversigntypes=nil, signtypeselector=nil, deadline=nil, intention=nil, signendpoints=nil)
           @ApproverType = approvertype
@@ -9961,15 +9959,12 @@ module TencentCloud
         # @param FlowName: 合同流程的名称（可自定义此名称），长度不能超过200，只能由中文、字母、数字和下划线组成。
         # @type FlowName: String
         # @param FlowType: 合同流程的类别分类（如销售合同/入职合同等）。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FlowType: String
         # @param FlowStatus: 合同流程当前的签署状态, 会存在下列的状态值 <ul><li> **0** : 未开启流程(合同中不存在填写环节)</li> <li> **1** : 待签署</li> <li> **2** : 部分签署</li> <li> **3** : 已拒签</li> <li> **4** : 已签署</li> <li> **5** : 已过期</li> <li> **6** : 已撤销</li> <li> **7** : 未开启流程(合同中存在填写环节)</li> <li> **8** : 等待填写</li> <li> **9** : 部分填写</li> <li> **10** : 已拒填</li> <li> **21** : 已解除</li></ul>
         # @type FlowStatus: Integer
         # @param FlowMessage: 当合同流程状态为已拒签（即 FlowStatus=3）或已撤销（即 FlowStatus=6）时，此字段 FlowMessage 为拒签或撤销原因。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FlowMessage: String
         # @param FlowDescription: 合同流程描述信息。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FlowDescription: String
         # @param CreatedOn: 合同流程的创建时间戳，格式为Unix标准时间戳（秒）。
         # @type CreatedOn: Integer
@@ -9978,7 +9973,6 @@ module TencentCloud
         # @param CcInfos: 合同流程的关注方信息数组
         # @type CcInfos: Array
         # @param Creator: 合同流程发起方的员工编号, 即员工在腾讯电子签平台的唯一身份标识。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Creator: String
 
         attr_accessor :FlowId, :FlowName, :FlowType, :FlowStatus, :FlowMessage, :FlowDescription, :CreatedOn, :FlowApproverInfos, :CcInfos, :Creator
@@ -10047,10 +10041,8 @@ module TencentCloud
       # 合同组签署方信息
       class FlowGroupApprovers < TencentCloud::Common::AbstractModel
         # @param FlowId: 合同流程ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FlowId: String
         # @param Approvers: 签署方信息，包含合同ID和角色ID用于定位RecipientId。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Approvers: Array
 
         attr_accessor :FlowId, :Approvers
@@ -10130,8 +10122,8 @@ module TencentCloud
 
         attr_accessor :FlowName, :Approvers, :FileIds, :TemplateId, :FlowType, :FlowDescription, :Deadline, :CallbackUrl, :UserData, :Unordered, :Components, :NeedSignReview, :AutoSignScene, :FlowDisplayType
         extend Gem::Deprecate
-        deprecate :CallbackUrl, :none, 2025, 2
-        deprecate :CallbackUrl=, :none, 2025, 2
+        deprecate :CallbackUrl, :none, 2025, 3
+        deprecate :CallbackUrl=, :none, 2025, 3
 
         def initialize(flowname=nil, approvers=nil, fileids=nil, templateid=nil, flowtype=nil, flowdescription=nil, deadline=nil, callbackurl=nil, userdata=nil, unordered=nil, components=nil, needsignreview=nil, autosignscene=nil, flowdisplaytype=nil)
           @FlowName = flowname
@@ -10547,8 +10539,8 @@ module TencentCloud
 
         attr_accessor :TaskId, :Operator, :Agent, :Organization
         extend Gem::Deprecate
-        deprecate :Organization, :none, 2025, 2
-        deprecate :Organization=, :none, 2025, 2
+        deprecate :Organization, :none, 2025, 3
+        deprecate :Organization=, :none, 2025, 3
 
         def initialize(taskid=nil, operator=nil, agent=nil, organization=nil)
           @TaskId = taskid
@@ -10621,16 +10613,12 @@ module TencentCloud
       # 成员企业信息
       class GroupOrganization < TencentCloud::Common::AbstractModel
         # @param Name: 成员企业名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Alias: 成员企业别名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Alias: String
         # @param OrganizationId: 成员企业id，为 32 位字符串，可在电子签PC 控制台，企业设置->企业电子签账号 获取
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OrganizationId: String
         # @param UpdateTime: 记录更新时间， unix时间戳，单位秒
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: Integer
         # @param Status: 成员企业加入集团的当前状态
         # <ul><li> **1**：待授权</li>
@@ -10639,31 +10627,22 @@ module TencentCloud
         # <li> **4**：已解除</li>
         # <li> **5**：已加入</li>
         # </ul>
-
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
         # @param IsMainOrganization: 是否为集团主企业
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsMainOrganization: Boolean
         # @param IdCardNumber: 企业社会信用代码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IdCardNumber: String
         # @param AdminInfo: 企业超管信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AdminInfo: :class:`Tencentcloud::Ess.v20201111.models.Admin`
         # @param License: 企业许可证Id，此字段暂时不需要关注
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type License: String
         # @param LicenseExpireTime: 企业许可证过期时间，unix时间戳，单位秒
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LicenseExpireTime: Integer
         # @param JoinTime: 成员企业加入集团时间，unix时间戳，单位秒
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type JoinTime: Integer
         # @param FlowEngineEnable: 是否使用自建审批流引擎（即不是企微审批流引擎）
         # <ul><li> **true**：是</li>
         # <li> **false**：否</li></ul>
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FlowEngineEnable: Boolean
 
         attr_accessor :Name, :Alias, :OrganizationId, :UpdateTime, :Status, :IsMainOrganization, :IdCardNumber, :AdminInfo, :License, :LicenseExpireTime, :JoinTime, :FlowEngineEnable
@@ -10705,25 +10684,18 @@ module TencentCloud
       # 授权企业列表（目前仅用于“企业自动签 -> 合作企业授权”）
       class HasAuthOrganization < TencentCloud::Common::AbstractModel
         # @param OrganizationId: 授权企业id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OrganizationId: String
         # @param OrganizationName: 授权企业名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OrganizationName: String
         # @param AuthorizedOrganizationId: 被授权企业id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AuthorizedOrganizationId: String
         # @param AuthorizedOrganizationName: 被授权企业名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AuthorizedOrganizationName: String
         # @param TemplateId: 授权模板id（仅当授权方式为模板授权时有值）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TemplateId: String
         # @param TemplateName: 授权模板名称（仅当授权方式为模板授权时有值）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TemplateName: String
         # @param AuthorizeTime: 授权时间，格式为时间戳，单位s
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AuthorizeTime: Integer
 
         attr_accessor :OrganizationId, :OrganizationName, :AuthorizedOrganizationId, :AuthorizedOrganizationName, :TemplateId, :TemplateName, :AuthorizeTime
@@ -10752,15 +10724,12 @@ module TencentCloud
       # 被授权的用户信息
       class HasAuthUser < TencentCloud::Common::AbstractModel
         # @param UserId: 员工在腾讯电子签平台的唯一身份标识，为32位字符串。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UserId: String
         # @param BelongTo: 当前员工的归属情况，可能值是：
         # MainOrg：在集团企业的场景下，返回此值代表是归属主企业
         # CurrentOrg：在普通企业场景下返回此值；或者在集团企业的场景下，返回此值代表归属子企业
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BelongTo: String
         # @param MainOrganizationId: 集团主企业id，当前企业为集团子企业时，该字段有值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MainOrganizationId: String
 
         attr_accessor :UserId, :BelongTo, :MainOrganizationId
@@ -10781,22 +10750,16 @@ module TencentCloud
       # 企业角色数据信息
       class IntegrateRole < TencentCloud::Common::AbstractModel
         # @param RoleId: 角色id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RoleId: String
         # @param RoleName: 角色名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RoleName: String
         # @param RoleStatus: 角色状态，1-启用，2-禁用
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RoleStatus: Integer
         # @param IsGroupRole: 是否是集团角色，true-是，false-否
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsGroupRole: Boolean
         # @param SubOrgIdList: 管辖的子企业列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubOrgIdList: Array
         # @param PermissionGroups: 权限树
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PermissionGroups: Array
 
         attr_accessor :RoleId, :RoleName, :RoleStatus, :IsGroupRole, :SubOrgIdList, :PermissionGroups
@@ -10830,19 +10793,14 @@ module TencentCloud
       # 部门信息
       class IntegrationDepartment < TencentCloud::Common::AbstractModel
         # @param DeptId: 部门ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeptId: String
         # @param DeptName: 部门名。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeptName: String
         # @param ParentDeptId: 父部门ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ParentDeptId: String
         # @param DeptOpenId: 客户系统部门ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeptOpenId: String
         # @param OrderNo: 序列号。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OrderNo: Integer
 
         attr_accessor :DeptId, :DeptName, :ParentDeptId, :DeptOpenId, :OrderNo
@@ -10955,7 +10913,6 @@ module TencentCloud
       # 意愿核身点头确认模式结果详细数据
       class IntentionActionResultDetail < TencentCloud::Common::AbstractModel
         # @param Video: 视频base64编码（其中包含全程提示文本和点头音频，mp4格式）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Video: String
 
         attr_accessor :Video
@@ -10994,13 +10951,10 @@ module TencentCloud
         # @param Video: 视频base64（其中包含全程问题和回答音频，mp4格式）
 
         # 注：`需进行base64解码获取视频文件`
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Video: String
         # @param ResultCode:  和答案匹配结果列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResultCode: Array
         # @param AsrResult: 回答问题语音识别结果列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AsrResult: Array
 
         attr_accessor :Video, :ResultCode, :AsrResult
@@ -11431,7 +11385,6 @@ module TencentCloud
         # @param SealStatus: 印章状态，有以下六种：CHECKING（审核中）SUCCESS（已启用）FAIL（审核拒绝）CHECKING-SADM（待超管审核）DISABLE（已停用）STOPPED（已终止）
         # @type SealStatus: String
         # @param FailReason: 审核失败原因
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FailReason: String
         # @param Url: 印章图片url，5分钟内有效
         # @type Url: String
@@ -11440,10 +11393,8 @@ module TencentCloud
         # @param IsAllTime: 用印申请是否为永久授权，true-是，false-否
         # @type IsAllTime: Boolean
         # @param AuthorizedUsers: 授权人列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AuthorizedUsers: Array
         # @param ExtendScene: 印章扩展数据信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExtendScene: :class:`Tencentcloud::Ess.v20201111.models.ExtendScene`
 
         attr_accessor :SealId, :SealName, :CreateOn, :Creator, :SealPolicyId, :SealStatus, :FailReason, :Url, :SealType, :IsAllTime, :AuthorizedUsers, :ExtendScene
@@ -11570,43 +11521,28 @@ module TencentCloud
         # @param OrganizationName: 组织机构名称。
         # 请确认该名称与企业营业执照中注册的名称一致。
         # 如果名称中包含英文括号()，请使用中文括号（）代替。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OrganizationName: String
         # @param UniformSocialCreditCode: 组织机构企业统一社会信用代码。
         # 请确认该企业统一社会信用代码与企业营业执照中注册的统一社会信用代码一致。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UniformSocialCreditCode: String
         # @param LegalName: 组织机构法人的姓名。
         # 请确认该企业统一社会信用代码与企业营业执照中注册的法人姓名一致。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LegalName: String
         # @param LegalIdCardType: 组织机构法人的证件类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LegalIdCardType: String
         # @param LegalIdCardNumber: 组织机构法人的证件号码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LegalIdCardNumber: String
         # @param AdminName: 组织机构超管姓名。
-
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AdminName: String
         # @param AdminMobile: 组织机构超管手机号。
-
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AdminMobile: String
         # @param AdminIdCardType: 组织机构超管证件类型
-
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AdminIdCardType: String
         # @param AdminIdCardNumber: 组织机构超管证件号码
-
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AdminIdCardNumber: String
         # @param OldAdminName: 原超管姓名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OldAdminName: String
         # @param OldAdminMobile: 原超管手机号
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OldAdminMobile: String
         # @param OldAdminIdCardType: 原超管证件类型
         # @type OldAdminIdCardType: String
@@ -11663,16 +11599,16 @@ module TencentCloud
 
         attr_accessor :OrganizationId, :Channel, :OrganizationOpenId, :ClientIp, :ProxyIp
         extend Gem::Deprecate
-        deprecate :OrganizationId, :none, 2025, 2
-        deprecate :OrganizationId=, :none, 2025, 2
-        deprecate :Channel, :none, 2025, 2
-        deprecate :Channel=, :none, 2025, 2
-        deprecate :OrganizationOpenId, :none, 2025, 2
-        deprecate :OrganizationOpenId=, :none, 2025, 2
-        deprecate :ClientIp, :none, 2025, 2
-        deprecate :ClientIp=, :none, 2025, 2
-        deprecate :ProxyIp, :none, 2025, 2
-        deprecate :ProxyIp=, :none, 2025, 2
+        deprecate :OrganizationId, :none, 2025, 3
+        deprecate :OrganizationId=, :none, 2025, 3
+        deprecate :Channel, :none, 2025, 3
+        deprecate :Channel=, :none, 2025, 3
+        deprecate :OrganizationOpenId, :none, 2025, 3
+        deprecate :OrganizationOpenId=, :none, 2025, 3
+        deprecate :ClientIp, :none, 2025, 3
+        deprecate :ClientIp=, :none, 2025, 3
+        deprecate :ProxyIp, :none, 2025, 3
+        deprecate :ProxyIp=, :none, 2025, 3
 
         def initialize(organizationid=nil, channel=nil, organizationopenid=nil, clientip=nil, proxyip=nil)
           @OrganizationId = organizationid
@@ -11766,37 +11702,26 @@ module TencentCloud
       # 权限树节点权限
       class Permission < TencentCloud::Common::AbstractModel
         # @param Name: 权限名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Key: 权限key
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Key: String
         # @param Type: 权限类型 1前端，2后端
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: Integer
         # @param Hide: 是否隐藏
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Hide: Integer
         # @param DataLabel: 数据权限标签 1:表示根节点，2:表示叶子结点
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DataLabel: Integer
         # @param DataType: 数据权限独有，1:关联其他模块鉴权，2:表示关联自己模块鉴权
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DataType: Integer
         # @param DataRange: 数据权限独有，表示数据范围，1：全公司，2:部门及下级部门，3:自己
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DataRange: Integer
         # @param DataTo: 关联权限, 表示这个功能权限要受哪个数据权限管控
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DataTo: String
         # @param ParentKey: 父级权限key
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ParentKey: String
         # @param IsChecked: 是否选中
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsChecked: Boolean
         # @param Children: 子权限集合
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Children: Array
 
         attr_accessor :Name, :Key, :Type, :Hide, :DataLabel, :DataType, :DataRange, :DataTo, :ParentKey, :IsChecked, :Children
@@ -11840,16 +11765,12 @@ module TencentCloud
       # 权限树中的权限组
       class PermissionGroup < TencentCloud::Common::AbstractModel
         # @param GroupName: 权限组名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GroupName: String
         # @param GroupKey: 权限组key
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GroupKey: String
         # @param Hide: 是否隐藏分组，0否1是
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Hide: Integer
         # @param Permissions: 权限集合
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Permissions: Array
 
         attr_accessor :GroupName, :GroupKey, :Hide, :Permissions
@@ -11976,23 +11897,18 @@ module TencentCloud
       # 参与方填写控件信息
       class RecipientComponentInfo < TencentCloud::Common::AbstractModel
         # @param RecipientId: 签署方经办人在合同流程中的参与方ID，与控件绑定，是控件的归属方
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RecipientId: String
         # @param RecipientFillStatus: 参与方填写状态
         # <ul>
         # <li>**空值** : 此参与方没有填写控件</li>
         # <li>**0**:  未填写, 表示此参与方还没有填写合同的填写控件</li>
         # <li>**1**:  已填写, 表示此参与方已经填写所有的填写控件</li></ul>
-
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RecipientFillStatus: String
         # @param IsPromoter: 是否为发起方
         # <ul><li>true-发起方</li>
         # <li>false-参与方</li></ul>
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsPromoter: Boolean
         # @param Components: 改参与方填写控件信息列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Components: Array
 
         attr_accessor :RecipientId, :RecipientFillStatus, :IsPromoter, :Components
@@ -12022,19 +11938,17 @@ module TencentCloud
       # 发起流程快速注册相关信息
       class RegisterInfo < TencentCloud::Common::AbstractModel
         # @param LegalName: 法人姓名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LegalName: String
         # @param Uscc: 社会统一信用代码
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Uscc: String
         # @param UnifiedSocialCreditCode: 社会统一信用代码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UnifiedSocialCreditCode: String
 
         attr_accessor :LegalName, :Uscc, :UnifiedSocialCreditCode
         extend Gem::Deprecate
-        deprecate :Uscc, :none, 2025, 2
-        deprecate :Uscc=, :none, 2025, 2
+        deprecate :Uscc, :none, 2025, 3
+        deprecate :Uscc=, :none, 2025, 3
 
         def initialize(legalname=nil, uscc=nil, unifiedsocialcreditcode=nil)
           @LegalName = legalname
@@ -12164,8 +12078,8 @@ module TencentCloud
 
         attr_accessor :Name, :Mobile, :RelievedApproverReceiptId, :ApproverType, :ApproverSignComponentType, :ApproverSignRole, :ApproverSignSealId, :RelievedApproverRecipientId
         extend Gem::Deprecate
-        deprecate :RelievedApproverReceiptId, :none, 2025, 2
-        deprecate :RelievedApproverReceiptId=, :none, 2025, 2
+        deprecate :RelievedApproverReceiptId, :none, 2025, 3
+        deprecate :RelievedApproverReceiptId=, :none, 2025, 3
 
         def initialize(name=nil, mobile=nil, relievedapproverreceiptid=nil, approvertype=nil, approversigncomponenttype=nil, approversignrole=nil, approversignsealid=nil, relievedapproverrecipientid=nil)
           @Name = name
@@ -12335,16 +12249,13 @@ module TencentCloud
       # 模板中指定的印章信息
       class SealInfo < TencentCloud::Common::AbstractModel
         # @param SealId: 印章ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SealId: String
         # @param SealType: 印章类型。LEGAL_PERSON_SEAL: 法定代表人章；
         # ORGANIZATIONSEAL：企业印章；
         # OFFICIAL：企业公章；
         # CONTRACT：合同专用章
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SealType: String
         # @param SealName: 印章名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SealName: String
 
         attr_accessor :SealId, :SealType, :SealName
@@ -12428,18 +12339,14 @@ module TencentCloud
         # @param Mobile: 用户手机号码， 支持国内手机号11位数字(无需加+86前缀或其他字符)。
         # @type Mobile: String
         # @param Email: 用户邮箱。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Email: String
         # @param OpenId: 用户在第三方平台ID。
         # 注：`如需在此接口提醒员工实名，该参数不传。`
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OpenId: String
         # @param Roles: 员工角色信息。
         # 注：`创建和更新场景无需填写。`
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Roles: Array
         # @param Department: 员工部门信息。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Department: :class:`Tencentcloud::Ess.v20201111.models.Department`
         # @param Verified: 员工是否实名。
         # 注：`创建和更新场景无需填写。`
@@ -12449,12 +12356,10 @@ module TencentCloud
         # @type CreatedOn: Integer
         # @param VerifiedOn: 员工实名时间戳，单位秒。
         # 注：`创建和更新场景无需填写。`
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VerifiedOn: Integer
         # @param QuiteJob: 员工是否离职：
         # <ul><li>**0**：未离职</li><li>**1**：离职</li></ul>
         # 注：`创建和更新场景无需填写。`
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type QuiteJob: Integer
         # @param ReceiveUserId: 员工离职交接人用户ID。
         # 注：`创建和更新场景无需填写。`
@@ -12464,7 +12369,6 @@ module TencentCloud
         # @type ReceiveOpenId: String
         # @param WeworkOpenId: 企业微信用户账号ID。
         # 注：`仅企微类型的企业创建员工接口支持该字段。`
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WeworkOpenId: String
 
         attr_accessor :UserId, :DisplayName, :Mobile, :Email, :OpenId, :Roles, :Department, :Verified, :CreatedOn, :VerifiedOn, :QuiteJob, :ReceiveUserId, :ReceiveOpenId, :WeworkOpenId
@@ -12517,10 +12421,8 @@ module TencentCloud
       # 集成版企业角色信息。
       class StaffRole < TencentCloud::Common::AbstractModel
         # @param RoleId: 角色ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RoleId: String
         # @param RoleName: 角色名称。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RoleName: String
 
         attr_accessor :RoleId, :RoleName
@@ -12555,8 +12457,8 @@ module TencentCloud
 
         attr_accessor :Operator, :FlowId, :ClientToken, :Agent, :CcNotifyType
         extend Gem::Deprecate
-        deprecate :ClientToken, :none, 2025, 2
-        deprecate :ClientToken=, :none, 2025, 2
+        deprecate :ClientToken, :none, 2025, 3
+        deprecate :ClientToken=, :none, 2025, 3
 
         def initialize(operator=nil, flowid=nil, clienttoken=nil, agent=nil, ccnotifytype=nil)
           @Operator = operator
@@ -12678,7 +12580,6 @@ module TencentCloud
         # @param UserId: 员工在电子签平台的id
         # @type UserId: String
         # @param Note: 提示，当创建已存在未实名用户时，该字段有值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Note: String
         # @param WeworkOpenId: 传入的企微账号id
         # @type WeworkOpenId: String
@@ -12839,30 +12740,23 @@ module TencentCloud
         # 您可以通过浏览器直接打开此链接预览模板，或将其嵌入到 iframe 中进行预览。
 
         # 注意：只有在请求接口时将 <b>WithPreviewUrl </b>参数设置为 true，才会生成预览链接。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PreviewUrl: String
         # @param UserFlowType: 用户自定义合同类型。
 
         # 返回配置模板的时候选择的合同类型。[点击查看配置的位置](https://qcloudimg.tencent-cloud.cn/raw/4a766f0540253bf2a05d50c58bd14990.png)
 
         # 自定义合同类型配置的地方如链接图所示。[点击查看自定义合同类型管理的位置](https://qcloudimg.tencent-cloud.cn/raw/36582cea03ae6a2559894844942b5d5c.png)
-
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UserFlowType: :class:`Tencentcloud::Ess.v20201111.models.UserFlowType`
         # @param TemplateVersion: 模板版本的编号，旨在标识其独特的版本信息，通常呈现为一串字符串，由日期和递增的数字组成
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TemplateVersion: String
         # @param Published: 模板是否已发布可以分为以下两种状态：
 
         # <b>true</b>：已发布状态，表示该模板已经发布并可以正常使用。
         # <b>false</b>：未发布状态，表示该模板还未发布，无法使用。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Published: Boolean
         # @param ShareTemplateId: <b>集体账号场景下</b>： 集团账号分享给子企业的模板的来源模板ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ShareTemplateId: String
         # @param TemplateSeals: 此模板配置的预填印章列表（包括自动签署指定的印章）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TemplateSeals: Array
         # @param Seals: 模板内部指定的印章列表
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -12870,8 +12764,8 @@ module TencentCloud
 
         attr_accessor :TemplateId, :TemplateName, :Recipients, :Components, :SignComponents, :Description, :DocumentResourceIds, :FileInfos, :AttachmentResourceIds, :SignOrder, :Status, :Creator, :CreatedOn, :Promoter, :TemplateType, :Available, :OrganizationId, :CreatorId, :PreviewUrl, :UserFlowType, :TemplateVersion, :Published, :ShareTemplateId, :TemplateSeals, :Seals
         extend Gem::Deprecate
-        deprecate :Seals, :none, 2025, 2
-        deprecate :Seals=, :none, 2025, 2
+        deprecate :Seals, :none, 2025, 3
+        deprecate :Seals=, :none, 2025, 3
 
         def initialize(templateid=nil, templatename=nil, recipients=nil, components=nil, signcomponents=nil, description=nil, documentresourceids=nil, fileinfos=nil, attachmentresourceids=nil, signorder=nil, status=nil, creator=nil, createdon=nil, promoter=nil, templatetype=nil, available=nil, organizationid=nil, creatorid=nil, previewurl=nil, userflowtype=nil, templateversion=nil, published=nil, sharetemplateid=nil, templateseals=nil, seals=nil)
           @TemplateId = templateid
@@ -13199,8 +13093,8 @@ module TencentCloud
 
         attr_accessor :BusinessType, :Caller, :FileInfos, :FileType, :CoverRect, :CustomIds, :FileUrls, :Agent
         extend Gem::Deprecate
-        deprecate :FileUrls, :none, 2025, 2
-        deprecate :FileUrls=, :none, 2025, 2
+        deprecate :FileUrls, :none, 2025, 3
+        deprecate :FileUrls=, :none, 2025, 3
 
         def initialize(businesstype=nil, caller=nil, fileinfos=nil, filetype=nil, coverrect=nil, customids=nil, fileurls=nil, agent=nil)
           @BusinessType = businesstype
@@ -13267,13 +13161,10 @@ module TencentCloud
       # 用户自定义合同类型， 自定义合同类型的管理可以[点击查看在控制台位置的截图](https://qcloudimg.tencent-cloud.cn/raw/85a9b2ebce07b0cd6d75d5327d538235.png)
       class UserFlowType < TencentCloud::Common::AbstractModel
         # @param UserFlowTypeId: 合同类型ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UserFlowTypeId: String
         # @param Name: 合同类型名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Description: 合同类型说明
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
 
         attr_accessor :UserFlowTypeId, :Name, :Description
@@ -13306,14 +13197,14 @@ module TencentCloud
 
         attr_accessor :UserId, :Channel, :OpenId, :ClientIp, :ProxyIp
         extend Gem::Deprecate
-        deprecate :Channel, :none, 2025, 2
-        deprecate :Channel=, :none, 2025, 2
-        deprecate :OpenId, :none, 2025, 2
-        deprecate :OpenId=, :none, 2025, 2
-        deprecate :ClientIp, :none, 2025, 2
-        deprecate :ClientIp=, :none, 2025, 2
-        deprecate :ProxyIp, :none, 2025, 2
-        deprecate :ProxyIp=, :none, 2025, 2
+        deprecate :Channel, :none, 2025, 3
+        deprecate :Channel=, :none, 2025, 3
+        deprecate :OpenId, :none, 2025, 3
+        deprecate :OpenId=, :none, 2025, 3
+        deprecate :ClientIp, :none, 2025, 3
+        deprecate :ClientIp=, :none, 2025, 3
+        deprecate :ProxyIp, :none, 2025, 3
+        deprecate :ProxyIp=, :none, 2025, 3
 
         def initialize(userid=nil, channel=nil, openid=nil, clientip=nil, proxyip=nil)
           @UserId = userid

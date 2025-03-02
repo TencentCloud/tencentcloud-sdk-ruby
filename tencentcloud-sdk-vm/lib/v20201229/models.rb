@@ -17,52 +17,89 @@
 module TencentCloud
   module Vm
     module V20201229
+      # 敏感歌曲
+      class AudioLabelResult < TencentCloud::Common::AbstractModel
+        # @param Scene: 场景
+        # @type Scene: String
+        # @param Suggestion: 建议
+        # @type Suggestion: Integer
+        # @param Label: 标签
+        # @type Label: String
+        # @param Name: 歌曲名等
+        # @type Name: String
+        # @param Score: 分数
+        # @type Score: Integer
+        # @param StartTime: 开始时间
+        # @type StartTime: Float
+        # @param EndTime: 结束时间
+        # @type EndTime: Float
+
+        attr_accessor :Scene, :Suggestion, :Label, :Name, :Score, :StartTime, :EndTime
+
+        def initialize(scene=nil, suggestion=nil, label=nil, name=nil, score=nil, starttime=nil, endtime=nil)
+          @Scene = scene
+          @Suggestion = suggestion
+          @Label = label
+          @Name = name
+          @Score = score
+          @StartTime = starttime
+          @EndTime = endtime
+        end
+
+        def deserialize(params)
+          @Scene = params['Scene']
+          @Suggestion = params['Suggestion']
+          @Label = params['Label']
+          @Name = params['Name']
+          @Score = params['Score']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+        end
+      end
+
       # 音频审核输出参数
       class AudioResult < TencentCloud::Common::AbstractModel
         # @param HitFlag: 该字段用于返回审核内容是否命中审核模型；取值：0（**未命中**）、1（**命中**）。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HitFlag: Integer
         # @param Label: 该字段用于返回检测结果所对应的恶意标签。<br>返回值：**Normal**：正常，**Porn**：色情，**Abuse**：谩骂，**Ad**：广告，**Custom**：自定义违规；以及其他令人反感、不安全或不适宜的内容类型。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Label: String
         # @param Suggestion: 该字段用于返回后续操作建议。当您获取到判定结果后，返回值表示具体的后续建议操作。<br>
         # 返回值：**Block**：建议屏蔽，**Review** ：建议人工复审，**Pass**：建议通过
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Suggestion: String
         # @param Score: 该字段用于返回当前标签下的置信度，取值范围：0（**置信度最低**）-100（**置信度最高** ），越高代表文本越有可能属于当前返回的标签；如：*色情 99*，则表明该文本非常有可能属于色情内容。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Score: Integer
         # @param Text: 该字段用于返回音频文件经ASR识别后的文本信息。最长可识别**5小时**的音频文件，若超出时长限制，接口将会报错。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Text: String
         # @param Url: 该字段用于返回审核结果的访问链接（URL）。<br>备注：链接默认有效期为12小时。如果您需要更长时效的链接，请使用[COS预签名](https://cloud.tencent.com/document/product/1265/104001)功能更新签名时效。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Url: String
         # @param Duration: 该字段用于返回音频文件的时长，单位为毫秒。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Duration: String
         # @param Extra: 该字段用于返回输入参数中的额外附加信息（Extra），如未配置则默认返回值为空。<br>备注：不同客户或Biztype下返回信息不同，如需配置该字段请提交工单咨询或联系售后专员处理。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Extra: String
         # @param TextResults: 该字段用于返回音频文件经ASR识别后产生的文本的详细审核结果。具体结果内容请参见AudioResultDetailLanguageResult数据结构的细节描述。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TextResults: Array
         # @param MoanResults: 该字段用于返回音频文件呻吟检测的详细审核结果。具体结果内容请参见AudioResultDetailMoanResult数据结构的细节描述。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MoanResults: Array
         # @param LanguageResults: 该字段用于返回音频小语种检测的详细审核结果。具体结果内容请参见AudioResultDetailLanguageResult数据结构的细节描述。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LanguageResults: Array
         # @param SubLabel: 该字段用于返回当前标签（Lable）下的二级标签。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubLabel: String
         # @param RecognitionResults: 识别类标签结果信息列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RecognitionResults: Array
+        # @param SpeakerResults: 该字段用于返回音频文件说话人检测的详细审核结果。
+        # @type SpeakerResults: Array
+        # @param LabelResults: 该字段用于返回音频文件歌曲检测的详细审核结果。
+        # @type LabelResults: Array
+        # @param TravelResults: 该字段用于返回音频文件出行检测的详细审核结果。
+        # @type TravelResults: Array
+        # @param SubTag: 三级标签
+        # @type SubTag: String
+        # @param SubTagCode: 三级标签码
+        # @type SubTagCode: String
 
-        attr_accessor :HitFlag, :Label, :Suggestion, :Score, :Text, :Url, :Duration, :Extra, :TextResults, :MoanResults, :LanguageResults, :SubLabel, :RecognitionResults
+        attr_accessor :HitFlag, :Label, :Suggestion, :Score, :Text, :Url, :Duration, :Extra, :TextResults, :MoanResults, :LanguageResults, :SubLabel, :RecognitionResults, :SpeakerResults, :LabelResults, :TravelResults, :SubTag, :SubTagCode
 
-        def initialize(hitflag=nil, label=nil, suggestion=nil, score=nil, text=nil, url=nil, duration=nil, extra=nil, textresults=nil, moanresults=nil, languageresults=nil, sublabel=nil, recognitionresults=nil)
+        def initialize(hitflag=nil, label=nil, suggestion=nil, score=nil, text=nil, url=nil, duration=nil, extra=nil, textresults=nil, moanresults=nil, languageresults=nil, sublabel=nil, recognitionresults=nil, speakerresults=nil, labelresults=nil, travelresults=nil, subtag=nil, subtagcode=nil)
           @HitFlag = hitflag
           @Label = label
           @Suggestion = suggestion
@@ -76,6 +113,11 @@ module TencentCloud
           @LanguageResults = languageresults
           @SubLabel = sublabel
           @RecognitionResults = recognitionresults
+          @SpeakerResults = speakerresults
+          @LabelResults = labelresults
+          @TravelResults = travelresults
+          @SubTag = subtag
+          @SubTagCode = subtagcode
         end
 
         def deserialize(params)
@@ -120,6 +162,32 @@ module TencentCloud
               @RecognitionResults << recognitionresult_tmp
             end
           end
+          unless params['SpeakerResults'].nil?
+            @SpeakerResults = []
+            params['SpeakerResults'].each do |i|
+              speakerresult_tmp = SpeakerResult.new
+              speakerresult_tmp.deserialize(i)
+              @SpeakerResults << speakerresult_tmp
+            end
+          end
+          unless params['LabelResults'].nil?
+            @LabelResults = []
+            params['LabelResults'].each do |i|
+              audiolabelresult_tmp = AudioLabelResult.new
+              audiolabelresult_tmp.deserialize(i)
+              @LabelResults << audiolabelresult_tmp
+            end
+          end
+          unless params['TravelResults'].nil?
+            @TravelResults = []
+            params['TravelResults'].each do |i|
+              travelresult_tmp = TravelResult.new
+              travelresult_tmp.deserialize(i)
+              @TravelResults << travelresult_tmp
+            end
+          end
+          @SubTag = params['SubTag']
+          @SubTagCode = params['SubTagCode']
         end
       end
 
@@ -205,34 +273,28 @@ module TencentCloud
       # 音频ASR文本审核结果
       class AudioResultDetailTextResult < TencentCloud::Common::AbstractModel
         # @param Label: 该字段用于返回检测结果所对应的恶意标签。<br>返回值：**Normal**：正常，**Porn**：色情，**Abuse**：谩骂，**Ad**：广告，**Custom**：自定义违规；以及其他令人反感、不安全或不适宜的内容类型。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Label: String
         # @param Keywords: 该字段用于返回ASR识别出的文本内容命中的关键词信息，用于标注内容违规的具体原因（如：加我微信）。该参数可能会有多个返回值，代表命中的多个关键词；若返回值为空，Score不为空，则代表识别结果所对应的恶意标签（Label）来自于语义模型判断的返回值。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Keywords: Array
         # @param LibId: 该字段**仅当Label为Custom：自定义关键词时该参数有效**,用于返回自定义库的ID，以方便自定义库管理和配置。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LibId: String
         # @param LibName: 该字段**仅当Label为Custom：自定义关键词时该参数有效**,用于返回自定义库的名称,以方便自定义库管理和配置。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LibName: String
         # @param Score: 该字段用于返回当前标签下的置信度，取值范围：0（**置信度最低**）-100（**置信度最高**），越高代表文本越有可能属于当前返回的标签；如：*色情 99*，则表明该文本非常有可能属于色情内容。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Score: Integer
         # @param Suggestion: 该字段用于返回后续操作建议。当您获取到判定结果后，返回值表示具体的后续建议操作。<br>
         # 返回值：**Block**：建议屏蔽，**Review** ：建议人工复审，**Pass**：建议通过
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Suggestion: String
         # @param LibType: 该字段用于返回自定义关键词对应的词库类型，取值为**1**（黑白库）和**2**（自定义关键词库），若未配置自定义关键词库,则默认值为1（黑白库匹配）。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LibType: Integer
         # @param SubLabel: 该字段用于返回当前标签（Lable）下的二级标签。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubLabel: String
+        # @param HitInfos: 该字段用于返回命中的关键词信息
+        # @type HitInfos: Array
 
-        attr_accessor :Label, :Keywords, :LibId, :LibName, :Score, :Suggestion, :LibType, :SubLabel
+        attr_accessor :Label, :Keywords, :LibId, :LibName, :Score, :Suggestion, :LibType, :SubLabel, :HitInfos
 
-        def initialize(label=nil, keywords=nil, libid=nil, libname=nil, score=nil, suggestion=nil, libtype=nil, sublabel=nil)
+        def initialize(label=nil, keywords=nil, libid=nil, libname=nil, score=nil, suggestion=nil, libtype=nil, sublabel=nil, hitinfos=nil)
           @Label = label
           @Keywords = keywords
           @LibId = libid
@@ -241,6 +303,7 @@ module TencentCloud
           @Suggestion = suggestion
           @LibType = libtype
           @SubLabel = sublabel
+          @HitInfos = hitinfos
         end
 
         def deserialize(params)
@@ -252,23 +315,32 @@ module TencentCloud
           @Suggestion = params['Suggestion']
           @LibType = params['LibType']
           @SubLabel = params['SubLabel']
+          unless params['HitInfos'].nil?
+            @HitInfos = []
+            params['HitInfos'].each do |i|
+              hitinfo_tmp = HitInfo.new
+              hitinfo_tmp.deserialize(i)
+              @HitInfos << hitinfo_tmp
+            end
+          end
         end
       end
 
       # 用于返回音频片段的审核结果
       class AudioSegments < TencentCloud::Common::AbstractModel
         # @param OffsetTime: 该字段用于返回音频片段的开始时间，单位为秒。对于点播文件，该参数代表对应音频相对于完整音轨的偏移时间，如0（代表不偏移），5（音轨开始后5秒），10（音轨开始后10秒）；对于直播文件，该参数则返回对应音频片段开始时的Unix时间戳，如：1594650717。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OffsetTime: String
         # @param Result: 该字段用于返回音频片段的具体审核结果，详细内容敬请参考AudioResult数据结构的描述。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: :class:`Tencentcloud::Vm.v20201229.models.AudioResult`
+        # @param CreatedAt: 创建时间
+        # @type CreatedAt: String
 
-        attr_accessor :OffsetTime, :Result
+        attr_accessor :OffsetTime, :Result, :CreatedAt
 
-        def initialize(offsettime=nil, result=nil)
+        def initialize(offsettime=nil, result=nil, createdat=nil)
           @OffsetTime = offsettime
           @Result = result
+          @CreatedAt = createdat
         end
 
         def deserialize(params)
@@ -277,6 +349,7 @@ module TencentCloud
             @Result = AudioResult.new
             @Result.deserialize(params['Result'])
           end
+          @CreatedAt = params['CreatedAt']
         end
       end
 
@@ -663,6 +736,41 @@ module TencentCloud
         end
       end
 
+      # 文本关键词命中信息
+      class HitInfo < TencentCloud::Common::AbstractModel
+        # @param Type: 关键词
+        # @type Type: String
+        # @param Keyword: 命中关键词
+        # @type Keyword: String
+        # @param LibName: 命中的自定义词库名
+        # @type LibName: String
+        # @param Positions: 关键词位置信息
+        # @type Positions: Array
+
+        attr_accessor :Type, :Keyword, :LibName, :Positions
+
+        def initialize(type=nil, keyword=nil, libname=nil, positions=nil)
+          @Type = type
+          @Keyword = keyword
+          @LibName = libname
+          @Positions = positions
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @Keyword = params['Keyword']
+          @LibName = params['LibName']
+          unless params['Positions'].nil?
+            @Positions = []
+            params['Positions'].each do |i|
+              textposition_tmp = TextPosition.new
+              textposition_tmp.deserialize(i)
+              @Positions << textposition_tmp
+            end
+          end
+        end
+      end
+
       # Result结果详情
       class ImageResult < TencentCloud::Common::AbstractModel
         # @param HitFlag: 该参数用于标识审核内容是否命中恶意标签，取值：0（**未命中**）和1（**命中**）。
@@ -803,43 +911,34 @@ module TencentCloud
       # 具体场景下的图片识别结果
       class ImageResultsResultDetail < TencentCloud::Common::AbstractModel
         # @param Name: 该字段用于返回调用视频审核接口时传入的TaskInput参数中的任务名称，方便任务的识别与管理。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Text: 该字段用于返回图片OCR文本识别的检测结果，识别**上限在5000字节内**。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Text: String
         # @param Location: 该字段用于返回图像审核子结果的详细位置信息，如坐标、大小、旋转角度等。详细返回内容敬请参考ImageResultsResultDetailLocation数据结构的描述。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Location: :class:`Tencentcloud::Vm.v20201229.models.ImageResultsResultDetailLocation`
         # @param Label: 该字段用于返回检测结果所对应的恶意标签。<br>返回值：**Normal**：正常，**Porn**：色情，**Abuse**：谩骂，**Ad**：广告，**Custom**：自定义违规；以及其他令人反感、不安全或不适宜的内容类型。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Label: String
         # @param LibId: 该字段**仅当Label为Custom：自定义关键词时该参数有效**,用于返回自定义库的ID，以方便自定义库管理和配置。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LibId: String
         # @param LibName: 该字段**仅当Label为Custom：自定义关键词时该参数有效**,用于返回自定义库的名称,以方便自定义库管理和配置。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LibName: String
         # @param Keywords: 该字段用于返回检测文本命中的关键词信息，用于标注文本违规的具体原因（如：*加我微信*）。该参数可能会有多个返回值，代表命中的多个关键词；如返回值为空且Score不为空，则代表识别结果所对应的恶意标签（Label）是来自于语义模型判断的返回值。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Keywords: Array
         # @param Suggestion: 该字段用于返回后续操作建议。当您获取到判定结果后，返回值表示具体的后续建议操作。<br>
         # 返回值：**Block**：建议屏蔽，**Review** ：建议人工复审，**Pass**：建议通过
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Suggestion: String
         # @param Score: 该字段用于返回当前标签下的置信度，取值范围：0（**置信度最低**）-100（**置信度最高** ），越高代表文本越有可能属于当前返回的标签；如：*色情 99*，则表明该文本非常有可能属于色情内容。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Score: Integer
         # @param SubLabelCode: 该字段用于返回恶意标签下对应的子标签的检测结果，如：*Porn-SexBehavior*等子标签。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubLabelCode: String
         # @param SubLabel: 该字段用于返回恶意标签下对应的子标签的检测结果，如：*Porn-SexBehavior*等子标签。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubLabel: String
+        # @param OcrHitInfos: 该字段用于返回OCR命中的关键词信息。
+        # @type OcrHitInfos: Array
 
-        attr_accessor :Name, :Text, :Location, :Label, :LibId, :LibName, :Keywords, :Suggestion, :Score, :SubLabelCode, :SubLabel
+        attr_accessor :Name, :Text, :Location, :Label, :LibId, :LibName, :Keywords, :Suggestion, :Score, :SubLabelCode, :SubLabel, :OcrHitInfos
 
-        def initialize(name=nil, text=nil, location=nil, label=nil, libid=nil, libname=nil, keywords=nil, suggestion=nil, score=nil, sublabelcode=nil, sublabel=nil)
+        def initialize(name=nil, text=nil, location=nil, label=nil, libid=nil, libname=nil, keywords=nil, suggestion=nil, score=nil, sublabelcode=nil, sublabel=nil, ocrhitinfos=nil)
           @Name = name
           @Text = text
           @Location = location
@@ -851,6 +950,7 @@ module TencentCloud
           @Score = score
           @SubLabelCode = sublabelcode
           @SubLabel = sublabel
+          @OcrHitInfos = ocrhitinfos
         end
 
         def deserialize(params)
@@ -868,6 +968,14 @@ module TencentCloud
           @Score = params['Score']
           @SubLabelCode = params['SubLabelCode']
           @SubLabel = params['SubLabel']
+          unless params['OcrHitInfos'].nil?
+            @OcrHitInfos = []
+            params['OcrHitInfos'].each do |i|
+              hitinfo_tmp = HitInfo.new
+              hitinfo_tmp.deserialize(i)
+              @OcrHitInfos << hitinfo_tmp
+            end
+          end
         end
       end
 
@@ -1069,6 +1177,34 @@ module TencentCloud
           @ImageBlockUrl = params['ImageBlockUrl']
           @AudioBlockUrl = params['AudioBlockUrl']
           @AsrUrl = params['AsrUrl']
+        end
+      end
+
+      # 说话人结果
+      class SpeakerResult < TencentCloud::Common::AbstractModel
+        # @param Label: 标签
+        # @type Label: String
+        # @param Score: 分数
+        # @type Score: Integer
+        # @param StartTime: 开始时间
+        # @type StartTime: Float
+        # @param EndTime: 结束时间
+        # @type EndTime: Float
+
+        attr_accessor :Label, :Score, :StartTime, :EndTime
+
+        def initialize(label=nil, score=nil, starttime=nil, endtime=nil)
+          @Label = label
+          @Score = score
+          @StartTime = starttime
+          @EndTime = endtime
+        end
+
+        def deserialize(params)
+          @Label = params['Label']
+          @Score = params['Score']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
         end
       end
 
@@ -1332,6 +1468,66 @@ module TencentCloud
           @TaskId = params['TaskId']
           @Code = params['Code']
           @Message = params['Message']
+        end
+      end
+
+      # 文本关键词命中位置信息
+      class TextPosition < TencentCloud::Common::AbstractModel
+        # @param Start: 关键词在文本中的起始位置
+        # @type Start: Integer
+        # @param End: 关键词在文本中的结束位置
+        # @type End: Integer
+
+        attr_accessor :Start, :End
+
+        def initialize(start=nil, _end=nil)
+          @Start = start
+          @End = _end
+        end
+
+        def deserialize(params)
+          @Start = params['Start']
+          @End = params['End']
+        end
+      end
+
+      # 出行结果
+      class TravelResult < TencentCloud::Common::AbstractModel
+        # @param Label: 一级标签
+        # @type Label: String
+        # @param SubLabel: 二级标签
+        # @type SubLabel: String
+        # @param RiskLevel: 风险等级
+        # @type RiskLevel: String
+        # @param AudioRole: 音频角色
+        # @type AudioRole: String
+        # @param AudioText: 音频语音文本
+        # @type AudioText: String
+        # @param StartTime: 开始时间
+        # @type StartTime: Float
+        # @param EndTime: 结束时间
+        # @type EndTime: Float
+
+        attr_accessor :Label, :SubLabel, :RiskLevel, :AudioRole, :AudioText, :StartTime, :EndTime
+
+        def initialize(label=nil, sublabel=nil, risklevel=nil, audiorole=nil, audiotext=nil, starttime=nil, endtime=nil)
+          @Label = label
+          @SubLabel = sublabel
+          @RiskLevel = risklevel
+          @AudioRole = audiorole
+          @AudioText = audiotext
+          @StartTime = starttime
+          @EndTime = endtime
+        end
+
+        def deserialize(params)
+          @Label = params['Label']
+          @SubLabel = params['SubLabel']
+          @RiskLevel = params['RiskLevel']
+          @AudioRole = params['AudioRole']
+          @AudioText = params['AudioText']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
         end
       end
 

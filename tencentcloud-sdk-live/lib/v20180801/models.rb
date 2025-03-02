@@ -12945,7 +12945,6 @@ module TencentCloud
         # @param Time: 数据时间点。
         # @type Time: String
         # @param Value: 带宽/流量/请求数/并发连接数/下载速度的值，若没数据返回时该值为0。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: Float
 
         attr_accessor :Time, :Value

@@ -2014,6 +2014,34 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 生成员工信息变更链接，当前仅支持变更手机号
+
+        # 注:
+        # 1. 目前仅支持修改员工手机号，待修改员工必须已经实名且在职
+        # 2. 仅支持返回小程序链接
+
+        # @param request: Request instance for CreateEmployeeChangeUrl.
+        # @type request: :class:`Tencentcloud::essbasic::V20210526::CreateEmployeeChangeUrlRequest`
+        # @rtype: :class:`Tencentcloud::essbasic::V20210526::CreateEmployeeChangeUrlResponse`
+        def CreateEmployeeChangeUrl(request)
+          body = send_request('CreateEmployeeChangeUrl', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateEmployeeChangeUrlResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 该接口用于获取个人授权执业章给企业的二维码，需要个人用户通过微信扫码。
 
         # 扫描后将跳转到腾讯电子签小程序，进入到授权执业章的流程。

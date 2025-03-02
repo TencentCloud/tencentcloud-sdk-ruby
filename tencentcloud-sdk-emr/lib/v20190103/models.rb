@@ -1041,10 +1041,10 @@ module TencentCloud
 
         attr_accessor :Id, :ClusterId, :Ftitle, :ClusterName, :RegionId, :ZoneId, :AppId, :Uin, :ProjectId, :VpcId, :SubnetId, :Status, :AddTime, :RunTime, :Config, :MasterIp, :EmrVersion, :ChargeType, :TradeVersion, :ResourceOrderId, :IsTradeCluster, :AlarmInfo, :IsWoodpeckerCluster, :MetaDb, :Tags, :HiveMetaDb, :ServiceClass, :AliasInfo, :ProductId, :Zone, :SceneName, :SceneServiceClass, :SceneEmrVersion, :DisplayName, :VpcName, :SubnetName, :ClusterExternalServiceInfo, :UniqVpcId, :UniqSubnetId, :TopologyInfoList, :IsMultiZoneCluster, :IsCvmReplace, :ClusterTitle, :ConfigDetail, :BindFileSystemNum, :ClusterRelationInfoList
         extend Gem::Deprecate
-        deprecate :Ftitle, :none, 2025, 2
-        deprecate :Ftitle=, :none, 2025, 2
-        deprecate :Config, :none, 2025, 2
-        deprecate :Config=, :none, 2025, 2
+        deprecate :Ftitle, :none, 2025, 3
+        deprecate :Ftitle=, :none, 2025, 3
+        deprecate :Config, :none, 2025, 3
+        deprecate :Config=, :none, 2025, 3
 
         def initialize(id=nil, clusterid=nil, ftitle=nil, clustername=nil, regionid=nil, zoneid=nil, appid=nil, uin=nil, projectid=nil, vpcid=nil, subnetid=nil, status=nil, addtime=nil, runtime=nil, config=nil, masterip=nil, emrversion=nil, chargetype=nil, tradeversion=nil, resourceorderid=nil, istradecluster=nil, alarminfo=nil, iswoodpeckercluster=nil, metadb=nil, tags=nil, hivemetadb=nil, serviceclass=nil, aliasinfo=nil, productid=nil, zone=nil, scenename=nil, sceneserviceclass=nil, sceneemrversion=nil, displayname=nil, vpcname=nil, subnetname=nil, clusterexternalserviceinfo=nil, uniqvpcid=nil, uniqsubnetid=nil, topologyinfolist=nil, ismultizonecluster=nil, iscvmreplace=nil, clustertitle=nil, configdetail=nil, bindfilesystemnum=nil, clusterrelationinfolist=nil)
           @Id = id
@@ -5591,7 +5591,7 @@ module TencentCloud
         # @param SecurityOn: 是否支持安全模式
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SecurityOn: Boolean
-        # @param SecurityGroup: 安全组名称
+        # @param SecurityGroup: 集群初始安全组id
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SecurityGroup: String
         # @param CbsEncrypt: 是否开启Cbs加密
@@ -5600,7 +5600,7 @@ module TencentCloud
         # @param ApplicationRole: 自定义应用角色。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApplicationRole: String
-        # @param SecurityGroups: 安全组
+        # @param SecurityGroups: 安全组id
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SecurityGroups: Array
         # @param PublicKeyId: SSH密钥Id
@@ -11188,12 +11188,12 @@ module TencentCloud
 
         attr_accessor :DetectAlert, :DetetcFunctionKey, :DetetcFunctionValue, :DetetcTime, :DetectFunctionKey, :DetectFunctionValue, :DetectTime
         extend Gem::Deprecate
-        deprecate :DetetcFunctionKey, :none, 2025, 2
-        deprecate :DetetcFunctionKey=, :none, 2025, 2
-        deprecate :DetetcFunctionValue, :none, 2025, 2
-        deprecate :DetetcFunctionValue=, :none, 2025, 2
-        deprecate :DetetcTime, :none, 2025, 2
-        deprecate :DetetcTime=, :none, 2025, 2
+        deprecate :DetetcFunctionKey, :none, 2025, 3
+        deprecate :DetetcFunctionKey=, :none, 2025, 3
+        deprecate :DetetcFunctionValue, :none, 2025, 3
+        deprecate :DetetcFunctionValue=, :none, 2025, 3
+        deprecate :DetetcTime, :none, 2025, 3
+        deprecate :DetetcTime=, :none, 2025, 3
 
         def initialize(detectalert=nil, detetcfunctionkey=nil, detetcfunctionvalue=nil, detetctime=nil, detectfunctionkey=nil, detectfunctionvalue=nil, detecttime=nil)
           @DetectAlert = detectalert

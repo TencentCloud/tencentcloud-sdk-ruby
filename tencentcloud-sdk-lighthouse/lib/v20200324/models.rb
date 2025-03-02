@@ -1604,7 +1604,7 @@ module TencentCloud
 
       # DescribeBlueprints请求参数结构体
       class DescribeBlueprintsRequest < TencentCloud::Common::AbstractModel
-        # @param BlueprintIds: 镜像 ID 列表。
+        # @param BlueprintIds: 镜像 ID 列表。可通过[DescribeBlueprints](https://cloud.tencent.com/document/product/1207/47689)接口返回值字段BlueprintSet获取。列表长度最大值为100。
         # @type BlueprintIds: Array
         # @param Offset: 偏移量，默认为 0。关于`Offset`的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/product/1207/47578)中的相关小节。
         # @type Offset: Integer
@@ -1906,7 +1906,7 @@ module TencentCloud
 
       # DescribeDiskBackups请求参数结构体
       class DescribeDiskBackupsRequest < TencentCloud::Common::AbstractModel
-        # @param DiskBackupIds: 查询的云硬盘备份点ID列表。最大支持 100 个。参数不支持同时指定 DiskBackupIds 和 Filters。
+        # @param DiskBackupIds: 查询的云硬盘备份点ID列表。可通过[DescribeDiskBackups](https://cloud.tencent.com/document/product/1207/84379)接口返回值字段DiskBackupSet获取。列表长度最大值为100。参数不支持同时指定 DiskBackupIds 和 Filters。
         # @type DiskBackupIds: Array
         # @param Filters: 过滤器列表。
         # <li>disk-backup-id</li>按照【云硬盘备份点 ID】进行过滤。
@@ -2139,7 +2139,7 @@ module TencentCloud
 
       # DescribeDisks请求参数结构体
       class DescribeDisksRequest < TencentCloud::Common::AbstractModel
-        # @param DiskIds: 云硬盘ID列表。每次批量请求云硬盘的上限为 100。
+        # @param DiskIds: 云硬盘ID列表。可通过[DescribeDisks](https://cloud.tencent.com/document/product/1207/66093)接口返回值字段KeyPairSet获取。列表长度最大值为100。
         # @type DiskIds: Array
         # @param Filters: 过滤器列表。
         # disk-id
@@ -2745,9 +2745,9 @@ module TencentCloud
 
       # DescribeFirewallTemplateRules请求参数结构体
       class DescribeFirewallTemplateRulesRequest < TencentCloud::Common::AbstractModel
-        # @param TemplateId: 防火墙模板ID。
+        # @param TemplateId: 防火墙模板ID列表。可通过[DescribeFirewallTemplates](https://cloud.tencent.com/document/product/1207/96874)接口返回值字段TemplateSet获取。列表长度最大值为100。
         # @type TemplateId: String
-        # @param TemplateRuleIds: 防火墙模板规则ID列表。
+        # @param TemplateRuleIds: 防火墙模板规则ID列表。可通过[DescribeFirewallTemplateRules](https://cloud.tencent.com/document/product/1207/96875)接口返回值字段TemplateRuleSet获取。列表长度最大值为100。
         # @type TemplateRuleIds: Array
         # @param Offset: 偏移量，默认为 0。
         # @type Offset: Integer
@@ -3313,7 +3313,7 @@ module TencentCloud
 
       # DescribeKeyPairs请求参数结构体
       class DescribeKeyPairsRequest < TencentCloud::Common::AbstractModel
-        # @param KeyIds: 密钥对 ID 列表，每次请求批量密钥对的上限为 100。
+        # @param KeyIds: 密钥对 ID 列表。可通过[DescribeKeyPairs](https://cloud.tencent.com/document/product/1207/55540)接口返回值字段KeyPairSet获取。列表长度最大值为100。
         # @type KeyIds: Array
         # @param Offset: 偏移量，默认为 0。
         # @type Offset: Integer
