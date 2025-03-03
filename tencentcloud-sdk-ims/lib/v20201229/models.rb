@@ -579,6 +579,41 @@ module TencentCloud
         end
       end
 
+      # ocr关键词命中位置信息
+      class OcrHitInfo < TencentCloud::Common::AbstractModel
+        # @param Type: 标识模型命中还是关键词命中
+        # @type Type: String
+        # @param Keyword: 命中关键词
+        # @type Keyword: String
+        # @param LibName: 自定义词库名称
+        # @type LibName: String
+        # @param Positions: 位置信息
+        # @type Positions: Array
+
+        attr_accessor :Type, :Keyword, :LibName, :Positions
+
+        def initialize(type=nil, keyword=nil, libname=nil, positions=nil)
+          @Type = type
+          @Keyword = keyword
+          @LibName = libname
+          @Positions = positions
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @Keyword = params['Keyword']
+          @LibName = params['LibName']
+          unless params['Positions'].nil?
+            @Positions = []
+            params['Positions'].each do |i|
+              positions_tmp = Positions.new
+              positions_tmp.deserialize(i)
+              @Positions << positions_tmp
+            end
+          end
+        end
+      end
+
       # 用于返回OCR结果检测详情
       class OcrResult < TencentCloud::Common::AbstractModel
         # @param Scene: 该字段表示识别场景，取值默认为OCR（图片OCR识别）。
@@ -647,10 +682,12 @@ module TencentCloud
         # @type Rate: Integer
         # @param SubLabel: 该字段用于返回检测结果所对应的恶意二级标签。
         # @type SubLabel: String
+        # @param HitInfos: 关键词命中位置信息
+        # @type HitInfos: Array
 
-        attr_accessor :Text, :Label, :LibId, :LibName, :Keywords, :Score, :Location, :Rate, :SubLabel
+        attr_accessor :Text, :Label, :LibId, :LibName, :Keywords, :Score, :Location, :Rate, :SubLabel, :HitInfos
 
-        def initialize(text=nil, label=nil, libid=nil, libname=nil, keywords=nil, score=nil, location=nil, rate=nil, sublabel=nil)
+        def initialize(text=nil, label=nil, libid=nil, libname=nil, keywords=nil, score=nil, location=nil, rate=nil, sublabel=nil, hitinfos=nil)
           @Text = text
           @Label = label
           @LibId = libid
@@ -660,6 +697,7 @@ module TencentCloud
           @Location = location
           @Rate = rate
           @SubLabel = sublabel
+          @HitInfos = hitinfos
         end
 
         def deserialize(params)
@@ -675,6 +713,34 @@ module TencentCloud
           end
           @Rate = params['Rate']
           @SubLabel = params['SubLabel']
+          unless params['HitInfos'].nil?
+            @HitInfos = []
+            params['HitInfos'].each do |i|
+              ocrhitinfo_tmp = OcrHitInfo.new
+              ocrhitinfo_tmp.deserialize(i)
+              @HitInfos << ocrhitinfo_tmp
+            end
+          end
+        end
+      end
+
+      # 标识命中的违规关键词位置信息
+      class Positions < TencentCloud::Common::AbstractModel
+        # @param Start: 关键词起始位置
+        # @type Start: Integer
+        # @param End: 关键词结束位置
+        # @type End: Integer
+
+        attr_accessor :Start, :End
+
+        def initialize(start=nil, _end=nil)
+          @Start = start
+          @End = _end
+        end
+
+        def deserialize(params)
+          @Start = params['Start']
+          @End = params['End']
         end
       end
 

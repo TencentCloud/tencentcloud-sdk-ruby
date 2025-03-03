@@ -797,19 +797,23 @@ module TencentCloud
         # @type Type: String
         # @param ClientToken: 用于保证请求幂等性的字符串。该字符串由客户生成，需保证不同请求之间唯一，最大值不超过64个ASCII字符。若不指定该参数，则无法保证请求的幂等性。<br>更多详细信息请参阅：如何保证幂等性。
         # @type ClientToken: String
+        # @param Affinity: 置放群组的亲和度，在置放群组的实例会按该亲和度分布，亲和度的取值范围是：1-10，默认为1
+        # @type Affinity: Integer
 
-        attr_accessor :Name, :Type, :ClientToken
+        attr_accessor :Name, :Type, :ClientToken, :Affinity
 
-        def initialize(name=nil, type=nil, clienttoken=nil)
+        def initialize(name=nil, type=nil, clienttoken=nil, affinity=nil)
           @Name = name
           @Type = type
           @ClientToken = clienttoken
+          @Affinity = affinity
         end
 
         def deserialize(params)
           @Name = params['Name']
           @Type = params['Type']
           @ClientToken = params['ClientToken']
+          @Affinity = params['Affinity']
         end
       end
 

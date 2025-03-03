@@ -10120,13 +10120,10 @@ module TencentCloud
       # 媒体诊断结果，包含断流信息、低帧率信息等
       class DiagnoseResult < TencentCloud::Common::AbstractModel
         # @param StreamBrokenResults: 断流信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StreamBrokenResults: Array
         # @param LowFrameRateResults: 低帧率信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LowFrameRateResults: Array
         # @param StreamFormatResults: 流格式诊断信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StreamFormatResults: Array
 
         attr_accessor :StreamBrokenResults, :LowFrameRateResults, :StreamFormatResults
@@ -10938,68 +10935,48 @@ module TencentCloud
       # 直播监播任务信息。
       class LiveStreamMonitorInfo < TencentCloud::Common::AbstractModel
         # @param MonitorId: 监播任务ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MonitorId: String
         # @param MonitorName: 监播任务名称。128字节以内。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MonitorName: String
         # @param OutputInfo: 监播任务输出信息。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OutputInfo: :class:`Tencentcloud::Live.v20180801.models.LiveStreamMonitorOutputInfo`
         # @param InputList: 待监播的输入流信息。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InputList: Array
         # @param Status: 监播任务状态。
         # 0： 代表空闲
         # 1： 代表监播中。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
         # @param StartTime: 上一次的启动时间，unix时间戳。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StartTime: Integer
         # @param StopTime: 上一次的停止时间，unix时间戳。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StopTime: Integer
         # @param CreateTime: 监播任务创建时间，unix时间戳
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: Integer
         # @param UpdateTime: 监播任务更新时间，unix时间戳
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: Integer
         # @param NotifyPolicy: 监播事件通知策略。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NotifyPolicy: :class:`Tencentcloud::Live.v20180801.models.LiveStreamMonitorNotifyPolicy`
         # @param AudibleInputIndexList: 输出音频的输入Index列表。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AudibleInputIndexList: Array
         # @param AiAsrInputIndexList: 开启智能语音识别的输入Index列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AiAsrInputIndexList: Array
         # @param CheckStreamBroken: 是否开启断流检测
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CheckStreamBroken: Integer
         # @param CheckStreamLowFrameRate: 是否开启低帧率检测
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CheckStreamLowFrameRate: Integer
         # @param AsrLanguage: 智能语音识别语种：
         # 0 关闭 1 中文 2 英文 3日文 4 韩文
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AsrLanguage: Integer
         # @param OcrLanguage: 智能文字识别语种：
         # 0 关闭 1 中、英文
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OcrLanguage: Integer
         # @param AiOcrInputIndexList: 开启智能文字识别的输入Index列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AiOcrInputIndexList: Array
         # @param AllowMonitorReport: 是否存储监播事件到监播报告，以及是否允许查询监播报告
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AllowMonitorReport: Integer
         # @param AiFormatDiagnose: 是否开启格式诊断
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AiFormatDiagnose: Integer
         # @param AiQualityControl: 是否开启内容质检。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AiQualityControl: Integer
         # @param CasterId: 导播台监播对应的导播台场次id
         # @type CasterId: String
@@ -11075,19 +11052,14 @@ module TencentCloud
       # 直播监播功能输入流信息
       class LiveStreamMonitorInputInfo < TencentCloud::Common::AbstractModel
         # @param InputStreamName: 待监播的输入流名称。256字节以内，只允许包含字母、数字、‘-’，‘_’，'.'字符。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InputStreamName: String
         # @param InputDomain: 待监播的输入流推流域名。128字节以内，只允许填处于启用状态的推流域名。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InputDomain: String
         # @param InputApp: 待监播的输入流推流路径。32字节以内，只允许包含字母、数字、‘-’，‘_’，'.'字符。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InputApp: String
         # @param InputUrl: 待监播的输入流推流url。一般场景下，无需该参数。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InputUrl: String
         # @param Description: 描述。256字节以内。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
         # @param CasterInputIndex: 导播台输入源索引（10000 pvw， 10001 pgm， 其余代表输入下标）
         # @type CasterInputIndex: Integer
@@ -11126,11 +11098,9 @@ module TencentCloud
         # @param NotifyPolicyType: 通知策略类型：范围[0,1]
         # 0:代表不使用任何通知策略
         # 1:代表使用全局回调策略，所有事件通知到CallbackUrl。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NotifyPolicyType: Integer
         # @param CallbackUrl: 回调URL：长度[0,512]
         # 只支持http和https类型的url。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CallbackUrl: String
 
         attr_accessor :NotifyPolicyType, :CallbackUrl
@@ -11149,21 +11119,16 @@ module TencentCloud
       # 直播流监播输出流信息
       class LiveStreamMonitorOutputInfo < TencentCloud::Common::AbstractModel
         # @param OutputStreamWidth: 监播任务输出流宽度像素。范围[1,1920]。建议至少大于100像素。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OutputStreamWidth: Integer
         # @param OutputStreamHeight: 监播任务输出流长度像素。范围[1,1080]，建议至少大于100像素。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OutputStreamHeight: Integer
         # @param OutputStreamName: 监播任务输出流名称。
         # 不填时，系统会自动生成。
         # 256字节以内，只允许包含字母、数字、‘-’，‘_’，'.'字符。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OutputStreamName: String
         # @param OutputDomain: 监播任务播放域名。128字节以内，只允许填处于启用状态的播放域名。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OutputDomain: String
         # @param OutputApp: 监播任务播放路径。32字节以内，只允许包含字母、数字、‘-’，‘_’，'.'字符。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OutputApp: String
 
         attr_accessor :OutputStreamWidth, :OutputStreamHeight, :OutputStreamName, :OutputDomain, :OutputApp
@@ -11217,13 +11182,10 @@ module TencentCloud
       # 媒体处理结果，包含智能语音识别、智能文字识别结果
       class MPSResult < TencentCloud::Common::AbstractModel
         # @param AiAsrResults: 智能语音识别结果。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AiAsrResults: Array
         # @param AiOcrResults: 智能文字识别结果。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AiOcrResults: Array
         # @param StreamQuaCtrlResults: 内容质检结果。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StreamQuaCtrlResults: Array
 
         attr_accessor :AiAsrResults, :AiOcrResults, :StreamQuaCtrlResults

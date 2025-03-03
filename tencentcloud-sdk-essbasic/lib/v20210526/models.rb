@@ -6285,6 +6285,73 @@ module TencentCloud
         end
       end
 
+      # CreateFlowForwards请求参数结构体
+      class CreateFlowForwardsRequest < TencentCloud::Common::AbstractModel
+        # @param TargetOpenId: 合同对应参与方需要修改的目标经办人对应的OpenId。
+
+        # 注意：`需要保证目标经办人已经加入企业且已实名`
+        # @type TargetOpenId: String
+        # @param FlowForwardInfos: 企业签署方的合同及对应签署方
+        # @type FlowForwardInfos: Array
+        # @param Agent: 关于渠道应用的相关信息，包括渠道应用标识、第三方平台子客企业标识及第三方平台子客企业中的员工标识等内容，您可以参阅开发者中心所提供的 Agent 结构体以获取详细定义。此接口下面信息必填。<ul><li>渠道应用标识:  Agent.AppId</li><li>第三方平台子客企业标识: Agent.ProxyOrganizationOpenId</li><li>第三方平台子客企业中的员工标识: Agent. ProxyOperator.OpenId</li></ul>第三方平台子客企业和员工必须已经经过实名认证
+        # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
+
+        attr_accessor :TargetOpenId, :FlowForwardInfos, :Agent
+
+        def initialize(targetopenid=nil, flowforwardinfos=nil, agent=nil)
+          @TargetOpenId = targetopenid
+          @FlowForwardInfos = flowforwardinfos
+          @Agent = agent
+        end
+
+        def deserialize(params)
+          @TargetOpenId = params['TargetOpenId']
+          unless params['FlowForwardInfos'].nil?
+            @FlowForwardInfos = []
+            params['FlowForwardInfos'].each do |i|
+              flowforwardinfo_tmp = FlowForwardInfo.new
+              flowforwardinfo_tmp.deserialize(i)
+              @FlowForwardInfos << flowforwardinfo_tmp
+            end
+          end
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
+        end
+      end
+
+      # CreateFlowForwards返回参数结构体
+      class CreateFlowForwardsResponse < TencentCloud::Common::AbstractModel
+        # @param FailedFlows: 失败的合同id以及错误详情
+        # @type FailedFlows: Array
+        # @param SuccessFlows: 成功的合同id
+        # @type SuccessFlows: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FailedFlows, :SuccessFlows, :RequestId
+
+        def initialize(failedflows=nil, successflows=nil, requestid=nil)
+          @FailedFlows = failedflows
+          @SuccessFlows = successflows
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['FailedFlows'].nil?
+            @FailedFlows = []
+            params['FailedFlows'].each do |i|
+              flowforwardresult_tmp = FlowForwardResult.new
+              flowforwardresult_tmp.deserialize(i)
+              @FailedFlows << flowforwardresult_tmp
+            end
+          end
+          @SuccessFlows = params['SuccessFlows']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateFlowGroupSignReview请求参数结构体
       class CreateFlowGroupSignReviewRequest < TencentCloud::Common::AbstractModel
         # @param Agent: 关于渠道应用的相关信息，包括渠道应用标识、第三方平台子客企业标识及第三方平台子客企业中的员工标识等内容，您可以参阅开发者中心所提供的 Agent 结构体以获取详细定义。
@@ -9147,6 +9214,46 @@ module TencentCloud
           @CustomShowMap = params['CustomShowMap']
           @NeedSignReview = params['NeedSignReview']
           @FlowDisplayType = params['FlowDisplayType']
+        end
+      end
+
+      # 合同转交相关信息
+      class FlowForwardInfo < TencentCloud::Common::AbstractModel
+        # @param FlowId: 合同流程ID，为32位字符串。此接口的合同流程ID需要由[创建签署流程](https://qian.tencent.com/developers/companyApis/startFlows/CreateFlow)接口创建得到。
+        # @type FlowId: String
+        # @param RecipientId: 签署方经办人在合同中的参与方ID，为32位字符串。
+        # @type RecipientId: String
+
+        attr_accessor :FlowId, :RecipientId
+
+        def initialize(flowid=nil, recipientid=nil)
+          @FlowId = flowid
+          @RecipientId = recipientid
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+          @RecipientId = params['RecipientId']
+        end
+      end
+
+      # 转交合同结果
+      class FlowForwardResult < TencentCloud::Common::AbstractModel
+        # @param FlowId: 合同流程ID为32位字符串。您可以登录腾讯电子签控制台，在 "合同" -> "合同中心" 中查看某个合同的FlowId（在页面中展示为合同ID）。[点击查看FlowId在控制台中的位置](https://qcloudimg.tencent-cloud.cn/raw/0a83015166cfe1cb043d14f9ec4bd75e.png)。
+        # @type FlowId: String
+        # @param ErrorDetail: 如果失败，返回的错误细节。
+        # @type ErrorDetail: String
+
+        attr_accessor :FlowId, :ErrorDetail
+
+        def initialize(flowid=nil, errordetail=nil)
+          @FlowId = flowid
+          @ErrorDetail = errordetail
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+          @ErrorDetail = params['ErrorDetail']
         end
       end
 

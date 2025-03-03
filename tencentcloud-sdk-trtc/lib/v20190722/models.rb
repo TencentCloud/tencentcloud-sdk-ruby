@@ -3959,10 +3959,10 @@ module TencentCloud
 
         attr_accessor :Language, :AlternativeLanguage, :Model, :TranslationLanguage
         extend Gem::Deprecate
-        deprecate :Model, :none, 2025, 2
-        deprecate :Model=, :none, 2025, 2
-        deprecate :TranslationLanguage, :none, 2025, 2
-        deprecate :TranslationLanguage=, :none, 2025, 2
+        deprecate :Model, :none, 2025, 3
+        deprecate :Model=, :none, 2025, 3
+        deprecate :TranslationLanguage, :none, 2025, 3
+        deprecate :TranslationLanguage=, :none, 2025, 3
 
         def initialize(language=nil, alternativelanguage=nil, model=nil, translationlanguage=nil)
           @Language = language
@@ -4928,12 +4928,12 @@ module TencentCloud
 
         attr_accessor :SdkAppId, :RoomId, :RoomIdType, :UserId, :UserSig, :StreamUrl, :PrivateMapKey, :VideoEncodeParams, :AudioEncodeParams, :SourceUrl, :SeekSecond, :AutoPush, :RepeatNum, :MaxDuration, :Volume
         extend Gem::Deprecate
-        deprecate :VideoEncodeParams, :none, 2025, 2
-        deprecate :VideoEncodeParams=, :none, 2025, 2
-        deprecate :AudioEncodeParams, :none, 2025, 2
-        deprecate :AudioEncodeParams=, :none, 2025, 2
-        deprecate :SourceUrl, :none, 2025, 2
-        deprecate :SourceUrl=, :none, 2025, 2
+        deprecate :VideoEncodeParams, :none, 2025, 3
+        deprecate :VideoEncodeParams=, :none, 2025, 3
+        deprecate :AudioEncodeParams, :none, 2025, 3
+        deprecate :AudioEncodeParams=, :none, 2025, 3
+        deprecate :SourceUrl, :none, 2025, 3
+        deprecate :SourceUrl=, :none, 2025, 3
 
         def initialize(sdkappid=nil, roomid=nil, roomidtype=nil, userid=nil, usersig=nil, streamurl=nil, privatemapkey=nil, videoencodeparams=nil, audioencodeparams=nil, sourceurl=nil, seeksecond=nil, autopush=nil, repeatnum=nil, maxduration=nil, volume=nil)
           @SdkAppId = sdkappid
@@ -5581,10 +5581,10 @@ module TencentCloud
 
         attr_accessor :UserId, :UserSig, :IMAdminUserId, :IMAdminUserSig, :MaxIdleTime, :TranscriptionMode, :TargetUserId, :TargetUserIdList
         extend Gem::Deprecate
-        deprecate :IMAdminUserId, :none, 2025, 2
-        deprecate :IMAdminUserId=, :none, 2025, 2
-        deprecate :IMAdminUserSig, :none, 2025, 2
-        deprecate :IMAdminUserSig=, :none, 2025, 2
+        deprecate :IMAdminUserId, :none, 2025, 3
+        deprecate :IMAdminUserId=, :none, 2025, 3
+        deprecate :IMAdminUserSig, :none, 2025, 3
+        deprecate :IMAdminUserSig=, :none, 2025, 3
 
         def initialize(userid=nil, usersig=nil, imadminuserid=nil, imadminusersig=nil, maxidletime=nil, transcriptionmode=nil, targetuserid=nil, targetuseridlist=nil)
           @UserId = userid
@@ -5793,14 +5793,17 @@ module TencentCloud
         # @type StreamUrl: String
         # @param Volume: 音量，取值范围[0, 100]，默认100，表示原音量。
         # @type Volume: Integer
+        # @param IsPause: 是否暂停，默认false表示不暂停。暂停期间任务仍在进行中仍会计费，如果要销毁任务请调用停止接口。
+        # @type IsPause: Boolean
 
-        attr_accessor :SdkAppId, :TaskId, :StreamUrl, :Volume
+        attr_accessor :SdkAppId, :TaskId, :StreamUrl, :Volume, :IsPause
 
-        def initialize(sdkappid=nil, taskid=nil, streamurl=nil, volume=nil)
+        def initialize(sdkappid=nil, taskid=nil, streamurl=nil, volume=nil, ispause=nil)
           @SdkAppId = sdkappid
           @TaskId = taskid
           @StreamUrl = streamurl
           @Volume = volume
+          @IsPause = ispause
         end
 
         def deserialize(params)
@@ -5808,6 +5811,7 @@ module TencentCloud
           @TaskId = params['TaskId']
           @StreamUrl = params['StreamUrl']
           @Volume = params['Volume']
+          @IsPause = params['IsPause']
         end
       end
 

@@ -485,6 +485,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 已废弃，收敛到统一接口
+
         # 查询推理镜像模板
 
         # @param request: Request instance for DescribeInferTemplates.

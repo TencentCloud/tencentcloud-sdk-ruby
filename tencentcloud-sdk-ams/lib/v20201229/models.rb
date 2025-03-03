@@ -60,10 +60,14 @@ module TencentCloud
         # @type LabelResults: Array
         # @param TravelResults: 出行结果
         # @type TravelResults: Array
+        # @param SubTag: 三级标签
+        # @type SubTag: String
+        # @param SubTagCode: 三级标签码
+        # @type SubTagCode: String
 
-        attr_accessor :HitFlag, :Label, :Suggestion, :Score, :Text, :Url, :Duration, :Extra, :TextResults, :MoanResults, :LanguageResults, :SubLabel, :RecognitionResults, :SpeakerResults, :LabelResults, :TravelResults
+        attr_accessor :HitFlag, :Label, :Suggestion, :Score, :Text, :Url, :Duration, :Extra, :TextResults, :MoanResults, :LanguageResults, :SubLabel, :RecognitionResults, :SpeakerResults, :LabelResults, :TravelResults, :SubTag, :SubTagCode
 
-        def initialize(hitflag=nil, label=nil, suggestion=nil, score=nil, text=nil, url=nil, duration=nil, extra=nil, textresults=nil, moanresults=nil, languageresults=nil, sublabel=nil, recognitionresults=nil, speakerresults=nil, labelresults=nil, travelresults=nil)
+        def initialize(hitflag=nil, label=nil, suggestion=nil, score=nil, text=nil, url=nil, duration=nil, extra=nil, textresults=nil, moanresults=nil, languageresults=nil, sublabel=nil, recognitionresults=nil, speakerresults=nil, labelresults=nil, travelresults=nil, subtag=nil, subtagcode=nil)
           @HitFlag = hitflag
           @Label = label
           @Suggestion = suggestion
@@ -80,6 +84,8 @@ module TencentCloud
           @SpeakerResults = speakerresults
           @LabelResults = labelresults
           @TravelResults = travelresults
+          @SubTag = subtag
+          @SubTagCode = subtagcode
         end
 
         def deserialize(params)
@@ -148,6 +154,8 @@ module TencentCloud
               @TravelResults << travelresults_tmp
             end
           end
+          @SubTag = params['SubTag']
+          @SubTagCode = params['SubTagCode']
         end
       end
 
@@ -268,33 +276,28 @@ module TencentCloud
       # 音频ASR文本审核结果
       class AudioResultDetailTextResult < TencentCloud::Common::AbstractModel
         # @param Label: 该字段用于返回检测结果所对应的恶意标签。<br>返回值：**Normal**：正常，**Porn**：色情，**Abuse**：谩骂，**Ad**：广告，**Custom**：自定义违规；以及其他令人反感、不安全或不适宜的内容类型。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Label: String
         # @param Keywords: 该字段用于返回ASR识别出的文本内容命中的关键词信息，用于标注内容违规的具体原因（如：加我微信）。该参数可能会有多个返回值，代表命中的多个关键词；若返回值为空，Score不为空，则代表识别结果所对应的恶意标签（Label）来自于语义模型判断的返回值。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Keywords: Array
         # @param LibId: 该字段**仅当Label为Custom：自定义关键词时该参数有效**,用于返回自定义库的ID，以方便自定义库管理和配置。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LibId: String
         # @param LibName: 该字段**仅当Label为Custom：自定义关键词时该参数有效**,用于返回自定义库的名称,以方便自定义库管理和配置。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LibName: String
         # @param Score: 该字段用于返回当前标签下的置信度，取值范围：0（**置信度最低**）-100（**置信度最高**），越高代表文本越有可能属于当前返回的标签；如：*色情 99*，则表明该文本非常有可能属于色情内容。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Score: Integer
         # @param Suggestion: 该字段用于返回后续操作建议。当您获取到判定结果后，返回值表示具体的后续建议操作。<br>
         # 返回值：**Block**：建议屏蔽，**Review** ：建议人工复审，**Pass**：建议通过
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Suggestion: String
         # @param LibType: 该字段用于返回自定义关键词对应的词库类型，取值为**1**（黑白库）和**2**（自定义关键词库），若未配置自定义关键词库,则默认值为1（黑白库匹配）。
         # @type LibType: Integer
         # @param SubLabel: 该字段用于返回当前标签（Lable）下的二级标签。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubLabel: String
+        # @param HitInfos: 该字段用于命中的关键词信息
+        # @type HitInfos: Array
 
-        attr_accessor :Label, :Keywords, :LibId, :LibName, :Score, :Suggestion, :LibType, :SubLabel
+        attr_accessor :Label, :Keywords, :LibId, :LibName, :Score, :Suggestion, :LibType, :SubLabel, :HitInfos
 
-        def initialize(label=nil, keywords=nil, libid=nil, libname=nil, score=nil, suggestion=nil, libtype=nil, sublabel=nil)
+        def initialize(label=nil, keywords=nil, libid=nil, libname=nil, score=nil, suggestion=nil, libtype=nil, sublabel=nil, hitinfos=nil)
           @Label = label
           @Keywords = keywords
           @LibId = libid
@@ -303,6 +306,7 @@ module TencentCloud
           @Suggestion = suggestion
           @LibType = libtype
           @SubLabel = sublabel
+          @HitInfos = hitinfos
         end
 
         def deserialize(params)
@@ -314,6 +318,14 @@ module TencentCloud
           @Suggestion = params['Suggestion']
           @LibType = params['LibType']
           @SubLabel = params['SubLabel']
+          unless params['HitInfos'].nil?
+            @HitInfos = []
+            params['HitInfos'].each do |i|
+              hitinfo_tmp = HitInfo.new
+              hitinfo_tmp.deserialize(i)
+              @HitInfos << hitinfo_tmp
+            end
+          end
         end
       end
 
