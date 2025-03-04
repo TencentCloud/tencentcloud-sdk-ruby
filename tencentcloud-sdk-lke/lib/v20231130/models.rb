@@ -3058,7 +3058,7 @@ module TencentCloud
 
       # DescribeStorageCredential请求参数结构体
       class DescribeStorageCredentialRequest < TencentCloud::Common::AbstractModel
-        # @param BotBizId: 应用ID
+        # @param BotBizId: 应用ID，参数非必填不代表不需要填写，下面不同的参数组合会获取到不同的权限，具体请参考 https://cloud.tencent.com/document/product/1759/116238
         # @type BotBizId: String
         # @param FileType: 文件类型,正常的文件名类型后缀，例如 xlsx、pdf、 docx、png 等
         # @type FileType: String

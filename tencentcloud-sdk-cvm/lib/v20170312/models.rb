@@ -799,14 +799,17 @@ module TencentCloud
         # @type ClientToken: String
         # @param Affinity: 置放群组的亲和度，在置放群组的实例会按该亲和度分布，亲和度的取值范围是：1-10，默认为1
         # @type Affinity: Integer
+        # @param TagSpecification: 标签描述列表。通过指定该参数可以绑定标签到置放群组。
+        # @type TagSpecification: Array
 
-        attr_accessor :Name, :Type, :ClientToken, :Affinity
+        attr_accessor :Name, :Type, :ClientToken, :Affinity, :TagSpecification
 
-        def initialize(name=nil, type=nil, clienttoken=nil, affinity=nil)
+        def initialize(name=nil, type=nil, clienttoken=nil, affinity=nil, tagspecification=nil)
           @Name = name
           @Type = type
           @ClientToken = clienttoken
           @Affinity = affinity
+          @TagSpecification = tagspecification
         end
 
         def deserialize(params)
@@ -814,6 +817,14 @@ module TencentCloud
           @Type = params['Type']
           @ClientToken = params['ClientToken']
           @Affinity = params['Affinity']
+          unless params['TagSpecification'].nil?
+            @TagSpecification = []
+            params['TagSpecification'].each do |i|
+              tagspecification_tmp = TagSpecification.new
+              tagspecification_tmp.deserialize(i)
+              @TagSpecification << tagspecification_tmp
+            end
+          end
         end
       end
 
@@ -1999,14 +2010,21 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 返回数量，默认为20，最大值为100。关于`Limit`的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/api/213/15688)中的相关小节。
         # @type Limit: Integer
+        # @param Filters: <li><strong>tag-key</strong></li>
+        # <p style="padding-left: 30px;">按照【<strong>标签键</strong>】进行过滤。</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p>
+        # <li><strong>tag-value</strong></li> <p style="padding-left: 30px;">按照【<strong>标签值</strong>】进行过滤。</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p>
+        # <li><strong>tag:tag-key</strong></li> <p style="padding-left: 30px;">按照【<strong>标签键值对</strong>】进行过滤。tag-key使用具体的标签键进行替换。</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p>
+        # 每次请求的`Filters`的上限为10，`Filter.Values`的上限为5。
+        # @type Filters: Array
 
-        attr_accessor :DisasterRecoverGroupIds, :Name, :Offset, :Limit
+        attr_accessor :DisasterRecoverGroupIds, :Name, :Offset, :Limit, :Filters
 
-        def initialize(disasterrecovergroupids=nil, name=nil, offset=nil, limit=nil)
+        def initialize(disasterrecovergroupids=nil, name=nil, offset=nil, limit=nil, filters=nil)
           @DisasterRecoverGroupIds = disasterrecovergroupids
           @Name = name
           @Offset = offset
           @Limit = limit
+          @Filters = filters
         end
 
         def deserialize(params)
@@ -2014,6 +2032,14 @@ module TencentCloud
           @Name = params['Name']
           @Offset = params['Offset']
           @Limit = params['Limit']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
         end
       end
 
@@ -3538,15 +3564,15 @@ module TencentCloud
         # @param CurrentNum: 分散置放群组内云服务器当前数量。
         # @type CurrentNum: Integer
         # @param InstanceIds: 分散置放群组内，云服务器id列表。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceIds: Array
         # @param CreateTime: 分散置放群组创建时间。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
+        # @param Tags: 置放群组关联的标签列表。
+        # @type Tags: Array
 
-        attr_accessor :DisasterRecoverGroupId, :Name, :Type, :CvmQuotaTotal, :CurrentNum, :InstanceIds, :CreateTime
+        attr_accessor :DisasterRecoverGroupId, :Name, :Type, :CvmQuotaTotal, :CurrentNum, :InstanceIds, :CreateTime, :Tags
 
-        def initialize(disasterrecovergroupid=nil, name=nil, type=nil, cvmquotatotal=nil, currentnum=nil, instanceids=nil, createtime=nil)
+        def initialize(disasterrecovergroupid=nil, name=nil, type=nil, cvmquotatotal=nil, currentnum=nil, instanceids=nil, createtime=nil, tags=nil)
           @DisasterRecoverGroupId = disasterrecovergroupid
           @Name = name
           @Type = type
@@ -3554,6 +3580,7 @@ module TencentCloud
           @CurrentNum = currentnum
           @InstanceIds = instanceids
           @CreateTime = createtime
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -3564,6 +3591,14 @@ module TencentCloud
           @CurrentNum = params['CurrentNum']
           @InstanceIds = params['InstanceIds']
           @CreateTime = params['CreateTime']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
         end
       end
 
