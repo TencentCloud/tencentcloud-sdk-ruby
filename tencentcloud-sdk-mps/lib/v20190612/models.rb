@@ -1500,7 +1500,11 @@ module TencentCloud
         # @param Definition: 视频内容分析模板 ID。
         # @type Definition: Integer
         # @param ExtendedParameter: 扩展参数，其值为序列化的 json字符串。
-        # 注意：此参数为定制需求参数，需要线下对接。
+        # 注意：此参数为定制需求参数，参考如下：
+        # 智能檫除：https://cloud.tencent.com/document/product/862/101530
+        # 智能拆条：https://cloud.tencent.com/document/product/862/112098
+        # 高光集锦：https://cloud.tencent.com/document/product/862/107280
+        # 智能横转竖：https://cloud.tencent.com/document/product/862/112112
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExtendedParameter: String
 
@@ -2036,8 +2040,8 @@ module TencentCloud
 
         attr_accessor :SegmentSet, :SubtitlePath, :OutputStorage
         extend Gem::Deprecate
-        deprecate :OutputStorage, :none, 2025, 2
-        deprecate :OutputStorage=, :none, 2025, 2
+        deprecate :OutputStorage, :none, 2025, 3
+        deprecate :OutputStorage=, :none, 2025, 3
 
         def initialize(segmentset=nil, subtitlepath=nil, outputstorage=nil)
           @SegmentSet = segmentset
@@ -12103,6 +12107,9 @@ module TencentCloud
       class DrmInfo < TencentCloud::Common::AbstractModel
         # @param Type: 加密类型：
         # <li> simpleaes: aes-128 加密</li>
+        # <li> widevine</li>
+        # <li> fairplay：Dash不支持fairplay加密</li>
+        # <li> playready</li>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: String
         # @param SimpleAesDrm: SimpleAes 加密信息。
@@ -14158,10 +14165,10 @@ module TencentCloud
 
         attr_accessor :QualityControlResults, :DiagnoseResults, :QualityControlResultSet, :DiagnoseResultSet
         extend Gem::Deprecate
-        deprecate :QualityControlResults, :none, 2025, 2
-        deprecate :QualityControlResults=, :none, 2025, 2
-        deprecate :DiagnoseResults, :none, 2025, 2
-        deprecate :DiagnoseResults=, :none, 2025, 2
+        deprecate :QualityControlResults, :none, 2025, 3
+        deprecate :QualityControlResults=, :none, 2025, 3
+        deprecate :DiagnoseResults, :none, 2025, 3
+        deprecate :DiagnoseResults=, :none, 2025, 3
 
         def initialize(qualitycontrolresults=nil, diagnoseresults=nil, qualitycontrolresultset=nil, diagnoseresultset=nil)
           @QualityControlResults = qualitycontrolresults
@@ -19203,10 +19210,12 @@ module TencentCloud
         # <li> Online：实时任务</li>
         # <li> Offline：闲时任务，不保证实效性，默认3天内处理完</li>
         # @type TaskType: String
+        # @param ResourceId: 资源ID，需要保证对应资源是开启状态。默认为帐号主资源ID。
+        # @type ResourceId: String
 
-        attr_accessor :InputInfo, :OutputStorage, :OutputDir, :ScheduleId, :MediaProcessTask, :AiContentReviewTask, :AiAnalysisTask, :AiRecognitionTask, :AiQualityControlTask, :TaskNotifyConfig, :TasksPriority, :SessionId, :SessionContext, :TaskType
+        attr_accessor :InputInfo, :OutputStorage, :OutputDir, :ScheduleId, :MediaProcessTask, :AiContentReviewTask, :AiAnalysisTask, :AiRecognitionTask, :AiQualityControlTask, :TaskNotifyConfig, :TasksPriority, :SessionId, :SessionContext, :TaskType, :ResourceId
 
-        def initialize(inputinfo=nil, outputstorage=nil, outputdir=nil, scheduleid=nil, mediaprocesstask=nil, aicontentreviewtask=nil, aianalysistask=nil, airecognitiontask=nil, aiqualitycontroltask=nil, tasknotifyconfig=nil, taskspriority=nil, sessionid=nil, sessioncontext=nil, tasktype=nil)
+        def initialize(inputinfo=nil, outputstorage=nil, outputdir=nil, scheduleid=nil, mediaprocesstask=nil, aicontentreviewtask=nil, aianalysistask=nil, airecognitiontask=nil, aiqualitycontroltask=nil, tasknotifyconfig=nil, taskspriority=nil, sessionid=nil, sessioncontext=nil, tasktype=nil, resourceid=nil)
           @InputInfo = inputinfo
           @OutputStorage = outputstorage
           @OutputDir = outputdir
@@ -19221,6 +19230,7 @@ module TencentCloud
           @SessionId = sessionid
           @SessionContext = sessioncontext
           @TaskType = tasktype
+          @ResourceId = resourceid
         end
 
         def deserialize(params)
@@ -19262,6 +19272,7 @@ module TencentCloud
           @SessionId = params['SessionId']
           @SessionContext = params['SessionContext']
           @TaskType = params['TaskType']
+          @ResourceId = params['ResourceId']
         end
       end
 

@@ -25,7 +25,7 @@ module TencentCloud
         # @type TaskType: Integer
         # @param Nodes: 拨测节点，如10001，具体拨测地域运营商对应的拨测点编号可联系云拨测确认。
         # @type Nodes: Array
-        # @param Interval: 拨测间隔
+        # @param Interval: 拨测间隔，单位为分钟
         # @type Interval: Integer
         # @param Parameters: 拨测参数，详细可参考云拨测官方文档,链接:https://cloud.tencent.com/document/product/248/87308#createprobetasks。
         # @type Parameters: String

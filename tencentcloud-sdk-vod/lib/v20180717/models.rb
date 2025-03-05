@@ -347,9 +347,9 @@ module TencentCloud
         # @type Definition: Integer
         # @param WatermarkSet: 水印列表，支持多张图片或文字水印，最大可支持 10 张。
         # @type WatermarkSet: Array
-        # @param TraceWatermark: 溯源水印，该功能已不再支持使用。
+        # @param TraceWatermark: 溯源水印。
         # @type TraceWatermark: :class:`Tencentcloud::Vod.v20180717.models.TraceWatermarkInput`
-        # @param CopyRightWatermark: 版权水印，该功能已不再支持使用。
+        # @param CopyRightWatermark: 版权水印。
         # @type CopyRightWatermark: :class:`Tencentcloud::Vod.v20180717.models.CopyRightWatermarkInput`
         # @param SubtitleSet: 字幕列表，元素为字幕 ID，支持多个字幕，最大可支持16个。
         # @type SubtitleSet: Array
@@ -2182,8 +2182,8 @@ module TencentCloud
 
         attr_accessor :Name, :SegmentSet, :RecognitionSegmentSet
         extend Gem::Deprecate
-        deprecate :SegmentSet, :none, 2025, 1
-        deprecate :SegmentSet=, :none, 2025, 1
+        deprecate :SegmentSet, :none, 2025, 3
+        deprecate :SegmentSet=, :none, 2025, 3
 
         def initialize(name=nil, segmentset=nil, recognitionsegmentset=nil)
           @Name = name
@@ -10658,8 +10658,8 @@ module TencentCloud
 
         attr_accessor :DomainName, :Domain, :Scheme, :PlayKey, :RequestId
         extend Gem::Deprecate
-        deprecate :DomainName, :none, 2025, 1
-        deprecate :DomainName=, :none, 2025, 1
+        deprecate :DomainName, :none, 2025, 3
+        deprecate :DomainName=, :none, 2025, 3
 
         def initialize(domainname=nil, domain=nil, scheme=nil, playkey=nil, requestid=nil)
           @DomainName = domainname
@@ -18458,8 +18458,8 @@ module TencentCloud
 
         attr_accessor :Duration, :Transitions, :MediaTransitions
         extend Gem::Deprecate
-        deprecate :Transitions, :none, 2025, 1
-        deprecate :Transitions=, :none, 2025, 1
+        deprecate :Transitions, :none, 2025, 3
+        deprecate :Transitions=, :none, 2025, 3
 
         def initialize(duration=nil, transitions=nil, mediatransitions=nil)
           @Duration = duration
@@ -22417,8 +22417,8 @@ module TencentCloud
 
         attr_accessor :ProductType, :StartTime, :ExpireTime, :ProductInstanceId, :LastConsumeDate, :BindStatus, :ProductInstanceResourceSet, :ResourceSet, :ProductInstanceStatus, :RefundStatus, :RenewStatus
         extend Gem::Deprecate
-        deprecate :ProductInstanceResourceSet, :none, 2025, 1
-        deprecate :ProductInstanceResourceSet=, :none, 2025, 1
+        deprecate :ProductInstanceResourceSet, :none, 2025, 3
+        deprecate :ProductInstanceResourceSet=, :none, 2025, 3
 
         def initialize(producttype=nil, starttime=nil, expiretime=nil, productinstanceid=nil, lastconsumedate=nil, bindstatus=nil, productinstanceresourceset=nil, resourceset=nil, productinstancestatus=nil, refundstatus=nil, renewstatus=nil)
           @ProductType = producttype
@@ -28025,9 +28025,9 @@ module TencentCloud
         # @type Definition: Integer
         # @param WatermarkSet: 水印列表，支持多张图片或文字水印，最大可支持 10 张。
         # @type WatermarkSet: Array
-        # @param TraceWatermark: 溯源水印，该功能已不再支持使用。
+        # @param TraceWatermark: 溯源水印。
         # @type TraceWatermark: :class:`Tencentcloud::Vod.v20180717.models.TraceWatermarkInput`
-        # @param CopyRightWatermark: 版权水印，该功能已不再支持使用。
+        # @param CopyRightWatermark: 版权水印。
         # @type CopyRightWatermark: :class:`Tencentcloud::Vod.v20180717.models.CopyRightWatermarkInput`
         # @param MosaicSet: 马赛克列表，最大可支持 10 张。
         # @type MosaicSet: Array

@@ -242,8 +242,8 @@ module TencentCloud
 
         attr_accessor :BatchId, :CorpId, :BatchCode, :CodeCnt, :MerchantId, :ProductId, :BatchType, :Remark, :MpTpl, :Status, :CreateTime, :UpdateTime, :MerchantName, :ProductName, :Ext, :TplName, :Job, :ProductionDate, :ValidDate, :Attrs
         extend Gem::Deprecate
-        deprecate :Ext, :none, 2025, 2
-        deprecate :Ext=, :none, 2025, 2
+        deprecate :Ext, :none, 2025, 3
+        deprecate :Ext=, :none, 2025, 3
 
         def initialize(batchid=nil, corpid=nil, batchcode=nil, codecnt=nil, merchantid=nil, productid=nil, batchtype=nil, remark=nil, mptpl=nil, status=nil, createtime=nil, updatetime=nil, merchantname=nil, productname=nil, ext=nil, tplname=nil, job=nil, productiondate=nil, validdate=nil, attrs=nil)
           @BatchId = batchid
@@ -1911,10 +1911,8 @@ module TencentCloud
       # DescribeCodePacks返回参数结构体
       class DescribeCodePacksResponse < TencentCloud::Common::AbstractModel
         # @param CodePacks: 码列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CodePacks: Array
         # @param TotalCount: 总数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2653,8 +2651,8 @@ module TencentCloud
 
         attr_accessor :Products, :TotalCount, :ScanLogs, :RequestId
         extend Gem::Deprecate
-        deprecate :Products, :none, 2025, 2
-        deprecate :Products=, :none, 2025, 2
+        deprecate :Products, :none, 2025, 3
+        deprecate :Products=, :none, 2025, 3
 
         def initialize(products=nil, totalcount=nil, scanlogs=nil, requestid=nil)
           @Products = products
@@ -3062,8 +3060,8 @@ module TencentCloud
 
         attr_accessor :Value
         extend Gem::Deprecate
-        deprecate :Value, :none, 2025, 2
-        deprecate :Value=, :none, 2025, 2
+        deprecate :Value, :none, 2025, 3
+        deprecate :Value=, :none, 2025, 3
 
         def initialize(value=nil)
           @Value = value
@@ -3114,7 +3112,6 @@ module TencentCloud
         # @param Status: 执行状态 init:初始化, pending: 执行中, done: 执行成功, error: 执行失败
         # @type Status: String
         # @param ErrorMessage: 任务错误信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrorMessage: String
 
         attr_accessor :JobId, :Status, :ErrorMessage
@@ -4563,8 +4560,8 @@ module TencentCloud
 
         attr_accessor :CorpId, :FactoryCnt, :ItemCnt, :TrackCnt, :SaleCnt, :ChainCnt, :RiskCnt, :UpdateTime
         extend Gem::Deprecate
-        deprecate :RiskCnt, :none, 2025, 2
-        deprecate :RiskCnt=, :none, 2025, 2
+        deprecate :RiskCnt, :none, 2025, 3
+        deprecate :RiskCnt=, :none, 2025, 3
 
         def initialize(corpid=nil, factorycnt=nil, itemcnt=nil, trackcnt=nil, salecnt=nil, chaincnt=nil, riskcnt=nil, updatetime=nil)
           @CorpId = corpid
