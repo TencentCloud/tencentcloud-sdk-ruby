@@ -104,7 +104,6 @@ module TencentCloud
         # @param Filename: 备份文件名。
         # @type Filename: String
         # @param FileSize: 备份文件大小，单位：Byte。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FileSize: Integer
 
         attr_accessor :StartTime, :EndTime, :BackupId, :Filename, :FileSize
@@ -503,10 +502,8 @@ module TencentCloud
         # @param ClientLimit: 实例当前单分片连接数限制。
         # @type ClientLimit: Integer
         # @param ClientLimitMin: 单分片连接数限制最小值。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClientLimitMin: Integer
         # @param ClientLimitMax: 单分片连接数限制最大值。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClientLimitMax: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -629,7 +626,6 @@ module TencentCloud
         # @param TotalCount: 备份文件总数。
         # @type TotalCount: Integer
         # @param BackupSet: 废弃字段。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BackupSet: Array
         # @param BackupRecord: 实例备份信息列表。
         # @type BackupRecord: Array
@@ -802,23 +798,18 @@ module TencentCloud
         # @param ProxyCount: Proxy 节点数量。
         # @type ProxyCount: Integer
         # @param Proxy: Proxy 节点信息。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Proxy: Array
         # @param RedisCount: Redis 节点数量。该参数仅为产品兼容性而保留，并不具有实际意义，可忽略。
         # @type RedisCount: Integer
         # @param Redis: Redis 节点信息。该参数仅为产品兼容性而保留，并不具有实际意义，可忽略。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Redis: Array
         # @param TendisCount: Tendis 节点数量。该参数仅为产品兼容性而保留，并不具有实际意义，可忽略。
         # @type TendisCount: Integer
         # @param Tendis: Tendis 节点信息。该参数仅为产品兼容性而保留，并不具有实际意义，可忽略。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tendis: Array
         # @param KeeWiDBCount: KeewiDB 节点数量。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type KeeWiDBCount: Integer
         # @param KeeWiDB: KeewiDB 节点信息。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type KeeWiDB: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1863,55 +1854,39 @@ module TencentCloud
         # @param SlaveReadWeight: 从节点读取权重。
         # @type SlaveReadWeight: Integer
         # @param InstanceTags: 实例关联的标签信息。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceTags: Array
         # @param ProjectName: 项目名称。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProjectName: String
         # @param NoAuth: 是否为免密实例；<ul><li>true：免密实例。</li><li>false：非免密实例。</li></ul>
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NoAuth: Boolean
         # @param ClientLimit: 客户端连接数。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClientLimit: Integer
         # @param DtsStatus: DTS状态（内部参数，用户可忽略）。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DtsStatus: Integer
         # @param NetLimit: 分片带宽上限，单位 MB。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NetLimit: Integer
         # @param PasswordFree: 免密实例标识（内部参数，用户可忽略）。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PasswordFree: Integer
         # @param ReadOnly: 实例只读标识（内部参数，用户可忽略）。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReadOnly: Integer
         # @param Vip6: 内部参数，用户可忽略。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Vip6: String
         # @param RemainBandwidthDuration: 内部参数，用户可忽略。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RemainBandwidthDuration: String
         # @param DiskSize: 实例的磁盘容量大小。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DiskSize: Integer
         # @param MonitorVersion: 监控版本。<ul><li>1m：分钟粒度监控。</li><li>5s：5秒粒度监控。</li></ul>
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MonitorVersion: String
         # @param ClientLimitMin: 客户端最大连接数可设置的最小值。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClientLimitMin: Integer
         # @param ClientLimitMax: 客户端最大连接数可设置的最大值。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClientLimitMax: Integer
         # @param NodeSet: 实例的节点详细信息。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NodeSet: Array
         # @param Region: 实例所在的地域信息，比如ap-guangzhou。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Region: String
         # @param MachineMemory: 实例内存容量，单位：GB。KeeWiDB 内存容量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MachineMemory: Integer
         # @param DiskShardSize: 单分片磁盘大小，单位：MB
         # @type DiskShardSize: Integer
@@ -1920,7 +1895,6 @@ module TencentCloud
         # @param DiskReplicasNum: 1
         # @type DiskReplicasNum: Integer
         # @param Compression: 数据压缩开关。<ul><li>ON：开启。</li><li>OFF：关闭。</li></ul>
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Compression: String
 
         attr_accessor :InstanceName, :InstanceId, :Appid, :ProjectId, :RegionId, :ZoneId, :VpcId, :Status, :SubnetId, :WanIp, :Port, :Createtime, :Size, :Type, :AutoRenewFlag, :DeadlineTime, :Engine, :ProductType, :UniqVpcId, :UniqSubnetId, :BillingMode, :InstanceTitle, :OfflineTime, :SubStatus, :Tags, :RedisShardSize, :RedisShardNum, :RedisReplicasNum, :PriceId, :CloseTime, :SlaveReadWeight, :InstanceTags, :ProjectName, :NoAuth, :ClientLimit, :DtsStatus, :NetLimit, :PasswordFree, :ReadOnly, :Vip6, :RemainBandwidthDuration, :DiskSize, :MonitorVersion, :ClientLimitMin, :ClientLimitMax, :NodeSet, :Region, :MachineMemory, :DiskShardSize, :DiskShardNum, :DiskReplicasNum, :Compression
@@ -2071,7 +2045,6 @@ module TencentCloud
         # @param Status: 参数状态, 1: 修改中， 2：修改完成
         # @type Status: Integer
         # @param Unit: 参数单位
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Unit: String
 
         attr_accessor :ParamName, :ValueType, :NeedRestart, :DefaultValue, :CurrentValue, :Tips, :Min, :Max, :Status, :Unit
@@ -2825,7 +2798,6 @@ module TencentCloud
       # Proxy节点信息
       class ProxyNodeInfo < TencentCloud::Common::AbstractModel
         # @param NodeId: 节点ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NodeId: String
 
         attr_accessor :NodeId
@@ -3140,34 +3112,24 @@ module TencentCloud
       # 任务信息详情
       class TaskInfoDetail < TencentCloud::Common::AbstractModel
         # @param TaskId: 任务Id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskId: Integer
         # @param StartTime: 开始时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StartTime: String
         # @param TaskType: 任务类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskType: String
         # @param InstanceName: 实例名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceName: String
         # @param InstanceId: 实例Id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceId: String
         # @param ProjectId: 项目Id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProjectId: Integer
         # @param Progress: 任务进度
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Progress: Float
         # @param EndTime: 结束时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EndTime: String
         # @param Result: 任务状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: Integer
         # @param OperatorUin: 操作者用户uin
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OperatorUin: String
 
         attr_accessor :TaskId, :StartTime, :TaskType, :InstanceName, :InstanceId, :ProjectId, :Progress, :EndTime, :Result, :OperatorUin

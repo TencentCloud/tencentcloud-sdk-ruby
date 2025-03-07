@@ -8158,7 +8158,6 @@ module TencentCloud
       # DescribeOpenPolicyList返回参数结构体
       class DescribeOpenPolicyListResponse < TencentCloud::Common::AbstractModel
         # @param OpenPolicyInfoList: 策略信息列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OpenPolicyInfoList: Array
         # @param GatekeeperStatus: 集群内是否安装了gatekeeper addon
         # @type GatekeeperStatus: Integer
@@ -15125,31 +15124,22 @@ module TencentCloud
       # opa策略信息
       class OpenPolicyInfo < TencentCloud::Common::AbstractModel
         # @param PolicyCategory: 策略分类：cluster集群策略、node节点策略、namespace命名空间策略、configuration配置相关策略、compute计算资源策略、storage存储资源策略、network网络资源策略
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PolicyCategory: String
         # @param PolicyName: 策略中文名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PolicyName: String
         # @param PolicyDesc: 策略描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PolicyDesc: String
         # @param EnforcementAction: 策略运行模式：dryrun空跑不生效，deny拦截生效
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EnforcementAction: String
         # @param EventNums: 关联的事件数量(最近7d)
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EventNums: Integer
         # @param Name: 策略英文名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Kind: 策略模板类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Kind: String
         # @param EnabledStatus: 策略开关状态：open打开，close关闭
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EnabledStatus: String
         # @param ConstraintYamlExample: 策略的实例的yaml示例base64编码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ConstraintYamlExample: String
         # @param OpenConstraintInfoList: 策略关联的实例列表
         # 注意：此字段可能返回 null，表示取不到有效值。

@@ -3883,10 +3883,12 @@ module TencentCloud
         # @type SmartOptimizerWritten: String
         # @param TableName: 数据优化表名
         # @type TableName: String
+        # @param ResourceGroupName: 数据优化资源组
+        # @type ResourceGroupName: String
 
-        attr_accessor :DatasourceId, :Database, :DDLSql, :Privilege, :ProjectId, :Type, :Incharge, :SchemaName, :Async, :DataOptimizationResource, :SmartOptimizerWritten, :TableName
+        attr_accessor :DatasourceId, :Database, :DDLSql, :Privilege, :ProjectId, :Type, :Incharge, :SchemaName, :Async, :DataOptimizationResource, :SmartOptimizerWritten, :TableName, :ResourceGroupName
 
-        def initialize(datasourceid=nil, database=nil, ddlsql=nil, privilege=nil, projectid=nil, type=nil, incharge=nil, schemaname=nil, async=nil, dataoptimizationresource=nil, smartoptimizerwritten=nil, tablename=nil)
+        def initialize(datasourceid=nil, database=nil, ddlsql=nil, privilege=nil, projectid=nil, type=nil, incharge=nil, schemaname=nil, async=nil, dataoptimizationresource=nil, smartoptimizerwritten=nil, tablename=nil, resourcegroupname=nil)
           @DatasourceId = datasourceid
           @Database = database
           @DDLSql = ddlsql
@@ -3899,6 +3901,7 @@ module TencentCloud
           @DataOptimizationResource = dataoptimizationresource
           @SmartOptimizerWritten = smartoptimizerwritten
           @TableName = tablename
+          @ResourceGroupName = resourcegroupname
         end
 
         def deserialize(params)
@@ -3914,6 +3917,7 @@ module TencentCloud
           @DataOptimizationResource = params['DataOptimizationResource']
           @SmartOptimizerWritten = params['SmartOptimizerWritten']
           @TableName = params['TableName']
+          @ResourceGroupName = params['ResourceGroupName']
         end
       end
 
@@ -3961,10 +3965,12 @@ module TencentCloud
         # @type SmartOptimizerWritten: String
         # @param TableName: 数据优化针对的表
         # @type TableName: String
+        # @param ResourceGroupName: 数据优化资源组
+        # @type ResourceGroupName: String
 
-        attr_accessor :DatasourceId, :Database, :DDLSql, :Privilege, :ProjectId, :Incharge, :DataOptimizationResource, :SmartOptimizerWritten, :TableName
+        attr_accessor :DatasourceId, :Database, :DDLSql, :Privilege, :ProjectId, :Incharge, :DataOptimizationResource, :SmartOptimizerWritten, :TableName, :ResourceGroupName
 
-        def initialize(datasourceid=nil, database=nil, ddlsql=nil, privilege=nil, projectid=nil, incharge=nil, dataoptimizationresource=nil, smartoptimizerwritten=nil, tablename=nil)
+        def initialize(datasourceid=nil, database=nil, ddlsql=nil, privilege=nil, projectid=nil, incharge=nil, dataoptimizationresource=nil, smartoptimizerwritten=nil, tablename=nil, resourcegroupname=nil)
           @DatasourceId = datasourceid
           @Database = database
           @DDLSql = ddlsql
@@ -3974,6 +3980,7 @@ module TencentCloud
           @DataOptimizationResource = dataoptimizationresource
           @SmartOptimizerWritten = smartoptimizerwritten
           @TableName = tablename
+          @ResourceGroupName = resourcegroupname
         end
 
         def deserialize(params)
@@ -3986,6 +3993,7 @@ module TencentCloud
           @DataOptimizationResource = params['DataOptimizationResource']
           @SmartOptimizerWritten = params['SmartOptimizerWritten']
           @TableName = params['TableName']
+          @ResourceGroupName = params['ResourceGroupName']
         end
       end
 
@@ -10617,10 +10625,14 @@ module TencentCloud
         # @type RequestResourceTypes: Array
         # @param ProjectIds: 项目ID列表
         # @type ProjectIds: Array
+        # @param BlackTaskIdList: 黑名单任务ID列表，传了该值在筛选的时候会将列表中的任务ID剔除
+        # @type BlackTaskIdList: Array
+        # @param ScheduleTimeZone: 时区
+        # @type ScheduleTimeZone: String
 
-        attr_accessor :ProjectId, :FolderIdList, :WorkFlowIdList, :WorkFlowNameList, :TaskNameList, :TaskIdList, :PageNumber, :PageSize, :SortItem, :SortType, :InChargeList, :TaskTypeIdList, :StatusList, :TaskCycleUnitList, :ProductNameList, :SourceServiceId, :SourceServiceType, :TargetServiceId, :TargetServiceType, :AlarmType, :ExecutorGroupIdList, :TaskTags, :KeyWord, :InitStrategy, :RequestResourceTypes, :ProjectIds
+        attr_accessor :ProjectId, :FolderIdList, :WorkFlowIdList, :WorkFlowNameList, :TaskNameList, :TaskIdList, :PageNumber, :PageSize, :SortItem, :SortType, :InChargeList, :TaskTypeIdList, :StatusList, :TaskCycleUnitList, :ProductNameList, :SourceServiceId, :SourceServiceType, :TargetServiceId, :TargetServiceType, :AlarmType, :ExecutorGroupIdList, :TaskTags, :KeyWord, :InitStrategy, :RequestResourceTypes, :ProjectIds, :BlackTaskIdList, :ScheduleTimeZone
 
-        def initialize(projectid=nil, folderidlist=nil, workflowidlist=nil, workflownamelist=nil, tasknamelist=nil, taskidlist=nil, pagenumber=nil, pagesize=nil, sortitem=nil, sorttype=nil, inchargelist=nil, tasktypeidlist=nil, statuslist=nil, taskcycleunitlist=nil, productnamelist=nil, sourceserviceid=nil, sourceservicetype=nil, targetserviceid=nil, targetservicetype=nil, alarmtype=nil, executorgroupidlist=nil, tasktags=nil, keyword=nil, initstrategy=nil, requestresourcetypes=nil, projectids=nil)
+        def initialize(projectid=nil, folderidlist=nil, workflowidlist=nil, workflownamelist=nil, tasknamelist=nil, taskidlist=nil, pagenumber=nil, pagesize=nil, sortitem=nil, sorttype=nil, inchargelist=nil, tasktypeidlist=nil, statuslist=nil, taskcycleunitlist=nil, productnamelist=nil, sourceserviceid=nil, sourceservicetype=nil, targetserviceid=nil, targetservicetype=nil, alarmtype=nil, executorgroupidlist=nil, tasktags=nil, keyword=nil, initstrategy=nil, requestresourcetypes=nil, projectids=nil, blacktaskidlist=nil, scheduletimezone=nil)
           @ProjectId = projectid
           @FolderIdList = folderidlist
           @WorkFlowIdList = workflowidlist
@@ -10647,6 +10659,8 @@ module TencentCloud
           @InitStrategy = initstrategy
           @RequestResourceTypes = requestresourcetypes
           @ProjectIds = projectids
+          @BlackTaskIdList = blacktaskidlist
+          @ScheduleTimeZone = scheduletimezone
         end
 
         def deserialize(params)
@@ -10683,6 +10697,8 @@ module TencentCloud
           @InitStrategy = params['InitStrategy']
           @RequestResourceTypes = params['RequestResourceTypes']
           @ProjectIds = params['ProjectIds']
+          @BlackTaskIdList = params['BlackTaskIdList']
+          @ScheduleTimeZone = params['ScheduleTimeZone']
         end
       end
 
@@ -17425,10 +17441,12 @@ module TencentCloud
         # @type ExecutorGroupIdList: Array
         # @param OnlyRerun: true 只过滤重跑过的实例，false 忽略此过滤条件，结果集过滤条件中不包括是否重跑
         # @type OnlyRerun: Boolean
+        # @param ScheduleTimeZone: 时区
+        # @type ScheduleTimeZone: String
 
-        attr_accessor :Instance, :SortCol, :TaskIdList, :TaskNameList, :FolderList, :Sort, :StateList, :TaskTypeList, :CycleList, :OwnerList, :DateFrom, :DateTo, :CreateTimeFrom, :CreateTimeTo, :StartFrom, :StartTo, :WorkflowIdList, :WorkflowNameList, :Keyword, :SearchColumns, :ProjectId, :Limit, :TaskTypeMap, :InstanceType, :DagDeal, :DagType, :DagDependent, :DagDepth, :TenantId, :DataTimeCycle, :ExecutorGroupIdList, :OnlyRerun
+        attr_accessor :Instance, :SortCol, :TaskIdList, :TaskNameList, :FolderList, :Sort, :StateList, :TaskTypeList, :CycleList, :OwnerList, :DateFrom, :DateTo, :CreateTimeFrom, :CreateTimeTo, :StartFrom, :StartTo, :WorkflowIdList, :WorkflowNameList, :Keyword, :SearchColumns, :ProjectId, :Limit, :TaskTypeMap, :InstanceType, :DagDeal, :DagType, :DagDependent, :DagDepth, :TenantId, :DataTimeCycle, :ExecutorGroupIdList, :OnlyRerun, :ScheduleTimeZone
 
-        def initialize(instance=nil, sortcol=nil, taskidlist=nil, tasknamelist=nil, folderlist=nil, sort=nil, statelist=nil, tasktypelist=nil, cyclelist=nil, ownerlist=nil, datefrom=nil, dateto=nil, createtimefrom=nil, createtimeto=nil, startfrom=nil, startto=nil, workflowidlist=nil, workflownamelist=nil, keyword=nil, searchcolumns=nil, projectid=nil, limit=nil, tasktypemap=nil, instancetype=nil, dagdeal=nil, dagtype=nil, dagdependent=nil, dagdepth=nil, tenantid=nil, datatimecycle=nil, executorgroupidlist=nil, onlyrerun=nil)
+        def initialize(instance=nil, sortcol=nil, taskidlist=nil, tasknamelist=nil, folderlist=nil, sort=nil, statelist=nil, tasktypelist=nil, cyclelist=nil, ownerlist=nil, datefrom=nil, dateto=nil, createtimefrom=nil, createtimeto=nil, startfrom=nil, startto=nil, workflowidlist=nil, workflownamelist=nil, keyword=nil, searchcolumns=nil, projectid=nil, limit=nil, tasktypemap=nil, instancetype=nil, dagdeal=nil, dagtype=nil, dagdependent=nil, dagdepth=nil, tenantid=nil, datatimecycle=nil, executorgroupidlist=nil, onlyrerun=nil, scheduletimezone=nil)
           @Instance = instance
           @SortCol = sortcol
           @TaskIdList = taskidlist
@@ -17461,6 +17479,7 @@ module TencentCloud
           @DataTimeCycle = datatimecycle
           @ExecutorGroupIdList = executorgroupidlist
           @OnlyRerun = onlyrerun
+          @ScheduleTimeZone = scheduletimezone
         end
 
         def deserialize(params)
@@ -17506,6 +17525,7 @@ module TencentCloud
           @DataTimeCycle = params['DataTimeCycle']
           @ExecutorGroupIdList = params['ExecutorGroupIdList']
           @OnlyRerun = params['OnlyRerun']
+          @ScheduleTimeZone = params['ScheduleTimeZone']
         end
       end
 
@@ -19747,10 +19767,14 @@ module TencentCloud
         # ORDER ： 按照实例时间顺序执行
         # REVERSE： 实例数据时间逆序
         # @type MakeDataTimeOrder: String
+        # @param ScheduleTimeZone: 补录时间范围的时区
+        # @type ScheduleTimeZone: String
+        # @param AppParam: 执行应用参数
+        # @type AppParam: String
 
-        attr_accessor :PlanId, :MakeName, :ProjectId, :CheckParent, :SameSelfDependType, :ParallelNum, :SameCycle, :SourceTaskCycle, :TargetTaskCycle, :TargetTaskAction, :MapParamList, :CreatorId, :Creator, :CreateTime, :TaskIdList, :MakeDatetimeList, :Remark, :SchedulerResourceGroup, :SchedulerResourceGroupName, :IntegrationResourceGroup, :IntegrationResourceGroupName, :TaskCount, :CompletePercent, :SuccessPercent, :CheckParentType, :SameSelfWorkflowDependType, :SelfWorkflowDependency, :MakeDataTimeOrder
+        attr_accessor :PlanId, :MakeName, :ProjectId, :CheckParent, :SameSelfDependType, :ParallelNum, :SameCycle, :SourceTaskCycle, :TargetTaskCycle, :TargetTaskAction, :MapParamList, :CreatorId, :Creator, :CreateTime, :TaskIdList, :MakeDatetimeList, :Remark, :SchedulerResourceGroup, :SchedulerResourceGroupName, :IntegrationResourceGroup, :IntegrationResourceGroupName, :TaskCount, :CompletePercent, :SuccessPercent, :CheckParentType, :SameSelfWorkflowDependType, :SelfWorkflowDependency, :MakeDataTimeOrder, :ScheduleTimeZone, :AppParam
 
-        def initialize(planid=nil, makename=nil, projectid=nil, checkparent=nil, sameselfdependtype=nil, parallelnum=nil, samecycle=nil, sourcetaskcycle=nil, targettaskcycle=nil, targettaskaction=nil, mapparamlist=nil, creatorid=nil, creator=nil, createtime=nil, taskidlist=nil, makedatetimelist=nil, remark=nil, schedulerresourcegroup=nil, schedulerresourcegroupname=nil, integrationresourcegroup=nil, integrationresourcegroupname=nil, taskcount=nil, completepercent=nil, successpercent=nil, checkparenttype=nil, sameselfworkflowdependtype=nil, selfworkflowdependency=nil, makedatatimeorder=nil)
+        def initialize(planid=nil, makename=nil, projectid=nil, checkparent=nil, sameselfdependtype=nil, parallelnum=nil, samecycle=nil, sourcetaskcycle=nil, targettaskcycle=nil, targettaskaction=nil, mapparamlist=nil, creatorid=nil, creator=nil, createtime=nil, taskidlist=nil, makedatetimelist=nil, remark=nil, schedulerresourcegroup=nil, schedulerresourcegroupname=nil, integrationresourcegroup=nil, integrationresourcegroupname=nil, taskcount=nil, completepercent=nil, successpercent=nil, checkparenttype=nil, sameselfworkflowdependtype=nil, selfworkflowdependency=nil, makedatatimeorder=nil, scheduletimezone=nil, appparam=nil)
           @PlanId = planid
           @MakeName = makename
           @ProjectId = projectid
@@ -19779,6 +19803,8 @@ module TencentCloud
           @SameSelfWorkflowDependType = sameselfworkflowdependtype
           @SelfWorkflowDependency = selfworkflowdependency
           @MakeDataTimeOrder = makedatatimeorder
+          @ScheduleTimeZone = scheduletimezone
+          @AppParam = appparam
         end
 
         def deserialize(params)
@@ -19824,6 +19850,8 @@ module TencentCloud
           @SameSelfWorkflowDependType = params['SameSelfWorkflowDependType']
           @SelfWorkflowDependency = params['SelfWorkflowDependency']
           @MakeDataTimeOrder = params['MakeDataTimeOrder']
+          @ScheduleTimeZone = params['ScheduleTimeZone']
+          @AppParam = params['AppParam']
         end
       end
 
@@ -23122,10 +23150,12 @@ module TencentCloud
         # @type CalendarId: String
         # @param ScheduleTimeZone: 时区
         # @type ScheduleTimeZone: String
+        # @param ClearLink: 是否自动清理不支持的任务链接
+        # @type ClearLink: Boolean
 
-        attr_accessor :ProjectId, :WorkflowId, :DelayTime, :StartupTime, :SelfDepend, :StartTime, :EndTime, :TaskAction, :CycleType, :CycleStep, :ExecutionStartTime, :ExecutionEndTime, :InstanceInitStrategy, :DependencyWorkflow, :CrontabExpression, :ModifyCycleValue, :CalendarOpen, :CalendarName, :CalendarId, :ScheduleTimeZone
+        attr_accessor :ProjectId, :WorkflowId, :DelayTime, :StartupTime, :SelfDepend, :StartTime, :EndTime, :TaskAction, :CycleType, :CycleStep, :ExecutionStartTime, :ExecutionEndTime, :InstanceInitStrategy, :DependencyWorkflow, :CrontabExpression, :ModifyCycleValue, :CalendarOpen, :CalendarName, :CalendarId, :ScheduleTimeZone, :ClearLink
 
-        def initialize(projectid=nil, workflowid=nil, delaytime=nil, startuptime=nil, selfdepend=nil, starttime=nil, endtime=nil, taskaction=nil, cycletype=nil, cyclestep=nil, executionstarttime=nil, executionendtime=nil, instanceinitstrategy=nil, dependencyworkflow=nil, crontabexpression=nil, modifycyclevalue=nil, calendaropen=nil, calendarname=nil, calendarid=nil, scheduletimezone=nil)
+        def initialize(projectid=nil, workflowid=nil, delaytime=nil, startuptime=nil, selfdepend=nil, starttime=nil, endtime=nil, taskaction=nil, cycletype=nil, cyclestep=nil, executionstarttime=nil, executionendtime=nil, instanceinitstrategy=nil, dependencyworkflow=nil, crontabexpression=nil, modifycyclevalue=nil, calendaropen=nil, calendarname=nil, calendarid=nil, scheduletimezone=nil, clearlink=nil)
           @ProjectId = projectid
           @WorkflowId = workflowid
           @DelayTime = delaytime
@@ -23146,6 +23176,7 @@ module TencentCloud
           @CalendarName = calendarname
           @CalendarId = calendarid
           @ScheduleTimeZone = scheduletimezone
+          @ClearLink = clearlink
         end
 
         def deserialize(params)
@@ -23169,6 +23200,7 @@ module TencentCloud
           @CalendarName = params['CalendarName']
           @CalendarId = params['CalendarId']
           @ScheduleTimeZone = params['ScheduleTimeZone']
+          @ClearLink = params['ClearLink']
         end
       end
 
@@ -29263,10 +29295,15 @@ module TencentCloud
         # @param NewParentTaskInfos: 父任务simple信息(新)
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NewParentTaskInfos: Array
+        # @param SelfWorkFlowDependType: 任务自依赖类型：
+        # yes： 任务需满足自依赖
+        # no：任务无需满足自依赖
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SelfWorkFlowDependType: String
 
-        attr_accessor :TaskId, :VirtualTaskId, :VirtualFlag, :TaskName, :WorkflowId, :RealWorkflowId, :WorkflowName, :FolderId, :FolderName, :CreateTime, :LastUpdate, :Status, :InCharge, :InChargeId, :StartTime, :EndTime, :ExecutionStartTime, :ExecutionEndTime, :CycleType, :CycleStep, :CrontabExpression, :DelayTime, :StartupTime, :RetryWait, :RetryAble, :TaskAction, :TryLimit, :RunPriority, :TaskType, :BrokerIp, :ClusterId, :MinDateTime, :MaxDateTime, :ExecutionTTL, :SelfDepend, :LeftCoordinate, :TopCoordinate, :Notes, :InstanceInitStrategy, :YarnQueue, :LastSchedulerCommitTime, :NormalizedJobStartTime, :SchedulerDesc, :ResourceGroup, :Creator, :DependencyRel, :DependencyWorkflow, :EventListenerConfig, :EventPublisherConfig, :VirtualTaskStatus, :TaskLinkInfo, :ProductName, :ProjectId, :ProjectIdent, :ProjectName, :OwnId, :UserId, :TenantId, :UpdateUser, :UpdateTime, :UpdateUserId, :TaskTypeId, :TaskTypeDesc, :ShowWorkflow, :FirstSubmitTime, :FirstRunTime, :ScheduleDesc, :CycleNum, :Crontab, :StartDate, :EndDate, :CycleUnit, :InitStrategy, :Layer, :SourceServiceId, :SourceServiceType, :TargetServiceId, :TargetServiceType, :TasksStr, :Submit, :ExecutorGroupId, :ExecutorGroupName, :TaskExtInfo, :EventListenerInfos, :ScriptInfo, :DLCResourceConfig, :ParentTaskInfos, :ExtResourceFlag, :NewParentTaskInfos
+        attr_accessor :TaskId, :VirtualTaskId, :VirtualFlag, :TaskName, :WorkflowId, :RealWorkflowId, :WorkflowName, :FolderId, :FolderName, :CreateTime, :LastUpdate, :Status, :InCharge, :InChargeId, :StartTime, :EndTime, :ExecutionStartTime, :ExecutionEndTime, :CycleType, :CycleStep, :CrontabExpression, :DelayTime, :StartupTime, :RetryWait, :RetryAble, :TaskAction, :TryLimit, :RunPriority, :TaskType, :BrokerIp, :ClusterId, :MinDateTime, :MaxDateTime, :ExecutionTTL, :SelfDepend, :LeftCoordinate, :TopCoordinate, :Notes, :InstanceInitStrategy, :YarnQueue, :LastSchedulerCommitTime, :NormalizedJobStartTime, :SchedulerDesc, :ResourceGroup, :Creator, :DependencyRel, :DependencyWorkflow, :EventListenerConfig, :EventPublisherConfig, :VirtualTaskStatus, :TaskLinkInfo, :ProductName, :ProjectId, :ProjectIdent, :ProjectName, :OwnId, :UserId, :TenantId, :UpdateUser, :UpdateTime, :UpdateUserId, :TaskTypeId, :TaskTypeDesc, :ShowWorkflow, :FirstSubmitTime, :FirstRunTime, :ScheduleDesc, :CycleNum, :Crontab, :StartDate, :EndDate, :CycleUnit, :InitStrategy, :Layer, :SourceServiceId, :SourceServiceType, :TargetServiceId, :TargetServiceType, :TasksStr, :Submit, :ExecutorGroupId, :ExecutorGroupName, :TaskExtInfo, :EventListenerInfos, :ScriptInfo, :DLCResourceConfig, :ParentTaskInfos, :ExtResourceFlag, :NewParentTaskInfos, :SelfWorkFlowDependType
 
-        def initialize(taskid=nil, virtualtaskid=nil, virtualflag=nil, taskname=nil, workflowid=nil, realworkflowid=nil, workflowname=nil, folderid=nil, foldername=nil, createtime=nil, lastupdate=nil, status=nil, incharge=nil, inchargeid=nil, starttime=nil, endtime=nil, executionstarttime=nil, executionendtime=nil, cycletype=nil, cyclestep=nil, crontabexpression=nil, delaytime=nil, startuptime=nil, retrywait=nil, retryable=nil, taskaction=nil, trylimit=nil, runpriority=nil, tasktype=nil, brokerip=nil, clusterid=nil, mindatetime=nil, maxdatetime=nil, executionttl=nil, selfdepend=nil, leftcoordinate=nil, topcoordinate=nil, notes=nil, instanceinitstrategy=nil, yarnqueue=nil, lastschedulercommittime=nil, normalizedjobstarttime=nil, schedulerdesc=nil, resourcegroup=nil, creator=nil, dependencyrel=nil, dependencyworkflow=nil, eventlistenerconfig=nil, eventpublisherconfig=nil, virtualtaskstatus=nil, tasklinkinfo=nil, productname=nil, projectid=nil, projectident=nil, projectname=nil, ownid=nil, userid=nil, tenantid=nil, updateuser=nil, updatetime=nil, updateuserid=nil, tasktypeid=nil, tasktypedesc=nil, showworkflow=nil, firstsubmittime=nil, firstruntime=nil, scheduledesc=nil, cyclenum=nil, crontab=nil, startdate=nil, enddate=nil, cycleunit=nil, initstrategy=nil, layer=nil, sourceserviceid=nil, sourceservicetype=nil, targetserviceid=nil, targetservicetype=nil, tasksstr=nil, submit=nil, executorgroupid=nil, executorgroupname=nil, taskextinfo=nil, eventlistenerinfos=nil, scriptinfo=nil, dlcresourceconfig=nil, parenttaskinfos=nil, extresourceflag=nil, newparenttaskinfos=nil)
+        def initialize(taskid=nil, virtualtaskid=nil, virtualflag=nil, taskname=nil, workflowid=nil, realworkflowid=nil, workflowname=nil, folderid=nil, foldername=nil, createtime=nil, lastupdate=nil, status=nil, incharge=nil, inchargeid=nil, starttime=nil, endtime=nil, executionstarttime=nil, executionendtime=nil, cycletype=nil, cyclestep=nil, crontabexpression=nil, delaytime=nil, startuptime=nil, retrywait=nil, retryable=nil, taskaction=nil, trylimit=nil, runpriority=nil, tasktype=nil, brokerip=nil, clusterid=nil, mindatetime=nil, maxdatetime=nil, executionttl=nil, selfdepend=nil, leftcoordinate=nil, topcoordinate=nil, notes=nil, instanceinitstrategy=nil, yarnqueue=nil, lastschedulercommittime=nil, normalizedjobstarttime=nil, schedulerdesc=nil, resourcegroup=nil, creator=nil, dependencyrel=nil, dependencyworkflow=nil, eventlistenerconfig=nil, eventpublisherconfig=nil, virtualtaskstatus=nil, tasklinkinfo=nil, productname=nil, projectid=nil, projectident=nil, projectname=nil, ownid=nil, userid=nil, tenantid=nil, updateuser=nil, updatetime=nil, updateuserid=nil, tasktypeid=nil, tasktypedesc=nil, showworkflow=nil, firstsubmittime=nil, firstruntime=nil, scheduledesc=nil, cyclenum=nil, crontab=nil, startdate=nil, enddate=nil, cycleunit=nil, initstrategy=nil, layer=nil, sourceserviceid=nil, sourceservicetype=nil, targetserviceid=nil, targetservicetype=nil, tasksstr=nil, submit=nil, executorgroupid=nil, executorgroupname=nil, taskextinfo=nil, eventlistenerinfos=nil, scriptinfo=nil, dlcresourceconfig=nil, parenttaskinfos=nil, extresourceflag=nil, newparenttaskinfos=nil, selfworkflowdependtype=nil)
           @TaskId = taskid
           @VirtualTaskId = virtualtaskid
           @VirtualFlag = virtualflag
@@ -29356,6 +29393,7 @@ module TencentCloud
           @ParentTaskInfos = parenttaskinfos
           @ExtResourceFlag = extresourceflag
           @NewParentTaskInfos = newparenttaskinfos
+          @SelfWorkFlowDependType = selfworkflowdependtype
         end
 
         def deserialize(params)
@@ -29480,6 +29518,7 @@ module TencentCloud
               @NewParentTaskInfos << aiopssimpletaskdto_tmp
             end
           end
+          @SelfWorkFlowDependType = params['SelfWorkFlowDependType']
         end
       end
 
@@ -29919,13 +29958,16 @@ module TencentCloud
         # @type EventCaseList: Array
         # @param EventBatchCaseList: 事件实例信息(连续时间)
         # @type EventBatchCaseList: Array
+        # @param ScheduleTimeZone: 触发时区
+        # @type ScheduleTimeZone: String
 
-        attr_accessor :ProjectId, :EventCaseList, :EventBatchCaseList
+        attr_accessor :ProjectId, :EventCaseList, :EventBatchCaseList, :ScheduleTimeZone
 
-        def initialize(projectid=nil, eventcaselist=nil, eventbatchcaselist=nil)
+        def initialize(projectid=nil, eventcaselist=nil, eventbatchcaselist=nil, scheduletimezone=nil)
           @ProjectId = projectid
           @EventCaseList = eventcaselist
           @EventBatchCaseList = eventbatchcaselist
+          @ScheduleTimeZone = scheduletimezone
         end
 
         def deserialize(params)
@@ -29946,6 +29988,7 @@ module TencentCloud
               @EventBatchCaseList << eventbatchcasedto_tmp
             end
           end
+          @ScheduleTimeZone = params['ScheduleTimeZone']
         end
       end
 
@@ -31050,10 +31093,13 @@ module TencentCloud
         # @param CalendarId: 日历调度id
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CalendarId: String
+        # @param ScheduleTimeZone: 时区配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ScheduleTimeZone: String
 
-        attr_accessor :ProjectId, :WorkflowId, :CreateTime, :Creater, :ModifyTime, :DelayTime, :StartupTime, :SelfDepend, :StartTime, :EndTime, :TaskAction, :CycleType, :CycleStep, :CrontabExpression, :ExecutionStartTime, :ExecutionEndTime, :InstanceInitStrategy, :DependencyWorkflow, :SchedulerDesc, :FirstSubmitTime, :LatestSubmitTime, :CalendarOpen, :CalendarName, :CalendarId
+        attr_accessor :ProjectId, :WorkflowId, :CreateTime, :Creater, :ModifyTime, :DelayTime, :StartupTime, :SelfDepend, :StartTime, :EndTime, :TaskAction, :CycleType, :CycleStep, :CrontabExpression, :ExecutionStartTime, :ExecutionEndTime, :InstanceInitStrategy, :DependencyWorkflow, :SchedulerDesc, :FirstSubmitTime, :LatestSubmitTime, :CalendarOpen, :CalendarName, :CalendarId, :ScheduleTimeZone
 
-        def initialize(projectid=nil, workflowid=nil, createtime=nil, creater=nil, modifytime=nil, delaytime=nil, startuptime=nil, selfdepend=nil, starttime=nil, endtime=nil, taskaction=nil, cycletype=nil, cyclestep=nil, crontabexpression=nil, executionstarttime=nil, executionendtime=nil, instanceinitstrategy=nil, dependencyworkflow=nil, schedulerdesc=nil, firstsubmittime=nil, latestsubmittime=nil, calendaropen=nil, calendarname=nil, calendarid=nil)
+        def initialize(projectid=nil, workflowid=nil, createtime=nil, creater=nil, modifytime=nil, delaytime=nil, startuptime=nil, selfdepend=nil, starttime=nil, endtime=nil, taskaction=nil, cycletype=nil, cyclestep=nil, crontabexpression=nil, executionstarttime=nil, executionendtime=nil, instanceinitstrategy=nil, dependencyworkflow=nil, schedulerdesc=nil, firstsubmittime=nil, latestsubmittime=nil, calendaropen=nil, calendarname=nil, calendarid=nil, scheduletimezone=nil)
           @ProjectId = projectid
           @WorkflowId = workflowid
           @CreateTime = createtime
@@ -31078,6 +31124,7 @@ module TencentCloud
           @CalendarOpen = calendaropen
           @CalendarName = calendarname
           @CalendarId = calendarid
+          @ScheduleTimeZone = scheduletimezone
         end
 
         def deserialize(params)
@@ -31105,6 +31152,7 @@ module TencentCloud
           @CalendarOpen = params['CalendarOpen']
           @CalendarName = params['CalendarName']
           @CalendarId = params['CalendarId']
+          @ScheduleTimeZone = params['ScheduleTimeZone']
         end
       end
 

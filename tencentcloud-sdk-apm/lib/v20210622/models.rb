@@ -864,7 +864,10 @@ module TencentCloud
       class DescribeGeneralOTSpanListResponse < TencentCloud::Common::AbstractModel
         # @param TotalCount: 总数量
         # @type TotalCount: Integer
-        # @param Spans: 装有查询结果 Spans 的 Trace 结构体。OpenTelemetry 标准 Trace 结构体哈希后的字符串，先将 Trace 利用 ptrace.JSONMarshaler 转换成 Json 字符串，再用 gzip 压缩，最后转换成 base64 标准的字符串。
+        # @param Spans: Spans字段中包含了链路数据的全部内容，由于数据经过了压缩，需要对结果进行如下三步转换，以还原始的文本。
+        # 1. 将Spans字段中的文本进行 Base64 解码，得到经过压缩后字节数组。
+        # 2. 使用 gzip 对压缩后的字节数组进行解压，得到压缩前的字节数组。
+        # 3. 使用 UTF-8 字符集，将压缩前的字节数组转换为文本。
         # @type Spans: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1114,14 +1117,14 @@ module TencentCloud
 
       # DescribeServiceOverview请求参数结构体
       class DescribeServiceOverviewRequest < TencentCloud::Common::AbstractModel
-        # @param Metrics: 指标列表
-        # @type Metrics: Array
         # @param InstanceId: 业务系统 ID
         # @type InstanceId: String
-        # @param Filters: 过滤条件
-        # @type Filters: Array
+        # @param Metrics: 指标列表
+        # @type Metrics: Array
         # @param GroupBy: 聚合维度
         # @type GroupBy: Array
+        # @param Filters: 过滤条件
+        # @type Filters: Array
         # @param StartTime: 开始时间（单位：秒）
         # @type StartTime: Integer
         # @param EndTime: 结束时间（单位：秒）
@@ -1136,13 +1139,13 @@ module TencentCloud
         # @param Offset: 分页起始点
         # @type Offset: Integer
 
-        attr_accessor :Metrics, :InstanceId, :Filters, :GroupBy, :StartTime, :EndTime, :OrderBy, :Limit, :Offset
+        attr_accessor :InstanceId, :Metrics, :GroupBy, :Filters, :StartTime, :EndTime, :OrderBy, :Limit, :Offset
 
-        def initialize(metrics=nil, instanceid=nil, filters=nil, groupby=nil, starttime=nil, endtime=nil, orderby=nil, limit=nil, offset=nil)
-          @Metrics = metrics
+        def initialize(instanceid=nil, metrics=nil, groupby=nil, filters=nil, starttime=nil, endtime=nil, orderby=nil, limit=nil, offset=nil)
           @InstanceId = instanceid
-          @Filters = filters
+          @Metrics = metrics
           @GroupBy = groupby
+          @Filters = filters
           @StartTime = starttime
           @EndTime = endtime
           @OrderBy = orderby
@@ -1151,6 +1154,7 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @InstanceId = params['InstanceId']
           unless params['Metrics'].nil?
             @Metrics = []
             params['Metrics'].each do |i|
@@ -1159,7 +1163,7 @@ module TencentCloud
               @Metrics << querymetricitem_tmp
             end
           end
-          @InstanceId = params['InstanceId']
+          @GroupBy = params['GroupBy']
           unless params['Filters'].nil?
             @Filters = []
             params['Filters'].each do |i|
@@ -1168,7 +1172,6 @@ module TencentCloud
               @Filters << filter_tmp
             end
           end
-          @GroupBy = params['GroupBy']
           @StartTime = params['StartTime']
           @EndTime = params['EndTime']
           unless params['OrderBy'].nil?
@@ -1209,36 +1212,38 @@ module TencentCloud
 
       # DescribeTagValues请求参数结构体
       class DescribeTagValuesRequest < TencentCloud::Common::AbstractModel
-        # @param TagKey: 维度名
-        # @type TagKey: String
         # @param InstanceId: 业务系统 ID
         # @type InstanceId: String
-        # @param Filters: 过滤条件
-        # @type Filters: Array
+        # @param TagKey: 维度名
+        # @type TagKey: String
         # @param StartTime: 开始时间（单位为秒）
         # @type StartTime: Integer
         # @param EndTime: 结束时间（单位为秒）
         # @type EndTime: Integer
+        # @param Filters: 过滤条件
+        # @type Filters: Array
         # @param OrFilters: Or 过滤条件
         # @type OrFilters: Array
         # @param Type: 使用类型
         # @type Type: String
 
-        attr_accessor :TagKey, :InstanceId, :Filters, :StartTime, :EndTime, :OrFilters, :Type
+        attr_accessor :InstanceId, :TagKey, :StartTime, :EndTime, :Filters, :OrFilters, :Type
 
-        def initialize(tagkey=nil, instanceid=nil, filters=nil, starttime=nil, endtime=nil, orfilters=nil, type=nil)
-          @TagKey = tagkey
+        def initialize(instanceid=nil, tagkey=nil, starttime=nil, endtime=nil, filters=nil, orfilters=nil, type=nil)
           @InstanceId = instanceid
-          @Filters = filters
+          @TagKey = tagkey
           @StartTime = starttime
           @EndTime = endtime
+          @Filters = filters
           @OrFilters = orfilters
           @Type = type
         end
 
         def deserialize(params)
-          @TagKey = params['TagKey']
           @InstanceId = params['InstanceId']
+          @TagKey = params['TagKey']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
           unless params['Filters'].nil?
             @Filters = []
             params['Filters'].each do |i|
@@ -1247,8 +1252,6 @@ module TencentCloud
               @Filters << filter_tmp
             end
           end
-          @StartTime = params['StartTime']
-          @EndTime = params['EndTime']
           unless params['OrFilters'].nil?
             @OrFilters = []
             params['OrFilters'].each do |i|

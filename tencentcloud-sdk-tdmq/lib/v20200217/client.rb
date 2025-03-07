@@ -2409,6 +2409,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 用于获取RocketMQ指标排序列表，比如集群实例下占用存储空间最多的主题排序。
+
+        # @param request: Request instance for DescribeRocketMQTopUsages.
+        # @type request: :class:`Tencentcloud::tdmq::V20200217::DescribeRocketMQTopUsagesRequest`
+        # @rtype: :class:`Tencentcloud::tdmq::V20200217::DescribeRocketMQTopUsagesResponse`
+        def DescribeRocketMQTopUsages(request)
+          body = send_request('DescribeRocketMQTopUsages', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeRocketMQTopUsagesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # rocketmq 消息查询
 
         # @param request: Request instance for DescribeRocketMQTopicMsgs.

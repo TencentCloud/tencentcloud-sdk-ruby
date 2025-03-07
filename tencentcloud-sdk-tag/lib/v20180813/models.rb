@@ -1641,7 +1641,7 @@ module TencentCloud
 
       # ModifyResourcesTagValue请求参数结构体
       class ModifyResourcesTagValueRequest < TencentCloud::Common::AbstractModel
-        # @param ServiceType: 业务类型，示例 cvm 。资源所属业务名称（资源六段式中的第三段）
+        # @param ServiceType: 业务类型，示例 cvm。资源所属业务名称（资源六段式中的第三段）
         # @type ServiceType: String
         # @param ResourceIds: 资源ID数组，资源个数最多为50
         # @type ResourceIds: Array

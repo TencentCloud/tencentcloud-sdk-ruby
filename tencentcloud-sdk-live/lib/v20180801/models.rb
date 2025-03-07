@@ -470,29 +470,23 @@ module TencentCloud
       # 主备流详细信息。
       class BackupStreamDetailData < TencentCloud::Common::AbstractModel
         # @param DomainName: 推流域名。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DomainName: String
         # @param AppName: 推流路径。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AppName: String
         # @param PublishTime:  UTC 格式，例如：2018-06-29T19:00:00Z。
         # 注意：和北京时间相差8小时。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PublishTime: String
         # @param UpstreamSequence: 推流唯一标识。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpstreamSequence: String
         # @param SourceFrom: 推流来源。示例：
         # 直推流；
         # 拉流转推(1234)；
         # 注意：拉流转推来源括号中为拉流转推的任务
         #  ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SourceFrom: String
         # @param MasterFlag: 主备标识。
         # 当前流为主流：1，
         # 当前流为备流: 0。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MasterFlag: Integer
 
         attr_accessor :DomainName, :AppName, :PublishTime, :UpstreamSequence, :SourceFrom, :MasterFlag
@@ -519,18 +513,14 @@ module TencentCloud
       # 主备流分组信息。
       class BackupStreamGroupInfo < TencentCloud::Common::AbstractModel
         # @param StreamName: 流名称。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StreamName: String
         # @param BackupList: 主备流信息。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BackupList: Array
         # @param OptimalEnable: 是否对该流开启了择优调度。
         # 0 - 未开启。
         # 1 - 已开启。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OptimalEnable: Integer
         # @param HostGroupName: 域名分组的分组名称。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HostGroupName: String
 
         attr_accessor :StreamName, :BackupList, :OptimalEnable, :HostGroupName
@@ -7345,13 +7335,9 @@ module TencentCloud
 
       # DescribeLiveStreamEventList请求参数结构体
       class DescribeLiveStreamEventListRequest < TencentCloud::Common::AbstractModel
-        # @param StartTime: 起始时间。
-        # UTC 格式，例如：2018-12-29T19:00:00Z。
-        # 支持查询60天内的历史记录。
+        # @param StartTime: 起始时间。 UTC 格式，例如：2018-12-29T19:00:00Z。支持查询2个月内的历史记录。
         # @type StartTime: String
-        # @param EndTime: 结束时间。
-        # UTC 格式，例如：2018-12-29T20:00:00Z。
-        # 不超过当前时间，且和起始时间相差不得超过30天。
+        # @param EndTime: 结束时间。UTC 格式，例如：2018-12-29T20:00:00Z。不超过当前时间，且和起始时间相差不得超过1个月。
         # @type EndTime: String
         # @param AppName: 推流路径，与推流和播放地址中的AppName保持一致，默认为 live。
         # @type AppName: String
@@ -7627,14 +7613,9 @@ module TencentCloud
       class DescribeLiveStreamPublishedListRequest < TencentCloud::Common::AbstractModel
         # @param DomainName: 您的推流域名。
         # @type DomainName: String
-        # @param EndTime: 结束时间。
-        # UTC 格式，例如：2016-06-30T19:00:00Z。
-        # 不超过当前时间。
-        # 注意：EndTime和StartTime相差不可超过30天。
+        # @param EndTime: 结束时间。UTC 格式，例如：2016-06-30T19:00:00Z。不超过当前时间。注意：EndTime和StartTime相差不可超过1个月。
         # @type EndTime: String
-        # @param StartTime: 起始时间。
-        # UTC 格式，例如：2016-06-29T19:00:00Z。
-        # 最长支持查询60天内数据。
+        # @param StartTime: 起始时间。 UTC 格式，例如：2016-06-29T19:00:00Z。最长支持查询2个月内数据。
         # @type StartTime: String
         # @param AppName: 推流路径，与推流和播放地址中的 AppName 保持一致，默认为 live。不支持模糊匹配。
         # @type AppName: String
@@ -10167,10 +10148,8 @@ module TencentCloud
         # @type Status: Integer
         # @param CertDomains: 证书本身标识的域名列表。
         # 比如: ["*.x.com"]
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CertDomains: Array
         # @param CloudCertId: 腾讯云ssl的证书Id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CloudCertId: String
 
         attr_accessor :CertId, :CertName, :Description, :CreateTime, :HttpsCrt, :CertType, :CertExpireTime, :DomainName, :Status, :CertDomains, :CloudCertId
@@ -10277,7 +10256,6 @@ module TencentCloud
         # @type RentExpireTime: String
         # @param IsMiniProgramLive: 0: 标准直播。
         # 1: 小程序直播。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsMiniProgramLive: Integer
 
         attr_accessor :Name, :Type, :Status, :CreateTime, :BCName, :TargetDomain, :PlayType, :IsDelayLive, :CurrentCName, :RentTag, :RentExpireTime, :IsMiniProgramLive
@@ -15401,13 +15379,10 @@ module TencentCloud
         # @param Time: 时间，一分钟粒度，utc格式：yyyy-mm-ddTHH:MM:SSZ，参考https://cloud.tencent.com/document/product/266/11732#I。。
         # @type Time: String
         # @param Type: 类型，分live和vod两种。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: String
         # @param StreamName: 流ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StreamName: String
         # @param AppId: AppId。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AppId: String
 
         attr_accessor :CdnBytes, :P2pBytes, :StuckPeople, :StuckTimes, :OnlinePeople, :Request, :RequestSuccess, :Time, :Type, :StreamName, :AppId

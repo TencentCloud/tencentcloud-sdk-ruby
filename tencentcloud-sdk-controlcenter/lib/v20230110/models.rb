@@ -20,10 +20,8 @@ module TencentCloud
       # 账号工厂基线配置项
       class BaselineConfigItem < TencentCloud::Common::AbstractModel
         # @param Identifier: 账号工厂基线项唯一标识,只能包含英文字母、数字和@、,._[]-:()（）【】+=，。，长度2-128个字符。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Identifier: String
         # @param Configuration: 账号工厂基线项配置，不同基线项配置参数不同。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Configuration: String
 
         attr_accessor :Identifier, :Configuration

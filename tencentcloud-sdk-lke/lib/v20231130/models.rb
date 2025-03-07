@@ -1618,6 +1618,54 @@ module TencentCloud
         end
       end
 
+      # CreateVar请求参数结构体
+      class CreateVarRequest < TencentCloud::Common::AbstractModel
+        # @param AppBizId: 应用ID
+        # @type AppBizId: String
+        # @param VarName: 变量名称，不允许重复，最大支持50个字符
+        # @type VarName: String
+        # @param VarDesc: 变量描述，最大支持120个字符
+        # @type VarDesc: String
+        # @param VarType: 变量类型定义，支持类型如下：(STRING,INT,FLOAT,BOOL,OBJECT,ARRAY_STRING,ARRAY_INT,ARRAY_FLOAT,ARRAY_BOOL,ARRAY_OBJECT,FILE,DOCUMENT,IMAGE,AUDIO);传输过程是json字符串，标签中仅支持"STRING"类型使用
+        # @type VarType: String
+
+        attr_accessor :AppBizId, :VarName, :VarDesc, :VarType
+
+        def initialize(appbizid=nil, varname=nil, vardesc=nil, vartype=nil)
+          @AppBizId = appbizid
+          @VarName = varname
+          @VarDesc = vardesc
+          @VarType = vartype
+        end
+
+        def deserialize(params)
+          @AppBizId = params['AppBizId']
+          @VarName = params['VarName']
+          @VarDesc = params['VarDesc']
+          @VarType = params['VarType']
+        end
+      end
+
+      # CreateVar返回参数结构体
+      class CreateVarResponse < TencentCloud::Common::AbstractModel
+        # @param VarId: 变量ID
+        # @type VarId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :VarId, :RequestId
+
+        def initialize(varid=nil, requestid=nil)
+          @VarId = varid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @VarId = params['VarId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 临时密钥结构
       class Credentials < TencentCloud::Common::AbstractModel
         # @param Token: token
@@ -4392,6 +4440,73 @@ module TencentCloud
           unless params['Params'].nil?
             @Params = TaskParams.new
             @Params.deserialize(params['Params'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # GetVarList请求参数结构体
+      class GetVarListRequest < TencentCloud::Common::AbstractModel
+        # @param AppBizId: 应用ID
+        # @type AppBizId: String
+        # @param VarIds: 变量ID数组
+        # @type VarIds: Array
+        # @param Keyword: 按变量名称关键词搜索
+        # @type Keyword: String
+        # @param Offset: 起始偏移量（默认0）
+        # @type Offset: Integer
+        # @param Limit: 限定数量（默认15）
+        # @type Limit: Integer
+        # @param VarType: 按变量类型过滤，默认查询所有类型(STRING,INT,FLOAT,BOOL,OBJECT,ARRAY_STRING,ARRAY_INT,ARRAY_FLOAT,ARRAY_BOOL,ARRAY_OBJECT,FILE,DOCUMENT,IMAGE,AUDIO)
+        # @type VarType: String
+
+        attr_accessor :AppBizId, :VarIds, :Keyword, :Offset, :Limit, :VarType
+
+        def initialize(appbizid=nil, varids=nil, keyword=nil, offset=nil, limit=nil, vartype=nil)
+          @AppBizId = appbizid
+          @VarIds = varids
+          @Keyword = keyword
+          @Offset = offset
+          @Limit = limit
+          @VarType = vartype
+        end
+
+        def deserialize(params)
+          @AppBizId = params['AppBizId']
+          @VarIds = params['VarIds']
+          @Keyword = params['Keyword']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @VarType = params['VarType']
+        end
+      end
+
+      # GetVarList返回参数结构体
+      class GetVarListResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 变量总数
+        # @type Total: Integer
+        # @param List: 变量信息列表
+        # @type List: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :List, :RequestId
+
+        def initialize(total=nil, list=nil, requestid=nil)
+          @Total = total
+          @List = list
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              taskflowvar_tmp = TaskFLowVar.new
+              taskflowvar_tmp.deserialize(i)
+              @List << taskflowvar_tmp
+            end
           end
           @RequestId = params['RequestId']
         end
@@ -9398,6 +9513,36 @@ module TencentCloud
           @Method = params['Method']
           @Requirement = params['Requirement']
           @RequireCommand = params['RequireCommand']
+        end
+      end
+
+      # 变量详情
+      class TaskFLowVar < TencentCloud::Common::AbstractModel
+        # @param VarId: 变量ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VarId: String
+        # @param VarName: 变量名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VarName: String
+        # @param VarDesc: 变量描述（默认为"-"）
+        # @type VarDesc: String
+        # @param VarType: 变量类型 (STRING,INT,FLOAT,BOOL,OBJECT,ARRAY_STRING,ARRAY_INT,ARRAY_FLOAT,ARRAY_BOOL,ARRAY_OBJECT,FILE,DOCUMENT,IMAGE,AUDIO)
+        # @type VarType: String
+
+        attr_accessor :VarId, :VarName, :VarDesc, :VarType
+
+        def initialize(varid=nil, varname=nil, vardesc=nil, vartype=nil)
+          @VarId = varid
+          @VarName = varname
+          @VarDesc = vardesc
+          @VarType = vartype
+        end
+
+        def deserialize(params)
+          @VarId = params['VarId']
+          @VarName = params['VarName']
+          @VarDesc = params['VarDesc']
+          @VarType = params['VarType']
         end
       end
 

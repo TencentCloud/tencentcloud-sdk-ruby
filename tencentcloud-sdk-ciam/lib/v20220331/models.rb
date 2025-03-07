@@ -20,13 +20,10 @@ module TencentCloud
       # 用户组删除时关联的应用信息
       class AppAssociatedUserGroupIds < TencentCloud::Common::AbstractModel
         # @param UserGroupId: 用户组id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UserGroupId: String
         # @param ApplicationId: 应用id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApplicationId: String
         # @param ApplicationName: 应用名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApplicationName: String
 
         attr_accessor :UserGroupId, :ApplicationId, :ApplicationName
@@ -291,7 +288,6 @@ module TencentCloud
       # CreateUser返回参数结构体
       class CreateUserResponse < TencentCloud::Common::AbstractModel
         # @param User: 创建的用户信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type User: :class:`Tencentcloud::Ciam.v20220331.models.User`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -379,7 +375,6 @@ module TencentCloud
       # DeleteUserGroups返回参数结构体
       class DeleteUserGroupsResponse < TencentCloud::Common::AbstractModel
         # @param UserGroupDeletedInfo: 删除的用户组关联的应用信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UserGroupDeletedInfo: :class:`Tencentcloud::Ciam.v20220331.models.UserGroupDeleteResp`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -567,13 +562,11 @@ module TencentCloud
       # DescribeUser返回参数结构体
       class DescribeUserResponse < TencentCloud::Common::AbstractModel
         # @param Total: 总条数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Total: Integer
         # @param Pageable: 分页对象
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Pageable: :class:`Tencentcloud::Ciam.v20220331.models.Pageable`
         # @param Content: 用户列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Content: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -608,7 +601,6 @@ module TencentCloud
       # 失败详情
       class ErrorDetails < TencentCloud::Common::AbstractModel
         # @param UserId: 用户信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UserId: String
         # @param Error: 失败原因
         # @type Error: String
@@ -649,10 +641,8 @@ module TencentCloud
       # 失败的用户
       class FailedUsers < TencentCloud::Common::AbstractModel
         # @param FailedUserIdentification: 失败用户标识
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FailedUserIdentification: String
         # @param FailedReason: 导入的用户失败原因
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FailedReason: String
 
         attr_accessor :FailedUserIdentification, :FailedReason
@@ -876,7 +866,6 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Location: String
         # @param ErrorDetails: 失败详情
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrorDetails: Array
         # @param FailedUsers: 失败的用户
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -991,7 +980,6 @@ module TencentCloud
       # ListJobs返回参数结构体
       class ListJobsResponse < TencentCloud::Common::AbstractModel
         # @param JobSet: 任务列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type JobSet: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1063,7 +1051,6 @@ module TencentCloud
         # @param Pageable: 分页对象
         # @type Pageable: :class:`Tencentcloud::Ciam.v20220331.models.Pageable`
         # @param Content: 日志列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Content: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1129,7 +1116,6 @@ module TencentCloud
       # ListUserByProperty返回参数结构体
       class ListUserByPropertyResponse < TencentCloud::Common::AbstractModel
         # @param Users: 用户列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Users: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1193,13 +1179,10 @@ module TencentCloud
       # ListUserGroups返回参数结构体
       class ListUserGroupsResponse < TencentCloud::Common::AbstractModel
         # @param Content: 用户组列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Content: Array
         # @param Total: 总条数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Total: Integer
         # @param Pageable: 分页
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Pageable: :class:`Tencentcloud::Ciam.v20220331.models.Pageable`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1275,13 +1258,11 @@ module TencentCloud
       # ListUser返回参数结构体
       class ListUserResponse < TencentCloud::Common::AbstractModel
         # @param Total: 总条数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Total: Integer
         # @param Pageable: 分页对象
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Pageable: :class:`Tencentcloud::Ciam.v20220331.models.Pageable`
         # @param Content: 用户列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Content: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1357,16 +1338,12 @@ module TencentCloud
         # @param LogId: 日志标识
         # @type LogId: String
         # @param TenantId: 租户ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TenantId: String
         # @param UserStoreId: 用户池ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UserStoreId: String
         # @param EventCode: 事件编码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EventCode: String
         # @param EventDate: 事件发生时间戳，单位：毫秒
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EventDate: Integer
         # @param Description: 描述
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -1375,34 +1352,24 @@ module TencentCloud
 
         # <li> **TENANT** </li>  租户
         # <li> **USER** </li>  用户
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Participant: String
         # @param ApplicationClientId: 应用clientId
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApplicationClientId: String
         # @param ApplicationName: 应用名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApplicationName: String
         # @param AuthSourceId: 认证源ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AuthSourceId: String
         # @param AuthSourceName: 认证源名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AuthSourceName: String
         # @param AuthSourceType: 认证源类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AuthSourceType: String
         # @param AuthSourceCategory: 认证源类别
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AuthSourceCategory: String
         # @param Ip: IP地址
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Ip: String
         # @param UserAgent: 用户代理
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UserAgent: String
         # @param UserId: 用户ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UserId: String
         # @param Detail: 详情
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -1463,7 +1430,6 @@ module TencentCloud
         # @param Value: 值
         # @type Value: String
         # @param Type: 类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: String
 
         attr_accessor :Name, :Value, :Type
@@ -1817,7 +1783,6 @@ module TencentCloud
       # UpdateUser返回参数结构体
       class UpdateUserResponse < TencentCloud::Common::AbstractModel
         # @param User: 更新之后的用户信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type User: :class:`Tencentcloud::Ciam.v20220331.models.User`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1964,7 +1929,6 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LastModifiedDate: Integer
         # @param CustomAttributes: 自定义属性
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CustomAttributes: Array
         # @param ResidentIdentityCard: 身份证号
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -2003,7 +1967,6 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IdentityVerificationMethod: String
         # @param IdentityVerified: 是否已经实名核验
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IdentityVerified: Boolean
         # @param Job: 工作
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -2012,19 +1975,15 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Nationality: String
         # @param Primary: 是否主账号（进行过账号融合后，主账号为true，从账号为false）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Primary: Boolean
         # @param Zone: 时区
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Zone: String
         # @param AlreadyFirstLogin: 是否已经首次登录
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AlreadyFirstLogin: Boolean
         # @param TenantId: 租户id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TenantId: String
         # @param UserStoreId: 用户目录id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UserStoreId: String
         # @param Version: 版本
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -2195,10 +2154,8 @@ module TencentCloud
       # 删除用户组信息时返回的详情
       class UserGroupDeleteResp < TencentCloud::Common::AbstractModel
         # @param ErrorMessage: 错误详情
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrorMessage: String
         # @param AppAssociatedUserGroupIds: 用户组关联的应用信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AppAssociatedUserGroupIds: Array
 
         attr_accessor :ErrorMessage, :AppAssociatedUserGroupIds
@@ -2240,13 +2197,10 @@ module TencentCloud
         # @param AppNum: 应用数量
         # @type AppNum: Integer
         # @param LastStatus: 上次切换的用户池
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LastStatus: Boolean
         # @param DefaultStatus: 默认用户池
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DefaultStatus: Boolean
         # @param CreateDate: 创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateDate: Integer
         # @param LastStatusTime: 上次切换时间
         # 注意：此字段可能返回 null，表示取不到有效值。

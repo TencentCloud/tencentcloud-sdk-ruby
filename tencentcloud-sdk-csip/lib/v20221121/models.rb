@@ -1165,7 +1165,7 @@ module TencentCloud
         # @type FirstTime: String
         # @param Suggestion: 处置建议,0保持现状、1限制访问、2封禁端口
         # @type Suggestion: Integer
-        # @param Status: 状态，0未处理、1已处置、2已忽略
+        # @param Status: 状态，0未处理、1已处置、2已忽略、3云防已防护
         # @type Status: Integer
         # @param Id: 风险ID
         # @type Id: String
@@ -1183,10 +1183,14 @@ module TencentCloud
         # @type Uin: String
         # @param From: 识别来源，详细看枚举返回。
         # @type From: String
+        # @param ServiceJudge: 服务判定,high_risk_service 高危服务 web_service web服务 other_service 其他服务
+        # @type ServiceJudge: String
+        # @param XspmStatus: 状态，0未处理、1已处置、2已忽略、3云防已防护、4无需处理
+        # @type XspmStatus: Integer
 
-        attr_accessor :Port, :AffectAsset, :Level, :InstanceType, :Protocol, :Component, :Service, :RecentTime, :FirstTime, :Suggestion, :Status, :Id, :Index, :InstanceId, :InstanceName, :AppId, :Nick, :Uin, :From
+        attr_accessor :Port, :AffectAsset, :Level, :InstanceType, :Protocol, :Component, :Service, :RecentTime, :FirstTime, :Suggestion, :Status, :Id, :Index, :InstanceId, :InstanceName, :AppId, :Nick, :Uin, :From, :ServiceJudge, :XspmStatus
 
-        def initialize(port=nil, affectasset=nil, level=nil, instancetype=nil, protocol=nil, component=nil, service=nil, recenttime=nil, firsttime=nil, suggestion=nil, status=nil, id=nil, index=nil, instanceid=nil, instancename=nil, appid=nil, nick=nil, uin=nil, from=nil)
+        def initialize(port=nil, affectasset=nil, level=nil, instancetype=nil, protocol=nil, component=nil, service=nil, recenttime=nil, firsttime=nil, suggestion=nil, status=nil, id=nil, index=nil, instanceid=nil, instancename=nil, appid=nil, nick=nil, uin=nil, from=nil, servicejudge=nil, xspmstatus=nil)
           @Port = port
           @AffectAsset = affectasset
           @Level = level
@@ -1206,6 +1210,8 @@ module TencentCloud
           @Nick = nick
           @Uin = uin
           @From = from
+          @ServiceJudge = servicejudge
+          @XspmStatus = xspmstatus
         end
 
         def deserialize(params)
@@ -1228,6 +1234,8 @@ module TencentCloud
           @Nick = params['Nick']
           @Uin = params['Uin']
           @From = params['From']
+          @ServiceJudge = params['ServiceJudge']
+          @XspmStatus = params['XspmStatus']
         end
       end
 
@@ -1457,10 +1465,12 @@ module TencentCloud
         # @type TvdID: String
         # @param IsOneClick: 是否可以一键体检，1-可以，0-不可以
         # @type IsOneClick: Integer
+        # @param IsPOC: 是否POC扫描，0-非POC，1-POC
+        # @type IsPOC: Integer
 
-        attr_accessor :AffectAsset, :Level, :InstanceType, :Component, :RecentTime, :FirstTime, :Status, :RiskId, :InstanceId, :InstanceName, :AppId, :Nick, :Uin, :VULType, :Port, :AppName, :AppVersion, :VULURL, :VULName, :CVE, :POCId, :From, :CWPVersion, :InstanceUUID, :Payload, :EMGCVulType, :CVSS, :Index, :PCMGRId, :LogId, :TaskId, :VulTag, :DisclosureTime, :AttackHeat, :IsSuggest, :HandleTaskId, :EngineSource, :VulRiskId, :TvdID, :IsOneClick
+        attr_accessor :AffectAsset, :Level, :InstanceType, :Component, :RecentTime, :FirstTime, :Status, :RiskId, :InstanceId, :InstanceName, :AppId, :Nick, :Uin, :VULType, :Port, :AppName, :AppVersion, :VULURL, :VULName, :CVE, :POCId, :From, :CWPVersion, :InstanceUUID, :Payload, :EMGCVulType, :CVSS, :Index, :PCMGRId, :LogId, :TaskId, :VulTag, :DisclosureTime, :AttackHeat, :IsSuggest, :HandleTaskId, :EngineSource, :VulRiskId, :TvdID, :IsOneClick, :IsPOC
 
-        def initialize(affectasset=nil, level=nil, instancetype=nil, component=nil, recenttime=nil, firsttime=nil, status=nil, riskid=nil, instanceid=nil, instancename=nil, appid=nil, nick=nil, uin=nil, vultype=nil, port=nil, appname=nil, appversion=nil, vulurl=nil, vulname=nil, cve=nil, pocid=nil, from=nil, cwpversion=nil, instanceuuid=nil, payload=nil, emgcvultype=nil, cvss=nil, index=nil, pcmgrid=nil, logid=nil, taskid=nil, vultag=nil, disclosuretime=nil, attackheat=nil, issuggest=nil, handletaskid=nil, enginesource=nil, vulriskid=nil, tvdid=nil, isoneclick=nil)
+        def initialize(affectasset=nil, level=nil, instancetype=nil, component=nil, recenttime=nil, firsttime=nil, status=nil, riskid=nil, instanceid=nil, instancename=nil, appid=nil, nick=nil, uin=nil, vultype=nil, port=nil, appname=nil, appversion=nil, vulurl=nil, vulname=nil, cve=nil, pocid=nil, from=nil, cwpversion=nil, instanceuuid=nil, payload=nil, emgcvultype=nil, cvss=nil, index=nil, pcmgrid=nil, logid=nil, taskid=nil, vultag=nil, disclosuretime=nil, attackheat=nil, issuggest=nil, handletaskid=nil, enginesource=nil, vulriskid=nil, tvdid=nil, isoneclick=nil, ispoc=nil)
           @AffectAsset = affectasset
           @Level = level
           @InstanceType = instancetype
@@ -1501,6 +1511,7 @@ module TencentCloud
           @VulRiskId = vulriskid
           @TvdID = tvdid
           @IsOneClick = isoneclick
+          @IsPOC = ispoc
         end
 
         def deserialize(params)
@@ -1544,6 +1555,7 @@ module TencentCloud
           @VulRiskId = params['VulRiskId']
           @TvdID = params['TvdID']
           @IsOneClick = params['IsOneClick']
+          @IsPOC = params['IsPOC']
         end
       end
 
@@ -1591,10 +1603,12 @@ module TencentCloud
         # @type Fix: String
         # @param Payload: 证明
         # @type Payload: String
+        # @param Port: 端口
+        # @type Port: Integer
 
-        attr_accessor :AffectAsset, :Level, :InstanceType, :Component, :Service, :RecentTime, :FirstTime, :Status, :Id, :Index, :InstanceId, :InstanceName, :AppId, :Nick, :Uin, :PasswordType, :From, :VULType, :VULURL, :Fix, :Payload
+        attr_accessor :AffectAsset, :Level, :InstanceType, :Component, :Service, :RecentTime, :FirstTime, :Status, :Id, :Index, :InstanceId, :InstanceName, :AppId, :Nick, :Uin, :PasswordType, :From, :VULType, :VULURL, :Fix, :Payload, :Port
 
-        def initialize(affectasset=nil, level=nil, instancetype=nil, component=nil, service=nil, recenttime=nil, firsttime=nil, status=nil, id=nil, index=nil, instanceid=nil, instancename=nil, appid=nil, nick=nil, uin=nil, passwordtype=nil, from=nil, vultype=nil, vulurl=nil, fix=nil, payload=nil)
+        def initialize(affectasset=nil, level=nil, instancetype=nil, component=nil, service=nil, recenttime=nil, firsttime=nil, status=nil, id=nil, index=nil, instanceid=nil, instancename=nil, appid=nil, nick=nil, uin=nil, passwordtype=nil, from=nil, vultype=nil, vulurl=nil, fix=nil, payload=nil, port=nil)
           @AffectAsset = affectasset
           @Level = level
           @InstanceType = instancetype
@@ -1616,6 +1630,7 @@ module TencentCloud
           @VULURL = vulurl
           @Fix = fix
           @Payload = payload
+          @Port = port
         end
 
         def deserialize(params)
@@ -1640,6 +1655,7 @@ module TencentCloud
           @VULURL = params['VULURL']
           @Fix = params['Fix']
           @Payload = params['Payload']
+          @Port = params['Port']
         end
       end
 
@@ -7853,7 +7869,7 @@ module TencentCloud
         # @type RiskDetails: String
         # @param Suggestion: 处置建议
         # @type Suggestion: String
-        # @param Status: 状态，0未处理、1已处置、2已忽略
+        # @param Status: 状态，0未处理、1已处置、2已忽略、3云防已防护
         # @type Status: Integer
         # @param Id: 资产唯一id
         # @type Id: String
@@ -7875,10 +7891,14 @@ module TencentCloud
         # @type SuggestionList: Array
         # @param StatusCode: HTTP响应状态码
         # @type StatusCode: String
+        # @param NewLevel: 新风险等级,high_risk 高危 suspect 疑似 Normal 暂无风险
+        # @type NewLevel: String
+        # @param XspmStatus: 状态，0未处理、1已处置、2已忽略、3云防已防护、4无需处理
+        # @type XspmStatus: Integer
 
-        attr_accessor :ServiceTag, :Port, :AffectAsset, :InstanceId, :InstanceName, :InstanceType, :Level, :Protocol, :Component, :Service, :RecentTime, :FirstTime, :RiskDetails, :Suggestion, :Status, :Id, :AppId, :Nick, :Uin, :ServiceSnapshot, :Url, :Index, :RiskList, :SuggestionList, :StatusCode
+        attr_accessor :ServiceTag, :Port, :AffectAsset, :InstanceId, :InstanceName, :InstanceType, :Level, :Protocol, :Component, :Service, :RecentTime, :FirstTime, :RiskDetails, :Suggestion, :Status, :Id, :AppId, :Nick, :Uin, :ServiceSnapshot, :Url, :Index, :RiskList, :SuggestionList, :StatusCode, :NewLevel, :XspmStatus
 
-        def initialize(servicetag=nil, port=nil, affectasset=nil, instanceid=nil, instancename=nil, instancetype=nil, level=nil, protocol=nil, component=nil, service=nil, recenttime=nil, firsttime=nil, riskdetails=nil, suggestion=nil, status=nil, id=nil, appid=nil, nick=nil, uin=nil, servicesnapshot=nil, url=nil, index=nil, risklist=nil, suggestionlist=nil, statuscode=nil)
+        def initialize(servicetag=nil, port=nil, affectasset=nil, instanceid=nil, instancename=nil, instancetype=nil, level=nil, protocol=nil, component=nil, service=nil, recenttime=nil, firsttime=nil, riskdetails=nil, suggestion=nil, status=nil, id=nil, appid=nil, nick=nil, uin=nil, servicesnapshot=nil, url=nil, index=nil, risklist=nil, suggestionlist=nil, statuscode=nil, newlevel=nil, xspmstatus=nil)
           @ServiceTag = servicetag
           @Port = port
           @AffectAsset = affectasset
@@ -7904,6 +7924,8 @@ module TencentCloud
           @RiskList = risklist
           @SuggestionList = suggestionlist
           @StatusCode = statuscode
+          @NewLevel = newlevel
+          @XspmStatus = xspmstatus
         end
 
         def deserialize(params)
@@ -7946,6 +7968,8 @@ module TencentCloud
             end
           end
           @StatusCode = params['StatusCode']
+          @NewLevel = params['NewLevel']
+          @XspmStatus = params['XspmStatus']
         end
       end
 

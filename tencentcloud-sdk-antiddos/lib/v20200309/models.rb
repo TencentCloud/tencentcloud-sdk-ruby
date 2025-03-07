@@ -971,7 +971,7 @@ module TencentCloud
         # @type FieldName: String
         # @param Value: 配置取值
         # @type Value: String
-        # @param ValueOperator: 配置项值比对方式，可取值equal ，not_equal， include
+        # @param ValueOperator: 配置项值比对方式，可取值equal：相等，not_equal：不相等， include：包含
         # @type ValueOperator: String
 
         attr_accessor :FieldType, :FieldName, :Value, :ValueOperator

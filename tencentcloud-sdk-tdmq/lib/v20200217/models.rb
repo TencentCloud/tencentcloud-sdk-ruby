@@ -6412,8 +6412,8 @@ module TencentCloud
 
         attr_accessor :ClusterId, :EnvironmentId, :TopicName, :MsgId, :PulsarMsgId, :QueryDlqMsg, :QueryDeadLetterMessage, :Offset, :Limit, :FilterTrackGroup
         extend Gem::Deprecate
-        deprecate :QueryDlqMsg, :none, 2025, 2
-        deprecate :QueryDlqMsg=, :none, 2025, 2
+        deprecate :QueryDlqMsg, :none, 2025, 3
+        deprecate :QueryDlqMsg=, :none, 2025, 3
 
         def initialize(clusterid=nil, environmentid=nil, topicname=nil, msgid=nil, pulsarmsgid=nil, querydlqmsg=nil, querydeadlettermessage=nil, offset=nil, limit=nil, filtertrackgroup=nil)
           @ClusterId = clusterid
@@ -6518,8 +6518,8 @@ module TencentCloud
 
         attr_accessor :ClusterId, :EnvironmentId, :TopicName, :MsgId, :GroupName, :QueryDLQMsg, :QueryDeadLetterMessage
         extend Gem::Deprecate
-        deprecate :QueryDLQMsg, :none, 2025, 2
-        deprecate :QueryDLQMsg=, :none, 2025, 2
+        deprecate :QueryDLQMsg, :none, 2025, 3
+        deprecate :QueryDLQMsg=, :none, 2025, 3
 
         def initialize(clusterid=nil, environmentid=nil, topicname=nil, msgid=nil, groupname=nil, querydlqmsg=nil, querydeadlettermessage=nil)
           @ClusterId = clusterid
@@ -7264,6 +7264,68 @@ module TencentCloud
         end
       end
 
+      # DescribeRocketMQTopUsages请求参数结构体
+      class DescribeRocketMQTopUsagesRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param MetricName: 指标名称，支持以下：
+        # consumeLag，消费组堆积数量
+        # deadLetterCount，死信数量
+        # topicRateIn,   Topic生产速率
+        # topicRateOut，Topic消费速率
+        # topicStorageSize，Topic存储空间
+        # topicApiCalls，Topic API调用次数
+        # @type MetricName: String
+        # @param Limit: 排序数量，最大20
+        # @type Limit: Integer
+
+        attr_accessor :ClusterId, :MetricName, :Limit
+
+        def initialize(clusterid=nil, metricname=nil, limit=nil)
+          @ClusterId = clusterid
+          @MetricName = metricname
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @MetricName = params['MetricName']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeRocketMQTopUsages返回参数结构体
+      class DescribeRocketMQTopUsagesResponse < TencentCloud::Common::AbstractModel
+        # @param Values: 指标值列表
+        # @type Values: Array
+        # @param Dimensions: 指标值对应的维度组合，本接口存在以下几个维度：
+        # tenant，namespace，group，topic
+        # @type Dimensions: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Values, :Dimensions, :RequestId
+
+        def initialize(values=nil, dimensions=nil, requestid=nil)
+          @Values = values
+          @Dimensions = dimensions
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Values = params['Values']
+          unless params['Dimensions'].nil?
+            @Dimensions = []
+            params['Dimensions'].each do |i|
+              dimensioninstance_tmp = DimensionInstance.new
+              dimensioninstance_tmp.deserialize(i)
+              @Dimensions << dimensioninstance_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeRocketMQTopicMsgs请求参数结构体
       class DescribeRocketMQTopicMsgsRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群 ID
@@ -7297,8 +7359,8 @@ module TencentCloud
 
         attr_accessor :ClusterId, :EnvironmentId, :TopicName, :StartTime, :EndTime, :MsgId, :MsgKey, :Offset, :Limit, :TaskRequestId, :QueryDlqMsg, :NumOfLatestMsg, :Tag, :QueryDeadLetterMessage
         extend Gem::Deprecate
-        deprecate :QueryDlqMsg, :none, 2025, 2
-        deprecate :QueryDlqMsg=, :none, 2025, 2
+        deprecate :QueryDlqMsg, :none, 2025, 3
+        deprecate :QueryDlqMsg=, :none, 2025, 3
 
         def initialize(clusterid=nil, environmentid=nil, topicname=nil, starttime=nil, endtime=nil, msgid=nil, msgkey=nil, offset=nil, limit=nil, taskrequestid=nil, querydlqmsg=nil, numoflatestmsg=nil, tag=nil, querydeadlettermessage=nil)
           @ClusterId = clusterid
@@ -8006,6 +8068,41 @@ module TencentCloud
           @PermRead = params['PermRead']
           @ResourceType = params['ResourceType']
           @Remark = params['Remark']
+        end
+      end
+
+      # 实例维度组合数组
+      class DimensionInstance < TencentCloud::Common::AbstractModel
+        # @param Dimensions: 实例的维度组合
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Dimensions: Array
+
+        attr_accessor :Dimensions
+
+        def initialize(dimensions=nil)
+          @Dimensions = dimensions
+        end
+
+        def deserialize(params)
+          unless params['Dimensions'].nil?
+            @Dimensions = []
+            params['Dimensions'].each do |i|
+              dimensionopt_tmp = DimensionOpt.new
+              dimensionopt_tmp.deserialize(i)
+              @Dimensions << dimensionopt_tmp
+            end
+          end
+        end
+      end
+
+      # 指标维度对象
+      class DimensionOpt < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
         end
       end
 
@@ -11735,8 +11832,8 @@ module TencentCloud
 
         attr_accessor :MaxTpsPerNamespace, :MaxNamespaceNum, :UsedNamespaceNum, :MaxTopicNum, :UsedTopicNum, :MaxGroupNum, :UsedGroupNum, :MaxRetentionTime, :MaxLatencyTime, :MaxQueuesPerTopic, :TopicDistribution
         extend Gem::Deprecate
-        deprecate :MaxTpsPerNamespace, :none, 2025, 2
-        deprecate :MaxTpsPerNamespace=, :none, 2025, 2
+        deprecate :MaxTpsPerNamespace, :none, 2025, 3
+        deprecate :MaxTpsPerNamespace=, :none, 2025, 3
 
         def initialize(maxtpspernamespace=nil, maxnamespacenum=nil, usednamespacenum=nil, maxtopicnum=nil, usedtopicnum=nil, maxgroupnum=nil, usedgroupnum=nil, maxretentiontime=nil, maxlatencytime=nil, maxqueuespertopic=nil, topicdistribution=nil)
           @MaxTpsPerNamespace = maxtpspernamespace

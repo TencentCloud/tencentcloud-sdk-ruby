@@ -342,6 +342,7 @@ module TencentCloud
         # Filter.Name和Filter.Values皆为必填项。详细的过滤条件如下：
         # - VpcId - String - 是否必填：否 - （过滤条件）按照网关负载均衡实例所属的私有网络过滤，如“vpc-bhqk****”。
         # - Vips - String  - 是否必填：否 - （过滤条件）按照网关负载均衡实例所属的私有网络过滤，如“10.1.1.1”
+        # - tag:tag-key - String - 是否必填：否 - （过滤条件）按照GWLB标签键值对进行过滤，tag-key使用具体的标签键进行替换。
         # @type Filters: Array
         # @param SearchKey: 搜索字段，模糊匹配名称、VIP。
         # @type SearchKey: String
@@ -790,12 +791,14 @@ module TencentCloud
         # @type ChargeType: String
         # @param Isolation: 0：表示未被隔离，1：表示被隔离。
         # @type Isolation: Integer
-        # @param IsolatedTime: 负载均衡实例被隔离的时间
+        # @param IsolatedTime: 网关负载均衡实例被隔离的时间
         # @type IsolatedTime: String
+        # @param OperateProtect: 是否开启配置修改保护功能。
+        # @type OperateProtect: Boolean
 
-        attr_accessor :LoadBalancerId, :LoadBalancerName, :VpcId, :SubnetId, :Vips, :Status, :TargetGroupId, :DeleteProtect, :Tags, :CreateTime, :ChargeType, :Isolation, :IsolatedTime
+        attr_accessor :LoadBalancerId, :LoadBalancerName, :VpcId, :SubnetId, :Vips, :Status, :TargetGroupId, :DeleteProtect, :Tags, :CreateTime, :ChargeType, :Isolation, :IsolatedTime, :OperateProtect
 
-        def initialize(loadbalancerid=nil, loadbalancername=nil, vpcid=nil, subnetid=nil, vips=nil, status=nil, targetgroupid=nil, deleteprotect=nil, tags=nil, createtime=nil, chargetype=nil, isolation=nil, isolatedtime=nil)
+        def initialize(loadbalancerid=nil, loadbalancername=nil, vpcid=nil, subnetid=nil, vips=nil, status=nil, targetgroupid=nil, deleteprotect=nil, tags=nil, createtime=nil, chargetype=nil, isolation=nil, isolatedtime=nil, operateprotect=nil)
           @LoadBalancerId = loadbalancerid
           @LoadBalancerName = loadbalancername
           @VpcId = vpcid
@@ -809,6 +812,7 @@ module TencentCloud
           @ChargeType = chargetype
           @Isolation = isolation
           @IsolatedTime = isolatedtime
+          @OperateProtect = operateprotect
         end
 
         def deserialize(params)
@@ -832,6 +836,7 @@ module TencentCloud
           @ChargeType = params['ChargeType']
           @Isolation = params['Isolation']
           @IsolatedTime = params['IsolatedTime']
+          @OperateProtect = params['OperateProtect']
         end
       end
 
@@ -922,17 +927,21 @@ module TencentCloud
         # @type LoadBalancerId: String
         # @param LoadBalancerName: 网关负载均衡实例名称。可支持输入1-60个字符。
         # @type LoadBalancerName: String
+        # @param DeleteProtect: 是否开启删除保护。
+        # @type DeleteProtect: Boolean
 
-        attr_accessor :LoadBalancerId, :LoadBalancerName
+        attr_accessor :LoadBalancerId, :LoadBalancerName, :DeleteProtect
 
-        def initialize(loadbalancerid=nil, loadbalancername=nil)
+        def initialize(loadbalancerid=nil, loadbalancername=nil, deleteprotect=nil)
           @LoadBalancerId = loadbalancerid
           @LoadBalancerName = loadbalancername
+          @DeleteProtect = deleteprotect
         end
 
         def deserialize(params)
           @LoadBalancerId = params['LoadBalancerId']
           @LoadBalancerName = params['LoadBalancerName']
+          @DeleteProtect = params['DeleteProtect']
         end
       end
 

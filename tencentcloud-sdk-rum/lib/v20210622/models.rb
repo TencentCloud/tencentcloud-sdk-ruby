@@ -2757,8 +2757,8 @@ module TencentCloud
 
         attr_accessor :Limit, :Offset, :Filters, :IsDemo
         extend Gem::Deprecate
-        deprecate :IsDemo, :none, 2025, 2
-        deprecate :IsDemo=, :none, 2025, 2
+        deprecate :IsDemo, :none, 2025, 3
+        deprecate :IsDemo=, :none, 2025, 3
 
         def initialize(limit=nil, offset=nil, filters=nil, isdemo=nil)
           @Limit = limit
@@ -3272,8 +3272,8 @@ module TencentCloud
 
         attr_accessor :EndTime, :StartTime, :ID, :IsDemo
         extend Gem::Deprecate
-        deprecate :IsDemo, :none, 2025, 2
-        deprecate :IsDemo=, :none, 2025, 2
+        deprecate :IsDemo, :none, 2025, 3
+        deprecate :IsDemo=, :none, 2025, 3
 
         def initialize(endtime=nil, starttime=nil, id=nil, isdemo=nil)
           @EndTime = endtime
@@ -3403,12 +3403,12 @@ module TencentCloud
 
         attr_accessor :ChargeStatuses, :ChargeTypes, :Limit, :Offset, :AreaIds, :InstanceStatuses, :InstanceIds, :Filters, :IsDemo
         extend Gem::Deprecate
-        deprecate :InstanceStatuses, :none, 2025, 2
-        deprecate :InstanceStatuses=, :none, 2025, 2
-        deprecate :InstanceIds, :none, 2025, 2
-        deprecate :InstanceIds=, :none, 2025, 2
-        deprecate :IsDemo, :none, 2025, 2
-        deprecate :IsDemo=, :none, 2025, 2
+        deprecate :InstanceStatuses, :none, 2025, 3
+        deprecate :InstanceStatuses=, :none, 2025, 3
+        deprecate :InstanceIds, :none, 2025, 3
+        deprecate :InstanceIds=, :none, 2025, 3
+        deprecate :IsDemo, :none, 2025, 3
+        deprecate :IsDemo=, :none, 2025, 3
 
         def initialize(chargestatuses=nil, chargetypes=nil, limit=nil, offset=nil, areaids=nil, instancestatuses=nil, instanceids=nil, filters=nil, isdemo=nil)
           @ChargeStatuses = chargestatuses
@@ -3752,10 +3752,26 @@ module TencentCloud
         # @type Type: String
         # @param Desc: 应用描述(可选，最长为 1000字符)
         # @type Desc: String
+        # @param EnableKafka: 启动kafka配置
+        # @type EnableKafka: Integer
+        # @param KafkaHost: kafka_host
+        # @type KafkaHost: String
+        # @param KafkaTopic: topic
+        # @type KafkaTopic: String
+        # @param KafkaVersion: kafka_version
+        # @type KafkaVersion: String
+        # @param SaslUserName: kafka_username
+        # @type SaslUserName: String
+        # @param SaslPassword: kafka_pwd
+        # @type SaslPassword: String
+        # @param SaslMechanism: SaslMechanism
+        # @type SaslMechanism: String
+        # @param SinkId: sink_id，日知汇算子id
+        # @type SinkId: Integer
 
-        attr_accessor :ID, :Name, :URL, :Repo, :InstanceID, :Rate, :EnableURLGroup, :Type, :Desc
+        attr_accessor :ID, :Name, :URL, :Repo, :InstanceID, :Rate, :EnableURLGroup, :Type, :Desc, :EnableKafka, :KafkaHost, :KafkaTopic, :KafkaVersion, :SaslUserName, :SaslPassword, :SaslMechanism, :SinkId
 
-        def initialize(id=nil, name=nil, url=nil, repo=nil, instanceid=nil, rate=nil, enableurlgroup=nil, type=nil, desc=nil)
+        def initialize(id=nil, name=nil, url=nil, repo=nil, instanceid=nil, rate=nil, enableurlgroup=nil, type=nil, desc=nil, enablekafka=nil, kafkahost=nil, kafkatopic=nil, kafkaversion=nil, saslusername=nil, saslpassword=nil, saslmechanism=nil, sinkid=nil)
           @ID = id
           @Name = name
           @URL = url
@@ -3765,6 +3781,14 @@ module TencentCloud
           @EnableURLGroup = enableurlgroup
           @Type = type
           @Desc = desc
+          @EnableKafka = enablekafka
+          @KafkaHost = kafkahost
+          @KafkaTopic = kafkatopic
+          @KafkaVersion = kafkaversion
+          @SaslUserName = saslusername
+          @SaslPassword = saslpassword
+          @SaslMechanism = saslmechanism
+          @SinkId = sinkid
         end
 
         def deserialize(params)
@@ -3777,6 +3801,14 @@ module TencentCloud
           @EnableURLGroup = params['EnableURLGroup']
           @Type = params['Type']
           @Desc = params['Desc']
+          @EnableKafka = params['EnableKafka']
+          @KafkaHost = params['KafkaHost']
+          @KafkaTopic = params['KafkaTopic']
+          @KafkaVersion = params['KafkaVersion']
+          @SaslUserName = params['SaslUserName']
+          @SaslPassword = params['SaslPassword']
+          @SaslMechanism = params['SaslMechanism']
+          @SinkId = params['SinkId']
         end
       end
 
@@ -3872,15 +3904,19 @@ module TencentCloud
       class ResumeInstanceRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 需要恢复的实例id
         # @type InstanceId: String
+        # @param IsModifyAll: 修改是否包括白名单
+        # @type IsModifyAll: Boolean
 
-        attr_accessor :InstanceId
+        attr_accessor :InstanceId, :IsModifyAll
 
-        def initialize(instanceid=nil)
+        def initialize(instanceid=nil, ismodifyall=nil)
           @InstanceId = instanceid
+          @IsModifyAll = ismodifyall
         end
 
         def deserialize(params)
           @InstanceId = params['InstanceId']
+          @IsModifyAll = params['IsModifyAll']
         end
       end
 
@@ -4274,15 +4310,19 @@ module TencentCloud
       class StopInstanceRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 需要停止的实例id
         # @type InstanceId: String
+        # @param IsModifyAll: 修改是否包括白名单
+        # @type IsModifyAll: Boolean
 
-        attr_accessor :InstanceId
+        attr_accessor :InstanceId, :IsModifyAll
 
-        def initialize(instanceid=nil)
+        def initialize(instanceid=nil, ismodifyall=nil)
           @InstanceId = instanceid
+          @IsModifyAll = ismodifyall
         end
 
         def deserialize(params)
           @InstanceId = params['InstanceId']
+          @IsModifyAll = params['IsModifyAll']
         end
       end
 

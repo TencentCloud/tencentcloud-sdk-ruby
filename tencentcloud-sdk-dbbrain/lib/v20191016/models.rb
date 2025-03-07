@@ -417,7 +417,6 @@ module TencentCloud
         # @param TotalCount: 联系人的总数量。
         # @type TotalCount: Integer
         # @param Contacts: 联系人的信息。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Contacts: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -469,7 +468,6 @@ module TencentCloud
         # @param TotalCount: 组总数。
         # @type TotalCount: Integer
         # @param Groups: 组信息。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Groups: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -541,7 +539,6 @@ module TencentCloud
         # @param Suggestions: 建议。
         # @type Suggestions: String
         # @param Metric: 保留字段。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Metric: String
         # @param EndTime: 结束时间。
         # @type EndTime: String

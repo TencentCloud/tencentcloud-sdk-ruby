@@ -1024,6 +1024,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 发布 MQTT 消息到消息主题或客户端
+
+        # @param request: Request instance for PublishMessage.
+        # @type request: :class:`Tencentcloud::mqtt::V20240516::PublishMessageRequest`
+        # @rtype: :class:`Tencentcloud::mqtt::V20240516::PublishMessageResponse`
+        def PublishMessage(request)
+          body = send_request('PublishMessage', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = PublishMessageResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 注册ca证书
 
         # @param request: Request instance for RegisterCaCertificate.

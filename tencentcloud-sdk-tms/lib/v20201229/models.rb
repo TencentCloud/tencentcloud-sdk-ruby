@@ -315,15 +315,18 @@ module TencentCloud
         # @type User: :class:`Tencentcloud::Tms.v20201229.models.User`
         # @param Device: 该字段表示待检测对象对应的设备相关信息，传入后可便于甄别相应违规风险设备
         # @type Device: :class:`Tencentcloud::Tms.v20201229.models.Device`
+        # @param SourceLanguage: Content的原始语种，比如en,zh
+        # @type SourceLanguage: String
 
-        attr_accessor :Content, :BizType, :DataId, :User, :Device
+        attr_accessor :Content, :BizType, :DataId, :User, :Device, :SourceLanguage
 
-        def initialize(content=nil, biztype=nil, dataid=nil, user=nil, device=nil)
+        def initialize(content=nil, biztype=nil, dataid=nil, user=nil, device=nil, sourcelanguage=nil)
           @Content = content
           @BizType = biztype
           @DataId = dataid
           @User = user
           @Device = device
+          @SourceLanguage = sourcelanguage
         end
 
         def deserialize(params)
@@ -338,6 +341,7 @@ module TencentCloud
             @Device = Device.new
             @Device.deserialize(params['Device'])
           end
+          @SourceLanguage = params['SourceLanguage']
         end
       end
 

@@ -6734,10 +6734,13 @@ module TencentCloud
         # @type ScheduleTaskName: String
         # @param JobConf: Yarn任务的部分核心配置
         # @type JobConf: String
+        # @param Context: 洞察结构化信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Context: String
 
-        attr_accessor :ID, :Type, :RuleID, :RuleName, :RuleExplain, :Detail, :Suggestion, :Value, :ScheduleTaskExecID, :ScheduleFlowName, :ScheduleTaskName, :JobConf
+        attr_accessor :ID, :Type, :RuleID, :RuleName, :RuleExplain, :Detail, :Suggestion, :Value, :ScheduleTaskExecID, :ScheduleFlowName, :ScheduleTaskName, :JobConf, :Context
 
-        def initialize(id=nil, type=nil, ruleid=nil, rulename=nil, ruleexplain=nil, detail=nil, suggestion=nil, value=nil, scheduletaskexecid=nil, scheduleflowname=nil, scheduletaskname=nil, jobconf=nil)
+        def initialize(id=nil, type=nil, ruleid=nil, rulename=nil, ruleexplain=nil, detail=nil, suggestion=nil, value=nil, scheduletaskexecid=nil, scheduleflowname=nil, scheduletaskname=nil, jobconf=nil, context=nil)
           @ID = id
           @Type = type
           @RuleID = ruleid
@@ -6750,6 +6753,7 @@ module TencentCloud
           @ScheduleFlowName = scheduleflowname
           @ScheduleTaskName = scheduletaskname
           @JobConf = jobconf
+          @Context = context
         end
 
         def deserialize(params)
@@ -6765,6 +6769,7 @@ module TencentCloud
           @ScheduleFlowName = params['ScheduleFlowName']
           @ScheduleTaskName = params['ScheduleTaskName']
           @JobConf = params['JobConf']
+          @Context = params['Context']
         end
       end
 

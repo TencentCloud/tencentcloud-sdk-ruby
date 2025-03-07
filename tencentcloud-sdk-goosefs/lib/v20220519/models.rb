@@ -195,7 +195,6 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CurDeadline: String
         # @param PayMode: 付费方式
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PayMode: String
         # @param AutoRenewFlag: 自动付费标识：0:默认未设置 1:自动续费 2 不自动续费
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -966,7 +965,6 @@ module TencentCloud
         # @param CreateTime: 创建时间
         # @type CreateTime: String
         # @param GooseFSxAttribute: GooseFSx文件系统属性
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GooseFSxAttribute: :class:`Tencentcloud::Goosefs.v20220519.models.GooseFSxAttribute`
         # @param Status: 文件系统状态 ACTIVE(运行中), CREATING(创建中), DESTROYING(销毁中), FAIL(创建失败),EXPANDING(扩容中),PROBING(容灾中)
         # @type Status: String
@@ -981,12 +979,10 @@ module TencentCloud
         # @param Zone: 子网所在的可用区
         # @type Zone: String
         # @param Tag: Tag数组
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tag: Array
         # @param ModifyTime: 更新属性时间
         # @type ModifyTime: String
         # @param ChargeAttribute: 文件系统付费信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ChargeAttribute: :class:`Tencentcloud::Goosefs.v20220519.models.ChargeAttribute`
 
         attr_accessor :Type, :FileSystemId, :CreateTime, :GooseFSxAttribute, :Status, :Name, :Description, :VpcId, :SubnetId, :Zone, :Tag, :ModifyTime, :ChargeAttribute
@@ -1156,7 +1152,6 @@ module TencentCloud
 
         # 周期沉降(PeriodExport)
         # 立即沉降(ImmediateExport)
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DataRepositoryTaskAutoStrategy: Array
         # @param RuleId: 绑定bucket的数据流动策略ID
         # 注意：此字段可能返回 null，表示取不到有效值。

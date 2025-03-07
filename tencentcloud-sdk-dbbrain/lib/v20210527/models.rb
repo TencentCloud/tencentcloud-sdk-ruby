@@ -1389,7 +1389,6 @@ module TencentCloud
         # @param TotalCount: 联系人的总数量。
         # @type TotalCount: Integer
         # @param Contacts: 联系人的信息。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Contacts: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1441,7 +1440,6 @@ module TencentCloud
         # @param TotalCount: 组总数。
         # @type TotalCount: Integer
         # @param Groups: 组信息。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Groups: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1653,7 +1651,6 @@ module TencentCloud
         # @param Suggestions: 诊断建议，若无建议则输出为空。
         # @type Suggestions: String
         # @param Metric: 保留字段。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Metric: String
         # @param EndTime: 结束时间。
         # @type EndTime: String
@@ -2107,7 +2104,6 @@ module TencentCloud
       # DescribeIndexRecommendAggregationSlowLogs返回参数结构体
       class DescribeIndexRecommendAggregationSlowLogsResponse < TencentCloud::Common::AbstractModel
         # @param Aggregation: 查询实例慢查询聚合结果。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Aggregation: :class:`Tencentcloud::Dbbrain.v20210527.models.Aggregation`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2332,7 +2328,6 @@ module TencentCloud
         # @param ProcessList: 实时线程列表。
         # @type ProcessList: Array
         # @param Statistics: sql会话统计信息。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Statistics: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4394,7 +4389,6 @@ module TencentCloud
         # @param Threads: kill完成的sql会话ID列表。
         # @type Threads: Array
         # @param SqlExecId: 执行ID， Prepare阶段的任务输出，用于Commit阶段中指定执行kill操作的会话ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SqlExecId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

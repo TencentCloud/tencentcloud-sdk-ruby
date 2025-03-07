@@ -6101,17 +6101,21 @@ module TencentCloud
         # @param RefreshInterval: 索引刷新频率
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RefreshInterval: String
+        # @param CustomSetting: 自定义参数
+        # @type CustomSetting: String
 
-        attr_accessor :NumberOfShards, :RefreshInterval
+        attr_accessor :NumberOfShards, :RefreshInterval, :CustomSetting
 
-        def initialize(numberofshards=nil, refreshinterval=nil)
+        def initialize(numberofshards=nil, refreshinterval=nil, customsetting=nil)
           @NumberOfShards = numberofshards
           @RefreshInterval = refreshinterval
+          @CustomSetting = customsetting
         end
 
         def deserialize(params)
           @NumberOfShards = params['NumberOfShards']
           @RefreshInterval = params['RefreshInterval']
+          @CustomSetting = params['CustomSetting']
         end
       end
 

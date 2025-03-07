@@ -7112,13 +7112,10 @@ module TencentCloud
         # - 1：需要重启。
         # @type NeedReboot: Integer
         # @param Max: 参数允许的最大值。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Max: String
         # @param Min: 参数允许的最小值。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Min: String
         # @param EnumValue: 参数可选枚举值。如果为非枚举参数，则为空。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EnumValue: Array
 
         attr_accessor :Name, :ParamType, :Default, :Description, :CurrentValue, :NeedReboot, :Max, :Min, :EnumValue
@@ -7195,7 +7192,6 @@ module TencentCloud
         # @param EnableReplicaReadOnly: 是否支持副本只读。
         # - true：支持副本只读。
         # - false：不支持。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EnableReplicaReadOnly: Boolean
 
         attr_accessor :Type, :TypeName, :MinBuyNum, :MaxBuyNum, :Saleout, :Engine, :Version, :TotalSize, :ShardSize, :ReplicaNum, :ShardNum, :PayMode, :EnableRepicaReadOnly, :EnableReplicaReadOnly
@@ -7238,10 +7234,8 @@ module TencentCloud
       # Proxy节点信息。
       class ProxyNodes < TencentCloud::Common::AbstractModel
         # @param NodeId: 节点 ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NodeId: String
         # @param ZoneId: 可用区 ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ZoneId: Integer
 
         attr_accessor :NodeId, :ZoneId
@@ -7281,13 +7275,10 @@ module TencentCloud
         # - 1：已被锁定。
         # @type Locked: Integer
         # @param BackupSize: 内部字段，用户可忽略。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BackupSize: Integer
         # @param FullBackup: 内部字段，用户可忽略。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FullBackup: Integer
         # @param InstanceType: 内部字段，用户可忽略。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceType: Integer
         # @param InstanceId: 实例 ID。
         # @type InstanceId: String
@@ -7421,51 +7412,38 @@ module TencentCloud
       # 实例事件信息
       class RedisInstanceEvent < TencentCloud::Common::AbstractModel
         # @param ID: 事件 ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ID: Integer
         # @param InstanceId: 实例 ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceId: String
         # @param InstanceName: 实例名称。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceName: String
         # @param Type: 事件类型，当前仅支持配置实例迁移、资源腾挪、机房裁撤相关的运维操作。该参数仅支持配置为 **InstanceMigration**。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: String
         # @param Grade: 事件等级根据其影响严重程度和紧急程度进行分级，由重至轻依次为关键、重要、中等、一般。
         # - Critical：关键
         # - High：重要
         # - Middle：中等
         # - Low：一般
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Grade: String
         # @param ExecutionDate: 事件计划执行日期。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExecutionDate: String
         # @param StartTime: 事件计划执行开始时间。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StartTime: String
         # @param EndTime: 事件计划执行结束时间。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EndTime: String
         # @param LatestExecutionDate: 运维事件最迟执行的日期，即该事件必须在该日期之前完成，否则可能会对业务产生影响。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LatestExecutionDate: String
         # @param Status: 事件当前状态。
         # - Waiting：未到达执行日期或不在维护时间窗内的事件。
         # - Running：在维护时间窗内，正在执行维护的事件。
         # - Finished：已全部完成维护的事件。
         # - Canceled：已取消执行的事件。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: String
         # @param TaskEndTime: 事件执行任务完成时间。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskEndTime: String
         # @param EffectInfo: 事件影响信息。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EffectInfo: String
         # @param InitialExecutionDate: 事件最初计划执行日期。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InitialExecutionDate: String
 
         attr_accessor :ID, :InstanceId, :InstanceName, :Type, :Grade, :ExecutionDate, :StartTime, :EndTime, :LatestExecutionDate, :Status, :TaskEndTime, :EffectInfo, :InitialExecutionDate
@@ -7936,10 +7914,8 @@ module TencentCloud
       # 秒级备份不存在的时间戳范围
       class SecondLevelBackupMissingTimestamps < TencentCloud::Common::AbstractModel
         # @param StartTimeStamp: 开始时间戳
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StartTimeStamp: Integer
         # @param EndTimeStamp: 结束时间戳
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EndTimeStamp: Integer
 
         attr_accessor :StartTimeStamp, :EndTimeStamp
@@ -8299,10 +8275,8 @@ module TencentCloud
       # 任务信息详情
       class TaskInfoDetail < TencentCloud::Common::AbstractModel
         # @param TaskId: 任务 ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskId: Integer
         # @param StartTime: 任务开始时间。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StartTime: String
         # @param TaskType: 任务类型。
         # - FLOW_CREATE: "001"，新建实例
@@ -8360,22 +8334,16 @@ module TencentCloud
         # - FLOW_UPGRADE_INSTANCE_CACHE_AND_PROXY： "067"，实例版本升级中。
         # - FLOW_MODIFY_PROXY_NUM："069"，加（减）Proxy 节点。
         # - FLOW_MODIFYBACKUPMOD："070"，变更实例备份模式。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskType: String
         # @param InstanceName: 实例名称。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceName: String
         # @param InstanceId: 实例 ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceId: String
         # @param ProjectId: 项目 ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProjectId: Integer
         # @param Progress: 任务进度。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Progress: Float
         # @param EndTime: 任务执行结束时间。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EndTime: String
         # @param Result: 任务执行状态。
 
@@ -8383,7 +8351,6 @@ module TencentCloud
         # 1：执行中。
         # 2：完成。
         # 4：失败。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: Integer
 
         attr_accessor :TaskId, :StartTime, :TaskType, :InstanceName, :InstanceId, :ProjectId, :Progress, :EndTime, :Result

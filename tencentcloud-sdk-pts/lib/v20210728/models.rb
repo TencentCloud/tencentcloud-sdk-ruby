@@ -2346,7 +2346,7 @@ module TencentCloud
         # @type ScenarioId: String
         # @param JobId: 测试任务ID
         # @type JobId: String
-        # @param Context: 加载更多日志时使用，透传上次返回的Context值，获取后续的日志内容。过期时间1小时
+        # @param Context: 加载更多日志时使用，透传上次返回的Context值，获取后续的日志内容。过期时间1小时，不与 Offset  参数同时使用
         # @type Context: String
         # @param From: 日志开始时间
         # @type From: String
@@ -2354,12 +2354,14 @@ module TencentCloud
         # @type To: String
         # @param SeverityText: 日志级别debug,info,error
         # @type SeverityText: String
-        # @param InstanceRegion: ap-shanghai, ap-guangzhou
+        # @param InstanceRegion: 地域
         # @type InstanceRegion: String
         # @param Instance: 施压引擎节点IP
         # @type Instance: String
-        # @param LogType: request 代表采样日志,可为不填
+        # @param LogType: request 代表采样日志,engine 代表引擎日志，console 代表用户打印日志
         # @type LogType: String
+        # @param Offset: 日志偏移量，不与Context 参数同时使用
+        # @type Offset: Integer
         # @param Limit: 返回日志条数，最大100
         # @type Limit: Integer
         # @param ReactionTimeRange: 采样日志响应时间范围
@@ -2373,9 +2375,9 @@ module TencentCloud
         # @param Service: 采样服务API
         # @type Service: String
 
-        attr_accessor :ProjectId, :ScenarioId, :JobId, :Context, :From, :To, :SeverityText, :InstanceRegion, :Instance, :LogType, :Limit, :ReactionTimeRange, :Status, :Result, :Method, :Service
+        attr_accessor :ProjectId, :ScenarioId, :JobId, :Context, :From, :To, :SeverityText, :InstanceRegion, :Instance, :LogType, :Offset, :Limit, :ReactionTimeRange, :Status, :Result, :Method, :Service
 
-        def initialize(projectid=nil, scenarioid=nil, jobid=nil, context=nil, from=nil, to=nil, severitytext=nil, instanceregion=nil, instance=nil, logtype=nil, limit=nil, reactiontimerange=nil, status=nil, result=nil, method=nil, service=nil)
+        def initialize(projectid=nil, scenarioid=nil, jobid=nil, context=nil, from=nil, to=nil, severitytext=nil, instanceregion=nil, instance=nil, logtype=nil, offset=nil, limit=nil, reactiontimerange=nil, status=nil, result=nil, method=nil, service=nil)
           @ProjectId = projectid
           @ScenarioId = scenarioid
           @JobId = jobid
@@ -2386,6 +2388,7 @@ module TencentCloud
           @InstanceRegion = instanceregion
           @Instance = instance
           @LogType = logtype
+          @Offset = offset
           @Limit = limit
           @ReactionTimeRange = reactiontimerange
           @Status = status
@@ -2405,6 +2408,7 @@ module TencentCloud
           @InstanceRegion = params['InstanceRegion']
           @Instance = params['Instance']
           @LogType = params['LogType']
+          @Offset = params['Offset']
           @Limit = params['Limit']
           unless params['ReactionTimeRange'].nil?
             @ReactionTimeRange = ReactionTimeRange.new
@@ -2463,14 +2467,17 @@ module TencentCloud
         # @type ScenarioId: String
         # @param Queries: 查询语句
         # @type Queries: Array
+        # @param MaxPoint: 最多返回的数据点个数
+        # @type MaxPoint: Integer
 
-        attr_accessor :JobId, :ProjectId, :ScenarioId, :Queries
+        attr_accessor :JobId, :ProjectId, :ScenarioId, :Queries, :MaxPoint
 
-        def initialize(jobid=nil, projectid=nil, scenarioid=nil, queries=nil)
+        def initialize(jobid=nil, projectid=nil, scenarioid=nil, queries=nil, maxpoint=nil)
           @JobId = jobid
           @ProjectId = projectid
           @ScenarioId = scenarioid
           @Queries = queries
+          @MaxPoint = maxpoint
         end
 
         def deserialize(params)
@@ -2485,6 +2492,7 @@ module TencentCloud
               @Queries << internalmetricquery_tmp
             end
           end
+          @MaxPoint = params['MaxPoint']
         end
       end
 
@@ -2532,10 +2540,12 @@ module TencentCloud
         # @type Filters: Array
         # @param GroupBy: 分组；取值范围参见 DescribeMetricLabelWithValues 接口返回的指标及其支持的标签名
         # @type GroupBy: Array
+        # @param MaxPoint: 返回的最大数据点个数
+        # @type MaxPoint: Integer
 
-        attr_accessor :JobId, :ProjectId, :ScenarioId, :Metric, :Aggregation, :Filters, :GroupBy
+        attr_accessor :JobId, :ProjectId, :ScenarioId, :Metric, :Aggregation, :Filters, :GroupBy, :MaxPoint
 
-        def initialize(jobid=nil, projectid=nil, scenarioid=nil, metric=nil, aggregation=nil, filters=nil, groupby=nil)
+        def initialize(jobid=nil, projectid=nil, scenarioid=nil, metric=nil, aggregation=nil, filters=nil, groupby=nil, maxpoint=nil)
           @JobId = jobid
           @ProjectId = projectid
           @ScenarioId = scenarioid
@@ -2543,6 +2553,7 @@ module TencentCloud
           @Aggregation = aggregation
           @Filters = filters
           @GroupBy = groupby
+          @MaxPoint = maxpoint
         end
 
         def deserialize(params)
@@ -2560,6 +2571,7 @@ module TencentCloud
             end
           end
           @GroupBy = params['GroupBy']
+          @MaxPoint = params['MaxPoint']
         end
       end
 
@@ -4509,10 +4521,13 @@ module TencentCloud
         # @type LoadWeight: Integer
         # @param FileId: 文件 ID
         # @type FileId: String
+        # @param Uploaded: 文件是否已上传，如果已上传，则可以不必填写 EncodedContent,EncodedHar 等内容。
+        # 主要用于较大长度脚本上传。
+        # @type Uploaded: Boolean
 
-        attr_accessor :Name, :Size, :Type, :UpdatedAt, :EncodedContent, :EncodedHttpArchive, :LoadWeight, :FileId
+        attr_accessor :Name, :Size, :Type, :UpdatedAt, :EncodedContent, :EncodedHttpArchive, :LoadWeight, :FileId, :Uploaded
 
-        def initialize(name=nil, size=nil, type=nil, updatedat=nil, encodedcontent=nil, encodedhttparchive=nil, loadweight=nil, fileid=nil)
+        def initialize(name=nil, size=nil, type=nil, updatedat=nil, encodedcontent=nil, encodedhttparchive=nil, loadweight=nil, fileid=nil, uploaded=nil)
           @Name = name
           @Size = size
           @Type = type
@@ -4521,6 +4536,7 @@ module TencentCloud
           @EncodedHttpArchive = encodedhttparchive
           @LoadWeight = loadweight
           @FileId = fileid
+          @Uploaded = uploaded
         end
 
         def deserialize(params)
@@ -4532,6 +4548,7 @@ module TencentCloud
           @EncodedHttpArchive = params['EncodedHttpArchive']
           @LoadWeight = params['LoadWeight']
           @FileId = params['FileId']
+          @Uploaded = params['Uploaded']
         end
       end
 

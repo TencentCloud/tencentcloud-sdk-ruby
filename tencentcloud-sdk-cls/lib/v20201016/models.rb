@@ -10714,8 +10714,8 @@ module TencentCloud
 
         attr_accessor :LogContent, :LineNum, :DstTopicId, :FailReason, :Time, :DstTopicName
         extend Gem::Deprecate
-        deprecate :DstTopicName, :none, 2025, 2
-        deprecate :DstTopicName=, :none, 2025, 2
+        deprecate :DstTopicName, :none, 2025, 3
+        deprecate :DstTopicName=, :none, 2025, 3
 
         def initialize(logcontent=nil, linenum=nil, dsttopicid=nil, failreason=nil, time=nil, dsttopicname=nil)
           @LogContent = logcontent
@@ -11817,7 +11817,6 @@ module TencentCloud
         # - 17,  法兰克福,eu-frankfurt
         # - 18,  首尔,ap-seoul
         # - 19,  重庆,ap-chongqing
-        # - 21,  孟买,ap-mumbai
         # - 22,  弗吉尼亚,na-ashburn
         # - 23,  曼谷,ap-bangkok
         # - 25,  东京,ap-tokyo
@@ -11986,8 +11985,8 @@ module TencentCloud
 
         attr_accessor :TopicId, :HashKey, :CompressType
         extend Gem::Deprecate
-        deprecate :HashKey, :none, 2025, 2
-        deprecate :HashKey=, :none, 2025, 2
+        deprecate :HashKey, :none, 2025, 3
+        deprecate :HashKey=, :none, 2025, 3
 
         def initialize(topicid=nil, hashkey=nil, compresstype=nil)
           @TopicId = topicid

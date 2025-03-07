@@ -945,7 +945,7 @@ module TencentCloud
         # @param NodeIpType: 拨测任务所选的拨测点IP类型，0-不限，1-IPv4，2-IPv6
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NodeIpType: Integer
-        # @param Interval: 拨测间隔
+        # @param Interval: 拨测间隔，单位为分钟
         # @type Interval: Integer
         # @param Parameters: 拨测参数
         # @type Parameters: String

@@ -322,16 +322,12 @@ module TencentCloud
       # chc部署网络minos引导配置。
       class ChcDeployExtraConfig < TencentCloud::Common::AbstractModel
         # @param MiniOsType: minos类型。是使用腾讯云的minios，还是客户自己的minios。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MiniOsType: String
         # @param BootType: 服务器的架构和启动方式。取值为x86_legacy, arm_uefi。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BootType: String
         # @param BootFile: PXE使用的引导文件。默认为pxelinux.0。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BootFile: String
         # @param NextServerAddress: tftp服务器的ip地址。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NextServerAddress: String
 
         attr_accessor :MiniOsType, :BootType, :BootFile, :NextServerAddress
@@ -370,82 +366,58 @@ module TencentCloud
         # </ul>
         # @type InstanceState: String
         # @param DeviceType: 设备类型。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeviceType: String
         # @param Placement: 所属可用区
         # @type Placement: :class:`Tencentcloud::Cvm.v20170312.models.Placement`
         # @param BmcVirtualPrivateCloud: 带外网络。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BmcVirtualPrivateCloud: :class:`Tencentcloud::Cvm.v20170312.models.VirtualPrivateCloud`
         # @param BmcIp: 带外网络Ip。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BmcIp: String
         # @param BmcSecurityGroupIds: 带外网络安全组Id。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BmcSecurityGroupIds: Array
         # @param DeployVirtualPrivateCloud: 部署网络。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeployVirtualPrivateCloud: :class:`Tencentcloud::Cvm.v20170312.models.VirtualPrivateCloud`
         # @param DeployIp: 部署网络Ip。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeployIp: String
         # @param DeploySecurityGroupIds: 部署网络安全组Id。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeploySecurityGroupIds: Array
         # @param CvmInstanceId: 关联的云主机Id。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CvmInstanceId: String
         # @param CreatedTime: 服务器导入的时间。
         # @type CreatedTime: String
         # @param HardwareDescription: 机型的硬件描述，分别为CPU核数，内存容量和磁盘容量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HardwareDescription: String
         # @param CPU: CHC物理服务器的CPU核数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CPU: Integer
         # @param Memory: CHC物理服务器的内存大小，单位为GB
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Memory: Integer
         # @param Disk: CHC物理服务器的磁盘信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Disk: String
         # @param BmcMAC: 带外网络下分配的MAC地址
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BmcMAC: String
         # @param DeployMAC: 部署网络下分配的MAC地址
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeployMAC: String
         # @param TenantType: 设备托管类型。
         # HOSTING: 托管
         # TENANT: 租赁
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TenantType: String
         # @param DeployExtraConfig: chc dhcp选项，用于minios调试。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeployExtraConfig: :class:`Tencentcloud::Cvm.v20170312.models.ChcDeployExtraConfig`
         # @param Gpu: GPU型号。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Gpu: String
         # @param NetworkCard: 网卡型号。主要指RDMA网卡。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NetworkCard: String
         # @param IsPredefinedType: 是否是预定义机型。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsPredefinedType: Boolean
         # @param ChcInstanceType: CHC云主机机型。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ChcInstanceType: String
         # @param ChcInstanceFamily: CHC云主机机型簇。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ChcInstanceFamily: String
         # @param ChcInstanceFamilyName: CHC云主机机型簇名称。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ChcInstanceFamilyName: String
         # @param ResaleAppId: 转售客户的AppId。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResaleAppId: String
         # @param ResaleAccountId: 转售客户的账号ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResaleAccountId: String
         # @param SaleStatus: 售卖状态。<br/>
         # <ul>
@@ -453,11 +425,8 @@ module TencentCloud
         # <li>AVAILABLE: 可售卖</li>
         # <li>SOLD: 已售卖</li>
         # </ul>
-
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SaleStatus: String
         # @param Tags: CHC物理服务器关联的标签列表。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
         # @param LatestOperation: 最近操作
         # @type LatestOperation: String
@@ -738,10 +707,8 @@ module TencentCloud
       # ConvertOperatingSystems返回参数结构体
       class ConvertOperatingSystemsResponse < TencentCloud::Common::AbstractModel
         # @param SupportTargetOSList: 转换的目标操系统信息，仅在入参 DryRun 为 true 时返回。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SupportTargetOSList: Array
         # @param TaskId: 操作系统转换的任务 ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -914,7 +881,6 @@ module TencentCloud
       # CreateHpcCluster返回参数结构体
       class CreateHpcClusterResponse < TencentCloud::Common::AbstractModel
         # @param HpcClusterSet: 高性能计算集群信息。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HpcClusterSet: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1005,7 +971,6 @@ module TencentCloud
       # CreateImage返回参数结构体
       class CreateImageResponse < TencentCloud::Common::AbstractModel
         # @param ImageId: 镜像ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ImageId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1976,17 +1941,23 @@ module TencentCloud
         # @type CvmInSwGroupQuota: Integer
         # @param CvmInRackGroupQuota: 机架类型容灾组内实例的配额数。
         # @type CvmInRackGroupQuota: Integer
+        # @param CvmInSwitchGroupQuota: 交换机类型容灾组内实例的配额数。
+        # @type CvmInSwitchGroupQuota: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :GroupQuota, :CurrentNum, :CvmInHostGroupQuota, :CvmInSwGroupQuota, :CvmInRackGroupQuota, :RequestId
+        attr_accessor :GroupQuota, :CurrentNum, :CvmInHostGroupQuota, :CvmInSwGroupQuota, :CvmInRackGroupQuota, :CvmInSwitchGroupQuota, :RequestId
+        extend Gem::Deprecate
+        deprecate :CvmInSwGroupQuota, :none, 2025, 3
+        deprecate :CvmInSwGroupQuota=, :none, 2025, 3
 
-        def initialize(groupquota=nil, currentnum=nil, cvminhostgroupquota=nil, cvminswgroupquota=nil, cvminrackgroupquota=nil, requestid=nil)
+        def initialize(groupquota=nil, currentnum=nil, cvminhostgroupquota=nil, cvminswgroupquota=nil, cvminrackgroupquota=nil, cvminswitchgroupquota=nil, requestid=nil)
           @GroupQuota = groupquota
           @CurrentNum = currentnum
           @CvmInHostGroupQuota = cvminhostgroupquota
           @CvmInSwGroupQuota = cvminswgroupquota
           @CvmInRackGroupQuota = cvminrackgroupquota
+          @CvmInSwitchGroupQuota = cvminswitchgroupquota
           @RequestId = requestid
         end
 
@@ -1996,6 +1967,7 @@ module TencentCloud
           @CvmInHostGroupQuota = params['CvmInHostGroupQuota']
           @CvmInSwGroupQuota = params['CvmInSwGroupQuota']
           @CvmInRackGroupQuota = params['CvmInRackGroupQuota']
+          @CvmInSwitchGroupQuota = params['CvmInSwitchGroupQuota']
           @RequestId = params['RequestId']
         end
       end
@@ -3132,7 +3104,12 @@ module TencentCloud
       class DescribeLaunchTemplatesRequest < TencentCloud::Common::AbstractModel
         # @param LaunchTemplateIds: 启动模板ID，一个或者多个启动模板ID。若未指定，则显示用户所有模板。
         # @type LaunchTemplateIds: Array
-        # @param Filters: <p style="padding-left: 30px;">按照【<strong>LaunchTemplateName</strong>】进行过滤。</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p>
+        # @param Filters: <li><strong>LaunchTemplateName</strong></li>
+        # <p style="padding-left: 30px;">按照【<strong>实例启动模板名称</strong>】进行过滤。</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p>
+        # <li><strong>tag-key</strong></li>
+        # <p style="padding-left: 30px;">按照【<strong>标签键</strong>】进行过滤。</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p>
+        # <li><strong>tag-value</strong></li> <p style="padding-left: 30px;">按照【<strong>标签值</strong>】进行过滤。</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p>
+        # <li><strong>tag:tag-key</strong></li> <p style="padding-left: 30px;">按照【<strong>标签键值对</strong>】进行过滤。tag-key使用具体的标签键进行替换。</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p>
         # 每次请求的`Filters`的上限为10，`Filter.Values`的上限为5。参数不支持同时指定`LaunchTemplateIds`和`Filters`。
         # @type Filters: Array
         # @param Offset: 偏移量，默认为0。关于`Offset`的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/api/213/15688)中的相关小节。
@@ -3167,10 +3144,8 @@ module TencentCloud
       # DescribeLaunchTemplates返回参数结构体
       class DescribeLaunchTemplatesResponse < TencentCloud::Common::AbstractModel
         # @param TotalCount: 符合条件的实例模板数量。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
         # @param LaunchTemplateSet: 实例详细信息列表。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LaunchTemplateSet: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3747,7 +3722,7 @@ module TencentCloud
       class ExportImagesRequest < TencentCloud::Common::AbstractModel
         # @param BucketName: COS存储桶名称
         # @type BucketName: String
-        # @param ImageIds: 镜像ID列表
+        # @param ImageIds: 镜像ID列表。调用 ExportImages 接口时，参数 ImageIds 和 SnapshotIds 为二选一必填参数，目前参数 SnapshotIds 暂未对外开放。
         # @type ImageIds: Array
         # @param ExportFormat: 镜像文件导出格式。取值范围：RAW，QCOW2，VHD，VMDK。默认为RAW
         # @type ExportFormat: String
@@ -3868,13 +3843,10 @@ module TencentCloud
       # 实例GPU信息
       class GPUInfo < TencentCloud::Common::AbstractModel
         # @param GPUCount: 实例GPU个数。值小于1代表VGPU类型，大于1代表GPU直通类型。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GPUCount: Float
         # @param GPUId: 实例GPU地址。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GPUId: Array
         # @param GPUType: 实例GPU类型。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GPUType: String
 
         attr_accessor :GPUCount, :GPUId, :GPUType
@@ -3919,10 +3891,8 @@ module TencentCloud
         # @param HostResource: 专用宿主机实例资源信息
         # @type HostResource: :class:`Tencentcloud::Cvm.v20170312.models.HostResource`
         # @param CageId: 专用宿主机所属的围笼ID。该字段仅对金融专区围笼内的专用宿主机有效。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CageId: String
         # @param Tags: 专用宿主机关联的标签列表。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
 
         attr_accessor :Placement, :HostId, :HostType, :HostName, :HostChargeType, :RenewFlag, :CreatedTime, :ExpiredTime, :InstanceIds, :HostState, :HostIp, :HostResource, :CageId, :Tags
@@ -4015,7 +3985,6 @@ module TencentCloud
         # @param GpuAvailable: 专用宿主机实例可用GPU卡数
         # @type GpuAvailable: Integer
         # @param ExclusiveOwner: CDH owner
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExclusiveOwner: String
 
         attr_accessor :CpuTotal, :CpuAvailable, :MemTotal, :MemAvailable, :DiskTotal, :DiskAvailable, :DiskType, :GpuTotal, :GpuAvailable, :ExclusiveOwner
@@ -4052,10 +4021,8 @@ module TencentCloud
         # @param HpcClusterId: 高性能计算集群ID
         # @type HpcClusterId: String
         # @param Name: 高性能计算集群名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Remark: 高性能计算集群备注
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Remark: String
         # @param CvmQuotaTotal: 集群下设备容量
         # @type CvmQuotaTotal: Integer
@@ -4064,16 +4031,12 @@ module TencentCloud
         # @param CurrentNum: 集群当前已有设备量
         # @type CurrentNum: Integer
         # @param CreateTime: 集群创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
         # @param InstanceIds: 集群内实例ID列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceIds: Array
         # @param HpcClusterType: 高性能计算集群类型。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HpcClusterType: String
         # @param HpcClusterBusinessId: 高性能计算集群对应的业务场景标识，当前只支持CDC。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HpcClusterBusinessId: String
         # @param HpcClusterNetMode: 高性能计算集群网络模式
         # @type HpcClusterNetMode: Integer
@@ -4157,18 +4120,14 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SyncPercent: Integer
         # @param IsSupportCloudinit: 镜像是否支持cloud-init
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsSupportCloudinit: Boolean
         # @param SnapshotSet: 镜像关联的快照信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SnapshotSet: Array
         # @param Tags: 镜像关联的标签列表。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
         # @param LicenseType: 镜像许可类型
         # @type LicenseType: String
         # @param ImageFamily: 镜像族
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ImageFamily: String
         # @param ImageDeprecated: 镜像是否废弃
         # @type ImageDeprecated: Boolean
@@ -4237,10 +4196,8 @@ module TencentCloud
       # 支持的操作系统类型，根据Windows和Linux分类。
       class ImageOsList < TencentCloud::Common::AbstractModel
         # @param Windows: 支持的Windows操作系统。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Windows: Array
         # @param Linux: 支持的Linux操作系统
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Linux: Array
 
         attr_accessor :Windows, :Linux
@@ -5140,7 +5097,6 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LatestOperationRequestId: String
         # @param DisasterRecoverGroupId: 分散置放群组ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DisasterRecoverGroupId: String
         # @param IPv6Addresses: 实例的IPv6地址。
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -5149,19 +5105,15 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CamRoleName: String
         # @param HpcClusterId: 高性能计算集群`ID`。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HpcClusterId: String
         # @param RdmaIpAddresses: 高性能计算集群`IP`列表。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RdmaIpAddresses: Array
         # @param DedicatedClusterId: 实例所在的专用集群`ID`。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DedicatedClusterId: String
         # @param IsolatedSource: 实例隔离类型。取值范围：<br><li>ARREAR：表示欠费隔离<br></li><li>EXPIRE：表示到期隔离<br></li><li>MANMADE：表示主动退还隔离<br></li><li>NOTISOLATED：表示未隔离<br></li>
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsolatedSource: String
         # @param GPUInfo: GPU信息。如果是gpu类型子机，该值会返回GPU信息，如果是其他类型子机则不返回。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GPUInfo: :class:`Tencentcloud::Cvm.v20170312.models.GPUInfo`
         # @param LicenseType: 实例的操作系统许可类型，默认为TencentCloud
         # @type LicenseType: String
@@ -5365,13 +5317,10 @@ module TencentCloud
       # 描述退款详情。
       class InstanceRefund < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例Id。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceId: String
         # @param Refunds: 退款数额。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Refunds: Float
         # @param PriceDetail: 退款详情。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PriceDetail: String
 
         attr_accessor :InstanceId, :Refunds, :PriceDetail
@@ -5458,7 +5407,6 @@ module TencentCloud
         # @param Status: 状态描述
         # @type Status: String
         # @param Message: 状态描述信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Message: String
         # @param InstanceTypeConfig: 配置信息
         # @type InstanceTypeConfig: :class:`Tencentcloud::Cvm.v20170312.models.InstanceTypeConfig`
@@ -5660,10 +5608,8 @@ module TencentCloud
       # 描述了网络计费
       class InternetChargeTypeConfig < TencentCloud::Common::AbstractModel
         # @param InternetChargeType: 网络计费模式。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InternetChargeType: String
         # @param Description: 网络计费模式描述信息。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
 
         attr_accessor :InternetChargeType, :Description
@@ -5795,7 +5741,6 @@ module TencentCloud
         # @param CreatedTime: 创建时间。按照`ISO8601`标准表示，并且使用`UTC`时间。格式为：`YYYY-MM-DDThh:mm:ssZ`。
         # @type CreatedTime: String
         # @param Tags: 密钥关联的标签列表。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
 
         attr_accessor :KeyId, :KeyName, :ProjectId, :Description, :PublicKey, :PrivateKey, :AssociatedInstanceIds, :CreatedTime, :Tags
@@ -5855,25 +5800,18 @@ module TencentCloud
       # 实例启动模板简要信息。
       class LaunchTemplateInfo < TencentCloud::Common::AbstractModel
         # @param LatestVersionNumber: 实例启动模版本号。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LatestVersionNumber: Integer
         # @param LaunchTemplateId: 实例启动模板ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LaunchTemplateId: String
         # @param LaunchTemplateName: 实例启动模板名。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LaunchTemplateName: String
         # @param DefaultVersionNumber: 实例启动模板默认版本号。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DefaultVersionNumber: Integer
         # @param LaunchTemplateVersionCount: 实例启动模板包含的版本总数量。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LaunchTemplateVersionCount: Integer
         # @param CreatedBy: 创建该模板的用户UIN。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreatedBy: String
         # @param CreationTime: 创建该模板的时间。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreationTime: String
 
         attr_accessor :LatestVersionNumber, :LaunchTemplateId, :LaunchTemplateName, :DefaultVersionNumber, :LaunchTemplateVersionCount, :CreatedBy, :CreationTime
@@ -5902,81 +5840,61 @@ module TencentCloud
       # 实例启动模板版本信息
       class LaunchTemplateVersionData < TencentCloud::Common::AbstractModel
         # @param Placement: 实例所在的位置。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Placement: :class:`Tencentcloud::Cvm.v20170312.models.Placement`
         # @param InstanceType: 实例机型。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceType: String
         # @param InstanceName: 实例名称。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceName: String
-        # @param InstanceChargeType: 实例计费模式。取值范围：<br><li>`PREPAID`：表示预付费，即包年包月<br><li>`POSTPAID_BY_HOUR`：表示后付费，即按量计费<br><li>`CDHPAID`：`专用宿主机`付费，即只对`专用宿主机`计费，不对`专用宿主机`上的实例计费。<br><li>`SPOTPAID`：表示竞价实例付费。
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param InstanceChargeType: 实例计费模式。取值范围：
+        # <li>`PREPAID`：表示预付费，即包年包月</li>
+        # <li>`POSTPAID_BY_HOUR`：表示后付费，即按量计费</li>
+        # <li>`CDHPAID`：`专用宿主机`付费，即只对`专用宿主机`计费，不对`专用宿主机`上的实例计费。</li>
+        # <li>`SPOTPAID`：表示竞价实例付费。</li>
         # @type InstanceChargeType: String
         # @param SystemDisk: 实例系统盘信息。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SystemDisk: :class:`Tencentcloud::Cvm.v20170312.models.SystemDisk`
         # @param DataDisks: 实例数据盘信息。只包含随实例购买的数据盘。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DataDisks: Array
         # @param InternetAccessible: 实例带宽信息。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InternetAccessible: :class:`Tencentcloud::Cvm.v20170312.models.InternetAccessible`
         # @param VirtualPrivateCloud: 实例所属虚拟私有网络信息。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VirtualPrivateCloud: :class:`Tencentcloud::Cvm.v20170312.models.VirtualPrivateCloud`
         # @param ImageId: 生产实例所使用的镜像`ID`。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ImageId: String
         # @param SecurityGroupIds: 实例所属安全组。该参数可以通过调用 [DescribeSecurityGroups](https://cloud.tencent.com/document/api/215/15808) 的返回值中的sgId字段来获取。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SecurityGroupIds: Array
         # @param LoginSettings: 实例登录设置。目前只返回实例所关联的密钥。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LoginSettings: :class:`Tencentcloud::Cvm.v20170312.models.LoginSettings`
         # @param CamRoleName: CAM角色名。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CamRoleName: String
         # @param HpcClusterId: 高性能计算集群`ID`。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HpcClusterId: String
         # @param InstanceCount: 购买实例数量。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceCount: Integer
         # @param EnhancedService: 增强服务。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EnhancedService: :class:`Tencentcloud::Cvm.v20170312.models.EnhancedService`
         # @param UserData: 提供给实例使用的用户数据，需要以 base64 方式编码，支持的最大数据大小为 16KB。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UserData: String
         # @param DisasterRecoverGroupIds: 置放群组ID，仅支持指定一个。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DisasterRecoverGroupIds: Array
         # @param ActionTimer: 定时任务。通过该参数可以为实例指定定时任务，目前仅支持定时销毁。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ActionTimer: :class:`Tencentcloud::Cvm.v20170312.models.ActionTimer`
         # @param InstanceMarketOptions: 实例的市场相关选项，如竞价实例相关参数，若指定实例的付费模式为竞价付费则该参数必传。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceMarketOptions: :class:`Tencentcloud::Cvm.v20170312.models.InstanceMarketOptionsRequest`
         # @param HostName: 云服务器的主机名。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HostName: String
         # @param ClientToken: 用于保证请求幂等性的字符串。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClientToken: String
         # @param InstanceChargePrepaid: 预付费模式，即包年包月相关参数设置。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceChargePrepaid: :class:`Tencentcloud::Cvm.v20170312.models.InstanceChargePrepaid`
         # @param TagSpecification: 标签描述列表。通过指定该参数可以同时绑定标签到相应的云服务器、云硬盘实例。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TagSpecification: Array
         # @param DisableApiTermination: 实例销毁保护标志，表示是否允许通过api接口删除实例。取值范围：
 
-        # TRUE：表示开启实例保护，不允许通过api接口删除实例
-        # FALSE：表示关闭实例保护，允许通过api接口删除实例
+        # true：表示开启实例保护，不允许通过api接口删除实例
+        # false：表示关闭实例保护，允许通过api接口删除实例
 
-        # 默认取值：FALSE。
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # 默认取值：false。
         # @type DisableApiTermination: Boolean
 
         attr_accessor :Placement, :InstanceType, :InstanceName, :InstanceChargeType, :SystemDisk, :DataDisks, :InternetAccessible, :VirtualPrivateCloud, :ImageId, :SecurityGroupIds, :LoginSettings, :CamRoleName, :HpcClusterId, :InstanceCount, :EnhancedService, :UserData, :DisasterRecoverGroupIds, :ActionTimer, :InstanceMarketOptions, :HostName, :ClientToken, :InstanceChargePrepaid, :TagSpecification, :DisableApiTermination
@@ -7094,13 +7012,10 @@ module TencentCloud
       # 地域信息
       class RegionInfo < TencentCloud::Common::AbstractModel
         # @param Region: 地域名称，例如，ap-guangzhou
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Region: String
         # @param RegionName: 地域描述，例如，华南地区(广州)
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RegionName: String
         # @param RegionState: 地域是否可用状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RegionState: String
 
         attr_accessor :Region, :RegionName, :RegionState

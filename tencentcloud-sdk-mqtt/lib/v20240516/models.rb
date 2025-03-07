@@ -2940,6 +2940,62 @@ module TencentCloud
         end
       end
 
+      # PublishMessage请求参数结构体
+      class PublishMessageRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param Payload: 消息 payload，需要按 encoding 指定的编码方式进行编码
+        # @type Payload: String
+        # @param TargetTopic: 消息目的主题，该参数与 TargetClientId 二选一
+        # @type TargetTopic: String
+        # @param TargetClientId: 消息目的客户端 ID，该参数与 TargetTopic 二选一
+        # @type TargetClientId: String
+        # @param Encoding: 消息 payload 编码，可选 plain 或 base64，默认为 plain（即不编码）
+        # @type Encoding: String
+        # @param Qos: 消息的服务质量等级，默认为 1
+        # @type Qos: Integer
+        # @param Retain: 是否为保留消息，默认为 false，且仅支持发布到主题的消息设置为 true
+        # @type Retain: Boolean
+
+        attr_accessor :InstanceId, :Payload, :TargetTopic, :TargetClientId, :Encoding, :Qos, :Retain
+
+        def initialize(instanceid=nil, payload=nil, targettopic=nil, targetclientid=nil, encoding=nil, qos=nil, retain=nil)
+          @InstanceId = instanceid
+          @Payload = payload
+          @TargetTopic = targettopic
+          @TargetClientId = targetclientid
+          @Encoding = encoding
+          @Qos = qos
+          @Retain = retain
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Payload = params['Payload']
+          @TargetTopic = params['TargetTopic']
+          @TargetClientId = params['TargetClientId']
+          @Encoding = params['Encoding']
+          @Qos = params['Qos']
+          @Retain = params['Retain']
+        end
+      end
+
+      # PublishMessage返回参数结构体
+      class PublishMessageResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # RegisterCaCertificate请求参数结构体
       class RegisterCaCertificateRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 集群id

@@ -1738,8 +1738,8 @@ module TencentCloud
 
         attr_accessor :EngineType, :DataEngineName, :ClusterType, :Mode, :AutoResume, :MinClusters, :MaxClusters, :DefaultDataEngine, :CidrBlock, :Message, :Size, :PayMode, :TimeSpan, :TimeUnit, :AutoRenew, :Tags, :AutoSuspend, :CrontabResumeSuspend, :CrontabResumeSuspendStrategy, :EngineExecType, :MaxConcurrency, :TolerableQueueTime, :AutoSuspendTime, :ResourceType, :DataEngineConfigPairs, :ImageVersionName, :MainClusterName, :ElasticSwitch, :ElasticLimit, :SessionResourceTemplate, :AutoAuthorization, :EngineNetworkId, :EngineGeneration
         extend Gem::Deprecate
-        deprecate :DefaultDataEngine, :none, 2025, 2
-        deprecate :DefaultDataEngine=, :none, 2025, 2
+        deprecate :DefaultDataEngine, :none, 2025, 3
+        deprecate :DefaultDataEngine=, :none, 2025, 3
 
         def initialize(enginetype=nil, dataenginename=nil, clustertype=nil, mode=nil, autoresume=nil, minclusters=nil, maxclusters=nil, defaultdataengine=nil, cidrblock=nil, message=nil, size=nil, paymode=nil, timespan=nil, timeunit=nil, autorenew=nil, tags=nil, autosuspend=nil, crontabresumesuspend=nil, crontabresumesuspendstrategy=nil, engineexectype=nil, maxconcurrency=nil, tolerablequeuetime=nil, autosuspendtime=nil, resourcetype=nil, dataengineconfigpairs=nil, imageversionname=nil, mainclustername=nil, elasticswitch=nil, elasticlimit=nil, sessionresourcetemplate=nil, autoauthorization=nil, enginenetworkid=nil, enginegeneration=nil)
           @EngineType = enginetype
@@ -6308,19 +6308,23 @@ module TencentCloud
         # @type MaxResults: Integer
         # @param NextToken: 上一次请求响应返回的分页信息。第一次可以不带，从头开始返回数据，每次返回MaxResults字段设置的数据量。
         # @type NextToken: String
+        # @param BatchId: 批次Id
+        # @type BatchId: String
 
-        attr_accessor :TaskId, :MaxResults, :NextToken
+        attr_accessor :TaskId, :MaxResults, :NextToken, :BatchId
 
-        def initialize(taskid=nil, maxresults=nil, nexttoken=nil)
+        def initialize(taskid=nil, maxresults=nil, nexttoken=nil, batchid=nil)
           @TaskId = taskid
           @MaxResults = maxresults
           @NextToken = nexttoken
+          @BatchId = batchid
         end
 
         def deserialize(params)
           @TaskId = params['TaskId']
           @MaxResults = params['MaxResults']
           @NextToken = params['NextToken']
+          @BatchId = params['BatchId']
         end
       end
 
@@ -6347,12 +6351,15 @@ module TencentCloud
         # @param DataAmount: 数据扫描量
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DataAmount: Integer
+        # @param UiUrl: spark ui地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UiUrl: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TaskId, :ResultSet, :ResultSchema, :NextToken, :OutputPath, :UseTime, :AffectRows, :DataAmount, :RequestId
+        attr_accessor :TaskId, :ResultSet, :ResultSchema, :NextToken, :OutputPath, :UseTime, :AffectRows, :DataAmount, :UiUrl, :RequestId
 
-        def initialize(taskid=nil, resultset=nil, resultschema=nil, nexttoken=nil, outputpath=nil, usetime=nil, affectrows=nil, dataamount=nil, requestid=nil)
+        def initialize(taskid=nil, resultset=nil, resultschema=nil, nexttoken=nil, outputpath=nil, usetime=nil, affectrows=nil, dataamount=nil, uiurl=nil, requestid=nil)
           @TaskId = taskid
           @ResultSet = resultset
           @ResultSchema = resultschema
@@ -6361,6 +6368,7 @@ module TencentCloud
           @UseTime = usetime
           @AffectRows = affectrows
           @DataAmount = dataamount
+          @UiUrl = uiurl
           @RequestId = requestid
         end
 
@@ -6380,6 +6388,7 @@ module TencentCloud
           @UseTime = params['UseTime']
           @AffectRows = params['AffectRows']
           @DataAmount = params['DataAmount']
+          @UiUrl = params['UiUrl']
           @RequestId = params['RequestId']
         end
       end
@@ -12389,10 +12398,10 @@ module TencentCloud
 
         attr_accessor :DatabaseName, :TableName, :DatasourceConnectionName, :TableComment, :Type, :TableFormat, :UserAlias, :UserSubUin, :GovernPolicy, :DbGovernPolicyIsDisable, :SmartPolicy, :PrimaryKeys
         extend Gem::Deprecate
-        deprecate :GovernPolicy, :none, 2025, 2
-        deprecate :GovernPolicy=, :none, 2025, 2
-        deprecate :DbGovernPolicyIsDisable, :none, 2025, 2
-        deprecate :DbGovernPolicyIsDisable=, :none, 2025, 2
+        deprecate :GovernPolicy, :none, 2025, 3
+        deprecate :GovernPolicy=, :none, 2025, 3
+        deprecate :DbGovernPolicyIsDisable, :none, 2025, 3
+        deprecate :DbGovernPolicyIsDisable=, :none, 2025, 3
 
         def initialize(databasename=nil, tablename=nil, datasourceconnectionname=nil, tablecomment=nil, type=nil, tableformat=nil, useralias=nil, usersubuin=nil, governpolicy=nil, dbgovernpolicyisdisable=nil, smartpolicy=nil, primarykeys=nil)
           @DatabaseName = databasename
