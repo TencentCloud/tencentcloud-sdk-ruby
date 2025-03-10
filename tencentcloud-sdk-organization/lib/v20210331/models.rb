@@ -573,6 +573,42 @@ module TencentCloud
         end
       end
 
+      # BindOrganizationPolicySubAccount请求参数结构体
+      class BindOrganizationPolicySubAccountRequest < TencentCloud::Common::AbstractModel
+        # @param PolicyId: 策略ID。
+        # @type PolicyId: Integer
+        # @param OrgSubAccountUins: 组织管理员子账号Uin列表。最大5个
+        # @type OrgSubAccountUins: Array
+
+        attr_accessor :PolicyId, :OrgSubAccountUins
+
+        def initialize(policyid=nil, orgsubaccountuins=nil)
+          @PolicyId = policyid
+          @OrgSubAccountUins = orgsubaccountuins
+        end
+
+        def deserialize(params)
+          @PolicyId = params['PolicyId']
+          @OrgSubAccountUins = params['OrgSubAccountUins']
+        end
+      end
+
+      # BindOrganizationPolicySubAccount返回参数结构体
+      class BindOrganizationPolicySubAccountResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CancelOrganizationMemberAuthAccount请求参数结构体
       class CancelOrganizationMemberAuthAccountRequest < TencentCloud::Common::AbstractModel
         # @param MemberUin: 成员Uin。
@@ -599,6 +635,42 @@ module TencentCloud
 
       # CancelOrganizationMemberAuthAccount返回参数结构体
       class CancelOrganizationMemberAuthAccountResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CancelOrganizationPolicySubAccount请求参数结构体
+      class CancelOrganizationPolicySubAccountRequest < TencentCloud::Common::AbstractModel
+        # @param PolicyId: 策略ID。
+        # @type PolicyId: Integer
+        # @param OrgSubAccountUins: 组织管理员子账号Uin列表。最大5个
+        # @type OrgSubAccountUins: Array
+
+        attr_accessor :PolicyId, :OrgSubAccountUins
+
+        def initialize(policyid=nil, orgsubaccountuins=nil)
+          @PolicyId = policyid
+          @OrgSubAccountUins = orgsubaccountuins
+        end
+
+        def deserialize(params)
+          @PolicyId = params['PolicyId']
+          @OrgSubAccountUins = params['OrgSubAccountUins']
+        end
+      end
+
+      # CancelOrganizationPolicySubAccount返回参数结构体
+      class CancelOrganizationPolicySubAccountResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -6469,8 +6541,8 @@ module TencentCloud
 
         attr_accessor :ProductResourceId, :ResourceGrantLast
         extend Gem::Deprecate
-        deprecate :ResourceGrantLast, :none, 2025, 2
-        deprecate :ResourceGrantLast=, :none, 2025, 2
+        deprecate :ResourceGrantLast, :none, 2025, 3
+        deprecate :ResourceGrantLast=, :none, 2025, 3
 
         def initialize(productresourceid=nil, resourcegrantlast=nil)
           @ProductResourceId = productresourceid
@@ -7305,8 +7377,8 @@ module TencentCloud
 
         attr_accessor :ResourceId, :ProductResourceId
         extend Gem::Deprecate
-        deprecate :ResourceId, :none, 2025, 2
-        deprecate :ResourceId=, :none, 2025, 2
+        deprecate :ResourceId, :none, 2025, 3
+        deprecate :ResourceId=, :none, 2025, 3
 
         def initialize(resourceid=nil, productresourceid=nil)
           @ResourceId = resourceid

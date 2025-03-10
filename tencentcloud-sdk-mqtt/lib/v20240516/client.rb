@@ -605,6 +605,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询 MQTT 客户端详情
+
+        # @param request: Request instance for DescribeClientList.
+        # @type request: :class:`Tencentcloud::mqtt::V20240516::DescribeClientListRequest`
+        # @rtype: :class:`Tencentcloud::mqtt::V20240516::DescribeClientListResponse`
+        def DescribeClientList(request)
+          body = send_request('DescribeClientList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeClientListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询设备证书详情接口
 
         # @param request: Request instance for DescribeDeviceCertificate.
@@ -754,6 +778,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询消息列表，如查询死信，请设置ConsumerGroup参数
+
+        # @param request: Request instance for DescribeMessageList.
+        # @type request: :class:`Tencentcloud::mqtt::V20240516::DescribeMessageListRequest`
+        # @rtype: :class:`Tencentcloud::mqtt::V20240516::DescribeMessageListResponse`
+        def DescribeMessageList(request)
+          body = send_request('DescribeMessageList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeMessageListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取产品售卖规格
 
         # @param request: Request instance for DescribeProductSKUList.
@@ -764,6 +812,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeProductSKUListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询共享订阅消息堆积量
+
+        # @param request: Request instance for DescribeSharedSubscriptionLag.
+        # @type request: :class:`Tencentcloud::mqtt::V20240516::DescribeSharedSubscriptionLagRequest`
+        # @rtype: :class:`Tencentcloud::mqtt::V20240516::DescribeSharedSubscriptionLagResponse`
+        def DescribeSharedSubscriptionLag(request)
+          body = send_request('DescribeSharedSubscriptionLag', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeSharedSubscriptionLagResponse.new
             model.deserialize(response['Response'])
             model
           else

@@ -10740,10 +10740,12 @@ module TencentCloud
         # @param Id: 策略ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Id: Integer
+        # @param EngineGeneration: 引擎类型
+        # @type EngineGeneration: String
 
-        attr_accessor :Database, :Catalog, :Table, :Operation, :PolicyType, :Function, :View, :Column, :DataEngine, :ReAuth, :Source, :Mode, :Operator, :CreateTime, :SourceId, :SourceName, :Id
+        attr_accessor :Database, :Catalog, :Table, :Operation, :PolicyType, :Function, :View, :Column, :DataEngine, :ReAuth, :Source, :Mode, :Operator, :CreateTime, :SourceId, :SourceName, :Id, :EngineGeneration
 
-        def initialize(database=nil, catalog=nil, table=nil, operation=nil, policytype=nil, function=nil, view=nil, column=nil, dataengine=nil, reauth=nil, source=nil, mode=nil, operator=nil, createtime=nil, sourceid=nil, sourcename=nil, id=nil)
+        def initialize(database=nil, catalog=nil, table=nil, operation=nil, policytype=nil, function=nil, view=nil, column=nil, dataengine=nil, reauth=nil, source=nil, mode=nil, operator=nil, createtime=nil, sourceid=nil, sourcename=nil, id=nil, enginegeneration=nil)
           @Database = database
           @Catalog = catalog
           @Table = table
@@ -10761,6 +10763,7 @@ module TencentCloud
           @SourceId = sourceid
           @SourceName = sourcename
           @Id = id
+          @EngineGeneration = enginegeneration
         end
 
         def deserialize(params)
@@ -10781,6 +10784,7 @@ module TencentCloud
           @SourceId = params['SourceId']
           @SourceName = params['SourceName']
           @Id = params['Id']
+          @EngineGeneration = params['EngineGeneration']
         end
       end
 

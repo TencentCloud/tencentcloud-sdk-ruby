@@ -69,8 +69,8 @@ module TencentCloud
 
         attr_accessor :PkgType, :MiniProgramAppId, :DeviceList
         extend Gem::Deprecate
-        deprecate :MiniProgramAppId, :none, 2025, 2
-        deprecate :MiniProgramAppId=, :none, 2025, 2
+        deprecate :MiniProgramAppId, :none, 2025, 3
+        deprecate :MiniProgramAppId=, :none, 2025, 3
 
         def initialize(pkgtype=nil, miniprogramappid=nil, devicelist=nil)
           @PkgType = pkgtype
@@ -740,6 +740,8 @@ module TencentCloud
         # @type Result: String
         # @param Files: 任务输出文件列表
         # @type Files: Array
+        # @param FilesInfo: 任务输出文件信息列表
+        # @type FilesInfo: Array
         # @param CreateTime: 创建时间
         # @type CreateTime: Integer
         # @param UpdateTime: 最后更新时间
@@ -747,9 +749,9 @@ module TencentCloud
         # @param CustomId: 自定义任务 ID
         # @type CustomId: String
 
-        attr_accessor :TaskId, :ProductId, :DeviceName, :ChannelId, :ServiceType, :StartTime, :EndTime, :Status, :Result, :Files, :CreateTime, :UpdateTime, :CustomId
+        attr_accessor :TaskId, :ProductId, :DeviceName, :ChannelId, :ServiceType, :StartTime, :EndTime, :Status, :Result, :Files, :FilesInfo, :CreateTime, :UpdateTime, :CustomId
 
-        def initialize(taskid=nil, productid=nil, devicename=nil, channelid=nil, servicetype=nil, starttime=nil, endtime=nil, status=nil, result=nil, files=nil, createtime=nil, updatetime=nil, customid=nil)
+        def initialize(taskid=nil, productid=nil, devicename=nil, channelid=nil, servicetype=nil, starttime=nil, endtime=nil, status=nil, result=nil, files=nil, filesinfo=nil, createtime=nil, updatetime=nil, customid=nil)
           @TaskId = taskid
           @ProductId = productid
           @DeviceName = devicename
@@ -760,6 +762,7 @@ module TencentCloud
           @Status = status
           @Result = result
           @Files = files
+          @FilesInfo = filesinfo
           @CreateTime = createtime
           @UpdateTime = updatetime
           @CustomId = customid
@@ -776,9 +779,72 @@ module TencentCloud
           @Status = params['Status']
           @Result = params['Result']
           @Files = params['Files']
+          unless params['FilesInfo'].nil?
+            @FilesInfo = []
+            params['FilesInfo'].each do |i|
+              cloudstorageaiservicetaskfileinfo_tmp = CloudStorageAIServiceTaskFileInfo.new
+              cloudstorageaiservicetaskfileinfo_tmp.deserialize(i)
+              @FilesInfo << cloudstorageaiservicetaskfileinfo_tmp
+            end
+          end
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
           @CustomId = params['CustomId']
+        end
+      end
+
+      # 云存 AI 任务输出文件信息
+      class CloudStorageAIServiceTaskFileInfo < TencentCloud::Common::AbstractModel
+        # @param FileName: 文件名称（含扩展名）
+        # @type FileName: String
+        # @param FileSize: 文件大小（单位：bytes）
+        # @type FileSize: Integer
+        # @param DownloadURL: 文件下载 URL
+        # @type DownloadURL: String
+        # @param MimeType: 文件的 MIME Type
+        # @type MimeType: String
+        # @param VideoMetaInfo: 视频文件元数据（仅当文件为视频类型时包含该字段）
+        # @type VideoMetaInfo: :class:`Tencentcloud::Iotexplorer.v20190423.models.CloudStorageAIServiceTaskVideoMetaInfo`
+
+        attr_accessor :FileName, :FileSize, :DownloadURL, :MimeType, :VideoMetaInfo
+
+        def initialize(filename=nil, filesize=nil, downloadurl=nil, mimetype=nil, videometainfo=nil)
+          @FileName = filename
+          @FileSize = filesize
+          @DownloadURL = downloadurl
+          @MimeType = mimetype
+          @VideoMetaInfo = videometainfo
+        end
+
+        def deserialize(params)
+          @FileName = params['FileName']
+          @FileSize = params['FileSize']
+          @DownloadURL = params['DownloadURL']
+          @MimeType = params['MimeType']
+          unless params['VideoMetaInfo'].nil?
+            @VideoMetaInfo = CloudStorageAIServiceTaskVideoMetaInfo.new
+            @VideoMetaInfo.deserialize(params['VideoMetaInfo'])
+          end
+        end
+      end
+
+      # 云存 AI 任务输出视频文件元数据
+      class CloudStorageAIServiceTaskVideoMetaInfo < TencentCloud::Common::AbstractModel
+        # @param ThumbnailFileName: 视频对应的缩略图的文件名称（含扩展名）
+        # @type ThumbnailFileName: String
+        # @param DurationMilliSeconds: 视频时长（单位：毫秒）
+        # @type DurationMilliSeconds: Integer
+
+        attr_accessor :ThumbnailFileName, :DurationMilliSeconds
+
+        def initialize(thumbnailfilename=nil, durationmilliseconds=nil)
+          @ThumbnailFileName = thumbnailfilename
+          @DurationMilliSeconds = durationmilliseconds
+        end
+
+        def deserialize(params)
+          @ThumbnailFileName = params['ThumbnailFileName']
+          @DurationMilliSeconds = params['DurationMilliSeconds']
         end
       end
 
@@ -2960,10 +3026,22 @@ module TencentCloud
         # @type UserId: String
         # @param ChannelId: 通道 ID
         # @type ChannelId: Integer
+        # @param DeviceNames: 设备名称列表。
 
-        attr_accessor :ProductId, :DeviceName, :ServiceType, :Limit, :Offset, :Status, :UserId, :ChannelId
+        # 当需要同时查询多台设备的任务列表时传入，优先级高于参数 `DeviceName`
+        # @type DeviceNames: Array
+        # @param StartTime: 查询任务时间范围的起始时间（秒级 UNIX 时间戳）
+        # @type StartTime: Integer
+        # @param EndTime: 查询任务时间范围的结束时间（秒级 UNIX 时间戳）
+        # @type EndTime: Integer
+        # @param FileURLExpireTime: 下载 URL 的过期时间。
 
-        def initialize(productid=nil, devicename=nil, servicetype=nil, limit=nil, offset=nil, status=nil, userid=nil, channelid=nil)
+        # 若传入该参数，则响应中将包含所有文件的下载 URL
+        # @type FileURLExpireTime: Integer
+
+        attr_accessor :ProductId, :DeviceName, :ServiceType, :Limit, :Offset, :Status, :UserId, :ChannelId, :DeviceNames, :StartTime, :EndTime, :FileURLExpireTime
+
+        def initialize(productid=nil, devicename=nil, servicetype=nil, limit=nil, offset=nil, status=nil, userid=nil, channelid=nil, devicenames=nil, starttime=nil, endtime=nil, fileurlexpiretime=nil)
           @ProductId = productid
           @DeviceName = devicename
           @ServiceType = servicetype
@@ -2972,6 +3050,10 @@ module TencentCloud
           @Status = status
           @UserId = userid
           @ChannelId = channelid
+          @DeviceNames = devicenames
+          @StartTime = starttime
+          @EndTime = endtime
+          @FileURLExpireTime = fileurlexpiretime
         end
 
         def deserialize(params)
@@ -2983,6 +3065,10 @@ module TencentCloud
           @Status = params['Status']
           @UserId = params['UserId']
           @ChannelId = params['ChannelId']
+          @DeviceNames = params['DeviceNames']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @FileURLExpireTime = params['FileURLExpireTime']
         end
       end
 
@@ -5545,8 +5631,8 @@ module TencentCloud
 
         attr_accessor :ModelId, :Sn, :ErrCode, :ExpireTime
         extend Gem::Deprecate
-        deprecate :ModelId, :none, 2025, 2
-        deprecate :ModelId=, :none, 2025, 2
+        deprecate :ModelId, :none, 2025, 3
+        deprecate :ModelId=, :none, 2025, 3
 
         def initialize(modelid=nil, sn=nil, errcode=nil, expiretime=nil)
           @ModelId = modelid
@@ -7167,8 +7253,8 @@ module TencentCloud
 
         attr_accessor :MiniProgramAppId, :DeviceList
         extend Gem::Deprecate
-        deprecate :MiniProgramAppId, :none, 2025, 2
-        deprecate :MiniProgramAppId=, :none, 2025, 2
+        deprecate :MiniProgramAppId, :none, 2025, 3
+        deprecate :MiniProgramAppId=, :none, 2025, 3
 
         def initialize(miniprogramappid=nil, devicelist=nil)
           @MiniProgramAppId = miniprogramappid
@@ -7230,8 +7316,8 @@ module TencentCloud
 
         attr_accessor :MiniProgramAppId, :PkgType, :Status, :Offset, :Limit
         extend Gem::Deprecate
-        deprecate :MiniProgramAppId, :none, 2025, 2
-        deprecate :MiniProgramAppId=, :none, 2025, 2
+        deprecate :MiniProgramAppId, :none, 2025, 3
+        deprecate :MiniProgramAppId=, :none, 2025, 3
 
         def initialize(miniprogramappid=nil, pkgtype=nil, status=nil, offset=nil, limit=nil)
           @MiniProgramAppId = miniprogramappid
@@ -10097,8 +10183,8 @@ module TencentCloud
 
         attr_accessor :ModelId, :Sn, :ExpireTime, :PkgType
         extend Gem::Deprecate
-        deprecate :ModelId, :none, 2025, 2
-        deprecate :ModelId=, :none, 2025, 2
+        deprecate :ModelId, :none, 2025, 3
+        deprecate :ModelId=, :none, 2025, 3
 
         def initialize(modelid=nil, sn=nil, expiretime=nil, pkgtype=nil)
           @ModelId = modelid
@@ -10156,10 +10242,10 @@ module TencentCloud
 
         attr_accessor :Sn, :ModelId, :ActiveNum
         extend Gem::Deprecate
-        deprecate :ModelId, :none, 2025, 2
-        deprecate :ModelId=, :none, 2025, 2
-        deprecate :ActiveNum, :none, 2025, 2
-        deprecate :ActiveNum=, :none, 2025, 2
+        deprecate :ModelId, :none, 2025, 3
+        deprecate :ModelId=, :none, 2025, 3
+        deprecate :ActiveNum, :none, 2025, 3
+        deprecate :ActiveNum=, :none, 2025, 3
 
         def initialize(sn=nil, modelid=nil, activenum=nil)
           @Sn = sn

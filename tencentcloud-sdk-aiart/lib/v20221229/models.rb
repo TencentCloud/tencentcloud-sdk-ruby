@@ -866,6 +866,56 @@ module TencentCloud
         end
       end
 
+      # RefineImage请求参数结构体
+      class RefineImageRequest < TencentCloud::Common::AbstractModel
+        # @param InputUrl: 输入图 Url。
+        # Base64 和 Url 必须提供一个，如果都提供以 Url 为准。
+        # 图片限制：转成 Base64 字符串后小于 6MB，格式支持 jpg、jpeg、png、bmp、tiff、webp。
+        # @type InputUrl: String
+        # @param InputImage: 输入图 Base64 数据。
+        # Base64 和 Url 必须提供一个，如果都提供以 Url 为准。
+        # 图片限制：转成 Base64 字符串后小于 6MB，格式支持 jpg、jpeg、png、bmp、tiff、webp。
+        # @type InputImage: String
+        # @param RspImgType: 返回图像方式（base64 或 url) ，二选一，默认为 base64。url 有效期为1小时。 示例值：url
+        # @type RspImgType: String
+
+        attr_accessor :InputUrl, :InputImage, :RspImgType
+
+        def initialize(inputurl=nil, inputimage=nil, rspimgtype=nil)
+          @InputUrl = inputurl
+          @InputImage = inputimage
+          @RspImgType = rspimgtype
+        end
+
+        def deserialize(params)
+          @InputUrl = params['InputUrl']
+          @InputImage = params['InputImage']
+          @RspImgType = params['RspImgType']
+        end
+      end
+
+      # RefineImage返回参数结构体
+      class RefineImageResponse < TencentCloud::Common::AbstractModel
+        # @param ResultImage: 根据入参 RspImgType 填入不同，返回不同的内容。
+        # 如果传入 base64 则返回生成图 Base64 编码。
+        # 如果传入 url 则返回的生成图 URL , 有效期1小时，请及时保存。
+        # @type ResultImage: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ResultImage, :RequestId
+
+        def initialize(resultimage=nil, requestid=nil)
+          @ResultImage = resultimage
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ResultImage = params['ResultImage']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ReplaceBackground请求参数结构体
       class ReplaceBackgroundRequest < TencentCloud::Common::AbstractModel
         # @param ProductUrl: 商品原图 Url。

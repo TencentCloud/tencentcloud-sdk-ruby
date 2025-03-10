@@ -6210,7 +6210,6 @@ module TencentCloud
       # 实例启动模板版本集合
       class LaunchTemplateVersionInfo < TencentCloud::Common::AbstractModel
         # @param LaunchTemplateVersion: 实例启动模板版本号。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LaunchTemplateVersion: Integer
         # @param LaunchTemplateVersionData: 实例启动模板版本数据详情。
         # @type LaunchTemplateVersionData: :class:`Tencentcloud::Cvm.v20170312.models.LaunchTemplateVersionData`
@@ -6221,7 +6220,6 @@ module TencentCloud
         # @param IsDefaultVersion: 是否为默认启动模板版本。
         # @type IsDefaultVersion: Boolean
         # @param LaunchTemplateVersionDescription: 实例启动模板版本描述信息。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LaunchTemplateVersionDescription: String
         # @param CreatedBy: 创建者。
         # @type CreatedBy: String
@@ -7745,10 +7743,8 @@ module TencentCloud
         # @param DiscountUsagePrice: 后续合计费用的折扣价，单位：元/小时
         # @type DiscountUsagePrice: Float
         # @param FixedPriceDiscount: 预支费用的折扣，如20.0代表2折。 注意：此字段可能返回 null，表示取不到有效值。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FixedPriceDiscount: Float
         # @param UsagePriceDiscount: 后续费用的折扣，如20.0代表2折。 注意：此字段可能返回 null，表示取不到有效值。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UsagePriceDiscount: Float
 
         attr_accessor :OriginalFixedPrice, :DiscountFixedPrice, :OriginalUsagePrice, :DiscountUsagePrice, :FixedPriceDiscount, :UsagePriceDiscount
