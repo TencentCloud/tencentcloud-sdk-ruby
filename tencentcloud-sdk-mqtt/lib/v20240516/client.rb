@@ -677,6 +677,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询MQTT实例公网接入点
+
+        # @param request: Request instance for DescribeInsVPCEndpoints.
+        # @type request: :class:`Tencentcloud::mqtt::V20240516::DescribeInsVPCEndpointsRequest`
+        # @rtype: :class:`Tencentcloud::mqtt::V20240516::DescribeInsVPCEndpointsResponse`
+        def DescribeInsVPCEndpoints(request)
+          body = send_request('DescribeInsVPCEndpoints', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeInsVPCEndpointsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询实例信息
 
         # @param request: Request instance for DescribeInstance.

@@ -582,6 +582,43 @@ module TencentCloud
         end
       end
 
+      # 客户增量激励考核信息列表
+      class ClientIncreaseInfoList < TencentCloud::Common::AbstractModel
+        # @param ClientUin: 客户UIN
+        # @type ClientUin: String
+        # @param IsJoinIncrease: 是否参与增量政策，
+        # Y：是，N：否
+        # @type IsJoinIncrease: String
+        # @param IncreaseUseAssociateDate: 增量考核关联时间
+        # @type IncreaseUseAssociateDate: String
+        # @param TLevel: 参与增量考核的原始客户等级
+        # @type TLevel: String
+        # @param IncreaseGoal: 增量考核目标,分
+        # @type IncreaseGoal: String
+        # @param TotalBaseAmt: 完成订单金额,分
+        # @type TotalBaseAmt: String
+
+        attr_accessor :ClientUin, :IsJoinIncrease, :IncreaseUseAssociateDate, :TLevel, :IncreaseGoal, :TotalBaseAmt
+
+        def initialize(clientuin=nil, isjoinincrease=nil, increaseuseassociatedate=nil, tlevel=nil, increasegoal=nil, totalbaseamt=nil)
+          @ClientUin = clientuin
+          @IsJoinIncrease = isjoinincrease
+          @IncreaseUseAssociateDate = increaseuseassociatedate
+          @TLevel = tlevel
+          @IncreaseGoal = increasegoal
+          @TotalBaseAmt = totalbaseamt
+        end
+
+        def deserialize(params)
+          @ClientUin = params['ClientUin']
+          @IsJoinIncrease = params['IsJoinIncrease']
+          @IncreaseUseAssociateDate = params['IncreaseUseAssociateDate']
+          @TLevel = params['TLevel']
+          @IncreaseGoal = params['IncreaseGoal']
+          @TotalBaseAmt = params['TotalBaseAmt']
+        end
+      end
+
       # CreatePayRelationForClient请求参数结构体
       class CreatePayRelationForClientRequest < TencentCloud::Common::AbstractModel
         # @param ClientUin: 客户账号ID
@@ -1236,6 +1273,49 @@ module TencentCloud
         def deserialize(params)
           @Balance = params['Balance']
           @Cash = params['Cash']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeClientJoinIncreaseList请求参数结构体
+      class DescribeClientJoinIncreaseListRequest < TencentCloud::Common::AbstractModel
+        # @param ClientUins: 客户UIN列表
+        # @type ClientUins: Array
+
+        attr_accessor :ClientUins
+
+        def initialize(clientuins=nil)
+          @ClientUins = clientuins
+        end
+
+        def deserialize(params)
+          @ClientUins = params['ClientUins']
+        end
+      end
+
+      # DescribeClientJoinIncreaseList返回参数结构体
+      class DescribeClientJoinIncreaseListResponse < TencentCloud::Common::AbstractModel
+        # @param List: 已审核代客列表
+        # @type List: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :List, :RequestId
+
+        def initialize(list=nil, requestid=nil)
+          @List = list
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              clientincreaseinfolist_tmp = ClientIncreaseInfoList.new
+              clientincreaseinfolist_tmp.deserialize(i)
+              @List << clientincreaseinfolist_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end

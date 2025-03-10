@@ -368,6 +368,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询合作伙伴名下客户的参与增量激励考核信息列表
+
+        # @param request: Request instance for DescribeClientJoinIncreaseList.
+        # @type request: :class:`Tencentcloud::partners::V20180321::DescribeClientJoinIncreaseListRequest`
+        # @rtype: :class:`Tencentcloud::partners::V20180321::DescribeClientJoinIncreaseListResponse`
+        def DescribeClientJoinIncreaseList(request)
+          body = send_request('DescribeClientJoinIncreaseList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeClientJoinIncreaseListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 【该接口已下线，请切换使用升级版本DescribeRebateInfosNew】代理商可查询自己名下全部返佣信息
 
         # @param request: Request instance for DescribeRebateInfos.

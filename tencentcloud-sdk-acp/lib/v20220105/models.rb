@@ -22,36 +22,26 @@ module TencentCloud
         # @param AppPackage: App包名
         # @type AppPackage: String
         # @param AppName: App名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AppName: String
         # @param AppVersion: App版本
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AppVersion: String
         # @param Platform: 应用平台, 0:android, 1:ios, 2:小程序
         # @type Platform: Integer
         # @param ReportUrl: App隐私诊断报告下载链接
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReportUrl: String
         # @param ReportTitle: App隐私诊断报告名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReportTitle: String
         # @param BehaviorUrl: App诊断堆栈报告下载链接
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BehaviorUrl: String
         # @param BehaviorTitle: App诊断堆栈报告名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BehaviorTitle: String
         # @param HighRiskCount: 诊断高风险项数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HighRiskCount: Integer
         # @param PrivacyTextName: 隐私申明文件名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PrivacyTextName: String
         # @param SoftwareMD5: 软件MD5
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SoftwareMD5: String
         # @param PrivacyTextMD5: 隐私文本MD5
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PrivacyTextMD5: String
 
         attr_accessor :AppPackage, :AppName, :AppVersion, :Platform, :ReportUrl, :ReportTitle, :BehaviorUrl, :BehaviorTitle, :HighRiskCount, :PrivacyTextName, :SoftwareMD5, :PrivacyTextMD5
@@ -96,7 +86,6 @@ module TencentCloud
         # @param TaskStatus: 0:默认值(待检测/待咨询), 1.检测中, 2:待评估, 3:评估中, 4:任务完成/咨询完成, 5:任务失败, 6:咨询中;
         # @type TaskStatus: Integer
         # @param TaskErrMsg: 错误信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskErrMsg: String
         # @param Source: 任务来源,0:小程序诊断, 1:预留字段(暂未使用), 2:app诊断(android)
         # @type Source: Integer
@@ -107,7 +96,6 @@ module TencentCloud
         # @param EndTime: 任务完成时间(更新时间)
         # @type EndTime: String
         # @param ContactName: 联系人信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ContactName: String
 
         attr_accessor :TaskID, :TaskType, :TaskStatus, :TaskErrMsg, :Source, :AppInfo, :StartTime, :EndTime, :ContactName
@@ -757,20 +745,16 @@ module TencentCloud
       # 任务流步骤详情
       class TaskFlowStepsInfo < TencentCloud::Common::AbstractModel
         # @param FlowNo: 流程编号
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FlowNo: String
         # @param FlowName: 流程名称
         # @type FlowName: String
         # @param FlowStatus: 流程状态, 其他值:进行中, 2:成功, 3:失败
         # @type FlowStatus: Integer
         # @param FlowStateDesc: 流程状态描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FlowStateDesc: String
         # @param StartTime: 流程启动时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StartTime: String
         # @param EndTime: 流程完成时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EndTime: String
 
         attr_accessor :FlowNo, :FlowName, :FlowStatus, :FlowStateDesc, :StartTime, :EndTime

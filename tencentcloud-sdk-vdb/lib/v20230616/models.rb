@@ -433,12 +433,12 @@ module TencentCloud
 
         attr_accessor :InstanceId, :Name, :AppId, :Region, :Zone, :Product, :Networks, :ShardNum, :ReplicaNum, :Cpu, :Memory, :Disk, :HealthScore, :Warning, :Project, :ResourceTags, :CreatedAt, :Status, :EngineName, :EngineVersion, :ApiVersion, :PayMode, :Extend, :ExpiredAt, :IsNoExpired, :WanAddress, :IsolateAt, :AutoRenew
         extend Gem::Deprecate
-        deprecate :HealthScore, :none, 2025, 1
-        deprecate :HealthScore=, :none, 2025, 1
-        deprecate :Warning, :none, 2025, 1
-        deprecate :Warning=, :none, 2025, 1
-        deprecate :Project, :none, 2025, 1
-        deprecate :Project=, :none, 2025, 1
+        deprecate :HealthScore, :none, 2025, 3
+        deprecate :HealthScore=, :none, 2025, 3
+        deprecate :Warning, :none, 2025, 3
+        deprecate :Warning=, :none, 2025, 3
+        deprecate :Project, :none, 2025, 3
+        deprecate :Project=, :none, 2025, 3
 
         def initialize(instanceid=nil, name=nil, appid=nil, region=nil, zone=nil, product=nil, networks=nil, shardnum=nil, replicanum=nil, cpu=nil, memory=nil, disk=nil, healthscore=nil, warning=nil, project=nil, resourcetags=nil, createdat=nil, status=nil, enginename=nil, engineversion=nil, apiversion=nil, paymode=nil, extend=nil, expiredat=nil, isnoexpired=nil, wanaddress=nil, isolateat=nil, autorenew=nil)
           @InstanceId = instanceid
@@ -556,16 +556,12 @@ module TencentCloud
       # 网络信息
       class Network < TencentCloud::Common::AbstractModel
         # @param VpcId: VpcId(VPC网络下有效)
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VpcId: String
         # @param SubnetId: 子网Id(VPC网络下有效)。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubnetId: String
         # @param Vip: 内网访问IP。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Vip: String
         # @param Port: 内网访问Port。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Port: Integer
         # @param PreserveDuration: 旧 ip 保留时长，单位天
         # @type PreserveDuration: Integer
@@ -715,10 +711,8 @@ module TencentCloud
       # 标签键值对
       class Tag < TencentCloud::Common::AbstractModel
         # @param TagKey: 标签键
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TagKey: String
         # @param TagValue: 标签值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TagValue: String
 
         attr_accessor :TagKey, :TagValue

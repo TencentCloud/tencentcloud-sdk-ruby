@@ -19,25 +19,33 @@ module TencentCloud
     module V20210108
       # CreateKnowledgeSet请求参数结构体
       class CreateKnowledgeSetRequest < TencentCloud::Common::AbstractModel
+        # @param EnvId: 环境ID
+        # @type EnvId: String
         # @param Name: 知识库标识
         # @type Name: String
         # @param Title: 知识库名称
         # @type Title: String
         # @param Desc: 描述
         # @type Desc: String
+        # @param Meta: 知识库的meta信息
+        # @type Meta: String
 
-        attr_accessor :Name, :Title, :Desc
+        attr_accessor :EnvId, :Name, :Title, :Desc, :Meta
 
-        def initialize(name=nil, title=nil, desc=nil)
+        def initialize(envid=nil, name=nil, title=nil, desc=nil, meta=nil)
+          @EnvId = envid
           @Name = name
           @Title = title
           @Desc = desc
+          @Meta = meta
         end
 
         def deserialize(params)
+          @EnvId = params['EnvId']
           @Name = params['Name']
           @Title = params['Title']
           @Desc = params['Desc']
+          @Meta = params['Meta']
         end
       end
 
@@ -160,8 +168,8 @@ module TencentCloud
 
         attr_accessor :Id, :Title, :Name, :Type, :Description, :Schema, :CmsProject, :PkgId, :SchemaVersion, :CreatorId, :CreatedAt, :UpdatedAt, :EnvId, :DataSourceVersion, :AppUsageList, :PublishedAt, :ChildDataSourceIds, :Fun, :ScfStatus, :Methods, :ChildDataSourceNames, :IsNewDataSource, :ViewId, :Configuration, :TemplateCode, :Source, :PublishVersion, :PublishViewId, :SubType, :AuthStatus, :AuthInfo, :PublishStatus, :UpdateVersion, :RelationFieldList, :DbInstanceType, :PreviewTableName, :PublishedTableName, :DbSourceType
         extend Gem::Deprecate
-        deprecate :PublishVersion, :none, 2025, 2
-        deprecate :PublishVersion=, :none, 2025, 2
+        deprecate :PublishVersion, :none, 2025, 3
+        deprecate :PublishVersion=, :none, 2025, 3
 
         def initialize(id=nil, title=nil, name=nil, type=nil, description=nil, schema=nil, cmsproject=nil, pkgid=nil, schemaversion=nil, creatorid=nil, createdat=nil, updatedat=nil, envid=nil, datasourceversion=nil, appusagelist=nil, publishedat=nil, childdatasourceids=nil, fun=nil, scfstatus=nil, methods=nil, childdatasourcenames=nil, isnewdatasource=nil, viewid=nil, configuration=nil, templatecode=nil, source=nil, publishversion=nil, publishviewid=nil, subtype=nil, authstatus=nil, authinfo=nil, publishstatus=nil, updateversion=nil, relationfieldlist=nil, dbinstancetype=nil, previewtablename=nil, publishedtablename=nil, dbsourcetype=nil)
           @Id = id
@@ -348,19 +356,23 @@ module TencentCloud
 
       # DeleteKnowledgeDocumentSet请求参数结构体
       class DeleteKnowledgeDocumentSetRequest < TencentCloud::Common::AbstractModel
+        # @param EnvId: 环境ID
+        # @type EnvId: String
         # @param CollectionView: 知识库标识
         # @type CollectionView: String
         # @param Query: 删除时制定的条件
         # @type Query: :class:`Tencentcloud::Lowcode.v20210108.models.DocumentQuery`
 
-        attr_accessor :CollectionView, :Query
+        attr_accessor :EnvId, :CollectionView, :Query
 
-        def initialize(collectionview=nil, query=nil)
+        def initialize(envid=nil, collectionview=nil, query=nil)
+          @EnvId = envid
           @CollectionView = collectionview
           @Query = query
         end
 
         def deserialize(params)
+          @EnvId = params['EnvId']
           @CollectionView = params['CollectionView']
           unless params['Query'].nil?
             @Query = DocumentQuery.new
@@ -411,16 +423,20 @@ module TencentCloud
 
       # DeleteKnowledgeSet请求参数结构体
       class DeleteKnowledgeSetRequest < TencentCloud::Common::AbstractModel
+        # @param EnvId: 环境ID
+        # @type EnvId: String
         # @param Name: 知识库标识
         # @type Name: String
 
-        attr_accessor :Name
+        attr_accessor :EnvId, :Name
 
-        def initialize(name=nil)
+        def initialize(envid=nil, name=nil)
+          @EnvId = envid
           @Name = name
         end
 
         def deserialize(params)
+          @EnvId = params['EnvId']
           @Name = params['Name']
         end
       end
@@ -553,6 +569,8 @@ module TencentCloud
 
       # DescribeKnowledgeDocumentSetDetail请求参数结构体
       class DescribeKnowledgeDocumentSetDetailRequest < TencentCloud::Common::AbstractModel
+        # @param EnvId: 环境ID
+        # @type EnvId: String
         # @param CollectionView: 知识库标识
         # @type CollectionView: String
         # @param DocumentSetName: 文件名
@@ -560,15 +578,17 @@ module TencentCloud
         # @param DocumentSetId: 文件id
         # @type DocumentSetId: String
 
-        attr_accessor :CollectionView, :DocumentSetName, :DocumentSetId
+        attr_accessor :EnvId, :CollectionView, :DocumentSetName, :DocumentSetId
 
-        def initialize(collectionview=nil, documentsetname=nil, documentsetid=nil)
+        def initialize(envid=nil, collectionview=nil, documentsetname=nil, documentsetid=nil)
+          @EnvId = envid
           @CollectionView = collectionview
           @DocumentSetName = documentsetname
           @DocumentSetId = documentsetid
         end
 
         def deserialize(params)
+          @EnvId = params['EnvId']
           @CollectionView = params['CollectionView']
           @DocumentSetName = params['DocumentSetName']
           @DocumentSetId = params['DocumentSetId']
@@ -625,19 +645,23 @@ module TencentCloud
 
       # DescribeKnowledgeDocumentSetList请求参数结构体
       class DescribeKnowledgeDocumentSetListRequest < TencentCloud::Common::AbstractModel
+        # @param EnvId: 环境ID
+        # @type EnvId: String
         # @param CollectionView: 知识库标识
         # @type CollectionView: String
         # @param Query: 查询条件
         # @type Query: :class:`Tencentcloud::Lowcode.v20210108.models.PageQuery`
 
-        attr_accessor :CollectionView, :Query
+        attr_accessor :EnvId, :CollectionView, :Query
 
-        def initialize(collectionview=nil, query=nil)
+        def initialize(envid=nil, collectionview=nil, query=nil)
+          @EnvId = envid
           @CollectionView = collectionview
           @Query = query
         end
 
         def deserialize(params)
+          @EnvId = params['EnvId']
           @CollectionView = params['CollectionView']
           unless params['Query'].nil?
             @Query = PageQuery.new
@@ -700,27 +724,35 @@ module TencentCloud
 
       # DescribeKnowledgeSetList请求参数结构体
       class DescribeKnowledgeSetListRequest < TencentCloud::Common::AbstractModel
+        # @param EnvId: 环境ID
+        # @type EnvId: String
         # @param Name: 知识库标识，精准查询
         # @type Name: String
         # @param Title: 知识库名称，精准查询
         # @type Title: String
+        # @param Offset: 分页起始位
+        # @type Offset: Integer
         # @param Limit: 查询条数
         # @type Limit: Integer
         # @param QueryMode: NoPage标识不分页
         # @type QueryMode: String
 
-        attr_accessor :Name, :Title, :Limit, :QueryMode
+        attr_accessor :EnvId, :Name, :Title, :Offset, :Limit, :QueryMode
 
-        def initialize(name=nil, title=nil, limit=nil, querymode=nil)
+        def initialize(envid=nil, name=nil, title=nil, offset=nil, limit=nil, querymode=nil)
+          @EnvId = envid
           @Name = name
           @Title = title
+          @Offset = offset
           @Limit = limit
           @QueryMode = querymode
         end
 
         def deserialize(params)
+          @EnvId = params['EnvId']
           @Name = params['Name']
           @Title = params['Title']
+          @Offset = params['Offset']
           @Limit = params['Limit']
           @QueryMode = params['QueryMode']
         end
@@ -916,16 +948,19 @@ module TencentCloud
         # @param UpdateTime: 更新时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: String
+        # @param Meta: 知识库的meta信息
+        # @type Meta: String
 
-        attr_accessor :Name, :Title, :Desc, :Active, :CreateTime, :UpdateTime
+        attr_accessor :Name, :Title, :Desc, :Active, :CreateTime, :UpdateTime, :Meta
 
-        def initialize(name=nil, title=nil, desc=nil, active=nil, createtime=nil, updatetime=nil)
+        def initialize(name=nil, title=nil, desc=nil, active=nil, createtime=nil, updatetime=nil, meta=nil)
           @Name = name
           @Title = title
           @Desc = desc
           @Active = active
           @CreateTime = createtime
           @UpdateTime = updatetime
+          @Meta = meta
         end
 
         def deserialize(params)
@@ -935,6 +970,7 @@ module TencentCloud
           @Active = params['Active']
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
+          @Meta = params['Meta']
         end
       end
 
@@ -1326,6 +1362,8 @@ module TencentCloud
 
       # UpdateKnowledgeSet请求参数结构体
       class UpdateKnowledgeSetRequest < TencentCloud::Common::AbstractModel
+        # @param EnvId: 环境ID
+        # @type EnvId: String
         # @param Name: 知识库标识
         # @type Name: String
         # @param Title: 知识库名称
@@ -1334,21 +1372,27 @@ module TencentCloud
         # @type Desc: String
         # @param Active: 状态;ENABLED启用；NOT_ENABLED不启用
         # @type Active: String
+        # @param Meta: 知识库的meta信息
+        # @type Meta: String
 
-        attr_accessor :Name, :Title, :Desc, :Active
+        attr_accessor :EnvId, :Name, :Title, :Desc, :Active, :Meta
 
-        def initialize(name=nil, title=nil, desc=nil, active=nil)
+        def initialize(envid=nil, name=nil, title=nil, desc=nil, active=nil, meta=nil)
+          @EnvId = envid
           @Name = name
           @Title = title
           @Desc = desc
           @Active = active
+          @Meta = meta
         end
 
         def deserialize(params)
+          @EnvId = params['EnvId']
           @Name = params['Name']
           @Title = params['Title']
           @Desc = params['Desc']
           @Active = params['Active']
+          @Meta = params['Meta']
         end
       end
 
@@ -1370,11 +1414,13 @@ module TencentCloud
 
       # UploadKnowledgeDocumentSet请求参数结构体
       class UploadKnowledgeDocumentSetRequest < TencentCloud::Common::AbstractModel
+        # @param EnvId: 环境ID
+        # @type EnvId: String
         # @param CollectionView: 知识库标识
         # @type CollectionView: String
         # @param FileName: 状态;ENABLED启用；NOT_ENABLED不启用
         # @type FileName: String
-        # @param CosUrl: 文件存储位置的可读地址
+        # @param CosUrl: 腾讯云文件存储位置的可读地址
         # @type CosUrl: String
         # @param DocumentType: 文件类型，例如: .docx, .md
         # @type DocumentType: String
@@ -1387,9 +1433,10 @@ module TencentCloud
         # @param DocumentSetId: 文件id
         # @type DocumentSetId: String
 
-        attr_accessor :CollectionView, :FileName, :CosUrl, :DocumentType, :DocumentDesc, :FileTitle, :FileMetaData, :DocumentSetId
+        attr_accessor :EnvId, :CollectionView, :FileName, :CosUrl, :DocumentType, :DocumentDesc, :FileTitle, :FileMetaData, :DocumentSetId
 
-        def initialize(collectionview=nil, filename=nil, cosurl=nil, documenttype=nil, documentdesc=nil, filetitle=nil, filemetadata=nil, documentsetid=nil)
+        def initialize(envid=nil, collectionview=nil, filename=nil, cosurl=nil, documenttype=nil, documentdesc=nil, filetitle=nil, filemetadata=nil, documentsetid=nil)
+          @EnvId = envid
           @CollectionView = collectionview
           @FileName = filename
           @CosUrl = cosurl
@@ -1401,6 +1448,7 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @EnvId = params['EnvId']
           @CollectionView = params['CollectionView']
           @FileName = params['FileName']
           @CosUrl = params['CosUrl']

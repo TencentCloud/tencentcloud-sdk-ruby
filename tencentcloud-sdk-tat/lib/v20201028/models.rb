@@ -56,11 +56,16 @@ module TencentCloud
 
       # CancelInvocation请求参数结构体
       class CancelInvocationRequest < TencentCloud::Common::AbstractModel
-        # @param InvocationId: 执行活动ID
+        # @param InvocationId: 执行活动ID。
+
+        # 可通过 [DescribeInvocations(查询执行活动)](https://cloud.tencent.com/document/api/1340/52679) 接口获取。
         # @type InvocationId: String
-        # @param InstanceIds: 实例ID列表，上限100。支持实例类型：
-        # <li> CVM </li>
-        # <li> LIGHTHOUSE </li>
+        # @param InstanceIds: 实例ID列表，上限100。
+
+        # 可通过对应云产品的查询实例接口获取实例 ID。目前支持实例类型：
+        # - CVM
+        # - Lighthouse
+        # - TAT 托管实例
         # @type InstanceIds: Array
 
         attr_accessor :InvocationId, :InstanceIds
@@ -102,15 +107,15 @@ module TencentCloud
         # @type Description: String
         # @param Content: Base64编码后的命令内容。
         # @type Content: String
-        # @param CommandType: 命令类型。
+        # @param CommandType: 命令类型。取值为 SHELL、POWERSHELL、BAT 之一。
         # @type CommandType: String
         # @param WorkingDirectory: 命令执行路径。
         # @type WorkingDirectory: String
         # @param Timeout: 命令超时时间。
         # @type Timeout: Integer
-        # @param CreatedTime: 命令创建时间。
+        # @param CreatedTime: 命令创建时间。格式为：YYYY-MM-DDThh:mm:ssZ
         # @type CreatedTime: String
-        # @param UpdatedTime: 命令更新时间。
+        # @param UpdatedTime: 命令更新时间。格式为：YYYY-MM-DDThh:mm:ssZ
         # @type UpdatedTime: String
         # @param EnableParameter: 是否启用自定义参数功能。
         # @type EnableParameter: Boolean
@@ -198,9 +203,9 @@ module TencentCloud
       class CommandDocument < TencentCloud::Common::AbstractModel
         # @param Content: Base64 编码后的执行命令。
         # @type Content: String
-        # @param CommandType: 命令类型。
+        # @param CommandType: 命令类型。取值为 SHELL、POWERSHELL、BAT 之一。
         # @type CommandType: String
-        # @param Timeout: 超时时间。
+        # @param Timeout: 超时时间。单位：秒。
         # @type Timeout: Integer
         # @param WorkingDirectory: 执行路径。
         # @type WorkingDirectory: String
@@ -242,7 +247,7 @@ module TencentCloud
         # @type Content: String
         # @param Description: 命令描述。不超过120字符。
         # @type Description: String
-        # @param CommandType: 命令类型，目前支持取值：SHELL、POWERSHELL。默认：SHELL。
+        # @param CommandType: 命令类型，目前支持取值：SHELL、POWERSHELL、BAT。默认：SHELL。
         # @type CommandType: String
         # @param WorkingDirectory: 命令执行路径，对于 SHELL 命令默认为 /root，对于 POWERSHELL 命令默认为 C:\Program Files\qcloud\tat_agent\workdir。
         # @type WorkingDirectory: String
@@ -255,11 +260,15 @@ module TencentCloud
         # @param DefaultParameters: 启用自定义参数功能时，自定义参数的默认取值。字段类型为json encoded string。如：{"varA": "222"}。
         # key为自定义参数名称，value为该参数的默认取值。kv均为字符串型。
         # 如果InvokeCommand时未提供参数取值，将使用这里的默认值进行替换。
+        # 参数不支持同时指定 `DefaultParameters` 和 `DefaultParameterConfs` 。
+        # 仅在 EnableParameter 参数为 true 时，才允许设置此参数。
         # 自定义参数最多20个。
         # 自定义参数名称需符合以下规范：字符数目上限64，可选范围【a-zA-Z0-9-_】。
         # @type DefaultParameters: String
         # @param DefaultParameterConfs: 自定义参数数组。
         # 如果InvokeCommand时未提供参数取值，将使用这里的默认值进行替换。
+        # 参数不支持同时指定 `DefaultParameters` 和 `DefaultParameterConfs` 。
+        # 仅在 EnableParameter 参数为 true 时，才允许设置此参数。
         # 自定义参数最多20个。
         # @type DefaultParameterConfs: Array
         # @param Tags: 为命令关联的标签，列表长度不超过10。
@@ -351,14 +360,22 @@ module TencentCloud
         # @param Type: 执行器类型，当前仅支持周期类型执行器，取值：`SCHEDULE` 。
         # @type Type: String
         # @param CommandId: 远程命令ID。
+
+        # 可通过 [DescribeCommands(查询命令详情)](https://cloud.tencent.com/document/api/1340/52681) 接口获取。
         # @type CommandId: String
         # @param InstanceIds: 触发器关联的实例ID。列表上限 100。
+
+        # 可通过对应云产品的查询实例接口获取实例 ID。目前支持实例类型：CVM、Lighthouse、TAT 托管实例。
+
+        # 实例需要安装 TAT 客户端, 且客户端为 Online 状态。可通过 [DescribeAutomationAgentStatus(查询客户端状态)](https://cloud.tencent.com/document/api/1340/52682) 接口查询客户端状态。
         # @type InstanceIds: Array
         # @param Username: 命令执行用户。
         # @type Username: String
         # @param Parameters: 命令自定义参数。
+
+        # 仅在 CommandId 所指命令的 EnableParameter 为 true 时，才允许设置此参数。可通过 [DescribeCommands(查询命令详情)](https://cloud.tencent.com/document/api/1340/52681) 接口获取命令的 EnableParameter 设置。
         # @type Parameters: String
-        # @param ScheduleSettings: 周期执行器设置，当创建周期执行器时，必须指定此参数。
+        # @param ScheduleSettings: 周期执行器设置。当创建周期执行器时，必须指定此参数。
         # @type ScheduleSettings: :class:`Tencentcloud::Tat.v20201028.models.ScheduleSettings`
 
         attr_accessor :Name, :Type, :CommandId, :InstanceIds, :Username, :Parameters, :ScheduleSettings
@@ -492,7 +509,7 @@ module TencentCloud
 
       # DeleteCommand请求参数结构体
       class DeleteCommandRequest < TencentCloud::Common::AbstractModel
-        # @param CommandId: 待删除的命令ID。
+        # @param CommandId: 待删除的命令 ID。可通过 [DescribeCommands(查询命令详情)](https://cloud.tencent.com/document/api/1340/52681) 接口获取。
         # @type CommandId: String
 
         attr_accessor :CommandId
@@ -524,7 +541,7 @@ module TencentCloud
 
       # DeleteCommands请求参数结构体
       class DeleteCommandsRequest < TencentCloud::Common::AbstractModel
-        # @param CommandIds: 待删除命令id
+        # @param CommandIds: 待删除的命令 ID。可通过 [DescribeCommands(查询命令详情)](https://cloud.tencent.com/document/api/1340/52681) 接口获取。
         # @type CommandIds: Array
 
         attr_accessor :CommandIds
@@ -557,6 +574,8 @@ module TencentCloud
       # DeleteInvoker请求参数结构体
       class DeleteInvokerRequest < TencentCloud::Common::AbstractModel
         # @param InvokerId: 待删除的执行器ID。
+
+        # 可通过 [DescribeInvokers(查询执行器)](https://cloud.tencent.com/document/api/1340/61759) 接口获取。
         # @type InvokerId: String
 
         attr_accessor :InvokerId
@@ -589,6 +608,8 @@ module TencentCloud
       # DeleteRegisterCodes请求参数结构体
       class DeleteRegisterCodesRequest < TencentCloud::Common::AbstractModel
         # @param RegisterCodeIds: 注册码ID列表。限制输入的注册码ID数量大于0小于100。
+
+        # 可通过 [DescribeRegisterCodes(查询注册码)](https://cloud.tencent.com/document/api/1340/96925) 接口获取。
         # @type RegisterCodeIds: Array
 
         attr_accessor :RegisterCodeIds
@@ -620,7 +641,9 @@ module TencentCloud
 
       # DeleteRegisterInstance请求参数结构体
       class DeleteRegisterInstanceRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID。
+        # @param InstanceId: 托管实例ID。
+
+        # 可通过 [DescribeRegisterInstances(查询托管实例)](https://cloud.tencent.com/document/api/1340/96924) 接口获取。
         # @type InstanceId: String
 
         attr_accessor :InstanceId
@@ -653,8 +676,16 @@ module TencentCloud
       # DescribeAutomationAgentStatus请求参数结构体
       class DescribeAutomationAgentStatusRequest < TencentCloud::Common::AbstractModel
         # @param InstanceIds: 待查询的实例ID列表。
+
+        # 可通过对应云产品的查询实例接口获取实例 ID。目前支持实例类型：CVM、Lighthouse、TAT 托管实例。
+
+        # 参数不支持同时指定 `InstanceIds ` 和 `Filters ` 。
         # @type InstanceIds: Array
-        # @param Filters: <li>agent-status - String - 是否必填：否 -（过滤条件）按照agent状态过滤，取值：Online 在线，Offline 离线。</li><br><li>environment - String - 是否必填：否 -（过滤条件）按照agent运行环境查询，取值：Linux, Windows。</li><br><li>instance-id - String - 是否必填：否 -（过滤条件）按照实例ID过滤。</li>
+        # @param Filters: - agent-status - String - 是否必填：否 -（过滤条件）按照agent状态过滤，取值：Online 在线，Offline 离线。
+        # - environment - String - 是否必填：否 -（过滤条件）按照agent运行环境查询，取值：Linux, Windows。
+        # - instance-id - String - 是否必填：否 -（过滤条件）按照实例ID过滤。 可通过对应云产品的查询实例接口获取实例 ID。目前支持实例类型：CVM、Lighthouse、TAT 托管实例。
+
+        # 参数不支持同时指定 `InstanceIds ` 和 `Filters ` 。
         # @type Filters: Array
         # @param Limit: 返回数量，默认为20，最大值为100。关于 `Limit` 的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/api/213/15688)中的相关小节。
         # @type Limit: Integer
@@ -721,14 +752,15 @@ module TencentCloud
         # @param CommandIds: 命令ID列表，每次请求的上限为100。参数不支持同时指定 `CommandIds` 和 `Filters` 。
         # @type CommandIds: Array
         # @param Filters: 过滤条件。
-        # <li> command-id - String - 是否必填：否 -（过滤条件）按照命令ID过滤。</li>
-        # <li> command-name - String - 是否必填：否 -（过滤条件）按照命令名称过滤。</li>
-        # <li> command-type - String - 是否必填：否 -（过滤条件）按照命令类型过滤，取值为 SHELL 或 POWERSHELL。</li>
-        # <li> scene-id - String - 是否必填：否 -（过滤条件）按照场景ID过滤。</li>
-        # <li> created-by - String - 是否必填：否 -（过滤条件）按照命令创建者过滤，取值为 TAT 或 USER，TAT 代表公共命令，USER 代表由用户创建的命令。</li>
-        # <li> tag-key - String - 是否必填：否 -（过滤条件）按照标签键进行过滤。</li>
-        # <li> tag-value - String - 是否必填：否 -（过滤条件）按照标签值进行过滤。</li>
-        # <li> tag:tag-key - String - 是否必填：否 -（过滤条件）按照标签键值对进行过滤。 tag-key使用具体的标签键进行替换。使用请参考示例4</li>
+
+        # - command-id - String - 是否必填：否 -（过滤条件）按照命令ID过滤。
+        # - command-name - String - 是否必填：否 -（过滤条件）按照命令名称过滤。
+        # - command-type - String - 是否必填：否 -（过滤条件）按照命令类型过滤，取值为 SHELL、POWERSHELL、BAT。
+        # - scene-id - String - 是否必填：否 -（过滤条件）按照场景ID过滤。可通过 [DescribeScenes(查询场景)](https://cloud.tencent.com/document/api/1340/109968) 接口获取场景ID。
+        # - created-by - String - 是否必填：否 -（过滤条件）按照命令创建者过滤，取值为 TAT 或 USER。TAT 代表公共命令，USER 代表由用户创建的命令。
+        # - tag-key - String - 是否必填：否 -（过滤条件）按照标签键进行过滤。
+        # - tag-value - String - 是否必填：否 -（过滤条件）按照标签值进行过滤。
+        # - tag:tag-key - String - 是否必填：否 -（过滤条件）按照标签键值对进行过滤。 tag-key使用具体的标签键进行替换。使用请参考示例4
 
         # 每次请求的 `Filters` 的上限为10， `Filter.Values` 的上限为5。参数不支持同时指定 `CommandIds` 和 `Filters` 。
         # @type Filters: Array
@@ -798,15 +830,23 @@ module TencentCloud
         # @type InvocationTaskIds: Array
         # @param Filters: 过滤条件。<br>
 
-        # <li> invocation-id - String - 是否必填：否 -（过滤条件）按照执行活动ID过滤。</li> <li> invocation-task-id - String - 是否必填：否 -（过滤条件）按照执行任务ID过滤。</li> <li> instance-id - String - 是否必填：否 -（过滤条件）按照实例ID过滤。</li> <li> command-id - String - 是否必填：否 -（过滤条件）按照命令ID过滤。</li> <br>每次请求的 `Filters` 的上限为10， `Filter.Values` 的上限为5。参数不支持同时指定 `InvocationTaskIds` 和 `Filters` 。
+        # - invocation-task-id - String - 是否必填：否 -（过滤条件）按照执行任务ID过滤。
+        # - invocation-id - String - 是否必填：否 -（过滤条件）按照执行活动ID过滤。可通过 [DescribeInvocations(查询执行活动)](https://cloud.tencent.com/document/api/1340/52679) 接口获取。
+        # - instance-id - String - 是否必填：否 -（过滤条件）按照实例ID过滤。可通过对应云产品的查询实例接口获取实例 ID。目前支持实例类型： CVM、Lighthouse、TAT 托管实例
+        # - command-id - String - 是否必填：否 -（过滤条件）按照命令ID过滤。可通过 [DescribeCommands(查询命令详情)](https://cloud.tencent.com/document/api/1340/52681) 接口获取。
+
+        # 每次请求的 `Filters` 的上限为10， `Filter.Values` 的上限为5。参数不支持同时指定 `InvocationTaskIds` 和 `Filters` 。
         # @type Filters: Array
         # @param Limit: 返回数量，默认为20，最大值为100。关于 `Limit` 的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/api/213/15688)中的相关小节。
         # @type Limit: Integer
         # @param Offset: 偏移量，默认为0。关于 `Offset` 的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/api/213/15688)中的相关小节。
         # @type Offset: Integer
-        # @param HideOutput: 是否隐藏输出，取值范围：
+        # @param HideOutput: 是否隐藏命令输出结果，取值范围：
 
-        # <ul> <li>true：隐藏输出</li> <li>false：不隐藏</li> </ul> 默认为 true。
+        # - true：隐藏输出
+        # - false：不隐藏
+
+        # 默认为 true。
         # @type HideOutput: Boolean
 
         attr_accessor :InvocationTaskIds, :Filters, :Limit, :Offset, :HideOutput
@@ -941,6 +981,8 @@ module TencentCloud
       # DescribeInvokerRecords请求参数结构体
       class DescribeInvokerRecordsRequest < TencentCloud::Common::AbstractModel
         # @param InvokerIds: 执行器ID列表。列表上限 100。
+
+        # 可通过 [DescribeInvokers(查询执行器)](https://cloud.tencent.com/document/api/1340/61759) 接口获取。
         # @type InvokerIds: Array
         # @param Limit: 返回数量，默认为20，最大值为100。
         # @type Limit: Integer
@@ -996,8 +1038,16 @@ module TencentCloud
       # DescribeInvokers请求参数结构体
       class DescribeInvokersRequest < TencentCloud::Common::AbstractModel
         # @param InvokerIds: 执行器ID列表。
+
+        # 参数不支持同时指定 `InvokerIds ` 和 `Filters ` 。
         # @type InvokerIds: Array
-        # @param Filters: 过滤条件：<li> invoker-id - String - 是否必填：否 - （过滤条件）按执行器ID过滤。</li> <li> command-id - String - 是否必填：否 - （过滤条件）按命令ID过滤。</li> <li> type - String - 是否必填：否 - （过滤条件）按执行器类型过滤。</li>
+        # @param Filters: 过滤条件：
+
+        # - invoker-id - String - 是否必填：否 - （过滤条件）按执行器ID过滤。
+        # - command-id - String - 是否必填：否 - （过滤条件）按命令ID过滤。可通过 [DescribeCommands(查询命令详情)](https://cloud.tencent.com/document/api/1340/52681) 接口获取。
+        # - type - String - 是否必填：否 - （过滤条件）按执行器类型过滤。目前仅支持 SCHEDULE 一种。
+
+        # 参数不支持同时指定 `InvokerIds ` 和 `Filters ` 。
         # @type Filters: Array
         # @param Limit: 返回数量，默认为20，最大值为100。
         # @type Limit: Integer
@@ -1061,7 +1111,12 @@ module TencentCloud
 
       # DescribeQuotas请求参数结构体
       class DescribeQuotasRequest < TencentCloud::Common::AbstractModel
-        # @param ResourceNames: 资源名称，目前有"COMMAND","REGISTER_CODE" 这两个指标
+        # @param ResourceNames: 资源名称
+
+        # 取值为：
+
+        # - COMMAND：命令
+        # - REGISTER_CODE：托管实例注册码
         # @type ResourceNames: Array
 
         attr_accessor :ResourceNames
@@ -1202,25 +1257,28 @@ module TencentCloud
 
       # DescribeRegisterInstances请求参数结构体
       class DescribeRegisterInstancesRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceIds: 实例id。
+        # @param InstanceIds: 托管实例 id。
+
+        # 参数不支持同时指定 `InstanceIds` 和 `Filters` 。
         # @type InstanceIds: Array
-        # @param Filters: 过滤器列表。
+        # @param Filters: 过滤器列表。参数不支持同时指定 `InstanceIds` 和 `Filters` 。
+
 
         # - instance-name
 
-        # 按照【实例名称】进行过滤。
+        # 按照【托管实例名称】进行过滤。
         # 类型：String
         # 必选：否
 
         # - instance-id
 
-        # 按照【实例ID】进行过滤。
+        # 按照【托管实例ID】进行过滤。
         # 类型：String
         # 必选：否
 
         # - register-code-id
 
-        # 按照【注册码ID】进行过滤。
+        # 按照【托管实例注册码ID】进行过滤。可通过 [DescribeRegisterCodes(查询注册码)](https://cloud.tencent.com/document/api/1340/96925) 接口获取。
         # 类型：String
         # 必选：否
 
@@ -1293,12 +1351,15 @@ module TencentCloud
 
       # DescribeScenes请求参数结构体
       class DescribeScenesRequest < TencentCloud::Common::AbstractModel
-        # @param SceneIds: 场景 ID 数组
+        # @param SceneIds: 场景 ID 数组。
+
+        # 参数不支持同时指定 `SceneIds ` 和 `Filters ` 。
         # @type SceneIds: Array
         # @param Filters: 过滤条件。
-        # <li> scene-id - String - 是否必填：否 -（过滤条件）按照场景 ID 过滤。</li>
-        # <li> scene-name - String - 是否必填：否 -（过滤条件）按照场景名称过滤。</li>
-        # <li> created-by - String - 是否必填：否 -（过滤条件）按照场景创建者过滤，取值为 TAT 或 USER。TAT 代表公共命令，USER 代表由用户创建的命令。</li>
+
+        # - scene-id - String - 是否必填：否 -（过滤条件）按照场景 ID 过滤。
+        # - scene-name - String - 是否必填：否 -（过滤条件）按照场景名称过滤。
+        # - created-by - String - 是否必填：否 -（过滤条件）按照场景创建者过滤，目前仅支持 TAT，代表公共场景。
 
         # 每次请求的 `Filters` 的上限为10， `Filter.Values` 的上限为5。参数不支持同时指定 `SceneIds` 和 `Filters` 。
         # @type Filters: Array
@@ -1365,6 +1426,8 @@ module TencentCloud
       # DisableInvoker请求参数结构体
       class DisableInvokerRequest < TencentCloud::Common::AbstractModel
         # @param InvokerId: 待停止的执行器ID。
+
+        # 可通过 [DescribeInvokers(查询执行器)](https://cloud.tencent.com/document/api/1340/61759) 接口获取。
         # @type InvokerId: String
 
         attr_accessor :InvokerId
@@ -1397,6 +1460,8 @@ module TencentCloud
       # DisableRegisterCodes请求参数结构体
       class DisableRegisterCodesRequest < TencentCloud::Common::AbstractModel
         # @param RegisterCodeIds: 注册码ID。
+
+        # 可通过 [DescribeRegisterCodes(查询注册码)](https://cloud.tencent.com/document/api/1340/96925) 接口获取。
         # @type RegisterCodeIds: Array
 
         attr_accessor :RegisterCodeIds
@@ -1429,6 +1494,8 @@ module TencentCloud
       # EnableInvoker请求参数结构体
       class EnableInvokerRequest < TencentCloud::Common::AbstractModel
         # @param InvokerId: 待启用的执行器ID。
+
+        # 可通过 [DescribeInvokers(查询执行器)](https://cloud.tencent.com/document/api/1340/61759) 接口获取。
         # @type InvokerId: String
 
         attr_accessor :InvokerId
@@ -1493,6 +1560,11 @@ module TencentCloud
       # 用户配额信息。
       class GeneralResourceQuotaSet < TencentCloud::Common::AbstractModel
         # @param ResourceName: 资源名称
+
+        # 取值为：
+
+        # - COMMAND：命令
+        # - REGISTER_CODE：托管实例注册码
         # @type ResourceName: String
         # @param ResourceQuotaUsed: 已使用额度
         # @type ResourceQuotaUsed: Integer
@@ -1522,19 +1594,27 @@ module TencentCloud
         # @type CommandId: String
         # @param InvocationStatus: 执行任务状态。取值范围：
 
-        # <ul> <li>PENDING：等待下发</li> <li>RUNNING：命令运行中</li> <li>SUCCESS：命令成功</li> <li>FAILED：命令失败</li> <li>TIMEOUT：命令超时</li> <li>PARTIAL_FAILED：命令部分失败</li> <li>PARTIAL_CANCELLED：任务部分取消</li> <li>CANCELLED：任务全部取消</li> <li>CANCELLING：任务取消中</li> </ul>
+        # - PENDING：等待下发
+        # - RUNNING：命令运行中
+        # - CANCELLING：取消中
+        # - SUCCESS：命令成功
+        # - TIMEOUT：命令超时
+        # - FAILED：命令失败
+        # - CANCELLED：命令全部取消
+        # - PARTIAL_FAILED：命令部分失败
+        # - PARTIAL_CANCELLED：命令部分取消
         # @type InvocationStatus: String
         # @param InvocationTaskBasicInfoSet: 执行任务信息列表。
         # @type InvocationTaskBasicInfoSet: Array
         # @param Description: 执行活动描述。
         # @type Description: String
-        # @param StartTime: 执行活动开始时间。
+        # @param StartTime: 执行活动开始时间。格式为：YYYY-MM-DDThh:mm:ssZ
         # @type StartTime: String
-        # @param EndTime: 执行活动结束时间。
+        # @param EndTime: 执行活动结束时间。格式为：YYYY-MM-DDThh:mm:ssZ
         # @type EndTime: String
-        # @param CreatedTime: 执行活动创建时间。
+        # @param CreatedTime: 执行活动创建时间。格式为：YYYY-MM-DDThh:mm:ssZ
         # @type CreatedTime: String
-        # @param UpdatedTime: 执行活动更新时间。
+        # @param UpdatedTime: 执行活动更新时间。格式为：YYYY-MM-DDThh:mm:ssZ
         # @type UpdatedTime: String
         # @param Parameters: 自定义参数取值。
         # @type Parameters: String
@@ -1545,6 +1625,9 @@ module TencentCloud
         # @param Username: 在实例上执行命令时使用的用户名。
         # @type Username: String
         # @param InvocationSource: 调用来源。
+
+        # - USER：来源于用户调用。
+        # - INVOKER：来源于定时执行。
         # @type InvocationSource: String
         # @param CommandContent: base64编码的命令内容
         # @type CommandContent: String
@@ -1625,21 +1708,33 @@ module TencentCloud
         # @type CommandId: String
         # @param TaskStatus: 执行任务状态。取值范围：
 
-        # <ul> <li>PENDING：等待下发</li> <li>DELIVERING：下发中</li> <li>DELIVER_DELAYED：延时下发</li> <li>DELIVER_FAILED：下发失败</li> <li>START_FAILED：命令启动失败</li> <li>RUNNING：命令运行中</li> <li>SUCCESS：命令成功</li> <li>FAILED：命令执行失败，执行完退出码不为 0</li> <li>TIMEOUT：命令超时</li> <li>TASK_TIMEOUT：执行任务超时</li> <li>CANCELLING：取消中</li> <li>CANCELLED：已取消（命令启动前就被取消）</li> <li>TERMINATED：已中止（命令执行期间被取消）</li> </ul>
+        # - PENDING：等待下发
+        # - DELIVERING：下发中
+        # - DELIVER_DELAYED：延时下发
+        # - DELIVER_FAILED：下发失败
+        # - START_FAILED：命令启动失败
+        # - RUNNING：命令运行中
+        # - SUCCESS：命令成功
+        # - FAILED：命令执行失败，执行完退出码不为 0
+        # - TIMEOUT：命令超时
+        # - TASK_TIMEOUT：客户端无响应
+        # - CANCELLING：取消中
+        # - CANCELLED：已取消（命令启动前就被取消）
+        # - TERMINATED：已中止（命令执行期间被取消）
         # @type TaskStatus: String
         # @param InstanceId: 实例ID。
         # @type InstanceId: String
         # @param TaskResult: 执行结果。
         # @type TaskResult: :class:`Tencentcloud::Tat.v20201028.models.TaskResult`
-        # @param StartTime: 执行任务开始时间。
+        # @param StartTime: 执行任务开始时间。格式为：YYYY-MM-DDThh:mm:ssZ
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StartTime: String
-        # @param EndTime: 执行任务结束时间。
+        # @param EndTime: 执行任务结束时间。格式为：YYYY-MM-DDThh:mm:ssZ
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EndTime: String
-        # @param CreatedTime: 创建时间。
+        # @param CreatedTime: 创建时间。格式为：YYYY-MM-DDThh:mm:ssZ
         # @type CreatedTime: String
-        # @param UpdatedTime: 更新时间。
+        # @param UpdatedTime: 更新时间。格式为：YYYY-MM-DDThh:mm:ssZ
         # @type UpdatedTime: String
         # @param CommandDocument: 执行任务所执行的命令详情。
         # @type CommandDocument: :class:`Tencentcloud::Tat.v20201028.models.CommandDocument`
@@ -1694,19 +1789,20 @@ module TencentCloud
         # @param InvocationTaskId: 执行任务ID。
         # @type InvocationTaskId: String
         # @param TaskStatus: 执行任务状态。取值范围：
-        # <li> PENDING：等待下发
-        # <li> DELIVERING：下发中
-        # <li> DELIVER_DELAYED：延时下发
-        # <li> DELIVER_FAILED：下发失败
-        # <li> START_FAILED：命令启动失败
-        # <li> RUNNING：命令运行中
-        # <li> SUCCESS：命令成功
-        # <li> FAILED：命令执行失败，执行完退出码不为 0
-        # <li> TIMEOUT：命令超时
-        # <li> TASK_TIMEOUT：执行任务超时
-        # <li> CANCELLING：取消中
-        # <li> CANCELLED：已取消（命令启动前就被取消）
-        # <li> TERMINATED：已中止（命令执行期间被取消）
+
+        # - PENDING：等待下发
+        # - DELIVERING：下发中
+        # - DELIVER_DELAYED：延时下发
+        # - DELIVER_FAILED：下发失败
+        # - START_FAILED：命令启动失败
+        # - RUNNING：命令运行中
+        # - SUCCESS：命令成功
+        # - FAILED：命令执行失败，执行完退出码不为 0
+        # - TIMEOUT：命令超时
+        # - TASK_TIMEOUT：客户端无响应
+        # - CANCELLING：取消中
+        # - CANCELLED：已取消（命令启动前就被取消）
+        # - TERMINATED：已中止（命令执行期间被取消）
         # @type TaskStatus: String
         # @param InstanceId: 实例ID。
         # @type InstanceId: String
@@ -1728,13 +1824,19 @@ module TencentCloud
 
       # InvokeCommand请求参数结构体
       class InvokeCommandRequest < TencentCloud::Common::AbstractModel
-        # @param CommandId: 待触发的命令ID。
+        # @param CommandId: 待触发的命令ID。可通过 [DescribeCommands(查询命令详情)](https://cloud.tencent.com/document/api/1340/52681) 接口获取。
         # @type CommandId: String
         # @param InstanceIds: 待执行命令的实例ID列表，上限200。
+
+        # 可通过对应云产品的查询实例接口获取实例 ID。目前支持实例类型：
+        # - CVM
+        # - Lighthouse
+        # - TAT 托管实例
         # @type InstanceIds: Array
         # @param Parameters: Command 的自定义参数。字段类型为json encoded string。如：{"varA": "222"}。
         # key为自定义参数名称，value为该参数的默认取值。kv均为字符串型。
-        # 如果未提供该参数取值，将使用 Command 的 DefaultParameters 进行替换。
+        # 仅在命令的 EnableParameter 为 true 时，才允许设置此参数。可通过 [DescribeCommands(查询命令详情)](https://cloud.tencent.com/document/api/1340/52681) 接口获取命令的 EnableParameter 设置。
+        # 如果未提供该参数取值，将使用 Command 的 DefaultParameters 或 DefaultParameterConfs 进行替换。
         # 自定义参数最多20个。
         # 自定义参数名称需符合以下规范：字符数目上限64，可选范围【a-zA-Z0-9-_】。
         # @type Parameters: String
@@ -1804,7 +1906,7 @@ module TencentCloud
         # @type InvokerId: String
         # @param Name: 执行器名称。
         # @type Name: String
-        # @param Type: 执行器类型。
+        # @param Type: 执行器类型。目前仅支持 SCHEDULE 一种。
         # @type Type: String
         # @param CommandId: 命令ID。
         # @type CommandId: String
@@ -1819,9 +1921,9 @@ module TencentCloud
         # @param ScheduleSettings: 执行器周期计划。周期执行器会返回此字段。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScheduleSettings: :class:`Tencentcloud::Tat.v20201028.models.ScheduleSettings`
-        # @param CreatedTime: 创建时间。
+        # @param CreatedTime: 创建时间。格式为：YYYY-MM-DDThh:mm:ssZ
         # @type CreatedTime: String
-        # @param UpdatedTime: 修改时间。
+        # @param UpdatedTime: 修改时间。格式为：YYYY-MM-DDThh:mm:ssZ
         # @type UpdatedTime: String
 
         attr_accessor :InvokerId, :Name, :Type, :CommandId, :Username, :Parameters, :InstanceIds, :Enable, :ScheduleSettings, :CreatedTime, :UpdatedTime
@@ -1862,13 +1964,23 @@ module TencentCloud
       class InvokerRecord < TencentCloud::Common::AbstractModel
         # @param InvokerId: 执行器ID。
         # @type InvokerId: String
-        # @param InvokeTime: 执行时间。
+        # @param InvokeTime: 执行时间。格式为：YYYY-MM-DDThh:mm:ssZ
         # @type InvokeTime: String
         # @param Reason: 执行原因。
         # @type Reason: String
         # @param InvocationId: 命令执行ID。
         # @type InvocationId: String
         # @param Result: 触发结果。
+
+        # - PENDING：等待下发
+        # - RUNNING：命令运行中
+        # - CANCELLING：取消中
+        # - SUCCESS：命令成功
+        # - TIMEOUT：命令超时
+        # - FAILED：命令失败
+        # - CANCELLED：命令全部取消
+        # - PARTIAL_FAILED：命令部分失败
+        # - PARTIAL_CANCELLED：命令部分取消
         # @type Result: String
 
         attr_accessor :InvokerId, :InvokeTime, :Reason, :InvocationId, :Result
@@ -1892,7 +2004,7 @@ module TencentCloud
 
       # ModifyCommand请求参数结构体
       class ModifyCommandRequest < TencentCloud::Common::AbstractModel
-        # @param CommandId: 命令ID。
+        # @param CommandId: 命令ID。可通过 [DescribeCommands(查询命令详情)](https://cloud.tencent.com/document/api/1340/52681) 接口获取。
         # @type CommandId: String
         # @param CommandName: 命令名称。名称仅支持中文、英文、数字、下划线、分隔符"-"、小数点，最大长度不能超60个字节。
         # @type CommandName: String
@@ -1900,21 +2012,23 @@ module TencentCloud
         # @type Description: String
         # @param Content: Base64编码后的命令内容，长度不可超过64KB。
         # @type Content: String
-        # @param CommandType: 命令类型，目前支持取值：SHELL、POWERSHELL。
+        # @param CommandType: 命令类型，目前支持取值：SHELL、POWERSHELL、BAT。
         # @type CommandType: String
         # @param WorkingDirectory: 命令执行路径。
         # @type WorkingDirectory: String
         # @param Timeout: 命令超时时间。取值范围[1, 86400]。
         # @type Timeout: Integer
         # @param DefaultParameters: 启用自定义参数功能时，自定义参数的默认取值。字段类型为json encoded string。如：{"varA": "222"}。
+        # 参数不支持同时指定 `DefaultParameters` 和 `DefaultParameterConfs` 。
         # 采取整体全覆盖式修改，即修改时必须提供所有新默认值。
-        # 必须 Command 的 EnableParameter 为 true 时，才允许修改这个值。
+        # 仅在命令的 EnableParameter 为 true 时，才允许修改此参数。可通过 [DescribeCommands(查询命令详情)](https://cloud.tencent.com/document/api/1340/52681) 接口获取命令的 EnableParameter 设置。
         # key为自定义参数名称，value为该参数的默认取值。kv均为字符串型。
         # 自定义参数最多20个。
         # 自定义参数名称需符合以下规范：字符数目上限64，可选范围【a-zA-Z0-9-_】。
         # @type DefaultParameters: String
-        # @param DefaultParameterConfs: 自定义参数数组。
-        # 如果InvokeCommand时未提供参数取值，将使用这里的默认值进行替换。
+        # @param DefaultParameterConfs: 自定义参数数组。如果 InvokeCommand 时未提供参数取值，将使用这里的默认值进行替换。
+        # 参数不支持同时指定 `DefaultParameters` 和 `DefaultParameterConfs` 。
+        # 仅在命令的 EnableParameter 为 true 时，才允许修改此参数。可通过 [DescribeCommands(查询命令详情)](https://cloud.tencent.com/document/api/1340/52681) 接口获取命令的 EnableParameter 设置。
         # 自定义参数最多20个。
         # @type DefaultParameterConfs: Array
         # @param Username: 在 CVM 或 Lighthouse 实例中执行命令的用户名称。
@@ -1987,18 +2101,28 @@ module TencentCloud
       # ModifyInvoker请求参数结构体
       class ModifyInvokerRequest < TencentCloud::Common::AbstractModel
         # @param InvokerId: 待修改的执行器ID。
+
+        # 可通过 [DescribeInvokers(查询执行器)](https://cloud.tencent.com/document/api/1340/61759) 接口获取。
         # @type InvokerId: String
         # @param Name: 待修改的执行器名称。
         # @type Name: String
         # @param Type: 执行器类型，当前仅支持周期类型执行器，取值：`SCHEDULE` 。
         # @type Type: String
         # @param CommandId: 待修改的命令ID。
+
+        # 可通过 [DescribeCommands(查询命令详情)](https://cloud.tencent.com/document/api/1340/52681) 接口获取。
         # @type CommandId: String
         # @param Username: 待修改的用户名。
         # @type Username: String
         # @param Parameters: 待修改的自定义参数。
+
+        # 仅在 CommandId 所指命令的 EnableParameter 为 true 时，才允许设置此参数。可通过 [DescribeCommands(查询命令详情)](https://cloud.tencent.com/document/api/1340/52681) 接口获取命令的 EnableParameter 设置。
         # @type Parameters: String
         # @param InstanceIds: 待修改的实例ID列表。列表长度上限100。
+
+        # 可通过对应云产品的查询实例接口获取实例 ID。目前支持实例类型：CVM、Lighthouse、TAT 托管实例。
+
+        # 实例需要安装 TAT 客户端, 且客户端为 Online 状态。可通过 [DescribeAutomationAgentStatus(查询客户端状态)](https://cloud.tencent.com/document/api/1340/52682) 接口查询客户端状态。
         # @type InstanceIds: Array
         # @param ScheduleSettings: 待修改的周期执行器设置。
         # @type ScheduleSettings: :class:`Tencentcloud::Tat.v20201028.models.ScheduleSettings`
@@ -2049,7 +2173,9 @@ module TencentCloud
 
       # ModifyRegisterInstance请求参数结构体
       class ModifyRegisterInstanceRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID。
+        # @param InstanceId: 托管实例ID。
+
+        # 可通过 [DescribeRegisterInstances(查询托管实例)](https://cloud.tencent.com/document/api/1340/96924) 接口获取。
         # @type InstanceId: String
         # @param InstanceName: 实例名称。有效长度为 1～60 字符。
         # @type InstanceName: String
@@ -2085,13 +2211,17 @@ module TencentCloud
 
       # PreviewReplacedCommandContent请求参数结构体
       class PreviewReplacedCommandContentRequest < TencentCloud::Common::AbstractModel
-        # @param Parameters: 本次预览采用的自定义参数。字段类型为 json encoded string，如：{\"varA\": \"222\"}。
+        # @param Parameters: 本次预览采用的自定义参数。字段类型为 json encoded string，如：{"varA": "222"}。
+        # 仅在命令的 EnableParameter 为 true 时，才允许设置此参数。可通过 [DescribeCommands(查询命令详情)](https://cloud.tencent.com/document/api/1340/52681) 接口获取命令的 EnableParameter 设置。
+        # 如果有设置过 DefaultParameters 或 DefaultParameterConfs，会与 Parameters 进行叠加，优先使用 Parameters 的值。
+
         # key 为自定义参数名称，value 为该参数的取值。kv 均为字符串型。
         # 自定义参数最多 20 个。
         # 自定义参数名称需符合以下规范：字符数目上限 64，可选范围【a-zA-Z0-9-_】。
         # 如果将预览的 CommandId 设置过 DefaultParameters，本参数可以为空。
         # @type Parameters: String
-        # @param CommandId: 要进行替换预览的命令，如果有设置过 DefaultParameters，会与 Parameters 进行叠加，后者覆盖前者。
+        # @param CommandId: 要进行替换预览的命令。
+        # 可通过 [DescribeCommands(查询命令详情)](https://cloud.tencent.com/document/api/1340/52681) 接口获取。
         # CommandId 与 Content，必须且只能提供一个。
         # @type CommandId: String
         # @param Content: 要预览的命令内容，经 Base64 编码，长度不可超过 64KB。
@@ -2139,7 +2269,7 @@ module TencentCloud
         # @type Region: String
         # @param RegionName: 地域描述，例如: 广州
         # @type RegionName: String
-        # @param RegionState: 地域是否可用状态，AVAILABLE 代表可用
+        # @param RegionState: 地域是否可用状态，AVAILABLE 代表可用，UNAVAILABLE 代表不可用。
         # @type RegionState: String
 
         attr_accessor :Region, :RegionName, :RegionState
@@ -2225,7 +2355,7 @@ module TencentCloud
         # @type InstanceName: String
         # @param MachineId: 机器ID。
         # @type MachineId: String
-        # @param SystemName: 系统名。
+        # @param SystemName: 系统名。取值：Linux | Windows。
         # @type SystemName: String
         # @param HostName: 主机名。
         # @type HostName: String
@@ -2236,14 +2366,16 @@ module TencentCloud
         # @param Status: 托管状态。
         # 返回Online表示实例正在托管，返回Offline表示实例未托管。
         # @type Status: String
-        # @param CreatedTime: 创建时间。
+        # @param CreatedTime: 创建时间。格式为：YYYY-MM-DDThh:mm:ssZ
         # @type CreatedTime: String
-        # @param UpdatedTime: 上次更新时间。
+        # @param UpdatedTime: 上次更新时间。格式为：YYYY-MM-DDThh:mm:ssZ
         # @type UpdatedTime: String
+        # @param Tags: 标签
+        # @type Tags: Array
 
-        attr_accessor :RegisterCodeId, :InstanceId, :InstanceName, :MachineId, :SystemName, :HostName, :LocalIp, :PublicKey, :Status, :CreatedTime, :UpdatedTime
+        attr_accessor :RegisterCodeId, :InstanceId, :InstanceName, :MachineId, :SystemName, :HostName, :LocalIp, :PublicKey, :Status, :CreatedTime, :UpdatedTime, :Tags
 
-        def initialize(registercodeid=nil, instanceid=nil, instancename=nil, machineid=nil, systemname=nil, hostname=nil, localip=nil, publickey=nil, status=nil, createdtime=nil, updatedtime=nil)
+        def initialize(registercodeid=nil, instanceid=nil, instancename=nil, machineid=nil, systemname=nil, hostname=nil, localip=nil, publickey=nil, status=nil, createdtime=nil, updatedtime=nil, tags=nil)
           @RegisterCodeId = registercodeid
           @InstanceId = instanceid
           @InstanceName = instancename
@@ -2255,6 +2387,7 @@ module TencentCloud
           @Status = status
           @CreatedTime = createdtime
           @UpdatedTime = updatedtime
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -2269,6 +2402,14 @@ module TencentCloud
           @Status = params['Status']
           @CreatedTime = params['CreatedTime']
           @UpdatedTime = params['UpdatedTime']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
         end
       end
 
@@ -2276,15 +2417,18 @@ module TencentCloud
       class RunCommandRequest < TencentCloud::Common::AbstractModel
         # @param Content: Base64编码后的命令内容，长度不可超过64KB。
         # @type Content: String
-        # @param InstanceIds: 待执行命令的实例ID列表，上限200。支持实例类型：
-        # <li> CVM </li>
-        # <li> LIGHTHOUSE </li>
+        # @param InstanceIds: 待执行命令的实例ID列表，上限200。
+
+        # 可通过对应云产品的查询实例接口获取实例 ID。目前支持实例类型：
+        # - CVM
+        # - Lighthouse
+        # - TAT 托管实例
         # @type InstanceIds: Array
         # @param CommandName: 命令名称。名称仅支持中文、英文、数字、下划线、分隔符"-"、小数点，最大长度不能超60个字节。
         # @type CommandName: String
         # @param Description: 命令描述。不超过120字符。
         # @type Description: String
-        # @param CommandType: 命令类型，目前支持取值：SHELL、POWERSHELL。默认：SHELL。
+        # @param CommandType: 命令类型，目前支持取值：SHELL、POWERSHELL、BAT。默认：SHELL。
         # @type CommandType: String
         # @param WorkingDirectory: 命令执行路径，对于 SHELL 命令默认为 /root，对于 POWERSHELL 命令默认为 C:\Program Files\qcloud\tat_agent\workdir。
         # @type WorkingDirectory: String
@@ -2304,15 +2448,21 @@ module TencentCloud
         # @type EnableParameter: Boolean
         # @param DefaultParameters: 启用自定义参数功能时，自定义参数的默认取值。字段类型为json encoded string。如：{"varA": "222"}。
         # key为自定义参数名称，value为该参数的默认取值。kv均为字符串型。
+        # 仅在命令的 EnableParameter 为 true 时，才允许设置此参数。
+        # 参数不支持同时指定 `DefaultParameters` 和 `DefaultParameterConfs` 。
         # 如果 Parameters 未提供，将使用这里的默认值进行替换。
         # 自定义参数最多20个。
         # 自定义参数名称需符合以下规范：字符数目上限64，可选范围【a-zA-Z0-9-_】。
         # @type DefaultParameters: String
         # @param DefaultParameterConfs: 自定义参数数组。 如果 Parameters 未提供，将使用这里的默认值进行替换。 自定义参数最多20个。
+        # 如果 Parameters 未提供，将使用这里的默认值进行替换。
+        # 仅在命令的 EnableParameter 为 true 时，才允许设置此参数。
+        # 参数不支持同时指定 `DefaultParameters` 和 `DefaultParameterConfs` 。
         # @type DefaultParameterConfs: Array
         # @param Parameters: Command 的自定义参数。字段类型为json encoded string。如：{"varA": "222"}。
         # key为自定义参数名称，value为该参数的默认取值。kv均为字符串型。
-        # 如果未提供该参数取值，将使用 DefaultParameters 进行替换。
+        # 仅在命令的 EnableParameter 为 true 时，才允许设置此参数。
+        # 如果未提供该参数取值，将使用 DefaultParameters 或 DefaultParameterConfs 进行替换。
         # 自定义参数最多20个。
         # 自定义参数名称需符合以下规范：字符数目上限64，可选范围【a-zA-Z0-9-_】。
         # @type Parameters: String
@@ -2415,10 +2565,12 @@ module TencentCloud
         # @param SceneName: 场景名称。
         # @type SceneName: String
         # @param CreatedBy: 场景创建者。
+
+        # - TAT：公共场景
         # @type CreatedBy: String
-        # @param CreatedTime: 创建时间。
+        # @param CreatedTime: 创建时间。格式为：YYYY-MM-DDThh:mm:ssZ
         # @type CreatedTime: String
-        # @param UpdatedTime: 更新时间。
+        # @param UpdatedTime: 更新时间。格式为：YYYY-MM-DDThh:mm:ssZ
         # @type UpdatedTime: String
 
         attr_accessor :SceneId, :SceneName, :CreatedBy, :CreatedTime, :UpdatedTime
@@ -2443,12 +2595,16 @@ module TencentCloud
       # 周期执行器设置。
       class ScheduleSettings < TencentCloud::Common::AbstractModel
         # @param Policy: 执行策略：
-        # <br><li>ONCE：单次执行
-        # <br><li>RECURRENCE：周期执行
+        # - ONCE：单次执行
+        # - RECURRENCE：周期执行
+
+        # 只有在 CreateInvoker 时才必填，ModifyInvoker 时为非必填
         # @type Policy: String
         # @param Recurrence: 触发 Crontab 表达式。Policy 为 RECURRENCE 时，需要指定此字段。Crontab 按北京时间解析。
         # @type Recurrence: String
         # @param InvokeTime: 执行器下次执行时间。Policy 为 ONCE 时，需要指定此字段。
+
+        # 时间格式为：YYYY-MM-DDThh:mm:ssZ
         # @type InvokeTime: String
 
         attr_accessor :Policy, :Recurrence, :InvokeTime
@@ -2492,10 +2648,10 @@ module TencentCloud
         # @type ExitCode: Integer
         # @param Output: Base64编码后的命令输出。最大长度24KB。
         # @type Output: String
-        # @param ExecStartTime: 命令执行开始时间。
+        # @param ExecStartTime: 命令执行开始时间。格式为：YYYY-MM-DDThh:mm:ssZ
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExecStartTime: String
-        # @param ExecEndTime: 命令执行结束时间。
+        # @param ExecEndTime: 命令执行结束时间。格式为：YYYY-MM-DDThh:mm:ssZ
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExecEndTime: String
         # @param Dropped: 命令最终输出被截断的字节数。

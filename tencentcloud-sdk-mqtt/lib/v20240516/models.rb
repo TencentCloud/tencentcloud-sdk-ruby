@@ -1560,6 +1560,49 @@ module TencentCloud
         end
       end
 
+      # DescribeInsVPCEndpoints请求参数结构体
+      class DescribeInsVPCEndpointsRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DescribeInsVPCEndpoints返回参数结构体
+      class DescribeInsVPCEndpointsResponse < TencentCloud::Common::AbstractModel
+        # @param Endpoints: 接入点
+        # @type Endpoints: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Endpoints, :RequestId
+
+        def initialize(endpoints=nil, requestid=nil)
+          @Endpoints = endpoints
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Endpoints'].nil?
+            @Endpoints = []
+            params['Endpoints'].each do |i|
+              mqttendpointitem_tmp = MQTTEndpointItem.new
+              mqttendpointitem_tmp.deserialize(i)
+              @Endpoints << mqttendpointitem_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeInstanceList请求参数结构体
       class DescribeInstanceListRequest < TencentCloud::Common::AbstractModel
         # @param Filters: 查询条件列表,支持以下子弹

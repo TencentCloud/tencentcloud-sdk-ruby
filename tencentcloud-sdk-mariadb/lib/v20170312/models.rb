@@ -408,15 +408,15 @@ module TencentCloud
       class CreateAccountRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例 ID，形如：tdsql-ow728lmc，可以通过 DescribeDBInstances 查询实例详情获得。
         # @type InstanceId: String
-        # @param UserName: 登录用户名，由字母、数字、下划线和连字符组成，长度为1~32位。
+        # @param UserName: 账号名，账号名需要1-32个字符，由字母、数字或特殊字符组成；以字母开头；特殊字符为_-
         # @type UserName: String
         # @param Host: 可以登录的主机，与mysql 账号的 host 格式一致，可以支持通配符，例如 %，10.%，10.20.%。
         # @type Host: String
-        # @param Password: 账号密码，密码需要 8-32 个字符，不能以 '/' 开头，并且必须包含小写字母、大写字母、数字和符号()~!@#$%^&*-+=_|{}[]:<>,.?/。
+        # @param Password: 账号密码，密码需要 8\~32 个字符，不能以 '/' 开头，并且至少包含字母、数字和特殊字符 ()~!@#$%^&*-+=_|{}[]:<>,.?/ 中的两项
         # @type Password: String
         # @param ReadOnly: 是否创建为只读账号，0：否； 1：只读账号，该账号的sql请求优先选择备机执行，备机延迟时选择主机执行；2：只读账号，优先选择备机执行，备机延迟时操作报错；3：只读账号，优先选择备机执行，忽略备机延迟只读备机；
         # @type ReadOnly: Integer
-        # @param Description: 账号备注，可以包含中文、英文字符、常见符号和数字，长度为0~256字符
+        # @param Description: 账号备注，可以包含中文、英文字符、常见符号和数字，最多256个字符
         # @type Description: String
         # @param DelayThresh: 根据传入时间判断备机不可用
         # @type DelayThresh: Integer
@@ -5048,7 +5048,7 @@ module TencentCloud
       class OpenDBExtranetAccessRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 待开放外网访问的实例ID。形如：tdsql-ow728lmc，可以通过 DescribeDBInstances 查询实例详情获得。
         # @type InstanceId: String
-        # @param Ipv6Flag: 是否IPv6，默认0
+        # @param Ipv6Flag: 是否为IPV6网络类型实例，0:否，1:是，不传默认为0表示实例为IPV4网络类型
         # @type Ipv6Flag: Integer
 
         attr_accessor :InstanceId, :Ipv6Flag
@@ -5340,7 +5340,7 @@ module TencentCloud
         # @type UserName: String
         # @param Host: 用户允许的访问 host，用户名+host唯一确定一个账号。
         # @type Host: String
-        # @param Password: 新密码，由字母、数字或常见符号组成，不能包含分号、单引号和双引号，长度为6~32位。
+        # @param Password: 密码需要 8\~32 个字符，不能以 '/' 开头，并且至少包含字母、数字和特殊字符 ()~!@#$%^&*-+=_|{}[]:<>,.?/ 中的两项
         # @type Password: String
         # @param EncryptedPassword: 使用GetPublicKey返回的RSA2048公钥加密后的密码
         # @type EncryptedPassword: String

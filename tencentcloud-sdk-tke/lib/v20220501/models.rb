@@ -901,7 +901,6 @@ module TencentCloud
         # @param RuntimeConfig: 第三方节点Runtime配置
         # @type RuntimeConfig: :class:`Tencentcloud::Tke.v20220501.models.RuntimeConfig`
         # @param NodesNum: 节点数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NodesNum: Integer
 
         attr_accessor :RuntimeConfig, :NodesNum

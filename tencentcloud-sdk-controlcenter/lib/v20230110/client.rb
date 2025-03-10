@@ -53,6 +53,102 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取用户基线配置数据
+
+        # @param request: Request instance for GetAccountFactoryBaseline.
+        # @type request: :class:`Tencentcloud::controlcenter::V20230110::GetAccountFactoryBaselineRequest`
+        # @rtype: :class:`Tencentcloud::controlcenter::V20230110::GetAccountFactoryBaselineResponse`
+        def GetAccountFactoryBaseline(request)
+          body = send_request('GetAccountFactoryBaseline', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GetAccountFactoryBaselineResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取账号工厂系统基线项
+
+        # @param request: Request instance for ListAccountFactoryBaselineItems.
+        # @type request: :class:`Tencentcloud::controlcenter::V20230110::ListAccountFactoryBaselineItemsRequest`
+        # @rtype: :class:`Tencentcloud::controlcenter::V20230110::ListAccountFactoryBaselineItemsResponse`
+        def ListAccountFactoryBaselineItems(request)
+          body = send_request('ListAccountFactoryBaselineItems', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ListAccountFactoryBaselineItemsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取某个基线项历史应用信息
+
+        # @param request: Request instance for ListDeployStepTasks.
+        # @type request: :class:`Tencentcloud::controlcenter::V20230110::ListDeployStepTasksRequest`
+        # @rtype: :class:`Tencentcloud::controlcenter::V20230110::ListDeployStepTasksResponse`
+        def ListDeployStepTasks(request)
+          body = send_request('ListDeployStepTasks', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ListDeployStepTasksResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 更新用户当前基线项配置，基线配置会覆盖更新为当前配置。新增基线项时需要将新增的基线配置加到现有配置，删除基线项时需要将删除的基线配置从现有配置移除，然后保存最新基线配置。
+
+        # @param request: Request instance for UpdateAccountFactoryBaseline.
+        # @type request: :class:`Tencentcloud::controlcenter::V20230110::UpdateAccountFactoryBaselineRequest`
+        # @rtype: :class:`Tencentcloud::controlcenter::V20230110::UpdateAccountFactoryBaselineResponse`
+        def UpdateAccountFactoryBaseline(request)
+          body = send_request('UpdateAccountFactoryBaseline', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdateAccountFactoryBaselineResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
 
       end
     end
