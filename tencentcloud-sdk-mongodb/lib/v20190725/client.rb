@@ -705,7 +705,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口(EnableTransparentDataEncryption)用于开启云数据库 MongoDB 的透明加密能力。
+        # 本接口（EnableTransparentDataEncryption）用于开启云数据库 MongoDB 的透明加密能力。
 
         # @param request: Request instance for EnableTransparentDataEncryption.
         # @type request: :class:`Tencentcloud::mongodb::V20190725::EnableTransparentDataEncryptionRequest`

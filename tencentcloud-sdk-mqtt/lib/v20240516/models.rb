@@ -136,42 +136,30 @@ module TencentCloud
         # @param InstanceId: 集群ID
         # @type InstanceId: String
         # @param PolicyName: 规则名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PolicyName: String
         # @param Version: 规则语法版本
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Version: Integer
         # @param Priority: 越小越优先
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Priority: Integer
         # @param Effect: allow/deny
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Effect: String
         # @param Actions: connect、pub、sub
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Actions: String
         # @param Resources: 资源
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Resources: String
         # @param ClientId: client
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClientId: String
         # @param Username: 用户
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Username: String
         # @param Ip: IP地址
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Ip: String
         # @param Qos: 0，1，2
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Qos: String
         # @param Retain: 1：表示匹配retain消息
         # 2：表示匹配非retain消息
         # 3：表示匹配retain和非retain消息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Retain: Integer
         # @param Remark: 描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Remark: String
         # @param CreatedTime: 1713164969433
         # @type CreatedTime: Integer
@@ -222,10 +210,8 @@ module TencentCloud
       # 策略规则优先级
       class AuthorizationPolicyPriority < TencentCloud::Common::AbstractModel
         # @param Id: 策略id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Id: Integer
         # @param Priority: 优先级
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Priority: Integer
 
         attr_accessor :Id, :Priority
@@ -238,6 +224,26 @@ module TencentCloud
         def deserialize(params)
           @Id = params['Id']
           @Priority = params['Priority']
+        end
+      end
+
+      # HTTP 认证器body
+      class BodyItem < TencentCloud::Common::AbstractModel
+        # @param Key: body key
+        # @type Key: String
+        # @param Value: body key
+        # @type Value: String
+
+        attr_accessor :Key, :Value
+
+        def initialize(key=nil, value=nil)
+          @Key = key
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Value = params['Value']
         end
       end
 
@@ -254,28 +260,20 @@ module TencentCloud
         # @param VerificationCertificate: 验证证书内容
         # @type VerificationCertificate: String
         # @param Status: ca状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: String
         # @param LastActivationTime: 上次激活时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LastActivationTime: Integer
         # @param CreatedTime: 创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreatedTime: Integer
         # @param UpdateTime: 预销毁时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: Integer
         # @param LastInactivationTime: 上次去激活时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LastInactivationTime: Integer
         # @param CaIssuerCn: Ca证书颁发者CN
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CaIssuerCn: String
         # @param NotBeforeTime: 生效时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NotBeforeTime: Integer
         # @param NotAfterTime: 失效时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NotAfterTime: Integer
 
         attr_accessor :CaCn, :CaCertificate, :CaSn, :Format, :VerificationCertificate, :Status, :LastActivationTime, :CreatedTime, :UpdateTime, :LastInactivationTime, :CaIssuerCn, :NotBeforeTime, :NotAfterTime
@@ -379,6 +377,88 @@ module TencentCloud
 
       # CreateAuthorizationPolicy返回参数结构体
       class CreateAuthorizationPolicyResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateHttpAuthenticator请求参数结构体
+      class CreateHttpAuthenticatorRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param Endpoint: jwks端点
+        # @type Endpoint: String
+        # @param Concurrency: 最大并发连接数，默认8，范围：1-20
+        # @type Concurrency: Integer
+        # @param Method: 网络请求方法 Get 或 Post，默认post
+        # @type Method: String
+        # @param Status: 认证器是否开启：open-启用；close-关闭
+        # @type Status: String
+        # @param Remark: 说明
+        # @type Remark: String
+        # @param ConnectTimeout: 连接超时时间，单位：秒，范围：1-30
+        # @type ConnectTimeout: Integer
+        # @param ReadTimeout: 请求超时时间，单位：秒，范围：1-30
+        # @type ReadTimeout: Integer
+        # @param Header: 转发请求header
+        # @type Header: Array
+        # @param Body: 转发请求body
+        # @type Body: Array
+
+        attr_accessor :InstanceId, :Endpoint, :Concurrency, :Method, :Status, :Remark, :ConnectTimeout, :ReadTimeout, :Header, :Body
+
+        def initialize(instanceid=nil, endpoint=nil, concurrency=nil, method=nil, status=nil, remark=nil, connecttimeout=nil, readtimeout=nil, header=nil, body=nil)
+          @InstanceId = instanceid
+          @Endpoint = endpoint
+          @Concurrency = concurrency
+          @Method = method
+          @Status = status
+          @Remark = remark
+          @ConnectTimeout = connecttimeout
+          @ReadTimeout = readtimeout
+          @Header = header
+          @Body = body
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Endpoint = params['Endpoint']
+          @Concurrency = params['Concurrency']
+          @Method = params['Method']
+          @Status = params['Status']
+          @Remark = params['Remark']
+          @ConnectTimeout = params['ConnectTimeout']
+          @ReadTimeout = params['ReadTimeout']
+          unless params['Header'].nil?
+            @Header = []
+            params['Header'].each do |i|
+              headeritem_tmp = HeaderItem.new
+              headeritem_tmp.deserialize(i)
+              @Header << headeritem_tmp
+            end
+          end
+          unless params['Body'].nil?
+            @Body = []
+            params['Body'].each do |i|
+              bodyitem_tmp = BodyItem.new
+              bodyitem_tmp.deserialize(i)
+              @Body << bodyitem_tmp
+            end
+          end
+        end
+      end
+
+      # CreateHttpAuthenticator返回参数结构体
+      class CreateHttpAuthenticatorResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -1237,7 +1317,6 @@ module TencentCloud
         # @param Format: 证书格式
         # @type Format: String
         # @param CaIssuerCn: Ca证书颁发者CN
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CaIssuerCn: String
         # @param NotBeforeTime: 生效开始时间
         # @type NotBeforeTime: Integer
@@ -1418,19 +1497,20 @@ module TencentCloud
         # @param Format: 证书格式
         # @type Format: String
         # @param ClientId: 客户端id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClientId: String
         # @param CertificateSource:     API, 手动注册
         #     JITP 自动注册
         # @type CertificateSource: String
         # @param NotBeforeTime: 证书生效开始时间
         # @type NotBeforeTime: Integer
+        # @param OrganizationalUnit: 组织单位
+        # @type OrganizationalUnit: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :CreatedTime, :UpdateTime, :NotAfterTime, :LastActivationTime, :LastInactivationTime, :Status, :CaSn, :DeviceCertificateSn, :DeviceCertificate, :DeviceCertificateCn, :Format, :ClientId, :CertificateSource, :NotBeforeTime, :RequestId
+        attr_accessor :CreatedTime, :UpdateTime, :NotAfterTime, :LastActivationTime, :LastInactivationTime, :Status, :CaSn, :DeviceCertificateSn, :DeviceCertificate, :DeviceCertificateCn, :Format, :ClientId, :CertificateSource, :NotBeforeTime, :OrganizationalUnit, :RequestId
 
-        def initialize(createdtime=nil, updatetime=nil, notaftertime=nil, lastactivationtime=nil, lastinactivationtime=nil, status=nil, casn=nil, devicecertificatesn=nil, devicecertificate=nil, devicecertificatecn=nil, format=nil, clientid=nil, certificatesource=nil, notbeforetime=nil, requestid=nil)
+        def initialize(createdtime=nil, updatetime=nil, notaftertime=nil, lastactivationtime=nil, lastinactivationtime=nil, status=nil, casn=nil, devicecertificatesn=nil, devicecertificate=nil, devicecertificatecn=nil, format=nil, clientid=nil, certificatesource=nil, notbeforetime=nil, organizationalunit=nil, requestid=nil)
           @CreatedTime = createdtime
           @UpdateTime = updatetime
           @NotAfterTime = notaftertime
@@ -1445,6 +1525,7 @@ module TencentCloud
           @ClientId = clientid
           @CertificateSource = certificatesource
           @NotBeforeTime = notbeforetime
+          @OrganizationalUnit = organizationalunit
           @RequestId = requestid
         end
 
@@ -1463,6 +1544,7 @@ module TencentCloud
           @ClientId = params['ClientId']
           @CertificateSource = params['CertificateSource']
           @NotBeforeTime = params['NotBeforeTime']
+          @OrganizationalUnit = params['OrganizationalUnit']
           @RequestId = params['RequestId']
         end
       end
@@ -1702,7 +1784,6 @@ module TencentCloud
       # DescribeInstanceList返回参数结构体
       class DescribeInstanceListResponse < TencentCloud::Common::AbstractModel
         # @param TotalCount: 查询总数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
         # @param Data: 实例列表
         # @type Data: Array
@@ -1902,10 +1983,8 @@ module TencentCloud
       # DescribeMessageList返回参数结构体
       class DescribeMessageListResponse < TencentCloud::Common::AbstractModel
         # @param TotalCount: 查询总数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
         # @param Data: 消息记录列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: Array
         # @param TaskRequestId: 请求任务id
         # @type TaskRequestId: String
@@ -1950,10 +2029,8 @@ module TencentCloud
       # DescribeProductSKUList返回参数结构体
       class DescribeProductSKUListResponse < TencentCloud::Common::AbstractModel
         # @param TotalCount: 查询总数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
         # @param MQTTProductSkuList: mqtt商品配置信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MQTTProductSkuList: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2059,7 +2136,6 @@ module TencentCloud
       # DescribeTopicList返回参数结构体
       class DescribeTopicListResponse < TencentCloud::Common::AbstractModel
         # @param TotalCount: 查询总数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
         # @param Data: 主题列表
         # @type Data: Array
@@ -2179,7 +2255,6 @@ module TencentCloud
       # DescribeUserList返回参数结构体
       class DescribeUserListResponse < TencentCloud::Common::AbstractModel
         # @param TotalCount: 查询总数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
         # @param Data: 角色信息列表
         # @type Data: Array
@@ -2211,7 +2286,6 @@ module TencentCloud
       # 设备证书信息
       class DeviceCertificateItem < TencentCloud::Common::AbstractModel
         # @param ClientId: 客户端id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClientId: String
         # @param DeviceCertificate: 设备证书
         # @type DeviceCertificate: String
@@ -2229,32 +2303,28 @@ module TencentCloud
         #     REVOKED,//吊销
         #     PENDING_ACTIVATION,//注册待激活
         # @type Status: String
+        # @param OrganizationalUnit: 组织单位
+        # @type OrganizationalUnit: String
         # @param LastActivationTime: 上次激活时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LastActivationTime: Integer
         # @param LastInactivationTime: 上次取消激活时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LastInactivationTime: Integer
         # @param CreatedTime: 创建时间
         # @type CreatedTime: Integer
         # @param UpdateTime: 预销毁时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: Integer
         # @param CertificateSource: 证书来源：
         # API, 手动注册
         # JITP 自动注册
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CertificateSource: String
         # @param NotAfterTime: 证书失效日期
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NotAfterTime: Integer
         # @param NotBeforeTime: 证书生效开始日期
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NotBeforeTime: Integer
 
-        attr_accessor :ClientId, :DeviceCertificate, :DeviceCertificateSn, :DeviceCertificateCn, :CaSn, :Format, :Status, :LastActivationTime, :LastInactivationTime, :CreatedTime, :UpdateTime, :CertificateSource, :NotAfterTime, :NotBeforeTime
+        attr_accessor :ClientId, :DeviceCertificate, :DeviceCertificateSn, :DeviceCertificateCn, :CaSn, :Format, :Status, :OrganizationalUnit, :LastActivationTime, :LastInactivationTime, :CreatedTime, :UpdateTime, :CertificateSource, :NotAfterTime, :NotBeforeTime
 
-        def initialize(clientid=nil, devicecertificate=nil, devicecertificatesn=nil, devicecertificatecn=nil, casn=nil, format=nil, status=nil, lastactivationtime=nil, lastinactivationtime=nil, createdtime=nil, updatetime=nil, certificatesource=nil, notaftertime=nil, notbeforetime=nil)
+        def initialize(clientid=nil, devicecertificate=nil, devicecertificatesn=nil, devicecertificatecn=nil, casn=nil, format=nil, status=nil, organizationalunit=nil, lastactivationtime=nil, lastinactivationtime=nil, createdtime=nil, updatetime=nil, certificatesource=nil, notaftertime=nil, notbeforetime=nil)
           @ClientId = clientid
           @DeviceCertificate = devicecertificate
           @DeviceCertificateSn = devicecertificatesn
@@ -2262,6 +2332,7 @@ module TencentCloud
           @CaSn = casn
           @Format = format
           @Status = status
+          @OrganizationalUnit = organizationalunit
           @LastActivationTime = lastactivationtime
           @LastInactivationTime = lastinactivationtime
           @CreatedTime = createdtime
@@ -2279,6 +2350,7 @@ module TencentCloud
           @CaSn = params['CaSn']
           @Format = params['Format']
           @Status = params['Status']
+          @OrganizationalUnit = params['OrganizationalUnit']
           @LastActivationTime = params['LastActivationTime']
           @LastInactivationTime = params['LastInactivationTime']
           @CreatedTime = params['CreatedTime']
@@ -2309,6 +2381,26 @@ module TencentCloud
         end
       end
 
+      # HTTP 认证器header
+      class HeaderItem < TencentCloud::Common::AbstractModel
+        # @param Key: header key
+        # @type Key: String
+        # @param Value: header value
+        # @type Value: String
+
+        attr_accessor :Key, :Value
+
+        def initialize(key=nil, value=nil)
+          @Key = key
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Value = params['Value']
+        end
+      end
+
       # IP规则
       class IpRule < TencentCloud::Common::AbstractModel
         # @param Ip: IP地址
@@ -2316,7 +2408,6 @@ module TencentCloud
         # @param Allow: 是否允许放行
         # @type Allow: Boolean
         # @param Remark: 备注信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Remark: String
 
         attr_accessor :Ip, :Allow, :Remark
@@ -2337,19 +2428,14 @@ module TencentCloud
       # MQTT认证器信息
       class MQTTAuthenticatorItem < TencentCloud::Common::AbstractModel
         # @param Type: 认证器类型: JWT：JWT认证器 JWKS：JWKS认证器 BYOC：一端一证认证器
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: String
         # @param Config: 认证器配置
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Config: String
         # @param Status: 认证器状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: String
         # @param CreateTime: 创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: Integer
         # @param Remark: 说明
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Remark: String
 
         attr_accessor :Type, :Config, :Status, :CreateTime, :Remark
@@ -2374,31 +2460,22 @@ module TencentCloud
       # MQTT客户端信息
       class MQTTClientInfo < TencentCloud::Common::AbstractModel
         # @param ClientId: 客户端唯一标识
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClientId: String
         # @param ClientAddress: 客户端网络地址
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClientAddress: String
         # @param ProtocolVersion: MQTT 协议版本，4 表示 MQTT 3.1.1
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProtocolVersion: Integer
         # @param Keepalive: 保持连接时间，单位：秒
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Keepalive: Integer
         # @param ConnectionStatus: 连接状态，CONNECTED 已连接，DISCONNECTED 未连接
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ConnectionStatus: String
         # @param CreateTime: 客户端创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: Integer
         # @param ConnectTime: 上次建立连接时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ConnectTime: Integer
         # @param DisconnectTime: 上次断开连接时间，仅对持久会话（cleanSession=false）并且客户端当前未连接时有意义
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DisconnectTime: Integer
         # @param MQTTClientSubscriptions: 客户端的订阅列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MQTTClientSubscriptions: Array
 
         attr_accessor :ClientId, :ClientAddress, :ProtocolVersion, :Keepalive, :ConnectionStatus, :CreateTime, :ConnectTime, :DisconnectTime, :MQTTClientSubscriptions
@@ -2466,25 +2543,18 @@ module TencentCloud
       # MQTTEndpoint
       class MQTTEndpointItem < TencentCloud::Common::AbstractModel
         # @param Type: 类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: String
         # @param Url: 接入点
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Url: String
         # @param VpcId: vpc信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VpcId: String
         # @param SubnetId: 子网信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubnetId: String
         # @param Host: 主机
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Host: String
         # @param Port: 端口
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Port: Integer
         # @param Ip: 接入点ip
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Ip: String
 
         attr_accessor :Type, :Url, :VpcId, :SubnetId, :Host, :Port, :Ip
@@ -2539,44 +2609,32 @@ module TencentCloud
         # @param TopicNumLimit: 实例主题数上限
         # @type TopicNumLimit: Integer
         # @param Remark: 备注信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Remark: String
         # @param TopicNum: 主题数量
         # @type TopicNum: Integer
         # @param SkuCode: 商品规格
         # @type SkuCode: String
         # @param TpsLimit: 弹性TPS限流值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TpsLimit: Integer
         # @param CreateTime: 创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: Integer
         # @param MaxSubscriptionPerClient: 单客户端最大订阅数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaxSubscriptionPerClient: Integer
         # @param ClientNumLimit: 客户端连接数上线
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClientNumLimit: Integer
         # @param RenewFlag: 是否自动续费
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RenewFlag: Integer
         # @param PayMode: 计费模式， POSTPAID，按量计费 PREPAID，包年包月
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PayMode: String
         # @param ExpiryTime: 到期时间，秒为单位
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExpiryTime: Integer
         # @param DestroyTime: 预销毁时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DestroyTime: Integer
         # @param AuthorizationPolicyLimit: 授权规则条数限制
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AuthorizationPolicyLimit: Integer
         # @param MaxCaNum: 最大ca配额
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaxCaNum: Integer
         # @param MaxSubscription: 最大订阅数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaxSubscription: Integer
 
         attr_accessor :InstanceId, :InstanceName, :Version, :InstanceType, :InstanceStatus, :TopicNumLimit, :Remark, :TopicNum, :SkuCode, :TpsLimit, :CreateTime, :MaxSubscriptionPerClient, :ClientNumLimit, :RenewFlag, :PayMode, :ExpiryTime, :DestroyTime, :AuthorizationPolicyLimit, :MaxCaNum, :MaxSubscription
@@ -2631,31 +2689,22 @@ module TencentCloud
       # 消息记录
       class MQTTMessageItem < TencentCloud::Common::AbstractModel
         # @param MsgId: 消息ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MsgId: String
         # @param Tags: 消息tag
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: String
         # @param Keys: 消息key
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Keys: String
         # @param ProducerAddr: 客户端地址
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProducerAddr: String
         # @param ProduceTime: 消息发送时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProduceTime: String
         # @param DeadLetterResendTimes: 死信重发次数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeadLetterResendTimes: Integer
         # @param DeadLetterResendSuccessTimes: 死信重发成功次数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeadLetterResendSuccessTimes: Integer
         # @param SubTopic: 子topic
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubTopic: String
         # @param Qos: 消息质量等级
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Qos: String
 
         attr_accessor :MsgId, :Tags, :Keys, :ProducerAddr, :ProduceTime, :DeadLetterResendTimes, :DeadLetterResendSuccessTimes, :SubTopic, :Qos
@@ -2692,7 +2741,6 @@ module TencentCloud
         # @param Topic: 主题名称
         # @type Topic: String
         # @param Remark: 主题描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Remark: String
 
         attr_accessor :InstanceId, :Topic, :Remark
@@ -2812,6 +2860,88 @@ module TencentCloud
 
       # ModifyAuthorizationPolicy返回参数结构体
       class ModifyAuthorizationPolicyResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyHttpAuthenticator请求参数结构体
+      class ModifyHttpAuthenticatorRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param Endpoint: 端点
+        # @type Endpoint: String
+        # @param Status: 认证器状态：open-启用；close-关闭
+        # @type Status: String
+        # @param Concurrency: 最大并发连接数，默认8，范围：1-20
+        # @type Concurrency: Integer
+        # @param ConnectTimeout: 连接超时时间，单位：秒，范围：1-30
+        # @type ConnectTimeout: Integer
+        # @param ReadTimeout: 请求超时时间，单位：秒，范围：1-30
+        # @type ReadTimeout: Integer
+        # @param Remark: 说明
+        # @type Remark: String
+        # @param Method: 请求方法，GET 或者 POST
+        # @type Method: String
+        # @param Header: 请求header
+        # @type Header: Array
+        # @param Body: 请求body
+        # @type Body: Array
+
+        attr_accessor :InstanceId, :Endpoint, :Status, :Concurrency, :ConnectTimeout, :ReadTimeout, :Remark, :Method, :Header, :Body
+
+        def initialize(instanceid=nil, endpoint=nil, status=nil, concurrency=nil, connecttimeout=nil, readtimeout=nil, remark=nil, method=nil, header=nil, body=nil)
+          @InstanceId = instanceid
+          @Endpoint = endpoint
+          @Status = status
+          @Concurrency = concurrency
+          @ConnectTimeout = connecttimeout
+          @ReadTimeout = readtimeout
+          @Remark = remark
+          @Method = method
+          @Header = header
+          @Body = body
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Endpoint = params['Endpoint']
+          @Status = params['Status']
+          @Concurrency = params['Concurrency']
+          @ConnectTimeout = params['ConnectTimeout']
+          @ReadTimeout = params['ReadTimeout']
+          @Remark = params['Remark']
+          @Method = params['Method']
+          unless params['Header'].nil?
+            @Header = []
+            params['Header'].each do |i|
+              headeritem_tmp = HeaderItem.new
+              headeritem_tmp.deserialize(i)
+              @Header << headeritem_tmp
+            end
+          end
+          unless params['Body'].nil?
+            @Body = []
+            params['Body'].each do |i|
+              bodyitem_tmp = BodyItem.new
+              bodyitem_tmp.deserialize(i)
+              @Body << bodyitem_tmp
+            end
+          end
+        end
+      end
+
+      # ModifyHttpAuthenticator返回参数结构体
+      class ModifyHttpAuthenticatorResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -3187,7 +3317,6 @@ module TencentCloud
         # @param Code: 计费项标签
         # @type Code: String
         # @param Step: 步长
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Step: Integer
 
         attr_accessor :Name, :Category, :Code, :Step
@@ -3212,31 +3341,22 @@ module TencentCloud
         # @param InstanceType: 规格类型
         # BASIC：基础版
         # PRO ：专业版
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceType: String
         # @param SkuCode: 规格代码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SkuCode: String
         # @param OnSale: 是否售卖
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OnSale: Boolean
         # @param TopicNumLimit: topic num限制
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TopicNumLimit: Integer
         # @param TpsLimit: tps
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TpsLimit: Integer
         # @param ClientNumLimit: 客户端连接数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClientNumLimit: Integer
         # @param MaxSubscriptionPerClient: 单客户端最大订阅数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaxSubscriptionPerClient: Integer
         # @param AuthorizationPolicyLimit: 授权规则条数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AuthorizationPolicyLimit: Integer
         # @param PriceTags: 计费项信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PriceTags: Array
 
         attr_accessor :InstanceType, :SkuCode, :OnSale, :TopicNumLimit, :TpsLimit, :ClientNumLimit, :MaxSubscriptionPerClient, :AuthorizationPolicyLimit, :PriceTags
@@ -3276,13 +3396,10 @@ module TencentCloud
       # 公网访问安全规则
       class PublicAccessRule < TencentCloud::Common::AbstractModel
         # @param IpRule: ip网段信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IpRule: String
         # @param Allow: 允许或者拒绝
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Allow: Boolean
         # @param Remark: 备注信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Remark: String
 
         attr_accessor :IpRule, :Allow, :Remark
@@ -3499,10 +3616,8 @@ module TencentCloud
       # 标签数据
       class Tag < TencentCloud::Common::AbstractModel
         # @param TagKey: 标签名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TagKey: String
         # @param TagValue: 标签值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TagValue: String
 
         attr_accessor :TagKey, :TagValue

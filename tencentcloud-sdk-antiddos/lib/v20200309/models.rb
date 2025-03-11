@@ -1544,7 +1544,7 @@ module TencentCloud
         # @type Protocol: String
         # @param Domain: 域名
         # @type Domain: String
-        # @param PolicyAction: 策略方式，可取值alg表示验证码，drop表示丢弃
+        # @param PolicyAction: 策略方式，可取值alg表示验证码，drop表示丢弃，trans表示放行
         # @type PolicyAction: String
         # @param PolicyList: 策略记录
         # @type PolicyList: Array

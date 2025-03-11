@@ -424,8 +424,8 @@ module TencentCloud
 
         attr_accessor :Zone, :HaFlag, :UserVPCId, :UserSubnetId, :ProductVersion, :ChargeProperties, :InstanceName, :DataSpec, :Tags, :ClsLogSetId, :CosBucketName, :MountDiskType, :HAZk, :CommonSpec, :TagItems
         extend Gem::Deprecate
-        deprecate :Tags, :none, 2025, 2
-        deprecate :Tags=, :none, 2025, 2
+        deprecate :Tags, :none, 2025, 3
+        deprecate :Tags=, :none, 2025, 3
 
         def initialize(zone=nil, haflag=nil, uservpcid=nil, usersubnetid=nil, productversion=nil, chargeproperties=nil, instancename=nil, dataspec=nil, tags=nil, clslogsetid=nil, cosbucketname=nil, mountdisktype=nil, hazk=nil, commonspec=nil, tagitems=nil)
           @Zone = zone
@@ -1041,7 +1041,7 @@ module TencentCloud
       class DescribeInstanceNodesRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 集群实例ID
         # @type InstanceId: String
-        # @param NodeRole: 集群角色类型，默认为 "data"数据节点
+        # @param NodeRole: 集群角色类型，“DATA” 为数据节点、“COMMON” 为 ZooKeeper 节点，默认为 "DATA" 数据节点。
         # @type NodeRole: String
         # @param Offset: 分页参数，第一页为0，第二页为10
         # @type Offset: Integer

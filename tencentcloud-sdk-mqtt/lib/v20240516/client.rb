@@ -125,6 +125,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建一个HTTP的认证器
+
+        # @param request: Request instance for CreateHttpAuthenticator.
+        # @type request: :class:`Tencentcloud::mqtt::V20240516::CreateHttpAuthenticatorRequest`
+        # @rtype: :class:`Tencentcloud::mqtt::V20240516::CreateHttpAuthenticatorResponse`
+        def CreateHttpAuthenticator(request)
+          body = send_request('CreateHttpAuthenticator', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateHttpAuthenticatorResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 为MQTT实例创建公网接入点
 
         # @param request: Request instance for CreateInsPublicEndpoint.
@@ -937,6 +961,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyAuthorizationPolicyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改MQTT HTTP 认证器
+
+        # @param request: Request instance for ModifyHttpAuthenticator.
+        # @type request: :class:`Tencentcloud::mqtt::V20240516::ModifyHttpAuthenticatorRequest`
+        # @rtype: :class:`Tencentcloud::mqtt::V20240516::ModifyHttpAuthenticatorResponse`
+        def ModifyHttpAuthenticator(request)
+          body = send_request('ModifyHttpAuthenticator', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyHttpAuthenticatorResponse.new
             model.deserialize(response['Response'])
             model
           else

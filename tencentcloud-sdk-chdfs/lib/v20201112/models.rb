@@ -752,22 +752,16 @@ module TencentCloud
         # @param FileSystem: 文件系统
         # @type FileSystem: :class:`Tencentcloud::Chdfs.v20201112.models.FileSystem`
         # @param CapacityUsed: 文件系统已使用容量（byte）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CapacityUsed: Integer
         # @param ArchiveCapacityUsed: 已使用COS归档存储容量（byte）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ArchiveCapacityUsed: Integer
         # @param StandardCapacityUsed: 已使用COS标准存储容量（byte）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StandardCapacityUsed: Integer
         # @param DegradeCapacityUsed: 已使用COS低频存储容量（byte）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DegradeCapacityUsed: Integer
         # @param DeepArchiveCapacityUsed: 已使用COS深度归档存储容量（byte）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeepArchiveCapacityUsed: Integer
         # @param IntelligentCapacityUsed: 已使用COS智能分层存储容量（byte）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IntelligentCapacityUsed: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

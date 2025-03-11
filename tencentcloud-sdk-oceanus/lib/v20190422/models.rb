@@ -1099,10 +1099,12 @@ module TencentCloud
         # @type Tags: Array
         # @param Description: 作业描述
         # @type Description: String
+        # @param OpenJobDefaultAlarm: 开启默认告警
+        # @type OpenJobDefaultAlarm: Integer
 
-        attr_accessor :Name, :JobType, :ClusterType, :ClusterId, :CuMem, :Remark, :FolderId, :FlinkVersion, :WorkSpaceId, :Tags, :Description
+        attr_accessor :Name, :JobType, :ClusterType, :ClusterId, :CuMem, :Remark, :FolderId, :FlinkVersion, :WorkSpaceId, :Tags, :Description, :OpenJobDefaultAlarm
 
-        def initialize(name=nil, jobtype=nil, clustertype=nil, clusterid=nil, cumem=nil, remark=nil, folderid=nil, flinkversion=nil, workspaceid=nil, tags=nil, description=nil)
+        def initialize(name=nil, jobtype=nil, clustertype=nil, clusterid=nil, cumem=nil, remark=nil, folderid=nil, flinkversion=nil, workspaceid=nil, tags=nil, description=nil, openjobdefaultalarm=nil)
           @Name = name
           @JobType = jobtype
           @ClusterType = clustertype
@@ -1114,6 +1116,7 @@ module TencentCloud
           @WorkSpaceId = workspaceid
           @Tags = tags
           @Description = description
+          @OpenJobDefaultAlarm = openjobdefaultalarm
         end
 
         def deserialize(params)
@@ -1135,6 +1138,7 @@ module TencentCloud
             end
           end
           @Description = params['Description']
+          @OpenJobDefaultAlarm = params['OpenJobDefaultAlarm']
         end
       end
 
@@ -3631,10 +3635,16 @@ module TencentCloud
         # @param RunningMem: 使用内存数量
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RunningMem: Float
+        # @param OpenJobDefaultAlarm: 是否开了默认告警
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OpenJobDefaultAlarm: Integer
+        # @param ProgressDesc: 操作中描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProgressDesc: String
 
-        attr_accessor :JobId, :Region, :Zone, :AppId, :OwnerUin, :CreatorUin, :Name, :JobType, :Status, :CreateTime, :StartTime, :StopTime, :UpdateTime, :TotalRunMillis, :Remark, :LastOpResult, :ClusterName, :LatestJobConfigVersion, :PublishedJobConfigVersion, :RunningCuNum, :CuMem, :StatusDesc, :CurrentRunMillis, :ClusterId, :WebUIUrl, :SchedulerType, :ClusterStatus, :RunningCu, :FlinkVersion, :WorkSpaceId, :WorkSpaceName, :Tags, :EventInfo, :Description, :ScalingType, :RunningCpu, :RunningMem
+        attr_accessor :JobId, :Region, :Zone, :AppId, :OwnerUin, :CreatorUin, :Name, :JobType, :Status, :CreateTime, :StartTime, :StopTime, :UpdateTime, :TotalRunMillis, :Remark, :LastOpResult, :ClusterName, :LatestJobConfigVersion, :PublishedJobConfigVersion, :RunningCuNum, :CuMem, :StatusDesc, :CurrentRunMillis, :ClusterId, :WebUIUrl, :SchedulerType, :ClusterStatus, :RunningCu, :FlinkVersion, :WorkSpaceId, :WorkSpaceName, :Tags, :EventInfo, :Description, :ScalingType, :RunningCpu, :RunningMem, :OpenJobDefaultAlarm, :ProgressDesc
 
-        def initialize(jobid=nil, region=nil, zone=nil, appid=nil, owneruin=nil, creatoruin=nil, name=nil, jobtype=nil, status=nil, createtime=nil, starttime=nil, stoptime=nil, updatetime=nil, totalrunmillis=nil, remark=nil, lastopresult=nil, clustername=nil, latestjobconfigversion=nil, publishedjobconfigversion=nil, runningcunum=nil, cumem=nil, statusdesc=nil, currentrunmillis=nil, clusterid=nil, webuiurl=nil, schedulertype=nil, clusterstatus=nil, runningcu=nil, flinkversion=nil, workspaceid=nil, workspacename=nil, tags=nil, eventinfo=nil, description=nil, scalingtype=nil, runningcpu=nil, runningmem=nil)
+        def initialize(jobid=nil, region=nil, zone=nil, appid=nil, owneruin=nil, creatoruin=nil, name=nil, jobtype=nil, status=nil, createtime=nil, starttime=nil, stoptime=nil, updatetime=nil, totalrunmillis=nil, remark=nil, lastopresult=nil, clustername=nil, latestjobconfigversion=nil, publishedjobconfigversion=nil, runningcunum=nil, cumem=nil, statusdesc=nil, currentrunmillis=nil, clusterid=nil, webuiurl=nil, schedulertype=nil, clusterstatus=nil, runningcu=nil, flinkversion=nil, workspaceid=nil, workspacename=nil, tags=nil, eventinfo=nil, description=nil, scalingtype=nil, runningcpu=nil, runningmem=nil, openjobdefaultalarm=nil, progressdesc=nil)
           @JobId = jobid
           @Region = region
           @Zone = zone
@@ -3672,6 +3682,8 @@ module TencentCloud
           @ScalingType = scalingtype
           @RunningCpu = runningcpu
           @RunningMem = runningmem
+          @OpenJobDefaultAlarm = openjobdefaultalarm
+          @ProgressDesc = progressdesc
         end
 
         def deserialize(params)
@@ -3722,6 +3734,8 @@ module TencentCloud
           @ScalingType = params['ScalingType']
           @RunningCpu = params['RunningCpu']
           @RunningMem = params['RunningMem']
+          @OpenJobDefaultAlarm = params['OpenJobDefaultAlarm']
+          @ProgressDesc = params['ProgressDesc']
         end
       end
 
@@ -5208,13 +5222,18 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScalingType: Integer
         # @param RunningCpu: RunningCpu
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RunningCpu: Float
         # @param RunningMem: RunningMem
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RunningMem: Float
+        # @param DecodeSqlCode: sql
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DecodeSqlCode: String
 
-        attr_accessor :JobId, :Name, :JobType, :RunningCu, :Status, :ScalingType, :RunningCpu, :RunningMem
+        attr_accessor :JobId, :Name, :JobType, :RunningCu, :Status, :ScalingType, :RunningCpu, :RunningMem, :DecodeSqlCode
 
-        def initialize(jobid=nil, name=nil, jobtype=nil, runningcu=nil, status=nil, scalingtype=nil, runningcpu=nil, runningmem=nil)
+        def initialize(jobid=nil, name=nil, jobtype=nil, runningcu=nil, status=nil, scalingtype=nil, runningcpu=nil, runningmem=nil, decodesqlcode=nil)
           @JobId = jobid
           @Name = name
           @JobType = jobtype
@@ -5223,6 +5242,7 @@ module TencentCloud
           @ScalingType = scalingtype
           @RunningCpu = runningcpu
           @RunningMem = runningmem
+          @DecodeSqlCode = decodesqlcode
         end
 
         def deserialize(params)
@@ -5234,6 +5254,7 @@ module TencentCloud
           @ScalingType = params['ScalingType']
           @RunningCpu = params['RunningCpu']
           @RunningMem = params['RunningMem']
+          @DecodeSqlCode = params['DecodeSqlCode']
         end
       end
 
