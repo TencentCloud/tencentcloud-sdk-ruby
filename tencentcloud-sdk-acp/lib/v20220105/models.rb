@@ -415,10 +415,8 @@ module TencentCloud
         # @param UploadUrl: 上传url(任务来源为2时:Post方法（100:apk,101:txt）, 任务来源为1时:put方法)
         # @type UploadUrl: String
         # @param UploadSign: 上传url鉴权信息(任务来源为1时上传需要, Authorization参数值)
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UploadSign: String
         # @param FildID: 上传文件ID(任务来源为1时提交诊断任务需要)
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FildID: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -552,7 +550,6 @@ module TencentCloud
         # @param Total: 任务总数量
         # @type Total: Integer
         # @param Data: 诊断任务数据列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -680,10 +677,8 @@ module TencentCloud
         # @param Status: 0:默认值(待检测/待咨询), 1.检测中,  4:任务完成/咨询完成, 5:任务失败, 6:咨询中;
         # @type Status: Integer
         # @param ErrMsg: 诊断失败的错误信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrMsg: String
         # @param FlowSteps: 任务流详情
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FlowSteps: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

@@ -463,15 +463,18 @@ module TencentCloud
         # @type CertConfig: :class:`Tencentcloud::Scf.v20180416.models.CertConf`
         # @param WafConfig: web 应用防火墙配置
         # @type WafConfig: :class:`Tencentcloud::Scf.v20180416.models.WafConf`
+        # @param Tags: 标签
+        # @type Tags: Array
 
-        attr_accessor :Domain, :Protocol, :EndpointsConfig, :CertConfig, :WafConfig
+        attr_accessor :Domain, :Protocol, :EndpointsConfig, :CertConfig, :WafConfig, :Tags
 
-        def initialize(domain=nil, protocol=nil, endpointsconfig=nil, certconfig=nil, wafconfig=nil)
+        def initialize(domain=nil, protocol=nil, endpointsconfig=nil, certconfig=nil, wafconfig=nil, tags=nil)
           @Domain = domain
           @Protocol = protocol
           @EndpointsConfig = endpointsconfig
           @CertConfig = certconfig
           @WafConfig = wafconfig
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -492,6 +495,14 @@ module TencentCloud
           unless params['WafConfig'].nil?
             @WafConfig = WafConf.new
             @WafConfig.deserialize(params['WafConfig'])
+          end
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
           end
         end
       end
@@ -1227,15 +1238,18 @@ module TencentCloud
         # @type CertConfig: :class:`Tencentcloud::Scf.v20180416.models.CertConf`
         # @param WafConfig: web 应用防火墙配置
         # @type WafConfig: :class:`Tencentcloud::Scf.v20180416.models.WafConf`
+        # @param Tags: 标签
+        # @type Tags: Array
 
-        attr_accessor :Domain, :Protocol, :EndpointsConfig, :CertConfig, :WafConfig
+        attr_accessor :Domain, :Protocol, :EndpointsConfig, :CertConfig, :WafConfig, :Tags
 
-        def initialize(domain=nil, protocol=nil, endpointsconfig=nil, certconfig=nil, wafconfig=nil)
+        def initialize(domain=nil, protocol=nil, endpointsconfig=nil, certconfig=nil, wafconfig=nil, tags=nil)
           @Domain = domain
           @Protocol = protocol
           @EndpointsConfig = endpointsconfig
           @CertConfig = certconfig
           @WafConfig = wafconfig
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -1256,6 +1270,14 @@ module TencentCloud
           unless params['WafConfig'].nil?
             @WafConfig = WafConf.new
             @WafConfig.deserialize(params['WafConfig'])
+          end
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
           end
         end
       end
@@ -1528,10 +1550,10 @@ module TencentCloud
 
         attr_accessor :FunctionName, :RetMsg, :RequestId, :StartTime, :RetCode, :InvokeFinished, :Duration, :BillDuration, :MemUsage, :Log, :Level, :Source, :RetryNum
         extend Gem::Deprecate
-        deprecate :Level, :none, 2025, 2
-        deprecate :Level=, :none, 2025, 2
-        deprecate :Source, :none, 2025, 2
-        deprecate :Source=, :none, 2025, 2
+        deprecate :Level, :none, 2025, 3
+        deprecate :Level=, :none, 2025, 3
+        deprecate :Source, :none, 2025, 3
+        deprecate :Source=, :none, 2025, 3
 
         def initialize(functionname=nil, retmsg=nil, requestid=nil, starttime=nil, retcode=nil, invokefinished=nil, duration=nil, billduration=nil, memusage=nil, log=nil, level=nil, source=nil, retrynum=nil)
           @FunctionName = functionname
@@ -1777,17 +1799,20 @@ module TencentCloud
         # @type CertConfig: :class:`Tencentcloud::Scf.v20180416.models.CertConf`
         # @param WafConfig: web 应用防火墙配置
         # @type WafConfig: :class:`Tencentcloud::Scf.v20180416.models.WafConf`
+        # @param Tags: 标签
+        # @type Tags: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Domain, :Protocol, :EndpointsConfig, :CertConfig, :WafConfig, :RequestId
+        attr_accessor :Domain, :Protocol, :EndpointsConfig, :CertConfig, :WafConfig, :Tags, :RequestId
 
-        def initialize(domain=nil, protocol=nil, endpointsconfig=nil, certconfig=nil, wafconfig=nil, requestid=nil)
+        def initialize(domain=nil, protocol=nil, endpointsconfig=nil, certconfig=nil, wafconfig=nil, tags=nil, requestid=nil)
           @Domain = domain
           @Protocol = protocol
           @EndpointsConfig = endpointsconfig
           @CertConfig = certconfig
           @WafConfig = wafconfig
+          @Tags = tags
           @RequestId = requestid
         end
 
@@ -1809,6 +1834,14 @@ module TencentCloud
           unless params['WafConfig'].nil?
             @WafConfig = WafConf.new
             @WafConfig.deserialize(params['WafConfig'])
+          end
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
           end
           @RequestId = params['RequestId']
         end
@@ -4527,12 +4560,12 @@ module TencentCloud
 
         attr_accessor :ModTime, :Type, :TriggerDesc, :TriggerName, :AddTime, :Enable, :CustomArgument, :AvailableStatus, :ResourceId, :BindStatus, :TriggerAttribute, :Qualifier, :Description
         extend Gem::Deprecate
-        deprecate :ResourceId, :none, 2025, 2
-        deprecate :ResourceId=, :none, 2025, 2
-        deprecate :BindStatus, :none, 2025, 2
-        deprecate :BindStatus=, :none, 2025, 2
-        deprecate :TriggerAttribute, :none, 2025, 2
-        deprecate :TriggerAttribute=, :none, 2025, 2
+        deprecate :ResourceId, :none, 2025, 3
+        deprecate :ResourceId=, :none, 2025, 3
+        deprecate :BindStatus, :none, 2025, 3
+        deprecate :BindStatus=, :none, 2025, 3
+        deprecate :TriggerAttribute, :none, 2025, 3
+        deprecate :TriggerAttribute=, :none, 2025, 3
 
         def initialize(modtime=nil, type=nil, triggerdesc=nil, triggername=nil, addtime=nil, enable=nil, customargument=nil, availablestatus=nil, resourceid=nil, bindstatus=nil, triggerattribute=nil, qualifier=nil, description=nil)
           @ModTime = modtime
@@ -4686,17 +4719,19 @@ module TencentCloud
         # @param Description: 客户自定义触发器描述
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
+        # @param BoundResources: 与此触发器关联的资源。目前仅函数URL关联的自定义域名会返回
+        # @type BoundResources: String
 
-        attr_accessor :Enable, :Qualifier, :TriggerName, :Type, :TriggerDesc, :AvailableStatus, :CustomArgument, :AddTime, :ModTime, :ResourceId, :BindStatus, :TriggerAttribute, :Description
+        attr_accessor :Enable, :Qualifier, :TriggerName, :Type, :TriggerDesc, :AvailableStatus, :CustomArgument, :AddTime, :ModTime, :ResourceId, :BindStatus, :TriggerAttribute, :Description, :BoundResources
         extend Gem::Deprecate
-        deprecate :ResourceId, :none, 2025, 2
-        deprecate :ResourceId=, :none, 2025, 2
-        deprecate :BindStatus, :none, 2025, 2
-        deprecate :BindStatus=, :none, 2025, 2
-        deprecate :TriggerAttribute, :none, 2025, 2
-        deprecate :TriggerAttribute=, :none, 2025, 2
+        deprecate :ResourceId, :none, 2025, 3
+        deprecate :ResourceId=, :none, 2025, 3
+        deprecate :BindStatus, :none, 2025, 3
+        deprecate :BindStatus=, :none, 2025, 3
+        deprecate :TriggerAttribute, :none, 2025, 3
+        deprecate :TriggerAttribute=, :none, 2025, 3
 
-        def initialize(enable=nil, qualifier=nil, triggername=nil, type=nil, triggerdesc=nil, availablestatus=nil, customargument=nil, addtime=nil, modtime=nil, resourceid=nil, bindstatus=nil, triggerattribute=nil, description=nil)
+        def initialize(enable=nil, qualifier=nil, triggername=nil, type=nil, triggerdesc=nil, availablestatus=nil, customargument=nil, addtime=nil, modtime=nil, resourceid=nil, bindstatus=nil, triggerattribute=nil, description=nil, boundresources=nil)
           @Enable = enable
           @Qualifier = qualifier
           @TriggerName = triggername
@@ -4710,6 +4745,7 @@ module TencentCloud
           @BindStatus = bindstatus
           @TriggerAttribute = triggerattribute
           @Description = description
+          @BoundResources = boundresources
         end
 
         def deserialize(params)
@@ -4726,6 +4762,7 @@ module TencentCloud
           @BindStatus = params['BindStatus']
           @TriggerAttribute = params['TriggerAttribute']
           @Description = params['Description']
+          @BoundResources = params['BoundResources']
         end
       end
 

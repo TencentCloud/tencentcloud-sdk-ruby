@@ -407,7 +407,6 @@ module TencentCloud
       # 删除文档出参
       class DeleteKnowledgeDocumentSetRsp < TencentCloud::Common::AbstractModel
         # @param AffectedCount: 删除文档数量。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AffectedCount: Integer
 
         attr_accessor :AffectedCount
@@ -621,10 +620,8 @@ module TencentCloud
       # 上传知识库文档返回结果
       class DescribeKnowledgeDocumentSetDetailRsp < TencentCloud::Common::AbstractModel
         # @param Count: 获取的数量。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Count: Integer
         # @param DocumentSet: 文档信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DocumentSet: :class:`Tencentcloud::Lowcode.v20210108.models.KnowledgeDocumentSet`
 
         attr_accessor :Count, :DocumentSet
@@ -696,10 +693,8 @@ module TencentCloud
       # 删除文档出参
       class DescribeKnowledgeDocumentSetListRsp < TencentCloud::Common::AbstractModel
         # @param DocumentSets: 文件集
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DocumentSets: Array
         # @param Count: 条数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Count: Integer
 
         attr_accessor :DocumentSets, :Count
@@ -809,34 +804,24 @@ module TencentCloud
       # 文档信息
       class KnowledgeDocumentSet < TencentCloud::Common::AbstractModel
         # @param DocumentSetId: 文档id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DocumentSetId: String
         # @param DocumentSetName: 文档名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DocumentSetName: String
         # @param Text: 文件完整内容。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Text: String
         # @param TextPrefix: 文件内容前 200个字符。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TextPrefix: String
         # @param DocumentSetInfo: 文件详情
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DocumentSetInfo: :class:`Tencentcloud::Lowcode.v20210108.models.KnowledgeDocumentSetInfo`
         # @param SplitterPreprocess: 文件拆分信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SplitterPreprocess: :class:`Tencentcloud::Lowcode.v20210108.models.KnowledgeSplitterPreprocess`
         # @param Name: 未使用
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param FileTitle: 文档标题
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FileTitle: String
         # @param FileMetaData: 文档元信息，必须为jsonstring
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FileMetaData: String
         # @param Author: 作者
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Author: String
 
         attr_accessor :DocumentSetId, :DocumentSetName, :Text, :TextPrefix, :DocumentSetInfo, :SplitterPreprocess, :Name, :FileTitle, :FileMetaData, :Author
@@ -877,30 +862,22 @@ module TencentCloud
       # 文档信息
       class KnowledgeDocumentSetInfo < TencentCloud::Common::AbstractModel
         # @param TextLength: 文件的字符数。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TextLength: Integer
         # @param ByteLength: 文件的字节数。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ByteLength: Integer
         # @param IndexedProgress: 文件被预处理、Embedding 向量化的进度。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IndexedProgress: Integer
         # @param IndexedStatus: 文件预处理、Embedding 向量化的状态。
         # New：等待解析。
         # Loading：文件解析中。
         # Failure：文件解析、写入出错。
         # Ready：文件解析、写入完成。
-
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IndexedStatus: String
         # @param CreateTime: 文件创建时间。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
         # @param LastUpdateTime: 文件最后更新时间。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LastUpdateTime: String
         # @param Keywords: 文件关键字。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Keywords: String
 
         attr_accessor :TextLength, :ByteLength, :IndexedProgress, :IndexedStatus, :CreateTime, :LastUpdateTime, :Keywords
@@ -929,24 +906,18 @@ module TencentCloud
       # 知识库信息
       class KnowledgeSet < TencentCloud::Common::AbstractModel
         # @param Name: 知识库标识
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Title: 知识库名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Title: String
         # @param Desc: 描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Desc: String
         # @param Active: 状态，
         # NOT_ENABLED未启用
         # ENABLED 已启用
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Active: String
         # @param CreateTime: 创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
         # @param UpdateTime: 更新时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: String
         # @param Meta: 知识库的meta信息
         # @type Meta: String
@@ -977,10 +948,8 @@ module TencentCloud
       # 查询知识库列表返回
       class KnowledgeSetRsp < TencentCloud::Common::AbstractModel
         # @param Total: 总数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Total: Integer
         # @param KnowledgeSets: 知识库列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type KnowledgeSets: Array
 
         attr_accessor :Total, :KnowledgeSets
@@ -1008,14 +977,10 @@ module TencentCloud
         # @param AppendTitleToChunk: 在对文件拆分时，配置是否将 Title 追加到切分后的段落后面一并 Embedding。取值如下所示：
         # false：不追加。
         # true：将段落 Title 追加到切分后的段落。
-
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AppendTitleToChunk: Boolean
         # @param AppendKeywordsToChunk: 在对文件拆分时，配置是否将关键字 keywords 追加到切分后的段落一并 Embedding。取值如下所示：
         # false：不追加。
         # true：将全文的 keywords 追加到切分后的段落。
-
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AppendKeywordsToChunk: Boolean
 
         attr_accessor :AppendTitleToChunk, :AppendKeywordsToChunk
@@ -1073,31 +1038,22 @@ module TencentCloud
       # 搜索数据的集合
       class QureyKnowledgeDocumentSet < TencentCloud::Common::AbstractModel
         # @param DocumentSetId: 文件id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DocumentSetId: String
         # @param DocumentSetName: 文件名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DocumentSetName: String
         # @param TextPrefix: 文件内容前 200个字符。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TextPrefix: String
         # @param SplitterPreprocess: 文件拆分信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SplitterPreprocess: :class:`Tencentcloud::Lowcode.v20210108.models.KnowledgeSplitterPreprocess`
         # @param DocumentSetInfo: 文件详情
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DocumentSetInfo: :class:`Tencentcloud::Lowcode.v20210108.models.QureyKnowledgeDocumentSetInfo`
         # @param FileTitle: 文件标题
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FileTitle: String
         # @param FileMetaData: 文件元信息，必须为jsonstring
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FileMetaData: String
         # @param Name: name
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Author: 作者
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Author: String
 
         attr_accessor :DocumentSetId, :DocumentSetName, :TextPrefix, :SplitterPreprocess, :DocumentSetInfo, :FileTitle, :FileMetaData, :Name, :Author
@@ -1136,33 +1092,24 @@ module TencentCloud
       # 查询文件集合信息详情
       class QureyKnowledgeDocumentSetInfo < TencentCloud::Common::AbstractModel
         # @param TextLength: 文件的字符数。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TextLength: Integer
         # @param ByteLength: 文件的字节数。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ByteLength: Integer
         # @param IndexedProgress: 文件被预处理、Embedding 向量化的进度。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IndexedProgress: Integer
         # @param IndexedStatus: 文件预处理、Embedding 向量化的状态。
         # New：等待解析。
         # Loading：文件解析中。
         # Failure：文件解析、写入出错。
         # Ready：文件解析、写入完成。
-
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IndexedStatus: String
         # @param IndexedErrorMsg: 错误信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IndexedErrorMsg: String
         # @param CreateTime: 文件创建时间。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
         # @param LastUpdateTime: 文件最后更新时间。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LastUpdateTime: String
         # @param Keywords: 文件关键字。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Keywords: String
 
         attr_accessor :TextLength, :ByteLength, :IndexedProgress, :IndexedStatus, :IndexedErrorMsg, :CreateTime, :LastUpdateTime, :Keywords
@@ -1486,16 +1433,12 @@ module TencentCloud
       # 上传知识库文档返回结果
       class UploadKnowledgeDocumentSetRsp < TencentCloud::Common::AbstractModel
         # @param DocumentSetId: 给文件分配的 ID 信息。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DocumentSetId: String
         # @param DocumentSetName: 文件名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DocumentSetName: String
         # @param FileTitle: 文件标题
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FileTitle: String
         # @param FileMetaData: 文件元信息，为jsonstring
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FileMetaData: String
 
         attr_accessor :DocumentSetId, :DocumentSetName, :FileTitle, :FileMetaData

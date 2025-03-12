@@ -4116,6 +4116,7 @@ module TencentCloud
         # @param AccessPoint: 日志接入点，用户忽略。
         # @type AccessPoint: String
         # @param Kafka: kafka旁路配置信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Kafka: :class:`Tencentcloud::Rum.v20210622.models.Kafka`
 
         attr_accessor :Name, :Creator, :InstanceID, :Type, :CreateTime, :Repo, :URL, :Rate, :Key, :EnableURLGroup, :InstanceName, :ID, :InstanceKey, :Desc, :IsStar, :ProjectStatus, :AccessPoint, :Kafka

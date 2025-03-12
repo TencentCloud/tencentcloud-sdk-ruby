@@ -128,7 +128,6 @@ module TencentCloud
       # DescribeInstanceNodes返回参数结构体
       class DescribeInstanceNodesResponse < TencentCloud::Common::AbstractModel
         # @param Items: 实例pod列表。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Items: Array
         # @param TotalCount: 查询结果总数量。
         # @type TotalCount: Integer
@@ -189,6 +188,11 @@ module TencentCloud
         # @type ResourceTags: Array
 
         attr_accessor :InstanceIds, :InstanceNames, :InstanceKeys, :Status, :EngineNames, :EngineVersions, :ApiVersions, :CreateAt, :Zones, :OrderBy, :OrderDirection, :Offset, :Limit, :ResourceTags
+        extend Gem::Deprecate
+        deprecate :EngineNames, :none, 2025, 3
+        deprecate :EngineNames=, :none, 2025, 3
+        deprecate :Zones, :none, 2025, 3
+        deprecate :Zones=, :none, 2025, 3
 
         def initialize(instanceids=nil, instancenames=nil, instancekeys=nil, status=nil, enginenames=nil, engineversions=nil, apiversions=nil, createat=nil, zones=nil, orderby=nil, orderdirection=nil, offset=nil, limit=nil, resourcetags=nil)
           @InstanceIds = instanceids
@@ -235,7 +239,6 @@ module TencentCloud
       # DescribeInstances返回参数结构体
       class DescribeInstancesResponse < TencentCloud::Common::AbstractModel
         # @param Items: 实例列表。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Items: Array
         # @param TotalCount: 实例总数。
         # @type TotalCount: Integer
@@ -347,40 +350,28 @@ module TencentCloud
       # 实例信息，用于实例列表
       class InstanceInfo < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceId: String
         # @param Name: 实例自定义名称。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param AppId: 用户APPID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AppId: Integer
         # @param Region: 地域。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Region: String
         # @param Zone: 可用区。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Zone: String
         # @param Product: 产品。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Product: String
         # @param Networks: 网络信息。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Networks: Array
         # @param ShardNum: 分片信息。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ShardNum: Integer
         # @param ReplicaNum: 副本数。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReplicaNum: Integer
         # @param Cpu: CPU.
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Cpu: Float
         # @param Memory: 内存。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Memory: Float
         # @param Disk: 磁盘。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Disk: Integer
         # @param HealthScore: 健康得分。
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -392,43 +383,30 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Project: String
         # @param ResourceTags: 所属标签。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceTags: Array
         # @param CreatedAt: 创建时间。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreatedAt: String
         # @param Status: 资源状态。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: String
         # @param EngineName: 引擎名称。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EngineName: String
         # @param EngineVersion: 引擎版本。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EngineVersion: String
         # @param ApiVersion: api版本
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApiVersion: String
         # @param PayMode: 计费模式。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PayMode: Integer
         # @param Extend: 差异化扩展信息, json格式。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Extend: String
         # @param ExpiredAt: 过期时间。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExpiredAt: String
         # @param IsNoExpired: 是否不过期(永久)。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsNoExpired: Boolean
         # @param WanAddress: 外网地址。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WanAddress: String
         # @param IsolateAt: 隔离时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsolateAt: String
         # @param AutoRenew: 是否自动续费。0: 不自动续费(可以支持特权不停服)；1:自动续费；2:到期不续费.
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AutoRenew: Integer
 
         attr_accessor :InstanceId, :Name, :AppId, :Region, :Zone, :Product, :Networks, :ShardNum, :ReplicaNum, :Cpu, :Memory, :Disk, :HealthScore, :Warning, :Project, :ResourceTags, :CreatedAt, :Status, :EngineName, :EngineVersion, :ApiVersion, :PayMode, :Extend, :ExpiredAt, :IsNoExpired, :WanAddress, :IsolateAt, :AutoRenew
@@ -589,10 +567,9 @@ module TencentCloud
         end
       end
 
-      # 实例pod信息，仅包含 pod 名称
+      # 实例pod信息， pod 名称
       class NodeInfo < TencentCloud::Common::AbstractModel
         # @param Name: Pod名称。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
 
         attr_accessor :Name

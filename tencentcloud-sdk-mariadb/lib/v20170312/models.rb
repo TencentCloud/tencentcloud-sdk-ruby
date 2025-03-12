@@ -1898,14 +1898,17 @@ module TencentCloud
         # @type Files: Array
         # @param TotalCount: 总条目数
         # @type TotalCount: Integer
+        # @param UrlPrefix: 文件下载链接路径前缀
+        # @type UrlPrefix: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Files, :TotalCount, :RequestId
+        attr_accessor :Files, :TotalCount, :UrlPrefix, :RequestId
 
-        def initialize(files=nil, totalcount=nil, requestid=nil)
+        def initialize(files=nil, totalcount=nil, urlprefix=nil, requestid=nil)
           @Files = files
           @TotalCount = totalcount
+          @UrlPrefix = urlprefix
           @RequestId = requestid
         end
 
@@ -1919,6 +1922,7 @@ module TencentCloud
             end
           end
           @TotalCount = params['TotalCount']
+          @UrlPrefix = params['UrlPrefix']
           @RequestId = params['RequestId']
         end
       end

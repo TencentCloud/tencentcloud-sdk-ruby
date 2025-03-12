@@ -192,15 +192,12 @@ module TencentCloud
       # 付费信息详情
       class ChargeAttribute < TencentCloud::Common::AbstractModel
         # @param CurDeadline: 到期时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CurDeadline: String
         # @param PayMode: 付费方式
         # @type PayMode: String
         # @param AutoRenewFlag: 自动付费标识：0:默认未设置 1:自动续费 2 不自动续费
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AutoRenewFlag: Integer
         # @param ResourceId: 资源ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceId: String
 
         attr_accessor :CurDeadline, :PayMode, :AutoRenewFlag, :ResourceId
@@ -259,7 +256,6 @@ module TencentCloud
         # @param InstanceId: cvmId
         # @type InstanceId: String
         # @param MountPoint: 自定义挂载点
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MountPoint: String
 
         attr_accessor :ClientNodeIp, :Status, :ClientType, :VpcId, :SubnetId, :InstanceId, :MountPoint
@@ -1154,21 +1150,16 @@ module TencentCloud
         # 立即沉降(ImmediateExport)
         # @type DataRepositoryTaskAutoStrategy: Array
         # @param RuleId: 绑定bucket的数据流动策略ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleId: String
         # @param RuleDescription: 规则备注与描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleDescription: String
         # @param Status: 桶关联状态 0：关联中 1：关联完成
         # @type Status: Integer
         # @param AccelerateFlag: 是否使用全球加速域名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AccelerateFlag: Boolean
         # @param BucketRegion: 桶所在的园区
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BucketRegion: String
         # @param Endpoint: 自定义Endpoint
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Endpoint: String
 
         attr_accessor :BucketName, :FileSystemPath, :DataRepositoryTaskAutoStrategy, :RuleId, :RuleDescription, :Status, :AccelerateFlag, :BucketRegion, :Endpoint
@@ -1345,10 +1336,8 @@ module TencentCloud
       # vpc子网信息
       class SubnetInfo < TencentCloud::Common::AbstractModel
         # @param VpcId: vpc id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VpcId: String
         # @param SubnetId: 子网ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubnetId: String
 
         attr_accessor :VpcId, :SubnetId

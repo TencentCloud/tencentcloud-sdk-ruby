@@ -32,16 +32,25 @@ module TencentCloud
         # 图片大小：不超过10M；
         # 图片宽高比：【宽：高】数值在 1:2 到 1:1.2 范围内
         # @type ImageBase64: String
-        # @param EnableBodyJoins: 是否检测输入图人体12个身体部位（头部、颈部、右肩、右肘、右腕、左肩、左肘、左腕、右髋、左髋,、左膝、右膝）。默认不检测。
+        # @param EnableBodyJoins: 是否对输入图采用加强检测方案。
+
+        # 默认不加强检测（false），仅对输入图做必要的基础检测。
+
+        # 开启加强检测（true）有助于提升效果稳定性，将根据选择的动作模板提取建议的人体关键点，并判断输入图中是否包含这些人体关键点。加强检测仅对人像输入图生效，对非人输入图不生效。
         # @type EnableBodyJoins: Boolean
+        # @param EnableFace: 是否开启人脸检测。
 
-        attr_accessor :TemplateId, :ImageUrl, :ImageBase64, :EnableBodyJoins
+        # 默认开启人脸检测（true），拦截主体为人像但无人脸、人脸不完整或被遮挡的输入图。可选关闭人脸检测（false）。
+        # @type EnableFace: Boolean
 
-        def initialize(templateid=nil, imageurl=nil, imagebase64=nil, enablebodyjoins=nil)
+        attr_accessor :TemplateId, :ImageUrl, :ImageBase64, :EnableBodyJoins, :EnableFace
+
+        def initialize(templateid=nil, imageurl=nil, imagebase64=nil, enablebodyjoins=nil, enableface=nil)
           @TemplateId = templateid
           @ImageUrl = imageurl
           @ImageBase64 = imagebase64
           @EnableBodyJoins = enablebodyjoins
+          @EnableFace = enableface
         end
 
         def deserialize(params)
@@ -49,6 +58,7 @@ module TencentCloud
           @ImageUrl = params['ImageUrl']
           @ImageBase64 = params['ImageBase64']
           @EnableBodyJoins = params['EnableBodyJoins']
+          @EnableFace = params['EnableFace']
         end
       end
 
@@ -314,7 +324,11 @@ module TencentCloud
         # @type TemplateId: String
         # @param EnableAudio: 结果视频是否保留模板音频。默认为true
         # @type EnableAudio: Boolean
-        # @param EnableBodyJoins: 是否检测输入图人体12个身体部位（头部、颈部、右肩、右肘、右腕、左肩、左肘、左腕、右髋、左髋,、左膝、右膝）。默认不检测。
+        # @param EnableBodyJoins: 是否对输入图采用加强检测方案。
+
+        # 默认不加强检测（false），仅对输入图做必要的基础检测。
+
+        # 开启加强检测（true）有助于提升效果稳定性，将根据选择的动作模板提取建议的人体关键点，并判断输入图中是否包含这些人体关键点。加强检测仅对人像输入图生效，对非人输入图不生效。
         # @type EnableBodyJoins: Boolean
         # @param EnableSegment: 是否对结果视频背景进行分割，默认值为false。
         # true：分割结果视频，结果视频（ResultVideoUrl）将为去除背景的绿幕视频，并返回掩码视频（MaskVideoUrl）；
@@ -329,10 +343,14 @@ module TencentCloud
         # @param LogoParam: 标识内容设置。
         # 默认在生成视频的右下角添加“视频由 AI 生成”字样，您可根据自身需要替换为其他的标识图片。
         # @type LogoParam: :class:`Tencentcloud::Vclm.v20240523.models.LogoParam`
+        # @param EnableFace: 是否开启人脸检测。
 
-        attr_accessor :ImageUrl, :ImageBase64, :TemplateId, :EnableAudio, :EnableBodyJoins, :EnableSegment, :LogoAdd, :LogoParam
+        # 默认开启人脸检测（true），拦截主体为人像但无人脸、人脸不完整或被遮挡的输入图。可选关闭人脸检测（false）。
+        # @type EnableFace: Boolean
 
-        def initialize(imageurl=nil, imagebase64=nil, templateid=nil, enableaudio=nil, enablebodyjoins=nil, enablesegment=nil, logoadd=nil, logoparam=nil)
+        attr_accessor :ImageUrl, :ImageBase64, :TemplateId, :EnableAudio, :EnableBodyJoins, :EnableSegment, :LogoAdd, :LogoParam, :EnableFace
+
+        def initialize(imageurl=nil, imagebase64=nil, templateid=nil, enableaudio=nil, enablebodyjoins=nil, enablesegment=nil, logoadd=nil, logoparam=nil, enableface=nil)
           @ImageUrl = imageurl
           @ImageBase64 = imagebase64
           @TemplateId = templateid
@@ -341,6 +359,7 @@ module TencentCloud
           @EnableSegment = enablesegment
           @LogoAdd = logoadd
           @LogoParam = logoparam
+          @EnableFace = enableface
         end
 
         def deserialize(params)
@@ -355,6 +374,7 @@ module TencentCloud
             @LogoParam = LogoParam.new
             @LogoParam.deserialize(params['LogoParam'])
           end
+          @EnableFace = params['EnableFace']
         end
       end
 

@@ -8498,7 +8498,7 @@ module TencentCloud
 
       # UpgradeInstance请求参数结构体
       class UpgradeInstanceRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 待变更实例 ID。
+        # @param InstanceId: 待变更实例 ID。请登录[Redis控制台](https://console.cloud.tencent.com/redis/instance/list)在实例列表复制实例 ID。
         # @type InstanceId: String
         # @param MemSize: 指实例每个分片内存变更后的大小。<ul><li>单位 MB。</li><li>每次只能修改参数MemSize、RedisShardNum和RedisReplicasNum其中的一个，不能同时修改。且修改其中一个参数时，其他两个参数需输入实例原有的配置规格。</li><li>缩容时，缩容后的规格务必要大于等于使用容量的1.3倍，否则将执行失败。</li></ul>
         # @type MemSize: Integer
@@ -8508,15 +8508,20 @@ module TencentCloud
         # @type RedisReplicasNum: Integer
         # @param NodeSet: 多AZ实例，增加副本时的节点信息，包括副本的 ID 编号及可用区信息。非多AZ实例不需要配置该参数。
         # @type NodeSet: Array
+        # @param SwitchOption: 切换时间。
+        # - 1：维护时间窗操作：在设置的维护时间窗内执行操作。请通过接口[DescribeMaintenanceWindow](https://cloud.tencent.com/document/product/239/46336)查询设置的维护时间窗时间段。缩副本、扩缩分片、扩内存均支持在维护时间窗执行操作。
+        # - 2：立即操作：默认切换时刻。操作将立即执行，无需等待维护时间窗。
+        # @type SwitchOption: Integer
 
-        attr_accessor :InstanceId, :MemSize, :RedisShardNum, :RedisReplicasNum, :NodeSet
+        attr_accessor :InstanceId, :MemSize, :RedisShardNum, :RedisReplicasNum, :NodeSet, :SwitchOption
 
-        def initialize(instanceid=nil, memsize=nil, redisshardnum=nil, redisreplicasnum=nil, nodeset=nil)
+        def initialize(instanceid=nil, memsize=nil, redisshardnum=nil, redisreplicasnum=nil, nodeset=nil, switchoption=nil)
           @InstanceId = instanceid
           @MemSize = memsize
           @RedisShardNum = redisshardnum
           @RedisReplicasNum = redisreplicasnum
           @NodeSet = nodeset
+          @SwitchOption = switchoption
         end
 
         def deserialize(params)
@@ -8532,6 +8537,7 @@ module TencentCloud
               @NodeSet << redisnodeinfo_tmp
             end
           end
+          @SwitchOption = params['SwitchOption']
         end
       end
 

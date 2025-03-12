@@ -8998,13 +8998,13 @@ module TencentCloud
         # @type FileType: String
         # @param CosUrl: 平台cos路径，与DescribeStorageCredential接口查询UploadPath参数保持一致
         # @type CosUrl: String
-        # @param ETag: ETag 全称为 Entity Tag，是对象被创建时标识对象内容的信息标签，可用于检查对象的内容是否发生变化
+        # @param ETag: ETag 全称为 Entity Tag，是对象被创建时标识对象内容的信息标签，可用于检查对象的内容是否发生变化 成功上传cos后，从返回头中获取
         # @type ETag: String
-        # @param CosHash: cos_hash x-cos-hash-crc64ecma 头部中的 CRC64编码进行校验上传到云端的文件和本地文件的一致性
+        # @param CosHash: cos_hash x-cos-hash-crc64ecma 头部中的 CRC64编码进行校验上传到云端的文件和本地文件的一致性  <br> 成功上传cos后，从返回头中获取
         # @type CosHash: String
         # @param Size: 文件大小
         # @type Size: String
-        # @param AttrRange: 标签适用范围 1：全部，2：按条件范围
+        # @param AttrRange: 标签适用范围，默认填0即可
         # @type AttrRange: Integer
         # @param Source: 来源(0 源文件导入 1 网页导入)
         # @type Source: Integer
@@ -9021,7 +9021,7 @@ module TencentCloud
         # @type ExpireEnd: String
         # @param IsRefer: 是否引用链接
         # @type IsRefer: Boolean
-        # @param Opt: 文档操作类型：1：批量导入（批量导入问答对）；2:文档导入（正常导入单个文档）
+        # @param Opt: 文档操作类型：1：批量导入（批量导入问答对）；2:文档导入（正常导入单个文档） 默认为1  <br> 请注意，opt=1的时候请从知识引擎页面下载excel模板
         # @type Opt: Integer
         # @param CateBizId: 分类ID
         # @type CateBizId: String

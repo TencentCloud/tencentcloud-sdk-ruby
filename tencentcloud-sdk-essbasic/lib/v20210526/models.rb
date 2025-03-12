@@ -8032,13 +8032,15 @@ module TencentCloud
         # @type WithPdfUrl: Boolean
         # @param Operator: 操作者的信息
         # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
+        # @param UserFlowTypeId: 用户合同类型id
+        # @type UserFlowTypeId: String
 
-        attr_accessor :Agent, :TemplateId, :ContentType, :TemplateIds, :Limit, :Offset, :TemplateName, :ChannelTemplateId, :QueryAllComponents, :WithPreviewUrl, :WithPdfUrl, :Operator
+        attr_accessor :Agent, :TemplateId, :ContentType, :TemplateIds, :Limit, :Offset, :TemplateName, :ChannelTemplateId, :QueryAllComponents, :WithPreviewUrl, :WithPdfUrl, :Operator, :UserFlowTypeId
         extend Gem::Deprecate
         deprecate :Operator, :none, 2025, 3
         deprecate :Operator=, :none, 2025, 3
 
-        def initialize(agent=nil, templateid=nil, contenttype=nil, templateids=nil, limit=nil, offset=nil, templatename=nil, channeltemplateid=nil, queryallcomponents=nil, withpreviewurl=nil, withpdfurl=nil, operator=nil)
+        def initialize(agent=nil, templateid=nil, contenttype=nil, templateids=nil, limit=nil, offset=nil, templatename=nil, channeltemplateid=nil, queryallcomponents=nil, withpreviewurl=nil, withpdfurl=nil, operator=nil, userflowtypeid=nil)
           @Agent = agent
           @TemplateId = templateid
           @ContentType = contenttype
@@ -8051,6 +8053,7 @@ module TencentCloud
           @WithPreviewUrl = withpreviewurl
           @WithPdfUrl = withpdfurl
           @Operator = operator
+          @UserFlowTypeId = userflowtypeid
         end
 
         def deserialize(params)
@@ -8072,6 +8075,7 @@ module TencentCloud
             @Operator = UserInfo.new
             @Operator.deserialize(params['Operator'])
           end
+          @UserFlowTypeId = params['UserFlowTypeId']
         end
       end
 
@@ -8203,6 +8207,71 @@ module TencentCloud
               usagedetail_tmp = UsageDetail.new
               usagedetail_tmp.deserialize(i)
               @Details << usagedetail_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeUserFlowType请求参数结构体
+      class DescribeUserFlowTypeRequest < TencentCloud::Common::AbstractModel
+        # @param Agent: 关于渠道应用的相关信息，包括渠道应用标识、第三方平台子客企业标识及第三方平台子客企业中的员工标识等内容，您可以参阅开发者中心所提供的 Agent 结构体以获取详细定义。 此接口下面信息必填。 <ul> <li>渠道应用标识: Agent.AppId</li> <li>第三方平台子客企业标识: Agent.ProxyOrganizationOpenId</li> <li>第三方平台子客企业中的员工标识: Agent. ProxyOperator.OpenId</li> </ul> 第三方平台子客企业和员工必须已经经过实名认证
+        # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
+        # @param Filters: 搜索过滤的条件，本字段允许您通过指定模板 ID 或模板名称来进行查询。 <ul><li><strong>模板的用户合同类型</strong>：<strong>Key</strong>设置为 <code>user-flow-type-id</code> ，<strong>Values</strong>为您想要查询的用户模版类型id列表。</li></ul>
+        # @type Filters: Array
+        # @param QueryBindTemplate: 查询绑定了模版的用户合同类型
+        # <ul>
+        # <li>false（默认值），查询用户合同类型</li>
+        # <li>true，查询绑定了模版的用户合同类型</li>
+        # </ul>
+        # @type QueryBindTemplate: Boolean
+
+        attr_accessor :Agent, :Filters, :QueryBindTemplate
+
+        def initialize(agent=nil, filters=nil, querybindtemplate=nil)
+          @Agent = agent
+          @Filters = filters
+          @QueryBindTemplate = querybindtemplate
+        end
+
+        def deserialize(params)
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @QueryBindTemplate = params['QueryBindTemplate']
+        end
+      end
+
+      # DescribeUserFlowType返回参数结构体
+      class DescribeUserFlowTypeResponse < TencentCloud::Common::AbstractModel
+        # @param AllUserFlowTypes: 查询到的所有用户合同类型列表
+        # @type AllUserFlowTypes: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :AllUserFlowTypes, :RequestId
+
+        def initialize(alluserflowtypes=nil, requestid=nil)
+          @AllUserFlowTypes = alluserflowtypes
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['AllUserFlowTypes'].nil?
+            @AllUserFlowTypes = []
+            params['AllUserFlowTypes'].each do |i|
+              templateuserflowtype_tmp = TemplateUserFlowType.new
+              templateuserflowtype_tmp.deserialize(i)
+              @AllUserFlowTypes << templateuserflowtype_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -11779,13 +11848,15 @@ module TencentCloud
         # <ul><li>1：启用（默认），表示模板处于启用状态，可以被用户正常使用。</li>
         # <li>2：停用，表示模板处于停用状态，禁止用户使用该模板。</li></ul>
         # @type Available: Integer
+        # @param UserFlowType: 模版的用户合同类型
+        # @type UserFlowType: :class:`Tencentcloud::Essbasic.v20210526.models.UserFlowType`
 
-        attr_accessor :TemplateId, :TemplateName, :Description, :Components, :Recipients, :SignComponents, :TemplateType, :IsPromoter, :Creator, :CreatedOn, :PreviewUrl, :PdfUrl, :ChannelTemplateId, :ChannelTemplateName, :ChannelAutoSave, :TemplateVersion, :Available
+        attr_accessor :TemplateId, :TemplateName, :Description, :Components, :Recipients, :SignComponents, :TemplateType, :IsPromoter, :Creator, :CreatedOn, :PreviewUrl, :PdfUrl, :ChannelTemplateId, :ChannelTemplateName, :ChannelAutoSave, :TemplateVersion, :Available, :UserFlowType
         extend Gem::Deprecate
         deprecate :IsPromoter, :none, 2025, 3
         deprecate :IsPromoter=, :none, 2025, 3
 
-        def initialize(templateid=nil, templatename=nil, description=nil, components=nil, recipients=nil, signcomponents=nil, templatetype=nil, ispromoter=nil, creator=nil, createdon=nil, previewurl=nil, pdfurl=nil, channeltemplateid=nil, channeltemplatename=nil, channelautosave=nil, templateversion=nil, available=nil)
+        def initialize(templateid=nil, templatename=nil, description=nil, components=nil, recipients=nil, signcomponents=nil, templatetype=nil, ispromoter=nil, creator=nil, createdon=nil, previewurl=nil, pdfurl=nil, channeltemplateid=nil, channeltemplatename=nil, channelautosave=nil, templateversion=nil, available=nil, userflowtype=nil)
           @TemplateId = templateid
           @TemplateName = templatename
           @Description = description
@@ -11803,6 +11874,7 @@ module TencentCloud
           @ChannelAutoSave = channelautosave
           @TemplateVersion = templateversion
           @Available = available
+          @UserFlowType = userflowtype
         end
 
         def deserialize(params)
@@ -11844,6 +11916,38 @@ module TencentCloud
           @ChannelAutoSave = params['ChannelAutoSave']
           @TemplateVersion = params['TemplateVersion']
           @Available = params['Available']
+          unless params['UserFlowType'].nil?
+            @UserFlowType = UserFlowType.new
+            @UserFlowType.deserialize(params['UserFlowType'])
+          end
+        end
+      end
+
+      # 模版对应的合同类型
+      class TemplateUserFlowType < TencentCloud::Common::AbstractModel
+        # @param UserFlowTypeId: 合同类型id
+        # @type UserFlowTypeId: String
+        # @param Name: 用户合同类型名称
+        # @type Name: String
+        # @param TemplateNum: 每个合同类型绑定的模版数量
+        # @type TemplateNum: Integer
+        # @param Description: 合同类型的具体描述
+        # @type Description: String
+
+        attr_accessor :UserFlowTypeId, :Name, :TemplateNum, :Description
+
+        def initialize(userflowtypeid=nil, name=nil, templatenum=nil, description=nil)
+          @UserFlowTypeId = userflowtypeid
+          @Name = name
+          @TemplateNum = templatenum
+          @Description = description
+        end
+
+        def deserialize(params)
+          @UserFlowTypeId = params['UserFlowTypeId']
+          @Name = params['Name']
+          @TemplateNum = params['TemplateNum']
+          @Description = params['Description']
         end
       end
 
@@ -11989,6 +12093,30 @@ module TencentCloud
           @Usage = params['Usage']
           @Cancel = params['Cancel']
           @FlowChannel = params['FlowChannel']
+        end
+      end
+
+      # 用户合同类型信息
+      class UserFlowType < TencentCloud::Common::AbstractModel
+        # @param UserFlowTypeId: 用户合同类型id
+        # @type UserFlowTypeId: String
+        # @param Name: 用户合同类型名称
+        # @type Name: String
+        # @param Description: 用户合同类型的描述信息
+        # @type Description: String
+
+        attr_accessor :UserFlowTypeId, :Name, :Description
+
+        def initialize(userflowtypeid=nil, name=nil, description=nil)
+          @UserFlowTypeId = userflowtypeid
+          @Name = name
+          @Description = description
+        end
+
+        def deserialize(params)
+          @UserFlowTypeId = params['UserFlowTypeId']
+          @Name = params['Name']
+          @Description = params['Description']
         end
       end
 

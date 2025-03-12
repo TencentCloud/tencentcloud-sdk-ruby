@@ -1146,7 +1146,6 @@ module TencentCloud
         # @param Status: 步骤状态:0-默认值,1-成功,2-失败,3-执行中,4-未执行
         # @type Status: Integer
         # @param StartTime: 当前步骤开始的时间，格式为"yyyy-mm-dd hh:mm:ss"，该字段不存在或者为空是无意义
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StartTime: String
 
         attr_accessor :StepNo, :StepName, :StepId, :Status, :StartTime
@@ -1670,7 +1669,6 @@ module TencentCloud
       # 查询订阅配置的错误信息
       class SubsErr < TencentCloud::Common::AbstractModel
         # @param Message: 错误信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Message: String
 
         attr_accessor :Message
@@ -1713,7 +1711,6 @@ module TencentCloud
         # @param ConsumeStartTime: 最近一次修改的消费时间起点，如果从未修改则为零值
         # @type ConsumeStartTime: String
         # @param AutoRenewFlag: 自动续费标识。只有当 PayType=0，该值才有意义。枚举值：0-不自动续费，1-自动续费
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AutoRenewFlag: Integer
         # @param Region: 数据订阅实例所属地域
         # @type Region: String
@@ -1735,7 +1732,6 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
         # @param SubscribeVersion: 订阅实例版本；txdts-旧版数据订阅,kafka-kafka版本数据订阅
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubscribeVersion: String
 
         attr_accessor :SubscribeId, :SubscribeName, :ChannelId, :Product, :InstanceId, :InstanceStatus, :SubsStatus, :ModifyTime, :CreateTime, :IsolateTime, :ExpireTime, :OfflineTime, :ConsumeStartTime, :AutoRenewFlag, :Region, :PayType, :Vip, :Vport, :UniqVpcId, :UniqSubnetId, :Status, :SdkConsumedTime, :Tags, :SubscribeVersion
@@ -1805,13 +1801,10 @@ module TencentCloud
       # 数据订阅的对象
       class SubscribeObject < TencentCloud::Common::AbstractModel
         # @param ObjectsType: 数据订阅对象的类型，0-数据库，1-数据库内的表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ObjectsType: Integer
         # @param DatabaseName: 订阅数据库的名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DatabaseName: String
         # @param TableNames: 订阅数据库中表名称数组
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TableNames: Array
 
         attr_accessor :ObjectsType, :DatabaseName, :TableNames
@@ -1854,7 +1847,6 @@ module TencentCloud
         # @param TagKey: 标签键值
         # @type TagKey: String
         # @param TagValue: 标签值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TagValue: String
 
         attr_accessor :TagKey, :TagValue

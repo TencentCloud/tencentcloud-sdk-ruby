@@ -2646,10 +2646,12 @@ module TencentCloud
         # @type SortField: String
         # @param SortOrder: 排序方式
         # @type SortOrder: String
+        # @param UserName: user
+        # @type UserName: String
 
-        attr_accessor :InstanceId, :QueryDurationMs, :StartTime, :EndTime, :DurationMs, :Sql, :ReadRows, :ResultBytes, :MemoryUsage, :IsQuery, :DbName, :CatalogName, :SortField, :SortOrder
+        attr_accessor :InstanceId, :QueryDurationMs, :StartTime, :EndTime, :DurationMs, :Sql, :ReadRows, :ResultBytes, :MemoryUsage, :IsQuery, :DbName, :CatalogName, :SortField, :SortOrder, :UserName
 
-        def initialize(instanceid=nil, querydurationms=nil, starttime=nil, endtime=nil, durationms=nil, sql=nil, readrows=nil, resultbytes=nil, memoryusage=nil, isquery=nil, dbname=nil, catalogname=nil, sortfield=nil, sortorder=nil)
+        def initialize(instanceid=nil, querydurationms=nil, starttime=nil, endtime=nil, durationms=nil, sql=nil, readrows=nil, resultbytes=nil, memoryusage=nil, isquery=nil, dbname=nil, catalogname=nil, sortfield=nil, sortorder=nil, username=nil)
           @InstanceId = instanceid
           @QueryDurationMs = querydurationms
           @StartTime = starttime
@@ -2664,6 +2666,7 @@ module TencentCloud
           @CatalogName = catalogname
           @SortField = sortfield
           @SortOrder = sortorder
+          @UserName = username
         end
 
         def deserialize(params)
@@ -2681,6 +2684,7 @@ module TencentCloud
           @CatalogName = params['CatalogName']
           @SortField = params['SortField']
           @SortOrder = params['SortOrder']
+          @UserName = params['UserName']
         end
       end
 
@@ -2738,10 +2742,12 @@ module TencentCloud
         # @type SortField: String
         # @param SortOrder: 排序方式
         # @type SortOrder: String
+        # @param UserName: user
+        # @type UserName: String
 
-        attr_accessor :InstanceId, :QueryDurationMs, :StartTime, :EndTime, :PageSize, :PageNum, :DurationMs, :DbName, :IsQuery, :CatalogName, :Sql, :ReadRows, :ResultBytes, :MemoryUsage, :SortField, :SortOrder
+        attr_accessor :InstanceId, :QueryDurationMs, :StartTime, :EndTime, :PageSize, :PageNum, :DurationMs, :DbName, :IsQuery, :CatalogName, :Sql, :ReadRows, :ResultBytes, :MemoryUsage, :SortField, :SortOrder, :UserName
 
-        def initialize(instanceid=nil, querydurationms=nil, starttime=nil, endtime=nil, pagesize=nil, pagenum=nil, durationms=nil, dbname=nil, isquery=nil, catalogname=nil, sql=nil, readrows=nil, resultbytes=nil, memoryusage=nil, sortfield=nil, sortorder=nil)
+        def initialize(instanceid=nil, querydurationms=nil, starttime=nil, endtime=nil, pagesize=nil, pagenum=nil, durationms=nil, dbname=nil, isquery=nil, catalogname=nil, sql=nil, readrows=nil, resultbytes=nil, memoryusage=nil, sortfield=nil, sortorder=nil, username=nil)
           @InstanceId = instanceid
           @QueryDurationMs = querydurationms
           @StartTime = starttime
@@ -2758,6 +2764,7 @@ module TencentCloud
           @MemoryUsage = memoryusage
           @SortField = sortfield
           @SortOrder = sortorder
+          @UserName = username
         end
 
         def deserialize(params)
@@ -2777,6 +2784,7 @@ module TencentCloud
           @MemoryUsage = params['MemoryUsage']
           @SortField = params['SortField']
           @SortOrder = params['SortOrder']
+          @UserName = params['UserName']
         end
       end
 

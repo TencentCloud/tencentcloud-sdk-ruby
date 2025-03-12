@@ -1927,32 +1927,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 消息队列TDMQ RabbitMQ 有一个存量旧接口没下线，目前实际上已经不在产品中使用：DescribeRabbitMQVirtualHostList，这个接口很久前已经被 DescribeRabbitMQVirtualHost 替换掉。已无用户在调用。
-
-        # RabbitMQ专享版查询虚拟主机列表
-
-        # @param request: Request instance for DescribeRabbitMQVirtualHostList.
-        # @type request: :class:`Tencentcloud::tdmq::V20200217::DescribeRabbitMQVirtualHostListRequest`
-        # @rtype: :class:`Tencentcloud::tdmq::V20200217::DescribeRabbitMQVirtualHostListResponse`
-        def DescribeRabbitMQVirtualHostList(request)
-          body = send_request('DescribeRabbitMQVirtualHostList', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeRabbitMQVirtualHostListResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 获取单个RocketMQ集群信息
 
         # @param request: Request instance for DescribeRocketMQCluster.

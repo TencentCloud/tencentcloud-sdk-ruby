@@ -1327,10 +1327,16 @@ module TencentCloud
         # @param AnnotationSchemaConfigured: 标注Schema是否配置
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AnnotationSchemaConfigured: Boolean
+        # @param CreatorNickname: 创建者名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreatorNickname: String
+        # @param IsCfsUpdated: cfs路径是否有修改
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsCfsUpdated: Boolean
 
-        attr_accessor :DatasetId, :DatasetName, :Creator, :DatasetVersion, :DatasetType, :DatasetTags, :DatasetAnnotationTaskName, :DatasetAnnotationTaskId, :Process, :DatasetStatus, :ErrorMsg, :CreateTime, :UpdateTime, :ExternalTaskType, :DatasetSize, :FileNum, :StorageDataPath, :StorageLabelPath, :DatasetVersions, :AnnotationStatus, :AnnotationType, :AnnotationFormat, :DatasetScope, :OcrScene, :AnnotationKeyStatus, :ContentType, :DatasetScene, :CFSConfig, :SceneTags, :NumAnnotated, :AnnotationSpecification, :AnnotationSchemaConfigured
+        attr_accessor :DatasetId, :DatasetName, :Creator, :DatasetVersion, :DatasetType, :DatasetTags, :DatasetAnnotationTaskName, :DatasetAnnotationTaskId, :Process, :DatasetStatus, :ErrorMsg, :CreateTime, :UpdateTime, :ExternalTaskType, :DatasetSize, :FileNum, :StorageDataPath, :StorageLabelPath, :DatasetVersions, :AnnotationStatus, :AnnotationType, :AnnotationFormat, :DatasetScope, :OcrScene, :AnnotationKeyStatus, :ContentType, :DatasetScene, :CFSConfig, :SceneTags, :NumAnnotated, :AnnotationSpecification, :AnnotationSchemaConfigured, :CreatorNickname, :IsCfsUpdated
 
-        def initialize(datasetid=nil, datasetname=nil, creator=nil, datasetversion=nil, datasettype=nil, datasettags=nil, datasetannotationtaskname=nil, datasetannotationtaskid=nil, process=nil, datasetstatus=nil, errormsg=nil, createtime=nil, updatetime=nil, externaltasktype=nil, datasetsize=nil, filenum=nil, storagedatapath=nil, storagelabelpath=nil, datasetversions=nil, annotationstatus=nil, annotationtype=nil, annotationformat=nil, datasetscope=nil, ocrscene=nil, annotationkeystatus=nil, contenttype=nil, datasetscene=nil, cfsconfig=nil, scenetags=nil, numannotated=nil, annotationspecification=nil, annotationschemaconfigured=nil)
+        def initialize(datasetid=nil, datasetname=nil, creator=nil, datasetversion=nil, datasettype=nil, datasettags=nil, datasetannotationtaskname=nil, datasetannotationtaskid=nil, process=nil, datasetstatus=nil, errormsg=nil, createtime=nil, updatetime=nil, externaltasktype=nil, datasetsize=nil, filenum=nil, storagedatapath=nil, storagelabelpath=nil, datasetversions=nil, annotationstatus=nil, annotationtype=nil, annotationformat=nil, datasetscope=nil, ocrscene=nil, annotationkeystatus=nil, contenttype=nil, datasetscene=nil, cfsconfig=nil, scenetags=nil, numannotated=nil, annotationspecification=nil, annotationschemaconfigured=nil, creatornickname=nil, iscfsupdated=nil)
           @DatasetId = datasetid
           @DatasetName = datasetname
           @Creator = creator
@@ -1363,6 +1369,8 @@ module TencentCloud
           @NumAnnotated = numannotated
           @AnnotationSpecification = annotationspecification
           @AnnotationSchemaConfigured = annotationschemaconfigured
+          @CreatorNickname = creatornickname
+          @IsCfsUpdated = iscfsupdated
         end
 
         def deserialize(params)
@@ -1421,6 +1429,8 @@ module TencentCloud
           @NumAnnotated = params['NumAnnotated']
           @AnnotationSpecification = params['AnnotationSpecification']
           @AnnotationSchemaConfigured = params['AnnotationSchemaConfigured']
+          @CreatorNickname = params['CreatorNickname']
+          @IsCfsUpdated = params['IsCfsUpdated']
         end
       end
 
@@ -1519,10 +1529,16 @@ module TencentCloud
         # @param AnnotationSchemaConfigured: 标注Schema是否配置
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AnnotationSchemaConfigured: Boolean
+        # @param CreatorNickname: 创建者名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreatorNickname: String
+        # @param IsCfsUpdated: cfs路径是否有修改
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsCfsUpdated: Boolean
 
-        attr_accessor :DatasetId, :DatasetName, :Creator, :DatasetVersion, :DatasetType, :DatasetTags, :DatasetAnnotationTaskName, :DatasetAnnotationTaskId, :Process, :DatasetStatus, :ErrorMsg, :CreateTime, :UpdateTime, :ExternalTaskType, :DatasetSize, :FileNum, :StorageDataPath, :StorageLabelPath, :AnnotationStatus, :AnnotationType, :AnnotationFormat, :DatasetScope, :OcrScene, :AnnotationKeyStatus, :ContentType, :DatasetScene, :CFSConfig, :SceneTags, :NumAnnotated, :AnnotationSpecification, :AnnotationSchemaConfigured
+        attr_accessor :DatasetId, :DatasetName, :Creator, :DatasetVersion, :DatasetType, :DatasetTags, :DatasetAnnotationTaskName, :DatasetAnnotationTaskId, :Process, :DatasetStatus, :ErrorMsg, :CreateTime, :UpdateTime, :ExternalTaskType, :DatasetSize, :FileNum, :StorageDataPath, :StorageLabelPath, :AnnotationStatus, :AnnotationType, :AnnotationFormat, :DatasetScope, :OcrScene, :AnnotationKeyStatus, :ContentType, :DatasetScene, :CFSConfig, :SceneTags, :NumAnnotated, :AnnotationSpecification, :AnnotationSchemaConfigured, :CreatorNickname, :IsCfsUpdated
 
-        def initialize(datasetid=nil, datasetname=nil, creator=nil, datasetversion=nil, datasettype=nil, datasettags=nil, datasetannotationtaskname=nil, datasetannotationtaskid=nil, process=nil, datasetstatus=nil, errormsg=nil, createtime=nil, updatetime=nil, externaltasktype=nil, datasetsize=nil, filenum=nil, storagedatapath=nil, storagelabelpath=nil, annotationstatus=nil, annotationtype=nil, annotationformat=nil, datasetscope=nil, ocrscene=nil, annotationkeystatus=nil, contenttype=nil, datasetscene=nil, cfsconfig=nil, scenetags=nil, numannotated=nil, annotationspecification=nil, annotationschemaconfigured=nil)
+        def initialize(datasetid=nil, datasetname=nil, creator=nil, datasetversion=nil, datasettype=nil, datasettags=nil, datasetannotationtaskname=nil, datasetannotationtaskid=nil, process=nil, datasetstatus=nil, errormsg=nil, createtime=nil, updatetime=nil, externaltasktype=nil, datasetsize=nil, filenum=nil, storagedatapath=nil, storagelabelpath=nil, annotationstatus=nil, annotationtype=nil, annotationformat=nil, datasetscope=nil, ocrscene=nil, annotationkeystatus=nil, contenttype=nil, datasetscene=nil, cfsconfig=nil, scenetags=nil, numannotated=nil, annotationspecification=nil, annotationschemaconfigured=nil, creatornickname=nil, iscfsupdated=nil)
           @DatasetId = datasetid
           @DatasetName = datasetname
           @Creator = creator
@@ -1554,6 +1570,8 @@ module TencentCloud
           @NumAnnotated = numannotated
           @AnnotationSpecification = annotationspecification
           @AnnotationSchemaConfigured = annotationschemaconfigured
+          @CreatorNickname = creatornickname
+          @IsCfsUpdated = iscfsupdated
         end
 
         def deserialize(params)
@@ -1604,6 +1622,8 @@ module TencentCloud
           @NumAnnotated = params['NumAnnotated']
           @AnnotationSpecification = params['AnnotationSpecification']
           @AnnotationSchemaConfigured = params['AnnotationSchemaConfigured']
+          @CreatorNickname = params['CreatorNickname']
+          @IsCfsUpdated = params['IsCfsUpdated']
         end
       end
 

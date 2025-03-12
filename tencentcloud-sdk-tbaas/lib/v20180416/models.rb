@@ -461,8 +461,8 @@ module TencentCloud
 
         attr_accessor :CertName, :CertCtx, :Cert, :RequestId
         extend Gem::Deprecate
-        deprecate :CertCtx, :none, 2025, 2
-        deprecate :CertCtx=, :none, 2025, 2
+        deprecate :CertCtx, :none, 2025, 3
+        deprecate :CertCtx=, :none, 2025, 3
 
         def initialize(certname=nil, certctx=nil, cert=nil, requestid=nil)
           @CertName = certname
@@ -1370,8 +1370,8 @@ module TencentCloud
 
         attr_accessor :Txid, :Events, :TxId, :RequestId
         extend Gem::Deprecate
-        deprecate :Txid, :none, 2025, 2
-        deprecate :Txid=, :none, 2025, 2
+        deprecate :Txid, :none, 2025, 3
+        deprecate :Txid=, :none, 2025, 3
 
         def initialize(events=nil, txid=nil, requestid=nil)
           @Events = events

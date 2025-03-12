@@ -7997,13 +7997,16 @@ module TencentCloud
         # @param ErrorLogItems: 错误日志导出内容
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrorLogItems: Array
+        # @param FileContent: 错误日志字符串
+        # @type FileContent: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ErrorLogItems, :RequestId
+        attr_accessor :ErrorLogItems, :FileContent, :RequestId
 
-        def initialize(errorlogitems=nil, requestid=nil)
+        def initialize(errorlogitems=nil, filecontent=nil, requestid=nil)
           @ErrorLogItems = errorlogitems
+          @FileContent = filecontent
           @RequestId = requestid
         end
 
@@ -8016,6 +8019,7 @@ module TencentCloud
               @ErrorLogItems << errorlogitemexport_tmp
             end
           end
+          @FileContent = params['FileContent']
           @RequestId = params['RequestId']
         end
       end

@@ -1192,54 +1192,43 @@ module TencentCloud
       # 配置文件
       class ConfigFile < TencentCloud::Common::AbstractModel
         # @param Id: 配置文件id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Id: Integer
         # @param Name: 配置文件名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Namespace: 配置文件命名空间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Namespace: String
         # @param Group: 配置文件组
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Group: String
         # @param Content: 配置文件内容
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Content: String
         # @param Format: 配置文件格式
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Format: String
         # @param Comment: 配置文件注释
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Comment: String
         # @param Status: 配置文件状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: String
         # @param Tags: 配置文件标签数组
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
         # @param CreateTime: 配置文件创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
         # @param CreateBy: 配置文件创建者
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateBy: String
         # @param ModifyTime: 配置文件修改时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ModifyTime: String
         # @param ModifyBy: 配置文件修改者
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ModifyBy: String
         # @param ReleaseTime: 配置文件发布时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReleaseTime: String
         # @param ReleaseBy: 配置文件发布者
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReleaseBy: String
+        # @param ConfigFileSupportedClient: 配置文件类型
+        # @type ConfigFileSupportedClient: Integer
+        # @param ConfigFilePersistent: 配置文件持久化
+        # @type ConfigFilePersistent: :class:`Tencentcloud::Tse.v20201207.models.ConfigFilePersistent`
 
-        attr_accessor :Id, :Name, :Namespace, :Group, :Content, :Format, :Comment, :Status, :Tags, :CreateTime, :CreateBy, :ModifyTime, :ModifyBy, :ReleaseTime, :ReleaseBy
+        attr_accessor :Id, :Name, :Namespace, :Group, :Content, :Format, :Comment, :Status, :Tags, :CreateTime, :CreateBy, :ModifyTime, :ModifyBy, :ReleaseTime, :ReleaseBy, :ConfigFileSupportedClient, :ConfigFilePersistent
 
-        def initialize(id=nil, name=nil, namespace=nil, group=nil, content=nil, format=nil, comment=nil, status=nil, tags=nil, createtime=nil, createby=nil, modifytime=nil, modifyby=nil, releasetime=nil, releaseby=nil)
+        def initialize(id=nil, name=nil, namespace=nil, group=nil, content=nil, format=nil, comment=nil, status=nil, tags=nil, createtime=nil, createby=nil, modifytime=nil, modifyby=nil, releasetime=nil, releaseby=nil, configfilesupportedclient=nil, configfilepersistent=nil)
           @Id = id
           @Name = name
           @Namespace = namespace
@@ -1255,6 +1244,8 @@ module TencentCloud
           @ModifyBy = modifyby
           @ReleaseTime = releasetime
           @ReleaseBy = releaseby
+          @ConfigFileSupportedClient = configfilesupportedclient
+          @ConfigFilePersistent = configfilepersistent
         end
 
         def deserialize(params)
@@ -1280,6 +1271,11 @@ module TencentCloud
           @ModifyBy = params['ModifyBy']
           @ReleaseTime = params['ReleaseTime']
           @ReleaseBy = params['ReleaseBy']
+          @ConfigFileSupportedClient = params['ConfigFileSupportedClient']
+          unless params['ConfigFilePersistent'].nil?
+            @ConfigFilePersistent = ConfigFilePersistent.new
+            @ConfigFilePersistent.deserialize(params['ConfigFilePersistent'])
+          end
         end
       end
 
@@ -1414,6 +1410,30 @@ module TencentCloud
         end
       end
 
+      # 配置文件持久化
+      class ConfigFilePersistent < TencentCloud::Common::AbstractModel
+        # @param Encoding: 文件编码
+        # @type Encoding: String
+        # @param Path: 文件下发路径
+        # @type Path: String
+        # @param PostCmd: 文件后置命令
+        # @type PostCmd: String
+
+        attr_accessor :Encoding, :Path, :PostCmd
+
+        def initialize(encoding=nil, path=nil, postcmd=nil)
+          @Encoding = encoding
+          @Path = path
+          @PostCmd = postcmd
+        end
+
+        def deserialize(params)
+          @Encoding = params['Encoding']
+          @Path = params['Path']
+          @PostCmd = params['PostCmd']
+        end
+      end
+
       # 发布详情
       class ConfigFilePublishInfo < TencentCloud::Common::AbstractModel
         # @param ReleaseName: 发布名称
@@ -1476,60 +1496,47 @@ module TencentCloud
       # 配置文件发布
       class ConfigFileRelease < TencentCloud::Common::AbstractModel
         # @param Id: 配置文件发布id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Id: Integer
         # @param Name: 配置文件发布名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Namespace: 配置文件发布命名空间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Namespace: String
         # @param Group: 配置文件发布组
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Group: String
         # @param FileName: 配置文件发布文件名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FileName: String
         # @param Content: 配置文件发布内容
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Content: String
         # @param Comment: 配置文件发布注释
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Comment: String
         # @param Md5: 配置文件发布Md5
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Md5: String
         # @param Version: 配置文件发布版本
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Version: Integer
         # @param CreateTime: 配置文件发布创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
         # @param CreateBy: 配置文件发布创建者
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateBy: String
         # @param ModifyTime: 配置文件发布修改时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ModifyTime: String
         # @param ModifyBy: 配置文件发布修改者
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ModifyBy: String
         # @param ReleaseDescription: 发布描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReleaseDescription: String
         # @param Active: 是否生效
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Active: Boolean
         # @param Format: 格式
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Format: String
         # @param ConfigFileId: 配置文件ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ConfigFileId: String
+        # @param ConfigFileSupportedClient: 配置文件类型
+        # @type ConfigFileSupportedClient: Integer
+        # @param ConfigFilePersistent: 配置文件持久化
+        # @type ConfigFilePersistent: :class:`Tencentcloud::Tse.v20201207.models.ConfigFilePersistent`
 
-        attr_accessor :Id, :Name, :Namespace, :Group, :FileName, :Content, :Comment, :Md5, :Version, :CreateTime, :CreateBy, :ModifyTime, :ModifyBy, :ReleaseDescription, :Active, :Format, :ConfigFileId
+        attr_accessor :Id, :Name, :Namespace, :Group, :FileName, :Content, :Comment, :Md5, :Version, :CreateTime, :CreateBy, :ModifyTime, :ModifyBy, :ReleaseDescription, :Active, :Format, :ConfigFileId, :ConfigFileSupportedClient, :ConfigFilePersistent
 
-        def initialize(id=nil, name=nil, namespace=nil, group=nil, filename=nil, content=nil, comment=nil, md5=nil, version=nil, createtime=nil, createby=nil, modifytime=nil, modifyby=nil, releasedescription=nil, active=nil, format=nil, configfileid=nil)
+        def initialize(id=nil, name=nil, namespace=nil, group=nil, filename=nil, content=nil, comment=nil, md5=nil, version=nil, createtime=nil, createby=nil, modifytime=nil, modifyby=nil, releasedescription=nil, active=nil, format=nil, configfileid=nil, configfilesupportedclient=nil, configfilepersistent=nil)
           @Id = id
           @Name = name
           @Namespace = namespace
@@ -1547,6 +1554,8 @@ module TencentCloud
           @Active = active
           @Format = format
           @ConfigFileId = configfileid
+          @ConfigFileSupportedClient = configfilesupportedclient
+          @ConfigFilePersistent = configfilepersistent
         end
 
         def deserialize(params)
@@ -1567,6 +1576,11 @@ module TencentCloud
           @Active = params['Active']
           @Format = params['Format']
           @ConfigFileId = params['ConfigFileId']
+          @ConfigFileSupportedClient = params['ConfigFileSupportedClient']
+          unless params['ConfigFilePersistent'].nil?
+            @ConfigFilePersistent = ConfigFilePersistent.new
+            @ConfigFilePersistent.deserialize(params['ConfigFilePersistent'])
+          end
         end
       end
 
@@ -1610,63 +1624,49 @@ module TencentCloud
       # 配置文件发布历史
       class ConfigFileReleaseHistory < TencentCloud::Common::AbstractModel
         # @param Id: 配置文件发布历史记录id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Id: Integer
         # @param Name: 配置文件发布历史名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Namespace: 配置文件发布历史命名空间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Namespace: String
         # @param Group: 配置文件发布历史组
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Group: String
         # @param FileName: 配置文件发布历史名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FileName: String
         # @param Content: 配置文件发布历史内容
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Content: String
         # @param Format: 配置文件发布历史格式
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Format: String
         # @param Comment: 配置文件发布历史注释
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Comment: String
         # @param Md5: 配置文件发布历史Md5
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Md5: String
         # @param Type: 配置文件发布历史类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: String
         # @param Status: 配置文件发布历史状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: String
         # @param Tags: 配置文件发布历史标签组
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
         # @param CreateTime: 配置文件发布创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
         # @param CreateBy: 配置文件发布创建者
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateBy: String
         # @param ModifyTime: 配置文件发布修改时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ModifyTime: String
         # @param ModifyBy: 配置文件发布修改者
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ModifyBy: String
         # @param ReleaseDescription: 发布描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReleaseDescription: String
         # @param ReleaseReason: 原因，用于失败时原因展示
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReleaseReason: String
+        # @param ConfigFileSupportedClient: 配置文件类型
+        # @type ConfigFileSupportedClient: Integer
+        # @param ConfigFilePersistent: 配置文件持久化
+        # @type ConfigFilePersistent: :class:`Tencentcloud::Tse.v20201207.models.ConfigFilePersistent`
 
-        attr_accessor :Id, :Name, :Namespace, :Group, :FileName, :Content, :Format, :Comment, :Md5, :Type, :Status, :Tags, :CreateTime, :CreateBy, :ModifyTime, :ModifyBy, :ReleaseDescription, :ReleaseReason
+        attr_accessor :Id, :Name, :Namespace, :Group, :FileName, :Content, :Format, :Comment, :Md5, :Type, :Status, :Tags, :CreateTime, :CreateBy, :ModifyTime, :ModifyBy, :ReleaseDescription, :ReleaseReason, :ConfigFileSupportedClient, :ConfigFilePersistent
 
-        def initialize(id=nil, name=nil, namespace=nil, group=nil, filename=nil, content=nil, format=nil, comment=nil, md5=nil, type=nil, status=nil, tags=nil, createtime=nil, createby=nil, modifytime=nil, modifyby=nil, releasedescription=nil, releasereason=nil)
+        def initialize(id=nil, name=nil, namespace=nil, group=nil, filename=nil, content=nil, format=nil, comment=nil, md5=nil, type=nil, status=nil, tags=nil, createtime=nil, createby=nil, modifytime=nil, modifyby=nil, releasedescription=nil, releasereason=nil, configfilesupportedclient=nil, configfilepersistent=nil)
           @Id = id
           @Name = name
           @Namespace = namespace
@@ -1685,6 +1685,8 @@ module TencentCloud
           @ModifyBy = modifyby
           @ReleaseDescription = releasedescription
           @ReleaseReason = releasereason
+          @ConfigFileSupportedClient = configfilesupportedclient
+          @ConfigFilePersistent = configfilepersistent
         end
 
         def deserialize(params)
@@ -1713,16 +1715,19 @@ module TencentCloud
           @ModifyBy = params['ModifyBy']
           @ReleaseDescription = params['ReleaseDescription']
           @ReleaseReason = params['ReleaseReason']
+          @ConfigFileSupportedClient = params['ConfigFileSupportedClient']
+          unless params['ConfigFilePersistent'].nil?
+            @ConfigFilePersistent = ConfigFilePersistent.new
+            @ConfigFilePersistent.deserialize(params['ConfigFilePersistent'])
+          end
         end
       end
 
       # 配置文件标签
       class ConfigFileTag < TencentCloud::Common::AbstractModel
         # @param Key: key-value 键
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Key: String
         # @param Value: key-value 值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: String
 
         attr_accessor :Key, :Value

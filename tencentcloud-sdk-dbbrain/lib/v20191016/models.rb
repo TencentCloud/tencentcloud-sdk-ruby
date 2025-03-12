@@ -128,7 +128,6 @@ module TencentCloud
       # CreateDBDiagReportTask返回参数结构体
       class CreateDBDiagReportTaskResponse < TencentCloud::Common::AbstractModel
         # @param AsyncRequestId: 异步任务的请求 ID，可使用此 ID 查询异步任务的执行结果。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AsyncRequestId: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1821,7 +1820,6 @@ module TencentCloud
         # @param ScoreLost: 总扣分分数。
         # @type ScoreLost: Integer
         # @param ScoreDetails: 扣分详情。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScoreDetails: Array
 
         attr_accessor :HealthScore, :HealthLevel, :ScoreLost, :ScoreDetails
@@ -1968,18 +1966,14 @@ module TencentCloud
         # @param AuditRunningStatus: 实例审计日志运行状态：normal： 运行中； paused： 欠费暂停。
         # @type AuditRunningStatus: String
         # @param InternalVip: 内网vip。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InternalVip: String
         # @param InternalVport: 内网port。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InternalVport: Integer
         # @param CreateTime: 创建时间。
         # @type CreateTime: String
         # @param ClusterId: 所属集群ID（仅对集群数据库产品该字段非空，如TDSQL-C）。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterId: String
         # @param ClusterName: 所属集群名称（仅对集群数据库产品该字段非空，如TDSQL-C）。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterName: String
 
         attr_accessor :InstanceId, :InstanceName, :Region, :HealthScore, :Product, :EventCount, :InstanceType, :Cpu, :Memory, :Volume, :EngineVersion, :Vip, :Vport, :Source, :GroupId, :GroupName, :Status, :UniqSubnetId, :DeployMode, :InitFlag, :TaskStatus, :UniqVpcId, :InstanceConf, :DeadlineTime, :IsSupported, :SecAuditStatus, :AuditPolicyStatus, :AuditRunningStatus, :InternalVip, :InternalVport, :CreateTime, :ClusterId, :ClusterName

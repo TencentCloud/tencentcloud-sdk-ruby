@@ -643,7 +643,6 @@ module TencentCloud
       # CreateDBDiagReportTask返回参数结构体
       class CreateDBDiagReportTaskResponse < TencentCloud::Common::AbstractModel
         # @param AsyncRequestId: 异步任务的请求 ID，可使用此 ID 查询异步任务的执行结果。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AsyncRequestId: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1512,7 +1511,6 @@ module TencentCloud
       # DescribeAuditInstanceList返回参数结构体
       class DescribeAuditInstanceListResponse < TencentCloud::Common::AbstractModel
         # @param TotalCount: 符合条件的实例个数。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
         # @param Items: 实例详情。
         # @type Items: Array
@@ -2585,7 +2583,6 @@ module TencentCloud
       # DescribeRedisBigKeyAnalysisTasks返回参数结构体
       class DescribeRedisBigKeyAnalysisTasksResponse < TencentCloud::Common::AbstractModel
         # @param TotalCount: 任务总数。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
         # @param Tasks: 任务列表。
         # @type Tasks: Array
@@ -3972,7 +3969,6 @@ module TencentCloud
         # @param ScoreLost: 总扣分分数。
         # @type ScoreLost: Integer
         # @param ScoreDetails: 扣分详情。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScoreDetails: Array
 
         attr_accessor :HealthScore, :HealthLevel, :ScoreLost, :ScoreDetails
@@ -4217,18 +4213,14 @@ module TencentCloud
         # @param AuditRunningStatus: 实例审计日志运行状态：normal： 运行中； paused： 欠费暂停。
         # @type AuditRunningStatus: String
         # @param InternalVip: 内网vip。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InternalVip: String
         # @param InternalVport: 内网port。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InternalVport: Integer
         # @param CreateTime: 创建时间。
         # @type CreateTime: String
         # @param ClusterId: 所属集群ID（仅对集群数据库产品该字段非空，如TDSQL-C）。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterId: String
         # @param ClusterName: 所属集群名称（仅对集群数据库产品该字段非空，如TDSQL-C）。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterName: String
         # @param AgentStatus: 自建MySQL的Agent状态，"not_deployed" - 未部署，"deploying" - 部署中，"connected" - 连接正常，"deploy_failed" - 连接失败，"monitoring" - 连接正常，"stopped" - 暂停连接，"connect_failed" - 连接失败，unknown - 未知。
         # @type AgentStatus: String

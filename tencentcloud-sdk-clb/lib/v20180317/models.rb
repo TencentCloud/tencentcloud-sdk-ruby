@@ -1426,8 +1426,8 @@ module TencentCloud
 
         attr_accessor :LogsetName, :Period, :LogsetType
         extend Gem::Deprecate
-        deprecate :Period, :none, 2025, 2
-        deprecate :Period=, :none, 2025, 2
+        deprecate :Period, :none, 2025, 3
+        deprecate :Period=, :none, 2025, 3
 
         def initialize(logsetname=nil, period=nil, logsettype=nil)
           @LogsetName = logsetname
@@ -1475,12 +1475,8 @@ module TencentCloud
         # @param HealthCheck: 健康检查相关参数，此参数仅适用于TCP/UDP/TCP_SSL/QUIC监听器。
         # @type HealthCheck: :class:`Tencentcloud::Clb.v20180317.models.HealthCheck`
         # @param Certificate: 证书相关信息。参数限制如下：
-        # <li>
-        # 此参数仅适用于TCP_SSL监听器和未开启SNI特性的HTTPS监听器。
-        # </li>
-        # <li>
-        # 创建TCP_SSL监听器和未开启SNI特性的HTTPS监听器时，此参数和参数MultiCertInfo至少需要传一个， 但不能同时传入。
-        # </li>
+        # <li>此参数仅适用于TCP_SSL监听器和未开启SNI特性的HTTPS监听器。</li>
+        # <li>创建TCP_SSL监听器和未开启SNI特性的HTTPS监听器时，此参数和参数MultiCertInfo至少需要传一个， 但不能同时传入。</li>
         # @type Certificate: :class:`Tencentcloud::Clb.v20180317.models.CertificateInput`
         # @param SessionExpireTime: 会话保持时间，单位：秒。可选值：30~3600，默认 0，表示不开启。此参数仅适用于TCP/UDP监听器。
         # @type SessionExpireTime: Integer
@@ -1500,12 +1496,8 @@ module TencentCloud
         # @param DeregisterTargetRst: 解绑后端目标时，是否发RST给客户端，此参数仅适用于TCP监听器。
         # @type DeregisterTargetRst: Boolean
         # @param MultiCertInfo: 证书信息，支持同时传入不同算法类型的多本服务端证书，参数限制如下：
-        # <li>
-        # 此参数仅适用于TCP_SSL监听器和未开启SNI特性的HTTPS监听器。
-        # </li>
-        # <li>
-        # 创建TCP_SSL监听器和未开启SNI特性的HTTPS监听器时，此参数和参数Certificate至少需要传一个， 但不能同时传入。
-        # </li>
+        # <li>此参数仅适用于TCP_SSL监听器和未开启SNI特性的HTTPS监听器。</li>
+        # <li>创建TCP_SSL监听器和未开启SNI特性的HTTPS监听器时，此参数和参数Certificate至少需要传一个， 但不能同时传入。</li>
         # @type MultiCertInfo: :class:`Tencentcloud::Clb.v20180317.models.MultiCertInfo`
         # @param MaxConn: 监听器最大连接数，当前仅性能容量型实例且仅TCP/UDP/TCP_SSL/QUIC监听器支持，不传或者传-1表示监听器维度不限速。基础网络实例不支持该参数。
         # @type MaxConn: Integer
@@ -1521,10 +1513,12 @@ module TencentCloud
         # @type H2cSwitch: Boolean
         # @param SslCloseSwitch: TCP_SSL监听器支持关闭SSL后仍然支持混绑，此参数为关闭开关
         # @type SslCloseSwitch: Boolean
+        # @param DataCompressMode: 数据压缩模式
+        # @type DataCompressMode: String
 
-        attr_accessor :LoadBalancerId, :Ports, :Protocol, :ListenerNames, :HealthCheck, :Certificate, :SessionExpireTime, :Scheduler, :SniSwitch, :TargetType, :SessionType, :KeepaliveEnable, :EndPort, :DeregisterTargetRst, :MultiCertInfo, :MaxConn, :MaxCps, :IdleConnectTimeout, :SnatEnable, :FullEndPorts, :H2cSwitch, :SslCloseSwitch
+        attr_accessor :LoadBalancerId, :Ports, :Protocol, :ListenerNames, :HealthCheck, :Certificate, :SessionExpireTime, :Scheduler, :SniSwitch, :TargetType, :SessionType, :KeepaliveEnable, :EndPort, :DeregisterTargetRst, :MultiCertInfo, :MaxConn, :MaxCps, :IdleConnectTimeout, :SnatEnable, :FullEndPorts, :H2cSwitch, :SslCloseSwitch, :DataCompressMode
 
-        def initialize(loadbalancerid=nil, ports=nil, protocol=nil, listenernames=nil, healthcheck=nil, certificate=nil, sessionexpiretime=nil, scheduler=nil, sniswitch=nil, targettype=nil, sessiontype=nil, keepaliveenable=nil, endport=nil, deregistertargetrst=nil, multicertinfo=nil, maxconn=nil, maxcps=nil, idleconnecttimeout=nil, snatenable=nil, fullendports=nil, h2cswitch=nil, sslcloseswitch=nil)
+        def initialize(loadbalancerid=nil, ports=nil, protocol=nil, listenernames=nil, healthcheck=nil, certificate=nil, sessionexpiretime=nil, scheduler=nil, sniswitch=nil, targettype=nil, sessiontype=nil, keepaliveenable=nil, endport=nil, deregistertargetrst=nil, multicertinfo=nil, maxconn=nil, maxcps=nil, idleconnecttimeout=nil, snatenable=nil, fullendports=nil, h2cswitch=nil, sslcloseswitch=nil, datacompressmode=nil)
           @LoadBalancerId = loadbalancerid
           @Ports = ports
           @Protocol = protocol
@@ -1547,6 +1541,7 @@ module TencentCloud
           @FullEndPorts = fullendports
           @H2cSwitch = h2cswitch
           @SslCloseSwitch = sslcloseswitch
+          @DataCompressMode = datacompressmode
         end
 
         def deserialize(params)
@@ -1581,6 +1576,7 @@ module TencentCloud
           @FullEndPorts = params['FullEndPorts']
           @H2cSwitch = params['H2cSwitch']
           @SslCloseSwitch = params['SslCloseSwitch']
+          @DataCompressMode = params['DataCompressMode']
         end
       end
 
@@ -2174,15 +2170,19 @@ module TencentCloud
       class DeleteLoadBalancerRequest < TencentCloud::Common::AbstractModel
         # @param LoadBalancerIds: 要删除的负载均衡实例 ID数组，数组大小最大支持20。
         # @type LoadBalancerIds: Array
+        # @param ForceDelete: 是否强制删除clb。为true表示强制删除，为false表示不是强制删除，需要做拦截校验。
+        # @type ForceDelete: Boolean
 
-        attr_accessor :LoadBalancerIds
+        attr_accessor :LoadBalancerIds, :ForceDelete
 
-        def initialize(loadbalancerids=nil)
+        def initialize(loadbalancerids=nil, forcedelete=nil)
           @LoadBalancerIds = loadbalancerids
+          @ForceDelete = forcedelete
         end
 
         def deserialize(params)
           @LoadBalancerIds = params['LoadBalancerIds']
+          @ForceDelete = params['ForceDelete']
         end
       end
 
@@ -5491,8 +5491,8 @@ module TencentCloud
 
         attr_accessor :LoadBalancerId, :LoadBalancerName, :LoadBalancerType, :Forward, :Domain, :LoadBalancerVips, :Status, :CreateTime, :StatusTime, :ProjectId, :VpcId, :OpenBgp, :Snat, :Isolation, :Log, :SubnetId, :Tags, :SecureGroups, :TargetRegionInfo, :AnycastZone, :AddressIPVersion, :NumericalVpcId, :VipIsp, :MasterZone, :BackupZoneSet, :IsolatedTime, :ExpireTime, :ChargeType, :NetworkAttributes, :PrepaidAttributes, :LogSetId, :LogTopicId, :AddressIPv6, :ExtraInfo, :IsDDos, :ConfigId, :LoadBalancerPassToTarget, :ExclusiveCluster, :IPv6Mode, :SnatPro, :SnatIps, :SlaType, :IsBlock, :IsBlockTime, :LocalBgp, :ClusterTag, :MixIpTarget, :Zones, :NfvInfo, :HealthLogSetId, :HealthLogTopicId, :ClusterIds, :AttributeFlags, :LoadBalancerDomain, :Egress, :Exclusive, :TargetCount
         extend Gem::Deprecate
-        deprecate :Log, :none, 2025, 2
-        deprecate :Log=, :none, 2025, 2
+        deprecate :Log, :none, 2025, 3
+        deprecate :Log=, :none, 2025, 3
 
         def initialize(loadbalancerid=nil, loadbalancername=nil, loadbalancertype=nil, forward=nil, domain=nil, loadbalancervips=nil, status=nil, createtime=nil, statustime=nil, projectid=nil, vpcid=nil, openbgp=nil, snat=nil, isolation=nil, log=nil, subnetid=nil, tags=nil, securegroups=nil, targetregioninfo=nil, anycastzone=nil, addressipversion=nil, numericalvpcid=nil, vipisp=nil, masterzone=nil, backupzoneset=nil, isolatedtime=nil, expiretime=nil, chargetype=nil, networkattributes=nil, prepaidattributes=nil, logsetid=nil, logtopicid=nil, addressipv6=nil, extrainfo=nil, isddos=nil, configid=nil, loadbalancerpasstotarget=nil, exclusivecluster=nil, ipv6mode=nil, snatpro=nil, snatips=nil, slatype=nil, isblock=nil, isblocktime=nil, localbgp=nil, clustertag=nil, mixiptarget=nil, zones=nil, nfvinfo=nil, healthlogsetid=nil, healthlogtopicid=nil, clusterids=nil, attributeflags=nil, loadbalancerdomain=nil, egress=nil, exclusive=nil, targetcount=nil)
           @LoadBalancerId = loadbalancerid
@@ -7524,10 +7524,10 @@ module TencentCloud
 
         attr_accessor :ListenerId, :Targets, :LocationId, :Domain, :Url, :Weight
         extend Gem::Deprecate
-        deprecate :Domain, :none, 2025, 2
-        deprecate :Domain=, :none, 2025, 2
-        deprecate :Url, :none, 2025, 2
-        deprecate :Url=, :none, 2025, 2
+        deprecate :Domain, :none, 2025, 3
+        deprecate :Domain=, :none, 2025, 3
+        deprecate :Url, :none, 2025, 3
+        deprecate :Url=, :none, 2025, 3
 
         def initialize(listenerid=nil, targets=nil, locationid=nil, domain=nil, url=nil, weight=nil)
           @ListenerId = listenerid
@@ -8485,8 +8485,8 @@ module TencentCloud
 
         attr_accessor :IP, :Port, :HealthStatus, :TargetId, :HealthStatusDetail, :HealthStatusDetial, :TargetGroupId
         extend Gem::Deprecate
-        deprecate :HealthStatusDetial, :none, 2025, 2
-        deprecate :HealthStatusDetial=, :none, 2025, 2
+        deprecate :HealthStatusDetial, :none, 2025, 3
+        deprecate :HealthStatusDetial=, :none, 2025, 3
 
         def initialize(ip=nil, port=nil, healthstatus=nil, targetid=nil, healthstatusdetail=nil, healthstatusdetial=nil, targetgroupid=nil)
           @IP = ip

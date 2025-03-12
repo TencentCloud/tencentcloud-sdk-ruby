@@ -473,16 +473,12 @@ module TencentCloud
       # cmq DeadLetterPolicy
       class CmqDeadLetterPolicy < TencentCloud::Common::AbstractModel
         # @param DeadLetterQueue: 死信队列。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeadLetterQueue: String
         # @param Policy: 死信队列策略。0:最大接收次数;1:最大未消费时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Policy: Integer
         # @param MaxTimeToLive: 最大未消费过期时间。Policy为1时必选。范围300-43200，单位秒，需要小于消息最大保留时间MsgRetentionSeconds。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaxTimeToLive: Integer
         # @param MaxReceiveCount: 最大接收次数。Policy为0时必选，范围在1到1000。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaxReceiveCount: Integer
 
         attr_accessor :DeadLetterQueue, :Policy, :MaxTimeToLive, :MaxReceiveCount
@@ -508,7 +504,6 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type QueueId: String
         # @param QueueName: 消息队列名字。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type QueueName: String
 
         attr_accessor :QueueId, :QueueName
@@ -531,42 +526,30 @@ module TencentCloud
         # @param QueueName: 消息队列名字。
         # @type QueueName: String
         # @param Qps: 每秒钟生产消息条数的限制，消费消息的大小是该值的1.1倍。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Qps: Integer
         # @param Bps: 带宽限制。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Bps: Integer
         # @param MaxDelaySeconds: 飞行消息最大保留时间，需要小于消息保留周期。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaxDelaySeconds: Integer
         # @param MaxMsgHeapNum: 最大堆积消息数。取值范围在公测期间为 1,000,000 - 10,000,000，正式上线后范围可达到 1000,000-1000,000,000。默认取值在公测期间为 10,000,000，正式上线后为 100,000,000。
         # @type MaxMsgHeapNum: Integer
         # @param PollingWaitSeconds: 消息接收长轮询等待时间。取值范围0 - 30秒，默认值0。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PollingWaitSeconds: Integer
         # @param MsgRetentionSeconds: 消息保留周期。取值范围60-1296000秒（1min-15天），默认值345600秒（4 天）。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MsgRetentionSeconds: Integer
         # @param VisibilityTimeout: 消息可见性超时。取值范围1 - 43200秒（即12小时内），默认值30。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VisibilityTimeout: Integer
         # @param MaxMsgSize: 消息最大长度。取值范围1024 - 1048576 Byte（即1K - 1024K），默认值65536。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaxMsgSize: Integer
         # @param RewindSeconds: 回溯队列的消息回溯时间最大值，取值范围0 - 43200秒，0表示不开启消息回溯。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RewindSeconds: Integer
         # @param CreateTime: 队列的创建时间。返回 Unix 时间戳，精确到毫秒。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: Integer
         # @param LastModifyTime: 最后一次修改队列属性的时间。返回 Unix 时间戳，精确到毫秒。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LastModifyTime: Integer
         # @param ActiveMsgNum: 在队列中处于 Active 状态（不处于被消费状态）的消息总数，为近似值。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ActiveMsgNum: Integer
         # @param InactiveMsgNum: 在队列中处于 Inactive 状态（正处于被消费状态）的消息总数，为近似值。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InactiveMsgNum: Integer
         # @param DelayMsgNum: 延迟消息数。
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -599,22 +582,16 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Trace: Boolean
         # @param TenantId: 租户id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TenantId: String
         # @param NamespaceName: 命名空间名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NamespaceName: String
         # @param Status: 集群状态，0:创建中，1:正常，2:销毁中，3:已删除，4: 隔离中，5:创建失败，6: 删除失败
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
         # @param MaxUnackedMsgNum: 最大未确认消息数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaxUnackedMsgNum: Integer
         # @param MaxMsgBacklogSize: 最大消息堆积大小（字节）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaxMsgBacklogSize: Integer
         # @param RetentionSizeInMB: 队列可回溯存储空间，取值范围1024MB - 10240MB，0表示不开启
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RetentionSizeInMB: Integer
 
         attr_accessor :QueueId, :QueueName, :Qps, :Bps, :MaxDelaySeconds, :MaxMsgHeapNum, :PollingWaitSeconds, :MsgRetentionSeconds, :VisibilityTimeout, :MaxMsgSize, :RewindSeconds, :CreateTime, :LastModifyTime, :ActiveMsgNum, :InactiveMsgNum, :DelayMsgNum, :RewindMsgNum, :MinMsgTime, :Transaction, :DeadLetterSource, :DeadLetterPolicy, :TransactionPolicy, :CreateUin, :Tags, :Trace, :TenantId, :NamespaceName, :Status, :MaxUnackedMsgNum, :MaxMsgBacklogSize, :RetentionSizeInMB
@@ -711,47 +688,36 @@ module TencentCloud
       # cmq订阅返回参数
       class CmqSubscription < TencentCloud::Common::AbstractModel
         # @param SubscriptionName: 订阅名字，在单个地域同一账号的同一主题下唯一。订阅名称是一个不超过64个字符的字符串，必须以字母为首字符，剩余部分可以包含字母、数字和横划线(-)。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubscriptionName: String
         # @param SubscriptionId: 订阅 ID。订阅 ID 在拉取监控数据时会用到。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubscriptionId: String
         # @param TopicOwner: 订阅拥有者的 APPID。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TopicOwner: Integer
         # @param MsgCount: 该订阅待投递的消息数。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MsgCount: Integer
         # @param LastModifyTime: 最后一次修改订阅属性的时间。返回 Unix 时间戳，精确到毫秒。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LastModifyTime: Integer
         # @param CreateTime: 订阅的创建时间。返回 Unix 时间戳，精确到毫秒。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: Integer
         # @param BindingKey: 表示订阅接收消息的过滤策略。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BindingKey: Array
         # @param Endpoint: 接收通知的 endpoint，根据协议 protocol 区分：对于 HTTP，endpoint 必须以http://开头，host 可以是域名或 IP；对于 queue，则填 queueName。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Endpoint: String
         # @param FilterTags: 描述用户创建订阅时选择的过滤策略：
         # filterType = 1表示用户使用 filterTag 标签过滤
         # filterType = 2表示用户使用 bindingKey 过滤。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FilterTags: Array
         # @param Protocol: 订阅的协议，目前支持两种协议：HTTP、queue。使用 HTTP 协议，用户需自己搭建接受消息的 Web Server。使用 queue，消息会自动推送到 CMQ queue，用户可以并发地拉取消息。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Protocol: String
         # @param NotifyStrategy: 向 endpoint 推送消息出现错误时，CMQ 推送服务器的重试策略。取值有：
         # （1）BACKOFF_RETRY，退避重试。每隔一定时间重试一次，重试够一定次数后，就把该消息丢弃，继续推送下一条消息；
         # （2）EXPONENTIAL_DECAY_RETRY，指数衰退重试。每次重试的间隔是指数递增的，例如开始 1s，后面是 2s，4s，8s...由于 Topic 消息的周期是一天，所以最多重试一天就把消息丢弃。默认值是 EXPONENTIAL_DECAY_RETRY。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NotifyStrategy: String
         # @param NotifyContentFormat: 推送内容的格式。取值：（1）JSON；（2）SIMPLIFIED，即 raw 格式。如果 protocol 是 queue，则取值必须为 SIMPLIFIED。如果 protocol 是 HTTP，两个值均可以，默认值是 JSON。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NotifyContentFormat: String
         # @param TopicName: 订阅所属的主题名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TopicName: String
 
         attr_accessor :SubscriptionName, :SubscriptionId, :TopicOwner, :MsgCount, :LastModifyTime, :CreateTime, :BindingKey, :Endpoint, :FilterTags, :Protocol, :NotifyStrategy, :NotifyContentFormat, :TopicName
@@ -792,33 +758,24 @@ module TencentCloud
       # cmq topic返回信息展示字段
       class CmqTopic < TencentCloud::Common::AbstractModel
         # @param TopicId: 主题的 ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TopicId: String
         # @param TopicName: 主题名称。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TopicName: String
         # @param MsgRetentionSeconds: 消息在主题中最长存活时间，从发送到该主题开始经过此参数指定的时间后，不论消息是否被成功推送给用户都将被删除，单位为秒。固定为一天（86400秒），该属性不能修改。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MsgRetentionSeconds: Integer
         # @param MaxMsgSize: 消息最大长度。取值范围1024 - 1048576Byte（即1 - 1024K），默认值为1048576。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaxMsgSize: Integer
         # @param Qps: 每秒钟发布消息的条数。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Qps: Integer
         # @param FilterType: 描述用户创建订阅时选择的过滤策略：
         # FilterType = 1表示用户使用 FilterTag 标签过滤;
         # FilterType = 2表示用户使用 BindingKey 过滤。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FilterType: Integer
         # @param CreateTime: 主题的创建时间。返回 Unix 时间戳，精确到毫秒。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: Integer
         # @param LastModifyTime: 最后一次修改主题属性的时间。返回 Unix 时间戳，精确到毫秒。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LastModifyTime: Integer
         # @param MsgCount: 当前该主题中消息数目（消息堆积数）。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MsgCount: Integer
         # @param CreateUin: 创建者 Uin，CAM 鉴权 resource 由该字段组合而成。
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -830,19 +787,14 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Trace: Boolean
         # @param TenantId: 租户id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TenantId: String
         # @param NamespaceName: 命名空间名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NamespaceName: String
         # @param Status: 集群状态，0:创建中，1:正常，2:销毁中，3:已删除，4: 隔离中，5:创建失败，6: 删除失败
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
         # @param BrokerType: 0表示pulsar，1表示rocketmq
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BrokerType: Integer
         # @param SubscriptionCount: 订阅数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubscriptionCount: Integer
 
         attr_accessor :TopicId, :TopicName, :MsgRetentionSeconds, :MaxMsgSize, :Qps, :FilterType, :CreateTime, :LastModifyTime, :MsgCount, :CreateUin, :Tags, :Trace, :TenantId, :NamespaceName, :Status, :BrokerType, :SubscriptionCount
@@ -898,10 +850,8 @@ module TencentCloud
       # cmq TransactionPolicy
       class CmqTransactionPolicy < TencentCloud::Common::AbstractModel
         # @param FirstQueryInterval: 第一次回查时间。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FirstQueryInterval: Integer
         # @param MaxQueryCount: 最大查询次数。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaxQueryCount: Integer
 
         attr_accessor :FirstQueryInterval, :MaxQueryCount
@@ -3882,7 +3832,6 @@ module TencentCloud
         # @param TotalCount: 数量
         # @type TotalCount: Integer
         # @param QueueList: 队列列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type QueueList: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3951,7 +3900,6 @@ module TencentCloud
         # @param TotalCount: 总数
         # @type TotalCount: Integer
         # @param SubscriptionSet: Subscription属性集合
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubscriptionSet: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4063,7 +4011,6 @@ module TencentCloud
       # DescribeCmqTopics返回参数结构体
       class DescribeCmqTopicsResponse < TencentCloud::Common::AbstractModel
         # @param TopicList: 主题列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TopicList: Array
         # @param TotalCount: 全量主题数量
         # @type TotalCount: Integer
@@ -5690,62 +5637,6 @@ module TencentCloud
               rabbitmqvipinstance_tmp = RabbitMQVipInstance.new
               rabbitmqvipinstance_tmp.deserialize(i)
               @Instances << rabbitmqvipinstance_tmp
-            end
-          end
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # DescribeRabbitMQVirtualHostList请求参数结构体
-      class DescribeRabbitMQVirtualHostListRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 不适用，默认参数
-        # @type InstanceId: String
-        # @param Offset: 偏移量
-        # @type Offset: Integer
-        # @param Limit: 一页限制
-        # @type Limit: Integer
-
-        attr_accessor :InstanceId, :Offset, :Limit
-
-        def initialize(instanceid=nil, offset=nil, limit=nil)
-          @InstanceId = instanceid
-          @Offset = offset
-          @Limit = limit
-        end
-
-        def deserialize(params)
-          @InstanceId = params['InstanceId']
-          @Offset = params['Offset']
-          @Limit = params['Limit']
-        end
-      end
-
-      # DescribeRabbitMQVirtualHostList返回参数结构体
-      class DescribeRabbitMQVirtualHostListResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 集群列表数量
-        # @type TotalCount: Integer
-        # @param VirtualHostList: 集群列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type VirtualHostList: Array
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :TotalCount, :VirtualHostList, :RequestId
-
-        def initialize(totalcount=nil, virtualhostlist=nil, requestid=nil)
-          @TotalCount = totalcount
-          @VirtualHostList = virtualhostlist
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @TotalCount = params['TotalCount']
-          unless params['VirtualHostList'].nil?
-            @VirtualHostList = []
-            params['VirtualHostList'].each do |i|
-              rabbitmqprivatevirtualhost_tmp = RabbitMQPrivateVirtualHost.new
-              rabbitmqprivatevirtualhost_tmp.deserialize(i)
-              @VirtualHostList << rabbitmqprivatevirtualhost_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -11100,28 +10991,6 @@ module TencentCloud
         end
       end
 
-      # RabbitMQ专享版云服务器
-      class RabbitMQPrivateVirtualHost < TencentCloud::Common::AbstractModel
-        # @param VirtualHostName: 虚拟主机的名字
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type VirtualHostName: String
-        # @param Description: 虚拟主机的描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Description: String
-
-        attr_accessor :VirtualHostName, :Description
-
-        def initialize(virtualhostname=nil, description=nil)
-          @VirtualHostName = virtualhostname
-          @Description = description
-        end
-
-        def deserialize(params)
-          @VirtualHostName = params['VirtualHostName']
-          @Description = params['Description']
-        end
-      end
-
       # RabbitMQ队列列表消费者信息
       class RabbitMQQueueListConsumerDetailInfo < TencentCloud::Common::AbstractModel
         # @param ConsumersNumber: 消费者数量
@@ -14023,8 +13892,7 @@ module TencentCloud
         # @type SubnetId: String
         # @param VpcEndpoint: vpc接入点信息
         # @type VpcEndpoint: String
-        # @param VpcDataStreamEndpointStatus: vpc接入点状态
-        # OFF/ON/CREATING/DELETING
+        # @param VpcDataStreamEndpointStatus: vpc接入点状态 OFF/ON/CREATING/DELETING
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VpcDataStreamEndpointStatus: String
 

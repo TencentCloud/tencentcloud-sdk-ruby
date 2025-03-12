@@ -13716,10 +13716,10 @@ module TencentCloud
 
         attr_accessor :URL, :URLRelabelConfig, :BasicAuth, :MaxBlockSize, :Label, :Headers
         extend Gem::Deprecate
-        deprecate :MaxBlockSize, :none, 2025, 2
-        deprecate :MaxBlockSize=, :none, 2025, 2
-        deprecate :Label, :none, 2025, 2
-        deprecate :Label=, :none, 2025, 2
+        deprecate :MaxBlockSize, :none, 2025, 3
+        deprecate :MaxBlockSize=, :none, 2025, 3
+        deprecate :Label, :none, 2025, 3
+        deprecate :Label=, :none, 2025, 3
 
         def initialize(url=nil, urlrelabelconfig=nil, basicauth=nil, maxblocksize=nil, label=nil, headers=nil)
           @URL = url

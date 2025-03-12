@@ -7533,7 +7533,11 @@ module TencentCloud
 
       # DescribeColumnLineage请求参数结构体
       class DescribeColumnLineageRequest < TencentCloud::Common::AbstractModel
-        # @param Direction: 查询方向，INPUT,OUTPUT,BOTH枚举值
+        # @param Direction: 查询方向枚举值
+
+        # - INPUT
+        # - OUTPUT
+        # - BOTH
         # @type Direction: String
         # @param Data: 字段信息
         # @type Data: :class:`Tencentcloud::Wedata.v20210820.models.ColumnLineageInfo`
@@ -11735,6 +11739,173 @@ module TencentCloud
         end
       end
 
+      # DescribeReportTaskDetail请求参数结构体
+      class DescribeReportTaskDetailRequest < TencentCloud::Common::AbstractModel
+        # @param PageNum: 页码
+        # @type PageNum: Integer
+        # @param PageSize: 每页条数
+        # @type PageSize: Integer
+        # @param TenantId: 租户id
+        # @type TenantId: String
+        # @param ProjectId: 项目id
+        # @type ProjectId: String
+        # @param TaskId: 任务id
+        # @type TaskId: String
+        # @param InstanceId: 实例id
+        # @type InstanceId: String
+        # @param JobId: 作业id
+        # @type JobId: String
+        # @param EngineTaskId: 引擎任务id
+        # @type EngineTaskId: String
+        # @param ProductSource: 产品模块
+        # @type ProductSource: String
+        # @param OnwerUid: 主账号
+        # @type OnwerUid: String
+        # @param StartTime: 开始时间
+        # @type StartTime: String
+        # @param EndTime: 结束时间
+        # @type EndTime: String
+
+        attr_accessor :PageNum, :PageSize, :TenantId, :ProjectId, :TaskId, :InstanceId, :JobId, :EngineTaskId, :ProductSource, :OnwerUid, :StartTime, :EndTime
+
+        def initialize(pagenum=nil, pagesize=nil, tenantid=nil, projectid=nil, taskid=nil, instanceid=nil, jobid=nil, enginetaskid=nil, productsource=nil, onweruid=nil, starttime=nil, endtime=nil)
+          @PageNum = pagenum
+          @PageSize = pagesize
+          @TenantId = tenantid
+          @ProjectId = projectid
+          @TaskId = taskid
+          @InstanceId = instanceid
+          @JobId = jobid
+          @EngineTaskId = enginetaskid
+          @ProductSource = productsource
+          @OnwerUid = onweruid
+          @StartTime = starttime
+          @EndTime = endtime
+        end
+
+        def deserialize(params)
+          @PageNum = params['PageNum']
+          @PageSize = params['PageSize']
+          @TenantId = params['TenantId']
+          @ProjectId = params['ProjectId']
+          @TaskId = params['TaskId']
+          @InstanceId = params['InstanceId']
+          @JobId = params['JobId']
+          @EngineTaskId = params['EngineTaskId']
+          @ProductSource = params['ProductSource']
+          @OnwerUid = params['OnwerUid']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+        end
+      end
+
+      # DescribeReportTaskDetail返回参数结构体
+      class DescribeReportTaskDetailResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: :class:`Tencentcloud::Wedata.v20210820.models.ReportTaskDetail`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = ReportTaskDetail.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeReportTaskList请求参数结构体
+      class DescribeReportTaskListRequest < TencentCloud::Common::AbstractModel
+        # @param PageNum: 页码
+        # @type PageNum: Integer
+        # @param PageSize: 每页条数
+        # @type PageSize: Integer
+        # @param TenantId: 租户id
+        # @type TenantId: String
+        # @param ProjectId: 项目id
+        # @type ProjectId: String
+        # @param TaskId: 任务id
+        # @type TaskId: String
+        # @param InstanceId: 实例id
+        # @type InstanceId: String
+        # @param JobId: 作业id
+        # @type JobId: String
+        # @param EngineTaskId: 引擎任务id
+        # @type EngineTaskId: String
+        # @param ProductSource: 产品模块
+        # @type ProductSource: String
+        # @param OnwerUid: 主账号
+        # @type OnwerUid: String
+        # @param StartTime: 开始时间
+        # @type StartTime: String
+        # @param EndTime: 结束时间
+        # @type EndTime: String
+
+        attr_accessor :PageNum, :PageSize, :TenantId, :ProjectId, :TaskId, :InstanceId, :JobId, :EngineTaskId, :ProductSource, :OnwerUid, :StartTime, :EndTime
+
+        def initialize(pagenum=nil, pagesize=nil, tenantid=nil, projectid=nil, taskid=nil, instanceid=nil, jobid=nil, enginetaskid=nil, productsource=nil, onweruid=nil, starttime=nil, endtime=nil)
+          @PageNum = pagenum
+          @PageSize = pagesize
+          @TenantId = tenantid
+          @ProjectId = projectid
+          @TaskId = taskid
+          @InstanceId = instanceid
+          @JobId = jobid
+          @EngineTaskId = enginetaskid
+          @ProductSource = productsource
+          @OnwerUid = onweruid
+          @StartTime = starttime
+          @EndTime = endtime
+        end
+
+        def deserialize(params)
+          @PageNum = params['PageNum']
+          @PageSize = params['PageSize']
+          @TenantId = params['TenantId']
+          @ProjectId = params['ProjectId']
+          @TaskId = params['TaskId']
+          @InstanceId = params['InstanceId']
+          @JobId = params['JobId']
+          @EngineTaskId = params['EngineTaskId']
+          @ProductSource = params['ProductSource']
+          @OnwerUid = params['OnwerUid']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+        end
+      end
+
+      # DescribeReportTaskList返回参数结构体
+      class DescribeReportTaskListResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 1
+        # @type Data: :class:`Tencentcloud::Wedata.v20210820.models.ReportTaskListInfo`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = ReportTaskListInfo.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeResourceManagePathTrees请求参数结构体
       class DescribeResourceManagePathTreesRequest < TencentCloud::Common::AbstractModel
         # @param ProjectId: 项目ID
@@ -13498,7 +13669,11 @@ module TencentCloud
 
       # DescribeTableLineage请求参数结构体
       class DescribeTableLineageRequest < TencentCloud::Common::AbstractModel
-        # @param Direction: 查询方向，INPUT,OUTPUT,BOTH枚举值
+        # @param Direction: 查询方向枚举值
+
+        # - INPUT
+        # - OUTPUT
+        # - BOTH
         # @type Direction: String
         # @param Data: 表信息
         # @type Data: :class:`Tencentcloud::Wedata.v20210820.models.TableLineageInfo`
@@ -15871,6 +16046,118 @@ module TencentCloud
               @Duty << duty_tmp
             end
           end
+        end
+      end
+
+      # 引擎任务信息
+      class EngineTaskInfo < TencentCloud::Common::AbstractModel
+        # @param EngineSubmitTime: 1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EngineSubmitTime: String
+        # @param EngineExeTime: 1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EngineExeTime: String
+        # @param EngineExeTimes: 1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EngineExeTimes: Integer
+        # @param CuConsume: 1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CuConsume: Integer
+        # @param ResourceUsage: 1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceUsage: Integer
+        # @param EngineName: 1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EngineName: String
+        # @param EngineExeStatus: 1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EngineExeStatus: String
+        # @param TaskKind: 1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskKind: String
+        # @param TaskType: 1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskType: String
+        # @param TaskContent: 1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskContent: String
+        # @param InputBytesSum: 1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InputBytesSum: Integer
+        # @param ShuffleReadBytesSum: 1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ShuffleReadBytesSum: Integer
+        # @param ShuffleReadRecordsSum: 1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ShuffleReadRecordsSum: Integer
+        # @param OutputRecordsSum: 1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OutputRecordsSum: Integer
+        # @param OutputBytesSum: 1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OutputBytesSum: Integer
+        # @param OutputFilesNum: 1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OutputFilesNum: Integer
+        # @param OutputSmallFilesNum: 1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OutputSmallFilesNum: Integer
+        # @param WaitTime: 1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WaitTime: Integer
+        # @param QueryResultTime: 1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type QueryResultTime: Integer
+        # @param CmdArgs: 1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CmdArgs: String
+
+        attr_accessor :EngineSubmitTime, :EngineExeTime, :EngineExeTimes, :CuConsume, :ResourceUsage, :EngineName, :EngineExeStatus, :TaskKind, :TaskType, :TaskContent, :InputBytesSum, :ShuffleReadBytesSum, :ShuffleReadRecordsSum, :OutputRecordsSum, :OutputBytesSum, :OutputFilesNum, :OutputSmallFilesNum, :WaitTime, :QueryResultTime, :CmdArgs
+
+        def initialize(enginesubmittime=nil, engineexetime=nil, engineexetimes=nil, cuconsume=nil, resourceusage=nil, enginename=nil, engineexestatus=nil, taskkind=nil, tasktype=nil, taskcontent=nil, inputbytessum=nil, shufflereadbytessum=nil, shufflereadrecordssum=nil, outputrecordssum=nil, outputbytessum=nil, outputfilesnum=nil, outputsmallfilesnum=nil, waittime=nil, queryresulttime=nil, cmdargs=nil)
+          @EngineSubmitTime = enginesubmittime
+          @EngineExeTime = engineexetime
+          @EngineExeTimes = engineexetimes
+          @CuConsume = cuconsume
+          @ResourceUsage = resourceusage
+          @EngineName = enginename
+          @EngineExeStatus = engineexestatus
+          @TaskKind = taskkind
+          @TaskType = tasktype
+          @TaskContent = taskcontent
+          @InputBytesSum = inputbytessum
+          @ShuffleReadBytesSum = shufflereadbytessum
+          @ShuffleReadRecordsSum = shufflereadrecordssum
+          @OutputRecordsSum = outputrecordssum
+          @OutputBytesSum = outputbytessum
+          @OutputFilesNum = outputfilesnum
+          @OutputSmallFilesNum = outputsmallfilesnum
+          @WaitTime = waittime
+          @QueryResultTime = queryresulttime
+          @CmdArgs = cmdargs
+        end
+
+        def deserialize(params)
+          @EngineSubmitTime = params['EngineSubmitTime']
+          @EngineExeTime = params['EngineExeTime']
+          @EngineExeTimes = params['EngineExeTimes']
+          @CuConsume = params['CuConsume']
+          @ResourceUsage = params['ResourceUsage']
+          @EngineName = params['EngineName']
+          @EngineExeStatus = params['EngineExeStatus']
+          @TaskKind = params['TaskKind']
+          @TaskType = params['TaskType']
+          @TaskContent = params['TaskContent']
+          @InputBytesSum = params['InputBytesSum']
+          @ShuffleReadBytesSum = params['ShuffleReadBytesSum']
+          @ShuffleReadRecordsSum = params['ShuffleReadRecordsSum']
+          @OutputRecordsSum = params['OutputRecordsSum']
+          @OutputBytesSum = params['OutputBytesSum']
+          @OutputFilesNum = params['OutputFilesNum']
+          @OutputSmallFilesNum = params['OutputSmallFilesNum']
+          @WaitTime = params['WaitTime']
+          @QueryResultTime = params['QueryResultTime']
+          @CmdArgs = params['CmdArgs']
         end
       end
 
@@ -23228,6 +23515,100 @@ module TencentCloud
         end
       end
 
+      # 上报任务详情
+      class ReportTaskDetail < TencentCloud::Common::AbstractModel
+        # @param EngineTaskId: 1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EngineTaskId: String
+        # @param EngineExeStatus: 1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EngineExeStatus: String
+        # @param EngineExeStartTime: 1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EngineExeStartTime: String
+        # @param EngineExeEndTime: 1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EngineExeEndTime: String
+        # @param TaskTypeId: 1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskTypeId: Integer
+        # @param BusinessInfo: 1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BusinessInfo: String
+        # @param EngineTaskInfo: 1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EngineTaskInfo: :class:`Tencentcloud::Wedata.v20210820.models.EngineTaskInfo`
+
+        attr_accessor :EngineTaskId, :EngineExeStatus, :EngineExeStartTime, :EngineExeEndTime, :TaskTypeId, :BusinessInfo, :EngineTaskInfo
+
+        def initialize(enginetaskid=nil, engineexestatus=nil, engineexestarttime=nil, engineexeendtime=nil, tasktypeid=nil, businessinfo=nil, enginetaskinfo=nil)
+          @EngineTaskId = enginetaskid
+          @EngineExeStatus = engineexestatus
+          @EngineExeStartTime = engineexestarttime
+          @EngineExeEndTime = engineexeendtime
+          @TaskTypeId = tasktypeid
+          @BusinessInfo = businessinfo
+          @EngineTaskInfo = enginetaskinfo
+        end
+
+        def deserialize(params)
+          @EngineTaskId = params['EngineTaskId']
+          @EngineExeStatus = params['EngineExeStatus']
+          @EngineExeStartTime = params['EngineExeStartTime']
+          @EngineExeEndTime = params['EngineExeEndTime']
+          @TaskTypeId = params['TaskTypeId']
+          @BusinessInfo = params['BusinessInfo']
+          unless params['EngineTaskInfo'].nil?
+            @EngineTaskInfo = EngineTaskInfo.new
+            @EngineTaskInfo.deserialize(params['EngineTaskInfo'])
+          end
+        end
+      end
+
+      # 上报任务信息
+      class ReportTaskListInfo < TencentCloud::Common::AbstractModel
+        # @param Rows: 1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Rows: Array
+        # @param PageNum: 1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PageNum: Integer
+        # @param PageSize: 1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PageSize: Integer
+        # @param TotalCount: 1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+        # @param TotalPageNumber: 1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalPageNumber: Integer
+
+        attr_accessor :Rows, :PageNum, :PageSize, :TotalCount, :TotalPageNumber
+
+        def initialize(rows=nil, pagenum=nil, pagesize=nil, totalcount=nil, totalpagenumber=nil)
+          @Rows = rows
+          @PageNum = pagenum
+          @PageSize = pagesize
+          @TotalCount = totalcount
+          @TotalPageNumber = totalpagenumber
+        end
+
+        def deserialize(params)
+          unless params['Rows'].nil?
+            @Rows = []
+            params['Rows'].each do |i|
+              taskinfovo_tmp = TaskInfoVo.new
+              taskinfovo_tmp.deserialize(i)
+              @Rows << taskinfovo_tmp
+            end
+          end
+          @PageNum = params['PageNum']
+          @PageSize = params['PageSize']
+          @TotalCount = params['TotalCount']
+          @TotalPageNumber = params['TotalPageNumber']
+        end
+      end
+
       # 资源管理目录树节点
       class ResourcePathTree < TencentCloud::Common::AbstractModel
         # @param Name: 资源名字
@@ -27704,10 +28085,16 @@ module TencentCloud
         # @param DatabaseId: DatabaseId
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DatabaseId: String
+        # @param DataFromType: 数据来源
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DataFromType: String
+        # @param CollectJobId: 采集id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CollectJobId: String
 
-        attr_accessor :MetastoreType, :ProjectId, :DatasourceId, :TableId, :Params, :ParentSet, :ChildSet, :ExtParams, :Id, :MetastoreTypeName, :TableName, :QualifiedName, :DownStreamCount, :UpStreamCount, :Description, :PrefixPath, :CreateTime, :ModifyTime, :Tasks, :ChannelType, :DisplayType, :EngineType, :TableType, :DatasourceName, :DatabaseName, :DatabaseId
+        attr_accessor :MetastoreType, :ProjectId, :DatasourceId, :TableId, :Params, :ParentSet, :ChildSet, :ExtParams, :Id, :MetastoreTypeName, :TableName, :QualifiedName, :DownStreamCount, :UpStreamCount, :Description, :PrefixPath, :CreateTime, :ModifyTime, :Tasks, :ChannelType, :DisplayType, :EngineType, :TableType, :DatasourceName, :DatabaseName, :DatabaseId, :DataFromType, :CollectJobId
 
-        def initialize(metastoretype=nil, projectid=nil, datasourceid=nil, tableid=nil, params=nil, parentset=nil, childset=nil, extparams=nil, id=nil, metastoretypename=nil, tablename=nil, qualifiedname=nil, downstreamcount=nil, upstreamcount=nil, description=nil, prefixpath=nil, createtime=nil, modifytime=nil, tasks=nil, channeltype=nil, displaytype=nil, enginetype=nil, tabletype=nil, datasourcename=nil, databasename=nil, databaseid=nil)
+        def initialize(metastoretype=nil, projectid=nil, datasourceid=nil, tableid=nil, params=nil, parentset=nil, childset=nil, extparams=nil, id=nil, metastoretypename=nil, tablename=nil, qualifiedname=nil, downstreamcount=nil, upstreamcount=nil, description=nil, prefixpath=nil, createtime=nil, modifytime=nil, tasks=nil, channeltype=nil, displaytype=nil, enginetype=nil, tabletype=nil, datasourcename=nil, databasename=nil, databaseid=nil, datafromtype=nil, collectjobid=nil)
           @MetastoreType = metastoretype
           @ProjectId = projectid
           @DatasourceId = datasourceid
@@ -27734,6 +28121,8 @@ module TencentCloud
           @DatasourceName = datasourcename
           @DatabaseName = databasename
           @DatabaseId = databaseid
+          @DataFromType = datafromtype
+          @CollectJobId = collectjobid
         end
 
         def deserialize(params)
@@ -27777,6 +28166,8 @@ module TencentCloud
           @DatasourceName = params['DatasourceName']
           @DatabaseName = params['DatabaseName']
           @DatabaseId = params['DatabaseId']
+          @DataFromType = params['DataFromType']
+          @CollectJobId = params['CollectJobId']
         end
       end
 
@@ -28762,6 +29153,108 @@ module TencentCloud
           @WorkFlowId = params['WorkFlowId']
           @WorkFlowName = params['WorkFlowName']
           @TaskNameExistMode = params['TaskNameExistMode']
+        end
+      end
+
+      # 任务信息
+      class TaskInfoVo < TencentCloud::Common::AbstractModel
+        # @param AppID: 1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AppID: String
+        # @param ProjectId: 1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProjectId: String
+        # @param TaskId: 1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskId: String
+        # @param TaskName: 1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskName: String
+        # @param TaskTypeId: 1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskTypeId: Integer
+        # @param OnwerUid: 1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OnwerUid: String
+        # @param InChargeId: 1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InChargeId: String
+        # @param InstanceId: 1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceId: String
+        # @param JobId: 1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type JobId: String
+        # @param EngineType: 1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EngineType: String
+        # @param EngineName: 1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EngineName: String
+        # @param EngineSubType: 1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EngineSubType: String
+        # @param EngineTaskId: 1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EngineTaskId: String
+        # @param EngineExeStatus: 1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EngineExeStatus: String
+        # @param EngineExeUser: 1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EngineExeUser: String
+        # @param EngineExeStartTime: 1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EngineExeStartTime: String
+        # @param EngineExeEndTime: 1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EngineExeEndTime: String
+        # @param ProductSource: 1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProductSource: String
+
+        attr_accessor :AppID, :ProjectId, :TaskId, :TaskName, :TaskTypeId, :OnwerUid, :InChargeId, :InstanceId, :JobId, :EngineType, :EngineName, :EngineSubType, :EngineTaskId, :EngineExeStatus, :EngineExeUser, :EngineExeStartTime, :EngineExeEndTime, :ProductSource
+
+        def initialize(appid=nil, projectid=nil, taskid=nil, taskname=nil, tasktypeid=nil, onweruid=nil, inchargeid=nil, instanceid=nil, jobid=nil, enginetype=nil, enginename=nil, enginesubtype=nil, enginetaskid=nil, engineexestatus=nil, engineexeuser=nil, engineexestarttime=nil, engineexeendtime=nil, productsource=nil)
+          @AppID = appid
+          @ProjectId = projectid
+          @TaskId = taskid
+          @TaskName = taskname
+          @TaskTypeId = tasktypeid
+          @OnwerUid = onweruid
+          @InChargeId = inchargeid
+          @InstanceId = instanceid
+          @JobId = jobid
+          @EngineType = enginetype
+          @EngineName = enginename
+          @EngineSubType = enginesubtype
+          @EngineTaskId = enginetaskid
+          @EngineExeStatus = engineexestatus
+          @EngineExeUser = engineexeuser
+          @EngineExeStartTime = engineexestarttime
+          @EngineExeEndTime = engineexeendtime
+          @ProductSource = productsource
+        end
+
+        def deserialize(params)
+          @AppID = params['AppID']
+          @ProjectId = params['ProjectId']
+          @TaskId = params['TaskId']
+          @TaskName = params['TaskName']
+          @TaskTypeId = params['TaskTypeId']
+          @OnwerUid = params['OnwerUid']
+          @InChargeId = params['InChargeId']
+          @InstanceId = params['InstanceId']
+          @JobId = params['JobId']
+          @EngineType = params['EngineType']
+          @EngineName = params['EngineName']
+          @EngineSubType = params['EngineSubType']
+          @EngineTaskId = params['EngineTaskId']
+          @EngineExeStatus = params['EngineExeStatus']
+          @EngineExeUser = params['EngineExeUser']
+          @EngineExeStartTime = params['EngineExeStartTime']
+          @EngineExeEndTime = params['EngineExeEndTime']
+          @ProductSource = params['ProductSource']
         end
       end
 

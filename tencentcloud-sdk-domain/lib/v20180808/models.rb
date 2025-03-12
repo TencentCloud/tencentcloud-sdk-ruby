@@ -1772,7 +1772,6 @@ module TencentCloud
       # DescribeCustomDnsHostSet返回参数结构体
       class DescribeCustomDnsHostSetResponse < TencentCloud::Common::AbstractModel
         # @param DnsHostSet: 自定义DNS Host 列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DnsHostSet: Array
         # @param TotalCount: 自定义DNS Host总数
         # @type TotalCount: Integer

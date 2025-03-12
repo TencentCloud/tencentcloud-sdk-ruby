@@ -7939,7 +7939,7 @@ module TencentCloud
         # <li>**1**：仅模板列表</li></ul>
         # @type ContentType: Integer
         # @param Filters: 搜索过滤的条件，本字段允许您通过指定模板 ID 或模板名称来进行查询。
-        # <ul><li><strong>模板 ID</strong>：<strong>Key</strong>设置为 <code>template-id</code> ，<strong>Values</strong>为您想要查询的 <a href="https://qcloudimg.tencent-cloud.cn/raw/5c27b917b2bbe8c341566c78ca6f8782.png" target="_blank">模板 ID </a>列表。</li>  <li><strong>主企业模板 ID</strong>：<strong>Key</strong>设置为 <code>share-template-id</code> ，<strong>Values</strong>为您想要查询的 <a href="https://qcloudimg.tencent-cloud.cn/raw/5c27b917b2bbe8c341566c78ca6f8782.png" target="_blank">主企业模板 ID </a>列表。用来查询主企业分享模板到子企业场景下，子企业的模板信息，在此情境下，参数 <strong>Agent.ProxyOrganizationId</strong>（子企业的组织ID）为必填项。</li> <li><strong>模板名称</strong>：<strong>Key</strong>设置为 <code>template-name</code> ，<strong>Values</strong>为您想要查询的<a href="https://qcloudimg.tencent-cloud.cn/raw/03a924ee0a53d86575f8067d1c97876d.png" target="_blank">模板名称</a>列表。</li></ul>
+        # <ul><li><strong>模板 ID</strong>：<strong>Key</strong>设置为 <code>template-id</code> ，<strong>Values</strong>为您想要查询的 <a href="https://qcloudimg.tencent-cloud.cn/raw/5c27b917b2bbe8c341566c78ca6f8782.png" target="_blank">模板 ID </a>列表。</li>  <li><strong>主企业模板 ID</strong>：<strong>Key</strong>设置为 <code>share-template-id</code> ，<strong>Values</strong>为您想要查询的 <a href="https://qcloudimg.tencent-cloud.cn/raw/5c27b917b2bbe8c341566c78ca6f8782.png" target="_blank">主企业模板 ID </a>列表。用来查询主企业分享模板到子企业场景下，子企业的模板信息，在此情境下，参数 <strong>Agent.ProxyOrganizationId</strong>（子企业的组织ID）为必填项。</li> <li><strong>模板名称</strong>：<strong>Key</strong>设置为 <code>template-name</code> ，<strong>Values</strong>为您想要查询的<a href="https://qcloudimg.tencent-cloud.cn/raw/03a924ee0a53d86575f8067d1c97876d.png" target="_blank">模板名称</a>列表。</li><li><strong>模板的用户合同类型</strong>：<strong>Key</strong>设置为 <code>user-flow-type-id</code> ，<strong>Values</strong>为您想要查询的用户模版类型id列表。</li></ul>
         # @type Filters: Array
         # @param Offset: 查询结果分页返回，指定从第几页返回数据，和Limit参数配合使用。
 
@@ -8913,6 +8913,77 @@ module TencentCloud
           @LicenseTo = params['LicenseTo']
           @LicenseType = params['LicenseType']
           @SealId = params['SealId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeUserFlowType请求参数结构体
+      class DescribeUserFlowTypeRequest < TencentCloud::Common::AbstractModel
+        # @param Operator: 执行本接口操作的员工信息。
+        # 注: `在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。`
+        # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
+        # @param Agent: 代理企业和员工的信息。
+        # 在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
+        # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
+        # @param Filters: 搜索过滤的条件，本字段允许您通过指定模板 ID 或模板名称来进行查询。
+        # <ul><li><strong>模板 ID</strong>：<strong>Key</strong>设置为 <code>template-id</code> ，<strong>Values</strong>为您想要查询的 <a href="https://qcloudimg.tencent-cloud.cn/raw/5c27b917b2bbe8c341566c78ca6f8782.png" target="_blank">模板 ID </a>列表。</li>  <li><strong>主企业模板 ID</strong>：<strong>Key</strong>设置为 <code>share-template-id</code> ，<strong>Values</strong>为您想要查询的 <a href="https://qcloudimg.tencent-cloud.cn/raw/5c27b917b2bbe8c341566c78ca6f8782.png" target="_blank">主企业模板 ID </a>列表。用来查询主企业分享模板到子企业场景下，子企业的模板信息，在此情境下，参数 <strong>Agent.ProxyOrganizationId</strong>（子企业的组织ID）为必填项。</li> <li><strong>模板名称</strong>：<strong>Key</strong>设置为 <code>template-name</code> ，<strong>Values</strong>为您想要查询的<a href="https://qcloudimg.tencent-cloud.cn/raw/03a924ee0a53d86575f8067d1c97876d.png" target="_blank">模板名称</a>列表。</li><li><strong>模板的用户合同类型</strong>：<strong>Key</strong>设置为 <code>user-flow-type-id</code> ，<strong>Values</strong>为您想要查询的用户模版类型id列表。</li></ul>
+        # @type Filters: Array
+        # @param QueryBindTemplate: 查询绑定了模版的用户合同类型 <ul> <li>false（默认值），查询用户合同类型</li> <li>true，查询绑定了模版的用户合同类型</li> </ul>
+        # @type QueryBindTemplate: Boolean
+
+        attr_accessor :Operator, :Agent, :Filters, :QueryBindTemplate
+
+        def initialize(operator=nil, agent=nil, filters=nil, querybindtemplate=nil)
+          @Operator = operator
+          @Agent = agent
+          @Filters = filters
+          @QueryBindTemplate = querybindtemplate
+        end
+
+        def deserialize(params)
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @QueryBindTemplate = params['QueryBindTemplate']
+        end
+      end
+
+      # DescribeUserFlowType返回参数结构体
+      class DescribeUserFlowTypeResponse < TencentCloud::Common::AbstractModel
+        # @param AllUserFlowTypes: 查询到的所有用户合同类型列表
+        # @type AllUserFlowTypes: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :AllUserFlowTypes, :RequestId
+
+        def initialize(alluserflowtypes=nil, requestid=nil)
+          @AllUserFlowTypes = alluserflowtypes
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['AllUserFlowTypes'].nil?
+            @AllUserFlowTypes = []
+            params['AllUserFlowTypes'].each do |i|
+              templateuserflowtype_tmp = TemplateUserFlowType.new
+              templateuserflowtype_tmp.deserialize(i)
+              @AllUserFlowTypes << templateuserflowtype_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -12982,6 +13053,34 @@ module TencentCloud
               @Seals << sealinfo_tmp
             end
           end
+        end
+      end
+
+      # 模版对应的合同类型
+      class TemplateUserFlowType < TencentCloud::Common::AbstractModel
+        # @param UserFlowTypeId: 合同类型id
+        # @type UserFlowTypeId: String
+        # @param Name: 合同类型名称
+        # @type Name: String
+        # @param Description: 合同类型的具体描述
+        # @type Description: String
+        # @param TemplateNum: 每个合同类型绑定的模版数量
+        # @type TemplateNum: Integer
+
+        attr_accessor :UserFlowTypeId, :Name, :Description, :TemplateNum
+
+        def initialize(userflowtypeid=nil, name=nil, description=nil, templatenum=nil)
+          @UserFlowTypeId = userflowtypeid
+          @Name = name
+          @Description = description
+          @TemplateNum = templatenum
+        end
+
+        def deserialize(params)
+          @UserFlowTypeId = params['UserFlowTypeId']
+          @Name = params['Name']
+          @Description = params['Description']
+          @TemplateNum = params['TemplateNum']
         end
       end
 

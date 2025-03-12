@@ -11988,6 +11988,54 @@ module TencentCloud
         end
       end
 
+      # ModifyUserSignatureClass请求参数结构体
+      class ModifyUserSignatureClassRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名
+        # @type Domain: String
+        # @param TypeID: 规则类型ID
+        # @type TypeID: String
+        # @param Status: 规则类型状态，0:关闭，1:开启
+        # @type Status: Integer
+
+        attr_accessor :Domain, :TypeID, :Status
+
+        def initialize(domain=nil, typeid=nil, status=nil)
+          @Domain = domain
+          @TypeID = typeid
+          @Status = status
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @TypeID = params['TypeID']
+          @Status = params['Status']
+        end
+      end
+
+      # ModifyUserSignatureClass返回参数结构体
+      class ModifyUserSignatureClassResponse < TencentCloud::Common::AbstractModel
+        # @param TypeID: 规则类型ID
+        # @type TypeID: String
+        # @param Status: 规则类型状态，0：关闭，1：开启
+        # @type Status: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TypeID, :Status, :RequestId
+
+        def initialize(typeid=nil, status=nil, requestid=nil)
+          @TypeID = typeid
+          @Status = status
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TypeID = params['TypeID']
+          @Status = params['Status']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyUserSignatureRule请求参数结构体
       class ModifyUserSignatureRuleRequest < TencentCloud::Common::AbstractModel
         # @param Domain: 域名
@@ -13416,6 +13464,58 @@ module TencentCloud
         def deserialize(params)
           @StartDateTime = params['StartDateTime']
           @EndDateTime = params['EndDateTime']
+        end
+      end
+
+      # UpdateProtectionModes请求参数结构体
+      class UpdateProtectionModesRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名
+        # @type Domain: String
+        # @param Edition: 资源类型
+        # @type Edition: String
+        # @param TypeIDs: 大类规则ID
+        # @type TypeIDs: Array
+        # @param Mode: 0表示观察，1表示拦截
+        # @type Mode: Integer
+
+        attr_accessor :Domain, :Edition, :TypeIDs, :Mode
+
+        def initialize(domain=nil, edition=nil, typeids=nil, mode=nil)
+          @Domain = domain
+          @Edition = edition
+          @TypeIDs = typeids
+          @Mode = mode
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @Edition = params['Edition']
+          @TypeIDs = params['TypeIDs']
+          @Mode = params['Mode']
+        end
+      end
+
+      # UpdateProtectionModes返回参数结构体
+      class UpdateProtectionModesResponse < TencentCloud::Common::AbstractModel
+        # @param CommonRsp: 操作结果
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CommonRsp: :class:`Tencentcloud::Waf.v20180125.models.CommonRspData`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :CommonRsp, :RequestId
+
+        def initialize(commonrsp=nil, requestid=nil)
+          @CommonRsp = commonrsp
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['CommonRsp'].nil?
+            @CommonRsp = CommonRspData.new
+            @CommonRsp.deserialize(params['CommonRsp'])
+          end
+          @RequestId = params['RequestId']
         end
       end
 

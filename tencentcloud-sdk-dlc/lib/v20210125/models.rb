@@ -2552,17 +2552,28 @@ module TencentCloud
         # @type JobName: String
         # @param CmdArgs: spark作业程序入参，以空格分隔；一般用于周期性调用使用
         # @type CmdArgs: String
+        # @param SourceInfo: 任务来源信息
+        # @type SourceInfo: Array
 
-        attr_accessor :JobName, :CmdArgs
+        attr_accessor :JobName, :CmdArgs, :SourceInfo
 
-        def initialize(jobname=nil, cmdargs=nil)
+        def initialize(jobname=nil, cmdargs=nil, sourceinfo=nil)
           @JobName = jobname
           @CmdArgs = cmdargs
+          @SourceInfo = sourceinfo
         end
 
         def deserialize(params)
           @JobName = params['JobName']
           @CmdArgs = params['CmdArgs']
+          unless params['SourceInfo'].nil?
+            @SourceInfo = []
+            params['SourceInfo'].each do |i|
+              kvpair_tmp = KVPair.new
+              kvpair_tmp.deserialize(i)
+              @SourceInfo << kvpair_tmp
+            end
+          end
         end
       end
 
@@ -2618,10 +2629,12 @@ module TencentCloud
         # @type IsInherit: Integer
         # @param CustomKey: 用户自定义主键，需唯一
         # @type CustomKey: String
+        # @param SourceInfo: 任务来源信息
+        # @type SourceInfo: Array
 
-        attr_accessor :DataEngineName, :ExecuteSQL, :DriverSize, :ExecutorSize, :ExecutorNumbers, :ExecutorMaxNumbers, :TimeoutInSecond, :SessionId, :SessionName, :Arguments, :IsInherit, :CustomKey
+        attr_accessor :DataEngineName, :ExecuteSQL, :DriverSize, :ExecutorSize, :ExecutorNumbers, :ExecutorMaxNumbers, :TimeoutInSecond, :SessionId, :SessionName, :Arguments, :IsInherit, :CustomKey, :SourceInfo
 
-        def initialize(dataenginename=nil, executesql=nil, driversize=nil, executorsize=nil, executornumbers=nil, executormaxnumbers=nil, timeoutinsecond=nil, sessionid=nil, sessionname=nil, arguments=nil, isinherit=nil, customkey=nil)
+        def initialize(dataenginename=nil, executesql=nil, driversize=nil, executorsize=nil, executornumbers=nil, executormaxnumbers=nil, timeoutinsecond=nil, sessionid=nil, sessionname=nil, arguments=nil, isinherit=nil, customkey=nil, sourceinfo=nil)
           @DataEngineName = dataenginename
           @ExecuteSQL = executesql
           @DriverSize = driversize
@@ -2634,6 +2647,7 @@ module TencentCloud
           @Arguments = arguments
           @IsInherit = isinherit
           @CustomKey = customkey
+          @SourceInfo = sourceinfo
         end
 
         def deserialize(params)
@@ -2656,6 +2670,14 @@ module TencentCloud
           end
           @IsInherit = params['IsInherit']
           @CustomKey = params['CustomKey']
+          unless params['SourceInfo'].nil?
+            @SourceInfo = []
+            params['SourceInfo'].each do |i|
+              kvpair_tmp = KVPair.new
+              kvpair_tmp.deserialize(i)
+              @SourceInfo << kvpair_tmp
+            end
+          end
         end
       end
 
@@ -2777,15 +2799,18 @@ module TencentCloud
         # @type DataEngineName: String
         # @param ResourceGroupName: 标准spark执行任务resourceGroupName
         # @type ResourceGroupName: String
+        # @param SourceInfo: 任务来源信息
+        # @type SourceInfo: Array
 
-        attr_accessor :Task, :DatabaseName, :DatasourceConnectionName, :DataEngineName, :ResourceGroupName
+        attr_accessor :Task, :DatabaseName, :DatasourceConnectionName, :DataEngineName, :ResourceGroupName, :SourceInfo
 
-        def initialize(task=nil, databasename=nil, datasourceconnectionname=nil, dataenginename=nil, resourcegroupname=nil)
+        def initialize(task=nil, databasename=nil, datasourceconnectionname=nil, dataenginename=nil, resourcegroupname=nil, sourceinfo=nil)
           @Task = task
           @DatabaseName = databasename
           @DatasourceConnectionName = datasourceconnectionname
           @DataEngineName = dataenginename
           @ResourceGroupName = resourcegroupname
+          @SourceInfo = sourceinfo
         end
 
         def deserialize(params)
@@ -2797,6 +2822,14 @@ module TencentCloud
           @DatasourceConnectionName = params['DatasourceConnectionName']
           @DataEngineName = params['DataEngineName']
           @ResourceGroupName = params['ResourceGroupName']
+          unless params['SourceInfo'].nil?
+            @SourceInfo = []
+            params['SourceInfo'].each do |i|
+              kvpair_tmp = KVPair.new
+              kvpair_tmp.deserialize(i)
+              @SourceInfo << kvpair_tmp
+            end
+          end
         end
       end
 
@@ -2886,16 +2919,19 @@ module TencentCloud
         # @type ResourceGroupName: String
         # @param IsMultiStatement: 是否使用multi- statement方式运行一批次任务，true: 是，false: 否
         # @type IsMultiStatement: Boolean
+        # @param SourceInfo: 任务来源信息
+        # @type SourceInfo: Array
 
-        attr_accessor :DatabaseName, :Tasks, :DatasourceConnectionName, :DataEngineName, :ResourceGroupName, :IsMultiStatement
+        attr_accessor :DatabaseName, :Tasks, :DatasourceConnectionName, :DataEngineName, :ResourceGroupName, :IsMultiStatement, :SourceInfo
 
-        def initialize(databasename=nil, tasks=nil, datasourceconnectionname=nil, dataenginename=nil, resourcegroupname=nil, ismultistatement=nil)
+        def initialize(databasename=nil, tasks=nil, datasourceconnectionname=nil, dataenginename=nil, resourcegroupname=nil, ismultistatement=nil, sourceinfo=nil)
           @DatabaseName = databasename
           @Tasks = tasks
           @DatasourceConnectionName = datasourceconnectionname
           @DataEngineName = dataenginename
           @ResourceGroupName = resourcegroupname
           @IsMultiStatement = ismultistatement
+          @SourceInfo = sourceinfo
         end
 
         def deserialize(params)
@@ -2908,6 +2944,14 @@ module TencentCloud
           @DataEngineName = params['DataEngineName']
           @ResourceGroupName = params['ResourceGroupName']
           @IsMultiStatement = params['IsMultiStatement']
+          unless params['SourceInfo'].nil?
+            @SourceInfo = []
+            params['SourceInfo'].each do |i|
+              kvpair_tmp = KVPair.new
+              kvpair_tmp.deserialize(i)
+              @SourceInfo << kvpair_tmp
+            end
+          end
         end
       end
 
@@ -5467,19 +5511,23 @@ module TencentCloud
         # @type Limit: Integer
         # @param Offset: 偏移量，默认为0
         # @type Offset: Integer
+        # @param SessionId: 资源组id
+        # @type SessionId: String
 
-        attr_accessor :DataEngineName, :Limit, :Offset
+        attr_accessor :DataEngineName, :Limit, :Offset, :SessionId
 
-        def initialize(dataenginename=nil, limit=nil, offset=nil)
+        def initialize(dataenginename=nil, limit=nil, offset=nil, sessionid=nil)
           @DataEngineName = dataenginename
           @Limit = limit
           @Offset = offset
+          @SessionId = sessionid
         end
 
         def deserialize(params)
           @DataEngineName = params['DataEngineName']
           @Limit = params['Limit']
           @Offset = params['Offset']
+          @SessionId = params['SessionId']
         end
       end
 
@@ -6310,14 +6358,17 @@ module TencentCloud
         # @type NextToken: String
         # @param BatchId: 批次Id
         # @type BatchId: String
+        # @param DataFieldCutLen: 返回结果集中字段值长度截取，如果超过该长度则截取到该长度
+        # @type DataFieldCutLen: Integer
 
-        attr_accessor :TaskId, :MaxResults, :NextToken, :BatchId
+        attr_accessor :TaskId, :MaxResults, :NextToken, :BatchId, :DataFieldCutLen
 
-        def initialize(taskid=nil, maxresults=nil, nexttoken=nil, batchid=nil)
+        def initialize(taskid=nil, maxresults=nil, nexttoken=nil, batchid=nil, datafieldcutlen=nil)
           @TaskId = taskid
           @MaxResults = maxresults
           @NextToken = nexttoken
           @BatchId = batchid
+          @DataFieldCutLen = datafieldcutlen
         end
 
         def deserialize(params)
@@ -6325,6 +6376,7 @@ module TencentCloud
           @MaxResults = params['MaxResults']
           @NextToken = params['NextToken']
           @BatchId = params['BatchId']
+          @DataFieldCutLen = params['DataFieldCutLen']
         end
       end
 
@@ -7471,14 +7523,17 @@ module TencentCloud
         # @type MaxResults: Integer
         # @param IsTransformDataType: 是否转化数据类型
         # @type IsTransformDataType: Boolean
+        # @param DataFieldCutLen: 返回结果集中字段长度截取，如果字段值长度超过该长度则截取到该长度
+        # @type DataFieldCutLen: Integer
 
-        attr_accessor :TaskId, :NextToken, :MaxResults, :IsTransformDataType
+        attr_accessor :TaskId, :NextToken, :MaxResults, :IsTransformDataType, :DataFieldCutLen
 
-        def initialize(taskid=nil, nexttoken=nil, maxresults=nil, istransformdatatype=nil)
+        def initialize(taskid=nil, nexttoken=nil, maxresults=nil, istransformdatatype=nil, datafieldcutlen=nil)
           @TaskId = taskid
           @NextToken = nexttoken
           @MaxResults = maxresults
           @IsTransformDataType = istransformdatatype
+          @DataFieldCutLen = datafieldcutlen
         end
 
         def deserialize(params)
@@ -7486,6 +7541,7 @@ module TencentCloud
           @NextToken = params['NextToken']
           @MaxResults = params['MaxResults']
           @IsTransformDataType = params['IsTransformDataType']
+          @DataFieldCutLen = params['DataFieldCutLen']
         end
       end
 
@@ -7678,14 +7734,17 @@ module TencentCloud
         # @type Filters: Array
         # @param DataEngineName: 引擎名
         # @type DataEngineName: String
+        # @param HouseIds: DataEngine-dm8bjs29
+        # @type HouseIds: Array
 
-        attr_accessor :StartTime, :EndTime, :Filters, :DataEngineName
+        attr_accessor :StartTime, :EndTime, :Filters, :DataEngineName, :HouseIds
 
-        def initialize(starttime=nil, endtime=nil, filters=nil, dataenginename=nil)
+        def initialize(starttime=nil, endtime=nil, filters=nil, dataenginename=nil, houseids=nil)
           @StartTime = starttime
           @EndTime = endtime
           @Filters = filters
           @DataEngineName = dataenginename
+          @HouseIds = houseids
         end
 
         def deserialize(params)
@@ -7700,6 +7759,7 @@ module TencentCloud
             end
           end
           @DataEngineName = params['DataEngineName']
+          @HouseIds = params['HouseIds']
         end
       end
 
@@ -9238,10 +9298,8 @@ module TencentCloud
       # 配置格式
       class KVPair < TencentCloud::Common::AbstractModel
         # @param Key: 配置的key值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Key: String
         # @param Value: 配置的value值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: String
 
         attr_accessor :Key, :Value
@@ -10412,13 +10470,10 @@ module TencentCloud
       # NotebookSessionStatement详情。
       class NotebookSessionStatementInfo < TencentCloud::Common::AbstractModel
         # @param Completed: 完成时间戳
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Completed: Integer
         # @param Started: 开始时间戳
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Started: Integer
         # @param Progress: 完成进度，百分制
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Progress: Float
         # @param StatementId: Session Statement唯一标识
         # @type StatementId: String
@@ -10431,10 +10486,8 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BatchId: String
         # @param Code: 运行语句
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Code: String
         # @param TaskId: 任务ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskId: String
 
         attr_accessor :Completed, :Started, :Progress, :StatementId, :State, :OutPut, :BatchId, :Code, :TaskId
@@ -11965,10 +12018,8 @@ module TencentCloud
       # statement信息
       class StatementInformation < TencentCloud::Common::AbstractModel
         # @param TaskId: SQL任务唯一ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskId: String
         # @param SQL: SQL内容
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SQL: String
 
         attr_accessor :TaskId, :SQL
@@ -11987,16 +12038,13 @@ module TencentCloud
       # notebook session statement输出信息。
       class StatementOutput < TencentCloud::Common::AbstractModel
         # @param ExecutionCount: 执行总数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExecutionCount: Integer
         # @param Data: Statement数据
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: Array
         # @param Status: Statement状态:ok,error
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: String
         # @param ErrorName: 错误名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrorName: String
         # @param ErrorValue: 错误类型
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -12005,7 +12053,6 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrorMessage: Array
         # @param SQLResult: SQL类型任务结果返回
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SQLResult: String
 
         attr_accessor :ExecutionCount, :Data, :Status, :ErrorName, :ErrorValue, :ErrorMessage, :SQLResult
@@ -12867,10 +12914,8 @@ module TencentCloud
         # @param TaskId: 任务唯一ID
         # @type TaskId: String
         # @param DatasourceConnectionName: 数据源名称，当前任务执行时候选中的默认数据源
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DatasourceConnectionName: String
         # @param DatabaseName: 数据库名称，当前任务执行时候选中的默认数据库
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DatabaseName: String
         # @param SQL: 当前执行的SQL，一个任务包含一个SQL
         # @type SQL: String
@@ -12894,7 +12939,6 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResultSchema: Array
         # @param ResultSet: 结果信息，反转义后，外层数组的每个元素为一行数据
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResultSet: String
         # @param NextToken: 分页信息，如果没有更多结果数据，nextToken为空
         # @type NextToken: String
@@ -12907,7 +12951,6 @@ module TencentCloud
         # @param TotalTime: 任务耗时，单位： ms
         # @type TotalTime: Integer
         # @param QueryResultTime: 获取结果消耗的时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type QueryResultTime: Float
 
         attr_accessor :TaskId, :DatasourceConnectionName, :DatabaseName, :SQL, :SQLType, :State, :DataAmount, :UsedTime, :OutputPath, :CreateTime, :OutputMessage, :RowAffectInfo, :ResultSchema, :ResultSet, :NextToken, :Percentage, :ProgressDetail, :DisplayFormat, :TotalTime, :QueryResultTime

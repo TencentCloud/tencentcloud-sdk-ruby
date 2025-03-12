@@ -2813,6 +2813,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 修改组织成员访问策略
+
+        # @param request: Request instance for UpdateOrganizationMembersPolicy.
+        # @type request: :class:`Tencentcloud::organization::V20210331::UpdateOrganizationMembersPolicyRequest`
+        # @rtype: :class:`Tencentcloud::organization::V20210331::UpdateOrganizationMembersPolicyResponse`
+        def UpdateOrganizationMembersPolicy(request)
+          body = send_request('UpdateOrganizationMembersPolicy', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdateOrganizationMembersPolicyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 更新企业组织节点
 
         # @param request: Request instance for UpdateOrganizationNode.
