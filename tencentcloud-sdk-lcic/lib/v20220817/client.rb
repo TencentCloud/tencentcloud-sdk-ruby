@@ -577,6 +577,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 删除白板板书截图
+
+        # @param request: Request instance for DeleteWhiteBoardSnapshot.
+        # @type request: :class:`Tencentcloud::lcic::V20220817::DeleteWhiteBoardSnapshotRequest`
+        # @rtype: :class:`Tencentcloud::lcic::V20220817::DeleteWhiteBoardSnapshotResponse`
+        def DeleteWhiteBoardSnapshot(request)
+          body = send_request('DeleteWhiteBoardSnapshot', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteWhiteBoardSnapshotResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取房间答题详情
 
         # @param request: Request instance for DescribeAnswerList.
@@ -1093,6 +1117,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeUserResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询白板板书截图
+
+        # @param request: Request instance for DescribeWhiteBoardSnapshot.
+        # @type request: :class:`Tencentcloud::lcic::V20220817::DescribeWhiteBoardSnapshotRequest`
+        # @rtype: :class:`Tencentcloud::lcic::V20220817::DescribeWhiteBoardSnapshotResponse`
+        def DescribeWhiteBoardSnapshot(request)
+          body = send_request('DescribeWhiteBoardSnapshot', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeWhiteBoardSnapshotResponse.new
             model.deserialize(response['Response'])
             model
           else

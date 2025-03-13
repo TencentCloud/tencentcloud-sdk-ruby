@@ -53,32 +53,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 微信VOIP功能调整下线
-
-        # 分配License
-
-        # @param request: Request instance for AssignTWeCallLicense.
-        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::AssignTWeCallLicenseRequest`
-        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::AssignTWeCallLicenseResponse`
-        def AssignTWeCallLicense(request)
-          body = send_request('AssignTWeCallLicense', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = AssignTWeCallLicenseResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 绑定云存用户
 
         # @param request: Request instance for BindCloudStorageUser.
@@ -2705,32 +2679,6 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = GetTWeCallActiveStatusResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 微信VOIP功能调整下线
-
-        # 查询TWeCall包列表
-
-        # @param request: Request instance for GetTWeCallPkgList.
-        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::GetTWeCallPkgListRequest`
-        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::GetTWeCallPkgListResponse`
-        def GetTWeCallPkgList(request)
-          body = send_request('GetTWeCallPkgList', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = GetTWeCallPkgListResponse.new
             model.deserialize(response['Response'])
             model
           else

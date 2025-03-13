@@ -777,13 +777,10 @@ module TencentCloud
         # @param SnapshotTime: 备份文件时间
         # @type SnapshotTime: String
         # @param BackupId: 备份ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BackupId: Integer
         # @param SnapShotType: 快照类型，可选值：full，全量；increment，增量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SnapShotType: String
         # @param BackupName: 备份文件备注
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BackupName: String
 
         attr_accessor :SnapshotId, :FileName, :FileSize, :StartTime, :FinishTime, :BackupType, :BackupMethod, :BackupStatus, :SnapshotTime, :BackupId, :SnapShotType, :BackupName
@@ -882,16 +879,12 @@ module TencentCloud
       # 资源包绑定的实例信息
       class BindInstanceInfo < TencentCloud::Common::AbstractModel
         # @param InstanceId: 绑定的集群ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceId: String
         # @param InstanceRegion: 绑定的实例所在的地域
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceRegion: String
         # @param InstanceType: 绑定的实例类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceType: String
         # @param ExtendIds: 绑定集群下的实例ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExtendIds: Array
 
         attr_accessor :InstanceId, :InstanceRegion, :InstanceType, :ExtendIds
@@ -914,10 +907,8 @@ module TencentCloud
       # binlog配置信息
       class BinlogConfigInfo < TencentCloud::Common::AbstractModel
         # @param BinlogSaveDays: binlog保留时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BinlogSaveDays: Integer
         # @param BinlogCrossRegionsEnable: binlog异地地域备份是否开启
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BinlogCrossRegionsEnable: String
         # @param BinlogCrossRegions: binlog异地地域
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -1656,22 +1647,18 @@ module TencentCloud
       # 集群从可用区信息
       class ClusterSlaveData < TencentCloud::Common::AbstractModel
         # @param OldMasterZone: 旧主可用区
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OldMasterZone: String
         # @param OldSlaveZone: 旧从可用区
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OldSlaveZone: Array
         # @param NewMasterZone: 新主可用区
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NewMasterZone: String
         # @param NewSlaveZone: 新从可用区
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NewSlaveZone: Array
         # @param NewSlaveZoneAttr: 新从可用区属性
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NewSlaveZoneAttr: Array
         # @param OldSlaveZoneAttr: 旧可用区属性
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OldSlaveZoneAttr: Array
 
         attr_accessor :OldMasterZone, :OldSlaveZone, :NewMasterZone, :NewSlaveZone, :NewSlaveZoneAttr, :OldSlaveZoneAttr
@@ -1907,7 +1894,6 @@ module TencentCloud
       # CreateAuditRuleTemplate返回参数结构体
       class CreateAuditRuleTemplateResponse < TencentCloud::Common::AbstractModel
         # @param RuleTemplateId: 生成的规则模板ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleTemplateId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2738,13 +2724,10 @@ module TencentCloud
       # 跨地域备份各地域备份信息
       class CrossRegionBackupItem < TencentCloud::Common::AbstractModel
         # @param CrossRegion: 备份的目标地域
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CrossRegion: String
         # @param BackupId: 目标地域的备份任务ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type BackupId: String
+        # @type BackupId: Integer
         # @param BackupStatus: 目标地域的备份状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BackupStatus: String
 
         attr_accessor :CrossRegion, :BackupId, :BackupStatus
@@ -4009,10 +3992,8 @@ module TencentCloud
       # 数据库权限列表
       class DatabasePrivileges < TencentCloud::Common::AbstractModel
         # @param Db: 数据库
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Db: String
         # @param Privileges: 权限列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Privileges: Array
 
         attr_accessor :Db, :Privileges
@@ -4031,10 +4012,8 @@ module TencentCloud
       # 数据库表信息
       class DatabaseTables < TencentCloud::Common::AbstractModel
         # @param Database: 数据库名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Database: String
         # @param Tables: 表名称列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tables: Array
 
         attr_accessor :Database, :Tables
@@ -4061,28 +4040,20 @@ module TencentCloud
         # @param CollateRule: 排序规则
         # @type CollateRule: String
         # @param Description: 数据库备注
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
         # @param UserHostPrivileges: 用户权限
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UserHostPrivileges: Array
         # @param DbId: 数据库ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DbId: Integer
         # @param CreateTime: 创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
         # @param UpdateTime: 更新时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: String
         # @param AppId: 用户appid
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AppId: Integer
         # @param Uin: 用户Uin
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Uin: String
         # @param ClusterId: 集群Id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterId: String
 
         attr_accessor :DbName, :CharacterSet, :Status, :CollateRule, :Description, :UserHostPrivileges, :DbId, :CreateTime, :UpdateTime, :AppId, :Uin, :ClusterId
@@ -4415,10 +4386,8 @@ module TencentCloud
       # 日志投递信息
       class DeliverSummary < TencentCloud::Common::AbstractModel
         # @param DeliverType: 投递类型，store（存储类），mq（消息通道）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeliverType: String
         # @param DeliverSubType: 投递子类型：cls，ckafka。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeliverSubType: String
 
         attr_accessor :DeliverType, :DeliverSubType
@@ -7860,13 +7829,10 @@ module TencentCloud
       # 错误日志导出格式
       class ErrorLogItemExport < TencentCloud::Common::AbstractModel
         # @param Timestamp: 时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Timestamp: String
         # @param Level: 日志等级，可选值note, warning，error
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Level: String
         # @param Content: 日志内容
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Content: String
 
         attr_accessor :Timestamp, :Level, :Content
@@ -8470,10 +8436,8 @@ module TencentCloud
       # 实例允许的操作列表
       class InstanceAbility < TencentCloud::Common::AbstractModel
         # @param IsSupportForceRestart: 实例是否支持强制重启，可选值：yes：支持，no：不支持
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsSupportForceRestart: String
         # @param NonsupportForceRestartReason: 不支持强制重启的原因
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NonsupportForceRestartReason: String
 
         attr_accessor :IsSupportForceRestart, :NonsupportForceRestartReason
@@ -8676,37 +8640,22 @@ module TencentCloud
       # 实例日志投递信息
       class InstanceCLSDeliveryInfo < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceId: String
         # @param InstanceName: 实例name
-
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceName: String
         # @param TopicId: 日志主题id
-
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TopicId: String
         # @param TopicName: 日志主题name
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TopicName: String
         # @param GroupId: 日志集id
-
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GroupId: String
         # @param GroupName: 日志集name
-
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GroupName: String
         # @param Region: 日志投递地域
-
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Region: String
         # @param Status: 投递状态creating,running,offlining,offlined
-
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: String
         # @param LogType: 日志类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LogType: String
 
         attr_accessor :InstanceId, :InstanceName, :TopicId, :TopicName, :GroupId, :GroupName, :Region, :Status, :LogType
@@ -8787,37 +8736,26 @@ module TencentCloud
       # 实例网络信息
       class InstanceNetInfo < TencentCloud::Common::AbstractModel
         # @param InstanceGroupType: 网络类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceGroupType: String
         # @param InstanceGroupId: 实例组ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceGroupId: String
         # @param VpcId: 私有网络ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VpcId: String
         # @param SubnetId: 子网ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubnetId: String
         # @param NetType: 网络类型, 0-基础网络, 1-vpc网络, 2-黑石网络
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NetType: Integer
         # @param Vip: 私有网络IP
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Vip: String
         # @param Vport: 私有网络端口
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Vport: Integer
         # @param WanDomain: 外网域名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WanDomain: String
         # @param WanIP: 外网IP
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WanIP: String
         # @param WanPort: 外网端口
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WanPort: Integer
         # @param WanStatus: 外网开启状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WanStatus: String
 
         attr_accessor :InstanceGroupType, :InstanceGroupId, :VpcId, :SubnetId, :NetType, :Vip, :Vport, :WanDomain, :WanIP, :WanPort, :WanStatus
@@ -9085,19 +9023,14 @@ module TencentCloud
       # 逻辑备份配置信息
       class LogicBackupConfigInfo < TencentCloud::Common::AbstractModel
         # @param LogicBackupEnable: 是否开启自动逻辑备份
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LogicBackupEnable: String
         # @param LogicBackupTimeBeg: 自动逻辑备份开始时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LogicBackupTimeBeg: Integer
         # @param LogicBackupTimeEnd: 自动逻辑备份结束时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LogicBackupTimeEnd: Integer
         # @param LogicReserveDuration: 自动逻辑备份保留时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LogicReserveDuration: Integer
         # @param LogicCrossRegionsEnable: 是否开启跨地域逻辑备份
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LogicCrossRegionsEnable: String
         # @param LogicCrossRegions: 逻辑备份所跨地域
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -10069,10 +10002,8 @@ module TencentCloud
         # @param OldStorageLimit: 变配前存储上限
         # @type OldStorageLimit: Integer
         # @param OldDeviceType: 变配前实例机器类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OldDeviceType: String
         # @param DeviceType: 变配后实例机器类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeviceType: String
         # @param UpgradeType: 升级方式。升级完成后切换或维护时间内切换
         # @type UpgradeType: String
@@ -10297,7 +10228,6 @@ module TencentCloud
         # @param CurrentValue: 参数当前值
         # @type CurrentValue: String
         # @param OldValue: 参数旧值（只在出参时有用）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OldValue: String
 
         attr_accessor :ParamName, :CurrentValue, :OldValue
@@ -10830,37 +10760,26 @@ module TencentCloud
       # 网络信息
       class NetAddr < TencentCloud::Common::AbstractModel
         # @param Vip: 内网ip
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Vip: String
         # @param Vport: 内网端口号
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Vport: Integer
         # @param WanDomain: 外网域名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WanDomain: String
         # @param WanPort: 外网端口号
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WanPort: Integer
         # @param NetType: 网络类型（ro-只读,rw/ha-读写）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NetType: String
         # @param UniqSubnetId: 子网ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UniqSubnetId: String
         # @param UniqVpcId: 私有网络ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UniqVpcId: String
         # @param Description: 描述信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
         # @param WanIP: 外网IP
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WanIP: String
         # @param WanStatus: 外网状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WanStatus: String
         # @param InstanceGroupId: 实例组ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceGroupId: String
 
         attr_accessor :Vip, :Vport, :WanDomain, :WanPort, :NetType, :UniqSubnetId, :UniqVpcId, :Description, :WanIP, :WanStatus, :InstanceGroupId
@@ -10929,19 +10848,14 @@ module TencentCloud
       # 任务信息
       class ObjectTask < TencentCloud::Common::AbstractModel
         # @param TaskId: 任务自增ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskId: Integer
         # @param TaskType: 任务类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskType: String
         # @param TaskStatus: 任务状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskStatus: String
         # @param ObjectId: 任务ID（集群ID|实例组ID|实例ID）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ObjectId: String
         # @param ObjectType: 任务类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ObjectType: String
 
         attr_accessor :TaskId, :TaskType, :TaskStatus, :ObjectId, :ObjectType
@@ -11042,13 +10956,10 @@ module TencentCloud
       # 数据库地址
       class OldAddrInfo < TencentCloud::Common::AbstractModel
         # @param Vip: IP
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Vip: String
         # @param Vport: 端口
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Vport: Integer
         # @param ReturnTime: 期望执行回收时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReturnTime: String
 
         attr_accessor :Vip, :Vport, :ReturnTime
@@ -11383,21 +11294,16 @@ module TencentCloud
       # 资源包
       class Package < TencentCloud::Common::AbstractModel
         # @param AppId: AppID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AppId: Integer
         # @param PackageId: 资源包唯一ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PackageId: String
         # @param PackageName: 资源包名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PackageName: String
         # @param PackageType: 资源包类型
         # CCU-计算资源包，DISK-存储资源包
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PackageType: String
         # @param PackageRegion: 资源包使用地域
         # china-中国内地通用，overseas-港澳台及海外通用
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PackageRegion: String
         # @param Status: 资源包状态
         # creating-创建中；
@@ -11406,28 +11312,20 @@ module TencentCloud
         # normal_finish-使用完；
         # apply_refund-申请退费中；
         # refund-已退费。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: String
         # @param PackageTotalSpec: 资源包总量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PackageTotalSpec: Float
         # @param PackageUsedSpec: 资源包已使用量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PackageUsedSpec: Float
         # @param HasQuota: 是否还有库存余量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HasQuota: Boolean
         # @param BindInstanceInfos: 绑定实例信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BindInstanceInfos: Array
         # @param StartTime: 生效时间：2022-07-01 00:00:00
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StartTime: String
         # @param ExpireTime: 失效时间：2022-08-01 00:00:00
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExpireTime: String
         # @param HistoryBindResourceInfos: 资源包历史绑定（已解绑）实例信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HistoryBindResourceInfos: Array
 
         attr_accessor :AppId, :PackageId, :PackageName, :PackageType, :PackageRegion, :Status, :PackageTotalSpec, :PackageUsedSpec, :HasQuota, :BindInstanceInfos, :StartTime, :ExpireTime, :HistoryBindResourceInfos
@@ -11482,28 +11380,20 @@ module TencentCloud
       # 资源包明细说明
       class PackageDetail < TencentCloud::Common::AbstractModel
         # @param AppId: AppId账户ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AppId: Integer
         # @param PackageId: 资源包唯一ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PackageId: String
         # @param InstanceId: 实例ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceId: String
         # @param SuccessDeductSpec: 成功抵扣容量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SuccessDeductSpec: Float
         # @param PackageTotalUsedSpec: 截止当前，资源包已使用的容量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PackageTotalUsedSpec: Float
         # @param StartTime: 抵扣开始时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StartTime: String
         # @param EndTime: 抵扣结束时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EndTime: String
         # @param ExtendInfo: 扩展信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExtendInfo: String
 
         attr_accessor :AppId, :PackageId, :InstanceId, :SuccessDeductSpec, :PackageTotalUsedSpec, :StartTime, :EndTime, :ExtendInfo
@@ -11646,7 +11536,6 @@ module TencentCloud
         # @param Default: 默认值
         # @type Default: String
         # @param EnumValue: 参数为enum/string/bool时，可选值列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EnumValue: Array
         # @param Max: 参数类型为float/integer时的最大值
         # @type Max: String
@@ -11665,19 +11554,14 @@ module TencentCloud
         # @param Description: 参数描述
         # @type Description: String
         # @param IsGlobal: 是否为全局参数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsGlobal: Integer
         # @param ModifiableInfo: 参数是否可修改
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ModifiableInfo: :class:`Tencentcloud::Cynosdb.v20190107.models.ModifiableInfo`
         # @param IsFunc: 是否为函数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsFunc: Boolean
         # @param Func: 函数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Func: String
         # @param FuncPattern: 支持公式的参数的默认公式样式
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FuncPattern: String
 
         attr_accessor :CurrentValue, :Default, :EnumValue, :Max, :Min, :ParamName, :NeedReboot, :ParamType, :MatchType, :MatchValue, :Description, :IsGlobal, :ModifiableInfo, :IsFunc, :Func, :FuncPattern
@@ -11771,13 +11655,10 @@ module TencentCloud
         # @param Description: 参数描述
         # @type Description: String
         # @param IsFunc: 类型是否为公式
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsFunc: Boolean
         # @param Func: 参数配置公式
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Func: String
         # @param FuncPattern: 支持公式的参数的默认公式样式
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FuncPattern: String
 
         attr_accessor :CurrentValue, :Default, :EnumValue, :IsGlobal, :Max, :Min, :NeedReboot, :ParamName, :ParamType, :Description, :IsFunc, :Func, :FuncPattern
@@ -11981,13 +11862,10 @@ module TencentCloud
       # 数据库代理连接池信息
       class ProxyConnectionPoolInfo < TencentCloud::Common::AbstractModel
         # @param ConnectionPoolTimeOut: 连接池保持阈值：单位（秒）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ConnectionPoolTimeOut: Integer
         # @param OpenConnectionPool: 是否开启了连接池
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OpenConnectionPool: String
         # @param ConnectionPoolType: 连接池类型：SessionConnectionPool（会话级别连接池）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ConnectionPoolType: String
 
         attr_accessor :ConnectionPoolTimeOut, :OpenConnectionPool, :ConnectionPoolType
@@ -12020,13 +11898,10 @@ module TencentCloud
         # @param CurrentProxyVersion: 当前代理版本
         # @type CurrentProxyVersion: String
         # @param ClusterId: 集群ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterId: String
         # @param AppId: 用户AppId
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AppId: Integer
         # @param OpenRw: 读写节点开通数据库代理
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OpenRw: String
 
         attr_accessor :ProxyGroupId, :ProxyNodeCount, :Status, :Region, :Zone, :CurrentProxyVersion, :ClusterId, :AppId, :OpenRw
@@ -12287,10 +12162,8 @@ module TencentCloud
       # TDSQL-C MySQL支持的proxy版本信息
       class ProxyVersionInfo < TencentCloud::Common::AbstractModel
         # @param ProxyVersion: proxy版本号
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProxyVersion: String
         # @param ProxyVersionType: 版本描述：GA:稳定版  BETA:尝鲜版，DEPRECATED:过旧，
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProxyVersionType: String
 
         attr_accessor :ProxyVersion, :ProxyVersionType
@@ -12618,14 +12491,11 @@ module TencentCloud
       # 资源包信息
       class ResourcePackage < TencentCloud::Common::AbstractModel
         # @param PackageId: 资源包的唯一ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PackageId: String
         # @param PackageType: 资源包类型：CCU：计算资源包
         # DISK：存储资源包
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PackageType: String
         # @param DeductionPriority: 当前资源包绑定在当前实例下的抵扣优先级
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeductionPriority: Integer
 
         attr_accessor :PackageId, :PackageType, :DeductionPriority
@@ -12964,40 +12834,28 @@ module TencentCloud
       # 回档实例信息
       class RollbackInstanceInfo < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterId: String
         # @param ClusterName: 集群名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterName: String
         # @param UniqVpcId: vpc信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UniqVpcId: String
         # @param UniqSubnetId: 子网信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UniqSubnetId: String
         # @param Vip: vip信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Vip: String
         # @param Vport: vport信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Vport: Integer
         # @param InstanceId: 实例ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceId: String
         # @param InstanceName: 实例名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceName: String
         # @param Status: 状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: String
         # @param Cpu: cpu大小
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Cpu: Integer
         # @param Mem: 内存大小
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Mem: Integer
         # @param StorageLimit: 存储大小
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StorageLimit: Integer
 
         attr_accessor :ClusterId, :ClusterName, :UniqVpcId, :UniqSubnetId, :Vip, :Vport, :InstanceId, :InstanceName, :Status, :Cpu, :Mem, :StorageLimit
@@ -13097,19 +12955,14 @@ module TencentCloud
       # 回档RO组信息
       class RollbackRoGroupInfo < TencentCloud::Common::AbstractModel
         # @param InstanceGroupId: 实例组ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceGroupId: String
         # @param UniqVpcId: vpc信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UniqVpcId: String
         # @param UniqSubnetId: 子网信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UniqSubnetId: String
         # @param Vip: vip信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Vip: String
         # @param Vport: vport信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Vport: Integer
 
         attr_accessor :InstanceGroupId, :UniqVpcId, :UniqSubnetId, :Vip, :Vport
@@ -13161,10 +13014,8 @@ module TencentCloud
       # 回档表信息
       class RollbackTableInfo < TencentCloud::Common::AbstractModel
         # @param OldTable: 旧表名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OldTable: String
         # @param NewTable: 新表名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NewTable: String
 
         attr_accessor :OldTable, :NewTable
@@ -13481,25 +13332,19 @@ module TencentCloud
       # 资源包明细说明
       class SalePackageSpec < TencentCloud::Common::AbstractModel
         # @param PackageRegion: 资源包使用地域
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PackageRegion: String
         # @param PackageType: 资源包类型
         # CCU-计算资源包
         # DISK-存储资源包
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PackageType: String
         # @param PackageVersion: 资源包版本
         # base-基础版本，common-通用版本，enterprise-企业版本
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PackageVersion: String
         # @param MinPackageSpec: 当前版本资源包最小资源数，计算资源单位：个；存储资源：GB
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MinPackageSpec: Float
         # @param MaxPackageSpec: 当前版本资源包最大资源数，计算资源单位：个；存储资源：GB
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaxPackageSpec: Float
         # @param ExpireDay: 资源包有效期，单位:天
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExpireDay: Integer
 
         attr_accessor :PackageRegion, :PackageType, :PackageVersion, :MinPackageSpec, :MaxPackageSpec, :ExpireDay
@@ -13592,7 +13437,6 @@ module TencentCloud
         # @param PhysicalZone: 物理区
         # @type PhysicalZone: String
         # @param HasPermission: 用户是否有可用区权限
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HasPermission: Boolean
         # @param IsWholeRdmaZone: 是否为全链路RDMA可用区
         # @type IsWholeRdmaZone: String
@@ -13916,10 +13760,8 @@ module TencentCloud
       # 可用区属性项
       class SlaveZoneAttrItem < TencentCloud::Common::AbstractModel
         # @param Zone: 可用区
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Zone: String
         # @param BinlogSyncWay: binlog同步方式
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BinlogSyncWay: String
 
         attr_accessor :Zone, :BinlogSyncWay
@@ -13938,13 +13780,10 @@ module TencentCloud
       # 备可用区库存信息
       class SlaveZoneStockInfo < TencentCloud::Common::AbstractModel
         # @param SlaveZone: 备可用区
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SlaveZone: String
         # @param StockCount: 备可用区的库存数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StockCount: Integer
         # @param HasStock: 备可用区是否有库存
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HasStock: Boolean
 
         attr_accessor :SlaveZone, :StockCount, :HasStock
@@ -13988,31 +13827,24 @@ module TencentCloud
         # @type SqlMd5: String
         # @param SyncReadCountRemote: 远程读取次数
         # 数据库内核版本大于3.1.12
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SyncReadCountRemote: Integer
         # @param SyncReadBytesRemote: 远程读取的字节数
         # 数据库内核版本大于3.1.12
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SyncReadBytesRemote: Integer
         # @param SyncReadTimeRemote: 远程读取所花费的时间（微秒）
         # 数据库内核版本大于3.1.12
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SyncReadTimeRemote: Integer
         # @param SyncWriteCountRemote: 远程写入次数
         # 数据库内核版本大于3.1.12
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SyncWriteCountRemote: Integer
         # @param SyncWriteBytesRemote: 远程写入的字节数。
         # 数据库内核版本大于3.1.12
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SyncWriteBytesRemote: Integer
         # @param SyncWriteTimeRemote: 远程写入所花费的时间（微秒）。
         # 数据库内核版本大于3.1.12
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SyncWriteTimeRemote: Integer
         # @param TrxCommitDelay: 事务提交延迟（微秒）
         # 数据库内核版本大于3.1.12
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TrxCommitDelay: Integer
 
         attr_accessor :Timestamp, :QueryTime, :SqlText, :UserHost, :UserName, :Database, :LockTime, :RowsExamined, :RowsSent, :SqlTemplate, :SqlMd5, :SyncReadCountRemote, :SyncReadBytesRemote, :SyncReadTimeRemote, :SyncWriteCountRemote, :SyncWriteBytesRemote, :SyncWriteTimeRemote, :TrxCommitDelay
@@ -14159,7 +13991,6 @@ module TencentCloud
       # 转换集群log bin开关
       class SwitchClusterLogBin < TencentCloud::Common::AbstractModel
         # @param Status: 状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: String
 
         attr_accessor :Status
@@ -14324,13 +14155,10 @@ module TencentCloud
       # mysql表权限
       class TablePrivileges < TencentCloud::Common::AbstractModel
         # @param Db: 数据库名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Db: String
         # @param TableName: 表名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TableName: String
         # @param Privileges: 权限列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Privileges: Array
 
         attr_accessor :Db, :TableName, :Privileges
@@ -14371,13 +14199,10 @@ module TencentCloud
       # TaskMaintainInfo
       class TaskMaintainInfo < TencentCloud::Common::AbstractModel
         # @param MaintainStartTime: 执行开始时间(距离0点的秒数)
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaintainStartTime: Integer
         # @param MaintainDuration: 持续的时间(单位：秒)
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaintainDuration: Integer
         # @param MaintainWeekDays: 可以执行的时间，枚举值：["Mon","Tue","Wed","Thu","Fri", "Sat", "Sun"]
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaintainWeekDays: Array
 
         attr_accessor :MaintainStartTime, :MaintainDuration, :MaintainWeekDays
@@ -14426,13 +14251,10 @@ module TencentCloud
         # @param Default: 默认值
         # @type Default: String
         # @param EnumValue: 参数类型为enum时可选的值类型集合
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EnumValue: Array
         # @param Max: 参数类型为float/integer时的最大值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Max: String
         # @param Min: 参数类型为float/integer时的最小值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Min: String
         # @param ParamName: 参数名称
         # @type ParamName: String
@@ -14473,18 +14295,14 @@ module TencentCloud
       # 计费询价结果
       class TradePrice < TencentCloud::Common::AbstractModel
         # @param TotalPrice: 预付费模式下资源总价，不包含优惠，单位:分
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalPrice: Integer
         # @param Discount: 总的折扣，100表示100%不打折
         # @type Discount: Float
         # @param TotalPriceDiscount: 预付费模式下的优惠后总价, 单位: 分,例如用户享有折扣 =TotalPrice × Discount
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalPriceDiscount: Integer
         # @param UnitPrice: 后付费模式下的单位资源价格，不包含优惠，单位:分
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UnitPrice: Integer
         # @param UnitPriceDiscount: 优惠后后付费模式下的单位资源价格, 单位: 分,例如用户享有折扣=UnitPricet × Discount
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UnitPriceDiscount: Integer
         # @param ChargeUnit: 计费价格单位
         # @type ChargeUnit: String
@@ -14850,10 +14668,8 @@ module TencentCloud
         # @param DbUserName: 授权用户
         # @type DbUserName: String
         # @param DbHost: 客户端ip
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DbHost: String
         # @param DbPrivilege: 用户权限
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DbPrivilege: String
 
         attr_accessor :DbUserName, :DbHost, :DbPrivilege

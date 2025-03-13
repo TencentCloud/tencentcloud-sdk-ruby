@@ -6773,6 +6773,49 @@ module TencentCloud
         end
       end
 
+      # 设置巡检任务配置
+      class InspectionTaskSettings < TencentCloud::Common::AbstractModel
+        # @param TaskType: 巡检任务的唯一标记
+        # @type TaskType: String
+        # @param Group: 巡检任务组名称
+        # @type Group: String
+        # @param Name: 巡检任务名称
+        # @type Name: String
+        # @param TaskSettings: 巡检任务参数设置
+        # @type TaskSettings: Array
+        # @param Selected: 是否选中，”true“ ”false“
+        # @type Selected: String
+        # @param Enable: 是否开启监控
+        # @type Enable: String
+
+        attr_accessor :TaskType, :Group, :Name, :TaskSettings, :Selected, :Enable
+
+        def initialize(tasktype=nil, group=nil, name=nil, tasksettings=nil, selected=nil, enable=nil)
+          @TaskType = tasktype
+          @Group = group
+          @Name = name
+          @TaskSettings = tasksettings
+          @Selected = selected
+          @Enable = enable
+        end
+
+        def deserialize(params)
+          @TaskType = params['TaskType']
+          @Group = params['Group']
+          @Name = params['Name']
+          unless params['TaskSettings'].nil?
+            @TaskSettings = []
+            params['TaskSettings'].each do |i|
+              tasksettings_tmp = TaskSettings.new
+              tasksettings_tmp.deserialize(i)
+              @TaskSettings << tasksettings_tmp
+            end
+          end
+          @Selected = params['Selected']
+          @Enable = params['Enable']
+        end
+      end
+
       # 实例预付费参数，只有在付费类型为PREPAID时生效。
       class InstanceChargePrepaid < TencentCloud::Common::AbstractModel
         # @param Period: 包年包月时间，默认为1，单位：月。
@@ -7456,6 +7499,89 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyInspectionSettings请求参数结构体
+      class ModifyInspectionSettingsRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param Type: 巡检类型，FixedTime/RealTime
+        # @type Type: String
+        # @param Settings: 任务配置
+        # @type Settings: Array
+        # @param StartTime: 开始时间戳
+        # @type StartTime: Integer
+        # @param EndTime: 结束时间戳
+        # @type EndTime: Integer
+        # @param Strategy: 巡检周期，eg EveryDay EveryWeek EveryMonth
+        # @type Strategy: String
+        # @param Clock: 每天的开始的时间
+        # @type Clock: String
+        # @param DayOfWeek: 每周的周几
+        # @type DayOfWeek: String
+        # @param DayOfMonth: 每月的第几号
+        # @type DayOfMonth: String
+        # @param JobId: 巡检作业Id
+        # @type JobId: String
+
+        attr_accessor :InstanceId, :Type, :Settings, :StartTime, :EndTime, :Strategy, :Clock, :DayOfWeek, :DayOfMonth, :JobId
+
+        def initialize(instanceid=nil, type=nil, settings=nil, starttime=nil, endtime=nil, strategy=nil, clock=nil, dayofweek=nil, dayofmonth=nil, jobid=nil)
+          @InstanceId = instanceid
+          @Type = type
+          @Settings = settings
+          @StartTime = starttime
+          @EndTime = endtime
+          @Strategy = strategy
+          @Clock = clock
+          @DayOfWeek = dayofweek
+          @DayOfMonth = dayofmonth
+          @JobId = jobid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Type = params['Type']
+          unless params['Settings'].nil?
+            @Settings = []
+            params['Settings'].each do |i|
+              inspectiontasksettings_tmp = InspectionTaskSettings.new
+              inspectiontasksettings_tmp.deserialize(i)
+              @Settings << inspectiontasksettings_tmp
+            end
+          end
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Strategy = params['Strategy']
+          @Clock = params['Clock']
+          @DayOfWeek = params['DayOfWeek']
+          @DayOfMonth = params['DayOfMonth']
+          @JobId = params['JobId']
+        end
+      end
+
+      # ModifyInspectionSettings返回参数结构体
+      class ModifyInspectionSettingsResponse < TencentCloud::Common::AbstractModel
+        # @param Info: 返回值描述
+        # @type Info: String
+        # @param JobId: 返回成功修改的巡检任务Id
+        # @type JobId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Info, :JobId, :RequestId
+
+        def initialize(info=nil, jobid=nil, requestid=nil)
+          @Info = info
+          @JobId = jobid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Info = params['Info']
+          @JobId = params['JobId']
           @RequestId = params['RequestId']
         end
       end
@@ -11886,6 +12012,34 @@ module TencentCloud
         def deserialize(params)
           @TagKey = params['TagKey']
           @TagValue = params['TagValue']
+        end
+      end
+
+      # 巡检任务参数
+      class TaskSettings < TencentCloud::Common::AbstractModel
+        # @param Name: 参数名称
+        # @type Name: String
+        # @param Value: 参数值
+        # @type Value: String
+        # @param Key: 参数唯一标记
+        # @type Key: String
+        # @param Editable: 是否可编辑，”true" "false"
+        # @type Editable: String
+
+        attr_accessor :Name, :Value, :Key, :Editable
+
+        def initialize(name=nil, value=nil, key=nil, editable=nil)
+          @Name = name
+          @Value = value
+          @Key = key
+          @Editable = editable
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Value = params['Value']
+          @Key = params['Key']
+          @Editable = params['Editable']
         end
       end
 

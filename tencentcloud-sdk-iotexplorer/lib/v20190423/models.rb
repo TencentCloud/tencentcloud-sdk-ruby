@@ -196,46 +196,6 @@ module TencentCloud
         end
       end
 
-      # AssignTWeCallLicense请求参数结构体
-      class AssignTWeCallLicenseRequest < TencentCloud::Common::AbstractModel
-        # @param PkgType: voip类型
-        # @type PkgType: Integer
-        # @param MiniProgramAppId: appId
-        # @type MiniProgramAppId: String
-        # @param DeductNum: License数，只支持50,500,1000,5000,10000,20000,50000
-        # @type DeductNum: Integer
-
-        attr_accessor :PkgType, :MiniProgramAppId, :DeductNum
-
-        def initialize(pkgtype=nil, miniprogramappid=nil, deductnum=nil)
-          @PkgType = pkgtype
-          @MiniProgramAppId = miniprogramappid
-          @DeductNum = deductnum
-        end
-
-        def deserialize(params)
-          @PkgType = params['PkgType']
-          @MiniProgramAppId = params['MiniProgramAppId']
-          @DeductNum = params['DeductNum']
-        end
-      end
-
-      # AssignTWeCallLicense返回参数结构体
-      class AssignTWeCallLicenseResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :RequestId
-
-        def initialize(requestid=nil)
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @RequestId = params['RequestId']
-        end
-      end
-
       # 授权小程序信息
       class AuthMiniProgramAppInfo < TencentCloud::Common::AbstractModel
         # @param MiniProgramAppId: 小程序APPID
@@ -7301,84 +7261,6 @@ module TencentCloud
         end
       end
 
-      # GetTWeCallPkgList请求参数结构体
-      class GetTWeCallPkgListRequest < TencentCloud::Common::AbstractModel
-        # @param MiniProgramAppId: appId
-        # @type MiniProgramAppId: String
-        # @param PkgType: 类型
-        # @type PkgType: Array
-        # @param Status: 状态
-        # @type Status: Array
-        # @param Offset: 偏移量
-        # @type Offset: Integer
-        # @param Limit: 每页数据大小
-        # @type Limit: Integer
-
-        attr_accessor :MiniProgramAppId, :PkgType, :Status, :Offset, :Limit
-        extend Gem::Deprecate
-        deprecate :MiniProgramAppId, :none, 2025, 3
-        deprecate :MiniProgramAppId=, :none, 2025, 3
-
-        def initialize(miniprogramappid=nil, pkgtype=nil, status=nil, offset=nil, limit=nil)
-          @MiniProgramAppId = miniprogramappid
-          @PkgType = pkgtype
-          @Status = status
-          @Offset = offset
-          @Limit = limit
-        end
-
-        def deserialize(params)
-          @MiniProgramAppId = params['MiniProgramAppId']
-          @PkgType = params['PkgType']
-          @Status = params['Status']
-          @Offset = params['Offset']
-          @Limit = params['Limit']
-        end
-      end
-
-      # GetTWeCallPkgList返回参数结构体
-      class GetTWeCallPkgListResponse < TencentCloud::Common::AbstractModel
-        # @param TWeCallPkgList: 激活状态
-        # @type TWeCallPkgList: Array
-        # @param Total: 总数
-        # @type Total: Integer
-        # @param TWeCallCategoryPkgList: 分类统计
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type TWeCallCategoryPkgList: Array
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :TWeCallPkgList, :Total, :TWeCallCategoryPkgList, :RequestId
-
-        def initialize(twecallpkglist=nil, total=nil, twecallcategorypkglist=nil, requestid=nil)
-          @TWeCallPkgList = twecallpkglist
-          @Total = total
-          @TWeCallCategoryPkgList = twecallcategorypkglist
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          unless params['TWeCallPkgList'].nil?
-            @TWeCallPkgList = []
-            params['TWeCallPkgList'].each do |i|
-              twecallpkginfo_tmp = TWeCallPkgInfo.new
-              twecallpkginfo_tmp.deserialize(i)
-              @TWeCallPkgList << twecallpkginfo_tmp
-            end
-          end
-          @Total = params['Total']
-          unless params['TWeCallCategoryPkgList'].nil?
-            @TWeCallCategoryPkgList = []
-            params['TWeCallCategoryPkgList'].each do |i|
-              twecallcategorypkginfo_tmp = TWeCallCategoryPkgInfo.new
-              twecallcategorypkginfo_tmp.deserialize(i)
-              @TWeCallCategoryPkgList << twecallcategorypkginfo_tmp
-            end
-          end
-          @RequestId = params['RequestId']
-        end
-      end
-
       # GetTopicRuleList请求参数结构体
       class GetTopicRuleListRequest < TencentCloud::Common::AbstractModel
         # @param PageNum: 请求的页数
@@ -10201,33 +10083,6 @@ module TencentCloud
         end
       end
 
-      # TWeCall分类统计数据
-      class TWeCallCategoryPkgInfo < TencentCloud::Common::AbstractModel
-        # @param PkgType: 类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type PkgType: Integer
-        # @param All: 总数
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type All: Integer
-        # @param Used: 已使用数
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Used: Integer
-
-        attr_accessor :PkgType, :All, :Used
-
-        def initialize(pkgtype=nil, all=nil, used=nil)
-          @PkgType = pkgtype
-          @All = all
-          @Used = used
-        end
-
-        def deserialize(params)
-          @PkgType = params['PkgType']
-          @All = params['All']
-          @Used = params['Used']
-        end
-      end
-
       # TWeCall信息
       class TWeCallInfo < TencentCloud::Common::AbstractModel
         # @param Sn: Sn信息，SN格式：产品ID_设备名
@@ -10284,53 +10139,6 @@ module TencentCloud
           @TWeCallType = params['TWeCallType']
           @TotalNum = params['TotalNum']
           @UsedNum = params['UsedNum']
-        end
-      end
-
-      # TWeCall设备信息
-      class TWeCallPkgInfo < TencentCloud::Common::AbstractModel
-        # @param PkgId: 包ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type PkgId: String
-        # @param PkgType: 包类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type PkgType: Integer
-        # @param CreateTime: 生效时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type CreateTime: Integer
-        # @param ExpireTime: 过期时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type ExpireTime: Integer
-        # @param Status: 状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Status: Integer
-        # @param LicenseUsedNum: 已使用
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type LicenseUsedNum: Integer
-        # @param LicenseTotalNum: 总量
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type LicenseTotalNum: Integer
-
-        attr_accessor :PkgId, :PkgType, :CreateTime, :ExpireTime, :Status, :LicenseUsedNum, :LicenseTotalNum
-
-        def initialize(pkgid=nil, pkgtype=nil, createtime=nil, expiretime=nil, status=nil, licenseusednum=nil, licensetotalnum=nil)
-          @PkgId = pkgid
-          @PkgType = pkgtype
-          @CreateTime = createtime
-          @ExpireTime = expiretime
-          @Status = status
-          @LicenseUsedNum = licenseusednum
-          @LicenseTotalNum = licensetotalnum
-        end
-
-        def deserialize(params)
-          @PkgId = params['PkgId']
-          @PkgType = params['PkgType']
-          @CreateTime = params['CreateTime']
-          @ExpireTime = params['ExpireTime']
-          @Status = params['Status']
-          @LicenseUsedNum = params['LicenseUsedNum']
-          @LicenseTotalNum = params['LicenseTotalNum']
         end
       end
 

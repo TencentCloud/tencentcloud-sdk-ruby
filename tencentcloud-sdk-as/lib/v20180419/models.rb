@@ -406,7 +406,6 @@ module TencentCloud
         # <li> FALSE，不开启该功能，则 AS 等待竞价实例被销毁后才会去扩容补齐伸缩组期望实例数。</li>
         # @type CapacityRebalance: Boolean
         # @param InstanceNameIndexSettings: 实例名称序号相关设置。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceNameIndexSettings: :class:`Tencentcloud::As.v20180419.models.InstanceNameIndexSettings`
 
         attr_accessor :AutoScalingGroupId, :AutoScalingGroupName, :AutoScalingGroupStatus, :CreatedTime, :DefaultCooldown, :DesiredCapacity, :EnabledStatus, :ForwardLoadBalancerSet, :InstanceCount, :InServiceInstanceCount, :LaunchConfigurationId, :LaunchConfigurationName, :LoadBalancerIdSet, :MaxSize, :MinSize, :ProjectId, :SubnetIdSet, :TerminationPolicySet, :VpcId, :ZoneSet, :RetryPolicy, :InActivityStatus, :Tags, :ServiceSettings, :Ipv6AddressCount, :MultiZoneSubnetPolicy, :HealthCheckType, :LoadBalancerHealthCheckGracePeriod, :InstanceAllocationPolicy, :SpotMixedAllocationPolicy, :CapacityRebalance, :InstanceNameIndexSettings
@@ -1471,10 +1470,8 @@ module TencentCloud
         # <li>CLOUD_HSSD：增强型SSD云硬盘</li>
         # <li>CLOUD_TSSD：极速型SSD云硬盘</li>
         # 默认取值与系统盘类型（SystemDisk.DiskType）保持一致。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DiskType: String
         # @param DiskSize: 数据盘大小，单位：GB。最小调整步长为10G，不同数据盘类型取值范围不同，具体限制详见：[CVM实例配置](https://cloud.tencent.com/document/product/213/2177)。默认值为0，表示不购买数据盘。更多限制详见产品文档。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DiskSize: Integer
         # @param SnapshotId: 数据盘快照 ID，类似 `snap-l8psqwnt`。
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -2797,7 +2794,6 @@ module TencentCloud
       # ExitStandby返回参数结构体
       class ExitStandbyResponse < TencentCloud::Common::AbstractModel
         # @param ActivityId: 伸缩活动ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ActivityId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2984,26 +2980,26 @@ module TencentCloud
         # @type LaunchConfigurationId: String
         # @param LaunchConfigurationName: 启动配置名称
         # @type LaunchConfigurationName: String
-        # @param LifeCycleState: 生命周期状态，取值如下：<br>
-        # <li>IN_SERVICE：运行中
-        # <li>CREATING：创建中
-        # <li>CREATION_FAILED：创建失败
-        # <li>TERMINATING：中止中
-        # <li>TERMINATION_FAILED：中止失败
-        # <li>ATTACHING：绑定中
-        # <li>ATTACH_FAILED：绑定失败
-        # <li>DETACHING：解绑中
-        # <li>DETACH_FAILED：解绑失败
-        # <li>ATTACHING_LB：绑定LB中
-        # <li>DETACHING_LB：解绑LB中
-        # <li>MODIFYING_LB：修改LB中
-        # <li>STARTING：开机中
-        # <li>START_FAILED：开机失败
-        # <li>STOPPING：关机中
-        # <li>STOP_FAILED：关机失败
-        # <li>STOPPED：已关机
-        # <li>IN_LAUNCHING_HOOK：扩容生命周期挂钩中
-        # <li>IN_TERMINATING_HOOK：缩容生命周期挂钩中
+        # @param LifeCycleState: 生命周期状态，取值如下：
+        # <li>IN_SERVICE：运行中</li>
+        # <li>CREATING：创建中</li>
+        # <li>CREATION_FAILED：创建失败</li>
+        # <li>TERMINATING：中止中</li>
+        # <li>TERMINATION_FAILED：中止失败</li>
+        # <li>ATTACHING：绑定中</li>
+        # <li>ATTACH_FAILED：绑定失败</li>
+        # <li>DETACHING：解绑中</li>
+        # <li>DETACH_FAILED：解绑失败</li>
+        # <li>ATTACHING_LB：绑定LB中</li>
+        # <li>DETACHING_LB：解绑LB中</li>
+        # <li>MODIFYING_LB：修改LB中</li>
+        # <li>STARTING：开机中</li>
+        # <li>START_FAILED：开机失败</li>
+        # <li>STOPPING：关机中</li>
+        # <li>STOP_FAILED：关机失败</li>
+        # <li>STOPPED：已关机</li>
+        # <li>IN_LAUNCHING_HOOK：扩容生命周期挂钩中</li>
+        # <li>IN_TERMINATING_HOOK：缩容生命周期挂钩中</li>
         # @type LifeCycleState: String
         # @param HealthStatus: 健康状态，取值包括HEALTHY和UNHEALTHY
         # @type HealthStatus: String
@@ -3022,13 +3018,12 @@ module TencentCloud
         # @param AutoScalingGroupName: 伸缩组名称
         # @type AutoScalingGroupName: String
         # @param WarmupStatus: 预热状态，取值如下：
-        # <li>WAITING_ENTER_WARMUP：等待进入预热
-        # <li>NO_NEED_WARMUP：无需预热
-        # <li>IN_WARMUP：预热中
-        # <li>AFTER_WARMUP：完成预热
+        # <li>WAITING_ENTER_WARMUP：等待进入预热</li>
+        # <li>NO_NEED_WARMUP：无需预热</li>
+        # <li>IN_WARMUP：预热中</li>
+        # <li>AFTER_WARMUP：完成预热</li>
         # @type WarmupStatus: String
         # @param DisasterRecoverGroupIds: 置放群组id，仅支持指定一个。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DisasterRecoverGroupIds: Array
 
         attr_accessor :InstanceId, :AutoScalingGroupId, :LaunchConfigurationId, :LaunchConfigurationName, :LifeCycleState, :HealthStatus, :ProtectedFromScaleIn, :Zone, :CreationType, :AddTime, :InstanceType, :VersionNumber, :AutoScalingGroupName, :WarmupStatus, :DisasterRecoverGroupIds
@@ -3095,7 +3090,6 @@ module TencentCloud
         # @param SpotOptions: 竞价相关选项
         # @type SpotOptions: :class:`Tencentcloud::As.v20180419.models.SpotMarketOptions`
         # @param MarketType: 市场选项类型，当前只支持取值：spot
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MarketType: String
 
         attr_accessor :SpotOptions, :MarketType
@@ -3222,22 +3216,16 @@ module TencentCloud
       # 执行命令结果。
       class InvocationResult < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceId: String
         # @param InvocationId: 执行活动ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InvocationId: String
         # @param InvocationTaskId: 执行任务ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InvocationTaskId: String
         # @param CommandId: 命令ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CommandId: String
         # @param TaskStatus: 执行任务状态。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskStatus: String
         # @param ErrorMessage: 执行异常信息。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrorMessage: String
 
         attr_accessor :InstanceId, :InvocationId, :InvocationTaskId, :CommandId, :TaskStatus, :ErrorMessage
@@ -3304,7 +3292,6 @@ module TencentCloud
         # @param InstanceTags: 实例标签列表。扩容出来的实例会自动带上标签，最多支持10个标签。
         # @type InstanceTags: Array
         # @param Tags: 标签列表。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
         # @param VersionNumber: 版本号。
         # @type VersionNumber: Integer
@@ -3330,7 +3317,6 @@ module TencentCloud
         # @param DisasterRecoverGroupIds: 置放群组id，仅支持指定一个。
         # @type DisasterRecoverGroupIds: Array
         # @param ImageFamily: 镜像族名称。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ImageFamily: String
         # @param DedicatedClusterId: 本地专用集群 ID。
         # @type DedicatedClusterId: String
@@ -3522,13 +3508,11 @@ module TencentCloud
       # 远程命令执行对象。
       class LifecycleCommand < TencentCloud::Common::AbstractModel
         # @param CommandId: 远程命令ID。若选择执行命令，则此项必填。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CommandId: String
         # @param Parameters: 自定义参数。字段类型为 json encoded string。如：{"varA": "222"}。
         # key为自定义参数名称，value为该参数的默认取值。kv均为字符串型。
         # 如果未提供该参数取值，将使用 Command 的 DefaultParameters 进行替换。
         # 自定义参数最多20个。自定义参数名称需符合以下规范：字符数目上限64，可选范围【a-zA-Z0-9-_】。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Parameters: String
 
         attr_accessor :CommandId, :Parameters
@@ -3567,7 +3551,6 @@ module TencentCloud
         # @param LifecycleTransitionType: 生命周期挂钩适用场景
         # @type LifecycleTransitionType: String
         # @param LifecycleCommand: 远程命令执行对象
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LifecycleCommand: :class:`Tencentcloud::As.v20180419.models.LifecycleCommand`
 
         attr_accessor :LifecycleHookId, :LifecycleHookName, :AutoScalingGroupId, :DefaultResult, :HeartbeatTimeout, :LifecycleTransition, :NotificationMetadata, :CreatedTime, :NotificationTarget, :LifecycleTransitionType, :LifecycleCommand
@@ -4539,7 +4522,6 @@ module TencentCloud
         # @param RefreshActivityId: 刷新活动 ID。
         # @type RefreshActivityId: String
         # @param OriginRefreshActivityId: 原始刷新活动ID，仅在回滚刷新活动中存在。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OriginRefreshActivityId: String
         # @param RefreshBatchSet: 刷新批次信息列表。
         # @type RefreshBatchSet: Array
@@ -4562,7 +4544,6 @@ module TencentCloud
         # <li>FAILED：活动失败</li>
         # @type Status: String
         # @param CurrentRefreshBatchNum: 当前刷新批次序号。例如，2 表示当前活动正在刷新第二批次的实例。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CurrentRefreshBatchNum: Integer
         # @param StartTime: 刷新活动开始时间。
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -4571,7 +4552,6 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EndTime: String
         # @param CreatedTime: 刷新活动创建时间。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreatedTime: String
 
         attr_accessor :AutoScalingGroupId, :RefreshActivityId, :OriginRefreshActivityId, :RefreshBatchSet, :RefreshMode, :RefreshSettings, :ActivityType, :Status, :CurrentRefreshBatchNum, :StartTime, :EndTime, :CreatedTime
@@ -4662,14 +4642,12 @@ module TencentCloud
       class RefreshBatchRelatedInstance < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例 ID。
         # @type InstanceId: String
-        # @param InstanceStatus: 刷新实例状态。如果在刷新时实例被移出或销毁，状态会更新为 NOT_FOUND。取值如下：<br><li>WAITING：待刷新</li><li>INIT：初始化中</li><li>RUNNING：刷新中</li><li>FAILED：刷新失败</li><li>CANCELLED：已取消</li><li>SUCCESSFUL：刷新成功</li><li>NOT_FOUND：实例不存在
+        # @param InstanceStatus: 刷新实例状态。如果在刷新时实例被移出或销毁，状态会更新为 NOT_FOUND。取值如下：<li>WAITING：待刷新</li><li>INIT：初始化中</li><li>RUNNING：刷新中</li><li>FAILED：刷新失败</li><li>CANCELLED：已取消</li><li>SUCCESSFUL：刷新成功</li><li>NOT_FOUND：实例不存在</li>
         # @type InstanceStatus: String
         # @param LastActivityId: 实例刷新中最近一次伸缩活动 ID，可通过 DescribeAutoScalingActivities 接口查询。
         # 需注意伸缩活动与实例刷新活动不同，一次实例刷新活动可能包括多次伸缩活动。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LastActivityId: String
         # @param InstanceStatusMessage: 实例刷新状态信息。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceStatusMessage: String
 
         attr_accessor :InstanceId, :InstanceStatus, :LastActivityId, :InstanceStatusMessage
@@ -4692,7 +4670,6 @@ module TencentCloud
       # 实例刷新设置。
       class RefreshSettings < TencentCloud::Common::AbstractModel
         # @param RollingUpdateSettings: 滚动更新设置参数。RefreshMode 为滚动更新该参数必须填写。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RollingUpdateSettings: :class:`Tencentcloud::As.v20180419.models.RollingUpdateSettings`
         # @param CheckInstanceTargetHealth: 实例后端服务健康状态检查，默认为 FALSE。仅针对绑定应用型负载均衡器的伸缩组生效，开启该检查后，如刷新后实例未通过检查，负载均衡器端口权重始终为 0，且标记为刷新失败。取值范围如下：<li>TRUE：开启检查</li><li>FALSE：不开启检查</li>
         # @type CheckInstanceTargetHealth: Boolean
@@ -4926,7 +4903,6 @@ module TencentCloud
         # <li>TRUE：表示开启云监控服务</li>
         # <li>FALSE：表示不开启云监控服务</li>
         # 默认取值：TRUE。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Enabled: Boolean
 
         attr_accessor :Enabled
@@ -4946,7 +4922,6 @@ module TencentCloud
         # <li>TRUE：表示开启云安全服务</li>
         # <li>FALSE：表示不开启云安全服务</li>
         # 默认取值：TRUE。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Enabled: Boolean
 
         attr_accessor :Enabled
@@ -5198,7 +5173,6 @@ module TencentCloud
         # RECREATE：重建实例替代原有不健康实例；
         # RESET：对原有不健康实例进行重装系统操作，可保持数据盘、内网IP、实例id等信息不发生变化，实例登录设置、主机名、增强服务和 UserData 与当前启动配置保持一致。
         # 默认取值：RECREATE
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReplaceMode: String
         # @param AutoUpdateInstanceTags: 自动更新实例标签。默认取值为 False，配置后如伸缩组标签发生更新，会同步更新（同步更新仅支持新增、修改标签，暂不支持删除标签）伸缩组内运行中状态实例的标签，同步更新非立即生效，存在一定延迟。
         # @type AutoUpdateInstanceTags: Boolean
@@ -5273,7 +5247,6 @@ module TencentCloud
         # @param MaxPrice: 竞价出价，例如“1.05”
         # @type MaxPrice: String
         # @param SpotInstanceType: 竞价请求类型，当前仅支持类型：one-time，默认值为one-time
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SpotInstanceType: String
 
         attr_accessor :MaxPrice, :SpotInstanceType
@@ -5502,11 +5475,15 @@ module TencentCloud
 
       # 启动配置的系统盘配置信息。若不指定该参数，则按照系统默认值进行分配。
       class SystemDisk < TencentCloud::Common::AbstractModel
-        # @param DiskType: 系统盘类型。系统盘类型限制详见[云硬盘类型](https://cloud.tencent.com/document/product/362/2353)。取值范围：<br><li>LOCAL_BASIC：本地硬盘<br><li>LOCAL_SSD：本地SSD硬盘<br><li>CLOUD_BASIC：普通云硬盘<br><li>CLOUD_PREMIUM：高性能云硬盘<br><li>CLOUD_SSD：SSD云硬盘<br><br>默认取值：CLOUD_PREMIUM。
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param DiskType: 系统盘类型。系统盘类型限制详见[云硬盘类型](https://cloud.tencent.com/document/product/362/2353)。取值范围
+        # <li>LOCAL_BASIC：本地硬盘</li>
+        # <li>LOCAL_SSD：本地SSD硬盘</li>
+        # <li>CLOUD_BASIC：普通云硬盘</li>
+        # <li>CLOUD_PREMIUM：高性能云硬盘</li>
+        # <li>CLOUD_SSD：SSD云硬盘</li>
+        # <li>默认取值：CLOUD_PREMIUM。</li>
         # @type DiskType: String
         # @param DiskSize: 系统盘大小，单位：GB。默认值为 50
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DiskSize: Integer
 
         attr_accessor :DiskType, :DiskSize
@@ -5529,7 +5506,6 @@ module TencentCloud
         # @param Value: 标签值
         # @type Value: String
         # @param ResourceType: 标签绑定的资源类型，当前支持类型："auto-scaling-group", "launch-configuration"
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceType: String
 
         attr_accessor :Key, :Value, :ResourceType

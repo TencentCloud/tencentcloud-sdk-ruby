@@ -1502,6 +1502,50 @@ module TencentCloud
         end
       end
 
+      # DescribeDBInstanceNamespace请求参数结构体
+      class DescribeDBInstanceNamespaceRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 指定查询数据库所属的实例 ID，支持批量查询。请登录 [MongoDB 控制台](https://console.cloud.tencent.com/mongodb)在实例列表复制实例 ID。
+        # @type InstanceId: String
+        # @param DbName: 指定查询的数据库名。为空时，返回当前实例的全部数据库列表。
+        # @type DbName: String
+
+        attr_accessor :InstanceId, :DbName
+
+        def initialize(instanceid=nil, dbname=nil)
+          @InstanceId = instanceid
+          @DbName = dbname
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @DbName = params['DbName']
+        end
+      end
+
+      # DescribeDBInstanceNamespace返回参数结构体
+      class DescribeDBInstanceNamespaceResponse < TencentCloud::Common::AbstractModel
+        # @param Databases: 查询实例的数据库列表。若未使用 DbName 指定具体查询的数据库，则仅返回查询实例所有的数据库列表，而不返回 Collections 集合信息。
+        # @type Databases: Array
+        # @param Collections: 查询的集合信息。指定 DbName 时，则仅返回该数据库下的集合列表。
+        # @type Collections: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Databases, :Collections, :RequestId
+
+        def initialize(databases=nil, collections=nil, requestid=nil)
+          @Databases = databases
+          @Collections = collections
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Databases = params['Databases']
+          @Collections = params['Collections']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeDBInstanceNodeProperty请求参数结构体
       class DescribeDBInstanceNodePropertyRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID，格式如：cmgo-p8vnipr5。与云数据库控制台页面中显示的实例ID相同。

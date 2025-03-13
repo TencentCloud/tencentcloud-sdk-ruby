@@ -3394,12 +3394,7 @@ module TencentCloud
         # @type ProgramIdList: Array
         # @param ApmInstanceId: apm业务系统id
         # @type ApmInstanceId: String
-        # @param ProgramLanguage: 编程语言;
-        # J - JAVA；
-        # C - C/C++；
-        # P - Python；
-        # G - Go；
-        # O - Other；
+        # @param ProgramLanguage: 编程语言:  Java；C/C++；Python；Go；Other
         # @type ProgramLanguage: String
         # @param FrameworkType: 开发框架-SpringCloud/Dubbo/Go-GRPC/Other
         # @type FrameworkType: String
@@ -9890,6 +9885,45 @@ module TencentCloud
         def deserialize(params)
           unless params['Result'].nil?
             @Result = TsfPageMsInstance.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeMicroservicesByGroupIds请求参数结构体
+      class DescribeMicroservicesByGroupIdsRequest < TencentCloud::Common::AbstractModel
+        # @param GroupIds: 部署组ID列表
+        # @type GroupIds: Array
+
+        attr_accessor :GroupIds
+
+        def initialize(groupids=nil)
+          @GroupIds = groupids
+        end
+
+        def deserialize(params)
+          @GroupIds = params['GroupIds']
+        end
+      end
+
+      # DescribeMicroservicesByGroupIds返回参数结构体
+      class DescribeMicroservicesByGroupIdsResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 微服务信息分页列表
+        # @type Result: :class:`Tencentcloud::Tsf.v20180326.models.TsfPageMicroservice`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = TsfPageMicroservice.new
             @Result.deserialize(params['Result'])
           end
           @RequestId = params['RequestId']
@@ -17992,7 +18026,7 @@ module TencentCloud
       class ServiceGovernanceConfig < TencentCloud::Common::AbstractModel
         # @param EnableGovernance: 是否开启服务注册治理
         # @type EnableGovernance: Boolean
-        # @param GovernanceType: 服务治理类型
+        # @param GovernanceType: 服务治理类型（枚举：SHARE、EXCLUSIVE）
         # @type GovernanceType: String
         # @param ExclusiveInstances: 独享实例列表
         # 注意：此字段可能返回 null，表示取不到有效值。

@@ -53,6 +53,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询当前用户节省计划覆盖率明细数据，如无特别说明，金额单位均为元（国内站）或者美元（国际站）。
+
+        # @param request: Request instance for DescribeSavingPlanCoverage.
+        # @type request: :class:`Tencentcloud::svp::V20240125::DescribeSavingPlanCoverageRequest`
+        # @rtype: :class:`Tencentcloud::svp::V20240125::DescribeSavingPlanCoverageResponse`
+        def DescribeSavingPlanCoverage(request)
+          body = send_request('DescribeSavingPlanCoverage', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeSavingPlanCoverageResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询节省计划抵扣明细
 
         # @param request: Request instance for DescribeSavingPlanDeduct.

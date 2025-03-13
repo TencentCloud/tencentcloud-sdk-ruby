@@ -2967,6 +2967,49 @@ module TencentCloud
         end
       end
 
+      # CheckGatewayFlowMonitor请求参数结构体
+      class CheckGatewayFlowMonitorRequest < TencentCloud::Common::AbstractModel
+        # @param GatewayId: 网关实例ID，目前我们支持的网关实例类型有，
+        # 专线网关实例ID，形如，`dcg-ltjahce6`；
+        # Nat网关实例ID，形如，`nat-ltjahce6`；
+        # VPN网关实例ID，形如，`vpn-ltjahce6`。
+        # @type GatewayId: String
+
+        attr_accessor :GatewayId
+
+        def initialize(gatewayid=nil)
+          @GatewayId = gatewayid
+        end
+
+        def deserialize(params)
+          @GatewayId = params['GatewayId']
+        end
+      end
+
+      # CheckGatewayFlowMonitor返回参数结构体
+      class CheckGatewayFlowMonitorResponse < TencentCloud::Common::AbstractModel
+        # @param Enabled: 网关是否启用了流控。true为启用，false未启用。
+        # @type Enabled: Boolean
+        # @param Bandwidth: 网关的带宽。
+        # @type Bandwidth: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Enabled, :Bandwidth, :RequestId
+
+        def initialize(enabled=nil, bandwidth=nil, requestid=nil)
+          @Enabled = enabled
+          @Bandwidth = bandwidth
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Enabled = params['Enabled']
+          @Bandwidth = params['Bandwidth']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CheckNetDetectState请求参数结构体
       class CheckNetDetectStateRequest < TencentCloud::Common::AbstractModel
         # @param DetectDestinationIp: 探测目的IPv4地址数组，最多两个。
@@ -4620,8 +4663,8 @@ module TencentCloud
 
         attr_accessor :NatGatewayName, :VpcId, :InternetMaxBandwidthOut, :MaxConcurrentConnection, :AddressCount, :PublicIpAddresses, :Zone, :Tags, :SubnetId, :StockPublicIpAddressesBandwidthOut, :PublicIpAddressesBandwidthOut, :PublicIpFromSameZone, :NatProductVersion
         extend Gem::Deprecate
-        deprecate :SubnetId, :none, 2025, 2
-        deprecate :SubnetId=, :none, 2025, 2
+        deprecate :SubnetId, :none, 2025, 3
+        deprecate :SubnetId=, :none, 2025, 3
 
         def initialize(natgatewayname=nil, vpcid=nil, internetmaxbandwidthout=nil, maxconcurrentconnection=nil, addresscount=nil, publicipaddresses=nil, zone=nil, tags=nil, subnetid=nil, stockpublicipaddressesbandwidthout=nil, publicipaddressesbandwidthout=nil, publicipfromsamezone=nil, natproductversion=nil)
           @NatGatewayName = natgatewayname
@@ -18195,8 +18238,8 @@ module TencentCloud
 
         attr_accessor :EncryptAlgorithm, :IntegrityAlgorith, :IPSECSaLifetimeSeconds, :PfsDhGroup, :IPSECSaLifetimeTraffic, :IntegrityAlgorithm
         extend Gem::Deprecate
-        deprecate :IntegrityAlgorith, :none, 2025, 2
-        deprecate :IntegrityAlgorith=, :none, 2025, 2
+        deprecate :IntegrityAlgorith, :none, 2025, 3
+        deprecate :IntegrityAlgorith=, :none, 2025, 3
 
         def initialize(encryptalgorithm=nil, integrityalgorith=nil, ipsecsalifetimeseconds=nil, pfsdhgroup=nil, ipsecsalifetimetraffic=nil, integrityalgorithm=nil)
           @EncryptAlgorithm = encryptalgorithm

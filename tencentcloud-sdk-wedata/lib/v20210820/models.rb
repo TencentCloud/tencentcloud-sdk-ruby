@@ -19531,6 +19531,28 @@ module TencentCloud
         end
       end
 
+      # 键值对
+      class KVPair < TencentCloud::Common::AbstractModel
+        # @param K: 键名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type K: String
+        # @param V: 值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type V: String
+
+        attr_accessor :K, :V
+
+        def initialize(k=nil, v=nil)
+          @K = k
+          @V = v
+        end
+
+        def deserialize(params)
+          @K = params['K']
+          @V = params['V']
+        end
+      end
+
       # KillOpsMakePlanInstances请求参数结构体
       class KillOpsMakePlanInstancesRequest < TencentCloud::Common::AbstractModel
         # @param ProjectId: 项目ID
@@ -20277,6 +20299,104 @@ module TencentCloud
               @Items << makeplantaskopsdto_tmp
             end
           end
+        end
+      end
+
+      # 手动工作流触发运行记录实体
+      class ManualTriggerRecordOpsDto < TencentCloud::Common::AbstractModel
+        # @param TriggerId: 运行触发记录ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TriggerId: String
+        # @param TriggerName: 用户提交运行时配置的运行名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TriggerName: String
+        # @param Remark: 用户提交运行的备注
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Remark: String
+        # @param DatetimeList: 数据时间列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DatetimeList: Array
+        # @param TaskCnt: 任务数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskCnt: Integer
+        # @param InstanceCnt: 实例数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceCnt: Integer
+        # @param FinishedInstanceCnt: 已完成的实例数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FinishedInstanceCnt: Integer
+        # @param SuccessInstanceCnt: 成功的实例数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SuccessInstanceCnt: Integer
+        # @param Status: 记录运行状态
+        #  INIT, RUNNING, FINISHED
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: String
+        # @param TriggerParams: 用户提交运行时的入参，主要用于前端反显和记录原始提交信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TriggerParams: String
+        # @param OwnerUin: 用户主账号ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OwnerUin: String
+        # @param UserUin: 用户ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserUin: String
+        # @param UserName: 用户展示名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserName: String
+        # @param TenantId: 租户ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TenantId: String
+        # @param ProjectId: 项目ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProjectId: String
+        # @param CreateTime: 创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param ScheduleTimeZone: 数据实例时间的时区
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ScheduleTimeZone: String
+
+        attr_accessor :TriggerId, :TriggerName, :Remark, :DatetimeList, :TaskCnt, :InstanceCnt, :FinishedInstanceCnt, :SuccessInstanceCnt, :Status, :TriggerParams, :OwnerUin, :UserUin, :UserName, :TenantId, :ProjectId, :CreateTime, :ScheduleTimeZone
+
+        def initialize(triggerid=nil, triggername=nil, remark=nil, datetimelist=nil, taskcnt=nil, instancecnt=nil, finishedinstancecnt=nil, successinstancecnt=nil, status=nil, triggerparams=nil, owneruin=nil, useruin=nil, username=nil, tenantid=nil, projectid=nil, createtime=nil, scheduletimezone=nil)
+          @TriggerId = triggerid
+          @TriggerName = triggername
+          @Remark = remark
+          @DatetimeList = datetimelist
+          @TaskCnt = taskcnt
+          @InstanceCnt = instancecnt
+          @FinishedInstanceCnt = finishedinstancecnt
+          @SuccessInstanceCnt = successinstancecnt
+          @Status = status
+          @TriggerParams = triggerparams
+          @OwnerUin = owneruin
+          @UserUin = useruin
+          @UserName = username
+          @TenantId = tenantid
+          @ProjectId = projectid
+          @CreateTime = createtime
+          @ScheduleTimeZone = scheduletimezone
+        end
+
+        def deserialize(params)
+          @TriggerId = params['TriggerId']
+          @TriggerName = params['TriggerName']
+          @Remark = params['Remark']
+          @DatetimeList = params['DatetimeList']
+          @TaskCnt = params['TaskCnt']
+          @InstanceCnt = params['InstanceCnt']
+          @FinishedInstanceCnt = params['FinishedInstanceCnt']
+          @SuccessInstanceCnt = params['SuccessInstanceCnt']
+          @Status = params['Status']
+          @TriggerParams = params['TriggerParams']
+          @OwnerUin = params['OwnerUin']
+          @UserUin = params['UserUin']
+          @UserName = params['UserName']
+          @TenantId = params['TenantId']
+          @ProjectId = params['ProjectId']
+          @CreateTime = params['CreateTime']
+          @ScheduleTimeZone = params['ScheduleTimeZone']
         end
       end
 
@@ -30555,6 +30675,107 @@ module TencentCloud
         def deserialize(params)
           unless params['Data'].nil?
             @Data = BatchReturn.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # TriggerManualTasks请求参数结构体
+      class TriggerManualTasksRequest < TencentCloud::Common::AbstractModel
+        # @param ProjectId: 项目ID
+        # @type ProjectId: String
+        # @param TriggerName: 触发运行名称
+        # @type TriggerName: String
+        # @param TriggerScope: 运行范围 ENTIRE_WORKFLOW or SPECIFIED_TASK
+        # @type TriggerScope: String
+        # @param DataTimeList: 运行数据时间列表
+        # @type DataTimeList: Array
+        # @param WorkflowId: 工作流ID
+        # @type WorkflowId: String
+        # @param Remark: 备注
+        # @type Remark: String
+        # @param TaskIds: 需要运行的任务列表
+        # TriggerScope=ENTIRE_WORKFLOW 时无需传此参数，TriggerScope=SPECIFIED_TASK此参数必传
+        # @type TaskIds: Array
+        # @param SchedulerResourceGroup: 用户提交运行时指定的调度资源组，未指定时使用任务配置的调度资源组
+        # @type SchedulerResourceGroup: String
+        # @param IntegrationResourceGroup: 用户提交运行时指定的集成资源组，未指定时使用任务配置的集成资源组
+        # @type IntegrationResourceGroup: String
+        # @param ExecOrder: 执行顺序 ASC、RAND、DESC
+        # @type ExecOrder: String
+        # @param CustomParams: 自定义参数，最高优先级
+        # @type CustomParams: Array
+        # @param ExtraParams: 页面反显使用，无业务含义
+        # @type ExtraParams: String
+        # @param ScheduleTimeZone: 实例时间的时区
+        # @type ScheduleTimeZone: String
+
+        attr_accessor :ProjectId, :TriggerName, :TriggerScope, :DataTimeList, :WorkflowId, :Remark, :TaskIds, :SchedulerResourceGroup, :IntegrationResourceGroup, :ExecOrder, :CustomParams, :ExtraParams, :ScheduleTimeZone
+
+        def initialize(projectid=nil, triggername=nil, triggerscope=nil, datatimelist=nil, workflowid=nil, remark=nil, taskids=nil, schedulerresourcegroup=nil, integrationresourcegroup=nil, execorder=nil, customparams=nil, extraparams=nil, scheduletimezone=nil)
+          @ProjectId = projectid
+          @TriggerName = triggername
+          @TriggerScope = triggerscope
+          @DataTimeList = datatimelist
+          @WorkflowId = workflowid
+          @Remark = remark
+          @TaskIds = taskids
+          @SchedulerResourceGroup = schedulerresourcegroup
+          @IntegrationResourceGroup = integrationresourcegroup
+          @ExecOrder = execorder
+          @CustomParams = customparams
+          @ExtraParams = extraparams
+          @ScheduleTimeZone = scheduletimezone
+        end
+
+        def deserialize(params)
+          @ProjectId = params['ProjectId']
+          @TriggerName = params['TriggerName']
+          @TriggerScope = params['TriggerScope']
+          @DataTimeList = params['DataTimeList']
+          @WorkflowId = params['WorkflowId']
+          @Remark = params['Remark']
+          @TaskIds = params['TaskIds']
+          @SchedulerResourceGroup = params['SchedulerResourceGroup']
+          @IntegrationResourceGroup = params['IntegrationResourceGroup']
+          @ExecOrder = params['ExecOrder']
+          unless params['CustomParams'].nil?
+            @CustomParams = []
+            params['CustomParams'].each do |i|
+              kvpair_tmp = KVPair.new
+              kvpair_tmp.deserialize(i)
+              @CustomParams << kvpair_tmp
+            end
+          end
+          @ExtraParams = params['ExtraParams']
+          @ScheduleTimeZone = params['ScheduleTimeZone']
+        end
+      end
+
+      # TriggerManualTasks返回参数结构体
+      class TriggerManualTasksResponse < TencentCloud::Common::AbstractModel
+        # @param RequestFromSource: 请求来源，WEB 前端；CLIENT 客户端
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RequestFromSource: String
+        # @param Data: 详情结果
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: :class:`Tencentcloud::Wedata.v20210820.models.ManualTriggerRecordOpsDto`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestFromSource, :Data, :RequestId
+
+        def initialize(requestfromsource=nil, data=nil, requestid=nil)
+          @RequestFromSource = requestfromsource
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestFromSource = params['RequestFromSource']
+          unless params['Data'].nil?
+            @Data = ManualTriggerRecordOpsDto.new
             @Data.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']

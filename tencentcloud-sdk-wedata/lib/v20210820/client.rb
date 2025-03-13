@@ -5782,6 +5782,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 手动任务触发运行
+
+        # @param request: Request instance for TriggerManualTasks.
+        # @type request: :class:`Tencentcloud::wedata::V20210820::TriggerManualTasksRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20210820::TriggerManualTasksResponse`
+        def TriggerManualTasks(request)
+          body = send_request('TriggerManualTasks', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = TriggerManualTasksResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 解锁集成任务
 
         # @param request: Request instance for UnlockIntegrationTask.

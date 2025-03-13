@@ -5910,6 +5910,9 @@ module TencentCloud
         # @param IndexName: 索引名
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IndexName: String
+        # @param IndexMetaJson: 索引元数据JSON
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IndexMetaJson: String
         # @param IndexDocs: 索引文档数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IndexDocs: Integer
@@ -5958,11 +5961,12 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IndexTraffic: Float
 
-        attr_accessor :AppId, :IndexName, :IndexDocs, :IndexStorage, :IndexCreateTime, :InstanceId, :IndexOptionsField, :IndexSettingsField, :IndexNetworkField, :KibanaUrl, :KibanaPrivateUrl, :IndexAccessUrl, :Status, :SpaceId, :SpaceName, :StorageType, :TagList, :IndexTraffic
+        attr_accessor :AppId, :IndexName, :IndexMetaJson, :IndexDocs, :IndexStorage, :IndexCreateTime, :InstanceId, :IndexOptionsField, :IndexSettingsField, :IndexNetworkField, :KibanaUrl, :KibanaPrivateUrl, :IndexAccessUrl, :Status, :SpaceId, :SpaceName, :StorageType, :TagList, :IndexTraffic
 
-        def initialize(appid=nil, indexname=nil, indexdocs=nil, indexstorage=nil, indexcreatetime=nil, instanceid=nil, indexoptionsfield=nil, indexsettingsfield=nil, indexnetworkfield=nil, kibanaurl=nil, kibanaprivateurl=nil, indexaccessurl=nil, status=nil, spaceid=nil, spacename=nil, storagetype=nil, taglist=nil, indextraffic=nil)
+        def initialize(appid=nil, indexname=nil, indexmetajson=nil, indexdocs=nil, indexstorage=nil, indexcreatetime=nil, instanceid=nil, indexoptionsfield=nil, indexsettingsfield=nil, indexnetworkfield=nil, kibanaurl=nil, kibanaprivateurl=nil, indexaccessurl=nil, status=nil, spaceid=nil, spacename=nil, storagetype=nil, taglist=nil, indextraffic=nil)
           @AppId = appid
           @IndexName = indexname
+          @IndexMetaJson = indexmetajson
           @IndexDocs = indexdocs
           @IndexStorage = indexstorage
           @IndexCreateTime = indexcreatetime
@@ -5984,6 +5988,7 @@ module TencentCloud
         def deserialize(params)
           @AppId = params['AppId']
           @IndexName = params['IndexName']
+          @IndexMetaJson = params['IndexMetaJson']
           @IndexDocs = params['IndexDocs']
           @IndexStorage = params['IndexStorage']
           @IndexCreateTime = params['IndexCreateTime']

@@ -41,6 +41,121 @@ module TencentCloud
         end
       end
 
+      # AccessDevices请求参数结构体
+      class AccessDevicesRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 资源id
+        # @type InstanceId: String
+        # @param Account: 账号
+        # @type Account: String
+        # @param LoginAccount: 运维端登录账号
+        # @type LoginAccount: String
+        # @param LoginPassword: 运维端登录密码
+        # @type LoginPassword: String
+        # @param Password: 密码
+        # @type Password: String
+        # @param PrivateKey: 私钥
+        # @type PrivateKey: String
+        # @param PrivateKeyPassword: 私钥密码
+        # @type PrivateKeyPassword: String
+        # @param Exe: 客户端工具
+        # @type Exe: String
+        # @param Drivers: RDP挂载盘符驱动（mstsc支持）
+        # @type Drivers: Array
+        # @param Width: 窗口宽度（RDP支持）
+        # @type Width: Integer
+        # @param Height: 窗口高度（RDP支持）
+        # @type Height: Integer
+        # @param IntranetAccess: 是否内网访问（默认不是）
+        # @type IntranetAccess: Boolean
+
+        attr_accessor :InstanceId, :Account, :LoginAccount, :LoginPassword, :Password, :PrivateKey, :PrivateKeyPassword, :Exe, :Drivers, :Width, :Height, :IntranetAccess
+
+        def initialize(instanceid=nil, account=nil, loginaccount=nil, loginpassword=nil, password=nil, privatekey=nil, privatekeypassword=nil, exe=nil, drivers=nil, width=nil, height=nil, intranetaccess=nil)
+          @InstanceId = instanceid
+          @Account = account
+          @LoginAccount = loginaccount
+          @LoginPassword = loginpassword
+          @Password = password
+          @PrivateKey = privatekey
+          @PrivateKeyPassword = privatekeypassword
+          @Exe = exe
+          @Drivers = drivers
+          @Width = width
+          @Height = height
+          @IntranetAccess = intranetaccess
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Account = params['Account']
+          @LoginAccount = params['LoginAccount']
+          @LoginPassword = params['LoginPassword']
+          @Password = params['Password']
+          @PrivateKey = params['PrivateKey']
+          @PrivateKeyPassword = params['PrivateKeyPassword']
+          @Exe = params['Exe']
+          @Drivers = params['Drivers']
+          @Width = params['Width']
+          @Height = params['Height']
+          @IntranetAccess = params['IntranetAccess']
+        end
+      end
+
+      # AccessDevices返回参数结构体
+      class AccessDevicesResponse < TencentCloud::Common::AbstractModel
+        # @param AccessInfo: 认证信息
+        # @type AccessInfo: :class:`Tencentcloud::Bh.v20230418.models.AccessInfo`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :AccessInfo, :RequestId
+
+        def initialize(accessinfo=nil, requestid=nil)
+          @AccessInfo = accessinfo
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['AccessInfo'].nil?
+            @AccessInfo = AccessInfo.new
+            @AccessInfo.deserialize(params['AccessInfo'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 认证信息
+      class AccessInfo < TencentCloud::Common::AbstractModel
+        # @param Ip: 地址
+        # @type Ip: String
+        # @param Port: 端口
+        # @type Port: Integer
+        # @param User: 账号
+        # @type User: String
+        # @param Password: 密码
+        # @type Password: String
+        # @param AccessURL: 唤起链接｜wss链接
+        # @type AccessURL: String
+
+        attr_accessor :Ip, :Port, :User, :Password, :AccessURL
+
+        def initialize(ip=nil, port=nil, user=nil, password=nil, accessurl=nil)
+          @Ip = ip
+          @Port = port
+          @User = user
+          @Password = password
+          @AccessURL = accessurl
+        end
+
+        def deserialize(params)
+          @Ip = params['Ip']
+          @Port = params['Port']
+          @User = params['User']
+          @Password = params['Password']
+          @AccessURL = params['AccessURL']
+        end
+      end
+
       # 访问权限
       class Acl < TencentCloud::Common::AbstractModel
         # @param Id: 访问权限ID

@@ -756,6 +756,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（CheckGatewayFlowMonitor）用于查询网关是否启用流量监控。
+
+        # @param request: Request instance for CheckGatewayFlowMonitor.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::CheckGatewayFlowMonitorRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::CheckGatewayFlowMonitorResponse`
+        def CheckGatewayFlowMonitor(request)
+          body = send_request('CheckGatewayFlowMonitor', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CheckGatewayFlowMonitorResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（CheckNetDetectState）用于验证网络探测。
 
         # @param request: Request instance for CheckNetDetectState.

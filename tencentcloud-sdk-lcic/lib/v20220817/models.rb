@@ -1409,6 +1409,38 @@ module TencentCloud
         end
       end
 
+      # DeleteWhiteBoardSnapshot请求参数结构体
+      class DeleteWhiteBoardSnapshotRequest < TencentCloud::Common::AbstractModel
+        # @param RoomId: 房间ID
+        # @type RoomId: Integer
+
+        attr_accessor :RoomId
+
+        def initialize(roomid=nil)
+          @RoomId = roomid
+        end
+
+        def deserialize(params)
+          @RoomId = params['RoomId']
+        end
+      end
+
+      # DeleteWhiteBoardSnapshot返回参数结构体
+      class DeleteWhiteBoardSnapshotResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeAnswerList请求参数结构体
       class DescribeAnswerListRequest < TencentCloud::Common::AbstractModel
         # @param QuestionId: 问题ID
@@ -2859,6 +2891,54 @@ module TencentCloud
           @Name = params['Name']
           @Avatar = params['Avatar']
           @OriginId = params['OriginId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeWhiteBoardSnapshot请求参数结构体
+      class DescribeWhiteBoardSnapshotRequest < TencentCloud::Common::AbstractModel
+        # @param RoomId: 房间ID
+        # @type RoomId: Integer
+
+        attr_accessor :RoomId
+
+        def initialize(roomid=nil)
+          @RoomId = roomid
+        end
+
+        def deserialize(params)
+          @RoomId = params['RoomId']
+        end
+      end
+
+      # DescribeWhiteBoardSnapshot返回参数结构体
+      class DescribeWhiteBoardSnapshotResponse < TencentCloud::Common::AbstractModel
+        # @param WhiteBoardSnapshotMode: 板书截图生成类型。0 不生成板书；1 全量模式；2 单页去重模式
+        # @type WhiteBoardSnapshotMode: Integer
+        # @param Status: 板书任务状态，0：未开始，1：进行中，2：失败，3：成功，4：已删除
+        # @type Status: Integer
+        # @param Result: 板书截图链接
+        # @type Result: Array
+        # @param Total: 总数
+        # @type Total: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :WhiteBoardSnapshotMode, :Status, :Result, :Total, :RequestId
+
+        def initialize(whiteboardsnapshotmode=nil, status=nil, result=nil, total=nil, requestid=nil)
+          @WhiteBoardSnapshotMode = whiteboardsnapshotmode
+          @Status = status
+          @Result = result
+          @Total = total
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @WhiteBoardSnapshotMode = params['WhiteBoardSnapshotMode']
+          @Status = params['Status']
+          @Result = params['Result']
+          @Total = params['Total']
           @RequestId = params['RequestId']
         end
       end

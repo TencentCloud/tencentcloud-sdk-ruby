@@ -697,7 +697,6 @@ module TencentCloud
         # @param TaskPolicyRule: 策略规则
         # @type TaskPolicyRule: String
         # @param TaskPolicyDealType: 护栏策略生效处理策略 1:顺序执行，2:暂停
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskPolicyDealType: Integer
 
         attr_accessor :TaskPolicyIdList, :TaskPolicyStatus, :TaskPolicyRule, :TaskPolicyDealType
@@ -1272,10 +1271,12 @@ module TencentCloud
         # @type ObjectSupportType: Integer
         # @param ArchLayer: 1.接入层 2.逻辑层 3. 数据层
         # @type ArchLayer: Integer
+        # @param IsArchSvg: 是否支持演练生图
+        # @type IsArchSvg: Boolean
 
-        attr_accessor :ObjectTypeId, :ObjectTypeTitle, :ObjectTypeLevelOne, :ObjectTypeParams, :ObjectTypeJsonParse, :ObjectHasNewAction, :ObjectPlatformName, :ObjectSupportType, :ArchLayer
+        attr_accessor :ObjectTypeId, :ObjectTypeTitle, :ObjectTypeLevelOne, :ObjectTypeParams, :ObjectTypeJsonParse, :ObjectHasNewAction, :ObjectPlatformName, :ObjectSupportType, :ArchLayer, :IsArchSvg
 
-        def initialize(objecttypeid=nil, objecttypetitle=nil, objecttypelevelone=nil, objecttypeparams=nil, objecttypejsonparse=nil, objecthasnewaction=nil, objectplatformname=nil, objectsupporttype=nil, archlayer=nil)
+        def initialize(objecttypeid=nil, objecttypetitle=nil, objecttypelevelone=nil, objecttypeparams=nil, objecttypejsonparse=nil, objecthasnewaction=nil, objectplatformname=nil, objectsupporttype=nil, archlayer=nil, isarchsvg=nil)
           @ObjectTypeId = objecttypeid
           @ObjectTypeTitle = objecttypetitle
           @ObjectTypeLevelOne = objecttypelevelone
@@ -1285,6 +1286,7 @@ module TencentCloud
           @ObjectPlatformName = objectplatformname
           @ObjectSupportType = objectsupporttype
           @ArchLayer = archlayer
+          @IsArchSvg = isarchsvg
         end
 
         def deserialize(params)
@@ -1303,6 +1305,7 @@ module TencentCloud
           @ObjectPlatformName = params['ObjectPlatformName']
           @ObjectSupportType = params['ObjectSupportType']
           @ArchLayer = params['ArchLayer']
+          @IsArchSvg = params['IsArchSvg']
         end
       end
 
@@ -1597,10 +1600,12 @@ module TencentCloud
         # @param TaskRegionName: region信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskRegionName: String
+        # @param TaskArchId: 架构ID
+        # @type TaskArchId: String
 
-        attr_accessor :TaskId, :TaskTitle, :TaskDescription, :TaskTag, :TaskStatus, :TaskStatusType, :TaskProtectStrategy, :TaskCreateTime, :TaskUpdateTime, :TaskGroups, :TaskStartTime, :TaskEndTime, :TaskExpect, :TaskSummary, :TaskMode, :TaskPauseDuration, :TaskOwnerUin, :TaskRegionId, :TaskMonitors, :TaskPolicy, :Tags, :TaskPlanId, :TaskPlanTitle, :ApplicationId, :ApplicationName, :AlarmPolicy, :ApmServiceList, :VerifyId, :PolicyDealType, :TaskPlanStartTime, :TaskPlanEndTime, :TaskOrg, :TaskIssue, :TaskRegionName
+        attr_accessor :TaskId, :TaskTitle, :TaskDescription, :TaskTag, :TaskStatus, :TaskStatusType, :TaskProtectStrategy, :TaskCreateTime, :TaskUpdateTime, :TaskGroups, :TaskStartTime, :TaskEndTime, :TaskExpect, :TaskSummary, :TaskMode, :TaskPauseDuration, :TaskOwnerUin, :TaskRegionId, :TaskMonitors, :TaskPolicy, :Tags, :TaskPlanId, :TaskPlanTitle, :ApplicationId, :ApplicationName, :AlarmPolicy, :ApmServiceList, :VerifyId, :PolicyDealType, :TaskPlanStartTime, :TaskPlanEndTime, :TaskOrg, :TaskIssue, :TaskRegionName, :TaskArchId
 
-        def initialize(taskid=nil, tasktitle=nil, taskdescription=nil, tasktag=nil, taskstatus=nil, taskstatustype=nil, taskprotectstrategy=nil, taskcreatetime=nil, taskupdatetime=nil, taskgroups=nil, taskstarttime=nil, taskendtime=nil, taskexpect=nil, tasksummary=nil, taskmode=nil, taskpauseduration=nil, taskowneruin=nil, taskregionid=nil, taskmonitors=nil, taskpolicy=nil, tags=nil, taskplanid=nil, taskplantitle=nil, applicationid=nil, applicationname=nil, alarmpolicy=nil, apmservicelist=nil, verifyid=nil, policydealtype=nil, taskplanstarttime=nil, taskplanendtime=nil, taskorg=nil, taskissue=nil, taskregionname=nil)
+        def initialize(taskid=nil, tasktitle=nil, taskdescription=nil, tasktag=nil, taskstatus=nil, taskstatustype=nil, taskprotectstrategy=nil, taskcreatetime=nil, taskupdatetime=nil, taskgroups=nil, taskstarttime=nil, taskendtime=nil, taskexpect=nil, tasksummary=nil, taskmode=nil, taskpauseduration=nil, taskowneruin=nil, taskregionid=nil, taskmonitors=nil, taskpolicy=nil, tags=nil, taskplanid=nil, taskplantitle=nil, applicationid=nil, applicationname=nil, alarmpolicy=nil, apmservicelist=nil, verifyid=nil, policydealtype=nil, taskplanstarttime=nil, taskplanendtime=nil, taskorg=nil, taskissue=nil, taskregionname=nil, taskarchid=nil)
           @TaskId = taskid
           @TaskTitle = tasktitle
           @TaskDescription = taskdescription
@@ -1635,6 +1640,7 @@ module TencentCloud
           @TaskOrg = taskorg
           @TaskIssue = taskissue
           @TaskRegionName = taskregionname
+          @TaskArchId = taskarchid
         end
 
         def deserialize(params)
@@ -1710,6 +1716,7 @@ module TencentCloud
           end
           @TaskIssue = params['TaskIssue']
           @TaskRegionName = params['TaskRegionName']
+          @TaskArchId = params['TaskArchId']
         end
       end
 
@@ -2320,7 +2327,6 @@ module TencentCloud
         # @param Expired: 是否有效
         # @type Expired: Boolean
         # @param CosUrl: 演练报告cos文件地址
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CosUrl: String
         # @param Log: 演练报告导出日志
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -2330,7 +2336,6 @@ module TencentCloud
         # @param ArchiveTime: 归档时间
         # @type ArchiveTime: String
         # @param ArchiveUuid: 归档ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ArchiveUuid: String
 
         attr_accessor :Stage, :CreateTime, :ExpirationTime, :Expired, :CosUrl, :Log, :ArchiveStage, :ArchiveTime, :ArchiveUuid

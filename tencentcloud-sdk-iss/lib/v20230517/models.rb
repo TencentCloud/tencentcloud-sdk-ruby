@@ -339,59 +339,40 @@ module TencentCloud
       # 增加设备接口返回数据
       class AddDeviceData < TencentCloud::Common::AbstractModel
         # @param DeviceId: 设备iD
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeviceId: String
         # @param Code: 设备编码（国标设备即我们为设备生成的20位国标编码，rtmp 设备为10 位设备编码）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Code: String
         # @param Name: 设备名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param AccessProtocol: 设备接入协议，1:RTMP,2:GB,3:GW
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AccessProtocol: Integer
         # @param Type: 设备类型，1:IPC,2:NVR
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: Integer
         # @param ClusterId: 设备接入服务节点ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterId: String
         # @param ClusterName: 设备接入服务节点名称
-
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterName: String
         # @param TransportProtocol: 设备流传输协议，1:UDP,2:TCP
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TransportProtocol: Integer
         # @param Password: 设备密码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Password: String
         # @param Description: 设备描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
         # @param Status: 设备状态，0:未注册,1:在线,2:离线,3:禁用
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
         # @param OrganizationId: 设备所属组织ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OrganizationId: Integer
         # @param GatewayId: 设备接入网关ID，从查询网关列表接口中获取（仅网关接入需要）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GatewayId: String
         # @param ProtocolType: 网关接入协议类型，1.海康SDK，2.大华SDK，3.宇视SDK，4.Onvif（仅网关接入需要）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProtocolType: Integer
         # @param Ip: 设备接入IP（仅网关接入需要）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Ip: String
         # @param Port: 设备Port（仅网关接入需要）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Port: Integer
         # @param Username: 设备用户名（仅网关接入需要）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Username: String
         # @param AppId: 用户ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AppId: Integer
 
         attr_accessor :DeviceId, :Code, :Name, :AccessProtocol, :Type, :ClusterId, :ClusterName, :TransportProtocol, :Password, :Description, :Status, :OrganizationId, :GatewayId, :ProtocolType, :Ip, :Port, :Username, :AppId
@@ -442,28 +423,20 @@ module TencentCloud
       # 增加组织接口返回数据
       class AddOrgData < TencentCloud::Common::AbstractModel
         # @param OrganizationId: 组织 ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OrganizationId: String
         # @param Name: 组织名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param ParentId: 组织父节点 ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ParentId: String
         # @param Level: 组织层级
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Level: Integer
         # @param AppId: 用户ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AppId: Integer
         # @param ParentIds: 组织结构
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ParentIds: String
         # @param Total: 设备总数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Total: Integer
         # @param Online: 设备在线数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Online: Integer
 
         attr_accessor :OrganizationId, :Name, :ParentId, :Level, :AppId, :ParentIds, :Total, :Online
@@ -657,25 +630,18 @@ module TencentCloud
       # 新增录像上云模板返回数据
       class AddRecordBackupTemplateData < TencentCloud::Common::AbstractModel
         # @param TemplateId: 模板ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TemplateId: String
         # @param TemplateName: 模板名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TemplateName: String
         # @param TimeSections: 上云时间段（按周进行设置，支持一天设置多个时间段，每个时间段不小于10分钟）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TimeSections: Array
         # @param DevTimeSections: 录像时间段（按周进行设置，支持一天设置多个时间段，每个时间段不小于10分钟）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DevTimeSections: Array
         # @param Scale: 上云倍速（支持1，2，4倍速）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Scale: Integer
         # @param CreateAt: 创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateAt: String
         # @param UpdateAt: 更新时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateAt: String
 
         attr_accessor :TemplateId, :TemplateName, :TimeSections, :DevTimeSections, :Scale, :CreateAt, :UpdateAt
@@ -876,7 +842,6 @@ module TencentCloud
         # @param Capacity: 取回容量，单位MB
         # @type Capacity: Float
         # @param Describe: 任务描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Describe: String
 
         attr_accessor :TaskId, :TaskName, :StartTime, :EndTime, :Mode, :Expiration, :Status, :Capacity, :Describe
@@ -1029,28 +994,20 @@ module TencentCloud
       # 设置推拉流鉴权返回数据结构
       class AddStreamAuthData < TencentCloud::Common::AbstractModel
         # @param Id: 鉴权配置ID（uuid）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Id: String
         # @param PullState: 是否开播放鉴权（1:开启,0:关闭）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PullState: Integer
         # @param PullSecret: 播放密钥（仅支持字母数字，长度0-10位）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PullSecret: String
         # @param PullExpired: 播放过期时间（单位：分钟）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PullExpired: Integer
         # @param PushState: 是否开启推流鉴权（1:开启,0:关闭）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PushState: Integer
         # @param PushSecret: 推流密钥（仅支持字母数字，长度0-10位）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PushSecret: String
         # @param PushExpired: 推流过期时间（单位：分钟）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PushExpired: Integer
         # @param AppId: 用户ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AppId: Integer
 
         attr_accessor :Id, :PullState, :PullSecret, :PullExpired, :PushState, :PushSecret, :PushExpired, :AppId
@@ -1270,7 +1227,6 @@ module TencentCloud
       # 批量操作设备返回结果
       class BatchOperateDeviceData < TencentCloud::Common::AbstractModel
         # @param TaskId: 任务 ID（用于在查询任务的子任务列表接口ListSubTasks中查询任务进度）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskId: String
 
         attr_accessor :TaskId
@@ -1330,10 +1286,8 @@ module TencentCloud
       # 视频通道码率返回结果
       class BitRateInfo < TencentCloud::Common::AbstractModel
         # @param ChannelId: 通道Id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ChannelId: String
         # @param Bitrate: 码率,单位:kbps
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Bitrate: Float
 
         attr_accessor :ChannelId, :Bitrate
@@ -1482,12 +1436,10 @@ module TencentCloud
         # @param DeviceId: 设备通道所属的设备ID
         # @type DeviceId: String
         # @param DeviceName: 设备通道所属的设备名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeviceName: String
         # @param ChannelId: 设备通道ID
         # @type ChannelId: String
         # @param ChannelName: 设备通道名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ChannelName: String
 
         attr_accessor :DeviceId, :DeviceName, :ChannelId, :ChannelName
@@ -1678,13 +1630,10 @@ module TencentCloud
       # 获取开流地址返回数据
       class ControlDeviceStreamData < TencentCloud::Common::AbstractModel
         # @param Flv: flv 流地址
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Flv: String
         # @param Hls: hls 流地址
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Hls: String
         # @param Rtmp: rtmp 流地址
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Rtmp: String
 
         attr_accessor :Flv, :Hls, :Rtmp
@@ -2335,34 +2284,24 @@ module TencentCloud
       # 查询设备通道信息返回结果
       class DescribeDeviceChannelData < TencentCloud::Common::AbstractModel
         # @param DeviceId: 设备 ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeviceId: String
         # @param ChannelId: 通道 ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ChannelId: String
         # @param ChannelCode: 通道编码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ChannelCode: String
         # @param Name: 通道名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Status: 流状态（0:未传输,1:传输中）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
         # @param PTZType: 是否可控 Ptz（0:不可控,1:可控）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PTZType: Integer
         # @param Manufacturer: 通道厂商
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Manufacturer: String
         # @param Resolution: 通道支持分辨率（分辨率列表由‘/’隔开，国标协议样例（6/3），自定义样例（12800960/640480））
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Resolution: String
         # @param State: 通道在离线状态（0:离线,1:在线）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type State: Integer
         # @param Region: 所在地域
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Region: String
 
         attr_accessor :DeviceId, :ChannelId, :ChannelCode, :Name, :Status, :PTZType, :Manufacturer, :Resolution, :State, :Region
@@ -2440,98 +2379,66 @@ module TencentCloud
       # 查询设备接口返回数据
       class DescribeDeviceData < TencentCloud::Common::AbstractModel
         # @param DeviceId: 设备ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeviceId: String
         # @param Code: 设备编码（国标设备即我们为设备生成的20位国标编码，rtmp 设备为10 位设备编码）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Code: String
         # @param Name: 设备名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param AccessProtocol: 设备接入协议，1:RTMP,2:GB,3:GW
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AccessProtocol: Integer
         # @param Type: 设备类型，1:IPC,2:NVR
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: Integer
         # @param ClusterId: 设备接入服务节点id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterId: String
         # @param ClusterName: 设备接入服务节点名称
-
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterName: String
         # @param TransportProtocol: 设备流传输协议，1:UDP,2:TCP
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TransportProtocol: Integer
         # @param Password: 设备密码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Password: String
         # @param Description: 设备描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
         # @param SipId: sip服务ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SipId: String
         # @param SipDomain: sip服务域
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SipDomain: String
         # @param SipIp: sip服务IP地址
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SipIp: String
         # @param SipPort: sip服务端口
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SipPort: Integer
         # @param PushStreamUrl: Rtmp设备推流地址(仅rtmp设备有效)
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PushStreamUrl: String
         # @param Status: 设备状态，0:未注册,1:在线,2:离线,3:禁用
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
         # @param OrganizationId: 设备所属组织ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OrganizationId: String
         # @param GatewayId: 设备接入网关ID，从查询网关列表接口中获取（仅网关接入需要）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GatewayId: String
         # @param GatewayName: 设备所属网关名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GatewayName: String
         # @param ProtocolTypeName: 设备网关协议名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProtocolTypeName: String
         # @param ProtocolType: 网关接入协议类型，1.海康SDK，2.大华SDK，3.宇视SDK，4.Onvif（仅网关接入需要）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProtocolType: Integer
         # @param Ip: 设备接入IP
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Ip: String
         # @param Port: 设备Port
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Port: Integer
         # @param Username: 设备用户名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Username: String
         # @param Region: 设备地域
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Region: String
         # @param Manufacturer: 设备厂商
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Manufacturer: String
         # @param AudioSwitch: 音频关开（0：关闭；1：开启）关闭时丢弃音频
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AudioSwitch: Integer
         # @param SubscribeSwitch: 订阅开关（0：关闭；1：开启）默认开启，开启状态下会订阅设备通道变化，仅国标NVR设备有效
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubscribeSwitch: Integer
         # @param AppName: RTMP推流地址自定义appName
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AppName: String
         # @param StreamName: RTMP推流地址自定义streamName
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StreamName: String
         # @param SilentFrameSwitch: 是否开启静音帧（0：关闭；1 开启）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SilentFrameSwitch: Integer
 
         attr_accessor :DeviceId, :Code, :Name, :AccessProtocol, :Type, :ClusterId, :ClusterName, :TransportProtocol, :Password, :Description, :SipId, :SipDomain, :SipIp, :SipPort, :PushStreamUrl, :Status, :OrganizationId, :GatewayId, :GatewayName, :ProtocolTypeName, :ProtocolType, :Ip, :Port, :Username, :Region, :Manufacturer, :AudioSwitch, :SubscribeSwitch, :AppName, :StreamName, :SilentFrameSwitch
@@ -2608,10 +2515,8 @@ module TencentCloud
       # 查询设备预置位返回数据
       class DescribeDevicePresetData < TencentCloud::Common::AbstractModel
         # @param Index: 预置位索引    只支持1-10的索引
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Index: Integer
         # @param Name: 预置位名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
 
         attr_accessor :Index, :Name
@@ -2673,13 +2578,10 @@ module TencentCloud
       # 查询设备可接入集群信息
       class DescribeDeviceRegion < TencentCloud::Common::AbstractModel
         # @param Label: 服务节点描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Label: String
         # @param Value: 服务节点 ID（对应为其他接口中所需的 ClusterId）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: String
         # @param Region: 地域信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Region: String
 
         attr_accessor :Label, :Value, :Region
@@ -2738,31 +2640,22 @@ module TencentCloud
       # 查询域名详情数据
       class DescribeDomainData < TencentCloud::Common::AbstractModel
         # @param Id: 域名ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Id: String
         # @param PlayDomain: 播放域名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PlayDomain: String
         # @param InternalDomain: CNAME 记录值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InternalDomain: String
         # @param HaveCert: 是否上传证书（0：否，1：是）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HaveCert: Integer
         # @param ClusterId: 服务节点 ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterId: String
         # @param ClusterName: 服务节点名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterName: String
         # @param AppId: 用户ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AppId: Integer
         # @param CertId: 证书ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CertId: String
         # @param DomainType: 域名类型 0:拉流域名 1:推流域名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DomainType: Integer
 
         attr_accessor :Id, :PlayDomain, :InternalDomain, :HaveCert, :ClusterId, :ClusterName, :AppId, :CertId, :DomainType
@@ -2795,13 +2688,10 @@ module TencentCloud
       # 查询域名可绑定集群数据
       class DescribeDomainRegionData < TencentCloud::Common::AbstractModel
         # @param Label: 服务节点描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Label: String
         # @param Value: 服务节点 ID（对应为其他接口中所需的 ClusterId）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: String
         # @param Region: 地域信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Region: String
 
         attr_accessor :Label, :Value, :Region
@@ -2898,37 +2788,27 @@ module TencentCloud
       # 查询网关信息返回结果
       class DescribeGatewayData < TencentCloud::Common::AbstractModel
         # @param GatewayId: 网关索引ID，用于网关查询，更新，删除操作
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GatewayId: String
         # @param GwId: 网关编码，由网关设备生成的唯一编码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GwId: String
         # @param Name: 网关名称，仅支持中文、英文、数字、_、-，长度不超过32个字符
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Description: 网关描述，仅支持中文、英文、数字、_、-，长度不超过128个字符
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
         # @param ClusterId: 服务节点id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterId: String
         # @param ClusterName: 服务节点名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterName: String
         # @param Status: 网关状态，0：离线，1:在线
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
         # @param Version: 网关版本
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Version: Array
         # @param DeviceNum: 网关下挂设备数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeviceNum: Integer
         # @param CreatedAt: 激活时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreatedAt: String
         # @param Region: 所属地域
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Region: String
 
         attr_accessor :GatewayId, :GwId, :Name, :Description, :ClusterId, :ClusterName, :Status, :Version, :DeviceNum, :CreatedAt, :Region
@@ -2972,31 +2852,22 @@ module TencentCloud
       # 查询网关监控信息返回结果
       class DescribeGatewayMonitor < TencentCloud::Common::AbstractModel
         # @param DeviceTotal: 设备接入总数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeviceTotal: Integer
         # @param DeviceOnline: 设备在线数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeviceOnline: Integer
         # @param DeviceOffline: 设备离线数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeviceOffline: Integer
         # @param ChannelTotal: 视频通道总数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ChannelTotal: Integer
         # @param ChannelOnline: 视频通道在线数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ChannelOnline: Integer
         # @param ChannelOffline: 视频通道离线数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ChannelOffline: Integer
         # @param UpFlow: 网关上行流量,单位kbps
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpFlow: Integer
         # @param ChannelPull: 流在传输中的通道数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ChannelPull: Integer
         # @param ChannelUnPull: 流未传输中的通道数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ChannelUnPull: Integer
 
         attr_accessor :DeviceTotal, :DeviceOnline, :DeviceOffline, :ChannelTotal, :ChannelOnline, :ChannelOffline, :UpFlow, :ChannelPull, :ChannelUnPull
@@ -3068,27 +2939,28 @@ module TencentCloud
       # 查询网关所支持的接入协议
       class DescribeGatewayProtocolData < TencentCloud::Common::AbstractModel
         # @param TypeCode: 接入协议的字典码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TypeCode: String
         # @param Value: 接入协议类型值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: Integer
         # @param Label: 接入协议的类型描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Label: String
+        # @param ValueText: 协议值文本
+        # @type ValueText: String
 
-        attr_accessor :TypeCode, :Value, :Label
+        attr_accessor :TypeCode, :Value, :Label, :ValueText
 
-        def initialize(typecode=nil, value=nil, label=nil)
+        def initialize(typecode=nil, value=nil, label=nil, valuetext=nil)
           @TypeCode = typecode
           @Value = value
           @Label = label
+          @ValueText = valuetext
         end
 
         def deserialize(params)
           @TypeCode = params['TypeCode']
           @Value = params['Value']
           @Label = params['Label']
+          @ValueText = params['ValueText']
         end
       end
 
@@ -3172,19 +3044,14 @@ module TencentCloud
       # 查询网关服务版本信息返回数据
       class DescribeGatewayVersion < TencentCloud::Common::AbstractModel
         # @param Name: 服务名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Version: 服务版本
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Version: String
         # @param LatestVersion: 服务最新版本
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LatestVersion: String
         # @param IsUpdate: 是否需要更新
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsUpdate: Boolean
         # @param UpgradeInfo: 升级信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpgradeInfo: Array
 
         attr_accessor :Name, :Version, :LatestVersion, :IsUpdate, :UpgradeInfo
@@ -3209,7 +3076,6 @@ module TencentCloud
       # 查询网关服务版本信息返回数据
       class DescribeGatewayVersionData < TencentCloud::Common::AbstractModel
         # @param Services: 网关服务列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Services: Array
 
         attr_accessor :Services
@@ -3272,28 +3138,20 @@ module TencentCloud
       # 查询组织数据返回结果
       class DescribeOrganizationData < TencentCloud::Common::AbstractModel
         # @param OrganizationId: 组织 ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OrganizationId: String
         # @param Name: 组织名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param ParentId: 组织父节点 ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ParentId: String
         # @param Level: 组织层级
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Level: Integer
         # @param AppId: 用户id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AppId: Integer
         # @param ParentIds: 组织结构
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ParentIds: String
         # @param Total: 设备总数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Total: Integer
         # @param Online: 设备在线数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Online: Integer
 
         attr_accessor :OrganizationId, :Name, :ParentId, :Level, :AppId, :ParentIds, :Total, :Online
@@ -3452,25 +3310,18 @@ module TencentCloud
       # 查询录像上云模板返回数据
       class DescribeRecordBackupTemplateData < TencentCloud::Common::AbstractModel
         # @param TemplateId: 模板ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TemplateId: String
         # @param TemplateName: 模板名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TemplateName: String
         # @param TimeSections: 上云时间段（按周进行设置，支持一天设置多个时间段，每个时间段不小于10分钟）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TimeSections: Array
         # @param DevTimeSections: 录像时间段（按周进行设置，支持一天设置多个时间段，每个时间段不小于10分钟）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DevTimeSections: Array
         # @param Scale: 上云倍速（支持1，2，4倍速）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Scale: Integer
         # @param CreateAt: 创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateAt: String
         # @param UpdateAt: 更新时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateAt: String
 
         attr_accessor :TemplateId, :TemplateName, :TimeSections, :DevTimeSections, :Scale, :CreateAt, :UpdateAt
@@ -3747,7 +3598,6 @@ module TencentCloud
         # @param Channels: 任务的设备通道id
         # @type Channels: Array
         # @param Describe: 任务描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Describe: String
         # @param ChannelCount: 任务通道数量
         # @type ChannelCount: Integer
@@ -3923,28 +3773,20 @@ module TencentCloud
       # 查询推拉流鉴权返回数据结构
       class DescribeStreamAuthData < TencentCloud::Common::AbstractModel
         # @param Id: 鉴权配置ID（uuid）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Id: String
         # @param PullState: 是否开播放鉴权（1:开启,0:关闭）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PullState: Integer
         # @param PullSecret: 播放密钥（仅支持字母数字，长度0-10位）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PullSecret: String
         # @param PullExpired: 播放过期时间（单位：分钟）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PullExpired: Integer
         # @param PushState: 是否开启推流鉴权（1:开启,0:关闭）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PushState: Integer
         # @param PushSecret: 推流密钥（仅支持字母数字，长度0-10位）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PushSecret: String
         # @param PushExpired: 推流过期时间（单位：分钟）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PushExpired: Integer
         # @param AppId: 用户ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AppId: Integer
 
         attr_accessor :Id, :PullState, :PullSecret, :PullExpired, :PushState, :PushSecret, :PushExpired, :AppId
@@ -4087,7 +3929,6 @@ module TencentCloud
       # 查询视频通道码率的返回结果列表
       class DescribeVideoBitRateList < TencentCloud::Common::AbstractModel
         # @param BitRates: 通道码率列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BitRates: Array
 
         attr_accessor :BitRates
@@ -4284,31 +4125,22 @@ module TencentCloud
       # 网关设备数据
       class GatewayDevice < TencentCloud::Common::AbstractModel
         # @param DeviceId: 设备ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeviceId: String
         # @param ProtocolType: 网关接入协议类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProtocolType: Integer
         # @param ProtocolTypeName: 网关接入协议名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProtocolTypeName: String
         # @param Name: 设备名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Type: 设备类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: Integer
         # @param Ip: 设备内网IP
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Ip: String
         # @param Port: 设备端口
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Port: Integer
         # @param ChannelNum: 设备下通道数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ChannelNum: Integer
         # @param Status: 设备状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
 
         attr_accessor :DeviceId, :ProtocolType, :ProtocolTypeName, :Name, :Type, :Ip, :Port, :ChannelNum, :Status
@@ -4341,10 +4173,8 @@ module TencentCloud
       # 网关详情版本信息
       class GatewayVersion < TencentCloud::Common::AbstractModel
         # @param Name: 服务名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Version: 服务版本
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Version: String
 
         attr_accessor :Name, :Version
@@ -4363,34 +4193,24 @@ module TencentCloud
       # 查询网关列表返回结果
       class GatewaysData < TencentCloud::Common::AbstractModel
         # @param GatewayId: 网关索引ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GatewayId: String
         # @param GwId: 网关编码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GwId: String
         # @param Name: 网关名称，仅支持中文、英文、数字、_、-，长度不超过32个字符
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Description: 网关描述，仅支持中文、英文、数字、_、-，长度不超过128个字符
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
         # @param ClusterId: 网关所属服务节点ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterId: String
         # @param ClusterName: 网关所属服务节点名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterName: String
         # @param Region: 网关所属地域
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Region: String
         # @param Status: 网关状态，0：离线，1:在线
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
         # @param CreatedAt: 网关激活时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreatedAt: String
         # @param DeviceNum: 所属网关设备数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeviceNum: Integer
 
         attr_accessor :GatewayId, :GwId, :Name, :Description, :ClusterId, :ClusterName, :Region, :Status, :CreatedAt, :DeviceNum
@@ -4425,7 +4245,6 @@ module TencentCloud
       # ISUP智能安全接入 API返回数据
       class ISAPIOutputData < TencentCloud::Common::AbstractModel
         # @param OutputData: 输出参数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OutputData: String
 
         attr_accessor :OutputData
@@ -4730,10 +4549,8 @@ module TencentCloud
       # 查询网关设备列表返回数据
       class ListGatewayDevicesData < TencentCloud::Common::AbstractModel
         # @param List: 网关下设备列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type List: Array
         # @param TotalCount: 网关下设备总数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
 
         attr_accessor :List, :TotalCount
@@ -4806,10 +4623,8 @@ module TencentCloud
       # 查询网关列表返回结果
       class ListGatewaysData < TencentCloud::Common::AbstractModel
         # @param List: 网关列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type List: Array
         # @param TotalCount: 网关数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
 
         attr_accessor :List, :TotalCount
@@ -5093,13 +4908,10 @@ module TencentCloud
       # 查询录像上云计划关联通道的返回数据
       class ListRecordBackupPlanDevicesData < TencentCloud::Common::AbstractModel
         # @param PageNumber: 第几页
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PageNumber: Integer
         # @param PageSize: 当前页的设备数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PageSize: Integer
         # @param TotalCount: 本次查询的设备通道总数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
         # @param List: 设备通道信息列表
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -5229,25 +5041,18 @@ module TencentCloud
       # 查询录像上云模板列表返回数据
       class ListRecordBackupTemplatesData < TencentCloud::Common::AbstractModel
         # @param TemplateId: 模板ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TemplateId: String
         # @param TemplateName: 模板名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TemplateName: String
         # @param TimeSections: 上云时间段（按周进行设置，支持一天设置多个时间段，每个时间段不小于10分钟）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TimeSections: Array
         # @param DevTimeSections: 录像时间段（按周进行设置，支持一天设置多个时间段，每个时间段不小于10分钟）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DevTimeSections: Array
         # @param Scale: 上云倍速（支持1，2，4倍速）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Scale: Integer
         # @param CreateAt: 创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateAt: String
         # @param UpdateAt: 更新时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateAt: String
 
         attr_accessor :TemplateId, :TemplateName, :TimeSections, :DevTimeSections, :Scale, :CreateAt, :UpdateAt
@@ -5672,10 +5477,8 @@ module TencentCloud
       # 查询任务列表
       class ListTasksData < TencentCloud::Common::AbstractModel
         # @param List: 任务列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type List: Array
         # @param TotalCount: 任务数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
 
         attr_accessor :List, :TotalCount
@@ -5814,12 +5617,10 @@ module TencentCloud
         # @param DeviceId: 设备通道所属的设备ID
         # @type DeviceId: String
         # @param DeviceName: 设备通道所属的设备名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeviceName: String
         # @param ChannelId: 设备通道ID
         # @type ChannelId: String
         # @param ChannelName: 设备通道名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ChannelName: String
         # @param InPlan: 该通道是否在上云计划中，如果是，则不能在添加到其他上云计划|true：在上云计划中，false：不在上云计划中
         # @type InPlan: Boolean
@@ -5939,7 +5740,6 @@ module TencentCloud
       # 本地录像播放url数据结构
       class PlayRecordData < TencentCloud::Common::AbstractModel
         # @param Flv: 录像播放地址
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Flv: String
 
         attr_accessor :Flv
@@ -6039,7 +5839,6 @@ module TencentCloud
       # QueryForbidPlayChannelList返回参数结构体
       class QueryForbidPlayChannelListResponse < TencentCloud::Common::AbstractModel
         # @param Data: 返回结果
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: :class:`Tencentcloud::Iss.v20230517.models.ListForbidplayChannelsData`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6069,10 +5868,8 @@ module TencentCloud
         # @param TemplateId: 上云模板ID
         # @type TemplateId: String
         # @param Describe: 上云计划描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Describe: String
         # @param StreamType: 码流类型，default:设备默认码流类型，main:主码流，sub:子码流，其他根据设备能力集自定义
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StreamType: String
         # @param LifeCycle: 云文件生命周期
         # @type LifeCycle: :class:`Tencentcloud::Iss.v20230517.models.LifeCycleData`
@@ -6118,15 +5915,12 @@ module TencentCloud
         # @param DeviceId: 设备通道所属的设备ID
         # @type DeviceId: String
         # @param DeviceName: 设备通道所属的设备名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeviceName: String
         # @param ChannelId: 设备通道ID
         # @type ChannelId: String
         # @param ChannelName: 设备通道名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ChannelName: String
         # @param OrganizationName: 所属组织名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OrganizationName: String
         # @param AccessProtocol: 通道所属设备的接入协议类型
         # @type AccessProtocol: Integer
@@ -6161,12 +5955,10 @@ module TencentCloud
         # @param TemplateId: 上云模板ID
         # @type TemplateId: String
         # @param Describe: 上云计划描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Describe: String
         # @param LifeCycle: 云文件生命周期
         # @type LifeCycle: :class:`Tencentcloud::Iss.v20230517.models.LifeCycleData`
         # @param StreamType: 码流类型，default:设备默认码流类型，main:主码流，sub:子码流，其他根据设备能力集自定义
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StreamType: String
         # @param RepairMode: 录像补录模式（0:不启用，1:启用）
         # @type RepairMode: Integer
@@ -6264,7 +6056,6 @@ module TencentCloud
         # @param Capacity: 取回容量，单位MB
         # @type Capacity: Integer
         # @param Describe: 任务描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Describe: String
         # @param ChannelCount: 任务通道数量
         # @type ChannelCount: Integer
@@ -6387,7 +6178,6 @@ module TencentCloud
         # @param End: 时间片段结束时间，UTC秒数，例如：1662114146
         # @type End: Integer
         # @param HlsUrl: 对应时间片段的播放url
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HlsUrl: String
 
         attr_accessor :Begin, :End, :HlsUrl
@@ -6565,7 +6355,6 @@ module TencentCloud
         # @param Status: 任务状态1:NEW,2:RUNNING,3:COMPLETED ,4:FAILED
         # @type Status: Integer
         # @param FailReason: 任务失败原因
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FailReason: String
         # @param Progress: 任务进度
         # @type Progress: Float
@@ -6584,16 +6373,12 @@ module TencentCloud
         # @param Runtime: 任务运行时间，单位ms
         # @type Runtime: Integer
         # @param DeviceId: 设备ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeviceId: String
         # @param DeviceName: 设备名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeviceName: String
         # @param ChannelId: 通道ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ChannelId: String
         # @param ChannelName: 通道名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ChannelName: String
 
         attr_accessor :SubTaskId, :Status, :FailReason, :Progress, :Action, :ActionZhDesc, :ResourceId, :StartedAt, :CreatedAt, :UpdatedAt, :Runtime, :DeviceId, :DeviceName, :ChannelId, :ChannelName
@@ -6642,7 +6427,6 @@ module TencentCloud
         # @param Status: 任务状态1:NEW,2:RUNNING,3:COMPLETED ,4:FAILED
         # @type Status: Integer
         # @param FailReason: 失败原因
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FailReason: String
         # @param Progress: 进度（0-1）
         # @type Progress: Float
@@ -6671,16 +6455,12 @@ module TencentCloud
         # @param Runtime: 任务运行时间，单位ms
         # @type Runtime: Integer
         # @param DeviceId: 设备ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeviceId: String
         # @param DeviceName: 设备名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeviceName: String
         # @param ChannelId: 通道ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ChannelId: String
         # @param ChannelName:  通道名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ChannelName: String
 
         attr_accessor :TaskId, :Status, :FailReason, :Progress, :Action, :ActionZhDesc, :TaskType, :ResourceId, :Total, :SuccessCount, :FailCount, :RunningCount, :StartedAt, :CreatedAt, :UpdatedAt, :Runtime, :DeviceId, :DeviceName, :ChannelId, :ChannelName
@@ -6735,10 +6515,8 @@ module TencentCloud
       # 时间片段结构体
       class Timeline < TencentCloud::Common::AbstractModel
         # @param Begin: 分片起始时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Begin: Integer
         # @param End: 分片结束时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type End: Integer
 
         attr_accessor :Begin, :End
@@ -6864,59 +6642,40 @@ module TencentCloud
       # 修改设备接口返回数据
       class UpdateDeviceData < TencentCloud::Common::AbstractModel
         # @param DeviceId: 设备ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeviceId: String
         # @param Code: 设备编码（国标设备即我们为设备生成的20位国标编码，rtmp 设备为10 位设备编码）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Code: String
         # @param Name: 设备名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param AccessProtocol: 设备接入协议，1:RTMP,2:GB,3:GW
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AccessProtocol: Integer
         # @param Type: 设备类型，1:IPC,2:NVR
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: Integer
         # @param ClusterId: 设备接入服务节点ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterId: String
         # @param ClusterName: 设备接入服务节点名称
-
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterName: String
         # @param TransportProtocol: 设备流传输协议，1:UDP,2:TCP
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TransportProtocol: Integer
         # @param Password: 设备密码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Password: String
         # @param Description: 设备描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
         # @param Status: 设备状态，0:未注册,1:在线,2:离线,3:禁用
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
         # @param OrganizationId: 设备所属组织ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OrganizationId: Integer
         # @param GatewayId: 设备接入网关ID，从查询网关列表接口中获取（仅网关接入需要）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GatewayId: String
         # @param ProtocolType: 网关接入协议类型，1.海康SDK，2.大华SDK，3.宇视SDK，4.Onvif（仅网关接入需要）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProtocolType: Integer
         # @param Ip: 设备接入IP
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Ip: String
         # @param Port: 设备Port
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Port: Integer
         # @param Username: 设备用户名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Username: String
         # @param AppId: 用户Id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AppId: Integer
 
         attr_accessor :DeviceId, :Code, :Name, :AccessProtocol, :Type, :ClusterId, :ClusterName, :TransportProtocol, :Password, :Description, :Status, :OrganizationId, :GatewayId, :ProtocolType, :Ip, :Port, :Username, :AppId
@@ -7039,34 +6798,24 @@ module TencentCloud
       # 修改网关信息返回结果
       class UpdateGatewayData < TencentCloud::Common::AbstractModel
         # @param GatewayId: 网关索引ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GatewayId: String
         # @param GwId: 网关编码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GwId: String
         # @param Name: 网关名称，仅支持中文、英文、数字、_、-，长度不超过32个字符
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Description: 网关描述，仅支持中文、英文、数字、_、-，长度不超过128个字符
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
         # @param ClusterId: 服务节点ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterId: String
         # @param ClusterName: 服务节点名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterName: String
         # @param Status: 网关状态，0：离线，1:在线
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
         # @param CreatedAt: 激活时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreatedAt: Integer
         # @param Secret: 网关密钥
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Secret: String
         # @param Version: 网关版本信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Version: String
 
         attr_accessor :GatewayId, :GwId, :Name, :Description, :ClusterId, :ClusterName, :Status, :CreatedAt, :Secret, :Version
@@ -7148,28 +6897,20 @@ module TencentCloud
       # 修改组织接口返回数据
       class UpdateOrgData < TencentCloud::Common::AbstractModel
         # @param OrganizationId: 组织 ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OrganizationId: String
         # @param Name: 组织名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param ParentId: 组织父节点 ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ParentId: String
         # @param Level: 组织层级
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Level: Integer
         # @param AppId: 用户ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AppId: Integer
         # @param ParentIds: 组织结构
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ParentIds: String
         # @param Total: 设备总数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Total: Integer
         # @param Online: 设备在线数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Online: Integer
 
         attr_accessor :OrganizationId, :Name, :ParentId, :Level, :AppId, :ParentIds, :Total, :Online
@@ -7390,25 +7131,18 @@ module TencentCloud
       # 修改录像上云模板返回数据
       class UpdateRecordBackupTemplateData < TencentCloud::Common::AbstractModel
         # @param TemplateId: 模板ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TemplateId: String
         # @param TemplateName: 模板名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TemplateName: String
         # @param TimeSections: 上云时间段（按周进行设置，支持一天设置多个时间段，每个时间段不小于10分钟）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TimeSections: Array
         # @param DevTimeSections: 录像时间段（按周进行设置，支持一天设置多个时间段，每个时间段不小于10分钟）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DevTimeSections: Array
         # @param Scale: 上云倍速（支持1，2，4倍速）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Scale: Integer
         # @param CreateAt: 创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateAt: String
         # @param UpdateAt: 更新时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateAt: String
 
         attr_accessor :TemplateId, :TemplateName, :TimeSections, :DevTimeSections, :Scale, :CreateAt, :UpdateAt

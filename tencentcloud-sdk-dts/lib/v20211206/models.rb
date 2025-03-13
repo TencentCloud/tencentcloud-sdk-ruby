@@ -20,19 +20,14 @@ module TencentCloud
       # 数据库不一致的详情，mongodb业务用到
       class AdvancedObjectsItem < TencentCloud::Common::AbstractModel
         # @param ObjectType: 对象类型,可能得值有：account,index,shardkey,schema
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ObjectType: String
         # @param SrcChunk: 源端分块
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SrcChunk: String
         # @param DstChunk: 目标端分块
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DstChunk: String
         # @param SrcItem: 源端值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SrcItem: String
         # @param DstItem: 目标端值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DstItem: String
 
         attr_accessor :ObjectType, :SrcChunk, :DstChunk, :SrcItem, :DstItem
@@ -138,10 +133,8 @@ module TencentCloud
       # 数据同步中的列信息
       class Column < TencentCloud::Common::AbstractModel
         # @param ColumnName: 列名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ColumnName: String
         # @param NewColumnName: 新列名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NewColumnName: String
 
         attr_accessor :ColumnName, :NewColumnName
@@ -835,13 +828,10 @@ module TencentCloud
       # 冲突处理里的详细描述
       class ConflictHandleOption < TencentCloud::Common::AbstractModel
         # @param ConditionColumn: 条件覆盖的列
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ConditionColumn: String
         # @param ConditionOperator: 条件覆盖操作
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ConditionOperator: String
         # @param ConditionOrderInSrcAndDst: 条件覆盖优先级处理
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ConditionOrderInSrcAndDst: String
 
         attr_accessor :ConditionColumn, :ConditionOperator, :ConditionOrderInSrcAndDst
@@ -1296,7 +1286,6 @@ module TencentCloud
       # CreateSubscribe返回参数结构体
       class CreateSubscribeResponse < TencentCloud::Common::AbstractModel
         # @param SubscribeIds: 数据订阅实例的ID数组
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubscribeIds: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1680,55 +1669,38 @@ module TencentCloud
       # 需要同步的库表对象
       class Database < TencentCloud::Common::AbstractModel
         # @param DbName: 需要迁移或同步的库名，当ObjectMode为Partial时，此项必填
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DbName: String
         # @param NewDbName: 迁移或同步后的库名，默认与源库相同
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NewDbName: String
         # @param DbMode: DB选择模式: All(为当前对象下的所有对象)，Partial(部分对象)，当Mode为Partial时，此项必填。注意，高级对象的同步不依赖此值，如果整库同步此处应该为All。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DbMode: String
         # @param SchemaName: 迁移或同步的 schema
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SchemaName: String
         # @param NewSchemaName: 迁移或同步后的 schema name
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NewSchemaName: String
         # @param TableMode: 表选择模式: All(为当前对象下的所有对象)，Partial(部分对象)，当DBMode为Partial时此项必填，如果整库同步此处应该为All。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TableMode: String
         # @param Tables: 表图对象集合，当 TableMode 为 Partial 时，此项需要填写
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tables: Array
         # @param ViewMode: 视图选择模式: All 为当前对象下的所有视图对象,Partial 为部分视图对象，如果整库同步此处应该为All。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ViewMode: String
         # @param Views: 视图对象集合，当 ViewMode 为 Partial 时， 此项需要填写
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Views: Array
         # @param FunctionMode: 选择要同步的模式，Partial为部分，All为整选，如果整库同步此处应该为All。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FunctionMode: String
         # @param Functions: FunctionMode取值为Partial时需要填写
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Functions: Array
         # @param ProcedureMode: 选择要同步的模式，Partial为部分，All为整选，如果整库同步此处应该为All。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProcedureMode: String
         # @param Procedures: ProcedureMode取值为Partial时需要填写
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Procedures: Array
         # @param TriggerMode: 触发器迁移模式，All(为当前对象下的所有对象)，Partial(部分对象)，如果整库同步此处应该为All。数据同步暂不支持此高级对象。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TriggerMode: String
         # @param Triggers: 当TriggerMode为partial，指定要迁移的触发器名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Triggers: Array
         # @param EventMode: 事件迁移模式，All(为当前对象下的所有对象)，Partial(部分对象)，如果整库同步此处应该为All。数据同步暂不支持此高级对象。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EventMode: String
         # @param Events: 当EventMode为partial，指定要迁移的事件名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Events: Array
 
         attr_accessor :DbName, :NewDbName, :DbMode, :SchemaName, :NewSchemaName, :TableMode, :Tables, :ViewMode, :Views, :FunctionMode, :Functions, :ProcedureMode, :Procedures, :TriggerMode, :Triggers, :EventMode, :Events
@@ -1823,7 +1795,6 @@ module TencentCloud
       # 数据同步中的ddl同步处理
       class DdlOption < TencentCloud::Common::AbstractModel
         # @param DdlObject: ddl类型，如Database,Table,View,Index等
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DdlObject: String
         # @param DdlValue: ddl具体值，对于Database可取值[Create,Drop,Alter]<br>对于Table可取值[Create,Drop,Alter,Truncate,Rename]<br/>对于View可取值[Create,Drop]<br/>对于Index可取值[Create,Drop]
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -1939,16 +1910,12 @@ module TencentCloud
       # DescribeCheckSyncJobResult返回参数结构体
       class DescribeCheckSyncJobResultResponse < TencentCloud::Common::AbstractModel
         # @param Status: 校验任务执行状态，如：notStarted(未开始)、running(校验中)、failed(校验任务失败)、success(任务成功)
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: String
         # @param StepCount: 步骤总数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StepCount: Integer
         # @param StepCur: 当前所在步骤
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StepCur: Integer
         # @param Progress: 总体进度，范围为[0,100]
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Progress: Integer
         # @param StepInfos: 步骤信息
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -2243,10 +2210,8 @@ module TencentCloud
       # DescribeMigrateDBInstances返回参数结构体
       class DescribeMigrateDBInstancesResponse < TencentCloud::Common::AbstractModel
         # @param TotalCount: 符合筛选条件的数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
         # @param Instances: 实例列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Instances: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2350,71 +2315,50 @@ module TencentCloud
       # DescribeMigrationDetail返回参数结构体
       class DescribeMigrationDetailResponse < TencentCloud::Common::AbstractModel
         # @param JobId: 数据迁移任务ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type JobId: String
         # @param JobName: 数据迁移任务名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type JobName: String
         # @param CreateTime: 任务创建(提交)时间，格式为 yyyy-mm-dd hh:mm:ss
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
         # @param UpdateTime: 任务更新时间，格式为 yyyy-mm-dd hh:mm:ss
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: String
         # @param StartTime: 任务开始执行时间，格式为 yyyy-mm-dd hh:mm:ss
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StartTime: String
         # @param EndTime: 任务执行结束时间，格式为 yyyy-mm-dd hh:mm:ss
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EndTime: String
         # @param BriefMsg: 迁移任务简要错误信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BriefMsg: String
         # @param Status: 任务状态，取值为：created(创建完成)、checking(校验中)、checkPass(校验通过)、checkNotPass(校验不通过)、readyRun(准备运行)、running(任务运行中)、readyComplete(准备完成)、success(任务成功)、failed(任务失败)、stopping(中止中)、completing(完成中)、
         # pausing(暂停中)、
         # manualPaused(已暂停)
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: String
         # @param Action: 任务操作信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Action: :class:`Tencentcloud::Dts.v20211206.models.MigrateAction`
         # @param StepInfo: 迁移执行过程信息，在校验阶段显示校验过程步骤信息，在迁移阶段会显示迁移步骤信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StepInfo: :class:`Tencentcloud::Dts.v20211206.models.MigrateDetailInfo`
         # @param SrcInfo: 源实例信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SrcInfo: :class:`Tencentcloud::Dts.v20211206.models.DBEndpointInfo`
         # @param DstInfo: 目标端信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DstInfo: :class:`Tencentcloud::Dts.v20211206.models.DBEndpointInfo`
         # @param CompareTask: 数据一致性校验结果
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CompareTask: :class:`Tencentcloud::Dts.v20211206.models.CompareTaskInfo`
         # @param Tags: 标签信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
         # @param RunMode: 运行模式，取值如：immediate(表示立即运行)、timed(表示定时运行)
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RunMode: String
         # @param ExpectRunTime: 期待启动时间，当RunMode取值为timed时，此值必填，形如："2006-01-02 15:04:05"
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExpectRunTime: String
         # @param MigrateOption: 迁移选项，描述任务如何执行迁移等一系列配置信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MigrateOption: :class:`Tencentcloud::Dts.v20211206.models.MigrateOption`
         # @param CheckStepInfo: 校验任务运行详情
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CheckStepInfo: :class:`Tencentcloud::Dts.v20211206.models.CheckStepInfo`
         # @param TradeInfo: 描述计费相关的信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TradeInfo: :class:`Tencentcloud::Dts.v20211206.models.TradeInfo`
         # @param ErrorInfo: 任务错误信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrorInfo: Array
         # @param DumperResumeCtrl: 全量导出可重入标识：enum::"yes"/"no"。yes表示当前任务可重入、no表示当前任务处于全量导出且不可重入阶段；如果在该值为no时重启任务导出流程不支持断点续传
         # @type DumperResumeCtrl: String
         # @param RateLimitOption: 任务的限速信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RateLimitOption: :class:`Tencentcloud::Dts.v20211206.models.RateLimitOption`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2652,13 +2596,10 @@ module TencentCloud
         # @param Status: 校验任务执行状态，如：notStarted(未开始)、running(校验中)、failed(校验任务失败)、success(任务成功)
         # @type Status: String
         # @param StepCount: 校验的步骤总数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StepCount: Integer
         # @param StepCur: 当前所在步骤
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StepCur: Integer
         # @param Progress: 总体进度，范围为[0,100]
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Progress: Integer
         # @param StepInfos: 步骤详细信息
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -2762,7 +2703,6 @@ module TencentCloud
         # @param SubscribeId: 订阅实例ID
         # @type SubscribeId: String
         # @param Message: 失败或者报错提示，成功则提示success。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Message: String
         # @param Status: 任务运行状态，可能值为 running,failed,success
         # @type Status: String
@@ -2773,7 +2713,6 @@ module TencentCloud
         # @param StepNow: 当前执行步骤
         # @type StepNow: Integer
         # @param Steps: 各个步骤运行状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Steps: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2835,29 +2774,22 @@ module TencentCloud
         # @param Product: 订阅的数据库类型，目前支持 cynosdbmysql(tdsql-c mysql版),mariadb,mongodb,mysql,percona,tdpg(tdsql postgresql版),tdsqlpercona(tdsql mysql版)
         # @type Product: String
         # @param InstanceId: 订阅的云数据库实例ID，只有订阅云数据库该值才有意义
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceId: String
         # @param InstanceStatus: 订阅的云数据库实例状态，只有订阅云数据库该值才有意义。可能值为：running, isolated, offline
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceStatus: String
         # @param Status: 订阅任务计费状态，可能值为：正常normal, 隔离中isolating, 已隔离isolated, 下线中offlining, 按量转包年包月中 post2PrePayIng
         # @type Status: String
         # @param SubsStatus: 订阅任务状态，可能值为：未启动notStarted, 校验中checking, 校验不通过checkNotPass, 校验通过checkPass, 启动中starting, 运行中running, 异常出错error
         # @type SubsStatus: String
         # @param ModifyTime: 修改时间，时间格式如：Y-m-d h:m:s
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ModifyTime: String
         # @param CreateTime: 创建时间，时间格式如：Y-m-d h:m:s
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
         # @param IsolateTime: 隔离时间，时间格式如：Y-m-d h:m:s。默认：0000-00-00 00:00:00
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsolateTime: String
         # @param ExpireTime: 包年包月任务的到期时间，时间格式如：Y-m-d h:m:s。默认：0000-00-00 00:00:00
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExpireTime: String
         # @param OfflineTime: 下线时间，时间格式如：Y-m-d h:m:s。默认：0000-00-00 00:00:00
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OfflineTime: String
         # @param PayType: 付费方式，可能值为：0-包年包月，1-按量计费
         # @type PayType: Integer
@@ -2866,37 +2798,26 @@ module TencentCloud
         # @param Region: 任务所在地域
         # @type Region: String
         # @param Topic: Kafka topic
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Topic: String
         # @param Broker: Kafka服务Broker地址
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Broker: String
         # @param SubscribeMode: 数据订阅的类型，当 Product 不为 mongodb 时，可能值为：all-全实例更新；dml-数据更新；ddl-结构更新；dmlAndDdl-数据更新+结构更新。当 Product 为 mongodb 时，可能值为 all-全实例更新；database-订阅单库；collection-订阅单集合
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubscribeMode: String
         # @param Protocol: 订阅数据格式。如果为空则用的默认格式: mysql\cynosdbmysql\mariadb\percona\tdsqlpercona\tdpg是protobuf，mongo是json。当 DatabaseType 为 mysql和cynosdbmysql 时有三种可选协议：protobuf\avro\json。数据格式详情参考官网的消费demo文档
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Protocol: String
         # @param SubscribeObjects: 订阅的数据库表信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubscribeObjects: Array
         # @param KafkaConfig: kafka配置信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type KafkaConfig: :class:`Tencentcloud::Dts.v20211206.models.SubscribeKafkaConfig`
         # @param KafkaVersion: 订阅内置kafka的版本信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type KafkaVersion: String
         # @param AccessType: 源数据库接入类型，如：extranet(公网)、vpncloud(vpn接入)、dcg(专线接入)、ccn(云联网)、cdb(云数据库)、cvm(云服务器自建)、intranet(自研上云)、vpc(私有网络vpc)。注意具体可选值依赖当前链路支持能力
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AccessType: String
         # @param Endpoints: 接入类型信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Endpoints: Array
         # @param PipelineInfo: mongo输出聚合设置
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PipelineInfo: Array
         # @param Tags: 标签
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
         # @param Errors: 订阅任务报错信息
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -2904,7 +2825,6 @@ module TencentCloud
         # @param ExtraAttr: 为业务添加的额外信息。参数名作key，参数值作value。
         # mysql选填参数：ProcessXA-是否处理XA事务，为true处理，其他不处理。
         # mongo选填参数：SubscribeType-订阅类型，目前只支持changeStream。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExtraAttr: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3144,7 +3064,6 @@ module TencentCloud
         # @param IsReturnable: 实例是否支持退还/退货
         # @type IsReturnable: Boolean
         # @param ReturnFailMessage: 不支持退还的原因
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReturnFailMessage: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3242,10 +3161,8 @@ module TencentCloud
       # DescribeSyncJobs返回参数结构体
       class DescribeSyncJobsResponse < TencentCloud::Common::AbstractModel
         # @param TotalCount: 任务数目
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
         # @param JobList: 任务详情数组
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type JobList: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3423,7 +3340,6 @@ module TencentCloud
       # 数据库不一致的详情，mongodb业务用到
       class DifferenceAdvancedObjectsDetail < TencentCloud::Common::AbstractModel
         # @param TotalCount: 总数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
         # @param Items: 不一致详情
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -3677,16 +3593,12 @@ module TencentCloud
       # 数据同步中的选项
       class DynamicOptions < TencentCloud::Common::AbstractModel
         # @param OpTypes: 所要同步的DML和DDL的选项，Insert(插入操作)、Update(更新操作)、Delete(删除操作)、DDL(结构同步)，PartialDDL(自定义,和DdlOptions一起起作用 )；必填、dts会用该值覆盖原有的值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OpTypes: Array
         # @param DdlOptions: DDL同步选项，具体描述要同步那些DDL; 当OpTypes取值PartialDDL时、字段不能为空；必填、dts会用该值覆盖原有的值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DdlOptions: Array
         # @param ConflictHandleType: 冲突处理选项，ReportError(报错)、Ignore(忽略)、Cover(覆盖)、ConditionCover(条件覆盖); 目前目标端为kafka的链路不支持修改该配置
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ConflictHandleType: String
         # @param ConflictHandleOption: 冲突处理的详细选项，如条件覆盖中的条件行和条件操作；不能部分更新该选项的内部字段；有更新时、需要全量更新该字段
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ConflictHandleOption: :class:`Tencentcloud::Dts.v20211206.models.ConflictHandleOption`
 
         attr_accessor :OpTypes, :DdlOptions, :ConflictHandleType, :ConflictHandleOption
@@ -5242,16 +5154,13 @@ module TencentCloud
       # 同步的数据库对对象描述
       class Objects < TencentCloud::Common::AbstractModel
         # @param Mode: 同步对象类型 Partial(部分对象)
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Mode: String
         # @param Databases: 同步对象，当 Mode 为 Partial 时，不为空
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Databases: Array
         # @param AdvancedObjects: 高级对象类型，如function、procedure。注意：如果要迁移同步高级对象，此配置中应该包含对应的高级对象类型。当需要同步高级对象时，初始化类型必须包含结构初始化类型，即任务的Options.InitType字段值为Structure或Full
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AdvancedObjects: Array
         # @param OnlineDDL: OnlineDDL类型，冗余字段不做配置用途
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OnlineDDL: :class:`Tencentcloud::Dts.v20211206.models.OnlineDDL`
 
         attr_accessor :Mode, :Databases, :AdvancedObjects, :OnlineDDL
@@ -5304,7 +5213,6 @@ module TencentCloud
       # OnlineDDL类型
       class OnlineDDL < TencentCloud::Common::AbstractModel
         # @param Status: 状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: String
 
         attr_accessor :Status
@@ -5321,43 +5229,32 @@ module TencentCloud
       # 数据同步中的选项
       class Options < TencentCloud::Common::AbstractModel
         # @param InitType: 同步初始化选项，Data(全量数据初始化)、Structure(结构初始化)、Full(全量数据且结构初始化，默认)、None(仅增量)
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InitType: String
         # @param DealOfExistSameTable: 同名表的处理，ReportErrorAfterCheck(前置校验并报错，默认)、ExecuteAfterIgnore(忽略并继续执行)
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DealOfExistSameTable: String
         # @param ConflictHandleType: 冲突处理选项，ReportError(报错，默认为该值)、Ignore(忽略)、Cover(覆盖)、ConditionCover(条件覆盖)
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ConflictHandleType: String
         # @param AddAdditionalColumn: 是否添加附加列
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AddAdditionalColumn: Boolean
         # @param OpTypes: 所要同步的DML和DDL的选项，Insert(插入操作)、Update(更新操作)、Delete(删除操作)、DDL(结构同步)， PartialDDL(自定义,和DdlOptions一起配合使用)。注意，这里至少需要包含DML中的一种。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OpTypes: Array
         # @param ConflictHandleOption: 冲突处理的详细选项，如条件覆盖中的条件行和条件操作
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ConflictHandleOption: :class:`Tencentcloud::Dts.v20211206.models.ConflictHandleOption`
         # @param DdlOptions: DDL同步选项，具体描述要同步那些DDL
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DdlOptions: Array
         # @param KafkaOption: kafka同步选项
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type KafkaOption: :class:`Tencentcloud::Dts.v20211206.models.KafkaOption`
         # @param RateLimitOption: 任务限速信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RateLimitOption: :class:`Tencentcloud::Dts.v20211206.models.RateLimitOption`
         # @param AutoRetryTimeRangeMinutes: 自动重试的时间窗口设置
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AutoRetryTimeRangeMinutes: Integer
         # @param StartPosition: 同步到kafka链路指定位点。目前只支持时间格式：2023-12-20T19:24:23+08:00。如果没有指定位点，为空。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StartPosition: String
         # @param FilterBeginCommit: 同步到kafka链路是否过滤掉begin和commit消息。目前仅mysql2kafka链路支持
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FilterBeginCommit: Boolean
         # @param FilterCheckpoint: 同步到kafka链路是否过滤掉checkpoint消息。目前仅mysql2kafka链路支持
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FilterCheckpoint: Boolean
 
         attr_accessor :InitType, :DealOfExistSameTable, :ConflictHandleType, :AddAdditionalColumn, :OpTypes, :ConflictHandleOption, :DdlOptions, :KafkaOption, :RateLimitOption, :AutoRetryTimeRangeMinutes, :StartPosition, :FilterBeginCommit, :FilterCheckpoint
@@ -6002,7 +5899,6 @@ module TencentCloud
       # SkipCheckItem返回参数结构体
       class SkipCheckItemResponse < TencentCloud::Common::AbstractModel
         # @param Message: 跳过的提示信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Message: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6341,19 +6237,14 @@ module TencentCloud
       # 单个步骤的详细信息
       class StepInfo < TencentCloud::Common::AbstractModel
         # @param StepNo: 步骤编号
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StepNo: Integer
         # @param StepName: 步骤名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StepName: String
         # @param StepId: 步骤标号
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StepId: String
         # @param Status: 当前步骤状态,可能返回有 notStarted(未开始)、running(校验中)、failed(校验任务失败)、finished(完成)、skipped(跳过)、paused(暂停)
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: String
         # @param StartTime: 步骤开始时间，可能为空
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StartTime: String
         # @param Errors: 错误信息
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -6362,7 +6253,6 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Warnings: Array
         # @param Progress: 当前步骤进度，范围为[0-100]，若为-1表示当前步骤不支持查看进度
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Progress: Integer
 
         attr_accessor :StepNo, :StepName, :StepId, :Status, :StartTime, :Errors, :Warnings, :Progress
@@ -6859,34 +6749,25 @@ module TencentCloud
       # 同步任务的步骤信息
       class SyncDetailInfo < TencentCloud::Common::AbstractModel
         # @param StepAll: 总步骤数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StepAll: Integer
         # @param StepNow: 当前步骤
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StepNow: Integer
         # @param Progress: 总体进度
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Progress: Integer
         # @param CurrentStepProgress: 当前步骤进度，范围为[0-100]，若为-1表示当前步骤不支持查看进度
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CurrentStepProgress: Integer
         # @param MasterSlaveDistance: 同步两端数据量差距
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MasterSlaveDistance: Integer
         # @param SecondsBehindMaster: 同步两端时间差距
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SecondsBehindMaster: Integer
         # @param Message: 总体描述信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Message: String
         # @param StepInfos: 详细步骤信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StepInfos: Array
         # @param CauseOfCompareDisable: 不能发起一致性校验的原因
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CauseOfCompareDisable: String
         # @param ErrInfo: 任务的错误和解决方案信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrInfo: :class:`Tencentcloud::Dts.v20211206.models.ErrInfo`
 
         attr_accessor :StepAll, :StepNow, :Progress, :CurrentStepProgress, :MasterSlaveDistance, :SecondsBehindMaster, :Message, :StepInfos, :CauseOfCompareDisable, :ErrInfo
@@ -6931,112 +6812,76 @@ module TencentCloud
       # 同步任务信息
       class SyncJobInfo < TencentCloud::Common::AbstractModel
         # @param JobId: 同步任务id，如：sync-btso140
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type JobId: String
         # @param JobName: 同步任务名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type JobName: String
         # @param PayMode: 付款方式，PostPay(按量付费)、PrePay(包年包月)
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PayMode: String
         # @param RunMode: 运行模式，Immediate(表示立即运行，默认为此项值)、Timed(表示定时运行)
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RunMode: String
         # @param ExpectRunTime: 期待运行时间，格式为 yyyy-mm-dd hh:mm:ss
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExpectRunTime: String
         # @param AllActions: 支持的所有操作
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AllActions: Array
         # @param Actions: 当前状态能进行的操作
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Actions: Array
         # @param Options: 同步选项
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Options: :class:`Tencentcloud::Dts.v20211206.models.Options`
         # @param Objects: 同步库表对象
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Objects: :class:`Tencentcloud::Dts.v20211206.models.Objects`
         # @param Specification: 任务规格
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Specification: String
         # @param ExpireTime: 过期时间，格式为 yyyy-mm-dd hh:mm:ss
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExpireTime: String
         # @param SrcRegion: 源端地域，如：ap-guangzhou等
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SrcRegion: String
         # @param SrcDatabaseType: 源端数据库类型，mysql,cynosdbmysql,tdapg,tdpg,tdsqlmysql等
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SrcDatabaseType: String
         # @param SrcAccessType: 源端接入类型，cdb(云数据库)、cvm(云主机自建)、vpc(私有网络)、extranet(外网)、vpncloud(vpn接入)、dcg(专线接入)、ccn(云联网)、intranet(自研上云)
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SrcAccessType: String
         # @param SrcInfo: 源端信息，单节点数据库使用
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SrcInfo: :class:`Tencentcloud::Dts.v20211206.models.Endpoint`
         # @param SrcNodeType: 枚举值：cluster、single。源库为单节点数据库使用single，多节点使用cluster
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SrcNodeType: String
         # @param SrcInfos: 源端信息，多节点数据库使用
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SrcInfos: :class:`Tencentcloud::Dts.v20211206.models.SyncDBEndpointInfos`
         # @param DstRegion: 目标端地域，如：ap-guangzhou等
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DstRegion: String
         # @param DstDatabaseType: 目标端数据库类型，mysql,cynosdbmysql,tdapg,tdpg,tdsqlmysql等
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DstDatabaseType: String
         # @param DstAccessType: 目标端接入类型，cdb(云数据库)、cvm(云主机自建)、vpc(私有网络)、extranet(外网)、vpncloud(vpn接入)、dcg(专线接入)、ccn(云联网)、intranet(自研上云)
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DstAccessType: String
         # @param DstInfo: 目标端信息，单节点数据库使用
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DstInfo: :class:`Tencentcloud::Dts.v20211206.models.Endpoint`
         # @param DstNodeType: 枚举值：cluster、single。目标库为单节点数据库使用single，多节点使用cluster
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DstNodeType: String
         # @param DstInfos: 目标端信息，多节点数据库使用
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DstInfos: :class:`Tencentcloud::Dts.v20211206.models.SyncDBEndpointInfos`
         # @param CreateTime: 创建时间，格式为 yyyy-mm-dd hh:mm:ss
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
         # @param StartTime: 开始时间，格式为 yyyy-mm-dd hh:mm:ss
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StartTime: String
         # @param Status: 任务状态，UnInitialized(未初始化)、Initialized(已初始化)、Checking(校验中)、CheckPass(校验通过)、CheckNotPass(校验不通过)、ReadyRunning(准备运行)、Running(运行中)、Pausing(暂停中)、Paused(已暂停)、Stopping(停止中)、Stopped(已结束)、ResumableErr(任务错误)、Resuming(恢复中)、Failed(失败)、Released(已释放)、Resetting(重置中)、Unknown(未知)
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: String
         # @param EndTime: 结束时间，格式为 yyyy-mm-dd hh:mm:ss
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EndTime: String
         # @param Tags: 标签相关信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
         # @param Detail: 同步任务运行步骤信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Detail: :class:`Tencentcloud::Dts.v20211206.models.SyncDetailInfo`
         # @param TradeStatus: 用于计费的状态，可能取值有：Normal(正常状态)、Resizing(变配中)、Renewing(续费中)、Isolating(隔离中)、Isolated(已隔离)、Offlining(下线中)、Offlined(已下线)、NotBilled(未计费)、Recovering(解隔离)、PostPay2Prepaying(按量计费转包年包月中)、PrePay2Postpaying(包年包月转按量计费中)
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TradeStatus: String
         # @param InstanceClass: 同步链路规格，如micro,small,medium,large
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceClass: String
         # @param AutoRenew: 自动续费标识，当PayMode值为PrePay则此项配置有意义，取值为：1（表示自动续费）、0（不自动续费）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AutoRenew: Integer
         # @param OfflineTime: 下线时间，格式为 yyyy-mm-dd hh:mm:ss
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OfflineTime: String
         # @param OptObjStatus: 动态修改对象，修改任务的状态等
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OptObjStatus: String
         # @param AutoRetryTimeRangeMinutes: 自动重试时间段设置
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AutoRetryTimeRangeMinutes: Integer
         # @param DumperResumeCtrl: 全量导出可重入标识：enum::"yes"/"no"。yes表示当前任务可重入、no表示当前任务处于全量导出且不可重入阶段；如果在该值为no时重启任务导出流程不支持断点续传
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DumperResumeCtrl: String
 
         attr_accessor :JobId, :JobName, :PayMode, :RunMode, :ExpectRunTime, :AllActions, :Actions, :Options, :Objects, :Specification, :ExpireTime, :SrcRegion, :SrcDatabaseType, :SrcAccessType, :SrcInfo, :SrcNodeType, :SrcInfos, :DstRegion, :DstDatabaseType, :DstAccessType, :DstInfo, :DstNodeType, :DstInfos, :CreateTime, :StartTime, :Status, :EndTime, :Tags, :Detail, :TradeStatus, :InstanceClass, :AutoRenew, :OfflineTime, :OptObjStatus, :AutoRetryTimeRangeMinutes, :DumperResumeCtrl
@@ -7151,25 +6996,18 @@ module TencentCloud
       # 数据同步库表信息描述
       class Table < TencentCloud::Common::AbstractModel
         # @param TableName: 表名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TableName: String
         # @param NewTableName: 新表名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NewTableName: String
         # @param FilterCondition: 过滤条件
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FilterCondition: String
         # @param ColumnMode: 是否同步表中所有列，All：当前表下的所有列,Partial(ModifySyncJobConfig接口里的对应字段ColumnMode暂不支持Partial)：当前表下的部分列，通过填充Columns字段详细表信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ColumnMode: String
         # @param Columns: 同步的列信息，当ColumnMode为Partial时，必填
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Columns: Array
         # @param TmpTables: 同步临时表，注意此配置与NewTableName互斥，只能使用其中一种。当配置的同步对象为表级别且TableEditMode为pt时此项有意义，针对pt-osc等工具在同步过程中产生的临时表进行同步，需要提前将可能的临时表配置在这里，否则不会同步任何临时表。示例，如要对t1进行pt-osc操作，此项配置应该为["\_t1\_new","\_t1\_old"]；如要对t1进行gh-ost操作，此项配置应该为["\_t1\_ghc","\_t1\_gho","\_t1\_del"]，pt-osc与gh-ost产生的临时表可同时配置。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TmpTables: Array
         # @param TableEditMode: 编辑表类型，rename(表映射)，pt(同步附加表)
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TableEditMode: String
 
         attr_accessor :TableName, :NewTableName, :FilterCondition, :ColumnMode, :Columns, :TmpTables, :TableEditMode
@@ -7370,10 +7208,8 @@ module TencentCloud
       # 数据同步view的描述
       class View < TencentCloud::Common::AbstractModel
         # @param ViewName: view名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ViewName: String
         # @param NewViewName: 预留字段、目前暂时不支持view的重命名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NewViewName: String
 
         attr_accessor :ViewName, :NewViewName

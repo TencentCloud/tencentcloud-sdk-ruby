@@ -85,6 +85,80 @@ module TencentCloud
         end
       end
 
+      # DescribeSavingPlanCoverage请求参数结构体
+      class DescribeSavingPlanCoverageRequest < TencentCloud::Common::AbstractModel
+        # @param StartDate: 费用起始日期，格式yyyy-MM-dd
+        # @type StartDate: String
+        # @param EndDate: 费用结束日期，格式yyyy-MM-dd
+        # @type EndDate: String
+        # @param Offset: 分页偏移量，Offset=0表示第一页，如果Limit=100，则Offset=100表示第二页，Offset=200表示第三页，以此类推
+        # @type Offset: Integer
+        # @param Limit: 数量，最大值为200
+        # @type Limit: Integer
+        # @param PeriodType: 取值包括1（缺省值）和2，1表示按天统计覆盖率，2表示按月统计覆盖率，此参数仅影响返回的RateSet聚合粒度，不影响返回的DetailSet
+        # @type PeriodType: Integer
+
+        attr_accessor :StartDate, :EndDate, :Offset, :Limit, :PeriodType
+
+        def initialize(startdate=nil, enddate=nil, offset=nil, limit=nil, periodtype=nil)
+          @StartDate = startdate
+          @EndDate = enddate
+          @Offset = offset
+          @Limit = limit
+          @PeriodType = periodtype
+        end
+
+        def deserialize(params)
+          @StartDate = params['StartDate']
+          @EndDate = params['EndDate']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @PeriodType = params['PeriodType']
+        end
+      end
+
+      # DescribeSavingPlanCoverage返回参数结构体
+      class DescribeSavingPlanCoverageResponse < TencentCloud::Common::AbstractModel
+        # @param DetailSet: 节省计划覆盖率明细数据
+        # @type DetailSet: Array
+        # @param RateSet: 节省计划覆盖率聚合数据
+        # @type RateSet: Array
+        # @param TotalCount: 查询命中的节省计划覆盖率明细数据总条数
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DetailSet, :RateSet, :TotalCount, :RequestId
+
+        def initialize(detailset=nil, rateset=nil, totalcount=nil, requestid=nil)
+          @DetailSet = detailset
+          @RateSet = rateset
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['DetailSet'].nil?
+            @DetailSet = []
+            params['DetailSet'].each do |i|
+              savingplancoveragedetail_tmp = SavingPlanCoverageDetail.new
+              savingplancoveragedetail_tmp.deserialize(i)
+              @DetailSet << savingplancoveragedetail_tmp
+            end
+          end
+          unless params['RateSet'].nil?
+            @RateSet = []
+            params['RateSet'].each do |i|
+              savingplancoveragerate_tmp = SavingPlanCoverageRate.new
+              savingplancoveragerate_tmp.deserialize(i)
+              @RateSet << savingplancoveragerate_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeSavingPlanDeduct请求参数结构体
       class DescribeSavingPlanDeductRequest < TencentCloud::Common::AbstractModel
         # @param Offset: 分页偏移量
@@ -293,6 +367,106 @@ module TencentCloud
             end
           end
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 节省计划覆盖率数据
+      class SavingPlanCoverageDetail < TencentCloud::Common::AbstractModel
+        # @param ResourceId: 资源 ID：账单中出账对象 ID，不同产品因资源形态不同，资源内容不完全相同，如云服务器 CVM 为对应的实例 ID
+        # @type ResourceId: String
+        # @param RegionId: 地域ID
+        # @type RegionId: Integer
+        # @param ProductCode: 产品编码
+        # @type ProductCode: String
+        # @param SubProductCode: 子产品编码
+        # @type SubProductCode: String
+        # @param StartDate: 费用起始日期，格式yyyy-MM-dd
+        # @type StartDate: String
+        # @param EndDate: 费用结束日期，格式yyyy-MM-dd，目前与StartDate相等
+        # @type EndDate: String
+        # @param SpCoveredAmount: 节省计划覆盖金额（即节省计划支付金额）
+        # @type SpCoveredAmount: Float
+        # @param SpUncoveredAmount: 节省计划未覆盖金额（即优惠后总价）
+        # @type SpUncoveredAmount: Float
+        # @param TotalRealAmount: 总支出（即节省计划未覆盖金额 + 节省计划覆盖金额）
+        # @type TotalRealAmount: Float
+        # @param ExpectedAmount: 按量计费预期金额（即折前价 * 折扣）
+        # @type ExpectedAmount: Float
+        # @param SpCoverage: 覆盖率结果，取值[0, 100]
+        # @type SpCoverage: Float
+        # @param PayerUinName: 支付者昵称
+        # @type PayerUinName: String
+        # @param OwnerUinName: 使用者昵称
+        # @type OwnerUinName: String
+        # @param PayerUin: 支付者uin
+        # @type PayerUin: String
+        # @param SubBillingItemName: 计费项名称
+        # @type SubBillingItemName: String
+        # @param BillingItemName: 计费细项名称
+        # @type BillingItemName: String
+        # @param SubProductName: 子产品名称
+        # @type SubProductName: String
+
+        attr_accessor :ResourceId, :RegionId, :ProductCode, :SubProductCode, :StartDate, :EndDate, :SpCoveredAmount, :SpUncoveredAmount, :TotalRealAmount, :ExpectedAmount, :SpCoverage, :PayerUinName, :OwnerUinName, :PayerUin, :SubBillingItemName, :BillingItemName, :SubProductName
+
+        def initialize(resourceid=nil, regionid=nil, productcode=nil, subproductcode=nil, startdate=nil, enddate=nil, spcoveredamount=nil, spuncoveredamount=nil, totalrealamount=nil, expectedamount=nil, spcoverage=nil, payeruinname=nil, owneruinname=nil, payeruin=nil, subbillingitemname=nil, billingitemname=nil, subproductname=nil)
+          @ResourceId = resourceid
+          @RegionId = regionid
+          @ProductCode = productcode
+          @SubProductCode = subproductcode
+          @StartDate = startdate
+          @EndDate = enddate
+          @SpCoveredAmount = spcoveredamount
+          @SpUncoveredAmount = spuncoveredamount
+          @TotalRealAmount = totalrealamount
+          @ExpectedAmount = expectedamount
+          @SpCoverage = spcoverage
+          @PayerUinName = payeruinname
+          @OwnerUinName = owneruinname
+          @PayerUin = payeruin
+          @SubBillingItemName = subbillingitemname
+          @BillingItemName = billingitemname
+          @SubProductName = subproductname
+        end
+
+        def deserialize(params)
+          @ResourceId = params['ResourceId']
+          @RegionId = params['RegionId']
+          @ProductCode = params['ProductCode']
+          @SubProductCode = params['SubProductCode']
+          @StartDate = params['StartDate']
+          @EndDate = params['EndDate']
+          @SpCoveredAmount = params['SpCoveredAmount']
+          @SpUncoveredAmount = params['SpUncoveredAmount']
+          @TotalRealAmount = params['TotalRealAmount']
+          @ExpectedAmount = params['ExpectedAmount']
+          @SpCoverage = params['SpCoverage']
+          @PayerUinName = params['PayerUinName']
+          @OwnerUinName = params['OwnerUinName']
+          @PayerUin = params['PayerUin']
+          @SubBillingItemName = params['SubBillingItemName']
+          @BillingItemName = params['BillingItemName']
+          @SubProductName = params['SubProductName']
+        end
+      end
+
+      # 节省计划覆盖率聚合数据
+      class SavingPlanCoverageRate < TencentCloud::Common::AbstractModel
+        # @param DatePoint: 聚合时间维度，按天聚合格式为yyyy-MM-dd，按月聚合格式为yyyy-MM
+        # @type DatePoint: String
+        # @param Rate: 覆盖率结果，取值[0, 100]
+        # @type Rate: Float
+
+        attr_accessor :DatePoint, :Rate
+
+        def initialize(datepoint=nil, rate=nil)
+          @DatePoint = datepoint
+          @Rate = rate
+        end
+
+        def deserialize(params)
+          @DatePoint = params['DatePoint']
+          @Rate = params['Rate']
         end
       end
 

@@ -1588,12 +1588,16 @@ module TencentCloud
         # @type ExclusiveHSMEnabled: Boolean
         # @param SubscriptionInfo: KMS 订阅信息。
         # @type SubscriptionInfo: String
+        # @param CmkUserCount: 返回KMS用户密钥使用数量
+        # @type CmkUserCount: Integer
+        # @param CmkLimit: 返回KMS用户密钥规格数量
+        # @type CmkLimit: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ServiceEnabled, :InvalidType, :UserLevel, :ProExpireTime, :ProRenewFlag, :ProResourceId, :ExclusiveVSMEnabled, :ExclusiveHSMEnabled, :SubscriptionInfo, :RequestId
+        attr_accessor :ServiceEnabled, :InvalidType, :UserLevel, :ProExpireTime, :ProRenewFlag, :ProResourceId, :ExclusiveVSMEnabled, :ExclusiveHSMEnabled, :SubscriptionInfo, :CmkUserCount, :CmkLimit, :RequestId
 
-        def initialize(serviceenabled=nil, invalidtype=nil, userlevel=nil, proexpiretime=nil, prorenewflag=nil, proresourceid=nil, exclusivevsmenabled=nil, exclusivehsmenabled=nil, subscriptioninfo=nil, requestid=nil)
+        def initialize(serviceenabled=nil, invalidtype=nil, userlevel=nil, proexpiretime=nil, prorenewflag=nil, proresourceid=nil, exclusivevsmenabled=nil, exclusivehsmenabled=nil, subscriptioninfo=nil, cmkusercount=nil, cmklimit=nil, requestid=nil)
           @ServiceEnabled = serviceenabled
           @InvalidType = invalidtype
           @UserLevel = userlevel
@@ -1603,6 +1607,8 @@ module TencentCloud
           @ExclusiveVSMEnabled = exclusivevsmenabled
           @ExclusiveHSMEnabled = exclusivehsmenabled
           @SubscriptionInfo = subscriptioninfo
+          @CmkUserCount = cmkusercount
+          @CmkLimit = cmklimit
           @RequestId = requestid
         end
 
@@ -1616,6 +1622,8 @@ module TencentCloud
           @ExclusiveVSMEnabled = params['ExclusiveVSMEnabled']
           @ExclusiveHSMEnabled = params['ExclusiveHSMEnabled']
           @SubscriptionInfo = params['SubscriptionInfo']
+          @CmkUserCount = params['CmkUserCount']
+          @CmkLimit = params['CmkLimit']
           @RequestId = params['RequestId']
         end
       end

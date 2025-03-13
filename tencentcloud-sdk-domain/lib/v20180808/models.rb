@@ -20,16 +20,12 @@ module TencentCloud
       # 用于域名预释放详情页面
       class AuctionInfo < TencentCloud::Common::AbstractModel
         # @param Bidder: 竞拍人
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Bidder: String
         # @param AuctionTime: 竞拍时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AuctionTime: String
         # @param AuctionPrice: 竞拍价格
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AuctionPrice: Float
         # @param Status: 状态 up: 领先 down: 落后
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: String
 
         attr_accessor :Bidder, :AuctionTime, :AuctionPrice, :Status
@@ -227,25 +223,18 @@ module TencentCloud
       # 我预定的域名结构体。
       class BiddingAppointResult < TencentCloud::Common::AbstractModel
         # @param BusinessID: business_id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BusinessID: String
         # @param Domain: 域名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Domain: String
         # @param AppointPrice: 预定价格
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AppointPrice: Integer
         # @param AppointBondPrice: 预约保证金
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AppointBondPrice: Integer
         # @param AppointEndTime: 预约结束时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AppointEndTime: String
         # @param AppointNum: 预约人数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AppointNum: Integer
         # @param Status: 1 已预约，2 竞价中，3 等待出价 4 竞价失败 5 等待支付 6 等待转移，7 转移中 8 交易成功 9 预约持有者赎回 10 竞价持有者赎回 11 其他阶段持有者赎回 12 违约
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
 
         attr_accessor :BusinessID, :Domain, :AppointPrice, :AppointBondPrice, :AppointEndTime, :AppointNum, :Status
@@ -318,34 +307,24 @@ module TencentCloud
       # 我竞价的域名结构体。
       class BiddingResult < TencentCloud::Common::AbstractModel
         # @param BusinessID: business_id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BusinessID: String
         # @param Domain: 域名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Domain: String
         # @param CurrentPrice: 当前价格
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CurrentPrice: Integer
         # @param CurrentNickname: 当前用户昵称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CurrentNickname: String
         # @param BiddingPrice: 我的出价
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BiddingPrice: Integer
         # @param BiddingBondPrice: 竞价保证金
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BiddingBondPrice: Integer
         # @param BiddingEndTime: 竞价结束时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BiddingEndTime: String
         # @param BiddingFlag: 竞价标识，1 领先，2 落后
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BiddingFlag: Integer
         # @param BiddingNum: 出价次数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BiddingNum: Integer
         # @param Status: 2 竞价中  3 等待出价 4 竞价失败 10 竞价持有者赎回
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
 
         attr_accessor :BusinessID, :Domain, :CurrentPrice, :CurrentNickname, :BiddingPrice, :BiddingBondPrice, :BiddingEndTime, :BiddingFlag, :BiddingNum, :Status
@@ -380,7 +359,6 @@ module TencentCloud
       # 我得标的域名结构体。
       class BiddingSuccessfulResult < TencentCloud::Common::AbstractModel
         # @param PayEndTime: 支付结束时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PayEndTime: String
 
         attr_accessor :PayEndTime
@@ -2128,7 +2106,6 @@ module TencentCloud
       # DescribePreAuctionList返回参数结构体
       class DescribePreAuctionListResponse < TencentCloud::Common::AbstractModel
         # @param TotalCount: 总数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
         # @param PreAuctionList: 预释放竞价列表
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -2320,7 +2297,6 @@ module TencentCloud
       # DescribePreReleaseList返回参数结构体
       class DescribePreReleaseListResponse < TencentCloud::Common::AbstractModel
         # @param TotalCount: 数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
         # @param PreReleaseList: 预释放列表
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -2820,14 +2796,12 @@ module TencentCloud
         # success  操作成功。
         # @type Status: String
         # @param Reason: 失败原因
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Reason: String
         # @param CreatedOn: 创建时间
         # @type CreatedOn: String
         # @param UpdatedOn: 更新时间
         # @type UpdatedOn: String
         # @param BigDealId: 订单号
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BigDealId: String
 
         attr_accessor :Id, :Action, :Domain, :Status, :Reason, :CreatedOn, :UpdatedOn, :BigDealId
@@ -2976,7 +2950,6 @@ module TencentCloud
         # NoAudit: 无需实名认证
         # @type RealNameAuditStatus: String
         # @param RealNameAuditUnpassReason: 域名实名认证不通过原因。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RealNameAuditUnpassReason: String
         # @param DomainNameAuditStatus: 域名命名审核状态。
         # NotAudit：命名审核未上传
@@ -2986,7 +2959,6 @@ module TencentCloud
         # Rejected：域名命名审核拒绝
         # @type DomainNameAuditStatus: String
         # @param DomainNameAuditUnpassReason: 域名命名审核不通过原因。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DomainNameAuditUnpassReason: String
         # @param CreationDate: 注册时间。
         # @type CreationDate: String
@@ -3097,10 +3069,8 @@ module TencentCloud
       # 失败预约预释放域名信息
       class FailReservedDomainInfo < TencentCloud::Common::AbstractModel
         # @param Domain: 域名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Domain: String
         # @param FailReason: 预约失败原因
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FailReason: String
 
         attr_accessor :Domain, :FailReason
@@ -3376,22 +3346,16 @@ module TencentCloud
       # 预释放竞价列表
       class PreAuctionInfo < TencentCloud::Common::AbstractModel
         # @param Domain: 域名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Domain: String
         # @param BiddingTime: 竞价倒计时
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BiddingTime: String
         # @param BidCount: 出价次数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BidCount: Integer
         # @param Price: 当前价格
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Price: Float
         # @param Op: 用户操作 bid：出价 "noAction"：无法操作
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Op: String
         # @param BusinessId: 业务ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BusinessId: String
 
         attr_accessor :Domain, :BiddingTime, :BidCount, :Price, :Op, :BusinessId
@@ -3418,34 +3382,24 @@ module TencentCloud
       # 预释放列表信息
       class PreReleaseInfo < TencentCloud::Common::AbstractModel
         # @param Domain: 域名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Domain: String
         # @param ReservationTime: 预订倒计时
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReservationTime: String
         # @param RegTime: 域名注册时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RegTime: String
         # @param DelTime: 域名删除时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DelTime: String
         # @param CurrentPeople: 当前人数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CurrentPeople: Integer
         # @param Price: 当前价格
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Price: Float
         # @param IsFollow: 是否收藏
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsFollow: Boolean
         # @param IsAppoint: 是否已经预约
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsAppoint: Boolean
         # @param BusinessId: 业务ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BusinessId: String
         # @param IsDomainUser: 是否为原持有者
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsDomainUser: Boolean
 
         attr_accessor :Domain, :ReservationTime, :RegTime, :DelTime, :CurrentPeople, :Price, :IsFollow, :IsAppoint, :BusinessId, :IsDomainUser
@@ -3512,16 +3466,12 @@ module TencentCloud
       # 预释放价格区间配置
       class PriceScopeConf < TencentCloud::Common::AbstractModel
         # @param MaxPrice: 最高价格
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaxPrice: Float
         # @param MinPrice: 最低价格
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MinPrice: Float
         # @param Price: 价格幅度
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Price: Float
         # @param DepositPrice: 保证金
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DepositPrice: Float
 
         attr_accessor :MaxPrice, :MinPrice, :Price, :DepositPrice
@@ -3611,16 +3561,12 @@ module TencentCloud
       # 合作商竞价详情
       class ReserveBidInfo < TencentCloud::Common::AbstractModel
         # @param User: 用户
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type User: String
         # @param Price: 出价
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Price: Integer
         # @param BidTime: 出价时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BidTime: String
         # @param BidStatus: 当前状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BidStatus: String
 
         attr_accessor :User, :Price, :BidTime, :BidStatus
@@ -3683,22 +3629,16 @@ module TencentCloud
         # @param ReservedStatus: 1. 预定成功 2. 预定失败（预定失败Reason字段将会被赋值）3. 域名交割中 4. 域名交割完成
         # @type ReservedStatus: Integer
         # @param FailReason: 域名预定失败原因
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FailReason: String
         # @param ChangeOwnerTime: 预计变更所有权时间（仅用于参考，实际时间会存在误差）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ChangeOwnerTime: String
         # @param RegTime: 注册时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RegTime: String
         # @param ExpireTime: 到期时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExpireTime: String
         # @param ResourceId: 资源ID，用于删除资源信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceId: String
         # @param BusinessId: 业务ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BusinessId: String
 
         attr_accessor :Domain, :ReservedStatus, :FailReason, :ChangeOwnerTime, :RegTime, :ExpireTime, :ResourceId, :BusinessId
@@ -3874,10 +3814,8 @@ module TencentCloud
       # 预释放域名预约参数补充成功信息
       class SucDomainInfo < TencentCloud::Common::AbstractModel
         # @param Domain: 域名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Domain: String
         # @param BusinessId: 业务ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BusinessId: String
 
         attr_accessor :Domain, :BusinessId
