@@ -95,12 +95,36 @@ module TencentCloud
 
       # AddOptimizerEngines请求参数结构体
       class AddOptimizerEnginesRequest < TencentCloud::Common::AbstractModel
+        # @param Catalog: 数据目录名称
+        # @type Catalog: String
+        # @param Engines: 引擎信息列表
+        # @type Engines: Array
+        # @param Database: 数据库名称
+        # @type Database: String
+        # @param Table: 数据表名称
+        # @type Table: String
 
+        attr_accessor :Catalog, :Engines, :Database, :Table
 
-        def initialize()
+        def initialize(catalog=nil, engines=nil, database=nil, table=nil)
+          @Catalog = catalog
+          @Engines = engines
+          @Database = database
+          @Table = table
         end
 
         def deserialize(params)
+          @Catalog = params['Catalog']
+          unless params['Engines'].nil?
+            @Engines = []
+            params['Engines'].each do |i|
+              optimizerengineinfo_tmp = OptimizerEngineInfo.new
+              optimizerengineinfo_tmp.deserialize(i)
+              @Engines << optimizerengineinfo_tmp
+            end
+          end
+          @Database = params['Database']
+          @Table = params['Table']
         end
       end
 
@@ -7513,6 +7537,73 @@ module TencentCloud
         end
       end
 
+      # DescribeTaskMonitorInfos请求参数结构体
+      class DescribeTaskMonitorInfosRequest < TencentCloud::Common::AbstractModel
+        # @param TaskIdList: 任务ID列表，上限50个
+        # @type TaskIdList: Array
+        # @param HouseName: 引擎名称
+        # @type HouseName: String
+        # @param CreateTimeStart: 任务创建时间的起始时间
+        # @type CreateTimeStart: String
+        # @param CreateTimeEnd: 任务创建时间的结束时间
+        # @type CreateTimeEnd: String
+        # @param Limit: 每一页条数
+        # @type Limit: Integer
+        # @param Offset: 偏移量
+        # @type Offset: Integer
+
+        attr_accessor :TaskIdList, :HouseName, :CreateTimeStart, :CreateTimeEnd, :Limit, :Offset
+
+        def initialize(taskidlist=nil, housename=nil, createtimestart=nil, createtimeend=nil, limit=nil, offset=nil)
+          @TaskIdList = taskidlist
+          @HouseName = housename
+          @CreateTimeStart = createtimestart
+          @CreateTimeEnd = createtimeend
+          @Limit = limit
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          @TaskIdList = params['TaskIdList']
+          @HouseName = params['HouseName']
+          @CreateTimeStart = params['CreateTimeStart']
+          @CreateTimeEnd = params['CreateTimeEnd']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+        end
+      end
+
+      # DescribeTaskMonitorInfos返回参数结构体
+      class DescribeTaskMonitorInfosResponse < TencentCloud::Common::AbstractModel
+        # @param TaskMonitorInfoList: 任务监控信息列表
+        # @type TaskMonitorInfoList: Array
+        # @param TotalCount: 任务总数
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskMonitorInfoList, :TotalCount, :RequestId
+
+        def initialize(taskmonitorinfolist=nil, totalcount=nil, requestid=nil)
+          @TaskMonitorInfoList = taskmonitorinfolist
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['TaskMonitorInfoList'].nil?
+            @TaskMonitorInfoList = []
+            params['TaskMonitorInfoList'].each do |i|
+              taskmonitorinfo_tmp = TaskMonitorInfo.new
+              taskmonitorinfo_tmp.deserialize(i)
+              @TaskMonitorInfoList << taskmonitorinfo_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeTaskResult请求参数结构体
       class DescribeTaskResultRequest < TencentCloud::Common::AbstractModel
         # @param TaskId: 任务唯一ID，仅支持30天内的任务
@@ -10632,6 +10723,33 @@ module TencentCloud
         end
       end
 
+      # 数据优化引擎信息
+      class OptimizerEngineInfo < TencentCloud::Common::AbstractModel
+        # @param HouseName: 引擎资源名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HouseName: String
+        # @param HouseId: 引擎资源ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HouseId: String
+        # @param HouseSize: 该参数仅针对spark作业引擎有效，用于执行数据优化任务的资源大小，不填时将采用该引擎所有资源
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HouseSize: Integer
+
+        attr_accessor :HouseName, :HouseId, :HouseSize
+
+        def initialize(housename=nil, houseid=nil, housesize=nil)
+          @HouseName = housename
+          @HouseId = houseid
+          @HouseSize = housesize
+        end
+
+        def deserialize(params)
+          @HouseName = params['HouseName']
+          @HouseId = params['HouseId']
+          @HouseSize = params['HouseSize']
+        end
+      end
+
       # 数据格式其它类型。
       class Other < TencentCloud::Common::AbstractModel
         # @param Format: 枚举类型，默认值为Json，可选值为[Json, Parquet, ORC, AVRD]之一。
@@ -12685,6 +12803,46 @@ module TencentCloud
             @SparkSQLTask = SQLTask.new
             @SparkSQLTask.deserialize(params['SparkSQLTask'])
           end
+        end
+      end
+
+      # 任务监控信息
+      class TaskMonitorInfo < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务id
+        # @type TaskId: String
+        # @param HouseName: 引擎名称
+        # @type HouseName: String
+        # @param QuerySQL: sql语句
+        # @type QuerySQL: String
+        # @param CreateTime: 任务时间
+        # @type CreateTime: String
+        # @param UsedTime: 执行时间
+        # @type UsedTime: String
+        # @param DataAmount: 数据扫描量
+        # @type DataAmount: String
+        # @param QueryStats: 指标信息
+        # @type QueryStats: String
+
+        attr_accessor :TaskId, :HouseName, :QuerySQL, :CreateTime, :UsedTime, :DataAmount, :QueryStats
+
+        def initialize(taskid=nil, housename=nil, querysql=nil, createtime=nil, usedtime=nil, dataamount=nil, querystats=nil)
+          @TaskId = taskid
+          @HouseName = housename
+          @QuerySQL = querysql
+          @CreateTime = createtime
+          @UsedTime = usedtime
+          @DataAmount = dataamount
+          @QueryStats = querystats
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @HouseName = params['HouseName']
+          @QuerySQL = params['QuerySQL']
+          @CreateTime = params['CreateTime']
+          @UsedTime = params['UsedTime']
+          @DataAmount = params['DataAmount']
+          @QueryStats = params['QueryStats']
         end
       end
 
