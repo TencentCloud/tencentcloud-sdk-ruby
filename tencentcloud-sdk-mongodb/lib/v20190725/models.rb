@@ -2591,11 +2591,11 @@ module TencentCloud
         # @type MongosMemory: Integer
         # @param MongosNum: 指 Mongos 个数，取值范围为[3,32]。若为分片集群实例询价，则该参数必须设置。注意为空时取默认取值为3个节点。
         # @type MongosNum: Integer
-        # @param ConfigServerCpu: 指 ConfigServer CPU核数，取值为1，单位：GB。若为分片集群实例询价，该参数必须设置。
+        # @param ConfigServerCpu: 指 ConfigServer CPU核数，固定取值为 1，单位：GB，可不配置该参数。
         # @type ConfigServerCpu: Integer
-        # @param ConfigServerMemory: 指 ConfigServer 内存大小，取值为2，单位：GB。若为分片集群实例询价，则该参数必须设置。
+        # @param ConfigServerMemory: 指 ConfigServer 内存大小，固定取值为 2，单位：GB，可不配置该参数。
         # @type ConfigServerMemory: Integer
-        # @param ConfigServerVolume: 指 ConfigServer 磁盘大小，取值为 20，单位：GB。若为分片集群实例询价，则该参数必须设置。
+        # @param ConfigServerVolume: 指 ConfigServer 磁盘大小，固定取值为 20，单位：GB，可不配置该参数。
         # @type ConfigServerVolume: Integer
 
         attr_accessor :Zone, :NodeNum, :Memory, :Volume, :MongoVersion, :MachineCode, :GoodsNum, :ClusterType, :ReplicateSetNum, :Period, :InstanceChargeType, :MongosCpu, :MongosMemory, :MongosNum, :ConfigServerCpu, :ConfigServerMemory, :ConfigServerVolume

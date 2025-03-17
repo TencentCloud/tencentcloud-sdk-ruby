@@ -1359,6 +1359,62 @@ module TencentCloud
         end
       end
 
+      # ModifyProjectSecMode请求参数结构体
+      class ModifyProjectSecModeRequest < TencentCloud::Common::AbstractModel
+        # @param ProjectId: 项目ID
+        # @type ProjectId: String
+        # @param Mode: 安全模式
+        # 0：关闭项目共享密钥
+        # 1：开启项目共享密钥
+        # @type Mode: Integer
+        # @param Key: 项目密钥 32位 小写英文+数字；  项目密钥模式必填
+        # @type Key: String
+        # @param AutoRegister: 自动注册方式
+        # 0：关闭自动注册
+        # 1：仅允许现场设备自动注册
+        # 2：仅允许远端设备自动注册
+        # 3：允许现场和远端设备均自动注册
+        # @type AutoRegister: Integer
+        # @param FieldListEnable: 是否允许远端获取现场设备列表（getGwList）
+        # 0：不允许
+        # 1：允许
+        # @type FieldListEnable: Integer
+
+        attr_accessor :ProjectId, :Mode, :Key, :AutoRegister, :FieldListEnable
+
+        def initialize(projectid=nil, mode=nil, key=nil, autoregister=nil, fieldlistenable=nil)
+          @ProjectId = projectid
+          @Mode = mode
+          @Key = key
+          @AutoRegister = autoregister
+          @FieldListEnable = fieldlistenable
+        end
+
+        def deserialize(params)
+          @ProjectId = params['ProjectId']
+          @Mode = params['Mode']
+          @Key = params['Key']
+          @AutoRegister = params['AutoRegister']
+          @FieldListEnable = params['FieldListEnable']
+        end
+      end
+
+      # ModifyProjectSecMode返回参数结构体
+      class ModifyProjectSecModeResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 多网的网卡状态信息
       class MultiNet < TencentCloud::Common::AbstractModel
         # @param NetId: 网卡序号
@@ -1565,8 +1621,8 @@ module TencentCloud
 
         attr_accessor :DeviceType, :StartTime, :EndTime, :SessionId, :Rate, :Fps, :Lost, :NetworkLatency, :VideoLatency, :CpuUsed, :MemUsed, :TimeOffset, :ProjectId, :DeviceId, :Ver, :SdkMode, :DecodeCost, :RenderConst, :K100, :K150, :NACK, :BitRateEstimate, :Width, :Height, :EncodeCost, :CaptureCost, :RenderCost, :ConfigWidth, :ConfigHeight, :FrameDelta, :MaxFrameDelta, :TotalBitrateEstimate, :Lag100Duration, :Lag150Duration, :MultiMode, :MultiNet
         extend Gem::Deprecate
-        deprecate :RenderConst, :none, 2025, 2
-        deprecate :RenderConst=, :none, 2025, 2
+        deprecate :RenderConst, :none, 2025, 3
+        deprecate :RenderConst=, :none, 2025, 3
 
         def initialize(devicetype=nil, starttime=nil, endtime=nil, sessionid=nil, rate=nil, fps=nil, lost=nil, networklatency=nil, videolatency=nil, cpuused=nil, memused=nil, timeoffset=nil, projectid=nil, deviceid=nil, ver=nil, sdkmode=nil, decodecost=nil, renderconst=nil, k100=nil, k150=nil, nack=nil, bitrateestimate=nil, width=nil, height=nil, encodecost=nil, capturecost=nil, rendercost=nil, configwidth=nil, configheight=nil, framedelta=nil, maxframedelta=nil, totalbitrateestimate=nil, lag100duration=nil, lag150duration=nil, multimode=nil, multinet=nil)
           @DeviceType = devicetype

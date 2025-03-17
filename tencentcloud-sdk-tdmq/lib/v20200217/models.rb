@@ -72,10 +72,8 @@ module TencentCloud
         # @param Config: 集群配置信息
         # @type Config: :class:`Tencentcloud::Tdmq.v20200217.models.AMQPClusterConfig`
         # @param Tags: 标签
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
         # @param Status: 集群状态，0:创建中，1:正常，2:销毁中，3:已删除，4: 隔离中，5:创建失败，6: 删除失败
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
 
         attr_accessor :Info, :Config, :Tags, :Status
@@ -1609,13 +1607,10 @@ module TencentCloud
       # CreateRabbitMQBinding返回参数结构体
       class CreateRabbitMQBindingResponse < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceId: String
         # @param VirtualHost: vhost名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VirtualHost: String
         # @param BindingId: 路由关系Id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BindingId: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1784,10 +1779,8 @@ module TencentCloud
       # CreateRabbitMQVipInstance返回参数结构体
       class CreateRabbitMQVipInstanceResponse < TencentCloud::Common::AbstractModel
         # @param TranId: 订单号Id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TranId: String
         # @param InstanceId: 实例Id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2775,13 +2768,10 @@ module TencentCloud
       # DeleteRabbitMQBinding返回参数结构体
       class DeleteRabbitMQBindingResponse < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceId: String
         # @param VirtualHost: vhost参数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VirtualHost: String
         # @param BindingId: 路由关系Id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BindingId: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2902,10 +2892,8 @@ module TencentCloud
       # DeleteRabbitMQVipInstance返回参数结构体
       class DeleteRabbitMQVipInstanceResponse < TencentCloud::Common::AbstractModel
         # @param TranId: 订单号Id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TranId: String
         # @param InstanceId: 实例Id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4894,10 +4882,8 @@ module TencentCloud
       # DescribeRabbitMQBindings返回参数结构体
       class DescribeRabbitMQBindingsResponse < TencentCloud::Common::AbstractModel
         # @param BindingInfoList: 路由关系列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BindingInfoList: Array
         # @param TotalCount: 数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4982,10 +4968,8 @@ module TencentCloud
       # DescribeRabbitMQExchanges返回参数结构体
       class DescribeRabbitMQExchangesResponse < TencentCloud::Common::AbstractModel
         # @param ExchangeInfoList: 策略列表信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExchangeInfoList: Array
         # @param TotalCount: 策略结果总数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5186,22 +5170,17 @@ module TencentCloud
       # DescribeRabbitMQQueueDetail返回参数结构体
       class DescribeRabbitMQQueueDetailResponse < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceId: String
         # @param VirtualHost: Vhost参数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VirtualHost: String
         # @param QueueName: 队列名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type QueueName: String
         # @param QueueType: 队列类型,取值classic或quorum
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type QueueType: String
         # @param Consumers: 在线消费者数量
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Consumers: Integer
         # @param Durable: 持久标记
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Durable: Boolean
         # @param AutoDelete: 自动清除
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -5252,7 +5231,6 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaxInMemoryBytes: Integer
         # @param CreateTime: 创建时间戳,单位秒
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: Integer
         # @param Node: 节点
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -5267,13 +5245,11 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type QuorumInitialGroupSize: Integer
         # @param Exclusive: 是否为独占队列
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Exclusive: Boolean
         # @param Policy: 生效的策略名
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Policy: String
         # @param Arguments: 扩展参数 key-value
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Arguments: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5401,10 +5377,8 @@ module TencentCloud
       # DescribeRabbitMQQueues返回参数结构体
       class DescribeRabbitMQQueuesResponse < TencentCloud::Common::AbstractModel
         # @param QueueInfoList: 列表信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type QueueInfoList: Array
         # @param TotalCount: 数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5521,10 +5495,8 @@ module TencentCloud
         # @param ClusterSpecInfo: 集群规格信息
         # @type ClusterSpecInfo: :class:`Tencentcloud::Tdmq.v20200217.models.RabbitMQClusterSpecInfo`
         # @param ClusterNetInfo: 集群访问
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterNetInfo: :class:`Tencentcloud::Tdmq.v20200217.models.RabbitMQClusterAccessInfo`
         # @param ClusterWhiteListInfo: 集群白名单
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterWhiteListInfo: :class:`Tencentcloud::Tdmq.v20200217.models.RabbitMQClusterWhiteListInfo`
         # @param VirtualHostQuota: vhost配额信息
         # @type VirtualHostQuota: :class:`Tencentcloud::Tdmq.v20200217.models.VirtualHostQuota`
@@ -8119,7 +8091,6 @@ module TencentCloud
         # @param MaxExchange: 可创建最大exchange数
         # @type MaxExchange: Integer
         # @param UsedExchange: 已创建exchange数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UsedExchange: Integer
 
         attr_accessor :MaxExchange, :UsedExchange
@@ -9263,7 +9234,6 @@ module TencentCloud
       # ModifyRabbitMQVipInstance返回参数结构体
       class ModifyRabbitMQVipInstanceResponse < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -10467,7 +10437,6 @@ module TencentCloud
         # @param MaxQueue: 可创建最大Queue数
         # @type MaxQueue: Integer
         # @param UsedQueue: 已创建Queue数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UsedQueue: Integer
 
         attr_accessor :MaxQueue, :UsedQueue
@@ -10486,31 +10455,22 @@ module TencentCloud
       # Rabbitmq路由关系列表成员
       class RabbitMQBindingListInfo < TencentCloud::Common::AbstractModel
         # @param BindingId: 路由关系id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BindingId: Integer
         # @param VirtualHost: Vhost参数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VirtualHost: String
         # @param Source: 源exchange名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Source: String
         # @param DestinationType: 目标类型,queue或exchange
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DestinationType: String
         # @param Destination: 目标资源名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Destination: String
         # @param RoutingKey: 绑定key
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RoutingKey: String
         # @param SourceExchangeType: 源exchange类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SourceExchangeType: String
         # @param CreateTime: 创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
         # @param ModifyTime: 修改时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ModifyTime: String
 
         attr_accessor :BindingId, :VirtualHost, :Source, :DestinationType, :Destination, :RoutingKey, :SourceExchangeType, :CreateTime, :ModifyTime
@@ -10560,25 +10520,22 @@ module TencentCloud
         # @param VpcWebConsoleEndpoint: Vpc管控台访问地址，示例值，http://1.1.1.1:15672
         # @type VpcWebConsoleEndpoint: String
         # @param PublicWebConsoleSwitchStatus: 公网管控台开关状态，示例值，OFF/ON/CREATING/DELETING
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PublicWebConsoleSwitchStatus: String
         # @param VpcWebConsoleSwitchStatus: Vpc管控台开关状态，示例值，
         # OFF/ON/CREATING/DELETING
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VpcWebConsoleSwitchStatus: String
         # @param PublicDataStreamStatus: 公网管控台开关状态，示例值，OFF/ON/CREATING/DELETING
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PublicDataStreamStatus: String
         # @param PrometheusEndpointInfo: Prometheus信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PrometheusEndpointInfo: :class:`Tencentcloud::Tdmq.v20200217.models.PrometheusEndpointInfo`
         # @param WebConsoleDomainEndpoint: 公网域名接入点
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WebConsoleDomainEndpoint: String
+        # @param ControlPlaneEndpointInfo: 控制面所使用的VPC信息
+        # @type ControlPlaneEndpointInfo: :class:`Tencentcloud::Tdmq.v20200217.models.VpcEndpointInfo`
 
-        attr_accessor :PublicAccessEndpoint, :WebConsoleEndpoint, :WebConsoleUsername, :WebConsolePassword, :PublicAccessEndpointStatus, :PublicControlConsoleSwitchStatus, :VpcControlConsoleSwitchStatus, :VpcWebConsoleEndpoint, :PublicWebConsoleSwitchStatus, :VpcWebConsoleSwitchStatus, :PublicDataStreamStatus, :PrometheusEndpointInfo, :WebConsoleDomainEndpoint
+        attr_accessor :PublicAccessEndpoint, :WebConsoleEndpoint, :WebConsoleUsername, :WebConsolePassword, :PublicAccessEndpointStatus, :PublicControlConsoleSwitchStatus, :VpcControlConsoleSwitchStatus, :VpcWebConsoleEndpoint, :PublicWebConsoleSwitchStatus, :VpcWebConsoleSwitchStatus, :PublicDataStreamStatus, :PrometheusEndpointInfo, :WebConsoleDomainEndpoint, :ControlPlaneEndpointInfo
 
-        def initialize(publicaccessendpoint=nil, webconsoleendpoint=nil, webconsoleusername=nil, webconsolepassword=nil, publicaccessendpointstatus=nil, publiccontrolconsoleswitchstatus=nil, vpccontrolconsoleswitchstatus=nil, vpcwebconsoleendpoint=nil, publicwebconsoleswitchstatus=nil, vpcwebconsoleswitchstatus=nil, publicdatastreamstatus=nil, prometheusendpointinfo=nil, webconsoledomainendpoint=nil)
+        def initialize(publicaccessendpoint=nil, webconsoleendpoint=nil, webconsoleusername=nil, webconsolepassword=nil, publicaccessendpointstatus=nil, publiccontrolconsoleswitchstatus=nil, vpccontrolconsoleswitchstatus=nil, vpcwebconsoleendpoint=nil, publicwebconsoleswitchstatus=nil, vpcwebconsoleswitchstatus=nil, publicdatastreamstatus=nil, prometheusendpointinfo=nil, webconsoledomainendpoint=nil, controlplaneendpointinfo=nil)
           @PublicAccessEndpoint = publicaccessendpoint
           @WebConsoleEndpoint = webconsoleendpoint
           @WebConsoleUsername = webconsoleusername
@@ -10592,6 +10549,7 @@ module TencentCloud
           @PublicDataStreamStatus = publicdatastreamstatus
           @PrometheusEndpointInfo = prometheusendpointinfo
           @WebConsoleDomainEndpoint = webconsoledomainendpoint
+          @ControlPlaneEndpointInfo = controlplaneendpointinfo
         end
 
         def deserialize(params)
@@ -10611,6 +10569,10 @@ module TencentCloud
             @PrometheusEndpointInfo.deserialize(params['PrometheusEndpointInfo'])
           end
           @WebConsoleDomainEndpoint = params['WebConsoleDomainEndpoint']
+          unless params['ControlPlaneEndpointInfo'].nil?
+            @ControlPlaneEndpointInfo = VpcEndpointInfo.new
+            @ControlPlaneEndpointInfo.deserialize(params['ControlPlaneEndpointInfo'])
+          end
         end
       end
 
@@ -10625,12 +10587,10 @@ module TencentCloud
         # @param CreateTime: 创建时间，毫秒为单位
         # @type CreateTime: Integer
         # @param Remark: 集群说明信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Remark: String
         # @param Vpcs: VPC及网络信息
         # @type Vpcs: Array
         # @param ZoneIds: 可用区信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ZoneIds: Array
         # @param VirtualHostNumber: 虚拟主机数量
         # @type VirtualHostNumber: Integer
@@ -10656,19 +10616,14 @@ module TencentCloud
         # @param ClusterStatus: 实例状态，0表示创建中，1表示正常，2表示隔离中，3表示已销毁，4 - 异常, 5 - 发货失败
         # @type ClusterStatus: Integer
         # @param AutoRenewFlag: 自动续费标记，0表示默认状态(用户未设置，即初始状态即手动续费)， 1表示自动续费，2表示明确不自动续费(用户设置)
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AutoRenewFlag: Integer
         # @param MirrorQueuePolicyFlag: 是否开启镜像队列策略。1表示开启，0表示没开启。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MirrorQueuePolicyFlag: Integer
         # @param MessageConsumeRate: 每秒消费消息数 单位：条/秒
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MessageConsumeRate: Float
         # @param ClusterVersion: 集群版本信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterVersion: String
         # @param PayMode: 计费模式，0-后付费，1-预付费
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PayMode: Integer
         # @param InstanceType: 实例类型，0 专享版、1 Serverless 版
         # @type InstanceType: Integer
@@ -10776,13 +10731,10 @@ module TencentCloud
       # RabbiteMQ集群白名单信息
       class RabbitMQClusterWhiteListInfo < TencentCloud::Common::AbstractModel
         # @param WhiteList: 废弃
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WhiteList: String
         # @param PublicControlConsoleWhiteList: 公网管控台白名单
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PublicControlConsoleWhiteList: String
         # @param PublicDataStreamWhiteList: 公网数据流白名单
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PublicDataStreamWhiteList: String
         # @param PublicControlConsoleWhiteListStatus: 公网管控台白名单状态
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -10820,16 +10772,12 @@ module TencentCloud
         # @param ExchangeType: exchange 类型, 支持 "fanout","direct","topic","headers"
         # @type ExchangeType: String
         # @param VirtualHost: VHost参数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VirtualHost: String
         # @param ExchangeCreator: exchange 创建者, "system":"系统创建", "user":"用户创建"
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExchangeCreator: String
         # @param CreateTimeStamp: exchange 创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTimeStamp: String
         # @param ModTimeStamp: exchange 修改时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ModTimeStamp: String
         # @param MessageRateIn: 输入消息速率
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -10838,22 +10786,17 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MessageRateOut: Float
         # @param Durable: 是否为持久化交换机，true 为持久化，false 为非持久化
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Durable: Boolean
         # @param AutoDelete: 是否为自动删除交换机，true 为自动删除，false 为非自动删除
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AutoDelete: Boolean
         # @param Internal: 是否为内部交换机，true 为内部交换机
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Internal: Boolean
         # @param InstanceId: 交换机所属实例 ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceId: String
         # @param Policy: 生效的策略名称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Policy: String
         # @param Arguments: 扩展参数 key-value 对象
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Arguments: String
         # @param MessagesDelayed: 未调度的延时消息数量
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -10909,19 +10852,14 @@ module TencentCloud
         # @param VirtualHost: vhost名
         # @type VirtualHost: String
         # @param ConfigRegexp: 权限类型，declare相关操作，该用户可操作该vhost下的资源名称正则表达式
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ConfigRegexp: String
         # @param WriteRegexp: 权限类型，消息写入相关操作，该用户可操作该vhost下的资源名称正则表达式
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WriteRegexp: String
         # @param ReadRegexp: 权限类型，消息读取相关操作，该用户可操作该vhost下的资源名称正则表达式
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReadRegexp: String
         # @param CreateTime: 创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
         # @param ModifyTime: 修改时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ModifyTime: String
 
         attr_accessor :InstanceId, :User, :VirtualHost, :ConfigRegexp, :WriteRegexp, :ReadRegexp, :CreateTime, :ModifyTime
@@ -11016,10 +10954,8 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Remark: String
         # @param ConsumerDetail: 消费者信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ConsumerDetail: :class:`Tencentcloud::Tdmq.v20200217.models.RabbitMQQueueListConsumerDetailInfo`
         # @param QueueType: 队列类型，取值 "classic"，"quorum"
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type QueueType: String
         # @param MessageHeapCount: 消息堆积数
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -11031,34 +10967,25 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MessageRateOut: Float
         # @param CreateTime: 创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
         # @param ModifyTime: 修改时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ModifyTime: String
         # @param Durable: 队列是否持久化，true 为持久化，false 为非持久化
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Durable: Boolean
         # @param AutoDelete: 队列是否为自动删除队列，true 为自动删除，false 为非自动删除
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AutoDelete: Boolean
         # @param InstanceId: 队列所属实例 ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceId: String
         # @param VirtualHost: 队列所属虚拟主机名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VirtualHost: String
         # @param Node: 队列所在主节点名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Node: String
         # @param Policy: 生效的策略名称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Policy: String
         # @param Arguments: 扩展参数 key-value 对象
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Arguments: String
         # @param Exclusive: 是否独占队列
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Exclusive: Boolean
 
         attr_accessor :QueueName, :Remark, :ConsumerDetail, :QueueType, :MessageHeapCount, :MessageRateIn, :MessageRateOut, :CreateTime, :ModifyTime, :Durable, :AutoDelete, :InstanceId, :VirtualHost, :Node, :Policy, :Arguments, :Exclusive
@@ -11116,10 +11043,8 @@ module TencentCloud
         # @param Password: 密码，登录时使用
         # @type Password: String
         # @param Description: 用户描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
         # @param Tags: 用户标签，用于决定改用户访问RabbitMQ Management的权限范围
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
         # @param CreateTime: 用户创建时间
         # @type CreateTime: String
@@ -11170,7 +11095,6 @@ module TencentCloud
         # @param InstanceName: 实例名称
         # @type InstanceName: String
         # @param InstanceVersion: 实例版本
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceVersion: String
         # @param Status: 实例状态，0表示创建中，1表示正常，2表示隔离中，3表示已销毁，4 - 异常, 5 - 发货失败
         # @type Status: Integer
@@ -11191,7 +11115,6 @@ module TencentCloud
         # @param PayMode: 0-后付费，1-预付费
         # @type PayMode: Integer
         # @param Remark: 备注信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Remark: String
         # @param SpecName: 实例配置ID
         # @type SpecName: String
@@ -11205,10 +11128,8 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PublicAccessEndpoint: String
         # @param Vpcs: VPC 接入点列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Vpcs: Array
         # @param CreateTime: 创建时间，毫秒为单位
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: Integer
         # @param InstanceType: 实例类型，0 专享版、1 Serverless 版
         # @type InstanceType: Integer
@@ -11276,37 +11197,26 @@ module TencentCloud
         # @param VirtualHost: vhost名
         # @type VirtualHost: String
         # @param Description: vhost描述信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
         # @param Tags: vhost标签
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
         # @param CreateTime: 创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
         # @param ModifyTime: 修改时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ModifyTime: String
         # @param VirtualHostStatistics: vhost概览统计信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VirtualHostStatistics: :class:`Tencentcloud::Tdmq.v20200217.models.RabbitMQVirtualHostStatistics`
         # @param TraceFlag: 消息轨迹开关,true打开,false关闭
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TraceFlag: Boolean
         # @param Status: vhost状态，与原生控制台对应，有running、partial、stopped、unknown
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: String
         # @param MessageHeapCount: 消息堆积数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MessageHeapCount: Integer
         # @param MessageRateIn: 输入消息速率
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MessageRateIn: Float
         # @param MessageRateOut: 输出消息速率
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MessageRateOut: Float
         # @param MirrorQueuePolicyFlag: 是否存在镜像队列策略，true 为存在，false 为不存
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MirrorQueuePolicyFlag: Boolean
 
         attr_accessor :InstanceId, :VirtualHost, :Description, :Tags, :CreateTime, :ModifyTime, :VirtualHostStatistics, :TraceFlag, :Status, :MessageHeapCount, :MessageRateIn, :MessageRateOut, :MirrorQueuePolicyFlag
@@ -13811,7 +13721,6 @@ module TencentCloud
         # @param MaxVirtualHost: 允许创建最大vhost数
         # @type MaxVirtualHost: Integer
         # @param UsedVirtualHost: 已创建vhost数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UsedVirtualHost: Integer
 
         attr_accessor :MaxVirtualHost, :UsedVirtualHost
@@ -13893,7 +13802,6 @@ module TencentCloud
         # @param VpcEndpoint: vpc接入点信息
         # @type VpcEndpoint: String
         # @param VpcDataStreamEndpointStatus: vpc接入点状态 OFF/ON/CREATING/DELETING
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VpcDataStreamEndpointStatus: String
 
         attr_accessor :VpcId, :SubnetId, :VpcEndpoint, :VpcDataStreamEndpointStatus

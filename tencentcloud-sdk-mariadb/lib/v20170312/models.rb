@@ -329,10 +329,8 @@ module TencentCloud
       # 约束类型值的范围
       class ConstraintRange < TencentCloud::Common::AbstractModel
         # @param Min: 约束类型为section时的最小值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Min: String
         # @param Max: 约束类型为section时的最大值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Max: String
 
         attr_accessor :Min, :Max
@@ -971,7 +969,6 @@ module TencentCloud
         # @param ReadOnly: 只读标记，0：否， 1：该账号的sql请求优先选择备机执行，备机不可用时选择主机执行，2：优先选择备机执行，备机不可用时操作失败。
         # @type ReadOnly: Integer
         # @param DelayThresh: 该字段对只读账号有意义，表示选择主备延迟小于该值的备机
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DelayThresh: Integer
         # @param SlaveConst: 针对只读账号，设置策略是否固定备机，0：不固定备机，即备机不满足条件与客户端不断开连接，Proxy选择其他可用备机，1：备机不满足条件断开连接，确保一个连接固定备机。
         # @type SlaveConst: Integer
@@ -1295,16 +1292,12 @@ module TencentCloud
       # dcn 配置情况
       class DCNReplicaConfig < TencentCloud::Common::AbstractModel
         # @param RoReplicationMode: DCN 运行状态，START为正常运行，STOP为暂停
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RoReplicationMode: String
         # @param DelayReplicationType: 延迟复制的类型，DEFAULT为正常，DUE_TIME为指定时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DelayReplicationType: String
         # @param DueTime: 延迟复制的指定时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DueTime: String
         # @param ReplicationDelay: 延迟复制时的延迟秒数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReplicationDelay: Integer
 
         attr_accessor :RoReplicationMode, :DelayReplicationType, :DueTime, :ReplicationDelay
@@ -3941,7 +3934,6 @@ module TencentCloud
         # @param InstanceStatus: 实例状态
         # @type InstanceStatus: Integer
         # @param ShardId: 分片ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ShardId: String
         # @param FilePath: 文件路径
         # @type FilePath: String
@@ -3996,10 +3988,8 @@ module TencentCloud
       # 按机型归类的实例可售卖规格信息
       class InstanceSpec < TencentCloud::Common::AbstractModel
         # @param Machine: 设备型号
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Machine: String
         # @param SpecInfos: 该机型对应的可售卖规格列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SpecInfos: Array
 
         attr_accessor :Machine, :SpecInfos
@@ -5127,7 +5117,6 @@ module TencentCloud
         # @param Value: 当前参数值
         # @type Value: String
         # @param SetValue: 设置过的值，参数生效后，该值和value一样。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SetValue: String
         # @param Default: 系统默认值
         # @type Default: String
@@ -5563,7 +5552,6 @@ module TencentCloud
         # @param User: 账号
         # @type User: String
         # @param ExampleSql: 样例Sql
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExampleSql: String
         # @param Host: 账户的域名
         # @type Host: String

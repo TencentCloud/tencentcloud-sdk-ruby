@@ -134,22 +134,17 @@ module TencentCloud
       # BidDetailPage返回参数结构体
       class BidDetailPageResponse < TencentCloud::Common::AbstractModel
         # @param Domain: 域名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Domain: String
         # @param CurrentPrice: 当前域名价格
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CurrentPrice: Float
         # @param BidPrice: 用户上次出价
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BidPrice: Float
         # @param CurrentPriceScope: 当前加价幅度
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CurrentPriceScope: Float
         # @param PriceScope: 加价幅度区间配置
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PriceScope: Array
         # @param DepositPrice: 用户当前已经支付了的保证金
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DepositPrice: Float
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -788,7 +783,6 @@ module TencentCloud
       # CreateDomainBatch返回参数结构体
       class CreateDomainBatchResponse < TencentCloud::Common::AbstractModel
         # @param LogId: 批量日志ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LogId: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1146,10 +1140,8 @@ module TencentCloud
       # DescribeAuctionList返回参数结构体
       class DescribeAuctionListResponse < TencentCloud::Common::AbstractModel
         # @param AuctionList: 竞拍详情列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AuctionList: Array
         # @param TotalCount: 总数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1205,7 +1197,6 @@ module TencentCloud
         # @param TotalCount: 总数量。
         # @type TotalCount: Integer
         # @param DomainBatchDetailSet: 日志详情列表。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DomainBatchDetailSet: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1257,7 +1248,6 @@ module TencentCloud
         # @param TotalCount: 总数量
         # @type TotalCount: Integer
         # @param DomainBatchLogSet: 日志列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DomainBatchLogSet: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1845,7 +1835,6 @@ module TencentCloud
       # DescribeDomainNameList返回参数结构体
       class DescribeDomainNameListResponse < TencentCloud::Common::AbstractModel
         # @param DomainSet: 域名信息集合
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DomainSet: Array
         # @param TotalCount: 域名总数量
         # @type TotalCount: Integer
@@ -2299,7 +2288,6 @@ module TencentCloud
         # @param TotalCount: 数量
         # @type TotalCount: Integer
         # @param PreReleaseList: 预释放列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PreReleaseList: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2847,10 +2835,14 @@ module TencentCloud
         # @type Doing: Integer
         # @param Failed: 批量操作失败个数
         # @type Failed: Integer
+        # @param PayStatus: 是否付费
+        # @type PayStatus: Boolean
+        # @param BigDealId: 大订单ID
+        # @type BigDealId: String
 
-        attr_accessor :LogId, :Number, :Status, :CreatedOn, :Success, :Doing, :Failed
+        attr_accessor :LogId, :Number, :Status, :CreatedOn, :Success, :Doing, :Failed, :PayStatus, :BigDealId
 
-        def initialize(logid=nil, number=nil, status=nil, createdon=nil, success=nil, doing=nil, failed=nil)
+        def initialize(logid=nil, number=nil, status=nil, createdon=nil, success=nil, doing=nil, failed=nil, paystatus=nil, bigdealid=nil)
           @LogId = logid
           @Number = number
           @Status = status
@@ -2858,6 +2850,8 @@ module TencentCloud
           @Success = success
           @Doing = doing
           @Failed = failed
+          @PayStatus = paystatus
+          @BigDealId = bigdealid
         end
 
         def deserialize(params)
@@ -2868,6 +2862,8 @@ module TencentCloud
           @Success = params['Success']
           @Doing = params['Doing']
           @Failed = params['Failed']
+          @PayStatus = params['PayStatus']
+          @BigDealId = params['BigDealId']
         end
       end
 

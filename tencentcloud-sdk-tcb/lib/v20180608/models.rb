@@ -1717,7 +1717,6 @@ module TencentCloud
       # CreateCloudBaseRunResource返回参数结构体
       class CreateCloudBaseRunResourceResponse < TencentCloud::Common::AbstractModel
         # @param Result: 返回集群创建是否成功 succ为成功。并且中间无err
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1976,13 +1975,10 @@ module TencentCloud
       # CreateCloudBaseRunServerVersion返回参数结构体
       class CreateCloudBaseRunServerVersionResponse < TencentCloud::Common::AbstractModel
         # @param Result: 状态(creating/succ)
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: String
         # @param VersionName: 版本名称（只有Result为succ的时候，才会返回VersionName)
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VersionName: String
         # @param RunId: 操作记录id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RunId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3001,13 +2997,10 @@ module TencentCloud
         # @param VersionName: 版本名称
         # @type VersionName: String
         # @param Remark: 备注
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Remark: String
         # @param DockerfilePath: Dockefile的路径
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DockerfilePath: String
         # @param BuildDir: DockerBuild的目录
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BuildDir: String
         # @param Cpu: Cpu大小
         # @type Cpu: Float
@@ -3018,71 +3011,50 @@ module TencentCloud
         # @param MaxNum: 副本最大值
         # @type MaxNum: Integer
         # @param EnvParams: 环境变量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EnvParams: String
         # @param CreatedTime: 创建时间
         # @type CreatedTime: String
         # @param UpdatedTime: 更新时间
         # @type UpdatedTime: String
         # @param VersionIP: 版本的IP
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VersionIP: String
         # @param VersionPort: 版本的端口号
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VersionPort: Integer
         # @param Status: 版本状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: String
         # @param UploadType: 枚举（package/repository/image)
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UploadType: String
         # @param ServerName: 服务名字
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ServerName: String
         # @param IsPublic: 是否对于外网开放
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsPublic: Boolean
         # @param VpcId: vpc id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VpcId: String
         # @param SubnetIds: 子网实例id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubnetIds: Array
         # @param CustomLogs: 日志采集路径
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CustomLogs: String
         # @param ContainerPort: 监听端口
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ContainerPort: Integer
         # @param InitialDelaySeconds: 延迟多长时间开始健康检查（单位s）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InitialDelaySeconds: Integer
         # @param ImageUrl: 镜像地址
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ImageUrl: String
         # @param HasDockerfile: 是否有Dockerfile：0-default has, 1-has, 2-has not
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HasDockerfile: Integer
         # @param BaseImage: 基础镜像
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BaseImage: String
         # @param EntryPoint: 容器启动入口命令
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EntryPoint: String
         # @param PolicyDetail: 自动扩缩容策略组
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PolicyDetail: Array
         # @param TkeClusterInfo: Tke集群信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TkeClusterInfo: :class:`Tencentcloud::Tcb.v20180608.models.TkeClusterInfo`
         # @param TkeWorkloadType: 版本工作负载类型；deployment/deamonset
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TkeWorkloadType: String
         # @param PackageInfo: 代码包信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PackageInfo: :class:`Tencentcloud::Tcb.v20180608.models.CbrPackageInfo`
         # @param RepoInfo: 仓库信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RepoInfo: :class:`Tencentcloud::Tcb.v20180608.models.CbrRepoInfo`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3219,13 +3191,10 @@ module TencentCloud
         # @param PackageVersion: 包版本
         # @type PackageVersion: String
         # @param DownloadUrl: 下载链接
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DownloadUrl: String
         # @param DownloadHeaders: 下载Httpheader
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DownloadHeaders: Array
         # @param OutDate: 下载链接是否过期
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OutDate: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3426,7 +3395,6 @@ module TencentCloud
       # DescribeCloudBaseRunAllVpcs返回参数结构体
       class DescribeCloudBaseRunAllVpcsResponse < TencentCloud::Common::AbstractModel
         # @param Vpcs: 所有vpcid
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Vpcs: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3467,7 +3435,6 @@ module TencentCloud
       # DescribeCloudBaseRunConfForGateWay返回参数结构体
       class DescribeCloudBaseRunConfForGateWayResponse < TencentCloud::Common::AbstractModel
         # @param LastUpTime: 最近更新时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LastUpTime: String
         # @param Data: 配置信息
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -3614,10 +3581,8 @@ module TencentCloud
       # DescribeCloudBaseRunOperationTypes返回参数结构体
       class DescribeCloudBaseRunOperationTypesResponse < TencentCloud::Common::AbstractModel
         # @param Action: 操作类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Action: Array
         # @param ServerName: 服务名列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ServerName: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3686,7 +3651,6 @@ module TencentCloud
         # @param TotalCount: 总数
         # @type TotalCount: Integer
         # @param PodList: 容器列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PodList: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3736,16 +3700,12 @@ module TencentCloud
       # DescribeCloudBaseRunResourceForExtend返回参数结构体
       class DescribeCloudBaseRunResourceForExtendResponse < TencentCloud::Common::AbstractModel
         # @param ClusterStatus: 集群状态(creating/succ)
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterStatus: String
         # @param VirtualClusterId: 虚拟集群ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VirtualClusterId: String
         # @param VpcId: vpc id信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VpcId: String
         # @param Region: 地域信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Region: String
         # @param SubnetIds: 子网信息
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -3800,16 +3760,12 @@ module TencentCloud
       # DescribeCloudBaseRunResource返回参数结构体
       class DescribeCloudBaseRunResourceResponse < TencentCloud::Common::AbstractModel
         # @param ClusterStatus: 集群状态(creating/succ)
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterStatus: String
         # @param VirtualClusterId: 虚拟集群ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VirtualClusterId: String
         # @param VpcId: vpc id信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VpcId: String
         # @param Region: 地域信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Region: String
         # @param SubnetIds: 子网信息
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -3936,28 +3892,20 @@ module TencentCloud
       # DescribeCloudBaseRunServer返回参数结构体
       class DescribeCloudBaseRunServerResponse < TencentCloud::Common::AbstractModel
         # @param TotalCount: 个数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
         # @param VersionItems: 版本列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VersionItems: Array
         # @param ServerName: 服务名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ServerName: String
         # @param IsPublic: 是否对于外网开放
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsPublic: Boolean
         # @param ImageRepo: 镜像仓库
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ImageRepo: String
         # @param TrafficType: 流量配置的类型（FLOW,URL_PARAMS)
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TrafficType: String
         # @param SourceType: 服务创建类型，默认为空，一键部署为oneclick
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SourceType: String
         # @param Tag: 服务标签, function: 托管函数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tag: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4025,13 +3973,10 @@ module TencentCloud
         # @param VersionName: 版本名称
         # @type VersionName: String
         # @param Remark: 备注
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Remark: String
         # @param DockerfilePath: Dockefile的路径
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DockerfilePath: String
         # @param BuildDir: DockerBuild的目录
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BuildDir: String
         # @param Cpu: 请使用CPUSize
         # @type Cpu: Float
@@ -4046,80 +3991,57 @@ module TencentCloud
         # @param PolicyThreshold: 策略阈值
         # @type PolicyThreshold: Float
         # @param EnvParams: 环境变量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EnvParams: String
         # @param CreatedTime: 创建时间
         # @type CreatedTime: String
         # @param UpdatedTime: 更新时间
         # @type UpdatedTime: String
         # @param VersionIP: 版本的IP
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VersionIP: String
         # @param VersionPort: 版本的端口号
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VersionPort: Integer
         # @param Status: 版本状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: String
         # @param PackageName: 代码包的名字
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PackageName: String
         # @param PackageVersion: 代码版本的名字
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PackageVersion: String
         # @param UploadType: 枚举（package/repository/image)
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UploadType: String
         # @param RepoType: Repo的类型(gitlab/github/coding)
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RepoType: String
         # @param Repo: 地址
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Repo: String
         # @param Branch: 分支
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Branch: String
         # @param ServerName: 服务名字
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ServerName: String
         # @param IsPublic: 是否对于外网开放
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsPublic: Boolean
         # @param VpcId: vpc id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VpcId: String
         # @param SubnetIds: 子网实例id
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubnetIds: Array
         # @param CustomLogs: 日志采集路径
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CustomLogs: String
         # @param ContainerPort: 监听端口
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ContainerPort: Integer
         # @param InitialDelaySeconds: 延迟多长时间开始健康检查（单位s）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InitialDelaySeconds: Integer
         # @param ImageUrl: 镜像地址
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ImageUrl: String
         # @param CpuSize: CPU 大小
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CpuSize: Float
         # @param MemSize: MEM 大小
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MemSize: Float
         # @param HasDockerfile: 是否有Dockerfile：0-default has, 1-has, 2-has not
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HasDockerfile: Integer
         # @param BaseImage: 基础镜像
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BaseImage: String
         # @param EntryPoint: 容器启动入口命令
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EntryPoint: String
         # @param RepoLanguage: 仓库语言
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RepoLanguage: String
         # @param PolicyDetail: 自动扩缩容策略组
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -4128,7 +4050,6 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TkeClusterInfo: :class:`Tencentcloud::Tcb.v20180608.models.TkeClusterInfo`
         # @param TkeWorkloadType: 版本工作负载类型；deployment/deamonset
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TkeWorkloadType: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4261,13 +4182,10 @@ module TencentCloud
         # @param VersionName: 版本名称
         # @type VersionName: String
         # @param Remark: 备注
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Remark: String
         # @param DockerfilePath: Dockefile的路径
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DockerfilePath: String
         # @param BuildDir: DockerBuild的目录
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BuildDir: String
         # @param MinNum: 副本最小值
         # @type MinNum: Integer
@@ -4278,77 +4196,54 @@ module TencentCloud
         # @param PolicyThreshold: 策略阈值
         # @type PolicyThreshold: Float
         # @param EnvParams: 环境变量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EnvParams: String
         # @param CreatedTime: 创建时间
         # @type CreatedTime: String
         # @param UpdatedTime: 更新时间
         # @type UpdatedTime: String
         # @param VersionIP: 版本的IP
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VersionIP: String
         # @param VersionPort: 版本的端口号
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VersionPort: Integer
         # @param Status: 版本状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: String
         # @param PackageName: 代码包的名字
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PackageName: String
         # @param PackageVersion: 代码版本的名字
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PackageVersion: String
         # @param UploadType: 枚举（package/repository/image)
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UploadType: String
         # @param RepoType: Repo的类型(coding/gitlab/github/coding)
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RepoType: String
         # @param Repo: 地址
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Repo: String
         # @param Branch: 分支
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Branch: String
         # @param ServerName: 服务名字
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ServerName: String
         # @param IsPublic: 是否对于外网开放
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsPublic: Boolean
         # @param VpcId: vpc id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VpcId: String
         # @param SubnetIds: 子网实例id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubnetIds: Array
         # @param CustomLogs: 日志采集路径
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CustomLogs: String
         # @param ContainerPort: 监听端口
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ContainerPort: Integer
         # @param InitialDelaySeconds: 延迟多长时间开始健康检查（单位s）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InitialDelaySeconds: Integer
         # @param ImageUrl: 镜像地址
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ImageUrl: String
         # @param CpuSize: CPU 大小
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CpuSize: Float
         # @param MemSize: MEM 大小
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MemSize: Float
         # @param PolicyDetail: 扩缩容策略详情
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PolicyDetail: Array
         # @param Cpu: Cpu的Request值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Cpu: Float
         # @param Mem: Mem的Request值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Mem: Float
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4503,7 +4398,6 @@ module TencentCloud
       # DescribeCloudBaseRunVersionSnapshot返回参数结构体
       class DescribeCloudBaseRunVersionSnapshotResponse < TencentCloud::Common::AbstractModel
         # @param Snapshots: 版本历史
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Snapshots: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6725,7 +6619,6 @@ module TencentCloud
       # EstablishCloudBaseRunServer返回参数结构体
       class EstablishCloudBaseRunServerResponse < TencentCloud::Common::AbstractModel
         # @param Result: 创建服务是否成功
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6915,10 +6808,8 @@ module TencentCloud
         # 失败：fail
         # 部分：partial（部分成功、部分失败）
         # 注意：此字段可能返回 null，表示取不到有效值。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: String
         # @param FailServerList: 冻结失败服务列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FailServerList: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
@@ -7366,7 +7257,6 @@ module TencentCloud
       # ModifyCloudBaseRunServerFlowConf返回参数结构体
       class ModifyCloudBaseRunServerFlowConfResponse < TencentCloud::Common::AbstractModel
         # @param Result: 返回结果，succ代表成功
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -7447,7 +7337,6 @@ module TencentCloud
       # ModifyCloudBaseRunServerVersion返回参数结构体
       class ModifyCloudBaseRunServerVersionResponse < TencentCloud::Common::AbstractModel
         # @param Result: 返回结果（succ为成功）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -8192,10 +8081,8 @@ module TencentCloud
         # @param Result: succ为成功
         # @type Result: String
         # @param VersionName: 滚动更新的VersionName
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VersionName: String
         # @param RunId: 操作记录id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RunId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -8654,10 +8541,8 @@ module TencentCloud
         # 失败：fail
         # 部分：partial（部分成功、部分失败）
         # 注意：此字段可能返回 null，表示取不到有效值。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: String
         # @param FailServerList: 解冻失败列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FailServerList: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。

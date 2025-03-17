@@ -466,7 +466,7 @@ module TencentCloud
         # @type NeedCreateReview: Boolean
         # @param Components: 填写控件：文件发起使用
         # @type Components: Array
-        # @param FlowDisplayType: 在短信通知、填写、签署流程中，若标题、按钮、合同详情等地方存在“合同”字样时，可根据此配置指定文案，可选文案如下：  <ul><li> <b>0</b> :合同（默认值）</li> <li> <b>1</b> :文件</li> <li> <b>2</b> :协议</li></ul>效果如下:![FlowDisplayType](https://qcloudimg.tencent-cloud.cn/raw/e4a2c4d638717cc901d3dbd5137c9bbc.png)
+        # @param FlowDisplayType: 在短信通知、填写、签署流程中，若标题、按钮、合同详情等地方存在“合同”字样时，可根据此配置指定文案，可选文案如下：  <ul><li> <b>0</b> :合同（默认值）</li> <li> <b>1</b> :文件</li> <li> <b>2</b> :协议</li><li> <b>3</b> :文书</li></ul>效果如下:![FlowDisplayType](https://qcloudimg.tencent-cloud.cn/raw/e4a2c4d638717cc901d3dbd5137c9bbc.png)
         # @type FlowDisplayType: Integer
 
         attr_accessor :FlowName, :Deadline, :FlowType, :FlowDescription, :Unordered, :IntelligentStatus, :FormFields, :NeedSignReview, :UserData, :CcInfos, :NeedCreateReview, :Components, :FlowDisplayType
@@ -2734,8 +2734,12 @@ module TencentCloud
         # @type Organization: :class:`Tencentcloud::Essbasic.v20210526.models.OrganizationInfo`
         # @param Operator: 操作人（用户）信息，不用传
         # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
+        # @param SignComponentConfig: 签署控件的配置信息，用在嵌入式发起的页面配置，包括
 
-        attr_accessor :ResourceType, :FlowInfo, :Agent, :ResourceId, :FlowOption, :FlowApproverList, :FlowId, :NeedPreview, :Organization, :Operator
+        # - 签署控件 是否默认展示日期.
+        # @type SignComponentConfig: :class:`Tencentcloud::Essbasic.v20210526.models.SignComponentConfig`
+
+        attr_accessor :ResourceType, :FlowInfo, :Agent, :ResourceId, :FlowOption, :FlowApproverList, :FlowId, :NeedPreview, :Organization, :Operator, :SignComponentConfig
         extend Gem::Deprecate
         deprecate :NeedPreview, :none, 2025, 3
         deprecate :NeedPreview=, :none, 2025, 3
@@ -2744,7 +2748,7 @@ module TencentCloud
         deprecate :Operator, :none, 2025, 3
         deprecate :Operator=, :none, 2025, 3
 
-        def initialize(resourcetype=nil, flowinfo=nil, agent=nil, resourceid=nil, flowoption=nil, flowapproverlist=nil, flowid=nil, needpreview=nil, organization=nil, operator=nil)
+        def initialize(resourcetype=nil, flowinfo=nil, agent=nil, resourceid=nil, flowoption=nil, flowapproverlist=nil, flowid=nil, needpreview=nil, organization=nil, operator=nil, signcomponentconfig=nil)
           @ResourceType = resourcetype
           @FlowInfo = flowinfo
           @Agent = agent
@@ -2755,6 +2759,7 @@ module TencentCloud
           @NeedPreview = needpreview
           @Organization = organization
           @Operator = operator
+          @SignComponentConfig = signcomponentconfig
         end
 
         def deserialize(params)
@@ -2789,6 +2794,10 @@ module TencentCloud
           unless params['Operator'].nil?
             @Operator = UserInfo.new
             @Operator.deserialize(params['Operator'])
+          end
+          unless params['SignComponentConfig'].nil?
+            @SignComponentConfig = SignComponentConfig.new
+            @SignComponentConfig.deserialize(params['SignComponentConfig'])
           end
         end
       end
@@ -9234,7 +9243,7 @@ module TencentCloud
         # @type CustomShowMap: String
         # @param NeedSignReview: 本企业(发起方企业)是否需要签署审批
         # @type NeedSignReview: Boolean
-        # @param FlowDisplayType: 在短信通知、填写、签署流程中，若标题、按钮、合同详情等地方存在“合同”字样时，可根据此配置指定文案，可选文案如下：  <ul><li> <b>0</b> :合同（默认值）</li> <li> <b>1</b> :文件</li> <li> <b>2</b> :协议</li></ul>效果如下:![FlowDisplayType](https://qcloudimg.tencent-cloud.cn/raw/e4a2c4d638717cc901d3dbd5137c9bbc.png)
+        # @param FlowDisplayType: 在短信通知、填写、签署流程中，若标题、按钮、合同详情等地方存在“合同”字样时，可根据此配置指定文案，可选文案如下：  <ul><li> <b>0</b> :合同（默认值）</li> <li> <b>1</b> :文件</li> <li> <b>2</b> :协议</li><li> <b>3</b> :文书</li></ul>效果如下:![FlowDisplayType](https://qcloudimg.tencent-cloud.cn/raw/e4a2c4d638717cc901d3dbd5137c9bbc.png)
         # @type FlowDisplayType: Integer
 
         attr_accessor :FileIds, :FlowName, :FlowApprovers, :Deadline, :FlowDescription, :FlowType, :CallbackUrl, :CustomerData, :Unordered, :Components, :CustomShowMap, :NeedSignReview, :FlowDisplayType
@@ -9499,7 +9508,7 @@ module TencentCloud
         # <ul><li> **E_PRESCRIPTION_AUTO_SIGN**：电子处方单（医疗自动签）  </li><li> **OTHER** :  通用场景</li></ul>
         # 注: `个人自动签名场景是白名单功能，使用前请与对接的客户经理联系沟通。`
         # @type AutoSignScene: String
-        # @param FlowDisplayType: 在短信通知、填写、签署流程中，若标题、按钮、合同详情等地方存在“合同”字样时，可根据此配置指定文案，可选文案如下：  <ul><li> <b>0</b> :合同（默认值）</li> <li> <b>1</b> :文件</li> <li> <b>2</b> :协议</li></ul>效果如下:![FlowDisplayType](https://qcloudimg.tencent-cloud.cn/raw/e4a2c4d638717cc901d3dbd5137c9bbc.png)
+        # @param FlowDisplayType: 在短信通知、填写、签署流程中，若标题、按钮、合同详情等地方存在“合同”字样时，可根据此配置指定文案，可选文案如下：  <ul><li> <b>0</b> :合同（默认值）</li> <li> <b>1</b> :文件</li> <li> <b>2</b> :协议</li><li> <b>3</b> :文书</li></ul>效果如下:![FlowDisplayType](https://qcloudimg.tencent-cloud.cn/raw/e4a2c4d638717cc901d3dbd5137c9bbc.png)
         # @type FlowDisplayType: Integer
 
         attr_accessor :FlowName, :Deadline, :TemplateId, :FlowApprovers, :FormFields, :CallbackUrl, :FlowType, :FlowDescription, :CustomerData, :CustomShowMap, :CcInfos, :NeedSignReview, :CcNotifyType, :AutoSignScene, :FlowDisplayType
@@ -11349,6 +11358,28 @@ module TencentCloud
           @Url = params['Url']
           @Name = params['Name']
           @Type = params['Type']
+        end
+      end
+
+      # 签署控件的配置信息，用在嵌入式发起的页面配置，包括
+
+      # - 签署控件 是否默认展示日期.
+      class SignComponentConfig < TencentCloud::Common::AbstractModel
+        # @param HideDate: 签署控件默认属性配置，是否默认展示签署日期， 在页面中可以进行修改。
+
+        # - false 展示签署日期（默认）
+        # - true 不展示签署日期
+        # ![image](https://qcloudimg.tencent-cloud.cn/raw/448514412e2f69f6129425beda4ff568.png)。
+        # @type HideDate: Boolean
+
+        attr_accessor :HideDate
+
+        def initialize(hidedate=nil)
+          @HideDate = hidedate
+        end
+
+        def deserialize(params)
+          @HideDate = params['HideDate']
         end
       end
 

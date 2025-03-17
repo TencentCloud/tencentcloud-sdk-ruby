@@ -127,7 +127,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 创建属性
+        # 创建标签
 
         # @param request: Request instance for CreateAttributeLabel.
         # @type request: :class:`Tencentcloud::lke::V20231130::CreateAttributeLabelRequest`

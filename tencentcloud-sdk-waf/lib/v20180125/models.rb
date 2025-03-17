@@ -2735,6 +2735,46 @@ module TencentCloud
         end
       end
 
+      # CreatePostCLSFlow请求参数结构体
+      class CreatePostCLSFlowRequest < TencentCloud::Common::AbstractModel
+        # @param CLSRegion: 投递的CLS所在区域，默认为ap-shanghai
+        # @type CLSRegion: String
+        # @param LogsetName: 投递的CLS所在日志集合名称，默认为 waf_post_logset
+        # @type LogsetName: String
+        # @param LogType: 1-访问日志，2-攻击日志，默认为访问日志。
+        # @type LogType: Integer
+
+        attr_accessor :CLSRegion, :LogsetName, :LogType
+
+        def initialize(clsregion=nil, logsetname=nil, logtype=nil)
+          @CLSRegion = clsregion
+          @LogsetName = logsetname
+          @LogType = logtype
+        end
+
+        def deserialize(params)
+          @CLSRegion = params['CLSRegion']
+          @LogsetName = params['LogsetName']
+          @LogType = params['LogType']
+        end
+      end
+
+      # CreatePostCLSFlow返回参数结构体
+      class CreatePostCLSFlowResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 规则周期执行的数据结构
       class CronJob < TencentCloud::Common::AbstractModel
         # @param Days: 每个月的几号执行
@@ -6449,6 +6489,49 @@ module TencentCloud
         end
       end
 
+      # DescribePostCLSFlows请求参数结构体
+      class DescribePostCLSFlowsRequest < TencentCloud::Common::AbstractModel
+        # @param LogType: 1-访问日志，2-攻击日志，默认为访问日志。
+        # @type LogType: Integer
+
+        attr_accessor :LogType
+
+        def initialize(logtype=nil)
+          @LogType = logtype
+        end
+
+        def deserialize(params)
+          @LogType = params['LogType']
+        end
+      end
+
+      # DescribePostCLSFlows返回参数结构体
+      class DescribePostCLSFlowsResponse < TencentCloud::Common::AbstractModel
+        # @param PostCLSFlows: 客户的投递流列表
+        # @type PostCLSFlows: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :PostCLSFlows, :RequestId
+
+        def initialize(postclsflows=nil, requestid=nil)
+          @PostCLSFlows = postclsflows
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['PostCLSFlows'].nil?
+            @PostCLSFlows = []
+            params['PostCLSFlows'].each do |i|
+              postclsflowinfo_tmp = PostCLSFlowInfo.new
+              postclsflowinfo_tmp.deserialize(i)
+              @PostCLSFlows << postclsflowinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeProtectionModes请求参数结构体
       class DescribeProtectionModesRequest < TencentCloud::Common::AbstractModel
         # @param Edition: sparta-waf或clb
@@ -7485,6 +7568,42 @@ module TencentCloud
         def deserialize(params)
           @Domain = params['Domain']
           @Status = params['Status']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DestroyPostCLSFlow请求参数结构体
+      class DestroyPostCLSFlowRequest < TencentCloud::Common::AbstractModel
+        # @param FlowId: 投递流的流ID
+        # @type FlowId: Integer
+        # @param LogType: 1-访问日志，2-攻击日志，默认为访问日志。
+        # @type LogType: Integer
+
+        attr_accessor :FlowId, :LogType
+
+        def initialize(flowid=nil, logtype=nil)
+          @FlowId = flowid
+          @LogType = logtype
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+          @LogType = params['LogType']
+        end
+      end
+
+      # DestroyPostCLSFlow返回参数结构体
+      class DestroyPostCLSFlowResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
@@ -12518,6 +12637,50 @@ module TencentCloud
         def deserialize(params)
           @Flow = params['Flow']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # CKafka投递流
+      class PostCLSFlowInfo < TencentCloud::Common::AbstractModel
+        # @param FlowId: 投递流唯一ID
+        # @type FlowId: Integer
+        # @param LogType: 1-访问日志 2-攻击日志
+        # @type LogType: Integer
+        # @param Status: 状态 0-为关闭 1-为启用
+        # @type Status: Integer
+        # @param CLSRegion: CLS所在区域
+        # @type CLSRegion: String
+        # @param LogsetName: CLS日志集合名称
+        # @type LogsetName: String
+        # @param LogsetID: CLS日志集合ID
+        # @type LogsetID: String
+        # @param LogTopicName: CLS日志主题名称
+        # @type LogTopicName: String
+        # @param LogTopicID: CLS日志集合ID
+        # @type LogTopicID: String
+
+        attr_accessor :FlowId, :LogType, :Status, :CLSRegion, :LogsetName, :LogsetID, :LogTopicName, :LogTopicID
+
+        def initialize(flowid=nil, logtype=nil, status=nil, clsregion=nil, logsetname=nil, logsetid=nil, logtopicname=nil, logtopicid=nil)
+          @FlowId = flowid
+          @LogType = logtype
+          @Status = status
+          @CLSRegion = clsregion
+          @LogsetName = logsetname
+          @LogsetID = logsetid
+          @LogTopicName = logtopicname
+          @LogTopicID = logtopicid
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+          @LogType = params['LogType']
+          @Status = params['Status']
+          @CLSRegion = params['CLSRegion']
+          @LogsetName = params['LogsetName']
+          @LogsetID = params['LogsetID']
+          @LogTopicName = params['LogTopicName']
+          @LogTopicID = params['LogTopicID']
         end
       end
 

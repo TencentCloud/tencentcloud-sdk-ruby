@@ -4649,6 +4649,50 @@ module TencentCloud
         end
       end
 
+      # ResetConsumerGroupOffset请求参数结构体
+      class ResetConsumerGroupOffsetRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 集群ID
+        # @type InstanceId: String
+        # @param Topic: 主题名称
+        # @type Topic: String
+        # @param ResetTimestamp: 重置位点时间（单位：毫秒）-1表示重置到最新位点
+        # @type ResetTimestamp: Integer
+        # @param ConsumerGroup: 消费组名称
+        # @type ConsumerGroup: String
+
+        attr_accessor :InstanceId, :Topic, :ResetTimestamp, :ConsumerGroup
+
+        def initialize(instanceid=nil, topic=nil, resettimestamp=nil, consumergroup=nil)
+          @InstanceId = instanceid
+          @Topic = topic
+          @ResetTimestamp = resettimestamp
+          @ConsumerGroup = consumergroup
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Topic = params['Topic']
+          @ResetTimestamp = params['ResetTimestamp']
+          @ConsumerGroup = params['ConsumerGroup']
+        end
+      end
+
+      # ResetConsumerGroupOffset返回参数结构体
+      class ResetConsumerGroupOffsetResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 角色信息
       class RoleItem < TencentCloud::Common::AbstractModel
         # @param RoleName: 角色名称

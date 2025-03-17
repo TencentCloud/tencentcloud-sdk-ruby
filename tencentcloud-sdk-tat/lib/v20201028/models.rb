@@ -1228,7 +1228,6 @@ module TencentCloud
         # @param TotalCount: 查询到的注册码总数。
         # @type TotalCount: Integer
         # @param RegisterCodeSet: 注册码信息列表。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RegisterCodeSet: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1741,6 +1740,9 @@ module TencentCloud
         # @param ErrorInfo: 执行任务失败时的错误信息。
         # @type ErrorInfo: String
         # @param InvocationSource: 调用来源。
+
+        # - USER：来源于用户调用。
+        # - INVOKER：来源于定时执行。
         # @type InvocationSource: String
 
         attr_accessor :InvocationId, :InvocationTaskId, :CommandId, :TaskStatus, :InstanceId, :TaskResult, :StartTime, :EndTime, :CreatedTime, :UpdatedTime, :CommandDocument, :ErrorInfo, :InvocationSource
@@ -1919,7 +1921,6 @@ module TencentCloud
         # @param Enable: 执行器是否启用。
         # @type Enable: Boolean
         # @param ScheduleSettings: 执行器周期计划。周期执行器会返回此字段。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScheduleSettings: :class:`Tencentcloud::Tat.v20201028.models.ScheduleSettings`
         # @param CreatedTime: 创建时间。格式为：YYYY-MM-DDThh:mm:ssZ
         # @type CreatedTime: String
@@ -2349,9 +2350,9 @@ module TencentCloud
       class RegisterInstanceInfo < TencentCloud::Common::AbstractModel
         # @param RegisterCodeId: 注册码ID。
         # @type RegisterCodeId: String
-        # @param InstanceId: 实例ID。
+        # @param InstanceId: 托管实例ID。
         # @type InstanceId: String
-        # @param InstanceName: 实例名。
+        # @param InstanceName: 托管实例名。
         # @type InstanceName: String
         # @param MachineId: 机器ID。
         # @type MachineId: String

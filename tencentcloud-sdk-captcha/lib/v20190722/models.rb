@@ -835,7 +835,6 @@ module TencentCloud
         # 100   param err     参数校验错误
         # @type CaptchaCode: Integer
         # @param CaptchaMsg: 状态描述及验证错误信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CaptchaMsg: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -926,10 +925,8 @@ module TencentCloud
         # @type CaptchaCode: Integer
         # @param CaptchaMsg: 状态描述及验证错误信息
         # 注意：此字段可能返回 null，表示取不到有效值。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CaptchaMsg: String
         # @param ManageMarketingRiskValue: 拦截策略返回信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ManageMarketingRiskValue: :class:`Tencentcloud::Captcha.v20190722.models.OutputManageMarketingRiskValue`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
@@ -1618,26 +1615,19 @@ module TencentCloud
         # AccountType 是 0 时，对应账号信息。
         # AccountType 是 10004 时，对应手机号的 MD5。
         # 注意：此字段可能返回 null，表示取不到有效值。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UserId: String
         # @param PostTime: 操作时间戳，单位秒（对应输入参数）。
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PostTime: Integer
         # @param AssociateAccount: 对应输入参数，AccountType 是 QQ 或微信开放账号时，用于标识 QQ 或微信用户登录 后关联业务自身的账号 ID。
         # 注意：此字段可能返回 null，表示取不到有效值。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AssociateAccount: String
-        # @param UserIp: 业务详情。 注意：此字段可能返回 null，表示取不到有效值。
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param UserIp: 业务详情
         # @type UserIp: String
         # @param RiskLevel: 风险值 pass : 无恶意
         # review：需要人工审核
         # reject：拒绝，高风险恶意
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RiskLevel: String
-        # @param RiskType: 风险类型，请查看下面详细说明 注意：此字段可能返回 null，表示取不到有效值。
+        # @param RiskType: 风险类型，请查看下面详细说明
         # 账号风险
         #         账号信用低	1	账号近期存在因恶意被处罚历史，网络低活跃，被举报等因素
         # 	疑似 低活跃账号	11	账号活跃度与正常用户有差异

@@ -299,6 +299,22 @@ module TencentCloud
         end
       end
 
+      # 属性信息
+      class Attribute < TencentCloud::Common::AbstractModel
+        # @param UserData: 实例的自定义数据。
+        # @type UserData: String
+
+        attr_accessor :UserData
+
+        def initialize(userdata=nil)
+          @UserData = userdata
+        end
+
+        def deserialize(params)
+          @UserData = params['UserData']
+        end
+      end
+
       # 描述预付费模式，即包年包月相关参数。包括购买时长和自动续费逻辑等。
       class ChargePrepaid < TencentCloud::Common::AbstractModel
         # @param Period: 购买实例的时长，单位：月。取值范围：1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 24, 36。
@@ -2687,6 +2703,54 @@ module TencentCloud
         end
       end
 
+      # DescribeInstancesAttributes请求参数结构体
+      class DescribeInstancesAttributesRequest < TencentCloud::Common::AbstractModel
+        # @param Attributes: 需要获取的实例属性。可选值：
+        # UserData: 实例自定义数据
+        # @type Attributes: Array
+        # @param InstanceIds: 实例ID列表
+        # @type InstanceIds: Array
+
+        attr_accessor :Attributes, :InstanceIds
+
+        def initialize(attributes=nil, instanceids=nil)
+          @Attributes = attributes
+          @InstanceIds = instanceids
+        end
+
+        def deserialize(params)
+          @Attributes = params['Attributes']
+          @InstanceIds = params['InstanceIds']
+        end
+      end
+
+      # DescribeInstancesAttributes返回参数结构体
+      class DescribeInstancesAttributesResponse < TencentCloud::Common::AbstractModel
+        # @param InstanceSet: 指定的实例属性列表
+        # @type InstanceSet: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :InstanceSet, :RequestId
+
+        def initialize(instanceset=nil, requestid=nil)
+          @InstanceSet = instanceset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['InstanceSet'].nil?
+            @InstanceSet = []
+            params['InstanceSet'].each do |i|
+              instanceattribute_tmp = InstanceAttribute.new
+              instanceattribute_tmp.deserialize(i)
+              @InstanceSet << instanceattribute_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeInstancesModification请求参数结构体
       class DescribeInstancesModificationRequest < TencentCloud::Common::AbstractModel
         # @param InstanceIds: 一个或多个待查询的实例ID。可通过 [DescribeInstances](https://cloud.tencent.com/document/api/213/15728) 接口返回值中的`InstanceId`获取。每次请求批量实例的上限为20。
@@ -3475,7 +3539,6 @@ module TencentCloud
         # @param TotalCount: 查询返回的维修任务总数量。
         # @type TotalCount: Integer
         # @param RepairTaskInfoSet: 查询返回的维修任务列表。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RepairTaskInfoSet: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3807,16 +3870,22 @@ module TencentCloud
         # @type Password: String
         # @param Username: 救援模式下系统用户名
         # @type Username: String
-        # @param ForceStop: 是否强制关机
+        # @param ForceStop: 是否强制关机。本参数已弃用，推荐使用StopType，不可以与参数StopType同时使用。
         # @type ForceStop: Boolean
+        # @param StopType: 实例的关闭模式。取值范围：<br><li>SOFT_FIRST：表示在正常关闭失败后进行强制关闭</li><br><li>HARD：直接强制关闭</li><br><li>SOFT：仅软关机</li><br>默认取值：SOFT。
+        # @type StopType: String
 
-        attr_accessor :InstanceId, :Password, :Username, :ForceStop
+        attr_accessor :InstanceId, :Password, :Username, :ForceStop, :StopType
+        extend Gem::Deprecate
+        deprecate :ForceStop, :none, 2025, 3
+        deprecate :ForceStop=, :none, 2025, 3
 
-        def initialize(instanceid=nil, password=nil, username=nil, forcestop=nil)
+        def initialize(instanceid=nil, password=nil, username=nil, forcestop=nil, stoptype=nil)
           @InstanceId = instanceid
           @Password = password
           @Username = username
           @ForceStop = forcestop
+          @StopType = stoptype
         end
 
         def deserialize(params)
@@ -3824,6 +3893,7 @@ module TencentCloud
           @Password = params['Password']
           @Username = params['Username']
           @ForceStop = params['ForceStop']
+          @StopType = params['StopType']
         end
       end
 
@@ -5459,6 +5529,29 @@ module TencentCloud
           @DefaultLoginUser = params['DefaultLoginUser']
           @DefaultLoginPort = params['DefaultLoginPort']
           @LatestOperationErrorMsg = params['LatestOperationErrorMsg']
+        end
+      end
+
+      # 实例属性
+      class InstanceAttribute < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例 ID。
+        # @type InstanceId: String
+        # @param Attributes: 实例属性信息。
+        # @type Attributes: :class:`Tencentcloud::Cvm.v20170312.models.Attribute`
+
+        attr_accessor :InstanceId, :Attributes
+
+        def initialize(instanceid=nil, attributes=nil)
+          @InstanceId = instanceid
+          @Attributes = attributes
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          unless params['Attributes'].nil?
+            @Attributes = Attribute.new
+            @Attributes.deserialize(params['Attributes'])
+          end
         end
       end
 

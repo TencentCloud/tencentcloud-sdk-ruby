@@ -1427,6 +1427,26 @@ module TencentCloud
         end
       end
 
+      # 图片信息
+      class Image < TencentCloud::Common::AbstractModel
+        # @param ImageUrl: 图片Url。
+        # @type ImageUrl: String
+        # @param ImageBase64: 图片Base64。
+        # @type ImageBase64: String
+
+        attr_accessor :ImageUrl, :ImageBase64
+
+        def initialize(imageurl=nil, imagebase64=nil)
+          @ImageUrl = imageurl
+          @ImageBase64 = imagebase64
+        end
+
+        def deserialize(params)
+          @ImageUrl = params['ImageUrl']
+          @ImageBase64 = params['ImageBase64']
+        end
+      end
+
       # 具体的图片内容
       class ImageUrl < TencentCloud::Common::AbstractModel
         # @param Url: 图片的 Url（以 http:// 或 https:// 开头）
@@ -2215,23 +2235,29 @@ module TencentCloud
         # @type Style: String
         # @param Resolution: 生成图分辨率。
         # 支持生成以下分辨率的图片：768:768（1:1）、768:1024（3:4）、1024:768（4:3）、1024:1024（1:1）、720:1280（9:16）、1280:720（16:9）、768:1280（3:5）、1280:768（5:3），不传默认使用1024:1024。
+        # 如果上传 ContentImage 参考图，分辨率仅支持：768:768（1:1）、768:1024（3:4）、1024:768（4:3）、1024:1024（1:1），不传将自动适配分辨率。如果参考图被用于做风格转换，将生成保持原图长宽比例且长边为1024的图片，指定的分辨率不生效。
         # @type Resolution: String
         # @param Num: 图片生成数量。
         # 支持1 ~ 4张，默认生成1张。
         # @type Num: Integer
-        # @param Seed: 随机种子，默认随机。
-        # 不传：随机种子生成。
-        # 正数：固定种子生成。
-        # @type Seed: Integer
         # @param Clarity: 超分选项，默认不做超分，可选开启。
         #  x2：2倍超分
         #  x4：4倍超分
+        # 在 Resolution 的基础上按比例提高分辨率，例如1024:1024开启2倍超分后将得到2048:2048。
         # @type Clarity: String
+        # @param ContentImage: 用于引导内容的参考图。
+        # 图片限制：单边分辨率小于5000，转成 Base64 字符串后小于 8MB，格式支持 jpg、jpeg、png、bmp、tiff、webp。
+        # @type ContentImage: :class:`Tencentcloud::Hunyuan.v20230901.models.Image`
         # @param Revise: prompt 扩写开关。1为开启，0为关闭，不传默认开启。
         # 开启扩写后，将自动扩写原始输入的 prompt 并使用扩写后的 prompt 生成图片，返回生成图片结果时将一并返回扩写后的 prompt 文本。
-        # 如果关闭扩写，将直接使用原始输入的 prompt 生成图片。
+        # 如果关闭扩写，将直接使用原始输入的 prompt 生成图片。如果上传了参考图，扩写关闭不生效，将保持开启。
         # 建议开启，在多数场景下可提升生成图片效果、丰富生成图片细节。
         # @type Revise: Integer
+        # @param Seed: 随机种子，默认随机。
+        # 不传：随机种子生成。
+        # 正数：固定种子生成。
+        # 扩写开启时固定种子不生效，将保持随机。
+        # @type Seed: Integer
         # @param LogoAdd: 为生成结果图添加显式水印标识的开关，默认为1。
         # 1：添加。
         # 0：不添加。
@@ -2242,17 +2268,18 @@ module TencentCloud
         # 默认在生成结果图右下角添加“图片由 AI 生成”字样，您可根据自身需要替换为其他的标识图片。
         # @type LogoParam: :class:`Tencentcloud::Hunyuan.v20230901.models.LogoParam`
 
-        attr_accessor :Prompt, :NegativePrompt, :Style, :Resolution, :Num, :Seed, :Clarity, :Revise, :LogoAdd, :LogoParam
+        attr_accessor :Prompt, :NegativePrompt, :Style, :Resolution, :Num, :Clarity, :ContentImage, :Revise, :Seed, :LogoAdd, :LogoParam
 
-        def initialize(prompt=nil, negativeprompt=nil, style=nil, resolution=nil, num=nil, seed=nil, clarity=nil, revise=nil, logoadd=nil, logoparam=nil)
+        def initialize(prompt=nil, negativeprompt=nil, style=nil, resolution=nil, num=nil, clarity=nil, contentimage=nil, revise=nil, seed=nil, logoadd=nil, logoparam=nil)
           @Prompt = prompt
           @NegativePrompt = negativeprompt
           @Style = style
           @Resolution = resolution
           @Num = num
-          @Seed = seed
           @Clarity = clarity
+          @ContentImage = contentimage
           @Revise = revise
+          @Seed = seed
           @LogoAdd = logoadd
           @LogoParam = logoparam
         end
@@ -2263,9 +2290,13 @@ module TencentCloud
           @Style = params['Style']
           @Resolution = params['Resolution']
           @Num = params['Num']
-          @Seed = params['Seed']
           @Clarity = params['Clarity']
+          unless params['ContentImage'].nil?
+            @ContentImage = Image.new
+            @ContentImage.deserialize(params['ContentImage'])
+          end
           @Revise = params['Revise']
+          @Seed = params['Seed']
           @LogoAdd = params['LogoAdd']
           unless params['LogoParam'].nil?
             @LogoParam = LogoParam.new

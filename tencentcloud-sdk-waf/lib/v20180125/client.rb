@@ -365,6 +365,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建CLS投递流任务
+
+        # @param request: Request instance for CreatePostCLSFlow.
+        # @type request: :class:`Tencentcloud::waf::V20180125::CreatePostCLSFlowRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::CreatePostCLSFlowResponse`
+        def CreatePostCLSFlow(request)
+          body = send_request('CreatePostCLSFlow', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreatePostCLSFlowResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口用于删除访问日志导出
 
         # @param request: Request instance for DeleteAccessExport.
@@ -1781,6 +1805,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取CLS投递流任务列表
+
+        # @param request: Request instance for DescribePostCLSFlows.
+        # @type request: :class:`Tencentcloud::waf::V20180125::DescribePostCLSFlowsRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::DescribePostCLSFlowsResponse`
+        def DescribePostCLSFlows(request)
+          body = send_request('DescribePostCLSFlows', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribePostCLSFlowsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询Tiga引擎大类规则及其防护模式
 
         # @param request: Request instance for DescribeProtectionModes.
@@ -2225,6 +2273,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeWebshellStatusResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 销毁CLS投递流任务
+
+        # @param request: Request instance for DestroyPostCLSFlow.
+        # @type request: :class:`Tencentcloud::waf::V20180125::DestroyPostCLSFlowRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::DestroyPostCLSFlowResponse`
+        def DestroyPostCLSFlow(request)
+          body = send_request('DestroyPostCLSFlow', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DestroyPostCLSFlowResponse.new
             model.deserialize(response['Response'])
             model
           else

@@ -133,7 +133,6 @@ module TencentCloud
       # CreateDedicatedClusterOrder返回参数结构体
       class CreateDedicatedClusterOrderResponse < TencentCloud::Common::AbstractModel
         # @param DedicatedClusterOrderId: 专用集群订单id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DedicatedClusterOrderId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1001,7 +1000,6 @@ module TencentCloud
       # DescribeDedicatedClusterHosts返回参数结构体
       class DescribeDedicatedClusterHostsResponse < TencentCloud::Common::AbstractModel
         # @param HostInfoSet: 宿主机信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HostInfoSet: Array
         # @param TotalCount: 宿主机总数
         # @type TotalCount: Integer
@@ -1167,16 +1165,12 @@ module TencentCloud
         # @param HostCount: 宿主机数量
         # @type HostCount: Integer
         # @param VpnConnectionState: vpn通道状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VpnConnectionState: String
         # @param VpngwBandwidthData: vpn网关监控数据
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VpngwBandwidthData: :class:`Tencentcloud::Cdc.v20201214.models.VpngwBandwidthData`
         # @param LocalNetInfo: 本地网关信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LocalNetInfo: :class:`Tencentcloud::Cdc.v20201214.models.LocalNetInfo`
         # @param VpnConnectionBandwidthData: vpn网关通道监控数据
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VpnConnectionBandwidthData: Array
         # @param HostDetailInfo: 宿主机资源概览信息
         # @type HostDetailInfo: Array

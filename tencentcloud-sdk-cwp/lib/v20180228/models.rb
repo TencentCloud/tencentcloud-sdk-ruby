@@ -1265,7 +1265,7 @@ module TencentCloud
         # @type CpuSize: Integer
         # @param CpuLoad: Cpu负载
         # @type CpuLoad: String
-        # @param ProtectLevel: 防护级别：0基础版，1专业版，2旗舰版，3普惠版
+        # @param ProtectLevel: 防护级别：0基础版，1专业版，2旗舰版，3轻量版
         # @type ProtectLevel: Integer
         # @param RiskStatus: 风险状态：UNKNOW-未知，RISK-风险，SAFT-安全
         # @type RiskStatus: String
@@ -5970,7 +5970,7 @@ module TencentCloud
         # @type IncludeDir: String
         # @param ExcludeDir: 排除目录，;分隔
         # @type ExcludeDir: String
-        # @param BackupType: 备份模式： 0按周，1按天
+        # @param BackupType: 备份模式： 0按周，1按天，2不备份
         # @type BackupType: Integer
         # @param Weekday: 定时任务执行星期天数（1-7）：1;2;7
         # @type Weekday: String
@@ -19549,15 +19549,21 @@ module TencentCloud
         # @type Order: String
         # @param By: 排序字段支持CreateTime
         # @type By: String
+        # @param CreateBeginTime: 事件创建起始时间
+        # @type CreateBeginTime: String
+        # @param CreateEndTime: 事件创建结束时间
+        # @type CreateEndTime: String
 
-        attr_accessor :Limit, :Offset, :Filters, :Order, :By
+        attr_accessor :Limit, :Offset, :Filters, :Order, :By, :CreateBeginTime, :CreateEndTime
 
-        def initialize(limit=nil, offset=nil, filters=nil, order=nil, by=nil)
+        def initialize(limit=nil, offset=nil, filters=nil, order=nil, by=nil, createbegintime=nil, createendtime=nil)
           @Limit = limit
           @Offset = offset
           @Filters = filters
           @Order = order
           @By = by
+          @CreateBeginTime = createbegintime
+          @CreateEndTime = createendtime
         end
 
         def deserialize(params)
@@ -19573,6 +19579,8 @@ module TencentCloud
           end
           @Order = params['Order']
           @By = params['By']
+          @CreateBeginTime = params['CreateBeginTime']
+          @CreateEndTime = params['CreateEndTime']
         end
       end
 
@@ -30124,10 +30132,12 @@ module TencentCloud
         # @type CloudTags: Array
         # @param InstanceID: 主机instance ID
         # @type InstanceID: String
+        # @param MachineType: 主机类型
+        # @type MachineType: String
 
-        attr_accessor :Quuid, :TagList, :HostIp, :AliasName, :MachineWanIp, :Uuid, :KernelVersion, :MachineStatus, :ProtectType, :VulNum, :CloudTags, :InstanceID
+        attr_accessor :Quuid, :TagList, :HostIp, :AliasName, :MachineWanIp, :Uuid, :KernelVersion, :MachineStatus, :ProtectType, :VulNum, :CloudTags, :InstanceID, :MachineType
 
-        def initialize(quuid=nil, taglist=nil, hostip=nil, aliasname=nil, machinewanip=nil, uuid=nil, kernelversion=nil, machinestatus=nil, protecttype=nil, vulnum=nil, cloudtags=nil, instanceid=nil)
+        def initialize(quuid=nil, taglist=nil, hostip=nil, aliasname=nil, machinewanip=nil, uuid=nil, kernelversion=nil, machinestatus=nil, protecttype=nil, vulnum=nil, cloudtags=nil, instanceid=nil, machinetype=nil)
           @Quuid = quuid
           @TagList = taglist
           @HostIp = hostip
@@ -30140,6 +30150,7 @@ module TencentCloud
           @VulNum = vulnum
           @CloudTags = cloudtags
           @InstanceID = instanceid
+          @MachineType = machinetype
         end
 
         def deserialize(params)
@@ -30162,6 +30173,7 @@ module TencentCloud
             end
           end
           @InstanceID = params['InstanceID']
+          @MachineType = params['MachineType']
         end
       end
 
@@ -31185,7 +31197,7 @@ module TencentCloud
         # @type MachineType: String
         # @param KernelVersion: 内核版本
         # @type KernelVersion: String
-        # @param ProtectType: 防护版本：BASIC_VERSION 基础版， PRO_VERSION 专业版，Flagship 旗舰版，GENERAL_DISCOUNT 普惠版
+        # @param ProtectType: 防护版本：BASIC_VERSION 基础版， PRO_VERSION 专业版，Flagship 旗舰版，GENERAL_DISCOUNT 轻量版
         # @type ProtectType: String
         # @param CloudTags: 云标签信息
         # @type CloudTags: Array
@@ -31491,7 +31503,7 @@ module TencentCloud
         # @type MachineType: String
         # @param KernelVersion: 内核版本
         # @type KernelVersion: String
-        # @param ProtectType: 防护版本 BASIC_VERSION 基础版， PRO_VERSION 专业版，Flagship 旗舰版，GENERAL_DISCOUNT 普惠版.
+        # @param ProtectType: 防护版本 BASIC_VERSION 基础版， PRO_VERSION 专业版，Flagship 旗舰版，GENERAL_DISCOUNT 轻量版.
         # @type ProtectType: String
         # @param LicenseOrder: 授权订单对象
         # @type LicenseOrder: :class:`Tencentcloud::Cwp.v20180228.models.LicenseOrder`
@@ -34857,7 +34869,7 @@ module TencentCloud
         # @type VulSupportDefense: Integer
         # @param VulDefenceStatus: 是否开启漏洞防御，0关1开
         # @type VulDefenceStatus: Integer
-        # @param PayVersion: 机器付费版本，0 基础版，1专业版，2旗舰版，3普惠版
+        # @param PayVersion: 机器付费版本，0 基础版，1专业版，2旗舰版，3轻量版
         # @type PayVersion: Integer
         # @param Quuid: cvm uuid
         # @type Quuid: String
@@ -34948,7 +34960,7 @@ module TencentCloud
         # @type DstPort: Integer
         # @param Count: 攻击次数
         # @type Count: Integer
-        # @param PayVersion: 机器付费版本，0 基础版，1专业版，2旗舰版，3普惠版
+        # @param PayVersion: 机器付费版本，0 基础版，1专业版，2旗舰版，3轻量版
         # @type PayVersion: Integer
         # @param Quuid: cvm uuid
         # @type Quuid: String
@@ -35947,7 +35959,7 @@ module TencentCloud
         # @type BackupTime: String
         # @param EventStatus: 勒索状态：0无告警, 1有告警
         # @type EventStatus: Integer
-        # @param BackupStatus: 备份状态：0备份中，1正常，2、3失败，4快照已过期，9快照已删除
+        # @param BackupStatus: 备份状态：0备份中，1正常，2、3失败，4快照已过期，5快照数量超出限制，9快照已删除
         # @type BackupStatus: Integer
         # @param DiskCount: 备份磁盘数量
         # @type DiskCount: Integer
@@ -36206,7 +36218,7 @@ module TencentCloud
         # @type IncludeDir: String
         # @param ExcludeDir: 包含目录，用;分隔
         # @type ExcludeDir: String
-        # @param BackupType: 备份模式： 0按周，1按天
+        # @param BackupType: 备份模式： 0按周，1按天，2不备份
         # @type BackupType: Integer
         # @param Weekday: 备份星期天数（1-7）：1;2;3;4
         # @type Weekday: String
@@ -36379,12 +36391,14 @@ module TencentCloud
         # @type RollBackStatus: Integer
         # @param BackupSuccessCount: 备份成功次数
         # @type BackupSuccessCount: Integer
-        # @param HostVersion: 版本信息：0-基础版 1-专业版 2-旗舰版 3-普惠版
+        # @param HostVersion: 版本信息：0-基础版 1-专业版 2-旗舰版 3-轻量版
         # @type HostVersion: Integer
+        # @param MachineType: 机器所属专区类型 CVM 云服务器, BM 黑石, ECM 边缘计算, LH 轻量应用服务器 ,Other 混合云专区
+        # @type MachineType: String
 
-        attr_accessor :Uuid, :Quuid, :MachineName, :InstanceId, :MachineIp, :MachineWanIp, :CloudTags, :RegionInfo, :Tag, :Status, :StrategyId, :DiskInfo, :StrategyName, :BackupCount, :LastBackupStatus, :LastBackupMessage, :LastBackupTime, :RollBackPercent, :RollBackStatus, :BackupSuccessCount, :HostVersion
+        attr_accessor :Uuid, :Quuid, :MachineName, :InstanceId, :MachineIp, :MachineWanIp, :CloudTags, :RegionInfo, :Tag, :Status, :StrategyId, :DiskInfo, :StrategyName, :BackupCount, :LastBackupStatus, :LastBackupMessage, :LastBackupTime, :RollBackPercent, :RollBackStatus, :BackupSuccessCount, :HostVersion, :MachineType
 
-        def initialize(uuid=nil, quuid=nil, machinename=nil, instanceid=nil, machineip=nil, machinewanip=nil, cloudtags=nil, regioninfo=nil, tag=nil, status=nil, strategyid=nil, diskinfo=nil, strategyname=nil, backupcount=nil, lastbackupstatus=nil, lastbackupmessage=nil, lastbackuptime=nil, rollbackpercent=nil, rollbackstatus=nil, backupsuccesscount=nil, hostversion=nil)
+        def initialize(uuid=nil, quuid=nil, machinename=nil, instanceid=nil, machineip=nil, machinewanip=nil, cloudtags=nil, regioninfo=nil, tag=nil, status=nil, strategyid=nil, diskinfo=nil, strategyname=nil, backupcount=nil, lastbackupstatus=nil, lastbackupmessage=nil, lastbackuptime=nil, rollbackpercent=nil, rollbackstatus=nil, backupsuccesscount=nil, hostversion=nil, machinetype=nil)
           @Uuid = uuid
           @Quuid = quuid
           @MachineName = machinename
@@ -36406,6 +36420,7 @@ module TencentCloud
           @RollBackStatus = rollbackstatus
           @BackupSuccessCount = backupsuccesscount
           @HostVersion = hostversion
+          @MachineType = machinetype
         end
 
         def deserialize(params)
@@ -36447,6 +36462,7 @@ module TencentCloud
           @RollBackStatus = params['RollBackStatus']
           @BackupSuccessCount = params['BackupSuccessCount']
           @HostVersion = params['HostVersion']
+          @MachineType = params['MachineType']
         end
       end
 
@@ -36477,14 +36493,16 @@ module TencentCloud
         # @param DiskInfo: 硬盘信息，为空时所有硬盘生效：
         # ;分割 diskId1|diskName1;diskId2|diskName2
         # @type DiskInfo: String
-        # @param HostVersion: 版本信息：0-基础版 1-专业版 2-旗舰版 3-普惠版
+        # @param HostVersion: 版本信息：0-基础版 1-专业版 2-旗舰版 3-轻量版
         # @type HostVersion: Integer
         # @param StrategyName: 策略名称
         # @type StrategyName: String
+        # @param MachineType: 机器所属专区类型 CVM 云服务器, BM 黑石, ECM 边缘计算, LH 轻量应用服务器 ,Other 混合云专区
+        # @type MachineType: String
 
-        attr_accessor :Uuid, :Quuid, :MachineName, :InstanceId, :MachineIp, :MachineWanIp, :CloudTags, :RegionInfo, :Tag, :Status, :StrategyId, :DiskInfo, :HostVersion, :StrategyName
+        attr_accessor :Uuid, :Quuid, :MachineName, :InstanceId, :MachineIp, :MachineWanIp, :CloudTags, :RegionInfo, :Tag, :Status, :StrategyId, :DiskInfo, :HostVersion, :StrategyName, :MachineType
 
-        def initialize(uuid=nil, quuid=nil, machinename=nil, instanceid=nil, machineip=nil, machinewanip=nil, cloudtags=nil, regioninfo=nil, tag=nil, status=nil, strategyid=nil, diskinfo=nil, hostversion=nil, strategyname=nil)
+        def initialize(uuid=nil, quuid=nil, machinename=nil, instanceid=nil, machineip=nil, machinewanip=nil, cloudtags=nil, regioninfo=nil, tag=nil, status=nil, strategyid=nil, diskinfo=nil, hostversion=nil, strategyname=nil, machinetype=nil)
           @Uuid = uuid
           @Quuid = quuid
           @MachineName = machinename
@@ -36499,6 +36517,7 @@ module TencentCloud
           @DiskInfo = diskinfo
           @HostVersion = hostversion
           @StrategyName = strategyname
+          @MachineType = machinetype
         end
 
         def deserialize(params)
@@ -36533,6 +36552,7 @@ module TencentCloud
           @DiskInfo = params['DiskInfo']
           @HostVersion = params['HostVersion']
           @StrategyName = params['StrategyName']
+          @MachineType = params['MachineType']
         end
       end
 
@@ -40082,7 +40102,7 @@ module TencentCloud
         # @type Count: Integer
         # @param Status: 状态 0: 待处理 1:已防御 2:已处理 3: 已忽略 4: 已删除
         # @type Status: Integer
-        # @param UpgradeType: 0 专业版,1 旗舰版,2 LH普惠版（仅限LH使用）,3  CVM普惠版（仅限CVM使用）
+        # @param UpgradeType: 0 专业版,1 旗舰版,2 LH轻量版（仅限LH使用）,3  CVM轻量版（仅限CVM使用）
         # @type UpgradeType: Integer
         # @param FixType: 0 不支持修复，1 支持修复
         # @type FixType: Integer
@@ -40488,7 +40508,7 @@ module TencentCloud
         # @type Tags: Array
         # @param Description: 说明
         # @type Description: String
-        # @param HostVersion: 版本信息：0-基础版 1-专业版 2-旗舰版 3-普惠版
+        # @param HostVersion: 版本信息：0-基础版 1-专业版 2-旗舰版 3-轻量版
         # @type HostVersion: Integer
         # @param IsSupportAutoFix: 是否能自动修复 0 :漏洞不可自动修复，  1：可自动修复， 2：客户端已离线， 3：主机不是旗舰版只能手动修复， 4：机型不允许 ，5：修复中 ，6：已修复， 7：检测中  9:修复失败，10:已忽略 11:漏洞只支持linux不支持Windows 12：漏洞只支持Windows不支持linux，13:修复失败但此时主机已离线，14:修复失败但此时主机不是旗舰版， 15:已手动修复
         # @type IsSupportAutoFix: Integer

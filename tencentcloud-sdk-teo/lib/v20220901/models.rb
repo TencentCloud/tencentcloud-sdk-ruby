@@ -8900,6 +8900,95 @@ module TencentCloud
         end
       end
 
+      # 检测长度限制配置条件。
+      class DetectLengthLimitCondition < TencentCloud::Common::AbstractModel
+        # @param Name: 匹配条件的参数名称，取值有：
+        # <li>body_depth：请求正文包部分的检测深度。</li>
+        # @type Name: String
+        # @param Values: 匹配条件的参数值，取值与 Name 成对使用。
+        # 当 Name 值为 body_depth 时， Values 只支持传入单个值，取值有：
+        # <li>8KB；</li>
+        # <li>64KB；</li>
+        # <li>128KB。</li>
+        # @type Values: Array
+
+        attr_accessor :Name, :Values
+
+        def initialize(name=nil, values=nil)
+          @Name = name
+          @Values = values
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Values = params['Values']
+        end
+      end
+
+      # 检测长度限制
+      class DetectLengthLimitConfig < TencentCloud::Common::AbstractModel
+        # @param DetectLengthLimitRules: 检测长度限制的规则列表。
+        # @type DetectLengthLimitRules: Array
+
+        attr_accessor :DetectLengthLimitRules
+
+        def initialize(detectlengthlimitrules=nil)
+          @DetectLengthLimitRules = detectlengthlimitrules
+        end
+
+        def deserialize(params)
+          unless params['DetectLengthLimitRules'].nil?
+            @DetectLengthLimitRules = []
+            params['DetectLengthLimitRules'].each do |i|
+              detectlengthlimitrule_tmp = DetectLengthLimitRule.new
+              detectlengthlimitrule_tmp.deserialize(i)
+              @DetectLengthLimitRules << detectlengthlimitrule_tmp
+            end
+          end
+        end
+      end
+
+      # 检测长度限制规则详情
+      class DetectLengthLimitRule < TencentCloud::Common::AbstractModel
+        # @param RuleId: 规则Id。仅出参使用。
+        # @type RuleId: Integer
+        # @param RuleName: 规则名称。仅出参使用。
+        # @type RuleName: String
+        # @param Description: 规则描述，仅出参使用。
+        # @type Description: String
+        # @param Conditions: 规则配置条件。仅出参使用。
+        # @type Conditions: Array
+        # @param Action: 处置方式，取值有：
+        # <li>skip：当请求正文数据超过 Conditions 出参中 body_depth 设置的检测深度时，跳过所有请求正文内容的检测；</li>
+        # <li>scan：仅检测 Conditions 出参中 body_depth 设置的检测深度，对超出部分的请求正文内容直接截断处理，超出部分的请求正文不会经过安全检测。</li>仅出参使用。
+        # @type Action: String
+
+        attr_accessor :RuleId, :RuleName, :Description, :Conditions, :Action
+
+        def initialize(ruleid=nil, rulename=nil, description=nil, conditions=nil, action=nil)
+          @RuleId = ruleid
+          @RuleName = rulename
+          @Description = description
+          @Conditions = conditions
+          @Action = action
+        end
+
+        def deserialize(params)
+          @RuleId = params['RuleId']
+          @RuleName = params['RuleName']
+          @Description = params['Description']
+          unless params['Conditions'].nil?
+            @Conditions = []
+            params['Conditions'].each do |i|
+              detectlengthlimitcondition_tmp = DetectLengthLimitCondition.new
+              detectlengthlimitcondition_tmp.deserialize(i)
+              @Conditions << detectlengthlimitcondition_tmp
+            end
+          end
+          @Action = params['Action']
+        end
+      end
+
       # 最新IP白名单列表相比于当前IP白名单列表的区别
       class DiffIPWhitelist < TencentCloud::Common::AbstractModel
         # @param LatestIPWhitelist: 最新IP白名单列表。
@@ -15935,7 +16024,7 @@ module TencentCloud
         end
       end
 
-      # 安全配置
+      # Web安全配置
       class SecurityConfig < TencentCloud::Common::AbstractModel
         # @param WafConfig: 托管规则。如果入参为空或不填，默认使用历史配置。
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -15967,10 +16056,13 @@ module TencentCloud
         # @param SlowPostConfig: 慢速攻击配置。如果入参为空或不填，默认使用历史配置。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SlowPostConfig: :class:`Tencentcloud::Teo.v20220901.models.SlowPostConfig`
+        # @param DetectLengthLimitConfig: 检测长度限制配置。仅出参使用。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DetectLengthLimitConfig: :class:`Tencentcloud::Teo.v20220901.models.DetectLengthLimitConfig`
 
-        attr_accessor :WafConfig, :RateLimitConfig, :AclConfig, :BotConfig, :SwitchConfig, :IpTableConfig, :ExceptConfig, :DropPageConfig, :TemplateConfig, :SlowPostConfig
+        attr_accessor :WafConfig, :RateLimitConfig, :AclConfig, :BotConfig, :SwitchConfig, :IpTableConfig, :ExceptConfig, :DropPageConfig, :TemplateConfig, :SlowPostConfig, :DetectLengthLimitConfig
 
-        def initialize(wafconfig=nil, ratelimitconfig=nil, aclconfig=nil, botconfig=nil, switchconfig=nil, iptableconfig=nil, exceptconfig=nil, droppageconfig=nil, templateconfig=nil, slowpostconfig=nil)
+        def initialize(wafconfig=nil, ratelimitconfig=nil, aclconfig=nil, botconfig=nil, switchconfig=nil, iptableconfig=nil, exceptconfig=nil, droppageconfig=nil, templateconfig=nil, slowpostconfig=nil, detectlengthlimitconfig=nil)
           @WafConfig = wafconfig
           @RateLimitConfig = ratelimitconfig
           @AclConfig = aclconfig
@@ -15981,6 +16073,7 @@ module TencentCloud
           @DropPageConfig = droppageconfig
           @TemplateConfig = templateconfig
           @SlowPostConfig = slowpostconfig
+          @DetectLengthLimitConfig = detectlengthlimitconfig
         end
 
         def deserialize(params)
@@ -16023,6 +16116,10 @@ module TencentCloud
           unless params['SlowPostConfig'].nil?
             @SlowPostConfig = SlowPostConfig.new
             @SlowPostConfig.deserialize(params['SlowPostConfig'])
+          end
+          unless params['DetectLengthLimitConfig'].nil?
+            @DetectLengthLimitConfig = DetectLengthLimitConfig.new
+            @DetectLengthLimitConfig.deserialize(params['DetectLengthLimitConfig'])
           end
         end
       end
