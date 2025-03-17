@@ -17,6 +17,51 @@
 module TencentCloud
   module Tchd
     module V20230306
+      # DescribeEventStatistics请求参数结构体
+      class DescribeEventStatisticsRequest < TencentCloud::Common::AbstractModel
+        # @param RegionId: 1. 查询非区域性产品事件时，地域ID指定为：non-regional
+        # 2. 其他地域ID取值请参考：https://cloud.tencent.com/document/api/213/15692
+        # @type RegionId: String
+        # @param ProductIds: 1. 不指定产品列表时将查询所有产品。
+        # 2. 产品ID示例：cvm、lb、cdb、cdn、crs
+        # @type ProductIds: Array
+
+        attr_accessor :RegionId, :ProductIds
+
+        def initialize(regionid=nil, productids=nil)
+          @RegionId = regionid
+          @ProductIds = productids
+        end
+
+        def deserialize(params)
+          @RegionId = params['RegionId']
+          @ProductIds = params['ProductIds']
+        end
+      end
+
+      # DescribeEventStatistics返回参数结构体
+      class DescribeEventStatisticsResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 正常产品数
+        # @type Data: :class:`Tencentcloud::Tchd.v20230306.models.TotalStatus`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = TotalStatus.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeEvents请求参数结构体
       class DescribeEventsRequest < TencentCloud::Common::AbstractModel
         # @param EventDate: 事件的发生日期
@@ -127,6 +172,31 @@ module TencentCloud
               @EventList << eventdetail_tmp
             end
           end
+        end
+      end
+
+      # 状态汇总
+      class TotalStatus < TencentCloud::Common::AbstractModel
+        # @param NormalCount: 正常状态的数目
+        # @type NormalCount: Integer
+        # @param NotifyCount: 通知状态的数目
+        # @type NotifyCount: Integer
+        # @param AbnormalCount: 异常状态的数目
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AbnormalCount: Integer
+
+        attr_accessor :NormalCount, :NotifyCount, :AbnormalCount
+
+        def initialize(normalcount=nil, notifycount=nil, abnormalcount=nil)
+          @NormalCount = normalcount
+          @NotifyCount = notifycount
+          @AbnormalCount = abnormalcount
+        end
+
+        def deserialize(params)
+          @NormalCount = params['NormalCount']
+          @NotifyCount = params['NotifyCount']
+          @AbnormalCount = params['AbnormalCount']
         end
       end
 

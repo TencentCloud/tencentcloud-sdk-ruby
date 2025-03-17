@@ -552,7 +552,7 @@ module TencentCloud
       class CancelShareBlueprintAcrossAccountsRequest < TencentCloud::Common::AbstractModel
         # @param BlueprintId: 镜像ID, 可以通过[DescribeBlueprints](https://cloud.tencent.com/document/product/1207/47689)接口返回的BlueprintId获取。
         # @type BlueprintId: String
-        # @param AccountIds: 接收共享镜像的账号ID列表。账号ID不同于QQ号，查询用户账号ID请查看账号信息中的账号ID栏。账号个数取值最大为10。
+        # @param AccountIds: 接收共享镜像的[账号ID](https://cloud.tencent.com/document/product/213/4944#.E8.8E.B7.E5.8F.96.E4.B8.BB.E8.B4.A6.E5.8F.B7.E7.9A.84.E8.B4.A6.E5.8F.B7-id)列表。账号ID不同于QQ号，查询用户账号ID请查看账号信息中的账号ID栏。账号个数取值最大为10。
         # @type AccountIds: Array
 
         attr_accessor :BlueprintId, :AccountIds
@@ -1446,7 +1446,7 @@ module TencentCloud
 
       # DeleteSnapshots请求参数结构体
       class DeleteSnapshotsRequest < TencentCloud::Common::AbstractModel
-        # @param SnapshotIds: 要删除的快照 ID 列表，可通过 <a href="https://cloud.tencent.com/document/product/1207/54388" target="_blank">DescribeSnapshots</a>查询。
+        # @param SnapshotIds: 要删除的快照 ID 列表，每次请求批量快照的上限为10个，可通过 <a href="https://cloud.tencent.com/document/product/1207/54388" target="_blank">DescribeSnapshots</a>查询。
         # @type SnapshotIds: Array
 
         attr_accessor :SnapshotIds
@@ -1614,6 +1614,7 @@ module TencentCloud
         # <li>blueprint-id</li>按照【镜像 ID】进行过滤。
         # 类型：String
         # 必选：否
+        # 镜像 ID ，可通过[DescribeBlueprints](https://cloud.tencent.com/document/product/1207/47689)接口返回值字段BlueprintSet获取。
         # <li>blueprint-type</li>按照【镜像类型】进行过滤。
         # 取值：APP_OS（应用镜像 ）；PURE_OS（系统镜像）；DOCKER（Docker容器镜像）；PRIVATE（自定义镜像）；SHARED（共享镜像）。
         # 类型：String
@@ -1631,8 +1632,9 @@ module TencentCloud
         # <li>scene-id</li>按照【使用场景Id】进行过滤。
         # 类型：String
         # 必选：否
+        # 场景Id，可通过[查看使用场景列表](https://cloud.tencent.com/document/product/1207/83512)接口获取。
 
-        # 每次请求的 Filters 的上限为 10，Filter.Values 的上限为 100。参数不支持同时指定 BlueprintIds 和 Filters 。
+        # 每次请求的 Filters 的上限为 10，Filter.Values 的上限为 100。参数不支持同时指定 BlueprintIds (可通过[DescribeBlueprints](https://cloud.tencent.com/document/product/1207/47689)接口返回值字段BlueprintSet获取BlueprintId)和 Filters 。
         # @type Filters: Array
 
         attr_accessor :BlueprintIds, :Offset, :Limit, :Filters
@@ -3654,7 +3656,7 @@ module TencentCloud
 
       # DescribeSnapshotsDeniedActions请求参数结构体
       class DescribeSnapshotsDeniedActionsRequest < TencentCloud::Common::AbstractModel
-        # @param SnapshotIds: 快照 ID 列表, 可通过 <a href="https://cloud.tencent.com/document/product/1207/54388" target="_blank">DescribeSnapshots</a> 查询。
+        # @param SnapshotIds: 快照 ID 列表,每次请求批量快照的上限是100个。 可通过 <a href="https://cloud.tencent.com/document/product/1207/54388" target="_blank">DescribeSnapshots</a> 查询。
         # @type SnapshotIds: Array
 
         attr_accessor :SnapshotIds
@@ -3978,7 +3980,10 @@ module TencentCloud
       class DiscountDetail < TencentCloud::Common::AbstractModel
         # @param TimeSpan: 计费时长。
         # @type TimeSpan: Integer
-        # @param TimeUnit: 计费单元。
+        # @param TimeUnit: 时间单位。
+        # 取值为：
+        # - m - 月
+        # - d - 日
         # @type TimeUnit: String
         # @param TotalCost: 总价。
         # @type TotalCost: Float
@@ -4024,18 +4029,27 @@ module TencentCloud
         # @param DiskName: 磁盘名称
         # @type DiskName: String
         # @param DiskUsage: 磁盘类型
+        # 枚举值：
+        # <li> SYSTEM_DISK: 系统盘 </li>
+        # <li> DATA_DISK: 数据盘 </li>
         # @type DiskUsage: String
         # @param DiskType: 磁盘介质类型
+        # 枚举值:
+        # <li> CLOUD_BASIC: 普通云硬盘 </li>
+        # <li> CLOUD_PREMIUM: 高性能云硬盘 </li>
+        # <li> CLOUD_SSD: SSD云硬盘 </li>
         # @type DiskType: String
         # @param DiskChargeType: 磁盘付费类型
+        # <li> PREPAID: 预付费 </li>
+        # <li> POSTPAID_BY_HOUR: 按小时后付费 </li>
         # @type DiskChargeType: String
-        # @param DiskSize: 磁盘大小
+        # @param DiskSize: 磁盘大小, 单位GB
         # @type DiskSize: Integer
         # @param RenewFlag: 续费标识
         # @type RenewFlag: String
         # @param DiskState: 磁盘状态，取值范围：
         # <li>PENDING：创建中。 </li>
-        # <li>UNATTACHED：未挂载。</li>
+        # <li>UNATTACHED：待挂载。</li>
         # <li>ATTACHING：挂载中。</li>
         # <li>ATTACHED：已挂载。</li>
         # <li>DETACHING：卸载中。 </li>
@@ -4212,10 +4226,18 @@ module TencentCloud
       # 云硬盘包年包月相关参数设置
       class DiskChargePrepaid < TencentCloud::Common::AbstractModel
         # @param Period: 新购周期。
+        # 可选值：1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 24, 36, 48, 60。
         # @type Period: Integer
-        # @param RenewFlag: 自动续费标识。取值范围：<br><li>NOTIFY_AND_AUTO_RENEW：通知过期且自动续费<br><li>NOTIFY_AND_MANUAL_RENEW：通知过期不自动续费，用户需要手动续费<br><li>DISABLE_NOTIFY_AND_MANUAL_RENEW：不自动续费，且不通知<br><br>默认取值：NOTIFY_AND_MANUAL_RENEW。若该参数指定为NOTIFY_AND_AUTO_RENEW，在账户余额充足的情况下，云硬盘到期后将按月自动续费。
+        # @param RenewFlag: 自动续费标识。取值范围：
+        # - NOTIFY_AND_AUTO_RENEW：通知过期且自动续费。
+        # - NOTIFY_AND_MANUAL_RENEW：通知过期不自动续费，用户需要手动续费。
+        # - DISABLE_NOTIFY_AND_MANUAL_RENEW：不自动续费，且不通知。
+
+        # 默认取值：NOTIFY_AND_MANUAL_RENEW。若该参数指定为NOTIFY_AND_AUTO_RENEW，在账户余额充足的情况下，云硬盘到期后将按月自动续费。
         # @type RenewFlag: String
-        # @param TimeUnit: 新购单位. 默认值: "m"。
+        # @param TimeUnit: 新购单位.。
+        # 可选值：m - 月。
+        # 默认值：m - 月。
         # @type TimeUnit: String
 
         attr_accessor :Period, :RenewFlag, :TimeUnit
@@ -4237,7 +4259,11 @@ module TencentCloud
       class DiskConfig < TencentCloud::Common::AbstractModel
         # @param Zone: 可用区。
         # @type Zone: String
-        # @param DiskType: 云硬盘类型。
+        # @param DiskType: 云硬盘类型。枚举值如下：
+
+        # <li>CLOUD_BASIC：普通云硬盘</li>
+        # <li>CLOUD_PREMIUM：高性能云硬盘</li>
+        # <li>CLOUD_SSD：SSD云硬盘</li>
         # @type DiskType: String
         # @param DiskSalesState: 云硬盘可售卖状态。
         # @type DiskSalesState: String
@@ -4652,9 +4678,9 @@ module TencentCloud
 
       # 描述防火墙规则详细信息。
       class FirewallRuleInfo < TencentCloud::Common::AbstractModel
-        # @param AppType: 应用类型，取值：自定义，HTTP(80)，HTTPS(443)，Linux登录(22)，Windows登录(3389)，MySQL(3306)，SQL Server(1433)，全部TCP，全部UDP，Ping-ICMP，ALL。
+        # @param AppType: 应用类型，取值：自定义，HTTP(80)，HTTPS(443)，Linux登录(22)，Windows登录(3389)，MySQL(3306)，SQL Server(1433)，全部TCP，全部UDP，Ping-ICMP，Windows登录优化 (3389)，FTP (21)，Ping，Ping (IPv6)，ALL。
         # @type AppType: String
-        # @param Protocol: 协议，取值：TCP，UDP，ICMP，ALL。
+        # @param Protocol: 协议，取值：TCP，UDP，ICMP，ICMPv6，ALL。
         # @type Protocol: String
         # @param Port: 端口，取值：ALL，单独的端口，逗号分隔的离散端口，减号分隔的端口范围。
         # @type Port: String
@@ -5392,7 +5418,9 @@ module TencentCloud
 
       # 描述了实例的计费模式
       class InstanceChargePrepaid < TencentCloud::Common::AbstractModel
-        # @param Period: 购买实例的时长，单位：月。取值范围：1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 24, 36, 48, 60。
+        # @param Period: 购买实例的时长，单位：月。
+        # - 创建实例时，取值范围：1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 24, 36, 48, 60。
+        # - 续费实例时，取值范围：1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 24, 36。
         # @type Period: Integer
         # @param RenewFlag: 自动续费标识。取值范围：<br><li>NOTIFY_AND_AUTO_RENEW：通知过期且自动续费</li><br><li>NOTIFY_AND_MANUAL_RENEW：通知过期不自动续费，用户需要手动续费</li><br><li>DISABLE_NOTIFY_AND_MANUAL_RENEW：不自动续费，且不通知</li><br><br>默认取值：NOTIFY_AND_MANUAL_RENEW。若该参数指定为NOTIFY_AND_AUTO_RENEW，在账户余额充足的情况下，实例到期后将按月自动续费。
         # @type RenewFlag: String
@@ -5529,7 +5557,17 @@ module TencentCloud
         # @type InstanceId: String
         # @param IsReturnable: 实例是否可退还。
         # @type IsReturnable: Boolean
-        # @param ReturnFailCode: 实例退还失败错误码。
+        # @param ReturnFailCode: 实例退还失败错误码。取值:
+        # 0: 可以退还
+        # 1: 资源已退货。如为退货后续费资源，请于购买6小时后操作
+        # 2: 资源已到期
+        # 3: 资源购买超过5天不支持退款
+        # 4: 非预付费资源不支持退款
+        # 8: 退货数量超出限额
+        # 9: 涉及活动订单不支持退款
+        # 10: 资源不支持自助退，请走工单退款
+        # 11: 涉及推广奖励渠道订单，请提工单咨询
+        # 12: 根据业务侧产品规定，该资源不允许退款
         # @type ReturnFailCode: Integer
         # @param ReturnFailMessage: 实例退还失败错误信息。
         # @type ReturnFailMessage: String
@@ -6274,7 +6312,7 @@ module TencentCloud
       class ModifyInstancesBundleRequest < TencentCloud::Common::AbstractModel
         # @param InstanceIds: 实例ID列表。一个或多个待操作的实例ID。可通过[DescribeInstances](https://cloud.tencent.com/document/api/1207/47573)接口返回值中的InstanceId获取。每次请求批量实例的上限为15。
         # @type InstanceIds: Array
-        # @param BundleId: 待变更的套餐Id。可通过[DescribeBundles](https://cloud.tencent.com/document/api/1207/47575)接口返回值中的BundleId获取。
+        # @param BundleId: 待变更的套餐Id。注意不可和当前要升配的实例套餐ID相同。可通过[DescribeBundles](https://cloud.tencent.com/document/api/1207/47575)接口返回值中的BundleId获取。
         # @type BundleId: String
         # @param AutoVoucher: 是否自动抵扣代金券。取值范围：
         # true：表示自动抵扣代金券
@@ -6625,15 +6663,22 @@ module TencentCloud
         end
       end
 
-      # 续费云硬盘包年包月相关参数设置
+      # 续费云硬盘包年包月相关参数设置。
       class RenewDiskChargePrepaid < TencentCloud::Common::AbstractModel
         # @param Period: 续费周期。
         # @type Period: Integer
-        # @param RenewFlag: 自动续费标识。取值范围：<br><li>NOTIFY_AND_AUTO_RENEW：通知过期且自动续费<br><li>NOTIFY_AND_MANUAL_RENEW：通知过期不自动续费，用户需要手动续费<br><li>DISABLE_NOTIFY_AND_MANUAL_RENEW：不自动续费，且不通知<br><br>默认取值：NOTIFY_AND_MANUAL_RENEW。若该参数指定为NOTIFY_AND_AUTO_RENEW，在账户余额充足的情况下，云硬盘到期后将按月自动续费。
+        # @param RenewFlag: 自动续费标识。
+        # 取值范围：
+        # <li>NOTIFY_AND_AUTO_RENEW：通知过期且自动续费</li>
+        # <li>NOTIFY_AND_MANUAL_RENEW：通知过期不自动续费，用户需要手动续费</li><li>DISABLE_NOTIFY_AND_MANUAL_RENEW：不自动续费，且不通知</li>
+        # 默认取值：NOTIFY_AND_MANUAL_RENEW。若该参数指定为NOTIFY_AND_AUTO_RENEW，在账户余额充足的情况下，云硬盘到期后将按月自动续费。
         # @type RenewFlag: String
         # @param TimeUnit: 周期单位。取值范围：“m”(月)。默认值: "m"。
         # @type TimeUnit: String
-        # @param CurInstanceDeadline: 当前实例到期时间。如“2018-01-01 00:00:00”。指定该参数即可对齐云硬盘所挂载的实例到期时间。该参数与Period必须指定其一，且不支持同时指定。
+        # @param CurInstanceDeadline: 当前实例到期时间。如“2018-01-01 00:00:00”。
+        # 指定该参数即可对齐云硬盘所挂载的实例到期时间。
+        # 该参数与Period必须指定其一，且不支持同时指定。
+        # 该参数值必须大于入参中云硬盘的过期时间。
         # @type CurInstanceDeadline: String
 
         attr_accessor :Period, :RenewFlag, :TimeUnit, :CurInstanceDeadline
@@ -6922,7 +6967,10 @@ module TencentCloud
       class ResetInstanceBlueprint < TencentCloud::Common::AbstractModel
         # @param BlueprintInfo: 镜像详细信息
         # @type BlueprintInfo: :class:`Tencentcloud::Lighthouse.v20200324.models.Blueprint`
-        # @param IsResettable: 实例镜像是否可重置为目标镜像
+        # @param IsResettable: 实例镜像是否可重置为目标镜像。
+        # 取值：
+        # true（允许）
+        # false（不允许）
         # @type IsResettable: Boolean
         # @param NonResettableMessage: 不可重置信息.当镜像可重置时为""
         # @type NonResettableMessage: String
@@ -7214,7 +7262,7 @@ module TencentCloud
       class ShareBlueprintAcrossAccountsRequest < TencentCloud::Common::AbstractModel
         # @param BlueprintId: 镜像ID, 可以通过[DescribeBlueprints](https://cloud.tencent.com/document/product/1207/47689)接口返回的BlueprintId获取。
         # @type BlueprintId: String
-        # @param AccountIds: 接收共享镜像的账号Id列表。账号ID不同于QQ号，查询用户账号ID请查看账号信息中的账号ID栏。账号个数取值最大为10。
+        # @param AccountIds: 接收共享镜像的[账号ID](https://cloud.tencent.com/document/product/213/4944#.E8.8E.B7.E5.8F.96.E4.B8.BB.E8.B4.A6.E5.8F.B7.E7.9A.84.E8.B4.A6.E5.8F.B7-id)列表。账号ID不同于QQ号，查询用户账号ID请查看账号信息中的账号ID栏。账号个数取值最大为10。
         # @type AccountIds: Array
 
         attr_accessor :BlueprintId, :AccountIds
@@ -7638,6 +7686,7 @@ module TencentCloud
       # TerminateDisks请求参数结构体
       class TerminateDisksRequest < TencentCloud::Common::AbstractModel
         # @param DiskIds: 云硬盘ID列表。可通过[DescribeDisks](https://cloud.tencent.com/document/product/1207/66093)接口返回值中的DiskId获取。
+        # 每次批量请求云硬盘的上限数量为100。
         # @type DiskIds: Array
 
         attr_accessor :DiskIds

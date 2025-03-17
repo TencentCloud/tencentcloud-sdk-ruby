@@ -49,6 +49,26 @@ module TencentCloud
         end
       end
 
+      # 人物描述
+      class Character < TencentCloud::Common::AbstractModel
+        # @param Name: 人物名称
+        # @type Name: String
+        # @param SystemPrompt: 人物对应SystemPrompt
+        # @type SystemPrompt: String
+
+        attr_accessor :Name, :SystemPrompt
+
+        def initialize(name=nil, systemprompt=nil)
+          @Name = name
+          @SystemPrompt = systemprompt
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @SystemPrompt = params['SystemPrompt']
+        end
+      end
+
       # ChatCompletions请求参数结构体
       class ChatCompletionsRequest < TencentCloud::Common::AbstractModel
         # @param Model: 模型名称，可选值包括 hunyuan-lite、hunyuan-standard、hunyuan-standard-256K、hunyuan-code、hunyuan-role、hunyuan-functioncall、hunyuan-vision、hunyuan-turbo、hunyuan-turbo-latest、hunyuan-turbo-20241223、hunyuan-turbo-20241120、hunyuan-large、hunyuan-large-longcontext、hunyuan-turbo-vision、hunyuan-standard-vision、hunyuan-lite-vision、hunyuan-turbos-20250226、hunyuan-turbos-latest。各模型介绍请阅读 [产品概述](https://cloud.tencent.com/document/product/1729/104753) 中的说明。注意：不同的模型计费不同，请根据 [购买指南](https://cloud.tencent.com/document/product/1729/97731) 按需调用。
@@ -247,8 +267,8 @@ module TencentCloud
 
         attr_accessor :Created, :Usage, :Note, :Id, :Choices, :ErrorMsg, :ModerationLevel, :SearchInfo, :Replaces, :RecommendedQuestions, :RequestId
         extend Gem::Deprecate
-        deprecate :ModerationLevel, :none, 2025, 2
-        deprecate :ModerationLevel=, :none, 2025, 2
+        deprecate :ModerationLevel, :none, 2025, 3
+        deprecate :ModerationLevel=, :none, 2025, 3
 
         def initialize(created=nil, usage=nil, note=nil, id=nil, choices=nil, errormsg=nil, moderationlevel=nil, searchinfo=nil, replaces=nil, recommendedquestions=nil, requestid=nil)
           @Created = created
@@ -944,10 +964,10 @@ module TencentCloud
 
         attr_accessor :Data, :FirstID, :LastID, :HasMore, :Object, :FirstMsgID, :LastMsgID, :RequestId
         extend Gem::Deprecate
-        deprecate :FirstID, :none, 2025, 2
-        deprecate :FirstID=, :none, 2025, 2
-        deprecate :LastID, :none, 2025, 2
-        deprecate :LastID=, :none, 2025, 2
+        deprecate :FirstID, :none, 2025, 3
+        deprecate :FirstID=, :none, 2025, 3
+        deprecate :LastID, :none, 2025, 3
+        deprecate :LastID=, :none, 2025, 3
 
         def initialize(data=nil, firstid=nil, lastid=nil, hasmore=nil, object=nil, firstmsgid=nil, lastmsgid=nil, requestid=nil)
           @Data = data
@@ -1176,6 +1196,202 @@ module TencentCloud
           @CharacterCount = params['CharacterCount']
           @Tokens = params['Tokens']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # GroupChatCompletions请求参数结构体
+      class GroupChatCompletionsRequest < TencentCloud::Common::AbstractModel
+        # @param Model: 模型名称，可选值包括 hunyuan-large-role-group。各模型介绍请阅读 [产品概述](https://cloud.tencent.com/document/product/1729/104753) 中的说明。注意：不同的模型计费不同，请根据 [购买指南](https://cloud.tencent.com/document/product/1729/97731) 按需调用。
+        # @type Model: String
+        # @param Messages: 聊天上下文信息。
+        # @type Messages: Array
+        # @param Stream: 流式调用开关。
+        # 说明：
+        # 1. 未传值时默认为非流式调用（false）。
+        # 2. 流式调用时以 SSE 协议增量返回结果（返回值取 Choices[n].Delta 中的值，需要拼接增量数据才能获得完整结果）。
+        # 3. 非流式调用时：
+        # 调用方式与普通 HTTP 请求无异。
+        # 接口响应耗时较长，**如需更低时延建议设置为 true**。
+        # 只返回一次最终结果（返回值取 Choices[n].Message 中的值）。
+
+        # 注意：
+        # 通过 SDK 调用时，流式和非流式调用需用**不同的方式**获取返回值，具体参考 SDK 中的注释或示例（在各语言 SDK 代码仓库的 examples/hunyuan/v20230901/ 目录中）。
+        # @type Stream: Boolean
+        # @param TargetCharacterName: 目标人物名称
+        # @type TargetCharacterName: String
+        # @param GroupChatConfig: 角色描述
+        # @type GroupChatConfig: :class:`Tencentcloud::Hunyuan.v20230901.models.GroupChatConfig`
+        # @param UserId: 用户ID
+        # @type UserId: String
+        # @param SessionId: 对话接口
+        # @type SessionId: String
+
+        attr_accessor :Model, :Messages, :Stream, :TargetCharacterName, :GroupChatConfig, :UserId, :SessionId
+
+        def initialize(model=nil, messages=nil, stream=nil, targetcharactername=nil, groupchatconfig=nil, userid=nil, sessionid=nil)
+          @Model = model
+          @Messages = messages
+          @Stream = stream
+          @TargetCharacterName = targetcharactername
+          @GroupChatConfig = groupchatconfig
+          @UserId = userid
+          @SessionId = sessionid
+        end
+
+        def deserialize(params)
+          @Model = params['Model']
+          unless params['Messages'].nil?
+            @Messages = []
+            params['Messages'].each do |i|
+              groupmessage_tmp = GroupMessage.new
+              groupmessage_tmp.deserialize(i)
+              @Messages << groupmessage_tmp
+            end
+          end
+          @Stream = params['Stream']
+          @TargetCharacterName = params['TargetCharacterName']
+          unless params['GroupChatConfig'].nil?
+            @GroupChatConfig = GroupChatConfig.new
+            @GroupChatConfig.deserialize(params['GroupChatConfig'])
+          end
+          @UserId = params['UserId']
+          @SessionId = params['SessionId']
+        end
+      end
+
+      # GroupChatCompletions返回参数结构体
+      class GroupChatCompletionsResponse < TencentCloud::Common::AbstractModel
+        # @param Created: Unix 时间戳，单位为秒。
+        # @type Created: Integer
+        # @param Usage: Token 统计信息。
+        # 按照总 Token 数量计费。
+        # @type Usage: :class:`Tencentcloud::Hunyuan.v20230901.models.Usage`
+        # @param Note: 免责声明。
+        # @type Note: String
+        # @param Id: 本次请求的 RequestId。
+        # @type Id: String
+        # @param Choices: 回复内容。
+        # @type Choices: Array
+        # @param ErrorMsg: 错误信息。
+        # 如果流式返回中服务处理异常，返回该错误信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorMsg: :class:`Tencentcloud::Hunyuan.v20230901.models.ErrorMsg`
+        # @param SearchInfo: 搜索结果信息
+        # @type SearchInfo: :class:`Tencentcloud::Hunyuan.v20230901.models.SearchInfo`
+        # @param Replaces: 多媒体信息。
+        # 说明：
+        # 1. 可以用多媒体信息替换回复内容里的占位符，得到完整的消息。
+        # 2. 可能会出现回复内容里存在占位符，但是因为审核等原因没有返回多媒体信息。
+        # @type Replaces: Array
+        # @param RecommendedQuestions: 推荐问答。
+        # @type RecommendedQuestions: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。本接口为流式响应接口，当请求成功时，RequestId 会被放在 HTTP 响应的 Header "X-TC-RequestId" 中。
+        # @type RequestId: String
+
+        attr_accessor :Created, :Usage, :Note, :Id, :Choices, :ErrorMsg, :SearchInfo, :Replaces, :RecommendedQuestions, :RequestId
+
+        def initialize(created=nil, usage=nil, note=nil, id=nil, choices=nil, errormsg=nil, searchinfo=nil, replaces=nil, recommendedquestions=nil, requestid=nil)
+          @Created = created
+          @Usage = usage
+          @Note = note
+          @Id = id
+          @Choices = choices
+          @ErrorMsg = errormsg
+          @SearchInfo = searchinfo
+          @Replaces = replaces
+          @RecommendedQuestions = recommendedquestions
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Created = params['Created']
+          unless params['Usage'].nil?
+            @Usage = Usage.new
+            @Usage.deserialize(params['Usage'])
+          end
+          @Note = params['Note']
+          @Id = params['Id']
+          unless params['Choices'].nil?
+            @Choices = []
+            params['Choices'].each do |i|
+              choice_tmp = Choice.new
+              choice_tmp.deserialize(i)
+              @Choices << choice_tmp
+            end
+          end
+          unless params['ErrorMsg'].nil?
+            @ErrorMsg = ErrorMsg.new
+            @ErrorMsg.deserialize(params['ErrorMsg'])
+          end
+          unless params['SearchInfo'].nil?
+            @SearchInfo = SearchInfo.new
+            @SearchInfo.deserialize(params['SearchInfo'])
+          end
+          unless params['Replaces'].nil?
+            @Replaces = []
+            params['Replaces'].each do |i|
+              replace_tmp = Replace.new
+              replace_tmp.deserialize(i)
+              @Replaces << replace_tmp
+            end
+          end
+          @RecommendedQuestions = params['RecommendedQuestions']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 群聊配置
+      class GroupChatConfig < TencentCloud::Common::AbstractModel
+        # @param UserName: 人物名称
+        # @type UserName: String
+        # @param Description: ### 主题：\n武道修炼与科技创新的碰撞\n\n### 地点：\n布尔玛的实验室\n\n### 故事背景：\n布尔玛正在研发一种新型的龙珠雷达，旨在更精确地定位龙珠的位置。她邀请了孙悟空、天津饭、饺子和雅木茶前来测试新设备。然而，这些武道家们对科技的理解有限，导致了一系列有趣的误解和互动。\n\n### 人物关系：\n- **布尔玛**：天才科学家，负责研发和解释新设备。\n- **孙悟空**：纯粹的战斗狂，对科技一窍不通，但对新事物充满好奇。\n- **天津饭**：严肃自律的武道家，对科技持谨慎态度，但愿意尝试。\n- **饺子**：内向单纯，依赖天津饭，对科技感到困惑和害怕。\n- **雅木茶**：幽默自嘲的前沙漠强盗，对科技有一定了解，但更倾向于轻松调侃。\n\n### 人物目标：\n- **布尔玛**：希望新龙珠雷达能够得到有效测试，并得到反馈以改进。\n- **孙悟空**：希望通过新设备找到更强的对手进行战斗。\n- **天津饭**：希望通过测试新设备提升自己的武道修炼。\n- **饺子**：希望在不引起麻烦的情况下完成任务，并得到天津饭的认可。\n- **雅木茶**：希望通过参与测试证明自己的价值，同时享受与朋友们的互动。\n\n### 场景描述：\n布尔玛在实验室中展示她的新龙珠雷达，解释其工作原理和优势。孙悟空对设备的功能感到兴奋，但完全无法理解技术细节，不断提出天真的问题。天津饭则严肃地询问设备的安全性和可靠性，表现出对科技的谨慎态度。饺子对复杂的设备感到害怕，不断向天津饭寻求确认和安慰。雅木茶则在一旁调侃大家的反应，试图缓解紧张气氛。布尔玛在解释过程中不断被孙悟空的问题打断，感到无奈，但也被他的热情所感染。最终，大家决定一起外出测试新设备，展开一场充满欢笑和冒险的旅程。
+        # @type Description: String
+        # @param Characters: 角色描述
+        # @type Characters: Array
+
+        attr_accessor :UserName, :Description, :Characters
+
+        def initialize(username=nil, description=nil, characters=nil)
+          @UserName = username
+          @Description = description
+          @Characters = characters
+        end
+
+        def deserialize(params)
+          @UserName = params['UserName']
+          @Description = params['Description']
+          unless params['Characters'].nil?
+            @Characters = []
+            params['Characters'].each do |i|
+              character_tmp = Character.new
+              character_tmp.deserialize(i)
+              @Characters << character_tmp
+            end
+          end
+        end
+      end
+
+      # 群聊会话内容
+      class GroupMessage < TencentCloud::Common::AbstractModel
+        # @param Role: 角色，可选值包括 system、user、assistant、 tool。
+        # @type Role: String
+        # @param Content: 文本内容
+        # @type Content: String
+        # @param Name: 角色名称
+        # @type Name: String
+
+        attr_accessor :Role, :Content, :Name
+
+        def initialize(role=nil, content=nil, name=nil)
+          @Role = role
+          @Content = content
+          @Name = name
+        end
+
+        def deserialize(params)
+          @Role = params['Role']
+          @Content = params['Content']
+          @Name = params['Name']
         end
       end
 

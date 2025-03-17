@@ -2898,7 +2898,7 @@ module TencentCloud
 
       # DescribeRelease请求参数结构体
       class DescribeReleaseRequest < TencentCloud::Common::AbstractModel
-        # @param BotBizId: 机器人ID
+        # @param BotBizId: 应用ID
         # @type BotBizId: String
         # @param ReleaseBizId: 发布详情
         # @type ReleaseBizId: String
@@ -2922,7 +2922,7 @@ module TencentCloud
         # @type CreateTime: String
         # @param Description: 发布描述
         # @type Description: String
-        # @param Status: 发布状态(1待发布 2发布中 3发布成功 4发布失败 5发布中 6发布中 7发布失败 9发布暂停)
+        # @param Status: 发布状态(1待发布 2发布中 3发布成功 4发布失败 5发布中(审核中) 6发布中(审核完成) 7发布失败(审核失败) 9发布暂停)
         # @type Status: Integer
         # @param StatusDesc: 发布状态描述
         # @type StatusDesc: String
@@ -8919,7 +8919,7 @@ module TencentCloud
 
       # RunReRank请求参数结构体
       class RunReRankRequest < TencentCloud::Common::AbstractModel
-        # @param Query: 模型名称, 必填，默认: lke-reranker-base
+        # @param Query: 查询内容，必填
         # @type Query: String
         # @param Docs: 文档列表，必填，最多20个
         # @type Docs: Array

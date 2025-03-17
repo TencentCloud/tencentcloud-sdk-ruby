@@ -11741,61 +11741,21 @@ module TencentCloud
 
       # DescribeReportTaskDetail请求参数结构体
       class DescribeReportTaskDetailRequest < TencentCloud::Common::AbstractModel
-        # @param PageNum: 页码
-        # @type PageNum: Integer
-        # @param PageSize: 每页条数
-        # @type PageSize: Integer
         # @param TenantId: 租户id
         # @type TenantId: String
-        # @param ProjectId: 项目id
-        # @type ProjectId: String
-        # @param TaskId: 任务id
-        # @type TaskId: String
-        # @param InstanceId: 实例id
-        # @type InstanceId: String
-        # @param JobId: 作业id
-        # @type JobId: String
         # @param EngineTaskId: 引擎任务id
         # @type EngineTaskId: String
-        # @param ProductSource: 产品模块
-        # @type ProductSource: String
-        # @param OnwerUid: 主账号
-        # @type OnwerUid: String
-        # @param StartTime: 开始时间
-        # @type StartTime: String
-        # @param EndTime: 结束时间
-        # @type EndTime: String
 
-        attr_accessor :PageNum, :PageSize, :TenantId, :ProjectId, :TaskId, :InstanceId, :JobId, :EngineTaskId, :ProductSource, :OnwerUid, :StartTime, :EndTime
+        attr_accessor :TenantId, :EngineTaskId
 
-        def initialize(pagenum=nil, pagesize=nil, tenantid=nil, projectid=nil, taskid=nil, instanceid=nil, jobid=nil, enginetaskid=nil, productsource=nil, onweruid=nil, starttime=nil, endtime=nil)
-          @PageNum = pagenum
-          @PageSize = pagesize
+        def initialize(tenantid=nil, enginetaskid=nil)
           @TenantId = tenantid
-          @ProjectId = projectid
-          @TaskId = taskid
-          @InstanceId = instanceid
-          @JobId = jobid
           @EngineTaskId = enginetaskid
-          @ProductSource = productsource
-          @OnwerUid = onweruid
-          @StartTime = starttime
-          @EndTime = endtime
         end
 
         def deserialize(params)
-          @PageNum = params['PageNum']
-          @PageSize = params['PageSize']
           @TenantId = params['TenantId']
-          @ProjectId = params['ProjectId']
-          @TaskId = params['TaskId']
-          @InstanceId = params['InstanceId']
-          @JobId = params['JobId']
           @EngineTaskId = params['EngineTaskId']
-          @ProductSource = params['ProductSource']
-          @OnwerUid = params['OnwerUid']
-          @StartTime = params['StartTime']
-          @EndTime = params['EndTime']
         end
       end
 
@@ -11841,7 +11801,7 @@ module TencentCloud
         # @type JobId: String
         # @param EngineTaskId: 引擎任务id
         # @type EngineTaskId: String
-        # @param ProductSource: 产品模块
+        # @param ProductSource: 数据来源,DATA_INTEGRATION、DATA_EXPLORATION、DATA_QUALITY、OM_CENTER等
         # @type ProductSource: String
         # @param OnwerUid: 主账号
         # @type OnwerUid: String
@@ -11885,7 +11845,7 @@ module TencentCloud
 
       # DescribeReportTaskList返回参数结构体
       class DescribeReportTaskListResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 1
+        # @param Data: 任务列表信息
         # @type Data: :class:`Tencentcloud::Wedata.v20210820.models.ReportTaskListInfo`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -16051,64 +16011,69 @@ module TencentCloud
 
       # 引擎任务信息
       class EngineTaskInfo < TencentCloud::Common::AbstractModel
-        # @param EngineSubmitTime: 1
+        # @param EngineSubmitTime: 引擎提交时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EngineSubmitTime: String
-        # @param EngineExeTime: 1
+        # @param EngineExeTime: 引擎执行时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EngineExeTime: String
-        # @param EngineExeTimes: 1
+        # @param EngineExeTimes: 引擎执行总时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EngineExeTimes: Integer
-        # @param CuConsume: 1
+        # @param CuConsume: cu消耗
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CuConsume: Integer
-        # @param ResourceUsage: 1
+        # @param ResourceUsage: 资源消耗
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceUsage: Integer
-        # @param EngineName: 1
+        # @param EngineName: 引擎名
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EngineName: String
-        # @param EngineExeStatus: 1
+        # @param EngineExeStatus: 引擎执行状态
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EngineExeStatus: String
-        # @param TaskKind: 1
+        # @param TaskKind: 任务种类
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskKind: String
-        # @param TaskType: 1
+        # @param TaskType: 任务类型
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskType: String
-        # @param TaskContent: 1
+        # @param TaskContent: 任务SQL语句
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskContent: String
-        # @param InputBytesSum: 1
+        # @param InputBytesSum: 数据扫描总 bytes
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InputBytesSum: Integer
-        # @param ShuffleReadBytesSum: 1
+        # @param ShuffleReadBytesSum: shuffle read 总 bytes
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ShuffleReadBytesSum: Integer
-        # @param ShuffleReadRecordsSum: 1
+        # @param ShuffleReadRecordsSum: shuffle read 总行数
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ShuffleReadRecordsSum: Integer
-        # @param OutputRecordsSum: 1
+        # @param OutputRecordsSum: 输出总行数
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OutputRecordsSum: Integer
-        # @param OutputBytesSum: 1
+        # @param OutputBytesSum: 输出总 bytes
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OutputBytesSum: Integer
-        # @param OutputFilesNum: 1
+        # @param OutputFilesNum: 输出文件数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OutputFilesNum: Integer
-        # @param OutputSmallFilesNum: 1
+        # @param OutputSmallFilesNum: 输出小文件数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OutputSmallFilesNum: Integer
-        # @param WaitTime: 1
+        # @param WaitTime: 执行等待时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WaitTime: Integer
-        # @param QueryResultTime: 1
+        # @param QueryResultTime: 查询结果时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type QueryResultTime: Integer
-        # @param CmdArgs: 1
+        # @param CmdArgs: 入参
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CmdArgs: String
 
@@ -22892,10 +22857,13 @@ module TencentCloud
         # @param SecondModuleList: 二级菜单
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SecondModuleList: Array
+        # @param Owner: 项目负责人
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Owner: :class:`Tencentcloud::Wedata.v20210820.models.BaseUser`
 
-        attr_accessor :TenantId, :ProjectId, :ProjectName, :DisplayName, :Region, :Description, :CreateTime, :Creator, :Tenant, :AdminUsers, :Clusters, :Params, :Status, :Model, :SecondModuleList
+        attr_accessor :TenantId, :ProjectId, :ProjectName, :DisplayName, :Region, :Description, :CreateTime, :Creator, :Tenant, :AdminUsers, :Clusters, :Params, :Status, :Model, :SecondModuleList, :Owner
 
-        def initialize(tenantid=nil, projectid=nil, projectname=nil, displayname=nil, region=nil, description=nil, createtime=nil, creator=nil, tenant=nil, adminusers=nil, clusters=nil, params=nil, status=nil, model=nil, secondmodulelist=nil)
+        def initialize(tenantid=nil, projectid=nil, projectname=nil, displayname=nil, region=nil, description=nil, createtime=nil, creator=nil, tenant=nil, adminusers=nil, clusters=nil, params=nil, status=nil, model=nil, secondmodulelist=nil, owner=nil)
           @TenantId = tenantid
           @ProjectId = projectid
           @ProjectName = projectname
@@ -22911,6 +22879,7 @@ module TencentCloud
           @Status = status
           @Model = model
           @SecondModuleList = secondmodulelist
+          @Owner = owner
         end
 
         def deserialize(params)
@@ -22949,6 +22918,10 @@ module TencentCloud
           @Status = params['Status']
           @Model = params['Model']
           @SecondModuleList = params['SecondModuleList']
+          unless params['Owner'].nil?
+            @Owner = BaseUser.new
+            @Owner.deserialize(params['Owner'])
+          end
         end
       end
 
@@ -23637,25 +23610,25 @@ module TencentCloud
 
       # 上报任务详情
       class ReportTaskDetail < TencentCloud::Common::AbstractModel
-        # @param EngineTaskId: 1
+        # @param EngineTaskId: 引擎任务id
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EngineTaskId: String
-        # @param EngineExeStatus: 1
+        # @param EngineExeStatus: 引擎执行状态，枚举
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EngineExeStatus: String
-        # @param EngineExeStartTime: 1
+        # @param EngineExeStartTime: 引擎执行开始时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EngineExeStartTime: String
-        # @param EngineExeEndTime: 1
+        # @param EngineExeEndTime: 引擎执行结束时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EngineExeEndTime: String
-        # @param TaskTypeId: 1
+        # @param TaskTypeId: 任务类型id
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskTypeId: Integer
-        # @param BusinessInfo: 1
+        # @param BusinessInfo: 业务信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BusinessInfo: String
-        # @param EngineTaskInfo: 1
+        # @param EngineTaskInfo: 引擎任务信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EngineTaskInfo: :class:`Tencentcloud::Wedata.v20210820.models.EngineTaskInfo`
 
@@ -23687,19 +23660,19 @@ module TencentCloud
 
       # 上报任务信息
       class ReportTaskListInfo < TencentCloud::Common::AbstractModel
-        # @param Rows: 1
+        # @param Rows: 任务列表详情
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Rows: Array
-        # @param PageNum: 1
+        # @param PageNum: 页码
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PageNum: Integer
-        # @param PageSize: 1
+        # @param PageSize: 每页条数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PageSize: Integer
-        # @param TotalCount: 1
+        # @param TotalCount: 总记录数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
-        # @param TotalPageNumber: 1
+        # @param TotalPageNumber: 总页数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalPageNumber: Integer
 
@@ -29278,58 +29251,58 @@ module TencentCloud
 
       # 任务信息
       class TaskInfoVo < TencentCloud::Common::AbstractModel
-        # @param AppID: 1
+        # @param AppID: 租户id
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AppID: String
-        # @param ProjectId: 1
+        # @param ProjectId: 项目id
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProjectId: String
-        # @param TaskId: 1
+        # @param TaskId: 任务id
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskId: String
-        # @param TaskName: 1
+        # @param TaskName: 任务名
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskName: String
-        # @param TaskTypeId: 1
+        # @param TaskTypeId: 任务类型id
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskTypeId: Integer
-        # @param OnwerUid: 1
+        # @param OnwerUid: 主账号id
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OnwerUid: String
-        # @param InChargeId: 1
+        # @param InChargeId: 负责人
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InChargeId: String
-        # @param InstanceId: 1
+        # @param InstanceId: 实例id
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceId: String
-        # @param JobId: 1
+        # @param JobId: jobId
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type JobId: String
-        # @param EngineType: 1
+        # @param EngineType: 引擎类型，DLC、EMR
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EngineType: String
-        # @param EngineName: 1
+        # @param EngineName: 引擎名称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EngineName: String
-        # @param EngineSubType: 1
+        # @param EngineSubType: 引擎子类型
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EngineSubType: String
-        # @param EngineTaskId: 1
+        # @param EngineTaskId: 引擎taskId
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EngineTaskId: String
-        # @param EngineExeStatus: 1
+        # @param EngineExeStatus: 引擎执行状态，枚举
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EngineExeStatus: String
-        # @param EngineExeUser: 1
+        # @param EngineExeUser: 引擎执行用户
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EngineExeUser: String
-        # @param EngineExeStartTime: 1
+        # @param EngineExeStartTime: 引擎执行开始时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EngineExeStartTime: String
-        # @param EngineExeEndTime: 1
+        # @param EngineExeEndTime: 引擎执行结束时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EngineExeEndTime: String
-        # @param ProductSource: 1
+        # @param ProductSource: 数据来源,DATA_INTEGRATION、DATA_EXPLORATION、DATA_QUALITY、OM_CENTER等
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProductSource: String
 

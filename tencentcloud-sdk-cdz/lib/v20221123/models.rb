@@ -200,10 +200,8 @@ module TencentCloud
       # DescribeCloudDedicatedZoneResourceSummary返回参数结构体
       class DescribeCloudDedicatedZoneResourceSummaryResponse < TencentCloud::Common::AbstractModel
         # @param ResourceSummarySet: 资源水位详情
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceSummarySet: Array
         # @param ExtraInfo: 资源水位扩展信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExtraInfo: :class:`Tencentcloud::Cdz.v20221123.models.ExtraInfo`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -236,10 +234,8 @@ module TencentCloud
       # 专属可用区资源水位数据扩展信息，包含可用区当地时间等数据。
       class ExtraInfo < TencentCloud::Common::AbstractModel
         # @param ThisMondayLocalDate: 专属可用区当地时间本周一日期
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ThisMondayLocalDate: String
         # @param LastMondayLocalDate: 专属可用区当地时间上周一日期
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LastMondayLocalDate: String
 
         attr_accessor :ThisMondayLocalDate, :LastMondayLocalDate

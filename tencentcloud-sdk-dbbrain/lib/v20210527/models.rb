@@ -1698,18 +1698,21 @@ module TencentCloud
         # @type Severities: Array
         # @param InstanceIds: 实例ID列表。
         # @type InstanceIds: Array
+        # @param Product: 服务产品类型，支持值包括："mysql" - 云数据库 MySQL，"redis" - 云数据库 Redis，默认为"mysql"。
+        # @type Product: String
         # @param Offset: 偏移量，默认0。
         # @type Offset: Integer
         # @param Limit: 返回数量，默认20，最大值为50。
         # @type Limit: Integer
 
-        attr_accessor :StartTime, :EndTime, :Severities, :InstanceIds, :Offset, :Limit
+        attr_accessor :StartTime, :EndTime, :Severities, :InstanceIds, :Product, :Offset, :Limit
 
-        def initialize(starttime=nil, endtime=nil, severities=nil, instanceids=nil, offset=nil, limit=nil)
+        def initialize(starttime=nil, endtime=nil, severities=nil, instanceids=nil, product=nil, offset=nil, limit=nil)
           @StartTime = starttime
           @EndTime = endtime
           @Severities = severities
           @InstanceIds = instanceids
+          @Product = product
           @Offset = offset
           @Limit = limit
         end
@@ -1719,6 +1722,7 @@ module TencentCloud
           @EndTime = params['EndTime']
           @Severities = params['Severities']
           @InstanceIds = params['InstanceIds']
+          @Product = params['Product']
           @Offset = params['Offset']
           @Limit = params['Limit']
         end

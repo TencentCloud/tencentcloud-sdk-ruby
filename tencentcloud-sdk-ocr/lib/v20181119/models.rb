@@ -563,6 +563,41 @@ module TencentCloud
         end
       end
 
+      # 银行回单
+      class BankSlip < TencentCloud::Common::AbstractModel
+        # @param BankSlipInfos: 银行回单信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BankSlipInfos: Array
+        # @param CommonBankSlipInfos: 银行回单信息常用字段
+        # @type CommonBankSlipInfos: Array
+
+        attr_accessor :BankSlipInfos, :CommonBankSlipInfos
+
+        def initialize(bankslipinfos=nil, commonbankslipinfos=nil)
+          @BankSlipInfos = bankslipinfos
+          @CommonBankSlipInfos = commonbankslipinfos
+        end
+
+        def deserialize(params)
+          unless params['BankSlipInfos'].nil?
+            @BankSlipInfos = []
+            params['BankSlipInfos'].each do |i|
+              bankslipinfo_tmp = BankSlipInfo.new
+              bankslipinfo_tmp.deserialize(i)
+              @BankSlipInfos << bankslipinfo_tmp
+            end
+          end
+          unless params['CommonBankSlipInfos'].nil?
+            @CommonBankSlipInfos = []
+            params['CommonBankSlipInfos'].each do |i|
+              bankslipinfo_tmp = BankSlipInfo.new
+              bankslipinfo_tmp.deserialize(i)
+              @CommonBankSlipInfos << bankslipinfo_tmp
+            end
+          end
+        end
+      end
+
       # 银行回单识别出的字段
       class BankSlipInfo < TencentCloud::Common::AbstractModel
         # @param Name: 识别出的字段名称(关键字)，支持以下字段：
@@ -10681,10 +10716,13 @@ module TencentCloud
         # @param CustomsPaymentReceipt: 海关缴款
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CustomsPaymentReceipt: :class:`Tencentcloud::Ocr.v20181119.models.CustomsPaymentReceipt`
+        # @param BankSlip: 银行回单
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BankSlip: :class:`Tencentcloud::Ocr.v20181119.models.BankSlip`
 
-        attr_accessor :VatSpecialInvoice, :VatCommonInvoice, :VatElectronicCommonInvoice, :VatElectronicSpecialInvoice, :VatElectronicInvoiceBlockchain, :VatElectronicInvoiceToll, :VatElectronicSpecialInvoiceFull, :VatElectronicInvoiceFull, :MachinePrintedInvoice, :BusInvoice, :ShippingInvoice, :TollInvoice, :OtherInvoice, :MotorVehicleSaleInvoice, :UsedCarPurchaseInvoice, :VatInvoiceRoll, :TaxiTicket, :QuotaInvoice, :AirTransport, :NonTaxIncomeGeneralBill, :NonTaxIncomeElectronicBill, :TrainTicket, :MedicalOutpatientInvoice, :MedicalHospitalizedInvoice, :VatSalesList, :ElectronicTrainTicketFull, :ElectronicFlightTicketFull, :TaxPayment, :CustomsPaymentReceipt
+        attr_accessor :VatSpecialInvoice, :VatCommonInvoice, :VatElectronicCommonInvoice, :VatElectronicSpecialInvoice, :VatElectronicInvoiceBlockchain, :VatElectronicInvoiceToll, :VatElectronicSpecialInvoiceFull, :VatElectronicInvoiceFull, :MachinePrintedInvoice, :BusInvoice, :ShippingInvoice, :TollInvoice, :OtherInvoice, :MotorVehicleSaleInvoice, :UsedCarPurchaseInvoice, :VatInvoiceRoll, :TaxiTicket, :QuotaInvoice, :AirTransport, :NonTaxIncomeGeneralBill, :NonTaxIncomeElectronicBill, :TrainTicket, :MedicalOutpatientInvoice, :MedicalHospitalizedInvoice, :VatSalesList, :ElectronicTrainTicketFull, :ElectronicFlightTicketFull, :TaxPayment, :CustomsPaymentReceipt, :BankSlip
 
-        def initialize(vatspecialinvoice=nil, vatcommoninvoice=nil, vatelectroniccommoninvoice=nil, vatelectronicspecialinvoice=nil, vatelectronicinvoiceblockchain=nil, vatelectronicinvoicetoll=nil, vatelectronicspecialinvoicefull=nil, vatelectronicinvoicefull=nil, machineprintedinvoice=nil, businvoice=nil, shippinginvoice=nil, tollinvoice=nil, otherinvoice=nil, motorvehiclesaleinvoice=nil, usedcarpurchaseinvoice=nil, vatinvoiceroll=nil, taxiticket=nil, quotainvoice=nil, airtransport=nil, nontaxincomegeneralbill=nil, nontaxincomeelectronicbill=nil, trainticket=nil, medicaloutpatientinvoice=nil, medicalhospitalizedinvoice=nil, vatsaleslist=nil, electronictrainticketfull=nil, electronicflightticketfull=nil, taxpayment=nil, customspaymentreceipt=nil)
+        def initialize(vatspecialinvoice=nil, vatcommoninvoice=nil, vatelectroniccommoninvoice=nil, vatelectronicspecialinvoice=nil, vatelectronicinvoiceblockchain=nil, vatelectronicinvoicetoll=nil, vatelectronicspecialinvoicefull=nil, vatelectronicinvoicefull=nil, machineprintedinvoice=nil, businvoice=nil, shippinginvoice=nil, tollinvoice=nil, otherinvoice=nil, motorvehiclesaleinvoice=nil, usedcarpurchaseinvoice=nil, vatinvoiceroll=nil, taxiticket=nil, quotainvoice=nil, airtransport=nil, nontaxincomegeneralbill=nil, nontaxincomeelectronicbill=nil, trainticket=nil, medicaloutpatientinvoice=nil, medicalhospitalizedinvoice=nil, vatsaleslist=nil, electronictrainticketfull=nil, electronicflightticketfull=nil, taxpayment=nil, customspaymentreceipt=nil, bankslip=nil)
           @VatSpecialInvoice = vatspecialinvoice
           @VatCommonInvoice = vatcommoninvoice
           @VatElectronicCommonInvoice = vatelectroniccommoninvoice
@@ -10714,6 +10752,7 @@ module TencentCloud
           @ElectronicFlightTicketFull = electronicflightticketfull
           @TaxPayment = taxpayment
           @CustomsPaymentReceipt = customspaymentreceipt
+          @BankSlip = bankslip
         end
 
         def deserialize(params)
@@ -10832,6 +10871,10 @@ module TencentCloud
           unless params['CustomsPaymentReceipt'].nil?
             @CustomsPaymentReceipt = CustomsPaymentReceipt.new
             @CustomsPaymentReceipt.deserialize(params['CustomsPaymentReceipt'])
+          end
+          unless params['BankSlip'].nil?
+            @BankSlip = BankSlip.new
+            @BankSlip.deserialize(params['BankSlip'])
           end
         end
       end

@@ -302,16 +302,12 @@ module TencentCloud
       # AddInstances返回参数结构体
       class AddInstancesResponse < TencentCloud::Common::AbstractModel
         # @param TranId: 冻结流水，一次开通一个冻结流水。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TranId: String
         # @param DealNames: 后付费订单号。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DealNames: Array
         # @param ResourceIds: 发货资源id列表。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceIds: Array
         # @param BigDealIds: 大订单号
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BigDealIds: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -970,15 +966,12 @@ module TencentCloud
         # @param ClusterId: 集群id
         # @type ClusterId: String
         # @param Region: 地域
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Region: String
         # @param CreateTime: 任务创建时间
         # @type CreateTime: String
         # @param DelayTime: 延迟执行时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DelayTime: String
         # @param ErrMsg: 任务失败信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrMsg: String
         # @param FlowId: 异步任务流id
         # @type FlowId: Integer
@@ -1020,22 +1013,17 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ModifyParamsData: Array
         # @param CreateClustersData: 创建集群任务信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateClustersData: :class:`Tencentcloud::Cynosdb.v20190107.models.CreateClustersData`
         # @param RollbackData: 集群回档任务信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RollbackData: :class:`Tencentcloud::Cynosdb.v20190107.models.RollbackData`
         # @param ModifyInstanceData: 实例变配任务信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ModifyInstanceData: :class:`Tencentcloud::Cynosdb.v20190107.models.ModifyInstanceData`
         # @param ManualBackupData: 手动备份任务信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ManualBackupData: :class:`Tencentcloud::Cynosdb.v20190107.models.ManualBackupData`
         # @param ModifyDbVersionData: 修改内核版本任务信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ModifyDbVersionData: :class:`Tencentcloud::Cynosdb.v20190107.models.ModifyDbVersionData`
         # @param ClusterSlaveData: 集群可用区信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterSlaveData: :class:`Tencentcloud::Cynosdb.v20190107.models.ClusterSlaveData`
         # @param SwitchClusterLogBin: 转换集群日志
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -1044,11 +1032,8 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ModifyInstanceParamsData: :class:`Tencentcloud::Cynosdb.v20190107.models.BizTaskModifyParamsData`
         # @param TaskMaintainInfo: 维护时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskMaintainInfo: :class:`Tencentcloud::Cynosdb.v20190107.models.TaskMaintainInfo`
         # @param InstanceCLSDeliveryInfos: 实例日志投递信息
-
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceCLSDeliveryInfos: Array
         # @param TaskProgressInfo: 任务进度信息
         # @type TaskProgressInfo: :class:`Tencentcloud::Cynosdb.v20190107.models.TaskProgressInfo`
@@ -1190,7 +1175,6 @@ module TencentCloud
         # @param InstanceId: 实例ID
         # @type InstanceId: String
         # @param ModifyInstanceParamList: 实例参数修改任务详情
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ModifyInstanceParamList: Array
 
         attr_accessor :InstanceId, :ModifyInstanceParamList
@@ -1218,10 +1202,8 @@ module TencentCloud
         # @param ClusterId: 集群ID
         # @type ClusterId: String
         # @param ClusterParamList: 集群参数修改数据
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterParamList: Array
         # @param ModifyInstanceParams: 实例参数修改数据
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ModifyInstanceParams: Array
 
         attr_accessor :ClusterId, :ClusterParamList, :ModifyInstanceParams
@@ -1527,25 +1509,18 @@ module TencentCloud
         # @param InstanceRole: 实例角色
         # @type InstanceRole: String
         # @param MaintainStartTime: 执行开始时间(距离0点的秒数)
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaintainStartTime: Integer
         # @param MaintainDuration: 持续的时间(单位：秒)
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaintainDuration: Integer
         # @param MaintainWeekDays: 可以执行的时间，枚举值：["Mon","Tue","Wed","Thu","Fri", "Sat", "Sun"]
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaintainWeekDays: Array
         # @param ServerlessStatus: serverless实例子状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ServerlessStatus: String
         # @param InstanceTasks: 实例任务信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceTasks: Array
         # @param InstanceDeviceType: 实例机器类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceDeviceType: String
         # @param InstanceStorageType: 实例存储类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceStorageType: String
         # @param DbMode: 数据库类型
         # @type DbMode: String
@@ -2330,16 +2305,12 @@ module TencentCloud
       # CreateClusters返回参数结构体
       class CreateClustersResponse < TencentCloud::Common::AbstractModel
         # @param TranId: 冻结流水ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TranId: String
         # @param DealNames: 订单号
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DealNames: Array
         # @param ResourceIds: 资源ID列表（该字段已不再维护，请使用dealNames字段查询接口DescribeResourcesByDealName获取资源ID）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceIds: Array
         # @param ClusterIds: 集群ID列表（该字段已不再维护，请使用dealNames字段查询接口DescribeResourcesByDealName获取集群ID）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterIds: Array
         # @param BigDealIds: 大订单号
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -2773,111 +2744,76 @@ module TencentCloud
         # @param InstanceNum: 实例数
         # @type InstanceNum: Integer
         # @param Uin: 用户uin
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Uin: String
         # @param DbType: 引擎类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DbType: String
         # @param AppId: 用户appid
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AppId: Integer
         # @param StatusDesc: 集群状态描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StatusDesc: String
         # @param CreateTime: 集群创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
         # @param PayMode: 付费模式。0-按量计费，1-包年包月
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PayMode: Integer
         # @param PeriodEndTime: 截止时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PeriodEndTime: String
         # @param Vip: 集群读写vip
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Vip: String
         # @param Vport: 集群读写vport
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Vport: Integer
         # @param ProjectID: 项目id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProjectID: Integer
         # @param VpcId: 私有网络ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VpcId: String
         # @param SubnetId: 子网ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubnetId: String
         # @param CynosVersion: cynos内核版本
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CynosVersion: String
         # @param StorageLimit: 存储容量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StorageLimit: Integer
         # @param RenewFlag: 续费标志
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RenewFlag: Integer
         # @param ProcessingTask: 正在处理的任务
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProcessingTask: String
         # @param Tasks: 集群的任务数组
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tasks: Array
         # @param ResourceTags: 集群绑定的tag数组
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceTags: Array
         # @param DbMode: Db类型(NORMAL, SERVERLESS)
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DbMode: String
         # @param ServerlessStatus: 当Db类型为SERVERLESS时，serverless集群状态，可选值:
         # resume
         # pause
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ServerlessStatus: String
         # @param Storage: 集群预付费存储值大小
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Storage: Integer
         # @param StorageId: 集群存储为预付费时的存储ID，用于预付费存储变配
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StorageId: String
         # @param StoragePayMode: 集群存储付费模式。0-按量计费，1-包年包月
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StoragePayMode: Integer
         # @param MinStorageSize: 集群计算规格对应的最小存储值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MinStorageSize: Integer
         # @param MaxStorageSize: 集群计算规格对应的最大存储值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaxStorageSize: Integer
         # @param NetAddrs: 集群网络信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NetAddrs: Array
         # @param PhysicalZone: 物理可用区
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PhysicalZone: String
         # @param MasterZone: 主可用区
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MasterZone: String
         # @param HasSlaveZone: 是否有从可用区
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HasSlaveZone: String
         # @param SlaveZones: 从可用区
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SlaveZones: Array
         # @param BusinessType: 商业类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BusinessType: String
         # @param IsFreeze: 是否冻结
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsFreeze: String
         # @param OrderSource: 订单来源
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OrderSource: String
         # @param Ability: 能力
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Ability: :class:`Tencentcloud::Cynosdb.v20190107.models.Ability`
         # @param ResourcePackages: 实例绑定资源包信息（此处只返回存储资源包，即packageType=DISK）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourcePackages: Array
 
         attr_accessor :Status, :UpdateTime, :Zone, :ClusterName, :Region, :DbVersion, :ClusterId, :InstanceNum, :Uin, :DbType, :AppId, :StatusDesc, :CreateTime, :PayMode, :PeriodEndTime, :Vip, :Vport, :ProjectID, :VpcId, :SubnetId, :CynosVersion, :StorageLimit, :RenewFlag, :ProcessingTask, :Tasks, :ResourceTags, :DbMode, :ServerlessStatus, :Storage, :StorageId, :StoragePayMode, :MinStorageSize, :MaxStorageSize, :NetAddrs, :PhysicalZone, :MasterZone, :HasSlaveZone, :SlaveZones, :BusinessType, :IsFreeze, :OrderSource, :Ability, :ResourcePackages
@@ -3017,7 +2953,6 @@ module TencentCloud
         # @param Zone: 可用区
         # @type Zone: String
         # @param PhysicalZone: 物理可用区
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PhysicalZone: String
         # @param Status: 状态
         # @type Status: String
@@ -3030,19 +2965,14 @@ module TencentCloud
         # pausing
         # @type ServerlessStatus: String
         # @param StorageId: 存储Id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StorageId: String
         # @param Storage: 存储大小，单位为G
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Storage: Integer
         # @param MaxStorageSize: 最大存储规格，单位为G
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaxStorageSize: Integer
         # @param MinStorageSize: 最小存储规格，单位为G
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MinStorageSize: Integer
         # @param StoragePayMode: 存储付费类型，1为包年包月，0为按量计费
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StoragePayMode: Integer
         # @param VpcName: VPC名称
         # @type VpcName: String
@@ -3059,12 +2989,10 @@ module TencentCloud
         # @param DbType: 数据库类型
         # @type DbType: String
         # @param DbMode: Db类型：<li>NORMAL</li><li>SERVERLESS</li>
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DbMode: String
         # @param DbVersion: 数据库版本
         # @type DbVersion: String
         # @param StorageLimit: 存储空间上限
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StorageLimit: Integer
         # @param UsedStorage: 使用容量
         # @type UsedStorage: Integer
@@ -3075,28 +3003,20 @@ module TencentCloud
         # @param RoAddr: 集群只读实例的vip地址和vport端口
         # @type RoAddr: Array
         # @param Ability: 集群支持的功能
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Ability: :class:`Tencentcloud::Cynosdb.v20190107.models.Ability`
         # @param CynosVersion: cynos版本
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CynosVersion: String
         # @param BusinessType: 商业类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BusinessType: String
         # @param HasSlaveZone: 是否有从可用区
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HasSlaveZone: String
         # @param IsFreeze: 是否冻结
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsFreeze: String
         # @param Tasks: 任务列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tasks: Array
         # @param MasterZone: 主可用区
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MasterZone: String
         # @param SlaveZones: 从可用区列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SlaveZones: Array
         # @param InstanceSet: 实例信息
         # @type InstanceSet: Array
@@ -3109,34 +3029,24 @@ module TencentCloud
         # @param ResourceTags: 实例绑定的tag数组信息
         # @type ResourceTags: Array
         # @param ProxyStatus: Proxy状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProxyStatus: String
         # @param LogBin: binlog开关，可选值：ON, OFF
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LogBin: String
         # @param IsSkipTrade: 是否跳过交易
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsSkipTrade: String
         # @param PitrType: pitr类型，可选值：normal, redo_pitr
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PitrType: String
         # @param IsOpenPasswordComplexity: 是否打开密码复杂度
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsOpenPasswordComplexity: String
         # @param NetworkStatus: 网络类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NetworkStatus: String
         # @param ResourcePackages: 集群绑定的资源包信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourcePackages: Array
         # @param RenewFlag: 自动续费标识，1为自动续费，0为到期不续
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RenewFlag: Integer
         # @param NetworkType: 节点网络类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NetworkType: String
         # @param SlaveZoneAttr: 备可用区属性
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SlaveZoneAttr: Array
         # @param CynosVersionTag: 版本标签
         # @type CynosVersionTag: String
@@ -3408,47 +3318,37 @@ module TencentCloud
         # pause
         # @type ServerlessStatus: String
         # @param StorageId: 预付费存储Id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StorageId: String
         # @param StoragePayMode: 存储付费类型
         # @type StoragePayMode: Integer
         # @param PhysicalZone: 物理区
         # @type PhysicalZone: String
         # @param BusinessType: 商业类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BusinessType: String
         # @param Tasks: 任务
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tasks: Array
         # @param IsFreeze: 是否冻结
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsFreeze: String
         # @param ResourceTags: 资源标签
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceTags: Array
         # @param MasterZone: 主可用区
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MasterZone: String
         # @param SlaveZones: 备可用区
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SlaveZones: Array
         # @param InstanceNetInfo: 实例网络信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceNetInfo: Array
         # @param ResourcePackages: 实例绑定资源包信息（此处只返回计算资源包，即packageType=CCU）
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourcePackages: Array
         # @param InstanceIndexMode: 实例索引形态,可选值【mixedRowColumn（行列混存），onlyRowIndex（仅行存）】
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceIndexMode: String
         # @param InstanceAbility: 当前实例支持的能力
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceAbility: :class:`Tencentcloud::Cynosdb.v20190107.models.InstanceAbility`
         # @param DeviceType: 实例机器类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeviceType: String
         # @param InstanceStorageType: 实例存储类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceStorageType: String
 
         attr_accessor :Uin, :AppId, :ClusterId, :ClusterName, :InstanceId, :InstanceName, :ProjectId, :Region, :Zone, :Status, :StatusDesc, :DbMode, :DbType, :DbVersion, :Cpu, :Memory, :Storage, :InstanceType, :InstanceRole, :UpdateTime, :CreateTime, :VpcId, :SubnetId, :Vip, :Vport, :PayMode, :PeriodEndTime, :DestroyDeadlineText, :IsolateTime, :NetType, :WanDomain, :WanIP, :WanPort, :WanStatus, :DestroyTime, :CynosVersion, :ProcessingTask, :RenewFlag, :MinCpu, :MaxCpu, :ServerlessStatus, :StorageId, :StoragePayMode, :PhysicalZone, :BusinessType, :Tasks, :IsFreeze, :ResourceTags, :MasterZone, :SlaveZones, :InstanceNetInfo, :ResourcePackages, :InstanceIndexMode, :InstanceAbility, :DeviceType, :InstanceStorageType
@@ -3790,13 +3690,10 @@ module TencentCloud
         # @param InstanceSet: 实例组包含实例信息
         # @type InstanceSet: Array
         # @param UniqVpcId: VPC的ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UniqVpcId: String
         # @param UniqSubnetId: 子网ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UniqSubnetId: String
         # @param OldAddrInfo: 正在回收IP信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OldAddrInfo: :class:`Tencentcloud::Cynosdb.v20190107.models.OldAddrInfo`
         # @param ProcessingTasks: 正在进行的任务
         # @type ProcessingTasks: Array
@@ -4429,16 +4326,12 @@ module TencentCloud
       # DescribeAccountAllGrantPrivileges返回参数结构体
       class DescribeAccountAllGrantPrivilegesResponse < TencentCloud::Common::AbstractModel
         # @param PrivilegeStatements: 权限语句
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PrivilegeStatements: Array
         # @param GlobalPrivileges: 全局权限
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GlobalPrivileges: Array
         # @param DatabasePrivileges: 数据库权限
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DatabasePrivileges: Array
         # @param TablePrivileges: 数据库表权限
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TablePrivileges: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4577,7 +4470,6 @@ module TencentCloud
       # DescribeAccounts返回参数结构体
       class DescribeAccountsResponse < TencentCloud::Common::AbstractModel
         # @param AccountSet: 数据库账号列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AccountSet: Array
         # @param TotalCount: 账号总数量
         # @type TotalCount: Integer
@@ -4971,16 +4863,12 @@ module TencentCloud
         # @param ReserveDuration: 表示保留备份时长, 单位秒，超过该时间将被清理, 七天表示为3600*24*7=604800
         # @type ReserveDuration: Integer
         # @param BackupFreq: 备份频率，长度为7的数组，分别对应周一到周日的备份方式，full-全量备份，increment-增量备份
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BackupFreq: Array
         # @param BackupType: 备份方式，logic-逻辑备份，snapshot-快照备份
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BackupType: String
         # @param LogicCrossRegionsConfigUpdateTime: 跨地域逻辑备份配置修改时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LogicCrossRegionsConfigUpdateTime: String
         # @param LogicBackupConfig: 自动逻辑备份配置
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LogicBackupConfig: :class:`Tencentcloud::Cynosdb.v20190107.models.LogicBackupConfigInfo`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5176,10 +5064,8 @@ module TencentCloud
       # DescribeBinlogConfig返回参数结构体
       class DescribeBinlogConfigResponse < TencentCloud::Common::AbstractModel
         # @param BinlogCrossRegionsConfigUpdateTime: Binlog跨地域配置更新时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BinlogCrossRegionsConfigUpdateTime: String
         # @param BinlogConfig: Binlog配置信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BinlogConfig: :class:`Tencentcloud::Cynosdb.v20190107.models.BinlogConfigInfo`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5315,7 +5201,6 @@ module TencentCloud
         # @param TotalCount: 记录总条数
         # @type TotalCount: Integer
         # @param Binlogs: Binlog列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Binlogs: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -7853,10 +7738,8 @@ module TencentCloud
       # 交换实例信息
       class ExchangeInstanceInfo < TencentCloud::Common::AbstractModel
         # @param SrcInstanceInfo: 源实例信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SrcInstanceInfo: :class:`Tencentcloud::Cynosdb.v20190107.models.RollbackInstanceInfo`
         # @param DstInstanceInfo: 目标实例信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DstInstanceInfo: :class:`Tencentcloud::Cynosdb.v20190107.models.RollbackInstanceInfo`
 
         attr_accessor :SrcInstanceInfo, :DstInstanceInfo
@@ -7881,10 +7764,8 @@ module TencentCloud
       # 交换RO组信息
       class ExchangeRoGroupInfo < TencentCloud::Common::AbstractModel
         # @param SrcRoGroupInfo: 源RO组信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SrcRoGroupInfo: :class:`Tencentcloud::Cynosdb.v20190107.models.RollbackRoGroupInfo`
         # @param DstRoGroupInfo: 目标RO组信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DstRoGroupInfo: :class:`Tencentcloud::Cynosdb.v20190107.models.RollbackRoGroupInfo`
 
         attr_accessor :SrcRoGroupInfo, :DstRoGroupInfo
@@ -8835,10 +8716,8 @@ module TencentCloud
         # @param MaxIoBandWidth: 最大IO带宽
         # @type MaxIoBandWidth: Integer
         # @param ZoneStockInfos: 地域库存信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ZoneStockInfos: Array
         # @param StockCount: 库存数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StockCount: Integer
 
         attr_accessor :Cpu, :Memory, :MaxStorageSize, :MinStorageSize, :HasStock, :MachineType, :MaxIops, :MaxIoBandWidth, :ZoneStockInfos, :StockCount
@@ -11462,7 +11341,6 @@ module TencentCloud
         # @param Min: 参数容许的最小值
         # @type Min: String
         # @param EnumValue: 参数的可选枚举值。如果为非枚举值，则为空
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EnumValue: Array
         # @param IsGlobal: 1：全局参数，0：非全局参数
         # @type IsGlobal: Integer
@@ -11471,16 +11349,12 @@ module TencentCloud
         # @param MatchValue: 匹配目标值，当multiVal时，各个key用，分割
         # @type MatchValue: String
         # @param IsFunc: true-为公式，false-非公式
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsFunc: Boolean
         # @param Func: 参数设置为公式时，Func返回设置的公式内容
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Func: String
         # @param ModifiableInfo: 参数是否可修改
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ModifiableInfo: :class:`Tencentcloud::Cynosdb.v20190107.models.ModifiableInfo`
         # @param FuncPattern: 支持公式的参数的默认公式样式
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FuncPattern: String
 
         attr_accessor :ParamName, :ParamType, :SupportFunc, :Default, :Description, :CurrentValue, :NeedReboot, :Max, :Min, :EnumValue, :IsGlobal, :MatchType, :MatchValue, :IsFunc, :Func, :ModifiableInfo, :FuncPattern
@@ -11934,22 +11808,18 @@ module TencentCloud
       # 数据库代理组详细信息
       class ProxyGroupInfo < TencentCloud::Common::AbstractModel
         # @param ProxyGroup: 数据库代理组
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProxyGroup: :class:`Tencentcloud::Cynosdb.v20190107.models.ProxyGroup`
         # @param ProxyGroupRwInfo: 数据库代理组读写分离信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProxyGroupRwInfo: :class:`Tencentcloud::Cynosdb.v20190107.models.ProxyGroupRwInfo`
         # @param ProxyNodes: 数据库代理节点信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProxyNodes: Array
         # @param ConnectionPool: 数据库代理连接池信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ConnectionPool: :class:`Tencentcloud::Cynosdb.v20190107.models.ProxyConnectionPoolInfo`
         # @param NetAddrInfos: 数据库代理网络信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NetAddrInfos: Array
         # @param Tasks: 数据库代理任务集
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tasks: Array
 
         attr_accessor :ProxyGroup, :ProxyGroupRwInfo, :ProxyNodes, :ConnectionPool, :NetAddrInfos, :Tasks
@@ -12018,7 +11888,6 @@ module TencentCloud
         # @param InstanceWeights: 实例权重数组
         # @type InstanceWeights: Array
         # @param OpenRw: 是否开通读写节点，yse-是，no-否
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OpenRw: String
         # @param RwType: 读写属性，可选值：READWRITE,READONLY
         # @type RwType: String
@@ -12736,13 +12605,10 @@ module TencentCloud
         # @param SnapshotTime: 快照时间
         # @type SnapshotTime: String
         # @param MinCpu: 回档到serverlessls集群时最小CPU
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MinCpu: Integer
         # @param MaxCpu: 回档到serverlessls集群时最大CPU
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaxCpu: Integer
         # @param SnapShotId: 快照ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SnapShotId: Integer
         # @param RollbackDatabases: 回档数据库
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -12751,10 +12617,8 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RollbackTables: Array
         # @param BackupFileName: 备份文件名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BackupFileName: String
         # @param RollbackProcess: 回档进程
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RollbackProcess: :class:`Tencentcloud::Cynosdb.v20190107.models.RollbackProcessInfo`
 
         attr_accessor :Cpu, :Memory, :StorageLimit, :OriginalClusterId, :OriginalClusterName, :RollbackStrategy, :SnapshotTime, :MinCpu, :MaxCpu, :SnapShotId, :RollbackDatabases, :RollbackTables, :BackupFileName, :RollbackProcess
@@ -12894,10 +12758,8 @@ module TencentCloud
       # 回档进度详情
       class RollbackProcessInfo < TencentCloud::Common::AbstractModel
         # @param IsVipSwitchable: 是否可以交换vip
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsVipSwitchable: Boolean
         # @param VipSwitchableTime: vip可交换时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VipSwitchableTime: String
         # @param ExchangeInstanceInfoList: 交换实例列表
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -12906,13 +12768,10 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExchangeRoGroupInfoList: Array
         # @param CurrentStep: 当前步骤
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CurrentStep: String
         # @param CurrentStepProgress: 当前步骤进度
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CurrentStepProgress: Integer
         # @param CurrentStepRemainingTime: 当前步骤剩余时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CurrentStepRemainingTime: String
 
         attr_accessor :IsVipSwitchable, :VipSwitchableTime, :ExchangeInstanceInfoList, :ExchangeRoGroupInfoList, :CurrentStep, :CurrentStepProgress, :CurrentStepRemainingTime
@@ -13681,16 +13540,12 @@ module TencentCloud
       # serverless类型的可用区库存信息
       class ServerlessZoneStockInfo < TencentCloud::Common::AbstractModel
         # @param Zone: 可用区
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Zone: String
         # @param StockCount: 存储量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StockCount: Integer
         # @param HasStock: 是否包含库存
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HasStock: Boolean
         # @param SlaveZoneStockInfos: 从可用区库存信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SlaveZoneStockInfos: Array
 
         attr_accessor :Zone, :StockCount, :HasStock, :SlaveZoneStockInfos
@@ -14696,7 +14551,6 @@ module TencentCloud
         # @param StockCount: 库存数量
         # @type StockCount: Integer
         # @param SlaveZoneStockInfos: 备可用区库存信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SlaveZoneStockInfos: Array
 
         attr_accessor :Zone, :HasStock, :StockCount, :SlaveZoneStockInfos

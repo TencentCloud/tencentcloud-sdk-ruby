@@ -338,7 +338,6 @@ module TencentCloud
         # @param Zone: 专用集群所属可用区名称。
         # @type Zone: String
         # @param Description: 专用集群的描述。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
         # @param Name: 专用集群的名称。
         # @type Name: String
@@ -348,10 +347,12 @@ module TencentCloud
         # @type CreateTime: String
         # @param SiteId: 专用集群所属的站点id。
         # @type SiteId: String
+        # @param RunningStatus: 专用集群的运营状态
+        # @type RunningStatus: String
 
-        attr_accessor :DedicatedClusterId, :Zone, :Description, :Name, :LifecycleStatus, :CreateTime, :SiteId
+        attr_accessor :DedicatedClusterId, :Zone, :Description, :Name, :LifecycleStatus, :CreateTime, :SiteId, :RunningStatus
 
-        def initialize(dedicatedclusterid=nil, zone=nil, description=nil, name=nil, lifecyclestatus=nil, createtime=nil, siteid=nil)
+        def initialize(dedicatedclusterid=nil, zone=nil, description=nil, name=nil, lifecyclestatus=nil, createtime=nil, siteid=nil, runningstatus=nil)
           @DedicatedClusterId = dedicatedclusterid
           @Zone = zone
           @Description = description
@@ -359,6 +360,7 @@ module TencentCloud
           @LifecycleStatus = lifecyclestatus
           @CreateTime = createtime
           @SiteId = siteid
+          @RunningStatus = runningstatus
         end
 
         def deserialize(params)
@@ -369,6 +371,7 @@ module TencentCloud
           @LifecycleStatus = params['LifecycleStatus']
           @CreateTime = params['CreateTime']
           @SiteId = params['SiteId']
+          @RunningStatus = params['RunningStatus']
         end
       end
 
@@ -469,45 +472,43 @@ module TencentCloud
         # @param Action: 订单类型，创建CREATE或扩容EXTEND
         # @type Action: String
         # @param DedicatedClusterOrderItems: 子订单详情列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DedicatedClusterOrderItems: Array
         # @param Cpu: cpu值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Cpu: Integer
         # @param Mem: mem值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Mem: Integer
         # @param Gpu: gpu值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Gpu: Integer
         # @param PayStatus: 0代表未支付，1代表已支付
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PayStatus: Integer
         # @param PayType: 支付方式，一次性、按月、按年
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PayType: String
         # @param TimeUnit: 购买时长的单位
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TimeUnit: String
         # @param TimeSpan: 购买时长
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TimeSpan: Integer
         # @param OrderType: 订单类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OrderType: String
         # @param CheckStatus: 验收状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CheckStatus: String
         # @param DeliverExpectTime: 交付预期时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeliverExpectTime: String
         # @param DeliverFinishTime: 交付实际完成时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeliverFinishTime: String
         # @param CheckExpectTime: 验收预期时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CheckExpectTime: String
         # @param CheckFinishTime: 验收实际完成时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CheckFinishTime: String
         # @param OrderSLA: 订单SLA
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OrderSLA: String
         # @param OrderPayPlan: 订单支付计划
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OrderPayPlan: String
 
         attr_accessor :DedicatedClusterId, :DedicatedClusterTypeId, :SupportedStorageType, :SupportedUplinkSpeed, :SupportedInstanceFamily, :Weight, :PowerDraw, :OrderStatus, :CreateTime, :DedicatedClusterOrderId, :Action, :DedicatedClusterOrderItems, :Cpu, :Mem, :Gpu, :PayStatus, :PayType, :TimeUnit, :TimeSpan, :OrderType, :CheckStatus, :DeliverExpectTime, :DeliverFinishTime, :CheckExpectTime, :CheckFinishTime, :OrderSLA, :OrderPayPlan
@@ -615,13 +616,10 @@ module TencentCloud
         # @param TypeName: 规格英文名
         # @type TypeName: String
         # @param ComputeFormat: 规格展示
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ComputeFormat: String
         # @param TypeFamily: 规格类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TypeFamily: String
         # @param SubOrderPayStatus: 0未支付，1已支付
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubOrderPayStatus: Integer
 
         attr_accessor :DedicatedClusterTypeId, :SupportedStorageType, :SupportedUplinkSpeed, :SupportedInstanceFamily, :Weight, :PowerDraw, :SubOrderStatus, :CreateTime, :SubOrderId, :Count, :Name, :Description, :TotalCpu, :TotalMem, :TotalGpu, :TypeName, :ComputeFormat, :TypeFamily, :SubOrderPayStatus
@@ -676,7 +674,6 @@ module TencentCloud
         # @param DedicatedClusterTypeId: 配置id
         # @type DedicatedClusterTypeId: String
         # @param Description: 配置描述，对应描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
         # @param Name: 配置名称，对应计算资源类型
         # @type Name: String
@@ -1609,7 +1606,6 @@ module TencentCloud
         # @param ExpireTime: 到期时间
         # @type ExpireTime: String
         # @param HostId: 宿主机id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HostId: String
 
         attr_accessor :HostIp, :ServiceType, :HostStatus, :HostType, :CpuAvailable, :CpuTotal, :MemAvailable, :MemTotal, :RunTime, :ExpireTime, :HostId
@@ -1718,10 +1714,8 @@ module TencentCloud
       # 入带宽数据
       class InBandwidth < TencentCloud::Common::AbstractModel
         # @param Timestamps: 时间戳
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Timestamps: Array
         # @param Values: 时间对应的值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Values: Array
 
         attr_accessor :Timestamps, :Values
@@ -1740,16 +1734,12 @@ module TencentCloud
       # 本地网络信息
       class LocalNetInfo < TencentCloud::Common::AbstractModel
         # @param Protocol: 协议
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Protocol: String
         # @param VpcId: 网络id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VpcId: String
         # @param BGPRoute: 路由信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BGPRoute: String
         # @param LocalIp: 本地IP
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LocalIp: String
 
         attr_accessor :Protocol, :VpcId, :BGPRoute, :LocalIp
@@ -2020,10 +2010,8 @@ module TencentCloud
       # 出带宽数据。
       class OutBandwidth < TencentCloud::Common::AbstractModel
         # @param Timestamps: 时间戳
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Timestamps: Array
         # @param Values: 对应时间的值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Values: Array
 
         attr_accessor :Timestamps, :Values
@@ -2069,40 +2057,28 @@ module TencentCloud
       # 云硬盘的仓库级别信息
       class SetInfo < TencentCloud::Common::AbstractModel
         # @param SetId: 云硬盘仓库id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SetId: String
         # @param SetName: 云硬盘仓库名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SetName: String
         # @param SetType: 云硬盘仓库类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SetType: String
         # @param SetSize: 云硬盘仓库容量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SetSize: Float
         # @param SetStatus: 云硬盘仓库状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SetStatus: String
         # @param CreateTime: 云硬盘仓库创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
         # @param ReadTraffic: 读流量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReadTraffic: :class:`Tencentcloud::Cdc.v20201214.models.DetailData`
         # @param WriteTraffic: 写流量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WriteTraffic: :class:`Tencentcloud::Cdc.v20201214.models.DetailData`
         # @param ReadIO: 读IO
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReadIO: :class:`Tencentcloud::Cdc.v20201214.models.DetailData`
         # @param WriteIO: 写IO
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WriteIO: :class:`Tencentcloud::Cdc.v20201214.models.DetailData`
         # @param Await: 平均等待时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Await: :class:`Tencentcloud::Cdc.v20201214.models.DetailData`
         # @param Util: 利用率
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Util: :class:`Tencentcloud::Cdc.v20201214.models.DetailData`
 
         attr_accessor :SetId, :SetName, :SetType, :SetSize, :SetStatus, :CreateTime, :ReadTraffic, :WriteTraffic, :ReadIO, :WriteIO, :Await, :Util
@@ -2163,7 +2139,6 @@ module TencentCloud
         # @param SiteId: 站点id
         # @type SiteId: String
         # @param Description: 站点描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
         # @param CreateTime: 站点创建时间
         # @type CreateTime: String
@@ -2304,7 +2279,6 @@ module TencentCloud
       # VPN网关的流量监控数据。
       class VpngwBandwidthData < TencentCloud::Common::AbstractModel
         # @param OutBandwidth: 出带宽流量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OutBandwidth: :class:`Tencentcloud::Cdc.v20201214.models.OutBandwidth`
         # @param InBandwidth: 入带宽流量
         # @type InBandwidth: :class:`Tencentcloud::Cdc.v20201214.models.InBandwidth`

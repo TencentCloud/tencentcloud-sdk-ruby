@@ -2727,6 +2727,46 @@ module TencentCloud
         end
       end
 
+      # EnterStandby请求参数结构体
+      class EnterStandbyRequest < TencentCloud::Common::AbstractModel
+        # @param AutoScalingGroupId: 伸缩组 ID。
+        # @type AutoScalingGroupId: String
+        # @param InstanceIds: 运行中状态实例列表，不支持传入非运行中状态实例。
+        # @type InstanceIds: Array
+
+        attr_accessor :AutoScalingGroupId, :InstanceIds
+
+        def initialize(autoscalinggroupid=nil, instanceids=nil)
+          @AutoScalingGroupId = autoscalinggroupid
+          @InstanceIds = instanceids
+        end
+
+        def deserialize(params)
+          @AutoScalingGroupId = params['AutoScalingGroupId']
+          @InstanceIds = params['InstanceIds']
+        end
+      end
+
+      # EnterStandby返回参数结构体
+      class EnterStandbyResponse < TencentCloud::Common::AbstractModel
+        # @param ActivityId: 伸缩活动ID。
+        # @type ActivityId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ActivityId, :RequestId
+
+        def initialize(activityid=nil, requestid=nil)
+          @ActivityId = activityid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ActivityId = params['ActivityId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ExecuteScalingPolicy请求参数结构体
       class ExecuteScalingPolicyRequest < TencentCloud::Common::AbstractModel
         # @param AutoScalingPolicyId: 告警伸缩策略ID，不支持目标追踪策略。

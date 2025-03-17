@@ -943,6 +943,33 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 伸缩组内实例进入备用中状态。
+        # * 备用中状态实例的 CLB 权重值为 0，不会被自动缩容、不健康替换、实例刷新操作选中
+        # * 调用弹性伸缩开关机接口会使得备用中状态发生变化，而云服务器开关机接口不会影响
+        # * 实例进入备用中状态后，伸缩组会尝试下调期望实例数，新期望数不会小于最小值
+
+        # @param request: Request instance for EnterStandby.
+        # @type request: :class:`Tencentcloud::as::V20180419::EnterStandbyRequest`
+        # @rtype: :class:`Tencentcloud::as::V20180419::EnterStandbyResponse`
+        def EnterStandby(request)
+          body = send_request('EnterStandby', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = EnterStandbyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（ExecuteScalingPolicy）用于执行伸缩策略。
 
         # * 可以根据伸缩策略ID执行伸缩策略。

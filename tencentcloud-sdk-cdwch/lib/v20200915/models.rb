@@ -421,13 +421,15 @@ module TencentCloud
         # @type CommonSpec: :class:`Tencentcloud::Cdwch.v20200915.models.NodeSpec`
         # @param TagItems: 标签列表
         # @type TagItems: Array
+        # @param SecondaryZoneInfo: 副可用去信息
+        # @type SecondaryZoneInfo: Array
 
-        attr_accessor :Zone, :HaFlag, :UserVPCId, :UserSubnetId, :ProductVersion, :ChargeProperties, :InstanceName, :DataSpec, :Tags, :ClsLogSetId, :CosBucketName, :MountDiskType, :HAZk, :CommonSpec, :TagItems
+        attr_accessor :Zone, :HaFlag, :UserVPCId, :UserSubnetId, :ProductVersion, :ChargeProperties, :InstanceName, :DataSpec, :Tags, :ClsLogSetId, :CosBucketName, :MountDiskType, :HAZk, :CommonSpec, :TagItems, :SecondaryZoneInfo
         extend Gem::Deprecate
         deprecate :Tags, :none, 2025, 3
         deprecate :Tags=, :none, 2025, 3
 
-        def initialize(zone=nil, haflag=nil, uservpcid=nil, usersubnetid=nil, productversion=nil, chargeproperties=nil, instancename=nil, dataspec=nil, tags=nil, clslogsetid=nil, cosbucketname=nil, mountdisktype=nil, hazk=nil, commonspec=nil, tagitems=nil)
+        def initialize(zone=nil, haflag=nil, uservpcid=nil, usersubnetid=nil, productversion=nil, chargeproperties=nil, instancename=nil, dataspec=nil, tags=nil, clslogsetid=nil, cosbucketname=nil, mountdisktype=nil, hazk=nil, commonspec=nil, tagitems=nil, secondaryzoneinfo=nil)
           @Zone = zone
           @HaFlag = haflag
           @UserVPCId = uservpcid
@@ -443,6 +445,7 @@ module TencentCloud
           @HAZk = hazk
           @CommonSpec = commonspec
           @TagItems = tagitems
+          @SecondaryZoneInfo = secondaryzoneinfo
         end
 
         def deserialize(params)
@@ -478,6 +481,14 @@ module TencentCloud
               tag_tmp = Tag.new
               tag_tmp.deserialize(i)
               @TagItems << tag_tmp
+            end
+          end
+          unless params['SecondaryZoneInfo'].nil?
+            @SecondaryZoneInfo = []
+            params['SecondaryZoneInfo'].each do |i|
+              secondaryzoneinfo_tmp = SecondaryZoneInfo.new
+              secondaryzoneinfo_tmp.deserialize(i)
+              @SecondaryZoneInfo << secondaryzoneinfo_tmp
             end
           end
         end
@@ -1260,16 +1271,19 @@ module TencentCloud
         # @type SearchTags: Array
         # @param IsSimple: 信息详细与否
         # @type IsSimple: Boolean
+        # @param Vips: vip列表
+        # @type Vips: Array
 
-        attr_accessor :SearchInstanceId, :SearchInstanceName, :Offset, :Limit, :SearchTags, :IsSimple
+        attr_accessor :SearchInstanceId, :SearchInstanceName, :Offset, :Limit, :SearchTags, :IsSimple, :Vips
 
-        def initialize(searchinstanceid=nil, searchinstancename=nil, offset=nil, limit=nil, searchtags=nil, issimple=nil)
+        def initialize(searchinstanceid=nil, searchinstancename=nil, offset=nil, limit=nil, searchtags=nil, issimple=nil, vips=nil)
           @SearchInstanceId = searchinstanceid
           @SearchInstanceName = searchinstancename
           @Offset = offset
           @Limit = limit
           @SearchTags = searchtags
           @IsSimple = issimple
+          @Vips = vips
         end
 
         def deserialize(params)
@@ -1286,6 +1300,7 @@ module TencentCloud
             end
           end
           @IsSimple = params['IsSimple']
+          @Vips = params['Vips']
         end
       end
 
@@ -2817,6 +2832,38 @@ module TencentCloud
           @TagKey = params['TagKey']
           @TagValue = params['TagValue']
           @AllValue = params['AllValue']
+        end
+      end
+
+      # 副可用区详情
+      class SecondaryZoneInfo < TencentCloud::Common::AbstractModel
+        # @param SecondaryZone: 副可用区
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SecondaryZone: String
+        # @param SecondarySubnet: 可用区可用的子网id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SecondarySubnet: String
+        # @param UserIpNum: 可用区可用的子网可用ip的数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserIpNum: String
+        # @param SecondaryUserSubnetIPNum: 可用区可用的子网可用ip的数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SecondaryUserSubnetIPNum: Integer
+
+        attr_accessor :SecondaryZone, :SecondarySubnet, :UserIpNum, :SecondaryUserSubnetIPNum
+
+        def initialize(secondaryzone=nil, secondarysubnet=nil, useripnum=nil, secondaryusersubnetipnum=nil)
+          @SecondaryZone = secondaryzone
+          @SecondarySubnet = secondarysubnet
+          @UserIpNum = useripnum
+          @SecondaryUserSubnetIPNum = secondaryusersubnetipnum
+        end
+
+        def deserialize(params)
+          @SecondaryZone = params['SecondaryZone']
+          @SecondarySubnet = params['SecondarySubnet']
+          @UserIpNum = params['UserIpNum']
+          @SecondaryUserSubnetIPNum = params['SecondaryUserSubnetIPNum']
         end
       end
 
