@@ -53,6 +53,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 自治中心-终止自治任务（单次）
+
+        # @param request: Request instance for CancelDBAutonomyAction.
+        # @type request: :class:`Tencentcloud::dbbrain::V20210527::CancelDBAutonomyActionRequest`
+        # @rtype: :class:`Tencentcloud::dbbrain::V20210527::CancelDBAutonomyActionResponse`
+        def CancelDBAutonomyAction(request)
+          body = send_request('CancelDBAutonomyAction', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CancelDBAutonomyActionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 终止中断会话任务。
 
         # @param request: Request instance for CancelKillTask.
@@ -63,6 +87,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CancelKillTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 自治中心-终止自治任务（单次）
+
+        # @param request: Request instance for CancelRedisBigKeyAnalysisTasks.
+        # @type request: :class:`Tencentcloud::dbbrain::V20210527::CancelRedisBigKeyAnalysisTasksRequest`
+        # @rtype: :class:`Tencentcloud::dbbrain::V20210527::CancelRedisBigKeyAnalysisTasksResponse`
+        def CancelRedisBigKeyAnalysisTasks(request)
+          body = send_request('CancelRedisBigKeyAnalysisTasks', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CancelRedisBigKeyAnalysisTasksResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -341,6 +389,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 自治中心-终止自治任务（单次）；注意：接口需要加白名单。
+
+        # @param request: Request instance for CreateUserAutonomyProfile.
+        # @type request: :class:`Tencentcloud::dbbrain::V20210527::CreateUserAutonomyProfileRequest`
+        # @rtype: :class:`Tencentcloud::dbbrain::V20210527::CreateUserAutonomyProfileResponse`
+        def CreateUserAutonomyProfile(request)
+          body = send_request('CreateUserAutonomyProfile', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateUserAutonomyProfileResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 用于删除云数据库实例的审计日志文件。
 
         # @param request: Request instance for DeleteAuditLogFile.
@@ -567,6 +639,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeAuditLogFilesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 自治中心-终止自治任务（单次）
+
+        # @param request: Request instance for DescribeDBAutonomyActions.
+        # @type request: :class:`Tencentcloud::dbbrain::V20210527::DescribeDBAutonomyActionsRequest`
+        # @rtype: :class:`Tencentcloud::dbbrain::V20210527::DescribeDBAutonomyActionsResponse`
+        def DescribeDBAutonomyActions(request)
+          body = send_request('DescribeDBAutonomyActions', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDBAutonomyActionsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 自治中心-终止自治任务（单次）
+
+        # @param request: Request instance for DescribeDBAutonomyEvents.
+        # @type request: :class:`Tencentcloud::dbbrain::V20210527::DescribeDBAutonomyEventsRequest`
+        # @rtype: :class:`Tencentcloud::dbbrain::V20210527::DescribeDBAutonomyEventsResponse`
+        def DescribeDBAutonomyEvents(request)
+          body = send_request('DescribeDBAutonomyEvents', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDBAutonomyEventsResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1325,6 +1445,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 自治中心-终止自治任务（单次）；注意： 接口调用需要加白名单。
+
+        # @param request: Request instance for DescribeUserAutonomyProfile.
+        # @type request: :class:`Tencentcloud::dbbrain::V20210527::DescribeUserAutonomyProfileRequest`
+        # @rtype: :class:`Tencentcloud::dbbrain::V20210527::DescribeUserAutonomyProfileResponse`
+        def DescribeUserAutonomyProfile(request)
+          body = send_request('DescribeUserAutonomyProfile', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeUserAutonomyProfileResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取SQL优化建议。【产品用户回馈，此接口限免开放，后续将并入dbbrain专业版】
 
         # @param request: Request instance for DescribeUserSqlAdvice.
@@ -1455,6 +1599,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifySqlFiltersResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 自治中心-终止自治任务（单次）；注意：接口需要加白名单。
+
+        # @param request: Request instance for ModifyUserAutonomyProfile.
+        # @type request: :class:`Tencentcloud::dbbrain::V20210527::ModifyUserAutonomyProfileRequest`
+        # @rtype: :class:`Tencentcloud::dbbrain::V20210527::ModifyUserAutonomyProfileResponse`
+        def ModifyUserAutonomyProfile(request)
+          body = send_request('ModifyUserAutonomyProfile', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyUserAutonomyProfileResponse.new
             model.deserialize(response['Response'])
             model
           else

@@ -620,6 +620,46 @@ module TencentCloud
         end
       end
 
+      # ChangeP2PRoute请求参数结构体
+      class ChangeP2PRouteRequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: 产品ID
+        # @type ProductId: String
+        # @param DeviceName: 设备名称
+        # @type DeviceName: String
+        # @param RouteId: P2P线路
+        # @type RouteId: Integer
+
+        attr_accessor :ProductId, :DeviceName, :RouteId
+
+        def initialize(productid=nil, devicename=nil, routeid=nil)
+          @ProductId = productid
+          @DeviceName = devicename
+          @RouteId = routeid
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @DeviceName = params['DeviceName']
+          @RouteId = params['RouteId']
+        end
+      end
+
+      # ChangeP2PRoute返回参数结构体
+      class ChangeP2PRouteResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CheckForwardAuth请求参数结构体
       class CheckForwardAuthRequest < TencentCloud::Common::AbstractModel
         # @param Skey: 控制台Skey
@@ -4387,6 +4427,46 @@ module TencentCloud
         def deserialize(params)
           @P2PInfo = params['P2PInfo']
           @ReportTime = params['ReportTime']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeP2PRoute请求参数结构体
+      class DescribeP2PRouteRequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: 产品ID
+        # @type ProductId: String
+        # @param DeviceName: 设备名称
+        # @type DeviceName: String
+
+        attr_accessor :ProductId, :DeviceName
+
+        def initialize(productid=nil, devicename=nil)
+          @ProductId = productid
+          @DeviceName = devicename
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @DeviceName = params['DeviceName']
+        end
+      end
+
+      # DescribeP2PRoute返回参数结构体
+      class DescribeP2PRouteResponse < TencentCloud::Common::AbstractModel
+        # @param RouteId: 当前p2p线路
+        # @type RouteId: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RouteId, :RequestId
+
+        def initialize(routeid=nil, requestid=nil)
+          @RouteId = routeid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RouteId = params['RouteId']
           @RequestId = params['RequestId']
         end
       end

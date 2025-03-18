@@ -611,10 +611,8 @@ module TencentCloud
         # @param Region: 地域
         # @type Region: String
         # @param Tags: 订阅实例的标签
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
         # @param AutoRenewFlag: 自动续费标识,0-不自动续费，1-自动续费
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AutoRenewFlag: Integer
         # @param SubscribeVersion: 数据订阅版本。老版订阅填txdts，kafka版填kafka
         # @type SubscribeVersion: String
@@ -1555,7 +1553,6 @@ module TencentCloud
         # @param Supplier: 当实例为RDS实例时，填写为aliyun, 其他情况均填写others
         # @type Supplier: String
         # @param CcnId: 云联网ID，如：ccn-afp6kltc
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CcnId: String
         # @param EngineVersion: 数据库版本，当实例为RDS实例时才有效，格式如：5.6或者5.7，默认为5.6
         # @type EngineVersion: String

@@ -1295,6 +1295,22 @@ module TencentCloud
         end
       end
 
+      # Web安全IP封禁的附加参数
+      class BlockIPActionParameters < TencentCloud::Common::AbstractModel
+        # @param Duration: 封禁 IP 的惩罚时长。支持的单位有：<li>s：秒，取值范围1～120；</li><li>m：分，取值范围1～120；</li><li>h：小时，取值范围1～48。</li>
+        # @type Duration: String
+
+        attr_accessor :Duration
+
+        def initialize(duration=nil)
+          @Duration = duration
+        end
+
+        def deserialize(params)
+          @Duration = params['Duration']
+        end
+      end
+
       # 安全Bot配置
       class BotConfig < TencentCloud::Common::AbstractModel
         # @param Switch: bot开关，取值有：
@@ -4283,6 +4299,72 @@ module TencentCloud
           @Name = params['Name']
           @Value = params['Value']
           @Enabled = params['Enabled']
+        end
+      end
+
+      # Web安全的自定义规则
+      class CustomRule < TencentCloud::Common::AbstractModel
+        # @param Name: 自定义规则的名称。
+        # @type Name: String
+        # @param Condition: 自定义规则的具体内容，需符合表达式语法，详细规范参见产品文档。
+        # @type Condition: String
+        # @param Action: 自定义规则的执行动作。	SecurityAction 的 Name 取值支持：<li>Deny：拦截；</li><li>Monitor：观察；</li><li>ReturnCustomPage：使用指定页面拦截；</li><li>Redirect：重定向至 URL；</li><li>BlockIP：IP 封禁；</li><li>JSChallenge：JavaScript 挑战；</li><li>ManagedChallenge：托管挑战；</li><li>Allow：放行。</li>
+        # @type Action: :class:`Tencentcloud::Teo.v20220901.models.SecurityAction`
+        # @param Enabled: 自定义规则是否开启。取值有：<li>on：开启</li><li>off：关闭</li>
+        # @type Enabled: String
+        # @param Id: 自定义规则的 ID。<br>通过规则 ID 可支持不同的规则配置操作：<br> - 增加新规则：ID 为空或不指定 ID 参数；<br> - 修改已有规则：指定需要更新/修改的规则 ID；<br> - 删除已有规则：CustomRules 参数中，Rules 列表中未包含的已有规则将被删除。
+        # @type Id: String
+        # @param RuleType: 自定义规则的类型。取值有：<li>BasicAccessRule：基础访问管控；</li><li>PreciseMatchRule：精准匹配规则，默认；</li><li>ManagedAccessRule：专家定制规则，仅出参。</li><br/>默认为PreciseMatchRule。
+        # @type RuleType: String
+        # @param Priority: 自定义规则的优先级，范围是 0 ~ 100，默认为 0，仅支持精准匹配规则（PreciseMatchRule）。
+        # @type Priority: Integer
+
+        attr_accessor :Name, :Condition, :Action, :Enabled, :Id, :RuleType, :Priority
+
+        def initialize(name=nil, condition=nil, action=nil, enabled=nil, id=nil, ruletype=nil, priority=nil)
+          @Name = name
+          @Condition = condition
+          @Action = action
+          @Enabled = enabled
+          @Id = id
+          @RuleType = ruletype
+          @Priority = priority
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Condition = params['Condition']
+          unless params['Action'].nil?
+            @Action = SecurityAction.new
+            @Action.deserialize(params['Action'])
+          end
+          @Enabled = params['Enabled']
+          @Id = params['Id']
+          @RuleType = params['RuleType']
+          @Priority = params['Priority']
+        end
+      end
+
+      # Web安全的自定义规则结构
+      class CustomRules < TencentCloud::Common::AbstractModel
+        # @param Rules: 自定义规则的定义列表。<br>使用 ModifySecurityPolicy 修改 Web 防护配置时: <br> -  若未指定 Rules 参数，或 Rules 参数长度为零：清空所有自定义规则配置。<br> - 若 SecurityPolicy 参数中，未指定 CustomRules 参数值：保持已有自定义规则配置，不做修改。
+        # @type Rules: Array
+
+        attr_accessor :Rules
+
+        def initialize(rules=nil)
+          @Rules = rules
+        end
+
+        def deserialize(params)
+          unless params['Rules'].nil?
+            @Rules = []
+            params['Rules'].each do |i|
+              customrule_tmp = CustomRule.new
+              customrule_tmp.deserialize(i)
+              @Rules << customrule_tmp
+            end
+          end
         end
       end
 
@@ -11394,6 +11476,199 @@ module TencentCloud
         end
       end
 
+      # 托管规则的项配置
+      class ManagedRuleAction < TencentCloud::Common::AbstractModel
+        # @param RuleId: 托管规则组下的具体项，用于改写此单条规则项配置的内容，具体参考产品文档。
+        # @type RuleId: String
+        # @param Action: RuleId 中指定托管规则项的处置动作。 SecurityAction 的 Name 取值支持：<li>Deny：拦截，响应拦截页面；</li><li>Monitor：观察，不处理请求记录安全事件到日志中；</li><li>Disabled：未启用，不扫描请求跳过该规则。</li>
+        # @type Action: :class:`Tencentcloud::Teo.v20220901.models.SecurityAction`
+
+        attr_accessor :RuleId, :Action
+
+        def initialize(ruleid=nil, action=nil)
+          @RuleId = ruleid
+          @Action = action
+        end
+
+        def deserialize(params)
+          @RuleId = params['RuleId']
+          unless params['Action'].nil?
+            @Action = SecurityAction.new
+            @Action.deserialize(params['Action'])
+          end
+        end
+      end
+
+      # 托管规则自动更新选项
+      class ManagedRuleAutoUpdate < TencentCloud::Common::AbstractModel
+        # @param AutoUpdateToLatestVersion: 是否开启自动更新至最新版本。取值有：<li>on：开启</li><li>off：关闭</li>
+        # @type AutoUpdateToLatestVersion: String
+        # @param RulesetVersion: 当前使用的版本，格式符合ISO 8601标准，如2023-12-21T12:00:32Z，默认为空，仅出参。
+        # @type RulesetVersion: String
+
+        attr_accessor :AutoUpdateToLatestVersion, :RulesetVersion
+
+        def initialize(autoupdatetolatestversion=nil, rulesetversion=nil)
+          @AutoUpdateToLatestVersion = autoupdatetolatestversion
+          @RulesetVersion = rulesetversion
+        end
+
+        def deserialize(params)
+          @AutoUpdateToLatestVersion = params['AutoUpdateToLatestVersion']
+          @RulesetVersion = params['RulesetVersion']
+        end
+      end
+
+      # 托管规则详情
+      class ManagedRuleDetail < TencentCloud::Common::AbstractModel
+        # @param RuleId: 托管规则Id。
+        # @type RuleId: String
+        # @param RiskLevel: 托管规则的防护级别。取值有：<li>low：低风险，此规则风险较低，适用于非常严格控制环境下的访问场景，该等级规则可能造成较多的误报；</li><li>medium：中风险，表示此条规则风险正常，适用较为严格的防护场景；</li><li>high：高风险，表示此条规则风险较高，大多数场景不会产生误报；</li><li>extreme：超高风险，表示此条规则风险极高，基本不会产生误报；</li>
+        # @type RiskLevel: String
+        # @param Description: 规则描述。
+        # @type Description: String
+        # @param Tags: 规则标签。部分类型的规则不存在标签。
+        # @type Tags: Array
+        # @param RuleVersion: 规则所属版本。
+        # @type RuleVersion: String
+
+        attr_accessor :RuleId, :RiskLevel, :Description, :Tags, :RuleVersion
+
+        def initialize(ruleid=nil, risklevel=nil, description=nil, tags=nil, ruleversion=nil)
+          @RuleId = ruleid
+          @RiskLevel = risklevel
+          @Description = description
+          @Tags = tags
+          @RuleVersion = ruleversion
+        end
+
+        def deserialize(params)
+          @RuleId = params['RuleId']
+          @RiskLevel = params['RiskLevel']
+          @Description = params['Description']
+          @Tags = params['Tags']
+          @RuleVersion = params['RuleVersion']
+        end
+      end
+
+      # 托管规则组配置。
+      class ManagedRuleGroup < TencentCloud::Common::AbstractModel
+        # @param GroupId: 托管规则的组名称，未指定配置的规则分组将按照默认配置处理，GroupId 的具体取值参考产品文档。
+        # @type GroupId: String
+        # @param SensitivityLevel: 托管规则组的防护级别。取值有：<li>loose：宽松，只包含超高风险规则，此时需配置Action，且RuleActions配置无效；</li><li>normal：正常，包含超高风险和高风险规则，此时需配置Action，且RuleActions配置无效；</li><li>strict：严格，包含超高风险、高风险和中风险规则，此时需配置Action，且RuleActions配置无效；</li><li>extreme：超严格，包含超高风险、高风险、中风险和低风险规则，此时需配置Action，且RuleActions配置无效；</li><li>custom：自定义，精细化策略，按单条规则配置处置方式，此时Action字段无效，使用RuleActions配置单条规则的精细化策略。</li>
+        # @type SensitivityLevel: String
+        # @param Action: 托管规则组的处置动作。SecurityAction 的 Name 取值支持：<li>Deny：拦截，响应拦截页面；</li><li>Monitor：观察，不处理请求记录安全事件到日志中；</li><li>Disabled：未启用，不扫描请求跳过该规则。</li>
+        # @type Action: :class:`Tencentcloud::Teo.v20220901.models.SecurityAction`
+        # @param RuleActions: 托管规则组下规则项的具体配置，仅在 SensitivityLevel 为 custom 时配置生效。
+        # @type RuleActions: Array
+        # @param MetaData: 托管规则组信息，仅出参。
+        # @type MetaData: :class:`Tencentcloud::Teo.v20220901.models.ManagedRuleGroupMeta`
+
+        attr_accessor :GroupId, :SensitivityLevel, :Action, :RuleActions, :MetaData
+
+        def initialize(groupid=nil, sensitivitylevel=nil, action=nil, ruleactions=nil, metadata=nil)
+          @GroupId = groupid
+          @SensitivityLevel = sensitivitylevel
+          @Action = action
+          @RuleActions = ruleactions
+          @MetaData = metadata
+        end
+
+        def deserialize(params)
+          @GroupId = params['GroupId']
+          @SensitivityLevel = params['SensitivityLevel']
+          unless params['Action'].nil?
+            @Action = SecurityAction.new
+            @Action.deserialize(params['Action'])
+          end
+          unless params['RuleActions'].nil?
+            @RuleActions = []
+            params['RuleActions'].each do |i|
+              managedruleaction_tmp = ManagedRuleAction.new
+              managedruleaction_tmp.deserialize(i)
+              @RuleActions << managedruleaction_tmp
+            end
+          end
+          unless params['MetaData'].nil?
+            @MetaData = ManagedRuleGroupMeta.new
+            @MetaData.deserialize(params['MetaData'])
+          end
+        end
+      end
+
+      # 托管规则组信息
+      class ManagedRuleGroupMeta < TencentCloud::Common::AbstractModel
+        # @param GroupDetail: 托管规则组描述，仅出参。
+        # @type GroupDetail: String
+        # @param GroupName: 托管规则组名称，仅出参。
+        # @type GroupName: String
+        # @param RuleDetails: 当前托管规则组下的所有子规则信息，仅出参。
+        # @type RuleDetails: Array
+
+        attr_accessor :GroupDetail, :GroupName, :RuleDetails
+
+        def initialize(groupdetail=nil, groupname=nil, ruledetails=nil)
+          @GroupDetail = groupdetail
+          @GroupName = groupname
+          @RuleDetails = ruledetails
+        end
+
+        def deserialize(params)
+          @GroupDetail = params['GroupDetail']
+          @GroupName = params['GroupName']
+          unless params['RuleDetails'].nil?
+            @RuleDetails = []
+            params['RuleDetails'].each do |i|
+              managedruledetail_tmp = ManagedRuleDetail.new
+              managedruledetail_tmp.deserialize(i)
+              @RuleDetails << managedruledetail_tmp
+            end
+          end
+        end
+      end
+
+      # Web安全的托管规则
+      class ManagedRules < TencentCloud::Common::AbstractModel
+        # @param Enabled: 托管规则是否开启。取值有：<li>on：开启，所有托管规则按配置生效；</li><li>off：关闭，所有托管规则不生效。</li>
+        # @type Enabled: String
+        # @param DetectionOnly: 评估模式是否开启，仅在 Enabled 参数为 on 时有效。取值有：<li>on：开启，表示所有托管规则以观察模式生效；</li><li>off：关闭，表示所有托管规则以实际配置生效。</li>
+        # @type DetectionOnly: String
+        # @param SemanticAnalysis: 托管规则语义分析选项是否开启，仅在 Enabled 参数为 on 时有效。取值有：<li>on：开启，对请求进行语义分析后进行处理；</li><li>off：关闭，对请求不进行语义分析，直接进行处理。</li> <br/>默认为 off。
+        # @type SemanticAnalysis: String
+        # @param AutoUpdate: 托管规则自动更新选项。
+        # @type AutoUpdate: :class:`Tencentcloud::Teo.v20220901.models.ManagedRuleAutoUpdate`
+        # @param ManagedRuleGroups: 托管规则组的配置。如果此结构传空数组或 GroupId 未包含在列表内将按照默认方式处理。
+        # @type ManagedRuleGroups: Array
+
+        attr_accessor :Enabled, :DetectionOnly, :SemanticAnalysis, :AutoUpdate, :ManagedRuleGroups
+
+        def initialize(enabled=nil, detectiononly=nil, semanticanalysis=nil, autoupdate=nil, managedrulegroups=nil)
+          @Enabled = enabled
+          @DetectionOnly = detectiononly
+          @SemanticAnalysis = semanticanalysis
+          @AutoUpdate = autoupdate
+          @ManagedRuleGroups = managedrulegroups
+        end
+
+        def deserialize(params)
+          @Enabled = params['Enabled']
+          @DetectionOnly = params['DetectionOnly']
+          @SemanticAnalysis = params['SemanticAnalysis']
+          unless params['AutoUpdate'].nil?
+            @AutoUpdate = ManagedRuleAutoUpdate.new
+            @AutoUpdate.deserialize(params['AutoUpdate'])
+          end
+          unless params['ManagedRuleGroups'].nil?
+            @ManagedRuleGroups = []
+            params['ManagedRuleGroups'].each do |i|
+              managedrulegroup_tmp = ManagedRuleGroup.new
+              managedrulegroup_tmp.deserialize(i)
+              @ManagedRuleGroups << managedrulegroup_tmp
+            end
+          end
+        end
+      end
+
       # 浏览器缓存规则配置，用于设置 MaxAge 默认值，默认为关闭状态
       class MaxAge < TencentCloud::Common::AbstractModel
         # @param FollowOrigin: 是否遵循源站，取值有：
@@ -13028,27 +13303,27 @@ module TencentCloud
 
       # ModifySecurityPolicy请求参数结构体
       class ModifySecurityPolicyRequest < TencentCloud::Common::AbstractModel
-        # @param ZoneId: 站点Id。
+        # @param ZoneId: 站点 ID。
         # @type ZoneId: String
-        # @param SecurityConfig: 安全配置。
+        # @param SecurityConfig: 安全策略配置。<li>当 SecurityPolicy 参数中的 CustomRule 被设置时，SecurityConfig 参数中的 AclConfg、 IpTableConfg 将被忽略；</li><li>当 SecurityPolicy 参数中的 ManagedRule 被设置时，SecurityConfig 参数中的 WafConfig 将被忽略。</li><li>对于自定义规则以及托管规则策略配置建议使用 SecurityPolicy 参数进行设置。</li>
         # @type SecurityConfig: :class:`Tencentcloud::Teo.v20220901.models.SecurityConfig`
-        # @param Entity: 子域名/应用名。
-
-        # 注意：当同时指定本参数和 TemplateId 参数时，本参数不生效。请勿同时指定本参数和 TemplateId 参数。
+        # @param SecurityPolicy: 安全策略配置。对 Web 防护自定义策略和托管规则配置建议使用，支持表达式语法对安全策略进行配置。
+        # @type SecurityPolicy: :class:`Tencentcloud::Teo.v20220901.models.SecurityPolicy`
+        # @param Entity: 安全策略类型，可使用以下参数值： <li>ZoneDefaultPolicy：用于指定站点级策略；</li><li>Template：用于指定策略模板，需要同时指定 TemplateId 参数；</li><li>Host：用于指定域名级策略（注意：当使用域名来指定域名服务策略时，仅支持已经应用了域名级策略的域名服务或者策略模板）。</li>
         # @type Entity: String
-        # @param TemplateId: 指定模板策略 ID，或指定站点全局策略。
-        # - 如需配置策略模板，请指定策略模板 ID。
-        # - 如需配置站点全局策略，请使用 @ZoneLevel@Domain 参数值
-
-        # 注意：当使用本参数时，Entity 参数不生效。请勿同时使用本参数和 Entity 参数。
+        # @param Host: 指定域名。当 Entity 参数值为 Host 时，使用本参数指定的域名级策略，例如：使用 www.example.com ，配置该域名的域名级策略。
+        # @type Host: String
+        # @param TemplateId: 指定策略模板 ID。当 Entity 参数值为 Template 时，使用本参数指定策略模板的 ID。
         # @type TemplateId: String
 
-        attr_accessor :ZoneId, :SecurityConfig, :Entity, :TemplateId
+        attr_accessor :ZoneId, :SecurityConfig, :SecurityPolicy, :Entity, :Host, :TemplateId
 
-        def initialize(zoneid=nil, securityconfig=nil, entity=nil, templateid=nil)
+        def initialize(zoneid=nil, securityconfig=nil, securitypolicy=nil, entity=nil, host=nil, templateid=nil)
           @ZoneId = zoneid
           @SecurityConfig = securityconfig
+          @SecurityPolicy = securitypolicy
           @Entity = entity
+          @Host = host
           @TemplateId = templateid
         end
 
@@ -13058,7 +13333,12 @@ module TencentCloud
             @SecurityConfig = SecurityConfig.new
             @SecurityConfig.deserialize(params['SecurityConfig'])
           end
+          unless params['SecurityPolicy'].nil?
+            @SecurityPolicy = SecurityPolicy.new
+            @SecurityPolicy.deserialize(params['SecurityPolicy'])
+          end
           @Entity = params['Entity']
+          @Host = params['Host']
           @TemplateId = params['TemplateId']
         end
       end
@@ -14830,6 +15110,22 @@ module TencentCloud
         end
       end
 
+      # Web安全重定向的附加参数
+      class RedirectActionParameters < TencentCloud::Common::AbstractModel
+        # @param URL: 重定向的URL。
+        # @type URL: String
+
+        attr_accessor :URL
+
+        def initialize(url=nil)
+          @URL = url
+        end
+
+        def deserialize(params)
+          @URL = params['URL']
+        end
+      end
+
       # 预付费套餐自动续费配置项。
       class RenewFlag < TencentCloud::Common::AbstractModel
         # @param Switch: 预付费套餐的自动续费标志，取值有：
@@ -15007,6 +15303,26 @@ module TencentCloud
           @Mode = params['Mode']
           @MaxSpeed = params['MaxSpeed']
           @StartAt = params['StartAt']
+        end
+      end
+
+      # Web安全自定义页面的附加参数
+      class ReturnCustomPageActionParameters < TencentCloud::Common::AbstractModel
+        # @param ResponseCode: 响应状态码。
+        # @type ResponseCode: String
+        # @param ErrorPageId: 响应的自定义页面ID。
+        # @type ErrorPageId: String
+
+        attr_accessor :ResponseCode, :ErrorPageId
+
+        def initialize(responsecode=nil, errorpageid=nil)
+          @ResponseCode = responsecode
+          @ErrorPageId = errorpageid
+        end
+
+        def deserialize(params)
+          @ResponseCode = params['ResponseCode']
+          @ErrorPageId = params['ErrorPageId']
         end
       end
 
@@ -16024,6 +16340,44 @@ module TencentCloud
         end
       end
 
+      # 安全的执行动作
+      class SecurityAction < TencentCloud::Common::AbstractModel
+        # @param Name: 安全执行的具体动作。取值有：
+        # <li>Deny：拦截；</li><li>Monitor：观察；</li><li>ReturnCustomPage：使用指定页面拦截；</li><li>Redirect：重定向至 URL；</li><li>BlockIP：IP 封禁；</li><li>JSChallenge：JavaScript 挑战；</li><li>ManagedChallenge：托管挑战；</li><li>Disabled：未启用；</li><li>Allow：放行。</li>
+        # @type Name: String
+        # @param BlockIPActionParameters: 当 Name 为 BlockIP 时的附加参数。
+        # @type BlockIPActionParameters: :class:`Tencentcloud::Teo.v20220901.models.BlockIPActionParameters`
+        # @param ReturnCustomPageActionParameters: 当 Name 为 ReturnCustomPage 时的附加参数。
+        # @type ReturnCustomPageActionParameters: :class:`Tencentcloud::Teo.v20220901.models.ReturnCustomPageActionParameters`
+        # @param RedirectActionParameters: 当 Name 为 Redirect 时的附加参数。
+        # @type RedirectActionParameters: :class:`Tencentcloud::Teo.v20220901.models.RedirectActionParameters`
+
+        attr_accessor :Name, :BlockIPActionParameters, :ReturnCustomPageActionParameters, :RedirectActionParameters
+
+        def initialize(name=nil, blockipactionparameters=nil, returncustompageactionparameters=nil, redirectactionparameters=nil)
+          @Name = name
+          @BlockIPActionParameters = blockipactionparameters
+          @ReturnCustomPageActionParameters = returncustompageactionparameters
+          @RedirectActionParameters = redirectactionparameters
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          unless params['BlockIPActionParameters'].nil?
+            @BlockIPActionParameters = BlockIPActionParameters.new
+            @BlockIPActionParameters.deserialize(params['BlockIPActionParameters'])
+          end
+          unless params['ReturnCustomPageActionParameters'].nil?
+            @ReturnCustomPageActionParameters = ReturnCustomPageActionParameters.new
+            @ReturnCustomPageActionParameters.deserialize(params['ReturnCustomPageActionParameters'])
+          end
+          unless params['RedirectActionParameters'].nil?
+            @RedirectActionParameters = RedirectActionParameters.new
+            @RedirectActionParameters.deserialize(params['RedirectActionParameters'])
+          end
+        end
+      end
+
       # Web安全配置
       class SecurityConfig < TencentCloud::Common::AbstractModel
         # @param WafConfig: 托管规则。如果入参为空或不填，默认使用历史配置。
@@ -16120,6 +16474,32 @@ module TencentCloud
           unless params['DetectLengthLimitConfig'].nil?
             @DetectLengthLimitConfig = DetectLengthLimitConfig.new
             @DetectLengthLimitConfig.deserialize(params['DetectLengthLimitConfig'])
+          end
+        end
+      end
+
+      # 安全策略配置
+      class SecurityPolicy < TencentCloud::Common::AbstractModel
+        # @param CustomRules: 自定义规则配置。
+        # @type CustomRules: :class:`Tencentcloud::Teo.v20220901.models.CustomRules`
+        # @param ManagedRules: 托管规则配置。
+        # @type ManagedRules: :class:`Tencentcloud::Teo.v20220901.models.ManagedRules`
+
+        attr_accessor :CustomRules, :ManagedRules
+
+        def initialize(customrules=nil, managedrules=nil)
+          @CustomRules = customrules
+          @ManagedRules = managedrules
+        end
+
+        def deserialize(params)
+          unless params['CustomRules'].nil?
+            @CustomRules = CustomRules.new
+            @CustomRules.deserialize(params['CustomRules'])
+          end
+          unless params['ManagedRules'].nil?
+            @ManagedRules = ManagedRules.new
+            @ManagedRules.deserialize(params['ManagedRules'])
           end
         end
       end

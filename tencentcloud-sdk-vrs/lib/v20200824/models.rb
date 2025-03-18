@@ -58,12 +58,18 @@ module TencentCloud
 
       # 取消任务响应
       class CancelVRSTaskRsp < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskId: String
 
+        attr_accessor :TaskId
 
-        def initialize()
+        def initialize(taskid=nil)
+          @TaskId = taskid
         end
 
         def deserialize(params)
+          @TaskId = params['TaskId']
         end
       end
 

@@ -12115,12 +12115,15 @@ module TencentCloud
         # @param SimpleAesDrm: SimpleAes 加密信息。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SimpleAesDrm: :class:`Tencentcloud::Mps.v20190612.models.SimpleAesDrm`
+        # @param SpekeDrm: FairPlay, WideVine， PlayReady 加密信息。
+        # @type SpekeDrm: :class:`Tencentcloud::Mps.v20190612.models.SpekeDrm`
 
-        attr_accessor :Type, :SimpleAesDrm
+        attr_accessor :Type, :SimpleAesDrm, :SpekeDrm
 
-        def initialize(type=nil, simpleaesdrm=nil)
+        def initialize(type=nil, simpleaesdrm=nil, spekedrm=nil)
           @Type = type
           @SimpleAesDrm = simpleaesdrm
+          @SpekeDrm = spekedrm
         end
 
         def deserialize(params)
@@ -12128,6 +12131,10 @@ module TencentCloud
           unless params['SimpleAesDrm'].nil?
             @SimpleAesDrm = SimpleAesDrm.new
             @SimpleAesDrm.deserialize(params['SimpleAesDrm'])
+          end
+          unless params['SpekeDrm'].nil?
+            @SpekeDrm = SpekeDrm.new
+            @SpekeDrm.deserialize(params['SpekeDrm'])
           end
         end
       end
@@ -16357,10 +16364,24 @@ module TencentCloud
         # @type AudioStreamSet: Array
         # @param VideoStreamSet: 视频流信息。
         # @type VideoStreamSet: Array
+        # @param CallBackExtInfo: 视频转码使用增强项说明，增强项解释
+        # <li>hdr：HDR配置</li>
+        # <li>wd_fps：插帧帧率配置</li>
+        # <li>video_super_resolution：	超分配置</li>
+        # <li>repair：综合增强配置</li>
+        # <li>denoise：视频降噪配置</li>
+        # <li>color_enhance：色彩增强配置</li>
+        # <li>scratch：去划痕配置</li>
+        # <li>artifact：去伪影（毛刺）配置</li>
+        # <li>sharp：细节增强配置</li>
+        # <li>low_light：低光照增强配置</li>
+        # <li>face_enhance：人脸增强配置</li>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CallBackExtInfo: String
 
-        attr_accessor :OutputStorage, :Path, :Definition, :Bitrate, :Height, :Width, :Size, :Duration, :Container, :Md5, :AudioStreamSet, :VideoStreamSet
+        attr_accessor :OutputStorage, :Path, :Definition, :Bitrate, :Height, :Width, :Size, :Duration, :Container, :Md5, :AudioStreamSet, :VideoStreamSet, :CallBackExtInfo
 
-        def initialize(outputstorage=nil, path=nil, definition=nil, bitrate=nil, height=nil, width=nil, size=nil, duration=nil, container=nil, md5=nil, audiostreamset=nil, videostreamset=nil)
+        def initialize(outputstorage=nil, path=nil, definition=nil, bitrate=nil, height=nil, width=nil, size=nil, duration=nil, container=nil, md5=nil, audiostreamset=nil, videostreamset=nil, callbackextinfo=nil)
           @OutputStorage = outputstorage
           @Path = path
           @Definition = definition
@@ -16373,6 +16394,7 @@ module TencentCloud
           @Md5 = md5
           @AudioStreamSet = audiostreamset
           @VideoStreamSet = videostreamset
+          @CallBackExtInfo = callbackextinfo
         end
 
         def deserialize(params)
@@ -16405,6 +16427,7 @@ module TencentCloud
               @VideoStreamSet << mediavideostreamitem_tmp
             end
           end
+          @CallBackExtInfo = params['CallBackExtInfo']
         end
       end
 
@@ -21171,6 +21194,46 @@ module TencentCloud
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
           @FillType = params['FillType']
+        end
+      end
+
+      # FairPlay，WideVine，PlayReady 等Drm加密方式。
+      class SpekeDrm < TencentCloud::Common::AbstractModel
+        # @param ResourceId: 资源标记，
+        # 支持1-128个字符的数字、字母、下划线(_)、中划线(-)。
+        # @type ResourceId: String
+        # @param KeyServerUrl: drm厂商访问地址；
+
+        # 注: 不同DRM厂商对子流的数量限制不一样，如 pallycon 限制不能超过5条子流，drmtoday厂商最多仅支持9条子流加密
+        # @type KeyServerUrl: String
+        # @param Vector: 加密初始化向量(32字节字符串)。
+        # @type Vector: String
+        # @param EncryptionMethod: 加密方式，FairPlay 默认cbcs，PlayReady，Widevine 默认cenc
+
+        # cbcs：PlayReady，Widevine，FairPlay 支持；
+        # cenc：PlayReady，Widevine支持；
+        # @type EncryptionMethod: String
+        # @param EncryptionPreset: 子流加密规则，默认 preset0
+        # preset0：全部子流使用同一个key加密；
+        # preset1：每个子流使用不同的key加密；
+        # @type EncryptionPreset: String
+
+        attr_accessor :ResourceId, :KeyServerUrl, :Vector, :EncryptionMethod, :EncryptionPreset
+
+        def initialize(resourceid=nil, keyserverurl=nil, vector=nil, encryptionmethod=nil, encryptionpreset=nil)
+          @ResourceId = resourceid
+          @KeyServerUrl = keyserverurl
+          @Vector = vector
+          @EncryptionMethod = encryptionmethod
+          @EncryptionPreset = encryptionpreset
+        end
+
+        def deserialize(params)
+          @ResourceId = params['ResourceId']
+          @KeyServerUrl = params['KeyServerUrl']
+          @Vector = params['Vector']
+          @EncryptionMethod = params['EncryptionMethod']
+          @EncryptionPreset = params['EncryptionPreset']
         end
       end
 

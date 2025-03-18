@@ -1094,10 +1094,12 @@ module TencentCloud
 
         # 注: `若参与方为企业员工时，暂不支持对参与方信息进行缓存`
         # @type CacheApproverInfo: Boolean
+        # @param CanBatchReject: 是否允许此链接中签署方批量拒签。 <ul><li>false (默认): 不允许批量拒签</li> <li>true : 允许批量拒签。</li></ul>注：`合同组暂不支持批量拒签功能。`
+        # @type CanBatchReject: Boolean
 
-        attr_accessor :FlowApproverInfo, :Agent, :FlowIds, :FlowGroupId, :JumpUrl, :SignatureTypes, :ApproverSignTypes, :SignTypeSelector, :FlowBatchUrlInfo, :Intention, :CacheApproverInfo
+        attr_accessor :FlowApproverInfo, :Agent, :FlowIds, :FlowGroupId, :JumpUrl, :SignatureTypes, :ApproverSignTypes, :SignTypeSelector, :FlowBatchUrlInfo, :Intention, :CacheApproverInfo, :CanBatchReject
 
-        def initialize(flowapproverinfo=nil, agent=nil, flowids=nil, flowgroupid=nil, jumpurl=nil, signaturetypes=nil, approversigntypes=nil, signtypeselector=nil, flowbatchurlinfo=nil, intention=nil, cacheapproverinfo=nil)
+        def initialize(flowapproverinfo=nil, agent=nil, flowids=nil, flowgroupid=nil, jumpurl=nil, signaturetypes=nil, approversigntypes=nil, signtypeselector=nil, flowbatchurlinfo=nil, intention=nil, cacheapproverinfo=nil, canbatchreject=nil)
           @FlowApproverInfo = flowapproverinfo
           @Agent = agent
           @FlowIds = flowids
@@ -1109,6 +1111,7 @@ module TencentCloud
           @FlowBatchUrlInfo = flowbatchurlinfo
           @Intention = intention
           @CacheApproverInfo = cacheapproverinfo
+          @CanBatchReject = canbatchreject
         end
 
         def deserialize(params)
@@ -1135,6 +1138,7 @@ module TencentCloud
             @Intention.deserialize(params['Intention'])
           end
           @CacheApproverInfo = params['CacheApproverInfo']
+          @CanBatchReject = params['CanBatchReject']
         end
       end
 
@@ -1249,10 +1253,12 @@ module TencentCloud
 
         # 参考 [公众号 H5 跳转电子签小程序](https://qian.tencent.com/developers/company/openwxminiprogram/#23-%E5%85%AC%E4%BC%97%E5%8F%B7-h5-%E4%B8%AD%E8%B7%B3%E8%BD%AC)。
         # @type UrlUseEnv: String
+        # @param CanBatchReject: 是否允许此链接中签署方批量拒签。 <ul><li>false (默认): 不允许批量拒签</li> <li>true : 允许批量拒签。</li></ul>注：`合同组暂不支持批量拒签功能。`
+        # @type CanBatchReject: Boolean
 
-        attr_accessor :Agent, :Name, :Mobile, :Operator, :IdCardType, :IdCardNumber, :NotifyType, :FlowIds, :OrganizationName, :JumpToDetail, :FlowBatchUrlInfo, :OpenId, :OrganizationOpenId, :AutoJumpBack, :UrlUseEnv
+        attr_accessor :Agent, :Name, :Mobile, :Operator, :IdCardType, :IdCardNumber, :NotifyType, :FlowIds, :OrganizationName, :JumpToDetail, :FlowBatchUrlInfo, :OpenId, :OrganizationOpenId, :AutoJumpBack, :UrlUseEnv, :CanBatchReject
 
-        def initialize(agent=nil, name=nil, mobile=nil, operator=nil, idcardtype=nil, idcardnumber=nil, notifytype=nil, flowids=nil, organizationname=nil, jumptodetail=nil, flowbatchurlinfo=nil, openid=nil, organizationopenid=nil, autojumpback=nil, urluseenv=nil)
+        def initialize(agent=nil, name=nil, mobile=nil, operator=nil, idcardtype=nil, idcardnumber=nil, notifytype=nil, flowids=nil, organizationname=nil, jumptodetail=nil, flowbatchurlinfo=nil, openid=nil, organizationopenid=nil, autojumpback=nil, urluseenv=nil, canbatchreject=nil)
           @Agent = agent
           @Name = name
           @Mobile = mobile
@@ -1268,6 +1274,7 @@ module TencentCloud
           @OrganizationOpenId = organizationopenid
           @AutoJumpBack = autojumpback
           @UrlUseEnv = urluseenv
+          @CanBatchReject = canbatchreject
         end
 
         def deserialize(params)
@@ -1295,6 +1302,7 @@ module TencentCloud
           @OrganizationOpenId = params['OrganizationOpenId']
           @AutoJumpBack = params['AutoJumpBack']
           @UrlUseEnv = params['UrlUseEnv']
+          @CanBatchReject = params['CanBatchReject']
         end
       end
 
@@ -2734,7 +2742,8 @@ module TencentCloud
         # @type Organization: :class:`Tencentcloud::Essbasic.v20210526.models.OrganizationInfo`
         # @param Operator: 操作人（用户）信息，不用传
         # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
-        # @param SignComponentConfig: 签署控件的配置信息，用在嵌入式发起的页面配置，包括
+        # @param SignComponentConfig: <font color="red">此参数已经废弃，请使用 CreateFlowOption 里面的 SignComponentConfig</font>
+        # 签署控件的配置信息，用在嵌入式发起的页面配置，包括
 
         # - 签署控件 是否默认展示日期.
         # @type SignComponentConfig: :class:`Tencentcloud::Essbasic.v20210526.models.SignComponentConfig`
@@ -2747,6 +2756,8 @@ module TencentCloud
         deprecate :Organization=, :none, 2025, 3
         deprecate :Operator, :none, 2025, 3
         deprecate :Operator=, :none, 2025, 3
+        deprecate :SignComponentConfig, :none, 2025, 3
+        deprecate :SignComponentConfig=, :none, 2025, 3
 
         def initialize(resourcetype=nil, flowinfo=nil, agent=nil, resourceid=nil, flowoption=nil, flowapproverlist=nil, flowid=nil, needpreview=nil, organization=nil, operator=nil, signcomponentconfig=nil)
           @ResourceType = resourcetype
@@ -6473,10 +6484,13 @@ module TencentCloud
         # **true**：跳过
         # **false**：（默认）不跳过，需要传ResourceId
         # @type SkipUploadFile: Boolean
+        # @param SignComponentConfig: 签署控件的配置信息，用在嵌入式发起的页面配置，包括
+        #  - 签署控件 是否默认展示日期.
+        # @type SignComponentConfig: :class:`Tencentcloud::Essbasic.v20210526.models.SignComponentConfig`
 
-        attr_accessor :CanEditFlow, :HideShowFlowName, :HideShowFlowType, :HideShowDeadline, :CanSkipAddApprover, :CustomCreateFlowDescription, :ForbidEditFillComponent, :SkipUploadFile
+        attr_accessor :CanEditFlow, :HideShowFlowName, :HideShowFlowType, :HideShowDeadline, :CanSkipAddApprover, :CustomCreateFlowDescription, :ForbidEditFillComponent, :SkipUploadFile, :SignComponentConfig
 
-        def initialize(caneditflow=nil, hideshowflowname=nil, hideshowflowtype=nil, hideshowdeadline=nil, canskipaddapprover=nil, customcreateflowdescription=nil, forbideditfillcomponent=nil, skipuploadfile=nil)
+        def initialize(caneditflow=nil, hideshowflowname=nil, hideshowflowtype=nil, hideshowdeadline=nil, canskipaddapprover=nil, customcreateflowdescription=nil, forbideditfillcomponent=nil, skipuploadfile=nil, signcomponentconfig=nil)
           @CanEditFlow = caneditflow
           @HideShowFlowName = hideshowflowname
           @HideShowFlowType = hideshowflowtype
@@ -6485,6 +6499,7 @@ module TencentCloud
           @CustomCreateFlowDescription = customcreateflowdescription
           @ForbidEditFillComponent = forbideditfillcomponent
           @SkipUploadFile = skipuploadfile
+          @SignComponentConfig = signcomponentconfig
         end
 
         def deserialize(params)
@@ -6496,6 +6511,10 @@ module TencentCloud
           @CustomCreateFlowDescription = params['CustomCreateFlowDescription']
           @ForbidEditFillComponent = params['ForbidEditFillComponent']
           @SkipUploadFile = params['SkipUploadFile']
+          unless params['SignComponentConfig'].nil?
+            @SignComponentConfig = SignComponentConfig.new
+            @SignComponentConfig.deserialize(params['SignComponentConfig'])
+          end
         end
       end
 

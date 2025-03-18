@@ -433,6 +433,181 @@ module TencentCloud
         end
       end
 
+      # redis自治事件任务详情
+      class AutonomyActionVo < TencentCloud::Common::AbstractModel
+        # @param ActionId: 自治任务ID。
+        # @type ActionId: Integer
+        # @param EventId: 自治事件ID。
+        # @type EventId: Integer
+        # @param Type: 类型：支持RedisAutoScaleUp
+        # @type Type: String
+        # @param TriggerTime: 自治任务触发时间。
+        # @type TriggerTime: String
+        # @param CreateTime: 自治任务创建时间。
+        # @type CreateTime: String
+        # @param UpdateTime: 自治任务更新时间
+        # @type UpdateTime: String
+        # @param FinishTime: 自治任务完成时间。
+        # @type FinishTime: String
+        # @param ExpireTime: 剩余时间，单位：秒。
+        # @type ExpireTime: Integer
+        # @param Reason: 触发原因。
+        # @type Reason: String
+        # @param Status: 自治任务状态：支持 RUNNING，FINISHED，TERMINATED，CANCELLED
+        # @type Status: String
+
+        attr_accessor :ActionId, :EventId, :Type, :TriggerTime, :CreateTime, :UpdateTime, :FinishTime, :ExpireTime, :Reason, :Status
+
+        def initialize(actionid=nil, eventid=nil, type=nil, triggertime=nil, createtime=nil, updatetime=nil, finishtime=nil, expiretime=nil, reason=nil, status=nil)
+          @ActionId = actionid
+          @EventId = eventid
+          @Type = type
+          @TriggerTime = triggertime
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @FinishTime = finishtime
+          @ExpireTime = expiretime
+          @Reason = reason
+          @Status = status
+        end
+
+        def deserialize(params)
+          @ActionId = params['ActionId']
+          @EventId = params['EventId']
+          @Type = params['Type']
+          @TriggerTime = params['TriggerTime']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          @FinishTime = params['FinishTime']
+          @ExpireTime = params['ExpireTime']
+          @Reason = params['Reason']
+          @Status = params['Status']
+        end
+      end
+
+      # 自治事件详情
+      class AutonomyEventVo < TencentCloud::Common::AbstractModel
+        # @param EventId: 自治事件ID。
+        # @type EventId: Integer
+        # @param Type: 自治事件类型：支持RunningAutoRecovery，RedisAutoScale
+        # @type Type: String
+        # @param Status: 自治事件状态：支持 RUNNING，FINISHED，TERMINATED
+        # @type Status: String
+        # @param Reason: 触发原因。
+        # @type Reason: String
+        # @param TriggerTime: 自治任务触发时间。
+        # @type TriggerTime: Integer
+        # @param LastTriggerTime: 自治任务最后触发时间。
+        # @type LastTriggerTime: Integer
+        # @param CreateTime: 自治任务创建时间。
+        # @type CreateTime: Integer
+        # @param UpdateTime: 自治任务更新时间。
+        # @type UpdateTime: Integer
+        # @param FinishTime: 自治任务完成时间；非结束状态的时候，该值无意义。
+        # @type FinishTime: Integer
+
+        attr_accessor :EventId, :Type, :Status, :Reason, :TriggerTime, :LastTriggerTime, :CreateTime, :UpdateTime, :FinishTime
+
+        def initialize(eventid=nil, type=nil, status=nil, reason=nil, triggertime=nil, lasttriggertime=nil, createtime=nil, updatetime=nil, finishtime=nil)
+          @EventId = eventid
+          @Type = type
+          @Status = status
+          @Reason = reason
+          @TriggerTime = triggertime
+          @LastTriggerTime = lasttriggertime
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @FinishTime = finishtime
+        end
+
+        def deserialize(params)
+          @EventId = params['EventId']
+          @Type = params['Type']
+          @Status = params['Status']
+          @Reason = params['Reason']
+          @TriggerTime = params['TriggerTime']
+          @LastTriggerTime = params['LastTriggerTime']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          @FinishTime = params['FinishTime']
+        end
+      end
+
+      # 自治用户配置详情
+      class AutonomyUserProfileInfo < TencentCloud::Common::AbstractModel
+        # @param Enabled: 是否开启自治。
+        # @type Enabled: Boolean
+        # @param Uin: 用户Uin。
+        # @type Uin: String
+        # @param MemoryUpperLimit: 内存上限。
+        # @type MemoryUpperLimit: Integer
+        # @param ThresholdRule: 指标阈值规则。
+        # @type ThresholdRule: :class:`Tencentcloud::Dbbrain.v20210527.models.MetricThreshold`
+        # @param EnabledItems: 自治功能类型。
+        # @type EnabledItems: Array
+
+        attr_accessor :Enabled, :Uin, :MemoryUpperLimit, :ThresholdRule, :EnabledItems
+
+        def initialize(enabled=nil, uin=nil, memoryupperlimit=nil, thresholdrule=nil, enableditems=nil)
+          @Enabled = enabled
+          @Uin = uin
+          @MemoryUpperLimit = memoryupperlimit
+          @ThresholdRule = thresholdrule
+          @EnabledItems = enableditems
+        end
+
+        def deserialize(params)
+          @Enabled = params['Enabled']
+          @Uin = params['Uin']
+          @MemoryUpperLimit = params['MemoryUpperLimit']
+          unless params['ThresholdRule'].nil?
+            @ThresholdRule = MetricThreshold.new
+            @ThresholdRule.deserialize(params['ThresholdRule'])
+          end
+          @EnabledItems = params['EnabledItems']
+        end
+      end
+
+      # CancelDBAutonomyAction请求参数结构体
+      class CancelDBAutonomyActionRequest < TencentCloud::Common::AbstractModel
+        # @param ActionId: 自治任务ID。
+        # @type ActionId: Integer
+        # @param InstanceId: 实列ID。
+        # @type InstanceId: String
+        # @param Product: 服务产品类型，支持值包括： "redis" - 云数据库 Redis。
+        # @type Product: String
+
+        attr_accessor :ActionId, :InstanceId, :Product
+
+        def initialize(actionid=nil, instanceid=nil, product=nil)
+          @ActionId = actionid
+          @InstanceId = instanceid
+          @Product = product
+        end
+
+        def deserialize(params)
+          @ActionId = params['ActionId']
+          @InstanceId = params['InstanceId']
+          @Product = params['Product']
+        end
+      end
+
+      # CancelDBAutonomyAction返回参数结构体
+      class CancelDBAutonomyActionResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CancelKillTask请求参数结构体
       class CancelKillTaskRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID。
@@ -456,6 +631,50 @@ module TencentCloud
       # CancelKillTask返回参数结构体
       class CancelKillTaskResponse < TencentCloud::Common::AbstractModel
         # @param Status: kill会话任务终止成功返回1。
+        # @type Status: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Status, :RequestId
+
+        def initialize(status=nil, requestid=nil)
+          @Status = status
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CancelRedisBigKeyAnalysisTasks请求参数结构体
+      class CancelRedisBigKeyAnalysisTasksRequest < TencentCloud::Common::AbstractModel
+        # @param AsyncRequestIds: 自治任务ID。
+        # @type AsyncRequestIds: Array
+        # @param InstanceId: 实列ID。
+        # @type InstanceId: String
+        # @param Product: 服务产品类型，支持值包括： "redis" - 云数据库 Redis。
+        # @type Product: String
+
+        attr_accessor :AsyncRequestIds, :InstanceId, :Product
+
+        def initialize(asyncrequestids=nil, instanceid=nil, product=nil)
+          @AsyncRequestIds = asyncrequestids
+          @InstanceId = instanceid
+          @Product = product
+        end
+
+        def deserialize(params)
+          @AsyncRequestIds = params['AsyncRequestIds']
+          @InstanceId = params['InstanceId']
+          @Product = params['Product']
+        end
+      end
+
+      # CancelRedisBigKeyAnalysisTasks返回参数结构体
+      class CancelRedisBigKeyAnalysisTasksResponse < TencentCloud::Common::AbstractModel
+        # @param Status: 终止大Key任务结果；0-成功。
         # @type Status: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1087,6 +1306,50 @@ module TencentCloud
         end
       end
 
+      # CreateUserAutonomyProfile请求参数结构体
+      class CreateUserAutonomyProfileRequest < TencentCloud::Common::AbstractModel
+        # @param ProfileType: 配置类型，为需要配置的功能枚举值，目前包含一下枚举值：AutonomyGlobal（自治功能全局配置）、RedisAutoScaleUp（Redis自治扩容配置）
+        # @type ProfileType: String
+        # @param InstanceId: 实列ID。
+        # @type InstanceId: String
+        # @param Product: 服务产品类型，支持值包括： "redis" - 云数据库 Redis。
+        # @type Product: String
+        # @param ProfileInfo: 自治功能相关配置，标准JSON字符串格式。
+        # @type ProfileInfo: String
+
+        attr_accessor :ProfileType, :InstanceId, :Product, :ProfileInfo
+
+        def initialize(profiletype=nil, instanceid=nil, product=nil, profileinfo=nil)
+          @ProfileType = profiletype
+          @InstanceId = instanceid
+          @Product = product
+          @ProfileInfo = profileinfo
+        end
+
+        def deserialize(params)
+          @ProfileType = params['ProfileType']
+          @InstanceId = params['InstanceId']
+          @Product = params['Product']
+          @ProfileInfo = params['ProfileInfo']
+        end
+      end
+
+      # CreateUserAutonomyProfile返回参数结构体
+      class CreateUserAutonomyProfileResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteAuditLogFile请求参数结构体
       class DeleteAuditLogFileRequest < TencentCloud::Common::AbstractModel
         # @param Product: 服务产品类型，支持值包括： "dcdb" - 云数据库 Tdsql， "mariadb" - 云数据库 MariaDB for MariaDB。
@@ -1598,6 +1861,128 @@ module TencentCloud
               auditlogfile_tmp = AuditLogFile.new
               auditlogfile_tmp.deserialize(i)
               @Items << auditlogfile_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDBAutonomyActions请求参数结构体
+      class DescribeDBAutonomyActionsRequest < TencentCloud::Common::AbstractModel
+        # @param EventId: 事件ID。
+        # @type EventId: Integer
+        # @param InstanceId: 实列ID。
+        # @type InstanceId: String
+        # @param Product: 服务产品类型，支持值包括： "redis" - 云数据库 Redis。
+        # @type Product: String
+
+        attr_accessor :EventId, :InstanceId, :Product
+
+        def initialize(eventid=nil, instanceid=nil, product=nil)
+          @EventId = eventid
+          @InstanceId = instanceid
+          @Product = product
+        end
+
+        def deserialize(params)
+          @EventId = params['EventId']
+          @InstanceId = params['InstanceId']
+          @Product = params['Product']
+        end
+      end
+
+      # DescribeDBAutonomyActions返回参数结构体
+      class DescribeDBAutonomyActionsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 自治事件总数。
+        # @type TotalCount: Integer
+        # @param Actions: 自治事件列表。
+        # @type Actions: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Actions, :RequestId
+
+        def initialize(totalcount=nil, actions=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Actions = actions
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Actions'].nil?
+            @Actions = []
+            params['Actions'].each do |i|
+              autonomyactionvo_tmp = AutonomyActionVo.new
+              autonomyactionvo_tmp.deserialize(i)
+              @Actions << autonomyactionvo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDBAutonomyEvents请求参数结构体
+      class DescribeDBAutonomyEventsRequest < TencentCloud::Common::AbstractModel
+        # @param Product: 服务产品类型，支持值包括： "redis" - 云数据库 Redis。
+        # @type Product: String
+        # @param InstanceId: 实列ID。
+        # @type InstanceId: String
+        # @param StartTime: 开始时间。
+        # @type StartTime: String
+        # @param EndTime: 结束时间。
+        # @type EndTime: String
+        # @param Offset: 分页参数，默认值为0。
+        # @type Offset: Integer
+        # @param Limit: 分页参数，默认值为20。
+        # @type Limit: Integer
+
+        attr_accessor :Product, :InstanceId, :StartTime, :EndTime, :Offset, :Limit
+
+        def initialize(product=nil, instanceid=nil, starttime=nil, endtime=nil, offset=nil, limit=nil)
+          @Product = product
+          @InstanceId = instanceid
+          @StartTime = starttime
+          @EndTime = endtime
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @Product = params['Product']
+          @InstanceId = params['InstanceId']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeDBAutonomyEvents返回参数结构体
+      class DescribeDBAutonomyEventsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 自治事件列表总数。
+        # @type TotalCount: Integer
+        # @param Events: 自治事件列表。
+        # @type Events: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Events, :RequestId
+
+        def initialize(totalcount=nil, events=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Events = events
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Events'].nil?
+            @Events = []
+            params['Events'].each do |i|
+              autonomyeventvo_tmp = AutonomyEventVo.new
+              autonomyeventvo_tmp.deserialize(i)
+              @Events << autonomyeventvo_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -3682,6 +4067,61 @@ module TencentCloud
         end
       end
 
+      # DescribeUserAutonomyProfile请求参数结构体
+      class DescribeUserAutonomyProfileRequest < TencentCloud::Common::AbstractModel
+        # @param ProfileType: 配置类型，为需要配置的功能枚举值，目前包含一下枚举值：AutonomyGlobal（自治功能全局配置）、RedisAutoScaleUp（Redis自治扩容配置）。
+        # @type ProfileType: String
+        # @param InstanceId: 实列ID。
+        # @type InstanceId: String
+        # @param Product: 服务产品类型，支持值包括： "redis" - 云数据库 Redis。
+        # @type Product: String
+
+        attr_accessor :ProfileType, :InstanceId, :Product
+
+        def initialize(profiletype=nil, instanceid=nil, product=nil)
+          @ProfileType = profiletype
+          @InstanceId = instanceid
+          @Product = product
+        end
+
+        def deserialize(params)
+          @ProfileType = params['ProfileType']
+          @InstanceId = params['InstanceId']
+          @Product = params['Product']
+        end
+      end
+
+      # DescribeUserAutonomyProfile返回参数结构体
+      class DescribeUserAutonomyProfileResponse < TencentCloud::Common::AbstractModel
+        # @param ProfileType: 配置类型，为需要配置的功能枚举值，目前包含一下枚举值：AutonomyGlobal（自治功能全局配置）、RedisAutoScaleUp（Redis自治扩容配置）。
+        # @type ProfileType: String
+        # @param UpdateTime: 更新时间。
+        # @type UpdateTime: String
+        # @param ProfileInfo: 自治用户配置。
+        # @type ProfileInfo: :class:`Tencentcloud::Dbbrain.v20210527.models.AutonomyUserProfileInfo`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ProfileType, :UpdateTime, :ProfileInfo, :RequestId
+
+        def initialize(profiletype=nil, updatetime=nil, profileinfo=nil, requestid=nil)
+          @ProfileType = profiletype
+          @UpdateTime = updatetime
+          @ProfileInfo = profileinfo
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ProfileType = params['ProfileType']
+          @UpdateTime = params['UpdateTime']
+          unless params['ProfileInfo'].nil?
+            @ProfileInfo = AutonomyUserProfileInfo.new
+            @ProfileInfo.deserialize(params['ProfileInfo'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeUserSqlAdvice请求参数结构体
       class DescribeUserSqlAdviceRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID。
@@ -4436,6 +4876,30 @@ module TencentCloud
         end
       end
 
+      # 自治指标阈值
+      class MetricThreshold < TencentCloud::Common::AbstractModel
+        # @param Metric: 指标。
+        # @type Metric: String
+        # @param Threshold: 阈值。
+        # @type Threshold: Integer
+        # @param Duration: 时间间隔。
+        # @type Duration: Integer
+
+        attr_accessor :Metric, :Threshold, :Duration
+
+        def initialize(metric=nil, threshold=nil, duration=nil)
+          @Metric = metric
+          @Threshold = threshold
+          @Duration = duration
+        end
+
+        def deserialize(params)
+          @Metric = params['Metric']
+          @Threshold = params['Threshold']
+          @Duration = params['Duration']
+        end
+      end
+
       # ModifyAlarmPolicy请求参数结构体
       class ModifyAlarmPolicyRequest < TencentCloud::Common::AbstractModel
         # @param ApplyType: 类型
@@ -4669,6 +5133,50 @@ module TencentCloud
 
       # ModifySqlFilters返回参数结构体
       class ModifySqlFiltersResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyUserAutonomyProfile请求参数结构体
+      class ModifyUserAutonomyProfileRequest < TencentCloud::Common::AbstractModel
+        # @param ProfileType: 配置类型，为需要配置的功能枚举值，目前包含一下枚举值：AutonomyGlobal（自治功能全局配置）、RedisAutoScaleUp（Redis自治扩容配置）
+        # @type ProfileType: String
+        # @param InstanceId: 实列ID。
+        # @type InstanceId: String
+        # @param Product: 服务产品类型，支持值包括： "redis" - 云数据库 Redis。
+        # @type Product: String
+        # @param NewProfileInfo: 自治功能相关配置，标准JSON字符串格式。
+        # @type NewProfileInfo: String
+
+        attr_accessor :ProfileType, :InstanceId, :Product, :NewProfileInfo
+
+        def initialize(profiletype=nil, instanceid=nil, product=nil, newprofileinfo=nil)
+          @ProfileType = profiletype
+          @InstanceId = instanceid
+          @Product = product
+          @NewProfileInfo = newprofileinfo
+        end
+
+        def deserialize(params)
+          @ProfileType = params['ProfileType']
+          @InstanceId = params['InstanceId']
+          @Product = params['Product']
+          @NewProfileInfo = params['NewProfileInfo']
+        end
+      end
+
+      # ModifyUserAutonomyProfile返回参数结构体
+      class ModifyUserAutonomyProfileResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 

@@ -77,7 +77,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 实例节点列表
+        # 查询实例pod列表
 
         # @param request: Request instance for DescribeInstanceNodes.
         # @type request: :class:`Tencentcloud::vdb::V20230616::DescribeInstanceNodesRequest`

@@ -599,9 +599,9 @@ module TencentCloud
 
       # DescribeInstanceInfo返回参数结构体
       class DescribeInstanceInfoResponse < TencentCloud::Common::AbstractModel
-        # @param SimpleInstanceInfo: 1
+        # @param SimpleInstanceInfo: 集群描述信息
         # @type SimpleInstanceInfo: :class:`Tencentcloud::Cdwpg.v20201230.models.SimpleInstanceInfo`
-        # @param ErrorMsg: 1
+        # @param ErrorMsg: 错误信息
         # @type ErrorMsg: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

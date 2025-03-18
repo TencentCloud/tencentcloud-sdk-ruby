@@ -186,15 +186,17 @@ module TencentCloud
         # @type Limit: Integer
         # @param ResourceTags: 按照标签筛选实例
         # @type ResourceTags: Array
+        # @param TaskStatus: 任务状态：1-待执行任务；2-密钥更新中；3-网络变更中；4-参数变更中；5-embedding变更中；6-ai套件变更中；7-滚动升级中；8-纵向扩容中；9-纵向缩容中；10-横向扩容中；11-横向缩容中
+        # @type TaskStatus: Array
 
-        attr_accessor :InstanceIds, :InstanceNames, :InstanceKeys, :Status, :EngineNames, :EngineVersions, :ApiVersions, :CreateAt, :Zones, :OrderBy, :OrderDirection, :Offset, :Limit, :ResourceTags
+        attr_accessor :InstanceIds, :InstanceNames, :InstanceKeys, :Status, :EngineNames, :EngineVersions, :ApiVersions, :CreateAt, :Zones, :OrderBy, :OrderDirection, :Offset, :Limit, :ResourceTags, :TaskStatus
         extend Gem::Deprecate
         deprecate :EngineNames, :none, 2025, 3
         deprecate :EngineNames=, :none, 2025, 3
         deprecate :Zones, :none, 2025, 3
         deprecate :Zones=, :none, 2025, 3
 
-        def initialize(instanceids=nil, instancenames=nil, instancekeys=nil, status=nil, enginenames=nil, engineversions=nil, apiversions=nil, createat=nil, zones=nil, orderby=nil, orderdirection=nil, offset=nil, limit=nil, resourcetags=nil)
+        def initialize(instanceids=nil, instancenames=nil, instancekeys=nil, status=nil, enginenames=nil, engineversions=nil, apiversions=nil, createat=nil, zones=nil, orderby=nil, orderdirection=nil, offset=nil, limit=nil, resourcetags=nil, taskstatus=nil)
           @InstanceIds = instanceids
           @InstanceNames = instancenames
           @InstanceKeys = instancekeys
@@ -209,6 +211,7 @@ module TencentCloud
           @Offset = offset
           @Limit = limit
           @ResourceTags = resourcetags
+          @TaskStatus = taskstatus
         end
 
         def deserialize(params)
@@ -233,6 +236,7 @@ module TencentCloud
               @ResourceTags << tag_tmp
             end
           end
+          @TaskStatus = params['TaskStatus']
         end
       end
 
@@ -408,8 +412,10 @@ module TencentCloud
         # @type IsolateAt: String
         # @param AutoRenew: 是否自动续费。0: 不自动续费(可以支持特权不停服)；1:自动续费；2:到期不续费.
         # @type AutoRenew: Integer
+        # @param TaskStatus: 任务状态：0-无任务；1-待执行任务；2-密钥更新中；3-网络变更中；4-参数变更中；5-embedding变更中；6-ai套件变更中；7-滚动升级中；8-纵向扩容中；9-纵向缩容中；10-横向扩容中；11-横向缩容中
+        # @type TaskStatus: Integer
 
-        attr_accessor :InstanceId, :Name, :AppId, :Region, :Zone, :Product, :Networks, :ShardNum, :ReplicaNum, :Cpu, :Memory, :Disk, :HealthScore, :Warning, :Project, :ResourceTags, :CreatedAt, :Status, :EngineName, :EngineVersion, :ApiVersion, :PayMode, :Extend, :ExpiredAt, :IsNoExpired, :WanAddress, :IsolateAt, :AutoRenew
+        attr_accessor :InstanceId, :Name, :AppId, :Region, :Zone, :Product, :Networks, :ShardNum, :ReplicaNum, :Cpu, :Memory, :Disk, :HealthScore, :Warning, :Project, :ResourceTags, :CreatedAt, :Status, :EngineName, :EngineVersion, :ApiVersion, :PayMode, :Extend, :ExpiredAt, :IsNoExpired, :WanAddress, :IsolateAt, :AutoRenew, :TaskStatus
         extend Gem::Deprecate
         deprecate :HealthScore, :none, 2025, 3
         deprecate :HealthScore=, :none, 2025, 3
@@ -418,7 +424,7 @@ module TencentCloud
         deprecate :Project, :none, 2025, 3
         deprecate :Project=, :none, 2025, 3
 
-        def initialize(instanceid=nil, name=nil, appid=nil, region=nil, zone=nil, product=nil, networks=nil, shardnum=nil, replicanum=nil, cpu=nil, memory=nil, disk=nil, healthscore=nil, warning=nil, project=nil, resourcetags=nil, createdat=nil, status=nil, enginename=nil, engineversion=nil, apiversion=nil, paymode=nil, extend=nil, expiredat=nil, isnoexpired=nil, wanaddress=nil, isolateat=nil, autorenew=nil)
+        def initialize(instanceid=nil, name=nil, appid=nil, region=nil, zone=nil, product=nil, networks=nil, shardnum=nil, replicanum=nil, cpu=nil, memory=nil, disk=nil, healthscore=nil, warning=nil, project=nil, resourcetags=nil, createdat=nil, status=nil, enginename=nil, engineversion=nil, apiversion=nil, paymode=nil, extend=nil, expiredat=nil, isnoexpired=nil, wanaddress=nil, isolateat=nil, autorenew=nil, taskstatus=nil)
           @InstanceId = instanceid
           @Name = name
           @AppId = appid
@@ -447,6 +453,7 @@ module TencentCloud
           @WanAddress = wanaddress
           @IsolateAt = isolateat
           @AutoRenew = autorenew
+          @TaskStatus = taskstatus
         end
 
         def deserialize(params)
@@ -492,6 +499,7 @@ module TencentCloud
           @WanAddress = params['WanAddress']
           @IsolateAt = params['IsolateAt']
           @AutoRenew = params['AutoRenew']
+          @TaskStatus = params['TaskStatus']
         end
       end
 
@@ -571,15 +579,19 @@ module TencentCloud
       class NodeInfo < TencentCloud::Common::AbstractModel
         # @param Name: Pod名称。
         # @type Name: String
+        # @param Status: pod状态
+        # @type Status: String
 
-        attr_accessor :Name
+        attr_accessor :Name, :Status
 
-        def initialize(name=nil)
+        def initialize(name=nil, status=nil)
           @Name = name
+          @Status = status
         end
 
         def deserialize(params)
           @Name = params['Name']
+          @Status = params['Status']
         end
       end
 

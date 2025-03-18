@@ -34,7 +34,6 @@ module TencentCloud
         # @param Field: 组件唯一标识， 传回后端时的key
         # @type Field: String
         # @param DefaultValue: 默认值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DefaultValue: String
         # @param Config: 支持配置项如下,可根据需要选择配置项，不需要配置是设置空{}：
 
@@ -182,28 +181,20 @@ module TencentCloud
         # @param ActionContent: 自定义动作的参数，json string
         # @type ActionContent: String
         # @param ResourceType: 二级分类
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceType: String
         # @param ActionDetail: 动作描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ActionDetail: String
         # @param IsAllowed: 是否允许当前账号使用
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsAllowed: Boolean
         # @param ActionBestCase: 最佳实践案例的链接地址
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ActionBestCase: String
         # @param ObjectType: 对象类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ObjectType: String
         # @param MetricIdList: 监控指标ID列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MetricIdList: Array
         # @param IsNewAction: 是否是新动作
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsNewAction: Boolean
         # @param ObjectTypeId: 对象类型ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ObjectTypeId: Integer
 
         attr_accessor :ActionName, :Desc, :ActionType, :CreateTime, :Creator, :UpdateTime, :RiskDesc, :ActionId, :AttributeId, :RelationActionId, :ActionCommand, :ActionCommandType, :ActionContent, :ResourceType, :ActionDetail, :IsAllowed, :ActionBestCase, :ObjectType, :MetricIdList, :IsNewAction, :ObjectTypeId
@@ -260,13 +251,10 @@ module TencentCloud
       # 应用性能监控产品中应用信息
       class ApmServiceInfo < TencentCloud::Common::AbstractModel
         # @param InstanceId: 业务ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceId: String
         # @param ServiceNameList: 应用名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ServiceNameList: Array
         # @param RegionId: 地域ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RegionId: Integer
 
         attr_accessor :InstanceId, :ServiceNameList, :RegionId
@@ -525,7 +513,6 @@ module TencentCloud
         # @param Results: 动作栏位配置列表
         # @type Results: Array
         # @param ResourceOffline: 资源下线信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceOffline: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1258,16 +1245,12 @@ module TencentCloud
         # @param ObjectTypeParams: 对象类型参数
         # @type ObjectTypeParams: :class:`Tencentcloud::Cfg.v20210820.models.ObjectTypeConfig`
         # @param ObjectTypeJsonParse: tke接口json解析规则，null不需要解析
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ObjectTypeJsonParse: :class:`Tencentcloud::Cfg.v20210820.models.ObjectTypeJsonParse`
         # @param ObjectHasNewAction: 是否包含新动作
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ObjectHasNewAction: Boolean
         # @param ObjectPlatformName: 对应在平台架构图中的资源类型名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ObjectPlatformName: String
         # @param ObjectSupportType: 1：平台支持的对象 2：应用支持的部分对象
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ObjectSupportType: Integer
         # @param ArchLayer: 1.接入层 2.逻辑层 3. 数据层
         # @type ArchLayer: Integer
@@ -1343,10 +1326,8 @@ module TencentCloud
         # @param Header: 实例id
         # @type Header: String
         # @param Transfer: 字段值是否需要转译，当不需要转译时，此字段返回null
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Transfer: String
         # @param JsonParse: tke的pod字段信息解析
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type JsonParse: String
         # @param Type: 字段类型 0:str 1:list
         # @type Type: Integer
@@ -1373,16 +1354,12 @@ module TencentCloud
       # 标准pod对象类型下拉数据的解析
       class ObjectTypeJsonParse < TencentCloud::Common::AbstractModel
         # @param NameSpace: 命名空间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NameSpace: String
         # @param WorkloadName: 工作负载名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WorkloadName: String
         # @param LanIP: 节点IP
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LanIP: String
         # @param InstanceId: 节点ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceId: String
 
         attr_accessor :NameSpace, :WorkloadName, :LanIP, :InstanceId
@@ -1407,16 +1384,12 @@ module TencentCloud
         # @param TaskId: 演练ID
         # @type TaskId: Integer
         # @param Name: 名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param TriggerType: 类型，0--触发，1--恢复
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TriggerType: Integer
         # @param Content: 内容
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Content: String
         # @param CreatTime: 触发时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreatTime: String
 
         attr_accessor :TaskId, :Name, :TriggerType, :Content, :CreatTime
@@ -1441,13 +1414,10 @@ module TencentCloud
       # 资源下线
       class ResourceOffline < TencentCloud::Common::AbstractModel
         # @param ResourceId: 资源ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceId: Integer
         # @param ResourceDeleteTime: 资源下线时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceDeleteTime: String
         # @param ResourceDeleteMessage: 资源下线提示
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceDeleteMessage: String
 
         attr_accessor :ResourceId, :ResourceDeleteTime, :ResourceDeleteMessage
@@ -1468,10 +1438,8 @@ module TencentCloud
       # 用于传入创建、编辑标签
       class TagWithCreate < TencentCloud::Common::AbstractModel
         # @param TagKey: 标签键
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TagKey: String
         # @param TagValue: 标签值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TagValue: String
 
         attr_accessor :TagKey, :TagValue
@@ -1516,10 +1484,8 @@ module TencentCloud
         # @param TaskDescription: 任务描述
         # @type TaskDescription: String
         # @param TaskTag: 自定义标签
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskTag: String
         # @param TaskStatus: 任务状态，1001--未开始  1002--进行中（执行）1003--进行中（暂停）1004--执行结束
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskStatus: Integer
         # @param TaskStatusType: 任务结束状态，表明任务以何种状态结束: 0 -- 尚未结束，1 -- 成功，2-- 失败，3--终止
         # @type TaskStatusType: Integer
@@ -1553,13 +1519,11 @@ module TencentCloud
         # @param TaskRegionId: 地域ID
         # @type TaskRegionId: Integer
         # @param TaskMonitors: 监控指标列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskMonitors: Array
         # @param TaskPolicy: 保护策略
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskPolicy: :class:`Tencentcloud::Cfg.v20210820.models.DescribePolicy`
         # @param Tags: 标签列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
         # @param TaskPlanId: 关联的演练计划ID
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -1571,19 +1535,15 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApplicationId: String
         # @param ApplicationName: 关联的应用名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApplicationName: String
         # @param AlarmPolicy: 关联的告警指标
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AlarmPolicy: Array
         # @param ApmServiceList: 关联的APM服务
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApmServiceList: Array
         # @param VerifyId: 关联的隐患验证项ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VerifyId: Integer
         # @param PolicyDealType: 护栏处理方式，1--顺序回滚，2--演练暂停
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PolicyDealType: Integer
         # @param TaskPlanStartTime: 计划开始时间
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -1598,7 +1558,6 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskIssue: String
         # @param TaskRegionName: region信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskRegionName: String
         # @param TaskArchId: 架构ID
         # @type TaskArchId: String
@@ -1781,7 +1740,6 @@ module TencentCloud
         # @param TaskGroupTitle: 分组标题
         # @type TaskGroupTitle: String
         # @param TaskGroupDescription: 分组描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskGroupDescription: String
         # @param TaskGroupOrder: 任务分组顺序
         # @type TaskGroupOrder: Integer
@@ -1800,10 +1758,8 @@ module TencentCloud
         # @param TaskGroupDiscardInstanceList: 不参演的实例列表
         # @type TaskGroupDiscardInstanceList: Array
         # @param TaskGroupSelectedInstanceList: 参演实例列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskGroupSelectedInstanceList: Array
         # @param TaskGroupInstancesExecuteRule: 机器选取规则
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskGroupInstancesExecuteRule: Array
 
         attr_accessor :TaskGroupId, :TaskGroupTitle, :TaskGroupDescription, :TaskGroupOrder, :ObjectTypeId, :TaskGroupCreateTime, :TaskGroupUpdateTime, :TaskGroupActions, :TaskGroupInstanceList, :TaskGroupMode, :TaskGroupDiscardInstanceList, :TaskGroupSelectedInstanceList, :TaskGroupInstancesExecuteRule
@@ -1866,10 +1822,8 @@ module TencentCloud
         # @param TaskGroupActionOrder: 分组动作顺序
         # @type TaskGroupActionOrder: Integer
         # @param TaskGroupActionGeneralConfiguration: 分组动作通用配置
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskGroupActionGeneralConfiguration: String
         # @param TaskGroupActionCustomConfiguration: 分组动作自定义配置
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskGroupActionCustomConfiguration: String
         # @param TaskGroupActionStatus: 分组动作状态
         # @type TaskGroupActionStatus: Integer
@@ -1882,31 +1836,22 @@ module TencentCloud
         # @param TaskGroupActionStatusType: 状态类型: 0 -- 无状态，1 -- 成功，2-- 失败，3--终止，4--跳过
         # @type TaskGroupActionStatusType: Integer
         # @param TaskGroupActionRandomId: RandomId
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskGroupActionRandomId: Integer
         # @param TaskGroupActionRecoverId: RecoverId
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskGroupActionRecoverId: Integer
         # @param TaskGroupActionExecuteId: ExecuteId
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskGroupActionExecuteId: Integer
         # @param ActionApiType: 调用api类型，0:tat, 1:云api
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ActionApiType: Integer
         # @param ActionAttribute: 1:故障，2:恢复
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ActionAttribute: Integer
         # @param ActionType: 动作类型：平台、自定义
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ActionType: String
         # @param IsExecuteRedo: 是否可重试
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsExecuteRedo: Boolean
         # @param ActionRisk: 动作风险级别
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ActionRisk: String
         # @param TaskGroupActionExecuteTime: 动作运行时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskGroupActionExecuteTime: Integer
         # @param TaskGroupActionStartTime: 动作开始执行时间
         # @type TaskGroupActionStartTime: String
@@ -2080,7 +2025,6 @@ module TencentCloud
         # @param TaskGroupInstanceId: 实例ID
         # @type TaskGroupInstanceId: Integer
         # @param TaskGroupInstanceObjectId: 实例ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskGroupInstanceObjectId: String
         # @param TaskGroupInstanceStatus: 实例动作执行状态
         # @type TaskGroupInstanceStatus: Integer
@@ -2091,19 +2035,15 @@ module TencentCloud
         # @param TaskGroupInstanceStatusType: 状态类型: 0 -- 无状态，1 -- 成功，2-- 失败，3--终止，4--跳过
         # @type TaskGroupInstanceStatusType: Integer
         # @param TaskGroupInstanceStartTime: 执行开始时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskGroupInstanceStartTime: String
         # @param TaskGroupInstanceEndTime: 执行结束时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskGroupInstanceEndTime: String
         # @param TaskGroupInstanceExecuteLog: 实例动作执行日志
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskGroupInstanceExecuteLog: String
         # @param TaskGroupInstanceIsRedo: 实例是否可重试
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskGroupInstanceIsRedo: Boolean
         # @param TaskGroupInstanceExecuteTime: 动作实例执行时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskGroupInstanceExecuteTime: Integer
 
         attr_accessor :TaskGroupInstanceId, :TaskGroupInstanceObjectId, :TaskGroupInstanceStatus, :TaskGroupInstanceCreateTime, :TaskGroupInstanceUpdateTime, :TaskGroupInstanceStatusType, :TaskGroupInstanceStartTime, :TaskGroupInstanceEndTime, :TaskGroupInstanceExecuteLog, :TaskGroupInstanceIsRedo, :TaskGroupInstanceExecuteTime
@@ -2143,13 +2083,10 @@ module TencentCloud
       # 机器选取规则
       class TaskGroupInstancesExecuteRules < TencentCloud::Common::AbstractModel
         # @param TaskGroupInstancesExecuteMode: 实例选取模式
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskGroupInstancesExecuteMode: Integer
         # @param TaskGroupInstancesExecutePercent: 按比例选取模式下选取比例
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskGroupInstancesExecutePercent: Integer
         # @param TaskGroupInstancesExecuteNum: 按数量选取模式下选取数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskGroupInstancesExecuteNum: Integer
 
         attr_accessor :TaskGroupInstancesExecuteMode, :TaskGroupInstancesExecutePercent, :TaskGroupInstancesExecuteNum
@@ -2176,7 +2113,6 @@ module TencentCloud
         # @param TaskDescription: 任务描述
         # @type TaskDescription: String
         # @param TaskTag: 任务标签
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskTag: String
         # @param TaskStatus: 任务状态(1001 -- 未开始   1002 -- 进行中  1003 -- 暂停中   1004 -- 任务结束)
         # @type TaskStatus: Integer
@@ -2185,25 +2121,18 @@ module TencentCloud
         # @param TaskUpdateTime: 任务更新时间
         # @type TaskUpdateTime: String
         # @param TaskPreCheckStatus: 0--未开始，1--进行中，2--已完成
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskPreCheckStatus: Integer
         # @param TaskPreCheckSuccess: 环境检查是否通过
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskPreCheckSuccess: Boolean
         # @param TaskExpect: 演练是否符合预期 1-符合预期 2-不符合预期
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskExpect: Integer
         # @param ApplicationId: 关联应用ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApplicationId: String
         # @param ApplicationName: 关联应用名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApplicationName: String
         # @param VerifyId: 验证项ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VerifyId: Integer
         # @param TaskStatusType: 状态类型: 0 -- 无状态，1 -- 成功，2-- 失败，3--终止
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskStatusType: Integer
         # @param ArchId: 架构ID
         # @type ArchId: String
@@ -2256,7 +2185,6 @@ module TencentCloud
         # @param TaskMonitorId: 演练监控指标ID
         # @type TaskMonitorId: Integer
         # @param MetricId: 监控指标ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MetricId: Integer
         # @param TaskMonitorObjectTypeId: 监控指标对象类型ID
         # @type TaskMonitorObjectTypeId: Integer
@@ -2265,10 +2193,8 @@ module TencentCloud
         # @param InstancesIds: 实例ID列表
         # @type InstancesIds: Array
         # @param MetricChineseName: 中文指标
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MetricChineseName: String
         # @param Unit: 单位
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Unit: String
 
         attr_accessor :TaskMonitorId, :MetricId, :TaskMonitorObjectTypeId, :MetricName, :InstancesIds, :MetricChineseName, :Unit
@@ -2297,10 +2223,8 @@ module TencentCloud
       # 演练人员组织
       class TaskOrg < TencentCloud::Common::AbstractModel
         # @param TaskRole: 演练角色
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskRole: String
         # @param TaskOperator: 负责人
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskOperator: String
 
         attr_accessor :TaskRole, :TaskOperator
@@ -2374,7 +2298,6 @@ module TencentCloud
         # @param TemplateDescription: 经验库描述
         # @type TemplateDescription: String
         # @param TemplateTag: 自定义标签
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TemplateTag: String
         # @param TemplateIsUsed: 使用状态。1 ---- 使用中，2 --- 停用
         # @type TemplateIsUsed: Integer
@@ -2398,19 +2321,14 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TemplatePolicy: :class:`Tencentcloud::Cfg.v20210820.models.TemplatePolicy`
         # @param Tags: 标签列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
         # @param TemplateSource: 经验来源 0-自建 1-专家推荐
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TemplateSource: Integer
         # @param ApmServiceList: apm应用信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApmServiceList: Array
         # @param AlarmPolicy: 告警指标
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AlarmPolicy: Array
         # @param PolicyDealType: 护栏处理方式，1--顺序回滚，2--演练暂停
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PolicyDealType: Integer
 
         attr_accessor :TemplateId, :TemplateTitle, :TemplateDescription, :TemplateTag, :TemplateIsUsed, :TemplateCreateTime, :TemplateUpdateTime, :TemplateMode, :TemplatePauseDuration, :TemplateOwnerUin, :TemplateRegionId, :TemplateGroups, :TemplateMonitors, :TemplatePolicy, :Tags, :TemplateSource, :ApmServiceList, :AlarmPolicy, :PolicyDealType
@@ -2500,7 +2418,6 @@ module TencentCloud
         # @param Title: 分组标题
         # @type Title: String
         # @param Description: 分组描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
         # @param Order: 分组顺序
         # @type Order: Integer
@@ -2556,10 +2473,8 @@ module TencentCloud
         # @param Order: 分组动作顺序
         # @type Order: Integer
         # @param GeneralConfiguration: 分组动作通用配置
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GeneralConfiguration: String
         # @param CustomConfiguration: 分组动作自定义配置
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CustomConfiguration: String
         # @param CreateTime: 动作分组创建时间
         # @type CreateTime: String
@@ -2568,25 +2483,18 @@ module TencentCloud
         # @param ActionTitle: 动作名称
         # @type ActionTitle: String
         # @param RandomId: 自身随机id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RandomId: Integer
         # @param RecoverId: 恢复动作id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RecoverId: Integer
         # @param ExecuteId: 执行动作id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExecuteId: Integer
         # @param ActionApiType: 调用api类型，0:tat, 1:云api
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ActionApiType: Integer
         # @param ActionAttribute: 1:故障，2:恢复
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ActionAttribute: Integer
         # @param ActionType: 动作类型：平台和自定义
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ActionType: String
         # @param ActionRisk: 动作风险等级，1:低风险 2:中风险 3:高风险
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ActionRisk: String
         # @param FailurePerformance: 故障表现
         # @type FailurePerformance: String
@@ -2641,7 +2549,6 @@ module TencentCloud
         # @param TemplateDescription: 经验库描述
         # @type TemplateDescription: String
         # @param TemplateTag: 经验库标签
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TemplateTag: String
         # @param TemplateIsUsed: 经验库状态。1 -- 使用中，2 -- 停用
         # @type TemplateIsUsed: Integer
@@ -2652,7 +2559,6 @@ module TencentCloud
         # @param TemplateUsedNum: 经验库关联的任务数量
         # @type TemplateUsedNum: Integer
         # @param TemplateSource: 经验库来源 0-自建经验 1-专家推荐
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TemplateSource: Integer
 
         attr_accessor :TemplateId, :TemplateTitle, :TemplateDescription, :TemplateTag, :TemplateIsUsed, :TemplateCreateTime, :TemplateUpdateTime, :TemplateUsedNum, :TemplateSource
@@ -2687,14 +2593,12 @@ module TencentCloud
         # @param MonitorId: pk
         # @type MonitorId: Integer
         # @param MetricId: 监控指标ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MetricId: Integer
         # @param ObjectTypeId: 监控指标对象类型ID
         # @type ObjectTypeId: Integer
         # @param MetricName: 指标名称
         # @type MetricName: String
         # @param MetricChineseName: 中文指标
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MetricChineseName: String
 
         attr_accessor :MonitorId, :MetricId, :ObjectTypeId, :MetricName, :MetricChineseName

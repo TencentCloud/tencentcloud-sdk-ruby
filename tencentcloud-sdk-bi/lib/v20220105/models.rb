@@ -3064,6 +3064,9 @@ module TencentCloud
         # @param GlobalUserName: 全局角色
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GlobalUserName: String
+        # @param GlobalUserCode: 全局角色编码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GlobalUserCode: String
         # @param Mobile: 手机号
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Mobile: String
@@ -3082,10 +3085,16 @@ module TencentCloud
         # @param InValidateAppRange: 1
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InValidateAppRange: Boolean
+        # @param EmailActivationStatus: -1 免激活  0 未激活  1 已激活 空代表待绑定
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EmailActivationStatus: Integer
+        # @param Id: 1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Id: Integer
 
-        attr_accessor :UserId, :UserName, :CorpId, :Email, :LastLogin, :Status, :FirstModify, :PhoneNumber, :AreaCode, :CreatedUser, :CreatedAt, :UpdatedUser, :UpdatedAt, :GlobalUserName, :Mobile, :AppId, :AppUserId, :AppUserAliasName, :AppUserName, :InValidateAppRange
+        attr_accessor :UserId, :UserName, :CorpId, :Email, :LastLogin, :Status, :FirstModify, :PhoneNumber, :AreaCode, :CreatedUser, :CreatedAt, :UpdatedUser, :UpdatedAt, :GlobalUserName, :GlobalUserCode, :Mobile, :AppId, :AppUserId, :AppUserAliasName, :AppUserName, :InValidateAppRange, :EmailActivationStatus, :Id
 
-        def initialize(userid=nil, username=nil, corpid=nil, email=nil, lastlogin=nil, status=nil, firstmodify=nil, phonenumber=nil, areacode=nil, createduser=nil, createdat=nil, updateduser=nil, updatedat=nil, globalusername=nil, mobile=nil, appid=nil, appuserid=nil, appuseraliasname=nil, appusername=nil, invalidateapprange=nil)
+        def initialize(userid=nil, username=nil, corpid=nil, email=nil, lastlogin=nil, status=nil, firstmodify=nil, phonenumber=nil, areacode=nil, createduser=nil, createdat=nil, updateduser=nil, updatedat=nil, globalusername=nil, globalusercode=nil, mobile=nil, appid=nil, appuserid=nil, appuseraliasname=nil, appusername=nil, invalidateapprange=nil, emailactivationstatus=nil, id=nil)
           @UserId = userid
           @UserName = username
           @CorpId = corpid
@@ -3100,12 +3109,15 @@ module TencentCloud
           @UpdatedUser = updateduser
           @UpdatedAt = updatedat
           @GlobalUserName = globalusername
+          @GlobalUserCode = globalusercode
           @Mobile = mobile
           @AppId = appid
           @AppUserId = appuserid
           @AppUserAliasName = appuseraliasname
           @AppUserName = appusername
           @InValidateAppRange = invalidateapprange
+          @EmailActivationStatus = emailactivationstatus
+          @Id = id
         end
 
         def deserialize(params)
@@ -3123,12 +3135,15 @@ module TencentCloud
           @UpdatedUser = params['UpdatedUser']
           @UpdatedAt = params['UpdatedAt']
           @GlobalUserName = params['GlobalUserName']
+          @GlobalUserCode = params['GlobalUserCode']
           @Mobile = params['Mobile']
           @AppId = params['AppId']
           @AppUserId = params['AppUserId']
           @AppUserAliasName = params['AppUserAliasName']
           @AppUserName = params['AppUserName']
           @InValidateAppRange = params['InValidateAppRange']
+          @EmailActivationStatus = params['EmailActivationStatus']
+          @Id = params['Id']
         end
       end
 
@@ -3317,10 +3332,13 @@ module TencentCloud
         # @param AppOpenUserId: 用户openid
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AppOpenUserId: String
+        # @param EmailActivationStatus: 邮箱激活状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EmailActivationStatus: Integer
 
-        attr_accessor :Id, :RoleList, :RoleIdList, :UserId, :UserName, :CorpId, :Email, :CreatedUser, :CreatedAt, :UpdatedUser, :UpdatedAt, :LastLogin, :Status, :PhoneNumber, :AreaCode, :RootAccount, :CorpAdmin, :AppUserId, :AppUserAliasName, :AppUserName, :InValidateAppRange, :AppOpenUserId
+        attr_accessor :Id, :RoleList, :RoleIdList, :UserId, :UserName, :CorpId, :Email, :CreatedUser, :CreatedAt, :UpdatedUser, :UpdatedAt, :LastLogin, :Status, :PhoneNumber, :AreaCode, :RootAccount, :CorpAdmin, :AppUserId, :AppUserAliasName, :AppUserName, :InValidateAppRange, :AppOpenUserId, :EmailActivationStatus
 
-        def initialize(id=nil, rolelist=nil, roleidlist=nil, userid=nil, username=nil, corpid=nil, email=nil, createduser=nil, createdat=nil, updateduser=nil, updatedat=nil, lastlogin=nil, status=nil, phonenumber=nil, areacode=nil, rootaccount=nil, corpadmin=nil, appuserid=nil, appuseraliasname=nil, appusername=nil, invalidateapprange=nil, appopenuserid=nil)
+        def initialize(id=nil, rolelist=nil, roleidlist=nil, userid=nil, username=nil, corpid=nil, email=nil, createduser=nil, createdat=nil, updateduser=nil, updatedat=nil, lastlogin=nil, status=nil, phonenumber=nil, areacode=nil, rootaccount=nil, corpadmin=nil, appuserid=nil, appuseraliasname=nil, appusername=nil, invalidateapprange=nil, appopenuserid=nil, emailactivationstatus=nil)
           @Id = id
           @RoleList = rolelist
           @RoleIdList = roleidlist
@@ -3343,6 +3361,7 @@ module TencentCloud
           @AppUserName = appusername
           @InValidateAppRange = invalidateapprange
           @AppOpenUserId = appopenuserid
+          @EmailActivationStatus = emailactivationstatus
         end
 
         def deserialize(params)
@@ -3375,6 +3394,7 @@ module TencentCloud
           @AppUserName = params['AppUserName']
           @InValidateAppRange = params['InValidateAppRange']
           @AppOpenUserId = params['AppOpenUserId']
+          @EmailActivationStatus = params['EmailActivationStatus']
         end
       end
 

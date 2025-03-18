@@ -120,7 +120,6 @@ module TencentCloud
       # AddOrganizationMemberEmail返回参数结构体
       class AddOrganizationMemberEmailResponse < TencentCloud::Common::AbstractModel
         # @param BindId: 绑定Id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BindId: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3089,21 +3088,16 @@ module TencentCloud
         # @param PolicyId: 策略Id。
         # @type PolicyId: Integer
         # @param PolicyName: 策略名称。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PolicyName: String
         # @param Type: 策略类型。1-自定义 2-预设策略
         # @type Type: Integer
         # @param Description: 策略描述。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
         # @param PolicyDocument: 策略文档。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PolicyDocument: String
         # @param UpdateTime: 策略更新时间。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: String
         # @param AddTime: 策略创建时间。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AddTime: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4062,10 +4056,8 @@ module TencentCloud
         # @param PolicyName: CAM预设策略名称。PolicyType 为预设策略时有效且必选
         # @type PolicyName: String
         # @param PolicyType: 策略类型。取值 1-自定义策略  2-预设策略；默认值2
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PolicyType: Integer
         # @param PolicyDocument: 自定义策略内容，遵循CAM策略语法。PolicyType 为自定义策略时有效且必选
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PolicyDocument: String
 
         attr_accessor :PolicyId, :PolicyName, :PolicyType, :PolicyDocument
@@ -4793,23 +4785,18 @@ module TencentCloud
         # @param StrategyName: 策略名称
         # @type StrategyName: String
         # @param Remark: 备注信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Remark: String
         # @param Uin: 关联的账号或节点
         # @type Uin: Integer
         # @param Type: 关联类型 1-节点 2-用户
         # @type Type: Integer
         # @param AddTime: 策略创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AddTime: String
         # @param UpdateTime: 策略更新时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: String
         # @param Name: 部门名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param AttachTime: 策略绑定时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AttachTime: String
 
         attr_accessor :StrategyId, :StrategyName, :Remark, :Uin, :Type, :AddTime, :UpdateTime, :Name, :AttachTime
@@ -4968,20 +4955,16 @@ module TencentCloud
       # 企业组织策略列表
       class ListPolicyNode < TencentCloud::Common::AbstractModel
         # @param AddTime: 策略创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AddTime: String
         # @param AttachedTimes: 策略绑定次数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AttachedTimes: Integer
         # @param Description: 策略描述信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
         # @param PolicyName: 策略名称
         # @type PolicyName: String
         # @param PolicyId: 策略Id
         # @type PolicyId: Integer
         # @param UpdateTime: 策略更新时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: String
         # @param Type: 策略类型 1-自定义 2-预设
         # @type Type: Integer
@@ -5324,7 +5307,6 @@ module TencentCloud
         # @param RelatedType: 关联类型 1-节点关联 2-用户关联
         # @type RelatedType: Integer
         # @param Name: 账号或者节点名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param AddTime: 绑定时间
         # @type AddTime: String
@@ -5703,19 +5685,14 @@ module TencentCloud
         # @param Area: 共享单元地域。
         # @type Area: String
         # @param Description: 描述。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
         # @param CreateTime: 创建时间。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
         # @param ShareResourceNum: 共享单元资源数。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ShareResourceNum: Integer
         # @param ShareMemberNum: 共享单元成员数。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ShareMemberNum: Integer
         # @param ShareScope: 共享范围。取值：1-仅允许集团组织内共享 2-允许共享给任意账号
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ShareScope: Integer
 
         attr_accessor :UnitId, :Name, :Uin, :OwnerUin, :Area, :Description, :CreateTime, :ShareResourceNum, :ShareMemberNum, :ShareScope
@@ -5826,10 +5803,8 @@ module TencentCloud
       # 部门主要信息
       class NodeMainInfo < TencentCloud::Common::AbstractModel
         # @param NodeId: 部门ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NodeId: Integer
         # @param NodeName: 部门名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NodeName: String
 
         attr_accessor :NodeId, :NodeName
@@ -5932,16 +5907,12 @@ module TencentCloud
       # 按月获取组织财务信息
       class OrgFinancialByMonth < TencentCloud::Common::AbstractModel
         # @param Id: 记录ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Id: Integer
         # @param Month: 月份，格式：yyyy-mm，示例：2021-01。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Month: String
         # @param TotalCost: 消耗金额，单元：元。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCost: Float
         # @param GrowthRate: 比上月增长率%。正数增长，负数下降，空值无法统计。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GrowthRate: String
 
         attr_accessor :Id, :Month, :TotalCost, :GrowthRate
@@ -6355,16 +6326,12 @@ module TencentCloud
       # 组织产品财务信息
       class OrgProductFinancial < TencentCloud::Common::AbstractModel
         # @param ProductName: 产品Code。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProductName: String
         # @param ProductCode: 产品名。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProductCode: String
         # @param TotalCost: 产品消耗，单位：元。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCost: Float
         # @param Ratio: 占比%。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Ratio: String
 
         attr_accessor :ProductName, :ProductCode, :TotalCost, :Ratio
@@ -7372,7 +7339,6 @@ module TencentCloud
         # @param ResourceId: 共享资源ID。
         # @type ResourceId: String
         # @param ProductResourceId: 产品资源ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProductResourceId: String
 
         attr_accessor :ResourceId, :ProductResourceId
@@ -7396,7 +7362,6 @@ module TencentCloud
         # @param ShareMemberUin: 共享成员Uin。
         # @type ShareMemberUin: Integer
         # @param CreateTime: 创建时间。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
 
         attr_accessor :ShareMemberUin, :CreateTime
@@ -7419,18 +7384,14 @@ module TencentCloud
         # @param Type: 共享资源类型。
         # @type Type: String
         # @param CreateTime: 创建时间。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
         # @param ProductResourceId: 产品资源ID。
         # @type ProductResourceId: String
         # @param SharedMemberNum: 共享单元成员数。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SharedMemberNum: Integer
         # @param SharedMemberUseNum: 使用中共享单元成员数。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SharedMemberUseNum: Integer
         # @param ShareManagerUin: 共享管理员OwnerUin。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ShareManagerUin: Integer
 
         attr_accessor :ResourceId, :Type, :CreateTime, :ProductResourceId, :SharedMemberNum, :SharedMemberUseNum, :ShareManagerUin
@@ -7459,10 +7420,8 @@ module TencentCloud
       # 标签键值对
       class Tag < TencentCloud::Common::AbstractModel
         # @param TagKey: 标签键
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TagKey: String
         # @param TagValue: 标签值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TagValue: String
 
         attr_accessor :TagKey, :TagValue

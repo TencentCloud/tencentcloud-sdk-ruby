@@ -34,7 +34,6 @@ module TencentCloud
         # @param VoucherPayAmount: 优惠券支出：使用各类优惠券（如代金券、现金券等）支付的金额
         # @type VoucherPayAmount: String
         # @param TransferPayAmount: 分成金账户支出：通过分成金账户支付的金额
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TransferPayAmount: String
         # @param BillMonth: 账单月份，格式2019-08
         # @type BillMonth: String
@@ -160,64 +159,44 @@ module TencentCloud
       # 分账账单明细
       class AllocationDetail < TencentCloud::Common::AbstractModel
         # @param TreeNodeUniqKey: 分账单元唯一标识
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TreeNodeUniqKey: String
         # @param TreeNodeUniqKeyName: 分账单元名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TreeNodeUniqKeyName: String
         # @param BillDate: 日期：结算日期
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BillDate: String
         # @param PayerUin: 支付者 UIN：支付者的账号 ID，账号 ID 是用户在腾讯云的唯一账号标识
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PayerUin: String
         # @param OwnerUin: 使用者 UIN：实际使用资源的账号 ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OwnerUin: String
         # @param OperateUin: 操作者 UIN：操作者账号 ID（预付费资源下单或后付费操作开通资源账号的ID或者角色 ID）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OperateUin: String
         # @param BusinessCode: 产品编码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BusinessCode: String
         # @param BusinessCodeName: 产品名称：用户所采购的各类云产品
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BusinessCodeName: String
         # @param PayMode: 计费模式编码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PayMode: String
         # @param PayModeName: 计费模式：资源的计费模式，区分为包年包月和按量计费
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PayModeName: String
         # @param ProjectId: 项目ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProjectId: Integer
         # @param ProjectName: 项目名称：资源归属的项目，用户在控制台给资源自主分配项目，未分配则是默认项目
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProjectName: String
         # @param RegionId: 地域ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RegionId: Integer
         # @param RegionName: 地域名称：资源所属地域
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RegionName: String
         # @param ZoneId: 可用区ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ZoneId: Integer
         # @param ZoneName: 可用区：资源所属可用区
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ZoneName: String
         # @param ResourceId: 资源ID：不同产品因资源形态不同，资源内容不完全相同，如云服务器 CVM 为对应的实例 ID； 若该产品被分拆，则展示产品分拆后的分拆项 ID，如 COS 桶 ID，CDN 域名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceId: String
         # @param ResourceName: 实例名称：用户在控制台为资源设置的名称，如未设置默认为空；若该产品被分拆，则展示分拆产品分拆后的分拆项资源别名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceName: String
         # @param InstanceType: 实例类型编码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceType: String
         # @param InstanceTypeName: 实例类型：购买的产品服务对应的实例类型，包括资源包、RI、SP、竞价实例。常规实例默认展示“-”
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceTypeName: String
         # @param SplitItemId: 分拆项 ID：涉及分拆产品的分拆后的分拆项 ID，如 COS 桶 ID，CDN 域名
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -226,159 +205,109 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SplitItemName: String
         # @param ProductCode: 子产品编码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProductCode: String
         # @param ProductCodeName: 子产品名称：用户采购的具体产品细分类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProductCodeName: String
         # @param ActionType: 交易类型编码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ActionType: String
         # @param ActionTypeName: 交易类型：明细交易类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ActionTypeName: String
         # @param OrderId: 订单 ID：包年包月计费模式下订购的订单号
-
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OrderId: String
         # @param BillId: 交易 ID：结算扣费单号
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BillId: String
         # @param PayTime: 扣费时间：结算扣费时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PayTime: String
         # @param FeeBeginTime: 开始使用时间：产品服务开始使用时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FeeBeginTime: String
         # @param FeeEndTime: 结束使用时间：产品服务结束使用时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FeeEndTime: String
         # @param ComponentCode: 组件类型编码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ComponentCode: String
         # @param ComponentCodeName: 组件类型：用户购买的产品或服务对应的组件大类
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ComponentCodeName: String
         # @param SinglePrice: 组件刊例价：组件的官网原始单价（如客户享受一口价/合同价则默认不展示）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SinglePrice: String
         # @param ContractPrice: 组件单价：组件的折后单价，组件单价 = 刊例价 * 折扣
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ContractPrice: String
         # @param SinglePriceUnit: 组件价格单位：组件价格的单位，单位构成：元/用量单位/时长单位
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SinglePriceUnit: String
         # @param UsedAmount: 组件用量：该组件实际结算用量，组件用量=组件原始用量-抵扣用量（含资源包）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UsedAmount: String
         # @param UsedAmountUnit: 组件用量单位：组件用量对应的单位
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UsedAmountUnit: String
         # @param TimeSpan: 使用时长：资源使用的时长，组件用量=组件原始使用时长-抵扣时长（含资源包）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TimeSpan: String
         # @param TimeUnit: 时长单位：资源使用时长的单位
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TimeUnit: String
         # @param ReserveDetail: 备注属性（实例配置）：其他备注信息，如预留实例的预留实例类型和交易类型、CCN 产品的两端地域信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReserveDetail: String
         # @param SplitRatio: 分拆项用量/时长占比：分拆项用量（时长）占比，分拆项用量（时长）/ 拆分前合计用量（时长）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SplitRatio: String
         # @param TotalCost: 组件原价：原价 = 组件刊例价 * 组件用量 * 使用时长（如客户享受一口价/合同价则默认不展示，退费类场景也默认不展示），指定价模式
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCost: String
         # @param RITimeSpan: 预留实例抵扣时长：本产品或服务使用预留实例抵扣的使用时长
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RITimeSpan: String
         # @param RICost: 预留实例抵扣原价：本产品或服务使用预留实例抵扣的组件原价金额
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RICost: String
         # @param SPCost: 节省计划抵扣原价：节省计划抵扣原价 = 节省计划包抵扣面值 / 节省计划抵扣率
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SPCost: String
         # @param Discount: 折扣率：本资源享受的折扣率（如客户享受一口价/合同价则默认不展示，退费场景也默认不展示）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Discount: String
         # @param BlendedDiscount: 混合折扣率：综合各类折扣抵扣信息后的最终折扣率，混合折扣率=优惠后总价/原价
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BlendedDiscount: String
         # @param RealTotalCost: 优惠后总价：优惠后总价 =（原价 - 预留实例抵扣原价 - 节省计划抵扣原价）* 折扣率
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RealTotalCost: String
         # @param CashPayAmount: 现金账户支出(元)：通过现金账户支付的金额
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CashPayAmount: String
         # @param VoucherPayAmount: 代金券支出(元)：使用各类优惠券（如代金券、现金券等）支付的金额
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VoucherPayAmount: String
         # @param IncentivePayAmount: 赠送账户支出(元)：使用赠送金支付的金额
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IncentivePayAmount: String
         # @param TransferPayAmount: 分成账户支出(元)：通过分成金账户支付的金额
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TransferPayAmount: String
         # @param Tag: 分账标签：资源绑定的标签
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tag: Array
         # @param RegionType: 国内国际编码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RegionType: String
         # @param RegionTypeName: 国内国际：资源所属区域类型（国内、国际）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RegionTypeName: String
         # @param ItemCode: 组件名称编码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ItemCode: String
         # @param ItemCodeName: 组件名称：用户购买的产品或服务，所包含的具体组件
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ItemCodeName: String
         # @param AssociatedOrder: 关联单据ID：和本笔交易关联单据ID，如退费订单对应的原新购订单等
         # @type AssociatedOrder: String
         # @param PriceInfo: 价格属性：该组件除单价、时长外的其他影响折扣定价的属性信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PriceInfo: Array
         # @param Formula: 计算规则说明：特殊交易类型计费结算的详细计算说明，如退费及变配
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Formula: String
         # @param FormulaUrl: 计费规则：各产品详细的计费规则官网说明链接
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FormulaUrl: String
         # @param RealTotalMeasure: 原始用量/时长：组件被资源包抵扣前的原始用量
         # （目前仅实时音视频、弹性微服务、云呼叫中心及专属可用区产品支持该信息外显，其他产品尚在接入中）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RealTotalMeasure: String
         # @param DeductedMeasure: 抵扣用量/时长（含资源包）：组件被资源包抵扣的用量
         # （目前仅实时音视频、弹性微服务、云呼叫中心及专属可用区产品支持该信息外显，其他产品尚在接入中）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeductedMeasure: String
         # @param ComponentConfig: 配置描述：资源配置规格信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ComponentConfig: String
         # @param AllocationType: 费用归集类型：费用来源类型，分摊、归集、未分配
         # 0 - 分摊
         # 1 - 归集
         # 2 - 未分配
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AllocationType: Integer
         # @param DiscountObject: 当前消费项的优惠对象，例如：官网折扣、用户折扣、活动折扣。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DiscountObject: String
         # @param DiscountType: 当前消费项的优惠类型，例如：折扣、合同价。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DiscountType: String
         # @param DiscountContent: 对优惠类型的补充描述，例如：商务折扣8折，则优惠类型为“折扣”，优惠内容为“0.8”。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DiscountContent: String
         # @param SPDeduction: SPDeduction
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SPDeduction: String
         # @param SPDeductionRate: SPDeduction
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SPDeductionRate: String
         # @param BillMonth: 账单月
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BillMonth: String
 
         attr_accessor :TreeNodeUniqKey, :TreeNodeUniqKeyName, :BillDate, :PayerUin, :OwnerUin, :OperateUin, :BusinessCode, :BusinessCodeName, :PayMode, :PayModeName, :ProjectId, :ProjectName, :RegionId, :RegionName, :ZoneId, :ZoneName, :ResourceId, :ResourceName, :InstanceType, :InstanceTypeName, :SplitItemId, :SplitItemName, :ProductCode, :ProductCodeName, :ActionType, :ActionTypeName, :OrderId, :BillId, :PayTime, :FeeBeginTime, :FeeEndTime, :ComponentCode, :ComponentCodeName, :SinglePrice, :ContractPrice, :SinglePriceUnit, :UsedAmount, :UsedAmountUnit, :TimeSpan, :TimeUnit, :ReserveDetail, :SplitRatio, :TotalCost, :RITimeSpan, :RICost, :SPCost, :Discount, :BlendedDiscount, :RealTotalCost, :CashPayAmount, :VoucherPayAmount, :IncentivePayAmount, :TransferPayAmount, :Tag, :RegionType, :RegionTypeName, :ItemCode, :ItemCodeName, :AssociatedOrder, :PriceInfo, :Formula, :FormulaUrl, :RealTotalMeasure, :DeductedMeasure, :ComponentConfig, :AllocationType, :DiscountObject, :DiscountType, :DiscountContent, :SPDeduction, :SPDeductionRate, :BillMonth
@@ -822,10 +751,8 @@ module TencentCloud
       # 当前资源命中公摊规则信息
       class AllocationRule < TencentCloud::Common::AbstractModel
         # @param RuleId: 公摊规则ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleId: Integer
         # @param RuleName: 公摊规则名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleName: String
 
         attr_accessor :RuleId, :RuleName
@@ -1510,10 +1437,8 @@ module TencentCloud
       # 当前归属单元信息
       class AllocationTreeNode < TencentCloud::Common::AbstractModel
         # @param TreeNodeUniqKey: 分账单元唯一标识
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TreeNodeUniqKey: String
         # @param TreeNodeUniqKeyName: 分账单元名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TreeNodeUniqKeyName: String
 
         attr_accessor :TreeNodeUniqKey, :TreeNodeUniqKeyName
@@ -1975,10 +1900,8 @@ module TencentCloud
       # 交易类型筛选列表
       class BillActionType < TencentCloud::Common::AbstractModel
         # @param ActionType: 交易类型编码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ActionType: String
         # @param ActionTypeName: 交易类型：明细交易类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ActionTypeName: String
 
         attr_accessor :ActionType, :ActionTypeName
@@ -2070,7 +1993,6 @@ module TencentCloud
       # 日期筛选列表
       class BillDays < TencentCloud::Common::AbstractModel
         # @param BillDay: 日期：结算日期
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BillDay: String
 
         attr_accessor :BillDay
@@ -2511,7 +2433,6 @@ module TencentCloud
         # @param IncentivePayAmount: 赠送账户支出：使用赠送金支付的金额
         # @type IncentivePayAmount: String
         # @param TransferPayAmount: 分成金账户支出：通过分成金账户支付的金额
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TransferPayAmount: String
         # @param ExtendField3: 扩展字段3：产品对应的扩展属性信息，仅在资源账单体现
         # @type ExtendField3: String
@@ -2520,7 +2441,6 @@ module TencentCloud
         # @param ExtendField5: 扩展字段5：产品对应的扩展属性信息，仅在资源账单体现
         # @type ExtendField5: String
         # @param Tags: 标签信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
         # @param OwnerUin: 使用者UIN：实际使用资源的账号 ID
         # @type OwnerUin: String
@@ -2541,7 +2461,6 @@ module TencentCloud
         # @param OriginalCostWithSP: 节省计划抵扣组件原价：节省计划抵扣原价=节省计划包抵扣金额/节省计划抵扣率
         # @type OriginalCostWithSP: String
         # @param BillMonth: 账单归属月
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BillMonth: String
 
         attr_accessor :BusinessCodeName, :ProductCodeName, :PayModeName, :ProjectName, :RegionName, :ZoneName, :ResourceId, :ResourceName, :ActionTypeName, :OrderId, :PayTime, :FeeBeginTime, :FeeEndTime, :ConfigDesc, :ExtendField1, :ExtendField2, :TotalCost, :Discount, :ReduceType, :RealTotalCost, :VoucherPayAmount, :CashPayAmount, :IncentivePayAmount, :TransferPayAmount, :ExtendField3, :ExtendField4, :ExtendField5, :Tags, :OwnerUin, :OperateUin, :BusinessCode, :ProductCode, :RegionId, :InstanceType, :OriginalCostWithRI, :SPDeduction, :OriginalCostWithSP, :BillMonth
@@ -2734,10 +2653,8 @@ module TencentCloud
       # 子产品筛选列表
       class BillProduct < TencentCloud::Common::AbstractModel
         # @param ProductCode: 子产品编码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProductCode: String
         # @param ProductCodeName: 子产品名称：用户采购的具体产品细分类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProductCodeName: String
 
         attr_accessor :ProductCode, :ProductCodeName
@@ -2756,13 +2673,10 @@ module TencentCloud
       # 分账条件子产品筛选
       class BillProductLink < TencentCloud::Common::AbstractModel
         # @param ProductCode: 子产品编码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProductCode: String
         # @param ProductCodeName: 子产品名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProductCodeName: String
         # @param Children: 组件名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Children: Array
 
         attr_accessor :ProductCode, :ProductCodeName, :Children
@@ -2876,7 +2790,6 @@ module TencentCloud
         # @param IncentivePayAmount: 赠送账户支出：使用赠送金支付的金额
         # @type IncentivePayAmount: String
         # @param TransferPayAmount: 分成金账户支出：通过分成金账户支付的金额
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TransferPayAmount: String
         # @param ExtendField3: 扩展字段3：产品对应的扩展属性信息，仅在资源账单体现
         # @type ExtendField3: String
@@ -2885,7 +2798,6 @@ module TencentCloud
         # @param ExtendField5: 扩展字段5：产品对应的扩展属性信息，仅在资源账单体现
         # @type ExtendField5: String
         # @param Tags: 标签信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
         # @param PayerUin: 支付者UIN：支付者的账号 ID，账号 ID 是用户在腾讯云的唯一账号标识
         # @type PayerUin: String
@@ -2908,7 +2820,6 @@ module TencentCloud
         # @param OriginalCostWithSP: 节省计划抵扣组件原价：节省计划抵扣原价=节省计划包抵扣金额/节省计划抵扣率
         # @type OriginalCostWithSP: String
         # @param BillMonth: 账单归属月
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BillMonth: String
 
         attr_accessor :BusinessCodeName, :ProductCodeName, :PayModeName, :ProjectName, :RegionName, :ZoneName, :ResourceId, :ResourceName, :ActionTypeName, :OrderId, :PayTime, :FeeBeginTime, :FeeEndTime, :ConfigDesc, :ExtendField1, :ExtendField2, :TotalCost, :Discount, :ReduceType, :RealTotalCost, :VoucherPayAmount, :CashPayAmount, :IncentivePayAmount, :TransferPayAmount, :ExtendField3, :ExtendField4, :ExtendField5, :Tags, :PayerUin, :OwnerUin, :OperateUin, :BusinessCode, :ProductCode, :RegionId, :InstanceType, :OriginalCostWithRI, :SPDeduction, :OriginalCostWithSP, :BillMonth
@@ -3488,16 +3399,12 @@ module TencentCloud
         # @param Business: 产品消耗详情
         # @type Business: Array
         # @param CashPayAmount: 现金
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CashPayAmount: String
         # @param IncentivePayAmount: 赠送金
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IncentivePayAmount: String
         # @param VoucherPayAmount: 代金券
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VoucherPayAmount: String
         # @param TransferPayAmount: 分成金
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TransferPayAmount: String
 
         attr_accessor :ProjectId, :ProjectName, :RealTotalCost, :Trend, :Business, :CashPayAmount, :IncentivePayAmount, :VoucherPayAmount, :TransferPayAmount
@@ -6775,7 +6682,6 @@ module TencentCloud
       # DescribeCostDetail返回参数结构体
       class DescribeCostDetailResponse < TencentCloud::Common::AbstractModel
         # @param DetailSet: 消耗明细
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DetailSet: Array
         # @param Total: 记录数
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -8825,7 +8731,6 @@ module TencentCloud
       # 按地域汇总消费详情
       class RegionSummaryOverviewItem < TencentCloud::Common::AbstractModel
         # @param RegionId: 地域ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RegionId: String
         # @param RegionName: 地域名称：资源所属地域，例如华南地区（广州）
         # @type RegionName: String
@@ -8902,10 +8807,22 @@ module TencentCloud
         # @type ExpectedAmount: Float
         # @param SpCoverage: 覆盖率结果，取值[0, 100]
         # @type SpCoverage: Float
+        # @param PayerUinName: 支付者昵称
+        # @type PayerUinName: String
+        # @param OwnerUinName: 使用者昵称
+        # @type OwnerUinName: String
+        # @param PayerUin: 支付者uin
+        # @type PayerUin: String
+        # @param SubBillingItemName: 计费项名称
+        # @type SubBillingItemName: String
+        # @param BillingItemName: 计费细项名称
+        # @type BillingItemName: String
+        # @param SubProductName: 子产品名称
+        # @type SubProductName: String
 
-        attr_accessor :ResourceId, :RegionId, :ProductCode, :SubProductCode, :StartDate, :EndDate, :SpCoveredAmount, :SpUncoveredAmount, :TotalRealAmount, :ExpectedAmount, :SpCoverage
+        attr_accessor :ResourceId, :RegionId, :ProductCode, :SubProductCode, :StartDate, :EndDate, :SpCoveredAmount, :SpUncoveredAmount, :TotalRealAmount, :ExpectedAmount, :SpCoverage, :PayerUinName, :OwnerUinName, :PayerUin, :SubBillingItemName, :BillingItemName, :SubProductName
 
-        def initialize(resourceid=nil, regionid=nil, productcode=nil, subproductcode=nil, startdate=nil, enddate=nil, spcoveredamount=nil, spuncoveredamount=nil, totalrealamount=nil, expectedamount=nil, spcoverage=nil)
+        def initialize(resourceid=nil, regionid=nil, productcode=nil, subproductcode=nil, startdate=nil, enddate=nil, spcoveredamount=nil, spuncoveredamount=nil, totalrealamount=nil, expectedamount=nil, spcoverage=nil, payeruinname=nil, owneruinname=nil, payeruin=nil, subbillingitemname=nil, billingitemname=nil, subproductname=nil)
           @ResourceId = resourceid
           @RegionId = regionid
           @ProductCode = productcode
@@ -8917,6 +8834,12 @@ module TencentCloud
           @TotalRealAmount = totalrealamount
           @ExpectedAmount = expectedamount
           @SpCoverage = spcoverage
+          @PayerUinName = payeruinname
+          @OwnerUinName = owneruinname
+          @PayerUin = payeruin
+          @SubBillingItemName = subbillingitemname
+          @BillingItemName = billingitemname
+          @SubProductName = subproductname
         end
 
         def deserialize(params)
@@ -8931,6 +8854,12 @@ module TencentCloud
           @TotalRealAmount = params['TotalRealAmount']
           @ExpectedAmount = params['ExpectedAmount']
           @SpCoverage = params['SpCoverage']
+          @PayerUinName = params['PayerUinName']
+          @OwnerUinName = params['OwnerUinName']
+          @PayerUin = params['PayerUin']
+          @SubBillingItemName = params['SubBillingItemName']
+          @BillingItemName = params['BillingItemName']
+          @SubProductName = params['SubProductName']
         end
       end
 
@@ -9012,10 +8941,8 @@ module TencentCloud
       # 总数
       class SummaryTotal < TencentCloud::Common::AbstractModel
         # @param RealTotalCost: 优惠后总价
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RealTotalCost: String
         # @param TotalCost: 原价，单位为元。TotalCost字段自账单3.0（即2021-05）之后开始生效，账单3.0之前返回"-"。合同价的情况下，TotalCost字段与官网价格存在差异，也返回“-”。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCost: String
 
         attr_accessor :RealTotalCost, :TotalCost
@@ -9038,7 +8965,6 @@ module TencentCloud
         # @param Status: 标签类型，0普通标签，1分账标签
         # @type Status: Integer
         # @param UpdateTime: 设置分账标签时间，普通标签不返回
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: String
 
         attr_accessor :TagKey, :Status, :UpdateTime
@@ -9059,28 +8985,20 @@ module TencentCloud
       # 按标签汇总消费详情
       class TagSummaryOverviewItem < TencentCloud::Common::AbstractModel
         # @param TagValue: 标签值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TagValue: String
         # @param RealTotalCostRatio: 费用所占百分比，两位小数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RealTotalCostRatio: String
         # @param RealTotalCost: 优惠后总价
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RealTotalCost: String
         # @param CashPayAmount: 现金账户支出：通过现金账户支付的金额
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CashPayAmount: String
         # @param IncentivePayAmount: 赠送账户支出：使用赠送金支付的金额
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IncentivePayAmount: String
         # @param VoucherPayAmount: 优惠券支出：使用各类优惠券（如代金券、现金券等）支付的金额
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VoucherPayAmount: String
         # @param TransferPayAmount: 分成金账户支出：通过分成金账户支付的金额
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TransferPayAmount: String
         # @param TotalCost: 原价，单位为元。TotalCost字段自账单3.0（即2021-05）之后开始生效，账单3.0之前返回"-"。合同价的情况下，TotalCost字段与官网价格存在差异，也返回“-”。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCost: String
 
         attr_accessor :TagValue, :RealTotalCostRatio, :RealTotalCost, :CashPayAmount, :IncentivePayAmount, :VoucherPayAmount, :TransferPayAmount, :TotalCost

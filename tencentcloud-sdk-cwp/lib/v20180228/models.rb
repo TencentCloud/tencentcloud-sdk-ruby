@@ -15613,8 +15613,7 @@ module TencentCloud
         # @type ImportType: String
         # @param IsQueryProMachine: 该参数已作废.
         # @type IsQueryProMachine: Boolean
-        # @param Filters: 过滤条件：
-        # <li>Version - String  是否必填：否 - 当前防护版本（ PRO_VERSION：专业版 | BASIC_VERSION：基础版 | Flagship：旗舰版 | ProtectedMachines：专业版+旗舰版） | BASIC_PROPOST_GENERAL_DISCOUNT：普惠版+专业版按量计费+基础版主机 | UnFlagship：专业版预付费+专业版后付费+基础版+普惠版</li>
+        # @param Filters: 过滤条件：<li>Version - String  是否必填：否 - 当前防护版本（ PRO_VERSION：专业版 | BASIC_VERSION：基础版 | Flagship：旗舰版 | ProtectedMachines：专业版+旗舰版） | BASIC_PROPOST_GENERAL_DISCOUNT：轻量版+专业版按量计费+基础版主机 | UnFlagship：专业版预付费+专业版后付费+基础版+轻量版</li>
         # @type Filters: Array
 
         attr_accessor :MachineList, :ImportType, :IsQueryProMachine, :Filters
@@ -16091,7 +16090,7 @@ module TencentCloud
         # @type FlagshipVersionLicenseCnt: Integer
         # @param ProVersionLicenseCnt: 专业版总授权数(有效订单)
         # @type ProVersionLicenseCnt: Integer
-        # @param CwpVersionLicenseCnt: 普惠版总授权数(有效订单的授权数)
+        # @param CwpVersionLicenseCnt: 轻量版总授权数(有效订单的授权数)
         # @type CwpVersionLicenseCnt: Integer
         # @param AvailableLHLicenseCnt: 可用惠普版授权数
         # @type AvailableLHLicenseCnt: Integer
@@ -16298,7 +16297,7 @@ module TencentCloud
         # @type FlagShip: :class:`Tencentcloud::Cwp.v20180228.models.VersionWhiteConfig`
         # @param Professional: 专业版 配置信息
         # @type Professional: :class:`Tencentcloud::Cwp.v20180228.models.VersionWhiteConfig`
-        # @param PrattWhitney: 普惠版 配置信息
+        # @param PrattWhitney: 轻量版 配置信息
         # @type PrattWhitney: :class:`Tencentcloud::Cwp.v20180228.models.VersionWhiteConfig`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -17181,7 +17180,7 @@ module TencentCloud
         # @type DeadlineMachineCnt: Integer
         # @param NotProtectMachineCnt: 未防护机器数
         # @type NotProtectMachineCnt: Integer
-        # @param LHGeneralDiscountCnt: 已防护普惠版机器数（Lighthouse机器）
+        # @param LHGeneralDiscountCnt: 已防护轻量机器数（Lighthouse机器）
         # @type LHGeneralDiscountCnt: Integer
         # @param CompareYesterdayMachineCnt: 比较昨日新增的主机数
         # @type CompareYesterdayMachineCnt: Integer
@@ -17332,7 +17331,7 @@ module TencentCloud
         # @type ProVersionDeadline: String
         # @param HasAssetScan: 是否有资产扫描记录，0无，1有
         # @type HasAssetScan: Integer
-        # @param ProtectType: 防护版本：BASIC_VERSION 基础版，PRO_VERSION 专业版，Flagship 旗舰版，GENERAL_DISCOUNT 普惠版
+        # @param ProtectType: 防护版本：BASIC_VERSION 基础版，PRO_VERSION 专业版，Flagship 旗舰版，GENERAL_DISCOUNT 轻量版
         # @type ProtectType: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -21271,7 +21270,7 @@ module TencentCloud
         # @type EndTime: String
         # @param ClickTimeout: 一键扫描超时时长，如：1800秒（s）
         # @type ClickTimeout: Integer
-        # @param Uuids: 为空默认扫描全部专业版、旗舰版、普惠版主机，不为空只扫描选中主机
+        # @param Uuids: 为空默认扫描全部专业版、旗舰版、轻量版主机，不为空只扫描选中主机
         # @type Uuids: Array
         # @param ScanMethod: 0版本比对,2版本比对+poc
         # @type ScanMethod: Integer
@@ -23040,7 +23039,7 @@ module TencentCloud
         # @type ProVersionNum: Integer
         # @param UltimateVersionNum: 旗舰版数量
         # @type UltimateVersionNum: Integer
-        # @param GeneralVersionNum: 普惠版数量
+        # @param GeneralVersionNum: 轻量版数量
         # @type GeneralVersionNum: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -30134,10 +30133,14 @@ module TencentCloud
         # @type InstanceID: String
         # @param MachineType: 主机类型
         # @type MachineType: String
+        # @param RegionName: 可用区名称
+        # @type RegionName: String
+        # @param RegionId: 可用区ID
+        # @type RegionId: Integer
 
-        attr_accessor :Quuid, :TagList, :HostIp, :AliasName, :MachineWanIp, :Uuid, :KernelVersion, :MachineStatus, :ProtectType, :VulNum, :CloudTags, :InstanceID, :MachineType
+        attr_accessor :Quuid, :TagList, :HostIp, :AliasName, :MachineWanIp, :Uuid, :KernelVersion, :MachineStatus, :ProtectType, :VulNum, :CloudTags, :InstanceID, :MachineType, :RegionName, :RegionId
 
-        def initialize(quuid=nil, taglist=nil, hostip=nil, aliasname=nil, machinewanip=nil, uuid=nil, kernelversion=nil, machinestatus=nil, protecttype=nil, vulnum=nil, cloudtags=nil, instanceid=nil, machinetype=nil)
+        def initialize(quuid=nil, taglist=nil, hostip=nil, aliasname=nil, machinewanip=nil, uuid=nil, kernelversion=nil, machinestatus=nil, protecttype=nil, vulnum=nil, cloudtags=nil, instanceid=nil, machinetype=nil, regionname=nil, regionid=nil)
           @Quuid = quuid
           @TagList = taglist
           @HostIp = hostip
@@ -30151,6 +30154,8 @@ module TencentCloud
           @CloudTags = cloudtags
           @InstanceID = instanceid
           @MachineType = machinetype
+          @RegionName = regionname
+          @RegionId = regionid
         end
 
         def deserialize(params)
@@ -30174,6 +30179,8 @@ module TencentCloud
           end
           @InstanceID = params['InstanceID']
           @MachineType = params['MachineType']
+          @RegionName = params['RegionName']
+          @RegionId = params['RegionId']
         end
       end
 
@@ -36165,10 +36172,12 @@ module TencentCloud
         # @type RegionInfo: :class:`Tencentcloud::Cwp.v20180228.models.RegionInfo`
         # @param InstanceId: 主机示例ID
         # @type InstanceId: String
+        # @param MachineType: 主机类型
+        # @type MachineType: String
 
-        attr_accessor :Id, :Uuid, :Quuid, :MachineName, :Status, :Disks, :CreateTime, :BackupTime, :ModifyTime, :RegionInfo, :InstanceId
+        attr_accessor :Id, :Uuid, :Quuid, :MachineName, :Status, :Disks, :CreateTime, :BackupTime, :ModifyTime, :RegionInfo, :InstanceId, :MachineType
 
-        def initialize(id=nil, uuid=nil, quuid=nil, machinename=nil, status=nil, disks=nil, createtime=nil, backuptime=nil, modifytime=nil, regioninfo=nil, instanceid=nil)
+        def initialize(id=nil, uuid=nil, quuid=nil, machinename=nil, status=nil, disks=nil, createtime=nil, backuptime=nil, modifytime=nil, regioninfo=nil, instanceid=nil, machinetype=nil)
           @Id = id
           @Uuid = uuid
           @Quuid = quuid
@@ -36180,6 +36189,7 @@ module TencentCloud
           @ModifyTime = modifytime
           @RegionInfo = regioninfo
           @InstanceId = instanceid
+          @MachineType = machinetype
         end
 
         def deserialize(params)
@@ -36197,6 +36207,7 @@ module TencentCloud
             @RegionInfo.deserialize(params['RegionInfo'])
           end
           @InstanceId = params['InstanceId']
+          @MachineType = params['MachineType']
         end
       end
 
@@ -37998,7 +38009,7 @@ module TencentCloud
         # @type EndTime: String
         # @param EnableScan: 是否开启扫描 1开启 0不开启
         # @type EnableScan: Integer
-        # @param Uuids: 为空默认扫描全部专业版、旗舰版、普惠版主机，不为空只扫描选中主机
+        # @param Uuids: 为空默认扫描全部专业版、旗舰版、轻量版主机，不为空只扫描选中主机
         # @type Uuids: Array
         # @param ScanMethod: 0版本比对，2版本比对+poc
         # @type ScanMethod: Integer

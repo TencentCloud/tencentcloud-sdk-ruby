@@ -197,6 +197,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # p2p路线切换
+
+        # @param request: Request instance for ChangeP2PRoute.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::ChangeP2PRouteRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::ChangeP2PRouteResponse`
+        def ChangeP2PRoute(request)
+          body = send_request('ChangeP2PRoute', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ChangeP2PRouteResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（CheckFirmwareUpdate）用于查询设备可升级固件版本
 
         # @param request: Request instance for CheckFirmwareUpdate.
@@ -1973,6 +1997,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 当前p2p线路
+
+        # @param request: Request instance for DescribeP2PRoute.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::DescribeP2PRouteRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::DescribeP2PRouteResponse`
+        def DescribeP2PRoute(request)
+          body = send_request('DescribeP2PRoute', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeP2PRouteResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询套餐消耗记录详情
 
         # @param request: Request instance for DescribePackageConsumeTask.
@@ -2871,6 +2919,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ListTopicPolicyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 更新应用信息
+
+        # @param request: Request instance for ModifyApplication.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::ModifyApplicationRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::ModifyApplicationResponse`
+        def ModifyApplication(request)
+          body = send_request('ModifyApplication', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyApplicationResponse.new
             model.deserialize(response['Response'])
             model
           else

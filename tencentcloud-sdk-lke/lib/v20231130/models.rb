@@ -9004,7 +9004,7 @@ module TencentCloud
         # @type CosHash: String
         # @param Size: 文件大小
         # @type Size: String
-        # @param AttrRange: 标签适用范围，默认填0即可
+        # @param AttrRange: 标签适用范围，需要传参为1
         # @type AttrRange: Integer
         # @param Source: 来源(0 源文件导入 1 网页导入)
         # @type Source: Integer

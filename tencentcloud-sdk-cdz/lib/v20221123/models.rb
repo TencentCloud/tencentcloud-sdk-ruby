@@ -20,10 +20,8 @@ module TencentCloud
       # CDZ的母机和子机的对应关系
       class CloudDedicatedZoneHostsInfo < TencentCloud::Common::AbstractModel
         # @param HostUuid: Host的唯一标识uuid
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HostUuid: String
         # @param InstancesInfo: 实例名称数组
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstancesInfo: Array
 
         attr_accessor :HostUuid, :InstancesInfo

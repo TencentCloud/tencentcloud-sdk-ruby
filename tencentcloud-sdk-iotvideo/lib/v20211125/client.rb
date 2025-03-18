@@ -221,6 +221,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # p2p路线切换
+
+        # @param request: Request instance for ChangeP2PRoute.
+        # @type request: :class:`Tencentcloud::iotvideo::V20211125::ChangeP2PRouteRequest`
+        # @rtype: :class:`Tencentcloud::iotvideo::V20211125::ChangeP2PRouteResponse`
+        def ChangeP2PRoute(request)
+          body = send_request('ChangeP2PRoute', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ChangeP2PRouteResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 判断是否开启转发的权限
 
         # @param request: Request instance for CheckForwardAuth.
@@ -1695,6 +1719,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeP2PInfoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 当前p2p线路
+
+        # @param request: Request instance for DescribeP2PRoute.
+        # @type request: :class:`Tencentcloud::iotvideo::V20211125::DescribeP2PRouteRequest`
+        # @rtype: :class:`Tencentcloud::iotvideo::V20211125::DescribeP2PRouteResponse`
+        def DescribeP2PRoute(request)
+          body = send_request('DescribeP2PRoute', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeP2PRouteResponse.new
             model.deserialize(response['Response'])
             model
           else

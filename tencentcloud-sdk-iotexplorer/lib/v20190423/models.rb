@@ -628,6 +628,46 @@ module TencentCloud
         end
       end
 
+      # ChangeP2PRoute请求参数结构体
+      class ChangeP2PRouteRequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: 产品ID
+        # @type ProductId: String
+        # @param DeviceName: 设备名称
+        # @type DeviceName: String
+        # @param RouteId: P2P线路
+        # @type RouteId: Integer
+
+        attr_accessor :ProductId, :DeviceName, :RouteId
+
+        def initialize(productid=nil, devicename=nil, routeid=nil)
+          @ProductId = productid
+          @DeviceName = devicename
+          @RouteId = routeid
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @DeviceName = params['DeviceName']
+          @RouteId = params['RouteId']
+        end
+      end
+
+      # ChangeP2PRoute返回参数结构体
+      class ChangeP2PRouteResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CheckFirmwareUpdate请求参数结构体
       class CheckFirmwareUpdateRequest < TencentCloud::Common::AbstractModel
         # @param ProductId: 产品ID。
@@ -5068,6 +5108,46 @@ module TencentCloud
         end
       end
 
+      # DescribeP2PRoute请求参数结构体
+      class DescribeP2PRouteRequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: 产品ID
+        # @type ProductId: String
+        # @param DeviceName: 设备名称
+        # @type DeviceName: String
+
+        attr_accessor :ProductId, :DeviceName
+
+        def initialize(productid=nil, devicename=nil)
+          @ProductId = productid
+          @DeviceName = devicename
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @DeviceName = params['DeviceName']
+        end
+      end
+
+      # DescribeP2PRoute返回参数结构体
+      class DescribeP2PRouteResponse < TencentCloud::Common::AbstractModel
+        # @param RouteId: 当前p2p线路
+        # @type RouteId: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RouteId, :RequestId
+
+        def initialize(routeid=nil, requestid=nil)
+          @RouteId = routeid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RouteId = params['RouteId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribePackageConsumeTask请求参数结构体
       class DescribePackageConsumeTaskRequest < TencentCloud::Common::AbstractModel
         # @param TaskId: 任务id
@@ -7686,6 +7766,135 @@ module TencentCloud
         end
       end
 
+      # 应用信息
+      class IotApplication < TencentCloud::Common::AbstractModel
+        # @param IotAppID: 应用 ID
+        # @type IotAppID: String
+        # @param AppName: 应用名称
+        # @type AppName: String
+        # @param Description: 应用说明
+        # @type Description: String
+        # @param DevMode: 开发模式
+        # @type DevMode: Integer
+        # @param IOSAppKey: iOS 平台 AppKey
+        # @type IOSAppKey: String
+        # @param IOSAppSecret: iOS 平台 AppSecret
+        # @type IOSAppSecret: String
+        # @param AndroidAppKey: Android 平台 AppKey
+        # @type AndroidAppKey: String
+        # @param AndroidAppSecret: Android 平台 AppSecret
+        # @type AndroidAppSecret: String
+        # @param Products: 绑定的产品列表，数据为：ProdcutID 数组 JSON 序列化后的字符串
+        # @type Products: String
+        # @param CreateTime: 创建时间
+        # @type CreateTime: String
+        # @param ProjectId: 项目ID
+        # @type ProjectId: String
+        # @param PushSecretID: 信鸽推送APP ID
+        # @type PushSecretID: String
+        # @param PushSecretKey: 信鸽推送SECRET KEY
+        # @type PushSecretKey: String
+        # @param PushEnvironment: iOS平台推送环境
+        # @type PushEnvironment: String
+        # @param MiniProgramAppKey: 小程序平台 AppKey
+        # @type MiniProgramAppKey: String
+        # @param MiniProgramAppSecret: 小程序平台 AppSecret
+        # @type MiniProgramAppSecret: String
+        # @param TPNSiOSAccessID: TPNS服务iOS应用AccessID，TPNS全称为腾讯移动推送（Tencent Push Notification Service），详见：https://cloud.tencent.com/document/product/548
+        # @type TPNSiOSAccessID: String
+        # @param TPNSiOSSecretKey: TPNS服务iOS应用SecretKey
+        # @type TPNSiOSSecretKey: String
+        # @param TPNSiOSPushEnvironment: TPNS服务iOS应用推送环境
+        # @type TPNSiOSPushEnvironment: String
+        # @param TPNSAndroidAccessID: TPNS服务Android应用AccessID
+        # @type TPNSAndroidAccessID: String
+        # @param TPNSAndroidSecretKey: TPNS服务Android应用SecretKey
+        # @type TPNSAndroidSecretKey: String
+        # @param TPNSiOSRegion: TPNS服务iOS应用所属地域，详细说明参见 ModifyApplication 同名入参。
+        # @type TPNSiOSRegion: String
+        # @param TPNSAndroidRegion: TPNS服务Android应用所属地域，详细说明参见 ModifyApplication 同名入参。
+        # @type TPNSAndroidRegion: String
+        # @param SelfSmsAppId: 自主短信配置APPID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SelfSmsAppId: String
+        # @param SelfSmsAppKey: 自主短信配置APPKey
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SelfSmsAppKey: String
+        # @param SelfSmsSign: 自主短信配置签名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SelfSmsSign: String
+        # @param SelfSmsTemplateId: 自主短信配置模板ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SelfSmsTemplateId: Integer
+        # @param WechatNotifyStatus: 第三方小程序强提醒开关 0：关闭；1：开启
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WechatNotifyStatus: Integer
+
+        attr_accessor :IotAppID, :AppName, :Description, :DevMode, :IOSAppKey, :IOSAppSecret, :AndroidAppKey, :AndroidAppSecret, :Products, :CreateTime, :ProjectId, :PushSecretID, :PushSecretKey, :PushEnvironment, :MiniProgramAppKey, :MiniProgramAppSecret, :TPNSiOSAccessID, :TPNSiOSSecretKey, :TPNSiOSPushEnvironment, :TPNSAndroidAccessID, :TPNSAndroidSecretKey, :TPNSiOSRegion, :TPNSAndroidRegion, :SelfSmsAppId, :SelfSmsAppKey, :SelfSmsSign, :SelfSmsTemplateId, :WechatNotifyStatus
+
+        def initialize(iotappid=nil, appname=nil, description=nil, devmode=nil, iosappkey=nil, iosappsecret=nil, androidappkey=nil, androidappsecret=nil, products=nil, createtime=nil, projectid=nil, pushsecretid=nil, pushsecretkey=nil, pushenvironment=nil, miniprogramappkey=nil, miniprogramappsecret=nil, tpnsiosaccessid=nil, tpnsiossecretkey=nil, tpnsiospushenvironment=nil, tpnsandroidaccessid=nil, tpnsandroidsecretkey=nil, tpnsiosregion=nil, tpnsandroidregion=nil, selfsmsappid=nil, selfsmsappkey=nil, selfsmssign=nil, selfsmstemplateid=nil, wechatnotifystatus=nil)
+          @IotAppID = iotappid
+          @AppName = appname
+          @Description = description
+          @DevMode = devmode
+          @IOSAppKey = iosappkey
+          @IOSAppSecret = iosappsecret
+          @AndroidAppKey = androidappkey
+          @AndroidAppSecret = androidappsecret
+          @Products = products
+          @CreateTime = createtime
+          @ProjectId = projectid
+          @PushSecretID = pushsecretid
+          @PushSecretKey = pushsecretkey
+          @PushEnvironment = pushenvironment
+          @MiniProgramAppKey = miniprogramappkey
+          @MiniProgramAppSecret = miniprogramappsecret
+          @TPNSiOSAccessID = tpnsiosaccessid
+          @TPNSiOSSecretKey = tpnsiossecretkey
+          @TPNSiOSPushEnvironment = tpnsiospushenvironment
+          @TPNSAndroidAccessID = tpnsandroidaccessid
+          @TPNSAndroidSecretKey = tpnsandroidsecretkey
+          @TPNSiOSRegion = tpnsiosregion
+          @TPNSAndroidRegion = tpnsandroidregion
+          @SelfSmsAppId = selfsmsappid
+          @SelfSmsAppKey = selfsmsappkey
+          @SelfSmsSign = selfsmssign
+          @SelfSmsTemplateId = selfsmstemplateid
+          @WechatNotifyStatus = wechatnotifystatus
+        end
+
+        def deserialize(params)
+          @IotAppID = params['IotAppID']
+          @AppName = params['AppName']
+          @Description = params['Description']
+          @DevMode = params['DevMode']
+          @IOSAppKey = params['IOSAppKey']
+          @IOSAppSecret = params['IOSAppSecret']
+          @AndroidAppKey = params['AndroidAppKey']
+          @AndroidAppSecret = params['AndroidAppSecret']
+          @Products = params['Products']
+          @CreateTime = params['CreateTime']
+          @ProjectId = params['ProjectId']
+          @PushSecretID = params['PushSecretID']
+          @PushSecretKey = params['PushSecretKey']
+          @PushEnvironment = params['PushEnvironment']
+          @MiniProgramAppKey = params['MiniProgramAppKey']
+          @MiniProgramAppSecret = params['MiniProgramAppSecret']
+          @TPNSiOSAccessID = params['TPNSiOSAccessID']
+          @TPNSiOSSecretKey = params['TPNSiOSSecretKey']
+          @TPNSiOSPushEnvironment = params['TPNSiOSPushEnvironment']
+          @TPNSAndroidAccessID = params['TPNSAndroidAccessID']
+          @TPNSAndroidSecretKey = params['TPNSAndroidSecretKey']
+          @TPNSiOSRegion = params['TPNSiOSRegion']
+          @TPNSAndroidRegion = params['TPNSAndroidRegion']
+          @SelfSmsAppId = params['SelfSmsAppId']
+          @SelfSmsAppKey = params['SelfSmsAppKey']
+          @SelfSmsSign = params['SelfSmsSign']
+          @SelfSmsTemplateId = params['SelfSmsTemplateId']
+          @WechatNotifyStatus = params['WechatNotifyStatus']
+        end
+      end
+
       # 增值服务数量统计
       class LicenseServiceNumInfo < TencentCloud::Common::AbstractModel
         # @param LicenseType: 服务类型
@@ -8054,6 +8263,101 @@ module TencentCloud
           @Longitude = params['Longitude']
           @Accuracy = params['Accuracy']
           @Altitude = params['Altitude']
+        end
+      end
+
+      # ModifyApplication请求参数结构体
+      class ModifyApplicationRequest < TencentCloud::Common::AbstractModel
+        # @param IotAppID: 应用ID
+        # @type IotAppID: String
+        # @param AppName: 应用名称
+        # @type AppName: String
+        # @param Description: 应用说明
+        # @type Description: String
+        # @param Products: 关联的产品
+        # @type Products: String
+        # @param PushSecretID: 信鸽推送APP ID
+        # @type PushSecretID: String
+        # @param PushSecretKey: 信鸽推送SECRET KEY
+        # @type PushSecretKey: String
+        # @param PushEnvironment: iOS平台推送环境
+        # @type PushEnvironment: String
+        # @param TPNSiOSAccessID: TPNS服务iOS应用AccessID，TPNS全称为腾讯移动推送（Tencent Push Notification Service），详见：https://cloud.tencent.com/document/product/548
+        # @type TPNSiOSAccessID: String
+        # @param TPNSiOSSecretKey: TPNS服务iOS应用SecretKey
+        # @type TPNSiOSSecretKey: String
+        # @param TPNSiOSPushEnvironment: TPNS服务iOS应用推送环境
+        # @type TPNSiOSPushEnvironment: String
+        # @param TPNSAndroidAccessID: TPNS服务Android应用AccessID
+        # @type TPNSAndroidAccessID: String
+        # @param TPNSAndroidSecretKey: TPNS服务Android应用SecretKey
+        # @type TPNSAndroidSecretKey: String
+        # @param TPNSiOSRegion: TPNS服务iOS应用所属地域，广州：ap-guangzhou，上海：ap-shanghai，中国香港：ap-hongkong，新加坡：ap-singapore。
+        # @type TPNSiOSRegion: String
+        # @param TPNSAndroidRegion: TPNS服务Android应用所属地域，广州：ap-guangzhou，上海：ap-shanghai，中国香港：ap-hongkong，新加坡：ap-singapore。
+        # @type TPNSAndroidRegion: String
+        # @param TurnKeySwitch: TurnKey小程序托管
+        # @type TurnKeySwitch: Integer
+
+        attr_accessor :IotAppID, :AppName, :Description, :Products, :PushSecretID, :PushSecretKey, :PushEnvironment, :TPNSiOSAccessID, :TPNSiOSSecretKey, :TPNSiOSPushEnvironment, :TPNSAndroidAccessID, :TPNSAndroidSecretKey, :TPNSiOSRegion, :TPNSAndroidRegion, :TurnKeySwitch
+
+        def initialize(iotappid=nil, appname=nil, description=nil, products=nil, pushsecretid=nil, pushsecretkey=nil, pushenvironment=nil, tpnsiosaccessid=nil, tpnsiossecretkey=nil, tpnsiospushenvironment=nil, tpnsandroidaccessid=nil, tpnsandroidsecretkey=nil, tpnsiosregion=nil, tpnsandroidregion=nil, turnkeyswitch=nil)
+          @IotAppID = iotappid
+          @AppName = appname
+          @Description = description
+          @Products = products
+          @PushSecretID = pushsecretid
+          @PushSecretKey = pushsecretkey
+          @PushEnvironment = pushenvironment
+          @TPNSiOSAccessID = tpnsiosaccessid
+          @TPNSiOSSecretKey = tpnsiossecretkey
+          @TPNSiOSPushEnvironment = tpnsiospushenvironment
+          @TPNSAndroidAccessID = tpnsandroidaccessid
+          @TPNSAndroidSecretKey = tpnsandroidsecretkey
+          @TPNSiOSRegion = tpnsiosregion
+          @TPNSAndroidRegion = tpnsandroidregion
+          @TurnKeySwitch = turnkeyswitch
+        end
+
+        def deserialize(params)
+          @IotAppID = params['IotAppID']
+          @AppName = params['AppName']
+          @Description = params['Description']
+          @Products = params['Products']
+          @PushSecretID = params['PushSecretID']
+          @PushSecretKey = params['PushSecretKey']
+          @PushEnvironment = params['PushEnvironment']
+          @TPNSiOSAccessID = params['TPNSiOSAccessID']
+          @TPNSiOSSecretKey = params['TPNSiOSSecretKey']
+          @TPNSiOSPushEnvironment = params['TPNSiOSPushEnvironment']
+          @TPNSAndroidAccessID = params['TPNSAndroidAccessID']
+          @TPNSAndroidSecretKey = params['TPNSAndroidSecretKey']
+          @TPNSiOSRegion = params['TPNSiOSRegion']
+          @TPNSAndroidRegion = params['TPNSAndroidRegion']
+          @TurnKeySwitch = params['TurnKeySwitch']
+        end
+      end
+
+      # ModifyApplication返回参数结构体
+      class ModifyApplicationResponse < TencentCloud::Common::AbstractModel
+        # @param Application: 应用信息
+        # @type Application: :class:`Tencentcloud::Iotexplorer.v20190423.models.IotApplication`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Application, :RequestId
+
+        def initialize(application=nil, requestid=nil)
+          @Application = application
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Application'].nil?
+            @Application = IotApplication.new
+            @Application.deserialize(params['Application'])
+          end
+          @RequestId = params['RequestId']
         end
       end
 

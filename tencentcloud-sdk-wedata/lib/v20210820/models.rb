@@ -17695,10 +17695,14 @@ module TencentCloud
         # @type OnlyRerun: Boolean
         # @param ScheduleTimeZone: 时区
         # @type ScheduleTimeZone: String
+        # @param ScheduleTimeFrom: 计划调度时间
+        # @type ScheduleTimeFrom: String
+        # @param ScheduleTimeTo: 计划调度时间
+        # @type ScheduleTimeTo: String
 
-        attr_accessor :Instance, :SortCol, :TaskIdList, :TaskNameList, :FolderList, :Sort, :StateList, :TaskTypeList, :CycleList, :OwnerList, :DateFrom, :DateTo, :CreateTimeFrom, :CreateTimeTo, :StartFrom, :StartTo, :WorkflowIdList, :WorkflowNameList, :Keyword, :SearchColumns, :ProjectId, :Limit, :TaskTypeMap, :InstanceType, :DagDeal, :DagType, :DagDependent, :DagDepth, :TenantId, :DataTimeCycle, :ExecutorGroupIdList, :OnlyRerun, :ScheduleTimeZone
+        attr_accessor :Instance, :SortCol, :TaskIdList, :TaskNameList, :FolderList, :Sort, :StateList, :TaskTypeList, :CycleList, :OwnerList, :DateFrom, :DateTo, :CreateTimeFrom, :CreateTimeTo, :StartFrom, :StartTo, :WorkflowIdList, :WorkflowNameList, :Keyword, :SearchColumns, :ProjectId, :Limit, :TaskTypeMap, :InstanceType, :DagDeal, :DagType, :DagDependent, :DagDepth, :TenantId, :DataTimeCycle, :ExecutorGroupIdList, :OnlyRerun, :ScheduleTimeZone, :ScheduleTimeFrom, :ScheduleTimeTo
 
-        def initialize(instance=nil, sortcol=nil, taskidlist=nil, tasknamelist=nil, folderlist=nil, sort=nil, statelist=nil, tasktypelist=nil, cyclelist=nil, ownerlist=nil, datefrom=nil, dateto=nil, createtimefrom=nil, createtimeto=nil, startfrom=nil, startto=nil, workflowidlist=nil, workflownamelist=nil, keyword=nil, searchcolumns=nil, projectid=nil, limit=nil, tasktypemap=nil, instancetype=nil, dagdeal=nil, dagtype=nil, dagdependent=nil, dagdepth=nil, tenantid=nil, datatimecycle=nil, executorgroupidlist=nil, onlyrerun=nil, scheduletimezone=nil)
+        def initialize(instance=nil, sortcol=nil, taskidlist=nil, tasknamelist=nil, folderlist=nil, sort=nil, statelist=nil, tasktypelist=nil, cyclelist=nil, ownerlist=nil, datefrom=nil, dateto=nil, createtimefrom=nil, createtimeto=nil, startfrom=nil, startto=nil, workflowidlist=nil, workflownamelist=nil, keyword=nil, searchcolumns=nil, projectid=nil, limit=nil, tasktypemap=nil, instancetype=nil, dagdeal=nil, dagtype=nil, dagdependent=nil, dagdepth=nil, tenantid=nil, datatimecycle=nil, executorgroupidlist=nil, onlyrerun=nil, scheduletimezone=nil, scheduletimefrom=nil, scheduletimeto=nil)
           @Instance = instance
           @SortCol = sortcol
           @TaskIdList = taskidlist
@@ -17732,6 +17736,8 @@ module TencentCloud
           @ExecutorGroupIdList = executorgroupidlist
           @OnlyRerun = onlyrerun
           @ScheduleTimeZone = scheduletimezone
+          @ScheduleTimeFrom = scheduletimefrom
+          @ScheduleTimeTo = scheduletimeto
         end
 
         def deserialize(params)
@@ -17778,6 +17784,8 @@ module TencentCloud
           @ExecutorGroupIdList = params['ExecutorGroupIdList']
           @OnlyRerun = params['OnlyRerun']
           @ScheduleTimeZone = params['ScheduleTimeZone']
+          @ScheduleTimeFrom = params['ScheduleTimeFrom']
+          @ScheduleTimeTo = params['ScheduleTimeTo']
         end
       end
 
@@ -20045,10 +20053,13 @@ module TencentCloud
         # @type ScheduleTimeZone: String
         # @param AppParam: 执行应用参数
         # @type AppParam: String
+        # @param TimeType: 补录计划时间范围的类型：
+        # DATA_TIME：实例数据时间；SCHEDULE_TIME 计划调度时间
+        # @type TimeType: String
 
-        attr_accessor :PlanId, :MakeName, :ProjectId, :CheckParent, :SameSelfDependType, :ParallelNum, :SameCycle, :SourceTaskCycle, :TargetTaskCycle, :TargetTaskAction, :MapParamList, :CreatorId, :Creator, :CreateTime, :TaskIdList, :MakeDatetimeList, :Remark, :SchedulerResourceGroup, :SchedulerResourceGroupName, :IntegrationResourceGroup, :IntegrationResourceGroupName, :TaskCount, :CompletePercent, :SuccessPercent, :CheckParentType, :SameSelfWorkflowDependType, :SelfWorkflowDependency, :MakeDataTimeOrder, :ScheduleTimeZone, :AppParam
+        attr_accessor :PlanId, :MakeName, :ProjectId, :CheckParent, :SameSelfDependType, :ParallelNum, :SameCycle, :SourceTaskCycle, :TargetTaskCycle, :TargetTaskAction, :MapParamList, :CreatorId, :Creator, :CreateTime, :TaskIdList, :MakeDatetimeList, :Remark, :SchedulerResourceGroup, :SchedulerResourceGroupName, :IntegrationResourceGroup, :IntegrationResourceGroupName, :TaskCount, :CompletePercent, :SuccessPercent, :CheckParentType, :SameSelfWorkflowDependType, :SelfWorkflowDependency, :MakeDataTimeOrder, :ScheduleTimeZone, :AppParam, :TimeType
 
-        def initialize(planid=nil, makename=nil, projectid=nil, checkparent=nil, sameselfdependtype=nil, parallelnum=nil, samecycle=nil, sourcetaskcycle=nil, targettaskcycle=nil, targettaskaction=nil, mapparamlist=nil, creatorid=nil, creator=nil, createtime=nil, taskidlist=nil, makedatetimelist=nil, remark=nil, schedulerresourcegroup=nil, schedulerresourcegroupname=nil, integrationresourcegroup=nil, integrationresourcegroupname=nil, taskcount=nil, completepercent=nil, successpercent=nil, checkparenttype=nil, sameselfworkflowdependtype=nil, selfworkflowdependency=nil, makedatatimeorder=nil, scheduletimezone=nil, appparam=nil)
+        def initialize(planid=nil, makename=nil, projectid=nil, checkparent=nil, sameselfdependtype=nil, parallelnum=nil, samecycle=nil, sourcetaskcycle=nil, targettaskcycle=nil, targettaskaction=nil, mapparamlist=nil, creatorid=nil, creator=nil, createtime=nil, taskidlist=nil, makedatetimelist=nil, remark=nil, schedulerresourcegroup=nil, schedulerresourcegroupname=nil, integrationresourcegroup=nil, integrationresourcegroupname=nil, taskcount=nil, completepercent=nil, successpercent=nil, checkparenttype=nil, sameselfworkflowdependtype=nil, selfworkflowdependency=nil, makedatatimeorder=nil, scheduletimezone=nil, appparam=nil, timetype=nil)
           @PlanId = planid
           @MakeName = makename
           @ProjectId = projectid
@@ -20079,6 +20090,7 @@ module TencentCloud
           @MakeDataTimeOrder = makedatatimeorder
           @ScheduleTimeZone = scheduletimezone
           @AppParam = appparam
+          @TimeType = timetype
         end
 
         def deserialize(params)
@@ -20126,6 +20138,7 @@ module TencentCloud
           @MakeDataTimeOrder = params['MakeDataTimeOrder']
           @ScheduleTimeZone = params['ScheduleTimeZone']
           @AppParam = params['AppParam']
+          @TimeType = params['TimeType']
         end
       end
 
@@ -20321,10 +20334,12 @@ module TencentCloud
         # @param ScheduleTimeZone: 数据实例时间的时区
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScheduleTimeZone: String
+        # @param TimeType: 时间类型，DATA_TIME：数据时间、SCHEDULE_TIME：计划调度时间, 为空时会被当成DATA_TIME处理
+        # @type TimeType: String
 
-        attr_accessor :TriggerId, :TriggerName, :Remark, :DatetimeList, :TaskCnt, :InstanceCnt, :FinishedInstanceCnt, :SuccessInstanceCnt, :Status, :TriggerParams, :OwnerUin, :UserUin, :UserName, :TenantId, :ProjectId, :CreateTime, :ScheduleTimeZone
+        attr_accessor :TriggerId, :TriggerName, :Remark, :DatetimeList, :TaskCnt, :InstanceCnt, :FinishedInstanceCnt, :SuccessInstanceCnt, :Status, :TriggerParams, :OwnerUin, :UserUin, :UserName, :TenantId, :ProjectId, :CreateTime, :ScheduleTimeZone, :TimeType
 
-        def initialize(triggerid=nil, triggername=nil, remark=nil, datetimelist=nil, taskcnt=nil, instancecnt=nil, finishedinstancecnt=nil, successinstancecnt=nil, status=nil, triggerparams=nil, owneruin=nil, useruin=nil, username=nil, tenantid=nil, projectid=nil, createtime=nil, scheduletimezone=nil)
+        def initialize(triggerid=nil, triggername=nil, remark=nil, datetimelist=nil, taskcnt=nil, instancecnt=nil, finishedinstancecnt=nil, successinstancecnt=nil, status=nil, triggerparams=nil, owneruin=nil, useruin=nil, username=nil, tenantid=nil, projectid=nil, createtime=nil, scheduletimezone=nil, timetype=nil)
           @TriggerId = triggerid
           @TriggerName = triggername
           @Remark = remark
@@ -20342,6 +20357,7 @@ module TencentCloud
           @ProjectId = projectid
           @CreateTime = createtime
           @ScheduleTimeZone = scheduletimezone
+          @TimeType = timetype
         end
 
         def deserialize(params)
@@ -20362,6 +20378,7 @@ module TencentCloud
           @ProjectId = params['ProjectId']
           @CreateTime = params['CreateTime']
           @ScheduleTimeZone = params['ScheduleTimeZone']
+          @TimeType = params['TimeType']
         end
       end
 
@@ -30683,10 +30700,12 @@ module TencentCloud
         # @type ExtraParams: String
         # @param ScheduleTimeZone: 实例时间的时区
         # @type ScheduleTimeZone: String
+        # @param TimeType: 时间类型，DATA_TIME：数据时间、SCHEDULE_TIME：计划调度时间, 为空时会被当成DATA_TIME处理
+        # @type TimeType: String
 
-        attr_accessor :ProjectId, :TriggerName, :TriggerScope, :DataTimeList, :WorkflowId, :Remark, :TaskIds, :SchedulerResourceGroup, :IntegrationResourceGroup, :ExecOrder, :CustomParams, :ExtraParams, :ScheduleTimeZone
+        attr_accessor :ProjectId, :TriggerName, :TriggerScope, :DataTimeList, :WorkflowId, :Remark, :TaskIds, :SchedulerResourceGroup, :IntegrationResourceGroup, :ExecOrder, :CustomParams, :ExtraParams, :ScheduleTimeZone, :TimeType
 
-        def initialize(projectid=nil, triggername=nil, triggerscope=nil, datatimelist=nil, workflowid=nil, remark=nil, taskids=nil, schedulerresourcegroup=nil, integrationresourcegroup=nil, execorder=nil, customparams=nil, extraparams=nil, scheduletimezone=nil)
+        def initialize(projectid=nil, triggername=nil, triggerscope=nil, datatimelist=nil, workflowid=nil, remark=nil, taskids=nil, schedulerresourcegroup=nil, integrationresourcegroup=nil, execorder=nil, customparams=nil, extraparams=nil, scheduletimezone=nil, timetype=nil)
           @ProjectId = projectid
           @TriggerName = triggername
           @TriggerScope = triggerscope
@@ -30700,6 +30719,7 @@ module TencentCloud
           @CustomParams = customparams
           @ExtraParams = extraparams
           @ScheduleTimeZone = scheduletimezone
+          @TimeType = timetype
         end
 
         def deserialize(params)
@@ -30723,6 +30743,7 @@ module TencentCloud
           end
           @ExtraParams = params['ExtraParams']
           @ScheduleTimeZone = params['ScheduleTimeZone']
+          @TimeType = params['TimeType']
         end
       end
 
