@@ -2300,6 +2300,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取prometheus集成指标
+
+        # @param request: Request instance for DescribePrometheusIntegrationMetrics.
+        # @type request: :class:`Tencentcloud::monitor::V20180724::DescribePrometheusIntegrationMetricsRequest`
+        # @rtype: :class:`Tencentcloud::monitor::V20180724::DescribePrometheusIntegrationMetricsResponse`
+        def DescribePrometheusIntegrationMetrics(request)
+          body = send_request('DescribePrometheusIntegrationMetrics', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribePrometheusIntegrationMetricsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取聚合规则列表，包含关联集群内crd资源创建的record rule
 
         # @param request: Request instance for DescribePrometheusRecordRules.

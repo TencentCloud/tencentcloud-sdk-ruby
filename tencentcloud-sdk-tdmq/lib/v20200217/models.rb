@@ -176,7 +176,6 @@ module TencentCloud
       # AcknowledgeMessage返回参数结构体
       class AcknowledgeMessageResponse < TencentCloud::Common::AbstractModel
         # @param ErrorMsg: 如果为""，则说明没有错误返回，否则返回具体的错误信息。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrorMsg: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -329,7 +328,6 @@ module TencentCloud
         # @param Healthy: 集群是否健康，1表示健康，0表示异常
         # @type Healthy: Integer
         # @param HealthyInfo: 集群健康信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HealthyInfo: String
         # @param Status: 集群状态，0:创建中，1:正常，2:销毁中，3:已删除，4: 隔离中，5:创建失败，6: 删除失败
         # @type Status: Integer
@@ -344,59 +342,45 @@ module TencentCloud
         # @param MaxStorageCapacity: 最大存储容量
         # @type MaxStorageCapacity: Integer
         # @param Version: 集群版本
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Version: String
         # @param PublicEndPoint: 公网访问接入点
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PublicEndPoint: String
         # @param VpcEndPoint: VPC访问接入点
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VpcEndPoint: String
         # @param NamespaceNum: 命名空间数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NamespaceNum: Integer
         # @param UsedStorageBudget: 已使用存储限制，MB为单位
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UsedStorageBudget: Integer
         # @param MaxPublishRateInMessages: 最大生产消息速率，以条数为单位
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaxPublishRateInMessages: Integer
         # @param MaxDispatchRateInMessages: 最大推送消息速率，以条数为单位
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaxDispatchRateInMessages: Integer
         # @param MaxPublishRateInBytes: 最大生产消息速率，以字节为单位
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaxPublishRateInBytes: Integer
         # @param MaxDispatchRateInBytes: 最大推送消息速率，以字节为单位
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaxDispatchRateInBytes: Integer
         # @param TopicNum: 已创建主题数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TopicNum: Integer
         # @param MaxMessageDelayInSeconds: 最长消息延时，以秒为单位
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaxMessageDelayInSeconds: Integer
         # @param PublicAccessEnabled: 是否开启公网访问，不填时默认开启
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PublicAccessEnabled: Boolean
         # @param Tags: 标签
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
         # @param PayMode: 计费模式：
         # 0: 按量计费
         # 1: 包年包月
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PayMode: Integer
         # @param ProjectId: 项目ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProjectId: Integer
         # @param ProjectName: 项目名字
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProjectName: String
+        # @param UpgradeProInstance: 是否支持升级专业版实例
+        # @type UpgradeProInstance: Boolean
 
-        attr_accessor :ClusterId, :ClusterName, :Remark, :EndPointNum, :CreateTime, :Healthy, :HealthyInfo, :Status, :MaxNamespaceNum, :MaxTopicNum, :MaxQps, :MessageRetentionTime, :MaxStorageCapacity, :Version, :PublicEndPoint, :VpcEndPoint, :NamespaceNum, :UsedStorageBudget, :MaxPublishRateInMessages, :MaxDispatchRateInMessages, :MaxPublishRateInBytes, :MaxDispatchRateInBytes, :TopicNum, :MaxMessageDelayInSeconds, :PublicAccessEnabled, :Tags, :PayMode, :ProjectId, :ProjectName
+        attr_accessor :ClusterId, :ClusterName, :Remark, :EndPointNum, :CreateTime, :Healthy, :HealthyInfo, :Status, :MaxNamespaceNum, :MaxTopicNum, :MaxQps, :MessageRetentionTime, :MaxStorageCapacity, :Version, :PublicEndPoint, :VpcEndPoint, :NamespaceNum, :UsedStorageBudget, :MaxPublishRateInMessages, :MaxDispatchRateInMessages, :MaxPublishRateInBytes, :MaxDispatchRateInBytes, :TopicNum, :MaxMessageDelayInSeconds, :PublicAccessEnabled, :Tags, :PayMode, :ProjectId, :ProjectName, :UpgradeProInstance
 
-        def initialize(clusterid=nil, clustername=nil, remark=nil, endpointnum=nil, createtime=nil, healthy=nil, healthyinfo=nil, status=nil, maxnamespacenum=nil, maxtopicnum=nil, maxqps=nil, messageretentiontime=nil, maxstoragecapacity=nil, version=nil, publicendpoint=nil, vpcendpoint=nil, namespacenum=nil, usedstoragebudget=nil, maxpublishrateinmessages=nil, maxdispatchrateinmessages=nil, maxpublishrateinbytes=nil, maxdispatchrateinbytes=nil, topicnum=nil, maxmessagedelayinseconds=nil, publicaccessenabled=nil, tags=nil, paymode=nil, projectid=nil, projectname=nil)
+        def initialize(clusterid=nil, clustername=nil, remark=nil, endpointnum=nil, createtime=nil, healthy=nil, healthyinfo=nil, status=nil, maxnamespacenum=nil, maxtopicnum=nil, maxqps=nil, messageretentiontime=nil, maxstoragecapacity=nil, version=nil, publicendpoint=nil, vpcendpoint=nil, namespacenum=nil, usedstoragebudget=nil, maxpublishrateinmessages=nil, maxdispatchrateinmessages=nil, maxpublishrateinbytes=nil, maxdispatchrateinbytes=nil, topicnum=nil, maxmessagedelayinseconds=nil, publicaccessenabled=nil, tags=nil, paymode=nil, projectid=nil, projectname=nil, upgradeproinstance=nil)
           @ClusterId = clusterid
           @ClusterName = clustername
           @Remark = remark
@@ -426,6 +410,7 @@ module TencentCloud
           @PayMode = paymode
           @ProjectId = projectid
           @ProjectName = projectname
+          @UpgradeProInstance = upgradeproinstance
         end
 
         def deserialize(params)
@@ -465,6 +450,7 @@ module TencentCloud
           @PayMode = params['PayMode']
           @ProjectId = params['ProjectId']
           @ProjectName = params['ProjectName']
+          @UpgradeProInstance = params['UpgradeProInstance']
         end
       end
 
@@ -868,19 +854,14 @@ module TencentCloud
       # 消费者
       class Consumer < TencentCloud::Common::AbstractModel
         # @param ConnectedSince: 消费者开始连接的时间。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ConnectedSince: String
         # @param ConsumerAddr: 消费者地址。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ConsumerAddr: String
         # @param ConsumerName: 消费者名称。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ConsumerName: String
         # @param ClientVersion: 消费者版本。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClientVersion: String
         # @param Partition: 消费者连接的主题分区号
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Partition: Integer
 
         attr_accessor :ConnectedSince, :ConsumerAddr, :ConsumerName, :ClientVersion, :Partition
@@ -945,10 +926,8 @@ module TencentCloud
       # 消费信息
       class ConsumerLogs < TencentCloud::Common::AbstractModel
         # @param TotalCount: 记录数。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
         # @param ConsumerLogSets: 消费日志。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ConsumerLogSets: Array
 
         attr_accessor :TotalCount, :ConsumerLogSets
@@ -1026,20 +1005,16 @@ module TencentCloud
       # 消费进度详情
       class ConsumersSchedule < TencentCloud::Common::AbstractModel
         # @param Partitions: 当前分区id。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Partitions: Integer
         # @param NumberOfEntries: 消息数量。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NumberOfEntries: Integer
         # @param MsgBacklog: 消息积压数量。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MsgBacklog: Integer
         # @param MsgRateOut: 消费者每秒分发消息的数量之和。
         # @type MsgRateOut: String
         # @param MsgThroughputOut: 消费者每秒消息的byte。
         # @type MsgThroughputOut: String
         # @param MsgRateExpired: 超时丢弃比例。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MsgRateExpired: String
 
         attr_accessor :Partitions, :NumberOfEntries, :MsgBacklog, :MsgRateOut, :MsgThroughputOut, :MsgRateExpired
@@ -2456,14 +2431,12 @@ module TencentCloud
         # @param Partitions: 0或1：非分区topic，无分区；大于1：具体分区topic的分区数。（存量非分区主题返回0，增量非分区主题返回1）
         # @type Partitions: Integer
         # @param Remark: 备注，128字符以内。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Remark: String
         # @param TopicType: 0： 普通消息；
         # 1 ：全局顺序消息；
         # 2 ：局部顺序消息；
         # 3 ：重试队列；
         # 4 ：死信队列；
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TopicType: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -7937,7 +7910,6 @@ module TencentCloud
       # 实例维度组合数组
       class DimensionInstance < TencentCloud::Common::AbstractModel
         # @param Dimensions: 实例的维度组合
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Dimensions: Array
 
         attr_accessor :Dimensions
@@ -7960,12 +7932,23 @@ module TencentCloud
 
       # 指标维度对象
       class DimensionOpt < TencentCloud::Common::AbstractModel
+        # @param Name: 查询的维度名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Value: 查询维度的值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Value: String
 
+        attr_accessor :Name, :Value
 
-        def initialize()
+        def initialize(name=nil, value=nil)
+          @Name = name
+          @Value = value
         end
 
         def deserialize(params)
+          @Name = params['Name']
+          @Value = params['Value']
         end
       end
 
@@ -7986,13 +7969,10 @@ module TencentCloud
         # @param NamespaceName: 命名空间名称
         # @type NamespaceName: String
         # @param TopicNum: Topic数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TopicNum: Integer
         # @param RetentionPolicy: 消息保留策略
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RetentionPolicy: :class:`Tencentcloud::Tdmq.v20200217.models.RetentionPolicy`
         # @param AutoSubscriptionCreation: 是否自动创建订阅
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AutoSubscriptionCreation: Boolean
 
         attr_accessor :EnvironmentId, :Remark, :MsgTTL, :CreateTime, :UpdateTime, :NamespaceId, :NamespaceName, :TopicNum, :RetentionPolicy, :AutoSubscriptionCreation
@@ -8066,11 +8046,8 @@ module TencentCloud
       # 批量绑定名字空间和角色权限关系
       class EnvironmentRoleSet < TencentCloud::Common::AbstractModel
         # @param EnvironmentId: 需要绑定的命名空间Id，不重复且存在资源
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EnvironmentId: String
         # @param Permissions: 名字空间需要绑定的权限，枚举为 "consume" "produce" 组合，但是不为空
-
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Permissions: Array
 
         attr_accessor :EnvironmentId, :Permissions
@@ -8417,7 +8394,6 @@ module TencentCloud
         # @param NodePermWipeFlag: 有调度任务且没有切回的可用区，此标识为true
         # @type NodePermWipeFlag: Boolean
         # @param ZoneStatus: 可用区状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ZoneStatus: String
 
         attr_accessor :ZoneName, :ZoneId, :NodeCount, :NodePermWipeFlag, :ZoneStatus
@@ -8478,16 +8454,12 @@ module TencentCloud
         # @param MaxDispatchTps: 命名空间最大消费TPS
         # @type MaxDispatchTps: Integer
         # @param MaxDispatchRateInBytes: 命名空间最大消费带宽，byte为单位
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaxDispatchRateInBytes: Integer
         # @param MaxPublishRateInBytes: 命名空间最大生产带宽，byte为单位
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaxPublishRateInBytes: Integer
         # @param MaxRetentionSizeInMB: 消息最大保留空间，MB为单位
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaxRetentionSizeInMB: Integer
         # @param PublicAccessEnabled: public Access Enabled
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PublicAccessEnabled: Boolean
 
         attr_accessor :TenantId, :TenantName, :CustomerUin, :CustomerAppId, :ClusterName, :Type, :MaxNamespaces, :UsedNamespaces, :MaxTopics, :UsedTopics, :MaxPartitions, :UsedPartitions, :MaxMsgBacklogSize, :MaxPublishTps, :MaxRetention, :CreateTime, :UpdateTime, :MaxDispatchTps, :MaxDispatchRateInBytes, :MaxPublishRateInBytes, :MaxRetentionSizeInMB, :PublicAccessEnabled
@@ -9857,43 +9829,30 @@ module TencentCloud
       # 分区topic
       class PartitionsTopic < TencentCloud::Common::AbstractModel
         # @param AverageMsgSize: 最后一次间隔内发布消息的平均byte大小。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AverageMsgSize: String
         # @param ConsumerCount: 消费者数量。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ConsumerCount: String
         # @param LastConfirmedEntry: 被记录下来的消息总数。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LastConfirmedEntry: String
         # @param LastLedgerCreatedTimestamp: 最后一个ledger创建的时间。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LastLedgerCreatedTimestamp: String
         # @param MsgRateIn: 本地和复制的发布者每秒发布消息的速率。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MsgRateIn: String
         # @param MsgRateOut: 本地和复制的消费者每秒分发消息的数量之和。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MsgRateOut: String
         # @param MsgThroughputIn: 本地和复制的发布者每秒发布消息的byte。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MsgThroughputIn: String
         # @param MsgThroughputOut: 本地和复制的消费者每秒分发消息的byte。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MsgThroughputOut: String
         # @param NumberOfEntries: 被记录下来的消息总数。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NumberOfEntries: String
         # @param Partitions: 子分区id。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Partitions: Integer
         # @param ProducerCount: 生产者数量。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProducerCount: String
         # @param TotalSize: 以byte计算的所有消息存储总量。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalSize: String
         # @param TopicType: topic类型描述。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TopicType: Integer
 
         attr_accessor :AverageMsgSize, :ConsumerCount, :LastConfirmedEntry, :LastLedgerCreatedTimestamp, :MsgRateIn, :MsgRateOut, :MsgThroughputIn, :MsgThroughputOut, :NumberOfEntries, :Partitions, :ProducerCount, :TotalSize, :TopicType
@@ -10078,31 +10037,22 @@ module TencentCloud
       # 生产者信息
       class Publisher < TencentCloud::Common::AbstractModel
         # @param ProducerId: 生产者id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProducerId: Integer
         # @param ProducerName: 生产者名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProducerName: String
         # @param Address: 生产者地址
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Address: String
         # @param ClientVersion: 客户端版本
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClientVersion: String
         # @param MsgRateIn: 消息生产速率（条/秒）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MsgRateIn: Float
         # @param MsgThroughputIn: 消息生产吞吐速率（字节/秒）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MsgThroughputIn: Float
         # @param AverageMsgSize: 平均消息大小（字节）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AverageMsgSize: Float
         # @param ConnectedSince: 连接时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ConnectedSince: String
         # @param Partition: 生产者连接的主题分区号
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Partition: Integer
 
         attr_accessor :ProducerId, :ProducerName, :Address, :ClientVersion, :MsgRateIn, :MsgThroughputIn, :AverageMsgSize, :ConnectedSince, :Partition
@@ -10135,10 +10085,8 @@ module TencentCloud
       # Pulsar 网络接入点信息
       class PulsarNetworkAccessPointInfo < TencentCloud::Common::AbstractModel
         # @param VpcId: vpc的id，支撑网和公网接入点，该字段为空
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VpcId: String
         # @param SubnetId: 子网id，支撑网和公网接入点，该字段为空
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubnetId: String
         # @param Endpoint: 接入地址
         # @type Endpoint: String
@@ -10154,19 +10102,14 @@ module TencentCloud
         # 2：跨地域访问，已经完成了异地切换，该状态用于源集群的接入点，该状态下的接入点不可删除
         # 3：跨地域访问，随时可以进行异地访问切回，该状态用于目标集群的接入点，该状态下的接入点不可删除
         # 4:跨地域访问，目标集群已经完成异地切回，等待删除状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OperationType: Integer
         # @param AccessPointsType: 接入点类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AccessPointsType: String
         # @param Bandwidth: 带宽，目前只有公网会有这个值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Bandwidth: Integer
         # @param SecurityPolicy: 类
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SecurityPolicy: Array
         # @param StandardAccessPoint: 是否是标准的接入点 true是标准的 false不是标准的
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StandardAccessPoint: Boolean
         # @param ZoneName: 可用区信息
         # @type ZoneName: String
@@ -10224,30 +10167,26 @@ module TencentCloud
         # @param Version: 集群版本
         # @type Version: String
         # @param NodeDistribution: 节点分布情况
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NodeDistribution: Array
         # @param MaxStorage: 最大储存容量，单位：MB
         # @type MaxStorage: Integer
         # @param CanEditRoute: 是否可以修改路由
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CanEditRoute: Boolean
         # @param BillingLabelVersion: 代表是专业版和小规格专业版的不同计费规格PULSAR.P1固定存储PULSAR.P2弹性存储
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BillingLabelVersion: String
         # @param ExpireTime: 实例到期时间戳，毫秒级精度。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExpireTime: Integer
         # @param AutoCreateTopicStatus: 是否开启自动创建主题
         # true就是开启了，false是关闭
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AutoCreateTopicStatus: Boolean
         # @param DefaultPartitionNumber: 自动创建主题的默认分区数，如果没开启就是0
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DefaultPartitionNumber: Integer
+        # @param Tenant: 用户自定义的租户别名，如果没有，会复用专业集群 ID
+        # @type Tenant: String
 
-        attr_accessor :ClusterId, :ClusterName, :Remark, :CreateTime, :Status, :Version, :NodeDistribution, :MaxStorage, :CanEditRoute, :BillingLabelVersion, :ExpireTime, :AutoCreateTopicStatus, :DefaultPartitionNumber
+        attr_accessor :ClusterId, :ClusterName, :Remark, :CreateTime, :Status, :Version, :NodeDistribution, :MaxStorage, :CanEditRoute, :BillingLabelVersion, :ExpireTime, :AutoCreateTopicStatus, :DefaultPartitionNumber, :Tenant
 
-        def initialize(clusterid=nil, clustername=nil, remark=nil, createtime=nil, status=nil, version=nil, nodedistribution=nil, maxstorage=nil, caneditroute=nil, billinglabelversion=nil, expiretime=nil, autocreatetopicstatus=nil, defaultpartitionnumber=nil)
+        def initialize(clusterid=nil, clustername=nil, remark=nil, createtime=nil, status=nil, version=nil, nodedistribution=nil, maxstorage=nil, caneditroute=nil, billinglabelversion=nil, expiretime=nil, autocreatetopicstatus=nil, defaultpartitionnumber=nil, tenant=nil)
           @ClusterId = clusterid
           @ClusterName = clustername
           @Remark = remark
@@ -10261,6 +10200,7 @@ module TencentCloud
           @ExpireTime = expiretime
           @AutoCreateTopicStatus = autocreatetopicstatus
           @DefaultPartitionNumber = defaultpartitionnumber
+          @Tenant = tenant
         end
 
         def deserialize(params)
@@ -10284,6 +10224,7 @@ module TencentCloud
           @ExpireTime = params['ExpireTime']
           @AutoCreateTopicStatus = params['AutoCreateTopicStatus']
           @DefaultPartitionNumber = params['DefaultPartitionNumber']
+          @Tenant = params['Tenant']
         end
       end
 
@@ -10300,16 +10241,16 @@ module TencentCloud
         # @param MaxTopics: 最大主题分区数
         # @type MaxTopics: Integer
         # @param ScalableTps: 规格外弹性TPS
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScalableTps: Integer
         # @param MaxPartitions: 32或者128
         # 当前集群topic的最大分区数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaxPartitions: Integer
+        # @param MaxDelayedMessages: 商品最大延迟消息数量。0代表没有限制
+        # @type MaxDelayedMessages: Integer
 
-        attr_accessor :SpecName, :MaxTps, :MaxBandWidth, :MaxNamespaces, :MaxTopics, :ScalableTps, :MaxPartitions
+        attr_accessor :SpecName, :MaxTps, :MaxBandWidth, :MaxNamespaces, :MaxTopics, :ScalableTps, :MaxPartitions, :MaxDelayedMessages
 
-        def initialize(specname=nil, maxtps=nil, maxbandwidth=nil, maxnamespaces=nil, maxtopics=nil, scalabletps=nil, maxpartitions=nil)
+        def initialize(specname=nil, maxtps=nil, maxbandwidth=nil, maxnamespaces=nil, maxtopics=nil, scalabletps=nil, maxpartitions=nil, maxdelayedmessages=nil)
           @SpecName = specname
           @MaxTps = maxtps
           @MaxBandWidth = maxbandwidth
@@ -10317,6 +10258,7 @@ module TencentCloud
           @MaxTopics = maxtopics
           @ScalableTps = scalabletps
           @MaxPartitions = maxpartitions
+          @MaxDelayedMessages = maxdelayedmessages
         end
 
         def deserialize(params)
@@ -10327,6 +10269,7 @@ module TencentCloud
           @MaxTopics = params['MaxTopics']
           @ScalableTps = params['ScalableTps']
           @MaxPartitions = params['MaxPartitions']
+          @MaxDelayedMessages = params['MaxDelayedMessages']
         end
       end
 
@@ -10353,34 +10296,29 @@ module TencentCloud
         # @param PayMode: 0-后付费，1-预付费
         # @type PayMode: Integer
         # @param Remark: 备注信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Remark: String
         # @param SpecName: 实例配置ID
         # @type SpecName: String
         # @param ScalableTps: 规格外弹性TPS
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScalableTps: Integer
         # @param VpcId: VPC的id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VpcId: String
         # @param SubnetId: 子网id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubnetId: String
         # @param MaxBandWidth: 峰值带宽。单位：mbps
         # @type MaxBandWidth: Integer
         # @param Tags: 集群的标签列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
         # @param CreateTime: 集群创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
         # @param BillingLabelVersion: 代表是专业版和小规格专业版的不同计费规格PULSAR.P1固定存储PULSAR.P2弹性存储
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BillingLabelVersion: String
+        # @param Tenant: 自定义租户
+        # @type Tenant: String
 
-        attr_accessor :InstanceId, :InstanceName, :InstanceVersion, :Status, :ConfigDisplay, :MaxTps, :MaxStorage, :ExpireTime, :AutoRenewFlag, :PayMode, :Remark, :SpecName, :ScalableTps, :VpcId, :SubnetId, :MaxBandWidth, :Tags, :CreateTime, :BillingLabelVersion
+        attr_accessor :InstanceId, :InstanceName, :InstanceVersion, :Status, :ConfigDisplay, :MaxTps, :MaxStorage, :ExpireTime, :AutoRenewFlag, :PayMode, :Remark, :SpecName, :ScalableTps, :VpcId, :SubnetId, :MaxBandWidth, :Tags, :CreateTime, :BillingLabelVersion, :Tenant
 
-        def initialize(instanceid=nil, instancename=nil, instanceversion=nil, status=nil, configdisplay=nil, maxtps=nil, maxstorage=nil, expiretime=nil, autorenewflag=nil, paymode=nil, remark=nil, specname=nil, scalabletps=nil, vpcid=nil, subnetid=nil, maxbandwidth=nil, tags=nil, createtime=nil, billinglabelversion=nil)
+        def initialize(instanceid=nil, instancename=nil, instanceversion=nil, status=nil, configdisplay=nil, maxtps=nil, maxstorage=nil, expiretime=nil, autorenewflag=nil, paymode=nil, remark=nil, specname=nil, scalabletps=nil, vpcid=nil, subnetid=nil, maxbandwidth=nil, tags=nil, createtime=nil, billinglabelversion=nil, tenant=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @InstanceVersion = instanceversion
@@ -10400,6 +10338,7 @@ module TencentCloud
           @Tags = tags
           @CreateTime = createtime
           @BillingLabelVersion = billinglabelversion
+          @Tenant = tenant
         end
 
         def deserialize(params)
@@ -10429,6 +10368,7 @@ module TencentCloud
           end
           @CreateTime = params['CreateTime']
           @BillingLabelVersion = params['BillingLabelVersion']
+          @Tenant = params['Tenant']
         end
       end
 
@@ -11338,16 +11278,12 @@ module TencentCloud
         # @param AckTopic: 提供给 Ack 接口，用来Ack哪一个topic中的消息
         # @type AckTopic: String
         # @param ErrorMsg: 返回的错误信息，如果为空，说明没有错误
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrorMsg: String
         # @param SubName: 返回订阅者的名字，用来创建 ack consumer时使用
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubName: String
         # @param MessageIDList: BatchReceivePolicy 一次性返回的多条消息的 MessageID，用 ‘###’ 来区分不同的 MessageID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MessageIDList: String
         # @param MessagesPayload: BatchReceivePolicy 一次性返回的多条消息的消息内容，用 ‘###’ 来区分不同的消息内容
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MessagesPayload: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -12774,15 +12710,18 @@ module TencentCloud
         # @type CreateTime: String
         # @param UpdateTime: 更新时间。
         # @type UpdateTime: String
+        # @param PermType: 授权类型（Cluster：集群；TopicAndGroup：主题或消费组）
+        # @type PermType: String
 
-        attr_accessor :RoleName, :Token, :Remark, :CreateTime, :UpdateTime
+        attr_accessor :RoleName, :Token, :Remark, :CreateTime, :UpdateTime, :PermType
 
-        def initialize(rolename=nil, token=nil, remark=nil, createtime=nil, updatetime=nil)
+        def initialize(rolename=nil, token=nil, remark=nil, createtime=nil, updatetime=nil, permtype=nil)
           @RoleName = rolename
           @Token = token
           @Remark = remark
           @CreateTime = createtime
           @UpdateTime = updatetime
+          @PermType = permtype
         end
 
         def deserialize(params)
@@ -12791,20 +12730,17 @@ module TencentCloud
           @Remark = params['Remark']
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
+          @PermType = params['PermType']
         end
       end
 
       # 安全策略
       class SecurityPolicy < TencentCloud::Common::AbstractModel
         # @param Route: ip或者网段
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Route: String
         # @param Policy: 策略 true就是允许，白名单或者 false 拒绝 黑名单
-
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Policy: Boolean
         # @param Remark: 备注
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Remark: String
 
         attr_accessor :Route, :Policy, :Remark
@@ -12984,10 +12920,8 @@ module TencentCloud
       # SendMessages返回参数结构体
       class SendMessagesResponse < TencentCloud::Common::AbstractModel
         # @param MessageId: 消息的messageID, 是全局唯一的，用来标识消息的元数据信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MessageId: String
         # @param ErrorMsg: 返回的错误消息，如果返回为 “”，说明没有错误
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrorMsg: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -13218,58 +13152,40 @@ module TencentCloud
         # @param EnvironmentId: 环境（命名空间）名称。
         # @type EnvironmentId: String
         # @param ConnectedSince: 消费者开始连接的时间。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ConnectedSince: String
         # @param ConsumerAddr: 消费者地址。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ConsumerAddr: String
         # @param ConsumerCount: 消费者数量。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ConsumerCount: String
         # @param ConsumerName: 消费者名称。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ConsumerName: String
         # @param MsgBacklog: 堆积的消息数量。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MsgBacklog: String
         # @param MsgRateExpired: 于TTL，此订阅下没有被发送而是被丢弃的比例。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MsgRateExpired: String
         # @param MsgRateOut: 消费者每秒分发消息的数量之和。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MsgRateOut: String
         # @param MsgThroughputOut: 消费者每秒消息的byte。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MsgThroughputOut: String
         # @param SubscriptionName: 订阅名称。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubscriptionName: String
         # @param ConsumerSets: 消费者集合。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ConsumerSets: Array
         # @param IsOnline: 是否在线。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsOnline: Boolean
         # @param ConsumersScheduleSets: 消费进度集合。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ConsumersScheduleSets: Array
         # @param Remark: 备注。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Remark: String
         # @param CreateTime: 创建时间。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
         # @param UpdateTime: 最近修改时间。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: String
         # @param SubType: 订阅类型，Exclusive，Shared，Failover， Key_Shared，空或NULL表示未知，
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubType: String
         # @param BlockedSubscriptionOnUnackedMsgs: 是否由于未 ack 数到达上限而被 block
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BlockedSubscriptionOnUnackedMsgs: Boolean
         # @param MaxUnackedMsgNum: 未 ack 消息数上限
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaxUnackedMsgNum: Integer
 
         attr_accessor :TopicName, :EnvironmentId, :ConnectedSince, :ConsumerAddr, :ConsumerCount, :ConsumerName, :MsgBacklog, :MsgRateExpired, :MsgRateOut, :MsgThroughputOut, :SubscriptionName, :ConsumerSets, :IsOnline, :ConsumersScheduleSets, :Remark, :CreateTime, :UpdateTime, :SubType, :BlockedSubscriptionOnUnackedMsgs, :MaxUnackedMsgNum
@@ -13362,10 +13278,8 @@ module TencentCloud
       # 标签的key/value的类型
       class Tag < TencentCloud::Common::AbstractModel
         # @param TagKey: 标签的key的值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TagKey: String
         # @param TagValue: 标签的Value的值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TagValue: String
 
         attr_accessor :TagKey, :TagValue
@@ -13384,43 +13298,30 @@ module TencentCloud
       # 主题实例
       class Topic < TencentCloud::Common::AbstractModel
         # @param AverageMsgSize: 最后一次间隔内发布消息的平均byte大小。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AverageMsgSize: String
         # @param ConsumerCount: 消费者数量。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ConsumerCount: String
         # @param LastConfirmedEntry: 被记录下来的消息总数。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LastConfirmedEntry: String
         # @param LastLedgerCreatedTimestamp: 最后一个ledger创建的时间。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LastLedgerCreatedTimestamp: String
         # @param MsgRateIn: 本地和复制的发布者每秒发布消息的速率。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MsgRateIn: String
         # @param MsgRateOut: 本地和复制的消费者每秒分发消息的数量之和。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MsgRateOut: String
         # @param MsgThroughputIn: 本地和复制的发布者每秒发布消息的byte。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MsgThroughputIn: String
         # @param MsgThroughputOut: 本地和复制的消费者每秒分发消息的byte。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MsgThroughputOut: String
         # @param NumberOfEntries: 被记录下来的消息总数。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NumberOfEntries: String
         # @param Partitions: 分区数<=0：topic下无子分区。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Partitions: Integer
         # @param ProducerCount: 生产者数量。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProducerCount: String
         # @param TotalSize: 以byte计算的所有消息存储总量。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalSize: String
         # @param SubTopicSets: 分区topic里面的子分区。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubTopicSets: Array
         # @param TopicType: topic类型描述：
         # 0：普通消息；
@@ -13429,43 +13330,36 @@ module TencentCloud
         # 3：重试队列；
         # 4：死信队列；
         # 5：事务消息。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TopicType: Integer
         # @param EnvironmentId: 环境（命名空间）名称。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EnvironmentId: String
         # @param TopicName: 主题名称。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TopicName: String
         # @param Remark: 说明，128个字符以内。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Remark: String
         # @param CreateTime: 创建时间。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
         # @param UpdateTime: 最近修改时间。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: String
         # @param ProducerLimit: 生产者上限。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProducerLimit: String
         # @param ConsumerLimit: 消费者上限。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ConsumerLimit: String
         # @param PulsarTopicType: 0: 非持久非分区
         # 1: 非持久分区
         # 2: 持久非分区
         # 3: 持久分区
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PulsarTopicType: Integer
         # @param MsgTTL: 未消费消息过期时间，单位：秒
-
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MsgTTL: Integer
+        # @param ClusterId: 集群 ID
+        # @type ClusterId: String
+        # @param Tenant: 用户自定义的租户别名，如果没有，会复用专业集群 ID
+        # @type Tenant: String
 
-        attr_accessor :AverageMsgSize, :ConsumerCount, :LastConfirmedEntry, :LastLedgerCreatedTimestamp, :MsgRateIn, :MsgRateOut, :MsgThroughputIn, :MsgThroughputOut, :NumberOfEntries, :Partitions, :ProducerCount, :TotalSize, :SubTopicSets, :TopicType, :EnvironmentId, :TopicName, :Remark, :CreateTime, :UpdateTime, :ProducerLimit, :ConsumerLimit, :PulsarTopicType, :MsgTTL
+        attr_accessor :AverageMsgSize, :ConsumerCount, :LastConfirmedEntry, :LastLedgerCreatedTimestamp, :MsgRateIn, :MsgRateOut, :MsgThroughputIn, :MsgThroughputOut, :NumberOfEntries, :Partitions, :ProducerCount, :TotalSize, :SubTopicSets, :TopicType, :EnvironmentId, :TopicName, :Remark, :CreateTime, :UpdateTime, :ProducerLimit, :ConsumerLimit, :PulsarTopicType, :MsgTTL, :ClusterId, :Tenant
 
-        def initialize(averagemsgsize=nil, consumercount=nil, lastconfirmedentry=nil, lastledgercreatedtimestamp=nil, msgratein=nil, msgrateout=nil, msgthroughputin=nil, msgthroughputout=nil, numberofentries=nil, partitions=nil, producercount=nil, totalsize=nil, subtopicsets=nil, topictype=nil, environmentid=nil, topicname=nil, remark=nil, createtime=nil, updatetime=nil, producerlimit=nil, consumerlimit=nil, pulsartopictype=nil, msgttl=nil)
+        def initialize(averagemsgsize=nil, consumercount=nil, lastconfirmedentry=nil, lastledgercreatedtimestamp=nil, msgratein=nil, msgrateout=nil, msgthroughputin=nil, msgthroughputout=nil, numberofentries=nil, partitions=nil, producercount=nil, totalsize=nil, subtopicsets=nil, topictype=nil, environmentid=nil, topicname=nil, remark=nil, createtime=nil, updatetime=nil, producerlimit=nil, consumerlimit=nil, pulsartopictype=nil, msgttl=nil, clusterid=nil, tenant=nil)
           @AverageMsgSize = averagemsgsize
           @ConsumerCount = consumercount
           @LastConfirmedEntry = lastconfirmedentry
@@ -13489,6 +13383,8 @@ module TencentCloud
           @ConsumerLimit = consumerlimit
           @PulsarTopicType = pulsartopictype
           @MsgTTL = msgttl
+          @ClusterId = clusterid
+          @Tenant = tenant
         end
 
         def deserialize(params)
@@ -13522,6 +13418,8 @@ module TencentCloud
           @ConsumerLimit = params['ConsumerLimit']
           @PulsarTopicType = params['PulsarTopicType']
           @MsgTTL = params['MsgTTL']
+          @ClusterId = params['ClusterId']
+          @Tenant = params['Tenant']
         end
       end
 
@@ -13590,13 +13488,11 @@ module TencentCloud
       # 主题实例
       class Topic_Simplification < TencentCloud::Common::AbstractModel
         # @param TopicName: 主题名称。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TopicName: String
         # @param PulsarTopicType: 0: 非持久非分区
         # 1: 非持久分区
         # 2: 持久非分区
         # 3: 持久分区
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PulsarTopicType: Integer
 
         attr_accessor :TopicName, :PulsarTopicType
@@ -13749,7 +13645,6 @@ module TencentCloud
         # @param Port: Vpc的Port
         # @type Port: Integer
         # @param Remark: 说明，128个字符以内
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Remark: String
 
         attr_accessor :UniqueVpcId, :UniqueSubnetId, :RouterId, :Ip, :Port, :Remark

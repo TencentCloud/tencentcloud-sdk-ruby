@@ -7648,6 +7648,38 @@ module TencentCloud
         end
       end
 
+      # RemoveReplicationGroup请求参数结构体
+      class RemoveReplicationGroupRequest < TencentCloud::Common::AbstractModel
+        # @param GroupId: 复制组ID
+        # @type GroupId: String
+
+        attr_accessor :GroupId
+
+        def initialize(groupid=nil)
+          @GroupId = groupid
+        end
+
+        def deserialize(params)
+          @GroupId = params['GroupId']
+        end
+      end
+
+      # RemoveReplicationGroup返回参数结构体
+      class RemoveReplicationGroupResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # RemoveReplicationInstance请求参数结构体
       class RemoveReplicationInstanceRequest < TencentCloud::Common::AbstractModel
         # @param GroupId: 复制组 ID。例如：crs-rpl-m3zt****。请登录[Redis 控制台](https://console.cloud.tencent.com/redis/replication)的全球复制组列表获取复制组 ID。

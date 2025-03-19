@@ -8473,6 +8473,49 @@ module TencentCloud
         end
       end
 
+      # DescribePrometheusIntegrationMetrics请求参数结构体
+      class DescribePrometheusIntegrationMetricsRequest < TencentCloud::Common::AbstractModel
+        # @param IntegrationCode: 集成类型标识。取值参考DescribePrometheusIntegrations接口返回中IntegrationSet[i].Code参数
+        # @type IntegrationCode: String
+
+        attr_accessor :IntegrationCode
+
+        def initialize(integrationcode=nil)
+          @IntegrationCode = integrationcode
+        end
+
+        def deserialize(params)
+          @IntegrationCode = params['IntegrationCode']
+        end
+      end
+
+      # DescribePrometheusIntegrationMetrics返回参数结构体
+      class DescribePrometheusIntegrationMetricsResponse < TencentCloud::Common::AbstractModel
+        # @param IntegrationMetricSet: 集成指标详情分组
+        # @type IntegrationMetricSet: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :IntegrationMetricSet, :RequestId
+
+        def initialize(integrationmetricset=nil, requestid=nil)
+          @IntegrationMetricSet = integrationmetricset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['IntegrationMetricSet'].nil?
+            @IntegrationMetricSet = []
+            params['IntegrationMetricSet'].each do |i|
+              integrationmetricgroup_tmp = IntegrationMetricGroup.new
+              integrationmetricgroup_tmp.deserialize(i)
+              @IntegrationMetricSet << integrationmetricgroup_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribePrometheusRecordRules请求参数结构体
       class DescribePrometheusRecordRulesRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: Prometheus 实例 ID
@@ -10193,6 +10236,69 @@ module TencentCloud
           @Category = params['Category']
           @InstanceDesc = params['InstanceDesc']
           @GrafanaDashboardURL = params['GrafanaDashboardURL']
+        end
+      end
+
+      # prometheus集成指标详情
+      class IntegrationMetric < TencentCloud::Common::AbstractModel
+        # @param MetricName: 指标名
+        # @type MetricName: String
+        # @param Name: 指标名称
+        # @type Name: String
+        # @param MetricType: 统计类型
+        # @type MetricType: String
+        # @param Unit: 单位
+        # @type Unit: String
+        # @param Description: 指标详细描述
+        # @type Description: String
+
+        attr_accessor :MetricName, :Name, :MetricType, :Unit, :Description
+
+        def initialize(metricname=nil, name=nil, metrictype=nil, unit=nil, description=nil)
+          @MetricName = metricname
+          @Name = name
+          @MetricType = metrictype
+          @Unit = unit
+          @Description = description
+        end
+
+        def deserialize(params)
+          @MetricName = params['MetricName']
+          @Name = params['Name']
+          @MetricType = params['MetricType']
+          @Unit = params['Unit']
+          @Description = params['Description']
+        end
+      end
+
+      # prometheus集成分组指标
+      class IntegrationMetricGroup < TencentCloud::Common::AbstractModel
+        # @param Group: 分组标识
+        # @type Group: String
+        # @param Metrics: 指标详情
+        # @type Metrics: Array
+        # @param GroupName: 分组名称
+        # @type GroupName: String
+
+        attr_accessor :Group, :Metrics, :GroupName
+
+        def initialize(group=nil, metrics=nil, groupname=nil)
+          @Group = group
+          @Metrics = metrics
+          @GroupName = groupname
+        end
+
+        def deserialize(params)
+          @Group = params['Group']
+          unless params['Metrics'].nil?
+            @Metrics = []
+            params['Metrics'].each do |i|
+              integrationmetric_tmp = IntegrationMetric.new
+              integrationmetric_tmp.deserialize(i)
+              @Metrics << integrationmetric_tmp
+            end
+          end
+          @GroupName = params['GroupName']
         end
       end
 

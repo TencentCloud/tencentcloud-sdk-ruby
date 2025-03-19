@@ -9320,7 +9320,7 @@ module TencentCloud
         # @type ReserveDuration: Integer
         # @param BackupFreq: 该参数目前不支持修改，无需填写。备份频率，长度为7的数组，分别对应周一到周日的备份方式，full-全量备份，increment-增量备份
         # @type BackupFreq: Array
-        # @param BackupType: 该参数目前不支持修改，无需填写。备份方式，logic-逻辑备份，snapshot-快照备份
+        # @param BackupType: 该参数目前不支持修改，无需填写。
         # @type BackupType: String
         # @param LogicBackupConfig: 逻辑备份配置
         # @type LogicBackupConfig: :class:`Tencentcloud::Cynosdb.v20190107.models.LogicBackupConfigInfo`

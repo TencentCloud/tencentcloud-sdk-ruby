@@ -404,10 +404,8 @@ module TencentCloud
         # @param ImgUrl: 证件照片地址。
         # @type ImgUrl: String
         # @param OriginImgUrl: 原始照片地址
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OriginImgUrl: String
         # @param RegistrantCertificateCode: 联系人证件号码。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RegistrantCertificateCode: String
         # @param RegistrantCertificateType: 联系人证件类型。
         # SFZ: 身份证。
@@ -438,10 +436,8 @@ module TencentCloud
         # TWJZZ: 中国台湾居住证。
         # QTTYDM: 其他-统一社会信用代码证书。
         # GZJGZY: 公证机构执业证。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RegistrantCertificateType: String
         # @param RegistrantImgUrl: 联系人证件照片地址。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RegistrantImgUrl: String
 
         attr_accessor :CertificateCode, :CertificateType, :ImgUrl, :OriginImgUrl, :RegistrantCertificateCode, :RegistrantCertificateType, :RegistrantImgUrl

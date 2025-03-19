@@ -1616,13 +1616,10 @@ module TencentCloud
         # @param DiagItem: 诊断项。
         # @type DiagItem: String
         # @param InstanceId: 实例 ID 。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceId: String
         # @param Metric: 保留字段
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Metric: String
         # @param Region: 地域
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Region: String
 
         attr_accessor :DiagType, :EndTime, :StartTime, :EventId, :Severity, :Outline, :DiagItem, :InstanceId, :Metric, :Region
@@ -1889,7 +1886,6 @@ module TencentCloud
         # @param OverviewDisplay: 实例概览开关，Yes/No。
         # @type OverviewDisplay: String
         # @param KeyDelimiters: redis大key分析的自定义分割符，仅redis使用
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type KeyDelimiters: Array
 
         attr_accessor :DailyInspection, :OverviewDisplay, :KeyDelimiters
@@ -2171,7 +2167,6 @@ module TencentCloud
         # @param Unit: 指标单位。
         # @type Unit: String
         # @param Values: 指标值。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Values: Array
 
         attr_accessor :Metric, :Unit, :Values
@@ -2223,7 +2218,6 @@ module TencentCloud
         # @param Unit: 指标单位。
         # @type Unit: String
         # @param Values: 指标值。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Values: Array
 
         attr_accessor :Metric, :Unit, :Values
@@ -2324,7 +2318,6 @@ module TencentCloud
         # @param TableRows: 行数。
         # @type TableRows: Integer
         # @param PhysicalFileSize: 库中所有表对应的独立物理文件大小加和（MB）。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PhysicalFileSize: Float
 
         attr_accessor :TableSchema, :DataLength, :IndexLength, :DataFree, :TotalLength, :FragRatio, :TableRows, :PhysicalFileSize
@@ -2384,7 +2377,6 @@ module TencentCloud
         # @param ScoreLostMax: 扣分总分上限。
         # @type ScoreLostMax: Integer
         # @param Items: 扣分项列表。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Items: Array
 
         attr_accessor :IssueType, :ScoreLost, :ScoreLostMax, :Items

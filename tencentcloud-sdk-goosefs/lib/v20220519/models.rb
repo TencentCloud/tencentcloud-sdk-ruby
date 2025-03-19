@@ -1317,7 +1317,6 @@ module TencentCloud
         # @param RoleName: 角色名
         # @type RoleName: String
         # @param Token: 用于goosefs client/sdk等
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Token: String
 
         attr_accessor :RoleName, :Token

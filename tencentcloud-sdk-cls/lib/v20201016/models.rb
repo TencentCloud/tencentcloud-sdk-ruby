@@ -60,13 +60,10 @@ module TencentCloud
       # 高级过滤规则
       class AdvanceFilterRuleInfo < TencentCloud::Common::AbstractModel
         # @param Key: 过滤字段
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Key: String
         # @param Rule: 过滤规则，0:等于，1:字段存在，2:字段不存在
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Rule: Integer
         # @param Value: 过滤值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: String
 
         attr_accessor :Key, :Rule, :Value
@@ -93,7 +90,6 @@ module TencentCloud
         # Fields：字段。value支持 __SOURCE__；__FILENAME__；__HOSTNAME__；__TIMESTAMP__；__INDEX_STATUS__；__PKG_LOGID__；__TOPIC__。
         # Format：显示形式。value支持 1：每条日志一行；2：每条日志每个字段一行。
         # Limit：最大日志条数。 value示例： 5。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Key: String
         # @param Value: 值。
         # 键对应值如下：
@@ -103,7 +99,6 @@ module TencentCloud
         # Fields：字段。value支持 __SOURCE__；__FILENAME__；__HOSTNAME__；__TIMESTAMP__；__INDEX_STATUS__；__PKG_LOGID__；__TOPIC__。
         # Format：显示形式。value支持 1：每条日志一行；2：每条日志每个字段一行。
         # Limit：最大日志条数。 value示例： 5。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: String
 
         attr_accessor :Key, :Value
@@ -167,29 +162,21 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MessageTemplate: String
         # @param CallBack: 自定义回调模板
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CallBack: :class:`Tencentcloud::Cls.v20201016.models.CallBackInfo`
         # @param Analysis: 多维分析设置
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Analysis: Array
-        # @param GroupTriggerStatus: 分组触发状态。1：开启，0：关闭（默认）
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param GroupTriggerStatus: 分组触发状态。true：开启，false：关闭（默认）
         # @type GroupTriggerStatus: Boolean
         # @param GroupTriggerCondition: 分组触发条件。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GroupTriggerCondition: Array
         # @param MonitorObjectType: 监控对象类型。0:执行语句共用监控对象;1:每个执行语句单独选择监控对象。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MonitorObjectType: Integer
         # @param AlarmLevel: 告警级别。0:警告(Warn);1:提醒(Info);2:紧急 (Critical)。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AlarmLevel: Integer
         # @param Classifications: 告警附加分类字段。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Classifications: Array
         # @param MultiConditions: 多触发条件。与
         # Condition互斥。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MultiConditions: Array
 
         attr_accessor :Name, :AlarmTargets, :MonitorTime, :Condition, :TriggerCount, :AlarmPeriod, :AlarmNoticeIds, :Status, :AlarmId, :CreateTime, :UpdateTime, :MessageTemplate, :CallBack, :Analysis, :GroupTriggerStatus, :GroupTriggerCondition, :MonitorObjectType, :AlarmLevel, :Classifications, :MultiConditions
@@ -280,7 +267,6 @@ module TencentCloud
         # @param Name: 告警通知渠道组名称。
         # @type Name: String
         # @param Tags: 告警通知渠道组绑定的标签信息。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
         # @param Type: 告警模板的类型。可选值：
         # <br><li> Trigger - 告警触发</li>
@@ -288,32 +274,24 @@ module TencentCloud
         # <br><li> All - 告警触发和告警恢复</li>
         # @type Type: String
         # @param NoticeReceivers: 告警通知模板接收者信息。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NoticeReceivers: Array
         # @param WebCallbacks: 告警通知模板回调信息。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WebCallbacks: Array
         # @param AlarmNoticeId: 告警通知模板ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AlarmNoticeId: String
         # @param NoticeRules: 通知规则。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NoticeRules: Array
         # @param AlarmShieldStatus: 免登录操作告警开关。
         # 参数值： 1：关闭 2：开启（默认开启）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AlarmShieldStatus: Integer
         # @param JumpDomain: 调用链接域名。http:// 或者 https:// 开头，不能/结尾
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type JumpDomain: String
         # @param AlarmNoticeDeliverConfig: 投递相关信息。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AlarmNoticeDeliverConfig: :class:`Tencentcloud::Cls.v20201016.models.AlarmNoticeDeliverConfig`
         # @param CreateTime: 创建时间。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
         # @param UpdateTime: 最近更新时间。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: String
 
         attr_accessor :Name, :Tags, :Type, :NoticeReceivers, :WebCallbacks, :AlarmNoticeId, :NoticeRules, :AlarmShieldStatus, :JumpDomain, :AlarmNoticeDeliverConfig, :CreateTime, :UpdateTime
@@ -385,7 +363,6 @@ module TencentCloud
         # @param DeliverConfig: 通知渠道投递日志配置信息。
         # @type DeliverConfig: :class:`Tencentcloud::Cls.v20201016.models.DeliverConfig`
         # @param ErrMsg: 投递失败原因。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrMsg: String
 
         attr_accessor :DeliverConfig, :ErrMsg
@@ -417,7 +394,6 @@ module TencentCloud
         # @param Type: 屏蔽类型。1：屏蔽所有通知，2：按照Rule参数屏蔽匹配规则的通知。
         # @type Type: Integer
         # @param Rule: 屏蔽规则，当Type为2时必填。规则填写方式详见[产品文档](https://cloud.tencent.com/document/product/614/103178#rule)。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Rule: String
         # @param Reason: 屏蔽原因。
         # @type Reason: String
@@ -470,27 +446,20 @@ module TencentCloud
       # 告警对象
       class AlarmTarget < TencentCloud::Common::AbstractModel
         # @param TopicId: 日志主题ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TopicId: String
         # @param Query: 查询语句。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Query: String
         # @param Number: 告警对象序号；从1开始递增。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Number: Integer
         # @param StartTimeOffset: 查询范围起始时间相对于告警执行时间的偏移，单位为分钟，取值为非正，最大值为0，最小值为-1440。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StartTimeOffset: Integer
         # @param EndTimeOffset: 查询范围终止时间相对于告警执行时间的偏移，单位为分钟，取值为非正，须大于StartTimeOffset，最大值为0，最小值为-1440。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EndTimeOffset: Integer
         # @param LogsetId: 日志集ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LogsetId: String
         # @param SyntaxRule: 检索语法规则，默认值为0。
         # 0：Lucene语法，1：CQL语法。
         # 详细说明参见<a href="https://cloud.tencent.com/document/product/614/47044#RetrievesConditionalRules" target="_blank">检索条件语法规则</a>
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SyntaxRule: Integer
 
         attr_accessor :TopicId, :Query, :Number, :StartTimeOffset, :EndTimeOffset, :LogsetId, :SyntaxRule
@@ -537,11 +506,9 @@ module TencentCloud
         # @param SyntaxRule: 检索语法规则，默认值为0。
         # 0：Lucene语法，1：CQL语法。
         # 详细说明参见<a href="https://cloud.tencent.com/document/product/614/47044#RetrievesConditionalRules" target="_blank">检索条件语法规则</a>
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SyntaxRule: Integer
         # @param BizType: 主题类型。
         # 0: 日志主题，1: 指标主题
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BizType: Integer
 
         attr_accessor :LogsetId, :LogsetName, :TopicId, :TopicName, :Query, :Number, :StartTimeOffset, :EndTimeOffset, :SyntaxRule, :BizType
@@ -622,14 +589,11 @@ module TencentCloud
         # @param CreateTime: 告警发生时间，毫秒级Unix时间戳
         # @type CreateTime: Integer
         # @param GroupTriggerCondition: 告警分组触发时对应的分组信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GroupTriggerCondition: Array
         # @param AlarmLevel: 告警级别，0代表警告(Warn)，1代表提醒(Info)，2代表紧急 (Critical)
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AlarmLevel: Integer
         # @param MonitorObjectType: 监控对象类型。
         # 0:执行语句共用监控对象; 1:每个执行语句单独选择监控对象。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MonitorObjectType: Integer
 
         attr_accessor :RecordId, :AlarmId, :AlarmName, :TopicId, :TopicName, :Region, :Trigger, :TriggerCount, :AlarmPeriod, :Notices, :Duration, :Status, :CreateTime, :GroupTriggerCondition, :AlarmLevel, :MonitorObjectType
@@ -690,13 +654,10 @@ module TencentCloud
       # 多维分析的分析维度
       class AnalysisDimensional < TencentCloud::Common::AbstractModel
         # @param Name: 分析名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Type: 分析类型：query，field ，original
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: String
         # @param Content: 分析内容
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Content: String
         # @param ConfigInfo: 多维分析配置。
 
@@ -849,7 +810,6 @@ module TencentCloud
         # ```
         # "Content-Type: application/json"
         # ```
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Headers: Array
 
         attr_accessor :Body, :Headers
@@ -960,7 +920,6 @@ module TencentCloud
       # CheckRechargeKafkaServer返回参数结构体
       class CheckRechargeKafkaServerResponse < TencentCloud::Common::AbstractModel
         # @param Status: Kafka集群可访问状态，0：可正常访问 ...
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1057,21 +1016,22 @@ module TencentCloud
         # @param TopicId: 日志主题ID
         # @type TopicId: String
         # @param Extend: 日志配置拓展信息， 一般用于存储额外的日志投递配置
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Extend: String
         # @param LogType: 日志类型，支持枚举：CDS-AUDIT、CDS-RISK、CDB-AUDIT、TDSQL-C-AUDIT、MongoDB-AUDIT、MongoDB-SlowLog、MongoDB-ErrorLog、TDMYSQL-SLOW、DCDB-AUDIT、DCDB-SLOW、DCDB-ERROR、MariaDB-AUDIT、MariaDB-SLOW、MariaDB-ERROR、PostgreSQL-SLOW、PostgreSQL-ERROR、PostgreSQL-AUDIT、BH-FILELOG、BH-COMMANDLOG、APIS-ACCESS
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LogType: String
+        # @param Status: 任务状态， 0创建中 1创建完成 2 删除中
+        # @type Status: Integer
 
-        attr_accessor :ClsRegion, :InstanceId, :LogsetId, :TopicId, :Extend, :LogType
+        attr_accessor :ClsRegion, :InstanceId, :LogsetId, :TopicId, :Extend, :LogType, :Status
 
-        def initialize(clsregion=nil, instanceid=nil, logsetid=nil, topicid=nil, extend=nil, logtype=nil)
+        def initialize(clsregion=nil, instanceid=nil, logsetid=nil, topicid=nil, extend=nil, logtype=nil, status=nil)
           @ClsRegion = clsregion
           @InstanceId = instanceid
           @LogsetId = logsetid
           @TopicId = topicid
           @Extend = extend
           @LogType = logtype
+          @Status = status
         end
 
         def deserialize(params)
@@ -1081,6 +1041,7 @@ module TencentCloud
           @TopicId = params['TopicId']
           @Extend = params['Extend']
           @LogType = params['LogType']
+          @Status = params['Status']
         end
       end
 
@@ -1109,12 +1070,10 @@ module TencentCloud
         # @param Type: 采集类型，必填字段。
         # <li>0：元数据配置。</li>
         # <li>1：指定Pod Label。</li>
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: Integer
         # @param CollectConfigs: 指定采集类型的采集配置信息。
         # <li>当Type为0时，CollectConfigs不允许为空。</li>
         # <li>当Type为1时，CollectConfigs为空时，表示选择所有Pod Label；否则CollectConfigs为指定Pod Label。</li>
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CollectConfigs: Array
 
         attr_accessor :Type, :CollectConfigs
@@ -1208,22 +1167,16 @@ module TencentCloud
         # @param Type: 类型：container_stdout、container_file、host_file
         # @type Type: String
         # @param HostFile: 节点文件配置信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HostFile: :class:`Tencentcloud::Cls.v20201016.models.HostFileInfo`
         # @param ContainerFile: 容器文件路径信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ContainerFile: :class:`Tencentcloud::Cls.v20201016.models.ContainerFileInfo`
         # @param ContainerStdout: 容器标准输出信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ContainerStdout: :class:`Tencentcloud::Cls.v20201016.models.ContainerStdoutInfo`
         # @param LogFormat: 日志格式化方式
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LogFormat: String
         # @param LogType: 采集的日志类型，json_log代表json格式日志，delimiter_log代表分隔符格式日志，minimalist_log代表极简日志，multiline_log代表多行日志，fullregex_log代表完整正则，默认为minimalist_log
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LogType: String
         # @param ExtractRule: 提取规则，如果设置了ExtractRule，则必须设置LogType
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExtractRule: :class:`Tencentcloud::Cls.v20201016.models.ExtractRuleInfo`
         # @param ExcludePaths: 采集黑名单路径列表
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -1233,31 +1186,24 @@ module TencentCloud
         # @param CreateTime: 创建时间
         # @type CreateTime: String
         # @param UserDefineRule: 用户自定义解析字符串
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UserDefineRule: String
         # @param GroupId: 机器组ID
         # @type GroupId: String
         # @param ConfigFlag: 自建采集配置标
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ConfigFlag: String
         # @param LogsetId: 日志集ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LogsetId: String
         # @param LogsetName: 日志集name
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LogsetName: String
         # @param TopicName: 日志主题name
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TopicName: String
         # @param CollectInfos: 采集相关配置信息。详情见 CollectInfo复杂类型配置。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CollectInfos: Array
         # @param AdvancedConfig: 高级采集配置。 Json字符串， Key/Value定义为如下：
         # - ClsAgentFileTimeout(超时属性), 取值范围: 大于等于0的整数， 0为不超时
         # - ClsAgentMaxDepth(最大目录深度)，取值范围: 大于等于0的整数
         # - ClsAgentParseFailMerge(合并解析失败日志)，取值范围: true或false
         # 样例：{"ClsAgentFileTimeout":0,"ClsAgentMaxDepth":10,"ClsAgentParseFailMerge":true}
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AdvancedConfig: String
 
         attr_accessor :ConfigExtraId, :Name, :TopicId, :Type, :HostFile, :ContainerFile, :ContainerStdout, :LogFormat, :LogType, :ExtractRule, :ExcludePaths, :UpdateTime, :CreateTime, :UserDefineRule, :GroupId, :ConfigFlag, :LogsetId, :LogsetName, :TopicName, :CollectInfos, :AdvancedConfig
@@ -1342,13 +1288,10 @@ module TencentCloud
         # @param ConfigId: 采集规则配置ID
         # @type ConfigId: String
         # @param Name: 采集规则配置名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param LogFormat: 日志格式化方式
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LogFormat: String
         # @param Path: 日志采集路径
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Path: String
         # @param LogType: 采集的日志类型。
         # - json_log代表：JSON-文件日志（详见[使用 JSON 提取模式采集日志](https://cloud.tencent.com/document/product/614/17419)）；
@@ -1360,10 +1303,8 @@ module TencentCloud
         # - user_define_log代表：组合解析（适用于多格式嵌套的日志，详见[使用组合解析提取模式采集日志](https://cloud.tencent.com/document/product/614/61310)）；
         # - service_syslog代表：syslog 采集（详见[采集 Syslog](https://cloud.tencent.com/document/product/614/81454)）；
         # - windows_event_log代表：Windows事件日志（详见[采集 Windows 事件日志](https://cloud.tencent.com/document/product/614/96678)）。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LogType: String
         # @param ExtractRule: 提取规则，如果设置了ExtractRule，则必须设置LogType
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExtractRule: :class:`Tencentcloud::Cls.v20201016.models.ExtractRuleInfo`
         # @param ExcludePaths: 采集黑名单路径列表
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -1371,12 +1312,10 @@ module TencentCloud
         # @param Output: 采集配置所属日志主题ID即TopicId
         # @type Output: String
         # @param UpdateTime: 更新时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: String
         # @param CreateTime: 创建时间
         # @type CreateTime: String
         # @param UserDefineRule: 用户自定义解析字符串，详见[使用组合解析提取模式采集日志](https://cloud.tencent.com/document/product/614/61310)。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UserDefineRule: String
         # @param AdvancedConfig: 高级采集配置。 Json字符串， Key/Value定义为如下：
         # - ClsAgentFileTimeout(超时属性), 取值范围: 大于等于0的整数， 0为不超时
@@ -1386,7 +1325,6 @@ module TencentCloud
         # `{\"ClsAgentFileTimeout\":0,\"ClsAgentMaxDepth\":10,\"ClsAgentParseFailMerge\":true}`
 
         # 控制台默认占位值：`{\"ClsAgentDefault\":0}`
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AdvancedConfig: String
 
         attr_accessor :ConfigId, :Name, :LogFormat, :Path, :LogType, :ExtractRule, :ExcludePaths, :Output, :UpdateTime, :CreateTime, :UserDefineRule, :AdvancedConfig
@@ -1536,10 +1474,8 @@ module TencentCloud
       class ConsumerContent < TencentCloud::Common::AbstractModel
         # @param EnableTag: 是否投递 TAG 信息。
         # 当EnableTag为true时，表示投递TAG元信息。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EnableTag: Boolean
         # @param MetaFields: 需要投递的元数据列表，目前仅支持：\_\_SOURCE\_\_，\_\_FILENAME\_\_，\_\_TIMESTAMP\_\_，\_\_HOSTNAME\_\_和\_\_PKGID\_\_
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MetaFields: Array
         # @param TagJsonNotTiled: 当EnableTag为true时，必须填写TagJsonNotTiled字段。
         # TagJsonNotTiled用于标识tag信息是否json平铺。
@@ -1551,10 +1487,8 @@ module TencentCloud
         # TagJsonNotTiled为false时平铺，示例：
         # TAG信息：`{"__TAG__":{"fieldA":200,"fieldB":"text"}}`
         # 平铺：`{"__TAG__.fieldA":200,"__TAG__.fieldB":"text"}`
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TagJsonNotTiled: Boolean
         # @param TimestampAccuracy: 投递时间戳精度，可选项 [1：秒；2：毫秒] ，默认是1。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TimestampAccuracy: Integer
         # @param JsonType: 投递Json格式。
         # JsonType为0：和原始日志一致，不转义。示例：
@@ -1564,7 +1498,6 @@ module TencentCloud
         # JsonType为1：转义。示例：
         # 日志原文：`{"a":"aa", "b":{"b1":"b1b1", "c1":"c1c1"}}`
         # 投递到Ckafka：`{"a":"aa","b":"{\"b1\":\"b1b1\", \"c1\":\"c1c1\"}"}`
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type JsonType: Integer
 
         attr_accessor :EnableTag, :MetaFields, :TagJsonNotTiled, :TimestampAccuracy, :JsonType
@@ -1602,10 +1535,8 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IncludeLabels: Array
         # @param WorkLoad: 工作负载信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WorkLoad: :class:`Tencentcloud::Cls.v20201016.models.ContainerWorkLoadInfo`
         # @param ExcludeNamespace: 需要排除的namespace可以多个，用分隔号分割,例如A,B
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExcludeNamespace: String
         # @param ExcludeLabels: 需要排除的pod标签信息
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -1658,10 +1589,8 @@ module TencentCloud
         # @param AllContainers: 是否所有容器
         # @type AllContainers: Boolean
         # @param Container: container为空表所有的，不为空采集指定的容器
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Container: String
         # @param Namespace: namespace可以多个，用分隔号分割,例如A,B；为空或者没有这个字段，表示所有namespace
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Namespace: String
         # @param IncludeLabels: pod标签信息
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -1670,7 +1599,6 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WorkLoads: Array
         # @param ExcludeNamespace: 需要排除的namespace可以多个，用分隔号分割,例如A,B
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExcludeNamespace: String
         # @param ExcludeLabels: 需要排除的pod标签信息
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -2719,7 +2647,6 @@ module TencentCloud
       # CreateCosRecharge返回参数结构体
       class CreateCosRechargeResponse < TencentCloud::Common::AbstractModel
         # @param Id: COS导入任务id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Id: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4881,7 +4808,6 @@ module TencentCloud
       # DescribeAlarmNotices返回参数结构体
       class DescribeAlarmNoticesResponse < TencentCloud::Common::AbstractModel
         # @param AlarmNotices: 告警通知模板列表。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AlarmNotices: Array
         # @param TotalCount: 符合条件的告警通知模板总数。
         # @type TotalCount: Integer
@@ -5472,7 +5398,6 @@ module TencentCloud
         # @param Ckafka: CKafka的描述
         # @type Ckafka: :class:`Tencentcloud::Cls.v20201016.models.Ckafka`
         # @param Compression: 压缩方式[0:NONE；2:SNAPPY；3:LZ4]
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Compression: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5531,7 +5456,6 @@ module TencentCloud
       # DescribeCosRecharges返回参数结构体
       class DescribeCosRechargesResponse < TencentCloud::Common::AbstractModel
         # @param Data: 见: CosRechargeInfo 结构描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5864,13 +5788,11 @@ module TencentCloud
         # @param IncludeInternalFields: 内置保留字段（`__FILENAME__`，`__HOSTNAME__`及`__SOURCE__`）是否包含至全文索引
         # * false:不包含
         # * true:包含
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IncludeInternalFields: Boolean
         # @param MetadataFlag: 元数据字段（前缀为`__TAG__`的字段）是否包含至全文索引
         # * 0:仅包含开启键值索引的元数据字段
         # * 1:包含所有元数据字段
         # * 2:不包含任何元数据字段
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MetadataFlag: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6357,7 +6279,6 @@ module TencentCloud
       # DescribeMachineGroups返回参数结构体
       class DescribeMachineGroupsResponse < TencentCloud::Common::AbstractModel
         # @param MachineGroups: 机器组信息列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MachineGroups: Array
         # @param TotalCount: 分页的总数目
         # @type TotalCount: Integer
@@ -6463,7 +6384,6 @@ module TencentCloud
         # @param ServiceLogging: 是否开启服务日志
         # @type ServiceLogging: Boolean
         # @param TotalCount: 总数目
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6544,7 +6464,6 @@ module TencentCloud
       # DescribeNoticeContents返回参数结构体
       class DescribeNoticeContentsResponse < TencentCloud::Common::AbstractModel
         # @param NoticeContents: 通知内容模板列表。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NoticeContents: Array
         # @param TotalCount: 符合条件的通知内容模板总数。
         # @type TotalCount: Integer
@@ -6799,7 +6718,6 @@ module TencentCloud
       # DescribeShippers返回参数结构体
       class DescribeShippersResponse < TencentCloud::Common::AbstractModel
         # @param Shippers: 投递规则列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Shippers: Array
         # @param TotalCount: 本次查询获取到的总数
         # @type TotalCount: Integer
@@ -6960,7 +6878,6 @@ module TencentCloud
       # DescribeWebCallbacks返回参数结构体
       class DescribeWebCallbacksResponse < TencentCloud::Common::AbstractModel
         # @param WebCallbacks: 告警渠道回调配置列表。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WebCallbacks: Array
         # @param TotalCount: 符合条件的通知内容配置总数。
         # @type TotalCount: Integer
@@ -10673,7 +10590,6 @@ module TencentCloud
         # @param LogSample: 日志样例，PreviewType为2时返回
         # @type LogSample: String
         # @param LogData: 日志预览结果
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LogData: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -11166,15 +11082,12 @@ module TencentCloud
       # SearchCosRechargeInfo返回参数结构体
       class SearchCosRechargeInfoResponse < TencentCloud::Common::AbstractModel
         # @param Data: 匹配到的存储桶下的某个文件的前几行数据
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: Array
         # @param Sum: 匹配到的存储桶下的文件个数
         # @type Sum: Integer
         # @param Path: 当前预览文件路径
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Path: String
         # @param Msg: 预览获取数据失败原因
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Msg: String
         # @param Status: 状态
         # @type Status: Integer
@@ -11434,7 +11347,6 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Columns: Array
         # @param SamplingRate: 本次统计分析使用的采样率
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SamplingRate: Float
         # @param Topics: 使用多日志主题检索时，各个日志主题的基本信息，例如报错信息。
         # 注意：此字段可能返回 null，表示取不到有效值。

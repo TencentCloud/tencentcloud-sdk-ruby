@@ -203,6 +203,7 @@ module TencentCloud
         # <li>action-snapshotByTimeOffset: 时间点截图</li>
         # <li>action-adaptive-substream：自适应码流</li>
         # <li>action-AIQualityControl：媒体质检</li>
+        # <li>action-SmartSubtitles：智能字幕</li>
 
 
 
@@ -265,10 +266,13 @@ module TencentCloud
         # @param QualityControlTask: 媒体质检任务
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type QualityControlTask: :class:`Tencentcloud::Mps.v20190612.models.AiQualityControlTaskInput`
+        # @param SmartSubtitlesTask: 智能字幕任务
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SmartSubtitlesTask: :class:`Tencentcloud::Mps.v20190612.models.SmartSubtitlesTaskInput`
 
-        attr_accessor :TranscodeTask, :AnimatedGraphicTask, :SnapshotByTimeOffsetTask, :SampleSnapshotTask, :ImageSpriteTask, :AdaptiveDynamicStreamingTask, :AiContentReviewTask, :AiAnalysisTask, :AiRecognitionTask, :QualityControlTask
+        attr_accessor :TranscodeTask, :AnimatedGraphicTask, :SnapshotByTimeOffsetTask, :SampleSnapshotTask, :ImageSpriteTask, :AdaptiveDynamicStreamingTask, :AiContentReviewTask, :AiAnalysisTask, :AiRecognitionTask, :QualityControlTask, :SmartSubtitlesTask
 
-        def initialize(transcodetask=nil, animatedgraphictask=nil, snapshotbytimeoffsettask=nil, samplesnapshottask=nil, imagespritetask=nil, adaptivedynamicstreamingtask=nil, aicontentreviewtask=nil, aianalysistask=nil, airecognitiontask=nil, qualitycontroltask=nil)
+        def initialize(transcodetask=nil, animatedgraphictask=nil, snapshotbytimeoffsettask=nil, samplesnapshottask=nil, imagespritetask=nil, adaptivedynamicstreamingtask=nil, aicontentreviewtask=nil, aianalysistask=nil, airecognitiontask=nil, qualitycontroltask=nil, smartsubtitlestask=nil)
           @TranscodeTask = transcodetask
           @AnimatedGraphicTask = animatedgraphictask
           @SnapshotByTimeOffsetTask = snapshotbytimeoffsettask
@@ -279,6 +283,7 @@ module TencentCloud
           @AiAnalysisTask = aianalysistask
           @AiRecognitionTask = airecognitiontask
           @QualityControlTask = qualitycontroltask
+          @SmartSubtitlesTask = smartsubtitlestask
         end
 
         def deserialize(params)
@@ -322,6 +327,10 @@ module TencentCloud
             @QualityControlTask = AiQualityControlTaskInput.new
             @QualityControlTask.deserialize(params['QualityControlTask'])
           end
+          unless params['SmartSubtitlesTask'].nil?
+            @SmartSubtitlesTask = SmartSubtitlesTaskInput.new
+            @SmartSubtitlesTask.deserialize(params['SmartSubtitlesTask'])
+          end
         end
       end
 
@@ -357,10 +366,13 @@ module TencentCloud
         # @param QualityControlTask: 媒体质检任务输出
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type QualityControlTask: :class:`Tencentcloud::Mps.v20190612.models.ScheduleQualityControlTaskResult`
+        # @param SmartSubtitlesTask: 智能字幕任务输出
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SmartSubtitlesTask: :class:`Tencentcloud::Mps.v20190612.models.ScheduleSmartSubtitleTaskResult`
 
-        attr_accessor :TranscodeTask, :AnimatedGraphicTask, :SnapshotByTimeOffsetTask, :SampleSnapshotTask, :ImageSpriteTask, :AdaptiveDynamicStreamingTask, :RecognitionTask, :ReviewTask, :AnalysisTask, :QualityControlTask
+        attr_accessor :TranscodeTask, :AnimatedGraphicTask, :SnapshotByTimeOffsetTask, :SampleSnapshotTask, :ImageSpriteTask, :AdaptiveDynamicStreamingTask, :RecognitionTask, :ReviewTask, :AnalysisTask, :QualityControlTask, :SmartSubtitlesTask
 
-        def initialize(transcodetask=nil, animatedgraphictask=nil, snapshotbytimeoffsettask=nil, samplesnapshottask=nil, imagespritetask=nil, adaptivedynamicstreamingtask=nil, recognitiontask=nil, reviewtask=nil, analysistask=nil, qualitycontroltask=nil)
+        def initialize(transcodetask=nil, animatedgraphictask=nil, snapshotbytimeoffsettask=nil, samplesnapshottask=nil, imagespritetask=nil, adaptivedynamicstreamingtask=nil, recognitiontask=nil, reviewtask=nil, analysistask=nil, qualitycontroltask=nil, smartsubtitlestask=nil)
           @TranscodeTask = transcodetask
           @AnimatedGraphicTask = animatedgraphictask
           @SnapshotByTimeOffsetTask = snapshotbytimeoffsettask
@@ -371,6 +383,7 @@ module TencentCloud
           @ReviewTask = reviewtask
           @AnalysisTask = analysistask
           @QualityControlTask = qualitycontroltask
+          @SmartSubtitlesTask = smartsubtitlestask
         end
 
         def deserialize(params)
@@ -414,6 +427,10 @@ module TencentCloud
             @QualityControlTask = ScheduleQualityControlTaskResult.new
             @QualityControlTask.deserialize(params['QualityControlTask'])
           end
+          unless params['SmartSubtitlesTask'].nil?
+            @SmartSubtitlesTask = ScheduleSmartSubtitleTaskResult.new
+            @SmartSubtitlesTask.deserialize(params['SmartSubtitlesTask'])
+          end
         end
       end
 
@@ -430,6 +447,7 @@ module TencentCloud
         # <li>AIRecognition：智能识别。</li>
         # <li>AIAnalysis：智能分析。</li>
         # <li>AiQualityControl：媒体质检。</li>
+        # <li>SmartSubtitles：智能字幕。</li>
         # @type ActivityType: String
         # @param ActivityResItem: 原子任务输出。
         # @type ActivityResItem: :class:`Tencentcloud::Mps.v20190612.models.ActivityResItem`
@@ -4354,6 +4372,110 @@ module TencentCloud
         end
       end
 
+      # 智能字幕热词参数
+      class AsrHotWordsConfigure < TencentCloud::Common::AbstractModel
+        # @param Switch: 热词开关
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Switch: String
+        # @param LibraryId: 热词库ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LibraryId: String
+
+        attr_accessor :Switch, :LibraryId
+
+        def initialize(switch=nil, libraryid=nil)
+          @Switch = switch
+          @LibraryId = libraryid
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
+          @LibraryId = params['LibraryId']
+        end
+      end
+
+      # 热词库查询返回结果集
+      class AsrHotwordsSet < TencentCloud::Common::AbstractModel
+        # @param HotwordsId: 热词库 Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HotwordsId: String
+        # @param Status: 当前热词库状态，数值表示绑定该热词库的智能字幕模板数量。
+        # Status 为 0 ，表示该热词库没有被智能字幕模版引用可以删除；
+        # Status 不为 0，表示该热词库不能被删除。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Integer
+        # @param Name: 热词库名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param WordCount: 热词库中的热词数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WordCount: Integer
+        # @param FileName: 热词文件上传时的文件名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FileName: String
+        # @param CreateTime: 热词库创建时间 ISOUTC 时间格式  2006-01-02T15:04:05Z
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param UpdateTime: 热词库创建时间 ISOUTC 时间格式  2006-01-02T15:04:05Z
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTime: String
+        # @param Type: 0：临时热词库
+        # 1：文件热词库
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: Integer
+
+        attr_accessor :HotwordsId, :Status, :Name, :WordCount, :FileName, :CreateTime, :UpdateTime, :Type
+
+        def initialize(hotwordsid=nil, status=nil, name=nil, wordcount=nil, filename=nil, createtime=nil, updatetime=nil, type=nil)
+          @HotwordsId = hotwordsid
+          @Status = status
+          @Name = name
+          @WordCount = wordcount
+          @FileName = filename
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @Type = type
+        end
+
+        def deserialize(params)
+          @HotwordsId = params['HotwordsId']
+          @Status = params['Status']
+          @Name = params['Name']
+          @WordCount = params['WordCount']
+          @FileName = params['FileName']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          @Type = params['Type']
+        end
+      end
+
+      # 单个热词信息
+      class AsrHotwordsSetItem < TencentCloud::Common::AbstractModel
+        # @param Id: 热词的序号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Id: Integer
+        # @param Text: 热词文本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Text: String
+        # @param Weight: 词语权重，取值范围 1-10,11,100
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Weight: Integer
+
+        attr_accessor :Id, :Text, :Weight
+
+        def initialize(id=nil, text=nil, weight=nil)
+          @Id = id
+          @Text = text
+          @Weight = weight
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Text = params['Text']
+          @Weight = params['Weight']
+        end
+      end
+
       # 语音关键词识别控制参数。
       class AsrWordsConfigureInfo < TencentCloud::Common::AbstractModel
         # @param Switch: 语音关键词识别任务开关，可选值：
@@ -6327,17 +6449,70 @@ module TencentCloud
         end
       end
 
+      # CreateAsrHotwords请求参数结构体
+      class CreateAsrHotwordsRequest < TencentCloud::Common::AbstractModel
+        # @param Type: 0 临时热词 1 文件热词
+        # @type Type: Integer
+        # @param Name: 热词库名称
+        # @type Name: String
+        # @param Content: 热词库文本，Type为 0 必选
+        # @type Content: String
+        # @param FileContent: 热词库文件的 base64 的内容，Type 为 1 必选
+
+        # @type FileContent: String
+        # @param FileName: 上传的文件名
+        # @type FileName: String
+
+        attr_accessor :Type, :Name, :Content, :FileContent, :FileName
+
+        def initialize(type=nil, name=nil, content=nil, filecontent=nil, filename=nil)
+          @Type = type
+          @Name = name
+          @Content = content
+          @FileContent = filecontent
+          @FileName = filename
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @Name = params['Name']
+          @Content = params['Content']
+          @FileContent = params['FileContent']
+          @FileName = params['FileName']
+        end
+      end
+
+      # CreateAsrHotwords返回参数结构体
+      class CreateAsrHotwordsResponse < TencentCloud::Common::AbstractModel
+        # @param HotwordsId: 热词库 id
+        # @type HotwordsId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :HotwordsId, :RequestId
+
+        def initialize(hotwordsid=nil, requestid=nil)
+          @HotwordsId = hotwordsid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @HotwordsId = params['HotwordsId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateContentReviewTemplate请求参数结构体
       class CreateContentReviewTemplateRequest < TencentCloud::Common::AbstractModel
         # @param Name: 内容审核模板名称，长度限制：64 个字符。
         # @type Name: String
         # @param Comment: 内容审核模板描述信息，长度限制：256 个字符。
         # @type Comment: String
-        # @param PornConfigure: 令人反感的信息的控制参数。
+        # @param PornConfigure: 鉴黄任务控制参数。
         # @type PornConfigure: :class:`Tencentcloud::Mps.v20190612.models.PornConfigureInfo`
-        # @param TerrorismConfigure: 令人不安全的信息的控制参数。
+        # @param TerrorismConfigure: 涉暴任务控制参数。
         # @type TerrorismConfigure: :class:`Tencentcloud::Mps.v20190612.models.TerrorismConfigureInfo`
-        # @param PoliticalConfigure: 令人不适宜的信息的控制参数。
+        # @param PoliticalConfigure: 涉敏任务控制参数。
         # @type PoliticalConfigure: :class:`Tencentcloud::Mps.v20190612.models.PoliticalConfigureInfo`
         # @param ProhibitedConfigure: 违禁控制参数。违禁内容包括：
         # <li>谩骂；</li>
@@ -7380,6 +7555,124 @@ module TencentCloud
         end
       end
 
+      # CreateSmartSubtitleTemplate请求参数结构体
+      class CreateSmartSubtitleTemplateRequest < TencentCloud::Common::AbstractModel
+        # @param Name: 智能字幕模板名称
+        # 长度限制：64 个字符。
+        # @type Name: String
+        # @param VideoSrcLanguage: 智能字幕视频源语言
+        # 当前支持以下语言：
+        # zh：简体中文
+        # en：英语
+        # ja：日语
+        # ko：韩语
+        # zh-PY：中英粤
+        # zh-medical：中文医疗
+        # yue：中文粤语
+        # vi：越南语
+        # ms：马来语
+        # id：印度尼西亚语
+        # fil：菲律宾语
+        # th：泰语
+        # pt：葡萄牙语
+        # tr：土耳其语
+        # ar：阿拉伯语
+        # es：西班牙语
+        # hi：印地语
+        # fr：法语
+        # de：德语
+        # zh_dialect：中文方言
+        # @type VideoSrcLanguage: String
+        # @param SubtitleType: 智能字幕字幕语言类型
+        # 0: 源语言
+        # 1: 翻译语言
+        # 2: 源语言+翻译语言
+        # 当TranslateSwitch为OFF时仅支持取0
+        # 当TranslateSwitch为ON时仅支持取1或2
+        # @type SubtitleType: Integer
+        # @param Comment: 智能字幕模板描述信息
+        # 长度限制：256 个字符。
+        # @type Comment: String
+        # @param SubtitleFormat: 智能字幕文件格式
+        #  vtt: WebVTT 格式
+        # 不填或填空：不生成字幕文件
+        # @type SubtitleFormat: String
+        # @param AsrHotWordsConfigure: ASR热词库参数
+        # @type AsrHotWordsConfigure: :class:`Tencentcloud::Mps.v20190612.models.AsrHotWordsConfigure`
+        # @param TranslateSwitch: 字幕翻译开关
+        # ON: 开启翻译
+        # OFF: 关闭翻译
+        # @type TranslateSwitch: String
+        # @param TranslateDstLanguage: 字幕翻译目标语言
+        # 当TranslateSwitch为ON的时候生效
+        # 当前支持以下语言：
+        # zh：简体中文
+        # en：英语
+        # ja：日语
+        # ko：韩语
+        # fr：法语
+        # es：西班牙语
+        # it：意大利语
+        # de：德语
+        # tr：土耳其语
+        # ru：俄语
+        # pt：葡萄牙语
+        # vi：越南语
+        # id：印度尼西亚语
+        # ms：马来语
+        # th：泰语
+        # ar：阿拉伯语
+        # hi：印地语
+        # @type TranslateDstLanguage: String
+
+        attr_accessor :Name, :VideoSrcLanguage, :SubtitleType, :Comment, :SubtitleFormat, :AsrHotWordsConfigure, :TranslateSwitch, :TranslateDstLanguage
+
+        def initialize(name=nil, videosrclanguage=nil, subtitletype=nil, comment=nil, subtitleformat=nil, asrhotwordsconfigure=nil, translateswitch=nil, translatedstlanguage=nil)
+          @Name = name
+          @VideoSrcLanguage = videosrclanguage
+          @SubtitleType = subtitletype
+          @Comment = comment
+          @SubtitleFormat = subtitleformat
+          @AsrHotWordsConfigure = asrhotwordsconfigure
+          @TranslateSwitch = translateswitch
+          @TranslateDstLanguage = translatedstlanguage
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @VideoSrcLanguage = params['VideoSrcLanguage']
+          @SubtitleType = params['SubtitleType']
+          @Comment = params['Comment']
+          @SubtitleFormat = params['SubtitleFormat']
+          unless params['AsrHotWordsConfigure'].nil?
+            @AsrHotWordsConfigure = AsrHotWordsConfigure.new
+            @AsrHotWordsConfigure.deserialize(params['AsrHotWordsConfigure'])
+          end
+          @TranslateSwitch = params['TranslateSwitch']
+          @TranslateDstLanguage = params['TranslateDstLanguage']
+        end
+      end
+
+      # CreateSmartSubtitleTemplate返回参数结构体
+      class CreateSmartSubtitleTemplateResponse < TencentCloud::Common::AbstractModel
+        # @param Definition: 智能字幕模板唯一标识。
+        # @type Definition: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Definition, :RequestId
+
+        def initialize(definition=nil, requestid=nil)
+          @Definition = definition
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Definition = params['Definition']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateSnapshotByTimeOffsetTemplate请求参数结构体
       class CreateSnapshotByTimeOffsetTemplateRequest < TencentCloud::Common::AbstractModel
         # @param Name: 指定时间点截图模板名称，长度限制：64 个字符。
@@ -8247,6 +8540,38 @@ module TencentCloud
         end
       end
 
+      # DeleteAsrHotwords请求参数结构体
+      class DeleteAsrHotwordsRequest < TencentCloud::Common::AbstractModel
+        # @param HotwordsId: 删除的热词库 id
+        # @type HotwordsId: String
+
+        attr_accessor :HotwordsId
+
+        def initialize(hotwordsid=nil)
+          @HotwordsId = hotwordsid
+        end
+
+        def deserialize(params)
+          @HotwordsId = params['HotwordsId']
+        end
+      end
+
+      # DeleteAsrHotwords返回参数结构体
+      class DeleteAsrHotwordsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteContentReviewTemplate请求参数结构体
       class DeleteContentReviewTemplateRequest < TencentCloud::Common::AbstractModel
         # @param Definition: 内容审核模板唯一标识。
@@ -8457,6 +8782,38 @@ module TencentCloud
 
       # DeleteSchedule返回参数结构体
       class DeleteScheduleResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteSmartSubtitleTemplate请求参数结构体
+      class DeleteSmartSubtitleTemplateRequest < TencentCloud::Common::AbstractModel
+        # @param Definition: 智能字幕模板唯一标识。
+        # @type Definition: Integer
+
+        attr_accessor :Definition
+
+        def initialize(definition=nil)
+          @Definition = definition
+        end
+
+        def deserialize(params)
+          @Definition = params['Definition']
+        end
+      end
+
+      # DeleteSmartSubtitleTemplate返回参数结构体
+      class DeleteSmartSubtitleTemplateResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -9024,6 +9381,222 @@ module TencentCloud
               @AnimatedGraphicsTemplateSet << animatedgraphicstemplate_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAsrHotwordsList请求参数结构体
+      class DescribeAsrHotwordsListRequest < TencentCloud::Common::AbstractModel
+        # @param HotwordsId: 检索参数，根据热词库 id 查询
+        # @type HotwordsId: String
+        # @param Name: 检索参数，根据热词库名称查询
+        # @type Name: String
+        # @param Offset: 分页偏移量，默认值：0。
+        # @type Offset: Integer
+        # @param Limit: 返回记录条数，默认返回所有热词库
+        # @type Limit: Integer
+        # @param OrderType: 热词排序顺序
+
+        # 0：升序（默认）
+        # 1：降序
+        # @type OrderType: Integer
+        # @param OrderBy: 根据某个字段排序，默认使用创建时间，使用非法字段视为默认情况
+
+        # - CreateTime：创建时间排序
+        # - UpdateTime：更新时间排序
+        # - Name：热词库名称排序
+        # - WordCount：热词数量排序
+        # - HotwordsId：热词库 id 排序
+        # @type OrderBy: String
+        # @param Types: 0 临时热词 1 文件热词
+        # @type Types: Array
+
+        attr_accessor :HotwordsId, :Name, :Offset, :Limit, :OrderType, :OrderBy, :Types
+
+        def initialize(hotwordsid=nil, name=nil, offset=nil, limit=nil, ordertype=nil, orderby=nil, types=nil)
+          @HotwordsId = hotwordsid
+          @Name = name
+          @Offset = offset
+          @Limit = limit
+          @OrderType = ordertype
+          @OrderBy = orderby
+          @Types = types
+        end
+
+        def deserialize(params)
+          @HotwordsId = params['HotwordsId']
+          @Name = params['Name']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @OrderType = params['OrderType']
+          @OrderBy = params['OrderBy']
+          @Types = params['Types']
+        end
+      end
+
+      # DescribeAsrHotwordsList返回参数结构体
+      class DescribeAsrHotwordsListResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总热词库数量
+        # @type TotalCount: Integer
+        # @param Offset: 分页偏移量，默认值：0。
+        # @type Offset: Integer
+        # @param Limit: 返回记录条数，默认返回所有热词库
+        # @type Limit: Integer
+        # @param AsrHotwordsSet: 热词库列表
+        # @type AsrHotwordsSet: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Offset, :Limit, :AsrHotwordsSet, :RequestId
+
+        def initialize(totalcount=nil, offset=nil, limit=nil, asrhotwordsset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Offset = offset
+          @Limit = limit
+          @AsrHotwordsSet = asrhotwordsset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          unless params['AsrHotwordsSet'].nil?
+            @AsrHotwordsSet = []
+            params['AsrHotwordsSet'].each do |i|
+              asrhotwordsset_tmp = AsrHotwordsSet.new
+              asrhotwordsset_tmp.deserialize(i)
+              @AsrHotwordsSet << asrhotwordsset_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAsrHotwords请求参数结构体
+      class DescribeAsrHotwordsRequest < TencentCloud::Common::AbstractModel
+        # @param HotwordsId: 需要查询的热词库 id
+        # **注意：HotwordsId 与 Name 必须选择填写一个，如果同时填写，HotwordsId 优先级高于 Name**
+        # @type HotwordsId: String
+        # @param Name: 热词库名称，
+        # **注意：HotwordsId 与 Name 必须选择填写一个，如果同时填写，HotwordsId 优先级高于 Name**
+        # @type Name: String
+        # @param Offset: 分页偏移量，默认值：0。
+        # @type Offset: Integer
+        # @param Limit: 返回记录条数，默认值：10，最大值：100。
+        # @type Limit: Integer
+        # @param OrderBy: 热词排序字段，目前可选值为
+
+        # - Default：默认文件中的顺序
+        # - Weight：权重排序
+        # - Lexical：热词文本排序
+        # @type OrderBy: String
+        # @param OrderType: 热词排序顺序 0：升序（默认） 1：降序
+        # @type OrderType: Integer
+
+        attr_accessor :HotwordsId, :Name, :Offset, :Limit, :OrderBy, :OrderType
+
+        def initialize(hotwordsid=nil, name=nil, offset=nil, limit=nil, orderby=nil, ordertype=nil)
+          @HotwordsId = hotwordsid
+          @Name = name
+          @Offset = offset
+          @Limit = limit
+          @OrderBy = orderby
+          @OrderType = ordertype
+        end
+
+        def deserialize(params)
+          @HotwordsId = params['HotwordsId']
+          @Name = params['Name']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @OrderBy = params['OrderBy']
+          @OrderType = params['OrderType']
+        end
+      end
+
+      # DescribeAsrHotwords返回参数结构体
+      class DescribeAsrHotwordsResponse < TencentCloud::Common::AbstractModel
+        # @param HotwordsId: 需要查询的热词库 id
+        # @type HotwordsId: String
+        # @param Status: 当前热词库 id 状态，为 0 表示查询的时刻，没有模板绑定这个热词库，可以删除
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Integer
+        # @param Name: 热词库的名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Type: 临时热词库为 0，返回创建时候的字符串
+        # 文件热词库为 1，返回创建是上传的文件内容
+
+
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: Integer
+        # @param FileName: 热词文件上传时的文件名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FileName: String
+        # @param HotWords: 查询返回的热词库列表
+        # @type HotWords: Array
+        # @param Content: 热词库文本，根据 Type 区分
+        # 如果 Type 为 0，是热词库字符串
+        # 如果 Type 是 1，是热词库文本文件的文件内容 base64 编码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Content: String
+        # @param WordCount: 当前热词库包含的词语数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WordCount: Integer
+        # @param Offset: 分页偏移量，默认值：0。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Offset: Integer
+        # @param Limit: 返回记录条数，默认值：10，最大值：100。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Limit: Integer
+        # @param CreateTime: 热词库创建时间 ISOUTC 格式 "2006-01-02T15:04:05Z"
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param UpdateTime: 热词库修改时间 ISOUTC 格式 "2006-01-02T15:04:05Z"
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTime: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :HotwordsId, :Status, :Name, :Type, :FileName, :HotWords, :Content, :WordCount, :Offset, :Limit, :CreateTime, :UpdateTime, :RequestId
+
+        def initialize(hotwordsid=nil, status=nil, name=nil, type=nil, filename=nil, hotwords=nil, content=nil, wordcount=nil, offset=nil, limit=nil, createtime=nil, updatetime=nil, requestid=nil)
+          @HotwordsId = hotwordsid
+          @Status = status
+          @Name = name
+          @Type = type
+          @FileName = filename
+          @HotWords = hotwords
+          @Content = content
+          @WordCount = wordcount
+          @Offset = offset
+          @Limit = limit
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @HotwordsId = params['HotwordsId']
+          @Status = params['Status']
+          @Name = params['Name']
+          @Type = params['Type']
+          @FileName = params['FileName']
+          unless params['HotWords'].nil?
+            @HotWords = []
+            params['HotWords'].each do |i|
+              asrhotwordssetitem_tmp = AsrHotwordsSetItem.new
+              asrhotwordssetitem_tmp.deserialize(i)
+              @HotWords << asrhotwordssetitem_tmp
+            end
+          end
+          @Content = params['Content']
+          @WordCount = params['WordCount']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
           @RequestId = params['RequestId']
         end
       end
@@ -10515,6 +11088,71 @@ module TencentCloud
               schedulesinfo_tmp = SchedulesInfo.new
               schedulesinfo_tmp.deserialize(i)
               @ScheduleInfoSet << schedulesinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeSmartSubtitleTemplates请求参数结构体
+      class DescribeSmartSubtitleTemplatesRequest < TencentCloud::Common::AbstractModel
+        # @param Definitions: 智能字幕模板唯一标识过滤条件，数组长度限制：10。
+        # @type Definitions: Array
+        # @param Offset: 分页偏移量，默认值：0。
+        # @type Offset: Integer
+        # @param Limit: 返回记录条数，默认值：10，最大值：100。
+        # @type Limit: Integer
+        # @param Type: 模板类型过滤条件，不填则返回所有，可选值：
+        # * Preset：系统预置模板；
+        # * Custom：用户自定义模板。
+        # @type Type: String
+        # @param Name: 智能字幕模板标识过滤条件，长度限制：64 个字符。
+        # @type Name: String
+
+        attr_accessor :Definitions, :Offset, :Limit, :Type, :Name
+
+        def initialize(definitions=nil, offset=nil, limit=nil, type=nil, name=nil)
+          @Definitions = definitions
+          @Offset = offset
+          @Limit = limit
+          @Type = type
+          @Name = name
+        end
+
+        def deserialize(params)
+          @Definitions = params['Definitions']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @Type = params['Type']
+          @Name = params['Name']
+        end
+      end
+
+      # DescribeSmartSubtitleTemplates返回参数结构体
+      class DescribeSmartSubtitleTemplatesResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 符合过滤条件的记录总数。
+        # @type TotalCount: Integer
+        # @param SmartSubtitleTemplateSet: 智能字幕模板详情列表。
+        # @type SmartSubtitleTemplateSet: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :SmartSubtitleTemplateSet, :RequestId
+
+        def initialize(totalcount=nil, smartsubtitletemplateset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @SmartSubtitleTemplateSet = smartsubtitletemplateset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['SmartSubtitleTemplateSet'].nil?
+            @SmartSubtitleTemplateSet = []
+            params['SmartSubtitleTemplateSet'].each do |i|
+              smartsubtitletemplateitem_tmp = SmartSubtitleTemplateItem.new
+              smartsubtitletemplateitem_tmp.deserialize(i)
+              @SmartSubtitleTemplateSet << smartsubtitletemplateitem_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -16815,6 +17453,56 @@ module TencentCloud
         end
       end
 
+      # ModifyAsrHotwords请求参数结构体
+      class ModifyAsrHotwordsRequest < TencentCloud::Common::AbstractModel
+        # @param HotwordsId: 热词库 id
+        # @type HotwordsId: String
+        # @param Name: 热词库名称
+        # @type Name: String
+        # @param Content: 热词库文本
+        # @type Content: String
+        # @param FileContent: 热词库文件的 base64 的内容，Type 为 1 必选
+
+
+        # @type FileContent: String
+        # @param FileName: 热词文件上传时的文件名
+        # @type FileName: String
+
+        attr_accessor :HotwordsId, :Name, :Content, :FileContent, :FileName
+
+        def initialize(hotwordsid=nil, name=nil, content=nil, filecontent=nil, filename=nil)
+          @HotwordsId = hotwordsid
+          @Name = name
+          @Content = content
+          @FileContent = filecontent
+          @FileName = filename
+        end
+
+        def deserialize(params)
+          @HotwordsId = params['HotwordsId']
+          @Name = params['Name']
+          @Content = params['Content']
+          @FileContent = params['FileContent']
+          @FileName = params['FileName']
+        end
+      end
+
+      # ModifyAsrHotwords返回参数结构体
+      class ModifyAsrHotwordsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyContentReviewTemplate请求参数结构体
       class ModifyContentReviewTemplateRequest < TencentCloud::Common::AbstractModel
         # @param Definition: 内容审核模板唯一标识。
@@ -17502,6 +18190,124 @@ module TencentCloud
 
       # ModifySchedule返回参数结构体
       class ModifyScheduleResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifySmartSubtitleTemplate请求参数结构体
+      class ModifySmartSubtitleTemplateRequest < TencentCloud::Common::AbstractModel
+        # @param Definition: 智能字幕模板唯一标识
+        # @type Definition: Integer
+        # @param TranslateSwitch: 字幕翻译开关
+        # ON: 开启翻译
+        # OFF: 关闭翻译
+        # @type TranslateSwitch: String
+        # @param Name: 智能字幕模板名称
+        # 长度限制：64 个字符。
+        # @type Name: String
+        # @param Comment: 智能字幕模板描述信息
+        # 长度限制：256 个字符。
+        # @type Comment: String
+        # @param VideoSrcLanguage: 智能字幕视频源语言
+        # 当前支持以下语言：
+        # zh：简体中文
+        # en：英语
+        # ja：日语
+        # ko：韩语
+        # zh-PY：中英粤
+        # zh-medical：中文医疗
+        # yue：中文粤语
+        # vi：越南语
+        # ms：马来语
+        # id：印度尼西亚语
+        # fil：菲律宾语
+        # th：泰语
+        # pt：葡萄牙语
+        # tr：土耳其语
+        # ar：阿拉伯语
+        # es：西班牙语
+        # hi：印地语
+        # fr：法语
+        # de：德语
+        # zh_dialect：中文方言
+        # @type VideoSrcLanguage: String
+        # @param SubtitleFormat: 智能字幕文件格式
+        #  vtt: WebVTT 格式
+        # 不填或填空：不生成字幕文件
+        # @type SubtitleFormat: String
+        # @param SubtitleType: 智能字幕字幕语言类型
+        # 0: 源语言
+        # 1: 翻译语言
+        # 2: 源语言+翻译语言
+        # 当TranslateSwitch为OFF时仅支持取0
+        # 当TranslateSwitch为ON时仅支持取1或2
+        # @type SubtitleType: Integer
+        # @param AsrHotWordsConfigure: ASR热词库参数
+        # @type AsrHotWordsConfigure: :class:`Tencentcloud::Mps.v20190612.models.AsrHotWordsConfigure`
+        # @param TranslateDstLanguage: 字幕翻译目标语言
+        # 当TranslateSwitch为ON的时候生效
+        # 当前支持以下语言：
+        # zh：简体中文
+        # en：英语
+        # ja：日语
+        # ko：韩语
+        # fr：法语
+        # es：西班牙语
+        # it：意大利语
+        # de：德语
+        # tr：土耳其语
+        # ru：俄语
+        # pt：葡萄牙语
+        # vi：越南语
+        # id：印度尼西亚语
+        # ms：马来语
+        # th：泰语
+        # ar：阿拉伯语
+        # hi：印地语
+        # @type TranslateDstLanguage: String
+
+        attr_accessor :Definition, :TranslateSwitch, :Name, :Comment, :VideoSrcLanguage, :SubtitleFormat, :SubtitleType, :AsrHotWordsConfigure, :TranslateDstLanguage
+
+        def initialize(definition=nil, translateswitch=nil, name=nil, comment=nil, videosrclanguage=nil, subtitleformat=nil, subtitletype=nil, asrhotwordsconfigure=nil, translatedstlanguage=nil)
+          @Definition = definition
+          @TranslateSwitch = translateswitch
+          @Name = name
+          @Comment = comment
+          @VideoSrcLanguage = videosrclanguage
+          @SubtitleFormat = subtitleformat
+          @SubtitleType = subtitletype
+          @AsrHotWordsConfigure = asrhotwordsconfigure
+          @TranslateDstLanguage = translatedstlanguage
+        end
+
+        def deserialize(params)
+          @Definition = params['Definition']
+          @TranslateSwitch = params['TranslateSwitch']
+          @Name = params['Name']
+          @Comment = params['Comment']
+          @VideoSrcLanguage = params['VideoSrcLanguage']
+          @SubtitleFormat = params['SubtitleFormat']
+          @SubtitleType = params['SubtitleType']
+          unless params['AsrHotWordsConfigure'].nil?
+            @AsrHotWordsConfigure = AsrHotWordsConfigure.new
+            @AsrHotWordsConfigure.deserialize(params['AsrHotWordsConfigure'])
+          end
+          @TranslateDstLanguage = params['TranslateDstLanguage']
+        end
+      end
+
+      # ModifySmartSubtitleTemplate返回参数结构体
+      class ModifySmartSubtitleTemplateResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -19235,10 +20041,17 @@ module TencentCloud
         # @type TaskType: String
         # @param ResourceId: 资源ID，需要保证对应资源是开启状态。默认为帐号主资源ID。
         # @type ResourceId: String
+        # @param SmartSubtitlesTask: 智能字幕
+        # @type SmartSubtitlesTask: :class:`Tencentcloud::Mps.v20190612.models.SmartSubtitlesTaskInput`
+        # @param SkipMateData: 是否跳过元信息获取，可选值：
+        # 0：表示不跳过
+        # 1：表示跳过
+        # 默认值：0
+        # @type SkipMateData: Integer
 
-        attr_accessor :InputInfo, :OutputStorage, :OutputDir, :ScheduleId, :MediaProcessTask, :AiContentReviewTask, :AiAnalysisTask, :AiRecognitionTask, :AiQualityControlTask, :TaskNotifyConfig, :TasksPriority, :SessionId, :SessionContext, :TaskType, :ResourceId
+        attr_accessor :InputInfo, :OutputStorage, :OutputDir, :ScheduleId, :MediaProcessTask, :AiContentReviewTask, :AiAnalysisTask, :AiRecognitionTask, :AiQualityControlTask, :TaskNotifyConfig, :TasksPriority, :SessionId, :SessionContext, :TaskType, :ResourceId, :SmartSubtitlesTask, :SkipMateData
 
-        def initialize(inputinfo=nil, outputstorage=nil, outputdir=nil, scheduleid=nil, mediaprocesstask=nil, aicontentreviewtask=nil, aianalysistask=nil, airecognitiontask=nil, aiqualitycontroltask=nil, tasknotifyconfig=nil, taskspriority=nil, sessionid=nil, sessioncontext=nil, tasktype=nil, resourceid=nil)
+        def initialize(inputinfo=nil, outputstorage=nil, outputdir=nil, scheduleid=nil, mediaprocesstask=nil, aicontentreviewtask=nil, aianalysistask=nil, airecognitiontask=nil, aiqualitycontroltask=nil, tasknotifyconfig=nil, taskspriority=nil, sessionid=nil, sessioncontext=nil, tasktype=nil, resourceid=nil, smartsubtitlestask=nil, skipmatedata=nil)
           @InputInfo = inputinfo
           @OutputStorage = outputstorage
           @OutputDir = outputdir
@@ -19254,6 +20067,8 @@ module TencentCloud
           @SessionContext = sessioncontext
           @TaskType = tasktype
           @ResourceId = resourceid
+          @SmartSubtitlesTask = smartsubtitlestask
+          @SkipMateData = skipmatedata
         end
 
         def deserialize(params)
@@ -19296,6 +20111,11 @@ module TencentCloud
           @SessionContext = params['SessionContext']
           @TaskType = params['TaskType']
           @ResourceId = params['ResourceId']
+          unless params['SmartSubtitlesTask'].nil?
+            @SmartSubtitlesTask = SmartSubtitlesTaskInput.new
+            @SmartSubtitlesTask.deserialize(params['SmartSubtitlesTask'])
+          end
+          @SkipMateData = params['SkipMateData']
         end
       end
 
@@ -19876,6 +20696,102 @@ module TencentCloud
           @Width = params['Width']
           @Height = params['Height']
           @RepeatType = params['RepeatType']
+        end
+      end
+
+      # 自定义智能字幕参数
+      class RawSmartSubtitleParameter < TencentCloud::Common::AbstractModel
+        # @param SubtitleType: 智能字幕字幕语言类型
+        # 0: 源语言
+        # 1: 翻译语言
+        # 2: 源语言+翻译语言
+        # 当TranslateSwitch为OFF时仅支持取0
+        # 当TranslateSwitch为ON时仅支持取1或2
+        # @type SubtitleType: Integer
+        # @param VideoSrcLanguage: 智能字幕视频源语言
+        # 当前支持以下语言：
+        # zh：简体中文
+        # en：英语
+        # ja：日语
+        # ko：韩语
+        # zh-PY：中英粤
+        # zh-medical：中文医疗
+        # yue：中文粤语
+        # vi：越南语
+        # ms：马来语
+        # id：印度尼西亚语
+        # fil：菲律宾语
+        # th：泰语
+        # pt：葡萄牙语
+        # tr：土耳其语
+        # ar：阿拉伯语
+        # es：西班牙语
+        # hi：印地语
+        # fr：法语
+        # de：德语
+        # zh_dialect：中文方言
+        # @type VideoSrcLanguage: String
+        # @param SubtitleFormat: 智能字幕文件格式
+        #  vtt: WebVTT 格式
+        # 不填或填空：不生成字幕文件
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubtitleFormat: String
+        # @param TranslateSwitch: 字幕翻译开关
+        # ON: 开启翻译
+        # OFF: 关闭翻译
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TranslateSwitch: String
+        # @param TranslateDstLanguage: 字幕翻译目标语言
+        # 当TranslateSwitch为ON的时候生效
+        # 当前支持以下语言：
+        # zh：简体中文
+        # en：英语
+        # ja：日语
+        # ko：韩语
+        # fr：法语
+        # es：西班牙语
+        # it：意大利语
+        # de：德语
+        # tr：土耳其语
+        # ru：俄语
+        # pt：葡萄牙语
+        # vi：越南语
+        # id：印度尼西亚语
+        # ms：马来语
+        # th：泰语
+        # ar：阿拉伯语
+        # hi：印地语
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TranslateDstLanguage: String
+        # @param AsrHotWordsConfigure: ASR热词库参数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AsrHotWordsConfigure: :class:`Tencentcloud::Mps.v20190612.models.AsrHotWordsConfigure`
+        # @param ExtInfo: 自定义参数
+        # @type ExtInfo: String
+
+        attr_accessor :SubtitleType, :VideoSrcLanguage, :SubtitleFormat, :TranslateSwitch, :TranslateDstLanguage, :AsrHotWordsConfigure, :ExtInfo
+
+        def initialize(subtitletype=nil, videosrclanguage=nil, subtitleformat=nil, translateswitch=nil, translatedstlanguage=nil, asrhotwordsconfigure=nil, extinfo=nil)
+          @SubtitleType = subtitletype
+          @VideoSrcLanguage = videosrclanguage
+          @SubtitleFormat = subtitleformat
+          @TranslateSwitch = translateswitch
+          @TranslateDstLanguage = translatedstlanguage
+          @AsrHotWordsConfigure = asrhotwordsconfigure
+          @ExtInfo = extinfo
+        end
+
+        def deserialize(params)
+          @SubtitleType = params['SubtitleType']
+          @VideoSrcLanguage = params['VideoSrcLanguage']
+          @SubtitleFormat = params['SubtitleFormat']
+          @TranslateSwitch = params['TranslateSwitch']
+          @TranslateDstLanguage = params['TranslateDstLanguage']
+          unless params['AsrHotWordsConfigure'].nil?
+            @AsrHotWordsConfigure = AsrHotWordsConfigure.new
+            @AsrHotWordsConfigure.deserialize(params['AsrHotWordsConfigure'])
+          end
+          @ExtInfo = params['ExtInfo']
         end
       end
 
@@ -20645,6 +21561,64 @@ module TencentCloud
         end
       end
 
+      # 编排智能字幕任务结果类型
+      class ScheduleSmartSubtitleTaskResult < TencentCloud::Common::AbstractModel
+        # @param Status: 任务状态，有 PROCESSING，SUCCESS 和 FAIL 三种。
+        # @type Status: String
+        # @param ErrCodeExt: 错误码，空字符串表示成功，其他值表示失败，取值请参考 [媒体处理类错误码](https://cloud.tencent.com/document/product/862/50369#.E8.A7.86.E9.A2.91.E5.A4.84.E7.90.86.E7.B1.BB.E9.94.99.E8.AF.AF.E7.A0.81) 列表。
+        # @type ErrCodeExt: String
+        # @param ErrCode: 错误码，0 表示成功，其他值表示失败（该字段已不推荐使用，建议使用新的错误码字段 ErrCodeExt）。
+        # @type ErrCode: Integer
+        # @param Message: 错误信息。
+        # @type Message: String
+        # @param Input: 识别任务的输入。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Input: :class:`Tencentcloud::Mps.v20190612.models.SmartSubtitlesTaskInput`
+        # @param Output: 识别任务的输出。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Output: Array
+        # @param BeginProcessTime: 任务开始执行的时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/862/37710#52)。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BeginProcessTime: String
+        # @param FinishTime: 任务执行完毕的时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/862/37710#52)。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FinishTime: String
+
+        attr_accessor :Status, :ErrCodeExt, :ErrCode, :Message, :Input, :Output, :BeginProcessTime, :FinishTime
+
+        def initialize(status=nil, errcodeext=nil, errcode=nil, message=nil, input=nil, output=nil, beginprocesstime=nil, finishtime=nil)
+          @Status = status
+          @ErrCodeExt = errcodeext
+          @ErrCode = errcode
+          @Message = message
+          @Input = input
+          @Output = output
+          @BeginProcessTime = beginprocesstime
+          @FinishTime = finishtime
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @ErrCodeExt = params['ErrCodeExt']
+          @ErrCode = params['ErrCode']
+          @Message = params['Message']
+          unless params['Input'].nil?
+            @Input = SmartSubtitlesTaskInput.new
+            @Input.deserialize(params['Input'])
+          end
+          unless params['Output'].nil?
+            @Output = []
+            params['Output'].each do |i|
+              smartsubtitlesresult_tmp = SmartSubtitlesResult.new
+              smartsubtitlesresult_tmp.deserialize(i)
+              @Output << smartsubtitlesresult_tmp
+            end
+          end
+          @BeginProcessTime = params['BeginProcessTime']
+          @FinishTime = params['FinishTime']
+        end
+      end
+
       # 编排任务信息
       class ScheduleTask < TencentCloud::Common::AbstractModel
         # @param TaskId: 编排任务 ID。
@@ -21054,6 +22028,465 @@ module TencentCloud
           @Uri = params['Uri']
           @Key = params['Key']
           @Vector = params['Vector']
+        end
+      end
+
+      # 语音全文识别结果。
+      class SmartSubtitleTaskAsrFullTextResult < TencentCloud::Common::AbstractModel
+        # @param Status: 任务状态，有 PROCESSING，SUCCESS 和 FAIL 三种。
+        # @type Status: String
+        # @param ErrCodeExt: 错误码，空字符串表示成功，其他值表示失败，取值请参考 [媒体处理类错误码](https://cloud.tencent.com/document/product/862/50369#.E8.A7.86.E9.A2.91.E5.A4.84.E7.90.86.E7.B1.BB.E9.94.99.E8.AF.AF.E7.A0.81) 列表。
+        # @type ErrCodeExt: String
+        # @param ErrCode: 错误码，0 表示成功，其他值表示失败（该字段已不推荐使用，建议使用新的错误码字段 ErrCodeExt）。
+        # @type ErrCode: Integer
+        # @param Message: 错误信息。
+        # @type Message: String
+        # @param Input: 语音全文识别任务输入信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Input: :class:`Tencentcloud::Mps.v20190612.models.SmartSubtitleTaskResultInput`
+        # @param Output: 语音全文识别任务输出信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Output: :class:`Tencentcloud::Mps.v20190612.models.SmartSubtitleTaskAsrFullTextResultOutput`
+        # @param Progress: 任务进度。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Progress: Integer
+
+        attr_accessor :Status, :ErrCodeExt, :ErrCode, :Message, :Input, :Output, :Progress
+
+        def initialize(status=nil, errcodeext=nil, errcode=nil, message=nil, input=nil, output=nil, progress=nil)
+          @Status = status
+          @ErrCodeExt = errcodeext
+          @ErrCode = errcode
+          @Message = message
+          @Input = input
+          @Output = output
+          @Progress = progress
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @ErrCodeExt = params['ErrCodeExt']
+          @ErrCode = params['ErrCode']
+          @Message = params['Message']
+          unless params['Input'].nil?
+            @Input = SmartSubtitleTaskResultInput.new
+            @Input.deserialize(params['Input'])
+          end
+          unless params['Output'].nil?
+            @Output = SmartSubtitleTaskAsrFullTextResultOutput.new
+            @Output.deserialize(params['Output'])
+          end
+          @Progress = params['Progress']
+        end
+      end
+
+      # 语音全文识别结果。
+      class SmartSubtitleTaskAsrFullTextResultOutput < TencentCloud::Common::AbstractModel
+        # @param SegmentSet: 语音全文识别片段列表。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SegmentSet: Array
+        # @param SubtitlePath: 字幕文件地址。
+        # @type SubtitlePath: String
+
+        attr_accessor :SegmentSet, :SubtitlePath
+
+        def initialize(segmentset=nil, subtitlepath=nil)
+          @SegmentSet = segmentset
+          @SubtitlePath = subtitlepath
+        end
+
+        def deserialize(params)
+          unless params['SegmentSet'].nil?
+            @SegmentSet = []
+            params['SegmentSet'].each do |i|
+              smartsubtitletaskasrfulltextsegmentitem_tmp = SmartSubtitleTaskAsrFullTextSegmentItem.new
+              smartsubtitletaskasrfulltextsegmentitem_tmp.deserialize(i)
+              @SegmentSet << smartsubtitletaskasrfulltextsegmentitem_tmp
+            end
+          end
+          @SubtitlePath = params['SubtitlePath']
+        end
+      end
+
+      # 语音全文识别片段。
+      class SmartSubtitleTaskAsrFullTextSegmentItem < TencentCloud::Common::AbstractModel
+        # @param Confidence: 识别片段置信度。取值：0~100。
+        # @type Confidence: Float
+        # @param StartTimeOffset: 识别片段起始的偏移时间，单位：秒。
+        # @type StartTimeOffset: Float
+        # @param EndTimeOffset: 识别片段终止的偏移时间，单位：秒。
+        # @type EndTimeOffset: Float
+        # @param Text: 识别文本。
+        # @type Text: String
+        # @param Wordlist: 字词时间戳信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Wordlist: Array
+
+        attr_accessor :Confidence, :StartTimeOffset, :EndTimeOffset, :Text, :Wordlist
+
+        def initialize(confidence=nil, starttimeoffset=nil, endtimeoffset=nil, text=nil, wordlist=nil)
+          @Confidence = confidence
+          @StartTimeOffset = starttimeoffset
+          @EndTimeOffset = endtimeoffset
+          @Text = text
+          @Wordlist = wordlist
+        end
+
+        def deserialize(params)
+          @Confidence = params['Confidence']
+          @StartTimeOffset = params['StartTimeOffset']
+          @EndTimeOffset = params['EndTimeOffset']
+          @Text = params['Text']
+          unless params['Wordlist'].nil?
+            @Wordlist = []
+            params['Wordlist'].each do |i|
+              wordresult_tmp = WordResult.new
+              wordresult_tmp.deserialize(i)
+              @Wordlist << wordresult_tmp
+            end
+          end
+        end
+      end
+
+      # 智能字幕翻译的输入。
+      class SmartSubtitleTaskResultInput < TencentCloud::Common::AbstractModel
+        # @param Definition: 智能字幕模板 ID。
+        # @type Definition: Integer
+        # @param RawParameter: 智能字幕自定义参数，当 Definition 填 0 时有效。
+        # 该参数用于高度定制场景，建议您优先使用 Definition 指定智能字幕参数。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RawParameter: :class:`Tencentcloud::Mps.v20190612.models.RawSmartSubtitleParameter`
+
+        attr_accessor :Definition, :RawParameter
+
+        def initialize(definition=nil, rawparameter=nil)
+          @Definition = definition
+          @RawParameter = rawparameter
+        end
+
+        def deserialize(params)
+          @Definition = params['Definition']
+          unless params['RawParameter'].nil?
+            @RawParameter = RawSmartSubtitleParameter.new
+            @RawParameter.deserialize(params['RawParameter'])
+          end
+        end
+      end
+
+      # 翻译结果。
+      class SmartSubtitleTaskTransTextResult < TencentCloud::Common::AbstractModel
+        # @param Status: 任务状态，有 PROCESSING，SUCCESS 和 FAIL 三种。
+        # @type Status: String
+        # @param ErrCodeExt: 错误码，空字符串表示成功，其他值表示失败，取值请参考 [媒体处理类错误码](https://cloud.tencent.com/document/product/862/50369#.E8.A7.86.E9.A2.91.E5.A4.84.E7.90.86.E7.B1.BB.E9.94.99.E8.AF.AF.E7.A0.81) 列表。
+        # @type ErrCodeExt: String
+        # @param ErrCode: 错误码，0 表示成功，其他值表示失败（该字段已不推荐使用，建议使用新的错误码字段 ErrCodeExt）。
+        # @type ErrCode: Integer
+        # @param Message: 错误信息。
+        # @type Message: String
+        # @param Input: 翻译任务输入信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Input: :class:`Tencentcloud::Mps.v20190612.models.SmartSubtitleTaskResultInput`
+        # @param Output: 翻译任务输出信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Output: :class:`Tencentcloud::Mps.v20190612.models.SmartSubtitleTaskTransTextResultOutput`
+        # @param Progress: 任务进度。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Progress: Integer
+
+        attr_accessor :Status, :ErrCodeExt, :ErrCode, :Message, :Input, :Output, :Progress
+
+        def initialize(status=nil, errcodeext=nil, errcode=nil, message=nil, input=nil, output=nil, progress=nil)
+          @Status = status
+          @ErrCodeExt = errcodeext
+          @ErrCode = errcode
+          @Message = message
+          @Input = input
+          @Output = output
+          @Progress = progress
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @ErrCodeExt = params['ErrCodeExt']
+          @ErrCode = params['ErrCode']
+          @Message = params['Message']
+          unless params['Input'].nil?
+            @Input = SmartSubtitleTaskResultInput.new
+            @Input.deserialize(params['Input'])
+          end
+          unless params['Output'].nil?
+            @Output = SmartSubtitleTaskTransTextResultOutput.new
+            @Output.deserialize(params['Output'])
+          end
+          @Progress = params['Progress']
+        end
+      end
+
+      # 翻译结果。
+      class SmartSubtitleTaskTransTextResultOutput < TencentCloud::Common::AbstractModel
+        # @param SegmentSet: 翻译片段列表。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SegmentSet: Array
+        # @param SubtitlePath: 字幕文件地址。
+        # @type SubtitlePath: String
+
+        attr_accessor :SegmentSet, :SubtitlePath
+
+        def initialize(segmentset=nil, subtitlepath=nil)
+          @SegmentSet = segmentset
+          @SubtitlePath = subtitlepath
+        end
+
+        def deserialize(params)
+          unless params['SegmentSet'].nil?
+            @SegmentSet = []
+            params['SegmentSet'].each do |i|
+              smartsubtitletasktranstextsegmentitem_tmp = SmartSubtitleTaskTransTextSegmentItem.new
+              smartsubtitletasktranstextsegmentitem_tmp.deserialize(i)
+              @SegmentSet << smartsubtitletasktranstextsegmentitem_tmp
+            end
+          end
+          @SubtitlePath = params['SubtitlePath']
+        end
+      end
+
+      # 翻译片段。
+      class SmartSubtitleTaskTransTextSegmentItem < TencentCloud::Common::AbstractModel
+        # @param Confidence: 识别片段置信度。取值：0~100。
+        # @type Confidence: Float
+        # @param StartTimeOffset: 识别片段起始的偏移时间，单位：秒。
+        # @type StartTimeOffset: Float
+        # @param EndTimeOffset: 识别片段终止的偏移时间，单位：秒。
+        # @type EndTimeOffset: Float
+        # @param Text: 识别文本。
+        # @type Text: String
+        # @param Trans: 翻译文本。
+        # @type Trans: String
+        # @param Wordlist: 字词时间戳信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Wordlist: Array
+
+        attr_accessor :Confidence, :StartTimeOffset, :EndTimeOffset, :Text, :Trans, :Wordlist
+
+        def initialize(confidence=nil, starttimeoffset=nil, endtimeoffset=nil, text=nil, trans=nil, wordlist=nil)
+          @Confidence = confidence
+          @StartTimeOffset = starttimeoffset
+          @EndTimeOffset = endtimeoffset
+          @Text = text
+          @Trans = trans
+          @Wordlist = wordlist
+        end
+
+        def deserialize(params)
+          @Confidence = params['Confidence']
+          @StartTimeOffset = params['StartTimeOffset']
+          @EndTimeOffset = params['EndTimeOffset']
+          @Text = params['Text']
+          @Trans = params['Trans']
+          unless params['Wordlist'].nil?
+            @Wordlist = []
+            params['Wordlist'].each do |i|
+              wordresult_tmp = WordResult.new
+              wordresult_tmp.deserialize(i)
+              @Wordlist << wordresult_tmp
+            end
+          end
+        end
+      end
+
+      # 智能字幕模板详情
+      class SmartSubtitleTemplateItem < TencentCloud::Common::AbstractModel
+        # @param Definition: 智能字幕模板唯一标识
+        # @type Definition: Integer
+        # @param Name: 智能字幕模板名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Comment: 智能字幕模板描述信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Comment: String
+        # @param Type: 模板类型，取值范围：
+        # * Preset：系统预置模板；
+        # * Custom：用户自定义模板。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+        # @param AsrHotWordsConfigure: ASR热词库参数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AsrHotWordsConfigure: :class:`Tencentcloud::Mps.v20190612.models.AsrHotWordsConfigure`
+        # @param AsrHotWordsLibraryName: 模板关联热词库名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AsrHotWordsLibraryName: String
+        # @param VideoSrcLanguage: 智能字幕视频源语言
+        # 当前支持以下语言：
+        # zh：简体中文
+        # en：英语
+        # ja：日语
+        # ko：韩语
+        # zh-PY：中英粤
+        # zh-medical：中文医疗
+        # yue：中文粤语
+        # vi：越南语
+        # ms：马来语
+        # id：印度尼西亚语
+        # fil：菲律宾语
+        # th：泰语
+        # pt：葡萄牙语
+        # tr：土耳其语
+        # ar：阿拉伯语
+        # es：西班牙语
+        # hi：印地语
+        # fr：法语
+        # de：德语
+        # zh_dialect：中文方言
+        # @type VideoSrcLanguage: String
+        # @param SubtitleFormat: 智能字幕文件格式
+        #  vtt: WebVTT 格式
+        # 不填或填空：不生成字幕文件
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubtitleFormat: String
+        # @param SubtitleType: 智能字幕字幕语言类型
+        # 0: 源语言
+        # 1: 翻译语言
+        # 2: 源语言+翻译语言
+        # 当TranslateSwitch为OFF时仅支持取0
+        # 当TranslateSwitch为ON时仅支持取1或2
+        # @type SubtitleType: Integer
+        # @param TranslateSwitch: 字幕翻译开关
+        # ON: 开启翻译
+        # OFF: 关闭翻译
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TranslateSwitch: String
+        # @param TranslateDstLanguage: 字幕翻译目标语言
+        # 当TranslateSwitch为ON的时候生效
+        # 当前支持以下语言：
+        # zh：简体中文
+        # en：英语
+        # ja：日语
+        # ko：韩语
+        # fr：法语
+        # es：西班牙语
+        # it：意大利语
+        # de：德语
+        # tr：土耳其语
+        # ru：俄语
+        # pt：葡萄牙语
+        # vi：越南语
+        # id：印度尼西亚语
+        # ms：马来语
+        # th：泰语
+        # ar：阿拉伯语
+        # hi：印地语
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TranslateDstLanguage: String
+        # @param CreateTime: 模板创建时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/862/37710#52)。
+        # @type CreateTime: String
+        # @param UpdateTime: 模板最后修改时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/862/37710#52)。
+        # @type UpdateTime: String
+        # @param AliasName: 智能字幕预设模板别名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AliasName: String
+
+        attr_accessor :Definition, :Name, :Comment, :Type, :AsrHotWordsConfigure, :AsrHotWordsLibraryName, :VideoSrcLanguage, :SubtitleFormat, :SubtitleType, :TranslateSwitch, :TranslateDstLanguage, :CreateTime, :UpdateTime, :AliasName
+
+        def initialize(definition=nil, name=nil, comment=nil, type=nil, asrhotwordsconfigure=nil, asrhotwordslibraryname=nil, videosrclanguage=nil, subtitleformat=nil, subtitletype=nil, translateswitch=nil, translatedstlanguage=nil, createtime=nil, updatetime=nil, aliasname=nil)
+          @Definition = definition
+          @Name = name
+          @Comment = comment
+          @Type = type
+          @AsrHotWordsConfigure = asrhotwordsconfigure
+          @AsrHotWordsLibraryName = asrhotwordslibraryname
+          @VideoSrcLanguage = videosrclanguage
+          @SubtitleFormat = subtitleformat
+          @SubtitleType = subtitletype
+          @TranslateSwitch = translateswitch
+          @TranslateDstLanguage = translatedstlanguage
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @AliasName = aliasname
+        end
+
+        def deserialize(params)
+          @Definition = params['Definition']
+          @Name = params['Name']
+          @Comment = params['Comment']
+          @Type = params['Type']
+          unless params['AsrHotWordsConfigure'].nil?
+            @AsrHotWordsConfigure = AsrHotWordsConfigure.new
+            @AsrHotWordsConfigure.deserialize(params['AsrHotWordsConfigure'])
+          end
+          @AsrHotWordsLibraryName = params['AsrHotWordsLibraryName']
+          @VideoSrcLanguage = params['VideoSrcLanguage']
+          @SubtitleFormat = params['SubtitleFormat']
+          @SubtitleType = params['SubtitleType']
+          @TranslateSwitch = params['TranslateSwitch']
+          @TranslateDstLanguage = params['TranslateDstLanguage']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          @AliasName = params['AliasName']
+        end
+      end
+
+      # 智能字幕结果。
+      class SmartSubtitlesResult < TencentCloud::Common::AbstractModel
+        # @param Type: 任务的类型，取值范围：
+        # <li>AsrFullTextRecognition：语音全文识别，</li>
+        # <li>TransTextRecognition：语音翻译。</li>
+        # @type Type: String
+        # @param AsrFullTextTask: 语音全文识别结果，当 Type 为
+        #  AsrFullTextRecognition 时有效。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AsrFullTextTask: :class:`Tencentcloud::Mps.v20190612.models.SmartSubtitleTaskAsrFullTextResult`
+        # @param TransTextTask: 翻译结果，当 Type 为
+
+        # TransTextRecognition 时有效。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TransTextTask: :class:`Tencentcloud::Mps.v20190612.models.SmartSubtitleTaskTransTextResult`
+
+        attr_accessor :Type, :AsrFullTextTask, :TransTextTask
+
+        def initialize(type=nil, asrfulltexttask=nil, transtexttask=nil)
+          @Type = type
+          @AsrFullTextTask = asrfulltexttask
+          @TransTextTask = transtexttask
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          unless params['AsrFullTextTask'].nil?
+            @AsrFullTextTask = SmartSubtitleTaskAsrFullTextResult.new
+            @AsrFullTextTask.deserialize(params['AsrFullTextTask'])
+          end
+          unless params['TransTextTask'].nil?
+            @TransTextTask = SmartSubtitleTaskTransTextResult.new
+            @TransTextTask.deserialize(params['TransTextTask'])
+          end
+        end
+      end
+
+      # 智能字幕输入结构体
+      class SmartSubtitlesTaskInput < TencentCloud::Common::AbstractModel
+        # @param Definition: 智能字幕模板 ID 。
+        # @type Definition: Integer
+        # @param UserExtPara: 用户扩展字段，一般场景不用填。
+        # @type UserExtPara: String
+        # @param RawParameter: 智能字幕自定义参数，当 Definition 填 0 时有效。 该参数用于高度定制场景，建议您优先使用 Definition 指定智能字幕参数。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RawParameter: :class:`Tencentcloud::Mps.v20190612.models.RawSmartSubtitleParameter`
+
+        attr_accessor :Definition, :UserExtPara, :RawParameter
+
+        def initialize(definition=nil, userextpara=nil, rawparameter=nil)
+          @Definition = definition
+          @UserExtPara = userextpara
+          @RawParameter = rawparameter
+        end
+
+        def deserialize(params)
+          @Definition = params['Definition']
+          @UserExtPara = params['UserExtPara']
+          unless params['RawParameter'].nil?
+            @RawParameter = RawSmartSubtitleParameter.new
+            @RawParameter.deserialize(params['RawParameter'])
+          end
         end
       end
 
@@ -23520,10 +24953,13 @@ module TencentCloud
         # @param AiQualityControlTaskResult: 媒体质检任务的执行状态与结果。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AiQualityControlTaskResult: :class:`Tencentcloud::Mps.v20190612.models.ScheduleQualityControlTaskResult`
+        # @param SmartSubtitlesTaskResult: 智能字幕任务的执行结果
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SmartSubtitlesTaskResult: Array
 
-        attr_accessor :TaskId, :Status, :ErrCode, :Message, :InputInfo, :MetaData, :MediaProcessResultSet, :AiContentReviewResultSet, :AiAnalysisResultSet, :AiRecognitionResultSet, :AiQualityControlTaskResult
+        attr_accessor :TaskId, :Status, :ErrCode, :Message, :InputInfo, :MetaData, :MediaProcessResultSet, :AiContentReviewResultSet, :AiAnalysisResultSet, :AiRecognitionResultSet, :AiQualityControlTaskResult, :SmartSubtitlesTaskResult
 
-        def initialize(taskid=nil, status=nil, errcode=nil, message=nil, inputinfo=nil, metadata=nil, mediaprocessresultset=nil, aicontentreviewresultset=nil, aianalysisresultset=nil, airecognitionresultset=nil, aiqualitycontroltaskresult=nil)
+        def initialize(taskid=nil, status=nil, errcode=nil, message=nil, inputinfo=nil, metadata=nil, mediaprocessresultset=nil, aicontentreviewresultset=nil, aianalysisresultset=nil, airecognitionresultset=nil, aiqualitycontroltaskresult=nil, smartsubtitlestaskresult=nil)
           @TaskId = taskid
           @Status = status
           @ErrCode = errcode
@@ -23535,6 +24971,7 @@ module TencentCloud
           @AiAnalysisResultSet = aianalysisresultset
           @AiRecognitionResultSet = airecognitionresultset
           @AiQualityControlTaskResult = aiqualitycontroltaskresult
+          @SmartSubtitlesTaskResult = smartsubtitlestaskresult
         end
 
         def deserialize(params)
@@ -23585,6 +25022,14 @@ module TencentCloud
           unless params['AiQualityControlTaskResult'].nil?
             @AiQualityControlTaskResult = ScheduleQualityControlTaskResult.new
             @AiQualityControlTaskResult.deserialize(params['AiQualityControlTaskResult'])
+          end
+          unless params['SmartSubtitlesTaskResult'].nil?
+            @SmartSubtitlesTaskResult = []
+            params['SmartSubtitlesTaskResult'].each do |i|
+              smartsubtitlesresult_tmp = SmartSubtitlesResult.new
+              smartsubtitlesresult_tmp.deserialize(i)
+              @SmartSubtitlesTaskResult << smartsubtitlesresult_tmp
+            end
           end
         end
       end

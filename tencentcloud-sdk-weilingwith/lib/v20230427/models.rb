@@ -20,10 +20,8 @@ module TencentCloud
       # 动作信息
       class Action < TencentCloud::Common::AbstractModel
         # @param Id: 动作id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Id: Integer
         # @param Name: 动作名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
 
         attr_accessor :Id, :Name
@@ -42,34 +40,24 @@ module TencentCloud
       # 详细动作信息
       class ActionDetail < TencentCloud::Common::AbstractModel
         # @param Id: 动作id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Id: Integer
         # @param Name: 动作名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param ActionType: 动作类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ActionType: String
         # @param ActionDesc: 动作说明
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ActionDesc: String
         # @param MsgType: 消息类型，orgin/custom/model
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MsgType: String
         # @param MsgContent: 消息内容,有效值为x-json:后的字段
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MsgContent: String
         # @param CreateTime: 创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
         # @param WID: 设备唯一标识
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WID: String
         # @param LinkRuleSet: 关联故障列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LinkRuleSet: Array
         # @param SinkConfig: 动作下沉配置,有效值为x-json:后的字段
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SinkConfig: String
 
         attr_accessor :Id, :Name, :ActionType, :ActionDesc, :MsgType, :MsgContent, :CreateTime, :WID, :LinkRuleSet, :SinkConfig
@@ -111,31 +99,22 @@ module TencentCloud
       # 动作对象
       class ActionObj < TencentCloud::Common::AbstractModel
         # @param Id: 动作id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Id: Integer
         # @param Name: 动作名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Type: 动作类型。（app/推送消息至应用-携带空间设备：无,appWithNearbyDevices/推送至应用-携带空间设备：携带,device/推送消息至设备-指定设备,nearbyDevices/推送消息至设备-事件所在范围内的设备,toAlarm/转换为告警,toNotification/转换为通知）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: String
         # @param Desc: 动作说明
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Desc: String
         # @param MsgType: 消息类型，orgin/custom/model
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MsgType: String
         # @param MsgContent: 消息内容
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MsgContent: String
         # @param CreateTime: 创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
         # @param SinkConfig: 动作下沉配置
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SinkConfig: String
         # @param ApplyDevice:  具体应用（appid）/具体设备（DIN/subID）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApplyDevice: String
 
         attr_accessor :Id, :Name, :Type, :Desc, :MsgType, :MsgContent, :CreateTime, :SinkConfig, :ApplyDevice
@@ -258,10 +237,8 @@ module TencentCloud
       # 行政区划数据结构
       class AdministrationData < TencentCloud::Common::AbstractModel
         # @param AdministrationCode: 行政区划编码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AdministrationCode: String
         # @param AdministrationName: 行政区划名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AdministrationName: String
 
         attr_accessor :AdministrationCode, :AdministrationName
@@ -280,13 +257,10 @@ module TencentCloud
       # 行政区划详情
       class AdministrativeDetail < TencentCloud::Common::AbstractModel
         # @param AdministrativeTypeCode: 行政区域类型编码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AdministrativeTypeCode: String
         # @param AdministrativeCode: 行政区域编码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AdministrativeCode: String
         # @param AdministrativeName: 行政区域名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AdministrativeName: String
 
         attr_accessor :AdministrativeTypeCode, :AdministrativeCode, :AdministrativeName
@@ -307,70 +281,48 @@ module TencentCloud
       # 告警信息
       class AlarmInfo < TencentCloud::Common::AbstractModel
         # @param WorkspaceId: 工作空间id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WorkspaceId: Integer
         # @param Id: 告警ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Id: String
         # @param Status: 告警状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: String
         # @param Time: 告警时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Time: Integer
         # @param Type: 告警业务类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: String
         # @param TypeName: 告警业务类型名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TypeName: String
         # @param SubType: 子告警类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubType: String
         # @param SubTypeName: 子告警类型名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubTypeName: String
         # @param Level: 告警级别id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Level: Integer
         # @param LevelName: 告警级别名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LevelName: String
         # @param AppId: 上报应用appid
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AppId: Integer
         # @param WID: 设备wid
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WID: String
         # @param DeviceName: 设备名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeviceName: String
         # @param Position: 空间位置
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Position: String
         # @param ReportImg: 上报图片
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReportImg: :class:`Tencentcloud::Weilingwith.v20230427.models.ReportImg`
         # @param Desc: 告警描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Desc: String
         # @param HandlePersonSet: 处理人
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HandlePersonSet: Array
         # @param HandleRecordSet: 处理记录
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HandleRecordSet: Array
         # @param Extend: 扩展信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Extend: String
         # @param ExtendOne: 应用扩展字段1
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExtendOne: String
         # @param ExtendTwo: 应用扩展字段2
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExtendTwo: String
         # @param Echo: 应用透传字段,有效字段为x-json后的字段
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Echo: String
 
         attr_accessor :WorkspaceId, :Id, :Status, :Time, :Type, :TypeName, :SubType, :SubTypeName, :Level, :LevelName, :AppId, :WID, :DeviceName, :Position, :ReportImg, :Desc, :HandlePersonSet, :HandleRecordSet, :Extend, :ExtendOne, :ExtendTwo, :Echo
@@ -446,10 +398,8 @@ module TencentCloud
       # 告警级别详情
       class AlarmLevelInfo < TencentCloud::Common::AbstractModel
         # @param LevelId: 级别id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LevelId: Integer
         # @param LevelName: 级别名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LevelName: String
 
         attr_accessor :LevelId, :LevelName
@@ -468,13 +418,10 @@ module TencentCloud
       # 告警状态返回结构体
       class AlarmStatusData < TencentCloud::Common::AbstractModel
         # @param StatusID: 告警状态ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StatusID: String
         # @param StatusName: 告警状态名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StatusName: String
         # @param StatusType: 告警状态类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StatusType: String
 
         attr_accessor :StatusID, :StatusName, :StatusType
@@ -495,19 +442,14 @@ module TencentCloud
       # 告警类型详情信息
       class AlarmTypeDetailInfo < TencentCloud::Common::AbstractModel
         # @param Id: 告警类型id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Id: Integer
         # @param ParentId: 父节点id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ParentId: Integer
         # @param Type: 0-标准告警类型，1-自定义告警类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: Integer
         # @param Name: 告警名称类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param EnglishName: 告警类型英文名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EnglishName: String
 
         attr_accessor :Id, :ParentId, :Type, :Name, :EnglishName
@@ -552,25 +494,18 @@ module TencentCloud
       # API参数信息
       class ApiContent < TencentCloud::Common::AbstractModel
         # @param Id: 所属API的id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Id: String
         # @param Name: 参数名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Type: 参数类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: String
         # @param Dynamic: 是否为动态值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Dynamic: Boolean
         # @param Required: 是否必填
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Required: Boolean
         # @param Value: 参数值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: String
         # @param DefaultValue: 默认值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DefaultValue: String
 
         attr_accessor :Id, :Name, :Type, :Dynamic, :Required, :Value, :DefaultValue
@@ -599,67 +534,46 @@ module TencentCloud
       # API描述
       class ApiInfo < TencentCloud::Common::AbstractModel
         # @param ApiId: API的id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApiId: String
         # @param Name: API名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param AppId: API所属应用的id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AppId: String
         # @param WorkspaceId: API所属的项目空间的id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WorkspaceId: String
         # @param PoiCode: API所属目录的编码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PoiCode: String
         # @param Type:  接口分类0. 其他服务 1. IOT服务 2. 空间服务 3.微应用服务 4.场景服务 5.AI算法服务 6.任务算法服务 7.第三方服务
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: Integer
         # @param DataAudit: 数据授权 0:否 1:是
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DataAudit: Integer
         # @param ApplyAudit: 是否需要申请 0:否 1:是
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApplyAudit: Integer
         # @param Description: API详情
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
         # @param Address: API地址
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Address: String
         # @param Method: 请求方法类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Method: String
         # @param Status: API状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
         # @param PreviewUrl: API预览地址
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PreviewUrl: String
         # @param QueryParams: query参数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type QueryParams: Array
         # @param PathParams: 路径参数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PathParams: Array
         # @param RequestHeaders: 请求头
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RequestHeaders: Array
         # @param ResponseHeaders: 响应头
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResponseHeaders: Array
         # @param IsCommonSpace: 是否为公共空间接口
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsCommonSpace: Boolean
         # @param Body: 请求体（base64编码）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Body: String
         # @param ResponseBody: 响应体（base64编码）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResponseBody: String
         # @param Style: 接口方式 1.http 2消息通知服务
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Style: Integer
 
         attr_accessor :ApiId, :Name, :AppId, :WorkspaceId, :PoiCode, :Type, :DataAudit, :ApplyAudit, :Description, :Address, :Method, :Status, :PreviewUrl, :QueryParams, :PathParams, :RequestHeaders, :ResponseHeaders, :IsCommonSpace, :Body, :ResponseBody, :Style
@@ -744,10 +658,8 @@ module TencentCloud
       # API列表
       class ApiInfoList < TencentCloud::Common::AbstractModel
         # @param ApiInfo: API列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApiInfo: Array
         # @param TotalCount: 数据总条数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
 
         attr_accessor :ApiInfo, :TotalCount
@@ -773,25 +685,18 @@ module TencentCloud
       # 应用描述
       class ApplicationInfo < TencentCloud::Common::AbstractModel
         # @param ApplicationId: 应用分配的appId
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApplicationId: String
         # @param Name: 应用中文名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Address: 应用地址
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Address: String
         # @param ApplicationLogo: 应用logo
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApplicationLogo: :class:`Tencentcloud::Weilingwith.v20230427.models.ApplicationLogo`
         # @param Type: 应用类型，0:saas应用 1:平台应用
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: Integer
         # @param EnglishName: engine
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EnglishName: String
         # @param Description: 能源管理应用
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
 
         attr_accessor :ApplicationId, :Name, :Address, :ApplicationLogo, :Type, :EnglishName, :Description
@@ -823,10 +728,8 @@ module TencentCloud
       # 应用列表
       class ApplicationList < TencentCloud::Common::AbstractModel
         # @param ApplicationInfoList: 应用列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApplicationInfoList: Array
         # @param TotalCount: 当前查询条件命中的数据总条数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: String
 
         attr_accessor :ApplicationInfoList, :TotalCount
@@ -852,10 +755,8 @@ module TencentCloud
       # 应用logo
       class ApplicationLogo < TencentCloud::Common::AbstractModel
         # @param FileId: logo图片对应的fileId
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FileId: String
         # @param Url: logo图片地址
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Url: String
 
         attr_accessor :FileId, :Url
@@ -874,7 +775,6 @@ module TencentCloud
       # 应用Token令牌信息
       class ApplicationTokenInfo < TencentCloud::Common::AbstractModel
         # @param Token: 应用申请调用API的令牌
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Token: String
 
         attr_accessor :Token
@@ -922,10 +822,8 @@ module TencentCloud
       # 批量新增设备接口返回结果
       class BatchCreateDeviceRes < TencentCloud::Common::AbstractModel
         # @param SuccessSet: 新增成功的设备列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SuccessSet: Array
         # @param FailSet: 新增失败的设备列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FailSet: Array
 
         attr_accessor :SuccessSet, :FailSet
@@ -1153,14 +1051,10 @@ module TencentCloud
       # 批量消息上报结果
       class BatchReportAppMessageRes < TencentCloud::Common::AbstractModel
         # @param TotalElements: 上报数量
-
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalElements: Integer
         # @param Commit: 提交数量（推送成功）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Commit: Integer
         # @param SpanMap: 消息推送结果列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SpanMap: Array
 
         attr_accessor :TotalElements, :Commit, :SpanMap
@@ -1211,7 +1105,6 @@ module TencentCloud
       # 建筑列表响应体
       class BuildingListRes < TencentCloud::Common::AbstractModel
         # @param BuildingProfileList: 建筑列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BuildingProfileList: Array
 
         attr_accessor :BuildingProfileList
@@ -1235,16 +1128,12 @@ module TencentCloud
       # 建筑模型信息
       class BuildingModel < TencentCloud::Common::AbstractModel
         # @param ElementId: 构件ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ElementId: String
         # @param ElementName: 构件名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ElementName: String
         # @param ModelType: 模型类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ModelType: String
         # @param ModelUrl: 模型URL
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ModelUrl: String
 
         attr_accessor :ElementId, :ElementName, :ModelType, :ModelUrl
@@ -1267,7 +1156,6 @@ module TencentCloud
       # 建模模型信息响应体
       class BuildingModelRes < TencentCloud::Common::AbstractModel
         # @param Models: 建模模型信息出参
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Models: Array
 
         attr_accessor :Models
@@ -1291,22 +1179,16 @@ module TencentCloud
       # 建筑概要信息
       class BuildingProfile < TencentCloud::Common::AbstractModel
         # @param BuildingId: 建筑id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BuildingId: String
         # @param BuildingName: 建筑名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BuildingName: String
         # @param SpaceCode: 空间编码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SpaceCode: String
         # @param Longitude: 经度
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Longitude: Float
         # @param Latitude: 纬度
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Latitude: Float
         # @param Address: 地址
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Address: String
 
         attr_accessor :BuildingId, :BuildingName, :SpaceCode, :Longitude, :Latitude, :Address
@@ -1333,7 +1215,6 @@ module TencentCloud
       # 查询建筑信息响应体
       class BuildingProfileRes < TencentCloud::Common::AbstractModel
         # @param BuildingProfile: 建筑概要信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BuildingProfile: :class:`Tencentcloud::Weilingwith.v20230427.models.BuildingProfile`
 
         attr_accessor :BuildingProfile
@@ -1353,17 +1234,12 @@ module TencentCloud
       # 视频扩展信息结果
       class CameraExtendInfoRes < TencentCloud::Common::AbstractModel
         # @param SaveType: 存储方式 (nvr或cosmtav)
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SaveType: String
         # @param SaveDay: 云存储天数（save_type是cosmtav时这个参数才有效）
-
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SaveDay: Integer
         # @param LiveResolution: 实时分辨率
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LiveResolution: Integer
         # @param HistoryResolution: 历史分辨率
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HistoryResolution: Integer
 
         attr_accessor :SaveType, :SaveDay, :LiveResolution, :HistoryResolution
@@ -1566,16 +1442,12 @@ module TencentCloud
       # 设备控制结果
       class ControlDeviceRes < TencentCloud::Common::AbstractModel
         # @param WID: 设备Id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WID: String
         # @param Code: 指令接受, 0表示成功
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Code: Integer
         # @param Result: 控制结果
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: String
         # @param Seq: 批量大于1时，可用此seq进行链路追踪
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Seq: String
 
         attr_accessor :WID, :Code, :Result, :Seq
@@ -1621,7 +1493,6 @@ module TencentCloud
       # 设备控制后返回结果集合
       class ControlDeviceSet < TencentCloud::Common::AbstractModel
         # @param Set: 设备控制后返回结果集合
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Set: Array
 
         attr_accessor :Set
@@ -1700,16 +1571,12 @@ module TencentCloud
       # 导入失败设备信息
       class CreateDeviceFailed < TencentCloud::Common::AbstractModel
         # @param ProductId: 产品id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProductId: Integer
         # @param ParentWID: 父设备wid，不为空表示导入自设备
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ParentWID: String
         # @param Reason: 失败原因
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Reason: String
         # @param SN: 设备sn序列号
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SN: String
 
         attr_accessor :ProductId, :ParentWID, :Reason, :SN
@@ -1732,16 +1599,12 @@ module TencentCloud
       # 导入成功设备信息
       class CreateDeviceSucceeded < TencentCloud::Common::AbstractModel
         # @param ProductId: 产品id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProductId: Integer
         # @param ParentWID: 父设备wid，不为空表示导入自设备
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ParentWID: String
         # @param WID: 设备编码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WID: String
         # @param SN: 设备sn序列号
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SN: String
 
         attr_accessor :ProductId, :ParentWID, :WID, :SN
@@ -1784,16 +1647,12 @@ module TencentCloud
       # 自定义字段
       class CustomFieldInfo < TencentCloud::Common::AbstractModel
         # @param Id: 字段id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Id: Integer
         # @param Key: 字段key
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Key: String
         # @param Name: 字段名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Val: 字段值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Val: String
 
         attr_accessor :Id, :Key, :Name, :Val
@@ -1899,19 +1758,14 @@ module TencentCloud
       # 动作列表查询结果
       class DescribeActionListRes < TencentCloud::Common::AbstractModel
         # @param PageNumber: 第几页
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PageNumber: Integer
         # @param PageSize: 每页条数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PageSize: Integer
         # @param TotalPage: 总页数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalPage: Integer
         # @param TotalRow: 总条数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalRow: Integer
         # @param ActionDetailSet: 动作列表查询集合
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ActionDetailSet: Array
 
         attr_accessor :PageNumber, :PageSize, :TotalPage, :TotalRow, :ActionDetailSet
@@ -1990,7 +1844,6 @@ module TencentCloud
       # 根据Tag获取行政区划列表返回结构
       class DescribeAdministrationByTagRes < TencentCloud::Common::AbstractModel
         # @param List: 行政区划列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type List: Array
 
         attr_accessor :List
@@ -2057,7 +1910,6 @@ module TencentCloud
       # 告警级别枚举获取
       class DescribeAlarmLevelListRes < TencentCloud::Common::AbstractModel
         # @param AlarmLevelSet: 告警级别枚举获取数组
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AlarmLevelSet: Array
 
         attr_accessor :AlarmLevelSet
@@ -2191,19 +2043,14 @@ module TencentCloud
       # 告警列表回包
       class DescribeAlarmListRes < TencentCloud::Common::AbstractModel
         # @param PageNumber: 第几页
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PageNumber: Integer
         # @param PageSize: 每页条数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PageSize: Integer
         # @param TotalPage: 总页数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalPage: Integer
         # @param TotalRow: 总条数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalRow: Integer
         # @param AlarmInfoSet: 告警列表集合
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AlarmInfoSet: Array
 
         attr_accessor :PageNumber, :PageSize, :TotalPage, :TotalRow, :AlarmInfoSet
@@ -2278,7 +2125,6 @@ module TencentCloud
       # 告警状态列表返回
       class DescribeAlarmStatusListRes < TencentCloud::Common::AbstractModel
         # @param List: 告警状态返回结构
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type List: Array
 
         attr_accessor :List
@@ -2349,7 +2195,6 @@ module TencentCloud
       # 告警类型列表回包
       class DescribeAlarmTypeListRes < TencentCloud::Common::AbstractModel
         # @param AlarmTypeSet: 告警类型查询列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AlarmTypeSet: Array
 
         attr_accessor :AlarmTypeSet
@@ -2663,7 +2508,6 @@ module TencentCloud
       # 通过城市id查询工作空间列表
       class DescribeCityWorkspaceListRes < TencentCloud::Common::AbstractModel
         # @param WorkspaceSet: 通过城市id查询工作空间列表结果
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WorkspaceSet: Array
 
         attr_accessor :WorkspaceSet
@@ -2735,7 +2579,6 @@ module TencentCloud
       # 设备分组信息
       class DescribeDeviceGroupListRes < TencentCloud::Common::AbstractModel
         # @param List: 设备分组list
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type List: Array
 
         attr_accessor :List
@@ -2853,19 +2696,14 @@ module TencentCloud
       # 设备列表查询结果
       class DescribeDeviceListRes < TencentCloud::Common::AbstractModel
         # @param PageNumber: 第几页
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PageNumber: Integer
         # @param PageSize: 每页条数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PageSize: Integer
         # @param TotalPage: 总页数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalPage: Integer
         # @param TotalRow: 总条数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalRow: Integer
         # @param DeviceDataSet: 设备信息集合
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeviceDataSet: Array
 
         attr_accessor :PageNumber, :PageSize, :TotalPage, :TotalRow, :DeviceDataSet
@@ -3457,19 +3295,14 @@ module TencentCloud
       # 事件列表查询结果
       class DescribeEventListRes < TencentCloud::Common::AbstractModel
         # @param PageNumber: 第几页
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PageNumber: Integer
         # @param PageSize: 每页条数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PageSize: Integer
         # @param TotalPage: 总页数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalPage: Integer
         # @param TotalRow: 总条数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalRow: Integer
         # @param EventDetailSet: 事件信息列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EventDetailSet: Array
 
         attr_accessor :PageNumber, :PageSize, :TotalPage, :TotalRow, :EventDetailSet
@@ -3642,10 +3475,8 @@ module TencentCloud
         # @param Name: 设备分组名称
         # @type Name: String
         # @param Description: 分组描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
         # @param ParentId: 分组父级ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ParentId: Integer
 
         attr_accessor :Id, :Name, :Description, :ParentId
@@ -3763,19 +3594,14 @@ module TencentCloud
       # 联动规则列表查询结果
       class DescribeLinkRuleListRes < TencentCloud::Common::AbstractModel
         # @param PageNumber: 第几页
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PageNumber: Integer
         # @param PageSize: 每页条数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PageSize: Integer
         # @param TotalPage: 总页数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalPage: Integer
         # @param TotalRow: 总条数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalRow: Integer
         # @param LinkRuleSet: 联动规则列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LinkRuleSet: Array
 
         attr_accessor :PageNumber, :PageSize, :TotalPage, :TotalRow, :LinkRuleSet
@@ -4878,70 +4704,48 @@ module TencentCloud
       # 设备数据信息
       class DeviceDataInfo < TencentCloud::Common::AbstractModel
         # @param WID: 设备ID， wid
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WID: String
         # @param DeviceName: 设备名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeviceName: String
         # @param DeviceTypeCode: 设备类型Id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeviceTypeCode: String
         # @param DeviceTypeName: 设备类型名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeviceTypeName: String
         # @param ProductId: 产品Id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProductId: Integer
         # @param ProductName: 产品名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProductName: String
         # @param ProductAbility: 产品能力:信令数据、音视频。二进制数值中第0位表示信令数据、第1位表示音视频 。1（信令数据），3（具有信令数据以及音视频能力）。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProductAbility: Integer
         # @param SpaceInfoSet: 设备位置信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SpaceInfoSet: Array
         # @param ModelId: 模型id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ModelId: String
         # @param ModelName: 模型名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ModelName: String
         # @param DeviceTagSet: 设备标签名，非必填
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeviceTagSet: Array
         # @param IsActive: 激活状态（1激活、0未激活）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsActive: Integer
         # @param ActiveTime:  激活时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ActiveTime: String
         # @param IsLive: 推流状态（推流中、未推流） 仅摄像机有的状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsLive: Boolean
         # @param ParentWID: 设备所属父设备id（子设备才有）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ParentWID: String
         # @param ParentWIDName: 设备所有父设备名称（子设备才有）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ParentWIDName: String
         # @param SN: 序列号
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SN: String
         # @param Location: 设备点位坐标值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Location: :class:`Tencentcloud::Weilingwith.v20230427.models.DeviceLocation`
         # @param FieldList: 自定义字段
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FieldList: Array
         # @param GroupInfo: 分组信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GroupInfo: String
         # @param DeviceStatus: 通信在/离线状态（online=normal+fault，offline）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeviceStatus: String
         # @param Status: 设备业务状态（normal、fault、offline）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: String
 
         attr_accessor :WID, :DeviceName, :DeviceTypeCode, :DeviceTypeName, :ProductId, :ProductName, :ProductAbility, :SpaceInfoSet, :ModelId, :ModelName, :DeviceTagSet, :IsActive, :ActiveTime, :IsLive, :ParentWID, :ParentWIDName, :SN, :Location, :FieldList, :GroupInfo, :DeviceStatus, :Status
@@ -5017,13 +4821,10 @@ module TencentCloud
       # 设备点位坐标值
       class DeviceLocation < TencentCloud::Common::AbstractModel
         # @param X: 点位X坐标值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type X: Float
         # @param Y: 点位Y坐标值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Y: Float
         # @param Z: 点位Z坐标值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Z: Float
 
         attr_accessor :X, :Y, :Z
@@ -5064,13 +4865,10 @@ module TencentCloud
       # 设备影子信息
       class DeviceShadowInfo < TencentCloud::Common::AbstractModel
         # @param WID: 设备ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WID: String
         # @param DeviceShadow: 设备影子数据,返回有效数据为"x-json:"后字段
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeviceShadow: String
         # @param DeviceShadowUpdateTime: 设备影子更新时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeviceShadowUpdateTime: String
 
         attr_accessor :WID, :DeviceShadow, :DeviceShadowUpdateTime
@@ -5091,19 +4889,14 @@ module TencentCloud
       # 设备影子查询列表
       class DeviceShadowRes < TencentCloud::Common::AbstractModel
         # @param PageNumber: 第几页
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PageNumber: Integer
         # @param PageSize: 每页条数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PageSize: Integer
         # @param TotalPage: 总页数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalPage: Integer
         # @param TotalRow: 总条数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalRow: Integer
         # @param Set: 设备影子列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Set: Array
 
         attr_accessor :PageNumber, :PageSize, :TotalPage, :TotalRow, :Set
@@ -5135,16 +4928,12 @@ module TencentCloud
       # 设备位置信息
       class DeviceSpaceInfo < TencentCloud::Common::AbstractModel
         # @param Id: 空间Id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Id: String
         # @param Name: 空间名字
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Level: 空间级别
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Level: Integer
         # @param Code: 空间编码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Code: String
 
         attr_accessor :Id, :Name, :Level, :Code
@@ -5167,25 +4956,18 @@ module TencentCloud
       # 设备挂接的空间信息
       class DeviceSpaceInfoRes < TencentCloud::Common::AbstractModel
         # @param BuildingId: 建筑id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BuildingId: String
         # @param ElementId: 构件id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ElementId: String
         # @param EntityType: 构件类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EntityType: String
         # @param ElementName: 构件名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ElementName: String
         # @param Level: 构件级别
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Level: Integer
         # @param BottomHeight: 底部标高（单位mm）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BottomHeight: Integer
         # @param SpaceCode: 空间编码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SpaceCode: String
 
         attr_accessor :BuildingId, :ElementId, :EntityType, :ElementName, :Level, :BottomHeight, :SpaceCode
@@ -5214,19 +4996,14 @@ module TencentCloud
       # 设备状态信息
       class DeviceStatusInfo < TencentCloud::Common::AbstractModel
         # @param WID: 设备ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WID: String
         # @param DeviceStatus: 设备状态（online=normal+fault、offline）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeviceStatus: String
         # @param DeviceStatusUpdateTime: 设备状态更新时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeviceStatusUpdateTime: String
         # @param Status: 设备业务状态（normal、fault、offline）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: String
         # @param IsAlive: 推流状态。推流中-true，未推流-false
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsAlive: Boolean
 
         attr_accessor :WID, :DeviceStatus, :DeviceStatusUpdateTime, :Status, :IsAlive
@@ -5251,19 +5028,14 @@ module TencentCloud
       # 设备状态获取接口结果
       class DeviceStatusRes < TencentCloud::Common::AbstractModel
         # @param PageNumber: 第几页
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PageNumber: Integer
         # @param PageSize: 每页条数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PageSize: Integer
         # @param TotalPage: 总页数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalPage: Integer
         # @param TotalRow: 总条数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalRow: Integer
         # @param DeviceStatusSet: 设备状态信息列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeviceStatusSet: Array
 
         attr_accessor :PageNumber, :PageSize, :TotalPage, :TotalRow, :DeviceStatusSet
@@ -5295,25 +5067,18 @@ module TencentCloud
       # 设备状态统计结果
       class DeviceStatusStatRes < TencentCloud::Common::AbstractModel
         # @param WorkspaceId: 工作空间Id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WorkspaceId: Integer
         # @param Total: 汇总数。在线（正常+故障） + 离线
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Total: Integer
         # @param NormalSum: 正常数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NormalSum: Integer
         # @param OfflineSum: 离线数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OfflineSum: Integer
         # @param FaultSum: 故障数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FaultSum: Integer
         # @param DeviceTypeOverviewSet: 设备类型概览列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeviceTypeOverviewSet: Array
         # @param StatLevelSet: 设备类型统计列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StatLevelSet: Array
 
         attr_accessor :WorkspaceId, :Total, :NormalSum, :OfflineSum, :FaultSum, :DeviceTypeOverviewSet, :StatLevelSet
@@ -5356,10 +5121,8 @@ module TencentCloud
       # 设备标签信息
       class DeviceTagInfo < TencentCloud::Common::AbstractModel
         # @param TagId: 标签Id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TagId: Integer
         # @param TagName: 标签名字
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TagName: String
 
         attr_accessor :TagId, :TagName
@@ -5378,19 +5141,14 @@ module TencentCloud
       # 设备标签列表查询结果
       class DeviceTagRes < TencentCloud::Common::AbstractModel
         # @param PageNumber: 第几页
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PageNumber: Integer
         # @param PageSize: 每页条数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PageSize: Integer
         # @param TotalPage: 总页数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalPage: Integer
         # @param TotalRow: 总条数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalRow: Integer
         # @param Set: 设备标签列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Set: Array
 
         attr_accessor :PageNumber, :PageSize, :TotalPage, :TotalRow, :Set
@@ -5422,20 +5180,14 @@ module TencentCloud
       # 设备类型
       class DeviceType < TencentCloud::Common::AbstractModel
         # @param Code: 设备类型编码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Code: String
         # @param Name: 设备类型名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param ParentCode: 父设备类型编码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ParentCode: String
         # @param ParentName: 父设备类型名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ParentName: String
         # @param IsSubsystem: 是否子系统，1是
-
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsSubsystem: Integer
 
         attr_accessor :Code, :Name, :ParentCode, :ParentName, :IsSubsystem
@@ -5460,22 +5212,16 @@ module TencentCloud
       # 设备类型概览信息
       class DeviceTypeOverview < TencentCloud::Common::AbstractModel
         # @param DeviceType: 设备类型值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeviceType: String
         # @param Name: 设备类型名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Total: 汇总数。在线（正常+故障） + 离线
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Total: Integer
         # @param Normal: 正常数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Normal: Integer
         # @param Offline: 离线数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Offline: Integer
         # @param Fault: 故障数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Fault: Integer
 
         attr_accessor :DeviceType, :Name, :Total, :Normal, :Offline, :Fault
@@ -5502,7 +5248,6 @@ module TencentCloud
       # 设备类型列表
       class DeviceTypeSet < TencentCloud::Common::AbstractModel
         # @param Set: 设备类型列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Set: Array
 
         attr_accessor :Set
@@ -5526,13 +5271,10 @@ module TencentCloud
       # 构件地理坐标
       class ElementCoordinates < TencentCloud::Common::AbstractModel
         # @param Longitude: 经度
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Longitude: Float
         # @param Latitude: 纬度
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Latitude: Float
         # @param Altitude: 高程
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Altitude: Float
 
         attr_accessor :Longitude, :Latitude, :Altitude
@@ -5553,46 +5295,32 @@ module TencentCloud
       # 构件概要信息
       class ElementProfile < TencentCloud::Common::AbstractModel
         # @param BuildingId: 建筑id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BuildingId: String
         # @param ElementId: 构件id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ElementId: String
         # @param EntityType: 构件类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EntityType: String
         # @param ElementName: 构件名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ElementName: String
         # @param Level: 构件空间级别
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Level: Integer
         # @param BottomHeight: 底部标高（单位mm）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BottomHeight: Integer
         # @param Sort: 排序
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Sort: Integer
         # @param SpaceCode: 空间编码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SpaceCode: String
         # @param SpaceTypeCode: 空间分类编码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SpaceTypeCode: String
         # @param SpaceTypeName: 空间分类名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SpaceTypeName: String
         # @param ParentElementId: 父级构件id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ParentElementId: String
         # @param SpacePoiId: 空间层级类型编码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SpacePoiId: String
         # @param ElementDesc: 构件描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ElementDesc: String
         # @param IsDelete: 删除标记
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsDelete: Integer
 
         attr_accessor :BuildingId, :ElementId, :EntityType, :ElementName, :Level, :BottomHeight, :Sort, :SpaceCode, :SpaceTypeCode, :SpaceTypeName, :ParentElementId, :SpacePoiId, :ElementDesc, :IsDelete
@@ -5635,10 +5363,8 @@ module TencentCloud
       # 构件分页查询响应体
       class ElementProfilePageRes < TencentCloud::Common::AbstractModel
         # @param TotalCount: 构件总数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
         # @param List: 构件列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type List: Array
 
         attr_accessor :TotalCount, :List
@@ -5664,10 +5390,8 @@ module TencentCloud
       # 构件树节点信息
       class ElementProfileTreeNode < TencentCloud::Common::AbstractModel
         # @param ElementProfile: 构件概要信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ElementProfile: :class:`Tencentcloud::Weilingwith.v20230427.models.ElementProfile`
         # @param Children: 子节点信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Children: Array
 
         attr_accessor :ElementProfile, :Children
@@ -5696,13 +5420,10 @@ module TencentCloud
       # 构件树响应体
       class ElementProfileTreeRes < TencentCloud::Common::AbstractModel
         # @param BuildingId: 建筑id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BuildingId: String
         # @param ParentElementId: 父级构件id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ParentElementId: String
         # @param Root: 构件树
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Root: :class:`Tencentcloud::Weilingwith.v20230427.models.ElementProfileTreeNode`
 
         attr_accessor :BuildingId, :ParentElementId, :Root
@@ -5726,13 +5447,10 @@ module TencentCloud
       # 构件属性信息
       class ElementProperty < TencentCloud::Common::AbstractModel
         # @param Name: 属性名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Description: 属性描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
         # @param Content: 属性内容
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Content: String
 
         attr_accessor :Name, :Description, :Content
@@ -5753,28 +5471,20 @@ module TencentCloud
       # 构件属性信息响应体
       class ElementPropertyRes < TencentCloud::Common::AbstractModel
         # @param BuildingId: 建筑id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BuildingId: String
         # @param ElementId: 构件id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ElementId: String
         # @param PropertySet: 构件属性集合
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PropertySet: Array
         # @param Coordinates: 构件地理坐标
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Coordinates: :class:`Tencentcloud::Weilingwith.v20230427.models.ElementCoordinates`
         # @param Translate: 构件偏移量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Translate: :class:`Tencentcloud::Weilingwith.v20230427.models.ElementTranslate`
         # @param ElementName: 构件名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ElementName: String
         # @param EntityTypeCode: 构件类型代码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EntityTypeCode: String
         # @param EntityTypeName: 构件类型名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EntityTypeName: String
 
         attr_accessor :BuildingId, :ElementId, :PropertySet, :Coordinates, :Translate, :ElementName, :EntityTypeCode, :EntityTypeName
@@ -5818,13 +5528,10 @@ module TencentCloud
       # 构件平移信息
       class ElementTranslate < TencentCloud::Common::AbstractModel
         # @param X: X方向偏移量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type X: Float
         # @param Y: Y方向偏移量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Y: Float
         # @param Z: Z方向偏移量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Z: Float
 
         attr_accessor :X, :Y, :Z
@@ -5845,7 +5552,6 @@ module TencentCloud
       # 空结果返回
       class EmptyRes < TencentCloud::Common::AbstractModel
         # @param Msg: 返回请求状态,成功ok，失败error
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Msg: String
 
         attr_accessor :Msg
@@ -5862,10 +5568,8 @@ module TencentCloud
       # 事件信息
       class Event < TencentCloud::Common::AbstractModel
         # @param Id: 事件id或动作Id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Id: Integer
         # @param Name: 事件名称或动作名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
 
         attr_accessor :Id, :Name
@@ -5884,31 +5588,22 @@ module TencentCloud
       # 事件详细信息
       class EventDetail < TencentCloud::Common::AbstractModel
         # @param Id: 事件id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Id: Integer
         # @param Name: 事件名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param TriggerType: 事件触发类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TriggerType: String
         # @param TriggerCondition: 事件触发条件，返回为x-json后的字段
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TriggerCondition: String
         # @param ValidPeriod: 有效期
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ValidPeriod: String
         # @param LinkRuleSet: 关联规则列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LinkRuleSet: Array
         # @param CreateTime: 创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
         # @param DeviceType: 设备类型，当触发类型为deviceType时返回
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeviceType: String
         # @param WID: 设备的wid，当触发类型是device返回
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WID: String
 
         attr_accessor :Id, :Name, :TriggerType, :TriggerCondition, :ValidPeriod, :LinkRuleSet, :CreateTime, :DeviceType, :WID
@@ -5948,16 +5643,12 @@ module TencentCloud
       # 事件对象
       class EventObj < TencentCloud::Common::AbstractModel
         # @param Id: 事件id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Id: Integer
         # @param Name: 事件名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Type: 事件触发类型名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: String
         # @param Condition: 时间触发条件
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Condition: String
 
         attr_accessor :Id, :Name, :Type, :Condition
@@ -5980,8 +5671,6 @@ module TencentCloud
       # 文件下载URL
       class FileDownloadURL < TencentCloud::Common::AbstractModel
         # @param FileURL: 下载地址
-
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FileURL: String
 
         attr_accessor :FileURL
@@ -5998,11 +5687,8 @@ module TencentCloud
       # 文件信息
       class FileInfo < TencentCloud::Common::AbstractModel
         # @param FileId: 文件id
-
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FileId: String
         # @param ReportName: 名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReportName: String
 
         attr_accessor :FileId, :ReportName
@@ -6021,13 +5707,10 @@ module TencentCloud
       # 获取文件上传URL接口回包
       class FileUploadURL < TencentCloud::Common::AbstractModel
         # @param UploadURL: 上传地址
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UploadURL: String
         # @param FileId: 文件Id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FileId: String
         # @param DownloadURL: 下载地址
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DownloadURL: String
 
         attr_accessor :UploadURL, :FileId, :DownloadURL
@@ -6048,34 +5731,22 @@ module TencentCloud
       # 告警处理记录
       class HandleRecordInfo < TencentCloud::Common::AbstractModel
         # @param Id: 告警处理记录id
-
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Id: Integer
         # @param Description: 描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
         # @param Name: 名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param OperationType: 操作类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OperationType: String
         # @param Time: 处理时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Time: String
         # @param Type: 类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: String
         # @param FileSet: 文件列表
-
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FileSet: Array
         # @param AppId: 应用appid
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AppId: Integer
         # @param ExtendOne: 扩展字段1，存非孪生中台用户id
-
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExtendOne: String
 
         attr_accessor :Id, :Description, :Name, :OperationType, :Time, :Type, :FileSet, :AppId, :ExtendOne
@@ -6115,10 +5786,8 @@ module TencentCloud
       # 告警处理人列表
       class HandlerPersonInfo < TencentCloud::Common::AbstractModel
         # @param Id: 用户id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Id: String
         # @param Name: 用户名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
 
         attr_accessor :Id, :Name
@@ -6137,10 +5806,8 @@ module TencentCloud
       # 关联规则信息
       class LinkRule < TencentCloud::Common::AbstractModel
         # @param Id: 关联联动规则id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Id: Integer
         # @param Name: 关联联动规则名字
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
 
         attr_accessor :Id, :Name
@@ -6159,28 +5826,20 @@ module TencentCloud
       # 联动规则信息
       class LinkRuleInfo < TencentCloud::Common::AbstractModel
         # @param Id: 联动id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Id: Integer
         # @param Name: 联动名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param EventSet: 事件列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EventSet: Array
         # @param ActionSet: 动作列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ActionSet: Array
         # @param Status: 状态：0开，-1关
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
         # @param BeginDate: 起始时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BeginDate: String
         # @param EndDate: 结束时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EndDate: String
         # @param ValidPeriod: 有效周期内容,有效字段为x-json后的字段
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ValidPeriod: String
 
         attr_accessor :Id, :Name, :EventSet, :ActionSet, :Status, :BeginDate, :EndDate, :ValidPeriod
@@ -6249,28 +5908,20 @@ module TencentCloud
       # 模型基础信息
       class ModelInfo < TencentCloud::Common::AbstractModel
         # @param WorkspaceId: 工作空间id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WorkspaceId: Integer
         # @param ModelName: 模型名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ModelName: String
         # @param ModelId: 物模型id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ModelId: String
         # @param RelatedProduct: 关联产品信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RelatedProduct: Array
         # @param DeviceTypeName: 设备类型名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeviceTypeName: String
         # @param DeviceType: 设备类型id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeviceType: String
         # @param ModelType: 物模型类型，产品模型/标准模型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ModelType: Integer
         # @param ModelParams: 模型参数内容,有效字段为"x-json:"后的字段
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ModelParams: String
 
         attr_accessor :WorkspaceId, :ModelName, :ModelId, :RelatedProduct, :DeviceTypeName, :DeviceType, :ModelType, :ModelParams
@@ -6308,19 +5959,14 @@ module TencentCloud
       # 模型列表查询结果
       class ModelSet < TencentCloud::Common::AbstractModel
         # @param PageNumber: 第几页
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PageNumber: Integer
         # @param PageSize: 每页条数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PageSize: Integer
         # @param TotalPage: 总页数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalPage: Integer
         # @param TotalRow: 总条数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalRow: Integer
         # @param Set: 模型基础信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Set: Array
 
         attr_accessor :PageNumber, :PageSize, :TotalPage, :TotalRow, :Set
@@ -6669,43 +6315,30 @@ module TencentCloud
       # 产品信息
       class ProductInfo < TencentCloud::Common::AbstractModel
         # @param WorkspaceId: 工作空间id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WorkspaceId: Integer
         # @param ProductId: 产品PID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProductId: Integer
         # @param ProductName: 产品名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProductName: String
         # @param DeviceTypeName: 设备类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeviceTypeName: String
         # @param DeviceTypeId: 设备类型id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeviceTypeId: String
         # @param Attribute: 产品属性，如：网关（1）、直连设备（2）、子设备（3）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Attribute: Integer
         # @param ProductType: 产品型号
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProductType: String
         # @param ProductAbility: 产品能力:信令数据、音视频。二进制数值中第0位表示信令数据、第1位表示音视频 。1（信令数据），3（具有信令数据以及音视频能力）。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProductAbility: Integer
         # @param Manufacturer: 生产厂商
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Manufacturer: String
         # @param MaintenanceMfr: 维保厂商
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaintenanceMfr: String
         # @param ModelName: 物模型名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ModelName: String
         # @param ModelId: 物模型id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ModelId: String
         # @param ModelType: 物模型类型，产品模型/标准模型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ModelType: Integer
 
         attr_accessor :WorkspaceId, :ProductId, :ProductName, :DeviceTypeName, :DeviceTypeId, :Attribute, :ProductType, :ProductAbility, :Manufacturer, :MaintenanceMfr, :ModelName, :ModelId, :ModelType
@@ -6746,19 +6379,14 @@ module TencentCloud
       # 产品列表查询结果
       class ProductSet < TencentCloud::Common::AbstractModel
         # @param PageNumber: 第几页
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PageNumber: Integer
         # @param PageSize: 每页条数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PageSize: Integer
         # @param TotalPage: 总页数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalPage: Integer
         # @param TotalRow: 总条数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalRow: Integer
         # @param Product: 产品信息列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Product: Array
 
         attr_accessor :PageNumber, :PageSize, :TotalPage, :TotalRow, :Product
@@ -6790,25 +6418,18 @@ module TencentCloud
       # 视频流Raw协议信息
       class RawInfo < TencentCloud::Common::AbstractModel
         # @param SM4Vector: 加密向量（如果视频网关选择流为非加密传输这个参数可忽略）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SM4Vector: String
         # @param NATIP: 专线ip (非专线接入可忽略)
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NATIP: String
         # @param StreamToken: 客户端握手鉴权参数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StreamToken: String
         # @param Port: 拉流端口
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Port: Integer
         # @param StreamEnKey: 视频流加密key,目前为AES128加密KEY（如果视频网关选择流为非加密传输这个参数可忽略）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StreamEnKey: String
         # @param IP: 拉流公网地址（非公网接入时，这个地址是内网地址）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IP: String
         # @param InnerIP: 拉流内网地址
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InnerIP: String
 
         attr_accessor :SM4Vector, :NATIP, :StreamToken, :Port, :StreamEnKey, :IP, :InnerIP
@@ -6837,13 +6458,10 @@ module TencentCloud
       # 录像信息
       class RecordInfo < TencentCloud::Common::AbstractModel
         # @param StartTime: 本录像片段开始时间（s）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StartTime: Integer
         # @param EndTime: 本录像片段结束时间（s）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EndTime: Integer
         # @param VideoURL: 录像片段文件url
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VideoURL: String
 
         attr_accessor :StartTime, :EndTime, :VideoURL
@@ -6864,10 +6482,8 @@ module TencentCloud
       # 关联产品信息
       class RelatedProduct < TencentCloud::Common::AbstractModel
         # @param Id: 关联产品pid
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Id: Integer
         # @param Name: 关联产品名字
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
 
         attr_accessor :Id, :Name
@@ -7007,10 +6623,8 @@ module TencentCloud
       # 上报图片列表
       class ReportImg < TencentCloud::Common::AbstractModel
         # @param Type: 类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: Integer
         # @param Data: 数据
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: String
 
         attr_accessor :Type, :Data
@@ -7029,12 +6643,8 @@ module TencentCloud
       # 上报消息结果
       class ReportMsgRes < TencentCloud::Common::AbstractModel
         # @param ReportId: 上报消息对应下标的16位标识Id, 即第几个消息
-
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReportId: String
         # @param ReportStatus: 上报消息结果，1表示成功推送，0表示推送失败
-
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReportStatus: Integer
 
         attr_accessor :ReportId, :ReportStatus
@@ -7053,37 +6663,26 @@ module TencentCloud
       # 规则详情查询结果
       class RuleDetailRes < TencentCloud::Common::AbstractModel
         # @param RuleId: 联动id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleId: Integer
         # @param RuleName: 联动名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleName: String
         # @param RuleDesc: 联动说明
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleDesc: String
         # @param ValidType: 1 全天有效，0：固定时间段有效
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ValidType: Integer
         # @param ValidPeriod: 有效期，json字符串（全天有效时为空）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ValidPeriod: String
         # @param BeginDate: 起始时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BeginDate: String
         # @param EndDate: 结束时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EndDate: String
         # @param Status: 启用状态。1-启用，0-停用
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
         # @param EventRule: 触发规则，事件的组合
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EventRule: String
         # @param EventInfoSet: 事件对象集合
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EventInfoSet: Array
         # @param ActionInfoSet: 动作对象集合
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ActionInfoSet: Array
 
         attr_accessor :RuleId, :RuleName, :RuleDesc, :ValidType, :ValidPeriod, :BeginDate, :EndDate, :Status, :EventRule, :EventInfoSet, :ActionInfoSet
@@ -7233,7 +6832,6 @@ module TencentCloud
       # 场景列表响应体
       class SceneListRes < TencentCloud::Common::AbstractModel
         # @param SceneList: 场景列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SceneList: Array
 
         attr_accessor :SceneList
@@ -7257,7 +6855,6 @@ module TencentCloud
       # 查询项目空间楼栋数量与建筑面积响应体
       class SpaceDataListStatsRes < TencentCloud::Common::AbstractModel
         # @param List: 楼栋数量与建筑面积列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type List: Array
 
         attr_accessor :List
@@ -7329,7 +6926,6 @@ module TencentCloud
       # 查询指定空间id列表响应
       class SpaceDeviceIdListRes < TencentCloud::Common::AbstractModel
         # @param DeviceIds: 设备id列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeviceIds: Array
 
         attr_accessor :DeviceIds
@@ -7346,10 +6942,8 @@ module TencentCloud
       # 设备-空间绑定关系
       class SpaceDeviceRelation < TencentCloud::Common::AbstractModel
         # @param DeviceId: 设备id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeviceId: String
         # @param ElementId: 构件id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ElementId: String
 
         attr_accessor :DeviceId, :ElementId
@@ -7368,7 +6962,6 @@ module TencentCloud
       # 设备-空间绑定关系响应体
       class SpaceDeviceRelationRes < TencentCloud::Common::AbstractModel
         # @param SpaceDeviceRelationList: 设备空间绑定关系列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SpaceDeviceRelationList: Array
 
         attr_accessor :SpaceDeviceRelationList
@@ -7392,37 +6985,26 @@ module TencentCloud
       # 项目空间详细信息
       class SpaceInfo < TencentCloud::Common::AbstractModel
         # @param WorkspaceId: 项目空间id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WorkspaceId: Integer
         # @param TenantId: 租户id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TenantId: Integer
         # @param EnglishName: 英文名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EnglishName: String
         # @param ChineseName: 中文名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ChineseName: String
         # @param Description: 项目空间描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
         # @param Status: 项目空间状态:0 启用 1 停用 -1 已删除
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
         # @param IsCommWorkspace: 是否是公共空间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsCommWorkspace: Boolean
         # @param ValidityStartTime: 有效期开始时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ValidityStartTime: String
         # @param ValidityEndTime: 有效期结束时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ValidityEndTime: String
         # @param Selected: 选中状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Selected: Integer
         # @param IsSystem: 系统生成状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsSystem: Integer
 
         attr_accessor :WorkspaceId, :TenantId, :EnglishName, :ChineseName, :Description, :Status, :IsCommWorkspace, :ValidityStartTime, :ValidityEndTime, :Selected, :IsSystem
@@ -7459,22 +7041,16 @@ module TencentCloud
       # 空间层级关系
       class SpaceRelation < TencentCloud::Common::AbstractModel
         # @param ElementId: 构件id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ElementId: String
         # @param ElementName: 构件名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ElementName: String
         # @param Level: 空间层级
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Level: Integer
         # @param SpaceCode: 空间编码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SpaceCode: String
         # @param ParentSpaceCode: 父级空间编码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ParentSpaceCode: String
         # @param Children: 子构件信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Children: Array
 
         attr_accessor :ElementId, :ElementName, :Level, :SpaceCode, :ParentSpaceCode, :Children
@@ -7508,7 +7084,6 @@ module TencentCloud
       # 空间层级关系响应体
       class SpaceRelationRes < TencentCloud::Common::AbstractModel
         # @param SpaceRelation: 空间层级关系
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SpaceRelation: :class:`Tencentcloud::Weilingwith.v20230427.models.SpaceRelation`
 
         attr_accessor :SpaceRelation
@@ -7528,10 +7103,8 @@ module TencentCloud
       # 空间分类
       class SpaceType < TencentCloud::Common::AbstractModel
         # @param SpaceTypeCode: 空间分类编码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SpaceTypeCode: String
         # @param SpaceTypeName: 空间分类名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SpaceTypeName: String
 
         attr_accessor :SpaceTypeCode, :SpaceTypeName
@@ -7550,7 +7123,6 @@ module TencentCloud
       # 空间分类列表响应体
       class SpaceTypeListRes < TencentCloud::Common::AbstractModel
         # @param SpaceTypeList: 空间分类列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SpaceTypeList: Array
 
         attr_accessor :SpaceTypeList
@@ -7574,13 +7146,10 @@ module TencentCloud
       # 部门用户
       class SsoDepartment < TencentCloud::Common::AbstractModel
         # @param DepartmentId: 部门ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DepartmentId: String
         # @param Name: 部门名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param ParentDepartmentId: 父级部门ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ParentDepartmentId: String
 
         attr_accessor :DepartmentId, :Name, :ParentDepartmentId
@@ -7601,10 +7170,8 @@ module TencentCloud
       # 部门用户结果
       class SsoDepartmentsResult < TencentCloud::Common::AbstractModel
         # @param Total: 总数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Total: Integer
         # @param Departments: 部门列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Departments: Array
 
         attr_accessor :Total, :Departments
@@ -7630,37 +7197,26 @@ module TencentCloud
       # 部门用户
       class SsoTeamUser < TencentCloud::Common::AbstractModel
         # @param UserId: 用户ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UserId: String
         # @param RealName: 用户名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RealName: String
         # @param UserType: 用户类型，1-超级管理员；2-1号管理员；3-普通管理员；99-普通用户
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UserType: String
         # @param TenantId: 所属租户ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TenantId: String
         # @param Email: 邮箱
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Email: String
         # @param Phone: 电话
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Phone: String
         # @param Status: 用户状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
         # @param CreateAt: 创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateAt: Integer
         # @param DepartmentId: 部门ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DepartmentId: String
         # @param DepartmentName: 部门名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DepartmentName: String
         # @param LinkFilter: 是否关联权限
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LinkFilter: Integer
 
         attr_accessor :UserId, :RealName, :UserType, :TenantId, :Email, :Phone, :Status, :CreateAt, :DepartmentId, :DepartmentName, :LinkFilter
@@ -7697,10 +7253,8 @@ module TencentCloud
       # 空间用户结果
       class SsoTeamUserResult < TencentCloud::Common::AbstractModel
         # @param Total: 总数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Total: Integer
         # @param Users: 部门用户列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Users: Array
 
         attr_accessor :Total, :Users
@@ -7726,52 +7280,36 @@ module TencentCloud
       # 用户结果
       class SsoUser < TencentCloud::Common::AbstractModel
         # @param UserId: 用户ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UserId: String
         # @param UserName: 用户昵称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UserName: String
         # @param RealName: 用户名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RealName: String
         # @param UserType: 用户类型，1-超级管理员；2-1号管理员；3-普通管理员；99-普通用户
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UserType: String
         # @param TenantId: 所属租户ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TenantId: String
         # @param UserGroup: 所属组ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UserGroup: String
         # @param Email: 邮箱
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Email: String
         # @param Phone: 电话
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Phone: String
         # @param Status: 用户状态，0待审核，1正常启用，2禁用
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
         # @param CreateAt: 创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateAt: Integer
         # @param UpdateAt: 更新时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateAt: Integer
         # @param BelongTeam: 是否属于团队，0不可用，1属于，2不属
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BelongTeam: Integer
         # @param DepartmentId: 部门ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DepartmentId: String
         # @param DepartmentName: 部门名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DepartmentName: String
         # @param DepartmentUserId: 子账户ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DepartmentUserId: Integer
         # @param Password: 密码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Password: String
 
         attr_accessor :UserId, :UserName, :RealName, :UserType, :TenantId, :UserGroup, :Email, :Phone, :Status, :CreateAt, :UpdateAt, :BelongTeam, :DepartmentId, :DepartmentName, :DepartmentUserId, :Password
@@ -7818,10 +7356,8 @@ module TencentCloud
       # 租户人员结果
       class SsoUserResult < TencentCloud::Common::AbstractModel
         # @param Total: 总数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Total: Integer
         # @param Users: 租户人员数据
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Users: Array
 
         attr_accessor :Total, :Users
@@ -7847,22 +7383,16 @@ module TencentCloud
       # 设备类型统计
       class StatDeviceType < TencentCloud::Common::AbstractModel
         # @param Total: 汇总数。在线（正常+故障） + 离线
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Total: Integer
         # @param Normal: 正常数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Normal: Integer
         # @param Offline: 离线数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Offline: Integer
         # @param Fault: 故障数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Fault: Integer
         # @param Name: 设备名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param DeviceType: 设备类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeviceType: String
 
         attr_accessor :Total, :Normal, :Offline, :Fault, :Name, :DeviceType
@@ -7889,22 +7419,16 @@ module TencentCloud
       # 层级统计
       class StatLevel < TencentCloud::Common::AbstractModel
         # @param Total: 汇总数。在线（正常+故障） + 离线
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Total: Integer
         # @param NormalSum: 正常数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NormalSum: Integer
         # @param OfflineSum: 离线数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OfflineSum: Integer
         # @param FaultSum: 故障数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FaultSum: Integer
         # @param SpaceCode: 空间id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SpaceCode: String
         # @param StatDeviceTypeSet: 设备类型统计列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StatDeviceTypeSet: Array
 
         attr_accessor :Total, :NormalSum, :OfflineSum, :FaultSum, :SpaceCode, :StatDeviceTypeSet
@@ -8040,10 +7564,8 @@ module TencentCloud
       # 云录像接口结果
       class VideoCloudRecordRes < TencentCloud::Common::AbstractModel
         # @param TotalCount: 录像信息总数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
         # @param RecordSet: 录像信息列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RecordSet: Array
 
         attr_accessor :TotalCount, :RecordSet
@@ -8069,22 +7591,16 @@ module TencentCloud
       # 视频流查询结果
       class VideoRecordStreamRes < TencentCloud::Common::AbstractModel
         # @param FLV: FLV协议格式视频流
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FLV: String
         # @param RTMP: RTMP协议格式视频流
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RTMP: String
         # @param HLS: HLS协议格式视频流
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HLS: String
         # @param WebRTC: WebRtc协议格式视频流
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WebRTC: String
         # @param RAW: RAW协议格式视频流
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RAW: :class:`Tencentcloud::Weilingwith.v20230427.models.RawInfo`
         # @param Stream: 视频流的唯一标识
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Stream: String
 
         attr_accessor :FLV, :RTMP, :HLS, :WebRTC, :RAW, :Stream
@@ -8114,25 +7630,18 @@ module TencentCloud
       # 工作空间信息描述
       class WorkspaceInfo < TencentCloud::Common::AbstractModel
         # @param WorkspaceId: 工作空间Id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WorkspaceId: Integer
         # @param ChineseName: 工作空间中文名字
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ChineseName: String
         # @param Description: 工作空间描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
         # @param Status: 工作空间是否删除状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
         # @param ParkName: 该工作空间绑定的区/县的行政区名字
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ParkName: String
         # @param ParkNum: 该工作空间绑定的区/县的行政区编码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ParkNum: String
         # @param AdministrativeDetailSet: 获取该工作空间绑定的区/县的上级行政区划信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AdministrativeDetailSet: Array
 
         attr_accessor :WorkspaceId, :ChineseName, :Description, :Status, :ParkName, :ParkNum, :AdministrativeDetailSet
@@ -8168,7 +7677,6 @@ module TencentCloud
       # 项目空间列表
       class WorkspaceInfoList < TencentCloud::Common::AbstractModel
         # @param List: 项目空间列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type List: Array
 
         attr_accessor :List

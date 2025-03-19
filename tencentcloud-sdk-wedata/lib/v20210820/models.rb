@@ -3820,19 +3820,23 @@ module TencentCloud
         # @type FolderName: String
         # @param ParentsFolderId: 父文件夹ID
         # @type ParentsFolderId: String
+        # @param FolderForm: 文件夹来源 template管理，orchestrationSpace 编排空间
+        # @type FolderForm: String
 
-        attr_accessor :ProjectId, :FolderName, :ParentsFolderId
+        attr_accessor :ProjectId, :FolderName, :ParentsFolderId, :FolderForm
 
-        def initialize(projectid=nil, foldername=nil, parentsfolderid=nil)
+        def initialize(projectid=nil, foldername=nil, parentsfolderid=nil, folderform=nil)
           @ProjectId = projectid
           @FolderName = foldername
           @ParentsFolderId = parentsfolderid
+          @FolderForm = folderform
         end
 
         def deserialize(params)
           @ProjectId = params['ProjectId']
           @FolderName = params['FolderName']
           @ParentsFolderId = params['ParentsFolderId']
+          @FolderForm = params['FolderForm']
         end
       end
 
@@ -8620,10 +8624,20 @@ module TencentCloud
         # - cycle    周期工作流
         # - manual    手动工作流
         # @type WorkflowType: String
+        # @param TaskTypeIdList: 任务类型id列表
+        # @type TaskTypeIdList: Array
+        # @param InChargeIdList: 责任人id列表
+        # @type InChargeIdList: Array
+        # @param OnlyMe: 自身责任人
+        # @type OnlyMe: Boolean
+        # @param IncludeCodeTemplate: 是否包含代码模版
+        # @type IncludeCodeTemplate: Boolean
+        # @param FolderForm: 编排空间 或代码模版 orchestrationSpace 编排空间 template模版管理
+        # @type FolderForm: String
 
-        attr_accessor :ProjectId, :FirstLevelPull, :FolderId, :WorkflowId, :Keyword, :IncludeWorkflow, :IncludeTask, :IncludeVirtualTask, :TaskFolderId, :DisplayType, :IncludeTaskFolder, :NewFolderTreeMode, :TaskNodeId, :WorkflowType
+        attr_accessor :ProjectId, :FirstLevelPull, :FolderId, :WorkflowId, :Keyword, :IncludeWorkflow, :IncludeTask, :IncludeVirtualTask, :TaskFolderId, :DisplayType, :IncludeTaskFolder, :NewFolderTreeMode, :TaskNodeId, :WorkflowType, :TaskTypeIdList, :InChargeIdList, :OnlyMe, :IncludeCodeTemplate, :FolderForm
 
-        def initialize(projectid=nil, firstlevelpull=nil, folderid=nil, workflowid=nil, keyword=nil, includeworkflow=nil, includetask=nil, includevirtualtask=nil, taskfolderid=nil, displaytype=nil, includetaskfolder=nil, newfoldertreemode=nil, tasknodeid=nil, workflowtype=nil)
+        def initialize(projectid=nil, firstlevelpull=nil, folderid=nil, workflowid=nil, keyword=nil, includeworkflow=nil, includetask=nil, includevirtualtask=nil, taskfolderid=nil, displaytype=nil, includetaskfolder=nil, newfoldertreemode=nil, tasknodeid=nil, workflowtype=nil, tasktypeidlist=nil, inchargeidlist=nil, onlyme=nil, includecodetemplate=nil, folderform=nil)
           @ProjectId = projectid
           @FirstLevelPull = firstlevelpull
           @FolderId = folderid
@@ -8638,6 +8652,11 @@ module TencentCloud
           @NewFolderTreeMode = newfoldertreemode
           @TaskNodeId = tasknodeid
           @WorkflowType = workflowtype
+          @TaskTypeIdList = tasktypeidlist
+          @InChargeIdList = inchargeidlist
+          @OnlyMe = onlyme
+          @IncludeCodeTemplate = includecodetemplate
+          @FolderForm = folderform
         end
 
         def deserialize(params)
@@ -8655,6 +8674,11 @@ module TencentCloud
           @NewFolderTreeMode = params['NewFolderTreeMode']
           @TaskNodeId = params['TaskNodeId']
           @WorkflowType = params['WorkflowType']
+          @TaskTypeIdList = params['TaskTypeIdList']
+          @InChargeIdList = params['InChargeIdList']
+          @OnlyMe = params['OnlyMe']
+          @IncludeCodeTemplate = params['IncludeCodeTemplate']
+          @FolderForm = params['FolderForm']
         end
       end
 

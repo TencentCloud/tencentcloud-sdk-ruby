@@ -289,7 +289,6 @@ module TencentCloud
         # @param RepoLanguage: 仓库语言
         # @type RepoLanguage: String
         # @param Branch: 分支名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Branch: String
 
         attr_accessor :Repo, :RepoType, :RepoLanguage, :Branch
@@ -594,13 +593,10 @@ module TencentCloud
       # emptydir 数据卷详细信息
       class CloudBaseRunEmptyDirVolumeSource < TencentCloud::Common::AbstractModel
         # @param EnableEmptyDirVolume: 启用emptydir数据卷
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EnableEmptyDirVolume: Boolean
         # @param Medium: "","Memory","HugePages"
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Medium: String
         # @param SizeLimit: emptydir数据卷大小
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SizeLimit: String
 
         attr_accessor :EnableEmptyDirVolume, :Medium, :SizeLimit
@@ -896,7 +892,6 @@ module TencentCloud
       # 主机路径挂载参数
       class CloudBaseRunServiceVolumeHostPath < TencentCloud::Common::AbstractModel
         # @param Path: 主机路径
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Path: String
 
         attr_accessor :Path
@@ -945,31 +940,22 @@ module TencentCloud
       # CloudBaseRun 的 Side 描述定义
       class CloudBaseRunSideSpec < TencentCloud::Common::AbstractModel
         # @param ContainerImage: 容器镜像
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ContainerImage: String
         # @param ContainerPort: 容器端口
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ContainerPort: Integer
         # @param ContainerName: 容器的名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ContainerName: String
         # @param EnvVar: kv的json字符串
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EnvVar: String
         # @param InitialDelaySeconds: InitialDelaySeconds 延迟多长时间启动健康检查
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InitialDelaySeconds: Integer
         # @param Cpu: CPU大小
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Cpu: Integer
         # @param Mem: 内存大小（单位：M）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Mem: Integer
         # @param Security: 安全特性
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Security: :class:`Tencentcloud::Tcb.v20180608.models.CloudBaseSecurityContext`
         # @param VolumeMountInfos: 挂载信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VolumeMountInfos: Array
 
         attr_accessor :ContainerImage, :ContainerPort, :ContainerName, :EnvVar, :InitialDelaySeconds, :Cpu, :Mem, :Security, :VolumeMountInfos
@@ -1012,19 +998,14 @@ module TencentCloud
       # 版本流量占比
       class CloudBaseRunVersionFlowItem < TencentCloud::Common::AbstractModel
         # @param VersionName: 版本名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VersionName: String
         # @param FlowRatio: 流量占比
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FlowRatio: Integer
         # @param UrlParam: 流量参数键值对（URL参数/HEADERS参数）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UrlParam: :class:`Tencentcloud::Tcb.v20180608.models.ObjectKV`
         # @param Priority: 优先级
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Priority: Integer
         # @param IsDefaultPriority: 是否是默认兜底版本
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsDefaultPriority: Boolean
 
         attr_accessor :VersionName, :FlowRatio, :UrlParam, :Priority, :IsDefaultPriority
@@ -1056,12 +1037,10 @@ module TencentCloud
         # @param PodId: pod name
         # @type PodId: String
         # @param PodIp: pod ip
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PodIp: String
         # @param Status: 状态
         # @type Status: String
         # @param CreateTime: 创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
 
         attr_accessor :Webshell, :PodId, :PodIp, :Status, :CreateTime
@@ -1086,19 +1065,15 @@ module TencentCloud
       # cfs挂载点
       class CloudBaseRunVolumeMount < TencentCloud::Common::AbstractModel
         # @param Name: 资源名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param MountPath: 挂载路径
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MountPath: String
         # @param ReadOnly: 是否只读
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReadOnly: Boolean
         # @param NfsVolumes: Nfs挂载信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NfsVolumes: Array
         # @param MountPropagation: 挂载配置
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MountPropagation: String
 
         attr_accessor :Name, :MountPath, :ReadOnly, :NfsVolumes, :MountPropagation
@@ -1130,13 +1105,10 @@ module TencentCloud
       # vpc信息
       class CloudBaseRunVpcInfo < TencentCloud::Common::AbstractModel
         # @param VpcId: vpc的id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VpcId: String
         # @param SubnetIds: 子网id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubnetIds: Array
         # @param CreateType: 创建类型(0=继承; 1=新建; 2=指定)
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateType: Integer
 
         attr_accessor :VpcId, :SubnetIds, :CreateType
@@ -1157,25 +1129,18 @@ module TencentCloud
       # 子网信息
       class CloudBaseRunVpcSubnet < TencentCloud::Common::AbstractModel
         # @param Id: 子网id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Id: String
         # @param Cidr: 子网的ipv4
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Cidr: String
         # @param Zone: 可用区
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Zone: String
         # @param Type: 类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: String
         # @param Target: subnet类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Target: String
         # @param Region: 地域
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Region: String
         # @param Name: 名字
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
 
         attr_accessor :Id, :Cidr, :Zone, :Type, :Target, :Region, :Name
@@ -1202,10 +1167,8 @@ module TencentCloud
       end
 
       # cloudrun安全特性
-
       class CloudBaseSecurityContext < TencentCloud::Common::AbstractModel
         # @param Capabilities: 安全特性
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Capabilities: :class:`Tencentcloud::Tcb.v20180608.models.CloudBaseCapabilities`
 
         attr_accessor :Capabilities
@@ -1225,91 +1188,62 @@ module TencentCloud
       # CloudRunServiceSimpleVersionSnapshot 信息
       class CloudRunServiceSimpleVersionSnapshot < TencentCloud::Common::AbstractModel
         # @param VersionName: 版本名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VersionName: String
         # @param Remark: 版本备注
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Remark: String
         # @param Cpu: cpu规格
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Cpu: Float
         # @param Mem: 内存规格
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Mem: Float
         # @param MinNum: 最小副本数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MinNum: Integer
         # @param MaxNum: 最大副本数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaxNum: Integer
         # @param ImageUrl: 镜像url
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ImageUrl: String
         # @param PolicyType: 扩容策略
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PolicyType: String
         # @param PolicyThreshold: 策略阈值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PolicyThreshold: Integer
         # @param EnvParams: 环境参数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EnvParams: String
         # @param ContainerPort: 容器端口
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ContainerPort: Integer
         # @param CreateTime: 创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
         # @param UpdateTime: 更新时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: String
         # @param UploadType: 更新类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UploadType: String
         # @param DockerfilePath: dockerfile路径
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DockerfilePath: String
         # @param BuildDir: 构建路径
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BuildDir: String
         # @param RepoType: repo类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RepoType: String
         # @param Repo: 仓库
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Repo: String
         # @param Branch: 分支
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Branch: String
         # @param EnvId: 环境id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EnvId: String
         # @param ServerName: 服务名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ServerName: String
         # @param PackageName: package名字
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PackageName: String
         # @param PackageVersion: package版本
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PackageVersion: String
         # @param CustomLogs: 自定义log路径
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CustomLogs: String
         # @param InitialDelaySeconds: 延时健康检查时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InitialDelaySeconds: Integer
         # @param SnapshotName: snapshot名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SnapshotName: String
         # @param ImageInfo: 镜像信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ImageInfo: :class:`Tencentcloud::Tcb.v20180608.models.CloudBaseRunImageInfo`
         # @param CodeDetail: 代码仓库信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CodeDetail: :class:`Tencentcloud::Tcb.v20180608.models.CloudBaseCodeRepoDetail`
         # @param Status: 状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: String
 
         attr_accessor :VersionName, :Remark, :Cpu, :Mem, :MinNum, :MaxNum, :ImageUrl, :PolicyType, :PolicyThreshold, :EnvParams, :ContainerPort, :CreateTime, :UpdateTime, :UploadType, :DockerfilePath, :BuildDir, :RepoType, :Repo, :Branch, :EnvId, :ServerName, :PackageName, :PackageVersion, :CustomLogs, :InitialDelaySeconds, :SnapshotName, :ImageInfo, :CodeDetail, :Status
@@ -1388,22 +1322,16 @@ module TencentCloud
       # 服务的volume
       class CloudRunServiceVolume < TencentCloud::Common::AbstractModel
         # @param Name: 名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param NFS: NFS的挂载方式
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NFS: :class:`Tencentcloud::Tcb.v20180608.models.CloudBaseRunNfsVolumeSource`
         # @param SecretName: secret名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SecretName: String
         # @param EnableEmptyDirVolume: 是否开启临时目录逐步废弃，请使用 EmptyDir
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EnableEmptyDirVolume: Boolean
         # @param EmptyDir: emptydir数据卷详细信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EmptyDir: :class:`Tencentcloud::Tcb.v20180608.models.CloudBaseRunEmptyDirVolumeSource`
         # @param HostPath: 主机路径挂载信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HostPath: :class:`Tencentcloud::Tcb.v20180608.models.CloudBaseRunServiceVolumeHostPath`
 
         attr_accessor :Name, :NFS, :SecretName, :EnableEmptyDirVolume, :EmptyDir, :HostPath
@@ -6215,6 +6143,50 @@ module TencentCloud
         end
       end
 
+      # EditAuthConfig请求参数结构体
+      class EditAuthConfigRequest < TencentCloud::Common::AbstractModel
+        # @param EnvId: 环境id
+        # @type EnvId: String
+        # @param PhoneNumberLogin: 手机号登录配置 "TRUE",  "FALSE", "LOGIN_ONLY"
+        # @type PhoneNumberLogin: String
+        # @param AnonymousLogin: 匿名登录配置 "TRUE",  "FALSE"
+        # @type AnonymousLogin: String
+        # @param UsernameLogin: 用户名密码登录配置 "TRUE",  "FALSE"
+        # @type UsernameLogin: String
+
+        attr_accessor :EnvId, :PhoneNumberLogin, :AnonymousLogin, :UsernameLogin
+
+        def initialize(envid=nil, phonenumberlogin=nil, anonymouslogin=nil, usernamelogin=nil)
+          @EnvId = envid
+          @PhoneNumberLogin = phonenumberlogin
+          @AnonymousLogin = anonymouslogin
+          @UsernameLogin = usernamelogin
+        end
+
+        def deserialize(params)
+          @EnvId = params['EnvId']
+          @PhoneNumberLogin = params['PhoneNumberLogin']
+          @AnonymousLogin = params['AnonymousLogin']
+          @UsernameLogin = params['UsernameLogin']
+        end
+      end
+
+      # EditAuthConfig返回参数结构体
+      class EditAuthConfigResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 终端用户信息
       class EndUserInfo < TencentCloud::Common::AbstractModel
         # @param UUId: 用户唯一ID
@@ -7043,10 +7015,8 @@ module TencentCloud
       # 扩缩容策略
       class HpaPolicy < TencentCloud::Common::AbstractModel
         # @param PolicyType: 策略类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PolicyType: String
         # @param PolicyThreshold: 策略阈值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PolicyThreshold: Integer
 
         attr_accessor :PolicyType, :PolicyThreshold
@@ -8400,13 +8370,10 @@ module TencentCloud
       # tke集群信息
       class TkeClusterInfo < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterId: String
         # @param VpcId: 集群的vpcId
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VpcId: String
         # @param VersionClbSubnetId: 版本内网CLB所在子网Id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VersionClbSubnetId: String
 
         attr_accessor :ClusterId, :VpcId, :VersionClbSubnetId

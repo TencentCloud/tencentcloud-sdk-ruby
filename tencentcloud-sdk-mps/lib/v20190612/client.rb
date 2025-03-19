@@ -197,6 +197,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 智能字幕新建热词库接口
+
+        # @param request: Request instance for CreateAsrHotwords.
+        # @type request: :class:`Tencentcloud::mps::V20190612::CreateAsrHotwordsRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::CreateAsrHotwordsResponse`
+        def CreateAsrHotwords(request)
+          body = send_request('CreateAsrHotwords', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateAsrHotwordsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建用户自定义内容审核模板，数量上限：50。
 
         # @param request: Request instance for CreateContentReviewTemplate.
@@ -362,6 +386,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CreateScheduleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 创建自定义智能字幕模板
+
+        # @param request: Request instance for CreateSmartSubtitleTemplate.
+        # @type request: :class:`Tencentcloud::mps::V20190612::CreateSmartSubtitleTemplateRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::CreateSmartSubtitleTemplateResponse`
+        def CreateSmartSubtitleTemplate(request)
+          body = send_request('CreateSmartSubtitleTemplate', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateSmartSubtitleTemplateResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -774,6 +822,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 删除智能字幕热词库
+
+        # @param request: Request instance for DeleteAsrHotwords.
+        # @type request: :class:`Tencentcloud::mps::V20190612::DeleteAsrHotwordsRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::DeleteAsrHotwordsResponse`
+        def DeleteAsrHotwords(request)
+          body = send_request('DeleteAsrHotwords', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteAsrHotwordsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 删除用户自定义内容审核模板。
 
         # @param request: Request instance for DeleteContentReviewTemplate.
@@ -928,6 +1000,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteScheduleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除用户自定义智能字幕模板。
+
+        # @param request: Request instance for DeleteSmartSubtitleTemplate.
+        # @type request: :class:`Tencentcloud::mps::V20190612::DeleteSmartSubtitleTemplateRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::DeleteSmartSubtitleTemplateResponse`
+        def DeleteSmartSubtitleTemplate(request)
+          body = send_request('DeleteSmartSubtitleTemplate', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteSmartSubtitleTemplateResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1254,6 +1350,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询智能字幕热词库
+
+        # @param request: Request instance for DescribeAsrHotwords.
+        # @type request: :class:`Tencentcloud::mps::V20190612::DescribeAsrHotwordsRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::DescribeAsrHotwordsResponse`
+        def DescribeAsrHotwords(request)
+          body = send_request('DescribeAsrHotwords', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAsrHotwordsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取热词库列表
+
+        # @param request: Request instance for DescribeAsrHotwordsList.
+        # @type request: :class:`Tencentcloud::mps::V20190612::DescribeAsrHotwordsListRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::DescribeAsrHotwordsListResponse`
+        def DescribeAsrHotwordsList(request)
+          body = send_request('DescribeAsrHotwordsList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAsrHotwordsListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 根据智能审核模板唯一标识，获取智能审核模板详情列表。返回结果包含符合条件的所有用户自定义模板及系统预置智能审核模板。
 
         # @param request: Request instance for DescribeContentReviewTemplates.
@@ -1456,6 +1600,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeSchedulesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 根据智能字幕 模板唯一标识，获取智能字幕模板详情列表。返回结果包含符合条件的所有用户自定义智能字幕模板及系统预置智能字幕模板
+
+        # @param request: Request instance for DescribeSmartSubtitleTemplates.
+        # @type request: :class:`Tencentcloud::mps::V20190612::DescribeSmartSubtitleTemplatesRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::DescribeSmartSubtitleTemplatesResponse`
+        def DescribeSmartSubtitleTemplates(request)
+          body = send_request('DescribeSmartSubtitleTemplates', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeSmartSubtitleTemplatesResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -2302,6 +2470,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 智能字幕更新热词库接口
+
+        # @param request: Request instance for ModifyAsrHotwords.
+        # @type request: :class:`Tencentcloud::mps::V20190612::ModifyAsrHotwordsRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::ModifyAsrHotwordsResponse`
+        def ModifyAsrHotwords(request)
+          body = send_request('ModifyAsrHotwords', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyAsrHotwordsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 修改用户自定义内容审核模板。
 
         # @param request: Request instance for ModifyContentReviewTemplate.
@@ -2456,6 +2648,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyScheduleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改用户自定义智能字幕模板。
+
+        # @param request: Request instance for ModifySmartSubtitleTemplate.
+        # @type request: :class:`Tencentcloud::mps::V20190612::ModifySmartSubtitleTemplateRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::ModifySmartSubtitleTemplateResponse`
+        def ModifySmartSubtitleTemplate(request)
+          body = send_request('ModifySmartSubtitleTemplate', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifySmartSubtitleTemplateResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -2805,6 +3021,7 @@ module TencentCloud
         # 8. 智能内容分析（标签、分类、封面、按帧标签、拆条、集锦、片头片尾、游戏打点）；
         # 9. 智能内容识别（人脸、文本全文、文本关键词、语音全文、语音关键词、语音翻译、物体识别）。
         # 10. 媒体质检（直播流格式诊断、音画内容检测（抖动、模糊、低光照、过曝光、黑边、白边、黑屏、白屏、花屏、噪点、马赛克、二维码等）、无参考打分）
+        # 11. 智能字幕（语音全文、语音热词、语音翻译）
 
         # @param request: Request instance for ProcessMedia.
         # @type request: :class:`Tencentcloud::mps::V20190612::ProcessMediaRequest`

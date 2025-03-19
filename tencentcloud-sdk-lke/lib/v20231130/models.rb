@@ -3342,12 +3342,14 @@ module TencentCloud
         # @type SplitTokenUsage: Float
         # @param RagSearchUsage: Rag检索次数
         # @type RagSearchUsage: Float
+        # @param InternetSearchUsage: 联网搜索次数
+        # @type InternetSearchUsage: Float
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TotalTokenUsage, :InputTokenUsage, :OutputTokenUsage, :ApiCallStats, :SearchUsage, :PageUsage, :SplitTokenUsage, :RagSearchUsage, :RequestId
+        attr_accessor :TotalTokenUsage, :InputTokenUsage, :OutputTokenUsage, :ApiCallStats, :SearchUsage, :PageUsage, :SplitTokenUsage, :RagSearchUsage, :InternetSearchUsage, :RequestId
 
-        def initialize(totaltokenusage=nil, inputtokenusage=nil, outputtokenusage=nil, apicallstats=nil, searchusage=nil, pageusage=nil, splittokenusage=nil, ragsearchusage=nil, requestid=nil)
+        def initialize(totaltokenusage=nil, inputtokenusage=nil, outputtokenusage=nil, apicallstats=nil, searchusage=nil, pageusage=nil, splittokenusage=nil, ragsearchusage=nil, internetsearchusage=nil, requestid=nil)
           @TotalTokenUsage = totaltokenusage
           @InputTokenUsage = inputtokenusage
           @OutputTokenUsage = outputtokenusage
@@ -3356,6 +3358,7 @@ module TencentCloud
           @PageUsage = pageusage
           @SplitTokenUsage = splittokenusage
           @RagSearchUsage = ragsearchusage
+          @InternetSearchUsage = internetsearchusage
           @RequestId = requestid
         end
 
@@ -3368,6 +3371,7 @@ module TencentCloud
           @PageUsage = params['PageUsage']
           @SplitTokenUsage = params['SplitTokenUsage']
           @RagSearchUsage = params['RagSearchUsage']
+          @InternetSearchUsage = params['InternetSearchUsage']
           @RequestId = params['RequestId']
         end
       end

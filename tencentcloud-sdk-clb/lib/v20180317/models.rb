@@ -1898,6 +1898,8 @@ module TencentCloud
         # @type TargetGroupInstances: Array
         # @param Type: 目标组类型，当前支持v1(旧版目标组), v2(新版目标组), 默认为v1(旧版目标组)。
         # @type Type: String
+        # @param Protocol: 目标组后端转发协议。v2新版目标组该项必填。目前支持tcp、udp。
+        # @type Protocol: String
         # @param Tags: 标签。
         # @type Tags: Array
         # @param Weight: 后端服务默认权重。
@@ -1907,14 +1909,15 @@ module TencentCloud
         # </ul>
         # @type Weight: Integer
 
-        attr_accessor :TargetGroupName, :VpcId, :Port, :TargetGroupInstances, :Type, :Tags, :Weight
+        attr_accessor :TargetGroupName, :VpcId, :Port, :TargetGroupInstances, :Type, :Protocol, :Tags, :Weight
 
-        def initialize(targetgroupname=nil, vpcid=nil, port=nil, targetgroupinstances=nil, type=nil, tags=nil, weight=nil)
+        def initialize(targetgroupname=nil, vpcid=nil, port=nil, targetgroupinstances=nil, type=nil, protocol=nil, tags=nil, weight=nil)
           @TargetGroupName = targetgroupname
           @VpcId = vpcid
           @Port = port
           @TargetGroupInstances = targetgroupinstances
           @Type = type
+          @Protocol = protocol
           @Tags = tags
           @Weight = weight
         end
@@ -1932,6 +1935,7 @@ module TencentCloud
             end
           end
           @Type = params['Type']
+          @Protocol = params['Protocol']
           unless params['Tags'].nil?
             @Tags = []
             params['Tags'].each do |i|
@@ -1972,7 +1976,9 @@ module TencentCloud
         # @type PartitionCount: Integer
         # @param TopicType: 日志类型，ACCESS：访问日志，HEALTH：健康检查日志，默认ACCESS。
         # @type TopicType: String
-        # @param Period: 日志集的保存周期，单位：天，默认30天，范围[1, 3600]。
+        # @param Period: 存储时间，单位天
+        # - 日志接入标准存储时，支持1至3600天，值为3640时代表永久保存。
+        # - 日志接入低频存储时，支持7至3600天，值为3640时代表永久保存。
         # @type Period: Integer
         # @param StorageType: 日志主题的存储类型，可选值 HOT（标准存储），COLD（低频存储）；默认为HOT。
         # @type StorageType: String
@@ -5384,7 +5390,12 @@ module TencentCloud
         # @param NumericalVpcId: 数值形式的私有网络 ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NumericalVpcId: Integer
-        # @param VipIsp: 负载均衡IP地址所属的运营商。取值范围（BGP、CMCC、CTCC、CUCC）
+        # @param VipIsp: 负载均衡IP地址所属的运营商。
+
+        # - BGP :  BGP（多线）
+        # - CMCC：中国移动单线
+        # - CTCC：中国电信单线
+        # - CUCC：中国联通单线
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VipIsp: String
         # @param MasterZone: 主可用区
@@ -5661,7 +5672,7 @@ module TencentCloud
         # @param LoadBalancerName: 负载均衡实例的名称。
         # @type LoadBalancerName: String
         # @param LoadBalancerType: 负载均衡实例的网络类型：
-        # OPEN：公网属性，INTERNAL：内网属性；对于内网属性的负载均衡，可通过绑定EIP出公网，具体可参考EIP文档。
+        # Public：公网属性，Private：内网属性；对于内网属性的负载均衡，可通过绑定EIP出公网，具体可参考EIP文档。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LoadBalancerType: String
         # @param Status: 负载均衡实例的状态，包括
@@ -7965,11 +7976,11 @@ module TencentCloud
         # @type LoadBalancerId: String
         # @param LogSetId: 日志服务(CLS)的日志集 ID。
         # <li>增加和更新日志主题时可调用 [DescribeLogsets](https://cloud.tencent.com/document/product/614/58624) 接口获取日志集 ID。</li>
-        # <li>删除日志主题时，此参数填写为null即可。</li>
+        # <li>删除日志主题时，此参数填写为**空字符串**即可。</li>
         # @type LogSetId: String
         # @param LogTopicId: 日志服务(CLS)的日志主题 ID。
         # <li>增加和更新日志主题时可调用 [DescribeTopics](https://cloud.tencent.com/document/product/614/56454) 接口获取日志主题 ID。</li>
-        # <li>删除日志主题时，此参数填写为null即可。</li>
+        # <li>删除日志主题时，此参数填写为**空字符串**即可。</li>
         # @type LogTopicId: String
         # @param LogType: 日志类型：
         # <li>ACCESS：访问日志</li>

@@ -1971,10 +1971,8 @@ module TencentCloud
       # 组件类型筛选列表
       class BillComponent < TencentCloud::Common::AbstractModel
         # @param ComponentCode: 组件类型编码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ComponentCode: String
         # @param ComponentCodeName: 组件类型：用户购买的产品或服务对应的组件大类
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ComponentCodeName: String
 
         attr_accessor :ComponentCode, :ComponentCodeName
@@ -3457,16 +3455,12 @@ module TencentCloud
         # @param Business: 产品消费详情
         # @type Business: Array
         # @param CashPayAmount: 现金
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CashPayAmount: String
         # @param VoucherPayAmount: 代金券
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VoucherPayAmount: String
         # @param IncentivePayAmount: 赠送金
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IncentivePayAmount: String
         # @param TransferPayAmount: 分成金
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TransferPayAmount: String
 
         attr_accessor :RegionId, :RegionName, :RealTotalCost, :Trend, :Business, :CashPayAmount, :VoucherPayAmount, :IncentivePayAmount, :TransferPayAmount
@@ -5600,7 +5594,6 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Total: Integer
         # @param Context: 本次请求的上下文信息，可用于下一次请求的请求参数中，加快查询速度
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Context: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

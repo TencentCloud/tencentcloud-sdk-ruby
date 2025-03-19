@@ -1046,10 +1046,10 @@ module TencentCloud
 
         attr_accessor :ExpandThreshold, :ShrinkThreshold, :ExpandPeriod, :ShrinkPeriod, :ExpandSecondPeriod, :ShrinkSecondPeriod
         extend Gem::Deprecate
-        deprecate :ExpandPeriod, :none, 2025, 2
-        deprecate :ExpandPeriod=, :none, 2025, 2
-        deprecate :ShrinkPeriod, :none, 2025, 2
-        deprecate :ShrinkPeriod=, :none, 2025, 2
+        deprecate :ExpandPeriod, :none, 2025, 3
+        deprecate :ExpandPeriod=, :none, 2025, 3
+        deprecate :ShrinkPeriod, :none, 2025, 3
+        deprecate :ShrinkPeriod=, :none, 2025, 3
 
         def initialize(expandthreshold=nil, shrinkthreshold=nil, expandperiod=nil, shrinkperiod=nil, expandsecondperiod=nil, shrinksecondperiod=nil)
           @ExpandThreshold = expandthreshold
@@ -5478,6 +5478,56 @@ module TencentCloud
         end
       end
 
+      # DescribeCPUExpandStrategyInfo请求参数结构体
+      class DescribeCPUExpandStrategyInfoRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例 ID 。
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DescribeCPUExpandStrategyInfo返回参数结构体
+      class DescribeCPUExpandStrategyInfoResponse < TencentCloud::Common::AbstractModel
+        # @param Type: 策略类型。可选值 auto、manual。如果返回为NULL说明尚未开通弹性扩容策略
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+        # @param ExpandCpu: 手动扩容的 CPU 。Type为 manual 时有效。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExpandCpu: Integer
+        # @param AutoStrategy: 自动扩容策略。Type 为 auto 时有效
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AutoStrategy: :class:`Tencentcloud::Cdb.v20170320.models.AutoStrategy`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Type, :ExpandCpu, :AutoStrategy, :RequestId
+
+        def initialize(type=nil, expandcpu=nil, autostrategy=nil, requestid=nil)
+          @Type = type
+          @ExpandCpu = expandcpu
+          @AutoStrategy = autostrategy
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @ExpandCpu = params['ExpandCpu']
+          unless params['AutoStrategy'].nil?
+            @AutoStrategy = AutoStrategy.new
+            @AutoStrategy.deserialize(params['AutoStrategy'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeCdbProxyInfo请求参数结构体
       class DescribeCdbProxyInfoRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID
@@ -5720,8 +5770,8 @@ module TencentCloud
 
         attr_accessor :Type, :ExpandCpu, :AutoStrategy, :RequestId
         extend Gem::Deprecate
-        deprecate :AutoStrategy, :none, 2025, 2
-        deprecate :AutoStrategy=, :none, 2025, 2
+        deprecate :AutoStrategy, :none, 2025, 3
+        deprecate :AutoStrategy=, :none, 2025, 3
 
         def initialize(type=nil, expandcpu=nil, autostrategy=nil, requestid=nil)
           @Type = type
@@ -11665,8 +11715,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :ParamName, :OldValue, :NewValue, :IsSucess, :ModifyTime, :IsSuccess
         extend Gem::Deprecate
-        deprecate :IsSucess, :none, 2025, 2
-        deprecate :IsSucess=, :none, 2025, 2
+        deprecate :IsSucess, :none, 2025, 3
+        deprecate :IsSucess=, :none, 2025, 3
 
         def initialize(instanceid=nil, paramname=nil, oldvalue=nil, newvalue=nil, issucess=nil, modifytime=nil, issuccess=nil)
           @InstanceId = instanceid
