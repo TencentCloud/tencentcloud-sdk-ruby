@@ -2540,30 +2540,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询分类规则详情
-
-        # @param request: Request instance for DescribeRuleDetail.
-        # @type request: :class:`Tencentcloud::dsgc::V20190723::DescribeRuleDetailRequest`
-        # @rtype: :class:`Tencentcloud::dsgc::V20190723::DescribeRuleDetailResponse`
-        def DescribeRuleDetail(request)
-          body = send_request('DescribeRuleDetail', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeRuleDetailResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 查询分类下规则列表
 
         # @param request: Request instance for DescribeRuleList.

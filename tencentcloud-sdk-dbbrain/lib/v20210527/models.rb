@@ -72,7 +72,6 @@ module TencentCloud
         # @param SortCount: 内存排序次数。
         # @type SortCount: Integer
         # @param SlowLogs: 慢查模板概览。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SlowLogs: Array
 
         attr_accessor :AvgExecTime, :AvgDocsExamined, :SlowLogCount, :SortCount, :SlowLogs
@@ -97,46 +96,32 @@ module TencentCloud
       # 通知模板
       class AlarmProfileList < TencentCloud::Common::AbstractModel
         # @param IsWebHook: 0-不是 1-是
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsWebHook: Integer
         # @param ReceiveUinCount: 接收告警用户数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReceiveUinCount: Integer
         # @param Lang: 语言
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Lang: String
         # @param TemplateType: 模板类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TemplateType: String
         # @param Remark: 备注
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Remark: String
         # @param ReceiveGroupCount: 接收组数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReceiveGroupCount: Integer
         # @param UpdateUin: 更新用户的uin
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateUin: Integer
         # @param ReceiveType: 接收类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReceiveType: Array
         # @param ReceiveInfo: 接收用户信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReceiveInfo: Array
         # @param UpdateTime: 更新时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: String
         # @param TemplateName: 模板名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TemplateName: String
         # @param SendChannel: 发送渠道
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SendChannel: Array
         # @param TemplateId: 模板id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TemplateId: Integer
         # @param WebHookCount: webhook数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WebHookCount: Integer
 
         attr_accessor :IsWebHook, :ReceiveUinCount, :Lang, :TemplateType, :Remark, :ReceiveGroupCount, :UpdateUin, :ReceiveType, :ReceiveInfo, :UpdateTime, :TemplateName, :SendChannel, :TemplateId, :WebHookCount
@@ -317,7 +302,6 @@ module TencentCloud
         # @param Region: 实例所在地域。
         # @type Region: String
         # @param ResourceTags: 资源Tags。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceTags: Array
 
         attr_accessor :AppId, :AuditStatus, :InstanceId, :InstanceName, :ProjectId, :Region, :ResourceTags
@@ -346,18 +330,15 @@ module TencentCloud
       # 审计日志文件
       class AuditLogFile < TencentCloud::Common::AbstractModel
         # @param AsyncRequestId: 审计日志文件生成异步任务ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AsyncRequestId: Integer
         # @param FileName: 审计日志文件名称。
         # @type FileName: String
         # @param CreateTime: 审计日志文件创建时间。格式为 : "2019-03-20 17:09:13"。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
         # @param Status: 文件状态值。可能返回的值为：
         # "creating" - 生成中;
         # "failed" - 创建失败;
         # "success" - 已生成;
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: String
         # @param FileSize: 文件大小，单位为 KB。
         # @type FileSize: Float
@@ -5543,22 +5524,16 @@ module TencentCloud
       # 接收组信息
       class ReceiveInfo < TencentCloud::Common::AbstractModel
         # @param ReceiveGroup: 接收组
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReceiveGroup: Array
         # @param EndReceiveTime: 最后接收时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EndReceiveTime: String
         # @param ReceiveName: 接收名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReceiveName: String
         # @param SendChannel: 推送渠道
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SendChannel: Array
         # @param StartReceiveTime: 开始时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StartReceiveTime: String
         # @param ReceiveUin: 接收用户列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReceiveUin: Array
 
         attr_accessor :ReceiveGroup, :EndReceiveTime, :ReceiveName, :SendChannel, :StartReceiveTime, :ReceiveUin
@@ -5946,10 +5921,8 @@ module TencentCloud
         # @param AsyncRequestId: 异步任务Id。
         # @type AsyncRequestId: Integer
         # @param StartTime: 任务开始时间。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StartTime: String
         # @param EndTime: 任务结束时间。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EndTime: String
         # @param CreateTime: 任务创建时间。
         # @type CreateTime: String
@@ -5958,16 +5931,12 @@ module TencentCloud
         # @param Progress: 任务执行进度。
         # @type Progress: Integer
         # @param LogStartTime: 导出日志开始时间。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LogStartTime: String
         # @param LogEndTime: 导出日志结束时间。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LogEndTime: String
         # @param TotalSize: 日志文件总大小，单位KB。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalSize: Integer
         # @param DangerLevels: 风险等级列表。0 无风险；1 低风险；2 中风险；3 高风险。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DangerLevels: Array
 
         attr_accessor :AsyncRequestId, :StartTime, :EndTime, :CreateTime, :Status, :Progress, :LogStartTime, :LogEndTime, :TotalSize, :DangerLevels
@@ -6056,21 +6025,16 @@ module TencentCloud
         # @param Database: 数据库
         # @type Database: String
         # @param UserName: User来源
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UserName: String
         # @param UserHost: IP来源
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UserHost: String
         # @param QueryTime: 执行时间,单位秒
         # @type QueryTime: Float
         # @param LockTime: 锁时间,单位秒
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LockTime: Float
         # @param RowsExamined: 扫描行数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RowsExamined: Integer
         # @param RowsSent: 返回行数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RowsSent: Integer
 
         attr_accessor :Timestamp, :SqlText, :Database, :UserName, :UserHost, :QueryTime, :LockTime, :RowsExamined, :RowsSent
@@ -6264,16 +6228,12 @@ module TencentCloud
       # 统计分析维度下的统计数据详情
       class StatisticDataInfo < TencentCloud::Common::AbstractModel
         # @param Name: 统计维度的值。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param TimeAvg: 平均时间。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TimeAvg: Float
         # @param TimeSum: 总时间。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TimeSum: Float
         # @param Count: 数量。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Count: Integer
 
         attr_accessor :Name, :TimeAvg, :TimeSum, :Count
@@ -6296,10 +6256,8 @@ module TencentCloud
       # sql会话统计信息
       class StatisticInfo < TencentCloud::Common::AbstractModel
         # @param Dimension: 统计分析的维度。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Dimension: String
         # @param Data: 统计分析的维度下的统计数据详情。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: Array
 
         attr_accessor :Dimension, :Data
@@ -6648,16 +6606,12 @@ module TencentCloud
       # 用户配置的相关信息，包括邮件配置。
       class UserProfile < TencentCloud::Common::AbstractModel
         # @param ProfileId: 配置的id。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProfileId: String
         # @param ProfileType: 配置类型，支持值包括："dbScan_mail_configuration" - 数据库巡检邮件配置，"scheduler_mail_configuration" - 定期生成邮件配置。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProfileType: String
         # @param ProfileLevel: 配置级别，支持值包括："User" - 用户级别，"Instance" - 实例级别，其中数据库巡检邮件配置为用户级别，定期生成邮件配置为实例级别。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProfileLevel: String
         # @param ProfileName: 配置名称。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProfileName: String
         # @param ProfileInfo: 配置详情。
         # @type ProfileInfo: :class:`Tencentcloud::Dbbrain.v20210527.models.ProfileInfo`

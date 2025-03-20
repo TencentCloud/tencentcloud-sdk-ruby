@@ -2440,10 +2440,8 @@ module TencentCloud
         # @param AsyncRequestId: 异步任务Id。
         # @type AsyncRequestId: Integer
         # @param StartTime: 任务开始时间。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StartTime: String
         # @param EndTime: 任务结束时间。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EndTime: String
         # @param CreateTime: 任务创建时间。
         # @type CreateTime: String
@@ -2452,16 +2450,12 @@ module TencentCloud
         # @param Progress: 任务执行进度。
         # @type Progress: Integer
         # @param LogStartTime: 导出日志开始时间。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LogStartTime: String
         # @param LogEndTime: 导出日志结束时间。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LogEndTime: String
         # @param TotalSize: 日志文件总大小，单位KB。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalSize: Integer
         # @param DangerLevels: 风险等级列表。0 无风险；1 低风险；2 中风险；3 高风险。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DangerLevels: Array
 
         attr_accessor :AsyncRequestId, :StartTime, :EndTime, :CreateTime, :Status, :Progress, :LogStartTime, :LogEndTime, :TotalSize, :DangerLevels
@@ -2759,16 +2753,12 @@ module TencentCloud
       # 用户配置的相关信息，包括邮件配置。
       class UserProfile < TencentCloud::Common::AbstractModel
         # @param ProfileId: 配置的id。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProfileId: String
         # @param ProfileType: 配置类型。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProfileType: String
         # @param ProfileLevel: 配置级别，"User"或"Instance"。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProfileLevel: String
         # @param ProfileName: 配置名称。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProfileName: String
         # @param ProfileInfo: 配置详情。
         # @type ProfileInfo: :class:`Tencentcloud::Dbbrain.v20191016.models.ProfileInfo`

@@ -20,16 +20,12 @@ module TencentCloud
       # 定期快照高级保留策略，四个参数都为必选参数
       class AdvancedRetentionPolicy < TencentCloud::Common::AbstractModel
         # @param Days: 保留最新快照Days天内的每天最新的一个快照，取值范围：[0, 100]
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Days: Integer
         # @param Weeks: 保留最新快照Weeks周内的每周最新的一个快照，取值范围：[0, 100]
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Weeks: Integer
         # @param Months: 保留最新快照Months月内的每月最新的一个快照， 取值范围：[0, 100]
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Months: Integer
         # @param Years: 保留最新快照Years年内的每年最新的一个快照，取值范围：[0, 100]
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Years: Integer
 
         attr_accessor :Days, :Weeks, :Months, :Years
@@ -313,7 +309,6 @@ module TencentCloud
         # </ul>
         # @type AutoSnapshotPolicyState: String
         # @param IsCopyToRemote: 是否是跨账号复制快照快照, 1：是, 0: 不是
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsCopyToRemote: Integer
         # @param IsPermanent: 使用该定期快照策略创建出来的快照是否永久保留。
         # @type IsPermanent: Boolean
@@ -333,13 +328,10 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CopyToAccountUin: String
         # @param InstanceIdSet: 已绑定当前定期快照策略的实例ID列表。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceIdSet: Array
         # @param RetentionMonths: 该定期快照创建的快照可以保留的月数。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RetentionMonths: Integer
         # @param RetentionAmount: 该定期快照创建的快照最大保留数量。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RetentionAmount: Integer
         # @param AdvancedRetentionPolicy: 定期快照高级保留策略。
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -348,7 +340,6 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CopyFromAccountUin: String
         # @param Tags: 标签。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
 
         attr_accessor :DiskIdSet, :IsActivated, :AutoSnapshotPolicyState, :IsCopyToRemote, :IsPermanent, :NextTriggerTime, :AutoSnapshotPolicyName, :AutoSnapshotPolicyId, :Policy, :CreateTime, :RetentionDays, :CopyToAccountUin, :InstanceIdSet, :RetentionMonths, :RetentionAmount, :AdvancedRetentionPolicy, :CopyFromAccountUin, :Tags
@@ -512,7 +503,6 @@ module TencentCloud
         # @param DiskTotal: 独享集群的总容量大小，单位GiB
         # @type DiskTotal: Integer
         # @param DiskAvailable: 独享集群的可用容量大小，单位GiB
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DiskAvailable: Integer
 
         attr_accessor :DiskTotal, :DiskAvailable

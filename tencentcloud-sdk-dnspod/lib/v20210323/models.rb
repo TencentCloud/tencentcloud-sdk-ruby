@@ -715,6 +715,56 @@ module TencentCloud
         end
       end
 
+      # CreateDomainsAnalyticsFile请求参数结构体
+      class CreateDomainsAnalyticsFileRequest < TencentCloud::Common::AbstractModel
+        # @param Domains: 需要查询解析量的域名数组。
+        # @type Domains: Array
+        # @param StartDate: 查询解析量的时间区间起点。如：2023-01-01。
+        # @type StartDate: String
+        # @param DNSFormat: 查询解析量的统计维度。默认为 DATE。
+        # DATE：按天统计
+        # HOUR：按小时统计
+        # @type DNSFormat: String
+        # @param EndDate: 查询解析量的时间区间终点。如：2023-01-01。默认为当天。
+        # @type EndDate: String
+
+        attr_accessor :Domains, :StartDate, :DNSFormat, :EndDate
+
+        def initialize(domains=nil, startdate=nil, dnsformat=nil, enddate=nil)
+          @Domains = domains
+          @StartDate = startdate
+          @DNSFormat = dnsformat
+          @EndDate = enddate
+        end
+
+        def deserialize(params)
+          @Domains = params['Domains']
+          @StartDate = params['StartDate']
+          @DNSFormat = params['DNSFormat']
+          @EndDate = params['EndDate']
+        end
+      end
+
+      # CreateDomainsAnalyticsFile返回参数结构体
+      class CreateDomainsAnalyticsFileResponse < TencentCloud::Common::AbstractModel
+        # @param JobId: 当前批量任务 id。
+        # @type JobId: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :JobId, :RequestId
+
+        def initialize(jobid=nil, requestid=nil)
+          @JobId = jobid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @JobId = params['JobId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateLineGroupCopy请求参数结构体
       class CreateLineGroupCopyRequest < TencentCloud::Common::AbstractModel
         # @param Domain: 域名
@@ -1152,6 +1202,69 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateSubDomainsAnalyticsFile请求参数结构体
+      class CreateSubDomainsAnalyticsFileRequest < TencentCloud::Common::AbstractModel
+        # @param Domains: 需要查询解析量的域名数组。
+        # @type Domains: Array
+        # @param StartDate: 查询解析量的时间区间起点。如：2023-01-01。
+        # @type StartDate: String
+        # @param SubDomainType: 查询解析量子域名类型。
+        # 1：子域名
+        # 2：无解析量子域名
+        # @type SubDomainType: Integer
+        # @param DNSFormat: 查询解析量的统计维度。默认为 DATE。
+        # DATE：按天统计
+        # HOUR：按小时统计
+        # @type DNSFormat: String
+        # @param EndDate: 查询解析量的时间区间终点。如：2023-01-01。默认为当天。
+        # @type EndDate: String
+
+        attr_accessor :Domains, :StartDate, :SubDomainType, :DNSFormat, :EndDate
+
+        def initialize(domains=nil, startdate=nil, subdomaintype=nil, dnsformat=nil, enddate=nil)
+          @Domains = domains
+          @StartDate = startdate
+          @SubDomainType = subdomaintype
+          @DNSFormat = dnsformat
+          @EndDate = enddate
+        end
+
+        def deserialize(params)
+          unless params['Domains'].nil?
+            @Domains = []
+            params['Domains'].each do |i|
+              subdomainsanalyticsparamsitem_tmp = SubDomainsAnalyticsParamsItem.new
+              subdomainsanalyticsparamsitem_tmp.deserialize(i)
+              @Domains << subdomainsanalyticsparamsitem_tmp
+            end
+          end
+          @StartDate = params['StartDate']
+          @SubDomainType = params['SubDomainType']
+          @DNSFormat = params['DNSFormat']
+          @EndDate = params['EndDate']
+        end
+      end
+
+      # CreateSubDomainsAnalyticsFile返回参数结构体
+      class CreateSubDomainsAnalyticsFileResponse < TencentCloud::Common::AbstractModel
+        # @param JobId: 当前批量任务 id。
+        # @type JobId: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :JobId, :RequestId
+
+        def initialize(jobid=nil, requestid=nil)
+          @JobId = jobid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @JobId = params['JobId']
           @RequestId = params['RequestId']
         end
       end
@@ -2671,6 +2784,45 @@ module TencentCloud
           unless params['Info'].nil?
             @Info = WhoisInfo.new
             @Info.deserialize(params['Info'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeFileInfoByJobId请求参数结构体
+      class DescribeFileInfoByJobIdRequest < TencentCloud::Common::AbstractModel
+        # @param JobId: 任务ID
+        # @type JobId: Integer
+
+        attr_accessor :JobId
+
+        def initialize(jobid=nil)
+          @JobId = jobid
+        end
+
+        def deserialize(params)
+          @JobId = params['JobId']
+        end
+      end
+
+      # DescribeFileInfoByJobId返回参数结构体
+      class DescribeFileInfoByJobIdResponse < TencentCloud::Common::AbstractModel
+        # @param FileInfo: 生成文件相关信息
+        # @type FileInfo: :class:`Tencentcloud::Dnspod.v20210323.models.FileInfo`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FileInfo, :RequestId
+
+        def initialize(fileinfo=nil, requestid=nil)
+          @FileInfo = fileinfo
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['FileInfo'].nil?
+            @FileInfo = FileInfo.new
+            @FileInfo.deserialize(params['FileInfo'])
           end
           @RequestId = params['RequestId']
         end
@@ -4439,6 +4591,76 @@ module TencentCloud
         end
       end
 
+      # 生成的文件信息
+      class FileInfo < TencentCloud::Common::AbstractModel
+        # @param FileId: 文件 id。
+        # @type FileId: Integer
+        # @param CreatedOn: 文件生成时间。
+        # @type CreatedOn: String
+        # @param UpdatedOn: 文件最后更新时间。
+        # @type UpdatedOn: String
+        # @param Domains: 文件涉及到的域名。
+        # @type Domains: Array
+        # @param Name: 文件名称。
+        # @type Name: String
+        # @param FileUrl: 文件下载链接。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FileUrl: String
+        # @param JobId: 生成文件的任务 id。
+        # @type JobId: Integer
+        # @param Progress: 生成文件的进度。100 表示 完成度为100%。
+        # @type Progress: Integer
+        # @param Status: 文件状态。
+        # OK：已完成
+        # RUNNING：正在生成中
+        # ERROR：生成失败
+        # CANCELED：文件已取消生成
+        # CANCELING：文件正在取消生成
+        # EXPIRED：文件已过期
+        # @type Status: String
+        # @param Type: 生成文件的任务类型。
+        # RECORD_LOG：解析量数据
+        # RECORD_EXPORT：导出解析记录
+        # DOMAIN_EXPORT：导出域名列表
+        # @type Type: String
+        # @param LeftTime: 剩余时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LeftTime: :class:`Tencentcloud::Dnspod.v20210323.models.LeftTime`
+
+        attr_accessor :FileId, :CreatedOn, :UpdatedOn, :Domains, :Name, :FileUrl, :JobId, :Progress, :Status, :Type, :LeftTime
+
+        def initialize(fileid=nil, createdon=nil, updatedon=nil, domains=nil, name=nil, fileurl=nil, jobid=nil, progress=nil, status=nil, type=nil, lefttime=nil)
+          @FileId = fileid
+          @CreatedOn = createdon
+          @UpdatedOn = updatedon
+          @Domains = domains
+          @Name = name
+          @FileUrl = fileurl
+          @JobId = jobid
+          @Progress = progress
+          @Status = status
+          @Type = type
+          @LeftTime = lefttime
+        end
+
+        def deserialize(params)
+          @FileId = params['FileId']
+          @CreatedOn = params['CreatedOn']
+          @UpdatedOn = params['UpdatedOn']
+          @Domains = params['Domains']
+          @Name = params['Name']
+          @FileUrl = params['FileUrl']
+          @JobId = params['JobId']
+          @Progress = params['Progress']
+          @Status = params['Status']
+          @Type = params['Type']
+          unless params['LeftTime'].nil?
+            @LeftTime = LeftTime.new
+            @LeftTime.deserialize(params['LeftTime'])
+          end
+        end
+      end
+
       # 域名分组列表
       class GroupInfo < TencentCloud::Common::AbstractModel
         # @param GroupId: 分组ID
@@ -4485,6 +4707,33 @@ module TencentCloud
         def deserialize(params)
           @Key = params['Key']
           @Value = params['Value']
+        end
+      end
+
+      # 批量生成文件剩余时间
+      class LeftTime < TencentCloud::Common::AbstractModel
+        # @param Days: 剩余天数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Days: Integer
+        # @param Hours: 剩余小时数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Hours: Integer
+        # @param Mins: 剩余分钟数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Mins: Integer
+
+        attr_accessor :Days, :Hours, :Mins
+
+        def initialize(days=nil, hours=nil, mins=nil)
+          @Days = days
+          @Hours = hours
+          @Mins = mins
+        end
+
+        def deserialize(params)
+          @Days = params['Days']
+          @Hours = params['Hours']
+          @Mins = params['Mins']
         end
       end
 
@@ -6404,6 +6653,34 @@ module TencentCloud
           @MX = params['MX']
           @Weight = params['Weight']
           @Reason = params['Reason']
+        end
+      end
+
+      # 批量导出子域名解析量查询条件
+      class SubDomainsAnalyticsParamsItem < TencentCloud::Common::AbstractModel
+        # @param Domain: 要查询解析量的主域名。
+        # @type Domain: String
+        # @param SubDomain: 要查询解析量的子域名主机头。
+        # @type SubDomain: String
+        # @param Offset: 查询子域名列表的偏移量。没有指定查询的 Subdomain 参数时，根据分页参数返回每页子域名解析量。
+        # @type Offset: Integer
+        # @param Limit: 查询子域名列表的每页条数。没有指定查询的 Subdomain 参数时，根据分页参数返回每页子域名解析量。
+        # @type Limit: Integer
+
+        attr_accessor :Domain, :SubDomain, :Offset, :Limit
+
+        def initialize(domain=nil, subdomain=nil, offset=nil, limit=nil)
+          @Domain = domain
+          @SubDomain = subdomain
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @SubDomain = params['SubDomain']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
         end
       end
 

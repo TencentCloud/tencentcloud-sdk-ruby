@@ -5256,7 +5256,6 @@ module TencentCloud
         # @param TotalCount: 参数个数
         # @type TotalCount: Integer
         # @param Items: 实例参数列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Items: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5435,7 +5434,6 @@ module TencentCloud
       # DescribeClusterDetailDatabases返回参数结构体
       class DescribeClusterDetailDatabasesResponse < TencentCloud::Common::AbstractModel
         # @param DbInfos: 数据库信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DbInfos: Array
         # @param TotalCount: 总数
         # @type TotalCount: Integer
@@ -5652,7 +5650,6 @@ module TencentCloud
         # @param TotalCount: 记录总数
         # @type TotalCount: Integer
         # @param ClusterParamLogs: 参数修改记录
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterParamLogs: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5708,7 +5705,6 @@ module TencentCloud
         # @param TotalCount: 参数个数
         # @type TotalCount: Integer
         # @param Items: 实例参数列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Items: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5754,22 +5750,16 @@ module TencentCloud
       # DescribeClusterPasswordComplexity返回参数结构体
       class DescribeClusterPasswordComplexityResponse < TencentCloud::Common::AbstractModel
         # @param ValidatePasswordDictionary: 数据字典参数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ValidatePasswordDictionary: :class:`Tencentcloud::Cynosdb.v20190107.models.ParamInfo`
         # @param ValidatePasswordLength: 密码长度
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ValidatePasswordLength: :class:`Tencentcloud::Cynosdb.v20190107.models.ParamInfo`
         # @param ValidatePasswordMixedCaseCount: 大小写敏感字符个数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ValidatePasswordMixedCaseCount: :class:`Tencentcloud::Cynosdb.v20190107.models.ParamInfo`
         # @param ValidatePasswordNumberCount: 数字个数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ValidatePasswordNumberCount: :class:`Tencentcloud::Cynosdb.v20190107.models.ParamInfo`
         # @param ValidatePasswordPolicy: 密码等级
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ValidatePasswordPolicy: :class:`Tencentcloud::Cynosdb.v20190107.models.ParamInfo`
         # @param ValidatePasswordSpecialCharCount: 特殊字符个数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ValidatePasswordSpecialCharCount: :class:`Tencentcloud::Cynosdb.v20190107.models.ParamInfo`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6160,10 +6150,8 @@ module TencentCloud
       # DescribeInstanceErrorLogs返回参数结构体
       class DescribeInstanceErrorLogsResponse < TencentCloud::Common::AbstractModel
         # @param TotalCount: 日志条数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
         # @param ErrorLogs: 错误日志列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrorLogs: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6908,7 +6896,6 @@ module TencentCloud
         # @param TotalCount: 数据库代理组数
         # @type TotalCount: Integer
         # @param ProxyGroupInfos: 数据库代理组列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProxyGroupInfos: Array
         # @param ProxyNodeInfos: 数据库代理节点
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -7198,7 +7185,6 @@ module TencentCloud
         # @param Total: 资源包总数
         # @type Total: Integer
         # @param Detail: 资源包明细
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Detail: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -7265,7 +7251,6 @@ module TencentCloud
         # @param Total: 可售卖资源包规格总数
         # @type Total: Integer
         # @param Detail: 资源包明细说明
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Detail: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -7360,10 +7345,8 @@ module TencentCloud
       # DescribeRollbackTimeRange返回参数结构体
       class DescribeRollbackTimeRangeResponse < TencentCloud::Common::AbstractModel
         # @param TimeRangeStart: 有效回归时间范围开始时间点（已废弃）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TimeRangeStart: String
         # @param TimeRangeEnd: 有效回归时间范围结束时间点（已废弃）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TimeRangeEnd: String
         # @param RollbackTimeRanges: 可回档时间范围
         # @type RollbackTimeRanges: Array
@@ -7518,10 +7501,8 @@ module TencentCloud
       # DescribeSupportProxyVersion返回参数结构体
       class DescribeSupportProxyVersionResponse < TencentCloud::Common::AbstractModel
         # @param SupportProxyVersions: 支持的数据库代理版本集合
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SupportProxyVersions: Array
         # @param CurrentProxyVersion: 当前proxy版本号
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CurrentProxyVersion: String
         # @param SupportProxyVersionDetail: 代理版本详情
         # @type SupportProxyVersionDetail: Array
@@ -7842,7 +7823,6 @@ module TencentCloud
       # ExportInstanceErrorLogs返回参数结构体
       class ExportInstanceErrorLogsResponse < TencentCloud::Common::AbstractModel
         # @param ErrorLogItems: 错误日志导出内容
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrorLogItems: Array
         # @param FileContent: 错误日志字符串
         # @type FileContent: String
@@ -8218,10 +8198,8 @@ module TencentCloud
       # InquirePriceModify返回参数结构体
       class InquirePriceModifyResponse < TencentCloud::Common::AbstractModel
         # @param InstancePrice: 实例价格
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstancePrice: :class:`Tencentcloud::Cynosdb.v20190107.models.TradePrice`
         # @param StoragePrice: 存储价格
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StoragePrice: :class:`Tencentcloud::Cynosdb.v20190107.models.TradePrice`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -8787,7 +8765,6 @@ module TencentCloud
       # IsolateCluster返回参数结构体
       class IsolateClusterResponse < TencentCloud::Common::AbstractModel
         # @param FlowId: 任务流ID(后付费或者serverless资源返回，如果需要同步任务状态，请使用DescribeFlow接口)
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FlowId: Integer
         # @param DealNames: 退款订单号(预付费资源返回，如果需要同步订单状态，请使用计费产品的DescribeDealsByCond同步订单状态)
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -9774,13 +9751,10 @@ module TencentCloud
       # ModifyClusterStorage返回参数结构体
       class ModifyClusterStorageResponse < TencentCloud::Common::AbstractModel
         # @param TranId: 冻结流水ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TranId: String
         # @param BigDealIds: 大订单号
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BigDealIds: Array
         # @param DealNames: 订单号
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DealNames: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -11573,19 +11547,12 @@ module TencentCloud
       # 参数变化信息
       class ParamItemInfo < TencentCloud::Common::AbstractModel
         # @param ParamName: 参数名字
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ParamName: String
         # @param NewValue: 参数新值
-
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NewValue: String
         # @param OldValue: 参数旧值
-
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OldValue: String
         # @param ValueFunction: 参数公式
-
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ValueFunction: String
 
         attr_accessor :ParamName, :NewValue, :OldValue, :ValueFunction
@@ -12275,19 +12242,14 @@ module TencentCloud
       # RenewClusters返回参数结构体
       class RenewClustersResponse < TencentCloud::Common::AbstractModel
         # @param BigDealIds: 预付费总订单号
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BigDealIds: Array
         # @param DealNames: 退款订单号
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DealNames: Array
         # @param TranId: 冻结流水，一次开通一个冻结流水
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TranId: String
         # @param ResourceIds: 每个订单号对应的发货资源id列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceIds: Array
         # @param ClusterIds: 集群id列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterIds: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -13077,16 +13039,12 @@ module TencentCloud
       # RollbackToNewCluster返回参数结构体
       class RollbackToNewClusterResponse < TencentCloud::Common::AbstractModel
         # @param TranId: 冻结流水ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TranId: String
         # @param DealNames: 订单号
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DealNames: Array
         # @param ResourceIds: 资源ID列表（该字段已不再维护，请使用dealNames字段查询接口DescribeResourcesByDealName获取资源ID）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceIds: Array
         # @param ClusterIds: 集群ID列表（该字段已不再维护，请使用dealNames字段查询接口DescribeResourcesByDealName获取集群ID）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterIds: Array
         # @param BigDealIds: 大订单号
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -13410,7 +13368,6 @@ module TencentCloud
       # SearchClusterTables返回参数结构体
       class SearchClusterTablesResponse < TencentCloud::Common::AbstractModel
         # @param Tables: 数据表列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tables: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -14325,10 +14282,8 @@ module TencentCloud
       # UpgradeInstance返回参数结构体
       class UpgradeInstanceResponse < TencentCloud::Common::AbstractModel
         # @param TranId: 冻结流水ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TranId: String
         # @param BigDealIds: 大订单号
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BigDealIds: Array
         # @param DealNames: 订单号
         # @type DealNames: Array

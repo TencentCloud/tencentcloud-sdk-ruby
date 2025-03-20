@@ -133,25 +133,18 @@ module TencentCloud
       # 备份表信息
       class BackupTableContent < TencentCloud::Common::AbstractModel
         # @param Database: 数据库
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Database: String
         # @param Table: 表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Table: String
         # @param TotalBytes: 表总字节数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalBytes: Integer
         # @param VCluster: 虚拟cluster
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VCluster: String
         # @param Ips: 表ip
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Ips: String
         # @param ZooPath: zk路径
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ZooPath: String
         # @param Rip: cvm的ip地址
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Rip: String
 
         attr_accessor :Database, :Table, :TotalBytes, :VCluster, :Ips, :ZooPath, :Rip
@@ -242,7 +235,6 @@ module TencentCloud
         # @param NeedRestart: 用于表示当前配置文件是不是有过修改后没有重启，提醒用户需要重启
         # @type NeedRestart: Integer
         # @param FilePath: 保存配置文件的路径
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FilePath: String
 
         attr_accessor :FileName, :FileConf, :KeyConf, :OriParam, :NeedRestart, :FilePath
@@ -269,10 +261,8 @@ module TencentCloud
       # clickhouse vcluster信息
       class ClusterInfo < TencentCloud::Common::AbstractModel
         # @param ClusterName: vcluster名字
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterName: String
         # @param NodeIps: 当前cluster的IP列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NodeIps: Array
 
         attr_accessor :ClusterName, :NodeIps
@@ -621,7 +611,6 @@ module TencentCloud
       # DescribeBackUpJobDetail返回参数结构体
       class DescribeBackUpJobDetailResponse < TencentCloud::Common::AbstractModel
         # @param TableContents: 备份表详情
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TableContents: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -868,7 +857,6 @@ module TencentCloud
       # DescribeCkSqlApis返回参数结构体
       class DescribeCkSqlApisResponse < TencentCloud::Common::AbstractModel
         # @param ReturnData: 返回的查询数据，大部分情况是list，也可能是bool
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReturnData: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1178,7 +1166,6 @@ module TencentCloud
       # DescribeInstanceShards返回参数结构体
       class DescribeInstanceShardsResponse < TencentCloud::Common::AbstractModel
         # @param InstanceShardsList: 实例shard信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceShardsList: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1432,7 +1419,6 @@ module TencentCloud
       # DestroyInstance返回参数结构体
       class DestroyInstanceResponse < TencentCloud::Common::AbstractModel
         # @param FlowID: 作业id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FlowID: String
         # @param InstanceID: 集群id
         # @type InstanceID: String
@@ -1593,7 +1579,6 @@ module TencentCloud
       # Instance表detail字段
       class InstanceDetail < TencentCloud::Common::AbstractModel
         # @param EnableAlarmStrategy: 告警策略是否可用
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EnableAlarmStrategy: Boolean
 
         attr_accessor :EnableAlarmStrategy
@@ -1931,22 +1916,16 @@ module TencentCloud
         # @param NodeGroups: 节点所属的分组信息
         # @type NodeGroups: Array
         # @param Rip: VPC IP
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Rip: String
         # @param IsCHProxy: ture的时候表示该节点上部署了chproxy进程
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsCHProxy: Boolean
         # @param Status: 节点状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: String
         # @param UUID: 节点uuid
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UUID: String
         # @param Zone: 区
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Zone: String
         # @param ZoneDesc: 区描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ZoneDesc: String
         # @param RealResourceId: 真实资源id
         # @type RealResourceId: String
@@ -2000,31 +1979,22 @@ module TencentCloud
       # 集群状态抽象后的结构体
       class InstanceStateInfo < TencentCloud::Common::AbstractModel
         # @param InstanceState: 集群状态，例如：Serving
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceState: String
         # @param FlowCreateTime: 集群操作创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FlowCreateTime: String
         # @param FlowName: 集群操作名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FlowName: String
         # @param FlowProgress: 集群操作进度
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FlowProgress: Integer
         # @param InstanceStateDesc: 集群状态描述，例如：运行中
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceStateDesc: String
         # @param FlowMsg: 集群流程错误信息，例如：“创建失败，资源不足”
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FlowMsg: String
         # @param ProcessName: 当前步骤的名称，例如：”购买资源中“
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProcessName: String
         # @param RequestId: 请求id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RequestId: String
         # @param ProcessSubName: 流程的二级名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProcessSubName: String
 
         attr_accessor :InstanceState, :FlowCreateTime, :FlowName, :FlowProgress, :InstanceStateDesc, :FlowMsg, :ProcessName, :RequestId, :ProcessSubName
@@ -2199,7 +2169,6 @@ module TencentCloud
       # ModifyInstanceKeyValConfigs返回参数结构体
       class ModifyInstanceKeyValConfigsResponse < TencentCloud::Common::AbstractModel
         # @param ErrorMsg: 错误信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrorMsg: String
         # @param FlowId: ID
         # @type FlowId: Integer
@@ -2485,13 +2454,10 @@ module TencentCloud
       # ResizeDisk返回参数结构体
       class ResizeDiskResponse < TencentCloud::Common::AbstractModel
         # @param FlowId: 流程ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FlowId: String
         # @param InstanceId: 实例ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceId: String
         # @param ErrorMsg: 错误信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrorMsg: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2530,16 +2496,12 @@ module TencentCloud
         # @param MaxNodeSize: 最大节点数目限制
         # @type MaxNodeSize: Integer
         # @param Available: 是否可用，false代表售罄
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Available: Boolean
         # @param ComputeSpecDesc: 规格描述信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ComputeSpecDesc: String
         # @param DisplayName: 规格名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DisplayName: String
         # @param InstanceQuota: 库存数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceQuota: Integer
 
         attr_accessor :Name, :Cpu, :Mem, :Type, :SystemDisk, :DataDisk, :MaxNodeSize, :Available, :ComputeSpecDesc, :DisplayName, :InstanceQuota
@@ -2614,13 +2576,10 @@ module TencentCloud
       # ScaleCNOutUpInstance返回参数结构体
       class ScaleCNOutUpInstanceResponse < TencentCloud::Common::AbstractModel
         # @param FlowId: 流程ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FlowId: String
         # @param InstanceId: 实例ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceId: String
         # @param ErrorMsg: 错误信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrorMsg: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2686,13 +2645,10 @@ module TencentCloud
       # ScaleOutInstance返回参数结构体
       class ScaleOutInstanceResponse < TencentCloud::Common::AbstractModel
         # @param FlowId: 流程ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FlowId: String
         # @param InstanceId: 实例ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceId: String
         # @param ErrorMsg: 错误信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrorMsg: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2745,13 +2701,10 @@ module TencentCloud
       # ScaleUpInstance返回参数结构体
       class ScaleUpInstanceResponse < TencentCloud::Common::AbstractModel
         # @param FlowId: 流程ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FlowId: String
         # @param InstanceId: 实例ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceId: String
         # @param ErrorMsg: 错误信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrorMsg: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2776,7 +2729,6 @@ module TencentCloud
       # 策略详情
       class ScheduleStrategy < TencentCloud::Common::AbstractModel
         # @param CosBucketName: 备份桶名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CosBucketName: String
         # @param RetainDays: 备份保留天数
         # @type RetainDays: Integer
@@ -2787,7 +2739,6 @@ module TencentCloud
         # @param ScheduleId: 策略id
         # @type ScheduleId: Integer
         # @param NextBackupTime: 下次备份时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NextBackupTime: String
 
         attr_accessor :CosBucketName, :RetainDays, :WeekDays, :ExecuteHour, :ScheduleId, :NextBackupTime
@@ -2838,16 +2789,12 @@ module TencentCloud
       # 副可用区详情
       class SecondaryZoneInfo < TencentCloud::Common::AbstractModel
         # @param SecondaryZone: 副可用区
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SecondaryZone: String
         # @param SecondarySubnet: 可用区可用的子网id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SecondarySubnet: String
         # @param UserIpNum: 可用区可用的子网可用ip的数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UserIpNum: String
         # @param SecondaryUserSubnetIPNum: 可用区可用的子网可用ip的数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SecondaryUserSubnetIPNum: Integer
 
         attr_accessor :SecondaryZone, :SecondarySubnet, :UserIpNum, :SecondaryUserSubnetIPNum
@@ -2870,10 +2817,8 @@ module TencentCloud
       # 服务详细信息描述。
       class ServiceInfo < TencentCloud::Common::AbstractModel
         # @param Name: 服务名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Version: 服务的版本
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Version: String
 
         attr_accessor :Name, :Version

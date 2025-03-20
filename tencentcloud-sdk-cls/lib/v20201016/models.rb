@@ -1005,46 +1005,6 @@ module TencentCloud
         end
       end
 
-      # 云产品日志投递任务信息
-      class CloudProductLogTaskInfo < TencentCloud::Common::AbstractModel
-        # @param ClsRegion: 日志服务地域
-        # @type ClsRegion: String
-        # @param InstanceId: 实例ID
-        # @type InstanceId: String
-        # @param LogsetId: 日志集ID
-        # @type LogsetId: String
-        # @param TopicId: 日志主题ID
-        # @type TopicId: String
-        # @param Extend: 日志配置拓展信息， 一般用于存储额外的日志投递配置
-        # @type Extend: String
-        # @param LogType: 日志类型，支持枚举：CDS-AUDIT、CDS-RISK、CDB-AUDIT、TDSQL-C-AUDIT、MongoDB-AUDIT、MongoDB-SlowLog、MongoDB-ErrorLog、TDMYSQL-SLOW、DCDB-AUDIT、DCDB-SLOW、DCDB-ERROR、MariaDB-AUDIT、MariaDB-SLOW、MariaDB-ERROR、PostgreSQL-SLOW、PostgreSQL-ERROR、PostgreSQL-AUDIT、BH-FILELOG、BH-COMMANDLOG、APIS-ACCESS
-        # @type LogType: String
-        # @param Status: 任务状态， 0创建中 1创建完成 2 删除中
-        # @type Status: Integer
-
-        attr_accessor :ClsRegion, :InstanceId, :LogsetId, :TopicId, :Extend, :LogType, :Status
-
-        def initialize(clsregion=nil, instanceid=nil, logsetid=nil, topicid=nil, extend=nil, logtype=nil, status=nil)
-          @ClsRegion = clsregion
-          @InstanceId = instanceid
-          @LogsetId = logsetid
-          @TopicId = topicid
-          @Extend = extend
-          @LogType = logtype
-          @Status = status
-        end
-
-        def deserialize(params)
-          @ClsRegion = params['ClsRegion']
-          @InstanceId = params['InstanceId']
-          @LogsetId = params['LogsetId']
-          @TopicId = params['TopicId']
-          @Extend = params['Extend']
-          @LogType = params['LogType']
-          @Status = params['Status']
-        end
-      end
-
       # 采集配置信息
       class CollectConfig < TencentCloud::Common::AbstractModel
         # @param Name: 指定采集类型的采集配置名称信息。
@@ -2145,102 +2105,6 @@ module TencentCloud
 
         def deserialize(params)
           @TaskId = params['TaskId']
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # CreateCloudProductLogTask请求参数结构体
-      class CreateCloudProductLogTaskRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
-        # @type InstanceId: String
-        # @param AssumerName: 云产品标识，支持枚举：CDS、CWP、CDB、TDSQL-C、MongoDB、TDStore、DCDB、MariaDB、PostgreSQL、BH、APIS
-        # @type AssumerName: String
-        # @param LogType: 日志类型，支持枚举：CDS-AUDIT、CDS-RISK、CDB-AUDIT、TDSQL-C-AUDIT、MongoDB-AUDIT、MongoDB-SlowLog、MongoDB-ErrorLog、TDMYSQL-SLOW、DCDB-AUDIT、DCDB-SLOW、DCDB-ERROR、MariaDB-AUDIT、MariaDB-SLOW、MariaDB-ERROR、PostgreSQL-SLOW、PostgreSQL-ERROR、PostgreSQL-AUDIT、BH-FILELOG、BH-COMMANDLOG、APIS-ACCESS
-        # @type LogType: String
-        # @param CloudProductRegion: 云产品地域。 不同日志类型(LogType)地域入參格式存在差异， 请参考如下示例：
-        # - CDS所有日志类型：ap-guangzhou
-        # - CDB-AUDIT: gz
-        # - TDSQL-C-AUDIT:  gz
-        # - MongoDB-AUDIT:  gz
-        # - MongoDB-SlowLog：ap-guangzhou
-        # - MongoDB-ErrorLog：ap-guangzhou
-        # - TDMYSQL-SLOW：gz
-        # - DCDB所有日志类型：gz
-        # - MariaDB所有日志类型：gz
-        # - PostgreSQL所有日志类型：gz
-        # - BH所有日志类型：overseas-polaris(国内站海外)/fsi-polaris(国内站金融)/general-polaris(国内站普通)/intl-sg-prod(国际站)
-        # - APIS所有日志类型：gz
-        # @type CloudProductRegion: String
-        # @param ClsRegion: CLS目标地域
-        # @type ClsRegion: String
-        # @param LogsetName: 日志集名称，未填LogsetId时必填。若日志集不存在, 将自动创建
-        # @type LogsetName: String
-        # @param LogsetId: 日志集ID，若指定则代表选择已有日志集。选择已有日志集时，LogsetName可以不填
-        # @type LogsetId: String
-        # @param TopicName: 日志主题名称，在未填TopicId时必填。 若日志主题不存在，将自动创建
-        # @type TopicName: String
-        # @param TopicId: 日志主题ID，若指定则代表选择已有日志主题，选择已有日志主题时，TopicName可以不填
-        # @type TopicId: String
-        # @param Extend: 日志配置拓展信息， 一般用于存储额外的日志投递配置
-        # @type Extend: String
-
-        attr_accessor :InstanceId, :AssumerName, :LogType, :CloudProductRegion, :ClsRegion, :LogsetName, :LogsetId, :TopicName, :TopicId, :Extend
-
-        def initialize(instanceid=nil, assumername=nil, logtype=nil, cloudproductregion=nil, clsregion=nil, logsetname=nil, logsetid=nil, topicname=nil, topicid=nil, extend=nil)
-          @InstanceId = instanceid
-          @AssumerName = assumername
-          @LogType = logtype
-          @CloudProductRegion = cloudproductregion
-          @ClsRegion = clsregion
-          @LogsetName = logsetname
-          @LogsetId = logsetid
-          @TopicName = topicname
-          @TopicId = topicid
-          @Extend = extend
-        end
-
-        def deserialize(params)
-          @InstanceId = params['InstanceId']
-          @AssumerName = params['AssumerName']
-          @LogType = params['LogType']
-          @CloudProductRegion = params['CloudProductRegion']
-          @ClsRegion = params['ClsRegion']
-          @LogsetName = params['LogsetName']
-          @LogsetId = params['LogsetId']
-          @TopicName = params['TopicName']
-          @TopicId = params['TopicId']
-          @Extend = params['Extend']
-        end
-      end
-
-      # CreateCloudProductLogTask返回参数结构体
-      class CreateCloudProductLogTaskResponse < TencentCloud::Common::AbstractModel
-        # @param TopicId: 日志主题ID
-        # @type TopicId: String
-        # @param TopicName: 日志主题名称
-        # @type TopicName: String
-        # @param LogsetId: 日志集ID
-        # @type LogsetId: String
-        # @param LogsetName: 日志集名称
-        # @type LogsetName: String
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :TopicId, :TopicName, :LogsetId, :LogsetName, :RequestId
-
-        def initialize(topicid=nil, topicname=nil, logsetid=nil, logsetname=nil, requestid=nil)
-          @TopicId = topicid
-          @TopicName = topicname
-          @LogsetId = logsetid
-          @LogsetName = logsetname
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @TopicId = params['TopicId']
-          @TopicName = params['TopicName']
-          @LogsetId = params['LogsetId']
-          @LogsetName = params['LogsetName']
           @RequestId = params['RequestId']
         end
       end
@@ -4063,62 +3927,6 @@ module TencentCloud
         end
       end
 
-      # DeleteCloudProductLogTask请求参数结构体
-      class DeleteCloudProductLogTaskRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
-        # @type InstanceId: String
-        # @param AssumerName: 云产品标识，支持枚举：CDS、CWP、CDB、TDSQL-C、MongoDB、TDStore、DCDB、MariaDB、PostgreSQL、BH、APIS
-        # @type AssumerName: String
-        # @param LogType: 日志类型，支持枚举：CDS-AUDIT、CDS-RISK、CDB-AUDIT、TDSQL-C-AUDIT、MongoDB-AUDIT、MongoDB-SlowLog、MongoDB-ErrorLog、TDMYSQL-SLOW、DCDB-AUDIT、DCDB-SLOW、DCDB-ERROR、MariaDB-AUDIT、MariaDB-SLOW、MariaDB-ERROR、PostgreSQL-SLOW、PostgreSQL-ERROR、PostgreSQL-AUDIT、BH-FILELOG、BH-COMMANDLOG、APIS-ACCESS
-        # @type LogType: String
-        # @param CloudProductRegion: 云产品地域。 不同日志类型(LogType)地域入參格式存在差异， 请参考如下示例：
-        # - CDS所有日志类型：ap-guangzhou
-        # - CDB-AUDIT: gz
-        # - TDSQL-C-AUDIT: gz
-        # - MongoDB-AUDIT: gz
-        # - MongoDB-SlowLog：ap-guangzhou
-        # - MongoDB-ErrorLog：ap-guangzhou
-        # - TDMYSQL-SLOW：gz
-        # - DCDB所有日志类型：gz
-        # - MariaDB所有日志类型：gz
-        # - PostgreSQL所有日志类型：gz
-        # - BH所有日志类型：overseas-polaris(国内站海外)/fsi-polaris(国内站金融)/general-polaris(国内站普通)/intl-sg-prod(国际站)
-        # - APIS所有日志类型：gz
-        # @type CloudProductRegion: String
-
-        attr_accessor :InstanceId, :AssumerName, :LogType, :CloudProductRegion
-
-        def initialize(instanceid=nil, assumername=nil, logtype=nil, cloudproductregion=nil)
-          @InstanceId = instanceid
-          @AssumerName = assumername
-          @LogType = logtype
-          @CloudProductRegion = cloudproductregion
-        end
-
-        def deserialize(params)
-          @InstanceId = params['InstanceId']
-          @AssumerName = params['AssumerName']
-          @LogType = params['LogType']
-          @CloudProductRegion = params['CloudProductRegion']
-        end
-      end
-
-      # DeleteCloudProductLogTask返回参数结构体
-      class DeleteCloudProductLogTaskResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :RequestId
-
-        def initialize(requestid=nil)
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @RequestId = params['RequestId']
-        end
-      end
-
       # DeleteConfigExtra请求参数结构体
       class DeleteConfigExtraRequest < TencentCloud::Common::AbstractModel
         # @param ConfigExtraId: 特殊采集规则扩展配置ID
@@ -5058,81 +4866,6 @@ module TencentCloud
               @Records << alerthistoryrecord_tmp
             end
           end
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # DescribeCloudProductLogTasks请求参数结构体
-      class DescribeCloudProductLogTasksRequest < TencentCloud::Common::AbstractModel
-        # @param Offset: 分页的偏移量，默认值为0。
-        # @type Offset: Integer
-        # @param Limit: 分页单页限制数目，默认值为100，最大值100。
-        # @type Limit: Integer
-        # @param Filters: - assumerName
-        #   - 按照【云产品标识】进行过滤。
-        #   - 类型：String
-        #   - 必选：否
-        #   - 枚举：CDS、CWP、CDB、TDSQL-C、MongoDB、TDStore、DCDB、MariaDB、PostgreSQL、BH、APIS
-        # - logType
-        #   - 按照【日志类型】进行过滤。
-        #   - 类型：String
-        #   - 必选：否
-        #   - 枚举：CDS-AUDIT、CDS-RISK、CDB-AUDIT、TDSQL-C-AUDIT、MongoDB-AUDIT、MongoDB-SlowLog、MongoDB-ErrorLog、TDMYSQL-SLOW、DCDB-AUDIT、DCDB-SLOW、DCDB-ERROR、MariaDB-AUDIT、MariaDB-SLOW、MariaDB-ERROR、PostgreSQL-SLOW、PostgreSQL-ERROR、PostgreSQL-AUDIT、BH-FILELOG、BH-COMMANDLOG、APIS-ACCESS
-        # - instanceId
-        #   - 按照【实例ID】进行过滤。
-        #   - 类型：String
-        #   - 必选：否
-        # @type Filters: Array
-
-        attr_accessor :Offset, :Limit, :Filters
-
-        def initialize(offset=nil, limit=nil, filters=nil)
-          @Offset = offset
-          @Limit = limit
-          @Filters = filters
-        end
-
-        def deserialize(params)
-          @Offset = params['Offset']
-          @Limit = params['Limit']
-          unless params['Filters'].nil?
-            @Filters = []
-            params['Filters'].each do |i|
-              filter_tmp = Filter.new
-              filter_tmp.deserialize(i)
-              @Filters << filter_tmp
-            end
-          end
-        end
-      end
-
-      # DescribeCloudProductLogTasks返回参数结构体
-      class DescribeCloudProductLogTasksResponse < TencentCloud::Common::AbstractModel
-        # @param Tasks: 日志配置详情列表
-        # @type Tasks: Array
-        # @param TotalCount: 日志配置总数
-        # @type TotalCount: Integer
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Tasks, :TotalCount, :RequestId
-
-        def initialize(tasks=nil, totalcount=nil, requestid=nil)
-          @Tasks = tasks
-          @TotalCount = totalcount
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          unless params['Tasks'].nil?
-            @Tasks = []
-            params['Tasks'].each do |i|
-              cloudproductlogtaskinfo_tmp = CloudProductLogTaskInfo.new
-              cloudproductlogtaskinfo_tmp.deserialize(i)
-              @Tasks << cloudproductlogtaskinfo_tmp
-            end
-          end
-          @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
       end
@@ -8737,66 +8470,6 @@ module TencentCloud
         end
       end
 
-      # ModifyCloudProductLogTask请求参数结构体
-      class ModifyCloudProductLogTaskRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
-        # @type InstanceId: String
-        # @param AssumerName: 云产品标识，支持枚举：CDS、CWP、CDB、TDSQL-C、MongoDB、TDStore、DCDB、MariaDB、PostgreSQL、BH、APIS
-        # @type AssumerName: String
-        # @param LogType: 日志类型，支持枚举：CDS-AUDIT、CDS-RISK、CDB-AUDIT、TDSQL-C-AUDIT、MongoDB-AUDIT、MongoDB-SlowLog、MongoDB-ErrorLog、TDMYSQL-SLOW、DCDB-AUDIT、DCDB-SLOW、DCDB-ERROR、MariaDB-AUDIT、MariaDB-SLOW、MariaDB-ERROR、PostgreSQL-SLOW、PostgreSQL-ERROR、PostgreSQL-AUDIT、BH-FILELOG、BH-COMMANDLOG、APIS-ACCESS
-        # @type LogType: String
-        # @param CloudProductRegion: 云产品地域。 不同日志类型(LogType)地域入參格式存在差异， 请参考如下示例：
-        # - CDS所有日志类型：ap-guangzhou
-        # - CDB-AUDIT: gz
-        # - TDSQL-C-AUDIT: gz
-        # - MongoDB-AUDIT: gz
-        # - MongoDB-SlowLog：ap-guangzhou
-        # - MongoDB-ErrorLog：ap-guangzhou
-        # - TDMYSQL-SLOW：gz
-        # - DCDB所有日志类型：gz
-        # - MariaDB所有日志类型：gz
-        # - PostgreSQL所有日志类型：gz
-        # - BH所有日志类型：overseas-polaris(国内站海外)/fsi-polaris(国内站金融)/general-polaris(国内站普通)/intl-sg-prod(国际站)
-        # - APIS所有日志类型：gz
-        # @type CloudProductRegion: String
-        # @param Extend: 日志配置拓展信息， 一般用于存储额外的日志投递配置
-        # @type Extend: String
-
-        attr_accessor :InstanceId, :AssumerName, :LogType, :CloudProductRegion, :Extend
-
-        def initialize(instanceid=nil, assumername=nil, logtype=nil, cloudproductregion=nil, extend=nil)
-          @InstanceId = instanceid
-          @AssumerName = assumername
-          @LogType = logtype
-          @CloudProductRegion = cloudproductregion
-          @Extend = extend
-        end
-
-        def deserialize(params)
-          @InstanceId = params['InstanceId']
-          @AssumerName = params['AssumerName']
-          @LogType = params['LogType']
-          @CloudProductRegion = params['CloudProductRegion']
-          @Extend = params['Extend']
-        end
-      end
-
-      # ModifyCloudProductLogTask返回参数结构体
-      class ModifyCloudProductLogTaskResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :RequestId
-
-        def initialize(requestid=nil)
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @RequestId = params['RequestId']
-        end
-      end
-
       # ModifyConfigExtra请求参数结构体
       class ModifyConfigExtraRequest < TencentCloud::Common::AbstractModel
         # @param ConfigExtraId: 采集配置扩展信息id
@@ -11671,10 +11344,8 @@ module TencentCloud
       # 创建资源实例时同时绑定的标签对说明
       class Tag < TencentCloud::Common::AbstractModel
         # @param Key: 标签键
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Key: String
         # @param Value: 标签值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: String
 
         attr_accessor :Key, :Value
@@ -11764,7 +11435,6 @@ module TencentCloud
         # @param Index: 主题是否开启索引（主题类型需为日志主题）
         # @type Index: Boolean
         # @param AssumerName: 云产品标识，主题由其它云产品创建时，该字段会显示云产品名称，例如CDN、TKE
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AssumerName: String
         # @param CreateTime: 创建时间
         # @type CreateTime: String
@@ -11773,25 +11443,19 @@ module TencentCloud
         # 控制台目前不支持修改此参数。
         # @type Status: Boolean
         # @param Tags: 主题绑定的标签信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
         # @param AutoSplit: 该主题是否开启自动分裂
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AutoSplit: Boolean
         # @param MaxSplitPartitions: 若开启自动分裂的话，该主题能够允许的最大分区数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaxSplitPartitions: Integer
         # @param StorageType: 主题的存储类型
 
         # - hot: 标准存储
         # - cold: 低频存储
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StorageType: String
         # @param Period: 生命周期，单位天，可取值范围1~3600。取值为3640时代表永久保存
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Period: Integer
         # @param SubAssumerName: 云产品二级标识，日志主题由其它云产品创建时，该字段会显示云产品名称及其日志类型的二级分类，例如TKE-Audit、TKE-Event。部分云产品仅有云产品标识(AssumerName)，无该字段。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubAssumerName: String
         # @param Describes: 主题描述
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -11799,28 +11463,22 @@ module TencentCloud
         # @param HotPeriod: 开启日志沉降，标准存储的生命周期， hotPeriod < Period。
         # 标准存储为 hotPeriod, 低频存储则为 Period-hotPeriod。（主题类型需为日志主题）
         # HotPeriod=0为没有开启日志沉降。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HotPeriod: Integer
         # @param BizType: 主题类型。
         # - 0: 日志主题
         # - 1: 指标主题
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BizType: Integer
         # @param IsWebTracking: 免鉴权开关。 false：关闭； true：开启。
         # 开启后将支持指定操作匿名访问该日志主题。详情请参见[日志主题](https://cloud.tencent.com/document/product/614/41035)。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsWebTracking: Boolean
         # @param Extends: 日志主题扩展信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Extends: :class:`Tencentcloud::Cls.v20201016.models.TopicExtendInfo`
         # @param TopicAsyncTaskID: 异步迁移任务ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TopicAsyncTaskID: String
         # @param MigrationStatus: 异步迁移状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MigrationStatus: Integer
         # @param EffectiveDate: 异步迁移完成后，预计生效日期
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EffectiveDate: String
 
         attr_accessor :LogsetId, :TopicId, :TopicName, :PartitionCount, :Index, :AssumerName, :CreateTime, :Status, :Tags, :AutoSplit, :MaxSplitPartitions, :StorageType, :Period, :SubAssumerName, :Describes, :HotPeriod, :BizType, :IsWebTracking, :Extends, :TopicAsyncTaskID, :MigrationStatus, :EffectiveDate
@@ -11941,7 +11599,6 @@ module TencentCloud
         # @param SqlFlag: 字段是否开启分析功能
         # @type SqlFlag: Boolean
         # @param ContainZH: 是否包含中文，long及double类型字段需为false
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ContainZH: Boolean
 
         attr_accessor :Type, :Tokenizer, :SqlFlag, :ContainZH
@@ -12042,36 +11699,26 @@ module TencentCloud
       # 告警渠道回调配置信息
       class WebCallbackInfo < TencentCloud::Common::AbstractModel
         # @param WebCallbackId: 告警渠道回调配置id。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WebCallbackId: String
         # @param Name: 告警渠道回调配置名称。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Type: 渠道类型
 
         # WeCom:企业微信;DingTalk:钉钉;Lark:飞书;Http:自定义回调;
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: String
         # @param Webhook: 回调地址。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Webhook: String
         # @param Method: 请求方式。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Method: String
         # @param Key: 秘钥信息。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Key: String
         # @param Uin: 主账号。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Uin: Integer
         # @param SubUin: 子账号。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubUin: Integer
         # @param CreateTime: 创建时间。秒级时间戳
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: Integer
         # @param UpdateTime: 更新时间。秒级时间戳
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: Integer
 
         attr_accessor :WebCallbackId, :Name, :Type, :Webhook, :Method, :Key, :Uin, :SubUin, :CreateTime, :UpdateTime

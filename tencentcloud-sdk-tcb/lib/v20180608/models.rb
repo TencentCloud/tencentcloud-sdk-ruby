@@ -17,42 +17,6 @@
 module TencentCloud
   module Tcb
     module V20180608
-      # 活动信息
-      class ActivityInfoItem < TencentCloud::Common::AbstractModel
-        # @param ActivityId: 活动id
-        # @type ActivityId: Integer
-        # @param CreateTime: 记录插入时间
-        # @type CreateTime: String
-        # @param UpdateTime: 记录最后一次变更时间
-        # @type UpdateTime: String
-        # @param StartTime: 活动开始时间
-        # @type StartTime: String
-        # @param ExpireTime: 活动结束时间
-        # @type ExpireTime: String
-        # @param Tag: 自定义备注信息
-        # @type Tag: String
-
-        attr_accessor :ActivityId, :CreateTime, :UpdateTime, :StartTime, :ExpireTime, :Tag
-
-        def initialize(activityid=nil, createtime=nil, updatetime=nil, starttime=nil, expiretime=nil, tag=nil)
-          @ActivityId = activityid
-          @CreateTime = createtime
-          @UpdateTime = updatetime
-          @StartTime = starttime
-          @ExpireTime = expiretime
-          @Tag = tag
-        end
-
-        def deserialize(params)
-          @ActivityId = params['ActivityId']
-          @CreateTime = params['CreateTime']
-          @UpdateTime = params['UpdateTime']
-          @StartTime = params['StartTime']
-          @ExpireTime = params['ExpireTime']
-          @Tag = params['Tag']
-        end
-      end
-
       # 活动详情
       class ActivityRecordItem < TencentCloud::Common::AbstractModel
         # @param Uin: 用户uin
@@ -2622,49 +2586,6 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # DescribeActivityInfo请求参数结构体
-      class DescribeActivityInfoRequest < TencentCloud::Common::AbstractModel
-        # @param ActivityIdList: 活动id列表
-        # @type ActivityIdList: Array
-
-        attr_accessor :ActivityIdList
-
-        def initialize(activityidlist=nil)
-          @ActivityIdList = activityidlist
-        end
-
-        def deserialize(params)
-          @ActivityIdList = params['ActivityIdList']
-        end
-      end
-
-      # DescribeActivityInfo返回参数结构体
-      class DescribeActivityInfoResponse < TencentCloud::Common::AbstractModel
-        # @param ActivityInfoList: 活动详情
-        # @type ActivityInfoList: Array
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :ActivityInfoList, :RequestId
-
-        def initialize(activityinfolist=nil, requestid=nil)
-          @ActivityInfoList = activityinfolist
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          unless params['ActivityInfoList'].nil?
-            @ActivityInfoList = []
-            params['ActivityInfoList'].each do |i|
-              activityinfoitem_tmp = ActivityInfoItem.new
-              activityinfoitem_tmp.deserialize(i)
-              @ActivityInfoList << activityinfoitem_tmp
-            end
-          end
           @RequestId = params['RequestId']
         end
       end

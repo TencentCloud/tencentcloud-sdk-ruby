@@ -1412,10 +1412,8 @@ module TencentCloud
       # 节点池弹性伸缩配置
       class MachineSetScaling < TencentCloud::Common::AbstractModel
         # @param MinReplicas: 节点池最小副本数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MinReplicas: Integer
         # @param MaxReplicas: 节点池最大副本数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaxReplicas: Integer
         # @param CreatePolicy: 节点池扩容策略。ZoneEquality：多可用区打散；ZonePriority：首选可用区优先；
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -1439,16 +1437,13 @@ module TencentCloud
       # 托管节点池自动升级配置
       class MachineUpgradeSettings < TencentCloud::Common::AbstractModel
         # @param AutoUpgrade: 是否开启自动升级
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AutoUpgrade: Boolean
         # @param UpgradeOptions: 运维窗口
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpgradeOptions: :class:`Tencentcloud::Tke.v20220501.models.AutoUpgradeOptions`
         # @param Components: 升级项
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Components: Array
         # @param MaxUnavailable: 升级时，最大不可升级的节点数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaxUnavailable: :class:`Tencentcloud::Tke.v20220501.models.IntOrString`
 
         attr_accessor :AutoUpgrade, :UpgradeOptions, :Components, :MaxUnavailable
@@ -1714,10 +1709,8 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SecurityGroupIDs: Array
         # @param VpcId: VPC 唯一 ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VpcId: String
         # @param SubnetId: 子网唯一 ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubnetId: String
         # @param OsImage: OS的名称
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -1790,7 +1783,6 @@ module TencentCloud
       # 原生节点池信息
       class NativeNodePoolInfo < TencentCloud::Common::AbstractModel
         # @param Scaling: 伸缩配置
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Scaling: :class:`Tencentcloud::Tke.v20220501.models.MachineSetScaling`
         # @param SubnetIds: 子网列表
         # @type SubnetIds: Array
@@ -1798,7 +1790,6 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SecurityGroupIds: Array
         # @param UpgradeSettings: 自动升级配置
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpgradeSettings: :class:`Tencentcloud::Tke.v20220501.models.MachineUpgradeSettings`
         # @param AutoRepair: 是否开启自愈能力
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -1806,7 +1797,6 @@ module TencentCloud
         # @param InstanceChargeType: 节点计费类型
         # @type InstanceChargeType: String
         # @param InstanceChargePrepaid: 包年包月机型计费配置
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceChargePrepaid: :class:`Tencentcloud::Tke.v20220501.models.InstanceChargePrepaid`
         # @param SystemDisk: 系统盘配置
         # @type SystemDisk: :class:`Tencentcloud::Tke.v20220501.models.Disk`
@@ -1814,7 +1804,6 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type KeyIds: Array
         # @param Management: Machine 系统配置
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Management: :class:`Tencentcloud::Tke.v20220501.models.ManagementConfig`
         # @param HealthCheckPolicyName: 故障自愈规则名称
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -1826,29 +1815,23 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type KubeletArgs: Array
         # @param Lifecycle: 预定义脚本
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Lifecycle: :class:`Tencentcloud::Tke.v20220501.models.LifecycleConfig`
         # @param RuntimeRootDir: 运行时根目录
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuntimeRootDir: String
         # @param EnableAutoscaling: 是否开启弹性伸缩
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EnableAutoscaling: Boolean
         # @param InstanceTypes: 机型列表
         # @type InstanceTypes: Array
         # @param Replicas: 期望节点数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Replicas: Integer
         # @param ReadyReplicas: 就绪 Machine 个数
         # @type ReadyReplicas: Integer
         # @param InternetAccessible: 公网带宽设置
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InternetAccessible: :class:`Tencentcloud::Tke.v20220501.models.InternetAccessible`
         # @param DataDisks: 原生节点池数据盘
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DataDisks: Array
         # @param MachineType: 原生节点机型 Native, NativeCVM
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MachineType: String
 
         attr_accessor :Scaling, :SubnetIds, :SecurityGroupIds, :UpgradeSettings, :AutoRepair, :InstanceChargeType, :InstanceChargePrepaid, :SystemDisk, :KeyIds, :Management, :HealthCheckPolicyName, :HostNamePattern, :KubeletArgs, :Lifecycle, :RuntimeRootDir, :EnableAutoscaling, :InstanceTypes, :Replicas, :ReadyReplicas, :InternetAccessible, :DataDisks, :MachineType

@@ -46,10 +46,8 @@ module TencentCloud
         # @param ProcessPath: 进程路径
         # @type ProcessPath: String
         # @param RuleId: 子策略id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleId: String
         # @param RuleLevel: 威胁等级，HIGH:高，MIDDLE:中，LOW:低
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleLevel: String
 
         attr_accessor :RuleMode, :ProcessPath, :RuleId, :RuleLevel
@@ -76,7 +74,6 @@ module TencentCloud
         # @param Solution: 解决方案
         # @type Solution: String
         # @param Remark: 事件备注信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Remark: String
         # @param MatchRule: 命中规则详细信息
         # @type MatchRule: :class:`Tencentcloud::Tcss.v20201101.models.AbnormalProcessChildRuleInfo`
@@ -85,10 +82,8 @@ module TencentCloud
         # @param RuleId: 命中规则的id
         # @type RuleId: String
         # @param OperationTime: 事件最后一次处理的时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OperationTime: String
         # @param GroupName: 命中策略名称：SYSTEM_DEFINED_RULE （系统策略）或  用户自定义的策略名字
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GroupName: String
 
         attr_accessor :Description, :Solution, :Remark, :MatchRule, :RuleName, :RuleId, :OperationTime, :GroupName
@@ -181,7 +176,6 @@ module TencentCloud
         # 隔离失败	ISOLATE_FAILED
         # 解除隔离中  RESTORING
         # 解除隔离失败 RESTORE_FAILED
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ContainerNetStatus: String
         # @param ContainerNetSubStatus: 容器子状态
         # "AGENT_OFFLINE"       //Agent离线
@@ -191,10 +185,8 @@ module TencentCloud
         # "SHARED_HOST"         // 容器与主机共享网络
         # "RESOURCE_LIMIT"      //隔离操作资源超限
         # "UNKNOW"              // 原因未知
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ContainerNetSubStatus: String
         # @param ContainerIsolateOperationSrc: 容器隔离操作来源
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ContainerIsolateOperationSrc: String
         # @param ContainerStatus: 容器状态
         # 正在运行: RUNNING
@@ -370,7 +362,6 @@ module TencentCloud
         # @param RuleName: 策略名字
         # @type RuleName: String
         # @param RuleId: 策略id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleId: String
         # @param SystemChildRules: 系统策略的子策略数组
         # @type SystemChildRules: Array
@@ -434,7 +425,6 @@ module TencentCloud
         # ABNORMAL_CHILD_PROC: 敏感服务异常子进程启动
         # @type RuleType: String
         # @param RuleLevel: 威胁等级，HIGH:高，MIDDLE:中，LOW:低
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleLevel: String
 
         attr_accessor :RuleId, :IsEnable, :RuleMode, :RuleType, :RuleLevel
@@ -467,7 +457,6 @@ module TencentCloud
         # @param TargetFilePath: 被访问文件路径，仅仅在访问控制生效
         # @type TargetFilePath: String
         # @param RuleId: 子策略id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleId: String
 
         attr_accessor :RuleMode, :ProcessPath, :TargetFilePath, :RuleId
@@ -494,7 +483,6 @@ module TencentCloud
         # @param Solution: 解决方案
         # @type Solution: String
         # @param Remark: 事件备注信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Remark: String
         # @param MatchRule: 命中规则详细信息
         # @type MatchRule: :class:`Tencentcloud::Tcss.v20201101.models.AccessControlChildRuleInfo`
@@ -503,7 +491,6 @@ module TencentCloud
         # @param RuleId: 命中规则id
         # @type RuleId: String
         # @param OperationTime: 事件最后一次处理的时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OperationTime: String
 
         attr_accessor :Description, :Solution, :Remark, :MatchRule, :RuleName, :RuleId, :OperationTime
@@ -736,7 +723,6 @@ module TencentCloud
         # @param RuleName: 策略名字
         # @type RuleName: String
         # @param RuleId: 策略id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleId: String
         # @param SystemChildRules: 系统策略的子策略数组
         # @type SystemChildRules: Array
@@ -962,7 +948,7 @@ module TencentCloud
         # @type Password: String
         # @param Url: 仓库url
         # @type Url: String
-        # @param RegistryType: 仓库类型，列表：harbor
+        # @param RegistryType: 仓库类型，列表：harbor,quay,jfrog,aws,azure,other-tcr
         # @type RegistryType: String
         # @param NetType: 网络类型，列表：public（公网）
         # @type NetType: String
@@ -976,12 +962,18 @@ module TencentCloud
         # @type Insecure: Integer
         # @param ConnDetectConfig: 联通性检测的记录ID
         # @type ConnDetectConfig: Array
-        # @param NeedScan: ”授权&扫描"开关
+        # @param NeedScan: 是否自动授权&扫描，选择全量同步时只针对最新版本镜像，增量同步时则包含所有新增镜像
         # @type NeedScan: Boolean
+        # @param SyncMode: 同步方式，0全量同步，1增量同步
+        # @type SyncMode: Integer
+        # @param WebhookUrl: webhook接入地址
+        # @type WebhookUrl: String
+        # @param WebhookToken: webhook接入token
+        # @type WebhookToken: String
 
-        attr_accessor :Name, :Username, :Password, :Url, :RegistryType, :NetType, :RegistryVersion, :RegistryRegion, :SpeedLimit, :Insecure, :ConnDetectConfig, :NeedScan
+        attr_accessor :Name, :Username, :Password, :Url, :RegistryType, :NetType, :RegistryVersion, :RegistryRegion, :SpeedLimit, :Insecure, :ConnDetectConfig, :NeedScan, :SyncMode, :WebhookUrl, :WebhookToken
 
-        def initialize(name=nil, username=nil, password=nil, url=nil, registrytype=nil, nettype=nil, registryversion=nil, registryregion=nil, speedlimit=nil, insecure=nil, conndetectconfig=nil, needscan=nil)
+        def initialize(name=nil, username=nil, password=nil, url=nil, registrytype=nil, nettype=nil, registryversion=nil, registryregion=nil, speedlimit=nil, insecure=nil, conndetectconfig=nil, needscan=nil, syncmode=nil, webhookurl=nil, webhooktoken=nil)
           @Name = name
           @Username = username
           @Password = password
@@ -994,6 +986,9 @@ module TencentCloud
           @Insecure = insecure
           @ConnDetectConfig = conndetectconfig
           @NeedScan = needscan
+          @SyncMode = syncmode
+          @WebhookUrl = webhookurl
+          @WebhookToken = webhooktoken
         end
 
         def deserialize(params)
@@ -1016,19 +1011,19 @@ module TencentCloud
             end
           end
           @NeedScan = params['NeedScan']
+          @SyncMode = params['SyncMode']
+          @WebhookUrl = params['WebhookUrl']
+          @WebhookToken = params['WebhookToken']
         end
       end
 
       # AddAssetImageRegistryRegistryDetail返回参数结构体
       class AddAssetImageRegistryRegistryDetailResponse < TencentCloud::Common::AbstractModel
         # @param HealthCheckErr: 连接错误信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HealthCheckErr: String
         # @param NameRepeatErr: 名称错误信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NameRepeatErr: String
         # @param RegistryId: 仓库唯一id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RegistryId: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1932,19 +1927,14 @@ module TencentCloud
       # 安全日志kafka可选信息
       class CKafkaInstanceInfo < TencentCloud::Common::AbstractModel
         # @param InstanceID: 实例ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceID: String
         # @param InstanceName: 实例名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceName: String
         # @param TopicList: 主题列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TopicList: Array
         # @param RouteList: 路由列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RouteList: Array
         # @param KafkaVersion: kafka版本号
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type KafkaVersion: String
 
         attr_accessor :InstanceID, :InstanceName, :TopicList, :RouteList, :KafkaVersion
@@ -2071,7 +2061,6 @@ module TencentCloud
       # CheckRepeatAssetImageRegistry返回参数结构体
       class CheckRepeatAssetImageRegistryResponse < TencentCloud::Common::AbstractModel
         # @param IsRepeat: 是否重复
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsRepeat: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2092,26 +2081,20 @@ module TencentCloud
       # ckafkal路由详情
       class CkafkaRouteInfo < TencentCloud::Common::AbstractModel
         # @param RouteID: 路由ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RouteID: Integer
         # @param Domain: 域名名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Domain: String
         # @param DomainPort: 域名端口
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DomainPort: Integer
         # @param Vip: 虚拟ip
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Vip: String
         # @param VipType: 虚拟ip类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VipType: Integer
         # @param AccessType: 接入类型
         # // 0：PLAINTEXT (明文方式，没有带用户信息老版本及社区版本都支持)
         # 	// 1：SASL_PLAINTEXT（明文方式，不过在数据开始时，会通过SASL方式登录鉴权，仅社区版本支持）
         # 	// 2：SSL（SSL加密通信，没有带用户信息，老版本及社区版本都支持）
         # 	// 3：SASL_SSL（SSL加密通信，在数据开始时，会通过SASL方式登录鉴权，仅社区版本支持）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AccessType: Integer
 
         attr_accessor :RouteID, :Domain, :DomainPort, :Vip, :VipType, :AccessType
@@ -2140,10 +2123,8 @@ module TencentCloud
         # @param LogsetID: 日志集ID
         # @type LogsetID: String
         # @param LogsetName: 日志集名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LogsetName: String
         # @param TopicList: cls主题列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TopicList: Array
 
         attr_accessor :LogsetID, :LogsetName, :TopicList
@@ -2191,60 +2172,42 @@ module TencentCloud
       # 表示一条集群安全检测项的详细信息
       class ClusterCheckItem < TencentCloud::Common::AbstractModel
         # @param CheckItemId: 唯一的检测项的ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CheckItemId: Integer
         # @param Name: 风险项的名称
         # @type Name: String
         # @param ItemDetail: 检测项详细描述。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ItemDetail: String
         # @param RiskLevel: 威胁等级。严重Serious,高危High,中危Middle,提示Hint
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RiskLevel: String
         # @param RiskTarget: 检查对象、风险对象.Runc,Kubelet,Containerd,Pods
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RiskTarget: String
         # @param RiskType: 风险类别,漏洞风险CVERisk,配置风险ConfigRisk
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RiskType: String
         # @param RiskAttribute: 检测项所属的风险类型,权限提升:PrivilegePromotion,拒绝服务:RefuseService,目录穿越:DirectoryEscape,未授权访问:UnauthorizedAccess,权限许可和访问控制问题:PrivilegeAndAccessControl,敏感信息泄露:SensitiveInfoLeak
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RiskAttribute: String
         # @param RiskProperty: 风险特征,Tag.存在EXP:ExistEXP,存在POD:ExistPOC,无需重启:NoNeedReboot, 服务重启:ServerRestart,远程信息泄露:RemoteInfoLeak,远程拒绝服务:RemoteRefuseService,远程利用:RemoteExploit,远程执行:RemoteExecute
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RiskProperty: String
         # @param CVENumber: CVE编号
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CVENumber: String
         # @param DiscoverTime: 披露时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DiscoverTime: String
         # @param Solution: 解决方案
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Solution: String
         # @param CVSS: CVSS信息,用于画图
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CVSS: String
         # @param CVSSScore: CVSS分数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CVSSScore: String
         # @param RelateLink: 参考连接
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RelateLink: String
         # @param AffectedType: 影响类型，为Node或者Workload
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AffectedType: String
         # @param AffectedVersion: 受影响的版本信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AffectedVersion: String
         # @param IgnoredAssetNum: 忽略的资产数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IgnoredAssetNum: Integer
         # @param IsIgnored: 是否忽略该检测项
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsIgnored: Boolean
         # @param RiskAssessment: 受影响评估
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RiskAssessment: String
 
         attr_accessor :CheckItemId, :Name, :ItemDetail, :RiskLevel, :RiskTarget, :RiskType, :RiskAttribute, :RiskProperty, :CVENumber, :DiscoverTime, :Solution, :CVSS, :CVSSScore, :RelateLink, :AffectedType, :AffectedVersion, :IgnoredAssetNum, :IsIgnored, :RiskAssessment
@@ -2415,22 +2378,16 @@ module TencentCloud
         # 卸载异常: AccessedUninstallException
         # 接入中: AccessedInstalling
         # 卸载中: AccessedUninstalling
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AccessedStatus: String
         # @param AccessedSubStatus: 接入失败原因
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AccessedSubStatus: String
         # @param NodeCount: 节点总数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NodeCount: Integer
         # @param OffLineNodeCount: 离线节点数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OffLineNodeCount: Integer
         # @param UnInstallAgentNodeCount: 未安装agent节点数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UnInstallAgentNodeCount: Integer
         # @param ChargeCoresCnt: 计费核数(弹性计费核数+普通计费核数)
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ChargeCoresCnt: Integer
         # @param MasterAddresses: master 地址列表
         # @type MasterAddresses: Array
@@ -2526,33 +2483,25 @@ module TencentCloud
         # @param NodeName: 节点名称
         # @type NodeName: String
         # @param AgentStatus: agent安装状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AgentStatus: String
         # @param PublicIP: 公网ip
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PublicIP: String
         # @param HostID: 节点ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HostID: String
         # @param MachineType: 主机类型(普通节点情况)
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MachineType: String
         # @param NodeType: 节点类型(
         # NORMAL: 普通节点
         # SUPER:超级节点
         # )
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NodeType: String
         # @param UUID: uuid
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UUID: String
         # @param ChargeCoresCnt: 计费核数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ChargeCoresCnt: Integer
         # @param DefendStatus: 防护状态:
         # 已防护: Defended
         # 未防护: UnDefended
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DefendStatus: String
 
         attr_accessor :InstanceId, :PrivateIpAddresses, :InstanceRole, :InstanceState, :NodeName, :AgentStatus, :PublicIP, :HostID, :MachineType, :NodeType, :UUID, :ChargeCoresCnt, :DefendStatus
@@ -2784,16 +2733,12 @@ module TencentCloud
         # RESULT_PASSED: 通过
         # @type CheckResult: String
         # @param HostIP: 主机IP
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HostIP: String
         # @param ImageTag: 镜像的tag
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ImageTag: String
         # @param VerifyInfo: 检查项验证信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VerifyInfo: String
         # @param InstanceId: 主机实例id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceId: String
         # @param ImageRegistryInfo: 镜像仓库信息
         # @type ImageRegistryInfo: :class:`Tencentcloud::Tcss.v20201101.models.ImageRegistryInfo`
@@ -2867,12 +2812,10 @@ module TencentCloud
         # @param FailedPolicyItemCount: 此类资产未通过的检测的数目。
         # @type FailedPolicyItemCount: Integer
         # @param LastCheckTime: 上次检测的时间。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LastCheckTime: String
         # @param CheckResult: 检测结果：
         # RESULT_FAILED: 未通过。
         # RESULT_PASSED: 通过。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CheckResult: String
         # @param AssetStatus: 资产的运行状态。
         # @type AssetStatus: String
@@ -2927,7 +2870,6 @@ module TencentCloud
         # @param AssetName: 资产的名称。
         # @type AssetName: String
         # @param ImageTag: 当资产为镜像时，这个字段为镜像Tag。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ImageTag: String
         # @param HostIP: 资产所在的主机IP。
         # @type HostIP: String
@@ -2944,21 +2886,16 @@ module TencentCloud
         # CHECK_FAILED, 检测失败
         # @type CheckStatus: String
         # @param PassedPolicyItemCount: 此类资产通过的检测项的数目。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PassedPolicyItemCount: Integer
         # @param FailedPolicyItemCount: 此类资产未通过的检测的数目。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FailedPolicyItemCount: Integer
         # @param LastCheckTime: 上次检测的时间。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LastCheckTime: String
         # @param CheckResult: 检测结果：
         # RESULT_FAILED: 未通过。
         # RESULT_PASSED: 通过。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CheckResult: String
         # @param InstanceId: 主机节点的实例id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceId: String
         # @param ImageRegistryInfo: 镜像仓库信息
         # @type ImageRegistryInfo: :class:`Tencentcloud::Tcss.v20201101.models.ImageRegistryInfo`
@@ -3034,18 +2971,14 @@ module TencentCloud
         # @param CheckResult: 检测结果
         # RESULT_PASSED: 通过
         # RESULT_FAILED: 未通过
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CheckResult: String
         # @param WhitelistId: 检测项对应的白名单项的ID。如果存在且非0，表示检测项被用户忽略。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WhitelistId: Integer
         # @param FixSuggestion: 处理建议。
         # @type FixSuggestion: String
         # @param LastCheckTime: 最近检测的时间。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LastCheckTime: String
         # @param VerifyInfo: 验证信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VerifyInfo: String
 
         attr_accessor :CustomerPolicyItemId, :BasePolicyItemId, :Name, :Category, :BenchmarkStandardId, :BenchmarkStandardName, :RiskLevel, :CheckStatus, :CheckResult, :WhitelistId, :FixSuggestion, :LastCheckTime, :VerifyInfo
@@ -3122,7 +3055,6 @@ module TencentCloud
         # CHECK_FAILED, 检测失败
         # @type CheckStatus: String
         # @param CheckProgress: 此类别的检测进度，为 0~100 的数。若未在检测中，无此字段。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CheckProgress: Float
         # @param PassedPolicyItemCount: 此类资产通过的检测项的数目。
         # @type PassedPolicyItemCount: Integer
@@ -3147,27 +3079,20 @@ module TencentCloud
         # @param ScanFailedAssetCount: 检测失败的资产的数目。
         # @type ScanFailedAssetCount: Integer
         # @param CheckCostTime: 上次检测的耗时，单位为秒。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CheckCostTime: Float
         # @param LastCheckTime: 上次检测的时间。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LastCheckTime: String
         # @param PeriodRule: 定时检测规则。
         # @type PeriodRule: :class:`Tencentcloud::Tcss.v20201101.models.CompliancePeriodTaskRule`
         # @param OpenPolicyItemCount: 已开启的检查项总数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OpenPolicyItemCount: Integer
         # @param IgnoredPolicyItemCount: 已忽略的检查项总数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IgnoredPolicyItemCount: Integer
         # @param TotalPolicyItemCount: 总检测项数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalPolicyItemCount: Integer
         # @param DetectHostCount: 检测主机数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DetectHostCount: Integer
         # @param LeftTime: 当前任务剩余时间，单位秒
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LeftTime: Integer
 
         attr_accessor :AssetType, :IsCustomerFirstCheck, :CheckStatus, :CheckProgress, :PassedPolicyItemCount, :FailedPolicyItemCount, :FailedCriticalPolicyItemCount, :FailedHighRiskPolicyItemCount, :FailedMediumRiskPolicyItemCount, :FailedLowRiskPolicyItemCount, :NoticePolicyItemCount, :PassedAssetCount, :FailedAssetCount, :AssetPassedRate, :ScanFailedAssetCount, :CheckCostTime, :LastCheckTime, :PeriodRule, :OpenPolicyItemCount, :IgnoredPolicyItemCount, :TotalPolicyItemCount, :DetectHostCount, :LeftTime
@@ -3285,7 +3210,6 @@ module TencentCloud
         # @param ContainerId: 容器在主机上的ID。
         # @type ContainerId: String
         # @param PodName: 容器所属的Pod的名称。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PodName: String
 
         attr_accessor :ContainerId, :PodName
@@ -3328,13 +3252,10 @@ module TencentCloud
       # 表示主机资产专属的详情。
       class ComplianceHostDetailInfo < TencentCloud::Common::AbstractModel
         # @param DockerVersion: 主机上的Docker版本。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DockerVersion: String
         # @param K8SVersion: 主机上的K8S的版本。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type K8SVersion: String
         # @param ContainerdVersion: 主机上Containerd版本
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ContainerdVersion: String
 
         attr_accessor :DockerVersion, :K8SVersion, :ContainerdVersion
@@ -3361,7 +3282,6 @@ module TencentCloud
         # @param ImageTag: 镜像的Tag。
         # @type ImageTag: String
         # @param Repository: 镜像所在远程仓库的路径。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Repository: String
 
         attr_accessor :ImageId, :ImageName, :ImageTag, :Repository
@@ -3384,10 +3304,8 @@ module TencentCloud
       # 表示K8S资产专属的详情。
       class ComplianceK8SDetailInfo < TencentCloud::Common::AbstractModel
         # @param ClusterName: K8S集群的名称。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterName: String
         # @param ClusterVersion: K8S集群的版本。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterVersion: String
 
         attr_accessor :ClusterName, :ClusterVersion
@@ -3414,7 +3332,6 @@ module TencentCloud
         # ASSET_K8S, K8S资产
         # @type AssetType: String
         # @param LastTriggerTime: 最近一次触发的时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LastTriggerTime: String
         # @param TotalPolicyItemCount: 总的检查项数目
         # @type TotalPolicyItemCount: Integer
@@ -3461,7 +3378,6 @@ module TencentCloud
         # @param ExecutionTime: 在这天的什么时间执行，格式为：HH:mm:SS。
         # @type ExecutionTime: String
         # @param Enable: 是否开启
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Enable: Boolean
 
         attr_accessor :Frequency, :ExecutionTime, :Enable
@@ -3516,7 +3432,6 @@ module TencentCloud
         # @param AssetType: 检测项所属的资产类型
         # @type AssetType: String
         # @param LastCheckTime: 最近检测的时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LastCheckTime: String
         # @param CheckStatus: 检测状态
 
@@ -3531,34 +3446,26 @@ module TencentCloud
         # @param CheckResult: 检测结果。RESULT_PASSED: 通过
 
         # RESULT_FAILED: 未通过
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CheckResult: String
         # @param PassedAssetCount: 通过检测的资产的数目
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PassedAssetCount: Integer
         # @param FailedAssetCount: 未通过检测的资产的数目
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FailedAssetCount: Integer
         # @param WhitelistId: 检测项对应的白名单项的ID。如果存在且非0，表示检测项被用户忽略。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WhitelistId: Integer
         # @param FixSuggestion: 处理建议。
         # @type FixSuggestion: String
         # @param BenchmarkStandardId: 所属的合规标准的ID
         # @type BenchmarkStandardId: Integer
         # @param ApplicableVersion: 检测项适用的版本
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApplicableVersion: String
         # @param Description: 检查项描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
         # @param AuditProcedure: 检查项审计方法
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AuditProcedure: String
         # @param IsEnable: 是否开启
         # <li>0 关闭</li>
         # <li>1 开启</li>
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsEnable: Integer
 
         attr_accessor :CustomerPolicyItemId, :BasePolicyItemId, :Name, :Category, :BenchmarkStandardName, :RiskLevel, :AssetType, :LastCheckTime, :CheckStatus, :CheckResult, :PassedAssetCount, :FailedAssetCount, :WhitelistId, :FixSuggestion, :BenchmarkStandardId, :ApplicableVersion, :Description, :AuditProcedure, :IsEnable
@@ -3719,28 +3626,22 @@ module TencentCloud
       # 组件信息
       class ComponentsInfo < TencentCloud::Common::AbstractModel
         # @param Component: 组件名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Component: String
         # @param Version: 组件版本信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Version: String
         # @param FixedVersion: 可修复版本
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FixedVersion: String
         # @param Path: 路径
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Path: String
         # @param Type: 类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: String
         # @param Name: 组件名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
 
         attr_accessor :Component, :Version, :FixedVersion, :Path, :Type, :Name
         extend Gem::Deprecate
-        deprecate :Component, :none, 2024, 11
-        deprecate :Component=, :none, 2024, 11
+        deprecate :Component, :none, 2025, 3
+        deprecate :Component=, :none, 2025, 3
 
         def initialize(component=nil, version=nil, fixedversion=nil, path=nil, type=nil, name=nil)
           @Component = component
@@ -3870,10 +3771,8 @@ module TencentCloud
         # @param NetSubStatus: 网络子状态
         # @type NetSubStatus: String
         # @param IsolateSource: 隔离来源
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsolateSource: String
         # @param IsolateTime: 隔离时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsolateTime: String
         # @param NodeID: 超级节点id
         # @type NodeID: String
@@ -3894,7 +3793,6 @@ module TencentCloud
         # @param ClusterID: 集群ID
         # @type ClusterID: String
         # @param PodUid: pod uid
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PodUid: String
 
         attr_accessor :ContainerID, :ContainerName, :Status, :CreateTime, :RunAs, :Cmd, :CPUUsage, :RamUsage, :ImageName, :ImageID, :POD, :HostID, :HostIP, :UpdateTime, :HostName, :PublicIp, :NetStatus, :NetSubStatus, :IsolateSource, :IsolateTime, :NodeID, :PodIP, :PodName, :NodeType, :NodeUniqueID, :PodCpu, :PodMem, :ClusterName, :ClusterID, :PodUid
@@ -4193,8 +4091,8 @@ module TencentCloud
 
         attr_accessor :All, :Images, :ScanType, :Id, :IsLatest, :ScanScope, :RegistryType, :Namespace, :ContainerRunning, :Timeout
         extend Gem::Deprecate
-        deprecate :All, :none, 2024, 11
-        deprecate :All=, :none, 2024, 11
+        deprecate :All, :none, 2025, 3
+        deprecate :All=, :none, 2025, 3
 
         def initialize(all=nil, images=nil, scantype=nil, id=nil, islatest=nil, scanscope=nil, registrytype=nil, namespace=nil, containerrunning=nil, timeout=nil)
           @All = all
@@ -4355,8 +4253,8 @@ module TencentCloud
 
         attr_accessor :Enable, :ScanTime, :ScanPeriod, :ScanVirus, :ScanRisk, :ScanVul, :All, :Images, :ContainerRunning, :ScanScope, :ScanEndTime, :ExcludeImages
         extend Gem::Deprecate
-        deprecate :All, :none, 2024, 11
-        deprecate :All=, :none, 2024, 11
+        deprecate :All, :none, 2025, 3
+        deprecate :All=, :none, 2025, 3
 
         def initialize(enable=nil, scantime=nil, scanperiod=nil, scanvirus=nil, scanrisk=nil, scanvul=nil, all=nil, images=nil, containerrunning=nil, scanscope=nil, scanendtime=nil, excludeimages=nil)
           @Enable = enable
@@ -4427,13 +4325,15 @@ module TencentCloud
         # @type ScanScope: Integer
         # @param Timeout: 任务超时时长单位秒，默认1小时
         # @type Timeout: Integer
+        # @param IsOneClickScanningTask: 一键扫描任务。默认false表示非一键扫描，true一键扫描
+        # @type IsOneClickScanningTask: Boolean
 
-        attr_accessor :All, :Images, :ScanVul, :ScanVirus, :ScanRisk, :Filters, :ExcludeImageIds, :ContainerRunning, :ScanScope, :Timeout
+        attr_accessor :All, :Images, :ScanVul, :ScanVirus, :ScanRisk, :Filters, :ExcludeImageIds, :ContainerRunning, :ScanScope, :Timeout, :IsOneClickScanningTask
         extend Gem::Deprecate
-        deprecate :All, :none, 2024, 11
-        deprecate :All=, :none, 2024, 11
+        deprecate :All, :none, 2025, 3
+        deprecate :All=, :none, 2025, 3
 
-        def initialize(all=nil, images=nil, scanvul=nil, scanvirus=nil, scanrisk=nil, filters=nil, excludeimageids=nil, containerrunning=nil, scanscope=nil, timeout=nil)
+        def initialize(all=nil, images=nil, scanvul=nil, scanvirus=nil, scanrisk=nil, filters=nil, excludeimageids=nil, containerrunning=nil, scanscope=nil, timeout=nil, isoneclickscanningtask=nil)
           @All = all
           @Images = images
           @ScanVul = scanvul
@@ -4444,6 +4344,7 @@ module TencentCloud
           @ContainerRunning = containerrunning
           @ScanScope = scanscope
           @Timeout = timeout
+          @IsOneClickScanningTask = isoneclickscanningtask
         end
 
         def deserialize(params)
@@ -4464,6 +4365,7 @@ module TencentCloud
           @ContainerRunning = params['ContainerRunning']
           @ScanScope = params['ScanScope']
           @Timeout = params['Timeout']
+          @IsOneClickScanningTask = params['IsOneClickScanningTask']
         end
       end
 
@@ -4627,7 +4529,6 @@ module TencentCloud
         # @param CreateResult: 创建检查任务的结果，"Succ"为成功，其他的为失败原因
         # @type CreateResult: String
         # @param NewTaskID: 返回创建的集群新任务ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NewTaskID: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5054,7 +4955,6 @@ module TencentCloud
       # CreateExportComplianceStatusListJob返回参数结构体
       class CreateExportComplianceStatusListJobResponse < TencentCloud::Common::AbstractModel
         # @param JobId: 返回创建的导出任务的ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type JobId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6791,6 +6691,38 @@ module TencentCloud
         end
       end
 
+      # DeleteRaspRules请求参数结构体
+      class DeleteRaspRulesRequest < TencentCloud::Common::AbstractModel
+        # @param IDs: 待删除的规则ID数组 (最大100条)
+        # @type IDs: Array
+
+        attr_accessor :IDs
+
+        def initialize(ids=nil)
+          @IDs = ids
+        end
+
+        def deserialize(params)
+          @IDs = params['IDs']
+        end
+      end
+
+      # DeleteRaspRules返回参数结构体
+      class DeleteRaspRulesResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteReverseShellEvents请求参数结构体
       class DeleteReverseShellEventsRequest < TencentCloud::Common::AbstractModel
         # @param EventIdSet: 事件ids
@@ -7021,7 +6953,6 @@ module TencentCloud
         # @param EventDetail: 事件描述
         # @type EventDetail: :class:`Tencentcloud::Tcss.v20201101.models.AbnormalProcessEventDescription`
         # @param AncestorProcessInfo: 祖先进程信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AncestorProcessInfo: :class:`Tencentcloud::Tcss.v20201101.models.ProcessBaseInfo`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -7105,70 +7036,6 @@ module TencentCloud
               @List << abnormalprocesseventtendencyinfo_tmp
             end
           end
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # DescribeAbnormalProcessEventsExport请求参数结构体
-      class DescribeAbnormalProcessEventsExportRequest < TencentCloud::Common::AbstractModel
-        # @param ExportField: 导出字段
-        # @type ExportField: Array
-        # @param Limit: 需要返回的数量，默认为10，最大值为100
-        # @type Limit: Integer
-        # @param Offset: 偏移量，默认为0。
-        # @type Offset: Integer
-        # @param Filters: 过滤参数,"Filters":[{"Name":"Status","Values":["2"]}]
-        # @type Filters: Array
-        # @param Order: 升序降序,asc desc
-        # @type Order: String
-        # @param By: 排序字段
-        # @type By: String
-
-        attr_accessor :ExportField, :Limit, :Offset, :Filters, :Order, :By
-
-        def initialize(exportfield=nil, limit=nil, offset=nil, filters=nil, order=nil, by=nil)
-          @ExportField = exportfield
-          @Limit = limit
-          @Offset = offset
-          @Filters = filters
-          @Order = order
-          @By = by
-        end
-
-        def deserialize(params)
-          @ExportField = params['ExportField']
-          @Limit = params['Limit']
-          @Offset = params['Offset']
-          unless params['Filters'].nil?
-            @Filters = []
-            params['Filters'].each do |i|
-              runtimefilters_tmp = RunTimeFilters.new
-              runtimefilters_tmp.deserialize(i)
-              @Filters << runtimefilters_tmp
-            end
-          end
-          @Order = params['Order']
-          @By = params['By']
-        end
-      end
-
-      # DescribeAbnormalProcessEventsExport返回参数结构体
-      class DescribeAbnormalProcessEventsExportResponse < TencentCloud::Common::AbstractModel
-        # @param DownloadUrl: execle下载地址
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type DownloadUrl: String
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :DownloadUrl, :RequestId
-
-        def initialize(downloadurl=nil, requestid=nil)
-          @DownloadUrl = downloadurl
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @DownloadUrl = params['DownloadUrl']
           @RequestId = params['RequestId']
         end
       end
@@ -7333,70 +7200,6 @@ module TencentCloud
         end
       end
 
-      # DescribeAbnormalProcessRulesExport请求参数结构体
-      class DescribeAbnormalProcessRulesExportRequest < TencentCloud::Common::AbstractModel
-        # @param ExportField: 导出字段
-        # @type ExportField: Array
-        # @param Limit: 需要返回的数量，默认为10，最大值为100
-        # @type Limit: Integer
-        # @param Offset: 偏移量，默认为0。
-        # @type Offset: Integer
-        # @param Filters: 过滤参数,"Filters":[{"Name":"Status","Values":["2"]}]
-        # @type Filters: Array
-        # @param Order: 升序降序,asc desc
-        # @type Order: String
-        # @param By: 排序字段
-        # @type By: String
-
-        attr_accessor :ExportField, :Limit, :Offset, :Filters, :Order, :By
-
-        def initialize(exportfield=nil, limit=nil, offset=nil, filters=nil, order=nil, by=nil)
-          @ExportField = exportfield
-          @Limit = limit
-          @Offset = offset
-          @Filters = filters
-          @Order = order
-          @By = by
-        end
-
-        def deserialize(params)
-          @ExportField = params['ExportField']
-          @Limit = params['Limit']
-          @Offset = params['Offset']
-          unless params['Filters'].nil?
-            @Filters = []
-            params['Filters'].each do |i|
-              runtimefilters_tmp = RunTimeFilters.new
-              runtimefilters_tmp.deserialize(i)
-              @Filters << runtimefilters_tmp
-            end
-          end
-          @Order = params['Order']
-          @By = params['By']
-        end
-      end
-
-      # DescribeAbnormalProcessRulesExport返回参数结构体
-      class DescribeAbnormalProcessRulesExportResponse < TencentCloud::Common::AbstractModel
-        # @param DownloadUrl: execle下载地址
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type DownloadUrl: String
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :DownloadUrl, :RequestId
-
-        def initialize(downloadurl=nil, requestid=nil)
-          @DownloadUrl = downloadurl
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @DownloadUrl = params['DownloadUrl']
-          @RequestId = params['RequestId']
-        end
-      end
-
       # DescribeAbnormalProcessRules请求参数结构体
       class DescribeAbnormalProcessRulesRequest < TencentCloud::Common::AbstractModel
         # @param Limit: 需要返回的数量，默认为10，最大值为100
@@ -7496,7 +7299,6 @@ module TencentCloud
         # @param ParentProcessInfo: 父进程信息
         # @type ParentProcessInfo: :class:`Tencentcloud::Tcss.v20201101.models.ProcessBaseInfo`
         # @param AncestorProcessInfo: 祖先进程信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AncestorProcessInfo: :class:`Tencentcloud::Tcss.v20201101.models.ProcessBaseInfo`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -7588,10 +7390,8 @@ module TencentCloud
       # DescribeAccessControlEventsExport返回参数结构体
       class DescribeAccessControlEventsExportResponse < TencentCloud::Common::AbstractModel
         # @param DownloadUrl: execle下载地址
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DownloadUrl: String
         # @param JobId: 任务id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type JobId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -7728,70 +7528,6 @@ module TencentCloud
             @RuleDetail = AccessControlRuleInfo.new
             @RuleDetail.deserialize(params['RuleDetail'])
           end
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # DescribeAccessControlRulesExport请求参数结构体
-      class DescribeAccessControlRulesExportRequest < TencentCloud::Common::AbstractModel
-        # @param ExportField: 导出字段
-        # @type ExportField: Array
-        # @param Limit: 需要返回的数量，默认为10，最大值为100
-        # @type Limit: Integer
-        # @param Offset: 偏移量，默认为0。
-        # @type Offset: Integer
-        # @param Filters: 过滤参数,"Filters":[{"Name":"Status","Values":["2"]}]
-        # @type Filters: Array
-        # @param Order: 升序降序,asc desc
-        # @type Order: String
-        # @param By: 排序字段
-        # @type By: String
-
-        attr_accessor :ExportField, :Limit, :Offset, :Filters, :Order, :By
-
-        def initialize(exportfield=nil, limit=nil, offset=nil, filters=nil, order=nil, by=nil)
-          @ExportField = exportfield
-          @Limit = limit
-          @Offset = offset
-          @Filters = filters
-          @Order = order
-          @By = by
-        end
-
-        def deserialize(params)
-          @ExportField = params['ExportField']
-          @Limit = params['Limit']
-          @Offset = params['Offset']
-          unless params['Filters'].nil?
-            @Filters = []
-            params['Filters'].each do |i|
-              runtimefilters_tmp = RunTimeFilters.new
-              runtimefilters_tmp.deserialize(i)
-              @Filters << runtimefilters_tmp
-            end
-          end
-          @Order = params['Order']
-          @By = params['By']
-        end
-      end
-
-      # DescribeAccessControlRulesExport返回参数结构体
-      class DescribeAccessControlRulesExportResponse < TencentCloud::Common::AbstractModel
-        # @param DownloadUrl: execle下载地址
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type DownloadUrl: String
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :DownloadUrl, :RequestId
-
-        def initialize(downloadurl=nil, requestid=nil)
-          @DownloadUrl = downloadurl
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @DownloadUrl = params['DownloadUrl']
           @RequestId = params['RequestId']
         end
       end
@@ -8487,10 +8223,8 @@ module TencentCloud
         # @param NetSubStatus: 网络子状态
         # @type NetSubStatus: String
         # @param IsolateSource: 隔离来源
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsolateSource: String
         # @param IsolateTime: 隔离时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsolateTime: String
         # @param NodeID: 节点ID
         # @type NodeID: String
@@ -9097,71 +8831,50 @@ module TencentCloud
         # @param Size: 镜像大小
         # @type Size: Integer
         # @param HostCnt: 关联主机个数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HostCnt: Integer
         # @param ContainerCnt: 关联容器个数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ContainerCnt: Integer
         # @param ScanTime: 最近扫描时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScanTime: String
         # @param VulCnt: 漏洞个数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VulCnt: Integer
         # @param RiskCnt: 风险行为数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RiskCnt: Integer
         # @param SensitiveInfoCnt: 敏感信息数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SensitiveInfoCnt: Integer
         # @param IsTrustImage: 是否信任镜像
         # @type IsTrustImage: Boolean
         # @param OsName: 镜像系统
         # @type OsName: String
         # @param AgentError: agent镜像扫描错误
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AgentError: String
         # @param ScanError: 后端镜像扫描错误
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScanError: String
         # @param Architecture: 系统架构
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Architecture: String
         # @param Author: 作者
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Author: String
         # @param BuildHistory: 构建历史
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BuildHistory: String
         # @param ScanVirusProgress: 木马扫描进度
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScanVirusProgress: Integer
         # @param ScanVulProgress: 漏洞扫进度
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScanVulProgress: Integer
         # @param ScanRiskProgress: 敏感信息扫描进度
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScanRiskProgress: Integer
         # @param ScanVirusError: 木马扫描错误
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScanVirusError: String
         # @param ScanVulError: 漏洞扫描错误
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScanVulError: String
         # @param ScanRiskError: 敏感信息错误
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScanRiskError: String
         # @param ScanStatus: 镜像扫描状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScanStatus: String
         # @param VirusCnt: 木马病毒数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VirusCnt: Integer
         # @param Status: 镜像扫描状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
         # @param RemainScanTime: 剩余扫描时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RemainScanTime: Integer
         # @param IsAuthorized: 授权为：1，未授权为：0
         # @type IsAuthorized: Integer
@@ -9291,73 +9004,6 @@ module TencentCloud
         end
       end
 
-      # DescribeAssetImageListExport请求参数结构体
-      class DescribeAssetImageListExportRequest < TencentCloud::Common::AbstractModel
-        # @param ExportField: 导出字段
-        # @type ExportField: Array
-        # @param Limit: 需要返回的数量，默认为10，最大值为100
-        # @type Limit: Integer
-        # @param Offset: 偏移量，默认为0。
-        # @type Offset: Integer
-        # @param Filters: 过滤条件。
-        # <li>ImageName- String - 是否必填：否 - 镜像名称筛选，</li>
-        # <li>ScanStatus - String - 是否必填：否 - 镜像扫描状态notScan，scanning，scanned，scanErr</li>
-        # <li>ImageID- String - 是否必填：否 - 镜像ID筛选，</li>
-        # <li>SecurityRisk- String - 是否必填：否 - 安全风险，VulCnt 、VirusCnt、RiskCnt、IsTrustImage</li>
-        # @type Filters: Array
-        # @param By: 排序字段
-        # @type By: String
-        # @param Order: 排序方式 asc,desc
-        # @type Order: String
-
-        attr_accessor :ExportField, :Limit, :Offset, :Filters, :By, :Order
-
-        def initialize(exportfield=nil, limit=nil, offset=nil, filters=nil, by=nil, order=nil)
-          @ExportField = exportfield
-          @Limit = limit
-          @Offset = offset
-          @Filters = filters
-          @By = by
-          @Order = order
-        end
-
-        def deserialize(params)
-          @ExportField = params['ExportField']
-          @Limit = params['Limit']
-          @Offset = params['Offset']
-          unless params['Filters'].nil?
-            @Filters = []
-            params['Filters'].each do |i|
-              assetfilters_tmp = AssetFilters.new
-              assetfilters_tmp.deserialize(i)
-              @Filters << assetfilters_tmp
-            end
-          end
-          @By = params['By']
-          @Order = params['Order']
-        end
-      end
-
-      # DescribeAssetImageListExport返回参数结构体
-      class DescribeAssetImageListExportResponse < TencentCloud::Common::AbstractModel
-        # @param DownloadUrl: excel文件下载地址
-        # @type DownloadUrl: String
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :DownloadUrl, :RequestId
-
-        def initialize(downloadurl=nil, requestid=nil)
-          @DownloadUrl = downloadurl
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @DownloadUrl = params['DownloadUrl']
-          @RequestId = params['RequestId']
-        end
-      end
-
       # DescribeAssetImageList请求参数结构体
       class DescribeAssetImageListRequest < TencentCloud::Common::AbstractModel
         # @param Limit: 需要返回的数量，默认为10，最大值为100
@@ -9448,7 +9094,6 @@ module TencentCloud
         # @param Status: 更新进度状态,doing更新中，success更新成功，failed失败
         # @type Status: String
         # @param Err: 错误信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Err: String
         # @param LatestSyncSuccessTime: 最后一次同步成功时间
         # @type LatestSyncSuccessTime: String
@@ -9495,103 +9140,70 @@ module TencentCloud
       # DescribeAssetImageRegistryDetail返回参数结构体
       class DescribeAssetImageRegistryDetailResponse < TencentCloud::Common::AbstractModel
         # @param ImageDigest: 镜像Digest
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ImageDigest: String
         # @param ImageRepoAddress: 镜像地址
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ImageRepoAddress: String
         # @param RegistryType: 镜像类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RegistryType: String
         # @param ImageName: 仓库名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ImageName: String
         # @param ImageTag: 镜像版本
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ImageTag: String
         # @param ScanTime: 扫描时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScanTime: String
         # @param ScanStatus: 扫描状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScanStatus: String
         # @param VulCnt: 安全漏洞数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VulCnt: Integer
         # @param VirusCnt: 木马病毒数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VirusCnt: Integer
         # @param RiskCnt: 风险行为数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RiskCnt: Integer
         # @param SentiveInfoCnt: 敏感信息数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SentiveInfoCnt: Integer
         # @param OsName: 镜像系统
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OsName: String
         # @param ScanVirusError: 木马扫描错误
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScanVirusError: String
         # @param ScanVulError: 漏洞扫描错误
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScanVulError: String
         # @param LayerInfo: 层文件信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LayerInfo: String
         # @param InstanceId: 实例id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceId: String
         # @param InstanceName: 实例名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceName: String
         # @param Namespace: 命名空间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Namespace: String
         # @param ScanRiskError: 高危扫描错误
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScanRiskError: String
         # @param ScanVirusProgress: 木马信息扫描进度
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScanVirusProgress: Integer
         # @param ScanVulProgress: 漏洞扫描进度
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScanVulProgress: Integer
         # @param ScanRiskProgress: 敏感扫描进度
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScanRiskProgress: Integer
         # @param ScanRemainTime: 剩余扫描时间秒
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScanRemainTime: Integer
         # @param CveStatus: cve扫描状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CveStatus: String
         # @param RiskStatus: 高危扫描状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RiskStatus: String
         # @param VirusStatus: 木马扫描状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VirusStatus: String
         # @param Progress: 总进度
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Progress: Integer
         # @param IsAuthorized: 授权状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsAuthorized: Integer
         # @param ImageSize: 镜像大小
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ImageSize: Integer
         # @param ImageId: 镜像Id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ImageId: String
         # @param RegistryRegion: 镜像区域
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RegistryRegion: String
         # @param ImageCreateTime: 镜像创建的时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ImageCreateTime: String
         # @param SensitiveInfoCnt: 敏感信息数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SensitiveInfoCnt: Integer
         # @param Id: Id
         # @type Id: Integer
@@ -9600,8 +9212,8 @@ module TencentCloud
 
         attr_accessor :ImageDigest, :ImageRepoAddress, :RegistryType, :ImageName, :ImageTag, :ScanTime, :ScanStatus, :VulCnt, :VirusCnt, :RiskCnt, :SentiveInfoCnt, :OsName, :ScanVirusError, :ScanVulError, :LayerInfo, :InstanceId, :InstanceName, :Namespace, :ScanRiskError, :ScanVirusProgress, :ScanVulProgress, :ScanRiskProgress, :ScanRemainTime, :CveStatus, :RiskStatus, :VirusStatus, :Progress, :IsAuthorized, :ImageSize, :ImageId, :RegistryRegion, :ImageCreateTime, :SensitiveInfoCnt, :Id, :RequestId
         extend Gem::Deprecate
-        deprecate :SentiveInfoCnt, :none, 2024, 11
-        deprecate :SentiveInfoCnt=, :none, 2024, 11
+        deprecate :SentiveInfoCnt, :none, 2025, 3
+        deprecate :SentiveInfoCnt=, :none, 2025, 3
 
         def initialize(imagedigest=nil, imagerepoaddress=nil, registrytype=nil, imagename=nil, imagetag=nil, scantime=nil, scanstatus=nil, vulcnt=nil, viruscnt=nil, riskcnt=nil, sentiveinfocnt=nil, osname=nil, scanviruserror=nil, scanvulerror=nil, layerinfo=nil, instanceid=nil, instancename=nil, namespace=nil, scanriskerror=nil, scanvirusprogress=nil, scanvulprogress=nil, scanriskprogress=nil, scanremaintime=nil, cvestatus=nil, riskstatus=nil, virusstatus=nil, progress=nil, isauthorized=nil, imagesize=nil, imageid=nil, registryregion=nil, imagecreatetime=nil, sensitiveinfocnt=nil, id=nil, requestid=nil)
           @ImageDigest = imagedigest
@@ -9730,7 +9342,6 @@ module TencentCloud
       # DescribeAssetImageRegistryListExport返回参数结构体
       class DescribeAssetImageRegistryListExportResponse < TencentCloud::Common::AbstractModel
         # @param DownloadUrl: excel文件下载地址
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DownloadUrl: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -9799,10 +9410,8 @@ module TencentCloud
       # DescribeAssetImageRegistryList返回参数结构体
       class DescribeAssetImageRegistryListResponse < TencentCloud::Common::AbstractModel
         # @param List: 镜像仓库列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type List: Array
         # @param TotalCount: 总数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -9858,29 +9467,33 @@ module TencentCloud
         # @param RegistryType: 仓库类型，列表：harbor
         # @type RegistryType: String
         # @param RegistryVersion: 仓库版本
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RegistryVersion: String
         # @param NetType: 网络类型，列表：public（公网）,private（私网）
         # @type NetType: String
         # @param RegistryRegion: 区域，列表:default（默认）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RegistryRegion: String
         # @param SpeedLimit: 限速
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SpeedLimit: Integer
         # @param Insecure: 安全模式（证书校验）：0（默认） 非安全模式（跳过证书校验）：1
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Insecure: Integer
         # @param ConnDetectDetail: 联通性检测结果详情
         # @type ConnDetectDetail: Array
         # @param InstanceID: tcr情况下instance_id
         # @type InstanceID: String
+        # @param SyncMode: 同步方式，0全量同步，1增量同步
+        # @type SyncMode: Integer
+        # @param NeedScan: 是否自动授权&扫描，选择全量同步时只针对最新版本镜像，增量同步时则包含所有新增镜像
+        # @type NeedScan: Boolean
+        # @param WebhookUrl: webhook接入地址
+        # @type WebhookUrl: String
+        # @param WebhookToken: webhook接入token
+        # @type WebhookToken: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Name, :Username, :Password, :Url, :RegistryType, :RegistryVersion, :NetType, :RegistryRegion, :SpeedLimit, :Insecure, :ConnDetectDetail, :InstanceID, :RequestId
+        attr_accessor :Name, :Username, :Password, :Url, :RegistryType, :RegistryVersion, :NetType, :RegistryRegion, :SpeedLimit, :Insecure, :ConnDetectDetail, :InstanceID, :SyncMode, :NeedScan, :WebhookUrl, :WebhookToken, :RequestId
 
-        def initialize(name=nil, username=nil, password=nil, url=nil, registrytype=nil, registryversion=nil, nettype=nil, registryregion=nil, speedlimit=nil, insecure=nil, conndetectdetail=nil, instanceid=nil, requestid=nil)
+        def initialize(name=nil, username=nil, password=nil, url=nil, registrytype=nil, registryversion=nil, nettype=nil, registryregion=nil, speedlimit=nil, insecure=nil, conndetectdetail=nil, instanceid=nil, syncmode=nil, needscan=nil, webhookurl=nil, webhooktoken=nil, requestid=nil)
           @Name = name
           @Username = username
           @Password = password
@@ -9893,6 +9506,10 @@ module TencentCloud
           @Insecure = insecure
           @ConnDetectDetail = conndetectdetail
           @InstanceID = instanceid
+          @SyncMode = syncmode
+          @NeedScan = needscan
+          @WebhookUrl = webhookurl
+          @WebhookToken = webhooktoken
           @RequestId = requestid
         end
 
@@ -9916,6 +9533,10 @@ module TencentCloud
             end
           end
           @InstanceID = params['InstanceID']
+          @SyncMode = params['SyncMode']
+          @NeedScan = params['NeedScan']
+          @WebhookUrl = params['WebhookUrl']
+          @WebhookToken = params['WebhookToken']
           @RequestId = params['RequestId']
         end
       end
@@ -9963,10 +9584,8 @@ module TencentCloud
       # DescribeAssetImageRegistryRegistryList返回参数结构体
       class DescribeAssetImageRegistryRegistryListResponse < TencentCloud::Common::AbstractModel
         # @param List: 镜像仓库列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type List: Array
         # @param TotalCount: 总数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -10048,10 +9667,8 @@ module TencentCloud
       # DescribeAssetImageRegistryRiskInfoList返回参数结构体
       class DescribeAssetImageRegistryRiskInfoListResponse < TencentCloud::Common::AbstractModel
         # @param List: 镜像漏洞列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type List: Array
         # @param TotalCount: 总数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -10129,7 +9746,6 @@ module TencentCloud
       # DescribeAssetImageRegistryRiskListExport返回参数结构体
       class DescribeAssetImageRegistryRiskListExportResponse < TencentCloud::Common::AbstractModel
         # @param DownloadUrl: excel文件下载地址
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DownloadUrl: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -10189,7 +9805,6 @@ module TencentCloud
         # @param ImageScanCnt: 扫描镜像个数
         # @type ImageScanCnt: Integer
         # @param ImageStatus: 扫描进度列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ImageStatus: Array
         # @param SuccessCount: 安全个数
         # @type SuccessCount: Integer
@@ -10200,7 +9815,6 @@ module TencentCloud
         # @param Status: 总的扫描状态
         # @type Status: String
         # @param ScanRemainTime: 扫描剩余时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScanRemainTime: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -10333,7 +9947,6 @@ module TencentCloud
       # DescribeAssetImageRegistryVirusListExport返回参数结构体
       class DescribeAssetImageRegistryVirusListExportResponse < TencentCloud::Common::AbstractModel
         # @param DownloadUrl: excel文件下载地址
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DownloadUrl: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -10398,10 +10011,8 @@ module TencentCloud
       # DescribeAssetImageRegistryVirusList返回参数结构体
       class DescribeAssetImageRegistryVirusListResponse < TencentCloud::Common::AbstractModel
         # @param List: 镜像漏洞列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type List: Array
         # @param TotalCount: 总数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -10479,7 +10090,6 @@ module TencentCloud
       # DescribeAssetImageRegistryVulListExport返回参数结构体
       class DescribeAssetImageRegistryVulListExportResponse < TencentCloud::Common::AbstractModel
         # @param DownloadUrl: excel文件下载地址
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DownloadUrl: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -10544,10 +10154,8 @@ module TencentCloud
       # DescribeAssetImageRegistryVulList返回参数结构体
       class DescribeAssetImageRegistryVulListResponse < TencentCloud::Common::AbstractModel
         # @param List: 镜像漏洞列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type List: Array
         # @param TotalCount: 总数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -10741,21 +10349,18 @@ module TencentCloud
         # @param ScanEndTime: 扫描结束时间 02:00 时分
         # @type ScanEndTime: String
         # @param ExcludeImages: 排除的扫描镜像
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExcludeImages: Array
         # @param LastScanTime: 最后一次扫描时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LastScanTime: String
         # @param ScanResult: 扫描结果(Success|InsufficientLicense|ImageNeedIsEmpty|InternalError)
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScanResult: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Enable, :ScanTime, :ScanPeriod, :ScanVirus, :ScanRisk, :ScanVul, :All, :Images, :ContainerRunning, :ScanScope, :ScanEndTime, :ExcludeImages, :LastScanTime, :ScanResult, :RequestId
         extend Gem::Deprecate
-        deprecate :All, :none, 2024, 11
-        deprecate :All=, :none, 2024, 11
+        deprecate :All, :none, 2025, 3
+        deprecate :All=, :none, 2025, 3
 
         def initialize(enable=nil, scantime=nil, scanperiod=nil, scanvirus=nil, scanrisk=nil, scanvul=nil, all=nil, images=nil, containerrunning=nil, scanscope=nil, scanendtime=nil, excludeimages=nil, lastscantime=nil, scanresult=nil, requestid=nil)
           @Enable = enable
@@ -12099,13 +11704,10 @@ module TencentCloud
         # @param ServerlessClusterCount: eks集群数量
         # @type ServerlessClusterCount: Integer
         # @param TkeClusterCount: TKE集群数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TkeClusterCount: Integer
         # @param UserCreateTencentClusterCount: 用户自建腾讯云集群数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UserCreateTencentClusterCount: Integer
         # @param UserCreateHybridClusterCount: 用户自建集群混合云数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UserCreateHybridClusterCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -12176,16 +11778,12 @@ module TencentCloud
         # @param AssetDetailInfo: 某资产的详情。
         # @type AssetDetailInfo: :class:`Tencentcloud::Tcss.v20201101.models.ComplianceAssetDetailInfo`
         # @param ContainerDetailInfo: 当资产为容器时，返回此字段。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ContainerDetailInfo: :class:`Tencentcloud::Tcss.v20201101.models.ComplianceContainerDetailInfo`
         # @param ImageDetailInfo: 当资产为镜像时，返回此字段。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ImageDetailInfo: :class:`Tencentcloud::Tcss.v20201101.models.ComplianceImageDetailInfo`
         # @param HostDetailInfo: 当资产为主机时，返回此字段。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HostDetailInfo: :class:`Tencentcloud::Tcss.v20201101.models.ComplianceHostDetailInfo`
         # @param K8SDetailInfo: 当资产为K8S时，返回此字段。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type K8SDetailInfo: :class:`Tencentcloud::Tcss.v20201101.models.ComplianceK8SDetailInfo`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -12270,7 +11868,6 @@ module TencentCloud
         # @param TotalCount: 返回资产的总数。
         # @type TotalCount: Integer
         # @param AssetInfoList: 返回各类资产的列表。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AssetInfoList: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -12578,7 +12175,6 @@ module TencentCloud
         # @param TotalCount: 返回检测失败的资产的总数。
         # @type TotalCount: Integer
         # @param ScanFailedAssetList: 返回各类检测失败的资产的汇总信息的列表。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScanFailedAssetList: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -12706,7 +12302,6 @@ module TencentCloud
       # DescribeComplianceTaskPolicyItemSummaryList返回参数结构体
       class DescribeComplianceTaskPolicyItemSummaryListResponse < TencentCloud::Common::AbstractModel
         # @param TaskId: 返回最近一次合规检查任务的ID。这个任务为本次所展示数据的来源。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskId: Integer
         # @param TotalCount: 返回检测项的总数。
         # @type TotalCount: Integer
@@ -12916,7 +12511,6 @@ module TencentCloud
         # @param UnhandledMaliciousConnectionEventCnt: 未处理恶意外连事件
         # @type UnhandledMaliciousConnectionEventCnt: Integer
         # @param UnhandledK8sApiEventCnt: 未处理k8sApi事件
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UnhandledK8sApiEventCnt: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -13148,7 +12742,6 @@ module TencentCloud
         # @param ParentProcessInfo: 父进程信息
         # @type ParentProcessInfo: :class:`Tencentcloud::Tcss.v20201101.models.ProcessBaseInfo`
         # @param AncestorProcessInfo: 祖先进程信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AncestorProcessInfo: :class:`Tencentcloud::Tcss.v20201101.models.ProcessBaseInfo`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -13351,70 +12944,6 @@ module TencentCloud
           @ProcessPrivilegeEventCount = params['ProcessPrivilegeEventCount']
           @RiskContainerEventCount = params['RiskContainerEventCount']
           @PendingEscapeEventCount = params['PendingEscapeEventCount']
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # DescribeEscapeEventsExport请求参数结构体
-      class DescribeEscapeEventsExportRequest < TencentCloud::Common::AbstractModel
-        # @param ExportField: 导出字段
-        # @type ExportField: Array
-        # @param Limit: 需要返回的数量，默认为10，最大值为100
-        # @type Limit: Integer
-        # @param Offset: 偏移量，默认为0。
-        # @type Offset: Integer
-        # @param Filters: 过滤参数,"Filters":[{"Name":"Status","Values":["2"]}]
-        # @type Filters: Array
-        # @param Order: 升序降序,asc desc
-        # @type Order: String
-        # @param By: 排序字段
-        # @type By: String
-
-        attr_accessor :ExportField, :Limit, :Offset, :Filters, :Order, :By
-
-        def initialize(exportfield=nil, limit=nil, offset=nil, filters=nil, order=nil, by=nil)
-          @ExportField = exportfield
-          @Limit = limit
-          @Offset = offset
-          @Filters = filters
-          @Order = order
-          @By = by
-        end
-
-        def deserialize(params)
-          @ExportField = params['ExportField']
-          @Limit = params['Limit']
-          @Offset = params['Offset']
-          unless params['Filters'].nil?
-            @Filters = []
-            params['Filters'].each do |i|
-              runtimefilters_tmp = RunTimeFilters.new
-              runtimefilters_tmp.deserialize(i)
-              @Filters << runtimefilters_tmp
-            end
-          end
-          @Order = params['Order']
-          @By = params['By']
-        end
-      end
-
-      # DescribeEscapeEventsExport返回参数结构体
-      class DescribeEscapeEventsExportResponse < TencentCloud::Common::AbstractModel
-        # @param DownloadUrl: execle下载地址
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type DownloadUrl: String
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :DownloadUrl, :RequestId
-
-        def initialize(downloadurl=nil, requestid=nil)
-          @DownloadUrl = downloadurl
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @DownloadUrl = params['DownloadUrl']
           @RequestId = params['RequestId']
         end
       end
@@ -13767,13 +13296,10 @@ module TencentCloud
         # @param ExportStatus: 导出的状态。取值为, SUCCESS:成功、FAILURE:失败，RUNNING: 进行中。
         # @type ExportStatus: String
         # @param DownloadURL: 返回下载URL
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DownloadURL: String
         # @param ExportProgress: 当ExportStatus为RUNNING时，返回导出进度。0~100范围的浮点数。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExportProgress: Float
         # @param FailureMsg: 失败原因
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FailureMsg: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -13965,16 +13491,12 @@ module TencentCloud
         # @param IsEnabled: 规则是否生效，0:不生效，1:已生效
         # @type IsEnabled: Integer
         # @param RangeType: 授权范围类别，MANUAL:自选主机节点，ALL:全部镜像
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RangeType: String
         # @param HostCount: 授权范围是自选主机时的主机数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HostCount: Integer
         # @param MaxDailyCount: 每天最大的镜像授权数限制, 0表示无限制
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaxDailyCount: Integer
         # @param RuleId: 规则id，用未设置时为0
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleId: Integer
         # @param AutoScanEnabled: 自动扫描开关，0：关闭，1：开启
         # @type AutoScanEnabled: Integer
@@ -14236,28 +13758,22 @@ module TencentCloud
       # DescribeImageRegistryTimingScanTask返回参数结构体
       class DescribeImageRegistryTimingScanTaskResponse < TencentCloud::Common::AbstractModel
         # @param Enable: 定时扫描开关
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Enable: Boolean
         # @param ScanTime: 定时任务扫描时间
         # @type ScanTime: String
         # @param ScanPeriod: 定时扫描间隔
         # @type ScanPeriod: Integer
         # @param ScanType: 扫描类型数组
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScanType: Array
         # @param All: 扫描全部镜像
         # @type All: Boolean
         # @param Images: 自定义扫描镜像
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Images: Array
         # @param Id: 自动以扫描镜像Id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Id: Array
         # @param Latest: 是否扫描最新版本镜像
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Latest: Boolean
         # @param ScanEndTime: 扫描结束时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScanEndTime: String
         # @param RegistryType: 仓库类型 tcr,ccr,harbor
         # @type RegistryType: Array
@@ -14268,10 +13784,8 @@ module TencentCloud
         # @param Namespace: 命名空间
         # @type Namespace: Array
         # @param ExcludeImageAssetIds: 排除的镜像资产id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExcludeImageAssetIds: Array
         # @param LastScanTime: 最近扫描时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LastScanTime: String
         # @param ScanResult: 扫描结果(Success|InsufficientLicense|ImageNeedIsEmpty|InternalError)
         # @type ScanResult: String
@@ -14280,8 +13794,8 @@ module TencentCloud
 
         attr_accessor :Enable, :ScanTime, :ScanPeriod, :ScanType, :All, :Images, :Id, :Latest, :ScanEndTime, :RegistryType, :ContainerRunning, :ScanScope, :Namespace, :ExcludeImageAssetIds, :LastScanTime, :ScanResult, :RequestId
         extend Gem::Deprecate
-        deprecate :All, :none, 2024, 11
-        deprecate :All=, :none, 2024, 11
+        deprecate :All, :none, 2025, 3
+        deprecate :All=, :none, 2025, 3
 
         def initialize(enable=nil, scantime=nil, scanperiod=nil, scantype=nil, all=nil, images=nil, id=nil, latest=nil, scanendtime=nil, registrytype=nil, containerrunning=nil, scanscope=nil, namespace=nil, excludeimageassetids=nil, lastscantime=nil, scanresult=nil, requestid=nil)
           @Enable = enable
@@ -14446,9 +13960,9 @@ module TencentCloud
         # @type Limit: Integer
         # @param Offset: 偏移量，默认为0。
         # @type Offset: Integer
-        # @param Order: 排序方式
+        # @param Order: 排序方式 asc,desc
         # @type Order: String
-        # @param By: 排序字段
+        # @param By: 排序字段 ContainerCnt
         # @type By: String
 
         attr_accessor :Filters, :Limit, :Offset, :Order, :By
@@ -15376,7 +14890,6 @@ module TencentCloud
         # @param TotalCount: 集群pod总数
         # @type TotalCount: Integer
         # @param PodList: 集群pod详细信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PodList: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -15426,31 +14939,26 @@ module TencentCloud
         # @param PolicyName: 策略名
         # @type PolicyName: String
         # @param Namespace: 命名空间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Namespace: String
         # @param FromPolicyRule: 入站类型
         # @type FromPolicyRule: Integer
         # @param ToPolicyRule: 出站类型
         # @type ToPolicyRule: Integer
         # @param CustomPolicy: 自定义规则
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CustomPolicy: Array
         # @param PodSelector: pod选择器
         # @type PodSelector: String
         # @param Description: 策略描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
         # @param PolicyCreateTime: 策略创建时间
         # @type PolicyCreateTime: String
         # @param PolicySourceType: 策略源类型，分为System和Manual，分别代表手动和系统添加
         # @type PolicySourceType: String
         # @param NetworkPolicyPlugin: 网络策略对应的网络插件
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NetworkPolicyPlugin: String
         # @param PublishStatus: 网络策略状态
         # @type PublishStatus: String
         # @param PublishResult: 网络发布结果
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PublishResult: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -15631,7 +15139,6 @@ module TencentCloud
         # @param TaskStatus: 任务状态，可能为：Task_Running,Task_Succ,Task_Error,Task_NoExist
         # @type TaskStatus: String
         # @param TaskResult: NameRepeat,K8sRuleIngressPortError等
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskResult: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -15674,22 +15181,18 @@ module TencentCloud
         # @param PolicyName: 策略名
         # @type PolicyName: String
         # @param Yaml: base64编码的yaml字符串
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Yaml: String
         # @param Description: 策略描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
         # @param PolicyCreateTime: 策略创建时间
         # @type PolicyCreateTime: String
         # @param PolicySourceType: 策略源类型，分为System和Manual，分别代表手动和系统添加
         # @type PolicySourceType: String
         # @param NetworkPolicyPlugin: 网络策略对应的网络插件
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NetworkPolicyPlugin: String
         # @param PublishStatus: 网络策略状态
         # @type PublishStatus: String
         # @param PublishResult: 网络发布结果
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PublishResult: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -15793,7 +15296,6 @@ module TencentCloud
       # DescribePostPayDetail返回参数结构体
       class DescribePostPayDetailResponse < TencentCloud::Common::AbstractModel
         # @param SoftQuotaDayDetail: 弹性计费扣费详情
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SoftQuotaDayDetail: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -15832,17 +15334,14 @@ module TencentCloud
       # DescribeProVersionInfo返回参数结构体
       class DescribeProVersionInfoResponse < TencentCloud::Common::AbstractModel
         # @param StartTime: 专业版开始时间，补充购买时才不为空
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StartTime: String
         # @param EndTime: 专业版结束时间，补充购买时才不为空
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EndTime: String
         # @param CoresCnt: 需购买的机器核数
         # @type CoresCnt: Integer
         # @param MaxPostPayCoresCnt: 弹性计费上限
         # @type MaxPostPayCoresCnt: Integer
         # @param ResourceId: 资源ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceId: String
         # @param BuyStatus: 购买状态
         # 待购: Pending
@@ -15971,45 +15470,33 @@ module TencentCloud
         # @param AllCoresCnt: 总资源核数 = 总防护核数 + 未防护核数
         # @type AllCoresCnt: Integer
         # @param CoresCnt: 总防护核数 =已购核数+ 试用赠送核数 +弹性计费核数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CoresCnt: Integer
         # @param UndefendCoresCnt: 未防护核数(未开启防护资源核数)
         # @type UndefendCoresCnt: Integer
         # @param AuthorizedCoresCnt: 已购买核数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AuthorizedCoresCnt: Integer
         # @param GivenAuthorizedCoresCnt: 试用赠送专业版核心数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GivenAuthorizedCoresCnt: Integer
         # @param CurrentFlexibleCoresCnt: 当前弹性计费核数数量
         # @type CurrentFlexibleCoresCnt: Integer
         # @param ImageCnt: 镜像数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ImageCnt: Integer
         # @param AuthorizedImageCnt: 已授权镜像数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AuthorizedImageCnt: Integer
         # @param ExpirationTime: 过期时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExpirationTime: String
         # @param PurchasedAuthorizedCnt: 已购买镜像授权数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PurchasedAuthorizedCnt: Integer
         # @param AutomaticRenewal: 0表示默认状态(用户未设置，即初始状态)， 1表示自动续费，2表示明确不自动续费(用户设置)
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AutomaticRenewal: Integer
         # @param GivenAuthorizedCnt: 试用期间赠送镜像授权数，可能会过期
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GivenAuthorizedCnt: Integer
         # @param BeginTime: 起始时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BeginTime: String
         # @param SubState: 子状态(具体意义依据State字段而定)
         # State为4时，有效值为: ISOLATE(隔离) DESTROED(已销毁)
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubState: String
         # @param InquireKey: 计费key
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InquireKey: String
         # @param DefendPolicy: 防护策略
         # @type DefendPolicy: String
@@ -16069,6 +15556,152 @@ module TencentCloud
           @FlexibleCoresLimit = params['FlexibleCoresLimit']
           @DefendClusterCoresCnt = params['DefendClusterCoresCnt']
           @DefendHostCoresCnt = params['DefendHostCoresCnt']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeRaspRuleVuls请求参数结构体
+      class DescribeRaspRuleVulsRequest < TencentCloud::Common::AbstractModel
+        # @param Filters: 过滤条件。
+        # <li>Level- String - 是否必填：否 - 威胁等级，CRITICAL:严重 HIGH:高/MIDDLE:中/LOW:低</li>
+        # <li>CVEID- string - 是否必填：否 - CVE编号</li>
+        # <li>Name- string -是否必填: 否 - 漏洞名称</li>
+        # @type Filters: Array
+        # @param Limit: 需要返回的数量，默认为10，最大值为100
+        # @type Limit: Integer
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
+        # @param Order: 排序方式：asc/desc
+        # @type Order: String
+        # @param By: 排序字段：披露时间：SubmitTime
+        # @type By: String
+
+        attr_accessor :Filters, :Limit, :Offset, :Order, :By
+
+        def initialize(filters=nil, limit=nil, offset=nil, order=nil, by=nil)
+          @Filters = filters
+          @Limit = limit
+          @Offset = offset
+          @Order = order
+          @By = by
+        end
+
+        def deserialize(params)
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              runtimefilters_tmp = RunTimeFilters.new
+              runtimefilters_tmp.deserialize(i)
+              @Filters << runtimefilters_tmp
+            end
+          end
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @Order = params['Order']
+          @By = params['By']
+        end
+      end
+
+      # DescribeRaspRuleVuls返回参数结构体
+      class DescribeRaspRuleVulsResponse < TencentCloud::Common::AbstractModel
+        # @param List: 列表内容
+        # @type List: Array
+        # @param TotalCount: 总数量
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :List, :TotalCount, :RequestId
+
+        def initialize(list=nil, totalcount=nil, requestid=nil)
+          @List = list
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              rasprulevul_tmp = RaspRuleVul.new
+              rasprulevul_tmp.deserialize(i)
+              @List << rasprulevul_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeRaspRules请求参数结构体
+      class DescribeRaspRulesRequest < TencentCloud::Common::AbstractModel
+        # @param Filters: 过滤条件。
+        # <li>Level- String - 是否必填：否 - 威胁等级，CRITICAL:严重 HIGH:高/MIDDLE:中/LOW:低</li>
+        # <li>CVEID- string - 是否必填：否 - CVE编号</li>
+        # <li>Name- string -是否必填: 否 - 漏洞名称</li>
+        # @type Filters: Array
+        # @param Limit: 需要返回的数量，默认为10，最大值为100
+        # @type Limit: Integer
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
+        # @param Order: 排序方式：asc/desc
+        # @type Order: String
+        # @param By: 排序字段：披露时间：SubmitTime
+        # @type By: String
+
+        attr_accessor :Filters, :Limit, :Offset, :Order, :By
+
+        def initialize(filters=nil, limit=nil, offset=nil, order=nil, by=nil)
+          @Filters = filters
+          @Limit = limit
+          @Offset = offset
+          @Order = order
+          @By = by
+        end
+
+        def deserialize(params)
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              runtimefilters_tmp = RunTimeFilters.new
+              runtimefilters_tmp.deserialize(i)
+              @Filters << runtimefilters_tmp
+            end
+          end
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @Order = params['Order']
+          @By = params['By']
+        end
+      end
+
+      # DescribeRaspRules返回参数结构体
+      class DescribeRaspRulesResponse < TencentCloud::Common::AbstractModel
+        # @param List: 列表内容
+        # @type List: Array
+        # @param TotalCount: 总数量
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :List, :TotalCount, :RequestId
+
+        def initialize(list=nil, totalcount=nil, requestid=nil)
+          @List = list
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              rasprule_tmp = RaspRule.new
+              rasprule_tmp.deserialize(i)
+              @List << rasprule_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
       end
@@ -16140,7 +15773,6 @@ module TencentCloud
         # @param EventDetail: 事件描述
         # @type EventDetail: :class:`Tencentcloud::Tcss.v20201101.models.ReverseShellEventDescription`
         # @param AncestorProcessInfo: 祖先进程信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AncestorProcessInfo: :class:`Tencentcloud::Tcss.v20201101.models.ProcessBaseInfo`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -16227,10 +15859,8 @@ module TencentCloud
       # DescribeReverseShellEventsExport返回参数结构体
       class DescribeReverseShellEventsExportResponse < TencentCloud::Common::AbstractModel
         # @param DownloadUrl: execle下载地址
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DownloadUrl: String
         # @param JobId: 任务ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type JobId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -16509,10 +16139,8 @@ module TencentCloud
         # @param Reference: 参考链接
         # @type Reference: Array
         # @param Address: 恶意域名或IP
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Address: String
         # @param City: 恶意IP所属城市
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type City: String
         # @param MatchRuleType: 命中规则类型
         # SYSTEM：系统规则
@@ -16559,7 +16187,6 @@ module TencentCloud
         # EVENT_ADD_WHITE：已加白
         # @type EventStatus: String
         # @param OperationTime: 操作时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OperationTime: String
         # @param Remark: 备注
         # @type Remark: String
@@ -16901,7 +16528,6 @@ module TencentCloud
         # @param EventDetail: 事件描述
         # @type EventDetail: :class:`Tencentcloud::Tcss.v20201101.models.RiskSyscallEventDescription`
         # @param AncestorProcessInfo: 祖先进程信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AncestorProcessInfo: :class:`Tencentcloud::Tcss.v20201101.models.ProcessBaseInfo`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -16988,10 +16614,8 @@ module TencentCloud
       # DescribeRiskSyscallEventsExport返回参数结构体
       class DescribeRiskSyscallEventsExportResponse < TencentCloud::Common::AbstractModel
         # @param DownloadUrl: Excel下载地址
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DownloadUrl: String
         # @param JobId: 任务Id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type JobId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -17713,22 +17337,16 @@ module TencentCloud
       # DescribeSecLogDeliveryKafkaSetting返回参数结构体
       class DescribeSecLogDeliveryKafkaSettingResponse < TencentCloud::Common::AbstractModel
         # @param InstanceID: 消息队列实例ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceID: String
         # @param InstanceName: 消息队列实例名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceName: String
         # @param Domain: 域名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Domain: String
         # @param LogTypeList: 日志类型队列
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LogTypeList: Array
         # @param User: 用户名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type User: String
         # @param RegionID: 地域ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RegionID: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -17908,10 +17526,8 @@ module TencentCloud
       # DescribeSecLogKafkaUIN返回参数结构体
       class DescribeSecLogKafkaUINResponse < TencentCloud::Common::AbstractModel
         # @param DstUIN: 目标UIN
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DstUIN: String
         # @param Status: 授权状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -17963,12 +17579,14 @@ module TencentCloud
         # @type IsPurchased: Boolean
         # @param TrialCapacity: 试用存储容量(GB)
         # @type TrialCapacity: Integer
+        # @param ResourceDetailList: 资源详情数组对象
+        # @type ResourceDetailList: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :BuyStatus, :LogSaveMonth, :StartTime, :EndTime, :LogCapacity, :ResourceID, :IsPurchased, :TrialCapacity, :RequestId
+        attr_accessor :BuyStatus, :LogSaveMonth, :StartTime, :EndTime, :LogCapacity, :ResourceID, :IsPurchased, :TrialCapacity, :ResourceDetailList, :RequestId
 
-        def initialize(buystatus=nil, logsavemonth=nil, starttime=nil, endtime=nil, logcapacity=nil, resourceid=nil, ispurchased=nil, trialcapacity=nil, requestid=nil)
+        def initialize(buystatus=nil, logsavemonth=nil, starttime=nil, endtime=nil, logcapacity=nil, resourceid=nil, ispurchased=nil, trialcapacity=nil, resourcedetaillist=nil, requestid=nil)
           @BuyStatus = buystatus
           @LogSaveMonth = logsavemonth
           @StartTime = starttime
@@ -17977,6 +17595,7 @@ module TencentCloud
           @ResourceID = resourceid
           @IsPurchased = ispurchased
           @TrialCapacity = trialcapacity
+          @ResourceDetailList = resourcedetaillist
           @RequestId = requestid
         end
 
@@ -17989,6 +17608,14 @@ module TencentCloud
           @ResourceID = params['ResourceID']
           @IsPurchased = params['IsPurchased']
           @TrialCapacity = params['TrialCapacity']
+          unless params['ResourceDetailList'].nil?
+            @ResourceDetailList = []
+            params['ResourceDetailList'].each do |i|
+              vasinforesourcedetail_tmp = VasInfoResourceDetail.new
+              vasinforesourcedetail_tmp.deserialize(i)
+              @ResourceDetailList << vasinforesourcedetail_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -18007,7 +17634,7 @@ module TencentCloud
         # @type Limit: Integer
         # @param Offset: 偏移量，默认为0。
         # @type Offset: Integer
-        # @param By: 排序字段
+        # @param By: 排序字段 StartTime
         # @type By: String
         # @param Order: 排序方式 asc,desc
         # @type Order: String
@@ -18440,7 +18067,6 @@ module TencentCloud
         # @param TaskStatus: 任务状态，为Task_New,Task_Running,Task_Finish,Task_Error,Task_NoExist.Task_New,Task_Running表示有任务存在，不允许新下发
         # @type TaskStatus: String
         # @param NewTaskID: 新任务ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NewTaskID: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -18675,28 +18301,20 @@ module TencentCloud
         # @param MD5: 文件Md5值
         # @type MD5: String
         # @param Size: 文件大小(B)
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Size: Integer
         # @param VirusName: 病毒名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VirusName: String
         # @param RiskLevel: 风险等级 RISK_CRITICAL, RISK_HIGH, RISK_MEDIUM, RISK_LOW, RISK_NOTICE。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RiskLevel: String
         # @param KillEngine: 查杀引擎
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type KillEngine: Array
         # @param Tags: 标签
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
         # @param HarmDescribe: 事件描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HarmDescribe: String
         # @param SuggestScheme: 建议方案
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SuggestScheme: String
         # @param ReferenceLink: 参考链接
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReferenceLink: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -18856,20 +18474,24 @@ module TencentCloud
         # @type AutoIsolateSwitch: Boolean
         # @param IsKillProgress: 是否中断隔离文件关联的进程(true:是 false:否)
         # @type IsKillProgress: Boolean
+        # @param UserAutoIsolateKillSwitch: 用户用户自定义开关
+        # @type UserAutoIsolateKillSwitch: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :AutoIsolateSwitch, :IsKillProgress, :RequestId
+        attr_accessor :AutoIsolateSwitch, :IsKillProgress, :UserAutoIsolateKillSwitch, :RequestId
 
-        def initialize(autoisolateswitch=nil, iskillprogress=nil, requestid=nil)
+        def initialize(autoisolateswitch=nil, iskillprogress=nil, userautoisolatekillswitch=nil, requestid=nil)
           @AutoIsolateSwitch = autoisolateswitch
           @IsKillProgress = iskillprogress
+          @UserAutoIsolateKillSwitch = userautoisolatekillswitch
           @RequestId = requestid
         end
 
         def deserialize(params)
           @AutoIsolateSwitch = params['AutoIsolateSwitch']
           @IsKillProgress = params['IsKillProgress']
+          @UserAutoIsolateKillSwitch = params['UserAutoIsolateKillSwitch']
           @RequestId = params['RequestId']
         end
       end
@@ -18893,94 +18515,64 @@ module TencentCloud
       # DescribeVirusDetail返回参数结构体
       class DescribeVirusDetailResponse < TencentCloud::Common::AbstractModel
         # @param ImageId: 镜像ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ImageId: String
         # @param ImageName: 镜像名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ImageName: String
         # @param CreateTime: 创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
         # @param Size: 木马文件大小
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Size: Integer
         # @param FilePath: 木马文件路径
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FilePath: String
         # @param ModifyTime: 最近生成时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ModifyTime: String
         # @param VirusName: 病毒名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VirusName: String
         # @param RiskLevel: 风险等级 RISK_CRITICAL, RISK_HIGH, RISK_MEDIUM, RISK_LOW, RISK_NOTICE。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RiskLevel: String
         # @param ContainerName: 容器名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ContainerName: String
         # @param ContainerId: 容器id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ContainerId: String
         # @param HostName: 主机名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HostName: String
         # @param HostId: 主机id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HostId: String
         # @param ProcessName: 进程名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProcessName: String
         # @param ProcessPath: 进程路径
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProcessPath: String
         # @param ProcessMd5: 进程md5
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProcessMd5: String
         # @param ProcessId: 进程id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProcessId: Integer
         # @param ProcessArgv: 进程参数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProcessArgv: String
         # @param ProcessChan: 进程链
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProcessChan: String
         # @param ProcessAccountGroup: 进程组
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProcessAccountGroup: String
         # @param ProcessStartAccount: 进程启动用户
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProcessStartAccount: String
         # @param ProcessFileAuthority: 进程文件权限
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProcessFileAuthority: String
         # @param SourceType: 来源：0：一键扫描， 1：定时扫描 2：实时监控
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SourceType: Integer
         # @param Tags: 标签
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
         # @param HarmDescribe: 事件描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HarmDescribe: String
         # @param SuggestScheme: 建议方案
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SuggestScheme: String
         # @param Mark: 备注
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Mark: String
         # @param FileName: 风险文件名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FileName: String
         # @param FileMd5: 文件MD5
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FileMd5: String
         # @param EventType: 事件类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EventType: String
         # @param PodName: 集群名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PodName: String
         # @param Status: DEAL_NONE:文件待处理
         # DEAL_IGNORE:已经忽略
@@ -18991,7 +18583,6 @@ module TencentCloud
         # DEAL_ISOLATE_FAILED:隔离失败
         # DEAL_RECOVERING:恢复中
         # DEAL_RECOVER_FAILED: 恢复失败
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: String
         # @param SubStatus: 失败子状态:
         # FILE_NOT_FOUND:文件不存在
@@ -19000,49 +18591,34 @@ module TencentCloud
         # BACKUP_FILE_NOT_FOUND:备份文件不存在
         # CONTAINER_NOT_FOUND_DEAL_ISOLATE:隔离时，容器不存在
         # CONTAINER_NOT_FOUND_DEAL_RECOVER:恢复时，容器不存在
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubStatus: String
         # @param HostIP: 内网ip
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HostIP: String
         # @param ClientIP: 外网ip
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClientIP: String
         # @param PProcessStartUser: 父进程启动用户
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PProcessStartUser: String
         # @param PProcessUserGroup: 父进程用户组
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PProcessUserGroup: String
         # @param PProcessPath: 父进程路径
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PProcessPath: String
         # @param PProcessParam: 父进程命令行参数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PProcessParam: String
         # @param AncestorProcessStartUser: 祖先进程启动用户
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AncestorProcessStartUser: String
         # @param AncestorProcessUserGroup: 祖先进程用户组
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AncestorProcessUserGroup: String
         # @param AncestorProcessPath: 祖先进程路径
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AncestorProcessPath: String
         # @param AncestorProcessParam: 祖先进程命令行参数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AncestorProcessParam: String
         # @param OperationTime: 事件最后一次处理的时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OperationTime: String
         # @param ContainerNetStatus: 容器隔离状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ContainerNetStatus: String
         # @param ContainerNetSubStatus: 容器隔离子状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ContainerNetSubStatus: String
         # @param ContainerIsolateOperationSrc: 容器隔离操作来源
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ContainerIsolateOperationSrc: String
         # @param CheckPlatform: 检测平台
         # 1: 云查杀引擎
@@ -19050,13 +18626,10 @@ module TencentCloud
         # 3: binaryAi
         # 4: 异常行为
         # 5: 威胁情报
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CheckPlatform: Array
         # @param FileAccessTime: 文件访问时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FileAccessTime: String
         # @param FileModifyTime: 文件修改时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FileModifyTime: String
         # @param NodeSubNetID: 节点子网ID
         # @type NodeSubNetID: String
@@ -19409,13 +18982,10 @@ module TencentCloud
         # @param EnableScan: 是否开启实时监控
         # @type EnableScan: Boolean
         # @param ScanPathAll: 扫描全部路径
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScanPathAll: Boolean
         # @param ScanPathType: 当ScanPathAll为true 生效 0扫描以下路径 1、扫描除以下路径
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScanPathType: Integer
         # @param ScanPath: 自选排除或扫描的地址
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScanPath: Array
         # @param ScanPathMode: 扫描路径模式：
         # SCAN_PATH_ALL：全部路径
@@ -19516,7 +19086,6 @@ module TencentCloud
         # @param ScanPath: 自选排除或扫描的地址
         # @type ScanPath: Array
         # @param ClickTimeout: 一键检测的超时设置
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClickTimeout: Integer
         # @param ScanPathMode: 扫描路径模式：
         # SCAN_PATH_ALL：全部路径
@@ -19658,7 +19227,6 @@ module TencentCloud
       # DescribeVirusScanTimeoutSetting返回参数结构体
       class DescribeVirusScanTimeoutSettingResponse < TencentCloud::Common::AbstractModel
         # @param Timeout: 超时时长单位小时
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Timeout: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -19692,25 +19260,18 @@ module TencentCloud
         # @param TaskId: 最近的一次扫描任务id
         # @type TaskId: String
         # @param RiskContainerCnt: 木马影响容器个数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RiskContainerCnt: Integer
         # @param RiskCnt: 待处理风险个数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RiskCnt: Integer
         # @param VirusDataBaseModifyTime: 病毒库更新时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VirusDataBaseModifyTime: String
         # @param RiskContainerIncrease: 木马影响容器个数较昨日增长
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RiskContainerIncrease: Integer
         # @param RiskIncrease: 待处理风险个数较昨日增长
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RiskIncrease: Integer
         # @param IsolateIncrease: 隔离事件个数较昨日新增
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsolateIncrease: Integer
         # @param IsolateCnt: 隔离事件总数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsolateCnt: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -20240,13 +19801,10 @@ module TencentCloud
         # @param ExceptionHostCount: 开启漏洞防御异常主机数量
         # @type ExceptionHostCount: Integer
         # @param HostIDs: 自选漏洞防御主机
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HostIDs: Array
         # @param HostTotalCount: 开通容器安全的主机总数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HostTotalCount: Integer
         # @param SupportDefenseVulCount: 支持防御的漏洞数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SupportDefenseVulCount: Integer
         # @param HostNodeCount: 普通节点个数
         # @type HostNodeCount: Integer
@@ -21305,24 +20863,18 @@ module TencentCloud
         # @param Name: 漏洞名称
         # @type Name: String
         # @param Tags: 漏洞标签
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
         # @param CVSSV3Score: CVSS V3分数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CVSSV3Score: Float
         # @param Level: 风险等级
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Level: String
         # @param CVEID: CVE编号
         # @type CVEID: String
         # @param Category: 漏洞类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Category: String
         # @param SubmitTime: 漏洞披露时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubmitTime: String
         # @param LatestFoundTime: 最近发现时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LatestFoundTime: String
         # @param Status: 应急漏洞风险情况：NOT_SCAN：未扫描，SCANNING：扫描中，SCANNED_NOT_RISK：已扫描，暂未风险 ，SCANNED_RISK：已扫描存在风险
         # @type Status: String
@@ -21331,16 +20883,12 @@ module TencentCloud
         # @param PocID: 漏洞PocID
         # @type PocID: String
         # @param DefenceStatus: 防御状态，NO_DEFENDED:未防御，DEFENDED:已防御
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DefenceStatus: String
         # @param DefenceScope: 漏洞防御主机范围: MANUAL:自选主机节点，ALL:全部
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DefenceScope: String
         # @param DefenceHostCount: 漏洞防御主机数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DefenceHostCount: Integer
         # @param DefendedCount: 已防御攻击次数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DefendedCount: Integer
 
         attr_accessor :Name, :Tags, :CVSSV3Score, :Level, :CVEID, :Category, :SubmitTime, :LatestFoundTime, :Status, :ID, :PocID, :DefenceStatus, :DefenceScope, :DefenceHostCount, :DefendedCount
@@ -21389,10 +20937,8 @@ module TencentCloud
         # @param Solution: 解决方案
         # @type Solution: String
         # @param Remark: 事件备注信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Remark: String
         # @param OperationTime: 事件最后一次处理的时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OperationTime: String
 
         attr_accessor :Description, :Solution, :Remark, :OperationTime
@@ -21458,10 +21004,8 @@ module TencentCloud
         # @param LatestFoundTime: 最近生成时间
         # @type LatestFoundTime: String
         # @param NodeIP: 节点IP
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NodeIP: String
         # @param HostID: 主机IP
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HostID: String
         # @param ContainerNetStatus: 网络状态
         # 未隔离  	NORMAL
@@ -21470,7 +21014,6 @@ module TencentCloud
         # 隔离失败	ISOLATE_FAILED
         # 解除隔离中  RESTORING
         # 解除隔离失败 RESTORE_FAILED
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ContainerNetStatus: String
         # @param ContainerNetSubStatus: 容器子状态
         # "AGENT_OFFLINE"       //Agent离线
@@ -21480,10 +21023,8 @@ module TencentCloud
         # "SHARED_HOST"         // 容器与主机共享网络
         # "RESOURCE_LIMIT"      //隔离操作资源超限
         # "UNKNOW"              // 原因未知
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ContainerNetSubStatus: String
         # @param ContainerIsolateOperationSrc: 容器隔离操作来源
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ContainerIsolateOperationSrc: String
         # @param ContainerStatus: 容器状态
         # 正在运行: RUNNING
@@ -21978,10 +21519,8 @@ module TencentCloud
         # @param RegionID: 地域ID
         # @type RegionID: Integer
         # @param Project: 所属项目
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Project: :class:`Tencentcloud::Tcss.v20201101.models.ProjectInfo`
         # @param Tags: 标签
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
         # @param ClusterID: 集群id
         # @type ClusterID: String
@@ -22118,10 +21657,8 @@ module TencentCloud
         # @param Type: 组件类型
         # @type Type: String
         # @param VulCount: 组件漏洞数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VulCount: Integer
         # @param ImageID: 镜像ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ImageID: String
 
         attr_accessor :Name, :Version, :Path, :Type, :VulCount, :ImageID
@@ -22216,40 +21753,28 @@ module TencentCloud
       # 基本镜像信息
       class ImageProgress < TencentCloud::Common::AbstractModel
         # @param ImageId: 镜像id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ImageId: String
         # @param RegistryType: 仓库类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RegistryType: String
         # @param ImageRepoAddress: 镜像仓库地址
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ImageRepoAddress: String
         # @param InstanceId: 实例id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceId: String
         # @param InstanceName: 实例名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceName: String
         # @param Namespace: 命名空间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Namespace: String
         # @param ImageName: 仓库名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ImageName: String
         # @param ImageTag: 镜像tag
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ImageTag: String
         # @param ScanStatus: 镜像扫描状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScanStatus: String
         # @param CveProgress: 镜像cve扫描进度
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CveProgress: Integer
         # @param RiskProgress: 镜像敏感扫描进度
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RiskProgress: Integer
         # @param VirusProgress: 镜像木马扫描进度
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VirusProgress: Integer
 
         attr_accessor :ImageId, :RegistryType, :ImageRepoAddress, :InstanceId, :InstanceName, :Namespace, :ImageName, :ImageTag, :ScanStatus, :CveProgress, :RiskProgress, :VirusProgress
@@ -22347,10 +21872,8 @@ module TencentCloud
         # @param OsName: 镜像系统
         # @type OsName: String
         # @param ScanVirusError: 木马扫描错误
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScanVirusError: String
         # @param ScanVulError: 漏洞扫描错误
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScanVulError: String
         # @param InstanceId: 实例id
         # @type InstanceId: String
@@ -22359,31 +21882,22 @@ module TencentCloud
         # @param Namespace: 命名空间
         # @type Namespace: String
         # @param ScanRiskError: 高危扫描错误
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScanRiskError: String
         # @param ScanVirusProgress: 敏感信息扫描进度
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScanVirusProgress: Integer
         # @param ScanVulProgress: 木马扫描进度
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScanVulProgress: Integer
         # @param ScanRiskProgress: 漏洞扫描进度
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScanRiskProgress: Integer
         # @param ScanRemainTime: 剩余扫描时间秒
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScanRemainTime: Integer
         # @param CveStatus: cve扫描状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CveStatus: String
         # @param RiskStatus: 高危扫描状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RiskStatus: String
         # @param VirusStatus: 木马扫描状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VirusStatus: String
         # @param Progress: 总进度
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Progress: Integer
         # @param IsAuthorized: 授权状态
         # @type IsAuthorized: Integer
@@ -22392,13 +21906,10 @@ module TencentCloud
         # @param Id: 列表id
         # @type Id: Integer
         # @param ImageId: 镜像Id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ImageId: String
         # @param ImageCreateTime: 镜像创建的时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ImageCreateTime: String
         # @param IsLatestImage: 是否为镜像的最新版本
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsLatestImage: Boolean
         # @param LowLevelVulCnt: low级别漏洞个数
         # @type LowLevelVulCnt: Integer
@@ -22417,15 +21928,14 @@ module TencentCloud
         # @param HasNeedFixVul: 是否存在必修漏洞
         # @type HasNeedFixVul: Boolean
         # @param SensitiveInfoCnt: 敏感信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SensitiveInfoCnt: Integer
         # @param RecommendedFix: 是否推荐处置
         # @type RecommendedFix: Boolean
 
         attr_accessor :ImageDigest, :ImageRepoAddress, :RegistryType, :ImageName, :ImageTag, :ImageSize, :ScanTime, :ScanStatus, :VulCnt, :VirusCnt, :RiskCnt, :SentiveInfoCnt, :IsTrustImage, :OsName, :ScanVirusError, :ScanVulError, :InstanceId, :InstanceName, :Namespace, :ScanRiskError, :ScanVirusProgress, :ScanVulProgress, :ScanRiskProgress, :ScanRemainTime, :CveStatus, :RiskStatus, :VirusStatus, :Progress, :IsAuthorized, :RegistryRegion, :Id, :ImageId, :ImageCreateTime, :IsLatestImage, :LowLevelVulCnt, :MediumLevelVulCnt, :HighLevelVulCnt, :CriticalLevelVulCnt, :ContainerCnt, :ComponentCnt, :IsRunning, :HasNeedFixVul, :SensitiveInfoCnt, :RecommendedFix
         extend Gem::Deprecate
-        deprecate :SentiveInfoCnt, :none, 2024, 11
-        deprecate :SentiveInfoCnt=, :none, 2024, 11
+        deprecate :SentiveInfoCnt, :none, 2025, 3
+        deprecate :SentiveInfoCnt=, :none, 2025, 3
 
         def initialize(imagedigest=nil, imagerepoaddress=nil, registrytype=nil, imagename=nil, imagetag=nil, imagesize=nil, scantime=nil, scanstatus=nil, vulcnt=nil, viruscnt=nil, riskcnt=nil, sentiveinfocnt=nil, istrustimage=nil, osname=nil, scanviruserror=nil, scanvulerror=nil, instanceid=nil, instancename=nil, namespace=nil, scanriskerror=nil, scanvirusprogress=nil, scanvulprogress=nil, scanriskprogress=nil, scanremaintime=nil, cvestatus=nil, riskstatus=nil, virusstatus=nil, progress=nil, isauthorized=nil, registryregion=nil, id=nil, imageid=nil, imagecreatetime=nil, islatestimage=nil, lowlevelvulcnt=nil, mediumlevelvulcnt=nil, highlevelvulcnt=nil, criticallevelvulcnt=nil, containercnt=nil, componentcnt=nil, isrunning=nil, hasneedfixvul=nil, sensitiveinfocnt=nil, recommendedfix=nil)
           @ImageDigest = imagedigest
@@ -22539,7 +22049,6 @@ module TencentCloud
         # @param RegistryVersion: 仓库版本
         # @type RegistryVersion: String
         # @param ConnectMsg: 仓库连接错误信息，待废弃，请使用ConnDetectException
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ConnectMsg: String
         # @param ConnDetectType: 联通性检测方式
         # @type ConnDetectType: String
@@ -22559,10 +22068,12 @@ module TencentCloud
         # @type SyncSolution: String
         # @param SyncMessage: 同步失败信息
         # @type SyncMessage: String
+        # @param SyncMode: 同步方式，0全量同步，1增量同步
+        # @type SyncMode: Integer
 
-        attr_accessor :RegistryId, :Name, :RegistryType, :Url, :NetType, :RegistryRegion, :RegistryVersion, :ConnectMsg, :ConnDetectType, :ConnDetectHostCount, :ConnDetectDetail, :InstanceID, :LatestSyncTime, :SyncStatus, :SyncFailReason, :SyncSolution, :SyncMessage
+        attr_accessor :RegistryId, :Name, :RegistryType, :Url, :NetType, :RegistryRegion, :RegistryVersion, :ConnectMsg, :ConnDetectType, :ConnDetectHostCount, :ConnDetectDetail, :InstanceID, :LatestSyncTime, :SyncStatus, :SyncFailReason, :SyncSolution, :SyncMessage, :SyncMode
 
-        def initialize(registryid=nil, name=nil, registrytype=nil, url=nil, nettype=nil, registryregion=nil, registryversion=nil, connectmsg=nil, conndetecttype=nil, conndetecthostcount=nil, conndetectdetail=nil, instanceid=nil, latestsynctime=nil, syncstatus=nil, syncfailreason=nil, syncsolution=nil, syncmessage=nil)
+        def initialize(registryid=nil, name=nil, registrytype=nil, url=nil, nettype=nil, registryregion=nil, registryversion=nil, connectmsg=nil, conndetecttype=nil, conndetecthostcount=nil, conndetectdetail=nil, instanceid=nil, latestsynctime=nil, syncstatus=nil, syncfailreason=nil, syncsolution=nil, syncmessage=nil, syncmode=nil)
           @RegistryId = registryid
           @Name = name
           @RegistryType = registrytype
@@ -22580,6 +22091,7 @@ module TencentCloud
           @SyncFailReason = syncfailreason
           @SyncSolution = syncsolution
           @SyncMessage = syncmessage
+          @SyncMode = syncmode
         end
 
         def deserialize(params)
@@ -22607,25 +22119,21 @@ module TencentCloud
           @SyncFailReason = params['SyncFailReason']
           @SyncSolution = params['SyncSolution']
           @SyncMessage = params['SyncMessage']
+          @SyncMode = params['SyncMode']
         end
       end
 
       # 容器安全镜像高危行为信息
       class ImageRisk < TencentCloud::Common::AbstractModel
         # @param Behavior: 高危行为
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Behavior: Integer
         # @param Type: 种类
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: Integer
         # @param Level: 风险等级
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Level: String
         # @param Desc: 描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Desc: String
         # @param InstructionContent: 解决方案
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstructionContent: String
 
         attr_accessor :Behavior, :Type, :Level, :Desc, :InstructionContent
@@ -22713,7 +22221,7 @@ module TencentCloud
       class ImageScanInquireInfo < TencentCloud::Common::AbstractModel
         # @param InquireKey: 计费项
         # @type InquireKey: String
-        # @param Capcity: 容量
+        # @param Capcity: 总容量
         # @type Capcity: Integer
         # @param Useage: 已使用量
         # @type Useage: Integer
@@ -22728,10 +22236,16 @@ module TencentCloud
         # @type PurchaseStatus: String
         # @param ResourceID: 资源ID
         # @type ResourceID: String
+        # @param PayNum: 购买扫描数
+        # @type PayNum: Integer
+        # @param TrialNum: 试用扫描数
+        # @type TrialNum: Integer
+        # @param PayUsage: 购买已使用量
+        # @type PayUsage: Integer
 
-        attr_accessor :InquireKey, :Capcity, :Useage, :StartTime, :EndTime, :PurchaseStatus, :ResourceID
+        attr_accessor :InquireKey, :Capcity, :Useage, :StartTime, :EndTime, :PurchaseStatus, :ResourceID, :PayNum, :TrialNum, :PayUsage
 
-        def initialize(inquirekey=nil, capcity=nil, useage=nil, starttime=nil, endtime=nil, purchasestatus=nil, resourceid=nil)
+        def initialize(inquirekey=nil, capcity=nil, useage=nil, starttime=nil, endtime=nil, purchasestatus=nil, resourceid=nil, paynum=nil, trialnum=nil, payusage=nil)
           @InquireKey = inquirekey
           @Capcity = capcity
           @Useage = useage
@@ -22739,6 +22253,9 @@ module TencentCloud
           @EndTime = endtime
           @PurchaseStatus = purchasestatus
           @ResourceID = resourceid
+          @PayNum = paynum
+          @TrialNum = trialnum
+          @PayUsage = payusage
         end
 
         def deserialize(params)
@@ -22749,6 +22266,9 @@ module TencentCloud
           @EndTime = params['EndTime']
           @PurchaseStatus = params['PurchaseStatus']
           @ResourceID = params['ResourceID']
+          @PayNum = params['PayNum']
+          @TrialNum = params['TrialNum']
+          @PayUsage = params['PayUsage']
         end
       end
 
@@ -22855,37 +22375,26 @@ module TencentCloud
       # 容器安全镜像病毒信息
       class ImageVirusInfo < TencentCloud::Common::AbstractModel
         # @param Path: 路径
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Path: String
         # @param RiskLevel: 风险等级
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RiskLevel: Integer
         # @param VirusName: 病毒名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VirusName: String
         # @param Tags: 标签
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
         # @param Desc: 描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Desc: String
         # @param Solution: 修护建议
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Solution: String
         # @param Size: 大小
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Size: Integer
         # @param FirstScanTime: 首次发现时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FirstScanTime: String
         # @param LatestScanTime: 最近扫描时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LatestScanTime: String
         # @param Md5: 文件md5
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Md5: String
         # @param FileName: 文件名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FileName: String
         # @param CheckPlatform: 检测平台
         # 1: 云查杀引擎
@@ -22893,7 +22402,6 @@ module TencentCloud
         # 3: binaryAi
         # 4: 异常行为
         # 5: 威胁情报
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CheckPlatform: Array
 
         attr_accessor :Path, :RiskLevel, :VirusName, :Tags, :Desc, :Solution, :Size, :FirstScanTime, :LatestScanTime, :Md5, :FileName, :CheckPlatform
@@ -22932,67 +22440,46 @@ module TencentCloud
       # 容器安全镜像漏洞信息
       class ImageVul < TencentCloud::Common::AbstractModel
         # @param CVEID: 漏洞id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CVEID: String
         # @param POCID: 观点验证程序id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type POCID: String
         # @param Name: 漏洞名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Components: 涉及组件信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Components: Array
         # @param Category: 分类
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Category: String
         # @param CategoryType: 分类2
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CategoryType: String
         # @param Level: 风险等级
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Level: String
         # @param Des: 描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Des: String
         # @param OfficialSolution: 解决方案
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OfficialSolution: String
         # @param Reference: 引用
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Reference: String
         # @param DefenseSolution: 防御方案
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DefenseSolution: String
         # @param SubmitTime: 提交时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubmitTime: String
         # @param CvssScore: Cvss分数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CvssScore: String
         # @param CvssVector: Cvss信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CvssVector: String
         # @param IsSuggest: 是否建议修复
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsSuggest: String
         # @param FixedVersions: 修复版本号
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FixedVersions: String
         # @param Tag: 漏洞标签:"CanBeFixed","DynamicLevelPoc","DynamicLevelExp"
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tag: Array
         # @param Component: 组件名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Component: String
         # @param Version: 组件版本
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Version: String
         # @param AttackLevel: 攻击热度 0-3
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AttackLevel: Integer
         # @param LayerInfos: 镜像层信息列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LayerInfos: Array
 
         attr_accessor :CVEID, :POCID, :Name, :Components, :Category, :CategoryType, :Level, :Des, :OfficialSolution, :Reference, :DefenseSolution, :SubmitTime, :CvssScore, :CvssVector, :IsSuggest, :FixedVersions, :Tag, :Component, :Version, :AttackLevel, :LayerInfos
@@ -23063,10 +22550,8 @@ module TencentCloud
       # 漏洞列表中的层信息
       class ImageVulLayerInfo < TencentCloud::Common::AbstractModel
         # @param LayerId: 层id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LayerId: String
         # @param LayerCmd: 层cmd
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LayerCmd: String
 
         attr_accessor :LayerId, :LayerCmd
@@ -23091,16 +22576,12 @@ module TencentCloud
         # @param ContainerCnt: 关联容器数量
         # @type ContainerCnt: Integer
         # @param RuleId: 绑定规则id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleId: String
         # @param RuleName: 规则名字
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleName: String
         # @param ImageSize: 镜像大小
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ImageSize: Integer
         # @param ScanTime: 最近扫描时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScanTime: String
 
         attr_accessor :ImageId, :ImageName, :ContainerCnt, :RuleId, :RuleName, :ImageSize, :ScanTime
@@ -23279,13 +22760,10 @@ module TencentCloud
         # @param IsSuggest: 是否是重点关注：true：是，false：不是
         # @type IsSuggest: Boolean
         # @param FixedVersions: 修复版本号
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FixedVersions: String
         # @param Tag: 漏洞标签:"CanBeFixed","DynamicLevelPoc","DynamicLevelExp"
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tag: Array
         # @param AttackLevel: 攻击热度
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AttackLevel: Integer
 
         attr_accessor :CVEID, :Name, :Component, :Version, :Category, :CategoryType, :Level, :Des, :OfficialSolution, :Reference, :DefenseSolution, :SubmitTime, :CVSSV3Score, :CVSSV3Desc, :IsSuggest, :FixedVersions, :Tag, :AttackLevel
@@ -23641,13 +23119,10 @@ module TencentCloud
         # @param Action: 动作(RULE_MODE_ALERT: 告警 RULE_MODE_RELEASE:放行)
         # @type Action: String
         # @param RiskLevel: 威胁等级 HIGH:高级 MIDDLE: 中级 LOW:低级 NOTICE:提示
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RiskLevel: String
         # @param Status: 开关状态(true:开 false:关) 适用于系统规则
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Boolean
         # @param IsDelete: 是否被删除 适用于自定义规则入参
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsDelete: Boolean
 
         attr_accessor :Scope, :Action, :RiskLevel, :Status, :IsDelete
@@ -24562,6 +24037,50 @@ module TencentCloud
         end
       end
 
+      # ModifyRaspRules请求参数结构体
+      class ModifyRaspRulesRequest < TencentCloud::Common::AbstractModel
+        # @param Id: 规则ID(新增时请留空，编辑时候必传)
+        # @type Id: Integer
+        # @param VulVulsIDs: 漏洞id数组
+        # @type VulVulsIDs: Array
+        # @param URLRegexp: 自定义请求范围加白正则表达式，选择全部请求范围时候为空，否则不能为空，base64编码
+        # @type URLRegexp: String
+        # @param WhiteType: 加白方式，0：自定义请求范围加白。1：全部请求加白
+        # @type WhiteType: Integer
+
+        attr_accessor :Id, :VulVulsIDs, :URLRegexp, :WhiteType
+
+        def initialize(id=nil, vulvulsids=nil, urlregexp=nil, whitetype=nil)
+          @Id = id
+          @VulVulsIDs = vulvulsids
+          @URLRegexp = urlregexp
+          @WhiteType = whitetype
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @VulVulsIDs = params['VulVulsIDs']
+          @URLRegexp = params['URLRegexp']
+          @WhiteType = params['WhiteType']
+        end
+      end
+
+      # ModifyRaspRules返回参数结构体
+      class ModifyRaspRulesResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyReverseShellStatus请求参数结构体
       class ModifyReverseShellStatusRequest < TencentCloud::Common::AbstractModel
         # @param EventIdSet: 处理事件ids
@@ -24970,17 +24489,21 @@ module TencentCloud
         # @type AutoIsolateSwitch: Boolean
         # @param IsKillProgress: 是否中断隔离文件关联的进程(true:是 false:否)
         # @type IsKillProgress: Boolean
+        # @param UserAutoIsolateKillSwitch: 用户用户自定义开关
+        # @type UserAutoIsolateKillSwitch: Boolean
 
-        attr_accessor :AutoIsolateSwitch, :IsKillProgress
+        attr_accessor :AutoIsolateSwitch, :IsKillProgress, :UserAutoIsolateKillSwitch
 
-        def initialize(autoisolateswitch=nil, iskillprogress=nil)
+        def initialize(autoisolateswitch=nil, iskillprogress=nil, userautoisolatekillswitch=nil)
           @AutoIsolateSwitch = autoisolateswitch
           @IsKillProgress = iskillprogress
+          @UserAutoIsolateKillSwitch = userautoisolatekillswitch
         end
 
         def deserialize(params)
           @AutoIsolateSwitch = params['AutoIsolateSwitch']
           @IsKillProgress = params['IsKillProgress']
+          @UserAutoIsolateKillSwitch = params['UserAutoIsolateKillSwitch']
         end
       end
 
@@ -25004,14 +24527,7 @@ module TencentCloud
       class ModifyVirusFileStatusRequest < TencentCloud::Common::AbstractModel
         # @param EventIdSet: 处理事件id
         # @type EventIdSet: Array
-        # @param Status: 标记事件的状态，
-        #     EVENT_DEALED:事件处理
-        #     EVENT_INGNORE"：事件忽略
-        #     EVENT_DEL:事件删除
-        #     EVENT_ADD_WHITE:事件加白
-        #     EVENT_PENDING: 事件待处理
-        # 	EVENT_ISOLATE_CONTAINER: 隔离容器
-        # 	EVENT_RESOTRE_CONTAINER: 恢复容器
+        # @param Status: 标记事件的状态，       EVENT_DEALED:事件处理    EVENT_IGNORE"：事件忽略    EVENT_DEL:事件删除    EVENT_ADD_WHITE:事件加白    EVENT_PENDING: 事件待处理	EVENT_ISOLATE_CONTAINER: 隔离容器	EVENT_RESOTRE_CONTAINER: 恢复容器
         # @type Status: String
         # @param Remark: 事件备注
         # @type Remark: String
@@ -25347,12 +24863,10 @@ module TencentCloud
         # @param OperationTime: 操作时间
         # @type OperationTime: String
         # @param AppId: 操作人appid
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AppId: Integer
         # @param Uin: 操作人uin
         # @type Uin: String
         # @param PolicyId: 策略id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PolicyId: Integer
 
         attr_accessor :ClusterId, :ClusterName, :Region, :Action, :Operation, :NetworkPolicyName, :OperationTime, :AppId, :Uin, :PolicyId
@@ -25409,10 +24923,8 @@ module TencentCloud
         # @param NetworkPolicyPluginStatus: 集群网络插件状态，正常：Running 不正常：Error
         # @type NetworkPolicyPluginStatus: String
         # @param NetworkPolicyPluginError: 集群网络插件错误信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NetworkPolicyPluginError: String
         # @param ClusterNetworkSettings: 容器网络插件
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterNetworkSettings: String
 
         attr_accessor :ClusterId, :ClusterName, :ClusterVersion, :ClusterOs, :ClusterType, :Region, :NetworkPolicyPlugin, :ClusterStatus, :TotalRuleCount, :EnableRuleCount, :NetworkPolicyPluginStatus, :NetworkPolicyPluginError, :ClusterNetworkSettings
@@ -25495,13 +25007,10 @@ module TencentCloud
         # @param PodName: pod名字
         # @type PodName: String
         # @param Namespace: pod空间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Namespace: String
         # @param Labels: pod标签
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Labels: String
         # @param WorkloadKind: pod类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WorkloadKind: String
 
         attr_accessor :PodName, :Namespace, :Labels, :WorkloadKind
@@ -25526,7 +25035,6 @@ module TencentCloud
         # @param Direction: 网络策略方向，分为FROM和TO
         # @type Direction: String
         # @param Ports: 网络策略策略端口
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Ports: Array
         # @param Peer: 网络策略策略对象
 
@@ -25539,7 +25047,6 @@ module TencentCloud
         # 开启中：Publishing
 
         # 待开启：unPublishEdit
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Peer: Array
 
         attr_accessor :Direction, :Ports, :Peer
@@ -25582,13 +25089,10 @@ module TencentCloud
         # ip类型：IPBlock，代表只有IPBlock有值
         # @type PeerType: String
         # @param NamespaceSelector: 空间选择器
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NamespaceSelector: String
         # @param PodSelector: pod选择器
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PodSelector: String
         # @param IPBlock: Ip选择器
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IPBlock: String
 
         attr_accessor :PeerType, :NamespaceSelector, :PodSelector, :IPBlock
@@ -25613,7 +25117,6 @@ module TencentCloud
         # @param Name: 网络策略名
         # @type Name: String
         # @param Description: 网络策略描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
         # @param PublishStatus: 发布状态：
 
@@ -25644,7 +25147,6 @@ module TencentCloud
         # cilium：Cilium
         # @type NetworkPolicyPlugin: String
         # @param PublishResult: 策略发布结果
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PublishResult: String
         # @param FromPolicyRule: 入站规则
 
@@ -25663,7 +25165,6 @@ module TencentCloud
         # 自定义：3
         # @type ToPolicyRule: Integer
         # @param PodSelector: 作用对象
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PodSelector: String
         # @param Id: 网络策略Id
         # @type Id: Integer
@@ -25704,10 +25205,8 @@ module TencentCloud
       # 网络集群策略自定义规则端口
       class NetworkPorts < TencentCloud::Common::AbstractModel
         # @param Protocol: 网络策略协议
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Protocol: String
         # @param Port: 网络策略策略端口
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Port: String
 
         attr_accessor :Protocol, :Port
@@ -25849,16 +25348,12 @@ module TencentCloud
       # 运行时安全，进程基础信息
       class ProcessBaseInfo < TencentCloud::Common::AbstractModel
         # @param ProcessStartUser: 进程启动用户
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProcessStartUser: String
         # @param ProcessUserGroup: 进程用户组
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProcessUserGroup: String
         # @param ProcessPath: 进程路径
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProcessPath: String
         # @param ProcessParam: 进程命令行参数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProcessParam: String
 
         attr_accessor :ProcessStartUser, :ProcessUserGroup, :ProcessPath, :ProcessParam
@@ -26110,6 +25605,86 @@ module TencentCloud
         end
       end
 
+      # rasp白名单规则
+      class RaspRule < TencentCloud::Common::AbstractModel
+        # @param Id: 规则ID
+        # @type Id: Integer
+        # @param URLRegexp: 自定义请求url范围正则表达式，为空则保存不成功
+        # @type URLRegexp: String
+        # @param VulVulsID: 漏洞id
+        # @type VulVulsID: Integer
+        # @param VulVulsName: 漏洞名称
+        # @type VulVulsName: String
+        # @param CveID: cve_id
+        # @type CveID: String
+        # @param SupportDefense: 漏洞防御类型，从漏洞表富化， 1:支持组件漏洞防御，组件漏洞没有正则加白。2:支持正则防御
+        # @type SupportDefense: Integer
+        # @param WhiteType: 加白范围，0:全部请求加白，1:自定义请求范围加白
+        # @type WhiteType: Integer
+        # @param Status: 状态 0: 有效
+        # @type Status: Integer
+        # @param CreateTime: 创建时间
+        # @type CreateTime: String
+        # @param ModifyTime: 修改时间
+        # @type ModifyTime: String
+
+        attr_accessor :Id, :URLRegexp, :VulVulsID, :VulVulsName, :CveID, :SupportDefense, :WhiteType, :Status, :CreateTime, :ModifyTime
+
+        def initialize(id=nil, urlregexp=nil, vulvulsid=nil, vulvulsname=nil, cveid=nil, supportdefense=nil, whitetype=nil, status=nil, createtime=nil, modifytime=nil)
+          @Id = id
+          @URLRegexp = urlregexp
+          @VulVulsID = vulvulsid
+          @VulVulsName = vulvulsname
+          @CveID = cveid
+          @SupportDefense = supportdefense
+          @WhiteType = whitetype
+          @Status = status
+          @CreateTime = createtime
+          @ModifyTime = modifytime
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @URLRegexp = params['URLRegexp']
+          @VulVulsID = params['VulVulsID']
+          @VulVulsName = params['VulVulsName']
+          @CveID = params['CveID']
+          @SupportDefense = params['SupportDefense']
+          @WhiteType = params['WhiteType']
+          @Status = params['Status']
+          @CreateTime = params['CreateTime']
+          @ModifyTime = params['ModifyTime']
+        end
+      end
+
+      # rasp白名单漏洞列表
+      class RaspRuleVul < TencentCloud::Common::AbstractModel
+        # @param VulVulsID: 漏洞id
+        # @type VulVulsID: Integer
+        # @param VulVulsName: 漏洞名称
+        # @type VulVulsName: String
+        # @param CveID: cve_id
+        # @type CveID: String
+        # @param SupportDefense: 漏洞防御类型，从漏洞表富化， 1:支持组件漏洞防御，组件漏洞没有正则加白。2:支持正则防御
+        # @type SupportDefense: Integer
+
+        attr_accessor :VulVulsID, :VulVulsName, :CveID, :SupportDefense
+
+        def initialize(vulvulsid=nil, vulvulsname=nil, cveid=nil, supportdefense=nil)
+          @VulVulsID = vulvulsid
+          @VulVulsName = vulvulsname
+          @CveID = cveid
+          @SupportDefense = supportdefense
+        end
+
+        def deserialize(params)
+          @VulVulsID = params['VulVulsID']
+          @VulVulsName = params['VulVulsName']
+          @CveID = params['CveID']
+          @SupportDefense = params['SupportDefense']
+        end
+      end
+
       # 地域信息
       class RegionInfo < TencentCloud::Common::AbstractModel
         # @param Region: 地域标识
@@ -26285,12 +25860,10 @@ module TencentCloud
         # @param Solution: 解决方案
         # @type Solution: String
         # @param Remark: 事件备注信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Remark: String
         # @param DstAddress: 目标地址
         # @type DstAddress: String
         # @param OperationTime: 事件最后一次处理的时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OperationTime: String
 
         attr_accessor :Description, :Solution, :Remark, :DstAddress, :OperationTime
@@ -26714,12 +26287,10 @@ module TencentCloud
         # @param Solution: 解决方案
         # @type Solution: String
         # @param Remark: 事件备注信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Remark: String
         # @param SyscallName: 系统调用名称
         # @type SyscallName: String
         # @param OperationTime: 事件最后一次处理的时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OperationTime: String
 
         attr_accessor :Description, :Solution, :Remark, :SyscallName, :OperationTime
@@ -26981,7 +26552,6 @@ module TencentCloud
         # @param RuleId: 策略Id
         # @type RuleId: String
         # @param UpdateTime: 策略更新时间, 存在为空的情况
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: String
         # @param RuleName: 策略名字
         # @type RuleName: String
@@ -27056,10 +26626,8 @@ module TencentCloud
         # @param LatestFoundTime: 最近生成时间
         # @type LatestFoundTime: String
         # @param HostIP: 内网ip
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HostIP: String
         # @param ClientIP: 外网ip
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClientIP: String
         # @param ContainerNetStatus: 网络状态
         # 未隔离  	NORMAL
@@ -27068,7 +26636,6 @@ module TencentCloud
         # 隔离失败	ISOLATE_FAILED
         # 解除隔离中  RESTORING
         # 解除隔离失败 RESTORE_FAILED
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ContainerNetStatus: String
         # @param ContainerNetSubStatus: 容器子状态
         # "AGENT_OFFLINE"       //Agent离线
@@ -27078,10 +26645,8 @@ module TencentCloud
         # "SHARED_HOST"         // 容器与主机共享网络
         # "RESOURCE_LIMIT"      //隔离操作资源超限
         # "UNKNOW"              // 原因未知
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ContainerNetSubStatus: String
         # @param ContainerIsolateOperationSrc: 容器隔离操作来源
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ContainerIsolateOperationSrc: String
         # @param NodeID: 节点ID
         # @type NodeID: String
@@ -27535,15 +27100,17 @@ module TencentCloud
         # @param TopicID: 主题ID
         # @type TopicID: String
         # @param LogSetName: 日志集名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LogSetName: String
         # @param TopicName: 主题名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TopicName: String
+        # @param SubLogType: 日志类型
+        # @type SubLogType: Array
+        # @param ErrMsg: 错误信息
+        # @type ErrMsg: String
 
-        attr_accessor :LogType, :State, :Region, :LogSet, :TopicID, :LogSetName, :TopicName
+        attr_accessor :LogType, :State, :Region, :LogSet, :TopicID, :LogSetName, :TopicName, :SubLogType, :ErrMsg
 
-        def initialize(logtype=nil, state=nil, region=nil, logset=nil, topicid=nil, logsetname=nil, topicname=nil)
+        def initialize(logtype=nil, state=nil, region=nil, logset=nil, topicid=nil, logsetname=nil, topicname=nil, sublogtype=nil, errmsg=nil)
           @LogType = logtype
           @State = state
           @Region = region
@@ -27551,6 +27118,8 @@ module TencentCloud
           @TopicID = topicid
           @LogSetName = logsetname
           @TopicName = topicname
+          @SubLogType = sublogtype
+          @ErrMsg = errmsg
         end
 
         def deserialize(params)
@@ -27561,28 +27130,35 @@ module TencentCloud
           @TopicID = params['TopicID']
           @LogSetName = params['LogSetName']
           @TopicName = params['TopicName']
+          @SubLogType = params['SubLogType']
+          @ErrMsg = params['ErrMsg']
         end
       end
 
       # 安全日志日志投递kafka设置详情
       class SecLogDeliveryKafkaSettingInfo < TencentCloud::Common::AbstractModel
-        # @param LogType: 日志类型
+        # @param LogType: 安全日志模块
         # @type LogType: String
         # @param TopicID: 主题ID
         # @type TopicID: String
         # @param TopicName: 主题名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TopicName: String
         # @param State: 投递状态(false:关 true:开)
         # @type State: Boolean
+        # @param SubLogType: 日志类型
+        # @type SubLogType: Array
+        # @param ErrMsg: 错误信息
+        # @type ErrMsg: String
 
-        attr_accessor :LogType, :TopicID, :TopicName, :State
+        attr_accessor :LogType, :TopicID, :TopicName, :State, :SubLogType, :ErrMsg
 
-        def initialize(logtype=nil, topicid=nil, topicname=nil, state=nil)
+        def initialize(logtype=nil, topicid=nil, topicname=nil, state=nil, sublogtype=nil, errmsg=nil)
           @LogType = logtype
           @TopicID = topicid
           @TopicName = topicname
           @State = state
+          @SubLogType = sublogtype
+          @ErrMsg = errmsg
         end
 
         def deserialize(params)
@@ -27590,6 +27166,8 @@ module TencentCloud
           @TopicID = params['TopicID']
           @TopicName = params['TopicName']
           @State = params['State']
+          @SubLogType = params['SubLogType']
+          @ErrMsg = params['ErrMsg']
         end
       end
 
@@ -27634,26 +27212,20 @@ module TencentCloud
         # @param HostID: 主机ID
         # @type HostID: String
         # @param HostName: 主机名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HostName: String
         # @param HostIP: 主机IP
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HostIP: String
         # @param HostStatus: 主机状态
         # @type HostStatus: String
         # @param ClusterID: 集群ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterID: String
         # @param ClusterName: 集群名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterName: String
         # @param PublicIP: 外网IP
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PublicIP: String
         # @param JoinState: 接入状态(true:已接入  false:未接入)
         # @type JoinState: Boolean
         # @param ClusterVersion: 集群版本
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterVersion: String
         # @param ClusterMainAddress: 集群主节点地址
         # @type ClusterMainAddress: String
@@ -27662,7 +27234,6 @@ module TencentCloud
         # @param ClusterType: 集群类型
         # @type ClusterType: String
         # @param ClusterStatus: 集群状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterStatus: String
 
         attr_accessor :HostID, :HostName, :HostIP, :HostStatus, :ClusterID, :ClusterName, :PublicIP, :JoinState, :ClusterVersion, :ClusterMainAddress, :ContainerCnt, :ClusterType, :ClusterStatus
@@ -28181,10 +27752,8 @@ module TencentCloud
         # @param SubmitTime: 漏洞披露时间
         # @type SubmitTime: String
         # @param VulId: 漏洞id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VulId: Integer
         # @param Status: 状态，0:防御中，1：已加白，指的是在白名单列表中有这个漏洞的，不一定是全局型白名单
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
 
         attr_accessor :PocID, :Name, :Tags, :CVSSV3Score, :Level, :CVEID, :SubmitTime, :VulId, :Status
@@ -28491,10 +28060,14 @@ module TencentCloud
         # @type ConnDetectConfig: Array
         # @param RegistryId: 仓库唯一id
         # @type RegistryId: Integer
+        # @param SyncMode: 同步方式，0全量同步，1增量同步
+        # @type SyncMode: Integer
+        # @param NeedScan: 是否自动授权&扫描，选择增量同步时参数生效，包含所有新增镜像
+        # @type NeedScan: Boolean
 
-        attr_accessor :Name, :Username, :Password, :Url, :RegistryType, :NetType, :RegistryVersion, :RegistryRegion, :SpeedLimit, :Insecure, :ConnDetectConfig, :RegistryId
+        attr_accessor :Name, :Username, :Password, :Url, :RegistryType, :NetType, :RegistryVersion, :RegistryRegion, :SpeedLimit, :Insecure, :ConnDetectConfig, :RegistryId, :SyncMode, :NeedScan
 
-        def initialize(name=nil, username=nil, password=nil, url=nil, registrytype=nil, nettype=nil, registryversion=nil, registryregion=nil, speedlimit=nil, insecure=nil, conndetectconfig=nil, registryid=nil)
+        def initialize(name=nil, username=nil, password=nil, url=nil, registrytype=nil, nettype=nil, registryversion=nil, registryregion=nil, speedlimit=nil, insecure=nil, conndetectconfig=nil, registryid=nil, syncmode=nil, needscan=nil)
           @Name = name
           @Username = username
           @Password = password
@@ -28507,6 +28080,8 @@ module TencentCloud
           @Insecure = insecure
           @ConnDetectConfig = conndetectconfig
           @RegistryId = registryid
+          @SyncMode = syncmode
+          @NeedScan = needscan
         end
 
         def deserialize(params)
@@ -28529,19 +28104,18 @@ module TencentCloud
             end
           end
           @RegistryId = params['RegistryId']
+          @SyncMode = params['SyncMode']
+          @NeedScan = params['NeedScan']
         end
       end
 
       # UpdateAssetImageRegistryRegistryDetail返回参数结构体
       class UpdateAssetImageRegistryRegistryDetailResponse < TencentCloud::Common::AbstractModel
         # @param HealthCheckErr: 连接错误信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HealthCheckErr: String
         # @param NameRepeatErr: 名称错误信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NameRepeatErr: String
         # @param RegistryId: 仓库唯一id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RegistryId: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -28596,8 +28170,8 @@ module TencentCloud
 
         attr_accessor :ScanPeriod, :Enable, :ScanTime, :ScanType, :Images, :All, :Id, :Latest, :ContainerRunning, :ScanEndTime, :ScanScope, :RegistryType, :Namespace, :ExcludeImageAssetIds
         extend Gem::Deprecate
-        deprecate :All, :none, 2024, 11
-        deprecate :All=, :none, 2024, 11
+        deprecate :All, :none, 2025, 3
+        deprecate :All=, :none, 2025, 3
 
         def initialize(scanperiod=nil, enable=nil, scantime=nil, scantype=nil, images=nil, all=nil, id=nil, latest=nil, containerrunning=nil, scanendtime=nil, scanscope=nil, registrytype=nil, namespace=nil, excludeimageassetids=nil)
           @ScanPeriod = scanperiod
@@ -28796,6 +28370,38 @@ module TencentCloud
         end
       end
 
+      # 日志分析资源详情
+      class VasInfoResourceDetail < TencentCloud::Common::AbstractModel
+        # @param ResourceId: 资源ID
+        # @type ResourceId: String
+        # @param StartTime: 开始时间
+        # @type StartTime: String
+        # @param EndTime: 到期时间
+        # @type EndTime: String
+        # @param SourceType: 0 付费订单 1试用 2赠送
+        # @type SourceType: Integer
+        # @param InquireNum: 购买量
+        # @type InquireNum: Integer
+
+        attr_accessor :ResourceId, :StartTime, :EndTime, :SourceType, :InquireNum
+
+        def initialize(resourceid=nil, starttime=nil, endtime=nil, sourcetype=nil, inquirenum=nil)
+          @ResourceId = resourceid
+          @StartTime = starttime
+          @EndTime = endtime
+          @SourceType = sourcetype
+          @InquireNum = inquirenum
+        end
+
+        def deserialize(params)
+          @ResourceId = params['ResourceId']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @SourceType = params['SourceType']
+          @InquireNum = params['InquireNum']
+        end
+      end
+
       # 木马自动隔离样本信息
       class VirusAutoIsolateSampleInfo < TencentCloud::Common::AbstractModel
         # @param MD5: 文件MD5值
@@ -28902,10 +28508,8 @@ module TencentCloud
         # @param ContainerIsolateOperationSrc: 容器隔离操作来源
         # @type ContainerIsolateOperationSrc: String
         # @param MD5: md5值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MD5: String
         # @param RiskLevel: 风险等级 RISK_CRITICAL, RISK_HIGH, RISK_MEDIUM, RISK_LOW, RISK_NOTICE。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RiskLevel: String
         # @param CheckPlatform: 检测平台
         # 1: 云查杀引擎
@@ -28913,7 +28517,6 @@ module TencentCloud
         # 3: binaryAi
         # 4: 异常行为
         # 5: 威胁情报
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CheckPlatform: Array
         # @param NodeID: 节点ID
         # @type NodeID: String
@@ -29138,13 +28741,10 @@ module TencentCloud
       # 受漏洞影响的组件信息
       class VulAffectedComponentInfo < TencentCloud::Common::AbstractModel
         # @param Name: 组件名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Version: 组件版本
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Version: Array
         # @param FixedVersion: 组件修复版本
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FixedVersion: Array
 
         attr_accessor :Name, :Version, :FixedVersion
@@ -29193,7 +28793,6 @@ module TencentCloud
         # @param NodeName: 超级节点名称
         # @type NodeName: String
         # @param ContainerStatus: 容器状态 "RUNNING":运行,"PAUSED":暂停,"STOPPED":停止,"CREATED":已经创建,"DESTROYED":已销毁,"RESTARTING":重启中,"REMOVING":迁移中,"DEAD":DEAD,"UNKNOWN":未知
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ContainerStatus: String
 
         attr_accessor :HostIP, :ContainerID, :ContainerName, :PodName, :PodIP, :HostName, :HostID, :PublicIP, :ClusterID, :ClusterName, :NodeType, :NodeUniqueID, :NodeID, :NodeName, :ContainerStatus
@@ -29238,16 +28837,12 @@ module TencentCloud
       # 受漏洞影响的组件信息
       class VulAffectedImageComponentInfo < TencentCloud::Common::AbstractModel
         # @param Name: 组件名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Version: 组件版本
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Version: String
         # @param FixedVersion: 组件修复版本
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FixedVersion: String
         # @param Path: 组件路径
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Path: String
 
         attr_accessor :Name, :Version, :FixedVersion, :Path
@@ -29386,7 +28981,6 @@ module TencentCloud
         # @param EventID: 事件ID
         # @type EventID: Integer
         # @param CreateTime: 首次发现时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
         # @param ContainerNetStatus: 隔离状态
         # 未隔离  	NORMAL
@@ -29397,7 +28991,6 @@ module TencentCloud
         # 解除隔离失败 RESTORE_FAILED
         # @type ContainerNetStatus: String
         # @param MergeTime: 最近发现时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MergeTime: String
         # @param ContainerStatus: 容器状态
         # 正在运行: RUNNING
@@ -29407,7 +29000,6 @@ module TencentCloud
         # 已经销毁: DESTROYED
         # 正在重启中: RESTARTING
         # 迁移中: REMOVING
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ContainerStatus: String
         # @param ContainerNetSubStatus: 容器子状态
         # "AGENT_OFFLINE"       //Agent离线
@@ -29417,19 +29009,14 @@ module TencentCloud
         # 	"SHARED_HOST"         // 容器与主机共享网络
         # 	"RESOURCE_LIMIT"      //隔离操作资源超限
         # 	"UNKNOW"              // 原因未知
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ContainerNetSubStatus: String
         # @param ContainerIsolateOperationSrc: 容器隔离操作来源
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ContainerIsolateOperationSrc: String
         # @param QUUID: 主机QUUID/超级节点ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type QUUID: String
         # @param HostIP: 主机内网IP
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HostIP: String
         # @param HostName: 主机名称/超级节点名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HostName: String
         # @param NodeType: 节点类型[NORMAL:普通节点|SUPER:超级节点]
         # @type NodeType: String
@@ -29562,28 +29149,20 @@ module TencentCloud
         # @param NetworkPayload: 攻击包
         # @type NetworkPayload: String
         # @param PID: 进程PID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PID: Integer
         # @param MainClass: 进程主类名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MainClass: String
         # @param StackTrace: 堆栈信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StackTrace: String
         # @param ServerAccount: 监听账号
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ServerAccount: String
         # @param ServerPort: 监听端口
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ServerPort: String
         # @param ServerExe: 进程路径
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ServerExe: String
         # @param ServerArg: 进程命令行参数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ServerArg: String
         # @param QUUID: 主机QUUID/超级节点ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type QUUID: String
         # @param ContainerNetStatus: 隔离状态
         # 未隔离  	NORMAL
@@ -29592,7 +29171,6 @@ module TencentCloud
         # 隔离失败	ISOLATE_FAILED
         # 解除隔离中  RESTORING
         # 解除隔离失败 RESTORE_FAILED
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ContainerNetStatus: String
         # @param ContainerNetSubStatus: 容器子状态
         # "AGENT_OFFLINE"       //Agent离线
@@ -29602,10 +29180,8 @@ module TencentCloud
         # 	"SHARED_HOST"         // 容器与主机共享网络
         # 	"RESOURCE_LIMIT"      //隔离操作资源超限
         # 	"UNKNOW"              // 原因未知
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ContainerNetSubStatus: String
         # @param ContainerIsolateOperationSrc: 容器隔离操作来源
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ContainerIsolateOperationSrc: String
         # @param ContainerStatus: 容器状态
         # 正在运行: RUNNING
@@ -29615,13 +29191,10 @@ module TencentCloud
         # 已经销毁: DESTROYED
         # 正在重启中: RESTARTING
         # 迁移中: REMOVING
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ContainerStatus: String
         # @param JNDIUrl: 接口Url
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type JNDIUrl: String
         # @param RaspDetail: rasp detail
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RaspDetail: Array
         # @param NodeSubNetName: 超级节点子网名称
         # @type NodeSubNetName: String
@@ -29881,16 +29454,12 @@ module TencentCloud
         # @param Name: 漏洞名称
         # @type Name: String
         # @param Tags: 漏洞标签
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
         # @param CategoryType: 漏洞类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CategoryType: String
         # @param Level: 漏洞威胁等级
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Level: String
         # @param SubmitTime: 漏洞披露时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubmitTime: String
         # @param Description: 漏洞描述
         # @type Description: String
@@ -29921,19 +29490,14 @@ module TencentCloud
         # @param PocID: 漏洞PocID
         # @type PocID: String
         # @param DefenceStatus: 防御状态，NO_DEFENDED:未防御，DEFENDED:已防御
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DefenceStatus: String
         # @param DefenceScope: 漏洞防御主机范围: MANUAL:自选主机节点，ALL:全部
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DefenceScope: String
         # @param DefenceHostCount: 漏洞防御主机数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DefenceHostCount: Integer
         # @param DefendedCount: 已防御攻击次数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DefendedCount: Integer
         # @param ScanStatus: 是否已扫描，NOT_SCAN:未扫描,SCANNED:已扫描
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScanStatus: String
 
         attr_accessor :CVEID, :Name, :Tags, :CategoryType, :Level, :SubmitTime, :Description, :CVSSV3Desc, :OfficialSolution, :DefenseSolution, :Reference, :CVSSV3Score, :ComponentList, :LocalImageCount, :ContainerCount, :RegistryImageCount, :Category, :LocalNewestImageCount, :RegistryNewestImageCount, :PocID, :DefenceStatus, :DefenceScope, :DefenceHostCount, :DefendedCount, :ScanStatus
@@ -30075,49 +29639,36 @@ module TencentCloud
         # @param Name: 漏洞名称
         # @type Name: String
         # @param Tags: 漏洞标签
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
         # @param CVSSV3Score: CVSS V3分数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CVSSV3Score: Float
         # @param Level: 风险等级
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Level: String
         # @param CVEID: CVE编号
         # @type CVEID: String
         # @param Category: 漏洞子类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Category: String
         # @param FoundTime: 首次发现时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FoundTime: String
         # @param LatestFoundTime: 最近发现时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LatestFoundTime: String
         # @param ID: 漏洞ID
         # @type ID: Integer
         # @param LocalImageCount: 影响本地镜像数
         # @type LocalImageCount: Integer
         # @param ContainerCount: 影响容器数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ContainerCount: Integer
         # @param RegistryImageCount: 影响仓库镜像数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RegistryImageCount: Integer
         # @param PocID: 漏洞PocID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PocID: String
         # @param DefenceStatus: 防御状态，NO_DEFENDED:未防御，DEFENDED:已防御
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DefenceStatus: String
         # @param DefenceScope: 漏洞防御主机范围: MANUAL:自选主机节点，ALL:全部
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DefenceScope: String
         # @param DefenceHostCount: 漏洞防御主机数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DefenceHostCount: Integer
         # @param DefendedCount: 已防御攻击次数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DefendedCount: Integer
 
         attr_accessor :Name, :Tags, :CVSSV3Score, :Level, :CVEID, :Category, :FoundTime, :LatestFoundTime, :ID, :LocalImageCount, :ContainerCount, :RegistryImageCount, :PocID, :DefenceStatus, :DefenceScope, :DefenceHostCount, :DefendedCount
@@ -30174,7 +29725,6 @@ module TencentCloud
         # @param ScanStatus: 任务状态:SCANNING:扫描中 FAILED:失败 FINISHED:完成 CANCELED:取消
         # @type ScanStatus: String
         # @param ScanDuration: 扫描时长
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScanDuration: Float
         # @param HighLevelVulCount: 高危漏洞数
         # @type HighLevelVulCount: Integer

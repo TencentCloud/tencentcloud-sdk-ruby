@@ -2913,30 +2913,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # RabbitMQ专享版修改公网管控台，vpc15672开关
-
-        # @param request: Request instance for ModifyPublicNetworkAccessPoint.
-        # @type request: :class:`Tencentcloud::tdmq::V20200217::ModifyPublicNetworkAccessPointRequest`
-        # @rtype: :class:`Tencentcloud::tdmq::V20200217::ModifyPublicNetworkAccessPointResponse`
-        def ModifyPublicNetworkAccessPoint(request)
-          body = send_request('ModifyPublicNetworkAccessPoint', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = ModifyPublicNetworkAccessPointResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 修改pulsar专业版公网安全策略
 
         # @param request: Request instance for ModifyPublicNetworkSecurityPolicy.

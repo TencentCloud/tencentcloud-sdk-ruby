@@ -1894,7 +1894,7 @@ module TencentCloud
         # @type VpcId: String
         # @param Port: 目标组的默认端口， 后续添加服务器时可使用该默认端口。Port和TargetGroupInstances.N中的port二者必填其一。
         # @type Port: Integer
-        # @param TargetGroupInstances: 目标组绑定的后端服务器
+        # @param TargetGroupInstances: 目标组绑定的后端服务器，单次最多支持50个。
         # @type TargetGroupInstances: Array
         # @param Type: 目标组类型，当前支持v1(旧版目标组), v2(新版目标组), 默认为v1(旧版目标组)。
         # @type Type: String
@@ -7446,12 +7446,10 @@ module TencentCloud
 
       # 重定向目标的信息
       class RewriteTarget < TencentCloud::Common::AbstractModel
-        # @param TargetListenerId: 重定向目标的监听器ID
-        # 注意：此字段可能返回 null，表示无重定向。
+        # @param TargetListenerId: 重定向目标的监听器ID，该字段仅配置了重定向时有效。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TargetListenerId: String
-        # @param TargetLocationId: 重定向目标的转发规则ID
-        # 注意：此字段可能返回 null，表示无重定向。
+        # @param TargetLocationId: 重定向目标的转发规则ID，该字段仅配置了重定向时有效。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TargetLocationId: String
         # @param RewriteCode: 重定向状态码
@@ -8455,6 +8453,8 @@ module TencentCloud
         # @param Port: 目标组实例的端口
         # @type Port: Integer
         # @param Weight: 目标组实例的权重
+
+        # v2目标组需要配置权重，调用CreateTargetGroup接口创建目标组时该参数与创建接口中的Weight参数必填其一。
         # @type Weight: Integer
         # @param NewPort: 目标组实例的新端口
         # @type NewPort: Integer

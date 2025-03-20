@@ -15198,7 +15198,6 @@ module TencentCloud
         # @param Type: Pod类型：intel、amd、v100、t4、a10\*gnv4、a10\*gnv4v等。
         # @type Type: String
         # @param Gpu: Pod是GPU时，表示GPU卡数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Gpu: String
         # @param ChargeType: 计费类型
         # PREPAID：Pod调度到包月超级节点
@@ -15242,22 +15241,16 @@ module TencentCloud
       # 可被预留券抵扣的 Pod 某种规格的抵扣率
       class PodDeductionRate < TencentCloud::Common::AbstractModel
         # @param Cpu: Pod的 CPU
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Cpu: Float
         # @param Memory: Pod 的内存
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Memory: Float
         # @param Type:  Pod 的类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: String
         # @param GpuNum:  Pod 的 GPU 卡数，Pod 类型为 GPU 时有效。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GpuNum: String
         # @param TotalNum: 这种规格的 Pod总数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalNum: Integer
         # @param DeductionNum: 这种规格的 Pod被预留券抵扣的数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeductionNum: Integer
 
         attr_accessor :Cpu, :Memory, :Type, :GpuNum, :TotalNum, :DeductionNum
@@ -15343,19 +15336,14 @@ module TencentCloud
       # Pod所在的节点信息
       class PodNodeInfo < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群 ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterId: String
         # @param NodeName:  节点名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NodeName: String
         # @param Zone: 可用区
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Zone: String
         # @param Namespace: 命名空间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Namespace: String
         # @param Name:  Pod 名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
 
         attr_accessor :ClusterId, :NodeName, :Zone, :Namespace, :Name
@@ -17287,34 +17275,24 @@ module TencentCloud
       # 预留券的使用率信息
       class ReservedInstanceUtilizationRate < TencentCloud::Common::AbstractModel
         # @param Rate: 使用率
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Rate: Float
         # @param Num: 预留券数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Num: Integer
         # @param CPU: 核数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CPU: Float
         # @param Memory: 内存
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Memory: Float
         # @param Type:  预留券类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: String
         # @param GpuNum: GPU 卡数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GpuNum: String
         # @param Zone: 可用区
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Zone: String
         # @param ClusterId: 集群 ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterId: String
         # @param NodeName: 节点名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NodeName: String
         # @param PodNum: Pod 数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PodNum: Integer
 
         attr_accessor :Rate, :Num, :CPU, :Memory, :Type, :GpuNum, :Zone, :ClusterId, :NodeName, :PodNum
@@ -18026,19 +18004,14 @@ module TencentCloud
       # 超级节点上的资源统计
       class SuperNodeResource < TencentCloud::Common::AbstractModel
         # @param NodeName: 节点名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NodeName: String
         # @param Num: 节点上的资源总数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Num: Integer
         # @param Cpu: 节点上的总核数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Cpu: Float
         # @param Memory: 节点上的总内存数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Memory: Float
         # @param Gpu: 节点上的总 GPU 卡数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Gpu: Float
 
         attr_accessor :NodeName, :Num, :Cpu, :Memory, :Gpu

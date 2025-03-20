@@ -18723,10 +18723,8 @@ module TencentCloud
         # @param UnitPrice: 付费单价，单位：元，仅后付费价格查询返回。
         # @type UnitPrice: Float
         # @param DiscountPrice: 折扣后的价格，单位：元。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DiscountPrice: Float
         # @param ChargeUnit: 计价单元，可取值范围：<ul> <li>HOUR：表示计价单元是按每小时来计算。当前涉及该计价单元的场景有：流量按小时后付费（TRAFFIC_POSTPAID_BY_HOUR）、带宽按小时后付费（BANDWIDTH_POSTPAID_BY_HOUR）。</li></ul>
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ChargeUnit: String
         # @param OriginalPrice: 原价，单位：元，仅预付费价格查询返回。
         # @type OriginalPrice: Float
@@ -18954,31 +18952,22 @@ module TencentCloud
       # IP地理位置信息
       class IpGeolocationInfo < TencentCloud::Common::AbstractModel
         # @param Country: 国家信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Country: String
         # @param Province: 省、州、郡一级行政区域信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Province: String
         # @param City: 市一级行政区域信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type City: String
         # @param Region: 市内区域信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Region: String
         # @param Isp: 接入运营商信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Isp: String
         # @param AsName: 骨干运营商名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AsName: String
         # @param AsId: 骨干运营商AS号
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AsId: String
         # @param Comment: 注释信息。目前的填充值为移动接入用户的APN值，如无APN属性则为空
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Comment: String
         # @param AddressIp: IP地址
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AddressIp: String
 
         attr_accessor :Country, :Province, :City, :Region, :Isp, :AsName, :AsId, :Comment, :AddressIp
@@ -23646,7 +23635,6 @@ module TencentCloud
         # @param QuotaLimit: 配额数量
         # @type QuotaLimit: Integer
         # @param QuotaGroup: 配额所属的网络组
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type QuotaGroup: String
 
         attr_accessor :QuotaId, :QuotaCurrent, :QuotaLimit, :QuotaGroup
@@ -26742,10 +26730,8 @@ module TencentCloud
         # @param Value: 实际流量，单位为 字节
         # @type Value: Integer
         # @param FormatValue: 格式化后的流量，单位见参数 FormatUnit
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FormatValue: Float
         # @param FormatUnit: 格式化后流量的单位
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FormatUnit: String
 
         attr_accessor :Value, :FormatValue, :FormatUnit
@@ -26938,7 +26924,6 @@ module TencentCloud
         # @param TrafficPackageId: 流量包唯一ID
         # @type TrafficPackageId: String
         # @param TrafficPackageName: 流量包名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TrafficPackageName: String
         # @param TotalAmount: 流量包总量，单位GB
         # @type TotalAmount: Float
@@ -26953,7 +26938,6 @@ module TencentCloud
         # @param UsedAmount: 已使用的流量，单位GB
         # @type UsedAmount: Float
         # @param TagSet: 流量包标签
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TagSet: Array
         # @param DeductType: 区分闲时流量包与全时流量包
         # @type DeductType: String
@@ -27559,7 +27543,6 @@ module TencentCloud
         # @param TrafficPackageId: 流量包唯一ID
         # @type TrafficPackageId: String
         # @param TrafficPackageName: 流量包名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TrafficPackageName: String
         # @param TotalAmount: 流量包总量
         # @type TotalAmount: :class:`Tencentcloud::Vpc.v20170312.models.TrafficFlow`

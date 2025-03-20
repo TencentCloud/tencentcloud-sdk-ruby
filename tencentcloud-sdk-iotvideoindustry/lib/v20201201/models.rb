@@ -20,10 +20,8 @@ module TencentCloud
       # 异动事件走势列表
       class AbnormalEvents < TencentCloud::Common::AbstractModel
         # @param Date: 对应查询日期
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Date: String
         # @param Info: 列表信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Info: Array
 
         attr_accessor :Date, :Info
@@ -49,10 +47,8 @@ module TencentCloud
       # 异动事件走势元素
       class AbnormalEventsInfo < TencentCloud::Common::AbstractModel
         # @param Key: 类型值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Key: Integer
         # @param Count: 类型总数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Count: Integer
 
         attr_accessor :Key, :Count
@@ -71,43 +67,30 @@ module TencentCloud
       # 查询全部设备出参
       class AllDeviceInfo < TencentCloud::Common::AbstractModel
         # @param DeviceId: 设备唯一标识
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeviceId: String
         # @param DeviceType: 设备类型；2：IPC
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeviceType: Integer
         # @param Status: 设备状态；0：设备不在线；1：设备在线；2：设备隔离中；3：设备未注册
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
         # @param CreateTime: 创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: Integer
         # @param ExtraInformation: 设备扩展属性
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExtraInformation: String
         # @param NickName: 设备名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NickName: String
         # @param GroupPath: 设备绑定分组路径
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GroupPath: String
         # @param DeviceCode: 设备编码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeviceCode: String
         # @param IsRecord: 是否存在录像,，0:不存在；1：存在
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsRecord: Integer
         # @param Recordable: 该设备是否可录制
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Recordable: Integer
         # @param Protocol: 设备接入协议
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Protocol: String
         # @param GroupId: 组Id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GroupId: String
         # @param GroupName: 组名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GroupName: String
 
         attr_accessor :DeviceId, :DeviceType, :Status, :CreateTime, :ExtraInformation, :NickName, :GroupPath, :DeviceCode, :IsRecord, :Recordable, :Protocol, :GroupId, :GroupName
@@ -188,25 +171,18 @@ module TencentCloud
         # @param ChannelId: 通道唯一标识
         # @type ChannelId: String
         # @param ChannelType: 通道类型 0：未知；1：视频通道；2：音频通道；3：告警通道
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ChannelType: Integer
         # @param ChannelCode: 20位国标通道编码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ChannelCode: String
         # @param ExtraInformation: 通道扩展信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExtraInformation: String
         # @param Status: 通道在线状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
         # @param IsRecord: 通道是否存在录像标识 0：无录像；1：有录像
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsRecord: Integer
         # @param DeviceId: 通道所属设备唯一标识
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeviceId: String
         # @param BusinessGroupId: 通道所属虚拟组织的ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BusinessGroupId: String
 
         attr_accessor :ChannelName, :ChannelId, :ChannelType, :ChannelCode, :ExtraInformation, :Status, :IsRecord, :DeviceId, :BusinessGroupId
@@ -239,10 +215,8 @@ module TencentCloud
       # GB28181通道
       class ChannelItem < TencentCloud::Common::AbstractModel
         # @param DeviceId: 设备唯一标识
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeviceId: String
         # @param ChannelId: 通道唯一标识
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ChannelId: String
 
         attr_accessor :DeviceId, :ChannelId
@@ -588,10 +562,8 @@ module TencentCloud
       # CreateDeviceGroup返回参数结构体
       class CreateDeviceGroupResponse < TencentCloud::Common::AbstractModel
         # @param Status: 响应结果，“OK”为成功，其他为失败
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: String
         # @param GroupId: 分组ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GroupId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -642,13 +614,10 @@ module TencentCloud
       # CreateDevice返回参数结构体
       class CreateDeviceResponse < TencentCloud::Common::AbstractModel
         # @param DeviceCode: 设备编码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeviceCode: String
         # @param DeviceId: 设备唯一标识
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeviceId: String
         # @param VirtualGroupId: 设备虚拟组信息，仅在创建NVR时返回该值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VirtualGroupId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -693,10 +662,8 @@ module TencentCloud
       # CreateLiveChannel返回参数结构体
       class CreateLiveChannelResponse < TencentCloud::Common::AbstractModel
         # @param LiveChannelId: 直播频道ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LiveChannelId: String
         # @param PushStreamAddress: 直播频道推流地址
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PushStreamAddress: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -751,7 +718,6 @@ module TencentCloud
       # CreateLiveRecordPlan返回参数结构体
       class CreateLiveRecordPlanResponse < TencentCloud::Common::AbstractModel
         # @param PlanId: 录制计划名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PlanId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -812,7 +778,6 @@ module TencentCloud
       # CreateMessageForward返回参数结构体
       class CreateMessageForwardResponse < TencentCloud::Common::AbstractModel
         # @param IntId: 配置ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IntId: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -997,7 +962,6 @@ module TencentCloud
       # CreateScene返回参数结构体
       class CreateSceneResponse < TencentCloud::Common::AbstractModel
         # @param IntId: 场景ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IntId: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1121,7 +1085,6 @@ module TencentCloud
       # DeleteDeviceGroup返回参数结构体
       class DeleteDeviceGroupResponse < TencentCloud::Common::AbstractModel
         # @param Status: 响应结果
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1158,7 +1121,6 @@ module TencentCloud
       # DeleteDevice返回参数结构体
       class DeleteDeviceResponse < TencentCloud::Common::AbstractModel
         # @param Status: 操作结果 OK-成功； 其他-失败
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1431,7 +1393,6 @@ module TencentCloud
       # DeleteTimeTemplate返回参数结构体
       class DeleteTimeTemplateResponse < TencentCloud::Common::AbstractModel
         # @param Status: 操作结果，OK：成功，其他：失败
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1540,7 +1501,6 @@ module TencentCloud
       # DescribeAbnormalEvents返回参数结构体
       class DescribeAbnormalEventsResponse < TencentCloud::Common::AbstractModel
         # @param Data: 异动事件走势列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1600,10 +1560,8 @@ module TencentCloud
       # DescribeAllDeviceList返回参数结构体
       class DescribeAllDeviceListResponse < TencentCloud::Common::AbstractModel
         # @param TotalCount: 设备总数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
         # @param Devices: 设备详细信息列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Devices: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1657,10 +1615,8 @@ module TencentCloud
       # DescribeBindSceneChannels返回参数结构体
       class DescribeBindSceneChannelsResponse < TencentCloud::Common::AbstractModel
         # @param Total: 总数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Total: Integer
         # @param List: 通道列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type List: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1714,10 +1670,8 @@ module TencentCloud
       # DescribeBindSceneDevices返回参数结构体
       class DescribeBindSceneDevicesResponse < TencentCloud::Common::AbstractModel
         # @param Total: 总数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Total: Integer
         # @param List: 设备列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type List: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1920,10 +1874,8 @@ module TencentCloud
       # DescribeChannelsByLiveRecordPlan返回参数结构体
       class DescribeChannelsByLiveRecordPlanResponse < TencentCloud::Common::AbstractModel
         # @param TotalCount: 总个数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
         # @param LiveChannels: 通道详情数组
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LiveChannels: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1989,10 +1941,8 @@ module TencentCloud
       # DescribeChannels返回参数结构体
       class DescribeChannelsResponse < TencentCloud::Common::AbstractModel
         # @param TotalCount: 通道总数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
         # @param Channels: 通道详情列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Channels: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2105,10 +2055,8 @@ module TencentCloud
       # DescribeDeviceEvent返回参数结构体
       class DescribeDeviceEventResponse < TencentCloud::Common::AbstractModel
         # @param TotalCount: 总数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
         # @param Events: 事件列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Events: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2154,7 +2102,6 @@ module TencentCloud
       # DescribeDeviceGroup返回参数结构体
       class DescribeDeviceGroupResponse < TencentCloud::Common::AbstractModel
         # @param DevGroups: 设备所在分组信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DevGroups: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2464,7 +2411,6 @@ module TencentCloud
       # DescribeGroupById返回参数结构体
       class DescribeGroupByIdResponse < TencentCloud::Common::AbstractModel
         # @param Group: 分组信息详情
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Group: :class:`Tencentcloud::Iotvideoindustry.v20201201.models.GroupItem`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2504,7 +2450,6 @@ module TencentCloud
       # DescribeGroupByPath返回参数结构体
       class DescribeGroupByPathResponse < TencentCloud::Common::AbstractModel
         # @param Group: 分组信息详情
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Group: :class:`Tencentcloud::Iotvideoindustry.v20201201.models.GroupItem`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2565,10 +2510,8 @@ module TencentCloud
       # DescribeGroupDevices返回参数结构体
       class DescribeGroupDevicesResponse < TencentCloud::Common::AbstractModel
         # @param TotalCount: 分组绑定的设备数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
         # @param DeviceList: 设备详情列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeviceList: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2614,7 +2557,6 @@ module TencentCloud
       # DescribeGroups返回参数结构体
       class DescribeGroupsResponse < TencentCloud::Common::AbstractModel
         # @param Groups: 分组详细信息列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Groups: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2670,10 +2612,8 @@ module TencentCloud
       # DescribeIPCChannels返回参数结构体
       class DescribeIPCChannelsResponse < TencentCloud::Common::AbstractModel
         # @param TotalCount: 通道总数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
         # @param DeviceList: 通道详情列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeviceList: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2784,25 +2724,18 @@ module TencentCloud
       # DescribeLiveChannel返回参数结构体
       class DescribeLiveChannelResponse < TencentCloud::Common::AbstractModel
         # @param LiveChannelId: 频道ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LiveChannelId: String
         # @param LiveChannelName: 频道名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LiveChannelName: String
         # @param LiveChannelType: 直播频道类型 1：固定直播；2：移动直播
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LiveChannelType: Integer
         # @param LiveStatus: 通道直播状态：1: 未推流，2: 推流中
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LiveStatus: Integer
         # @param PushStreamAddress: 推流地址
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PushStreamAddress: String
         # @param CreateTime: 创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: Array
         # @param UpdateTime: 修改时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3038,10 +2971,8 @@ module TencentCloud
       # DescribeLiveVideoList返回参数结构体
       class DescribeLiveVideoListResponse < TencentCloud::Common::AbstractModel
         # @param Total: 总的条数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Total: Integer
         # @param RecordList: 录制任务详情数组
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RecordList: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3087,41 +3018,33 @@ module TencentCloud
       # DescribeMessageForward返回参数结构体
       class DescribeMessageForwardResponse < TencentCloud::Common::AbstractModel
         # @param RegionId: 区域ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RegionId: String
         # @param RegionName: 区域名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RegionName: String
         # @param Instance: 实例ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Instance: String
         # @param InstanceName: 实例名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceName: String
         # @param IntId: 配置ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IntId: Integer
         # @param MessageType: json数组， 转发类型 1: 告警 2:GPS
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MessageType: String
         # @param TopicId: kafka topic id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TopicId: String
         # @param CreateTime: 配置创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
         # @param Uin: 用户Uin信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Uin: String
         # @param TopicName: kafka topic 名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TopicName: String
+        # @param UpdateTime: 更新时间
+        # @type UpdateTime: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RegionId, :RegionName, :Instance, :InstanceName, :IntId, :MessageType, :TopicId, :CreateTime, :Uin, :TopicName, :RequestId
+        attr_accessor :RegionId, :RegionName, :Instance, :InstanceName, :IntId, :MessageType, :TopicId, :CreateTime, :Uin, :TopicName, :UpdateTime, :RequestId
 
-        def initialize(regionid=nil, regionname=nil, instance=nil, instancename=nil, intid=nil, messagetype=nil, topicid=nil, createtime=nil, uin=nil, topicname=nil, requestid=nil)
+        def initialize(regionid=nil, regionname=nil, instance=nil, instancename=nil, intid=nil, messagetype=nil, topicid=nil, createtime=nil, uin=nil, topicname=nil, updatetime=nil, requestid=nil)
           @RegionId = regionid
           @RegionName = regionname
           @Instance = instance
@@ -3132,6 +3055,7 @@ module TencentCloud
           @CreateTime = createtime
           @Uin = uin
           @TopicName = topicname
+          @UpdateTime = updatetime
           @RequestId = requestid
         end
 
@@ -3146,6 +3070,7 @@ module TencentCloud
           @CreateTime = params['CreateTime']
           @Uin = params['Uin']
           @TopicName = params['TopicName']
+          @UpdateTime = params['UpdateTime']
           @RequestId = params['RequestId']
         end
       end
@@ -3226,7 +3151,6 @@ module TencentCloud
       # DescribeMonitorDataByDate返回参数结构体
       class DescribeMonitorDataByDateResponse < TencentCloud::Common::AbstractModel
         # @param Data: 统计数据列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3274,7 +3198,6 @@ module TencentCloud
       # DescribePresetList返回参数结构体
       class DescribePresetListResponse < TencentCloud::Common::AbstractModel
         # @param Data: 预置列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3334,7 +3257,6 @@ module TencentCloud
       # DescribeRecordDatesByChannel返回参数结构体
       class DescribeRecordDatesByChannelResponse < TencentCloud::Common::AbstractModel
         # @param Dates: 含有录像文件的日期列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Dates: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3507,7 +3429,6 @@ module TencentCloud
       # DescribeRecordingPlanById返回参数结构体
       class DescribeRecordingPlanByIdResponse < TencentCloud::Common::AbstractModel
         # @param Plan: 录制计划详情
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Plan: :class:`Tencentcloud::Iotvideoindustry.v20201201.models.RecordPlanDetail`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3542,10 +3463,8 @@ module TencentCloud
       # DescribeRecordingPlans返回参数结构体
       class DescribeRecordingPlansResponse < TencentCloud::Common::AbstractModel
         # @param Plans: 录制计划详情·列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Plans: Array
         # @param TotalCount: 录制计划总数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3625,25 +3544,18 @@ module TencentCloud
       # DescribeScene返回参数结构体
       class DescribeSceneResponse < TencentCloud::Common::AbstractModel
         # @param IntId: 场景ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IntId: Integer
         # @param RecordDuration: 录制时长(秒)
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RecordDuration: Integer
         # @param SceneName: 场景名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SceneName: String
         # @param SceneTrigger: 场景触发规则
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SceneTrigger: String
         # @param StoreDuration: 存储时长 (天)
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StoreDuration: Integer
         # @param CreateTime: 创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
         # @param UpdateTime: 更新时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: String
         # @param Uin: 用户Uin
         # @type Uin: String
@@ -3700,10 +3612,8 @@ module TencentCloud
       # DescribeScenes返回参数结构体
       class DescribeScenesResponse < TencentCloud::Common::AbstractModel
         # @param Total: 场景总数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Total: Integer
         # @param List: 场景列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type List: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3808,25 +3718,18 @@ module TencentCloud
       # DescribeStatisticSummary返回参数结构体
       class DescribeStatisticSummaryResponse < TencentCloud::Common::AbstractModel
         # @param RecordingDevice: 录制设备总数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RecordingDevice: Integer
         # @param NonRecordingDevice: 非录制设备总数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NonRecordingDevice: Integer
         # @param WatchFlux: 观看流量总数。为直播观看流量与点播观看流量之和。单位：GB
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WatchFlux: Float
         # @param StorageUsage: 累计有效存储容量总数。单位：GB
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StorageUsage: Float
         # @param P2PFluxTotal: X-P2P分享流量。单位 Byte
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type P2PFluxTotal: Float
         # @param P2PPeakValue: X-P2P峰值带宽。 单位bps
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type P2PPeakValue: Float
         # @param LivePushTotal: RTMP推流路数 ( 直播推流)
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LivePushTotal: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3891,10 +3794,8 @@ module TencentCloud
       # DescribeSubGroups返回参数结构体
       class DescribeSubGroupsResponse < TencentCloud::Common::AbstractModel
         # @param GroupList: 子分组详情列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GroupList: Array
         # @param TotalCount: 子分组总数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3997,10 +3898,8 @@ module TencentCloud
       # DescribeVideoListByChannel返回参数结构体
       class DescribeVideoListByChannelResponse < TencentCloud::Common::AbstractModel
         # @param VideoList: 录像详情列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VideoList: Array
         # @param TotalCount: 录像总数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4159,7 +4058,6 @@ module TencentCloud
       # DescribeWarnMod返回参数结构体
       class DescribeWarnModResponse < TencentCloud::Common::AbstractModel
         # @param Data: 告警类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4224,10 +4122,8 @@ module TencentCloud
       # DescribeWarnings返回参数结构体
       class DescribeWarningsResponse < TencentCloud::Common::AbstractModel
         # @param Total: 总数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Total: Integer
         # @param Data: 告警列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4287,7 +4183,6 @@ module TencentCloud
         # @param Data: [log_time,cdn_bytes , p2p_bytes, online_people, stuck_times, stuck_people,request,request_success,request_fail,play_fail]
         # [时间戳,cdn流量(字节) , p2p流量(字节), 在线人数, 卡播次数, 卡播人数,起播请求次数,起播成功次数,起播失败次数,播放失败次数, pcdn cdn流量（字节), pcdn路由流量(字节), 上传流量(字节)]
         # [1481016480, 46118502414, 75144943171, 61691, 3853, 0,0,0,0,0, 0, 0, 0]
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4340,10 +4235,8 @@ module TencentCloud
       # 用于描述唯一一个设备
       class DeviceItem < TencentCloud::Common::AbstractModel
         # @param DeviceId: 设备唯一标识
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeviceId: String
         # @param ChannelId: 通道唯一标识
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ChannelId: String
 
         attr_accessor :DeviceId, :ChannelId
@@ -4384,13 +4277,10 @@ module TencentCloud
       # 设备事件列表
       class Events < TencentCloud::Common::AbstractModel
         # @param EventTime: 开始时间，秒级时间戳
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EventTime: Integer
         # @param EventType: 事件类型 1:注册 2:心跳 4:录制异常 5:播放异常 6:流中断
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EventType: Integer
         # @param EventDesc: 事件描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EventDesc: String
         # @param DeviceType: 设备类型
         # @type DeviceType: Integer
@@ -4403,7 +4293,6 @@ module TencentCloud
         # @param EventLog: 事件日志
         # @type EventLog: String
         # @param DeviceName: 设备备注名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeviceName: String
 
         attr_accessor :EventTime, :EventType, :EventDesc, :DeviceType, :DeviceAddress, :DeviceId, :ChannelId, :EventLog, :DeviceName
@@ -4468,7 +4357,6 @@ module TencentCloud
       # GetRecordDatesByDev返回参数结构体
       class GetRecordDatesByDevResponse < TencentCloud::Common::AbstractModel
         # @param Dates: 含有录像文件的日期列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Dates: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4505,7 +4393,6 @@ module TencentCloud
       # GetRecordPlanByDev返回参数结构体
       class GetRecordPlanByDevResponse < TencentCloud::Common::AbstractModel
         # @param Plan: 录制计划详情
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Plan: :class:`Tencentcloud::Iotvideoindustry.v20201201.models.RecordPlanItem`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4545,7 +4432,6 @@ module TencentCloud
       # GetRecordPlanById返回参数结构体
       class GetRecordPlanByIdResponse < TencentCloud::Common::AbstractModel
         # @param Plan: 录制计划详情
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Plan: :class:`Tencentcloud::Iotvideoindustry.v20201201.models.RecordPlanItem`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4580,10 +4466,8 @@ module TencentCloud
       # GetRecordPlans返回参数结构体
       class GetRecordPlansResponse < TencentCloud::Common::AbstractModel
         # @param Plans: 录制计划详情·列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Plans: Array
         # @param TotalCount: 录制计划总数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4629,7 +4513,6 @@ module TencentCloud
       # GetTimeTemplateById返回参数结构体
       class GetTimeTemplateByIdResponse < TencentCloud::Common::AbstractModel
         # @param Template: 时间模板详情
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Template: :class:`Tencentcloud::Iotvideoindustry.v20201201.models.TimeTemplateItem`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4664,7 +4547,6 @@ module TencentCloud
       # GetTimeTemplates返回参数结构体
       class GetTimeTemplatesResponse < TencentCloud::Common::AbstractModel
         # @param Templates: 时间模板列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Templates: Array
         # @param TotalCount: 时间模板总数
         # @type TotalCount: Integer
@@ -4737,10 +4619,8 @@ module TencentCloud
       # GetVideoListByCon返回参数结构体
       class GetVideoListByConResponse < TencentCloud::Common::AbstractModel
         # @param VideoList: 录像详情列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VideoList: Array
         # @param TotalCount: 录像总数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4770,43 +4650,30 @@ module TencentCloud
       # 分组下设备信息
       class GroupDeviceItem < TencentCloud::Common::AbstractModel
         # @param DeviceId: 设备唯一标识
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeviceId: String
         # @param NickName: 设备名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NickName: String
         # @param Status: 设备状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
         # @param ExtraInformation: 扩展信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExtraInformation: String
         # @param DeviceType: 设备类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeviceType: Integer
         # @param RTSPUrl: rtsp地址
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RTSPUrl: String
         # @param DeviceCode: 设备编码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeviceCode: String
         # @param IsRecord: 是否存在录像
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsRecord: Integer
         # @param Recordable: 该设备是否可录制
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Recordable: Integer
         # @param Protocol: 设备接入协议
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Protocol: String
         # @param CreateTime: 设备创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: Integer
         # @param ChannelNum: 设备通道总数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ChannelNum: Integer
         # @param VideoChannelNum: 设备视频通道总数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VideoChannelNum: Integer
 
         attr_accessor :DeviceId, :NickName, :Status, :ExtraInformation, :DeviceType, :RTSPUrl, :DeviceCode, :IsRecord, :Recordable, :Protocol, :CreateTime, :ChannelNum, :VideoChannelNum
@@ -4863,10 +4730,8 @@ module TencentCloud
         # @param CreateTime: 创建时间
         # @type CreateTime: Integer
         # @param GroupStatus: 分组状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GroupStatus: Integer
         # @param Error: 设备不存在时产生的错误
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Error: String
 
         attr_accessor :GroupId, :GroupName, :GroupType, :GroupPath, :ParentId, :GroupDescribe, :ExtraInformation, :CreateTime, :GroupStatus, :Error
@@ -4901,37 +4766,26 @@ module TencentCloud
       # 分组信息
       class GroupItem < TencentCloud::Common::AbstractModel
         # @param GroupName: 分组名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GroupName: String
         # @param ParentId: 父分组ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ParentId: String
         # @param GroupId: 分组ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GroupId: String
         # @param GroupPath: 分组路径
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GroupPath: String
         # @param GroupDescribe: 分组描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GroupDescribe: String
         # @param DeviceNum: 分组绑定设备数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeviceNum: Integer
         # @param SubGroupNum: 子分组数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubGroupNum: Integer
         # @param ExtraInformation: 分组附加信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExtraInformation: String
         # @param GroupType: 分组类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GroupType: String
         # @param CreateTime: 创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: Integer
         # @param GroupStatus: 分组状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GroupStatus: Integer
 
         attr_accessor :GroupName, :ParentId, :GroupId, :GroupPath, :GroupDescribe, :DeviceNum, :SubGroupNum, :ExtraInformation, :GroupType, :CreateTime, :GroupStatus
@@ -5373,7 +5227,6 @@ module TencentCloud
       # ModifyDeviceData返回参数结构体
       class ModifyDeviceDataResponse < TencentCloud::Common::AbstractModel
         # @param Status: 操作结果,“OK”表示成功，其他表示失败。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5750,10 +5603,8 @@ module TencentCloud
       # 预置位结构出参
       class PresetItem < TencentCloud::Common::AbstractModel
         # @param PresetId: 预置位ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PresetId: Integer
         # @param PresetName: 预置位名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PresetName: String
         # @param Status: 预置位状态 0:未设置预置位 1:已设置预置位 2:已设置预置位&看守位
         # @type Status: Integer
@@ -5780,22 +5631,16 @@ module TencentCloud
       # 录制计划详情
       class RecordPlanDetail < TencentCloud::Common::AbstractModel
         # @param PlanId: 计划ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PlanId: String
         # @param Name: 计划名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param TimeTemplateId: 时间模板ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TimeTemplateId: String
         # @param TimeTemplateName: 时间模板名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TimeTemplateName: String
         # @param Channels: 绑定的通道列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Channels: Array
         # @param RecordStorageTime: 存储周期（天）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RecordStorageTime: Integer
 
         attr_accessor :PlanId, :Name, :TimeTemplateId, :TimeTemplateName, :Channels, :RecordStorageTime
@@ -5829,25 +5674,18 @@ module TencentCloud
       # 录制计划详情
       class RecordPlanItem < TencentCloud::Common::AbstractModel
         # @param PlanId: 计划ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PlanId: String
         # @param Name: 计划名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param TimeTemplateId: 时间模板ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TimeTemplateId: String
         # @param TimeTemplateName: 时间模板名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TimeTemplateName: String
         # @param EventId: 录制类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EventId: Integer
         # @param Devices: 绑定的设备列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Devices: Array
         # @param RecordStorageTime: 录像存储天数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RecordStorageTime: Integer
 
         attr_accessor :PlanId, :Name, :TimeTemplateId, :TimeTemplateName, :EventId, :Devices, :RecordStorageTime
@@ -5883,10 +5721,8 @@ module TencentCloud
       # 大盘统计-录像存储统计 出参RecordStatistic
       class RecordStatistic < TencentCloud::Common::AbstractModel
         # @param Time: 时间戳
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Time: Integer
         # @param Value: 统计结果
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: :class:`Tencentcloud::Iotvideoindustry.v20201201.models.RecordStatisticValue`
 
         attr_accessor :Time, :Value
@@ -5935,34 +5771,24 @@ module TencentCloud
       # 普通设备的录像详情
       class RecordTaskItem < TencentCloud::Common::AbstractModel
         # @param RecordTaskId: 录像任务ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RecordTaskId: String
         # @param RecordPlanId: 录制计划ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RecordPlanId: String
         # @param StartTime: 本录制片段开始时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StartTime: Integer
         # @param EndTime: 本录制片段结束时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EndTime: Integer
         # @param EventId: 录制模式
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EventId: Integer
         # @param VideoUrl: 本录制片段对应的录制文件URL
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VideoUrl: String
         # @param RecordStatus: 本录制片段当前的录制状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RecordStatus: Integer
         # @param SceneId: 场景ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SceneId: Integer
         # @param WarnId: 告警ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WarnId: Integer
         # @param RecordId: 录制id，NVR下属设备有效
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RecordId: String
 
         attr_accessor :RecordTaskId, :RecordPlanId, :StartTime, :EndTime, :EventId, :VideoUrl, :RecordStatus, :SceneId, :WarnId, :RecordId
@@ -6033,22 +5859,16 @@ module TencentCloud
       # 场景列表元素
       class SceneItem < TencentCloud::Common::AbstractModel
         # @param IntId: 场景ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IntId: Integer
         # @param Uin: 用户UIN
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Uin: String
         # @param SceneName: 场景名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SceneName: String
         # @param SceneTrigger: 触发规则
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SceneTrigger: String
         # @param RecordDuration: 录制时长 秒
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RecordDuration: Integer
         # @param StoreDuration: 存储时长 天
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StoreDuration: Integer
         # @param CreateTime: 创建时间
         # @type CreateTime: String
@@ -6170,19 +5990,14 @@ module TencentCloud
       # 时间模板详情
       class TimeTemplateItem < TencentCloud::Common::AbstractModel
         # @param TemplateId: 时间模板ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TemplateId: String
         # @param Name: 模板名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param IsAllWeek: 是否全时录制，即7*24小时录制 0-否 1-是
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsAllWeek: Integer
         # @param Type: 是否为自定义模板 0-否 1-是
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: Integer
         # @param TimeTemplateSpecs: 时间片段详情
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TimeTemplateSpecs: Array
 
         attr_accessor :TemplateId, :Name, :IsAllWeek, :Type, :TimeTemplateSpecs
@@ -6305,7 +6120,6 @@ module TencentCloud
       # UpdateDevicePassWord返回参数结构体
       class UpdateDevicePassWordResponse < TencentCloud::Common::AbstractModel
         # @param Status: 操作结果，“OK”表示成功，其他表示失败。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6447,28 +6261,20 @@ module TencentCloud
       # 告警列表出参
       class WarningsData < TencentCloud::Common::AbstractModel
         # @param Id: 唯一ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Id: Integer
         # @param DeviceId: 设备ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeviceId: String
         # @param DeviceName: 设备名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeviceName: String
         # @param WarnChannel: 告警通道
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WarnChannel: String
         # @param WarnLevel: 告警级别 1: "一级警情", 2: "二级警情", 3: "三级警情", 4: "四级警情",
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WarnLevel: Integer
         # @param WarnLevelName: 告警级别名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WarnLevelName: String
         # @param WarnMode: 告警方式 2 设备报警 5 视频报警 6 设备故障报警
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WarnMode: Integer
         # @param WarnModeName: 告警方式名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WarnModeName: String
         # @param WarnType: 告警类型  2: {
         # 			Name: "设备报警",
@@ -6504,16 +6310,12 @@ module TencentCloud
         # 				2: "存储设备风扇故障报警",
         # 			},
         # 		}
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WarnType: Integer
         # @param Del: 是否删除
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Del: Integer
         # @param CreateTime: 创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
         # @param UpdateTime: 更新时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: String
 
         attr_accessor :Id, :DeviceId, :DeviceName, :WarnChannel, :WarnLevel, :WarnLevelName, :WarnMode, :WarnModeName, :WarnType, :Del, :CreateTime, :UpdateTime

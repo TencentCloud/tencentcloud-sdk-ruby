@@ -1320,7 +1320,6 @@ module TencentCloud
       # DCN的状态信息
       class DCNReplicaStatus < TencentCloud::Common::AbstractModel
         # @param Status: DCN 的运行状态，START为正常运行，STOP为暂停，
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: String
         # @param Delay: 当前延迟情况，取备实例的 master 节点的 delay 值
         # @type Delay: Integer
@@ -1941,7 +1940,6 @@ module TencentCloud
         # @param TotalCount: 返回的配置数量
         # @type TotalCount: Integer
         # @param Items: 实例备份时间配置信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Items: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2677,10 +2675,8 @@ module TencentCloud
         # @param Groups: 安全组详情。
         # @type Groups: Array
         # @param VIP: 实例VIP。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VIP: String
         # @param VPort: 实例端口。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VPort: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5794,49 +5790,34 @@ module TencentCloud
       # 临时实例
       class TmpInstance < TencentCloud::Common::AbstractModel
         # @param AppId: 应用ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AppId: Integer
         # @param CreateTime: 创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
         # @param InstanceRemark: 实例备注
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceRemark: String
         # @param TempType: 0:非临时实例 ,1:无效临时实例, 2:回档成功的有效临时实例
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TempType: Integer
         # @param Status: 实例状态,0:待初始化,1:流程处理中,2:有效状态,-1:已隔离，-2：已下线
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
         # @param InstanceId: 实例 ID，形如：tdsql-ow728lmc。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceId: String
         # @param Vip: 实例虚IP
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Vip: String
         # @param Vport: 实例虚端口
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Vport: Integer
         # @param PeriodEndTime: 有效期结束时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PeriodEndTime: String
         # @param SrcInstanceId: 源实例 ID，形如：tdsql-ow728lmc。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SrcInstanceId: String
         # @param StatusDesc: 实例状态描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StatusDesc: String
         # @param Region: 实例所在地域
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Region: String
         # @param Zone: 实例所在可用区
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Zone: String
         # @param Vipv6: 实例虚IPv6
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Vipv6: String
         # @param Ipv6Flag: 实例IPv6标志
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Ipv6Flag: Integer
 
         attr_accessor :AppId, :CreateTime, :InstanceRemark, :TempType, :Status, :InstanceId, :Vip, :Vport, :PeriodEndTime, :SrcInstanceId, :StatusDesc, :Region, :Zone, :Vipv6, :Ipv6Flag

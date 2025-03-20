@@ -223,6 +223,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 批量导出域名解析量
+
+        # @param request: Request instance for CreateDomainsAnalyticsFile.
+        # @type request: :class:`Tencentcloud::dnspod::V20210323::CreateDomainsAnalyticsFileRequest`
+        # @rtype: :class:`Tencentcloud::dnspod::V20210323::CreateDomainsAnalyticsFileResponse`
+        def CreateDomainsAnalyticsFile(request)
+          body = send_request('CreateDomainsAnalyticsFile', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateDomainsAnalyticsFileResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建域名的线路分组
 
         # @param request: Request instance for CreateLineGroup.
@@ -354,6 +378,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CreateSnapshotResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 批量导出子域名解析量
+
+        # @param request: Request instance for CreateSubDomainsAnalyticsFile.
+        # @type request: :class:`Tencentcloud::dnspod::V20210323::CreateSubDomainsAnalyticsFileRequest`
+        # @rtype: :class:`Tencentcloud::dnspod::V20210323::CreateSubDomainsAnalyticsFileResponse`
+        def CreateSubDomainsAnalyticsFile(request)
+          body = send_request('CreateSubDomainsAnalyticsFile', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateSubDomainsAnalyticsFileResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -981,6 +1029,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeDomainWhoisResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 根据批量任务ID获取生成文件信息
+
+        # @param request: Request instance for DescribeFileInfoByJobId.
+        # @type request: :class:`Tencentcloud::dnspod::V20210323::DescribeFileInfoByJobIdRequest`
+        # @rtype: :class:`Tencentcloud::dnspod::V20210323::DescribeFileInfoByJobIdResponse`
+        def DescribeFileInfoByJobId(request)
+          body = send_request('DescribeFileInfoByJobId', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeFileInfoByJobIdResponse.new
             model.deserialize(response['Response'])
             model
           else

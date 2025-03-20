@@ -1944,7 +1944,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口(GetRecordPlanByDev)用于根据设备ID查询其绑定的录制计划.
+        # 本接口(GetRecordPlanByDev)用于根据设备ID查询其绑定的录制计划. 这个接口没有业务逻辑用到, 已废弃，统一用DescribeDevice
 
         # @param request: Request instance for GetRecordPlanByDev.
         # @type request: :class:`Tencentcloud::iotvideoindustry::V20201201::GetRecordPlanByDevRequest`

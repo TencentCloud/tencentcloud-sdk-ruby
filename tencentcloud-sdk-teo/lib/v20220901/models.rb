@@ -8025,6 +8025,58 @@ module TencentCloud
         end
       end
 
+      # DescribeSecurityPolicy请求参数结构体
+      class DescribeSecurityPolicyRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点 ID。
+        # @type ZoneId: String
+        # @param Entity: 安全策略类型，可使用以下参数值进行查询： <li>ZoneDefaultPolicy：用于指定查询站点级策略；</li><li>Template：用于指定查询策略模板，需要同时指定 TemplateId 参数；</li><li>Host：用于指定查询域名级策略（注意：当使用域名来指定域名服务策略时，仅支持已经应用了域名级策略的域名服务或者策略模板）。</li>
+        # @type Entity: String
+        # @param TemplateId: 指定策略模板 ID。当 Entity 参数值为 Template 时，使用本参数指定策略模板的 ID 查询模板配置。
+        # @type TemplateId: String
+        # @param Host: 指定域名。当 Entity 参数值为 Host 时，使用本参数指定的域名级策略查询域名配置，例如：使用 www.example.com ，配置该域名的域名级策略。
+        # @type Host: String
+
+        attr_accessor :ZoneId, :Entity, :TemplateId, :Host
+
+        def initialize(zoneid=nil, entity=nil, templateid=nil, host=nil)
+          @ZoneId = zoneid
+          @Entity = entity
+          @TemplateId = templateid
+          @Host = host
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @Entity = params['Entity']
+          @TemplateId = params['TemplateId']
+          @Host = params['Host']
+        end
+      end
+
+      # DescribeSecurityPolicy返回参数结构体
+      class DescribeSecurityPolicyResponse < TencentCloud::Common::AbstractModel
+        # @param SecurityPolicy: 安全策略配置。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SecurityPolicy: :class:`Tencentcloud::Teo.v20220901.models.SecurityPolicy`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :SecurityPolicy, :RequestId
+
+        def initialize(securitypolicy=nil, requestid=nil)
+          @SecurityPolicy = securitypolicy
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['SecurityPolicy'].nil?
+            @SecurityPolicy = SecurityPolicy.new
+            @SecurityPolicy.deserialize(params['SecurityPolicy'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeSecurityTemplateBindings请求参数结构体
       class DescribeSecurityTemplateBindingsRequest < TencentCloud::Common::AbstractModel
         # @param ZoneId: 要查询的站点 ID。
@@ -8085,10 +8137,12 @@ module TencentCloud
         # @param EndTime: 结束时间。
         # @type EndTime: String
         # @param MetricNames: 查询指标，取值有：
-        # <li>l4Flow_connections: 访问连接数；</li>
+        # <li>l4Flow_connections: 访问并发连接数；</li>
         # <li>l4Flow_flux: 访问总流量；</li>
         # <li>l4Flow_inFlux: 访问入流量；</li>
-        # <li>l4Flow_outFlux: 访问出流量。</li>
+        # <li>l4Flow_outFlux: 访问出流量；</li>
+        # <li>l4Flow_inBandwidth: 访问入向带宽峰值；</li>
+        # <li>l4Flow_outBandwidth: 访问出向带宽峰值。</li>
         # @type MetricNames: Array
         # @param ZoneIds: 站点 ID 集合，此参数必填。
         # @type ZoneIds: Array
@@ -8104,10 +8158,7 @@ module TencentCloud
         # <li>ruleId：按照转发规则 ID 进行过滤。</li>
         # <li>proxyId：按照四层代理实例 ID 进行过滤。</li>
         # @type Filters: Array
-        # @param Area: 数据归属地区，取值有：
-        # <li>overseas：全球（除中国大陆地区）数据；</li>
-        # <li>mainland：中国大陆地区数据；</li>
-        # <li>global：全球数据。</li>不填默认取值为global。
+        # @param Area: 数据归属地区。该参数已废弃。请在 Filters.country 中按客户端地域过滤数据。
         # @type Area: String
 
         attr_accessor :StartTime, :EndTime, :MetricNames, :ZoneIds, :ProxyIds, :Interval, :Filters, :Area
@@ -8216,13 +8267,10 @@ module TencentCloud
         # <li>tlsVersion：按照 TLS 版本进行过滤。若填写 tlsVersion 参数，则最多可查询近 30 天的数据。对应 Value 的可选项如下：<br>   TLS1.0；<br>   TLS1.1；<br>   TLS1.2；<br>   TLS1.3。</li>
         # <li>ipVersion：按照 IP 版本进行过滤。对应 Value 的可选项如下：<br>   4：IPv4；<br>   6：IPv6。</li>
         # <li>cacheType：按照缓存状态进行过滤。对应 Value 的可选项如下：<br>   hit：请求命中 EdgeOne 节点缓存，资源由节点缓存提供。资源部分命中缓存也会记录为 hit。<br>   miss：请求未命中 EdgeOne 节点缓存，资源由源站提供。<br>   dynamic：请求的资源无法缓存/未配置被节点缓存，资源由源站提供。<br>   other：无法被识别的缓存状态。边缘函数响应的请求会记录为 other。</li>
-        # <li>clientIp：按照客户端 IP 进行过滤。</li>
+        # <li>clientIp：按照客户端 IP 进行过滤。若填写 clientIp 参数，则最多可查询近 30 天的数据。</li>
+        # <li>userAgent：按照 User-Agent 请求头部进行过滤。若填写 userAgent 参数，则最多可查询近 30 天的数据。</li>
         # @type Filters: Array
-        # @param Area: 数据归属地区，取值有：
-        # <li>overseas：全球（除中国大陆地区）数据；</li>
-        # <li>mainland：中国大陆地区数据；</li>
-        # <li>global：全球数据。</li>
-        # 不填默认取值为 global。
+        # @param Area: 数据归属地区。该参数已废弃。请在 Filters.country 中按客户端地域过滤数据。
         # @type Area: String
 
         attr_accessor :StartTime, :EndTime, :MetricNames, :ZoneIds, :Interval, :Filters, :Area
@@ -8401,6 +8449,7 @@ module TencentCloud
         # <li> l7Flow_outFlux_ua_device：按设备类型维度统计 L7 EdgeOne 响应流量指标; </li>
         # <li> l7Flow_outFlux_ua_browser：按浏览器类型维度统计 L7 EdgeOne 响应流量指标；</li>
         # <li> l7Flow_outFlux_ua_os：按操作系统类型维度统计 L7 EdgeOne 响应流量指标；</li>
+        # <li> l7Flow_outFlux_ua：按 User-Agent 维度统计 L7 EdgeOne 响应流量指标；</li>
         # <li> l7Flow_request_country：按国家/地区维度统计 L7 访问请求数指标；</li>
         # <li> l7Flow_request_province：按中国大陆境内省份维度统计 L7 访问请求数指标；</li>
         # <li> l7Flow_request_statusCode：按状态码维度统计 L7 访问请求数指标；</li>
@@ -8411,7 +8460,9 @@ module TencentCloud
         # <li> l7Flow_request_referer：按 Referer 维度统计 L7 访问请求数指标；</li>
         # <li> l7Flow_request_ua_device：按设备类型维度统计 L7 访问请求数指标; </li>
         # <li> l7Flow_request_ua_browser：按浏览器类型维度统计 L7 访问请求数指标；</li>
-        # <li> l7Flow_request_ua_os：按操作系统类型维度统计 L7 访问请求数指标。</li>
+        # <li> l7Flow_request_ua_os：按操作系统类型维度统计 L7 访问请求数指标；</li>
+        # <li> l7Flow_request_ua：按 User-Agent 维度统计 L7 访问请求数指标。</li>
+
         # @type MetricName: String
         # @param ZoneIds: 站点 ID 集合，此参数必填。
         # @type ZoneIds: Array
@@ -8434,7 +8485,8 @@ module TencentCloud
         # <li>tlsVersion：按照 TLS 版本进行过滤。若填写 tlsVersion 参数，则最多可查询近 30 天的数据。对应 Value 的可选项如下：<br>   TLS1.0；<br>   TLS1.1；<br>   TLS1.2；<br>   TLS1.3。</li>
         # <li>ipVersion：按照 IP 版本进行过滤。对应 Value 的可选项如下：<br>   4：IPv4；<br>   6：IPv6。</li>
         # <li>cacheType：按照缓存状态进行过滤。对应 Value 的可选项如下：<br>   hit：请求命中 EdgeOne 节点缓存，资源由节点缓存提供。资源部分命中缓存也会记录为 hit。<br>   miss：请求未命中 EdgeOne 节点缓存，资源由源站提供。<br>   dynamic：请求的资源无法缓存/未配置被节点缓存，资源由源站提供。<br>   other：无法被识别的缓存状态。边缘函数响应的请求会记录为 other。</li>
-        # <li>clientIp：按照客户端 IP 进行过滤。</li>
+        # <li>clientIp：按照客户端 IP 进行过滤。若填写 clientIp 参数，则最多可查询近 30 天的数据。</li>
+        # <li>userAgent：按照 User-Agent 请求头部进行过滤。若填写 userAgent 参数，则最多可查询近 30 天的数据。</li>
         # @type Filters: Array
         # @param Interval: 查询时间粒度，取值有：
         # <li>min: 1分钟；</li>
@@ -8442,10 +8494,7 @@ module TencentCloud
         # <li>hour: 1小时；</li>
         # <li>day: 1天。</li>不填将根据开始时间跟结束时间的间距自动推算粒度，具体为：2 小时范围内以 min 粒度查询，2 天范围内以 5min 粒度查询，7 天范围内以 hour 粒度查询，超过 7 天以 day 粒度查询。
         # @type Interval: String
-        # @param Area: 数据归属地区，取值有：
-        # <li>overseas：全球（除中国大陆地区）数据；</li>
-        # <li>mainland：中国大陆地区数据；</li>
-        # <li>global：全球数据。</li>不填默认取值为global。
+        # @param Area: 数据归属地区。该参数已废弃。请在 Filters.country 中按客户端地域过滤数据。
         # @type Area: String
 
         attr_accessor :StartTime, :EndTime, :MetricName, :ZoneIds, :Limit, :Filters, :Interval, :Area

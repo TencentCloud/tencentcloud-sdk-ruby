@@ -5734,10 +5734,13 @@ module TencentCloud
         # @param LastAccessTimeByTables: 库下表的最新访问时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LastAccessTimeByTables: Integer
+        # @param DatabaseGuid: 库guid
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DatabaseGuid: String
 
-        attr_accessor :ProjectId, :MetastoreType, :DatasourceName, :DatasourceId, :ProjectName, :Category, :Description, :Instance, :Region, :Status, :DatabaseName, :ProjectDisplayName, :OwnerAccountName, :DisplayName, :DatabaseId, :Catalog, :StorageSize, :StorageSizeWithUnit, :CreateTime, :TableCount, :DatasourceList, :CollectJobId, :CollectJobName, :ClusterId, :ClusterName, :ModifiedTimeByTables, :LastAccessTimeByTables
+        attr_accessor :ProjectId, :MetastoreType, :DatasourceName, :DatasourceId, :ProjectName, :Category, :Description, :Instance, :Region, :Status, :DatabaseName, :ProjectDisplayName, :OwnerAccountName, :DisplayName, :DatabaseId, :Catalog, :StorageSize, :StorageSizeWithUnit, :CreateTime, :TableCount, :DatasourceList, :CollectJobId, :CollectJobName, :ClusterId, :ClusterName, :ModifiedTimeByTables, :LastAccessTimeByTables, :DatabaseGuid
 
-        def initialize(projectid=nil, metastoretype=nil, datasourcename=nil, datasourceid=nil, projectname=nil, category=nil, description=nil, instance=nil, region=nil, status=nil, databasename=nil, projectdisplayname=nil, owneraccountname=nil, displayname=nil, databaseid=nil, catalog=nil, storagesize=nil, storagesizewithunit=nil, createtime=nil, tablecount=nil, datasourcelist=nil, collectjobid=nil, collectjobname=nil, clusterid=nil, clustername=nil, modifiedtimebytables=nil, lastaccesstimebytables=nil)
+        def initialize(projectid=nil, metastoretype=nil, datasourcename=nil, datasourceid=nil, projectname=nil, category=nil, description=nil, instance=nil, region=nil, status=nil, databasename=nil, projectdisplayname=nil, owneraccountname=nil, displayname=nil, databaseid=nil, catalog=nil, storagesize=nil, storagesizewithunit=nil, createtime=nil, tablecount=nil, datasourcelist=nil, collectjobid=nil, collectjobname=nil, clusterid=nil, clustername=nil, modifiedtimebytables=nil, lastaccesstimebytables=nil, databaseguid=nil)
           @ProjectId = projectid
           @MetastoreType = metastoretype
           @DatasourceName = datasourcename
@@ -5765,6 +5768,7 @@ module TencentCloud
           @ClusterName = clustername
           @ModifiedTimeByTables = modifiedtimebytables
           @LastAccessTimeByTables = lastaccesstimebytables
+          @DatabaseGuid = databaseguid
         end
 
         def deserialize(params)
@@ -5802,6 +5806,7 @@ module TencentCloud
           @ClusterName = params['ClusterName']
           @ModifiedTimeByTables = params['ModifiedTimeByTables']
           @LastAccessTimeByTables = params['LastAccessTimeByTables']
+          @DatabaseGuid = params['DatabaseGuid']
         end
       end
 
@@ -17192,10 +17197,12 @@ module TencentCloud
         # @type SinkSchemaName: String
         # @param Env: 获取源信息的环境
         # @type Env: String
+        # @param WriteMode: doris写入模式配置
+        # @type WriteMode: String
 
-        attr_accessor :ProjectId, :SinkDatabase, :Id, :MsType, :DatasourceId, :SourceDatabase, :TableName, :SinkType, :SchemaName, :SourceFieldInfoList, :Partitions, :Properties, :TableMode, :TableVersion, :UpsertFlag, :TableComment, :AddDataFiles, :AddEqualityDeletes, :AddPositionDeletes, :AddDeleteFiles, :TargetDatasourceId, :UpsertKeys, :TableBaseInfo, :SinkSchemaName, :Env
+        attr_accessor :ProjectId, :SinkDatabase, :Id, :MsType, :DatasourceId, :SourceDatabase, :TableName, :SinkType, :SchemaName, :SourceFieldInfoList, :Partitions, :Properties, :TableMode, :TableVersion, :UpsertFlag, :TableComment, :AddDataFiles, :AddEqualityDeletes, :AddPositionDeletes, :AddDeleteFiles, :TargetDatasourceId, :UpsertKeys, :TableBaseInfo, :SinkSchemaName, :Env, :WriteMode
 
-        def initialize(projectid=nil, sinkdatabase=nil, id=nil, mstype=nil, datasourceid=nil, sourcedatabase=nil, tablename=nil, sinktype=nil, schemaname=nil, sourcefieldinfolist=nil, partitions=nil, properties=nil, tablemode=nil, tableversion=nil, upsertflag=nil, tablecomment=nil, adddatafiles=nil, addequalitydeletes=nil, addpositiondeletes=nil, adddeletefiles=nil, targetdatasourceid=nil, upsertkeys=nil, tablebaseinfo=nil, sinkschemaname=nil, env=nil)
+        def initialize(projectid=nil, sinkdatabase=nil, id=nil, mstype=nil, datasourceid=nil, sourcedatabase=nil, tablename=nil, sinktype=nil, schemaname=nil, sourcefieldinfolist=nil, partitions=nil, properties=nil, tablemode=nil, tableversion=nil, upsertflag=nil, tablecomment=nil, adddatafiles=nil, addequalitydeletes=nil, addpositiondeletes=nil, adddeletefiles=nil, targetdatasourceid=nil, upsertkeys=nil, tablebaseinfo=nil, sinkschemaname=nil, env=nil, writemode=nil)
           @ProjectId = projectid
           @SinkDatabase = sinkdatabase
           @Id = id
@@ -17221,6 +17228,7 @@ module TencentCloud
           @TableBaseInfo = tablebaseinfo
           @SinkSchemaName = sinkschemaname
           @Env = env
+          @WriteMode = writemode
         end
 
         def deserialize(params)
@@ -17273,6 +17281,7 @@ module TencentCloud
           end
           @SinkSchemaName = params['SinkSchemaName']
           @Env = params['Env']
+          @WriteMode = params['WriteMode']
         end
       end
 

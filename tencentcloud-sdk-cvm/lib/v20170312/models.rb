@@ -3762,12 +3762,14 @@ module TencentCloud
         # @type InstanceIds: Array
         # @param CreateTime: 分散置放群组创建时间。
         # @type CreateTime: String
+        # @param Affinity: 置放群组亲和度
+        # @type Affinity: Integer
         # @param Tags: 置放群组关联的标签列表。
         # @type Tags: Array
 
-        attr_accessor :DisasterRecoverGroupId, :Name, :Type, :CvmQuotaTotal, :CurrentNum, :InstanceIds, :CreateTime, :Tags
+        attr_accessor :DisasterRecoverGroupId, :Name, :Type, :CvmQuotaTotal, :CurrentNum, :InstanceIds, :CreateTime, :Affinity, :Tags
 
-        def initialize(disasterrecovergroupid=nil, name=nil, type=nil, cvmquotatotal=nil, currentnum=nil, instanceids=nil, createtime=nil, tags=nil)
+        def initialize(disasterrecovergroupid=nil, name=nil, type=nil, cvmquotatotal=nil, currentnum=nil, instanceids=nil, createtime=nil, affinity=nil, tags=nil)
           @DisasterRecoverGroupId = disasterrecovergroupid
           @Name = name
           @Type = type
@@ -3775,6 +3777,7 @@ module TencentCloud
           @CurrentNum = currentnum
           @InstanceIds = instanceids
           @CreateTime = createtime
+          @Affinity = affinity
           @Tags = tags
         end
 
@@ -3786,6 +3789,7 @@ module TencentCloud
           @CurrentNum = params['CurrentNum']
           @InstanceIds = params['InstanceIds']
           @CreateTime = params['CreateTime']
+          @Affinity = params['Affinity']
           unless params['Tags'].nil?
             @Tags = []
             params['Tags'].each do |i|

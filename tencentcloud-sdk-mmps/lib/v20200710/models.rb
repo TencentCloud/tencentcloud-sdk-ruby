@@ -22,36 +22,26 @@ module TencentCloud
         # @param AppPackage: 小程序apiiid
         # @type AppPackage: String
         # @param AppName: 小程序应用名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AppName: String
         # @param AppVersion: 小程序应用版本
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AppVersion: String
         # @param Platform: 应用平台, 0:android, 1:ios, 2:小程序
         # @type Platform: Integer
         # @param ReportUrl: 小程序隐私诊断报告下载链接
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReportUrl: String
         # @param ReportTitle: 小程序隐私诊断报告名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReportTitle: String
         # @param BehaviorUrl: 小程序隐私诊断堆栈报告下载链接
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BehaviorUrl: String
         # @param BehaviorTitle: 小程序隐私诊断堆栈报告名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BehaviorTitle: String
         # @param HighRiskCount: 诊断风险项数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HighRiskCount: Integer
         # @param PrivacyTextName: 隐私申明文件名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PrivacyTextName: String
         # @param SoftwareMD5: 软件MD5
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SoftwareMD5: String
         # @param PrivacyTextMD5: 隐私文本MD5
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PrivacyTextMD5: String
 
         attr_accessor :AppPackage, :AppName, :AppVersion, :Platform, :ReportUrl, :ReportTitle, :BehaviorUrl, :BehaviorTitle, :HighRiskCount, :PrivacyTextName, :SoftwareMD5, :PrivacyTextMD5
@@ -96,7 +86,6 @@ module TencentCloud
         # @param TaskStatus: 0:默认值(待检测/待咨询), 1.检测中, 2:待评估, 3:评估中, 4:任务完成/咨询完成, 5:任务失败, 6:咨询中;
         # @type TaskStatus: Integer
         # @param TaskErrMsg: 错误信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskErrMsg: String
         # @param Source: 任务来源,0:小程序诊断, 1:预留字段(暂未使用), 2:app诊断(android);
         # @type Source: Integer
@@ -107,7 +96,6 @@ module TencentCloud
         # @param EndTime: 任务完成时间(更新时间)
         # @type EndTime: String
         # @param ContactName: 联系人信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ContactName: String
 
         attr_accessor :TaskID, :TaskType, :TaskStatus, :TaskErrMsg, :Source, :AppInfo, :StartTime, :EndTime, :ContactName
@@ -553,7 +541,6 @@ module TencentCloud
         # @param Ret: 返回值, 0:成功, 其他值请查看“返回值”定义
         # @type Ret: Integer
         # @param Url: 诊断报告下载链接
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Url: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -610,10 +597,8 @@ module TencentCloud
         # @param Ret: 返回值, 0:成功, 其他值请查看“返回值”定义
         # @type Ret: Integer
         # @param Data: 诊断报告数据
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: Array
         # @param Total: 诊断任务数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Total: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -675,10 +660,8 @@ module TencentCloud
         # @param Ret: 返回值, 0:成功, 其他值请查看“返回值”定义
         # @type Ret: Integer
         # @param Data: 诊断任务数据列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: Array
         # @param Total: 诊断任务数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Total: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -789,13 +772,10 @@ module TencentCloud
         # @param Status: 诊断状态, 0:排队中, 1:成功, 2:失败, 3:进行中
         # @type Status: Integer
         # @param Errno: 诊断失败错误码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Errno: Integer
         # @param MiniAppName: 小程序名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MiniAppName: String
         # @param MiniAppVersion: 小程序版本
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MiniAppVersion: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -920,10 +900,8 @@ module TencentCloud
         # @param Result: 返回值, 0:成功, 其他值请查看“返回值”定义
         # @type Result: Integer
         # @param Data: 诊断任务数据列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: Array
         # @param Total: 任务总数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Total: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -991,10 +969,8 @@ module TencentCloud
         # @param ReportUrl: 诊断报告/堆栈信息下载链接
         # @type ReportUrl: String
         # @param ReportTitle: 诊断报告/堆栈名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReportTitle: String
         # @param ReportResult: 诊断json结果内容
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReportResult: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1257,20 +1233,16 @@ module TencentCloud
       # 任务流步骤详情
       class TaskFlowStepsInfo < TencentCloud::Common::AbstractModel
         # @param FlowNo: 流程编号
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FlowNo: String
         # @param FlowName: 流程名称
         # @type FlowName: String
         # @param FlowStatus: 流程状态, 其他值:进行中, 2:成功, 3:失败
         # @type FlowStatus: Integer
         # @param FlowStateDesc: 流程状态描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FlowStateDesc: String
         # @param StartTime: 流程启动时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StartTime: String
         # @param EndTime: 流程完成时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EndTime: String
 
         attr_accessor :FlowNo, :FlowName, :FlowStatus, :FlowStateDesc, :StartTime, :EndTime

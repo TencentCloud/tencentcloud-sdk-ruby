@@ -2743,19 +2743,23 @@ module TencentCloud
         # @type LogsetName: String
         # @param LogType: 1-访问日志，2-攻击日志，默认为访问日志。
         # @type LogType: Integer
+        # @param LogTopicName: 投递的CLS所在日志主题的名称，默认为 waf_post_logtopic
+        # @type LogTopicName: String
 
-        attr_accessor :CLSRegion, :LogsetName, :LogType
+        attr_accessor :CLSRegion, :LogsetName, :LogType, :LogTopicName
 
-        def initialize(clsregion=nil, logsetname=nil, logtype=nil)
+        def initialize(clsregion=nil, logsetname=nil, logtype=nil, logtopicname=nil)
           @CLSRegion = clsregion
           @LogsetName = logsetname
           @LogType = logtype
+          @LogTopicName = logtopicname
         end
 
         def deserialize(params)
           @CLSRegion = params['CLSRegion']
           @LogsetName = params['LogsetName']
           @LogType = params['LogType']
+          @LogTopicName = params['LogTopicName']
         end
       end
 

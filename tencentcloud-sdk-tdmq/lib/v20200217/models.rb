@@ -8964,62 +8964,6 @@ module TencentCloud
         end
       end
 
-      # ModifyPublicNetworkAccessPoint请求参数结构体
-      class ModifyPublicNetworkAccessPointRequest < TencentCloud::Common::AbstractModel
-        # @param ClusterId: 集群名字
-        # @type ClusterId: String
-        # @param PublicNetworkAccessPointStatus: 是否开启
-        # @type PublicNetworkAccessPointStatus: Boolean
-        # @param SwitchOwner: 必填，公网控制台的开关/Vpc控制台的开关，示例值，Public/Vpc
-        # @type SwitchOwner: String
-        # @param VpcId: Vpc
-        # @type VpcId: String
-        # @param SubnetId: 子网
-        # @type SubnetId: String
-        # @param SelectIp: 子网下面指定ip作为vpc接入点
-        # @type SelectIp: String
-
-        attr_accessor :ClusterId, :PublicNetworkAccessPointStatus, :SwitchOwner, :VpcId, :SubnetId, :SelectIp
-
-        def initialize(clusterid=nil, publicnetworkaccesspointstatus=nil, switchowner=nil, vpcid=nil, subnetid=nil, selectip=nil)
-          @ClusterId = clusterid
-          @PublicNetworkAccessPointStatus = publicnetworkaccesspointstatus
-          @SwitchOwner = switchowner
-          @VpcId = vpcid
-          @SubnetId = subnetid
-          @SelectIp = selectip
-        end
-
-        def deserialize(params)
-          @ClusterId = params['ClusterId']
-          @PublicNetworkAccessPointStatus = params['PublicNetworkAccessPointStatus']
-          @SwitchOwner = params['SwitchOwner']
-          @VpcId = params['VpcId']
-          @SubnetId = params['SubnetId']
-          @SelectIp = params['SelectIp']
-        end
-      end
-
-      # ModifyPublicNetworkAccessPoint返回参数结构体
-      class ModifyPublicNetworkAccessPointResponse < TencentCloud::Common::AbstractModel
-        # @param ModifyResult: 修改结果
-        # @type ModifyResult: String
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :ModifyResult, :RequestId
-
-        def initialize(modifyresult=nil, requestid=nil)
-          @ModifyResult = modifyresult
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @ModifyResult = params['ModifyResult']
-          @RequestId = params['RequestId']
-        end
-      end
-
       # ModifyPublicNetworkSecurityPolicy请求参数结构体
       class ModifyPublicNetworkSecurityPolicyRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 集群id
