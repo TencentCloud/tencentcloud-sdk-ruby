@@ -848,7 +848,7 @@ module TencentCloud
         # @type InstanceId: String
         # @param Time: 获取健康得分的时间。
         # @type Time: String
-        # @param Product: 服务产品类型，支持值包括： "mysql" - 云数据库 MySQL， "cynosdb" - 云数据库 TDSQL-C for MySQL，默认为"mysql"。
+        # @param Product: 服务产品类型，支持值包括： "mysql" - 云数据库 MySQL， "cynosdb" - 云数据库 TDSQL-C for MySQL，"redis" - 云数据库 Redis，默认为"mysql"。
         # @type Product: String
 
         attr_accessor :InstanceId, :Time, :Product

@@ -22843,14 +22843,17 @@ module TencentCloud
         # @param CycleType: 生产调度任务任务类型
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CycleType: Integer
+        # @param TaskType: 生产任务类型
+        # @type TaskType: String
 
-        attr_accessor :WorkflowId, :TaskId, :TaskName, :CycleType
+        attr_accessor :WorkflowId, :TaskId, :TaskName, :CycleType, :TaskType
 
-        def initialize(workflowid=nil, taskid=nil, taskname=nil, cycletype=nil)
+        def initialize(workflowid=nil, taskid=nil, taskname=nil, cycletype=nil, tasktype=nil)
           @WorkflowId = workflowid
           @TaskId = taskid
           @TaskName = taskname
           @CycleType = cycletype
+          @TaskType = tasktype
         end
 
         def deserialize(params)
@@ -22858,6 +22861,7 @@ module TencentCloud
           @TaskId = params['TaskId']
           @TaskName = params['TaskName']
           @CycleType = params['CycleType']
+          @TaskType = params['TaskType']
         end
       end
 
@@ -24868,10 +24872,27 @@ module TencentCloud
         # @param ClusterDeployType: EMR集群部署方式：CVM/TKE
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterDeployType: String
+        # @param Name: 任务名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param ExecDetail: 执行详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExecDetail: String
+        # @param PipelineTaskCount: 事中关联任务数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PipelineTaskCount: Integer
+        # @param EnableRuleCount: 有效规则数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnableRuleCount: Integer
+        # @param Description: 任务描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+        # @param CreateUserName: 监控创建人
+        # @type CreateUserName: String
 
-        attr_accessor :RuleGroupId, :DatasourceId, :DatasourceName, :DatasourceType, :MonitorType, :UpdateTime, :TableName, :TableId, :TableOwnerName, :ExecStrategy, :Subscription, :DatabaseId, :DatabaseName, :SchemaName, :Permission, :RuleCount, :MonitorStatus, :TableOwnerUserId, :InstanceId, :CreateTime, :StrategyConfig, :SubscribeConfig, :DsEnvType, :ClusterDeployType
+        attr_accessor :RuleGroupId, :DatasourceId, :DatasourceName, :DatasourceType, :MonitorType, :UpdateTime, :TableName, :TableId, :TableOwnerName, :ExecStrategy, :Subscription, :DatabaseId, :DatabaseName, :SchemaName, :Permission, :RuleCount, :MonitorStatus, :TableOwnerUserId, :InstanceId, :CreateTime, :StrategyConfig, :SubscribeConfig, :DsEnvType, :ClusterDeployType, :Name, :ExecDetail, :PipelineTaskCount, :EnableRuleCount, :Description, :CreateUserName
 
-        def initialize(rulegroupid=nil, datasourceid=nil, datasourcename=nil, datasourcetype=nil, monitortype=nil, updatetime=nil, tablename=nil, tableid=nil, tableownername=nil, execstrategy=nil, subscription=nil, databaseid=nil, databasename=nil, schemaname=nil, permission=nil, rulecount=nil, monitorstatus=nil, tableowneruserid=nil, instanceid=nil, createtime=nil, strategyconfig=nil, subscribeconfig=nil, dsenvtype=nil, clusterdeploytype=nil)
+        def initialize(rulegroupid=nil, datasourceid=nil, datasourcename=nil, datasourcetype=nil, monitortype=nil, updatetime=nil, tablename=nil, tableid=nil, tableownername=nil, execstrategy=nil, subscription=nil, databaseid=nil, databasename=nil, schemaname=nil, permission=nil, rulecount=nil, monitorstatus=nil, tableowneruserid=nil, instanceid=nil, createtime=nil, strategyconfig=nil, subscribeconfig=nil, dsenvtype=nil, clusterdeploytype=nil, name=nil, execdetail=nil, pipelinetaskcount=nil, enablerulecount=nil, description=nil, createusername=nil)
           @RuleGroupId = rulegroupid
           @DatasourceId = datasourceid
           @DatasourceName = datasourcename
@@ -24896,6 +24917,12 @@ module TencentCloud
           @SubscribeConfig = subscribeconfig
           @DsEnvType = dsenvtype
           @ClusterDeployType = clusterdeploytype
+          @Name = name
+          @ExecDetail = execdetail
+          @PipelineTaskCount = pipelinetaskcount
+          @EnableRuleCount = enablerulecount
+          @Description = description
+          @CreateUserName = createusername
         end
 
         def deserialize(params)
@@ -24929,6 +24956,12 @@ module TencentCloud
           @SubscribeConfig = params['SubscribeConfig']
           @DsEnvType = params['DsEnvType']
           @ClusterDeployType = params['ClusterDeployType']
+          @Name = params['Name']
+          @ExecDetail = params['ExecDetail']
+          @PipelineTaskCount = params['PipelineTaskCount']
+          @EnableRuleCount = params['EnableRuleCount']
+          @Description = params['Description']
+          @CreateUserName = params['CreateUserName']
         end
       end
 
@@ -25164,10 +25197,22 @@ module TencentCloud
         # @param DlcGroupName: DLC资源组
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DlcGroupName: String
+        # @param RuleGroupName: 任务名称
+        # @type RuleGroupName: String
+        # @param DatabaseName: 数据库名称
+        # @type DatabaseName: String
+        # @param SchemaName: schema名称
+        # @type SchemaName: String
+        # @param TableName: 表名称
+        # @type TableName: String
+        # @param DatasourceId: 数据源id
+        # @type DatasourceId: String
+        # @param Description: 任务描述
+        # @type Description: String
 
-        attr_accessor :RuleGroupId, :MonitorType, :ExecQueue, :ExecutorGroupId, :ExecutorGroupName, :Tasks, :StartTime, :EndTime, :CycleType, :DelayTime, :CycleStep, :TaskAction, :ExecEngineType, :ExecPlan, :RuleId, :RuleName, :TriggerTypes, :DlcGroupName
+        attr_accessor :RuleGroupId, :MonitorType, :ExecQueue, :ExecutorGroupId, :ExecutorGroupName, :Tasks, :StartTime, :EndTime, :CycleType, :DelayTime, :CycleStep, :TaskAction, :ExecEngineType, :ExecPlan, :RuleId, :RuleName, :TriggerTypes, :DlcGroupName, :RuleGroupName, :DatabaseName, :SchemaName, :TableName, :DatasourceId, :Description
 
-        def initialize(rulegroupid=nil, monitortype=nil, execqueue=nil, executorgroupid=nil, executorgroupname=nil, tasks=nil, starttime=nil, endtime=nil, cycletype=nil, delaytime=nil, cyclestep=nil, taskaction=nil, execenginetype=nil, execplan=nil, ruleid=nil, rulename=nil, triggertypes=nil, dlcgroupname=nil)
+        def initialize(rulegroupid=nil, monitortype=nil, execqueue=nil, executorgroupid=nil, executorgroupname=nil, tasks=nil, starttime=nil, endtime=nil, cycletype=nil, delaytime=nil, cyclestep=nil, taskaction=nil, execenginetype=nil, execplan=nil, ruleid=nil, rulename=nil, triggertypes=nil, dlcgroupname=nil, rulegroupname=nil, databasename=nil, schemaname=nil, tablename=nil, datasourceid=nil, description=nil)
           @RuleGroupId = rulegroupid
           @MonitorType = monitortype
           @ExecQueue = execqueue
@@ -25186,6 +25231,12 @@ module TencentCloud
           @RuleName = rulename
           @TriggerTypes = triggertypes
           @DlcGroupName = dlcgroupname
+          @RuleGroupName = rulegroupname
+          @DatabaseName = databasename
+          @SchemaName = schemaname
+          @TableName = tablename
+          @DatasourceId = datasourceid
+          @Description = description
         end
 
         def deserialize(params)
@@ -25214,6 +25265,12 @@ module TencentCloud
           @RuleName = params['RuleName']
           @TriggerTypes = params['TriggerTypes']
           @DlcGroupName = params['DlcGroupName']
+          @RuleGroupName = params['RuleGroupName']
+          @DatabaseName = params['DatabaseName']
+          @SchemaName = params['SchemaName']
+          @TableName = params['TableName']
+          @DatasourceId = params['DatasourceId']
+          @Description = params['Description']
         end
       end
 
@@ -25333,16 +25390,20 @@ module TencentCloud
         # @param RuleName: 规则名称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleName: String
+        # @param AlarmMessageRule: 发送对象
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AlarmMessageRule: String
 
-        attr_accessor :RuleGroupId, :Receivers, :SubscribeType, :WebHooks, :RuleId, :RuleName
+        attr_accessor :RuleGroupId, :Receivers, :SubscribeType, :WebHooks, :RuleId, :RuleName, :AlarmMessageRule
 
-        def initialize(rulegroupid=nil, receivers=nil, subscribetype=nil, webhooks=nil, ruleid=nil, rulename=nil)
+        def initialize(rulegroupid=nil, receivers=nil, subscribetype=nil, webhooks=nil, ruleid=nil, rulename=nil, alarmmessagerule=nil)
           @RuleGroupId = rulegroupid
           @Receivers = receivers
           @SubscribeType = subscribetype
           @WebHooks = webhooks
           @RuleId = ruleid
           @RuleName = rulename
+          @AlarmMessageRule = alarmmessagerule
         end
 
         def deserialize(params)
@@ -25366,6 +25427,7 @@ module TencentCloud
           end
           @RuleId = params['RuleId']
           @RuleName = params['RuleName']
+          @AlarmMessageRule = params['AlarmMessageRule']
         end
       end
 

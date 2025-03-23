@@ -2237,6 +2237,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取未绑定的设备列表
+
+        # @param request: Request instance for DescribeUnbindedDevices.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::DescribeUnbindedDevicesRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::DescribeUnbindedDevicesResponse`
+        def DescribeUnbindedDevices(request)
+          body = send_request('DescribeUnbindedDevices', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeUnbindedDevicesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 用于查询视频激活码统计概览
 
         # @param request: Request instance for DescribeVideoLicense.

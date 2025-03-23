@@ -341,10 +341,12 @@ module TencentCloud
         # @type DiskSpec: :class:`Tencentcloud::Emr.v20190103.models.NodeSpecDiskV2`
         # @param DeleteWithInstance: 可选参数，不传该参数则仅执行挂载操作。传入True时，会在挂载成功后将云硬盘设置为随云主机销毁模式，仅对按量计费云硬盘有效。
         # @type DeleteWithInstance: Boolean
+        # @param SelectiveConfServices: 新挂磁盘时可支持配置的服务名称列表
+        # @type SelectiveConfServices: Array
 
-        attr_accessor :InstanceId, :DiskIds, :AlignType, :CvmInstanceIds, :CreateDisk, :DiskSpec, :DeleteWithInstance
+        attr_accessor :InstanceId, :DiskIds, :AlignType, :CvmInstanceIds, :CreateDisk, :DiskSpec, :DeleteWithInstance, :SelectiveConfServices
 
-        def initialize(instanceid=nil, diskids=nil, aligntype=nil, cvminstanceids=nil, createdisk=nil, diskspec=nil, deletewithinstance=nil)
+        def initialize(instanceid=nil, diskids=nil, aligntype=nil, cvminstanceids=nil, createdisk=nil, diskspec=nil, deletewithinstance=nil, selectiveconfservices=nil)
           @InstanceId = instanceid
           @DiskIds = diskids
           @AlignType = aligntype
@@ -352,6 +354,7 @@ module TencentCloud
           @CreateDisk = createdisk
           @DiskSpec = diskspec
           @DeleteWithInstance = deletewithinstance
+          @SelectiveConfServices = selectiveconfservices
         end
 
         def deserialize(params)
@@ -365,6 +368,7 @@ module TencentCloud
             @DiskSpec.deserialize(params['DiskSpec'])
           end
           @DeleteWithInstance = params['DeleteWithInstance']
+          @SelectiveConfServices = params['SelectiveConfServices']
         end
       end
 
@@ -596,10 +600,12 @@ module TencentCloud
         # @type InstanceId: String
         # @param Shareable: 云盘是否为共享型云盘。
         # @type Shareable: Boolean
+        # @param EmrResourceId: emr节点ID
+        # @type EmrResourceId: String
 
-        attr_accessor :DiskId, :DiskUsage, :DiskName, :DiskSize, :DiskType, :DeleteWithInstance, :DiskChargeType, :DiskState, :RenewFlag, :DeadlineTime, :Attached, :DifferDaysOfDeadline, :InstanceIdList, :InstanceId, :Shareable
+        attr_accessor :DiskId, :DiskUsage, :DiskName, :DiskSize, :DiskType, :DeleteWithInstance, :DiskChargeType, :DiskState, :RenewFlag, :DeadlineTime, :Attached, :DifferDaysOfDeadline, :InstanceIdList, :InstanceId, :Shareable, :EmrResourceId
 
-        def initialize(diskid=nil, diskusage=nil, diskname=nil, disksize=nil, disktype=nil, deletewithinstance=nil, diskchargetype=nil, diskstate=nil, renewflag=nil, deadlinetime=nil, attached=nil, differdaysofdeadline=nil, instanceidlist=nil, instanceid=nil, shareable=nil)
+        def initialize(diskid=nil, diskusage=nil, diskname=nil, disksize=nil, disktype=nil, deletewithinstance=nil, diskchargetype=nil, diskstate=nil, renewflag=nil, deadlinetime=nil, attached=nil, differdaysofdeadline=nil, instanceidlist=nil, instanceid=nil, shareable=nil, emrresourceid=nil)
           @DiskId = diskid
           @DiskUsage = diskusage
           @DiskName = diskname
@@ -615,6 +621,7 @@ module TencentCloud
           @InstanceIdList = instanceidlist
           @InstanceId = instanceid
           @Shareable = shareable
+          @EmrResourceId = emrresourceid
         end
 
         def deserialize(params)
@@ -633,6 +640,7 @@ module TencentCloud
           @InstanceIdList = params['InstanceIdList']
           @InstanceId = params['InstanceId']
           @Shareable = params['Shareable']
+          @EmrResourceId = params['EmrResourceId']
         end
       end
 
@@ -3934,17 +3942,40 @@ module TencentCloud
         # @type InstanceId: String
         # @param CvmInstanceIds: 节点CVM实例Id列表
         # @type CvmInstanceIds: Array
+        # @param Filters: 查询云盘的过滤条件
+        # @type Filters: Array
+        # @param InnerSearch: 模糊搜索
+        # @type InnerSearch: String
+        # @param Limit: 每页返回数量，默认值为100，最大值为100。
+        # @type Limit: Integer
+        # @param Offset: 数据偏移值
+        # @type Offset: Integer
 
-        attr_accessor :InstanceId, :CvmInstanceIds
+        attr_accessor :InstanceId, :CvmInstanceIds, :Filters, :InnerSearch, :Limit, :Offset
 
-        def initialize(instanceid=nil, cvminstanceids=nil)
+        def initialize(instanceid=nil, cvminstanceids=nil, filters=nil, innersearch=nil, limit=nil, offset=nil)
           @InstanceId = instanceid
           @CvmInstanceIds = cvminstanceids
+          @Filters = filters
+          @InnerSearch = innersearch
+          @Limit = limit
+          @Offset = offset
         end
 
         def deserialize(params)
           @InstanceId = params['InstanceId']
           @CvmInstanceIds = params['CvmInstanceIds']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filters_tmp = Filters.new
+              filters_tmp.deserialize(i)
+              @Filters << filters_tmp
+            end
+          end
+          @InnerSearch = params['InnerSearch']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
         end
       end
 
@@ -3955,14 +3986,17 @@ module TencentCloud
         # @param CBSList: 云盘列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CBSList: Array
+        # @param MaxSize: 云盘最大容量
+        # @type MaxSize: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TotalCount, :CBSList, :RequestId
+        attr_accessor :TotalCount, :CBSList, :MaxSize, :RequestId
 
-        def initialize(totalcount=nil, cbslist=nil, requestid=nil)
+        def initialize(totalcount=nil, cbslist=nil, maxsize=nil, requestid=nil)
           @TotalCount = totalcount
           @CBSList = cbslist
+          @MaxSize = maxsize
           @RequestId = requestid
         end
 
@@ -3976,6 +4010,7 @@ module TencentCloud
               @CBSList << cbsinstance_tmp
             end
           end
+          @MaxSize = params['MaxSize']
           @RequestId = params['RequestId']
         end
       end
@@ -6168,16 +6203,19 @@ module TencentCloud
         # @type TimeUnit: String
         # @param TimeSpan: 实例续费的时长。
         # @type TimeSpan: Integer
+        # @param NodeRenewPriceDetails: 节点续费询价明细列表
+        # @type NodeRenewPriceDetails: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :OriginalCost, :DiscountCost, :TimeUnit, :TimeSpan, :RequestId
+        attr_accessor :OriginalCost, :DiscountCost, :TimeUnit, :TimeSpan, :NodeRenewPriceDetails, :RequestId
 
-        def initialize(originalcost=nil, discountcost=nil, timeunit=nil, timespan=nil, requestid=nil)
+        def initialize(originalcost=nil, discountcost=nil, timeunit=nil, timespan=nil, noderenewpricedetails=nil, requestid=nil)
           @OriginalCost = originalcost
           @DiscountCost = discountcost
           @TimeUnit = timeunit
           @TimeSpan = timespan
+          @NodeRenewPriceDetails = noderenewpricedetails
           @RequestId = requestid
         end
 
@@ -6186,6 +6224,14 @@ module TencentCloud
           @DiscountCost = params['DiscountCost']
           @TimeUnit = params['TimeUnit']
           @TimeSpan = params['TimeSpan']
+          unless params['NodeRenewPriceDetails'].nil?
+            @NodeRenewPriceDetails = []
+            params['NodeRenewPriceDetails'].each do |i|
+              noderenewpricedetail_tmp = NodeRenewPriceDetail.new
+              noderenewpricedetail_tmp.deserialize(i)
+              @NodeRenewPriceDetails << noderenewpricedetail_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -6421,17 +6467,20 @@ module TencentCloud
         # @param PriceDetail: 价格详情
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PriceDetail: Array
+        # @param NodeRenewPriceDetails: 节点续费询价明细列表
+        # @type NodeRenewPriceDetails: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :OriginalCost, :DiscountCost, :TimeUnit, :TimeSpan, :PriceDetail, :RequestId
+        attr_accessor :OriginalCost, :DiscountCost, :TimeUnit, :TimeSpan, :PriceDetail, :NodeRenewPriceDetails, :RequestId
 
-        def initialize(originalcost=nil, discountcost=nil, timeunit=nil, timespan=nil, pricedetail=nil, requestid=nil)
+        def initialize(originalcost=nil, discountcost=nil, timeunit=nil, timespan=nil, pricedetail=nil, noderenewpricedetails=nil, requestid=nil)
           @OriginalCost = originalcost
           @DiscountCost = discountcost
           @TimeUnit = timeunit
           @TimeSpan = timespan
           @PriceDetail = pricedetail
+          @NodeRenewPriceDetails = noderenewpricedetails
           @RequestId = requestid
         end
 
@@ -6446,6 +6495,14 @@ module TencentCloud
               pricedetail_tmp = PriceDetail.new
               pricedetail_tmp.deserialize(i)
               @PriceDetail << pricedetail_tmp
+            end
+          end
+          unless params['NodeRenewPriceDetails'].nil?
+            @NodeRenewPriceDetails = []
+            params['NodeRenewPriceDetails'].each do |i|
+              noderenewpricedetail_tmp = NodeRenewPriceDetail.new
+              noderenewpricedetail_tmp.deserialize(i)
+              @NodeRenewPriceDetails << noderenewpricedetail_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -8732,6 +8789,57 @@ module TencentCloud
         end
       end
 
+      # 节点续费询价明细
+      class NodeRenewPriceDetail < TencentCloud::Common::AbstractModel
+        # @param ChargeType: 计费类型，包月为1、包销为3
+        # @type ChargeType: Integer
+        # @param EmrResourceId: emr资源id
+        # @type EmrResourceId: String
+        # @param NodeType: 节点类型
+        # @type NodeType: String
+        # @param Ip: 节点内网ip
+        # @type Ip: String
+        # @param ExpireTime: 当前到期时间
+        # @type ExpireTime: String
+        # @param OriginalCost: 原价
+        # @type OriginalCost: Float
+        # @param DiscountCost: 折扣价
+        # @type DiscountCost: Float
+        # @param RenewPriceDetails: 节点子项续费询价明细列表
+        # @type RenewPriceDetails: Array
+
+        attr_accessor :ChargeType, :EmrResourceId, :NodeType, :Ip, :ExpireTime, :OriginalCost, :DiscountCost, :RenewPriceDetails
+
+        def initialize(chargetype=nil, emrresourceid=nil, nodetype=nil, ip=nil, expiretime=nil, originalcost=nil, discountcost=nil, renewpricedetails=nil)
+          @ChargeType = chargetype
+          @EmrResourceId = emrresourceid
+          @NodeType = nodetype
+          @Ip = ip
+          @ExpireTime = expiretime
+          @OriginalCost = originalcost
+          @DiscountCost = discountcost
+          @RenewPriceDetails = renewpricedetails
+        end
+
+        def deserialize(params)
+          @ChargeType = params['ChargeType']
+          @EmrResourceId = params['EmrResourceId']
+          @NodeType = params['NodeType']
+          @Ip = params['Ip']
+          @ExpireTime = params['ExpireTime']
+          @OriginalCost = params['OriginalCost']
+          @DiscountCost = params['DiscountCost']
+          unless params['RenewPriceDetails'].nil?
+            @RenewPriceDetails = []
+            params['RenewPriceDetails'].each do |i|
+              renewpricedetail_tmp = RenewPriceDetail.new
+              renewpricedetail_tmp.deserialize(i)
+              @RenewPriceDetails << renewpricedetail_tmp
+            end
+          end
+        end
+      end
+
       # 规格管理，规格类型描述
       class NodeResource < TencentCloud::Common::AbstractModel
         # @param ResourceConfigId: 配置Id
@@ -10091,6 +10199,38 @@ module TencentCloud
         end
       end
 
+      # 节点子项续费询价明细
+      class RenewPriceDetail < TencentCloud::Common::AbstractModel
+        # @param BillingName: 计费项名称
+        # @type BillingName: String
+        # @param Policy: 折扣
+        # @type Policy: Float
+        # @param Quantity: 数量
+        # @type Quantity: Integer
+        # @param OriginalCost: 原价
+        # @type OriginalCost: Float
+        # @param DiscountCost: 折扣价
+        # @type DiscountCost: Float
+
+        attr_accessor :BillingName, :Policy, :Quantity, :OriginalCost, :DiscountCost
+
+        def initialize(billingname=nil, policy=nil, quantity=nil, originalcost=nil, discountcost=nil)
+          @BillingName = billingname
+          @Policy = policy
+          @Quantity = quantity
+          @OriginalCost = originalcost
+          @DiscountCost = discountcost
+        end
+
+        def deserialize(params)
+          @BillingName = params['BillingName']
+          @Policy = params['Policy']
+          @Quantity = params['Quantity']
+          @OriginalCost = params['OriginalCost']
+          @DiscountCost = params['DiscountCost']
+        end
+      end
+
       # 定时伸缩任务策略
       class RepeatStrategy < TencentCloud::Common::AbstractModel
         # @param RepeatType: 取值范围"DAY","DOW","DOM","NONE"，分别表示按天重复、按周重复、按月重复和一次执行。必须填写
@@ -10192,27 +10332,31 @@ module TencentCloud
       class ResizeDataDisksRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: EMR集群实例ID
         # @type InstanceId: String
-        # @param DiskIds: 需要扩容的云盘ID
-        # @type DiskIds: Array
         # @param DiskSize: 需要扩充的容量值，容量值需要大于原容量，并且为10的整数倍
         # @type DiskSize: Integer
         # @param CvmInstanceIds: 需要扩容的节点ID列表
         # @type CvmInstanceIds: Array
+        # @param DiskIds: 需要扩容的云盘ID
+        # @type DiskIds: Array
+        # @param ResizeAll: 是否扩容全部云硬盘
+        # @type ResizeAll: Boolean
 
-        attr_accessor :InstanceId, :DiskIds, :DiskSize, :CvmInstanceIds
+        attr_accessor :InstanceId, :DiskSize, :CvmInstanceIds, :DiskIds, :ResizeAll
 
-        def initialize(instanceid=nil, diskids=nil, disksize=nil, cvminstanceids=nil)
+        def initialize(instanceid=nil, disksize=nil, cvminstanceids=nil, diskids=nil, resizeall=nil)
           @InstanceId = instanceid
-          @DiskIds = diskids
           @DiskSize = disksize
           @CvmInstanceIds = cvminstanceids
+          @DiskIds = diskids
+          @ResizeAll = resizeall
         end
 
         def deserialize(params)
           @InstanceId = params['InstanceId']
-          @DiskIds = params['DiskIds']
           @DiskSize = params['DiskSize']
           @CvmInstanceIds = params['CvmInstanceIds']
+          @DiskIds = params['DiskIds']
+          @ResizeAll = params['ResizeAll']
         end
       end
 

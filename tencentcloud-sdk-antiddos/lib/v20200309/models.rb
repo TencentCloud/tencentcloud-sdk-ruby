@@ -3602,46 +3602,6 @@ module TencentCloud
         end
       end
 
-      # DescribeBlackWhiteIpList请求参数结构体
-      class DescribeBlackWhiteIpListRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 资源实例ID
-        # @type InstanceId: String
-
-        attr_accessor :InstanceId
-
-        def initialize(instanceid=nil)
-          @InstanceId = instanceid
-        end
-
-        def deserialize(params)
-          @InstanceId = params['InstanceId']
-        end
-      end
-
-      # DescribeBlackWhiteIpList返回参数结构体
-      class DescribeBlackWhiteIpListResponse < TencentCloud::Common::AbstractModel
-        # @param BlackIpList: 黑名单IP列表
-        # @type BlackIpList: Array
-        # @param WhiteIpList: 白名单IP列表
-        # @type WhiteIpList: Array
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :BlackIpList, :WhiteIpList, :RequestId
-
-        def initialize(blackiplist=nil, whiteiplist=nil, requestid=nil)
-          @BlackIpList = blackiplist
-          @WhiteIpList = whiteiplist
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @BlackIpList = params['BlackIpList']
-          @WhiteIpList = params['WhiteIpList']
-          @RequestId = params['RequestId']
-        end
-      end
-
       # DescribeCCLevelList请求参数结构体
       class DescribeCCLevelListRequest < TencentCloud::Common::AbstractModel
         # @param Business: DDoS防护子产品代号（bgp-multip表示高防包）
@@ -5264,73 +5224,6 @@ module TencentCloud
         end
       end
 
-      # DescribeListProtectThresholdConfig请求参数结构体
-      class DescribeListProtectThresholdConfigRequest < TencentCloud::Common::AbstractModel
-        # @param Offset: 页起始偏移，取值为(页码-1)*一页条数
-        # @type Offset: Integer
-        # @param Limit: 一页条数，当Limit=0时，默认一页条数为100;最大取值为100
-        # @type Limit: Integer
-        # @param FilterInstanceId: 资源实例ID搜索, 支持资源实例前缀通配搜索，例如bgp-*表示获取高防包类型的资源实例
-        # @type FilterInstanceId: String
-        # @param FilterIp: IP搜索
-        # @type FilterIp: String
-        # @param FilterDomain: 域名搜索(查询域名与协议的CC防护阈值时使用）
-        # @type FilterDomain: String
-        # @param FilterProtocol: 协议搜索(查询域名与协议的CC防护阈值时使用）
-        # @type FilterProtocol: String
-
-        attr_accessor :Offset, :Limit, :FilterInstanceId, :FilterIp, :FilterDomain, :FilterProtocol
-
-        def initialize(offset=nil, limit=nil, filterinstanceid=nil, filterip=nil, filterdomain=nil, filterprotocol=nil)
-          @Offset = offset
-          @Limit = limit
-          @FilterInstanceId = filterinstanceid
-          @FilterIp = filterip
-          @FilterDomain = filterdomain
-          @FilterProtocol = filterprotocol
-        end
-
-        def deserialize(params)
-          @Offset = params['Offset']
-          @Limit = params['Limit']
-          @FilterInstanceId = params['FilterInstanceId']
-          @FilterIp = params['FilterIp']
-          @FilterDomain = params['FilterDomain']
-          @FilterProtocol = params['FilterProtocol']
-        end
-      end
-
-      # DescribeListProtectThresholdConfig返回参数结构体
-      class DescribeListProtectThresholdConfigResponse < TencentCloud::Common::AbstractModel
-        # @param Total: 总记录数
-        # @type Total: Integer
-        # @param ConfigList: 防护阈值配置列表
-        # @type ConfigList: Array
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Total, :ConfigList, :RequestId
-
-        def initialize(total=nil, configlist=nil, requestid=nil)
-          @Total = total
-          @ConfigList = configlist
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @Total = params['Total']
-          unless params['ConfigList'].nil?
-            @ConfigList = []
-            params['ConfigList'].each do |i|
-              protectthresholdrelation_tmp = ProtectThresholdRelation.new
-              protectthresholdrelation_tmp.deserialize(i)
-              @ConfigList << protectthresholdrelation_tmp
-            end
-          end
-          @RequestId = params['RequestId']
-        end
-      end
-
       # DescribeListProtocolBlockConfig请求参数结构体
       class DescribeListProtocolBlockConfigRequest < TencentCloud::Common::AbstractModel
         # @param Offset: 页起始偏移，取值为(页码-1)*一页条数
@@ -6807,34 +6700,6 @@ module TencentCloud
         end
       end
 
-      # 域名与协议纬度的CC防护阈值
-      class ListenerCcThreholdConfig < TencentCloud::Common::AbstractModel
-        # @param Domain: 域名
-        # @type Domain: String
-        # @param Protocol: 协议（可取值https）
-        # @type Protocol: String
-        # @param CCEnable: 开关状态（0：关闭，1：开启）
-        # @type CCEnable: Integer
-        # @param CCThreshold: cc防护阈值
-        # @type CCThreshold: Integer
-
-        attr_accessor :Domain, :Protocol, :CCEnable, :CCThreshold
-
-        def initialize(domain=nil, protocol=nil, ccenable=nil, ccthreshold=nil)
-          @Domain = domain
-          @Protocol = protocol
-          @CCEnable = ccenable
-          @CCThreshold = ccthreshold
-        end
-
-        def deserialize(params)
-          @Domain = params['Domain']
-          @Protocol = params['Protocol']
-          @CCEnable = params['CCEnable']
-          @CCThreshold = params['CCThreshold']
-        end
-      end
-
       # ModifyCCLevelPolicy请求参数结构体
       class ModifyCCLevelPolicyRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例Id
@@ -7913,120 +7778,6 @@ module TencentCloud
         def deserialize(params)
           @BeginPort = params['BeginPort']
           @EndPort = params['EndPort']
-        end
-      end
-
-      # 防护阈值配置相关信息
-      class ProtectThresholdRelation < TencentCloud::Common::AbstractModel
-        # @param DDoSLevel: DDoS防护等级，取值[
-        # low(宽松)
-        # middle(适中)
-        # high(严格)
-        # ]
-        # @type DDoSLevel: String
-        # @param DDoSThreshold: DDoS清洗阈值，单位Mbps
-        # @type DDoSThreshold: Integer
-        # @param DDoSAI: DDoS的AI防护开关，取值[
-        # on(开启)
-        # off(关闭)
-        # ]
-        # @type DDoSAI: String
-        # @param CCEnable: CC清洗开关，取值[
-        # 0(关闭)
-        # 1(开启)
-        # ]
-        # @type CCEnable: Integer
-        # @param CCThreshold: CC清洗阈值，单位QPS
-        # @type CCThreshold: Integer
-        # @param InstanceDetailList: 所属的资源实例
-        # @type InstanceDetailList: Array
-        # @param ListenerCcThresholdList: 域名与协议纬度的防护阈值
-        # @type ListenerCcThresholdList: Array
-        # @param SynFloodThreshold: SYN FLOOD流量阈值
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type SynFloodThreshold: Integer
-        # @param SynFloodPktThreshold: SYN FLOOD包量阈值
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type SynFloodPktThreshold: Integer
-        # @param UdpFloodThreshold: UDP FLOOD流量阈值
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type UdpFloodThreshold: Integer
-        # @param UdpFloodPktThreshold: UDP FLOOD包量阈值
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type UdpFloodPktThreshold: Integer
-        # @param AckFloodThreshold: ACK FLOOD流量阈值
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type AckFloodThreshold: Integer
-        # @param AckFloodPktThreshold: ACK FLOOD包量阈值
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type AckFloodPktThreshold: Integer
-        # @param SynAckFloodThreshold: SYNACK FLOOD流量阈值
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type SynAckFloodThreshold: Integer
-        # @param SynAckFloodPktThreshold: SYNACK FLOOD包量阈值
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type SynAckFloodPktThreshold: Integer
-        # @param RstFloodThreshold: RST FLOOD流量阈值
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type RstFloodThreshold: Integer
-        # @param RstFloodPktThreshold: RST FLOOD包量阈值
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type RstFloodPktThreshold: Integer
-
-        attr_accessor :DDoSLevel, :DDoSThreshold, :DDoSAI, :CCEnable, :CCThreshold, :InstanceDetailList, :ListenerCcThresholdList, :SynFloodThreshold, :SynFloodPktThreshold, :UdpFloodThreshold, :UdpFloodPktThreshold, :AckFloodThreshold, :AckFloodPktThreshold, :SynAckFloodThreshold, :SynAckFloodPktThreshold, :RstFloodThreshold, :RstFloodPktThreshold
-
-        def initialize(ddoslevel=nil, ddosthreshold=nil, ddosai=nil, ccenable=nil, ccthreshold=nil, instancedetaillist=nil, listenerccthresholdlist=nil, synfloodthreshold=nil, synfloodpktthreshold=nil, udpfloodthreshold=nil, udpfloodpktthreshold=nil, ackfloodthreshold=nil, ackfloodpktthreshold=nil, synackfloodthreshold=nil, synackfloodpktthreshold=nil, rstfloodthreshold=nil, rstfloodpktthreshold=nil)
-          @DDoSLevel = ddoslevel
-          @DDoSThreshold = ddosthreshold
-          @DDoSAI = ddosai
-          @CCEnable = ccenable
-          @CCThreshold = ccthreshold
-          @InstanceDetailList = instancedetaillist
-          @ListenerCcThresholdList = listenerccthresholdlist
-          @SynFloodThreshold = synfloodthreshold
-          @SynFloodPktThreshold = synfloodpktthreshold
-          @UdpFloodThreshold = udpfloodthreshold
-          @UdpFloodPktThreshold = udpfloodpktthreshold
-          @AckFloodThreshold = ackfloodthreshold
-          @AckFloodPktThreshold = ackfloodpktthreshold
-          @SynAckFloodThreshold = synackfloodthreshold
-          @SynAckFloodPktThreshold = synackfloodpktthreshold
-          @RstFloodThreshold = rstfloodthreshold
-          @RstFloodPktThreshold = rstfloodpktthreshold
-        end
-
-        def deserialize(params)
-          @DDoSLevel = params['DDoSLevel']
-          @DDoSThreshold = params['DDoSThreshold']
-          @DDoSAI = params['DDoSAI']
-          @CCEnable = params['CCEnable']
-          @CCThreshold = params['CCThreshold']
-          unless params['InstanceDetailList'].nil?
-            @InstanceDetailList = []
-            params['InstanceDetailList'].each do |i|
-              instancerelation_tmp = InstanceRelation.new
-              instancerelation_tmp.deserialize(i)
-              @InstanceDetailList << instancerelation_tmp
-            end
-          end
-          unless params['ListenerCcThresholdList'].nil?
-            @ListenerCcThresholdList = []
-            params['ListenerCcThresholdList'].each do |i|
-              listenerccthreholdconfig_tmp = ListenerCcThreholdConfig.new
-              listenerccthreholdconfig_tmp.deserialize(i)
-              @ListenerCcThresholdList << listenerccthreholdconfig_tmp
-            end
-          end
-          @SynFloodThreshold = params['SynFloodThreshold']
-          @SynFloodPktThreshold = params['SynFloodPktThreshold']
-          @UdpFloodThreshold = params['UdpFloodThreshold']
-          @UdpFloodPktThreshold = params['UdpFloodPktThreshold']
-          @AckFloodThreshold = params['AckFloodThreshold']
-          @AckFloodPktThreshold = params['AckFloodPktThreshold']
-          @SynAckFloodThreshold = params['SynAckFloodThreshold']
-          @SynAckFloodPktThreshold = params['SynAckFloodPktThreshold']
-          @RstFloodThreshold = params['RstFloodThreshold']
-          @RstFloodPktThreshold = params['RstFloodPktThreshold']
         end
       end
 

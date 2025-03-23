@@ -71,7 +71,7 @@ module TencentCloud
 
       # ChatCompletions请求参数结构体
       class ChatCompletionsRequest < TencentCloud::Common::AbstractModel
-        # @param Model: 模型名称，可选值包括 hunyuan-lite、hunyuan-standard、hunyuan-standard-256K、hunyuan-code、hunyuan-role、hunyuan-functioncall、hunyuan-vision、hunyuan-turbo、hunyuan-turbo-latest、hunyuan-turbo-20241223、hunyuan-turbo-20241120、hunyuan-large、hunyuan-large-longcontext、hunyuan-turbo-vision、hunyuan-standard-vision、hunyuan-lite-vision、hunyuan-turbos-20250226、hunyuan-turbos-latest。各模型介绍请阅读 [产品概述](https://cloud.tencent.com/document/product/1729/104753) 中的说明。注意：不同的模型计费不同，请根据 [购买指南](https://cloud.tencent.com/document/product/1729/97731) 按需调用。
+        # @param Model: 模型名称，可选值包括 hunyuan-lite、hunyuan-standard、hunyuan-standard-256K、hunyuan-code、hunyuan-role、hunyuan-functioncall、hunyuan-vision、hunyuan-turbo、hunyuan-turbo-latest、hunyuan-turbo-20241223、hunyuan-turbo-20241120、hunyuan-large、hunyuan-large-longcontext、hunyuan-turbo-vision、hunyuan-standard-vision、hunyuan-lite-vision、hunyuan-turbos-20250226、hunyuan-turbos-latest、hunyuan-t1-20250321、hunyuan-t1-latest。各模型介绍请阅读 [产品概述](https://cloud.tencent.com/document/product/1729/104753) 中的说明。注意：不同的模型计费不同，请根据 [购买指南](https://cloud.tencent.com/document/product/1729/97731) 按需调用。
         # @type Model: String
         # @param Messages: 聊天上下文信息。
         # 说明：
@@ -1537,16 +1537,19 @@ module TencentCloud
         # @param FileIDs: 文件标识符。单次最大 50 个文件。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FileIDs: Array
+        # @param ReasoningContent: 思维链内容。用于展示模型思考过程，仅 Hunyuan-T1 系列模型可用。注意：在进行多轮对话时，请**不要**将此字段拼接到 messages 中。请求 messages 的请求参数中包含 reasoning_content，接口将报错。
+        # @type ReasoningContent: String
 
-        attr_accessor :Role, :Content, :Contents, :ToolCallId, :ToolCalls, :FileIDs
+        attr_accessor :Role, :Content, :Contents, :ToolCallId, :ToolCalls, :FileIDs, :ReasoningContent
 
-        def initialize(role=nil, content=nil, contents=nil, toolcallid=nil, toolcalls=nil, fileids=nil)
+        def initialize(role=nil, content=nil, contents=nil, toolcallid=nil, toolcalls=nil, fileids=nil, reasoningcontent=nil)
           @Role = role
           @Content = content
           @Contents = contents
           @ToolCallId = toolcallid
           @ToolCalls = toolcalls
           @FileIDs = fileids
+          @ReasoningContent = reasoningcontent
         end
 
         def deserialize(params)
@@ -1570,6 +1573,7 @@ module TencentCloud
             end
           end
           @FileIDs = params['FileIDs']
+          @ReasoningContent = params['ReasoningContent']
         end
       end
 

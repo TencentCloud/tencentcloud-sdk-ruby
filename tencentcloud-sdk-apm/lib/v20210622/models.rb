@@ -984,20 +984,20 @@ module TencentCloud
 
       # DescribeMetricRecords请求参数结构体
       class DescribeMetricRecordsRequest < TencentCloud::Common::AbstractModel
-        # @param Metrics: 指标列表
-        # @type Metrics: Array
         # @param InstanceId: 业务系统 ID
         # @type InstanceId: String
+        # @param Metrics: 指标列表
+        # @type Metrics: Array
         # @param StartTime: 开始时间（单位为秒）
         # @type StartTime: Integer
         # @param EndTime: 结束时间（单位为秒）
         # @type EndTime: Integer
+        # @param GroupBy: 聚合维度
+        # @type GroupBy: Array
         # @param Filters: 过滤条件
         # @type Filters: Array
         # @param OrFilters: Or 过滤条件
         # @type OrFilters: Array
-        # @param GroupBy: 聚合维度
-        # @type GroupBy: Array
         # @param OrderBy: 排序
         # 现支持的 Key 有：
 
@@ -1023,16 +1023,16 @@ module TencentCloud
         # @param PageSize: 页长
         # @type PageSize: Integer
 
-        attr_accessor :Metrics, :InstanceId, :StartTime, :EndTime, :Filters, :OrFilters, :GroupBy, :OrderBy, :BusinessName, :Type, :Limit, :Offset, :PageIndex, :PageSize
+        attr_accessor :InstanceId, :Metrics, :StartTime, :EndTime, :GroupBy, :Filters, :OrFilters, :OrderBy, :BusinessName, :Type, :Limit, :Offset, :PageIndex, :PageSize
 
-        def initialize(metrics=nil, instanceid=nil, starttime=nil, endtime=nil, filters=nil, orfilters=nil, groupby=nil, orderby=nil, businessname=nil, type=nil, limit=nil, offset=nil, pageindex=nil, pagesize=nil)
-          @Metrics = metrics
+        def initialize(instanceid=nil, metrics=nil, starttime=nil, endtime=nil, groupby=nil, filters=nil, orfilters=nil, orderby=nil, businessname=nil, type=nil, limit=nil, offset=nil, pageindex=nil, pagesize=nil)
           @InstanceId = instanceid
+          @Metrics = metrics
           @StartTime = starttime
           @EndTime = endtime
+          @GroupBy = groupby
           @Filters = filters
           @OrFilters = orfilters
-          @GroupBy = groupby
           @OrderBy = orderby
           @BusinessName = businessname
           @Type = type
@@ -1043,6 +1043,7 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @InstanceId = params['InstanceId']
           unless params['Metrics'].nil?
             @Metrics = []
             params['Metrics'].each do |i|
@@ -1051,9 +1052,9 @@ module TencentCloud
               @Metrics << querymetricitem_tmp
             end
           end
-          @InstanceId = params['InstanceId']
           @StartTime = params['StartTime']
           @EndTime = params['EndTime']
+          @GroupBy = params['GroupBy']
           unless params['Filters'].nil?
             @Filters = []
             params['Filters'].each do |i|
@@ -1070,7 +1071,6 @@ module TencentCloud
               @OrFilters << filter_tmp
             end
           end
-          @GroupBy = params['GroupBy']
           unless params['OrderBy'].nil?
             @OrderBy = OrderBy.new
             @OrderBy.deserialize(params['OrderBy'])
@@ -1121,14 +1121,14 @@ module TencentCloud
         # @type InstanceId: String
         # @param Metrics: 指标列表
         # @type Metrics: Array
-        # @param GroupBy: 聚合维度
-        # @type GroupBy: Array
-        # @param Filters: 过滤条件
-        # @type Filters: Array
         # @param StartTime: 开始时间（单位：秒）
         # @type StartTime: Integer
         # @param EndTime: 结束时间（单位：秒）
         # @type EndTime: Integer
+        # @param GroupBy: 聚合维度
+        # @type GroupBy: Array
+        # @param Filters: 过滤条件
+        # @type Filters: Array
         # @param OrderBy: 排序方式
         # Value 填写：
         # - asc：对查询指标进行升序排序
@@ -1139,15 +1139,15 @@ module TencentCloud
         # @param Offset: 分页起始点
         # @type Offset: Integer
 
-        attr_accessor :InstanceId, :Metrics, :GroupBy, :Filters, :StartTime, :EndTime, :OrderBy, :Limit, :Offset
+        attr_accessor :InstanceId, :Metrics, :StartTime, :EndTime, :GroupBy, :Filters, :OrderBy, :Limit, :Offset
 
-        def initialize(instanceid=nil, metrics=nil, groupby=nil, filters=nil, starttime=nil, endtime=nil, orderby=nil, limit=nil, offset=nil)
+        def initialize(instanceid=nil, metrics=nil, starttime=nil, endtime=nil, groupby=nil, filters=nil, orderby=nil, limit=nil, offset=nil)
           @InstanceId = instanceid
           @Metrics = metrics
-          @GroupBy = groupby
-          @Filters = filters
           @StartTime = starttime
           @EndTime = endtime
+          @GroupBy = groupby
+          @Filters = filters
           @OrderBy = orderby
           @Limit = limit
           @Offset = offset
@@ -1163,6 +1163,8 @@ module TencentCloud
               @Metrics << querymetricitem_tmp
             end
           end
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
           @GroupBy = params['GroupBy']
           unless params['Filters'].nil?
             @Filters = []
@@ -1172,8 +1174,6 @@ module TencentCloud
               @Filters << filter_tmp
             end
           end
-          @StartTime = params['StartTime']
-          @EndTime = params['EndTime']
           unless params['OrderBy'].nil?
             @OrderBy = OrderBy.new
             @OrderBy.deserialize(params['OrderBy'])

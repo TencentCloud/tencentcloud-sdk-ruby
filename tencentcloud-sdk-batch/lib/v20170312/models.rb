@@ -36,10 +36,8 @@ module TencentCloud
         # @param StartTime: 活动开始时间
         # @type StartTime: String
         # @param EndTime: 活动结束时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EndTime: String
         # @param InstanceId: 云服务器实例ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceId: String
 
         attr_accessor :ActivityId, :ComputeNodeId, :ComputeNodeActivityType, :EnvId, :Cause, :ActivityState, :StateReason, :StartTime, :EndTime, :InstanceId
@@ -74,13 +72,10 @@ module TencentCloud
       # agent运行模式
       class AgentRunningMode < TencentCloud::Common::AbstractModel
         # @param Scene: 场景类型，支持WINDOWS
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Scene: String
         # @param User: 运行Agent的User
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type User: String
         # @param Session: 运行Agent的Session
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Session: String
 
         attr_accessor :Scene, :User, :Session
@@ -142,19 +137,14 @@ module TencentCloud
       # 应用程序信息
       class Application < TencentCloud::Common::AbstractModel
         # @param DeliveryForm: 应用程序的交付方式，包括PACKAGE、LOCAL 两种取值，分别指远程存储的软件包、计算环境本地。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeliveryForm: String
         # @param Command: 任务执行命令。与Commands不能同时指定。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Command: String
         # @param PackagePath: 应用程序软件包的远程存储路径
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PackagePath: String
         # @param Docker: 应用使用Docker的相关配置。在使用Docker配置的情况下，DeliveryForm 为 LOCAL 表示直接使用Docker镜像内部的应用软件，通过Docker方式运行；DeliveryForm 为 PACKAGE，表示将远程应用包注入到Docker镜像后，通过Docker方式运行。为避免Docker不同版本的兼容性问题，Docker安装包及相关依赖由Batch统一负责，对于已安装Docker的自定义镜像，请卸载后再使用Docker特性。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Docker: :class:`Tencentcloud::Batch.v20170312.models.Docker`
         # @param Commands: 任务执行命令信息。与Command不能同时指定。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Commands: Array
 
         attr_accessor :DeliveryForm, :Command, :PackagePath, :Docker, :Commands
@@ -232,13 +222,10 @@ module TencentCloud
       # 授权认证信息
       class Authentication < TencentCloud::Common::AbstractModel
         # @param Scene: 授权场景，例如COS
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Scene: String
         # @param SecretId: SecretId
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SecretId: String
         # @param SecretKey: SecretKey
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SecretKey: String
 
         attr_accessor :Scene, :SecretId, :SecretKey
@@ -259,7 +246,6 @@ module TencentCloud
       # 任务执行信息描述。
       class CommandLine < TencentCloud::Common::AbstractModel
         # @param Command: 任务执行命令。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Command: String
 
         attr_accessor :Command
@@ -278,31 +264,24 @@ module TencentCloud
         # @param EnvId: 计算环境 ID
         # @type EnvId: String
         # @param EnvName: 计算环境名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EnvName: String
         # @param EnvDescription: 计算环境描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EnvDescription: String
         # @param EnvType: 计算环境类型，仅支持“MANAGED”类型
         # @type EnvType: String
         # @param EnvData: 计算环境参数
         # @type EnvData: :class:`Tencentcloud::Batch.v20170312.models.EnvData`
         # @param MountDataDisks: 数据盘挂载选项
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MountDataDisks: Array
         # @param InputMappings: 输入映射
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InputMappings: Array
         # @param Authentications: 授权信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Authentications: Array
         # @param Notifications: 通知信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Notifications: Array
         # @param DesiredComputeNodeCount: 计算节点期望个数
         # @type DesiredComputeNodeCount: Integer
         # @param Tags: 计算环境标签列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
 
         attr_accessor :EnvId, :EnvName, :EnvDescription, :EnvType, :EnvData, :MountDataDisks, :InputMappings, :Authentications, :Notifications, :DesiredComputeNodeCount, :Tags
@@ -913,10 +892,8 @@ module TencentCloud
       # 依赖关系
       class Dependence < TencentCloud::Common::AbstractModel
         # @param StartTask: 依赖关系的起点任务名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StartTask: String
         # @param EndTask: 依赖关系的终点任务名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EndTask: String
 
         attr_accessor :StartTask, :EndTask
@@ -1070,7 +1047,6 @@ module TencentCloud
         # @param EnvName: 计算环境名称
         # @type EnvName: String
         # @param EnvDescription: 计算环境描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EnvDescription: String
         # @param EnvType: 计算环境类型，仅支持“MANAGED”类型
         # @type EnvType: String
@@ -1589,7 +1565,6 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
         # @param NextAction: 下一步动作
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NextAction: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2099,7 +2074,6 @@ module TencentCloud
         # @param DelayOnRetry: 拉取Docker镜像失败时延迟时间。单位：秒。
         # @type DelayOnRetry: Integer
         # @param DockerRunOption: Docker命令运行参数。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DockerRunOption: String
 
         attr_accessor :Image, :User, :Password, :Server, :MaxRetryCount, :DelayOnRetry, :DockerRunOption
@@ -2375,10 +2349,8 @@ module TencentCloud
       # 环境变量
       class EnvVar < TencentCloud::Common::AbstractModel
         # @param Name: 环境变量名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Value: 环境变量取值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: String
 
         attr_accessor :Name, :Value
@@ -2424,10 +2396,8 @@ module TencentCloud
       # 自定义键值对
       class EventVar < TencentCloud::Common::AbstractModel
         # @param Name: 自定义键
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Value: 自定义值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: String
 
         attr_accessor :Name, :Value
@@ -2504,13 +2474,10 @@ module TencentCloud
       # 输入映射
       class InputMapping < TencentCloud::Common::AbstractModel
         # @param SourcePath: 源端路径
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SourcePath: String
         # @param DestinationPath: 目的端路径
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DestinationPath: String
         # @param MountOptionParameter: 挂载配置项参数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MountOptionParameter: String
 
         attr_accessor :SourcePath, :DestinationPath, :MountOptionParameter
@@ -2994,17 +2961,14 @@ module TencentCloud
         # @param Priority: 作业优先级
         # @type Priority: Integer
         # @param Placement: 位置信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Placement: :class:`Tencentcloud::Batch.v20170312.models.Placement`
         # @param CreateTime: 创建时间
         # @type CreateTime: String
         # @param EndTime: 结束时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EndTime: String
         # @param TaskMetrics: 任务统计指标
         # @type TaskMetrics: :class:`Tencentcloud::Batch.v20170312.models.TaskMetrics`
         # @param Tags: 作业绑定的标签列表。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
 
         attr_accessor :JobId, :JobName, :JobState, :Priority, :Placement, :CreateTime, :EndTime, :TaskMetrics, :Tags
@@ -3205,10 +3169,8 @@ module TencentCloud
       # 数据盘挂载选项
       class MountDataDisk < TencentCloud::Common::AbstractModel
         # @param LocalPath: 挂载点，Linux系统合法路径，或Windows系统盘符,比如"H:\\"
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LocalPath: String
         # @param FileSystemType: 文件系统类型，Linux系统下支持"EXT3"和"EXT4"两种，默认"EXT3"；Windows系统下仅支持"NTFS"
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FileSystemType: String
 
         attr_accessor :LocalPath, :FileSystemType
@@ -3597,16 +3559,12 @@ module TencentCloud
       # 重定向信息
       class RedirectInfo < TencentCloud::Common::AbstractModel
         # @param StdoutRedirectPath: 标准输出重定向路径;
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StdoutRedirectPath: String
         # @param StderrRedirectPath: 标准错误重定向路径
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StderrRedirectPath: String
         # @param StdoutRedirectFileName: 标准输出重定向文件名，支持三个占位符${BATCH_JOB_ID}、${BATCH_TASK_NAME}、${BATCH_TASK_INSTANCE_INDEX}
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StdoutRedirectFileName: String
         # @param StderrRedirectFileName: 标准错误重定向文件名，支持三个占位符${BATCH_JOB_ID}、${BATCH_TASK_NAME}、${BATCH_TASK_INSTANCE_INDEX}
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StderrRedirectFileName: String
 
         attr_accessor :StdoutRedirectPath, :StderrRedirectPath, :StdoutRedirectFileName, :StderrRedirectFileName
@@ -3629,16 +3587,12 @@ module TencentCloud
       # 本地重定向信息
       class RedirectLocalInfo < TencentCloud::Common::AbstractModel
         # @param StdoutLocalPath: 标准输出重定向本地路径
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StdoutLocalPath: String
         # @param StderrLocalPath: 标准错误重定向本地路径
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StderrLocalPath: String
         # @param StdoutLocalFileName: 标准输出重定向本地文件名，支持三个占位符${BATCH_JOB_ID}、${BATCH_TASK_NAME}、${BATCH_TASK_INSTANCE_INDEX}
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StdoutLocalFileName: String
         # @param StderrLocalFileName: 标准错误重定向本地文件名，支持三个占位符${BATCH_JOB_ID}、${BATCH_TASK_NAME}、${BATCH_TASK_INSTANCE_INDEX}
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StderrLocalFileName: String
 
         attr_accessor :StdoutLocalPath, :StderrLocalPath, :StdoutLocalFileName, :StderrLocalFileName
@@ -3879,10 +3833,8 @@ module TencentCloud
       # 标签。
       class Tag < TencentCloud::Common::AbstractModel
         # @param Key: 标签键。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Key: String
         # @param Value: 标签值。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: String
 
         attr_accessor :Key, :Value
@@ -4041,22 +3993,16 @@ module TencentCloud
         # @param TaskInstanceIndex: 任务实例
         # @type TaskInstanceIndex: Integer
         # @param StdoutLog: 标准输出日志（Base64编码，解码后最大日志长度2048字节）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StdoutLog: String
         # @param StderrLog: 标准错误日志（Base64编码，解码后最大日志长度2048字节）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StderrLog: String
         # @param StdoutRedirectPath: 标准输出重定向路径
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StdoutRedirectPath: String
         # @param StderrRedirectPath: 标准错误重定向路径
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StderrRedirectPath: String
         # @param StdoutRedirectFileName: 标准输出重定向文件名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StdoutRedirectFileName: String
         # @param StderrRedirectFileName: 标准错误重定向文件名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StderrRedirectFileName: String
 
         attr_accessor :TaskInstanceIndex, :StdoutLog, :StderrLog, :StdoutRedirectPath, :StderrRedirectPath, :StdoutRedirectFileName, :StderrRedirectFileName
@@ -4085,28 +4031,20 @@ module TencentCloud
       # 任务实例统计指标
       class TaskInstanceMetrics < TencentCloud::Common::AbstractModel
         # @param SubmittedCount: Submitted个数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubmittedCount: Integer
         # @param PendingCount: Pending个数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PendingCount: Integer
         # @param RunnableCount: Runnable个数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RunnableCount: Integer
         # @param StartingCount: Starting个数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StartingCount: Integer
         # @param RunningCount: Running个数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RunningCount: Integer
         # @param SucceedCount: Succeed个数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SucceedCount: Integer
         # @param FailedInterruptedCount: FailedInterrupted个数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FailedInterruptedCount: Integer
         # @param FailedCount: Failed个数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FailedCount: Integer
 
         attr_accessor :SubmittedCount, :PendingCount, :RunnableCount, :StartingCount, :RunningCount, :SucceedCount, :FailedInterruptedCount, :FailedCount
@@ -4141,23 +4079,18 @@ module TencentCloud
         # @param TaskInstanceState: 任务实例状态
         # @type TaskInstanceState: String
         # @param ExitCode: 应用程序执行结束的exit code
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExitCode: Integer
         # @param StateReason: 任务实例状态原因，任务实例失败时，会记录失败原因
         # @type StateReason: String
         # @param ComputeNodeInstanceId: 任务实例运行时所在计算节点（例如CVM）的InstanceId。任务实例未运行或者完结时，本字段为空。任务实例重试时，本字段会随之变化
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ComputeNodeInstanceId: String
         # @param CreateTime: 创建时间
         # @type CreateTime: String
         # @param LaunchTime: 启动时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LaunchTime: String
         # @param RunningTime: 开始运行时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RunningTime: String
         # @param EndTime: 结束时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EndTime: String
         # @param RedirectInfo: 重定向信息
         # @type RedirectInfo: :class:`Tencentcloud::Batch.v20170312.models.RedirectInfo`
@@ -4201,28 +4134,20 @@ module TencentCloud
       # 任务统计指标
       class TaskMetrics < TencentCloud::Common::AbstractModel
         # @param SubmittedCount: Submitted个数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubmittedCount: Integer
         # @param PendingCount: Pending个数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PendingCount: Integer
         # @param RunnableCount: Runnable个数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RunnableCount: Integer
         # @param StartingCount: Starting个数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StartingCount: Integer
         # @param RunningCount: Running个数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RunningCount: Integer
         # @param SucceedCount: Succeed个数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SucceedCount: Integer
         # @param FailedInterruptedCount: FailedInterrupted个数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FailedInterruptedCount: Integer
         # @param FailedCount: Failed个数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FailedCount: Integer
 
         attr_accessor :SubmittedCount, :PendingCount, :RunnableCount, :StartingCount, :RunningCount, :SucceedCount, :FailedInterruptedCount, :FailedCount

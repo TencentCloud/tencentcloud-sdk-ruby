@@ -106,10 +106,14 @@ module TencentCloud
         # @type ExpireTime: String
         # @param JobStatus: 任务状态
         # @type JobStatus: String
+        # @param ProcessSize: 处理数据量
+        # @type ProcessSize: Integer
+        # @param ErrorReason: 错误原因
+        # @type ErrorReason: String
 
-        attr_accessor :JobId, :Snapshot, :BackUpType, :BackUpSize, :BackUpTime, :ExpireTime, :JobStatus
+        attr_accessor :JobId, :Snapshot, :BackUpType, :BackUpSize, :BackUpTime, :ExpireTime, :JobStatus, :ProcessSize, :ErrorReason
 
-        def initialize(jobid=nil, snapshot=nil, backuptype=nil, backupsize=nil, backuptime=nil, expiretime=nil, jobstatus=nil)
+        def initialize(jobid=nil, snapshot=nil, backuptype=nil, backupsize=nil, backuptime=nil, expiretime=nil, jobstatus=nil, processsize=nil, errorreason=nil)
           @JobId = jobid
           @Snapshot = snapshot
           @BackUpType = backuptype
@@ -117,6 +121,8 @@ module TencentCloud
           @BackUpTime = backuptime
           @ExpireTime = expiretime
           @JobStatus = jobstatus
+          @ProcessSize = processsize
+          @ErrorReason = errorreason
         end
 
         def deserialize(params)
@@ -127,6 +133,8 @@ module TencentCloud
           @BackUpTime = params['BackUpTime']
           @ExpireTime = params['ExpireTime']
           @JobStatus = params['JobStatus']
+          @ProcessSize = params['ProcessSize']
+          @ErrorReason = params['ErrorReason']
         end
       end
 
@@ -487,10 +495,8 @@ module TencentCloud
       # CreateInstanceNew返回参数结构体
       class CreateInstanceNewResponse < TencentCloud::Common::AbstractModel
         # @param FlowId: 流程ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FlowId: String
         # @param InstanceId: 实例ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceId: String
         # @param ErrorMsg: 错误信息
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -519,11 +525,9 @@ module TencentCloud
       class DatabasePrivilegeInfo < TencentCloud::Common::AbstractModel
         # @param DatabaseName: 数据库名称
         # @type DatabaseName: String
-        # @param DatabasePrivileges: //库表权限，SELECT、INSERT_ALL、ALTER、TRUNCATE、DROP_TABLE、CREATE_TABLE、DROP_DATABASE
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param DatabasePrivileges: 库表权限，SELECT、INSERT_ALL、ALTER、TRUNCATE、DROP_TABLE、CREATE_TABLE、DROP_DATABASE
         # @type DatabasePrivileges: Array
-        # @param TablePrivilegeList: // 库下面的表权限
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param TablePrivilegeList: 库下面的表权限
         # @type TablePrivilegeList: Array
 
         attr_accessor :DatabaseName, :DatabasePrivileges, :TablePrivilegeList
@@ -670,15 +674,20 @@ module TencentCloud
       # DescribeBackUpJob返回参数结构体
       class DescribeBackUpJobResponse < TencentCloud::Common::AbstractModel
         # @param BackUpJobs: 任务列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BackUpJobs: Array
+        # @param ErrorMsg: 错误描述
+        # @type ErrorMsg: String
+        # @param TotalCount: 数量
+        # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :BackUpJobs, :RequestId
+        attr_accessor :BackUpJobs, :ErrorMsg, :TotalCount, :RequestId
 
-        def initialize(backupjobs=nil, requestid=nil)
+        def initialize(backupjobs=nil, errormsg=nil, totalcount=nil, requestid=nil)
           @BackUpJobs = backupjobs
+          @ErrorMsg = errormsg
+          @TotalCount = totalcount
           @RequestId = requestid
         end
 
@@ -691,6 +700,8 @@ module TencentCloud
               @BackUpJobs << backupjobdisplay_tmp
             end
           end
+          @ErrorMsg = params['ErrorMsg']
+          @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
       end
@@ -788,13 +799,16 @@ module TencentCloud
       class DescribeBackUpTablesResponse < TencentCloud::Common::AbstractModel
         # @param AvailableTables: 可备份表列表
         # @type AvailableTables: Array
+        # @param ErrorMsg: 错误描述
+        # @type ErrorMsg: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :AvailableTables, :RequestId
+        attr_accessor :AvailableTables, :ErrorMsg, :RequestId
 
-        def initialize(availabletables=nil, requestid=nil)
+        def initialize(availabletables=nil, errormsg=nil, requestid=nil)
           @AvailableTables = availabletables
+          @ErrorMsg = errormsg
           @RequestId = requestid
         end
 
@@ -807,6 +821,7 @@ module TencentCloud
               @AvailableTables << backuptablecontent_tmp
             end
           end
+          @ErrorMsg = params['ErrorMsg']
           @RequestId = params['RequestId']
         end
       end
@@ -1204,32 +1219,33 @@ module TencentCloud
         # @param InstanceState: 集群状态，例如：Serving
         # @type InstanceState: String
         # @param FlowCreateTime: 集群操作创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FlowCreateTime: String
         # @param FlowName: 集群操作名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FlowName: String
         # @param FlowProgress: 集群操作进度
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FlowProgress: Float
         # @param InstanceStateDesc: 集群状态描述，例如：运行中
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceStateDesc: String
         # @param FlowMsg: 集群流程错误信息，例如：“创建失败，资源不足”
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FlowMsg: String
+        # @param ProcessName: 当前步骤的名称，例如：”购买资源中“
+        # @type ProcessName: String
+        # @param ProcessSubName: 当前步骤的名称，例如：”购买资源中“
+        # @type ProcessSubName: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :InstanceState, :FlowCreateTime, :FlowName, :FlowProgress, :InstanceStateDesc, :FlowMsg, :RequestId
+        attr_accessor :InstanceState, :FlowCreateTime, :FlowName, :FlowProgress, :InstanceStateDesc, :FlowMsg, :ProcessName, :ProcessSubName, :RequestId
 
-        def initialize(instancestate=nil, flowcreatetime=nil, flowname=nil, flowprogress=nil, instancestatedesc=nil, flowmsg=nil, requestid=nil)
+        def initialize(instancestate=nil, flowcreatetime=nil, flowname=nil, flowprogress=nil, instancestatedesc=nil, flowmsg=nil, processname=nil, processsubname=nil, requestid=nil)
           @InstanceState = instancestate
           @FlowCreateTime = flowcreatetime
           @FlowName = flowname
           @FlowProgress = flowprogress
           @InstanceStateDesc = instancestatedesc
           @FlowMsg = flowmsg
+          @ProcessName = processname
+          @ProcessSubName = processsubname
           @RequestId = requestid
         end
 
@@ -1240,6 +1256,8 @@ module TencentCloud
           @FlowProgress = params['FlowProgress']
           @InstanceStateDesc = params['InstanceStateDesc']
           @FlowMsg = params['FlowMsg']
+          @ProcessName = params['ProcessName']
+          @ProcessSubName = params['ProcessSubName']
           @RequestId = params['RequestId']
         end
       end
@@ -1357,7 +1375,6 @@ module TencentCloud
         # @param DataSpec: 数据节点规格描述
         # @type DataSpec: Array
         # @param AttachCBSSpec: 云盘列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AttachCBSSpec: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1595,163 +1612,111 @@ module TencentCloud
       # 实例描述信息
       class InstanceInfo < TencentCloud::Common::AbstractModel
         # @param InstanceId: 集群实例ID, "cdw-xxxx" 字符串类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceId: String
         # @param InstanceName: 集群实例名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceName: String
         # @param Status: 状态,
         # Init 创建中; Serving 运行中；
         # Deleted已销毁；Deleting 销毁中；
         # Modify 集群变更中；
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: String
         # @param Version: 版本
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Version: String
         # @param Region: 地域, ap-guangzhou
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Region: String
         # @param Zone: 可用区， ap-guangzhou-3
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Zone: String
         # @param VpcId: 私有网络名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VpcId: String
         # @param SubnetId: 子网名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubnetId: String
         # @param PayMode: 付费类型，"hour", "prepay"
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PayMode: String
         # @param CreateTime: 创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
         # @param ExpireTime: 过期时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExpireTime: String
         # @param MasterSummary: 数据节点描述信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MasterSummary: :class:`Tencentcloud::Cdwch.v20200915.models.NodesSummary`
         # @param CommonSummary: zookeeper节点描述信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CommonSummary: :class:`Tencentcloud::Cdwch.v20200915.models.NodesSummary`
         # @param HA: 高可用，“true" "false"
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HA: String
         # @param AccessInfo: 访问地址，例如 "10.0.0.1:9000"
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AccessInfo: String
         # @param Id: 记录ID，数值型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Id: Integer
         # @param RegionId: regionId, 表示地域
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RegionId: Integer
         # @param ZoneDesc: 可用区说明，例如 "广州二区"
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ZoneDesc: String
         # @param FlowMsg: 错误流程说明信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FlowMsg: String
         # @param StatusDesc: 状态描述，例如“运行中”等
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StatusDesc: String
         # @param RenewFlag: 自动续费标记
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RenewFlag: Boolean
         # @param Tags: 标签列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
         # @param Monitor: 监控信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Monitor: String
         # @param HasClsTopic: 是否开通日志
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HasClsTopic: Boolean
         # @param ClsTopicId: 日志主题ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClsTopicId: String
         # @param ClsLogSetId: 日志集ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClsLogSetId: String
         # @param EnableXMLConfig: 是否支持xml配置管理
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EnableXMLConfig: Integer
         # @param RegionDesc: 区域
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RegionDesc: String
         # @param Eip: 弹性网卡地址
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Eip: String
         # @param CosMoveFactor: 冷热分层系数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CosMoveFactor: Integer
         # @param Kind: external/local/yunti
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Kind: String
         # @param IsElastic: 是否弹性ck
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsElastic: Boolean
         # @param InstanceStateInfo: 集群详细状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceStateInfo: :class:`Tencentcloud::Cdwch.v20200915.models.InstanceStateInfo`
         # @param HAZk: ZK高可用
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HAZk: Boolean
         # @param MountDiskType: 挂载盘,默认0:没有类型；1:裸盘;2:lvm
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MountDiskType: Integer
-        # @param CHProxyVip: 无
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param CHProxyVip: chproxy连接ip
         # @type CHProxyVip: String
         # @param CosBucketName: cos buket的名字
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CosBucketName: String
         # @param CanAttachCbs: 是否可以挂载云盘
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CanAttachCbs: Boolean
         # @param CanAttachCbsLvm: 是否可以挂载云盘阵列
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CanAttachCbsLvm: Boolean
         # @param CanAttachCos: 是否可以挂载cos
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CanAttachCos: Boolean
         # @param Components: 服务信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Components: Array
         # @param UpgradeVersions: 可升级的内核版本
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpgradeVersions: String
         # @param EsIndexId: ex-index
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EsIndexId: String
         # @param EsIndexUsername: username
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EsIndexUsername: String
         # @param EsIndexPassword: password
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EsIndexPassword: String
         # @param HasEsIndex: true
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HasEsIndex: Boolean
         # @param IsSecondaryZone: true
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsSecondaryZone: Boolean
         # @param SecondaryZoneInfo: desc
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SecondaryZoneInfo: String
         # @param ClickHouseKeeper: 是否clickhouse-keeper
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClickHouseKeeper: Boolean
         # @param Details: 实例扩展信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Details: :class:`Tencentcloud::Cdwch.v20200915.models.InstanceDetail`
         # @param IsWhiteSGs: 安全组白名单
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsWhiteSGs: Boolean
         # @param BindSGs: 绑定的安全组
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BindSGs: Array
         # @param HasPublicCloudClb: 是否开启公网clb
         # @type HasPublicCloudClb: Boolean
@@ -2290,25 +2255,18 @@ module TencentCloud
         # @param DiskDesc: 磁盘描述
         # @type DiskDesc: String
         # @param AttachCBSSpec: 挂载云盘信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AttachCBSSpec: :class:`Tencentcloud::Cdwch.v20200915.models.AttachCBSSpec`
         # @param SubProductType: 子产品类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubProductType: String
         # @param SpecCore: 规格对应的核数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SpecCore: Integer
         # @param SpecMemory: 规格对应的内存大小
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SpecMemory: Integer
         # @param DiskCount: 磁盘的数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DiskCount: Integer
         # @param MaxDiskSize: 磁盘的最大大小
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaxDiskSize: Integer
         # @param Encrypt: 是否为加密云盘
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Encrypt: Integer
 
         attr_accessor :Spec, :NodeSize, :Core, :Memory, :Disk, :DiskType, :DiskDesc, :AttachCBSSpec, :SubProductType, :SpecCore, :SpecMemory, :DiskCount, :MaxDiskSize, :Encrypt

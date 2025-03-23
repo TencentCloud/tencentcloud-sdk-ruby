@@ -1041,17 +1041,21 @@ module TencentCloud
         # @type InstanceId: String
         # @param Product: 服务产品类型，支持值包括： "redis" - 云数据库 Redis。
         # @type Product: String
+        # @param InstanceProxyId: 实列代理ID。
+        # @type InstanceProxyId: String
 
-        attr_accessor :InstanceId, :Product
+        attr_accessor :InstanceId, :Product, :InstanceProxyId
 
-        def initialize(instanceid=nil, product=nil)
+        def initialize(instanceid=nil, product=nil, instanceproxyid=nil)
           @InstanceId = instanceid
           @Product = product
+          @InstanceProxyId = instanceproxyid
         end
 
         def deserialize(params)
           @InstanceId = params['InstanceId']
           @Product = params['Product']
+          @InstanceProxyId = params['InstanceProxyId']
         end
       end
 
@@ -2396,7 +2400,7 @@ module TencentCloud
         # @type InstanceId: String
         # @param Time: 获取健康得分的时间，时间格式如：2019-09-10 12:13:14。
         # @type Time: String
-        # @param Product: 服务产品类型，支持值包括： "mysql" - 云数据库 MySQL， "cynosdb" - 云数据库 TDSQL-C for MySQL，默认为"mysql"。
+        # @param Product: 服务产品类型，支持值包括： "mysql" - 云数据库 MySQL， "cynosdb" - 云数据库 TDSQL-C for MySQL，"redis" - 云数据库 Redis，默认为"mysql"。
         # @type Product: String
 
         attr_accessor :InstanceId, :Time, :Product
@@ -5282,7 +5286,6 @@ module TencentCloud
         # @param Unit: 指标单位。
         # @type Unit: String
         # @param Values: 指标值。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Values: Array
 
         attr_accessor :Metric, :Unit, :Values

@@ -122,7 +122,7 @@ module TencentCloud
         # @type Tags: Array
         # @param InstanceId: 实例ID
         # @type InstanceId: String
-        # @param RegionId: 地域id 1--广州 4--上海 5-- 香港 6--多伦多 7--上海金融 8--北京 9-- 新加坡 11--深圳金融 15--美西（硅谷）16--成都 17--德国 18--韩国 19--重庆 21--印度 22--美东（弗吉尼亚）23--泰国   25--日本
+        # @param RegionId: 地域id。1--广州 4--上海 5-- 香港 6--多伦多 7--上海金融 8--北京 9-- 新加坡 11--深圳金融 15--美西（硅谷）16--成都 17--德国 18--韩国 19--重庆 22--美东（弗吉尼亚）23--泰国   25--日本
         # @type RegionId: Integer
         # @param InstanceDesc: 实例描述信息
         # @type InstanceDesc: String

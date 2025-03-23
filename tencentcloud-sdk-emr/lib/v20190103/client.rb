@@ -1668,7 +1668,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 云盘扩容
+        # 云数据盘扩容
 
         # @param request: Request instance for ResizeDataDisks.
         # @type request: :class:`Tencentcloud::emr::V20190103::ResizeDataDisksRequest`

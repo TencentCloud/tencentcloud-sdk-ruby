@@ -1061,32 +1061,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 接口变更
-
-        # 获取DDoS防护的IP黑白名单
-
-        # @param request: Request instance for DescribeBlackWhiteIpList.
-        # @type request: :class:`Tencentcloud::antiddos::V20200309::DescribeBlackWhiteIpListRequest`
-        # @rtype: :class:`Tencentcloud::antiddos::V20200309::DescribeBlackWhiteIpListResponse`
-        def DescribeBlackWhiteIpList(request)
-          body = send_request('DescribeBlackWhiteIpList', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeBlackWhiteIpListResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 获取边界防护CC防护等级列表
 
         # @param request: Request instance for DescribeCCLevelList.
@@ -1649,32 +1623,6 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeListPortAclListResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 接口变更
-
-        # 获取防护阈值配置列表，包括DDoS的AI、等级、CC阈值开关等
-
-        # @param request: Request instance for DescribeListProtectThresholdConfig.
-        # @type request: :class:`Tencentcloud::antiddos::V20200309::DescribeListProtectThresholdConfigRequest`
-        # @rtype: :class:`Tencentcloud::antiddos::V20200309::DescribeListProtectThresholdConfigResponse`
-        def DescribeListProtectThresholdConfig(request)
-          body = send_request('DescribeListProtectThresholdConfig', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeListProtectThresholdConfigResponse.new
             model.deserialize(response['Response'])
             model
           else

@@ -372,7 +372,6 @@ module TencentCloud
         # @param ActivityStatus: 集群活动状态。取值范围：<br><li>PENDING：等待运行</li><br><li>RUNNING：运行中</li><br><li>SUCCESSFUL：活动成功</li><br><li>PARTIALLY_SUCCESSFUL：活动部分成功</li><br><li>FAILED：活动失败</li>
         # @type ActivityStatus: String
         # @param ActivityStatusCode: 集群活动状态码。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ActivityStatusCode: String
         # @param ResultDetail: 集群活动结果详情。
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -384,10 +383,8 @@ module TencentCloud
         # @param RelatedNodeActivitySet: 集群活动相关节点活动集合。
         # @type RelatedNodeActivitySet: Array
         # @param StartTime: 集群活动开始时间。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StartTime: String
         # @param EndTime: 集群活动结束时间。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EndTime: String
 
         attr_accessor :ClusterId, :ActivityId, :ActivityType, :ActivityStatus, :ActivityStatusCode, :ResultDetail, :Cause, :Description, :RelatedNodeActivitySet, :StartTime, :EndTime

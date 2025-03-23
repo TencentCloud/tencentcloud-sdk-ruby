@@ -3107,6 +3107,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口用于修改[规则引擎](https://cloud.tencent.com/document/product/1552/70901)中规则列表的优先级，本接口需要传入站点 ID 下完整的规则 ID 列表，规则 ID 列表可以通过[查询七层加速规则](https://cloud.tencent.com/document/product/1552/115820)接口获取，最终优先级顺序将调整成规则 ID 列表的顺序，从前往后执行。
+
+        # @param request: Request instance for ModifyL7AccRulePriority.
+        # @type request: :class:`Tencentcloud::teo::V20220901::ModifyL7AccRulePriorityRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::ModifyL7AccRulePriorityResponse`
+        def ModifyL7AccRulePriority(request)
+          body = send_request('ModifyL7AccRulePriority', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyL7AccRulePriorityResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口用于修改[站点加速](https://cloud.tencent.com/document/product/1552/96193)全局配置。
 
         # @param request: Request instance for ModifyL7AccSetting.

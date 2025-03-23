@@ -370,7 +370,6 @@ module TencentCloud
         # @param ActivityStatus: 集群活动状态。取值范围：<br><li>PENDING：等待运行</li><br><li>RUNNING：运行中</li><br><li>SUCCESSFUL：活动成功</li><br><li>PARTIALLY_SUCCESSFUL：活动部分成功</li><br><li>FAILED：活动失败</li>
         # @type ActivityStatus: String
         # @param ActivityStatusCode: 集群活动状态码。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ActivityStatusCode: String
         # @param ResultDetail: 集群活动结果详情。
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -382,10 +381,8 @@ module TencentCloud
         # @param RelatedNodeActivitySet: 集群活动相关节点活动集合。
         # @type RelatedNodeActivitySet: Array
         # @param StartTime: 集群活动开始时间。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StartTime: String
         # @param EndTime: 集群活动结束时间。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EndTime: String
 
         attr_accessor :ClusterId, :ActivityId, :ActivityType, :ActivityStatus, :ActivityStatusCode, :ResultDetail, :Cause, :Description, :RelatedNodeActivitySet, :StartTime, :EndTime
@@ -441,7 +438,6 @@ module TencentCloud
         # @param SchedulerType: 集群调度器。
         # @type SchedulerType: String
         # @param SchedulerVersion: 集群调度器版本。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SchedulerVersion: String
         # @param ComputeNodeCount: 计算节点数量。
         # @type ComputeNodeCount: Integer
@@ -1825,10 +1821,8 @@ module TencentCloud
       # GooseFSx存储选项概览信息。
       class GooseFSxOptionOverview < TencentCloud::Common::AbstractModel
         # @param Masters: 文件系统master的ip和端口列表。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Masters: Array
         # @param LocalPath: 文件系统的本地挂载路径。GooseFSx目前只支持挂载在/goosefsx/{文件系统ID}_proxy/目录下。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LocalPath: String
 
         attr_accessor :Masters, :LocalPath

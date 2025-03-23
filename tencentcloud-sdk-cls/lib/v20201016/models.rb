@@ -7888,22 +7888,16 @@ module TencentCloud
         # @param CreateTime: 创建时间
         # @type CreateTime: String
         # @param Tags: 机器组绑定的标签列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
         # @param AutoUpdate: 是否开启机器组自动更新
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AutoUpdate: String
         # @param UpdateStartTime: 升级开始时间，建议业务低峰期升级LogListener
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateStartTime: String
         # @param UpdateEndTime: 升级结束时间，建议业务低峰期升级LogListener
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateEndTime: String
         # @param ServiceLogging: 是否开启服务日志，用于记录因Loglistener 服务自身产生的log，开启后，会创建内部日志集cls_service_logging和日志主题loglistener_status,loglistener_alarm,loglistener_business，不产生计费
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ServiceLogging: Boolean
         # @param DelayCleanupTime: 机器组中机器离线定期清理时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DelayCleanupTime: Integer
         # @param MetaTags: 机器组元数据信息列表
         # @type MetaTags: Array
@@ -7987,7 +7981,6 @@ module TencentCloud
         # @param Ip: 机器的IP
         # @type Ip: String
         # @param InstanceID: 机器实例ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceID: String
         # @param Status: 机器状态，0:异常，1:正常
         # @type Status: Integer
@@ -8107,10 +8100,8 @@ module TencentCloud
       # 过滤器
       class MetricLabel < TencentCloud::Common::AbstractModel
         # @param Key: 指标名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Key: String
         # @param Value: 指标内容
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: String
 
         attr_accessor :Key, :Value
@@ -9692,7 +9683,6 @@ module TencentCloud
         # @type Time: Integer
         # @param CronExpression: 执行的周期cron表达式。示例：`"*/1 * * * *"` 从左到右每个field的含义 Minutes field, Hours field,Day of month field,Month field,Day of week field， 不支持秒级别。
         # 当type为`Cron`时，CronExpression字段生效。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CronExpression: String
 
         attr_accessor :Type, :Time, :CronExpression
@@ -9713,12 +9703,10 @@ module TencentCloud
       # 多触发条件。
       class MultiCondition < TencentCloud::Common::AbstractModel
         # @param Condition: 触发条件。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Condition: String
         # @param AlarmLevel: 告警级别。0:警告(Warn); 1:提醒(Info); 2:紧急 (Critical)。
 
         # - 不填则默认为0。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AlarmLevel: Integer
 
         attr_accessor :Condition, :AlarmLevel
@@ -9761,10 +9749,8 @@ module TencentCloud
         # Email:邮件;Sms:短信;WeChat:微信;Phone:电话;WeCom:企业微信;DingTalk:钉钉;Lark:飞书;Http:自定义回调;
         # @type Type: String
         # @param TriggerContent: 告警触发通知内容模板。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TriggerContent: :class:`Tencentcloud::Cls.v20201016.models.NoticeContentInfo`
         # @param RecoveryContent: 告警恢复通知内容模板。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RecoveryContent: :class:`Tencentcloud::Cls.v20201016.models.NoticeContentInfo`
 
         attr_accessor :Type, :TriggerContent, :RecoveryContent
@@ -9792,14 +9778,11 @@ module TencentCloud
       class NoticeContentInfo < TencentCloud::Common::AbstractModel
         # @param Title: 通知内容模板标题信息。
         # 部分通知渠道类型不支持“标题”，请参照腾讯云控制台页面。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Title: String
         # @param Content: 通知内容模板正文信息。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Content: String
         # @param Headers: 请求头（Request Headers）：在HTTP请求中，请求头包含了客户端向服务器发送的附加信息，如用户代理、授权凭证、期望的响应格式等。
         # 仅“自定义回调”支持该配置。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Headers: Array
 
         attr_accessor :Title, :Content, :Headers
@@ -9820,37 +9803,28 @@ module TencentCloud
       # 通知内容模板信息
       class NoticeContentTemplate < TencentCloud::Common::AbstractModel
         # @param NoticeContentId: 通知内容模板ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NoticeContentId: String
         # @param Name: 通知内容模板名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Type: 语言类型。
 
         # 0： 中文
         # 1： 英文
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: Integer
         # @param NoticeContents: 通知内容模板信息。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NoticeContents: Array
         # @param Flag: 通知内容模板标记。
 
         # 0： 用户自定义
         # 1： 系统内置
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Flag: Integer
         # @param Uin: 创建者主账号。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Uin: Integer
         # @param SubUin: 创建/修改者子账号。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubUin: Integer
         # @param CreateTime: 创建时间 秒级时间戳。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: Integer
         # @param UpdateTime: 更新时间 秒级时间戳。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: Integer
 
         attr_accessor :NoticeContentId, :Name, :Type, :NoticeContents, :Flag, :Uin, :SubUin, :CreateTime, :UpdateTime
@@ -9905,7 +9879,6 @@ module TencentCloud
         # - Phone - 电话
         # @type ReceiverChannels: Array
         # @param NoticeContentId: 通知内容模板ID，使用Default-zh引用默认模板（中文），使用Default-en引用DefaultTemplate(English)。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NoticeContentId: String
         # @param StartTime: 允许接收信息的开始时间。格式：`15:04:05`。必填
         # @type StartTime: String
@@ -10000,28 +9973,20 @@ module TencentCloud
         #     - 下一个子节点value支持的值：整型值单位分钟
         # 以下示例表示：告警持续时间大于1分钟或告警持续时间大于等于2分钟或告警持续时间小于3分钟或告警持续时间小于等于4分钟
         # `{\"Value\":\"AND\",\"Type\":\"Operation\",\"Children\":[{\"Value\":\"OR\",\"Type\":\"Operation\",\"Children\":[{\"Type\":\"Condition\",\"Value\":\"Duration\",\"Children\":[{\"Value\":\">\",\"Type\":\"Compare\"},{\"Value\":1,\"Type\":\"Value\"}]},{\"Type\":\"Condition\",\"Value\":\"Duration\",\"Children\":[{\"Value\":\">=\",\"Type\":\"Compare\"},{\"Value\":2,\"Type\":\"Value\"}]},{\"Type\":\"Condition\",\"Value\":\"Duration\",\"Children\":[{\"Value\":\"<\",\"Type\":\"Compare\"},{\"Value\":3,\"Type\":\"Value\"}]},{\"Type\":\"Condition\",\"Value\":\"Duration\",\"Children\":[{\"Value\":\"<=\",\"Type\":\"Compare\"},{\"Value\":4,\"Type\":\"Value\"}]}]}]}`
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Rule: String
         # @param NoticeReceivers: 告警通知接收者信息。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NoticeReceivers: Array
         # @param WebCallbacks: 告警通知模板回调信息，包括企业微信、钉钉、飞书。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WebCallbacks: Array
         # @param Escalate: 告警升级开关。`true`：开启告警升级、`false`：关闭告警升级，默认：false
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Escalate: Boolean
         # @param Type: 告警升级条件。`1`：无人认领且未恢复、`2`：未恢复，默认为1
         # - 无人认领且未恢复：告警没有恢复并且没有人认领则升级
         # - 未恢复：当前告警持续未恢复则升级
-
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: Integer
         # @param Interval: 告警升级间隔。单位：分钟，范围`[1，14400]`
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Interval: Integer
         # @param EscalateNotice: 告警升级后下一个环节的通知渠道配置
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EscalateNotice: :class:`Tencentcloud::Cls.v20201016.models.EscalateNoticeInfo`
 
         attr_accessor :Rule, :NoticeReceivers, :WebCallbacks, :Escalate, :Type, :Interval, :EscalateNotice
@@ -10141,7 +10106,6 @@ module TencentCloud
         # @param KeyType: 数据类型，目前支持6种类型：string、boolean、int32、int64、float、double
         # @type KeyType: String
         # @param KeyNonExistingField: 解析失败赋值信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type KeyNonExistingField: String
 
         attr_accessor :KeyName, :KeyType, :KeyNonExistingField
@@ -10656,10 +10620,8 @@ module TencentCloud
         # @param SrcTopicRegion: 源topicId的地域信息
         # @type SrcTopicRegion: String
         # @param SyntaxRule: 语法规则，0：Lucene语法，1：CQL语法
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SyntaxRule: Integer
         # @param HasServicesLog: 是否开启投递服务日志。1：关闭，2：开启。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HasServicesLog: Integer
 
         attr_accessor :TaskId, :Name, :SrcTopicId, :SrcTopicName, :DstResource, :CreateTime, :UpdateTime, :Status, :EnableFlag, :ScheduledSqlContent, :ProcessStartTime, :ProcessType, :ProcessEndTime, :ProcessPeriod, :ProcessTimeWindow, :ProcessDelay, :SrcTopicRegion, :SyntaxRule, :HasServicesLog
@@ -11137,32 +11099,24 @@ module TencentCloud
         # @param Status: 是否生效
         # @type Status: Boolean
         # @param FilterRules: 投递日志的过滤规则
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FilterRules: Array
         # @param Partition: 投递日志的分区规则，支持strftime的时间格式表示
         # @type Partition: String
         # @param Compress: 投递日志的压缩配置
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Compress: :class:`Tencentcloud::Cls.v20201016.models.CompressInfo`
         # @param Content: 投递日志的内容格式配置
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Content: :class:`Tencentcloud::Cls.v20201016.models.ContentInfo`
         # @param CreateTime: 投递日志的创建时间
         # @type CreateTime: String
         # @param FilenameMode: 投递文件命名配置，0：随机数命名，1：投递时间命名，默认0（随机数命名）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FilenameMode: Integer
         # @param StartTime: 投递数据范围的开始时间点
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StartTime: Integer
         # @param EndTime: 投递数据范围的结束时间点
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EndTime: Integer
         # @param Progress: 历史数据投递的进度（仅当用户选择的数据内中历史数据时才有效）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Progress: Float
         # @param RemainTime: 历史数据全部投递完成剩余的时间（仅当用户选择的数据中有历史数据时才有效）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RemainTime: Integer
         # @param HistoryStatus: 历史任务状态：
         # 0：实时任务
@@ -11170,10 +11124,8 @@ module TencentCloud
         # 2：任务运行中
         # 3：任务运行异常
         # 4：任务运行结束
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HistoryStatus: Integer
         # @param StorageType: cos桶类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StorageType: String
 
         attr_accessor :ShipperId, :TopicId, :Bucket, :Prefix, :ShipperName, :Interval, :MaxSize, :Status, :FilterRules, :Partition, :Compress, :Content, :CreateTime, :FilenameMode, :StartTime, :EndTime, :Progress, :RemainTime, :HistoryStatus, :StorageType
@@ -11458,7 +11410,6 @@ module TencentCloud
         # @param SubAssumerName: 云产品二级标识，日志主题由其它云产品创建时，该字段会显示云产品名称及其日志类型的二级分类，例如TKE-Audit、TKE-Event。部分云产品仅有云产品标识(AssumerName)，无该字段。
         # @type SubAssumerName: String
         # @param Describes: 主题描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Describes: String
         # @param HotPeriod: 开启日志沉降，标准存储的生命周期， hotPeriod < Period。
         # 标准存储为 hotPeriod, 低频存储则为 Period-hotPeriod。（主题类型需为日志主题）
@@ -11472,7 +11423,6 @@ module TencentCloud
         # 开启后将支持指定操作匿名访问该日志主题。详情请参见[日志主题](https://cloud.tencent.com/document/product/614/41035)。
         # @type IsWebTracking: Boolean
         # @param Extends: 日志主题扩展信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Extends: :class:`Tencentcloud::Cls.v20201016.models.TopicExtendInfo`
         # @param TopicAsyncTaskID: 异步迁移任务ID
         # @type TopicAsyncTaskID: String
@@ -11630,7 +11580,6 @@ module TencentCloud
         # 也可使用WebCallbackId引用集成配置中的URL，此时该字段请填写为空字符串。
         # @type Url: String
         # @param WebCallbackId: 集成配置ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WebCallbackId: String
         # @param Method: 回调方法。可选值：
         # - POST（默认值）
@@ -11638,24 +11587,18 @@ module TencentCloud
 
         # 注意：
         # - 参数CallbackType为Http时为必选，其它回调方式无需填写。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Method: String
         # @param NoticeContentId: 通知内容模板ID，使用Default-zh引用默认模板（中文），使用Default-en引用DefaultTemplate(English)。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NoticeContentId: String
         # @param RemindType: 提醒类型。
 
         # 0：不提醒；1：指定人；2：所有人
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RemindType: Integer
         # @param Mobiles: 电话列表。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Mobiles: Array
         # @param UserIds: 用户ID列表。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UserIds: Array
         # @param Headers: 该参数已废弃，请使用NoticeContentId。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Headers: Array
         # @param Body: 该参数已废弃，请使用NoticeContentId。
         # 注意：此字段可能返回 null，表示取不到有效值。

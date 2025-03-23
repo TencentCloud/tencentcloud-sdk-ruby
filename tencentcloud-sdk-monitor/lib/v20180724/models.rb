@@ -1880,6 +1880,92 @@ module TencentCloud
         end
       end
 
+      # CreateConditionsTemplate请求参数结构体
+      class CreateConditionsTemplateRequest < TencentCloud::Common::AbstractModel
+        # @param Module: 固定值，monitor
+        # @type Module: String
+        # @param ViewName: 视图名
+        # @type ViewName: String
+        # @param GroupName: 组名
+        # @type GroupName: String
+        # @param IsUnionRule: 是否为与关系
+        # @type IsUnionRule: Integer
+        # @param Remark: 备注
+        # @type Remark: String
+        # @param ParentGroupID: 父ID
+        # @type ParentGroupID: Integer
+        # @param IsShielded: 是否屏蔽
+        # @type IsShielded: Integer
+        # @param ComplexExpression: 复合告警表达式
+        # @type ComplexExpression: String
+        # @param Conditions: 指标告警条件
+        # @type Conditions: Array
+        # @param EventConditions: 事件告警条件
+        # @type EventConditions: Array
+
+        attr_accessor :Module, :ViewName, :GroupName, :IsUnionRule, :Remark, :ParentGroupID, :IsShielded, :ComplexExpression, :Conditions, :EventConditions
+
+        def initialize(_module=nil, viewname=nil, groupname=nil, isunionrule=nil, remark=nil, parentgroupid=nil, isshielded=nil, complexexpression=nil, conditions=nil, eventconditions=nil)
+          @Module = _module
+          @ViewName = viewname
+          @GroupName = groupname
+          @IsUnionRule = isunionrule
+          @Remark = remark
+          @ParentGroupID = parentgroupid
+          @IsShielded = isshielded
+          @ComplexExpression = complexexpression
+          @Conditions = conditions
+          @EventConditions = eventconditions
+        end
+
+        def deserialize(params)
+          @Module = params['Module']
+          @ViewName = params['ViewName']
+          @GroupName = params['GroupName']
+          @IsUnionRule = params['IsUnionRule']
+          @Remark = params['Remark']
+          @ParentGroupID = params['ParentGroupID']
+          @IsShielded = params['IsShielded']
+          @ComplexExpression = params['ComplexExpression']
+          unless params['Conditions'].nil?
+            @Conditions = []
+            params['Conditions'].each do |i|
+              modifyconditionstemplaterequestcondition_tmp = ModifyConditionsTemplateRequestCondition.new
+              modifyconditionstemplaterequestcondition_tmp.deserialize(i)
+              @Conditions << modifyconditionstemplaterequestcondition_tmp
+            end
+          end
+          unless params['EventConditions'].nil?
+            @EventConditions = []
+            params['EventConditions'].each do |i|
+              modifyconditionstemplaterequesteventcondition_tmp = ModifyConditionsTemplateRequestEventCondition.new
+              modifyconditionstemplaterequesteventcondition_tmp.deserialize(i)
+              @EventConditions << modifyconditionstemplaterequesteventcondition_tmp
+            end
+          end
+        end
+      end
+
+      # CreateConditionsTemplate返回参数结构体
+      class CreateConditionsTemplateResponse < TencentCloud::Common::AbstractModel
+        # @param GroupID: 模板策略组ID
+        # @type GroupID: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :GroupID, :RequestId
+
+        def initialize(groupid=nil, requestid=nil)
+          @GroupID = groupid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @GroupID = params['GroupID']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateExporterIntegration请求参数结构体
       class CreateExporterIntegrationRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例 ID
@@ -11117,6 +11203,78 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyConditionsTemplateRequestCondition，Condition入参字段值
+      class ModifyConditionsTemplateRequestCondition < TencentCloud::Common::AbstractModel
+        # @param CalcPeriod: 统计周期
+        # @type CalcPeriod: String
+        # @param CalcType: 统计方式
+        # @type CalcType: String
+        # @param ContinuePeriod: 持续周期
+        # @type ContinuePeriod: String
+        # @param MetricID: 指标ID
+        # @type MetricID: Integer
+        # @param CalcValue: 统计值
+        # @type CalcValue: String
+        # @param AlarmNotifyPeriod: 告警通知周期
+        # @type AlarmNotifyPeriod: String
+        # @param AlarmNotifyType: 告警通知方式
+        # @type AlarmNotifyType: Integer
+        # @param RuleID: 规则ID
+        # @type RuleID: Integer
+
+        attr_accessor :CalcPeriod, :CalcType, :ContinuePeriod, :MetricID, :CalcValue, :AlarmNotifyPeriod, :AlarmNotifyType, :RuleID
+
+        def initialize(calcperiod=nil, calctype=nil, continueperiod=nil, metricid=nil, calcvalue=nil, alarmnotifyperiod=nil, alarmnotifytype=nil, ruleid=nil)
+          @CalcPeriod = calcperiod
+          @CalcType = calctype
+          @ContinuePeriod = continueperiod
+          @MetricID = metricid
+          @CalcValue = calcvalue
+          @AlarmNotifyPeriod = alarmnotifyperiod
+          @AlarmNotifyType = alarmnotifytype
+          @RuleID = ruleid
+        end
+
+        def deserialize(params)
+          @CalcPeriod = params['CalcPeriod']
+          @CalcType = params['CalcType']
+          @ContinuePeriod = params['ContinuePeriod']
+          @MetricID = params['MetricID']
+          @CalcValue = params['CalcValue']
+          @AlarmNotifyPeriod = params['AlarmNotifyPeriod']
+          @AlarmNotifyType = params['AlarmNotifyType']
+          @RuleID = params['RuleID']
+        end
+      end
+
+      # ModifyConditionsTemplateRequestEventCondition
+      class ModifyConditionsTemplateRequestEventCondition < TencentCloud::Common::AbstractModel
+        # @param AlarmNotifyPeriod: 告警通知周期
+        # @type AlarmNotifyPeriod: String
+        # @param AlarmNotifyType: 告警通知方式
+        # @type AlarmNotifyType: String
+        # @param EventID: 事件ID
+        # @type EventID: String
+        # @param RuleID: 规则ID
+        # @type RuleID: Integer
+
+        attr_accessor :AlarmNotifyPeriod, :AlarmNotifyType, :EventID, :RuleID
+
+        def initialize(alarmnotifyperiod=nil, alarmnotifytype=nil, eventid=nil, ruleid=nil)
+          @AlarmNotifyPeriod = alarmnotifyperiod
+          @AlarmNotifyType = alarmnotifytype
+          @EventID = eventid
+          @RuleID = ruleid
+        end
+
+        def deserialize(params)
+          @AlarmNotifyPeriod = params['AlarmNotifyPeriod']
+          @AlarmNotifyType = params['AlarmNotifyType']
+          @EventID = params['EventID']
+          @RuleID = params['RuleID']
         end
       end
 

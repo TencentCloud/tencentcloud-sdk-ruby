@@ -1051,21 +1051,29 @@ module TencentCloud
         # @param Retention: 消息保留时间
         # @type Retention: Integer
         # @param MinInsyncReplicas: 最小同步复制数
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MinInsyncReplicas: Integer
         # @param CleanUpPolicy: 日志清理模式，默认 delete。
         # delete：日志按保存时间删除；compact：日志按 key 压缩；compact, delete：日志按 key 压缩且会保存时间删除。
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CleanUpPolicy: String
         # @param SegmentMs: Segment 分片滚动的时长
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SegmentMs: Integer
         # @param UncleanLeaderElectionEnable: 0表示 false。 1表示 true。
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UncleanLeaderElectionEnable: Integer
         # @param SegmentBytes: Segment 分片滚动的字节数
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SegmentBytes: Integer
         # @param MaxMessageBytes: 最大消息字节数
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaxMessageBytes: Integer
         # @param RetentionBytes: 消息保留文件大小
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RetentionBytes: Integer
         # @param LogMsgTimestampType: 消息保存的时间类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LogMsgTimestampType: String
 
         attr_accessor :Retention, :MinInsyncReplicas, :CleanUpPolicy, :SegmentMs, :UncleanLeaderElectionEnable, :SegmentBytes, :MaxMessageBytes, :RetentionBytes, :LogMsgTimestampType
@@ -2111,16 +2119,12 @@ module TencentCloud
       # 创建预付费接口返回的Data
       class CreateInstancePreData < TencentCloud::Common::AbstractModel
         # @param FlowId: CreateInstancePre返回固定为0，不能作为CheckTaskStatus的查询条件。只是为了保证和后台数据结构对齐。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FlowId: Integer
         # @param DealNames: 订单号列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DealNames: Array
         # @param InstanceId: ckafka集群实例Id，当购买多个实例时，默认返回购买的第一个实例 id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceId: String
         # @param DealNameInstanceIdMapping: 订单和购买实例对应映射列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DealNameInstanceIdMapping: Array
 
         attr_accessor :FlowId, :DealNames, :InstanceId, :DealNameInstanceIdMapping
@@ -2151,7 +2155,7 @@ module TencentCloud
       class CreateInstancePreRequest < TencentCloud::Common::AbstractModel
         # @param InstanceName: ckafka集群实例Name，是一个不超过 64 个字符的字符串，必须以字母为首字符，剩余部分可以包含字母、数字和横划线(-)
         # @type InstanceName: String
-        # @param ZoneId: 可用区。当购买多可用区实例时，当前参数为主可用区。需要保证传入的参数和 SubnetId 所在子网属于同一个可用区
+        # @param ZoneId: 可用区。当购买多可用区实例时，当前参数为主可用区。  [查看可用区](https://cloud.tencent.com/document/product/597/55246)
         # @type ZoneId: Integer
         # @param Period: 预付费购买时长，例如 "1m",就是一个月
         # @type Period: String
@@ -2261,7 +2265,6 @@ module TencentCloud
         # @param ReturnMessage: 成功消息
         # @type ReturnMessage: String
         # @param Data: 操作型返回的Data数据
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: :class:`Tencentcloud::Ckafka.v20190819.models.CreateInstancePreData`
         # @param DeleteRouteTimestamp: 删除时间。目前该参数字段已废弃，将会在未来被删除
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -2936,10 +2939,8 @@ module TencentCloud
       # Ctsdb类型入参
       class CtsdbParam < TencentCloud::Common::AbstractModel
         # @param Resource: 连接管理实例资源
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Resource: String
         # @param CtsdbMetric: Ctsdb的metric
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CtsdbMetric: String
 
         attr_accessor :Resource, :CtsdbMetric
@@ -3134,28 +3135,20 @@ module TencentCloud
         # @param Status: 状态，-1创建失败，0创建中，1运行中，2删除中，3已删除，4删除失败，5暂停中，6已暂停，7暂停失败，8恢复中，9恢复失败
         # @type Status: Integer
         # @param SourceResource: 数据源
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SourceResource: :class:`Tencentcloud::Ckafka.v20190819.models.DatahubResource`
         # @param TargetResource: 数据目标
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TargetResource: :class:`Tencentcloud::Ckafka.v20190819.models.DatahubResource`
         # @param CreateTime: 任务创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
         # @param ErrorMessage: 异常信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrorMessage: String
         # @param TaskProgress: 创建进度百分比
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskProgress: Float
         # @param TaskCurrentStep: 任务当前处于的步骤
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskCurrentStep: String
         # @param DatahubId: Datahub转储Id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DatahubId: String
         # @param StepList: 步骤列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StepList: Array
 
         attr_accessor :TaskId, :TaskName, :TaskType, :Status, :SourceResource, :TargetResource, :CreateTime, :ErrorMessage, :TaskProgress, :TaskCurrentStep, :DatahubId, :StepList
@@ -3242,7 +3235,6 @@ module TencentCloud
         # @param TopicName: 主题名称
         # @type TopicName: String
         # @param TopicId: 主题Id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TopicId: String
 
         attr_accessor :TopicName, :TopicId
@@ -3263,10 +3255,8 @@ module TencentCloud
         # @param Format: 时间格式
         # @type Format: String
         # @param TargetType: 输入类型，string，unix时间戳，默认string
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TargetType: String
         # @param TimeZone: 时区，默认GMT+8
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TimeZone: String
 
         attr_accessor :Format, :TargetType, :TimeZone
@@ -3287,10 +3277,8 @@ module TencentCloud
       # 预付费/后付费接口中，订单和 CKafka 实例映射数据结构
       class DealInstanceDTO < TencentCloud::Common::AbstractModel
         # @param DealName: 订单流水
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DealName: String
         # @param InstanceIdList: 订单流水对应购买的 CKafka 实例 id 列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceIdList: Array
 
         attr_accessor :DealName, :InstanceIdList
@@ -4069,7 +4057,6 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Time: String
         # @param IsUnSupportVersion: 是否支持的版本
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsUnSupportVersion: Boolean
 
         attr_accessor :IpAddr, :Time, :IsUnSupportVersion
@@ -4090,37 +4077,26 @@ module TencentCloud
       # 查询连接源具体数据的返参
       class DescribeConnectResource < TencentCloud::Common::AbstractModel
         # @param ResourceId: 连接源的Id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceId: String
         # @param ResourceName: 连接源名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceName: String
         # @param Description: 连接源描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
         # @param Type: 连接源类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: String
         # @param Status: 连接源的状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
         # @param CreateTime: 连接源的创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
         # @param ErrorMessage: 连接源的异常信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrorMessage: String
         # @param DatahubTaskCount: 该连接源关联的Datahub任务数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DatahubTaskCount: Integer
         # @param CurrentStep: 连接源的当前所处步骤
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CurrentStep: String
         # @param TaskProgress: 创建进度百分比
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskProgress: Float
         # @param StepList: 步骤列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StepList: Array
         # @param DtsConnectParam: Dts配置，Type为DTS时返回
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -4269,28 +4245,20 @@ module TencentCloud
       # 查询连接源具体数据的返参
       class DescribeConnectResourceResp < TencentCloud::Common::AbstractModel
         # @param ResourceId: 连接源的Id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceId: String
         # @param ResourceName: 连接源名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceName: String
         # @param Description: 连接源描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
         # @param Type: 连接源类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: String
         # @param Status: 连接源的状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
         # @param CreateTime: 连接源的创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
         # @param ErrorMessage: 连接源的异常信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrorMessage: String
         # @param CurrentStep: 连接源的当前所处步骤
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CurrentStep: String
         # @param StepList: 步骤列表
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -4480,7 +4448,6 @@ module TencentCloud
         # @param TotalCount: 连接源个数
         # @type TotalCount: Integer
         # @param ConnectResourceList: 连接源数据
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ConnectResourceList: Array
 
         attr_accessor :TotalCount, :ConnectResourceList
@@ -4663,37 +4630,28 @@ module TencentCloud
         # @param Status: 状态，-1创建失败，0创建中，1运行中，2删除中，3已删除，4删除失败，5暂停中，6已暂停，7暂停失败，8恢复中，9恢复失败
         # @type Status: Integer
         # @param SourceResource: 数据源
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SourceResource: :class:`Tencentcloud::Ckafka.v20190819.models.DatahubResource`
         # @param TargetResource: 数据目标
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TargetResource: :class:`Tencentcloud::Ckafka.v20190819.models.DatahubResource`
         # @param Connections: Connection列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Connections: Array
         # @param CreateTime: 任务创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
         # @param TransformParam: 消息处理规则
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TransformParam: :class:`Tencentcloud::Ckafka.v20190819.models.TransformParam`
         # @param DatahubId: 数据接入ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DatahubId: String
         # @param SchemaId: 绑定的SchemaId
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SchemaId: String
         # @param SchemaName: 绑定的Schema名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SchemaName: String
         # @param TransformsParam: 数据处理规则
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TransformsParam: :class:`Tencentcloud::Ckafka.v20190819.models.TransformsParam`
         # @param ErrorMessage: 异常信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrorMessage: String
         # @param Tags: 任务标签列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
 
         attr_accessor :TaskId, :TaskName, :TaskType, :Status, :SourceResource, :TargetResource, :Connections, :CreateTime, :TransformParam, :DatahubId, :SchemaId, :SchemaName, :TransformsParam, :ErrorMessage, :Tags
@@ -4829,7 +4787,6 @@ module TencentCloud
         # @param TotalCount: 任务总数
         # @type TotalCount: Integer
         # @param TaskList: Datahub任务信息列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskList: Array
 
         attr_accessor :TotalCount, :TaskList
@@ -4904,7 +4861,6 @@ module TencentCloud
         # @param RetentionMs: 过期时间
         # @type RetentionMs: Integer
         # @param Note: 备注
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Note: String
         # @param UserName: 用户名
         # @type UserName: String
@@ -4913,7 +4869,6 @@ module TencentCloud
         # @param Status: 状态，1使用中，2删除中
         # @type Status: Integer
         # @param Address: 服务路由地址
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Address: String
 
         attr_accessor :Name, :TopicName, :TopicId, :PartitionNum, :RetentionMs, :Note, :UserName, :Password, :Status, :Address
@@ -5009,7 +4964,6 @@ module TencentCloud
         # @param TotalCount: 总数
         # @type TotalCount: Integer
         # @param TopicList: Topic列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TopicList: Array
 
         attr_accessor :TotalCount, :TopicList
@@ -6052,31 +6006,22 @@ module TencentCloud
       # Doris 连接源参数
       class DorisConnectParam < TencentCloud::Common::AbstractModel
         # @param Port: Doris jdbc 负载均衡连接 port，通常映射到 fe 的 9030 端口
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Port: Integer
         # @param UserName: Doris 连接源的用户名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UserName: String
         # @param Password: Doris 连接源的密码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Password: String
         # @param Resource: Doris 连接源的实例资源
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Resource: String
         # @param ServiceVip: Doris 连接源的实例vip，当为腾讯云实例时，必填
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ServiceVip: String
         # @param UniqVpcId: Doris 连接源的vpcId，当为腾讯云实例时，必填
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UniqVpcId: String
         # @param IsUpdate: 是否更新到关联的Datahub任务
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsUpdate: Boolean
         # @param SelfBuilt: Doris 连接源是否为自建集群
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SelfBuilt: Boolean
         # @param BePort: Doris 的 http 负载均衡连接 port，通常映射到 be 的 8040 端口
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BePort: Integer
 
         attr_accessor :Port, :UserName, :Password, :Resource, :ServiceVip, :UniqVpcId, :IsUpdate, :SelfBuilt, :BePort
@@ -6109,31 +6054,22 @@ module TencentCloud
       # Doris 连接源修改参数
       class DorisModifyConnectParam < TencentCloud::Common::AbstractModel
         # @param Resource: Doris 连接源的实例资源
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Resource: String
         # @param Port: Doris jdbc 负载均衡连接 port，通常映射到 fe 的 9030 端口
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Port: Integer
         # @param ServiceVip: Doris 连接源的实例vip，当为腾讯云实例时，必填
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ServiceVip: String
         # @param UniqVpcId: Doris 连接源的vpcId，当为腾讯云实例时，必填
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UniqVpcId: String
         # @param UserName: Doris 连接源的用户名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UserName: String
         # @param Password: Doris 连接源的密码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Password: String
         # @param IsUpdate: 是否更新到关联的Datahub任务
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsUpdate: Boolean
         # @param SelfBuilt: Doris 连接源是否为自建集群
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SelfBuilt: Boolean
         # @param BePort: Doris 的 http 负载均衡连接 port，通常映射到 be 的 8040 端口
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BePort: Integer
 
         attr_accessor :Resource, :Port, :ServiceVip, :UniqVpcId, :UserName, :Password, :IsUpdate, :SelfBuilt, :BePort
@@ -6166,19 +6102,14 @@ module TencentCloud
       # dip失败消息写入cls的配置
       class DropCls < TencentCloud::Common::AbstractModel
         # @param DropInvalidMessageToCls: 是否投递到cls
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DropInvalidMessageToCls: Boolean
         # @param DropClsRegion: 投递cls的地域
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DropClsRegion: String
         # @param DropClsOwneruin: 投递cls的账号
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DropClsOwneruin: String
         # @param DropClsTopicId: 投递cls的主题
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DropClsTopicId: String
         # @param DropClsLogSet: 投递cls的日志集id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DropClsLogSet: String
 
         attr_accessor :DropInvalidMessageToCls, :DropClsRegion, :DropClsOwneruin, :DropClsTopicId, :DropClsLogSet
@@ -6203,25 +6134,18 @@ module TencentCloud
       # Dts连接源参数
       class DtsConnectParam < TencentCloud::Common::AbstractModel
         # @param Port: Dts的连接port
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Port: Integer
         # @param GroupId: Dts消费分组的Id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GroupId: String
         # @param UserName: Dts消费分组的账号
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UserName: String
         # @param Password: Dts消费分组的密码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Password: String
         # @param Resource: Dts实例Id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Resource: String
         # @param Topic: Dts订阅的topic
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Topic: String
         # @param IsUpdate: 是否更新到关联的Datahub任务
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsUpdate: Boolean
 
         attr_accessor :Port, :GroupId, :UserName, :Password, :Resource, :Topic, :IsUpdate
@@ -6290,28 +6214,20 @@ module TencentCloud
       # Dts类型入参
       class DtsParam < TencentCloud::Common::AbstractModel
         # @param Resource: Dts实例Id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Resource: String
         # @param Ip: Dts的连接ip
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Ip: String
         # @param Port: Dts的连接port
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Port: Integer
         # @param Topic: Dts订阅的topic
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Topic: String
         # @param GroupId: Dts消费分组的Id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GroupId: String
         # @param GroupUser: Dts消费分组的账号
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GroupUser: String
         # @param GroupPassword: Dts消费分组的密码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GroupPassword: String
         # @param TranSql: false同步原始数据，true同步解析后的json格式数据,默认true
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TranSql: Boolean
 
         attr_accessor :Resource, :Ip, :Port, :Topic, :GroupId, :GroupUser, :GroupPassword, :TranSql
@@ -6406,25 +6322,18 @@ module TencentCloud
       # Es连接源参数
       class EsConnectParam < TencentCloud::Common::AbstractModel
         # @param Port: Es的连接port
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Port: Integer
         # @param UserName: Es连接源的用户名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UserName: String
         # @param Password: Es连接源的密码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Password: String
         # @param Resource: Es连接源的实例资源
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Resource: String
         # @param SelfBuilt: Es连接源是否为自建集群
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SelfBuilt: Boolean
         # @param ServiceVip: Es连接源的实例vip，当为腾讯云实例时，必填
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ServiceVip: String
         # @param UniqVpcId: Es连接源的vpcId，当为腾讯云实例时，必填
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UniqVpcId: String
         # @param IsUpdate: 是否更新到关联的Datahub任务
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -6458,28 +6367,20 @@ module TencentCloud
       # Es修改连接源参数
       class EsModifyConnectParam < TencentCloud::Common::AbstractModel
         # @param Resource: Es连接源的实例资源【不支持修改】
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Resource: String
         # @param Port: Es的连接port【不支持修改】
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Port: Integer
         # @param ServiceVip: Es连接源的实例vip【不支持修改】
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ServiceVip: String
         # @param UniqVpcId: Es连接源的vpcId【不支持修改】
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UniqVpcId: String
         # @param UserName: Es连接源的用户名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UserName: String
         # @param Password: Es连接源的密码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Password: String
         # @param SelfBuilt: Es连接源是否为自建集群【不支持修改】
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SelfBuilt: Boolean
         # @param IsUpdate: 是否更新到关联的Datahub任务
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsUpdate: Boolean
 
         attr_accessor :Resource, :Port, :ServiceVip, :UniqVpcId, :UserName, :Password, :SelfBuilt, :IsUpdate
@@ -6510,64 +6411,44 @@ module TencentCloud
       # Es类型入参
       class EsParam < TencentCloud::Common::AbstractModel
         # @param Resource: Es实例资源Id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Resource: String
         # @param Port: Es的连接port
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Port: Integer
         # @param UserName: Es用户名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UserName: String
         # @param Password: Es密码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Password: String
         # @param SelfBuilt: 是否为自建集群
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SelfBuilt: Boolean
         # @param ServiceVip: 实例vip
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ServiceVip: String
         # @param UniqVpcId: 实例的vpcId
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UniqVpcId: String
         # @param DropInvalidMessage: Es是否抛弃解析失败的消息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DropInvalidMessage: Boolean
         # @param Index: Es自定义index名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Index: String
         # @param DateFormat: Es自定义日期后缀
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DateFormat: String
         # @param ContentKey: 非json格式数据的自定义key
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ContentKey: String
         # @param DropInvalidJsonMessage: Es是否抛弃非json格式的消息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DropInvalidJsonMessage: Boolean
         # @param DocumentIdField: 转储到Es中的文档ID取值字段名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DocumentIdField: String
         # @param IndexType: Es自定义index名称的类型，STRING，JSONPATH，默认为STRING
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IndexType: String
         # @param DropCls: 当设置成员参数DropInvalidMessageToCls设置为true时,DropInvalidMessage参数失效
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DropCls: :class:`Tencentcloud::Ckafka.v20190819.models.DropCls`
         # @param DatabasePrimaryKey: 转储到ES的消息为Database的binlog时，如果需要同步数据库操作，即增删改的操作到ES时填写数据库表主键
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DatabasePrimaryKey: String
         # @param DropDlq: 死信队列
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DropDlq: :class:`Tencentcloud::Ckafka.v20190819.models.FailureParam`
         # @param RecordMappingList: 使用数据订阅格式导入 es 时，消息与 es 索引字段映射关系。不填默认为默认字段匹配
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RecordMappingList: Array
         # @param DateField: 消息要映射为 es 索引中 @timestamp 的字段，如果当前配置为空，则使用消息的时间戳进行映射
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DateField: String
         # @param RecordMappingMode: 用来区分当前索引映射，属于新建索引还是存量索引。"EXIST_MAPPING"：从存量索引中选择；"NEW_MAPPING"：新建索引
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RecordMappingMode: String
 
         attr_accessor :Resource, :Port, :UserName, :Password, :SelfBuilt, :ServiceVip, :UniqVpcId, :DropInvalidMessage, :Index, :DateFormat, :ContentKey, :DropInvalidJsonMessage, :DocumentIdField, :IndexType, :DropCls, :DatabasePrimaryKey, :DropDlq, :RecordMappingList, :DateField, :RecordMappingMode
@@ -6635,10 +6516,8 @@ module TencentCloud
       # 消息字段与 es 索引的映射关系
       class EsRecordMapping < TencentCloud::Common::AbstractModel
         # @param ColumnName: es 索引成员名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ColumnName: String
         # @param JsonKey: 消息字段名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type JsonKey: String
 
         attr_accessor :ColumnName, :JsonKey
@@ -6701,10 +6580,8 @@ module TencentCloud
         # @param MaxRetryAttempts: 重试次数
         # @type MaxRetryAttempts: Integer
         # @param TopicParam: DIP Topic类型死信队列
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TopicParam: :class:`Tencentcloud::Ckafka.v20190819.models.TopicParam`
         # @param DlqType: 死信队列类型，CKAFKA，TOPIC
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DlqType: String
 
         attr_accessor :Type, :KafkaParam, :RetryInterval, :MaxRetryAttempts, :TopicParam, :DlqType
@@ -7010,25 +6887,18 @@ module TencentCloud
         # @param Analyse: 解析
         # @type Analyse: :class:`Tencentcloud::Ckafka.v20190819.models.AnalyseParam`
         # @param SecondaryAnalyse: 二次解析
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SecondaryAnalyse: :class:`Tencentcloud::Ckafka.v20190819.models.SecondaryAnalyseParam`
         # @param SMT: 数据处理
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SMT: Array
         # @param Result: 测试结果
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: String
         # @param AnalyseResult: 解析结果
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AnalyseResult: Array
         # @param SecondaryAnalyseResult: 二次解析结果
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SecondaryAnalyseResult: Array
         # @param AnalyseJsonResult: JSON格式解析结果
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AnalyseJsonResult: String
         # @param SecondaryAnalyseJsonResult: JSON格式二次解析结果
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SecondaryAnalyseJsonResult: String
 
         attr_accessor :Analyse, :SecondaryAnalyse, :SMT, :Result, :AnalyseResult, :SecondaryAnalyseResult, :AnalyseJsonResult, :SecondaryAnalyseJsonResult
@@ -7235,7 +7105,6 @@ module TencentCloud
         # @param Topic: 分配的 topic 名称
         # @type Topic: String
         # @param Partitions: 分配的 partition 信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Partitions: Array
 
         attr_accessor :Topic, :Partitions
@@ -7258,7 +7127,6 @@ module TencentCloud
         # @param Offset: consumer 提交的 offset 位置
         # @type Offset: Integer
         # @param Metadata: 支持消费者提交消息时，传入 metadata 作为它用，当前一般为空字符串
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Metadata: String
         # @param ErrorCode: 错误码
         # @type ErrorCode: Integer
@@ -7293,7 +7161,6 @@ module TencentCloud
         # @param TotalCount: 符合调节的总结果数
         # @type TotalCount: Integer
         # @param TopicList: 该主题分区数组，其中每个元素为一个 json object
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TopicList: Array
 
         attr_accessor :TotalCount, :TopicList
@@ -7321,7 +7188,6 @@ module TencentCloud
         # @param Topic: 主题名称
         # @type Topic: String
         # @param Partitions: 该主题分区数组，其中每个元素为一个 json object
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Partitions: Array
 
         attr_accessor :Topic, :Partitions
@@ -7347,13 +7213,10 @@ module TencentCloud
       # DescribeGroup的返回
       class GroupResponse < TencentCloud::Common::AbstractModel
         # @param TotalCount: 计数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
         # @param GroupList: GroupList
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GroupList: Array
         # @param GroupCountQuota: 消费分组配额
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GroupCountQuota: Integer
 
         attr_accessor :TotalCount, :GroupList, :GroupCountQuota
@@ -7454,7 +7317,6 @@ module TencentCloud
       # InquireCkafkaPrice接口询价返回值
       class InquireCkafkaPriceResp < TencentCloud::Common::AbstractModel
         # @param InstancePrice: 实例价格
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstancePrice: :class:`Tencentcloud::Ckafka.v20190819.models.InquiryPrice`
         # @param PublicNetworkBandwidthPrice: 公网带宽价格
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -7505,19 +7367,14 @@ module TencentCloud
       # 询价返回参数
       class InquiryBasePrice < TencentCloud::Common::AbstractModel
         # @param UnitPrice: 单位原价
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UnitPrice: Float
         # @param UnitPriceDiscount: 折扣单位价格
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UnitPriceDiscount: Float
         # @param OriginalPrice: 合计原价
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OriginalPrice: Float
         # @param DiscountPrice: 折扣合计价格
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DiscountPrice: Float
         # @param Discount: 折扣(单位是%)
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Discount: Float
         # @param GoodsNum: 商品数量
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -7535,7 +7392,6 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TimeUnit: String
         # @param Value: 购买数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: Integer
 
         attr_accessor :UnitPrice, :UnitPriceDiscount, :OriginalPrice, :DiscountPrice, :Discount, :GoodsNum, :Currency, :DiskType, :TimeSpan, :TimeUnit, :Value
@@ -7584,7 +7440,6 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TopicPrice: :class:`Tencentcloud::Ckafka.v20190819.models.InquiryBasePrice`
         # @param InstanceTypePrice: 实例套餐价格
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceTypePrice: :class:`Tencentcloud::Ckafka.v20190819.models.InquiryBasePrice`
 
         attr_accessor :BandwidthPrice, :DiskPrice, :PartitionPrice, :TopicPrice, :InstanceTypePrice
@@ -7644,34 +7499,25 @@ module TencentCloud
       # 询价返回参数
       class InquiryPrice < TencentCloud::Common::AbstractModel
         # @param UnitPrice: 单位原价
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UnitPrice: Float
         # @param UnitPriceDiscount: 折扣单位价格
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UnitPriceDiscount: Float
         # @param OriginalPrice: 合计原价
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OriginalPrice: Float
         # @param DiscountPrice: 折扣合计价格
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DiscountPrice: Float
         # @param Discount: 折扣(单位是%)
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Discount: Float
         # @param GoodsNum: 商品数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GoodsNum: Integer
         # @param Currency: 付费货币
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Currency: String
         # @param DiskType: 硬盘专用返回参数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DiskType: String
         # @param TimeSpan: 购买时长
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TimeSpan: Integer
         # @param TimeUnit: 购买时长单位("m"按月, "h"按小时)
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TimeUnit: String
         # @param Value: 购买数量
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -7745,7 +7591,6 @@ module TencentCloud
         # @param Status: 实例的状态。0: 创建中，1: 运行中，2: 删除中,  3: 已删除,  5: 隔离中,  7: 升级中,  -1: 创建失败
         # @type Status: Integer
         # @param IfCommunity: 是否开源实例。开源：true，不开源：false
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IfCommunity: Boolean
 
         attr_accessor :InstanceId, :InstanceName, :Status, :IfCommunity
@@ -7808,60 +7653,42 @@ module TencentCloud
         # @param CreatedTopics: 当前创建主题数
         # @type CreatedTopics: Integer
         # @param Tags: 标签数组
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
         # @param ExpireTime: 过期时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExpireTime: Integer
         # @param ZoneIds: 可用区列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ZoneIds: Array
         # @param Version: ckafka集群实例版本
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Version: String
         # @param MaxGroupNum: 最大分组数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaxGroupNum: Integer
         # @param Cvm: 售卖类型,0:标准版,1:专业版
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Cvm: Integer
         # @param InstanceType: 类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceType: String
         # @param Features: 表示该实例支持的特性。FEATURE_SUBNET_ACL:表示acl策略支持设置子网。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Features: Array
         # @param RetentionTimeConfig: 动态消息保留策略
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RetentionTimeConfig: :class:`Tencentcloud::Ckafka.v20190819.models.DynamicRetentionTime`
         # @param MaxConnection: 最大连接数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaxConnection: Integer
         # @param PublicNetwork: 公网带宽
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PublicNetwork: Integer
         # @param DeleteRouteTimestamp: 时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeleteRouteTimestamp: String
         # @param RemainingPartitions: 剩余创建分区数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RemainingPartitions: Integer
         # @param RemainingTopics: 剩余创建主题数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RemainingTopics: Integer
         # @param DynamicDiskConfig: 动态硬盘扩容策略
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DynamicDiskConfig: :class:`Tencentcloud::Ckafka.v20190819.models.DynamicDiskConfig`
         # @param InstanceChargeType: 实例计费类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceChargeType: String
         # @param ClusterType: 集群类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterType: String
         # @param FreePartitionNumber: 免费分区数量
         # @type FreePartitionNumber: Integer
         # @param ElasticFloatBandwidth: 弹性带宽上浮值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ElasticFloatBandwidth: Integer
         # @param CustomCertId: ssl自定义证书id
         # @type CustomCertId: String
@@ -8029,7 +7856,6 @@ module TencentCloud
       # 删除实例返回任务
       class InstanceDeleteResponse < TencentCloud::Common::AbstractModel
         # @param FlowId: 删除实例返回的任务Id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FlowId: Integer
 
         attr_accessor :FlowId
@@ -8084,43 +7910,30 @@ module TencentCloud
         # @param Tags: 标识tag
         # @type Tags: Array
         # @param Version: kafka版本信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Version: String
         # @param ZoneIds: 跨可用区
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ZoneIds: Array
         # @param Cvm: ckafka售卖类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Cvm: Integer
         # @param InstanceType: ckafka集群实例类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceType: String
         # @param DiskType: ckafka集群实例磁盘类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DiskType: String
         # @param MaxTopicNumber: 当前规格最大Topic数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaxTopicNumber: Integer
         # @param MaxPartitionNumber: 当前规格最大Partition数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaxPartitionNumber: Integer
         # @param RebalanceTime: 计划升级配置时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RebalanceTime: String
         # @param PartitionNumber: 实例当前partition数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PartitionNumber: Integer
         # @param PublicNetworkChargeType: ckafka集群实例公网带宽类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PublicNetworkChargeType: String
         # @param PublicNetwork: 公网带宽 最小3Mbps  最大999Mbps 仅专业版支持填写
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PublicNetwork: Integer
         # @param ClusterType: ckafka集群实例底层集群类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterType: String
         # @param Features: 实例功能列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Features: Array
 
         attr_accessor :InstanceId, :InstanceName, :Vip, :Vport, :VipList, :Status, :Bandwidth, :DiskSize, :ZoneId, :VpcId, :SubnetId, :RenewFlag, :Healthy, :HealthyMessage, :CreateTime, :ExpireTime, :IsInternal, :TopicNum, :Tags, :Version, :ZoneIds, :Cvm, :InstanceType, :DiskType, :MaxTopicNumber, :MaxPartitionNumber, :RebalanceTime, :PartitionNumber, :PublicNetworkChargeType, :PublicNetwork, :ClusterType, :Features
@@ -8262,10 +8075,8 @@ module TencentCloud
       # 聚合的实例状态返回结果
       class InstanceResponse < TencentCloud::Common::AbstractModel
         # @param InstanceList: 符合条件的实例列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceList: Array
         # @param TotalCount: 符合条件的结果总数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
 
         attr_accessor :InstanceList, :TotalCount
@@ -8400,7 +8211,6 @@ module TencentCloud
         # @param Regex: key-value二次解析分隔符
         # @type Regex: String
         # @param KeepOriginalKey: 保留源Key，默认为false不保留
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type KeepOriginalKey: String
 
         attr_accessor :Delimiter, :Regex, :KeepOriginalKey
@@ -8421,19 +8231,15 @@ module TencentCloud
       # Kafka连接源参数
       class KafkaConnectParam < TencentCloud::Common::AbstractModel
         # @param Resource: Kafka连接源的实例资源, 非自建时必填，NetworkType=VPC时传clb实例id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Resource: String
         # @param SelfBuilt: 是否为自建集群
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SelfBuilt: Boolean
         # @param IsUpdate: 是否更新到关联的Dip任务
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsUpdate: Boolean
         # @param BrokerAddress: Kafka连接的broker地址, NetworkType=PUBLIC公网时必填
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BrokerAddress: String
         # @param Region: CKafka连接源的实例资源地域, 跨地域时必填
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Region: String
 
         attr_accessor :Resource, :SelfBuilt, :IsUpdate, :BrokerAddress, :Region
@@ -8485,31 +8291,23 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EnableToleration: Boolean
         # @param QpsLimit: Qps 限制
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type QpsLimit: Integer
         # @param TableMappings: Table到Topic的路由，「分发到多个topic」开关打开时必传
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TableMappings: Array
         # @param UseTableMapping: 「分发到多个topic」开关，默认为false
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UseTableMapping: Boolean
         # @param UseAutoCreateTopic: 使用的Topic是否需要自动创建（目前只支持SOURCE流入任务，如果不使用分发到多个topic，需要在Topic字段填写需要自动创建的topic名）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UseAutoCreateTopic: Boolean
         # @param CompressionType: 写入Topic时是否进行压缩，不开启填"none"，开启的话，填写"open"。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CompressionType: String
         # @param MsgMultiple: 源topic消息1条扩增成msgMultiple条写入目标topic(该参数目前只有ckafka流入ckafka适用)
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MsgMultiple: Integer
         # @param ConnectorSyncType: 数据同步专用参数, 正常数据处理可为空, 实例级别同步: 仅同步元数据填写"META_SYNC_INSTANCE_TYPE", 同步元数据及全部topic内消息的填写"META_AND_DATA_SYNC_INSTANCE_TYPE"; topic级别同步: 选中的源和目标topic中的消息(需要目标实例也包含该topic)填写"DATA_SYNC_TYPE"
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ConnectorSyncType: String
         # @param KeepPartition: 数据同步专用参数, 当通过时,希望下游的消息写入分区与上游的一致,则填true,但下游分区小于上游时,会报错; 不需要一致则为false, 默认为false
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type KeepPartition: Boolean
         # @param TopicRegularExpression: 正则匹配Topic列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TopicRegularExpression: String
 
         attr_accessor :SelfBuilt, :Resource, :Topic, :OffsetType, :StartTime, :ResourceName, :ZoneId, :TopicId, :PartitionNum, :EnableToleration, :QpsLimit, :TableMappings, :UseTableMapping, :UseAutoCreateTopic, :CompressionType, :MsgMultiple, :ConnectorSyncType, :KeepPartition, :TopicRegularExpression
@@ -8604,25 +8402,18 @@ module TencentCloud
       # MariaDB连接源参数
       class MariaDBConnectParam < TencentCloud::Common::AbstractModel
         # @param Port: MariaDB的连接port
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Port: Integer
         # @param UserName: MariaDB连接源的用户名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UserName: String
         # @param Password: MariaDB连接源的密码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Password: String
         # @param Resource: MariaDB连接源的实例资源
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Resource: String
         # @param ServiceVip: MariaDB连接源的实例vip，当为腾讯云实例时，必填
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ServiceVip: String
         # @param UniqVpcId: MariaDB连接源的vpcId，当为腾讯云实例时，必填
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UniqVpcId: String
         # @param IsUpdate: 是否更新到关联的Datahub任务
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsUpdate: Boolean
 
         attr_accessor :Port, :UserName, :Password, :Resource, :ServiceVip, :UniqVpcId, :IsUpdate
@@ -8651,25 +8442,18 @@ module TencentCloud
       # MariaDB连接源参数
       class MariaDBModifyConnectParam < TencentCloud::Common::AbstractModel
         # @param Resource: MariaDB连接源的实例资源【不支持修改】
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Resource: String
         # @param Port: MariaDB的连接port【不支持修改】
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Port: Integer
         # @param ServiceVip: MariaDB连接源的实例vip【不支持修改】
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ServiceVip: String
         # @param UniqVpcId: MariaDB连接源的vpcId【不支持修改】
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UniqVpcId: String
         # @param UserName: MariaDB连接源的用户名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UserName: String
         # @param Password: MariaDB连接源的密码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Password: String
         # @param IsUpdate: 是否更新到关联的Datahub任务
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsUpdate: Boolean
 
         attr_accessor :Resource, :Port, :ServiceVip, :UniqVpcId, :UserName, :Password, :IsUpdate
@@ -8698,34 +8482,24 @@ module TencentCloud
       # MariaDB类型入参
       class MariaDBParam < TencentCloud::Common::AbstractModel
         # @param Database: MariaDB的数据库名称，"*"为全数据库
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Database: String
         # @param Table: MariaDB的数据表名称，"*"为所监听的所有数据库中的非系统表，可以","间隔，监听多个数据表，但数据表需要以"数据库名.数据表名"的格式进行填写
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Table: String
         # @param Resource: 该MariaDB在连接管理内的Id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Resource: String
         # @param SnapshotMode: 复制存量信息(schema_only不复制, initial全量)，默认值initial
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SnapshotMode: String
         # @param KeyColumns: 格式：库1.表1:字段1,字段2;库2.表2:字段2，表之间;（分号）隔开，字段之间,（逗号）隔开。不指定的表默认取表的主键
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type KeyColumns: String
         # @param IsTablePrefix: 当Table输入的是前缀时，该项值为true，否则为false
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsTablePrefix: Boolean
         # @param OutputFormat: 输出格式，DEFAULT、CANAL_1、CANAL_2
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OutputFormat: String
         # @param IncludeContentChanges: 如果该值为all，则DDL数据以及DML数据也会写入到选中的topic；若该值为dml，则只有DML数据写入到选中的topic
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IncludeContentChanges: String
         # @param IncludeQuery: 如果该值为true，且MySQL中"binlog_rows_query_log_events"配置项的值为"ON"，则流入到topic的数据包含原SQL语句；若该值为false，流入到topic的数据不包含原SQL语句
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IncludeQuery: Boolean
         # @param RecordWithSchema: 如果该值为 true，则消息中会携带消息结构体对应的schema，如果该值为false则不会携带
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RecordWithSchema: Boolean
 
         attr_accessor :Database, :Table, :Resource, :SnapshotMode, :KeyColumns, :IsTablePrefix, :OutputFormat, :IncludeContentChanges, :IncludeQuery, :RecordWithSchema
@@ -9514,28 +9288,20 @@ module TencentCloud
       # MongoDB连接源参数
       class MongoDBConnectParam < TencentCloud::Common::AbstractModel
         # @param Port: MongoDB的连接port
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Port: Integer
         # @param UserName: MongoDB连接源的用户名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UserName: String
         # @param Password: MongoDB连接源的密码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Password: String
         # @param Resource: MongoDB连接源的实例资源
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Resource: String
         # @param SelfBuilt: MongoDB连接源是否为自建集群
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SelfBuilt: Boolean
         # @param ServiceVip: MongoDB连接源的实例vip，当为腾讯云实例时，必填
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ServiceVip: String
         # @param UniqVpcId: MongoDB连接源的vpcId，当为腾讯云实例时，必填
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UniqVpcId: String
         # @param IsUpdate: 是否更新到关联的Datahub任务
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsUpdate: Boolean
 
         attr_accessor :Port, :UserName, :Password, :Resource, :SelfBuilt, :ServiceVip, :UniqVpcId, :IsUpdate
@@ -9566,28 +9332,20 @@ module TencentCloud
       # MongoDB修改连接源参数
       class MongoDBModifyConnectParam < TencentCloud::Common::AbstractModel
         # @param Resource: MongoDB连接源的实例资源【不支持修改】
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Resource: String
         # @param Port: MongoDB的连接port【不支持修改】
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Port: Integer
         # @param ServiceVip: MongoDB连接源的实例vip【不支持修改】
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ServiceVip: String
         # @param UniqVpcId: MongoDB连接源的vpcId【不支持修改】
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UniqVpcId: String
         # @param UserName: MongoDB连接源的用户名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UserName: String
         # @param Password: MongoDB连接源的密码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Password: String
         # @param SelfBuilt: MongoDB连接源是否为自建集群【不支持修改】
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SelfBuilt: Boolean
         # @param IsUpdate: 是否更新到关联的Datahub任务
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsUpdate: Boolean
 
         attr_accessor :Resource, :Port, :ServiceVip, :UniqVpcId, :UserName, :Password, :SelfBuilt, :IsUpdate
@@ -9618,40 +9376,28 @@ module TencentCloud
       # MongoDB类型入参
       class MongoDBParam < TencentCloud::Common::AbstractModel
         # @param Database: MongoDB的数据库名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Database: String
         # @param Collection: MongoDB的集群
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Collection: String
         # @param CopyExisting: 是否复制存量数据，默认传参true
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CopyExisting: Boolean
         # @param Resource: 实例资源
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Resource: String
         # @param Ip: MongoDB的连接ip
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Ip: String
         # @param Port: MongoDB的连接port
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Port: Integer
         # @param UserName: MongoDB数据库用户名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UserName: String
         # @param Password: MongoDB数据库密码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Password: String
         # @param ListeningEvent: 监听事件类型，为空时表示全选。取值包括insert,update,replace,delete,invalidate,drop,dropdatabase,rename，多个类型间使用,逗号分隔
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ListeningEvent: String
         # @param ReadPreference: 主从优先级，默认主节点
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReadPreference: String
         # @param Pipeline: 聚合管道
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Pipeline: String
         # @param SelfBuilt: 是否为自建集群
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SelfBuilt: Boolean
 
         attr_accessor :Database, :Collection, :CopyExisting, :Resource, :Ip, :Port, :UserName, :Password, :ListeningEvent, :ReadPreference, :Pipeline, :SelfBuilt
@@ -9690,25 +9436,18 @@ module TencentCloud
       # MQTT连接源参数
       class MqttConnectParam < TencentCloud::Common::AbstractModel
         # @param UserName: MQTT连接源的用户名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UserName: String
         # @param Password: MQTT连接源的密码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Password: String
         # @param Resource: MQTT连接源的实例资源
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Resource: String
         # @param UniqVpcId: MQTT Instance vpc-id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UniqVpcId: String
         # @param SelfBuilt: 是否为自建集群
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SelfBuilt: Boolean
         # @param IsUpdate: 是否更新到关联的Dip任务
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsUpdate: Boolean
         # @param Region: MQTT连接源的实例资源地域, 跨地域时必填
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Region: String
 
         attr_accessor :UserName, :Password, :Resource, :UniqVpcId, :SelfBuilt, :IsUpdate, :Region
@@ -9737,40 +9476,28 @@ module TencentCloud
       # 创建MQTT 为Source的Data Hub Task参数
       class MqttParam < TencentCloud::Common::AbstractModel
         # @param Topics: 需要同步的MQTT Topic列表, CSV格式
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Topics: String
         # @param CleanSession: MQTT clean-session
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CleanSession: Boolean
         # @param Resource: MQTT instance-id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Resource: String
         # @param Ip: MQTT实例VIP
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Ip: String
         # @param Port: MQTT VIP 端口
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Port: Integer
         # @param UserName: MQTT实例用户名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UserName: String
         # @param Password: MQTT实例内账户密码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Password: String
         # @param Qos: QoS
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Qos: Integer
         # @param MaxTasks: tasks.max 订阅Topic的并发Task个数, 默认为1; 当设置大于1时, 使用Shared Subscription
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaxTasks: Integer
         # @param ServiceVip: MQTT 实例的Service VIP
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ServiceVip: String
         # @param UniqVpcId: MQTT实例的VPC ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UniqVpcId: String
         # @param SelfBuilt: 是否为自建集群, MQTT只支持非自建集群
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SelfBuilt: Boolean
 
         attr_accessor :Topics, :CleanSession, :Resource, :Ip, :Port, :UserName, :Password, :Qos, :MaxTasks, :ServiceVip, :UniqVpcId, :SelfBuilt
@@ -9809,31 +9536,23 @@ module TencentCloud
       # MySQL连接源参数
       class MySQLConnectParam < TencentCloud::Common::AbstractModel
         # @param Port: MySQL的连接port
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Port: Integer
         # @param UserName: MySQL连接源的用户名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UserName: String
         # @param Password: MySQL连接源的密码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Password: String
         # @param Resource: MySQL连接源的实例资源
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Resource: String
         # @param ServiceVip: MySQL连接源的实例vip，当为腾讯云实例时，必填
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ServiceVip: String
         # @param UniqVpcId: MySQL连接源的vpcId，当为腾讯云实例时，必填
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UniqVpcId: String
         # @param IsUpdate: 是否更新到关联的Datahub任务
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsUpdate: Boolean
         # @param ClusterId: 当type为TDSQL_C_MYSQL时，必填
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterId: String
         # @param SelfBuilt: Mysql 连接源是否为自建集群
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SelfBuilt: Boolean
 
         attr_accessor :Port, :UserName, :Password, :Resource, :ServiceVip, :UniqVpcId, :IsUpdate, :ClusterId, :SelfBuilt
@@ -9866,31 +9585,22 @@ module TencentCloud
       # MySQL修改连接源参数
       class MySQLModifyConnectParam < TencentCloud::Common::AbstractModel
         # @param Resource: MySQL连接源的实例资源【不支持修改】
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Resource: String
         # @param Port: MySQL的连接port【不支持修改】
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Port: Integer
         # @param ServiceVip: MySQL连接源的实例vip【不支持修改】
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ServiceVip: String
         # @param UniqVpcId: MySQL连接源的vpcId【不支持修改】
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UniqVpcId: String
         # @param UserName: MySQL连接源的用户名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UserName: String
         # @param Password: MySQL连接源的密码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Password: String
         # @param IsUpdate: 是否更新到关联的Datahub任务
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsUpdate: Boolean
         # @param ClusterId: 当type为TDSQL_C_MYSQL时
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterId: String
         # @param SelfBuilt: 是否是自建的集群
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SelfBuilt: Boolean
 
         attr_accessor :Resource, :Port, :ServiceVip, :UniqVpcId, :UserName, :Password, :IsUpdate, :ClusterId, :SelfBuilt
@@ -9923,88 +9633,61 @@ module TencentCloud
       # MySQL类型入参
       class MySQLParam < TencentCloud::Common::AbstractModel
         # @param Database: MySQL的数据库名称，"*"为全数据库
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Database: String
         # @param Table: MySQL的数据表名称，"*"为所监听的所有数据库中的非系统表，可以","间隔，监听多个数据表，但数据表需要以"数据库名.数据表名"的格式进行填写，需要填入正则表达式时，格式为"数据库名\\.数据表名"
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Table: String
         # @param Resource: 该MySQL在连接管理内的Id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Resource: String
         # @param SnapshotMode: 复制存量信息(schema_only不复制, initial全量)，默认值initial
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SnapshotMode: String
         # @param DdlTopic: 存放MySQL的Ddl信息的Topic，为空则默认不存放
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DdlTopic: String
         # @param DataSourceMonitorMode: "TABLE" 表示读取项为 table，"QUERY" 表示读取项为 query
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DataSourceMonitorMode: String
         # @param DataSourceMonitorResource: 当 "DataMonitorMode"="TABLE" 时，传入需要读取的 Table；当 "DataMonitorMode"="QUERY" 时，传入需要读取的查询 sql 语句
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DataSourceMonitorResource: String
         # @param DataSourceIncrementMode: "TIMESTAMP" 表示增量列为时间戳类型，"INCREMENT" 表示增量列为自增 id 类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DataSourceIncrementMode: String
         # @param DataSourceIncrementColumn: 传入需要监听的列名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DataSourceIncrementColumn: String
         # @param DataSourceStartFrom: "HEAD" 表示复制存量 + 增量数据，"TAIL" 表示只复制增量数据
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DataSourceStartFrom: String
         # @param DataTargetInsertMode: "INSERT" 表示使用 Insert 模式插入，"UPSERT" 表示使用 Upsert 模式插入
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DataTargetInsertMode: String
         # @param DataTargetPrimaryKeyField: 当 "DataInsertMode"="UPSERT" 时，传入当前 upsert 时依赖的主键
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DataTargetPrimaryKeyField: String
         # @param DataTargetRecordMapping: 表与消息间的映射关系
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DataTargetRecordMapping: Array
         # @param TopicRegex: 事件路由到特定主题的正则表达式，默认为(.*)
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TopicRegex: String
         # @param TopicReplacement: TopicRegex的引用组，指定$1、$2等
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TopicReplacement: String
         # @param KeyColumns: 格式：库1.表1:字段1,字段2;库2.表2:字段2，表之间;（分号）隔开，字段之间,（逗号）隔开。不指定的表默认取表的主键
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type KeyColumns: String
         # @param DropInvalidMessage: Mysql 是否抛弃解析失败的消息，默认为true
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DropInvalidMessage: Boolean
         # @param DropCls: 当设置成员参数DropInvalidMessageToCls设置为true时,DropInvalidMessage参数失效
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DropCls: :class:`Tencentcloud::Ckafka.v20190819.models.DropCls`
         # @param OutputFormat: 输出格式，DEFAULT、CANAL_1、CANAL_2
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OutputFormat: String
         # @param IsTablePrefix: 当Table输入的是前缀时，该项值为true，否则为false
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsTablePrefix: Boolean
         # @param IncludeContentChanges: 如果该值为all，则DDL数据以及DML数据也会写入到选中的topic；若该值为dml，则只有DML数据写入到选中的topic
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IncludeContentChanges: String
         # @param IncludeQuery: 如果该值为true，且MySQL中"binlog_rows_query_log_events"配置项的值为"ON"，则流入到topic的数据包含原SQL语句；若该值为false，流入到topic的数据不包含原SQL语句
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IncludeQuery: Boolean
         # @param RecordWithSchema: 如果该值为 true，则消息中会携带消息结构体对应的schema，如果该值为false则不会携带
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RecordWithSchema: Boolean
         # @param SignalDatabase: 存放信令表的数据库名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SignalDatabase: String
         # @param IsTableRegular: 输入的table是否为正则表达式，如果该选项以及IsTablePrefix同时为true，该选项的判断优先级高于IsTablePrefix
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsTableRegular: Boolean
         # @param SignalTable: 信号表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SignalTable: String
         # @param DateTimeZone: datetime 类型字段转换为时间戳的时区
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DateTimeZone: String
         # @param SelfBuilt: 自建
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SelfBuilt: Boolean
 
         attr_accessor :Database, :Table, :Resource, :SnapshotMode, :DdlTopic, :DataSourceMonitorMode, :DataSourceMonitorResource, :DataSourceIncrementMode, :DataSourceIncrementColumn, :DataSourceStartFrom, :DataTargetInsertMode, :DataTargetPrimaryKeyField, :DataTargetRecordMapping, :TopicRegex, :TopicReplacement, :KeyColumns, :DropInvalidMessage, :DropCls, :OutputFormat, :IsTablePrefix, :IncludeContentChanges, :IncludeQuery, :RecordWithSchema, :SignalDatabase, :IsTableRegular, :SignalTable, :DateTimeZone, :SelfBuilt
@@ -10085,10 +9768,8 @@ module TencentCloud
       # 操作类型返回的Data结构
       class OperateResponseData < TencentCloud::Common::AbstractModel
         # @param FlowId: 流程Id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FlowId: Integer
         # @param RouteDTO: RouteIdDto
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RouteDTO: :class:`Tencentcloud::Ckafka.v20190819.models.RouteDTO`
 
         attr_accessor :FlowId, :RouteDTO
@@ -10126,10 +9807,8 @@ module TencentCloud
       # 分区和位移
       class PartitionOffset < TencentCloud::Common::AbstractModel
         # @param Partition: 分区
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Partition: String
         # @param Offset: 位点偏移量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Offset: Integer
 
         attr_accessor :Partition, :Offset
@@ -10168,31 +9847,22 @@ module TencentCloud
       # PostgreSQL连接源参数
       class PostgreSQLConnectParam < TencentCloud::Common::AbstractModel
         # @param Port: PostgreSQL的连接port
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Port: Integer
         # @param UserName: PostgreSQL连接源的用户名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UserName: String
         # @param Password: PostgreSQL连接源的密码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Password: String
         # @param Resource: PostgreSQL连接源的实例资源
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Resource: String
         # @param ServiceVip: PostgreSQL连接源的实例vip，当为腾讯云实例时，必填
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ServiceVip: String
         # @param UniqVpcId: PostgreSQL连接源的vpcId，当为腾讯云实例时，必填
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UniqVpcId: String
         # @param ClusterId: 当type为TDSQL_C_POSTGRESQL时，必填
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterId: String
         # @param IsUpdate: 是否更新到关联的Datahub任务
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsUpdate: Boolean
         # @param SelfBuilt: PostgreSQL连接源是否为自建集群
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SelfBuilt: Boolean
 
         attr_accessor :Port, :UserName, :Password, :Resource, :ServiceVip, :UniqVpcId, :ClusterId, :IsUpdate, :SelfBuilt
@@ -10225,31 +9895,22 @@ module TencentCloud
       # PostgreSQL修改连接源参数
       class PostgreSQLModifyConnectParam < TencentCloud::Common::AbstractModel
         # @param Resource: PostgreSQL连接源的实例资源【不支持修改】
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Resource: String
         # @param Port: PostgreSQL的连接port【不支持修改】
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Port: Integer
         # @param ServiceVip: PostgreSQL连接源的实例vip【不支持修改】
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ServiceVip: String
         # @param UniqVpcId: PostgreSQL连接源的vpcId【不支持修改】
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UniqVpcId: String
         # @param UserName: PostgreSQL连接源的用户名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UserName: String
         # @param Password: PostgreSQL连接源的密码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Password: String
         # @param ClusterId: 当type为TDSQL_C_POSTGRESQL时，该参数才有值【不支持修改】
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterId: String
         # @param IsUpdate: 是否更新到关联的Datahub任务
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsUpdate: Boolean
         # @param SelfBuilt: 是否为自建集群
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SelfBuilt: Boolean
 
         attr_accessor :Resource, :Port, :ServiceVip, :UniqVpcId, :UserName, :Password, :ClusterId, :IsUpdate, :SelfBuilt
@@ -10282,43 +9943,30 @@ module TencentCloud
       # PostgreSQL类型入参
       class PostgreSQLParam < TencentCloud::Common::AbstractModel
         # @param Database: PostgreSQL的数据库名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Database: String
         # @param Table: PostgreSQL的数据表名称，"*"为所监听的所有数据库中的非系统表，可以","间隔，监听多个数据表，但数据表需要以"Schema名.数据表名"的格式进行填写，需要填入正则表达式时，格式为"Schema名\\.数据表名"
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Table: String
         # @param Resource: 该PostgreSQL在连接管理内的Id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Resource: String
         # @param PluginName: 插件名(decoderbufs/pgoutput)，默认为decoderbufs
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PluginName: String
         # @param SnapshotMode: 复制存量信息(never增量, initial全量)，默认为initial
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SnapshotMode: String
         # @param DataFormat: 上游数据格式(JSON/Debezium), 当数据库同步模式为默认字段匹配时,必填
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DataFormat: String
         # @param DataTargetInsertMode: "INSERT" 表示使用 Insert 模式插入，"UPSERT" 表示使用 Upsert 模式插入
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DataTargetInsertMode: String
         # @param DataTargetPrimaryKeyField: 当 "DataInsertMode"="UPSERT" 时，传入当前 upsert 时依赖的主键
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DataTargetPrimaryKeyField: String
         # @param DataTargetRecordMapping: 表与消息间的映射关系
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DataTargetRecordMapping: Array
         # @param DropInvalidMessage: 是否抛弃解析失败的消息，默认为true
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DropInvalidMessage: Boolean
         # @param IsTableRegular: 输入的table是否为正则表达式
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsTableRegular: Boolean
         # @param KeyColumns: 格式：库1.表1:字段1,字段2;库2.表2:字段2，表之间;（分号）隔开，字段之间,（逗号）隔开。不指定的表默认取表的主键
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type KeyColumns: String
         # @param RecordWithSchema: 如果该值为 true，则消息中会携带消息结构体对应的schema，如果该值为false则不会携带
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RecordWithSchema: Boolean
 
         attr_accessor :Database, :Table, :Resource, :PluginName, :SnapshotMode, :DataFormat, :DataTargetInsertMode, :DataTargetPrimaryKeyField, :DataTargetRecordMapping, :DropInvalidMessage, :IsTableRegular, :KeyColumns, :RecordWithSchema
@@ -10412,13 +10060,10 @@ module TencentCloud
         # @param SourcePort: vport
         # @type SourcePort: Integer
         # @param BrokerIp: broker地址
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BrokerIp: String
         # @param VpcId: VPC ID信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VpcId: String
         # @param SubnetId: 子网ID信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubnetId: String
 
         attr_accessor :Type, :SourceIp, :SourcePort, :BrokerIp, :VpcId, :SubnetId
@@ -10475,7 +10120,6 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type JsonKey: String
         # @param Type: 消息类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: String
         # @param AllowNull: 消息是否允许为空
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -10555,19 +10199,14 @@ module TencentCloud
         # @param AreaName: 区域名称
         # @type AreaName: String
         # @param RegionCode: 地域代码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RegionCode: String
         # @param RegionCodeV3: 地域代码（V3版本）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RegionCodeV3: String
         # @param Support: NONE:默认值不支持任何特殊类型 实例类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Support: String
         # @param Ipv6: 是否支持ipv6, 0：表示不支持，1：表示支持
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Ipv6: Integer
         # @param MultiZone: 是否支持跨可用区, 0：表示不支持，1：表示支持
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MultiZone: Integer
 
         attr_accessor :RegionId, :RegionName, :AreaName, :RegionCode, :RegionCodeV3, :Support, :Ipv6, :MultiZone
@@ -10618,10 +10257,8 @@ module TencentCloud
       # RenewCkafkaInstance接口出参bigDealIds
       class RenewCkafkaInstanceResp < TencentCloud::Common::AbstractModel
         # @param BigDealId: 订单号
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BigDealId: String
         # @param DealName: 子订单号
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DealName: String
 
         attr_accessor :BigDealId, :DealName
@@ -10701,13 +10338,11 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DomainPort: Integer
         # @param DeleteTimestamp: 时间戳
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeleteTimestamp: String
         # @param Subnet: 子网Id
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Subnet: String
         # @param BrokerVipList: 虚拟IP列表(1对1 broker节点)
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BrokerVipList: Array
         # @param VpcId: 私有网络Id
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -10759,7 +10394,6 @@ module TencentCloud
       # RouteDTO
       class RouteDTO < TencentCloud::Common::AbstractModel
         # @param RouteId: 路由Id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RouteId: Integer
 
         attr_accessor :RouteId
@@ -10776,7 +10410,6 @@ module TencentCloud
       # 路由信息返回对象
       class RouteResponse < TencentCloud::Common::AbstractModel
         # @param Routers: 路由信息列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Routers: Array
 
         attr_accessor :Routers
@@ -10802,10 +10435,8 @@ module TencentCloud
         # @param RowContent: 行内容，KEY_VALUE，VALUE
         # @type RowContent: String
         # @param KeyValueDelimiter: key和value间的分隔符
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type KeyValueDelimiter: String
         # @param EntryDelimiter: 元素建的分隔符
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EntryDelimiter: String
 
         attr_accessor :RowContent, :KeyValueDelimiter, :EntryDelimiter
@@ -10832,16 +10463,12 @@ module TencentCloud
         # @param SchemeType: 数据类型，ORIGINAL原始，STRING，INT64，FLOAT64，BOOLEAN，MAP，ARRAY
         # @type SchemeType: String
         # @param Value: 数据处理VALUE
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: String
         # @param ValueOperate: VALUE处理
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ValueOperate: :class:`Tencentcloud::Ckafka.v20190819.models.ValueParam`
         # @param OriginalValue: 原始VALUE
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OriginalValue: String
         # @param ValueOperates: VALUE处理链
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ValueOperates: Array
 
         attr_accessor :Key, :Operate, :SchemeType, :Value, :ValueOperate, :OriginalValue, :ValueOperates
@@ -10880,25 +10507,18 @@ module TencentCloud
       # SQLServer连接源参数
       class SQLServerConnectParam < TencentCloud::Common::AbstractModel
         # @param Port: SQLServer的连接port
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Port: Integer
         # @param UserName: SQLServer连接源的用户名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UserName: String
         # @param Password: SQLServer连接源的密码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Password: String
         # @param Resource: SQLServer连接源的实例资源
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Resource: String
         # @param ServiceVip: SQLServer连接源的实例vip，当为腾讯云实例时，必填
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ServiceVip: String
         # @param UniqVpcId: SQLServer连接源的vpcId，当为腾讯云实例时，必填
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UniqVpcId: String
         # @param IsUpdate: 是否更新到关联的Dip任务
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsUpdate: Boolean
 
         attr_accessor :Port, :UserName, :Password, :Resource, :ServiceVip, :UniqVpcId, :IsUpdate
@@ -10927,25 +10547,18 @@ module TencentCloud
       # SQLServer修改连接源参数
       class SQLServerModifyConnectParam < TencentCloud::Common::AbstractModel
         # @param Resource: SQLServer连接源的实例资源【不支持修改】
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Resource: String
         # @param Port: SQLServer的连接port【不支持修改】
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Port: Integer
         # @param ServiceVip: SQLServer连接源的实例vip【不支持修改】
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ServiceVip: String
         # @param UniqVpcId: SQLServer连接源的vpcId【不支持修改】
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UniqVpcId: String
         # @param UserName: SQLServer连接源的用户名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UserName: String
         # @param Password: SQLServer连接源的密码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Password: String
         # @param IsUpdate: 是否更新到关联的Dip任务
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsUpdate: Boolean
 
         attr_accessor :Resource, :Port, :ServiceVip, :UniqVpcId, :UserName, :Password, :IsUpdate
@@ -10974,16 +10587,12 @@ module TencentCloud
       # SQLServer类型入参
       class SQLServerParam < TencentCloud::Common::AbstractModel
         # @param Database: SQLServer的数据库名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Database: String
         # @param Table: SQLServer的数据表名称，"*"为所监听的所有数据库中的非系统表，可以","间隔，监听多个数据表，但数据表需要以"数据库名.数据表名"的格式进行填写
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Table: String
         # @param Resource: 该SQLServer在连接管理内的Id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Resource: String
         # @param SnapshotMode: 复制存量信息(schema_only增量, initial全量)，默认为initial
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SnapshotMode: String
 
         attr_accessor :Database, :Table, :Resource, :SnapshotMode
@@ -11006,16 +10615,12 @@ module TencentCloud
       # 标准版销售信息
       class SaleInfo < TencentCloud::Common::AbstractModel
         # @param Flag: 手动设置的flag标志
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Flag: Boolean
         # @param Version: ckakfa版本号(1.1.1/2.4.2/0.10.2)
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Version: String
         # @param Platform: 专业版、标准版标志
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Platform: String
         # @param SoldOut: 售罄标志：true售罄
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SoldOut: Boolean
 
         attr_accessor :Flag, :Version, :Platform, :SoldOut
@@ -11038,7 +10643,6 @@ module TencentCloud
       # 实例缩容应答
       class ScalingDownResp < TencentCloud::Common::AbstractModel
         # @param DealNames: 订单号列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DealNames: Array
 
         attr_accessor :DealNames
@@ -11055,19 +10659,14 @@ module TencentCloud
       # Scf类型入参
       class ScfParam < TencentCloud::Common::AbstractModel
         # @param FunctionName: SCF云函数函数名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FunctionName: String
         # @param Namespace: SCF云函数命名空间, 默认为default
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Namespace: String
         # @param Qualifier: SCF云函数版本及别名, 默认为$DEFAULT
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Qualifier: String
         # @param BatchSize: 每批最大发送消息数, 默认为1000
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BatchSize: Integer
         # @param MaxRetries: SCF调用失败后重试次数, 默认为5
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaxRetries: Integer
 
         attr_accessor :FunctionName, :Namespace, :Qualifier, :BatchSize, :MaxRetries
@@ -11173,13 +10772,10 @@ module TencentCloud
         # @param TopicName: 订阅的主题名
         # @type TopicName: String
         # @param Partition: 订阅的分区
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Partition: Array
         # @param PartitionOffset: 分区offset信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PartitionOffset: Array
         # @param TopicId: 订阅的主题ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TopicId: String
 
         attr_accessor :TopicName, :Partition, :PartitionOffset, :TopicId
@@ -11282,7 +10878,6 @@ module TencentCloud
         # 2 进行中
         # @type Status: Integer
         # @param Output: 输出信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Output: String
 
         attr_accessor :Status, :Output
@@ -11301,19 +10896,14 @@ module TencentCloud
       # Tdw类型入参
       class TdwParam < TencentCloud::Common::AbstractModel
         # @param Bid: Tdw的bid
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Bid: String
         # @param Tid: Tdw的tid
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tid: String
         # @param IsDomestic: 默认true
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsDomestic: Boolean
         # @param TdwHost: TDW地址，默认tl-tdbank-tdmanager.tencent-distribute.com
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TdwHost: String
         # @param TdwPort: TDW端口，默认8099
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TdwPort: Integer
 
         attr_accessor :Bid, :Tid, :IsDomestic, :TdwHost, :TdwPort
@@ -11367,7 +10957,6 @@ module TencentCloud
         # @param CreateTime: 创建时间
         # @type CreateTime: Integer
         # @param Note: 主题备注
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Note: String
         # @param PartitionNum: 分区个数
         # @type PartitionNum: Integer
@@ -11380,16 +10969,12 @@ module TencentCloud
         # @param Partitions: 分区详情
         # @type Partitions: Array
         # @param EnableAclRule: ACL预设策略开关，1：打开； 0：关闭
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EnableAclRule: Integer
         # @param AclRuleList: 预设策略列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AclRuleList: Array
         # @param QuotaConfig: topic 限流策略
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type QuotaConfig: :class:`Tencentcloud::Ckafka.v20190819.models.InstanceQuotaConfigResp`
         # @param ReplicaNum: 副本数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReplicaNum: Integer
 
         attr_accessor :TopicId, :CreateTime, :Note, :PartitionNum, :EnableWhiteList, :IpWhiteList, :Config, :Partitions, :EnableAclRule, :AclRuleList, :QuotaConfig, :ReplicaNum
@@ -11456,7 +11041,6 @@ module TencentCloud
         # @param ReplicaNum: topic副本数  最小值 1,最大值 3
         # @type ReplicaNum: Integer
         # @param Note: 备注
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Note: String
         # @param CreateTime: 创建时间
         # @type CreateTime: Integer
@@ -11465,20 +11049,16 @@ module TencentCloud
         # @param IpWhiteListCount: ip白名单中ip个数
         # @type IpWhiteListCount: Integer
         # @param ForwardCosBucket: 数据备份cos bucket: 转存到cos 的bucket地址
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ForwardCosBucket: String
         # @param ForwardStatus: 数据备份cos 状态： 1 不开启数据备份，0 开启数据备份
         # @type ForwardStatus: Integer
         # @param ForwardInterval: 数据备份到cos的周期频率
         # @type ForwardInterval: Integer
         # @param Config: 高级配置
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Config: :class:`Tencentcloud::Ckafka.v20190819.models.Config`
         # @param RetentionTimeConfig: 消息保留时间配置(用于动态配置变更记录)
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RetentionTimeConfig: :class:`Tencentcloud::Ckafka.v20190819.models.TopicRetentionTimeConfigRsp`
         # @param Status: 0:正常，1：已删除，2：删除中
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
         # @param Tags: 标签列表
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -11539,7 +11119,6 @@ module TencentCloud
       # 主题详情返回实体
       class TopicDetailResponse < TencentCloud::Common::AbstractModel
         # @param TopicList: 返回的主题详情列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TopicList: Array
         # @param TotalCount: 符合条件的所有主题详情数量
         # @type TotalCount: Integer
@@ -11607,13 +11186,10 @@ module TencentCloud
         # @param ConsumeSpeed: 消费者组消费速度排行速度
         # @type ConsumeSpeed: Array
         # @param TopicMessageHeap: Topic 消息堆积/占用磁盘排行
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TopicMessageHeap: Array
         # @param BrokerIp: Broker Ip 列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BrokerIp: Array
         # @param BrokerTopicData: 单个broker 节点 Topic占用的数据大小
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BrokerTopicData: Array
         # @param BrokerTopicFlowData: 单个Broker 节点Topic 流量的大小(单位MB)
         # @type BrokerTopicFlowData: Array
@@ -11685,16 +11261,12 @@ module TencentCloud
         # @param InSyncReplica: ISR
         # @type InSyncReplica: String
         # @param BeginOffset: 起始Offset
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BeginOffset: Integer
         # @param EndOffset: 末端Offset
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EndOffset: Integer
         # @param MessageCount: 消息数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MessageCount: Integer
         # @param OutOfSyncReplica: 未同步副本集
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OutOfSyncReplica: String
 
         attr_accessor :Partition, :Leader, :Replica, :InSyncReplica, :BeginOffset, :EndOffset, :MessageCount, :OutOfSyncReplica
@@ -11752,22 +11324,16 @@ module TencentCloud
       # topic消息堆积、占用磁盘排行
       class TopicMessageHeapRanking < TencentCloud::Common::AbstractModel
         # @param TopicId: 主题ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TopicId: String
         # @param TopicName: 主题名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TopicName: String
         # @param PartitionNum: 分区数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PartitionNum: Integer
         # @param ReplicaNum: 副本数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReplicaNum: Integer
         # @param TopicTraffic: Topic 流量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TopicTraffic: String
         # @param MessageHeap: topic消息堆积/占用磁盘
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MessageHeap: Integer
 
         attr_accessor :TopicId, :TopicName, :PartitionNum, :ReplicaNum, :TopicTraffic, :MessageHeap
@@ -11802,16 +11368,12 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StartTime: Integer
         # @param TopicId: Topic的TopicId【出参】
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TopicId: String
         # @param CompressionType: 写入Topic时是否进行压缩，不开启填"none"，开启的话，可选择"gzip", "snappy", "lz4"中的一个进行填写。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CompressionType: String
         # @param UseAutoCreateTopic: 使用的Topic是否需要自动创建（目前只支持SOURCE流入任务）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UseAutoCreateTopic: Boolean
         # @param MsgMultiple: 源topic消息1条扩增成msgMultiple条写入目标topic(该参数目前只有ckafka流入ckafka适用)
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MsgMultiple: Integer
 
         attr_accessor :Resource, :OffsetType, :StartTime, :TopicId, :CompressionType, :UseAutoCreateTopic, :MsgMultiple
@@ -11868,10 +11430,8 @@ module TencentCloud
       # 统一返回的TopicResponse
       class TopicResult < TencentCloud::Common::AbstractModel
         # @param TopicList: 返回的主题信息列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TopicList: Array
         # @param TotalCount: 符合条件的 topic 数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
 
         attr_accessor :TopicList, :TotalCount
@@ -11897,13 +11457,10 @@ module TencentCloud
       # Topic消息保留时间配置返回信息
       class TopicRetentionTimeConfigRsp < TencentCloud::Common::AbstractModel
         # @param Expect: 期望值，即用户配置的Topic消息保留时间(单位分钟)
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Expect: Integer
         # @param Current: 当前值，即当前生效值(可能存在动态调整，单位分钟)
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Current: Integer
         # @param ModTimeStamp: 最近变更时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ModTimeStamp: Integer
 
         attr_accessor :Expect, :Current, :ModTimeStamp
@@ -11928,10 +11485,8 @@ module TencentCloud
         # @param StatusCountInfo: 消费分组状态数量信息
         # @type StatusCountInfo: String
         # @param GroupsInfo: 消费分组信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GroupsInfo: Array
         # @param Status: 此次请求是否异步的状态。实例里分组较少的会直接返回结果,Status为1。当分组较多时,会异步更新缓存，Status为0时不会返回分组信息，直至Status为1更新完毕返回结果。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
 
         attr_accessor :TotalCount, :StatusCountInfo, :GroupsInfo, :Status
@@ -11977,13 +11532,10 @@ module TencentCloud
         # @param FilterParam: 过滤器
         # @type FilterParam: Array
         # @param Result: 测试结果
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: String
         # @param AnalyseResult: 解析结果
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AnalyseResult: Array
         # @param UseEventBus: 底层引擎是否使用eb
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UseEventBus: Boolean
 
         attr_accessor :AnalysisFormat, :OutputFormat, :FailureParam, :Content, :SourceType, :Regex, :MapParam, :FilterParam, :Result, :AnalyseResult, :UseEventBus
@@ -12048,28 +11600,20 @@ module TencentCloud
         # @param FieldChain: 处理链
         # @type FieldChain: Array
         # @param FilterParam: 过滤器
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FilterParam: Array
         # @param FailureParam: 失败处理
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FailureParam: :class:`Tencentcloud::Ckafka.v20190819.models.FailureParam`
         # @param Result: 测试结果
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: String
         # @param SourceType: 数据来源
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SourceType: String
         # @param OutputFormat: 输出格式，JSON，ROW，默认为JSON
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OutputFormat: String
         # @param RowParam: 输出格式为ROW必填
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RowParam: :class:`Tencentcloud::Ckafka.v20190819.models.RowParam`
         # @param KeepMetadata: 是否保留数据源Topic元数据信息（源Topic、Partition、Offset），默认为false
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type KeepMetadata: Boolean
         # @param BatchAnalyse: 数组解析
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BatchAnalyse: :class:`Tencentcloud::Ckafka.v20190819.models.BatchAnalyseParam`
 
         attr_accessor :Content, :FieldChain, :FilterParam, :FailureParam, :Result, :SourceType, :OutputFormat, :RowParam, :KeepMetadata, :BatchAnalyse
@@ -12127,7 +11671,6 @@ module TencentCloud
       # Url解析
       class UrlDecodeParam < TencentCloud::Common::AbstractModel
         # @param CharsetName: 编码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CharsetName: String
 
         attr_accessor :CharsetName
@@ -12172,7 +11715,6 @@ module TencentCloud
       # 用户返回实体
       class UserResponse < TencentCloud::Common::AbstractModel
         # @param Users: 符合条件的用户列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Users: Array
         # @param TotalCount: 符合条件的总用户数
         # @type TotalCount: Integer
@@ -12329,7 +11871,6 @@ module TencentCloud
         # @param SoldOut: true为售罄，false为未售罄
         # @type SoldOut: String
         # @param SalesInfo: 标准版售罄信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SalesInfo: Array
         # @param ExtraFlag: 额外标识
         # @type ExtraFlag: String
@@ -12386,40 +11927,28 @@ module TencentCloud
         # @param MessagePrice: 后付费消息单价
         # @type MessagePrice: :class:`Tencentcloud::Ckafka.v20190819.models.Price`
         # @param ClusterInfo: 用户独占集群信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterInfo: Array
         # @param Standard: 购买标准版配置
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Standard: String
         # @param StandardS2: 购买标准版S2配置
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StandardS2: String
         # @param Profession: 购买专业版配置
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Profession: String
         # @param Physical: 购买物理独占版配置
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Physical: String
         # @param PublicNetwork: 公网带宽 最小3Mbps  最大999Mbps 仅专业版支持填写
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PublicNetwork: String
         # @param PublicNetworkLimit: 公网带宽配置
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PublicNetworkLimit: String
         # @param RequestId: 请求Id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RequestId: String
         # @param Version: 版本
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Version: String
         # @param Offset: 分页offset
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Offset: Integer
         # @param Limit: 分页limit
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Limit: Integer
         # @param ForceCheckTag: 是否必须录入tag
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ForceCheckTag: Boolean
 
         attr_accessor :ZoneList, :MaxBuyInstanceNum, :MaxBandwidth, :UnitPrice, :MessagePrice, :ClusterInfo, :Standard, :StandardS2, :Profession, :Physical, :PublicNetwork, :PublicNetworkLimit, :RequestId, :Version, :Offset, :Limit, :ForceCheckTag

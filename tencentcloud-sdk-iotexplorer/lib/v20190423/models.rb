@@ -5574,6 +5574,62 @@ module TencentCloud
         end
       end
 
+      # DescribeUnbindedDevices请求参数结构体
+      class DescribeUnbindedDevicesRequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: 产品ID
+        # @type ProductId: String
+        # @param Offset: 分页偏移量
+        # @type Offset: Integer
+        # @param Limit: 分页的页大小
+        # @type Limit: Integer
+
+        attr_accessor :ProductId, :Offset, :Limit
+
+        def initialize(productid=nil, offset=nil, limit=nil)
+          @ProductId = productid
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeUnbindedDevices返回参数结构体
+      class DescribeUnbindedDevicesResponse < TencentCloud::Common::AbstractModel
+        # @param UnbindedDevices: 未绑定的设备列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UnbindedDevices: Array
+        # @param Total: 设备的总数量
+        # @type Total: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :UnbindedDevices, :Total, :RequestId
+
+        def initialize(unbindeddevices=nil, total=nil, requestid=nil)
+          @UnbindedDevices = unbindeddevices
+          @Total = total
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['UnbindedDevices'].nil?
+            @UnbindedDevices = []
+            params['UnbindedDevices'].each do |i|
+              binddeviceinfo_tmp = BindDeviceInfo.new
+              binddeviceinfo_tmp.deserialize(i)
+              @UnbindedDevices << binddeviceinfo_tmp
+            end
+          end
+          @Total = params['Total']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeVideoLicense请求参数结构体
       class DescribeVideoLicenseRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID

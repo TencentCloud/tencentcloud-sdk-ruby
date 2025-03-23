@@ -2157,10 +2157,8 @@ module TencentCloud
       # DescribeDeviceList返回参数结构体
       class DescribeDeviceListResponse < TencentCloud::Common::AbstractModel
         # @param TotalCount: 设备总数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
         # @param Devices: 设备详细信息列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Devices: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2675,10 +2673,8 @@ module TencentCloud
       # DescribeLiveChannelList返回参数结构体
       class DescribeLiveChannelListResponse < TencentCloud::Common::AbstractModel
         # @param Total: 频道总数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Total: Integer
         # @param LiveChannels: 频道信息数组
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LiveChannels: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3098,10 +3094,8 @@ module TencentCloud
       # DescribeMessageForwards返回参数结构体
       class DescribeMessageForwardsResponse < TencentCloud::Common::AbstractModel
         # @param Total: 配置总数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Total: Integer
         # @param List: 配置列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type List: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4255,10 +4249,8 @@ module TencentCloud
       # 查询设备统计返回值
       class DeviceMonitorValue < TencentCloud::Common::AbstractModel
         # @param Value: 统计值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: Float
         # @param Time: 统计时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Time: Integer
 
         attr_accessor :Value, :Time
@@ -4822,25 +4814,18 @@ module TencentCloud
       # 频道信息
       class LiveChannelInfo < TencentCloud::Common::AbstractModel
         # @param LiveChannelId: 频道ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LiveChannelId: String
         # @param LiveChannelName: 频道名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LiveChannelName: String
         # @param LiveChannelType: 频道类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LiveChannelType: Integer
         # @param LiveStatus: 通道直播状态：1: 未推流，2: 推流中
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LiveStatus: Integer
         # @param PushStreamAddress: 推流地址
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PushStreamAddress: String
         # @param CreateTime: 创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
         # @param UpdateTime: 修改时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: String
 
         attr_accessor :LiveChannelId, :LiveChannelName, :LiveChannelType, :LiveStatus, :PushStreamAddress, :CreateTime, :UpdateTime
@@ -4959,37 +4944,26 @@ module TencentCloud
       # 消息转发配置信息
       class MessageForward < TencentCloud::Common::AbstractModel
         # @param IntId: 配置ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IntId: Integer
         # @param Uin: 用户Uin
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Uin: String
         # @param MessageType: json数组， 转发类型 1: 告警 2:GPS
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MessageType: String
         # @param RegionId: 区域ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RegionId: String
         # @param RegionName: 区域名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RegionName: String
         # @param Instance: 实例ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Instance: String
         # @param InstanceName: 实例名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceName: String
         # @param TopicId: kafka topic id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TopicId: String
         # @param CreateTime: 创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
         # @param UpdateTime: 更新时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: String
         # @param TopicName: topic 名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TopicName: String
 
         attr_accessor :IntId, :Uin, :MessageType, :RegionId, :RegionName, :Instance, :InstanceName, :TopicId, :CreateTime, :UpdateTime, :TopicName
