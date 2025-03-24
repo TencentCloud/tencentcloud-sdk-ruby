@@ -182,7 +182,6 @@ module TencentCloud
         # @param NotifyCount: 通知状态的数目
         # @type NotifyCount: Integer
         # @param AbnormalCount: 异常状态的数目
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AbnormalCount: Integer
 
         attr_accessor :NormalCount, :NotifyCount, :AbnormalCount

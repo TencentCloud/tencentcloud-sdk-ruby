@@ -1738,14 +1738,14 @@ module TencentCloud
 
       # DescribeInstanceList请求参数结构体
       class DescribeInstanceListRequest < TencentCloud::Common::AbstractModel
-        # @param Filters: 查询条件列表,支持以下子弹
+        # @param Filters: 查询条件列表,支持以下字段
         # InstanceName：集群名模糊搜索
         # InstanceId：集群id精确搜索
-        # InstanceStatus：集群状态搜索
+        # InstanceStatus：集群状态搜索（RUNNING-运行中，CREATING-创建中，MODIFYING-变配中，DELETING-删除中）
         # @type Filters: Array
-        # @param Offset: 查询起始位置
+        # @param Offset: 查询起始位置，默认0
         # @type Offset: Integer
-        # @param Limit: 查询结果限制数量
+        # @param Limit: 查询结果限制数量，默认20，最大100
         # @type Limit: Integer
         # @param TagFilters: 标签过滤器
         # @type TagFilters: Array
@@ -2099,7 +2099,7 @@ module TencentCloud
 
       # DescribeTopicList请求参数结构体
       class DescribeTopicListRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
+        # @param InstanceId: 实例ID，从 [DescribeInstanceList](https://cloud.tencent.com/document/api/1778/111029)接口或控制台获得。
         # @type InstanceId: String
         # @param Filters: 查询条件列表:
         # 支持TopicName模糊查询
@@ -2588,8 +2588,7 @@ module TencentCloud
         # @type InstanceName: String
         # @param Version: 实例版本
         # @type Version: String
-        # @param InstanceType: 实例类型，
-        # EXPERIMENT，体验版
+        # @param InstanceType: 实例类型
         # BASIC，基础版
         # PRO，专业版
         # PLATINUM，铂金版
@@ -2616,19 +2615,21 @@ module TencentCloud
         # @type SkuCode: String
         # @param TpsLimit: 弹性TPS限流值
         # @type TpsLimit: Integer
-        # @param CreateTime: 创建时间
+        # @param CreateTime: 创建时间，毫秒级时间戳
         # @type CreateTime: Integer
         # @param MaxSubscriptionPerClient: 单客户端最大订阅数量
         # @type MaxSubscriptionPerClient: Integer
         # @param ClientNumLimit: 客户端连接数上线
         # @type ClientNumLimit: Integer
-        # @param RenewFlag: 是否自动续费
+        # @param RenewFlag: 是否自动续费。仅包年包月就去那生效。
+        # 1:自动续费
+        # 0:非自动续费
         # @type RenewFlag: Integer
         # @param PayMode: 计费模式， POSTPAID，按量计费 PREPAID，包年包月
         # @type PayMode: String
-        # @param ExpiryTime: 到期时间，秒为单位
+        # @param ExpiryTime: 到期时间，毫秒级时间戳
         # @type ExpiryTime: Integer
-        # @param DestroyTime: 预销毁时间
+        # @param DestroyTime: 预销毁时间，毫秒级时间戳
         # @type DestroyTime: Integer
         # @param AuthorizationPolicyLimit: 授权规则条数限制
         # @type AuthorizationPolicyLimit: Integer

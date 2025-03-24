@@ -6473,6 +6473,11 @@ module TencentCloud
         # **true**：允许
         # **false**：（默认）不允许
         # @type CanSkipAddApprover: Boolean
+        # @param ForbidEditApprover: 是否可以编辑签署人包括新增，修改，删除
+        # <ul><li>（默认） false -可以编辑签署人</li> <li> true - 可以编辑签署人</li></ul>
+
+        # 注意：如果设置参数为 false， 则 参数签署人 [FlowApproverList](https://qian.tencent.com/developers/partnerApis/embedPages/ChannelCreatePrepareFlow) 不能为空
+        # @type ForbidEditApprover: Boolean
         # @param CustomCreateFlowDescription: 定制化发起合同弹窗的描述信息，长度不能超过500，只能由中文、字母、数字和标点组成。
         # @type CustomCreateFlowDescription: String
         # @param ForbidEditFillComponent: 禁止编辑填写控件
@@ -6489,14 +6494,15 @@ module TencentCloud
         #  - 签署控件 是否默认展示日期.
         # @type SignComponentConfig: :class:`Tencentcloud::Essbasic.v20210526.models.SignComponentConfig`
 
-        attr_accessor :CanEditFlow, :HideShowFlowName, :HideShowFlowType, :HideShowDeadline, :CanSkipAddApprover, :CustomCreateFlowDescription, :ForbidEditFillComponent, :SkipUploadFile, :SignComponentConfig
+        attr_accessor :CanEditFlow, :HideShowFlowName, :HideShowFlowType, :HideShowDeadline, :CanSkipAddApprover, :ForbidEditApprover, :CustomCreateFlowDescription, :ForbidEditFillComponent, :SkipUploadFile, :SignComponentConfig
 
-        def initialize(caneditflow=nil, hideshowflowname=nil, hideshowflowtype=nil, hideshowdeadline=nil, canskipaddapprover=nil, customcreateflowdescription=nil, forbideditfillcomponent=nil, skipuploadfile=nil, signcomponentconfig=nil)
+        def initialize(caneditflow=nil, hideshowflowname=nil, hideshowflowtype=nil, hideshowdeadline=nil, canskipaddapprover=nil, forbideditapprover=nil, customcreateflowdescription=nil, forbideditfillcomponent=nil, skipuploadfile=nil, signcomponentconfig=nil)
           @CanEditFlow = caneditflow
           @HideShowFlowName = hideshowflowname
           @HideShowFlowType = hideshowflowtype
           @HideShowDeadline = hideshowdeadline
           @CanSkipAddApprover = canskipaddapprover
+          @ForbidEditApprover = forbideditapprover
           @CustomCreateFlowDescription = customcreateflowdescription
           @ForbidEditFillComponent = forbideditfillcomponent
           @SkipUploadFile = skipuploadfile
@@ -6509,6 +6515,7 @@ module TencentCloud
           @HideShowFlowType = params['HideShowFlowType']
           @HideShowDeadline = params['HideShowDeadline']
           @CanSkipAddApprover = params['CanSkipAddApprover']
+          @ForbidEditApprover = params['ForbidEditApprover']
           @CustomCreateFlowDescription = params['CustomCreateFlowDescription']
           @ForbidEditFillComponent = params['ForbidEditFillComponent']
           @SkipUploadFile = params['SkipUploadFile']

@@ -1606,10 +1606,8 @@ module TencentCloud
         # @param Name: 工作负载的名称
         # @type Name: String
         # @param Container: 容器名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Container: String
         # @param Namespace: 命名空间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Namespace: String
 
         attr_accessor :Kind, :Name, :Container, :Namespace
@@ -1672,56 +1670,39 @@ module TencentCloud
       # cos导入配置信息
       class CosRechargeInfo < TencentCloud::Common::AbstractModel
         # @param Id: COS导入配置ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Id: String
         # @param TopicId: 日志主题ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TopicId: String
         # @param LogsetId: 日志集ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LogsetId: String
         # @param Name: COS导入任务名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Bucket: COS存储桶
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Bucket: String
         # @param BucketRegion: COS存储桶所在地域
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BucketRegion: String
         # @param Prefix: COS文件所在文件夹的前缀
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Prefix: String
         # @param LogType: 采集的日志类型，json_log代表json格式日志，delimiter_log代表分隔符格式日志，minimalist_log代表单行全文；
         # 默认为minimalist_log
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LogType: String
         # @param Status: 状态   status 0: 已创建, 1: 运行中, 2: 已停止, 3: 已完成, 4: 运行失败。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
         # @param Enable: 是否启用:   0： 未启用  ， 1：启用
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Enable: Integer
         # @param CreateTime: 创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
         # @param UpdateTime: 更新时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: String
         # @param Progress: 进度条百分值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Progress: Integer
         # @param Compress: supported: "", "gzip", "lzop", "snappy”; 默认空
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Compress: String
         # @param ExtractRuleInfo: 见： ExtractRuleInfo 结构描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExtractRuleInfo: :class:`Tencentcloud::Cls.v20201016.models.ExtractRuleInfo`
         # @param TaskType: COS导入任务类型。1：一次性导入任务；2：持续性导入任务。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskType: Integer
         # @param Metadata: 元数据。支持 bucket，object。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Metadata: Array
 
         attr_accessor :Id, :TopicId, :LogsetId, :Name, :Bucket, :BucketRegion, :Prefix, :LogType, :Status, :Enable, :CreateTime, :UpdateTime, :Progress, :Compress, :ExtractRuleInfo, :TaskType, :Metadata
@@ -3511,30 +3492,22 @@ module TencentCloud
         # @param DashboardName: 仪表盘名字
         # @type DashboardName: String
         # @param Data: 仪表盘数据
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: String
         # @param CreateTime: 创建仪表盘的时间
         # @type CreateTime: String
         # @param AssumerUin: AssumerUin非空则表示创建该日志主题的服务方Uin
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AssumerUin: Integer
         # @param RoleName: RoleName非空则表示创建该日志主题的服务方使用的角色
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RoleName: String
         # @param AssumerName: AssumerName非空则表示创建该日志主题的服务方名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AssumerName: String
         # @param Tags: 日志主题绑定的标签信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
         # @param DashboardRegion: 仪表盘所在地域： 为了兼容老的地域。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DashboardRegion: String
         # @param UpdateTime: 修改仪表盘的时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: String
         # @param DashboardTopicInfos: 仪表盘对应的topic相关信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DashboardTopicInfos: Array
 
         attr_accessor :DashboardId, :DashboardName, :Data, :CreateTime, :AssumerUin, :RoleName, :AssumerName, :Tags, :DashboardRegion, :UpdateTime, :DashboardTopicInfos
@@ -3601,7 +3574,6 @@ module TencentCloud
         # @param Url: 回调Url。
         # <br><li/> 当ReceiverType是 Wecom 时，Url必填。
         # <br><li/> 当ReceiverType不是 Wecom 时，Url不能填写。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Url: String
 
         attr_accessor :ReceiverType, :Values, :ReceiverChannels, :Url
@@ -3632,16 +3604,12 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TemplateVariables: Array
         # @param Timezone: 时区。参考：https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#SHANGHAI
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Timezone: String
         # @param SubscribeLanguage: 语言。 zh 中文、en`英文。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubscribeLanguage: String
         # @param JumpDomain: 调用链接域名。http:// 或者 https:// 开头，不能/结尾
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type JumpDomain: String
         # @param JumpUrl: 自定义跳转链接。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type JumpUrl: String
 
         attr_accessor :NoticeModes, :DashboardTime, :TemplateVariables, :Timezone, :SubscribeLanguage, :JumpDomain, :JumpUrl
@@ -3770,13 +3738,10 @@ module TencentCloud
         # @param EtlContent: 加工逻辑函数。
         # @type EtlContent: String
         # @param DataTransformType: 数据加工类型。0：标准加工任务；1：前置加工任务。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DataTransformType: Integer
         # @param KeepFailureLog: 保留失败日志状态。 1:不保留，2:保留
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type KeepFailureLog: Integer
         # @param FailureLogKey: 失败日志的字段名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FailureLogKey: String
 
         attr_accessor :Name, :TaskId, :EnableFlag, :Type, :SrcTopicId, :Status, :CreateTime, :UpdateTime, :LastEnableTime, :SrcTopicName, :LogsetId, :DstResources, :EtlContent, :DataTransformType, :KeepFailureLog, :FailureLogKey
@@ -6642,7 +6607,6 @@ module TencentCloud
       # 键值索引自动配置，启用后自动将日志内的字段添加到键值索引中，包括日志中后续新增的字段。
       class DynamicIndex < TencentCloud::Common::AbstractModel
         # @param Status: 键值索引自动配置开关
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Boolean
 
         attr_accessor :Status
@@ -6663,19 +6627,14 @@ module TencentCloud
         # @param WebCallbacks: 告警通知模板回调信息。
         # @type WebCallbacks: Array
         # @param Escalate: 告警升级开关。`true`：开启告警升级、`false`：关闭告警升级，默认：false
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Escalate: Boolean
         # @param Interval: 告警升级间隔。单位：分钟，范围`[1，14400]`
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Interval: Integer
         # @param Type: 升级条件。`1`：无人认领且未恢复、`2`：未恢复，默认为1
         # - 无人认领且未恢复：告警没有恢复并且没有人认领则升级
         # - 未恢复：当前告警持续未恢复则升级
-
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: Integer
         # @param EscalateNotice: 告警升级后下一个环节的通知渠道配置，最多可配置5个环节。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EscalateNotice: :class:`Tencentcloud::Cls.v20201016.models.EscalateNoticeInfo`
 
         attr_accessor :NoticeReceivers, :WebCallbacks, :Escalate, :Interval, :Type, :EscalateNotice
@@ -6800,7 +6759,6 @@ module TencentCloud
         # 0：Lucene语法，1：CQL语法。
         # @type SyntaxRule: Integer
         # @param DerivedFields: 导出字段
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DerivedFields: Array
 
         attr_accessor :TopicId, :ExportId, :Query, :FileName, :FileSize, :Order, :Format, :Count, :Status, :From, :To, :CosPath, :CreateTime, :SyntaxRule, :DerivedFields
@@ -6845,27 +6803,20 @@ module TencentCloud
       # 日志提取规则
       class ExtractRuleInfo < TencentCloud::Common::AbstractModel
         # @param TimeKey: 时间字段的key名字，TikeKey和TimeFormat必须成对出现
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TimeKey: String
         # @param TimeFormat: 时间字段的格式，参考c语言的strftime函数对于时间的格式说明输出参数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TimeFormat: String
         # @param Delimiter: 分隔符类型日志的分隔符，只有LogType为delimiter_log时有效
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Delimiter: String
         # @param LogRegex: 整条日志匹配规则，只有LogType为fullregex_log时有效
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LogRegex: String
         # @param BeginRegex: 行首匹配规则，只有LogType为multiline_log或fullregex_log时有效
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BeginRegex: String
         # @param Keys: 取的每个字段的key名字，为空的key代表丢弃这个字段，只有LogType为delimiter_log时有效，json_log的日志使用json本身的key。限制100个。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Keys: Array
         # @param FilterKeyRegex: 日志过滤规则列表（旧版），需要过滤日志的key，及其对应的regex。
         #  注意：2.9.3及以上版本LogListener ，建议使用AdvanceFilterRules配置日志过滤规则。
-
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FilterKeyRegex: Array
         # @param UnMatchUpLoadSwitch: 解析失败日志是否上传，true表示上传，false表示不上传
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -6882,7 +6833,6 @@ module TencentCloud
         # 注意
         # - 目前取0值时，表示UTF-8编码
         # - COS导入不支持此字段。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsGBK: Integer
         # @param JsonStandard: 是否为标准json。  0：否； 1：是。
         # - 标准json指采集器使用业界标准开源解析器进行json解析，非标json指采集器使用CLS自研json解析器进行解析，两种解析器没有本质区别，建议客户使用标准json进行解析。
@@ -6892,13 +6842,11 @@ module TencentCloud
         # 注意：
         # - 该字段适用于：创建采集规则配置、修改采集规则配置。
         # - COS导入不支持此字段。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Protocol: String
         # @param Address: syslog系统日志采集指定采集器监听的地址和端口 ，形式：[ip]:[port]，只有在LogType为service_syslog时生效，其余类型无需填写。
         # 注意：
         # - 该字段适用于：创建采集规则配置、修改采集规则配置。
         # - COS导入不支持此字段。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Address: String
         # @param ParseProtocol: rfc3164：指定系统日志采集使用RFC3164协议解析日志。
         # rfc5424：指定系统日志采集使用RFC5424协议解析日志。
@@ -6907,7 +6855,6 @@ module TencentCloud
         # 注意：
         # - 该字段适用于：创建采集规则配置、修改采集规则配置
         # - COS导入不支持此字段。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ParseProtocol: String
         # @param MetadataType: 元数据类型。0: 不使用元数据信息；1:使用机器组元数据；2:使用用户自定义元数据；3:使用采集配置路径。
         # 注意：
@@ -6923,7 +6870,6 @@ module TencentCloud
         # 注意：
         # - MetadataType为3时必填。
         # - COS导入不支持此字段。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PathRegex: String
         # @param MetaTags: 用户自定义元数据信息。
         # 注意：
@@ -7089,7 +7035,6 @@ module TencentCloud
         # 注意：\n\t\r本身已被转义，直接使用双引号包裹即可作为入参，无需再次转义。使用API Explorer进行调试时请使用JSON参数输入方式，以避免\n\t\r被重复转义
         # @type Tokenizer: String
         # @param ContainZH: 是否包含中文
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ContainZH: Boolean
 
         attr_accessor :CaseSensitive, :Tokenizer, :ContainZH
@@ -7330,7 +7275,6 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MetaFields: Array
         # @param JsonType: 投递Json格式，0：字符串方式投递；1:以结构化方式投递
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type JsonType: Integer
 
         attr_accessor :EnableTag, :MetaFields, :JsonType
@@ -7368,7 +7312,6 @@ module TencentCloud
         # 平铺示例：
         # TAG信息：`{"__TAG__":{"fieldA":200,"fieldB":"text"}}`
         # 平铺：`{"__TAG__.fieldA":200,"__TAG__.fieldB":"text"}`
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TagTransaction: Integer
         # @param JsonType: 消费数据Json格式：
         # 1：不转义（默认格式）
@@ -7407,19 +7350,15 @@ module TencentCloud
       class KafkaProtocolInfo < TencentCloud::Common::AbstractModel
         # @param Protocol: 协议类型，支持的协议类型包括 plaintext、sasl_plaintext 或 sasl_ssl。建议使用 sasl_ssl，此协议会进行连接加密同时需要用户认证。
         # 入参必填
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Protocol: String
         # @param Mechanism: 加密类型，支持 PLAIN、SCRAM-SHA-256 或 SCRAM-SHA-512。
         # 当Protocol为sasl_plaintext或sasl_ssl时必填
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Mechanism: String
         # @param UserName: 用户名。
         # 当Protocol为sasl_plaintext或sasl_ssl时必填
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UserName: String
         # @param Password: 用户密码。
         # 当Protocol为sasl_plaintext或sasl_ssl时必填
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Password: String
 
         attr_accessor :Protocol, :Mechanism, :UserName, :Password
@@ -7442,48 +7381,34 @@ module TencentCloud
       # Kafka导入配置信息
       class KafkaRechargeInfo < TencentCloud::Common::AbstractModel
         # @param Id: Kafka数据订阅配置的ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Id: String
         # @param TopicId: 日志主题ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TopicId: String
         # @param Name: Kafka导入任务名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param KafkaType: 导入Kafka类型，0: 腾讯云CKafka，1: 用户自建Kafka
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type KafkaType: Integer
         # @param KafkaInstance: 腾讯云CKafka实例ID，KafkaType为0时必填
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type KafkaInstance: String
         # @param ServerAddr: 服务地址
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ServerAddr: String
         # @param IsEncryptionAddr: ServerAddr是否为加密连接
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsEncryptionAddr: Boolean
         # @param Protocol: 加密访问协议，IsEncryptionAddr参数为true时必填
         # @type Protocol: :class:`Tencentcloud::Cls.v20201016.models.KafkaProtocolInfo`
         # @param UserKafkaTopics: 用户需要导入的Kafka相关topic列表，多个topic之间使用半角逗号隔开
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UserKafkaTopics: String
         # @param ConsumerGroupName: 用户Kafka消费组名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ConsumerGroupName: String
         # @param Status: 状态 ，1：运行中；2：暂停。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
         # @param Offset: 导入数据位置，-2:最早（默认），-1：最晚
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Offset: Integer
         # @param CreateTime: 创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
         # @param UpdateTime: 更新时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: String
         # @param LogRechargeRule: 日志导入规则
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LogRechargeRule: :class:`Tencentcloud::Cls.v20201016.models.LogRechargeRuleInfo`
 
         attr_accessor :Id, :TopicId, :Name, :KafkaType, :KafkaInstance, :ServerAddr, :IsEncryptionAddr, :Protocol, :UserKafkaTopics, :ConsumerGroupName, :Status, :Offset, :CreateTime, :UpdateTime, :LogRechargeRule
@@ -7595,16 +7520,12 @@ module TencentCloud
         # @param BTime: 日志时间戳
         # @type BTime: Integer
         # @param HostName: 日志来源主机名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HostName: String
         # @param RawLog: 原始日志(仅在日志创建索引异常时有值)
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RawLog: String
         # @param IndexStatus: 日志创建索引异常原因(仅在日志创建索引异常时有值)
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IndexStatus: String
         # @param HighLights: 日志内容的高亮描述信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HighLights: Array
 
         attr_accessor :Source, :Filename, :Content, :PkgId, :PkgLogId, :BTime, :HostName, :RawLog, :IndexStatus, :HighLights
@@ -7660,16 +7581,12 @@ module TencentCloud
         # @param PkgLogId: 请求包内日志的ID
         # @type PkgLogId: String
         # @param LogJson: 日志内容的Json序列化字符串
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LogJson: String
         # @param HostName: 日志来源主机名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HostName: String
         # @param RawLog: 原始日志(仅在日志创建索引异常时有值)
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RawLog: String
         # @param IndexStatus: 日志创建索引异常原因(仅在日志创建索引异常时有值)
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IndexStatus: String
 
         attr_accessor :Time, :TopicId, :TopicName, :Source, :FileName, :PkgId, :PkgLogId, :LogJson, :HostName, :RawLog, :IndexStatus
@@ -7755,36 +7672,26 @@ module TencentCloud
         # @param DefaultTimeSwitch: 使用默认时间，true：开启（默认值）， flase：关闭
         # @type DefaultTimeSwitch: Boolean
         # @param LogRegex: 整条日志匹配规则，只有RechargeType为fullregex_log时有效
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LogRegex: String
         # @param UnMatchLogSwitch: 解析失败日志是否上传，true表示上传，false表示不上传
         # @type UnMatchLogSwitch: Boolean
         # @param UnMatchLogKey: 解析失败日志的键名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UnMatchLogKey: String
         # @param UnMatchLogTimeSrc: 解析失败日志时间来源，0: 系统当前时间，1: Kafka消息时间戳
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UnMatchLogTimeSrc: Integer
         # @param DefaultTimeSrc: 默认时间来源，0: 系统当前时间，1: Kafka消息时间戳
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DefaultTimeSrc: Integer
         # @param TimeKey: 时间字段
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TimeKey: String
         # @param TimeRegex: 时间提取正则表达式
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TimeRegex: String
         # @param TimeFormat: 时间字段格式
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TimeFormat: String
         # @param TimeZone: 时间字段时区
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TimeZone: String
         # @param Metadata: 元数据信息，Kafka导入支持kafka_topic,kafka_partition,kafka_offset,kafka_timestamp
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Metadata: Array
         # @param Keys: 日志Key列表，RechargeType为full_regex_log时必填
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Keys: Array
         # @param ParseArray: json解析模式，开启首层数据解析
         # @type ParseArray: Boolean
@@ -7837,10 +7744,8 @@ module TencentCloud
         # @param CreateTime: 创建时间
         # @type CreateTime: String
         # @param AssumerName: 云产品标识，日志集由其它云产品创建时，该字段会显示云产品名称，例如CDN、TKE
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AssumerName: String
         # @param Tags: 日志集绑定的标签
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
         # @param TopicCount: 日志集下日志主题的数目
         # @type TopicCount: Integer
@@ -10800,13 +10705,10 @@ module TencentCloud
       # 多日志主题检索错误信息
       class SearchLogErrors < TencentCloud::Common::AbstractModel
         # @param TopicId: 日志主题ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TopicId: String
         # @param ErrorMsg: 错误信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrorMsg: String
         # @param ErrorCodeStr: 错误码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrorCodeStr: String
 
         attr_accessor :TopicId, :ErrorMsg, :ErrorCodeStr
@@ -10831,7 +10733,6 @@ module TencentCloud
         # @param Period: 日志存储生命周期
         # @type Period: Integer
         # @param Context: 透传本次接口返回的Context值，可获取后续更多日志，过期时间1小时
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Context: String
 
         attr_accessor :TopicId, :Period, :Context
@@ -11047,10 +10948,8 @@ module TencentCloud
       # 多主题检索返回信息
       class SearchLogTopics < TencentCloud::Common::AbstractModel
         # @param Errors: 多日志主题检索对应的错误信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Errors: Array
         # @param Infos: 多日志主题检索各日志主题信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Infos: Array
 
         attr_accessor :Errors, :Infos

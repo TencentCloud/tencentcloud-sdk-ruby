@@ -29,90 +29,6 @@ module TencentCloud
         end
 
 
-        # ECDN融合CDN后，接口都用CDN的，此接口已经废弃
-
-        # 本接口（AddEcdnDomain）用于创建加速域名。
-
-        # >?  若您的业务已迁移至 CDN 控制台，请参考<a href="https://cloud.tencent.com/document/api/228/41123"> CDN 接口文档</a>，使用  CDN 相关API 进行操作。
-
-        # @param request: Request instance for AddEcdnDomain.
-        # @type request: :class:`Tencentcloud::ecdn::V20191012::AddEcdnDomainRequest`
-        # @rtype: :class:`Tencentcloud::ecdn::V20191012::AddEcdnDomainResponse`
-        def AddEcdnDomain(request)
-          body = send_request('AddEcdnDomain', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = AddEcdnDomainResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # ECDN融合CDN后，接口都用CDN的，此接口已经废弃
-
-        # 生成一条子域名解析，提示客户添加到域名解析上，用于泛域名及域名取回校验归属权。
-
-        # >?  若您的业务已迁移至 CDN 控制台，请参考<a href="	https://cloud.tencent.com/document/api/228/48118"> CDN 接口文档</a>，使用  CDN 相关API 进行操作。
-
-        # @param request: Request instance for CreateVerifyRecord.
-        # @type request: :class:`Tencentcloud::ecdn::V20191012::CreateVerifyRecordRequest`
-        # @rtype: :class:`Tencentcloud::ecdn::V20191012::CreateVerifyRecordResponse`
-        def CreateVerifyRecord(request)
-          body = send_request('CreateVerifyRecord', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = CreateVerifyRecordResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # ECDN融合CDN后，接口都用CDN的，此接口已经废弃
-
-        # 本接口（DeleteEcdnDomain）用于删除指定加速域名。待删除域名必须处于已停用状态。
-
-        # >?  若您的业务已迁移至 CDN 控制台，请参考<a href="https://cloud.tencent.com/document/api/228/41122"> CDN 接口文档</a>，使用  CDN 相关API 进行操作。
-
-        # @param request: Request instance for DeleteEcdnDomain.
-        # @type request: :class:`Tencentcloud::ecdn::V20191012::DeleteEcdnDomainRequest`
-        # @rtype: :class:`Tencentcloud::ecdn::V20191012::DeleteEcdnDomainResponse`
-        def DeleteEcdnDomain(request)
-          body = send_request('DeleteEcdnDomain', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DeleteEcdnDomainResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 本接口（DescribeDomains）用于查询CDN域名基本信息，包括项目id，状态，业务类型，创建时间，更新时间等。
 
         # >?  若您的业务已迁移至 CDN 控制台，请参考<a href="https://cloud.tencent.com/document/api/228/41118"> CDN 接口文档</a>，使用  CDN 相关API 进行操作。
@@ -273,34 +189,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # ECDN融合CDN后，接口都用CDN的，此接口已经废弃
-
-        # 查询刷新接口的用量配额。
-
-        # >?  若您的业务已迁移至 CDN 控制台，请参考<a href="https://cloud.tencent.com/document/api/228/41956"> CDN 接口文档</a>，使用  CDN 相关API 进行操作。
-
-        # @param request: Request instance for DescribePurgeQuota.
-        # @type request: :class:`Tencentcloud::ecdn::V20191012::DescribePurgeQuotaRequest`
-        # @rtype: :class:`Tencentcloud::ecdn::V20191012::DescribePurgeQuotaResponse`
-        def DescribePurgeQuota(request)
-          body = send_request('DescribePurgeQuota', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribePurgeQuotaResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # DescribePurgeTasks 用于查询刷新任务提交历史记录及执行进度。
 
         # >?  若您的业务已迁移至 CDN 控制台，请参考<a href="https://cloud.tencent.com/document/api/228/37873"> CDN 接口文档</a>，使用  CDN 相关API 进行操作。
@@ -327,34 +215,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # ECDN融合CDN后，接口都用CDN的，此接口已经废弃
-
-        # PurgePathCache 用于批量刷新目录缓存，一次提交将返回一个刷新任务id。
-
-        # >?  若您的业务已迁移至 CDN 控制台，请参考<a href="	https://cloud.tencent.com/document/api/570/42475"> CDN 接口文档</a>，使用  CDN 相关API 进行操作。
-
-        # @param request: Request instance for PurgePathCache.
-        # @type request: :class:`Tencentcloud::ecdn::V20191012::PurgePathCacheRequest`
-        # @rtype: :class:`Tencentcloud::ecdn::V20191012::PurgePathCacheResponse`
-        def PurgePathCache(request)
-          body = send_request('PurgePathCache', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = PurgePathCacheResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # PurgeUrlsCache 用于批量刷新Url，一次提交将返回一个刷新任务id。
 
         # >?  若您的业务已迁移至 CDN 控制台，请参考<a href="https://cloud.tencent.com/document/api/228/37870"> CDN 接口文档</a>，使用  CDN 相关API 进行操作。
@@ -367,91 +227,6 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = PurgeUrlsCacheResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # ECDN融合CDN后，接口都用CDN的，此接口已经废弃
-
-        # 本接口（StartEcdnDomain）用于启用加速域名，待启用域名必须处于已下线状态。
-
-        # >?  若您的业务已迁移至 CDN 控制台，请参考<a href="https://cloud.tencent.com/document/product/228/41121"> CDN 接口文档</a>，使用  CDN 相关API 进行操作。
-
-        # @param request: Request instance for StartEcdnDomain.
-        # @type request: :class:`Tencentcloud::ecdn::V20191012::StartEcdnDomainRequest`
-        # @rtype: :class:`Tencentcloud::ecdn::V20191012::StartEcdnDomainResponse`
-        def StartEcdnDomain(request)
-          body = send_request('StartEcdnDomain', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = StartEcdnDomainResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # ECDN融合CDN后，接口都用CDN的，此接口已经废弃
-
-        # 本接口（StopCdnDomain）用于停止加速域名，待停用加速域名必须处于已上线或部署中状态。
-
-        # >?  若您的业务已迁移至 CDN 控制台，请参考<a href="https://cloud.tencent.com/document/product/228/41120"> CDN 接口文档</a>，使用  CDN 相关API 进行操作。
-
-        # @param request: Request instance for StopEcdnDomain.
-        # @type request: :class:`Tencentcloud::ecdn::V20191012::StopEcdnDomainRequest`
-        # @rtype: :class:`Tencentcloud::ecdn::V20191012::StopEcdnDomainResponse`
-        def StopEcdnDomain(request)
-          body = send_request('StopEcdnDomain', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = StopEcdnDomainResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # ECDN融合CDN后，接口都用CDN的，此接口已经废弃
-
-        # 本接口（UpdateDomainConfig）用于更新ECDN加速域名配置信息。
-        # 注意：如果需要更新复杂类型的配置项，必须传递整个对象的所有属性，未传递的属性将使用默认值。建议通过查询接口获取配置属性后，直接修改后传递给本接口。Https配置由于证书的特殊性，更新时不用传递证书和密钥字段。
-
-        # >?  若您的业务已迁移至 CDN 控制台，请参考<a href="https://cloud.tencent.com/document/product/228/41116"> CDN 接口文档</a>，使用  CDN 相关API 进行操作。
-
-        # @param request: Request instance for UpdateDomainConfig.
-        # @type request: :class:`Tencentcloud::ecdn::V20191012::UpdateDomainConfigRequest`
-        # @rtype: :class:`Tencentcloud::ecdn::V20191012::UpdateDomainConfigResponse`
-        def UpdateDomainConfig(request)
-          body = send_request('UpdateDomainConfig', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = UpdateDomainConfigResponse.new
             model.deserialize(response['Response'])
             model
           else

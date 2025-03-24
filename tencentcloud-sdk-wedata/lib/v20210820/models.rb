@@ -19,27 +19,44 @@ module TencentCloud
     module V20210820
       # AddProjectUserRole请求参数结构体
       class AddProjectUserRoleRequest < TencentCloud::Common::AbstractModel
+        # @param ProjectId: 项目id
+        # @type ProjectId: String
+        # @param UserIds: 用户uin
+        # @type UserIds: Array
+        # @param RoleIds: 角色id
+        # @type RoleIds: Array
 
+        attr_accessor :ProjectId, :UserIds, :RoleIds
 
-        def initialize()
+        def initialize(projectid=nil, userids=nil, roleids=nil)
+          @ProjectId = projectid
+          @UserIds = userids
+          @RoleIds = roleids
         end
 
         def deserialize(params)
+          @ProjectId = params['ProjectId']
+          @UserIds = params['UserIds']
+          @RoleIds = params['RoleIds']
         end
       end
 
       # AddProjectUserRole返回参数结构体
       class AddProjectUserRoleResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 返回数据
+        # @type Data: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :Data, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(data=nil, requestid=nil)
+          @Data = data
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @Data = params['Data']
           @RequestId = params['RequestId']
         end
       end
@@ -649,10 +666,13 @@ module TencentCloud
         # @param LarkGroup: 飞书群，0：未设置，1：成功，2：失败
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LarkGroup: Integer
+        # @param AlarmMessageSendResult: 发送结果 大json格式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AlarmMessageSendResult: String
 
-        attr_accessor :AlarmId, :AlarmReceiver, :Email, :Sms, :Wechat, :Voice, :Wecom, :Http, :WecomGroup, :LarkGroup
+        attr_accessor :AlarmId, :AlarmReceiver, :Email, :Sms, :Wechat, :Voice, :Wecom, :Http, :WecomGroup, :LarkGroup, :AlarmMessageSendResult
 
-        def initialize(alarmid=nil, alarmreceiver=nil, email=nil, sms=nil, wechat=nil, voice=nil, wecom=nil, http=nil, wecomgroup=nil, larkgroup=nil)
+        def initialize(alarmid=nil, alarmreceiver=nil, email=nil, sms=nil, wechat=nil, voice=nil, wecom=nil, http=nil, wecomgroup=nil, larkgroup=nil, alarmmessagesendresult=nil)
           @AlarmId = alarmid
           @AlarmReceiver = alarmreceiver
           @Email = email
@@ -663,6 +683,7 @@ module TencentCloud
           @Http = http
           @WecomGroup = wecomgroup
           @LarkGroup = larkgroup
+          @AlarmMessageSendResult = alarmmessagesendresult
         end
 
         def deserialize(params)
@@ -676,6 +697,7 @@ module TencentCloud
           @Http = params['Http']
           @WecomGroup = params['WecomGroup']
           @LarkGroup = params['LarkGroup']
+          @AlarmMessageSendResult = params['AlarmMessageSendResult']
         end
       end
 
@@ -29135,10 +29157,13 @@ module TencentCloud
         # @param BusinessType: 业务类型, 0-非默认, 1-默认
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BusinessType: Integer
+        # @param AlarmMessageRule: alarm message rule
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AlarmMessageRule: String
 
-        attr_accessor :TaskId, :RegularName, :RegularStatus, :AlarmLevel, :AlarmWay, :TaskType, :Id, :RegularId, :AlarmIndicator, :TriggerType, :EstimatedTime, :AlarmRecipientId, :ProjectId, :Creater, :AlarmRecipientName, :AlarmIndicatorDesc, :Operator, :NodeId, :NodeName, :AlarmIndicatorInfos, :AlarmRecipientType, :QuietPeriods, :WeComHook, :UpdateTime, :OperatorUin, :TaskCount, :MonitorType, :MonitorObjectIds, :LatestAlarmInstanceId, :LatestAlarmTime, :Description, :LarkWebHooks, :DingDingWebHooks, :BusinessType
+        attr_accessor :TaskId, :RegularName, :RegularStatus, :AlarmLevel, :AlarmWay, :TaskType, :Id, :RegularId, :AlarmIndicator, :TriggerType, :EstimatedTime, :AlarmRecipientId, :ProjectId, :Creater, :AlarmRecipientName, :AlarmIndicatorDesc, :Operator, :NodeId, :NodeName, :AlarmIndicatorInfos, :AlarmRecipientType, :QuietPeriods, :WeComHook, :UpdateTime, :OperatorUin, :TaskCount, :MonitorType, :MonitorObjectIds, :LatestAlarmInstanceId, :LatestAlarmTime, :Description, :LarkWebHooks, :DingDingWebHooks, :BusinessType, :AlarmMessageRule
 
-        def initialize(taskid=nil, regularname=nil, regularstatus=nil, alarmlevel=nil, alarmway=nil, tasktype=nil, id=nil, regularid=nil, alarmindicator=nil, triggertype=nil, estimatedtime=nil, alarmrecipientid=nil, projectid=nil, creater=nil, alarmrecipientname=nil, alarmindicatordesc=nil, operator=nil, nodeid=nil, nodename=nil, alarmindicatorinfos=nil, alarmrecipienttype=nil, quietperiods=nil, wecomhook=nil, updatetime=nil, operatoruin=nil, taskcount=nil, monitortype=nil, monitorobjectids=nil, latestalarminstanceid=nil, latestalarmtime=nil, description=nil, larkwebhooks=nil, dingdingwebhooks=nil, businesstype=nil)
+        def initialize(taskid=nil, regularname=nil, regularstatus=nil, alarmlevel=nil, alarmway=nil, tasktype=nil, id=nil, regularid=nil, alarmindicator=nil, triggertype=nil, estimatedtime=nil, alarmrecipientid=nil, projectid=nil, creater=nil, alarmrecipientname=nil, alarmindicatordesc=nil, operator=nil, nodeid=nil, nodename=nil, alarmindicatorinfos=nil, alarmrecipienttype=nil, quietperiods=nil, wecomhook=nil, updatetime=nil, operatoruin=nil, taskcount=nil, monitortype=nil, monitorobjectids=nil, latestalarminstanceid=nil, latestalarmtime=nil, description=nil, larkwebhooks=nil, dingdingwebhooks=nil, businesstype=nil, alarmmessagerule=nil)
           @TaskId = taskid
           @RegularName = regularname
           @RegularStatus = regularstatus
@@ -29173,6 +29198,7 @@ module TencentCloud
           @LarkWebHooks = larkwebhooks
           @DingDingWebHooks = dingdingwebhooks
           @BusinessType = businesstype
+          @AlarmMessageRule = alarmmessagerule
         end
 
         def deserialize(params)
@@ -29224,6 +29250,7 @@ module TencentCloud
           @LarkWebHooks = params['LarkWebHooks']
           @DingDingWebHooks = params['DingDingWebHooks']
           @BusinessType = params['BusinessType']
+          @AlarmMessageRule = params['AlarmMessageRule']
         end
       end
 

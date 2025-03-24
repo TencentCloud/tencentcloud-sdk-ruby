@@ -20,13 +20,10 @@ module TencentCloud
       # 评估项警告条件
       class Conditions < TencentCloud::Common::AbstractModel
         # @param ConditionId: 警告条件ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ConditionId: Integer
         # @param Level: 警告级别，2:中风险，3:高风险
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Level: Integer
         # @param LevelDesc: 警告级别描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LevelDesc: String
         # @param Desc: 警告条件描述
         # @type Desc: String
@@ -62,7 +59,6 @@ module TencentCloud
       # DescribeStrategies返回参数结构体
       class DescribeStrategiesResponse < TencentCloud::Common::AbstractModel
         # @param Strategies: 评估项列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Strategies: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -231,31 +227,22 @@ module TencentCloud
       # 评估项信息
       class Strategies < TencentCloud::Common::AbstractModel
         # @param StrategyId: 评估项ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StrategyId: Integer
         # @param Name: 评估项名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Desc: 评估项描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Desc: String
         # @param Product: 评估项对应产品ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Product: String
         # @param ProductDesc: 评估项对应产品名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProductDesc: String
         # @param Repair: 评估项优化建议
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Repair: String
         # @param GroupId: 评估项类别ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GroupId: Integer
         # @param GroupName: 评估项类别名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GroupName: String
         # @param Conditions: 评估项风险列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Conditions: Array
 
         attr_accessor :StrategyId, :Name, :Desc, :Product, :ProductDesc, :Repair, :GroupId, :GroupName, :Conditions

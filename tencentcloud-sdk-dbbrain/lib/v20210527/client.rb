@@ -797,6 +797,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 根据实例ID获取指定时间段的性能趋势。
+
+        # @param request: Request instance for DescribeDBPerfTimeSeries.
+        # @type request: :class:`Tencentcloud::dbbrain::V20210527::DescribeDBPerfTimeSeriesRequest`
+        # @rtype: :class:`Tencentcloud::dbbrain::V20210527::DescribeDBPerfTimeSeriesResponse`
+        def DescribeDBPerfTimeSeries(request)
+          body = send_request('DescribeDBPerfTimeSeries', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDBPerfTimeSeriesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取指定时间段内的实例空间使用概览，包括磁盘增长量(MB)、磁盘剩余(MB)、磁盘总量(MB)及预计可用天数。
 
         # @param request: Request instance for DescribeDBSpaceStatus.
@@ -1047,6 +1071,78 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeRedisBigKeyAnalysisTasksResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 延迟分析-命令字分析-查询命令延迟趋势
+
+        # @param request: Request instance for DescribeRedisCmdPerfTimeSeries.
+        # @type request: :class:`Tencentcloud::dbbrain::V20210527::DescribeRedisCmdPerfTimeSeriesRequest`
+        # @rtype: :class:`Tencentcloud::dbbrain::V20210527::DescribeRedisCmdPerfTimeSeriesResponse`
+        def DescribeRedisCmdPerfTimeSeries(request)
+          body = send_request('DescribeRedisCmdPerfTimeSeries', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeRedisCmdPerfTimeSeriesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 延迟分析-查询命令延迟分布
+
+        # @param request: Request instance for DescribeRedisCommandCostStatistics.
+        # @type request: :class:`Tencentcloud::dbbrain::V20210527::DescribeRedisCommandCostStatisticsRequest`
+        # @rtype: :class:`Tencentcloud::dbbrain::V20210527::DescribeRedisCommandCostStatisticsResponse`
+        def DescribeRedisCommandCostStatistics(request)
+          body = send_request('DescribeRedisCommandCostStatistics', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeRedisCommandCostStatisticsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 延迟分析-查询实例访问命令统计
+
+        # @param request: Request instance for DescribeRedisCommandOverview.
+        # @type request: :class:`Tencentcloud::dbbrain::V20210527::DescribeRedisCommandOverviewRequest`
+        # @rtype: :class:`Tencentcloud::dbbrain::V20210527::DescribeRedisCommandOverviewResponse`
+        def DescribeRedisCommandOverview(request)
+          body = send_request('DescribeRedisCommandOverview', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeRedisCommandOverviewResponse.new
             model.deserialize(response['Response'])
             model
           else

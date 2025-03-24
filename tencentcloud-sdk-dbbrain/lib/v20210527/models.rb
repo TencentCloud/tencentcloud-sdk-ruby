@@ -717,6 +717,57 @@ module TencentCloud
         end
       end
 
+      # redis延迟分布区间详情
+      class CmdCostGroup < TencentCloud::Common::AbstractModel
+        # @param Percent: 该延迟区间内命令数占总命令数百分比
+        # @type Percent: Float
+        # @param CostUpperLimit: 延迟区间上界，单位ms
+        # @type CostUpperLimit: String
+        # @param CostLowerLimit: 延迟区间下界，单位ms
+        # @type CostLowerLimit: String
+        # @param Count: 该延迟区间内命令次数
+        # @type Count: Integer
+
+        attr_accessor :Percent, :CostUpperLimit, :CostLowerLimit, :Count
+
+        def initialize(percent=nil, costupperlimit=nil, costlowerlimit=nil, count=nil)
+          @Percent = percent
+          @CostUpperLimit = costupperlimit
+          @CostLowerLimit = costlowerlimit
+          @Count = count
+        end
+
+        def deserialize(params)
+          @Percent = params['Percent']
+          @CostUpperLimit = params['CostUpperLimit']
+          @CostLowerLimit = params['CostLowerLimit']
+          @Count = params['Count']
+        end
+      end
+
+      # redis命令延迟趋势
+      class CmdPerfInfo < TencentCloud::Common::AbstractModel
+        # @param Command: redis命令
+        # @type Command: String
+        # @param SeriesData: 监控数据
+        # @type SeriesData: :class:`Tencentcloud::Dbbrain.v20210527.models.MonitorMetricSeriesData`
+
+        attr_accessor :Command, :SeriesData
+
+        def initialize(command=nil, seriesdata=nil)
+          @Command = command
+          @SeriesData = seriesdata
+        end
+
+        def deserialize(params)
+          @Command = params['Command']
+          unless params['SeriesData'].nil?
+            @SeriesData = MonitorMetricSeriesData.new
+            @SeriesData.deserialize(params['SeriesData'])
+          end
+        end
+      end
+
       # 联系人contact描述。
       class ContactItem < TencentCloud::Common::AbstractModel
         # @param Id: 联系人id。
@@ -1822,10 +1873,8 @@ module TencentCloud
       # DescribeAuditLogFiles返回参数结构体
       class DescribeAuditLogFilesResponse < TencentCloud::Common::AbstractModel
         # @param TotalCount: 符合条件的审计日志文件个数。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
         # @param Items: 审计日志文件详情。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Items: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2263,6 +2312,81 @@ module TencentCloud
         end
       end
 
+      # DescribeDBPerfTimeSeries请求参数结构体
+      class DescribeDBPerfTimeSeriesRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 需要获取性能趋势的实例ID。
+        # @type InstanceId: String
+        # @param StartTime: 开始时间。
+        # @type StartTime: String
+        # @param EndTime: 结束时间。
+        # @type EndTime: String
+        # @param Metric: 指标名称，多个指标之间用逗号分隔。
+        # @type Metric: String
+        # @param Product: 服务产品类型，支持值包括： "mysql" - 云数据库 MySQL， "cynosdb" - 云数据库 TDSQL-C for MySQL，"redis" - 云数据库 Redis，"mongodb" - 云数据库 MongoDB
+        # @type Product: String
+        # @param ClusterId: 需要获取性能趋势的集群ID。
+        # @type ClusterId: String
+        # @param Period: 性能数据统计粒度。
+        # @type Period: Integer
+        # @param InstanceNodeId: 实列节点ID。
+        # @type InstanceNodeId: String
+        # @param InstanceProxyId: 实列代理ID。
+        # @type InstanceProxyId: String
+        # @param ProxyId: 代理节点ID。
+        # @type ProxyId: String
+
+        attr_accessor :InstanceId, :StartTime, :EndTime, :Metric, :Product, :ClusterId, :Period, :InstanceNodeId, :InstanceProxyId, :ProxyId
+
+        def initialize(instanceid=nil, starttime=nil, endtime=nil, metric=nil, product=nil, clusterid=nil, period=nil, instancenodeid=nil, instanceproxyid=nil, proxyid=nil)
+          @InstanceId = instanceid
+          @StartTime = starttime
+          @EndTime = endtime
+          @Metric = metric
+          @Product = product
+          @ClusterId = clusterid
+          @Period = period
+          @InstanceNodeId = instancenodeid
+          @InstanceProxyId = instanceproxyid
+          @ProxyId = proxyid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Metric = params['Metric']
+          @Product = params['Product']
+          @ClusterId = params['ClusterId']
+          @Period = params['Period']
+          @InstanceNodeId = params['InstanceNodeId']
+          @InstanceProxyId = params['InstanceProxyId']
+          @ProxyId = params['ProxyId']
+        end
+      end
+
+      # DescribeDBPerfTimeSeries返回参数结构体
+      class DescribeDBPerfTimeSeriesResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 实列性能数据。
+        # @type Data: :class:`Tencentcloud::Dbbrain.v20210527.models.MonitorMetricSeriesData`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = MonitorMetricSeriesData.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeDBSpaceStatus请求参数结构体
       class DescribeDBSpaceStatusRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例 ID 。
@@ -2598,10 +2722,8 @@ module TencentCloud
       # DescribeMailProfile返回参数结构体
       class DescribeMailProfileResponse < TencentCloud::Common::AbstractModel
         # @param ProfileList: 邮件配置详情。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProfileList: Array
         # @param TotalCount: 邮件配置总数。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2979,6 +3101,183 @@ module TencentCloud
               redisbigkeytask_tmp = RedisBigKeyTask.new
               redisbigkeytask_tmp.deserialize(i)
               @Tasks << redisbigkeytask_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeRedisCmdPerfTimeSeries请求参数结构体
+      class DescribeRedisCmdPerfTimeSeriesRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例 ID
+        # @type InstanceId: String
+        # @param Product: 服务产品类型，仅仅支持值 "redis" - 云数据库 Redis。
+        # @type Product: String
+        # @param StartTime: 开始时间，如“2025-03-17T00:00:00+00:00”。0天 < 当前服务器时间 - 开始时间 <= 10天。
+        # @type StartTime: String
+        # @param EndTime: 结束时间，如“2025-03-17T01:00:00+00:00”，0天 < 结束时间 - 开始时间 <= 10天。
+        # @type EndTime: String
+        # @param CommandList: 需要分析的redis命令
+        # @type CommandList: Array
+        # @param Metric: 监控指标，以逗号分隔
+        # @type Metric: String
+        # @param Period: 监控指标时间粒度，单位秒，若不提供则根据开始时间和结束时间取默认值
+        # @type Period: Integer
+
+        attr_accessor :InstanceId, :Product, :StartTime, :EndTime, :CommandList, :Metric, :Period
+
+        def initialize(instanceid=nil, product=nil, starttime=nil, endtime=nil, commandlist=nil, metric=nil, period=nil)
+          @InstanceId = instanceid
+          @Product = product
+          @StartTime = starttime
+          @EndTime = endtime
+          @CommandList = commandlist
+          @Metric = metric
+          @Period = period
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Product = params['Product']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @CommandList = params['CommandList']
+          @Metric = params['Metric']
+          @Period = params['Period']
+        end
+      end
+
+      # DescribeRedisCmdPerfTimeSeries返回参数结构体
+      class DescribeRedisCmdPerfTimeSeriesResponse < TencentCloud::Common::AbstractModel
+        # @param CmdPerfList: redis命令延迟趋势
+        # @type CmdPerfList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :CmdPerfList, :RequestId
+
+        def initialize(cmdperflist=nil, requestid=nil)
+          @CmdPerfList = cmdperflist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['CmdPerfList'].nil?
+            @CmdPerfList = []
+            params['CmdPerfList'].each do |i|
+              cmdperfinfo_tmp = CmdPerfInfo.new
+              cmdperfinfo_tmp.deserialize(i)
+              @CmdPerfList << cmdperfinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeRedisCommandCostStatistics请求参数结构体
+      class DescribeRedisCommandCostStatisticsRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例 ID
+        # @type InstanceId: String
+        # @param StartTime: 开始时间，如“2025-03-17T00:00:00+00:00”。0天 < 当前服务器时间 - 开始时间 <= 10天。
+        # @type StartTime: String
+        # @param EndTime: 结束时间，如“2025-03-17T01:00:00+00:00”，0天 < 结束时间 - 开始时间 <= 10天。
+        # @type EndTime: String
+        # @param Product: 服务产品类型，仅仅支持值 "redis" - 云数据库 Redis。
+        # @type Product: String
+
+        attr_accessor :InstanceId, :StartTime, :EndTime, :Product
+
+        def initialize(instanceid=nil, starttime=nil, endtime=nil, product=nil)
+          @InstanceId = instanceid
+          @StartTime = starttime
+          @EndTime = endtime
+          @Product = product
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Product = params['Product']
+        end
+      end
+
+      # DescribeRedisCommandCostStatistics返回参数结构体
+      class DescribeRedisCommandCostStatisticsResponse < TencentCloud::Common::AbstractModel
+        # @param CmdCostGroups: redis延迟分布区间
+        # @type CmdCostGroups: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :CmdCostGroups, :RequestId
+
+        def initialize(cmdcostgroups=nil, requestid=nil)
+          @CmdCostGroups = cmdcostgroups
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['CmdCostGroups'].nil?
+            @CmdCostGroups = []
+            params['CmdCostGroups'].each do |i|
+              cmdcostgroup_tmp = CmdCostGroup.new
+              cmdcostgroup_tmp.deserialize(i)
+              @CmdCostGroups << cmdcostgroup_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeRedisCommandOverview请求参数结构体
+      class DescribeRedisCommandOverviewRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例 ID
+        # @type InstanceId: String
+        # @param StartTime: 开始时间，如“2025-03-17T00:00:00+00:00”。0天 < 当前服务器时间 - 开始时间 <= 10天。
+        # @type StartTime: String
+        # @param EndTime: 结束时间，如“2025-03-17T01:00:00+00:00”，0天 < 结束时间 - 开始时间 <= 10天。
+        # @type EndTime: String
+        # @param Product: 服务产品类型，仅仅支持值 "redis" - 云数据库 Redis。
+        # @type Product: String
+
+        attr_accessor :InstanceId, :StartTime, :EndTime, :Product
+
+        def initialize(instanceid=nil, starttime=nil, endtime=nil, product=nil)
+          @InstanceId = instanceid
+          @StartTime = starttime
+          @EndTime = endtime
+          @Product = product
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Product = params['Product']
+        end
+      end
+
+      # DescribeRedisCommandOverview返回参数结构体
+      class DescribeRedisCommandOverviewResponse < TencentCloud::Common::AbstractModel
+        # @param CmdList: redis访问命令统计
+        # @type CmdList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :CmdList, :RequestId
+
+        def initialize(cmdlist=nil, requestid=nil)
+          @CmdList = cmdlist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['CmdList'].nil?
+            @CmdList = []
+            params['CmdList'].each do |i|
+              rediscmdinfo_tmp = RedisCmdInfo.new
+              rediscmdinfo_tmp.deserialize(i)
+              @CmdList << rediscmdinfo_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -5626,6 +5925,26 @@ module TencentCloud
           @TaskStatus = params['TaskStatus']
           @Progress = params['Progress']
           @ShardIds = params['ShardIds']
+        end
+      end
+
+      # redis访问命令详情
+      class RedisCmdInfo < TencentCloud::Common::AbstractModel
+        # @param Cmd: redis命令
+        # @type Cmd: String
+        # @param Count: 命令次数
+        # @type Count: Integer
+
+        attr_accessor :Cmd, :Count
+
+        def initialize(cmd=nil, count=nil)
+          @Cmd = cmd
+          @Count = count
+        end
+
+        def deserialize(params)
+          @Cmd = params['Cmd']
+          @Count = params['Count']
         end
       end
 

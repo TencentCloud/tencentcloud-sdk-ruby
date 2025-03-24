@@ -301,7 +301,6 @@ module TencentCloud
       # AuthorizeToken返回参数结构体
       class AuthorizeTokenResponse < TencentCloud::Common::AbstractModel
         # @param Result: 0 成功
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -685,7 +684,6 @@ module TencentCloud
       # CancelAuthorizationToken返回参数结构体
       class CancelAuthorizationTokenResponse < TencentCloud::Common::AbstractModel
         # @param Result: 0 成功 非0 失败
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -738,7 +736,6 @@ module TencentCloud
       # CheckCdcCluster返回参数结构体
       class CheckCdcClusterResponse < TencentCloud::Common::AbstractModel
         # @param Result: 返回结果状态Success
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -773,6 +770,7 @@ module TencentCloud
         # @param UniqVpcId: ClickHouse连接源的vpcId，当为腾讯云实例时，必填
         # @type UniqVpcId: String
         # @param IsUpdate: 是否更新到关联的Datahub任务
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsUpdate: Boolean
 
         attr_accessor :Port, :UserName, :Password, :Resource, :SelfBuilt, :ServiceVip, :UniqVpcId, :IsUpdate
@@ -1298,12 +1296,15 @@ module TencentCloud
         # @param Offset: 位点
         # @type Offset: Integer
         # @param Key: 消息key
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Key: String
         # @param Value: 消息value
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: String
         # @param Timestamp: 消息时间戳
         # @type Timestamp: Integer
         # @param Headers: 消息headers
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Headers: String
 
         attr_accessor :Topic, :Partition, :Offset, :Key, :Value, :Timestamp, :Headers
@@ -2626,7 +2627,6 @@ module TencentCloud
       # CreateToken返回参数结构体
       class CreateTokenResponse < TencentCloud::Common::AbstractModel
         # @param Result: token串
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3455,7 +3455,6 @@ module TencentCloud
       # DeleteDatahubTask返回参数结构体
       class DeleteDatahubTaskResponse < TencentCloud::Common::AbstractModel
         # @param Result: 操作结果
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.DatahubTaskIdRes`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4390,7 +4389,6 @@ module TencentCloud
       # DescribeConnectResource返回参数结构体
       class DescribeConnectResourceResponse < TencentCloud::Common::AbstractModel
         # @param Result: 连接源的Id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.DescribeConnectResourceResp`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4989,7 +4987,6 @@ module TencentCloud
       # DescribeDatahubTopics返回参数结构体
       class DescribeDatahubTopicsResponse < TencentCloud::Common::AbstractModel
         # @param Result: 主题列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.DescribeDatahubTopicsResp`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5053,7 +5050,6 @@ module TencentCloud
       # DescribeGroupInfo返回参数结构体
       class DescribeGroupInfoResponse < TencentCloud::Common::AbstractModel
         # @param Result: 返回的结果
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5464,7 +5460,6 @@ module TencentCloud
       # DescribeRegion返回参数结构体
       class DescribeRegionResponse < TencentCloud::Common::AbstractModel
         # @param Result: 返回地域枚举结果列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5825,7 +5820,6 @@ module TencentCloud
       # DescribeTopic返回参数结构体
       class DescribeTopicResponse < TencentCloud::Common::AbstractModel
         # @param Result: 返回的结果
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.TopicResult`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -8135,7 +8129,6 @@ module TencentCloud
       # InstanceScalingDown返回参数结构体
       class InstanceScalingDownResponse < TencentCloud::Common::AbstractModel
         # @param Result: 返回结果
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.ScalingDownResp`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -8733,7 +8726,6 @@ module TencentCloud
       # ModifyDatahubTask返回参数结构体
       class ModifyDatahubTaskResponse < TencentCloud::Common::AbstractModel
         # @param Result: 任务id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.DatahubTaskIdRes`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

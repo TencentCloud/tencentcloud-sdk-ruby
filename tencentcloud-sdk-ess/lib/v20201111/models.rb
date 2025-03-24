@@ -3041,7 +3041,7 @@ module TencentCloud
         # <li> 如果企业通知腾讯电子签平台审核未通过，平台将继续阻塞签署方的签署动作，直到企业通知平台审核通过。</li></ul>
         # 注：`此功能可用于与企业内部的审批流程进行关联，支持手动、静默签署合同`
         # @type NeedSignReview: Boolean
-        # @param FlowDisplayType: 在短信通知、填写、签署流程中，若标题、按钮、合同详情等地方存在“合同”字样时，可根据此配置指定文案，可选文案如下：  <ul><li> <b>0</b> :合同（默认值）</li> <li> <b>1</b> :文件</li> <li> <b>2</b> :协议</li></ul>效果如下:![FlowDisplayType](https://qcloudimg.tencent-cloud.cn/raw/e4a2c4d638717cc901d3dbd5137c9bbc.png)
+        # @param FlowDisplayType: 在短信通知、填写、签署流程中，若标题、按钮、合同详情等地方存在“合同”字样时，可根据此配置指定文案，可选文案如下：  <ul><li> <b>0</b> :合同（默认值）</li> <li> <b>1</b> :文件</li> <li> <b>2</b> :协议</li><li> <b>3</b> :文书</li></ul>效果如下:![FlowDisplayType](https://qcloudimg.tencent-cloud.cn/raw/e4a2c4d638717cc901d3dbd5137c9bbc.png)
         # @type FlowDisplayType: Integer
         # @param OpenDynamicSignFlow: 是否开启动态签署合同：
         # <ul><li> **true**：开启动态签署合同，可在签署过程中追加签署人（必须满足：1，发起方企业开启了模块化计费能力；2，发起方企业在企业应用管理中开启了动态签署人2.0能力）    。</li>
@@ -3618,8 +3618,13 @@ module TencentCloud
         # @type ForbidEditFillComponent: Boolean
         # @param CustomCreateFlowDescription: 定制化发起合同弹窗的描述信息，描述信息最长500字符
         # @type CustomCreateFlowDescription: String
-        # @param ForbidAddApprover:   禁止添加签署方，若为true则在发起流程的可嵌入页面隐藏“添加签署人按钮”
+        # @param ForbidAddApprover:  禁止添加签署方，若为true则在发起流程的可嵌入页面隐藏“添加签署人按钮”
         # @type ForbidAddApprover: Boolean
+        # @param ForbidEditApprover: 是否可以编辑签署人包括新增，修改，删除
+        # <ul><li>（默认） false -可以编辑签署人</li> <li> true - 可以编辑签署人</li></ul>
+
+        # 注意：如果设置参数为 false， 则 参数签署人 [FlowApproverList](https://qian.tencent.com/developers/partnerApis/embedPages/ChannelCreatePrepareFlow) 不能为空
+        # @type ForbidEditApprover: Boolean
         # @param ForbidEditFlowProperties:   禁止设置设置签署流程属性 (顺序、合同签署认证方式等)，若为true则在发起流程的可嵌入页面隐藏签署流程设置面板
         # @type ForbidEditFlowProperties: Boolean
         # @param HideComponentTypes: 在发起流程的可嵌入页面要隐藏的控件列表，和 ShowComponentTypes 参数 只能二选一使用，具体的控件类型如下
@@ -3684,9 +3689,9 @@ module TencentCloud
         #  - 签署控件 是否默认展示日期.
         # @type SignComponentConfig: :class:`Tencentcloud::Ess.v20201111.models.SignComponentConfig`
 
-        attr_accessor :CanEditFlow, :CanEditFormField, :HideShowFlowName, :HideShowFlowType, :HideShowDeadline, :CanSkipAddApprover, :SkipUploadFile, :ForbidEditFillComponent, :CustomCreateFlowDescription, :ForbidAddApprover, :ForbidEditFlowProperties, :HideComponentTypes, :ShowComponentTypes, :ResultPageConfig, :SignComponentConfig
+        attr_accessor :CanEditFlow, :CanEditFormField, :HideShowFlowName, :HideShowFlowType, :HideShowDeadline, :CanSkipAddApprover, :SkipUploadFile, :ForbidEditFillComponent, :CustomCreateFlowDescription, :ForbidAddApprover, :ForbidEditApprover, :ForbidEditFlowProperties, :HideComponentTypes, :ShowComponentTypes, :ResultPageConfig, :SignComponentConfig
 
-        def initialize(caneditflow=nil, caneditformfield=nil, hideshowflowname=nil, hideshowflowtype=nil, hideshowdeadline=nil, canskipaddapprover=nil, skipuploadfile=nil, forbideditfillcomponent=nil, customcreateflowdescription=nil, forbidaddapprover=nil, forbideditflowproperties=nil, hidecomponenttypes=nil, showcomponenttypes=nil, resultpageconfig=nil, signcomponentconfig=nil)
+        def initialize(caneditflow=nil, caneditformfield=nil, hideshowflowname=nil, hideshowflowtype=nil, hideshowdeadline=nil, canskipaddapprover=nil, skipuploadfile=nil, forbideditfillcomponent=nil, customcreateflowdescription=nil, forbidaddapprover=nil, forbideditapprover=nil, forbideditflowproperties=nil, hidecomponenttypes=nil, showcomponenttypes=nil, resultpageconfig=nil, signcomponentconfig=nil)
           @CanEditFlow = caneditflow
           @CanEditFormField = caneditformfield
           @HideShowFlowName = hideshowflowname
@@ -3697,6 +3702,7 @@ module TencentCloud
           @ForbidEditFillComponent = forbideditfillcomponent
           @CustomCreateFlowDescription = customcreateflowdescription
           @ForbidAddApprover = forbidaddapprover
+          @ForbidEditApprover = forbideditapprover
           @ForbidEditFlowProperties = forbideditflowproperties
           @HideComponentTypes = hidecomponenttypes
           @ShowComponentTypes = showcomponenttypes
@@ -3715,6 +3721,7 @@ module TencentCloud
           @ForbidEditFillComponent = params['ForbidEditFillComponent']
           @CustomCreateFlowDescription = params['CustomCreateFlowDescription']
           @ForbidAddApprover = params['ForbidAddApprover']
+          @ForbidEditApprover = params['ForbidEditApprover']
           @ForbidEditFlowProperties = params['ForbidEditFlowProperties']
           @HideComponentTypes = params['HideComponentTypes']
           @ShowComponentTypes = params['ShowComponentTypes']
@@ -3876,7 +3883,7 @@ module TencentCloud
         # @param CallbackUrl: 暂未开放
         # @type CallbackUrl: String
         # @param FlowDisplayType: 在短信通知、填写、签署流程中，若标题、按钮、合同详情等地方存在“合同”字样时，可根据此配置指定文案，可选文案如下：
-        #  <ul><li> <b>0</b> :合同（默认值）</li> <li> <b>1</b> :文件</li> <li> <b>2</b> :协议</li></ul>
+        #  <ul><li> <b>0</b> :合同（默认值）</li> <li> <b>1</b> :文件</li> <li> <b>2</b> :协议</li><li> <b>3</b> :文书</li></ul>
 
         # 效果如下:
         # ![FlowDisplayType](https://qcloudimg.tencent-cloud.cn/raw/e4a2c4d638717cc901d3dbd5137c9bbc.png)

@@ -405,7 +405,6 @@ module TencentCloud
       # DescribeRegions返回参数结构体
       class DescribeRegionsResponse < TencentCloud::Common::AbstractModel
         # @param RegionSet: 地域列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RegionSet: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -449,7 +448,6 @@ module TencentCloud
       # DescribeScenes返回参数结构体
       class DescribeScenesResponse < TencentCloud::Common::AbstractModel
         # @param SceneSet: 场景详情
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SceneSet: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -971,7 +969,6 @@ module TencentCloud
       # HAI 实例的网络配置和消耗情况
       class NetworkStatus < TencentCloud::Common::AbstractModel
         # @param InstanceId: HAI 的实例 ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceId: String
         # @param AddressIp: 公网 IP 地址
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -980,10 +977,8 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Bandwidth: Integer
         # @param TotalTrafficAmount: 流量包总量，单位GB
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalTrafficAmount: Float
         # @param RemainingTrafficAmount: 流量包剩余量，单位GB
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RemainingTrafficAmount: Float
 
         attr_accessor :InstanceId, :AddressIp, :Bandwidth, :TotalTrafficAmount, :RemainingTrafficAmount
@@ -1048,20 +1043,14 @@ module TencentCloud
       # 地域列表
       class RegionInfo < TencentCloud::Common::AbstractModel
         # @param Region: ap-guangzhou
-
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Region: String
         # @param RegionName: 华南地区(广州)
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RegionName: String
         # @param RegionState: 地域是否可用状态
         # AVAILABLE：可用
-
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RegionState: String
         # @param ScholarRocketSupportState: 学术加速是否支持：
         # NO_NEED_SUPPORT表示不需支持；NOT_SUPPORT_YET表示暂未支持；ALREADY_SUPPORT表示已经支持。对于ALREADY_SUPPORT的地域才需进一步调用DescribeScholarRocketStatus查看学术加速是开启还是关闭
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScholarRocketSupportState: String
 
         attr_accessor :Region, :RegionName, :RegionState, :ScholarRocketSupportState
@@ -1147,12 +1136,8 @@ module TencentCloud
       # 场景详情
       class SceneInfo < TencentCloud::Common::AbstractModel
         # @param SceneId: 场景id
-
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SceneId: String
         # @param SceneName: 场景名
-
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SceneName: String
 
         attr_accessor :SceneId, :SceneName

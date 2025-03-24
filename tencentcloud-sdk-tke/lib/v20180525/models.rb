@@ -1219,16 +1219,12 @@ module TencentCloud
         # @param Status: 集群创建过程状态
         # @type Status: String
         # @param LastProbeTime: 最后一次探测到该状态的时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LastProbeTime: String
         # @param LastTransitionTime: 最后一次转换到该过程的时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LastTransitionTime: String
         # @param Reason: 转换到该过程的简明原因
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Reason: String
         # @param Message: 转换到该过程的更多信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Message: String
 
         attr_accessor :Type, :Status, :LastProbeTime, :LastTransitionTime, :Reason, :Message
@@ -1307,7 +1303,6 @@ module TencentCloud
       # 弹性容器集群内网访问LB信息
       class ClusterInternalLB < TencentCloud::Common::AbstractModel
         # @param Enabled: 是否开启内网访问LB
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Enabled: Boolean
         # @param SubnetId: 内网访问LB关联的子网Id
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -1515,19 +1510,14 @@ module TencentCloud
       # 弹性容器集群公网访问负载均衡信息
       class ClusterPublicLB < TencentCloud::Common::AbstractModel
         # @param Enabled: 是否开启公网访问LB
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Enabled: Boolean
         # @param AllowFromCidrs: 允许访问的来源CIDR列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AllowFromCidrs: Array
         # @param SecurityPolicies: 安全策略放通单个IP或CIDR(例如: "192.168.1.0/24",默认为拒绝所有)
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SecurityPolicies: Array
         # @param ExtraParam: 外网访问相关的扩展参数，格式为json
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExtraParam: String
         # @param SecurityGroup: 新内外网功能，需要传递安全组
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SecurityGroup: String
 
         attr_accessor :Enabled, :AllowFromCidrs, :SecurityPolicies, :ExtraParam, :SecurityGroup
@@ -3079,7 +3069,6 @@ module TencentCloud
       # CreateEksLogConfig返回参数结构体
       class CreateEksLogConfigResponse < TencentCloud::Common::AbstractModel
         # @param TopicId: 日志采集topicid
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TopicId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -14998,13 +14987,10 @@ module TencentCloud
       # 策略实例信息
       class OpenConstraintInfo < TencentCloud::Common::AbstractModel
         # @param Name: 策略实例名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param EventNums: 策略实例关联事件数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EventNums: Integer
         # @param YamlDetail: 实例yaml详情base64编码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type YamlDetail: String
 
         attr_accessor :Name, :EventNums, :YamlDetail

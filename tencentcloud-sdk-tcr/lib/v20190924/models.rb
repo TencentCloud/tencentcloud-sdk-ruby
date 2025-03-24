@@ -3688,9 +3688,9 @@ module TencentCloud
         # @type NamespaceName: String
         # @param RepositoryName: 指定镜像仓库，不填写默认查询指定命名空间下所有镜像仓库
         # @type RepositoryName: String
-        # @param Offset: 页数，用于分页
+        # @param Offset: 页数，第几页，用于分页
         # @type Offset: Integer
-        # @param Limit: 每页个数，用于分页
+        # @param Limit: 每页个数，用于分页，最大值为100
         # @type Limit: Integer
         # @param SortBy: 基于字段排序，支持的值有-creation_time,-name, -update_time
         # @type SortBy: String
@@ -6422,10 +6422,8 @@ module TencentCloud
       # 版本保留规则
       class RetentionRule < TencentCloud::Common::AbstractModel
         # @param Key: 支持的策略，可选值为latestPushedK（保留最新推送多少个版本）nDaysSinceLastPush（保留近天内推送）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Key: String
         # @param Value: 规则设置下的对应值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: Integer
 
         attr_accessor :Key, :Value
@@ -6988,10 +6986,8 @@ module TencentCloud
         # @param Public: 是否公开
         # @type Public: Boolean
         # @param Description: 仓库详细描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
         # @param BriefDescription: 简单描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BriefDescription: String
         # @param UpdateTime: 更新时间，格式"2006-01-02 15:04:05.999999999 -0700 MST"
         # @type UpdateTime: String
@@ -7407,7 +7403,6 @@ module TencentCloud
         # @param NamespaceId: 触发器所属命名空间 Id
         # @type NamespaceId: Integer
         # @param NamespaceName: 触发器所属命名空间名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NamespaceName: String
 
         attr_accessor :Name, :Targets, :EventTypes, :Condition, :Enabled, :Id, :Description, :NamespaceId, :NamespaceName

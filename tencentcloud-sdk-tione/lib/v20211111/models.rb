@@ -3351,6 +3351,26 @@ module TencentCloud
         end
       end
 
+      # GosseFSx的配置
+      class GooseFSx < TencentCloud::Common::AbstractModel
+        # @param Id: goosefsx实例id
+        # @type Id: String
+        # @param Path: GooseFSx实例需要挂载的路径
+        # @type Path: String
+
+        attr_accessor :Id, :Path
+
+        def initialize(id=nil, path=nil)
+          @Id = id
+          @Path = path
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Path = params['Path']
+        end
+      end
+
       # gpu 详情
       class GpuDetail < TencentCloud::Common::AbstractModel
         # @param Name: GPU 显卡类型；枚举值: V100 A100 T4
@@ -4361,6 +4381,8 @@ module TencentCloud
         # @type ModelSource: String
         # @param CosPathInfo: cos路径信息
         # @type CosPathInfo: :class:`Tencentcloud::Tione.v20211111.models.CosPathInfo`
+        # @param GooseFSx: GooseFSx的配置，ModelSource为GooseFSx时有效
+        # @type GooseFSx: :class:`Tencentcloud::Tione.v20211111.models.GooseFSx`
         # @param AlgorithmFramework: 模型对应的算法框架，预留
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AlgorithmFramework: String
@@ -4376,15 +4398,16 @@ module TencentCloud
         # @param ModelCategory: 模型的类别 多模态MultiModal, 文本大模型 LLM
         # @type ModelCategory: String
 
-        attr_accessor :ModelVersionId, :ModelId, :ModelName, :ModelVersion, :ModelSource, :CosPathInfo, :AlgorithmFramework, :ModelType, :ModelFormat, :IsPrivateModel, :ModelCategory
+        attr_accessor :ModelVersionId, :ModelId, :ModelName, :ModelVersion, :ModelSource, :CosPathInfo, :GooseFSx, :AlgorithmFramework, :ModelType, :ModelFormat, :IsPrivateModel, :ModelCategory
 
-        def initialize(modelversionid=nil, modelid=nil, modelname=nil, modelversion=nil, modelsource=nil, cospathinfo=nil, algorithmframework=nil, modeltype=nil, modelformat=nil, isprivatemodel=nil, modelcategory=nil)
+        def initialize(modelversionid=nil, modelid=nil, modelname=nil, modelversion=nil, modelsource=nil, cospathinfo=nil, goosefsx=nil, algorithmframework=nil, modeltype=nil, modelformat=nil, isprivatemodel=nil, modelcategory=nil)
           @ModelVersionId = modelversionid
           @ModelId = modelid
           @ModelName = modelname
           @ModelVersion = modelversion
           @ModelSource = modelsource
           @CosPathInfo = cospathinfo
+          @GooseFSx = goosefsx
           @AlgorithmFramework = algorithmframework
           @ModelType = modeltype
           @ModelFormat = modelformat
@@ -4401,6 +4424,10 @@ module TencentCloud
           unless params['CosPathInfo'].nil?
             @CosPathInfo = CosPathInfo.new
             @CosPathInfo.deserialize(params['CosPathInfo'])
+          end
+          unless params['GooseFSx'].nil?
+            @GooseFSx = GooseFSx.new
+            @GooseFSx.deserialize(params['GooseFSx'])
           end
           @AlgorithmFramework = params['AlgorithmFramework']
           @ModelType = params['ModelType']

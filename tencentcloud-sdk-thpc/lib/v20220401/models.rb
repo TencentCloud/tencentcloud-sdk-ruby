@@ -1833,7 +1833,6 @@ module TencentCloud
       # 队列信息概览。
       class QueueOverview < TencentCloud::Common::AbstractModel
         # @param QueueName: 队列名称。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type QueueName: String
 
         attr_accessor :QueueName

@@ -2667,7 +2667,6 @@ module TencentCloud
         # NoAudit: 无需实名认证
         # @type RealNameAuditStatus: String
         # @param RealNameAuditUnpassReason: 域名实名认证不通过原因。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RealNameAuditUnpassReason: String
         # @param DomainNameAuditStatus: 域名命名审核状态。
         # NotAudit：命名审核未上传
