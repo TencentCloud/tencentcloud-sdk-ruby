@@ -253,7 +253,7 @@ module TencentCloud
         # @type Type: String
         # @param InstanceId: 后端服务的唯一 ID，如 ins-abcd1234
         # @type InstanceId: String
-        # @param Port: 后端服务的监听端口
+        # @param Port: 后端服务的监听端口，如果是全端口段监听器绑定的全监听目标组场景，此端口返回0，表示无效端口，绑定的后端服务的端口随监听器端口。
         # @type Port: Integer
         # @param Weight: 后端服务的转发权重，取值范围：[0, 100]，默认为 10。
         # @type Weight: Integer
@@ -1892,7 +1892,7 @@ module TencentCloud
         # @type TargetGroupName: String
         # @param VpcId: 目标组的vpcid属性，不填则使用默认vpc
         # @type VpcId: String
-        # @param Port: 目标组的默认端口， 后续添加服务器时可使用该默认端口。Port和TargetGroupInstances.N中的port二者必填其一。
+        # @param Port: 目标组的默认端口， 后续添加服务器时可使用该默认端口。全监听目标组不支持此参数，非全监听目标组Port和TargetGroupInstances.N中的port二者必填其一。
         # @type Port: Integer
         # @param TargetGroupInstances: 目标组绑定的后端服务器，单次最多支持50个。
         # @type TargetGroupInstances: Array
@@ -1908,10 +1908,12 @@ module TencentCloud
         #     <li>设置该值后，添加后端服务到目标组时， 若后端服务不单独设置权重， 则使用这里的默认权重。 </li>
         # </ul>
         # @type Weight: Integer
+        # @param FullListenSwitch: 全监听目标组标识，为true表示是全监听目标组，false表示不是全监听目标组。
+        # @type FullListenSwitch: Boolean
 
-        attr_accessor :TargetGroupName, :VpcId, :Port, :TargetGroupInstances, :Type, :Protocol, :Tags, :Weight
+        attr_accessor :TargetGroupName, :VpcId, :Port, :TargetGroupInstances, :Type, :Protocol, :Tags, :Weight, :FullListenSwitch
 
-        def initialize(targetgroupname=nil, vpcid=nil, port=nil, targetgroupinstances=nil, type=nil, protocol=nil, tags=nil, weight=nil)
+        def initialize(targetgroupname=nil, vpcid=nil, port=nil, targetgroupinstances=nil, type=nil, protocol=nil, tags=nil, weight=nil, fulllistenswitch=nil)
           @TargetGroupName = targetgroupname
           @VpcId = vpcid
           @Port = port
@@ -1920,6 +1922,7 @@ module TencentCloud
           @Protocol = protocol
           @Tags = tags
           @Weight = weight
+          @FullListenSwitch = fulllistenswitch
         end
 
         def deserialize(params)
@@ -1945,6 +1948,7 @@ module TencentCloud
             end
           end
           @Weight = params['Weight']
+          @FullListenSwitch = params['FullListenSwitch']
         end
       end
 
@@ -6529,7 +6533,7 @@ module TencentCloud
 
       # ModifyLoadBalancerMixIpTarget请求参数结构体
       class ModifyLoadBalancerMixIpTargetRequest < TencentCloud::Common::AbstractModel
-        # @param LoadBalancerIds: 负载均衡实例ID数组。
+        # @param LoadBalancerIds: 负载均衡实例ID数组，默认支持20个负载均衡实例ID。
         # @type LoadBalancerIds: Array
         # @param MixIpTarget: 开启/关闭IPv6FullChain负载均衡7层监听器支持混绑IPv4/IPv6目标特性。
         # @type MixIpTarget: Boolean
@@ -6727,7 +6731,7 @@ module TencentCloud
         # @type TargetGroupId: String
         # @param TargetGroupName: 目标组的新名称。
         # @type TargetGroupName: String
-        # @param Port: 目标组的新默认端口。
+        # @param Port: 目标组的新默认端口。全监听目标组不支持此参数。
         # @type Port: Integer
         # @param Weight: 后端服务默认权重。
         # <ul>
@@ -8312,7 +8316,7 @@ module TencentCloud
         # @type Type: String
         # @param InstanceId: 后端服务的唯一 ID
         # @type InstanceId: String
-        # @param Port: 后端服务的监听端口
+        # @param Port: 后端服务的监听端口，全端口段监听器此字段返回0，代表无效端口，即不支持设置。
         # @type Port: Integer
         # @param Weight: 后端服务的转发权重，取值范围：[0, 100]，默认为 10。
         # @type Weight: Integer
@@ -8374,7 +8378,7 @@ module TencentCloud
         # @type VpcId: String
         # @param TargetGroupName: 目标组的名字
         # @type TargetGroupName: String
-        # @param Port: 目标组的默认端口
+        # @param Port: 目标组的默认端口，全监听目标组此字段返回0，表示无效端口。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Port: Integer
         # @param CreatedTime: 目标组的创建时间
@@ -8398,10 +8402,12 @@ module TencentCloud
         # @param Weight: 默认权重。只有v2类型目标组返回该字段。当返回为NULL时， 表示未设置默认权重。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Weight: Integer
+        # @param FullListenSwitch: 是否全监听目标组
+        # @type FullListenSwitch: Boolean
 
-        attr_accessor :TargetGroupId, :VpcId, :TargetGroupName, :Port, :CreatedTime, :UpdatedTime, :AssociatedRule, :TargetGroupType, :AssociatedRuleCount, :RegisteredInstancesCount, :Tag, :Weight
+        attr_accessor :TargetGroupId, :VpcId, :TargetGroupName, :Port, :CreatedTime, :UpdatedTime, :AssociatedRule, :TargetGroupType, :AssociatedRuleCount, :RegisteredInstancesCount, :Tag, :Weight, :FullListenSwitch
 
-        def initialize(targetgroupid=nil, vpcid=nil, targetgroupname=nil, port=nil, createdtime=nil, updatedtime=nil, associatedrule=nil, targetgrouptype=nil, associatedrulecount=nil, registeredinstancescount=nil, tag=nil, weight=nil)
+        def initialize(targetgroupid=nil, vpcid=nil, targetgroupname=nil, port=nil, createdtime=nil, updatedtime=nil, associatedrule=nil, targetgrouptype=nil, associatedrulecount=nil, registeredinstancescount=nil, tag=nil, weight=nil, fulllistenswitch=nil)
           @TargetGroupId = targetgroupid
           @VpcId = vpcid
           @TargetGroupName = targetgroupname
@@ -8414,6 +8420,7 @@ module TencentCloud
           @RegisteredInstancesCount = registeredinstancescount
           @Tag = tag
           @Weight = weight
+          @FullListenSwitch = fulllistenswitch
         end
 
         def deserialize(params)
@@ -8443,6 +8450,7 @@ module TencentCloud
             end
           end
           @Weight = params['Weight']
+          @FullListenSwitch = params['FullListenSwitch']
         end
       end
 
@@ -8450,13 +8458,13 @@ module TencentCloud
       class TargetGroupInstance < TencentCloud::Common::AbstractModel
         # @param BindIP: 目标组实例的内网IP
         # @type BindIP: String
-        # @param Port: 目标组实例的端口
+        # @param Port: 目标组实例的端口，全监听目标组不支持传此字段。
         # @type Port: Integer
         # @param Weight: 目标组实例的权重
 
         # v2目标组需要配置权重，调用CreateTargetGroup接口创建目标组时该参数与创建接口中的Weight参数必填其一。
         # @type Weight: Integer
-        # @param NewPort: 目标组实例的新端口
+        # @param NewPort: 目标组实例的新端口，全监听目标组不支持传此字段。
         # @type NewPort: Integer
 
         attr_accessor :BindIP, :Port, :Weight, :NewPort

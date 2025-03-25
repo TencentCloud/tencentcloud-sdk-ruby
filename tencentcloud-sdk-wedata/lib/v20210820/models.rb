@@ -28593,10 +28593,13 @@ module TencentCloud
         # @param IfSupportCreateAndDDL: 是否支持select or ddl
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IfSupportCreateAndDDL: :class:`Tencentcloud::Wedata.v20210820.models.CreateAndDDLSupport`
+        # @param ColumnCount: 字段数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ColumnCount: Integer
 
-        attr_accessor :TableId, :TableName, :TableOwnerName, :DatasourceId, :ClusterName, :DatasourceName, :DatabaseName, :TablePath, :TableNameCn, :MetastoreId, :MetastoreType, :Description, :ColumnSeparator, :StorageFormat, :StorageSize, :TableType, :CreateTime, :ModifyTime, :DdlModifyTime, :LastAccessTime, :ProjectName, :BizCatalogIds, :BizCatalogNames, :HasFavorite, :LifeCycleTime, :StorageSizeWithUnit, :InstanceId, :TechnologyType, :TableNameEn, :ProjectId, :Partitions, :ReplicationFactor, :ProjectDisplayName, :DataModifyTime, :ClusterId, :HasAdminAuthority, :DatasourceDisplayName, :DatabaseId, :FavoriteCount, :LikeCount, :HasLike, :TablePropertyScore, :TableHeat, :OwnerProjectId, :TableOwnerId, :DataSourceCategory, :Columns, :MetaCrawlType, :IsView, :Location, :IsPartitionTable, :PartitionColumns, :PartitionExpireDays, :TableProperties, :Environment, :Schema, :CollectDatasourceList, :CollectJobId, :CollectJobName, :Urn, :HasBizPermission, :OwnerByEngine, :ErrorTips, :IfSupportCreateAndDDL
+        attr_accessor :TableId, :TableName, :TableOwnerName, :DatasourceId, :ClusterName, :DatasourceName, :DatabaseName, :TablePath, :TableNameCn, :MetastoreId, :MetastoreType, :Description, :ColumnSeparator, :StorageFormat, :StorageSize, :TableType, :CreateTime, :ModifyTime, :DdlModifyTime, :LastAccessTime, :ProjectName, :BizCatalogIds, :BizCatalogNames, :HasFavorite, :LifeCycleTime, :StorageSizeWithUnit, :InstanceId, :TechnologyType, :TableNameEn, :ProjectId, :Partitions, :ReplicationFactor, :ProjectDisplayName, :DataModifyTime, :ClusterId, :HasAdminAuthority, :DatasourceDisplayName, :DatabaseId, :FavoriteCount, :LikeCount, :HasLike, :TablePropertyScore, :TableHeat, :OwnerProjectId, :TableOwnerId, :DataSourceCategory, :Columns, :MetaCrawlType, :IsView, :Location, :IsPartitionTable, :PartitionColumns, :PartitionExpireDays, :TableProperties, :Environment, :Schema, :CollectDatasourceList, :CollectJobId, :CollectJobName, :Urn, :HasBizPermission, :OwnerByEngine, :ErrorTips, :IfSupportCreateAndDDL, :ColumnCount
 
-        def initialize(tableid=nil, tablename=nil, tableownername=nil, datasourceid=nil, clustername=nil, datasourcename=nil, databasename=nil, tablepath=nil, tablenamecn=nil, metastoreid=nil, metastoretype=nil, description=nil, columnseparator=nil, storageformat=nil, storagesize=nil, tabletype=nil, createtime=nil, modifytime=nil, ddlmodifytime=nil, lastaccesstime=nil, projectname=nil, bizcatalogids=nil, bizcatalognames=nil, hasfavorite=nil, lifecycletime=nil, storagesizewithunit=nil, instanceid=nil, technologytype=nil, tablenameen=nil, projectid=nil, partitions=nil, replicationfactor=nil, projectdisplayname=nil, datamodifytime=nil, clusterid=nil, hasadminauthority=nil, datasourcedisplayname=nil, databaseid=nil, favoritecount=nil, likecount=nil, haslike=nil, tablepropertyscore=nil, tableheat=nil, ownerprojectid=nil, tableownerid=nil, datasourcecategory=nil, columns=nil, metacrawltype=nil, isview=nil, location=nil, ispartitiontable=nil, partitioncolumns=nil, partitionexpiredays=nil, tableproperties=nil, environment=nil, schema=nil, collectdatasourcelist=nil, collectjobid=nil, collectjobname=nil, urn=nil, hasbizpermission=nil, ownerbyengine=nil, errortips=nil, ifsupportcreateandddl=nil)
+        def initialize(tableid=nil, tablename=nil, tableownername=nil, datasourceid=nil, clustername=nil, datasourcename=nil, databasename=nil, tablepath=nil, tablenamecn=nil, metastoreid=nil, metastoretype=nil, description=nil, columnseparator=nil, storageformat=nil, storagesize=nil, tabletype=nil, createtime=nil, modifytime=nil, ddlmodifytime=nil, lastaccesstime=nil, projectname=nil, bizcatalogids=nil, bizcatalognames=nil, hasfavorite=nil, lifecycletime=nil, storagesizewithunit=nil, instanceid=nil, technologytype=nil, tablenameen=nil, projectid=nil, partitions=nil, replicationfactor=nil, projectdisplayname=nil, datamodifytime=nil, clusterid=nil, hasadminauthority=nil, datasourcedisplayname=nil, databaseid=nil, favoritecount=nil, likecount=nil, haslike=nil, tablepropertyscore=nil, tableheat=nil, ownerprojectid=nil, tableownerid=nil, datasourcecategory=nil, columns=nil, metacrawltype=nil, isview=nil, location=nil, ispartitiontable=nil, partitioncolumns=nil, partitionexpiredays=nil, tableproperties=nil, environment=nil, schema=nil, collectdatasourcelist=nil, collectjobid=nil, collectjobname=nil, urn=nil, hasbizpermission=nil, ownerbyengine=nil, errortips=nil, ifsupportcreateandddl=nil, columncount=nil)
           @TableId = tableid
           @TableName = tablename
           @TableOwnerName = tableownername
@@ -28661,6 +28664,7 @@ module TencentCloud
           @OwnerByEngine = ownerbyengine
           @ErrorTips = errortips
           @IfSupportCreateAndDDL = ifsupportcreateandddl
+          @ColumnCount = columncount
         end
 
         def deserialize(params)
@@ -28758,6 +28762,7 @@ module TencentCloud
             @IfSupportCreateAndDDL = CreateAndDDLSupport.new
             @IfSupportCreateAndDDL.deserialize(params['IfSupportCreateAndDDL'])
           end
+          @ColumnCount = params['ColumnCount']
         end
       end
 

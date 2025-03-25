@@ -337,7 +337,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 创建房间
+        # 创建课堂
 
         # @param request: Request instance for CreateRoom.
         # @type request: :class:`Tencentcloud::lcic::V20220817::CreateRoomRequest`

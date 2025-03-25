@@ -5484,10 +5484,8 @@ module TencentCloud
         # @param Score: 得分。
         # @type Score: Integer
         # @param IndexesToBuild: 推荐索引列表。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IndexesToBuild: Array
         # @param IndexesToDrop: 无效索引列表。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IndexesToDrop: Array
 
         attr_accessor :ClusterId, :Collection, :Db, :Level, :Score, :IndexesToBuild, :IndexesToDrop
@@ -5869,10 +5867,8 @@ module TencentCloud
       # 接收用户
       class ReceiveUin < TencentCloud::Common::AbstractModel
         # @param UinName: 用户名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UinName: String
         # @param Uin: 用户id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Uin: String
 
         attr_accessor :UinName, :Uin

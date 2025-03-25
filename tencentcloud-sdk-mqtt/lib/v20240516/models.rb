@@ -55,9 +55,9 @@ module TencentCloud
 
       # ActivateDeviceCertificate请求参数结构体
       class ActivateDeviceCertificateRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 集群id
+        # @param InstanceId: 腾讯云MQTT实例ID，从 [DescribeInstanceList](https://cloud.tencent.com/document/api/1778/111029)接口或控制台获得。
         # @type InstanceId: String
-        # @param DeviceCertificateSn: 设备证书序列号
+        # @param DeviceCertificateSn: 设备证书的SN序列号，可以从 [DescribeDeviceCertificates](https://cloud.tencent.com/document/api/1778/116206)接口、控制台、证书文件中获得。
         # @type DeviceCertificateSn: String
 
         attr_accessor :InstanceId, :DeviceCertificateSn
@@ -91,7 +91,7 @@ module TencentCloud
 
       # ApplyRegistrationCode请求参数结构体
       class ApplyRegistrationCodeRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 集群id
+        # @param InstanceId: 腾讯云MQTT实例ID，从 [DescribeInstanceList](https://cloud.tencent.com/document/api/1778/111029)接口或控制台获得。
         # @type InstanceId: String
 
         attr_accessor :InstanceId
@@ -131,39 +131,47 @@ module TencentCloud
 
       # AuthorizationPolicyItem
       class AuthorizationPolicyItem < TencentCloud::Common::AbstractModel
-        # @param Id: 规则ID
+        # @param Id: 策略规则ID
         # @type Id: Integer
-        # @param InstanceId: 集群ID
+        # @param InstanceId: MQTT集群ID
         # @type InstanceId: String
-        # @param PolicyName: 规则名
+        # @param PolicyName: 策略规则名
         # @type PolicyName: String
-        # @param Version: 规则语法版本
+        # @param Version: 规则语法版本，当前仅支持1，默认为1
         # @type Version: Integer
-        # @param Priority: 越小越优先
+        # @param Priority: 策略优先级，优先级ID越小表示策略越优先检查生效。可参考 [数据面授权策略说明](https://cloud.tencent.com/document/product/1778/109715)。
         # @type Priority: Integer
-        # @param Effect: allow/deny
+        # @param Effect: 决策
+        # allow：允许符合该策略的设备的访问请求。
+        # deny：拒绝覆盖该策略的设备的访问请求。
+        # 可参考 [数据面授权策略说明](https://cloud.tencent.com/document/product/1778/109715)。
         # @type Effect: String
-        # @param Actions: connect、pub、sub
+        # @param Actions: 操作
+        # connect：连接
+        # pub：发布mqtt消息
+        # sub：订阅mqtt消息
+        # 可参考 [数据面授权策略说明](https://cloud.tencent.com/document/product/1778/109715)。
         # @type Actions: String
-        # @param Resources: 资源
+        # @param Resources: 资源，可参考 [数据面授权策略说明](https://cloud.tencent.com/document/product/1778/109715)。
         # @type Resources: String
-        # @param ClientId: client
+        # @param ClientId: 条件-连接设备ID，可参考 [数据面授权策略说明](https://cloud.tencent.com/document/product/1778/109715)。
         # @type ClientId: String
-        # @param Username: 用户
+        # @param Username: 条件-用户名，可参考 [数据面授权策略说明](https://cloud.tencent.com/document/product/1778/109715)。
         # @type Username: String
-        # @param Ip: IP地址
+        # @param Ip: 条件-客户端IP地址，可参考 [数据面授权策略说明](https://cloud.tencent.com/document/product/1778/109715)。
         # @type Ip: String
-        # @param Qos: 0，1，2
+        # @param Qos: 条件-服务质量，可参考 [数据面授权策略说明](https://cloud.tencent.com/document/product/1778/109715)。
         # @type Qos: String
-        # @param Retain: 1：表示匹配retain消息
+        # @param Retain: 条件-保留消息，可参考 [数据面授权策略说明](https://cloud.tencent.com/document/product/1778/109715)。
+        # 1：表示匹配retain消息
         # 2：表示匹配非retain消息
         # 3：表示匹配retain和非retain消息
         # @type Retain: Integer
-        # @param Remark: 描述
+        # @param Remark: 备注，长度不超过128个字符。
         # @type Remark: String
-        # @param CreatedTime: 1713164969433
+        # @param CreatedTime: 创建时间。毫秒级时间戳 。
         # @type CreatedTime: Integer
-        # @param UpdateTime: 1713164969433
+        # @param UpdateTime: 更新时间。毫秒级时间戳 。
         # @type UpdateTime: Integer
 
         attr_accessor :Id, :InstanceId, :PolicyName, :Version, :Priority, :Effect, :Actions, :Resources, :ClientId, :Username, :Ip, :Qos, :Retain, :Remark, :CreatedTime, :UpdateTime
@@ -209,7 +217,7 @@ module TencentCloud
 
       # 策略规则优先级
       class AuthorizationPolicyPriority < TencentCloud::Common::AbstractModel
-        # @param Id: 策略id
+        # @param Id: 授权策略规则id，可以从 [DescribeAuthorizationPolicies](https://cloud.tencent.com/document/api/1778/111074)接口获得。
         # @type Id: Integer
         # @param Priority: 优先级
         # @type Priority: Integer
@@ -249,31 +257,35 @@ module TencentCloud
 
       # CA证书信息
       class CaCertificateItem < TencentCloud::Common::AbstractModel
-        # @param CaCn: common name
+        # @param CaCn: 证书的公用名(Common Name)
         # @type CaCn: String
         # @param CaCertificate: 证书内容
         # @type CaCertificate: String
         # @param CaSn: 证书序列号
         # @type CaSn: String
-        # @param Format: 证书格式
+        # @param Format: 证书格式，当前仅支持 PEM 格式
         # @type Format: String
         # @param VerificationCertificate: 验证证书内容
         # @type VerificationCertificate: String
-        # @param Status: ca状态
+        # @param Status: CA证书的状态
+        #     ACTIVE：激活
+        #     INACTIVE：未激活
+        #     REVOKED：吊销
+        #     PENDING_ACTIVATION：注册待激活
         # @type Status: String
-        # @param LastActivationTime: 上次激活时间
+        # @param LastActivationTime: 上次激活时间，毫秒级时间戳 。
         # @type LastActivationTime: Integer
-        # @param CreatedTime: 创建时间
+        # @param CreatedTime: 创建时间，毫秒级时间戳 。
         # @type CreatedTime: Integer
-        # @param UpdateTime: 预销毁时间
+        # @param UpdateTime: 更新时间，毫秒级时间戳 。
         # @type UpdateTime: Integer
-        # @param LastInactivationTime: 上次去激活时间
+        # @param LastInactivationTime: 上次去激活时间，毫秒级时间戳 。
         # @type LastInactivationTime: Integer
         # @param CaIssuerCn: Ca证书颁发者CN
         # @type CaIssuerCn: String
-        # @param NotBeforeTime: 生效时间
+        # @param NotBeforeTime: 生效时间，毫秒级时间戳 。
         # @type NotBeforeTime: Integer
-        # @param NotAfterTime: 失效时间
+        # @param NotAfterTime: 失效时间，毫秒级时间戳 。
         # @type NotAfterTime: Integer
 
         attr_accessor :CaCn, :CaCertificate, :CaSn, :Format, :VerificationCertificate, :Status, :LastActivationTime, :CreatedTime, :UpdateTime, :LastInactivationTime, :CaIssuerCn, :NotBeforeTime, :NotAfterTime
@@ -739,11 +751,11 @@ module TencentCloud
 
       # CreateTopic请求参数结构体
       class CreateTopicRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
+        # @param InstanceId: 腾讯云MQTT实例ID，从 [DescribeInstanceList](https://cloud.tencent.com/document/api/1778/111029)接口或控制台获得。
         # @type InstanceId: String
-        # @param Topic: 主题
+        # @param Topic: 主题，不能为空，只能包含字母、数字、“-”及“_”，3-100 字符。
         # @type Topic: String
-        # @param Remark: 备注
+        # @param Remark: 备注，最长 128 字符
         # @type Remark: String
 
         attr_accessor :InstanceId, :Topic, :Remark
@@ -787,13 +799,13 @@ module TencentCloud
 
       # CreateUser请求参数结构体
       class CreateUserRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
+        # @param InstanceId: 实例ID，从 [DescribeInstanceList](https://cloud.tencent.com/document/api/1778/111029)接口或控制台获得。
         # @type InstanceId: String
-        # @param Username: 用户名
+        # @param Username: 用户名，不能为空，只支持数字 大小写字母 分隔符("_","-")，不能超过 32 个字符
         # @type Username: String
         # @param Password: 密码，该字段为空时候则后端会默认生成
         # @type Password: String
-        # @param Remark: 备注
+        # @param Remark: 备注，长度不超过128个字符。
         # @type Remark: String
 
         attr_accessor :InstanceId, :Username, :Password, :Remark
@@ -831,9 +843,9 @@ module TencentCloud
 
       # DeactivateCaCertificate请求参数结构体
       class DeactivateCaCertificateRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 集群id
+        # @param InstanceId: 实例ID，从 [DescribeInstanceList](https://cloud.tencent.com/document/api/1778/111029)接口或控制台获得。
         # @type InstanceId: String
-        # @param CaSn: 证书序列号
+        # @param CaSn: 证书序列号，可以从 [DescribeCaCertificates](https://cloud.tencent.com/document/api/1778/116206)接口、控制台、证书文件中获得。
         # @type CaSn: String
 
         attr_accessor :InstanceId, :CaSn
@@ -867,9 +879,9 @@ module TencentCloud
 
       # DeactivateDeviceCertificate请求参数结构体
       class DeactivateDeviceCertificateRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 集群id
+        # @param InstanceId: 腾讯云MQTT实例ID，从 [DescribeInstanceList](https://cloud.tencent.com/document/api/1778/111029)接口或控制台获得。
         # @type InstanceId: String
-        # @param DeviceCertificateSn: 设备证书序列号
+        # @param DeviceCertificateSn: 设备证书的SN序列号，可以从 [DescribeDeviceCertificates](https://cloud.tencent.com/document/api/1778/116206)接口、控制台、设备证书文件中获得。
         # @type DeviceCertificateSn: String
 
         attr_accessor :InstanceId, :DeviceCertificateSn
@@ -903,12 +915,12 @@ module TencentCloud
 
       # DeleteAuthenticator请求参数结构体
       class DeleteAuthenticatorRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
+        # @param InstanceId: 腾讯云MQTT实例ID，从 [DescribeInstanceList](https://cloud.tencent.com/document/api/1778/111029)接口或控制台获得。
         # @type InstanceId: String
         # @param Type: 认证器类型:
         # JWT：JWT认证器
         # JWKS：JWKS认证器
-        # BYOC：一端一证认证器
+        # HTTP：HTTP认证器
         # @type Type: String
 
         attr_accessor :InstanceId, :Type
@@ -942,9 +954,9 @@ module TencentCloud
 
       # DeleteAuthorizationPolicy请求参数结构体
       class DeleteAuthorizationPolicyRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
+        # @param InstanceId: 腾讯云MQTT实例ID，从 [DescribeInstanceList](https://cloud.tencent.com/document/api/1778/111029)接口或控制台获得。
         # @type InstanceId: String
-        # @param Id: 策略规则id
+        # @param Id: 授权策略规则id，可以从 [DescribeAuthorizationPolicies](https://cloud.tencent.com/document/api/1778/111074)接口获得。
         # @type Id: Integer
 
         attr_accessor :InstanceId, :Id
@@ -978,9 +990,9 @@ module TencentCloud
 
       # DeleteCaCertificate请求参数结构体
       class DeleteCaCertificateRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 集群id
+        # @param InstanceId: 实例ID，从 [DescribeInstanceList](https://cloud.tencent.com/document/api/1778/111029)接口或控制台获得。
         # @type InstanceId: String
-        # @param CaSn: 证书序列号
+        # @param CaSn: 证书序列号，可以从 [DescribeCaCertificates](https://cloud.tencent.com/document/api/1778/116206)接口、控制台、证书文件中获得。
         # @type CaSn: String
 
         attr_accessor :InstanceId, :CaSn
@@ -1050,7 +1062,7 @@ module TencentCloud
 
       # DeleteInsPublicEndpoint请求参数结构体
       class DeleteInsPublicEndpointRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
+        # @param InstanceId: 腾讯云MQTT实例ID，从 [DescribeInstanceList](https://cloud.tencent.com/document/api/1778/111029)接口或控制台获得。
         # @type InstanceId: String
 
         attr_accessor :InstanceId
@@ -1186,9 +1198,12 @@ module TencentCloud
 
       # DescribeAuthenticator请求参数结构体
       class DescribeAuthenticatorRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
+        # @param InstanceId: 腾讯云MQTT实例ID，从 [DescribeInstanceList](https://cloud.tencent.com/document/api/1778/111029)接口或控制台获得。
         # @type InstanceId: String
-        # @param Type: 认证器类型: JWT：JWT认证器 JWKS：JWKS认证器 HTTP:HTTP认证器
+        # @param Type: 认证器类型:
+        # JWT：JWT认证器
+        # JWKS：JWKS认证器
+        # HTTP：HTTP认证器
         # @type Type: String
 
         attr_accessor :InstanceId, :Type
@@ -1233,7 +1248,7 @@ module TencentCloud
 
       # DescribeAuthorizationPolicies请求参数结构体
       class DescribeAuthorizationPoliciesRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 集群ID
+        # @param InstanceId: 腾讯云MQTT实例ID，从 [DescribeInstanceList](https://cloud.tencent.com/document/api/1778/111029)接口或控制台获得。
         # @type InstanceId: String
 
         attr_accessor :InstanceId
@@ -1360,7 +1375,7 @@ module TencentCloud
 
       # DescribeCaCertificates请求参数结构体
       class DescribeCaCertificatesRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 集群ID
+        # @param InstanceId: 实例ID，从 [DescribeInstanceList](https://cloud.tencent.com/document/api/1778/111029)接口或控制台获得。
         # @type InstanceId: String
 
         attr_accessor :InstanceId
@@ -1403,7 +1418,7 @@ module TencentCloud
 
       # DescribeClientList请求参数结构体
       class DescribeClientListRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
+        # @param InstanceId: 腾讯云MQTT实例ID，从 [DescribeInstanceList](https://cloud.tencent.com/document/api/1778/111029)接口或控制台获得。
         # @type InstanceId: String
         # @param ClientId: 客户端名
         # @type ClientId: String
@@ -1454,9 +1469,9 @@ module TencentCloud
 
       # DescribeDeviceCertificate请求参数结构体
       class DescribeDeviceCertificateRequest < TencentCloud::Common::AbstractModel
-        # @param DeviceCertificateSn: 设备证书sn
+        # @param DeviceCertificateSn: 设备证书的SN序列号，用于唯一标识一个设备证书。
         # @type DeviceCertificateSn: String
-        # @param InstanceId: 集群id
+        # @param InstanceId: 腾讯云MQTT实例ID，从 [DescribeInstanceList](https://cloud.tencent.com/document/api/1778/111029)接口或控制台获得。
         # @type InstanceId: String
 
         attr_accessor :DeviceCertificateSn, :InstanceId
@@ -1474,17 +1489,21 @@ module TencentCloud
 
       # DescribeDeviceCertificate返回参数结构体
       class DescribeDeviceCertificateResponse < TencentCloud::Common::AbstractModel
-        # @param CreatedTime: 创建时间
+        # @param CreatedTime: 创建时间，毫秒级时间戳 。
         # @type CreatedTime: Integer
-        # @param UpdateTime: 上次更新时间
+        # @param UpdateTime: 上次更新时间，毫秒级时间戳 。
         # @type UpdateTime: Integer
-        # @param NotAfterTime: 证书失效日期
+        # @param NotAfterTime: 证书失效日期，毫秒级时间戳 。
         # @type NotAfterTime: Integer
-        # @param LastActivationTime: 上次激活时间
+        # @param LastActivationTime: 上次激活时间，毫秒级时间戳 。
         # @type LastActivationTime: Integer
-        # @param LastInactivationTime: 上次取消激活时间
+        # @param LastInactivationTime: 上次取消激活时间，毫秒级时间戳 。
         # @type LastInactivationTime: Integer
-        # @param Status: 证书状态
+        # @param Status: 设备证书的状态
+        #     ACTIVE：激活
+        #     INACTIVE：未激活
+        #     REVOKED：吊销
+        #     PENDING_ACTIVATION：注册待激活
         # @type Status: String
         # @param CaSn: Ca证书序列号
         # @type CaSn: String
@@ -1494,14 +1513,15 @@ module TencentCloud
         # @type DeviceCertificate: String
         # @param DeviceCertificateCn: 设备证书common name
         # @type DeviceCertificateCn: String
-        # @param Format: 证书格式
+        # @param Format: 证书格式，当前仅支持PEM格式
         # @type Format: String
         # @param ClientId: 客户端id
         # @type ClientId: String
-        # @param CertificateSource:     API, 手动注册
-        #     JITP 自动注册
+        # @param CertificateSource: 证书来源
+        # API：手动注册
+        # JITP：自动注册
         # @type CertificateSource: String
-        # @param NotBeforeTime: 证书生效开始时间
+        # @param NotBeforeTime: 证书生效开始时间，毫秒级时间戳 。
         # @type NotBeforeTime: Integer
         # @param OrganizationalUnit: 组织单位
         # @type OrganizationalUnit: String
@@ -1551,9 +1571,17 @@ module TencentCloud
 
       # DescribeDeviceCertificates请求参数结构体
       class DescribeDeviceCertificatesRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 集群ID
+        # @param InstanceId: 实例ID，从 [DescribeInstanceList](https://cloud.tencent.com/document/api/1778/111029)接口或控制台获得。
         # @type InstanceId: String
-        # @param Filters: 过滤器支持ClientId、CaSn、DeviceCertificateSn、Status搜索
+        # @param Filters: 支持搜索参数
+        # ClientId：客户端id
+        # CaSn：所属的CA证书SN
+        # DeviceCertificateSn：设备证书SN
+        # DeviceCertificateCn：设备证书CN
+        # OrganizationalUnit：证书OU
+        # NotAfterEnd：过期时间小于等于指定时间的证书
+        # NotAfterStart：过期时间大于等于指定时间的证书
+        # Status：证书状态
         # @type Filters: Array
         # @param Limit: 分页limit
         # @type Limit: Integer
@@ -1624,7 +1652,7 @@ module TencentCloud
 
       # DescribeInsPublicEndpoints请求参数结构体
       class DescribeInsPublicEndpointsRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
+        # @param InstanceId: 腾讯云MQTT实例ID，从 [DescribeInstanceList](https://cloud.tencent.com/document/api/1778/111029)接口或控制台获得。
         # @type InstanceId: String
 
         attr_accessor :InstanceId
@@ -1644,7 +1672,7 @@ module TencentCloud
         # @type Endpoints: Array
         # @param InstanceId: 实例id
         # @type InstanceId: String
-        # @param Bandwidth: 带宽
+        # @param Bandwidth: 带宽，单位Mbps
         # @type Bandwidth: Integer
         # @param Rules: 公网访问规则
         # @type Rules: Array
@@ -1695,7 +1723,7 @@ module TencentCloud
 
       # DescribeInsVPCEndpoints请求参数结构体
       class DescribeInsVPCEndpointsRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
+        # @param InstanceId: 腾讯云MQTT实例ID，从 [DescribeInstanceList](https://cloud.tencent.com/document/api/1778/111029)接口或控制台获得。
         # @type InstanceId: String
 
         attr_accessor :InstanceId
@@ -2099,14 +2127,14 @@ module TencentCloud
 
       # DescribeTopicList请求参数结构体
       class DescribeTopicListRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID，从 [DescribeInstanceList](https://cloud.tencent.com/document/api/1778/111029)接口或控制台获得。
+        # @param InstanceId: 腾讯云MQTT实例ID，从 [DescribeInstanceList](https://cloud.tencent.com/document/api/1778/111029)接口或控制台获得。
         # @type InstanceId: String
         # @param Filters: 查询条件列表:
         # 支持TopicName模糊查询
         # @type Filters: Array
-        # @param Offset: 查询起始位置
+        # @param Offset: 查询起始位置，默认0。
         # @type Offset: Integer
-        # @param Limit: 查询结果限制数量
+        # @param Limit: 查询结果限制数量，默认0，最大20
         # @type Limit: Integer
 
         attr_accessor :InstanceId, :Filters, :Offset, :Limit
@@ -2218,14 +2246,14 @@ module TencentCloud
 
       # DescribeUserList请求参数结构体
       class DescribeUserListRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
+        # @param InstanceId: 实例ID，从 [DescribeInstanceList](https://cloud.tencent.com/document/api/1778/111029)接口或控制台获得。
         # @type InstanceId: String
         # @param Filters: 查询条件列表支持字段
-        # Username：Username模糊查询
+        # Username：按照【用户名】进行过滤，支持模糊过滤，类型：String
         # @type Filters: Array
-        # @param Offset: 查询起始位置
+        # @param Offset: 查询起始位置，默认值0
         # @type Offset: Integer
-        # @param Limit: 查询结果限制数量
+        # @param Limit: 查询结果限制数量，默认值20，最大值100
         # @type Limit: Integer
 
         attr_accessor :InstanceId, :Filters, :Offset, :Limit
@@ -2427,15 +2455,30 @@ module TencentCloud
 
       # MQTT认证器信息
       class MQTTAuthenticatorItem < TencentCloud::Common::AbstractModel
-        # @param Type: 认证器类型: JWT：JWT认证器 JWKS：JWKS认证器 BYOC：一端一证认证器
+        # @param Type: 认证器类型
+        # JWT：JWT认证器
+        # JWKS：JWKS认证器
+        # HTTP：HTTP认证器
         # @type Type: String
-        # @param Config: 认证器配置
+        # @param Config: HTTP认证器
+        # headers（请求头）：标准请求头和自定义请求头
+        # endpoint（接入点）：认证服务器接入点
+        # method（http请求方法）：POST/GET
+        # readTimeout（读超时时间）：读取认证服务器数据超时时间，单位秒
+        # connectTimeout（连接超时时间）：连接认证服务器超时时间，单位秒
+        # body（请求体）：http请求体
+        # concurrency（并发数）：最大并发请求数
+        # 样例：{"headers":[{"key":"Content-type","value":"application/json"},{"key":"username","value":"${Username}"}],"endpoint":"https://127.0.0.1:443","method":"POST","readTimeout":10,"connectTimeout":10,"body":[{"key":"client-id","value":"${ClientId}"}],"concurrency":8}
+
+        # 参考 [认证管理概述](https://cloud.tencent.com/document/product/1778/114813)
         # @type Config: String
         # @param Status: 认证器状态
+        # open：认证器打开
+        # close：认证器关闭
         # @type Status: String
-        # @param CreateTime: 创建时间
+        # @param CreateTime: 创建时间，毫秒级时间戳 。
         # @type CreateTime: Integer
-        # @param Remark: 说明
+        # @param Remark: 说明，最长 128 字符。
         # @type Remark: String
 
         attr_accessor :Type, :Config, :Status, :CreateTime, :Remark
@@ -2459,21 +2502,24 @@ module TencentCloud
 
       # MQTT客户端信息
       class MQTTClientInfo < TencentCloud::Common::AbstractModel
-        # @param ClientId: 客户端唯一标识
+        # @param ClientId: 客户端ID
         # @type ClientId: String
         # @param ClientAddress: 客户端网络地址
         # @type ClientAddress: String
-        # @param ProtocolVersion: MQTT 协议版本，4 表示 MQTT 3.1.1
+        # @param ProtocolVersion: MQTT 协议版本
+        # 3：表示MQTT 3.1版本
+        # 4：表示 MQTT 3.1.1
+        # 5:   标识MQTT 5.0协议
         # @type ProtocolVersion: Integer
         # @param Keepalive: 保持连接时间，单位：秒
         # @type Keepalive: Integer
         # @param ConnectionStatus: 连接状态，CONNECTED 已连接，DISCONNECTED 未连接
         # @type ConnectionStatus: String
-        # @param CreateTime: 客户端创建时间
+        # @param CreateTime: 客户端创建时间，毫秒级时间戳 。
         # @type CreateTime: Integer
-        # @param ConnectTime: 上次建立连接时间
+        # @param ConnectTime: 上次建立连接时间，毫秒级时间戳 。
         # @type ConnectTime: Integer
-        # @param DisconnectTime: 上次断开连接时间，仅对持久会话（cleanSession=false）并且客户端当前未连接时有意义
+        # @param DisconnectTime: 上次断开连接时间，仅对持久会话（cleanSession=false）并且客户端当前未连接时有意义，毫秒级时间戳 。
         # @type DisconnectTime: Integer
         # @param MQTTClientSubscriptions: 客户端的订阅列表
         # @type MQTTClientSubscriptions: Array
@@ -2517,6 +2563,9 @@ module TencentCloud
         # @param TopicFilter: topic 订阅
         # @type TopicFilter: String
         # @param Qos: 服务质量等级
+        # 0: 至多一次
+        # 1: 至少一次
+        # 2: 恰好一次
         # @type Qos: Integer
         # @param Lag: 堆积数量
         # @type Lag: Integer
@@ -2767,9 +2816,9 @@ module TencentCloud
         # @type Password: String
         # @param Remark: 备注信息
         # @type Remark: String
-        # @param CreatedTime: 创建时间，秒为单位
+        # @param CreatedTime: 创建时间，毫秒级时间戳 。
         # @type CreatedTime: Integer
-        # @param ModifiedTime: 修改时间，秒为单位
+        # @param ModifiedTime: 修改时间，毫秒级时间戳 。
         # @type ModifiedTime: Integer
 
         attr_accessor :Username, :Password, :Remark, :CreatedTime, :ModifiedTime
@@ -3231,11 +3280,11 @@ module TencentCloud
 
       # ModifyTopic请求参数结构体
       class ModifyTopicRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
+        # @param InstanceId: 腾讯云MQTT实例ID，从 [DescribeInstanceList](https://cloud.tencent.com/document/api/1778/111029)接口或控制台获得。
         # @type InstanceId: String
-        # @param Topic: 主题
+        # @param Topic: 主题，不能为空，只能包含字母、数字、“-”及“_”，3-100 字符。
         # @type Topic: String
-        # @param Remark: 备注信息
+        # @param Remark: 备注信息，最长 128 字符
         # @type Remark: String
 
         attr_accessor :InstanceId, :Topic, :Remark
@@ -3271,11 +3320,11 @@ module TencentCloud
 
       # ModifyUser请求参数结构体
       class ModifyUserRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
+        # @param InstanceId: 实例ID，从 [DescribeInstanceList](https://cloud.tencent.com/document/api/1778/111029)接口或控制台获得。
         # @type InstanceId: String
         # @param Username: 用户名
         # @type Username: String
-        # @param Remark: 备注
+        # @param Remark: 备注，长度不超过128个字符。
         # @type Remark: String
 
         attr_accessor :InstanceId, :Username, :Remark
@@ -3420,9 +3469,9 @@ module TencentCloud
 
       # PublishMessage请求参数结构体
       class PublishMessageRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
+        # @param InstanceId: 腾讯云MQTT实例ID，从 [DescribeInstanceList](https://cloud.tencent.com/document/api/1778/111029)接口或控制台获得。
         # @type InstanceId: String
-        # @param Payload: 消息 payload，需要按 encoding 指定的编码方式进行编码
+        # @param Payload: 消息负载 Payload，是消息的实际内容，需要按 encoding 指定的编码方式进行编码
         # @type Payload: String
         # @param TargetTopic: 消息目的主题，该参数与 TargetClientId 二选一
         # @type TargetTopic: String
@@ -3431,6 +3480,9 @@ module TencentCloud
         # @param Encoding: 消息 payload 编码，可选 plain 或 base64，默认为 plain（即不编码）
         # @type Encoding: String
         # @param Qos: 消息的服务质量等级，默认为 1
+        # QoS 0（至多一次）消息发送后，不保证接收方一定收到，也不要求接收方确认。
+        # QoS 1（至少一次）消息至少被接收方成功接收一次，但可能重复。
+        # QoS 2（恰好一次）消息确保被接收方接收且仅接收一次，无重复。
         # @type Qos: Integer
         # @param Retain: 是否为保留消息，默认为 false，且仅支持发布到主题的消息设置为 true
         # @type Retain: Boolean
@@ -3656,7 +3708,7 @@ module TencentCloud
 
       # UpdateAuthorizationPolicyPriority请求参数结构体
       class UpdateAuthorizationPolicyPriorityRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
+        # @param InstanceId: 腾讯云MQTT实例ID，从 [DescribeInstanceList](https://cloud.tencent.com/document/api/1778/111029)接口或控制台获得。
         # @type InstanceId: String
         # @param Priorities: 策略ID和优先级
         # @type Priorities: Array

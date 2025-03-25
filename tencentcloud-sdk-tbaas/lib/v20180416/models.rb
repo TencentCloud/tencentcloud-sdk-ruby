@@ -174,19 +174,14 @@ module TencentCloud
         # @param Code: 交易结果码
         # @type Code: Integer
         # @param CodeMessage: 交易结果码含义
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CodeMessage: String
         # @param TxId: 交易ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TxId: String
         # @param GasUsed: Gas使用量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GasUsed: Integer
         # @param Message: 合约返回消息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Message: String
         # @param Result: 合约函数返回，base64编码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: String
 
         attr_accessor :Code, :CodeMessage, :TxId, :GasUsed, :Message, :Result
@@ -215,25 +210,18 @@ module TencentCloud
         # @param Code: 交易结果码
         # @type Code: Integer
         # @param CodeMessage: 交易结果码含义
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CodeMessage: String
         # @param TxId: 交易ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TxId: String
         # @param GasUsed: Gas使用量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GasUsed: Integer
         # @param BlockHeight: 区块高度
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BlockHeight: Integer
         # @param ContractEvent: 合约执行结果
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ContractEvent: String
         # @param Message: 合约返回信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Message: String
         # @param Timestamp: 交易时间，单位是秒
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Timestamp: Integer
 
         attr_accessor :Code, :CodeMessage, :TxId, :GasUsed, :BlockHeight, :ContractEvent, :Message, :Timestamp
@@ -1213,7 +1201,6 @@ module TencentCloud
       # InvokeChainMakerDemoContract返回参数结构体
       class InvokeChainMakerDemoContractResponse < TencentCloud::Common::AbstractModel
         # @param Result: 交易结果
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: :class:`Tencentcloud::Tbaas.v20180416.models.ChainMakerContractResult`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1554,12 +1541,10 @@ module TencentCloud
       # QueryChainMakerDemoBlockTransaction返回参数结构体
       class QueryChainMakerDemoBlockTransactionResponse < TencentCloud::Common::AbstractModel
         # @param Result: 区块交易
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: Array
         # @param BlockHeight: 区块高度
         # @type BlockHeight: Integer
         # @param TxCount: 交易数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TxCount: Integer
         # @param BlockTimestamp: 区块时间戳，单位是秒
         # @type BlockTimestamp: Integer
@@ -1627,7 +1612,6 @@ module TencentCloud
       # QueryChainMakerDemoContract返回参数结构体
       class QueryChainMakerDemoContractResponse < TencentCloud::Common::AbstractModel
         # @param Result: 交易结果
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: :class:`Tencentcloud::Tbaas.v20180416.models.ChainMakerContractResult`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1675,7 +1659,6 @@ module TencentCloud
       # QueryChainMakerDemoTransaction返回参数结构体
       class QueryChainMakerDemoTransactionResponse < TencentCloud::Common::AbstractModel
         # @param Result: 交易结果
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: :class:`Tencentcloud::Tbaas.v20180416.models.ChainMakerTransactionResult`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1954,22 +1937,16 @@ module TencentCloud
       # 交易显示概述信息
       class Transaction < TencentCloud::Common::AbstractModel
         # @param TxId: 交易ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TxId: String
         # @param ChaincodeName: 合约名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ChaincodeName: String
         # @param Sender: 交易发送者
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Sender: String
         # @param CreateTime: 交易创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
         # @param BlockHeight: 交易所在区块高度
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BlockHeight: Integer
         # @param TxIndex: 交易在区块中的序号
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TxIndex: Integer
 
         attr_accessor :TxId, :ChaincodeName, :Sender, :CreateTime, :BlockHeight, :TxIndex

@@ -22,12 +22,10 @@ module TencentCloud
         # @param AndroidAppId: 安卓应用 Id
         # @type AndroidAppId: String
         # @param Name: 安卓应用名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param State: 安卓应用状态（上架、下架）
         # @type State: String
         # @param AndroidAppVersionInfo: 安卓应用版本列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AndroidAppVersionInfo: Array
         # @param CreateTime: 安卓应用创建时间
         # @type CreateTime: String
@@ -91,14 +89,12 @@ module TencentCloud
         # @param AndroidInstanceRegion: 实例所在区域
         # @type AndroidInstanceRegion: String
         # @param AndroidInstanceZone: 实例可用区
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AndroidInstanceZone: String
         # @param State: 实例状态：INITIALIZING，NORMAL，PROCESSING
         # @type State: String
         # @param AndroidInstanceType: 实例规格
         # @type AndroidInstanceType: String
         # @param AndroidInstanceImageId: 实例镜像 ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AndroidInstanceImageId: String
         # @param Width: 分辨率宽度
         # @type Width: Integer
@@ -160,13 +156,10 @@ module TencentCloud
       # 安卓实例应用信息
       class AndroidInstanceAppInfo < TencentCloud::Common::AbstractModel
         # @param AndroidAppId: 应用id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AndroidAppId: String
         # @param Name: 应用名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param AndroidAppVersion: 应用版本
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AndroidAppVersion: String
         # @param PackageName: 应用包名
         # @type PackageName: String
@@ -199,16 +192,12 @@ module TencentCloud
       # 安卓实例镜像信息
       class AndroidInstanceImage < TencentCloud::Common::AbstractModel
         # @param AndroidInstanceImageId: 镜像 ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AndroidInstanceImageId: String
         # @param AndroidInstanceImageName: 镜像名称，由业务方自定义，仅用于展示
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AndroidInstanceImageName: String
         # @param AndroidInstanceImageState: 镜像状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AndroidInstanceImageState: String
         # @param AndroidInstanceImageZone: 镜像可用区
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AndroidInstanceImageZone: String
 
         attr_accessor :AndroidInstanceImageId, :AndroidInstanceImageName, :AndroidInstanceImageState, :AndroidInstanceImageZone
@@ -251,10 +240,8 @@ module TencentCloud
       # 安卓实例任务信息
       class AndroidInstanceTask < TencentCloud::Common::AbstractModel
         # @param TaskId: 任务ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskId: String
         # @param AndroidInstanceId: 实例ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AndroidInstanceId: String
 
         attr_accessor :TaskId, :AndroidInstanceId
@@ -279,7 +266,6 @@ module TencentCloud
         # @param AndroidInstanceId: 实例ID
         # @type AndroidInstanceId: String
         # @param TaskResult: 任务执行结果描述，针对某些任务，可以是可解析的 json
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskResult: String
 
         attr_accessor :TaskId, :Status, :AndroidInstanceId, :TaskResult
@@ -414,7 +400,6 @@ module TencentCloud
       # CreateAndroidInstanceImage返回参数结构体
       class CreateAndroidInstanceImageResponse < TencentCloud::Common::AbstractModel
         # @param AndroidInstanceImageId: 安卓实例镜像 ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AndroidInstanceImageId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -840,7 +825,6 @@ module TencentCloud
       # DescribeAndroidApps返回参数结构体
       class DescribeAndroidAppsResponse < TencentCloud::Common::AbstractModel
         # @param Apps: 安卓应用列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Apps: Array
         # @param TotalCount: 安卓应用列表长度
         # @type TotalCount: Integer
@@ -888,7 +872,6 @@ module TencentCloud
       # DescribeAndroidInstanceApps返回参数结构体
       class DescribeAndroidInstanceAppsResponse < TencentCloud::Common::AbstractModel
         # @param Apps: 安卓应用列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Apps: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -940,10 +923,8 @@ module TencentCloud
       # DescribeAndroidInstanceImages返回参数结构体
       class DescribeAndroidInstanceImagesResponse < TencentCloud::Common::AbstractModel
         # @param Total: 镜像总数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Total: Integer
         # @param AndroidInstanceImages: 镜像列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AndroidInstanceImages: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1048,7 +1029,6 @@ module TencentCloud
       # DescribeAndroidInstanceTasksStatus返回参数结构体
       class DescribeAndroidInstanceTasksStatusResponse < TencentCloud::Common::AbstractModel
         # @param TaskStatusSet: 任务状态集合
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskStatusSet: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1299,9 +1279,9 @@ module TencentCloud
 
       # 过滤
       class Filter < TencentCloud::Common::AbstractModel
-        # @param Name: "aaa"
+        # @param Name: 字段名
         # @type Name: String
-        # @param Values: ["bbb", "ccc"]
+        # @param Values: 字段值列表
         # @type Values: Array
 
         attr_accessor :Name, :Values
@@ -1344,7 +1324,6 @@ module TencentCloud
       # InstallAndroidInstancesApp返回参数结构体
       class InstallAndroidInstancesAppResponse < TencentCloud::Common::AbstractModel
         # @param TaskSet: 任务集合
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskSet: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1579,7 +1558,6 @@ module TencentCloud
       # RebootAndroidInstances返回参数结构体
       class RebootAndroidInstancesResponse < TencentCloud::Common::AbstractModel
         # @param TaskSet: 任务集合
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskSet: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1636,7 +1614,6 @@ module TencentCloud
       # ResetAndroidInstances返回参数结构体
       class ResetAndroidInstancesResponse < TencentCloud::Common::AbstractModel
         # @param TaskSet: 任务集合
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskSet: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1788,7 +1765,6 @@ module TencentCloud
       # StartAndroidInstances返回参数结构体
       class StartAndroidInstancesResponse < TencentCloud::Common::AbstractModel
         # @param TaskSet: 任务集合
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskSet: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1940,7 +1916,6 @@ module TencentCloud
       # StopAndroidInstances返回参数结构体
       class StopAndroidInstancesResponse < TencentCloud::Common::AbstractModel
         # @param TaskSet: 任务集合
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskSet: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2196,7 +2171,6 @@ module TencentCloud
         # @param InstanceId: 实例ID
         # @type InstanceId: String
         # @param Output: 命令执行输出内容
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Output: String
         # @param Status: 命令执行结果
         # @type Status: String
@@ -2295,7 +2269,6 @@ module TencentCloud
       # UninstallAndroidInstancesApp返回参数结构体
       class UninstallAndroidInstancesAppResponse < TencentCloud::Common::AbstractModel
         # @param TaskSet: 任务集合
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskSet: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

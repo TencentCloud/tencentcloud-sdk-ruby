@@ -1190,7 +1190,6 @@ module TencentCloud
       # 集群间绑定使用信息
       class ClusterRelationMeta < TencentCloud::Common::AbstractModel
         # @param ClusterType: 集群类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterType: String
         # @param ClusterIdList: 集群id列表
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -2043,7 +2042,6 @@ module TencentCloud
       # CreateInstance返回参数结构体
       class CreateInstanceResponse < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4478,13 +4476,11 @@ module TencentCloud
       # DescribeServiceNodeInfos返回参数结构体
       class DescribeServiceNodeInfosResponse < TencentCloud::Common::AbstractModel
         # @param TotalCnt: 总数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCnt: Integer
         # @param ServiceNodeList: 进程信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ServiceNodeList: Array
         # @param AliasInfo: 集群所有节点的别名序列化
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AliasInfo: String
         # @param SupportNodeFlagFilterList: 支持的FlagNode列表
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -4938,7 +4934,6 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tasks: Array
         # @param Total: 任务详情总数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Total: Integer
         # @param SchedulerNameList: 调度类型筛选列表
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -5274,7 +5269,6 @@ module TencentCloud
         # @param ClusterId: 集群ID
         # @type ClusterId: String
         # @param StatusDesc: 常见状态描述：集群生产中,集群运行中,集群创建中,集群已关闭,集群已删除
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StatusDesc: String
         # @param ClusterName: 集群名字
         # @type ClusterName: String
@@ -5295,69 +5289,53 @@ module TencentCloud
         # @param Id: emr ID
         # @type Id: Integer
         # @param ProductId: 产品ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProductId: Integer
         # @param ProjectId: 项目ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProjectId: Integer
         # @param RegionId: 区域
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RegionId: Integer
         # @param SubnetId: 子网ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubnetId: Integer
         # @param VpcId: 网络ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VpcId: Integer
         # @param Zone: 地区
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Zone: String
         # @param Status: 状态码, 取值为-2(集群已删除), -1(集群已关闭), 0(集群生产中), 2(集群运行中), 3(集群创建中)
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
         # @param Tags: 实例标签
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
         # @param AlarmInfo: 告警信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AlarmInfo: String
         # @param IsWoodpeckerCluster: 是否是woodpecker集群
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsWoodpeckerCluster: Integer
         # @param VpcName: Vpc中文
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VpcName: String
         # @param SubnetName: 子网中文
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubnetName: String
         # @param UniqVpcId: 字符串VpcId
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UniqVpcId: String
         # @param UniqSubnetId: 字符串子网
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UniqSubnetId: String
         # @param ClusterClass: 集群类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterClass: String
         # @param IsMultiZoneCluster: 是否为跨AZ集群
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsMultiZoneCluster: Boolean
         # @param IsHandsCluster: 是否手戳集群
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsHandsCluster: Boolean
         # @param OutSideSoftInfo: 体外客户端组件信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OutSideSoftInfo: Array
         # @param IsSupportOutsideCluster: 当前集群的应用场景是否支持体外客户端
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsSupportOutsideCluster: Boolean
         # @param IsDedicatedCluster: 是否专有集群场景集群
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsDedicatedCluster: Boolean
+        # @param IsSupportClone: 集群支持克隆
+        # @type IsSupportClone: Boolean
 
-        attr_accessor :ClusterId, :StatusDesc, :ClusterName, :ZoneId, :AppId, :AddTime, :RunTime, :MasterIp, :EmrVersion, :ChargeType, :Id, :ProductId, :ProjectId, :RegionId, :SubnetId, :VpcId, :Zone, :Status, :Tags, :AlarmInfo, :IsWoodpeckerCluster, :VpcName, :SubnetName, :UniqVpcId, :UniqSubnetId, :ClusterClass, :IsMultiZoneCluster, :IsHandsCluster, :OutSideSoftInfo, :IsSupportOutsideCluster, :IsDedicatedCluster
+        attr_accessor :ClusterId, :StatusDesc, :ClusterName, :ZoneId, :AppId, :AddTime, :RunTime, :MasterIp, :EmrVersion, :ChargeType, :Id, :ProductId, :ProjectId, :RegionId, :SubnetId, :VpcId, :Zone, :Status, :Tags, :AlarmInfo, :IsWoodpeckerCluster, :VpcName, :SubnetName, :UniqVpcId, :UniqSubnetId, :ClusterClass, :IsMultiZoneCluster, :IsHandsCluster, :OutSideSoftInfo, :IsSupportOutsideCluster, :IsDedicatedCluster, :IsSupportClone
 
-        def initialize(clusterid=nil, statusdesc=nil, clustername=nil, zoneid=nil, appid=nil, addtime=nil, runtime=nil, masterip=nil, emrversion=nil, chargetype=nil, id=nil, productid=nil, projectid=nil, regionid=nil, subnetid=nil, vpcid=nil, zone=nil, status=nil, tags=nil, alarminfo=nil, iswoodpeckercluster=nil, vpcname=nil, subnetname=nil, uniqvpcid=nil, uniqsubnetid=nil, clusterclass=nil, ismultizonecluster=nil, ishandscluster=nil, outsidesoftinfo=nil, issupportoutsidecluster=nil, isdedicatedcluster=nil)
+        def initialize(clusterid=nil, statusdesc=nil, clustername=nil, zoneid=nil, appid=nil, addtime=nil, runtime=nil, masterip=nil, emrversion=nil, chargetype=nil, id=nil, productid=nil, projectid=nil, regionid=nil, subnetid=nil, vpcid=nil, zone=nil, status=nil, tags=nil, alarminfo=nil, iswoodpeckercluster=nil, vpcname=nil, subnetname=nil, uniqvpcid=nil, uniqsubnetid=nil, clusterclass=nil, ismultizonecluster=nil, ishandscluster=nil, outsidesoftinfo=nil, issupportoutsidecluster=nil, isdedicatedcluster=nil, issupportclone=nil)
           @ClusterId = clusterid
           @StatusDesc = statusdesc
           @ClusterName = clustername
@@ -5389,6 +5367,7 @@ module TencentCloud
           @OutSideSoftInfo = outsidesoftinfo
           @IsSupportOutsideCluster = issupportoutsidecluster
           @IsDedicatedCluster = isdedicatedcluster
+          @IsSupportClone = issupportclone
         end
 
         def deserialize(params)
@@ -5437,6 +5416,7 @@ module TencentCloud
           end
           @IsSupportOutsideCluster = params['IsSupportOutsideCluster']
           @IsDedicatedCluster = params['IsDedicatedCluster']
+          @IsSupportClone = params['IsSupportClone']
         end
       end
 
@@ -8215,10 +8195,8 @@ module TencentCloud
       # ModifyYarnDeploy返回参数结构体
       class ModifyYarnDeployResponse < TencentCloud::Common::AbstractModel
         # @param IsDraft: 为false不点亮部署生效、重置
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsDraft: Boolean
         # @param ErrorMsg: 错误信息，预留
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrorMsg: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -10248,7 +10226,6 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NotRepeat: :class:`Tencentcloud::Emr.v20190103.models.NotRepeatStrategy`
         # @param Expire: 规则过期时间，超过该时间后，规则将自动置为暂停状态，形式为"2020-07-23 00:00:00"。必须填写
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Expire: String
         # @param StartTime: 周期性规则开始时间
         # @type StartTime: String

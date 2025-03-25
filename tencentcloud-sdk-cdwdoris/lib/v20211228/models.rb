@@ -25,13 +25,19 @@ module TencentCloud
         # @type ApiType: String
         # @param UserPrivilege: 用户权限类型 0:普通用户 1:管理员
         # @type UserPrivilege: Integer
+        # @param ComputeGroups: 计算组列表
+        # @type ComputeGroups: Array
+        # @param InstanceId: 集群ID
+        # @type InstanceId: String
 
-        attr_accessor :UserInfo, :ApiType, :UserPrivilege
+        attr_accessor :UserInfo, :ApiType, :UserPrivilege, :ComputeGroups, :InstanceId
 
-        def initialize(userinfo=nil, apitype=nil, userprivilege=nil)
+        def initialize(userinfo=nil, apitype=nil, userprivilege=nil, computegroups=nil, instanceid=nil)
           @UserInfo = userinfo
           @ApiType = apitype
           @UserPrivilege = userprivilege
+          @ComputeGroups = computegroups
+          @InstanceId = instanceid
         end
 
         def deserialize(params)
@@ -41,6 +47,8 @@ module TencentCloud
           end
           @ApiType = params['ApiType']
           @UserPrivilege = params['UserPrivilege']
+          @ComputeGroups = params['ComputeGroups']
+          @InstanceId = params['InstanceId']
         end
       end
 
@@ -472,6 +480,8 @@ module TencentCloud
 
       # 用于返回XML格式的配置文件和内容以及其他配置文件有关的信息
       class ClusterConfigsInfoFromEMR < TencentCloud::Common::AbstractModel
+        # @param ComputeGroupId: 计算组id
+        # @type ComputeGroupId: String
         # @param FileName: 配置文件名称
         # @type FileName: String
         # @param FileConf: 配置文件对应的相关属性信息
@@ -490,12 +500,13 @@ module TencentCloud
         # @param FileKeyValuesNew: 配置文件kv值
         # @type FileKeyValuesNew: Array
 
-        attr_accessor :FileName, :FileConf, :KeyConf, :OriParam, :NeedRestart, :FilePath, :FileKeyValues, :FileKeyValuesNew
+        attr_accessor :ComputeGroupId, :FileName, :FileConf, :KeyConf, :OriParam, :NeedRestart, :FilePath, :FileKeyValues, :FileKeyValuesNew
         extend Gem::Deprecate
         deprecate :FileKeyValues, :none, 2025, 3
         deprecate :FileKeyValues=, :none, 2025, 3
 
-        def initialize(filename=nil, fileconf=nil, keyconf=nil, oriparam=nil, needrestart=nil, filepath=nil, filekeyvalues=nil, filekeyvaluesnew=nil)
+        def initialize(computegroupid=nil, filename=nil, fileconf=nil, keyconf=nil, oriparam=nil, needrestart=nil, filepath=nil, filekeyvalues=nil, filekeyvaluesnew=nil)
+          @ComputeGroupId = computegroupid
           @FileName = filename
           @FileConf = fileconf
           @KeyConf = keyconf
@@ -507,6 +518,7 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @ComputeGroupId = params['ComputeGroupId']
           @FileName = params['FileName']
           @FileConf = params['FileConf']
           @KeyConf = params['KeyConf']
@@ -1094,10 +1106,12 @@ module TencentCloud
         # @type State: String
         # @param IsQuery: 是否是查询
         # @type IsQuery: Boolean
+        # @param ComputeGroup: 计算组
+        # @type ComputeGroup: String
 
-        attr_accessor :OsUser, :InitialQueryId, :Sql, :QueryStartTime, :DurationMs, :ReadRows, :ResultRows, :ResultBytes, :MemoryUsage, :InitialAddress, :DbName, :SqlType, :Catalog, :State, :IsQuery
+        attr_accessor :OsUser, :InitialQueryId, :Sql, :QueryStartTime, :DurationMs, :ReadRows, :ResultRows, :ResultBytes, :MemoryUsage, :InitialAddress, :DbName, :SqlType, :Catalog, :State, :IsQuery, :ComputeGroup
 
-        def initialize(osuser=nil, initialqueryid=nil, sql=nil, querystarttime=nil, durationms=nil, readrows=nil, resultrows=nil, resultbytes=nil, memoryusage=nil, initialaddress=nil, dbname=nil, sqltype=nil, catalog=nil, state=nil, isquery=nil)
+        def initialize(osuser=nil, initialqueryid=nil, sql=nil, querystarttime=nil, durationms=nil, readrows=nil, resultrows=nil, resultbytes=nil, memoryusage=nil, initialaddress=nil, dbname=nil, sqltype=nil, catalog=nil, state=nil, isquery=nil, computegroup=nil)
           @OsUser = osuser
           @InitialQueryId = initialqueryid
           @Sql = sql
@@ -1113,6 +1127,7 @@ module TencentCloud
           @Catalog = catalog
           @State = state
           @IsQuery = isquery
+          @ComputeGroup = computegroup
         end
 
         def deserialize(params)
@@ -1131,6 +1146,7 @@ module TencentCloud
           @Catalog = params['Catalog']
           @State = params['State']
           @IsQuery = params['IsQuery']
+          @ComputeGroup = params['ComputeGroup']
         end
       end
 
@@ -1892,10 +1908,12 @@ module TencentCloud
         # @type Catalogs: Array
         # @param IsQuery: 是否是查询
         # @type IsQuery: Array
+        # @param ComputeGroups: 计算组列表
+        # @type ComputeGroups: Array
 
-        attr_accessor :InstanceId, :StartTime, :EndTime, :PageSize, :PageNum, :OrderType, :User, :DbName, :SqlType, :Sql, :Users, :DbNames, :SqlTypes, :Catalogs, :IsQuery
+        attr_accessor :InstanceId, :StartTime, :EndTime, :PageSize, :PageNum, :OrderType, :User, :DbName, :SqlType, :Sql, :Users, :DbNames, :SqlTypes, :Catalogs, :IsQuery, :ComputeGroups
 
-        def initialize(instanceid=nil, starttime=nil, endtime=nil, pagesize=nil, pagenum=nil, ordertype=nil, user=nil, dbname=nil, sqltype=nil, sql=nil, users=nil, dbnames=nil, sqltypes=nil, catalogs=nil, isquery=nil)
+        def initialize(instanceid=nil, starttime=nil, endtime=nil, pagesize=nil, pagenum=nil, ordertype=nil, user=nil, dbname=nil, sqltype=nil, sql=nil, users=nil, dbnames=nil, sqltypes=nil, catalogs=nil, isquery=nil, computegroups=nil)
           @InstanceId = instanceid
           @StartTime = starttime
           @EndTime = endtime
@@ -1911,6 +1929,7 @@ module TencentCloud
           @SqlTypes = sqltypes
           @Catalogs = catalogs
           @IsQuery = isquery
+          @ComputeGroups = computegroups
         end
 
         def deserialize(params)
@@ -1929,6 +1948,7 @@ module TencentCloud
           @SqlTypes = params['SqlTypes']
           @Catalogs = params['Catalogs']
           @IsQuery = params['IsQuery']
+          @ComputeGroups = params['ComputeGroups']
         end
       end
 
@@ -1984,10 +2004,12 @@ module TencentCloud
         # @type Catalogs: Array
         # @param IsQuery: 是否是查询
         # @type IsQuery: Array
+        # @param ComputeGroups: 计算组列表
+        # @type ComputeGroups: Array
 
-        attr_accessor :InstanceId, :StartTime, :EndTime, :PageSize, :PageNum, :OrderType, :User, :DbName, :SqlType, :Sql, :Users, :DbNames, :SqlTypes, :Catalogs, :IsQuery
+        attr_accessor :InstanceId, :StartTime, :EndTime, :PageSize, :PageNum, :OrderType, :User, :DbName, :SqlType, :Sql, :Users, :DbNames, :SqlTypes, :Catalogs, :IsQuery, :ComputeGroups
 
-        def initialize(instanceid=nil, starttime=nil, endtime=nil, pagesize=nil, pagenum=nil, ordertype=nil, user=nil, dbname=nil, sqltype=nil, sql=nil, users=nil, dbnames=nil, sqltypes=nil, catalogs=nil, isquery=nil)
+        def initialize(instanceid=nil, starttime=nil, endtime=nil, pagesize=nil, pagenum=nil, ordertype=nil, user=nil, dbname=nil, sqltype=nil, sql=nil, users=nil, dbnames=nil, sqltypes=nil, catalogs=nil, isquery=nil, computegroups=nil)
           @InstanceId = instanceid
           @StartTime = starttime
           @EndTime = endtime
@@ -2003,6 +2025,7 @@ module TencentCloud
           @SqlTypes = sqltypes
           @Catalogs = catalogs
           @IsQuery = isquery
+          @ComputeGroups = computegroups
         end
 
         def deserialize(params)
@@ -2021,6 +2044,7 @@ module TencentCloud
           @SqlTypes = params['SqlTypes']
           @Catalogs = params['Catalogs']
           @IsQuery = params['IsQuery']
+          @ComputeGroups = params['ComputeGroups']
         end
       end
 
@@ -2266,15 +2290,18 @@ module TencentCloud
         # @type StartTime: String
         # @param EndTime: 结束时间
         # @type EndTime: String
+        # @param ComputeGroupId: 计算组ID
+        # @type ComputeGroupId: String
 
-        attr_accessor :InstanceId, :Offset, :Limit, :StartTime, :EndTime
+        attr_accessor :InstanceId, :Offset, :Limit, :StartTime, :EndTime, :ComputeGroupId
 
-        def initialize(instanceid=nil, offset=nil, limit=nil, starttime=nil, endtime=nil)
+        def initialize(instanceid=nil, offset=nil, limit=nil, starttime=nil, endtime=nil, computegroupid=nil)
           @InstanceId = instanceid
           @Offset = offset
           @Limit = limit
           @StartTime = starttime
           @EndTime = endtime
+          @ComputeGroupId = computegroupid
         end
 
         def deserialize(params)
@@ -2283,6 +2310,7 @@ module TencentCloud
           @Limit = params['Limit']
           @StartTime = params['StartTime']
           @EndTime = params['EndTime']
+          @ComputeGroupId = params['ComputeGroupId']
         end
       end
 
@@ -2507,15 +2535,18 @@ module TencentCloud
         # @type Limit: Integer
         # @param SearchTags: 搜索标签列表，没匹配到则不过滤集群列表
         # @type SearchTags: Array
+        # @param InstanceType: 0 : 存算一体,1：存算分离,2:ALL
+        # @type InstanceType: Integer
 
-        attr_accessor :SearchInstanceId, :SearchInstanceName, :Offset, :Limit, :SearchTags
+        attr_accessor :SearchInstanceId, :SearchInstanceName, :Offset, :Limit, :SearchTags, :InstanceType
 
-        def initialize(searchinstanceid=nil, searchinstancename=nil, offset=nil, limit=nil, searchtags=nil)
+        def initialize(searchinstanceid=nil, searchinstancename=nil, offset=nil, limit=nil, searchtags=nil, instancetype=nil)
           @SearchInstanceId = searchinstanceid
           @SearchInstanceName = searchinstancename
           @Offset = offset
           @Limit = limit
           @SearchTags = searchtags
+          @InstanceType = instancetype
         end
 
         def deserialize(params)
@@ -2531,6 +2562,7 @@ module TencentCloud
               @SearchTags << searchtags_tmp
             end
           end
+          @InstanceType = params['InstanceType']
         end
       end
 
@@ -2648,10 +2680,12 @@ module TencentCloud
         # @type SortOrder: String
         # @param UserName: user
         # @type UserName: String
+        # @param ComputeGroups: 计算组列表
+        # @type ComputeGroups: Array
 
-        attr_accessor :InstanceId, :QueryDurationMs, :StartTime, :EndTime, :DurationMs, :Sql, :ReadRows, :ResultBytes, :MemoryUsage, :IsQuery, :DbName, :CatalogName, :SortField, :SortOrder, :UserName
+        attr_accessor :InstanceId, :QueryDurationMs, :StartTime, :EndTime, :DurationMs, :Sql, :ReadRows, :ResultBytes, :MemoryUsage, :IsQuery, :DbName, :CatalogName, :SortField, :SortOrder, :UserName, :ComputeGroups
 
-        def initialize(instanceid=nil, querydurationms=nil, starttime=nil, endtime=nil, durationms=nil, sql=nil, readrows=nil, resultbytes=nil, memoryusage=nil, isquery=nil, dbname=nil, catalogname=nil, sortfield=nil, sortorder=nil, username=nil)
+        def initialize(instanceid=nil, querydurationms=nil, starttime=nil, endtime=nil, durationms=nil, sql=nil, readrows=nil, resultbytes=nil, memoryusage=nil, isquery=nil, dbname=nil, catalogname=nil, sortfield=nil, sortorder=nil, username=nil, computegroups=nil)
           @InstanceId = instanceid
           @QueryDurationMs = querydurationms
           @StartTime = starttime
@@ -2667,6 +2701,7 @@ module TencentCloud
           @SortField = sortfield
           @SortOrder = sortorder
           @UserName = username
+          @ComputeGroups = computegroups
         end
 
         def deserialize(params)
@@ -2685,6 +2720,7 @@ module TencentCloud
           @SortField = params['SortField']
           @SortOrder = params['SortOrder']
           @UserName = params['UserName']
+          @ComputeGroups = params['ComputeGroups']
         end
       end
 
@@ -2744,10 +2780,12 @@ module TencentCloud
         # @type SortOrder: String
         # @param UserName: user
         # @type UserName: String
+        # @param ComputeGroups: 计算组列表
+        # @type ComputeGroups: Array
 
-        attr_accessor :InstanceId, :QueryDurationMs, :StartTime, :EndTime, :PageSize, :PageNum, :DurationMs, :DbName, :IsQuery, :CatalogName, :Sql, :ReadRows, :ResultBytes, :MemoryUsage, :SortField, :SortOrder, :UserName
+        attr_accessor :InstanceId, :QueryDurationMs, :StartTime, :EndTime, :PageSize, :PageNum, :DurationMs, :DbName, :IsQuery, :CatalogName, :Sql, :ReadRows, :ResultBytes, :MemoryUsage, :SortField, :SortOrder, :UserName, :ComputeGroups
 
-        def initialize(instanceid=nil, querydurationms=nil, starttime=nil, endtime=nil, pagesize=nil, pagenum=nil, durationms=nil, dbname=nil, isquery=nil, catalogname=nil, sql=nil, readrows=nil, resultbytes=nil, memoryusage=nil, sortfield=nil, sortorder=nil, username=nil)
+        def initialize(instanceid=nil, querydurationms=nil, starttime=nil, endtime=nil, pagesize=nil, pagenum=nil, durationms=nil, dbname=nil, isquery=nil, catalogname=nil, sql=nil, readrows=nil, resultbytes=nil, memoryusage=nil, sortfield=nil, sortorder=nil, username=nil, computegroups=nil)
           @InstanceId = instanceid
           @QueryDurationMs = querydurationms
           @StartTime = starttime
@@ -2765,6 +2803,7 @@ module TencentCloud
           @SortField = sortfield
           @SortOrder = sortorder
           @UserName = username
+          @ComputeGroups = computegroups
         end
 
         def deserialize(params)
@@ -2785,6 +2824,7 @@ module TencentCloud
           @SortField = params['SortField']
           @SortOrder = params['SortOrder']
           @UserName = params['UserName']
+          @ComputeGroups = params['ComputeGroups']
         end
       end
 
@@ -2837,14 +2877,17 @@ module TencentCloud
         # @type Zones: Array
         # @param SpecName: 机型名称
         # @type SpecName: String
+        # @param IsSSC: 是否存算分离
+        # @type IsSSC: Boolean
 
-        attr_accessor :Zone, :PayMode, :Zones, :SpecName
+        attr_accessor :Zone, :PayMode, :Zones, :SpecName, :IsSSC
 
-        def initialize(zone=nil, paymode=nil, zones=nil, specname=nil)
+        def initialize(zone=nil, paymode=nil, zones=nil, specname=nil, isssc=nil)
           @Zone = zone
           @PayMode = paymode
           @Zones = zones
           @SpecName = specname
+          @IsSSC = isssc
         end
 
         def deserialize(params)
@@ -2852,6 +2895,7 @@ module TencentCloud
           @PayMode = params['PayMode']
           @Zones = params['Zones']
           @SpecName = params['SpecName']
+          @IsSSC = params['IsSSC']
         end
       end
 
@@ -3420,13 +3464,15 @@ module TencentCloud
         # @type MonitorMode: Integer
         # @param CNSummary: cn节点信息
         # @type CNSummary: :class:`Tencentcloud::Cdwdoris.v20211228.models.NodesSummary`
+        # @param ComputeGroupCount: 计算组个数
+        # @type ComputeGroupCount: Integer
 
-        attr_accessor :InstanceId, :InstanceName, :Status, :Version, :Region, :Zone, :VpcId, :SubnetId, :PayMode, :CreateTime, :ExpireTime, :MasterSummary, :CoreSummary, :HA, :HaType, :AccessInfo, :Id, :RegionId, :ZoneDesc, :FlowMsg, :StatusDesc, :RenewFlag, :Tags, :Monitor, :HasClsTopic, :ClsTopicId, :ClsLogSetId, :EnableXMLConfig, :RegionDesc, :Eip, :CosMoveFactor, :Kind, :CosBucketName, :CanAttachCbs, :BuildVersion, :Components, :IfExistCatalog, :Characteristic, :RestartTimeout, :GraceShutdownWaitSeconds, :CaseSensitive, :IsWhiteSGs, :BindSGs, :EnableMultiZones, :UserNetworkInfos, :EnableCoolDown, :CoolDownBucket, :Details, :EnableDlc, :AccountType, :MonitorMode, :CNSummary
+        attr_accessor :InstanceId, :InstanceName, :Status, :Version, :Region, :Zone, :VpcId, :SubnetId, :PayMode, :CreateTime, :ExpireTime, :MasterSummary, :CoreSummary, :HA, :HaType, :AccessInfo, :Id, :RegionId, :ZoneDesc, :FlowMsg, :StatusDesc, :RenewFlag, :Tags, :Monitor, :HasClsTopic, :ClsTopicId, :ClsLogSetId, :EnableXMLConfig, :RegionDesc, :Eip, :CosMoveFactor, :Kind, :CosBucketName, :CanAttachCbs, :BuildVersion, :Components, :IfExistCatalog, :Characteristic, :RestartTimeout, :GraceShutdownWaitSeconds, :CaseSensitive, :IsWhiteSGs, :BindSGs, :EnableMultiZones, :UserNetworkInfos, :EnableCoolDown, :CoolDownBucket, :Details, :EnableDlc, :AccountType, :MonitorMode, :CNSummary, :ComputeGroupCount
         extend Gem::Deprecate
         deprecate :IfExistCatalog, :none, 2025, 3
         deprecate :IfExistCatalog=, :none, 2025, 3
 
-        def initialize(instanceid=nil, instancename=nil, status=nil, version=nil, region=nil, zone=nil, vpcid=nil, subnetid=nil, paymode=nil, createtime=nil, expiretime=nil, mastersummary=nil, coresummary=nil, ha=nil, hatype=nil, accessinfo=nil, id=nil, regionid=nil, zonedesc=nil, flowmsg=nil, statusdesc=nil, renewflag=nil, tags=nil, monitor=nil, hasclstopic=nil, clstopicid=nil, clslogsetid=nil, enablexmlconfig=nil, regiondesc=nil, eip=nil, cosmovefactor=nil, kind=nil, cosbucketname=nil, canattachcbs=nil, buildversion=nil, components=nil, ifexistcatalog=nil, characteristic=nil, restarttimeout=nil, graceshutdownwaitseconds=nil, casesensitive=nil, iswhitesgs=nil, bindsgs=nil, enablemultizones=nil, usernetworkinfos=nil, enablecooldown=nil, cooldownbucket=nil, details=nil, enabledlc=nil, accounttype=nil, monitormode=nil, cnsummary=nil)
+        def initialize(instanceid=nil, instancename=nil, status=nil, version=nil, region=nil, zone=nil, vpcid=nil, subnetid=nil, paymode=nil, createtime=nil, expiretime=nil, mastersummary=nil, coresummary=nil, ha=nil, hatype=nil, accessinfo=nil, id=nil, regionid=nil, zonedesc=nil, flowmsg=nil, statusdesc=nil, renewflag=nil, tags=nil, monitor=nil, hasclstopic=nil, clstopicid=nil, clslogsetid=nil, enablexmlconfig=nil, regiondesc=nil, eip=nil, cosmovefactor=nil, kind=nil, cosbucketname=nil, canattachcbs=nil, buildversion=nil, components=nil, ifexistcatalog=nil, characteristic=nil, restarttimeout=nil, graceshutdownwaitseconds=nil, casesensitive=nil, iswhitesgs=nil, bindsgs=nil, enablemultizones=nil, usernetworkinfos=nil, enablecooldown=nil, cooldownbucket=nil, details=nil, enabledlc=nil, accounttype=nil, monitormode=nil, cnsummary=nil, computegroupcount=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @Status = status
@@ -3479,6 +3525,7 @@ module TencentCloud
           @AccountType = accounttype
           @MonitorMode = monitormode
           @CNSummary = cnsummary
+          @ComputeGroupCount = computegroupcount
         end
 
         def deserialize(params)
@@ -3553,6 +3600,7 @@ module TencentCloud
             @CNSummary = NodesSummary.new
             @CNSummary.deserialize(params['CNSummary'])
           end
+          @ComputeGroupCount = params['ComputeGroupCount']
         end
       end
 
@@ -3584,10 +3632,12 @@ module TencentCloud
         # @type Zone: String
         # @param CreateTime: 创建时间
         # @type CreateTime: String
+        # @param ComputeGroupId: 计算组ID
+        # @type ComputeGroupId: String
 
-        attr_accessor :Ip, :Spec, :Core, :Memory, :DiskType, :DiskSize, :Role, :Status, :Rip, :FeRole, :UUID, :Zone, :CreateTime
+        attr_accessor :Ip, :Spec, :Core, :Memory, :DiskType, :DiskSize, :Role, :Status, :Rip, :FeRole, :UUID, :Zone, :CreateTime, :ComputeGroupId
 
-        def initialize(ip=nil, spec=nil, core=nil, memory=nil, disktype=nil, disksize=nil, role=nil, status=nil, rip=nil, ferole=nil, uuid=nil, zone=nil, createtime=nil)
+        def initialize(ip=nil, spec=nil, core=nil, memory=nil, disktype=nil, disksize=nil, role=nil, status=nil, rip=nil, ferole=nil, uuid=nil, zone=nil, createtime=nil, computegroupid=nil)
           @Ip = ip
           @Spec = spec
           @Core = core
@@ -3601,6 +3651,7 @@ module TencentCloud
           @UUID = uuid
           @Zone = zone
           @CreateTime = createtime
+          @ComputeGroupId = computegroupid
         end
 
         def deserialize(params)
@@ -3617,6 +3668,7 @@ module TencentCloud
           @UUID = params['UUID']
           @Zone = params['Zone']
           @CreateTime = params['CreateTime']
+          @ComputeGroupId = params['ComputeGroupId']
         end
       end
 
@@ -3644,10 +3696,12 @@ module TencentCloud
         # @type JobId: Integer
         # @param OperationDetail: 操作明细
         # @type OperationDetail: String
+        # @param ComputerGroupId: 计算组id
+        # @type ComputerGroupId: String
 
-        attr_accessor :Name, :Result, :Desc, :Level, :LevelDesc, :StartTime, :EndTime, :ResultDesc, :OperateUin, :JobId, :OperationDetail
+        attr_accessor :Name, :Result, :Desc, :Level, :LevelDesc, :StartTime, :EndTime, :ResultDesc, :OperateUin, :JobId, :OperationDetail, :ComputerGroupId
 
-        def initialize(name=nil, result=nil, desc=nil, level=nil, leveldesc=nil, starttime=nil, endtime=nil, resultdesc=nil, operateuin=nil, jobid=nil, operationdetail=nil)
+        def initialize(name=nil, result=nil, desc=nil, level=nil, leveldesc=nil, starttime=nil, endtime=nil, resultdesc=nil, operateuin=nil, jobid=nil, operationdetail=nil, computergroupid=nil)
           @Name = name
           @Result = result
           @Desc = desc
@@ -3659,6 +3713,7 @@ module TencentCloud
           @OperateUin = operateuin
           @JobId = jobid
           @OperationDetail = operationdetail
+          @ComputerGroupId = computergroupid
         end
 
         def deserialize(params)
@@ -3673,6 +3728,7 @@ module TencentCloud
           @OperateUin = params['OperateUin']
           @JobId = params['JobId']
           @OperationDetail = params['OperationDetail']
+          @ComputerGroupId = params['ComputerGroupId']
         end
       end
 
@@ -4086,14 +4142,20 @@ module TencentCloud
         # @type UserPrivileges: :class:`Tencentcloud::Cdwdoris.v20211228.models.UpdateUserPrivileges`
         # @param WhiteHost: 用户链接来自的 IP
         # @type WhiteHost: String
+        # @param UpdateType: 更新类型，默认0，1为更新绑定计算组
+        # @type UpdateType: Integer
+        # @param UpdateComputeGroups: 需绑定计算组列表
+        # @type UpdateComputeGroups: Array
 
-        attr_accessor :InstanceId, :UserName, :UserPrivileges, :WhiteHost
+        attr_accessor :InstanceId, :UserName, :UserPrivileges, :WhiteHost, :UpdateType, :UpdateComputeGroups
 
-        def initialize(instanceid=nil, username=nil, userprivileges=nil, whitehost=nil)
+        def initialize(instanceid=nil, username=nil, userprivileges=nil, whitehost=nil, updatetype=nil, updatecomputegroups=nil)
           @InstanceId = instanceid
           @UserName = username
           @UserPrivileges = userprivileges
           @WhiteHost = whitehost
+          @UpdateType = updatetype
+          @UpdateComputeGroups = updatecomputegroups
         end
 
         def deserialize(params)
@@ -4104,6 +4166,8 @@ module TencentCloud
             @UserPrivileges.deserialize(params['UserPrivileges'])
           end
           @WhiteHost = params['WhiteHost']
+          @UpdateType = params['UpdateType']
+          @UpdateComputeGroups = params['UpdateComputeGroups']
         end
       end
 
@@ -4302,10 +4366,14 @@ module TencentCloud
         # @type Zone: String
         # @param CreateTime: 创建时间
         # @type CreateTime: String
+        # @param ComputeGroupId: 计算组id
+        # @type ComputeGroupId: String
+        # @param RIp: rip
+        # @type RIp: String
 
-        attr_accessor :NodeName, :Status, :Ip, :NodeRole, :ComponentName, :LastRestartTime, :Id, :Zone, :CreateTime
+        attr_accessor :NodeName, :Status, :Ip, :NodeRole, :ComponentName, :LastRestartTime, :Id, :Zone, :CreateTime, :ComputeGroupId, :RIp
 
-        def initialize(nodename=nil, status=nil, ip=nil, noderole=nil, componentname=nil, lastrestarttime=nil, id=nil, zone=nil, createtime=nil)
+        def initialize(nodename=nil, status=nil, ip=nil, noderole=nil, componentname=nil, lastrestarttime=nil, id=nil, zone=nil, createtime=nil, computegroupid=nil, rip=nil)
           @NodeName = nodename
           @Status = status
           @Ip = ip
@@ -4315,6 +4383,8 @@ module TencentCloud
           @Id = id
           @Zone = zone
           @CreateTime = createtime
+          @ComputeGroupId = computegroupid
+          @RIp = rip
         end
 
         def deserialize(params)
@@ -4327,6 +4397,8 @@ module TencentCloud
           @Id = params['Id']
           @Zone = params['Zone']
           @CreateTime = params['CreateTime']
+          @ComputeGroupId = params['ComputeGroupId']
+          @RIp = params['RIp']
         end
       end
 
@@ -5281,10 +5353,12 @@ module TencentCloud
         # @type CatalogName: String
         # @param CpuTimeMs: cpu执行时间
         # @type CpuTimeMs: Integer
+        # @param ComputeGroup: 计算组
+        # @type ComputeGroup: String
 
-        attr_accessor :OsUser, :InitialQueryId, :Sql, :QueryStartTime, :DurationMs, :ReadRows, :ResultRows, :ResultBytes, :MemoryUsage, :InitialAddress, :DbName, :IsQuery, :ResultBytesMB, :MemoryUsageMB, :DurationSec, :State, :CatalogName, :CpuTimeMs
+        attr_accessor :OsUser, :InitialQueryId, :Sql, :QueryStartTime, :DurationMs, :ReadRows, :ResultRows, :ResultBytes, :MemoryUsage, :InitialAddress, :DbName, :IsQuery, :ResultBytesMB, :MemoryUsageMB, :DurationSec, :State, :CatalogName, :CpuTimeMs, :ComputeGroup
 
-        def initialize(osuser=nil, initialqueryid=nil, sql=nil, querystarttime=nil, durationms=nil, readrows=nil, resultrows=nil, resultbytes=nil, memoryusage=nil, initialaddress=nil, dbname=nil, isquery=nil, resultbytesmb=nil, memoryusagemb=nil, durationsec=nil, state=nil, catalogname=nil, cputimems=nil)
+        def initialize(osuser=nil, initialqueryid=nil, sql=nil, querystarttime=nil, durationms=nil, readrows=nil, resultrows=nil, resultbytes=nil, memoryusage=nil, initialaddress=nil, dbname=nil, isquery=nil, resultbytesmb=nil, memoryusagemb=nil, durationsec=nil, state=nil, catalogname=nil, cputimems=nil, computegroup=nil)
           @OsUser = osuser
           @InitialQueryId = initialqueryid
           @Sql = sql
@@ -5303,6 +5377,7 @@ module TencentCloud
           @State = state
           @CatalogName = catalogname
           @CpuTimeMs = cputimems
+          @ComputeGroup = computegroup
         end
 
         def deserialize(params)
@@ -5324,6 +5399,7 @@ module TencentCloud
           @State = params['State']
           @CatalogName = params['CatalogName']
           @CpuTimeMs = params['CpuTimeMs']
+          @ComputeGroup = params['ComputeGroup']
         end
       end
 
@@ -5519,15 +5595,18 @@ module TencentCloud
         # @type Encrypt: Integer
         # @param Main: 是否为主力园区
         # @type Main: Boolean
+        # @param ContainerEnabled: 0表示未开通容器化，1表示已开通容器化
+        # @type ContainerEnabled: Integer
 
-        attr_accessor :Name, :Desc, :ZoneId, :Encrypt, :Main
+        attr_accessor :Name, :Desc, :ZoneId, :Encrypt, :Main, :ContainerEnabled
 
-        def initialize(name=nil, desc=nil, zoneid=nil, encrypt=nil, main=nil)
+        def initialize(name=nil, desc=nil, zoneid=nil, encrypt=nil, main=nil, containerenabled=nil)
           @Name = name
           @Desc = desc
           @ZoneId = zoneid
           @Encrypt = encrypt
           @Main = main
+          @ContainerEnabled = containerenabled
         end
 
         def deserialize(params)
@@ -5536,6 +5615,7 @@ module TencentCloud
           @ZoneId = params['ZoneId']
           @Encrypt = params['Encrypt']
           @Main = params['Main']
+          @ContainerEnabled = params['ContainerEnabled']
         end
       end
 

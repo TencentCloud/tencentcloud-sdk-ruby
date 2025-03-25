@@ -20,34 +20,23 @@ module TencentCloud
       # 应用信息
       class ApplicationInfo < TencentCloud::Common::AbstractModel
         # @param ApplicationId: 应用id
-
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApplicationId: String
         # @param ApplicationName: 应用名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApplicationName: String
         # @param Description: 应用描述
-
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
         # @param ConfigEnvironment: 应用的环境配置
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ConfigEnvironment: String
         # @param MinSystemDiskSize: 系统盘大小下限
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MinSystemDiskSize: Integer
         # @param ApplicationType: 应用类型，目前该项取值可以为PRIVATE_APPLICATION或者PUBLIC_APPLICATION
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApplicationType: String
         # @param ApplicationState: 应用状态：CREATING-创建中；ONLINE -正常在线；DELETING -删除中；ARREARS - 欠费隔离
         # 示例值：ONLINE
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApplicationState: String
         # @param CreateTime: 应用创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
         # @param ApplicationSize: 应用大小
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApplicationSize: Integer
 
         attr_accessor :ApplicationId, :ApplicationName, :Description, :ConfigEnvironment, :MinSystemDiskSize, :ApplicationType, :ApplicationState, :CreateTime, :ApplicationSize
@@ -600,7 +589,6 @@ module TencentCloud
       # InquirePriceRunInstances返回参数结构体
       class InquirePriceRunInstancesResponse < TencentCloud::Common::AbstractModel
         # @param Price: 发货参数对应的价格组合，当DryRun=True，会返回空
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Price: :class:`Tencentcloud::Hai.v20230812.models.Price`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -800,20 +788,14 @@ module TencentCloud
       # 套餐价格
       class ItemPrice < TencentCloud::Common::AbstractModel
         # @param UnitPrice: 原单价
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UnitPrice: Float
         # @param DiscountUnitPrice: 折扣后单价
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DiscountUnitPrice: Float
         # @param Discount: 折扣
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Discount: Float
         # @param ChargeUnit: 单位：时/月
-
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ChargeUnit: String
         # @param Amount: 商品数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Amount: Integer
 
         attr_accessor :UnitPrice, :DiscountUnitPrice, :Discount, :ChargeUnit, :Amount
@@ -838,16 +820,12 @@ module TencentCloud
       # 分实例价格
       class ItemPriceDetail < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceId: String
         # @param InstancePrice: 实例价格详情
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstancePrice: :class:`Tencentcloud::Hai.v20230812.models.ItemPrice`
         # @param CloudDiskPrice: 磁盘价格详情
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CloudDiskPrice: :class:`Tencentcloud::Hai.v20230812.models.ItemPrice`
         # @param InstanceTotalPrice: 该实例的总价钱
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceTotalPrice: :class:`Tencentcloud::Hai.v20230812.models.ItemPrice`
 
         attr_accessor :InstanceId, :InstancePrice, :CloudDiskPrice, :InstanceTotalPrice
@@ -1003,13 +981,10 @@ module TencentCloud
       # 费用数据结构体
       class Price < TencentCloud::Common::AbstractModel
         # @param InstancePrice: 实例价格信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstancePrice: :class:`Tencentcloud::Hai.v20230812.models.ItemPrice`
         # @param CloudDiskPrice: 云盘价格信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CloudDiskPrice: :class:`Tencentcloud::Hai.v20230812.models.ItemPrice`
         # @param PriceDetailSet: 分实例价格
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PriceDetailSet: Array
 
         attr_accessor :InstancePrice, :CloudDiskPrice, :PriceDetailSet

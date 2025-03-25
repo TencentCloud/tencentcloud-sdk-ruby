@@ -67,10 +67,13 @@ module TencentCloud
       # 磁盘规格
       class CBSSpec < TencentCloud::Common::AbstractModel
         # @param DiskType: 盘类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DiskType: String
         # @param DiskSize: 大小
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DiskSize: Integer
         # @param DiskCount: 个数
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DiskCount: Integer
 
         attr_accessor :DiskType, :DiskSize, :DiskCount
@@ -117,13 +120,13 @@ module TencentCloud
 
       # 云原生资源规格描述信息
       class CNResourceSpec < TencentCloud::Common::AbstractModel
-        # @param Type: 无
+        # @param Type: 节点类型
         # @type Type: String
-        # @param SpecName: 无
+        # @param SpecName: 机型
         # @type SpecName: String
-        # @param Count: 无
+        # @param Count: 节点个数
         # @type Count: Integer
-        # @param DiskSpec: 无
+        # @param DiskSpec: 磁盘信息
         # @type DiskSpec: :class:`Tencentcloud::Cdwpg.v20201230.models.CBSSpec`
 
         attr_accessor :Type, :SpecName, :Count, :DiskSpec
@@ -234,10 +237,13 @@ module TencentCloud
       # 参数
       class ConfigParams < TencentCloud::Common::AbstractModel
         # @param ParameterName: 名字
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ParameterName: String
         # @param ParameterValue: 值
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ParameterValue: String
         # @param ParameterOldValue: 修改前的值
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ParameterOldValue: String
 
         attr_accessor :ParameterName, :ParameterValue, :ParameterOldValue
@@ -463,9 +469,9 @@ module TencentCloud
       class DescribeDBParamsRequest < TencentCloud::Common::AbstractModel
         # @param NodeTypes: cn/dn
         # @type NodeTypes: Array
-        # @param Limit: range::(0,100]
+        # @param Limit: 分页参数，分页步长，默认为10 示例值：10
         # @type Limit: Integer
-        # @param Offset: range::[0,INF)
+        # @param Offset: 分页参数，第一页为0，第二页为10
         # @type Offset: Integer
         # @param InstanceId: InstanceId名称
         # @type InstanceId: String
@@ -849,9 +855,9 @@ module TencentCloud
 
       # DescribeInstances请求参数结构体
       class DescribeInstancesRequest < TencentCloud::Common::AbstractModel
-        # @param SearchInstanceId: 搜索的集群id名称
+        # @param SearchInstanceId: 用集群id搜索
         # @type SearchInstanceId: String
-        # @param SearchInstanceName: 搜索的集群name
+        # @param SearchInstanceName: 用集群名字搜索
         # @type SearchInstanceName: String
         # @param Offset: 分页参数，第一页为0，第二页为10
         # @type Offset: Integer
@@ -894,7 +900,7 @@ module TencentCloud
         # @param InstancesList: 实例数组
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstancesList: Array
-        # @param ErrorMsg: -
+        # @param ErrorMsg: 错误信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrorMsg: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
@@ -1216,22 +1222,22 @@ module TencentCloud
 
       # 磁盘规格
       class DiskSpecPlus < TencentCloud::Common::AbstractModel
-        # @param DiskCount: 1
+        # @param DiskCount: 磁盘个数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DiskCount: Integer
-        # @param MaxDiskSize: 1
+        # @param MaxDiskSize: 磁盘最大值
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaxDiskSize: Integer
-        # @param MinDiskSize: 1
+        # @param MinDiskSize: 磁盘最小值
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MinDiskSize: Integer
-        # @param DiskType: 1
+        # @param DiskType: 磁盘类型
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DiskType: String
-        # @param DiskDesc: 1
+        # @param DiskDesc: 磁盘类型详情
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DiskDesc: String
-        # @param CvmClass: 1
+        # @param CvmClass: 机型类型
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CvmClass: String
 
@@ -1330,43 +1336,43 @@ module TencentCloud
         # @param ID: ID值
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ID: Integer
-        # @param InstanceType: cdwpg-cn或者其他
+        # @param InstanceType: 内核版本类型
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceType: String
-        # @param InstanceName: cdwpg-cn或者其他
+        # @param InstanceName: 集群名字
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceName: String
-        # @param Status: Running
+        # @param Status: 集群状态
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: String
-        # @param StatusDesc: 运行中
+        # @param StatusDesc: 集群状态详情
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StatusDesc: String
-        # @param InstanceStateInfo: 无
+        # @param InstanceStateInfo: 集群状态信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceStateInfo: :class:`Tencentcloud::Cdwpg.v20201230.models.InstanceStateInfo`
-        # @param InstanceID: -
+        # @param InstanceID: 集群id
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceID: String
-        # @param CreateTime: 2022-09-05 20:00:01
+        # @param CreateTime: 创建时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
-        # @param Region: ap-chongqing
+        # @param Region: 地域
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Region: String
-        # @param Zone: ap
+        # @param Zone: 地区
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Zone: String
-        # @param RegionDesc: region
+        # @param RegionDesc: 地域详情
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RegionDesc: String
-        # @param ZoneDesc: zone
+        # @param ZoneDesc: 地区详情
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ZoneDesc: String
         # @param Tags: 标签
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
-        # @param Version: v3
+        # @param Version: 内核版本
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Version: String
         # @param Charset: 字符集
@@ -1378,28 +1384,28 @@ module TencentCloud
         # @param DNNodes: DN节点列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DNNodes: Array
-        # @param RegionId: 1
+        # @param RegionId: 地域id
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RegionId: Integer
-        # @param ZoneId: 1
+        # @param ZoneId: 地区id
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ZoneId: Integer
-        # @param VpcId: 1
+        # @param VpcId: 私有网络
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VpcId: String
-        # @param SubnetId: 1
+        # @param SubnetId: 子网
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubnetId: String
-        # @param ExpireTime: 1
+        # @param ExpireTime: 过期时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExpireTime: String
-        # @param PayMode: 1
+        # @param PayMode: 计费方式
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PayMode: String
-        # @param RenewFlag: 1
+        # @param RenewFlag: 自动续费
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RenewFlag: Boolean
-        # @param InstanceId: 1
+        # @param InstanceId: 集群id
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceId: String
         # @param AccessDetails: 访问信息
@@ -1524,13 +1530,13 @@ module TencentCloud
 
       # 集群节点信息
       class InstanceNodeGroup < TencentCloud::Common::AbstractModel
-        # @param SpecName: 1
+        # @param SpecName: 机型
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SpecName: String
-        # @param DataDisk: 1
+        # @param DataDisk: 磁盘信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DataDisk: :class:`Tencentcloud::Cdwpg.v20201230.models.DiskSpecPlus`
-        # @param CvmCount: 1
+        # @param CvmCount: 机器个数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CvmCount: Integer
 
@@ -1731,10 +1737,10 @@ module TencentCloud
         # @param BackupStatus: 集群是否有备份中任务，有为1,无为0
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BackupStatus: Integer
-        # @param RequestId: 1
+        # @param RequestId: 请求id
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RequestId: String
-        # @param BackupOpenStatus: 1
+        # @param BackupOpenStatus: 集群是否有备份中任务，有为1,无为0
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BackupOpenStatus: Integer
 
@@ -2327,9 +2333,9 @@ module TencentCloud
 
       # ScaleOutInstance返回参数结构体
       class ScaleOutInstanceResponse < TencentCloud::Common::AbstractModel
-        # @param FlowId: 1
+        # @param FlowId: 流程id
         # @type FlowId: String
-        # @param ErrorMsg: 1
+        # @param ErrorMsg: 错误信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrorMsg: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。

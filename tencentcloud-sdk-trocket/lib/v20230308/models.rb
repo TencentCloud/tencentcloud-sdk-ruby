@@ -2839,7 +2839,6 @@ module TencentCloud
       # DescribeTopicList返回参数结构体
       class DescribeTopicListResponse < TencentCloud::Common::AbstractModel
         # @param TotalCount: 查询总数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
         # @param Data: 主题列表
         # @type Data: Array
@@ -4817,7 +4816,6 @@ module TencentCloud
       # 源集群主题配置
       class SourceClusterTopicConfig < TencentCloud::Common::AbstractModel
         # @param TopicName: 主题名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TopicName: String
         # @param TopicType: 主题类型，
         # 5.x版本
@@ -4832,36 +4830,26 @@ module TencentCloud
         # PartitionedOrder 分区顺序消息
         # Transaction 事务消息
         # DelayScheduled 延时消息
-
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TopicType: String
         # @param QueueNum: 队列数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type QueueNum: Integer
         # @param Remark: 备注信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Remark: String
         # @param Imported: 是否已导入，作为入参时无效
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Imported: Boolean
         # @param Namespace: 命名空间，仅4.x集群有效
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Namespace: String
         # @param ImportStatus: 导入状态，
         # Unknown 未知，
         # AlreadyExists 已存在，
         # Success 成功，
         # Failure 失败
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ImportStatus: String
         # @param NamespaceV4: 4.x的命名空间，出参使用
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NamespaceV4: String
         # @param TopicNameV4: 4.x的主题名，出参使用
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TopicNameV4: String
         # @param FullNamespaceV4: 4.x的完整命名空间，出参使用
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FullNamespaceV4: String
 
         attr_accessor :TopicName, :TopicType, :QueueNum, :Remark, :Imported, :Namespace, :ImportStatus, :NamespaceV4, :TopicNameV4, :FullNamespaceV4
@@ -5066,7 +5054,6 @@ module TencentCloud
         # @param SubString: 订阅规则
         # @type SubString: String
         # @param LastUpdateTime: 最后消费进度更新时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LastUpdateTime: Integer
 
         attr_accessor :Topic, :TopicType, :QueueNum, :ConsumerLag, :SubString, :LastUpdateTime

@@ -149,7 +149,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 申请开通测试版优图
+        # 申请开通测试版腾讯特效
 
         # @param request: Request instance for CreateTestXMagic.
         # @type request: :class:`Tencentcloud::vcube::V20220410::CreateTestXMagicRequest`
@@ -557,7 +557,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 编辑更改应用
+        # 更改测试包名信息
 
         # @param request: Request instance for ModifyApplication.
         # @type request: :class:`Tencentcloud::vcube::V20220410::ModifyApplicationRequest`

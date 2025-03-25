@@ -2788,10 +2788,14 @@ module TencentCloud
         # @type Product: String
         # @param Tags: 成员标签搜索列表，最大10个
         # @type Tags: Array
+        # @param NodeId: 组织单元ID
+        # @type NodeId: Integer
+        # @param NodeName: 组织单元名称
+        # @type NodeName: String
 
-        attr_accessor :Offset, :Limit, :Lang, :SearchKey, :AuthName, :Product, :Tags
+        attr_accessor :Offset, :Limit, :Lang, :SearchKey, :AuthName, :Product, :Tags, :NodeId, :NodeName
 
-        def initialize(offset=nil, limit=nil, lang=nil, searchkey=nil, authname=nil, product=nil, tags=nil)
+        def initialize(offset=nil, limit=nil, lang=nil, searchkey=nil, authname=nil, product=nil, tags=nil, nodeid=nil, nodename=nil)
           @Offset = offset
           @Limit = limit
           @Lang = lang
@@ -2799,6 +2803,8 @@ module TencentCloud
           @AuthName = authname
           @Product = product
           @Tags = tags
+          @NodeId = nodeid
+          @NodeName = nodename
         end
 
         def deserialize(params)
@@ -2816,6 +2822,8 @@ module TencentCloud
               @Tags << tag_tmp
             end
           end
+          @NodeId = params['NodeId']
+          @NodeName = params['NodeName']
         end
       end
 

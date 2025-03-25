@@ -221,7 +221,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # p2p路线切换
+        # p2p路线切换（此接口目前处于内测接口，可以联系申请加白 ）
 
         # @param request: Request instance for ChangeP2PRoute.
         # @type request: :class:`Tencentcloud::iotvideo::V20211125::ChangeP2PRouteRequest`

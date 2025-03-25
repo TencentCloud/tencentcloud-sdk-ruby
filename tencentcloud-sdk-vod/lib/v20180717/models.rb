@@ -5100,13 +5100,10 @@ module TencentCloud
       # CLS日志主题信息。
       class CLSTopicInfo < TencentCloud::Common::AbstractModel
         # @param TopicId: 日志主题 ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TopicId: String
         # @param TopicName: 日志主题名。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TopicName: String
         # @param LogsetId: 日志集 ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LogsetId: String
 
         attr_accessor :TopicId, :TopicName, :LogsetId
@@ -23270,10 +23267,8 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MetaData: :class:`Tencentcloud::Vod.v20180717.models.MediaMetaData`
         # @param Input: 音画质检测任务输入。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Input: :class:`Tencentcloud::Vod.v20180717.models.QualityInspectTaskInput`
         # @param Output: 音画质检测任务输出。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Output: :class:`Tencentcloud::Vod.v20180717.models.QualityInspectTaskOutput`
         # @param SessionId: 用于去重的识别码，如果七天内曾有过相同的识别码的请求，则本次的请求会返回错误。最长 50 个字符，不带或者带空字符串表示不做去重。
         # @type SessionId: String
@@ -23390,34 +23385,24 @@ module TencentCloud
         # @param ScreenshotInterval: 截帧间隔，单位为秒。
         # @type ScreenshotInterval: Float
         # @param JitterConfigure: 视频画面抖动重影检测的控制参数。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type JitterConfigure: :class:`Tencentcloud::Vod.v20180717.models.JitterConfigureInfo`
         # @param BlurConfigure: 视频画面模糊检测的控制参数。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BlurConfigure: :class:`Tencentcloud::Vod.v20180717.models.BlurConfigureInfo`
         # @param AbnormalLightingConfigure: 视频画面低光、过曝检测的控制参数。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AbnormalLightingConfigure: :class:`Tencentcloud::Vod.v20180717.models.AbnormalLightingConfigureInfo`
         # @param CrashScreenConfigure: 视频画面花屏检测的控制参数。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CrashScreenConfigure: :class:`Tencentcloud::Vod.v20180717.models.CrashScreenConfigureInfo`
         # @param BlackWhiteEdgeConfigure: 视频画面黑边、白边、黑屏、白屏检测的控制参数。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BlackWhiteEdgeConfigure: :class:`Tencentcloud::Vod.v20180717.models.BlackWhiteEdgeConfigureInfo`
         # @param NoiseConfigure: 视频画面噪点检测的控制参数。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NoiseConfigure: :class:`Tencentcloud::Vod.v20180717.models.NoiseConfigureInfo`
         # @param MosaicConfigure: 视频画面马赛克检测的控制参数。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MosaicConfigure: :class:`Tencentcloud::Vod.v20180717.models.MosaicConfigureInfo`
         # @param QRCodeConfigure: 视频画面二维码检测的控制参数。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type QRCodeConfigure: :class:`Tencentcloud::Vod.v20180717.models.QRCodeConfigureInfo`
         # @param QualityEvaluationConfigure: 视频画面质量评价的控制参数。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type QualityEvaluationConfigure: :class:`Tencentcloud::Vod.v20180717.models.QualityEvaluationConfigureInfo`
         # @param VoiceConfigure: 音频（静音、低音、爆音）检测的控制参数。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VoiceConfigure: :class:`Tencentcloud::Vod.v20180717.models.VoiceConfigureInfo`
         # @param CreateTime: 模板创建时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
         # @type CreateTime: String
@@ -23979,13 +23964,10 @@ module TencentCloud
         # @param Progress: 音画质重生任务进度，取值范围 [0-100] 。
         # @type Progress: Integer
         # @param Input: 音画质重生任务的输入。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Input: :class:`Tencentcloud::Vod.v20180717.models.RebuildMediaTaskInput`
         # @param Output: 音画质重生任务的输出。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Output: :class:`Tencentcloud::Vod.v20180717.models.RebuildMediaTaskOutput`
         # @param MetaData: 音画质重生输出视频的元信息。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MetaData: :class:`Tencentcloud::Vod.v20180717.models.MediaMetaData`
         # @param SessionId: 用于去重的识别码，如果七天内曾有过相同的识别码的请求，则本次的请求会返回错误。最长 50 个字符，不带或者带空字符串表示不做去重。
         # @type SessionId: String
@@ -24040,7 +24022,7 @@ module TencentCloud
         # @type StartTimeOffset: Float
         # @param EndTimeOffset: 结束偏移时间，单位：秒，不填表示截取到视频末尾。
         # @type EndTimeOffset: Float
-        # @param Definition: 音画质重生模版号。
+        # @param Definition: 音画质重生模板号。
         # @type Definition: Integer
         # @param RepairInfo: 画质修复控制参数。
         # @type RepairInfo: :class:`Tencentcloud::Vod.v20180717.models.RepairInfo`
@@ -24767,7 +24749,6 @@ module TencentCloud
         # @param Message: 错误信息。
         # @type Message: String
         # @param Input: 智能去除水印任务的输入。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Input: :class:`Tencentcloud::Vod.v20180717.models.RemoveWaterMarkTaskInput`
         # @param Output: 智能去除水印任务的输出。
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -27254,7 +27235,7 @@ module TencentCloud
         # <li>当字符串以 H% 结尾，表示水印 Height 为视频高度的百分比大小，如 10H% 表示 Height 为视频高度的 10%；</li>
         # <li>当字符串以 S% 结尾，表示水印 Height 为视频短边的百分比大小，如 10S% 表示 Height 为视频短边的 10%；</li>
         # <li>当字符串以 L% 结尾，表示水印 Height 为视频长边的百分比大小，如 10L% 表示 Height 为视频长边的 10%；</li>
-        # <li>当字符串以 % 结尾时，含义同 H%。
+        # <li>当字符串以 % 结尾时，含义同 H%。</li>
         # 默认值为 0px。
         # @type Height: String
         # @param CycleConfig: 水印周期配置，用于配置水印周期性地显示与隐藏。
@@ -27267,6 +27248,9 @@ module TencentCloud
         # @type CycleConfig: :class:`Tencentcloud::Vod.v20180717.models.WatermarkCycleConfigForUpdate`
 
         attr_accessor :Width, :Height, :CycleConfig
+        extend Gem::Deprecate
+        deprecate :CycleConfig, :none, 2025, 3
+        deprecate :CycleConfig=, :none, 2025, 3
 
         def initialize(width=nil, height=nil, cycleconfig=nil)
           @Width = width
@@ -28119,10 +28103,8 @@ module TencentCloud
         # <li>1：去除。</li>
         # @type RemoveAudio: Integer
         # @param VideoTemplate: 视频流配置参数，仅当 RemoveVideo 为 0，该字段有效。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VideoTemplate: :class:`Tencentcloud::Vod.v20180717.models.VideoTemplateInfo`
         # @param AudioTemplate: 音频流配置参数，仅当 RemoveAudio 为 0，该字段有效 。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AudioTemplate: :class:`Tencentcloud::Vod.v20180717.models.AudioTemplateInfo`
         # @param TEHDConfig: 极速高清转码参数。
         # 注意：此字段可能返回 null，表示取不到有效值。

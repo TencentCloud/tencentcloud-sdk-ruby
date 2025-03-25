@@ -1237,19 +1237,37 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 返回数量，默认为20，最大值为100。关于`Limit`的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/api/213/15688)中的相关小节。
         # @type Limit: Integer
+        # @param Filters: <ul>
+        #     <li><strong>cluster-type</strong>
+        #         <p style="padding-left: 30px;">按照【<strong>集群类型</strong>】进行过滤</p>
+        #         <p style="padding-left: 30px;">类型：String</p>
+        #         <p style="padding-left: 30px;">必选：否</p>
+        #     </li>
+        # </ul>
+        # <p style="padding-left: 30px;">每次请求的`Filters`的上限为10，`Filter.Values`的上限为5。</p>
+        # @type Filters: Array
 
-        attr_accessor :ClusterIds, :Offset, :Limit
+        attr_accessor :ClusterIds, :Offset, :Limit, :Filters
 
-        def initialize(clusterids=nil, offset=nil, limit=nil)
+        def initialize(clusterids=nil, offset=nil, limit=nil, filters=nil)
           @ClusterIds = clusterids
           @Offset = offset
           @Limit = limit
+          @Filters = filters
         end
 
         def deserialize(params)
           @ClusterIds = params['ClusterIds']
           @Offset = params['Offset']
           @Limit = params['Limit']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
         end
       end
 

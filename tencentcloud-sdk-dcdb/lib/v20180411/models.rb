@@ -719,7 +719,6 @@ module TencentCloud
         #  查询订单详细信息，或在支付失败时调用用户账号相关接口进行支付。
         # @type DealName: String
         # @param InstanceIds: 订单对应的实例 ID 列表，如果此处没有返回实例 ID，可以通过订单查询接口获取。还可通过实例查询接口查询实例是否创建完成。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceIds: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1314,7 +1313,6 @@ module TencentCloud
         # @param Paymode: 付费模式
         # @type Paymode: String
         # @param Locker: 实例处于异步任务状态时，表示异步任务流程ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Locker: Integer
         # @param WanStatus: 外网状态，0-未开通；1-已开通；2-关闭；3-开通中
         # @type WanStatus: Integer
@@ -1323,37 +1321,26 @@ module TencentCloud
         # @param Cpu: Cpu核数
         # @type Cpu: Integer
         # @param Ipv6Flag: 实例IPv6标志
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Ipv6Flag: Integer
         # @param Vipv6: 内网IPv6
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Vipv6: String
         # @param WanVipv6: 外网IPv6
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WanVipv6: String
         # @param WanPortIpv6: 外网IPv6端口
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WanPortIpv6: Integer
         # @param WanStatusIpv6: 外网IPv6状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WanStatusIpv6: Integer
         # @param DcnFlag: DCN标志，0-无，1-主实例，2-灾备实例
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DcnFlag: Integer
         # @param DcnStatus: DCN状态，0-无，1-创建中，2-同步中，3-已断开
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DcnStatus: Integer
         # @param DcnDstNum: DCN灾备实例数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DcnDstNum: Integer
         # @param InstanceType: 1： 主实例（独享型）, 2: 主实例, 3： 灾备实例, 4： 灾备实例（独享型）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceType: Integer
         # @param ResourceTags: 实例标签信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceTags: Array
         # @param DbVersionId: 数据库引擎版本
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DbVersionId: String
 
         attr_accessor :InstanceId, :InstanceName, :AppId, :ProjectId, :Region, :Zone, :VpcId, :SubnetId, :StatusDesc, :Status, :Vip, :Vport, :CreateTime, :AutoRenewFlag, :Memory, :Storage, :ShardCount, :PeriodEndTime, :IsolatedTimestamp, :Uin, :ShardDetail, :NodeCount, :IsTmp, :ExclusterId, :UniqueVpcId, :UniqueSubnetId, :Id, :WanDomain, :WanVip, :WanPort, :Pid, :UpdateTime, :DbEngine, :DbVersion, :Paymode, :Locker, :WanStatus, :IsAuditSupported, :Cpu, :Ipv6Flag, :Vipv6, :WanVipv6, :WanPortIpv6, :WanStatusIpv6, :DcnFlag, :DcnStatus, :DcnDstNum, :InstanceType, :ResourceTags, :DbVersionId
@@ -2033,7 +2020,6 @@ module TencentCloud
         # @param InstanceId: 实例ID，透传入参。
         # @type InstanceId: String
         # @param Users: 实例用户列表。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Users: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2736,57 +2722,40 @@ module TencentCloud
         # @param Shards: 分片信息
         # @type Shards: Array
         # @param Vip6: 内网IPv6
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Vip6: String
         # @param Cpu: 实例Cpu核数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Cpu: Integer
         # @param Qps: 实例QPS
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Qps: Integer
         # @param DbEngine: DB引擎
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DbEngine: String
         # @param Ipv6Flag: 是否支持IPv6
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Ipv6Flag: Integer
         # @param WanVipv6: 外网IPv6地址，公网可访问
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WanVipv6: String
         # @param WanStatusIpv6: 外网状态，0-未开通；1-已开通；2-关闭；3-开通中；4-关闭中
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WanStatusIpv6: Integer
         # @param WanPortIpv6: 外网IPv6端口
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WanPortIpv6: Integer
         # @param ResourceTags: 标签信息
         # @type ResourceTags: Array
         # @param DcnFlag: DCN标志，0-无，1-主实例，2-灾备实例
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DcnFlag: Integer
         # @param DcnStatus: DCN状态，0-无，1-创建中，2-同步中，3-已断开
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DcnStatus: Integer
         # @param DcnDstNum: DCN灾备实例数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DcnDstNum: Integer
         # @param InstanceType: 1： 主实例（独享型）, 2: 主实例, 3： 灾备实例, 4： 灾备实例（独享型）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceType: Integer
         # @param IsMaxUserConnectionsSupported: 实例是否支持设置用户连接数限制，内核为10.1暂不支持。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsMaxUserConnectionsSupported: Boolean
         # @param DbVersionId: 对外显示的数据库版本
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DbVersionId: String
         # @param EncryptStatus: 加密状态, 0-未开启，1-已开启
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EncryptStatus: Integer
         # @param ExclusterType: 独享集群类型，0:公有云, 1:金融围笼, 2:CDC集群
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExclusterType: Integer
         # @param RsAccessStrategy: VPC就近访问
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RsAccessStrategy: Integer
         # @param ReservedNetResources: 尚未回收的网络资源
         # @type ReservedNetResources: Array
@@ -5910,7 +5879,6 @@ module TencentCloud
         # @param Cpu: 分片Cpu核数
         # @type Cpu: Integer
         # @param NodesInfo: DB节点信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NodesInfo: Array
 
         attr_accessor :ShardSerialId, :ShardInstanceId, :Status, :StatusDesc, :CreateTime, :Memory, :Storage, :LogDisk, :NodeCount, :StorageUsage, :ProxyVersion, :ShardMasterZone, :ShardSlaveZones, :Cpu, :NodesInfo

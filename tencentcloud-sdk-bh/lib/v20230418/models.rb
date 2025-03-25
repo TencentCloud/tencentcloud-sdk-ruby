@@ -43,19 +43,21 @@ module TencentCloud
 
       # AccessDevices请求参数结构体
       class AccessDevicesRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 资源id
-        # @type InstanceId: String
-        # @param Account: 账号
+        # @param Account: 资产的登录账号
         # @type Account: String
         # @param LoginAccount: 运维端登录账号
         # @type LoginAccount: String
         # @param LoginPassword: 运维端登录密码
         # @type LoginPassword: String
-        # @param Password: 密码
+        # @param DeviceId: 资产ID
+        # @type DeviceId: Integer
+        # @param InstanceId: 资源id(优先使用DeviceId)
+        # @type InstanceId: String
+        # @param Password: 未托管密码私钥时，填入
         # @type Password: String
-        # @param PrivateKey: 私钥
+        # @param PrivateKey: 未托管密码私钥时，填入
         # @type PrivateKey: String
-        # @param PrivateKeyPassword: 私钥密码
+        # @param PrivateKeyPassword: 未托管密码私钥时，填入
         # @type PrivateKeyPassword: String
         # @param Exe: 客户端工具
         # @type Exe: String
@@ -67,14 +69,22 @@ module TencentCloud
         # @type Height: Integer
         # @param IntranetAccess: 是否内网访问（默认不是）
         # @type IntranetAccess: Boolean
+        # @param AutoManageAccessCredential: 是否自动管理访问串，删掉过期的，新建可用的（默认false）
+        # @type AutoManageAccessCredential: Boolean
 
-        attr_accessor :InstanceId, :Account, :LoginAccount, :LoginPassword, :Password, :PrivateKey, :PrivateKeyPassword, :Exe, :Drivers, :Width, :Height, :IntranetAccess
+        attr_accessor :Account, :LoginAccount, :LoginPassword, :DeviceId, :InstanceId, :Password, :PrivateKey, :PrivateKeyPassword, :Exe, :Drivers, :Width, :Height, :IntranetAccess, :AutoManageAccessCredential
+        extend Gem::Deprecate
+        deprecate :LoginAccount, :none, 2025, 3
+        deprecate :LoginAccount=, :none, 2025, 3
+        deprecate :LoginPassword, :none, 2025, 3
+        deprecate :LoginPassword=, :none, 2025, 3
 
-        def initialize(instanceid=nil, account=nil, loginaccount=nil, loginpassword=nil, password=nil, privatekey=nil, privatekeypassword=nil, exe=nil, drivers=nil, width=nil, height=nil, intranetaccess=nil)
-          @InstanceId = instanceid
+        def initialize(account=nil, loginaccount=nil, loginpassword=nil, deviceid=nil, instanceid=nil, password=nil, privatekey=nil, privatekeypassword=nil, exe=nil, drivers=nil, width=nil, height=nil, intranetaccess=nil, automanageaccesscredential=nil)
           @Account = account
           @LoginAccount = loginaccount
           @LoginPassword = loginpassword
+          @DeviceId = deviceid
+          @InstanceId = instanceid
           @Password = password
           @PrivateKey = privatekey
           @PrivateKeyPassword = privatekeypassword
@@ -83,13 +93,15 @@ module TencentCloud
           @Width = width
           @Height = height
           @IntranetAccess = intranetaccess
+          @AutoManageAccessCredential = automanageaccesscredential
         end
 
         def deserialize(params)
-          @InstanceId = params['InstanceId']
           @Account = params['Account']
           @LoginAccount = params['LoginAccount']
           @LoginPassword = params['LoginPassword']
+          @DeviceId = params['DeviceId']
+          @InstanceId = params['InstanceId']
           @Password = params['Password']
           @PrivateKey = params['PrivateKey']
           @PrivateKeyPassword = params['PrivateKeyPassword']
@@ -98,6 +110,7 @@ module TencentCloud
           @Width = params['Width']
           @Height = params['Height']
           @IntranetAccess = params['IntranetAccess']
+          @AutoManageAccessCredential = params['AutoManageAccessCredential']
         end
       end
 

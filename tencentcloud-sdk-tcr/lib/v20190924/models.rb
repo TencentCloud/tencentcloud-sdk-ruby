@@ -86,7 +86,6 @@ module TencentCloud
         # @param TotalCount: 总数目
         # @type TotalCount: Integer
         # @param StrategyInfo: 自动删除策略列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StrategyInfo: Array
 
         attr_accessor :TotalCount, :StrategyInfo
@@ -180,7 +179,6 @@ module TencentCloud
       # 命名空间漏洞白名单列表
       class CVEWhitelistItem < TencentCloud::Common::AbstractModel
         # @param CVEID: 漏洞白名单 ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CVEID: String
 
         attr_accessor :CVEID
@@ -215,7 +213,6 @@ module TencentCloud
         # @param IsValidated: 检查结果，true为合法，false为非法
         # @type IsValidated: Boolean
         # @param DetailCode: 1: Illegal（名称非法）, 2:Reserved（名字保留）, 3:Existed（名字已存在）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DetailCode: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -586,14 +583,12 @@ module TencentCloud
       # CreateInstanceToken返回参数结构体
       class CreateInstanceTokenResponse < TencentCloud::Common::AbstractModel
         # @param Username: 用户名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Username: String
         # @param Token: 访问凭证
         # @type Token: String
         # @param ExpTime: 访问凭证过期时间戳，是一个时间戳数字，无单位
         # @type ExpTime: Integer
         # @param TokenId: 长期凭证的TokenId，短期凭证没有TokenId
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TokenId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2260,7 +2255,6 @@ module TencentCloud
         # @param TotalCount: 返回总数
         # @type TotalCount: Integer
         # @param LogInfo: 触发日志列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LogInfo: Array
 
         attr_accessor :TotalCount, :LogInfo
@@ -4544,7 +4538,6 @@ module TencentCloud
         # @param TotalCount: 收藏仓库的总数
         # @type TotalCount: Integer
         # @param RepoInfo: 仓库信息数组
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RepoInfo: Array
 
         attr_accessor :TotalCount, :RepoInfo
@@ -4574,22 +4567,16 @@ module TencentCloud
         # @param RepoType: 仓库类型
         # @type RepoType: String
         # @param PullCount: Pull总共的次数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PullCount: Integer
         # @param FavorCount: 仓库收藏次数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FavorCount: Integer
         # @param Public: 仓库是否公开
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Public: Integer
         # @param IsQcloudOfficial: 是否为官方所有
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsQcloudOfficial: Boolean
         # @param TagCount: 仓库Tag的数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TagCount: Integer
         # @param Logo: Logo
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Logo: String
         # @param Region: 地域
         # @type Region: String
@@ -5754,10 +5741,8 @@ module TencentCloud
       # 策略
       class Permission < TencentCloud::Common::AbstractModel
         # @param Resource: 资源路径，目前仅支持Namespace
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Resource: String
         # @param Actions: 动作，目前仅支持：tcr:PushRepository、tcr:PullRepository、tcr:CreateRepository、tcr:CreateHelmChart、tcr:DescribeHelmCharts
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Actions: Array
 
         attr_accessor :Resource, :Actions
@@ -5853,16 +5838,12 @@ module TencentCloud
         # @param InternalEndpoint: 实例内部访问地址
         # @type InternalEndpoint: String
         # @param TagSpecification: 实例云标签
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TagSpecification: :class:`Tencentcloud::Tcr.v20190924.models.TagSpecification`
         # @param ExpiredAt: 实例过期时间（预付费）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExpiredAt: String
         # @param PayMod: 实例付费类型，0表示后付费，1表示预付费
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PayMod: Integer
         # @param RenewFlag: 预付费续费标识，0表示手动续费，1表示自动续费，2不续费并且不通知
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RenewFlag: Integer
         # @param DeletionProtection: 是否开启实例删除保护，false表示不开启
         # @type DeletionProtection: Boolean
@@ -5962,7 +5943,6 @@ module TencentCloud
         # @param Status: 实例的状态
         # @type Status: String
         # @param Conditions: 附加状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Conditions: Array
 
         attr_accessor :RegistryId, :Status, :Conditions
@@ -6279,7 +6259,6 @@ module TencentCloud
         # @param CreationTime: 创建时间
         # @type CreationTime: String
         # @param Description: 镜像仓库描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
         # @param Public: 是否为公有镜像
         # @type Public: Integer
@@ -6486,7 +6465,6 @@ module TencentCloud
       # 指定tag镜像内容相同的tag列表
       class SameImagesResp < TencentCloud::Common::AbstractModel
         # @param SameImages: tag列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SameImages: Array
 
         attr_accessor :SameImages
@@ -6500,7 +6478,7 @@ module TencentCloud
         end
       end
 
-      #  作业调度信息
+      # 作业调度信息
       class Schedule < TencentCloud::Common::AbstractModel
         # @param Type: 类型：Hourly, Daily, Weekly, Custom, Manual, Dryrun, None
         # @type Type: String
@@ -6582,25 +6560,19 @@ module TencentCloud
       # 服务级账号
       class ServiceAccount < TencentCloud::Common::AbstractModel
         # @param Name: 服务级账号名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Description: 描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
         # @param Disable: 是否禁用
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Disable: Boolean
         # @param ExpiresAt: 过期时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExpiresAt: Integer
         # @param CreateTime: 创建时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
         # @param UpdateTime: 更新时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: String
         # @param Permissions: 策略
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Permissions: Array
 
         attr_accessor :Name, :Description, :Disable, :ExpiresAt, :CreateTime, :UpdateTime, :Permissions
@@ -6636,10 +6608,8 @@ module TencentCloud
       # 云标签Tag
       class Tag < TencentCloud::Common::AbstractModel
         # @param Key: 云标签的key
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Key: String
         # @param Value: 云标签的值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: String
 
         attr_accessor :Key, :Value
@@ -6668,7 +6638,6 @@ module TencentCloud
         # @param CreationTime: 制品的创建时间
         # @type CreationTime: String
         # @param DurationDays: 制品创建至今时间长度
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DurationDays: String
         # @param Author: 标注的制品作者
         # @type Author: String
@@ -6766,10 +6735,8 @@ module TencentCloud
       # 云标签
       class TagSpecification < TencentCloud::Common::AbstractModel
         # @param ResourceType: 默认值为instance
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceType: String
         # @param Tags: 云标签数组
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
 
         attr_accessor :ResourceType, :Tags
@@ -6801,12 +6768,10 @@ module TencentCloud
         # @param TaskStatus: 任务状态
         # @type TaskStatus: String
         # @param TaskMessage: 任务的状态信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskMessage: String
         # @param CreatedTime: 任务开始时间
         # @type CreatedTime: String
         # @param FinishedTime: 任务结束时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FinishedTime: String
 
         attr_accessor :TaskName, :TaskUUID, :TaskStatus, :TaskMessage, :CreatedTime, :FinishedTime
@@ -6841,10 +6806,8 @@ module TencentCloud
         # @param UpdateTime: 更新时间
         # @type UpdateTime: String
         # @param Kind: 制品类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Kind: String
         # @param KmsSignature: KMS 签名信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type KmsSignature: String
 
         attr_accessor :Digest, :Size, :ImageVersion, :UpdateTime, :Kind, :KmsSignature
@@ -6915,10 +6878,8 @@ module TencentCloud
         # @param NamespaceId: 命名空间的Id
         # @type NamespaceId: Integer
         # @param TagSpecification: 实例云标签
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TagSpecification: :class:`Tencentcloud::Tcr.v20190924.models.TagSpecification`
         # @param Metadata: 命名空间元数据
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Metadata: Array
         # @param CVEWhitelistItems: 漏洞白名单列表
         # @type CVEWhitelistItems: Array
@@ -7020,7 +6981,6 @@ module TencentCloud
         # @param InvokeMethod: 触发方式
         # @type InvokeMethod: String
         # @param InvokeExpr: 触发表达式
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InvokeExpr: String
 
         attr_accessor :InvokeMethod, :InvokeExpr
@@ -7039,22 +6999,16 @@ module TencentCloud
       # 触发器触发参数
       class TriggerInvokePara < TencentCloud::Common::AbstractModel
         # @param AppId: AppId
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AppId: String
         # @param ClusterId: TKE集群ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterId: String
         # @param Namespace: TKE集群命名空间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Namespace: String
         # @param ServiceName: TKE集群工作负载名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ServiceName: String
         # @param ContainerName: TKE集群工作负载中容器名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ContainerName: String
         # @param ClusterRegion: TKE集群地域数字ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterRegion: Integer
 
         attr_accessor :AppId, :ClusterId, :Namespace, :ServiceName, :ContainerName, :ClusterRegion
@@ -7081,10 +7035,8 @@ module TencentCloud
       # 触发器触发结果
       class TriggerInvokeResult < TencentCloud::Common::AbstractModel
         # @param ReturnCode: 请求TKE返回值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReturnCode: Integer
         # @param ReturnMsg: 请求TKE返回信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReturnMsg: String
 
         attr_accessor :ReturnCode, :ReturnMsg
@@ -7103,31 +7055,22 @@ module TencentCloud
       # 触发器日志
       class TriggerLogResp < TencentCloud::Common::AbstractModel
         # @param RepoName: 仓库名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RepoName: String
         # @param TagName: Tag名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TagName: String
         # @param TriggerName: 触发器名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TriggerName: String
         # @param InvokeSource: 触发方式
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InvokeSource: String
         # @param InvokeAction: 触发动作
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InvokeAction: String
         # @param InvokeTime: 触发时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InvokeTime: String
         # @param InvokeCondition: 触发条件
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InvokeCondition: :class:`Tencentcloud::Tcr.v20190924.models.TriggerInvokeCondition`
         # @param InvokePara: 触发参数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InvokePara: :class:`Tencentcloud::Tcr.v20190924.models.TriggerInvokePara`
         # @param InvokeResult: 触发结果
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InvokeResult: :class:`Tencentcloud::Tcr.v20190924.models.TriggerInvokeResult`
 
         attr_accessor :RepoName, :TagName, :TriggerName, :InvokeSource, :InvokeAction, :InvokeTime, :InvokeCondition, :InvokePara, :InvokeResult
@@ -7169,25 +7112,18 @@ module TencentCloud
       # 触发器返回值
       class TriggerResp < TencentCloud::Common::AbstractModel
         # @param TriggerName: 触发器名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TriggerName: String
         # @param InvokeSource: 触发来源
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InvokeSource: String
         # @param InvokeAction: 触发动作
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InvokeAction: String
         # @param CreateTime: 创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
         # @param UpdateTime: 更新时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: String
         # @param InvokeCondition: 触发条件
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InvokeCondition: :class:`Tencentcloud::Tcr.v20190924.models.TriggerInvokeCondition`
         # @param InvokePara: 触发器参数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InvokePara: :class:`Tencentcloud::Tcr.v20190924.models.TriggerInvokePara`
 
         attr_accessor :TriggerName, :InvokeSource, :InvokeAction, :CreateTime, :UpdateTime, :InvokeCondition, :InvokePara
@@ -7333,13 +7269,10 @@ module TencentCloud
       # vpc私有域名解析状态
       class VpcPrivateDomainStatus < TencentCloud::Common::AbstractModel
         # @param Region: 地域
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Region: String
         # @param VpcId: unique vpc id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VpcId: String
         # @param Status: ENABLE代表已经开启，DISABLE代表未开启，ERROR代表查询出错
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: String
 
         attr_accessor :Region, :VpcId, :Status

@@ -1124,7 +1124,7 @@ module TencentCloud
         # @type IdentityKey: String
         # @param Scope: 授权请求Scope。openid; email;profile。授权请求信息范围。默认必选openid。
         # @type Scope: Array
-        # @param Description: 描述
+        # @param Description: 描述信息。由用户自行定义。
         # @type Description: String
 
         attr_accessor :IdentityUrl, :ClientId, :AuthorizationEndpoint, :ResponseType, :ResponseMode, :MappingFiled, :IdentityKey, :Scope, :Description

@@ -9485,7 +9485,6 @@ module TencentCloud
       # ModifyRocketMQInstanceSpec返回参数结构体
       class ModifyRocketMQInstanceSpecResponse < TencentCloud::Common::AbstractModel
         # @param OrderId: 订单号
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OrderId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -12639,7 +12638,6 @@ module TencentCloud
         # @param InstanceName: 实例名称
         # @type InstanceName: String
         # @param InstanceVersion: 实例版本
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceVersion: String
         # @param Status: 实例状态，0表示创建中，1表示正常，2表示隔离中，3表示已销毁，4 - 异常, 5 - 发货失败，6 - 变配中，7 - 变配失败
         # @type Status: Integer
@@ -12665,19 +12663,14 @@ module TencentCloud
         # @param SpecName: 实例配置ID
         # @type SpecName: String
         # @param MaxRetention: 最大可设置消息保留时间，小时为单位
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaxRetention: Integer
         # @param MinRetention: 最小可设置消息保留时间，小时为单位
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MinRetention: Integer
         # @param Retention: 实例消息保留时间，小时为单位
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Retention: Integer
         # @param AclEnabled: 是否开启ACL鉴权
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AclEnabled: Boolean
         # @param DestroyTime: 销毁时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DestroyTime: Integer
 
         attr_accessor :InstanceId, :InstanceName, :InstanceVersion, :Status, :NodeCount, :ConfigDisplay, :MaxTps, :MaxBandWidth, :MaxStorage, :ExpireTime, :AutoRenewFlag, :PayMode, :Remark, :SpecName, :MaxRetention, :MinRetention, :Retention, :AclEnabled, :DestroyTime

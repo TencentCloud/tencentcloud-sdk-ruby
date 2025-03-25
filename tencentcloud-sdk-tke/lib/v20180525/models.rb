@@ -12940,10 +12940,8 @@ module TencentCloud
         # @param CatalogueLevel: 目录级别，支持参数：
         # first：一级目录
         # second：二级目录
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CatalogueLevel: String
         # @param CatalogueName: 目录名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CatalogueName: String
 
         attr_accessor :CatalogueLevel, :CatalogueName
@@ -12962,28 +12960,20 @@ module TencentCloud
       # 集群巡检诊断结果
       class KubeJarvisStateDiagnostic < TencentCloud::Common::AbstractModel
         # @param StartTime: 诊断开始时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StartTime: String
         # @param EndTime: 诊断结束时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EndTime: String
         # @param Catalogues: 诊断目录
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Catalogues: Array
         # @param Type: 诊断类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: String
         # @param Name: 诊断名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Desc: 诊断描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Desc: String
         # @param Results: 诊断结果列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Results: Array
         # @param Statistics: 诊断结果统计
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Statistics: Array
 
         attr_accessor :StartTime, :EndTime, :Catalogues, :Type, :Name, :Desc, :Results, :Statistics
@@ -13035,10 +13025,8 @@ module TencentCloud
       # 集群巡检诊断概览
       class KubeJarvisStateDiagnosticOverview < TencentCloud::Common::AbstractModel
         # @param Catalogues: 诊断目录
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Catalogues: Array
         # @param Statistics: 诊断结果统计
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Statistics: Array
 
         attr_accessor :Catalogues, :Statistics
@@ -13071,13 +13059,10 @@ module TencentCloud
       # 集群巡检检查结果概览
       class KubeJarvisStateInspectionOverview < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterId: String
         # @param Statistics: 诊断结果统计
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Statistics: Array
         # @param Diagnostics: 诊断结果详情
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Diagnostics: Array
 
         attr_accessor :ClusterId, :Statistics, :Diagnostics
@@ -13112,22 +13097,16 @@ module TencentCloud
       # 集群巡检检查结果
       class KubeJarvisStateInspectionResult < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterId: String
         # @param StartTime: 诊断开始时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StartTime: String
         # @param EndTime: 诊断结束时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EndTime: String
         # @param Statistics: 诊断结果统计
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Statistics: Array
         # @param Diagnostics: 诊断结果详情
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Diagnostics: Array
         # @param Error: 查询巡检报告相关报错
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Error: String
 
         attr_accessor :ClusterId, :StartTime, :EndTime, :Statistics, :Diagnostics, :Error
@@ -13168,10 +13147,8 @@ module TencentCloud
       # 集群巡检结果历史列表
       class KubeJarvisStateInspectionResultsItem < TencentCloud::Common::AbstractModel
         # @param Name: 巡检结果名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Statistics: 诊断结果统计
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Statistics: Array
 
         attr_accessor :Name, :Statistics
@@ -13197,10 +13174,8 @@ module TencentCloud
       # 集群巡检诊断对象信息
       class KubeJarvisStateResultObjInfo < TencentCloud::Common::AbstractModel
         # @param PropertyName: 对象属性名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PropertyName: String
         # @param PropertyValue: 对象属性值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PropertyValue: String
 
         attr_accessor :PropertyName, :PropertyValue
@@ -13219,28 +13194,22 @@ module TencentCloud
       # 集群巡检诊断结果详情信息
       class KubeJarvisStateResultsItem < TencentCloud::Common::AbstractModel
         # @param Level: 诊断结果级别
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Level: String
         # @param ObjName: 诊断对象名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ObjName: String
         # @param ObjInfo: 诊断对象信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ObjInfo: Array
         # @param Title: 诊断项标题
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Title: String
         # @param Desc: 诊断项描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Desc: String
         # @param Proposal: 诊断建议
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Proposal: String
         # @param ProposalDocUrl: 诊断建议文档链接
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProposalDocUrl: String
         # @param ProposalDocName: 诊断建议文档名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProposalDocName: String
 
         attr_accessor :Level, :ObjName, :ObjInfo, :Title, :Desc, :Proposal, :ProposalDocUrl, :ProposalDocName
@@ -13278,10 +13247,8 @@ module TencentCloud
       # 集群巡检统计结果
       class KubeJarvisStateStatistic < TencentCloud::Common::AbstractModel
         # @param HealthyLevel: 诊断结果的健康水平
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HealthyLevel: String
         # @param Count: 诊断结果的统计
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Count: Integer
 
         attr_accessor :HealthyLevel, :Count

@@ -4922,10 +4922,8 @@ module TencentCloud
       # 直播录制计划详情
       class LiveRecordPlanItem < TencentCloud::Common::AbstractModel
         # @param PlanId: 计划ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PlanId: String
         # @param PlanName: 计划名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PlanName: String
 
         attr_accessor :PlanId, :PlanName
@@ -5718,13 +5716,10 @@ module TencentCloud
       # 大盘统计-录像存储统计 出参Value
       class RecordStatisticValue < TencentCloud::Common::AbstractModel
         # @param ExpectTimeLen: 期望执行时间 秒
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExpectTimeLen: Integer
         # @param RecordTimeLen: 实际执行时间 秒
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RecordTimeLen: Integer
         # @param FileSize: 存储大小 G
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FileSize: Float
 
         attr_accessor :ExpectTimeLen, :RecordTimeLen, :FileSize
@@ -5905,10 +5900,8 @@ module TencentCloud
       # 某天的统计数额
       class StatisticItem < TencentCloud::Common::AbstractModel
         # @param Date: 日期。格式【YYYY-MM-DD】
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Date: String
         # @param Sum: 统计数额
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Sum: Float
 
         attr_accessor :Date, :Sum
@@ -5927,19 +5920,14 @@ module TencentCloud
       # 拉流地址，只有在推流情况下才有
       class StreamAddress < TencentCloud::Common::AbstractModel
         # @param StreamId: 流ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StreamId: String
         # @param RtspAddr: rtsp流地址
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RtspAddr: String
         # @param RtmpAddr: rtmp流地址
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RtmpAddr: String
         # @param HlsAddr: hls流地址
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HlsAddr: String
         # @param FlvAddr: flv流地址
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FlvAddr: String
 
         attr_accessor :StreamId, :RtspAddr, :RtmpAddr, :HlsAddr, :FlvAddr
@@ -6003,13 +5991,10 @@ module TencentCloud
       # 在操作时间模板时，用于描述各个时间片段
       class TimeTemplateSpec < TencentCloud::Common::AbstractModel
         # @param DayofWeek: 一周中的周几
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DayofWeek: Integer
         # @param BeginTime: 时间片段的开始时分。格式【HH:MM】
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BeginTime: String
         # @param EndTime: 时间片段的结束时分。格式【HH:MM】
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EndTime: String
 
         attr_accessor :DayofWeek, :BeginTime, :EndTime

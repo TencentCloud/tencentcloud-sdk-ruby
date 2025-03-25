@@ -24,7 +24,6 @@ module TencentCloud
         # @param AppId: 用户appid
         # @type AppId: String
         # @param AppName: 应用名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AppName: String
         # @param BundleId: Ios 包名
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -89,24 +88,20 @@ module TencentCloud
         # @param AppType: 应用类型，formal： 正式应用，test：测试应用
         # @type AppType: String
         # @param Licenses: license数组
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Licenses: Array
         # @param LicenseKey: license 秘钥
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LicenseKey: String
         # @param PackageName: 安卓应用的唯一标识
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PackageName: String
         # @param CreatedAt: 创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreatedAt: String
         # @param UpdatedAt: 更新时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdatedAt: String
         # @param ApplicationId: 用户应用Id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApplicationId: Integer
         # @param LicenseUrl: 视立方下载license的url
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LicenseUrl: String
         # @param XMagics: 优图美视信息列表
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -197,15 +192,12 @@ module TencentCloud
         # @param AppId: 用户appid
         # @type AppId: String
         # @param AppName: app名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AppName: String
         # @param BundleId: ios包名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BundleId: String
         # @param PackageName: 安卓包名
         # @type PackageName: String
         # @param Duration: 有效时长
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Duration: Integer
         # @param StartTime: 开始时间
         # @type StartTime: String
@@ -216,10 +208,8 @@ module TencentCloud
         # @param LicenseUrl: license 授权文件下载链接
         # @type LicenseUrl: String
         # @param ResidueDay: license剩余天数，最后一天以及过期显示0
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResidueDay: Integer
         # @param Residue: license剩余秒数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Residue: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -451,7 +441,7 @@ module TencentCloud
 
       # CreateTestXMagic请求参数结构体
       class CreateTestXMagicRequest < TencentCloud::Common::AbstractModel
-        # @param ApplicationId: 应用id
+        # @param ApplicationId: 将腾讯特效创建到哪个应用下
         # @type ApplicationId: Integer
         # @param CompanyPermit: 营业执照
         # @type CompanyPermit: String
@@ -679,10 +669,8 @@ module TencentCloud
       # DescribeFeatureList返回参数结构体
       class DescribeFeatureListResponse < TencentCloud::Common::AbstractModel
         # @param FeatureList: 功能列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FeatureList: Array
         # @param XMagicFeatureList: 优图功能列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type XMagicFeatureList: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -872,7 +860,6 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type XMagicTrial: :class:`Tencentcloud::Vcube.v20220410.models.XMagicTrial`
         # @param XMagicTrialList: 可以开通的优图测试功能列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type XMagicTrialList: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1304,10 +1291,8 @@ module TencentCloud
       # DescribeXMagicResourceList返回参数结构体
       class DescribeXMagicResourceListResponse < TencentCloud::Common::AbstractModel
         # @param Resources: 优图资源包信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Resources: Array
         # @param Count: 资源数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Count: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1357,10 +1342,8 @@ module TencentCloud
       # DescribeXMagicResource返回参数结构体
       class DescribeXMagicResourceResponse < TencentCloud::Common::AbstractModel
         # @param Resources: 优图资源包信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Resources: Array
         # @param Count: 资源数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Count: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1404,10 +1387,8 @@ module TencentCloud
         # @param Duration: 可以试用的时长，单位天
         # @type Duration: Integer
         # @param CreatedAt: 创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreatedAt: String
         # @param UpdatedAt: 更新时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdatedAt: String
 
         attr_accessor :Id, :FeatureId, :Name, :Type, :Trial, :TrialCount, :Duration, :CreatedAt, :UpdatedAt
@@ -1453,15 +1434,12 @@ module TencentCloud
         # @param LicenseType: license是测试：test还是正式：formal
         # @type LicenseType: String
         # @param Renewal: 测试license 是否可以续期
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Renewal: Boolean
         # @param LicenseId: license索引
         # @type LicenseId: Integer
         # @param Name: license名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Update: 测试license 是否升级
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Update: Boolean
         # @param OldLicenseUrl: 兼容老的licenseUrl
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -1470,22 +1448,18 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Group: Integer
         # @param Expired: 过期：true ，未过期：其它
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Expired: Boolean
         # @param RestTime: 返回还有多少秒过期，过期返回0
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RestTime: Integer
         # @param CreatedAt: 创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreatedAt: String
         # @param UpdatedAt: 更新时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdatedAt: String
         # @param Resource: 计费资源相关信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Resource: :class:`Tencentcloud::Vcube.v20220410.models.RenewResource`
         # @param IsVest: 是否为马甲包
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsVest: Boolean
 
         attr_accessor :Type, :Remark, :StartTime, :EndTime, :FeatureId, :LicenseType, :Renewal, :LicenseId, :Name, :Update, :OldLicenseUrl, :Group, :Expired, :RestTime, :CreatedAt, :UpdatedAt, :Resource, :IsVest
@@ -1548,29 +1522,23 @@ module TencentCloud
         # @param FeatureId: 功能Id
         # @type FeatureId: Integer
         # @param StartTime: 此license资源的开始生效时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StartTime: String
         # @param EndTime: 此license资源的生效结束时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EndTime: String
         # @param CreatedAt: 创建时间
         # @type CreatedAt: String
         # @param UpdatedAt: 更新时间
         # @type UpdatedAt: String
         # @param IsUse: 此资源是否可用于续期和更新有效期
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsUse: Boolean
         # @param Status: 此资源的状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
         # @param IsolatedTimestamp: 销毁时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsolatedTimestamp: String
         # @param Name: 功能模块名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Type: 功能模块类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: String
         # @param Package: 资源包信息
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -1579,10 +1547,8 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Application: :class:`Tencentcloud::Vcube.v20220410.models.AppInfo`
         # @param ResourceId: 资源Id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceId: String
         # @param AutoRenewFlag: 自动续费状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AutoRenewFlag: Integer
 
         attr_accessor :Id, :AppId, :Duration, :FeatureId, :StartTime, :EndTime, :CreatedAt, :UpdatedAt, :IsUse, :Status, :IsolatedTimestamp, :Name, :Type, :Package, :Application, :ResourceId, :AutoRenewFlag
@@ -1646,38 +1612,30 @@ module TencentCloud
         # @param FeatureId: 功能Id
         # @type FeatureId: Integer
         # @param StartTime: 此license资源的开始生效时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StartTime: String
         # @param EndTime: 此license资源的生效结束时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EndTime: String
         # @param CreatedAt: 创建时间
         # @type CreatedAt: String
         # @param UpdatedAt: 更新时间
         # @type UpdatedAt: String
         # @param IsUse: 此资源是否可用于续期和更新有效期
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsUse: Boolean
         # @param Status: 此资源的状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
         # @param IsolatedTimestamp: 销毁时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsolatedTimestamp: String
         # @param Name: 功能模块名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Type: 功能模块类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: String
         # @param Package: 资源包信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Package: :class:`Tencentcloud::Vcube.v20220410.models.Package`
         # @param ResourceId: 资源id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceId: String
         # @param AutoRenewFlag: 自动续费状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AutoRenewFlag: Integer
 
         attr_accessor :Id, :AppId, :Duration, :FeatureId, :StartTime, :EndTime, :CreatedAt, :UpdatedAt, :IsUse, :Status, :IsolatedTimestamp, :Name, :Type, :Package, :ResourceId, :AutoRenewFlag
@@ -1906,7 +1864,7 @@ module TencentCloud
 
       # ModifyTrialLicense请求参数结构体
       class ModifyTrialLicenseRequest < TencentCloud::Common::AbstractModel
-        # @param LicenseId: 执照ID
+        # @param LicenseId: 授权ID
         # @type LicenseId: String
 
         attr_accessor :LicenseId
@@ -1974,12 +1932,17 @@ module TencentCloud
 
       # 视立方产品概览页新闻动态
       class NewsInfo < TencentCloud::Common::AbstractModel
+        # @param Id: 新闻Id
+        # @type Id: Integer
 
+        attr_accessor :Id
 
-        def initialize()
+        def initialize(id=nil)
+          @Id = id
         end
 
         def deserialize(params)
+          @Id = params['Id']
         end
       end
 
@@ -2001,7 +1964,6 @@ module TencentCloud
         # @param Name: 资源包名称
         # @type Name: String
         # @param Type: 资源包类型ID,对应点播：PackageId 对应直播：TypeId
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: String
 
         attr_accessor :Id, :BizResourceId, :Site, :StartTime, :EndTime, :RefundTime, :Name, :Type
@@ -2068,10 +2030,8 @@ module TencentCloud
       # 自动续期资源info
       class RenewResource < TencentCloud::Common::AbstractModel
         # @param ResourceId: 资源Id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceId: String
         # @param AutoRenewFlag: 自动续期标记，0：默认，1：自动续期，2：不续期
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AutoRenewFlag: Integer
         # @param IsolatedTimestamp: 资源冻结时间
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -2080,10 +2040,8 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Refund: Boolean
         # @param SubProductCode: 子产品码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubProductCode: String
         # @param EndTime: 资源到期时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EndTime: String
 
         attr_accessor :ResourceId, :AutoRenewFlag, :IsolatedTimestamp, :Refund, :SubProductCode, :EndTime
@@ -2298,13 +2256,10 @@ module TencentCloud
         # @param FeatureId: 功能ID
         # @type FeatureId: Integer
         # @param Name: 功能名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Type: 功能类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: String
         # @param Trial: 是否可以申请试用
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Trial: Boolean
         # @param TrialCount: 可以试用的次数
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -2313,16 +2268,12 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Duration: Integer
         # @param CreatedAt: 创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreatedAt: String
         # @param UpdatedAt: 更新时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdatedAt: String
         # @param BizType: 功能所属业务方
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BizType: String
         # @param Platform: 平台类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Platform: String
 
         attr_accessor :Id, :FeatureId, :Name, :Type, :Trial, :TrialCount, :Duration, :CreatedAt, :UpdatedAt, :BizType, :Platform
@@ -2412,7 +2363,6 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CompanyType: String
         # @param Plan: 优图套餐类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Plan: String
         # @param LicenseType: 测试版还是正式版 test | formal
         # @type LicenseType: String
@@ -2436,14 +2386,12 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RenewalCount: Integer
         # @param Reply: 历次审批的回复
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Reply: Array
         # @param CreatedAt: 创建时间
         # @type CreatedAt: String
         # @param UpdatedAt: 修改时间
         # @type UpdatedAt: String
         # @param UpdateTime: 用户更新信息的时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: String
         # @param Expired: 是否过期
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -2452,16 +2400,13 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RestTime: Integer
         # @param XMagicType: single: 原子能力,combined:套餐
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type XMagicType: String
         # @param Name: 优图模块名称，自动中英文
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Resource: 优图资源信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Resource: :class:`Tencentcloud::Vcube.v20220410.models.RenewResource`
         # @param IsVest: 是否是马甲包
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsVest: Boolean
 
         attr_accessor :Id, :CompanyName, :CompanyPermit, :CompanyType, :Plan, :LicenseType, :Status, :Update, :StartTime, :EndTime, :RenewalCount, :Reply, :CreatedAt, :UpdatedAt, :UpdateTime, :Expired, :RestTime, :XMagicType, :Name, :Resource, :IsVest
@@ -2536,28 +2481,20 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type XMagic: Boolean
         # @param StartTime: 资源开始生效时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StartTime: String
         # @param EndTime: 资源结束生效时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EndTime: String
         # @param Expired: 资源包是否过期
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Expired: Boolean
         # @param Name: 功能模块名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param XMagicType: single: 原子能力,combined:套餐
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type XMagicType: String
         # @param BizType: xmagic:优图， avatar：虚拟人
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BizType: String
         # @param ResourceId: 资源Id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceId: String
         # @param IsUse: 资源是否可以使用
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsUse: Boolean
 
         attr_accessor :Id, :AppId, :Plan, :Duration, :CreatedAt, :UpdatedAt, :XMagic, :StartTime, :EndTime, :Expired, :Name, :XMagicType, :BizType, :ResourceId, :IsUse
@@ -2614,10 +2551,8 @@ module TencentCloud
         # @param UpdatedAt: 更新时间
         # @type UpdatedAt: String
         # @param StartTime: 资源开始生效时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StartTime: String
         # @param EndTime: 资源结束生效时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EndTime: String
         # @param Application: 应用信息
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -2631,22 +2566,16 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Operation: Array
         # @param IsUse: 是否可以使用
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsUse: Boolean
         # @param XMagicType: single: 原子能力,combined:套餐
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type XMagicType: String
         # @param Name: 功能模块名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param BizType: 资源所属业务方 xmagic：优图，avatar：虚拟形象
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BizType: String
         # @param ResourceId: 资源id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceId: String
         # @param AutoRenewFlag: 资源自动续费状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AutoRenewFlag: Integer
 
         attr_accessor :Id, :AppId, :Plan, :Duration, :CreatedAt, :UpdatedAt, :StartTime, :EndTime, :Application, :XMagic, :Status, :Operation, :IsUse, :XMagicType, :Name, :BizType, :ResourceId, :AutoRenewFlag
@@ -2732,15 +2661,18 @@ module TencentCloud
         # @type Plan: String
         # @param XMagicType: single: 原子能力,combined:套餐
         # @type XMagicType: String
+        # @param BizType: vod：点播 live：直播
+        # @type BizType: String
 
-        attr_accessor :Name, :TrialCount, :Duration, :Plan, :XMagicType
+        attr_accessor :Name, :TrialCount, :Duration, :Plan, :XMagicType, :BizType
 
-        def initialize(name=nil, trialcount=nil, duration=nil, plan=nil, xmagictype=nil)
+        def initialize(name=nil, trialcount=nil, duration=nil, plan=nil, xmagictype=nil, biztype=nil)
           @Name = name
           @TrialCount = trialcount
           @Duration = duration
           @Plan = plan
           @XMagicType = xmagictype
+          @BizType = biztype
         end
 
         def deserialize(params)
@@ -2749,6 +2681,7 @@ module TencentCloud
           @Duration = params['Duration']
           @Plan = params['Plan']
           @XMagicType = params['XMagicType']
+          @BizType = params['BizType']
         end
       end
 

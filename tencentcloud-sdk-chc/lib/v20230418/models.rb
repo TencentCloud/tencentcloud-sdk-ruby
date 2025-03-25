@@ -2516,7 +2516,6 @@ module TencentCloud
         # @param IdcId: 机房id
         # @type IdcId: Integer
         # @param IdcName: 机房名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IdcName: String
         # @param DeviceType: 设备类型
         # @type DeviceType: String
@@ -3221,35 +3220,26 @@ module TencentCloud
       # 到访人员
       class Personnel < TencentCloud::Common::AbstractModel
         # @param IDCardNumber: 证件号码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IDCardNumber: String
         # @param IDCardType: 证件类型。对应关系如下：IDENTITY_CARD: 身份证,
         # HONG_KONG_AND_MACAO_PASS: 港澳通行证',
         # PASSPORT: 护照,
         # DRIVING_LICENSE: 驾照,
         # OTHER: 其他
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IDCardType: String
         # @param Company: 公司名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Company: String
         # @param LanguageType: 语言。对应关系：ENGLISH: 英文, CHINESE: 中文
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LanguageType: String
         # @param Name: 姓名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param TelNumber: 电话
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TelNumber: String
         # @param Position: 职位
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Position: String
         # @param Wechat: 微信
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Wechat: String
         # @param Email: 邮箱
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Email: String
 
         attr_accessor :IDCardNumber, :IDCardType, :Company, :LanguageType, :Name, :TelNumber, :Position, :Wechat, :Email
@@ -3510,16 +3500,12 @@ module TencentCloud
       # 客户自行上门信息
       class SelfOperation < TencentCloud::Common::AbstractModel
         # @param StuffContact: 联系人员电话
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StuffContact: String
         # @param StuffIDCard: 身份证号
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StuffIDCard: String
         # @param StuffName: 人员姓名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StuffName: String
         # @param OperationTime: 上门时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OperationTime: String
 
         attr_accessor :StuffContact, :StuffIDCard, :StuffName, :OperationTime
@@ -3777,7 +3763,6 @@ module TencentCloud
         # @param CreateTime: 工单创建时间
         # @type CreateTime: String
         # @param FinishTime: 工单完成时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FinishTime: String
 
         attr_accessor :WorkOrderId, :ServiceType, :OrderType, :OrderStatus, :Creator, :CreateTime, :FinishTime
