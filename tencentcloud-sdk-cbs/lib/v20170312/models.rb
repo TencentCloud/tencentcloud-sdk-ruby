@@ -1783,7 +1783,6 @@ module TencentCloud
       # 描述购买云盘时的费用明细。
       class DetailPrice < TencentCloud::Common::AbstractModel
         # @param PriceTitle: 描述计费项目名称。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PriceTitle: String
         # @param PriceName: 描述计费项目显示名称，用户控制台展示。
         # @type PriceName: String
@@ -3029,7 +3028,6 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UnitPrice: Float
         # @param DetailPrices: 计费项目明细列表。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DetailPrices: Array
 
         attr_accessor :DiscountPrice, :ChargeUnit, :UnitPriceHigh, :OriginalPriceHigh, :OriginalPrice, :UnitPriceDiscount, :UnitPriceDiscountHigh, :DiscountPriceHigh, :UnitPrice, :DetailPrices

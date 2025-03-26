@@ -579,10 +579,19 @@ module TencentCloud
         # @type TagOperation: String
         # @param NoticeTmplBindInfos: 通知模板绑定内容模板信息
         # @type NoticeTmplBindInfos: Array
+        # @param HierarchicalNotices: 模板通知的等级
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HierarchicalNotices: Array
+        # @param NoticeContentTmplBindInfos: 通知模板绑定内容模板信息，同NoticeTmplBindInfos
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NoticeContentTmplBindInfos: Array
+        # @param PredefinedConfigID: 预设配置id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PredefinedConfigID: String
 
-        attr_accessor :PolicyId, :PolicyName, :Remark, :MonitorType, :Enable, :UseSum, :ProjectId, :ProjectName, :Namespace, :ConditionTemplateId, :Condition, :EventCondition, :NoticeIds, :Notices, :TriggerTasks, :ConditionsTemp, :LastEditUin, :UpdateTime, :InsertTime, :Region, :NamespaceShowName, :IsDefault, :CanSetDefault, :InstanceGroupId, :InstanceSum, :InstanceGroupName, :RuleType, :OriginId, :TagInstances, :Filter, :GroupBy, :FilterDimensionsParam, :IsOneClick, :OneClickStatus, :AdvancedMetricNumber, :IsBindAll, :Tags, :IsSupportAlarmTag, :TagOperation, :NoticeTmplBindInfos
+        attr_accessor :PolicyId, :PolicyName, :Remark, :MonitorType, :Enable, :UseSum, :ProjectId, :ProjectName, :Namespace, :ConditionTemplateId, :Condition, :EventCondition, :NoticeIds, :Notices, :TriggerTasks, :ConditionsTemp, :LastEditUin, :UpdateTime, :InsertTime, :Region, :NamespaceShowName, :IsDefault, :CanSetDefault, :InstanceGroupId, :InstanceSum, :InstanceGroupName, :RuleType, :OriginId, :TagInstances, :Filter, :GroupBy, :FilterDimensionsParam, :IsOneClick, :OneClickStatus, :AdvancedMetricNumber, :IsBindAll, :Tags, :IsSupportAlarmTag, :TagOperation, :NoticeTmplBindInfos, :HierarchicalNotices, :NoticeContentTmplBindInfos, :PredefinedConfigID
 
-        def initialize(policyid=nil, policyname=nil, remark=nil, monitortype=nil, enable=nil, usesum=nil, projectid=nil, projectname=nil, namespace=nil, conditiontemplateid=nil, condition=nil, eventcondition=nil, noticeids=nil, notices=nil, triggertasks=nil, conditionstemp=nil, lastedituin=nil, updatetime=nil, inserttime=nil, region=nil, namespaceshowname=nil, isdefault=nil, cansetdefault=nil, instancegroupid=nil, instancesum=nil, instancegroupname=nil, ruletype=nil, originid=nil, taginstances=nil, filter=nil, groupby=nil, filterdimensionsparam=nil, isoneclick=nil, oneclickstatus=nil, advancedmetricnumber=nil, isbindall=nil, tags=nil, issupportalarmtag=nil, tagoperation=nil, noticetmplbindinfos=nil)
+        def initialize(policyid=nil, policyname=nil, remark=nil, monitortype=nil, enable=nil, usesum=nil, projectid=nil, projectname=nil, namespace=nil, conditiontemplateid=nil, condition=nil, eventcondition=nil, noticeids=nil, notices=nil, triggertasks=nil, conditionstemp=nil, lastedituin=nil, updatetime=nil, inserttime=nil, region=nil, namespaceshowname=nil, isdefault=nil, cansetdefault=nil, instancegroupid=nil, instancesum=nil, instancegroupname=nil, ruletype=nil, originid=nil, taginstances=nil, filter=nil, groupby=nil, filterdimensionsparam=nil, isoneclick=nil, oneclickstatus=nil, advancedmetricnumber=nil, isbindall=nil, tags=nil, issupportalarmtag=nil, tagoperation=nil, noticetmplbindinfos=nil, hierarchicalnotices=nil, noticecontenttmplbindinfos=nil, predefinedconfigid=nil)
           @PolicyId = policyid
           @PolicyName = policyname
           @Remark = remark
@@ -623,6 +632,9 @@ module TencentCloud
           @IsSupportAlarmTag = issupportalarmtag
           @TagOperation = tagoperation
           @NoticeTmplBindInfos = noticetmplbindinfos
+          @HierarchicalNotices = hierarchicalnotices
+          @NoticeContentTmplBindInfos = noticecontenttmplbindinfos
+          @PredefinedConfigID = predefinedconfigid
         end
 
         def deserialize(params)
@@ -720,6 +732,23 @@ module TencentCloud
               @NoticeTmplBindInfos << noticecontenttmplbindinfo_tmp
             end
           end
+          unless params['HierarchicalNotices'].nil?
+            @HierarchicalNotices = []
+            params['HierarchicalNotices'].each do |i|
+              alarmhierarchicalnotice_tmp = AlarmHierarchicalNotice.new
+              alarmhierarchicalnotice_tmp.deserialize(i)
+              @HierarchicalNotices << alarmhierarchicalnotice_tmp
+            end
+          end
+          unless params['NoticeContentTmplBindInfos'].nil?
+            @NoticeContentTmplBindInfos = []
+            params['NoticeContentTmplBindInfos'].each do |i|
+              noticecontenttmplbindinfo_tmp = NoticeContentTmplBindInfo.new
+              noticecontenttmplbindinfo_tmp.deserialize(i)
+              @NoticeContentTmplBindInfos << noticecontenttmplbindinfo_tmp
+            end
+          end
+          @PredefinedConfigID = params['PredefinedConfigID']
         end
       end
 
@@ -4419,13 +4448,7 @@ module TencentCloud
         # @param Namespaces: 根据命名空间过滤，不同策略类型的值详见
         # [策略类型列表](https://cloud.tencent.com/document/product/248/50397)当Dimension不为空时，该项为必填项
         # @type Namespaces: Array
-        # @param Dimensions: 告警对象列表，JSON 字符串。外层数组，对应多个实例，内层为对象的维度。例如“云服务器-基础监控”可写为：
-        # `[ {"Dimensions": {"unInstanceId": "ins-qr8d555g"}}, {"Dimensions": {"unInstanceId": "ins-qr8d555h"}} ]`
-        # 具体也可以参考下方的示例 2。
-
-        # 不同云产品参数示例详见 [维度信息Dimensions列表](https://cloud.tencent.com/document/product/248/50397)
-
-        # 注意：如果NeedCorrespondence传入1，即需要返回策略与实例对应关系，请传入不多于20个告警对象维度，否则容易请求超时
+        # @param Dimensions: 告警对象列表，JSON 字符串。外层数组，对应多个实例，内层为对象的维度。例如“云服务器-基础监控”可写为：`[[{"name":"unInstanceId","value":"ins-qr888845g"}]]`具体也可以参考下方的示例 2。不同云产品参数示例详见 [维度信息Dimensions列表](https://cloud.tencent.com/document/product/248/50397)注意：如果NeedCorrespondence传入1，即需要返回策略与实例对应关系，请传入不多于20个告警对象维度，否则容易请求超时
         # @type Dimensions: String
         # @param ReceiverUids: 根据接收人搜索，可以使用“访问管理”的 [拉取子用户 ListUsers](https://cloud.tencent.com/document/product/598/34587) 接口获取用户列表 或 [查询子用户 GetUser](https://cloud.tencent.com/document/product/598/34590) 接口查询子用户详情，此处填入返回结果中的 `Uid` 字段
         # @type ReceiverUids: Array
@@ -4469,10 +4492,12 @@ module TencentCloud
         # @type ReceiverOnCallFormIDs: Array
         # @param NoticeContentTmplIDs: 通知内容模板ID筛选
         # @type NoticeContentTmplIDs: Array
+        # @param IsPredefined: 是否为预设策略，1是，0否
+        # @type IsPredefined: Integer
 
-        attr_accessor :Module, :PageNumber, :PageSize, :PolicyName, :MonitorTypes, :Namespaces, :Dimensions, :ReceiverUids, :ReceiverGroups, :PolicyType, :Field, :Order, :ProjectIds, :NoticeIds, :RuleTypes, :Enable, :NotBindingNoticeRule, :InstanceGroupId, :NeedCorrespondence, :TriggerTasks, :OneClickPolicyType, :NotBindAll, :NotInstanceGroup, :Tags, :PromInsId, :ReceiverOnCallFormIDs, :NoticeContentTmplIDs
+        attr_accessor :Module, :PageNumber, :PageSize, :PolicyName, :MonitorTypes, :Namespaces, :Dimensions, :ReceiverUids, :ReceiverGroups, :PolicyType, :Field, :Order, :ProjectIds, :NoticeIds, :RuleTypes, :Enable, :NotBindingNoticeRule, :InstanceGroupId, :NeedCorrespondence, :TriggerTasks, :OneClickPolicyType, :NotBindAll, :NotInstanceGroup, :Tags, :PromInsId, :ReceiverOnCallFormIDs, :NoticeContentTmplIDs, :IsPredefined
 
-        def initialize(_module=nil, pagenumber=nil, pagesize=nil, policyname=nil, monitortypes=nil, namespaces=nil, dimensions=nil, receiveruids=nil, receivergroups=nil, policytype=nil, field=nil, order=nil, projectids=nil, noticeids=nil, ruletypes=nil, enable=nil, notbindingnoticerule=nil, instancegroupid=nil, needcorrespondence=nil, triggertasks=nil, oneclickpolicytype=nil, notbindall=nil, notinstancegroup=nil, tags=nil, prominsid=nil, receiveroncallformids=nil, noticecontenttmplids=nil)
+        def initialize(_module=nil, pagenumber=nil, pagesize=nil, policyname=nil, monitortypes=nil, namespaces=nil, dimensions=nil, receiveruids=nil, receivergroups=nil, policytype=nil, field=nil, order=nil, projectids=nil, noticeids=nil, ruletypes=nil, enable=nil, notbindingnoticerule=nil, instancegroupid=nil, needcorrespondence=nil, triggertasks=nil, oneclickpolicytype=nil, notbindall=nil, notinstancegroup=nil, tags=nil, prominsid=nil, receiveroncallformids=nil, noticecontenttmplids=nil, ispredefined=nil)
           @Module = _module
           @PageNumber = pagenumber
           @PageSize = pagesize
@@ -4500,6 +4525,7 @@ module TencentCloud
           @PromInsId = prominsid
           @ReceiverOnCallFormIDs = receiveroncallformids
           @NoticeContentTmplIDs = noticecontenttmplids
+          @IsPredefined = ispredefined
         end
 
         def deserialize(params)
@@ -4544,6 +4570,7 @@ module TencentCloud
           @PromInsId = params['PromInsId']
           @ReceiverOnCallFormIDs = params['ReceiverOnCallFormIDs']
           @NoticeContentTmplIDs = params['NoticeContentTmplIDs']
+          @IsPredefined = params['IsPredefined']
         end
       end
 
@@ -14559,16 +14586,20 @@ module TencentCloud
         # @param Weekday: 通知周期 1-7表示周一到周日
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Weekday: Array
+        # @param GroupMembers: 组名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GroupMembers: String
 
-        attr_accessor :URL, :IsValid, :ValidationCode, :StartTime, :EndTime, :Weekday
+        attr_accessor :URL, :IsValid, :ValidationCode, :StartTime, :EndTime, :Weekday, :GroupMembers
 
-        def initialize(url=nil, isvalid=nil, validationcode=nil, starttime=nil, endtime=nil, weekday=nil)
+        def initialize(url=nil, isvalid=nil, validationcode=nil, starttime=nil, endtime=nil, weekday=nil, groupmembers=nil)
           @URL = url
           @IsValid = isvalid
           @ValidationCode = validationcode
           @StartTime = starttime
           @EndTime = endtime
           @Weekday = weekday
+          @GroupMembers = groupmembers
         end
 
         def deserialize(params)
@@ -14578,6 +14609,7 @@ module TencentCloud
           @StartTime = params['StartTime']
           @EndTime = params['EndTime']
           @Weekday = params['Weekday']
+          @GroupMembers = params['GroupMembers']
         end
       end
 

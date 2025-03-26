@@ -1079,15 +1079,12 @@ module TencentCloud
         # 100 appid-secretkey-ticket mismatch 参数校验错误，（1）请检查CaptchaAppId与AppSecretKey是否正确，CaptchaAppId、AppSecretKey需要在验证码控制台【验证管理】>【基础配置】中获取（2）请检查传入的Ticket是否由传入的CaptchaAppId生成
         # @type CaptchaCode: Integer
         # @param CaptchaMsg: 状态描述及验证错误信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CaptchaMsg: String
         # @param EvilLevel: 无感验证模式下，该参数返回验证结果：
         # EvilLevel=0 请求无恶意
         # EvilLevel=100 请求有恶意
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EvilLevel: Integer
         # @param GetCaptchaTime: 前端获取验证码时间，时间戳格式
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GetCaptchaTime: Integer
         # @param EvilBitmap: 拦截类型
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -1095,14 +1092,15 @@ module TencentCloud
         # @param SubmitCaptchaTime: 提交验证码时间
         # @type SubmitCaptchaTime: Integer
         # @param RceResult: rce检测结果
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RceResult: :class:`Tencentcloud::Captcha.v20190722.models.RceResult`
+        # @param DeviceRiskCategory: 设备风险大类
+        # @type DeviceRiskCategory: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :CaptchaCode, :CaptchaMsg, :EvilLevel, :GetCaptchaTime, :EvilBitmap, :SubmitCaptchaTime, :RceResult, :RequestId
+        attr_accessor :CaptchaCode, :CaptchaMsg, :EvilLevel, :GetCaptchaTime, :EvilBitmap, :SubmitCaptchaTime, :RceResult, :DeviceRiskCategory, :RequestId
 
-        def initialize(captchacode=nil, captchamsg=nil, evillevel=nil, getcaptchatime=nil, evilbitmap=nil, submitcaptchatime=nil, rceresult=nil, requestid=nil)
+        def initialize(captchacode=nil, captchamsg=nil, evillevel=nil, getcaptchatime=nil, evilbitmap=nil, submitcaptchatime=nil, rceresult=nil, deviceriskcategory=nil, requestid=nil)
           @CaptchaCode = captchacode
           @CaptchaMsg = captchamsg
           @EvilLevel = evillevel
@@ -1110,6 +1108,7 @@ module TencentCloud
           @EvilBitmap = evilbitmap
           @SubmitCaptchaTime = submitcaptchatime
           @RceResult = rceresult
+          @DeviceRiskCategory = deviceriskcategory
           @RequestId = requestid
         end
 
@@ -1124,6 +1123,7 @@ module TencentCloud
             @RceResult = RceResult.new
             @RceResult.deserialize(params['RceResult'])
           end
+          @DeviceRiskCategory = params['DeviceRiskCategory']
           @RequestId = params['RequestId']
         end
       end
@@ -1196,15 +1196,12 @@ module TencentCloud
         # 100 appid-secretkey-ticket mismatch 参数校验错误，（1）请检查CaptchaAppId与AppSecretKey是否正确，CaptchaAppId、AppSecretKey需要在验证码控制台【验证管理】>【基础配置】中获取（2）请检查传入的Ticket是否由传入的CaptchaAppId生成
         # @type CaptchaCode: Integer
         # @param CaptchaMsg: 状态描述及验证错误信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CaptchaMsg: String
         # @param EvilLevel: 无感验证模式下，该参数返回验证结果：
         # EvilLevel=0 请求无恶意
         # EvilLevel=100 请求有恶意
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EvilLevel: Integer
         # @param GetCaptchaTime: 前端获取验证码时间，时间戳格式
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GetCaptchaTime: Integer
         # @param EvilBitmap: 拦截类型
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -1675,28 +1672,20 @@ module TencentCloud
       # 验证码拼装Rce结果，Rce结果部分
       class RceResult < TencentCloud::Common::AbstractModel
         # @param UserId: 用户ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UserId: String
         # @param PostTime: 操作时间戳
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PostTime: Integer
         # @param AssociateAccount: 业务参数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AssociateAccount: String
         # @param UserIp: 用户Ip
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UserIp: String
         # @param RiskLevel: 风险等级
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RiskLevel: String
         # @param RiskType: 风险类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RiskType: Array
         # @param ConstId: 设备唯一ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ConstId: String
         # @param RiskInformation: 风险扩展参数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RiskInformation: String
 
         attr_accessor :UserId, :PostTime, :AssociateAccount, :UserIp, :RiskLevel, :RiskType, :ConstId, :RiskInformation

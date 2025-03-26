@@ -1302,7 +1302,6 @@ module TencentCloud
         # @param ConfigName: 配置项名称
         # @type ConfigName: String
         # @param ConfigPath: 配置项日志路径
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ConfigPath: String
         # @param ConfigDesc: 配置项描述
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -1311,7 +1310,6 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ConfigTags: String
         # @param ConfigPipeline: 配置项对应的ES管道
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ConfigPipeline: String
         # @param ConfigCreateTime: 配置项创建时间
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -1320,21 +1318,25 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ConfigUpdateTime: String
         # @param ConfigSchema: 配置项解析规则
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ConfigSchema: :class:`Tencentcloud::Tsf.v20180326.models.BusinessLogConfigSchema`
         # @param ConfigAssociatedGroups: 配置项关联部署组
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ConfigAssociatedGroups: Array
         # @param ConfigAssociatedGroupList: 配置项关联部署组
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ConfigAssociatedGroupList: Array
+        # @param FilebeatConfigEnable: 是否开启filebeat高级配置开关
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FilebeatConfigEnable: Boolean
+        # @param FilebeatCloseTimeout: close_timeout参数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FilebeatCloseTimeout: Integer
 
-        attr_accessor :ConfigId, :ConfigName, :ConfigPath, :ConfigDesc, :ConfigTags, :ConfigPipeline, :ConfigCreateTime, :ConfigUpdateTime, :ConfigSchema, :ConfigAssociatedGroups, :ConfigAssociatedGroupList
+        attr_accessor :ConfigId, :ConfigName, :ConfigPath, :ConfigDesc, :ConfigTags, :ConfigPipeline, :ConfigCreateTime, :ConfigUpdateTime, :ConfigSchema, :ConfigAssociatedGroups, :ConfigAssociatedGroupList, :FilebeatConfigEnable, :FilebeatCloseTimeout
         extend Gem::Deprecate
         deprecate :ConfigAssociatedGroups, :none, 2025, 3
         deprecate :ConfigAssociatedGroups=, :none, 2025, 3
 
-        def initialize(configid=nil, configname=nil, configpath=nil, configdesc=nil, configtags=nil, configpipeline=nil, configcreatetime=nil, configupdatetime=nil, configschema=nil, configassociatedgroups=nil, configassociatedgrouplist=nil)
+        def initialize(configid=nil, configname=nil, configpath=nil, configdesc=nil, configtags=nil, configpipeline=nil, configcreatetime=nil, configupdatetime=nil, configschema=nil, configassociatedgroups=nil, configassociatedgrouplist=nil, filebeatconfigenable=nil, filebeatclosetimeout=nil)
           @ConfigId = configid
           @ConfigName = configname
           @ConfigPath = configpath
@@ -1346,6 +1348,8 @@ module TencentCloud
           @ConfigSchema = configschema
           @ConfigAssociatedGroups = configassociatedgroups
           @ConfigAssociatedGroupList = configassociatedgrouplist
+          @FilebeatConfigEnable = filebeatconfigenable
+          @FilebeatCloseTimeout = filebeatclosetimeout
         end
 
         def deserialize(params)
@@ -1377,6 +1381,8 @@ module TencentCloud
               @ConfigAssociatedGroupList << businesslogconfigassociatedgroup_tmp
             end
           end
+          @FilebeatConfigEnable = params['FilebeatConfigEnable']
+          @FilebeatCloseTimeout = params['FilebeatCloseTimeout']
         end
       end
 
@@ -7179,7 +7185,6 @@ module TencentCloud
       # DescribeBusinessLogConfig返回参数结构体
       class DescribeBusinessLogConfigResponse < TencentCloud::Common::AbstractModel
         # @param Result: 日志配置项
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: :class:`Tencentcloud::Tsf.v20180326.models.BusinessLogConfig`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -9679,7 +9684,6 @@ module TencentCloud
       # DescribeJvmMonitor返回参数结构体
       class DescribeJvmMonitorResponse < TencentCloud::Common::AbstractModel
         # @param Result: Java实例jvm监控数据
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: :class:`Tencentcloud::Tsf.v20180326.models.JvmMonitorData`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -19212,15 +19216,18 @@ module TencentCloud
         # @type ThreadCount: Array
         # @param ThreadActive: 活跃线程数
         # @type ThreadActive: Array
-        # @param DeamonThreadCount: 守护线程数
+        # @param DeamonThreadCount: 守护线程数 拼写错误，废弃
         # @type DeamonThreadCount: Array
+        # @param DaemonThreadCount: 守护线程数
+        # @type DaemonThreadCount: Array
 
-        attr_accessor :ThreadCount, :ThreadActive, :DeamonThreadCount
+        attr_accessor :ThreadCount, :ThreadActive, :DeamonThreadCount, :DaemonThreadCount
 
-        def initialize(threadcount=nil, threadactive=nil, deamonthreadcount=nil)
+        def initialize(threadcount=nil, threadactive=nil, deamonthreadcount=nil, daemonthreadcount=nil)
           @ThreadCount = threadcount
           @ThreadActive = threadactive
           @DeamonThreadCount = deamonthreadcount
+          @DaemonThreadCount = daemonthreadcount
         end
 
         def deserialize(params)
@@ -19246,6 +19253,14 @@ module TencentCloud
               curvepoint_tmp = CurvePoint.new
               curvepoint_tmp.deserialize(i)
               @DeamonThreadCount << curvepoint_tmp
+            end
+          end
+          unless params['DaemonThreadCount'].nil?
+            @DaemonThreadCount = []
+            params['DaemonThreadCount'].each do |i|
+              curvepoint_tmp = CurvePoint.new
+              curvepoint_tmp.deserialize(i)
+              @DaemonThreadCount << curvepoint_tmp
             end
           end
         end

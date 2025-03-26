@@ -796,7 +796,7 @@ module TencentCloud
         # @type VpcId: String
         # @param SubnetId: 统一子网ID，VpcId有值时需填写
         # @type SubnetId: String
-        # @param DbVersionId: 数据库引擎版本，当前可选：8.0，5.7，10.1，10.0。
+        # @param DbVersionId: 数据库引擎版本，当前可选：8.0，5.7，10.1。
         # @type DbVersionId: String
         # @param InstanceName: 自定义实例名称
         # @type InstanceName: String
@@ -888,10 +888,8 @@ module TencentCloud
         #  查询订单详细信息，或在支付失败时调用用户账号相关接口进行支付。
         # @type DealName: String
         # @param InstanceIds: 订单对应的实例 ID 列表，如果此处没有返回实例 ID，可以通过订单查询接口获取。还可通过实例查询接口查询实例是否创建完成。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceIds: Array
         # @param FlowId: 异步任务的请求 ID，可使用此 ID [查询异步任务的执行结果](https://cloud.tencent.com/document/product/237/16177)。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FlowId: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

@@ -4446,10 +4446,12 @@ module TencentCloud
         # @param TCHouseD: Doris数据源连接的属性
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TCHouseD: :class:`Tencentcloud::Dlc.v20210125.models.TCHouseD`
+        # @param TccHive: TccHive数据目录连接信息
+        # @type TccHive: :class:`Tencentcloud::Dlc.v20210125.models.TccHive`
 
-        attr_accessor :Mysql, :Hive, :Kafka, :OtherDatasourceConnection, :PostgreSql, :SqlServer, :ClickHouse, :Elasticsearch, :TDSQLPostgreSql, :TCHouseD
+        attr_accessor :Mysql, :Hive, :Kafka, :OtherDatasourceConnection, :PostgreSql, :SqlServer, :ClickHouse, :Elasticsearch, :TDSQLPostgreSql, :TCHouseD, :TccHive
 
-        def initialize(mysql=nil, hive=nil, kafka=nil, otherdatasourceconnection=nil, postgresql=nil, sqlserver=nil, clickhouse=nil, elasticsearch=nil, tdsqlpostgresql=nil, tchoused=nil)
+        def initialize(mysql=nil, hive=nil, kafka=nil, otherdatasourceconnection=nil, postgresql=nil, sqlserver=nil, clickhouse=nil, elasticsearch=nil, tdsqlpostgresql=nil, tchoused=nil, tcchive=nil)
           @Mysql = mysql
           @Hive = hive
           @Kafka = kafka
@@ -4460,6 +4462,7 @@ module TencentCloud
           @Elasticsearch = elasticsearch
           @TDSQLPostgreSql = tdsqlpostgresql
           @TCHouseD = tchoused
+          @TccHive = tcchive
         end
 
         def deserialize(params)
@@ -4502,6 +4505,10 @@ module TencentCloud
           unless params['TCHouseD'].nil?
             @TCHouseD = TCHouseD.new
             @TCHouseD.deserialize(params['TCHouseD'])
+          end
+          unless params['TccHive'].nil?
+            @TccHive = TccHive.new
+            @TccHive.deserialize(params['TccHive'])
           end
         end
       end
@@ -9247,7 +9254,6 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceName: String
         # @param HiveVersion: EMR集群中hive组件的版本号
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HiveVersion: String
         # @param KerberosInfo: Kerberos详细信息
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -10264,6 +10270,42 @@ module TencentCloud
           @DbName = params['DbName']
           @InstanceId = params['InstanceId']
           @InstanceName = params['InstanceName']
+        end
+      end
+
+      # 网络配置信息
+      class NetWork < TencentCloud::Common::AbstractModel
+        # @param ClbIp: 服务clbip
+        # @type ClbIp: String
+        # @param ClbPort: 服务clbPort
+        # @type ClbPort: String
+        # @param VpcId: vpc实例id
+        # @type VpcId: String
+        # @param VpcCidrBlock: vpc网段
+        # @type VpcCidrBlock: String
+        # @param SubnetId: 子网实例id
+        # @type SubnetId: String
+        # @param SubnetCidrBlock: 子网网段
+        # @type SubnetCidrBlock: String
+
+        attr_accessor :ClbIp, :ClbPort, :VpcId, :VpcCidrBlock, :SubnetId, :SubnetCidrBlock
+
+        def initialize(clbip=nil, clbport=nil, vpcid=nil, vpccidrblock=nil, subnetid=nil, subnetcidrblock=nil)
+          @ClbIp = clbip
+          @ClbPort = clbport
+          @VpcId = vpcid
+          @VpcCidrBlock = vpccidrblock
+          @SubnetId = subnetid
+          @SubnetCidrBlock = subnetcidrblock
+        end
+
+        def deserialize(params)
+          @ClbIp = params['ClbIp']
+          @ClbPort = params['ClbPort']
+          @VpcId = params['VpcId']
+          @VpcCidrBlock = params['VpcCidrBlock']
+          @SubnetId = params['SubnetId']
+          @SubnetCidrBlock = params['SubnetCidrBlock']
         end
       end
 
@@ -12374,28 +12416,21 @@ module TencentCloud
       # Doirs数据源详细信息
       class TCHouseD < TencentCloud::Common::AbstractModel
         # @param InstanceId: 数据源实例的唯一ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceId: String
         # @param InstanceName: 数据源名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceName: String
         # @param JdbcUrl: 数据源的JDBC
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type JdbcUrl: String
         # @param User: 用于访问数据源的用户
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type User: String
         # @param Password: 数据源访问密码，需要base64编码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Password: String
         # @param Location: 数据源的VPC和子网信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Location: :class:`Tencentcloud::Dlc.v20210125.models.DatasourceConnectionLocation`
         # @param DbName: 默认数据库名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DbName: String
         # @param AccessInfo: 访问信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AccessInfo: String
 
         attr_accessor :InstanceId, :InstanceName, :JdbcUrl, :User, :Password, :Location, :DbName, :AccessInfo
@@ -13238,6 +13273,49 @@ module TencentCloud
           @TaskInitCount = params['TaskInitCount']
           @TaskRunningCount = params['TaskRunningCount']
           @TotalTaskCount = params['TotalTaskCount']
+        end
+      end
+
+      # TccHive数据结构
+      class TccHive < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param InstanceName: 实例名称
+        # @type InstanceName: String
+        # @param EndpointServiceId: 终端节点服务ID
+        # @type EndpointServiceId: String
+        # @param MetaStoreUrl: thrift连接地址
+        # @type MetaStoreUrl: String
+        # @param HiveVersion: hive版本
+        # @type HiveVersion: String
+        # @param TccConnection: 网络信息
+        # @type TccConnection: :class:`Tencentcloud::Dlc.v20210125.models.NetWork`
+        # @param HmsEndpointServiceId: Hms终端节点服务ID
+        # @type HmsEndpointServiceId: String
+
+        attr_accessor :InstanceId, :InstanceName, :EndpointServiceId, :MetaStoreUrl, :HiveVersion, :TccConnection, :HmsEndpointServiceId
+
+        def initialize(instanceid=nil, instancename=nil, endpointserviceid=nil, metastoreurl=nil, hiveversion=nil, tccconnection=nil, hmsendpointserviceid=nil)
+          @InstanceId = instanceid
+          @InstanceName = instancename
+          @EndpointServiceId = endpointserviceid
+          @MetaStoreUrl = metastoreurl
+          @HiveVersion = hiveversion
+          @TccConnection = tccconnection
+          @HmsEndpointServiceId = hmsendpointserviceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @InstanceName = params['InstanceName']
+          @EndpointServiceId = params['EndpointServiceId']
+          @MetaStoreUrl = params['MetaStoreUrl']
+          @HiveVersion = params['HiveVersion']
+          unless params['TccConnection'].nil?
+            @TccConnection = NetWork.new
+            @TccConnection.deserialize(params['TccConnection'])
+          end
+          @HmsEndpointServiceId = params['HmsEndpointServiceId']
         end
       end
 

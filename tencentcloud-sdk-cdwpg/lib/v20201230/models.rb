@@ -188,7 +188,7 @@ module TencentCloud
 
       # ConfigHistory1
       class ConfigHistory < TencentCloud::Common::AbstractModel
-        # @param Id: id1
+        # @param Id: id
         # @type Id: Integer
         # @param InstanceId: 实例名
         # @type InstanceId: String

@@ -364,8 +364,8 @@ module TencentCloud
 
         attr_accessor :Domain, :TagSet, :VpcSet, :Remark, :DnsForwardStatus, :Vpcs, :AccountVpcSet, :CnameSpeedupStatus
         extend Gem::Deprecate
-        deprecate :Vpcs, :none, 2024, 12
-        deprecate :Vpcs=, :none, 2024, 12
+        deprecate :Vpcs, :none, 2025, 3
+        deprecate :Vpcs=, :none, 2025, 3
 
         def initialize(domain=nil, tagset=nil, vpcset=nil, remark=nil, dnsforwardstatus=nil, vpcs=nil, accountvpcset=nil, cnamespeedupstatus=nil)
           @Domain = domain
@@ -1252,7 +1252,6 @@ module TencentCloud
         # @param DataSet: 表数据
         # @type DataSet: Array
         # @param MetricCount: 查询范围内的请求总量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MetricCount: Integer
 
         attr_accessor :Resource, :Metric, :DataSet, :MetricCount
@@ -1558,7 +1557,6 @@ module TencentCloud
         # @param RecordCount: 记录数
         # @type RecordCount: Integer
         # @param Remark: 备注
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Remark: String
         # @param VpcSet: 绑定的Vpc列表
         # @type VpcSet: Array
@@ -1570,27 +1568,21 @@ module TencentCloud
         # @param Tags: 标签键值对集合
         # @type Tags: Array
         # @param AccountVpcSet: 绑定的关联账号的vpc列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AccountVpcSet: Array
         # @param IsCustomTld: 是否自定义TLD
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsCustomTld: Boolean
         # @param CnameSpeedupStatus: CNAME加速状态：开通：ENABLED, 关闭，DISABLED
         # @type CnameSpeedupStatus: String
         # @param ForwardRuleName: 转发规则名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ForwardRuleName: String
         # @param ForwardRuleType: 转发规则类型：云上到云下，DOWN；云下到云上，UP，目前只支持DOWN
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ForwardRuleType: String
         # @param ForwardAddress: 转发的地址
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ForwardAddress: String
         # @param EndPointName: 终端节点名称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EndPointName: String
         # @param DeletedVpcSet: 已删除的vpc
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeletedVpcSet: Array
 
         attr_accessor :ZoneId, :OwnerUin, :Domain, :CreatedOn, :UpdatedOn, :RecordCount, :Remark, :VpcSet, :Status, :DnsForwardStatus, :Tags, :AccountVpcSet, :IsCustomTld, :CnameSpeedupStatus, :ForwardRuleName, :ForwardRuleType, :ForwardAddress, :EndPointName, :DeletedVpcSet
@@ -1683,7 +1675,6 @@ module TencentCloud
         # @param TTL: 记录缓存时间，数值越小生效越快，取值1-86400s, 默认 600
         # @type TTL: Integer
         # @param MX: MX优先级：记录类型为MX时必填。取值范围：5,10,15,20,30,40,50
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MX: Integer
         # @param Status: 记录状态：ENABLED
         # @type Status: String
@@ -1698,10 +1689,8 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Extra: String
         # @param Enabled: 0暂停，1启用
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Enabled: Integer
         # @param Remark: 备注
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Remark: String
 
         attr_accessor :RecordId, :ZoneId, :SubDomain, :RecordType, :RecordValue, :TTL, :MX, :Status, :Weight, :CreatedOn, :UpdatedOn, :Extra, :Enabled, :Remark

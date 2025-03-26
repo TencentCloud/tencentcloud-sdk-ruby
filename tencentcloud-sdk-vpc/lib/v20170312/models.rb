@@ -6166,10 +6166,12 @@ module TencentCloud
         # @type SecurityGroupId: String
         # @param Tags: 指定绑定的标签列表，例如：[{"Key": "city", "Value": "shanghai"}]。
         # @type Tags: Array
+        # @param IpAddressType: 协议类型，支持 Ipv4，Ipv6，默认 Ipv4
+        # @type IpAddressType: String
 
-        attr_accessor :VpcId, :SubnetId, :EndPointName, :EndPointServiceId, :EndPointVip, :SecurityGroupId, :Tags
+        attr_accessor :VpcId, :SubnetId, :EndPointName, :EndPointServiceId, :EndPointVip, :SecurityGroupId, :Tags, :IpAddressType
 
-        def initialize(vpcid=nil, subnetid=nil, endpointname=nil, endpointserviceid=nil, endpointvip=nil, securitygroupid=nil, tags=nil)
+        def initialize(vpcid=nil, subnetid=nil, endpointname=nil, endpointserviceid=nil, endpointvip=nil, securitygroupid=nil, tags=nil, ipaddresstype=nil)
           @VpcId = vpcid
           @SubnetId = subnetid
           @EndPointName = endpointname
@@ -6177,6 +6179,7 @@ module TencentCloud
           @EndPointVip = endpointvip
           @SecurityGroupId = securitygroupid
           @Tags = tags
+          @IpAddressType = ipaddresstype
         end
 
         def deserialize(params)
@@ -6194,6 +6197,7 @@ module TencentCloud
               @Tags << tag_tmp
             end
           end
+          @IpAddressType = params['IpAddressType']
         end
       end
 
@@ -6236,10 +6240,12 @@ module TencentCloud
         # @type ServiceType: String
         # @param Tags: 指定绑定的标签列表，例如：[{"Key": "city", "Value": "shanghai"}]。
         # @type Tags: Array
+        # @param IpAddressType: 协议类型，支持 Ipv4，Ipv6，默认 Ipv4。
+        # @type IpAddressType: String
 
-        attr_accessor :VpcId, :EndPointServiceName, :AutoAcceptFlag, :ServiceInstanceId, :IsPassService, :ServiceType, :Tags
+        attr_accessor :VpcId, :EndPointServiceName, :AutoAcceptFlag, :ServiceInstanceId, :IsPassService, :ServiceType, :Tags, :IpAddressType
 
-        def initialize(vpcid=nil, endpointservicename=nil, autoacceptflag=nil, serviceinstanceid=nil, ispassservice=nil, servicetype=nil, tags=nil)
+        def initialize(vpcid=nil, endpointservicename=nil, autoacceptflag=nil, serviceinstanceid=nil, ispassservice=nil, servicetype=nil, tags=nil, ipaddresstype=nil)
           @VpcId = vpcid
           @EndPointServiceName = endpointservicename
           @AutoAcceptFlag = autoacceptflag
@@ -6247,6 +6253,7 @@ module TencentCloud
           @IsPassService = ispassservice
           @ServiceType = servicetype
           @Tags = tags
+          @IpAddressType = ipaddresstype
         end
 
         def deserialize(params)
@@ -6264,6 +6271,7 @@ module TencentCloud
               @Tags << tag_tmp
             end
           end
+          @IpAddressType = params['IpAddressType']
         end
       end
 
@@ -8721,15 +8729,19 @@ module TencentCloud
       class DeleteVpcEndPointRequest < TencentCloud::Common::AbstractModel
         # @param EndPointId: 终端节点ID。
         # @type EndPointId: String
+        # @param IpAddressType: 协议类型，支持 Ipv4，Ipv6，默认 Ipv4。
+        # @type IpAddressType: String
 
-        attr_accessor :EndPointId
+        attr_accessor :EndPointId, :IpAddressType
 
-        def initialize(endpointid=nil)
+        def initialize(endpointid=nil, ipaddresstype=nil)
           @EndPointId = endpointid
+          @IpAddressType = ipaddresstype
         end
 
         def deserialize(params)
           @EndPointId = params['EndPointId']
+          @IpAddressType = params['IpAddressType']
         end
       end
 
@@ -8753,15 +8765,19 @@ module TencentCloud
       class DeleteVpcEndPointServiceRequest < TencentCloud::Common::AbstractModel
         # @param EndPointServiceId: 终端节点ID。
         # @type EndPointServiceId: String
+        # @param IpAddressType: 协议类型，支持 Ipv4，Ipv6，默认 Ipv4。
+        # @type IpAddressType: String
 
-        attr_accessor :EndPointServiceId
+        attr_accessor :EndPointServiceId, :IpAddressType
 
-        def initialize(endpointserviceid=nil)
+        def initialize(endpointserviceid=nil, ipaddresstype=nil)
           @EndPointServiceId = endpointserviceid
+          @IpAddressType = ipaddresstype
         end
 
         def deserialize(params)
           @EndPointServiceId = params['EndPointServiceId']
+          @IpAddressType = params['IpAddressType']
         end
       end
 
@@ -14857,14 +14873,17 @@ module TencentCloud
         # @type Limit: Integer
         # @param EndPointId: 终端节点ID列表。
         # @type EndPointId: Array
+        # @param IpAddressType: 协议类型，支持 Ipv4，Ipv6，默认 Ipv4。
+        # @type IpAddressType: String
 
-        attr_accessor :Filters, :Offset, :Limit, :EndPointId
+        attr_accessor :Filters, :Offset, :Limit, :EndPointId, :IpAddressType
 
-        def initialize(filters=nil, offset=nil, limit=nil, endpointid=nil)
+        def initialize(filters=nil, offset=nil, limit=nil, endpointid=nil, ipaddresstype=nil)
           @Filters = filters
           @Offset = offset
           @Limit = limit
           @EndPointId = endpointid
+          @IpAddressType = ipaddresstype
         end
 
         def deserialize(params)
@@ -14879,6 +14898,7 @@ module TencentCloud
           @Offset = params['Offset']
           @Limit = params['Limit']
           @EndPointId = params['EndPointId']
+          @IpAddressType = params['IpAddressType']
         end
       end
 
@@ -14929,15 +14949,18 @@ module TencentCloud
         # @type EndPointServiceIds: Array
         # @param IsListAuthorizedEndPointService: <li>不支持同时传入参数 Filters 。</li> <li>列出授权给当前账号的终端节点服务信息。可以配合EndPointServiceIds参数进行过滤，哪些终端节点服务授权了该账户。</li>
         # @type IsListAuthorizedEndPointService: Boolean
+        # @param IpAddressType: 协议类型，支持 Ipv4，Ipv6，默认 Ipv4。
+        # @type IpAddressType: String
 
-        attr_accessor :Filters, :Offset, :Limit, :EndPointServiceIds, :IsListAuthorizedEndPointService
+        attr_accessor :Filters, :Offset, :Limit, :EndPointServiceIds, :IsListAuthorizedEndPointService, :IpAddressType
 
-        def initialize(filters=nil, offset=nil, limit=nil, endpointserviceids=nil, islistauthorizedendpointservice=nil)
+        def initialize(filters=nil, offset=nil, limit=nil, endpointserviceids=nil, islistauthorizedendpointservice=nil, ipaddresstype=nil)
           @Filters = filters
           @Offset = offset
           @Limit = limit
           @EndPointServiceIds = endpointserviceids
           @IsListAuthorizedEndPointService = islistauthorizedendpointservice
+          @IpAddressType = ipaddresstype
         end
 
         def deserialize(params)
@@ -14953,6 +14976,7 @@ module TencentCloud
           @Limit = params['Limit']
           @EndPointServiceIds = params['EndPointServiceIds']
           @IsListAuthorizedEndPointService = params['IsListAuthorizedEndPointService']
+          @IpAddressType = params['IpAddressType']
         end
       end
 
@@ -17233,19 +17257,23 @@ module TencentCloud
         # @param AcceptFlag: 是否接受终端节点连接请求。
         # <li> true：自动接受。</li> <li> false：不自动接受。</li>
         # @type AcceptFlag: Boolean
+        # @param IpAddressType: 协议类型，支持 Ipv4，Ipv6，默认 Ipv4。
+        # @type IpAddressType: String
 
-        attr_accessor :EndPointServiceId, :EndPointId, :AcceptFlag
+        attr_accessor :EndPointServiceId, :EndPointId, :AcceptFlag, :IpAddressType
 
-        def initialize(endpointserviceid=nil, endpointid=nil, acceptflag=nil)
+        def initialize(endpointserviceid=nil, endpointid=nil, acceptflag=nil, ipaddresstype=nil)
           @EndPointServiceId = endpointserviceid
           @EndPointId = endpointid
           @AcceptFlag = acceptflag
+          @IpAddressType = ipaddresstype
         end
 
         def deserialize(params)
           @EndPointServiceId = params['EndPointServiceId']
           @EndPointId = params['EndPointId']
           @AcceptFlag = params['AcceptFlag']
+          @IpAddressType = params['IpAddressType']
         end
       end
 
@@ -21813,19 +21841,23 @@ module TencentCloud
         # @type EndPointName: String
         # @param SecurityGroupIds: 安全组ID列表。
         # @type SecurityGroupIds: Array
+        # @param IpAddressType: 协议类型，支持 Ipv4，Ipv6，默认 Ipv4。
+        # @type IpAddressType: String
 
-        attr_accessor :EndPointId, :EndPointName, :SecurityGroupIds
+        attr_accessor :EndPointId, :EndPointName, :SecurityGroupIds, :IpAddressType
 
-        def initialize(endpointid=nil, endpointname=nil, securitygroupids=nil)
+        def initialize(endpointid=nil, endpointname=nil, securitygroupids=nil, ipaddresstype=nil)
           @EndPointId = endpointid
           @EndPointName = endpointname
           @SecurityGroupIds = securitygroupids
+          @IpAddressType = ipaddresstype
         end
 
         def deserialize(params)
           @EndPointId = params['EndPointId']
           @EndPointName = params['EndPointName']
           @SecurityGroupIds = params['SecurityGroupIds']
+          @IpAddressType = params['IpAddressType']
         end
       end
 
@@ -21857,15 +21889,18 @@ module TencentCloud
         # @type AutoAcceptFlag: Boolean
         # @param ServiceInstanceId: 后端服务的ID，比如lb-xxx。
         # @type ServiceInstanceId: String
+        # @param IpAddressType: 协议类型，支持 Ipv4，Ipv6，默认 Ipv4。
+        # @type IpAddressType: String
 
-        attr_accessor :EndPointServiceId, :VpcId, :EndPointServiceName, :AutoAcceptFlag, :ServiceInstanceId
+        attr_accessor :EndPointServiceId, :VpcId, :EndPointServiceName, :AutoAcceptFlag, :ServiceInstanceId, :IpAddressType
 
-        def initialize(endpointserviceid=nil, vpcid=nil, endpointservicename=nil, autoacceptflag=nil, serviceinstanceid=nil)
+        def initialize(endpointserviceid=nil, vpcid=nil, endpointservicename=nil, autoacceptflag=nil, serviceinstanceid=nil, ipaddresstype=nil)
           @EndPointServiceId = endpointserviceid
           @VpcId = vpcid
           @EndPointServiceName = endpointservicename
           @AutoAcceptFlag = autoacceptflag
           @ServiceInstanceId = serviceinstanceid
+          @IpAddressType = ipaddresstype
         end
 
         def deserialize(params)
@@ -21874,6 +21909,7 @@ module TencentCloud
           @EndPointServiceName = params['EndPointServiceName']
           @AutoAcceptFlag = params['AutoAcceptFlag']
           @ServiceInstanceId = params['ServiceInstanceId']
+          @IpAddressType = params['IpAddressType']
         end
       end
 

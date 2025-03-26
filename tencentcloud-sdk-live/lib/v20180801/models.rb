@@ -1192,21 +1192,13 @@ module TencentCloud
         # @param LayerId: 布局层ID。
         # 在画面最终渲染时，将按ID从小到大的顺序，由下至上渲染。
         # @type LayerId: Integer
-        # @param LayerWidth: 布局层宽度。
-        # 当该值为大于1的整数值时，单位为像素，允许范围[1,1920]。
-        # 当该值为小于1大于0的小数时，单位为百分比，表示该层在最终画面上所占的比例值。
+        # @param LayerWidth: 布局层宽度。单位为百分比，范围[0.0,1.0]，表示该层在最终画面上所占的比例值。
         # @type LayerWidth: Float
-        # @param LayerHeight: 布局层高度.
-        # 当该值为大于1的整数值时，单位为像素，允许范围[1,1920]。
-        # 当该值为小于1大于0的小数时，单位为百分比，表示该层在最终画面上所占的比例值。
+        # @param LayerHeight: 布局层高度。单位为百分比，范围[0.0,1.0]， 表示该层在最终画面上所占的比例值。
         # @type LayerHeight: Float
-        # @param LayerLocationX: 布局层位置x坐标。
-        # 当该值为大于1的整数值时，单位为像素，允许范围[1,1920]。
-        # 当该值为小于1大于0的小数时，单位为百分比，表示该层在最终画面上x坐标所占的比例值。
+        # @param LayerLocationX: 布局层位置x坐标。单位为百分比，范围[0.0,1.0]，表示该层在最终画面上x坐标所占的比例值。
         # @type LayerLocationX: Float
-        # @param LayerLocationY: 布局层位置Y坐标。
-        # 当该值为大于1的整数值时，单位为像素，允许范围[1,1920]。
-        # 当该值为小于1大于0的小数时，单位为百分比，表示该层在最终画面Y坐标上所占的比例值。
+        # @param LayerLocationY: 布局层位置Y坐标。单位为百分比，范围[0.0,1.0]， 表示该层在最终画面Y坐标上所占的比例值。
         # @type LayerLocationY: Float
         # @param UsePortraitSegment: 是否启用抠图。
         # @type UsePortraitSegment: Boolean

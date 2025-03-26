@@ -26,16 +26,12 @@ module TencentCloud
         # @param Comment: 智能分析模板描述信息。
         # @type Comment: String
         # @param ClassificationConfigure: 智能分类任务控制参数。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClassificationConfigure: :class:`Tencentcloud::Vod.v20180717.models.ClassificationConfigureInfo`
         # @param TagConfigure: 智能标签任务控制参数。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TagConfigure: :class:`Tencentcloud::Vod.v20180717.models.TagConfigureInfo`
         # @param CoverConfigure: 智能封面任务控制参数。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CoverConfigure: :class:`Tencentcloud::Vod.v20180717.models.CoverConfigureInfo`
         # @param FrameTagConfigure: 智能按帧标签任务控制参数。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FrameTagConfigure: :class:`Tencentcloud::Vod.v20180717.models.FrameTagConfigureInfo`
         # @param HighlightConfigure: 智能精彩集锦任务控制参数。
         # @type HighlightConfigure: :class:`Tencentcloud::Vod.v20180717.models.HighlightsConfigureInfo`
@@ -101,32 +97,23 @@ module TencentCloud
         # <li>Custom：用户自定义模板。</li>
         # @type Type: String
         # @param HeadTailConfigure: 头尾识别控制参数。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HeadTailConfigure: :class:`Tencentcloud::Vod.v20180717.models.HeadTailConfigureInfo`
         # @param SegmentConfigure: 拆条识别控制参数。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SegmentConfigure: :class:`Tencentcloud::Vod.v20180717.models.SegmentConfigureInfo`
         # @param FaceConfigure: 人脸识别控制参数。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FaceConfigure: :class:`Tencentcloud::Vod.v20180717.models.FaceConfigureInfo`
         # @param OcrFullTextConfigure: 文本全文识别控制参数。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OcrFullTextConfigure: :class:`Tencentcloud::Vod.v20180717.models.OcrFullTextConfigureInfo`
         # @param OcrWordsConfigure: 文本关键词识别控制参数。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OcrWordsConfigure: :class:`Tencentcloud::Vod.v20180717.models.OcrWordsConfigureInfo`
         # @param AsrFullTextConfigure: 语音全文识别控制参数。
         # <font color=red>注意：本参数已不再维护，推荐使用 AsrTranslateConfigure 参数发起语音翻译识别（当 DstLanguage 不填或填空字符串时，则不进行翻译，计费项和语音全文识别一致）。</font>
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AsrFullTextConfigure: :class:`Tencentcloud::Vod.v20180717.models.AsrFullTextConfigureInfo`
         # @param AsrWordsConfigure: 语音关键词识别控制参数。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AsrWordsConfigure: :class:`Tencentcloud::Vod.v20180717.models.AsrWordsConfigureInfo`
         # @param AsrTranslateConfigure: 语音翻译识别控制参数。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AsrTranslateConfigure: :class:`Tencentcloud::Vod.v20180717.models.AsrTranslateConfigureInfo`
         # @param ObjectConfigure: 物体识别控制参数。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ObjectConfigure: :class:`Tencentcloud::Vod.v20180717.models.ObjectConfigureInfo`
         # @param ScreenshotInterval: 截图时间间隔，单位：秒。
         # @type ScreenshotInterval: Float
@@ -527,19 +514,14 @@ module TencentCloud
         # <li>Highlight：智能精彩集锦</li>
         # @type Type: String
         # @param ClassificationTask: 视频内容分析智能分类任务的查询结果，当任务类型为 Classification 时有效。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClassificationTask: :class:`Tencentcloud::Vod.v20180717.models.AiAnalysisTaskClassificationResult`
         # @param CoverTask: 视频内容分析智能封面任务的查询结果，当任务类型为 Cover 时有效。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CoverTask: :class:`Tencentcloud::Vod.v20180717.models.AiAnalysisTaskCoverResult`
         # @param TagTask: 视频内容分析智能标签任务的查询结果，当任务类型为 Tag 时有效。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TagTask: :class:`Tencentcloud::Vod.v20180717.models.AiAnalysisTaskTagResult`
         # @param FrameTagTask: 视频内容分析智能按帧标签任务的查询结果，当任务类型为 FrameTag 时有效。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FrameTagTask: :class:`Tencentcloud::Vod.v20180717.models.AiAnalysisTaskFrameTagResult`
         # @param HighlightTask: 视频内容分析智能精彩集锦任务的查询结果，当任务类型为 Highlight 时有效。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HighlightTask: :class:`Tencentcloud::Vod.v20180717.models.AiAnalysisTaskHighlightResult`
 
         attr_accessor :Type, :ClassificationTask, :CoverTask, :TagTask, :FrameTagTask, :HighlightTask
@@ -639,7 +621,6 @@ module TencentCloud
         # @param Input: 智能分类任务输入。
         # @type Input: :class:`Tencentcloud::Vod.v20180717.models.AiAnalysisTaskClassificationInput`
         # @param Output: 智能分类任务输出。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Output: :class:`Tencentcloud::Vod.v20180717.models.AiAnalysisTaskClassificationOutput`
         # @param Progress: 智能分类任务进度，取值范围 [0-100] 。
         # @type Progress: Integer
@@ -742,7 +723,6 @@ module TencentCloud
         # @param Input: 智能封面任务输入。
         # @type Input: :class:`Tencentcloud::Vod.v20180717.models.AiAnalysisTaskCoverInput`
         # @param Output: 智能封面任务输出。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Output: :class:`Tencentcloud::Vod.v20180717.models.AiAnalysisTaskCoverOutput`
         # @param Progress: 智能封面任务进度，取值范围 [0-100] 。
         # @type Progress: Integer
@@ -845,7 +825,6 @@ module TencentCloud
         # @param Input: 智能按帧标签任务输入。
         # @type Input: :class:`Tencentcloud::Vod.v20180717.models.AiAnalysisTaskFrameTagInput`
         # @param Output: 智能按帧标签任务输出。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Output: :class:`Tencentcloud::Vod.v20180717.models.AiAnalysisTaskFrameTagOutput`
         # @param Progress: 智能按帧标签任务进度，取值范围 [0-100] 。
         # @type Progress: Integer
@@ -948,7 +927,6 @@ module TencentCloud
         # @param Input: 智能精彩片段任务输入。
         # @type Input: :class:`Tencentcloud::Vod.v20180717.models.AiAnalysisTaskHighlightInput`
         # @param Output: 智能精彩片段任务输出。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Output: :class:`Tencentcloud::Vod.v20180717.models.AiAnalysisTaskHighlightOutput`
         # @param Progress: 智能精彩片段任务进度，取值范围 [0-100] 。
         # @type Progress: Integer
@@ -1067,7 +1045,6 @@ module TencentCloud
         # @param Input: 智能标签任务输入。
         # @type Input: :class:`Tencentcloud::Vod.v20180717.models.AiAnalysisTaskTagInput`
         # @param Output: 智能标签任务输出。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Output: :class:`Tencentcloud::Vod.v20180717.models.AiAnalysisTaskTagOutput`
         # @param Progress: 智能标签任务进度，取值范围 [0-100] 。
         # @type Progress: Integer
@@ -1245,38 +1222,29 @@ module TencentCloud
         # @type Type: String
         # @param HeadTailTask: 视频片头片尾识别结果，当 Type 为
         #  HeadTailRecognition 时有效。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HeadTailTask: :class:`Tencentcloud::Vod.v20180717.models.AiRecognitionTaskHeadTailResult`
         # @param SegmentTask: 视频拆条识别结果，当 Type 为
         #  SegmentRecognition 时有效。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SegmentTask: :class:`Tencentcloud::Vod.v20180717.models.AiRecognitionTaskSegmentResult`
         # @param FaceTask: 人脸识别结果，当 Type 为
         #  FaceRecognition 时有效。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FaceTask: :class:`Tencentcloud::Vod.v20180717.models.AiRecognitionTaskFaceResult`
         # @param AsrWordsTask: 语音关键词识别结果，当 Type 为
         #  AsrWordsRecognition 时有效。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AsrWordsTask: :class:`Tencentcloud::Vod.v20180717.models.AiRecognitionTaskAsrWordsResult`
         # @param AsrFullTextTask: 语音全文识别结果，当 Type 为
         #  AsrFullTextRecognition 时有效。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AsrFullTextTask: :class:`Tencentcloud::Vod.v20180717.models.AiRecognitionTaskAsrFullTextResult`
         # @param AsrTranslateTask: 语音翻译结果，当 Type 为 AsrTranslateRecognition 时有效。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AsrTranslateTask: :class:`Tencentcloud::Vod.v20180717.models.AiRecognitionTaskAsrTranslateResult`
         # @param OcrWordsTask: 文本关键词识别结果，当 Type 为
         #  OcrWordsRecognition 时有效。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OcrWordsTask: :class:`Tencentcloud::Vod.v20180717.models.AiRecognitionTaskOcrWordsResult`
         # @param OcrFullTextTask: 文本全文识别结果，当 Type 为
         #  OcrFullTextRecognition 时有效。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OcrFullTextTask: :class:`Tencentcloud::Vod.v20180717.models.AiRecognitionTaskOcrFullTextResult`
         # @param ObjectTask: 物体识别结果，当 Type 为
         #  ObjectRecognition 时有效。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ObjectTask: :class:`Tencentcloud::Vod.v20180717.models.AiRecognitionTaskObjectResult`
 
         attr_accessor :Type, :HeadTailTask, :SegmentTask, :FaceTask, :AsrWordsTask, :AsrFullTextTask, :AsrTranslateTask, :OcrWordsTask, :OcrFullTextTask, :ObjectTask
@@ -1348,7 +1316,6 @@ module TencentCloud
         # @param Input: 语音全文识别任务输入信息。
         # @type Input: :class:`Tencentcloud::Vod.v20180717.models.AiRecognitionTaskAsrFullTextResultInput`
         # @param Output: 语音全文识别任务输出信息。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Output: :class:`Tencentcloud::Vod.v20180717.models.AiRecognitionTaskAsrFullTextResultOutput`
         # @param Progress: 语音全文识别任务进度，取值范围 [0-100] 。
         # @type Progress: Integer
@@ -1530,7 +1497,6 @@ module TencentCloud
         # @param Input: 语音翻译任务输入信息。
         # @type Input: :class:`Tencentcloud::Vod.v20180717.models.AiRecognitionTaskAsrTranslateResultInput`
         # @param Output: 语音翻译任务输出信息。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Output: :class:`Tencentcloud::Vod.v20180717.models.AiRecognitionTaskAsrTranslateResultOutput`
         # @param Progress: 语音翻译任务进度，取值范围 [0-100] 。
         # @type Progress: Integer
@@ -1676,7 +1642,6 @@ module TencentCloud
         # @param Input: 语音关键词识别任务输入信息。
         # @type Input: :class:`Tencentcloud::Vod.v20180717.models.AiRecognitionTaskAsrWordsResultInput`
         # @param Output: 语音关键词识别任务输出信息。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Output: :class:`Tencentcloud::Vod.v20180717.models.AiRecognitionTaskAsrWordsResultOutput`
         # @param Progress: 语音关键词识别任务进度，取值范围 [0-100] 。
         # @type Progress: Integer
@@ -1830,7 +1795,6 @@ module TencentCloud
         # @param Input: 人脸识别任务输入信息。
         # @type Input: :class:`Tencentcloud::Vod.v20180717.models.AiRecognitionTaskFaceResultInput`
         # @param Output: 人脸识别任务输出信息。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Output: :class:`Tencentcloud::Vod.v20180717.models.AiRecognitionTaskFaceResultOutput`
         # @param Progress: 人脸识别任务进度，取值范围 [0-100] 。
         # @type Progress: Integer
@@ -1998,7 +1962,6 @@ module TencentCloud
         # @param Input: 视频片头片尾识别任务输入信息。
         # @type Input: :class:`Tencentcloud::Vod.v20180717.models.AiRecognitionTaskHeadTailResultInput`
         # @param Output: 视频片头片尾识别任务输出信息。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Output: :class:`Tencentcloud::Vod.v20180717.models.AiRecognitionTaskHeadTailResultOutput`
         # @param Progress: 视频片头片尾识别任务进度，取值范围 [0-100] 。
         # @type Progress: Integer
@@ -2113,7 +2076,6 @@ module TencentCloud
         # @param Input: 物体识别任务输入信息。
         # @type Input: :class:`Tencentcloud::Vod.v20180717.models.AiRecognitionTaskObjectResultInput`
         # @param Output: 物体识别任务输出信息。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Output: :class:`Tencentcloud::Vod.v20180717.models.AiRecognitionTaskObjectResultOutput`
         # @param Progress: 物体识别任务进度，取值范围 [0-100] 。
         # @type Progress: Integer
@@ -2313,7 +2275,6 @@ module TencentCloud
         # @param Input: 文本全文识别任务输入信息。
         # @type Input: :class:`Tencentcloud::Vod.v20180717.models.AiRecognitionTaskOcrFullTextResultInput`
         # @param Output: 文本全文识别任务输出信息。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Output: :class:`Tencentcloud::Vod.v20180717.models.AiRecognitionTaskOcrFullTextResultOutput`
         # @param Progress: 文本全文识别任务进度，取值范围 [0-100] 。
         # @type Progress: Integer
@@ -2471,7 +2432,6 @@ module TencentCloud
         # @param Input: 文本关键词识别任务输入信息。
         # @type Input: :class:`Tencentcloud::Vod.v20180717.models.AiRecognitionTaskOcrWordsResultInput`
         # @param Output: 文本关键词识别任务输出信息。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Output: :class:`Tencentcloud::Vod.v20180717.models.AiRecognitionTaskOcrWordsResultOutput`
         # @param Progress: 文本关键词识别任务进度，取值范围 [0-100] 。
         # @type Progress: Integer
@@ -2627,10 +2587,8 @@ module TencentCloud
         # @param Message: 错误信息。
         # @type Message: String
         # @param Input: 视频拆条任务输入信息。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Input: :class:`Tencentcloud::Vod.v20180717.models.AiRecognitionTaskSegmentResultInput`
         # @param Output: 视频拆条任务输出信息。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Output: :class:`Tencentcloud::Vod.v20180717.models.AiRecognitionTaskSegmentResultOutput`
         # @param Progress: 视频拆条任务进度，取值范围 [0-100] 。
         # @type Progress: Integer
@@ -3307,7 +3265,6 @@ module TencentCloud
         # @param Input: 音视频审核 Ocr 文字涉及令人不适宜信息的任务输入。
         # @type Input: :class:`Tencentcloud::Vod.v20180717.models.AiReviewPoliticalOcrTaskInput`
         # @param Output: 音视频审核 Ocr 文字涉及令人不适宜信息的任务输出。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Output: :class:`Tencentcloud::Vod.v20180717.models.AiReviewPoliticalOcrTaskOutput`
         # @param Progress: 音视频审核 Ocr 文字涉及令人不适宜信息的任务进度，取值范围 [0-100] 。
         # @type Progress: Integer
@@ -3354,7 +3311,6 @@ module TencentCloud
         # @param Input: 音视频审核涉及令人不适宜信息的任务输入。
         # @type Input: :class:`Tencentcloud::Vod.v20180717.models.AiReviewPoliticalTaskInput`
         # @param Output: 音视频审核涉及令人不适宜信息的任务输出。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Output: :class:`Tencentcloud::Vod.v20180717.models.AiReviewPoliticalTaskOutput`
         # @param Progress: 音视频审核涉及令人不适宜信息的任务进度，取值范围 [0-100] 。
         # @type Progress: Integer
@@ -3401,7 +3357,6 @@ module TencentCloud
         # @param Input: 音视频审核 Asr 文字涉及令人反感的信息的任务输入。
         # @type Input: :class:`Tencentcloud::Vod.v20180717.models.AiReviewPornAsrTaskInput`
         # @param Output: 音视频审核 Asr 文字涉及令人反感的信息的任务输出。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Output: :class:`Tencentcloud::Vod.v20180717.models.AiReviewPornAsrTaskOutput`
         # @param Progress: 音视频审核 Asr 文字涉及令人反感的信息的任务进度，取值范围 [0-100] 。
         # @type Progress: Integer
@@ -3448,7 +3403,6 @@ module TencentCloud
         # @param Input: 音视频审核 Ocr 文字涉及令人反感的信息的任务输入。
         # @type Input: :class:`Tencentcloud::Vod.v20180717.models.AiReviewPornOcrTaskInput`
         # @param Output: Ocr 文字音视频审核涉及令人反感的信息的任务输出。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Output: :class:`Tencentcloud::Vod.v20180717.models.AiReviewPornOcrTaskOutput`
         # @param Progress: Ocr 文字音视频审核涉及令人反感的信息的任务进度，取值范围 [0-100] 。
         # @type Progress: Integer
@@ -3495,7 +3449,6 @@ module TencentCloud
         # @param Input: 音视频审核涉及令人反感的信息的任务输入。
         # @type Input: :class:`Tencentcloud::Vod.v20180717.models.AiReviewPornTaskInput`
         # @param Output: 音视频审核涉及令人反感的信息的任务输出。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Output: :class:`Tencentcloud::Vod.v20180717.models.AiReviewPornTaskOutput`
         # @param Progress: 音视频审核涉及令人反感的信息的任务进度，取值范围 [0-100] 。
         # @type Progress: Integer
@@ -3542,7 +3495,6 @@ module TencentCloud
         # @param Input: 音视频审核 Asr 文字鉴违禁任务输入。
         # @type Input: :class:`Tencentcloud::Vod.v20180717.models.AiReviewProhibitedAsrTaskInput`
         # @param Output: 音视频审核 Asr 文字鉴违禁任务输出。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Output: :class:`Tencentcloud::Vod.v20180717.models.AiReviewProhibitedAsrTaskOutput`
         # @param Progress: 音视频审核 Asr 文字鉴违禁任务进度，取值范围 [0-100] 。
         # @type Progress: Integer
@@ -3589,7 +3541,6 @@ module TencentCloud
         # @param Input: 音视频审核 Ocr 文字鉴违禁任务输入。
         # @type Input: :class:`Tencentcloud::Vod.v20180717.models.AiReviewProhibitedOcrTaskInput`
         # @param Output: 音视频审核 Ocr 文字鉴违禁任务输出。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Output: :class:`Tencentcloud::Vod.v20180717.models.AiReviewProhibitedOcrTaskOutput`
         # @param Progress: 音视频审核 Ocr 文字鉴违禁任务进度，取值范围 [0-100] 。
         # @type Progress: Integer
@@ -3636,7 +3587,6 @@ module TencentCloud
         # @param Input: 音视频审核 Ocr 文字涉及令人不安全的信息的任务输入。
         # @type Input: :class:`Tencentcloud::Vod.v20180717.models.AiReviewTerrorismOcrTaskInput`
         # @param Output: 音视频审核 Ocr 文字涉及令人不安全的信息的任务输出。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Output: :class:`Tencentcloud::Vod.v20180717.models.AiReviewTerrorismOcrTaskOutput`
         # @param Progress: 音视频审核 Ocr 文字涉及令人不安全的信息的任务进度，取值范围 [0-100] 。
         # @type Progress: Integer
@@ -3683,7 +3633,6 @@ module TencentCloud
         # @param Input: 音视频审核涉及令人不安全的信息的任务输入。
         # @type Input: :class:`Tencentcloud::Vod.v20180717.models.AiReviewTerrorismTaskInput`
         # @param Output: 音视频审核涉及令人不安全的信息的任务输出。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Output: :class:`Tencentcloud::Vod.v20180717.models.AiReviewTerrorismTaskOutput`
         # @param Progress: 音视频审核涉及令人不安全的信息的任务进度，取值范围 [0-100] 。
         # @type Progress: Integer
@@ -6042,21 +5991,16 @@ module TencentCloud
         # @param Comment: 音视频审核模板描述信息，长度限制：256 个字符。
         # @type Comment: String
         # @param PornConfigure: 鉴别涉及令人反感的信息的控制参数。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PornConfigure: :class:`Tencentcloud::Vod.v20180717.models.PornConfigureInfo`
         # @param TerrorismConfigure: 鉴别涉及令人不安全的信息的控制参数。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TerrorismConfigure: :class:`Tencentcloud::Vod.v20180717.models.TerrorismConfigureInfo`
         # @param PoliticalConfigure: 鉴别涉及令人不适宜的信息的控制参数。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PoliticalConfigure: :class:`Tencentcloud::Vod.v20180717.models.PoliticalConfigureInfo`
         # @param ProhibitedConfigure: 违禁控制参数。违禁内容包括：
         # <li>谩骂；</li>
         # <li>涉毒违法。</li>
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProhibitedConfigure: :class:`Tencentcloud::Vod.v20180717.models.ProhibitedConfigureInfo`
         # @param UserDefineConfigure: 用户自定义音视频审核控制参数。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UserDefineConfigure: :class:`Tencentcloud::Vod.v20180717.models.UserDefineConfigureInfo`
         # @param ReviewWallSwitch: 音视频审核结果是否进入音视频审核墙（对音视频审核结果进行人工复核）的开关。
         # <li>ON：是；</li>
@@ -8110,7 +8054,7 @@ module TencentCloud
       class CreateSubAppIdRequest < TencentCloud::Common::AbstractModel
         # @param Name: 应用名称，长度限制：40个字符。
         # @type Name: String
-        # @param Description: 应用简介，长度限制： 300个字符。
+        # @param Description: 应用简介，长度限制： 300个字符。不填则应用简介默认为空。
         # @type Description: String
 
         attr_accessor :Name, :Description
@@ -12963,7 +12907,6 @@ module TencentCloud
         # @param TotalCount: 符合过滤条件的记录总数。
         # @type TotalCount: Integer
         # @param TranscodeTemplateSet: 转码模板详情列表。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TranscodeTemplateSet: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -16628,7 +16571,6 @@ module TencentCloud
         # <li>Scheduled ：等待定时时间到达后启动；</li>
         # <li>Stopped ：已经停止转推；</li>
         # <li>Idle ：空闲。</li>
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: String
 
         attr_accessor :CastId, :Status
@@ -18808,19 +18750,9 @@ module TencentCloud
         # @type SubAppId: Integer
         # @param Name: 转动图模板名称，长度限制：64 个字符。
         # @type Name: String
-        # @param Width: 动图宽度（或长边）的最大值，取值范围：0 和 [128, 4096]，单位：px。
-        # <li>当 Width、Height 均为 0，则分辨率同源；</li>
-        # <li>当 Width 为 0，Height 非 0，则 Width 按比例缩放；</li>
-        # <li>当 Width 非 0，Height 为 0，则 Height 按比例缩放；</li>
-        # <li>当 Width、Height 均非 0，则分辨率按用户指定。</li>
-        # 默认值：0。
+        # @param Width: 动图宽度（或长边）的最大值，取值范围：0 和 [32, 4096]，单位：px。<li>当 Width、Height 均为 0，则分辨率同源；</li><li>当 Width 为 0，Height 非 0，则 Width 按比例缩放；</li><li>当 Width 非 0，Height 为 0，则 Height 按比例缩放；</li><li>当 Width、Height 均非 0，则分辨率按用户指定。</li>默认值：0。
         # @type Width: Integer
-        # @param Height: 动图高度（或短边）的最大值，取值范围：0 和 [128, 4096]，单位：px。
-        # <li>当 Width、Height 均为 0，则分辨率同源；</li>
-        # <li>当 Width 为 0，Height 非 0，则 Width 按比例缩放；</li>
-        # <li>当 Width 非 0，Height 为 0，则 Height 按比例缩放；</li>
-        # <li>当 Width、Height 均非 0，则分辨率按用户指定。</li>
-        # 默认值：0。
+        # @param Height: 动图高度（或短边）的最大值，取值范围：0 和 [32, 4096]，单位：px。<li>当 Width、Height 均为 0，则分辨率同源；</li><li>当 Width 为 0，Height 非 0，则 Width 按比例缩放；</li><li>当 Width 非 0，Height 为 0，则 Height 按比例缩放；</li><li>当 Width、Height 均非 0，则分辨率按用户指定。</li>默认值：0。
         # @type Height: Integer
         # @param ResolutionAdaptive: 分辨率自适应，可选值：
         # <li>open：开启，此时，Width 代表视频的长边，Height 表示视频的短边；</li>
@@ -19306,9 +19238,9 @@ module TencentCloud
         # @type SubAppId: Integer
         # @param Name: 雪碧图模板名称，长度限制：64 个字符。
         # @type Name: String
-        # @param Width: 雪碧图中小图的宽度，取值范围： [128, 4096]，单位：px。
+        # @param Width: 雪碧图中小图的宽度，取值范围： [32, 4096]，单位：px。
         # @type Width: Integer
-        # @param Height: 雪碧图中小图的高度，取值范围： [128, 4096]，单位：px。
+        # @param Height: 雪碧图中小图的高度，取值范围： [32, 4096]，单位：px。
         # @type Height: Integer
         # @param ResolutionAdaptive: 分辨率自适应，可选值：
         # <li>open：开启，此时，Width 代表视频的长边，Height 表示视频的短边；</li>
@@ -19327,10 +19259,7 @@ module TencentCloud
         # @type RowCount: Integer
         # @param ColumnCount: 雪碧图中小图的列数。
         # @type ColumnCount: Integer
-        # @param FillType: 填充方式，当视频流配置宽高参数与原始视频的宽高比不一致时，对转码的处理方式，即为“填充”。可选填充方式：
-        # <li> stretch：拉伸，对每一帧进行拉伸，填满整个画面，可能导致转码后的视频被“压扁“或者“拉长“；</li>
-        # <li>black：留黑，保持视频宽高比不变，边缘剩余部分使用黑色填充。</li>
-        # 默认值：black 。
+        # @param FillType: 填充方式，当视频流配置宽高参数与原始视频的宽高比不一致时，对转码的处理方式，即为“填充”。可选填充方式：<li> stretch：拉伸，对每一帧进行拉伸，填满整个画面，可能导致转码后的视频被“压扁“或者“拉长“；</li><li>black：留黑，保持视频宽高比不变，边缘剩余部分使用黑色填充。</li><li>white：留白，保持视频宽高比不变，边缘剩余部分使用白色填充。</li><li>gauss：高斯模糊，保持视频宽高比不变，边缘剩余部分使用高斯模糊。</li>默认值：black 。
         # @type FillType: String
         # @param Comment: 模板描述信息，长度限制：256 个字符。
         # @type Comment: String
@@ -20054,19 +19983,9 @@ module TencentCloud
         # @type SubAppId: Integer
         # @param Name: 采样截图模板名称，长度限制：64 个字符。
         # @type Name: String
-        # @param Width: 截图宽度（或长边）的最大值，取值范围：0 和 [128, 4096]，单位：px。
-        # <li>当 Width、Height 均为 0，则分辨率同源；</li>
-        # <li>当 Width 为 0，Height 非 0，则 Width 按比例缩放；</li>
-        # <li>当 Width 非 0，Height 为 0，则 Height 按比例缩放；</li>
-        # <li>当 Width、Height 均非 0，则分辨率按用户指定。</li>
-        # 默认值：0。
+        # @param Width: 截图宽度（或长边）的最大值，取值范围：0 和 [32, 4096]，单位：px。<li>当 Width、Height 均为 0，则分辨率同源；</li><li>当 Width 为 0，Height 非 0，则 Width 按比例缩放；</li><li>当 Width 非 0，Height 为 0，则 Height 按比例缩放；</li><li>当 Width、Height 均非 0，则分辨率按用户指定。</li>默认值：0。
         # @type Width: Integer
-        # @param Height: 截图高度（或短边）的最大值，取值范围：0 和 [128, 4096]，单位：px。
-        # <li>当 Width、Height 均为 0，则分辨率同源；</li>
-        # <li>当 Width 为 0，Height 非 0，则 Width 按比例缩放；</li>
-        # <li>当 Width 非 0，Height 为 0，则 Height 按比例缩放；</li>
-        # <li>当 Width、Height 均非 0，则分辨率按用户指定。</li>
-        # 默认值：0。
+        # @param Height: 截图高度（或短边）的最大值，取值范围：0 和 [32, 4096]，单位：px。<li>当 Width、Height 均为 0，则分辨率同源；</li><li>当 Width 为 0，Height 非 0，则 Width 按比例缩放；</li><li>当 Width 非 0，Height 为 0，则 Height 按比例缩放；</li><li>当 Width、Height 均非 0，则分辨率按用户指定。</li>默认值：0。
         # @type Height: Integer
         # @param ResolutionAdaptive: 分辨率自适应，可选值：
         # <li>open：开启，此时，Width 代表视频的长边，Height 表示视频的短边；</li>
@@ -20148,19 +20067,9 @@ module TencentCloud
         # @type SubAppId: Integer
         # @param Name: 指定时间点截图模板名称，长度限制：64 个字符。
         # @type Name: String
-        # @param Width: 截图宽度（或长边）的最大值，取值范围：0 和 [128, 4096]，单位：px。
-        # <li>当 Width、Height 均为 0，则分辨率同源；</li>
-        # <li>当 Width 为 0，Height 非 0，则 Width 按比例缩放；</li>
-        # <li>当 Width 非 0，Height 为 0，则 Height 按比例缩放；</li>
-        # <li>当 Width、Height 均非 0，则分辨率按用户指定。</li>
-        # 默认值：0。
+        # @param Width: 截图宽度（或长边）的最大值，取值范围：0 和 [32, 4096]，单位：px。<li>当 Width、Height 均为 0，则分辨率同源；</li><li>当 Width 为 0，Height 非 0，则 Width 按比例缩放；</li><li>当 Width 非 0，Height 为 0，则 Height 按比例缩放；</li><li>当 Width、Height 均非 0，则分辨率按用户指定。</li>默认值：0。
         # @type Width: Integer
-        # @param Height: 截图高度（或短边）的最大值，取值范围：0 和 [128, 4096]，单位：px。
-        # <li>当 Width、Height 均为 0，则分辨率同源；</li>
-        # <li>当 Width 为 0，Height 非 0，则 Width 按比例缩放；</li>
-        # <li>当 Width 非 0，Height 为 0，则 Height 按比例缩放；</li>
-        # <li>当 Width、Height 均非 0，则分辨率按用户指定。</li>
-        # 默认值：0。
+        # @param Height: 截图高度（或短边）的最大值，取值范围：0 和 [32, 4096]，单位：px。<li>当 Width、Height 均为 0，则分辨率同源；</li><li>当 Width 为 0，Height 非 0，则 Width 按比例缩放；</li><li>当 Width 非 0，Height 为 0，则 Height 按比例缩放；</li><li>当 Width、Height 均非 0，则分辨率按用户指定。</li>默认值：0。
         # @type Height: Integer
         # @param ResolutionAdaptive: 分辨率自适应，可选值：
         # <li>open：开启，此时，Width 代表视频的长边，Height 表示视频的短边；</li>
@@ -25181,10 +25090,8 @@ module TencentCloud
         # @param Message: 错误信息。
         # @type Message: String
         # @param Input: 音视频审核任务的输入。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Input: :class:`Tencentcloud::Vod.v20180717.models.ReviewAudioVideoTaskInput`
         # @param Output: 音视频审核任务的输出。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Output: :class:`Tencentcloud::Vod.v20180717.models.ReviewAudioVideoTaskOutput`
         # @param SessionId: 用于去重的识别码，如果七天内曾有过相同的识别码的请求，则本次的请求会返回错误。最长 50 个字符，不带或者带空字符串表示不做去重。
         # @type SessionId: String
@@ -25579,10 +25486,8 @@ module TencentCloud
         # @param StartPlayTime: 启播时间，格式按照 ISO 8601标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#52)。
         # @type StartPlayTime: String
         # @param Duration: 播放时长，单位为秒。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Duration: Float
         # @param Progress: 播放进度，单位为秒。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Progress: Float
 
         attr_accessor :ItemId, :FileId, :StartPlayTime, :Duration, :Progress
@@ -25629,10 +25534,8 @@ module TencentCloud
         # @param Url: 轮播播放地址。
         # @type Url: String
         # @param CreateTime: 创建时间，格式按照 ISO 8601标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#52)。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
         # @param UpdateTime: 更新时间，格式按照 ISO 8601标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#52)。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: String
         # @param ExpiredTime: 过期时间，格式按照 ISO 8601标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#52)，过期后将停止播单的播放。“9999-12-31T23:59:59+08:00”表示永不过期。
         # @type ExpiredTime: String

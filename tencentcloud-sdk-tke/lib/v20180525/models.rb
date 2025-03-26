@@ -571,21 +571,21 @@ module TencentCloud
 
       # EKS Instnace CBS volume
       class CbsVolume < TencentCloud::Common::AbstractModel
-        # @param Name: cbs volume 数据卷名称
-        # @type Name: String
         # @param CbsDiskId: 腾讯云cbs盘Id
         # @type CbsDiskId: String
+        # @param Name: cbs volume 数据卷名称
+        # @type Name: String
 
-        attr_accessor :Name, :CbsDiskId
+        attr_accessor :CbsDiskId, :Name
 
-        def initialize(name=nil, cbsdiskid=nil)
-          @Name = name
+        def initialize(cbsdiskid=nil, name=nil)
           @CbsDiskId = cbsdiskid
+          @Name = name
         end
 
         def deserialize(params)
-          @Name = params['Name']
           @CbsDiskId = params['CbsDiskId']
+          @Name = params['Name']
         end
       end
 
@@ -1641,66 +1641,69 @@ module TencentCloud
         # @type Image: String
         # @param Name: 容器名
         # @type Name: String
-        # @param Commands: 容器启动命令
-        # @type Commands: Array
         # @param Args: 容器启动参数
         # @type Args: Array
-        # @param EnvironmentVars: 容器内操作系统的环境变量
-        # @type EnvironmentVars: Array
+        # @param Commands: 容器启动命令
+        # @type Commands: Array
         # @param Cpu: CPU，制改容器最多可使用的核数，该值不可超过容器实例的总核数。单位：核。
         # @type Cpu: Float
-        # @param Memory: 内存，限制该容器最多可使用的内存值，该值不可超过容器实例的总内存值。单位：GiB
-        # @type Memory: Float
-        # @param VolumeMounts: 数据卷挂载信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type VolumeMounts: Array
         # @param CurrentState: 当前状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CurrentState: :class:`Tencentcloud::Tke.v20180525.models.ContainerState`
-        # @param RestartCount: 重启次数
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type RestartCount: Integer
-        # @param WorkingDir: 容器工作目录
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type WorkingDir: String
-        # @param LivenessProbe: 存活探针
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type LivenessProbe: :class:`Tencentcloud::Tke.v20180525.models.LivenessOrReadinessProbe`
-        # @param ReadinessProbe: 就绪探针
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type ReadinessProbe: :class:`Tencentcloud::Tke.v20180525.models.LivenessOrReadinessProbe`
+        # @param EnvironmentVars: 容器内操作系统的环境变量
+        # @type EnvironmentVars: Array
         # @param GpuLimit: Gpu限制
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GpuLimit: Integer
+        # @param LivenessProbe: 存活探针
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LivenessProbe: :class:`Tencentcloud::Tke.v20180525.models.LivenessOrReadinessProbe`
+        # @param Memory: 内存，限制该容器最多可使用的内存值，该值不可超过容器实例的总内存值。单位：GiB
+        # @type Memory: Float
+        # @param ReadinessProbe: 就绪探针
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReadinessProbe: :class:`Tencentcloud::Tke.v20180525.models.LivenessOrReadinessProbe`
+        # @param RestartCount: 重启次数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RestartCount: Integer
         # @param SecurityContext: 容器的安全上下文
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SecurityContext: :class:`Tencentcloud::Tke.v20180525.models.SecurityContext`
+        # @param VolumeMounts: 数据卷挂载信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VolumeMounts: Array
+        # @param WorkingDir: 容器工作目录
+        # @type WorkingDir: String
 
-        attr_accessor :Image, :Name, :Commands, :Args, :EnvironmentVars, :Cpu, :Memory, :VolumeMounts, :CurrentState, :RestartCount, :WorkingDir, :LivenessProbe, :ReadinessProbe, :GpuLimit, :SecurityContext
+        attr_accessor :Image, :Name, :Args, :Commands, :Cpu, :CurrentState, :EnvironmentVars, :GpuLimit, :LivenessProbe, :Memory, :ReadinessProbe, :RestartCount, :SecurityContext, :VolumeMounts, :WorkingDir
 
-        def initialize(image=nil, name=nil, commands=nil, args=nil, environmentvars=nil, cpu=nil, memory=nil, volumemounts=nil, currentstate=nil, restartcount=nil, workingdir=nil, livenessprobe=nil, readinessprobe=nil, gpulimit=nil, securitycontext=nil)
+        def initialize(image=nil, name=nil, args=nil, commands=nil, cpu=nil, currentstate=nil, environmentvars=nil, gpulimit=nil, livenessprobe=nil, memory=nil, readinessprobe=nil, restartcount=nil, securitycontext=nil, volumemounts=nil, workingdir=nil)
           @Image = image
           @Name = name
-          @Commands = commands
           @Args = args
-          @EnvironmentVars = environmentvars
+          @Commands = commands
           @Cpu = cpu
-          @Memory = memory
-          @VolumeMounts = volumemounts
           @CurrentState = currentstate
-          @RestartCount = restartcount
-          @WorkingDir = workingdir
-          @LivenessProbe = livenessprobe
-          @ReadinessProbe = readinessprobe
+          @EnvironmentVars = environmentvars
           @GpuLimit = gpulimit
+          @LivenessProbe = livenessprobe
+          @Memory = memory
+          @ReadinessProbe = readinessprobe
+          @RestartCount = restartcount
           @SecurityContext = securitycontext
+          @VolumeMounts = volumemounts
+          @WorkingDir = workingdir
         end
 
         def deserialize(params)
           @Image = params['Image']
           @Name = params['Name']
-          @Commands = params['Commands']
           @Args = params['Args']
+          @Commands = params['Commands']
+          @Cpu = params['Cpu']
+          unless params['CurrentState'].nil?
+            @CurrentState = ContainerState.new
+            @CurrentState.deserialize(params['CurrentState'])
+          end
           unless params['EnvironmentVars'].nil?
             @EnvironmentVars = []
             params['EnvironmentVars'].each do |i|
@@ -1709,8 +1712,21 @@ module TencentCloud
               @EnvironmentVars << environmentvariable_tmp
             end
           end
-          @Cpu = params['Cpu']
+          @GpuLimit = params['GpuLimit']
+          unless params['LivenessProbe'].nil?
+            @LivenessProbe = LivenessOrReadinessProbe.new
+            @LivenessProbe.deserialize(params['LivenessProbe'])
+          end
           @Memory = params['Memory']
+          unless params['ReadinessProbe'].nil?
+            @ReadinessProbe = LivenessOrReadinessProbe.new
+            @ReadinessProbe.deserialize(params['ReadinessProbe'])
+          end
+          @RestartCount = params['RestartCount']
+          unless params['SecurityContext'].nil?
+            @SecurityContext = SecurityContext.new
+            @SecurityContext.deserialize(params['SecurityContext'])
+          end
           unless params['VolumeMounts'].nil?
             @VolumeMounts = []
             params['VolumeMounts'].each do |i|
@@ -1719,71 +1735,53 @@ module TencentCloud
               @VolumeMounts << volumemount_tmp
             end
           end
-          unless params['CurrentState'].nil?
-            @CurrentState = ContainerState.new
-            @CurrentState.deserialize(params['CurrentState'])
-          end
-          @RestartCount = params['RestartCount']
           @WorkingDir = params['WorkingDir']
-          unless params['LivenessProbe'].nil?
-            @LivenessProbe = LivenessOrReadinessProbe.new
-            @LivenessProbe.deserialize(params['LivenessProbe'])
-          end
-          unless params['ReadinessProbe'].nil?
-            @ReadinessProbe = LivenessOrReadinessProbe.new
-            @ReadinessProbe.deserialize(params['ReadinessProbe'])
-          end
-          @GpuLimit = params['GpuLimit']
-          unless params['SecurityContext'].nil?
-            @SecurityContext = SecurityContext.new
-            @SecurityContext.deserialize(params['SecurityContext'])
-          end
         end
       end
 
       # 容器状态
       class ContainerState < TencentCloud::Common::AbstractModel
+        # @param ExitCode: 容器运行退出码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExitCode: Integer
+        # @param FinishTime: 容器运行结束时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FinishTime: String
+        # @param Message: 容器状态信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Message: String
+        # @param Reason: 容器状态 Reason
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Reason: String
+        # @param RestartCount: 容器重启次数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RestartCount: Integer
         # @param StartTime: 容器运行开始时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StartTime: String
         # @param State: 容器状态：created, running, exited, unknown
         # @type State: String
-        # @param FinishTime: 容器运行结束时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type FinishTime: String
-        # @param ExitCode: 容器运行退出码
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type ExitCode: Integer
-        # @param Reason: 容器状态 Reason
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Reason: String
-        # @param Message: 容器状态信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Message: String
-        # @param RestartCount: 容器重启次数
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type RestartCount: Integer
 
-        attr_accessor :StartTime, :State, :FinishTime, :ExitCode, :Reason, :Message, :RestartCount
+        attr_accessor :ExitCode, :FinishTime, :Message, :Reason, :RestartCount, :StartTime, :State
 
-        def initialize(starttime=nil, state=nil, finishtime=nil, exitcode=nil, reason=nil, message=nil, restartcount=nil)
+        def initialize(exitcode=nil, finishtime=nil, message=nil, reason=nil, restartcount=nil, starttime=nil, state=nil)
+          @ExitCode = exitcode
+          @FinishTime = finishtime
+          @Message = message
+          @Reason = reason
+          @RestartCount = restartcount
           @StartTime = starttime
           @State = state
-          @FinishTime = finishtime
-          @ExitCode = exitcode
-          @Reason = reason
-          @Message = message
-          @RestartCount = restartcount
         end
 
         def deserialize(params)
+          @ExitCode = params['ExitCode']
+          @FinishTime = params['FinishTime']
+          @Message = params['Message']
+          @Reason = params['Reason']
+          @RestartCount = params['RestartCount']
           @StartTime = params['StartTime']
           @State = params['State']
-          @FinishTime = params['FinishTime']
-          @ExitCode = params['ExitCode']
-          @Reason = params['Reason']
-          @Message = params['Message']
-          @RestartCount = params['RestartCount']
         end
       end
 
@@ -3776,26 +3774,22 @@ module TencentCloud
       # 自定义DNS配置
       class DNSConfig < TencentCloud::Common::AbstractModel
         # @param Nameservers: DNS 服务器IP地址列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Nameservers: Array
-        # @param Searches: DNS搜索域列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Searches: Array
         # @param Options: 对象选项列表，每个对象由name和value（可选）构成
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Options: Array
+        # @param Searches: DNS搜索域列表
+        # @type Searches: Array
 
-        attr_accessor :Nameservers, :Searches, :Options
+        attr_accessor :Nameservers, :Options, :Searches
 
-        def initialize(nameservers=nil, searches=nil, options=nil)
+        def initialize(nameservers=nil, options=nil, searches=nil)
           @Nameservers = nameservers
-          @Searches = searches
           @Options = options
+          @Searches = searches
         end
 
         def deserialize(params)
           @Nameservers = params['Nameservers']
-          @Searches = params['Searches']
           unless params['Options'].nil?
             @Options = []
             params['Options'].each do |i|
@@ -3804,6 +3798,7 @@ module TencentCloud
               @Options << dnsconfigoption_tmp
             end
           end
+          @Searches = params['Searches']
         end
       end
 
@@ -7064,7 +7059,6 @@ module TencentCloud
       # DescribeEKSContainerInstanceRegions返回参数结构体
       class DescribeEKSContainerInstanceRegionsResponse < TencentCloud::Common::AbstractModel
         # @param Regions: EKS Container Instance支持的地域信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Regions: Array
         # @param TotalCount: 总数
         # @type TotalCount: Integer
@@ -8071,6 +8065,50 @@ module TencentCloud
               @SwitchSet << switch_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeOSImages请求参数结构体
+      class DescribeOSImagesRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeOSImages返回参数结构体
+      class DescribeOSImagesResponse < TencentCloud::Common::AbstractModel
+        # @param OSImageSeriesSet: 镜像信息列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OSImageSeriesSet: Array
+        # @param TotalCount: 镜像数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :OSImageSeriesSet, :TotalCount, :RequestId
+
+        def initialize(osimageseriesset=nil, totalcount=nil, requestid=nil)
+          @OSImageSeriesSet = osimageseriesset
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['OSImageSeriesSet'].nil?
+            @OSImageSeriesSet = []
+            params['OSImageSeriesSet'].each do |i|
+              osimage_tmp = OSImage.new
+              osimage_tmp.deserialize(i)
+              @OSImageSeriesSet << osimage_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
       end
@@ -11032,113 +11070,92 @@ module TencentCloud
 
       # EksContainerInstance实例类型
       class EksCi < TencentCloud::Common::AbstractModel
+        # @param AutoCreatedEipId: 自动为用户创建的EipId
+        # @type AutoCreatedEipId: String
+        # @param CamRoleName: 为容器实例关联 CAM 角色，value 填写 CAM 角色名称，容器实例可获取该 CAM 角色包含的权限策略，方便 容器实例 内的程序进行如购买资源、读写存储等云资源操作。
+        # @type CamRoleName: String
+        # @param Containers: 容器列表
+        # @type Containers: Array
+        # @param Cpu: CPU大小
+        # @type Cpu: Float
+        # @param CpuType: CPU类型
+        # @type CpuType: String
+        # @param CreationTime: 接到请求后的系统创建时间。
+        # @type CreationTime: String
+        # @param EipAddress: 容器实例绑定的Eip地址，注意可能为空
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EipAddress: String
         # @param EksCiId: EKS Cotainer Instance Id
         # @type EksCiId: String
         # @param EksCiName: EKS Cotainer Instance Name
         # @type EksCiName: String
+        # @param EksCiVolume: 数据卷信息
+        # @type EksCiVolume: :class:`Tencentcloud::Tke.v20180525.models.EksCiVolume`
+        # @param GpuCount: GPU卡数量
+        # @type GpuCount: Integer
+        # @param GpuType: GPU类型。如无使用GPU则不返回
+        # @type GpuType: String
+        # @param InitContainers: 初始化容器列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InitContainers: Array
         # @param Memory: 内存大小
         # @type Memory: Float
-        # @param Cpu: CPU大小
-        # @type Cpu: Float
+        # @param PersistStatus: 容器状态是否持久化
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PersistStatus: Boolean
+        # @param PrivateIp: 内网ip地址
+        # @type PrivateIp: String
+        # @param RestartPolicy: 容器组的重启策略
+        # @type RestartPolicy: String
+        # @param SecurityContext: 容器组运行的安全上下文
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SecurityContext: :class:`Tencentcloud::Tke.v20180525.models.SecurityContext`
         # @param SecurityGroupIds: 安全组ID
         # @type SecurityGroupIds: Array
-        # @param RestartPolicy: 容器组的重启策略
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type RestartPolicy: String
         # @param Status: 返回容器组创建状态：Pending，Running，Succeeded，Failed。其中：
         # Failed （运行失败）指的容器组退出，RestartPolilcy为Never， 有容器exitCode非0；
         # Succeeded（运行成功）指的是容器组退出了，RestartPolicy为Never或onFailure，所有容器exitCode都为0；
         # Failed和Succeeded这两种状态都会停止运行，停止计费。
         # Pending是创建中，Running是 运行中。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: String
-        # @param CreationTime: 接到请求后的系统创建时间。
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type CreationTime: String
-        # @param SucceededTime: 容器全部成功退出后的时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type SucceededTime: String
-        # @param Containers: 容器列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Containers: Array
-        # @param EksCiVolume: 数据卷信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type EksCiVolume: :class:`Tencentcloud::Tke.v20180525.models.EksCiVolume`
-        # @param SecurityContext: 容器组运行的安全上下文
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type SecurityContext: :class:`Tencentcloud::Tke.v20180525.models.SecurityContext`
-        # @param PrivateIp: 内网ip地址
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type PrivateIp: String
-        # @param EipAddress: 容器实例绑定的Eip地址，注意可能为空
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type EipAddress: String
-        # @param GpuType: GPU类型。如无使用GPU则不返回
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type GpuType: String
-        # @param CpuType: CPU类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type CpuType: String
-        # @param GpuCount: GPU卡数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type GpuCount: Integer
-        # @param VpcId: 实例所属VPC的Id
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type VpcId: String
         # @param SubnetId: 实例所属子网Id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubnetId: String
-        # @param InitContainers: 初始化容器列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type InitContainers: Array
-        # @param CamRoleName: 为容器实例关联 CAM 角色，value 填写 CAM 角色名称，容器实例可获取该 CAM 角色包含的权限策略，方便 容器实例 内的程序进行如购买资源、读写存储等云资源操作。
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type CamRoleName: String
-        # @param AutoCreatedEipId: 自动为用户创建的EipId
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type AutoCreatedEipId: String
-        # @param PersistStatus: 容器状态是否持久化
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type PersistStatus: Boolean
+        # @param SucceededTime: 容器全部成功退出后的时间
+        # @type SucceededTime: String
+        # @param VpcId: 实例所属VPC的Id
+        # @type VpcId: String
 
-        attr_accessor :EksCiId, :EksCiName, :Memory, :Cpu, :SecurityGroupIds, :RestartPolicy, :Status, :CreationTime, :SucceededTime, :Containers, :EksCiVolume, :SecurityContext, :PrivateIp, :EipAddress, :GpuType, :CpuType, :GpuCount, :VpcId, :SubnetId, :InitContainers, :CamRoleName, :AutoCreatedEipId, :PersistStatus
+        attr_accessor :AutoCreatedEipId, :CamRoleName, :Containers, :Cpu, :CpuType, :CreationTime, :EipAddress, :EksCiId, :EksCiName, :EksCiVolume, :GpuCount, :GpuType, :InitContainers, :Memory, :PersistStatus, :PrivateIp, :RestartPolicy, :SecurityContext, :SecurityGroupIds, :Status, :SubnetId, :SucceededTime, :VpcId
 
-        def initialize(eksciid=nil, eksciname=nil, memory=nil, cpu=nil, securitygroupids=nil, restartpolicy=nil, status=nil, creationtime=nil, succeededtime=nil, containers=nil, ekscivolume=nil, securitycontext=nil, privateip=nil, eipaddress=nil, gputype=nil, cputype=nil, gpucount=nil, vpcid=nil, subnetid=nil, initcontainers=nil, camrolename=nil, autocreatedeipid=nil, persiststatus=nil)
+        def initialize(autocreatedeipid=nil, camrolename=nil, containers=nil, cpu=nil, cputype=nil, creationtime=nil, eipaddress=nil, eksciid=nil, eksciname=nil, ekscivolume=nil, gpucount=nil, gputype=nil, initcontainers=nil, memory=nil, persiststatus=nil, privateip=nil, restartpolicy=nil, securitycontext=nil, securitygroupids=nil, status=nil, subnetid=nil, succeededtime=nil, vpcid=nil)
+          @AutoCreatedEipId = autocreatedeipid
+          @CamRoleName = camrolename
+          @Containers = containers
+          @Cpu = cpu
+          @CpuType = cputype
+          @CreationTime = creationtime
+          @EipAddress = eipaddress
           @EksCiId = eksciid
           @EksCiName = eksciname
-          @Memory = memory
-          @Cpu = cpu
-          @SecurityGroupIds = securitygroupids
-          @RestartPolicy = restartpolicy
-          @Status = status
-          @CreationTime = creationtime
-          @SucceededTime = succeededtime
-          @Containers = containers
           @EksCiVolume = ekscivolume
-          @SecurityContext = securitycontext
-          @PrivateIp = privateip
-          @EipAddress = eipaddress
-          @GpuType = gputype
-          @CpuType = cputype
           @GpuCount = gpucount
-          @VpcId = vpcid
-          @SubnetId = subnetid
+          @GpuType = gputype
           @InitContainers = initcontainers
-          @CamRoleName = camrolename
-          @AutoCreatedEipId = autocreatedeipid
+          @Memory = memory
           @PersistStatus = persiststatus
+          @PrivateIp = privateip
+          @RestartPolicy = restartpolicy
+          @SecurityContext = securitycontext
+          @SecurityGroupIds = securitygroupids
+          @Status = status
+          @SubnetId = subnetid
+          @SucceededTime = succeededtime
+          @VpcId = vpcid
         end
 
         def deserialize(params)
-          @EksCiId = params['EksCiId']
-          @EksCiName = params['EksCiName']
-          @Memory = params['Memory']
-          @Cpu = params['Cpu']
-          @SecurityGroupIds = params['SecurityGroupIds']
-          @RestartPolicy = params['RestartPolicy']
-          @Status = params['Status']
-          @CreationTime = params['CreationTime']
-          @SucceededTime = params['SucceededTime']
+          @AutoCreatedEipId = params['AutoCreatedEipId']
+          @CamRoleName = params['CamRoleName']
           unless params['Containers'].nil?
             @Containers = []
             params['Containers'].each do |i|
@@ -11147,21 +11164,18 @@ module TencentCloud
               @Containers << container_tmp
             end
           end
+          @Cpu = params['Cpu']
+          @CpuType = params['CpuType']
+          @CreationTime = params['CreationTime']
+          @EipAddress = params['EipAddress']
+          @EksCiId = params['EksCiId']
+          @EksCiName = params['EksCiName']
           unless params['EksCiVolume'].nil?
             @EksCiVolume = EksCiVolume.new
             @EksCiVolume.deserialize(params['EksCiVolume'])
           end
-          unless params['SecurityContext'].nil?
-            @SecurityContext = SecurityContext.new
-            @SecurityContext.deserialize(params['SecurityContext'])
-          end
-          @PrivateIp = params['PrivateIp']
-          @EipAddress = params['EipAddress']
-          @GpuType = params['GpuType']
-          @CpuType = params['CpuType']
           @GpuCount = params['GpuCount']
-          @VpcId = params['VpcId']
-          @SubnetId = params['SubnetId']
+          @GpuType = params['GpuType']
           unless params['InitContainers'].nil?
             @InitContainers = []
             params['InitContainers'].each do |i|
@@ -11170,9 +11184,19 @@ module TencentCloud
               @InitContainers << container_tmp
             end
           end
-          @CamRoleName = params['CamRoleName']
-          @AutoCreatedEipId = params['AutoCreatedEipId']
+          @Memory = params['Memory']
           @PersistStatus = params['PersistStatus']
+          @PrivateIp = params['PrivateIp']
+          @RestartPolicy = params['RestartPolicy']
+          unless params['SecurityContext'].nil?
+            @SecurityContext = SecurityContext.new
+            @SecurityContext.deserialize(params['SecurityContext'])
+          end
+          @SecurityGroupIds = params['SecurityGroupIds']
+          @Status = params['Status']
+          @SubnetId = params['SubnetId']
+          @SucceededTime = params['SucceededTime']
+          @VpcId = params['VpcId']
         end
       end
 
@@ -13391,24 +13415,22 @@ module TencentCloud
       # 健康探针
       class LivenessOrReadinessProbe < TencentCloud::Common::AbstractModel
         # @param Probe: 探针参数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Probe: :class:`Tencentcloud::Tke.v20180525.models.Probe`
-        # @param HttpGet: HttpGet检测参数
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type HttpGet: :class:`Tencentcloud::Tke.v20180525.models.HttpGet`
         # @param Exec: 容器内检测命令参数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Exec: :class:`Tencentcloud::Tke.v20180525.models.Exec`
+        # @param HttpGet: HttpGet检测参数
+        # @type HttpGet: :class:`Tencentcloud::Tke.v20180525.models.HttpGet`
         # @param TcpSocket: TcpSocket检测的端口参数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TcpSocket: :class:`Tencentcloud::Tke.v20180525.models.TcpSocket`
 
-        attr_accessor :Probe, :HttpGet, :Exec, :TcpSocket
+        attr_accessor :Probe, :Exec, :HttpGet, :TcpSocket
 
-        def initialize(probe=nil, httpget=nil, exec=nil, tcpsocket=nil)
+        def initialize(probe=nil, exec=nil, httpget=nil, tcpsocket=nil)
           @Probe = probe
-          @HttpGet = httpget
           @Exec = exec
+          @HttpGet = httpget
           @TcpSocket = tcpsocket
         end
 
@@ -13417,13 +13439,13 @@ module TencentCloud
             @Probe = Probe.new
             @Probe.deserialize(params['Probe'])
           end
-          unless params['HttpGet'].nil?
-            @HttpGet = HttpGet.new
-            @HttpGet.deserialize(params['HttpGet'])
-          end
           unless params['Exec'].nil?
             @Exec = Exec.new
             @Exec.deserialize(params['Exec'])
+          end
+          unless params['HttpGet'].nil?
+            @HttpGet = HttpGet.new
+            @HttpGet.deserialize(params['HttpGet'])
           end
           unless params['TcpSocket'].nil?
             @TcpSocket = TcpSocket.new
@@ -14646,26 +14668,26 @@ module TencentCloud
       class NfsVolume < TencentCloud::Common::AbstractModel
         # @param Name: nfs volume 数据卷名称
         # @type Name: String
-        # @param Server: NFS 服务器地址
-        # @type Server: String
         # @param Path: NFS 数据卷路径
         # @type Path: String
+        # @param Server: NFS 服务器地址
+        # @type Server: String
         # @param ReadOnly: 默认为 False
         # @type ReadOnly: Boolean
 
-        attr_accessor :Name, :Server, :Path, :ReadOnly
+        attr_accessor :Name, :Path, :Server, :ReadOnly
 
-        def initialize(name=nil, server=nil, path=nil, readonly=nil)
+        def initialize(name=nil, path=nil, server=nil, readonly=nil)
           @Name = name
-          @Server = server
           @Path = path
+          @Server = server
           @ReadOnly = readonly
         end
 
         def deserialize(params)
           @Name = params['Name']
-          @Server = params['Server']
           @Path = params['Path']
+          @Server = params['Server']
           @ReadOnly = params['ReadOnly']
         end
       end
@@ -14948,6 +14970,42 @@ module TencentCloud
           @AutoCreateOIDCConfig = params['AutoCreateOIDCConfig']
           @AutoCreateClientId = params['AutoCreateClientId']
           @AutoInstallPodIdentityWebhookAddon = params['AutoInstallPodIdentityWebhookAddon']
+        end
+      end
+
+      # 操作系统描述
+      class OSImage < TencentCloud::Common::AbstractModel
+        # @param SeriesName: os聚合名称
+        # @type SeriesName: String
+        # @param Alias: os别名
+        # @type Alias: String
+        # @param OsName: os名称
+        # @type OsName: String
+        # @param OsCustomizeType: 操作系统类型(分为定制和非定制，取值分别为:DOCKER_CUSTOMIZE、GENERAL)
+        # @type OsCustomizeType: String
+        # @param Status: os是否下线(online表示在线,offline表示下线)
+        # @type Status: String
+        # @param ImageId: 镜像id
+        # @type ImageId: String
+
+        attr_accessor :SeriesName, :Alias, :OsName, :OsCustomizeType, :Status, :ImageId
+
+        def initialize(seriesname=nil, _alias=nil, osname=nil, oscustomizetype=nil, status=nil, imageid=nil)
+          @SeriesName = seriesname
+          @Alias = _alias
+          @OsName = osname
+          @OsCustomizeType = oscustomizetype
+          @Status = status
+          @ImageId = imageid
+        end
+
+        def deserialize(params)
+          @SeriesName = params['SeriesName']
+          @Alias = params['Alias']
+          @OsName = params['OsName']
+          @OsCustomizeType = params['OsCustomizeType']
+          @Status = params['Status']
+          @ImageId = params['ImageId']
         end
       end
 
@@ -15320,39 +15378,39 @@ module TencentCloud
 
       # 健康检查探测参数
       class Probe < TencentCloud::Common::AbstractModel
+        # @param FailureThreshold: Minimum consecutive failures for the probe to be considered failed after having succeeded.Defaults to 3. Minimum value is 1.
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FailureThreshold: Integer
         # @param InitialDelaySeconds: Number of seconds after the container has started before liveness probes are initiated.
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InitialDelaySeconds: Integer
-        # @param TimeoutSeconds: Number of seconds after which the probe times out.
-        # Defaults to 1 second. Minimum value is 1.
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type TimeoutSeconds: Integer
         # @param PeriodSeconds: How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1.
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PeriodSeconds: Integer
         # @param SuccessThreshold: Minimum consecutive successes for the probe to be considered successful after having failed.Defaults to 1. Must be 1 for liveness. Minimum value is 1.
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SuccessThreshold: Integer
-        # @param FailureThreshold: Minimum consecutive failures for the probe to be considered failed after having succeeded.Defaults to 3. Minimum value is 1.
+        # @param TimeoutSeconds: Number of seconds after which the probe times out.
+        # Defaults to 1 second. Minimum value is 1.
         # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type FailureThreshold: Integer
+        # @type TimeoutSeconds: Integer
 
-        attr_accessor :InitialDelaySeconds, :TimeoutSeconds, :PeriodSeconds, :SuccessThreshold, :FailureThreshold
+        attr_accessor :FailureThreshold, :InitialDelaySeconds, :PeriodSeconds, :SuccessThreshold, :TimeoutSeconds
 
-        def initialize(initialdelayseconds=nil, timeoutseconds=nil, periodseconds=nil, successthreshold=nil, failurethreshold=nil)
+        def initialize(failurethreshold=nil, initialdelayseconds=nil, periodseconds=nil, successthreshold=nil, timeoutseconds=nil)
+          @FailureThreshold = failurethreshold
           @InitialDelaySeconds = initialdelayseconds
-          @TimeoutSeconds = timeoutseconds
           @PeriodSeconds = periodseconds
           @SuccessThreshold = successthreshold
-          @FailureThreshold = failurethreshold
+          @TimeoutSeconds = timeoutseconds
         end
 
         def deserialize(params)
+          @FailureThreshold = params['FailureThreshold']
           @InitialDelaySeconds = params['InitialDelaySeconds']
-          @TimeoutSeconds = params['TimeoutSeconds']
           @PeriodSeconds = params['PeriodSeconds']
           @SuccessThreshold = params['SuccessThreshold']
-          @FailureThreshold = params['FailureThreshold']
+          @TimeoutSeconds = params['TimeoutSeconds']
         end
       end
 
@@ -18263,7 +18321,6 @@ module TencentCloud
       # 探针使用TcpSocket检测容器
       class TcpSocket < TencentCloud::Common::AbstractModel
         # @param Port: TcpSocket检测的端口
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Port: Integer
 
         attr_accessor :Port
@@ -18735,7 +18792,6 @@ module TencentCloud
       # UpdateEKSContainerInstance返回参数结构体
       class UpdateEKSContainerInstanceResponse < TencentCloud::Common::AbstractModel
         # @param EksCiId: 容器实例 ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EksCiId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -19308,42 +19364,42 @@ module TencentCloud
 
       # 数据卷挂载路径信息
       class VolumeMount < TencentCloud::Common::AbstractModel
-        # @param Name: volume名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Name: String
         # @param MountPath: 挂载路径
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MountPath: String
+        # @param Name: volume名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param MountPropagation: 传播挂载方式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MountPropagation: String
         # @param ReadOnly: 是否只读
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReadOnly: Boolean
         # @param SubPath: 子路径
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubPath: String
-        # @param MountPropagation: 传播挂载方式
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type MountPropagation: String
         # @param SubPathExpr: 子路径表达式
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubPathExpr: String
 
-        attr_accessor :Name, :MountPath, :ReadOnly, :SubPath, :MountPropagation, :SubPathExpr
+        attr_accessor :MountPath, :Name, :MountPropagation, :ReadOnly, :SubPath, :SubPathExpr
 
-        def initialize(name=nil, mountpath=nil, readonly=nil, subpath=nil, mountpropagation=nil, subpathexpr=nil)
-          @Name = name
+        def initialize(mountpath=nil, name=nil, mountpropagation=nil, readonly=nil, subpath=nil, subpathexpr=nil)
           @MountPath = mountpath
+          @Name = name
+          @MountPropagation = mountpropagation
           @ReadOnly = readonly
           @SubPath = subpath
-          @MountPropagation = mountpropagation
           @SubPathExpr = subpathexpr
         end
 
         def deserialize(params)
-          @Name = params['Name']
           @MountPath = params['MountPath']
+          @Name = params['Name']
+          @MountPropagation = params['MountPropagation']
           @ReadOnly = params['ReadOnly']
           @SubPath = params['SubPath']
-          @MountPropagation = params['MountPropagation']
           @SubPathExpr = params['SubPathExpr']
         end
       end

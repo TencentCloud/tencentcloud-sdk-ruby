@@ -29,6 +29,30 @@ module TencentCloud
         end
 
 
+        # oaid 设备风险接口
+
+        # @param request: Request instance for ManageDeviceRisk.
+        # @type request: :class:`Tencentcloud::taf::V20200210::ManageDeviceRiskRequest`
+        # @rtype: :class:`Tencentcloud::taf::V20200210::ManageDeviceRiskResponse`
+        def ManageDeviceRisk(request)
+          body = send_request('ManageDeviceRisk', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ManageDeviceRiskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 虚假流量识别
 
         # @param request: Request instance for ManagePortraitRisk.

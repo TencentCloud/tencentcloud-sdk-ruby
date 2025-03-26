@@ -47,7 +47,6 @@ module TencentCloud
       # ApplyChainMakerBatchUserCert返回参数结构体
       class ApplyChainMakerBatchUserCertResponse < TencentCloud::Common::AbstractModel
         # @param SignUserCrtList: 成功生成的用户证书的base64编码字符串列表，与SignUserCsrList一一对应
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SignUserCrtList: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1141,7 +1140,6 @@ module TencentCloud
       # InvokeChainMakerContract返回参数结构体
       class InvokeChainMakerContractResponse < TencentCloud::Common::AbstractModel
         # @param Result: 交易结果
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: :class:`Tencentcloud::Tbaas.v20180416.models.ChainMakerContractResult`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1420,12 +1418,10 @@ module TencentCloud
       # QueryChainMakerBlockTransaction返回参数结构体
       class QueryChainMakerBlockTransactionResponse < TencentCloud::Common::AbstractModel
         # @param Result: 区块交易
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: Array
         # @param BlockHeight: 区块高度
         # @type BlockHeight: Integer
         # @param TxCount: 交易数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TxCount: Integer
         # @param BlockTimestamp: 区块时间戳，单位是秒
         # @type BlockTimestamp: Integer
@@ -1493,7 +1489,6 @@ module TencentCloud
       # QueryChainMakerContract返回参数结构体
       class QueryChainMakerContractResponse < TencentCloud::Common::AbstractModel
         # @param Result: 交易结果
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: :class:`Tencentcloud::Tbaas.v20180416.models.ChainMakerContractResult`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1706,7 +1701,6 @@ module TencentCloud
       # QueryChainMakerTransaction返回参数结构体
       class QueryChainMakerTransactionResponse < TencentCloud::Common::AbstractModel
         # @param Result: 交易结果
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: :class:`Tencentcloud::Tbaas.v20180416.models.ChainMakerTransactionResult`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

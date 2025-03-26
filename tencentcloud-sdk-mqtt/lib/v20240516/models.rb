@@ -19,9 +19,9 @@ module TencentCloud
     module V20240516
       # ActivateCaCertificate请求参数结构体
       class ActivateCaCertificateRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 集群id
+        # @param InstanceId: 腾讯云MQTT实例ID，从 [DescribeInstanceList](https://cloud.tencent.com/document/api/1778/111029)接口或控制台获得。
         # @type InstanceId: String
-        # @param CaSn: 证书序列号
+        # @param CaSn: CA证书的SN序列号，可以从 [DescribeCaCertificates](https://cloud.tencent.com/document/api/1778/116206)接口、控制台、证书文件中获得。
         # @type CaSn: String
 
         attr_accessor :InstanceId, :CaSn
@@ -803,7 +803,7 @@ module TencentCloud
         # @type InstanceId: String
         # @param Username: 用户名，不能为空，只支持数字 大小写字母 分隔符("_","-")，不能超过 32 个字符
         # @type Username: String
-        # @param Password: 密码，该字段为空时候则后端会默认生成
+        # @param Password: 密码，该字段为空时候则后端会默认生成。用户自定义密码时，不能为空，只支持数字 大小写字母 分隔符("_","-")，不能超过 64 个字符。
         # @type Password: String
         # @param Remark: 备注，长度不超过128个字符。
         # @type Remark: String
@@ -992,7 +992,7 @@ module TencentCloud
       class DeleteCaCertificateRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID，从 [DescribeInstanceList](https://cloud.tencent.com/document/api/1778/111029)接口或控制台获得。
         # @type InstanceId: String
-        # @param CaSn: 证书序列号，可以从 [DescribeCaCertificates](https://cloud.tencent.com/document/api/1778/116206)接口、控制台、证书文件中获得。
+        # @param CaSn: CA证书序列号，可以从 [DescribeCaCertificates](https://cloud.tencent.com/document/api/1778/116206)接口、控制台、证书文件中获得。
         # @type CaSn: String
 
         attr_accessor :InstanceId, :CaSn
@@ -1094,7 +1094,7 @@ module TencentCloud
 
       # DeleteInstance请求参数结构体
       class DeleteInstanceRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
+        # @param InstanceId: 腾讯云MQTT实例ID，从 [DescribeInstanceList](https://cloud.tencent.com/document/api/1778/111029)接口或控制台获得。
         # @type InstanceId: String
 
         attr_accessor :InstanceId
@@ -1291,9 +1291,9 @@ module TencentCloud
 
       # DescribeCaCertificate请求参数结构体
       class DescribeCaCertificateRequest < TencentCloud::Common::AbstractModel
-        # @param CaSn: ca证书sn
+        # @param CaSn: CA证书的SN序列号，可以从 [DescribeCaCertificates](https://cloud.tencent.com/document/api/1778/116206)接口、控制台、证书文件中获得。
         # @type CaSn: String
-        # @param InstanceId: 集群id
+        # @param InstanceId: 腾讯云MQTT实例ID，从 [DescribeInstanceList](https://cloud.tencent.com/document/api/1778/111029)接口或控制台获得。
         # @type InstanceId: String
 
         attr_accessor :CaSn, :InstanceId
@@ -1311,29 +1311,31 @@ module TencentCloud
 
       # DescribeCaCertificate返回参数结构体
       class DescribeCaCertificateResponse < TencentCloud::Common::AbstractModel
-        # @param CreatedTime: 创建时间
+        # @param CreatedTime: 创建时间，毫秒级时间戳 。
         # @type CreatedTime: Integer
-        # @param UpdateTime: 上次更新时间
+        # @param UpdateTime: 上次更新时间，毫秒级时间戳 。
         # @type UpdateTime: Integer
-        # @param NotAfterTime: 失效日期
+        # @param NotAfterTime: 失效日期，毫秒级时间戳 。
         # @type NotAfterTime: Integer
-        # @param LastActivationTime: 上次激活时间
+        # @param LastActivationTime: 上次激活时间，毫秒级时间戳 。
         # @type LastActivationTime: Integer
-        # @param LastInactivationTime: 上次吊销时间
+        # @param LastInactivationTime: 上次吊销时间，毫秒级时间戳 。
         # @type LastInactivationTime: Integer
-        # @param Status: 证书状态
+        # @param Status: CA证书状态
+        #  ACTIVE：激活
+        # INACTIVE：未激活
         # @type Status: String
         # @param CaSn: 证书序列号
         # @type CaSn: String
-        # @param CaCn: common name
+        # @param CaCn: 证书的CN（Common Name），证书中用于标识主体的名称，通常是域名或组织名称
         # @type CaCn: String
         # @param CaCertificate: 证书内容
         # @type CaCertificate: String
-        # @param Format: 证书格式
+        # @param Format: 证书格式，当仅支持PEM格式
         # @type Format: String
         # @param CaIssuerCn: Ca证书颁发者CN
         # @type CaIssuerCn: String
-        # @param NotBeforeTime: 生效开始时间
+        # @param NotBeforeTime: 生效开始时间，毫秒级时间戳 。
         # @type NotBeforeTime: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1420,7 +1422,7 @@ module TencentCloud
       class DescribeClientListRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 腾讯云MQTT实例ID，从 [DescribeInstanceList](https://cloud.tencent.com/document/api/1778/111029)接口或控制台获得。
         # @type InstanceId: String
-        # @param ClientId: 客户端名
+        # @param ClientId: 客户端ID
         # @type ClientId: String
         # @param Number: 客户端数量限制,最大1024，默认1024
         # @type Number: String
@@ -1571,23 +1573,24 @@ module TencentCloud
 
       # DescribeDeviceCertificates请求参数结构体
       class DescribeDeviceCertificatesRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID，从 [DescribeInstanceList](https://cloud.tencent.com/document/api/1778/111029)接口或控制台获得。
+        # @param InstanceId: 腾讯云MQTT实例ID，从 [DescribeInstanceList](https://cloud.tencent.com/document/api/1778/111029)接口或控制台获得。
         # @type InstanceId: String
         # @param Filters: 支持搜索参数
-        # ClientId：客户端id
-        # CaSn：所属的CA证书SN
-        # DeviceCertificateSn：设备证书SN
-        # DeviceCertificateCn：设备证书CN
+        # ClientId：客户端id，根据实际业务使用获取
+        # CaSn：所属的CA证书SN序列号 可以从 [查询集群CA证书列表](https://cloud.tencent.com/document/api/1778/116206) 或者实际业务使用获取
+        # DeviceCertificateSn：设备证书SN序列号 可从[查询设备证书详情](https://cloud.tencent.com/document/api/1778/113748) 获取
+        # DeviceCertificateCn：设备证书CN 可从[查询设备证书详情](https://cloud.tencent.com/document/api/1778/113748) 获取
         # OrganizationalUnit：证书OU
         # NotAfterEnd：过期时间小于等于指定时间的证书
         # NotAfterStart：过期时间大于等于指定时间的证书
-        # Status：证书状态
+        # Status：设备证书状态     ACTIVE（激活）； INACTIVE（未激活）REVOKED（吊销）；PENDING_ACTIVATION（注册待激活）
         # @type Filters: Array
-        # @param Limit: 分页limit
+        # @param Limit: 分页limit，默认20，最大100
         # @type Limit: Integer
-        # @param Offset: 分页偏移量
+        # @param Offset: 分页偏移量，默认0
         # @type Offset: Integer
-        # @param OrderBy: CREATE_TIME_DESC, 创建时间降序
+        # @param OrderBy: 排序规则
+        #     CREATE_TIME_DESC, 创建时间降序
         #     CREATE_TIME_ASC,创建时间升序
         #     UPDATE_TIME_DESC,更新时间降序
         #     UPDATE_TIME_ASC,更新时间升序
@@ -1623,7 +1626,7 @@ module TencentCloud
       class DescribeDeviceCertificatesResponse < TencentCloud::Common::AbstractModel
         # @param TotalCount: 总数
         # @type TotalCount: Integer
-        # @param Data: 设备证书
+        # @param Data: 设备证书列表
         # @type Data: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2134,7 +2137,7 @@ module TencentCloud
         # @type Filters: Array
         # @param Offset: 查询起始位置，默认0。
         # @type Offset: Integer
-        # @param Limit: 查询结果限制数量，默认0，最大20
+        # @param Limit: 查询结果限制数量，默认20，最大20
         # @type Limit: Integer
 
         attr_accessor :InstanceId, :Filters, :Offset, :Limit
@@ -2317,37 +2320,37 @@ module TencentCloud
         # @type ClientId: String
         # @param DeviceCertificate: 设备证书
         # @type DeviceCertificate: String
-        # @param DeviceCertificateSn: 设备证书Sn
+        # @param DeviceCertificateSn: 设备证书SN序列号，用于唯一标识一个设备证书
         # @type DeviceCertificateSn: String
         # @param DeviceCertificateCn: 设备证书Cn
         # @type DeviceCertificateCn: String
-        # @param CaSn: 签发ca的序列号
+        # @param CaSn: 签发该证书的CA证书的序列号
         # @type CaSn: String
-        # @param Format: 证书格式
+        # @param Format: 证书格式，当前仅支持PEM
         # @type Format: String
-        # @param Status: 证书状态
-        #     ACTIVE,//激活
-        #     INACTIVE,//未激活
-        #     REVOKED,//吊销
-        #     PENDING_ACTIVATION,//注册待激活
+        # @param Status: 设备证书状态
+        #     ACTIVE：激活
+        #     INACTIVE：未激活
+        #     REVOKED：吊销
+        #     PENDING_ACTIVATION：注册待激活
         # @type Status: String
         # @param OrganizationalUnit: 组织单位
         # @type OrganizationalUnit: String
-        # @param LastActivationTime: 上次激活时间
+        # @param LastActivationTime: 上次激活时间，毫秒级时间戳 。
         # @type LastActivationTime: Integer
-        # @param LastInactivationTime: 上次取消激活时间
+        # @param LastInactivationTime: 上次取消激活时间，毫秒级时间戳 。
         # @type LastInactivationTime: Integer
-        # @param CreatedTime: 创建时间
+        # @param CreatedTime: 创建时间，毫秒级时间戳 。
         # @type CreatedTime: Integer
-        # @param UpdateTime: 预销毁时间
+        # @param UpdateTime: 更新时间，毫秒级时间戳 。
         # @type UpdateTime: Integer
         # @param CertificateSource: 证书来源：
         # API, 手动注册
         # JITP 自动注册
         # @type CertificateSource: String
-        # @param NotAfterTime: 证书失效日期
+        # @param NotAfterTime: 证书失效日期，毫秒级时间戳 。
         # @type NotAfterTime: Integer
-        # @param NotBeforeTime: 证书生效开始日期
+        # @param NotBeforeTime: 证书生效开始日期，毫秒级时间戳 。
         # @type NotBeforeTime: Integer
 
         attr_accessor :ClientId, :DeviceCertificate, :DeviceCertificateSn, :DeviceCertificateCn, :CaSn, :Format, :Status, :OrganizationalUnit, :LastActivationTime, :LastInactivationTime, :CreatedTime, :UpdateTime, :CertificateSource, :NotAfterTime, :NotBeforeTime
@@ -2670,7 +2673,7 @@ module TencentCloud
         # @type MaxSubscriptionPerClient: Integer
         # @param ClientNumLimit: 客户端连接数上线
         # @type ClientNumLimit: Integer
-        # @param RenewFlag: 是否自动续费。仅包年包月就去那生效。
+        # @param RenewFlag: 是否自动续费。仅包年包月集群生效。
         # 1:自动续费
         # 0:非自动续费
         # @type RenewFlag: Integer
@@ -3528,19 +3531,17 @@ module TencentCloud
 
       # RegisterCaCertificate请求参数结构体
       class RegisterCaCertificateRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 集群id
+        # @param InstanceId: 腾讯云MQTT实例ID，从 [DescribeInstanceList](https://cloud.tencent.com/document/api/1778/111029)接口或控制台获得。
         # @type InstanceId: String
-        # @param CaCertificate: CA证书
+        # @param CaCertificate: CA证书内容，自签CA可参考 [自定义 X.509 证书实现 “一机一证”](https://cloud.tencent.com/document/product/1778/114817) 签发自签CA
         # @type CaCertificate: String
-        # @param VerificationCertificate: 验证证书
+        # @param VerificationCertificate: 验证证书内容，可参考 [自定义 X.509 证书实现 “一机一证”](https://cloud.tencent.com/document/product/1778/114817) 手动注册CA证书章节
         # @type VerificationCertificate: String
-        # @param Format: 证书格式，不传默认PEM格式
+        # @param Format: 证书格式，不传默认PEM格式，当前仅支持PEM格式
         # @type Format: String
         # @param Status: 证书状态，不传默认ACTIVE状态
-        #     ACTIVE,//激活
-        #     INACTIVE,//未激活
-        #     REVOKED,//吊销
-        #     PENDING_ACTIVATION,//注册待激活
+        #     ACTIVE：激活
+        #     INACTIVE：未激活
         # @type Status: String
 
         attr_accessor :InstanceId, :CaCertificate, :VerificationCertificate, :Format, :Status
@@ -3580,17 +3581,21 @@ module TencentCloud
 
       # RegisterDeviceCertificate请求参数结构体
       class RegisterDeviceCertificateRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 集群id
+        # @param InstanceId: 腾讯云MQTT实例ID，从 [DescribeInstanceList](https://cloud.tencent.com/document/api/1778/111029)接口或控制台获得。
         # @type InstanceId: String
-        # @param DeviceCertificate: 设备证书
+        # @param DeviceCertificate: 设备证书内容，可参考 [使用 CA 证书生成服务端/客户端证书](https://cloud.tencent.com/document/product/1778/114817#aab79cc8-a148-412e-beb8-9c9e158eb944) 生成
         # @type DeviceCertificate: String
         # @param CaSn: 关联的CA证书SN
         # @type CaSn: String
-        # @param ClientId: 客户端ID
+        # @param ClientId: 客户端ID，需要关联该证书的客户端ID。根据实际业务使用填写
         # @type ClientId: String
-        # @param Format: 证书格式
+        # @param Format: 证书格式，默认为PEM，当前仅支持PEM格式
         # @type Format: String
-        # @param Status:     ACTIVE,//激活     INACTIVE,//未激活     REVOKED,//吊销     PENDING_ACTIVATION,//注册待激活
+        # @param Status:  客户端证书状态，默认激活状态（ACTIVE）
+        # ACTIVE：激活
+        # INACTIVE：未激活
+        # REVOKED：吊销
+        # PENDING_ACTIVATION：注册待激活
         # @type Status: String
 
         attr_accessor :InstanceId, :DeviceCertificate, :CaSn, :ClientId, :Format, :Status

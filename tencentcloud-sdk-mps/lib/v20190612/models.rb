@@ -680,14 +680,19 @@ module TencentCloud
         # <li>0：否，</li>
         # <li>1：是。</li>
         # @type RemoveVideo: Integer
+        # @param AudioList: 音频参数信息列表。
+        # 注意：参数数组长度最大为64。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AudioList: Array
 
-        attr_accessor :Audio, :Video, :RemoveAudio, :RemoveVideo
+        attr_accessor :Audio, :Video, :RemoveAudio, :RemoveVideo, :AudioList
 
-        def initialize(audio=nil, video=nil, removeaudio=nil, removevideo=nil)
+        def initialize(audio=nil, video=nil, removeaudio=nil, removevideo=nil, audiolist=nil)
           @Audio = audio
           @Video = video
           @RemoveAudio = removeaudio
           @RemoveVideo = removevideo
+          @AudioList = audiolist
         end
 
         def deserialize(params)
@@ -701,6 +706,14 @@ module TencentCloud
           end
           @RemoveAudio = params['RemoveAudio']
           @RemoveVideo = params['RemoveVideo']
+          unless params['AudioList'].nil?
+            @AudioList = []
+            params['AudioList'].each do |i|
+              audiotemplateinfo_tmp = AudioTemplateInfo.new
+              audiotemplateinfo_tmp.deserialize(i)
+              @AudioList << audiotemplateinfo_tmp
+            end
+          end
         end
       end
 
@@ -4683,14 +4696,19 @@ module TencentCloud
         # 当媒体的封装格式是音频格式时（flac，ogg，mp3，m4a）时，声道数不允许设为5.1声道。
         # 默认值：2。
         # @type AudioChannel: Integer
+        # @param TrackChannelInfo: 合并音轨信息。
+        # 注意：此字段只是自适应转码生效，
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TrackChannelInfo: :class:`Tencentcloud::Mps.v20190612.models.AudioTrackChannelInfo`
 
-        attr_accessor :Codec, :Bitrate, :SampleRate, :AudioChannel
+        attr_accessor :Codec, :Bitrate, :SampleRate, :AudioChannel, :TrackChannelInfo
 
-        def initialize(codec=nil, bitrate=nil, samplerate=nil, audiochannel=nil)
+        def initialize(codec=nil, bitrate=nil, samplerate=nil, audiochannel=nil, trackchannelinfo=nil)
           @Codec = codec
           @Bitrate = bitrate
           @SampleRate = samplerate
           @AudioChannel = audiochannel
+          @TrackChannelInfo = trackchannelinfo
         end
 
         def deserialize(params)
@@ -4698,6 +4716,10 @@ module TencentCloud
           @Bitrate = params['Bitrate']
           @SampleRate = params['SampleRate']
           @AudioChannel = params['AudioChannel']
+          unless params['TrackChannelInfo'].nil?
+            @TrackChannelInfo = AudioTrackChannelInfo.new
+            @TrackChannelInfo.deserialize(params['TrackChannelInfo'])
+          end
         end
       end
 
@@ -4759,6 +4781,47 @@ module TencentCloud
           @SampleRate = params['SampleRate']
           @AudioChannel = params['AudioChannel']
           @StreamSelects = params['StreamSelects']
+        end
+      end
+
+      # 音轨信息
+      class AudioTrackChannelInfo < TencentCloud::Common::AbstractModel
+        # @param ChannelsRemix: 是否开启混音，可选值：
+        # 0：表示不开启混音
+        # 1：表示开启混音
+        # 默认值：0
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ChannelsRemix: Integer
+        # @param SelectType: 合并音轨输入类型，可选值：
+        # trask：表示使用音轨id；
+        # trask_channel： 表示使用音轨id和声道id；
+        # 默认：trask。
+        # 注意：如果原视频是多声道，建议使用trask_channel。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SelectType: String
+        # @param InputTrackInfo: 音轨信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InputTrackInfo: Array
+
+        attr_accessor :ChannelsRemix, :SelectType, :InputTrackInfo
+
+        def initialize(channelsremix=nil, selecttype=nil, inputtrackinfo=nil)
+          @ChannelsRemix = channelsremix
+          @SelectType = selecttype
+          @InputTrackInfo = inputtrackinfo
+        end
+
+        def deserialize(params)
+          @ChannelsRemix = params['ChannelsRemix']
+          @SelectType = params['SelectType']
+          unless params['InputTrackInfo'].nil?
+            @InputTrackInfo = []
+            params['InputTrackInfo'].each do |i|
+              trackinfo_tmp = TrackInfo.new
+              trackinfo_tmp.deserialize(i)
+              @InputTrackInfo << trackinfo_tmp
+            end
+          end
         end
       end
 
@@ -14028,14 +14091,22 @@ module TencentCloud
         # @param SegmentTags: 片段标签
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SegmentTags: Array
+        # @param BeginTime: 直播切片对应直播起始时间点，采用 ISO 日期格式。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BeginTime: String
+        # @param EndTime: 直播切片对应直播结束时间点，采用 ISO 日期格式。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EndTime: String
 
-        attr_accessor :Confidence, :StartTimeOffset, :EndTimeOffset, :SegmentTags
+        attr_accessor :Confidence, :StartTimeOffset, :EndTimeOffset, :SegmentTags, :BeginTime, :EndTime
 
-        def initialize(confidence=nil, starttimeoffset=nil, endtimeoffset=nil, segmenttags=nil)
+        def initialize(confidence=nil, starttimeoffset=nil, endtimeoffset=nil, segmenttags=nil, begintime=nil, endtime=nil)
           @Confidence = confidence
           @StartTimeOffset = starttimeoffset
           @EndTimeOffset = endtimeoffset
           @SegmentTags = segmenttags
+          @BeginTime = begintime
+          @EndTime = endtime
         end
 
         def deserialize(params)
@@ -14043,6 +14114,8 @@ module TencentCloud
           @StartTimeOffset = params['StartTimeOffset']
           @EndTimeOffset = params['EndTimeOffset']
           @SegmentTags = params['SegmentTags']
+          @BeginTime = params['BeginTime']
+          @EndTime = params['EndTime']
         end
       end
 
@@ -21911,10 +21984,12 @@ module TencentCloud
         # @type AudioEndTime: Float
         # @param PersonPositionUrl: 直播拆条用，人物位置参考信息用于横转竖。
         # @type PersonPositionUrl: String
+        # @param PersonId: 指定人物ID。
+        # @type PersonId: String
 
-        attr_accessor :Confidence, :StartTimeOffset, :EndTimeOffset, :SegmentUrl, :CovImgUrl, :Title, :Summary, :Keywords, :BeginTime, :EndTime, :AudioUrl, :AudioBeginTime, :AudioEndTime, :PersonPositionUrl
+        attr_accessor :Confidence, :StartTimeOffset, :EndTimeOffset, :SegmentUrl, :CovImgUrl, :Title, :Summary, :Keywords, :BeginTime, :EndTime, :AudioUrl, :AudioBeginTime, :AudioEndTime, :PersonPositionUrl, :PersonId
 
-        def initialize(confidence=nil, starttimeoffset=nil, endtimeoffset=nil, segmenturl=nil, covimgurl=nil, title=nil, summary=nil, keywords=nil, begintime=nil, endtime=nil, audiourl=nil, audiobegintime=nil, audioendtime=nil, personpositionurl=nil)
+        def initialize(confidence=nil, starttimeoffset=nil, endtimeoffset=nil, segmenturl=nil, covimgurl=nil, title=nil, summary=nil, keywords=nil, begintime=nil, endtime=nil, audiourl=nil, audiobegintime=nil, audioendtime=nil, personpositionurl=nil, personid=nil)
           @Confidence = confidence
           @StartTimeOffset = starttimeoffset
           @EndTimeOffset = endtimeoffset
@@ -21929,6 +22004,7 @@ module TencentCloud
           @AudioBeginTime = audiobegintime
           @AudioEndTime = audioendtime
           @PersonPositionUrl = personpositionurl
+          @PersonId = personid
         end
 
         def deserialize(params)
@@ -21946,6 +22022,7 @@ module TencentCloud
           @AudioBeginTime = params['AudioBeginTime']
           @AudioEndTime = params['AudioEndTime']
           @PersonPositionUrl = params['PersonPositionUrl']
+          @PersonId = params['PersonId']
         end
       end
 
@@ -23382,6 +23459,38 @@ module TencentCloud
           @FontColor = params['FontColor']
           @FontAlpha = params['FontAlpha']
           @TextContent = params['TextContent']
+        end
+      end
+
+      # 音轨信息
+      class TrackInfo < TencentCloud::Common::AbstractModel
+        # @param TrackNum: 音轨和声道数字，说明：
+        # 当：SelectType值为trask，此值为整数类型，例如：1；
+        # 当：SelectType值为trask_channel，此值为小数类型，例如：1.0；
+        # 默认值：1.0
+        # 注意：整数部分代表音轨序号，以小数部分代表声道。音轨序号即为音轨的stream index，支持输入0和正整数。小数部分最多支持2位小数，并且仅支持0-63，但是如果Codec为aac/eac3/ac3时，小数部分仅支持0-15。例如：对于stream index为1的音轨，1.0代表这个音轨的第1个声道，1.1代表这个音轨的第2个声道。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TrackNum: String
+        # @param ChannelVolume: 声道音量大小，说明：
+        # 当：AudioChannel的值为1时，此值长度为1；
+        # 当：AudioChannel的值为2时，此值长度为2；
+        # 当：AudioChannel的值为6时，此值长度大于2。
+        # 此值数组值取值范围：[-60, 6]，其中-60代表静音、0代表保持原音量，6表示原音量增加一倍，默认值为-60。
+        # 注意：支持3位小数。
+
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ChannelVolume: Array
+
+        attr_accessor :TrackNum, :ChannelVolume
+
+        def initialize(tracknum=nil, channelvolume=nil)
+          @TrackNum = tracknum
+          @ChannelVolume = channelvolume
+        end
+
+        def deserialize(params)
+          @TrackNum = params['TrackNum']
+          @ChannelVolume = params['ChannelVolume']
         end
       end
 

@@ -12658,7 +12658,6 @@ module TencentCloud
         # @param PayMode: 0-后付费，1-预付费
         # @type PayMode: Integer
         # @param Remark: 备注信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Remark: String
         # @param SpecName: 实例配置ID
         # @type SpecName: String

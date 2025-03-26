@@ -1218,7 +1218,7 @@ module TencentCloud
         # @type Callees: Array
         # @param Callers: 主叫号码列表
         # @type Callers: Array
-        # @param IvrId: 呼叫使用的Ivr
+        # @param IvrId: 呼叫使用的 IVR Id，不填时需要填写 AIAgentId
         # @type IvrId: Integer
         # @param Name: 任务名
         # @type Name: String
@@ -1234,10 +1234,16 @@ module TencentCloud
         # @type UUI: String
         # @param CalleeAttributes: 被叫属性
         # @type CalleeAttributes: Array
+        # @param TimeZone: IANA 时区名称，参考 https://datatracker.ietf.org/doc/html/draft-ietf-netmod-iana-timezones
+        # @type TimeZone: String
+        # @param AvailableTime: 可用时间段
+        # @type AvailableTime: Array
+        # @param AIAgentId: 智能体 ID，不填写时需要填写 IvrId
+        # @type AIAgentId: Integer
 
-        attr_accessor :SdkAppId, :NotBefore, :Callees, :Callers, :IvrId, :Name, :Description, :NotAfter, :Tries, :Variables, :UUI, :CalleeAttributes
+        attr_accessor :SdkAppId, :NotBefore, :Callees, :Callers, :IvrId, :Name, :Description, :NotAfter, :Tries, :Variables, :UUI, :CalleeAttributes, :TimeZone, :AvailableTime, :AIAgentId
 
-        def initialize(sdkappid=nil, notbefore=nil, callees=nil, callers=nil, ivrid=nil, name=nil, description=nil, notafter=nil, tries=nil, variables=nil, uui=nil, calleeattributes=nil)
+        def initialize(sdkappid=nil, notbefore=nil, callees=nil, callers=nil, ivrid=nil, name=nil, description=nil, notafter=nil, tries=nil, variables=nil, uui=nil, calleeattributes=nil, timezone=nil, availabletime=nil, aiagentid=nil)
           @SdkAppId = sdkappid
           @NotBefore = notbefore
           @Callees = callees
@@ -1250,6 +1256,9 @@ module TencentCloud
           @Variables = variables
           @UUI = uui
           @CalleeAttributes = calleeattributes
+          @TimeZone = timezone
+          @AvailableTime = availabletime
+          @AIAgentId = aiagentid
         end
 
         def deserialize(params)
@@ -1279,6 +1288,16 @@ module TencentCloud
               @CalleeAttributes << calleeattribute_tmp
             end
           end
+          @TimeZone = params['TimeZone']
+          unless params['AvailableTime'].nil?
+            @AvailableTime = []
+            params['AvailableTime'].each do |i|
+              timerange_tmp = TimeRange.new
+              timerange_tmp.deserialize(i)
+              @AvailableTime << timerange_tmp
+            end
+          end
+          @AIAgentId = params['AIAgentId']
         end
       end
 
@@ -1703,10 +1722,14 @@ module TencentCloud
         # @type UUI: String
         # @param CalleeAttributes: 被叫属性
         # @type CalleeAttributes: Array
+        # @param TimeZone: IANA 时区名称，参考 https://datatracker.ietf.org/doc/html/draft-ietf-netmod-iana-timezones
+        # @type TimeZone: String
+        # @param AvailableTime: 可用时间段
+        # @type AvailableTime: Array
 
-        attr_accessor :SdkAppId, :Name, :Callees, :Callers, :CallOrder, :SkillGroupId, :Priority, :ExpectedAbandonRate, :RetryInterval, :StartTime, :EndTime, :IVRId, :RetryTimes, :Variables, :UUI, :CalleeAttributes
+        attr_accessor :SdkAppId, :Name, :Callees, :Callers, :CallOrder, :SkillGroupId, :Priority, :ExpectedAbandonRate, :RetryInterval, :StartTime, :EndTime, :IVRId, :RetryTimes, :Variables, :UUI, :CalleeAttributes, :TimeZone, :AvailableTime
 
-        def initialize(sdkappid=nil, name=nil, callees=nil, callers=nil, callorder=nil, skillgroupid=nil, priority=nil, expectedabandonrate=nil, retryinterval=nil, starttime=nil, endtime=nil, ivrid=nil, retrytimes=nil, variables=nil, uui=nil, calleeattributes=nil)
+        def initialize(sdkappid=nil, name=nil, callees=nil, callers=nil, callorder=nil, skillgroupid=nil, priority=nil, expectedabandonrate=nil, retryinterval=nil, starttime=nil, endtime=nil, ivrid=nil, retrytimes=nil, variables=nil, uui=nil, calleeattributes=nil, timezone=nil, availabletime=nil)
           @SdkAppId = sdkappid
           @Name = name
           @Callees = callees
@@ -1723,6 +1746,8 @@ module TencentCloud
           @Variables = variables
           @UUI = uui
           @CalleeAttributes = calleeattributes
+          @TimeZone = timezone
+          @AvailableTime = availabletime
         end
 
         def deserialize(params)
@@ -1754,6 +1779,15 @@ module TencentCloud
               calleeattribute_tmp = CalleeAttribute.new
               calleeattribute_tmp.deserialize(i)
               @CalleeAttributes << calleeattribute_tmp
+            end
+          end
+          @TimeZone = params['TimeZone']
+          unless params['AvailableTime'].nil?
+            @AvailableTime = []
+            params['AvailableTime'].each do |i|
+              timerange_tmp = TimeRange.new
+              timerange_tmp.deserialize(i)
+              @AvailableTime << timerange_tmp
             end
           end
         end
@@ -5149,7 +5183,10 @@ module TencentCloud
         # @param StaffNumber: 座席工号
         # @type StaffNumber: String
         # @param RoleId: 用户角色id
+        # 一个用户绑定了多个角色时以RoleIdList为准
         # @type RoleId: Integer
+        # @param RoleIdList: 用户角色id列表
+        # @type RoleIdList: Integer
         # @param SkillGroupList: 所属技能组列表
         # @type SkillGroupList: Array
         # @param LastModifyTimestamp: 最后修改时间
@@ -5157,15 +5194,19 @@ module TencentCloud
         # @param ExtensionNumber: 座席分机号（1 到 8 打头，4 - 6 位）
         # @type ExtensionNumber: String
 
-        attr_accessor :Name, :Mail, :Phone, :Nick, :StaffNumber, :RoleId, :SkillGroupList, :LastModifyTimestamp, :ExtensionNumber
+        attr_accessor :Name, :Mail, :Phone, :Nick, :StaffNumber, :RoleId, :RoleIdList, :SkillGroupList, :LastModifyTimestamp, :ExtensionNumber
+        extend Gem::Deprecate
+        deprecate :RoleId, :none, 2025, 3
+        deprecate :RoleId=, :none, 2025, 3
 
-        def initialize(name=nil, mail=nil, phone=nil, nick=nil, staffnumber=nil, roleid=nil, skillgrouplist=nil, lastmodifytimestamp=nil, extensionnumber=nil)
+        def initialize(name=nil, mail=nil, phone=nil, nick=nil, staffnumber=nil, roleid=nil, roleidlist=nil, skillgrouplist=nil, lastmodifytimestamp=nil, extensionnumber=nil)
           @Name = name
           @Mail = mail
           @Phone = phone
           @Nick = nick
           @StaffNumber = staffnumber
           @RoleId = roleid
+          @RoleIdList = roleidlist
           @SkillGroupList = skillgrouplist
           @LastModifyTimestamp = lastmodifytimestamp
           @ExtensionNumber = extensionnumber
@@ -5178,6 +5219,7 @@ module TencentCloud
           @Nick = params['Nick']
           @StaffNumber = params['StaffNumber']
           @RoleId = params['RoleId']
+          @RoleIdList = params['RoleIdList']
           unless params['SkillGroupList'].nil?
             @SkillGroupList = []
             params['SkillGroupList'].each do |i|
@@ -5642,6 +5684,26 @@ module TencentCloud
           @QueuedSkillGroupName = params['QueuedSkillGroupName']
           @VoicemailRecordURL = params['VoicemailRecordURL']
           @VoicemailAsrURL = params['VoicemailAsrURL']
+        end
+      end
+
+      # 时间范围，24 小时制，格式为 09:00:00
+      class TimeRange < TencentCloud::Common::AbstractModel
+        # @param StartTime: 开始时间
+        # @type StartTime: String
+        # @param EndTime: 结束时间
+        # @type EndTime: String
+
+        attr_accessor :StartTime, :EndTime
+
+        def initialize(starttime=nil, endtime=nil)
+          @StartTime = starttime
+          @EndTime = endtime
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
         end
       end
 

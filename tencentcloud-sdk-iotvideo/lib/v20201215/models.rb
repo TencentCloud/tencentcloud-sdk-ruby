@@ -5068,10 +5068,13 @@ module TencentCloud
         # @param NetType: 连接类型，wifi表示WIFI连接，cellular表示4G连接
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NetType: String
+        # @param CategoryId: 产品品类id，113：摄像头
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CategoryId: Integer
 
-        attr_accessor :ProductId, :ProductName, :DeviceType, :EncryptionType, :Features, :ChipOs, :ChipManufactureId, :ChipId, :ProductDescription, :CreateTime, :UpdateTime, :NetType
+        attr_accessor :ProductId, :ProductName, :DeviceType, :EncryptionType, :Features, :ChipOs, :ChipManufactureId, :ChipId, :ProductDescription, :CreateTime, :UpdateTime, :NetType, :CategoryId
 
-        def initialize(productid=nil, productname=nil, devicetype=nil, encryptiontype=nil, features=nil, chipos=nil, chipmanufactureid=nil, chipid=nil, productdescription=nil, createtime=nil, updatetime=nil, nettype=nil)
+        def initialize(productid=nil, productname=nil, devicetype=nil, encryptiontype=nil, features=nil, chipos=nil, chipmanufactureid=nil, chipid=nil, productdescription=nil, createtime=nil, updatetime=nil, nettype=nil, categoryid=nil)
           @ProductId = productid
           @ProductName = productname
           @DeviceType = devicetype
@@ -5084,6 +5087,7 @@ module TencentCloud
           @CreateTime = createtime
           @UpdateTime = updatetime
           @NetType = nettype
+          @CategoryId = categoryid
         end
 
         def deserialize(params)
@@ -5099,6 +5103,7 @@ module TencentCloud
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
           @NetType = params['NetType']
+          @CategoryId = params['CategoryId']
         end
       end
 

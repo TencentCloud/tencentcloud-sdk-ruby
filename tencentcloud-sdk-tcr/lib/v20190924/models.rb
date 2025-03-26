@@ -2447,7 +2447,6 @@ module TencentCloud
         # @param Status: 开启公网访问状态，开启中（Opening）、已开启（Opened）、关闭（Closed）
         # @type Status: String
         # @param Reason: 原因
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Reason: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2752,10 +2751,8 @@ module TencentCloud
         # @param Config: 镜像的配置信息
         # @type Config: String
         # @param Labels: 镜像的Labels信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Labels: Array
         # @param Size: 镜像大小，单位：byte
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Size: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2918,25 +2915,31 @@ module TencentCloud
       class DescribeImmutableTagRulesRequest < TencentCloud::Common::AbstractModel
         # @param RegistryId: 实例 Id
         # @type RegistryId: String
+        # @param Page: 页数，默认为1
+        # @type Page: Integer
+        # @param PageSize: 每页展示个数，最大值为100
+        # @type PageSize: Integer
 
-        attr_accessor :RegistryId
+        attr_accessor :RegistryId, :Page, :PageSize
 
-        def initialize(registryid=nil)
+        def initialize(registryid=nil, page=nil, pagesize=nil)
           @RegistryId = registryid
+          @Page = page
+          @PageSize = pagesize
         end
 
         def deserialize(params)
           @RegistryId = params['RegistryId']
+          @Page = params['Page']
+          @PageSize = params['PageSize']
         end
       end
 
       # DescribeImmutableTagRules返回参数结构体
       class DescribeImmutableTagRulesResponse < TencentCloud::Common::AbstractModel
         # @param Rules: 规则列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Rules: Array
         # @param EmptyNs: 未创建规则的命名空间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EmptyNs: Array
         # @param Total: 规则总量
         # @type Total: Integer
@@ -3030,7 +3033,6 @@ module TencentCloud
       # DescribeInstanceCustomizedDomain返回参数结构体
       class DescribeInstanceCustomizedDomainResponse < TencentCloud::Common::AbstractModel
         # @param DomainInfoList: 域名信息列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DomainInfoList: Array
         # @param TotalCount: 总个数
         # @type TotalCount: Integer
@@ -3203,7 +3205,6 @@ module TencentCloud
         # @param TotalCount: 总实例个数
         # @type TotalCount: Integer
         # @param Registries: 实例信息列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Registries: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3256,7 +3257,6 @@ module TencentCloud
       # DescribeInternalEndpointDnsStatus返回参数结构体
       class DescribeInternalEndpointDnsStatusResponse < TencentCloud::Common::AbstractModel
         # @param VpcSet: vpc私有域名解析状态列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VpcSet: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3972,7 +3972,6 @@ module TencentCloud
       # DescribeServiceAccounts返回参数结构体
       class DescribeServiceAccountsResponse < TencentCloud::Common::AbstractModel
         # @param ServiceAccounts: 服务级账号列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ServiceAccounts: Array
         # @param TotalCount: 服务级账户数量
         # @type TotalCount: Integer
@@ -6568,7 +6567,6 @@ module TencentCloud
         # @param ExpiresAt: 过期时间
         # @type ExpiresAt: Integer
         # @param CreateTime: 创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
         # @param UpdateTime: 更新时间
         # @type UpdateTime: String

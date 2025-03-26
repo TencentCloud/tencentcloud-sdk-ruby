@@ -278,12 +278,8 @@ module TencentCloud
       # DescribeInstances返回参数结构体
       class DescribeInstancesResponse < TencentCloud::Common::AbstractModel
         # @param TotalCount: 实例总数
-
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
         # @param InstanceSet: 分页实例详情
-
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceSet: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -484,7 +480,6 @@ module TencentCloud
       # DescribeServiceLoginSettings返回参数结构体
       class DescribeServiceLoginSettingsResponse < TencentCloud::Common::AbstractModel
         # @param LoginSettings: 服务登录配置详情
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LoginSettings: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -612,10 +607,8 @@ module TencentCloud
       # 实例信息
       class Instance < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceId: String
         # @param InstanceName: 实例名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceName: String
         # @param InstanceState: 实例状态：
         # PENDING：表示创建中
@@ -625,73 +618,47 @@ module TencentCloud
         # STOPPED_NO_CHARGE：表示关机不收费
         # TERMINATING：表示销毁中
         # TERMINATED：表示已销毁
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceState: String
         # @param ApplicationName: 应用名称
-
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApplicationName: String
         # @param BundleName: 算力套餐名称
-
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BundleName: String
         # @param GPUCount: 实例所包含的GPU卡数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GPUCount: Integer
         # @param GPUPerformance: 算力
-
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GPUPerformance: String
         # @param GPUMemory: 显存
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GPUMemory: String
         # @param CPU: CPU核数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CPU: String
         # @param Memory: 内存
-
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Memory: String
         # @param SystemDisk: 系统盘数据
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SystemDisk: :class:`Tencentcloud::Hai.v20230812.models.SystemDisk`
         # @param PrivateIpAddresses: 内网ip地址
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PrivateIpAddresses: Array
         # @param PublicIpAddresses: 公网ip地址
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PublicIpAddresses: Array
         # @param SecurityGroupIds: 安全组ID
-
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SecurityGroupIds: Array
         # @param LatestOperation: 实例最新操作
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LatestOperation: String
         # @param LatestOperationState: 实例最新操作状态：
         # SUCCESS：表示操作成功
         # OPERATING：表示操作执行中
         # FAILED：表示操作失败
-
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LatestOperationState: String
         # @param CreateTime: 实例创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
         # @param MaxOutBandwidth: 公网出带宽上限，默认10Mbps
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaxOutBandwidth: String
         # @param MaxFreeTraffic: 每月免费流量，默认500G
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaxFreeTraffic: String
         # @param ConfigurationEnvironment: 应用配置环境
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ConfigurationEnvironment: String
         # @param LoginServices: 实例包含的登录服务详情
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LoginServices: Array
         # @param OSType: 应用服务的操作系统类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OSType: String
 
         attr_accessor :InstanceId, :InstanceName, :InstanceState, :ApplicationName, :BundleName, :GPUCount, :GPUPerformance, :GPUMemory, :CPU, :Memory, :SystemDisk, :PrivateIpAddresses, :PublicIpAddresses, :SecurityGroupIds, :LatestOperation, :LatestOperationState, :CreateTime, :MaxOutBandwidth, :MaxFreeTraffic, :ConfigurationEnvironment, :LoginServices, :OSType
@@ -857,7 +824,6 @@ module TencentCloud
       # 登录服务详情
       class LoginService < TencentCloud::Common::AbstractModel
         # @param ServiceName: 登录方式名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ServiceName: String
 
         attr_accessor :ServiceName

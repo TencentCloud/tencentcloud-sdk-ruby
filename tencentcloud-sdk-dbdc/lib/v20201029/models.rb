@@ -286,10 +286,8 @@ module TencentCloud
         # @param Zone: 可用区
         # @type Zone: String
         # @param FenceId: 金融围笼ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FenceId: String
         # @param ClusterId: 所属集群ID(默认集群为空)
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterId: String
 
         attr_accessor :InstanceId, :InstanceName, :Region, :ProductId, :Type, :HostType, :AutoRenewFlag, :Status, :StatusDesc, :CreateTime, :PeriodEndTime, :HostNum, :DbNum, :AssignStrategy, :CpuSpec, :CpuAssigned, :CpuAssignable, :MemorySpec, :MemoryAssigned, :MemoryAssignable, :DiskSpec, :DiskAssigned, :DiskAssignable, :Zone, :FenceId, :ClusterId
@@ -420,10 +418,8 @@ module TencentCloud
         # @param Zone: 可用区
         # @type Zone: String
         # @param FenceId: 金融围笼ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FenceId: String
         # @param ClusterId: 所属集群ID(默认集群为空)
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -875,16 +871,12 @@ module TencentCloud
       # 集群设备组信息。
       class InstanceDeviceInfo < TencentCloud::Common::AbstractModel
         # @param InstanceId: 集群ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceId: String
         # @param ReadWriteDevice: 读写设备组
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReadWriteDevice: Array
         # @param ReadOnlyDevice: 只读设备组
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReadOnlyDevice: Array
         # @param FreeDevice: 空闲设备组
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FreeDevice: Array
 
         attr_accessor :InstanceId, :ReadWriteDevice, :ReadOnlyDevice, :FreeDevice
