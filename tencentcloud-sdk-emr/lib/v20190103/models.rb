@@ -10771,7 +10771,7 @@ module TencentCloud
         # @type DisasterRecoverGroupIds: Array
         # @param Tags: 扩容节点绑定标签列表。
         # @type Tags: Array
-        # @param HardwareSourceType: 扩容所选资源类型，可选范围为"host","pod"，host为普通的CVM资源，Pod为TKE集群或EKS集群提供的资源
+        # @param HardwareSourceType: 扩容所选资源类型，可选范围为"HOST","POD","MNode"，HOST为普通的CVM资源，POD为TKE集群或EKS集群提供的资源,MNode为全托管资源类型
         # @type HardwareSourceType: String
         # @param PodSpecInfo: Pod相关资源信息
         # @type PodSpecInfo: :class:`Tencentcloud::Emr.v20190103.models.PodSpecInfo`
@@ -10955,7 +10955,7 @@ module TencentCloud
         # @type DisasterRecoverGroupIds: Array
         # @param Tags: 扩容节点绑定标签列表。
         # @type Tags: Array
-        # @param HardwareResourceType: 扩容所选资源类型，可选范围为"host","pod"，host为普通的CVM资源，Pod为TKE集群或EKS集群提供的资源
+        # @param HardwareResourceType: 扩容所选资源类型，可选范围为"HOST","POD","MNode"，HOST为普通的CVM资源，POD为TKE集群或EKS集群提供的资源,MNode为全托管资源类型
         # @type HardwareResourceType: String
         # @param PodSpec: 使用Pod资源扩容时，指定的Pod规格以及来源等信息
         # @type PodSpec: :class:`Tencentcloud::Emr.v20190103.models.PodSpec`

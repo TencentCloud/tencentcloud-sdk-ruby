@@ -1382,7 +1382,7 @@ module TencentCloud
         # @type ResourceType: Integer
         # @param Operation: Acl操作方式，(2:ALL，3:READ，4:WRITE，5:CREATE，6:DELETE，7:ALTER，8:DESCRIBE，9:CLUSTER_ACTION，10:DESCRIBE_CONFIGS，11:ALTER_CONFIGS，12:IDEMPOTENT_WRITE)
         # @type Operation: Integer
-        # @param PermissionType: 权限类型，(2:DENY，3:ALLOW)，当前ckakfa支持ALLOW(相当于白名单)，其它用于后续兼容开源kafka的acl时使用
+        # @param PermissionType: 权限类型，(2:DENY，3:ALLOW)，当前ckafka支持ALLOW(相当于白名单)，其它用于后续兼容开源kafka的acl时使用
         # @type PermissionType: Integer
         # @param ResourceName: 资源名称，和resourceType相关，如当resourceType为TOPIC时，则该字段表示topic名称，当resourceType为GROUP时，该字段表示group名称，当resourceType为CLUSTER时，该字段可为空。
         # @type ResourceName: String
@@ -3304,7 +3304,7 @@ module TencentCloud
         # @type ResourceName: String
         # @param Operation: Acl操作方式，(2:ALL，3:READ，4:WRITE，5:CREATE，6:DELETE，7:ALTER，8:DESCRIBE，9:CLUSTER_ACTION，10:DESCRIBE_CONFIGS，11:ALTER_CONFIGS，12:IDEMPOTENT_WRITE)
         # @type Operation: Integer
-        # @param PermissionType: 权限类型，(2:DENY，3:ALLOW)，当前ckakfa支持ALLOW(相当于白名单)，其它用于后续兼容开源kafka的acl时使用
+        # @param PermissionType: 权限类型，(2:DENY，3:ALLOW)，当前ckafka支持ALLOW(相当于白名单)，其它用于后续兼容开源kafka的acl时使用
         # @type PermissionType: Integer
         # @param Host: 默认为\*，表示任何host都可以访问，当前ckafka不支持host为\*，但是后面开源kafka的产品化会直接支持
         # @type Host: String
@@ -10608,7 +10608,7 @@ module TencentCloud
       class SaleInfo < TencentCloud::Common::AbstractModel
         # @param Flag: 手动设置的flag标志
         # @type Flag: Boolean
-        # @param Version: ckakfa版本号(1.1.1/2.4.2/0.10.2)
+        # @param Version: ckafka版本号(1.1.1/2.4.2/0.10.2)
         # @type Version: String
         # @param Platform: 专业版、标准版标志
         # @type Platform: String

@@ -986,7 +986,6 @@ module TencentCloud
         # @param ErrorInfo: 任务错误信息提示，当任务发生错误时，不为null或者空值
         # @type ErrorInfo: Array
         # @param Tags: 标签
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
         # @param SrcInfoMulti: 源实例为集群时且接入为非cdb时源实例信息
         # 注意：此字段可能返回 null，表示取不到有效值。

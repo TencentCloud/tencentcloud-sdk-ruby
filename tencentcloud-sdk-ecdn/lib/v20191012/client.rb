@@ -189,6 +189,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # ECDN即将下线，如需要动态加速请使用EdgeOne
+
         # DescribePurgeTasks 用于查询刷新任务提交历史记录及执行进度。
 
         # >?  若您的业务已迁移至 CDN 控制台，请参考<a href="https://cloud.tencent.com/document/api/228/37873"> CDN 接口文档</a>，使用  CDN 相关API 进行操作。
@@ -214,6 +216,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # ECDN即将下线，如需要动态加速请使用EdgeOne
 
         # PurgeUrlsCache 用于批量刷新Url，一次提交将返回一个刷新任务id。
 

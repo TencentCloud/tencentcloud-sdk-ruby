@@ -722,6 +722,9 @@ module TencentCloud
         # @type UserInfoList: Array
 
         attr_accessor :ProjectId, :RoleIdList, :UserList, :UserInfoList
+        extend Gem::Deprecate
+        deprecate :UserList, :none, 2025, 3
+        deprecate :UserList=, :none, 2025, 3
 
         def initialize(projectid=nil, roleidlist=nil, userlist=nil, userinfolist=nil)
           @ProjectId = projectid
@@ -804,6 +807,9 @@ module TencentCloud
         # @type UserInfoList: Array
 
         attr_accessor :RoleIdList, :UserList, :UserInfoList
+        extend Gem::Deprecate
+        deprecate :UserList, :none, 2025, 3
+        deprecate :UserList=, :none, 2025, 3
 
         def initialize(roleidlist=nil, userlist=nil, userinfolist=nil)
           @RoleIdList = roleidlist

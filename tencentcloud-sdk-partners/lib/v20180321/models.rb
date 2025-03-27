@@ -1320,6 +1320,62 @@ module TencentCloud
         end
       end
 
+      # DescribeClientSwitchTraTaskInfo请求参数结构体
+      class DescribeClientSwitchTraTaskInfoRequest < TencentCloud::Common::AbstractModel
+        # @param ClientUin: 代客UIN
+        # @type ClientUin: String
+        # @param SwitchType: 1：代理，2：代采
+        # @type SwitchType: Integer
+
+        attr_accessor :ClientUin, :SwitchType
+
+        def initialize(clientuin=nil, switchtype=nil)
+          @ClientUin = clientuin
+          @SwitchType = switchtype
+        end
+
+        def deserialize(params)
+          @ClientUin = params['ClientUin']
+          @SwitchType = params['SwitchType']
+        end
+      end
+
+      # DescribeClientSwitchTraTaskInfo返回参数结构体
+      class DescribeClientSwitchTraTaskInfoResponse < TencentCloud::Common::AbstractModel
+        # @param ClientUin: 客户UIN
+        # @type ClientUin: String
+        # @param SwitchType: 切换类型：代理,代采
+        # @type SwitchType: String
+        # @param Result: ok，符合，fail，不符合
+        # @type Result: String
+        # @param SwitchUrl: 切换链接
+        # @type SwitchUrl: String
+        # @param ResultMsg: 不符合的原因
+        # @type ResultMsg: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ClientUin, :SwitchType, :Result, :SwitchUrl, :ResultMsg, :RequestId
+
+        def initialize(clientuin=nil, switchtype=nil, result=nil, switchurl=nil, resultmsg=nil, requestid=nil)
+          @ClientUin = clientuin
+          @SwitchType = switchtype
+          @Result = result
+          @SwitchUrl = switchurl
+          @ResultMsg = resultmsg
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ClientUin = params['ClientUin']
+          @SwitchType = params['SwitchType']
+          @Result = params['Result']
+          @SwitchUrl = params['SwitchUrl']
+          @ResultMsg = params['ResultMsg']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeRebateInfosNew请求参数结构体
       class DescribeRebateInfosNewRequest < TencentCloud::Common::AbstractModel
         # @param RebateMonth: 返佣月份，如2018-02

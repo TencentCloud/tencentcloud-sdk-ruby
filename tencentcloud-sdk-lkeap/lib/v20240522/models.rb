@@ -765,17 +765,21 @@ module TencentCloud
         # @type Role: String
         # @param Content: 内容详情。
         # @type Content: String
+        # @param ReasoningContent: 思维链内容。 ReasoningConent参数仅支持出参，且只有deepseek-r1模型会返回。
+        # @type ReasoningContent: String
 
-        attr_accessor :Role, :Content
+        attr_accessor :Role, :Content, :ReasoningContent
 
-        def initialize(role=nil, content=nil)
+        def initialize(role=nil, content=nil, reasoningcontent=nil)
           @Role = role
           @Content = content
+          @ReasoningContent = reasoningcontent
         end
 
         def deserialize(params)
           @Role = params['Role']
           @Content = params['Content']
+          @ReasoningContent = params['ReasoningContent']
         end
       end
 

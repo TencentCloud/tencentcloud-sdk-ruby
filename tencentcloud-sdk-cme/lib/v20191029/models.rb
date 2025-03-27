@@ -1663,7 +1663,6 @@ module TencentCloud
       # DescribeResourceAuthorization返回参数结构体
       class DescribeResourceAuthorizationResponse < TencentCloud::Common::AbstractModel
         # @param TotalCount: 符合条件的资源授权记录总数。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
         # @param AuthorizationInfoSet: 授权信息列表。
         # @type AuthorizationInfoSet: Array
@@ -2035,7 +2034,7 @@ module TencentCloud
 
       # DescribeVideoEncodingPresets请求参数结构体
       class DescribeVideoEncodingPresetsRequest < TencentCloud::Common::AbstractModel
-        # @param Platform: 平台名称，指定访问的平台。
+        # @param Platform: 平台名称，指定访问的平台。关于平台概念，请参见文档 [平台](https://cloud.tencent.com/document/product/1156/43767)。
         # @type Platform: String
         # @param Ids: 要查询的配置 ID 列表。填写该参数则按照配置 ID 进行查询。
         # @type Ids: Array
@@ -3833,7 +3832,7 @@ module TencentCloud
       # 素材标签信息
       class MaterialTagInfo < TencentCloud::Common::AbstractModel
         # @param Type: 标签类型，取值为：
-        # <li>PRESET：预置标签；</li>
+        # <li>PRESET：预置标签。</li>
         # @type Type: String
         # @param Id: 标签 Id 。当标签类型为 PRESET 时，标签 Id 为预置标签 Id 。
         # @type Id: String
@@ -4140,7 +4139,6 @@ module TencentCloud
       # 点播转直播输入源信息。
       class MediaCastSourceInfo < TencentCloud::Common::AbstractModel
         # @param Id: 输入源 Id，由系统分配。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Id: String
         # @param Type: 输入源的媒体类型，取值有：
         # <li>CME：多媒体创作引擎的媒体文件；</li>
@@ -4706,7 +4704,7 @@ module TencentCloud
 
       # ModifyVideoEncodingPreset请求参数结构体
       class ModifyVideoEncodingPresetRequest < TencentCloud::Common::AbstractModel
-        # @param Platform: 平台名称，指定访问的平台。
+        # @param Platform: 平台名称，指定访问的平台。关于平台概念，请参见文档 [平台](https://cloud.tencent.com/document/product/1156/43767)。
         # @type Platform: String
         # @param Id: 配置 ID。
         # @type Id: Integer
@@ -4774,7 +4772,7 @@ module TencentCloud
 
       # MoveClass请求参数结构体
       class MoveClassRequest < TencentCloud::Common::AbstractModel
-        # @param Platform: 平台名称，指定访问的平台。
+        # @param Platform: 平台名称，指定访问的平台。关于平台概念，请参见文档 [平台](https://cloud.tencent.com/document/product/1156/43767)。
         # @type Platform: String
         # @param Owner: 归属者。
         # @type Owner: :class:`Tencentcloud::Cme.v20191029.models.Entity`
@@ -4895,7 +4893,7 @@ module TencentCloud
 
       # ParseEvent请求参数结构体
       class ParseEventRequest < TencentCloud::Common::AbstractModel
-        # @param Platform: 平台名称，指定访问的平台。
+        # @param Platform: 平台名称，指定访问的平台。关于平台概念，请参见文档 [平台](https://cloud.tencent.com/document/product/1156/43767)。
         # @type Platform: String
         # @param EventContent: 回调事件内容。
         # @type EventContent: String

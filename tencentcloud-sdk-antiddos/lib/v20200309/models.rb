@@ -32,7 +32,6 @@ module TencentCloud
         # @param Action: 动作，可取值：drop， transmit， forward
         # @type Action: String
         # @param Priority: 策略优先级，数字越小，级别越高，该规则越靠前匹配，取值1-1000
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Priority: Integer
 
         attr_accessor :ForwardProtocol, :DPortStart, :DPortEnd, :SPortStart, :SPortEnd, :Action, :Priority
@@ -91,16 +90,12 @@ module TencentCloud
       # Anycast转外套餐详情
       class AnycastOutPackRelation < TencentCloud::Common::AbstractModel
         # @param NormalBandwidth: 业务带宽(单位M)
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NormalBandwidth: Integer
         # @param ForwardRulesLimit: 转发规则数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ForwardRulesLimit: Integer
         # @param AutoRenewFlag: 自动续费标记
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AutoRenewFlag: Integer
         # @param CurDeadline: 到期时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CurDeadline: String
 
         attr_accessor :NormalBandwidth, :ForwardRulesLimit, :AutoRenewFlag, :CurDeadline
@@ -245,16 +240,12 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StaticPackRelation: :class:`Tencentcloud::Antiddos.v20200309.models.StaticPackRelation`
         # @param ZoneId: 区分高防IP境外线路
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ZoneId: Integer
         # @param Tgw: 区分集群
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tgw: Integer
         # @param EipAddressStatus: 高防弹性公网IP状态，包含'CREATING'(创建中),'BINDING'(绑定中),'BIND'(已绑定),'UNBINDING'(解绑中),'UNBIND'(已解绑),'OFFLINING'(释放中),'BIND_ENI'(绑定悬空弹性网卡)。只对高防弹性公网IP实例有效。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EipAddressStatus: String
         # @param EipFlag: 是否高防弹性公网IP实例，是为1，否为0。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EipFlag: Integer
         # @param EipAddressPackRelation: 资产实例所属的高防弹性公网IP套餐包详情，
         # 注意：当资产实例不是高防弹性公网IP套餐包的实例时，此字段为null
@@ -265,34 +256,26 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EipAddressInfo: :class:`Tencentcloud::Antiddos.v20200309.models.EipAddressRelation`
         # @param Domain: 建议客户接入的域名，客户可使用域名接入。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Domain: String
         # @param DamDDoSStatus: 是否开启安全加速，是为1，否为0。
         # @type DamDDoSStatus: Integer
         # @param V6Flag: 是否Ipv6版本的IP, 是为1，否为0
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type V6Flag: Integer
         # @param BGPIPChannelFlag: 是否渠道版高防IP，是为1，否为0
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BGPIPChannelFlag: Integer
         # @param TagInfoList: 资源关联标签
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TagInfoList: Array
         # @param AnycastOutPackRelation: 资产实例所属的全力防护套餐包详情，
         # 注意：当资产实例不是全力防护套餐包的实例时，此字段为null
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AnycastOutPackRelation: :class:`Tencentcloud::Antiddos.v20200309.models.AnycastOutPackRelation`
         # @param InstanceVersion: 资源实例版本
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceVersion: Integer
         # @param ConvoyId: 重保实例
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ConvoyId: String
         # @param ElasticBandwidth: 带宽后付费
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ElasticBandwidth: Integer
         # @param EOFlag: 是否为EO代播的ip: 1是，0不是
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EOFlag: Integer
 
         attr_accessor :InstanceDetail, :SpecificationLimit, :Usage, :Region, :Status, :ExpiredTime, :CreatedTime, :Name, :PackInfo, :StaticPackRelation, :ZoneId, :Tgw, :EipAddressStatus, :EipFlag, :EipAddressPackRelation, :EipAddressInfo, :Domain, :DamDDoSStatus, :V6Flag, :BGPIPChannelFlag, :TagInfoList, :AnycastOutPackRelation, :InstanceVersion, :ConvoyId, :ElasticBandwidth, :EOFlag
@@ -519,7 +502,6 @@ module TencentCloud
         # @param ErrCode: 规则配置失败时的详细错误原因(仅当Status=2时有效)，1001证书不存在，1002证书获取失败，1003证书上传失败，1004证书已过期
         # @type ErrCode: Integer
         # @param Version: 版本
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Version: Integer
 
         attr_accessor :Protocol, :Domain, :LbType, :KeepEnable, :KeepTime, :SourceType, :SourceList, :Region, :Id, :Ip, :RuleId, :RuleName, :CertType, :SSLId, :Cert, :PrivateKey, :Status, :CCStatus, :CCEnable, :CCThreshold, :CCLevel, :ModifyTime, :HttpsToHttpEnable, :VirtualPort, :RewriteHttps, :ErrCode, :Version
@@ -639,32 +621,24 @@ module TencentCloud
         # @param VitalityVersion: 攻击封堵套餐标记
         # @type VitalityVersion: Integer
         # @param Line: 网络线路
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Line: Integer
         # @param FreeServiceBandwidth: 不计费的业务带宽
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FreeServiceBandwidth: Integer
         # @param ElasticServiceBandwidth: 弹性业务带宽开关
         # @type ElasticServiceBandwidth: Integer
         # @param GiftServiceBandWidth: 赠送的业务带宽
         # @type GiftServiceBandWidth: Integer
         # @param ModifyTime: 修改时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ModifyTime: String
         # @param BasicPlusFlag: 是否是基础防护加强版 0: 不是 1: 是
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BasicPlusFlag: Integer
         # @param PlanCntFlag: 是否标准版2.0 0: 包含标准版2.0 1: 只查询标准版2.0 2: 不查标准版2.0
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PlanCntFlag: Integer
         # @param TransRegionFlag: 是否跨区域产品 0: 不包含跨区域产品 1: 中国大陆跨区域产品 2: 非中国大陆跨区域产品
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TransRegionFlag: Integer
         # @param SuperPackFlag: 是否为超级高防包
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SuperPackFlag: Integer
         # @param ZoneId: 所属ZoneId
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ZoneId: Integer
 
         attr_accessor :InstanceDetail, :SpecificationLimit, :Usage, :Region, :Status, :CreatedTime, :ExpiredTime, :Name, :PackInfo, :EipProductInfos, :BoundStatus, :DDoSLevel, :CCEnable, :TagInfoList, :IpCountNewFlag, :VitalityVersion, :Line, :FreeServiceBandwidth, :ElasticServiceBandwidth, :GiftServiceBandWidth, :ModifyTime, :BasicPlusFlag, :PlanCntFlag, :TransRegionFlag, :SuperPackFlag, :ZoneId
@@ -771,25 +745,18 @@ module TencentCloud
         # ]
         # @type AutoRenewFlag: Integer
         # @param UnionPackFlag: 联合产品标记，0代表普通高防包，1代表联合高防包
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UnionPackFlag: Integer
         # @param ServiceBandWidth: 业务带宽
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ServiceBandWidth: Integer
         # @param BattleEditionFlag: 战斗服版本标记，0表示普通高防包，1表示战斗服高防包
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BattleEditionFlag: Integer
         # @param ChannelEditionFlag: 渠道版标记，0表示普通高防包，1表示渠道版高防包
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ChannelEditionFlag: Integer
         # @param EnterpriseFlag: 高防包企业版标记，0表示普通高防包；1表示企业版高防包
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EnterpriseFlag: Integer
         # @param ElasticLimit: 高防包企业版弹性阈值，0表示未开启；大于0为弹性防护阈值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ElasticLimit: Integer
         # @param DownGradeProtect: 降配后的防护能力，单位Gbps
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DownGradeProtect: Integer
 
         attr_accessor :ProtectBandwidth, :ProtectCountLimit, :ProtectIPNumberLimit, :AutoRenewFlag, :UnionPackFlag, :ServiceBandWidth, :BattleEditionFlag, :ChannelEditionFlag, :EnterpriseFlag, :ElasticLimit, :DownGradeProtect
@@ -899,7 +866,6 @@ module TencentCloud
         # @param IspCode: 运营商，绑定操作为必填项，解绑操作可不填。0：电信；1：联通；2：移动；5：BGP
         # @type IspCode: Integer
         # @param Domain: 域名化资产对应的域名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Domain: String
 
         attr_accessor :Ip, :BizType, :InstanceId, :DeviceType, :IspCode, :Domain
@@ -3259,10 +3225,8 @@ module TencentCloud
         # 3 - 攻击状态
         # @type Data: Array
         # @param CLBData: 域名化资产的名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CLBData: Array
         # @param CnameWafData: cnamewaf资源状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CnameWafData: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3490,7 +3454,6 @@ module TencentCloud
         # @param MetricName: 统计纬度
         # @type MetricName: String
         # @param MaxData: 返回DataList中的最大值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaxData: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3580,7 +3543,6 @@ module TencentCloud
         # @param MetricName: 统计纬度
         # @type MetricName: String
         # @param MaxData: 返回DataList中的最大值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaxData: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3971,7 +3933,6 @@ module TencentCloud
         # @param Data: 值数组
         # @type Data: Array
         # @param Id: 资源ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Id: String
         # @param MetricName: 指标，取值[inqps(总请求峰值，dropqps(攻击请求峰值))，incount(请求次数), dropcount(攻击次数)]
         # @type MetricName: String
@@ -4327,7 +4288,6 @@ module TencentCloud
         # @param Data: 值数组，攻击流量带宽单位为Mbps，包速率单位为pps
         # @type Data: Array
         # @param Id: 资源ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Id: String
         # @param MetricName: 指标，取值[bps(攻击流量带宽，pps(攻击包速率))]
         # @type MetricName: String
@@ -5991,19 +5951,14 @@ module TencentCloud
       # 高防弹性公网IP关联信息
       class EipAddressRelation < TencentCloud::Common::AbstractModel
         # @param EipAddressRegion: 高防弹性公网IP绑定的实例地区，例如hk代表中国香港
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EipAddressRegion: String
         # @param EipBoundRscIns: 绑定的资源实例ID。可能是一个CVM。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EipBoundRscIns: String
         # @param EipBoundRscEni: 绑定的弹性网卡ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EipBoundRscEni: String
         # @param EipBoundRscVip: 绑定的资源内网ip
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EipBoundRscVip: String
         # @param ModifyTime: 修改时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ModifyTime: String
 
         attr_accessor :EipAddressRegion, :EipBoundRscIns, :EipBoundRscEni, :EipBoundRscVip, :ModifyTime
@@ -6046,7 +6001,6 @@ module TencentCloud
         # @param InstanceId: IP所属的云产品实例ID，例如是弹性网卡的IP，InstanceId为弹性网卡的ID(eni-*); 如果是托管IP没有对应的资源实例ID,InstanceId为""
         # @type InstanceId: String
         # @param Domain: 域名化资产对应的域名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Domain: String
 
         attr_accessor :Ip, :BizType, :DeviceType, :InstanceId, :Domain
@@ -6198,7 +6152,6 @@ module TencentCloud
         # @param ResourceFlag: 资源flag，0：高防包资源，1：高防IP资源，2：非高防资源IP
         # @type ResourceFlag: Integer
         # @param Domain: 域名化资产对应的域名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Domain: String
 
         attr_accessor :Type, :Eip, :Cname, :ResourceFlag, :Domain
@@ -6367,7 +6320,6 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Port: Integer
         # @param Backup: 备份源站，1: 备份源站，0: 普通源站
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Backup: Integer
 
         attr_accessor :Source, :Weight, :Port, :Backup
@@ -6414,7 +6366,6 @@ module TencentCloud
         # @param CCEnable: HTTPS协议的CC防护状态，取值[0(关闭), 1(开启)]
         # @type CCEnable: Integer
         # @param HttpsToHttpEnable: 是否开启Https协议使用Http回源，取值[0(关闭), 1(开启)]，不填写默认是关闭
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HttpsToHttpEnable: Integer
         # @param CertType: 证书来源，当转发协议为https时必须填，取值[2(腾讯云托管证书)]，当转发协议为http时也可以填0
         # @type CertType: Integer
@@ -6427,7 +6378,6 @@ module TencentCloud
         # @param CCStatus: cc防护状态，取值[0(关闭), 1(开启)]
         # @type CCStatus: Integer
         # @param VirtualPort: 接入端口值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VirtualPort: Integer
         # @param SSLId: 当证书来源为腾讯云托管证书时，此字段必须填写托管证书ID
         # @type SSLId: String
@@ -7441,14 +7391,12 @@ module TencentCloud
         # @param HttpsToHttpEnable: 是否开启Https协议使用Http回源，取值[0(关闭), 1(开启)]，不填写默认是关闭
         # @type HttpsToHttpEnable: Integer
         # @param VirtualPort: 接入端口值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VirtualPort: Integer
         # @param RewriteHttps: http强制跳转https，1表示打开，0表示关闭
         # @type RewriteHttps: Integer
         # @param ErrCode: 规则配置失败时的详细错误原因(仅当Status=2时有效)，1001证书不存在，1002证书获取失败，1003证书上传失败，1004证书已过期
         # @type ErrCode: Integer
         # @param Version: 版本
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Version: Integer
 
         attr_accessor :Protocol, :Domain, :LbType, :KeepEnable, :KeepTime, :SourceType, :SourceList, :Region, :Id, :Ip, :RuleId, :RuleName, :CertType, :SSLId, :Cert, :PrivateKey, :Status, :CCStatus, :CCEnable, :CCThreshold, :CCThresholdNew, :CCLevel, :ModifyTime, :HttpsToHttpEnable, :VirtualPort, :RewriteHttps, :ErrCode, :Version
@@ -7955,7 +7903,6 @@ module TencentCloud
         # @param ModifyTime: 最后修改时间
         # @type ModifyTime: String
         # @param UsrDomainName: 域名名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UsrDomainName: String
 
         attr_accessor :Domain, :LineIPList, :Method, :TTL, :Status, :CreatedTime, :ModifyTime, :UsrDomainName
@@ -8047,19 +7994,14 @@ module TencentCloud
       # 三网高防套餐详情
       class StaticPackRelation < TencentCloud::Common::AbstractModel
         # @param ProtectBandwidth: 保底带宽
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProtectBandwidth: Integer
         # @param NormalBandwidth: 业务带宽
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NormalBandwidth: Integer
         # @param ForwardRulesLimit: 转发规则
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ForwardRulesLimit: Integer
         # @param AutoRenewFlag: 自动续费标记
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AutoRenewFlag: Integer
         # @param CurDeadline: 到期时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CurDeadline: String
 
         attr_accessor :ProtectBandwidth, :NormalBandwidth, :ForwardRulesLimit, :AutoRenewFlag, :CurDeadline

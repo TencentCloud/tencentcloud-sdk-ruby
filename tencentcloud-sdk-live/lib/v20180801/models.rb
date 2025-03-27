@@ -9059,19 +9059,23 @@ module TencentCloud
         # Oversea：则查询国外数据，
         # 默认：查询国内+国外的数据。
         # @type MainlandOrOversea: String
+        # @param SourceType: 可选值：  PullLivePushLive：拉流源类型为直播  PullVodPushLive：拉流源类型为点播  PullPicPushLive：拉流源类型为图片  默认：查询全部拉流源类型
+        # @type SourceType: String
 
-        attr_accessor :StartTime, :EndTime, :MainlandOrOversea
+        attr_accessor :StartTime, :EndTime, :MainlandOrOversea, :SourceType
 
-        def initialize(starttime=nil, endtime=nil, mainlandoroversea=nil)
+        def initialize(starttime=nil, endtime=nil, mainlandoroversea=nil, sourcetype=nil)
           @StartTime = starttime
           @EndTime = endtime
           @MainlandOrOversea = mainlandoroversea
+          @SourceType = sourcetype
         end
 
         def deserialize(params)
           @StartTime = params['StartTime']
           @EndTime = params['EndTime']
           @MainlandOrOversea = params['MainlandOrOversea']
+          @SourceType = params['SourceType']
         end
       end
 
@@ -9081,14 +9085,17 @@ module TencentCloud
         # @type DataInfoList: Array
         # @param TotalDuration: 拉流转推得总时长
         # @type TotalDuration: Integer
+        # @param TotalDurationSecond: 拉流转推得总时长（秒）
+        # @type TotalDurationSecond: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :DataInfoList, :TotalDuration, :RequestId
+        attr_accessor :DataInfoList, :TotalDuration, :TotalDurationSecond, :RequestId
 
-        def initialize(datainfolist=nil, totalduration=nil, requestid=nil)
+        def initialize(datainfolist=nil, totalduration=nil, totaldurationsecond=nil, requestid=nil)
           @DataInfoList = datainfolist
           @TotalDuration = totalduration
+          @TotalDurationSecond = totaldurationsecond
           @RequestId = requestid
         end
 
@@ -9102,6 +9109,7 @@ module TencentCloud
             end
           end
           @TotalDuration = params['TotalDuration']
+          @TotalDurationSecond = params['TotalDurationSecond']
           @RequestId = params['RequestId']
         end
       end
@@ -14611,17 +14619,21 @@ module TencentCloud
         # @type Time: String
         # @param Duration: 拉流转推任务的时长，单位为分钟
         # @type Duration: Integer
+        # @param DurationSecond: 拉流转推任务的时长，单位为秒
+        # @type DurationSecond: Integer
 
-        attr_accessor :Time, :Duration
+        attr_accessor :Time, :Duration, :DurationSecond
 
-        def initialize(time=nil, duration=nil)
+        def initialize(time=nil, duration=nil, durationsecond=nil)
           @Time = time
           @Duration = duration
+          @DurationSecond = durationsecond
         end
 
         def deserialize(params)
           @Time = params['Time']
           @Duration = params['Duration']
+          @DurationSecond = params['DurationSecond']
         end
       end
 

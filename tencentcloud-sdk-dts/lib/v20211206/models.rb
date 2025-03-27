@@ -3493,7 +3493,6 @@ module TencentCloud
         # @param TablePattern: 表名匹配规则，如果 DatabaseType 为 mongodb，则匹配集合名
         # @type TablePattern: String
         # @param Columns: 列名。如果 RuleType 为 cols，此项必填。订阅任务会用该列的值计算分区。mongo没有按列分区，因此也不用传这个字段。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Columns: Array
 
         attr_accessor :RuleType, :DbPattern, :TablePattern, :Columns
@@ -5857,7 +5856,6 @@ module TencentCloud
         # @param TotalCount: 跳过的表数量
         # @type TotalCount: Integer
         # @param Items: 跳过校验的表详情
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Items: Array
 
         attr_accessor :TotalCount, :Items
@@ -6193,19 +6191,14 @@ module TencentCloud
       # 当前步骤错误信息或者警告信息
       class StepTip < TencentCloud::Common::AbstractModel
         # @param Code: 错误码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Code: String
         # @param Message: 错误信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Message: String
         # @param Solution: 解决方式
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Solution: String
         # @param HelpDoc: 帮助文档
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HelpDoc: String
         # @param SkipInfo: 当前步骤跳过信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SkipInfo: String
 
         attr_accessor :Code, :Message, :Solution, :HelpDoc, :SkipInfo

@@ -957,10 +957,12 @@ module TencentCloud
         # @type Collation: String
         # @param TimeZone: 系统时区，默认：China Standard Time
         # @type TimeZone: String
+        # @param DiskEncryptFlag: 磁盘加密标识，0-不加密，1-加密
+        # @type DiskEncryptFlag: Integer
 
-        attr_accessor :Zone, :Cpu, :Memory, :Storage, :SubnetId, :VpcId, :MachineType, :InstanceChargeType, :ProjectId, :GoodsNum, :DBVersion, :Period, :SecurityGroupList, :AutoRenewFlag, :AutoVoucher, :VoucherIds, :Weekly, :StartTime, :Span, :ResourceTags, :Collation, :TimeZone
+        attr_accessor :Zone, :Cpu, :Memory, :Storage, :SubnetId, :VpcId, :MachineType, :InstanceChargeType, :ProjectId, :GoodsNum, :DBVersion, :Period, :SecurityGroupList, :AutoRenewFlag, :AutoVoucher, :VoucherIds, :Weekly, :StartTime, :Span, :ResourceTags, :Collation, :TimeZone, :DiskEncryptFlag
 
-        def initialize(zone=nil, cpu=nil, memory=nil, storage=nil, subnetid=nil, vpcid=nil, machinetype=nil, instancechargetype=nil, projectid=nil, goodsnum=nil, dbversion=nil, period=nil, securitygrouplist=nil, autorenewflag=nil, autovoucher=nil, voucherids=nil, weekly=nil, starttime=nil, span=nil, resourcetags=nil, collation=nil, timezone=nil)
+        def initialize(zone=nil, cpu=nil, memory=nil, storage=nil, subnetid=nil, vpcid=nil, machinetype=nil, instancechargetype=nil, projectid=nil, goodsnum=nil, dbversion=nil, period=nil, securitygrouplist=nil, autorenewflag=nil, autovoucher=nil, voucherids=nil, weekly=nil, starttime=nil, span=nil, resourcetags=nil, collation=nil, timezone=nil, diskencryptflag=nil)
           @Zone = zone
           @Cpu = cpu
           @Memory = memory
@@ -983,6 +985,7 @@ module TencentCloud
           @ResourceTags = resourcetags
           @Collation = collation
           @TimeZone = timezone
+          @DiskEncryptFlag = diskencryptflag
         end
 
         def deserialize(params)
@@ -1015,6 +1018,7 @@ module TencentCloud
           end
           @Collation = params['Collation']
           @TimeZone = params['TimeZone']
+          @DiskEncryptFlag = params['DiskEncryptFlag']
         end
       end
 
@@ -1245,10 +1249,12 @@ module TencentCloud
         # @type MultiNodes: Boolean
         # @param DrZones: 备节点可用区，默认为空。当MultiNodes = true时，主节点和备节点可用区不能全部相同。备机可用区集合最小为2个，最大不超过5个。
         # @type DrZones: Array
+        # @param DiskEncryptFlag: 磁盘加密标识，0-不加密，1-加密
+        # @type DiskEncryptFlag: Integer
 
-        attr_accessor :Zone, :Memory, :Storage, :Cpu, :MachineType, :InstanceChargeType, :ProjectId, :GoodsNum, :SubnetId, :VpcId, :Period, :AutoVoucher, :VoucherIds, :DBVersion, :AutoRenewFlag, :SecurityGroupList, :Weekly, :StartTime, :Span, :MultiZones, :ResourceTags, :Collation, :TimeZone, :MultiNodes, :DrZones
+        attr_accessor :Zone, :Memory, :Storage, :Cpu, :MachineType, :InstanceChargeType, :ProjectId, :GoodsNum, :SubnetId, :VpcId, :Period, :AutoVoucher, :VoucherIds, :DBVersion, :AutoRenewFlag, :SecurityGroupList, :Weekly, :StartTime, :Span, :MultiZones, :ResourceTags, :Collation, :TimeZone, :MultiNodes, :DrZones, :DiskEncryptFlag
 
-        def initialize(zone=nil, memory=nil, storage=nil, cpu=nil, machinetype=nil, instancechargetype=nil, projectid=nil, goodsnum=nil, subnetid=nil, vpcid=nil, period=nil, autovoucher=nil, voucherids=nil, dbversion=nil, autorenewflag=nil, securitygrouplist=nil, weekly=nil, starttime=nil, span=nil, multizones=nil, resourcetags=nil, collation=nil, timezone=nil, multinodes=nil, drzones=nil)
+        def initialize(zone=nil, memory=nil, storage=nil, cpu=nil, machinetype=nil, instancechargetype=nil, projectid=nil, goodsnum=nil, subnetid=nil, vpcid=nil, period=nil, autovoucher=nil, voucherids=nil, dbversion=nil, autorenewflag=nil, securitygrouplist=nil, weekly=nil, starttime=nil, span=nil, multizones=nil, resourcetags=nil, collation=nil, timezone=nil, multinodes=nil, drzones=nil, diskencryptflag=nil)
           @Zone = zone
           @Memory = memory
           @Storage = storage
@@ -1274,6 +1280,7 @@ module TencentCloud
           @TimeZone = timezone
           @MultiNodes = multinodes
           @DrZones = drzones
+          @DiskEncryptFlag = diskencryptflag
         end
 
         def deserialize(params)
@@ -1309,6 +1316,7 @@ module TencentCloud
           @TimeZone = params['TimeZone']
           @MultiNodes = params['MultiNodes']
           @DrZones = params['DrZones']
+          @DiskEncryptFlag = params['DiskEncryptFlag']
         end
       end
 
@@ -1382,10 +1390,12 @@ module TencentCloud
         # @type Collation: String
         # @param TimeZone: 系统时区，默认：China Standard Time
         # @type TimeZone: String
+        # @param DiskEncryptFlag: 磁盘加密标识，0-不加密，1-加密
+        # @type DiskEncryptFlag: Integer
 
-        attr_accessor :InstanceId, :Zone, :ReadOnlyGroupType, :Memory, :Storage, :Cpu, :MachineType, :ReadOnlyGroupForcedUpgrade, :ReadOnlyGroupId, :ReadOnlyGroupName, :ReadOnlyGroupIsOfflineDelay, :ReadOnlyGroupMaxDelayTime, :ReadOnlyGroupMinInGroup, :InstanceChargeType, :GoodsNum, :SubnetId, :VpcId, :Period, :SecurityGroupList, :AutoVoucher, :VoucherIds, :ResourceTags, :Collation, :TimeZone
+        attr_accessor :InstanceId, :Zone, :ReadOnlyGroupType, :Memory, :Storage, :Cpu, :MachineType, :ReadOnlyGroupForcedUpgrade, :ReadOnlyGroupId, :ReadOnlyGroupName, :ReadOnlyGroupIsOfflineDelay, :ReadOnlyGroupMaxDelayTime, :ReadOnlyGroupMinInGroup, :InstanceChargeType, :GoodsNum, :SubnetId, :VpcId, :Period, :SecurityGroupList, :AutoVoucher, :VoucherIds, :ResourceTags, :Collation, :TimeZone, :DiskEncryptFlag
 
-        def initialize(instanceid=nil, zone=nil, readonlygrouptype=nil, memory=nil, storage=nil, cpu=nil, machinetype=nil, readonlygroupforcedupgrade=nil, readonlygroupid=nil, readonlygroupname=nil, readonlygroupisofflinedelay=nil, readonlygroupmaxdelaytime=nil, readonlygroupminingroup=nil, instancechargetype=nil, goodsnum=nil, subnetid=nil, vpcid=nil, period=nil, securitygrouplist=nil, autovoucher=nil, voucherids=nil, resourcetags=nil, collation=nil, timezone=nil)
+        def initialize(instanceid=nil, zone=nil, readonlygrouptype=nil, memory=nil, storage=nil, cpu=nil, machinetype=nil, readonlygroupforcedupgrade=nil, readonlygroupid=nil, readonlygroupname=nil, readonlygroupisofflinedelay=nil, readonlygroupmaxdelaytime=nil, readonlygroupminingroup=nil, instancechargetype=nil, goodsnum=nil, subnetid=nil, vpcid=nil, period=nil, securitygrouplist=nil, autovoucher=nil, voucherids=nil, resourcetags=nil, collation=nil, timezone=nil, diskencryptflag=nil)
           @InstanceId = instanceid
           @Zone = zone
           @ReadOnlyGroupType = readonlygrouptype
@@ -1410,6 +1420,7 @@ module TencentCloud
           @ResourceTags = resourcetags
           @Collation = collation
           @TimeZone = timezone
+          @DiskEncryptFlag = diskencryptflag
         end
 
         def deserialize(params)
@@ -1444,6 +1455,7 @@ module TencentCloud
           end
           @Collation = params['Collation']
           @TimeZone = params['TimeZone']
+          @DiskEncryptFlag = params['DiskEncryptFlag']
         end
       end
 
@@ -4366,12 +4378,14 @@ module TencentCloud
         # @type XEventStatus: String
         # @param MultiDrReadableInfo: 多节点备机只读信息
         # @type MultiDrReadableInfo: Array
+        # @param IsDiskEncryptFlag: 是否开启磁盘加密，1-开启，0-未开启
+        # @type IsDiskEncryptFlag: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :InstanceId, :RegularBackupEnable, :RegularBackupSaveDays, :RegularBackupStrategy, :RegularBackupCounts, :RegularBackupStartTime, :BlockedThreshold, :EventSaveDays, :TDEConfig, :SSLConfig, :DrReadableInfo, :OldVipList, :XEventStatus, :MultiDrReadableInfo, :RequestId
+        attr_accessor :InstanceId, :RegularBackupEnable, :RegularBackupSaveDays, :RegularBackupStrategy, :RegularBackupCounts, :RegularBackupStartTime, :BlockedThreshold, :EventSaveDays, :TDEConfig, :SSLConfig, :DrReadableInfo, :OldVipList, :XEventStatus, :MultiDrReadableInfo, :IsDiskEncryptFlag, :RequestId
 
-        def initialize(instanceid=nil, regularbackupenable=nil, regularbackupsavedays=nil, regularbackupstrategy=nil, regularbackupcounts=nil, regularbackupstarttime=nil, blockedthreshold=nil, eventsavedays=nil, tdeconfig=nil, sslconfig=nil, drreadableinfo=nil, oldviplist=nil, xeventstatus=nil, multidrreadableinfo=nil, requestid=nil)
+        def initialize(instanceid=nil, regularbackupenable=nil, regularbackupsavedays=nil, regularbackupstrategy=nil, regularbackupcounts=nil, regularbackupstarttime=nil, blockedthreshold=nil, eventsavedays=nil, tdeconfig=nil, sslconfig=nil, drreadableinfo=nil, oldviplist=nil, xeventstatus=nil, multidrreadableinfo=nil, isdiskencryptflag=nil, requestid=nil)
           @InstanceId = instanceid
           @RegularBackupEnable = regularbackupenable
           @RegularBackupSaveDays = regularbackupsavedays
@@ -4386,6 +4400,7 @@ module TencentCloud
           @OldVipList = oldviplist
           @XEventStatus = xeventstatus
           @MultiDrReadableInfo = multidrreadableinfo
+          @IsDiskEncryptFlag = isdiskencryptflag
           @RequestId = requestid
         end
 
@@ -4427,6 +4442,7 @@ module TencentCloud
               @MultiDrReadableInfo << drreadableinfo_tmp
             end
           end
+          @IsDiskEncryptFlag = params['IsDiskEncryptFlag']
           @RequestId = params['RequestId']
         end
       end

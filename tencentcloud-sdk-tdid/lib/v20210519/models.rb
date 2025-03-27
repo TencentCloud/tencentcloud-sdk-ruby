@@ -560,19 +560,14 @@ module TencentCloud
       # GetOverSummary返回参数结构体
       class GetOverSummaryResponse < TencentCloud::Common::AbstractModel
         # @param AppCounter: 用户参与应用的统计指标
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AppCounter: :class:`Tencentcloud::Tdid.v20210519.models.ResourceCounterData`
         # @param UserCounter: 用户部署应用的统计指标
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UserCounter: :class:`Tencentcloud::Tdid.v20210519.models.ResourceCounterData`
         # @param AppCnt: 用户参与的应用总数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AppCnt: Integer
         # @param DeployCnt: 用户部署的应用总数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeployCnt: Integer
         # @param ChainCnt: 部署网络子链总数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ChainCnt: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

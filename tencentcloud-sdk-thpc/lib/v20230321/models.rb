@@ -455,10 +455,12 @@ module TencentCloud
         # @type AutoScalingType: String
         # @param VpcId: 集群所属私有网络ID。
         # @type VpcId: String
+        # @param ClusterType: 集群类型
+        # @type ClusterType: String
 
-        attr_accessor :ClusterId, :ClusterStatus, :ClusterName, :Placement, :CreateTime, :SchedulerType, :SchedulerVersion, :ComputeNodeCount, :ComputeNodeSet, :ManagerNodeCount, :ManagerNodeSet, :LoginNodeSet, :LoginNodeCount, :AutoScalingType, :VpcId
+        attr_accessor :ClusterId, :ClusterStatus, :ClusterName, :Placement, :CreateTime, :SchedulerType, :SchedulerVersion, :ComputeNodeCount, :ComputeNodeSet, :ManagerNodeCount, :ManagerNodeSet, :LoginNodeSet, :LoginNodeCount, :AutoScalingType, :VpcId, :ClusterType
 
-        def initialize(clusterid=nil, clusterstatus=nil, clustername=nil, placement=nil, createtime=nil, schedulertype=nil, schedulerversion=nil, computenodecount=nil, computenodeset=nil, managernodecount=nil, managernodeset=nil, loginnodeset=nil, loginnodecount=nil, autoscalingtype=nil, vpcid=nil)
+        def initialize(clusterid=nil, clusterstatus=nil, clustername=nil, placement=nil, createtime=nil, schedulertype=nil, schedulerversion=nil, computenodecount=nil, computenodeset=nil, managernodecount=nil, managernodeset=nil, loginnodeset=nil, loginnodecount=nil, autoscalingtype=nil, vpcid=nil, clustertype=nil)
           @ClusterId = clusterid
           @ClusterStatus = clusterstatus
           @ClusterName = clustername
@@ -474,6 +476,7 @@ module TencentCloud
           @LoginNodeCount = loginnodecount
           @AutoScalingType = autoscalingtype
           @VpcId = vpcid
+          @ClusterType = clustertype
         end
 
         def deserialize(params)
@@ -516,6 +519,7 @@ module TencentCloud
           @LoginNodeCount = params['LoginNodeCount']
           @AutoScalingType = params['AutoScalingType']
           @VpcId = params['VpcId']
+          @ClusterType = params['ClusterType']
         end
       end
 

@@ -1523,67 +1523,6 @@ module TencentCloud
         end
       end
 
-      # CreateAIFormTask请求参数结构体
-      class CreateAIFormTaskRequest < TencentCloud::Common::AbstractModel
-        # @param FileList: 多个文件的URL列表
-        # @type FileList: Array
-        # @param FirstNotes: 备注信息1
-        # @type FirstNotes: String
-        # @param SecondNotes: 备注信息2
-        # @type SecondNotes: String
-        # @param FileType: 文件类型
-        # @type FileType: Integer
-
-        attr_accessor :FileList, :FirstNotes, :SecondNotes, :FileType
-
-        def initialize(filelist=nil, firstnotes=nil, secondnotes=nil, filetype=nil)
-          @FileList = filelist
-          @FirstNotes = firstnotes
-          @SecondNotes = secondnotes
-          @FileType = filetype
-        end
-
-        def deserialize(params)
-          unless params['FileList'].nil?
-            @FileList = []
-            params['FileList'].each do |i|
-              smartformfileurl_tmp = SmartFormFileUrl.new
-              smartformfileurl_tmp.deserialize(i)
-              @FileList << smartformfileurl_tmp
-            end
-          end
-          @FirstNotes = params['FirstNotes']
-          @SecondNotes = params['SecondNotes']
-          @FileType = params['FileType']
-        end
-      end
-
-      # CreateAIFormTask返回参数结构体
-      class CreateAIFormTaskResponse < TencentCloud::Common::AbstractModel
-        # @param TaskId: 本次识别任务的唯一身份ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type TaskId: String
-        # @param OperateUrl: 本次识别任务的操作URL，有效期自生成之时起共24小时
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type OperateUrl: String
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :TaskId, :OperateUrl, :RequestId
-
-        def initialize(taskid=nil, operateurl=nil, requestid=nil)
-          @TaskId = taskid
-          @OperateUrl = operateurl
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @TaskId = params['TaskId']
-          @OperateUrl = params['OperateUrl']
-          @RequestId = params['RequestId']
-        end
-      end
-
       # 海关缴款书
       class CustomsPaymentReceipt < TencentCloud::Common::AbstractModel
         # @param Title: 发票名称
@@ -4217,47 +4156,6 @@ module TencentCloud
         end
       end
 
-      # GetTaskState请求参数结构体
-      class GetTaskStateRequest < TencentCloud::Common::AbstractModel
-        # @param TaskId: 智慧表单任务唯一身份ID
-        # @type TaskId: String
-
-        attr_accessor :TaskId
-
-        def initialize(taskid=nil)
-          @TaskId = taskid
-        end
-
-        def deserialize(params)
-          @TaskId = params['TaskId']
-        end
-      end
-
-      # GetTaskState返回参数结构体
-      class GetTaskStateResponse < TencentCloud::Common::AbstractModel
-        # @param TaskState: 1:任务识别完成，还未提交
-        # 2:任务已手动关闭
-        # 3:任务已提交
-        # 4:任务识别中
-        # 5:超时：任务超过了可操作的24H时限
-        # 6:任务识别失败
-        # @type TaskState: Integer
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :TaskState, :RequestId
-
-        def initialize(taskstate=nil, requestid=nil)
-          @TaskState = taskstate
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @TaskState = params['TaskState']
-          @RequestId = params['RequestId']
-        end
-      end
-
       # 组在图中的序号
       class GroupInfo < TencentCloud::Common::AbstractModel
         # @param Groups: 每一行的元素
@@ -5339,6 +5237,7 @@ module TencentCloud
         # 17：医疗发票
         # 18：完税凭证
         # 19：海关缴款书
+        # 20：银行回单
         # @type Type: Integer
         # @param Polygon: 该发票在原图片中的四点坐标。
         # @type Polygon: :class:`Tencentcloud::Ocr.v20181119.models.Polygon`
@@ -5761,12 +5660,11 @@ module TencentCloud
 
       # MLIDPassportOCR请求参数结构体
       class MLIDPassportOCRRequest < TencentCloud::Common::AbstractModel
-        # @param ImageBase64: 图片的 Base64 值。要求图片经Base64编码后不超过 7M，分辨率建议500*800以上，支持PNG、JPG、JPEG、BMP格式。建议卡片部分占据图片2/3以上。
+        # @param ImageBase64: 图片的 Base64 值。要求图片经Base64编码后不超过 7M，分辨率建议500*800以上，支持PNG、JPG、JPEG、BMP、PDF格式。建议卡片部分占据图片2/3以上。
         # @type ImageBase64: String
         # @param RetImage: 是否返回图片，默认false
         # @type RetImage: Boolean
-        # @param ImageUrl: 图片的 Url 地址。要求图片经Base64编码后不超过 7M，分辨率建议500*800以上，支持PNG、JPG、JPEG、BMP格式。建议卡片部分占据图片2/3以上。图片下载时间不超过 3 秒。
-        # 建议图片存储于腾讯云，可保障更高的下载速度和稳定性。
+        # @param ImageUrl: 图片的 Url 地址。要求图片经Base64编码后不超过 7M，分辨率建议500*800以上，支持PNG、JPG、JPEG、BMP、PDF格式。建议卡片部分占据图片2/3以上。图片下载时间不超过 3 秒。建议图片存储于腾讯云，可保障更高的下载速度和稳定性。
         # @type ImageUrl: String
 
         attr_accessor :ImageBase64, :RetImage, :ImageUrl
@@ -8793,6 +8691,7 @@ module TencentCloud
         # 17：医疗发票
         # 18：完税凭证
         # 19：海关缴款书
+        # 20：银行回单
         # -1：其他发票
         # @type Types: Array
         # @param EnableOther: 是否开启其他票识别，默认值为true，开启后可支持其他发票的智能识别。
@@ -10879,26 +10778,6 @@ module TencentCloud
         end
       end
 
-      # 智慧表单上传文件信息
-      class SmartFormFileUrl < TencentCloud::Common::AbstractModel
-        # @param FileUrl: 文件url地址
-        # @type FileUrl: String
-        # @param FileOrderNumber: 文件的顺序，顺序从1开始
-        # @type FileOrderNumber: Integer
-
-        attr_accessor :FileUrl, :FileOrderNumber
-
-        def initialize(fileurl=nil, fileordernumber=nil)
-          @FileUrl = fileurl
-          @FileOrderNumber = fileordernumber
-        end
-
-        def deserialize(params)
-          @FileUrl = params['FileUrl']
-          @FileOrderNumber = params['FileOrderNumber']
-        end
-      end
-
       # SmartStructuralOCR请求参数结构体
       class SmartStructuralOCRRequest < TencentCloud::Common::AbstractModel
         # @param ImageUrl: 图片的 Url 地址。
@@ -11103,13 +10982,18 @@ module TencentCloud
         # WordRecognize -- 手写英文作文模版
         # Statement -- 对账单识别模板
         # BookingConfirmation -- 配舱通知书识别模板
+        # AirWayBill -- 航空运单识别模板
+        # DispatchWeightNote -- 磅单发货单识别模板
+        # ReceiptWeightNote -- 磅单收货单识别模板
         # @type ConfigId: String
         # @param EnableCoord: 是否开启全文字段坐标值的识别
         # @type EnableCoord: Boolean
+        # @param OutputParentKey: 是否开启父子key识别，默认是
+        # @type OutputParentKey: Boolean
 
-        attr_accessor :ImageUrl, :ImageBase64, :PdfPageNumber, :ItemNames, :ReturnFullText, :ConfigId, :EnableCoord
+        attr_accessor :ImageUrl, :ImageBase64, :PdfPageNumber, :ItemNames, :ReturnFullText, :ConfigId, :EnableCoord, :OutputParentKey
 
-        def initialize(imageurl=nil, imagebase64=nil, pdfpagenumber=nil, itemnames=nil, returnfulltext=nil, configid=nil, enablecoord=nil)
+        def initialize(imageurl=nil, imagebase64=nil, pdfpagenumber=nil, itemnames=nil, returnfulltext=nil, configid=nil, enablecoord=nil, outputparentkey=nil)
           @ImageUrl = imageurl
           @ImageBase64 = imagebase64
           @PdfPageNumber = pdfpagenumber
@@ -11117,6 +11001,7 @@ module TencentCloud
           @ReturnFullText = returnfulltext
           @ConfigId = configid
           @EnableCoord = enablecoord
+          @OutputParentKey = outputparentkey
         end
 
         def deserialize(params)
@@ -11127,6 +11012,7 @@ module TencentCloud
           @ReturnFullText = params['ReturnFullText']
           @ConfigId = params['ConfigId']
           @EnableCoord = params['EnableCoord']
+          @OutputParentKey = params['OutputParentKey']
         end
       end
 
@@ -14363,83 +14249,6 @@ module TencentCloud
           unless params['FinancialBill'].nil?
             @FinancialBill = FinancialBill.new
             @FinancialBill.deserialize(params['FinancialBill'])
-          end
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # VatInvoiceVerify请求参数结构体
-      class VatInvoiceVerifyRequest < TencentCloud::Common::AbstractModel
-        # @param InvoiceCode: 发票代码， 一张发票一天只能查询5次。
-        # @type InvoiceCode: String
-        # @param InvoiceNo: 发票号码（8位）
-        # @type InvoiceNo: String
-        # @param InvoiceDate: 开票日期（不支持当天发票查询，支持五年以内开具的发票），格式：“YYYY-MM-DD”，如：2019-12-20。
-        # @type InvoiceDate: String
-        # @param Additional: 根据票种传递对应值，如果报参数错误，请仔细检查每个票种对应的值
-
-        # 增值税专用发票：开具金额（不含税）
-
-        # 增值税普通发票、增值税电子普通发票（含通行费发票）、增值税普通发票（卷票）：校验码后6位
-
-        # 区块链发票：不含税金额/校验码，例如：“285.01/856ab”
-
-        # 机动车销售统一发票：不含税价
-
-        # 货物运输业增值税专用发票：合计金额
-
-        # 二手车销售统一发票：车价合计
-        # @type Additional: String
-
-        attr_accessor :InvoiceCode, :InvoiceNo, :InvoiceDate, :Additional
-
-        def initialize(invoicecode=nil, invoiceno=nil, invoicedate=nil, additional=nil)
-          @InvoiceCode = invoicecode
-          @InvoiceNo = invoiceno
-          @InvoiceDate = invoicedate
-          @Additional = additional
-        end
-
-        def deserialize(params)
-          @InvoiceCode = params['InvoiceCode']
-          @InvoiceNo = params['InvoiceNo']
-          @InvoiceDate = params['InvoiceDate']
-          @Additional = params['Additional']
-        end
-      end
-
-      # VatInvoiceVerify返回参数结构体
-      class VatInvoiceVerifyResponse < TencentCloud::Common::AbstractModel
-        # @param Invoice: 增值税发票信息，详情请点击左侧链接。
-        # @type Invoice: :class:`Tencentcloud::Ocr.v20181119.models.VatInvoice`
-        # @param VehicleInvoiceInfo: 机动车销售统一发票信息
-        # @type VehicleInvoiceInfo: :class:`Tencentcloud::Ocr.v20181119.models.VehicleInvoiceInfo`
-        # @param UsedVehicleInvoiceInfo: 二手车销售统一发票信息
-        # @type UsedVehicleInvoiceInfo: :class:`Tencentcloud::Ocr.v20181119.models.UsedVehicleInvoiceInfo`
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Invoice, :VehicleInvoiceInfo, :UsedVehicleInvoiceInfo, :RequestId
-
-        def initialize(invoice=nil, vehicleinvoiceinfo=nil, usedvehicleinvoiceinfo=nil, requestid=nil)
-          @Invoice = invoice
-          @VehicleInvoiceInfo = vehicleinvoiceinfo
-          @UsedVehicleInvoiceInfo = usedvehicleinvoiceinfo
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          unless params['Invoice'].nil?
-            @Invoice = VatInvoice.new
-            @Invoice.deserialize(params['Invoice'])
-          end
-          unless params['VehicleInvoiceInfo'].nil?
-            @VehicleInvoiceInfo = VehicleInvoiceInfo.new
-            @VehicleInvoiceInfo.deserialize(params['VehicleInvoiceInfo'])
-          end
-          unless params['UsedVehicleInvoiceInfo'].nil?
-            @UsedVehicleInvoiceInfo = UsedVehicleInvoiceInfo.new
-            @UsedVehicleInvoiceInfo.deserialize(params['UsedVehicleInvoiceInfo'])
           end
           @RequestId = params['RequestId']
         end

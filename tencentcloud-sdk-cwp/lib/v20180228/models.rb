@@ -37042,10 +37042,12 @@ module TencentCloud
         # @type Pid: Integer
         # @param RiskLevel: 威胁等级：0中危，1高危
         # @type RiskLevel: Integer
+        # @param CmdLineQuote: 命令详情的转义后内容，供正则加白全字符串匹配使用
+        # @type CmdLineQuote: String
 
-        attr_accessor :Id, :Uuid, :Quuid, :Hostip, :DstIp, :DstPort, :ProcessName, :FullPath, :CmdLine, :UserName, :UserGroup, :ParentProcName, :ParentProcUser, :ParentProcGroup, :ParentProcPath, :Status, :CreateTime, :MachineName, :ProcTree, :DetectBy, :MachineExtraInfo, :Pid, :RiskLevel
+        attr_accessor :Id, :Uuid, :Quuid, :Hostip, :DstIp, :DstPort, :ProcessName, :FullPath, :CmdLine, :UserName, :UserGroup, :ParentProcName, :ParentProcUser, :ParentProcGroup, :ParentProcPath, :Status, :CreateTime, :MachineName, :ProcTree, :DetectBy, :MachineExtraInfo, :Pid, :RiskLevel, :CmdLineQuote
 
-        def initialize(id=nil, uuid=nil, quuid=nil, hostip=nil, dstip=nil, dstport=nil, processname=nil, fullpath=nil, cmdline=nil, username=nil, usergroup=nil, parentprocname=nil, parentprocuser=nil, parentprocgroup=nil, parentprocpath=nil, status=nil, createtime=nil, machinename=nil, proctree=nil, detectby=nil, machineextrainfo=nil, pid=nil, risklevel=nil)
+        def initialize(id=nil, uuid=nil, quuid=nil, hostip=nil, dstip=nil, dstport=nil, processname=nil, fullpath=nil, cmdline=nil, username=nil, usergroup=nil, parentprocname=nil, parentprocuser=nil, parentprocgroup=nil, parentprocpath=nil, status=nil, createtime=nil, machinename=nil, proctree=nil, detectby=nil, machineextrainfo=nil, pid=nil, risklevel=nil, cmdlinequote=nil)
           @Id = id
           @Uuid = uuid
           @Quuid = quuid
@@ -37069,6 +37071,7 @@ module TencentCloud
           @MachineExtraInfo = machineextrainfo
           @Pid = pid
           @RiskLevel = risklevel
+          @CmdLineQuote = cmdlinequote
         end
 
         def deserialize(params)
@@ -37098,6 +37101,7 @@ module TencentCloud
           end
           @Pid = params['Pid']
           @RiskLevel = params['RiskLevel']
+          @CmdLineQuote = params['CmdLineQuote']
         end
       end
 
@@ -37157,10 +37161,12 @@ module TencentCloud
         # @type MachineStatus: String
         # @param ModifyTime: 处理时间
         # @type ModifyTime: String
+        # @param CmdLineQuote: 命令详情的转义后内容，供正则加白全字符串匹配使用
+        # @type CmdLineQuote: String
 
-        attr_accessor :Id, :Uuid, :Quuid, :HostIp, :DstIp, :DstPort, :ProcessName, :FullPath, :CmdLine, :UserName, :UserGroup, :ParentProcName, :ParentProcUser, :ParentProcGroup, :ParentProcPath, :Status, :CreateTime, :MachineName, :DetectBy, :PsTree, :SuggestScheme, :HarmDescribe, :Tags, :References, :MachineWanIp, :MachineStatus, :ModifyTime
+        attr_accessor :Id, :Uuid, :Quuid, :HostIp, :DstIp, :DstPort, :ProcessName, :FullPath, :CmdLine, :UserName, :UserGroup, :ParentProcName, :ParentProcUser, :ParentProcGroup, :ParentProcPath, :Status, :CreateTime, :MachineName, :DetectBy, :PsTree, :SuggestScheme, :HarmDescribe, :Tags, :References, :MachineWanIp, :MachineStatus, :ModifyTime, :CmdLineQuote
 
-        def initialize(id=nil, uuid=nil, quuid=nil, hostip=nil, dstip=nil, dstport=nil, processname=nil, fullpath=nil, cmdline=nil, username=nil, usergroup=nil, parentprocname=nil, parentprocuser=nil, parentprocgroup=nil, parentprocpath=nil, status=nil, createtime=nil, machinename=nil, detectby=nil, pstree=nil, suggestscheme=nil, harmdescribe=nil, tags=nil, references=nil, machinewanip=nil, machinestatus=nil, modifytime=nil)
+        def initialize(id=nil, uuid=nil, quuid=nil, hostip=nil, dstip=nil, dstport=nil, processname=nil, fullpath=nil, cmdline=nil, username=nil, usergroup=nil, parentprocname=nil, parentprocuser=nil, parentprocgroup=nil, parentprocpath=nil, status=nil, createtime=nil, machinename=nil, detectby=nil, pstree=nil, suggestscheme=nil, harmdescribe=nil, tags=nil, references=nil, machinewanip=nil, machinestatus=nil, modifytime=nil, cmdlinequote=nil)
           @Id = id
           @Uuid = uuid
           @Quuid = quuid
@@ -37188,6 +37194,7 @@ module TencentCloud
           @MachineWanIp = machinewanip
           @MachineStatus = machinestatus
           @ModifyTime = modifytime
+          @CmdLineQuote = cmdlinequote
         end
 
         def deserialize(params)
@@ -37218,6 +37225,7 @@ module TencentCloud
           @MachineWanIp = params['MachineWanIp']
           @MachineStatus = params['MachineStatus']
           @ModifyTime = params['ModifyTime']
+          @CmdLineQuote = params['CmdLineQuote']
         end
       end
 
@@ -37806,16 +37814,24 @@ module TencentCloud
 
       # ScanTaskAgain返回参数结构体
       class ScanTaskAgainResponse < TencentCloud::Common::AbstractModel
+        # @param SuccessCount: 下发成功的主机数
+        # @type SuccessCount: Integer
+        # @param BasicVersionCount: 基础版(不支持扫描)主机数
+        # @type BasicVersionCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :SuccessCount, :BasicVersionCount, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(successcount=nil, basicversioncount=nil, requestid=nil)
+          @SuccessCount = successcount
+          @BasicVersionCount = basicversioncount
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @SuccessCount = params['SuccessCount']
+          @BasicVersionCount = params['BasicVersionCount']
           @RequestId = params['RequestId']
         end
       end

@@ -2743,32 +2743,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 历史原因，该接口位于tdmq-manager，目前rabbitmq产品没有使用该接口，当前使用的是ModifyRabbitMQVipInstance。不过从调用链上看，线网还有请求流程，所以走预下线流程。
-
-        # 更新Amqp集群信息
-
-        # @param request: Request instance for ModifyAMQPCluster.
-        # @type request: :class:`Tencentcloud::tdmq::V20200217::ModifyAMQPClusterRequest`
-        # @rtype: :class:`Tencentcloud::tdmq::V20200217::ModifyAMQPClusterResponse`
-        def ModifyAMQPCluster(request)
-          body = send_request('ModifyAMQPCluster', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = ModifyAMQPClusterResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 更新集群信息
 
         # @param request: Request instance for ModifyCluster.

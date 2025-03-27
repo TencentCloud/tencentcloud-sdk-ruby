@@ -7885,10 +7885,13 @@ module TencentCloud
         # @param WechatNotifyStatus: 第三方小程序强提醒开关 0：关闭；1：开启
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WechatNotifyStatus: Integer
+        # @param InterconnectionProducts: 互联互通产品ID列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InterconnectionProducts: String
 
-        attr_accessor :IotAppID, :AppName, :Description, :DevMode, :IOSAppKey, :IOSAppSecret, :AndroidAppKey, :AndroidAppSecret, :Products, :CreateTime, :ProjectId, :PushSecretID, :PushSecretKey, :PushEnvironment, :MiniProgramAppKey, :MiniProgramAppSecret, :TPNSiOSAccessID, :TPNSiOSSecretKey, :TPNSiOSPushEnvironment, :TPNSAndroidAccessID, :TPNSAndroidSecretKey, :TPNSiOSRegion, :TPNSAndroidRegion, :SelfSmsAppId, :SelfSmsAppKey, :SelfSmsSign, :SelfSmsTemplateId, :WechatNotifyStatus
+        attr_accessor :IotAppID, :AppName, :Description, :DevMode, :IOSAppKey, :IOSAppSecret, :AndroidAppKey, :AndroidAppSecret, :Products, :CreateTime, :ProjectId, :PushSecretID, :PushSecretKey, :PushEnvironment, :MiniProgramAppKey, :MiniProgramAppSecret, :TPNSiOSAccessID, :TPNSiOSSecretKey, :TPNSiOSPushEnvironment, :TPNSAndroidAccessID, :TPNSAndroidSecretKey, :TPNSiOSRegion, :TPNSAndroidRegion, :SelfSmsAppId, :SelfSmsAppKey, :SelfSmsSign, :SelfSmsTemplateId, :WechatNotifyStatus, :InterconnectionProducts
 
-        def initialize(iotappid=nil, appname=nil, description=nil, devmode=nil, iosappkey=nil, iosappsecret=nil, androidappkey=nil, androidappsecret=nil, products=nil, createtime=nil, projectid=nil, pushsecretid=nil, pushsecretkey=nil, pushenvironment=nil, miniprogramappkey=nil, miniprogramappsecret=nil, tpnsiosaccessid=nil, tpnsiossecretkey=nil, tpnsiospushenvironment=nil, tpnsandroidaccessid=nil, tpnsandroidsecretkey=nil, tpnsiosregion=nil, tpnsandroidregion=nil, selfsmsappid=nil, selfsmsappkey=nil, selfsmssign=nil, selfsmstemplateid=nil, wechatnotifystatus=nil)
+        def initialize(iotappid=nil, appname=nil, description=nil, devmode=nil, iosappkey=nil, iosappsecret=nil, androidappkey=nil, androidappsecret=nil, products=nil, createtime=nil, projectid=nil, pushsecretid=nil, pushsecretkey=nil, pushenvironment=nil, miniprogramappkey=nil, miniprogramappsecret=nil, tpnsiosaccessid=nil, tpnsiossecretkey=nil, tpnsiospushenvironment=nil, tpnsandroidaccessid=nil, tpnsandroidsecretkey=nil, tpnsiosregion=nil, tpnsandroidregion=nil, selfsmsappid=nil, selfsmsappkey=nil, selfsmssign=nil, selfsmstemplateid=nil, wechatnotifystatus=nil, interconnectionproducts=nil)
           @IotAppID = iotappid
           @AppName = appname
           @Description = description
@@ -7917,6 +7920,7 @@ module TencentCloud
           @SelfSmsSign = selfsmssign
           @SelfSmsTemplateId = selfsmstemplateid
           @WechatNotifyStatus = wechatnotifystatus
+          @InterconnectionProducts = interconnectionproducts
         end
 
         def deserialize(params)
@@ -7948,6 +7952,7 @@ module TencentCloud
           @SelfSmsSign = params['SelfSmsSign']
           @SelfSmsTemplateId = params['SelfSmsTemplateId']
           @WechatNotifyStatus = params['WechatNotifyStatus']
+          @InterconnectionProducts = params['InterconnectionProducts']
         end
       end
 
@@ -9462,10 +9467,13 @@ module TencentCloud
         # @param Period: 有效期
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Period: String
+        # @param IsInterconnection: 互联互通标识
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsInterconnection: Integer
 
-        attr_accessor :ProductId, :ProductName, :CategoryId, :EncryptionType, :NetType, :DataProtocol, :ProductDesc, :DevStatus, :CreateTime, :UpdateTime, :Region, :ProductType, :ProjectId, :ModuleId, :EnableProductScript, :CreateUserId, :CreatorNickName, :BindStrategy, :DeviceCount, :Rate, :Period
+        attr_accessor :ProductId, :ProductName, :CategoryId, :EncryptionType, :NetType, :DataProtocol, :ProductDesc, :DevStatus, :CreateTime, :UpdateTime, :Region, :ProductType, :ProjectId, :ModuleId, :EnableProductScript, :CreateUserId, :CreatorNickName, :BindStrategy, :DeviceCount, :Rate, :Period, :IsInterconnection
 
-        def initialize(productid=nil, productname=nil, categoryid=nil, encryptiontype=nil, nettype=nil, dataprotocol=nil, productdesc=nil, devstatus=nil, createtime=nil, updatetime=nil, region=nil, producttype=nil, projectid=nil, moduleid=nil, enableproductscript=nil, createuserid=nil, creatornickname=nil, bindstrategy=nil, devicecount=nil, rate=nil, period=nil)
+        def initialize(productid=nil, productname=nil, categoryid=nil, encryptiontype=nil, nettype=nil, dataprotocol=nil, productdesc=nil, devstatus=nil, createtime=nil, updatetime=nil, region=nil, producttype=nil, projectid=nil, moduleid=nil, enableproductscript=nil, createuserid=nil, creatornickname=nil, bindstrategy=nil, devicecount=nil, rate=nil, period=nil, isinterconnection=nil)
           @ProductId = productid
           @ProductName = productname
           @CategoryId = categoryid
@@ -9487,6 +9495,7 @@ module TencentCloud
           @DeviceCount = devicecount
           @Rate = rate
           @Period = period
+          @IsInterconnection = isinterconnection
         end
 
         def deserialize(params)
@@ -9511,6 +9520,7 @@ module TencentCloud
           @DeviceCount = params['DeviceCount']
           @Rate = params['Rate']
           @Period = params['Period']
+          @IsInterconnection = params['IsInterconnection']
         end
       end
 

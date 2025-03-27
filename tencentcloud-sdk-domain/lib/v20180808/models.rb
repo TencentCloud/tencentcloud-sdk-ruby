@@ -1860,11 +1860,15 @@ module TencentCloud
 
       # DescribeDomainPriceList请求参数结构体
       class DescribeDomainPriceListRequest < TencentCloud::Common::AbstractModel
-        # @param TldList: 查询价格的后缀列表。默认则为全部后缀
+        # @param TldList: 查询指定域名后缀的域名价格列表，若不指定域名后缀，默认查询所有后缀的域名价格列表。
         # @type TldList: Array
-        # @param Year: 查询购买的年份，默认会列出所有年份的价格
+        # @param Year: 查询购买的年份，默认会列出所有年份的价格，可选值【1,10】
         # @type Year: Array
-        # @param Operation: 域名的购买类型：new  新购，renew 续费，redem 赎回，tran 转入
+        # @param Operation: 域名的购买类型：
+        # new  新购
+        # renew 续费
+        # redem 赎回
+        # tran 转入
         # @type Operation: Array
 
         attr_accessor :TldList, :Year, :Operation

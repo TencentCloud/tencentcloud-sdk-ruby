@@ -802,7 +802,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询消息列表，如查询死信，请设置ConsumerGroup参数
+        # 根据一级Topic查询消息列表
 
         # @param request: Request instance for DescribeMessageList.
         # @type request: :class:`Tencentcloud::mqtt::V20240516::DescribeMessageListRequest`
@@ -1023,7 +1023,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 修改实例属性
+        # 修改实例属性，只有运行中的集群可以调用该接口进行变更配置。
 
         # @param request: Request instance for ModifyInstance.
         # @type request: :class:`Tencentcloud::mqtt::V20240516::ModifyInstanceRequest`

@@ -1022,7 +1022,7 @@ module TencentCloud
 
       # AssignIpv6Addresses请求参数结构体
       class AssignIpv6AddressesRequest < TencentCloud::Common::AbstractModel
-        # @param NetworkInterfaceId: 弹性网卡实例`ID`，形如：`eni-m6dyj72l`。
+        # @param NetworkInterfaceId: 弹性网卡实例`ID`，形如：`eni-m6dyj72l`。可通过[DescribeNetworkInterfaces](https://cloud.tencent.com/document/product/215/15817)接口获取。
         # @type NetworkInterfaceId: String
         # @param Ipv6Addresses: 指定的`IPv6`地址列表，单次最多指定10个。与入参`Ipv6AddressCount`合并计算配额。与Ipv6AddressCount必填一个。
         # @type Ipv6Addresses: Array
@@ -1178,13 +1178,13 @@ module TencentCloud
 
       # AssignPrivateIpAddresses请求参数结构体
       class AssignPrivateIpAddressesRequest < TencentCloud::Common::AbstractModel
-        # @param NetworkInterfaceId: 弹性网卡实例ID，例如：eni-m6dyj72l。
+        # @param NetworkInterfaceId: 弹性网卡实例ID，例如：eni-m6dyj72l。可通过[DescribeNetworkInterfaces](https://cloud.tencent.com/document/product/215/15817)接口获取。
         # @type NetworkInterfaceId: String
         # @param PrivateIpAddresses: 指定的内网IP信息，单次最多指定10个。与SecondaryPrivateIpAddressCount至少提供一个。
         # @type PrivateIpAddresses: Array
         # @param SecondaryPrivateIpAddressCount: 新申请的内网IP地址个数，与PrivateIpAddresses至少提供一个。内网IP地址个数总和不能超过配额数，详见<a href="/document/product/576/18527">弹性网卡使用限制</a>。
         # @type SecondaryPrivateIpAddressCount: Integer
-        # @param QosLevel: IP服务质量等级，和SecondaryPrivateIpAddressCount配合使用，可选值：PT、AU、AG、DEFAULT，分别代表云金、云银、云铜、默认四个等级。
+        # @param QosLevel: IP服务质量等级，和SecondaryPrivateIpAddressCount配合使用，可选值：PT（云金）、AU（云银）、AG(云铜）、DEFAULT（默认）。
         # @type QosLevel: String
         # @param ClientToken: 用于保证请求幂等性的字符串。该字符串由客户生成，需保证不同请求之间唯一，最大值不超过64个ASCII字符。若不指定该参数，则无法保证请求的幂等性。
         # @type ClientToken: String
@@ -1591,9 +1591,9 @@ module TencentCloud
 
       # AssociateNetworkInterfaceSecurityGroups请求参数结构体
       class AssociateNetworkInterfaceSecurityGroupsRequest < TencentCloud::Common::AbstractModel
-        # @param NetworkInterfaceIds: 弹性网卡实例ID。形如：eni-pxir56ns。每次请求的实例的上限为100。本接口不支持主网卡绑定安全组。
+        # @param NetworkInterfaceIds: 弹性网卡实例ID。形如：eni-pxir56ns。每次请求的实例的上限为100。本接口不支持主网卡绑定安全组。可通过[DescribeNetworkInterfaces](https://cloud.tencent.com/document/product/215/15817)接口获取。
         # @type NetworkInterfaceIds: Array
-        # @param SecurityGroupIds: 安全组实例ID，例如：sg-33ocnj9n，可通过DescribeSecurityGroups获取。每次请求的实例的上限为100。
+        # @param SecurityGroupIds: 安全组实例ID，例如：sg-33ocnj9n，可通过DescribeSecurityGroups获取。每次请求的实例的上限为100。可通过[DescribeSecurityGroups](https://cloud.tencent.com/document/product/215/15808)接口获取。
         # @type SecurityGroupIds: Array
 
         attr_accessor :NetworkInterfaceIds, :SecurityGroupIds
@@ -1710,9 +1710,9 @@ module TencentCloud
 
       # AttachNetworkInterface请求参数结构体
       class AttachNetworkInterfaceRequest < TencentCloud::Common::AbstractModel
-        # @param NetworkInterfaceId: 弹性网卡实例ID，例如：eni-m6dyj72l。
+        # @param NetworkInterfaceId: 弹性网卡实例ID，例如：eni-m6dyj72l。可通过[DescribeNetworkInterfaces](https://cloud.tencent.com/document/product/215/15817)接口获取。
         # @type NetworkInterfaceId: String
-        # @param InstanceId: CVM实例ID。形如：ins-r8hr2upy。
+        # @param InstanceId: CVM实例ID。形如：ins-r8hr2upy。可通过[DescribeInstances](https://cloud.tencent.com/document/product/213/15728)接口获取。
         # @type InstanceId: String
         # @param AttachType: 网卡的挂载类型：0 标准型，1扩展型，默认值0。
         # @type AttachType: Integer
@@ -3463,21 +3463,21 @@ module TencentCloud
 
       # CreateAndAttachNetworkInterface请求参数结构体
       class CreateAndAttachNetworkInterfaceRequest < TencentCloud::Common::AbstractModel
-        # @param VpcId: VPC实例ID。可通过DescribeVpcs接口返回值中的VpcId获取。
+        # @param VpcId: VPC实例ID。可通过[DescribeVpcs](https://cloud.tencent.com/document/product/1108/43663)接口获取。
         # @type VpcId: String
         # @param NetworkInterfaceName: 弹性网卡名称，最大长度不能超过60个字节。
         # @type NetworkInterfaceName: String
-        # @param SubnetId: 弹性网卡所在的子网实例ID，例如：subnet-0ap8nwca。
+        # @param SubnetId: 弹性网卡所在的子网实例ID，例如：subnet-0ap8nwca。可通过[DescribeSubnets](https://cloud.tencent.com/document/product/215/15784)接口获取。
         # @type SubnetId: String
-        # @param InstanceId: 云服务器实例ID。
+        # @param InstanceId: 云服务器实例ID。可通过[DescribeInstances](https://cloud.tencent.com/document/product/213/15728)接口获取。
         # @type InstanceId: String
         # @param PrivateIpAddresses: 指定的内网IP信息，单次最多指定10个。
         # @type PrivateIpAddresses: Array
         # @param SecondaryPrivateIpAddressCount: 新申请的内网IP地址个数，内网IP地址个数总和不能超过配额数。
         # @type SecondaryPrivateIpAddressCount: Integer
-        # @param QosLevel: IP服务质量等级，和SecondaryPrivateIpAddressCount配合使用，可选值：PT、AU、AG、DEFAULT，分别代表云金、云银、云铜、默认四个等级。
+        # @param QosLevel: IP服务质量等级，和SecondaryPrivateIpAddressCount配合使用，可选值：PT（云金）、AU（云银）、AG(云铜）、DEFAULT（默认）。
         # @type QosLevel: String
-        # @param SecurityGroupIds: 指定绑定的安全组，例如：['sg-1dd51d']。
+        # @param SecurityGroupIds: 指定绑定的安全组，例如：['sg-1dd51d']。可通过[DescribeSecurityGroups](https://cloud.tencent.com/document/product/215/15808)接口获取。
         # @type SecurityGroupIds: Array
         # @param NetworkInterfaceDescription: 弹性网卡描述，可任意命名，但不得超过60个字符。
         # @type NetworkInterfaceDescription: String
@@ -5006,20 +5006,20 @@ module TencentCloud
 
       # CreateNetworkInterface请求参数结构体
       class CreateNetworkInterfaceRequest < TencentCloud::Common::AbstractModel
-        # @param VpcId: VPC实例ID。可通过DescribeVpcs接口返回值中的VpcId获取。
+        # @param VpcId: VPC实例ID。可通过[DescribeVpcs](https://cloud.tencent.com/document/product/1108/43663)接口获取。
         # @type VpcId: String
         # @param NetworkInterfaceName: 弹性网卡名称，最大长度不能超过60个字节。
         # @type NetworkInterfaceName: String
-        # @param SubnetId: 弹性网卡所在的子网实例ID，例如：subnet-0ap8nwca。
+        # @param SubnetId: 弹性网卡所在的子网实例ID，例如：subnet-0ap8nwca。可通过[DescribeSubnets](https://cloud.tencent.com/document/product/215/15784)接口获取。
         # @type SubnetId: String
         # @param NetworkInterfaceDescription: 弹性网卡描述，可任意命名，但不得超过60个字符。
         # @type NetworkInterfaceDescription: String
         # @param SecondaryPrivateIpAddressCount: 新申请的内网IP地址个数，内网IP地址个数总和不能超过配额数。
         # 配额数查询：[DescribeVpcLimits](https://cloud.tencent.com/document/api/215/42942)。
         # @type SecondaryPrivateIpAddressCount: Integer
-        # @param QosLevel: IP服务质量等级，和SecondaryPrivateIpAddressCount配合使用，可选值：PT、AU、AG、DEFAULT，分别代表云金、云银、云铜、默认四个等级。
+        # @param QosLevel: IP服务质量等级，和SecondaryPrivateIpAddressCount配合使用，可选值：PT（云金）、AU（云银）、AG(云铜）、DEFAULT（默认）。
         # @type QosLevel: String
-        # @param SecurityGroupIds: 指定绑定的安全组，例如：['sg-1dd51d']。
+        # @param SecurityGroupIds: 指定绑定的安全组，例如：['sg-1dd51d']。可通过[DescribeSecurityGroups](https://cloud.tencent.com/document/product/215/15808)接口获取。
         # @type SecurityGroupIds: Array
         # @param PrivateIpAddresses: 指定的内网IP信息，单次最多指定10个。
         # @type PrivateIpAddresses: Array
@@ -12533,14 +12533,19 @@ module TencentCloud
 
       # DescribeNetworkInterfaces请求参数结构体
       class DescribeNetworkInterfacesRequest < TencentCloud::Common::AbstractModel
-        # @param NetworkInterfaceIds: 弹性网卡实例ID查询。形如：eni-pxir56ns。每次请求的实例的上限为100。参数不支持同时指定NetworkInterfaceIds和Filters。
+        # @param NetworkInterfaceIds: 弹性网卡实例ID查询。形如：eni-pxir56ns。每次请求的实例的上限为100。参数不支持同时指定NetworkInterfaceIds和Filters。可通过[DescribeNetworkInterfaces](https://cloud.tencent.com/document/product/215/15817)接口获取。
         # @type NetworkInterfaceIds: Array
         # @param Filters: 过滤条件，参数不支持同时指定NetworkInterfaceIds和Filters。
-        # <li>vpc-id - String - （过滤条件）VPC实例ID，形如：vpc-f49l6u0z。</li>
-        # <li>subnet-id - String - （过滤条件）所属子网实例ID，形如：subnet-f49l6u0z。</li>
-        # <li>network-interface-id - String - （过滤条件）弹性网卡实例ID，形如：eni-5k56k7k7。</li>
-        # <li>attachment.instance-id - String - （过滤条件）绑定的云服务器实例ID，形如：ins-3nqpdn3i。</li>
-        # <li>groups.security-group-id - String - （过滤条件）绑定的安全组实例ID，例如：sg-f9ekbxeq。</li>
+        # <li>vpc-id - String - （过滤条件）VPC实例ID，形如：vpc-f49l6u0z。可通过[DescribeVpcs](https://cloud.tencent.com/document/product/1108/43663)接口获取。
+        # </li>
+        # <li>subnet-id - String - （过滤条件）所属子网实例ID，形如：subnet-f49l6u0z。可通过[DescribeSubnets](https://cloud.tencent.com/document/product/215/15784)接口获取。
+        # </li>
+        # <li>network-interface-id - String - （过滤条件）弹性网卡实例ID，形如：eni-5k56k7k7。可通过[DescribeNetworkInterfaces](https://cloud.tencent.com/document/product/215/15817)接口获取。
+        # </li>
+        # <li>attachment.instance-id - String - （过滤条件）绑定的云服务器实例ID，形如：ins-3nqpdn3i。可通过[DescribeInstances](https://cloud.tencent.com/document/product/213/15728)接口获取。
+        # </li>
+        # <li>groups.security-group-id - String - （过滤条件）绑定的安全组实例ID，例如：sg-f9ekbxeq。可通过[DescribeSecurityGroups](https://cloud.tencent.com/document/product/215/15808)接口获取。
+        # </li>
         # <li>network-interface-name - String - （过滤条件）网卡实例名称。</li>
         # <li>network-interface-description - String - （过滤条件）网卡实例描述。</li>
         # <li>address-ip - String - （过滤条件）内网IPv4地址，单IP后缀模糊匹配，多IP精确匹配。可以与`ip-exact-match`配合做单IP的精确匹配查询。</li>
@@ -12549,7 +12554,7 @@ module TencentCloud
         # <li>tag:tag-key - String - 是否必填：否 - （过滤条件）按照标签键值对进行过滤。 tag-key使用具体的标签键进行替换。使用请参考示例2。</li>
         # <li>is-primary - Boolean - 是否必填：否 - （过滤条件）按照是否主网卡进行过滤。值为true时，仅过滤主网卡；值为false时，仅过滤辅助网卡；此过滤参数未提供时，同时过滤主网卡和辅助网卡。</li>
         # <li>eni-type - String -是否必填：否- （过滤条件）按照网卡类型进行过滤。“0”-辅助网卡，“1”-主网卡，“2”：中继网卡。</li>
-        # <li>eni-qos - String -是否必填：否- （过滤条件）按照网卡服务质量进行过滤。“AG”-服务质量为云铜，“AU”-服务质量为云银。</li>
+        # <li>eni-qos - String -是否必填：否- （过滤条件）按照网卡服务质量进行过滤。PT（云金）、AU（云银）、AG(云铜）、DEFAULT（默认）。</li>
         # <li>address-ipv6 - String - 是否必填：否 -（过滤条件）内网IPv6地址过滤，支持多ipv6地址查询，如果和address-ip一起使用取交集。</li>
         # <li>public-address-ip - String - （过滤条件）公网IPv4地址，精确匹配。</li>
         # @type Filters: Array
@@ -16134,9 +16139,9 @@ module TencentCloud
 
       # DetachNetworkInterface请求参数结构体
       class DetachNetworkInterfaceRequest < TencentCloud::Common::AbstractModel
-        # @param NetworkInterfaceId: 弹性网卡实例ID，例如：eni-m6dyj72l。
+        # @param NetworkInterfaceId: 弹性网卡实例ID，例如：eni-m6dyj72l。可通过[DescribeNetworkInterfaces](https://cloud.tencent.com/document/product/215/15817)接口获取。
         # @type NetworkInterfaceId: String
-        # @param InstanceId: CVM实例ID。形如：ins-r8hr2upy。
+        # @param InstanceId: CVM实例ID。形如：ins-r8hr2upy。可通过[DescribeInstances](https://cloud.tencent.com/document/product/213/15728)接口获取。
         # @type InstanceId: String
         # @param ClientToken: 用于保证请求幂等性的字符串。该字符串由客户生成，需保证不同请求之间唯一，最大值不超过64个ASCII字符。若不指定该参数，则无法保证请求的幂等性。
         # @type ClientToken: String
@@ -19031,7 +19036,7 @@ module TencentCloud
         # @type Address: String
         # @param Primary: 是否是主`IP`。
         # @type Primary: Boolean
-        # @param AddressId: `EIP`实例`ID`，形如：`eip-hxlqja90`。
+        # @param AddressId: `EIP`实例`ID`，形如：`eip-hxlqja90`。作为入参数时，可通过[DescribeAddresses](https://cloud.tencent.com/document/product/215/16702)接口获取。
         # @type AddressId: String
         # @param Description: 描述信息。
         # @type Description: String
@@ -19046,7 +19051,7 @@ module TencentCloud
         # @param PublicIpAddress: 如果 IPv6地址是 ULA 类型，绑定的公网IP地址。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PublicIpAddress: String
-        # @param AddressType: `IPv6`地址的类型: `GUA`, `OTHER`, `ULA`
+        # @param AddressType: `IPv6`地址的类型: `GUA`(全球单播地址), `OTHER`(非GUA/ULA地址), `ULA`(唯一本地地址)
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AddressType: String
 
@@ -19303,13 +19308,13 @@ module TencentCloud
 
       # MigrateNetworkInterface请求参数结构体
       class MigrateNetworkInterfaceRequest < TencentCloud::Common::AbstractModel
-        # @param NetworkInterfaceId: 弹性网卡实例ID，例如：eni-m6dyj72l。
+        # @param NetworkInterfaceId: 弹性网卡实例ID，例如：eni-m6dyj72l。可通过[DescribeNetworkInterfaces](https://cloud.tencent.com/document/product/215/15817)接口获取。
         # @type NetworkInterfaceId: String
-        # @param SourceInstanceId: 弹性网卡当前绑定的CVM实例ID。形如：ins-r8hr2upy。
+        # @param SourceInstanceId: 弹性网卡当前绑定的CVM实例ID。形如：ins-r8hr2upy。可通过[DescribeInstances](https://cloud.tencent.com/document/product/213/15728)接口获取。
         # @type SourceInstanceId: String
-        # @param DestinationInstanceId: 待迁移的目的CVM实例ID。
+        # @param DestinationInstanceId: 待迁移的目的CVM实例ID。可通过[DescribeInstances](https://cloud.tencent.com/document/product/213/15728)接口获取。
         # @type DestinationInstanceId: String
-        # @param AttachType: 网卡绑定类型：0 标准型 1 扩展型。
+        # @param AttachType: 网卡绑定类型：0 标准型 1 扩展型。默认：0。
         # @type AttachType: Integer
 
         attr_accessor :NetworkInterfaceId, :SourceInstanceId, :DestinationInstanceId, :AttachType
@@ -20562,7 +20567,7 @@ module TencentCloud
 
       # ModifyIpv6AddressesAttribute请求参数结构体
       class ModifyIpv6AddressesAttributeRequest < TencentCloud::Common::AbstractModel
-        # @param NetworkInterfaceId: 弹性网卡实例`ID`，形如：`eni-m6dyj72l`。
+        # @param NetworkInterfaceId: 弹性网卡实例`ID`，形如：`eni-m6dyj72l`。可通过[DescribeNetworkInterfaces](https://cloud.tencent.com/document/product/215/15817)接口获取。
         # @type NetworkInterfaceId: String
         # @param Ipv6Addresses: 指定的内网IPv6地址信息。
         # @type Ipv6Addresses: Array
@@ -20973,13 +20978,13 @@ module TencentCloud
 
       # ModifyNetworkInterfaceAttribute请求参数结构体
       class ModifyNetworkInterfaceAttributeRequest < TencentCloud::Common::AbstractModel
-        # @param NetworkInterfaceId: 弹性网卡实例ID，例如：eni-pxir56ns。
+        # @param NetworkInterfaceId: 弹性网卡实例ID，例如：eni-pxir56ns。可通过[DescribeNetworkInterfaces](https://cloud.tencent.com/document/product/215/15817)接口获取。
         # @type NetworkInterfaceId: String
         # @param NetworkInterfaceName: 弹性网卡名称，最大长度不能超过60个字节。
         # @type NetworkInterfaceName: String
         # @param NetworkInterfaceDescription: 弹性网卡描述，可任意命名，但不得超过60个字符。
         # @type NetworkInterfaceDescription: String
-        # @param SecurityGroupIds: 指定绑定的安全组，例如:['sg-1dd51d']。
+        # @param SecurityGroupIds: 指定绑定的安全组，例如:['sg-1dd51d']。可通过[DescribeSecurityGroups](https://cloud.tencent.com/document/product/215/15808)接口获取。
         # @type SecurityGroupIds: Array
         # @param TrunkingFlag: 网卡trunking模式设置，Enable-开启，Disable--关闭，默认关闭。
         # @type TrunkingFlag: String
@@ -21021,11 +21026,11 @@ module TencentCloud
 
       # ModifyNetworkInterfaceQos请求参数结构体
       class ModifyNetworkInterfaceQosRequest < TencentCloud::Common::AbstractModel
-        # @param NetworkInterfaceIds: 弹性网卡ID，支持批量修改。
+        # @param NetworkInterfaceIds: 弹性网卡ID，支持批量修改。可通过[DescribeNetworkInterfaces](https://cloud.tencent.com/document/product/215/15817)接口获取。
         # @type NetworkInterfaceIds: Array
-        # @param QosLevel: 服务质量，可选值：PT、AU、AG、DEFAULT，分别代表云金、云银、云铜、默认四个等级。
+        # @param QosLevel: 服务质量，可选值：PT（云金）、AU（云银）、AG(云铜）、DEFAULT（默认）。
         # @type QosLevel: String
-        # @param DirectSendMaxPort: DirectSend端口范围最大值。
+        # @param DirectSendMaxPort: DirectSend端口范围最大值。最大值: 65535。
         # @type DirectSendMaxPort: Integer
 
         attr_accessor :NetworkInterfaceIds, :QosLevel, :DirectSendMaxPort
@@ -21061,7 +21066,7 @@ module TencentCloud
 
       # ModifyPrivateIpAddressesAttribute请求参数结构体
       class ModifyPrivateIpAddressesAttributeRequest < TencentCloud::Common::AbstractModel
-        # @param NetworkInterfaceId: 弹性网卡实例ID，例如：eni-m6dyj72l。
+        # @param NetworkInterfaceId: 弹性网卡实例ID，例如：eni-m6dyj72l。可通过[DescribeNetworkInterfaces](https://cloud.tencent.com/document/product/215/15817)接口获取。
         # @type NetworkInterfaceId: String
         # @param PrivateIpAddresses: 指定的内网IP信息。
         # @type PrivateIpAddresses: Array
@@ -23082,15 +23087,15 @@ module TencentCloud
         # @type Attachment: :class:`Tencentcloud::Vpc.v20170312.models.NetworkInterfaceAttachment`
         # @param Zone: 可用区。
         # @type Zone: String
-        # @param CreatedTime: 创建时间。
+        # @param CreatedTime: 创建时间。格式：YYYY-MM-DD hh:mm:ss。示例值：2020-10-28 08:23:59
         # @type CreatedTime: String
         # @param Ipv6AddressSet: `IPv6`地址列表。
         # @type Ipv6AddressSet: Array
         # @param TagSet: 标签键值对。
         # @type TagSet: Array
-        # @param EniType: 网卡类型。0 - 弹性网卡；1 - evm弹性网卡。
+        # @param EniType: 网卡类型。“0”-辅助网卡，“1”-主网卡，“2”：中继网卡
         # @type EniType: Integer
-        # @param Business: 网卡绑定的子机类型：cvm，eks。
+        # @param Business: 网卡绑定的子机类型：cvm（普通CVM子机），eks（弹性容器服务Elastic Kubernetes Service）， hai（高性能应用服务Hyper Application Inventor）。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Business: String
         # @param CdcId: 网卡所关联的CDC实例ID。
@@ -23103,10 +23108,10 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceId: String
         # @param QosLevel: 服务质量级别：
-        # <li>`DEFAULT`：默认</li>
-        # <li>`PT`：云金</li>
-        # <li>`AU`：云银</li>
-        # <li>`AG`：云铜</li>
+        # PT（云金）、AU（云银）、AG(云铜）、DEFAULT（默认）。
+
+        # 可选值：PT（云金）、AU（云银）、AG(云铜）、DEFAULT（默认）。
+
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type QosLevel: String
 
@@ -23424,7 +23429,7 @@ module TencentCloud
         # DELETING：删除中
         # AVAILABLE：可用的
         # @type State: String
-        # @param QosLevel: IP服务质量等级，可选值：PT、AU、AG、DEFAULT，分别代表云金、云银、云铜、默认四个等级。
+        # @param QosLevel: IP服务质量等级，可选值：PT（云金）、AU（云银）、AG(云铜）、DEFAULT（默认）。
         # @type QosLevel: String
 
         attr_accessor :PrivateIpAddress, :Primary, :PublicIpAddress, :AddressId, :Description, :IsWanIpBlocked, :State, :QosLevel
@@ -27250,7 +27255,7 @@ module TencentCloud
 
       # UnassignIpv6Addresses请求参数结构体
       class UnassignIpv6AddressesRequest < TencentCloud::Common::AbstractModel
-        # @param NetworkInterfaceId: 弹性网卡实例`ID`，形如：`eni-m6dyj72l`。
+        # @param NetworkInterfaceId: 弹性网卡实例`ID`，形如：`eni-m6dyj72l`。可通过[DescribeNetworkInterfaces](https://cloud.tencent.com/document/product/215/15817)接口获取。
         # @type NetworkInterfaceId: String
         # @param Ipv6Addresses: 指定的`IPv6`地址列表，单次最多指定10个。
         # @type Ipv6Addresses: Array
@@ -27372,11 +27377,11 @@ module TencentCloud
 
       # UnassignPrivateIpAddresses请求参数结构体
       class UnassignPrivateIpAddressesRequest < TencentCloud::Common::AbstractModel
-        # @param NetworkInterfaceId: 弹性网卡实例ID，例如：eni-m6dyj72l。
+        # @param NetworkInterfaceId: 弹性网卡实例ID，例如：eni-m6dyj72l。可通过[DescribeNetworkInterfaces](https://cloud.tencent.com/document/product/215/15817)接口获取。
         # @type NetworkInterfaceId: String
         # @param PrivateIpAddresses: 指定的内网IP信息，单次最多指定10个。
         # @type PrivateIpAddresses: Array
-        # @param InstanceId: 网卡绑定的子机实例ID，该参数仅用于指定网卡退还IP并解绑子机的场景，如果不涉及解绑子机，请勿填写。
+        # @param InstanceId: 网卡绑定的子机实例ID，该参数仅用于指定网卡退还IP并解绑子机的场景，如果不涉及解绑子机，请勿填写。可通过[DescribeInstances](https://cloud.tencent.com/document/product/213/15728)接口获取。
         # @type InstanceId: String
 
         attr_accessor :NetworkInterfaceId, :PrivateIpAddresses, :InstanceId

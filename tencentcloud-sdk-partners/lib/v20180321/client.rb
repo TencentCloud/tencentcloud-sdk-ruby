@@ -392,6 +392,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询客户的交易类型切换任务的信息，查询成功则获取当前用户的切换链接，查询失败则返回失败的原因
+
+        # @param request: Request instance for DescribeClientSwitchTraTaskInfo.
+        # @type request: :class:`Tencentcloud::partners::V20180321::DescribeClientSwitchTraTaskInfoRequest`
+        # @rtype: :class:`Tencentcloud::partners::V20180321::DescribeClientSwitchTraTaskInfoResponse`
+        def DescribeClientSwitchTraTaskInfo(request)
+          body = send_request('DescribeClientSwitchTraTaskInfo', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeClientSwitchTraTaskInfoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 【该接口已下线，请切换使用升级版本DescribeRebateInfosNew】代理商可查询自己名下全部返佣信息
 
         # @param request: Request instance for DescribeRebateInfos.

@@ -2299,17 +2299,21 @@ module TencentCloud
         # @type AndroidInstanceIds: Array
         # @param FileURL: 文件下载 URL
         # @type FileURL: String
+        # @param DestinationDirectory: 上传目标目录，只能上传到 /sdcard/ 目录或其子目录下
+        # @type DestinationDirectory: String
 
-        attr_accessor :AndroidInstanceIds, :FileURL
+        attr_accessor :AndroidInstanceIds, :FileURL, :DestinationDirectory
 
-        def initialize(androidinstanceids=nil, fileurl=nil)
+        def initialize(androidinstanceids=nil, fileurl=nil, destinationdirectory=nil)
           @AndroidInstanceIds = androidinstanceids
           @FileURL = fileurl
+          @DestinationDirectory = destinationdirectory
         end
 
         def deserialize(params)
           @AndroidInstanceIds = params['AndroidInstanceIds']
           @FileURL = params['FileURL']
+          @DestinationDirectory = params['DestinationDirectory']
         end
       end
 

@@ -983,17 +983,21 @@ module TencentCloud
         # @type SdkAppId: Integer
         # @param TaskId: 录制任务的唯一Id，在启动录制成功后会返回。
         # @type TaskId: String
+        # @param RecorderKey: 转推录制任务发起时所填，标识一次录制
+        # @type RecorderKey: String
 
-        attr_accessor :SdkAppId, :TaskId
+        attr_accessor :SdkAppId, :TaskId, :RecorderKey
 
-        def initialize(sdkappid=nil, taskid=nil)
+        def initialize(sdkappid=nil, taskid=nil, recorderkey=nil)
           @SdkAppId = sdkappid
           @TaskId = taskid
+          @RecorderKey = recorderkey
         end
 
         def deserialize(params)
           @SdkAppId = params['SdkAppId']
           @TaskId = params['TaskId']
+          @RecorderKey = params['RecorderKey']
         end
       end
 
@@ -1008,15 +1012,18 @@ module TencentCloud
         # @type Status: String
         # @param StorageFileList: 录制文件信息。
         # @type StorageFileList: Array
+        # @param RecorderKey: 转推录制任务发起时所填，标识一次录制
+        # @type RecorderKey: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TaskId, :Status, :StorageFileList, :RequestId
+        attr_accessor :TaskId, :Status, :StorageFileList, :RecorderKey, :RequestId
 
-        def initialize(taskid=nil, status=nil, storagefilelist=nil, requestid=nil)
+        def initialize(taskid=nil, status=nil, storagefilelist=nil, recorderkey=nil, requestid=nil)
           @TaskId = taskid
           @Status = status
           @StorageFileList = storagefilelist
+          @RecorderKey = recorderkey
           @RequestId = requestid
         end
 
@@ -1031,6 +1038,7 @@ module TencentCloud
               @StorageFileList << storagefile_tmp
             end
           end
+          @RecorderKey = params['RecorderKey']
           @RequestId = params['RequestId']
         end
       end

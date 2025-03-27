@@ -696,24 +696,18 @@ module TencentCloud
         # @param RuleFilters: 规则模板的过滤条件
         # @type RuleFilters: Array
         # @param Description: 规则模板描述。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
         # @param CreateAt: 规则模板创建时间。
         # @type CreateAt: String
         # @param UpdateAt: 规则模板修改时间。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateAt: String
         # @param AlarmLevel: 告警等级。1-低风险，2-中风险，3-高风险。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AlarmLevel: Integer
         # @param AlarmPolicy: 告警策略。0-不告警，1-告警。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AlarmPolicy: Integer
         # @param Status: 模板状态。0-无任务 ，1-修改中。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
         # @param AffectedInstances: 规则模板应用在哪些在实例。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AffectedInstances: Array
 
         attr_accessor :RuleTemplateId, :RuleTemplateName, :RuleFilters, :Description, :CreateAt, :UpdateAt, :AlarmLevel, :AlarmPolicy, :Status, :AffectedInstances
@@ -4763,7 +4757,6 @@ module TencentCloud
         # @param TotalCount: 符合查询条件的实例总数。
         # @type TotalCount: Integer
         # @param Items: 规则模板详细信息列表。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Items: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

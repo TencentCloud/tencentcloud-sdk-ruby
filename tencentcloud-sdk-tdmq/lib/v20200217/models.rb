@@ -8609,46 +8609,6 @@ module TencentCloud
         end
       end
 
-      # ModifyAMQPCluster请求参数结构体
-      class ModifyAMQPClusterRequest < TencentCloud::Common::AbstractModel
-        # @param ClusterId: 集群ID
-        # @type ClusterId: String
-        # @param ClusterName: 3-64个字符，只能包含字母、数字、“-”及“_”
-        # @type ClusterName: String
-        # @param Remark: 说明信息，不超过128个字符
-        # @type Remark: String
-
-        attr_accessor :ClusterId, :ClusterName, :Remark
-
-        def initialize(clusterid=nil, clustername=nil, remark=nil)
-          @ClusterId = clusterid
-          @ClusterName = clustername
-          @Remark = remark
-        end
-
-        def deserialize(params)
-          @ClusterId = params['ClusterId']
-          @ClusterName = params['ClusterName']
-          @Remark = params['Remark']
-        end
-      end
-
-      # ModifyAMQPCluster返回参数结构体
-      class ModifyAMQPClusterResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :RequestId
-
-        def initialize(requestid=nil)
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @RequestId = params['RequestId']
-        end
-      end
-
       # ModifyCluster请求参数结构体
       class ModifyClusterRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: Pulsar 集群的ID，需要更新的集群Id。
