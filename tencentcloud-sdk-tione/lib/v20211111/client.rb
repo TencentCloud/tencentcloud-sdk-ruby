@@ -173,6 +173,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建模型训练任务
+
+        # @param request: Request instance for CreateTrainingTask.
+        # @type request: :class:`Tencentcloud::tione::V20211111::CreateTrainingTaskRequest`
+        # @rtype: :class:`Tencentcloud::tione::V20211111::CreateTrainingTaskResponse`
+        def CreateTrainingTask(request)
+          body = send_request('CreateTrainingTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateTrainingTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 删除数据集
 
         # @param request: Request instance for DeleteDataset.
@@ -303,6 +327,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteTrainingModelVersionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除训练任务
+
+        # @param request: Request instance for DeleteTrainingTask.
+        # @type request: :class:`Tencentcloud::tione::V20211111::DeleteTrainingTaskRequest`
+        # @rtype: :class:`Tencentcloud::tione::V20211111::DeleteTrainingTaskResponse`
+        def DeleteTrainingTask(request)
+          body = send_request('DeleteTrainingTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteTrainingTaskResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -919,6 +967,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 启动模型训练任务
+
+        # @param request: Request instance for StartTrainingTask.
+        # @type request: :class:`Tencentcloud::tione::V20211111::StartTrainingTaskRequest`
+        # @rtype: :class:`Tencentcloud::tione::V20211111::StartTrainingTaskResponse`
+        def StartTrainingTask(request)
+          body = send_request('StartTrainingTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = StartTrainingTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 停止模型加速任务
 
         # @param request: Request instance for StopModelAccelerateTask.
@@ -953,6 +1025,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = StopNotebookResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 停止模型训练任务
+
+        # @param request: Request instance for StopTrainingTask.
+        # @type request: :class:`Tencentcloud::tione::V20211111::StopTrainingTaskRequest`
+        # @rtype: :class:`Tencentcloud::tione::V20211111::StopTrainingTaskResponse`
+        def StopTrainingTask(request)
+          body = send_request('StopTrainingTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = StopTrainingTaskResponse.new
             model.deserialize(response['Response'])
             model
           else

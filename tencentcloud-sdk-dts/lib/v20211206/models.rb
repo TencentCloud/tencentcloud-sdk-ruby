@@ -6713,6 +6713,7 @@ module TencentCloud
         # @param AllActions: 支持的所有操作
         # @type AllActions: Array
         # @param Actions: 当前状态能进行的操作
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Actions: Array
         # @param Options: 同步选项
         # @type Options: :class:`Tencentcloud::Dts.v20211206.models.Options`

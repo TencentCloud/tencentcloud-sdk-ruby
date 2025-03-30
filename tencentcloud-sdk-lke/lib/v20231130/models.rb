@@ -6898,16 +6898,24 @@ module TencentCloud
         # @param MaxTokens: 最多能生成的token数量
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaxTokens: :class:`Tencentcloud::Lke.v20231130.models.ModelParameter`
-        # @param Source: 模型来源 Hunyuan：腾讯混元大模型,Industry：腾讯云行业大模型,Experience：新模型体验
+        # @param Source: 模型来源 Hunyuan：腾讯混元大模型,Industry：腾讯云行业大模型,Experience：新模型体验,Custom自定义模型
         # @type Source: String
         # @param Icon: 模型图标
         # @type Icon: String
         # @param IsFree: 是否免费
         # @type IsFree: Boolean
+        # @param InputLenLimit: 模型对话框可输入的上限
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InputLenLimit: Integer
+        # @param SupportWorkflowStatus: 支持工作流的类型 0:模型不支持; 1: 模型支持工作流； 2： 模型支持效果不佳；
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SupportWorkflowStatus: Integer
+        # @param ModelCategory: 模型类别 generate：生成模型，thought：思考模型
+        # @type ModelCategory: String
 
-        attr_accessor :ModelName, :ModelDesc, :AliasName, :ResourceStatus, :PromptWordsLimit, :TopP, :Temperature, :MaxTokens, :Source, :Icon, :IsFree
+        attr_accessor :ModelName, :ModelDesc, :AliasName, :ResourceStatus, :PromptWordsLimit, :TopP, :Temperature, :MaxTokens, :Source, :Icon, :IsFree, :InputLenLimit, :SupportWorkflowStatus, :ModelCategory
 
-        def initialize(modelname=nil, modeldesc=nil, aliasname=nil, resourcestatus=nil, promptwordslimit=nil, topp=nil, temperature=nil, maxtokens=nil, source=nil, icon=nil, isfree=nil)
+        def initialize(modelname=nil, modeldesc=nil, aliasname=nil, resourcestatus=nil, promptwordslimit=nil, topp=nil, temperature=nil, maxtokens=nil, source=nil, icon=nil, isfree=nil, inputlenlimit=nil, supportworkflowstatus=nil, modelcategory=nil)
           @ModelName = modelname
           @ModelDesc = modeldesc
           @AliasName = aliasname
@@ -6919,6 +6927,9 @@ module TencentCloud
           @Source = source
           @Icon = icon
           @IsFree = isfree
+          @InputLenLimit = inputlenlimit
+          @SupportWorkflowStatus = supportworkflowstatus
+          @ModelCategory = modelcategory
         end
 
         def deserialize(params)
@@ -6942,6 +6953,9 @@ module TencentCloud
           @Source = params['Source']
           @Icon = params['Icon']
           @IsFree = params['IsFree']
+          @InputLenLimit = params['InputLenLimit']
+          @SupportWorkflowStatus = params['SupportWorkflowStatus']
+          @ModelCategory = params['ModelCategory']
         end
       end
 

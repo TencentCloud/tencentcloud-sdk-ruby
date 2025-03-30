@@ -2492,8 +2492,7 @@ module TencentCloud
 
       # DescribeDomainLogList返回参数结构体
       class DescribeDomainLogListResponse < TencentCloud::Common::AbstractModel
-        # @param LogList: 域名信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param LogList: 域名日志信息
         # @type LogList: Array
         # @param PageSize: 分页大小
         # @type PageSize: Integer
@@ -3464,7 +3463,6 @@ module TencentCloud
         # @param Status: 回滚状态
         # @type Status: String
         # @param FailedRecordList: 失败的记录信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FailedRecordList: Array
         # @param Domain: 所属域名
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -4225,7 +4223,6 @@ module TencentCloud
         # @param CnameSpeedup: cname加速启用状态
         # @type CnameSpeedup: String
         # @param Remark: 域名备注
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Remark: String
         # @param Punycode: 域名Punycode
         # @type Punycode: String
@@ -4252,18 +4249,14 @@ module TencentCloud
         # @param Uin: 腾讯云账户Uin
         # @type Uin: String
         # @param ActualNsList: 域名实际使用的NS列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ActualNsList: Array
         # @param RecordCount: 域名的记录数量
         # @type RecordCount: Integer
         # @param OwnerNick: 域名所有者的账户昵称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OwnerNick: String
         # @param IsGracePeriod: 是否在付费套餐宽限期
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsGracePeriod: String
         # @param VipBuffered: 是否在付费套餐缓冲期
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VipBuffered: String
         # @param VipStartAt: VIP套餐有效期开始时间
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -4278,10 +4271,8 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VipResourceId: String
         # @param IsSubDomain: 是否是子域名。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsSubDomain: Boolean
         # @param TagList: 域名关联的标签列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TagList: Array
         # @param SearchEnginePush: 是否启用搜索引擎推送
         # @type SearchEnginePush: String
@@ -4511,19 +4502,14 @@ module TencentCloud
         # @param DomainShareId: 共享记录ID
         # @type DomainShareId: Integer
         # @param Mode: 共享模式。r-只读；w-可写；rw-可读写。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Mode: String
         # @param Nickname: 共享到的用户昵称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Nickname: String
         # @param QCloudUIN: 共享到的用户UIN
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type QCloudUIN: String
         # @param Status: 共享状态。enabled-有效；pause-无效。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: String
         # @param SubDomain: 共享的子域名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubDomain: String
 
         attr_accessor :DomainShareId, :Mode, :Nickname, :QCloudUIN, :Status, :SubDomain
@@ -4694,7 +4680,6 @@ module TencentCloud
         # @param Key: 键
         # @type Key: String
         # @param Value: 值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: String
 
         attr_accessor :Key, :Value
@@ -5386,27 +5371,22 @@ module TencentCloud
       # 批量添加记录返回结构
       class ModifyRecordBatchDetail < TencentCloud::Common::AbstractModel
         # @param RecordList: 见RecordInfoBatchModify
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RecordList: Array
         # @param Id: 任务编号
         # @type Id: Integer
         # @param Domain: 域名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Domain: String
         # @param DomainGrade: 域名等级
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DomainGrade: String
         # @param ErrMsg: 错误信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrMsg: String
         # @param Status: 该条任务运行状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: String
         # @param Operation: 操作类型
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Operation: String
         # @param DomainId: 域名ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DomainId: Integer
 
         attr_accessor :RecordList, :Id, :Domain, :DomainGrade, :ErrMsg, :Status, :Operation, :DomainId
@@ -6285,7 +6265,6 @@ module TencentCloud
         # "" : 该记录未开启 D 监控。
         # @type MonitorStatus: String
         # @param Remark: 记录的备注。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Remark: String
         # @param UpdatedOn: 记录最后更新时间。
         # @type UpdatedOn: String
@@ -6357,7 +6336,6 @@ module TencentCloud
         # @param TTL: 记录缓存时间
         # @type TTL: Integer
         # @param MX: MX值，只有MX记录有
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MX: Integer
         # @param DefaultNS: 是否是默认的ns记录
         # @type DefaultNS: Boolean
@@ -6755,7 +6733,6 @@ module TencentCloud
         # @param TagKey: 标签键
         # @type TagKey: String
         # @param TagValue: 标签值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TagValue: String
 
         attr_accessor :TagKey, :TagValue

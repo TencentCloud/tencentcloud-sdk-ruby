@@ -3391,10 +3391,8 @@ module TencentCloud
       # 通知信息
       class Notification < TencentCloud::Common::AbstractModel
         # @param TopicName: CMQ主题名字，要求主题名有效且关联订阅
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TopicName: String
         # @param EventConfigs: 事件配置
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EventConfigs: Array
 
         attr_accessor :TopicName, :EventConfigs
@@ -3464,7 +3462,6 @@ module TencentCloud
         # @param DestinationPath: 目的端路径
         # @type DestinationPath: String
         # @param OutputMappingOption: 输出映射选项
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OutputMappingOption: :class:`Tencentcloud::Batch.v20170312.models.OutputMappingOption`
 
         attr_accessor :SourcePath, :DestinationPath, :OutputMappingOption
@@ -3514,7 +3511,6 @@ module TencentCloud
         # @param Workspace: 容器场景下,输出选项从实例映射到容器内的实例侧的工作空间。
         # BATCH_WORKSPACE: 工作空间为BATCH在实例内定义的工作空间，BATCH侧保证作业之间的隔离。（默认）
         # GLOBAL_WORKSPACE: 工作空间为实例操作系统空间。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Workspace: String
 
         attr_accessor :Workspace

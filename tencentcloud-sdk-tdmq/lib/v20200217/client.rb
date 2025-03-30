@@ -2287,6 +2287,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 平滑迁移相关接口已迁移至trocket产品下，该接口已废弃
+
         # 用于查询RocketMQ平滑迁移任务列表
 
         # @param request: Request instance for DescribeRocketMQSmoothMigrationTaskList.
@@ -2311,6 +2313,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 平滑迁移相关接口已迁移至trocket产品下，该接口已废弃
+
         # 平滑迁移过程获取源集群group列表接口
 
         # @param request: Request instance for DescribeRocketMQSourceClusterGroupList.
@@ -2334,6 +2338,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 平滑迁移相关接口已迁移至trocket产品下，该接口已废弃
 
         # 平滑迁移过程获取源集群topic列表接口
 

@@ -1047,6 +1047,170 @@ module TencentCloud
         end
       end
 
+      # CreateTrainingTask请求参数结构体
+      class CreateTrainingTaskRequest < TencentCloud::Common::AbstractModel
+        # @param Name: 训练任务名称，不超过60个字符，仅支持中英文、数字、下划线"_"、短横"-"，只能以中英文、数字开头
+        # @type Name: String
+        # @param ChargeType: 计费模式，eg：PREPAID 包年包月（资源组）;
+        # POSTPAID_BY_HOUR 按量计费
+        # @type ChargeType: String
+        # @param ResourceConfigInfos: 资源配置，需填写对应算力规格ID和节点数量，算力规格ID查询接口为DescribeBillingSpecsPrice，eg：[{"Role":"WORKER", "InstanceType": "TI.S.MEDIUM.POST", "InstanceNum": 1}]
+        # @type ResourceConfigInfos: Array
+        # @param FrameworkName: 训练框架名称，通过DescribeTrainingFrameworks接口查询，eg：SPARK、PYSPARK、TENSORFLOW、PYTORCH
+        # @type FrameworkName: String
+        # @param FrameworkVersion: 训练框架版本，通过DescribeTrainingFrameworks接口查询，eg：1.15、1.9
+        # @type FrameworkVersion: String
+        # @param FrameworkEnvironment: 训练框架环境，通过DescribeTrainingFrameworks接口查询，eg：tf1.15-py3.7-cpu、torch1.9-py3.8-cuda11.1-gpu
+        # @type FrameworkEnvironment: String
+        # @param ResourceGroupId: 预付费专用资源组ID，通过DescribeBillingResourceGroups接口查询
+        # @type ResourceGroupId: String
+        # @param Tags: 标签配置
+        # @type Tags: Array
+        # @param ImageInfo: 自定义镜像信息
+        # @type ImageInfo: :class:`Tencentcloud::Tione.v20211111.models.ImageInfo`
+        # @param CodePackagePath: COS代码包路径
+        # @type CodePackagePath: :class:`Tencentcloud::Tione.v20211111.models.CosPathInfo`
+        # @param StartCmdInfo: 任务的启动命令，按任务训练模式输入，如遇特殊字符导致配置失败，可使用EncodedStartCmdInfo参数
+        # @type StartCmdInfo: :class:`Tencentcloud::Tione.v20211111.models.StartCmdInfo`
+        # @param TrainingMode: 训练模式，通过DescribeTrainingFrameworks接口查询，eg：PS_WORKER、DDP、MPI、HOROVOD
+        # @type TrainingMode: String
+        # @param DataConfigs: 数据配置，依赖DataSource字段，数量不超过10个
+        # @type DataConfigs: Array
+        # @param VpcId: VPC Id
+        # @type VpcId: String
+        # @param SubnetId: 子网Id
+        # @type SubnetId: String
+        # @param Output: COS训练输出路径
+        # @type Output: :class:`Tencentcloud::Tione.v20211111.models.CosPathInfo`
+        # @param LogConfig: CLS日志配置
+        # @type LogConfig: :class:`Tencentcloud::Tione.v20211111.models.LogConfig`
+        # @param TuningParameters: 调优参数，不超过2048个字符
+        # @type TuningParameters: String
+        # @param LogEnable: 是否上报日志
+        # @type LogEnable: Boolean
+        # @param Remark: 备注，不超过1024个字符
+        # @type Remark: String
+        # @param DataSource: 数据来源，eg：DATASET、COS、CFS、CFSTurbo、HDFS、GooseFSx
+        # @type DataSource: String
+        # @param CallbackUrl: 回调地址，用于创建/启动/停止训练任务的异步回调。回调格式&内容详见：[[TI-ONE接口回调说明]](https://cloud.tencent.com/document/product/851/84292)
+        # @type CallbackUrl: String
+        # @param EncodedStartCmdInfo: 编码后的任务启动命令，与StartCmdInfo同时配置时，仅当前参数生效
+        # @type EncodedStartCmdInfo: :class:`Tencentcloud::Tione.v20211111.models.EncodedStartCmdInfo`
+
+        attr_accessor :Name, :ChargeType, :ResourceConfigInfos, :FrameworkName, :FrameworkVersion, :FrameworkEnvironment, :ResourceGroupId, :Tags, :ImageInfo, :CodePackagePath, :StartCmdInfo, :TrainingMode, :DataConfigs, :VpcId, :SubnetId, :Output, :LogConfig, :TuningParameters, :LogEnable, :Remark, :DataSource, :CallbackUrl, :EncodedStartCmdInfo
+
+        def initialize(name=nil, chargetype=nil, resourceconfiginfos=nil, frameworkname=nil, frameworkversion=nil, frameworkenvironment=nil, resourcegroupid=nil, tags=nil, imageinfo=nil, codepackagepath=nil, startcmdinfo=nil, trainingmode=nil, dataconfigs=nil, vpcid=nil, subnetid=nil, output=nil, logconfig=nil, tuningparameters=nil, logenable=nil, remark=nil, datasource=nil, callbackurl=nil, encodedstartcmdinfo=nil)
+          @Name = name
+          @ChargeType = chargetype
+          @ResourceConfigInfos = resourceconfiginfos
+          @FrameworkName = frameworkname
+          @FrameworkVersion = frameworkversion
+          @FrameworkEnvironment = frameworkenvironment
+          @ResourceGroupId = resourcegroupid
+          @Tags = tags
+          @ImageInfo = imageinfo
+          @CodePackagePath = codepackagepath
+          @StartCmdInfo = startcmdinfo
+          @TrainingMode = trainingmode
+          @DataConfigs = dataconfigs
+          @VpcId = vpcid
+          @SubnetId = subnetid
+          @Output = output
+          @LogConfig = logconfig
+          @TuningParameters = tuningparameters
+          @LogEnable = logenable
+          @Remark = remark
+          @DataSource = datasource
+          @CallbackUrl = callbackurl
+          @EncodedStartCmdInfo = encodedstartcmdinfo
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @ChargeType = params['ChargeType']
+          unless params['ResourceConfigInfos'].nil?
+            @ResourceConfigInfos = []
+            params['ResourceConfigInfos'].each do |i|
+              resourceconfiginfo_tmp = ResourceConfigInfo.new
+              resourceconfiginfo_tmp.deserialize(i)
+              @ResourceConfigInfos << resourceconfiginfo_tmp
+            end
+          end
+          @FrameworkName = params['FrameworkName']
+          @FrameworkVersion = params['FrameworkVersion']
+          @FrameworkEnvironment = params['FrameworkEnvironment']
+          @ResourceGroupId = params['ResourceGroupId']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
+          unless params['ImageInfo'].nil?
+            @ImageInfo = ImageInfo.new
+            @ImageInfo.deserialize(params['ImageInfo'])
+          end
+          unless params['CodePackagePath'].nil?
+            @CodePackagePath = CosPathInfo.new
+            @CodePackagePath.deserialize(params['CodePackagePath'])
+          end
+          unless params['StartCmdInfo'].nil?
+            @StartCmdInfo = StartCmdInfo.new
+            @StartCmdInfo.deserialize(params['StartCmdInfo'])
+          end
+          @TrainingMode = params['TrainingMode']
+          unless params['DataConfigs'].nil?
+            @DataConfigs = []
+            params['DataConfigs'].each do |i|
+              dataconfig_tmp = DataConfig.new
+              dataconfig_tmp.deserialize(i)
+              @DataConfigs << dataconfig_tmp
+            end
+          end
+          @VpcId = params['VpcId']
+          @SubnetId = params['SubnetId']
+          unless params['Output'].nil?
+            @Output = CosPathInfo.new
+            @Output.deserialize(params['Output'])
+          end
+          unless params['LogConfig'].nil?
+            @LogConfig = LogConfig.new
+            @LogConfig.deserialize(params['LogConfig'])
+          end
+          @TuningParameters = params['TuningParameters']
+          @LogEnable = params['LogEnable']
+          @Remark = params['Remark']
+          @DataSource = params['DataSource']
+          @CallbackUrl = params['CallbackUrl']
+          unless params['EncodedStartCmdInfo'].nil?
+            @EncodedStartCmdInfo = EncodedStartCmdInfo.new
+            @EncodedStartCmdInfo.deserialize(params['EncodedStartCmdInfo'])
+          end
+        end
+      end
+
+      # CreateTrainingTask返回参数结构体
+      class CreateTrainingTaskResponse < TencentCloud::Common::AbstractModel
+        # @param Id: 训练任务ID
+        # @type Id: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Id, :RequestId
+
+        def initialize(id=nil, requestid=nil)
+          @Id = id
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 定时扩缩任务
       class CronScaleJob < TencentCloud::Common::AbstractModel
         # @param Schedule: Cron表达式，标识任务的执行时间，精确到分钟级
@@ -1876,6 +2040,38 @@ module TencentCloud
 
       # DeleteTrainingModelVersion返回参数结构体
       class DeleteTrainingModelVersionResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteTrainingTask请求参数结构体
+      class DeleteTrainingTaskRequest < TencentCloud::Common::AbstractModel
+        # @param Id: 训练任务ID
+        # @type Id: String
+
+        attr_accessor :Id
+
+        def initialize(id=nil)
+          @Id = id
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+        end
+      end
+
+      # DeleteTrainingTask返回参数结构体
+      class DeleteTrainingTaskResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -3266,6 +3462,22 @@ module TencentCloud
           end
           @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 编码后的启动命令信息
+      class EncodedStartCmdInfo < TencentCloud::Common::AbstractModel
+        # @param StartCmdInfo: 任务的启动命令，以base64格式输入，注意转换时需要完整输入{"StartCmd":"","PsStartCmd":"","WorkerStartCmd":""}
+        # @type StartCmdInfo: String
+
+        attr_accessor :StartCmdInfo
+
+        def initialize(startcmdinfo=nil)
+          @StartCmdInfo = startcmdinfo
+        end
+
+        def deserialize(params)
+          @StartCmdInfo = params['StartCmdInfo']
         end
       end
 
@@ -6699,6 +6911,38 @@ module TencentCloud
         end
       end
 
+      # StartTrainingTask请求参数结构体
+      class StartTrainingTaskRequest < TencentCloud::Common::AbstractModel
+        # @param Id: 训练任务ID
+        # @type Id: String
+
+        attr_accessor :Id
+
+        def initialize(id=nil)
+          @Id = id
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+        end
+      end
+
+      # StartTrainingTask返回参数结构体
+      class StartTrainingTaskResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 实例状况
       class StatefulSetCondition < TencentCloud::Common::AbstractModel
         # @param Message: 信息
@@ -6801,6 +7045,38 @@ module TencentCloud
 
       # StopNotebook返回参数结构体
       class StopNotebookResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # StopTrainingTask请求参数结构体
+      class StopTrainingTaskRequest < TencentCloud::Common::AbstractModel
+        # @param Id: 训练任务ID
+        # @type Id: String
+
+        attr_accessor :Id
+
+        def initialize(id=nil)
+          @Id = id
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+        end
+      end
+
+      # StopTrainingTask返回参数结构体
+      class StopTrainingTaskResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 

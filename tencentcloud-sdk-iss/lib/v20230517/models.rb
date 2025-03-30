@@ -1627,6 +1627,50 @@ module TencentCloud
         end
       end
 
+      # ControlDeviceSnapshot请求参数结构体
+      class ControlDeviceSnapshotRequest < TencentCloud::Common::AbstractModel
+        # @param ChannelId: 通道ID
+        # @type ChannelId: String
+        # @param SnapNum: 连拍张数，可选值范围1～10
+        # @type SnapNum: Integer
+        # @param Interval: 抓拍间隔时间，可选值范围1～1800
+        # @type Interval: Integer
+        # @param Expire: 图片存储时间，默认 7 天，仅支持（7, 15, 30, 60, 90, 180, 365）天
+        # @type Expire: Integer
+
+        attr_accessor :ChannelId, :SnapNum, :Interval, :Expire
+
+        def initialize(channelid=nil, snapnum=nil, interval=nil, expire=nil)
+          @ChannelId = channelid
+          @SnapNum = snapnum
+          @Interval = interval
+          @Expire = expire
+        end
+
+        def deserialize(params)
+          @ChannelId = params['ChannelId']
+          @SnapNum = params['SnapNum']
+          @Interval = params['Interval']
+          @Expire = params['Expire']
+        end
+      end
+
+      # ControlDeviceSnapshot返回参数结构体
+      class ControlDeviceSnapshotResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 获取开流地址返回数据
       class ControlDeviceStreamData < TencentCloud::Common::AbstractModel
         # @param Flv: flv 流地址
@@ -4122,6 +4166,46 @@ module TencentCloud
         end
       end
 
+      # 抓拍结果信息
+      class GBDeviceSnapInfo < TencentCloud::Common::AbstractModel
+        # @param FileName: 文件名称
+        # @type FileName: String
+        # @param DownloadUrl: 下载地址，空值表示存储图片过期
+        # @type DownloadUrl: String
+        # @param ImageSize: 图片大小，单位B
+        # @type ImageSize: Integer
+        # @param CreatedTime: 文件的创建时间
+        # @type CreatedTime: String
+        # @param ReceivedTime: 图片的接收时间
+        # @type ReceivedTime: String
+        # @param PreviewUrl: 预览地址，空值表示存储图片过期
+        # @type PreviewUrl: String
+        # @param SessionId: 国标信令会话ID，同时对应控制设备抓拍 ( ControlDeviceSnapshot )接口返回的request_id
+        # @type SessionId: String
+
+        attr_accessor :FileName, :DownloadUrl, :ImageSize, :CreatedTime, :ReceivedTime, :PreviewUrl, :SessionId
+
+        def initialize(filename=nil, downloadurl=nil, imagesize=nil, createdtime=nil, receivedtime=nil, previewurl=nil, sessionid=nil)
+          @FileName = filename
+          @DownloadUrl = downloadurl
+          @ImageSize = imagesize
+          @CreatedTime = createdtime
+          @ReceivedTime = receivedtime
+          @PreviewUrl = previewurl
+          @SessionId = sessionid
+        end
+
+        def deserialize(params)
+          @FileName = params['FileName']
+          @DownloadUrl = params['DownloadUrl']
+          @ImageSize = params['ImageSize']
+          @CreatedTime = params['CreatedTime']
+          @ReceivedTime = params['ReceivedTime']
+          @PreviewUrl = params['PreviewUrl']
+          @SessionId = params['SessionId']
+        end
+      end
+
       # 网关设备数据
       class GatewayDevice < TencentCloud::Common::AbstractModel
         # @param DeviceId: 设备ID
@@ -4419,6 +4503,73 @@ module TencentCloud
           @AccessProtocol = params['AccessProtocol']
           @OrganizationId = params['OrganizationId']
           @ChannelNum = params['ChannelNum']
+        end
+      end
+
+      # ListDeviceSnapshots请求参数结构体
+      class ListDeviceSnapshotsRequest < TencentCloud::Common::AbstractModel
+        # @param ChannelId: 通道ID
+        # @type ChannelId: String
+        # @param DeviceId: 设备ID（该字段暂不生效）
+        # @type DeviceId: String
+        # @param Start: 查询开始时间，默认查询当天
+        # @type Start: Integer
+        # @param End: 查询结束时间，默认查询当天
+        # @type End: Integer
+        # @param PageNumber: 分页页码，默认1
+        # @type PageNumber: Integer
+        # @param PageSize: 分页大小，默认200，最大2000
+        # @type PageSize: Integer
+
+        attr_accessor :ChannelId, :DeviceId, :Start, :End, :PageNumber, :PageSize
+
+        def initialize(channelid=nil, deviceid=nil, start=nil, _end=nil, pagenumber=nil, pagesize=nil)
+          @ChannelId = channelid
+          @DeviceId = deviceid
+          @Start = start
+          @End = _end
+          @PageNumber = pagenumber
+          @PageSize = pagesize
+        end
+
+        def deserialize(params)
+          @ChannelId = params['ChannelId']
+          @DeviceId = params['DeviceId']
+          @Start = params['Start']
+          @End = params['End']
+          @PageNumber = params['PageNumber']
+          @PageSize = params['PageSize']
+        end
+      end
+
+      # ListDeviceSnapshots返回参数结构体
+      class ListDeviceSnapshotsResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 抓拍结果信息列表
+        # @type Data: Array
+        # @param TotalCount: 抓拍结果总数
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :TotalCount, :RequestId
+
+        def initialize(data=nil, totalcount=nil, requestid=nil)
+          @Data = data
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              gbdevicesnapinfo_tmp = GBDeviceSnapInfo.new
+              gbdevicesnapinfo_tmp.deserialize(i)
+              @Data << gbdevicesnapinfo_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
         end
       end
 

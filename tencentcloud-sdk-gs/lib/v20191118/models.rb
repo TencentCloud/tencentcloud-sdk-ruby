@@ -616,6 +616,49 @@ module TencentCloud
         end
       end
 
+      # CreateAndroidInstancesScreenshot请求参数结构体
+      class CreateAndroidInstancesScreenshotRequest < TencentCloud::Common::AbstractModel
+        # @param AndroidInstanceIds: 实例 ID 列表
+        # @type AndroidInstanceIds: Array
+
+        attr_accessor :AndroidInstanceIds
+
+        def initialize(androidinstanceids=nil)
+          @AndroidInstanceIds = androidinstanceids
+        end
+
+        def deserialize(params)
+          @AndroidInstanceIds = params['AndroidInstanceIds']
+        end
+      end
+
+      # CreateAndroidInstancesScreenshot返回参数结构体
+      class CreateAndroidInstancesScreenshotResponse < TencentCloud::Common::AbstractModel
+        # @param TaskSet: 任务列表
+        # @type TaskSet: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskSet, :RequestId
+
+        def initialize(taskset=nil, requestid=nil)
+          @TaskSet = taskset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['TaskSet'].nil?
+            @TaskSet = []
+            params['TaskSet'].each do |i|
+              androidinstancetask_tmp = AndroidInstanceTask.new
+              androidinstancetask_tmp.deserialize(i)
+              @TaskSet << androidinstancetask_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateSession请求参数结构体
       class CreateSessionRequest < TencentCloud::Common::AbstractModel
         # @param UserId: 唯一用户身份标识，由业务方自定义，平台不予理解。（可根据业务需要决定使用用户的唯一身份标识或是使用时间戳随机生成；在用户重连时应保持UserId不变）

@@ -4646,8 +4646,11 @@ module TencentCloud
       # 描述防火墙规则信息。
       class FirewallRule < TencentCloud::Common::AbstractModel
         # @param Protocol: 协议，取值：TCP，UDP，ICMP，ALL，ICMPv6。
+
+        # - 使用ICMP协议时，只支持CidrBlock，不支持使用Port、Ipv6CidrBlock参数；
+        # - 使用ICMPv6协议时，只支持Ipv6CidrBlock，不支持使用Port、Ipv6CidrBlock参数；
         # @type Protocol: String
-        # @param Port: 端口，取值：ALL，单独的端口，逗号分隔的离散端口，减号分隔的端口范围。
+        # @param Port: 端口，取值：ALL，单独的端口，逗号分隔的离散端口，减号分隔的端口范围。注意：单独的端口与离散端口不能同时存在。
         # @type Port: String
         # @param CidrBlock: IPv4网段或 IPv4地址(互斥)。
         # 示例值：0.0.0.0/0。
@@ -4659,7 +4662,7 @@ module TencentCloud
 
         # 和CidrBlock互斥，两者都不指定时，如果Protocol是ICMPv6，则取默认值::/0。
         # @type Ipv6CidrBlock: String
-        # @param Action: 取值：ACCEPT，DROP。默认为 ACCEPT。
+        # @param Action: 取值：ACCEPT（允许），DROP（拒绝）。默认为 ACCEPT。
         # @type Action: String
         # @param FirewallRuleDescription: 防火墙规则描述。
         # @type FirewallRuleDescription: String

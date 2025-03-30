@@ -419,10 +419,8 @@ module TencentCloud
       # 审计实例详情
       class AuditInstanceInfo < TencentCloud::Common::AbstractModel
         # @param ProjectId: 项目ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProjectId: Integer
         # @param TagList: 标签信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TagList: Array
 
         attr_accessor :ProjectId, :TagList
@@ -476,28 +474,20 @@ module TencentCloud
         # @param ThreadId: 执行线程ID。
         # @type ThreadId: Integer
         # @param CheckRows: 扫描行数。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CheckRows: Integer
         # @param CpuTime: cpu执行时间，微秒。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CpuTime: Float
         # @param IoWaitTime: IO等待时间，微秒。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IoWaitTime: Integer
         # @param LockWaitTime: 锁等待时间，微秒。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LockWaitTime: Integer
         # @param TrxLivingTime: 事务持续等待时间，微秒。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TrxLivingTime: Integer
         # @param NsTime: 开始时间，与timestamp构成一个精确到纳秒的时间。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NsTime: Integer
         # @param TemplateInfo: 日志命中规则模板的基本信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TemplateInfo: Array
         # @param TrxId: 事务ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TrxId: Integer
 
         attr_accessor :AffectRows, :ErrCode, :SqlType, :TableName, :InstanceName, :PolicyName, :DBName, :Sql, :Host, :User, :ExecTime, :Timestamp, :SentRows, :ThreadId, :CheckRows, :CpuTime, :IoWaitTime, :LockWaitTime, :TrxLivingTime, :NsTime, :TemplateInfo, :TrxId
@@ -666,7 +656,6 @@ module TencentCloud
       # 规则审计的过滤条件
       class AuditRuleFilters < TencentCloud::Common::AbstractModel
         # @param RuleFilters: 单条审计规则。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleFilters: Array
 
         attr_accessor :RuleFilters
@@ -4280,17 +4269,25 @@ module TencentCloud
         # @type DeliverType: String
         # @param DeliverSubType: 投递子类型：cls，ckafka。
         # @type DeliverSubType: String
+        # @param DeliverConsumer: 投递者
+        # @type DeliverConsumer: String
+        # @param DeliverConsumerName: 投递者名称
+        # @type DeliverConsumerName: String
 
-        attr_accessor :DeliverType, :DeliverSubType
+        attr_accessor :DeliverType, :DeliverSubType, :DeliverConsumer, :DeliverConsumerName
 
-        def initialize(delivertype=nil, deliversubtype=nil)
+        def initialize(delivertype=nil, deliversubtype=nil, deliverconsumer=nil, deliverconsumername=nil)
           @DeliverType = delivertype
           @DeliverSubType = deliversubtype
+          @DeliverConsumer = deliverconsumer
+          @DeliverConsumerName = deliverconsumername
         end
 
         def deserialize(params)
           @DeliverType = params['DeliverType']
           @DeliverSubType = params['DeliverSubType']
+          @DeliverConsumer = params['DeliverConsumer']
+          @DeliverConsumerName = params['DeliverConsumerName']
         end
       end
 
@@ -8349,16 +8346,12 @@ module TencentCloud
         # @param InstanceId: 实例ID。
         # @type InstanceId: String
         # @param AuditRule: 是否是规则审计。true-规则审计，false-全审计。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AuditRule: Boolean
         # @param AuditRuleFilters: 审计规则详情。仅当AuditRule=true时有效。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AuditRuleFilters: Array
         # @param OldRule: 是否是审计策略
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OldRule: Boolean
         # @param RuleTemplates: 实例应用的规则模板详情
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleTemplates: Array
 
         attr_accessor :InstanceId, :AuditRule, :AuditRuleFilters, :OldRule, :RuleTemplates
@@ -8401,43 +8394,30 @@ module TencentCloud
         # @param AuditStatus: 审计状态。ON-表示审计已开启，OFF-表示审计关闭。
         # @type AuditStatus: String
         # @param LogExpireDay: 日志保留时长。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LogExpireDay: Integer
         # @param HighLogExpireDay: 高频存储时长。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HighLogExpireDay: Integer
         # @param LowLogExpireDay: 低频存储时长。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LowLogExpireDay: Integer
         # @param BillingAmount: 日志存储量。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BillingAmount: Float
         # @param HighRealStorage: 高频存储量。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HighRealStorage: Float
         # @param LowRealStorage: 低频存储量。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LowRealStorage: Float
         # @param AuditAll: 是否为全审计。true-表示全审计。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AuditAll: Boolean
         # @param CreateAt: 审计开通时间。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateAt: String
         # @param InstanceInfo: 实例相关信息。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceInfo: :class:`Tencentcloud::Cynosdb.v20190107.models.AuditInstanceInfo`
         # @param RealStorage: 总存储量。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RealStorage: Float
         # @param RuleTemplateIds: 实例所应用的规则模板。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleTemplateIds: Array
         # @param Deliver: 是否开启日志投递：ON，OFF
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Deliver: String
         # @param DeliverSummary: 日志投递类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeliverSummary: Array
 
         attr_accessor :InstanceId, :AuditStatus, :LogExpireDay, :HighLogExpireDay, :LowLogExpireDay, :BillingAmount, :HighRealStorage, :LowRealStorage, :AuditAll, :CreateAt, :InstanceInfo, :RealStorage, :RuleTemplateIds, :Deliver, :DeliverSummary
@@ -8840,16 +8820,12 @@ module TencentCloud
       # 审计日志命中规则模板的基本信息
       class LogRuleTemplateInfo < TencentCloud::Common::AbstractModel
         # @param RuleTemplateId: 模板ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleTemplateId: String
         # @param RuleTemplateName: 规则模板名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleTemplateName: String
         # @param AlarmLevel: 告警等级。1-低风险，2-中风险，3-高风险。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AlarmLevel: String
         # @param RuleTemplateStatus: 规则模板变更状态：0-未变更；1-已变更；2-已删除
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleTemplateStatus: Integer
 
         attr_accessor :RuleTemplateId, :RuleTemplateName, :AlarmLevel, :RuleTemplateStatus
@@ -13093,22 +13069,16 @@ module TencentCloud
       # 规则模板内容
       class RuleTemplateInfo < TencentCloud::Common::AbstractModel
         # @param RuleTemplateId: 规则模板ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleTemplateId: String
         # @param RuleTemplateName: 规则模板名称。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleTemplateName: String
         # @param RuleFilters: 规则内容。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleFilters: Array
         # @param AlarmLevel: 告警等级。1-低风险，2-中风险，3-高风险。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AlarmLevel: Integer
         # @param AlarmPolicy: 告警策略。0-不告警，1-告警。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AlarmPolicy: Integer
         # @param Description: 规则描述。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
 
         attr_accessor :RuleTemplateId, :RuleTemplateName, :RuleFilters, :AlarmLevel, :AlarmPolicy, :Description

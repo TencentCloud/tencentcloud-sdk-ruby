@@ -29,6 +29,30 @@ module TencentCloud
         end
 
 
+        # 停止座席巡航式外呼任务
+
+        # @param request: Request instance for AbortAgentCruiseDialingCampaign.
+        # @type request: :class:`Tencentcloud::ccc::V20200210::AbortAgentCruiseDialingCampaignRequest`
+        # @rtype: :class:`Tencentcloud::ccc::V20200210::AbortAgentCruiseDialingCampaignResponse`
+        def AbortAgentCruiseDialingCampaign(request)
+          body = send_request('AbortAgentCruiseDialingCampaign', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = AbortAgentCruiseDialingCampaignResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 停止预测式外呼任务
 
         # @param request: Request instance for AbortPredictiveDialingCampaign.
@@ -163,6 +187,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CreateAdminURLResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 座席巡航式外呼。
+
+        # @param request: Request instance for CreateAgentCruiseDialingCampaign.
+        # @type request: :class:`Tencentcloud::ccc::V20200210::CreateAgentCruiseDialingCampaignRequest`
+        # @rtype: :class:`Tencentcloud::ccc::V20200210::CreateAgentCruiseDialingCampaignResponse`
+        def CreateAgentCruiseDialingCampaign(request)
+          body = send_request('CreateAgentCruiseDialingCampaign', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateAgentCruiseDialingCampaignResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -575,6 +623,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeActiveCarrierPrivilegeNumberResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询 座席巡航式外呼任务
+
+        # @param request: Request instance for DescribeAgentCruiseDialingCampaign.
+        # @type request: :class:`Tencentcloud::ccc::V20200210::DescribeAgentCruiseDialingCampaignRequest`
+        # @rtype: :class:`Tencentcloud::ccc::V20200210::DescribeAgentCruiseDialingCampaignResponse`
+        def DescribeAgentCruiseDialingCampaign(request)
+          body = send_request('DescribeAgentCruiseDialingCampaign', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAgentCruiseDialingCampaignResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1441,6 +1513,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = StopAutoCalloutTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 特定场景下讲会话转接到人工坐席
+
+        # @param request: Request instance for TransferToManual.
+        # @type request: :class:`Tencentcloud::ccc::V20200210::TransferToManualRequest`
+        # @rtype: :class:`Tencentcloud::ccc::V20200210::TransferToManualResponse`
+        def TransferToManual(request)
+          body = send_request('TransferToManual', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = TransferToManualResponse.new
             model.deserialize(response['Response'])
             model
           else

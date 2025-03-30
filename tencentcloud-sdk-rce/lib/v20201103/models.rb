@@ -123,12 +123,10 @@ module TencentCloud
         # @type AuthorizationTerm: Integer
         # @param PrivacyPolicyLink: 客户获得用户授权所依赖的协议地址。
         # @type PrivacyPolicyLink: String
-        # @param IsPersonalData: 是否是用户个人敏感数据（不推荐使用）。固定填：1。
-        # @type IsPersonalData: Integer
 
-        attr_accessor :DataProviderName, :DataRecipientName, :UserDataType, :IsAuthorize, :IsOrderHandling, :AuthorizationTerm, :PrivacyPolicyLink, :IsPersonalData
+        attr_accessor :DataProviderName, :DataRecipientName, :UserDataType, :IsAuthorize, :IsOrderHandling, :AuthorizationTerm, :PrivacyPolicyLink
 
-        def initialize(dataprovidername=nil, datarecipientname=nil, userdatatype=nil, isauthorize=nil, isorderhandling=nil, authorizationterm=nil, privacypolicylink=nil, ispersonaldata=nil)
+        def initialize(dataprovidername=nil, datarecipientname=nil, userdatatype=nil, isauthorize=nil, isorderhandling=nil, authorizationterm=nil, privacypolicylink=nil)
           @DataProviderName = dataprovidername
           @DataRecipientName = datarecipientname
           @UserDataType = userdatatype
@@ -136,7 +134,6 @@ module TencentCloud
           @IsOrderHandling = isorderhandling
           @AuthorizationTerm = authorizationterm
           @PrivacyPolicyLink = privacypolicylink
-          @IsPersonalData = ispersonaldata
         end
 
         def deserialize(params)
@@ -147,7 +144,6 @@ module TencentCloud
           @IsOrderHandling = params['IsOrderHandling']
           @AuthorizationTerm = params['AuthorizationTerm']
           @PrivacyPolicyLink = params['PrivacyPolicyLink']
-          @IsPersonalData = params['IsPersonalData']
         end
       end
 

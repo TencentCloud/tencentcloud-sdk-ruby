@@ -140,6 +140,42 @@ module TencentCloud
         end
       end
 
+      # AbortAgentCruiseDialingCampaign请求参数结构体
+      class AbortAgentCruiseDialingCampaignRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
+        # @type SdkAppId: Integer
+        # @param CampaignId: 任务 ID
+        # @type CampaignId: Integer
+
+        attr_accessor :SdkAppId, :CampaignId
+
+        def initialize(sdkappid=nil, campaignid=nil)
+          @SdkAppId = sdkappid
+          @CampaignId = campaignid
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @CampaignId = params['CampaignId']
+        end
+      end
+
+      # AbortAgentCruiseDialingCampaign返回参数结构体
+      class AbortAgentCruiseDialingCampaignResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # AbortPredictiveDialingCampaign请求参数结构体
       class AbortPredictiveDialingCampaignRequest < TencentCloud::Common::AbstractModel
         # @param SdkAppId: 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
@@ -1239,6 +1275,78 @@ module TencentCloud
         end
       end
 
+      # CreateAgentCruiseDialingCampaign请求参数结构体
+      class CreateAgentCruiseDialingCampaignRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
+        # @type SdkAppId: Integer
+        # @param Name: 任务名称
+        # @type Name: String
+        # @param Agent: 座席账号
+        # @type Agent: String
+        # @param ConcurrencyNumber: 单轮并发呼叫量 1-20
+        # @type ConcurrencyNumber: Integer
+        # @param StartTime: 任务启动时间，Unix 时间戳，到此时间后会自动启动任务
+        # @type StartTime: Integer
+        # @param EndTime: 任务结束时间，Unix 时间戳，到此时间后会自动终止任务
+        # @type EndTime: Integer
+        # @param Callees: 被叫列表，支持 E.164 或不带国家码形式的号码
+        # @type Callees: Array
+        # @param Callers: 主叫列表，使用管理端展示的号码格式
+        # @type Callers: Array
+        # @param CallOrder: 被叫呼叫顺序 0 随机 1 顺序
+        # @type CallOrder: Integer
+        # @param UUI: 调用方自定义数据，最大长度 1024
+        # @type UUI: String
+
+        attr_accessor :SdkAppId, :Name, :Agent, :ConcurrencyNumber, :StartTime, :EndTime, :Callees, :Callers, :CallOrder, :UUI
+
+        def initialize(sdkappid=nil, name=nil, agent=nil, concurrencynumber=nil, starttime=nil, endtime=nil, callees=nil, callers=nil, callorder=nil, uui=nil)
+          @SdkAppId = sdkappid
+          @Name = name
+          @Agent = agent
+          @ConcurrencyNumber = concurrencynumber
+          @StartTime = starttime
+          @EndTime = endtime
+          @Callees = callees
+          @Callers = callers
+          @CallOrder = callorder
+          @UUI = uui
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @Name = params['Name']
+          @Agent = params['Agent']
+          @ConcurrencyNumber = params['ConcurrencyNumber']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Callees = params['Callees']
+          @Callers = params['Callers']
+          @CallOrder = params['CallOrder']
+          @UUI = params['UUI']
+        end
+      end
+
+      # CreateAgentCruiseDialingCampaign返回参数结构体
+      class CreateAgentCruiseDialingCampaignResponse < TencentCloud::Common::AbstractModel
+        # @param CampaignId: 生成的任务 ID
+        # @type CampaignId: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :CampaignId, :RequestId
+
+        def initialize(campaignid=nil, requestid=nil)
+          @CampaignId = campaignid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @CampaignId = params['CampaignId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateAutoCalloutTask请求参数结构体
       class CreateAutoCalloutTaskRequest < TencentCloud::Common::AbstractModel
         # @param SdkAppId: 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
@@ -2235,6 +2343,82 @@ module TencentCloud
             end
           end
           @PendingApplicantIds = params['PendingApplicantIds']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAgentCruiseDialingCampaign请求参数结构体
+      class DescribeAgentCruiseDialingCampaignRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
+        # @type SdkAppId: Integer
+        # @param CampaignId: 任务 ID
+        # @type CampaignId: Integer
+
+        attr_accessor :SdkAppId, :CampaignId
+
+        def initialize(sdkappid=nil, campaignid=nil)
+          @SdkAppId = sdkappid
+          @CampaignId = campaignid
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @CampaignId = params['CampaignId']
+        end
+      end
+
+      # DescribeAgentCruiseDialingCampaign返回参数结构体
+      class DescribeAgentCruiseDialingCampaignResponse < TencentCloud::Common::AbstractModel
+        # @param Name: 任务名称
+        # @type Name: String
+        # @param Agent: 座席账号
+        # @type Agent: String
+        # @param ConcurrencyNumber: 单轮并发呼叫量 1-20
+        # @type ConcurrencyNumber: Integer
+        # @param StartTime: 任务启动时间，Unix 时间戳，到此时间后会自动启动任务
+        # @type StartTime: Integer
+        # @param EndTime: 任务结束时间，Unix 时间戳，到此时间后会自动终止任务
+        # @type EndTime: Integer
+        # @param CallOrder: 被叫呼叫顺序 0 随机 1 顺序
+        # @type CallOrder: Integer
+        # @param UUI: 调用方自定义数据，最大长度 1024
+        # @type UUI: String
+        # @param State: 任务状态 0 未启动 1 运行中 2 已完成 3 已终止
+        # @type State: Integer
+        # @param TotalCalleeCount: 被叫总数
+        # @type TotalCalleeCount: Integer
+        # @param CalledCalleeCount: 已呼被叫数
+        # @type CalledCalleeCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Name, :Agent, :ConcurrencyNumber, :StartTime, :EndTime, :CallOrder, :UUI, :State, :TotalCalleeCount, :CalledCalleeCount, :RequestId
+
+        def initialize(name=nil, agent=nil, concurrencynumber=nil, starttime=nil, endtime=nil, callorder=nil, uui=nil, state=nil, totalcalleecount=nil, calledcalleecount=nil, requestid=nil)
+          @Name = name
+          @Agent = agent
+          @ConcurrencyNumber = concurrencynumber
+          @StartTime = starttime
+          @EndTime = endtime
+          @CallOrder = callorder
+          @UUI = uui
+          @State = state
+          @TotalCalleeCount = totalcalleecount
+          @CalledCalleeCount = calledcalleecount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Agent = params['Agent']
+          @ConcurrencyNumber = params['ConcurrencyNumber']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @CallOrder = params['CallOrder']
+          @UUI = params['UUI']
+          @State = params['State']
+          @TotalCalleeCount = params['TotalCalleeCount']
+          @CalledCalleeCount = params['CalledCalleeCount']
           @RequestId = params['RequestId']
         end
       end
@@ -5735,6 +5919,46 @@ module TencentCloud
         def deserialize(params)
           @StartTime = params['StartTime']
           @EndTime = params['EndTime']
+        end
+      end
+
+      # TransferToManual请求参数结构体
+      class TransferToManualRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
+        # @type SdkAppId: Integer
+        # @param SessionId: 会话ID
+        # @type SessionId: String
+        # @param SkillGroupId: 技能组Id
+        # @type SkillGroupId: Integer
+
+        attr_accessor :SdkAppId, :SessionId, :SkillGroupId
+
+        def initialize(sdkappid=nil, sessionid=nil, skillgroupid=nil)
+          @SdkAppId = sdkappid
+          @SessionId = sessionid
+          @SkillGroupId = skillgroupid
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @SessionId = params['SessionId']
+          @SkillGroupId = params['SkillGroupId']
+        end
+      end
+
+      # TransferToManual返回参数结构体
+      class TransferToManualResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 

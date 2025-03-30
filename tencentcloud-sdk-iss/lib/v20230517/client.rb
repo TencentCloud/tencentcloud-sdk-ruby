@@ -344,6 +344,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 控制设备抓拍--单次，当前仅支持国标设备
+
+        # @param request: Request instance for ControlDeviceSnapshot.
+        # @type request: :class:`Tencentcloud::iss::V20230517::ControlDeviceSnapshotRequest`
+        # @rtype: :class:`Tencentcloud::iss::V20230517::ControlDeviceSnapshotResponse`
+        def ControlDeviceSnapshot(request)
+          body = send_request('ControlDeviceSnapshot', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ControlDeviceSnapshotResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 用于获取设备的实时开流地址。
 
         # @param request: Request instance for ControlDeviceStream.
@@ -1291,6 +1315,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ListAITasksResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取设备抓拍结果列表
+
+        # @param request: Request instance for ListDeviceSnapshots.
+        # @type request: :class:`Tencentcloud::iss::V20230517::ListDeviceSnapshotsRequest`
+        # @rtype: :class:`Tencentcloud::iss::V20230517::ListDeviceSnapshotsResponse`
+        def ListDeviceSnapshots(request)
+          body = send_request('ListDeviceSnapshots', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ListDeviceSnapshotsResponse.new
             model.deserialize(response['Response'])
             model
           else
