@@ -424,7 +424,7 @@ module TencentCloud
         # - `PDF`、`DOC`、`DOCX`、`XLS`、`XLSX`、`PPT`、`PPTX`、`MD`、`TXT`、`PNG`、`JPG`、`JPEG`、`CSV`、`HTML`、`EPUB`、`BMP`、`GIF`、`WEBP`、`HEIC`、`EPS`、`ICNS`、`IM`、`PCX`、`PPM`、`TIFF`、`XBM`、`HEIF`、`JP2`
 
         # **支持的文件大小：**
-        #  - `PDF` 最大500M
+        #  - `PDF` 最大300M
         #  - `DOCX`、`DOC`、`PPT`、`PPTX` 最大 200M
         #  - `TXT`、`MD` 最大10M
         #  - 其他 最大20M
@@ -515,10 +515,10 @@ module TencentCloud
 
         attr_accessor :TableResultType, :ResultType, :EnableMllm, :MaxChunkSize
         extend Gem::Deprecate
-        deprecate :TableResultType, :none, 2025, 3
-        deprecate :TableResultType=, :none, 2025, 3
-        deprecate :ResultType, :none, 2025, 3
-        deprecate :ResultType=, :none, 2025, 3
+        deprecate :TableResultType, :none, 2025, 4
+        deprecate :TableResultType=, :none, 2025, 4
+        deprecate :ResultType, :none, 2025, 4
+        deprecate :ResultType=, :none, 2025, 4
 
         def initialize(tableresulttype=nil, resulttype=nil, enablemllm=nil, maxchunksize=nil)
           @TableResultType = tableresulttype
@@ -571,8 +571,8 @@ module TencentCloud
 
         attr_accessor :FileType, :FileUrl, :FileName, :FileBase64, :FileStartPageNumber, :FileEndPageNumber, :Config
         extend Gem::Deprecate
-        deprecate :FileBase64, :none, 2025, 3
-        deprecate :FileBase64=, :none, 2025, 3
+        deprecate :FileBase64, :none, 2025, 4
+        deprecate :FileBase64=, :none, 2025, 4
 
         def initialize(filetype=nil, fileurl=nil, filename=nil, filebase64=nil, filestartpagenumber=nil, fileendpagenumber=nil, config=nil)
           @FileType = filetype
@@ -918,8 +918,8 @@ module TencentCloud
 
         attr_accessor :PageNumber, :TotalToken, :TotalTokens
         extend Gem::Deprecate
-        deprecate :TotalToken, :none, 2025, 3
-        deprecate :TotalToken=, :none, 2025, 3
+        deprecate :TotalToken, :none, 2025, 4
+        deprecate :TotalToken=, :none, 2025, 4
 
         def initialize(pagenumber=nil, totaltoken=nil, totaltokens=nil)
           @PageNumber = pagenumber
@@ -1107,8 +1107,8 @@ module TencentCloud
 
         attr_accessor :Status, :DocumentRecognizeResultUrl, :FailedPages, :Usage, :RequestId
         extend Gem::Deprecate
-        deprecate :FailedPages, :none, 2025, 3
-        deprecate :FailedPages=, :none, 2025, 3
+        deprecate :FailedPages, :none, 2025, 4
+        deprecate :FailedPages=, :none, 2025, 4
 
         def initialize(status=nil, documentrecognizeresulturl=nil, failedpages=nil, usage=nil, requestid=nil)
           @Status = status
@@ -1662,7 +1662,7 @@ module TencentCloud
         # **支持的文件类型**：PDF、DOC、DOCX、PPT、PPTX、MD、TXT、XLS、XLSX、CSV、PNG、JPG、JPEG、BMP、GIF、WEBP、HEIC、EPS、ICNS、IM、PCX、PPM、TIFF、XBM、HEIF、JP2
         # **支持的文件大小**：
         # - PDF、DOC、DOCX、PPT、PPTX 支持100M
-        # - MD、TXT 支持10M
+        # - MD、TXT、XLS、XLSX、CSV 支持10M
         # - 其他支持20M
         # @type FileType: String
         # @param FileUrl: 文件的 URL 地址。
@@ -1717,7 +1717,9 @@ module TencentCloud
         # @type Progress: String
         # @param ProgressMessage: 进度信息。
         # @type ProgressMessage: String
-        # @param DocumentRecognizeResultUrl: 文档解析结果URL。存储在腾讯云cos，可以通过http请求下载，URL十分钟内有效。
+        # @param DocumentRecognizeResultUrl: 文档解析结果的临时下载地址。
+        # 文件类型为zip压缩包，下载链接有效期30分钟。
+        # 压缩包内包含*.md、*.json以及images文件夹。
         # @type DocumentRecognizeResultUrl: String
         # @param FailedPages: 文档解析失败的页码。
         # @type FailedPages: Array
@@ -2085,8 +2087,8 @@ module TencentCloud
 
         attr_accessor :KnowledgeBaseId, :FileName, :FileType, :FileUrl, :AttributeLabel, :AttributeLabels, :Config
         extend Gem::Deprecate
-        deprecate :AttributeLabel, :none, 2025, 3
-        deprecate :AttributeLabel=, :none, 2025, 3
+        deprecate :AttributeLabel, :none, 2025, 4
+        deprecate :AttributeLabel=, :none, 2025, 4
 
         def initialize(knowledgebaseid=nil, filename=nil, filetype=nil, fileurl=nil, attributelabel=nil, attributelabels=nil, config=nil)
           @KnowledgeBaseId = knowledgebaseid

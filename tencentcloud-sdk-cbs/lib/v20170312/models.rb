@@ -448,12 +448,10 @@ module TencentCloud
         # @param CdcState: 独享集群状态。取值范围：<br><li>NORMAL：正常；</li><br><li>CLOSED：关闭，此时将不可使用该独享集群创建新的云硬盘；</li><br><li>FAULT：独享集群状态异常，此时独享集群将不可操作，腾讯云运维团队将会及时修复该集群；</li><br><li>ISOLATED：因未及时续费导致独享集群被隔离，此时将不可使用该独享集群创建新的云硬盘，对应的云硬盘也将不可操作。</li>
         # @type CdcState: String
         # @param Zone: 独享集群所属的[可用区](/document/product/213/15753#ZoneInfo)ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Zone: String
         # @param CdcName: 独享集群实例名称。
         # @type CdcName: String
         # @param CdcResource: 独享集群的资源容量大小。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CdcResource: :class:`Tencentcloud::Cbs.v20170312.models.CdcSize`
         # @param CdcId: 独享集群实例id。
         # @type CdcId: String
@@ -2132,17 +2130,16 @@ module TencentCloud
       class DiskConfig < TencentCloud::Common::AbstractModel
         # @param Available: 配置是否可用。
         # @type Available: Boolean
-        # @param DiskChargeType: 付费模式。取值范围：<br><li>PREPAID：表示预付费，即包年包月<br><li>POSTPAID_BY_HOUR：表示后付费，即按量计费。
+        # @param DiskChargeType: 付费模式。取值范围：<br><li>PREPAID：表示预付费，即包年包月</li><br><li>POSTPAID_BY_HOUR：表示后付费，即按量计费。</li>
         # @type DiskChargeType: String
         # @param Zone: 云硬盘所属的[可用区](/document/product/213/15753#ZoneInfo)。
         # @type Zone: String
         # @param InstanceFamily: 实例机型系列。详见[实例类型](https://cloud.tencent.com/document/product/213/11518)
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceFamily: String
-        # @param DiskType: 云盘介质类型。取值范围：<br><li>CLOUD_BASIC：表示普通云硬盘<br><li>CLOUD_PREMIUM：表示高性能云硬盘<br><li>CLOUD_SSD：SSD表示SSD云硬盘。
+        # @param DiskType: 云盘介质类型。取值范围：<br><li>CLOUD_BASIC：表示普通云硬盘</li><br><li>CLOUD_PREMIUM：表示高性能云硬盘</li><br><li>CLOUD_SSD：SSD表示SSD云硬盘。</li>
         # @type DiskType: String
         # @param StepSize: 云盘大小变化的最小步长，单位GB。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StepSize: Integer
         # @param ExtraPerformanceRange: 额外的性能区间。
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -2150,14 +2147,13 @@ module TencentCloud
         # @param DeviceClass: 实例机型。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeviceClass: String
-        # @param DiskUsage: 云盘类型。取值范围：<br><li>SYSTEM_DISK：表示系统盘<br><li>DATA_DISK：表示数据盘。
+        # @param DiskUsage: 云盘类型。取值范围：<br><li>SYSTEM_DISK：表示系统盘</li><br><li>DATA_DISK：表示数据盘。</li>
         # @type DiskUsage: String
         # @param MinDiskSize: 最小可配置云盘大小，单位GB。
         # @type MinDiskSize: Integer
         # @param MaxDiskSize: 最大可配置云盘大小，单位GB。
         # @type MaxDiskSize: Integer
         # @param Price: 描述预付费或后付费云盘的价格。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Price: :class:`Tencentcloud::Cbs.v20170312.models.Price`
 
         attr_accessor :Available, :DiskChargeType, :Zone, :InstanceFamily, :DiskType, :StepSize, :ExtraPerformanceRange, :DeviceClass, :DiskUsage, :MinDiskSize, :MaxDiskSize, :Price

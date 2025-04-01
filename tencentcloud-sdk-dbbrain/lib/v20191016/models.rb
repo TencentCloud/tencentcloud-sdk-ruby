@@ -952,6 +952,89 @@ module TencentCloud
         end
       end
 
+      # DescribeMySqlProcessList请求参数结构体
+      class DescribeMySqlProcessListRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID。
+        # @type InstanceId: String
+        # @param ID: 线程的ID，用于筛选线程列表。
+        # @type ID: Integer
+        # @param User: 线程的操作账号名，用于筛选线程列表。
+        # @type User: String
+        # @param Host: 线程的操作主机地址，用于筛选线程列表。
+        # @type Host: String
+        # @param DB: 线程的操作数据库，用于筛选线程列表。
+        # @type DB: String
+        # @param State: 线程的操作状态，用于筛选线程列表。
+        # @type State: String
+        # @param Command: 线程的执行类型，用于筛选线程列表。
+        # @type Command: String
+        # @param Time: 线程的操作时长最小值，单位秒，用于筛选操作时长大于该值的线程列表。
+        # @type Time: Integer
+        # @param Info: 线程的操作语句，用于筛选线程列表。
+        # @type Info: String
+        # @param Limit: 返回数量，默认20。
+        # @type Limit: Integer
+        # @param Product: 服务产品类型，支持值："mysql" - 云数据库 MySQL；"cynosdb" - 云数据库 TDSQL-C for MySQL，默认为"mysql"。
+        # @type Product: String
+
+        attr_accessor :InstanceId, :ID, :User, :Host, :DB, :State, :Command, :Time, :Info, :Limit, :Product
+
+        def initialize(instanceid=nil, id=nil, user=nil, host=nil, db=nil, state=nil, command=nil, time=nil, info=nil, limit=nil, product=nil)
+          @InstanceId = instanceid
+          @ID = id
+          @User = user
+          @Host = host
+          @DB = db
+          @State = state
+          @Command = command
+          @Time = time
+          @Info = info
+          @Limit = limit
+          @Product = product
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @ID = params['ID']
+          @User = params['User']
+          @Host = params['Host']
+          @DB = params['DB']
+          @State = params['State']
+          @Command = params['Command']
+          @Time = params['Time']
+          @Info = params['Info']
+          @Limit = params['Limit']
+          @Product = params['Product']
+        end
+      end
+
+      # DescribeMySqlProcessList返回参数结构体
+      class DescribeMySqlProcessListResponse < TencentCloud::Common::AbstractModel
+        # @param ProcessList: 实时线程列表。
+        # @type ProcessList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ProcessList, :RequestId
+
+        def initialize(processlist=nil, requestid=nil)
+          @ProcessList = processlist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ProcessList'].nil?
+            @ProcessList = []
+            params['ProcessList'].each do |i|
+              mysqlprocess_tmp = MySqlProcess.new
+              mysqlprocess_tmp.deserialize(i)
+              @ProcessList << mysqlprocess_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeSecurityAuditLogDownloadUrls请求参数结构体
       class DescribeSecurityAuditLogDownloadUrlsRequest < TencentCloud::Common::AbstractModel
         # @param SecAuditGroupId: 安全审计组Id。
@@ -2300,6 +2383,50 @@ module TencentCloud
             end
           end
           @Timestamp = params['Timestamp']
+        end
+      end
+
+      # 关系型数据库线程
+      class MySqlProcess < TencentCloud::Common::AbstractModel
+        # @param ID: 线程ID。
+        # @type ID: String
+        # @param User: 线程的操作账号名。
+        # @type User: String
+        # @param Host: 线程的操作主机地址。
+        # @type Host: String
+        # @param DB: 线程的操作数据库。
+        # @type DB: String
+        # @param State: 线程的操作状态。
+        # @type State: String
+        # @param Command: 线程的执行类型。
+        # @type Command: String
+        # @param Time: 线程的操作时长，单位秒。
+        # @type Time: String
+        # @param Info: 线程的操作语句。
+        # @type Info: String
+
+        attr_accessor :ID, :User, :Host, :DB, :State, :Command, :Time, :Info
+
+        def initialize(id=nil, user=nil, host=nil, db=nil, state=nil, command=nil, time=nil, info=nil)
+          @ID = id
+          @User = user
+          @Host = host
+          @DB = db
+          @State = state
+          @Command = command
+          @Time = time
+          @Info = info
+        end
+
+        def deserialize(params)
+          @ID = params['ID']
+          @User = params['User']
+          @Host = params['Host']
+          @DB = params['DB']
+          @State = params['State']
+          @Command = params['Command']
+          @Time = params['Time']
+          @Info = params['Info']
         end
       end
 

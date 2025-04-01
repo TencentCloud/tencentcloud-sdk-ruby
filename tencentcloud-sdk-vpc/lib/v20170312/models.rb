@@ -4663,8 +4663,8 @@ module TencentCloud
 
         attr_accessor :NatGatewayName, :VpcId, :InternetMaxBandwidthOut, :MaxConcurrentConnection, :AddressCount, :PublicIpAddresses, :Zone, :Tags, :SubnetId, :StockPublicIpAddressesBandwidthOut, :PublicIpAddressesBandwidthOut, :PublicIpFromSameZone, :NatProductVersion
         extend Gem::Deprecate
-        deprecate :SubnetId, :none, 2025, 3
-        deprecate :SubnetId=, :none, 2025, 3
+        deprecate :SubnetId, :none, 2025, 4
+        deprecate :SubnetId=, :none, 2025, 4
 
         def initialize(natgatewayname=nil, vpcid=nil, internetmaxbandwidthout=nil, maxconcurrentconnection=nil, addresscount=nil, publicipaddresses=nil, zone=nil, tags=nil, subnetid=nil, stockpublicipaddressesbandwidthout=nil, publicipaddressesbandwidthout=nil, publicipfromsamezone=nil, natproductversion=nil)
           @NatGatewayName = natgatewayname
@@ -12017,6 +12017,73 @@ module TencentCloud
         end
       end
 
+      # DescribeNatGatewayFlowMonitorDetail请求参数结构体
+      class DescribeNatGatewayFlowMonitorDetailRequest < TencentCloud::Common::AbstractModel
+        # @param TimePoint: 时间点。表示要查询的时刻。聚合粒度为60、300时，会查询最近一个整分钟开始的聚合周期；聚合粒度为3600时，会查询最近一个整点开始的聚合周期；聚合粒度为86400时，会查询最近一个整天开始的聚合周期。形如：`2019-03-24T10:51:23+08:00`。
+        # @type TimePoint: String
+        # @param NatGatewayId: NAT网关的ID，形如：`nat-ig8xpno8`。
+        # @type NatGatewayId: String
+        # @param TopN: 展示排序靠前的数据。默认值：10，表示默认展示排序前 10 的数据。最大值：100。
+        # @type TopN: Integer
+        # @param OrderField: 排序字段。支持：入包量`InPkg`、出包量`OutPkg`、入流量`InTraffic`、出流量`OutTraffic`，标准型nat额外支持 并发连接数`ConcurrentConnectionCount` 、新建连接速率`NewConnectionRate`。默认值`OutTraffic`。
+        # @type OrderField: String
+        # @param AggregationTimeRange: 聚合时间粒度。支持：60、300、3600、86400，即按照1分钟、5分钟、1小时、1天进行聚合查询。
+        # @type AggregationTimeRange: Integer
+        # @param AllMetricMode: 是否查询全部指标。默认值：True，表示查询全部指标。
+        # @type AllMetricMode: Boolean
+
+        attr_accessor :TimePoint, :NatGatewayId, :TopN, :OrderField, :AggregationTimeRange, :AllMetricMode
+
+        def initialize(timepoint=nil, natgatewayid=nil, topn=nil, orderfield=nil, aggregationtimerange=nil, allmetricmode=nil)
+          @TimePoint = timepoint
+          @NatGatewayId = natgatewayid
+          @TopN = topn
+          @OrderField = orderfield
+          @AggregationTimeRange = aggregationtimerange
+          @AllMetricMode = allmetricmode
+        end
+
+        def deserialize(params)
+          @TimePoint = params['TimePoint']
+          @NatGatewayId = params['NatGatewayId']
+          @TopN = params['TopN']
+          @OrderField = params['OrderField']
+          @AggregationTimeRange = params['AggregationTimeRange']
+          @AllMetricMode = params['AllMetricMode']
+        end
+      end
+
+      # DescribeNatGatewayFlowMonitorDetail返回参数结构体
+      class DescribeNatGatewayFlowMonitorDetailResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 符合条件的对象数。
+        # @type TotalCount: Integer
+        # @param NatGatewayFlowMonitorDetailSet: 网关流量监控明细。
+        # @type NatGatewayFlowMonitorDetailSet: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :NatGatewayFlowMonitorDetailSet, :RequestId
+
+        def initialize(totalcount=nil, natgatewayflowmonitordetailset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @NatGatewayFlowMonitorDetailSet = natgatewayflowmonitordetailset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['NatGatewayFlowMonitorDetailSet'].nil?
+            @NatGatewayFlowMonitorDetailSet = []
+            params['NatGatewayFlowMonitorDetailSet'].each do |i|
+              natgatewayflowmonitordetail_tmp = NatGatewayFlowMonitorDetail.new
+              natgatewayflowmonitordetail_tmp.deserialize(i)
+              @NatGatewayFlowMonitorDetailSet << natgatewayflowmonitordetail_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeNatGatewaySourceIpTranslationNatRules请求参数结构体
       class DescribeNatGatewaySourceIpTranslationNatRulesRequest < TencentCloud::Common::AbstractModel
         # @param NatGatewayId: NAT网关统一 ID，形如：`nat-123xx454`。
@@ -18271,8 +18338,8 @@ module TencentCloud
 
         attr_accessor :EncryptAlgorithm, :IntegrityAlgorith, :IPSECSaLifetimeSeconds, :PfsDhGroup, :IPSECSaLifetimeTraffic, :IntegrityAlgorithm
         extend Gem::Deprecate
-        deprecate :IntegrityAlgorith, :none, 2025, 3
-        deprecate :IntegrityAlgorith=, :none, 2025, 3
+        deprecate :IntegrityAlgorith, :none, 2025, 4
+        deprecate :IntegrityAlgorith=, :none, 2025, 4
 
         def initialize(encryptalgorithm=nil, integrityalgorith=nil, ipsecsalifetimeseconds=nil, pfsdhgroup=nil, ipsecsalifetimetraffic=nil, integrityalgorithm=nil)
           @EncryptAlgorithm = encryptalgorithm
@@ -22628,6 +22695,46 @@ module TencentCloud
           @NatGatewayId = params['NatGatewayId']
           @VpcId = params['VpcId']
           @CreatedTime = params['CreatedTime']
+        end
+      end
+
+      # nat网关流量监控明细。
+      class NatGatewayFlowMonitorDetail < TencentCloud::Common::AbstractModel
+        # @param PrivateIpAddress: 来源`IP`。
+        # @type PrivateIpAddress: String
+        # @param InPkg: 入包量。
+        # @type InPkg: Integer
+        # @param OutPkg: 出包量。
+        # @type OutPkg: Integer
+        # @param InTraffic: 入流量，单位：`Byte`。
+        # @type InTraffic: Integer
+        # @param OutTraffic: 出流量，单位：`Byte`。
+        # @type OutTraffic: Integer
+        # @param ConcurrentConnectionCount: 并发连接数。仅标准型nat支持此参数。
+        # @type ConcurrentConnectionCount: Integer
+        # @param NewConnectionRate: 新建连接速率。仅标准型nat支持此参数。
+        # @type NewConnectionRate: Integer
+
+        attr_accessor :PrivateIpAddress, :InPkg, :OutPkg, :InTraffic, :OutTraffic, :ConcurrentConnectionCount, :NewConnectionRate
+
+        def initialize(privateipaddress=nil, inpkg=nil, outpkg=nil, intraffic=nil, outtraffic=nil, concurrentconnectioncount=nil, newconnectionrate=nil)
+          @PrivateIpAddress = privateipaddress
+          @InPkg = inpkg
+          @OutPkg = outpkg
+          @InTraffic = intraffic
+          @OutTraffic = outtraffic
+          @ConcurrentConnectionCount = concurrentconnectioncount
+          @NewConnectionRate = newconnectionrate
+        end
+
+        def deserialize(params)
+          @PrivateIpAddress = params['PrivateIpAddress']
+          @InPkg = params['InPkg']
+          @OutPkg = params['OutPkg']
+          @InTraffic = params['InTraffic']
+          @OutTraffic = params['OutTraffic']
+          @ConcurrentConnectionCount = params['ConcurrentConnectionCount']
+          @NewConnectionRate = params['NewConnectionRate']
         end
       end
 

@@ -709,7 +709,6 @@ module TencentCloud
         # @param OriginType: 源站类型。取值有：<li>HTTP：HTTP 源。</li>
         # @type OriginType: String
         # @param HttpOriginConfig: 回源源站配置。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HttpOriginConfig: :class:`Tencentcloud::Vod.v20240718.models.IncrementalMigrationHttpOriginConfig`
 
         attr_accessor :StrategyId, :StrategyName, :SubAppId, :BucketId, :OriginType, :HttpOriginConfig

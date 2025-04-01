@@ -211,15 +211,12 @@ module TencentCloud
         # @param Id: 实体ID
         # @type Id: String
         # @param Name: 实体名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Uin: 实体Uin
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Uin: Integer
         # @param RelatedType: 关联类型。1 用户关联 ； 2 用户组关联 3 角色关联
         # @type RelatedType: Integer
         # @param AttachmentTime: 策略关联时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AttachmentTime: String
 
         attr_accessor :Id, :Name, :Uin, :RelatedType, :AttachmentTime
@@ -282,19 +279,14 @@ module TencentCloud
         # @param PolicyId: 策略id
         # @type PolicyId: Integer
         # @param PolicyName: 策略名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PolicyName: String
         # @param AddTime: 创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AddTime: String
         # @param CreateMode: 创建来源，1 通过控制台创建, 2 通过策略语法创建
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateMode: Integer
         # @param PolicyType: 取值为User和QCS。User代表自定义策略，QCS代表系统策略
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PolicyType: String
         # @param Remark: 策略备注
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Remark: String
         # @param OperateOwnerUin: 策略关联操作者主账号
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -306,10 +298,8 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OperateUinType: Integer
         # @param Deactived: 是否已下线，1代表已下线，0代表未下线
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Deactived: Integer
         # @param DeactivedDetail: 已下线的产品列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeactivedDetail: Array
 
         attr_accessor :PolicyId, :PolicyName, :AddTime, :CreateMode, :PolicyType, :Remark, :OperateOwnerUin, :OperateUin, :OperateUinType, :Deactived, :DeactivedDetail
@@ -432,18 +422,14 @@ module TencentCloud
         # @param AddTime: 绑定时间
         # @type AddTime: String
         # @param PolicyType: 策略类型，User表示自定义策略，QCS表示预设策略
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PolicyType: String
         # @param CreateMode: 策略创建方式，1表示按产品功能或项目权限创建，其他表示按策略语法创建
         # @type CreateMode: Integer
         # @param Deactived: 是否已下线(0:否 1:是)
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Deactived: Integer
         # @param DeactivedDetail: 已下线的产品列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeactivedDetail: Array
         # @param Description: 策略描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
 
         attr_accessor :PolicyId, :PolicyName, :AddTime, :PolicyType, :CreateMode, :Deactived, :DeactivedDetail, :Description
@@ -486,13 +472,10 @@ module TencentCloud
         # @param CreateMode: 创建模式(1表示按产品或项目权限创建的策略，其他表示策略语法创建的策略)
         # @type CreateMode: String
         # @param Groups: 随组关联信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Groups: Array
         # @param Deactived: 是否已下线(0:否 1:是)
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Deactived: Integer
         # @param DeactivedDetail: 已下线的产品列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeactivedDetail: Array
 
         attr_accessor :PolicyId, :PolicyName, :Description, :AddTime, :StrategyType, :CreateMode, :Groups, :Deactived, :DeactivedDetail
@@ -923,7 +906,6 @@ module TencentCloud
       # CreatePolicyVersion返回参数结构体
       class CreatePolicyVersionResponse < TencentCloud::Common::AbstractModel
         # @param VersionId: 策略版本号
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VersionId: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -987,7 +969,6 @@ module TencentCloud
       # CreateRole返回参数结构体
       class CreateRoleResponse < TencentCloud::Common::AbstractModel
         # @param RoleId: 角色ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RoleId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1708,7 +1689,6 @@ module TencentCloud
       # DescribeRoleList返回参数结构体
       class DescribeRoleListResponse < TencentCloud::Common::AbstractModel
         # @param List: 角色详情列表。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type List: Array
         # @param TotalNum: 角色总数
         # @type TotalNum: Integer
@@ -1762,7 +1742,6 @@ module TencentCloud
         # @param OffsiteFlag: 异地登录保护设置
         # @type OffsiteFlag: :class:`Tencentcloud::Cam.v20190116.models.OffsiteFlag`
         # @param PromptTrust: 是否提示信任设备1 ：提示 0: 不提示
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PromptTrust: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2223,8 +2202,8 @@ module TencentCloud
 
         attr_accessor :Policies, :Roles, :Idps, :User, :Group, :Member, :IdentityProviders, :RequestId
         extend Gem::Deprecate
-        deprecate :Idps, :none, 2025, 3
-        deprecate :Idps=, :none, 2025, 3
+        deprecate :Idps, :none, 2025, 4
+        deprecate :Idps=, :none, 2025, 4
 
         def initialize(policies=nil, roles=nil, idps=nil, user=nil, group=nil, member=nil, identityproviders=nil, requestid=nil)
           @Policies = policies
@@ -2367,28 +2346,21 @@ module TencentCloud
       # GetPolicy返回参数结构体
       class GetPolicyResponse < TencentCloud::Common::AbstractModel
         # @param PolicyName: 策略名。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PolicyName: String
         # @param Description: 策略描述。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
         # @param Type: 1 表示自定义策略，2 表示预设策略。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: Integer
         # @param AddTime: 策略创建时间。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AddTime: String
         # @param UpdateTime: 策略最近更新时间。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: String
         # @param PolicyDocument: 策略文档。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PolicyDocument: String
         # @param PresetAlias: 备注。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PresetAlias: String
         # @param IsServiceLinkedRolePolicy: 是否是服务相关策略，0代表不是服务相关策略，1代表是服务相关策略。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsServiceLinkedRolePolicy: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2841,10 +2813,8 @@ module TencentCloud
         # @param Email: 邮箱
         # @type Email: String
         # @param RecentlyLoginIP: 最近一次登录ip
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RecentlyLoginIP: String
         # @param RecentlyLoginTime: 最近一次登录时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RecentlyLoginTime: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3367,10 +3337,8 @@ module TencentCloud
       # ListEntitiesForPolicy返回参数结构体
       class ListEntitiesForPolicyResponse < TencentCloud::Common::AbstractModel
         # @param TotalNum: 实体总数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalNum: Integer
         # @param List: 实体列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type List: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3719,7 +3687,6 @@ module TencentCloud
         # IsAttached: 当需要查询标记实体是否已经关联策略时不为null。0表示未关联策略，1表示已关联策略
         # @type List: Array
         # @param ServiceTypeList: 保留字段
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ServiceTypeList: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3767,7 +3734,6 @@ module TencentCloud
       # ListPolicyVersions返回参数结构体
       class ListPolicyVersionsResponse < TencentCloud::Common::AbstractModel
         # @param Versions: 策略版本列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Versions: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4202,13 +4168,10 @@ module TencentCloud
       # 策略版本列表元素结构
       class PolicyVersionItem < TencentCloud::Common::AbstractModel
         # @param VersionId: 策略版本号
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VersionId: Integer
         # @param CreateDate: 策略版本创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateDate: String
         # @param IsDefaultVersion: 是否是正在生效的版本。0表示不是，1表示是
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsDefaultVersion: Integer
 
         attr_accessor :VersionId, :CreateDate, :IsDefaultVersion
@@ -4322,10 +4285,8 @@ module TencentCloud
         # @param IsReceiverOwner: 是否主联系人
         # @type IsReceiverOwner: Integer
         # @param WechatFlag: 是否允许微信接收通知
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WechatFlag: Integer
         # @param Uin: 账号uin
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Uin: Integer
 
         attr_accessor :Uid, :Name, :Remark, :PhoneNumber, :PhoneFlag, :Email, :EmailFlag, :IsReceiverOwner, :WechatFlag, :Uin
@@ -5458,10 +5419,8 @@ module TencentCloud
         # @param Email: 邮箱
         # @type Email: String
         # @param WeChatWorkUserId: 企业微信UserId
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WeChatWorkUserId: String
         # @param CreateTime: 创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
 
         attr_accessor :Uin, :Name, :Uid, :Remark, :ConsoleLogin, :PhoneNum, :CountryCode, :Email, :WeChatWorkUserId, :CreateTime

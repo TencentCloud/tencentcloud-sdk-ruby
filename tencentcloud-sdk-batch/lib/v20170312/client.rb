@@ -83,30 +83,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 创建黑石计算环境
-
-        # @param request: Request instance for CreateCpmComputeEnv.
-        # @type request: :class:`Tencentcloud::batch::V20170312::CreateCpmComputeEnvRequest`
-        # @rtype: :class:`Tencentcloud::batch::V20170312::CreateCpmComputeEnvResponse`
-        def CreateCpmComputeEnv(request)
-          body = send_request('CreateCpmComputeEnv', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = CreateCpmComputeEnvResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 用于创建任务模板
 
         # @param request: Request instance for CreateTaskTemplate.
@@ -335,30 +311,6 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeComputeEnvsResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 创建黑石计算环境时，查询批量计算环境支持的黑石操作系统信息
-
-        # @param request: Request instance for DescribeCpmOsInfo.
-        # @type request: :class:`Tencentcloud::batch::V20170312::DescribeCpmOsInfoRequest`
-        # @rtype: :class:`Tencentcloud::batch::V20170312::DescribeCpmOsInfoResponse`
-        def DescribeCpmOsInfo(request)
-          body = send_request('DescribeCpmOsInfo', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeCpmOsInfoResponse.new
             model.deserialize(response['Response'])
             model
           else

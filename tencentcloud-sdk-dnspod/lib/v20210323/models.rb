@@ -184,7 +184,6 @@ module TencentCloud
       # CheckRecordSnapshotRollback返回参数结构体
       class CheckRecordSnapshotRollbackResponse < TencentCloud::Common::AbstractModel
         # @param Reason: 错误原因
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Reason: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -240,10 +239,8 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Timeout: Integer
         # @param Failed: 检查失败数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Failed: Integer
         # @param FailedRecordList: 失败记录信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FailedRecordList: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -416,24 +413,19 @@ module TencentCloud
       # 批量添加域名返回结构
       class CreateDomainBatchDetail < TencentCloud::Common::AbstractModel
         # @param RecordList: 见RecordInfoBatch
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RecordList: Array
         # @param Id: 任务编号
         # @type Id: Integer
         # @param Domain: 域名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Domain: String
         # @param DomainGrade: 域名等级
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DomainGrade: String
         # @param ErrMsg: 错误信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrMsg: String
         # @param Status: 该条任务运行状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: String
         # @param Operation: 操作类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Operation: String
 
         attr_accessor :RecordList, :Id, :Domain, :DomainGrade, :ErrMsg, :Status, :Operation
@@ -469,25 +461,18 @@ module TencentCloud
       # 批量添加域名任务中的记录信息
       class CreateDomainBatchRecord < TencentCloud::Common::AbstractModel
         # @param SubDomain: 子域名(主机记录)。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubDomain: String
         # @param RecordType: 记录类型, 详见 DescribeRecordType 接口
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RecordType: String
         # @param RecordLine: 解析记录的线路，详见 DescribeRecordLineList 接口
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RecordLine: String
         # @param Value: 记录值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: String
         # @param TTL: 记录的 TTL 值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TTL: Integer
         # @param Status: 记录添加状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: String
         # @param Operation: 操作类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Operation: String
         # @param ErrMsg: 错误信息
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -859,27 +844,22 @@ module TencentCloud
       # 批量添加记录返回结构
       class CreateRecordBatchDetail < TencentCloud::Common::AbstractModel
         # @param RecordList: 见RecordInfoBatch
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RecordList: Array
         # @param Id: 任务编号
         # @type Id: Integer
         # @param Domain: 域名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Domain: String
         # @param DomainGrade: 域名等级
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DomainGrade: String
         # @param ErrMsg: 错误信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrMsg: String
         # @param Status: 该条任务运行状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: String
         # @param Operation: 操作类型
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Operation: String
         # @param DomainId: 域名ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DomainId: Integer
 
         attr_accessor :RecordList, :Id, :Domain, :DomainGrade, :ErrMsg, :Status, :Operation, :DomainId
@@ -917,22 +897,16 @@ module TencentCloud
       # 批量添加记录任务中的记录信息
       class CreateRecordBatchRecord < TencentCloud::Common::AbstractModel
         # @param SubDomain: 子域名(主机记录)。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubDomain: String
         # @param RecordType: 记录类型, 详见 DescribeRecordType 接口
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RecordType: String
         # @param RecordLine: 解析记录的线路，详见 DescribeRecordLineList 接口
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RecordLine: String
         # @param Value: 记录值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: String
         # @param TTL: 记录的 TTL 值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TTL: Integer
         # @param Status: 记录添加状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: String
         # @param Operation: 操作类型
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -943,10 +917,8 @@ module TencentCloud
         # @param Id: 此条记录在列表中的ID
         # @type Id: Integer
         # @param MX: 记录的MX权重
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MX: Integer
         # @param Weight: 记录的权重
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Weight: Integer
 
         attr_accessor :SubDomain, :RecordType, :RecordLine, :Value, :TTL, :Status, :Operation, :ErrMsg, :Id, :MX, :Weight
@@ -1924,7 +1896,6 @@ module TencentCloud
       # 查看任务详情返回结构
       class DescribeBatchTaskDetail < TencentCloud::Common::AbstractModel
         # @param RecordList: 见BatchRecordInfo
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RecordList: Array
         # @param Id: 任务编号
         # @type Id: Integer
@@ -1932,13 +1903,11 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Domain: String
         # @param DomainGrade: 域名等级
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DomainGrade: String
         # @param ErrMsg: 错误信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrMsg: String
         # @param Status: 该条任务运行状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: String
         # @param Operation: 操作类型
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -4610,7 +4579,6 @@ module TencentCloud
         # DOMAIN_EXPORT：导出域名列表
         # @type Type: String
         # @param LeftTime: 剩余时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LeftTime: :class:`Tencentcloud::Dnspod.v20210323.models.LeftTime`
 
         attr_accessor :FileId, :CreatedOn, :UpdatedOn, :Domains, :Name, :FileUrl, :JobId, :Progress, :Status, :Type, :LeftTime
@@ -4698,13 +4666,10 @@ module TencentCloud
       # 批量生成文件剩余时间
       class LeftTime < TencentCloud::Common::AbstractModel
         # @param Days: 剩余天数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Days: Integer
         # @param Hours: 剩余小时数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Hours: Integer
         # @param Mins: 剩余分钟数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Mins: Integer
 
         attr_accessor :Days, :Hours, :Mins

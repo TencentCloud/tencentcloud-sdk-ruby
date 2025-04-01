@@ -1669,130 +1669,6 @@ module TencentCloud
         end
       end
 
-      # 文档元素字段
-      class DocumentElement < TencentCloud::Common::AbstractModel
-        # @param Index: 文档元素索引
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Index: Integer
-        # @param Type: 元素类型，包括paragraph、table、formula、figure、title、header、footer、figure_text
-
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Type: String
-        # @param Text: 元素内容，当type为figure或formula(公式识别关闭)时该字段内容为图片的位置
-
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Text: String
-        # @param Polygon: 元素坐标，左上角(x1, y1)，右上角(x2, y2)，右下角(x3, y3)，左下角(x4, y4)
-
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Polygon: :class:`Tencentcloud::Ocr.v20181119.models.Polygon`
-        # @param Level: 元素层级
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Level: Integer
-        # @param InsetImageName: 入参开启EnableInsetImage后返回，表示在InsetImagePackage中的内嵌图片名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type InsetImageName: String
-        # @param Elements: 嵌套的文档元素信息，一般包含的是文档内嵌入图片的文字识别结果
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Elements: Array
-
-        attr_accessor :Index, :Type, :Text, :Polygon, :Level, :InsetImageName, :Elements
-
-        def initialize(index=nil, type=nil, text=nil, polygon=nil, level=nil, insetimagename=nil, elements=nil)
-          @Index = index
-          @Type = type
-          @Text = text
-          @Polygon = polygon
-          @Level = level
-          @InsetImageName = insetimagename
-          @Elements = elements
-        end
-
-        def deserialize(params)
-          @Index = params['Index']
-          @Type = params['Type']
-          @Text = params['Text']
-          unless params['Polygon'].nil?
-            @Polygon = Polygon.new
-            @Polygon.deserialize(params['Polygon'])
-          end
-          @Level = params['Level']
-          @InsetImageName = params['InsetImageName']
-          unless params['Elements'].nil?
-            @Elements = []
-            params['Elements'].each do |i|
-              documentelement_tmp = DocumentElement.new
-              documentelement_tmp.deserialize(i)
-              @Elements << documentelement_tmp
-            end
-          end
-        end
-      end
-
-      # 单页文档识别的内容
-      class DocumentRecognizeInfo < TencentCloud::Common::AbstractModel
-        # @param PageNumber: 输入PDF文件的页码，从1开始。输入图片的话值始终为1
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type PageNumber: Integer
-        # @param Angle: 旋转角度
-
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Angle: Integer
-        # @param Height: AI算法识别处理后的图片高度
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Height: Integer
-        # @param Width: AI算法识别处理后的图片宽度
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Width: Integer
-        # @param OriginHeight: 图片的原始高度，输入PDF文件则表示单页PDF转图片之后的图片高度
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type OriginHeight: Integer
-        # @param OriginWidth: 图片的原始宽度，输入PDF文件则表示单页PDF转图片之后的图片宽度
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type OriginWidth: Integer
-        # @param Elements: 文档元素信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Elements: Array
-        # @param RotatedAngle: 旋转角度
-
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type RotatedAngle: Float
-
-        attr_accessor :PageNumber, :Angle, :Height, :Width, :OriginHeight, :OriginWidth, :Elements, :RotatedAngle
-        extend Gem::Deprecate
-        deprecate :Angle, :none, 2025, 3
-        deprecate :Angle=, :none, 2025, 3
-
-        def initialize(pagenumber=nil, angle=nil, height=nil, width=nil, originheight=nil, originwidth=nil, elements=nil, rotatedangle=nil)
-          @PageNumber = pagenumber
-          @Angle = angle
-          @Height = height
-          @Width = width
-          @OriginHeight = originheight
-          @OriginWidth = originwidth
-          @Elements = elements
-          @RotatedAngle = rotatedangle
-        end
-
-        def deserialize(params)
-          @PageNumber = params['PageNumber']
-          @Angle = params['Angle']
-          @Height = params['Height']
-          @Width = params['Width']
-          @OriginHeight = params['OriginHeight']
-          @OriginWidth = params['OriginWidth']
-          unless params['Elements'].nil?
-            @Elements = []
-            params['Elements'].each do |i|
-              documentelement_tmp = DocumentElement.new
-              documentelement_tmp.deserialize(i)
-              @Elements << documentelement_tmp
-            end
-          end
-          @RotatedAngle = params['RotatedAngle']
-        end
-      end
-
       # DriverLicenseOCR请求参数结构体
       class DriverLicenseOCRRequest < TencentCloud::Common::AbstractModel
         # @param ImageBase64: 图片的 Base64 值。要求图片经Base64编码后不超过 7M，分辨率建议500*800以上，支持PNG、JPG、JPEG、BMP格式。建议卡片部分占据图片2/3以上。
@@ -3626,8 +3502,8 @@ module TencentCloud
 
         attr_accessor :TextDetections, :Angel, :Angle, :RequestId
         extend Gem::Deprecate
-        deprecate :Angel, :none, 2025, 3
-        deprecate :Angel=, :none, 2025, 3
+        deprecate :Angel, :none, 2025, 4
+        deprecate :Angel=, :none, 2025, 4
 
         def initialize(textdetections=nil, angel=nil, angle=nil, requestid=nil)
           @TextDetections = textdetections
@@ -3733,8 +3609,8 @@ module TencentCloud
 
         attr_accessor :TextDetections, :Language, :Angel, :PdfPageSize, :Angle, :RequestId
         extend Gem::Deprecate
-        deprecate :Angel, :none, 2025, 3
-        deprecate :Angel=, :none, 2025, 3
+        deprecate :Angel, :none, 2025, 4
+        deprecate :Angel=, :none, 2025, 4
 
         def initialize(textdetections=nil, language=nil, angel=nil, pdfpagesize=nil, angle=nil, requestid=nil)
           @TextDetections = textdetections
@@ -3830,8 +3706,8 @@ module TencentCloud
 
         attr_accessor :TextDetections, :Angel, :Angle, :RequestId
         extend Gem::Deprecate
-        deprecate :Angel, :none, 2025, 3
-        deprecate :Angel=, :none, 2025, 3
+        deprecate :Angel, :none, 2025, 4
+        deprecate :Angel=, :none, 2025, 4
 
         def initialize(textdetections=nil, angel=nil, angle=nil, requestid=nil)
           @TextDetections = textdetections
@@ -3984,8 +3860,8 @@ module TencentCloud
 
         attr_accessor :TextDetections, :Angel, :Angle, :RequestId
         extend Gem::Deprecate
-        deprecate :Angel, :none, 2025, 3
-        deprecate :Angel=, :none, 2025, 3
+        deprecate :Angel, :none, 2025, 4
+        deprecate :Angel=, :none, 2025, 4
 
         def initialize(textdetections=nil, angel=nil, angle=nil, requestid=nil)
           @TextDetections = textdetections
@@ -4214,8 +4090,8 @@ module TencentCloud
 
         attr_accessor :ReturnHeadImage, :DetectFake, :ImageBase64, :ImageUrl
         extend Gem::Deprecate
-        deprecate :DetectFake, :none, 2025, 3
-        deprecate :DetectFake=, :none, 2025, 3
+        deprecate :DetectFake, :none, 2025, 4
+        deprecate :DetectFake=, :none, 2025, 4
 
         def initialize(returnheadimage=nil, detectfake=nil, imagebase64=nil, imageurl=nil)
           @ReturnHeadImage = returnheadimage
@@ -4284,10 +4160,10 @@ module TencentCloud
 
         attr_accessor :CnName, :EnName, :TelexCode, :Sex, :Birthday, :Permanent, :IdNum, :Symbol, :FirstIssueDate, :CurrentIssueDate, :FakeDetectResult, :HeadImage, :WarningCode, :WarnCardInfos, :RequestId
         extend Gem::Deprecate
-        deprecate :FakeDetectResult, :none, 2025, 3
-        deprecate :FakeDetectResult=, :none, 2025, 3
-        deprecate :WarningCode, :none, 2025, 3
-        deprecate :WarningCode=, :none, 2025, 3
+        deprecate :FakeDetectResult, :none, 2025, 4
+        deprecate :FakeDetectResult=, :none, 2025, 4
+        deprecate :WarningCode, :none, 2025, 4
+        deprecate :WarningCode=, :none, 2025, 4
 
         def initialize(cnname=nil, enname=nil, telexcode=nil, sex=nil, birthday=nil, permanent=nil, idnum=nil, symbol=nil, firstissuedate=nil, currentissuedate=nil, fakedetectresult=nil, headimage=nil, warningcode=nil, warncardinfos=nil, requestid=nil)
           @CnName = cnname
@@ -5640,8 +5516,8 @@ module TencentCloud
 
         attr_accessor :ID, :Name, :Address, :Sex, :Warn, :Image, :AdvancedInfo, :Type, :Birthday, :MyKadNumber, :WarnCardInfos, :RequestId
         extend Gem::Deprecate
-        deprecate :Warn, :none, 2025, 3
-        deprecate :Warn=, :none, 2025, 3
+        deprecate :Warn, :none, 2025, 4
+        deprecate :Warn=, :none, 2025, 4
 
         def initialize(id=nil, name=nil, address=nil, sex=nil, warn=nil, image=nil, advancedinfo=nil, type=nil, birthday=nil, mykadnumber=nil, warncardinfos=nil, requestid=nil)
           @ID = id
@@ -9631,100 +9507,6 @@ module TencentCloud
           unless params['PermanentResidencePermitInfo'].nil?
             @PermanentResidencePermitInfo = PermanentResidencePermitInfo.new
             @PermanentResidencePermitInfo.deserialize(params['PermanentResidencePermitInfo'])
-          end
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # ReconstructDocument配置选项
-      class ReconstructDocumentConfig < TencentCloud::Common::AbstractModel
-        # @param EnableInsetImage: 生成的Markdown中是否嵌入图片
-        # @type EnableInsetImage: Boolean
-
-        attr_accessor :EnableInsetImage
-
-        def initialize(enableinsetimage=nil)
-          @EnableInsetImage = enableinsetimage
-        end
-
-        def deserialize(params)
-          @EnableInsetImage = params['EnableInsetImage']
-        end
-      end
-
-      # ReconstructDocument请求参数结构体
-      class ReconstructDocumentRequest < TencentCloud::Common::AbstractModel
-        # @param FileType: PDF,Image
-        # @type FileType: String
-        # @param FileBase64: 图片的 Base64 值。 支持的图片格式：PNG、JPG、JPEG、PDF，暂不支持 GIF 格式。 支持的图片大小：所下载图片经Base64编码后不超过 8M。图片下载时间不超过 3 秒。 支持的图片像素：单边介于20-10000px之间。 图片的 FileUrl、FileBase64 必须提供一个，如果都提供，只使用 FileUrl。
-        # @type FileBase64: String
-        # @param FileUrl: 图片的 Url 地址。 支持的图片格式：PNG、JPG、JPEG、PDF，暂不支持 GIF 格式。 支持的图片大小：所下载图片经 Base64 编码后不超过 8M。图片下载时间不超过 3 秒。 支持的图片像素：单边介于20-10000px之间。 图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。 非腾讯云存储的 Url 速度和稳定性可能受一定影响。
-        # @type FileUrl: String
-        # @param FileStartPageNumber: 当传入文件是PDF类型（IsPdf=true）时，用来指定pdf识别的起始页码，识别的页码包含当前值。
-        # @type FileStartPageNumber: Integer
-        # @param FileEndPageNumber: 当传入文件是PDF类型（IsPdf=true）时，用来指定pdf识别的结束页码，识别的页码包含当前值。
-        # 单次调用，最多支持10页pdf的智能识别。
-        # @type FileEndPageNumber: Integer
-        # @param Config: 配置选项，支持配置是否在生成的Markdown中是否嵌入图片
-        # @type Config: :class:`Tencentcloud::Ocr.v20181119.models.ReconstructDocumentConfig`
-
-        attr_accessor :FileType, :FileBase64, :FileUrl, :FileStartPageNumber, :FileEndPageNumber, :Config
-
-        def initialize(filetype=nil, filebase64=nil, fileurl=nil, filestartpagenumber=nil, fileendpagenumber=nil, config=nil)
-          @FileType = filetype
-          @FileBase64 = filebase64
-          @FileUrl = fileurl
-          @FileStartPageNumber = filestartpagenumber
-          @FileEndPageNumber = fileendpagenumber
-          @Config = config
-        end
-
-        def deserialize(params)
-          @FileType = params['FileType']
-          @FileBase64 = params['FileBase64']
-          @FileUrl = params['FileUrl']
-          @FileStartPageNumber = params['FileStartPageNumber']
-          @FileEndPageNumber = params['FileEndPageNumber']
-          unless params['Config'].nil?
-            @Config = ReconstructDocumentConfig.new
-            @Config.deserialize(params['Config'])
-          end
-        end
-      end
-
-      # ReconstructDocument返回参数结构体
-      class ReconstructDocumentResponse < TencentCloud::Common::AbstractModel
-        # @param MarkdownBase64: 识别生成的Markdown文件base64编码的字符串
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type MarkdownBase64: String
-        # @param InsetImagePackage: 输入文件中嵌入的图片放在一个文件夹中打包为.zip压缩文件，识别生成的Markdown文件通过路径关联插入本文件夹中的图片。
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type InsetImagePackage: String
-        # @param DocumentRecognizeInfo: 输入文件中嵌入的图片中文字内容的识别结果
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type DocumentRecognizeInfo: Array
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :MarkdownBase64, :InsetImagePackage, :DocumentRecognizeInfo, :RequestId
-
-        def initialize(markdownbase64=nil, insetimagepackage=nil, documentrecognizeinfo=nil, requestid=nil)
-          @MarkdownBase64 = markdownbase64
-          @InsetImagePackage = insetimagepackage
-          @DocumentRecognizeInfo = documentrecognizeinfo
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @MarkdownBase64 = params['MarkdownBase64']
-          @InsetImagePackage = params['InsetImagePackage']
-          unless params['DocumentRecognizeInfo'].nil?
-            @DocumentRecognizeInfo = []
-            params['DocumentRecognizeInfo'].each do |i|
-              documentrecognizeinfo_tmp = DocumentRecognizeInfo.new
-              documentrecognizeinfo_tmp.deserialize(i)
-              @DocumentRecognizeInfo << documentrecognizeinfo_tmp
-            end
           end
           @RequestId = params['RequestId']
         end

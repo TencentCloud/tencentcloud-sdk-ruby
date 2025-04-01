@@ -533,10 +533,12 @@ module TencentCloud
         # @type DcnInstanceId: String
         # @param DcnSyncMode: DCN同步模式，0：异步， 1：强同步
         # @type DcnSyncMode: Integer
+        # @param CpuType: cpu类型，英特尔：Intel/AMD，海光：Hygon，默认Intel/AMD
+        # @type CpuType: String
 
-        attr_accessor :Zones, :NodeCount, :Memory, :Storage, :Period, :Count, :AutoVoucher, :VoucherIds, :VpcId, :SubnetId, :ProjectId, :DbVersionId, :InstanceName, :SecurityGroupIds, :AutoRenewFlag, :Ipv6Flag, :ResourceTags, :InitParams, :DcnRegion, :DcnInstanceId, :DcnSyncMode
+        attr_accessor :Zones, :NodeCount, :Memory, :Storage, :Period, :Count, :AutoVoucher, :VoucherIds, :VpcId, :SubnetId, :ProjectId, :DbVersionId, :InstanceName, :SecurityGroupIds, :AutoRenewFlag, :Ipv6Flag, :ResourceTags, :InitParams, :DcnRegion, :DcnInstanceId, :DcnSyncMode, :CpuType
 
-        def initialize(zones=nil, nodecount=nil, memory=nil, storage=nil, period=nil, count=nil, autovoucher=nil, voucherids=nil, vpcid=nil, subnetid=nil, projectid=nil, dbversionid=nil, instancename=nil, securitygroupids=nil, autorenewflag=nil, ipv6flag=nil, resourcetags=nil, initparams=nil, dcnregion=nil, dcninstanceid=nil, dcnsyncmode=nil)
+        def initialize(zones=nil, nodecount=nil, memory=nil, storage=nil, period=nil, count=nil, autovoucher=nil, voucherids=nil, vpcid=nil, subnetid=nil, projectid=nil, dbversionid=nil, instancename=nil, securitygroupids=nil, autorenewflag=nil, ipv6flag=nil, resourcetags=nil, initparams=nil, dcnregion=nil, dcninstanceid=nil, dcnsyncmode=nil, cputype=nil)
           @Zones = zones
           @NodeCount = nodecount
           @Memory = memory
@@ -558,6 +560,7 @@ module TencentCloud
           @DcnRegion = dcnregion
           @DcnInstanceId = dcninstanceid
           @DcnSyncMode = dcnsyncmode
+          @CpuType = cputype
         end
 
         def deserialize(params)
@@ -596,6 +599,7 @@ module TencentCloud
           @DcnRegion = params['DcnRegion']
           @DcnInstanceId = params['DcnInstanceId']
           @DcnSyncMode = params['DcnSyncMode']
+          @CpuType = params['CpuType']
         end
       end
 
@@ -820,10 +824,12 @@ module TencentCloud
         # @type RollbackTime: String
         # @param DcnSyncMode: DCN同步模式，0：异步， 1：强同步
         # @type DcnSyncMode: Integer
+        # @param CpuType: cpu类型，英特尔：Intel/AMD，海光：Hygon，默认Intel/AMD
+        # @type CpuType: String
 
-        attr_accessor :Zones, :NodeCount, :Memory, :Storage, :Count, :ProjectId, :VpcId, :SubnetId, :DbVersionId, :InstanceName, :SecurityGroupIds, :Ipv6Flag, :ResourceTags, :DcnRegion, :DcnInstanceId, :InitParams, :RollbackInstanceId, :RollbackTime, :DcnSyncMode
+        attr_accessor :Zones, :NodeCount, :Memory, :Storage, :Count, :ProjectId, :VpcId, :SubnetId, :DbVersionId, :InstanceName, :SecurityGroupIds, :Ipv6Flag, :ResourceTags, :DcnRegion, :DcnInstanceId, :InitParams, :RollbackInstanceId, :RollbackTime, :DcnSyncMode, :CpuType
 
-        def initialize(zones=nil, nodecount=nil, memory=nil, storage=nil, count=nil, projectid=nil, vpcid=nil, subnetid=nil, dbversionid=nil, instancename=nil, securitygroupids=nil, ipv6flag=nil, resourcetags=nil, dcnregion=nil, dcninstanceid=nil, initparams=nil, rollbackinstanceid=nil, rollbacktime=nil, dcnsyncmode=nil)
+        def initialize(zones=nil, nodecount=nil, memory=nil, storage=nil, count=nil, projectid=nil, vpcid=nil, subnetid=nil, dbversionid=nil, instancename=nil, securitygroupids=nil, ipv6flag=nil, resourcetags=nil, dcnregion=nil, dcninstanceid=nil, initparams=nil, rollbackinstanceid=nil, rollbacktime=nil, dcnsyncmode=nil, cputype=nil)
           @Zones = zones
           @NodeCount = nodecount
           @Memory = memory
@@ -843,6 +849,7 @@ module TencentCloud
           @RollbackInstanceId = rollbackinstanceid
           @RollbackTime = rollbacktime
           @DcnSyncMode = dcnsyncmode
+          @CpuType = cputype
         end
 
         def deserialize(params)
@@ -879,6 +886,7 @@ module TencentCloud
           @RollbackInstanceId = params['RollbackInstanceId']
           @RollbackTime = params['RollbackTime']
           @DcnSyncMode = params['DcnSyncMode']
+          @CpuType = params['CpuType']
         end
       end
 
@@ -2171,12 +2179,14 @@ module TencentCloud
         # @type IsDcnSwitchSupported: Integer
         # @param ProxyVersion: proxy版本号
         # @type ProxyVersion: String
+        # @param CpuType: Cpu类型，如：英特尔：Intel/AMD，海光：Hygon
+        # @type CpuType: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :InstanceId, :InstanceName, :Status, :StatusDesc, :Vip, :Vport, :IsTmp, :NodeCount, :Region, :Zone, :VpcId, :SubnetId, :WanStatus, :WanDomain, :WanVip, :WanPort, :ProjectId, :TdsqlVersion, :Memory, :Storage, :MasterZone, :SlaveZones, :AutoRenewFlag, :ExclusterId, :PayMode, :CreateTime, :IsAuditSupported, :PeriodEndTime, :Machine, :StorageUsage, :LogStorage, :IsEncryptSupported, :Vip6, :Cpu, :Pid, :Qps, :Ipv6Flag, :WanVipv6, :WanStatusIpv6, :WanPortIpv6, :DbEngine, :DbVersion, :ResourceTags, :DcnFlag, :DcnStatus, :DcnDstNum, :InstanceType, :NodesInfo, :IsMaxUserConnectionsSupported, :DbVersionId, :EncryptStatus, :ReplicaConfig, :ReplicaStatus, :ExclusterType, :RsAccessStrategy, :ReservedNetResources, :IsPhysicalReplicationSupported, :IsDcnStrongSyncSupported, :IsDcnSwitchSupported, :ProxyVersion, :RequestId
+        attr_accessor :InstanceId, :InstanceName, :Status, :StatusDesc, :Vip, :Vport, :IsTmp, :NodeCount, :Region, :Zone, :VpcId, :SubnetId, :WanStatus, :WanDomain, :WanVip, :WanPort, :ProjectId, :TdsqlVersion, :Memory, :Storage, :MasterZone, :SlaveZones, :AutoRenewFlag, :ExclusterId, :PayMode, :CreateTime, :IsAuditSupported, :PeriodEndTime, :Machine, :StorageUsage, :LogStorage, :IsEncryptSupported, :Vip6, :Cpu, :Pid, :Qps, :Ipv6Flag, :WanVipv6, :WanStatusIpv6, :WanPortIpv6, :DbEngine, :DbVersion, :ResourceTags, :DcnFlag, :DcnStatus, :DcnDstNum, :InstanceType, :NodesInfo, :IsMaxUserConnectionsSupported, :DbVersionId, :EncryptStatus, :ReplicaConfig, :ReplicaStatus, :ExclusterType, :RsAccessStrategy, :ReservedNetResources, :IsPhysicalReplicationSupported, :IsDcnStrongSyncSupported, :IsDcnSwitchSupported, :ProxyVersion, :CpuType, :RequestId
 
-        def initialize(instanceid=nil, instancename=nil, status=nil, statusdesc=nil, vip=nil, vport=nil, istmp=nil, nodecount=nil, region=nil, zone=nil, vpcid=nil, subnetid=nil, wanstatus=nil, wandomain=nil, wanvip=nil, wanport=nil, projectid=nil, tdsqlversion=nil, memory=nil, storage=nil, masterzone=nil, slavezones=nil, autorenewflag=nil, exclusterid=nil, paymode=nil, createtime=nil, isauditsupported=nil, periodendtime=nil, machine=nil, storageusage=nil, logstorage=nil, isencryptsupported=nil, vip6=nil, cpu=nil, pid=nil, qps=nil, ipv6flag=nil, wanvipv6=nil, wanstatusipv6=nil, wanportipv6=nil, dbengine=nil, dbversion=nil, resourcetags=nil, dcnflag=nil, dcnstatus=nil, dcndstnum=nil, instancetype=nil, nodesinfo=nil, ismaxuserconnectionssupported=nil, dbversionid=nil, encryptstatus=nil, replicaconfig=nil, replicastatus=nil, exclustertype=nil, rsaccessstrategy=nil, reservednetresources=nil, isphysicalreplicationsupported=nil, isdcnstrongsyncsupported=nil, isdcnswitchsupported=nil, proxyversion=nil, requestid=nil)
+        def initialize(instanceid=nil, instancename=nil, status=nil, statusdesc=nil, vip=nil, vport=nil, istmp=nil, nodecount=nil, region=nil, zone=nil, vpcid=nil, subnetid=nil, wanstatus=nil, wandomain=nil, wanvip=nil, wanport=nil, projectid=nil, tdsqlversion=nil, memory=nil, storage=nil, masterzone=nil, slavezones=nil, autorenewflag=nil, exclusterid=nil, paymode=nil, createtime=nil, isauditsupported=nil, periodendtime=nil, machine=nil, storageusage=nil, logstorage=nil, isencryptsupported=nil, vip6=nil, cpu=nil, pid=nil, qps=nil, ipv6flag=nil, wanvipv6=nil, wanstatusipv6=nil, wanportipv6=nil, dbengine=nil, dbversion=nil, resourcetags=nil, dcnflag=nil, dcnstatus=nil, dcndstnum=nil, instancetype=nil, nodesinfo=nil, ismaxuserconnectionssupported=nil, dbversionid=nil, encryptstatus=nil, replicaconfig=nil, replicastatus=nil, exclustertype=nil, rsaccessstrategy=nil, reservednetresources=nil, isphysicalreplicationsupported=nil, isdcnstrongsyncsupported=nil, isdcnswitchsupported=nil, proxyversion=nil, cputype=nil, requestid=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @Status = status
@@ -2237,6 +2247,7 @@ module TencentCloud
           @IsDcnStrongSyncSupported = isdcnstrongsyncsupported
           @IsDcnSwitchSupported = isdcnswitchsupported
           @ProxyVersion = proxyversion
+          @CpuType = cputype
           @RequestId = requestid
         end
 
@@ -2328,18 +2339,24 @@ module TencentCloud
           @IsDcnStrongSyncSupported = params['IsDcnStrongSyncSupported']
           @IsDcnSwitchSupported = params['IsDcnSwitchSupported']
           @ProxyVersion = params['ProxyVersion']
+          @CpuType = params['CpuType']
           @RequestId = params['RequestId']
         end
       end
 
       # DescribeDBInstanceSpecs请求参数结构体
       class DescribeDBInstanceSpecsRequest < TencentCloud::Common::AbstractModel
+        # @param CpuType: Cpu类型，如：英特尔：Intel/AMD，海光：Hygon，默认Intel/AMD
+        # @type CpuType: String
 
+        attr_accessor :CpuType
 
-        def initialize()
+        def initialize(cputype=nil)
+          @CpuType = cputype
         end
 
         def deserialize(params)
+          @CpuType = params['CpuType']
         end
       end
 
@@ -3329,10 +3346,12 @@ module TencentCloud
         # * pent：分
         # * microPent：微分
         # @type AmountUnit: String
+        # @param CpuType: Cpu类型，如：英特尔：Intel/AMD，海光：Hygon，默认Intel/AMD
+        # @type CpuType: String
 
-        attr_accessor :Zone, :NodeCount, :Memory, :Storage, :Period, :Count, :Paymode, :AmountUnit
+        attr_accessor :Zone, :NodeCount, :Memory, :Storage, :Period, :Count, :Paymode, :AmountUnit, :CpuType
 
-        def initialize(zone=nil, nodecount=nil, memory=nil, storage=nil, period=nil, count=nil, paymode=nil, amountunit=nil)
+        def initialize(zone=nil, nodecount=nil, memory=nil, storage=nil, period=nil, count=nil, paymode=nil, amountunit=nil, cputype=nil)
           @Zone = zone
           @NodeCount = nodecount
           @Memory = memory
@@ -3341,6 +3360,7 @@ module TencentCloud
           @Count = count
           @Paymode = paymode
           @AmountUnit = amountunit
+          @CpuType = cputype
         end
 
         def deserialize(params)
@@ -3352,6 +3372,7 @@ module TencentCloud
           @Count = params['Count']
           @Paymode = params['Paymode']
           @AmountUnit = params['AmountUnit']
+          @CpuType = params['CpuType']
         end
       end
 
@@ -4984,17 +5005,21 @@ module TencentCloud
         # @type NodeId: String
         # @param Role: DB节点角色，取值为master或者slave
         # @type Role: String
+        # @param Zone: 节点所在可用区
+        # @type Zone: String
 
-        attr_accessor :NodeId, :Role
+        attr_accessor :NodeId, :Role, :Zone
 
-        def initialize(nodeid=nil, role=nil)
+        def initialize(nodeid=nil, role=nil, zone=nil)
           @NodeId = nodeid
           @Role = role
+          @Zone = zone
         end
 
         def deserialize(params)
           @NodeId = params['NodeId']
           @Role = params['Role']
+          @Zone = params['Zone']
         end
       end
 
@@ -5170,15 +5195,18 @@ module TencentCloud
         # @type ZoneList: Array
         # @param AvailableChoice: 可选择的主可用区和从可用区
         # @type AvailableChoice: Array
+        # @param CpuType: Cpu类型，如：英特尔：Intel/AMD，海光：Hygon
+        # @type CpuType: String
 
-        attr_accessor :Region, :RegionId, :RegionName, :ZoneList, :AvailableChoice
+        attr_accessor :Region, :RegionId, :RegionName, :ZoneList, :AvailableChoice, :CpuType
 
-        def initialize(region=nil, regionid=nil, regionname=nil, zonelist=nil, availablechoice=nil)
+        def initialize(region=nil, regionid=nil, regionname=nil, zonelist=nil, availablechoice=nil, cputype=nil)
           @Region = region
           @RegionId = regionid
           @RegionName = regionname
           @ZoneList = zonelist
           @AvailableChoice = availablechoice
+          @CpuType = cputype
         end
 
         def deserialize(params)
@@ -5201,6 +5229,7 @@ module TencentCloud
               @AvailableChoice << zonechooseinfo_tmp
             end
           end
+          @CpuType = params['CpuType']
         end
       end
 
@@ -5615,19 +5644,30 @@ module TencentCloud
       class SwitchDBInstanceHARequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例Id，形如 tdsql-ow728lmc
         # @type InstanceId: String
-        # @param Zone: 切换的目标区域，会自动选择该可用区中延迟最低的节点
+        # @param Zone: 指定可用区标识符，具体含义由zoneMode参数决定。
+
+        # - 当zoneMode为target时表示目标可用区
+
+        # - 当zoneMode为avoid时表示需避开的故障可用区
         # @type Zone: String
+        # @param ZoneMode: 可用区模式选择器，定义zone参数的语义类型。
+        # - 默认值：target
 
-        attr_accessor :InstanceId, :Zone
+        # - 可选值：target, avoid
+        # @type ZoneMode: String
 
-        def initialize(instanceid=nil, zone=nil)
+        attr_accessor :InstanceId, :Zone, :ZoneMode
+
+        def initialize(instanceid=nil, zone=nil, zonemode=nil)
           @InstanceId = instanceid
           @Zone = zone
+          @ZoneMode = zonemode
         end
 
         def deserialize(params)
           @InstanceId = params['InstanceId']
           @Zone = params['Zone']
+          @ZoneMode = params['ZoneMode']
         end
       end
 

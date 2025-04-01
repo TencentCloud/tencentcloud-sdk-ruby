@@ -1181,6 +1181,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 统计排序指定时间段内的top慢sql。
+
+        # @param request: Request instance for DescribeRedisSlowLogTopSqls.
+        # @type request: :class:`Tencentcloud::dbbrain::V20210527::DescribeRedisSlowLogTopSqlsRequest`
+        # @rtype: :class:`Tencentcloud::dbbrain::V20210527::DescribeRedisSlowLogTopSqlsResponse`
+        def DescribeRedisSlowLogTopSqls(request)
+          body = send_request('DescribeRedisSlowLogTopSqls', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeRedisSlowLogTopSqlsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询redis实例大key列表。
 
         # @param request: Request instance for DescribeRedisTopBigKeys.
@@ -1287,6 +1311,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeSecurityAuditLogExportTasksResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 统计排序指定时间段内的top慢sql。
+
+        # @param request: Request instance for DescribeSlowLogQueryTimeStats.
+        # @type request: :class:`Tencentcloud::dbbrain::V20210527::DescribeSlowLogQueryTimeStatsRequest`
+        # @rtype: :class:`Tencentcloud::dbbrain::V20210527::DescribeSlowLogQueryTimeStatsResponse`
+        def DescribeSlowLogQueryTimeStats(request)
+          body = send_request('DescribeSlowLogQueryTimeStats', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeSlowLogQueryTimeStatsResponse.new
             model.deserialize(response['Response'])
             model
           else

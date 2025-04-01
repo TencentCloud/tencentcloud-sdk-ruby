@@ -20,34 +20,24 @@ module TencentCloud
       # 账号工厂基线项
       class AccountFactoryItem < TencentCloud::Common::AbstractModel
         # @param Identifier: 账号工厂基线项唯一标识，只能包含英文字母、数字和@、,._[]-:()（）【】+=，。，长度2-128个字符。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Identifier: String
         # @param Name: 基线项名称，功能项名字唯一，仅支持英文字母、数宇、汉字、符号@、＆_[]-的组合，1-25个中文或英文字符。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param NameEn: 基线项英文名称，基线项名字唯一，仅支持英文字母、数字、空格、符号@、＆_[]-的组合，1-64个英文字符。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NameEn: String
         # @param Weight: 基线项权重，数值小权重越高，取值范围大于等于0。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Weight: Integer
         # @param Required: 基线项是否必填，1必填，0非必填
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Required: Integer
         # @param DependsOn: 基线项依赖项，N的取值范围与该基线项依赖的其它基线项个数有关。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DependsOn: Array
         # @param Description: 基线描述，长度为2~256个英文或中文字符，默认值为空。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
         # @param DescriptionEn: 基线项英文描述，长度为2~1024个英文字符，默认值为空。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DescriptionEn: String
         # @param Classify: 基线分类，长度为2~32个英文或中文字符，不能为空。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Classify: String
         # @param ClassifyEn: 基线英文分类，长度为2~64个英文字符，不能为空。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClassifyEn: String
 
         attr_accessor :Identifier, :Name, :NameEn, :Weight, :Required, :DependsOn, :Description, :DescriptionEn, :Classify, :ClassifyEn
@@ -109,13 +99,10 @@ module TencentCloud
       # 账号工厂基线信息
       class BaselineInfoItem < TencentCloud::Common::AbstractModel
         # @param Identifier: 账号工厂基线项唯一标识，只能包含英文字母、数字和@、,._[]-:()（）【】+=，。，长度2-128个字符。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Identifier: String
         # @param Configuration: 账号工厂基线项配置，不同的基线项配置参数不同。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Configuration: String
         # @param ApplyCount: 基线应用的账号数量。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApplyCount: Integer
 
         attr_accessor :Identifier, :Configuration, :ApplyCount
@@ -136,31 +123,22 @@ module TencentCloud
       # 基线项部署任务信息列表
       class BaselineStepTaskInfo < TencentCloud::Common::AbstractModel
         # @param TaskId: 任务唯一Id，只能包含英文字母、数字，是16个字符的随机字符串。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskId: String
         # @param Identifier: 基线功能项唯一标识，只能包含英文字母、数字和@、,._[]-:()（）【】+=，。，长度2-128个字符。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Identifier: String
         # @param MemberUin: 被应用基线项的成员账号uin
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MemberUin: Integer
         # @param Status: 基线项应用的状态,Running表示基线项应用中,Success表示基线项应用成功,Failed表示基线项应用失败,Pending表示基线项待应用,Skipped表示基线项被跳过
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: String
         # @param ErrCode: 错误码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrCode: String
         # @param ErrMessage: 错误信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrMessage: String
         # @param Output: 基线项部署输出
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Output: String
         # @param CreateTime: 创建时间，按照ISO8601标准表示，格式为yyyy-MM-dd hh:mm:ss。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
         # @param UpdateTime: 更新时间，按照ISO8601标准表示，格式为yyyy-MM-dd hh:mm:ss。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: String
 
         attr_accessor :TaskId, :Identifier, :MemberUin, :Status, :ErrCode, :ErrMessage, :Output, :CreateTime, :UpdateTime
@@ -236,10 +214,8 @@ module TencentCloud
       # 依赖项
       class DependsOnItem < TencentCloud::Common::AbstractModel
         # @param Type: 依赖项类型，只有LandingZoneSetUp或AccountFactorySetUp。LandingZoneSetUp表示landingZone的依赖项；AccountFactorySetUp表示账号工厂的依赖项
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: String
         # @param Identifier: 功能项唯一标识，只能包含英文字母、数字和@、,._[]-:()（）【】+=，。，长度2-128个字符。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Identifier: String
 
         attr_accessor :Type, :Identifier
@@ -269,19 +245,14 @@ module TencentCloud
       # GetAccountFactoryBaseline返回参数结构体
       class GetAccountFactoryBaselineResponse < TencentCloud::Common::AbstractModel
         # @param OwnerUin: 资源所属主账号uin。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OwnerUin: Integer
         # @param Name: 基线项名称，基线项名字唯一，仅支持英文字母、数宇、汉字、符号@、＆_[]-的组合，1-25个中文或英文字符。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param BaselineConfigItems: 基线项配置列表。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BaselineConfigItems: Array
         # @param CreateTime: 创建时间，按照ISO8601标准表示，格式为yyyy-MM-dd hh:mm:ss。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
         # @param UpdateTime: 更新时间，按照ISO8601标准表示，格式为yyyy-MM-dd hh:mm:ss。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

@@ -29,6 +29,8 @@ module TencentCloud
         end
 
 
+        # 老版本接口，最近一次调用时23年11月了
+
         # 创建预热任务
 
         # @param request: Request instance for CreatePrefetchTask.
@@ -52,6 +54,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 老版本接口，老版本pod的最近一次调用在23年11月
 
         # 创建清除缓存任务
 

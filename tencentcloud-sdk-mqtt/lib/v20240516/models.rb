@@ -3446,14 +3446,17 @@ module TencentCloud
         # @param InstanceType: 规格类型
         # BASIC：基础版
         # PRO ：专业版
+        # PLATINUM： 铂金版
         # @type InstanceType: String
         # @param SkuCode: 规格代码
         # @type SkuCode: String
         # @param OnSale: 是否售卖
+        # 1: 可售卖
+        # 0: 不可售卖
         # @type OnSale: Boolean
         # @param TopicNumLimit: topic num限制
         # @type TopicNumLimit: Integer
-        # @param TpsLimit: tps
+        # @param TpsLimit: MQTT 集群下每秒钟生产消息量和消费消息量之和。详细计算方式参考 [计费概述](https://cloud.tencent.com/document/product/1778/109698)
         # @type TpsLimit: Integer
         # @param ClientNumLimit: 客户端连接数
         # @type ClientNumLimit: Integer

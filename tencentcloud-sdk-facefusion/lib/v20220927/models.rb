@@ -23,7 +23,8 @@ module TencentCloud
         # @type ActivityId: String
         # @param MaterialId: 素材Id
         # @type MaterialId: String
-        # @param Limit: 每次拉取条数
+        # @param Limit: 每次拉取条数。
+        # 每次拉取素材最多可支持拉取20条素材信息，如果需要拉取全部素材信息，可以分多次请求拉取全部素材信息。
         # @type Limit: Integer
         # @param Offset: 偏移量
         # @type Offset: Integer

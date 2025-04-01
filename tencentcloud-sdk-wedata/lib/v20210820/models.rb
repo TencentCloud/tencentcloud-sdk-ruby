@@ -2427,8 +2427,8 @@ module TencentCloud
 
         attr_accessor :ProjectId, :AlarmRegularName, :TaskId, :Id, :TaskType, :MonitorType
         extend Gem::Deprecate
-        deprecate :TaskId, :none, 2025, 3
-        deprecate :TaskId=, :none, 2025, 3
+        deprecate :TaskId, :none, 2025, 4
+        deprecate :TaskId=, :none, 2025, 4
 
         def initialize(projectid=nil, alarmregularname=nil, taskid=nil, id=nil, tasktype=nil, monitortype=nil)
           @ProjectId = projectid
@@ -9062,12 +9062,12 @@ module TencentCloud
 
         attr_accessor :ProjectId, :Category, :PageNumber, :PageSize, :EventName, :EventType, :EventSubType, :EventBroadcastType, :Status, :CreationTimeStart, :CreationTimeEnd, :EventTriggeredTimeStart, :EventTriggeredTimeEnd, :LogTimeStart, :LogTimeEnd, :Dimension, :TimeToLive, :SortItem, :SortType
         extend Gem::Deprecate
-        deprecate :EventType, :none, 2025, 3
-        deprecate :EventType=, :none, 2025, 3
-        deprecate :EventBroadcastType, :none, 2025, 3
-        deprecate :EventBroadcastType=, :none, 2025, 3
-        deprecate :Status, :none, 2025, 3
-        deprecate :Status=, :none, 2025, 3
+        deprecate :EventType, :none, 2025, 4
+        deprecate :EventType=, :none, 2025, 4
+        deprecate :EventBroadcastType, :none, 2025, 4
+        deprecate :EventBroadcastType=, :none, 2025, 4
+        deprecate :Status, :none, 2025, 4
+        deprecate :Status=, :none, 2025, 4
 
         def initialize(projectid=nil, category=nil, pagenumber=nil, pagesize=nil, eventname=nil, eventtype=nil, eventsubtype=nil, eventbroadcasttype=nil, status=nil, creationtimestart=nil, creationtimeend=nil, eventtriggeredtimestart=nil, eventtriggeredtimeend=nil, logtimestart=nil, logtimeend=nil, dimension=nil, timetolive=nil, sortitem=nil, sorttype=nil)
           @ProjectId = projectid
@@ -15612,8 +15612,8 @@ module TencentCloud
 
         attr_accessor :DimType, :Count, :QualityDim
         extend Gem::Deprecate
-        deprecate :DimType, :none, 2025, 3
-        deprecate :DimType=, :none, 2025, 3
+        deprecate :DimType, :none, 2025, 4
+        deprecate :DimType=, :none, 2025, 4
 
         def initialize(dimtype=nil, count=nil, qualitydim=nil)
           @DimType = dimtype
@@ -21588,8 +21588,8 @@ module TencentCloud
 
         attr_accessor :ProjectId, :TaskId, :DelayTime, :StartupTime, :SelfDepend, :StartTime, :EndTime, :TaskAction, :CycleType, :CycleStep, :CrontabExpression, :ExecutionStartTime, :ExecutionEndTime, :TaskName, :RetryWait, :TryLimit, :Retriable, :RunPriority, :TaskExt, :ResourceGroup, :YarnQueue, :BrokerIp, :InCharge, :Notes, :TaskParamInfos, :SourceServer, :TargetServer, :DependencyWorkflow, :DependencyConfigDTOs, :ExecutionTTL, :ScriptChange, :InChargeIds
         extend Gem::Deprecate
-        deprecate :InCharge, :none, 2025, 3
-        deprecate :InCharge=, :none, 2025, 3
+        deprecate :InCharge, :none, 2025, 4
+        deprecate :InCharge=, :none, 2025, 4
 
         def initialize(projectid=nil, taskid=nil, delaytime=nil, startuptime=nil, selfdepend=nil, starttime=nil, endtime=nil, taskaction=nil, cycletype=nil, cyclestep=nil, crontabexpression=nil, executionstarttime=nil, executionendtime=nil, taskname=nil, retrywait=nil, trylimit=nil, retriable=nil, runpriority=nil, taskext=nil, resourcegroup=nil, yarnqueue=nil, brokerip=nil, incharge=nil, notes=nil, taskparaminfos=nil, sourceserver=nil, targetserver=nil, dependencyworkflow=nil, dependencyconfigdtos=nil, executionttl=nil, scriptchange=nil, inchargeids=nil)
           @ProjectId = projectid
@@ -23315,10 +23315,13 @@ module TencentCloud
         # @param AppId: 租户iD
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AppId: String
+        # @param IsProjectOwner: 是否项目负责人
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsProjectOwner: Boolean
 
-        attr_accessor :Roles, :UserName, :UserId, :CreateTime, :Creator, :DisplayName, :IsProjectAdmin, :PhoneNum, :Email, :OwnerUin, :AppId
+        attr_accessor :Roles, :UserName, :UserId, :CreateTime, :Creator, :DisplayName, :IsProjectAdmin, :PhoneNum, :Email, :OwnerUin, :AppId, :IsProjectOwner
 
-        def initialize(roles=nil, username=nil, userid=nil, createtime=nil, creator=nil, displayname=nil, isprojectadmin=nil, phonenum=nil, email=nil, owneruin=nil, appid=nil)
+        def initialize(roles=nil, username=nil, userid=nil, createtime=nil, creator=nil, displayname=nil, isprojectadmin=nil, phonenum=nil, email=nil, owneruin=nil, appid=nil, isprojectowner=nil)
           @Roles = roles
           @UserName = username
           @UserId = userid
@@ -23330,6 +23333,7 @@ module TencentCloud
           @Email = email
           @OwnerUin = owneruin
           @AppId = appid
+          @IsProjectOwner = isprojectowner
         end
 
         def deserialize(params)
@@ -23351,6 +23355,7 @@ module TencentCloud
           @Email = params['Email']
           @OwnerUin = params['OwnerUin']
           @AppId = params['AppId']
+          @IsProjectOwner = params['IsProjectOwner']
         end
       end
 

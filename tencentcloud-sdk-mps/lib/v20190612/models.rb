@@ -7053,7 +7053,7 @@ module TencentCloud
         # @type OutputName: String
         # @param Description: 输出描述。
         # @type Description: String
-        # @param Protocol: 输出的转推协议，支持SRT|RTP|RTMP|RTMP_PULL|RTSP|RIST。
+        # @param Protocol: 输出的转推协议，支持SRT|RTP|RTMP|RTMP_PULL|RTSP_PULL|RIST。
         # @type Protocol: String
         # @param OutputRegion: 输出地区。
         # @type OutputRegion: String

@@ -540,26 +540,6 @@ module TencentCloud
         end
       end
 
-      # 黑石私有网络
-      class CpmVirtualPrivateCloud < TencentCloud::Common::AbstractModel
-        # @param VpcId: 黑石私有网络ID
-        # @type VpcId: String
-        # @param SubnetId: 黑石子网ID
-        # @type SubnetId: String
-
-        attr_accessor :VpcId, :SubnetId
-
-        def initialize(vpcid=nil, subnetid=nil)
-          @VpcId = vpcid
-          @SubnetId = subnetid
-        end
-
-        def deserialize(params)
-          @VpcId = params['VpcId']
-          @SubnetId = params['SubnetId']
-        end
-      end
-
       # CreateComputeEnv请求参数结构体
       class CreateComputeEnvRequest < TencentCloud::Common::AbstractModel
         # @param ComputeEnv: 计算环境信息
@@ -592,56 +572,6 @@ module TencentCloud
 
       # CreateComputeEnv返回参数结构体
       class CreateComputeEnvResponse < TencentCloud::Common::AbstractModel
-        # @param EnvId: 计算环境ID
-        # @type EnvId: String
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :EnvId, :RequestId
-
-        def initialize(envid=nil, requestid=nil)
-          @EnvId = envid
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @EnvId = params['EnvId']
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # CreateCpmComputeEnv请求参数结构体
-      class CreateCpmComputeEnvRequest < TencentCloud::Common::AbstractModel
-        # @param ComputeEnv: 计算环境信息
-        # @type ComputeEnv: :class:`Tencentcloud::Batch.v20170312.models.NamedCpmComputeEnv`
-        # @param Placement: 位置信息
-        # @type Placement: :class:`Tencentcloud::Batch.v20170312.models.Placement`
-        # @param ClientToken: 用于保证请求幂等性的字符串。该字符串由用户生成，需保证不同请求之间唯一，最大值不超过64个ASCII字符。若不指定该参数，则无法保证请求的幂等性。
-        # @type ClientToken: String
-
-        attr_accessor :ComputeEnv, :Placement, :ClientToken
-
-        def initialize(computeenv=nil, placement=nil, clienttoken=nil)
-          @ComputeEnv = computeenv
-          @Placement = placement
-          @ClientToken = clienttoken
-        end
-
-        def deserialize(params)
-          unless params['ComputeEnv'].nil?
-            @ComputeEnv = NamedCpmComputeEnv.new
-            @ComputeEnv.deserialize(params['ComputeEnv'])
-          end
-          unless params['Placement'].nil?
-            @Placement = Placement.new
-            @Placement.deserialize(params['Placement'])
-          end
-          @ClientToken = params['ClientToken']
-        end
-      end
-
-      # CreateCpmComputeEnv返回参数结构体
-      class CreateCpmComputeEnvResponse < TencentCloud::Common::AbstractModel
         # @param EnvId: 计算环境ID
         # @type EnvId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
@@ -1380,49 +1310,6 @@ module TencentCloud
             end
           end
           @TotalCount = params['TotalCount']
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # DescribeCpmOsInfo请求参数结构体
-      class DescribeCpmOsInfoRequest < TencentCloud::Common::AbstractModel
-        # @param DeviceClassCode: 黑石设备类型代号。 可以从[DescribeDeviceClass](https://cloud.tencent.com/document/api/386/32911)查询设备类型列表。
-        # @type DeviceClassCode: String
-
-        attr_accessor :DeviceClassCode
-
-        def initialize(deviceclasscode=nil)
-          @DeviceClassCode = deviceclasscode
-        end
-
-        def deserialize(params)
-          @DeviceClassCode = params['DeviceClassCode']
-        end
-      end
-
-      # DescribeCpmOsInfo返回参数结构体
-      class DescribeCpmOsInfoResponse < TencentCloud::Common::AbstractModel
-        # @param OsInfoSet: 操作系统信息列表。
-        # @type OsInfoSet: Array
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :OsInfoSet, :RequestId
-
-        def initialize(osinfoset=nil, requestid=nil)
-          @OsInfoSet = osinfoset
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          unless params['OsInfoSet'].nil?
-            @OsInfoSet = []
-            params['OsInfoSet'].each do |i|
-              osinfo_tmp = OsInfo.new
-              osinfo_tmp.deserialize(i)
-              @OsInfoSet << osinfo_tmp
-            end
-          end
           @RequestId = params['RequestId']
         end
       end
@@ -2240,109 +2127,6 @@ module TencentCloud
               @VirtualPrivateClouds << virtualprivatecloud_tmp
             end
           end
-        end
-      end
-
-      # 黑石计算环境数据
-      class EnvDataCpm < TencentCloud::Common::AbstractModel
-        # @param Zones: 黑石可用区名称列表。如ap-guangzhou-bls-1。不是Batch可用区名称。目前仅支持一个可用区名称。
-        # @type Zones: Array
-        # @param InstanceTypes: 购买的机型ID。
-        # @type InstanceTypes: Array
-        # @param TimeUnit: 购买时长单位，取值：m(月)。
-        # @type TimeUnit: String
-        # @param TimeSpan: 购买时长。
-        # @type TimeSpan: Integer
-        # @param RaidId: RAID类型ID。
-        # @type RaidId: Integer
-        # @param OsTypeId: 部署服务器的操作系统ID。通过批量计算接口DescribeCpmOsInfo查询操作系统信息。
-        # @type OsTypeId: Integer
-        # @param VirtualPrivateClouds: 黑石VPC列表，目前仅支持一个VPC。
-        # @type VirtualPrivateClouds: Array
-        # @param NeedSecurityAgent: 是否安装安全Agent，取值：1(安装) 0(不安装)，默认取值0。
-        # @type NeedSecurityAgent: Integer
-        # @param NeedMonitorAgent: 是否安装监控Agent，取值：1(安装) 0(不安装)，默认取值0。
-        # @type NeedMonitorAgent: Integer
-        # @param AutoRenewFlag: 自动续费标志位，取值：1(自动续费) 0(不自动续费)，默认取值0。
-        # @type AutoRenewFlag: Integer
-        # @param IsZoning: 数据盘是否格式化，取值：1(格式化) 0(不格式化)，默认取值为1。
-        # @type IsZoning: Integer
-        # @param FileSystem: 指定数据盘的文件系统格式，当前支持 ext4和xfs选项， 默认为ext4。 参数适用于数据盘和Linux， 且在IsZoning为1时生效。
-        # @type FileSystem: String
-        # @param Password: 设置Linux root或Windows Administrator的密码。若不设置此参数，默认情况下会随机生成密码，并以站内信方式通知到用户。
-        # @type Password: String
-        # @param ApplyEip: 是否分配弹性公网IP，取值：1(分配) 0(不分配)，默认取值0。
-        # @type ApplyEip: Integer
-        # @param EipPayMode: 弹性公网IP计费模式，取值：flow(按流量计费) bandwidth(按带宽计费)，默认取值flow。
-        # @type EipPayMode: String
-        # @param EipBandwidth: 弹性公网IP带宽限制，单位Mb。
-        # @type EipBandwidth: Integer
-        # @param ImageId: 自定义镜像ID，取值生效时用自定义镜像部署物理机。
-        # @type ImageId: String
-        # @param SysRootSpace: 系统盘根分区大小，单位为G，默认取值10G。
-        # @type SysRootSpace: Integer
-        # @param SysDataSpace: /data分区大小，单位为G。如果系统盘还有剩余大小，会分配给/data分区。（特殊情况：如果剩余空间不足10G，并且没有指定/data分区，则剩余空间会分配给Root分区）。
-        # @type SysDataSpace: Integer
-        # @param HyperThreading: 是否开启超线程，取值：1(开启) 0(关闭)，默认取值1。
-        # @type HyperThreading: Integer
-        # @param LanIps: 指定的内网IP列表，不指定时自动分配。
-        # @type LanIps: Array
-
-        attr_accessor :Zones, :InstanceTypes, :TimeUnit, :TimeSpan, :RaidId, :OsTypeId, :VirtualPrivateClouds, :NeedSecurityAgent, :NeedMonitorAgent, :AutoRenewFlag, :IsZoning, :FileSystem, :Password, :ApplyEip, :EipPayMode, :EipBandwidth, :ImageId, :SysRootSpace, :SysDataSpace, :HyperThreading, :LanIps
-
-        def initialize(zones=nil, instancetypes=nil, timeunit=nil, timespan=nil, raidid=nil, ostypeid=nil, virtualprivateclouds=nil, needsecurityagent=nil, needmonitoragent=nil, autorenewflag=nil, iszoning=nil, filesystem=nil, password=nil, applyeip=nil, eippaymode=nil, eipbandwidth=nil, imageid=nil, sysrootspace=nil, sysdataspace=nil, hyperthreading=nil, lanips=nil)
-          @Zones = zones
-          @InstanceTypes = instancetypes
-          @TimeUnit = timeunit
-          @TimeSpan = timespan
-          @RaidId = raidid
-          @OsTypeId = ostypeid
-          @VirtualPrivateClouds = virtualprivateclouds
-          @NeedSecurityAgent = needsecurityagent
-          @NeedMonitorAgent = needmonitoragent
-          @AutoRenewFlag = autorenewflag
-          @IsZoning = iszoning
-          @FileSystem = filesystem
-          @Password = password
-          @ApplyEip = applyeip
-          @EipPayMode = eippaymode
-          @EipBandwidth = eipbandwidth
-          @ImageId = imageid
-          @SysRootSpace = sysrootspace
-          @SysDataSpace = sysdataspace
-          @HyperThreading = hyperthreading
-          @LanIps = lanips
-        end
-
-        def deserialize(params)
-          @Zones = params['Zones']
-          @InstanceTypes = params['InstanceTypes']
-          @TimeUnit = params['TimeUnit']
-          @TimeSpan = params['TimeSpan']
-          @RaidId = params['RaidId']
-          @OsTypeId = params['OsTypeId']
-          unless params['VirtualPrivateClouds'].nil?
-            @VirtualPrivateClouds = []
-            params['VirtualPrivateClouds'].each do |i|
-              cpmvirtualprivatecloud_tmp = CpmVirtualPrivateCloud.new
-              cpmvirtualprivatecloud_tmp.deserialize(i)
-              @VirtualPrivateClouds << cpmvirtualprivatecloud_tmp
-            end
-          end
-          @NeedSecurityAgent = params['NeedSecurityAgent']
-          @NeedMonitorAgent = params['NeedMonitorAgent']
-          @AutoRenewFlag = params['AutoRenewFlag']
-          @IsZoning = params['IsZoning']
-          @FileSystem = params['FileSystem']
-          @Password = params['Password']
-          @ApplyEip = params['ApplyEip']
-          @EipPayMode = params['EipPayMode']
-          @EipBandwidth = params['EipBandwidth']
-          @ImageId = params['ImageId']
-          @SysRootSpace = params['SysRootSpace']
-          @SysDataSpace = params['SysDataSpace']
-          @HyperThreading = params['HyperThreading']
-          @LanIps = params['LanIps']
         end
       end
 
@@ -3298,96 +3082,6 @@ module TencentCloud
         end
       end
 
-      # 黑石计算环境
-      class NamedCpmComputeEnv < TencentCloud::Common::AbstractModel
-        # @param EnvName: 计算环境名称
-        # @type EnvName: String
-        # @param EnvData: 计算环境具体参数
-        # @type EnvData: :class:`Tencentcloud::Batch.v20170312.models.EnvDataCpm`
-        # @param DesiredComputeNodeCount: 计算节点期望个数
-        # @type DesiredComputeNodeCount: Integer
-        # @param EnvDescription: 计算环境描述
-        # @type EnvDescription: String
-        # @param EnvType: 计算环境管理类型， 取值MANAGED。
-        # @type EnvType: String
-        # @param Authentications: 授权信息
-        # @type Authentications: Array
-        # @param InputMappings: 输入映射信息
-        # @type InputMappings: Array
-        # @param Notifications: 通知信息
-        # @type Notifications: :class:`Tencentcloud::Batch.v20170312.models.Notification`
-        # @param ActionIfComputeNodeInactive: 非活跃节点处理策略，默认“RECREATE”，即对于实例创建失败或异常退还的计算节点，定期重新创建实例资源。
-        # @type ActionIfComputeNodeInactive: String
-        # @param ResourceMaxRetryCount: 对于实例创建失败或异常退还的计算节点，定期重新创建实例资源的最大重试次数，最大值100，如果不设置的话，系统会设置一个默认值，当前为7。
-        # @type ResourceMaxRetryCount: Integer
-        # @param Tags: 标签列表。通过指定该参数可以支持绑定标签到黑石计算环境。每个黑石计算环境最多绑定10个标签。
-        # @type Tags: Array
-        # @param NotificationTarget: 表示通知信息的通知目标类型。
-        # 取值范围：CMQ，TDMQ_CMQ。
-        # CMQ:表示向腾讯云CMQ发送消息。
-        # TDMQ_CMQ：表示向腾讯云TDMQ_CMQ发送消息。<br/>默认值为CMQ。<br/>注：腾讯云计划于2022年6月前正式下线消息队列 CMQ，建议使用TDMQ_CMQ。参考文档：[CMQ迁移到TDMQ_CMQ](https://cloud.tencent.com/document/product/406/60860)
-        # @type NotificationTarget: String
-
-        attr_accessor :EnvName, :EnvData, :DesiredComputeNodeCount, :EnvDescription, :EnvType, :Authentications, :InputMappings, :Notifications, :ActionIfComputeNodeInactive, :ResourceMaxRetryCount, :Tags, :NotificationTarget
-
-        def initialize(envname=nil, envdata=nil, desiredcomputenodecount=nil, envdescription=nil, envtype=nil, authentications=nil, inputmappings=nil, notifications=nil, actionifcomputenodeinactive=nil, resourcemaxretrycount=nil, tags=nil, notificationtarget=nil)
-          @EnvName = envname
-          @EnvData = envdata
-          @DesiredComputeNodeCount = desiredcomputenodecount
-          @EnvDescription = envdescription
-          @EnvType = envtype
-          @Authentications = authentications
-          @InputMappings = inputmappings
-          @Notifications = notifications
-          @ActionIfComputeNodeInactive = actionifcomputenodeinactive
-          @ResourceMaxRetryCount = resourcemaxretrycount
-          @Tags = tags
-          @NotificationTarget = notificationtarget
-        end
-
-        def deserialize(params)
-          @EnvName = params['EnvName']
-          unless params['EnvData'].nil?
-            @EnvData = EnvDataCpm.new
-            @EnvData.deserialize(params['EnvData'])
-          end
-          @DesiredComputeNodeCount = params['DesiredComputeNodeCount']
-          @EnvDescription = params['EnvDescription']
-          @EnvType = params['EnvType']
-          unless params['Authentications'].nil?
-            @Authentications = []
-            params['Authentications'].each do |i|
-              authentication_tmp = Authentication.new
-              authentication_tmp.deserialize(i)
-              @Authentications << authentication_tmp
-            end
-          end
-          unless params['InputMappings'].nil?
-            @InputMappings = []
-            params['InputMappings'].each do |i|
-              inputmapping_tmp = InputMapping.new
-              inputmapping_tmp.deserialize(i)
-              @InputMappings << inputmapping_tmp
-            end
-          end
-          unless params['Notifications'].nil?
-            @Notifications = Notification.new
-            @Notifications.deserialize(params['Notifications'])
-          end
-          @ActionIfComputeNodeInactive = params['ActionIfComputeNodeInactive']
-          @ResourceMaxRetryCount = params['ResourceMaxRetryCount']
-          unless params['Tags'].nil?
-            @Tags = []
-            params['Tags'].each do |i|
-              tag_tmp = Tag.new
-              tag_tmp.deserialize(i)
-              @Tags << tag_tmp
-            end
-          end
-          @NotificationTarget = params['NotificationTarget']
-        end
-      end
-
       # 通知信息
       class Notification < TencentCloud::Common::AbstractModel
         # @param TopicName: CMQ主题名字，要求主题名有效且关联订阅
@@ -3412,46 +3106,6 @@ module TencentCloud
               @EventConfigs << eventconfig_tmp
             end
           end
-        end
-      end
-
-      # 操作系统类型
-      class OsInfo < TencentCloud::Common::AbstractModel
-        # @param OsTypeId: 操作系统ID。
-        # @type OsTypeId: Integer
-        # @param OsName: 操作系统名称。
-        # @type OsName: String
-        # @param OsDescription: 操作系统名称描述。
-        # @type OsDescription: String
-        # @param OsEnglishDescription: 操作系统英文名称。
-        # @type OsEnglishDescription: String
-        # @param OsClass: 操作系统的分类，如CentOs Debian。
-        # @type OsClass: String
-        # @param ImageTag: 标识镜像分类。public:公共镜像; private: 专属镜像。
-        # @type ImageTag: String
-        # @param MaxPartitionSize: 操作系统，ext4文件下所支持的最大的磁盘大小。单位为T。
-        # @type MaxPartitionSize: Integer
-
-        attr_accessor :OsTypeId, :OsName, :OsDescription, :OsEnglishDescription, :OsClass, :ImageTag, :MaxPartitionSize
-
-        def initialize(ostypeid=nil, osname=nil, osdescription=nil, osenglishdescription=nil, osclass=nil, imagetag=nil, maxpartitionsize=nil)
-          @OsTypeId = ostypeid
-          @OsName = osname
-          @OsDescription = osdescription
-          @OsEnglishDescription = osenglishdescription
-          @OsClass = osclass
-          @ImageTag = imagetag
-          @MaxPartitionSize = maxpartitionsize
-        end
-
-        def deserialize(params)
-          @OsTypeId = params['OsTypeId']
-          @OsName = params['OsName']
-          @OsDescription = params['OsDescription']
-          @OsEnglishDescription = params['OsEnglishDescription']
-          @OsClass = params['OsClass']
-          @ImageTag = params['ImageTag']
-          @MaxPartitionSize = params['MaxPartitionSize']
         end
       end
 

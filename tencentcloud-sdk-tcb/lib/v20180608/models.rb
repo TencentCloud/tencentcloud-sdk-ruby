@@ -6816,10 +6816,12 @@ module TencentCloud
         # @type LongAccessId: String
         # @param AccessDomain: Donut接入域名
         # @type AccessDomain: String
+        # @param Tags: 标签键值对
+        # @type Tags: Array
 
-        attr_accessor :Uin, :AppId, :WxAppId, :EnvId, :GatewayId, :GatewayName, :GatewayType, :GatewayDesc, :PackageVersion, :PackageId, :VpcId, :SubnetIds, :Status, :L5Addr, :Region, :CanRenew, :AutoRenewFlag, :IsolateTime, :ExpireTime, :CreateTime, :UpdateTime, :CanDowngrade, :AllowUncertified, :VersionNumLimit, :LongAccessId, :AccessDomain
+        attr_accessor :Uin, :AppId, :WxAppId, :EnvId, :GatewayId, :GatewayName, :GatewayType, :GatewayDesc, :PackageVersion, :PackageId, :VpcId, :SubnetIds, :Status, :L5Addr, :Region, :CanRenew, :AutoRenewFlag, :IsolateTime, :ExpireTime, :CreateTime, :UpdateTime, :CanDowngrade, :AllowUncertified, :VersionNumLimit, :LongAccessId, :AccessDomain, :Tags
 
-        def initialize(uin=nil, appid=nil, wxappid=nil, envid=nil, gatewayid=nil, gatewayname=nil, gatewaytype=nil, gatewaydesc=nil, packageversion=nil, packageid=nil, vpcid=nil, subnetids=nil, status=nil, l5addr=nil, region=nil, canrenew=nil, autorenewflag=nil, isolatetime=nil, expiretime=nil, createtime=nil, updatetime=nil, candowngrade=nil, allowuncertified=nil, versionnumlimit=nil, longaccessid=nil, accessdomain=nil)
+        def initialize(uin=nil, appid=nil, wxappid=nil, envid=nil, gatewayid=nil, gatewayname=nil, gatewaytype=nil, gatewaydesc=nil, packageversion=nil, packageid=nil, vpcid=nil, subnetids=nil, status=nil, l5addr=nil, region=nil, canrenew=nil, autorenewflag=nil, isolatetime=nil, expiretime=nil, createtime=nil, updatetime=nil, candowngrade=nil, allowuncertified=nil, versionnumlimit=nil, longaccessid=nil, accessdomain=nil, tags=nil)
           @Uin = uin
           @AppId = appid
           @WxAppId = wxappid
@@ -6846,6 +6848,7 @@ module TencentCloud
           @VersionNumLimit = versionnumlimit
           @LongAccessId = longaccessid
           @AccessDomain = accessdomain
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -6875,6 +6878,14 @@ module TencentCloud
           @VersionNumLimit = params['VersionNumLimit']
           @LongAccessId = params['LongAccessId']
           @AccessDomain = params['AccessDomain']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
         end
       end
 

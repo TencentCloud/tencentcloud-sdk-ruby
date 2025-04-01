@@ -557,7 +557,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 创建位置空间
+        # 创建位置空间。
 
         # @param request: Request instance for CreatePositionSpace.
         # @type request: :class:`Tencentcloud::iotexplorer::V20190423::CreatePositionSpaceRequest`

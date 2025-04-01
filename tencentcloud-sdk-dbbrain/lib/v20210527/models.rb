@@ -3343,6 +3343,85 @@ module TencentCloud
         end
       end
 
+      # DescribeRedisSlowLogTopSqls请求参数结构体
+      class DescribeRedisSlowLogTopSqlsRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例 ID 。
+        # @type InstanceId: String
+        # @param StartTime: 开始时间，如“2019-09-10 12:13:14”。
+        # @type StartTime: String
+        # @param EndTime: 截止时间，如“2019-09-11 10:13:14”，截止时间与开始时间的间隔小于7天。
+        # @type EndTime: String
+        # @param Product: 服务产品类型，支持值： "redis" - 云数据库 Redis。
+        # @type Product: String
+        # @param InstanceProxyId: Redis Proxy节点ID。
+        # @type InstanceProxyId: String
+        # @param SortBy: 排序键，支持ExecTimes,QueryTime,QueryTimeMax,QueryTimeAvg等排序键，默认为QueryTime。
+        # @type SortBy: String
+        # @param OrderBy: 排序方式，支持ASC（升序）以及DESC（降序），默认为DESC。
+        # @type OrderBy: String
+        # @param Limit: 返回数量，默认为20，最大值为100。
+        # @type Limit: Integer
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
+
+        attr_accessor :InstanceId, :StartTime, :EndTime, :Product, :InstanceProxyId, :SortBy, :OrderBy, :Limit, :Offset
+
+        def initialize(instanceid=nil, starttime=nil, endtime=nil, product=nil, instanceproxyid=nil, sortby=nil, orderby=nil, limit=nil, offset=nil)
+          @InstanceId = instanceid
+          @StartTime = starttime
+          @EndTime = endtime
+          @Product = product
+          @InstanceProxyId = instanceproxyid
+          @SortBy = sortby
+          @OrderBy = orderby
+          @Limit = limit
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Product = params['Product']
+          @InstanceProxyId = params['InstanceProxyId']
+          @SortBy = params['SortBy']
+          @OrderBy = params['OrderBy']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+        end
+      end
+
+      # DescribeRedisSlowLogTopSqls返回参数结构体
+      class DescribeRedisSlowLogTopSqlsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 符合条件的记录总数。
+        # @type TotalCount: Integer
+        # @param Rows: 慢日志 top sql 列表。
+        # @type Rows: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Rows, :RequestId
+
+        def initialize(totalcount=nil, rows=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Rows = rows
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Rows'].nil?
+            @Rows = []
+            params['Rows'].each do |i|
+              slowlogagg_tmp = SlowLogAgg.new
+              slowlogagg_tmp.deserialize(i)
+              @Rows << slowlogagg_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeRedisTopBigKeys请求参数结构体
       class DescribeRedisTopBigKeysRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID。
@@ -3655,6 +3734,77 @@ module TencentCloud
         end
       end
 
+      # DescribeSlowLogQueryTimeStats请求参数结构体
+      class DescribeSlowLogQueryTimeStatsRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例 ID 。
+        # @type InstanceId: String
+        # @param StartTime: 开始时间，如“2019-09-10 12:13:14”。
+        # @type StartTime: String
+        # @param EndTime: 截止时间，如“2019-09-11 10:13:14”，截止时间与开始时间的间隔小于7天。
+        # @type EndTime: String
+        # @param Product: "mysql" - 云数据库 MySQL， "cynosdb" - 云数据库 TDSQL-C for MySQL，"redis" - 云数据库 Redis，"mongodb" - 云数据库 MongoDB，默认为"mysql"。
+        # @type Product: String
+        # @param InstanceProxyId: Proxy节点ID。
+        # @type InstanceProxyId: String
+        # @param InstanceNodeId: 实列节点ID。
+        # @type InstanceNodeId: String
+        # @param Type: 查询类型，目前支持值：mongod，mongos。
+        # @type Type: String
+
+        attr_accessor :InstanceId, :StartTime, :EndTime, :Product, :InstanceProxyId, :InstanceNodeId, :Type
+
+        def initialize(instanceid=nil, starttime=nil, endtime=nil, product=nil, instanceproxyid=nil, instancenodeid=nil, type=nil)
+          @InstanceId = instanceid
+          @StartTime = starttime
+          @EndTime = endtime
+          @Product = product
+          @InstanceProxyId = instanceproxyid
+          @InstanceNodeId = instancenodeid
+          @Type = type
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Product = params['Product']
+          @InstanceProxyId = params['InstanceProxyId']
+          @InstanceNodeId = params['InstanceNodeId']
+          @Type = params['Type']
+        end
+      end
+
+      # DescribeSlowLogQueryTimeStats返回参数结构体
+      class DescribeSlowLogQueryTimeStatsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 符合条件的记录总数。
+        # @type TotalCount: Integer
+        # @param Items: 慢日志 top sql 列表。
+        # @type Items: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Items, :RequestId
+
+        def initialize(totalcount=nil, items=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Items = items
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              sqlcostdistribution_tmp = SqlCostDistribution.new
+              sqlcostdistribution_tmp.deserialize(i)
+              @Items << sqlcostdistribution_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeSlowLogTimeSeriesStats请求参数结构体
       class DescribeSlowLogTimeSeriesStatsRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例 ID 。
@@ -3663,16 +3813,25 @@ module TencentCloud
         # @type StartTime: String
         # @param EndTime: 结束时间，如“2019-09-10 12:13:14”，结束时间与开始时间的间隔最大可为7天。
         # @type EndTime: String
-        # @param Product: 服务产品类型，支持值包括： "mysql" - 云数据库 MySQL， "cynosdb" - 云数据库 CynosDB  for MySQL，默认为"mysql"。
+        # @param Product: 服务产品类型，支持值包括： "mysql" - 云数据库 MySQL， "cynosdb" - 云数据库 CynosDB  for MySQL，"redis" - 云数据库 Redis，"mongodb" - 云数据库 MongoDB，默认为"mysql"。
         # @type Product: String
+        # @param InstanceProxyId: Proxy节点ID。
+        # @type InstanceProxyId: String
+        # @param InstanceNodeId: 实列节点ID。
+        # @type InstanceNodeId: String
+        # @param Type: 查询类型，目前支持值：mongod，mongos。
+        # @type Type: String
 
-        attr_accessor :InstanceId, :StartTime, :EndTime, :Product
+        attr_accessor :InstanceId, :StartTime, :EndTime, :Product, :InstanceProxyId, :InstanceNodeId, :Type
 
-        def initialize(instanceid=nil, starttime=nil, endtime=nil, product=nil)
+        def initialize(instanceid=nil, starttime=nil, endtime=nil, product=nil, instanceproxyid=nil, instancenodeid=nil, type=nil)
           @InstanceId = instanceid
           @StartTime = starttime
           @EndTime = endtime
           @Product = product
+          @InstanceProxyId = instanceproxyid
+          @InstanceNodeId = instancenodeid
+          @Type = type
         end
 
         def deserialize(params)
@@ -3680,6 +3839,9 @@ module TencentCloud
           @StartTime = params['StartTime']
           @EndTime = params['EndTime']
           @Product = params['Product']
+          @InstanceProxyId = params['InstanceProxyId']
+          @InstanceNodeId = params['InstanceNodeId']
+          @Type = params['Type']
         end
       end
 
@@ -6377,6 +6539,50 @@ module TencentCloud
         end
       end
 
+      # redis top慢日志聚合详情。
+      class SlowLogAgg < TencentCloud::Common::AbstractModel
+        # @param Cmd: 命令模版。
+        # @type Cmd: String
+        # @param Detail: 命令详情。
+        # @type Detail: String
+        # @param ExecTimes: 执行次数。
+        # @type ExecTimes: Integer
+        # @param QueryTime: 总耗时。
+        # @type QueryTime: Float
+        # @param QueryTimeAvg: 平均执行时间。
+        # @type QueryTimeAvg: Float
+        # @param QueryTimeMax: 最大执行时间。
+        # @type QueryTimeMax: Float
+        # @param QueryTimeMin: 最小执行时间。
+        # @type QueryTimeMin: Float
+        # @param QueryTimeRatio: 总耗时占比
+        # @type QueryTimeRatio: Float
+
+        attr_accessor :Cmd, :Detail, :ExecTimes, :QueryTime, :QueryTimeAvg, :QueryTimeMax, :QueryTimeMin, :QueryTimeRatio
+
+        def initialize(cmd=nil, detail=nil, exectimes=nil, querytime=nil, querytimeavg=nil, querytimemax=nil, querytimemin=nil, querytimeratio=nil)
+          @Cmd = cmd
+          @Detail = detail
+          @ExecTimes = exectimes
+          @QueryTime = querytime
+          @QueryTimeAvg = querytimeavg
+          @QueryTimeMax = querytimemax
+          @QueryTimeMin = querytimemin
+          @QueryTimeRatio = querytimeratio
+        end
+
+        def deserialize(params)
+          @Cmd = params['Cmd']
+          @Detail = params['Detail']
+          @ExecTimes = params['ExecTimes']
+          @QueryTime = params['QueryTime']
+          @QueryTimeAvg = params['QueryTimeAvg']
+          @QueryTimeMax = params['QueryTimeMax']
+          @QueryTimeMin = params['QueryTimeMin']
+          @QueryTimeRatio = params['QueryTimeRatio']
+        end
+      end
+
       # 慢日志来源地址详情。
       class SlowLogHost < TencentCloud::Common::AbstractModel
         # @param UserHost: 来源地址。
@@ -6582,6 +6788,34 @@ module TencentCloud
           @UserName = params['UserName']
           @Ratio = params['Ratio']
           @Count = params['Count']
+        end
+      end
+
+      # 分段耗时 SQL 分布
+      class SqlCostDistribution < TencentCloud::Common::AbstractModel
+        # @param Count: sql条数。
+        # @type Count: Integer
+        # @param From: 分段耗时下边界，单位是秒。
+        # @type From: Float
+        # @param To: 分段耗时上边界，单位是秒。
+        # @type To: Float
+        # @param Ratio: 耗时占比。
+        # @type Ratio: Float
+
+        attr_accessor :Count, :From, :To, :Ratio
+
+        def initialize(count=nil, from=nil, to=nil, ratio=nil)
+          @Count = count
+          @From = from
+          @To = to
+          @Ratio = ratio
+        end
+
+        def deserialize(params)
+          @Count = params['Count']
+          @From = params['From']
+          @To = params['To']
+          @Ratio = params['Ratio']
         end
       end
 

@@ -723,8 +723,8 @@ module TencentCloud
 
         attr_accessor :ProjectId, :RoleIdList, :UserList, :UserInfoList
         extend Gem::Deprecate
-        deprecate :UserList, :none, 2025, 3
-        deprecate :UserList=, :none, 2025, 3
+        deprecate :UserList, :none, 2025, 4
+        deprecate :UserList=, :none, 2025, 4
 
         def initialize(projectid=nil, roleidlist=nil, userlist=nil, userinfolist=nil)
           @ProjectId = projectid
@@ -808,8 +808,8 @@ module TencentCloud
 
         attr_accessor :RoleIdList, :UserList, :UserInfoList
         extend Gem::Deprecate
-        deprecate :UserList, :none, 2025, 3
-        deprecate :UserList=, :none, 2025, 3
+        deprecate :UserList, :none, 2025, 4
+        deprecate :UserList=, :none, 2025, 4
 
         def initialize(roleidlist=nil, userlist=nil, userinfolist=nil)
           @RoleIdList = roleidlist
@@ -1016,10 +1016,16 @@ module TencentCloud
         # @param UseVPC: 开启vpc
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UseVPC: Boolean
+        # @param Owner: 所属人ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Owner: String
+        # @param OwnerName: 所属人名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OwnerName: String
 
-        attr_accessor :Id, :DbName, :ServiceType, :SourceName, :DbType, :DbHost, :DbPort, :DbUser, :Charset, :CreatedAt, :UpdatedAt, :CreatedUser, :Catalog, :ConnectType, :ProjectId, :Desc, :Status, :SourcePlat, :ExtraParam, :AddInfo, :ProjectName, :EngineType, :Manager, :OperatorWhitelist, :VpcId, :UniqVpcId, :RegionId, :StateAction, :UpdatedUser, :PermissionList, :AuthList, :DataOrigin, :DataOriginProjectId, :DataOriginDatasourceId, :ClusterId, :DbTypeName, :UseVPC
+        attr_accessor :Id, :DbName, :ServiceType, :SourceName, :DbType, :DbHost, :DbPort, :DbUser, :Charset, :CreatedAt, :UpdatedAt, :CreatedUser, :Catalog, :ConnectType, :ProjectId, :Desc, :Status, :SourcePlat, :ExtraParam, :AddInfo, :ProjectName, :EngineType, :Manager, :OperatorWhitelist, :VpcId, :UniqVpcId, :RegionId, :StateAction, :UpdatedUser, :PermissionList, :AuthList, :DataOrigin, :DataOriginProjectId, :DataOriginDatasourceId, :ClusterId, :DbTypeName, :UseVPC, :Owner, :OwnerName
 
-        def initialize(id=nil, dbname=nil, servicetype=nil, sourcename=nil, dbtype=nil, dbhost=nil, dbport=nil, dbuser=nil, charset=nil, createdat=nil, updatedat=nil, createduser=nil, catalog=nil, connecttype=nil, projectid=nil, desc=nil, status=nil, sourceplat=nil, extraparam=nil, addinfo=nil, projectname=nil, enginetype=nil, manager=nil, operatorwhitelist=nil, vpcid=nil, uniqvpcid=nil, regionid=nil, stateaction=nil, updateduser=nil, permissionlist=nil, authlist=nil, dataorigin=nil, dataoriginprojectid=nil, dataorigindatasourceid=nil, clusterid=nil, dbtypename=nil, usevpc=nil)
+        def initialize(id=nil, dbname=nil, servicetype=nil, sourcename=nil, dbtype=nil, dbhost=nil, dbport=nil, dbuser=nil, charset=nil, createdat=nil, updatedat=nil, createduser=nil, catalog=nil, connecttype=nil, projectid=nil, desc=nil, status=nil, sourceplat=nil, extraparam=nil, addinfo=nil, projectname=nil, enginetype=nil, manager=nil, operatorwhitelist=nil, vpcid=nil, uniqvpcid=nil, regionid=nil, stateaction=nil, updateduser=nil, permissionlist=nil, authlist=nil, dataorigin=nil, dataoriginprojectid=nil, dataorigindatasourceid=nil, clusterid=nil, dbtypename=nil, usevpc=nil, owner=nil, ownername=nil)
           @Id = id
           @DbName = dbname
           @ServiceType = servicetype
@@ -1057,6 +1063,8 @@ module TencentCloud
           @ClusterId = clusterid
           @DbTypeName = dbtypename
           @UseVPC = usevpc
+          @Owner = owner
+          @OwnerName = ownername
         end
 
         def deserialize(params)
@@ -1107,6 +1115,8 @@ module TencentCloud
           @ClusterId = params['ClusterId']
           @DbTypeName = params['DbTypeName']
           @UseVPC = params['UseVPC']
+          @Owner = params['Owner']
+          @OwnerName = params['OwnerName']
         end
       end
 
@@ -1669,14 +1679,20 @@ module TencentCloud
         # @type PageNo: Integer
         # @param PageSize: 无
         # @type PageSize: Integer
+        # @param IsFilterPerAuthUser: 是否过滤掉企业管理员
+        # @type IsFilterPerAuthUser: Boolean
+        # @param IsFilterCurrentUser: 是否过滤掉当前用户
+        # @type IsFilterCurrentUser: Boolean
 
-        attr_accessor :ProjectId, :AllPage, :PageNo, :PageSize
+        attr_accessor :ProjectId, :AllPage, :PageNo, :PageSize, :IsFilterPerAuthUser, :IsFilterCurrentUser
 
-        def initialize(projectid=nil, allpage=nil, pageno=nil, pagesize=nil)
+        def initialize(projectid=nil, allpage=nil, pageno=nil, pagesize=nil, isfilterperauthuser=nil, isfiltercurrentuser=nil)
           @ProjectId = projectid
           @AllPage = allpage
           @PageNo = pageno
           @PageSize = pagesize
+          @IsFilterPerAuthUser = isfilterperauthuser
+          @IsFilterCurrentUser = isfiltercurrentuser
         end
 
         def deserialize(params)
@@ -1684,6 +1700,8 @@ module TencentCloud
           @AllPage = params['AllPage']
           @PageNo = params['PageNo']
           @PageSize = params['PageSize']
+          @IsFilterPerAuthUser = params['IsFilterPerAuthUser']
+          @IsFilterCurrentUser = params['IsFilterCurrentUser']
         end
       end
 
@@ -1821,14 +1839,20 @@ module TencentCloud
         # @type ProjectId: Integer
         # @param IsOnlyBindAppUser: 是否只获取绑定企微应用的
         # @type IsOnlyBindAppUser: Boolean
+        # @param AllPage: 是否获取全部数据
+        # @type AllPage: Boolean
+        # @param RoleCode: 角色编码
+        # @type RoleCode: String
 
-        attr_accessor :PageNo, :PageSize, :ProjectId, :IsOnlyBindAppUser
+        attr_accessor :PageNo, :PageSize, :ProjectId, :IsOnlyBindAppUser, :AllPage, :RoleCode
 
-        def initialize(pageno=nil, pagesize=nil, projectid=nil, isonlybindappuser=nil)
+        def initialize(pageno=nil, pagesize=nil, projectid=nil, isonlybindappuser=nil, allpage=nil, rolecode=nil)
           @PageNo = pageno
           @PageSize = pagesize
           @ProjectId = projectid
           @IsOnlyBindAppUser = isonlybindappuser
+          @AllPage = allpage
+          @RoleCode = rolecode
         end
 
         def deserialize(params)
@@ -1836,6 +1860,8 @@ module TencentCloud
           @PageSize = params['PageSize']
           @ProjectId = params['ProjectId']
           @IsOnlyBindAppUser = params['IsOnlyBindAppUser']
+          @AllPage = params['AllPage']
+          @RoleCode = params['RoleCode']
         end
       end
 
@@ -2881,10 +2907,19 @@ module TencentCloud
         # @param ConfigList: 定制化参数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ConfigList: Array
+        # @param CreatedUserName: 创建人
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreatedUserName: String
+        # @param Owner: 所属人id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Owner: String
+        # @param OwnerName: 所属人
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OwnerName: String
 
-        attr_accessor :Id, :Logo, :Name, :ColorCode, :CreatedUser, :CreatedAt, :MemberCount, :PageCount, :LastModifyName, :Source, :Apply, :UpdatedUser, :UpdatedAt, :CorpId, :Mark, :Seed, :AuthList, :PanelScope, :IsExternalManage, :ManagePlatform, :ConfigList
+        attr_accessor :Id, :Logo, :Name, :ColorCode, :CreatedUser, :CreatedAt, :MemberCount, :PageCount, :LastModifyName, :Source, :Apply, :UpdatedUser, :UpdatedAt, :CorpId, :Mark, :Seed, :AuthList, :PanelScope, :IsExternalManage, :ManagePlatform, :ConfigList, :CreatedUserName, :Owner, :OwnerName
 
-        def initialize(id=nil, logo=nil, name=nil, colorcode=nil, createduser=nil, createdat=nil, membercount=nil, pagecount=nil, lastmodifyname=nil, source=nil, apply=nil, updateduser=nil, updatedat=nil, corpid=nil, mark=nil, seed=nil, authlist=nil, panelscope=nil, isexternalmanage=nil, manageplatform=nil, configlist=nil)
+        def initialize(id=nil, logo=nil, name=nil, colorcode=nil, createduser=nil, createdat=nil, membercount=nil, pagecount=nil, lastmodifyname=nil, source=nil, apply=nil, updateduser=nil, updatedat=nil, corpid=nil, mark=nil, seed=nil, authlist=nil, panelscope=nil, isexternalmanage=nil, manageplatform=nil, configlist=nil, createdusername=nil, owner=nil, ownername=nil)
           @Id = id
           @Logo = logo
           @Name = name
@@ -2906,6 +2941,9 @@ module TencentCloud
           @IsExternalManage = isexternalmanage
           @ManagePlatform = manageplatform
           @ConfigList = configlist
+          @CreatedUserName = createdusername
+          @Owner = owner
+          @OwnerName = ownername
         end
 
         def deserialize(params)
@@ -2937,6 +2975,9 @@ module TencentCloud
               @ConfigList << projectconfiglist_tmp
             end
           end
+          @CreatedUserName = params['CreatedUserName']
+          @Owner = params['Owner']
+          @OwnerName = params['OwnerName']
         end
       end
 

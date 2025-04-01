@@ -1325,15 +1325,19 @@ module TencentCloud
       class CreateSCIMCredentialRequest < TencentCloud::Common::AbstractModel
         # @param ZoneId: 空间ID。z-前缀开头，后面是12位随机数字/小写字母
         # @type ZoneId: String
+        # @param ExpireDuration: 过期时间（秒），最小1小时，最大99年。如果不传则默认一年过期
+        # @type ExpireDuration: Integer
 
-        attr_accessor :ZoneId
+        attr_accessor :ZoneId, :ExpireDuration
 
-        def initialize(zoneid=nil)
+        def initialize(zoneid=nil, expireduration=nil)
           @ZoneId = zoneid
+          @ExpireDuration = expireduration
         end
 
         def deserialize(params)
           @ZoneId = params['ZoneId']
+          @ExpireDuration = params['ExpireDuration']
         end
       end
 
@@ -6516,8 +6520,8 @@ module TencentCloud
 
         attr_accessor :ProductResourceId, :ResourceGrantLast
         extend Gem::Deprecate
-        deprecate :ResourceGrantLast, :none, 2025, 3
-        deprecate :ResourceGrantLast=, :none, 2025, 3
+        deprecate :ResourceGrantLast, :none, 2025, 4
+        deprecate :ResourceGrantLast=, :none, 2025, 4
 
         def initialize(productresourceid=nil, resourcegrantlast=nil)
           @ProductResourceId = productresourceid
@@ -7351,8 +7355,8 @@ module TencentCloud
 
         attr_accessor :ResourceId, :ProductResourceId
         extend Gem::Deprecate
-        deprecate :ResourceId, :none, 2025, 3
-        deprecate :ResourceId=, :none, 2025, 3
+        deprecate :ResourceId, :none, 2025, 4
+        deprecate :ResourceId=, :none, 2025, 4
 
         def initialize(resourceid=nil, productresourceid=nil)
           @ResourceId = resourceid

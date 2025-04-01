@@ -2873,7 +2873,6 @@ module TencentCloud
       # CreateClsLogTopic返回参数结构体
       class CreateClsLogTopicResponse < TencentCloud::Common::AbstractModel
         # @param TopicId: 主题ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TopicId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3227,13 +3226,10 @@ module TencentCloud
         # @param RecordType: 解析类型
         # @type RecordType: String
         # @param FileVerifyUrl: 文件验证 URL 指引
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FileVerifyUrl: String
         # @param FileVerifyDomains: 文件校验域名列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FileVerifyDomains: Array
         # @param FileVerifyName: 文件校验文件名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FileVerifyName: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4036,10 +4032,8 @@ module TencentCloud
       # DescribeCertDomains返回参数结构体
       class DescribeCertDomainsResponse < TencentCloud::Common::AbstractModel
         # @param Domains: 已接入CDN的域名列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Domains: Array
         # @param CertifiedDomains: 已配置证书的CDN域名列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CertifiedDomains: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4168,7 +4162,6 @@ module TencentCloud
         # @param OriginInfo: 源站检测信息
         # @type OriginInfo: :class:`Tencentcloud::Cdn.v20180606.models.DiagnoseData`
         # @param PurgeInfo: 刷新检测信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PurgeInfo: :class:`Tencentcloud::Cdn.v20180606.models.DiagnoseData`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4302,7 +4295,6 @@ module TencentCloud
       # DescribeDistrictIspData返回参数结构体
       class DescribeDistrictIspDataResponse < TencentCloud::Common::AbstractModel
         # @param Data: 地区运营商数据明细
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4690,16 +4682,12 @@ module TencentCloud
       # DescribeImageConfig返回参数结构体
       class DescribeImageConfigResponse < TencentCloud::Common::AbstractModel
         # @param WebpAdapter: WebpAdapter配置
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WebpAdapter: :class:`Tencentcloud::Cdn.v20180606.models.WebpAdapter`
         # @param TpgAdapter: TpgAdapter配置
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TpgAdapter: :class:`Tencentcloud::Cdn.v20180606.models.TpgAdapter`
         # @param GuetzliAdapter: GuetzliAdapter配置
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GuetzliAdapter: :class:`Tencentcloud::Cdn.v20180606.models.GuetzliAdapter`
         # @param AvifAdapter: AvifAdapter配置项
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AvifAdapter: :class:`Tencentcloud::Cdn.v20180606.models.AvifAdapter`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5245,10 +5233,8 @@ module TencentCloud
       # DescribePurgeTasks返回参数结构体
       class DescribePurgeTasksResponse < TencentCloud::Common::AbstractModel
         # @param PurgeLogs: 详细刷新记录
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PurgeLogs: Array
         # @param TotalCount: 任务总数，用于分页
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5368,10 +5354,8 @@ module TencentCloud
       # DescribePushTasks返回参数结构体
       class DescribePushTasksResponse < TencentCloud::Common::AbstractModel
         # @param PushLogs: 预热历史记录
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PushLogs: Array
         # @param TotalCount: 任务总数，用于分页
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -7016,10 +7000,8 @@ module TencentCloud
       # DisableCaches返回参数结构体
       class DisableCachesResponse < TencentCloud::Common::AbstractModel
         # @param CacheOptResult: 提交结果
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CacheOptResult: :class:`Tencentcloud::Cdn.v20180606.models.CacheOptResult`
         # @param TaskId: 任务ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -7433,10 +7415,8 @@ module TencentCloud
       # EnableCaches返回参数结构体
       class EnableCachesResponse < TencentCloud::Common::AbstractModel
         # @param CacheOptResult: 结果列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CacheOptResult: :class:`Tencentcloud::Cdn.v20180606.models.CacheOptResult`
         # @param TaskId: 任务ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -7717,10 +7697,8 @@ module TencentCloud
       # GetDisableRecords返回参数结构体
       class GetDisableRecordsResponse < TencentCloud::Common::AbstractModel
         # @param UrlRecordList: 封禁历史记录
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UrlRecordList: Array
         # @param TotalCount: 任务总数，用于分页
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -8570,7 +8548,6 @@ module TencentCloud
         # @param TopicName: 日志主题名称
         # @type TopicName: String
         # @param UpdateTime: 日志主题最近更新时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
