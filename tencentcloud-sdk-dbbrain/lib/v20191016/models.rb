@@ -99,7 +99,7 @@ module TencentCloud
         # @type ContactPerson: Array
         # @param ContactGroup: 接收邮件的联系组ID数组。
         # @type ContactGroup: Array
-        # @param Product: 服务产品类型，支持值包括： "mysql" - 云数据库 MySQL， "cynosdb" - 云数据库 CynosDB  for MySQL，默认值为"mysql"。
+        # @param Product: 服务产品类型，支持值包括： "mysql" - 云数据库 MySQL， "cynosdb" - 云数据库 CynosDB  for MySQL，"redis" - 云数据库 Redis，默认值为"mysql"。
         # @type Product: String
 
         attr_accessor :InstanceId, :StartTime, :EndTime, :SendMailFlag, :ContactPerson, :ContactGroup, :Product
@@ -151,7 +151,7 @@ module TencentCloud
         # @type InstanceId: String
         # @param AsyncRequestId: 健康报告相应的任务ID，可通过DescribeDBDiagReportTasks查询。
         # @type AsyncRequestId: Integer
-        # @param Product: 服务产品类型，支持值："mysql" - 云数据库 MySQL；"cynosdb" - 云数据库 TDSQL-C for MySQL，默认为"mysql"。
+        # @param Product: 服务产品类型，支持值："mysql" - 云数据库 MySQL；"cynosdb" - 云数据库 TDSQL-C for MySQL，"redis" - 云数据库 Redis，默认为"mysql"。
         # @type Product: String
 
         attr_accessor :InstanceId, :AsyncRequestId, :Product
@@ -499,7 +499,7 @@ module TencentCloud
         # @type InstanceId: String
         # @param EventId: 事件 ID 。通过“获取实例诊断历史DescribeDBDiagHistory”获取。
         # @type EventId: Integer
-        # @param Product: 服务产品类型，支持值包括： "mysql" - 云数据库 MySQL， "cynosdb" - 云数据库 CynosDB  for MySQL，默认为"mysql"。
+        # @param Product: 服务产品类型，支持值包括： "mysql" - 云数据库 MySQL， "cynosdb" - 云数据库 CynosDB  for MySQL，"redis" - 云数据库 Redis，默认为"mysql"。
         # @type Product: String
 
         attr_accessor :InstanceId, :EventId, :Product
@@ -640,7 +640,7 @@ module TencentCloud
         # @type EndTime: String
         # @param InstanceIds: 实例ID数组，用于筛选指定实例的任务列表。
         # @type InstanceIds: Array
-        # @param Sources: 任务的触发来源，支持的取值包括："DAILY_INSPECTION" - 实例巡检；"SCHEDULED" - 定时生成；"MANUAL" - 手动触发。
+        # @param Sources: 任务的触发来源，支持的取值包括："DAILY_INSPECTION" - 实例巡检；"SCHEDULED" - 计划任务；"MANUAL" - 手动触发。
         # @type Sources: Array
         # @param HealthLevels: 报告的健康等级，支持的取值包括："HEALTH" - 健康；"SUB_HEALTH" - 亚健康；"RISK" - 危险；"HIGH_RISK" - 高危。
         # @type HealthLevels: String
@@ -650,7 +650,7 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 返回数量，默认20。
         # @type Limit: Integer
-        # @param Product: 服务产品类型，支持值："mysql" - 云数据库 MySQL；"cynosdb" - 云数据库 TDSQL-C for MySQL，默认为"mysql"。
+        # @param Product: 服务产品类型，支持值："mysql" - 云数据库 MySQL；"cynosdb" - 云数据库 TDSQL-C for MySQL；"redis" - 云数据库 Redis，默认为"mysql"。
         # @type Product: String
 
         attr_accessor :StartTime, :EndTime, :InstanceIds, :Sources, :HealthLevels, :TaskStatuses, :Offset, :Limit, :Product
@@ -1816,14 +1816,17 @@ module TencentCloud
         # @type ScoreLost: Integer
         # @param ScoreDetails: 扣分详情。
         # @type ScoreDetails: Array
+        # @param HealthLevelVersion: 健康等级版本，默认为V1
+        # @type HealthLevelVersion: String
 
-        attr_accessor :HealthScore, :HealthLevel, :ScoreLost, :ScoreDetails
+        attr_accessor :HealthScore, :HealthLevel, :ScoreLost, :ScoreDetails, :HealthLevelVersion
 
-        def initialize(healthscore=nil, healthlevel=nil, scorelost=nil, scoredetails=nil)
+        def initialize(healthscore=nil, healthlevel=nil, scorelost=nil, scoredetails=nil, healthlevelversion=nil)
           @HealthScore = healthscore
           @HealthLevel = healthlevel
           @ScoreLost = scorelost
           @ScoreDetails = scoredetails
+          @HealthLevelVersion = healthlevelversion
         end
 
         def deserialize(params)
@@ -1838,6 +1841,7 @@ module TencentCloud
               @ScoreDetails << scoredetail_tmp
             end
           end
+          @HealthLevelVersion = params['HealthLevelVersion']
         end
       end
 
@@ -1855,16 +1859,43 @@ module TencentCloud
         # @type Product: String
         # @param EngineVersion: 实例引擎版本。
         # @type EngineVersion: String
+        # @param Cpu: CPU数量，对于Redis为0。
+        # @type Cpu: Integer
+        # @param DeployMode: 实例部署模式。
+        # @type DeployMode: String
+        # @param InstanceConf: 实例内存配置。
+        # @type InstanceConf: :class:`Tencentcloud::Dbbrain.v20191016.models.RedisInstanceConf`
+        # @param IsSupported: DBbrain是否支持该实例。
+        # @type IsSupported: Boolean
+        # @param Memory: 实例内存，单位MB。
+        # @type Memory: Integer
+        # @param Region: 实例地域。
+        # @type Region: String
+        # @param UniqSubnetId: 实例子网统一ID，对于redis为空字符串。
+        # @type UniqSubnetId: String
+        # @param UniqVpcId: 实例私有网络统一ID，对于redis为空字符串。
+        # @type UniqVpcId: String
+        # @param Volume: 实例磁盘容量，对于Redis为0。
+        # @type Volume: Integer
 
-        attr_accessor :InstanceId, :InstanceName, :Vip, :Vport, :Product, :EngineVersion
+        attr_accessor :InstanceId, :InstanceName, :Vip, :Vport, :Product, :EngineVersion, :Cpu, :DeployMode, :InstanceConf, :IsSupported, :Memory, :Region, :UniqSubnetId, :UniqVpcId, :Volume
 
-        def initialize(instanceid=nil, instancename=nil, vip=nil, vport=nil, product=nil, engineversion=nil)
+        def initialize(instanceid=nil, instancename=nil, vip=nil, vport=nil, product=nil, engineversion=nil, cpu=nil, deploymode=nil, instanceconf=nil, issupported=nil, memory=nil, region=nil, uniqsubnetid=nil, uniqvpcid=nil, volume=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @Vip = vip
           @Vport = vport
           @Product = product
           @EngineVersion = engineversion
+          @Cpu = cpu
+          @DeployMode = deploymode
+          @InstanceConf = instanceconf
+          @IsSupported = issupported
+          @Memory = memory
+          @Region = region
+          @UniqSubnetId = uniqsubnetid
+          @UniqVpcId = uniqvpcid
+          @Volume = volume
         end
 
         def deserialize(params)
@@ -1874,6 +1905,18 @@ module TencentCloud
           @Vport = params['Vport']
           @Product = params['Product']
           @EngineVersion = params['EngineVersion']
+          @Cpu = params['Cpu']
+          @DeployMode = params['DeployMode']
+          unless params['InstanceConf'].nil?
+            @InstanceConf = RedisInstanceConf.new
+            @InstanceConf.deserialize(params['InstanceConf'])
+          end
+          @IsSupported = params['IsSupported']
+          @Memory = params['Memory']
+          @Region = params['Region']
+          @UniqSubnetId = params['UniqSubnetId']
+          @UniqVpcId = params['UniqVpcId']
+          @Volume = params['Volume']
         end
       end
 
@@ -2280,6 +2323,30 @@ module TencentCloud
             @MailConfiguration = MailConfiguration.new
             @MailConfiguration.deserialize(params['MailConfiguration'])
           end
+        end
+      end
+
+      # Redis实例内存配置参数
+      class RedisInstanceConf < TencentCloud::Common::AbstractModel
+        # @param ReplicasNum: 副本数量
+        # @type ReplicasNum: String
+        # @param ShardNum: 分片数量
+        # @type ShardNum: String
+        # @param ShardSize: 分片内存大小，单位MB
+        # @type ShardSize: String
+
+        attr_accessor :ReplicasNum, :ShardNum, :ShardSize
+
+        def initialize(replicasnum=nil, shardnum=nil, shardsize=nil)
+          @ReplicasNum = replicasnum
+          @ShardNum = shardnum
+          @ShardSize = shardsize
+        end
+
+        def deserialize(params)
+          @ReplicasNum = params['ReplicasNum']
+          @ShardNum = params['ShardNum']
+          @ShardSize = params['ShardSize']
         end
       end
 

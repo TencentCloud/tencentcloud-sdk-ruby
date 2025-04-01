@@ -185,10 +185,12 @@ module TencentCloud
         # @type SalesName: String
         # @param ClientName: 客户名称，此字段和控制台返回一致。
         # @type ClientName: String
+        # @param IncreaseGoal: 增量目标金额(分)
+        # @type IncreaseGoal: String
 
-        attr_accessor :Uin, :ClientUin, :ApplyTime, :ClientFlag, :Mail, :Phone, :HasOverdueBill, :Status, :SalesUin, :SalesName, :ClientName
+        attr_accessor :Uin, :ClientUin, :ApplyTime, :ClientFlag, :Mail, :Phone, :HasOverdueBill, :Status, :SalesUin, :SalesName, :ClientName, :IncreaseGoal
 
-        def initialize(uin=nil, clientuin=nil, applytime=nil, clientflag=nil, mail=nil, phone=nil, hasoverduebill=nil, status=nil, salesuin=nil, salesname=nil, clientname=nil)
+        def initialize(uin=nil, clientuin=nil, applytime=nil, clientflag=nil, mail=nil, phone=nil, hasoverduebill=nil, status=nil, salesuin=nil, salesname=nil, clientname=nil, increasegoal=nil)
           @Uin = uin
           @ClientUin = clientuin
           @ApplyTime = applytime
@@ -200,6 +202,7 @@ module TencentCloud
           @SalesUin = salesuin
           @SalesName = salesname
           @ClientName = clientname
+          @IncreaseGoal = increasegoal
         end
 
         def deserialize(params)
@@ -214,6 +217,7 @@ module TencentCloud
           @SalesUin = params['SalesUin']
           @SalesName = params['SalesName']
           @ClientName = params['ClientName']
+          @IncreaseGoal = params['IncreaseGoal']
         end
       end
 

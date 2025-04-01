@@ -29,15 +29,18 @@ module TencentCloud
         # @type AndroidAppVersionInfo: Array
         # @param CreateTime: 安卓应用创建时间
         # @type CreateTime: String
+        # @param UserId: 用户 Id
+        # @type UserId: String
 
-        attr_accessor :AndroidAppId, :Name, :State, :AndroidAppVersionInfo, :CreateTime
+        attr_accessor :AndroidAppId, :Name, :State, :AndroidAppVersionInfo, :CreateTime, :UserId
 
-        def initialize(androidappid=nil, name=nil, state=nil, androidappversioninfo=nil, createtime=nil)
+        def initialize(androidappid=nil, name=nil, state=nil, androidappversioninfo=nil, createtime=nil, userid=nil)
           @AndroidAppId = androidappid
           @Name = name
           @State = state
           @AndroidAppVersionInfo = androidappversioninfo
           @CreateTime = createtime
+          @UserId = userid
         end
 
         def deserialize(params)
@@ -53,6 +56,7 @@ module TencentCloud
             end
           end
           @CreateTime = params['CreateTime']
+          @UserId = params['UserId']
         end
       end
 
@@ -849,19 +853,30 @@ module TencentCloud
         # @type Limit: Integer
         # @param AndroidAppIds: 应用ID数组
         # @type AndroidAppIds: Array
+        # @param Filters: 过滤条件
+        # @type Filters: Array
 
-        attr_accessor :Offset, :Limit, :AndroidAppIds
+        attr_accessor :Offset, :Limit, :AndroidAppIds, :Filters
 
-        def initialize(offset=nil, limit=nil, androidappids=nil)
+        def initialize(offset=nil, limit=nil, androidappids=nil, filters=nil)
           @Offset = offset
           @Limit = limit
           @AndroidAppIds = androidappids
+          @Filters = filters
         end
 
         def deserialize(params)
           @Offset = params['Offset']
           @Limit = params['Limit']
           @AndroidAppIds = params['AndroidAppIds']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
         end
       end
 

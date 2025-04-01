@@ -162,10 +162,8 @@ module TencentCloud
       # DescribeApplications返回参数结构体
       class DescribeApplicationsResponse < TencentCloud::Common::AbstractModel
         # @param TotalCount: 应用总数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
         # @param ApplicationSet: 分页返回的应用列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApplicationSet: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -213,7 +211,6 @@ module TencentCloud
         # @param TotalCount: 查询结果集长度
         # @type TotalCount: Integer
         # @param NetworkStatusSet: 查询结果集
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NetworkStatusSet: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -840,10 +837,8 @@ module TencentCloud
       # 某服务的登录配置
       class LoginSetting < TencentCloud::Common::AbstractModel
         # @param ServiceName: 服务名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ServiceName: String
         # @param Url: 服务登录url
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Url: String
 
         attr_accessor :ServiceName, :Url
@@ -1182,14 +1177,11 @@ module TencentCloud
 
       # 描述了操作系统所在块设备即系统盘的信息
       class SystemDisk < TencentCloud::Common::AbstractModel
-        # @param DiskType: 系统盘类型。系统盘类型限制详见[存储概述](https://cloud.tencent.com/document/product/213/4952)。取值范围：<br><li>LOCAL_BASIC：本地硬盘<br><li>LOCAL_SSD：本地SSD硬盘<br><li>CLOUD_BASIC：普通云硬盘<br><li>CLOUD_SSD：SSD云硬盘<br><li>CLOUD_PREMIUM：高性能云硬盘<br><li>CLOUD_BSSD：通用性SSD云硬盘<br><br>默认取值：当前有库存的硬盘类型。
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param DiskType: 系统盘类型。取值范围：<li>CLOUD_PREMIUM：高性能云硬盘</li><li>CLOUD_HSSD：增强型SSD云盘</li>默认取值：当前有库存的硬盘类型。
         # @type DiskType: String
         # @param DiskSize: 系统盘大小，单位：GB。默认值为 80
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DiskSize: Integer
         # @param DiskName: 系统盘分区盘符
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DiskName: String
 
         attr_accessor :DiskType, :DiskSize, :DiskName

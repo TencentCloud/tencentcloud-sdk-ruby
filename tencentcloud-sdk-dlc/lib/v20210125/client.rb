@@ -845,6 +845,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（CreateSparkSubmitTask）用于提交SparkSbumit批流任务。
+
+        # @param request: Request instance for CreateSparkSubmitTask.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::CreateSparkSubmitTaskRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::CreateSparkSubmitTaskResponse`
+        def CreateSparkSubmitTask(request)
+          body = send_request('CreateSparkSubmitTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateSparkSubmitTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 该接口（CreateStoreLocation）新增或覆盖计算结果存储位置。
 
         # @param request: Request instance for CreateStoreLocation.

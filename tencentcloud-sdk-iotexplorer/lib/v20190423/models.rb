@@ -69,8 +69,8 @@ module TencentCloud
 
         attr_accessor :PkgType, :MiniProgramAppId, :DeviceList
         extend Gem::Deprecate
-        deprecate :MiniProgramAppId, :none, 2025, 3
-        deprecate :MiniProgramAppId=, :none, 2025, 3
+        deprecate :MiniProgramAppId, :none, 2025, 4
+        deprecate :MiniProgramAppId=, :none, 2025, 4
 
         def initialize(pkgtype=nil, miniprogramappid=nil, devicelist=nil)
           @PkgType = pkgtype
@@ -805,15 +805,18 @@ module TencentCloud
         # @type MimeType: String
         # @param VideoMetaInfo: 视频文件元数据（仅当文件为视频类型时包含该字段）
         # @type VideoMetaInfo: :class:`Tencentcloud::Iotexplorer.v20190423.models.CloudStorageAIServiceTaskVideoMetaInfo`
+        # @param Labels: 文件标签
+        # @type Labels: Array
 
-        attr_accessor :FileName, :FileSize, :DownloadURL, :MimeType, :VideoMetaInfo
+        attr_accessor :FileName, :FileSize, :DownloadURL, :MimeType, :VideoMetaInfo, :Labels
 
-        def initialize(filename=nil, filesize=nil, downloadurl=nil, mimetype=nil, videometainfo=nil)
+        def initialize(filename=nil, filesize=nil, downloadurl=nil, mimetype=nil, videometainfo=nil, labels=nil)
           @FileName = filename
           @FileSize = filesize
           @DownloadURL = downloadurl
           @MimeType = mimetype
           @VideoMetaInfo = videometainfo
+          @Labels = labels
         end
 
         def deserialize(params)
@@ -825,6 +828,34 @@ module TencentCloud
             @VideoMetaInfo = CloudStorageAIServiceTaskVideoMetaInfo.new
             @VideoMetaInfo.deserialize(params['VideoMetaInfo'])
           end
+          unless params['Labels'].nil?
+            @Labels = []
+            params['Labels'].each do |i|
+              cloudstorageaiservicetaskfilelabel_tmp = CloudStorageAIServiceTaskFileLabel.new
+              cloudstorageaiservicetaskfilelabel_tmp.deserialize(i)
+              @Labels << cloudstorageaiservicetaskfilelabel_tmp
+            end
+          end
+        end
+      end
+
+      # 云存 AI 任务输出文件标签
+      class CloudStorageAIServiceTaskFileLabel < TencentCloud::Common::AbstractModel
+        # @param Key: key1
+        # @type Key: String
+        # @param Value: value1
+        # @type Value: String
+
+        attr_accessor :Key, :Value
+
+        def initialize(key=nil, value=nil)
+          @Key = key
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Value = params['Value']
         end
       end
 
@@ -2859,10 +2890,8 @@ module TencentCloud
         # @param Type: 推送类型。http：HTTP 回调
         # @type Type: String
         # @param CallbackUrl: HTTP 回调 URL
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CallbackUrl: String
         # @param CallbackToken: HTTP 回调鉴权 Token
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CallbackToken: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2965,15 +2994,21 @@ module TencentCloud
       class DescribeCloudStorageAIServiceTaskRequest < TencentCloud::Common::AbstractModel
         # @param TaskId: 任务 ID
         # @type TaskId: String
+        # @param FileURLExpireTime: 下载 URL 的过期时间。
 
-        attr_accessor :TaskId
+        # 若传入该参数，则响应中将包含所有文件的下载 URL
+        # @type FileURLExpireTime: Integer
 
-        def initialize(taskid=nil)
+        attr_accessor :TaskId, :FileURLExpireTime
+
+        def initialize(taskid=nil, fileurlexpiretime=nil)
           @TaskId = taskid
+          @FileURLExpireTime = fileurlexpiretime
         end
 
         def deserialize(params)
           @TaskId = params['TaskId']
+          @FileURLExpireTime = params['FileURLExpireTime']
         end
       end
 
@@ -5727,8 +5762,8 @@ module TencentCloud
 
         attr_accessor :ModelId, :Sn, :ErrCode, :ExpireTime
         extend Gem::Deprecate
-        deprecate :ModelId, :none, 2025, 3
-        deprecate :ModelId=, :none, 2025, 3
+        deprecate :ModelId, :none, 2025, 4
+        deprecate :ModelId=, :none, 2025, 4
 
         def initialize(modelid=nil, sn=nil, errcode=nil, expiretime=nil)
           @ModelId = modelid
@@ -7349,8 +7384,8 @@ module TencentCloud
 
         attr_accessor :MiniProgramAppId, :DeviceList
         extend Gem::Deprecate
-        deprecate :MiniProgramAppId, :none, 2025, 3
-        deprecate :MiniProgramAppId=, :none, 2025, 3
+        deprecate :MiniProgramAppId, :none, 2025, 4
+        deprecate :MiniProgramAppId=, :none, 2025, 4
 
         def initialize(miniprogramappid=nil, devicelist=nil)
           @MiniProgramAppId = miniprogramappid
@@ -7600,7 +7635,7 @@ module TencentCloud
         # @param CellNum: 实例单元数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CellNum: Integer
-        # @param BillingTag: 实例Tag
+        # @param BillingTag: 实例Tag，企业实例必传
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BillingTag: String
         # @param EverydayFreeMessageCount: 每日消息数
@@ -7797,7 +7832,6 @@ module TencentCloud
         # @param TaskId: 任务 ID
         # @type TaskId: String
         # @param TaskInfo: 任务信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskInfo: :class:`Tencentcloud::Iotexplorer.v20190423.models.CloudStorageAIServiceTask`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -10435,8 +10469,8 @@ module TencentCloud
 
         attr_accessor :ModelId, :Sn, :ExpireTime, :PkgType
         extend Gem::Deprecate
-        deprecate :ModelId, :none, 2025, 3
-        deprecate :ModelId=, :none, 2025, 3
+        deprecate :ModelId, :none, 2025, 4
+        deprecate :ModelId=, :none, 2025, 4
 
         def initialize(modelid=nil, sn=nil, expiretime=nil, pkgtype=nil)
           @ModelId = modelid
@@ -10467,10 +10501,10 @@ module TencentCloud
 
         attr_accessor :Sn, :ModelId, :ActiveNum
         extend Gem::Deprecate
-        deprecate :ModelId, :none, 2025, 3
-        deprecate :ModelId=, :none, 2025, 3
-        deprecate :ActiveNum, :none, 2025, 3
-        deprecate :ActiveNum=, :none, 2025, 3
+        deprecate :ModelId, :none, 2025, 4
+        deprecate :ModelId=, :none, 2025, 4
+        deprecate :ActiveNum, :none, 2025, 4
+        deprecate :ActiveNum=, :none, 2025, 4
 
         def initialize(sn=nil, modelid=nil, activenum=nil)
           @Sn = sn

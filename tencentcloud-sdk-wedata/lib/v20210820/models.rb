@@ -961,6 +961,112 @@ module TencentCloud
         end
       end
 
+      # 基础角色对象
+      class BaseRole < TencentCloud::Common::AbstractModel
+        # @param RoleId: 角色id
+        # @type RoleId: String
+        # @param RoleName: 角色名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RoleName: String
+        # @param DisplayName: 角色昵称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DisplayName: String
+        # @param Description: 描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+        # @param RoleType: 角色类型, 分为System,Tenant,Project,Commercial
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RoleType: String
+        # @param SystemDefault: 系统预设
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SystemDefault: Boolean
+        # @param Parameters: 自定义参数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Parameters: String
+        # @param MemberCount: 成员统计
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MemberCount: Integer
+        # @param Privileges: 权限
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Privileges: Array
+        # @param Operator: 操作者
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Operator: :class:`Tencentcloud::Wedata.v20210820.models.BaseUser`
+        # @param OperateTime: 操作时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OperateTime: Integer
+        # @param CreateTime: 创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: Integer
+        # @param CreateTimeStr: 创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTimeStr: String
+        # @param UpdateTimeStr: 更新时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTimeStr: String
+        # @param ProjectId: 项目id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProjectId: String
+        # @param UpdateTime: 更新时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTime: String
+        # @param Creator: 创建人
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Creator: String
+
+        attr_accessor :RoleId, :RoleName, :DisplayName, :Description, :RoleType, :SystemDefault, :Parameters, :MemberCount, :Privileges, :Operator, :OperateTime, :CreateTime, :CreateTimeStr, :UpdateTimeStr, :ProjectId, :UpdateTime, :Creator
+
+        def initialize(roleid=nil, rolename=nil, displayname=nil, description=nil, roletype=nil, systemdefault=nil, parameters=nil, membercount=nil, privileges=nil, operator=nil, operatetime=nil, createtime=nil, createtimestr=nil, updatetimestr=nil, projectid=nil, updatetime=nil, creator=nil)
+          @RoleId = roleid
+          @RoleName = rolename
+          @DisplayName = displayname
+          @Description = description
+          @RoleType = roletype
+          @SystemDefault = systemdefault
+          @Parameters = parameters
+          @MemberCount = membercount
+          @Privileges = privileges
+          @Operator = operator
+          @OperateTime = operatetime
+          @CreateTime = createtime
+          @CreateTimeStr = createtimestr
+          @UpdateTimeStr = updatetimestr
+          @ProjectId = projectid
+          @UpdateTime = updatetime
+          @Creator = creator
+        end
+
+        def deserialize(params)
+          @RoleId = params['RoleId']
+          @RoleName = params['RoleName']
+          @DisplayName = params['DisplayName']
+          @Description = params['Description']
+          @RoleType = params['RoleType']
+          @SystemDefault = params['SystemDefault']
+          @Parameters = params['Parameters']
+          @MemberCount = params['MemberCount']
+          unless params['Privileges'].nil?
+            @Privileges = []
+            params['Privileges'].each do |i|
+              roleprivilege_tmp = RolePrivilege.new
+              roleprivilege_tmp.deserialize(i)
+              @Privileges << roleprivilege_tmp
+            end
+          end
+          unless params['Operator'].nil?
+            @Operator = BaseUser.new
+            @Operator.deserialize(params['Operator'])
+          end
+          @OperateTime = params['OperateTime']
+          @CreateTime = params['CreateTime']
+          @CreateTimeStr = params['CreateTimeStr']
+          @UpdateTimeStr = params['UpdateTimeStr']
+          @ProjectId = params['ProjectId']
+          @UpdateTime = params['UpdateTime']
+          @Creator = params['Creator']
+        end
+      end
+
       # 租户基础信息
       class BaseTenant < TencentCloud::Common::AbstractModel
         # @param TenantId: 租户id
@@ -11980,6 +12086,107 @@ module TencentCloud
         end
       end
 
+      # DescribeRoleList请求参数结构体
+      class DescribeRoleListRequest < TencentCloud::Common::AbstractModel
+        # @param ShowAllRoles: 返回所有角色。
+        # @type ShowAllRoles: Boolean
+        # @param IncludeRoleTypes: 需要返回的角色类型(system,tenant,project)
+        # @type IncludeRoleTypes: Array
+        # @param DescribeMemberCount: 返回角色绑定人员统计，仅私有化版本支持
+        # @type DescribeMemberCount: Boolean
+        # @param DescribeOperator: 返回操作者信息，私有化多租户版本
+        # @type DescribeOperator: Boolean
+        # @param DescribeSystemRoleOnly: 系统角色
+        # @type DescribeSystemRoleOnly: Boolean
+        # @param DescribeCustomRoleOnly: 自定义角色
+        # @type DescribeCustomRoleOnly: Boolean
+        # @param DescribePrivileges: 查看权限
+        # @type DescribePrivileges: Boolean
+        # @param RoleIds: 筛选角色id
+        # @type RoleIds: Array
+        # @param ProjectId: 项目id
+        # @type ProjectId: String
+        # @param PageNumber: 页码
+        # @type PageNumber: Integer
+        # @param PageSize: 分页信息
+        # @type PageSize: Integer
+        # @param Filters: 查询字段
+        # @type Filters: Array
+        # @param OrderFields: 排序字段
+        # @type OrderFields: Array
+
+        attr_accessor :ShowAllRoles, :IncludeRoleTypes, :DescribeMemberCount, :DescribeOperator, :DescribeSystemRoleOnly, :DescribeCustomRoleOnly, :DescribePrivileges, :RoleIds, :ProjectId, :PageNumber, :PageSize, :Filters, :OrderFields
+
+        def initialize(showallroles=nil, includeroletypes=nil, describemembercount=nil, describeoperator=nil, describesystemroleonly=nil, describecustomroleonly=nil, describeprivileges=nil, roleids=nil, projectid=nil, pagenumber=nil, pagesize=nil, filters=nil, orderfields=nil)
+          @ShowAllRoles = showallroles
+          @IncludeRoleTypes = includeroletypes
+          @DescribeMemberCount = describemembercount
+          @DescribeOperator = describeoperator
+          @DescribeSystemRoleOnly = describesystemroleonly
+          @DescribeCustomRoleOnly = describecustomroleonly
+          @DescribePrivileges = describeprivileges
+          @RoleIds = roleids
+          @ProjectId = projectid
+          @PageNumber = pagenumber
+          @PageSize = pagesize
+          @Filters = filters
+          @OrderFields = orderfields
+        end
+
+        def deserialize(params)
+          @ShowAllRoles = params['ShowAllRoles']
+          @IncludeRoleTypes = params['IncludeRoleTypes']
+          @DescribeMemberCount = params['DescribeMemberCount']
+          @DescribeOperator = params['DescribeOperator']
+          @DescribeSystemRoleOnly = params['DescribeSystemRoleOnly']
+          @DescribeCustomRoleOnly = params['DescribeCustomRoleOnly']
+          @DescribePrivileges = params['DescribePrivileges']
+          @RoleIds = params['RoleIds']
+          @ProjectId = params['ProjectId']
+          @PageNumber = params['PageNumber']
+          @PageSize = params['PageSize']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          unless params['OrderFields'].nil?
+            @OrderFields = []
+            params['OrderFields'].each do |i|
+              orderfields_tmp = OrderFields.new
+              orderfields_tmp.deserialize(i)
+              @OrderFields << orderfields_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeRoleList返回参数结构体
+      class DescribeRoleListResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 角色列表
+        # @type Data: :class:`Tencentcloud::Wedata.v20210820.models.PageRoles`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = PageRoles.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeRuleDimStat请求参数结构体
       class DescribeRuleDimStatRequest < TencentCloud::Common::AbstractModel
         # @param ProjectId: 项目id
@@ -22682,6 +22889,50 @@ module TencentCloud
         end
       end
 
+      # 角色列表分页信息
+      class PageRoles < TencentCloud::Common::AbstractModel
+        # @param Rows: 角色信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Rows: Array
+        # @param PageNumber: 页码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PageNumber: Integer
+        # @param PageSize: 分页大小
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PageSize: Integer
+        # @param TotalCount: 总个数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+        # @param TotalPageNumber: 总分页页码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalPageNumber: Integer
+
+        attr_accessor :Rows, :PageNumber, :PageSize, :TotalCount, :TotalPageNumber
+
+        def initialize(rows=nil, pagenumber=nil, pagesize=nil, totalcount=nil, totalpagenumber=nil)
+          @Rows = rows
+          @PageNumber = pagenumber
+          @PageSize = pagesize
+          @TotalCount = totalcount
+          @TotalPageNumber = totalpagenumber
+        end
+
+        def deserialize(params)
+          unless params['Rows'].nil?
+            @Rows = []
+            params['Rows'].each do |i|
+              baserole_tmp = BaseRole.new
+              baserole_tmp.deserialize(i)
+              @Rows << baserole_tmp
+            end
+          end
+          @PageNumber = params['PageNumber']
+          @PageSize = params['PageSize']
+          @TotalCount = params['TotalCount']
+          @TotalPageNumber = params['TotalPageNumber']
+        end
+      end
+
       # 键值对
       class Pair < TencentCloud::Common::AbstractModel
         # @param Key: 键名
@@ -31023,6 +31274,46 @@ module TencentCloud
 
         def deserialize(params)
           @Data = params['Data']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # UpdateProjectUserRole请求参数结构体
+      class UpdateProjectUserRoleRequest < TencentCloud::Common::AbstractModel
+        # @param ProjectId: 项目id
+        # @type ProjectId: String
+        # @param UserIds: 用户id
+        # @type UserIds: Array
+        # @param RoleIds: 角色id
+        # @type RoleIds: Array
+
+        attr_accessor :ProjectId, :UserIds, :RoleIds
+
+        def initialize(projectid=nil, userids=nil, roleids=nil)
+          @ProjectId = projectid
+          @UserIds = userids
+          @RoleIds = roleids
+        end
+
+        def deserialize(params)
+          @ProjectId = params['ProjectId']
+          @UserIds = params['UserIds']
+          @RoleIds = params['RoleIds']
+        end
+      end
+
+      # UpdateProjectUserRole返回参数结构体
+      class UpdateProjectUserRoleResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end

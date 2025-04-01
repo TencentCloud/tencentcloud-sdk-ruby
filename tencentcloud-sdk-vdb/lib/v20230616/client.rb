@@ -53,6 +53,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（CreateInstance）用于创建向量数据库实例。
+
+        # @param request: Request instance for CreateInstance.
+        # @type request: :class:`Tencentcloud::vdb::V20230616::CreateInstanceRequest`
+        # @rtype: :class:`Tencentcloud::vdb::V20230616::CreateInstanceResponse`
+        def CreateInstance(request)
+          body = send_request('CreateInstance', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateInstanceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口(DescribeDBSecurityGroups)用于查询实例的安全组详情。
 
         # @param request: Request instance for DescribeDBSecurityGroups.
@@ -63,6 +87,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeDBSecurityGroupsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（DescribeInstanceMaintenanceWindow）用于查看实例维护时间窗。
+
+        # @param request: Request instance for DescribeInstanceMaintenanceWindow.
+        # @type request: :class:`Tencentcloud::vdb::V20230616::DescribeInstanceMaintenanceWindowRequest`
+        # @rtype: :class:`Tencentcloud::vdb::V20230616::DescribeInstanceMaintenanceWindowResponse`
+        def DescribeInstanceMaintenanceWindow(request)
+          body = send_request('DescribeInstanceMaintenanceWindow', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeInstanceMaintenanceWindowResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -125,6 +173,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（DestroyInstances）用于销毁实例。
+
+        # @param request: Request instance for DestroyInstances.
+        # @type request: :class:`Tencentcloud::vdb::V20230616::DestroyInstancesRequest`
+        # @rtype: :class:`Tencentcloud::vdb::V20230616::DestroyInstancesResponse`
+        def DestroyInstances(request)
+          body = send_request('DestroyInstances', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DestroyInstancesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口(DisassociateSecurityGroups)用于安全组批量解绑实例。
 
         # @param request: Request instance for DisassociateSecurityGroups.
@@ -149,6 +221,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（IsolateInstance）用于隔离实例于回收站，在回收站保护时长内可恢复实例。
+
+        # @param request: Request instance for IsolateInstance.
+        # @type request: :class:`Tencentcloud::vdb::V20230616::IsolateInstanceRequest`
+        # @rtype: :class:`Tencentcloud::vdb::V20230616::IsolateInstanceResponse`
+        def IsolateInstance(request)
+          body = send_request('IsolateInstance', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = IsolateInstanceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口(ModifyDBInstanceSecurityGroups)用于修改实例绑定的安全组。
 
         # @param request: Request instance for ModifyDBInstanceSecurityGroups.
@@ -159,6 +255,102 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyDBInstanceSecurityGroupsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（ModifyInstanceMaintenanceWindow）用于修改实例维护时间窗范围。
+
+        # @param request: Request instance for ModifyInstanceMaintenanceWindow.
+        # @type request: :class:`Tencentcloud::vdb::V20230616::ModifyInstanceMaintenanceWindowRequest`
+        # @rtype: :class:`Tencentcloud::vdb::V20230616::ModifyInstanceMaintenanceWindowResponse`
+        def ModifyInstanceMaintenanceWindow(request)
+          body = send_request('ModifyInstanceMaintenanceWindow', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyInstanceMaintenanceWindowResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（RecoverInstance）用于恢复在回收站隔离的实例。
+
+        # @param request: Request instance for RecoverInstance.
+        # @type request: :class:`Tencentcloud::vdb::V20230616::RecoverInstanceRequest`
+        # @rtype: :class:`Tencentcloud::vdb::V20230616::RecoverInstanceResponse`
+        def RecoverInstance(request)
+          body = send_request('RecoverInstance', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = RecoverInstanceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（ScaleOutInstance）用于水平扩容节点数量。
+
+        # @param request: Request instance for ScaleOutInstance.
+        # @type request: :class:`Tencentcloud::vdb::V20230616::ScaleOutInstanceRequest`
+        # @rtype: :class:`Tencentcloud::vdb::V20230616::ScaleOutInstanceResponse`
+        def ScaleOutInstance(request)
+          body = send_request('ScaleOutInstance', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ScaleOutInstanceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（ScaleUpInstance）用于升级节点配置规格。
+
+        # @param request: Request instance for ScaleUpInstance.
+        # @type request: :class:`Tencentcloud::vdb::V20230616::ScaleUpInstanceRequest`
+        # @rtype: :class:`Tencentcloud::vdb::V20230616::ScaleUpInstanceResponse`
+        def ScaleUpInstance(request)
+          body = send_request('ScaleUpInstance', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ScaleUpInstanceResponse.new
             model.deserialize(response['Response'])
             model
           else

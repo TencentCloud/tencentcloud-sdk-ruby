@@ -1864,7 +1864,7 @@ module TencentCloud
 
       # DescribeInstance请求参数结构体
       class DescribeInstanceRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID [DescribeInstanceList](https://cloud.tencent.com/document/api/1778/111029)
+        # @param InstanceId: 腾讯云MQTT实例ID，从 [DescribeInstanceList](https://cloud.tencent.com/document/api/1778/111029)接口或控制台获得。
         # @type InstanceId: String
 
         attr_accessor :InstanceId
@@ -3168,7 +3168,7 @@ module TencentCloud
         # @param Remark: 要修改的备注信息，最多64个字符。
         # @type Remark: String
         # @param SkuCode: 需要变更的配置规格
-        # 基础版和增强版集群不能升配到铂金版规格，铂金版集群不能降配至基础版和增强版规格。
+        # 基础版和专业版集群不能升配到铂金版规格，铂金版集群不能降配至基础版和增强版规格。
         # @type SkuCode: String
         # @param DeviceCertificateProvisionType: 客户端证书注册方式：
         # JITP：自动注册
@@ -3414,13 +3414,14 @@ module TencentCloud
 
       # 价格标签信息
       class PriceTag < TencentCloud::Common::AbstractModel
-        # @param Name: 计价名称
+        # @param Name: 计价名称，表示规格的计费项项目分类，具体规格的计价名称可参考  [获取MQTT产品售卖规格](https://cloud.tencent.com/document/product/1778/116232) 接口的返回结果。
         # @type Name: String
-        # @param Category: 计价类别
+        # @param Category: 计价类别，计价名称子类，具体规格的计价类别可参考  [获取MQTT产品售卖规格](https://cloud.tencent.com/document/product/1778/116232) 的返回结果。
         # @type Category: String
-        # @param Code: 计费项标签
+        # @param Code: 计费项标签，为计价名称（Name）下计价类别（Category）的子项目，表示一个具体的收费项。规格的计费项标签可参考
+        #  [获取MQTT产品售卖规格](https://cloud.tencent.com/document/product/1778/116232) 接口的返回结果。
         # @type Code: String
-        # @param Step: 步长
+        # @param Step: 计费步长，表示该规格在 计价名称（Name）下的计价类别（Category）的计费项标签（Code）计费数量。具体规格该字段取值参考 [获取MQTT产品售卖规格](https://cloud.tencent.com/document/product/1778/116232)
         # @type Step: Integer
 
         attr_accessor :Name, :Category, :Code, :Step
@@ -3616,16 +3617,24 @@ module TencentCloud
 
       # RegisterCaCertificate返回参数结构体
       class RegisterCaCertificateResponse < TencentCloud::Common::AbstractModel
+        # @param InstanceId: mqtt实例ID
+        # @type InstanceId: String
+        # @param CaSn: ca 证书的序列号
+        # @type CaSn: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :InstanceId, :CaSn, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(instanceid=nil, casn=nil, requestid=nil)
+          @InstanceId = instanceid
+          @CaSn = casn
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @CaSn = params['CaSn']
           @RequestId = params['RequestId']
         end
       end
@@ -3672,16 +3681,28 @@ module TencentCloud
 
       # RegisterDeviceCertificate返回参数结构体
       class RegisterDeviceCertificateResponse < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 腾讯云MQTT实例ID，从 [DescribeInstanceList](https://cloud.tencent.com/document/api/1778/111029)接口或控制台获得。
+        # @type InstanceId: String
+        # @param CaSn: 关联的CA证书SN
+        # @type CaSn: String
+        # @param DeviceCertificateSn: 设备证书的SN
+        # @type DeviceCertificateSn: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :InstanceId, :CaSn, :DeviceCertificateSn, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(instanceid=nil, casn=nil, devicecertificatesn=nil, requestid=nil)
+          @InstanceId = instanceid
+          @CaSn = casn
+          @DeviceCertificateSn = devicecertificatesn
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @CaSn = params['CaSn']
+          @DeviceCertificateSn = params['DeviceCertificateSn']
           @RequestId = params['RequestId']
         end
       end

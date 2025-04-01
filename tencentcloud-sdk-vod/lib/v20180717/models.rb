@@ -2144,8 +2144,8 @@ module TencentCloud
 
         attr_accessor :Name, :SegmentSet, :RecognitionSegmentSet
         extend Gem::Deprecate
-        deprecate :SegmentSet, :none, 2025, 3
-        deprecate :SegmentSet=, :none, 2025, 3
+        deprecate :SegmentSet, :none, 2025, 4
+        deprecate :SegmentSet=, :none, 2025, 4
 
         def initialize(name=nil, segmentset=nil, recognitionsegmentset=nil)
           @Name = name
@@ -8051,17 +8051,21 @@ module TencentCloud
         # @type Name: String
         # @param Description: 应用简介，长度限制： 300个字符。不填则应用简介默认为空。
         # @type Description: String
+        # @param Type: 应用类型， 取值有：<li>AllInOne：一体化；</li><li>Professional：专业版。</li>默认值为 AllInOne。
+        # @type Type: String
 
-        attr_accessor :Name, :Description
+        attr_accessor :Name, :Description, :Type
 
-        def initialize(name=nil, description=nil)
+        def initialize(name=nil, description=nil, type=nil)
           @Name = name
           @Description = description
+          @Type = type
         end
 
         def deserialize(params)
           @Name = params['Name']
           @Description = params['Description']
+          @Type = params['Type']
         end
       end
 
@@ -10590,8 +10594,8 @@ module TencentCloud
 
         attr_accessor :DomainName, :Domain, :Scheme, :PlayKey, :RequestId
         extend Gem::Deprecate
-        deprecate :DomainName, :none, 2025, 3
-        deprecate :DomainName=, :none, 2025, 3
+        deprecate :DomainName, :none, 2025, 4
+        deprecate :DomainName=, :none, 2025, 4
 
         def initialize(domainname=nil, domain=nil, scheme=nil, playkey=nil, requestid=nil)
           @DomainName = domainname
@@ -18372,8 +18376,8 @@ module TencentCloud
 
         attr_accessor :Duration, :Transitions, :MediaTransitions
         extend Gem::Deprecate
-        deprecate :Transitions, :none, 2025, 3
-        deprecate :Transitions=, :none, 2025, 3
+        deprecate :Transitions, :none, 2025, 4
+        deprecate :Transitions=, :none, 2025, 4
 
         def initialize(duration=nil, transitions=nil, mediatransitions=nil)
           @Duration = duration
@@ -22290,8 +22294,8 @@ module TencentCloud
 
         attr_accessor :ProductType, :StartTime, :ExpireTime, :ProductInstanceId, :LastConsumeDate, :BindStatus, :ProductInstanceResourceSet, :ResourceSet, :ProductInstanceStatus, :RefundStatus, :RenewStatus
         extend Gem::Deprecate
-        deprecate :ProductInstanceResourceSet, :none, 2025, 3
-        deprecate :ProductInstanceResourceSet=, :none, 2025, 3
+        deprecate :ProductInstanceResourceSet, :none, 2025, 4
+        deprecate :ProductInstanceResourceSet=, :none, 2025, 4
 
         def initialize(producttype=nil, starttime=nil, expiretime=nil, productinstanceid=nil, lastconsumedate=nil, bindstatus=nil, productinstanceresourceset=nil, resourceset=nil, productinstancestatus=nil, refundstatus=nil, renewstatus=nil)
           @ProductType = producttype
@@ -27104,8 +27108,8 @@ module TencentCloud
 
         attr_accessor :Width, :Height, :CycleConfig
         extend Gem::Deprecate
-        deprecate :CycleConfig, :none, 2025, 3
-        deprecate :CycleConfig=, :none, 2025, 3
+        deprecate :CycleConfig, :none, 2025, 4
+        deprecate :CycleConfig=, :none, 2025, 4
 
         def initialize(width=nil, height=nil, cycleconfig=nil)
           @Width = width

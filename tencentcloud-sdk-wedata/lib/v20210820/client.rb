@@ -3151,6 +3151,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取角色列表信息
+
+        # @param request: Request instance for DescribeRoleList.
+        # @type request: :class:`Tencentcloud::wedata::V20210820::DescribeRoleListRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20210820::DescribeRoleListResponse`
+        def DescribeRoleList(request)
+          body = send_request('DescribeRoleList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeRoleListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询规则详情
 
         # @param request: Request instance for DescribeRule.
@@ -5840,6 +5864,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = UpdateDataModelRegistryInfoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改项目用户角色
+
+        # @param request: Request instance for UpdateProjectUserRole.
+        # @type request: :class:`Tencentcloud::wedata::V20210820::UpdateProjectUserRoleRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20210820::UpdateProjectUserRoleResponse`
+        def UpdateProjectUserRole(request)
+          body = send_request('UpdateProjectUserRole', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdateProjectUserRoleResponse.new
             model.deserialize(response['Response'])
             model
           else

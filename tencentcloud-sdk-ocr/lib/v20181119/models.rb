@@ -1459,6 +1459,22 @@ module TencentCloud
         end
       end
 
+      # 支持模版的单个属性配置
+      class ConfigAdvanced < TencentCloud::Common::AbstractModel
+        # @param Scene: 模版的单个属性配置
+        # @type Scene: String
+
+        attr_accessor :Scene
+
+        def initialize(scene=nil)
+          @Scene = scene
+        end
+
+        def deserialize(params)
+          @Scene = params['Scene']
+        end
+      end
+
       # 卡证字段信息返回值
       class ContentInfo < TencentCloud::Common::AbstractModel
         # @param Content: 字段内容
@@ -10985,15 +11001,18 @@ module TencentCloud
         # AirWayBill -- 航空运单识别模板
         # DispatchWeightNote -- 磅单发货单识别模板
         # ReceiptWeightNote -- 磅单收货单识别模板
+        # ArticalRecognize -- 手写作文模版
         # @type ConfigId: String
         # @param EnableCoord: 是否开启全文字段坐标值的识别
         # @type EnableCoord: Boolean
         # @param OutputParentKey: 是否开启父子key识别，默认是
         # @type OutputParentKey: Boolean
+        # @param ConfigAdvanced: 模版的单个属性配置
+        # @type ConfigAdvanced: :class:`Tencentcloud::Ocr.v20181119.models.ConfigAdvanced`
 
-        attr_accessor :ImageUrl, :ImageBase64, :PdfPageNumber, :ItemNames, :ReturnFullText, :ConfigId, :EnableCoord, :OutputParentKey
+        attr_accessor :ImageUrl, :ImageBase64, :PdfPageNumber, :ItemNames, :ReturnFullText, :ConfigId, :EnableCoord, :OutputParentKey, :ConfigAdvanced
 
-        def initialize(imageurl=nil, imagebase64=nil, pdfpagenumber=nil, itemnames=nil, returnfulltext=nil, configid=nil, enablecoord=nil, outputparentkey=nil)
+        def initialize(imageurl=nil, imagebase64=nil, pdfpagenumber=nil, itemnames=nil, returnfulltext=nil, configid=nil, enablecoord=nil, outputparentkey=nil, configadvanced=nil)
           @ImageUrl = imageurl
           @ImageBase64 = imagebase64
           @PdfPageNumber = pdfpagenumber
@@ -11002,6 +11021,7 @@ module TencentCloud
           @ConfigId = configid
           @EnableCoord = enablecoord
           @OutputParentKey = outputparentkey
+          @ConfigAdvanced = configadvanced
         end
 
         def deserialize(params)
@@ -11013,6 +11033,10 @@ module TencentCloud
           @ConfigId = params['ConfigId']
           @EnableCoord = params['EnableCoord']
           @OutputParentKey = params['OutputParentKey']
+          unless params['ConfigAdvanced'].nil?
+            @ConfigAdvanced = ConfigAdvanced.new
+            @ConfigAdvanced.deserialize(params['ConfigAdvanced'])
+          end
         end
       end
 
@@ -14941,6 +14965,44 @@ module TencentCloud
 
       # 还原文本信息
       class WordItem < TencentCloud::Common::AbstractModel
+        # @param DetectedText: 文本块内容
+        # @type DetectedText: String
+        # @param Coord: 四点坐标
+        # @type Coord: :class:`Tencentcloud::Ocr.v20181119.models.Polygon`
+        # @param AdvancedInfo: 描述性信息
+        # @type AdvancedInfo: String
+        # @param WordCoord: 单词的四点坐标
+        # @type WordCoord: Array
+
+        attr_accessor :DetectedText, :Coord, :AdvancedInfo, :WordCoord
+
+        def initialize(detectedtext=nil, coord=nil, advancedinfo=nil, wordcoord=nil)
+          @DetectedText = detectedtext
+          @Coord = coord
+          @AdvancedInfo = advancedinfo
+          @WordCoord = wordcoord
+        end
+
+        def deserialize(params)
+          @DetectedText = params['DetectedText']
+          unless params['Coord'].nil?
+            @Coord = Polygon.new
+            @Coord.deserialize(params['Coord'])
+          end
+          @AdvancedInfo = params['AdvancedInfo']
+          unless params['WordCoord'].nil?
+            @WordCoord = []
+            params['WordCoord'].each do |i|
+              wordpolygon_tmp = WordPolygon.new
+              wordpolygon_tmp.deserialize(i)
+              @WordCoord << wordpolygon_tmp
+            end
+          end
+        end
+      end
+
+      # 单词坐标信息
+      class WordPolygon < TencentCloud::Common::AbstractModel
         # @param DetectedText: 文本块内容
         # @type DetectedText: String
         # @param Coord: 四点坐标

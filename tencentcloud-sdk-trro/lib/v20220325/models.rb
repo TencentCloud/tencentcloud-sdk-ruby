@@ -141,6 +141,115 @@ module TencentCloud
         end
       end
 
+      # 云端录制文件上传到云存储的参数（对象存储cos）
+      class CloudStorage < TencentCloud::Common::AbstractModel
+        # @param Vendor: 腾讯云对象存储COS以及第三方云存储账号信息
+        # 0：腾讯云对象存储 COS
+        # 1：AWS
+        # 【注意】目前第三方云存储仅支持AWS，更多第三方云存储陆续支持中
+        # 示例值：0
+        # @type Vendor: Integer
+        # @param Region: 腾讯云对象存储的[地域信息]（https://cloud.tencent.com/document/product/436/6224#.E5.9C.B0.E5.9F.9F）。
+        # 示例值：cn-shanghai-1
+
+        # AWS S3[地域信息]（https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#concepts-regions）
+        # 示例值：ap-shanghai(cos, 具体参考云存储厂商支持的地域)
+        # @type Region: String
+        # @param Bucket: 云存储桶名称。
+        # @type Bucket: String
+        # @param AccessKey: 云存储的access_key账号信息。
+        # 若存储至腾讯云对象存储COS，请前往https://console.cloud.tencent.com/cam/capi 查看或创建，对应链接中密钥字段的SecretId值。
+        # @type AccessKey: String
+        # @param SecretKey: 云存储的secret_key账号信息。
+        # 若存储至腾讯云对象存储COS，请前往https://console.cloud.tencent.com/cam/capi 查看或创建，对应链接中密钥字段的SecretKey值。
+        # @type SecretKey: String
+        # @param FileNamePrefix: 云存储bucket 的指定位置，由字符串数组组成。合法的字符串范围az,AZ,0~9,'_'和'-'，举个例子，录制文件xxx.m3u8在 ["prefix1", "prefix2"]作用下，会变成prefix1/prefix2/TaskId/xxx.m3u8。
+        # @type FileNamePrefix: Array
+
+        attr_accessor :Vendor, :Region, :Bucket, :AccessKey, :SecretKey, :FileNamePrefix
+
+        def initialize(vendor=nil, region=nil, bucket=nil, accesskey=nil, secretkey=nil, filenameprefix=nil)
+          @Vendor = vendor
+          @Region = region
+          @Bucket = bucket
+          @AccessKey = accesskey
+          @SecretKey = secretkey
+          @FileNamePrefix = filenameprefix
+        end
+
+        def deserialize(params)
+          @Vendor = params['Vendor']
+          @Region = params['Region']
+          @Bucket = params['Bucket']
+          @AccessKey = params['AccessKey']
+          @SecretKey = params['SecretKey']
+          @FileNamePrefix = params['FileNamePrefix']
+        end
+      end
+
+      # CreateCloudRecording请求参数结构体
+      class CreateCloudRecordingRequest < TencentCloud::Common::AbstractModel
+        # @param ProjectId: 项目id
+        # @type ProjectId: String
+        # @param DeviceId: 设备id
+        # @type DeviceId: String
+        # @param VideoStreamId: 视频流号
+        # @type VideoStreamId: Integer
+        # @param CloudStorage: 腾讯云对象存储COS以及第三方云存储的账号信息
+        # @type CloudStorage: :class:`Tencentcloud::Trro.v20220325.models.CloudStorage`
+        # @param MaxMediaFileDuration: 如果是aac或者mp4文件格式，超过长度限制后，系统会自动拆分视频文件。单位：分钟。默认为1440min（24h），取值范围为1-1440。【单文件限制最大为2G，满足文件大小 >2G 或录制时长度 > 24h任意一个条件，文件都会自动切分】 Hls 格式录制此参数不生效。
+        # @type MaxMediaFileDuration: Integer
+        # @param OutputFormat: 输出文件的格式（存储至COS等第三方存储时有效）。0：输出文件为hls格式。1：输出文件格式为hls+mp4。2：输出文件格式为hls+aac 。3：(默认)输出文件格式为mp4。4：输出文件格式为aac。
+        # @type OutputFormat: Integer
+        # @param MaxIdleTime: 房间内持续没有主播的状态超过MaxIdleTime的时长，自动停止录制，单位：秒。默认值为 30 秒，该值需大于等于 5秒，且小于等于 86400秒(24小时)。 示例值：30
+        # @type MaxIdleTime: Integer
+
+        attr_accessor :ProjectId, :DeviceId, :VideoStreamId, :CloudStorage, :MaxMediaFileDuration, :OutputFormat, :MaxIdleTime
+
+        def initialize(projectid=nil, deviceid=nil, videostreamid=nil, cloudstorage=nil, maxmediafileduration=nil, outputformat=nil, maxidletime=nil)
+          @ProjectId = projectid
+          @DeviceId = deviceid
+          @VideoStreamId = videostreamid
+          @CloudStorage = cloudstorage
+          @MaxMediaFileDuration = maxmediafileduration
+          @OutputFormat = outputformat
+          @MaxIdleTime = maxidletime
+        end
+
+        def deserialize(params)
+          @ProjectId = params['ProjectId']
+          @DeviceId = params['DeviceId']
+          @VideoStreamId = params['VideoStreamId']
+          unless params['CloudStorage'].nil?
+            @CloudStorage = CloudStorage.new
+            @CloudStorage.deserialize(params['CloudStorage'])
+          end
+          @MaxMediaFileDuration = params['MaxMediaFileDuration']
+          @OutputFormat = params['OutputFormat']
+          @MaxIdleTime = params['MaxIdleTime']
+        end
+      end
+
+      # CreateCloudRecording返回参数结构体
+      class CreateCloudRecordingResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 云录制服务分配的任务 ID。任务 ID 是对一次录制生命周期过程的唯一标识，结束录制时会失去意义。任务 ID需要业务保存下来，作为下次针对这个录制任务操作的参数。
+        # @type TaskId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateDevice请求参数结构体
       class CreateDeviceRequest < TencentCloud::Common::AbstractModel
         # @param ProjectId: 创建设备所归属的项目ID
@@ -229,6 +338,38 @@ module TencentCloud
 
         def deserialize(params)
           @ProjectId = params['ProjectId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteCloudRecording请求参数结构体
+      class DeleteCloudRecordingRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: 录制任务的唯一Id，在启动录制成功后会返回。
+        # @type TaskId: String
+
+        attr_accessor :TaskId
+
+        def initialize(taskid=nil)
+          @TaskId = taskid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+        end
+      end
+
+      # DeleteCloudRecording返回参数结构体
+      class DeleteCloudRecordingResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
@@ -1215,6 +1356,54 @@ module TencentCloud
         end
       end
 
+      # ModifyCallbackUrl请求参数结构体
+      class ModifyCallbackUrlRequest < TencentCloud::Common::AbstractModel
+        # @param ProjectId: 项目id
+        # @type ProjectId: String
+        # @param CallbackUrl: 回调URL
+        # @type CallbackUrl: String
+        # @param SignKey: 回调签名密钥，用于校验回调信息的完整性
+        # @type SignKey: String
+
+        attr_accessor :ProjectId, :CallbackUrl, :SignKey
+
+        def initialize(projectid=nil, callbackurl=nil, signkey=nil)
+          @ProjectId = projectid
+          @CallbackUrl = callbackurl
+          @SignKey = signkey
+        end
+
+        def deserialize(params)
+          @ProjectId = params['ProjectId']
+          @CallbackUrl = params['CallbackUrl']
+          @SignKey = params['SignKey']
+        end
+      end
+
+      # ModifyCallbackUrl返回参数结构体
+      class ModifyCallbackUrlResponse < TencentCloud::Common::AbstractModel
+        # @param Code: 响应码，0：成功，其他：失败
+        # @type Code: Integer
+        # @param Msg: 响应消息，ok:成功，其他：失败
+        # @type Msg: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Code, :Msg, :RequestId
+
+        def initialize(code=nil, msg=nil, requestid=nil)
+          @Code = code
+          @Msg = msg
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Code = params['Code']
+          @Msg = params['Msg']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyDevice请求参数结构体
       class ModifyDeviceRequest < TencentCloud::Common::AbstractModel
         # @param ProjectId: 要修改设备归属项目的项目ID
@@ -1507,6 +1696,26 @@ module TencentCloud
         end
       end
 
+      # 转推参数，一个任务最多支持10个推流URL。
+      class PublishParams < TencentCloud::Common::AbstractModel
+        # @param PublishUrl: 腾讯云直播推流地址url
+        # @type PublishUrl: String
+        # @param IsTencentUrl: 是否是腾讯云CDN，0为转推非腾讯云CDN，1为转推腾讯CDN，不携带该参数默认为1。
+        # @type IsTencentUrl: Integer
+
+        attr_accessor :PublishUrl, :IsTencentUrl
+
+        def initialize(publishurl=nil, istencenturl=nil)
+          @PublishUrl = publishurl
+          @IsTencentUrl = istencenturl
+        end
+
+        def deserialize(params)
+          @PublishUrl = params['PublishUrl']
+          @IsTencentUrl = params['IsTencentUrl']
+        end
+      end
+
       # 最新会话信息
       class RecentSessionInfo < TencentCloud::Common::AbstractModel
         # @param SessionId: 会话ID
@@ -1787,6 +1996,171 @@ module TencentCloud
           @StartTime = params['StartTime']
           @EndTime = params['EndTime']
           @NotBadSessionRatio = params['NotBadSessionRatio']
+        end
+      end
+
+      # StartPublishLiveStream请求参数结构体
+      class StartPublishLiveStreamRequest < TencentCloud::Common::AbstractModel
+        # @param WithTranscoding: 是否转码，0表示无需转码，1表示需要转码。是否收取转码费是由WithTranscoding参数决定的，WithTranscoding为0，表示旁路转推，不会收取转码费用，WithTranscoding为1，表示混流转推，会收取转码费用。 示例值：1
+        # @type WithTranscoding: Integer
+        # @param MaxIdleTime: 所有参与混流转推的主播持续离开TRTC房间或切换成观众超过MaxIdleTime的时长，自动停止转推，单位：秒。默认值为 30 秒，该值需大于等于 5秒，且小于等于 86400秒(24小时)。
+        # @type MaxIdleTime: Integer
+        # @param VideoParams: 转推视频参数
+        # @type VideoParams: :class:`Tencentcloud::Trro.v20220325.models.VideoParams`
+        # @param PublishParams: 转推的URL参数，一个任务最多支持10个推流URL
+        # @type PublishParams: Array
+
+        attr_accessor :WithTranscoding, :MaxIdleTime, :VideoParams, :PublishParams
+
+        def initialize(withtranscoding=nil, maxidletime=nil, videoparams=nil, publishparams=nil)
+          @WithTranscoding = withtranscoding
+          @MaxIdleTime = maxidletime
+          @VideoParams = videoparams
+          @PublishParams = publishparams
+        end
+
+        def deserialize(params)
+          @WithTranscoding = params['WithTranscoding']
+          @MaxIdleTime = params['MaxIdleTime']
+          unless params['VideoParams'].nil?
+            @VideoParams = VideoParams.new
+            @VideoParams.deserialize(params['VideoParams'])
+          end
+          unless params['PublishParams'].nil?
+            @PublishParams = []
+            params['PublishParams'].each do |i|
+              publishparams_tmp = PublishParams.new
+              publishparams_tmp.deserialize(i)
+              @PublishParams << publishparams_tmp
+            end
+          end
+        end
+      end
+
+      # StartPublishLiveStream返回参数结构体
+      class StartPublishLiveStreamResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 用于唯一标识转推任务，由腾讯云服务端生成，后续停止请求需要携带TaskiD参数。
+        # @type TaskId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # StopPublishLiveStream请求参数结构体
+      class StopPublishLiveStreamRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: 唯一标识转推任务。
+        # @type TaskId: String
+
+        attr_accessor :TaskId
+
+        def initialize(taskid=nil)
+          @TaskId = taskid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+        end
+      end
+
+      # StopPublishLiveStream返回参数结构体
+      class StopPublishLiveStreamResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 原视频流参数列表
+      class VideoList < TencentCloud::Common::AbstractModel
+        # @param ProjectId: 项目id
+        # @type ProjectId: String
+        # @param DeviceId: 设备id
+        # @type DeviceId: String
+        # @param VideoStreamId: 流id
+        # @type VideoStreamId: Integer
+        # @param Width: 子画面在输出时的宽度，单位为像素值，不填默认为0。
+        # @type Width: Integer
+        # @param Height: 子画面在输出时的高度，单位为像素值，不填默认为0。
+        # @type Height: Integer
+
+        attr_accessor :ProjectId, :DeviceId, :VideoStreamId, :Width, :Height
+
+        def initialize(projectid=nil, deviceid=nil, videostreamid=nil, width=nil, height=nil)
+          @ProjectId = projectid
+          @DeviceId = deviceid
+          @VideoStreamId = videostreamid
+          @Width = width
+          @Height = height
+        end
+
+        def deserialize(params)
+          @ProjectId = params['ProjectId']
+          @DeviceId = params['DeviceId']
+          @VideoStreamId = params['VideoStreamId']
+          @Width = params['Width']
+          @Height = params['Height']
+        end
+      end
+
+      # 转推视频参数
+      class VideoParams < TencentCloud::Common::AbstractModel
+        # @param Width: 输出流宽，音视频输出时必填。取值范围[0,1920]，单位为像素值。
+        # @type Width: Integer
+        # @param Height: 输出流高，音视频输出时必填。取值范围[0,1080]，单位为像素值。
+        # @type Height: Integer
+        # @param Fps: 输出流帧率，音视频输出时必填。取值范围[1,60]，表示混流的输出帧率可选范围为1到60fps。
+        # @type Fps: Integer
+        # @param BitRate: 输出流码率，音视频输出时必填。取值范围[1,10000]，单位为kbps。
+        # @type BitRate: Integer
+        # @param Gop: 输出流gop，音视频输出时必填。取值范围[1,5]，单位为秒。
+        # @type Gop: Integer
+        # @param VideoList: 转推视频流列表
+        # @type VideoList: Array
+
+        attr_accessor :Width, :Height, :Fps, :BitRate, :Gop, :VideoList
+
+        def initialize(width=nil, height=nil, fps=nil, bitrate=nil, gop=nil, videolist=nil)
+          @Width = width
+          @Height = height
+          @Fps = fps
+          @BitRate = bitrate
+          @Gop = gop
+          @VideoList = videolist
+        end
+
+        def deserialize(params)
+          @Width = params['Width']
+          @Height = params['Height']
+          @Fps = params['Fps']
+          @BitRate = params['BitRate']
+          @Gop = params['Gop']
+          unless params['VideoList'].nil?
+            @VideoList = []
+            params['VideoList'].each do |i|
+              videolist_tmp = VideoList.new
+              videolist_tmp.deserialize(i)
+              @VideoList << videolist_tmp
+            end
+          end
         end
       end
 

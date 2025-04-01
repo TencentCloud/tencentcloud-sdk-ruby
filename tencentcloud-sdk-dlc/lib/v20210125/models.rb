@@ -1762,8 +1762,8 @@ module TencentCloud
 
         attr_accessor :EngineType, :DataEngineName, :ClusterType, :Mode, :AutoResume, :MinClusters, :MaxClusters, :DefaultDataEngine, :CidrBlock, :Message, :Size, :PayMode, :TimeSpan, :TimeUnit, :AutoRenew, :Tags, :AutoSuspend, :CrontabResumeSuspend, :CrontabResumeSuspendStrategy, :EngineExecType, :MaxConcurrency, :TolerableQueueTime, :AutoSuspendTime, :ResourceType, :DataEngineConfigPairs, :ImageVersionName, :MainClusterName, :ElasticSwitch, :ElasticLimit, :SessionResourceTemplate, :AutoAuthorization, :EngineNetworkId, :EngineGeneration
         extend Gem::Deprecate
-        deprecate :DefaultDataEngine, :none, 2025, 3
-        deprecate :DefaultDataEngine=, :none, 2025, 3
+        deprecate :DefaultDataEngine, :none, 2025, 4
+        deprecate :DefaultDataEngine=, :none, 2025, 4
 
         def initialize(enginetype=nil, dataenginename=nil, clustertype=nil, mode=nil, autoresume=nil, minclusters=nil, maxclusters=nil, defaultdataengine=nil, cidrblock=nil, message=nil, size=nil, paymode=nil, timespan=nil, timeunit=nil, autorenew=nil, tags=nil, autosuspend=nil, crontabresumesuspend=nil, crontabresumesuspendstrategy=nil, engineexectype=nil, maxconcurrency=nil, tolerablequeuetime=nil, autosuspendtime=nil, resourcetype=nil, dataengineconfigpairs=nil, imageversionname=nil, mainclustername=nil, elasticswitch=nil, elasticlimit=nil, sessionresourcetemplate=nil, autoauthorization=nil, enginenetworkid=nil, enginegeneration=nil)
           @EngineType = enginetype
@@ -2733,6 +2733,108 @@ module TencentCloud
               @Statements << statementinformation_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateSparkSubmitTask请求参数结构体
+      class CreateSparkSubmitTaskRequest < TencentCloud::Common::AbstractModel
+        # @param TaskName: 任务名称
+        # @type TaskName: String
+        # @param TaskType: 任务类型：当前支持1: BatchType, 2: StreamingType, 4: SQLType
+        # @type TaskType: Integer
+        # @param DataEngineName: 引擎名称，当前仅支持Spark批作业集群
+        # @type DataEngineName: String
+        # @param PackagePath: 指定运行的程序脚本路径，当前仅支持jar和py，对于SQLType该值设为空字符串
+        # @type PackagePath: String
+        # @param RoleArn: 指定的鉴权信息
+        # @type RoleArn: Integer
+        # @param IsInherit: 运行任务所需资源是否继承自集群上配置资源信息，0（默认，不继承）、1（继承，当设置为该值，则任务级资源配置可不额外指定）
+        # @type IsInherit: Integer
+        # @param MainClass: jar任务时需要指定主程序
+        # @type MainClass: String
+        # @param DriverSize: 当前DriverSize规格仅支持（内存型集群则使用m前缀的枚举值）: small/medium/large/xlarge/m.small/m.medium/m.large/m.xlarge
+        # @type DriverSize: String
+        # @param ExecutorSize: 当前ExecutorSize规格仅支持（内存型集群则使用m前缀的枚举值）: small/medium/large/xlarge/m.small/m.medium/m.large/m.xlarge
+        # @type ExecutorSize: String
+        # @param ExecutorNumbers: 指定使用的executor数量，最小为1
+        # @type ExecutorNumbers: Integer
+        # @param ExecutorMaxNumbers: 指定使用的executor最大数量, 当该值大于ExecutorNums则自动开启动态
+        # @type ExecutorMaxNumbers: Integer
+        # @param CmdArgs: 提交任务的附加配置集合，当前支持Key包含：MAINARGS：程序入口参数，空格分割(SqlType任务通过该值指定base64加密后的sql)、SPARKCONFIG：Spark配置，以换行符分隔、ENI：Eni连接信息、DEPENDENCYPACKAGEPATH：依赖的程序包（--jars、--py-files:支持py/zip/egg等归档格式），多文件以逗号分隔、DEPENDENCYFILEPATH：依赖文件资源（--files: 非jar、zip），多文件以逗号分隔、DEPENDENCYARCHIVESPATH：依赖archives资源（--archives: 支持tar.gz/tgz/tar等归档格式)，多文件以逗号分隔、MAXRETRIES：任务重试次数，非流任务默认为1、SPARKIMAGE：Spark镜像版本号，支持使用dlc镜像/用户自定的tcr镜像运行任务、SPARKIMAGEVERSION：Spark镜像版本名称，与SPARKIMAGE一一对应
+        # @type CmdArgs: Array
+        # @param SourceInfo: 任务来源信息
+        # @type SourceInfo: Array
+
+        attr_accessor :TaskName, :TaskType, :DataEngineName, :PackagePath, :RoleArn, :IsInherit, :MainClass, :DriverSize, :ExecutorSize, :ExecutorNumbers, :ExecutorMaxNumbers, :CmdArgs, :SourceInfo
+
+        def initialize(taskname=nil, tasktype=nil, dataenginename=nil, packagepath=nil, rolearn=nil, isinherit=nil, mainclass=nil, driversize=nil, executorsize=nil, executornumbers=nil, executormaxnumbers=nil, cmdargs=nil, sourceinfo=nil)
+          @TaskName = taskname
+          @TaskType = tasktype
+          @DataEngineName = dataenginename
+          @PackagePath = packagepath
+          @RoleArn = rolearn
+          @IsInherit = isinherit
+          @MainClass = mainclass
+          @DriverSize = driversize
+          @ExecutorSize = executorsize
+          @ExecutorNumbers = executornumbers
+          @ExecutorMaxNumbers = executormaxnumbers
+          @CmdArgs = cmdargs
+          @SourceInfo = sourceinfo
+        end
+
+        def deserialize(params)
+          @TaskName = params['TaskName']
+          @TaskType = params['TaskType']
+          @DataEngineName = params['DataEngineName']
+          @PackagePath = params['PackagePath']
+          @RoleArn = params['RoleArn']
+          @IsInherit = params['IsInherit']
+          @MainClass = params['MainClass']
+          @DriverSize = params['DriverSize']
+          @ExecutorSize = params['ExecutorSize']
+          @ExecutorNumbers = params['ExecutorNumbers']
+          @ExecutorMaxNumbers = params['ExecutorMaxNumbers']
+          unless params['CmdArgs'].nil?
+            @CmdArgs = []
+            params['CmdArgs'].each do |i|
+              kvpair_tmp = KVPair.new
+              kvpair_tmp.deserialize(i)
+              @CmdArgs << kvpair_tmp
+            end
+          end
+          unless params['SourceInfo'].nil?
+            @SourceInfo = []
+            params['SourceInfo'].each do |i|
+              kvpair_tmp = KVPair.new
+              kvpair_tmp.deserialize(i)
+              @SourceInfo << kvpair_tmp
+            end
+          end
+        end
+      end
+
+      # CreateSparkSubmitTask返回参数结构体
+      class CreateSparkSubmitTaskResponse < TencentCloud::Common::AbstractModel
+        # @param BatchId: 批作业ID
+        # @type BatchId: String
+        # @param TaskId: 批任务ID，用改ID进行任务的查询与删除等
+        # @type TaskId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :BatchId, :TaskId, :RequestId
+
+        def initialize(batchid=nil, taskid=nil, requestid=nil)
+          @BatchId = batchid
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @BatchId = params['BatchId']
+          @TaskId = params['TaskId']
           @RequestId = params['RequestId']
         end
       end
@@ -12602,10 +12704,10 @@ module TencentCloud
 
         attr_accessor :DatabaseName, :TableName, :DatasourceConnectionName, :TableComment, :Type, :TableFormat, :UserAlias, :UserSubUin, :GovernPolicy, :DbGovernPolicyIsDisable, :SmartPolicy, :PrimaryKeys
         extend Gem::Deprecate
-        deprecate :GovernPolicy, :none, 2025, 3
-        deprecate :GovernPolicy=, :none, 2025, 3
-        deprecate :DbGovernPolicyIsDisable, :none, 2025, 3
-        deprecate :DbGovernPolicyIsDisable=, :none, 2025, 3
+        deprecate :GovernPolicy, :none, 2025, 4
+        deprecate :GovernPolicy=, :none, 2025, 4
+        deprecate :DbGovernPolicyIsDisable, :none, 2025, 4
+        deprecate :DbGovernPolicyIsDisable=, :none, 2025, 4
 
         def initialize(databasename=nil, tablename=nil, datasourceconnectionname=nil, tablecomment=nil, type=nil, tableformat=nil, useralias=nil, usersubuin=nil, governpolicy=nil, dbgovernpolicyisdisable=nil, smartpolicy=nil, primarykeys=nil)
           @DatabaseName = databasename

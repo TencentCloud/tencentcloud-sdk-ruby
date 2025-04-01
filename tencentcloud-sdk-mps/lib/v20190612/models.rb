@@ -2071,8 +2071,8 @@ module TencentCloud
 
         attr_accessor :SegmentSet, :SubtitlePath, :OutputStorage
         extend Gem::Deprecate
-        deprecate :OutputStorage, :none, 2025, 3
-        deprecate :OutputStorage=, :none, 2025, 3
+        deprecate :OutputStorage, :none, 2025, 4
+        deprecate :OutputStorage=, :none, 2025, 4
 
         def initialize(segmentset=nil, subtitlepath=nil, outputstorage=nil)
           @SegmentSet = segmentset
@@ -6743,7 +6743,7 @@ module TencentCloud
       class CreateInput < TencentCloud::Common::AbstractModel
         # @param InputName: 输入名称，可填大小写、数字和下划线，长度为[1, 32]。
         # @type InputName: String
-        # @param Protocol: 输入的协议，可选[SRT|RTP|RTMP_PUSH|RTMP_PULL|RTSP_PULL|RIST]。
+        # @param Protocol: 输入的协议，可选[SRT|RTP|RTMP|RTMP_PULL|RTSP_PULL|RIST]。
         # @type Protocol: String
         # @param Description: 输入描述，长度为[0, 255]。
         # @type Description: String
@@ -7310,7 +7310,7 @@ module TencentCloud
 
       # 创建媒体传输流的输出SRT的目标地址。
       class CreateOutputSRTSettingsDestinations < TencentCloud::Common::AbstractModel
-        # @param Ip: 输出的IP。
+        # @param Ip: 输出的IP或域名。
         # @type Ip: String
         # @param Port: 输出的端口。
         # @type Port: Integer
@@ -14883,10 +14883,10 @@ module TencentCloud
 
         attr_accessor :QualityControlResults, :DiagnoseResults, :QualityControlResultSet, :DiagnoseResultSet
         extend Gem::Deprecate
-        deprecate :QualityControlResults, :none, 2025, 3
-        deprecate :QualityControlResults=, :none, 2025, 3
-        deprecate :DiagnoseResults, :none, 2025, 3
-        deprecate :DiagnoseResults=, :none, 2025, 3
+        deprecate :QualityControlResults, :none, 2025, 4
+        deprecate :QualityControlResults=, :none, 2025, 4
+        deprecate :DiagnoseResults, :none, 2025, 4
+        deprecate :DiagnoseResults=, :none, 2025, 4
 
         def initialize(qualitycontrolresults=nil, diagnoseresults=nil, qualitycontrolresultset=nil, diagnoseresultset=nil)
           @QualityControlResults = qualitycontrolresults
@@ -17902,7 +17902,7 @@ module TencentCloud
         # @type OutputName: String
         # @param Description: 输出的描述。
         # @type Description: String
-        # @param Protocol: 输出的转推协议，支持SRT|RTP|RTMP|RTMP_PULL|RTSP|RIST。
+        # @param Protocol: 输出的转推协议，支持SRT|RTP|RTMP|RTMP_PULL|RTSP_PULL|RIST。
         # @type Protocol: String
         # @param SRTSettings: 转推SRT的配置。
         # @type SRTSettings: :class:`Tencentcloud::Mps.v20190612.models.CreateOutputSRTSettings`
@@ -21242,7 +21242,7 @@ module TencentCloud
 
       # SRT输入源地址。
       class SRTSourceAddressReq < TencentCloud::Common::AbstractModel
-        # @param Ip: 对端IP。
+        # @param Ip: 对端IP或域名。
         # @type Ip: String
         # @param Port: 对端端口。
         # @type Port: Integer

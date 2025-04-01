@@ -1668,8 +1668,8 @@ module TencentCloud
 
         attr_accessor :Switch, :CacheTime, :IgnoreCacheControl
         extend Gem::Deprecate
-        deprecate :IgnoreCacheControl, :none, 2025, 3
-        deprecate :IgnoreCacheControl=, :none, 2025, 3
+        deprecate :IgnoreCacheControl, :none, 2025, 4
+        deprecate :IgnoreCacheControl=, :none, 2025, 4
 
         def initialize(switch=nil, cachetime=nil, ignorecachecontrol=nil)
           @Switch = switch
@@ -3659,8 +3659,8 @@ module TencentCloud
 
         attr_accessor :ZoneId, :Targets, :EncodeUrl, :Headers
         extend Gem::Deprecate
-        deprecate :EncodeUrl, :none, 2025, 3
-        deprecate :EncodeUrl=, :none, 2025, 3
+        deprecate :EncodeUrl, :none, 2025, 4
+        deprecate :EncodeUrl=, :none, 2025, 4
 
         def initialize(zoneid=nil, targets=nil, encodeurl=nil, headers=nil)
           @ZoneId = zoneid
@@ -3740,8 +3740,8 @@ module TencentCloud
 
         attr_accessor :ZoneId, :Type, :Method, :Targets, :EncodeUrl, :CacheTag
         extend Gem::Deprecate
-        deprecate :EncodeUrl, :none, 2025, 3
-        deprecate :EncodeUrl=, :none, 2025, 3
+        deprecate :EncodeUrl, :none, 2025, 4
+        deprecate :EncodeUrl=, :none, 2025, 4
 
         def initialize(zoneid=nil, type=nil, method=nil, targets=nil, encodeurl=nil, cachetag=nil)
           @ZoneId = zoneid
@@ -4108,10 +4108,10 @@ module TencentCloud
 
         attr_accessor :Type, :ZoneName, :Area, :PlanId, :AliasZoneName, :Tags, :AllowDuplicates, :JumpStart
         extend Gem::Deprecate
-        deprecate :AllowDuplicates, :none, 2025, 3
-        deprecate :AllowDuplicates=, :none, 2025, 3
-        deprecate :JumpStart, :none, 2025, 3
-        deprecate :JumpStart=, :none, 2025, 3
+        deprecate :AllowDuplicates, :none, 2025, 4
+        deprecate :AllowDuplicates=, :none, 2025, 4
+        deprecate :JumpStart, :none, 2025, 4
+        deprecate :JumpStart=, :none, 2025, 4
 
         def initialize(type=nil, zonename=nil, area=nil, planid=nil, aliaszonename=nil, tags=nil, allowduplicates=nil, jumpstart=nil)
           @Type = type
@@ -8000,7 +8000,7 @@ module TencentCloud
 
       # DescribeSecurityIPGroup返回参数结构体
       class DescribeSecurityIPGroupResponse < TencentCloud::Common::AbstractModel
-        # @param IPGroups: 安全 IP 组的详细配置信息。包含每个安全 IP 组的 ID 、名称和 IP / 网段列表信息。
+        # @param IPGroups: 安全 IP 组的详细配置信息。包含每个安全 IP 组的 ID 、名称、 IP / 网段列表信息和过期时间信息。
         # @type IPGroups: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -10621,27 +10621,62 @@ module TencentCloud
         end
       end
 
+      # 存储定时过期时间和对应 IP。
+      class IPExpireInfo < TencentCloud::Common::AbstractModel
+        # @param ExpireTime: 定时过期时间，遵循 ISO 8601 标准的日期和时间格式。例如 "2022-01-01T00:00:00+08:00"。
+        # @type ExpireTime: String
+        # @param IPList: IP 列表。仅支持 IP  及 IP 网段。
+        # @type IPList: Array
+
+        attr_accessor :ExpireTime, :IPList
+
+        def initialize(expiretime=nil, iplist=nil)
+          @ExpireTime = expiretime
+          @IPList = iplist
+        end
+
+        def deserialize(params)
+          @ExpireTime = params['ExpireTime']
+          @IPList = params['IPList']
+        end
+      end
+
       # IP 网段组
       class IPGroup < TencentCloud::Common::AbstractModel
         # @param GroupId: 组 Id，创建时填 0 即可。
         # @type GroupId: Integer
         # @param Name: 组名称。
         # @type Name: String
-        # @param Content: IP 组内容，仅支持 IP 及 IP 掩码。
+        # @param Content: IP 组内容，仅支持 IP 及 IP 网段。
         # @type Content: Array
+        # @param IPExpireInfo: IP 定时过期信息。
+        # 作为入参：用于为指定的 IP 地址或网段配置定时过期时间。
+        # 作为出参，包含以下两类信息：
+        # <li>当前未到期的定时过期信息：尚未触发的过期配置。</li>
+        # <li>一周内已到期的定时过期信息：已触发的过期配置。</li>
+        # @type IPExpireInfo: Array
 
-        attr_accessor :GroupId, :Name, :Content
+        attr_accessor :GroupId, :Name, :Content, :IPExpireInfo
 
-        def initialize(groupid=nil, name=nil, content=nil)
+        def initialize(groupid=nil, name=nil, content=nil, ipexpireinfo=nil)
           @GroupId = groupid
           @Name = name
           @Content = content
+          @IPExpireInfo = ipexpireinfo
         end
 
         def deserialize(params)
           @GroupId = params['GroupId']
           @Name = params['Name']
           @Content = params['Content']
+          unless params['IPExpireInfo'].nil?
+            @IPExpireInfo = []
+            params['IPExpireInfo'].each do |i|
+              ipexpireinfo_tmp = IPExpireInfo.new
+              ipexpireinfo_tmp.deserialize(i)
+              @IPExpireInfo << ipexpireinfo_tmp
+            end
+          end
         end
       end
 
@@ -12548,8 +12583,8 @@ module TencentCloud
 
         attr_accessor :ZoneId, :Hosts, :Mode, :ServerCertInfo, :ApplyType, :ClientCertInfo
         extend Gem::Deprecate
-        deprecate :ApplyType, :none, 2025, 3
-        deprecate :ApplyType=, :none, 2025, 3
+        deprecate :ApplyType, :none, 2025, 4
+        deprecate :ApplyType=, :none, 2025, 4
 
         def initialize(zoneid=nil, hosts=nil, mode=nil, servercertinfo=nil, applytype=nil, clientcertinfo=nil)
           @ZoneId = zoneid
@@ -13346,10 +13381,7 @@ module TencentCloud
         # @type ZoneId: String
         # @param IPGroup: IP 组配置。
         # @type IPGroup: :class:`Tencentcloud::Teo.v20220901.models.IPGroup`
-        # @param Mode: 操作类型，取值有：
-        # <li> append: 向 IPGroup 中追加 Content 参数中内容；</li>
-        # <li> remove: 从 IPGroup 中删除 Content 参数中内容；</li>
-        # <li> update: 全量替换 IPGroup 内容，并可修改 IPGroup 名称。 </li>
+        # @param Mode: 操作类型，取值有：<li> append: 向 IPGroup 中添加新的 IP 地址或设置定时过期时间；</li><li>  remove: 从 IPGroup 中删除指定的 IP 地址或其定时过期时间；</li><li>  update: 完全替换 IPGroup 中 Content 或 ExpireInfo 的内容，并且可以修改 IPGroup 的名称。</li>    使用 append 操作时注意：   <li> 为 IP 或网段添加定时过期时间时，必须晚于当前时间。如果该 IP 或网段在组中不存在，必须同时在 Content 参数中添加该 IP 或网段。若该 IP 或网段已存在过期时间，则新时间将覆盖原有时间。</li>  使用 remove 操作时注意： <li> 删除 IP 或网段时，相关的未过期的定时过期时间也会被删除；</li> <li> 删除定时过期时间时，仅能删除当前未过期的时间。</li>  使用 update 操作时注意： <li> 替换 Content 内容时，不在 Content 中的 IP 或网段的未过期时间会被删除；</li> <li> 替换 IPExpireInfo 内容时，IPExpireInfo 中的 IP 或网段必须在 Content 中或在 IP 组中存在。</li>
         # @type Mode: String
 
         attr_accessor :ZoneId, :IPGroup, :Mode
@@ -13969,12 +14001,12 @@ module TencentCloud
 
         attr_accessor :OriginType, :Origin, :BackupOrigin, :OriginGroupName, :BackOriginGroupName, :PrivateAccess, :PrivateParameters, :VodeoSubAppId, :VodeoDistributionRange, :VodeoBucketId, :VodOriginScope, :VodBucketId
         extend Gem::Deprecate
-        deprecate :VodeoSubAppId, :none, 2025, 3
-        deprecate :VodeoSubAppId=, :none, 2025, 3
-        deprecate :VodeoDistributionRange, :none, 2025, 3
-        deprecate :VodeoDistributionRange=, :none, 2025, 3
-        deprecate :VodeoBucketId, :none, 2025, 3
-        deprecate :VodeoBucketId=, :none, 2025, 3
+        deprecate :VodeoSubAppId, :none, 2025, 4
+        deprecate :VodeoSubAppId=, :none, 2025, 4
+        deprecate :VodeoDistributionRange, :none, 2025, 4
+        deprecate :VodeoDistributionRange=, :none, 2025, 4
+        deprecate :VodeoBucketId, :none, 2025, 4
+        deprecate :VodeoBucketId=, :none, 2025, 4
 
         def initialize(origintype=nil, origin=nil, backuporigin=nil, origingroupname=nil, backorigingroupname=nil, privateaccess=nil, privateparameters=nil, vodeosubappid=nil, vodeodistributionrange=nil, vodeobucketid=nil, vodoriginscope=nil, vodbucketid=nil)
           @OriginType = origintype
@@ -14273,12 +14305,12 @@ module TencentCloud
 
         attr_accessor :OriginType, :Origin, :BackupOrigin, :PrivateAccess, :PrivateParameters, :VodeoSubAppId, :VodeoDistributionRange, :VodeoBucketId, :VodOriginScope, :VodBucketId
         extend Gem::Deprecate
-        deprecate :VodeoSubAppId, :none, 2025, 3
-        deprecate :VodeoSubAppId=, :none, 2025, 3
-        deprecate :VodeoDistributionRange, :none, 2025, 3
-        deprecate :VodeoDistributionRange=, :none, 2025, 3
-        deprecate :VodeoBucketId, :none, 2025, 3
-        deprecate :VodeoBucketId=, :none, 2025, 3
+        deprecate :VodeoSubAppId, :none, 2025, 4
+        deprecate :VodeoSubAppId=, :none, 2025, 4
+        deprecate :VodeoDistributionRange, :none, 2025, 4
+        deprecate :VodeoDistributionRange=, :none, 2025, 4
+        deprecate :VodeoBucketId, :none, 2025, 4
+        deprecate :VodeoBucketId=, :none, 2025, 4
 
         def initialize(origintype=nil, origin=nil, backuporigin=nil, privateaccess=nil, privateparameters=nil, vodeosubappid=nil, vodeodistributionrange=nil, vodeobucketid=nil, vodoriginscope=nil, vodbucketid=nil)
           @OriginType = origintype
@@ -15662,8 +15694,8 @@ module TencentCloud
 
         attr_accessor :Operator, :Target, :Values, :IgnoreCase, :Name, :IgnoreNameCase
         extend Gem::Deprecate
-        deprecate :IgnoreNameCase, :none, 2025, 3
-        deprecate :IgnoreNameCase=, :none, 2025, 3
+        deprecate :IgnoreNameCase, :none, 2025, 4
+        deprecate :IgnoreNameCase=, :none, 2025, 4
 
         def initialize(operator=nil, target=nil, values=nil, ignorecase=nil, name=nil, ignorenamecase=nil)
           @Operator = operator

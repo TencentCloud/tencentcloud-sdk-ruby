@@ -101,6 +101,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 启动云端录制功能，完成房间内的音视频录制，并上传到指定的云存储。
+
+        # @param request: Request instance for CreateCloudRecording.
+        # @type request: :class:`Tencentcloud::trro::V20220325::CreateCloudRecordingRequest`
+        # @rtype: :class:`Tencentcloud::trro::V20220325::CreateCloudRecordingResponse`
+        def CreateCloudRecording(request)
+          body = send_request('CreateCloudRecording', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateCloudRecordingResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 用于创建设备
 
         # @param request: Request instance for CreateDevice.
@@ -135,6 +159,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CreateProjectResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 成功开启录制后，可以使用此接口来停止录制任务。停止录制成功后不代表文件全部传输完成，如果未完成后台将会继续上传文件，成功后通过事件回调通知客户文件全部传输完成状态。
+
+        # @param request: Request instance for DeleteCloudRecording.
+        # @type request: :class:`Tencentcloud::trro::V20220325::DeleteCloudRecordingRequest`
+        # @rtype: :class:`Tencentcloud::trro::V20220325::DeleteCloudRecordingResponse`
+        def DeleteCloudRecording(request)
+          body = send_request('DeleteCloudRecording', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteCloudRecordingResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -509,6 +557,32 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 设置回调URL
+        # 录制回调事件内容参考：https://cloud.tencent.com/document/product/647/81113
+        # 转推回调事件内容参考：https://cloud.tencent.com/document/product/647/88552
+
+        # @param request: Request instance for ModifyCallbackUrl.
+        # @type request: :class:`Tencentcloud::trro::V20220325::ModifyCallbackUrlRequest`
+        # @rtype: :class:`Tencentcloud::trro::V20220325::ModifyCallbackUrlResponse`
+        def ModifyCallbackUrl(request)
+          body = send_request('ModifyCallbackUrl', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyCallbackUrlResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 用于修改设备信息
 
         # @param request: Request instance for ModifyDevice.
@@ -593,6 +667,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyProjectSecModeResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 启动一个混流转推任务，将 TRTC 房间的多路音视频流混成一路音视频流，编码后推到直播 CDN 或者回推到 TRTC 房间。也支持不转码直接转推 TRTC 房间的单路流。启动成功后，会返回一个 SdkAppid 维度唯一的任务 Id（TaskId）。您需要保存该 TaskId，后续需要依赖此 TaskId 更新和结束任务。
+
+        # @param request: Request instance for StartPublishLiveStream.
+        # @type request: :class:`Tencentcloud::trro::V20220325::StartPublishLiveStreamRequest`
+        # @rtype: :class:`Tencentcloud::trro::V20220325::StartPublishLiveStreamResponse`
+        def StartPublishLiveStream(request)
+          body = send_request('StartPublishLiveStream', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = StartPublishLiveStreamResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 停止指定的混流转推任务。如果没有调用 Stop 接口停止任务，所有参与混流转推的主播离开房间超过MaxIdleTime 设置的时间后，任务也会自动停止。
+
+        # @param request: Request instance for StopPublishLiveStream.
+        # @type request: :class:`Tencentcloud::trro::V20220325::StopPublishLiveStreamRequest`
+        # @rtype: :class:`Tencentcloud::trro::V20220325::StopPublishLiveStreamResponse`
+        def StopPublishLiveStream(request)
+          body = send_request('StopPublishLiveStream', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = StopPublishLiveStreamResponse.new
             model.deserialize(response['Response'])
             model
           else

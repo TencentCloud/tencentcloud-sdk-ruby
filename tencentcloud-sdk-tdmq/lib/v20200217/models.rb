@@ -6276,8 +6276,8 @@ module TencentCloud
 
         attr_accessor :ClusterId, :EnvironmentId, :TopicName, :MsgId, :PulsarMsgId, :QueryDlqMsg, :QueryDeadLetterMessage, :Offset, :Limit, :FilterTrackGroup
         extend Gem::Deprecate
-        deprecate :QueryDlqMsg, :none, 2025, 3
-        deprecate :QueryDlqMsg=, :none, 2025, 3
+        deprecate :QueryDlqMsg, :none, 2025, 4
+        deprecate :QueryDlqMsg=, :none, 2025, 4
 
         def initialize(clusterid=nil, environmentid=nil, topicname=nil, msgid=nil, pulsarmsgid=nil, querydlqmsg=nil, querydeadlettermessage=nil, offset=nil, limit=nil, filtertrackgroup=nil)
           @ClusterId = clusterid
@@ -6382,8 +6382,8 @@ module TencentCloud
 
         attr_accessor :ClusterId, :EnvironmentId, :TopicName, :MsgId, :GroupName, :QueryDLQMsg, :QueryDeadLetterMessage
         extend Gem::Deprecate
-        deprecate :QueryDLQMsg, :none, 2025, 3
-        deprecate :QueryDLQMsg=, :none, 2025, 3
+        deprecate :QueryDLQMsg, :none, 2025, 4
+        deprecate :QueryDLQMsg=, :none, 2025, 4
 
         def initialize(clusterid=nil, environmentid=nil, topicname=nil, msgid=nil, groupname=nil, querydlqmsg=nil, querydeadlettermessage=nil)
           @ClusterId = clusterid
@@ -7223,8 +7223,8 @@ module TencentCloud
 
         attr_accessor :ClusterId, :EnvironmentId, :TopicName, :StartTime, :EndTime, :MsgId, :MsgKey, :Offset, :Limit, :TaskRequestId, :QueryDlqMsg, :NumOfLatestMsg, :Tag, :QueryDeadLetterMessage
         extend Gem::Deprecate
-        deprecate :QueryDlqMsg, :none, 2025, 3
-        deprecate :QueryDlqMsg=, :none, 2025, 3
+        deprecate :QueryDlqMsg, :none, 2025, 4
+        deprecate :QueryDlqMsg=, :none, 2025, 4
 
         def initialize(clusterid=nil, environmentid=nil, topicname=nil, starttime=nil, endtime=nil, msgid=nil, msgkey=nil, offset=nil, limit=nil, taskrequestid=nil, querydlqmsg=nil, numoflatestmsg=nil, tag=nil, querydeadlettermessage=nil)
           @ClusterId = clusterid
@@ -10555,10 +10555,14 @@ module TencentCloud
         # @type PayMode: Integer
         # @param InstanceType: 实例类型，0 专享版、1 Serverless 版
         # @type InstanceType: Integer
+        # @param IsolatedTime: 开始隔离时间
+        # @type IsolatedTime: Integer
+        # @param Container: 是否为容器实例，默认 true
+        # @type Container: Boolean
 
-        attr_accessor :ClusterId, :ClusterName, :Region, :CreateTime, :Remark, :Vpcs, :ZoneIds, :VirtualHostNumber, :QueueNumber, :MessagePublishRate, :MessageStackNumber, :ExpireTime, :ChannelNumber, :ConnectionNumber, :ConsumerNumber, :ExchangeNumber, :ExceptionInformation, :ClusterStatus, :AutoRenewFlag, :MirrorQueuePolicyFlag, :MessageConsumeRate, :ClusterVersion, :PayMode, :InstanceType
+        attr_accessor :ClusterId, :ClusterName, :Region, :CreateTime, :Remark, :Vpcs, :ZoneIds, :VirtualHostNumber, :QueueNumber, :MessagePublishRate, :MessageStackNumber, :ExpireTime, :ChannelNumber, :ConnectionNumber, :ConsumerNumber, :ExchangeNumber, :ExceptionInformation, :ClusterStatus, :AutoRenewFlag, :MirrorQueuePolicyFlag, :MessageConsumeRate, :ClusterVersion, :PayMode, :InstanceType, :IsolatedTime, :Container
 
-        def initialize(clusterid=nil, clustername=nil, region=nil, createtime=nil, remark=nil, vpcs=nil, zoneids=nil, virtualhostnumber=nil, queuenumber=nil, messagepublishrate=nil, messagestacknumber=nil, expiretime=nil, channelnumber=nil, connectionnumber=nil, consumernumber=nil, exchangenumber=nil, exceptioninformation=nil, clusterstatus=nil, autorenewflag=nil, mirrorqueuepolicyflag=nil, messageconsumerate=nil, clusterversion=nil, paymode=nil, instancetype=nil)
+        def initialize(clusterid=nil, clustername=nil, region=nil, createtime=nil, remark=nil, vpcs=nil, zoneids=nil, virtualhostnumber=nil, queuenumber=nil, messagepublishrate=nil, messagestacknumber=nil, expiretime=nil, channelnumber=nil, connectionnumber=nil, consumernumber=nil, exchangenumber=nil, exceptioninformation=nil, clusterstatus=nil, autorenewflag=nil, mirrorqueuepolicyflag=nil, messageconsumerate=nil, clusterversion=nil, paymode=nil, instancetype=nil, isolatedtime=nil, container=nil)
           @ClusterId = clusterid
           @ClusterName = clustername
           @Region = region
@@ -10583,6 +10587,8 @@ module TencentCloud
           @ClusterVersion = clusterversion
           @PayMode = paymode
           @InstanceType = instancetype
+          @IsolatedTime = isolatedtime
+          @Container = container
         end
 
         def deserialize(params)
@@ -10617,6 +10623,8 @@ module TencentCloud
           @ClusterVersion = params['ClusterVersion']
           @PayMode = params['PayMode']
           @InstanceType = params['InstanceType']
+          @IsolatedTime = params['IsolatedTime']
+          @Container = params['Container']
         end
       end
 
@@ -11061,10 +11069,12 @@ module TencentCloud
         # @type CreateTime: Integer
         # @param InstanceType: 实例类型，0 专享版、1 Serverless 版
         # @type InstanceType: Integer
+        # @param IsolatedTime: 隔离时间，毫秒为单位
+        # @type IsolatedTime: Integer
 
-        attr_accessor :InstanceId, :InstanceName, :InstanceVersion, :Status, :NodeCount, :ConfigDisplay, :MaxTps, :MaxBandWidth, :MaxStorage, :ExpireTime, :AutoRenewFlag, :PayMode, :Remark, :SpecName, :ExceptionInformation, :ClusterStatus, :PublicAccessEndpoint, :Vpcs, :CreateTime, :InstanceType
+        attr_accessor :InstanceId, :InstanceName, :InstanceVersion, :Status, :NodeCount, :ConfigDisplay, :MaxTps, :MaxBandWidth, :MaxStorage, :ExpireTime, :AutoRenewFlag, :PayMode, :Remark, :SpecName, :ExceptionInformation, :ClusterStatus, :PublicAccessEndpoint, :Vpcs, :CreateTime, :InstanceType, :IsolatedTime
 
-        def initialize(instanceid=nil, instancename=nil, instanceversion=nil, status=nil, nodecount=nil, configdisplay=nil, maxtps=nil, maxbandwidth=nil, maxstorage=nil, expiretime=nil, autorenewflag=nil, paymode=nil, remark=nil, specname=nil, exceptioninformation=nil, clusterstatus=nil, publicaccessendpoint=nil, vpcs=nil, createtime=nil, instancetype=nil)
+        def initialize(instanceid=nil, instancename=nil, instanceversion=nil, status=nil, nodecount=nil, configdisplay=nil, maxtps=nil, maxbandwidth=nil, maxstorage=nil, expiretime=nil, autorenewflag=nil, paymode=nil, remark=nil, specname=nil, exceptioninformation=nil, clusterstatus=nil, publicaccessendpoint=nil, vpcs=nil, createtime=nil, instancetype=nil, isolatedtime=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @InstanceVersion = instanceversion
@@ -11085,6 +11095,7 @@ module TencentCloud
           @Vpcs = vpcs
           @CreateTime = createtime
           @InstanceType = instancetype
+          @IsolatedTime = isolatedtime
         end
 
         def deserialize(params)
@@ -11115,6 +11126,7 @@ module TencentCloud
           end
           @CreateTime = params['CreateTime']
           @InstanceType = params['InstanceType']
+          @IsolatedTime = params['IsolatedTime']
         end
       end
 
@@ -11535,8 +11547,8 @@ module TencentCloud
 
         attr_accessor :MaxTpsPerNamespace, :MaxNamespaceNum, :UsedNamespaceNum, :MaxTopicNum, :UsedTopicNum, :MaxGroupNum, :UsedGroupNum, :MaxRetentionTime, :MaxLatencyTime, :MaxQueuesPerTopic, :TopicDistribution
         extend Gem::Deprecate
-        deprecate :MaxTpsPerNamespace, :none, 2025, 3
-        deprecate :MaxTpsPerNamespace=, :none, 2025, 3
+        deprecate :MaxTpsPerNamespace, :none, 2025, 4
+        deprecate :MaxTpsPerNamespace=, :none, 2025, 4
 
         def initialize(maxtpspernamespace=nil, maxnamespacenum=nil, usednamespacenum=nil, maxtopicnum=nil, usedtopicnum=nil, maxgroupnum=nil, usedgroupnum=nil, maxretentiontime=nil, maxlatencytime=nil, maxqueuespertopic=nil, topicdistribution=nil)
           @MaxTpsPerNamespace = maxtpspernamespace

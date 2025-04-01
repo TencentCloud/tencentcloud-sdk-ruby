@@ -228,6 +228,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 内部云产品接入使用相关接口
+
+        # @param request: Request instance for CreateCloudProductLogCollection.
+        # @type request: :class:`Tencentcloud::cls::V20201016::CreateCloudProductLogCollectionRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::CreateCloudProductLogCollectionResponse`
+        def CreateCloudProductLogCollection(request)
+          body = send_request('CreateCloudProductLogCollection', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateCloudProductLogCollectionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建采集规则配置
 
         # @param request: Request instance for CreateConfig.
@@ -718,6 +742,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteAlarmShieldResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 内部云产品接入使用相关接口
+
+        # @param request: Request instance for DeleteCloudProductLogCollection.
+        # @type request: :class:`Tencentcloud::cls::V20201016::DeleteCloudProductLogCollectionRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::DeleteCloudProductLogCollectionResponse`
+        def DeleteCloudProductLogCollection(request)
+          body = send_request('DeleteCloudProductLogCollection', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteCloudProductLogCollectionResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1246,6 +1294,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeAlertRecordHistoryResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 云产品接入使用相关接口
+
+        # @param request: Request instance for DescribeCloudProductLogTasks.
+        # @type request: :class:`Tencentcloud::cls::V20201016::DescribeCloudProductLogTasksRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::DescribeCloudProductLogTasksResponse`
+        def DescribeCloudProductLogTasks(request)
+          body = send_request('DescribeCloudProductLogTasks', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCloudProductLogTasksResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1991,6 +2063,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyAlarmShieldResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 内部云产品接入使用相关接口
+
+        # @param request: Request instance for ModifyCloudProductLogCollection.
+        # @type request: :class:`Tencentcloud::cls::V20201016::ModifyCloudProductLogCollectionRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::ModifyCloudProductLogCollectionResponse`
+        def ModifyCloudProductLogCollection(request)
+          body = send_request('ModifyCloudProductLogCollection', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyCloudProductLogCollectionResponse.new
             model.deserialize(response['Response'])
             model
           else
