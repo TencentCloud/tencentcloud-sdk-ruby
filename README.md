@@ -28,7 +28,7 @@ gem install tencentcloud-sdk-cvm
     $ gem install tencentcloud-sdk-common-1.0.0.gem
     $ cd ../tencentcloud-sdk-cvm
     $ gem build tencentcloud-sdk-cvm.gemspec
-    $ gem install tencentcloud-sdk-cvm-1.0.0.gem 
+    $ gem install tencentcloud-sdk-cvm-1.0.0.gem
 
 具体产品的包名缩写请参考 [products.md](./products.md) 中的包名字段。
 
@@ -59,8 +59,8 @@ begin
   req = DescribeInstancesRequest.new(nil, nil, 0, 1)
   cli.DescribeInstances(req)
 rescue TencentCloudSDKException => e
-  puts e.message  
-  puts e.backtrace.inspect  
+  puts e.message
+  puts e.backtrace.inspect
 end
 ```
 
@@ -106,10 +106,10 @@ begin
 
   # 填充请求参数,这里request对象的成员变量即对应接口的入参。
   # 您可以通过官网接口文档或跳转到request对象的定义处查看请求参数的定义。
-  respFilter = Filter.new()  # 创建Filter对象, 以zone的维度来查询cvm实例。
-  respFilter.Name = "zone"
-  respFilter.Values = ["ap-shanghai-1", "ap-shanghai-2"]
-  req.Filters = [respFilter]  # Filters 是成员为Filter对象的列表
+  filter = Filter.new()  # 创建Filter对象, 以zone的维度来查询cvm实例。
+  filter.Name = "zone"
+  filter.Values = ["ap-shanghai-1", "ap-shanghai-2"]
+  req.Filters = [filter]  # Filters 是成员为Filter对象的列表
 
   # 通过client对象调用DescribeInstances方法发起请求。注意请求方法名与请求对象是对应的。
   # 返回的resp是一个DescribeInstancesResponse类的实例，与请求对象对应。
@@ -122,8 +122,8 @@ begin
   # 您可以通过官网接口文档或跳转到response对象的定义处查看返回字段的定义。
   puts resp.TotalCount
 rescue TencentCloudSDKException => e
-  puts e.message  
-  puts e.backtrace.inspect  
+  puts e.message
+  puts e.backtrace.inspect
 end
 ```
 
