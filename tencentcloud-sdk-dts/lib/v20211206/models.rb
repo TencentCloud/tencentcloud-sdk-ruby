@@ -1459,12 +1459,14 @@ module TencentCloud
         # @type TmpSecretKey: String
         # @param TmpToken: 临时密钥Id，可通过申请扮演角色临时访问凭证获取临时密钥https://cloud.tencent.com/document/product/1312/48197，其中角色资源RoleArn的定义可参考DTS跨账号迁移文档(https://cloud.tencent.com/document/product/571/54117)第4节中关于角色的定义。
         # @type TmpToken: String
+        # @param EncryptConn: 是否走加密传输、UnEncrypted表示不走加密传输，Encrypted表示走加密传输，默认UnEncrypted
+        # @type EncryptConn: String
         # @param SetId: tdsql的分片id。如节点类型为set必填。
         # @type SetId: String
 
-        attr_accessor :Role, :DbKernel, :Host, :Port, :User, :Password, :CvmInstanceId, :UniqVpnGwId, :UniqDcgId, :InstanceId, :CcnGwId, :VpcId, :SubnetId, :EngineVersion, :Account, :AccountRole, :AccountMode, :TmpSecretId, :TmpSecretKey, :TmpToken, :SetId
+        attr_accessor :Role, :DbKernel, :Host, :Port, :User, :Password, :CvmInstanceId, :UniqVpnGwId, :UniqDcgId, :InstanceId, :CcnGwId, :VpcId, :SubnetId, :EngineVersion, :Account, :AccountRole, :AccountMode, :TmpSecretId, :TmpSecretKey, :TmpToken, :EncryptConn, :SetId
 
-        def initialize(role=nil, dbkernel=nil, host=nil, port=nil, user=nil, password=nil, cvminstanceid=nil, uniqvpngwid=nil, uniqdcgid=nil, instanceid=nil, ccngwid=nil, vpcid=nil, subnetid=nil, engineversion=nil, account=nil, accountrole=nil, accountmode=nil, tmpsecretid=nil, tmpsecretkey=nil, tmptoken=nil, setid=nil)
+        def initialize(role=nil, dbkernel=nil, host=nil, port=nil, user=nil, password=nil, cvminstanceid=nil, uniqvpngwid=nil, uniqdcgid=nil, instanceid=nil, ccngwid=nil, vpcid=nil, subnetid=nil, engineversion=nil, account=nil, accountrole=nil, accountmode=nil, tmpsecretid=nil, tmpsecretkey=nil, tmptoken=nil, encryptconn=nil, setid=nil)
           @Role = role
           @DbKernel = dbkernel
           @Host = host
@@ -1485,6 +1487,7 @@ module TencentCloud
           @TmpSecretId = tmpsecretid
           @TmpSecretKey = tmpsecretkey
           @TmpToken = tmptoken
+          @EncryptConn = encryptconn
           @SetId = setid
         end
 
@@ -1509,6 +1512,7 @@ module TencentCloud
           @TmpSecretId = params['TmpSecretId']
           @TmpSecretKey = params['TmpSecretKey']
           @TmpToken = params['TmpToken']
+          @EncryptConn = params['EncryptConn']
           @SetId = params['SetId']
         end
       end
@@ -3522,14 +3526,29 @@ module TencentCloud
         # @type ConflictHandleType: String
         # @param ConflictHandleOption: 冲突处理的详细选项，如条件覆盖中的条件行和条件操作；不能部分更新该选项的内部字段；有更新时、需要全量更新该字段
         # @type ConflictHandleOption: :class:`Tencentcloud::Dts.v20211206.models.ConflictHandleOption`
+        # @param KafkaOption: 同步到kafka链路的kafka配置
+        # @type KafkaOption: :class:`Tencentcloud::Dts.v20211206.models.KafkaOption`
+        # @param FilterBeginCommit: 同步到kafka链路是否过滤掉begin和commit消息。目前仅mysql2kafka链路支持
+        # @type FilterBeginCommit: Boolean
+        # @param FilterCheckpoint: 同步到kafka链路是否过滤掉checkpoint消息。目前仅mysql2kafka链路支持
+        # @type FilterCheckpoint: Boolean
+        # @param DealOfExistSameTable: 同名表的处理，ReportErrorAfterCheck(前置校验并报错，默认)、ExecuteAfterIgnore(忽略并继续执行)
+        # @type DealOfExistSameTable: String
+        # @param StartPosition: 仅增量任务重新设置指定位点
+        # @type StartPosition: String
 
-        attr_accessor :OpTypes, :DdlOptions, :ConflictHandleType, :ConflictHandleOption
+        attr_accessor :OpTypes, :DdlOptions, :ConflictHandleType, :ConflictHandleOption, :KafkaOption, :FilterBeginCommit, :FilterCheckpoint, :DealOfExistSameTable, :StartPosition
 
-        def initialize(optypes=nil, ddloptions=nil, conflicthandletype=nil, conflicthandleoption=nil)
+        def initialize(optypes=nil, ddloptions=nil, conflicthandletype=nil, conflicthandleoption=nil, kafkaoption=nil, filterbegincommit=nil, filtercheckpoint=nil, dealofexistsametable=nil, startposition=nil)
           @OpTypes = optypes
           @DdlOptions = ddloptions
           @ConflictHandleType = conflicthandletype
           @ConflictHandleOption = conflicthandleoption
+          @KafkaOption = kafkaoption
+          @FilterBeginCommit = filterbegincommit
+          @FilterCheckpoint = filtercheckpoint
+          @DealOfExistSameTable = dealofexistsametable
+          @StartPosition = startposition
         end
 
         def deserialize(params)
@@ -3547,6 +3566,14 @@ module TencentCloud
             @ConflictHandleOption = ConflictHandleOption.new
             @ConflictHandleOption.deserialize(params['ConflictHandleOption'])
           end
+          unless params['KafkaOption'].nil?
+            @KafkaOption = KafkaOption.new
+            @KafkaOption.deserialize(params['KafkaOption'])
+          end
+          @FilterBeginCommit = params['FilterBeginCommit']
+          @FilterCheckpoint = params['FilterCheckpoint']
+          @DealOfExistSameTable = params['DealOfExistSameTable']
+          @StartPosition = params['StartPosition']
         end
       end
 
