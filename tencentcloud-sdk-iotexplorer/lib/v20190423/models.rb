@@ -872,10 +872,8 @@ module TencentCloud
         # @param EventId: 事件ID
         # @type EventId: String
         # @param UploadStatus: 事件录像上传状态，Finished: 全部上传成功 Partial: 部分上传成功 Failed: 上传失败
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UploadStatus: String
         # @param Data: 事件自定义数据
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: String
 
         attr_accessor :StartTime, :EndTime, :Thumbnail, :EventId, :UploadStatus, :Data

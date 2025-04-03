@@ -3946,10 +3946,10 @@ module TencentCloud
 
         attr_accessor :Language, :AlternativeLanguage, :Model, :TranslationLanguage
         extend Gem::Deprecate
-        deprecate :Model, :none, 2025, 3
-        deprecate :Model=, :none, 2025, 3
-        deprecate :TranslationLanguage, :none, 2025, 3
-        deprecate :TranslationLanguage=, :none, 2025, 3
+        deprecate :Model, :none, 2025, 4
+        deprecate :Model=, :none, 2025, 4
+        deprecate :TranslationLanguage, :none, 2025, 4
+        deprecate :TranslationLanguage=, :none, 2025, 4
 
         def initialize(language=nil, alternativelanguage=nil, model=nil, translationlanguage=nil)
           @Language = language
@@ -4920,12 +4920,12 @@ module TencentCloud
 
         attr_accessor :SdkAppId, :RoomId, :RoomIdType, :UserId, :UserSig, :StreamUrl, :PrivateMapKey, :VideoEncodeParams, :AudioEncodeParams, :SourceUrl, :SeekSecond, :AutoPush, :RepeatNum, :MaxDuration, :Volume
         extend Gem::Deprecate
-        deprecate :VideoEncodeParams, :none, 2025, 3
-        deprecate :VideoEncodeParams=, :none, 2025, 3
-        deprecate :AudioEncodeParams, :none, 2025, 3
-        deprecate :AudioEncodeParams=, :none, 2025, 3
-        deprecate :SourceUrl, :none, 2025, 3
-        deprecate :SourceUrl=, :none, 2025, 3
+        deprecate :VideoEncodeParams, :none, 2025, 4
+        deprecate :VideoEncodeParams=, :none, 2025, 4
+        deprecate :AudioEncodeParams, :none, 2025, 4
+        deprecate :AudioEncodeParams=, :none, 2025, 4
+        deprecate :SourceUrl, :none, 2025, 4
+        deprecate :SourceUrl=, :none, 2025, 4
 
         def initialize(sdkappid=nil, roomid=nil, roomidtype=nil, userid=nil, usersig=nil, streamurl=nil, privatemapkey=nil, videoencodeparams=nil, audioencodeparams=nil, sourceurl=nil, seeksecond=nil, autopush=nil, repeatnum=nil, maxduration=nil, volume=nil)
           @SdkAppId = sdkappid
@@ -5573,10 +5573,10 @@ module TencentCloud
 
         attr_accessor :UserId, :UserSig, :IMAdminUserId, :IMAdminUserSig, :MaxIdleTime, :TranscriptionMode, :TargetUserId, :TargetUserIdList
         extend Gem::Deprecate
-        deprecate :IMAdminUserId, :none, 2025, 3
-        deprecate :IMAdminUserId=, :none, 2025, 3
-        deprecate :IMAdminUserSig, :none, 2025, 3
-        deprecate :IMAdminUserSig=, :none, 2025, 3
+        deprecate :IMAdminUserId, :none, 2025, 4
+        deprecate :IMAdminUserId=, :none, 2025, 4
+        deprecate :IMAdminUserSig, :none, 2025, 4
+        deprecate :IMAdminUserSig=, :none, 2025, 4
 
         def initialize(userid=nil, usersig=nil, imadminuserid=nil, imadminusersig=nil, maxidletime=nil, transcriptionmode=nil, targetuserid=nil, targetuseridlist=nil)
           @UserId = userid

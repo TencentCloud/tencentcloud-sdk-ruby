@@ -1426,8 +1426,8 @@ module TencentCloud
 
         attr_accessor :LogsetName, :Period, :LogsetType
         extend Gem::Deprecate
-        deprecate :Period, :none, 2025, 3
-        deprecate :Period=, :none, 2025, 3
+        deprecate :Period, :none, 2025, 4
+        deprecate :Period=, :none, 2025, 4
 
         def initialize(logsetname=nil, period=nil, logsettype=nil)
           @LogsetName = logsetname
@@ -5506,8 +5506,8 @@ module TencentCloud
 
         attr_accessor :LoadBalancerId, :LoadBalancerName, :LoadBalancerType, :Forward, :Domain, :LoadBalancerVips, :Status, :CreateTime, :StatusTime, :ProjectId, :VpcId, :OpenBgp, :Snat, :Isolation, :Log, :SubnetId, :Tags, :SecureGroups, :TargetRegionInfo, :AnycastZone, :AddressIPVersion, :NumericalVpcId, :VipIsp, :MasterZone, :BackupZoneSet, :IsolatedTime, :ExpireTime, :ChargeType, :NetworkAttributes, :PrepaidAttributes, :LogSetId, :LogTopicId, :AddressIPv6, :ExtraInfo, :IsDDos, :ConfigId, :LoadBalancerPassToTarget, :ExclusiveCluster, :IPv6Mode, :SnatPro, :SnatIps, :SlaType, :IsBlock, :IsBlockTime, :LocalBgp, :ClusterTag, :MixIpTarget, :Zones, :NfvInfo, :HealthLogSetId, :HealthLogTopicId, :ClusterIds, :AttributeFlags, :LoadBalancerDomain, :Egress, :Exclusive, :TargetCount
         extend Gem::Deprecate
-        deprecate :Log, :none, 2025, 3
-        deprecate :Log=, :none, 2025, 3
+        deprecate :Log, :none, 2025, 4
+        deprecate :Log=, :none, 2025, 4
 
         def initialize(loadbalancerid=nil, loadbalancername=nil, loadbalancertype=nil, forward=nil, domain=nil, loadbalancervips=nil, status=nil, createtime=nil, statustime=nil, projectid=nil, vpcid=nil, openbgp=nil, snat=nil, isolation=nil, log=nil, subnetid=nil, tags=nil, securegroups=nil, targetregioninfo=nil, anycastzone=nil, addressipversion=nil, numericalvpcid=nil, vipisp=nil, masterzone=nil, backupzoneset=nil, isolatedtime=nil, expiretime=nil, chargetype=nil, networkattributes=nil, prepaidattributes=nil, logsetid=nil, logtopicid=nil, addressipv6=nil, extrainfo=nil, isddos=nil, configid=nil, loadbalancerpasstotarget=nil, exclusivecluster=nil, ipv6mode=nil, snatpro=nil, snatips=nil, slatype=nil, isblock=nil, isblocktime=nil, localbgp=nil, clustertag=nil, mixiptarget=nil, zones=nil, nfvinfo=nil, healthlogsetid=nil, healthlogtopicid=nil, clusterids=nil, attributeflags=nil, loadbalancerdomain=nil, egress=nil, exclusive=nil, targetcount=nil)
           @LoadBalancerId = loadbalancerid
@@ -7537,10 +7537,10 @@ module TencentCloud
 
         attr_accessor :ListenerId, :Targets, :LocationId, :Domain, :Url, :Weight
         extend Gem::Deprecate
-        deprecate :Domain, :none, 2025, 3
-        deprecate :Domain=, :none, 2025, 3
-        deprecate :Url, :none, 2025, 3
-        deprecate :Url=, :none, 2025, 3
+        deprecate :Domain, :none, 2025, 4
+        deprecate :Domain=, :none, 2025, 4
+        deprecate :Url, :none, 2025, 4
+        deprecate :Url=, :none, 2025, 4
 
         def initialize(listenerid=nil, targets=nil, locationid=nil, domain=nil, url=nil, weight=nil)
           @ListenerId = listenerid
@@ -8388,6 +8388,10 @@ module TencentCloud
         # @param AssociatedRule: 关联到的规则数组。在DescribeTargetGroupList接口调用时无法获取到该参数。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AssociatedRule: Array
+        # @param Protocol: 后端转发协议类型，支持类型TCP， UDP。仅V2新版目标组支持返回该参数。
+
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Protocol: String
         # @param TargetGroupType: 目标组类型，当前支持v1(旧版目标组), v2(新版目标组), gwlb(全局负载均衡目标组)。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TargetGroupType: String
@@ -8405,9 +8409,9 @@ module TencentCloud
         # @param FullListenSwitch: 是否全监听目标组
         # @type FullListenSwitch: Boolean
 
-        attr_accessor :TargetGroupId, :VpcId, :TargetGroupName, :Port, :CreatedTime, :UpdatedTime, :AssociatedRule, :TargetGroupType, :AssociatedRuleCount, :RegisteredInstancesCount, :Tag, :Weight, :FullListenSwitch
+        attr_accessor :TargetGroupId, :VpcId, :TargetGroupName, :Port, :CreatedTime, :UpdatedTime, :AssociatedRule, :Protocol, :TargetGroupType, :AssociatedRuleCount, :RegisteredInstancesCount, :Tag, :Weight, :FullListenSwitch
 
-        def initialize(targetgroupid=nil, vpcid=nil, targetgroupname=nil, port=nil, createdtime=nil, updatedtime=nil, associatedrule=nil, targetgrouptype=nil, associatedrulecount=nil, registeredinstancescount=nil, tag=nil, weight=nil, fulllistenswitch=nil)
+        def initialize(targetgroupid=nil, vpcid=nil, targetgroupname=nil, port=nil, createdtime=nil, updatedtime=nil, associatedrule=nil, protocol=nil, targetgrouptype=nil, associatedrulecount=nil, registeredinstancescount=nil, tag=nil, weight=nil, fulllistenswitch=nil)
           @TargetGroupId = targetgroupid
           @VpcId = vpcid
           @TargetGroupName = targetgroupname
@@ -8415,6 +8419,7 @@ module TencentCloud
           @CreatedTime = createdtime
           @UpdatedTime = updatedtime
           @AssociatedRule = associatedrule
+          @Protocol = protocol
           @TargetGroupType = targetgrouptype
           @AssociatedRuleCount = associatedrulecount
           @RegisteredInstancesCount = registeredinstancescount
@@ -8438,6 +8443,7 @@ module TencentCloud
               @AssociatedRule << associationitem_tmp
             end
           end
+          @Protocol = params['Protocol']
           @TargetGroupType = params['TargetGroupType']
           @AssociatedRuleCount = params['AssociatedRuleCount']
           @RegisteredInstancesCount = params['RegisteredInstancesCount']
@@ -8504,8 +8510,8 @@ module TencentCloud
 
         attr_accessor :IP, :Port, :HealthStatus, :TargetId, :HealthStatusDetail, :HealthStatusDetial, :TargetGroupId
         extend Gem::Deprecate
-        deprecate :HealthStatusDetial, :none, 2025, 3
-        deprecate :HealthStatusDetial=, :none, 2025, 3
+        deprecate :HealthStatusDetial, :none, 2025, 4
+        deprecate :HealthStatusDetial=, :none, 2025, 4
 
         def initialize(ip=nil, port=nil, healthstatus=nil, targetid=nil, healthstatusdetail=nil, healthstatusdetial=nil, targetgroupid=nil)
           @IP = ip

@@ -2273,8 +2273,8 @@ module TencentCloud
 
         attr_accessor :ReturnCode, :ReturnMessage, :Data, :DeleteRouteTimestamp
         extend Gem::Deprecate
-        deprecate :DeleteRouteTimestamp, :none, 2025, 3
-        deprecate :DeleteRouteTimestamp=, :none, 2025, 3
+        deprecate :DeleteRouteTimestamp, :none, 2025, 4
+        deprecate :DeleteRouteTimestamp=, :none, 2025, 4
 
         def initialize(returncode=nil, returnmessage=nil, data=nil, deleteroutetimestamp=nil)
           @ReturnCode = returncode
@@ -8920,8 +8920,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :MsgRetentionTime, :InstanceName, :Config, :DynamicRetentionConfig, :RebalanceTime, :PublicNetwork, :DynamicDiskConfig, :MaxMessageByte, :UncleanLeaderElectionEnable
         extend Gem::Deprecate
-        deprecate :DynamicDiskConfig, :none, 2025, 3
-        deprecate :DynamicDiskConfig=, :none, 2025, 3
+        deprecate :DynamicDiskConfig, :none, 2025, 4
+        deprecate :DynamicDiskConfig=, :none, 2025, 4
 
         def initialize(instanceid=nil, msgretentiontime=nil, instancename=nil, config=nil, dynamicretentionconfig=nil, rebalancetime=nil, publicnetwork=nil, dynamicdiskconfig=nil, maxmessagebyte=nil, uncleanleaderelectionenable=nil)
           @InstanceId = instanceid
@@ -9195,9 +9195,9 @@ module TencentCloud
         # @type RetentionBytes: Integer
         # @param Tags: 标签列表
         # @type Tags: Array
-        # @param QuotaProducerByteRate: 生产限流，单位 MB/s
+        # @param QuotaProducerByteRate: 生产限流，单位 MB/s；设置为-1，则生产不限流
         # @type QuotaProducerByteRate: Integer
-        # @param QuotaConsumerByteRate: 消费限流，单位 MB/s
+        # @param QuotaConsumerByteRate: 消费限流，单位 MB/s；设置为-1，则消费不限流
         # @type QuotaConsumerByteRate: Integer
         # @param ReplicaNum: topic副本数  最小值 1,最大值 3
         # @type ReplicaNum: Integer
@@ -11869,8 +11869,8 @@ module TencentCloud
 
         attr_accessor :ZoneId, :IsInternalApp, :AppId, :Flag, :ZoneName, :ZoneStatus, :Exflag, :SoldOut, :SalesInfo, :ExtraFlag
         extend Gem::Deprecate
-        deprecate :Exflag, :none, 2025, 3
-        deprecate :Exflag=, :none, 2025, 3
+        deprecate :Exflag, :none, 2025, 4
+        deprecate :Exflag=, :none, 2025, 4
 
         def initialize(zoneid=nil, isinternalapp=nil, appid=nil, flag=nil, zonename=nil, zonestatus=nil, exflag=nil, soldout=nil, salesinfo=nil, extraflag=nil)
           @ZoneId = zoneid

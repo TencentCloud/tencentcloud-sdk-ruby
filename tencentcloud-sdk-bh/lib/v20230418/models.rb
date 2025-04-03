@@ -74,10 +74,10 @@ module TencentCloud
 
         attr_accessor :Account, :LoginAccount, :LoginPassword, :DeviceId, :InstanceId, :Password, :PrivateKey, :PrivateKeyPassword, :Exe, :Drivers, :Width, :Height, :IntranetAccess, :AutoManageAccessCredential
         extend Gem::Deprecate
-        deprecate :LoginAccount, :none, 2025, 3
-        deprecate :LoginAccount=, :none, 2025, 3
-        deprecate :LoginPassword, :none, 2025, 3
-        deprecate :LoginPassword=, :none, 2025, 3
+        deprecate :LoginAccount, :none, 2025, 4
+        deprecate :LoginAccount=, :none, 2025, 4
+        deprecate :LoginPassword, :none, 2025, 4
+        deprecate :LoginPassword=, :none, 2025, 4
 
         def initialize(account=nil, loginaccount=nil, loginpassword=nil, deviceid=nil, instanceid=nil, password=nil, privatekey=nil, privatekeypassword=nil, exe=nil, drivers=nil, width=nil, height=nil, intranetaccess=nil, automanageaccesscredential=nil)
           @Account = account
@@ -5310,10 +5310,12 @@ module TencentCloud
         # @type AppAssetKind: Integer
         # @param AppAssetUrl: 应用资产url
         # @type AppAssetUrl: String
+        # @param ReplayType: 回放类型 默认0, 1-rfb 2-mp4 3-ssh
+        # @type ReplayType: Integer
 
-        attr_accessor :UserName, :RealName, :Account, :StartTime, :EndTime, :Size, :InstanceId, :DeviceName, :PrivateIp, :PublicIp, :FromIp, :Duration, :Count, :DangerCount, :Status, :Id, :ApCode, :Protocol, :AppAssetKind, :AppAssetUrl
+        attr_accessor :UserName, :RealName, :Account, :StartTime, :EndTime, :Size, :InstanceId, :DeviceName, :PrivateIp, :PublicIp, :FromIp, :Duration, :Count, :DangerCount, :Status, :Id, :ApCode, :Protocol, :AppAssetKind, :AppAssetUrl, :ReplayType
 
-        def initialize(username=nil, realname=nil, account=nil, starttime=nil, endtime=nil, size=nil, instanceid=nil, devicename=nil, privateip=nil, publicip=nil, fromip=nil, duration=nil, count=nil, dangercount=nil, status=nil, id=nil, apcode=nil, protocol=nil, appassetkind=nil, appasseturl=nil)
+        def initialize(username=nil, realname=nil, account=nil, starttime=nil, endtime=nil, size=nil, instanceid=nil, devicename=nil, privateip=nil, publicip=nil, fromip=nil, duration=nil, count=nil, dangercount=nil, status=nil, id=nil, apcode=nil, protocol=nil, appassetkind=nil, appasseturl=nil, replaytype=nil)
           @UserName = username
           @RealName = realname
           @Account = account
@@ -5334,6 +5336,7 @@ module TencentCloud
           @Protocol = protocol
           @AppAssetKind = appassetkind
           @AppAssetUrl = appasseturl
+          @ReplayType = replaytype
         end
 
         def deserialize(params)
@@ -5357,6 +5360,7 @@ module TencentCloud
           @Protocol = params['Protocol']
           @AppAssetKind = params['AppAssetKind']
           @AppAssetUrl = params['AppAssetUrl']
+          @ReplayType = params['ReplayType']
         end
       end
 
