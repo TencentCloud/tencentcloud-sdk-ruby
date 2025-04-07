@@ -4478,10 +4478,12 @@ module TencentCloud
         # @type ImageUrl: String
         # @param PortraitUrl: 身份证头像照片的地址（人像面）
         # @type PortraitUrl: String
+        # @param IntErrorCode: 整型错误码
+        # @type IntErrorCode: Integer
 
-        attr_accessor :WarnCodes, :Address, :Authority, :Birth, :IdNum, :Name, :Nation, :Sex, :ValidDate, :RequestId, :ErrorCode, :ErrorMessage, :ImageUrl, :PortraitUrl
+        attr_accessor :WarnCodes, :Address, :Authority, :Birth, :IdNum, :Name, :Nation, :Sex, :ValidDate, :RequestId, :ErrorCode, :ErrorMessage, :ImageUrl, :PortraitUrl, :IntErrorCode
 
-        def initialize(warncodes=nil, address=nil, authority=nil, birth=nil, idnum=nil, name=nil, nation=nil, sex=nil, validdate=nil, requestid=nil, errorcode=nil, errormessage=nil, imageurl=nil, portraiturl=nil)
+        def initialize(warncodes=nil, address=nil, authority=nil, birth=nil, idnum=nil, name=nil, nation=nil, sex=nil, validdate=nil, requestid=nil, errorcode=nil, errormessage=nil, imageurl=nil, portraiturl=nil, interrorcode=nil)
           @WarnCodes = warncodes
           @Address = address
           @Authority = authority
@@ -4496,6 +4498,7 @@ module TencentCloud
           @ErrorMessage = errormessage
           @ImageUrl = imageurl
           @PortraitUrl = portraiturl
+          @IntErrorCode = interrorcode
         end
 
         def deserialize(params)
@@ -4513,6 +4516,7 @@ module TencentCloud
           @ErrorMessage = params['ErrorMessage']
           @ImageUrl = params['ImageUrl']
           @PortraitUrl = params['PortraitUrl']
+          @IntErrorCode = params['IntErrorCode']
         end
       end
 

@@ -945,6 +945,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # cfw实例运行状态查询
+
+        # @param request: Request instance for DescribeCfwInsStatus.
+        # @type request: :class:`Tencentcloud::cfw::V20190904::DescribeCfwInsStatusRequest`
+        # @rtype: :class:`Tencentcloud::cfw::V20190904::DescribeCfwInsStatusResponse`
+        def DescribeCfwInsStatus(request)
+          body = send_request('DescribeCfwInsStatus', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCfwInsStatusResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取入侵防御按钮列表
 
         # @param request: Request instance for DescribeDefenseSwitch.

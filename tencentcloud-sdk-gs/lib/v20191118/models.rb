@@ -271,14 +271,23 @@ module TencentCloud
         # @type AndroidInstanceId: String
         # @param TaskResult: 任务执行结果描述，针对某些任务，可以是可解析的 json
         # @type TaskResult: String
+        # @param TaskType: 任务类型
+        # @type TaskType: String
+        # @param CreateTime: 任务创建时间
+        # @type CreateTime: String
+        # @param CompleteTime: 任务完成时间
+        # @type CompleteTime: String
 
-        attr_accessor :TaskId, :Status, :AndroidInstanceId, :TaskResult
+        attr_accessor :TaskId, :Status, :AndroidInstanceId, :TaskResult, :TaskType, :CreateTime, :CompleteTime
 
-        def initialize(taskid=nil, status=nil, androidinstanceid=nil, taskresult=nil)
+        def initialize(taskid=nil, status=nil, androidinstanceid=nil, taskresult=nil, tasktype=nil, createtime=nil, completetime=nil)
           @TaskId = taskid
           @Status = status
           @AndroidInstanceId = androidinstanceid
           @TaskResult = taskresult
+          @TaskType = tasktype
+          @CreateTime = createtime
+          @CompleteTime = completetime
         end
 
         def deserialize(params)
@@ -286,6 +295,9 @@ module TencentCloud
           @Status = params['Status']
           @AndroidInstanceId = params['AndroidInstanceId']
           @TaskResult = params['TaskResult']
+          @TaskType = params['TaskType']
+          @CreateTime = params['CreateTime']
+          @CompleteTime = params['CompleteTime']
         end
       end
 
@@ -1070,17 +1082,36 @@ module TencentCloud
 
       # DescribeAndroidInstanceTasksStatus请求参数结构体
       class DescribeAndroidInstanceTasksStatusRequest < TencentCloud::Common::AbstractModel
-        # @param TaskIds: 任务ID列表
+        # @param TaskIds: 任务 ID 列表
         # @type TaskIds: Array
+        # @param Filter: 条件过滤器
+        # @type Filter: Array
+        # @param Offset: 偏移量，默认为 0
+        # @type Offset: Integer
+        # @param Limit: 限制量，默认为20，最大值为100
+        # @type Limit: Integer
 
-        attr_accessor :TaskIds
+        attr_accessor :TaskIds, :Filter, :Offset, :Limit
 
-        def initialize(taskids=nil)
+        def initialize(taskids=nil, filter=nil, offset=nil, limit=nil)
           @TaskIds = taskids
+          @Filter = filter
+          @Offset = offset
+          @Limit = limit
         end
 
         def deserialize(params)
           @TaskIds = params['TaskIds']
+          unless params['Filter'].nil?
+            @Filter = []
+            params['Filter'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filter << filter_tmp
+            end
+          end
+          @Offset = params['Offset']
+          @Limit = params['Limit']
         end
       end
 
@@ -1088,13 +1119,16 @@ module TencentCloud
       class DescribeAndroidInstanceTasksStatusResponse < TencentCloud::Common::AbstractModel
         # @param TaskStatusSet: 任务状态集合
         # @type TaskStatusSet: Array
+        # @param Total: 任务总数量
+        # @type Total: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TaskStatusSet, :RequestId
+        attr_accessor :TaskStatusSet, :Total, :RequestId
 
-        def initialize(taskstatusset=nil, requestid=nil)
+        def initialize(taskstatusset=nil, total=nil, requestid=nil)
           @TaskStatusSet = taskstatusset
+          @Total = total
           @RequestId = requestid
         end
 
@@ -1107,6 +1141,7 @@ module TencentCloud
               @TaskStatusSet << androidinstancetaskstatus_tmp
             end
           end
+          @Total = params['Total']
           @RequestId = params['RequestId']
         end
       end

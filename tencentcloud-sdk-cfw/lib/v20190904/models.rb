@@ -613,6 +613,56 @@ module TencentCloud
         end
       end
 
+      # 防火墙实例运行状态
+      class CfwInsStatus < TencentCloud::Common::AbstractModel
+        # @param CfwInsId: 防火墙实例id
+        # @type CfwInsId: String
+        # @param FwType: 防火墙类型，nat：nat防火墙；ew：vpc间防火墙
+        # @type FwType: String
+        # @param Region: 实例所属地域
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Region: String
+        # @param Status: 实例运行状态，Running：正常运行；BypassAutoFix：bypass修复；Updating：升级中；Expand：扩容中；BypassManual：手动触发bypass中；BypassAuto：自动触发bypass中
+        # @type Status: String
+        # @param EventTime: 事件时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EventTime: String
+        # @param RecoverTime: 恢复时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RecoverTime: String
+        # @param CfwInsName: 实例名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CfwInsName: String
+        # @param TrafficMode: Normal: 正常模式
+        # OnlyRoute: 透明模式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TrafficMode: String
+
+        attr_accessor :CfwInsId, :FwType, :Region, :Status, :EventTime, :RecoverTime, :CfwInsName, :TrafficMode
+
+        def initialize(cfwinsid=nil, fwtype=nil, region=nil, status=nil, eventtime=nil, recovertime=nil, cfwinsname=nil, trafficmode=nil)
+          @CfwInsId = cfwinsid
+          @FwType = fwtype
+          @Region = region
+          @Status = status
+          @EventTime = eventtime
+          @RecoverTime = recovertime
+          @CfwInsName = cfwinsname
+          @TrafficMode = trafficmode
+        end
+
+        def deserialize(params)
+          @CfwInsId = params['CfwInsId']
+          @FwType = params['FwType']
+          @Region = params['Region']
+          @Status = params['Status']
+          @EventTime = params['EventTime']
+          @RecoverTime = params['RecoverTime']
+          @CfwInsName = params['CfwInsName']
+          @TrafficMode = params['TrafficMode']
+        end
+      end
+
       # NAT防火墙Dnat规则
       class CfwNatDnatRule < TencentCloud::Common::AbstractModel
         # @param IpProtocol: 网络协议，可选值：TCP、UDP。
@@ -3198,6 +3248,49 @@ module TencentCloud
               @NatFwEipList << natfweipsinfo_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCfwInsStatus请求参数结构体
+      class DescribeCfwInsStatusRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeCfwInsStatus返回参数结构体
+      class DescribeCfwInsStatusResponse < TencentCloud::Common::AbstractModel
+        # @param CfwInsStatus: 防火墙实例运行状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CfwInsStatus: Array
+        # @param TotalCount: 0
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :CfwInsStatus, :TotalCount, :RequestId
+
+        def initialize(cfwinsstatus=nil, totalcount=nil, requestid=nil)
+          @CfwInsStatus = cfwinsstatus
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['CfwInsStatus'].nil?
+            @CfwInsStatus = []
+            params['CfwInsStatus'].each do |i|
+              cfwinsstatus_tmp = CfwInsStatus.new
+              cfwinsstatus_tmp.deserialize(i)
+              @CfwInsStatus << cfwinsstatus_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
       end

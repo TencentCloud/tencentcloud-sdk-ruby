@@ -2341,7 +2341,10 @@ module TencentCloud
         # @type ClusterNodeNum: Integer
         # @param Region: 集群区域
         # @type Region: String
-        # @param DefenderStatus: 防护状态: 已防护: Defended 未防护: UnDefended
+        # @param DefenderStatus: 防护状态:
+        # 已防护: Defended
+        # 未防护: UnDefended
+        # 部分防护: PartDefened
         # @type DefenderStatus: String
         # @param ClusterStatus: 集群状态
         # @type ClusterStatus: String
