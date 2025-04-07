@@ -29,6 +29,30 @@ module TencentCloud
         end
 
 
+        # 备份云手机到指定存储
+
+        # @param request: Request instance for BackUpAndroidInstanceToStorage.
+        # @type request: :class:`Tencentcloud::gs::V20191118::BackUpAndroidInstanceToStorageRequest`
+        # @rtype: :class:`Tencentcloud::gs::V20191118::BackUpAndroidInstanceToStorageResponse`
+        def BackUpAndroidInstanceToStorage(request)
+          body = send_request('BackUpAndroidInstanceToStorage', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = BackUpAndroidInstanceToStorageResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 连接安卓实例
 
         # @param request: Request instance for ConnectAndroidInstance.
@@ -691,6 +715,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = RestartAndroidInstancesAppResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 指定存储还原云手机
+
+        # @param request: Request instance for RestoreAndroidInstanceFromStorage.
+        # @type request: :class:`Tencentcloud::gs::V20191118::RestoreAndroidInstanceFromStorageRequest`
+        # @rtype: :class:`Tencentcloud::gs::V20191118::RestoreAndroidInstanceFromStorageResponse`
+        def RestoreAndroidInstanceFromStorage(request)
+          body = send_request('RestoreAndroidInstanceFromStorage', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = RestoreAndroidInstanceFromStorageResponse.new
             model.deserialize(response['Response'])
             model
           else

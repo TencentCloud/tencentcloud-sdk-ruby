@@ -950,6 +950,41 @@ module TencentCloud
         end
       end
 
+      # GetCharacterUsage请求参数结构体
+      class GetCharacterUsageRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # GetCharacterUsage返回参数结构体
+      class GetCharacterUsageResponse < TencentCloud::Common::AbstractModel
+        # @param Used: 已用字符数
+        # @type Used: Integer
+        # @param Total: 可用字符数
+        # @type Total: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Used, :Total, :RequestId
+
+        def initialize(used=nil, total=nil, requestid=nil)
+          @Used = used
+          @Total = total
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Used = params['Used']
+          @Total = params['Total']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # GetEmbedding请求参数结构体
       class GetEmbeddingRequest < TencentCloud::Common::AbstractModel
         # @param Model: 模型名称

@@ -173,32 +173,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 产品下线
-
-        # 移动网络发起Qos加速过程
-
-        # @param request: Request instance for CreateQos.
-        # @type request: :class:`Tencentcloud::mna::V20210119::CreateQosRequest`
-        # @rtype: :class:`Tencentcloud::mna::V20210119::CreateQosResponse`
-        def CreateQos(request)
-          body = send_request('CreateQos', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = CreateQosResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 删除设备信息
 
         # @param request: Request instance for DeleteDevice.
@@ -257,58 +231,6 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteL3ConnResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 产品下线
-
-        # 移动网络停止Qos加速过程
-
-        # @param request: Request instance for DeleteQos.
-        # @type request: :class:`Tencentcloud::mna::V20210119::DeleteQosRequest`
-        # @rtype: :class:`Tencentcloud::mna::V20210119::DeleteQosResponse`
-        def DeleteQos(request)
-          body = send_request('DeleteQos', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DeleteQosResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 产品下线
-
-        # 获取Qos加速状态
-
-        # @param request: Request instance for DescribeQos.
-        # @type request: :class:`Tencentcloud::mna::V20210119::DescribeQosRequest`
-        # @rtype: :class:`Tencentcloud::mna::V20210119::DescribeQosResponse`
-        def DescribeQos(request)
-          body = send_request('DescribeQos', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeQosResponse.new
             model.deserialize(response['Response'])
             model
           else

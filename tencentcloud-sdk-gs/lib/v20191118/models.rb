@@ -114,10 +114,12 @@ module TencentCloud
         # @type Name: String
         # @param UserId: 用户ID
         # @type UserId: String
+        # @param PrivateIP: 内网 IP
+        # @type PrivateIP: String
 
-        attr_accessor :AndroidInstanceId, :AndroidInstanceRegion, :AndroidInstanceZone, :State, :AndroidInstanceType, :AndroidInstanceImageId, :Width, :Height, :HostSerialNumber, :AndroidInstanceGroupId, :AndroidInstanceLabels, :Name, :UserId
+        attr_accessor :AndroidInstanceId, :AndroidInstanceRegion, :AndroidInstanceZone, :State, :AndroidInstanceType, :AndroidInstanceImageId, :Width, :Height, :HostSerialNumber, :AndroidInstanceGroupId, :AndroidInstanceLabels, :Name, :UserId, :PrivateIP
 
-        def initialize(androidinstanceid=nil, androidinstanceregion=nil, androidinstancezone=nil, state=nil, androidinstancetype=nil, androidinstanceimageid=nil, width=nil, height=nil, hostserialnumber=nil, androidinstancegroupid=nil, androidinstancelabels=nil, name=nil, userid=nil)
+        def initialize(androidinstanceid=nil, androidinstanceregion=nil, androidinstancezone=nil, state=nil, androidinstancetype=nil, androidinstanceimageid=nil, width=nil, height=nil, hostserialnumber=nil, androidinstancegroupid=nil, androidinstancelabels=nil, name=nil, userid=nil, privateip=nil)
           @AndroidInstanceId = androidinstanceid
           @AndroidInstanceRegion = androidinstanceregion
           @AndroidInstanceZone = androidinstancezone
@@ -131,6 +133,7 @@ module TencentCloud
           @AndroidInstanceLabels = androidinstancelabels
           @Name = name
           @UserId = userid
+          @PrivateIP = privateip
         end
 
         def deserialize(params)
@@ -154,6 +157,7 @@ module TencentCloud
           end
           @Name = params['Name']
           @UserId = params['UserId']
+          @PrivateIP = params['PrivateIP']
         end
       end
 
@@ -298,6 +302,92 @@ module TencentCloud
           @TaskType = params['TaskType']
           @CreateTime = params['CreateTime']
           @CompleteTime = params['CompleteTime']
+        end
+      end
+
+      # BackUpAndroidInstanceToStorage请求参数结构体
+      class BackUpAndroidInstanceToStorageRequest < TencentCloud::Common::AbstractModel
+        # @param AndroidInstanceId: 安卓实例ID
+        # @type AndroidInstanceId: String
+        # @param StorageType: 存储服务器类型，如 COS、S3。注意：使用 COS 和 S3 都将占用外网带宽。
+        # @type StorageType: String
+        # @param ObjectKey: 自定义对象Key
+        # @type ObjectKey: String
+        # @param Includes: 包含的路径，支持仅含一个通配符*，通配符不能出现在路径开始
+        # @type Includes: Array
+        # @param Excludes: 需要排除路径，支持仅含一个通配符*，通配符不能出现在路径开始
+        # @type Excludes: Array
+        # @param COSOptions: COS协议选项
+        # @type COSOptions: :class:`Tencentcloud::Gs.v20191118.models.COSOptions`
+        # @param S3Options: S3存储协议选项
+        # @type S3Options: :class:`Tencentcloud::Gs.v20191118.models.S3Options`
+
+        attr_accessor :AndroidInstanceId, :StorageType, :ObjectKey, :Includes, :Excludes, :COSOptions, :S3Options
+
+        def initialize(androidinstanceid=nil, storagetype=nil, objectkey=nil, includes=nil, excludes=nil, cosoptions=nil, s3options=nil)
+          @AndroidInstanceId = androidinstanceid
+          @StorageType = storagetype
+          @ObjectKey = objectkey
+          @Includes = includes
+          @Excludes = excludes
+          @COSOptions = cosoptions
+          @S3Options = s3options
+        end
+
+        def deserialize(params)
+          @AndroidInstanceId = params['AndroidInstanceId']
+          @StorageType = params['StorageType']
+          @ObjectKey = params['ObjectKey']
+          @Includes = params['Includes']
+          @Excludes = params['Excludes']
+          unless params['COSOptions'].nil?
+            @COSOptions = COSOptions.new
+            @COSOptions.deserialize(params['COSOptions'])
+          end
+          unless params['S3Options'].nil?
+            @S3Options = S3Options.new
+            @S3Options.deserialize(params['S3Options'])
+          end
+        end
+      end
+
+      # BackUpAndroidInstanceToStorage返回参数结构体
+      class BackUpAndroidInstanceToStorageResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 实例任务 ID
+        # @type TaskId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # COS协议参数
+      class COSOptions < TencentCloud::Common::AbstractModel
+        # @param Bucket: 存储桶
+        # @type Bucket: String
+        # @param Region: 存储区域
+        # @type Region: String
+
+        attr_accessor :Bucket, :Region
+
+        def initialize(bucket=nil, region=nil)
+          @Bucket = bucket
+          @Region = region
+        end
+
+        def deserialize(params)
+          @Bucket = params['Bucket']
+          @Region = params['Region']
         end
       end
 
@@ -1770,6 +1860,92 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # RestoreAndroidInstanceFromStorage请求参数结构体
+      class RestoreAndroidInstanceFromStorageRequest < TencentCloud::Common::AbstractModel
+        # @param AndroidInstanceId: 安卓实例ID
+        # @type AndroidInstanceId: String
+        # @param ObjectKey: 自定义备份对象Key
+        # @type ObjectKey: String
+        # @param StorageType: 存储服务器类型，如 COS、S3。注意：使用 COS 和 S3 都将占用外网带宽。
+        # @type StorageType: String
+        # @param COSOptions: COS协议选项
+        # @type COSOptions: :class:`Tencentcloud::Gs.v20191118.models.COSOptions`
+        # @param S3Options: S3存储协议选项
+        # @type S3Options: :class:`Tencentcloud::Gs.v20191118.models.S3Options`
+
+        attr_accessor :AndroidInstanceId, :ObjectKey, :StorageType, :COSOptions, :S3Options
+
+        def initialize(androidinstanceid=nil, objectkey=nil, storagetype=nil, cosoptions=nil, s3options=nil)
+          @AndroidInstanceId = androidinstanceid
+          @ObjectKey = objectkey
+          @StorageType = storagetype
+          @COSOptions = cosoptions
+          @S3Options = s3options
+        end
+
+        def deserialize(params)
+          @AndroidInstanceId = params['AndroidInstanceId']
+          @ObjectKey = params['ObjectKey']
+          @StorageType = params['StorageType']
+          unless params['COSOptions'].nil?
+            @COSOptions = COSOptions.new
+            @COSOptions.deserialize(params['COSOptions'])
+          end
+          unless params['S3Options'].nil?
+            @S3Options = S3Options.new
+            @S3Options.deserialize(params['S3Options'])
+          end
+        end
+      end
+
+      # RestoreAndroidInstanceFromStorage返回参数结构体
+      class RestoreAndroidInstanceFromStorageResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 实例任务 ID
+        # @type TaskId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # S3协议参数
+      class S3Options < TencentCloud::Common::AbstractModel
+        # @param EndPoint: 存储节点
+        # @type EndPoint: String
+        # @param Bucket: 存储桶
+        # @type Bucket: String
+        # @param AccessKeyId: 密钥 ID
+        # @type AccessKeyId: String
+        # @param SecretAccessKey: 密钥 Key
+        # @type SecretAccessKey: String
+
+        attr_accessor :EndPoint, :Bucket, :AccessKeyId, :SecretAccessKey
+
+        def initialize(endpoint=nil, bucket=nil, accesskeyid=nil, secretaccesskey=nil)
+          @EndPoint = endpoint
+          @Bucket = bucket
+          @AccessKeyId = accesskeyid
+          @SecretAccessKey = secretaccesskey
+        end
+
+        def deserialize(params)
+          @EndPoint = params['EndPoint']
+          @Bucket = params['Bucket']
+          @AccessKeyId = params['AccessKeyId']
+          @SecretAccessKey = params['SecretAccessKey']
         end
       end
 

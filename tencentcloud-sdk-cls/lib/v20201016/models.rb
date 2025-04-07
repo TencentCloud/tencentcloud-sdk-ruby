@@ -7477,11 +7477,11 @@ module TencentCloud
         end
       end
 
-      # 日志内容高亮描述信息
+      # 符合检索条件的关键词，一般用于高亮显示。仅支持键值检索，不支持全文检索
       class HighLightItem < TencentCloud::Common::AbstractModel
-        # @param Key: 高亮的日志Key
+        # @param Key: 高亮的日志字段名称
         # @type Key: String
-        # @param Values: 高亮的语法
+        # @param Values: 高亮的关键词
         # @type Values: Array
 
         attr_accessor :Key, :Values
@@ -7855,6 +7855,8 @@ module TencentCloud
         # @type PkgId: String
         # @param PkgLogId: 请求包内日志的ID
         # @type PkgLogId: String
+        # @param HighLights: 符合检索条件的关键词，一般用于高亮显示。仅支持键值检索，不支持全文检索
+        # @type HighLights: Array
         # @param LogJson: 日志内容的Json序列化字符串
         # @type LogJson: String
         # @param HostName: 日志来源主机名称
@@ -7864,9 +7866,9 @@ module TencentCloud
         # @param IndexStatus: 日志创建索引异常原因(仅在日志创建索引异常时有值)
         # @type IndexStatus: String
 
-        attr_accessor :Time, :TopicId, :TopicName, :Source, :FileName, :PkgId, :PkgLogId, :LogJson, :HostName, :RawLog, :IndexStatus
+        attr_accessor :Time, :TopicId, :TopicName, :Source, :FileName, :PkgId, :PkgLogId, :HighLights, :LogJson, :HostName, :RawLog, :IndexStatus
 
-        def initialize(time=nil, topicid=nil, topicname=nil, source=nil, filename=nil, pkgid=nil, pkglogid=nil, logjson=nil, hostname=nil, rawlog=nil, indexstatus=nil)
+        def initialize(time=nil, topicid=nil, topicname=nil, source=nil, filename=nil, pkgid=nil, pkglogid=nil, highlights=nil, logjson=nil, hostname=nil, rawlog=nil, indexstatus=nil)
           @Time = time
           @TopicId = topicid
           @TopicName = topicname
@@ -7874,6 +7876,7 @@ module TencentCloud
           @FileName = filename
           @PkgId = pkgid
           @PkgLogId = pkglogid
+          @HighLights = highlights
           @LogJson = logjson
           @HostName = hostname
           @RawLog = rawlog
@@ -7888,6 +7891,14 @@ module TencentCloud
           @FileName = params['FileName']
           @PkgId = params['PkgId']
           @PkgLogId = params['PkgLogId']
+          unless params['HighLights'].nil?
+            @HighLights = []
+            params['HighLights'].each do |i|
+              highlightitem_tmp = HighLightItem.new
+              highlightitem_tmp.deserialize(i)
+              @HighLights << highlightitem_tmp
+            end
+          end
           @LogJson = params['LogJson']
           @HostName = params['HostName']
           @RawLog = params['RawLog']
@@ -11147,10 +11158,12 @@ module TencentCloud
         # 为false时代表使用老的检索结果返回方式, 输出AnalysisResults和ColNames有效
         # 两种返回方式在编码格式上有少量区别，建议使用true
         # @type UseNewAnalysis: Boolean
+        # @param HighLight: 是否高亮符合检索条件的关键词，一般用于高亮显示。仅支持键值检索，不支持全文检索
+        # @type HighLight: Boolean
 
-        attr_accessor :From, :To, :Query, :SyntaxRule, :TopicId, :Topics, :Sort, :Limit, :Offset, :Context, :SamplingRate, :UseNewAnalysis
+        attr_accessor :From, :To, :Query, :SyntaxRule, :TopicId, :Topics, :Sort, :Limit, :Offset, :Context, :SamplingRate, :UseNewAnalysis, :HighLight
 
-        def initialize(from=nil, to=nil, query=nil, syntaxrule=nil, topicid=nil, topics=nil, sort=nil, limit=nil, offset=nil, context=nil, samplingrate=nil, usenewanalysis=nil)
+        def initialize(from=nil, to=nil, query=nil, syntaxrule=nil, topicid=nil, topics=nil, sort=nil, limit=nil, offset=nil, context=nil, samplingrate=nil, usenewanalysis=nil, highlight=nil)
           @From = from
           @To = to
           @Query = query
@@ -11163,6 +11176,7 @@ module TencentCloud
           @Context = context
           @SamplingRate = samplingrate
           @UseNewAnalysis = usenewanalysis
+          @HighLight = highlight
         end
 
         def deserialize(params)
@@ -11185,6 +11199,7 @@ module TencentCloud
           @Context = params['Context']
           @SamplingRate = params['SamplingRate']
           @UseNewAnalysis = params['UseNewAnalysis']
+          @HighLight = params['HighLight']
         end
       end
 

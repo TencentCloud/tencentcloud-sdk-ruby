@@ -31,7 +31,7 @@ module TencentCloud
 
         # ### 接口功能
 
-        # 调用接口，发起一次对话请求。单账号限制接口并发上限为5。
+        # 调用接口，发起一次对话请求。单账号限制接口并发上限为100。
         # 如需使用OpenAI兼容接口， 请参考文档：[Deepseek OpenAI对话接口](https://cloud.tencent.com/document/product/1772/115969)
 
         # #### 在线体验
@@ -387,6 +387,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeDocResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取字符使用量统计
+
+        # @param request: Request instance for GetCharacterUsage.
+        # @type request: :class:`Tencentcloud::lkeap::V20240522::GetCharacterUsageRequest`
+        # @rtype: :class:`Tencentcloud::lkeap::V20240522::GetCharacterUsageResponse`
+        def GetCharacterUsage(request)
+          body = send_request('GetCharacterUsage', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GetCharacterUsageResponse.new
             model.deserialize(response['Response'])
             model
           else
