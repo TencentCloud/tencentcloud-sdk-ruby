@@ -1611,6 +1611,12 @@ module TencentCloud
         # @param OrderType: 集群信息结果排序规则，1 按时间降序，2 按照时间升序，3  按照状态排序
         # @type OrderType: Integer
         # @param Filters: 过滤规则
+
+        # - Name
+        #     按照集群的名字进行模糊查询。例如：测试
+        #     类型： String
+        #     必选： 否
+
         # @type Filters: Array
         # @param WorkSpaceId: 工作空间 SerialId
         # @type WorkSpaceId: String

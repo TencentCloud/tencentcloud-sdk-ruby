@@ -167,10 +167,12 @@ module TencentCloud
         # @type ScheduleAlgorithm: String
         # @param AllDeadToAlive: 是否支持全死全活。默认支持。
         # @type AllDeadToAlive: Boolean
+        # @param Tags: 标签。
+        # @type Tags: Array
 
-        attr_accessor :TargetGroupName, :VpcId, :Port, :TargetGroupInstances, :Protocol, :HealthCheck, :ScheduleAlgorithm, :AllDeadToAlive
+        attr_accessor :TargetGroupName, :VpcId, :Port, :TargetGroupInstances, :Protocol, :HealthCheck, :ScheduleAlgorithm, :AllDeadToAlive, :Tags
 
-        def initialize(targetgroupname=nil, vpcid=nil, port=nil, targetgroupinstances=nil, protocol=nil, healthcheck=nil, schedulealgorithm=nil, alldeadtoalive=nil)
+        def initialize(targetgroupname=nil, vpcid=nil, port=nil, targetgroupinstances=nil, protocol=nil, healthcheck=nil, schedulealgorithm=nil, alldeadtoalive=nil, tags=nil)
           @TargetGroupName = targetgroupname
           @VpcId = vpcid
           @Port = port
@@ -179,6 +181,7 @@ module TencentCloud
           @HealthCheck = healthcheck
           @ScheduleAlgorithm = schedulealgorithm
           @AllDeadToAlive = alldeadtoalive
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -200,6 +203,14 @@ module TencentCloud
           end
           @ScheduleAlgorithm = params['ScheduleAlgorithm']
           @AllDeadToAlive = params['AllDeadToAlive']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              taginfo_tmp = TagInfo.new
+              taginfo_tmp.deserialize(i)
+              @Tags << taginfo_tmp
+            end
+          end
         end
       end
 

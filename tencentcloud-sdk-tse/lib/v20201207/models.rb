@@ -550,62 +550,45 @@ module TencentCloud
         # @param ConsoleType: 控制台类型。
         # @type ConsoleType: String
         # @param HttpUrl: HTTP链接地址。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HttpUrl: String
         # @param HttpsUrl: HTTPS链接地址。
         # @type HttpsUrl: String
         # @param NetType: 网络类型, Open|Internal。
         # @type NetType: String
         # @param AdminUser: 管理员用户名。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AdminUser: String
         # @param AdminPassword: 管理员密码。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AdminPassword: String
         # @param Status: 网络状态, Open|Closed|Updating
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: String
         # @param AccessControl: 网络访问策略
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AccessControl: :class:`Tencentcloud::Tse.v20201207.models.NetworkAccessControl`
         # @param SubnetId: 内网子网 ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubnetId: String
         # @param VpcId: 内网VPC ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VpcId: String
         # @param Description: 负载均衡的描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
         # @param SlaType: 负载均衡的规格类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SlaType: String
         # @param SlaName: clb规格名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SlaName: String
         # @param Vip: clb vip
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Vip: String
         # @param InternetMaxBandwidthOut: 带宽
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InternetMaxBandwidthOut: Integer
         # @param MultiZoneFlag: 是否多可用区
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MultiZoneFlag: Boolean
         # @param MasterZoneId: 主可用区
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MasterZoneId: String
         # @param SlaveZoneId: 备可用区
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SlaveZoneId: String
         # @param MasterZoneName: 主可用区名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MasterZoneName: String
         # @param SlaveZoneName: 备可用区名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SlaveZoneName: String
         # @param NetworkId: 网络 id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NetworkId: String
 
         attr_accessor :ConsoleType, :HttpUrl, :HttpsUrl, :NetType, :AdminUser, :AdminPassword, :Status, :AccessControl, :SubnetId, :VpcId, :Description, :SlaType, :SlaName, :Vip, :InternetMaxBandwidthOut, :MultiZoneFlag, :MasterZoneId, :SlaveZoneId, :MasterZoneName, :SlaveZoneName, :NetworkId
@@ -720,10 +703,8 @@ module TencentCloud
       # 云原生API网关节点配置。
       class CloudNativeAPIGatewayNodeConfig < TencentCloud::Common::AbstractModel
         # @param Specification: 节点配置, 1c2g|2c4g|4c8g|8c16g。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Specification: String
         # @param Number: 节点数量，2-9。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Number: Integer
 
         attr_accessor :Specification, :Number
@@ -2306,10 +2287,8 @@ module TencentCloud
         # @param GroupId: 分组id
         # @type GroupId: String
         # @param Status: 状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: String
         # @param TaskId: 任务ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskId: String
 
         attr_accessor :GatewayId, :GroupId, :Status, :TaskId
@@ -2431,7 +2410,6 @@ module TencentCloud
       # CreateCloudNativeAPIGatewayService返回参数结构体
       class CreateCloudNativeAPIGatewayServiceResponse < TencentCloud::Common::AbstractModel
         # @param Result: 网关服务创建结果
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: :class:`Tencentcloud::Tse.v20201207.models.CreateGatewayServiceResult`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3012,7 +2990,6 @@ module TencentCloud
       # CreateNativeGatewayServerGroup返回参数结构体
       class CreateNativeGatewayServerGroupResponse < TencentCloud::Common::AbstractModel
         # @param Result: 网关分组创建信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: :class:`Tencentcloud::Tse.v20201207.models.CreateCloudNativeAPIGatewayServerGroupResult`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4366,7 +4343,6 @@ module TencentCloud
       # DescribeCloudNativeAPIGatewayCertificateDetails返回参数结构体
       class DescribeCloudNativeAPIGatewayCertificateDetailsResponse < TencentCloud::Common::AbstractModel
         # @param Result: 无
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: :class:`Tencentcloud::Tse.v20201207.models.KongCertificate`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4549,7 +4525,6 @@ module TencentCloud
       # DescribeCloudNativeAPIGatewayInfoByIp返回参数结构体
       class DescribeCloudNativeAPIGatewayInfoByIpResponse < TencentCloud::Common::AbstractModel
         # @param Result: 出参
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: :class:`Tencentcloud::Tse.v20201207.models.DescribeInstanceInfoByIpResult`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4667,7 +4642,6 @@ module TencentCloud
       # DescribeCloudNativeAPIGatewayPorts返回参数结构体
       class DescribeCloudNativeAPIGatewayPortsResponse < TencentCloud::Common::AbstractModel
         # @param Result: 云原生API网关实例协议端口列表响应结果
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: :class:`Tencentcloud::Tse.v20201207.models.DescribeGatewayInstancePortResult`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4964,7 +4938,6 @@ module TencentCloud
       # DescribeCloudNativeAPIGatewayRoutes返回参数结构体
       class DescribeCloudNativeAPIGatewayRoutesResponse < TencentCloud::Common::AbstractModel
         # @param Result: 无
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: :class:`Tencentcloud::Tse.v20201207.models.KongServiceRouteList`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5066,7 +5039,6 @@ module TencentCloud
       # DescribeCloudNativeAPIGatewayServices返回参数结构体
       class DescribeCloudNativeAPIGatewayServicesResponse < TencentCloud::Common::AbstractModel
         # @param Result: 无
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: :class:`Tencentcloud::Tse.v20201207.models.KongServices`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5735,10 +5707,8 @@ module TencentCloud
       # 获取云原生API网关实例协议端口列表响应结果
       class DescribeGatewayInstancePortResult < TencentCloud::Common::AbstractModel
         # @param GatewayId: 云原生API网关ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GatewayId: String
         # @param GatewayInstancePortList: 网关实例协议端口列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GatewayInstancePortList: Array
 
         attr_accessor :GatewayId, :GatewayInstancePortList
@@ -6238,10 +6208,8 @@ module TencentCloud
       # 根据公网IP查询云原生网关实例信息出参
       class DescribeInstanceInfoByIpResult < TencentCloud::Common::AbstractModel
         # @param GatewayId: 实例id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GatewayId: String
         # @param GroupId: 分组id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GroupId: String
 
         attr_accessor :GatewayId, :GroupId
@@ -6759,7 +6727,6 @@ module TencentCloud
       # DescribePublicNetwork返回参数结构体
       class DescribePublicNetworkResponse < TencentCloud::Common::AbstractModel
         # @param Result: 获取云原生API网关公网详情响应结果。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: :class:`Tencentcloud::Tse.v20201207.models.DescribePublicNetworkResult`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6783,13 +6750,10 @@ module TencentCloud
       # 查询客户端公网信息
       class DescribePublicNetworkResult < TencentCloud::Common::AbstractModel
         # @param GatewayId: 网关实例ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GatewayId: String
         # @param GroupId: 网关分组ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GroupId: String
         # @param PublicNetwork: 客户端公网信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PublicNetwork: :class:`Tencentcloud::Tse.v20201207.models.CloudNativeAPIGatewayConfig`
 
         attr_accessor :GatewayId, :GroupId, :PublicNetwork
@@ -7005,7 +6969,6 @@ module TencentCloud
       # DescribeUpstreamHealthCheckConfig返回参数结构体
       class DescribeUpstreamHealthCheckConfigResponse < TencentCloud::Common::AbstractModel
         # @param Result: 健康检查配置
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: :class:`Tencentcloud::Tse.v20201207.models.UpstreamHealthCheckConfig`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -7045,7 +7008,6 @@ module TencentCloud
       # DescribeWafDomains返回参数结构体
       class DescribeWafDomainsResponse < TencentCloud::Common::AbstractModel
         # @param Result: 已被 WAF 防护域名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: :class:`Tencentcloud::Tse.v20201207.models.DescribeWafDomainsResult`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -7534,10 +7496,8 @@ module TencentCloud
       # 网关实例协议端口列表
       class GatewayInstanceSchemeAndPorts < TencentCloud::Common::AbstractModel
         # @param Scheme: 端口协议，可选HTTP、HTTPS、TCP和UDP
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Scheme: String
         # @param PortList: 端口列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PortList: Array
 
         attr_accessor :Scheme, :PortList
@@ -8396,16 +8356,12 @@ module TencentCloud
       # Kong网关主动健康检查配置
       class KongActiveHealthCheck < TencentCloud::Common::AbstractModel
         # @param HealthyInterval: 主动健康检查健康探测间隔，单位：秒，0表示不开启
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HealthyInterval: Integer
         # @param UnHealthyInterval: 主动健康检查异常探测间隔，单位：秒，0表示不开启
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UnHealthyInterval: Integer
         # @param HttpPath: 在 GET HTTP 请求中使用的路径，以作为主动运行状况检查的探测器运行。默认： ”/”。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HttpPath: String
         # @param Timeout: GET HTTP 请求的超时时间，单位：秒。默认 60。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Timeout: Float
 
         attr_accessor :HealthyInterval, :UnHealthyInterval, :HttpPath, :Timeout
@@ -8428,7 +8384,6 @@ module TencentCloud
       # 云原生网关证书
       class KongCertificate < TencentCloud::Common::AbstractModel
         # @param Cert: 无
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Cert: :class:`Tencentcloud::Tse.v20201207.models.KongCertificatesPreview`
 
         attr_accessor :Cert
@@ -8485,39 +8440,28 @@ module TencentCloud
       # 云原生网关证书预览信息
       class KongCertificatesPreview < TencentCloud::Common::AbstractModel
         # @param Name: 证书名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Id: Id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Id: String
         # @param BindDomains: 绑定的域名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BindDomains: Array
         # @param Status: 证书状态：expired(已过期)
         #                    active(生效中)
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: String
         # @param Crt: 证书pem格式
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Crt: String
         # @param Key: 证书私钥
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Key: String
         # @param ExpireTime: 证书过期时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExpireTime: String
         # @param CreateTime: 证书上传时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
         # @param IssueTime: 证书签发时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IssueTime: String
         # @param CertSource: 证书来源：native(kong自定义证书)
         #                     ssl(ssl平台证书)
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CertSource: String
         # @param CertId: ssl平台证书Id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CertId: String
 
         attr_accessor :Name, :Id, :BindDomains, :Status, :Crt, :Key, :ExpireTime, :CreateTime, :IssueTime, :CertSource, :CertId
@@ -8554,7 +8498,6 @@ module TencentCloud
       # Kong网关被动健康检查配置
       class KongPassiveHealthCheck < TencentCloud::Common::AbstractModel
         # @param Type: 后端target协议类型，被动健康检查支持http和tcp，主动健康检查支持http
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: String
 
         attr_accessor :Type
@@ -8571,10 +8514,8 @@ module TencentCloud
       # 云原生网关路由信息
       class KongRoutePreview < TencentCloud::Common::AbstractModel
         # @param ID: 服务ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ID: String
         # @param Name: 服务名字
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Methods: 无
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -8586,34 +8527,25 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Hosts: Array
         # @param Protocols: 无
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Protocols: Array
         # @param PreserveHost: 无
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PreserveHost: Boolean
         # @param HttpsRedirectStatusCode: 无
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HttpsRedirectStatusCode: Integer
         # @param StripPath: 无
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StripPath: Boolean
         # @param CreatedTime: 无
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreatedTime: String
         # @param ForceHttps: 是否开启了强制HTTPS
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ForceHttps: Boolean
         # @param ServiceName: 服务名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ServiceName: String
         # @param ServiceID: 服务ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ServiceID: String
         # @param DestinationPorts: 目的端口
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DestinationPorts: Array
         # @param Headers: 路由的Headers
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Headers: Array
         # @param RequestBuffering: 是否缓存请求body，默认true
         # @type RequestBuffering: Boolean
@@ -8750,25 +8682,18 @@ module TencentCloud
       # 云原生网关服务预览信息
       class KongServicePreview < TencentCloud::Common::AbstractModel
         # @param ID: 服务ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ID: String
         # @param Name: 服务名字
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Tags: 标签
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
         # @param UpstreamInfo: 后端配置
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpstreamInfo: :class:`Tencentcloud::Tse.v20201207.models.KongUpstreamInfo`
         # @param UpstreamType: 后端类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpstreamType: String
         # @param CreatedTime: 创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreatedTime: String
         # @param Editable: 是否可编辑
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Editable: Boolean
         # @param Path: 请求路径
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -8805,10 +8730,8 @@ module TencentCloud
       # kong服务路由列表
       class KongServiceRouteList < TencentCloud::Common::AbstractModel
         # @param RouteList: 无
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RouteList: Array
         # @param TotalCount: 总数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
 
         attr_accessor :RouteList, :TotalCount
@@ -8834,10 +8757,8 @@ module TencentCloud
       # kong实例的服务列表
       class KongServices < TencentCloud::Common::AbstractModel
         # @param ServiceList: kong实例的服务列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ServiceList: Array
         # @param TotalCount: 列表总数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
 
         attr_accessor :ServiceList, :TotalCount
@@ -11741,7 +11662,6 @@ module TencentCloud
       # UpdateUpstreamHealthCheckConfig返回参数结构体
       class UpdateUpstreamHealthCheckConfigResponse < TencentCloud::Common::AbstractModel
         # @param Result: 是否成功
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -11793,7 +11713,6 @@ module TencentCloud
       # UpdateUpstreamTargets返回参数结构体
       class UpdateUpstreamTargetsResponse < TencentCloud::Common::AbstractModel
         # @param Result: 是否更新成功
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -11814,37 +11733,27 @@ module TencentCloud
       # 云原生网关健康检查配置
       class UpstreamHealthCheckConfig < TencentCloud::Common::AbstractModel
         # @param EnableActiveHealthCheck: 开启主动健康检查
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EnableActiveHealthCheck: Boolean
         # @param ActiveHealthCheck: 主动健康检查配置
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ActiveHealthCheck: :class:`Tencentcloud::Tse.v20201207.models.KongActiveHealthCheck`
         # @param EnablePassiveHealthCheck: 开启被动健康检查
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EnablePassiveHealthCheck: Boolean
         # @param PassiveHealthCheck: 被动健康检查配置
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PassiveHealthCheck: :class:`Tencentcloud::Tse.v20201207.models.KongPassiveHealthCheck`
         # @param Successes: 连续健康阈值，单位：次
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Successes: Integer
         # @param Failures: 连续异常阈值，单位：次
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Failures: Integer
         # @param Timeouts: 超时阈值，单位：次
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Timeouts: Integer
         # @param HealthyHttpStatuses: 健康HTTP状态码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HealthyHttpStatuses: Array
         # @param UnhealthyHttpStatuses: 异常HTTP状态码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UnhealthyHttpStatuses: Array
         # @param IgnoreZeroWeightNodes: 健康检查监控上报的数据屏蔽权重为0的节点
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IgnoreZeroWeightNodes: Boolean
         # @param ZeroWeightHeathCheck: 健康检查支持权重为0节点
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ZeroWeightHeathCheck: Boolean
 
         attr_accessor :EnableActiveHealthCheck, :ActiveHealthCheck, :EnablePassiveHealthCheck, :PassiveHealthCheck, :Successes, :Failures, :Timeouts, :HealthyHttpStatuses, :UnhealthyHttpStatuses, :IgnoreZeroWeightNodes, :ZeroWeightHeathCheck

@@ -29,6 +29,8 @@ module TencentCloud
         end
 
 
+        # smop产品下线，接口也一起下线
+
         # 提交任务事件接口
 
         # @param request: Request instance for SubmitTaskEvent.

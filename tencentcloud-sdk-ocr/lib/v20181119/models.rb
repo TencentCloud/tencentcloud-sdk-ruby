@@ -5137,7 +5137,7 @@ module TencentCloud
         # @type Type: Integer
         # @param Polygon: 该发票在原图片中的四点坐标。
         # @type Polygon: :class:`Tencentcloud::Ocr.v20181119.models.Polygon`
-        # @param Angle: 识别出的图片在混贴票据图片中的旋转角度。
+        # @param Angle: 识别出切图后各图片的旋转角度。
         # @type Angle: Float
         # @param SingleInvoiceInfos: 识别到的内容。
         # @type SingleInvoiceInfos: :class:`Tencentcloud::Ocr.v20181119.models.SingleInvoiceItem`

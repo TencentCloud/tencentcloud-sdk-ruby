@@ -924,32 +924,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 当前接口已迁移至svp产品
-
-        # 查询当前用户节省计划覆盖率明细数据，如无特别说明，金额单位均为元（国内站）或者美元（国际站）。
-
-        # @param request: Request instance for DescribeSavingPlanCoverage.
-        # @type request: :class:`Tencentcloud::billing::V20180709::DescribeSavingPlanCoverageRequest`
-        # @rtype: :class:`Tencentcloud::billing::V20180709::DescribeSavingPlanCoverageResponse`
-        def DescribeSavingPlanCoverage(request)
-          body = send_request('DescribeSavingPlanCoverage', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeSavingPlanCoverageResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 查询节省计划详情
 
         # @param request: Request instance for DescribeSavingPlanResourceInfo.

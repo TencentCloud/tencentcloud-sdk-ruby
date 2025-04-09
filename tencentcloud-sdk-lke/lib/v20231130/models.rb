@@ -8914,10 +8914,10 @@ module TencentCloud
 
         attr_accessor :Query, :Docs, :Model, :DataList, :Online
         extend Gem::Deprecate
-        deprecate :DataList, :none, 2025, 3
-        deprecate :DataList=, :none, 2025, 3
-        deprecate :Online, :none, 2025, 3
-        deprecate :Online=, :none, 2025, 3
+        deprecate :DataList, :none, 2025, 4
+        deprecate :DataList=, :none, 2025, 4
+        deprecate :Online, :none, 2025, 4
+        deprecate :Online=, :none, 2025, 4
 
         def initialize(query=nil, docs=nil, model=nil, datalist=nil, online=nil)
           @Query = query

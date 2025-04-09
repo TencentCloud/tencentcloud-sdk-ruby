@@ -8833,10 +8833,12 @@ module TencentCloud
         # @type CreateTime: String
         # @param Size: 镜像大小
         # @type Size: Integer
-        # @param HostCnt: 关联主机个数
+        # @param HostCnt: 关联主机个数(包含普通节点数和超级节点数)
         # @type HostCnt: Integer
         # @param ContainerCnt: 关联容器个数
         # @type ContainerCnt: Integer
+        # @param SuperNodeCnt: 超级节点数
+        # @type SuperNodeCnt: Integer
         # @param ScanTime: 最近扫描时间
         # @type ScanTime: String
         # @param VulCnt: 漏洞个数
@@ -8884,9 +8886,9 @@ module TencentCloud
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ImageID, :ImageName, :ImageDigest, :CreateTime, :Size, :HostCnt, :ContainerCnt, :ScanTime, :VulCnt, :RiskCnt, :SensitiveInfoCnt, :IsTrustImage, :OsName, :AgentError, :ScanError, :Architecture, :Author, :BuildHistory, :ScanVirusProgress, :ScanVulProgress, :ScanRiskProgress, :ScanVirusError, :ScanVulError, :ScanRiskError, :ScanStatus, :VirusCnt, :Status, :RemainScanTime, :IsAuthorized, :RequestId
+        attr_accessor :ImageID, :ImageName, :ImageDigest, :CreateTime, :Size, :HostCnt, :ContainerCnt, :SuperNodeCnt, :ScanTime, :VulCnt, :RiskCnt, :SensitiveInfoCnt, :IsTrustImage, :OsName, :AgentError, :ScanError, :Architecture, :Author, :BuildHistory, :ScanVirusProgress, :ScanVulProgress, :ScanRiskProgress, :ScanVirusError, :ScanVulError, :ScanRiskError, :ScanStatus, :VirusCnt, :Status, :RemainScanTime, :IsAuthorized, :RequestId
 
-        def initialize(imageid=nil, imagename=nil, imagedigest=nil, createtime=nil, size=nil, hostcnt=nil, containercnt=nil, scantime=nil, vulcnt=nil, riskcnt=nil, sensitiveinfocnt=nil, istrustimage=nil, osname=nil, agenterror=nil, scanerror=nil, architecture=nil, author=nil, buildhistory=nil, scanvirusprogress=nil, scanvulprogress=nil, scanriskprogress=nil, scanviruserror=nil, scanvulerror=nil, scanriskerror=nil, scanstatus=nil, viruscnt=nil, status=nil, remainscantime=nil, isauthorized=nil, requestid=nil)
+        def initialize(imageid=nil, imagename=nil, imagedigest=nil, createtime=nil, size=nil, hostcnt=nil, containercnt=nil, supernodecnt=nil, scantime=nil, vulcnt=nil, riskcnt=nil, sensitiveinfocnt=nil, istrustimage=nil, osname=nil, agenterror=nil, scanerror=nil, architecture=nil, author=nil, buildhistory=nil, scanvirusprogress=nil, scanvulprogress=nil, scanriskprogress=nil, scanviruserror=nil, scanvulerror=nil, scanriskerror=nil, scanstatus=nil, viruscnt=nil, status=nil, remainscantime=nil, isauthorized=nil, requestid=nil)
           @ImageID = imageid
           @ImageName = imagename
           @ImageDigest = imagedigest
@@ -8894,6 +8896,7 @@ module TencentCloud
           @Size = size
           @HostCnt = hostcnt
           @ContainerCnt = containercnt
+          @SuperNodeCnt = supernodecnt
           @ScanTime = scantime
           @VulCnt = vulcnt
           @RiskCnt = riskcnt
@@ -8927,6 +8930,7 @@ module TencentCloud
           @Size = params['Size']
           @HostCnt = params['HostCnt']
           @ContainerCnt = params['ContainerCnt']
+          @SuperNodeCnt = params['SuperNodeCnt']
           @ScanTime = params['ScanTime']
           @VulCnt = params['VulCnt']
           @RiskCnt = params['RiskCnt']
@@ -15509,12 +15513,14 @@ module TencentCloud
         # @type DefendClusterCoresCnt: Integer
         # @param DefendHostCoresCnt: 已防护主机核数
         # @type DefendHostCoresCnt: Integer
+        # @param TrialCoresCnt: 试用的专业版核数
+        # @type TrialCoresCnt: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :State, :AllCoresCnt, :CoresCnt, :UndefendCoresCnt, :AuthorizedCoresCnt, :GivenAuthorizedCoresCnt, :CurrentFlexibleCoresCnt, :ImageCnt, :AuthorizedImageCnt, :ExpirationTime, :PurchasedAuthorizedCnt, :AutomaticRenewal, :GivenAuthorizedCnt, :BeginTime, :SubState, :InquireKey, :DefendPolicy, :FlexibleCoresLimit, :DefendClusterCoresCnt, :DefendHostCoresCnt, :RequestId
+        attr_accessor :State, :AllCoresCnt, :CoresCnt, :UndefendCoresCnt, :AuthorizedCoresCnt, :GivenAuthorizedCoresCnt, :CurrentFlexibleCoresCnt, :ImageCnt, :AuthorizedImageCnt, :ExpirationTime, :PurchasedAuthorizedCnt, :AutomaticRenewal, :GivenAuthorizedCnt, :BeginTime, :SubState, :InquireKey, :DefendPolicy, :FlexibleCoresLimit, :DefendClusterCoresCnt, :DefendHostCoresCnt, :TrialCoresCnt, :RequestId
 
-        def initialize(state=nil, allcorescnt=nil, corescnt=nil, undefendcorescnt=nil, authorizedcorescnt=nil, givenauthorizedcorescnt=nil, currentflexiblecorescnt=nil, imagecnt=nil, authorizedimagecnt=nil, expirationtime=nil, purchasedauthorizedcnt=nil, automaticrenewal=nil, givenauthorizedcnt=nil, begintime=nil, substate=nil, inquirekey=nil, defendpolicy=nil, flexiblecoreslimit=nil, defendclustercorescnt=nil, defendhostcorescnt=nil, requestid=nil)
+        def initialize(state=nil, allcorescnt=nil, corescnt=nil, undefendcorescnt=nil, authorizedcorescnt=nil, givenauthorizedcorescnt=nil, currentflexiblecorescnt=nil, imagecnt=nil, authorizedimagecnt=nil, expirationtime=nil, purchasedauthorizedcnt=nil, automaticrenewal=nil, givenauthorizedcnt=nil, begintime=nil, substate=nil, inquirekey=nil, defendpolicy=nil, flexiblecoreslimit=nil, defendclustercorescnt=nil, defendhostcorescnt=nil, trialcorescnt=nil, requestid=nil)
           @State = state
           @AllCoresCnt = allcorescnt
           @CoresCnt = corescnt
@@ -15535,6 +15541,7 @@ module TencentCloud
           @FlexibleCoresLimit = flexiblecoreslimit
           @DefendClusterCoresCnt = defendclustercorescnt
           @DefendHostCoresCnt = defendhostcorescnt
+          @TrialCoresCnt = trialcorescnt
           @RequestId = requestid
         end
 
@@ -15559,6 +15566,7 @@ module TencentCloud
           @FlexibleCoresLimit = params['FlexibleCoresLimit']
           @DefendClusterCoresCnt = params['DefendClusterCoresCnt']
           @DefendHostCoresCnt = params['DefendHostCoresCnt']
+          @TrialCoresCnt = params['TrialCoresCnt']
           @RequestId = params['RequestId']
         end
       end
@@ -21225,8 +21233,10 @@ module TencentCloud
         # @type ImageName: String
         # @param ID: 白名单记录ID
         # @type ID: Integer
-        # @param HostCount: 关联主机数量
+        # @param HostCount: 关联主机数量（包含普通节点和超级节点数量）
         # @type HostCount: Integer
+        # @param SuperNodeCount: 关联超级节点数量
+        # @type SuperNodeCount: Integer
         # @param ContainerCount: 关联容器数量
         # @type ContainerCount: Integer
         # @param EventType: 加白事件类型
@@ -21238,13 +21248,14 @@ module TencentCloud
         # @param ImageSize: 镜像大小
         # @type ImageSize: Integer
 
-        attr_accessor :ImageID, :ImageName, :ID, :HostCount, :ContainerCount, :EventType, :InsertTime, :UpdateTime, :ImageSize
+        attr_accessor :ImageID, :ImageName, :ID, :HostCount, :SuperNodeCount, :ContainerCount, :EventType, :InsertTime, :UpdateTime, :ImageSize
 
-        def initialize(imageid=nil, imagename=nil, id=nil, hostcount=nil, containercount=nil, eventtype=nil, inserttime=nil, updatetime=nil, imagesize=nil)
+        def initialize(imageid=nil, imagename=nil, id=nil, hostcount=nil, supernodecount=nil, containercount=nil, eventtype=nil, inserttime=nil, updatetime=nil, imagesize=nil)
           @ImageID = imageid
           @ImageName = imagename
           @ID = id
           @HostCount = hostcount
+          @SuperNodeCount = supernodecount
           @ContainerCount = containercount
           @EventType = eventtype
           @InsertTime = inserttime
@@ -21257,6 +21268,7 @@ module TencentCloud
           @ImageName = params['ImageName']
           @ID = params['ID']
           @HostCount = params['HostCount']
+          @SuperNodeCount = params['SuperNodeCount']
           @ContainerCount = params['ContainerCount']
           @EventType = params['EventType']
           @InsertTime = params['InsertTime']
@@ -22620,8 +22632,10 @@ module TencentCloud
         # @type CreateTime: String
         # @param Size: 镜像大小
         # @type Size: Integer
-        # @param HostCnt: 主机个数
+        # @param HostCnt: 主机个数(包含普通节点数和超级节点数)
         # @type HostCnt: Integer
+        # @param SuperNodeCnt: 超级节点数
+        # @type SuperNodeCnt: Integer
         # @param ContainerCnt: 容器个数
         # @type ContainerCnt: Integer
         # @param ScanTime: 扫描时间
@@ -22667,14 +22681,15 @@ module TencentCloud
         # @param RecommendedFix: 是否推荐处置
         # @type RecommendedFix: Boolean
 
-        attr_accessor :ImageID, :ImageName, :CreateTime, :Size, :HostCnt, :ContainerCnt, :ScanTime, :VulCnt, :VirusCnt, :RiskCnt, :IsTrustImage, :OsName, :AgentError, :ScanError, :ScanStatus, :ScanVirusError, :ScanVulError, :ScanRiskError, :IsSuggest, :IsAuthorized, :ComponentCnt, :CriticalLevelVulCnt, :HighLevelVulCnt, :MediumLevelVulCnt, :LowLevelVulCnt, :IsLatestImage, :RecommendedFix
+        attr_accessor :ImageID, :ImageName, :CreateTime, :Size, :HostCnt, :SuperNodeCnt, :ContainerCnt, :ScanTime, :VulCnt, :VirusCnt, :RiskCnt, :IsTrustImage, :OsName, :AgentError, :ScanError, :ScanStatus, :ScanVirusError, :ScanVulError, :ScanRiskError, :IsSuggest, :IsAuthorized, :ComponentCnt, :CriticalLevelVulCnt, :HighLevelVulCnt, :MediumLevelVulCnt, :LowLevelVulCnt, :IsLatestImage, :RecommendedFix
 
-        def initialize(imageid=nil, imagename=nil, createtime=nil, size=nil, hostcnt=nil, containercnt=nil, scantime=nil, vulcnt=nil, viruscnt=nil, riskcnt=nil, istrustimage=nil, osname=nil, agenterror=nil, scanerror=nil, scanstatus=nil, scanviruserror=nil, scanvulerror=nil, scanriskerror=nil, issuggest=nil, isauthorized=nil, componentcnt=nil, criticallevelvulcnt=nil, highlevelvulcnt=nil, mediumlevelvulcnt=nil, lowlevelvulcnt=nil, islatestimage=nil, recommendedfix=nil)
+        def initialize(imageid=nil, imagename=nil, createtime=nil, size=nil, hostcnt=nil, supernodecnt=nil, containercnt=nil, scantime=nil, vulcnt=nil, viruscnt=nil, riskcnt=nil, istrustimage=nil, osname=nil, agenterror=nil, scanerror=nil, scanstatus=nil, scanviruserror=nil, scanvulerror=nil, scanriskerror=nil, issuggest=nil, isauthorized=nil, componentcnt=nil, criticallevelvulcnt=nil, highlevelvulcnt=nil, mediumlevelvulcnt=nil, lowlevelvulcnt=nil, islatestimage=nil, recommendedfix=nil)
           @ImageID = imageid
           @ImageName = imagename
           @CreateTime = createtime
           @Size = size
           @HostCnt = hostcnt
+          @SuperNodeCnt = supernodecnt
           @ContainerCnt = containercnt
           @ScanTime = scantime
           @VulCnt = vulcnt
@@ -22705,6 +22720,7 @@ module TencentCloud
           @CreateTime = params['CreateTime']
           @Size = params['Size']
           @HostCnt = params['HostCnt']
+          @SuperNodeCnt = params['SuperNodeCnt']
           @ContainerCnt = params['ContainerCnt']
           @ScanTime = params['ScanTime']
           @VulCnt = params['VulCnt']
@@ -28871,19 +28887,22 @@ module TencentCloud
         # @type ImageID: String
         # @param ImageName: 镜像名称
         # @type ImageName: String
-        # @param HostCount: 关联的主机数
+        # @param HostCount: 关联的主机数(包含普通节点数和超级节点数)
         # @type HostCount: Integer
+        # @param SuperNodeCount: 关联的超级节点数
+        # @type SuperNodeCount: Integer
         # @param ContainerCount: 关联的容器数
         # @type ContainerCount: Integer
         # @param ComponentList: 组件列表
         # @type ComponentList: Array
 
-        attr_accessor :ImageID, :ImageName, :HostCount, :ContainerCount, :ComponentList
+        attr_accessor :ImageID, :ImageName, :HostCount, :SuperNodeCount, :ContainerCount, :ComponentList
 
-        def initialize(imageid=nil, imagename=nil, hostcount=nil, containercount=nil, componentlist=nil)
+        def initialize(imageid=nil, imagename=nil, hostcount=nil, supernodecount=nil, containercount=nil, componentlist=nil)
           @ImageID = imageid
           @ImageName = imagename
           @HostCount = hostcount
+          @SuperNodeCount = supernodecount
           @ContainerCount = containercount
           @ComponentList = componentlist
         end
@@ -28892,6 +28911,7 @@ module TencentCloud
           @ImageID = params['ImageID']
           @ImageName = params['ImageName']
           @HostCount = params['HostCount']
+          @SuperNodeCount = params['SuperNodeCount']
           @ContainerCount = params['ContainerCount']
           unless params['ComponentList'].nil?
             @ComponentList = []

@@ -312,10 +312,10 @@ module TencentCloud
 
         attr_accessor :TreeNodeUniqKey, :TreeNodeUniqKeyName, :BillDate, :PayerUin, :OwnerUin, :OperateUin, :BusinessCode, :BusinessCodeName, :PayMode, :PayModeName, :ProjectId, :ProjectName, :RegionId, :RegionName, :ZoneId, :ZoneName, :ResourceId, :ResourceName, :InstanceType, :InstanceTypeName, :SplitItemId, :SplitItemName, :ProductCode, :ProductCodeName, :ActionType, :ActionTypeName, :OrderId, :BillId, :PayTime, :FeeBeginTime, :FeeEndTime, :ComponentCode, :ComponentCodeName, :SinglePrice, :ContractPrice, :SinglePriceUnit, :UsedAmount, :UsedAmountUnit, :TimeSpan, :TimeUnit, :ReserveDetail, :SplitRatio, :TotalCost, :RITimeSpan, :RICost, :SPCost, :Discount, :BlendedDiscount, :RealTotalCost, :CashPayAmount, :VoucherPayAmount, :IncentivePayAmount, :TransferPayAmount, :Tag, :RegionType, :RegionTypeName, :ItemCode, :ItemCodeName, :AssociatedOrder, :PriceInfo, :Formula, :FormulaUrl, :RealTotalMeasure, :DeductedMeasure, :ComponentConfig, :AllocationType, :DiscountObject, :DiscountType, :DiscountContent, :SPDeduction, :SPDeductionRate, :BillMonth
         extend Gem::Deprecate
-        deprecate :SplitItemId, :none, 2025, 3
-        deprecate :SplitItemId=, :none, 2025, 3
-        deprecate :SplitItemName, :none, 2025, 3
-        deprecate :SplitItemName=, :none, 2025, 3
+        deprecate :SplitItemId, :none, 2025, 4
+        deprecate :SplitItemId=, :none, 2025, 4
+        deprecate :SplitItemName, :none, 2025, 4
+        deprecate :SplitItemName=, :none, 2025, 4
 
         def initialize(treenodeuniqkey=nil, treenodeuniqkeyname=nil, billdate=nil, payeruin=nil, owneruin=nil, operateuin=nil, businesscode=nil, businesscodename=nil, paymode=nil, paymodename=nil, projectid=nil, projectname=nil, regionid=nil, regionname=nil, zoneid=nil, zonename=nil, resourceid=nil, resourcename=nil, instancetype=nil, instancetypename=nil, splititemid=nil, splititemname=nil, productcode=nil, productcodename=nil, actiontype=nil, actiontypename=nil, orderid=nil, billid=nil, paytime=nil, feebegintime=nil, feeendtime=nil, componentcode=nil, componentcodename=nil, singleprice=nil, contractprice=nil, singlepriceunit=nil, usedamount=nil, usedamountunit=nil, timespan=nil, timeunit=nil, reservedetail=nil, splitratio=nil, totalcost=nil, ritimespan=nil, ricost=nil, spcost=nil, discount=nil, blendeddiscount=nil, realtotalcost=nil, cashpayamount=nil, voucherpayamount=nil, incentivepayamount=nil, transferpayamount=nil, tag=nil, regiontype=nil, regiontypename=nil, itemcode=nil, itemcodename=nil, associatedorder=nil, priceinfo=nil, formula=nil, formulaurl=nil, realtotalmeasure=nil, deductedmeasure=nil, componentconfig=nil, allocationtype=nil, discountobject=nil, discounttype=nil, discountcontent=nil, spdeduction=nil, spdeductionrate=nil, billmonth=nil)
           @TreeNodeUniqKey = treenodeuniqkey
@@ -1074,10 +1074,10 @@ module TencentCloud
 
         attr_accessor :TreeNodeUniqKey, :TreeNodeUniqKeyName, :BillDate, :PayerUin, :OwnerUin, :OperateUin, :PayMode, :PayModeName, :ActionType, :ActionTypeName, :BusinessCode, :BusinessCodeName, :ProductCode, :ProductCodeName, :RegionId, :RegionName, :ZoneId, :ZoneName, :InstanceType, :InstanceTypeName, :ResourceId, :ResourceName, :Tag, :ProjectId, :ProjectName, :AllocationType, :TotalCost, :RiTimeSpan, :RiCost, :RealTotalCost, :CashPayAmount, :VoucherPayAmount, :IncentivePayAmount, :TransferPayAmount, :ItemCode, :ItemCodeName, :ComponentCode, :ComponentCodeName, :SplitItemId, :SplitItemName, :FeeBeginTime, :FeeEndTime, :SPCost, :RegionType, :RegionTypeName, :SinglePrice, :ContractPrice, :SinglePriceUnit, :UsedAmount, :UsedAmountUnit, :TimeSpan, :TimeUnit, :ReserveDetail, :RealTotalMeasure, :DeductedMeasure, :Discount, :BlendedDiscount, :PriceInfo, :Formula, :FormulaUrl, :ComponentConfig, :SPDeduction, :SPDeductionRate, :AssociatedOrder, :DiscountObject, :DiscountType, :DiscountContent, :BillMonth
         extend Gem::Deprecate
-        deprecate :SplitItemId, :none, 2025, 3
-        deprecate :SplitItemId=, :none, 2025, 3
-        deprecate :SplitItemName, :none, 2025, 3
-        deprecate :SplitItemName=, :none, 2025, 3
+        deprecate :SplitItemId, :none, 2025, 4
+        deprecate :SplitItemId=, :none, 2025, 4
+        deprecate :SplitItemName, :none, 2025, 4
+        deprecate :SplitItemName=, :none, 2025, 4
 
         def initialize(treenodeuniqkey=nil, treenodeuniqkeyname=nil, billdate=nil, payeruin=nil, owneruin=nil, operateuin=nil, paymode=nil, paymodename=nil, actiontype=nil, actiontypename=nil, businesscode=nil, businesscodename=nil, productcode=nil, productcodename=nil, regionid=nil, regionname=nil, zoneid=nil, zonename=nil, instancetype=nil, instancetypename=nil, resourceid=nil, resourcename=nil, tag=nil, projectid=nil, projectname=nil, allocationtype=nil, totalcost=nil, ritimespan=nil, ricost=nil, realtotalcost=nil, cashpayamount=nil, voucherpayamount=nil, incentivepayamount=nil, transferpayamount=nil, itemcode=nil, itemcodename=nil, componentcode=nil, componentcodename=nil, splititemid=nil, splititemname=nil, feebegintime=nil, feeendtime=nil, spcost=nil, regiontype=nil, regiontypename=nil, singleprice=nil, contractprice=nil, singlepriceunit=nil, usedamount=nil, usedamountunit=nil, timespan=nil, timeunit=nil, reservedetail=nil, realtotalmeasure=nil, deductedmeasure=nil, discount=nil, blendeddiscount=nil, priceinfo=nil, formula=nil, formulaurl=nil, componentconfig=nil, spdeduction=nil, spdeductionrate=nil, associatedorder=nil, discountobject=nil, discounttype=nil, discountcontent=nil, billmonth=nil)
           @TreeNodeUniqKey = treenodeuniqkey
@@ -1327,10 +1327,10 @@ module TencentCloud
 
         attr_accessor :TreeNodeUniqKey, :TreeNodeUniqKeyName, :BillDate, :PayerUin, :OwnerUin, :OperateUin, :PayMode, :PayModeName, :ActionType, :ActionTypeName, :BusinessCode, :BusinessCodeName, :ProductCode, :ProductCodeName, :RegionId, :RegionName, :ZoneId, :ZoneName, :InstanceType, :InstanceTypeName, :ResourceId, :ResourceName, :Tag, :ProjectId, :ProjectName, :AllocationType, :TotalCost, :RiTimeSpan, :RiCost, :RealTotalCost, :CashPayAmount, :VoucherPayAmount, :IncentivePayAmount, :TransferPayAmount, :SplitItemId, :SplitItemName, :FeeBeginTime, :FeeEndTime, :SPCost, :RegionType, :RegionTypeName, :ComponentConfig, :SPDeduction, :BillMonth
         extend Gem::Deprecate
-        deprecate :SplitItemId, :none, 2025, 3
-        deprecate :SplitItemId=, :none, 2025, 3
-        deprecate :SplitItemName, :none, 2025, 3
-        deprecate :SplitItemName=, :none, 2025, 3
+        deprecate :SplitItemId, :none, 2025, 4
+        deprecate :SplitItemId=, :none, 2025, 4
+        deprecate :SplitItemName, :none, 2025, 4
+        deprecate :SplitItemName=, :none, 2025, 4
 
         def initialize(treenodeuniqkey=nil, treenodeuniqkeyname=nil, billdate=nil, payeruin=nil, owneruin=nil, operateuin=nil, paymode=nil, paymodename=nil, actiontype=nil, actiontypename=nil, businesscode=nil, businesscodename=nil, productcode=nil, productcodename=nil, regionid=nil, regionname=nil, zoneid=nil, zonename=nil, instancetype=nil, instancetypename=nil, resourceid=nil, resourcename=nil, tag=nil, projectid=nil, projectname=nil, allocationtype=nil, totalcost=nil, ritimespan=nil, ricost=nil, realtotalcost=nil, cashpayamount=nil, voucherpayamount=nil, incentivepayamount=nil, transferpayamount=nil, splititemid=nil, splititemname=nil, feebegintime=nil, feeendtime=nil, spcost=nil, regiontype=nil, regiontypename=nil, componentconfig=nil, spdeduction=nil, billmonth=nil)
           @TreeNodeUniqKey = treenodeuniqkey
@@ -2283,10 +2283,10 @@ module TencentCloud
 
         attr_accessor :ComponentCodeName, :ItemCodeName, :SinglePrice, :SpecifiedPrice, :PriceUnit, :UsedAmount, :UsedAmountUnit, :RealTotalMeasure, :DeductedMeasure, :TimeSpan, :TimeUnitName, :Cost, :Discount, :ReduceType, :RealCost, :VoucherPayAmount, :CashPayAmount, :IncentivePayAmount, :TransferPayAmount, :ItemCode, :ComponentCode, :ContractPrice, :InstanceType, :RiTimeSpan, :OriginalCostWithRI, :SPDeductionRate, :SPDeduction, :OriginalCostWithSP, :BlendedDiscount, :ComponentConfig
         extend Gem::Deprecate
-        deprecate :SpecifiedPrice, :none, 2025, 3
-        deprecate :SpecifiedPrice=, :none, 2025, 3
-        deprecate :SPDeduction, :none, 2025, 3
-        deprecate :SPDeduction=, :none, 2025, 3
+        deprecate :SpecifiedPrice, :none, 2025, 4
+        deprecate :SpecifiedPrice=, :none, 2025, 4
+        deprecate :SPDeduction, :none, 2025, 4
+        deprecate :SPDeduction=, :none, 2025, 4
 
         def initialize(componentcodename=nil, itemcodename=nil, singleprice=nil, specifiedprice=nil, priceunit=nil, usedamount=nil, usedamountunit=nil, realtotalmeasure=nil, deductedmeasure=nil, timespan=nil, timeunitname=nil, cost=nil, discount=nil, reducetype=nil, realcost=nil, voucherpayamount=nil, cashpayamount=nil, incentivepayamount=nil, transferpayamount=nil, itemcode=nil, componentcode=nil, contractprice=nil, instancetype=nil, ritimespan=nil, originalcostwithri=nil, spdeductionrate=nil, spdeduction=nil, originalcostwithsp=nil, blendeddiscount=nil, componentconfig=nil)
           @ComponentCodeName = componentcodename
@@ -2463,8 +2463,8 @@ module TencentCloud
 
         attr_accessor :BusinessCodeName, :ProductCodeName, :PayModeName, :ProjectName, :RegionName, :ZoneName, :ResourceId, :ResourceName, :ActionTypeName, :OrderId, :PayTime, :FeeBeginTime, :FeeEndTime, :ConfigDesc, :ExtendField1, :ExtendField2, :TotalCost, :Discount, :ReduceType, :RealTotalCost, :VoucherPayAmount, :CashPayAmount, :IncentivePayAmount, :TransferPayAmount, :ExtendField3, :ExtendField4, :ExtendField5, :Tags, :OwnerUin, :OperateUin, :BusinessCode, :ProductCode, :RegionId, :InstanceType, :OriginalCostWithRI, :SPDeduction, :OriginalCostWithSP, :BillMonth
         extend Gem::Deprecate
-        deprecate :SPDeduction, :none, 2025, 3
-        deprecate :SPDeduction=, :none, 2025, 3
+        deprecate :SPDeduction, :none, 2025, 4
+        deprecate :SPDeduction=, :none, 2025, 4
 
         def initialize(businesscodename=nil, productcodename=nil, paymodename=nil, projectname=nil, regionname=nil, zonename=nil, resourceid=nil, resourcename=nil, actiontypename=nil, orderid=nil, paytime=nil, feebegintime=nil, feeendtime=nil, configdesc=nil, extendfield1=nil, extendfield2=nil, totalcost=nil, discount=nil, reducetype=nil, realtotalcost=nil, voucherpayamount=nil, cashpayamount=nil, incentivepayamount=nil, transferpayamount=nil, extendfield3=nil, extendfield4=nil, extendfield5=nil, tags=nil, owneruin=nil, operateuin=nil, businesscode=nil, productcode=nil, regionid=nil, instancetype=nil, originalcostwithri=nil, spdeduction=nil, originalcostwithsp=nil, billmonth=nil)
           @BusinessCodeName = businesscodename
@@ -2822,8 +2822,8 @@ module TencentCloud
 
         attr_accessor :BusinessCodeName, :ProductCodeName, :PayModeName, :ProjectName, :RegionName, :ZoneName, :ResourceId, :ResourceName, :ActionTypeName, :OrderId, :PayTime, :FeeBeginTime, :FeeEndTime, :ConfigDesc, :ExtendField1, :ExtendField2, :TotalCost, :Discount, :ReduceType, :RealTotalCost, :VoucherPayAmount, :CashPayAmount, :IncentivePayAmount, :TransferPayAmount, :ExtendField3, :ExtendField4, :ExtendField5, :Tags, :PayerUin, :OwnerUin, :OperateUin, :BusinessCode, :ProductCode, :RegionId, :InstanceType, :OriginalCostWithRI, :SPDeduction, :OriginalCostWithSP, :BillMonth
         extend Gem::Deprecate
-        deprecate :SPDeduction, :none, 2025, 3
-        deprecate :SPDeduction=, :none, 2025, 3
+        deprecate :SPDeduction, :none, 2025, 4
+        deprecate :SPDeduction=, :none, 2025, 4
 
         def initialize(businesscodename=nil, productcodename=nil, paymodename=nil, projectname=nil, regionname=nil, zonename=nil, resourceid=nil, resourcename=nil, actiontypename=nil, orderid=nil, paytime=nil, feebegintime=nil, feeendtime=nil, configdesc=nil, extendfield1=nil, extendfield2=nil, totalcost=nil, discount=nil, reducetype=nil, realtotalcost=nil, voucherpayamount=nil, cashpayamount=nil, incentivepayamount=nil, transferpayamount=nil, extendfield3=nil, extendfield4=nil, extendfield5=nil, tags=nil, payeruin=nil, owneruin=nil, operateuin=nil, businesscode=nil, productcode=nil, regionid=nil, instancetype=nil, originalcostwithri=nil, spdeduction=nil, originalcostwithsp=nil, billmonth=nil)
           @BusinessCodeName = businesscodename
@@ -4191,10 +4191,10 @@ module TencentCloud
 
         attr_accessor :Balance, :Uin, :RealBalance, :CashAccountBalance, :IncomeIntoAccountBalance, :PresentAccountBalance, :FreezeAmount, :OweAmount, :IsAllowArrears, :IsCreditLimited, :CreditAmount, :CreditBalance, :RealCreditBalance, :RequestId
         extend Gem::Deprecate
-        deprecate :IsAllowArrears, :none, 2025, 3
-        deprecate :IsAllowArrears=, :none, 2025, 3
-        deprecate :IsCreditLimited, :none, 2025, 3
-        deprecate :IsCreditLimited=, :none, 2025, 3
+        deprecate :IsAllowArrears, :none, 2025, 4
+        deprecate :IsAllowArrears=, :none, 2025, 4
+        deprecate :IsCreditLimited, :none, 2025, 4
+        deprecate :IsCreditLimited=, :none, 2025, 4
 
         def initialize(balance=nil, uin=nil, realbalance=nil, cashaccountbalance=nil, incomeintoaccountbalance=nil, presentaccountbalance=nil, freezeamount=nil, oweamount=nil, isallowarrears=nil, iscreditlimited=nil, creditamount=nil, creditbalance=nil, realcreditbalance=nil, requestid=nil)
           @Balance = balance
@@ -4992,8 +4992,8 @@ module TencentCloud
 
         attr_accessor :Limit, :Offset, :Month, :PeriodType, :TreeNodeUniqKeys, :SortType, :Sort, :BillDates, :BusinessCodes, :SearchKey
         extend Gem::Deprecate
-        deprecate :SearchKey, :none, 2025, 3
-        deprecate :SearchKey=, :none, 2025, 3
+        deprecate :SearchKey, :none, 2025, 4
+        deprecate :SearchKey=, :none, 2025, 4
 
         def initialize(limit=nil, offset=nil, month=nil, periodtype=nil, treenodeuniqkeys=nil, sorttype=nil, sort=nil, billdates=nil, businesscodes=nil, searchkey=nil)
           @Limit = limit
@@ -5550,8 +5550,8 @@ module TencentCloud
 
         attr_accessor :Offset, :Limit, :PeriodType, :Month, :BeginTime, :EndTime, :NeedRecordNum, :PayMode, :ResourceId, :ActionType, :ProjectId, :BusinessCode, :Context
         extend Gem::Deprecate
-        deprecate :PeriodType, :none, 2025, 3
-        deprecate :PeriodType=, :none, 2025, 3
+        deprecate :PeriodType, :none, 2025, 4
+        deprecate :PeriodType=, :none, 2025, 4
 
         def initialize(offset=nil, limit=nil, periodtype=nil, month=nil, begintime=nil, endtime=nil, needrecordnum=nil, paymode=nil, resourceid=nil, actiontype=nil, projectid=nil, businesscode=nil, context=nil)
           @Offset = offset
@@ -5687,8 +5687,8 @@ module TencentCloud
 
         attr_accessor :Offset, :Limit, :PeriodType, :Month, :BeginTime, :EndTime, :NeedRecordNum, :ProductCode, :PayMode, :ResourceId, :ActionType, :ProjectId, :BusinessCode, :Context, :PayerUin
         extend Gem::Deprecate
-        deprecate :PeriodType, :none, 2025, 3
-        deprecate :PeriodType=, :none, 2025, 3
+        deprecate :PeriodType, :none, 2025, 4
+        deprecate :PeriodType=, :none, 2025, 4
 
         def initialize(offset=nil, limit=nil, periodtype=nil, month=nil, begintime=nil, endtime=nil, needrecordnum=nil, productcode=nil, paymode=nil, resourceid=nil, actiontype=nil, projectid=nil, businesscode=nil, context=nil, payeruin=nil)
           @Offset = offset
@@ -6010,8 +6010,8 @@ module TencentCloud
 
         attr_accessor :Offset, :Limit, :Month, :PeriodType, :NeedRecordNum, :ActionType, :ResourceId, :PayMode, :BusinessCode, :TagKey, :TagValue
         extend Gem::Deprecate
-        deprecate :PeriodType, :none, 2025, 3
-        deprecate :PeriodType=, :none, 2025, 3
+        deprecate :PeriodType, :none, 2025, 4
+        deprecate :PeriodType=, :none, 2025, 4
 
         def initialize(offset=nil, limit=nil, month=nil, periodtype=nil, needrecordnum=nil, actiontype=nil, resourceid=nil, paymode=nil, businesscode=nil, tagkey=nil, tagvalue=nil)
           @Offset = offset
@@ -6134,8 +6134,8 @@ module TencentCloud
 
         attr_accessor :Offset, :Limit, :Month, :PeriodType, :NeedRecordNum, :ActionType, :ResourceId, :PayMode, :BusinessCode, :PayerUin, :TagKey, :TagValue
         extend Gem::Deprecate
-        deprecate :PeriodType, :none, 2025, 3
-        deprecate :PeriodType=, :none, 2025, 3
+        deprecate :PeriodType, :none, 2025, 4
+        deprecate :PeriodType=, :none, 2025, 4
 
         def initialize(offset=nil, limit=nil, month=nil, periodtype=nil, needrecordnum=nil, actiontype=nil, resourceid=nil, paymode=nil, businesscode=nil, payeruin=nil, tagkey=nil, tagvalue=nil)
           @Offset = offset
@@ -7702,80 +7702,6 @@ module TencentCloud
         end
       end
 
-      # DescribeSavingPlanCoverage请求参数结构体
-      class DescribeSavingPlanCoverageRequest < TencentCloud::Common::AbstractModel
-        # @param StartDate: 费用起始日期，格式yyyy-MM-dd
-        # @type StartDate: String
-        # @param EndDate: 费用结束日期，格式yyyy-MM-dd
-        # @type EndDate: String
-        # @param Offset: 分页偏移量，Offset=0表示第一页，如果Limit=100，则Offset=100表示第二页，Offset=200表示第三页，以此类推
-        # @type Offset: Integer
-        # @param Limit: 数量，最大值为200
-        # @type Limit: Integer
-        # @param PeriodType: 取值包括1（缺省值）和2，1表示按天统计覆盖率，2表示按月统计覆盖率，此参数仅影响返回的RateSet聚合粒度，不影响返回的DetailSet
-        # @type PeriodType: Integer
-
-        attr_accessor :StartDate, :EndDate, :Offset, :Limit, :PeriodType
-
-        def initialize(startdate=nil, enddate=nil, offset=nil, limit=nil, periodtype=nil)
-          @StartDate = startdate
-          @EndDate = enddate
-          @Offset = offset
-          @Limit = limit
-          @PeriodType = periodtype
-        end
-
-        def deserialize(params)
-          @StartDate = params['StartDate']
-          @EndDate = params['EndDate']
-          @Offset = params['Offset']
-          @Limit = params['Limit']
-          @PeriodType = params['PeriodType']
-        end
-      end
-
-      # DescribeSavingPlanCoverage返回参数结构体
-      class DescribeSavingPlanCoverageResponse < TencentCloud::Common::AbstractModel
-        # @param DetailSet: 节省计划覆盖率明细数据
-        # @type DetailSet: Array
-        # @param RateSet: 节省计划覆盖率聚合数据
-        # @type RateSet: Array
-        # @param TotalCount: 查询命中的节省计划覆盖率明细数据总条数
-        # @type TotalCount: Integer
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :DetailSet, :RateSet, :TotalCount, :RequestId
-
-        def initialize(detailset=nil, rateset=nil, totalcount=nil, requestid=nil)
-          @DetailSet = detailset
-          @RateSet = rateset
-          @TotalCount = totalcount
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          unless params['DetailSet'].nil?
-            @DetailSet = []
-            params['DetailSet'].each do |i|
-              savingplancoveragedetail_tmp = SavingPlanCoverageDetail.new
-              savingplancoveragedetail_tmp.deserialize(i)
-              @DetailSet << savingplancoveragedetail_tmp
-            end
-          end
-          unless params['RateSet'].nil?
-            @RateSet = []
-            params['RateSet'].each do |i|
-              savingplancoveragerate_tmp = SavingPlanCoverageRate.new
-              savingplancoveragerate_tmp.deserialize(i)
-              @RateSet << savingplancoveragerate_tmp
-            end
-          end
-          @TotalCount = params['TotalCount']
-          @RequestId = params['RequestId']
-        end
-      end
-
       # DescribeSavingPlanResourceInfo请求参数结构体
       class DescribeSavingPlanResourceInfoRequest < TencentCloud::Common::AbstractModel
         # @param Limit: 数量，最大值为100
@@ -8391,10 +8317,10 @@ module TencentCloud
 
         attr_accessor :PayerUin, :OwnerUin, :OperateUin, :InstanceType, :InstanceTypeName, :ResourceId, :ResourceName, :TreeNodeUniqKey, :TreeNodeUniqKeyName, :RuleId, :RuleName, :BusinessCode, :BusinessCodeName, :ItemCode, :ItemCodeName, :RegionId, :RegionName, :Tag, :RealTotalCost, :CashPayAmount, :VoucherPayAmount, :IncentivePayAmount, :TransferPayAmount, :AllocationType, :BelongTreeNodeUniqKey, :BelongRule, :OtherTreeNodeUniqKeys, :OtherRules, :ProjectId, :ProjectName, :ProductCode, :ProductCodeName, :PayMode, :PayModeName, :ActionType, :ActionTypeName, :SplitItemId, :SplitItemName
         extend Gem::Deprecate
-        deprecate :SplitItemId, :none, 2025, 3
-        deprecate :SplitItemId=, :none, 2025, 3
-        deprecate :SplitItemName, :none, 2025, 3
-        deprecate :SplitItemName=, :none, 2025, 3
+        deprecate :SplitItemId, :none, 2025, 4
+        deprecate :SplitItemId=, :none, 2025, 4
+        deprecate :SplitItemName, :none, 2025, 4
+        deprecate :SplitItemName=, :none, 2025, 4
 
         def initialize(payeruin=nil, owneruin=nil, operateuin=nil, instancetype=nil, instancetypename=nil, resourceid=nil, resourcename=nil, treenodeuniqkey=nil, treenodeuniqkeyname=nil, ruleid=nil, rulename=nil, businesscode=nil, businesscodename=nil, itemcode=nil, itemcodename=nil, regionid=nil, regionname=nil, tag=nil, realtotalcost=nil, cashpayamount=nil, voucherpayamount=nil, incentivepayamount=nil, transferpayamount=nil, allocationtype=nil, belongtreenodeuniqkey=nil, belongrule=nil, othertreenodeuniqkeys=nil, otherrules=nil, projectid=nil, projectname=nil, productcode=nil, productcodename=nil, paymode=nil, paymodename=nil, actiontype=nil, actiontypename=nil, splititemid=nil, splititemname=nil)
           @PayerUin = payeruin
@@ -8770,109 +8696,6 @@ module TencentCloud
           @TransferPayAmount = params['TransferPayAmount']
           @BillMonth = params['BillMonth']
           @TotalCost = params['TotalCost']
-        end
-      end
-
-      # 节省计划覆盖率数据
-      class SavingPlanCoverageDetail < TencentCloud::Common::AbstractModel
-        # @param ResourceId: 资源 ID：账单中出账对象 ID，不同产品因资源形态不同，资源内容不完全相同，如云服务器 CVM 为对应的实例 ID
-        # @type ResourceId: String
-        # @param RegionId: 地域ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type RegionId: Integer
-        # @param ProductCode: 产品编码
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type ProductCode: String
-        # @param SubProductCode: 子产品编码
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type SubProductCode: String
-        # @param StartDate: 费用起始日期，格式yyyy-MM-dd
-        # @type StartDate: String
-        # @param EndDate: 费用结束日期，格式yyyy-MM-dd，目前与StartDate相等
-        # @type EndDate: String
-        # @param SpCoveredAmount: 节省计划覆盖金额（即节省计划支付金额）
-        # @type SpCoveredAmount: Float
-        # @param SpUncoveredAmount: 节省计划未覆盖金额（即优惠后总价）
-        # @type SpUncoveredAmount: Float
-        # @param TotalRealAmount: 总支出（即节省计划未覆盖金额 + 节省计划覆盖金额）
-        # @type TotalRealAmount: Float
-        # @param ExpectedAmount: 按量计费预期金额（即折前价 * 折扣）
-        # @type ExpectedAmount: Float
-        # @param SpCoverage: 覆盖率结果，取值[0, 100]
-        # @type SpCoverage: Float
-        # @param PayerUinName: 支付者昵称
-        # @type PayerUinName: String
-        # @param OwnerUinName: 使用者昵称
-        # @type OwnerUinName: String
-        # @param PayerUin: 支付者uin
-        # @type PayerUin: String
-        # @param SubBillingItemName: 计费项名称
-        # @type SubBillingItemName: String
-        # @param BillingItemName: 计费细项名称
-        # @type BillingItemName: String
-        # @param SubProductName: 子产品名称
-        # @type SubProductName: String
-
-        attr_accessor :ResourceId, :RegionId, :ProductCode, :SubProductCode, :StartDate, :EndDate, :SpCoveredAmount, :SpUncoveredAmount, :TotalRealAmount, :ExpectedAmount, :SpCoverage, :PayerUinName, :OwnerUinName, :PayerUin, :SubBillingItemName, :BillingItemName, :SubProductName
-
-        def initialize(resourceid=nil, regionid=nil, productcode=nil, subproductcode=nil, startdate=nil, enddate=nil, spcoveredamount=nil, spuncoveredamount=nil, totalrealamount=nil, expectedamount=nil, spcoverage=nil, payeruinname=nil, owneruinname=nil, payeruin=nil, subbillingitemname=nil, billingitemname=nil, subproductname=nil)
-          @ResourceId = resourceid
-          @RegionId = regionid
-          @ProductCode = productcode
-          @SubProductCode = subproductcode
-          @StartDate = startdate
-          @EndDate = enddate
-          @SpCoveredAmount = spcoveredamount
-          @SpUncoveredAmount = spuncoveredamount
-          @TotalRealAmount = totalrealamount
-          @ExpectedAmount = expectedamount
-          @SpCoverage = spcoverage
-          @PayerUinName = payeruinname
-          @OwnerUinName = owneruinname
-          @PayerUin = payeruin
-          @SubBillingItemName = subbillingitemname
-          @BillingItemName = billingitemname
-          @SubProductName = subproductname
-        end
-
-        def deserialize(params)
-          @ResourceId = params['ResourceId']
-          @RegionId = params['RegionId']
-          @ProductCode = params['ProductCode']
-          @SubProductCode = params['SubProductCode']
-          @StartDate = params['StartDate']
-          @EndDate = params['EndDate']
-          @SpCoveredAmount = params['SpCoveredAmount']
-          @SpUncoveredAmount = params['SpUncoveredAmount']
-          @TotalRealAmount = params['TotalRealAmount']
-          @ExpectedAmount = params['ExpectedAmount']
-          @SpCoverage = params['SpCoverage']
-          @PayerUinName = params['PayerUinName']
-          @OwnerUinName = params['OwnerUinName']
-          @PayerUin = params['PayerUin']
-          @SubBillingItemName = params['SubBillingItemName']
-          @BillingItemName = params['BillingItemName']
-          @SubProductName = params['SubProductName']
-        end
-      end
-
-      # 节省计划覆盖率聚合数据
-      class SavingPlanCoverageRate < TencentCloud::Common::AbstractModel
-        # @param DatePoint: 聚合时间维度，按天聚合格式为yyyy-MM-dd，按月聚合格式为yyyy-MM
-        # @type DatePoint: String
-        # @param Rate: 覆盖率结果，取值[0, 100]
-        # @type Rate: Float
-
-        attr_accessor :DatePoint, :Rate
-
-        def initialize(datepoint=nil, rate=nil)
-          @DatePoint = datepoint
-          @Rate = rate
-        end
-
-        def deserialize(params)
-          @DatePoint = params['DatePoint']
-          @Rate = params['Rate']
         end
       end
 

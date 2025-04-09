@@ -1097,6 +1097,42 @@ module TencentCloud
         end
       end
 
+      # 云存上报统计信息
+      class CountDataInfo < TencentCloud::Common::AbstractModel
+        # @param VideoExceptionNum: 视频上报异常次数
+        # @type VideoExceptionNum: Integer
+        # @param VideoSuccessNum: 视频上报成功次数
+        # @type VideoSuccessNum: Integer
+        # @param VideoSuccessRate: 视频上报成功率
+        # @type VideoSuccessRate: String
+        # @param EventExceptionNum: 事件上报异常次数
+        # @type EventExceptionNum: Integer
+        # @param EventSuccessNum: 事件上报成功次数
+        # @type EventSuccessNum: Integer
+        # @param EventSuccessRate: 事件上报成功率
+        # @type EventSuccessRate: String
+
+        attr_accessor :VideoExceptionNum, :VideoSuccessNum, :VideoSuccessRate, :EventExceptionNum, :EventSuccessNum, :EventSuccessRate
+
+        def initialize(videoexceptionnum=nil, videosuccessnum=nil, videosuccessrate=nil, eventexceptionnum=nil, eventsuccessnum=nil, eventsuccessrate=nil)
+          @VideoExceptionNum = videoexceptionnum
+          @VideoSuccessNum = videosuccessnum
+          @VideoSuccessRate = videosuccessrate
+          @EventExceptionNum = eventexceptionnum
+          @EventSuccessNum = eventsuccessnum
+          @EventSuccessRate = eventsuccessrate
+        end
+
+        def deserialize(params)
+          @VideoExceptionNum = params['VideoExceptionNum']
+          @VideoSuccessNum = params['VideoSuccessNum']
+          @VideoSuccessRate = params['VideoSuccessRate']
+          @EventExceptionNum = params['EventExceptionNum']
+          @EventSuccessNum = params['EventSuccessNum']
+          @EventSuccessRate = params['EventSuccessRate']
+        end
+      end
+
       # CreateBatchProduction请求参数结构体
       class CreateBatchProductionRequest < TencentCloud::Common::AbstractModel
         # @param ProjectId: 项目ID
@@ -3864,6 +3900,61 @@ module TencentCloud
               cloudstorageuserinfo_tmp.deserialize(i)
               @Users << cloudstorageuserinfo_tmp
             end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCsReportCountDataInfo请求参数结构体
+      class DescribeCsReportCountDataInfoRequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: 产品id
+        # @type ProductId: String
+        # @param DeviceName: 设备名
+        # @type DeviceName: String
+        # @param StartTime: 统计开始时间戳
+        # @type StartTime: Integer
+        # @param EndTime: 统计结束时间戳
+        # @type EndTime: Integer
+        # @param ChannelId: 设备通道
+        # @type ChannelId: Integer
+
+        attr_accessor :ProductId, :DeviceName, :StartTime, :EndTime, :ChannelId
+
+        def initialize(productid=nil, devicename=nil, starttime=nil, endtime=nil, channelid=nil)
+          @ProductId = productid
+          @DeviceName = devicename
+          @StartTime = starttime
+          @EndTime = endtime
+          @ChannelId = channelid
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @DeviceName = params['DeviceName']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @ChannelId = params['ChannelId']
+        end
+      end
+
+      # DescribeCsReportCountDataInfo返回参数结构体
+      class DescribeCsReportCountDataInfoResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 云存上报统计信息
+        # @type Data: :class:`Tencentcloud::Iotexplorer.v20190423.models.CountDataInfo`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = CountDataInfo.new
+            @Data.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
         end

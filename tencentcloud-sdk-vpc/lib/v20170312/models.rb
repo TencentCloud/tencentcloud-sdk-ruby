@@ -3149,10 +3149,8 @@ module TencentCloud
       # 用于发布云联网的cidr信息
       class CidrForCcn < TencentCloud::Common::AbstractModel
         # @param Cidr: local cidr值。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Cidr: String
         # @param PublishedToVbc: 是否发布到了云联网。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PublishedToVbc: Boolean
 
         attr_accessor :Cidr, :PublishedToVbc
@@ -17621,21 +17619,21 @@ module TencentCloud
 
       # 流日志
       class FlowLog < TencentCloud::Common::AbstractModel
-        # @param VpcId: 私用网络ID或者统一ID，建议使用统一ID。
+        # @param VpcId: 私用网络唯一ID。可通过[DescribeVpcs](https://cloud.tencent.com/document/product/1108/43663)接口获取。
         # @type VpcId: String
         # @param FlowLogId: 流日志唯一ID。
         # @type FlowLogId: String
         # @param FlowLogName: 流日志实例名字。
         # @type FlowLogName: String
-        # @param ResourceType: 流日志所属资源类型，VPC|SUBNET|NETWORKINTERFACE|CCN|NAT|DCG。
+        # @param ResourceType: 流日志所属资源类型：VPC(私有网络)，SUBNET（子网），NETWORKINTERFACE（网卡），CCN（云联网），NAT（网络地址转化），DCG（专线网关）。
         # @type ResourceType: String
         # @param ResourceId: 资源唯一ID。
         # @type ResourceId: String
-        # @param TrafficType: 流日志采集类型，ACCEPT|REJECT|ALL。
+        # @param TrafficType: 流日志采集类型，ACCEPT（允许），REJECT（拒绝），ALL（全部）。
         # @type TrafficType: String
         # @param CloudLogId: 流日志存储ID。
         # @type CloudLogId: String
-        # @param CloudLogState: 流日志存储ID状态。
+        # @param CloudLogState: 流日志存储ID状态。SUCCESS（成功），DELETED（删除）。
         # @type CloudLogState: String
         # @param FlowLogDescription: 流日志描述信息。
         # @type FlowLogDescription: String
@@ -17646,13 +17644,10 @@ module TencentCloud
         # @param Enable: 是否启用，true-启用，false-停用。
         # @type Enable: Boolean
         # @param StorageType: 消费端类型：cls、ckafka。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StorageType: String
         # @param FlowLogStorage: 消费端信息，当消费端类型为ckafka时返回。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FlowLogStorage: :class:`Tencentcloud::Vpc.v20170312.models.FlowLogStorage`
         # @param CloudLogRegion: 流日志存储ID对应的地域信息。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CloudLogRegion: String
 
         attr_accessor :VpcId, :FlowLogId, :FlowLogName, :ResourceType, :ResourceId, :TrafficType, :CloudLogId, :CloudLogState, :FlowLogDescription, :CreatedTime, :TagSet, :Enable, :StorageType, :FlowLogStorage, :CloudLogRegion
@@ -17709,7 +17704,6 @@ module TencentCloud
         # @param StorageId: 存储实例Id，当流日志存储类型为ckafka时，必填。
         # @type StorageId: String
         # @param StorageTopic: 主题Id，当流日志存储类型为ckafka时，必填。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StorageTopic: String
 
         attr_accessor :StorageId, :StorageTopic
@@ -18045,13 +18039,10 @@ module TencentCloud
       # HaVip绑定的子机/网卡（用于限制HaVip飘移的范围，并不是真正的飘移动作）。
       class HaVipAssociation < TencentCloud::Common::AbstractModel
         # @param InstanceId: HaVip绑定的子机或网卡唯一ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceId: String
         # @param HaVipId: HaVip实例唯一ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HaVipId: String
         # @param InstanceType: HaVip绑定的类型。取值:CVM, ENI。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceType: String
 
         attr_accessor :InstanceId, :HaVipId, :InstanceType
@@ -18152,34 +18143,24 @@ module TencentCloud
       # 高优路由表条目信息
       class HighPriorityRoute < TencentCloud::Common::AbstractModel
         # @param HighPriorityRouteTableId: 高优路由表唯一 ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HighPriorityRouteTableId: String
         # @param HighPriorityRouteId: 高优路由表条目唯一 ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HighPriorityRouteId: String
         # @param DestinationCidrBlock: 目标网段
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DestinationCidrBlock: String
         # @param GatewayType: 网关类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GatewayType: String
         # @param GatewayId: 网关唯一ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GatewayId: String
         # @param Description: 高优路由条目描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
         # @param SubnetRouteAlgorithm: ECMP算法，支持的算法有：ECMP_QUINTUPLE_HASH：五元组hash，ECMP_SOURCE_DESTINATION_IP_HASH：源和目的IP hash，ECMP_DESTINATION_IP_HASH：目的IP hash，ECMP_SOURCE_IP_HASH：源IP hash。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubnetRouteAlgorithm: String
         # @param IsCdc: 出参展示，是否为CDC属性高优路由
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsCdc: Boolean
         # @param CdcId: 出参展示，CDC 唯一ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CdcId: String
         # @param CreatedTime: 创建时间。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreatedTime: String
 
         attr_accessor :HighPriorityRouteTableId, :HighPriorityRouteId, :DestinationCidrBlock, :GatewayType, :GatewayId, :Description, :SubnetRouteAlgorithm, :IsCdc, :CdcId, :CreatedTime
@@ -18214,22 +18195,16 @@ module TencentCloud
       # 高优路由表信息
       class HighPriorityRouteTable < TencentCloud::Common::AbstractModel
         # @param HighPriorityRouteTableId: 高优路由表唯一 ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HighPriorityRouteTableId: String
         # @param VpcId: VPC实例ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VpcId: String
         # @param Name: 高优路由表名称。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param SubnetSet: 高优路由表关联的子网列表。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubnetSet: Array
         # @param HighPriorityRouteSet: 高优路由表条目信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HighPriorityRouteSet: Array
         # @param CreatedTime: 创建时间。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreatedTime: String
 
         attr_accessor :HighPriorityRouteTableId, :VpcId, :Name, :SubnetSet, :HighPriorityRouteSet, :CreatedTime
@@ -19116,10 +19091,8 @@ module TencentCloud
         # <li>`AVAILABLE`：可用的</li>
         # @type State: String
         # @param PublicIpAddress: 如果 IPv6地址是 ULA 类型，绑定的公网IP地址。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PublicIpAddress: String
         # @param AddressType: `IPv6`地址的类型: `GUA`(全球单播地址), `OTHER`(非GUA/ULA地址), `ULA`(唯一本地地址)
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AddressType: String
 
         attr_accessor :Address, :Primary, :AddressId, :Description, :IsWanIpBlocked, :State, :PublicIpAddress, :AddressType
@@ -19250,7 +19223,6 @@ module TencentCloud
         # @param CreateTime: 本地网关创建时间
         # @type CreateTime: String
         # @param TagSet: 标签键值对。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TagSet: Array
         # @param LocalGatewayId: 本地网关实例ID（计划起用）
         # @type LocalGatewayId: String
@@ -22117,10 +22089,12 @@ module TencentCloud
         # @type CustomerGatewayId: String
         # @param HealthCheckConfig: 健康检查配置
         # @type HealthCheckConfig: :class:`Tencentcloud::Vpc.v20170312.models.HealthCheckConfig`
+        # @param BgpConfig: BGP隧道配置
+        # @type BgpConfig: :class:`Tencentcloud::Vpc.v20170312.models.BgpConfig`
 
-        attr_accessor :VpnConnectionId, :VpnConnectionName, :PreShareKey, :SecurityPolicyDatabases, :IKEOptionsSpecification, :IPSECOptionsSpecification, :EnableHealthCheck, :HealthCheckLocalIp, :HealthCheckRemoteIp, :NegotiationType, :DpdEnable, :DpdTimeout, :DpdAction, :CustomerGatewayId, :HealthCheckConfig
+        attr_accessor :VpnConnectionId, :VpnConnectionName, :PreShareKey, :SecurityPolicyDatabases, :IKEOptionsSpecification, :IPSECOptionsSpecification, :EnableHealthCheck, :HealthCheckLocalIp, :HealthCheckRemoteIp, :NegotiationType, :DpdEnable, :DpdTimeout, :DpdAction, :CustomerGatewayId, :HealthCheckConfig, :BgpConfig
 
-        def initialize(vpnconnectionid=nil, vpnconnectionname=nil, presharekey=nil, securitypolicydatabases=nil, ikeoptionsspecification=nil, ipsecoptionsspecification=nil, enablehealthcheck=nil, healthchecklocalip=nil, healthcheckremoteip=nil, negotiationtype=nil, dpdenable=nil, dpdtimeout=nil, dpdaction=nil, customergatewayid=nil, healthcheckconfig=nil)
+        def initialize(vpnconnectionid=nil, vpnconnectionname=nil, presharekey=nil, securitypolicydatabases=nil, ikeoptionsspecification=nil, ipsecoptionsspecification=nil, enablehealthcheck=nil, healthchecklocalip=nil, healthcheckremoteip=nil, negotiationtype=nil, dpdenable=nil, dpdtimeout=nil, dpdaction=nil, customergatewayid=nil, healthcheckconfig=nil, bgpconfig=nil)
           @VpnConnectionId = vpnconnectionid
           @VpnConnectionName = vpnconnectionname
           @PreShareKey = presharekey
@@ -22136,6 +22110,7 @@ module TencentCloud
           @DpdAction = dpdaction
           @CustomerGatewayId = customergatewayid
           @HealthCheckConfig = healthcheckconfig
+          @BgpConfig = bgpconfig
         end
 
         def deserialize(params)
@@ -22169,6 +22144,10 @@ module TencentCloud
           unless params['HealthCheckConfig'].nil?
             @HealthCheckConfig = HealthCheckConfig.new
             @HealthCheckConfig.deserialize(params['HealthCheckConfig'])
+          end
+          unless params['BgpConfig'].nil?
+            @BgpConfig = BgpConfig.new
+            @BgpConfig.deserialize(params['BgpConfig'])
           end
         end
       end
@@ -22995,10 +22974,8 @@ module TencentCloud
         # @param Priority: 优先级，从1开始。
         # @type Priority: Integer
         # @param NetworkAclIpv4EntryId: IPv4网络ACL条目唯一ID。当修改ACL条目时，NetworkAclIpv4EntryId和NetworkAclIpv6EntryID至少提供一个。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NetworkAclIpv4EntryId: String
         # @param NetworkAclIpv6EntryId: IPv6网络ACL条目唯一ID。当修改ACL条目时，NetworkAclIpv4EntryId和NetworkAclIpv6EntryId至少提供一个。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NetworkAclIpv6EntryId: String
 
         attr_accessor :Protocol, :Port, :CidrBlock, :Ipv6CidrBlock, :Action, :Description, :ModifyTime, :Priority, :NetworkAclIpv4EntryId, :NetworkAclIpv6EntryId
@@ -23461,16 +23438,12 @@ module TencentCloud
       # 安全组策略统计
       class PolicyStatistics < TencentCloud::Common::AbstractModel
         # @param IngressIPv4TotalCount: 入站IPv4总数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IngressIPv4TotalCount: Integer
         # @param IngressIPv6TotalCount: 入站IPv6总数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IngressIPv6TotalCount: Integer
         # @param EgressIPv4TotalCount: 出站IPv4总数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EgressIPv4TotalCount: Integer
         # @param EgressIPv6TotalCount: 出站IPv6总数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EgressIPv6TotalCount: Integer
 
         attr_accessor :IngressIPv4TotalCount, :IngressIPv6TotalCount, :EgressIPv4TotalCount, :EgressIPv6TotalCount
@@ -25538,10 +25511,8 @@ module TencentCloud
       # 用于修改入路由表ECMP算法。现在支持的算法有：ECMP_QUINTUPLE_HASH：五元组hash，ECMP_SOURCE_DESTINATION_IP_HASH：源和目的IP hash，ECMP_DESTINATION_IP_HASH：目的IP hash，ECMP_SOURCE_IP_HASH：源IP hash。
       class RouteECMPAlgorithm < TencentCloud::Common::AbstractModel
         # @param DestinationCidrBlock:  目标网段
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DestinationCidrBlock: String
         # @param SubnetRouteAlgorithm: 支持的 ECMP算法有：ECMP_QUINTUPLE_HASH：五元组hash，ECMP_SOURCE_DESTINATION_IP_HASH：源和目的IP hash，ECMP_DESTINATION_IP_HASH：目的IP hash，ECMP_SOURCE_IP_HASH：源IP hash。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubnetRouteAlgorithm: String
 
         attr_accessor :DestinationCidrBlock, :SubnetRouteAlgorithm
@@ -25624,7 +25595,6 @@ module TencentCloud
         # @param TagSet: 标签键值对。
         # @type TagSet: Array
         # @param LocalCidrForCcn: local路由是否发布云联网。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LocalCidrForCcn: Array
 
         attr_accessor :VpcId, :RouteTableId, :RouteTableName, :AssociationSet, :RouteSet, :Main, :CreatedTime, :TagSet, :LocalCidrForCcn
@@ -25685,10 +25655,8 @@ module TencentCloud
       # 路由表关联关系
       class RouteTableAssociation < TencentCloud::Common::AbstractModel
         # @param SubnetId: 子网实例ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubnetId: String
         # @param RouteTableId: 路由表实例ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RouteTableId: String
 
         attr_accessor :SubnetId, :RouteTableId
@@ -25721,7 +25689,6 @@ module TencentCloud
         # @param TagSet: 标签键值对。
         # @type TagSet: Array
         # @param UpdateTime: 安全组更新时间。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: String
 
         attr_accessor :SecurityGroupId, :SecurityGroupName, :SecurityGroupDesc, :ProjectId, :IsDefault, :CreatedTime, :TagSet, :UpdateTime
@@ -25854,38 +25821,27 @@ module TencentCloud
       # 安全组规则对象
       class SecurityGroupPolicy < TencentCloud::Common::AbstractModel
         # @param PolicyIndex: 安全组规则索引号，值会随着安全组规则的变更动态变化。使用PolicyIndex时，请先调用`DescribeSecurityGroupPolicies`获取到规则的PolicyIndex，并且结合返回值中的Version一起使用处理规则。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PolicyIndex: Integer
         # @param Protocol: 协议, 取值: TCP,UDP,ICMP,ICMPv6,ALL。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Protocol: String
         # @param Port: 端口(all, 离散port,  range)。
         # 说明：如果Protocol设置为ALL，则Port也需要设置为all。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Port: String
         # @param ServiceTemplate: 协议端口ID或者协议端口组ID。ServiceTemplate和Protocol+Port互斥。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ServiceTemplate: :class:`Tencentcloud::Vpc.v20170312.models.ServiceTemplateSpecification`
         # @param CidrBlock: 网段或IP(互斥)，特殊说明：0.0.0.0/n 都会映射为0.0.0.0/0。作为入参时，可使用字符串`MY_PUBLIC_IP`指代发起请求的公网IP地址。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CidrBlock: String
         # @param Ipv6CidrBlock: 网段或IPv6(互斥)。作为入参时，可使用字符串`MY_PUBLIC_IP`指代发起请求的公网IPv6地址。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Ipv6CidrBlock: String
         # @param SecurityGroupId: 安全组实例ID，例如：sg-ohuuioma。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SecurityGroupId: String
         # @param AddressTemplate: IP地址ID或者IP地址组ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AddressTemplate: :class:`Tencentcloud::Vpc.v20170312.models.AddressTemplateSpecification`
         # @param Action: ACCEPT 或 DROP。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Action: String
         # @param PolicyDescription: 安全组规则描述。作为入参时，当未传递该参数或值为空，且参数CidrBlock或Ipv6CidrBlock值为MY_PUBLIC_IP时，该参数的值将会被自动填充为Replaced-From-MY_PUBLIC_IP。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PolicyDescription: String
         # @param ModifyTime: 安全组最近修改时间。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ModifyTime: String
 
         attr_accessor :PolicyIndex, :Protocol, :Port, :ServiceTemplate, :CidrBlock, :Ipv6CidrBlock, :SecurityGroupId, :AddressTemplate, :Action, :PolicyDescription, :ModifyTime
@@ -25928,16 +25884,12 @@ module TencentCloud
       # 安全组规则集合
       class SecurityGroupPolicySet < TencentCloud::Common::AbstractModel
         # @param Version: 安全组规则当前版本。用户每次更新安全规则版本会自动加1，防止更新的路由规则已过期，不填不考虑冲突。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Version: String
         # @param Egress: 出站规则。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Egress: Array
         # @param Ingress: 入站规则。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Ingress: Array
         # @param PolicyStatistics: 安全组策略条目统计。只用于出参。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PolicyStatistics: :class:`Tencentcloud::Vpc.v20170312.models.PolicyStatistics`
 
         attr_accessor :Version, :Egress, :Ingress, :PolicyStatistics
@@ -26922,13 +26874,10 @@ module TencentCloud
         # @param CreateTime: 流量镜像创建时间。
         # @type CreateTime: String
         # @param Type: 流量镜像的类型。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: String
         # @param SubnetId: 流量镜像所属的子网ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubnetId: String
         # @param TargetInfo: 流量镜接收目标资源信息，当接收目标为ENI和CLB时返回。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TargetInfo: Array
 
         attr_accessor :VpcId, :TrafficMirrorId, :TrafficMirrorName, :TrafficMirrorDescribe, :State, :Direction, :CollectorSrcs, :NatId, :CollectorNormalFilters, :CollectorTarget, :CreateTime, :Type, :SubnetId, :TargetInfo
@@ -27024,10 +26973,8 @@ module TencentCloud
         # @param AlgHash: 流量镜像接收IP组，均衡规则，支持ENI/FIVE_TUPLE_FLOW（vpc），FIVE_TUPLE_FLOW（公网IP）
         # @type AlgHash: String
         # @param TargetEndPoints: 流量镜像的接收endpoint（公网IP）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TargetEndPoints: Array
         # @param TargetType: 流量镜像的接收类型，分别为：IP/ENI/CLB
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TargetType: String
 
         attr_accessor :TargetIps, :AlgHash, :TargetEndPoints, :TargetType
@@ -27937,10 +27884,8 @@ module TencentCloud
       # Vpc任务结果详细信息。
       class VpcTaskResultDetailInfo < TencentCloud::Common::AbstractModel
         # @param ResourceId: 资源ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceId: String
         # @param Status: 状态。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: String
 
         attr_accessor :ResourceId, :Status

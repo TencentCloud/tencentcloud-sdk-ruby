@@ -5039,81 +5039,59 @@ module TencentCloud
         # @param RuleSet: 该域名对应的转发规则列表。
         # @type RuleSet: Array
         # @param CertificateId: 该域名对应的服务器证书ID，值为default时，表示使用默认证书（监听器配置的证书）。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CertificateId: String
         # @param CertificateAlias: 该域名对应服务器证书名称。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CertificateAlias: String
         # @param ClientCertificateId: 该域名对应的客户端证书ID，值为default时，表示使用默认证书（监听器配置的证书）。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClientCertificateId: String
         # @param ClientCertificateAlias: 该域名对应客户端证书名称。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClientCertificateAlias: String
         # @param BasicAuthConfId: 该域名对应基础认证配置ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BasicAuthConfId: String
         # @param BasicAuth: 基础认证开关，其中：
         # 0，表示未开启；
         # 1，表示已开启。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BasicAuth: Integer
         # @param BasicAuthConfAlias: 该域名对应基础认证配置名称。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BasicAuthConfAlias: String
         # @param RealServerCertificateId: 该域名对应源站认证证书ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RealServerCertificateId: String
         # @param RealServerAuth: 源站认证开关，其中：
         # 0，表示未开启；
         # 1，表示已开启。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RealServerAuth: Integer
         # @param RealServerCertificateAlias: 该域名对应源站认证证书名称。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RealServerCertificateAlias: String
         # @param GaapCertificateId: 该域名对应通道认证证书ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GaapCertificateId: String
         # @param GaapAuth: 通道认证开关，其中：
         # 0，表示未开启；
         # 1，表示已开启。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GaapAuth: Integer
         # @param GaapCertificateAlias: 该域名对应通道认证证书名称。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GaapCertificateAlias: String
         # @param RealServerCertificateDomain: 源站认证域名。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RealServerCertificateDomain: String
         # @param PolyClientCertificateAliasInfo: 多客户端证书时，返回多个证书的id和别名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PolyClientCertificateAliasInfo: Array
         # @param PolyRealServerCertificateAliasInfo: 多源站证书时，返回多个证书的id和别名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PolyRealServerCertificateAliasInfo: Array
         # @param DomainStatus: 域名的状态。
         # 0表示运行中，
         # 1表示变更中，
         # 2表示删除中。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DomainStatus: Integer
         # @param BanStatus: 封禁解封状态：BANNED表示已封禁，RECOVER表示已解封或未封禁，BANNING表示封禁中，RECOVERING表示解封中，BAN_FAILED表示封禁失败，RECOVER_FAILED表示解封失败。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BanStatus: String
         # @param Http3Supported: Http3特性标识，其中：
         # 0表示关闭；
         # 1表示启用。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Http3Supported: Integer
         # @param IsDefaultServer: 是否为默认域名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsDefaultServer: Boolean
         # @param TLSCiphers: TLS套件包
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TLSCiphers: String
         # @param TLSSupportVersion: TLS版本
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TLSSupportVersion: Array
 
         attr_accessor :Domain, :RuleSet, :CertificateId, :CertificateAlias, :ClientCertificateId, :ClientCertificateAlias, :BasicAuthConfId, :BasicAuth, :BasicAuthConfAlias, :RealServerCertificateId, :RealServerAuth, :RealServerCertificateAlias, :GaapCertificateId, :GaapAuth, :GaapCertificateAlias, :RealServerCertificateDomain, :PolyClientCertificateAliasInfo, :PolyRealServerCertificateAliasInfo, :DomainStatus, :BanStatus, :Http3Supported, :IsDefaultServer, :TLSCiphers, :TLSSupportVersion
@@ -5339,7 +5317,6 @@ module TencentCloud
         # 4表示配置变更中。
         # @type ListenerStatus: Integer
         # @param ProxyId: 监听器的通道ID，如果监听器属于通道组，则为null
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProxyId: String
         # @param GroupId: 监听器的通道组ID，如果监听器属于通道，则为null
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -5394,7 +5371,6 @@ module TencentCloud
         # @param CreateTime: 监听器创建时间，Unix时间戳
         # @type CreateTime: Integer
         # @param CertificateAlias: 服务器SSL证书的别名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CertificateAlias: String
         # @param ClientCertificateId: 监听器客户端CA证书ID
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -5402,31 +5378,25 @@ module TencentCloud
         # @param AuthType: 监听器认证方式。其中，
         # 0表示单向认证；
         # 1表示双向认证。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AuthType: Integer
         # @param ClientCertificateAlias: 客户端CA证书别名
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClientCertificateAlias: String
         # @param PolyClientCertificateAliasInfo: 多客户端CA证书别名信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PolyClientCertificateAliasInfo: Array
         # @param Http3Supported: 是否支持Http3，其中：
         # 0，不支持Http3接入；
         # 1，持Http3接入。
         # 注意：如果支持了Http3的功能，那么该监听器会占用对应的UDP接入端口，不可再创建相同端口的UDP监听器。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Http3Supported: Integer
         # @param ProxyId: 监听器的通道ID，如果监听器属于通道组，则为null
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProxyId: String
         # @param GroupId: 监听器的通道组ID，如果监听器属于通道，则为null
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GroupId: String
         # @param TLSSupportVersion: 支持的TLS版本
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TLSSupportVersion: Array
         # @param TLSCiphers: 支持的TLS密码套件
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TLSCiphers: String
 
         attr_accessor :ListenerId, :ListenerName, :Port, :Protocol, :ListenerStatus, :CertificateId, :ForwardProtocol, :CreateTime, :CertificateAlias, :ClientCertificateId, :AuthType, :ClientCertificateAlias, :PolyClientCertificateAliasInfo, :Http3Supported, :ProxyId, :GroupId, :TLSSupportVersion, :TLSCiphers
@@ -8122,7 +8092,6 @@ module TencentCloud
         # @param Port: 监听器端口
         # @type Port: Integer
         # @param RealServerPort: 监听器转发源站端口，仅V1版本通道或通道组监听器有效
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RealServerPort: Integer
         # @param RealServerType: 监听器绑定源站类型
         # @type RealServerType: String
@@ -8144,46 +8113,32 @@ module TencentCloud
         # @param CreateTime: 监听器创建时间，Unix时间戳
         # @type CreateTime: Integer
         # @param SessionPersist: 是否开启会话保持选项：0关闭， 非0开启，非0值为会话保持时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SessionPersist: Integer
         # @param DelayLoop: 源站健康检查时间间隔，单位：秒。时间间隔取值在[5，300]之间。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DelayLoop: Integer
         # @param ConnectTimeout: 源站健康检查响应超时时间，单位：秒。超时时间取值在[2，60]之间。超时时间应小于健康检查时间间隔DelayLoop。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ConnectTimeout: Integer
         # @param HealthyThreshold: 健康阈值，表示连续检查成功多少次后认定源站健康。范围为1到10
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HealthyThreshold: Integer
         # @param UnhealthyThreshold: 不健康阈值，表示连续检查失败多少次数后认为源站不健康。范围为1到10
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UnhealthyThreshold: Integer
         # @param FailoverSwitch: 源站是否开启主备模式：1开启，0关闭，DOMAIN类型源站不支持开启
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FailoverSwitch: Integer
         # @param HealthCheck: 源站是否开启健康检查：1开启，0关闭。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HealthCheck: Integer
         # @param CheckType: UDP源站健康类型。PORT表示检查端口，PING表示PING。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CheckType: String
         # @param CheckPort: UDP源站健康检查探测端口。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CheckPort: Integer
         # @param ContextType: UDP源站健康检查端口探测报文类型：TEXT表示文本。仅在健康检查类型为PORT时使用。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ContextType: String
         # @param SendContext: UDP源站健康检查端口探测发送报文。仅在健康检查类型为PORT时使用。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SendContext: String
         # @param RecvContext: UDP源站健康检查端口探测接收报文。仅在健康检查类型为PORT时使用。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RecvContext: String
         # @param ProxyId: 监听器的通道ID，如果监听器属于通道组，则为null
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProxyId: String
         # @param GroupId: 监听器的通道组ID，如果监听器属于通道，则为null
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GroupId: String
 
         attr_accessor :ListenerId, :ListenerName, :Port, :RealServerPort, :RealServerType, :Protocol, :ListenerStatus, :Scheduler, :BindStatus, :RealServerSet, :CreateTime, :SessionPersist, :DelayLoop, :ConnectTimeout, :HealthyThreshold, :UnhealthyThreshold, :FailoverSwitch, :HealthCheck, :CheckType, :CheckPort, :ContextType, :SendContext, :RecvContext, :ProxyId, :GroupId
