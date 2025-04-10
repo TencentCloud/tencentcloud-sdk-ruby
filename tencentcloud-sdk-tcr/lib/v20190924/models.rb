@@ -909,7 +909,9 @@ module TencentCloud
         # @type RegistryId: String
         # @param NamespaceName: 命名空间名称
         # @type NamespaceName: String
-        # @param RepositoryName: 仓库名称
+        # @param RepositoryName: 仓库名称，需满足以下规则：
+        # 1. 长度需 ​大于2且小于245个字符
+        # 2. 仅允许小写字母、数字及符号 . _ -
         # @type RepositoryName: String
         # @param BriefDescription: 仓库简短描述
         # @type BriefDescription: String
@@ -4067,9 +4069,9 @@ module TencentCloud
         # @type RetentionId: Integer
         # @param ExecutionId: 规则执行Id
         # @type ExecutionId: Integer
-        # @param Offset: 分页Page
+        # @param Offset: 页数，第几页，用于分页
         # @type Offset: Integer
-        # @param Limit: 分页PageSize
+        # @param Limit: 每页个数，用于分页，最大值为100
         # @type Limit: Integer
 
         attr_accessor :RegistryId, :RetentionId, :ExecutionId, :Offset, :Limit

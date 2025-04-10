@@ -2279,10 +2279,12 @@ module TencentCloud
         # @type Filter: :class:`Tencentcloud::Cdb.v20170320.models.AuditLogFilter`
         # @param LogFilter: 过滤条件。可按设置的过滤条件过滤日志。
         # @type LogFilter: Array
+        # @param ColumnFilter: 下载筛选列
+        # @type ColumnFilter: Array
 
-        attr_accessor :InstanceId, :StartTime, :EndTime, :Order, :OrderBy, :Filter, :LogFilter
+        attr_accessor :InstanceId, :StartTime, :EndTime, :Order, :OrderBy, :Filter, :LogFilter, :ColumnFilter
 
-        def initialize(instanceid=nil, starttime=nil, endtime=nil, order=nil, orderby=nil, filter=nil, logfilter=nil)
+        def initialize(instanceid=nil, starttime=nil, endtime=nil, order=nil, orderby=nil, filter=nil, logfilter=nil, columnfilter=nil)
           @InstanceId = instanceid
           @StartTime = starttime
           @EndTime = endtime
@@ -2290,6 +2292,7 @@ module TencentCloud
           @OrderBy = orderby
           @Filter = filter
           @LogFilter = logfilter
+          @ColumnFilter = columnfilter
         end
 
         def deserialize(params)
@@ -2310,6 +2313,7 @@ module TencentCloud
               @LogFilter << instanceauditlogfilters_tmp
             end
           end
+          @ColumnFilter = params['ColumnFilter']
         end
       end
 

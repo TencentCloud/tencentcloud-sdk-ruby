@@ -591,7 +591,7 @@ module TencentCloud
         # @type IdcId: Integer
         # @param DeviceType: 设备类型，server, netDevice, otherDevice
         # @type DeviceType: String
-        # @param StuffOption: 下架选择 1.自行解决 2.由腾讯IDC负责 3.不涉及下架，如：其他设备退出
+        # @param StuffOption: 下架选择 1.自行解决 2.由腾讯IDC负责
         # @type StuffOption: String
         # @param IsPowerOffConfirm: 关电确认 1.授权时关电 2.关电前需要确认
         # @type IsPowerOffConfirm: String
@@ -983,6 +983,86 @@ module TencentCloud
         def deserialize(params)
           @DevModel = params['DevModel']
           @Version = params['Version']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateSpeciallyQuitWorkOrder请求参数结构体
+      class CreateSpeciallyQuitWorkOrderRequest < TencentCloud::Common::AbstractModel
+        # @param IdcId: 机房id
+        # @type IdcId: Integer
+        # @param DeviceType: 设备类型：otherDevice。此接口只支持其他设备
+        # @type DeviceType: String
+        # @param HandoverMethod: 交接方式 1.物流上门收货 2.客户上门自提
+        # @type HandoverMethod: String
+        # @param LogisticsReceipt: 物流上门收货必传
+        # @type LogisticsReceipt: :class:`Tencentcloud::Chc.v20230418.models.LogisticsReceipt`
+        # @param CustomerReceipt: 客户上门自提必传
+        # @type CustomerReceipt: :class:`Tencentcloud::Chc.v20230418.models.CustomerReceipt`
+        # @param Remark: 备注信息
+        # @type Remark: String
+        # @param OtherDeviceList: 当设备类型为otherDevice，此参数必传
+        # @type OtherDeviceList: Array
+
+        attr_accessor :IdcId, :DeviceType, :HandoverMethod, :LogisticsReceipt, :CustomerReceipt, :Remark, :OtherDeviceList
+
+        def initialize(idcid=nil, devicetype=nil, handovermethod=nil, logisticsreceipt=nil, customerreceipt=nil, remark=nil, otherdevicelist=nil)
+          @IdcId = idcid
+          @DeviceType = devicetype
+          @HandoverMethod = handovermethod
+          @LogisticsReceipt = logisticsreceipt
+          @CustomerReceipt = customerreceipt
+          @Remark = remark
+          @OtherDeviceList = otherdevicelist
+        end
+
+        def deserialize(params)
+          @IdcId = params['IdcId']
+          @DeviceType = params['DeviceType']
+          @HandoverMethod = params['HandoverMethod']
+          unless params['LogisticsReceipt'].nil?
+            @LogisticsReceipt = LogisticsReceipt.new
+            @LogisticsReceipt.deserialize(params['LogisticsReceipt'])
+          end
+          unless params['CustomerReceipt'].nil?
+            @CustomerReceipt = CustomerReceipt.new
+            @CustomerReceipt.deserialize(params['CustomerReceipt'])
+          end
+          @Remark = params['Remark']
+          unless params['OtherDeviceList'].nil?
+            @OtherDeviceList = []
+            params['OtherDeviceList'].each do |i|
+              otherdevreceivinginfo_tmp = OtherDevReceivingInfo.new
+              otherdevreceivinginfo_tmp.deserialize(i)
+              @OtherDeviceList << otherdevreceivinginfo_tmp
+            end
+          end
+        end
+      end
+
+      # CreateSpeciallyQuitWorkOrder返回参数结构体
+      class CreateSpeciallyQuitWorkOrderResponse < TencentCloud::Common::AbstractModel
+        # @param WorkOrderSet: 创建的工单信息
+        # @type WorkOrderSet: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :WorkOrderSet, :RequestId
+
+        def initialize(workorderset=nil, requestid=nil)
+          @WorkOrderSet = workorderset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['WorkOrderSet'].nil?
+            @WorkOrderSet = []
+            params['WorkOrderSet'].each do |i|
+              workordertinyinfo_tmp = WorkOrderTinyInfo.new
+              workordertinyinfo_tmp.deserialize(i)
+              @WorkOrderSet << workordertinyinfo_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end

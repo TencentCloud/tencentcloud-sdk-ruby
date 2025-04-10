@@ -4256,6 +4256,42 @@ module TencentCloud
         end
       end
 
+      # DeleteCosRecharge请求参数结构体
+      class DeleteCosRechargeRequest < TencentCloud::Common::AbstractModel
+        # @param Id: COS导入配置Id
+        # @type Id: String
+        # @param TopicId: 日志主题Id
+        # @type TopicId: String
+
+        attr_accessor :Id, :TopicId
+
+        def initialize(id=nil, topicid=nil)
+          @Id = id
+          @TopicId = topicid
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @TopicId = params['TopicId']
+        end
+      end
+
+      # DeleteCosRecharge返回参数结构体
+      class DeleteCosRechargeResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteDashboardSubscribe请求参数结构体
       class DeleteDashboardSubscribeRequest < TencentCloud::Common::AbstractModel
         # @param Id: 仪表盘订阅记录id。

@@ -10581,6 +10581,61 @@ module TencentCloud
         end
       end
 
+      # OperateTemplate请求参数结构体
+      class OperateTemplateRequest < TencentCloud::Common::AbstractModel
+        # @param Agent: 关于渠道应用的相关信息，包括渠道应用标识、第三方平台子客企业标识及第三方平台子客企业中的员工标识等内容，您可以参阅开发者中心所提供的 Agent 结构体以获取详细定义。
+
+        # 此接口下面信息必填。
+        # <ul>
+        # <li>渠道应用标识:  Agent.AppId</li>
+        # <li>第三方平台子客企业标识: Agent.ProxyOrganizationOpenId（模板的归属企业）</li>
+        # <li>第三方平台子客企业中的员工标识: Agent.ProxyOperator.OpenId （操作人）</li>
+        # </ul>
+        # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
+        # @param TemplateId: 模板ID，为32位字符串。
+        # @type TemplateId: String
+        # @param OperateType: 操作类型，可取值如下:
+        # <ul>
+        # <li>DELETE:  删除</li>
+        # <li>ENABLE: 启用</li>
+        # <li>DISABLE: 停用</li>
+        # </ul>
+        # @type OperateType: String
+
+        attr_accessor :Agent, :TemplateId, :OperateType
+
+        def initialize(agent=nil, templateid=nil, operatetype=nil)
+          @Agent = agent
+          @TemplateId = templateid
+          @OperateType = operatetype
+        end
+
+        def deserialize(params)
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
+          @TemplateId = params['TemplateId']
+          @OperateType = params['OperateType']
+        end
+      end
+
+      # OperateTemplate返回参数结构体
+      class OperateTemplateResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 企业批量注册链接信息
       class OrganizationAuthUrl < TencentCloud::Common::AbstractModel
         # @param AuthUrl: 跳转链接, 链接的有效期根据企业,员工状态和终端等有区别, 可以参考下表

@@ -11911,10 +11911,16 @@ module TencentCloud
         # @param RetryMaxTimes: 重试次数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RetryMaxTimes: Integer
+        # @param InstanceId: 实例ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceId: String
+        # @param Namespace: 命名空间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Namespace: String
 
-        attr_accessor :Name, :ConsumerNum, :TPS, :TotalAccumulative, :ConsumptionMode, :ReadEnabled, :RetryPartitionNum, :CreateTime, :UpdateTime, :ClientProtocol, :Remark, :ConsumerType, :BroadcastEnabled, :GroupType, :RetryMaxTimes
+        attr_accessor :Name, :ConsumerNum, :TPS, :TotalAccumulative, :ConsumptionMode, :ReadEnabled, :RetryPartitionNum, :CreateTime, :UpdateTime, :ClientProtocol, :Remark, :ConsumerType, :BroadcastEnabled, :GroupType, :RetryMaxTimes, :InstanceId, :Namespace
 
-        def initialize(name=nil, consumernum=nil, tps=nil, totalaccumulative=nil, consumptionmode=nil, readenabled=nil, retrypartitionnum=nil, createtime=nil, updatetime=nil, clientprotocol=nil, remark=nil, consumertype=nil, broadcastenabled=nil, grouptype=nil, retrymaxtimes=nil)
+        def initialize(name=nil, consumernum=nil, tps=nil, totalaccumulative=nil, consumptionmode=nil, readenabled=nil, retrypartitionnum=nil, createtime=nil, updatetime=nil, clientprotocol=nil, remark=nil, consumertype=nil, broadcastenabled=nil, grouptype=nil, retrymaxtimes=nil, instanceid=nil, namespace=nil)
           @Name = name
           @ConsumerNum = consumernum
           @TPS = tps
@@ -11930,6 +11936,8 @@ module TencentCloud
           @BroadcastEnabled = broadcastenabled
           @GroupType = grouptype
           @RetryMaxTimes = retrymaxtimes
+          @InstanceId = instanceid
+          @Namespace = namespace
         end
 
         def deserialize(params)
@@ -11948,6 +11956,8 @@ module TencentCloud
           @BroadcastEnabled = params['BroadcastEnabled']
           @GroupType = params['GroupType']
           @RetryMaxTimes = params['RetryMaxTimes']
+          @InstanceId = params['InstanceId']
+          @Namespace = params['Namespace']
         end
       end
 
@@ -12454,6 +12464,12 @@ module TencentCloud
         # @type CreateTime: Integer
         # @param UpdateTime: 创建时间，以毫秒为单位
         # @type UpdateTime: Integer
+        # @param InstanceId: 实例ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceId: String
+        # @param Namespace: 命名空间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Namespace: String
         # @param LastUpdateTime: 最后写入时间，单位为秒
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LastUpdateTime: Integer
@@ -12464,9 +12480,9 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubscriptionData: Array
 
-        attr_accessor :Name, :Type, :GroupNum, :Remark, :PartitionNum, :CreateTime, :UpdateTime, :LastUpdateTime, :SubscriptionCount, :SubscriptionData
+        attr_accessor :Name, :Type, :GroupNum, :Remark, :PartitionNum, :CreateTime, :UpdateTime, :InstanceId, :Namespace, :LastUpdateTime, :SubscriptionCount, :SubscriptionData
 
-        def initialize(name=nil, type=nil, groupnum=nil, remark=nil, partitionnum=nil, createtime=nil, updatetime=nil, lastupdatetime=nil, subscriptioncount=nil, subscriptiondata=nil)
+        def initialize(name=nil, type=nil, groupnum=nil, remark=nil, partitionnum=nil, createtime=nil, updatetime=nil, instanceid=nil, namespace=nil, lastupdatetime=nil, subscriptioncount=nil, subscriptiondata=nil)
           @Name = name
           @Type = type
           @GroupNum = groupnum
@@ -12474,6 +12490,8 @@ module TencentCloud
           @PartitionNum = partitionnum
           @CreateTime = createtime
           @UpdateTime = updatetime
+          @InstanceId = instanceid
+          @Namespace = namespace
           @LastUpdateTime = lastupdatetime
           @SubscriptionCount = subscriptioncount
           @SubscriptionData = subscriptiondata
@@ -12487,6 +12505,8 @@ module TencentCloud
           @PartitionNum = params['PartitionNum']
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
+          @InstanceId = params['InstanceId']
+          @Namespace = params['Namespace']
           @LastUpdateTime = params['LastUpdateTime']
           @SubscriptionCount = params['SubscriptionCount']
           unless params['SubscriptionData'].nil?

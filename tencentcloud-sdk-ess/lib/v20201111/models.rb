@@ -2473,8 +2473,11 @@ module TencentCloud
 
         # 注意：
         # 不同的嵌入类型，操作人需要的权限项不同（权限配置可参考[权限配置](https://qian.tencent.com/document/61355)）。
-        # <table>
+        # <table  border="1">
+        # <thead>
         # <tr><th>EmbedType</th><th>权限</th></tr>
+        # </thead>
+        # <tbody>
         # <tr><th>CREATE_SEAL</th><th>印章管理-添加印章</th></tr>
         # <tr><th>CREATE_TEMPLATE</th><th>模板管理-创建模板</th></tr>
         # <tr><th>MODIFY_TEMPLATE</th><th>模板管理-编辑模板</th></tr>
@@ -2488,6 +2491,7 @@ module TencentCloud
         # <tr><th>EXTEND_SERVICE</th><th>无要求</th></tr>
         # <tr><th>PREVIEW_FLOW</th><th>是否是当前合同的参与方，或者发起方企业的法人、超管、合同管理员</th></tr>
         # <tr><th>PREVIEW_FLOW_DETAIL</th><th>是否是当前合同的参与方，或者发起方企业的法人、超管、合同管理员</th></tr>
+        # </tbody>
         # </table>
         # @type EmbedType: String
         # @param BusinessId: WEB嵌入的业务资源ID
@@ -11724,6 +11728,63 @@ module TencentCloud
             @ExtendScene = ExtendScene.new
             @ExtendScene.deserialize(params['ExtendScene'])
           end
+        end
+      end
+
+      # OperateTemplate请求参数结构体
+      class OperateTemplateRequest < TencentCloud::Common::AbstractModel
+        # @param Operator: 执行本接口操作的员工信息。
+        # 注: `在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。`
+        # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
+        # @param TemplateId: 模板ID，为32位字符串。
+        # @type TemplateId: String
+        # @param OperateType: 操作类型，可取值如下:
+        # <ul>
+        # <li>DELETE:  删除</li>
+        # <li>ENABLE: 启用</li>
+        # <li>DISABLE: 停用</li>
+        # </ul>
+        # @type OperateType: String
+        # @param Agent: 代理企业和员工的信息。
+        # 在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
+        # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
+
+        attr_accessor :Operator, :TemplateId, :OperateType, :Agent
+
+        def initialize(operator=nil, templateid=nil, operatetype=nil, agent=nil)
+          @Operator = operator
+          @TemplateId = templateid
+          @OperateType = operatetype
+          @Agent = agent
+        end
+
+        def deserialize(params)
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
+          @TemplateId = params['TemplateId']
+          @OperateType = params['OperateType']
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
+        end
+      end
+
+      # OperateTemplate返回参数结构体
+      class OperateTemplateResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 

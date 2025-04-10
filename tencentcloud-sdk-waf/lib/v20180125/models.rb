@@ -77,8 +77,8 @@ module TencentCloud
 
         attr_accessor :BTime, :Count, :BeginTime
         extend Gem::Deprecate
-        deprecate :BTime, :none, 2025, 3
-        deprecate :BTime=, :none, 2025, 3
+        deprecate :BTime, :none, 2025, 4
+        deprecate :BTime=, :none, 2025, 4
 
         def initialize(btime=nil, count=nil, begintime=nil)
           @BTime = btime
@@ -595,8 +595,8 @@ module TencentCloud
 
         attr_accessor :Name, :SortId, :Strategies, :Domain, :ActionType, :Redirect, :ExpireTime, :Edition, :Bypass, :EventId, :JobType, :JobDateTime, :Source, :Label, :Status, :PageId, :LogicalOp
         extend Gem::Deprecate
-        deprecate :Bypass, :none, 2025, 3
-        deprecate :Bypass=, :none, 2025, 3
+        deprecate :Bypass, :none, 2025, 4
+        deprecate :Bypass=, :none, 2025, 4
 
         def initialize(name=nil, sortid=nil, strategies=nil, domain=nil, actiontype=nil, redirect=nil, expiretime=nil, edition=nil, bypass=nil, eventid=nil, jobtype=nil, jobdatetime=nil, source=nil, label=nil, status=nil, pageid=nil, logicalop=nil)
           @Name = name
@@ -1529,10 +1529,10 @@ module TencentCloud
 
         attr_accessor :Id, :ActionType, :Ip, :Note, :Source, :TsVersion, :ValidTs, :Hosts, :RuleId, :IpList, :CreateTime, :JobType, :CronType, :JobDateTime, :ValidStatus, :GroupIds
         extend Gem::Deprecate
-        deprecate :Id, :none, 2025, 3
-        deprecate :Id=, :none, 2025, 3
-        deprecate :Ip, :none, 2025, 3
-        deprecate :Ip=, :none, 2025, 3
+        deprecate :Id, :none, 2025, 4
+        deprecate :Id=, :none, 2025, 4
+        deprecate :Ip, :none, 2025, 4
+        deprecate :Ip=, :none, 2025, 4
 
         def initialize(id=nil, actiontype=nil, ip=nil, note=nil, source=nil, tsversion=nil, validts=nil, hosts=nil, ruleid=nil, iplist=nil, createtime=nil, jobtype=nil, crontype=nil, jobdatetime=nil, validstatus=nil, groupids=nil)
           @Id = id
@@ -2682,8 +2682,8 @@ module TencentCloud
 
         attr_accessor :Domain, :IpList, :ActionType, :ValidTS, :InstanceId, :Edition, :SourceType, :Note, :JobType, :JobDateTime
         extend Gem::Deprecate
-        deprecate :ValidTS, :none, 2025, 3
-        deprecate :ValidTS=, :none, 2025, 3
+        deprecate :ValidTS, :none, 2025, 4
+        deprecate :ValidTS=, :none, 2025, 4
 
         def initialize(domain=nil, iplist=nil, actiontype=nil, validts=nil, instanceid=nil, edition=nil, sourcetype=nil, note=nil, jobtype=nil, jobdatetime=nil)
           @Domain = domain
@@ -2731,6 +2731,66 @@ module TencentCloud
 
         def deserialize(params)
           @RuleId = params['RuleId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreatePostCKafkaFlow请求参数结构体
+      class CreatePostCKafkaFlowRequest < TencentCloud::Common::AbstractModel
+        # @param CKafkaRegion: 投递的CKafka所在区域
+        # @type CKafkaRegion: String
+        # @param CKafkaID: 客户的CKafka 实例ID
+        # @type CKafkaID: String
+        # @param Brokers: 支撑环境是IP:PORT，外网环境是domain:PORT
+        # @type Brokers: String
+        # @param Compression: 默认为none，支持snappy、gzip和lz4压缩，推荐snappy
+        # @type Compression: String
+        # @param VipType: 1-外网TGW，2-支撑环境，默认为支撑环境
+        # @type VipType: Integer
+        # @param LogType: 1-访问日志，2-攻击日志，默认为访问日志
+        # @type LogType: Integer
+        # @param Topic: 主题名称，默认不传或者传空字符串，默认值为waf_post_access_log
+        # @type Topic: String
+        # @param KafkaVersion: kafka集群的版本号
+        # @type KafkaVersion: String
+
+        attr_accessor :CKafkaRegion, :CKafkaID, :Brokers, :Compression, :VipType, :LogType, :Topic, :KafkaVersion
+
+        def initialize(ckafkaregion=nil, ckafkaid=nil, brokers=nil, compression=nil, viptype=nil, logtype=nil, topic=nil, kafkaversion=nil)
+          @CKafkaRegion = ckafkaregion
+          @CKafkaID = ckafkaid
+          @Brokers = brokers
+          @Compression = compression
+          @VipType = viptype
+          @LogType = logtype
+          @Topic = topic
+          @KafkaVersion = kafkaversion
+        end
+
+        def deserialize(params)
+          @CKafkaRegion = params['CKafkaRegion']
+          @CKafkaID = params['CKafkaID']
+          @Brokers = params['Brokers']
+          @Compression = params['Compression']
+          @VipType = params['VipType']
+          @LogType = params['LogType']
+          @Topic = params['Topic']
+          @KafkaVersion = params['KafkaVersion']
+        end
+      end
+
+      # CreatePostCKafkaFlow返回参数结构体
+      class CreatePostCKafkaFlowResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
@@ -3516,8 +3576,8 @@ module TencentCloud
 
         attr_accessor :From, :To, :Query, :FieldName, :TopicId, :Sort, :Count
         extend Gem::Deprecate
-        deprecate :TopicId, :none, 2025, 3
-        deprecate :TopicId=, :none, 2025, 3
+        deprecate :TopicId, :none, 2025, 4
+        deprecate :TopicId=, :none, 2025, 4
 
         def initialize(from=nil, to=nil, query=nil, fieldname=nil, topicid=nil, sort=nil, count=nil)
           @From = from
@@ -5974,10 +6034,10 @@ module TencentCloud
 
         attr_accessor :Domain, :Count, :ActionType, :VtsMin, :VtsMax, :CtsMin, :CtsMax, :OffSet, :Limit, :Source, :Sort, :Ip, :ValidStatus, :ValidTimeStampMin, :ValidTimeStampMax, :RuleId, :TimerType
         extend Gem::Deprecate
-        deprecate :VtsMin, :none, 2025, 3
-        deprecate :VtsMin=, :none, 2025, 3
-        deprecate :VtsMax, :none, 2025, 3
-        deprecate :VtsMax=, :none, 2025, 3
+        deprecate :VtsMin, :none, 2025, 4
+        deprecate :VtsMin=, :none, 2025, 4
+        deprecate :VtsMax, :none, 2025, 4
+        deprecate :VtsMax=, :none, 2025, 4
 
         def initialize(domain=nil, count=nil, actiontype=nil, vtsmin=nil, vtsmax=nil, ctsmin=nil, ctsmax=nil, offset=nil, limit=nil, source=nil, sort=nil, ip=nil, validstatus=nil, validtimestampmin=nil, validtimestampmax=nil, ruleid=nil, timertype=nil)
           @Domain = domain
@@ -6080,10 +6140,10 @@ module TencentCloud
 
         attr_accessor :Domain, :Count, :Category, :VtsMin, :VtsMax, :CtsMin, :CtsMax, :Skip, :Limit, :Name, :Sort, :Ip, :ValidTimeStampMin, :ValidTimeStampMax
         extend Gem::Deprecate
-        deprecate :VtsMin, :none, 2025, 3
-        deprecate :VtsMin=, :none, 2025, 3
-        deprecate :VtsMax, :none, 2025, 3
-        deprecate :VtsMax=, :none, 2025, 3
+        deprecate :VtsMin, :none, 2025, 4
+        deprecate :VtsMin=, :none, 2025, 4
+        deprecate :VtsMax, :none, 2025, 4
+        deprecate :VtsMax=, :none, 2025, 4
 
         def initialize(domain=nil, count=nil, category=nil, vtsmin=nil, vtsmax=nil, ctsmin=nil, ctsmax=nil, skip=nil, limit=nil, name=nil, sort=nil, ip=nil, validtimestampmin=nil, validtimestampmax=nil)
           @Domain = domain
@@ -6489,6 +6549,49 @@ module TencentCloud
         def deserialize(params)
           @HttpPorts = params['HttpPorts']
           @HttpsPorts = params['HttpsPorts']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribePostCKafkaFlows请求参数结构体
+      class DescribePostCKafkaFlowsRequest < TencentCloud::Common::AbstractModel
+        # @param LogType: 1-访问日志，2-攻击日志，默认为访问日志。
+        # @type LogType: Integer
+
+        attr_accessor :LogType
+
+        def initialize(logtype=nil)
+          @LogType = logtype
+        end
+
+        def deserialize(params)
+          @LogType = params['LogType']
+        end
+      end
+
+      # DescribePostCKafkaFlows返回参数结构体
+      class DescribePostCKafkaFlowsResponse < TencentCloud::Common::AbstractModel
+        # @param PostCKafkaFlows: 客户的投递流列表
+        # @type PostCKafkaFlows: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :PostCKafkaFlows, :RequestId
+
+        def initialize(postckafkaflows=nil, requestid=nil)
+          @PostCKafkaFlows = postckafkaflows
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['PostCKafkaFlows'].nil?
+            @PostCKafkaFlows = []
+            params['PostCKafkaFlows'].each do |i|
+              postckafkaflowinfo_tmp = PostCKafkaFlowInfo.new
+              postckafkaflowinfo_tmp.deserialize(i)
+              @PostCKafkaFlows << postckafkaflowinfo_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -7572,6 +7675,42 @@ module TencentCloud
         def deserialize(params)
           @Domain = params['Domain']
           @Status = params['Status']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DestroyPostCKafkaFlow请求参数结构体
+      class DestroyPostCKafkaFlowRequest < TencentCloud::Common::AbstractModel
+        # @param FlowId: 投递流的流ID
+        # @type FlowId: Integer
+        # @param LogType: 1-访问日志，2-攻击日志，默认为访问日志。
+        # @type LogType: Integer
+
+        attr_accessor :FlowId, :LogType
+
+        def initialize(flowid=nil, logtype=nil)
+          @FlowId = flowid
+          @LogType = logtype
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+          @LogType = params['LogType']
+        end
+      end
+
+      # DestroyPostCKafkaFlow返回参数结构体
+      class DestroyPostCKafkaFlowResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
@@ -10705,8 +10844,8 @@ module TencentCloud
 
         attr_accessor :Domain, :RuleId, :RuleName, :RuleAction, :Strategies, :Edition, :Redirect, :Bypass, :SortId, :ExpireTime, :JobType, :JobDateTime, :Source, :Status, :PageId, :LogicalOp
         extend Gem::Deprecate
-        deprecate :Bypass, :none, 2025, 3
-        deprecate :Bypass=, :none, 2025, 3
+        deprecate :Bypass, :none, 2025, 4
+        deprecate :Bypass=, :none, 2025, 4
 
         def initialize(domain=nil, ruleid=nil, rulename=nil, ruleaction=nil, strategies=nil, edition=nil, redirect=nil, bypass=nil, sortid=nil, expiretime=nil, jobtype=nil, jobdatetime=nil, source=nil, status=nil, pageid=nil, logicalop=nil)
           @Domain = domain
@@ -11590,8 +11729,8 @@ module TencentCloud
 
         attr_accessor :Domain, :IpList, :ActionType, :RuleId, :ValidTS, :InstanceId, :Edition, :SourceType, :Note, :JobType, :JobDateTime
         extend Gem::Deprecate
-        deprecate :ValidTS, :none, 2025, 3
-        deprecate :ValidTS=, :none, 2025, 3
+        deprecate :ValidTS, :none, 2025, 4
+        deprecate :ValidTS=, :none, 2025, 4
 
         def initialize(domain=nil, iplist=nil, actiontype=nil, ruleid=nil, validts=nil, instanceid=nil, edition=nil, sourcetype=nil, note=nil, jobtype=nil, jobdatetime=nil)
           @Domain = domain
@@ -12645,6 +12784,50 @@ module TencentCloud
       end
 
       # CKafka投递流
+      class PostCKafkaFlowInfo < TencentCloud::Common::AbstractModel
+        # @param FlowId: 投递流唯一ID
+        # @type FlowId: Integer
+        # @param LogType: 1-访问日志 2-攻击日志
+        # @type LogType: Integer
+        # @param Status: 状态 0-为关闭 1-为启用
+        # @type Status: Integer
+        # @param CKafkaRegion: CKafka所在区域
+        # @type CKafkaRegion: String
+        # @param CKafkaID: CKafka实例ID
+        # @type CKafkaID: String
+        # @param Brokers: ckafka地址信息
+        # @type Brokers: String
+        # @param Version: ckafka版本号
+        # @type Version: String
+        # @param Topic: 主题名称
+        # @type Topic: String
+
+        attr_accessor :FlowId, :LogType, :Status, :CKafkaRegion, :CKafkaID, :Brokers, :Version, :Topic
+
+        def initialize(flowid=nil, logtype=nil, status=nil, ckafkaregion=nil, ckafkaid=nil, brokers=nil, version=nil, topic=nil)
+          @FlowId = flowid
+          @LogType = logtype
+          @Status = status
+          @CKafkaRegion = ckafkaregion
+          @CKafkaID = ckafkaid
+          @Brokers = brokers
+          @Version = version
+          @Topic = topic
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+          @LogType = params['LogType']
+          @Status = params['Status']
+          @CKafkaRegion = params['CKafkaRegion']
+          @CKafkaID = params['CKafkaID']
+          @Brokers = params['Brokers']
+          @Version = params['Version']
+          @Topic = params['Topic']
+        end
+      end
+
+      # CKafka投递流
       class PostCLSFlowInfo < TencentCloud::Common::AbstractModel
         # @param FlowId: 投递流唯一ID
         # @type FlowId: Integer
@@ -13082,10 +13265,10 @@ module TencentCloud
 
         attr_accessor :Context, :ListOver, :Analysis, :ColNames, :Results, :AnalysisResults, :RequestId
         extend Gem::Deprecate
-        deprecate :ColNames, :none, 2025, 3
-        deprecate :ColNames=, :none, 2025, 3
-        deprecate :AnalysisResults, :none, 2025, 3
-        deprecate :AnalysisResults=, :none, 2025, 3
+        deprecate :ColNames, :none, 2025, 4
+        deprecate :ColNames=, :none, 2025, 4
+        deprecate :AnalysisResults, :none, 2025, 4
+        deprecate :AnalysisResults=, :none, 2025, 4
 
         def initialize(context=nil, listover=nil, analysis=nil, colnames=nil, results=nil, analysisresults=nil, requestid=nil)
           @Context = context

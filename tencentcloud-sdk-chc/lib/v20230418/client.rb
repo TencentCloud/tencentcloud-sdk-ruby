@@ -341,6 +341,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建临时设备退出工单
+
+        # @param request: Request instance for CreateSpeciallyQuitWorkOrder.
+        # @type request: :class:`Tencentcloud::chc::V20230418::CreateSpeciallyQuitWorkOrderRequest`
+        # @rtype: :class:`Tencentcloud::chc::V20230418::CreateSpeciallyQuitWorkOrderResponse`
+        def CreateSpeciallyQuitWorkOrder(request)
+          body = send_request('CreateSpeciallyQuitWorkOrder', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateSpeciallyQuitWorkOrderResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取机房内可用的型号列表
 
         # @param request: Request instance for DescribeAvailableModelList.

@@ -2364,28 +2364,20 @@ module TencentCloud
       # 返回容器的事件，比如 k8s deployment 或者 pod 的 events
       class ContainerEvent < TencentCloud::Common::AbstractModel
         # @param FirstTimestamp: 第一次出现的时间，以 ms 为单位的时间戳
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FirstTimestamp: Integer
         # @param LastTimestamp: 最后一次出现的时间，以 ms 为单位的时间戳
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LastTimestamp: Integer
         # @param Type: 级别
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: String
         # @param Kind: 资源类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Kind: String
         # @param Name: 资源名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Reason: 内容
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Reason: String
         # @param Message: 详细描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Message: String
         # @param Count: 出现次数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Count: Integer
 
         attr_accessor :FirstTimestamp, :LastTimestamp, :Type, :Kind, :Name, :Reason, :Message, :Count
@@ -5116,10 +5108,8 @@ module TencentCloud
       # 自定义Pod调度规则
       class CustomPodSchedule < TencentCloud::Common::AbstractModel
         # @param ForceSchedule: -
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ForceSchedule: :class:`Tencentcloud::Tsf.v20180326.models.ForceSchedule`
         # @param TrySchedule: -
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TrySchedule: :class:`Tencentcloud::Tsf.v20180326.models.TrySchedule`
 
         attr_accessor :ForceSchedule, :TrySchedule
@@ -7075,7 +7065,6 @@ module TencentCloud
       # DescribeBasicResourceUsage返回参数结构体
       class DescribeBasicResourceUsageResponse < TencentCloud::Common::AbstractModel
         # @param Result: TSF基本资源信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: :class:`Tencentcloud::Tsf.v20180326.models.OverviewBasicResourceUsage`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -9963,9 +9952,9 @@ module TencentCloud
 
       # DescribeOverviewInvocation请求参数结构体
       class DescribeOverviewInvocationRequest < TencentCloud::Common::AbstractModel
-        # @param NamespaceId: 命名空间ID
+        # @param NamespaceId: 命名空间ID， 此参数必填
         # @type NamespaceId: String
-        # @param Type: 监控统计类型，可选值：SumReqAmount、AvgFailureRate、AvgTimeCost，分别对应请求量、请求错误率、平均响应耗时
+        # @param Type: 监控统计类型，必填，可选值：SumReqAmount、AvgFailureRate、AvgTimeCost，分别对应请求量、请求错误率、平均响应耗时
         # @type Type: String
         # @param Period: 监控统计数据粒度，可选值：60、3600、86400，分别对应1分钟、1小时、1天
         # @type Period: Integer
@@ -9996,7 +9985,6 @@ module TencentCloud
       # DescribeOverviewInvocation返回参数结构体
       class DescribeOverviewInvocationResponse < TencentCloud::Common::AbstractModel
         # @param Result: 监控统计数据列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -12386,7 +12374,6 @@ module TencentCloud
       # 容器 env 的 FieldRef
       class FieldRef < TencentCloud::Common::AbstractModel
         # @param FieldPath: k8s 的 FieldPath
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FieldPath: String
 
         attr_accessor :FieldPath
@@ -12599,10 +12586,8 @@ module TencentCloud
       # 强制调度配置
       class ForceSchedule < TencentCloud::Common::AbstractModel
         # @param AffinityList: -
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AffinityList: Array
         # @param AntiAffinityList: -
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AntiAffinityList: Array
 
         attr_accessor :AffinityList, :AntiAffinityList
@@ -12678,7 +12663,6 @@ module TencentCloud
       # TSF Envoy网关服务配置
       class GatewayConfig < TencentCloud::Common::AbstractModel
         # @param Name: 服务名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
 
         attr_accessor :Name
@@ -14230,7 +14214,6 @@ module TencentCloud
         # @param Period: 时间轴开始时间，GMT，精确到毫秒
         # @type Period: Integer
         # @param DataPoints: 多值数据点集合
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DataPoints: Array
 
         attr_accessor :EndTime, :StartTime, :Period, :DataPoints
@@ -15179,7 +15162,7 @@ module TencentCloud
 
       # ModifyContainerGroup请求参数结构体
       class ModifyContainerGroupRequest < TencentCloud::Common::AbstractModel
-        # @param GroupId: 部署组ID
+        # @param GroupId: 部署组ID 必填项
         # @type GroupId: String
         # @param AccessType: 0:公网 1:集群内访问 2：NodePort
         # @type AccessType: Integer
@@ -15229,7 +15212,6 @@ module TencentCloud
         # @param Result: 更新部署组是否成功。
         # true：成功。
         # false：失败。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -16035,7 +16017,6 @@ module TencentCloud
       # 多值数据
       class MultiValue < TencentCloud::Common::AbstractModel
         # @param Values: 数据点
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Values: Array
 
         attr_accessor :Values
@@ -16209,13 +16190,10 @@ module TencentCloud
       # 提供给前端，控制按钮是否显示
       class OperationInfo < TencentCloud::Common::AbstractModel
         # @param Init: 初始化按钮的控制信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Init: :class:`Tencentcloud::Tsf.v20180326.models.OperationInfoDetail`
         # @param AddInstance: 添加实例按钮的控制信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AddInstance: :class:`Tencentcloud::Tsf.v20180326.models.OperationInfoDetail`
         # @param Destroy: 销毁机器的控制信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Destroy: :class:`Tencentcloud::Tsf.v20180326.models.OperationInfoDetail`
 
         attr_accessor :Init, :AddInstance, :Destroy
@@ -17344,7 +17322,6 @@ module TencentCloud
       # k8s env 的 ResourceFieldRef
       class ResourceFieldRef < TencentCloud::Common::AbstractModel
         # @param Resource: k8s 的 Resource
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Resource: String
 
         attr_accessor :Resource
@@ -18867,10 +18844,8 @@ module TencentCloud
         # @param TimeOut: 超时时间
         # @type TimeOut: Integer
         # @param RetryCount: 重试次数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RetryCount: Integer
         # @param RetryInterval: 重试间隔
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RetryInterval: Integer
         # @param TaskRule: 触发规则
         # @type TaskRule: :class:`Tencentcloud::Tsf.v20180326.models.TaskRule`
@@ -18879,31 +18854,22 @@ module TencentCloud
         # @param TaskId: 任务ID
         # @type TaskId: String
         # @param SuccessOperator: 判断任务成功的操作符
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SuccessOperator: String
         # @param SuccessRatio: 判断任务成功的阈值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SuccessRatio: Integer
         # @param ShardCount: 分片数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ShardCount: Integer
         # @param AdvanceSettings: 高级设置
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AdvanceSettings: :class:`Tencentcloud::Tsf.v20180326.models.AdvanceSettings`
         # @param ShardArguments: 分片参数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ShardArguments: Array
         # @param BelongFlowIds: 所属工作流ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BelongFlowIds: Array
         # @param TaskLogId: 任务历史ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskLogId: String
         # @param TriggerType: 触发类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TriggerType: String
         # @param TaskArgument: 任务参数，长度限制10000个字符
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskArgument: String
 
         attr_accessor :TaskName, :TaskType, :ExecuteType, :TaskContent, :GroupId, :TimeOut, :RetryCount, :RetryInterval, :TaskRule, :TaskState, :TaskId, :SuccessOperator, :SuccessRatio, :ShardCount, :AdvanceSettings, :ShardArguments, :BelongFlowIds, :TaskLogId, :TriggerType, :TaskArgument
@@ -19000,7 +18966,6 @@ module TencentCloud
         # @param RuleType: 触发规则类型, Cron/Repeat
         # @type RuleType: String
         # @param Expression: Cron类型规则，cron表达式。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Expression: String
         # @param RepeatInterval: 时间间隔， 单位毫秒
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -19148,10 +19113,8 @@ module TencentCloud
       # 尽量调度
       class TrySchedule < TencentCloud::Common::AbstractModel
         # @param AffinityList: -
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AffinityList: Array
         # @param AntiAffinityList: -
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AntiAffinityList: Array
 
         attr_accessor :AffinityList, :AntiAffinityList
@@ -19314,13 +19277,10 @@ module TencentCloud
       # 应用分页信息
       class TsfPageApplication < TencentCloud::Common::AbstractModel
         # @param TotalCount: 应用总数目
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
         # @param Content: 应用信息列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Content: Array
         # @param SpecTotalCount: 获取部署组实例列表返回的原始批次个数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SpecTotalCount: Integer
 
         attr_accessor :TotalCount, :Content, :SpecTotalCount
@@ -19385,7 +19345,6 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: String
         # @param SearchAfter: 查询es时，使用searchAfter返回的游标
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SearchAfter: Array
 
         attr_accessor :TotalCount, :Content, :ScrollId, :Status, :SearchAfter
@@ -19889,7 +19848,6 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: String
         # @param SearchAfter: 游标ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SearchAfter: Array
 
         attr_accessor :TotalCount, :Content, :ScrollId, :Status, :SearchAfter
@@ -20616,7 +20574,6 @@ module TencentCloud
         # @param Result: 更新健康检查配置操作是否成功。
         # true：操作成功。
         # false：操作失败。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -20732,16 +20689,13 @@ module TencentCloud
       # k8s env 的 ValueFrom
       class ValueFrom < TencentCloud::Common::AbstractModel
         # @param FieldRef: k8s env 的 FieldRef
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FieldRef: :class:`Tencentcloud::Tsf.v20180326.models.FieldRef`
         # @param ResourceFieldRef: k8s env 的 ResourceFieldRef
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceFieldRef: :class:`Tencentcloud::Tsf.v20180326.models.ResourceFieldRef`
         # @param ConfigMapKeyRef: k8s env的configMapKeyRef
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ConfigMapKeyRef: :class:`Tencentcloud::Tsf.v20180326.models.CommonRef`
         # @param SecretKeyRef: k8s env 的 secretKeyRef
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SecretKeyRef: :class:`Tencentcloud::Tsf.v20180326.models.CommonRef`
 
         attr_accessor :FieldRef, :ResourceFieldRef, :ConfigMapKeyRef, :SecretKeyRef
@@ -20866,22 +20820,16 @@ module TencentCloud
         # @param EnableBatchHealthCheck: 批次是否开启健康检查
         # @type EnableBatchHealthCheck: Boolean
         # @param FilebeatCgroupEnable: 是否开启cgroup控制内存cpu
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FilebeatCgroupEnable: Boolean
         # @param FilebeatMaxCpu: filebeat使用cpu上限
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FilebeatMaxCpu: Float
         # @param FilebeatMaxMem: filebeat使用内存上限
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FilebeatMaxMem: Integer
         # @param RepositoryId: 仓库ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RepositoryId: String
         # @param RepositoryName: 仓库名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RepositoryName: String
         # @param RepositoryType: 仓库类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RepositoryType: String
 
         attr_accessor :GroupId, :GroupName, :GroupStatus, :PackageId, :PackageName, :PackageVersion, :ClusterId, :ClusterName, :NamespaceId, :NamespaceName, :ApplicationId, :ApplicationName, :InstanceCount, :RunInstanceCount, :StartupParameters, :CreateTime, :UpdateTime, :OffInstanceCount, :GroupDesc, :MicroserviceType, :ApplicationType, :GroupResourceType, :UpdatedTime, :DeployDesc, :UpdateType, :DeployBetaEnable, :DeployBatch, :DeployExeMode, :DeployWaitTime, :EnableHealthCheck, :HealthCheckSettings, :PackageType, :StartScript, :StopScript, :Alias, :AgentProfileList, :WarmupSetting, :GatewayConfig, :EnableBatchHealthCheck, :FilebeatCgroupEnable, :FilebeatMaxCpu, :FilebeatMaxMem, :RepositoryId, :RepositoryName, :RepositoryType

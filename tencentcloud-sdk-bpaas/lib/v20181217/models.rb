@@ -146,32 +146,24 @@ module TencentCloud
         # @param ApplyOwnUin: 申请人主账号
         # @type ApplyOwnUin: Integer
         # @param ApplyUinNick: 申请人昵称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApplyUinNick: String
         # @param BpaasId: 审批流id
         # @type BpaasId: Integer
         # @param BpaasName: 审批流名称
         # @type BpaasName: String
         # @param ApplicationParams: 申请参数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApplicationParams: Array
         # @param Reason: 申请原因
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Reason: String
         # @param CreateTime: 申请时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
         # @param Status: 申请单状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
         # @param Nodes: 节点信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Nodes: Array
         # @param ApprovingNodeId: 正在审批的节点id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApprovingNodeId: String
         # @param ModifyTime: 更新时间，时间格式：2021-12-12 10:12:10
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ModifyTime: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -342,61 +334,42 @@ module TencentCloud
         # @param NextNode: 下一个节点
         # @type NextNode: String
         # @param Opinion: 审批意见模型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Opinion: :class:`Tencentcloud::Bpaas.v20181217.models.ApproveOpinion`
         # @param ScfName: scf函数名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScfName: String
         # @param SubStatus: 状态（0：待审批，1：审批通过，2：拒绝，3：scf执行失败，4：scf执行成功）18: 外部审批中
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubStatus: Integer
         # @param ApprovedUin: 审批节点审批人
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApprovedUin: Array
         # @param CreateTime: 审批时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
         # @param Msg: 审批意见信息 审批节点:审批人意见  执行节点:scf函数执行日志
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Msg: String
         # @param Users: 有权限审批该节点的uin
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Users: :class:`Tencentcloud::Bpaas.v20181217.models.ApproveUser`
         # @param IsApprove: 是否有权限审批该节点
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsApprove: Boolean
         # @param ApproveId: 审批id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApproveId: String
         # @param ApproveMethod: 审批方式 0或签 1会签
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApproveMethod: Integer
         # @param ApproveType: 审批节点审批类型，1人工审批 2自动通过 3自动决绝 4外部审批scf
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApproveType: Integer
         # @param CallMethod: 外部审批类型 scf:0或null ; CKafka:1
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CallMethod: Integer
         # @param DataHubId: CKafka - 接入资源ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DataHubId: String
         # @param TaskName: CKafka - 任务名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskName: String
         # @param CKafkaRegion: CKafka - 地域
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CKafkaRegion: String
         # @param ExternalUrl: 外部审批Url
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExternalUrl: String
         # @param ParallelNodes: 并行节点 3-4
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ParallelNodes: String
         # @param RejectedCloudFunctionMsg: scf拒绝时返回信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RejectedCloudFunctionMsg: String
         # @param PrevNode: 上一个节点
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PrevNode: String
 
         attr_accessor :NodeId, :NodeName, :NodeType, :NextNode, :Opinion, :ScfName, :SubStatus, :ApprovedUin, :CreateTime, :Msg, :Users, :IsApprove, :ApproveId, :ApproveMethod, :ApproveType, :CallMethod, :DataHubId, :TaskName, :CKafkaRegion, :ExternalUrl, :ParallelNodes, :RejectedCloudFunctionMsg, :PrevNode

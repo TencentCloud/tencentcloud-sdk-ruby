@@ -365,6 +365,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建CKafka投递流任务
+
+        # @param request: Request instance for CreatePostCKafkaFlow.
+        # @type request: :class:`Tencentcloud::waf::V20180125::CreatePostCKafkaFlowRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::CreatePostCKafkaFlowResponse`
+        def CreatePostCKafkaFlow(request)
+          body = send_request('CreatePostCKafkaFlow', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreatePostCKafkaFlowResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建CLS投递流任务
 
         # @param request: Request instance for CreatePostCLSFlow.
@@ -1805,6 +1829,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取CKafka投递流任务列表
+
+        # @param request: Request instance for DescribePostCKafkaFlows.
+        # @type request: :class:`Tencentcloud::waf::V20180125::DescribePostCKafkaFlowsRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::DescribePostCKafkaFlowsResponse`
+        def DescribePostCKafkaFlows(request)
+          body = send_request('DescribePostCKafkaFlows', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribePostCKafkaFlowsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取CLS投递流任务列表
 
         # @param request: Request instance for DescribePostCLSFlows.
@@ -2273,6 +2321,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeWebshellStatusResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 销毁CKafka投递流任务
+
+        # @param request: Request instance for DestroyPostCKafkaFlow.
+        # @type request: :class:`Tencentcloud::waf::V20180125::DestroyPostCKafkaFlowRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::DestroyPostCKafkaFlowResponse`
+        def DestroyPostCKafkaFlow(request)
+          body = send_request('DestroyPostCKafkaFlow', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DestroyPostCKafkaFlowResponse.new
             model.deserialize(response['Response'])
             model
           else

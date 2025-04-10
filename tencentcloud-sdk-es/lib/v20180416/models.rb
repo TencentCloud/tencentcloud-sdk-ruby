@@ -283,7 +283,7 @@ module TencentCloud
         # @param Version: 快照版本
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Version: String
-        # @param CommonIndexArr: 普通索引信息列表
+        # @param CommonIndexArr: 普通[{"DataStreamName":"ilm-history-5","Is索引信息列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CommonIndexArr: Array
         # @param DataStreamArr: 自治索引信息列表
@@ -4927,10 +4927,16 @@ module TencentCloud
         # @param QueueCheckPointWrites: 管道缓冲队列检查点写入数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type QueueCheckPointWrites: Integer
+        # @param CreateTime: 创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param UpdateTime: 更新时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTime: String
 
-        attr_accessor :PipelineId, :PipelineDesc, :Config, :Status, :Workers, :BatchSize, :BatchDelay, :QueueType, :QueueMaxBytes, :QueueCheckPointWrites
+        attr_accessor :PipelineId, :PipelineDesc, :Config, :Status, :Workers, :BatchSize, :BatchDelay, :QueueType, :QueueMaxBytes, :QueueCheckPointWrites, :CreateTime, :UpdateTime
 
-        def initialize(pipelineid=nil, pipelinedesc=nil, config=nil, status=nil, workers=nil, batchsize=nil, batchdelay=nil, queuetype=nil, queuemaxbytes=nil, queuecheckpointwrites=nil)
+        def initialize(pipelineid=nil, pipelinedesc=nil, config=nil, status=nil, workers=nil, batchsize=nil, batchdelay=nil, queuetype=nil, queuemaxbytes=nil, queuecheckpointwrites=nil, createtime=nil, updatetime=nil)
           @PipelineId = pipelineid
           @PipelineDesc = pipelinedesc
           @Config = config
@@ -4941,6 +4947,8 @@ module TencentCloud
           @QueueType = queuetype
           @QueueMaxBytes = queuemaxbytes
           @QueueCheckPointWrites = queuecheckpointwrites
+          @CreateTime = createtime
+          @UpdateTime = updatetime
         end
 
         def deserialize(params)
@@ -4954,6 +4962,8 @@ module TencentCloud
           @QueueType = params['QueueType']
           @QueueMaxBytes = params['QueueMaxBytes']
           @QueueCheckPointWrites = params['QueueCheckPointWrites']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
         end
       end
 
@@ -5957,7 +5967,7 @@ module TencentCloud
         # @type StorageType: Integer
         # @param TagList: 标签信息
         # @type TagList: Array
-        # @param IndexTraffic: 3782478.47
+        # @param IndexTraffic: 索引流量，单位byte
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IndexTraffic: Float
 
@@ -6178,7 +6188,7 @@ module TencentCloud
         # @param ClusterType: 0
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterType: Integer
-        # @param TagList: key:value
+        # @param TagList: 空间标签信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TagList: Array
 
@@ -6366,10 +6376,13 @@ module TencentCloud
         # @param Failures: 备份失败的索引分片和失败原因
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Failures: Array
+        # @param UserBackUp: 是否用户备份
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserBackUp: String
 
-        attr_accessor :SnapshotName, :Uuid, :Version, :Indices, :DataStreams, :State, :StartTime, :EndTime, :DurationInMillis, :TotalShards, :FailedShards, :SuccessfulShards, :Failures
+        attr_accessor :SnapshotName, :Uuid, :Version, :Indices, :DataStreams, :State, :StartTime, :EndTime, :DurationInMillis, :TotalShards, :FailedShards, :SuccessfulShards, :Failures, :UserBackUp
 
-        def initialize(snapshotname=nil, uuid=nil, version=nil, indices=nil, datastreams=nil, state=nil, starttime=nil, endtime=nil, durationinmillis=nil, totalshards=nil, failedshards=nil, successfulshards=nil, failures=nil)
+        def initialize(snapshotname=nil, uuid=nil, version=nil, indices=nil, datastreams=nil, state=nil, starttime=nil, endtime=nil, durationinmillis=nil, totalshards=nil, failedshards=nil, successfulshards=nil, failures=nil, userbackup=nil)
           @SnapshotName = snapshotname
           @Uuid = uuid
           @Version = version
@@ -6383,6 +6396,7 @@ module TencentCloud
           @FailedShards = failedshards
           @SuccessfulShards = successfulshards
           @Failures = failures
+          @UserBackUp = userbackup
         end
 
         def deserialize(params)
@@ -6406,6 +6420,7 @@ module TencentCloud
               @Failures << failures_tmp
             end
           end
+          @UserBackUp = params['UserBackUp']
         end
       end
 

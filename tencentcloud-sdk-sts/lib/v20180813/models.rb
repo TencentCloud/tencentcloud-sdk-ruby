@@ -67,10 +67,14 @@ module TencentCloud
         # @type Tags: Array
         # @param SourceIdentity: 调用者身份uin
         # @type SourceIdentity: String
+        # @param SerialNumber: MFA序列号，与进行调用的CAM用户关联的MFA设备的标识号。格式qcs::cam:uin/${ownerUin}::mfa/${mfaType}。mfaType支持softToken（软token）
+        # @type SerialNumber: String
+        # @param TokenCode: mfa身份验证码。
+        # @type TokenCode: String
 
-        attr_accessor :RoleArn, :RoleSessionName, :DurationSeconds, :Policy, :ExternalId, :Tags, :SourceIdentity
+        attr_accessor :RoleArn, :RoleSessionName, :DurationSeconds, :Policy, :ExternalId, :Tags, :SourceIdentity, :SerialNumber, :TokenCode
 
-        def initialize(rolearn=nil, rolesessionname=nil, durationseconds=nil, policy=nil, externalid=nil, tags=nil, sourceidentity=nil)
+        def initialize(rolearn=nil, rolesessionname=nil, durationseconds=nil, policy=nil, externalid=nil, tags=nil, sourceidentity=nil, serialnumber=nil, tokencode=nil)
           @RoleArn = rolearn
           @RoleSessionName = rolesessionname
           @DurationSeconds = durationseconds
@@ -78,6 +82,8 @@ module TencentCloud
           @ExternalId = externalid
           @Tags = tags
           @SourceIdentity = sourceidentity
+          @SerialNumber = serialnumber
+          @TokenCode = tokencode
         end
 
         def deserialize(params)
@@ -95,6 +101,8 @@ module TencentCloud
             end
           end
           @SourceIdentity = params['SourceIdentity']
+          @SerialNumber = params['SerialNumber']
+          @TokenCode = params['TokenCode']
         end
       end
 
@@ -366,6 +374,61 @@ module TencentCloud
         # @type ExpiredTime: Integer
         # @param Expiration: 临时访问凭证有效的时间，以 iso8601 格式的 UTC 时间表示
         # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Expiration: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Credentials, :ExpiredTime, :Expiration, :RequestId
+
+        def initialize(credentials=nil, expiredtime=nil, expiration=nil, requestid=nil)
+          @Credentials = credentials
+          @ExpiredTime = expiredtime
+          @Expiration = expiration
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Credentials'].nil?
+            @Credentials = Credentials.new
+            @Credentials.deserialize(params['Credentials'])
+          end
+          @ExpiredTime = params['ExpiredTime']
+          @Expiration = params['Expiration']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # GetSessionToken请求参数结构体
+      class GetSessionTokenRequest < TencentCloud::Common::AbstractModel
+        # @param SerialNumber: MFA序列号，与进行调用的CAM用户关联的MFA设备的标识号。格式qcs::cam:uin/${ownerUin}::mfa/${mfaType}。mfaType支持softToken（软token）
+        # @type SerialNumber: String
+        # @param TokenCode: mfa身份验证码。
+        # @type TokenCode: String
+        # @param DurationSeconds: 指定临时证书的有效期，单位：秒，默认1800秒，主账号最长可设定有效期为7200秒，子账号最长可设定有效期为129600秒。
+        # @type DurationSeconds: Integer
+
+        attr_accessor :SerialNumber, :TokenCode, :DurationSeconds
+
+        def initialize(serialnumber=nil, tokencode=nil, durationseconds=nil)
+          @SerialNumber = serialnumber
+          @TokenCode = tokencode
+          @DurationSeconds = durationseconds
+        end
+
+        def deserialize(params)
+          @SerialNumber = params['SerialNumber']
+          @TokenCode = params['TokenCode']
+          @DurationSeconds = params['DurationSeconds']
+        end
+      end
+
+      # GetSessionToken返回参数结构体
+      class GetSessionTokenResponse < TencentCloud::Common::AbstractModel
+        # @param Credentials: 临时访问凭证
+        # @type Credentials: :class:`Tencentcloud::Sts.v20180813.models.Credentials`
+        # @param ExpiredTime: 证书无效的时间，返回 Unix 时间戳，精确到秒
+        # @type ExpiredTime: Integer
+        # @param Expiration: 临时访问凭证的过期时间，以 iso8601 格式的 UTC 时间表示
         # @type Expiration: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

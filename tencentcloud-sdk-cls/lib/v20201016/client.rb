@@ -900,6 +900,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口用于删除cos导入任务
+
+        # @param request: Request instance for DeleteCosRecharge.
+        # @type request: :class:`Tencentcloud::cls::V20201016::DeleteCosRechargeRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::DeleteCosRechargeResponse`
+        def DeleteCosRecharge(request)
+          body = send_request('DeleteCosRecharge', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteCosRechargeResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 此接口用于删除仪表盘订阅
 
         # @param request: Request instance for DeleteDashboardSubscribe.

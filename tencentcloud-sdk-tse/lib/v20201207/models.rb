@@ -343,10 +343,8 @@ module TencentCloud
       # 灰度规则列表
       class CloudAPIGatewayCanaryRuleList < TencentCloud::Common::AbstractModel
         # @param CanaryRuleList: 灰度规则
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CanaryRuleList: Array
         # @param TotalCount: 总数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
 
         attr_accessor :CanaryRuleList, :TotalCount
@@ -372,16 +370,12 @@ module TencentCloud
       # 含百分比流量配置的服务
       class CloudNativeAPIGatewayBalancedService < TencentCloud::Common::AbstractModel
         # @param ServiceID: 服务 ID，作为入参时，必填
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ServiceID: String
         # @param ServiceName: 服务名称，作为入参时，无意义
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ServiceName: String
         # @param UpstreamName: Upstream 名称，作为入参时，无意义
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpstreamName: String
         # @param Percent: 百分比，10 即 10%，范围0-100
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Percent: Float
 
         attr_accessor :ServiceID, :ServiceName, :UpstreamName, :Percent
@@ -404,44 +398,32 @@ module TencentCloud
       # 灰度规则
       class CloudNativeAPIGatewayCanaryRule < TencentCloud::Common::AbstractModel
         # @param Priority: 优先级，值范围为 0 到 100；值越大，优先级越高；不同规则间优先级不可重复
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Priority: Integer
         # @param Enabled: 是否启用规则
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Enabled: Boolean
         # @param ConditionList: 参数匹配条件
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ConditionList: Array
         # @param BalancedServiceList: 服务的流量百分比配置
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BalancedServiceList: Array
         # @param ServiceId: 归属服务 ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ServiceId: String
         # @param ServiceName: 归属服务名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ServiceName: String
         # @param RuleType: 灰度规则类别
         # Standard｜Lane
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleType: String
         # @param MatchType: 全链路灰度策略多个条件之间的匹配方式，与AND，或OR
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MatchType: String
         # @param GroupId: 泳道组ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GroupId: String
         # @param GroupName: 泳道组名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GroupName: String
         # @param LaneId: 泳道ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LaneId: String
         # @param LaneName: 泳道名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LaneName: String
         # @param MatchMode: 泳道匹配规则：严格STRICT｜宽松PERMISSIVE
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MatchMode: String
         # @param LaneTag: 泳道标签
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -501,25 +483,18 @@ module TencentCloud
       # 灰度规则中的条件配置
       class CloudNativeAPIGatewayCanaryRuleCondition < TencentCloud::Common::AbstractModel
         # @param Type: 条件类型，支持 path, method, query, header, cookie, body 和 system。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: String
         # @param Key: 参数名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Key: String
         # @param Operator: 操作符，支持 "le", "eq", "lt", "ne", "ge", "gt", "regex", "exists", "in", "not in",  "prefix" ,"exact", "regex" 等
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Operator: String
         # @param Value: 目标参数值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: String
         # @param Delimiter: 分隔符，当 Operator 为 in 或者 not in 时生效。支持值为英文逗号，英文分号，空格，换行符。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Delimiter: String
         # @param GlobalConfigId: 全局配置 Id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GlobalConfigId: String
         # @param GlobalConfigName: 全局配置名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GlobalConfigName: String
 
         attr_accessor :Type, :Key, :Operator, :Value, :Delimiter, :GlobalConfigId, :GlobalConfigName
@@ -652,25 +627,18 @@ module TencentCloud
         # @param NodeIp: 节点 ip
         # @type NodeIp: String
         # @param ZoneId: Zone id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ZoneId: String
         # @param Zone: Zone
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Zone: String
         # @param GroupId: 分组ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GroupId: String
         # @param GroupName: 分组名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GroupName: String
         # @param Status: 状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: String
         # @param Weight: 节点权重
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Weight: Integer
         # @param IsDefaultWeight: 是否默认权重
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsDefaultWeight: Boolean
 
         attr_accessor :NodeId, :NodeIp, :ZoneId, :Zone, :GroupId, :GroupName, :Status, :Weight, :IsDefaultWeight
@@ -727,30 +695,22 @@ module TencentCloud
         # @param QpsThresholds: qps阈值
         # @type QpsThresholds: Array
         # @param Path: 需要进行流量控制的请求路径
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Path: String
         # @param Header: 需要进行流量控制的请求头Key
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Header: String
         # @param LimitBy: 限流依据
         # ip service consumer credential path header
         # @type LimitBy: String
         # @param ExternalRedis: 外部redis配置
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExternalRedis: :class:`Tencentcloud::Tse.v20201207.models.ExternalRedis`
         # @param Policy: 计数器策略
         # local 单机
         # redis  默认redis
         # external_redis 外部redis
-
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Policy: String
         # @param RateLimitResponse: 响应配置，响应策略为text
-
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RateLimitResponse: :class:`Tencentcloud::Tse.v20201207.models.RateLimitResponse`
         # @param RateLimitResponseUrl: 请求转发地址
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RateLimitResponseUrl: String
         # @param ResponseType: 响应策略
         # url请求转发
@@ -841,25 +801,18 @@ module TencentCloud
         # @param StrategyId: 策略ID
         # @type StrategyId: String
         # @param StrategyName: 策略名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StrategyName: String
         # @param CreateTime: 创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
         # @param ModifyTime: 更新时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ModifyTime: String
         # @param Description: 策略描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
         # @param Config: 弹性伸缩配置
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Config: :class:`Tencentcloud::Tse.v20201207.models.CloudNativeAPIGatewayStrategyAutoScalerConfig`
         # @param GatewayId: 网关实例ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GatewayId: String
         # @param CronConfig: 定时伸缩配置
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CronConfig: :class:`Tencentcloud::Tse.v20201207.models.CloudNativeAPIGatewayStrategyCronScalerConfig`
         # @param MaxReplicas: 最大节点数
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -1007,19 +960,14 @@ module TencentCloud
       # 策略绑定的网关分组信息
       class CloudNativeAPIGatewayStrategyBindingGroupInfo < TencentCloud::Common::AbstractModel
         # @param GroupId: 网关分组ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GroupId: String
         # @param NodeConfig: 节点配置
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NodeConfig: :class:`Tencentcloud::Tse.v20201207.models.CloudNativeAPIGatewayNodeConfig`
         # @param BindTime: 绑定时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BindTime: String
         # @param GroupName: 网关分组名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GroupName: String
         # @param Status: 绑定状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: String
 
         attr_accessor :GroupId, :NodeConfig, :BindTime, :GroupName, :Status
@@ -1128,10 +1076,8 @@ module TencentCloud
       # 云原生API网关vpc配置。
       class CloudNativeAPIGatewayVpcConfig < TencentCloud::Common::AbstractModel
         # @param VpcId: 私有网络ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VpcId: String
         # @param SubnetId: 子网ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubnetId: String
 
         attr_accessor :VpcId, :SubnetId
@@ -2098,7 +2044,6 @@ module TencentCloud
         # @param Status: 云原生网关状态。
         # @type Status: String
         # @param TaskId: 任务ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskId: String
 
         attr_accessor :GatewayId, :Status, :TaskId
@@ -4028,7 +3973,6 @@ module TencentCloud
         # @param Status: 删除状态
         # @type Status: String
         # @param TaskId: 任务ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskId: String
 
         attr_accessor :GatewayId, :GroupId, :Status, :TaskId
@@ -4471,13 +4415,10 @@ module TencentCloud
         # @param ConfigList: 分组网络配置列表。
         # @type ConfigList: Array
         # @param GroupSubnetId: 分组子网信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GroupSubnetId: String
         # @param GroupVpcId: 分组VPC信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GroupVpcId: String
         # @param GroupId: 分组ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GroupId: String
 
         attr_accessor :GatewayId, :ConfigList, :GroupSubnetId, :GroupVpcId, :GroupId
@@ -4724,53 +4665,37 @@ module TencentCloud
         # @param CreateTime: 云原生API网关创建时间。
         # @type CreateTime: String
         # @param Tags: 实例的标签信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
         # @param EnableCls: 是否开启 cls 日志
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EnableCls: Boolean
         # @param TradeType: 付费模式，0表示后付费，1预付费
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TradeType: Integer
         # @param FeatureVersion: 实例版本，当前支持开发版、标准版、专业版【TRIAL、STANDARD、PROFESSIONAL】
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FeatureVersion: String
         # @param InternetMaxBandwidthOut: 公网出流量带宽，[1,2048]Mbps
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InternetMaxBandwidthOut: Integer
         # @param AutoRenewFlag: 自动续费标记，0表示默认状态(用户未设置，即初始状态)；
         # 1表示自动续费，2表示明确不自动续费(用户设置)，若业务无续费概念或无需自动续费，需要设置为0
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AutoRenewFlag: Integer
         # @param CurDeadline: 到期时间，预付费时使用
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CurDeadline: String
         # @param IsolateTime: 隔离时间，实例隔离时使用
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsolateTime: String
         # @param EnableInternet: 是否开启客户端公网。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EnableInternet: Boolean
         # @param EngineRegion: 实例实际的地域信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EngineRegion: String
         # @param IngressClassName: Ingress class名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IngressClassName: String
         # @param InternetPayMode: 公网计费方式。可选取值 BANDWIDTH | TRAFFIC ，表示按带宽和按流量计费。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InternetPayMode: String
         # @param GatewayMinorVersion: 云原生API网关小版本号
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GatewayMinorVersion: String
         # @param InstancePort: 实例监听的端口信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstancePort: :class:`Tencentcloud::Tse.v20201207.models.InstancePort`
         # @param LoadBalancerType: 公网CLB默认类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LoadBalancerType: String
         # @param PublicIpAddresses: 公网IP地址列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PublicIpAddresses: Array
 
         attr_accessor :GatewayId, :Status, :Name, :Type, :GatewayVersion, :NodeConfig, :VpcConfig, :Description, :CreateTime, :Tags, :EnableCls, :TradeType, :FeatureVersion, :InternetMaxBandwidthOut, :AutoRenewFlag, :CurDeadline, :IsolateTime, :EnableInternet, :EngineRegion, :IngressClassName, :InternetPayMode, :GatewayMinorVersion, :InstancePort, :LoadBalancerType, :PublicIpAddresses
@@ -6669,13 +6594,10 @@ module TencentCloud
       # 获取云原生api网关公网地址信息响应结果
       class DescribePublicAddressConfigResult < TencentCloud::Common::AbstractModel
         # @param GatewayId: 网关实例id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GatewayId: String
         # @param ConfigList: 公网地址信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ConfigList: Array
         # @param TotalCount: 总个数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
 
         attr_accessor :GatewayId, :ConfigList, :TotalCount
@@ -7102,16 +7024,12 @@ module TencentCloud
       # 获取WAF保护资源状态
       class DescribeWafProtectionResult < TencentCloud::Common::AbstractModel
         # @param GlobalStatus: 全局防护状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GlobalStatus: String
         # @param ServicesStatus: 服务防护状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ServicesStatus: Array
         # @param RouteStatus: 路由防护状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RouteStatus: Array
         # @param ObjectStatus: 对象防护状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ObjectStatus: String
 
         attr_accessor :GlobalStatus, :ServicesStatus, :RouteStatus, :ObjectStatus
@@ -7444,16 +7362,12 @@ module TencentCloud
       # 云原生网关限流插件外部redis配置
       class ExternalRedis < TencentCloud::Common::AbstractModel
         # @param RedisHost: redis ip
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RedisHost: String
         # @param RedisPassword: redis密码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RedisPassword: String
         # @param RedisPort: redis端口
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RedisPort: Integer
         # @param RedisTimeout: 超时时间  ms
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RedisTimeout: Integer
 
         attr_accessor :RedisHost, :RedisPassword, :RedisPort, :RedisTimeout
@@ -8198,16 +8112,12 @@ module TencentCloud
       # 实例监听端口信息
       class InstancePort < TencentCloud::Common::AbstractModel
         # @param HttpPort: 监听的 http 端口范围。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HttpPort: String
         # @param HttpsPort: 监听的 https 端口范围。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HttpsPort: String
         # @param TcpPort: 监听的 tcp 端口范围。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TcpPort: String
         # @param UdpPort: 监听的 udp 端口范围。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UdpPort: String
 
         attr_accessor :HttpPort, :HttpsPort, :TcpPort, :UdpPort
@@ -8334,10 +8244,8 @@ module TencentCloud
       # Key/Value结构
       class KeyValue < TencentCloud::Common::AbstractModel
         # @param Key: 条件的Key
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Key: String
         # @param Value: 条件的Value
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: String
 
         attr_accessor :Key, :Value
@@ -8403,7 +8311,6 @@ module TencentCloud
       # kong证书列表
       class KongCertificatesList < TencentCloud::Common::AbstractModel
         # @param Total: 证书列表总数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Total: Integer
         # @param CertificatesList: 无
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -8612,37 +8519,28 @@ module TencentCloud
       # 云原生网关服务详细信息
       class KongServiceDetail < TencentCloud::Common::AbstractModel
         # @param ID: 服务ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ID: String
         # @param Name: 服务名字
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Protocol: 后端协议
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Protocol: String
         # @param Path: 后端路径
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Path: String
         # @param Timeout: 后端延时，单位ms
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Timeout: Integer
         # @param Retries: 重试次数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Retries: Integer
         # @param Tags: 标签
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
         # @param UpstreamInfo: 后端配置
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpstreamInfo: :class:`Tencentcloud::Tse.v20201207.models.KongUpstreamInfo`
         # @param UpstreamType: 后端类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpstreamType: String
         # @param Editable: 是否可编辑
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Editable: Boolean
         # @param CreatedTime: 创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreatedTime: String
 
         attr_accessor :ID, :Name, :Protocol, :Path, :Timeout, :Retries, :Tags, :UpstreamInfo, :UpstreamType, :Editable, :CreatedTime
@@ -8944,7 +8842,6 @@ module TencentCloud
       # kong后端upstream列表
       class KongUpstreamList < TencentCloud::Common::AbstractModel
         # @param UpstreamList: 无
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpstreamList: Array
 
         attr_accessor :UpstreamList
@@ -8968,13 +8865,10 @@ module TencentCloud
       # 云原生网关Upstream信息
       class KongUpstreamPreview < TencentCloud::Common::AbstractModel
         # @param ID: 服务ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ID: String
         # @param Name: 服务名字
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Target: 后端配置
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Target: Array
 
         attr_accessor :ID, :Name, :Target
@@ -9002,16 +8896,12 @@ module TencentCloud
       # 参数限流的规则
       class LimitRule < TencentCloud::Common::AbstractModel
         # @param Filters: 请求匹配条件
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Filters: Array
         # @param LimitBy: 参数限流依据组合
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LimitBy: Array
         # @param QpsThresholds: 限流阈值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type QpsThresholds: Array
         # @param AccurateQpsThresholds: 精确限流阈值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AccurateQpsThresholds: Array
 
         attr_accessor :Filters, :LimitBy, :QpsThresholds, :AccurateQpsThresholds
@@ -10403,25 +10293,18 @@ module TencentCloud
         # 1：是。
         # @type IsFirstGroup: Integer
         # @param BindingStrategy: 关联策略信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BindingStrategy: :class:`Tencentcloud::Tse.v20201207.models.CloudNativeAPIGatewayStrategy`
         # @param GatewayId: 网关实例 id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GatewayId: String
         # @param InternetMaxBandwidthOut: 带宽
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InternetMaxBandwidthOut: Integer
         # @param ModifyTime: 修改时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ModifyTime: String
         # @param SubnetIds: 子网id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubnetIds: String
         # @param DefaultWeight: 分组默认权重
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DefaultWeight: Integer
         # @param ElasticNumber: 弹性节点
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ElasticNumber: Integer
 
         attr_accessor :GroupId, :Name, :Description, :NodeConfig, :Status, :CreateTime, :IsFirstGroup, :BindingStrategy, :GatewayId, :InternetMaxBandwidthOut, :ModifyTime, :SubnetIds, :DefaultWeight, :ElasticNumber
@@ -10652,22 +10535,16 @@ module TencentCloud
       # 公网地址信息
       class PublicAddressConfig < TencentCloud::Common::AbstractModel
         # @param Vip: 公网 ip
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Vip: String
         # @param InternetMaxBandwidthOut: 公网最大带宽
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InternetMaxBandwidthOut: Integer
         # @param GroupId: 公网所属分组 id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GroupId: String
         # @param GroupName: 公网所属分组名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GroupName: String
         # @param NetworkId: 公网负载均衡 id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NetworkId: String
         # @param Description: 公网负载均衡描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
 
         attr_accessor :Vip, :InternetMaxBandwidthOut, :GroupId, :GroupName, :NetworkId, :Description
@@ -10765,13 +10642,10 @@ module TencentCloud
       # 云原生网关限流插件自定义响应
       class RateLimitResponse < TencentCloud::Common::AbstractModel
         # @param Body: 自定义响应体
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Body: String
         # @param Headers: Headers
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Headers: Array
         # @param HttpStatus: http状态码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HttpStatus: Integer
 
         attr_accessor :Body, :Headers, :HttpStatus
@@ -10926,28 +10800,20 @@ module TencentCloud
       # 路由 WAF 状态
       class RouteWafStatus < TencentCloud::Common::AbstractModel
         # @param Name: 路由的名字
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Id: 路由的 ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Id: String
         # @param Status:  路由是否开启 WAF 防护
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: String
         # @param Methods: 方法
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Methods: Array
         # @param Paths: 路径
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Paths: Array
         # @param Hosts: 域名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Hosts: Array
         # @param ServiceName: 路由对应服务的名字
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ServiceName: String
         # @param ServiceId: 路由对应服务的ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ServiceId: String
 
         attr_accessor :Name, :Id, :Status, :Methods, :Paths, :Hosts, :ServiceName, :ServiceId
@@ -10978,16 +10844,12 @@ module TencentCloud
       # 限流规则的Filter
       class RuleFilter < TencentCloud::Common::AbstractModel
         # @param Key: 限流条件的Key
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Key: String
         # @param Values: 限流条件的Values
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Values: Array
         # @param Operator: 操作符
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Operator: String
         # @param Name: header或query对应的name
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
 
         attr_accessor :Key, :Values, :Operator, :Name
@@ -11294,16 +11156,12 @@ module TencentCloud
       # 服务的 WAF 状态
       class ServiceWafStatus < TencentCloud::Common::AbstractModel
         # @param Name:  服务的名字
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Id: 服务的 ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Id: String
         # @param Type: 服务的类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: String
         # @param Status:  服务是否开启 WAF 防护
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: String
 
         attr_accessor :Name, :Id, :Type, :Status
@@ -11328,10 +11186,8 @@ module TencentCloud
         # @param Addresses: 微服务引擎接入IP地址信息
         # @type Addresses: Array
         # @param VpcInfo: 微服务引擎VPC信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VpcInfo: :class:`Tencentcloud::Tse.v20201207.models.SourceInstanceVpcInfo`
         # @param Auth: 微服务引擎鉴权信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Auth: :class:`Tencentcloud::Tse.v20201207.models.SourceInstanceAuth`
 
         attr_accessor :Addresses, :VpcInfo, :Auth
@@ -11358,13 +11214,10 @@ module TencentCloud
       # 实例鉴权信息
       class SourceInstanceAuth < TencentCloud::Common::AbstractModel
         # @param Username: 用户名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Username: String
         # @param Password: 账户密码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Password: String
         # @param AccessToken: 访问凭据 token
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AccessToken: String
 
         attr_accessor :Username, :Password, :AccessToken
@@ -11385,10 +11238,8 @@ module TencentCloud
       # 微服务引擎实例的VPC信息
       class SourceInstanceVpcInfo < TencentCloud::Common::AbstractModel
         # @param VpcID: 微服务引擎VPC信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VpcID: String
         # @param SubnetID: 微服务引擎子网信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubnetID: String
 
         attr_accessor :VpcID, :SubnetID
@@ -11523,7 +11374,6 @@ module TencentCloud
         # @param Status: 云原生网关状态。
         # @type Status: String
         # @param TaskId: 任务ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskId: String
 
         attr_accessor :GatewayId, :Status, :TaskId

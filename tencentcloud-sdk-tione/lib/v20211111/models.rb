@@ -2606,6 +2606,124 @@ module TencentCloud
         end
       end
 
+      # DescribeLogs请求参数结构体
+      class DescribeLogsRequest < TencentCloud::Common::AbstractModel
+        # @param Service: 服务类型，TRAIN为任务式建模, NOTEBOOK为Notebook, INFER为在线服务, BATCH为批量预测
+        # 枚举值：
+        # - TRAIN
+        # - NOTEBOOK
+        # - INFER
+        # - BATCH
+        # @type Service: String
+        # @param StartTime: 日志查询开始时间（RFC3339格式的时间字符串），默认值为当前时间的前一个小时
+        # @type StartTime: String
+        # @param EndTime: 日志查询结束时间（RFC3339格式的时间字符串），默认值为当前时间
+        # @type EndTime: String
+        # @param Limit: 日志查询条数，默认值100，最大值100
+        # @type Limit: Integer
+        # @param ServiceId: 服务ID，和Service参数对应，不同Service的服务ID获取方式不同，具体如下：
+        # - Service类型为TRAIN：
+        #   调用[DescribeTrainingTask接口](/document/product/851/75089)查询训练任务详情，ServiceId为接口返回值中Response.TrainingTaskDetail.LatestInstanceId
+        # - Service类型为NOTEBOOK：
+        #   调用[DescribeNotebook接口](/document/product/851/95662)查询Notebook详情，ServiceId为接口返回值中Response.NotebookDetail.PodName
+        # - Service类型为INFER：
+        #   调用[DescribeModelServiceGroup接口](/document/product/851/82285)查询服务组详情，ServiceId为接口返回值中Response.ServiceGroup.Services.ServiceId
+        # - Service类型为BATCH：
+        #   调用[DescribeBatchTask接口](/document/product/851/80180)查询跑批任务详情，ServiceId为接口返回值中Response.BatchTaskDetail.LatestInstanceId
+        # @type ServiceId: String
+        # @param PodName: Pod的名称，即需要查询服务对应的Pod，和Service参数对应，不同Service的PodName获取方式不同，具体如下：
+        # - Service类型为TRAIN：
+        #   调用[DescribeTrainingTaskPods接口](/document/product/851/75088)查询训练任务pod列表，PodName为接口返回值中Response.PodNames
+        # - Service类型为NOTEBOOK：
+        #   调用[DescribeNotebook接口](/document/product/851/95662)查询Notebook详情，PodName为接口返回值中Response.NotebookDetail.PodName
+        # - Service类型为INFER：
+        #   调用[DescribeModelService接口](/document/product/851/82287)查询单个服务详情，PodName为接口返回值中Response.Service.ServiceInfo.PodInfos
+        # - Service类型为BATCH：
+        #   调用[DescribeBatchTask接口](/document/product/851/80180)查询跑批任务详情，PodName为接口返回值中Response.BatchTaskDetail. PodList
+        # 注：支持结尾通配符*
+        # @type PodName: String
+        # @param Order: 排序方向（可选值为ASC, DESC ），默认为DESC
+        # @type Order: String
+        # @param OrderField: 按哪个字段排序（可选值为Timestamp），默认值为Timestamp
+        # @type OrderField: String
+        # @param Context: 日志查询上下文，查询下一页的时候需要回传这个字段，该字段来自本接口的返回
+        # @type Context: String
+        # @param Filters: 过滤条件
+        # 注意:
+        # 1. Filter.Name：目前只支持Key（也就是按关键字过滤日志）
+        # 2. Filter.Values：表示过滤日志的关键字；Values为多个的时候表示同时满足
+        # 3. Filter. Negative和Filter. Fuzzy没有使用
+        # @type Filters: Array
+
+        attr_accessor :Service, :StartTime, :EndTime, :Limit, :ServiceId, :PodName, :Order, :OrderField, :Context, :Filters
+
+        def initialize(service=nil, starttime=nil, endtime=nil, limit=nil, serviceid=nil, podname=nil, order=nil, orderfield=nil, context=nil, filters=nil)
+          @Service = service
+          @StartTime = starttime
+          @EndTime = endtime
+          @Limit = limit
+          @ServiceId = serviceid
+          @PodName = podname
+          @Order = order
+          @OrderField = orderfield
+          @Context = context
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @Service = params['Service']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Limit = params['Limit']
+          @ServiceId = params['ServiceId']
+          @PodName = params['PodName']
+          @Order = params['Order']
+          @OrderField = params['OrderField']
+          @Context = params['Context']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeLogs返回参数结构体
+      class DescribeLogsResponse < TencentCloud::Common::AbstractModel
+        # @param Context: 分页的游标
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Context: String
+        # @param Content: 日志数组
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Content: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Context, :Content, :RequestId
+
+        def initialize(context=nil, content=nil, requestid=nil)
+          @Context = context
+          @Content = content
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Context = params['Context']
+          unless params['Content'].nil?
+            @Content = []
+            params['Content'].each do |i|
+              logidentity_tmp = LogIdentity.new
+              logidentity_tmp.deserialize(i)
+              @Content << logidentity_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeModelAccelerateTask请求参数结构体
       class DescribeModelAccelerateTaskRequest < TencentCloud::Common::AbstractModel
         # @param ModelAccTaskId: 模型加速任务ID
@@ -4200,6 +4318,38 @@ module TencentCloud
         def deserialize(params)
           @LogsetId = params['LogsetId']
           @TopicId = params['TopicId']
+        end
+      end
+
+      # 单条日志数据结构
+      class LogIdentity < TencentCloud::Common::AbstractModel
+        # @param Id: 单条日志的ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Id: String
+        # @param Message: 单条日志的内容
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Message: String
+        # @param PodName: 这条日志对应的Pod名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PodName: String
+        # @param Timestamp: 日志的时间戳（RFC3339格式的时间字符串）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Timestamp: String
+
+        attr_accessor :Id, :Message, :PodName, :Timestamp
+
+        def initialize(id=nil, message=nil, podname=nil, timestamp=nil)
+          @Id = id
+          @Message = message
+          @PodName = podname
+          @Timestamp = timestamp
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Message = params['Message']
+          @PodName = params['PodName']
+          @Timestamp = params['Timestamp']
         end
       end
 

@@ -10768,7 +10768,7 @@ module TencentCloud
         # @type ImageBase64: String
         # @param PdfPageNumber: 需要识别的PDF页面的对应页码，仅支持PDF单页识别，当上传文件为PDF且IsPdf参数值为true时有效，默认值为1。
         # @type PdfPageNumber: Integer
-        # @param ItemNames: 自定义结构化功能需返回的字段名称，例：若客户只想返回姓名、性别两个字段的识别结果，则输入ItemNames=["姓名","性别"]
+        # @param ItemNames: 自定义结构化功能需返回的字段名称，例：若客户想新增返回姓名、性别两个字段的识别结果，则输入ItemNames=["姓名","性别"]
         # @type ItemNames: Array
         # @param ReturnFullText: 是否开启全文字段识别
         # @type ReturnFullText: Boolean

@@ -559,6 +559,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取任务式建模训练任务，Notebook，在线服务和批量预测任务的日志API
+
+        # @param request: Request instance for DescribeLogs.
+        # @type request: :class:`Tencentcloud::tione::V20211111::DescribeLogsRequest`
+        # @rtype: :class:`Tencentcloud::tione::V20211111::DescribeLogsResponse`
+        def DescribeLogs(request)
+          body = send_request('DescribeLogs', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeLogsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询模型优化任务详情
 
         # @param request: Request instance for DescribeModelAccelerateTask.

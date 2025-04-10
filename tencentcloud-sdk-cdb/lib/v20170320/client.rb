@@ -341,7 +341,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口(CreateAuditLogFile)用于创建云数据库实例的审计日志文件。
+        # 本接口（CreateAuditLogFile）用于创建云数据库实例的审计日志文件。
 
         # @param request: Request instance for CreateAuditLogFile.
         # @type request: :class:`Tencentcloud::cdb::V20170320::CreateAuditLogFileRequest`

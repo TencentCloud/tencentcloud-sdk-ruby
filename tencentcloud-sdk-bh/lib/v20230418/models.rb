@@ -1270,6 +1270,74 @@ module TencentCloud
         end
       end
 
+      # CreateOperationTask请求参数结构体
+      class CreateOperationTaskRequest < TencentCloud::Common::AbstractModel
+        # @param Name: 运维任务名称
+        # @type Name: String
+        # @param Type: 运维任务类型,1 - 手工执行, 2 - 周期性自动执行
+        # @type Type: Integer
+        # @param Account: 执行账号
+        # @type Account: String
+        # @param Timeout: 超时时间,单位秒
+        # @type Timeout: Integer
+        # @param Script: 执行脚本内容
+        # @type Script: String
+        # @param DeviceIdSet: 执行主机集合，满足条件以下三个条件：1. 资产绑定可用的专业版或国密版堡垒机服务；2、资产类型为linux资产；3、用户具有资产权限，且资产添加了指定执行账号
+        # @type DeviceIdSet: Array
+        # @param Period: 执行间隔，单位天. 手工执行时无需传入
+        # @type Period: Integer
+        # @param FirstTime: 首次执行日期 默认1970-01-01T08:00:01+08:00,手工执行时无需传入
+        # @type FirstTime: String
+        # @param Encoding: Script参数是否需要进行base64编码后传递，1-需要进行base64编码后传递，非1值-不需要进行base64编码后传递
+        # @type Encoding: Integer
+
+        attr_accessor :Name, :Type, :Account, :Timeout, :Script, :DeviceIdSet, :Period, :FirstTime, :Encoding
+
+        def initialize(name=nil, type=nil, account=nil, timeout=nil, script=nil, deviceidset=nil, period=nil, firsttime=nil, encoding=nil)
+          @Name = name
+          @Type = type
+          @Account = account
+          @Timeout = timeout
+          @Script = script
+          @DeviceIdSet = deviceidset
+          @Period = period
+          @FirstTime = firsttime
+          @Encoding = encoding
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Type = params['Type']
+          @Account = params['Account']
+          @Timeout = params['Timeout']
+          @Script = params['Script']
+          @DeviceIdSet = params['DeviceIdSet']
+          @Period = params['Period']
+          @FirstTime = params['FirstTime']
+          @Encoding = params['Encoding']
+        end
+      end
+
+      # CreateOperationTask返回参数结构体
+      class CreateOperationTaskResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 运维任务ID
+        # @type TaskId: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateResource请求参数结构体
       class CreateResourceRequest < TencentCloud::Common::AbstractModel
         # @param DeployRegion: 部署region
@@ -1674,6 +1742,38 @@ module TencentCloud
 
       # DeleteDevices返回参数结构体
       class DeleteDevicesResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteOperationTasks请求参数结构体
+      class DeleteOperationTasksRequest < TencentCloud::Common::AbstractModel
+        # @param IdSet: 运维任务ID集合
+        # @type IdSet: Array
+
+        attr_accessor :IdSet
+
+        def initialize(idset=nil)
+          @IdSet = idset
+        end
+
+        def deserialize(params)
+          @IdSet = params['IdSet']
+        end
+      end
+
+      # DeleteOperationTasks返回参数结构体
+      class DeleteOperationTasksResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -2786,6 +2886,65 @@ module TencentCloud
         end
       end
 
+      # DescribeOperationTask请求参数结构体
+      class DescribeOperationTaskRequest < TencentCloud::Common::AbstractModel
+        # @param Name: 运维任务名称
+        # @type Name: String
+        # @param Type: 运维任务类型，1 - 手工执行任务， 2 - 周期性任务
+        # @type Type: Integer
+        # @param Offset: 分页偏移位置，默认值为0
+        # @type Offset: Integer
+        # @param Limit: 每页条目数，默认20
+        # @type Limit: Integer
+
+        attr_accessor :Name, :Type, :Offset, :Limit
+
+        def initialize(name=nil, type=nil, offset=nil, limit=nil)
+          @Name = name
+          @Type = type
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Type = params['Type']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeOperationTask返回参数结构体
+      class DescribeOperationTaskResponse < TencentCloud::Common::AbstractModel
+        # @param OperationTasks: 运维任务列表
+        # @type OperationTasks: Array
+        # @param TotalCount: 任务总数
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :OperationTasks, :TotalCount, :RequestId
+
+        def initialize(operationtasks=nil, totalcount=nil, requestid=nil)
+          @OperationTasks = operationtasks
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['OperationTasks'].nil?
+            @OperationTasks = []
+            params['OperationTasks'].each do |i|
+              operationtask_tmp = OperationTask.new
+              operationtask_tmp.deserialize(i)
+              @OperationTasks << operationtask_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeResources请求参数结构体
       class DescribeResourcesRequest < TencentCloud::Common::AbstractModel
         # @param ApCode: 地域码, 如: ap-guangzhou
@@ -3870,6 +4029,74 @@ module TencentCloud
         end
       end
 
+      # ModifyOperationTask请求参数结构体
+      class ModifyOperationTaskRequest < TencentCloud::Common::AbstractModel
+        # @param Id: 任务Id
+        # @type Id: Integer
+        # @param Name: 任务名称
+        # @type Name: String
+        # @param Type: 任务类型, 1 - 手工执行, 2 - 周期性自动执行
+        # @type Type: Integer
+        # @param Account: 执行账号
+        # @type Account: String
+        # @param Timeout: 超时时间,单位秒
+        # @type Timeout: Integer
+        # @param Script: 执行脚本内容
+        # @type Script: String
+        # @param DeviceIdSet: 执行主机集合，满足条件以下三个条件：1. 资产绑定可用的专业版或国密版堡垒机服务；2、资产类型为linux资产；3、用户具有资产权限，且资产添加了指定执行账号
+        # @type DeviceIdSet: Array
+        # @param Period: 执行间隔，单位天. 手工执行时无需传入
+        # @type Period: Integer
+        # @param FirstTime: 首次执行日期，默认1970-01-01T08:00:01+08:00,手工执行时无需传入
+        # @type FirstTime: String
+        # @param Encoding: Script参数是否需要进行base64编码后传递，1-需要进行base64编码后传递，非1值-不需要进行base64编码后传递
+        # @type Encoding: Integer
+
+        attr_accessor :Id, :Name, :Type, :Account, :Timeout, :Script, :DeviceIdSet, :Period, :FirstTime, :Encoding
+
+        def initialize(id=nil, name=nil, type=nil, account=nil, timeout=nil, script=nil, deviceidset=nil, period=nil, firsttime=nil, encoding=nil)
+          @Id = id
+          @Name = name
+          @Type = type
+          @Account = account
+          @Timeout = timeout
+          @Script = script
+          @DeviceIdSet = deviceidset
+          @Period = period
+          @FirstTime = firsttime
+          @Encoding = encoding
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Name = params['Name']
+          @Type = params['Type']
+          @Account = params['Account']
+          @Timeout = params['Timeout']
+          @Script = params['Script']
+          @DeviceIdSet = params['DeviceIdSet']
+          @Period = params['Period']
+          @FirstTime = params['FirstTime']
+          @Encoding = params['Encoding']
+        end
+      end
+
+      # ModifyOperationTask返回参数结构体
+      class ModifyOperationTaskResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyResource请求参数结构体
       class ModifyResourceRequest < TencentCloud::Common::AbstractModel
         # @param ResourceId: 需要开通服务的资源ID
@@ -4081,6 +4308,54 @@ module TencentCloud
           @Operation = params['Operation']
           @Result = params['Result']
           @SignValue = params['SignValue']
+        end
+      end
+
+      # 运维任务信息
+      class OperationTask < TencentCloud::Common::AbstractModel
+        # @param Id: 运维任务主键ID
+        # @type Id: Integer
+        # @param OperationId: 运维任务ID
+        # @type OperationId: String
+        # @param Name: 运维任务名称
+        # @type Name: String
+        # @param UserName: 创建用户
+        # @type UserName: String
+        # @param RealName: 运维人员姓名
+        # @type RealName: String
+        # @param Type: 任务类型，1 - 手工执行任务， 2 - 周期性任务
+        # @type Type: Integer
+        # @param Period: 周期性任务执行间隔，单位天
+        # @type Period: Integer
+        # @param NextTime: 执行账户
+        # @type NextTime: String
+        # @param FirstTime: 下一次执行时间
+        # @type FirstTime: String
+
+        attr_accessor :Id, :OperationId, :Name, :UserName, :RealName, :Type, :Period, :NextTime, :FirstTime
+
+        def initialize(id=nil, operationid=nil, name=nil, username=nil, realname=nil, type=nil, period=nil, nexttime=nil, firsttime=nil)
+          @Id = id
+          @OperationId = operationid
+          @Name = name
+          @UserName = username
+          @RealName = realname
+          @Type = type
+          @Period = period
+          @NextTime = nexttime
+          @FirstTime = firsttime
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @OperationId = params['OperationId']
+          @Name = params['Name']
+          @UserName = params['UserName']
+          @RealName = params['RealName']
+          @Type = params['Type']
+          @Period = params['Period']
+          @NextTime = params['NextTime']
+          @FirstTime = params['FirstTime']
         end
       end
 
@@ -4412,6 +4687,38 @@ module TencentCloud
 
       # RunChangePwdTask返回参数结构体
       class RunChangePwdTaskResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # RunOperationTask请求参数结构体
+      class RunOperationTaskRequest < TencentCloud::Common::AbstractModel
+        # @param Id: 运维任务ID
+        # @type Id: Integer
+
+        attr_accessor :Id
+
+        def initialize(id=nil)
+          @Id = id
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+        end
+      end
+
+      # RunOperationTask返回参数结构体
+      class RunOperationTaskResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
