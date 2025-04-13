@@ -116,6 +116,102 @@ module TencentCloud
         end
       end
 
+      # AI时延明细
+      class AILatencyDetail < TencentCloud::Common::AbstractModel
+        # @param RoundId: 对话ID
+        # @type RoundId: String
+        # @param ASRLatency: asr时延（毫秒）
+        # @type ASRLatency: Integer
+        # @param TTSLatency: tts时延（毫秒）
+        # @type TTSLatency: Integer
+        # @param LLMLatency: llm时延（毫秒）
+        # @type LLMLatency: Integer
+        # @param ETELatency: 端到端时延（毫秒）
+        # @type ETELatency: Integer
+
+        attr_accessor :RoundId, :ASRLatency, :TTSLatency, :LLMLatency, :ETELatency
+
+        def initialize(roundid=nil, asrlatency=nil, ttslatency=nil, llmlatency=nil, etelatency=nil)
+          @RoundId = roundid
+          @ASRLatency = asrlatency
+          @TTSLatency = ttslatency
+          @LLMLatency = llmlatency
+          @ETELatency = etelatency
+        end
+
+        def deserialize(params)
+          @RoundId = params['RoundId']
+          @ASRLatency = params['ASRLatency']
+          @TTSLatency = params['TTSLatency']
+          @LLMLatency = params['LLMLatency']
+          @ETELatency = params['ETELatency']
+        end
+      end
+
+      # AI时延统计
+      class AILatencyStatistics < TencentCloud::Common::AbstractModel
+        # @param ASRLatency: asr时延统计
+        # @type ASRLatency: :class:`Tencentcloud::Ccc.v20200210.models.AILatencyStatisticsInfo`
+        # @param TTSLatency: tts时延统计
+        # @type TTSLatency: :class:`Tencentcloud::Ccc.v20200210.models.AILatencyStatisticsInfo`
+        # @param LLMLatency: llm时延统计
+        # @type LLMLatency: :class:`Tencentcloud::Ccc.v20200210.models.AILatencyStatisticsInfo`
+        # @param ETELatency: 端到端时延统计
+        # @type ETELatency: :class:`Tencentcloud::Ccc.v20200210.models.AILatencyStatisticsInfo`
+
+        attr_accessor :ASRLatency, :TTSLatency, :LLMLatency, :ETELatency
+
+        def initialize(asrlatency=nil, ttslatency=nil, llmlatency=nil, etelatency=nil)
+          @ASRLatency = asrlatency
+          @TTSLatency = ttslatency
+          @LLMLatency = llmlatency
+          @ETELatency = etelatency
+        end
+
+        def deserialize(params)
+          unless params['ASRLatency'].nil?
+            @ASRLatency = AILatencyStatisticsInfo.new
+            @ASRLatency.deserialize(params['ASRLatency'])
+          end
+          unless params['TTSLatency'].nil?
+            @TTSLatency = AILatencyStatisticsInfo.new
+            @TTSLatency.deserialize(params['TTSLatency'])
+          end
+          unless params['LLMLatency'].nil?
+            @LLMLatency = AILatencyStatisticsInfo.new
+            @LLMLatency.deserialize(params['LLMLatency'])
+          end
+          unless params['ETELatency'].nil?
+            @ETELatency = AILatencyStatisticsInfo.new
+            @ETELatency.deserialize(params['ETELatency'])
+          end
+        end
+      end
+
+      # AI时延统计
+      class AILatencyStatisticsInfo < TencentCloud::Common::AbstractModel
+        # @param MinLatency: 最小值
+        # @type MinLatency: Integer
+        # @param MiddleLatency: 中位数
+        # @type MiddleLatency: Integer
+        # @param P90Latency: p90
+        # @type P90Latency: Integer
+
+        attr_accessor :MinLatency, :MiddleLatency, :P90Latency
+
+        def initialize(minlatency=nil, middlelatency=nil, p90latency=nil)
+          @MinLatency = minlatency
+          @MiddleLatency = middlelatency
+          @P90Latency = p90latency
+        end
+
+        def deserialize(params)
+          @MinLatency = params['MinLatency']
+          @MiddleLatency = params['MiddleLatency']
+          @P90Latency = params['P90Latency']
+        end
+      end
+
       # AI转人工配置项
       class AITransferItem < TencentCloud::Common::AbstractModel
         # @param TransferFunctionName: 转人工的function calling 名称
@@ -255,8 +351,8 @@ module TencentCloud
 
         attr_accessor :User, :Message, :Timestamp, :Start, :End
         extend Gem::Deprecate
-        deprecate :Timestamp, :none, 2025, 3
-        deprecate :Timestamp=, :none, 2025, 3
+        deprecate :Timestamp, :none, 2025, 4
+        deprecate :Timestamp=, :none, 2025, 4
 
         def initialize(user=nil, message=nil, timestamp=nil, start=nil, _end=nil)
           @User = user
@@ -430,8 +526,8 @@ module TencentCloud
 
         attr_accessor :SdkAppId, :StaffEmail, :SkillGroupList, :StaffSkillGroupList
         extend Gem::Deprecate
-        deprecate :SkillGroupList, :none, 2025, 3
-        deprecate :SkillGroupList=, :none, 2025, 3
+        deprecate :SkillGroupList, :none, 2025, 4
+        deprecate :SkillGroupList=, :none, 2025, 4
 
         def initialize(sdkappid=nil, staffemail=nil, skillgrouplist=nil, staffskillgrouplist=nil)
           @SdkAppId = sdkappid
@@ -1530,8 +1626,8 @@ module TencentCloud
 
         attr_accessor :SdkAppId, :UserId, :Callee, :Caller, :Callers, :IsForceUseMobile, :Uui, :UUI
         extend Gem::Deprecate
-        deprecate :Uui, :none, 2025, 3
-        deprecate :Uui=, :none, 2025, 3
+        deprecate :Uui, :none, 2025, 4
+        deprecate :Uui=, :none, 2025, 4
 
         def initialize(sdkappid=nil, userid=nil, callee=nil, caller=nil, callers=nil, isforceusemobile=nil, uui=nil)
           @SdkAppId = sdkappid
@@ -2277,6 +2373,70 @@ module TencentCloud
         end
       end
 
+      # DescribeAILatency请求参数结构体
+      class DescribeAILatencyRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
+        # @type SdkAppId: Integer
+        # @param SessionId: 会话 ID
+        # @type SessionId: String
+        # @param StartTime: 查找起始时间
+        # @type StartTime: Integer
+        # @param EndTime: 1737350008
+        # @type EndTime: Integer
+
+        attr_accessor :SdkAppId, :SessionId, :StartTime, :EndTime
+
+        def initialize(sdkappid=nil, sessionid=nil, starttime=nil, endtime=nil)
+          @SdkAppId = sdkappid
+          @SessionId = sessionid
+          @StartTime = starttime
+          @EndTime = endtime
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @SessionId = params['SessionId']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+        end
+      end
+
+      # DescribeAILatency返回参数结构体
+      class DescribeAILatencyResponse < TencentCloud::Common::AbstractModel
+        # @param AILatencyDetail: 时延明细数据
+        #  -1表示无对应数据
+        # @type AILatencyDetail: Array
+        # @param AILatencyStatistics: 时延统计数据
+        #  -1表示无对应数据
+        # @type AILatencyStatistics: :class:`Tencentcloud::Ccc.v20200210.models.AILatencyStatistics`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :AILatencyDetail, :AILatencyStatistics, :RequestId
+
+        def initialize(ailatencydetail=nil, ailatencystatistics=nil, requestid=nil)
+          @AILatencyDetail = ailatencydetail
+          @AILatencyStatistics = ailatencystatistics
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['AILatencyDetail'].nil?
+            @AILatencyDetail = []
+            params['AILatencyDetail'].each do |i|
+              ailatencydetail_tmp = AILatencyDetail.new
+              ailatencydetail_tmp.deserialize(i)
+              @AILatencyDetail << ailatencydetail_tmp
+            end
+          end
+          unless params['AILatencyStatistics'].nil?
+            @AILatencyStatistics = AILatencyStatistics.new
+            @AILatencyStatistics.deserialize(params['AILatencyStatistics'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeActiveCarrierPrivilegeNumber请求参数结构体
       class DescribeActiveCarrierPrivilegeNumberRequest < TencentCloud::Common::AbstractModel
         # @param SdkAppId: 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
@@ -2774,10 +2934,10 @@ module TencentCloud
 
         attr_accessor :SdkAppId, :InstanceId, :CdrId, :Limit, :Offset, :Order, :SessionId
         extend Gem::Deprecate
-        deprecate :InstanceId, :none, 2025, 3
-        deprecate :InstanceId=, :none, 2025, 3
-        deprecate :CdrId, :none, 2025, 3
-        deprecate :CdrId=, :none, 2025, 3
+        deprecate :InstanceId, :none, 2025, 4
+        deprecate :InstanceId=, :none, 2025, 4
+        deprecate :CdrId, :none, 2025, 4
+        deprecate :CdrId=, :none, 2025, 4
 
         def initialize(sdkappid=nil, instanceid=nil, cdrid=nil, limit=nil, offset=nil, order=nil, sessionid=nil)
           @SdkAppId = sdkappid
@@ -3103,8 +3263,8 @@ module TencentCloud
 
         attr_accessor :StartTimestamp, :EndTimestamp, :InstanceId, :SdkAppId, :Limit, :Offset, :Type
         extend Gem::Deprecate
-        deprecate :InstanceId, :none, 2025, 3
-        deprecate :InstanceId=, :none, 2025, 3
+        deprecate :InstanceId, :none, 2025, 4
+        deprecate :InstanceId=, :none, 2025, 4
 
         def initialize(starttimestamp=nil, endtimestamp=nil, instanceid=nil, sdkappid=nil, limit=nil, offset=nil, type=nil)
           @StartTimestamp = starttimestamp
@@ -3141,8 +3301,8 @@ module TencentCloud
 
         attr_accessor :TotalCount, :IMCdrs, :IMCdrList, :RequestId
         extend Gem::Deprecate
-        deprecate :IMCdrs, :none, 2025, 3
-        deprecate :IMCdrs=, :none, 2025, 3
+        deprecate :IMCdrs, :none, 2025, 4
+        deprecate :IMCdrs=, :none, 2025, 4
 
         def initialize(totalcount=nil, imcdrs=nil, imcdrlist=nil, requestid=nil)
           @TotalCount = totalcount
@@ -3634,8 +3794,8 @@ module TencentCloud
 
         attr_accessor :TotalCount, :TelCdrs, :TelCdrList, :RequestId
         extend Gem::Deprecate
-        deprecate :TelCdrs, :none, 2025, 3
-        deprecate :TelCdrs=, :none, 2025, 3
+        deprecate :TelCdrs, :none, 2025, 4
+        deprecate :TelCdrs=, :none, 2025, 4
 
         def initialize(totalcount=nil, telcdrs=nil, telcdrlist=nil, requestid=nil)
           @TotalCount = totalcount
@@ -3900,8 +4060,8 @@ module TencentCloud
 
         attr_accessor :TelCallOutCount, :TelCallInCount, :SeatUsedCount, :VoipCallInCount, :VOIPCallInCount, :AsrOfflineCount, :AsrRealtimeCount, :RequestId
         extend Gem::Deprecate
-        deprecate :VoipCallInCount, :none, 2025, 3
-        deprecate :VoipCallInCount=, :none, 2025, 3
+        deprecate :VoipCallInCount, :none, 2025, 4
+        deprecate :VoipCallInCount=, :none, 2025, 4
 
         def initialize(telcalloutcount=nil, telcallincount=nil, seatusedcount=nil, voipcallincount=nil, asrofflinecount=nil, asrrealtimecount=nil, requestid=nil)
           @TelCallOutCount = telcalloutcount
@@ -3949,8 +4109,8 @@ module TencentCloud
 
         attr_accessor :StartTimeStamp, :EndTimeStamp, :InstanceId, :Limit, :Offset, :SdkAppId, :PageSize, :PageNumber, :Phones, :SessionIds
         extend Gem::Deprecate
-        deprecate :InstanceId, :none, 2025, 3
-        deprecate :InstanceId=, :none, 2025, 3
+        deprecate :InstanceId, :none, 2025, 4
+        deprecate :InstanceId=, :none, 2025, 4
 
         def initialize(starttimestamp=nil, endtimestamp=nil, instanceid=nil, limit=nil, offset=nil, sdkappid=nil, pagesize=nil, pagenumber=nil, phones=nil, sessionids=nil)
           @StartTimeStamp = starttimestamp
@@ -3992,8 +4152,8 @@ module TencentCloud
 
         attr_accessor :TotalCount, :TelCdrs, :TelCdrList, :RequestId
         extend Gem::Deprecate
-        deprecate :TelCdrs, :none, 2025, 3
-        deprecate :TelCdrs=, :none, 2025, 3
+        deprecate :TelCdrs, :none, 2025, 4
+        deprecate :TelCdrs=, :none, 2025, 4
 
         def initialize(totalcount=nil, telcdrs=nil, telcdrlist=nil, requestid=nil)
           @TotalCount = totalcount
@@ -4251,6 +4411,42 @@ module TencentCloud
         def deserialize(params)
           @Name = params['Name']
           @Values = params['Values']
+        end
+      end
+
+      # ForceMemberOffline请求参数结构体
+      class ForceMemberOfflineRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
+        # @type SdkAppId: Integer
+        # @param UserId: 客服ID
+        # @type UserId: String
+
+        attr_accessor :SdkAppId, :UserId
+
+        def initialize(sdkappid=nil, userid=nil)
+          @SdkAppId = sdkappid
+          @UserId = userid
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @UserId = params['UserId']
+        end
+      end
+
+      # ForceMemberOffline返回参数结构体
+      class ForceMemberOfflineResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 
@@ -5060,6 +5256,42 @@ module TencentCloud
         end
       end
 
+      # RestoreMemberOnline请求参数结构体
+      class RestoreMemberOnlineRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
+        # @type SdkAppId: Integer
+        # @param UserId: 客服ID
+        # @type UserId: String
+
+        attr_accessor :SdkAppId, :UserId
+
+        def initialize(sdkappid=nil, userid=nil)
+          @SdkAppId = sdkappid
+          @UserId = userid
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @UserId = params['UserId']
+        end
+      end
+
+      # RestoreMemberOnline返回参数结构体
+      class RestoreMemberOnlineResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ResumePredictiveDialingCampaign请求参数结构体
       class ResumePredictiveDialingCampaignRequest < TencentCloud::Common::AbstractModel
         # @param SdkAppId: 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
@@ -5411,8 +5643,8 @@ module TencentCloud
 
         attr_accessor :Name, :Mail, :Phone, :Nick, :StaffNumber, :RoleId, :RoleIdList, :SkillGroupList, :LastModifyTimestamp, :ExtensionNumber
         extend Gem::Deprecate
-        deprecate :RoleId, :none, 2025, 3
-        deprecate :RoleId=, :none, 2025, 3
+        deprecate :RoleId, :none, 2025, 4
+        deprecate :RoleId=, :none, 2025, 4
 
         def initialize(name=nil, mail=nil, phone=nil, nick=nil, staffnumber=nil, roleid=nil, roleidlist=nil, skillgrouplist=nil, lastmodifytimestamp=nil, extensionnumber=nil)
           @Name = name
@@ -5796,8 +6028,8 @@ module TencentCloud
 
         attr_accessor :Caller, :Callee, :Time, :Direction, :Duration, :RecordURL, :RecordId, :SeatUser, :EndStatus, :SkillGroup, :CallerLocation, :IVRDuration, :RingTimestamp, :AcceptTimestamp, :EndedTimestamp, :IVRKeyPressed, :HungUpSide, :ServeParticipants, :SkillGroupId, :EndStatusString, :StartTimestamp, :QueuedTimestamp, :PostIVRKeyPressed, :QueuedSkillGroupId, :SessionId, :ProtectedCaller, :ProtectedCallee, :Uui, :UUI, :IVRKeyPressedEx, :AsrUrl, :AsrStatus, :CustomRecordURL, :Remark, :QueuedSkillGroupName, :VoicemailRecordURL, :VoicemailAsrURL
         extend Gem::Deprecate
-        deprecate :Uui, :none, 2025, 3
-        deprecate :Uui=, :none, 2025, 3
+        deprecate :Uui, :none, 2025, 4
+        deprecate :Uui=, :none, 2025, 4
 
         def initialize(caller=nil, callee=nil, time=nil, direction=nil, duration=nil, recordurl=nil, recordid=nil, seatuser=nil, endstatus=nil, skillgroup=nil, callerlocation=nil, ivrduration=nil, ringtimestamp=nil, accepttimestamp=nil, endedtimestamp=nil, ivrkeypressed=nil, hungupside=nil, serveparticipants=nil, skillgroupid=nil, endstatusstring=nil, starttimestamp=nil, queuedtimestamp=nil, postivrkeypressed=nil, queuedskillgroupid=nil, sessionid=nil, protectedcaller=nil, protectedcallee=nil, uui=nil, ivrkeypressedex=nil, asrurl=nil, asrstatus=nil, customrecordurl=nil, remark=nil, queuedskillgroupname=nil, voicemailrecordurl=nil, voicemailasrurl=nil)
           @Caller = caller

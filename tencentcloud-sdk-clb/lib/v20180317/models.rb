@@ -8540,17 +8540,22 @@ module TencentCloud
         # @type Region: String
         # @param VpcId: Target所属网络，私有网络格式如 vpc-abcd1234，如果是基础网络，则为"0"
         # @type VpcId: String
+        # @param NumericalVpcId: Target所属网络，私有网络格式如86323，如果是基础网络，则为0
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NumericalVpcId: Integer
 
-        attr_accessor :Region, :VpcId
+        attr_accessor :Region, :VpcId, :NumericalVpcId
 
-        def initialize(region=nil, vpcid=nil)
+        def initialize(region=nil, vpcid=nil, numericalvpcid=nil)
           @Region = region
           @VpcId = vpcid
+          @NumericalVpcId = numericalvpcid
         end
 
         def deserialize(params)
           @Region = params['Region']
           @VpcId = params['VpcId']
+          @NumericalVpcId = params['NumericalVpcId']
         end
       end
 

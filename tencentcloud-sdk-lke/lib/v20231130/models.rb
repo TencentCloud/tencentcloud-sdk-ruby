@@ -3432,6 +3432,26 @@ module TencentCloud
         end
       end
 
+      # 文档列表筛选标识位
+      class DocFilterFlag < TencentCloud::Common::AbstractModel
+        # @param Flag: 标识位
+        # @type Flag: String
+        # @param Value: 标识值
+        # @type Value: Boolean
+
+        attr_accessor :Flag, :Value
+
+        def initialize(flag=nil, value=nil)
+          @Flag = flag
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Flag = params['Flag']
+          @Value = params['Value']
+        end
+      end
+
       # 文档片段
       class DocSegment < TencentCloud::Common::AbstractModel
         # @param Id: 片段ID
@@ -4100,18 +4120,21 @@ module TencentCloud
         # @type Bucket: String
         # @param NewName: 存在文档重命名情况下的新名称, 评测端优先使用这个名称
         # @type NewName: String
+        # @param ParseResultCosUrl: 文件md结果cos临时地址
+        # @type ParseResultCosUrl: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :FileName, :FileType, :CosUrl, :Url, :Bucket, :NewName, :RequestId
+        attr_accessor :FileName, :FileType, :CosUrl, :Url, :Bucket, :NewName, :ParseResultCosUrl, :RequestId
 
-        def initialize(filename=nil, filetype=nil, cosurl=nil, url=nil, bucket=nil, newname=nil, requestid=nil)
+        def initialize(filename=nil, filetype=nil, cosurl=nil, url=nil, bucket=nil, newname=nil, parseresultcosurl=nil, requestid=nil)
           @FileName = filename
           @FileType = filetype
           @CosUrl = cosurl
           @Url = url
           @Bucket = bucket
           @NewName = newname
+          @ParseResultCosUrl = parseresultcosurl
           @RequestId = requestid
         end
 
@@ -4122,6 +4145,7 @@ module TencentCloud
           @Url = params['Url']
           @Bucket = params['Bucket']
           @NewName = params['NewName']
+          @ParseResultCosUrl = params['ParseResultCosUrl']
           @RequestId = params['RequestId']
         end
       end
@@ -4787,6 +4811,26 @@ module TencentCloud
         end
       end
 
+      # 意图达成方式
+      class IntentAchievement < TencentCloud::Common::AbstractModel
+        # @param Name: 意图达成方式，qa:问答回复、doc：文档回复、workflow：工作流回复，llm：大模型回复
+        # @type Name: String
+        # @param Desc: 意图达成方式描述
+        # @type Desc: String
+
+        attr_accessor :Name, :Desc
+
+        def initialize(name=nil, desc=nil)
+          @Name = name
+          @Desc = desc
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Desc = params['Desc']
+        end
+      end
+
       # 请求的API信息
       class InvokeAPI < TencentCloud::Common::AbstractModel
         # @param Method: 请求方法，如GET/POST等
@@ -4964,7 +5008,19 @@ module TencentCloud
         # @param Greeting: 欢迎语，200字符以内
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Greeting: String
-        # @param RoleDescription: 角色描述，300字符以内
+        # @param RoleDescription: 角色描述，4000字符以内。通过填写描述，设定应用的 #角色名称、 #风格特点 及可达成的#意图。建议按照下面的模板填写，且自定义意图建议不超过5个。
+
+        # #角色名称：
+        # #风格特点：
+        # #输出要求：
+        # #能力限制：
+
+        # 能够达成以下用户意图
+        # ##意图名称：
+        # ##意图描述：
+        # ##意图示例：
+        # ##意图实现：
+
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RoleDescription: String
         # @param Model: 生成模型配置
@@ -4997,10 +5053,16 @@ module TencentCloud
         # @param ThoughtModel: 思考模型配置
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ThoughtModel: :class:`Tencentcloud::Lke.v20231130.models.AppModel`
+        # @param IntentAchievements: 意图达成方式优先级
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IntentAchievements: Array
+        # @param ImageTextRetrieval: 是否开启图文检索
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ImageTextRetrieval: Boolean
 
-        attr_accessor :Greeting, :RoleDescription, :Model, :Search, :Output, :Workflow, :SearchRange, :Pattern, :SearchStrategy, :SingleWorkflow, :Plugins, :ThoughtModel
+        attr_accessor :Greeting, :RoleDescription, :Model, :Search, :Output, :Workflow, :SearchRange, :Pattern, :SearchStrategy, :SingleWorkflow, :Plugins, :ThoughtModel, :IntentAchievements, :ImageTextRetrieval
 
-        def initialize(greeting=nil, roledescription=nil, model=nil, search=nil, output=nil, workflow=nil, searchrange=nil, pattern=nil, searchstrategy=nil, singleworkflow=nil, plugins=nil, thoughtmodel=nil)
+        def initialize(greeting=nil, roledescription=nil, model=nil, search=nil, output=nil, workflow=nil, searchrange=nil, pattern=nil, searchstrategy=nil, singleworkflow=nil, plugins=nil, thoughtmodel=nil, intentachievements=nil, imagetextretrieval=nil)
           @Greeting = greeting
           @RoleDescription = roledescription
           @Model = model
@@ -5013,6 +5075,8 @@ module TencentCloud
           @SingleWorkflow = singleworkflow
           @Plugins = plugins
           @ThoughtModel = thoughtmodel
+          @IntentAchievements = intentachievements
+          @ImageTextRetrieval = imagetextretrieval
         end
 
         def deserialize(params)
@@ -5063,6 +5127,15 @@ module TencentCloud
             @ThoughtModel = AppModel.new
             @ThoughtModel.deserialize(params['ThoughtModel'])
           end
+          unless params['IntentAchievements'].nil?
+            @IntentAchievements = []
+            params['IntentAchievements'].each do |i|
+              intentachievement_tmp = IntentAchievement.new
+              intentachievement_tmp.deserialize(i)
+              @IntentAchievements << intentachievement_tmp
+            end
+          end
+          @ImageTextRetrieval = params['ImageTextRetrieval']
         end
       end
 
@@ -5804,10 +5877,14 @@ module TencentCloud
         # @type QueryType: String
         # @param CateBizId: 分类ID
         # @type CateBizId: String
+        # @param FileTypes: 文件类型分类筛选
+        # @type FileTypes: Array
+        # @param FilterFlag: 文档列表筛选标识位
+        # @type FilterFlag: Array
 
-        attr_accessor :BotBizId, :PageNumber, :PageSize, :Query, :Status, :QueryType, :CateBizId
+        attr_accessor :BotBizId, :PageNumber, :PageSize, :Query, :Status, :QueryType, :CateBizId, :FileTypes, :FilterFlag
 
-        def initialize(botbizid=nil, pagenumber=nil, pagesize=nil, query=nil, status=nil, querytype=nil, catebizid=nil)
+        def initialize(botbizid=nil, pagenumber=nil, pagesize=nil, query=nil, status=nil, querytype=nil, catebizid=nil, filetypes=nil, filterflag=nil)
           @BotBizId = botbizid
           @PageNumber = pagenumber
           @PageSize = pagesize
@@ -5815,6 +5892,8 @@ module TencentCloud
           @Status = status
           @QueryType = querytype
           @CateBizId = catebizid
+          @FileTypes = filetypes
+          @FilterFlag = filterflag
         end
 
         def deserialize(params)
@@ -5825,6 +5904,15 @@ module TencentCloud
           @Status = params['Status']
           @QueryType = params['QueryType']
           @CateBizId = params['CateBizId']
+          @FileTypes = params['FileTypes']
+          unless params['FilterFlag'].nil?
+            @FilterFlag = []
+            params['FilterFlag'].each do |i|
+              docfilterflag_tmp = DocFilterFlag.new
+              docfilterflag_tmp.deserialize(i)
+              @FilterFlag << docfilterflag_tmp
+            end
+          end
         end
       end
 
@@ -7796,16 +7884,19 @@ module TencentCloud
         # @type DefaultValue: String
         # @param SubParams: 子参数,ParamType 是OBJECT 或 ARRAY<>类型有用
         # @type SubParams: Array
+        # @param GlobalHidden: 插件参数配置是否隐藏不可见，true-隐藏不可见，false-可见
+        # @type GlobalHidden: Boolean
 
-        attr_accessor :Name, :Desc, :Type, :IsRequired, :DefaultValue, :SubParams
+        attr_accessor :Name, :Desc, :Type, :IsRequired, :DefaultValue, :SubParams, :GlobalHidden
 
-        def initialize(name=nil, desc=nil, type=nil, isrequired=nil, defaultvalue=nil, subparams=nil)
+        def initialize(name=nil, desc=nil, type=nil, isrequired=nil, defaultvalue=nil, subparams=nil, globalhidden=nil)
           @Name = name
           @Desc = desc
           @Type = type
           @IsRequired = isrequired
           @DefaultValue = defaultvalue
           @SubParams = subparams
+          @GlobalHidden = globalhidden
         end
 
         def deserialize(params)
@@ -7822,6 +7913,7 @@ module TencentCloud
               @SubParams << plugintoolreqparam_tmp
             end
           end
+          @GlobalHidden = params['GlobalHidden']
         end
       end
 

@@ -4592,7 +4592,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 获取登录审计列表
+        # 获取异常登录列表
 
         # @param request: Request instance for DescribeHostLoginList.
         # @type request: :class:`Tencentcloud::cwp::V20180228::DescribeHostLoginListRequest`

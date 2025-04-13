@@ -613,6 +613,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取 AI 时延信息
+
+        # @param request: Request instance for DescribeAILatency.
+        # @type request: :class:`Tencentcloud::ccc::V20200210::DescribeAILatencyRequest`
+        # @rtype: :class:`Tencentcloud::ccc::V20200210::DescribeAILatencyResponse`
+        def DescribeAILatency(request)
+          body = send_request('DescribeAILatency', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAILatencyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询生效运营商白名单规则
 
         # @param request: Request instance for DescribeActiveCarrierPrivilegeNumber.
@@ -1287,6 +1311,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 强制客服下线
+
+        # @param request: Request instance for ForceMemberOffline.
+        # @type request: :class:`Tencentcloud::ccc::V20200210::ForceMemberOfflineRequest`
+        # @rtype: :class:`Tencentcloud::ccc::V20200210::ForceMemberOfflineResponse`
+        def ForceMemberOffline(request)
+          body = send_request('ForceMemberOffline', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ForceMemberOfflineResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 挂断电话
 
         # @param request: Request instance for HangUpCall.
@@ -1465,6 +1513,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ResetExtensionPasswordResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 恢复客服上线
+
+        # @param request: Request instance for RestoreMemberOnline.
+        # @type request: :class:`Tencentcloud::ccc::V20200210::RestoreMemberOnlineRequest`
+        # @rtype: :class:`Tencentcloud::ccc::V20200210::RestoreMemberOnlineResponse`
+        def RestoreMemberOnline(request)
+          body = send_request('RestoreMemberOnline', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = RestoreMemberOnlineResponse.new
             model.deserialize(response['Response'])
             model
           else

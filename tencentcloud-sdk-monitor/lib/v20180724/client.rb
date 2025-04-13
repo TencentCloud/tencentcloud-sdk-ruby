@@ -2734,6 +2734,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # Prometheus 内部动态 api 代理，仅内部使用
+
+        # @param request: Request instance for ExportPrometheusReadOnlyDynamicAPI.
+        # @type request: :class:`Tencentcloud::monitor::V20180724::ExportPrometheusReadOnlyDynamicAPIRequest`
+        # @rtype: :class:`Tencentcloud::monitor::V20180724::ExportPrometheusReadOnlyDynamicAPIResponse`
+        def ExportPrometheusReadOnlyDynamicAPI(request)
+          body = send_request('ExportPrometheusReadOnlyDynamicAPI', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ExportPrometheusReadOnlyDynamicAPIResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取云产品的监控数据。此接口不适用于拉取容器服务监控数据，如需拉取容器服务监控数据，请使用[根据维度条件查询监控数据](https://cloud.tencent.com/document/product/248/51845)接口。
         # 传入产品的命名空间、对象维度描述和监控指标即可获得相应的监控数据。
         # 接口调用限制：单请求最多可支持批量拉取10个实例的监控数据，单请求的数据点数限制为1440个。

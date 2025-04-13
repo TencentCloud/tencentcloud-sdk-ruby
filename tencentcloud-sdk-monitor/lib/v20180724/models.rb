@@ -9638,6 +9638,33 @@ module TencentCloud
         end
       end
 
+      # ExportPrometheusReadOnlyDynamicAPI请求参数结构体
+      class ExportPrometheusReadOnlyDynamicAPIRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # ExportPrometheusReadOnlyDynamicAPI返回参数结构体
+      class ExportPrometheusReadOnlyDynamicAPIResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 查询过滤参数
       class Filter < TencentCloud::Common::AbstractModel
         # @param Type: 过滤方式（=, !=, in）
@@ -14007,10 +14034,10 @@ module TencentCloud
 
         attr_accessor :URL, :URLRelabelConfig, :BasicAuth, :MaxBlockSize, :Label, :Headers
         extend Gem::Deprecate
-        deprecate :MaxBlockSize, :none, 2025, 3
-        deprecate :MaxBlockSize=, :none, 2025, 3
-        deprecate :Label, :none, 2025, 3
-        deprecate :Label=, :none, 2025, 3
+        deprecate :MaxBlockSize, :none, 2025, 4
+        deprecate :MaxBlockSize=, :none, 2025, 4
+        deprecate :Label, :none, 2025, 4
+        deprecate :Label=, :none, 2025, 4
 
         def initialize(url=nil, urlrelabelconfig=nil, basicauth=nil, maxblocksize=nil, label=nil, headers=nil)
           @URL = url

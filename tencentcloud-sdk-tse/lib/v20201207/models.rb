@@ -426,7 +426,6 @@ module TencentCloud
         # @param MatchMode: 泳道匹配规则：严格STRICT｜宽松PERMISSIVE
         # @type MatchMode: String
         # @param LaneTag: 泳道标签
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LaneTag: String
 
         attr_accessor :Priority, :Enabled, :ConditionList, :BalancedServiceList, :ServiceId, :ServiceName, :RuleType, :MatchType, :GroupId, :GroupName, :LaneId, :LaneName, :MatchMode, :LaneTag
