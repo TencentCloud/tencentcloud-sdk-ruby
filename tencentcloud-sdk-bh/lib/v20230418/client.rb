@@ -173,6 +173,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 添加访问白名单规则
+
+        # @param request: Request instance for CreateAccessWhiteListRule.
+        # @type request: :class:`Tencentcloud::bh::V20230418::CreateAccessWhiteListRuleRequest`
+        # @rtype: :class:`Tencentcloud::bh::V20230418::CreateAccessWhiteListRuleResponse`
+        def CreateAccessWhiteListRule(request)
+          body = send_request('CreateAccessWhiteListRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateAccessWhiteListRuleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 新建访问权限
 
         # @param request: Request instance for CreateAcl.
@@ -399,6 +423,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CreateUserGroupResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除访问白名单规则
+
+        # @param request: Request instance for DeleteAccessWhiteListRules.
+        # @type request: :class:`Tencentcloud::bh::V20230418::DeleteAccessWhiteListRulesRequest`
+        # @rtype: :class:`Tencentcloud::bh::V20230418::DeleteAccessWhiteListRulesResponse`
+        def DeleteAccessWhiteListRules(request)
+          body = send_request('DeleteAccessWhiteListRules', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteAccessWhiteListRulesResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -687,6 +735,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeployResourceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询访问白名单规则列表
+
+        # @param request: Request instance for DescribeAccessWhiteListRules.
+        # @type request: :class:`Tencentcloud::bh::V20230418::DescribeAccessWhiteListRulesRequest`
+        # @rtype: :class:`Tencentcloud::bh::V20230418::DescribeAccessWhiteListRulesResponse`
+        def DescribeAccessWhiteListRules(request)
+          body = send_request('DescribeAccessWhiteListRules', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAccessWhiteListRulesResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1647,6 +1719,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = SearchSessionCommandResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 搜索运维任务执行结果
+
+        # @param request: Request instance for SearchTaskResult.
+        # @type request: :class:`Tencentcloud::bh::V20230418::SearchTaskResultRequest`
+        # @rtype: :class:`Tencentcloud::bh::V20230418::SearchTaskResultResponse`
+        def SearchTaskResult(request)
+          body = send_request('SearchTaskResult', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = SearchTaskResultResponse.new
             model.deserialize(response['Response'])
             model
           else

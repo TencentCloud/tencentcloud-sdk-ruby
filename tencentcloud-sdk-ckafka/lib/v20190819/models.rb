@@ -2956,6 +2956,32 @@ module TencentCloud
         end
       end
 
+      # CVM和IP信息
+      class CvmAndIpInfo < TencentCloud::Common::AbstractModel
+        # @param CkafkaInstanceId: ckafka集群实例Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CkafkaInstanceId: String
+        # @param InstanceId: CVM实例ID
+        # @type InstanceId: String
+        # @param Ip: IP地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Ip: String
+
+        attr_accessor :CkafkaInstanceId, :InstanceId, :Ip
+
+        def initialize(ckafkainstanceid=nil, instanceid=nil, ip=nil)
+          @CkafkaInstanceId = ckafkainstanceid
+          @InstanceId = instanceid
+          @Ip = ip
+        end
+
+        def deserialize(params)
+          @CkafkaInstanceId = params['CkafkaInstanceId']
+          @InstanceId = params['InstanceId']
+          @Ip = params['Ip']
+        end
+      end
+
       # Datahub资源配置
       class DatahubResource < TencentCloud::Common::AbstractModel
         # @param Type: 资源类型
@@ -4546,6 +4572,45 @@ module TencentCloud
         end
       end
 
+      # DescribeCvmInfo请求参数结构体
+      class DescribeCvmInfoRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: ckafka集群实例Id
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DescribeCvmInfo返回参数结构体
+      class DescribeCvmInfoResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 返回结果
+        # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.ListCvmAndIpInfoRsp`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = ListCvmAndIpInfoRsp.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeDatahubGroupOffsets请求参数结构体
       class DescribeDatahubGroupOffsetsRequest < TencentCloud::Common::AbstractModel
         # @param Name: （过滤条件）按照实例 ID 过滤
@@ -5940,6 +6005,65 @@ module TencentCloud
         def deserialize(params)
           unless params['Result'].nil?
             @Result = TopicInSyncReplicaResult.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeTypeInstances请求参数结构体
+      class DescribeTypeInstancesRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: （过滤条件）按照实例ID过滤
+        # @type InstanceId: String
+        # @param SearchWord: （过滤条件）按照实例名称过滤，支持模糊查询
+        # @type SearchWord: String
+        # @param Status: （过滤条件）实例的状态。0：创建中，1：运行中，2：删除中，不填默认返回全部
+        # @type Status: Array
+        # @param Offset: 偏移量，不填默认为0
+        # @type Offset: Integer
+        # @param Limit: 返回数量，不填则默认10，最大值100
+        # @type Limit: Integer
+        # @param TagKey: 匹配标签key值。
+        # @type TagKey: String
+
+        attr_accessor :InstanceId, :SearchWord, :Status, :Offset, :Limit, :TagKey
+
+        def initialize(instanceid=nil, searchword=nil, status=nil, offset=nil, limit=nil, tagkey=nil)
+          @InstanceId = instanceid
+          @SearchWord = searchword
+          @Status = status
+          @Offset = offset
+          @Limit = limit
+          @TagKey = tagkey
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @SearchWord = params['SearchWord']
+          @Status = params['Status']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @TagKey = params['TagKey']
+        end
+      end
+
+      # DescribeTypeInstances返回参数结构体
+      class DescribeTypeInstancesResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 返回的结果
+        # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.InstanceResponse`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = InstanceResponse.new
             @Result.deserialize(params['Result'])
           end
           @RequestId = params['RequestId']
@@ -8354,6 +8478,35 @@ module TencentCloud
           @ConnectorSyncType = params['ConnectorSyncType']
           @KeepPartition = params['KeepPartition']
           @TopicRegularExpression = params['TopicRegularExpression']
+        end
+      end
+
+      # CVM和IP 信息列表
+      class ListCvmAndIpInfoRsp < TencentCloud::Common::AbstractModel
+        # @param CvmList: cvm和IP 列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CvmList: Array
+        # @param TotalCount: 实例数据量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+
+        attr_accessor :CvmList, :TotalCount
+
+        def initialize(cvmlist=nil, totalcount=nil)
+          @CvmList = cvmlist
+          @TotalCount = totalcount
+        end
+
+        def deserialize(params)
+          unless params['CvmList'].nil?
+            @CvmList = []
+            params['CvmList'].each do |i|
+              cvmandipinfo_tmp = CvmAndIpInfo.new
+              cvmandipinfo_tmp.deserialize(i)
+              @CvmList << cvmandipinfo_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
         end
       end
 

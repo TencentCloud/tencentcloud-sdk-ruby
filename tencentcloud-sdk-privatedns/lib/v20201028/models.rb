@@ -364,8 +364,8 @@ module TencentCloud
 
         attr_accessor :Domain, :TagSet, :VpcSet, :Remark, :DnsForwardStatus, :Vpcs, :AccountVpcSet, :CnameSpeedupStatus
         extend Gem::Deprecate
-        deprecate :Vpcs, :none, 2025, 3
-        deprecate :Vpcs=, :none, 2025, 3
+        deprecate :Vpcs, :none, 2025, 4
+        deprecate :Vpcs=, :none, 2025, 4
 
         def initialize(domain=nil, tagset=nil, vpcset=nil, remark=nil, dnsforwardstatus=nil, vpcs=nil, accountvpcset=nil, cnamespeedupstatus=nil)
           @Domain = domain
@@ -1145,13 +1145,16 @@ module TencentCloud
         # @type Filters: Array
         # @param TimeRangeEnd: 请求量统计结束时间，格式：2020-11-22 23:59:59
         # @type TimeRangeEnd: String
+        # @param Export: 是否导出：true导出，false不导出
+        # @type Export: Boolean
 
-        attr_accessor :TimeRangeBegin, :Filters, :TimeRangeEnd
+        attr_accessor :TimeRangeBegin, :Filters, :TimeRangeEnd, :Export
 
-        def initialize(timerangebegin=nil, filters=nil, timerangeend=nil)
+        def initialize(timerangebegin=nil, filters=nil, timerangeend=nil, export=nil)
           @TimeRangeBegin = timerangebegin
           @Filters = filters
           @TimeRangeEnd = timerangeend
+          @Export = export
         end
 
         def deserialize(params)
@@ -1165,6 +1168,7 @@ module TencentCloud
             end
           end
           @TimeRangeEnd = params['TimeRangeEnd']
+          @Export = params['Export']
         end
       end
 
@@ -1174,14 +1178,17 @@ module TencentCloud
         # @type Data: Array
         # @param Interval: 请求量单位时间: Day：天，Hour：小时
         # @type Interval: String
+        # @param Url: 导出数据下载地址
+        # @type Url: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Data, :Interval, :RequestId
+        attr_accessor :Data, :Interval, :Url, :RequestId
 
-        def initialize(data=nil, interval=nil, requestid=nil)
+        def initialize(data=nil, interval=nil, url=nil, requestid=nil)
           @Data = data
           @Interval = interval
+          @Url = url
           @RequestId = requestid
         end
 
@@ -1195,6 +1202,7 @@ module TencentCloud
             end
           end
           @Interval = params['Interval']
+          @Url = params['Url']
           @RequestId = params['RequestId']
         end
       end

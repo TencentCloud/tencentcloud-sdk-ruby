@@ -20,10 +20,8 @@ module TencentCloud
       # 访问信息
       class AccessInfo < TencentCloud::Common::AbstractModel
         # @param Address: 地址
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Address: String
         # @param Protocol: 协议
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Protocol: String
 
         attr_accessor :Address, :Protocol
@@ -325,10 +323,8 @@ module TencentCloud
       # CreateInstanceByApi返回参数结构体
       class CreateInstanceByApiResponse < TencentCloud::Common::AbstractModel
         # @param FlowId: 流程ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FlowId: String
         # @param InstanceId: 实例ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceId: String
         # @param ErrorMsg: 错误信息
         # 注意：此字段可能返回 null，表示取不到有效值。

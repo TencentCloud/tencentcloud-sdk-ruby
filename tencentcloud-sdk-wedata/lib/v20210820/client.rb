@@ -4646,6 +4646,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取实例列表
+
+        # @param request: Request instance for GetInstanceLog.
+        # @type request: :class:`Tencentcloud::wedata::V20210820::GetInstanceLogRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20210820::GetInstanceLogResponse`
+        def GetInstanceLog(request)
+          body = send_request('GetInstanceLog', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GetInstanceLogResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 提取数据集成节点字段Schema
 
         # @param request: Request instance for GetIntegrationNodeColumnSchema.
@@ -4718,6 +4742,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取实例列表
+
+        # @param request: Request instance for GetTaskInstance.
+        # @type request: :class:`Tencentcloud::wedata::V20210820::GetTaskInstanceRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20210820::GetTaskInstanceResponse`
+        def GetTaskInstance(request)
+          body = send_request('GetTaskInstance', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GetTaskInstanceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 资源管理-判断资源文件是否存在
 
         # @param request: Request instance for JudgeResourceFile.
@@ -4776,6 +4824,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = KillScheduleInstancesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取实例列表
+
+        # @param request: Request instance for ListInstances.
+        # @type request: :class:`Tencentcloud::wedata::V20210820::ListInstancesRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20210820::ListInstancesResponse`
+        def ListInstances(request)
+          body = send_request('ListInstances', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ListInstancesResponse.new
             model.deserialize(response['Response'])
             model
           else

@@ -1061,6 +1061,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口用于获取实例对应后端CVM信息，包括cvmId和ip等。用于专业版，标准版返回数据为空
+
+        # @param request: Request instance for DescribeCvmInfo.
+        # @type request: :class:`Tencentcloud::ckafka::V20190819::DescribeCvmInfoRequest`
+        # @rtype: :class:`Tencentcloud::ckafka::V20190819::DescribeCvmInfoResponse`
+        def DescribeCvmInfo(request)
+          body = send_request('DescribeCvmInfo', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCvmInfoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取Datahub消费分组offset
 
         # @param request: Request instance for DescribeDatahubGroupOffsets.
@@ -1576,6 +1600,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeTopicSyncReplicaResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（DescribeTypeInstances）用于在用户账户下获取指定类型消息队列 CKafka 实例列表
+
+        # @param request: Request instance for DescribeTypeInstances.
+        # @type request: :class:`Tencentcloud::ckafka::V20190819::DescribeTypeInstancesRequest`
+        # @rtype: :class:`Tencentcloud::ckafka::V20190819::DescribeTypeInstancesResponse`
+        def DescribeTypeInstances(request)
+          body = send_request('DescribeTypeInstances', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeTypeInstancesResponse.new
             model.deserialize(response['Response'])
             model
           else

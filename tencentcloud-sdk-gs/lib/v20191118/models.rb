@@ -60,6 +60,22 @@ module TencentCloud
         end
       end
 
+      # 安卓应用Cos数据
+      class AndroidAppCosInfo < TencentCloud::Common::AbstractModel
+        # @param AndroidAppId: 安卓应用ID
+        # @type AndroidAppId: String
+
+        attr_accessor :AndroidAppId
+
+        def initialize(androidappid=nil)
+          @AndroidAppId = androidappid
+        end
+
+        def deserialize(params)
+          @AndroidAppId = params['AndroidAppId']
+        end
+      end
+
       # 安卓应用版本信息
       class AndroidAppVersionInfo < TencentCloud::Common::AbstractModel
         # @param AndroidAppVersion: 安卓应用版本
@@ -483,6 +499,86 @@ module TencentCloud
         end
       end
 
+      # CreateAndroidApp请求参数结构体
+      class CreateAndroidAppRequest < TencentCloud::Common::AbstractModel
+        # @param Name: 安卓应用名字
+        # @type Name: String
+        # @param UserId: 用户 Id
+        # @type UserId: String
+
+        attr_accessor :Name, :UserId
+
+        def initialize(name=nil, userid=nil)
+          @Name = name
+          @UserId = userid
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @UserId = params['UserId']
+        end
+      end
+
+      # CreateAndroidApp返回参数结构体
+      class CreateAndroidAppResponse < TencentCloud::Common::AbstractModel
+        # @param AndroidAppId: 应用ID
+        # @type AndroidAppId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :AndroidAppId, :RequestId
+
+        def initialize(androidappid=nil, requestid=nil)
+          @AndroidAppId = androidappid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @AndroidAppId = params['AndroidAppId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateAndroidAppVersion请求参数结构体
+      class CreateAndroidAppVersionRequest < TencentCloud::Common::AbstractModel
+        # @param AndroidAppId: 应用ID
+        # @type AndroidAppId: String
+        # @param DownloadUrl: 应用包下载地址
+        # @type DownloadUrl: String
+
+        attr_accessor :AndroidAppId, :DownloadUrl
+
+        def initialize(androidappid=nil, downloadurl=nil)
+          @AndroidAppId = androidappid
+          @DownloadUrl = downloadurl
+        end
+
+        def deserialize(params)
+          @AndroidAppId = params['AndroidAppId']
+          @DownloadUrl = params['DownloadUrl']
+        end
+      end
+
+      # CreateAndroidAppVersion返回参数结构体
+      class CreateAndroidAppVersionResponse < TencentCloud::Common::AbstractModel
+        # @param AndroidAppVersion: 应用版本
+        # @type AndroidAppVersion: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :AndroidAppVersion, :RequestId
+
+        def initialize(androidappversion=nil, requestid=nil)
+          @AndroidAppVersion = androidappversion
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @AndroidAppVersion = params['AndroidAppVersion']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateAndroidInstanceImage请求参数结构体
       class CreateAndroidInstanceImageRequest < TencentCloud::Common::AbstractModel
         # @param AndroidInstanceImageName: 安卓实例镜像名称
@@ -765,6 +861,77 @@ module TencentCloud
         end
       end
 
+      # CreateCosCredential请求参数结构体
+      class CreateCosCredentialRequest < TencentCloud::Common::AbstractModel
+        # @param CosType: Cos 密钥类型， Mobile 移动端, PC 桌面, AndroidApp 安卓应用
+        # @type CosType: String
+        # @param AndroidAppCosInfo: 云手机 Cos 数据
+        # @type AndroidAppCosInfo: :class:`Tencentcloud::Gs.v20191118.models.AndroidAppCosInfo`
+
+        attr_accessor :CosType, :AndroidAppCosInfo
+
+        def initialize(costype=nil, androidappcosinfo=nil)
+          @CosType = costype
+          @AndroidAppCosInfo = androidappcosinfo
+        end
+
+        def deserialize(params)
+          @CosType = params['CosType']
+          unless params['AndroidAppCosInfo'].nil?
+            @AndroidAppCosInfo = AndroidAppCosInfo.new
+            @AndroidAppCosInfo.deserialize(params['AndroidAppCosInfo'])
+          end
+        end
+      end
+
+      # CreateCosCredential返回参数结构体
+      class CreateCosCredentialResponse < TencentCloud::Common::AbstractModel
+        # @param SecretID: Cos SecretID
+        # @type SecretID: String
+        # @param SecretKey: Cos SecretKey
+        # @type SecretKey: String
+        # @param SessionToken: Cos Session
+        # @type SessionToken: String
+        # @param CosBucket: Cos Bucket
+        # @type CosBucket: String
+        # @param CosRegion: Cos Region
+        # @type CosRegion: String
+        # @param Path: Cos 操作路径
+        # @type Path: String
+        # @param StartTime: Cos 密钥的起始时间
+        # @type StartTime: Integer
+        # @param ExpiredTime: Cos 密钥的失效时间
+        # @type ExpiredTime: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :SecretID, :SecretKey, :SessionToken, :CosBucket, :CosRegion, :Path, :StartTime, :ExpiredTime, :RequestId
+
+        def initialize(secretid=nil, secretkey=nil, sessiontoken=nil, cosbucket=nil, cosregion=nil, path=nil, starttime=nil, expiredtime=nil, requestid=nil)
+          @SecretID = secretid
+          @SecretKey = secretkey
+          @SessionToken = sessiontoken
+          @CosBucket = cosbucket
+          @CosRegion = cosregion
+          @Path = path
+          @StartTime = starttime
+          @ExpiredTime = expiredtime
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @SecretID = params['SecretID']
+          @SecretKey = params['SecretKey']
+          @SessionToken = params['SessionToken']
+          @CosBucket = params['CosBucket']
+          @CosRegion = params['CosRegion']
+          @Path = params['Path']
+          @StartTime = params['StartTime']
+          @ExpiredTime = params['ExpiredTime']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateSession请求参数结构体
       class CreateSessionRequest < TencentCloud::Common::AbstractModel
         # @param UserId: 唯一用户身份标识，由业务方自定义，平台不予理解。（可根据业务需要决定使用用户的唯一身份标识或是使用时间戳随机生成；在用户重连时应保持UserId不变）
@@ -875,6 +1042,74 @@ module TencentCloud
           @ServerSession = params['ServerSession']
           @RoleNumber = params['RoleNumber']
           @Role = params['Role']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteAndroidApp请求参数结构体
+      class DeleteAndroidAppRequest < TencentCloud::Common::AbstractModel
+        # @param AndroidAppId: 应用ID
+        # @type AndroidAppId: String
+
+        attr_accessor :AndroidAppId
+
+        def initialize(androidappid=nil)
+          @AndroidAppId = androidappid
+        end
+
+        def deserialize(params)
+          @AndroidAppId = params['AndroidAppId']
+        end
+      end
+
+      # DeleteAndroidApp返回参数结构体
+      class DeleteAndroidAppResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteAndroidAppVersion请求参数结构体
+      class DeleteAndroidAppVersionRequest < TencentCloud::Common::AbstractModel
+        # @param AndroidAppId: 安卓应用 Id
+        # @type AndroidAppId: String
+        # @param AndroidAppVersion: 安卓应用版本
+        # @type AndroidAppVersion: String
+
+        attr_accessor :AndroidAppId, :AndroidAppVersion
+
+        def initialize(androidappid=nil, androidappversion=nil)
+          @AndroidAppId = androidappid
+          @AndroidAppVersion = androidappversion
+        end
+
+        def deserialize(params)
+          @AndroidAppId = params['AndroidAppId']
+          @AndroidAppVersion = params['AndroidAppVersion']
+        end
+      end
+
+      # DeleteAndroidAppVersion返回参数结构体
+      class DeleteAndroidAppVersionResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
@@ -1556,6 +1791,46 @@ module TencentCloud
           @Key = params['Key']
           @Operator = params['Operator']
           @Values = params['Values']
+        end
+      end
+
+      # ModifyAndroidApp请求参数结构体
+      class ModifyAndroidAppRequest < TencentCloud::Common::AbstractModel
+        # @param AndroidAppId: 安卓应用 Id
+        # @type AndroidAppId: String
+        # @param Name: 安卓应用名称
+        # @type Name: String
+        # @param UserId: 用户 Id
+        # @type UserId: String
+
+        attr_accessor :AndroidAppId, :Name, :UserId
+
+        def initialize(androidappid=nil, name=nil, userid=nil)
+          @AndroidAppId = androidappid
+          @Name = name
+          @UserId = userid
+        end
+
+        def deserialize(params)
+          @AndroidAppId = params['AndroidAppId']
+          @Name = params['Name']
+          @UserId = params['UserId']
+        end
+      end
+
+      # ModifyAndroidApp返回参数结构体
+      class ModifyAndroidAppResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 

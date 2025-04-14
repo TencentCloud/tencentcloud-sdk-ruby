@@ -169,6 +169,34 @@ module TencentCloud
         end
       end
 
+      # 访问白名单规则
+      class AccessWhiteListRule < TencentCloud::Common::AbstractModel
+        # @param Id: 规则ID
+        # @type Id: Integer
+        # @param Source: IP或者网段
+        # @type Source: String
+        # @param Remark: 备注信息
+        # @type Remark: String
+        # @param ModifyTime: 修改时间
+        # @type ModifyTime: String
+
+        attr_accessor :Id, :Source, :Remark, :ModifyTime
+
+        def initialize(id=nil, source=nil, remark=nil, modifytime=nil)
+          @Id = id
+          @Source = source
+          @Remark = remark
+          @ModifyTime = modifytime
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Source = params['Source']
+          @Remark = params['Remark']
+          @ModifyTime = params['ModifyTime']
+        end
+      end
+
       # 访问权限
       class Acl < TencentCloud::Common::AbstractModel
         # @param Id: 访问权限ID
@@ -853,6 +881,46 @@ module TencentCloud
         end
       end
 
+      # CreateAccessWhiteListRule请求参数结构体
+      class CreateAccessWhiteListRuleRequest < TencentCloud::Common::AbstractModel
+        # @param Source: ip 10.10.10.1或者网段10.10.10.0/24，最小长度4字节，最大长度40字节。
+        # @type Source: String
+        # @param Remark: 备注信息，最小长度0字符，最大长度40字符。
+        # @type Remark: String
+
+        attr_accessor :Source, :Remark
+
+        def initialize(source=nil, remark=nil)
+          @Source = source
+          @Remark = remark
+        end
+
+        def deserialize(params)
+          @Source = params['Source']
+          @Remark = params['Remark']
+        end
+      end
+
+      # CreateAccessWhiteListRule返回参数结构体
+      class CreateAccessWhiteListRuleResponse < TencentCloud::Common::AbstractModel
+        # @param Id: 新建成功后返回的记录ID
+        # @type Id: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Id, :RequestId
+
+        def initialize(id=nil, requestid=nil)
+          @Id = id
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateAcl请求参数结构体
       class CreateAclRequest < TencentCloud::Common::AbstractModel
         # @param Name: 权限名称，最大32字符，不能包含空白字符
@@ -1528,6 +1596,38 @@ module TencentCloud
         end
       end
 
+      # DeleteAccessWhiteListRules请求参数结构体
+      class DeleteAccessWhiteListRulesRequest < TencentCloud::Common::AbstractModel
+        # @param IdSet: 待删除的ID集合
+        # @type IdSet: Array
+
+        attr_accessor :IdSet
+
+        def initialize(idset=nil)
+          @IdSet = idset
+        end
+
+        def deserialize(params)
+          @IdSet = params['IdSet']
+        end
+      end
+
+      # DeleteAccessWhiteListRules返回参数结构体
+      class DeleteAccessWhiteListRulesResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteAcls请求参数结构体
       class DeleteAclsRequest < TencentCloud::Common::AbstractModel
         # @param IdSet: 待删除的权限ID集合
@@ -2007,6 +2107,73 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAccessWhiteListRules请求参数结构体
+      class DescribeAccessWhiteListRulesRequest < TencentCloud::Common::AbstractModel
+        # @param IdSet: 用户ID集合，非必需，如果使用IdSet参数则忽略Name参数
+        # @type IdSet: Array
+        # @param Name: 来源IP或网段，模糊查询，最大长度64字符
+        # @type Name: String
+        # @param Offset: 分页偏移位置，默认0
+        # @type Offset: Integer
+        # @param Limit: 每页条目数量，默认20
+        # @type Limit: Integer
+
+        attr_accessor :IdSet, :Name, :Offset, :Limit
+
+        def initialize(idset=nil, name=nil, offset=nil, limit=nil)
+          @IdSet = idset
+          @Name = name
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @IdSet = params['IdSet']
+          @Name = params['Name']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeAccessWhiteListRules返回参数结构体
+      class DescribeAccessWhiteListRulesResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 记录总数
+        # @type TotalCount: Integer
+        # @param AccessWhiteListRuleSet: 访问白名单规则列表
+        # @type AccessWhiteListRuleSet: Array
+        # @param AllowAny: 是否放开全部来源IP，如果为true，TotalCount为0，AccessWhiteListRuleSet为空
+        # @type AllowAny: Boolean
+        # @param AllowAuto: 是否开启自动添加来源IP, 如果为true, 在开启访问白名单的情况下将自动添加来源IP
+        # @type AllowAuto: Boolean
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :AccessWhiteListRuleSet, :AllowAny, :AllowAuto, :RequestId
+
+        def initialize(totalcount=nil, accesswhitelistruleset=nil, allowany=nil, allowauto=nil, requestid=nil)
+          @TotalCount = totalcount
+          @AccessWhiteListRuleSet = accesswhitelistruleset
+          @AllowAny = allowany
+          @AllowAuto = allowauto
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['AccessWhiteListRuleSet'].nil?
+            @AccessWhiteListRuleSet = []
+            params['AccessWhiteListRuleSet'].each do |i|
+              accesswhitelistrule_tmp = AccessWhiteListRule.new
+              accesswhitelistrule_tmp.deserialize(i)
+              @AccessWhiteListRuleSet << accesswhitelistrule_tmp
+            end
+          end
+          @AllowAny = params['AllowAny']
+          @AllowAuto = params['AllowAuto']
           @RequestId = params['RequestId']
         end
       end
@@ -5575,6 +5742,88 @@ module TencentCloud
         end
       end
 
+      # SearchTaskResult请求参数结构体
+      class SearchTaskResultRequest < TencentCloud::Common::AbstractModel
+        # @param StartTime: 搜索区间的开始时间
+        # @type StartTime: String
+        # @param EndTime: 搜索区间的结束时间
+        # @type EndTime: String
+        # @param OperationId: 运维任务ID
+        # @type OperationId: String
+        # @param Name: 运维任务名称
+        # @type Name: String
+        # @param UserName: 用户名，长度不超过20
+        # @type UserName: String
+        # @param RealName: 姓名，长度不超过20
+        # @type RealName: String
+        # @param TaskType: 任务类型
+        # 1 手工运维任务
+        # 2 定时任务
+        # 3 账号推送任务
+        # @type TaskType: Array
+        # @param Offset: 查询偏移
+        # @type Offset: Integer
+        # @param Limit: 分页的页内记录数，默认为20，最大200
+        # @type Limit: Integer
+
+        attr_accessor :StartTime, :EndTime, :OperationId, :Name, :UserName, :RealName, :TaskType, :Offset, :Limit
+
+        def initialize(starttime=nil, endtime=nil, operationid=nil, name=nil, username=nil, realname=nil, tasktype=nil, offset=nil, limit=nil)
+          @StartTime = starttime
+          @EndTime = endtime
+          @OperationId = operationid
+          @Name = name
+          @UserName = username
+          @RealName = realname
+          @TaskType = tasktype
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @OperationId = params['OperationId']
+          @Name = params['Name']
+          @UserName = params['UserName']
+          @RealName = params['RealName']
+          @TaskType = params['TaskType']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # SearchTaskResult返回参数结构体
+      class SearchTaskResultResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 记录数
+        # @type TotalCount: Integer
+        # @param TaskResult: 运维任务执行结果
+        # @type TaskResult: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :TaskResult, :RequestId
+
+        def initialize(totalcount=nil, taskresult=nil, requestid=nil)
+          @TotalCount = totalcount
+          @TaskResult = taskresult
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['TaskResult'].nil?
+            @TaskResult = []
+            params['TaskResult'].each do |i|
+              taskresult_tmp = TaskResult.new
+              taskresult_tmp.deserialize(i)
+              @TaskResult << taskresult_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 搜索字符或图形会话时返回的SessionResul结构体
       class SessionResult < TencentCloud::Common::AbstractModel
         # @param UserName: 用户名
@@ -5688,6 +5937,54 @@ module TencentCloud
         def deserialize(params)
           @TagKey = params['TagKey']
           @TagValue = params['TagValue']
+        end
+      end
+
+      # 运维父任务执行结果
+      class TaskResult < TencentCloud::Common::AbstractModel
+        # @param Id: 运维任务结果日志ID
+        # @type Id: String
+        # @param OperationId: 运维任务ID
+        # @type OperationId: String
+        # @param Name: 运维任务名称
+        # @type Name: String
+        # @param FromIp: 执行任务来源IP
+        # @type FromIp: String
+        # @param UserName: 运维任务所属用户
+        # @type UserName: String
+        # @param RealName: 运维任务所属用户的姓名
+        # @type RealName: String
+        # @param Status: 运维任务执行状态 1 - 执行中，2 - 成功，3 - 失败，4 - 部分失败
+        # @type Status: Integer
+        # @param StartTime: 运维任务开始时间
+        # @type StartTime: String
+        # @param EndTime: 运维任务结束时间
+        # @type EndTime: String
+
+        attr_accessor :Id, :OperationId, :Name, :FromIp, :UserName, :RealName, :Status, :StartTime, :EndTime
+
+        def initialize(id=nil, operationid=nil, name=nil, fromip=nil, username=nil, realname=nil, status=nil, starttime=nil, endtime=nil)
+          @Id = id
+          @OperationId = operationid
+          @Name = name
+          @FromIp = fromip
+          @UserName = username
+          @RealName = realname
+          @Status = status
+          @StartTime = starttime
+          @EndTime = endtime
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @OperationId = params['OperationId']
+          @Name = params['Name']
+          @FromIp = params['FromIp']
+          @UserName = params['UserName']
+          @RealName = params['RealName']
+          @Status = params['Status']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
         end
       end
 

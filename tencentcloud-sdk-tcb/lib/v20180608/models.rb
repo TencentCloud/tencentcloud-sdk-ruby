@@ -4181,12 +4181,25 @@ module TencentCloud
 
       # DescribeCloudBaseRunVersionRsByCondition请求参数结构体
       class DescribeCloudBaseRunVersionRsByConditionRequest < TencentCloud::Common::AbstractModel
+        # @param EnvId: 环境ID；EnvId和ClusterId不能同时为空
+        # @type EnvId: String
+        # @param ClusterId: 集群ID；EnvId和ClusterId不能同时为空
+        # @type ClusterId: String
+        # @param FilterGwSwitch: 过滤网关服务开关
+        # @type FilterGwSwitch: Boolean
 
+        attr_accessor :EnvId, :ClusterId, :FilterGwSwitch
 
-        def initialize()
+        def initialize(envid=nil, clusterid=nil, filtergwswitch=nil)
+          @EnvId = envid
+          @ClusterId = clusterid
+          @FilterGwSwitch = filtergwswitch
         end
 
         def deserialize(params)
+          @EnvId = params['EnvId']
+          @ClusterId = params['ClusterId']
+          @FilterGwSwitch = params['FilterGwSwitch']
         end
       end
 

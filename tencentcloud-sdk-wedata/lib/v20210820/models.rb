@@ -9922,14 +9922,16 @@ module TencentCloud
         # @type InstanceLifeDetailDtoList: Array
         # @param CurrentLifeRound: 当前生命周期数
         # @type CurrentLifeRound: Integer
+        # @param MaxLifeRound: 最大生命周期数
+        # @type MaxLifeRound: Integer
         # @param Tries: 当前生命周期重试次数
         # @type Tries: Integer
         # @param Dynamic: 动态获取日志信息标识
         # @type Dynamic: Boolean
 
-        attr_accessor :ProjectId, :TaskId, :CurRunDate, :RequestFromSource, :BrokerIp, :OriginFileName, :ExecutionJobId, :LogLevelType, :ExecutionFileType, :InstanceLifeDetailDtoList, :CurrentLifeRound, :Tries, :Dynamic
+        attr_accessor :ProjectId, :TaskId, :CurRunDate, :RequestFromSource, :BrokerIp, :OriginFileName, :ExecutionJobId, :LogLevelType, :ExecutionFileType, :InstanceLifeDetailDtoList, :CurrentLifeRound, :MaxLifeRound, :Tries, :Dynamic
 
-        def initialize(projectid=nil, taskid=nil, currundate=nil, requestfromsource=nil, brokerip=nil, originfilename=nil, executionjobid=nil, logleveltype=nil, executionfiletype=nil, instancelifedetaildtolist=nil, currentliferound=nil, tries=nil, dynamic=nil)
+        def initialize(projectid=nil, taskid=nil, currundate=nil, requestfromsource=nil, brokerip=nil, originfilename=nil, executionjobid=nil, logleveltype=nil, executionfiletype=nil, instancelifedetaildtolist=nil, currentliferound=nil, maxliferound=nil, tries=nil, dynamic=nil)
           @ProjectId = projectid
           @TaskId = taskid
           @CurRunDate = currundate
@@ -9941,6 +9943,7 @@ module TencentCloud
           @ExecutionFileType = executionfiletype
           @InstanceLifeDetailDtoList = instancelifedetaildtolist
           @CurrentLifeRound = currentliferound
+          @MaxLifeRound = maxliferound
           @Tries = tries
           @Dynamic = dynamic
         end
@@ -9964,6 +9967,7 @@ module TencentCloud
             end
           end
           @CurrentLifeRound = params['CurrentLifeRound']
+          @MaxLifeRound = params['MaxLifeRound']
           @Tries = params['Tries']
           @Dynamic = params['Dynamic']
         end
@@ -17684,6 +17688,96 @@ module TencentCloud
         end
       end
 
+      # GetInstanceLog请求参数结构体
+      class GetInstanceLogRequest < TencentCloud::Common::AbstractModel
+        # @param ProjectId: **项目ID**
+        # @type ProjectId: String
+        # @param InstanceKey: **实例唯一标识**
+        # @type InstanceKey: String
+        # @param LifeRoundNum: 生命周期编号
+        # @type LifeRoundNum: Integer
+        # @param ScheduleTimeZone: **时区**
+        # timeZone, 默认UTC+8
+        # @type ScheduleTimeZone: String
+        # @param BrokerIp: **日志所在执行机Ip**
+        # @type BrokerIp: String
+        # @param OriginFileName: **日志文件**
+        # 实例详情中 executionJobId 为空时，但 originFileName 不为空时，入参中必须包含 originFileName 与 brokerIp
+        # 如果 executionJobId 与 originFileName 都为空，则说明实例未下发执行或没有产生日志。例如分支节点 或 归并节点
+        # @type OriginFileName: String
+        # @param ExecutionJobId: **执行ID**
+
+        # 实例详情中 executionJobId 不为空时，入参中需包含executionJobId 。originFileName 与 brokerIp为非必要参数
+        # @type ExecutionJobId: String
+        # @param LogLevel: **日志级别**
+        # 默认All
+
+        # - Info
+        # - Debug
+        # - Warn
+        # - Error
+        # - All
+        # @type LogLevel: String
+        # @param StartLineNum: **获取日志的开始行 行号**
+        # 默认 1
+        # @type StartLineNum: Integer
+        # @param EndLineCount: **获取日志的结束行 行号**
+        # 默认 10000
+        # @type EndLineCount: Integer
+
+        attr_accessor :ProjectId, :InstanceKey, :LifeRoundNum, :ScheduleTimeZone, :BrokerIp, :OriginFileName, :ExecutionJobId, :LogLevel, :StartLineNum, :EndLineCount
+
+        def initialize(projectid=nil, instancekey=nil, liferoundnum=nil, scheduletimezone=nil, brokerip=nil, originfilename=nil, executionjobid=nil, loglevel=nil, startlinenum=nil, endlinecount=nil)
+          @ProjectId = projectid
+          @InstanceKey = instancekey
+          @LifeRoundNum = liferoundnum
+          @ScheduleTimeZone = scheduletimezone
+          @BrokerIp = brokerip
+          @OriginFileName = originfilename
+          @ExecutionJobId = executionjobid
+          @LogLevel = loglevel
+          @StartLineNum = startlinenum
+          @EndLineCount = endlinecount
+        end
+
+        def deserialize(params)
+          @ProjectId = params['ProjectId']
+          @InstanceKey = params['InstanceKey']
+          @LifeRoundNum = params['LifeRoundNum']
+          @ScheduleTimeZone = params['ScheduleTimeZone']
+          @BrokerIp = params['BrokerIp']
+          @OriginFileName = params['OriginFileName']
+          @ExecutionJobId = params['ExecutionJobId']
+          @LogLevel = params['LogLevel']
+          @StartLineNum = params['StartLineNum']
+          @EndLineCount = params['EndLineCount']
+        end
+      end
+
+      # GetInstanceLog返回参数结构体
+      class GetInstanceLogResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 调度实例详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: :class:`Tencentcloud::Wedata.v20210820.models.InstanceLogVO`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = InstanceLogVO.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # GetIntegrationNodeColumnSchema请求参数结构体
       class GetIntegrationNodeColumnSchemaRequest < TencentCloud::Common::AbstractModel
         # @param ColumnContent: 字段示例（json格式）
@@ -17851,6 +17945,55 @@ module TencentCloud
               offlineinstance_tmp.deserialize(i)
               @List << offlineinstance_tmp
             end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # GetTaskInstance请求参数结构体
+      class GetTaskInstanceRequest < TencentCloud::Common::AbstractModel
+        # @param ProjectId: **项目ID**
+        # @type ProjectId: String
+        # @param InstanceKey: **实例唯一标识**
+        # @type InstanceKey: String
+        # @param ScheduleTimeZone: **时区**
+        # timeZone, 默认UTC+8
+        # @type ScheduleTimeZone: String
+
+        attr_accessor :ProjectId, :InstanceKey, :ScheduleTimeZone
+
+        def initialize(projectid=nil, instancekey=nil, scheduletimezone=nil)
+          @ProjectId = projectid
+          @InstanceKey = instancekey
+          @ScheduleTimeZone = scheduletimezone
+        end
+
+        def deserialize(params)
+          @ProjectId = params['ProjectId']
+          @InstanceKey = params['InstanceKey']
+          @ScheduleTimeZone = params['ScheduleTimeZone']
+        end
+      end
+
+      # GetTaskInstance返回参数结构体
+      class GetTaskInstanceResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 调度实例详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: :class:`Tencentcloud::Wedata.v20210820.models.InstanceDetailVO`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = InstanceDetailVO.new
+            @Data.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
         end
@@ -18075,6 +18218,209 @@ module TencentCloud
         end
       end
 
+      # 调度实例详情
+      class InstanceDetailVO < TencentCloud::Common::AbstractModel
+        # @param InstanceKey: 实例唯一标识
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceKey: String
+        # @param ProjectId: 项目ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProjectId: String
+        # @param FolderId: 文件夹ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FolderId: String
+        # @param FolderName: 文件夹名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FolderName: String
+        # @param WorkflowId: 工作流ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WorkflowId: String
+        # @param WorkflowName: 工作流名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WorkflowName: String
+        # @param InChargeList: 负责人列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InChargeList: Array
+        # @param TaskId: 任务ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskId: String
+        # @param TaskName: 任务名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskName: String
+        # @param TaskCycleType: **任务周期类型**
+        # 支持过滤多个，条件间为 或 的过滤关系
+        # * O: ONEOFF_CYCLE
+        # * Y: YEAR_CYCLE
+        # * M: MONTH_CYCLE
+        # * W: WEEK_CYCLE
+        # * D: DAY_CYCLE
+        # * H: HOUR_CYCLE
+        # * I: MINUTE_CYCLE
+        # * C: CRONTAB_CYCLE
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskCycleType: String
+        # @param TaskType: 任务类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskType: :class:`Tencentcloud::Wedata.v20210820.models.TaskTypeOpsDto`
+        # @param ExecutorGroupId: 执行资源组ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExecutorGroupId: String
+        # @param ExecutorGroupName: 资源组名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExecutorGroupName: String
+        # @param CurRunDate: 标准数据时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CurRunDate: String
+        # @param NextCurDate: 下一个标准数据时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NextCurDate: String
+        # @param TryLimit: 每次运行失败，下发重试次数限制
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TryLimit: Integer
+        # @param Tries: 当前运行已下发运行次数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tries: Integer
+        # @param TotalRunNum: 累计运行次数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalRunNum: Integer
+        # @param LifeRoundNum: 生命周期编号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LifeRoundNum: Integer
+        # @param InstanceType: **实例类型**
+
+        # - 0 表示补录类型
+        # - 1 表示周期实例
+        # - 2 表示非周期实例
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceType: Integer
+        # @param InstanceState: **实例状态**
+
+        # - [0] 表示 等待事件
+        # - [12] 表示 等待上游
+        # - [6, 7, 9, 10, 18] 表示 等待运行
+        # - [1, 19, 22] 表示 运行中
+        # - [21] 表示 跳过运行
+        # - [3] 表示 失败重试
+        # - [8, 4, 5, 13] 表示 失败
+        # - [2] 表示 成功
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceState: Integer
+        # @param SchedulerTime: 计划调度时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SchedulerTime: String
+        # @param StartTime: 运行开始时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StartTime: String
+        # @param EndTime: 运行完成时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EndTime: String
+        # @param CostTime: 耗费时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CostTime: String
+        # @param InstanceRunType: **实例运行触发类型**
+
+        # - RERUN 表示重跑
+        # - ADDITION 表示补录
+        # - PERIODIC 表示周期
+        # - APERIODIC 表示非周期
+        # - RERUN_SKIP_RUN 表示重跑 - 空跑
+        # - ADDITION_SKIP_RUN 表示补录 - 空跑
+        # - PERIODIC_SKIP_RUN 表示周期 - 空跑
+        # - APERIODIC_SKIP_RUN 表示非周期 - 空跑
+        # - MANUAL_TRIGGER 表示手动触发
+        # - RERUN_MANUAL_TRIGGER 表示手动触发 - 重跑
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceRunType: String
+        # @param ExecutionJobId: **下发执行ID**
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExecutionJobId: String
+        # @param InstanceLifeCycleList: **实例生命周期列表**
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceLifeCycleList: Array
+        # @param LatestLog: **实例最近一次的执行日志**
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LatestLog: :class:`Tencentcloud::Wedata.v20210820.models.InstanceLogVO`
+
+        attr_accessor :InstanceKey, :ProjectId, :FolderId, :FolderName, :WorkflowId, :WorkflowName, :InChargeList, :TaskId, :TaskName, :TaskCycleType, :TaskType, :ExecutorGroupId, :ExecutorGroupName, :CurRunDate, :NextCurDate, :TryLimit, :Tries, :TotalRunNum, :LifeRoundNum, :InstanceType, :InstanceState, :SchedulerTime, :StartTime, :EndTime, :CostTime, :InstanceRunType, :ExecutionJobId, :InstanceLifeCycleList, :LatestLog
+
+        def initialize(instancekey=nil, projectid=nil, folderid=nil, foldername=nil, workflowid=nil, workflowname=nil, inchargelist=nil, taskid=nil, taskname=nil, taskcycletype=nil, tasktype=nil, executorgroupid=nil, executorgroupname=nil, currundate=nil, nextcurdate=nil, trylimit=nil, tries=nil, totalrunnum=nil, liferoundnum=nil, instancetype=nil, instancestate=nil, schedulertime=nil, starttime=nil, endtime=nil, costtime=nil, instanceruntype=nil, executionjobid=nil, instancelifecyclelist=nil, latestlog=nil)
+          @InstanceKey = instancekey
+          @ProjectId = projectid
+          @FolderId = folderid
+          @FolderName = foldername
+          @WorkflowId = workflowid
+          @WorkflowName = workflowname
+          @InChargeList = inchargelist
+          @TaskId = taskid
+          @TaskName = taskname
+          @TaskCycleType = taskcycletype
+          @TaskType = tasktype
+          @ExecutorGroupId = executorgroupid
+          @ExecutorGroupName = executorgroupname
+          @CurRunDate = currundate
+          @NextCurDate = nextcurdate
+          @TryLimit = trylimit
+          @Tries = tries
+          @TotalRunNum = totalrunnum
+          @LifeRoundNum = liferoundnum
+          @InstanceType = instancetype
+          @InstanceState = instancestate
+          @SchedulerTime = schedulertime
+          @StartTime = starttime
+          @EndTime = endtime
+          @CostTime = costtime
+          @InstanceRunType = instanceruntype
+          @ExecutionJobId = executionjobid
+          @InstanceLifeCycleList = instancelifecyclelist
+          @LatestLog = latestlog
+        end
+
+        def deserialize(params)
+          @InstanceKey = params['InstanceKey']
+          @ProjectId = params['ProjectId']
+          @FolderId = params['FolderId']
+          @FolderName = params['FolderName']
+          @WorkflowId = params['WorkflowId']
+          @WorkflowName = params['WorkflowName']
+          @InChargeList = params['InChargeList']
+          @TaskId = params['TaskId']
+          @TaskName = params['TaskName']
+          @TaskCycleType = params['TaskCycleType']
+          unless params['TaskType'].nil?
+            @TaskType = TaskTypeOpsDto.new
+            @TaskType.deserialize(params['TaskType'])
+          end
+          @ExecutorGroupId = params['ExecutorGroupId']
+          @ExecutorGroupName = params['ExecutorGroupName']
+          @CurRunDate = params['CurRunDate']
+          @NextCurDate = params['NextCurDate']
+          @TryLimit = params['TryLimit']
+          @Tries = params['Tries']
+          @TotalRunNum = params['TotalRunNum']
+          @LifeRoundNum = params['LifeRoundNum']
+          @InstanceType = params['InstanceType']
+          @InstanceState = params['InstanceState']
+          @SchedulerTime = params['SchedulerTime']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @CostTime = params['CostTime']
+          @InstanceRunType = params['InstanceRunType']
+          @ExecutionJobId = params['ExecutionJobId']
+          unless params['InstanceLifeCycleList'].nil?
+            @InstanceLifeCycleList = []
+            params['InstanceLifeCycleList'].each do |i|
+              instancelifecyclevo_tmp = InstanceLifeCycleVO.new
+              instancelifecyclevo_tmp.deserialize(i)
+              @InstanceLifeCycleList << instancelifecyclevo_tmp
+            end
+          end
+          unless params['LatestLog'].nil?
+            @LatestLog = InstanceLogVO.new
+            @LatestLog.deserialize(params['LatestLog'])
+          end
+        end
+      end
+
       # 下载日志详情
       class InstanceDownloadLogInfo < TencentCloud::Common::AbstractModel
         # @param FileName: 文件名
@@ -18206,15 +18552,135 @@ module TencentCloud
         end
       end
 
+      # 调度实例详情
+      class InstanceLifeCycleVO < TencentCloud::Common::AbstractModel
+        # @param InstanceKey: 实例唯一标识
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceKey: String
+        # @param InstanceState: **实例状态**
+
+        # - [0] 表示 等待事件
+        # - [12] 表示 等待上游
+        # - [6, 7, 9, 10, 18] 表示 等待运行
+        # - [1, 19, 22] 表示 运行中
+        # - [21] 表示 跳过运行
+        # - [3] 表示 失败重试
+        # - [8, 4, 5, 13] 表示 失败
+        # - [2] 表示 成功
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceState: Integer
+        # @param LifeRoundNum: 生命周期编号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LifeRoundNum: Integer
+        # @param RunType: **实例运行触发类型**
+
+        # - RERUN 表示重跑
+        # - ADDITION 表示补录
+        # - PERIODIC 表示周期
+        # - APERIODIC 表示非周期
+        # - RERUN_SKIP_RUN 表示重跑 - 空跑
+        # - ADDITION_SKIP_RUN 表示补录 - 空跑
+        # - PERIODIC_SKIP_RUN 表示周期 - 空跑
+        # - APERIODIC_SKIP_RUN 表示非周期 - 空跑
+        # - MANUAL_TRIGGER 表示手动触发
+        # - RERUN_MANUAL_TRIGGER 表示手动触发 - 重跑
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RunType: String
+        # @param Tries: 失败重试次数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tries: Integer
+        # @param LifeCycleDetailList: **实例生命周期列表**
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LifeCycleDetailList: Array
+        # @param CodeFileName: **实例代码文件**
+        # 该文件内容为当次执行实例运行使用的代码，仅部分任务支持
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CodeFileName: String
+        # @param ExecutionJobId: **下发执行ID**
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExecutionJobId: String
+        # @param BrokerIp: 日志所在执行节点
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BrokerIp: String
+        # @param OriginFileName: 日志文件名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OriginFileName: String
+        # @param LogType: **实例日志类型**
+
+        # - run: 运行;
+        # - kill: 终止
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LogType: String
+        # @param CostTime: 耗费时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CostTime: String
+
+        attr_accessor :InstanceKey, :InstanceState, :LifeRoundNum, :RunType, :Tries, :LifeCycleDetailList, :CodeFileName, :ExecutionJobId, :BrokerIp, :OriginFileName, :LogType, :CostTime
+
+        def initialize(instancekey=nil, instancestate=nil, liferoundnum=nil, runtype=nil, tries=nil, lifecycledetaillist=nil, codefilename=nil, executionjobid=nil, brokerip=nil, originfilename=nil, logtype=nil, costtime=nil)
+          @InstanceKey = instancekey
+          @InstanceState = instancestate
+          @LifeRoundNum = liferoundnum
+          @RunType = runtype
+          @Tries = tries
+          @LifeCycleDetailList = lifecycledetaillist
+          @CodeFileName = codefilename
+          @ExecutionJobId = executionjobid
+          @BrokerIp = brokerip
+          @OriginFileName = originfilename
+          @LogType = logtype
+          @CostTime = costtime
+        end
+
+        def deserialize(params)
+          @InstanceKey = params['InstanceKey']
+          @InstanceState = params['InstanceState']
+          @LifeRoundNum = params['LifeRoundNum']
+          @RunType = params['RunType']
+          @Tries = params['Tries']
+          unless params['LifeCycleDetailList'].nil?
+            @LifeCycleDetailList = []
+            params['LifeCycleDetailList'].each do |i|
+              instancelifedetaildto_tmp = InstanceLifeDetailDto.new
+              instancelifedetaildto_tmp.deserialize(i)
+              @LifeCycleDetailList << instancelifedetaildto_tmp
+            end
+          end
+          @CodeFileName = params['CodeFileName']
+          @ExecutionJobId = params['ExecutionJobId']
+          @BrokerIp = params['BrokerIp']
+          @OriginFileName = params['OriginFileName']
+          @LogType = params['LogType']
+          @CostTime = params['CostTime']
+        end
+      end
+
       # 实例生命周期detail
       class InstanceLifeDetailDto < TencentCloud::Common::AbstractModel
-        # @param State: 实例状态
+        # @param State: **实例状态**
+        # - [0] 表示 等待事件
+        # - [12] 表示 等待上游
+        # - [6, 7, 9, 10, 18] 表示 等待运行
+        # - [1, 19, 22] 表示 运行中
+        # - [21] 表示 跳过运行
+        # - [3] 表示 失败重试
+        # - [8, 4, 5, 13] 表示 失败
+        # - [2] 表示 成功
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type State: String
         # @param StartTime: 该状态开始时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StartTime: String
-        # @param DetailState: 实例生命周期阶段状态
+        # @param DetailState: **实例生命周期阶段状态**
+
+        # - WAIT_UPSTREAM 表示 等待事件/上游状态
+        # - WAIT_RUN 表示 等待运行状态
+        # - RUNNING 表示 运行中状态
+        # - COMPLETE 表示 终态-完成
+        # - FAILED 表示 终态-失败重试
+        # - EXPIRED 表示 终态-失败
+        # - SKIP_RUNNING 表示 终态-被上游分支节点跳过的分支
+        # - HISTORY 表示 兼容历史实例
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DetailState: String
         # @param EndTime: 该状态结束时间
@@ -18540,6 +19006,110 @@ module TencentCloud
           @InstanceLogType = params['InstanceLogType']
           @TaskName = params['TaskName']
           @CostTime = params['CostTime']
+        end
+      end
+
+      # 实例日志内容
+      class InstanceLogVO < TencentCloud::Common::AbstractModel
+        # @param InstanceKey: 实例唯一标识
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceKey: String
+        # @param ProjectId: 项目ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProjectId: String
+        # @param InstanceState: **实例状态**
+
+        # - [0] 表示 等待事件
+        # - [12] 表示 等待上游
+        # - [6, 7, 9, 10, 18] 表示 等待运行
+        # - [1, 19, 22] 表示 运行中
+        # - [21] 表示 跳过运行
+        # - [3] 表示 失败重试
+        # - [8, 4, 5, 13] 表示 失败
+        # - [2] 表示 成功
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceState: Integer
+        # @param RunType: **实例运行触发类型**
+
+        # - RERUN 表示重跑
+        # - ADDITION 表示补录
+        # - PERIODIC 表示周期
+        # - APERIODIC 表示非周期
+        # - RERUN_SKIP_RUN 表示重跑 - 空跑
+        # - ADDITION_SKIP_RUN 表示补录 - 空跑
+        # - PERIODIC_SKIP_RUN 表示周期 - 空跑
+        # - APERIODIC_SKIP_RUN 表示非周期 - 空跑
+        # - MANUAL_TRIGGER 表示手动触发
+        # - RERUN_MANUAL_TRIGGER 表示手动触发 - 重跑
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RunType: String
+        # @param StartTime: 开始运行时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StartTime: String
+        # @param EndTime: 运行完成时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EndTime: String
+        # @param CodeInfo: **运行代码内容**
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CodeInfo: String
+        # @param CodeFileSize: **运行代码文件大小**
+        # 单位KB
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CodeFileSize: String
+        # @param BrokerIp: 日志所在节点信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BrokerIp: String
+        # @param LogInfo: **日志内容**
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LogInfo: String
+        # @param LogFileSize: **日志文件大小**
+        # 单位KB
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LogFileSize: String
+        # @param LineCount: **本次查询返回的日志行数**
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LineCount: Integer
+        # @param ExtInfo: 执行平台日志分页查询参数, 每次请求透明传入。第一页查询时值为空字符串
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExtInfo: String
+        # @param IsEnd: 日志分页查询，是否最后一页
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsEnd: Boolean
+
+        attr_accessor :InstanceKey, :ProjectId, :InstanceState, :RunType, :StartTime, :EndTime, :CodeInfo, :CodeFileSize, :BrokerIp, :LogInfo, :LogFileSize, :LineCount, :ExtInfo, :IsEnd
+
+        def initialize(instancekey=nil, projectid=nil, instancestate=nil, runtype=nil, starttime=nil, endtime=nil, codeinfo=nil, codefilesize=nil, brokerip=nil, loginfo=nil, logfilesize=nil, linecount=nil, extinfo=nil, isend=nil)
+          @InstanceKey = instancekey
+          @ProjectId = projectid
+          @InstanceState = instancestate
+          @RunType = runtype
+          @StartTime = starttime
+          @EndTime = endtime
+          @CodeInfo = codeinfo
+          @CodeFileSize = codefilesize
+          @BrokerIp = brokerip
+          @LogInfo = loginfo
+          @LogFileSize = logfilesize
+          @LineCount = linecount
+          @ExtInfo = extinfo
+          @IsEnd = isend
+        end
+
+        def deserialize(params)
+          @InstanceKey = params['InstanceKey']
+          @ProjectId = params['ProjectId']
+          @InstanceState = params['InstanceState']
+          @RunType = params['RunType']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @CodeInfo = params['CodeInfo']
+          @CodeFileSize = params['CodeFileSize']
+          @BrokerIp = params['BrokerIp']
+          @LogInfo = params['LogInfo']
+          @LogFileSize = params['LogFileSize']
+          @LineCount = params['LineCount']
+          @ExtInfo = params['ExtInfo']
+          @IsEnd = params['IsEnd']
         end
       end
 
@@ -18951,6 +19521,55 @@ module TencentCloud
         end
       end
 
+      # 实例列表分页实体
+      class InstancePageVO < TencentCloud::Common::AbstractModel
+        # @param TotalCount: **总条数**
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+        # @param TotalPage: **总分页数**
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalPage: Integer
+        # @param PageNumber: 页码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PageNumber: Integer
+        # @param PageSize: 每页条目数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PageSize: Integer
+        # @param PageCount: 总分页数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PageCount: Integer
+        # @param Items: 数据列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Items: Array
+
+        attr_accessor :TotalCount, :TotalPage, :PageNumber, :PageSize, :PageCount, :Items
+
+        def initialize(totalcount=nil, totalpage=nil, pagenumber=nil, pagesize=nil, pagecount=nil, items=nil)
+          @TotalCount = totalcount
+          @TotalPage = totalpage
+          @PageNumber = pagenumber
+          @PageSize = pagesize
+          @PageCount = pagecount
+          @Items = items
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          @TotalPage = params['TotalPage']
+          @PageNumber = params['PageNumber']
+          @PageSize = params['PageSize']
+          @PageCount = params['PageCount']
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              instancevo_tmp = InstanceVO.new
+              instancevo_tmp.deserialize(i)
+              @Items << instancevo_tmp
+            end
+          end
+        end
+      end
+
       # 实例检索条件
       class InstanceSearchCondition < TencentCloud::Common::AbstractModel
         # @param CycleList: 任务调度周期类型
@@ -19040,6 +19659,159 @@ module TencentCloud
           @ShowTime = params['ShowTime']
           @ReportTime = params['ReportTime']
           @Count = params['Count']
+        end
+      end
+
+      # 调度运行实例实体
+      class InstanceVO < TencentCloud::Common::AbstractModel
+        # @param InstanceKey: **实例唯一标识**
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceKey: String
+        # @param ProjectId: 项目ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProjectId: String
+        # @param FolderId: 文件夹ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FolderId: String
+        # @param FolderName: 文件夹名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FolderName: String
+        # @param WorkflowId: 工作流ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WorkflowId: String
+        # @param WorkflowName: 工作流名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WorkflowName: String
+        # @param InChargeList: 负责人列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InChargeList: Array
+        # @param TaskId: 任务ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskId: String
+        # @param TaskName: 任务名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskName: String
+        # @param TaskType: 任务类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskType: :class:`Tencentcloud::Wedata.v20210820.models.TaskTypeOpsDto`
+        # @param TaskCycleType: **任务周期类型**
+        # 支持过滤多个，条件间为 或 的过滤关系
+        # * O: ONEOFF_CYCLE
+        # * Y: YEAR_CYCLE
+        # * M: MONTH_CYCLE
+        # * W: WEEK_CYCLE
+        # * D: DAY_CYCLE
+        # * H: HOUR_CYCLE
+        # * I: MINUTE_CYCLE
+        # * C: CRONTAB_CYCLE
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskCycleType: String
+        # @param CurRunDate: 标准数据时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CurRunDate: String
+        # @param TryLimit: 每次运行失败，下发重试次数限制
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TryLimit: Integer
+        # @param Tries: **失败重试次数**
+        # 再次使用 手动重跑 或 补录实例等方式触发运行时，会被重置为 0 后重新计数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tries: Integer
+        # @param TotalRunNum: 累计运行次数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalRunNum: Integer
+        # @param InstanceType: **实例类型**
+
+        # - 0 表示补录类型
+        # - 1 表示周期实例
+        # - 2 表示非周期实例
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceType: Integer
+        # @param InstanceState: **实例状态**
+
+        # - [0] 表示 等待事件
+        # - [12] 表示 等待上游
+        # - [6, 7, 9, 10, 18] 表示 等待运行
+        # - [1, 19, 22] 表示 运行中
+        # - [21] 表示 跳过运行
+        # - [3] 表示 失败重试
+        # - [8, 4, 5, 13] 表示 失败
+        # - [2] 表示 成功
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceState: Integer
+        # @param StartTime: 运行开始时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StartTime: String
+        # @param EndTime: 运行完成时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EndTime: String
+        # @param CostTime: 耗费时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CostTime: String
+        # @param SchedulerTime: 计划调度时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SchedulerTime: String
+        # @param ExecutorGroupId: 执行资源组ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExecutorGroupId: String
+        # @param ExecutorGroupName: 资源组名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExecutorGroupName: String
+
+        attr_accessor :InstanceKey, :ProjectId, :FolderId, :FolderName, :WorkflowId, :WorkflowName, :InChargeList, :TaskId, :TaskName, :TaskType, :TaskCycleType, :CurRunDate, :TryLimit, :Tries, :TotalRunNum, :InstanceType, :InstanceState, :StartTime, :EndTime, :CostTime, :SchedulerTime, :ExecutorGroupId, :ExecutorGroupName
+
+        def initialize(instancekey=nil, projectid=nil, folderid=nil, foldername=nil, workflowid=nil, workflowname=nil, inchargelist=nil, taskid=nil, taskname=nil, tasktype=nil, taskcycletype=nil, currundate=nil, trylimit=nil, tries=nil, totalrunnum=nil, instancetype=nil, instancestate=nil, starttime=nil, endtime=nil, costtime=nil, schedulertime=nil, executorgroupid=nil, executorgroupname=nil)
+          @InstanceKey = instancekey
+          @ProjectId = projectid
+          @FolderId = folderid
+          @FolderName = foldername
+          @WorkflowId = workflowid
+          @WorkflowName = workflowname
+          @InChargeList = inchargelist
+          @TaskId = taskid
+          @TaskName = taskname
+          @TaskType = tasktype
+          @TaskCycleType = taskcycletype
+          @CurRunDate = currundate
+          @TryLimit = trylimit
+          @Tries = tries
+          @TotalRunNum = totalrunnum
+          @InstanceType = instancetype
+          @InstanceState = instancestate
+          @StartTime = starttime
+          @EndTime = endtime
+          @CostTime = costtime
+          @SchedulerTime = schedulertime
+          @ExecutorGroupId = executorgroupid
+          @ExecutorGroupName = executorgroupname
+        end
+
+        def deserialize(params)
+          @InstanceKey = params['InstanceKey']
+          @ProjectId = params['ProjectId']
+          @FolderId = params['FolderId']
+          @FolderName = params['FolderName']
+          @WorkflowId = params['WorkflowId']
+          @WorkflowName = params['WorkflowName']
+          @InChargeList = params['InChargeList']
+          @TaskId = params['TaskId']
+          @TaskName = params['TaskName']
+          unless params['TaskType'].nil?
+            @TaskType = TaskTypeOpsDto.new
+            @TaskType.deserialize(params['TaskType'])
+          end
+          @TaskCycleType = params['TaskCycleType']
+          @CurRunDate = params['CurRunDate']
+          @TryLimit = params['TryLimit']
+          @Tries = params['Tries']
+          @TotalRunNum = params['TotalRunNum']
+          @InstanceType = params['InstanceType']
+          @InstanceState = params['InstanceState']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @CostTime = params['CostTime']
+          @SchedulerTime = params['SchedulerTime']
+          @ExecutorGroupId = params['ExecutorGroupId']
+          @ExecutorGroupName = params['ExecutorGroupName']
         end
       end
 
@@ -20069,6 +20841,167 @@ module TencentCloud
           @Offset = params['Offset']
           @LinkType = params['LinkType']
           @WorkflowId = params['WorkflowId']
+        end
+      end
+
+      # ListInstances请求参数结构体
+      class ListInstancesRequest < TencentCloud::Common::AbstractModel
+        # @param ProjectId: **项目ID**
+        # @type ProjectId: String
+        # @param ScheduleTimeFrom: **实例计划调度时间**
+        # 过滤起始时间，时间格式为 yyyy-MM-dd HH:mm:ss
+        # @type ScheduleTimeFrom: String
+        # @param ScheduleTimeTo: **实例计划调度时间**
+        # 过滤截止时间，时间格式为 yyyy-MM-dd HH:mm:ss
+        # @type ScheduleTimeTo: String
+        # @param PageNumber: **页码，整型**
+        # 配合pageSize使用且不能小于1， 默认值1
+        # @type PageNumber: Integer
+        # @param PageSize: **每页数目，整型**
+        # 配合pageNumber使用且不能大于200, 默认值 10
+        # @type PageSize: Integer
+        # @param SortColumn: **查询结果排序字段**
+
+        # - SCHEDULE_DATE 表示 计划调度时间
+        # - START_TIME 表示 实例开始执行时间
+        # - END_TIME 表示 实例结束执行时间
+        # - COST_TIME 表示 实例执行时长
+        # @type SortColumn: String
+        # @param SortType: **实例排序方式**
+
+        # - ASC
+        # - DESC
+        # @type SortType: String
+        # @param InstanceType: **实例类型**
+
+        # - 0 表示补录类型
+        # - 1 表示周期实例
+        # - 2 表示非周期实例
+        # @type InstanceType: Integer
+        # @param InstanceStateList: **实例执行状态**
+        # 支持过滤多个，条件间为 或 的过滤关系
+
+        # - [0] 表示 等待事件
+        # - [12] 表示 等待上游
+        # - [6, 7, 9, 10, 18] 表示 等待运行
+        # - [1, 19, 22] 表示 运行中
+        # - [21] 表示 跳过运行
+        # - [3] 表示 失败重试
+        # - [8, 4, 5, 13] 表示 失败
+        # - [2] 表示 成功
+        # @type InstanceStateList: Array
+        # @param TaskTypeIdList: **任务类型Id**
+
+        # - 支持过滤多个，条件间为 或 的过滤关系
+        # - 可以通过接口 DescribeAllTaskType 获取项目支持的全部任务类型
+        # @type TaskTypeIdList: Array
+        # @param TaskCycleList: **任务周期类型**
+        # 支持过滤多个，条件间为 或 的过滤关系
+        # * O: ONEOFF_CYCLE
+        # * Y: YEAR_CYCLE
+        # * M: MONTH_CYCLE
+        # * W: WEEK_CYCLE
+        # * D: DAY_CYCLE
+        # * H: HOUR_CYCLE
+        # * I: MINUTE_CYCLE
+        # * C: CRONTAB_CYCLE
+        # @type TaskCycleList: Array
+        # @param Keyword: **任务名称 或 任务ID**
+        # 支持模糊搜索过滤, 多个用 英文逗号, 分割
+        # @type Keyword: String
+        # @param InChargeList: **任务负责人**
+        # 支持过滤多个，条件间为 或 的过滤关系
+        # @type InChargeList: Array
+        # @param TaskFolderIdList: **任务所属文件件**
+        # 支持过滤多个，条件间为 或 的过滤关系
+        # 可以通过接口 FindAllFolder 获取项目下的所有文件夹列表
+        # @type TaskFolderIdList: Array
+        # @param WorkflowIdList: **任务所属工作流**
+        # 支持过滤多个，条件间为 或 的过滤关系
+        # 可以通过接口 DescribeOpsWorkflows 获取项目下的所有工作流列表
+        # @type WorkflowIdList: Array
+        # @param ExecutorGroupIdList: **执行资源组Id**
+        # 支持过滤多个，条件间为 或 的过滤关系
+        # 可以通过接口 DescribeNormalSchedulerExecutorGroups 获取项目下的所有调度资源组列表
+        # 可以通过接口 DescribeNormalIntegrationExecutorGroups 获取项目下的所有集成资源组列表
+        # @type ExecutorGroupIdList: Array
+        # @param StartTimeFrom: **开始时间**
+        # 过滤起始时间，时间格式为 yyyy-MM-dd HH:mm:ss
+        # @type StartTimeFrom: String
+        # @param StartTimeTo: **开始时间**
+        # 过滤截止时间，时间格式为 yyyy-MM-dd HH:mm:ss
+        # @type StartTimeTo: String
+        # @param ScheduleTimeZone: **时区**
+        # timeZone, 默认UTC+8
+        # @type ScheduleTimeZone: String
+
+        attr_accessor :ProjectId, :ScheduleTimeFrom, :ScheduleTimeTo, :PageNumber, :PageSize, :SortColumn, :SortType, :InstanceType, :InstanceStateList, :TaskTypeIdList, :TaskCycleList, :Keyword, :InChargeList, :TaskFolderIdList, :WorkflowIdList, :ExecutorGroupIdList, :StartTimeFrom, :StartTimeTo, :ScheduleTimeZone
+
+        def initialize(projectid=nil, scheduletimefrom=nil, scheduletimeto=nil, pagenumber=nil, pagesize=nil, sortcolumn=nil, sorttype=nil, instancetype=nil, instancestatelist=nil, tasktypeidlist=nil, taskcyclelist=nil, keyword=nil, inchargelist=nil, taskfolderidlist=nil, workflowidlist=nil, executorgroupidlist=nil, starttimefrom=nil, starttimeto=nil, scheduletimezone=nil)
+          @ProjectId = projectid
+          @ScheduleTimeFrom = scheduletimefrom
+          @ScheduleTimeTo = scheduletimeto
+          @PageNumber = pagenumber
+          @PageSize = pagesize
+          @SortColumn = sortcolumn
+          @SortType = sorttype
+          @InstanceType = instancetype
+          @InstanceStateList = instancestatelist
+          @TaskTypeIdList = tasktypeidlist
+          @TaskCycleList = taskcyclelist
+          @Keyword = keyword
+          @InChargeList = inchargelist
+          @TaskFolderIdList = taskfolderidlist
+          @WorkflowIdList = workflowidlist
+          @ExecutorGroupIdList = executorgroupidlist
+          @StartTimeFrom = starttimefrom
+          @StartTimeTo = starttimeto
+          @ScheduleTimeZone = scheduletimezone
+        end
+
+        def deserialize(params)
+          @ProjectId = params['ProjectId']
+          @ScheduleTimeFrom = params['ScheduleTimeFrom']
+          @ScheduleTimeTo = params['ScheduleTimeTo']
+          @PageNumber = params['PageNumber']
+          @PageSize = params['PageSize']
+          @SortColumn = params['SortColumn']
+          @SortType = params['SortType']
+          @InstanceType = params['InstanceType']
+          @InstanceStateList = params['InstanceStateList']
+          @TaskTypeIdList = params['TaskTypeIdList']
+          @TaskCycleList = params['TaskCycleList']
+          @Keyword = params['Keyword']
+          @InChargeList = params['InChargeList']
+          @TaskFolderIdList = params['TaskFolderIdList']
+          @WorkflowIdList = params['WorkflowIdList']
+          @ExecutorGroupIdList = params['ExecutorGroupIdList']
+          @StartTimeFrom = params['StartTimeFrom']
+          @StartTimeTo = params['StartTimeTo']
+          @ScheduleTimeZone = params['ScheduleTimeZone']
+        end
+      end
+
+      # ListInstances返回参数结构体
+      class ListInstancesResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 实例结果集
+        # @type Data: :class:`Tencentcloud::Wedata.v20210820.models.InstancePageVO`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = InstancePageVO.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
         end
       end
 
@@ -28853,13 +29786,25 @@ module TencentCloud
         # @param IfSupportCreateAndDDL: 是否支持select or ddl
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IfSupportCreateAndDDL: :class:`Tencentcloud::Wedata.v20210820.models.CreateAndDDLSupport`
+        # @param DataFromType: 资产来源 历史默认值都是CRAWLER
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DataFromType: String
+        # @param EngineOwner: 引擎侧责任人
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EngineOwner: String
+        # @param DataLayerUuid: 数据分层UUID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DataLayerUuid: String
+        # @param DataLayerName: 数据分层名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DataLayerName: String
         # @param ColumnCount: 字段数量
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ColumnCount: Integer
 
-        attr_accessor :TableId, :TableName, :TableOwnerName, :DatasourceId, :ClusterName, :DatasourceName, :DatabaseName, :TablePath, :TableNameCn, :MetastoreId, :MetastoreType, :Description, :ColumnSeparator, :StorageFormat, :StorageSize, :TableType, :CreateTime, :ModifyTime, :DdlModifyTime, :LastAccessTime, :ProjectName, :BizCatalogIds, :BizCatalogNames, :HasFavorite, :LifeCycleTime, :StorageSizeWithUnit, :InstanceId, :TechnologyType, :TableNameEn, :ProjectId, :Partitions, :ReplicationFactor, :ProjectDisplayName, :DataModifyTime, :ClusterId, :HasAdminAuthority, :DatasourceDisplayName, :DatabaseId, :FavoriteCount, :LikeCount, :HasLike, :TablePropertyScore, :TableHeat, :OwnerProjectId, :TableOwnerId, :DataSourceCategory, :Columns, :MetaCrawlType, :IsView, :Location, :IsPartitionTable, :PartitionColumns, :PartitionExpireDays, :TableProperties, :Environment, :Schema, :CollectDatasourceList, :CollectJobId, :CollectJobName, :Urn, :HasBizPermission, :OwnerByEngine, :ErrorTips, :IfSupportCreateAndDDL, :ColumnCount
+        attr_accessor :TableId, :TableName, :TableOwnerName, :DatasourceId, :ClusterName, :DatasourceName, :DatabaseName, :TablePath, :TableNameCn, :MetastoreId, :MetastoreType, :Description, :ColumnSeparator, :StorageFormat, :StorageSize, :TableType, :CreateTime, :ModifyTime, :DdlModifyTime, :LastAccessTime, :ProjectName, :BizCatalogIds, :BizCatalogNames, :HasFavorite, :LifeCycleTime, :StorageSizeWithUnit, :InstanceId, :TechnologyType, :TableNameEn, :ProjectId, :Partitions, :ReplicationFactor, :ProjectDisplayName, :DataModifyTime, :ClusterId, :HasAdminAuthority, :DatasourceDisplayName, :DatabaseId, :FavoriteCount, :LikeCount, :HasLike, :TablePropertyScore, :TableHeat, :OwnerProjectId, :TableOwnerId, :DataSourceCategory, :Columns, :MetaCrawlType, :IsView, :Location, :IsPartitionTable, :PartitionColumns, :PartitionExpireDays, :TableProperties, :Environment, :Schema, :CollectDatasourceList, :CollectJobId, :CollectJobName, :Urn, :HasBizPermission, :OwnerByEngine, :ErrorTips, :IfSupportCreateAndDDL, :DataFromType, :EngineOwner, :DataLayerUuid, :DataLayerName, :ColumnCount
 
-        def initialize(tableid=nil, tablename=nil, tableownername=nil, datasourceid=nil, clustername=nil, datasourcename=nil, databasename=nil, tablepath=nil, tablenamecn=nil, metastoreid=nil, metastoretype=nil, description=nil, columnseparator=nil, storageformat=nil, storagesize=nil, tabletype=nil, createtime=nil, modifytime=nil, ddlmodifytime=nil, lastaccesstime=nil, projectname=nil, bizcatalogids=nil, bizcatalognames=nil, hasfavorite=nil, lifecycletime=nil, storagesizewithunit=nil, instanceid=nil, technologytype=nil, tablenameen=nil, projectid=nil, partitions=nil, replicationfactor=nil, projectdisplayname=nil, datamodifytime=nil, clusterid=nil, hasadminauthority=nil, datasourcedisplayname=nil, databaseid=nil, favoritecount=nil, likecount=nil, haslike=nil, tablepropertyscore=nil, tableheat=nil, ownerprojectid=nil, tableownerid=nil, datasourcecategory=nil, columns=nil, metacrawltype=nil, isview=nil, location=nil, ispartitiontable=nil, partitioncolumns=nil, partitionexpiredays=nil, tableproperties=nil, environment=nil, schema=nil, collectdatasourcelist=nil, collectjobid=nil, collectjobname=nil, urn=nil, hasbizpermission=nil, ownerbyengine=nil, errortips=nil, ifsupportcreateandddl=nil, columncount=nil)
+        def initialize(tableid=nil, tablename=nil, tableownername=nil, datasourceid=nil, clustername=nil, datasourcename=nil, databasename=nil, tablepath=nil, tablenamecn=nil, metastoreid=nil, metastoretype=nil, description=nil, columnseparator=nil, storageformat=nil, storagesize=nil, tabletype=nil, createtime=nil, modifytime=nil, ddlmodifytime=nil, lastaccesstime=nil, projectname=nil, bizcatalogids=nil, bizcatalognames=nil, hasfavorite=nil, lifecycletime=nil, storagesizewithunit=nil, instanceid=nil, technologytype=nil, tablenameen=nil, projectid=nil, partitions=nil, replicationfactor=nil, projectdisplayname=nil, datamodifytime=nil, clusterid=nil, hasadminauthority=nil, datasourcedisplayname=nil, databaseid=nil, favoritecount=nil, likecount=nil, haslike=nil, tablepropertyscore=nil, tableheat=nil, ownerprojectid=nil, tableownerid=nil, datasourcecategory=nil, columns=nil, metacrawltype=nil, isview=nil, location=nil, ispartitiontable=nil, partitioncolumns=nil, partitionexpiredays=nil, tableproperties=nil, environment=nil, schema=nil, collectdatasourcelist=nil, collectjobid=nil, collectjobname=nil, urn=nil, hasbizpermission=nil, ownerbyengine=nil, errortips=nil, ifsupportcreateandddl=nil, datafromtype=nil, engineowner=nil, datalayeruuid=nil, datalayername=nil, columncount=nil)
           @TableId = tableid
           @TableName = tablename
           @TableOwnerName = tableownername
@@ -28924,6 +29869,10 @@ module TencentCloud
           @OwnerByEngine = ownerbyengine
           @ErrorTips = errortips
           @IfSupportCreateAndDDL = ifsupportcreateandddl
+          @DataFromType = datafromtype
+          @EngineOwner = engineowner
+          @DataLayerUuid = datalayeruuid
+          @DataLayerName = datalayername
           @ColumnCount = columncount
         end
 
@@ -29022,6 +29971,10 @@ module TencentCloud
             @IfSupportCreateAndDDL = CreateAndDDLSupport.new
             @IfSupportCreateAndDDL.deserialize(params['IfSupportCreateAndDDL'])
           end
+          @DataFromType = params['DataFromType']
+          @EngineOwner = params['EngineOwner']
+          @DataLayerUuid = params['DataLayerUuid']
+          @DataLayerName = params['DataLayerName']
           @ColumnCount = params['ColumnCount']
         end
       end

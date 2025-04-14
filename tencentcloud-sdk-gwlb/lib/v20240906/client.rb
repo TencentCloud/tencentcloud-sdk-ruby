@@ -30,7 +30,7 @@ module TencentCloud
 
 
         # 本接口(AssociateTargetGroups)用来将目标组绑定到负载均衡。
-        # 本接口为异步接口，本接口返回成功后需以返回的 RequestID 为入参，调用 DescribeTaskStatus 接口查询本次任务是否成功。
+        # 本接口为异步接口，本接口返回成功后需以返回的 RequestID 为入参，调用 [DescribeTaskStatus](https://cloud.tencent.com/document/product/214/30683) 接口查询本次任务是否成功。
 
         # @param request: Request instance for AssociateTargetGroups.
         # @type request: :class:`Tencentcloud::gwlb::V20240906::AssociateTargetGroupsRequest`
@@ -56,7 +56,7 @@ module TencentCloud
 
         # 本接口(CreateGatewayLoadBalancer)用来创建网关负载均衡实例。为了使用网关负载均衡服务，您必须购买一个或多个网关负载均衡实例。成功调用该接口后，会返回网关负载均衡实例的唯一 ID。
         # 注意：单个账号在每个地域的默认购买配额为：10个。
-        # 本接口为异步接口，接口成功返回后，可使用 DescribeGatewayLoadBalancers 接口查询负载均衡实例的状态（如创建中、正常），以确定是否创建成功。
+        # 本接口为异步接口，接口成功返回后，可使用 [DescribeTaskStatus](https://cloud.tencent.com/document/api/1782/111700) 接口查询负载均衡实例的状态。
 
         # @param request: Request instance for CreateGatewayLoadBalancer.
         # @type request: :class:`Tencentcloud::gwlb::V20240906::CreateGatewayLoadBalancerRequest`
@@ -80,7 +80,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 创建目标组。该功能正在内测中，如需使用，请通过[工单申请](https://console.cloud.tencent.com/workorder/category?level1_id=6&level2_id=163&source=0&data_title=%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1%20LB&step=1)。
+        # 创建目标组。
 
         # @param request: Request instance for CreateTargetGroup.
         # @type request: :class:`Tencentcloud::gwlb::V20240906::CreateTargetGroupRequest`
@@ -105,7 +105,7 @@ module TencentCloud
         end
 
         # DeleteGatewayLoadBalancer 接口用以删除指定的一个或多个网关负载均衡实例。成功删除后，会把网关负载均衡实例与后端服务解绑。
-        # 本接口为异步接口，接口返回成功后，需以返回的 RequestId 为入参，调用 DescribeTaskStatus 接口查询本次任务是否成功。
+        # 本接口为异步接口，接口返回成功后，需以返回的 RequestId 为入参，调用 [DescribeTaskStatus](https://cloud.tencent.com/document/api/1782/111700) 接口查询本次任务是否成功。
 
         # @param request: Request instance for DeleteGatewayLoadBalancer.
         # @type request: :class:`Tencentcloud::gwlb::V20240906::DeleteGatewayLoadBalancerRequest`
@@ -154,7 +154,6 @@ module TencentCloud
         end
 
         # 从目标组中解绑服务器。
-        # 本接口为异步接口，本接口返回成功后需以返回的 RequestID 为入参，调用 DescribeTaskStatus 接口查询本次任务是否成功。
 
         # @param request: Request instance for DeregisterTargetGroupInstances.
         # @type request: :class:`Tencentcloud::gwlb::V20240906::DeregisterTargetGroupInstancesRequest`
@@ -323,7 +322,7 @@ module TencentCloud
         end
 
         # 解除负载均衡和目标组的关联关系。
-        # 本接口为异步接口，本接口返回成功后需以返回的 RequestID 为入参，调用 DescribeTaskStatus 接口查询本次任务是否成功。
+        # 本接口为异步接口，本接口返回成功后需以返回的 RequestID 为入参，调用 [DescribeTaskStatus](https://cloud.tencent.com/document/product/214/30683) 接口查询本次任务是否成功。
 
         # @param request: Request instance for DisassociateTargetGroups.
         # @type request: :class:`Tencentcloud::gwlb::V20240906::DisassociateTargetGroupsRequest`
@@ -445,7 +444,6 @@ module TencentCloud
         end
 
         # 注册服务器到目标组。
-        # 本接口为异步接口，本接口返回成功后需以返回的 RequestID 为入参，调用 DescribeTaskStatus 接口查询本次任务是否成功。
 
         # @param request: Request instance for RegisterTargetGroupInstances.
         # @type request: :class:`Tencentcloud::gwlb::V20240906::RegisterTargetGroupInstancesRequest`

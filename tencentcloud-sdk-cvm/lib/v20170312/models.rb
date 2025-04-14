@@ -113,17 +113,13 @@ module TencentCloud
         # @type TimerAction: String
         # @param ActionTime: 执行时间，按照ISO8601标准表示，并且使用UTC时间。格式为 YYYY-MM-DDThh:mm:ssZ。例如 2018-05-29T11:26:40Z，执行时间必须大于当前时间5分钟。
         # @type ActionTime: String
-        # @param Externals: 扩展数据
+        # @param Externals: 扩展数据。仅做出参使用。
         # @type Externals: :class:`Tencentcloud::Cvm.v20170312.models.Externals`
-        # @param ActionTimerId: 定时器ID。
+        # @param ActionTimerId: 定时器ID。仅做出参使用。
         # @type ActionTimerId: String
-        # @param Status: 定时器状态，取值范围：
-
-        # UNDO：未触发
-        # DOING：触发中
-        # DONE：已经触发
+        # @param Status: 定时器状态，仅做出参使用。取值范围：<br><li>UNDO：未执行</li> <li>DOING：正在执行</li><li>DONE：执行完成。</li>
         # @type Status: String
-        # @param InstanceId: 定时器对应的实例ID。
+        # @param InstanceId: 定时器对应的实例ID。仅做出参使用。
         # @type InstanceId: String
 
         attr_accessor :TimerAction, :ActionTime, :Externals, :ActionTimerId, :Status, :InstanceId
@@ -265,9 +261,9 @@ module TencentCloud
 
       # AssociateSecurityGroups请求参数结构体
       class AssociateSecurityGroupsRequest < TencentCloud::Common::AbstractModel
-        # @param SecurityGroupIds: 要绑定的`安全组ID`，类似sg-efil73jd，只支持绑定单个安全组。
+        # @param SecurityGroupIds: 要绑定的`安全组ID`，类似sg-efil73jd，只支持绑定单个安全组。可通过 [DescribeSecurityGroups](https://cloud.tencent.com/document/product/215/15808) 接口返回值中的`SecurityGroupId`获取。
         # @type SecurityGroupIds: Array
-        # @param InstanceIds: 被绑定的`实例ID`，类似ins-lesecurk，支持指定多个实例，每次请求批量实例的上限为100。
+        # @param InstanceIds: 被绑定的`实例ID`，类似ins-lesecurk，支持指定多个实例，每次请求批量实例的上限为100。可通过 [DescribeInstances](https://cloud.tencent.com/document/api/213/15728) 接口返回值中的`InstanceId`获取。
         # @type InstanceIds: Array
 
         attr_accessor :SecurityGroupIds, :InstanceIds
@@ -923,11 +919,15 @@ module TencentCloud
 
       # CreateImage请求参数结构体
       class CreateImageRequest < TencentCloud::Common::AbstractModel
-        # @param ImageName: 镜像名称
+        # @param ImageName: 镜像名称。
+        # 最多支持60个字符。
         # @type ImageName: String
         # @param InstanceId: 需要制作镜像的实例ID。基于实例创建镜像时，为必填参数。
+        # InstanceId 和 SnapshotIds 为二选一必填参数。
+        # 可通过 [DescribeInstances](https://cloud.tencent.com/document/api/213/15728) 接口返回值中的`InstanceId`获取。
         # @type InstanceId: String
-        # @param ImageDescription: 镜像描述
+        # @param ImageDescription: 镜像描述。
+        # 最多支持 256 个字符。
         # @type ImageDescription: String
         # @param ForcePoweroff: 是否执行强制关机以制作镜像。
         # 取值范围：<br><li>true：表示关机之后制作镜像</li><br><li>false：表示开机状态制作镜像</li><br><br>默认取值：false。<br><br>开机状态制作镜像，可能导致部分数据未备份，影响数据安全。
@@ -937,13 +937,18 @@ module TencentCloud
 
         # 关于Sysprep的详情请参考[链接](https://cloud.tencent.com/document/product/213/43498)。
         # @type Sysprep: String
-        # @param DataDiskIds: 基于实例创建整机镜像时，指定包含在镜像里的数据盘ID
+        # @param DataDiskIds: 基于实例创建整机镜像时，指定包含在镜像里的数据盘ID。
+        # DataDiskIds 只能在指定 InstanceId 实例所包含的数据盘范围内指定。
+        # 可通过 [DescribeInstances](https://cloud.tencent.com/document/api/213/15728) 接口返回值中的 `DataDisks` 获取。
         # @type DataDiskIds: Array
-        # @param SnapshotIds: 基于快照创建镜像，指定快照ID，必须包含一个系统盘快照。不可与InstanceId同时传入。
+        # @param SnapshotIds: 基于快照创建镜像，指定快照ID，必须包含一个系统盘快照。不可与 InstanceId 同时传入。
+        # InstanceId 和 SnapshotIds 为二选一必填参数。
+        # 可通过 [DescribeSnapshots](https://cloud.tencent.com/document/product/362/15647) 接口返回值中的`SnapshotId`获取。
         # @type SnapshotIds: Array
         # @param DryRun: 检测本次请求的是否成功，但不会对操作的资源产生任何影响。默认取值为false。
         # @type DryRun: Boolean
         # @param TagSpecification: 标签描述列表。通过指定该参数可以同时绑定标签到自定义镜像。
+        # 可通过 [DescribeTags](https://cloud.tencent.com/document/api/651/35316) 接口返回值中的 `TagKey` 和 `TagValue` 获取。
         # @type TagSpecification: Array
         # @param ImageFamily: 镜像族
         # @type ImageFamily: String
@@ -1457,23 +1462,11 @@ module TencentCloud
         # @param DiskId: 数据盘ID。
         # 该参数目前仅用于`DescribeInstances`等查询类接口的返回参数，不可用于`RunInstances`等写接口的入参。
         # @type DiskId: String
-        # @param DeleteWithInstance: 数据盘是否随子机销毁。取值范围：
-        # <li>true：子机销毁时，销毁数据盘，只支持按小时后付费云盘</li>
-        # <li>
-        #   false：子机销毁时，保留数据盘<br />
-        #   默认取值：true<br />
-        #   该参数目前仅用于 `RunInstances` 接口。
-        # </li>
+        # @param DeleteWithInstance: 数据盘是否随子机销毁。取值范围：<li>true：子机销毁时，销毁数据盘，只支持按小时后付费云盘</li><li>false：子机销毁时，保留数据盘</li><br/>默认取值：true <br/>该参数目前仅用于 `RunInstances` 接口。
         # @type DeleteWithInstance: Boolean
         # @param SnapshotId: 数据盘快照ID。选择的数据盘快照大小需小于数据盘大小。
         # @type SnapshotId: String
-        # @param Encrypt: 数据盘是加密。取值范围：
-        # <li>true：加密</li>
-        # <li>
-        #   false：不加密<br />
-        #   默认取值：false<br />
-        #   该参数目前仅用于 `RunInstances` 接口。
-        # </li>
+        # @param Encrypt: 数据盘是否加密。取值范围：<li>true：加密</li><li>false：不加密</li><br/>默认取值：false<br/>该参数目前仅用于 `RunInstances` 接口。
         # @type Encrypt: Boolean
         # @param KmsKeyId: 自定义CMK对应的ID，取值为UUID或者类似kms-abcd1234。用于加密云盘。
 
@@ -1589,11 +1582,14 @@ module TencentCloud
 
       # DeleteImages请求参数结构体
       class DeleteImagesRequest < TencentCloud::Common::AbstractModel
-        # @param ImageIds: 准备删除的镜像Id列表
+        # @param ImageIds: 删除的镜像 ID 列表。
+        # 可通过 [DescribeImages](https://cloud.tencent.com/document/api/213/15715) 接口返回值中的`ImageId`获取。
         # @type ImageIds: Array
-        # @param DeleteBindedSnap: 是否删除镜像关联的快照
+        # @param DeleteBindedSnap: 是否删除镜像关联的快照。
+        # 默认值：false
         # @type DeleteBindedSnap: Boolean
-        # @param DryRun: 检测是否支持删除镜像
+        # @param DryRun: 检测是否支持删除镜像。
+        # 默认值：false
         # @type DryRun: Boolean
 
         attr_accessor :ImageIds, :DeleteBindedSnap, :DryRun
@@ -1629,7 +1625,7 @@ module TencentCloud
 
       # DeleteInstancesActionTimer请求参数结构体
       class DeleteInstancesActionTimerRequest < TencentCloud::Common::AbstractModel
-        # @param ActionTimerIds: 定时任务ID列表，可以通过DescribeInstancesActionTimer接口查询。只能删除未执行的定时任务。
+        # @param ActionTimerIds: 定时任务ID列表，可以通过[ DescribeInstancesActionTimer ](https://cloud.tencent.com/document/product/213/103950)接口查询。只能删除未执行的定时任务。
         # @type ActionTimerIds: Array
 
         attr_accessor :ActionTimerIds
@@ -1725,9 +1721,9 @@ module TencentCloud
 
       # DeleteLaunchTemplateVersions请求参数结构体
       class DeleteLaunchTemplateVersionsRequest < TencentCloud::Common::AbstractModel
-        # @param LaunchTemplateId: 启动模板ID。
+        # @param LaunchTemplateId: 启动模板ID。可通过 [DescribeLaunchTemplates](https://cloud.tencent.com/document/api/213/66322) 接口返回值中的`LaunchTemplateId`获取。
         # @type LaunchTemplateId: String
-        # @param LaunchTemplateVersions: 实例启动模板版本列表。
+        # @param LaunchTemplateVersions: 实例启动模板版本列表。可通过 [DescribeLaunchTemplateVersions](https://cloud.tencent.com/document/api/213/66323) 接口返回值中的`LaunchTemplateVersion`获取。
         # @type LaunchTemplateVersions: Array
 
         attr_accessor :LaunchTemplateId, :LaunchTemplateVersions
@@ -1764,7 +1760,7 @@ module TencentCloud
         # @param Filters: <li><strong>zone</strong></li>
         # <p style="padding-left: 30px;">按照【<strong>可用区</strong>】进行过滤。可用区形如：ap-guangzhou-1。</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p><p style="padding-left: 30px;">可选项：<a href="https://cloud.tencent.com/document/product/213/6091">可用区列表</a></p>
         # <li><strong>quota-type</strong></li>
-        # <p style="padding-left: 30px;">按照【<strong>配额类型</strong>】进行过滤。配额类型形如：PostPaidQuotaSet。</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p><p style="padding-left: 30px;">可选项：PostPaidQuotaSet,DisasterRecoverGroupQuotaSet,PrePaidQuotaSet,SpotPaidQuotaSet</p>
+        # <p style="padding-left: 30px;">按照【<strong>配额类型</strong>】进行过滤。配额类型形如：PostPaidQuotaSet。</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p><p style="padding-left: 30px;">可选项：</p><p style="padding-left: 30px;">PostPaidQuotaSet: 后付费配额</p><p style="padding-left: 30px;">PrePaidQuotaSet: 预付费配额</p><p style="padding-left: 30px;">SpotPaidQuotaSet: 竞价配额</p><p style="padding-left: 30px;">ImageQuotaSet: 镜像配额</p><p style="padding-left: 30px;">DisasterRecoverGroupQuotaSet: 置放群组配额</p>
         # @type Filters: Array
 
         attr_accessor :Filters
@@ -2606,7 +2602,7 @@ module TencentCloud
 
       # DescribeInstanceVncUrl请求参数结构体
       class DescribeInstanceVncUrlRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 一个操作的实例ID。可通过[`DescribeInstances`](https://cloud.tencent.com/document/api/213/15728) API返回值中的`InstanceId`获取。
+        # @param InstanceId: 一个操作的实例ID。可通过[ DescribeInstances ](https://cloud.tencent.com/document/api/213/15728) 接口返回值中的`InstanceId`获取。
         # @type InstanceId: String
 
         attr_accessor :InstanceId
@@ -2644,15 +2640,15 @@ module TencentCloud
       class DescribeInstancesActionTimerRequest < TencentCloud::Common::AbstractModel
         # @param ActionTimerIds: 定时任务ID列表。
         # @type ActionTimerIds: Array
-        # @param InstanceIds: 按照一个或者多个实例ID查询。
+        # @param InstanceIds: 按照一个或者多个实例ID查询。可通过 [DescribeInstances](https://cloud.tencent.com/document/api/213/15728) 接口返回值中的`InstanceId`获取。
         # @type InstanceIds: Array
         # @param TimerAction: 定时器动作，目前仅支持销毁一个值：TerminateInstances。
         # @type TimerAction: String
-        # @param EndActionTime: 执行时间的结束范围，用于条件筛选，格式如2018-05-01 19:00:00。
+        # @param EndActionTime: 定时任务执行时间的结束范围，用于条件筛选，格式如2018-05-01 19:00:00。
         # @type EndActionTime: String
-        # @param StartActionTime: 执行时间的开始范围，用于条件筛选，格式如2018-05-01 19:00:00。
+        # @param StartActionTime: 定时任务执行时间的开始范围，用于条件筛选，格式如2018-05-01 19:00:00。
         # @type StartActionTime: String
-        # @param StatusList: 定时任务状态列表。<br><li>UNDO：未执行</li> <br><li>DOING：正在执行</li><br><li>DONE：执行完成。</li>
+        # @param StatusList: 定时任务状态列表。<br><li>UNDO：未执行</li> <li>DOING：正在执行</li><li>DONE：执行完成。</li>
         # @type StatusList: Array
 
         attr_accessor :ActionTimerIds, :InstanceIds, :TimerAction, :EndActionTime, :StartActionTime, :StatusList
@@ -2708,7 +2704,7 @@ module TencentCloud
         # @param Attributes: 需要获取的实例属性。可选值：
         # UserData: 实例自定义数据
         # @type Attributes: Array
-        # @param InstanceIds: 实例ID列表
+        # @param InstanceIds: 实例ID列表。可通过 [DescribeInstances](https://cloud.tencent.com/document/api/213/15728) 接口返回值中的`InstanceId`获取。
         # @type InstanceIds: Array
 
         attr_accessor :Attributes, :InstanceIds
@@ -2756,7 +2752,7 @@ module TencentCloud
         # @param InstanceIds: 一个或多个待查询的实例ID。可通过 [DescribeInstances](https://cloud.tencent.com/document/api/213/15728) 接口返回值中的`InstanceId`获取。每次请求批量实例的上限为20。
         # @type InstanceIds: Array
         # @param Filters: <li><strong>status</strong></li>
-        # <p style="padding-left: 30px;">按照【<strong>配置规格状态</strong>】进行过滤。配置规格状态形如：SELL、UNAVAILABLE。</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p>
+        # <p style="padding-left: 30px;">按照【<strong>配置规格状态</strong>】进行过滤。配置规格状态形如：SELL(表示实例可售卖)、UNAVAILABLE(表示实例不可用)。</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p>
         # 每次请求的`Filters`的上限为10，`Filter.Values`的上限为2。
         # @type Filters: Array
 
@@ -2816,7 +2812,7 @@ module TencentCloud
         # @param InstanceIds: 按照一个或者多个实例ID查询，可通过[DescribeInstances](https://cloud.tencent.com/document/api/213/15728)API返回值中的InstanceId获取。实例ID形如：ins-xxxxxxxx。（此参数的具体格式可参考API[简介](https://cloud.tencent.com/document/api/213/15688)的ids.N一节）。每次请求的实例的上限为100。
         # @type InstanceIds: Array
         # @param Operation: 实例操作。
-        # <li> INSTANCE_DEGRADE：实例降配操作</li>
+        # <li> INSTANCE_DEGRADE：实例降配操作</li><li> INTERNET_CHARGE_TYPE_CHANGE：实例调整带宽付费模式操作</li>
         # @type Operation: String
 
         attr_accessor :InstanceIds, :Operation
@@ -3574,7 +3570,7 @@ module TencentCloud
         # <li><strong>instance-type</strong></li>
         # <p style="padding-left: 30px;">按照【<strong>实例机型</strong>】进行过滤。不同实例机型指定了不同的资源规格，具体取值可通过调用接口 [DescribeInstanceTypeConfigs](https://cloud.tencent.com/document/product/213/15749) 来获得最新的规格表或参见[实例类型](https://cloud.tencent.com/document/product/213/11518)描述。若不指定该参数，则默认查询筛选条件下所有机型。</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p>
         # <li><strong>instance-charge-type</strong></li>
-        # <p style="padding-left: 30px;">按照【<strong>实例计费模式</strong>】进行过滤。(PREPAID：表示预付费，即包年包月 | POSTPAID_BY_HOUR：表示后付费，即按量计费 )</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p>
+        # <p style="padding-left: 30px;">按照【<strong>实例计费模式</strong>】进行过滤。(PREPAID：表示预付费，即包年包月 | POSTPAID_BY_HOUR：表示后付费，即按量计费  | CDHPAID：表示独享子机 | SPOTPAID：表示竞价付费 | CDCPAID：表示专用集群付费)</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p>
         # <li><strong>sort-keys</strong></li>
         # <p style="padding-left: 30px;">按关键字进行排序,格式为排序字段加排序方式，中间用冒号分隔。 例如： 按cpu数逆序排序 "cpu:desc", 按mem大小顺序排序 "mem:asc"</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p>
         # 每次请求的`Filters`的上限为10，`Filter.Values`的上限为100。
@@ -3709,9 +3705,9 @@ module TencentCloud
 
       # DisassociateSecurityGroups请求参数结构体
       class DisassociateSecurityGroupsRequest < TencentCloud::Common::AbstractModel
-        # @param SecurityGroupIds: 要解绑的`安全组ID`，类似sg-efil73jd，只支持解绑单个安全组。
+        # @param SecurityGroupIds: 要解绑的`安全组ID`，类似sg-efil73jd，只支持解绑单个安全组。可通过 [DescribeInstances](https://cloud.tencent.com/document/api/213/15728) 接口返回值中的`SecurityGroupIds`获取实例绑定的安全组。
         # @type SecurityGroupIds: Array
-        # @param InstanceIds: 被解绑的`实例ID`，类似ins-lesecurk，支持指定多个实例，每次请求批量实例的上限为100。
+        # @param InstanceIds: 被解绑的`实例ID`，类似ins-lesecurk，支持指定多个实例，每次请求批量实例的上限为100。可通过 [DescribeInstances](https://cloud.tencent.com/document/api/213/15728) 接口返回值中的`InstanceId`获取。
         # @type InstanceIds: Array
 
         attr_accessor :SecurityGroupIds, :InstanceIds
@@ -3919,7 +3915,7 @@ module TencentCloud
 
       # ExitRescueMode请求参数结构体
       class ExitRescueModeRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 退出救援模式的实例id
+        # @param InstanceId: 退出救援模式的实例id。可通过 [DescribeInstances](https://cloud.tencent.com/document/api/213/15728) 接口返回值中的`InstanceId`获取。
         # @type InstanceId: String
 
         attr_accessor :InstanceId
@@ -3951,17 +3947,22 @@ module TencentCloud
 
       # ExportImages请求参数结构体
       class ExportImagesRequest < TencentCloud::Common::AbstractModel
-        # @param BucketName: COS存储桶名称
+        # @param BucketName: COS存储桶名称。
+        # 可通过 [List Buckets](https://cloud.tencent.com/document/product/436/8291) 接口查询请求者名下的所有存储桶列表或特定地域下的存储桶列表。
         # @type BucketName: String
         # @param ImageIds: 镜像ID列表。调用 ExportImages 接口时，参数 ImageIds 和 SnapshotIds 为二选一必填参数，目前参数 SnapshotIds 暂未对外开放。
+        # 可通过 [DescribeImages](https://cloud.tencent.com/document/api/213/15715) 接口返回值中的`ImageId`获取。
         # @type ImageIds: Array
         # @param ExportFormat: 镜像文件导出格式。取值范围：RAW，QCOW2，VHD，VMDK。默认为RAW
         # @type ExportFormat: String
-        # @param FileNamePrefixList: 导出文件的名称前缀列表
+        # @param FileNamePrefixList: 导出文件的名称前缀列表。
+        # 默认导出文件无名称前缀。
         # @type FileNamePrefixList: Array
-        # @param OnlyExportRootDisk: 是否只导出系统盘
+        # @param OnlyExportRootDisk: 是否只导出系统盘。
+        # 默认值：false
         # @type OnlyExportRootDisk: Boolean
-        # @param DryRun: 检测镜像是否支持导出
+        # @param DryRun: 检测镜像是否支持导出。
+        # 默认值：false
         # @type DryRun: Boolean
         # @param RoleName: 角色名称。默认为CVM_QcsRole，发起请求前请确认是否存在该角色，以及是否已正确配置COS写入权限。
         # @type RoleName: String
@@ -3993,7 +3994,9 @@ module TencentCloud
       class ExportImagesResponse < TencentCloud::Common::AbstractModel
         # @param TaskId: 导出镜像任务ID
         # @type TaskId: Integer
-        # @param CosPaths: 导出镜像的COS文件名列表
+        # @param CosPaths: 导出镜像的COS文件名列表。其中，文件名格式如下。
+        # * 系统盘：前缀名_镜像ID_system_快照ID.镜像格式
+        # * 数据盘：前缀名_镜像ID_data_快照ID.镜像格式
         # @type CosPaths: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4583,7 +4586,7 @@ module TencentCloud
 
       # ImportInstancesActionTimer请求参数结构体
       class ImportInstancesActionTimerRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceIds: 实例id列表，可以通过DescribeInstances接口查询到。
+        # @param InstanceIds: 实例id列表，可通过 [DescribeInstances](https://cloud.tencent.com/document/api/213/15728) 接口返回值中的`InstanceId`获取。
         # @type InstanceIds: Array
         # @param ActionTimer: 定时器任务信息，目前仅支持定时销毁。
         # @type ActionTimer: :class:`Tencentcloud::Cvm.v20170312.models.ActionTimer`
@@ -5055,12 +5058,12 @@ module TencentCloud
 
       # InquiryPriceResizeInstanceDisks请求参数结构体
       class InquiryPriceResizeInstanceDisksRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 待操作的实例ID。可通过[`DescribeInstances`](https://cloud.tencent.com/document/api/213/15728)接口返回值中的`InstanceId`获取。
+        # @param InstanceId: 待操作的实例ID。可通过[ DescribeInstances ](https://cloud.tencent.com/document/api/213/15728)接口返回值中的`InstanceId`获取。
         # @type InstanceId: String
-        # @param DataDisks: 待扩容的数据盘配置信息。只支持扩容非弹性数据盘（[`DescribeDisks`](https://cloud.tencent.com/document/api/362/16315)接口返回值中的`Portable`为`false`表示非弹性）。数据盘容量单位：GB。最小扩容步长：10G。关于数据盘类型的选择请参考硬盘产品简介。可选数据盘类型受到实例类型`InstanceType`限制。另外允许扩容的最大容量也因数据盘类型的不同而有所差异。
+        # @param DataDisks: 待扩容的数据盘配置信息。只支持扩容非弹性数据盘[ DescribeDisks ](https://cloud.tencent.com/document/api/362/16315)接口返回值中的`Portable`为`false`表示非弹性）。数据盘容量单位：GB。最小扩容步长：10G。关于数据盘类型的选择请参考硬盘产品简介。可选数据盘类型受到实例类型`InstanceType`限制。另外允许扩容的最大容量也因数据盘类型的不同而有所差异。
         # <dx-alert infotype="explain" title="">您必须指定参数DataDisks与SystemDisk的其中一个，但不能同时指定。</dx-alert>
         # @type DataDisks: Array
-        # @param ForceStop: 是否对运行中的实例选择强制关机。建议对运行中的实例先手动关机，然后再重置用户密码。取值范围：<br><li>true：表示在正常关机失败后进行强制关机</li><br><li>false：表示在正常关机失败后不进行强制关机</li><br><br>默认取值：false。<br><br>强制关机的效果等同于关闭物理计算机的电源开关。强制关机可能会导致数据丢失或文件系统损坏，请仅在服务器不能正常关机时使用。
+        # @param ForceStop: 是否对运行中的实例选择强制关机。建议对运行中的实例先手动关机，然后再重置用户密码。取值范围：<br><li>true：表示在正常关机失败后进行强制关机</li><br><li>false：表示在正常关机失败后不进行强制关机</li><br>默认取值：false。<br><br>强制关机的效果等同于关闭物理计算机的电源开关。强制关机可能会导致数据丢失或文件系统损坏，请仅在服务器不能正常关机时使用。
         # @type ForceStop: Boolean
 
         attr_accessor :InstanceId, :DataDisks, :ForceStop
@@ -5120,7 +5123,8 @@ module TencentCloud
         # @type InstanceChargeType: String
         # @param InstanceChargePrepaid: 预付费模式，即包年包月相关参数设置。通过该参数可以指定包年包月实例的购买时长、是否设置自动续费等属性。若指定实例的付费模式为预付费则该参数必传。
         # @type InstanceChargePrepaid: :class:`Tencentcloud::Cvm.v20170312.models.InstanceChargePrepaid`
-        # @param InstanceType: 实例机型。不同实例机型指定了不同的资源规格，具体取值可通过调用接口[DescribeInstanceTypeConfigs](https://cloud.tencent.com/document/api/213/15749)来获得最新的规格表或参见[实例规格](https://cloud.tencent.com/document/product/213/11518)描述。若不指定该参数，则默认机型为S1.SMALL1。
+        # @param InstanceType: 实例机型。不同实例机型指定了不同的资源规格。
+        # <br><li>对于付费模式为PREPAID或POSTPAID_BY_HOUR的实例创建，具体取值可通过调用接口[DescribeInstanceTypeConfigs](https://cloud.tencent.com/document/api/213/15749)来获得最新的规格表或参见[实例规格](https://cloud.tencent.com/document/product/213/11518)描述。若不指定该参数，则系统将根据当前地域的资源售卖情况动态指定默认机型。</li><br><li>对于付费模式为CDHPAID的实例创建，该参数以"CDH_"为前缀，根据CPU和内存配置生成，具体形式为：CDH_XCXG，例如对于创建CPU为1核，内存为1G大小的专用宿主机的实例，该参数应该为CDH_1C1G。</li>
         # @type InstanceType: String
         # @param SystemDisk: 实例系统盘配置信息。若不指定该参数，则按照系统默认值进行分配。
         # @type SystemDisk: :class:`Tencentcloud::Cvm.v20170312.models.SystemDisk`
@@ -5136,7 +5140,7 @@ module TencentCloud
         # @type InstanceName: String
         # @param LoginSettings: 实例登录设置。通过该参数可以设置实例的登录方式密码、密钥或保持镜像的原始登录设置。默认情况下会随机生成密码，并以站内信方式知会到用户。
         # @type LoginSettings: :class:`Tencentcloud::Cvm.v20170312.models.LoginSettings`
-        # @param SecurityGroupIds: 实例所属安全组。该参数可以通过调用 [DescribeSecurityGroups](https://cloud.tencent.com/document/api/215/15808) 的返回值中的sgId字段来获取。若不指定该参数，则默认不绑定安全组。
+        # @param SecurityGroupIds: 实例所属安全组。该参数可以通过调用 [DescribeSecurityGroups](https://cloud.tencent.com/document/api/215/15808) 的返回值中的`SecurityGroupId`字段来获取。若不指定该参数，则默认不绑定安全组。
         # @type SecurityGroupIds: Array
         # @param EnhancedService: 增强服务。通过该参数可以指定是否开启云安全、云监控等服务。若不指定该参数，则默认开启云监控、云安全服务。
         # @type EnhancedService: :class:`Tencentcloud::Cvm.v20170312.models.EnhancedService`
@@ -5677,7 +5681,7 @@ module TencentCloud
         # @type GPU: Integer
         # @param CPU: CPU核数，单位：核。
         # @type CPU: Integer
-        # @param Memory: 内存容量，单位：`GB`。
+        # @param Memory: 内存容量，单位：`GiB`。
         # @type Memory: Integer
         # @param FPGA: FPGA核数，单位：核。
         # @type FPGA: Integer
@@ -5742,7 +5746,7 @@ module TencentCloud
         # @type Zone: String
         # @param InstanceType: 实例机型。
         # @type InstanceType: String
-        # @param InstanceChargeType: 实例计费模式。取值范围： <br><li>PREPAID：表示预付费，即包年包月<br></li>POSTPAID_BY_HOUR：表示后付费，即按量计费<br><li>CDHPAID：表示[专用宿主机](https://cloud.tencent.com/document/product/416)付费，即只对`专用宿主机`计费，不对`专用宿主机`上的实例计费。<br></li>`SPOTPAID`：表示竞价实例付费。
+        # @param InstanceChargeType: 实例计费模式。取值范围： <br><li>PREPAID：表示预付费，即包年包月<br></li><li>POSTPAID_BY_HOUR：表示后付费，即按量计费</li><li>CDHPAID：表示[专用宿主机](https://cloud.tencent.com/document/product/416)付费，即只对`专用宿主机`计费，不对`专用宿主机`上的实例计费。<br></li><li>SPOTPAID：表示竞价实例付费。</li>
         # @type InstanceChargeType: String
         # @param NetworkCard: 网卡类型，例如：25代表25G网卡
         # @type NetworkCard: Integer
@@ -5758,7 +5762,7 @@ module TencentCloud
         # @type TypeName: String
         # @param LocalDiskTypeList: 本地磁盘规格列表。当该参数返回为空值时，表示当前情况下无法创建本地盘。
         # @type LocalDiskTypeList: Array
-        # @param Status: 实例是否售卖。取值范围： <br><li>SELL：表示实例可购买<br></li>SOLD_OUT：表示实例已售罄。
+        # @param Status: 实例是否售卖。取值范围： <br><li>SELL：表示实例可购买<br></li><li>SOLD_OUT：表示实例已售罄。</li>
         # @type Status: String
         # @param Price: 实例的售卖价格。
         # @type Price: :class:`Tencentcloud::Cvm.v20170312.models.ItemPrice`
@@ -5783,10 +5787,7 @@ module TencentCloud
         # @param Frequency: 实例的CPU主频信息
         # @type Frequency: String
         # @param StatusCategory: 描述库存情况。取值范围：
-        # <li> EnoughStock：表示对应库存非常充足</li>
-        # <li>NormalStock：表示对应库存供应有保障</li>
-        # <li> UnderStock：表示对应库存即将售罄</li>
-        # <li>WithoutStock：表示对应库存已经售罄</li>
+        # <li> EnoughStock：表示对应库存非常充足</li> <li>NormalStock：表示对应库存供应有保障</li><li> UnderStock：表示对应库存即将售罄</li> <li>WithoutStock：表示对应库存已经售罄</li>
         # @type StatusCategory: String
 
         attr_accessor :Zone, :InstanceType, :InstanceChargeType, :NetworkCard, :Externals, :Cpu, :Memory, :InstanceFamily, :TypeName, :LocalDiskTypeList, :Status, :Price, :SoldOutReason, :InstanceBandwidth, :InstancePps, :StorageBlockAmount, :CpuType, :Gpu, :Fpga, :Remark, :GpuCount, :Frequency, :StatusCategory
@@ -6316,7 +6317,7 @@ module TencentCloud
         # @type IsDefaultVersion: Boolean
         # @param LaunchTemplateVersionDescription: 实例启动模板版本描述信息。
         # @type LaunchTemplateVersionDescription: String
-        # @param CreatedBy: 创建者。
+        # @param CreatedBy: 创建者的AppId。
         # @type CreatedBy: String
 
         attr_accessor :LaunchTemplateVersion, :LaunchTemplateVersionData, :CreationTime, :LaunchTemplateId, :IsDefaultVersion, :LaunchTemplateVersionDescription, :CreatedBy
@@ -6664,7 +6665,7 @@ module TencentCloud
 
       # ModifyInstanceDiskType请求参数结构体
       class ModifyInstanceDiskTypeRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 待操作的实例ID。可通过 [DescribeInstances](https://cloud.tencent.com/document/api/213/9388) 接口返回值中的`InstanceId`获取。
+        # @param InstanceId: 待操作的实例ID。可通过 [DescribeInstances](https://cloud.tencent.com/document/api/213/15728) 接口返回值中的`InstanceId`获取。
         # @type InstanceId: String
         # @param DataDisks: 实例数据盘配置信息，只需要指定要转换的目标云硬盘的介质类型，指定DiskType的值，当前只支持一个数据盘转化。只支持CDHPAID类型实例指定CdcId参数。
         # @type DataDisks: Array
@@ -6717,11 +6718,10 @@ module TencentCloud
         # @param InstanceIds: 一个或多个待操作的实例ID。可通过[DescribeInstances](https://cloud.tencent.com/document/api/213/15728) API返回值中的`InstanceId`获取。每次请求允许操作的实例数量上限是100。
         # @type InstanceIds: Array
         # @param InstanceName: 修改后实例名称。可任意命名，但不得超过60个字符。
-        # <dx-alert infotype="explain" title="">必须指定InstanceName与SecurityGroups的其中一个，但不能同时设置</dx-alert>
         # @type InstanceName: String
         # @param UserData: 提供给实例使用的用户数据，需要以 base64 方式编码，支持的最大数据大小为 16 KB。关于获取此参数的详细介绍，请参阅 [Windows](https://cloud.tencent.com/document/product/213/17526) 和 [Linux](https://cloud.tencent.com/document/product/213/17525) 启动时运行命令。
         # @type UserData: String
-        # @param SecurityGroups: 指定实例的修改后的安全组Id列表，子机将重新关联指定列表的安全组，原本关联的安全组会被解绑。<dx-alert infotype="explain" title="">必须指定SecurityGroups与InstanceName的其中一个，但不能同时设置</dx-alert>
+        # @param SecurityGroups: 指定实例的修改后的安全组Id列表，子机将重新关联指定列表的安全组，原本关联的安全组会被解绑。
         # @type SecurityGroups: Array
         # @param CamRoleName: 给实例绑定用户角色，传空值为解绑操作
         # @type CamRoleName: String
@@ -6786,11 +6786,11 @@ module TencentCloud
       class ModifyInstancesChargeTypeRequest < TencentCloud::Common::AbstractModel
         # @param InstanceIds: 一个或多个待操作的实例ID。可通过[DescribeInstances](https://cloud.tencent.com/document/api/213/15728)接口返回值中的`InstanceId`获取。每次请求批量实例的上限为30。
         # @type InstanceIds: Array
-        # @param InstanceChargeType: 修改后实例[计费类型](https://cloud.tencent.com/document/product/213/2180)。<br><li>PREPAID：预付费，即包年包月。<br><li>POSTPAID_BY_HOUR：后付费，即按量付费。
+        # @param InstanceChargeType: 修改后实例[计费类型](https://cloud.tencent.com/document/product/213/2180)。<li> PREPAID：预付费，即包年包月。</li><li> POSTPAID_BY_HOUR：后付费，即按量付费。</li>
         # @type InstanceChargeType: String
         # @param InstanceChargePrepaid: 修改后预付费模式，即包年包月相关参数设置。通过该参数可以指定包年包月实例的购买时长、是否设置自动续费等属性。<dx-alert infotype="explain" title="">若指定实例的付费模式为预付费则该参数必传。</dx-alert>
         # @type InstanceChargePrepaid: :class:`Tencentcloud::Cvm.v20170312.models.InstanceChargePrepaid`
-        # @param ModifyPortableDataDisk: 是否同时切换弹性数据云盘计费模式。取值范围：<br><li>true：表示切换弹性数据云盘计费模式<br><li>false：表示不切换弹性数据云盘计费模式<br><br>默认取值：false。
+        # @param ModifyPortableDataDisk: 是否同时切换弹性数据云盘计费模式。取值范围：<li> true：表示切换弹性数据云盘计费模式</li><li> false：表示不切换弹性数据云盘计费模式</li>默认取值：false。
         # @type ModifyPortableDataDisk: Boolean
 
         attr_accessor :InstanceIds, :InstanceChargeType, :InstanceChargePrepaid, :ModifyPortableDataDisk
@@ -6873,7 +6873,7 @@ module TencentCloud
       class ModifyInstancesProjectRequest < TencentCloud::Common::AbstractModel
         # @param InstanceIds: 一个或多个待操作的实例ID。可通过 [DescribeInstances](https://cloud.tencent.com/document/api/213/15728) API返回值中的`InstanceId`获取。每次请求允许操作的实例数量上限是100。
         # @type InstanceIds: Array
-        # @param ProjectId: 项目ID。项目可以使用[AddProject](https://cloud.tencent.com/document/api/651/81952)接口创建。可通过[`DescribeProject`](https://cloud.tencent.com/document/api/651/78725) API返回值中的`projectId`获取。后续使用[DescribeInstances](https://cloud.tencent.com/document/api/213/15728)接口查询实例时，项目ID可用于过滤结果。
+        # @param ProjectId: 项目ID。项目可以使用[ AddProject ](https://cloud.tencent.com/document/api/651/81952)接口创建。可通过[ DescribeProject ](https://cloud.tencent.com/document/api/651/78725) 接口返回值中的`projectId`获取。后续使用[DescribeInstances](https://cloud.tencent.com/document/api/213/15728)接口查询实例时，项目ID可用于过滤结果。
         # @type ProjectId: Integer
 
         attr_accessor :InstanceIds, :ProjectId
@@ -7030,9 +7030,9 @@ module TencentCloud
 
       # ModifyLaunchTemplateDefaultVersion请求参数结构体
       class ModifyLaunchTemplateDefaultVersionRequest < TencentCloud::Common::AbstractModel
-        # @param LaunchTemplateId: 启动模板ID。
+        # @param LaunchTemplateId: 启动模板ID。可通过 [DescribeLaunchTemplates](https://cloud.tencent.com/document/api/213/66322) 接口返回值中的`LaunchTemplateId `获取。
         # @type LaunchTemplateId: String
-        # @param DefaultVersion: 待设置的默认版本号。
+        # @param DefaultVersion: 待设置的默认版本号。可通过 [DescribeLaunchTemplateVersions](https://cloud.tencent.com/document/api/213/66323) 接口返回值中的`LaunchTemplateVersion`获取。
         # @type DefaultVersion: Integer
 
         attr_accessor :LaunchTemplateId, :DefaultVersion
@@ -7232,7 +7232,7 @@ module TencentCloud
 
       # ProgramFpgaImage请求参数结构体
       class ProgramFpgaImageRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例的ID信息。
+        # @param InstanceId: 实例的ID信息。可通过 [DescribeInstances](https://cloud.tencent.com/document/api/213/15728) 接口返回值中的`InstanceId`获取。
         # @type InstanceId: String
         # @param FPGAUrl: FPGA镜像文件的COS URL地址。
         # @type FPGAUrl: String
@@ -8211,7 +8211,7 @@ module TencentCloud
       class ResetInstancesTypeRequest < TencentCloud::Common::AbstractModel
         # @param InstanceIds: 一个或多个待操作的实例ID。可通过 [DescribeInstances](https://cloud.tencent.com/document/api/213/15728) 接口返回值中的`InstanceId`获取。本接口目前仅支持每次操作1个实例。
         # @type InstanceIds: Array
-        # @param InstanceType: 调整后的实例机型。不同实例机型指定了不同的资源规格，具体取值可通过调用接口[`DescribeInstanceTypeConfigs`](https://cloud.tencent.com/document/api/213/15749)来获得最新的规格表或参见[实例类型](https://cloud.tencent.com/document/product/213/11518)描述。
+        # @param InstanceType: 调整后的实例机型。不同实例机型指定了不同的资源规格，具体取值可通过调用接口[ DescribeInstanceTypeConfigs ](https://cloud.tencent.com/document/api/213/15749)来获得最新的规格表或参见[实例类型](https://cloud.tencent.com/document/product/213/11518)描述。
         # @type InstanceType: String
         # @param ForceStop: 是否对运行中的实例选择强制关机。建议对运行中的实例先手动关机。取值范围：<br><li>true：表示在正常关机失败后进行强制关机</li><br><li>false：表示在正常关机失败后不进行强制关机</li><br><br>默认取值：false。<br><br>强制关机的效果等同于关闭物理计算机的电源开关。强制关机可能会导致数据丢失或文件系统损坏，请仅在服务器不能正常关机时使用。
         # @type ForceStop: Boolean
@@ -8733,9 +8733,9 @@ module TencentCloud
       class StorageBlock < TencentCloud::Common::AbstractModel
         # @param Type: HDD本地存储类型，值为：LOCAL_PRO.
         # @type Type: String
-        # @param MinSize: HDD本地存储的最小容量
+        # @param MinSize: HDD本地存储的最小容量。单位：GiB。
         # @type MinSize: Integer
-        # @param MaxSize: HDD本地存储的最大容量
+        # @param MaxSize: HDD本地存储的最大容量。单位：GiB。
         # @type MaxSize: Integer
 
         attr_accessor :Type, :MinSize, :MaxSize
@@ -8775,25 +8775,27 @@ module TencentCloud
 
       # SyncImages请求参数结构体
       class SyncImagesRequest < TencentCloud::Common::AbstractModel
-        # @param ImageIds: 镜像ID列表 ，镜像ID可以通过如下方式获取：<br><li>通过[DescribeImages](https://cloud.tencent.com/document/api/213/15715)接口返回的`ImageId`获取。</li><li>通过[镜像控制台](https://console.cloud.tencent.com/cvm/image)获取。<br>镜像ID必须满足限制：</li><li>镜像ID对应的镜像状态必须为`NORMAL`。</li>镜像状态请参考[镜像数据表](https://cloud.tencent.com/document/product/213/15753#Image)。
+        # @param ImageIds: 镜像ID列表 ，镜像ID可以通过如下方式获取：<br><li>通过[DescribeImages](https://cloud.tencent.com/document/api/213/15715)接口返回的`ImageId`获取，镜像ID对应的镜像状态必须为`NORMAL`。</li><li>通过[镜像控制台](https://console.cloud.tencent.com/cvm/image)获取。</li>
         # @type ImageIds: Array
-        # @param DestinationRegions: 目的同步地域列表，必须满足如下限制：<br><li>必须是一个合法的Region。</li><li>如果是自定义镜像，则目标同步地域不能为源地域。</li><li>如果是共享镜像，则目的同步地域仅支持源地域，表示将共享镜像复制为源地域的自定义镜像。</li><li>暂不支持部分地域同步，请参考[复制镜像](https://cloud.tencent.com/document/product/213/4943#.E5.A4.8D.E5.88.B6.E8.AF.B4.E6.98.8E)。</li>具体地域参数请参考[Region](https://cloud.tencent.com/document/product/213/6091)。
+        # @param DestinationRegions: 目的同步地域列表，必须满足如下限制：<br><li>必须是一个合法的Region。</li><li>如果是自定义镜像，则目标同步地域不能为源地域。</li><li>如果是共享镜像，则目的同步地域仅支持源地域，表示将共享镜像复制为源地域的自定义镜像。</li><li>如果是自定义镜像复制为加密自定义镜像，则目的同步地域仅支持源地域，表示将自定义镜像复制为源地域的加密自定义镜像。</li><li>暂不支持部分地域同步，请参考[复制镜像](https://cloud.tencent.com/document/product/213/4943#.E5.A4.8D.E5.88.B6.E8.AF.B4.E6.98.8E)。</li>具体地域参数请参考[Region](https://cloud.tencent.com/document/product/213/6091)。
         # @type DestinationRegions: Array
         # @param DryRun: 检测是否支持发起同步镜像。
         # 默认值: false
         # @type DryRun: Boolean
         # @param ImageName: 目标镜像名称。默认使用源镜像名称。
+        # 最多支持 60 个字符。
         # @type ImageName: String
         # @param ImageSetRequired: 是否需要返回目的地域的镜像ID。
         # 默认值: false
         # @type ImageSetRequired: Boolean
         # @param Encrypt: 是否复制为加密自定义镜像。
         # 默认值为 false。
-        # 复制加密自定义镜像仅支持同地域。
+        # 复制加密自定义镜像仅支持同地域， 即 DestinationRegions 仅支持填写指定镜像所在地域。
         # @type Encrypt: Boolean
         # @param KmsKeyId: 加密自定义镜像使用的 KMS 密钥 ID。
         # 仅当复制加密镜像时，即 Encrypt 为 true 时，此参数有效；
         # 不指定 KmsKeyId，默认使用 CBS 云产品 KMS 密钥。
+        # KMS 密钥 ID 通过[KMS 控制台](https://console.cloud.tencent.com/kms2)获取。
         # @type KmsKeyId: String
 
         attr_accessor :ImageIds, :DestinationRegions, :DryRun, :ImageName, :ImageSetRequired, :Encrypt, :KmsKeyId

@@ -1309,10 +1309,12 @@ module TencentCloud
         # @param CBSSource: CBS配置信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CBSSource: :class:`Tencentcloud::Tione.v20211111.models.CBSConfig`
+        # @param HostPathSource: 主机路径信息
+        # @type HostPathSource: :class:`Tencentcloud::Tione.v20211111.models.HostPath`
 
-        attr_accessor :MappingPath, :DataSourceUsage, :DataSourceType, :DataSetSource, :COSSource, :CFSSource, :HDFSSource, :GooseFSSource, :CFSTurboSource, :LocalDiskSource, :CBSSource
+        attr_accessor :MappingPath, :DataSourceUsage, :DataSourceType, :DataSetSource, :COSSource, :CFSSource, :HDFSSource, :GooseFSSource, :CFSTurboSource, :LocalDiskSource, :CBSSource, :HostPathSource
 
-        def initialize(mappingpath=nil, datasourceusage=nil, datasourcetype=nil, datasetsource=nil, cossource=nil, cfssource=nil, hdfssource=nil, goosefssource=nil, cfsturbosource=nil, localdisksource=nil, cbssource=nil)
+        def initialize(mappingpath=nil, datasourceusage=nil, datasourcetype=nil, datasetsource=nil, cossource=nil, cfssource=nil, hdfssource=nil, goosefssource=nil, cfsturbosource=nil, localdisksource=nil, cbssource=nil, hostpathsource=nil)
           @MappingPath = mappingpath
           @DataSourceUsage = datasourceusage
           @DataSourceType = datasourcetype
@@ -1324,6 +1326,7 @@ module TencentCloud
           @CFSTurboSource = cfsturbosource
           @LocalDiskSource = localdisksource
           @CBSSource = cbssource
+          @HostPathSource = hostpathsource
         end
 
         def deserialize(params)
@@ -1361,6 +1364,10 @@ module TencentCloud
           unless params['CBSSource'].nil?
             @CBSSource = CBSConfig.new
             @CBSSource.deserialize(params['CBSSource'])
+          end
+          unless params['HostPathSource'].nil?
+            @HostPathSource = HostPath.new
+            @HostPathSource.deserialize(params['HostPathSource'])
           end
         end
       end
@@ -3813,6 +3820,22 @@ module TencentCloud
               @HpaMetrics << option_tmp
             end
           end
+        end
+      end
+
+      # 主机路径挂载配置
+      class HostPath < TencentCloud::Common::AbstractModel
+        # @param Path: 需要挂载的主机路径
+        # @type Path: String
+
+        attr_accessor :Path
+
+        def initialize(path=nil)
+          @Path = path
+        end
+
+        def deserialize(params)
+          @Path = params['Path']
         end
       end
 

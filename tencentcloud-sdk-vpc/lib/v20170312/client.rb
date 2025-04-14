@@ -2378,7 +2378,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 接口支持删除共享带宽包，包括[设备带宽包](https://cloud.tencent.com/document/product/684/15246#.E8.AE.BE.E5.A4.87.E5.B8.A6.E5.AE.BD.E5.8C.85)和[IP带宽包](https://cloud.tencent.com/document/product/684/15246#ip-.E5.B8.A6.E5.AE.BD.E5.8C.85)
+        # 接口支持删除共享带宽包，包括[设备带宽包](https://cloud.tencent.com/document/product/684/15245#bwptype)和[IP带宽包](https://cloud.tencent.com/document/product/684/15245#bwptype)
 
         # @param request: Request instance for DeleteBandwidthPackage.
         # @type request: :class:`Tencentcloud::vpc::V20170312::DeleteBandwidthPackageRequest`
@@ -7239,6 +7239,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口 (MigrateBandwidthPackageResources) 用于共享带宽包之间迁移资源
+
+        # @param request: Request instance for MigrateBandwidthPackageResources.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::MigrateBandwidthPackageResourcesRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::MigrateBandwidthPackageResourcesResponse`
+        def MigrateBandwidthPackageResources(request)
+          body = send_request('MigrateBandwidthPackageResources', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = MigrateBandwidthPackageResourcesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（MigrateNetworkInterface）用于弹性网卡迁移。
         # 本接口是异步完成，如需查询异步任务执行结果，请使用本接口返回的`RequestId`轮询`DescribeVpcTaskResult`接口。
 
@@ -7466,7 +7490,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 接口用于修改带宽包属性，包括带宽包名字等
+        # 接口用于修改带宽包属性，包括带宽包名称和计费模式
 
         # @param request: Request instance for ModifyBandwidthPackageAttribute.
         # @type request: :class:`Tencentcloud::vpc::V20170312::ModifyBandwidthPackageAttributeRequest`

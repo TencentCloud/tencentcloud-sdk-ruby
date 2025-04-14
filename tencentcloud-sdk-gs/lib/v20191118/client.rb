@@ -105,6 +105,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建安卓应用
+
+        # @param request: Request instance for CreateAndroidApp.
+        # @type request: :class:`Tencentcloud::gs::V20191118::CreateAndroidAppRequest`
+        # @rtype: :class:`Tencentcloud::gs::V20191118::CreateAndroidAppResponse`
+        def CreateAndroidApp(request)
+          body = send_request('CreateAndroidApp', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateAndroidAppResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 创建安卓应用版本
+
+        # @param request: Request instance for CreateAndroidAppVersion.
+        # @type request: :class:`Tencentcloud::gs::V20191118::CreateAndroidAppVersionRequest`
+        # @rtype: :class:`Tencentcloud::gs::V20191118::CreateAndroidAppVersionResponse`
+        def CreateAndroidAppVersion(request)
+          body = send_request('CreateAndroidAppVersion', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateAndroidAppVersionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建安卓实例镜像
 
         # @param request: Request instance for CreateAndroidInstanceImage.
@@ -249,6 +297,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 用于创建 Cos 临时密钥
+
+        # @param request: Request instance for CreateCosCredential.
+        # @type request: :class:`Tencentcloud::gs::V20191118::CreateCosCredentialRequest`
+        # @rtype: :class:`Tencentcloud::gs::V20191118::CreateCosCredentialResponse`
+        def CreateCosCredential(request)
+          body = send_request('CreateCosCredential', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateCosCredentialResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建会话
 
         # @param request: Request instance for CreateSession.
@@ -259,6 +331,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CreateSessionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除安卓应用
+
+        # @param request: Request instance for DeleteAndroidApp.
+        # @type request: :class:`Tencentcloud::gs::V20191118::DeleteAndroidAppRequest`
+        # @rtype: :class:`Tencentcloud::gs::V20191118::DeleteAndroidAppResponse`
+        def DeleteAndroidApp(request)
+          body = send_request('DeleteAndroidApp', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteAndroidAppResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除安卓应用版本
+
+        # @param request: Request instance for DeleteAndroidAppVersion.
+        # @type request: :class:`Tencentcloud::gs::V20191118::DeleteAndroidAppVersionRequest`
+        # @rtype: :class:`Tencentcloud::gs::V20191118::DeleteAndroidAppVersionResponse`
+        def DeleteAndroidAppVersion(request)
+          body = send_request('DeleteAndroidAppVersion', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteAndroidAppVersionResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -547,6 +667,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = InstallAndroidInstancesAppResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改安卓应用信息
+
+        # @param request: Request instance for ModifyAndroidApp.
+        # @type request: :class:`Tencentcloud::gs::V20191118::ModifyAndroidAppRequest`
+        # @rtype: :class:`Tencentcloud::gs::V20191118::ModifyAndroidAppResponse`
+        def ModifyAndroidApp(request)
+          body = send_request('ModifyAndroidApp', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyAndroidAppResponse.new
             model.deserialize(response['Response'])
             model
           else

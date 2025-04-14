@@ -1507,10 +1507,12 @@ module TencentCloud
         # @type InstanceStorageType: String
         # @param DbMode: 数据库类型
         # @type DbMode: String
+        # @param NodeList: 节点列表
+        # @type NodeList: Array
 
-        attr_accessor :InstanceId, :InstanceName, :InstanceType, :InstanceStatus, :InstanceStatusDesc, :InstanceCpu, :InstanceMemory, :InstanceStorage, :InstanceRole, :MaintainStartTime, :MaintainDuration, :MaintainWeekDays, :ServerlessStatus, :InstanceTasks, :InstanceDeviceType, :InstanceStorageType, :DbMode
+        attr_accessor :InstanceId, :InstanceName, :InstanceType, :InstanceStatus, :InstanceStatusDesc, :InstanceCpu, :InstanceMemory, :InstanceStorage, :InstanceRole, :MaintainStartTime, :MaintainDuration, :MaintainWeekDays, :ServerlessStatus, :InstanceTasks, :InstanceDeviceType, :InstanceStorageType, :DbMode, :NodeList
 
-        def initialize(instanceid=nil, instancename=nil, instancetype=nil, instancestatus=nil, instancestatusdesc=nil, instancecpu=nil, instancememory=nil, instancestorage=nil, instancerole=nil, maintainstarttime=nil, maintainduration=nil, maintainweekdays=nil, serverlessstatus=nil, instancetasks=nil, instancedevicetype=nil, instancestoragetype=nil, dbmode=nil)
+        def initialize(instanceid=nil, instancename=nil, instancetype=nil, instancestatus=nil, instancestatusdesc=nil, instancecpu=nil, instancememory=nil, instancestorage=nil, instancerole=nil, maintainstarttime=nil, maintainduration=nil, maintainweekdays=nil, serverlessstatus=nil, instancetasks=nil, instancedevicetype=nil, instancestoragetype=nil, dbmode=nil, nodelist=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @InstanceType = instancetype
@@ -1528,6 +1530,7 @@ module TencentCloud
           @InstanceDeviceType = instancedevicetype
           @InstanceStorageType = instancestoragetype
           @DbMode = dbmode
+          @NodeList = nodelist
         end
 
         def deserialize(params)
@@ -1555,6 +1558,7 @@ module TencentCloud
           @InstanceDeviceType = params['InstanceDeviceType']
           @InstanceStorageType = params['InstanceStorageType']
           @DbMode = params['DbMode']
+          @NodeList = params['NodeList']
         end
       end
 
@@ -1756,10 +1760,12 @@ module TencentCloud
         # @type Filter: :class:`Tencentcloud::Cynosdb.v20190107.models.AuditLogFilter`
         # @param LogFilter: 审计日志过滤条件
         # @type LogFilter: Array
+        # @param ColumnFilter: 审计日志列
+        # @type ColumnFilter: Array
 
-        attr_accessor :InstanceId, :StartTime, :EndTime, :Order, :OrderBy, :Filter, :LogFilter
+        attr_accessor :InstanceId, :StartTime, :EndTime, :Order, :OrderBy, :Filter, :LogFilter, :ColumnFilter
 
-        def initialize(instanceid=nil, starttime=nil, endtime=nil, order=nil, orderby=nil, filter=nil, logfilter=nil)
+        def initialize(instanceid=nil, starttime=nil, endtime=nil, order=nil, orderby=nil, filter=nil, logfilter=nil, columnfilter=nil)
           @InstanceId = instanceid
           @StartTime = starttime
           @EndTime = endtime
@@ -1767,6 +1773,7 @@ module TencentCloud
           @OrderBy = orderby
           @Filter = filter
           @LogFilter = logfilter
+          @ColumnFilter = columnfilter
         end
 
         def deserialize(params)
@@ -1787,6 +1794,7 @@ module TencentCloud
               @LogFilter << instanceauditlogfilter_tmp
             end
           end
+          @ColumnFilter = params['ColumnFilter']
         end
       end
 
@@ -3333,10 +3341,14 @@ module TencentCloud
         # @type DeviceType: String
         # @param InstanceStorageType: 实例存储类型
         # @type InstanceStorageType: String
+        # @param CynosVersionTag: 未知字段
+        # @type CynosVersionTag: String
+        # @param NodeList: libradb 节点信息
+        # @type NodeList: Array
 
-        attr_accessor :Uin, :AppId, :ClusterId, :ClusterName, :InstanceId, :InstanceName, :ProjectId, :Region, :Zone, :Status, :StatusDesc, :DbMode, :DbType, :DbVersion, :Cpu, :Memory, :Storage, :InstanceType, :InstanceRole, :UpdateTime, :CreateTime, :VpcId, :SubnetId, :Vip, :Vport, :PayMode, :PeriodEndTime, :DestroyDeadlineText, :IsolateTime, :NetType, :WanDomain, :WanIP, :WanPort, :WanStatus, :DestroyTime, :CynosVersion, :ProcessingTask, :RenewFlag, :MinCpu, :MaxCpu, :ServerlessStatus, :StorageId, :StoragePayMode, :PhysicalZone, :BusinessType, :Tasks, :IsFreeze, :ResourceTags, :MasterZone, :SlaveZones, :InstanceNetInfo, :ResourcePackages, :InstanceIndexMode, :InstanceAbility, :DeviceType, :InstanceStorageType
+        attr_accessor :Uin, :AppId, :ClusterId, :ClusterName, :InstanceId, :InstanceName, :ProjectId, :Region, :Zone, :Status, :StatusDesc, :DbMode, :DbType, :DbVersion, :Cpu, :Memory, :Storage, :InstanceType, :InstanceRole, :UpdateTime, :CreateTime, :VpcId, :SubnetId, :Vip, :Vport, :PayMode, :PeriodEndTime, :DestroyDeadlineText, :IsolateTime, :NetType, :WanDomain, :WanIP, :WanPort, :WanStatus, :DestroyTime, :CynosVersion, :ProcessingTask, :RenewFlag, :MinCpu, :MaxCpu, :ServerlessStatus, :StorageId, :StoragePayMode, :PhysicalZone, :BusinessType, :Tasks, :IsFreeze, :ResourceTags, :MasterZone, :SlaveZones, :InstanceNetInfo, :ResourcePackages, :InstanceIndexMode, :InstanceAbility, :DeviceType, :InstanceStorageType, :CynosVersionTag, :NodeList
 
-        def initialize(uin=nil, appid=nil, clusterid=nil, clustername=nil, instanceid=nil, instancename=nil, projectid=nil, region=nil, zone=nil, status=nil, statusdesc=nil, dbmode=nil, dbtype=nil, dbversion=nil, cpu=nil, memory=nil, storage=nil, instancetype=nil, instancerole=nil, updatetime=nil, createtime=nil, vpcid=nil, subnetid=nil, vip=nil, vport=nil, paymode=nil, periodendtime=nil, destroydeadlinetext=nil, isolatetime=nil, nettype=nil, wandomain=nil, wanip=nil, wanport=nil, wanstatus=nil, destroytime=nil, cynosversion=nil, processingtask=nil, renewflag=nil, mincpu=nil, maxcpu=nil, serverlessstatus=nil, storageid=nil, storagepaymode=nil, physicalzone=nil, businesstype=nil, tasks=nil, isfreeze=nil, resourcetags=nil, masterzone=nil, slavezones=nil, instancenetinfo=nil, resourcepackages=nil, instanceindexmode=nil, instanceability=nil, devicetype=nil, instancestoragetype=nil)
+        def initialize(uin=nil, appid=nil, clusterid=nil, clustername=nil, instanceid=nil, instancename=nil, projectid=nil, region=nil, zone=nil, status=nil, statusdesc=nil, dbmode=nil, dbtype=nil, dbversion=nil, cpu=nil, memory=nil, storage=nil, instancetype=nil, instancerole=nil, updatetime=nil, createtime=nil, vpcid=nil, subnetid=nil, vip=nil, vport=nil, paymode=nil, periodendtime=nil, destroydeadlinetext=nil, isolatetime=nil, nettype=nil, wandomain=nil, wanip=nil, wanport=nil, wanstatus=nil, destroytime=nil, cynosversion=nil, processingtask=nil, renewflag=nil, mincpu=nil, maxcpu=nil, serverlessstatus=nil, storageid=nil, storagepaymode=nil, physicalzone=nil, businesstype=nil, tasks=nil, isfreeze=nil, resourcetags=nil, masterzone=nil, slavezones=nil, instancenetinfo=nil, resourcepackages=nil, instanceindexmode=nil, instanceability=nil, devicetype=nil, instancestoragetype=nil, cynosversiontag=nil, nodelist=nil)
           @Uin = uin
           @AppId = appid
           @ClusterId = clusterid
@@ -3393,6 +3405,8 @@ module TencentCloud
           @InstanceAbility = instanceability
           @DeviceType = devicetype
           @InstanceStorageType = instancestoragetype
+          @CynosVersionTag = cynosversiontag
+          @NodeList = nodelist
         end
 
         def deserialize(params)
@@ -3483,6 +3497,8 @@ module TencentCloud
           end
           @DeviceType = params['DeviceType']
           @InstanceStorageType = params['InstanceStorageType']
+          @CynosVersionTag = params['CynosVersionTag']
+          @NodeList = params['NodeList']
         end
       end
 
