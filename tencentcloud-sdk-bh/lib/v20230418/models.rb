@@ -5742,6 +5742,58 @@ module TencentCloud
         end
       end
 
+      # SearchSubtaskResultById请求参数结构体
+      class SearchSubtaskResultByIdRequest < TencentCloud::Common::AbstractModel
+        # @param Name: 运维任务名称
+        # @type Name: String
+        # @param Offset: 查询偏移
+        # @type Offset: Integer
+        # @param Limit: 分页的页内记录数，默认为20，最大200
+        # @type Limit: Integer
+        # @param Id: 运维父任务执行日志ID
+        # @type Id: String
+        # @param Status: 运维父任务执行状态
+        # @type Status: Array
+
+        attr_accessor :Name, :Offset, :Limit, :Id, :Status
+
+        def initialize(name=nil, offset=nil, limit=nil, id=nil, status=nil)
+          @Name = name
+          @Offset = offset
+          @Limit = limit
+          @Id = id
+          @Status = status
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @Id = params['Id']
+          @Status = params['Status']
+        end
+      end
+
+      # SearchSubtaskResultById返回参数结构体
+      class SearchSubtaskResultByIdResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 记录数
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :RequestId
+
+        def initialize(totalcount=nil, requestid=nil)
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # SearchTaskResult请求参数结构体
       class SearchTaskResultRequest < TencentCloud::Common::AbstractModel
         # @param StartTime: 搜索区间的开始时间

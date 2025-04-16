@@ -2114,6 +2114,88 @@ module TencentCloud
         end
       end
 
+      # CreateTWeSeeRecognitionTask请求参数结构体
+      class CreateTWeSeeRecognitionTaskRequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: 产品ID
+        # @type ProductId: String
+        # @param DeviceName: 设备名称
+        # @type DeviceName: String
+        # @param InputURL: 输入视频 / 图片的 URL
+        # @type InputURL: String
+        # @param CustomId: 自定义事件 ID
+        # @type CustomId: String
+        # @param EnableSearch: 是否保存该事件使其可被搜索
+        # @type EnableSearch: Boolean
+        # @param StartTimeMs: 事件起始时间事件起始时间（毫秒级 UNIX 时间戳，若不传则默认为接口调用时间）
+        # @type StartTimeMs: Integer
+        # @param EndTimeMs: 事件结束时间事件起始时间（毫秒级 UNIX 时间戳，若不传则默认为接口调用时间）
+        # @type EndTimeMs: Integer
+        # @param Config: 算法配置
+        # @type Config: String
+        # @param IsCustomDevice: 是否自定义设备，为 true 时不检查设备存在性，默认为 false
+        # @type IsCustomDevice: Boolean
+        # @param InputType: 输入类型。可选值：
+
+        # - `video`：视频（默认值）
+        # - `image`：图片
+        # @type InputType: String
+        # @param SummaryQOS: 摘要服务质量。可选值：
+
+        # - `minutely`：分钟级（默认值）
+        # - `immediate`：立即
+        # @type SummaryQOS: String
+
+        attr_accessor :ProductId, :DeviceName, :InputURL, :CustomId, :EnableSearch, :StartTimeMs, :EndTimeMs, :Config, :IsCustomDevice, :InputType, :SummaryQOS
+
+        def initialize(productid=nil, devicename=nil, inputurl=nil, customid=nil, enablesearch=nil, starttimems=nil, endtimems=nil, config=nil, iscustomdevice=nil, inputtype=nil, summaryqos=nil)
+          @ProductId = productid
+          @DeviceName = devicename
+          @InputURL = inputurl
+          @CustomId = customid
+          @EnableSearch = enablesearch
+          @StartTimeMs = starttimems
+          @EndTimeMs = endtimems
+          @Config = config
+          @IsCustomDevice = iscustomdevice
+          @InputType = inputtype
+          @SummaryQOS = summaryqos
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @DeviceName = params['DeviceName']
+          @InputURL = params['InputURL']
+          @CustomId = params['CustomId']
+          @EnableSearch = params['EnableSearch']
+          @StartTimeMs = params['StartTimeMs']
+          @EndTimeMs = params['EndTimeMs']
+          @Config = params['Config']
+          @IsCustomDevice = params['IsCustomDevice']
+          @InputType = params['InputType']
+          @SummaryQOS = params['SummaryQOS']
+        end
+      end
+
+      # CreateTWeSeeRecognitionTask返回参数结构体
+      class CreateTWeSeeRecognitionTaskResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务 ID
+        # @type TaskId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateTopicPolicy请求参数结构体
       class CreateTopicPolicyRequest < TencentCloud::Common::AbstractModel
         # @param ProductId: 产品ID
@@ -7804,6 +7886,99 @@ module TencentCloud
         end
       end
 
+      # InvokeTWeSeeRecognitionTask请求参数结构体
+      class InvokeTWeSeeRecognitionTaskRequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: 产品ID
+        # @type ProductId: String
+        # @param DeviceName: 设备名称
+        # @type DeviceName: String
+        # @param InputURL: 输入视频 / 图片的 URL
+        # @type InputURL: String
+        # @param CustomId: 自定义事件 ID
+        # @type CustomId: String
+        # @param EnableSearch: 是否保存该事件使其可被搜索
+        # @type EnableSearch: Boolean
+        # @param StartTimeMs: 事件起始时间事件起始时间（毫秒级 UNIX 时间戳，若不传则默认为接口调用时间）
+        # @type StartTimeMs: Integer
+        # @param EndTimeMs: 事件结束时间事件起始时间（毫秒级 UNIX 时间戳，若不传则默认为接口调用时间）
+        # @type EndTimeMs: Integer
+        # @param Config: 算法配置
+        # @type Config: String
+        # @param IsCustomDevice: 是否自定义设备，为 true 时不检查设备存在性，默认为 false
+        # @type IsCustomDevice: Boolean
+        # @param InputType: 输入类型。可选值：
+
+        # - `video`：视频（默认值）
+        # - `image`：图片
+        # @type InputType: String
+        # @param SummaryQOS: 摘要服务质量。可选值：
+
+        # - `minutely`：分钟级（默认值）
+        # - `immediate`：立即
+        # @type SummaryQOS: String
+
+        attr_accessor :ProductId, :DeviceName, :InputURL, :CustomId, :EnableSearch, :StartTimeMs, :EndTimeMs, :Config, :IsCustomDevice, :InputType, :SummaryQOS
+
+        def initialize(productid=nil, devicename=nil, inputurl=nil, customid=nil, enablesearch=nil, starttimems=nil, endtimems=nil, config=nil, iscustomdevice=nil, inputtype=nil, summaryqos=nil)
+          @ProductId = productid
+          @DeviceName = devicename
+          @InputURL = inputurl
+          @CustomId = customid
+          @EnableSearch = enablesearch
+          @StartTimeMs = starttimems
+          @EndTimeMs = endtimems
+          @Config = config
+          @IsCustomDevice = iscustomdevice
+          @InputType = inputtype
+          @SummaryQOS = summaryqos
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @DeviceName = params['DeviceName']
+          @InputURL = params['InputURL']
+          @CustomId = params['CustomId']
+          @EnableSearch = params['EnableSearch']
+          @StartTimeMs = params['StartTimeMs']
+          @EndTimeMs = params['EndTimeMs']
+          @Config = params['Config']
+          @IsCustomDevice = params['IsCustomDevice']
+          @InputType = params['InputType']
+          @SummaryQOS = params['SummaryQOS']
+        end
+      end
+
+      # InvokeTWeSeeRecognitionTask返回参数结构体
+      class InvokeTWeSeeRecognitionTaskResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务 ID
+        # @type TaskId: String
+        # @param Completed: 任务是否执行完成
+        # @type Completed: Boolean
+        # @param Result: 语义理解任务结果（仅当 Completed 为 true 时包含该出参）
+        # @type Result: :class:`Tencentcloud::Iotexplorer.v20190423.models.VisionRecognitionResult`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :Completed, :Result, :RequestId
+
+        def initialize(taskid=nil, completed=nil, result=nil, requestid=nil)
+          @TaskId = taskid
+          @Completed = completed
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @Completed = params['Completed']
+          unless params['Result'].nil?
+            @Result = VisionRecognitionResult.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 应用信息
       class IotApplication < TencentCloud::Common::AbstractModel
         # @param IotAppID: 应用 ID
@@ -11024,6 +11199,39 @@ module TencentCloud
           @TotalCount = params['TotalCount']
           @UsedCount = params['UsedCount']
           @ExpiresSoonCount = params['ExpiresSoonCount']
+        end
+      end
+
+      # TWeSee 语义理解结果
+      class VisionRecognitionResult < TencentCloud::Common::AbstractModel
+        # @param Status: 任务状态（1：失败；2：成功但结果为空；3：成功且结果非空）
+        # @type Status: Integer
+        # @param DetectedClassifications: 识别到的目标类型。可能取值：
+
+        # - `person`：人
+        # - `vehicle`：车辆
+        # - `dog`：狗
+        # - `cat`：猫
+        # - `fire`：火焰
+        # - `smoke`：烟雾
+        # - `package`：快递包裹
+        # - `license_plate`：车牌
+        # @type DetectedClassifications: Array
+        # @param Summary: 视频摘要文本
+        # @type Summary: String
+
+        attr_accessor :Status, :DetectedClassifications, :Summary
+
+        def initialize(status=nil, detectedclassifications=nil, summary=nil)
+          @Status = status
+          @DetectedClassifications = detectedclassifications
+          @Summary = summary
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @DetectedClassifications = params['DetectedClassifications']
+          @Summary = params['Summary']
         end
       end
 

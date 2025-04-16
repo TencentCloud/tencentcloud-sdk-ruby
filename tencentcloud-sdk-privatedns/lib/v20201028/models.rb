@@ -420,7 +420,7 @@ module TencentCloud
 
       # CreatePrivateZone返回参数结构体
       class CreatePrivateZoneResponse < TencentCloud::Common::AbstractModel
-        # @param ZoneId: 私有域ID, zone-xxxxxx
+        # @param ZoneId: 私有域ID, zone-12345678
         # @type ZoneId: String
         # @param Domain: 私有域名
         # @type Domain: String
@@ -1035,7 +1035,7 @@ module TencentCloud
 
       # DescribePrivateZone请求参数结构体
       class DescribePrivateZoneRequest < TencentCloud::Common::AbstractModel
-        # @param ZoneId: 域名，格式必须是标准的TLD
+        # @param ZoneId: 私有域id
         # @type ZoneId: String
 
         attr_accessor :ZoneId
@@ -1434,7 +1434,7 @@ module TencentCloud
 
       # ModifyPrivateZoneVpc返回参数结构体
       class ModifyPrivateZoneVpcResponse < TencentCloud::Common::AbstractModel
-        # @param ZoneId: 私有域ID, zone-xxxxxx
+        # @param ZoneId: 私有域ID, zone-12345ds6
         # @type ZoneId: String
         # @param VpcSet: 解析域关联的VPC列表
         # @type VpcSet: Array

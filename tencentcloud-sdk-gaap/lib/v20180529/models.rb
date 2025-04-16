@@ -72,7 +72,6 @@ module TencentCloud
         # 第5个bit，支持精品BGP接入；
         # 第6个bit，支持三网接入；
         # 第7个bit，支持接入段Qos加速。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FeatureBitmap: Integer
 
         attr_accessor :RegionId, :RegionName, :ConcurrentList, :BandwidthList, :RegionArea, :RegionAreaName, :IDCType, :FeatureBitmap
@@ -288,10 +287,8 @@ module TencentCloud
         # 0表示正常；
         # 1表示异常。
         # 未开启健康检查状态时，该状态始终为正常。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RealServerStatus: Integer
         # @param RealServerPort: 源站的端口号
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RealServerPort: Integer
         # @param DownIPList: 当源站为域名时，域名被解析成一个或者多个IP，该字段表示其中异常的IP列表。状态异常，但该字段为空时，表示域名解析异常。
         # @type DownIPList: Array
@@ -332,7 +329,6 @@ module TencentCloud
         # @param ProjectId: 项目ID
         # @type ProjectId: Integer
         # @param TagSet: 标签列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TagSet: Array
 
         attr_accessor :RealServerIP, :RealServerId, :RealServerName, :ProjectId, :TagSet
@@ -436,21 +432,16 @@ module TencentCloud
         # @param CertificateType: 证书类型。
         # @type CertificateType: Integer
         # @param CertificateAlias: 证书名称。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CertificateAlias: String
         # @param CreateTime: 证书创建时间，采用Unix时间戳的方式，表示从1970年1月1日（UTC/GMT的午夜）开始所经过的秒数。
         # @type CreateTime: Integer
         # @param BeginTime: 证书生效起始时间，采用Unix时间戳的方式，表示从1970年1月1日（UTC/GMT的午夜）开始所经过的秒数。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BeginTime: Integer
         # @param EndTime: 证书过期时间，采用Unix时间戳的方式，表示从1970年1月1日（UTC/GMT的午夜）开始所经过的秒数。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EndTime: Integer
         # @param IssuerCN: 证书签发者通用名称。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IssuerCN: String
         # @param SubjectCN: 证书主题通用名称。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubjectCN: String
 
         attr_accessor :CertificateId, :CertificateName, :CertificateType, :CertificateAlias, :CreateTime, :BeginTime, :EndTime, :IssuerCN, :SubjectCN
@@ -507,27 +498,20 @@ module TencentCloud
         # @param CertificateType: 证书类型。
         # @type CertificateType: Integer
         # @param CertificateAlias: 证书名字。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CertificateAlias: String
         # @param CertificateContent: 证书内容。
         # @type CertificateContent: String
         # @param CertificateKey: 密钥内容。仅当证书类型为SSL证书时，返回该字段。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CertificateKey: String
         # @param CreateTime: 创建时间，采用Unix时间戳的方式，表示从1970年1月1日（UTC/GMT的午夜）开始所经过的秒数。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: Integer
         # @param BeginTime: 证书生效起始时间，采用Unix时间戳的方式，表示从1970年1月1日（UTC/GMT的午夜）开始所经过的秒数。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BeginTime: Integer
         # @param EndTime: 证书过期时间，采用Unix时间戳的方式，表示从1970年1月1日（UTC/GMT的午夜）开始所经过的秒数。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EndTime: Integer
         # @param IssuerCN: 证书签发者通用名称。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IssuerCN: String
         # @param SubjectCN: 证书主题通用名称。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubjectCN: String
 
         attr_accessor :CertificateId, :CertificateType, :CertificateAlias, :CertificateContent, :CertificateKey, :CreateTime, :BeginTime, :EndTime, :IssuerCN, :SubjectCN
@@ -771,7 +755,6 @@ module TencentCloud
         # @param ContinentInnerCode: 大洲编码。
         # @type ContinentInnerCode: String
         # @param Remark: 标注信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Remark: String
 
         attr_accessor :NationCountryName, :NationCountryInnerCode, :GeographicalZoneName, :GeographicalZoneInnerCode, :ContinentName, :ContinentInnerCode, :Remark
@@ -4866,7 +4849,6 @@ module TencentCloud
         # @param ProjectId: 所属项目
         # @type ProjectId: Integer
         # @param DefaultValue: 默认入口
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DefaultValue: String
         # @param ProxyCount: 通道数量
         # @type ProxyCount: Integer
@@ -4876,10 +4858,8 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: Integer
         # @param TagSet: 标签列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TagSet: Array
         # @param BanStatus: 封禁解封状态：BANNED表示已封禁，RECOVER表示已解封或未封禁，BANNING表示封禁中，RECOVERING表示解封中，BAN_FAILED表示封禁失败，RECOVER_FAILED表示解封失败。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BanStatus: String
 
         attr_accessor :DomainId, :FullDomain, :Alias, :Type, :Status, :ProjectId, :DefaultValue, :ProxyCount, :CreateTime, :UpdateTime, :TagSet, :BanStatus
@@ -4983,19 +4963,14 @@ module TencentCloud
         # @param ErrorNos: 原始错误码
         # @type ErrorNos: Array
         # @param NewErrorNo: 新的错误码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NewErrorNo: Integer
         # @param ClearHeaders: 需要清理的响应头
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClearHeaders: Array
         # @param SetHeaders: 需要设置的响应头
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SetHeaders: Array
         # @param Body: 设置的响应体(不包括 HTTP头)
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Body: String
         # @param Status: 规则状态,0为成功
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
 
         attr_accessor :ErrorPageId, :ListenerId, :Domain, :ErrorNos, :NewErrorNo, :ClearHeaders, :SetHeaders, :Body, :Status
@@ -6746,22 +6721,16 @@ module TencentCloud
       # 加速通道接入点详细信息(包含id、地域、ip等）
       class ProxyAccessInfo < TencentCloud::Common::AbstractModel
         # @param RegionId: 地域ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RegionId: String
         # @param RegionName: 地域名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RegionName: String
         # @param ProxyId: 通道ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProxyId: String
         # @param Vip: 通道接入ip
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Vip: String
         # @param VipList: 三网通道VIP列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VipList: Array
         # @param SourceRegionIdcType: 接入点IDC类型。ec或dc
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SourceRegionIdcType: String
 
         attr_accessor :RegionId, :RegionName, :ProxyId, :Vip, :VipList, :SourceRegionIdcType
@@ -6825,27 +6794,20 @@ module TencentCloud
         # @param GroupId: 通道组ID
         # @type GroupId: String
         # @param TagSet: 标签列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TagSet: Array
         # @param PolicyId: 安全策略ID，当设置了安全策略时，存在该字段。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PolicyId: String
         # @param Version: 通道组版本
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Version: String
         # @param ClientIPMethod: 通道获取客户端IP的方式，0表示TOA，1表示Proxy Protocol
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClientIPMethod: Array
         # @param IPAddressVersion: IP版本，可取值：IPv4、IPv6，默认值IPv4
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IPAddressVersion: String
         # @param PackageType: 通道组套餐类型：Thunder表示标准通道组，Accelerator表示银牌加速通道组，CrossBorder表示跨境通道组。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PackageType: String
         # @param Http3Supported: 支持Http3特性的标识，其中：
         # 0表示关闭；
         # 1表示启用。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Http3Supported: Integer
         # @param FeatureBitmap: 特性位图，每个bit位代表一种特性，其中：
         # 0，表示不支持该特性；
@@ -6859,12 +6821,10 @@ module TencentCloud
         # 第6个bit，支持三网接入；
         # 第7个bit，支持接入段Qos加速。
         # 注意：此字段可能返回 null，表示取不到有效值。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FeatureBitmap: Integer
         # @param IsSupportTLSChoice: 是否支持设置TLS设置
         # 0表示不支持；
         # 1表示支持。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsSupportTLSChoice: Integer
 
         attr_accessor :CreateTime, :ProjectId, :ProxyNum, :Status, :OwnerUin, :CreateUin, :GroupName, :DnsDefaultIp, :Domain, :RealServerRegionInfo, :IsOldGroup, :GroupId, :TagSet, :PolicyId, :Version, :ClientIPMethod, :IPAddressVersion, :PackageType, :Http3Supported, :FeatureBitmap, :IsSupportTLSChoice
@@ -6936,7 +6896,6 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Domain: String
         # @param GroupName: 通道组名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GroupName: String
         # @param ProjectId: 项目ID
         # @type ProjectId: Integer
@@ -6954,18 +6913,14 @@ module TencentCloud
         # @param TagSet: 标签列表。
         # @type TagSet: Array
         # @param Version: 通道组版本
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Version: String
         # @param CreateTime: 创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: Integer
         # @param ProxyType: 通道组是否包含微软通道
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProxyType: Integer
         # @param Http3Supported: 支持Http3特性的标识，其中：
         # 0表示关闭；
         # 1表示启用。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Http3Supported: Integer
         # @param FeatureBitmap: 特性位图，每个bit位代表一种特性，其中：
         # 0，表示不支持该特性；
@@ -6978,7 +6933,6 @@ module TencentCloud
         # 第5个bit，支持精品BGP接入；
         # 第6个bit，支持三网接入；
         # 第7个bit，支持接入段Qos加速。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FeatureBitmap: Integer
 
@@ -7044,7 +6998,6 @@ module TencentCloud
       # 通道信息
       class ProxyInfo < TencentCloud::Common::AbstractModel
         # @param InstanceId: （旧参数，请使用ProxyId）通道实例ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceId: String
         # @param CreateTime: 创建时间，采用Unix时间戳的方式，表示从1970年1月1日（UTC/GMT的午夜）开始所经过的秒数。
         # @type CreateTime: Integer
@@ -7081,7 +7034,6 @@ module TencentCloud
         # @param Version: 通道版本号：1.0，2.0，3.0。
         # @type Version: String
         # @param ProxyId: （新参数）通道实例ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProxyId: String
         # @param Scalarable: 1，该通道可缩扩容；0，该通道无法缩扩容。
         # @type Scalarable: Integer
@@ -7094,57 +7046,42 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PolicyId: String
         # @param AccessRegionInfo: 接入地域详细信息，包括地域ID和地域名。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AccessRegionInfo: :class:`Tencentcloud::Gaap.v20180529.models.RegionDetail`
         # @param RealServerRegionInfo: 源站地域详细信息，包括地域ID和地域名。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RealServerRegionInfo: :class:`Tencentcloud::Gaap.v20180529.models.RegionDetail`
         # @param ForwardIP: 通道转发IP
         # @type ForwardIP: String
         # @param TagSet: 标签列表，不存在标签时，该字段为空列表。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TagSet: Array
         # @param SupportSecurity: 是否支持安全组配置
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SupportSecurity: Integer
         # @param BillingType: 计费类型: 0表示按带宽计费  1表示按流量计费。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BillingType: Integer
         # @param RelatedGlobalDomains: 关联了解析的域名列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RelatedGlobalDomains: Array
         # @param ModifyConfigTime: 配置变更时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ModifyConfigTime: Integer
         # @param ProxyType: 通道类型，100表示THUNDER通道，103表示微软合作通道
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProxyType: Integer
         # @param ClientIPMethod: 通道获取客户端IP的方式，0表示TOA，1表示Proxy Protocol
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClientIPMethod: Array
         # @param IPAddressVersion: IP版本：IPv4、IPv6
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IPAddressVersion: String
         # @param NetworkType: 网络类型：normal表示常规BGP，cn2表示精品BGP，triple表示三网，secure_eip表示定制安全EIP
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NetworkType: String
         # @param PackageType: 通道套餐类型：Thunder表示标准通道，Accelerator表示银牌加速通道，
         # CrossBorder表示跨境通道。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PackageType: String
         # @param BanStatus: 封禁解封状态：BANNED表示已封禁，RECOVER表示已解封或未封禁，BANNING表示封禁中，RECOVERING表示解封中，BAN_FAILED表示封禁失败，RECOVER_FAILED表示解封失败。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BanStatus: String
         # @param IPList: IP列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IPList: Array
         # @param Http3Supported: 支持Http3协议的标识，其中：
         # 0表示关闭；
         # 1表示启用。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Http3Supported: Integer
         # @param InBanBlacklist: 是否在封禁黑名单中，其中：0表示不在黑名单中，1表示在黑名单中。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InBanBlacklist: Integer
         # @param FeatureBitmap: 特性位图，每个bit位代表一种特性，其中：
         # 0，表示不支持该特性；
@@ -7158,15 +7095,12 @@ module TencentCloud
         # 第6个bit，支持三网接入；
         # 第7个bit，支持接入段Qos加速。
         # 注意：此字段可能返回 null，表示取不到有效值。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FeatureBitmap: Integer
         # @param IsAutoScaleProxy: 是否是开启了auto scale的通道，0表示否，1表示是。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsAutoScaleProxy: Integer
         # @param IsSupportTLSChoice: 是否允许设置TLS配置
         # 0表示不支持；
         # 1表示支持。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsSupportTLSChoice: Integer
 
         attr_accessor :InstanceId, :CreateTime, :ProjectId, :ProxyName, :AccessRegion, :RealServerRegion, :Bandwidth, :Concurrent, :Status, :Domain, :IP, :Version, :ProxyId, :Scalarable, :SupportProtocols, :GroupId, :PolicyId, :AccessRegionInfo, :RealServerRegionInfo, :ForwardIP, :TagSet, :SupportSecurity, :BillingType, :RelatedGlobalDomains, :ModifyConfigTime, :ProxyType, :ClientIPMethod, :IPAddressVersion, :NetworkType, :PackageType, :BanStatus, :IPList, :Http3Supported, :InBanBlacklist, :FeatureBitmap, :IsAutoScaleProxy, :IsSupportTLSChoice
@@ -7450,7 +7384,6 @@ module TencentCloud
         # 第5个bit，支持精品BGP接入；
         # 第6个bit，支持三网接入；
         # 第7个bit，支持接入段Qos加速。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FeatureBitmap: Integer
         # @param SupportFeature: 接入区域支持的能力
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -7530,13 +7463,10 @@ module TencentCloud
         # 当调用ModifyRuleAttribute时，不支持修改该参数。
         # @type Domain: String
         # @param FailedCountInter: 源站服务失败统计频率
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FailedCountInter: Integer
         # @param FailedThreshold: 源站健康性检查阀值，超过该阀值会屏蔽服务
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FailedThreshold: Integer
         # @param BlockInter: 源站健康性检测超出阀值后，屏蔽的时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BlockInter: Integer
 
         attr_accessor :DelayLoop, :ConnectTimeout, :Path, :Method, :StatusCode, :Domain, :FailedCountInter, :FailedThreshold, :BlockInter
@@ -7593,14 +7523,11 @@ module TencentCloud
         # 只要有一个源站健康状态为异常时，该状态为异常，具体源站的状态请查看RealServerSet。
         # @type BindStatus: Integer
         # @param ForwardHost: 通道转发到源站的请求所携带的host，其中default表示直接转发接收到的host。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ForwardHost: String
         # @param ServerNameIndicationSwitch: 服务器名称指示（ServerNameIndication，简称SNI）开关。ON表示开启，OFF表示关闭。
         # 注意：此字段可能返回 null，表示取不到有效值。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ServerNameIndicationSwitch: String
         # @param ServerNameIndication: 服务器名称指示（ServerNameIndication，简称SNI），当SNI开关打开时，该字段必填。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ServerNameIndication: String
         # @param ForcedRedirect: 强转HTTPS指示，当传递值为https:时表示强转为https
@@ -7701,15 +7628,12 @@ module TencentCloud
         # @param AliasName: 规则别名
         # @type AliasName: String
         # @param DestPortRange: 目标端口范围
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DestPortRange: String
         # @param RuleId: 规则ID
         # @type RuleId: String
         # @param Protocol: 要匹配的协议类型（TCP/UDP）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Protocol: String
         # @param PolicyId: 安全策略ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PolicyId: String
 
         attr_accessor :Action, :SourceCidr, :AliasName, :DestPortRange, :RuleId, :Protocol, :PolicyId
@@ -7956,27 +7880,20 @@ module TencentCloud
         # 1表示正常。
         # @type BindStatus: Integer
         # @param RealServerSet: 监听器绑定的源站信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RealServerSet: Array
         # @param CreateTime: 监听器创建时间，Unix时间戳
         # @type CreateTime: Integer
         # @param ClientIPMethod: 监听器获取客户端 IP 的方式，0表示TOA, 1表示Proxy Protocol
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClientIPMethod: Integer
         # @param HealthyThreshold: 健康阈值，表示连续检查成功多少次后认定源站健康。范围为1到10
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HealthyThreshold: Integer
         # @param UnhealthyThreshold: 不健康阈值，表示连续检查失败多少次数后认为源站不健康。范围为1到10
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UnhealthyThreshold: Integer
         # @param FailoverSwitch: 源站是否开启主备模式：1开启，0关闭，DOMAIN类型源站不支持开启
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FailoverSwitch: Integer
         # @param SessionPersist: 是否开启会话保持选项：0关闭， 非0开启，非0值为会话保持时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SessionPersist: Integer
         # @param ProxyId: 监听器的通道ID，如果监听器属于通道组，则为null
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProxyId: String
         # @param GroupId: 监听器的通道组ID，如果监听器属于通道，则为null
         # 注意：此字段可能返回 null，表示取不到有效值。

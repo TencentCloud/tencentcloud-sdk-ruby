@@ -1289,6 +1289,26 @@ module TencentCloud
         end
       end
 
+      # 独享版集群
+      class ExclusiveHSM < TencentCloud::Common::AbstractModel
+        # @param HsmClusterId: 独享集群Id
+        # @type HsmClusterId: String
+        # @param HsmClusterName: 独享集群名称
+        # @type HsmClusterName: String
+
+        attr_accessor :HsmClusterId, :HsmClusterName
+
+        def initialize(hsmclusterid=nil, hsmclustername=nil)
+          @HsmClusterId = hsmclusterid
+          @HsmClusterName = hsmclustername
+        end
+
+        def deserialize(params)
+          @HsmClusterId = params['HsmClusterId']
+          @HsmClusterName = params['HsmClusterName']
+        end
+      end
+
       # GenerateDataKey请求参数结构体
       class GenerateDataKeyRequest < TencentCloud::Common::AbstractModel
         # @param KeyId: CMK全局唯一标识符
@@ -1592,12 +1612,14 @@ module TencentCloud
         # @type CmkUserCount: Integer
         # @param CmkLimit: 返回KMS用户密钥规格数量
         # @type CmkLimit: Integer
+        # @param ExclusiveHSMList: 返回独享集群组
+        # @type ExclusiveHSMList: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ServiceEnabled, :InvalidType, :UserLevel, :ProExpireTime, :ProRenewFlag, :ProResourceId, :ExclusiveVSMEnabled, :ExclusiveHSMEnabled, :SubscriptionInfo, :CmkUserCount, :CmkLimit, :RequestId
+        attr_accessor :ServiceEnabled, :InvalidType, :UserLevel, :ProExpireTime, :ProRenewFlag, :ProResourceId, :ExclusiveVSMEnabled, :ExclusiveHSMEnabled, :SubscriptionInfo, :CmkUserCount, :CmkLimit, :ExclusiveHSMList, :RequestId
 
-        def initialize(serviceenabled=nil, invalidtype=nil, userlevel=nil, proexpiretime=nil, prorenewflag=nil, proresourceid=nil, exclusivevsmenabled=nil, exclusivehsmenabled=nil, subscriptioninfo=nil, cmkusercount=nil, cmklimit=nil, requestid=nil)
+        def initialize(serviceenabled=nil, invalidtype=nil, userlevel=nil, proexpiretime=nil, prorenewflag=nil, proresourceid=nil, exclusivevsmenabled=nil, exclusivehsmenabled=nil, subscriptioninfo=nil, cmkusercount=nil, cmklimit=nil, exclusivehsmlist=nil, requestid=nil)
           @ServiceEnabled = serviceenabled
           @InvalidType = invalidtype
           @UserLevel = userlevel
@@ -1609,6 +1631,7 @@ module TencentCloud
           @SubscriptionInfo = subscriptioninfo
           @CmkUserCount = cmkusercount
           @CmkLimit = cmklimit
+          @ExclusiveHSMList = exclusivehsmlist
           @RequestId = requestid
         end
 
@@ -1624,6 +1647,14 @@ module TencentCloud
           @SubscriptionInfo = params['SubscriptionInfo']
           @CmkUserCount = params['CmkUserCount']
           @CmkLimit = params['CmkLimit']
+          unless params['ExclusiveHSMList'].nil?
+            @ExclusiveHSMList = []
+            params['ExclusiveHSMList'].each do |i|
+              exclusivehsm_tmp = ExclusiveHSM.new
+              exclusivehsm_tmp.deserialize(i)
+              @ExclusiveHSMList << exclusivehsm_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end

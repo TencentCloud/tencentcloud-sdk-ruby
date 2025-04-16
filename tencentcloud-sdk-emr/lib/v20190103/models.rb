@@ -1049,10 +1049,10 @@ module TencentCloud
 
         attr_accessor :Id, :ClusterId, :Ftitle, :ClusterName, :RegionId, :ZoneId, :AppId, :Uin, :ProjectId, :VpcId, :SubnetId, :Status, :AddTime, :RunTime, :Config, :MasterIp, :EmrVersion, :ChargeType, :TradeVersion, :ResourceOrderId, :IsTradeCluster, :AlarmInfo, :IsWoodpeckerCluster, :MetaDb, :Tags, :HiveMetaDb, :ServiceClass, :AliasInfo, :ProductId, :Zone, :SceneName, :SceneServiceClass, :SceneEmrVersion, :DisplayName, :VpcName, :SubnetName, :ClusterExternalServiceInfo, :UniqVpcId, :UniqSubnetId, :TopologyInfoList, :IsMultiZoneCluster, :IsCvmReplace, :ClusterTitle, :ConfigDetail, :BindFileSystemNum, :ClusterRelationInfoList
         extend Gem::Deprecate
-        deprecate :Ftitle, :none, 2025, 3
-        deprecate :Ftitle=, :none, 2025, 3
-        deprecate :Config, :none, 2025, 3
-        deprecate :Config=, :none, 2025, 3
+        deprecate :Ftitle, :none, 2025, 4
+        deprecate :Ftitle=, :none, 2025, 4
+        deprecate :Config, :none, 2025, 4
+        deprecate :Config=, :none, 2025, 4
 
         def initialize(id=nil, clusterid=nil, ftitle=nil, clustername=nil, regionid=nil, zoneid=nil, appid=nil, uin=nil, projectid=nil, vpcid=nil, subnetid=nil, status=nil, addtime=nil, runtime=nil, config=nil, masterip=nil, emrversion=nil, chargetype=nil, tradeversion=nil, resourceorderid=nil, istradecluster=nil, alarminfo=nil, iswoodpeckercluster=nil, metadb=nil, tags=nil, hivemetadb=nil, serviceclass=nil, aliasinfo=nil, productid=nil, zone=nil, scenename=nil, sceneserviceclass=nil, sceneemrversion=nil, displayname=nil, vpcname=nil, subnetname=nil, clusterexternalserviceinfo=nil, uniqvpcid=nil, uniqsubnetid=nil, topologyinfolist=nil, ismultizonecluster=nil, iscvmreplace=nil, clustertitle=nil, configdetail=nil, bindfilesystemnum=nil, clusterrelationinfolist=nil)
           @Id = id
@@ -2077,10 +2077,12 @@ module TencentCloud
         # @type Tags: Array
         # @param PrePaySetting: 预付费参数
         # @type PrePaySetting: :class:`Tencentcloud::Emr.v20190103.models.PrePaySetting`
+        # @param ClientToken: 唯一随机标识，时效性为5分钟，需要调用者指定 防止客户端重复创建资源，例如 a9a90aa6-****-****-****-fae360632808
+        # @type ClientToken: String
 
-        attr_accessor :InstanceName, :PayMode, :DiskType, :DiskSize, :NodeType, :ZoneSettings, :Tags, :PrePaySetting
+        attr_accessor :InstanceName, :PayMode, :DiskType, :DiskSize, :NodeType, :ZoneSettings, :Tags, :PrePaySetting, :ClientToken
 
-        def initialize(instancename=nil, paymode=nil, disktype=nil, disksize=nil, nodetype=nil, zonesettings=nil, tags=nil, prepaysetting=nil)
+        def initialize(instancename=nil, paymode=nil, disktype=nil, disksize=nil, nodetype=nil, zonesettings=nil, tags=nil, prepaysetting=nil, clienttoken=nil)
           @InstanceName = instancename
           @PayMode = paymode
           @DiskType = disktype
@@ -2089,6 +2091,7 @@ module TencentCloud
           @ZoneSettings = zonesettings
           @Tags = tags
           @PrePaySetting = prepaysetting
+          @ClientToken = clienttoken
         end
 
         def deserialize(params)
@@ -2117,6 +2120,7 @@ module TencentCloud
             @PrePaySetting = PrePaySetting.new
             @PrePaySetting.deserialize(params['PrePaySetting'])
           end
+          @ClientToken = params['ClientToken']
         end
       end
 
@@ -3597,6 +3601,70 @@ module TencentCloud
               @ResultList << insightresult_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeInspectionTaskResult请求参数结构体
+      class DescribeInspectionTaskResultRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param Type: 类型
+        # @type Type: String
+        # @param StartTime: 开始时间
+        # @type StartTime: Integer
+        # @param EndTime: 结束时间
+        # @type EndTime: Integer
+        # @param Limit: 分页大小
+        # @type Limit: Integer
+        # @param Offset: 分页偏移量
+        # @type Offset: Integer
+
+        attr_accessor :InstanceId, :Type, :StartTime, :EndTime, :Limit, :Offset
+
+        def initialize(instanceid=nil, type=nil, starttime=nil, endtime=nil, limit=nil, offset=nil)
+          @InstanceId = instanceid
+          @Type = type
+          @StartTime = starttime
+          @EndTime = endtime
+          @Limit = limit
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Type = params['Type']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+        end
+      end
+
+      # DescribeInspectionTaskResult返回参数结构体
+      class DescribeInspectionTaskResultResponse < TencentCloud::Common::AbstractModel
+        # @param InspectionResultInfo: 巡检任务记录，base64编码
+        # @type InspectionResultInfo: String
+        # @param Total: 记录总数
+        # @type Total: Integer
+        # @param TypeInfo: 类别信息，base64编码，{"FixedTime": "定时", "RealTime": "及时"}
+        # @type TypeInfo: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :InspectionResultInfo, :Total, :TypeInfo, :RequestId
+
+        def initialize(inspectionresultinfo=nil, total=nil, typeinfo=nil, requestid=nil)
+          @InspectionResultInfo = inspectionresultinfo
+          @Total = total
+          @TypeInfo = typeinfo
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @InspectionResultInfo = params['InspectionResultInfo']
+          @Total = params['Total']
+          @TypeInfo = params['TypeInfo']
           @RequestId = params['RequestId']
         end
       end
@@ -8096,19 +8164,23 @@ module TencentCloud
         # @type Zone: String
         # @param NodeNum: 该区域变配后的目标节点数量，所有区域节点总数应大于等于3，小于等于50。
         # @type NodeNum: Integer
+        # @param ClientToken: 唯一随机标识，时效性为5分钟，需要调用者指定 防止客户端重复创建资源，例如 a9a90aa6-****-****-****-fae360632808
+        # @type ClientToken: String
 
-        attr_accessor :InstanceId, :Zone, :NodeNum
+        attr_accessor :InstanceId, :Zone, :NodeNum, :ClientToken
 
-        def initialize(instanceid=nil, zone=nil, nodenum=nil)
+        def initialize(instanceid=nil, zone=nil, nodenum=nil, clienttoken=nil)
           @InstanceId = instanceid
           @Zone = zone
           @NodeNum = nodenum
+          @ClientToken = clienttoken
         end
 
         def deserialize(params)
           @InstanceId = params['InstanceId']
           @Zone = params['Zone']
           @NodeNum = params['NodeNum']
+          @ClientToken = params['ClientToken']
         end
       end
 
@@ -11476,12 +11548,12 @@ module TencentCloud
 
         attr_accessor :DetectAlert, :DetetcFunctionKey, :DetetcFunctionValue, :DetetcTime, :DetectFunctionKey, :DetectFunctionValue, :DetectTime
         extend Gem::Deprecate
-        deprecate :DetetcFunctionKey, :none, 2025, 3
-        deprecate :DetetcFunctionKey=, :none, 2025, 3
-        deprecate :DetetcFunctionValue, :none, 2025, 3
-        deprecate :DetetcFunctionValue=, :none, 2025, 3
-        deprecate :DetetcTime, :none, 2025, 3
-        deprecate :DetetcTime=, :none, 2025, 3
+        deprecate :DetetcFunctionKey, :none, 2025, 4
+        deprecate :DetetcFunctionKey=, :none, 2025, 4
+        deprecate :DetetcFunctionValue, :none, 2025, 4
+        deprecate :DetetcFunctionValue=, :none, 2025, 4
+        deprecate :DetetcTime, :none, 2025, 4
+        deprecate :DetetcTime=, :none, 2025, 4
 
         def initialize(detectalert=nil, detetcfunctionkey=nil, detetcfunctionvalue=nil, detetctime=nil, detectfunctionkey=nil, detectfunctionvalue=nil, detecttime=nil)
           @DetectAlert = detectalert

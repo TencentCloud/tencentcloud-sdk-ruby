@@ -653,6 +653,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建 TWeSee 语义理解任务
+
+        # @param request: Request instance for CreateTWeSeeRecognitionTask.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::CreateTWeSeeRecognitionTaskRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::CreateTWeSeeRecognitionTaskResponse`
+        def CreateTWeSeeRecognitionTask(request)
+          body = send_request('CreateTWeSeeRecognitionTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateTWeSeeRecognitionTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（CreateTopicPolicy）用于创建一个Topic
 
         # @param request: Request instance for CreateTopicPolicy.
@@ -2895,6 +2919,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = InvokeExternalSourceAIServiceTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 同步执行 TWeSee 语义理解任务
+
+        # @param request: Request instance for InvokeTWeSeeRecognitionTask.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::InvokeTWeSeeRecognitionTaskRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::InvokeTWeSeeRecognitionTaskResponse`
+        def InvokeTWeSeeRecognitionTask(request)
+          body = send_request('InvokeTWeSeeRecognitionTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = InvokeTWeSeeRecognitionTaskResponse.new
             model.deserialize(response['Response'])
             model
           else

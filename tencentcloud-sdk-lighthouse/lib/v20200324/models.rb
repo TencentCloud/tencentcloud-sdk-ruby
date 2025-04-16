@@ -313,13 +313,13 @@ module TencentCloud
         # @type Platform: String
         # @param PlatformType: 操作系统平台类型，如 LINUX_UNIX、WINDOWS。
         # @type PlatformType: String
-        # @param BlueprintType: 镜像类型，如 APP_OS、PURE_OS、PRIVATE。
+        # @param BlueprintType: 镜像类型，如 APP_OS（应用镜像）, PURE_OS（系统镜像）, DOCKER（容器）, PRIVATE（私有镜像）, SHARED（共享镜像）, GAME_PORTAL（游戏专区镜像）。
         # @type BlueprintType: String
         # @param ImageUrl: 镜像图片 URL。
         # @type ImageUrl: String
         # @param RequiredSystemDiskSize: 镜像所需系统盘大小，单位 GB。
         # @type RequiredSystemDiskSize: Integer
-        # @param BlueprintState: 镜像状态。
+        # @param BlueprintState: 镜像状态，镜镜像状态，NORMAL（正常）、SYNCING（同步中）、OFFLINE（下线）、ISOLATED（已隔离）、CREATEFAILED（创建失败）、SYNCING_FAILED（目的地域同步失败）、ISOLATING（隔离中）、ISOLATED（已隔离）、DELETING（删除中）、DESTROYING（销毁中）。
         # @type BlueprintState: String
         # @param CreatedTime: 创建时间。按照 ISO8601 标准表示，并且使用 UTC 时间。
         # 格式为： YYYY-MM-DDThh:mm:ssZ。
@@ -1632,6 +1632,7 @@ module TencentCloud
         # <li>blueprint-state</li>按照【镜像状态】进行过滤。
         # 类型：String
         # 必选：否
+        # 镜像状态，可通过[数据结构Blueprint](https://cloud.tencent.com/document/api/1207/47576#Blueprint)中的BlueprintState来获取。
         # <li>scene-id</li>按照【使用场景Id】进行过滤。
         # 类型：String
         # 必选：否
@@ -4736,13 +4737,13 @@ module TencentCloud
 
       # 防火墙模板信息。
       class FirewallTemplate < TencentCloud::Common::AbstractModel
-        # @param TemplateId: 模板Id。
+        # @param TemplateId: 模板ID。
         # @type TemplateId: String
         # @param TemplateName: 模板名称。
         # @type TemplateName: String
-        # @param TemplateType: 模板类型。
+        # @param TemplateType: 模板类型。取值: "PRIVATE"(个人模版)
         # @type TemplateType: String
-        # @param TemplateState: 模板状态。
+        # @param TemplateState: 模板状态。取值: "NORMAL"(正常)
         # @type TemplateState: String
         # @param CreatedTime: 模板创建时间。
         # @type CreatedTime: String
@@ -4835,6 +4836,7 @@ module TencentCloud
 
         # - SUCCESS：成功
         # - FAILED：失败
+        # - RUNNING：运行中
         # @type ApplyState: String
         # @param ErrorMessage: 防火墙模板应用错误信息。
         # @type ErrorMessage: String

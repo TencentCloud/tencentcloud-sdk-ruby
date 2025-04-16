@@ -17,6 +17,57 @@
 module TencentCloud
   module Trocket
     module V20230308
+      # ChangeMigratingTopicToNextStage请求参数结构体
+      class ChangeMigratingTopicToNextStageRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务ID
+        # @type TaskId: String
+        # @param TopicNameList: 主题名称列表
+        # @type TopicNameList: Array
+        # @param NamespaceList: 命名空间列表，仅4.x集群有效，与TopicNameList一一对应
+        # @type NamespaceList: Array
+
+        attr_accessor :TaskId, :TopicNameList, :NamespaceList
+
+        def initialize(taskid=nil, topicnamelist=nil, namespacelist=nil)
+          @TaskId = taskid
+          @TopicNameList = topicnamelist
+          @NamespaceList = namespacelist
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @TopicNameList = params['TopicNameList']
+          @NamespaceList = params['NamespaceList']
+        end
+      end
+
+      # ChangeMigratingTopicToNextStage返回参数结构体
+      class ChangeMigratingTopicToNextStageResponse < TencentCloud::Common::AbstractModel
+        # @param Results: 迁移主题状态修改的结果列表
+        # @type Results: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Results, :RequestId
+
+        def initialize(results=nil, requestid=nil)
+          @Results = results
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Results'].nil?
+            @Results = []
+            params['Results'].each do |i|
+              topicstagechangeresult_tmp = TopicStageChangeResult.new
+              topicstagechangeresult_tmp.deserialize(i)
+              @Results << topicstagechangeresult_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 消费组信息
       class ConsumeGroupItem < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID
@@ -918,6 +969,38 @@ module TencentCloud
 
       # DeleteRole返回参数结构体
       class DeleteRoleResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteSmoothMigrationTask请求参数结构体
+      class DeleteSmoothMigrationTaskRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务ID
+        # @type TaskId: String
+
+        attr_accessor :TaskId
+
+        def initialize(taskid=nil)
+          @TaskId = taskid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+        end
+      end
+
+      # DeleteSmoothMigrationTask返回参数结构体
+      class DeleteSmoothMigrationTaskResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -2624,6 +2707,203 @@ module TencentCloud
         end
       end
 
+      # DescribeMigratingGroupStats请求参数结构体
+      class DescribeMigratingGroupStatsRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: 迁移任务ID
+        # @type TaskId: String
+        # @param GroupName: 消费组名称
+        # @type GroupName: String
+        # @param Namespace: 命名空间
+        # @type Namespace: String
+
+        attr_accessor :TaskId, :GroupName, :Namespace
+
+        def initialize(taskid=nil, groupname=nil, namespace=nil)
+          @TaskId = taskid
+          @GroupName = groupname
+          @Namespace = namespace
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @GroupName = params['GroupName']
+          @Namespace = params['Namespace']
+        end
+      end
+
+      # DescribeMigratingGroupStats返回参数结构体
+      class DescribeMigratingGroupStatsResponse < TencentCloud::Common::AbstractModel
+        # @param SourceConsumeLag: 源集群消费组堆积
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SourceConsumeLag: Integer
+        # @param TargetConsumeLag: 目标集群消费组堆积
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TargetConsumeLag: Integer
+        # @param SourceConsumerClients: 源集群连接客户端列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SourceConsumerClients: Array
+        # @param TargetConsumerClients: 目标集群连接客户端列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TargetConsumerClients: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :SourceConsumeLag, :TargetConsumeLag, :SourceConsumerClients, :TargetConsumerClients, :RequestId
+
+        def initialize(sourceconsumelag=nil, targetconsumelag=nil, sourceconsumerclients=nil, targetconsumerclients=nil, requestid=nil)
+          @SourceConsumeLag = sourceconsumelag
+          @TargetConsumeLag = targetconsumelag
+          @SourceConsumerClients = sourceconsumerclients
+          @TargetConsumerClients = targetconsumerclients
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @SourceConsumeLag = params['SourceConsumeLag']
+          @TargetConsumeLag = params['TargetConsumeLag']
+          unless params['SourceConsumerClients'].nil?
+            @SourceConsumerClients = []
+            params['SourceConsumerClients'].each do |i|
+              consumerclient_tmp = ConsumerClient.new
+              consumerclient_tmp.deserialize(i)
+              @SourceConsumerClients << consumerclient_tmp
+            end
+          end
+          unless params['TargetConsumerClients'].nil?
+            @TargetConsumerClients = []
+            params['TargetConsumerClients'].each do |i|
+              consumerclient_tmp = ConsumerClient.new
+              consumerclient_tmp.deserialize(i)
+              @TargetConsumerClients << consumerclient_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeMigratingTopicList请求参数结构体
+      class DescribeMigratingTopicListRequest < TencentCloud::Common::AbstractModel
+        # @param Offset: 查询起始位置
+        # @type Offset: Integer
+        # @param Limit: 查询结果限制数量
+        # @type Limit: Integer
+        # @param TaskId: 任务ID
+        # @type TaskId: String
+        # @param Filters: 查询条件列表
+        # @type Filters: Array
+
+        attr_accessor :Offset, :Limit, :TaskId, :Filters
+
+        def initialize(offset=nil, limit=nil, taskid=nil, filters=nil)
+          @Offset = offset
+          @Limit = limit
+          @TaskId = taskid
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @TaskId = params['TaskId']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeMigratingTopicList返回参数结构体
+      class DescribeMigratingTopicListResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 查询总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+        # @param MigrateTopics: 主题列表
+        # @type MigrateTopics: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :MigrateTopics, :RequestId
+
+        def initialize(totalcount=nil, migratetopics=nil, requestid=nil)
+          @TotalCount = totalcount
+          @MigrateTopics = migratetopics
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['MigrateTopics'].nil?
+            @MigrateTopics = []
+            params['MigrateTopics'].each do |i|
+              migratingtopic_tmp = MigratingTopic.new
+              migratingtopic_tmp.deserialize(i)
+              @MigrateTopics << migratingtopic_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeMigratingTopicStats请求参数结构体
+      class DescribeMigratingTopicStatsRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务ID
+        # @type TaskId: String
+        # @param TopicName: 主题名称
+        # @type TopicName: String
+        # @param Namespace: 命名空间，仅4.x集群有效
+        # @type Namespace: String
+
+        attr_accessor :TaskId, :TopicName, :Namespace
+
+        def initialize(taskid=nil, topicname=nil, namespace=nil)
+          @TaskId = taskid
+          @TopicName = topicname
+          @Namespace = namespace
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @TopicName = params['TopicName']
+          @Namespace = params['Namespace']
+        end
+      end
+
+      # DescribeMigratingTopicStats返回参数结构体
+      class DescribeMigratingTopicStatsResponse < TencentCloud::Common::AbstractModel
+        # @param SourceClusterConsumerCount: 源集群的消费者数量
+        # @type SourceClusterConsumerCount: Integer
+        # @param TargetClusterConsumerCount: 目标集群的消费者数量
+        # @type TargetClusterConsumerCount: Integer
+        # @param SourceClusterConsumerGroups: 源集群消费组列表
+        # @type SourceClusterConsumerGroups: Array
+        # @param TargetClusterConsumerGroups: 目标集群消费组列表
+        # @type TargetClusterConsumerGroups: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :SourceClusterConsumerCount, :TargetClusterConsumerCount, :SourceClusterConsumerGroups, :TargetClusterConsumerGroups, :RequestId
+
+        def initialize(sourceclusterconsumercount=nil, targetclusterconsumercount=nil, sourceclusterconsumergroups=nil, targetclusterconsumergroups=nil, requestid=nil)
+          @SourceClusterConsumerCount = sourceclusterconsumercount
+          @TargetClusterConsumerCount = targetclusterconsumercount
+          @SourceClusterConsumerGroups = sourceclusterconsumergroups
+          @TargetClusterConsumerGroups = targetclusterconsumergroups
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @SourceClusterConsumerCount = params['SourceClusterConsumerCount']
+          @TargetClusterConsumerCount = params['TargetClusterConsumerCount']
+          @SourceClusterConsumerGroups = params['SourceClusterConsumerGroups']
+          @TargetClusterConsumerGroups = params['TargetClusterConsumerGroups']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeProductSKUs请求参数结构体
       class DescribeProductSKUsRequest < TencentCloud::Common::AbstractModel
 
@@ -2724,6 +3004,73 @@ module TencentCloud
               roleitem_tmp = RoleItem.new
               roleitem_tmp.deserialize(i)
               @Data << roleitem_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeSourceClusterGroupList请求参数结构体
+      class DescribeSourceClusterGroupListRequest < TencentCloud::Common::AbstractModel
+        # @param Offset: 查询起始位置
+        # @type Offset: Integer
+        # @param Limit: 查询结果限制数量
+        # @type Limit: Integer
+        # @param TaskId: 任务ID
+        # @type TaskId: String
+        # @param Filters: 查询条件列表
+        # @type Filters: Array
+
+        attr_accessor :Offset, :Limit, :TaskId, :Filters
+
+        def initialize(offset=nil, limit=nil, taskid=nil, filters=nil)
+          @Offset = offset
+          @Limit = limit
+          @TaskId = taskid
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @TaskId = params['TaskId']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeSourceClusterGroupList返回参数结构体
+      class DescribeSourceClusterGroupListResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 查询总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+        # @param Groups: 消费组配置列表
+        # @type Groups: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Groups, :RequestId
+
+        def initialize(totalcount=nil, groups=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Groups = groups
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Groups'].nil?
+            @Groups = []
+            params['Groups'].each do |i|
+              sourceclustergroupconfig_tmp = SourceClusterGroupConfig.new
+              sourceclustergroupconfig_tmp.deserialize(i)
+              @Groups << sourceclustergroupconfig_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -2999,6 +3346,65 @@ module TencentCloud
           @PermRead = params['PermRead']
           @ResourceType = params['ResourceType']
           @Remark = params['Remark']
+        end
+      end
+
+      # DoHealthCheckOnMigratingTopic请求参数结构体
+      class DoHealthCheckOnMigratingTopicRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务ID
+        # @type TaskId: String
+        # @param TopicName: 主题名称
+        # @type TopicName: String
+        # @param IgnoreCheck: 是否忽略当前检查
+        # @type IgnoreCheck: Boolean
+        # @param Namespace: 命名空间，仅4.x集群有效
+        # @type Namespace: String
+
+        attr_accessor :TaskId, :TopicName, :IgnoreCheck, :Namespace
+
+        def initialize(taskid=nil, topicname=nil, ignorecheck=nil, namespace=nil)
+          @TaskId = taskid
+          @TopicName = topicname
+          @IgnoreCheck = ignorecheck
+          @Namespace = namespace
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @TopicName = params['TopicName']
+          @IgnoreCheck = params['IgnoreCheck']
+          @Namespace = params['Namespace']
+        end
+      end
+
+      # DoHealthCheckOnMigratingTopic返回参数结构体
+      class DoHealthCheckOnMigratingTopicResponse < TencentCloud::Common::AbstractModel
+        # @param Passed: 是否通过
+        # @type Passed: Boolean
+        # @param Reason: 健康检查返回的错误信息
+        # NotChecked 未执行检查， Unknown 未知错误, TopicNotImported 主题未导入, TopicNotExistsInSourceCluster 主题在源集群中不存在, TopicNotExistsInTargetCluster 主题在目标集群中不存在, ConsumerConnectedOnTarget 目标集群上存在消费者连接, SourceTopicHasNewMessagesIn5Minutes 源集群主题前5分钟内有新消息写入, TargetTopicHasNewMessagesIn5Minutes 目标集群主题前5分钟内有新消息写入, SourceTopicHasNoMessagesIn5Minutes 源集群前5分钟内没有新消息写入, TargetTopicHasNoMessagesIn5Minutes 源集群前5分钟内没有新消息写入, ConsumerGroupCountNotMatch 订阅组数量不一致, SourceTopicHasUnconsumedMessages 源集群主题存在未消费消息,
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Reason: String
+        # @param ReasonList: 健康检查返回的错误信息列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReasonList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Passed, :Reason, :ReasonList, :RequestId
+
+        def initialize(passed=nil, reason=nil, reasonlist=nil, requestid=nil)
+          @Passed = passed
+          @Reason = reason
+          @ReasonList = reasonlist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Passed = params['Passed']
+          @Reason = params['Reason']
+          @ReasonList = params['ReasonList']
+          @RequestId = params['RequestId']
         end
       end
 
@@ -3941,6 +4347,43 @@ module TencentCloud
         end
       end
 
+      # 迁移中的主题
+      class MigratingTopic < TencentCloud::Common::AbstractModel
+        # @param TopicName: 主题名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TopicName: String
+        # @param MigrationStatus: 迁移状态 S_RW_D_NA 源集群读写 S_RW_D_R 源集群读写目标集群读 S_RW_D_RW 源集群读写目标集群读写 S_R_D_RW 源集群读目标集群读写 S_NA_D_RW 目标集群读写
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MigrationStatus: String
+        # @param HealthCheckPassed: 是否完成健康检查
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HealthCheckPassed: Boolean
+        # @param HealthCheckError: 上次健康检查返回的错误信息，仅在HealthCheckPassed为false时有效。 NotChecked 未执行检查， Unknown 未知错误, TopicNotImported 主题未导入, TopicNotExistsInSourceCluster 主题在源集群中不存在, TopicNotExistsInTargetCluster 主题在目标集群中不存在, ConsumerConnectedOnTarget 目标集群上存在消费者连接, SourceTopicHasNewMessagesIn5Minutes 源集群主题前5分钟内有新消息写入, TargetTopicHasNewMessagesIn5Minutes 目标集群主题前5分钟内有新消息写入, SourceTopicHasNoMessagesIn5Minutes 源集群前5分钟内没有新消息写入, TargetTopicHasNoMessagesIn5Minutes 源集群前5分钟内没有新消息写入, ConsumerGroupCountNotMatch 订阅组数量不一致, SourceTopicHasUnconsumedMessages 源集群主题存在未消费消息,
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HealthCheckError: String
+        # @param Namespace: 命名空间，仅4.x集群有效
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Namespace: String
+
+        attr_accessor :TopicName, :MigrationStatus, :HealthCheckPassed, :HealthCheckError, :Namespace
+
+        def initialize(topicname=nil, migrationstatus=nil, healthcheckpassed=nil, healthcheckerror=nil, namespace=nil)
+          @TopicName = topicname
+          @MigrationStatus = migrationstatus
+          @HealthCheckPassed = healthcheckpassed
+          @HealthCheckError = healthcheckerror
+          @Namespace = namespace
+        end
+
+        def deserialize(params)
+          @TopicName = params['TopicName']
+          @MigrationStatus = params['MigrationStatus']
+          @HealthCheckPassed = params['HealthCheckPassed']
+          @HealthCheckError = params['HealthCheckError']
+          @Namespace = params['Namespace']
+        end
+      end
+
       # ModifyConsumerGroup请求参数结构体
       class ModifyConsumerGroupRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 集群ID
@@ -4603,6 +5046,46 @@ module TencentCloud
         end
       end
 
+      # RemoveMigratingTopic请求参数结构体
+      class RemoveMigratingTopicRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务ID
+        # @type TaskId: String
+        # @param TopicName: 主题名称
+        # @type TopicName: String
+        # @param Namespace: 命名空间，仅迁移至4.x集群有效
+        # @type Namespace: String
+
+        attr_accessor :TaskId, :TopicName, :Namespace
+
+        def initialize(taskid=nil, topicname=nil, namespace=nil)
+          @TaskId = taskid
+          @TopicName = topicname
+          @Namespace = namespace
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @TopicName = params['TopicName']
+          @Namespace = params['Namespace']
+        end
+      end
+
+      # RemoveMigratingTopic返回参数结构体
+      class RemoveMigratingTopicResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ResendDeadLetterMessage请求参数结构体
       class ResendDeadLetterMessageRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 集群ID
@@ -4749,6 +5232,46 @@ module TencentCloud
               @DetailedRolePerms << detailedroleperm_tmp
             end
           end
+        end
+      end
+
+      # RollbackMigratingTopicStage请求参数结构体
+      class RollbackMigratingTopicStageRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务ID
+        # @type TaskId: String
+        # @param TopicName: 主题名称
+        # @type TopicName: String
+        # @param Namespace: 命名空间，仅4.x集群有效
+        # @type Namespace: String
+
+        attr_accessor :TaskId, :TopicName, :Namespace
+
+        def initialize(taskid=nil, topicname=nil, namespace=nil)
+          @TaskId = taskid
+          @TopicName = topicname
+          @Namespace = namespace
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @TopicName = params['TopicName']
+          @Namespace = params['Namespace']
+        end
+      end
+
+      # RollbackMigratingTopicStage返回参数结构体
+      class RollbackMigratingTopicStageResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 
@@ -5135,6 +5658,33 @@ module TencentCloud
           @TopicV4 = params['TopicV4']
           @FullNamespaceV4 = params['FullNamespaceV4']
           @MsgTTL = params['MsgTTL']
+        end
+      end
+
+      # 迁移主题修改状态后的结果
+      class TopicStageChangeResult < TencentCloud::Common::AbstractModel
+        # @param TopicName: 主题名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TopicName: String
+        # @param Success: 是否成功
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Success: Boolean
+        # @param Namespace: 命名空间，仅4.x有效
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Namespace: String
+
+        attr_accessor :TopicName, :Success, :Namespace
+
+        def initialize(topicname=nil, success=nil, namespace=nil)
+          @TopicName = topicname
+          @Success = success
+          @Namespace = namespace
+        end
+
+        def deserialize(params)
+          @TopicName = params['TopicName']
+          @Success = params['Success']
+          @Namespace = params['Namespace']
         end
       end
 

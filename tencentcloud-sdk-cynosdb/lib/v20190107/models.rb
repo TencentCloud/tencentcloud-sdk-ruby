@@ -9845,10 +9845,14 @@ module TencentCloud
         # @type DeviceType: String
         # @param UpgradeType: 升级方式。升级完成后切换或维护时间内切换
         # @type UpgradeType: String
+        # @param LibraNodeCount: libra节点数量
+        # @type LibraNodeCount: Integer
+        # @param OldLibraNodeCount: 原libra节点数量
+        # @type OldLibraNodeCount: Integer
 
-        attr_accessor :Cpu, :Memory, :StorageLimit, :OldCpu, :OldMemory, :OldStorageLimit, :OldDeviceType, :DeviceType, :UpgradeType
+        attr_accessor :Cpu, :Memory, :StorageLimit, :OldCpu, :OldMemory, :OldStorageLimit, :OldDeviceType, :DeviceType, :UpgradeType, :LibraNodeCount, :OldLibraNodeCount
 
-        def initialize(cpu=nil, memory=nil, storagelimit=nil, oldcpu=nil, oldmemory=nil, oldstoragelimit=nil, olddevicetype=nil, devicetype=nil, upgradetype=nil)
+        def initialize(cpu=nil, memory=nil, storagelimit=nil, oldcpu=nil, oldmemory=nil, oldstoragelimit=nil, olddevicetype=nil, devicetype=nil, upgradetype=nil, libranodecount=nil, oldlibranodecount=nil)
           @Cpu = cpu
           @Memory = memory
           @StorageLimit = storagelimit
@@ -9858,6 +9862,8 @@ module TencentCloud
           @OldDeviceType = olddevicetype
           @DeviceType = devicetype
           @UpgradeType = upgradetype
+          @LibraNodeCount = libranodecount
+          @OldLibraNodeCount = oldlibranodecount
         end
 
         def deserialize(params)
@@ -9870,6 +9876,8 @@ module TencentCloud
           @OldDeviceType = params['OldDeviceType']
           @DeviceType = params['DeviceType']
           @UpgradeType = params['UpgradeType']
+          @LibraNodeCount = params['LibraNodeCount']
+          @OldLibraNodeCount = params['OldLibraNodeCount']
         end
       end
 
@@ -10067,19 +10075,23 @@ module TencentCloud
         # @type CurrentValue: String
         # @param OldValue: 参数旧值（只在出参时有用）
         # @type OldValue: String
+        # @param Component: libra组件类型
+        # @type Component: String
 
-        attr_accessor :ParamName, :CurrentValue, :OldValue
+        attr_accessor :ParamName, :CurrentValue, :OldValue, :Component
 
-        def initialize(paramname=nil, currentvalue=nil, oldvalue=nil)
+        def initialize(paramname=nil, currentvalue=nil, oldvalue=nil, component=nil)
           @ParamName = paramname
           @CurrentValue = currentvalue
           @OldValue = oldvalue
+          @Component = component
         end
 
         def deserialize(params)
           @ParamName = params['ParamName']
           @CurrentValue = params['CurrentValue']
           @OldValue = params['OldValue']
+          @Component = params['Component']
         end
       end
 

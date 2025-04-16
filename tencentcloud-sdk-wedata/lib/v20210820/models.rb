@@ -18268,10 +18268,10 @@ module TencentCloud
         # @param ExecutorGroupName: 资源组名称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExecutorGroupName: String
-        # @param CurRunDate: 标准数据时间
+        # @param CurRunDate: 实例数据时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CurRunDate: String
-        # @param NextCurDate: 下一个标准数据时间
+        # @param NextCurDate: 下一个实例数据时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NextCurDate: String
         # @param TryLimit: 每次运行失败，下发重试次数限制
@@ -19706,7 +19706,7 @@ module TencentCloud
         # * C: CRONTAB_CYCLE
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskCycleType: String
-        # @param CurRunDate: 标准数据时间
+        # @param CurRunDate: 实例数据时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CurRunDate: String
         # @param TryLimit: 每次运行失败，下发重试次数限制

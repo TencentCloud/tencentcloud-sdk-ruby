@@ -13412,10 +13412,10 @@ module TencentCloud
       class StartCpuExpandRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例 ID 。
         # @type InstanceId: String
-        # @param Type: 扩容类型。可选值：auto：代表进行自动扩容
-        # manual：代表进行手动扩容
+        # @param Type: 扩容类型。auto 自动  manual 立即生效 timeInterval 按时间段 period 按周期
         # @type Type: String
-        # @param ExpandCpu: 手动扩容时，扩容的CPU核心数。Type 为 manual 时必传。
+        # @param ExpandCpu: 手动扩容时，扩容的 CPU 核心数。
+        # 说明：1. Type 为 manual 时必传。2. 扩容的 CPU 核心数上限为当前实例 CPU 核心数，比如8核16G最大可手动扩容的 CPU 核心数为8，即范围为1 - 8。
         # @type ExpandCpu: Integer
         # @param AutoStrategy: 自动扩容策略。Type 为 auto 时必传。
         # @type AutoStrategy: :class:`Tencentcloud::Cdb.v20170320.models.AutoStrategy`

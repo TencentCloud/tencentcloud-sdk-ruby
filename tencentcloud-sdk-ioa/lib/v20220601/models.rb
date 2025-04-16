@@ -93,6 +93,79 @@ module TencentCloud
         end
       end
 
+      # 提交送检任务相应数据
+      class CreateDLPFileDetectionTaskData < TencentCloud::Common::AbstractModel
+        # @param DLPFileDetectionTaskID: 提交任务生成的id，也即requestID。用于后续查询
+        # @type DLPFileDetectionTaskID: String
+
+        attr_accessor :DLPFileDetectionTaskID
+
+        def initialize(dlpfiledetectiontaskid=nil)
+          @DLPFileDetectionTaskID = dlpfiledetectiontaskid
+        end
+
+        def deserialize(params)
+          @DLPFileDetectionTaskID = params['DLPFileDetectionTaskID']
+        end
+      end
+
+      # CreateDLPFileDetectionTask请求参数结构体
+      class CreateDLPFileDetectionTaskRequest < TencentCloud::Common::AbstractModel
+        # @param Url: 文件下载链接，要求公网可访问，GET方式访问后为文件
+        # @type Url: String
+        # @param FileName: 文件名，带后缀
+        # @type FileName: String
+        # @param FileMd5:  文件md5，传入相同md5会直接使用之前缓存的结果。
+
+        # > 请注意：不同文件使用相同md5送检，会命中缓存得到旧的检测结果
+        # @type FileMd5: String
+        # @param DomainInstanceId: 管理域实例ID，用于CAM管理域权限分配
+        # @type DomainInstanceId: String
+        # @param CallBackUrl: 回调地址，暂时未使用
+        # @type CallBackUrl: String
+
+        attr_accessor :Url, :FileName, :FileMd5, :DomainInstanceId, :CallBackUrl
+
+        def initialize(url=nil, filename=nil, filemd5=nil, domaininstanceid=nil, callbackurl=nil)
+          @Url = url
+          @FileName = filename
+          @FileMd5 = filemd5
+          @DomainInstanceId = domaininstanceid
+          @CallBackUrl = callbackurl
+        end
+
+        def deserialize(params)
+          @Url = params['Url']
+          @FileName = params['FileName']
+          @FileMd5 = params['FileMd5']
+          @DomainInstanceId = params['DomainInstanceId']
+          @CallBackUrl = params['CallBackUrl']
+        end
+      end
+
+      # CreateDLPFileDetectionTask返回参数结构体
+      class CreateDLPFileDetectionTaskResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 创建送检任务响应数据
+        # @type Data: :class:`Tencentcloud::Ioa.v20220601.models.CreateDLPFileDetectionTaskData`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = CreateDLPFileDetectionTaskData.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateDeviceVirtualGroup请求参数结构体
       class CreateDeviceVirtualGroupRequest < TencentCloud::Common::AbstractModel
         # @param DeviceVirtualGroupName: 必填，终端自定义分组名
@@ -348,6 +421,77 @@ module TencentCloud
         def deserialize(params)
           unless params['Data'].nil?
             @Data = DescribeAccountGroupsPageResp.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 查询文件检测结果响应数据
+      class DescribeDLPFileDetectResultData < TencentCloud::Common::AbstractModel
+        # @param FileMd5: 提交任务时的文件md5
+        # @type FileMd5: String
+        # @param FileName: 提交任务时的文件名
+        # @type FileName: String
+        # @param Status: 状态：等待检测->正在检测->检测失败/检测成功。或任务不存在
+        # @type Status: String
+        # @param DetectResult: 文件检测结果，json字符串。
+        # @type DetectResult: String
+
+        attr_accessor :FileMd5, :FileName, :Status, :DetectResult
+
+        def initialize(filemd5=nil, filename=nil, status=nil, detectresult=nil)
+          @FileMd5 = filemd5
+          @FileName = filename
+          @Status = status
+          @DetectResult = detectresult
+        end
+
+        def deserialize(params)
+          @FileMd5 = params['FileMd5']
+          @FileName = params['FileName']
+          @Status = params['Status']
+          @DetectResult = params['DetectResult']
+        end
+      end
+
+      # DescribeDLPFileDetectResult请求参数结构体
+      class DescribeDLPFileDetectResultRequest < TencentCloud::Common::AbstractModel
+        # @param DomainInstanceId: 管理域实例ID，用于CAM管理域权限分配
+        # @type DomainInstanceId: String
+        # @param QueryID: 查询ID，即提交送检任务接口（CreateDLPFileDetectionTask）返回的任务ID（DLPFileDetectionTaskID）
+        # @type QueryID: String
+
+        attr_accessor :DomainInstanceId, :QueryID
+
+        def initialize(domaininstanceid=nil, queryid=nil)
+          @DomainInstanceId = domaininstanceid
+          @QueryID = queryid
+        end
+
+        def deserialize(params)
+          @DomainInstanceId = params['DomainInstanceId']
+          @QueryID = params['QueryID']
+        end
+      end
+
+      # DescribeDLPFileDetectResult返回参数结构体
+      class DescribeDLPFileDetectResultResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 查询任务结果
+        # @type Data: :class:`Tencentcloud::Ioa.v20220601.models.DescribeDLPFileDetectResultData`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = DescribeDLPFileDetectResultData.new
             @Data.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']

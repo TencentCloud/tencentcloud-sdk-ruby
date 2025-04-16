@@ -29,6 +29,30 @@ module TencentCloud
         end
 
 
+        # 提交送检任务
+
+        # @param request: Request instance for CreateDLPFileDetectionTask.
+        # @type request: :class:`Tencentcloud::ioa::V20220601::CreateDLPFileDetectionTaskRequest`
+        # @rtype: :class:`Tencentcloud::ioa::V20220601::CreateDLPFileDetectionTaskResponse`
+        def CreateDLPFileDetectionTask(request)
+          body = send_request('CreateDLPFileDetectionTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateDLPFileDetectionTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建终端自定义分组，私有化调用path为：/capi/Assets/Device/CreateDeviceVirtualGroup
 
         # @param request: Request instance for CreateDeviceVirtualGroup.
@@ -63,6 +87,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeAccountGroupsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # webservice查询文件检测结果
+
+        # @param request: Request instance for DescribeDLPFileDetectResult.
+        # @type request: :class:`Tencentcloud::ioa::V20220601::DescribeDLPFileDetectResultRequest`
+        # @rtype: :class:`Tencentcloud::ioa::V20220601::DescribeDLPFileDetectResultResponse`
+        def DescribeDLPFileDetectResult(request)
+          body = send_request('DescribeDLPFileDetectResult', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDLPFileDetectResultResponse.new
             model.deserialize(response['Response'])
             model
           else

@@ -1733,6 +1733,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询运维子任务执行结果
+
+        # @param request: Request instance for SearchSubtaskResultById.
+        # @type request: :class:`Tencentcloud::bh::V20230418::SearchSubtaskResultByIdRequest`
+        # @rtype: :class:`Tencentcloud::bh::V20230418::SearchSubtaskResultByIdResponse`
+        def SearchSubtaskResultById(request)
+          body = send_request('SearchSubtaskResultById', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = SearchSubtaskResultByIdResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 搜索运维任务执行结果
 
         # @param request: Request instance for SearchTaskResult.

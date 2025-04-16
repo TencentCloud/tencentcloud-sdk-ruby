@@ -29,6 +29,30 @@ module TencentCloud
         end
 
 
+        # 修改迁移中的Topic状态进入下一步
+
+        # @param request: Request instance for ChangeMigratingTopicToNextStage.
+        # @type request: :class:`Tencentcloud::trocket::V20230308::ChangeMigratingTopicToNextStageRequest`
+        # @rtype: :class:`Tencentcloud::trocket::V20230308::ChangeMigratingTopicToNextStageResponse`
+        def ChangeMigratingTopicToNextStage(request)
+          body = send_request('ChangeMigratingTopicToNextStage', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ChangeMigratingTopicToNextStageResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建消费组
 
         # @param request: Request instance for CreateConsumerGroup.
@@ -375,6 +399,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteRoleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除平滑迁移任务，只有被取消的任务才可删除
+
+        # @param request: Request instance for DeleteSmoothMigrationTask.
+        # @type request: :class:`Tencentcloud::trocket::V20230308::DeleteSmoothMigrationTaskRequest`
+        # @rtype: :class:`Tencentcloud::trocket::V20230308::DeleteSmoothMigrationTaskResponse`
+        def DeleteSmoothMigrationTask(request)
+          body = send_request('DeleteSmoothMigrationTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteSmoothMigrationTaskResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -966,6 +1014,80 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查看迁移消费组的实时信息
+
+        # @param request: Request instance for DescribeMigratingGroupStats.
+        # @type request: :class:`Tencentcloud::trocket::V20230308::DescribeMigratingGroupStatsRequest`
+        # @rtype: :class:`Tencentcloud::trocket::V20230308::DescribeMigratingGroupStatsResponse`
+        def DescribeMigratingGroupStats(request)
+          body = send_request('DescribeMigratingGroupStats', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeMigratingGroupStatsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询Topic迁移状态列表
+
+        # 查询过滤器，支持TopicName、MigrationStatus查询
+
+        # @param request: Request instance for DescribeMigratingTopicList.
+        # @type request: :class:`Tencentcloud::trocket::V20230308::DescribeMigratingTopicListRequest`
+        # @rtype: :class:`Tencentcloud::trocket::V20230308::DescribeMigratingTopicListResponse`
+        def DescribeMigratingTopicList(request)
+          body = send_request('DescribeMigratingTopicList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeMigratingTopicListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 用于查询迁移主题的实时数据
+
+        # @param request: Request instance for DescribeMigratingTopicStats.
+        # @type request: :class:`Tencentcloud::trocket::V20230308::DescribeMigratingTopicStatsRequest`
+        # @rtype: :class:`Tencentcloud::trocket::V20230308::DescribeMigratingTopicStatsResponse`
+        def DescribeMigratingTopicStats(request)
+          body = send_request('DescribeMigratingTopicStats', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeMigratingTopicStatsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询产品售卖规格，针对 RocketMQ 5.x 集群。
 
         # @param request: Request instance for DescribeProductSKUs.
@@ -1003,6 +1125,35 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeRoleListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 平滑迁移过程获取源集群group列表接口
+
+        # 查询过滤器，支持字段
+        # GroupName，消费组名称模糊搜索
+        # Imported，是否已导入
+        # ImportStatus，导入状态
+
+        # @param request: Request instance for DescribeSourceClusterGroupList.
+        # @type request: :class:`Tencentcloud::trocket::V20230308::DescribeSourceClusterGroupListRequest`
+        # @rtype: :class:`Tencentcloud::trocket::V20230308::DescribeSourceClusterGroupListResponse`
+        def DescribeSourceClusterGroupList(request)
+          body = send_request('DescribeSourceClusterGroupList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeSourceClusterGroupListResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1082,6 +1233,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeTopicListByGroupResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 检查迁移中的主题是否处于正常状态，只有处于正常状态的主题，才可以进入下一个迁移阶段
+
+        # @param request: Request instance for DoHealthCheckOnMigratingTopic.
+        # @type request: :class:`Tencentcloud::trocket::V20230308::DoHealthCheckOnMigratingTopicRequest`
+        # @rtype: :class:`Tencentcloud::trocket::V20230308::DoHealthCheckOnMigratingTopicResponse`
+        def DoHealthCheckOnMigratingTopic(request)
+          body = send_request('DoHealthCheckOnMigratingTopic', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DoHealthCheckOnMigratingTopicResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1385,6 +1560,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 从迁移列表中移除主题，仅当主题处于初始状态时有效
+
+        # @param request: Request instance for RemoveMigratingTopic.
+        # @type request: :class:`Tencentcloud::trocket::V20230308::RemoveMigratingTopicRequest`
+        # @rtype: :class:`Tencentcloud::trocket::V20230308::RemoveMigratingTopicResponse`
+        def RemoveMigratingTopic(request)
+          body = send_request('RemoveMigratingTopic', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = RemoveMigratingTopicResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 重新发送死信消息
 
         # @param request: Request instance for ResendDeadLetterMessage.
@@ -1419,6 +1618,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ResetConsumerGroupOffsetResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 回滚正在迁移的主题至前一个阶段
+
+        # @param request: Request instance for RollbackMigratingTopicStage.
+        # @type request: :class:`Tencentcloud::trocket::V20230308::RollbackMigratingTopicStageRequest`
+        # @rtype: :class:`Tencentcloud::trocket::V20230308::RollbackMigratingTopicStageResponse`
+        def RollbackMigratingTopicStage(request)
+          body = send_request('RollbackMigratingTopicStage', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = RollbackMigratingTopicStageResponse.new
             model.deserialize(response['Response'])
             model
           else
