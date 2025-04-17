@@ -901,6 +901,130 @@ module TencentCloud
         end
       end
 
+      # 网页搜索结果
+      class WebPage < TencentCloud::Common::AbstractModel
+        # @param Title: 标题
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Title: String
+        # @param Url: url
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Url: String
+        # @param Summary: 网页摘要
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Summary: String
+        # @param Time: 网页收录时间。可能为空。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Time: String
+        # @param Content: Markdown 格式的网页正文
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Content: String
+
+        attr_accessor :Title, :Url, :Summary, :Time, :Content
+
+        def initialize(title=nil, url=nil, summary=nil, time=nil, content=nil)
+          @Title = title
+          @Url = url
+          @Summary = summary
+          @Time = time
+          @Content = content
+        end
+
+        def deserialize(params)
+          @Title = params['Title']
+          @Url = params['Url']
+          @Summary = params['Summary']
+          @Time = params['Time']
+          @Content = params['Content']
+        end
+      end
+
+      # WebSearch请求参数结构体
+      class WebSearchRequest < TencentCloud::Common::AbstractModel
+        # @param Query: 查询
+        # @type Query: String
+        # @param Count: 搜索的网页数量，默认20
+        # @type Count: Integer
+        # @param Site: 指定域名，gov.cn 可匹配 *.gov.cn的域名。
+        # @type Site: String
+        # @param FetchContent: 是否获取返回网页全文，默认 false。
+        # @type FetchContent: Boolean
+        # @param WhiteSites: 域名白名单，在不指定 Site 时，只保存匹配白名单域名的网页。
+        # @type WhiteSites: Array
+        # @param BlackSites: 域名黑名单，在不指定 Site 和白名单时，过滤黑名单中的域名。
+        # @type BlackSites: Array
+        # @param StartTime: 秒级时间冲，搜索网页的开始时间，默认不限制开始时间。
+        # @type StartTime: Integer
+        # @param EndTime: 秒级时间戳，搜索网页的结束时间，默认为现在。
+        # @type EndTime: Integer
+        # @param SearchEngine: 指定搜索引擎，可选混合搜索 mixed，或 bing, baidu, sogou, 默认为 sogou
+        # @type SearchEngine: String
+
+        attr_accessor :Query, :Count, :Site, :FetchContent, :WhiteSites, :BlackSites, :StartTime, :EndTime, :SearchEngine
+
+        def initialize(query=nil, count=nil, site=nil, fetchcontent=nil, whitesites=nil, blacksites=nil, starttime=nil, endtime=nil, searchengine=nil)
+          @Query = query
+          @Count = count
+          @Site = site
+          @FetchContent = fetchcontent
+          @WhiteSites = whitesites
+          @BlackSites = blacksites
+          @StartTime = starttime
+          @EndTime = endtime
+          @SearchEngine = searchengine
+        end
+
+        def deserialize(params)
+          @Query = params['Query']
+          @Count = params['Count']
+          @Site = params['Site']
+          @FetchContent = params['FetchContent']
+          @WhiteSites = params['WhiteSites']
+          @BlackSites = params['BlackSites']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @SearchEngine = params['SearchEngine']
+        end
+      end
+
+      # WebSearch返回参数结构体
+      class WebSearchResponse < TencentCloud::Common::AbstractModel
+        # @param Query: 查询
+        # @type Query: String
+        # @param Status: 响应状态
+        # @type Status: String
+        # @param SearchEngine: 执行搜索的引擎
+        # @type SearchEngine: String
+        # @param Results: 搜索结果
+        # @type Results: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Query, :Status, :SearchEngine, :Results, :RequestId
+
+        def initialize(query=nil, status=nil, searchengine=nil, results=nil, requestid=nil)
+          @Query = query
+          @Status = status
+          @SearchEngine = searchengine
+          @Results = results
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Query = params['Query']
+          @Status = params['Status']
+          @SearchEngine = params['SearchEngine']
+          unless params['Results'].nil?
+            @Results = []
+            params['Results'].each do |i|
+              webpage_tmp = WebPage.new
+              webpage_tmp.deserialize(i)
+              @Results << webpage_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
     end
   end
 end

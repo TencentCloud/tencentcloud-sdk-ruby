@@ -2237,6 +2237,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 拉取 TWeSee 配置
+
+        # @param request: Request instance for DescribeTWeSeeConfig.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::DescribeTWeSeeConfigRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::DescribeTWeSeeConfigResponse`
+        def DescribeTWeSeeConfig(request)
+          body = send_request('DescribeTWeSeeConfig', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeTWeSeeConfigResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（DescribeTopicPolicy）用于查看Topic详细信息
 
         # @param request: Request instance for DescribeTopicPolicy.
@@ -2885,6 +2909,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 视频语义搜索
+
+        # @param request: Request instance for InvokeAISearchService.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::InvokeAISearchServiceRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::InvokeAISearchServiceResponse`
+        def InvokeAISearchService(request)
+          body = send_request('InvokeAISearchService', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = InvokeAISearchServiceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 同步执行设备云存 AI 分析任务
 
         # @param request: Request instance for InvokeCloudStorageAIServiceTask.
@@ -3327,6 +3375,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyStudioProductResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改 TWeSee 配置
+
+        # @param request: Request instance for ModifyTWeSeeConfig.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::ModifyTWeSeeConfigRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::ModifyTWeSeeConfigResponse`
+        def ModifyTWeSeeConfig(request)
+          body = send_request('ModifyTWeSeeConfig', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyTWeSeeConfigResponse.new
             model.deserialize(response['Response'])
             model
           else

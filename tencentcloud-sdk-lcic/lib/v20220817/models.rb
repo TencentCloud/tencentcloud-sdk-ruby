@@ -2513,12 +2513,14 @@ module TencentCloud
         # @type RecordLayout: Integer
         # @param WhiteBoardSnapshotMode: 板书截图生成类型。0 不生成板书；1 全量模式；2 单页去重模式
         # @type WhiteBoardSnapshotMode: Integer
+        # @param SubtitlesTranscription: 字幕转写功能开关：0关闭，1开启，默认关闭
+        # @type SubtitlesTranscription: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Name, :StartTime, :EndTime, :TeacherId, :SdkAppId, :AudienceType, :Resolution, :MaxMicNumber, :AutoMic, :AudioQuality, :SubType, :DisableRecord, :Assistants, :RecordUrl, :Status, :GroupId, :EnableDirectControl, :InteractionMode, :VideoOrientation, :IsGradingRequiredPostClass, :RoomType, :VideoDuration, :EndDelayTime, :LiveType, :RecordLiveUrl, :EnableAutoStart, :RecordBackground, :RTMPStreamingURL, :RecordScene, :RecordLang, :RecordStream, :RecordLayout, :WhiteBoardSnapshotMode, :RequestId
+        attr_accessor :Name, :StartTime, :EndTime, :TeacherId, :SdkAppId, :AudienceType, :Resolution, :MaxMicNumber, :AutoMic, :AudioQuality, :SubType, :DisableRecord, :Assistants, :RecordUrl, :Status, :GroupId, :EnableDirectControl, :InteractionMode, :VideoOrientation, :IsGradingRequiredPostClass, :RoomType, :VideoDuration, :EndDelayTime, :LiveType, :RecordLiveUrl, :EnableAutoStart, :RecordBackground, :RTMPStreamingURL, :RecordScene, :RecordLang, :RecordStream, :RecordLayout, :WhiteBoardSnapshotMode, :SubtitlesTranscription, :RequestId
 
-        def initialize(name=nil, starttime=nil, endtime=nil, teacherid=nil, sdkappid=nil, audiencetype=nil, resolution=nil, maxmicnumber=nil, automic=nil, audioquality=nil, subtype=nil, disablerecord=nil, assistants=nil, recordurl=nil, status=nil, groupid=nil, enabledirectcontrol=nil, interactionmode=nil, videoorientation=nil, isgradingrequiredpostclass=nil, roomtype=nil, videoduration=nil, enddelaytime=nil, livetype=nil, recordliveurl=nil, enableautostart=nil, recordbackground=nil, rtmpstreamingurl=nil, recordscene=nil, recordlang=nil, recordstream=nil, recordlayout=nil, whiteboardsnapshotmode=nil, requestid=nil)
+        def initialize(name=nil, starttime=nil, endtime=nil, teacherid=nil, sdkappid=nil, audiencetype=nil, resolution=nil, maxmicnumber=nil, automic=nil, audioquality=nil, subtype=nil, disablerecord=nil, assistants=nil, recordurl=nil, status=nil, groupid=nil, enabledirectcontrol=nil, interactionmode=nil, videoorientation=nil, isgradingrequiredpostclass=nil, roomtype=nil, videoduration=nil, enddelaytime=nil, livetype=nil, recordliveurl=nil, enableautostart=nil, recordbackground=nil, rtmpstreamingurl=nil, recordscene=nil, recordlang=nil, recordstream=nil, recordlayout=nil, whiteboardsnapshotmode=nil, subtitlestranscription=nil, requestid=nil)
           @Name = name
           @StartTime = starttime
           @EndTime = endtime
@@ -2552,6 +2554,7 @@ module TencentCloud
           @RecordStream = recordstream
           @RecordLayout = recordlayout
           @WhiteBoardSnapshotMode = whiteboardsnapshotmode
+          @SubtitlesTranscription = subtitlestranscription
           @RequestId = requestid
         end
 
@@ -2589,6 +2592,7 @@ module TencentCloud
           @RecordStream = params['RecordStream']
           @RecordLayout = params['RecordLayout']
           @WhiteBoardSnapshotMode = params['WhiteBoardSnapshotMode']
+          @SubtitlesTranscription = params['SubtitlesTranscription']
           @RequestId = params['RequestId']
         end
       end
@@ -4058,13 +4062,15 @@ module TencentCloud
         # @type RecordLang: String
         # @param WhiteBoardSnapshotMode: 板书截图生成类型。0 不生成板书；1 全量模式；2 单页去重模式
         # @type WhiteBoardSnapshotMode: Integer
+        # @param SubtitlesTranscription: 字幕转写功能开关：0关闭，1开启，默认关闭
+        # @type SubtitlesTranscription: Integer
 
-        attr_accessor :RoomId, :SdkAppId, :StartTime, :EndTime, :TeacherId, :Name, :Resolution, :MaxMicNumber, :AutoMic, :AudioQuality, :SubType, :DisableRecord, :Assistants, :GroupId, :EnableDirectControl, :InteractionMode, :VideoOrientation, :IsGradingRequiredPostClass, :RoomType, :RecordLayout, :EndDelayTime, :LiveType, :RecordLiveUrl, :EnableAutoStart, :RecordScene, :RecordLang, :WhiteBoardSnapshotMode
+        attr_accessor :RoomId, :SdkAppId, :StartTime, :EndTime, :TeacherId, :Name, :Resolution, :MaxMicNumber, :AutoMic, :AudioQuality, :SubType, :DisableRecord, :Assistants, :GroupId, :EnableDirectControl, :InteractionMode, :VideoOrientation, :IsGradingRequiredPostClass, :RoomType, :RecordLayout, :EndDelayTime, :LiveType, :RecordLiveUrl, :EnableAutoStart, :RecordScene, :RecordLang, :WhiteBoardSnapshotMode, :SubtitlesTranscription
         extend Gem::Deprecate
         deprecate :RecordLang, :none, 2025, 4
         deprecate :RecordLang=, :none, 2025, 4
 
-        def initialize(roomid=nil, sdkappid=nil, starttime=nil, endtime=nil, teacherid=nil, name=nil, resolution=nil, maxmicnumber=nil, automic=nil, audioquality=nil, subtype=nil, disablerecord=nil, assistants=nil, groupid=nil, enabledirectcontrol=nil, interactionmode=nil, videoorientation=nil, isgradingrequiredpostclass=nil, roomtype=nil, recordlayout=nil, enddelaytime=nil, livetype=nil, recordliveurl=nil, enableautostart=nil, recordscene=nil, recordlang=nil, whiteboardsnapshotmode=nil)
+        def initialize(roomid=nil, sdkappid=nil, starttime=nil, endtime=nil, teacherid=nil, name=nil, resolution=nil, maxmicnumber=nil, automic=nil, audioquality=nil, subtype=nil, disablerecord=nil, assistants=nil, groupid=nil, enabledirectcontrol=nil, interactionmode=nil, videoorientation=nil, isgradingrequiredpostclass=nil, roomtype=nil, recordlayout=nil, enddelaytime=nil, livetype=nil, recordliveurl=nil, enableautostart=nil, recordscene=nil, recordlang=nil, whiteboardsnapshotmode=nil, subtitlestranscription=nil)
           @RoomId = roomid
           @SdkAppId = sdkappid
           @StartTime = starttime
@@ -4092,6 +4098,7 @@ module TencentCloud
           @RecordScene = recordscene
           @RecordLang = recordlang
           @WhiteBoardSnapshotMode = whiteboardsnapshotmode
+          @SubtitlesTranscription = subtitlestranscription
         end
 
         def deserialize(params)
@@ -4122,6 +4129,7 @@ module TencentCloud
           @RecordScene = params['RecordScene']
           @RecordLang = params['RecordLang']
           @WhiteBoardSnapshotMode = params['WhiteBoardSnapshotMode']
+          @SubtitlesTranscription = params['SubtitlesTranscription']
         end
       end
 

@@ -5603,6 +5603,62 @@ module TencentCloud
         end
       end
 
+      # DescribeTWeSeeConfig请求参数结构体
+      class DescribeTWeSeeConfigRequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: 产品ID
+        # @type ProductId: String
+        # @param DeviceName: 设备名称
+        # @type DeviceName: String
+        # @param UserId: 用户ID
+        # @type UserId: String
+        # @param ChannelId: 通道ID
+        # @type ChannelId: Integer
+
+        attr_accessor :ProductId, :DeviceName, :UserId, :ChannelId
+
+        def initialize(productid=nil, devicename=nil, userid=nil, channelid=nil)
+          @ProductId = productid
+          @DeviceName = devicename
+          @UserId = userid
+          @ChannelId = channelid
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @DeviceName = params['DeviceName']
+          @UserId = params['UserId']
+          @ChannelId = params['ChannelId']
+        end
+      end
+
+      # DescribeTWeSeeConfig返回参数结构体
+      class DescribeTWeSeeConfigResponse < TencentCloud::Common::AbstractModel
+        # @param EnableSummary: 是否开启视频摘要
+        # @type EnableSummary: Boolean
+        # @param EnableSearch: 是否开启视频搜索
+        # @type EnableSearch: Boolean
+        # @param Config: 配置参数
+        # @type Config: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :EnableSummary, :EnableSearch, :Config, :RequestId
+
+        def initialize(enablesummary=nil, enablesearch=nil, config=nil, requestid=nil)
+          @EnableSummary = enablesummary
+          @EnableSearch = enablesearch
+          @Config = config
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @EnableSummary = params['EnableSummary']
+          @EnableSearch = params['EnableSearch']
+          @Config = params['Config']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeTopicPolicy请求参数结构体
       class DescribeTopicPolicyRequest < TencentCloud::Common::AbstractModel
         # @param ProductId: 产品ID
@@ -7730,6 +7786,65 @@ module TencentCloud
         end
       end
 
+      # InvokeAISearchService请求参数结构体
+      class InvokeAISearchServiceRequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: 产品ID
+        # @type ProductId: String
+        # @param DeviceName: 设备名称
+        # @type DeviceName: String
+        # @param Query: 自然语言查询
+        # @type Query: String
+        # @param SummaryLang: 搜索结果总结的语言类型，支持的类型有：en-US、zh-CN、id-ID、th-TH
+        # @type SummaryLang: String
+
+        attr_accessor :ProductId, :DeviceName, :Query, :SummaryLang
+
+        def initialize(productid=nil, devicename=nil, query=nil, summarylang=nil)
+          @ProductId = productid
+          @DeviceName = devicename
+          @Query = query
+          @SummaryLang = summarylang
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @DeviceName = params['DeviceName']
+          @Query = params['Query']
+          @SummaryLang = params['SummaryLang']
+        end
+      end
+
+      # InvokeAISearchService返回参数结构体
+      class InvokeAISearchServiceResponse < TencentCloud::Common::AbstractModel
+        # @param Summary: 基于搜索结果的总结
+        # @type Summary: String
+        # @param Targets: 视频结果集
+        # @type Targets: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Summary, :Targets, :RequestId
+
+        def initialize(summary=nil, targets=nil, requestid=nil)
+          @Summary = summary
+          @Targets = targets
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Summary = params['Summary']
+          unless params['Targets'].nil?
+            @Targets = []
+            params['Targets'].each do |i|
+              targetinfo_tmp = TargetInfo.new
+              targetinfo_tmp.deserialize(i)
+              @Targets << targetinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # InvokeCloudStorageAIServiceTask请求参数结构体
       class InvokeCloudStorageAIServiceTaskRequest < TencentCloud::Common::AbstractModel
         # @param ProductId: 产品 ID
@@ -9144,6 +9259,62 @@ module TencentCloud
             @Product = ProductEntry.new
             @Product.deserialize(params['Product'])
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyTWeSeeConfig请求参数结构体
+      class ModifyTWeSeeConfigRequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: 产品ID
+        # @type ProductId: String
+        # @param DeviceName: 设备名称
+        # @type DeviceName: String
+        # @param UserId: 用户ID
+        # @type UserId: String
+        # @param ChannelId: 通道ID
+        # @type ChannelId: Integer
+        # @param EnableSummary: 是否开启视频摘要，不传则不修改
+        # @type EnableSummary: Boolean
+        # @param EnableSearch: 是否开启视频搜索，不传则不修改
+        # @type EnableSearch: Boolean
+        # @param Config: 配置参数，不传则不修改
+        # @type Config: String
+
+        attr_accessor :ProductId, :DeviceName, :UserId, :ChannelId, :EnableSummary, :EnableSearch, :Config
+
+        def initialize(productid=nil, devicename=nil, userid=nil, channelid=nil, enablesummary=nil, enablesearch=nil, config=nil)
+          @ProductId = productid
+          @DeviceName = devicename
+          @UserId = userid
+          @ChannelId = channelid
+          @EnableSummary = enablesummary
+          @EnableSearch = enablesearch
+          @Config = config
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @DeviceName = params['DeviceName']
+          @UserId = params['UserId']
+          @ChannelId = params['ChannelId']
+          @EnableSummary = params['EnableSummary']
+          @EnableSearch = params['EnableSearch']
+          @Config = params['Config']
+        end
+      end
+
+      # ModifyTWeSeeConfig返回参数结构体
+      class ModifyTWeSeeConfigResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
@@ -10628,6 +10799,46 @@ module TencentCloud
           @TWeCallType = params['TWeCallType']
           @TotalNum = params['TotalNum']
           @UsedNum = params['UsedNum']
+        end
+      end
+
+      # 视频语义搜索结果
+      class TargetInfo < TencentCloud::Common::AbstractModel
+        # @param Id: 视频唯一ID
+        # @type Id: String
+        # @param ProductId: 产品ID
+        # @type ProductId: String
+        # @param DeviceName: 设备名称
+        # @type DeviceName: String
+        # @param StartTimeMs: 视频起始时间（毫秒级Unix时间戳）
+        # @type StartTimeMs: Integer
+        # @param EndTimeMs: 视频结束时间（毫秒级Unix时间戳）
+        # @type EndTimeMs: Integer
+        # @param EventId: 用户自定义事件ID，后续扩展使用
+        # @type EventId: String
+        # @param Summary: 视频内容摘要
+        # @type Summary: String
+
+        attr_accessor :Id, :ProductId, :DeviceName, :StartTimeMs, :EndTimeMs, :EventId, :Summary
+
+        def initialize(id=nil, productid=nil, devicename=nil, starttimems=nil, endtimems=nil, eventid=nil, summary=nil)
+          @Id = id
+          @ProductId = productid
+          @DeviceName = devicename
+          @StartTimeMs = starttimems
+          @EndTimeMs = endtimems
+          @EventId = eventid
+          @Summary = summary
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @ProductId = params['ProductId']
+          @DeviceName = params['DeviceName']
+          @StartTimeMs = params['StartTimeMs']
+          @EndTimeMs = params['EndTimeMs']
+          @EventId = params['EventId']
+          @Summary = params['Summary']
         end
       end
 

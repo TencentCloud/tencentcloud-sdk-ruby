@@ -1094,15 +1094,19 @@ module TencentCloud
       class AssignIpv6CidrBlockRequest < TencentCloud::Common::AbstractModel
         # @param VpcId: `VPC`实例`ID`，形如：`vpc-f49l6u0z`。
         # @type VpcId: String
+        # @param AddressType: 申请IPv6 Cidr 的类型，`GUA`(全球单播地址), `ULA`(唯一本地地址)。
+        # @type AddressType: String
 
-        attr_accessor :VpcId
+        attr_accessor :VpcId, :AddressType
 
-        def initialize(vpcid=nil)
+        def initialize(vpcid=nil, addresstype=nil)
           @VpcId = vpcid
+          @AddressType = addresstype
         end
 
         def deserialize(params)
           @VpcId = params['VpcId']
+          @AddressType = params['AddressType']
         end
       end
 
@@ -1110,18 +1114,22 @@ module TencentCloud
       class AssignIpv6CidrBlockResponse < TencentCloud::Common::AbstractModel
         # @param Ipv6CidrBlock: 分配的 `IPv6` 网段。形如：`3402:4e00:20:1000::/56`。
         # @type Ipv6CidrBlock: String
+        # @param AddressType: 申请IPv6 Cidr 的类型，`GUA`,  `ULA`
+        # @type AddressType: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Ipv6CidrBlock, :RequestId
+        attr_accessor :Ipv6CidrBlock, :AddressType, :RequestId
 
-        def initialize(ipv6cidrblock=nil, requestid=nil)
+        def initialize(ipv6cidrblock=nil, addresstype=nil, requestid=nil)
           @Ipv6CidrBlock = ipv6cidrblock
+          @AddressType = addresstype
           @RequestId = requestid
         end
 
         def deserialize(params)
           @Ipv6CidrBlock = params['Ipv6CidrBlock']
+          @AddressType = params['AddressType']
           @RequestId = params['RequestId']
         end
       end
@@ -3495,7 +3503,7 @@ module TencentCloud
       class CreateAndAttachNetworkInterfaceRequest < TencentCloud::Common::AbstractModel
         # @param VpcId: VPC实例ID。可通过[DescribeVpcs](https://cloud.tencent.com/document/product/1108/43663)接口获取。
         # @type VpcId: String
-        # @param NetworkInterfaceName: 弹性网卡名称，最大长度不能超过60个字节。
+        # @param NetworkInterfaceName: 弹性网卡名称，最大长度不能超过60个字符。
         # @type NetworkInterfaceName: String
         # @param SubnetId: 弹性网卡所在的子网实例ID，例如：subnet-0ap8nwca。可通过[DescribeSubnets](https://cloud.tencent.com/document/product/215/15784)接口获取。
         # @type SubnetId: String
@@ -4234,23 +4242,25 @@ module TencentCloud
 
       # CreateFlowLog请求参数结构体
       class CreateFlowLogRequest < TencentCloud::Common::AbstractModel
-        # @param FlowLogName: 流日志实例名字。
+        # @param FlowLogName: 流日志实例名字。长度为不超过60个字节。
         # @type FlowLogName: String
-        # @param ResourceType: 流日志所属资源类型，VPC|SUBNET|NETWORKINTERFACE|CCN|NAT|DCG。
+        # @param ResourceType: 流日志所属资源类型，VPC(私有网络)，SUBNET（子网），NETWORKINTERFACE（网卡），CCN（云联网），NAT（网络地址转化），DCG（专线网关）。当选择VPC， SUBNET，CCN，DCG时，请通过工单加入白名单。
         # @type ResourceType: String
         # @param ResourceId: 资源唯一ID。
         # @type ResourceId: String
-        # @param TrafficType: 流日志采集类型，ACCEPT|REJECT|ALL。
+        # @param TrafficType: 流日志采集类型，ACCEPT（允许），REJECT（拒绝），ALL（全部）。
         # @type TrafficType: String
-        # @param VpcId: 私用网络ID或者统一ID，建议使用统一ID，当ResourceType为CCN时不填，其他类型必填。
+        # @param VpcId: 私用网络唯一ID。当ResourceType为CCN时不填，其他类型必填。
         # @type VpcId: String
         # @param FlowLogDescription: 流日志实例描述。
         # @type FlowLogDescription: String
-        # @param CloudLogId: 流日志存储ID。
+        # @param CloudLogId: 流日志存储ID（cls的日志主题ID，
+        # 可通过[DescribeTopics](https://cloud.tencent.com/document/api/1179/46086)接口获取。
+        # ）。当StorageType为cls时，CloudLogId为必选。
         # @type CloudLogId: String
         # @param Tags: 指定绑定的标签列表，例如：[{"Key": "city", "Value": "shanghai"}]。
         # @type Tags: Array
-        # @param StorageType: 消费端类型：cls、ckafka。默认值cls。
+        # @param StorageType: 消费端类型：cls、ckafka。默认值cls。当选择kafka时，请通过工单加入白名单。
         # @type StorageType: String
         # @param FlowLogStorage: 流日志消费端信息，当消费端类型为ckafka时，必填。
         # @type FlowLogStorage: :class:`Tencentcloud::Vpc.v20170312.models.FlowLogStorage`
@@ -7648,9 +7658,9 @@ module TencentCloud
 
       # DeleteFlowLog请求参数结构体
       class DeleteFlowLogRequest < TencentCloud::Common::AbstractModel
-        # @param FlowLogId: 流日志唯一ID。
+        # @param FlowLogId: 流日志唯一ID。可通过[CreateFlowLog](https://cloud.tencent.com/document/product/215/35015)接口创建；可通过[DescribeFlowLogs](https://cloud.tencent.com/document/product/215/35012)接口获取。
         # @type FlowLogId: String
-        # @param VpcId: 私用网络ID或者统一ID，建议使用统一ID，删除云联网流日志时，可不填，其他流日志类型必填。
+        # @param VpcId: 私用网络唯一ID。删除云联网流日志时，可不填，其他流日志类型必填。可通过[DescribeFlowLogs](https://cloud.tencent.com/document/product/215/35012)接口获取流日志对应的私有网络唯一ID。也可通过[DescribeVpcs](https://cloud.tencent.com/document/product/1108/43663)接口获取当前账户的私有网络唯一ID。
         # @type VpcId: String
 
         attr_accessor :FlowLogId, :VpcId
@@ -8120,7 +8130,7 @@ module TencentCloud
 
       # DeleteNetworkInterface请求参数结构体
       class DeleteNetworkInterfaceRequest < TencentCloud::Common::AbstractModel
-        # @param NetworkInterfaceId: 弹性网卡实例ID，例如：eni-m6dyj72l。
+        # @param NetworkInterfaceId: 弹性网卡实例ID，例如：eni-m6dyj72l。可通过[DescribeNetworkInterfaces](https://cloud.tencent.com/document/product/215/15817)接口获取。
         # @type NetworkInterfaceId: String
 
         attr_accessor :NetworkInterfaceId
@@ -10976,9 +10986,9 @@ module TencentCloud
 
       # DescribeFlowLog请求参数结构体
       class DescribeFlowLogRequest < TencentCloud::Common::AbstractModel
-        # @param VpcId: 私用网络ID或者统一ID，建议使用统一ID。
+        # @param VpcId: 私用网络唯一ID。可通过[DescribeVpcs](https://cloud.tencent.com/document/product/1108/43663)接口获取。该接口不支持拉取CCN类型的流日志，所以该字段为必选。
         # @type VpcId: String
-        # @param FlowLogId: 流日志唯一ID。
+        # @param FlowLogId: 流日志唯一ID。可通过[CreateFlowLog](https://cloud.tencent.com/document/product/215/35015)接口创建；可通过[DescribeFlowLogs](https://cloud.tencent.com/document/product/215/35012)接口获取；
         # @type FlowLogId: String
 
         attr_accessor :VpcId, :FlowLogId
@@ -11023,29 +11033,29 @@ module TencentCloud
 
       # DescribeFlowLogs请求参数结构体
       class DescribeFlowLogsRequest < TencentCloud::Common::AbstractModel
-        # @param VpcId: 私用网络ID或者统一ID，建议使用统一ID。
+        # @param VpcId: 私用网络唯一ID。可通过[DescribeVpcs](https://cloud.tencent.com/document/product/1108/43663)接口获取。
         # @type VpcId: String
-        # @param FlowLogId: 流日志唯一ID。
+        # @param FlowLogId: 流日志唯一ID。可通过[CreateFlowLog](https://cloud.tencent.com/document/product/215/35015)接口创建。
         # @type FlowLogId: String
         # @param FlowLogName: 流日志实例名字。
         # @type FlowLogName: String
-        # @param ResourceType: 流日志所属资源类型，VPC|SUBNET|NETWORKINTERFACE。
+        # @param ResourceType: 流日志所属资源类型：VPC(私有网络)，SUBNET（子网），NETWORKINTERFACE（网卡），CCN（云联网），NAT（网络地址转化），DCG（专线网关）。
         # @type ResourceType: String
         # @param ResourceId: 资源唯一ID。
         # @type ResourceId: String
-        # @param TrafficType: 流日志采集类型，ACCEPT|REJECT|ALL。
+        # @param TrafficType: 流日志采集类型，ACCEPT（允许），REJECT（拒绝），ALL（全部）。
         # @type TrafficType: String
         # @param CloudLogId: 流日志存储ID。
         # @type CloudLogId: String
-        # @param CloudLogState: 流日志存储ID状态。
+        # @param CloudLogState: 流日志存储ID状态。SUCCESS（成功），DELETED（删除）
         # @type CloudLogState: String
-        # @param OrderField: 按某个字段排序,支持字段：flowLogName,createTime，默认按CreatedTime。
+        # @param OrderField: 按某个字段排序,支持字段：flowLogName,createTime，默认按createTime。
         # @type OrderField: String
         # @param OrderDirection: 升序（ASC）还是降序（DESC）,默认：DESC。
         # @type OrderDirection: String
         # @param Offset: 偏移量，默认为0。
         # @type Offset: Integer
-        # @param Limit: 每页行数，默认为10。
+        # @param Limit: 每页行数，默认为10。范围1-100。
         # @type Limit: Integer
         # @param Filters: 过滤条件，参数不支持同时指定FlowLogId和Filters。
         # <li>tag-key - String -是否必填：否- （过滤条件）按照标签键进行过滤。</li>
@@ -11576,6 +11586,49 @@ module TencentCloud
         end
       end
 
+      # DescribeInstanceJumbo请求参数结构体
+      class DescribeInstanceJumboRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceIds: CVM实例ID列表。限制每次i最多查询10个实例。
+        # @type InstanceIds: Array
+
+        attr_accessor :InstanceIds
+
+        def initialize(instanceids=nil)
+          @InstanceIds = instanceids
+        end
+
+        def deserialize(params)
+          @InstanceIds = params['InstanceIds']
+        end
+      end
+
+      # DescribeInstanceJumbo返回参数结构体
+      class DescribeInstanceJumboResponse < TencentCloud::Common::AbstractModel
+        # @param InstanceJumboSet: 云服务器巨帧状态
+        # @type InstanceJumboSet: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :InstanceJumboSet, :RequestId
+
+        def initialize(instancejumboset=nil, requestid=nil)
+          @InstanceJumboSet = instancejumboset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['InstanceJumboSet'].nil?
+            @InstanceJumboSet = []
+            params['InstanceJumboSet'].each do |i|
+              instancejumbo_tmp = InstanceJumbo.new
+              instancejumbo_tmp.deserialize(i)
+              @InstanceJumboSet << instancejumbo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeIp6Addresses请求参数结构体
       class DescribeIp6AddressesRequest < TencentCloud::Common::AbstractModel
         # @param Ip6AddressIds: 标识 IPv6 的唯一 ID 列表。IPv6 唯一 ID 形如：`eip-11112222`。参数不支持同时指定`Ip6AddressIds`和`Filters`。
@@ -11854,8 +11907,7 @@ module TencentCloud
 
       # DescribeLocalGateway请求参数结构体
       class DescribeLocalGatewayRequest < TencentCloud::Common::AbstractModel
-        # @param Filters: 查询条件：
-        # vpc-id：按照VPCID过滤，local-gateway-name：按照本地网关名称过滤，名称支持模糊搜索，local-gateway-id：按照本地网关实例ID过滤，cdc-id：按照cdc实例ID过滤查询。
+        # @param Filters: 支持的过滤条件如下:\n<li>vpc-id:按照VPCID过滤。</li>\n<li>local-gateway-name:本地网关名称,支持模糊查询。</li>\n<li>local-gateway-id:本地网关实例ID。</li>\n<li>cdc-id:cdc实例ID。</li>
         # @type Filters: Array
         # @param Offset: 偏移量，默认为0。关于`Offset`的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/api/213/11646)中的相关小节。
         # @type Offset: Integer
@@ -12655,6 +12707,7 @@ module TencentCloud
         # <li>eni-qos - String -是否必填：否- （过滤条件）按照网卡服务质量进行过滤。PT（云金）、AU（云银）、AG(云铜）、DEFAULT（默认）。</li>
         # <li>address-ipv6 - String - 是否必填：否 -（过滤条件）内网IPv6地址过滤，支持多ipv6地址查询，如果和address-ip一起使用取交集。</li>
         # <li>public-address-ip - String - （过滤条件）公网IPv4地址，精确匹配。</li>
+        # <li>address-type - String - （过滤条件）IPv6 Cidr 的类型，精确匹配。`GUA`(全球单播地址), `ULA`(唯一本地地址)。</li>
         # @type Filters: Array
         # @param Offset: 偏移量，默认为0。
         # @type Offset: Integer
@@ -14506,6 +14559,7 @@ module TencentCloud
         # <li>is-cdc-subnet - String - 是否必填：否 - （过滤条件）按照是否是cdc子网进行过滤。取值：“0”-非cdc子网，“1”--cdc子网</li>
         # <li>ipv6-cidr-block - String - （过滤条件）IPv6子网网段，形如: 2402:4e00:1717:8700::/64 。</li>
         # <li>isp-type  - String - （过滤条件）运营商类型，形如: BGP 。</li>
+        # <li>address-type - String - （过滤条件）IPv6 Cidr 的类型，精确匹配。`GUA`(全球单播地址), `ULA`(唯一本地地址)。</li>
         # @type Filters: Array
         # @param Offset: 偏移量，默认为0。
         # @type Offset: String
@@ -15592,6 +15646,7 @@ module TencentCloud
         #   **说明：**若同一个过滤条件（Filter）存在多个Values，则同一Filter下Values间的关系为逻辑或（OR）关系；若存在多个过滤条件（Filter），Filter之间的关系为逻辑与（AND）关系。
         # <li>ipv6-cidr-block - String - （过滤条件）IPv6子网网段，形如: 2402:4e00:1717:8700::/64 。</li>
         # <li>isp-type  - String - （过滤条件）运营商类型，形如: BGP 取值范围：'BGP'-默认, 'CMCC'-中国移动, 'CTCC'-中国电信, 'CUCC'-中国联通。</li>
+        # <li>address-type - String - （过滤条件）IPv6 Cidr 的类型，精确匹配。`GUA`(全球单播地址), `ULA`(唯一本地地址)。</li>
         # @type Filters: Array
         # @param Offset: 偏移量，默认为0。
         # @type Offset: String
@@ -16593,7 +16648,7 @@ module TencentCloud
 
       # DisableFlowLogs请求参数结构体
       class DisableFlowLogsRequest < TencentCloud::Common::AbstractModel
-        # @param FlowLogIds: 流日志Id。
+        # @param FlowLogIds: 流日志Id。可通过[CreateFlowLog](https://cloud.tencent.com/document/product/215/35015)接口创建；可通过[DescribeFlowLogs](https://cloud.tencent.com/document/product/215/35012)接口获取。
         # @type FlowLogIds: Array
 
         attr_accessor :FlowLogIds
@@ -16992,9 +17047,9 @@ module TencentCloud
 
       # DisassociateNetworkInterfaceSecurityGroups请求参数结构体
       class DisassociateNetworkInterfaceSecurityGroupsRequest < TencentCloud::Common::AbstractModel
-        # @param NetworkInterfaceIds: 弹性网卡实例ID。形如：eni-pxir56ns。每次请求的实例的上限为100。
+        # @param NetworkInterfaceIds: 弹性网卡实例ID。形如：eni-pxir56ns。每次请求的实例的上限为100。可通过[DescribeNetworkInterfaces](https://cloud.tencent.com/document/product/215/15817)接口获取。
         # @type NetworkInterfaceIds: Array
-        # @param SecurityGroupIds: 安全组实例ID，例如：sg-33ocnj9n，可通过DescribeSecurityGroups获取。每次请求的实例的上限为100。
+        # @param SecurityGroupIds: 安全组实例ID，例如：sg-33ocnj9n，可通过[DescribeSecurityGroups](https://cloud.tencent.com/document/product/215/15808)接口获取。每次请求的实例的上限为100。
         # @type SecurityGroupIds: Array
 
         attr_accessor :NetworkInterfaceIds, :SecurityGroupIds
@@ -17214,7 +17269,7 @@ module TencentCloud
 
       # EnableFlowLogs请求参数结构体
       class EnableFlowLogsRequest < TencentCloud::Common::AbstractModel
-        # @param FlowLogIds: 流日志Id。
+        # @param FlowLogIds: 流日志Id。可通过[CreateFlowLog](https://cloud.tencent.com/document/product/215/35015)接口创建；可通过[DescribeFlowLogs](https://cloud.tencent.com/document/product/215/35012)接口获取。
         # @type FlowLogIds: Array
 
         attr_accessor :FlowLogIds
@@ -17963,19 +18018,14 @@ module TencentCloud
         # @param Business: 使用havip的业务标识。
         # @type Business: String
         # @param HaVipAssociationSet: `HAVIP`的飘移范围。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HaVipAssociationSet: Array
         # @param CheckAssociate: 是否开启`HAVIP`的飘移范围校验。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CheckAssociate: Boolean
         # @param CdcId: CDC实例ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CdcId: String
         # @param FlushedTime: HAVIP 刷新时间。该参数只作为出参数。以下场景会触发 FlushTime 被刷新：1）子机发出免费 ARP 触发 HAVIP 漂移；2）手动HAVIP解绑网卡; 没有更新时默认值：0000-00-00 00:00:00
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FlushedTime: String
         # @param TagSet: 标签键值对。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TagSet: Array
 
         attr_accessor :HaVipId, :HaVipName, :Vip, :VpcId, :SubnetId, :NetworkInterfaceId, :InstanceId, :AddressIp, :State, :CreatedTime, :Business, :HaVipAssociationSet, :CheckAssociate, :CdcId, :FlushedTime, :TagSet
@@ -18365,6 +18415,22 @@ module TencentCloud
           @PfsDhGroup = params['PfsDhGroup']
           @IPSECSaLifetimeTraffic = params['IPSECSaLifetimeTraffic']
           @IntegrityAlgorithm = params['IntegrityAlgorithm']
+        end
+      end
+
+      # 返回多运营商IPv6 Cidr Block
+      class ISPIPv6CidrBlock < TencentCloud::Common::AbstractModel
+        # @param AddressType: IPv6 Cidr 的类型：`GUA`(全球单播地址), `ULA`(唯一本地地址)
+        # @type AddressType: String
+
+        attr_accessor :AddressType
+
+        def initialize(addresstype=nil)
+          @AddressType = addresstype
+        end
+
+        def deserialize(params)
+          @AddressType = params['AddressType']
         end
       end
 
@@ -18787,6 +18853,26 @@ module TencentCloud
         end
       end
 
+      # 云服务器巨帧状态
+      class InstanceJumbo < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID。
+        # @type InstanceId: String
+        # @param JumboState: 实例是否支持巨帧。
+        # @type JumboState: Boolean
+
+        attr_accessor :InstanceId, :JumboState
+
+        def initialize(instanceid=nil, jumbostate=nil)
+          @InstanceId = instanceid
+          @JumboState = jumbostate
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @JumboState = params['JumboState']
+        end
+      end
+
       # 用于描述实例的统计信息
       class InstanceStatistic < TencentCloud::Common::AbstractModel
         # @param InstanceType: 实例的类型
@@ -19125,7 +19211,7 @@ module TencentCloud
         # @type State: String
         # @param PublicIpAddress: 如果 IPv6地址是 ULA 类型，绑定的公网IP地址。
         # @type PublicIpAddress: String
-        # @param AddressType: `IPv6`地址的类型: `GUA`(全球单播地址), `OTHER`(非GUA/ULA地址), `ULA`(唯一本地地址)
+        # @param AddressType: `IPv6`地址的类型: `GUA`(全球单播地址), `ULA`(唯一本地地址)
         # @type AddressType: String
 
         attr_accessor :Address, :Primary, :AddressId, :Description, :IsWanIpBlocked, :State, :PublicIpAddress, :AddressType
@@ -19464,9 +19550,9 @@ module TencentCloud
 
       # MigratePrivateIpAddress请求参数结构体
       class MigratePrivateIpAddressRequest < TencentCloud::Common::AbstractModel
-        # @param SourceNetworkInterfaceId: 当内网IP绑定的弹性网卡实例ID，例如：eni-m6dyj72l。
+        # @param SourceNetworkInterfaceId: 当内网IP绑定的弹性网卡实例ID，例如：eni-m6dyj72l。可通过[DescribeNetworkInterfaces](https://cloud.tencent.com/document/product/215/15817)接口获取。
         # @type SourceNetworkInterfaceId: String
-        # @param DestinationNetworkInterfaceId: 待迁移的目的弹性网卡实例ID。
+        # @param DestinationNetworkInterfaceId: 待迁移的目的弹性网卡实例ID。可通过[DescribeNetworkInterfaces](https://cloud.tencent.com/document/product/215/15817)接口获取。
         # @type DestinationNetworkInterfaceId: String
         # @param PrivateIpAddress: 迁移的内网IP地址，例如：10.0.0.6。
         # @type PrivateIpAddress: String
@@ -20239,13 +20325,13 @@ module TencentCloud
 
       # ModifyFlowLogAttribute请求参数结构体
       class ModifyFlowLogAttributeRequest < TencentCloud::Common::AbstractModel
-        # @param FlowLogId: 流日志唯一ID。
+        # @param FlowLogId: 流日志唯一ID。可通过[CreateFlowLog](https://cloud.tencent.com/document/product/215/35015)接口创建；可通过[DescribeFlowLogs](https://cloud.tencent.com/document/product/215/35012)接口获取。
         # @type FlowLogId: String
-        # @param VpcId: 私用网络ID或者统一ID，建议使用统一ID，修改云联网流日志属性时可不填，其他流日志类型必填。
+        # @param VpcId: 私用网络唯一ID。修改云联网流日志属性时可不填，其他流日志类型必填。
         # @type VpcId: String
-        # @param FlowLogName: 流日志实例名字。
+        # @param FlowLogName: 流日志实例名字。长度为不超过60字节。
         # @type FlowLogName: String
-        # @param FlowLogDescription: 流日志实例描述。
+        # @param FlowLogDescription: 流日志实例描述。长度为不超过512字节。
         # @type FlowLogDescription: String
 
         attr_accessor :FlowLogId, :VpcId, :FlowLogName, :FlowLogDescription
@@ -26754,10 +26840,8 @@ module TencentCloud
         # @param TagSet: 标签键值对。
         # @type TagSet: Array
         # @param CdcId: CDC实例ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CdcId: String
         # @param IsCdcSubnet: 是否是CDC所属子网。0:否 1:是
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsCdcSubnet: Integer
 
         attr_accessor :VpcId, :SubnetId, :SubnetName, :CidrBlock, :IsDefault, :EnableBroadcast, :Zone, :RouteTableId, :CreatedTime, :AvailableIpAddressCount, :Ipv6CidrBlock, :NetworkAclId, :IsRemoteVpcSnat, :TotalIpAddressCount, :TagSet, :CdcId, :IsCdcSubnet
@@ -27808,10 +27892,13 @@ module TencentCloud
         # @param AssistantCidrSet: 辅助CIDR
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AssistantCidrSet: Array
+        # @param Ipv6CidrBlockSet: 返回多运营商IPv6 Cidr Block
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Ipv6CidrBlockSet: Array
 
-        attr_accessor :VpcName, :VpcId, :CidrBlock, :IsDefault, :EnableMulticast, :CreatedTime, :DnsServerSet, :DomainName, :DhcpOptionsId, :EnableDhcp, :Ipv6CidrBlock, :TagSet, :AssistantCidrSet
+        attr_accessor :VpcName, :VpcId, :CidrBlock, :IsDefault, :EnableMulticast, :CreatedTime, :DnsServerSet, :DomainName, :DhcpOptionsId, :EnableDhcp, :Ipv6CidrBlock, :TagSet, :AssistantCidrSet, :Ipv6CidrBlockSet
 
-        def initialize(vpcname=nil, vpcid=nil, cidrblock=nil, isdefault=nil, enablemulticast=nil, createdtime=nil, dnsserverset=nil, domainname=nil, dhcpoptionsid=nil, enabledhcp=nil, ipv6cidrblock=nil, tagset=nil, assistantcidrset=nil)
+        def initialize(vpcname=nil, vpcid=nil, cidrblock=nil, isdefault=nil, enablemulticast=nil, createdtime=nil, dnsserverset=nil, domainname=nil, dhcpoptionsid=nil, enabledhcp=nil, ipv6cidrblock=nil, tagset=nil, assistantcidrset=nil, ipv6cidrblockset=nil)
           @VpcName = vpcname
           @VpcId = vpcid
           @CidrBlock = cidrblock
@@ -27825,6 +27912,7 @@ module TencentCloud
           @Ipv6CidrBlock = ipv6cidrblock
           @TagSet = tagset
           @AssistantCidrSet = assistantcidrset
+          @Ipv6CidrBlockSet = ipv6cidrblockset
         end
 
         def deserialize(params)
@@ -27853,6 +27941,14 @@ module TencentCloud
               assistantcidr_tmp = AssistantCidr.new
               assistantcidr_tmp.deserialize(i)
               @AssistantCidrSet << assistantcidr_tmp
+            end
+          end
+          unless params['Ipv6CidrBlockSet'].nil?
+            @Ipv6CidrBlockSet = []
+            params['Ipv6CidrBlockSet'].each do |i|
+              ispipv6cidrblock_tmp = ISPIPv6CidrBlock.new
+              ispipv6cidrblock_tmp.deserialize(i)
+              @Ipv6CidrBlockSet << ispipv6cidrblock_tmp
             end
           end
         end

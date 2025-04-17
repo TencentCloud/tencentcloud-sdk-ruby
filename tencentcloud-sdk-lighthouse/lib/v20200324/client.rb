@@ -1223,34 +1223,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 后端代码已与23年2月4号下线
-        # 近90天无调用记录
-        # 经评估，下线无风险，操作下线
-
-        # 本接口用于查询实例默认登录密钥属性。
-
-        # @param request: Request instance for DescribeInstanceLoginKeyPairAttribute.
-        # @type request: :class:`Tencentcloud::lighthouse::V20200324::DescribeInstanceLoginKeyPairAttributeRequest`
-        # @rtype: :class:`Tencentcloud::lighthouse::V20200324::DescribeInstanceLoginKeyPairAttributeResponse`
-        def DescribeInstanceLoginKeyPairAttribute(request)
-          body = send_request('DescribeInstanceLoginKeyPairAttribute', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeInstanceLoginKeyPairAttributeResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 本接口 ( DescribeInstanceVncUrl ) 用于查询实例管理终端地址，获取的地址可用于实例的 VNC 登录。
 
         # * 仅处于 `RUNNING`，`RESCUE_MODE` 状态的机器，且当前机器无变更中操作，才可使用此功能。
@@ -2173,36 +2145,6 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyInstancesBundleResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 后端代码已与23年2月4号下线
-        # 近90天只有一次调用记录，且明确返回前端接口下线错误信息
-
-        # 经评估无风险，操作接口下线
-
-        # 本接口用于设置实例默认登录密钥对属性。
-
-
-        # @param request: Request instance for ModifyInstancesLoginKeyPairAttribute.
-        # @type request: :class:`Tencentcloud::lighthouse::V20200324::ModifyInstancesLoginKeyPairAttributeRequest`
-        # @rtype: :class:`Tencentcloud::lighthouse::V20200324::ModifyInstancesLoginKeyPairAttributeResponse`
-        def ModifyInstancesLoginKeyPairAttribute(request)
-          body = send_request('ModifyInstancesLoginKeyPairAttribute', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = ModifyInstancesLoginKeyPairAttributeResponse.new
             model.deserialize(response['Response'])
             model
           else

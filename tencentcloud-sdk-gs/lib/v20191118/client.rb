@@ -705,6 +705,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 修改安卓应用版本
+
+        # @param request: Request instance for ModifyAndroidAppVersion.
+        # @type request: :class:`Tencentcloud::gs::V20191118::ModifyAndroidAppVersionRequest`
+        # @rtype: :class:`Tencentcloud::gs::V20191118::ModifyAndroidAppVersionResponse`
+        def ModifyAndroidAppVersion(request)
+          body = send_request('ModifyAndroidAppVersion', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyAndroidAppVersionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 修改安卓实例的信息
 
         # @param request: Request instance for ModifyAndroidInstanceInformation.
@@ -763,6 +787,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyAndroidInstancesLabelsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改安卓实例分辨率。需要注意的是该接口需要重启才能生效。
+
+        # @param request: Request instance for ModifyAndroidInstancesResolution.
+        # @type request: :class:`Tencentcloud::gs::V20191118::ModifyAndroidInstancesResolutionRequest`
+        # @rtype: :class:`Tencentcloud::gs::V20191118::ModifyAndroidInstancesResolutionResponse`
+        def ModifyAndroidInstancesResolution(request)
+          body = send_request('ModifyAndroidInstancesResolution', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyAndroidInstancesResolutionResponse.new
             model.deserialize(response['Response'])
             model
           else

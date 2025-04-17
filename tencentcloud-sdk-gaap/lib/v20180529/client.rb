@@ -1139,7 +1139,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询目前定制域名的错误响应
+        # 查询指定域名的错误响应
 
         # @param request: Request instance for DescribeDomainErrorPageInfo.
         # @type request: :class:`Tencentcloud::gaap::V20180529::DescribeDomainErrorPageInfoRequest`

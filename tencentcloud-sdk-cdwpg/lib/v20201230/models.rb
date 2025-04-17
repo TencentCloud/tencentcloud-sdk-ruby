@@ -44,7 +44,6 @@ module TencentCloud
         # @param UserName: 账号名
         # @type UserName: String
         # @param Perms: 账户属性
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Perms: Array
 
         attr_accessor :InstanceId, :UserName, :Perms
@@ -330,7 +329,6 @@ module TencentCloud
         # @param InstanceId: 实例ID
         # @type InstanceId: String
         # @param ErrorMsg: 错误信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrorMsg: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -646,7 +644,6 @@ module TencentCloud
       # DescribeInstanceNodes返回参数结构体
       class DescribeInstanceNodesResponse < TencentCloud::Common::AbstractModel
         # @param ErrorMsg: error msg
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrorMsg: String
         # @param InstanceNodes: 节点列表
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -800,22 +797,16 @@ module TencentCloud
         # @param InstanceState: 集群状态，例如：Serving
         # @type InstanceState: String
         # @param FlowCreateTime: 集群操作创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FlowCreateTime: String
         # @param FlowName: 集群操作名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FlowName: String
         # @param FlowProgress: 集群操作进度
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FlowProgress: Float
         # @param InstanceStateDesc: 集群状态描述，例如：运行中
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceStateDesc: String
         # @param FlowMsg: 集群流程错误信息，例如：“创建失败，资源不足”
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FlowMsg: String
         # @param ProcessName: 当前步骤的名称，例如：”购买资源中“
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProcessName: String
         # @param BackupStatus: 集群备份任务开启状态
         # @type BackupStatus: Integer
@@ -896,7 +887,6 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstancesList: Array
         # @param ErrorMsg: 错误信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrorMsg: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -962,10 +952,8 @@ module TencentCloud
         # @param TotalCount: 集群列表总数
         # @type TotalCount: Integer
         # @param InstancesList: 集群列表详情
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstancesList: Array
         # @param ErrorMsg: 错误信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrorMsg: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1289,7 +1277,6 @@ module TencentCloud
         # @param Method: 方法
         # @type Method: String
         # @param Mask: 是否遮盖
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Mask: String
 
         attr_accessor :Type, :Database, :User, :Address, :Method, :Mask
@@ -1322,16 +1309,13 @@ module TencentCloud
         # @param InstanceName: 集群名字
         # @type InstanceName: String
         # @param Status: 集群状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: String
         # @param StatusDesc: 集群状态详情
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StatusDesc: String
         # @param InstanceStateInfo: 集群状态信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceStateInfo: :class:`Tencentcloud::Cdwpg.v20201230.models.InstanceStateInfo`
         # @param InstanceID: 集群id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceID: String
         # @param CreateTime: 创建时间
         # @type CreateTime: String
@@ -1340,13 +1324,10 @@ module TencentCloud
         # @param Zone: 地区
         # @type Zone: String
         # @param RegionDesc: 地域详情
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RegionDesc: String
         # @param ZoneDesc: 地区详情
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ZoneDesc: String
         # @param Tags: 标签
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
         # @param Version: 内核版本
         # @type Version: String
@@ -1357,10 +1338,8 @@ module TencentCloud
         # @param DNNodes: DN节点列表
         # @type DNNodes: Array
         # @param RegionId: 地域id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RegionId: Integer
         # @param ZoneId: 地区id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ZoneId: Integer
         # @param VpcId: 私有网络
         # @type VpcId: String
@@ -1533,16 +1512,12 @@ module TencentCloud
         # @param StartTime: 操作开始时间
         # @type StartTime: String
         # @param EndTime: 操作结束时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EndTime: String
         # @param Context: 操作上下文
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Context: String
         # @param UpdateTime: 操作更新时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: String
         # @param Uin: 操作UIN
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Uin: String
 
         attr_accessor :Id, :InstanceId, :Action, :Status, :StartTime, :EndTime, :Context, :UpdateTime, :Uin
@@ -1585,18 +1560,14 @@ module TencentCloud
         # @param Region: 地域
         # @type Region: String
         # @param RegionId: 地域Id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RegionId: Integer
         # @param RegionDesc: 地域详情
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RegionDesc: String
         # @param Zone: 地区
         # @type Zone: String
         # @param ZoneId: 地区id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ZoneId: Integer
         # @param ZoneDesc: 地区详情
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ZoneDesc: String
         # @param VpcId: 私有网络
         # @type VpcId: String
@@ -1607,7 +1578,6 @@ module TencentCloud
         # @param ExpireTime: 过期时间
         # @type ExpireTime: String
         # @param AccessInfo: 访问地址
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AccessInfo: String
         # @param PayMode: 计费方式
         # @type PayMode: String
@@ -1662,31 +1632,22 @@ module TencentCloud
         # @param InstanceState: 集群状态，例如：Serving
         # @type InstanceState: String
         # @param FlowCreateTime: 集群操作创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FlowCreateTime: String
         # @param FlowName: 集群操作名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FlowName: String
         # @param FlowProgress: 集群操作进度
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FlowProgress: Integer
         # @param InstanceStateDesc: 集群状态描述，例如：运行中
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceStateDesc: String
         # @param FlowMsg: 集群流程错误信息，例如：“创建失败，资源不足”
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FlowMsg: String
         # @param ProcessName: 当前步骤的名称，例如：”购买资源中“
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProcessName: String
         # @param BackupStatus: 集群是否有备份中任务，有为1,无为0
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BackupStatus: Integer
         # @param RequestId: 请求id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RequestId: String
         # @param BackupOpenStatus: 集群是否有备份中任务，有为1,无为0
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BackupOpenStatus: Integer
 
         attr_accessor :InstanceState, :FlowCreateTime, :FlowName, :FlowProgress, :InstanceStateDesc, :FlowMsg, :ProcessName, :BackupStatus, :RequestId, :BackupOpenStatus
@@ -1833,7 +1794,6 @@ module TencentCloud
         # @param TaskId: 任务id
         # @type TaskId: Integer
         # @param ErrorMsg: 错误信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrorMsg: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1883,55 +1843,38 @@ module TencentCloud
       # 慢查询项目信息
       class NormQueryItem < TencentCloud::Common::AbstractModel
         # @param CallTimes: 调用次数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CallTimes: Integer
         # @param SharedReadBlocks: 读共享内存块数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SharedReadBlocks: Integer
         # @param SharedWriteBlocks: 写共享内存块数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SharedWriteBlocks: Integer
         # @param DatabaseName: 数据库
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DatabaseName: String
         # @param NormalQuery: 脱敏后语句
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NormalQuery: String
         # @param MaxElapsedQuery: 执行时间最长的语句
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaxElapsedQuery: String
         # @param CostTime: 花费总时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CostTime: Float
         # @param ClientIp: 客户端ip
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClientIp: String
         # @param UserName: 用户名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UserName: String
         # @param TotalCallTimesPercent: 总次数占比
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCallTimesPercent: Float
         # @param TotalCostTimePercent: 总耗时占比
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCostTimePercent: Float
         # @param MinCostTime: 花费最小时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MinCostTime: Float
         # @param MaxCostTime: 花费最大时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaxCostTime: Float
         # @param FirstTime: 最早一条时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FirstTime: String
         # @param LastTime: 最晚一条时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LastTime: String
         # @param ReadCostTime: 读io总耗时
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReadCostTime: Float
         # @param WriteCostTime: 写io总耗时
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WriteCostTime: Float
 
         attr_accessor :CallTimes, :SharedReadBlocks, :SharedWriteBlocks, :DatabaseName, :NormalQuery, :MaxElapsedQuery, :CostTime, :ClientIp, :UserName, :TotalCallTimesPercent, :TotalCostTimePercent, :MinCostTime, :MaxCostTime, :FirstTime, :LastTime, :ReadCostTime, :WriteCostTime
@@ -1990,13 +1933,10 @@ module TencentCloud
         # @param ValueRange: 取值范围
         # @type ValueRange: :class:`Tencentcloud::Cdwpg.v20201230.models.ValueRange`
         # @param Unit: 单位
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Unit: String
         # @param ShortDesc: 英文简介
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ShortDesc: String
         # @param ParameterName: 参数名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ParameterName: String
 
         attr_accessor :ParamName, :DefaultValue, :NeedRestart, :RunningValue, :ValueRange, :Unit, :ShortDesc, :ParameterName
@@ -2109,7 +2049,6 @@ module TencentCloud
       # ResetAccountPassword返回参数结构体
       class ResetAccountPasswordResponse < TencentCloud::Common::AbstractModel
         # @param ErrorMsg: 错误信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrorMsg: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2266,7 +2205,6 @@ module TencentCloud
         # @param FlowId: 流程id
         # @type FlowId: String
         # @param ErrorMsg: 错误信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrorMsg: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2388,7 +2326,6 @@ module TencentCloud
         # @param ExpireTime: 到期时间
         # @type ExpireTime: String
         # @param AccessInfo: 访问地址
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AccessInfo: String
         # @param RenewFlag: 自动续费开关，0为不自动续费，1为自动续费
         # @type RenewFlag: Integer
@@ -2397,7 +2334,6 @@ module TencentCloud
         # @param Resources: 资源集合
         # @type Resources: Array
         # @param Tags: 标签列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
         # @param Status: 集群状态
         # @type Status: Integer
@@ -2566,12 +2502,10 @@ module TencentCloud
         # @param CreateTime: 任务创建时间
         # @type CreateTime: String
         # @param EndTime: 任务结束时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EndTime: String
         # @param Status: 任务完成状态
         # @type Status: String
         # @param OperateUin: 操作者
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OperateUin: String
 
         attr_accessor :TaskName, :SourceVersion, :TargetVersion, :CreateTime, :EndTime, :Status, :OperateUin
@@ -2604,10 +2538,8 @@ module TencentCloud
         # @param Range: type 取section的时候，返回的参数值
         # @type Range: :class:`Tencentcloud::Cdwpg.v20201230.models.Range`
         # @param Enum: type 取enum的时候，返回参数值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Enum: Array
         # @param String: type 取string的时候，返回的参数值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type String: String
 
         attr_accessor :Type, :Range, :Enum, :String

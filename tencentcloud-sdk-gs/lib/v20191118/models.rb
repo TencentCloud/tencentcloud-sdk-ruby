@@ -31,16 +31,19 @@ module TencentCloud
         # @type CreateTime: String
         # @param UserId: 用户 Id
         # @type UserId: String
+        # @param AppMode: 应用模式（NORMAL : 普通模式；ADVANCED : 高级模式）
+        # @type AppMode: String
 
-        attr_accessor :AndroidAppId, :Name, :State, :AndroidAppVersionInfo, :CreateTime, :UserId
+        attr_accessor :AndroidAppId, :Name, :State, :AndroidAppVersionInfo, :CreateTime, :UserId, :AppMode
 
-        def initialize(androidappid=nil, name=nil, state=nil, androidappversioninfo=nil, createtime=nil, userid=nil)
+        def initialize(androidappid=nil, name=nil, state=nil, androidappversioninfo=nil, createtime=nil, userid=nil, appmode=nil)
           @AndroidAppId = androidappid
           @Name = name
           @State = state
           @AndroidAppVersionInfo = androidappversioninfo
           @CreateTime = createtime
           @UserId = userid
+          @AppMode = appmode
         end
 
         def deserialize(params)
@@ -57,6 +60,7 @@ module TencentCloud
           end
           @CreateTime = params['CreateTime']
           @UserId = params['UserId']
+          @AppMode = params['AppMode']
         end
       end
 
@@ -64,15 +68,19 @@ module TencentCloud
       class AndroidAppCosInfo < TencentCloud::Common::AbstractModel
         # @param AndroidAppId: 安卓应用ID
         # @type AndroidAppId: String
+        # @param FileName: 应用名称（支持 apk 和 tgz 两种格式文件，当应用 AppMode 为 NORMAL 时，只支持上传 apk 类型文件，当应用 AppMode 为 ADVANCED 高级模式时，只支持上传  tgz 类型文件）
+        # @type FileName: String
 
-        attr_accessor :AndroidAppId
+        attr_accessor :AndroidAppId, :FileName
 
-        def initialize(androidappid=nil)
+        def initialize(androidappid=nil, filename=nil)
           @AndroidAppId = androidappid
+          @FileName = filename
         end
 
         def deserialize(params)
           @AndroidAppId = params['AndroidAppId']
+          @FileName = params['FileName']
         end
       end
 
@@ -86,19 +94,23 @@ module TencentCloud
         # @type State: String
         # @param CreateTime: 安卓应用版本创建时间
         # @type CreateTime: String
+        # @param Command: shell 命令（支持多条命令执行，通过 && 组合；只在应用 AppMode 为 ADVANCED 高级模式下 才会生效）
+        # @type Command: String
 
-        attr_accessor :AndroidAppVersion, :State, :CreateTime
+        attr_accessor :AndroidAppVersion, :State, :CreateTime, :Command
 
-        def initialize(androidappversion=nil, state=nil, createtime=nil)
+        def initialize(androidappversion=nil, state=nil, createtime=nil, command=nil)
           @AndroidAppVersion = androidappversion
           @State = state
           @CreateTime = createtime
+          @Command = command
         end
 
         def deserialize(params)
           @AndroidAppVersion = params['AndroidAppVersion']
           @State = params['State']
           @CreateTime = params['CreateTime']
+          @Command = params['Command']
         end
       end
 
@@ -505,17 +517,21 @@ module TencentCloud
         # @type Name: String
         # @param UserId: 用户 Id
         # @type UserId: String
+        # @param AppMode: 应用模式（NORMAL : 普通模式、只支持 apk 文件上传，为默认值；ADVANCED : 高级模式、只支持上传 tgz 文件 和 自定义 shell 命令执行）
+        # @type AppMode: String
 
-        attr_accessor :Name, :UserId
+        attr_accessor :Name, :UserId, :AppMode
 
-        def initialize(name=nil, userid=nil)
+        def initialize(name=nil, userid=nil, appmode=nil)
           @Name = name
           @UserId = userid
+          @AppMode = appmode
         end
 
         def deserialize(params)
           @Name = params['Name']
           @UserId = params['UserId']
+          @AppMode = params['AppMode']
         end
       end
 
@@ -545,17 +561,21 @@ module TencentCloud
         # @type AndroidAppId: String
         # @param DownloadUrl: 应用包下载地址
         # @type DownloadUrl: String
+        # @param Command: shell 命令（支持多条命令执行，通过 && 组合；只在应用 AppMode 为 ADVANCED 高级模式下 才会生效）
+        # @type Command: String
 
-        attr_accessor :AndroidAppId, :DownloadUrl
+        attr_accessor :AndroidAppId, :DownloadUrl, :Command
 
-        def initialize(androidappid=nil, downloadurl=nil)
+        def initialize(androidappid=nil, downloadurl=nil, command=nil)
           @AndroidAppId = androidappid
           @DownloadUrl = downloadurl
+          @Command = command
         end
 
         def deserialize(params)
           @AndroidAppId = params['AndroidAppId']
           @DownloadUrl = params['DownloadUrl']
+          @Command = params['Command']
         end
       end
 
@@ -1834,6 +1854,50 @@ module TencentCloud
         end
       end
 
+      # ModifyAndroidAppVersion请求参数结构体
+      class ModifyAndroidAppVersionRequest < TencentCloud::Common::AbstractModel
+        # @param AndroidAppId: 安卓应用 Id
+        # @type AndroidAppId: String
+        # @param AndroidAppVersion: 安卓应用版本 Id
+        # @type AndroidAppVersion: String
+        # @param AndroidAppVersionName: 安卓应用版本名称
+        # @type AndroidAppVersionName: String
+        # @param Command: shell 命令（支持多条命令执行，通过 && 组合；只在应用 AppMode 为 ADVANCED 高级模式下 才会生效）
+        # @type Command: String
+
+        attr_accessor :AndroidAppId, :AndroidAppVersion, :AndroidAppVersionName, :Command
+
+        def initialize(androidappid=nil, androidappversion=nil, androidappversionname=nil, command=nil)
+          @AndroidAppId = androidappid
+          @AndroidAppVersion = androidappversion
+          @AndroidAppVersionName = androidappversionname
+          @Command = command
+        end
+
+        def deserialize(params)
+          @AndroidAppId = params['AndroidAppId']
+          @AndroidAppVersion = params['AndroidAppVersion']
+          @AndroidAppVersionName = params['AndroidAppVersionName']
+          @Command = params['Command']
+        end
+      end
+
+      # ModifyAndroidAppVersion返回参数结构体
+      class ModifyAndroidAppVersionResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyAndroidInstanceInformation请求参数结构体
       class ModifyAndroidInstanceInformationRequest < TencentCloud::Common::AbstractModel
         # @param AndroidInstanceId: 安卓实例 ID
@@ -1875,25 +1939,33 @@ module TencentCloud
         # @param AndroidInstanceId: 安卓实例 ID
         # @type AndroidInstanceId: String
         # @param Width: 分辨率宽度。建议按照以下数值设置，避免出现性能不足问题：
-        # 实例类型为单开（A1）、双开（A2）、三开（ A3）：建议设置为 1080
-        # 实例类型为 四开（A4） 及以上：建议设置为 720
+        # 实例类型为单开（A1）：建议设置为 1080
+        # 实例类型为双开（A2） 及以上：建议设置为 720
         # @type Width: Integer
         # @param Height: 分辨率高度。建议按照以下数值设置，避免出现性能不足问题：
-        # 实例类型为单开（A1）、双开（A2）、三开（ A3）：建议设置为 1920
-        # 实例类型为 四开（A4） 及以上：建议设置为 1280
+        # 实例类型为单开（A1）：建议设置为 1920
+        # 实例类型为双开（A2） 及以上：建议设置为 1280
         # @type Height: Integer
         # @param DPI: 每英寸像素点。如果不填，系统将会计算一个合理的数值。修改 DPI 可能会导致 App 异常退出，请谨慎使用！
         # 分辨率为 720x1280：建议配置为 320
         # 分辨率为  1080x1920：建议配置为 480
         # @type DPI: Integer
+        # @param FPS: 帧率。ResolutionType 为 PHYSICAL 时才会修改帧率。另外建议按照以下数值设置，避免出现性能不足问题： 实例类型为单开（A1）：建议设置为 60 实例类型为双开（A2） 及以上：建议设置为 30
+        # @type FPS: Integer
+        # @param ResolutionType: 修改分辨率类型。修改物理分辨率，需要重启才能生效。
+        # OVERRIDE：默认值，修改覆盖（显示）分辨率
+        # PHYSICAL：修改物理分辨率
+        # @type ResolutionType: String
 
-        attr_accessor :AndroidInstanceId, :Width, :Height, :DPI
+        attr_accessor :AndroidInstanceId, :Width, :Height, :DPI, :FPS, :ResolutionType
 
-        def initialize(androidinstanceid=nil, width=nil, height=nil, dpi=nil)
+        def initialize(androidinstanceid=nil, width=nil, height=nil, dpi=nil, fps=nil, resolutiontype=nil)
           @AndroidInstanceId = androidinstanceid
           @Width = width
           @Height = height
           @DPI = dpi
+          @FPS = fps
+          @ResolutionType = resolutiontype
         end
 
         def deserialize(params)
@@ -1901,6 +1973,8 @@ module TencentCloud
           @Width = params['Width']
           @Height = params['Height']
           @DPI = params['DPI']
+          @FPS = params['FPS']
+          @ResolutionType = params['ResolutionType']
         end
       end
 
@@ -1953,6 +2027,68 @@ module TencentCloud
 
       # ModifyAndroidInstancesLabels返回参数结构体
       class ModifyAndroidInstancesLabelsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyAndroidInstancesResolution请求参数结构体
+      class ModifyAndroidInstancesResolutionRequest < TencentCloud::Common::AbstractModel
+        # @param AndroidInstanceIds: 安卓实例 ID 列表
+        # @type AndroidInstanceIds: Array
+        # @param Width: 分辨率宽度。建议按照以下数值设置，避免出现性能不足问题：
+        # 实例类型为单开（A1）：建议设置为 1080
+        # 实例类型为双开（A2） 及以上：建议设置为 720
+        # @type Width: Integer
+        # @param Height: 分辨率高度。建议按照以下数值设置，避免出现性能不足问题：
+        # 实例类型为单开（A1）：建议设置为 1920
+        # 实例类型为双开（A2） 及以上：建议设置为 1280
+        # @type Height: Integer
+        # @param DPI: 每英寸像素点。
+        # 分辨率为 720x1280：建议配置为 320
+        # 分辨率为  1080x1920：建议配置为 480
+        # @type DPI: Integer
+        # @param FPS: 帧率。ResolutionType 为 PHYSICAL 时才会修改帧率。另外建议按照以下数值设置，避免出现性能不足问题：
+        # 实例类型为单开（A1）：建议设置为 60
+        # 实例类型为双开（A2） 及以上：建议设置为 30
+        # @type FPS: Integer
+        # @param ResolutionType: 修改分辨率类型。修改物理分辨率，需要重启才能生效。
+        # OVERRIDE：默认值，修改覆盖（显示）分辨率
+        # PHYSICAL：修改物理分辨率
+        # @type ResolutionType: String
+
+        attr_accessor :AndroidInstanceIds, :Width, :Height, :DPI, :FPS, :ResolutionType
+
+        def initialize(androidinstanceids=nil, width=nil, height=nil, dpi=nil, fps=nil, resolutiontype=nil)
+          @AndroidInstanceIds = androidinstanceids
+          @Width = width
+          @Height = height
+          @DPI = dpi
+          @FPS = fps
+          @ResolutionType = resolutiontype
+        end
+
+        def deserialize(params)
+          @AndroidInstanceIds = params['AndroidInstanceIds']
+          @Width = params['Width']
+          @Height = params['Height']
+          @DPI = params['DPI']
+          @FPS = params['FPS']
+          @ResolutionType = params['ResolutionType']
+        end
+      end
+
+      # ModifyAndroidInstancesResolution返回参数结构体
+      class ModifyAndroidInstancesResolutionResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 

@@ -2422,7 +2422,6 @@ module TencentCloud
       # DescribeBlackHeader返回参数结构体
       class DescribeBlackHeaderResponse < TencentCloud::Common::AbstractModel
         # @param BlackHeaders: 禁用的自定义header列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BlackHeaders: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2625,10 +2624,8 @@ module TencentCloud
       # DescribeCustomHeader返回参数结构体
       class DescribeCustomHeaderResponse < TencentCloud::Common::AbstractModel
         # @param RuleId: 规则id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleId: String
         # @param Headers: 自定义header列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Headers: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2704,7 +2701,7 @@ module TencentCloud
 
       # DescribeDomainErrorPageInfoByIds请求参数结构体
       class DescribeDomainErrorPageInfoByIdsRequest < TencentCloud::Common::AbstractModel
-        # @param ErrorPageIds: 定制错误ID列表,最多支持10个
+        # @param ErrorPageIds: 定制错误ID列表，最多支持10个
         # @type ErrorPageIds: Array
 
         attr_accessor :ErrorPageIds
@@ -2721,7 +2718,6 @@ module TencentCloud
       # DescribeDomainErrorPageInfoByIds返回参数结构体
       class DescribeDomainErrorPageInfoByIdsResponse < TencentCloud::Common::AbstractModel
         # @param ErrorPageSet: 定制错误响应配置集
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrorPageSet: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2769,7 +2765,6 @@ module TencentCloud
       # DescribeDomainErrorPageInfo返回参数结构体
       class DescribeDomainErrorPageInfoResponse < TencentCloud::Common::AbstractModel
         # @param ErrorPageSet: 定制错误响应配置集
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrorPageSet: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3714,7 +3709,6 @@ module TencentCloud
         # @param TotalCount: 通道组总数。
         # @type TotalCount: Integer
         # @param ProxyGroupList: 通道组列表。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProxyGroupList: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4587,7 +4581,6 @@ module TencentCloud
         # @param Status: 任务状态：RUNNING，FAIL，SUCCESS
         # @type Status: String
         # @param TaskId: 任务ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5544,10 +5537,8 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DiscountFlowUnitPrice: Float
         # @param Cn2BandwidthPrice: 精品BGP的带宽费用价格，单位: 元/Mbps/天
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Cn2BandwidthPrice: Float
         # @param Cn2BandwidthPriceWithDiscount: 精品BGP的折后带宽费用价格，单位: 元/Mbps/天
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Cn2BandwidthPriceWithDiscount: Float
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

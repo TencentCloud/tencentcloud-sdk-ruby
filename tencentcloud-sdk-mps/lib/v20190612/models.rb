@@ -7060,6 +7060,10 @@ module TencentCloud
         # @type Protocol: String
         # @param OutputRegion: 输出地区。
         # @type OutputRegion: String
+        # @param OutputType: 输出类型：Internet/TencentCSS
+        # @type OutputType: String
+        # @param OutputKind: 输出模块类型，包括Pinpoint（单点输出，最多支持四路并发输出）；MultiMesh（多路输出，支持大于四路的并发输出，目前可以达到200路）。默认类型为 Pinpoint 输出。对于单个 Flow 一个区域最多只能有一个 MultiMesh 输出
+        # @type OutputKind: String
         # @param SRTSettings: 输出的SRT的配置。
         # @type SRTSettings: :class:`Tencentcloud::Mps.v20190612.models.CreateOutputSRTSettings`
         # @param RTMPSettings: 输出的RTMP的配置。
@@ -7075,20 +7079,20 @@ module TencentCloud
         # @type SecurityGroupIds: Array
         # @param Zones: 可用区，output最多只支持输入一个可用区。
         # @type Zones: Array
-        # @param OutputType: 输出类型：Internet/TencentCSS
-        # @type OutputType: String
         # @param RISTSettings: 输出的RIST的配置。
         # @type RISTSettings: :class:`Tencentcloud::Mps.v20190612.models.CreateOutputRistSettings`
         # @param PidSelector: 对于含有多个音/视频轨的流，可以指定需要使用的轨道
         # @type PidSelector: :class:`Tencentcloud::Mps.v20190612.models.PidSelector`
 
-        attr_accessor :OutputName, :Description, :Protocol, :OutputRegion, :SRTSettings, :RTMPSettings, :RTPSettings, :AllowIpList, :MaxConcurrent, :SecurityGroupIds, :Zones, :OutputType, :RISTSettings, :PidSelector
+        attr_accessor :OutputName, :Description, :Protocol, :OutputRegion, :OutputType, :OutputKind, :SRTSettings, :RTMPSettings, :RTPSettings, :AllowIpList, :MaxConcurrent, :SecurityGroupIds, :Zones, :RISTSettings, :PidSelector
 
-        def initialize(outputname=nil, description=nil, protocol=nil, outputregion=nil, srtsettings=nil, rtmpsettings=nil, rtpsettings=nil, allowiplist=nil, maxconcurrent=nil, securitygroupids=nil, zones=nil, outputtype=nil, ristsettings=nil, pidselector=nil)
+        def initialize(outputname=nil, description=nil, protocol=nil, outputregion=nil, outputtype=nil, outputkind=nil, srtsettings=nil, rtmpsettings=nil, rtpsettings=nil, allowiplist=nil, maxconcurrent=nil, securitygroupids=nil, zones=nil, ristsettings=nil, pidselector=nil)
           @OutputName = outputname
           @Description = description
           @Protocol = protocol
           @OutputRegion = outputregion
+          @OutputType = outputtype
+          @OutputKind = outputkind
           @SRTSettings = srtsettings
           @RTMPSettings = rtmpsettings
           @RTPSettings = rtpsettings
@@ -7096,7 +7100,6 @@ module TencentCloud
           @MaxConcurrent = maxconcurrent
           @SecurityGroupIds = securitygroupids
           @Zones = zones
-          @OutputType = outputtype
           @RISTSettings = ristsettings
           @PidSelector = pidselector
         end
@@ -7106,6 +7109,8 @@ module TencentCloud
           @Description = params['Description']
           @Protocol = params['Protocol']
           @OutputRegion = params['OutputRegion']
+          @OutputType = params['OutputType']
+          @OutputKind = params['OutputKind']
           unless params['SRTSettings'].nil?
             @SRTSettings = CreateOutputSRTSettings.new
             @SRTSettings.deserialize(params['SRTSettings'])
@@ -7122,7 +7127,6 @@ module TencentCloud
           @MaxConcurrent = params['MaxConcurrent']
           @SecurityGroupIds = params['SecurityGroupIds']
           @Zones = params['Zones']
-          @OutputType = params['OutputType']
           unless params['RISTSettings'].nil?
             @RISTSettings = CreateOutputRistSettings.new
             @RISTSettings.deserialize(params['RISTSettings'])
@@ -10038,10 +10042,12 @@ module TencentCloud
         # @param RISTSettings: 输入的RIST配置信息。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RISTSettings: :class:`Tencentcloud::Mps.v20190612.models.DescribeInputRISTSettings`
+        # @param StreamUrls: 输入模块配置相关的URL信息，包含提供的推流地址，或者配置的第三方源流地址
+        # @type StreamUrls: Array
 
-        attr_accessor :InputId, :InputName, :Description, :Protocol, :InputAddressList, :AllowIpList, :SRTSettings, :RTPSettings, :InputRegion, :RTMPSettings, :FailOver, :RTMPPullSettings, :RTSPPullSettings, :HLSPullSettings, :ResilientStream, :SecurityGroupIds, :Zones, :RISTSettings
+        attr_accessor :InputId, :InputName, :Description, :Protocol, :InputAddressList, :AllowIpList, :SRTSettings, :RTPSettings, :InputRegion, :RTMPSettings, :FailOver, :RTMPPullSettings, :RTSPPullSettings, :HLSPullSettings, :ResilientStream, :SecurityGroupIds, :Zones, :RISTSettings, :StreamUrls
 
-        def initialize(inputid=nil, inputname=nil, description=nil, protocol=nil, inputaddresslist=nil, allowiplist=nil, srtsettings=nil, rtpsettings=nil, inputregion=nil, rtmpsettings=nil, failover=nil, rtmppullsettings=nil, rtsppullsettings=nil, hlspullsettings=nil, resilientstream=nil, securitygroupids=nil, zones=nil, ristsettings=nil)
+        def initialize(inputid=nil, inputname=nil, description=nil, protocol=nil, inputaddresslist=nil, allowiplist=nil, srtsettings=nil, rtpsettings=nil, inputregion=nil, rtmpsettings=nil, failover=nil, rtmppullsettings=nil, rtsppullsettings=nil, hlspullsettings=nil, resilientstream=nil, securitygroupids=nil, zones=nil, ristsettings=nil, streamurls=nil)
           @InputId = inputid
           @InputName = inputname
           @Description = description
@@ -10060,6 +10066,7 @@ module TencentCloud
           @SecurityGroupIds = securitygroupids
           @Zones = zones
           @RISTSettings = ristsettings
+          @StreamUrls = streamurls
         end
 
         def deserialize(params)
@@ -10111,6 +10118,14 @@ module TencentCloud
           unless params['RISTSettings'].nil?
             @RISTSettings = DescribeInputRISTSettings.new
             @RISTSettings.deserialize(params['RISTSettings'])
+          end
+          unless params['StreamUrls'].nil?
+            @StreamUrls = []
+            params['StreamUrls'].each do |i|
+              streamurldetail_tmp = StreamUrlDetail.new
+              streamurldetail_tmp.deserialize(i)
+              @StreamUrls << streamurldetail_tmp
+            end
           end
         end
       end
@@ -10422,6 +10437,8 @@ module TencentCloud
         # @type OutputName: String
         # @param OutputType: 输出类型。
         # @type OutputType: String
+        # @param OutputKind: 输出模块类型，包括Pinpoint（单点输出，最多支持四路并发输出）；MultiMesh（多路输出，支持大于四路的并发输出，目前可以达到200路）。默认类型为 Pinpoint 输出。对于单个 Flow 一个区域最多只能有一个 MultiMesh 输出。
+        # @type OutputKind: String
         # @param Description: 输出描述。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
@@ -10466,13 +10483,16 @@ module TencentCloud
         # @type RISTSettings: :class:`Tencentcloud::Mps.v20190612.models.DescribeOutputRISTSettings`
         # @param PidSelector: 对于含有多个音/视频轨的流，可以指定需要使用的轨道
         # @type PidSelector: :class:`Tencentcloud::Mps.v20190612.models.PidSelector`
+        # @param StreamUrls: 输出模块配置，相关的URL，包括提供的拉流地址，或者配置的输出到第三方的转推地址
+        # @type StreamUrls: Array
 
-        attr_accessor :OutputId, :OutputName, :OutputType, :Description, :Protocol, :OutputAddressList, :OutputRegion, :SRTSettings, :RTPSettings, :RTMPSettings, :RTMPPullSettings, :AllowIpList, :RTSPPullSettings, :HLSPullSettings, :MaxConcurrent, :SecurityGroupIds, :Zones, :RISTSettings, :PidSelector
+        attr_accessor :OutputId, :OutputName, :OutputType, :OutputKind, :Description, :Protocol, :OutputAddressList, :OutputRegion, :SRTSettings, :RTPSettings, :RTMPSettings, :RTMPPullSettings, :AllowIpList, :RTSPPullSettings, :HLSPullSettings, :MaxConcurrent, :SecurityGroupIds, :Zones, :RISTSettings, :PidSelector, :StreamUrls
 
-        def initialize(outputid=nil, outputname=nil, outputtype=nil, description=nil, protocol=nil, outputaddresslist=nil, outputregion=nil, srtsettings=nil, rtpsettings=nil, rtmpsettings=nil, rtmppullsettings=nil, allowiplist=nil, rtsppullsettings=nil, hlspullsettings=nil, maxconcurrent=nil, securitygroupids=nil, zones=nil, ristsettings=nil, pidselector=nil)
+        def initialize(outputid=nil, outputname=nil, outputtype=nil, outputkind=nil, description=nil, protocol=nil, outputaddresslist=nil, outputregion=nil, srtsettings=nil, rtpsettings=nil, rtmpsettings=nil, rtmppullsettings=nil, allowiplist=nil, rtsppullsettings=nil, hlspullsettings=nil, maxconcurrent=nil, securitygroupids=nil, zones=nil, ristsettings=nil, pidselector=nil, streamurls=nil)
           @OutputId = outputid
           @OutputName = outputname
           @OutputType = outputtype
+          @OutputKind = outputkind
           @Description = description
           @Protocol = protocol
           @OutputAddressList = outputaddresslist
@@ -10489,12 +10509,14 @@ module TencentCloud
           @Zones = zones
           @RISTSettings = ristsettings
           @PidSelector = pidselector
+          @StreamUrls = streamurls
         end
 
         def deserialize(params)
           @OutputId = params['OutputId']
           @OutputName = params['OutputName']
           @OutputType = params['OutputType']
+          @OutputKind = params['OutputKind']
           @Description = params['Description']
           @Protocol = params['Protocol']
           unless params['OutputAddressList'].nil?
@@ -10541,6 +10563,14 @@ module TencentCloud
           unless params['PidSelector'].nil?
             @PidSelector = PidSelector.new
             @PidSelector.deserialize(params['PidSelector'])
+          end
+          unless params['StreamUrls'].nil?
+            @StreamUrls = []
+            params['StreamUrls'].each do |i|
+              streamurldetail_tmp = StreamUrlDetail.new
+              streamurldetail_tmp.deserialize(i)
+              @StreamUrls << streamurldetail_tmp
+            end
           end
         end
       end
@@ -17907,6 +17937,8 @@ module TencentCloud
         # @type Description: String
         # @param Protocol: 输出的转推协议，支持SRT|RTP|RTMP|RTMP_PULL|RTSP_PULL|RIST。
         # @type Protocol: String
+        # @param OutputKind: 输出模块类型，包括Pinpoint（单点输出，最多支持四路并发输出）；MultiMesh（多路输出，支持大于四路的并发输出，目前可以达到200路）。默认类型为 Pinpoint 输出。对于单个 Flow 一个区域最多只能有一个 MultiMesh 输出。
+        # @type OutputKind: String
         # @param SRTSettings: 转推SRT的配置。
         # @type SRTSettings: :class:`Tencentcloud::Mps.v20190612.models.CreateOutputSRTSettings`
         # @param RTPSettings: 转推RTP的配置。
@@ -17929,13 +17961,14 @@ module TencentCloud
         # @param PidSelector: 对于含有多个音/视频轨的流，可以指定需要使用的轨道
         # @type PidSelector: :class:`Tencentcloud::Mps.v20190612.models.PidSelector`
 
-        attr_accessor :OutputId, :OutputName, :Description, :Protocol, :SRTSettings, :RTPSettings, :RTMPSettings, :AllowIpList, :MaxConcurrent, :SecurityGroupIds, :Zones, :RISTSettings, :OutputType, :PidSelector
+        attr_accessor :OutputId, :OutputName, :Description, :Protocol, :OutputKind, :SRTSettings, :RTPSettings, :RTMPSettings, :AllowIpList, :MaxConcurrent, :SecurityGroupIds, :Zones, :RISTSettings, :OutputType, :PidSelector
 
-        def initialize(outputid=nil, outputname=nil, description=nil, protocol=nil, srtsettings=nil, rtpsettings=nil, rtmpsettings=nil, allowiplist=nil, maxconcurrent=nil, securitygroupids=nil, zones=nil, ristsettings=nil, outputtype=nil, pidselector=nil)
+        def initialize(outputid=nil, outputname=nil, description=nil, protocol=nil, outputkind=nil, srtsettings=nil, rtpsettings=nil, rtmpsettings=nil, allowiplist=nil, maxconcurrent=nil, securitygroupids=nil, zones=nil, ristsettings=nil, outputtype=nil, pidselector=nil)
           @OutputId = outputid
           @OutputName = outputname
           @Description = description
           @Protocol = protocol
+          @OutputKind = outputkind
           @SRTSettings = srtsettings
           @RTPSettings = rtpsettings
           @RTMPSettings = rtmpsettings
@@ -17953,6 +17986,7 @@ module TencentCloud
           @OutputName = params['OutputName']
           @Description = params['Description']
           @Protocol = params['Protocol']
+          @OutputKind = params['OutputKind']
           unless params['SRTSettings'].nil?
             @SRTSettings = CreateOutputSRTSettings.new
             @SRTSettings.deserialize(params['SRTSettings'])
@@ -22834,6 +22868,30 @@ module TencentCloud
               @Regions << regioninfo_tmp
             end
           end
+        end
+      end
+
+      # 描述 URL 的完整信息
+      class StreamUrlDetail < TencentCloud::Common::AbstractModel
+        # @param Label: 会描述运营商信息等
+        # @type Label: String
+        # @param Url: URL
+        # @type Url: String
+        # @param Type: Playback: 拉流播放地址； RelayDestination：转推目的地址；SourceCaptureUrl：回源拉流地址；IngestEndpoint：推流地址
+        # @type Type: String
+
+        attr_accessor :Label, :Url, :Type
+
+        def initialize(label=nil, url=nil, type=nil)
+          @Label = label
+          @Url = url
+          @Type = type
+        end
+
+        def deserialize(params)
+          @Label = params['Label']
+          @Url = params['Url']
+          @Type = params['Type']
         end
       end
 

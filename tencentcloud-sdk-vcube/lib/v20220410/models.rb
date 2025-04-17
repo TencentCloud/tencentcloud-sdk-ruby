@@ -117,10 +117,12 @@ module TencentCloud
         # @type DomainList: Array
         # @param AppId: 账号AppId
         # @type AppId: String
+        # @param NameLimit: 扩展包名数量上限
+        # @type NameLimit: Integer
 
-        attr_accessor :AppName, :BundleId, :AppType, :Licenses, :LicenseKey, :PackageName, :CreatedAt, :UpdatedAt, :ApplicationId, :LicenseUrl, :XMagics, :MacBundleId, :WinProcessName, :DomainList, :AppId
+        attr_accessor :AppName, :BundleId, :AppType, :Licenses, :LicenseKey, :PackageName, :CreatedAt, :UpdatedAt, :ApplicationId, :LicenseUrl, :XMagics, :MacBundleId, :WinProcessName, :DomainList, :AppId, :NameLimit
 
-        def initialize(appname=nil, bundleid=nil, apptype=nil, licenses=nil, licensekey=nil, packagename=nil, createdat=nil, updatedat=nil, applicationid=nil, licenseurl=nil, xmagics=nil, macbundleid=nil, winprocessname=nil, domainlist=nil, appid=nil)
+        def initialize(appname=nil, bundleid=nil, apptype=nil, licenses=nil, licensekey=nil, packagename=nil, createdat=nil, updatedat=nil, applicationid=nil, licenseurl=nil, xmagics=nil, macbundleid=nil, winprocessname=nil, domainlist=nil, appid=nil, namelimit=nil)
           @AppName = appname
           @BundleId = bundleid
           @AppType = apptype
@@ -136,6 +138,7 @@ module TencentCloud
           @WinProcessName = winprocessname
           @DomainList = domainlist
           @AppId = appid
+          @NameLimit = namelimit
         end
 
         def deserialize(params)
@@ -168,6 +171,7 @@ module TencentCloud
           @WinProcessName = params['WinProcessName']
           @DomainList = params['DomainList']
           @AppId = params['AppId']
+          @NameLimit = params['NameLimit']
         end
       end
 

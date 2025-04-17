@@ -2943,42 +2943,6 @@ module TencentCloud
         end
       end
 
-      # DescribeInstanceLoginKeyPairAttribute请求参数结构体
-      class DescribeInstanceLoginKeyPairAttributeRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID。
-        # @type InstanceId: String
-
-        attr_accessor :InstanceId
-
-        def initialize(instanceid=nil)
-          @InstanceId = instanceid
-        end
-
-        def deserialize(params)
-          @InstanceId = params['InstanceId']
-        end
-      end
-
-      # DescribeInstanceLoginKeyPairAttribute返回参数结构体
-      class DescribeInstanceLoginKeyPairAttributeResponse < TencentCloud::Common::AbstractModel
-        # @param PermitLogin: 是否允许使用默认密钥对登录，YES：允许登录 NO：禁止登录。
-        # @type PermitLogin: String
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :PermitLogin, :RequestId
-
-        def initialize(permitlogin=nil, requestid=nil)
-          @PermitLogin = permitlogin
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @PermitLogin = params['PermitLogin']
-          @RequestId = params['RequestId']
-        end
-      end
-
       # DescribeInstanceVncUrl请求参数结构体
       class DescribeInstanceVncUrlRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例 ID。可通过[DescribeInstances](https://cloud.tencent.com/document/api/1207/47573)接口返回值中的InstanceId获取。
@@ -6352,42 +6316,6 @@ module TencentCloud
 
       # ModifyInstancesBundle返回参数结构体
       class ModifyInstancesBundleResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :RequestId
-
-        def initialize(requestid=nil)
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # ModifyInstancesLoginKeyPairAttribute请求参数结构体
-      class ModifyInstancesLoginKeyPairAttributeRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceIds: 实例 ID 列表。每次请求批量实例的上限为 100。
-        # @type InstanceIds: Array
-        # @param PermitLogin: 是否允许使用默认密钥对登录，YES：允许登录；NO：禁止登录
-        # @type PermitLogin: String
-
-        attr_accessor :InstanceIds, :PermitLogin
-
-        def initialize(instanceids=nil, permitlogin=nil)
-          @InstanceIds = instanceids
-          @PermitLogin = permitlogin
-        end
-
-        def deserialize(params)
-          @InstanceIds = params['InstanceIds']
-          @PermitLogin = params['PermitLogin']
-        end
-      end
-
-      # ModifyInstancesLoginKeyPairAttribute返回参数结构体
-      class ModifyInstancesLoginKeyPairAttributeResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 

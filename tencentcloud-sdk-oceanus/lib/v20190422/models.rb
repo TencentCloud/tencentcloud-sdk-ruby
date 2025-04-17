@@ -887,7 +887,7 @@ module TencentCloud
         # @type JobId: String
         # @param EntrypointClass: 主类
         # @type EntrypointClass: String
-        # @param ProgramArgs: 主类入参
+        # @param ProgramArgs: 主类入参，需要区分下Sql作业配置，Jar作业配置，Python作业配置，具体参考下面的示例值
         # @type ProgramArgs: String
         # @param Remark: 备注
         # @type Remark: String

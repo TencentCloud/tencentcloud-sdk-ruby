@@ -195,6 +195,26 @@ module TencentCloud
         end
       end
 
+      # 代码仓库配置
+      class CodeRepoConfig < TencentCloud::Common::AbstractModel
+        # @param Id: 代码仓库Id
+        # @type Id: String
+        # @param TargetPath: 代码仓下载目标地址
+        # @type TargetPath: String
+
+        attr_accessor :Id, :TargetPath
+
+        def initialize(id=nil, targetpath=nil)
+          @Id = id
+          @TargetPath = targetpath
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @TargetPath = params['TargetPath']
+        end
+      end
+
       # 容器信息
       class Container < TencentCloud::Common::AbstractModel
         # @param Name: 名字
@@ -1096,10 +1116,12 @@ module TencentCloud
         # @type CallbackUrl: String
         # @param EncodedStartCmdInfo: 编码后的任务启动命令，与StartCmdInfo同时配置时，仅当前参数生效
         # @type EncodedStartCmdInfo: :class:`Tencentcloud::Tione.v20211111.models.EncodedStartCmdInfo`
+        # @param CodeRepos: 代码仓库配置
+        # @type CodeRepos: Array
 
-        attr_accessor :Name, :ChargeType, :ResourceConfigInfos, :FrameworkName, :FrameworkVersion, :FrameworkEnvironment, :ResourceGroupId, :Tags, :ImageInfo, :CodePackagePath, :StartCmdInfo, :TrainingMode, :DataConfigs, :VpcId, :SubnetId, :Output, :LogConfig, :TuningParameters, :LogEnable, :Remark, :DataSource, :CallbackUrl, :EncodedStartCmdInfo
+        attr_accessor :Name, :ChargeType, :ResourceConfigInfos, :FrameworkName, :FrameworkVersion, :FrameworkEnvironment, :ResourceGroupId, :Tags, :ImageInfo, :CodePackagePath, :StartCmdInfo, :TrainingMode, :DataConfigs, :VpcId, :SubnetId, :Output, :LogConfig, :TuningParameters, :LogEnable, :Remark, :DataSource, :CallbackUrl, :EncodedStartCmdInfo, :CodeRepos
 
-        def initialize(name=nil, chargetype=nil, resourceconfiginfos=nil, frameworkname=nil, frameworkversion=nil, frameworkenvironment=nil, resourcegroupid=nil, tags=nil, imageinfo=nil, codepackagepath=nil, startcmdinfo=nil, trainingmode=nil, dataconfigs=nil, vpcid=nil, subnetid=nil, output=nil, logconfig=nil, tuningparameters=nil, logenable=nil, remark=nil, datasource=nil, callbackurl=nil, encodedstartcmdinfo=nil)
+        def initialize(name=nil, chargetype=nil, resourceconfiginfos=nil, frameworkname=nil, frameworkversion=nil, frameworkenvironment=nil, resourcegroupid=nil, tags=nil, imageinfo=nil, codepackagepath=nil, startcmdinfo=nil, trainingmode=nil, dataconfigs=nil, vpcid=nil, subnetid=nil, output=nil, logconfig=nil, tuningparameters=nil, logenable=nil, remark=nil, datasource=nil, callbackurl=nil, encodedstartcmdinfo=nil, coderepos=nil)
           @Name = name
           @ChargeType = chargetype
           @ResourceConfigInfos = resourceconfiginfos
@@ -1123,6 +1145,7 @@ module TencentCloud
           @DataSource = datasource
           @CallbackUrl = callbackurl
           @EncodedStartCmdInfo = encodedstartcmdinfo
+          @CodeRepos = coderepos
         end
 
         def deserialize(params)
@@ -1187,6 +1210,14 @@ module TencentCloud
           unless params['EncodedStartCmdInfo'].nil?
             @EncodedStartCmdInfo = EncodedStartCmdInfo.new
             @EncodedStartCmdInfo.deserialize(params['EncodedStartCmdInfo'])
+          end
+          unless params['CodeRepos'].nil?
+            @CodeRepos = []
+            params['CodeRepos'].each do |i|
+              coderepoconfig_tmp = CodeRepoConfig.new
+              coderepoconfig_tmp.deserialize(i)
+              @CodeRepos << coderepoconfig_tmp
+            end
           end
         end
       end
@@ -7612,10 +7643,12 @@ module TencentCloud
         # @param CallbackUrl: 回调地址
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CallbackUrl: String
+        # @param CodeRepos: 任务关联的代码仓库配置
+        # @type CodeRepos: Array
 
-        attr_accessor :Id, :Name, :Uin, :SubUin, :SubUinName, :Region, :FrameworkName, :FrameworkVersion, :FrameworkEnvironment, :ChargeType, :ResourceGroupId, :ResourceConfigInfos, :Tags, :TrainingMode, :CodePackagePath, :StartCmdInfo, :DataSource, :DataConfigs, :TuningParameters, :Output, :LogEnable, :LogConfig, :VpcId, :SubnetId, :ImageInfo, :RuntimeInSeconds, :CreateTime, :StartTime, :ChargeStatus, :LatestInstanceId, :TensorBoardId, :Remark, :FailureReason, :UpdateTime, :EndTime, :BillingInfo, :ResourceGroupName, :Message, :Status, :CallbackUrl
+        attr_accessor :Id, :Name, :Uin, :SubUin, :SubUinName, :Region, :FrameworkName, :FrameworkVersion, :FrameworkEnvironment, :ChargeType, :ResourceGroupId, :ResourceConfigInfos, :Tags, :TrainingMode, :CodePackagePath, :StartCmdInfo, :DataSource, :DataConfigs, :TuningParameters, :Output, :LogEnable, :LogConfig, :VpcId, :SubnetId, :ImageInfo, :RuntimeInSeconds, :CreateTime, :StartTime, :ChargeStatus, :LatestInstanceId, :TensorBoardId, :Remark, :FailureReason, :UpdateTime, :EndTime, :BillingInfo, :ResourceGroupName, :Message, :Status, :CallbackUrl, :CodeRepos
 
-        def initialize(id=nil, name=nil, uin=nil, subuin=nil, subuinname=nil, region=nil, frameworkname=nil, frameworkversion=nil, frameworkenvironment=nil, chargetype=nil, resourcegroupid=nil, resourceconfiginfos=nil, tags=nil, trainingmode=nil, codepackagepath=nil, startcmdinfo=nil, datasource=nil, dataconfigs=nil, tuningparameters=nil, output=nil, logenable=nil, logconfig=nil, vpcid=nil, subnetid=nil, imageinfo=nil, runtimeinseconds=nil, createtime=nil, starttime=nil, chargestatus=nil, latestinstanceid=nil, tensorboardid=nil, remark=nil, failurereason=nil, updatetime=nil, endtime=nil, billinginfo=nil, resourcegroupname=nil, message=nil, status=nil, callbackurl=nil)
+        def initialize(id=nil, name=nil, uin=nil, subuin=nil, subuinname=nil, region=nil, frameworkname=nil, frameworkversion=nil, frameworkenvironment=nil, chargetype=nil, resourcegroupid=nil, resourceconfiginfos=nil, tags=nil, trainingmode=nil, codepackagepath=nil, startcmdinfo=nil, datasource=nil, dataconfigs=nil, tuningparameters=nil, output=nil, logenable=nil, logconfig=nil, vpcid=nil, subnetid=nil, imageinfo=nil, runtimeinseconds=nil, createtime=nil, starttime=nil, chargestatus=nil, latestinstanceid=nil, tensorboardid=nil, remark=nil, failurereason=nil, updatetime=nil, endtime=nil, billinginfo=nil, resourcegroupname=nil, message=nil, status=nil, callbackurl=nil, coderepos=nil)
           @Id = id
           @Name = name
           @Uin = uin
@@ -7656,6 +7689,7 @@ module TencentCloud
           @Message = message
           @Status = status
           @CallbackUrl = callbackurl
+          @CodeRepos = coderepos
         end
 
         def deserialize(params)
@@ -7735,6 +7769,14 @@ module TencentCloud
           @Message = params['Message']
           @Status = params['Status']
           @CallbackUrl = params['CallbackUrl']
+          unless params['CodeRepos'].nil?
+            @CodeRepos = []
+            params['CodeRepos'].each do |i|
+              coderepoconfig_tmp = CodeRepoConfig.new
+              coderepoconfig_tmp.deserialize(i)
+              @CodeRepos << coderepoconfig_tmp
+            end
+          end
         end
       end
 

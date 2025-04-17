@@ -138,15 +138,18 @@ module TencentCloud
         # @param ConsumerLag: 客户端消费堆积
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ConsumerLag: Integer
+        # @param ChannelProtocol: 消费者客户端类型（grpc；remoting；http）
+        # @type ChannelProtocol: String
 
-        attr_accessor :ClientId, :ClientAddr, :Language, :Version, :ConsumerLag
+        attr_accessor :ClientId, :ClientAddr, :Language, :Version, :ConsumerLag, :ChannelProtocol
 
-        def initialize(clientid=nil, clientaddr=nil, language=nil, version=nil, consumerlag=nil)
+        def initialize(clientid=nil, clientaddr=nil, language=nil, version=nil, consumerlag=nil, channelprotocol=nil)
           @ClientId = clientid
           @ClientAddr = clientaddr
           @Language = language
           @Version = version
           @ConsumerLag = consumerlag
+          @ChannelProtocol = channelprotocol
         end
 
         def deserialize(params)
@@ -155,6 +158,7 @@ module TencentCloud
           @Language = params['Language']
           @Version = params['Version']
           @ConsumerLag = params['ConsumerLag']
+          @ChannelProtocol = params['ChannelProtocol']
         end
       end
 
@@ -2734,16 +2738,12 @@ module TencentCloud
       # DescribeMigratingGroupStats返回参数结构体
       class DescribeMigratingGroupStatsResponse < TencentCloud::Common::AbstractModel
         # @param SourceConsumeLag: 源集群消费组堆积
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SourceConsumeLag: Integer
         # @param TargetConsumeLag: 目标集群消费组堆积
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TargetConsumeLag: Integer
         # @param SourceConsumerClients: 源集群连接客户端列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SourceConsumerClients: Array
         # @param TargetConsumerClients: 目标集群连接客户端列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TargetConsumerClients: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2783,27 +2783,25 @@ module TencentCloud
 
       # DescribeMigratingTopicList请求参数结构体
       class DescribeMigratingTopicListRequest < TencentCloud::Common::AbstractModel
-        # @param Offset: 查询起始位置
-        # @type Offset: Integer
-        # @param Limit: 查询结果限制数量
-        # @type Limit: Integer
         # @param TaskId: 任务ID
         # @type TaskId: String
         # @param Filters: 查询条件列表
         # @type Filters: Array
+        # @param Offset: 查询起始位置
+        # @type Offset: Integer
+        # @param Limit: 查询结果限制数量
+        # @type Limit: Integer
 
-        attr_accessor :Offset, :Limit, :TaskId, :Filters
+        attr_accessor :TaskId, :Filters, :Offset, :Limit
 
-        def initialize(offset=nil, limit=nil, taskid=nil, filters=nil)
-          @Offset = offset
-          @Limit = limit
+        def initialize(taskid=nil, filters=nil, offset=nil, limit=nil)
           @TaskId = taskid
           @Filters = filters
+          @Offset = offset
+          @Limit = limit
         end
 
         def deserialize(params)
-          @Offset = params['Offset']
-          @Limit = params['Limit']
           @TaskId = params['TaskId']
           unless params['Filters'].nil?
             @Filters = []
@@ -2813,13 +2811,14 @@ module TencentCloud
               @Filters << filter_tmp
             end
           end
+          @Offset = params['Offset']
+          @Limit = params['Limit']
         end
       end
 
       # DescribeMigratingTopicList返回参数结构体
       class DescribeMigratingTopicListResponse < TencentCloud::Common::AbstractModel
         # @param TotalCount: 查询总数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
         # @param MigrateTopics: 主题列表
         # @type MigrateTopics: Array
@@ -3012,27 +3011,25 @@ module TencentCloud
 
       # DescribeSourceClusterGroupList请求参数结构体
       class DescribeSourceClusterGroupListRequest < TencentCloud::Common::AbstractModel
-        # @param Offset: 查询起始位置
-        # @type Offset: Integer
-        # @param Limit: 查询结果限制数量
-        # @type Limit: Integer
         # @param TaskId: 任务ID
         # @type TaskId: String
         # @param Filters: 查询条件列表
         # @type Filters: Array
+        # @param Offset: 查询起始位置
+        # @type Offset: Integer
+        # @param Limit: 查询结果限制数量
+        # @type Limit: Integer
 
-        attr_accessor :Offset, :Limit, :TaskId, :Filters
+        attr_accessor :TaskId, :Filters, :Offset, :Limit
 
-        def initialize(offset=nil, limit=nil, taskid=nil, filters=nil)
-          @Offset = offset
-          @Limit = limit
+        def initialize(taskid=nil, filters=nil, offset=nil, limit=nil)
           @TaskId = taskid
           @Filters = filters
+          @Offset = offset
+          @Limit = limit
         end
 
         def deserialize(params)
-          @Offset = params['Offset']
-          @Limit = params['Limit']
           @TaskId = params['TaskId']
           unless params['Filters'].nil?
             @Filters = []
@@ -3042,13 +3039,14 @@ module TencentCloud
               @Filters << filter_tmp
             end
           end
+          @Offset = params['Offset']
+          @Limit = params['Limit']
         end
       end
 
       # DescribeSourceClusterGroupList返回参数结构体
       class DescribeSourceClusterGroupListResponse < TencentCloud::Common::AbstractModel
         # @param TotalCount: 查询总数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
         # @param Groups: 消费组配置列表
         # @type Groups: Array
@@ -4350,29 +4348,39 @@ module TencentCloud
       # 迁移中的主题
       class MigratingTopic < TencentCloud::Common::AbstractModel
         # @param TopicName: 主题名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TopicName: String
         # @param MigrationStatus: 迁移状态 S_RW_D_NA 源集群读写 S_RW_D_R 源集群读写目标集群读 S_RW_D_RW 源集群读写目标集群读写 S_R_D_RW 源集群读目标集群读写 S_NA_D_RW 目标集群读写
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MigrationStatus: String
         # @param HealthCheckPassed: 是否完成健康检查
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HealthCheckPassed: Boolean
         # @param HealthCheckError: 上次健康检查返回的错误信息，仅在HealthCheckPassed为false时有效。 NotChecked 未执行检查， Unknown 未知错误, TopicNotImported 主题未导入, TopicNotExistsInSourceCluster 主题在源集群中不存在, TopicNotExistsInTargetCluster 主题在目标集群中不存在, ConsumerConnectedOnTarget 目标集群上存在消费者连接, SourceTopicHasNewMessagesIn5Minutes 源集群主题前5分钟内有新消息写入, TargetTopicHasNewMessagesIn5Minutes 目标集群主题前5分钟内有新消息写入, SourceTopicHasNoMessagesIn5Minutes 源集群前5分钟内没有新消息写入, TargetTopicHasNoMessagesIn5Minutes 源集群前5分钟内没有新消息写入, ConsumerGroupCountNotMatch 订阅组数量不一致, SourceTopicHasUnconsumedMessages 源集群主题存在未消费消息,
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HealthCheckError: String
         # @param Namespace: 命名空间，仅4.x集群有效
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Namespace: String
+        # @param NamespaceV4: 4.x的命名空间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NamespaceV4: String
+        # @param TopicNameV4: 4.x的主题名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TopicNameV4: String
+        # @param FullNamespaceV4: 4.x的完整命名空间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FullNamespaceV4: String
+        # @param HealthCheckErrorList: 上次健康检查返回的错误列表
+        # @type HealthCheckErrorList: Array
 
-        attr_accessor :TopicName, :MigrationStatus, :HealthCheckPassed, :HealthCheckError, :Namespace
+        attr_accessor :TopicName, :MigrationStatus, :HealthCheckPassed, :HealthCheckError, :Namespace, :NamespaceV4, :TopicNameV4, :FullNamespaceV4, :HealthCheckErrorList
 
-        def initialize(topicname=nil, migrationstatus=nil, healthcheckpassed=nil, healthcheckerror=nil, namespace=nil)
+        def initialize(topicname=nil, migrationstatus=nil, healthcheckpassed=nil, healthcheckerror=nil, namespace=nil, namespacev4=nil, topicnamev4=nil, fullnamespacev4=nil, healthcheckerrorlist=nil)
           @TopicName = topicname
           @MigrationStatus = migrationstatus
           @HealthCheckPassed = healthcheckpassed
           @HealthCheckError = healthcheckerror
           @Namespace = namespace
+          @NamespaceV4 = namespacev4
+          @TopicNameV4 = topicnamev4
+          @FullNamespaceV4 = fullnamespacev4
+          @HealthCheckErrorList = healthcheckerrorlist
         end
 
         def deserialize(params)
@@ -4381,6 +4389,10 @@ module TencentCloud
           @HealthCheckPassed = params['HealthCheckPassed']
           @HealthCheckError = params['HealthCheckError']
           @Namespace = params['Namespace']
+          @NamespaceV4 = params['NamespaceV4']
+          @TopicNameV4 = params['TopicNameV4']
+          @FullNamespaceV4 = params['FullNamespaceV4']
+          @HealthCheckErrorList = params['HealthCheckErrorList']
         end
       end
 
@@ -5664,13 +5676,10 @@ module TencentCloud
       # 迁移主题修改状态后的结果
       class TopicStageChangeResult < TencentCloud::Common::AbstractModel
         # @param TopicName: 主题名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TopicName: String
         # @param Success: 是否成功
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Success: Boolean
         # @param Namespace: 命名空间，仅4.x有效
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Namespace: String
 
         attr_accessor :TopicName, :Success, :Namespace
