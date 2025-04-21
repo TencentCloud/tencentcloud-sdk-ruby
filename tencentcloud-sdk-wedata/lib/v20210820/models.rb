@@ -25388,10 +25388,13 @@ module TencentCloud
         # @param ProjectName: 项目名称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProjectName: String
+        # @param UpdateTime: 更新时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTime: String
 
-        attr_accessor :RuleId, :RuleGroupId, :TableId, :Name, :Type, :RuleTemplateId, :RuleTemplateContent, :QualityDim, :SourceObjectType, :SourceObjectDataType, :SourceObjectDataTypeName, :SourceObjectValue, :ConditionType, :ConditionExpression, :CustomSql, :CompareRule, :AlarmLevel, :Description, :Operator, :TargetDatabaseId, :TargetDatabaseName, :TargetTableId, :TargetTableName, :TargetConditionExpr, :RelConditionExpr, :FieldConfig, :MultiSourceFlag, :WhereFlag, :TemplateSql, :SubQualityDim, :TargetObjectType, :TargetObjectDataType, :TargetObjectDataTypeName, :TargetObjectValue, :SourceEngineTypes, :TableName, :TableOwnerName, :ExecStrategy, :Subscription, :CreateTime, :DatasourceId, :DatabaseId, :MonitorStatus, :TriggerCondition, :DsEnvType, :DatasourceType, :SchemaName, :TargetSchemaName, :ProjectId, :ProjectName
+        attr_accessor :RuleId, :RuleGroupId, :TableId, :Name, :Type, :RuleTemplateId, :RuleTemplateContent, :QualityDim, :SourceObjectType, :SourceObjectDataType, :SourceObjectDataTypeName, :SourceObjectValue, :ConditionType, :ConditionExpression, :CustomSql, :CompareRule, :AlarmLevel, :Description, :Operator, :TargetDatabaseId, :TargetDatabaseName, :TargetTableId, :TargetTableName, :TargetConditionExpr, :RelConditionExpr, :FieldConfig, :MultiSourceFlag, :WhereFlag, :TemplateSql, :SubQualityDim, :TargetObjectType, :TargetObjectDataType, :TargetObjectDataTypeName, :TargetObjectValue, :SourceEngineTypes, :TableName, :TableOwnerName, :ExecStrategy, :Subscription, :CreateTime, :DatasourceId, :DatabaseId, :MonitorStatus, :TriggerCondition, :DsEnvType, :DatasourceType, :SchemaName, :TargetSchemaName, :ProjectId, :ProjectName, :UpdateTime
 
-        def initialize(ruleid=nil, rulegroupid=nil, tableid=nil, name=nil, type=nil, ruletemplateid=nil, ruletemplatecontent=nil, qualitydim=nil, sourceobjecttype=nil, sourceobjectdatatype=nil, sourceobjectdatatypename=nil, sourceobjectvalue=nil, conditiontype=nil, conditionexpression=nil, customsql=nil, comparerule=nil, alarmlevel=nil, description=nil, operator=nil, targetdatabaseid=nil, targetdatabasename=nil, targettableid=nil, targettablename=nil, targetconditionexpr=nil, relconditionexpr=nil, fieldconfig=nil, multisourceflag=nil, whereflag=nil, templatesql=nil, subqualitydim=nil, targetobjecttype=nil, targetobjectdatatype=nil, targetobjectdatatypename=nil, targetobjectvalue=nil, sourceenginetypes=nil, tablename=nil, tableownername=nil, execstrategy=nil, subscription=nil, createtime=nil, datasourceid=nil, databaseid=nil, monitorstatus=nil, triggercondition=nil, dsenvtype=nil, datasourcetype=nil, schemaname=nil, targetschemaname=nil, projectid=nil, projectname=nil)
+        def initialize(ruleid=nil, rulegroupid=nil, tableid=nil, name=nil, type=nil, ruletemplateid=nil, ruletemplatecontent=nil, qualitydim=nil, sourceobjecttype=nil, sourceobjectdatatype=nil, sourceobjectdatatypename=nil, sourceobjectvalue=nil, conditiontype=nil, conditionexpression=nil, customsql=nil, comparerule=nil, alarmlevel=nil, description=nil, operator=nil, targetdatabaseid=nil, targetdatabasename=nil, targettableid=nil, targettablename=nil, targetconditionexpr=nil, relconditionexpr=nil, fieldconfig=nil, multisourceflag=nil, whereflag=nil, templatesql=nil, subqualitydim=nil, targetobjecttype=nil, targetobjectdatatype=nil, targetobjectdatatypename=nil, targetobjectvalue=nil, sourceenginetypes=nil, tablename=nil, tableownername=nil, execstrategy=nil, subscription=nil, createtime=nil, datasourceid=nil, databaseid=nil, monitorstatus=nil, triggercondition=nil, dsenvtype=nil, datasourcetype=nil, schemaname=nil, targetschemaname=nil, projectid=nil, projectname=nil, updatetime=nil)
           @RuleId = ruleid
           @RuleGroupId = rulegroupid
           @TableId = tableid
@@ -25442,6 +25445,7 @@ module TencentCloud
           @TargetSchemaName = targetschemaname
           @ProjectId = projectid
           @ProjectName = projectname
+          @UpdateTime = updatetime
         end
 
         def deserialize(params)
@@ -25507,6 +25511,7 @@ module TencentCloud
           @TargetSchemaName = params['TargetSchemaName']
           @ProjectId = params['ProjectId']
           @ProjectName = params['ProjectName']
+          @UpdateTime = params['UpdateTime']
         end
       end
 
@@ -26255,13 +26260,21 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceStatus: String
         # @param StartTime: 实例运行的开始时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StartTime: String
         # @param FinishTime: 实例运行的结束时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FinishTime: String
+        # @param RuleGroupName: 监控名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuleGroupName: String
+        # @param RuleGroupExist: 判断是否屏蔽监控 0.屏蔽 1.不屏蔽
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuleGroupExist: String
 
-        attr_accessor :RuleGroupExecId, :RuleGroupId, :TriggerType, :ExecTime, :Status, :AlarmRuleCount, :TotalRuleCount, :TableOwnerName, :TableName, :TableId, :DatabaseId, :DatasourceId, :Permission, :ExecDetail, :EngineType, :RuleExecResultVOList, :DatabaseName, :RuleGroupTableId, :ClusterDeployType, :InstanceId, :DsEnvType, :ProjectId, :ProjectName, :InstanceStatus, :StartTime, :FinishTime
+        attr_accessor :RuleGroupExecId, :RuleGroupId, :TriggerType, :ExecTime, :Status, :AlarmRuleCount, :TotalRuleCount, :TableOwnerName, :TableName, :TableId, :DatabaseId, :DatasourceId, :Permission, :ExecDetail, :EngineType, :RuleExecResultVOList, :DatabaseName, :RuleGroupTableId, :ClusterDeployType, :InstanceId, :DsEnvType, :ProjectId, :ProjectName, :InstanceStatus, :StartTime, :FinishTime, :RuleGroupName, :RuleGroupExist
 
-        def initialize(rulegroupexecid=nil, rulegroupid=nil, triggertype=nil, exectime=nil, status=nil, alarmrulecount=nil, totalrulecount=nil, tableownername=nil, tablename=nil, tableid=nil, databaseid=nil, datasourceid=nil, permission=nil, execdetail=nil, enginetype=nil, ruleexecresultvolist=nil, databasename=nil, rulegrouptableid=nil, clusterdeploytype=nil, instanceid=nil, dsenvtype=nil, projectid=nil, projectname=nil, instancestatus=nil, starttime=nil, finishtime=nil)
+        def initialize(rulegroupexecid=nil, rulegroupid=nil, triggertype=nil, exectime=nil, status=nil, alarmrulecount=nil, totalrulecount=nil, tableownername=nil, tablename=nil, tableid=nil, databaseid=nil, datasourceid=nil, permission=nil, execdetail=nil, enginetype=nil, ruleexecresultvolist=nil, databasename=nil, rulegrouptableid=nil, clusterdeploytype=nil, instanceid=nil, dsenvtype=nil, projectid=nil, projectname=nil, instancestatus=nil, starttime=nil, finishtime=nil, rulegroupname=nil, rulegroupexist=nil)
           @RuleGroupExecId = rulegroupexecid
           @RuleGroupId = rulegroupid
           @TriggerType = triggertype
@@ -26288,6 +26301,8 @@ module TencentCloud
           @InstanceStatus = instancestatus
           @StartTime = starttime
           @FinishTime = finishtime
+          @RuleGroupName = rulegroupname
+          @RuleGroupExist = rulegroupexist
         end
 
         def deserialize(params)
@@ -26324,6 +26339,8 @@ module TencentCloud
           @InstanceStatus = params['InstanceStatus']
           @StartTime = params['StartTime']
           @FinishTime = params['FinishTime']
+          @RuleGroupName = params['RuleGroupName']
+          @RuleGroupExist = params['RuleGroupExist']
         end
       end
 

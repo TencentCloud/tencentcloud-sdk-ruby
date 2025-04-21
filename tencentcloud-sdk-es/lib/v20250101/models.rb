@@ -904,10 +904,8 @@ module TencentCloud
       # 网页搜索结果
       class WebPage < TencentCloud::Common::AbstractModel
         # @param Title: 标题
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Title: String
         # @param Url: url
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Url: String
         # @param Summary: 网页摘要
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -952,7 +950,7 @@ module TencentCloud
         # @type WhiteSites: Array
         # @param BlackSites: 域名黑名单，在不指定 Site 和白名单时，过滤黑名单中的域名。
         # @type BlackSites: Array
-        # @param StartTime: 秒级时间冲，搜索网页的开始时间，默认不限制开始时间。
+        # @param StartTime: 秒级时间戳，搜索网页的开始时间，默认不限制开始时间。
         # @type StartTime: Integer
         # @param EndTime: 秒级时间戳，搜索网页的结束时间，默认为现在。
         # @type EndTime: Integer

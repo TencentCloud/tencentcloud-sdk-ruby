@@ -620,22 +620,17 @@ module TencentCloud
         # @param FwType: 防火墙类型，nat：nat防火墙；ew：vpc间防火墙
         # @type FwType: String
         # @param Region: 实例所属地域
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Region: String
         # @param Status: 实例运行状态，Running：正常运行；BypassAutoFix：bypass修复；Updating：升级中；Expand：扩容中；BypassManual：手动触发bypass中；BypassAuto：自动触发bypass中
         # @type Status: String
         # @param EventTime: 事件时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EventTime: String
         # @param RecoverTime: 恢复时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RecoverTime: String
         # @param CfwInsName: 实例名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CfwInsName: String
         # @param TrafficMode: Normal: 正常模式
         # OnlyRoute: 透明模式
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TrafficMode: String
 
         attr_accessor :CfwInsId, :FwType, :Region, :Status, :EventTime, :RecoverTime, :CfwInsName, :TrafficMode
@@ -2444,10 +2439,14 @@ module TencentCloud
         # @type TargetName: String
         # @param LastHitTime: 规则最近命中时间
         # @type LastHitTime: String
+        # @param CountryKey: 地区简称
+        # @type CountryKey: String
+        # @param CityKey: 省份、城市简称
+        # @type CityKey: String
 
-        attr_accessor :SourceContent, :TargetContent, :Protocol, :Port, :RuleAction, :Description, :Count, :OrderIndex, :SourceType, :TargetType, :Uuid, :Invalid, :IsRegion, :CountryCode, :CityCode, :CountryName, :CityName, :CloudCode, :IsCloud, :Enable, :Direction, :InstanceName, :InternalUuid, :Status, :BetaList, :Scope, :ScopeDesc, :InternetBorderUuid, :ParamTemplateName, :ParamTemplateId, :SourceName, :TargetName, :LastHitTime
+        attr_accessor :SourceContent, :TargetContent, :Protocol, :Port, :RuleAction, :Description, :Count, :OrderIndex, :SourceType, :TargetType, :Uuid, :Invalid, :IsRegion, :CountryCode, :CityCode, :CountryName, :CityName, :CloudCode, :IsCloud, :Enable, :Direction, :InstanceName, :InternalUuid, :Status, :BetaList, :Scope, :ScopeDesc, :InternetBorderUuid, :ParamTemplateName, :ParamTemplateId, :SourceName, :TargetName, :LastHitTime, :CountryKey, :CityKey
 
-        def initialize(sourcecontent=nil, targetcontent=nil, protocol=nil, port=nil, ruleaction=nil, description=nil, count=nil, orderindex=nil, sourcetype=nil, targettype=nil, uuid=nil, invalid=nil, isregion=nil, countrycode=nil, citycode=nil, countryname=nil, cityname=nil, cloudcode=nil, iscloud=nil, enable=nil, direction=nil, instancename=nil, internaluuid=nil, status=nil, betalist=nil, scope=nil, scopedesc=nil, internetborderuuid=nil, paramtemplatename=nil, paramtemplateid=nil, sourcename=nil, targetname=nil, lasthittime=nil)
+        def initialize(sourcecontent=nil, targetcontent=nil, protocol=nil, port=nil, ruleaction=nil, description=nil, count=nil, orderindex=nil, sourcetype=nil, targettype=nil, uuid=nil, invalid=nil, isregion=nil, countrycode=nil, citycode=nil, countryname=nil, cityname=nil, cloudcode=nil, iscloud=nil, enable=nil, direction=nil, instancename=nil, internaluuid=nil, status=nil, betalist=nil, scope=nil, scopedesc=nil, internetborderuuid=nil, paramtemplatename=nil, paramtemplateid=nil, sourcename=nil, targetname=nil, lasthittime=nil, countrykey=nil, citykey=nil)
           @SourceContent = sourcecontent
           @TargetContent = targetcontent
           @Protocol = protocol
@@ -2481,6 +2480,8 @@ module TencentCloud
           @SourceName = sourcename
           @TargetName = targetname
           @LastHitTime = lasthittime
+          @CountryKey = countrykey
+          @CityKey = citykey
         end
 
         def deserialize(params)
@@ -2524,6 +2525,8 @@ module TencentCloud
           @SourceName = params['SourceName']
           @TargetName = params['TargetName']
           @LastHitTime = params['LastHitTime']
+          @CountryKey = params['CountryKey']
+          @CityKey = params['CityKey']
         end
       end
 
@@ -3646,16 +3649,19 @@ module TencentCloud
         # @type RegionLst: Array
         # @param InstanceTypeLst: 实例类型列表
         # @type InstanceTypeLst: Array
+        # @param SerilCount: 串行模式开关个数
+        # @type SerilCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Data, :Total, :RegionLst, :InstanceTypeLst, :RequestId
+        attr_accessor :Data, :Total, :RegionLst, :InstanceTypeLst, :SerilCount, :RequestId
 
-        def initialize(data=nil, total=nil, regionlst=nil, instancetypelst=nil, requestid=nil)
+        def initialize(data=nil, total=nil, regionlst=nil, instancetypelst=nil, serilcount=nil, requestid=nil)
           @Data = data
           @Total = total
           @RegionLst = regionlst
           @InstanceTypeLst = instancetypelst
+          @SerilCount = serilcount
           @RequestId = requestid
         end
 
@@ -3671,6 +3677,7 @@ module TencentCloud
           @Total = params['Total']
           @RegionLst = params['RegionLst']
           @InstanceTypeLst = params['InstanceTypeLst']
+          @SerilCount = params['SerilCount']
           @RequestId = params['RequestId']
         end
       end
@@ -5510,10 +5517,12 @@ module TencentCloud
         # @type BetaList: Array
         # @param Id: 规则id  等同RuleUuid
         # @type Id: Integer
+        # @param DnsParseCount: 域名解析的IP统计
+        # @type DnsParseCount: :class:`Tencentcloud::Cfw.v20190904.models.SgDnsParseCount`
 
-        attr_accessor :OrderIndex, :RuleUuid, :Uuid, :SourceId, :SourceType, :TargetId, :TargetType, :Protocol, :Port, :Strategy, :Status, :Detail, :AclTags, :IsNew, :Region, :IsDelay, :ServiceTemplateId, :SouInstanceName, :SouPublicIp, :SouPrivateIp, :SouCidr, :SouParameterName, :InstanceName, :PublicIp, :PrivateIp, :Cidr, :ParameterName, :ProtocolPortName, :BetaList, :Id
+        attr_accessor :OrderIndex, :RuleUuid, :Uuid, :SourceId, :SourceType, :TargetId, :TargetType, :Protocol, :Port, :Strategy, :Status, :Detail, :AclTags, :IsNew, :Region, :IsDelay, :ServiceTemplateId, :SouInstanceName, :SouPublicIp, :SouPrivateIp, :SouCidr, :SouParameterName, :InstanceName, :PublicIp, :PrivateIp, :Cidr, :ParameterName, :ProtocolPortName, :BetaList, :Id, :DnsParseCount
 
-        def initialize(orderindex=nil, ruleuuid=nil, uuid=nil, sourceid=nil, sourcetype=nil, targetid=nil, targettype=nil, protocol=nil, port=nil, strategy=nil, status=nil, detail=nil, acltags=nil, isnew=nil, region=nil, isdelay=nil, servicetemplateid=nil, souinstancename=nil, soupublicip=nil, souprivateip=nil, soucidr=nil, souparametername=nil, instancename=nil, publicip=nil, privateip=nil, cidr=nil, parametername=nil, protocolportname=nil, betalist=nil, id=nil)
+        def initialize(orderindex=nil, ruleuuid=nil, uuid=nil, sourceid=nil, sourcetype=nil, targetid=nil, targettype=nil, protocol=nil, port=nil, strategy=nil, status=nil, detail=nil, acltags=nil, isnew=nil, region=nil, isdelay=nil, servicetemplateid=nil, souinstancename=nil, soupublicip=nil, souprivateip=nil, soucidr=nil, souparametername=nil, instancename=nil, publicip=nil, privateip=nil, cidr=nil, parametername=nil, protocolportname=nil, betalist=nil, id=nil, dnsparsecount=nil)
           @OrderIndex = orderindex
           @RuleUuid = ruleuuid
           @Uuid = uuid
@@ -5544,6 +5553,7 @@ module TencentCloud
           @ProtocolPortName = protocolportname
           @BetaList = betalist
           @Id = id
+          @DnsParseCount = dnsparsecount
         end
 
         def deserialize(params)
@@ -5584,6 +5594,10 @@ module TencentCloud
             end
           end
           @Id = params['Id']
+          unless params['DnsParseCount'].nil?
+            @DnsParseCount = SgDnsParseCount.new
+            @DnsParseCount.deserialize(params['DnsParseCount'])
+          end
         end
       end
 
@@ -8643,7 +8657,7 @@ module TencentCloud
         # accept：放行
         # drop：拒绝
         # @type RuleAction: String
-        # @param Description: 描述
+        # @param Description: 规则描述 用于规则使用或者场景的描述，最多支持50个字符
         # @type Description: String
         # @param OrderIndex: 规则顺序，-1表示最低，1表示最高，请勿和外层Type冲突（和外层的Type配合使用，当中间插入时，指定添加位置）
         # @type OrderIndex: String
@@ -8872,6 +8886,26 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 企业安全组域名解析的IP统计
+      class SgDnsParseCount < TencentCloud::Common::AbstractModel
+        # @param ValidCount: 有效下发的IP个数，离散数据
+        # @type ValidCount: Integer
+        # @param InvalidCount: 未下发的IP个数，离散数据
+        # @type InvalidCount: Integer
+
+        attr_accessor :ValidCount, :InvalidCount
+
+        def initialize(validcount=nil, invalidcount=nil)
+          @ValidCount = validcount
+          @InvalidCount = invalidcount
+        end
+
+        def deserialize(params)
+          @ValidCount = params['ValidCount']
+          @InvalidCount = params['InvalidCount']
         end
       end
 

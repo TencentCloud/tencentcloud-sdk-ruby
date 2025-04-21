@@ -19,7 +19,7 @@ module TencentCloud
     module V20180410
       # AcceptDirectConnectTunnel请求参数结构体
       class AcceptDirectConnectTunnelRequest < TencentCloud::Common::AbstractModel
-        # @param DirectConnectTunnelId: 专用通道ID。
+        # @param DirectConnectTunnelId: 专用通道ID。可以通过[DescribeDirectConnectTunnel](https://cloud.tencent.com/document/product/216/19819)接口获取。
         # @type DirectConnectTunnelId: String
 
         attr_accessor :DirectConnectTunnelId

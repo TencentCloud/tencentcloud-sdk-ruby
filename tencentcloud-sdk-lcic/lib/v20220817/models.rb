@@ -4414,15 +4414,17 @@ module TencentCloud
         # @type RecordStream: Integer
         # @param WhiteBoardSnapshotMode: 板书截图生成类型。0 不生成板书（默认）；1 全量模式；2 单页去重模式
         # @type WhiteBoardSnapshotMode: Integer
+        # @param SubtitlesTranscription: 字幕转写功能开关：0关闭，1开启，默认关闭
+        # @type SubtitlesTranscription: Integer
 
-        attr_accessor :Name, :StartTime, :EndTime, :Resolution, :MaxMicNumber, :SubType, :TeacherId, :AutoMic, :TurnOffMic, :AudioQuality, :DisableRecord, :Assistants, :RTCAudienceNumber, :AudienceType, :RecordLayout, :GroupId, :EnableDirectControl, :InteractionMode, :VideoOrientation, :IsGradingRequiredPostClass, :RoomType, :EndDelayTime, :LiveType, :RecordLiveUrl, :EnableAutoStart, :RecordBackground, :RecordScene, :RecordLang, :RecordStream, :WhiteBoardSnapshotMode
+        attr_accessor :Name, :StartTime, :EndTime, :Resolution, :MaxMicNumber, :SubType, :TeacherId, :AutoMic, :TurnOffMic, :AudioQuality, :DisableRecord, :Assistants, :RTCAudienceNumber, :AudienceType, :RecordLayout, :GroupId, :EnableDirectControl, :InteractionMode, :VideoOrientation, :IsGradingRequiredPostClass, :RoomType, :EndDelayTime, :LiveType, :RecordLiveUrl, :EnableAutoStart, :RecordBackground, :RecordScene, :RecordLang, :RecordStream, :WhiteBoardSnapshotMode, :SubtitlesTranscription
         extend Gem::Deprecate
         deprecate :RTCAudienceNumber, :none, 2025, 4
         deprecate :RTCAudienceNumber=, :none, 2025, 4
         deprecate :RecordLang, :none, 2025, 4
         deprecate :RecordLang=, :none, 2025, 4
 
-        def initialize(name=nil, starttime=nil, endtime=nil, resolution=nil, maxmicnumber=nil, subtype=nil, teacherid=nil, automic=nil, turnoffmic=nil, audioquality=nil, disablerecord=nil, assistants=nil, rtcaudiencenumber=nil, audiencetype=nil, recordlayout=nil, groupid=nil, enabledirectcontrol=nil, interactionmode=nil, videoorientation=nil, isgradingrequiredpostclass=nil, roomtype=nil, enddelaytime=nil, livetype=nil, recordliveurl=nil, enableautostart=nil, recordbackground=nil, recordscene=nil, recordlang=nil, recordstream=nil, whiteboardsnapshotmode=nil)
+        def initialize(name=nil, starttime=nil, endtime=nil, resolution=nil, maxmicnumber=nil, subtype=nil, teacherid=nil, automic=nil, turnoffmic=nil, audioquality=nil, disablerecord=nil, assistants=nil, rtcaudiencenumber=nil, audiencetype=nil, recordlayout=nil, groupid=nil, enabledirectcontrol=nil, interactionmode=nil, videoorientation=nil, isgradingrequiredpostclass=nil, roomtype=nil, enddelaytime=nil, livetype=nil, recordliveurl=nil, enableautostart=nil, recordbackground=nil, recordscene=nil, recordlang=nil, recordstream=nil, whiteboardsnapshotmode=nil, subtitlestranscription=nil)
           @Name = name
           @StartTime = starttime
           @EndTime = endtime
@@ -4453,6 +4455,7 @@ module TencentCloud
           @RecordLang = recordlang
           @RecordStream = recordstream
           @WhiteBoardSnapshotMode = whiteboardsnapshotmode
+          @SubtitlesTranscription = subtitlestranscription
         end
 
         def deserialize(params)
@@ -4486,6 +4489,7 @@ module TencentCloud
           @RecordLang = params['RecordLang']
           @RecordStream = params['RecordStream']
           @WhiteBoardSnapshotMode = params['WhiteBoardSnapshotMode']
+          @SubtitlesTranscription = params['SubtitlesTranscription']
         end
       end
 
@@ -4545,10 +4549,12 @@ module TencentCloud
         # @type RecordLang: String
         # @param WhiteBoardSnapshotMode: 板书截图生成类型。0 不生成板书；1 全量模式；2 单页去重模式
         # @type WhiteBoardSnapshotMode: Integer
+        # @param SubtitlesTranscription: 字幕转写功能开关：0关闭，1开启，默认关闭
+        # @type SubtitlesTranscription: Integer
 
-        attr_accessor :Name, :RoomId, :Status, :StartTime, :EndTime, :RealStartTime, :RealEndTime, :Resolution, :MaxRTCMember, :ReplayUrl, :RecordUrl, :MaxMicNumber, :EnableDirectControl, :InteractionMode, :VideoOrientation, :IsGradingRequiredPostClass, :RoomType, :EndDelayTime, :LiveType, :RecordLiveUrl, :EnableAutoStart, :RecordBackground, :RecordScene, :RecordLang, :WhiteBoardSnapshotMode
+        attr_accessor :Name, :RoomId, :Status, :StartTime, :EndTime, :RealStartTime, :RealEndTime, :Resolution, :MaxRTCMember, :ReplayUrl, :RecordUrl, :MaxMicNumber, :EnableDirectControl, :InteractionMode, :VideoOrientation, :IsGradingRequiredPostClass, :RoomType, :EndDelayTime, :LiveType, :RecordLiveUrl, :EnableAutoStart, :RecordBackground, :RecordScene, :RecordLang, :WhiteBoardSnapshotMode, :SubtitlesTranscription
 
-        def initialize(name=nil, roomid=nil, status=nil, starttime=nil, endtime=nil, realstarttime=nil, realendtime=nil, resolution=nil, maxrtcmember=nil, replayurl=nil, recordurl=nil, maxmicnumber=nil, enabledirectcontrol=nil, interactionmode=nil, videoorientation=nil, isgradingrequiredpostclass=nil, roomtype=nil, enddelaytime=nil, livetype=nil, recordliveurl=nil, enableautostart=nil, recordbackground=nil, recordscene=nil, recordlang=nil, whiteboardsnapshotmode=nil)
+        def initialize(name=nil, roomid=nil, status=nil, starttime=nil, endtime=nil, realstarttime=nil, realendtime=nil, resolution=nil, maxrtcmember=nil, replayurl=nil, recordurl=nil, maxmicnumber=nil, enabledirectcontrol=nil, interactionmode=nil, videoorientation=nil, isgradingrequiredpostclass=nil, roomtype=nil, enddelaytime=nil, livetype=nil, recordliveurl=nil, enableautostart=nil, recordbackground=nil, recordscene=nil, recordlang=nil, whiteboardsnapshotmode=nil, subtitlestranscription=nil)
           @Name = name
           @RoomId = roomid
           @Status = status
@@ -4574,6 +4580,7 @@ module TencentCloud
           @RecordScene = recordscene
           @RecordLang = recordlang
           @WhiteBoardSnapshotMode = whiteboardsnapshotmode
+          @SubtitlesTranscription = subtitlestranscription
         end
 
         def deserialize(params)
@@ -4602,6 +4609,7 @@ module TencentCloud
           @RecordScene = params['RecordScene']
           @RecordLang = params['RecordLang']
           @WhiteBoardSnapshotMode = params['WhiteBoardSnapshotMode']
+          @SubtitlesTranscription = params['SubtitlesTranscription']
         end
       end
 

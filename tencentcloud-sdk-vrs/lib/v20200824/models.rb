@@ -108,10 +108,13 @@ module TencentCloud
         # @type TaskType: Integer
         # @param VPRAudioId: 校验音频ID。（仅基础版声音复刻使用）
         # @type VPRAudioId: String
+        # @param EnableVoiceEnhance: 是否开启语音增强，0 - 关闭，1 - 开启 。默认关闭
+        # 语音增强仅适用于一句话复刻场景
+        # @type EnableVoiceEnhance: Integer
 
-        attr_accessor :SessionId, :VoiceName, :VoiceGender, :VoiceLanguage, :AudioIdList, :SampleRate, :Codec, :CallbackUrl, :ModelType, :TaskType, :VPRAudioId
+        attr_accessor :SessionId, :VoiceName, :VoiceGender, :VoiceLanguage, :AudioIdList, :SampleRate, :Codec, :CallbackUrl, :ModelType, :TaskType, :VPRAudioId, :EnableVoiceEnhance
 
-        def initialize(sessionid=nil, voicename=nil, voicegender=nil, voicelanguage=nil, audioidlist=nil, samplerate=nil, codec=nil, callbackurl=nil, modeltype=nil, tasktype=nil, vpraudioid=nil)
+        def initialize(sessionid=nil, voicename=nil, voicegender=nil, voicelanguage=nil, audioidlist=nil, samplerate=nil, codec=nil, callbackurl=nil, modeltype=nil, tasktype=nil, vpraudioid=nil, enablevoiceenhance=nil)
           @SessionId = sessionid
           @VoiceName = voicename
           @VoiceGender = voicegender
@@ -123,6 +126,7 @@ module TencentCloud
           @ModelType = modeltype
           @TaskType = tasktype
           @VPRAudioId = vpraudioid
+          @EnableVoiceEnhance = enablevoiceenhance
         end
 
         def deserialize(params)
@@ -137,6 +141,7 @@ module TencentCloud
           @ModelType = params['ModelType']
           @TaskType = params['TaskType']
           @VPRAudioId = params['VPRAudioId']
+          @EnableVoiceEnhance = params['EnableVoiceEnhance']
         end
       end
 

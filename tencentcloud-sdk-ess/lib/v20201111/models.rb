@@ -3233,14 +3233,17 @@ module TencentCloud
         # <ul><li> **0** :合同签署报告（默认）</li>
         # <li> **1** :公证处核验报告</li></ul>
         # @type ReportType: Integer
+        # @param HybridEvidenceFlowFile: 混合云模式获取合同文件合并出证，默认：不同意。注：此参数需要联系腾讯电子签运营进行开通后生效
+        # @type HybridEvidenceFlowFile: Boolean
 
-        attr_accessor :Operator, :FlowId, :Agent, :ReportType
+        attr_accessor :Operator, :FlowId, :Agent, :ReportType, :HybridEvidenceFlowFile
 
-        def initialize(operator=nil, flowid=nil, agent=nil, reporttype=nil)
+        def initialize(operator=nil, flowid=nil, agent=nil, reporttype=nil, hybridevidenceflowfile=nil)
           @Operator = operator
           @FlowId = flowid
           @Agent = agent
           @ReportType = reporttype
+          @HybridEvidenceFlowFile = hybridevidenceflowfile
         end
 
         def deserialize(params)
@@ -3254,6 +3257,7 @@ module TencentCloud
             @Agent.deserialize(params['Agent'])
           end
           @ReportType = params['ReportType']
+          @HybridEvidenceFlowFile = params['HybridEvidenceFlowFile']
         end
       end
 

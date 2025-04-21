@@ -1061,10 +1061,12 @@ module TencentCloud
         # @type Tag: String
         # @param InternalAccess: 内网访问开关 close | open
         # @type InternalAccess: String
+        # @param InternalDomain: 内网域名
+        # @type InternalDomain: String
 
-        attr_accessor :EnvId, :ServerName, :OpenAccessTypes, :Cpu, :Mem, :MinNum, :MaxNum, :PolicyDetails, :CustomLogs, :EnvParams, :InitialDelaySeconds, :CreateTime, :Port, :HasDockerfile, :Dockerfile, :BuildDir, :LogType, :LogSetId, :LogTopicId, :LogParseType, :Tag, :InternalAccess
+        attr_accessor :EnvId, :ServerName, :OpenAccessTypes, :Cpu, :Mem, :MinNum, :MaxNum, :PolicyDetails, :CustomLogs, :EnvParams, :InitialDelaySeconds, :CreateTime, :Port, :HasDockerfile, :Dockerfile, :BuildDir, :LogType, :LogSetId, :LogTopicId, :LogParseType, :Tag, :InternalAccess, :InternalDomain
 
-        def initialize(envid=nil, servername=nil, openaccesstypes=nil, cpu=nil, mem=nil, minnum=nil, maxnum=nil, policydetails=nil, customlogs=nil, envparams=nil, initialdelayseconds=nil, createtime=nil, port=nil, hasdockerfile=nil, dockerfile=nil, builddir=nil, logtype=nil, logsetid=nil, logtopicid=nil, logparsetype=nil, tag=nil, internalaccess=nil)
+        def initialize(envid=nil, servername=nil, openaccesstypes=nil, cpu=nil, mem=nil, minnum=nil, maxnum=nil, policydetails=nil, customlogs=nil, envparams=nil, initialdelayseconds=nil, createtime=nil, port=nil, hasdockerfile=nil, dockerfile=nil, builddir=nil, logtype=nil, logsetid=nil, logtopicid=nil, logparsetype=nil, tag=nil, internalaccess=nil, internaldomain=nil)
           @EnvId = envid
           @ServerName = servername
           @OpenAccessTypes = openaccesstypes
@@ -1087,6 +1089,7 @@ module TencentCloud
           @LogParseType = logparsetype
           @Tag = tag
           @InternalAccess = internalaccess
+          @InternalDomain = internaldomain
         end
 
         def deserialize(params)
@@ -1119,6 +1122,7 @@ module TencentCloud
           @LogParseType = params['LogParseType']
           @Tag = params['Tag']
           @InternalAccess = params['InternalAccess']
+          @InternalDomain = params['InternalDomain']
         end
       end
 
@@ -1140,10 +1144,12 @@ module TencentCloud
         # @type CustomDomainNames: Array
         # @param ServerType: 服务类型: function 云函数2.0；container 容器服务
         # @type ServerType: String
+        # @param TrafficType: 流量类型，目前只有 FLOW
+        # @type TrafficType: String
 
-        attr_accessor :ServerName, :DefaultDomainName, :CustomDomainName, :Status, :UpdateTime, :AccessTypes, :CustomDomainNames, :ServerType
+        attr_accessor :ServerName, :DefaultDomainName, :CustomDomainName, :Status, :UpdateTime, :AccessTypes, :CustomDomainNames, :ServerType, :TrafficType
 
-        def initialize(servername=nil, defaultdomainname=nil, customdomainname=nil, status=nil, updatetime=nil, accesstypes=nil, customdomainnames=nil, servertype=nil)
+        def initialize(servername=nil, defaultdomainname=nil, customdomainname=nil, status=nil, updatetime=nil, accesstypes=nil, customdomainnames=nil, servertype=nil, traffictype=nil)
           @ServerName = servername
           @DefaultDomainName = defaultdomainname
           @CustomDomainName = customdomainname
@@ -1152,6 +1158,7 @@ module TencentCloud
           @AccessTypes = accesstypes
           @CustomDomainNames = customdomainnames
           @ServerType = servertype
+          @TrafficType = traffictype
         end
 
         def deserialize(params)
@@ -1163,6 +1170,7 @@ module TencentCloud
           @AccessTypes = params['AccessTypes']
           @CustomDomainNames = params['CustomDomainNames']
           @ServerType = params['ServerType']
+          @TrafficType = params['TrafficType']
         end
       end
 

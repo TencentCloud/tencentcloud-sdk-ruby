@@ -5064,7 +5064,6 @@ module TencentCloud
         # @param LakeFsStatus: 托管存储状态，HasLakeFs等于true时，该值才有意义
         # @type LakeFsStatus: String
         # @param BucketType: 托管存储桶类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BucketType: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6698,7 +6697,6 @@ module TencentCloud
       # DescribeResultDownload返回参数结构体
       class DescribeResultDownloadResponse < TencentCloud::Common::AbstractModel
         # @param Path: 下载文件路径
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Path: String
         # @param Status: 任务状态 init | queue | format | compress | success|  timeout | error
         # @type Status: String
@@ -10584,7 +10582,6 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OutPut: :class:`Tencentcloud::Dlc.v20210125.models.StatementOutput`
         # @param BatchId: 批任务id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BatchId: String
         # @param Code: 运行语句
         # @type Code: String
@@ -10765,16 +10762,12 @@ module TencentCloud
       # 非DLC产品CHDFS绑定
       class OtherCHDFSBinding < TencentCloud::Common::AbstractModel
         # @param ProductName: 产品名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProductName: String
         # @param SuperUser: 用户名称（该字段已废弃）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SuperUser: Array
         # @param VpcInfo: vpc配置信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VpcInfo: Array
         # @param IsBind: 是否与该桶绑定（该字段已废弃）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsBind: Boolean
 
         attr_accessor :ProductName, :SuperUser, :VpcInfo, :IsBind
@@ -12826,7 +12819,6 @@ module TencentCloud
         # @param OperateUin: 执行sql的子uin
         # @type OperateUin: String
         # @param DataEngineName: 计算资源名字
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DataEngineName: String
         # @param InputType: 导入类型是本地导入还是cos
         # @type InputType: String

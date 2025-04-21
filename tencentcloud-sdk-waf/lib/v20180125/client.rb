@@ -533,6 +533,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 场景化后删除Bot的UCB自定义规则
+
+        # @param request: Request instance for DeleteBotSceneUCBRule.
+        # @type request: :class:`Tencentcloud::waf::V20180125::DeleteBotSceneUCBRuleRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::DeleteBotSceneUCBRuleResponse`
+        def DeleteBotSceneUCBRule(request)
+          body = send_request('DeleteBotSceneUCBRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteBotSceneUCBRuleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # Waf  CC V2 Delete接口
 
         # @param request: Request instance for DeleteCCRule.
@@ -1119,6 +1143,78 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeBatchIpAccessControlResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取BOT场景列表与概览
+
+        # @param request: Request instance for DescribeBotSceneList.
+        # @type request: :class:`Tencentcloud::waf::V20180125::DescribeBotSceneListRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::DescribeBotSceneListResponse`
+        def DescribeBotSceneList(request)
+          body = send_request('DescribeBotSceneList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeBotSceneListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取Bot场景全局概览
+
+        # @param request: Request instance for DescribeBotSceneOverview.
+        # @type request: :class:`Tencentcloud::waf::V20180125::DescribeBotSceneOverviewRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::DescribeBotSceneOverviewResponse`
+        def DescribeBotSceneOverview(request)
+          body = send_request('DescribeBotSceneOverview', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeBotSceneOverviewResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 场景化后Bot获取UCB自定义规则策略
+
+        # @param request: Request instance for DescribeBotSceneUCBRule.
+        # @type request: :class:`Tencentcloud::waf::V20180125::DescribeBotSceneUCBRuleRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::DescribeBotSceneUCBRuleResponse`
+        def DescribeBotSceneUCBRule(request)
+          body = send_request('DescribeBotSceneUCBRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeBotSceneUCBRuleResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -2777,6 +2873,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyAttackWhiteRuleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # bot子场景开关
+
+        # @param request: Request instance for ModifyBotSceneStatus.
+        # @type request: :class:`Tencentcloud::waf::V20180125::ModifyBotSceneStatusRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::ModifyBotSceneStatusResponse`
+        def ModifyBotSceneStatus(request)
+          body = send_request('ModifyBotSceneStatus', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyBotSceneStatusResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 【接口复用】场景化后更新Bot的UCB自定义规则，两个调用位置：1.BOT全局白名单 2.BOT场景配置
+
+        # @param request: Request instance for ModifyBotSceneUCBRule.
+        # @type request: :class:`Tencentcloud::waf::V20180125::ModifyBotSceneUCBRuleRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::ModifyBotSceneUCBRuleResponse`
+        def ModifyBotSceneUCBRule(request)
+          body = send_request('ModifyBotSceneUCBRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyBotSceneUCBRuleResponse.new
             model.deserialize(response['Response'])
             model
           else

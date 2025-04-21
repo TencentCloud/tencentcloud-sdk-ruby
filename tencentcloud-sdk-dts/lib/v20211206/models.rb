@@ -1362,9 +1362,11 @@ module TencentCloud
         # @type AccessType: String
         # @param DatabaseType: 实例数据库类型，如：mysql,redis,mongodb,postgresql,mariadb,percona 等
         # @type DatabaseType: String
-        # @param NodeType: 节点类型，为空或者simple表示普通节点、cluster表示集群节点；对于mongo业务，取值为replicaset(mongodb副本集)、standalone(mongodb单节点)、cluster(mongodb集群)；对于redis实例，为空或simple(单节点)、cluster(集群)、cluster-cache(cache集群)、cluster-proxy(代理集群)
+        # @param NodeType: 节点类型，simple表示普通节点、cluster表示集群节点；
+        # 对于mongo业务，取值为replicaset(mongodb副本集)、standalone(mongodb单节点)、cluster(mongodb集群)；
+        # 对于redis实例，simple(单节点)、cluster-cache(直连集群)、cluster-proxy(代理集群)；
         # @type NodeType: String
-        # @param Info: 数据库信息
+        # @param Info: 实例具体的连接信息，如ip、port、接入方式等
         # @type Info: Array
         # @param Supplier: 实例服务提供商，如:"aliyun","others"
         # @type Supplier: String
@@ -1373,7 +1375,7 @@ module TencentCloud
         # @type ExtraAttr: Array
         # @param DatabaseNetEnv: 数据库所属网络环境，AccessType为云联网(ccn)时必填， UserIDC表示用户IDC、TencentVPC表示腾讯云VPC；
         # @type DatabaseNetEnv: String
-        # @param ConnectType: tdsql连接方式：proxy-通过tdsql proxy主机访问各个set节点，注意只有在自研上云的网络环境下才能通过这种方式连接，Info中只需要提供proxy主机信息。set-直连set节点，如选择直连set方式，Info中需要正确填写proxy主机信息及所有set节点信息。源端是tdsqlmysql类型必填。
+        # @param ConnectType: tdsql连接方式：proxy-通过tdsql proxy主机访问各个set节点，注意只有在自研上云的网络环境下才能通过这种方式连接，Info中只需要提供proxy主机信息。set-直连set节点，如选择直连set方式，Info中需要正确填写proxy主机信息及所有set节点信息。源端是tdsqlmysql类型必填。对于mongodb链路，srv表示SRV连接串，为空或不传表示普通连接串，srv仅限于FetchMethod为change_stream的拉取模式
         # @type ConnectType: String
 
         attr_accessor :Region, :AccessType, :DatabaseType, :NodeType, :Info, :Supplier, :ExtraAttr, :DatabaseNetEnv, :ConnectType

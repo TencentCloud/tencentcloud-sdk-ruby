@@ -1642,6 +1642,38 @@ module TencentCloud
         end
       end
 
+      # 动作策略的匹配规则实体
+      class BotActionScopeRuleEntry < TencentCloud::Common::AbstractModel
+        # @param Key: 参数
+        # @type Key: String
+        # @param Op: 匹配符
+        # @type Op: String
+        # @param Value: 参数值
+        # @type Value: String
+        # @param Name: 对于头部字段匹配value的时候指定的头部名
+        # @type Name: String
+        # @param ValueArray: 470后使用此字段存储多值
+        # @type ValueArray: Array
+
+        attr_accessor :Key, :Op, :Value, :Name, :ValueArray
+
+        def initialize(key=nil, op=nil, value=nil, name=nil, valuearray=nil)
+          @Key = key
+          @Op = op
+          @Value = value
+          @Name = name
+          @ValueArray = valuearray
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Op = params['Op']
+          @Value = params['Value']
+          @Name = params['Name']
+          @ValueArray = params['ValueArray']
+        end
+      end
+
       # Bot资源信息
       class BotPkg < TencentCloud::Common::AbstractModel
         # @param ResourceIds: 资源id
@@ -1738,6 +1770,301 @@ module TencentCloud
         end
       end
 
+      # 获取场景动作策略列表时的动作策略实体
+      class BotSceneActionRule < TencentCloud::Common::AbstractModel
+        # @param RuleId: 动作策略ID
+        # @type RuleId: String
+        # @param RuleName: 动作策略名称
+        # @type RuleName: String
+        # @param Priority: 策略优先级
+        # @type Priority: Integer
+        # @param Status: 策略生效状态
+        # @type Status: Boolean
+        # @param Score: 分数范围
+        # @type Score: Array
+        # @param Level: 100-宽松、200-中等、300-严格、0-自定义
+        # @type Level: String
+        # @param Scope: 生效范围，为空表示全部范围
+        # @type Scope: Array
+        # @param Type: default：默认创建 custom：自定义创建
+        # @type Type: String
+        # @param ScopeType: 匹配范围类型：全局匹配 or 自定义匹配范围
+        # @type ScopeType: String
+        # @param ActionMatchType: 匹配条件间的与或关系
+        # @type ActionMatchType: String
+
+        attr_accessor :RuleId, :RuleName, :Priority, :Status, :Score, :Level, :Scope, :Type, :ScopeType, :ActionMatchType
+
+        def initialize(ruleid=nil, rulename=nil, priority=nil, status=nil, score=nil, level=nil, scope=nil, type=nil, scopetype=nil, actionmatchtype=nil)
+          @RuleId = ruleid
+          @RuleName = rulename
+          @Priority = priority
+          @Status = status
+          @Score = score
+          @Level = level
+          @Scope = scope
+          @Type = type
+          @ScopeType = scopetype
+          @ActionMatchType = actionmatchtype
+        end
+
+        def deserialize(params)
+          @RuleId = params['RuleId']
+          @RuleName = params['RuleName']
+          @Priority = params['Priority']
+          @Status = params['Status']
+          unless params['Score'].nil?
+            @Score = []
+            params['Score'].each do |i|
+              botscoreruleentry_tmp = BotScoreRuleEntry.new
+              botscoreruleentry_tmp.deserialize(i)
+              @Score << botscoreruleentry_tmp
+            end
+          end
+          @Level = params['Level']
+          unless params['Scope'].nil?
+            @Scope = []
+            params['Scope'].each do |i|
+              botactionscoperuleentry_tmp = BotActionScopeRuleEntry.new
+              botactionscoperuleentry_tmp.deserialize(i)
+              @Scope << botactionscoperuleentry_tmp
+            end
+          end
+          @Type = params['Type']
+          @ScopeType = params['ScopeType']
+          @ActionMatchType = params['ActionMatchType']
+        end
+      end
+
+      # 场景的详细配置信息
+      class BotSceneInfo < TencentCloud::Common::AbstractModel
+        # @param SceneId: 场景ID
+        # @type SceneId: String
+        # @param Type: 场景类型，default:默认场景,custom:非默认场景
+        # @type Type: String
+        # @param SceneName: 场景名
+        # @type SceneName: String
+        # @param UpdateTime: 更新时间
+        # @type UpdateTime: Integer
+        # @param BusinessType: 场景模板类型，登录: login  秒杀:seckill  爬内容：crawl 自定义: custom
+        # @type BusinessType: Array
+        # @param ClientType: 客户端类型，浏览器/H5 : browser  小程序: miniApp  App:
+        # @type ClientType: Array
+        # @param Priority: 优先级
+        # @type Priority: Integer
+        # @param MatchCondition: 匹配范围
+        # @type MatchCondition: Array
+        # @param SceneStatus: 场景开关
+        # @type SceneStatus: Boolean
+        # @param JsInjectStatus: 前端对抗开关
+        # @type JsInjectStatus: Boolean
+        # @param AIStatus: AI开关
+        # @type AIStatus: Boolean
+        # @param TIStatus: TI开关
+        # @type TIStatus: Boolean
+        # @param StatisticStatus: 智能统计开关
+        # @type StatisticStatus: Boolean
+        # @param ActionRuleCount: 动作策略数量
+        # @type ActionRuleCount: Integer
+        # @param UCBCount: 自定义规则数量
+        # @type UCBCount: Integer
+        # @param MatchType: 场景的匹配范围，global-全部匹配 custom-自定义匹配范围
+        # @type MatchType: String
+        # @param ActionMatchType: 匹配条件间的与或关系
+        # @type ActionMatchType: String
+        # @param UAStatus: UA模块开关
+        # @type UAStatus: Boolean
+        # @param JsInjectRuleId: 简易模式场景：前端对抗对应mysql的记录id
+        # @type JsInjectRuleId: Integer
+        # @param JsInjectAction: 简易模式场景：前端对抗配置动作
+        # @type JsInjectAction: Integer
+        # @param JsInjectRedirect: 简易模式场景：前端对抗重定向路径
+        # @type JsInjectRedirect: String
+        # @param ActionRuleList: 简易模式场景：动作策略信息  PS:简易模式只有一个动作策略
+        # @type ActionRuleList: Array
+        # @param BotIdPattern: 简易模式场景：monitor-观察 intercept-拦截 custom-自定义
+        # @type BotIdPattern: String
+        # @param BotIdCount: 简易模式场景：bot_id规则总数
+        # @type BotIdCount: Integer
+        # @param BotIdMonitorCount: 简易模式场景：观察动作的规则总数
+        # @type BotIdMonitorCount: Integer
+        # @param BotIdInterceptCount: 简易模式场景：拦截动作的规则总数
+        # @type BotIdInterceptCount: Integer
+        # @param RuleSetSelection: 创建场景时选择的规则集
+        # @type RuleSetSelection: Array
+        # @param TokenList: 改场景的bot token列表
+        # @type TokenList: Array
+        # @param BotIdRedirectCount: 简易模式场景：重定向动作的规则总数
+        # @type BotIdRedirectCount: Integer
+        # @param BotIdCaptchaCount: 简易模式场景：人机识别动作的规则总数
+        # @type BotIdCaptchaCount: Integer
+        # @param BotIdProtectLevel: 简易模式场景：防护等级
+        # @type BotIdProtectLevel: String
+        # @param BotIdGlobalRedirect: 简易模式场景：全局重定向路径
+        # @type BotIdGlobalRedirect: String
+        # @param BotIdJsChallengeCount: 简易模式场景：JS校验动作的规则总数
+        # @type BotIdJsChallengeCount: Integer
+
+        attr_accessor :SceneId, :Type, :SceneName, :UpdateTime, :BusinessType, :ClientType, :Priority, :MatchCondition, :SceneStatus, :JsInjectStatus, :AIStatus, :TIStatus, :StatisticStatus, :ActionRuleCount, :UCBCount, :MatchType, :ActionMatchType, :UAStatus, :JsInjectRuleId, :JsInjectAction, :JsInjectRedirect, :ActionRuleList, :BotIdPattern, :BotIdCount, :BotIdMonitorCount, :BotIdInterceptCount, :RuleSetSelection, :TokenList, :BotIdRedirectCount, :BotIdCaptchaCount, :BotIdProtectLevel, :BotIdGlobalRedirect, :BotIdJsChallengeCount
+
+        def initialize(sceneid=nil, type=nil, scenename=nil, updatetime=nil, businesstype=nil, clienttype=nil, priority=nil, matchcondition=nil, scenestatus=nil, jsinjectstatus=nil, aistatus=nil, tistatus=nil, statisticstatus=nil, actionrulecount=nil, ucbcount=nil, matchtype=nil, actionmatchtype=nil, uastatus=nil, jsinjectruleid=nil, jsinjectaction=nil, jsinjectredirect=nil, actionrulelist=nil, botidpattern=nil, botidcount=nil, botidmonitorcount=nil, botidinterceptcount=nil, rulesetselection=nil, tokenlist=nil, botidredirectcount=nil, botidcaptchacount=nil, botidprotectlevel=nil, botidglobalredirect=nil, botidjschallengecount=nil)
+          @SceneId = sceneid
+          @Type = type
+          @SceneName = scenename
+          @UpdateTime = updatetime
+          @BusinessType = businesstype
+          @ClientType = clienttype
+          @Priority = priority
+          @MatchCondition = matchcondition
+          @SceneStatus = scenestatus
+          @JsInjectStatus = jsinjectstatus
+          @AIStatus = aistatus
+          @TIStatus = tistatus
+          @StatisticStatus = statisticstatus
+          @ActionRuleCount = actionrulecount
+          @UCBCount = ucbcount
+          @MatchType = matchtype
+          @ActionMatchType = actionmatchtype
+          @UAStatus = uastatus
+          @JsInjectRuleId = jsinjectruleid
+          @JsInjectAction = jsinjectaction
+          @JsInjectRedirect = jsinjectredirect
+          @ActionRuleList = actionrulelist
+          @BotIdPattern = botidpattern
+          @BotIdCount = botidcount
+          @BotIdMonitorCount = botidmonitorcount
+          @BotIdInterceptCount = botidinterceptcount
+          @RuleSetSelection = rulesetselection
+          @TokenList = tokenlist
+          @BotIdRedirectCount = botidredirectcount
+          @BotIdCaptchaCount = botidcaptchacount
+          @BotIdProtectLevel = botidprotectlevel
+          @BotIdGlobalRedirect = botidglobalredirect
+          @BotIdJsChallengeCount = botidjschallengecount
+        end
+
+        def deserialize(params)
+          @SceneId = params['SceneId']
+          @Type = params['Type']
+          @SceneName = params['SceneName']
+          @UpdateTime = params['UpdateTime']
+          @BusinessType = params['BusinessType']
+          @ClientType = params['ClientType']
+          @Priority = params['Priority']
+          unless params['MatchCondition'].nil?
+            @MatchCondition = []
+            params['MatchCondition'].each do |i|
+              botscenematchcondition_tmp = BotSceneMatchCondition.new
+              botscenematchcondition_tmp.deserialize(i)
+              @MatchCondition << botscenematchcondition_tmp
+            end
+          end
+          @SceneStatus = params['SceneStatus']
+          @JsInjectStatus = params['JsInjectStatus']
+          @AIStatus = params['AIStatus']
+          @TIStatus = params['TIStatus']
+          @StatisticStatus = params['StatisticStatus']
+          @ActionRuleCount = params['ActionRuleCount']
+          @UCBCount = params['UCBCount']
+          @MatchType = params['MatchType']
+          @ActionMatchType = params['ActionMatchType']
+          @UAStatus = params['UAStatus']
+          @JsInjectRuleId = params['JsInjectRuleId']
+          @JsInjectAction = params['JsInjectAction']
+          @JsInjectRedirect = params['JsInjectRedirect']
+          unless params['ActionRuleList'].nil?
+            @ActionRuleList = []
+            params['ActionRuleList'].each do |i|
+              botsceneactionrule_tmp = BotSceneActionRule.new
+              botsceneactionrule_tmp.deserialize(i)
+              @ActionRuleList << botsceneactionrule_tmp
+            end
+          end
+          @BotIdPattern = params['BotIdPattern']
+          @BotIdCount = params['BotIdCount']
+          @BotIdMonitorCount = params['BotIdMonitorCount']
+          @BotIdInterceptCount = params['BotIdInterceptCount']
+          @RuleSetSelection = params['RuleSetSelection']
+          unless params['TokenList'].nil?
+            @TokenList = []
+            params['TokenList'].each do |i|
+              bottoken_tmp = BotToken.new
+              bottoken_tmp.deserialize(i)
+              @TokenList << bottoken_tmp
+            end
+          end
+          @BotIdRedirectCount = params['BotIdRedirectCount']
+          @BotIdCaptchaCount = params['BotIdCaptchaCount']
+          @BotIdProtectLevel = params['BotIdProtectLevel']
+          @BotIdGlobalRedirect = params['BotIdGlobalRedirect']
+          @BotIdJsChallengeCount = params['BotIdJsChallengeCount']
+        end
+      end
+
+      # 场景匹配条件
+      class BotSceneMatchCondition < TencentCloud::Common::AbstractModel
+        # @param Key: 匹配参数
+        # @type Key: String
+        # @param Op: 匹配符
+        # @type Op: String
+        # @param Value: 匹配值
+        # @type Value: String
+        # @param Name: 对于头部字段匹配value的时候指定的头部名
+        # @type Name: String
+        # @param ValueArray: 470后使用此入参存在多值
+        # @type ValueArray: Array
+
+        attr_accessor :Key, :Op, :Value, :Name, :ValueArray
+
+        def initialize(key=nil, op=nil, value=nil, name=nil, valuearray=nil)
+          @Key = key
+          @Op = op
+          @Value = value
+          @Name = name
+          @ValueArray = valuearray
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Op = params['Op']
+          @Value = params['Value']
+          @Name = params['Name']
+          @ValueArray = params['ValueArray']
+        end
+      end
+
+      # 动作策略的一条分数段实体
+      class BotScoreRuleEntry < TencentCloud::Common::AbstractModel
+        # @param Upper: 分数区间上限
+        # @type Upper: String
+        # @param Lower: 分数区间下限
+        # @type Lower: String
+        # @param Action: 处置动作
+        # @type Action: String
+        # @param Label: 流量标签
+        # @type Label: String
+        # @param Redirect: 重定向
+        # @type Redirect: String
+
+        attr_accessor :Upper, :Lower, :Action, :Label, :Redirect
+
+        def initialize(upper=nil, lower=nil, action=nil, label=nil, redirect=nil)
+          @Upper = upper
+          @Lower = lower
+          @Action = action
+          @Label = label
+          @Redirect = redirect
+        end
+
+        def deserialize(params)
+          @Upper = params['Upper']
+          @Lower = params['Lower']
+          @Action = params['Action']
+          @Label = params['Label']
+          @Redirect = params['Redirect']
+        end
+      end
+
       # bot的趋势图对象
       class BotStatPointItem < TencentCloud::Common::AbstractModel
         # @param TimeStamp: 横坐标
@@ -1763,6 +2090,58 @@ module TencentCloud
           @Key = params['Key']
           @Value = params['Value']
           @Label = params['Label']
+        end
+      end
+
+      # bot-token配置
+      class BotToken < TencentCloud::Common::AbstractModel
+        # @param Name: 会话名称
+        # @type Name: String
+        # @param Description: 会话描述
+        # @type Description: String
+        # @param Id: 会话id
+        # @type Id: String
+        # @param Status: 策略的开关状态
+        # @type Status: Boolean
+        # @param Location: 会话位置
+        # @type Location: String
+        # @param Key: 会话key
+        # @type Key: String
+        # @param Operator: 会话匹配方式，前缀匹配、后缀匹配等
+        # @type Operator: String
+        # @param Timestamp: 会话更新的时间戳
+        # @type Timestamp: Integer
+        # @param Scene: 场景列表，内容为空表示全部场景应用
+        # @type Scene: Array
+        # @param Priority: 优先级
+        # @type Priority: Integer
+
+        attr_accessor :Name, :Description, :Id, :Status, :Location, :Key, :Operator, :Timestamp, :Scene, :Priority
+
+        def initialize(name=nil, description=nil, id=nil, status=nil, location=nil, key=nil, operator=nil, timestamp=nil, scene=nil, priority=nil)
+          @Name = name
+          @Description = description
+          @Id = id
+          @Status = status
+          @Location = location
+          @Key = key
+          @Operator = operator
+          @Timestamp = timestamp
+          @Scene = scene
+          @Priority = priority
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Description = params['Description']
+          @Id = params['Id']
+          @Status = params['Status']
+          @Location = params['Location']
+          @Key = params['Key']
+          @Operator = params['Operator']
+          @Timestamp = params['Timestamp']
+          @Scene = params['Scene']
+          @Priority = params['Priority']
         end
       end
 
@@ -3063,6 +3442,51 @@ module TencentCloud
 
         def deserialize(params)
           @FailIds = params['FailIds']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteBotSceneUCBRule请求参数结构体
+      class DeleteBotSceneUCBRuleRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名
+        # @type Domain: String
+        # @param RuleId: 自定义规则ID
+        # @type RuleId: String
+        # @param SceneId: 1.BOT全局白名单处调用时，传"global";2.BOT场景配置时，传具体的场景ID
+        # @type SceneId: String
+
+        attr_accessor :Domain, :RuleId, :SceneId
+
+        def initialize(domain=nil, ruleid=nil, sceneid=nil)
+          @Domain = domain
+          @RuleId = ruleid
+          @SceneId = sceneid
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @RuleId = params['RuleId']
+          @SceneId = params['SceneId']
+        end
+      end
+
+      # DeleteBotSceneUCBRule返回参数结构体
+      class DeleteBotSceneUCBRuleResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 正常情况下为null
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Data = params['Data']
           @RequestId = params['RequestId']
         end
       end
@@ -4676,6 +5100,240 @@ module TencentCloud
             @Data.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeBotSceneList请求参数结构体
+      class DescribeBotSceneListRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名
+        # @type Domain: String
+        # @param Limit: 每页数量
+        # @type Limit: Integer
+        # @param Offset: 页码
+        # @type Offset: Integer
+        # @param BusinessType: 场景模板类型，通过此下拉字段进行场景筛选。全部: all 登录: login  秒杀:seckill  爬内容：crawl 自定义: custom
+        # @type BusinessType: Array
+        # @param SceneName: 通过场景名称模糊搜索
+        # @type SceneName: String
+        # @param IsDefault: 是否只显示默认场景
+        # @type IsDefault: Boolean
+        # @param IsValid: 是否仅显示生效场景
+        # @type IsValid: Boolean
+
+        attr_accessor :Domain, :Limit, :Offset, :BusinessType, :SceneName, :IsDefault, :IsValid
+
+        def initialize(domain=nil, limit=nil, offset=nil, businesstype=nil, scenename=nil, isdefault=nil, isvalid=nil)
+          @Domain = domain
+          @Limit = limit
+          @Offset = offset
+          @BusinessType = businesstype
+          @SceneName = scenename
+          @IsDefault = isdefault
+          @IsValid = isvalid
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @BusinessType = params['BusinessType']
+          @SceneName = params['SceneName']
+          @IsDefault = params['IsDefault']
+          @IsValid = params['IsValid']
+        end
+      end
+
+      # DescribeBotSceneList返回参数结构体
+      class DescribeBotSceneListResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 符合筛选条件的场景数目
+        # @type TotalCount: Integer
+        # @param BotSceneList: 当TotalCount为0时，返回空
+        # @type BotSceneList: Array
+        # @param SimpleFlag: true-简易模式
+        # @type SimpleFlag: Boolean
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :BotSceneList, :SimpleFlag, :RequestId
+
+        def initialize(totalcount=nil, botscenelist=nil, simpleflag=nil, requestid=nil)
+          @TotalCount = totalcount
+          @BotSceneList = botscenelist
+          @SimpleFlag = simpleflag
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['BotSceneList'].nil?
+            @BotSceneList = []
+            params['BotSceneList'].each do |i|
+              botsceneinfo_tmp = BotSceneInfo.new
+              botsceneinfo_tmp.deserialize(i)
+              @BotSceneList << botsceneinfo_tmp
+            end
+          end
+          @SimpleFlag = params['SimpleFlag']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeBotSceneOverview请求参数结构体
+      class DescribeBotSceneOverviewRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名
+        # @type Domain: String
+
+        attr_accessor :Domain
+
+        def initialize(domain=nil)
+          @Domain = domain
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+        end
+      end
+
+      # DescribeBotSceneOverview返回参数结构体
+      class DescribeBotSceneOverviewResponse < TencentCloud::Common::AbstractModel
+        # @param Status: BOT总开关
+        # @type Status: Boolean
+        # @param SceneCount: 场景总数
+        # @type SceneCount: Integer
+        # @param ValidSceneCount: 生效场景数
+        # @type ValidSceneCount: Integer
+        # @param CurrentGlobalScene: 当前开启的、匹配范围为全局、优先级最高的场景
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CurrentGlobalScene: :class:`Tencentcloud::Waf.v20180125.models.GlobalSceneInfo`
+        # @param CustomRuleNums: 自定义规则总数，不包括BOT白名单
+        # @type CustomRuleNums: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Status, :SceneCount, :ValidSceneCount, :CurrentGlobalScene, :CustomRuleNums, :RequestId
+
+        def initialize(status=nil, scenecount=nil, validscenecount=nil, currentglobalscene=nil, customrulenums=nil, requestid=nil)
+          @Status = status
+          @SceneCount = scenecount
+          @ValidSceneCount = validscenecount
+          @CurrentGlobalScene = currentglobalscene
+          @CustomRuleNums = customrulenums
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @SceneCount = params['SceneCount']
+          @ValidSceneCount = params['ValidSceneCount']
+          unless params['CurrentGlobalScene'].nil?
+            @CurrentGlobalScene = GlobalSceneInfo.new
+            @CurrentGlobalScene.deserialize(params['CurrentGlobalScene'])
+          end
+          @CustomRuleNums = params['CustomRuleNums']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeBotSceneUCBRule请求参数结构体
+      class DescribeBotSceneUCBRuleRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名
+        # @type Domain: String
+        # @param Skip: 翻页组件的起始页
+        # @type Skip: Integer
+        # @param Limit: 翻页组件的页数据条数
+        # @type Limit: Integer
+        # @param Sort: 排序参数
+        # @type Sort: String
+        # @param SceneId: 1.BOT全局白名单处调用时，传"global";2.BOT场景配置处调用时，传具体的场景ID
+        # @type SceneId: String
+        # @param Operate: 需要过滤的动作
+        # @type Operate: String
+        # @param Name: 需要过滤的规则名称
+        # @type Name: String
+        # @param VersionFlag: 兼容老数据和新旧版前端
+        # @type VersionFlag: String
+        # @param TimerType: 生效方式：0-全部 1-永久生效 2-定时生效 3-周粒度生效 4-月粒度生效
+        # @type TimerType: Integer
+        # @param ValidStatus: 0-全部 1-生效中 2-已过期
+        # @type ValidStatus: Integer
+
+        attr_accessor :Domain, :Skip, :Limit, :Sort, :SceneId, :Operate, :Name, :VersionFlag, :TimerType, :ValidStatus
+
+        def initialize(domain=nil, skip=nil, limit=nil, sort=nil, sceneid=nil, operate=nil, name=nil, versionflag=nil, timertype=nil, validstatus=nil)
+          @Domain = domain
+          @Skip = skip
+          @Limit = limit
+          @Sort = sort
+          @SceneId = sceneid
+          @Operate = operate
+          @Name = name
+          @VersionFlag = versionflag
+          @TimerType = timertype
+          @ValidStatus = validstatus
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @Skip = params['Skip']
+          @Limit = params['Limit']
+          @Sort = params['Sort']
+          @SceneId = params['SceneId']
+          @Operate = params['Operate']
+          @Name = params['Name']
+          @VersionFlag = params['VersionFlag']
+          @TimerType = params['TimerType']
+          @ValidStatus = params['ValidStatus']
+        end
+      end
+
+      # DescribeBotSceneUCBRule返回参数结构体
+      class DescribeBotSceneUCBRuleResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 返回数据包
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: :class:`Tencentcloud::Waf.v20180125.models.DescribeBotUCBRuleRsp`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = DescribeBotUCBRuleRsp.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 获取自定义规则列表时的出参
+      class DescribeBotUCBRuleRsp < TencentCloud::Common::AbstractModel
+        # @param Res: 规则列表
+        # @type Res: Array
+        # @param TotalCount: 规则总数
+        # @type TotalCount: Integer
+
+        attr_accessor :Res, :TotalCount
+
+        def initialize(res=nil, totalcount=nil)
+          @Res = res
+          @TotalCount = totalcount
+        end
+
+        def deserialize(params)
+          unless params['Res'].nil?
+            @Res = []
+            params['Res'].each do |i|
+              inoutputbotucbrule_tmp = InOutputBotUCBRule.new
+              inoutputbotucbrule_tmp.deserialize(i)
+              @Res << inoutputbotucbrule_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
         end
       end
 
@@ -8878,6 +9536,34 @@ module TencentCloud
         end
       end
 
+      # 当前开启的、匹配范围为全局、优先级最高的场景信息
+      class GlobalSceneInfo < TencentCloud::Common::AbstractModel
+        # @param SceneId: 场景ID
+        # @type SceneId: String
+        # @param SceneName: 场景名称
+        # @type SceneName: String
+        # @param Priority: 场景优先级
+        # @type Priority: Integer
+        # @param UpdateTime: 场景更新时间
+        # @type UpdateTime: Integer
+
+        attr_accessor :SceneId, :SceneName, :Priority, :UpdateTime
+
+        def initialize(sceneid=nil, scenename=nil, priority=nil, updatetime=nil)
+          @SceneId = sceneid
+          @SceneName = scenename
+          @Priority = priority
+          @UpdateTime = updatetime
+        end
+
+        def deserialize(params)
+          @SceneId = params['SceneId']
+          @SceneName = params['SceneName']
+          @Priority = params['Priority']
+          @UpdateTime = params['UpdateTime']
+        end
+      end
+
       # 计费下单接口出入参Goods
       class GoodNews < TencentCloud::Common::AbstractModel
         # @param GoodsNum: 商品数量
@@ -9425,6 +10111,185 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 修改/新增自定义规则的入参，查询自定义规则列表时的出参
+      class InOutputBotUCBRule < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名
+        # @type Domain: String
+        # @param Name: 规则名称
+        # @type Name: String
+        # @param Rule: UCB的具体规则项
+        # @type Rule: Array
+        # @param Action: 处置动作
+        # @type Action: String
+        # @param OnOff: 规则开关
+        # @type OnOff: String
+        # @param RuleType: 规则类型
+        # @type RuleType: Integer
+        # @param Prior: 规则优先级
+        # @type Prior: Integer
+        # @param Timestamp: 修改时间戳
+        # @type Timestamp: Integer
+        # @param Label: 标签
+        # @type Label: String
+        # @param Id: 入参ID
+        # @type Id: String
+        # @param SceneId: 场景ID
+        # @type SceneId: String
+        # @param ValidTime: 生效时间
+        # @type ValidTime: Integer
+        # @param Appid: 传入的appid
+        # @type Appid: Integer
+        # @param AdditionArg: 额外参数
+        # @type AdditionArg: String
+        # @param Desc: 规则描述
+        # @type Desc: String
+        # @param RuleId: 规则ID
+        # @type RuleId: String
+        # @param PreDefine: true-系统预设规则 false-自定义规则
+        # @type PreDefine: Boolean
+        # @param JobType: 定时任务类型
+        # @type JobType: String
+        # @param JobDateTime: 定时任务配置
+        # @type JobDateTime: :class:`Tencentcloud::Waf.v20180125.models.JobDateTime`
+        # @param ExpireTime: 生效截止时间
+        # @type ExpireTime: Integer
+        # @param ValidStatus: 生效-1,失效-0
+        # @type ValidStatus: Integer
+        # @param BlockPageId: 自定义拦截页面ID
+        # @type BlockPageId: Integer
+        # @param ActionList: 当Action=intercept时，此字段必填
+        # @type ActionList: Array
+
+        attr_accessor :Domain, :Name, :Rule, :Action, :OnOff, :RuleType, :Prior, :Timestamp, :Label, :Id, :SceneId, :ValidTime, :Appid, :AdditionArg, :Desc, :RuleId, :PreDefine, :JobType, :JobDateTime, :ExpireTime, :ValidStatus, :BlockPageId, :ActionList
+
+        def initialize(domain=nil, name=nil, rule=nil, action=nil, onoff=nil, ruletype=nil, prior=nil, timestamp=nil, label=nil, id=nil, sceneid=nil, validtime=nil, appid=nil, additionarg=nil, desc=nil, ruleid=nil, predefine=nil, jobtype=nil, jobdatetime=nil, expiretime=nil, validstatus=nil, blockpageid=nil, actionlist=nil)
+          @Domain = domain
+          @Name = name
+          @Rule = rule
+          @Action = action
+          @OnOff = onoff
+          @RuleType = ruletype
+          @Prior = prior
+          @Timestamp = timestamp
+          @Label = label
+          @Id = id
+          @SceneId = sceneid
+          @ValidTime = validtime
+          @Appid = appid
+          @AdditionArg = additionarg
+          @Desc = desc
+          @RuleId = ruleid
+          @PreDefine = predefine
+          @JobType = jobtype
+          @JobDateTime = jobdatetime
+          @ExpireTime = expiretime
+          @ValidStatus = validstatus
+          @BlockPageId = blockpageid
+          @ActionList = actionlist
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @Name = params['Name']
+          unless params['Rule'].nil?
+            @Rule = []
+            params['Rule'].each do |i|
+              inoutputucbruleentry_tmp = InOutputUCBRuleEntry.new
+              inoutputucbruleentry_tmp.deserialize(i)
+              @Rule << inoutputucbruleentry_tmp
+            end
+          end
+          @Action = params['Action']
+          @OnOff = params['OnOff']
+          @RuleType = params['RuleType']
+          @Prior = params['Prior']
+          @Timestamp = params['Timestamp']
+          @Label = params['Label']
+          @Id = params['Id']
+          @SceneId = params['SceneId']
+          @ValidTime = params['ValidTime']
+          @Appid = params['Appid']
+          @AdditionArg = params['AdditionArg']
+          @Desc = params['Desc']
+          @RuleId = params['RuleId']
+          @PreDefine = params['PreDefine']
+          @JobType = params['JobType']
+          unless params['JobDateTime'].nil?
+            @JobDateTime = JobDateTime.new
+            @JobDateTime.deserialize(params['JobDateTime'])
+          end
+          @ExpireTime = params['ExpireTime']
+          @ValidStatus = params['ValidStatus']
+          @BlockPageId = params['BlockPageId']
+          unless params['ActionList'].nil?
+            @ActionList = []
+            params['ActionList'].each do |i|
+              ucbactionproportion_tmp = UCBActionProportion.new
+              ucbactionproportion_tmp.deserialize(i)
+              @ActionList << ucbactionproportion_tmp
+            end
+          end
+        end
+      end
+
+      # 自定义规则UCB的Rule生效条件
+      class InOutputUCBRuleEntry < TencentCloud::Common::AbstractModel
+        # @param Key: 键
+        # @type Key: String
+        # @param Op: 操作符
+        # @type Op: String
+        # @param Value: 值
+        # @type Value: :class:`Tencentcloud::Waf.v20180125.models.UCBEntryValue`
+        # @param OpOp: 可选的补充操作符
+        # @type OpOp: String
+        # @param OpArg: 可选的补充参数
+        # @type OpArg: Array
+        # @param OpValue: 可选的补充值
+        # @type OpValue: Float
+        # @param Name: Header参数值时使用
+        # @type Name: String
+        # @param Areas: 区域选择
+        # @type Areas: Array
+        # @param Lang: 语言环境
+        # @type Lang: String
+
+        attr_accessor :Key, :Op, :Value, :OpOp, :OpArg, :OpValue, :Name, :Areas, :Lang
+
+        def initialize(key=nil, op=nil, value=nil, opop=nil, oparg=nil, opvalue=nil, name=nil, areas=nil, lang=nil)
+          @Key = key
+          @Op = op
+          @Value = value
+          @OpOp = opop
+          @OpArg = oparg
+          @OpValue = opvalue
+          @Name = name
+          @Areas = areas
+          @Lang = lang
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Op = params['Op']
+          unless params['Value'].nil?
+            @Value = UCBEntryValue.new
+            @Value.deserialize(params['Value'])
+          end
+          @OpOp = params['OpOp']
+          @OpArg = params['OpArg']
+          @OpValue = params['OpValue']
+          @Name = params['Name']
+          unless params['Areas'].nil?
+            @Areas = []
+            params['Areas'].each do |i|
+              area_tmp = Area.new
+              area_tmp.deserialize(i)
+              @Areas << area_tmp
+            end
+          end
+          @Lang = params['Lang']
         end
       end
 
@@ -10728,6 +11593,104 @@ module TencentCloud
 
         def deserialize(params)
           @RuleId = params['RuleId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyBotSceneStatus请求参数结构体
+      class ModifyBotSceneStatusRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名
+        # @type Domain: String
+        # @param SceneId: 场景ID
+        # @type SceneId: String
+        # @param Status: true-开启 false-关闭
+        # @type Status: Boolean
+
+        attr_accessor :Domain, :SceneId, :Status
+
+        def initialize(domain=nil, sceneid=nil, status=nil)
+          @Domain = domain
+          @SceneId = sceneid
+          @Status = status
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @SceneId = params['SceneId']
+          @Status = params['Status']
+        end
+      end
+
+      # ModifyBotSceneStatus返回参数结构体
+      class ModifyBotSceneStatusResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyBotSceneUCBRule请求参数结构体
+      class ModifyBotSceneUCBRuleRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名
+        # @type Domain: String
+        # @param SceneId: 1.BOT全局白名单处调用时，传"global";2.BOT场景配置时，传具体的场景ID
+        # @type SceneId: String
+        # @param Rule: 规则内容, 增加编码SceneId信息,1.BOT全局白名单处调用时，SceneId为"global", RuleType传10, Action为"permit";2.BOT场景配置时，SceneId为场景ID
+        # @type Rule: :class:`Tencentcloud::Waf.v20180125.models.InOutputBotUCBRule`
+        # @param BatchRules: 530改批量操作
+        # @type BatchRules: Array
+
+        attr_accessor :Domain, :SceneId, :Rule, :BatchRules
+
+        def initialize(domain=nil, sceneid=nil, rule=nil, batchrules=nil)
+          @Domain = domain
+          @SceneId = sceneid
+          @Rule = rule
+          @BatchRules = batchrules
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @SceneId = params['SceneId']
+          unless params['Rule'].nil?
+            @Rule = InOutputBotUCBRule.new
+            @Rule.deserialize(params['Rule'])
+          end
+          unless params['BatchRules'].nil?
+            @BatchRules = []
+            params['BatchRules'].each do |i|
+              inoutputbotucbrule_tmp = InOutputBotUCBRule.new
+              inoutputbotucbrule_tmp.deserialize(i)
+              @BatchRules << inoutputbotucbrule_tmp
+            end
+          end
+        end
+      end
+
+      # ModifyBotSceneUCBRule返回参数结构体
+      class ModifyBotSceneUCBRuleResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 正常情况下为null
+        # @type Data: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Data = params['Data']
           @RequestId = params['RequestId']
         end
       end
@@ -12801,10 +13764,14 @@ module TencentCloud
         # @type Version: String
         # @param Topic: 主题名称
         # @type Topic: String
+        # @param Compression: 压缩算法，支持gzip 和 lz4
+        # @type Compression: String
+        # @param Content: 描述信息
+        # @type Content: String
 
-        attr_accessor :FlowId, :LogType, :Status, :CKafkaRegion, :CKafkaID, :Brokers, :Version, :Topic
+        attr_accessor :FlowId, :LogType, :Status, :CKafkaRegion, :CKafkaID, :Brokers, :Version, :Topic, :Compression, :Content
 
-        def initialize(flowid=nil, logtype=nil, status=nil, ckafkaregion=nil, ckafkaid=nil, brokers=nil, version=nil, topic=nil)
+        def initialize(flowid=nil, logtype=nil, status=nil, ckafkaregion=nil, ckafkaid=nil, brokers=nil, version=nil, topic=nil, compression=nil, content=nil)
           @FlowId = flowid
           @LogType = logtype
           @Status = status
@@ -12813,6 +13780,8 @@ module TencentCloud
           @Brokers = brokers
           @Version = version
           @Topic = topic
+          @Compression = compression
+          @Content = content
         end
 
         def deserialize(params)
@@ -12824,6 +13793,8 @@ module TencentCloud
           @Brokers = params['Brokers']
           @Version = params['Version']
           @Topic = params['Topic']
+          @Compression = params['Compression']
+          @Content = params['Content']
         end
       end
 
@@ -13814,6 +14785,58 @@ module TencentCloud
         def deserialize(params)
           @StartDateTime = params['StartDateTime']
           @EndDateTime = params['EndDateTime']
+        end
+      end
+
+      # bot自定义规则动作灰度
+      class UCBActionProportion < TencentCloud::Common::AbstractModel
+        # @param Action: 动作
+        # @type Action: String
+        # @param Proportion: 比例
+        # @type Proportion: Float
+
+        attr_accessor :Action, :Proportion
+
+        def initialize(action=nil, proportion=nil)
+          @Action = action
+          @Proportion = proportion
+        end
+
+        def deserialize(params)
+          @Action = params['Action']
+          @Proportion = params['Proportion']
+        end
+      end
+
+      # 云图API改版后, 不支持将复杂json类型编码成string,因此通过此复杂类型识别传入的不同类型参数值
+      class UCBEntryValue < TencentCloud::Common::AbstractModel
+        # @param BasicValue: string类型值
+        # @type BasicValue: String
+        # @param LogicValue: 布尔类型值
+        # @type LogicValue: Boolean
+        # @param BelongValue: string数组类型值
+        # @type BelongValue: Array
+        # @param ValidKey: 指示有效的字段
+        # @type ValidKey: String
+        # @param MultiValue: string数组类型值
+        # @type MultiValue: Array
+
+        attr_accessor :BasicValue, :LogicValue, :BelongValue, :ValidKey, :MultiValue
+
+        def initialize(basicvalue=nil, logicvalue=nil, belongvalue=nil, validkey=nil, multivalue=nil)
+          @BasicValue = basicvalue
+          @LogicValue = logicvalue
+          @BelongValue = belongvalue
+          @ValidKey = validkey
+          @MultiValue = multivalue
+        end
+
+        def deserialize(params)
+          @BasicValue = params['BasicValue']
+          @LogicValue = params['LogicValue']
+          @BelongValue = params['BelongValue']
+          @ValidKey = params['ValidKey']
+          @MultiValue = params['MultiValue']
         end
       end
 

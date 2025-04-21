@@ -7383,6 +7383,51 @@ module TencentCloud
         end
       end
 
+      # DescribeSSLStatus请求参数结构体
+      class DescribeSSLStatusRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+
+        attr_accessor :ClusterId, :InstanceId
+
+        def initialize(clusterid=nil, instanceid=nil)
+          @ClusterId = clusterid
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DescribeSSLStatus返回参数结构体
+      class DescribeSSLStatusResponse < TencentCloud::Common::AbstractModel
+        # @param IsOpenSSL: yes-开启，no-关闭
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsOpenSSL: String
+        # @param DownloadUrl: 证书下载地址
+        # @type DownloadUrl: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :IsOpenSSL, :DownloadUrl, :RequestId
+
+        def initialize(isopenssl=nil, downloadurl=nil, requestid=nil)
+          @IsOpenSSL = isopenssl
+          @DownloadUrl = downloadurl
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @IsOpenSSL = params['IsOpenSSL']
+          @DownloadUrl = params['DownloadUrl']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeServerlessInstanceSpecs请求参数结构体
       class DescribeServerlessInstanceSpecsRequest < TencentCloud::Common::AbstractModel
         # @param Zone: 可用区
@@ -7480,6 +7525,46 @@ module TencentCloud
           @AutoPause = params['AutoPause']
           @AutoScaleUp = params['AutoScaleUp']
           @AutoScaleDown = params['AutoScaleDown']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeSlaveZones请求参数结构体
+      class DescribeSlaveZonesRequest < TencentCloud::Common::AbstractModel
+        # @param Zone: 可用区
+        # @type Zone: String
+        # @param OssClusterId: 云架集群ID
+        # @type OssClusterId: Integer
+
+        attr_accessor :Zone, :OssClusterId
+
+        def initialize(zone=nil, ossclusterid=nil)
+          @Zone = zone
+          @OssClusterId = ossclusterid
+        end
+
+        def deserialize(params)
+          @Zone = params['Zone']
+          @OssClusterId = params['OssClusterId']
+        end
+      end
+
+      # DescribeSlaveZones返回参数结构体
+      class DescribeSlaveZonesResponse < TencentCloud::Common::AbstractModel
+        # @param SlaveZones: 从可用区
+        # @type SlaveZones: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :SlaveZones, :RequestId
+
+        def initialize(slavezones=nil, requestid=nil)
+          @SlaveZones = slavezones
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @SlaveZones = params['SlaveZones']
           @RequestId = params['RequestId']
         end
       end
@@ -11090,6 +11175,52 @@ module TencentCloud
 
         def deserialize(params)
           @FlowId = params['FlowId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # OpenSSL请求参数结构体
+      class OpenSSLRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+
+        attr_accessor :ClusterId, :InstanceId
+
+        def initialize(clusterid=nil, instanceid=nil)
+          @ClusterId = clusterid
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # OpenSSL返回参数结构体
+      class OpenSSLResponse < TencentCloud::Common::AbstractModel
+        # @param FlowId: 任务流ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FlowId: Integer
+        # @param TaskId: 任务id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskId: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FlowId, :TaskId, :RequestId
+
+        def initialize(flowid=nil, taskid=nil, requestid=nil)
+          @FlowId = flowid
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+          @TaskId = params['TaskId']
           @RequestId = params['RequestId']
         end
       end

@@ -923,7 +923,7 @@ module TencentCloud
         # @type Callers: Array
         # @param PromptVariables: 提示词变量
         # @type PromptVariables: Array
-        # @param Variables: 通用变量： <p>提示词变量</p> <p>欢迎语变量</p> <p> dify变量</p>
+        # @param Variables: 通用变量： <p>提示词变量</p> <p>欢迎语变量</p> <p> 欢迎语延迟播放(秒级)：welcome-message-delay</p>  <p> dify变量</p>
 
         # 1. dify-inputs-xxx 为dify的inputs变量
         # 2.  dify-inputs-user 为dify的user值
@@ -931,6 +931,9 @@ module TencentCloud
         # @type Variables: Array
 
         attr_accessor :SdkAppId, :AIAgentId, :Callee, :Callers, :PromptVariables, :Variables
+        extend Gem::Deprecate
+        deprecate :PromptVariables, :none, 2025, 4
+        deprecate :PromptVariables=, :none, 2025, 4
 
         def initialize(sdkappid=nil, aiagentid=nil, callee=nil, callers=nil, promptvariables=nil, variables=nil)
           @SdkAppId = sdkappid
@@ -1209,7 +1212,7 @@ module TencentCloud
         # @type ExtractConfig: Array
         # @param Temperature: 模型温度控制
         # @type Temperature: Float
-        # @param Variables: 通用变量： <p>提示词变量</p> <p>欢迎语变量</p> <p> dify变量</p>
+        # @param Variables: 通用变量： <p>提示词变量</p> <p>欢迎语变量</p> <p> 欢迎语延迟播放(秒级)：welcome-message-delay</p>  <p> dify变量</p>
 
         # 1. dify-inputs-xxx 为dify的inputs变量
         # 2.  dify-inputs-user 为dify的user值
@@ -1217,6 +1220,9 @@ module TencentCloud
         # @type Variables: Array
 
         attr_accessor :SdkAppId, :Callee, :LLMType, :APIKey, :APIUrl, :SystemPrompt, :Model, :VoiceType, :Callers, :WelcomeMessage, :WelcomeType, :WelcomeMessagePriority, :MaxDuration, :Languages, :InterruptMode, :InterruptSpeechDuration, :EndFunctionEnable, :EndFunctionDesc, :TransferFunctionEnable, :TransferItems, :NotifyDuration, :NotifyMessage, :NotifyMaxCount, :CustomTTSConfig, :PromptVariables, :VadSilenceTime, :ExtractConfig, :Temperature, :Variables
+        extend Gem::Deprecate
+        deprecate :PromptVariables, :none, 2025, 4
+        deprecate :PromptVariables=, :none, 2025, 4
 
         def initialize(sdkappid=nil, callee=nil, llmtype=nil, apikey=nil, apiurl=nil, systemprompt=nil, model=nil, voicetype=nil, callers=nil, welcomemessage=nil, welcometype=nil, welcomemessagepriority=nil, maxduration=nil, languages=nil, interruptmode=nil, interruptspeechduration=nil, endfunctionenable=nil, endfunctiondesc=nil, transferfunctionenable=nil, transferitems=nil, notifyduration=nil, notifymessage=nil, notifymaxcount=nil, customttsconfig=nil, promptvariables=nil, vadsilencetime=nil, extractconfig=nil, temperature=nil, variables=nil)
           @SdkAppId = sdkappid
@@ -2202,6 +2208,42 @@ module TencentCloud
 
         def deserialize(params)
           @UserSig = params['UserSig']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteCCCSkillGroup请求参数结构体
+      class DeleteCCCSkillGroupRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
+        # @type SdkAppId: Integer
+        # @param SkillGroupId: 技能组ID
+        # @type SkillGroupId: Integer
+
+        attr_accessor :SdkAppId, :SkillGroupId
+
+        def initialize(sdkappid=nil, skillgroupid=nil)
+          @SdkAppId = sdkappid
+          @SkillGroupId = skillgroupid
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @SkillGroupId = params['SkillGroupId']
+        end
+      end
+
+      # DeleteCCCSkillGroup返回参数结构体
+      class DeleteCCCSkillGroupResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end

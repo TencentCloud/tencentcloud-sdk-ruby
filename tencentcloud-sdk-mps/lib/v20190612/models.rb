@@ -1532,10 +1532,10 @@ module TencentCloud
         # @type Definition: Integer
         # @param ExtendedParameter: 扩展参数，其值为序列化的 json字符串。
         # 注意：此参数为定制需求参数，参考如下：
-        # 智能檫除：https://cloud.tencent.com/document/product/862/101530
-        # 智能拆条：https://cloud.tencent.com/document/product/862/112098
-        # 高光集锦：https://cloud.tencent.com/document/product/862/107280
-        # 智能横转竖：https://cloud.tencent.com/document/product/862/112112
+        # [智能檫除](https://cloud.tencent.com/document/product/862/101530)
+        # [智能拆条](https://cloud.tencent.com/document/product/862/112098)
+        # [高光集锦](https://cloud.tencent.com/document/product/862/107280)
+        # [智能横转竖](https://cloud.tencent.com/document/product/862/112112)
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExtendedParameter: String
 
@@ -5443,7 +5443,7 @@ module TencentCloud
 
       # 视频编辑/合成任务 轨道信息。
       class ComposeMediaTrack < TencentCloud::Common::AbstractModel
-        # @param Type: 轨道类型，取值有：<ul><li>Video ：视频轨道。视频轨道可由以下元素组成：</li><ul><li>Video 元素</li><li>Image 元素</li><li>Transition 元素</li><li>Empty 元素</li></ul><li>Audio ：音频轨道。音频轨道可由以下元素组成：</li><ul><li>Audio 元素</li><li>Transition 元素</li><li>Empty 元素</li></ul><li>Title：文字轨道。文字轨道可由以下元素组成：</li><ul><li>Subtitle 元素</li></ul>
+        # @param Type: 轨道类型，取值有：<ul><li>Video ：视频轨道。视频轨道可由以下元素组成：</li><ul><li>Video 元素</li><li>Image 元素</li><li>Transition 元素</li><li>Empty 元素</li></ul><li>Audio ：音频轨道。音频轨道可由以下元素组成：</li><ul><li>Audio 元素</li><li>Transition 元素</li><li>Empty 元素</li></ul><li>Title：文字轨道。文字轨道可由以下元素组成：</li><ul><li>Subtitle 元素</li></ul></ul>
         # @type Type: String
         # @param Items: 轨道上的元素列表。
         # @type Items: Array
@@ -6954,11 +6954,11 @@ module TencentCloud
         # @type Mode: String
         # @param StreamId: 流Id，可选大小写字母、数字和特殊字符（.#!:&,=_-），长度为0~512。具体格式可以参考：https://github.com/Haivision/srt/blob/master/docs/features/access-control.md#standard-keys。
         # @type StreamId: String
-        # @param Latency: 延迟，默认0，单位ms，范围为[0, 3000]。
+        # @param Latency: 延迟，默认120，单位ms，范围为[0, 3000]。
         # @type Latency: Integer
         # @param RecvLatency: 接收延迟，默认120，单位ms，范围为[0, 3000]。
         # @type RecvLatency: Integer
-        # @param PeerLatency: 对端延迟，默认0，单位ms，范围为[0, 3000]。
+        # @param PeerLatency: 对端延迟，默认120，单位ms，范围为[0, 3000]。
         # @type PeerLatency: Integer
         # @param PeerIdleTimeout: 对端超时时间，默认5000，单位ms，范围为[1000, 10000]。
         # @type PeerIdleTimeout: Integer
@@ -7266,11 +7266,11 @@ module TencentCloud
         # @type Destinations: Array
         # @param StreamId: 转推SRT的流Id，可选大小写字母、数字和特殊字符（.#!:&,=_-），长度为0~512。
         # @type StreamId: String
-        # @param Latency: 转推SRT的总延迟，默认0，单位ms，范围为[0, 3000]。此参数同时设置了发送方和接收方的延迟（recvlatency和peerlatency）为相同的值。建议配置为至少3倍RTT，以确保在网络拥塞时能够有效处理数据包的重传和确认
+        # @param Latency: 转推SRT的延迟，默认120，单位ms，范围为[0, 3000]。此参数同时设置了发送方和接收方的延迟（recvlatency和peerlatency）为相同的值。建议配置为至少3倍RTT，以确保在网络拥塞时能够有效处理数据包的重传和确认
         # @type Latency: Integer
         # @param RecvLatency: 转推SRT的接收延迟，默认120，单位ms，范围为[0, 3000]。 此参数表示接收方用于缓存数据包的时间长度
         # @type RecvLatency: Integer
-        # @param PeerLatency: 转推SRT的对端延迟，默认0，单位ms，范围为[0, 3000]。 此参数由发送方设置，用于告知接收方其期望的延迟缓冲时间
+        # @param PeerLatency: 转推SRT的对端延迟，默认120，单位ms，范围为[0, 3000]。 此参数由发送方设置，用于告知接收方其期望的延迟缓冲时间
         # @type PeerLatency: Integer
         # @param PeerIdleTimeout: 转推SRT的对端空闲超时时间，默认5000，单位ms，范围为[1000, 10000]。 如果连接在设定的超时时间内没有活动，将会被关闭
         # @type PeerIdleTimeout: Integer
@@ -17797,7 +17797,7 @@ module TencentCloud
         # @type SRTSettings: :class:`Tencentcloud::Mps.v20190612.models.CreateInputSRTSettings`
         # @param RTPSettings: RTP的配置信息。
         # @type RTPSettings: :class:`Tencentcloud::Mps.v20190612.models.CreateInputRTPSettings`
-        # @param Protocol: 输入的协议，可选[SRT|RTP|RTMP_PUSH|RTMP_PULL|RTSP_PULL|RIST]。	-
+        # @param Protocol: 输入的协议，可选[SRT|RTP|RTMP|RTMP_PULL|RTSP_PULL|RIST]。	-
         # @type Protocol: String
         # @param FailOver: 输入的主备开关，可选[OPEN|CLOSE]。
         # @type FailOver: String

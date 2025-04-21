@@ -1960,6 +1960,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询策略组在每个地域下面绑定的对象数统计
+
+        # @param request: Request instance for DescribePolicyObjectCount.
+        # @type request: :class:`Tencentcloud::monitor::V20180724::DescribePolicyObjectCountRequest`
+        # @rtype: :class:`Tencentcloud::monitor::V20180724::DescribePolicyObjectCountResponse`
+        def DescribePolicyObjectCount(request)
+          body = send_request('DescribePolicyObjectCount', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribePolicyObjectCountResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 分页获取产品事件的列表
 
         # @param request: Request instance for DescribeProductEventList.

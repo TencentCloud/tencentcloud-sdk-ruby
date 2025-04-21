@@ -424,8 +424,8 @@ module TencentCloud
 
         attr_accessor :Zone, :HaFlag, :UserVPCId, :UserSubnetId, :ProductVersion, :ChargeProperties, :InstanceName, :DataSpec, :Tags, :ClsLogSetId, :CosBucketName, :MountDiskType, :HAZk, :CommonSpec, :TagItems, :SecondaryZoneInfo
         extend Gem::Deprecate
-        deprecate :Tags, :none, 2025, 3
-        deprecate :Tags=, :none, 2025, 3
+        deprecate :Tags, :none, 2025, 4
+        deprecate :Tags=, :none, 2025, 4
 
         def initialize(zone=nil, haflag=nil, uservpcid=nil, usersubnetid=nil, productversion=nil, chargeproperties=nil, instancename=nil, dataspec=nil, tags=nil, clslogsetid=nil, cosbucketname=nil, mountdisktype=nil, hazk=nil, commonspec=nil, tagitems=nil, secondaryzoneinfo=nil)
           @Zone = zone
@@ -499,7 +499,6 @@ module TencentCloud
         # @param InstanceId: 实例ID
         # @type InstanceId: String
         # @param ErrorMsg: 错误信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrorMsg: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -727,18 +726,14 @@ module TencentCloud
         # @param BackUpOpened: 备份是否开启
         # @type BackUpOpened: Boolean
         # @param MetaStrategy: 元数据备份策略
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MetaStrategy: :class:`Tencentcloud::Cdwch.v20200915.models.ScheduleStrategy`
         # @param DataStrategy: 表数据备份策略
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DataStrategy: :class:`Tencentcloud::Cdwch.v20200915.models.ScheduleStrategy`
         # @param BackUpContents: 备份表列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BackUpContents: Array
         # @param BackUpStatus: 备份的状态
         # @type BackUpStatus: Integer
         # @param ErrorMsg: 错误信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrorMsg: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1006,7 +1001,6 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MapConfigItems: Array
         # @param ErrorMsg: 错误信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrorMsg: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

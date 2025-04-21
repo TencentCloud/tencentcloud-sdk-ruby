@@ -7239,6 +7239,59 @@ module TencentCloud
         end
       end
 
+      # DescribePolicyObjectCount请求参数结构体
+      class DescribePolicyObjectCountRequest < TencentCloud::Common::AbstractModel
+        # @param Module: 固定值，为"monitor"
+        # @type Module: String
+        # @param GroupId: 策略组Id
+        # @type GroupId: Integer
+
+        attr_accessor :Module, :GroupId
+
+        def initialize(_module=nil, groupid=nil)
+          @Module = _module
+          @GroupId = groupid
+        end
+
+        def deserialize(params)
+          @Module = params['Module']
+          @GroupId = params['GroupId']
+        end
+      end
+
+      # DescribePolicyObjectCount返回参数结构体
+      class DescribePolicyObjectCountResponse < TencentCloud::Common::AbstractModel
+        # @param IsMultiRegion: 是否为多地域
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsMultiRegion: Boolean
+        # @param RegionList: 地域统计列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RegionList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :IsMultiRegion, :RegionList, :RequestId
+
+        def initialize(ismultiregion=nil, regionlist=nil, requestid=nil)
+          @IsMultiRegion = ismultiregion
+          @RegionList = regionlist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @IsMultiRegion = params['IsMultiRegion']
+          unless params['RegionList'].nil?
+            @RegionList = []
+            params['RegionList'].each do |i|
+              regionpolicyobjectcount_tmp = RegionPolicyObjectCount.new
+              regionpolicyobjectcount_tmp.deserialize(i)
+              @RegionList << regionpolicyobjectcount_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeProductEventList的入参Dimensions
       class DescribeProductEventListDimensions < TencentCloud::Common::AbstractModel
         # @param Name: 维度名
@@ -14009,6 +14062,26 @@ module TencentCloud
           @CreatedAt = params['CreatedAt']
           @UpdatedAt = params['UpdatedAt']
           @RuleName = params['RuleName']
+        end
+      end
+
+      # DescribePolicyObjectCount接口返回的地域统计
+      class RegionPolicyObjectCount < TencentCloud::Common::AbstractModel
+        # @param Region: 地域
+        # @type Region: String
+        # @param Count: 绑定的实例数量
+        # @type Count: Integer
+
+        attr_accessor :Region, :Count
+
+        def initialize(region=nil, count=nil)
+          @Region = region
+          @Count = count
+        end
+
+        def deserialize(params)
+          @Region = params['Region']
+          @Count = params['Count']
         end
       end
 

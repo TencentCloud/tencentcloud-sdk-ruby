@@ -1764,14 +1764,17 @@ module TencentCloud
         # @type Checked: Boolean
         # @param CampusId: 园区ID，当 Checked 参数传 True 时，该参数必须传值
         # @type CampusId: Integer
+        # @param ModelName: 型号关键字，可以实现模糊匹配搜索功能
+        # @type ModelName: String
 
-        attr_accessor :DeviceType, :Filters, :Checked, :CampusId
+        attr_accessor :DeviceType, :Filters, :Checked, :CampusId, :ModelName
 
-        def initialize(devicetype=nil, filters=nil, checked=nil, campusid=nil)
+        def initialize(devicetype=nil, filters=nil, checked=nil, campusid=nil, modelname=nil)
           @DeviceType = devicetype
           @Filters = filters
           @Checked = checked
           @CampusId = campusid
+          @ModelName = modelname
         end
 
         def deserialize(params)
@@ -1786,6 +1789,7 @@ module TencentCloud
           end
           @Checked = params['Checked']
           @CampusId = params['CampusId']
+          @ModelName = params['ModelName']
         end
       end
 
