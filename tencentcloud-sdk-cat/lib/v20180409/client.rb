@@ -125,6 +125,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取拨测点组（可用性拨测点组、高级拨测点组、我的拨测点组）
+
+        # @param request: Request instance for DescribeNodeGroups.
+        # @type request: :class:`Tencentcloud::cat::V20180409::DescribeNodeGroupsRequest`
+        # @rtype: :class:`Tencentcloud::cat::V20180409::DescribeNodeGroupsResponse`
+        def DescribeNodeGroups(request)
+          body = send_request('DescribeNodeGroups', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeNodeGroupsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取拨测节点
 
         # @param request: Request instance for DescribeNodes.

@@ -77,6 +77,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 生成特权码，私有化调用path为：capi/Assets/Device/CreatePrivilegeCode，生成的特权码、卸载码，仅对该设备当天有效
+
+        # @param request: Request instance for CreatePrivilegeCode.
+        # @type request: :class:`Tencentcloud::ioa::V20220601::CreatePrivilegeCodeRequest`
+        # @rtype: :class:`Tencentcloud::ioa::V20220601::CreatePrivilegeCodeResponse`
+        def CreatePrivilegeCode(request)
+          body = send_request('CreatePrivilegeCode', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreatePrivilegeCodeResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 以分页的方式查询账号分组列表，私有化调用path为：/capi/Assets/DescribeAccountGroups
 
         # @param request: Request instance for DescribeAccountGroups.
@@ -183,6 +207,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeRootAccountGroupResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查看终端树下的软件列表,私有化调用path为：capi/Software/DescribeSoftCensusListByDevice
+
+        # @param request: Request instance for DescribeSoftCensusListByDevice.
+        # @type request: :class:`Tencentcloud::ioa::V20220601::DescribeSoftCensusListByDeviceRequest`
+        # @rtype: :class:`Tencentcloud::ioa::V20220601::DescribeSoftCensusListByDeviceResponse`
+        def DescribeSoftCensusListByDevice(request)
+          body = send_request('DescribeSoftCensusListByDevice', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeSoftCensusListByDeviceResponse.new
             model.deserialize(response['Response'])
             model
           else

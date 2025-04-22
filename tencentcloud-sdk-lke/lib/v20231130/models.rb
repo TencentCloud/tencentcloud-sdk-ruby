@@ -17,6 +17,28 @@
 module TencentCloud
   module Lke
     module V20231130
+      # Agent调试信息
+      class AgentDebugInfo < TencentCloud::Common::AbstractModel
+        # @param Input: 工具、大模型的输入信息，json
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Input: String
+        # @param Output: 工具、大模型的输出信息，json
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Output: String
+
+        attr_accessor :Input, :Output
+
+        def initialize(input=nil, output=nil)
+          @Input = input
+          @Output = output
+        end
+
+        def deserialize(params)
+          @Input = params['Input']
+          @Output = params['Output']
+        end
+      end
+
       # 思考事件过程信息
       class AgentProcedure < TencentCloud::Common::AbstractModel
         # @param Index: 索引
@@ -1580,7 +1602,7 @@ module TencentCloud
 
       # CreateRelease请求参数结构体
       class CreateReleaseRequest < TencentCloud::Common::AbstractModel
-        # @param BotBizId: 机器人ID
+        # @param BotBizId: 应用ID
         # @type BotBizId: String
         # @param Desc: 发布描述
         # @type Desc: String
@@ -3800,6 +3822,23 @@ module TencentCloud
         end
       end
 
+      # 扩展信息
+      class ExtraInfo < TencentCloud::Common::AbstractModel
+        # @param EChartsInfo: ECharts信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EChartsInfo: Array
+
+        attr_accessor :EChartsInfo
+
+        def initialize(echartsinfo=nil)
+          @EChartsInfo = echartsinfo
+        end
+
+        def deserialize(params)
+          @EChartsInfo = params['EChartsInfo']
+        end
+      end
+
       # 实时上传的文件信息
       class FileInfo < TencentCloud::Common::AbstractModel
         # @param FileName: 文件名称
@@ -4302,16 +4341,19 @@ module TencentCloud
         # @type BotAppKey: String
         # @param Scene: 场景, 体验: 1; 正式: 2
         # @type Scene: Integer
+        # @param MidRecordId: 传该值，代表拉取该记录id的前后总共count条消息记录
+        # @type MidRecordId: String
 
-        attr_accessor :Type, :Count, :SessionId, :LastRecordId, :BotAppKey, :Scene
+        attr_accessor :Type, :Count, :SessionId, :LastRecordId, :BotAppKey, :Scene, :MidRecordId
 
-        def initialize(type=nil, count=nil, sessionid=nil, lastrecordid=nil, botappkey=nil, scene=nil)
+        def initialize(type=nil, count=nil, sessionid=nil, lastrecordid=nil, botappkey=nil, scene=nil, midrecordid=nil)
           @Type = type
           @Count = count
           @SessionId = sessionid
           @LastRecordId = lastrecordid
           @BotAppKey = botappkey
           @Scene = scene
+          @MidRecordId = midrecordid
         end
 
         def deserialize(params)
@@ -4321,6 +4363,7 @@ module TencentCloud
           @LastRecordId = params['LastRecordId']
           @BotAppKey = params['BotAppKey']
           @Scene = params['Scene']
+          @MidRecordId = params['MidRecordId']
         end
       end
 
@@ -5782,10 +5825,12 @@ module TencentCloud
         # @param CreateTime: 文档创建落库时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
+        # @param CateBizId: 文档所属分类ID
+        # @type CateBizId: String
 
-        attr_accessor :DocBizId, :FileName, :NewName, :FileType, :CosUrl, :UpdateTime, :Status, :StatusDesc, :Reason, :IsRefer, :QaNum, :IsDeleted, :Source, :SourceDesc, :IsAllowRestart, :IsDeletedQa, :IsCreatingQa, :IsAllowDelete, :IsAllowRefer, :IsCreatedQa, :DocCharSize, :AttrRange, :AttrLabels, :IsAllowEdit, :ReferUrlType, :WebUrl, :ExpireStart, :ExpireEnd, :IsAllowRetry, :Processing, :CreateTime
+        attr_accessor :DocBizId, :FileName, :NewName, :FileType, :CosUrl, :UpdateTime, :Status, :StatusDesc, :Reason, :IsRefer, :QaNum, :IsDeleted, :Source, :SourceDesc, :IsAllowRestart, :IsDeletedQa, :IsCreatingQa, :IsAllowDelete, :IsAllowRefer, :IsCreatedQa, :DocCharSize, :AttrRange, :AttrLabels, :IsAllowEdit, :ReferUrlType, :WebUrl, :ExpireStart, :ExpireEnd, :IsAllowRetry, :Processing, :CreateTime, :CateBizId
 
-        def initialize(docbizid=nil, filename=nil, newname=nil, filetype=nil, cosurl=nil, updatetime=nil, status=nil, statusdesc=nil, reason=nil, isrefer=nil, qanum=nil, isdeleted=nil, source=nil, sourcedesc=nil, isallowrestart=nil, isdeletedqa=nil, iscreatingqa=nil, isallowdelete=nil, isallowrefer=nil, iscreatedqa=nil, doccharsize=nil, attrrange=nil, attrlabels=nil, isallowedit=nil, referurltype=nil, weburl=nil, expirestart=nil, expireend=nil, isallowretry=nil, processing=nil, createtime=nil)
+        def initialize(docbizid=nil, filename=nil, newname=nil, filetype=nil, cosurl=nil, updatetime=nil, status=nil, statusdesc=nil, reason=nil, isrefer=nil, qanum=nil, isdeleted=nil, source=nil, sourcedesc=nil, isallowrestart=nil, isdeletedqa=nil, iscreatingqa=nil, isallowdelete=nil, isallowrefer=nil, iscreatedqa=nil, doccharsize=nil, attrrange=nil, attrlabels=nil, isallowedit=nil, referurltype=nil, weburl=nil, expirestart=nil, expireend=nil, isallowretry=nil, processing=nil, createtime=nil, catebizid=nil)
           @DocBizId = docbizid
           @FileName = filename
           @NewName = newname
@@ -5817,6 +5862,7 @@ module TencentCloud
           @IsAllowRetry = isallowretry
           @Processing = processing
           @CreateTime = createtime
+          @CateBizId = catebizid
         end
 
         def deserialize(params)
@@ -5858,6 +5904,7 @@ module TencentCloud
           @IsAllowRetry = params['IsAllowRetry']
           @Processing = params['Processing']
           @CreateTime = params['CreateTime']
+          @CateBizId = params['CateBizId']
         end
       end
 
@@ -6399,7 +6446,7 @@ module TencentCloud
 
       # ListReleaseConfigPreview请求参数结构体
       class ListReleaseConfigPreviewRequest < TencentCloud::Common::AbstractModel
-        # @param BotBizId: 机器人ID
+        # @param BotBizId: 应用ID
         # @type BotBizId: String
         # @param PageNumber: 页码
         # @type PageNumber: Integer
@@ -7718,10 +7765,13 @@ module TencentCloud
         # @param AgentThought: Agent的思考过程信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AgentThought: :class:`Tencentcloud::Lke.v20231130.models.AgentThought`
+        # @param ExtraInfo: 扩展信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExtraInfo: :class:`Tencentcloud::Lke.v20231130.models.ExtraInfo`
 
-        attr_accessor :Content, :SessionId, :RecordId, :RelatedRecordId, :IsFromSelf, :FromName, :FromAvatar, :Timestamp, :HasRead, :Score, :CanRating, :CanFeedback, :Type, :References, :Reasons, :IsLlmGenerated, :ImageUrls, :TokenStat, :ReplyMethod, :OptionCards, :TaskFlow, :FileInfos, :QuoteInfos, :AgentThought
+        attr_accessor :Content, :SessionId, :RecordId, :RelatedRecordId, :IsFromSelf, :FromName, :FromAvatar, :Timestamp, :HasRead, :Score, :CanRating, :CanFeedback, :Type, :References, :Reasons, :IsLlmGenerated, :ImageUrls, :TokenStat, :ReplyMethod, :OptionCards, :TaskFlow, :FileInfos, :QuoteInfos, :AgentThought, :ExtraInfo
 
-        def initialize(content=nil, sessionid=nil, recordid=nil, relatedrecordid=nil, isfromself=nil, fromname=nil, fromavatar=nil, timestamp=nil, hasread=nil, score=nil, canrating=nil, canfeedback=nil, type=nil, references=nil, reasons=nil, isllmgenerated=nil, imageurls=nil, tokenstat=nil, replymethod=nil, optioncards=nil, taskflow=nil, fileinfos=nil, quoteinfos=nil, agentthought=nil)
+        def initialize(content=nil, sessionid=nil, recordid=nil, relatedrecordid=nil, isfromself=nil, fromname=nil, fromavatar=nil, timestamp=nil, hasread=nil, score=nil, canrating=nil, canfeedback=nil, type=nil, references=nil, reasons=nil, isllmgenerated=nil, imageurls=nil, tokenstat=nil, replymethod=nil, optioncards=nil, taskflow=nil, fileinfos=nil, quoteinfos=nil, agentthought=nil, extrainfo=nil)
           @Content = content
           @SessionId = sessionid
           @RecordId = recordid
@@ -7746,6 +7796,7 @@ module TencentCloud
           @FileInfos = fileinfos
           @QuoteInfos = quoteinfos
           @AgentThought = agentthought
+          @ExtraInfo = extrainfo
         end
 
         def deserialize(params)
@@ -7802,6 +7853,10 @@ module TencentCloud
           unless params['AgentThought'].nil?
             @AgentThought = AgentThought.new
             @AgentThought.deserialize(params['AgentThought'])
+          end
+          unless params['ExtraInfo'].nil?
+            @ExtraInfo = ExtraInfo.new
+            @ExtraInfo.deserialize(params['ExtraInfo'])
           end
         end
       end
@@ -8023,16 +8078,20 @@ module TencentCloud
         # @param WorkFlow: 工作流调试信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WorkFlow: :class:`Tencentcloud::Lke.v20231130.models.WorkFlowSummary`
+        # @param Agent: Agent调试信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Agent: :class:`Tencentcloud::Lke.v20231130.models.AgentDebugInfo`
 
-        attr_accessor :Content, :System, :Histories, :Knowledge, :TaskFlow, :WorkFlow
+        attr_accessor :Content, :System, :Histories, :Knowledge, :TaskFlow, :WorkFlow, :Agent
 
-        def initialize(content=nil, system=nil, histories=nil, knowledge=nil, taskflow=nil, workflow=nil)
+        def initialize(content=nil, system=nil, histories=nil, knowledge=nil, taskflow=nil, workflow=nil, agent=nil)
           @Content = content
           @System = system
           @Histories = histories
           @Knowledge = knowledge
           @TaskFlow = taskflow
           @WorkFlow = workflow
+          @Agent = agent
         end
 
         def deserialize(params)
@@ -8061,6 +8120,10 @@ module TencentCloud
           unless params['WorkFlow'].nil?
             @WorkFlow = WorkFlowSummary.new
             @WorkFlow.deserialize(params['WorkFlow'])
+          end
+          unless params['Agent'].nil?
+            @Agent = AgentDebugInfo.new
+            @Agent.deserialize(params['Agent'])
           end
         end
       end
@@ -8221,7 +8284,7 @@ module TencentCloud
       class QueryRewriteRequest < TencentCloud::Common::AbstractModel
         # @param Question: 需要改写的问题
         # @type Question: String
-        # @param Messages: 需要改写的多轮历史会话
+        # @param Messages: 需要改写的多轮历史会话，每轮历史对话需要包含user（问）和assistant（答）成对输入，由于模型字符限制，最多提供4轮对话。
         # @type Messages: Array
         # @param Model: 模型名称
         # @type Model: String

@@ -114,7 +114,7 @@ module TencentCloud
         # @type Stream: Boolean
         # @param Temperature: 控制生成的随机性，较高的值会产生更多样化的输出。
         # @type Temperature: Float
-        # @param MaxTokens: 最大生成的token数量
+        # @param MaxTokens: 最大生成的token数量，默认为4096，最大可设置为16384
         # @type MaxTokens: Integer
 
         attr_accessor :Model, :Messages, :Stream, :Temperature, :MaxTokens

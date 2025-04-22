@@ -4335,6 +4335,60 @@ module TencentCloud
         end
       end
 
+      # CreateGlobalRoutes请求参数结构体
+      class CreateGlobalRoutesRequest < TencentCloud::Common::AbstractModel
+        # @param VpcId: VPC唯一Id。
+        # @type VpcId: String
+        # @param GlobalRoutes: 全局路由对象。创建时必填参数： 'GatewayType'，'GatewayId'，'DestinationCidrBlock'。
+        # @type GlobalRoutes: Array
+
+        attr_accessor :VpcId, :GlobalRoutes
+
+        def initialize(vpcid=nil, globalroutes=nil)
+          @VpcId = vpcid
+          @GlobalRoutes = globalroutes
+        end
+
+        def deserialize(params)
+          @VpcId = params['VpcId']
+          unless params['GlobalRoutes'].nil?
+            @GlobalRoutes = []
+            params['GlobalRoutes'].each do |i|
+              globalroute_tmp = GlobalRoute.new
+              globalroute_tmp.deserialize(i)
+              @GlobalRoutes << globalroute_tmp
+            end
+          end
+        end
+      end
+
+      # CreateGlobalRoutes返回参数结构体
+      class CreateGlobalRoutesResponse < TencentCloud::Common::AbstractModel
+        # @param GlobalRouteSet: 全局路由对象。
+        # @type GlobalRouteSet: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :GlobalRouteSet, :RequestId
+
+        def initialize(globalrouteset=nil, requestid=nil)
+          @GlobalRouteSet = globalrouteset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['GlobalRouteSet'].nil?
+            @GlobalRouteSet = []
+            params['GlobalRouteSet'].each do |i|
+              globalroute_tmp = GlobalRoute.new
+              globalroute_tmp.deserialize(i)
+              @GlobalRouteSet << globalroute_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateHaVip请求参数结构体
       class CreateHaVipRequest < TencentCloud::Common::AbstractModel
         # @param VpcId: `HAVIP`所在私有网络`ID`。
@@ -7678,6 +7732,42 @@ module TencentCloud
 
       # DeleteFlowLog返回参数结构体
       class DeleteFlowLogResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteGlobalRoutes请求参数结构体
+      class DeleteGlobalRoutesRequest < TencentCloud::Common::AbstractModel
+        # @param VpcId: VPC唯一Id。
+        # @type VpcId: String
+        # @param GlobalRouteIds: 全局路由实例唯一Id列表。
+        # @type GlobalRouteIds: Array
+
+        attr_accessor :VpcId, :GlobalRouteIds
+
+        def initialize(vpcid=nil, globalrouteids=nil)
+          @VpcId = vpcid
+          @GlobalRouteIds = globalrouteids
+        end
+
+        def deserialize(params)
+          @VpcId = params['VpcId']
+          @GlobalRouteIds = params['GlobalRouteIds']
+        end
+      end
+
+      # DeleteGlobalRoutes返回参数结构体
+      class DeleteGlobalRoutesResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -11273,6 +11363,87 @@ module TencentCloud
               gatewayqos_tmp = GatewayQos.new
               gatewayqos_tmp.deserialize(i)
               @GatewayQosSet << gatewayqos_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeGlobalRoutes请求参数结构体
+      class DescribeGlobalRoutesRequest < TencentCloud::Common::AbstractModel
+        # @param Filters: 过滤条件。
+        # <li>global-route-id - String - （过滤条件）如全局路由唯一 Id，形如：gr-bmenrwu2。</li>
+        # <li>vpc-id - String - （过滤条件）VPC唯一Id， 形如： vpc-mcqaoy0f。</li>
+        # <li>gateway-id - String - （过滤条件）下一跳对象。</li>
+        # <li>gateway-type - String -  是否必填：否 - （过滤条件）按下一跳类型进行过滤。支持 NORMAL_CVM
+        # </li>
+        # <li>cdc-id - String - （过滤条件）CDC实例ID，形如：cluster-gbo27yc4。</li>
+        # <li>description - String - （过滤条件）描述。</li>
+        # <li>dest-cidr - String - （过滤条件）Ipv4目标网段。</li>
+        # <li>subnet-route-algorithm - String - （过滤条件）支持的 ECMP算法有：
+
+        #    - ECMP_QUINTUPLE_HASH：五元组hash
+        #    - ECMP_SOURCE_DESTINATION_IP_HASH：源和目的IP hash
+        #    - ECMP_DESTINATION_IP_HASH：目的IP hash
+        #    - ECMP_SOURCE_IP_HASH：源IP hash
+        # </li>
+        # @type Filters: Array
+        # @param Offset: 偏移量。
+        # @type Offset: Integer
+        # @param Limit: 请求对象个数。
+        # @type Limit: Integer
+        # @param GlobalRouteIds: 全局路由唯一Id列表。
+        # @type GlobalRouteIds: Array
+
+        attr_accessor :Filters, :Offset, :Limit, :GlobalRouteIds
+
+        def initialize(filters=nil, offset=nil, limit=nil, globalrouteids=nil)
+          @Filters = filters
+          @Offset = offset
+          @Limit = limit
+          @GlobalRouteIds = globalrouteids
+        end
+
+        def deserialize(params)
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @GlobalRouteIds = params['GlobalRouteIds']
+        end
+      end
+
+      # DescribeGlobalRoutes返回参数结构体
+      class DescribeGlobalRoutesResponse < TencentCloud::Common::AbstractModel
+        # @param GlobalRouteSet: 全局路由对象。
+        # @type GlobalRouteSet: Array
+        # @param TotalCount: 符合条件的实例数量。
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :GlobalRouteSet, :TotalCount, :RequestId
+
+        def initialize(globalrouteset=nil, totalcount=nil, requestid=nil)
+          @GlobalRouteSet = globalrouteset
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['GlobalRouteSet'].nil?
+            @GlobalRouteSet = []
+            params['GlobalRouteSet'].each do |i|
+              globalroute_tmp = GlobalRoute.new
+              globalroute_tmp.deserialize(i)
+              @GlobalRouteSet << globalroute_tmp
             end
           end
           @TotalCount = params['TotalCount']
@@ -17991,6 +18162,55 @@ module TencentCloud
         end
       end
 
+      # 全局路由对象。
+      class GlobalRoute < TencentCloud::Common::AbstractModel
+        # @param VpcId: 作为出参展示，表示VPC唯一Id，。
+        # @type VpcId: String
+        # @param GlobalRouteId: 全局路由唯一Id。
+        # @type GlobalRouteId: String
+        # @param DestinationCidrBlock: Ipv4目标网段。
+        # @type DestinationCidrBlock: String
+        # @param GatewayType: 下一跳类型，支持 NORMAL_CVM。
+        # @type GatewayType: String
+        # @param GatewayId: 下一跳对象，如果GatewayType类型是NORMAL_CVM填写子机IP。
+        # @type GatewayId: String
+        # @param Description: 备注。
+        # @type Description: String
+        # @param CreatedTime: 创建时间。
+        # @type CreatedTime: String
+        # @param SubnetRouteAlgorithm: 支持的 ECMP算法有：
+
+        # - ECMP_QUINTUPLE_HASH：五元组hash
+        # - ECMP_SOURCE_DESTINATION_IP_HASH：源和目的IP hash
+        # - ECMP_DESTINATION_IP_HASH：目的IP hash
+        # - ECMP_SOURCE_IP_HASH：源IP hash。
+        # @type SubnetRouteAlgorithm: String
+
+        attr_accessor :VpcId, :GlobalRouteId, :DestinationCidrBlock, :GatewayType, :GatewayId, :Description, :CreatedTime, :SubnetRouteAlgorithm
+
+        def initialize(vpcid=nil, globalrouteid=nil, destinationcidrblock=nil, gatewaytype=nil, gatewayid=nil, description=nil, createdtime=nil, subnetroutealgorithm=nil)
+          @VpcId = vpcid
+          @GlobalRouteId = globalrouteid
+          @DestinationCidrBlock = destinationcidrblock
+          @GatewayType = gatewaytype
+          @GatewayId = gatewayid
+          @Description = description
+          @CreatedTime = createdtime
+          @SubnetRouteAlgorithm = subnetroutealgorithm
+        end
+
+        def deserialize(params)
+          @VpcId = params['VpcId']
+          @GlobalRouteId = params['GlobalRouteId']
+          @DestinationCidrBlock = params['DestinationCidrBlock']
+          @GatewayType = params['GatewayType']
+          @GatewayId = params['GatewayId']
+          @Description = params['Description']
+          @CreatedTime = params['CreatedTime']
+          @SubnetRouteAlgorithm = params['SubnetRouteAlgorithm']
+        end
+      end
+
       # 描述 HAVIP 信息
       class HaVip < TencentCloud::Common::AbstractModel
         # @param HaVipId: `HAVIP`的`ID`，是`HAVIP`的唯一标识。
@@ -20396,6 +20616,93 @@ module TencentCloud
 
       # ModifyGatewayFlowQos返回参数结构体
       class ModifyGatewayFlowQosResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyGlobalRouteECMPAlgorithm请求参数结构体
+      class ModifyGlobalRouteECMPAlgorithmRequest < TencentCloud::Common::AbstractModel
+        # @param VpcId: VPC唯一Id。
+        # @type VpcId: String
+        # @param DestinationCidrBlock: Ipv4目标网段。
+        # @type DestinationCidrBlock: String
+        # @param SubnetRouteAlgorithm: 支持的 ECMP算法有：ECMP_QUINTUPLE_HASH：五元组hash，ECMP_SOURCE_DESTINATION_IP_HASH：源和目的IP hash，ECMP_DESTINATION_IP_HASH：目的IP hash，ECMP_SOURCE_IP_HASH：源IP hash。
+        # @type SubnetRouteAlgorithm: String
+        # @param CdcId: CDC 集群唯一 ID。
+        # @type CdcId: String
+
+        attr_accessor :VpcId, :DestinationCidrBlock, :SubnetRouteAlgorithm, :CdcId
+
+        def initialize(vpcid=nil, destinationcidrblock=nil, subnetroutealgorithm=nil, cdcid=nil)
+          @VpcId = vpcid
+          @DestinationCidrBlock = destinationcidrblock
+          @SubnetRouteAlgorithm = subnetroutealgorithm
+          @CdcId = cdcid
+        end
+
+        def deserialize(params)
+          @VpcId = params['VpcId']
+          @DestinationCidrBlock = params['DestinationCidrBlock']
+          @SubnetRouteAlgorithm = params['SubnetRouteAlgorithm']
+          @CdcId = params['CdcId']
+        end
+      end
+
+      # ModifyGlobalRouteECMPAlgorithm返回参数结构体
+      class ModifyGlobalRouteECMPAlgorithmResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyGlobalRoutes请求参数结构体
+      class ModifyGlobalRoutesRequest < TencentCloud::Common::AbstractModel
+        # @param VpcId: VPC唯一Id。
+        # @type VpcId: String
+        # @param GlobalRoutes: 全局路由对象。仅支持修改：'Description'，其他字段暂不支持。
+        # @type GlobalRoutes: Array
+
+        attr_accessor :VpcId, :GlobalRoutes
+
+        def initialize(vpcid=nil, globalroutes=nil)
+          @VpcId = vpcid
+          @GlobalRoutes = globalroutes
+        end
+
+        def deserialize(params)
+          @VpcId = params['VpcId']
+          unless params['GlobalRoutes'].nil?
+            @GlobalRoutes = []
+            params['GlobalRoutes'].each do |i|
+              globalroute_tmp = GlobalRoute.new
+              globalroute_tmp.deserialize(i)
+              @GlobalRoutes << globalroute_tmp
+            end
+          end
+        end
+      end
+
+      # ModifyGlobalRoutes返回参数结构体
+      class ModifyGlobalRoutesResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 

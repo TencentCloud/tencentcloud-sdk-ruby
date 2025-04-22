@@ -64,13 +64,10 @@ module TencentCloud
       # 磁盘规格
       class CBSSpec < TencentCloud::Common::AbstractModel
         # @param DiskType: 盘类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DiskType: String
         # @param DiskSize: 大小
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DiskSize: Integer
         # @param DiskCount: 个数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DiskCount: Integer
 
         attr_accessor :DiskType, :DiskSize, :DiskCount
@@ -226,13 +223,10 @@ module TencentCloud
       # 参数
       class ConfigParams < TencentCloud::Common::AbstractModel
         # @param ParameterName: 名字
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ParameterName: String
         # @param ParameterValue: 值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ParameterValue: String
         # @param ParameterOldValue: 修改前的值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ParameterOldValue: String
 
         attr_accessor :ParameterName, :ParameterValue, :ParameterOldValue

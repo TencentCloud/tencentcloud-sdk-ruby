@@ -1685,6 +1685,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取实时位置解析依赖于teg位置服务，近30天调用只有2个个人账号调用，产品推下线
+
         # 获取实时位置解析
 
         # @param request: Request instance for DescribeDeviceLocationSolve.

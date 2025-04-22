@@ -1281,6 +1281,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（CreateGlobalRoutes）用于创建全局路由。
+
+        # @param request: Request instance for CreateGlobalRoutes.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::CreateGlobalRoutesRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::CreateGlobalRoutesResponse`
+        def CreateGlobalRoutes(request)
+          body = send_request('CreateGlobalRoutes', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateGlobalRoutesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（CreateHaVip）用于创建高可用虚拟IP（HAVIP）。
 
         # @param request: Request instance for CreateHaVip.
@@ -2611,6 +2635,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteFlowLogResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除全局路由。
+
+        # @param request: Request instance for DeleteGlobalRoutes.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::DeleteGlobalRoutesRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::DeleteGlobalRoutesResponse`
+        def DeleteGlobalRoutes(request)
+          body = send_request('DeleteGlobalRoutes', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteGlobalRoutesResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -4417,6 +4465,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeGatewayFlowQosResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询全局路由列表。
+
+        # @param request: Request instance for DescribeGlobalRoutes.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::DescribeGlobalRoutesRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::DescribeGlobalRoutesResponse`
+        def DescribeGlobalRoutes(request)
+          body = send_request('DescribeGlobalRoutes', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeGlobalRoutesResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -7817,6 +7889,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyGatewayFlowQosResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改全局路由表ECMP算法 HASH 策略。
+
+        # @param request: Request instance for ModifyGlobalRouteECMPAlgorithm.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::ModifyGlobalRouteECMPAlgorithmRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::ModifyGlobalRouteECMPAlgorithmResponse`
+        def ModifyGlobalRouteECMPAlgorithm(request)
+          body = send_request('ModifyGlobalRouteECMPAlgorithm', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyGlobalRouteECMPAlgorithmResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改全局路由。
+
+        # @param request: Request instance for ModifyGlobalRoutes.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::ModifyGlobalRoutesRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::ModifyGlobalRoutesResponse`
+        def ModifyGlobalRoutes(request)
+          body = send_request('ModifyGlobalRoutes', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyGlobalRoutesResponse.new
             model.deserialize(response['Response'])
             model
           else

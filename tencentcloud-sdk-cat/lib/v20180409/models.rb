@@ -356,6 +356,74 @@ module TencentCloud
         end
       end
 
+      # DescribeNodeGroups请求参数结构体
+      class DescribeNodeGroupsRequest < TencentCloud::Common::AbstractModel
+        # @param NodeType: 节点类型。0: 全部 1: IDC 2: LastMile 3: Mobile，不填默认为0
+        # @type NodeType: Array
+        # @param TaskCategory: 节点分类。0: 全部 1: PC 2：Mobile，不填默认为0。PC分类包括IDC和LM节点类型，Mobile分类包括Mobile节点类型。与NodeType参数取交集。
+        # @type TaskCategory: Integer
+        # @param IPType: IP类型。0: 全部 1: IPv4 2: IPv6，不填默认为0
+        # @type IPType: Integer
+        # @param Name: 拨测点描述关键词。
+        # @type Name: String
+        # @param RegionID: 地域ID。0: 精选拨测点 1: 国内 2: 港澳台 3: 亚太 4: 欧洲与美洲 5: 非洲与大洋洲，不填默认为0
+        # @type RegionID: Integer
+        # @param DistrictID: 省份或国家ID。0表示全部，不填默认为0
+        # @type DistrictID: Integer
+        # @param NetServiceID: 运营商ID。0: 全部 1: 中国电信 2: 中国联通 3: 中国移动 99: 其他，不填默认为0
+        # @type NetServiceID: Integer
+        # @param NodeGroupType: 节点组类型。0: 高级拨测点组 1: 可用性节点 2: 我的拨测点组，不填默认为0
+        # @type NodeGroupType: Integer
+        # @param TaskType: 任务类型，如1、2、3、4、5、6、7；1-页面性能、2-文件上传、3-文件下载、4-端口性能、5-网络质量、6-音视频体验、7-域名whois，不填默认为0，不对任务类型做过滤
+        # @type TaskType: Integer
+        # @param ProbeType: 测试类型，包含定时测试与即时测试。0-定时拨测，其它表示即时拨测。
+        # @type ProbeType: Integer
+
+        attr_accessor :NodeType, :TaskCategory, :IPType, :Name, :RegionID, :DistrictID, :NetServiceID, :NodeGroupType, :TaskType, :ProbeType
+
+        def initialize(nodetype=nil, taskcategory=nil, iptype=nil, name=nil, regionid=nil, districtid=nil, netserviceid=nil, nodegrouptype=nil, tasktype=nil, probetype=nil)
+          @NodeType = nodetype
+          @TaskCategory = taskcategory
+          @IPType = iptype
+          @Name = name
+          @RegionID = regionid
+          @DistrictID = districtid
+          @NetServiceID = netserviceid
+          @NodeGroupType = nodegrouptype
+          @TaskType = tasktype
+          @ProbeType = probetype
+        end
+
+        def deserialize(params)
+          @NodeType = params['NodeType']
+          @TaskCategory = params['TaskCategory']
+          @IPType = params['IPType']
+          @Name = params['Name']
+          @RegionID = params['RegionID']
+          @DistrictID = params['DistrictID']
+          @NetServiceID = params['NetServiceID']
+          @NodeGroupType = params['NodeGroupType']
+          @TaskType = params['TaskType']
+          @ProbeType = params['ProbeType']
+        end
+      end
+
+      # DescribeNodeGroups返回参数结构体
+      class DescribeNodeGroupsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeNodes请求参数结构体
       class DescribeNodesRequest < TencentCloud::Common::AbstractModel
         # @param NodeType: 节点类型

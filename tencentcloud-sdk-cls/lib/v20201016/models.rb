@@ -169,6 +169,8 @@ module TencentCloud
         # @type GroupTriggerStatus: Boolean
         # @param GroupTriggerCondition: 分组触发条件。
         # @type GroupTriggerCondition: Array
+        # @param Tags: 告警策略绑定的标签信息。
+        # @type Tags: Array
         # @param MonitorObjectType: 监控对象类型。0:执行语句共用监控对象;1:每个执行语句单独选择监控对象。
         # @type MonitorObjectType: Integer
         # @param AlarmLevel: 告警级别。0:警告(Warn);1:提醒(Info);2:紧急 (Critical)。
@@ -179,9 +181,9 @@ module TencentCloud
         # Condition互斥。
         # @type MultiConditions: Array
 
-        attr_accessor :Name, :AlarmTargets, :MonitorTime, :Condition, :TriggerCount, :AlarmPeriod, :AlarmNoticeIds, :Status, :AlarmId, :CreateTime, :UpdateTime, :MessageTemplate, :CallBack, :Analysis, :GroupTriggerStatus, :GroupTriggerCondition, :MonitorObjectType, :AlarmLevel, :Classifications, :MultiConditions
+        attr_accessor :Name, :AlarmTargets, :MonitorTime, :Condition, :TriggerCount, :AlarmPeriod, :AlarmNoticeIds, :Status, :AlarmId, :CreateTime, :UpdateTime, :MessageTemplate, :CallBack, :Analysis, :GroupTriggerStatus, :GroupTriggerCondition, :Tags, :MonitorObjectType, :AlarmLevel, :Classifications, :MultiConditions
 
-        def initialize(name=nil, alarmtargets=nil, monitortime=nil, condition=nil, triggercount=nil, alarmperiod=nil, alarmnoticeids=nil, status=nil, alarmid=nil, createtime=nil, updatetime=nil, messagetemplate=nil, callback=nil, analysis=nil, grouptriggerstatus=nil, grouptriggercondition=nil, monitorobjecttype=nil, alarmlevel=nil, classifications=nil, multiconditions=nil)
+        def initialize(name=nil, alarmtargets=nil, monitortime=nil, condition=nil, triggercount=nil, alarmperiod=nil, alarmnoticeids=nil, status=nil, alarmid=nil, createtime=nil, updatetime=nil, messagetemplate=nil, callback=nil, analysis=nil, grouptriggerstatus=nil, grouptriggercondition=nil, tags=nil, monitorobjecttype=nil, alarmlevel=nil, classifications=nil, multiconditions=nil)
           @Name = name
           @AlarmTargets = alarmtargets
           @MonitorTime = monitortime
@@ -198,6 +200,7 @@ module TencentCloud
           @Analysis = analysis
           @GroupTriggerStatus = grouptriggerstatus
           @GroupTriggerCondition = grouptriggercondition
+          @Tags = tags
           @MonitorObjectType = monitorobjecttype
           @AlarmLevel = alarmlevel
           @Classifications = classifications
@@ -241,6 +244,14 @@ module TencentCloud
           end
           @GroupTriggerStatus = params['GroupTriggerStatus']
           @GroupTriggerCondition = params['GroupTriggerCondition']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
           @MonitorObjectType = params['MonitorObjectType']
           @AlarmLevel = params['AlarmLevel']
           unless params['Classifications'].nil?
@@ -11836,14 +11847,17 @@ module TencentCloud
         # @type SqlFlag: Boolean
         # @param ContainZH: 是否包含中文，long及double类型字段需为false
         # @type ContainZH: Boolean
+        # @param Alias: 字段别名
+        # @type Alias: String
 
-        attr_accessor :Type, :Tokenizer, :SqlFlag, :ContainZH
+        attr_accessor :Type, :Tokenizer, :SqlFlag, :ContainZH, :Alias
 
-        def initialize(type=nil, tokenizer=nil, sqlflag=nil, containzh=nil)
+        def initialize(type=nil, tokenizer=nil, sqlflag=nil, containzh=nil, _alias=nil)
           @Type = type
           @Tokenizer = tokenizer
           @SqlFlag = sqlflag
           @ContainZH = containzh
+          @Alias = _alias
         end
 
         def deserialize(params)
@@ -11851,6 +11865,7 @@ module TencentCloud
           @Tokenizer = params['Tokenizer']
           @SqlFlag = params['SqlFlag']
           @ContainZH = params['ContainZH']
+          @Alias = params['Alias']
         end
       end
 

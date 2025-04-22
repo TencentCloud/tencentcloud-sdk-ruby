@@ -1779,10 +1779,12 @@ module TencentCloud
         # @type KuberneteNativeSecret: String
         # @param EnableLogCollection: 是否开启cls日志功能
         # @type EnableLogCollection: Boolean
+        # @param Reason: 集群状态的原因
+        # @type Reason: String
 
-        attr_accessor :ClusterId, :ClusterName, :ClusterDesc, :ClusterType, :VpcId, :ClusterStatus, :ClusterCIDR, :ClusterTotalCpu, :ClusterTotalMem, :ClusterUsedCpu, :ClusterUsedMem, :InstanceCount, :RunInstanceCount, :NormalInstanceCount, :DeleteFlag, :CreateTime, :UpdateTime, :TsfRegionId, :TsfRegionName, :TsfZoneId, :TsfZoneName, :DeleteFlagReason, :SubnetId, :ClusterLimitCpu, :ClusterLimitMem, :RunServiceInstanceCount, :OperationInfo, :ClusterVersion, :GroupCount, :RunGroupCount, :StopGroupCount, :AbnormalGroupCount, :ClusterRemarkName, :KuberneteApiServer, :KuberneteNativeType, :KuberneteNativeSecret, :EnableLogCollection
+        attr_accessor :ClusterId, :ClusterName, :ClusterDesc, :ClusterType, :VpcId, :ClusterStatus, :ClusterCIDR, :ClusterTotalCpu, :ClusterTotalMem, :ClusterUsedCpu, :ClusterUsedMem, :InstanceCount, :RunInstanceCount, :NormalInstanceCount, :DeleteFlag, :CreateTime, :UpdateTime, :TsfRegionId, :TsfRegionName, :TsfZoneId, :TsfZoneName, :DeleteFlagReason, :SubnetId, :ClusterLimitCpu, :ClusterLimitMem, :RunServiceInstanceCount, :OperationInfo, :ClusterVersion, :GroupCount, :RunGroupCount, :StopGroupCount, :AbnormalGroupCount, :ClusterRemarkName, :KuberneteApiServer, :KuberneteNativeType, :KuberneteNativeSecret, :EnableLogCollection, :Reason
 
-        def initialize(clusterid=nil, clustername=nil, clusterdesc=nil, clustertype=nil, vpcid=nil, clusterstatus=nil, clustercidr=nil, clustertotalcpu=nil, clustertotalmem=nil, clusterusedcpu=nil, clusterusedmem=nil, instancecount=nil, runinstancecount=nil, normalinstancecount=nil, deleteflag=nil, createtime=nil, updatetime=nil, tsfregionid=nil, tsfregionname=nil, tsfzoneid=nil, tsfzonename=nil, deleteflagreason=nil, subnetid=nil, clusterlimitcpu=nil, clusterlimitmem=nil, runserviceinstancecount=nil, operationinfo=nil, clusterversion=nil, groupcount=nil, rungroupcount=nil, stopgroupcount=nil, abnormalgroupcount=nil, clusterremarkname=nil, kuberneteapiserver=nil, kubernetenativetype=nil, kubernetenativesecret=nil, enablelogcollection=nil)
+        def initialize(clusterid=nil, clustername=nil, clusterdesc=nil, clustertype=nil, vpcid=nil, clusterstatus=nil, clustercidr=nil, clustertotalcpu=nil, clustertotalmem=nil, clusterusedcpu=nil, clusterusedmem=nil, instancecount=nil, runinstancecount=nil, normalinstancecount=nil, deleteflag=nil, createtime=nil, updatetime=nil, tsfregionid=nil, tsfregionname=nil, tsfzoneid=nil, tsfzonename=nil, deleteflagreason=nil, subnetid=nil, clusterlimitcpu=nil, clusterlimitmem=nil, runserviceinstancecount=nil, operationinfo=nil, clusterversion=nil, groupcount=nil, rungroupcount=nil, stopgroupcount=nil, abnormalgroupcount=nil, clusterremarkname=nil, kuberneteapiserver=nil, kubernetenativetype=nil, kubernetenativesecret=nil, enablelogcollection=nil, reason=nil)
           @ClusterId = clusterid
           @ClusterName = clustername
           @ClusterDesc = clusterdesc
@@ -1820,6 +1822,7 @@ module TencentCloud
           @KuberneteNativeType = kubernetenativetype
           @KuberneteNativeSecret = kubernetenativesecret
           @EnableLogCollection = enablelogcollection
+          @Reason = reason
         end
 
         def deserialize(params)
@@ -1863,6 +1866,7 @@ module TencentCloud
           @KuberneteNativeType = params['KuberneteNativeType']
           @KuberneteNativeSecret = params['KuberneteNativeSecret']
           @EnableLogCollection = params['EnableLogCollection']
+          @Reason = params['Reason']
         end
       end
 

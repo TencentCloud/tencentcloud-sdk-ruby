@@ -244,6 +244,67 @@ module TencentCloud
         end
       end
 
+      # CreatePrivilegeCode请求参数结构体
+      class CreatePrivilegeCodeRequest < TencentCloud::Common::AbstractModel
+        # @param DomainInstanceId: 管理域实例ID，用于CAM管理域权限分配。若企业未进行管理域的划分，可直接传入根域"1"，此时表示针对当前企业的全部设备和账号进行接口CRUD，具体CRUD的影响范围限制于相应接口的入参。
+        # @type DomainInstanceId: String
+        # @param Mid: 必填；设备唯一标识符;
+        # @type Mid: String
+
+        attr_accessor :DomainInstanceId, :Mid
+
+        def initialize(domaininstanceid=nil, mid=nil)
+          @DomainInstanceId = domaininstanceid
+          @Mid = mid
+        end
+
+        def deserialize(params)
+          @DomainInstanceId = params['DomainInstanceId']
+          @Mid = params['Mid']
+        end
+      end
+
+      # CreatePrivilegeCode返回参数结构体
+      class CreatePrivilegeCodeResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 业务响应数据
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: :class:`Tencentcloud::Ioa.v20220601.models.CreatePrivilegeCodeRspData`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = CreatePrivilegeCodeRspData.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 业务响应数据
+      class CreatePrivilegeCodeRspData < TencentCloud::Common::AbstractModel
+        # @param Code: 特权码数据
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Code: String
+
+        attr_accessor :Code
+
+        def initialize(code=nil)
+          @Code = code
+        end
+
+        def deserialize(params)
+          @Code = params['Code']
+        end
+      end
+
       # 账号分组信息
       class DescribeAccountGroupsData < TencentCloud::Common::AbstractModel
         # @param NamePath: 账号分组名全路径，点分格式
@@ -914,6 +975,161 @@ module TencentCloud
         def deserialize(params)
           unless params['Data'].nil?
             @Data = GetAccountGroupData.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 软件统计响应对象集合
+      class DescribeSoftCensusListByDeviceData < TencentCloud::Common::AbstractModel
+        # @param UserName: 终端用户名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserName: String
+        # @param MacAddr: mac地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MacAddr: String
+        # @param Name: 终端计算机名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param GroupNamePath: 终端组路径名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GroupNamePath: String
+        # @param Ip: IP地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Ip: String
+        # @param Mid: 唯一标识Mid
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Mid: String
+        # @param IoaUserName: 企业账户名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IoaUserName: String
+        # @param GroupId: 终端分组Id(只支持32位)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GroupId: Integer
+        # @param GroupName: 终端组名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GroupName: String
+        # @param Id: 终端列表Id(只支持32位)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Id: Integer
+        # @param SoftNum: 软件数量(只支持32位)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SoftNum: Integer
+        # @param PiracyRisk: 盗版风险（1=风险;2=未知）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PiracyRisk: Integer
+
+        attr_accessor :UserName, :MacAddr, :Name, :GroupNamePath, :Ip, :Mid, :IoaUserName, :GroupId, :GroupName, :Id, :SoftNum, :PiracyRisk
+
+        def initialize(username=nil, macaddr=nil, name=nil, groupnamepath=nil, ip=nil, mid=nil, ioausername=nil, groupid=nil, groupname=nil, id=nil, softnum=nil, piracyrisk=nil)
+          @UserName = username
+          @MacAddr = macaddr
+          @Name = name
+          @GroupNamePath = groupnamepath
+          @Ip = ip
+          @Mid = mid
+          @IoaUserName = ioausername
+          @GroupId = groupid
+          @GroupName = groupname
+          @Id = id
+          @SoftNum = softnum
+          @PiracyRisk = piracyrisk
+        end
+
+        def deserialize(params)
+          @UserName = params['UserName']
+          @MacAddr = params['MacAddr']
+          @Name = params['Name']
+          @GroupNamePath = params['GroupNamePath']
+          @Ip = params['Ip']
+          @Mid = params['Mid']
+          @IoaUserName = params['IoaUserName']
+          @GroupId = params['GroupId']
+          @GroupName = params['GroupName']
+          @Id = params['Id']
+          @SoftNum = params['SoftNum']
+          @PiracyRisk = params['PiracyRisk']
+        end
+      end
+
+      # 业务响应数据
+      class DescribeSoftCensusListByDevicePageData < TencentCloud::Common::AbstractModel
+        # @param Items: 软件统计响应对象集合
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Items: Array
+        # @param Page: 分页公共对象
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Page: :class:`Tencentcloud::Ioa.v20220601.models.Paging`
+
+        attr_accessor :Items, :Page
+
+        def initialize(items=nil, page=nil)
+          @Items = items
+          @Page = page
+        end
+
+        def deserialize(params)
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              describesoftcensuslistbydevicedata_tmp = DescribeSoftCensusListByDeviceData.new
+              describesoftcensuslistbydevicedata_tmp.deserialize(i)
+              @Items << describesoftcensuslistbydevicedata_tmp
+            end
+          end
+          unless params['Page'].nil?
+            @Page = Paging.new
+            @Page.deserialize(params['Page'])
+          end
+        end
+      end
+
+      # DescribeSoftCensusListByDevice请求参数结构体
+      class DescribeSoftCensusListByDeviceRequest < TencentCloud::Common::AbstractModel
+        # @param OsType: 必填，系统类型（0: win，1：linux，2: mac，4：android，5：ios  ）
+        # @type OsType: Integer
+        # @param GroupId: 必填，终端分组ID
+        # @type GroupId: Integer
+        # @param Condition: 过滤条件、分页参数   <li>Name - String - 是否必填：否 - 操作符: eq,like,ilike  - 排序支持：否 - 备注：字段含义，终端名。</li> 	<li>UserName - String - 是否必填：否 - 操作符: eq,like,ilike  - 排序支持：否 - 备注：字段含义，终端用户名。</li> 	<li>IoaUserName - String - 是否必填：否 - 操作符: eq,like,ilike  - 排序支持：否 - 备注：字段含义，最近登录账号。</li> 	<li>Ip - String - 是否必填：否 - 操作符: eq,like,ilike  - 排序支持：否 - 备注：字段含义，IP地址。</li> 	<li>MacAddr - String - 是否必填：否 - 操作符: eq,like,ilike  - 排序支持：否 - 备注：字段含义，MAC地址。</li>
+        # @type Condition: :class:`Tencentcloud::Ioa.v20220601.models.Condition`
+
+        attr_accessor :OsType, :GroupId, :Condition
+
+        def initialize(ostype=nil, groupid=nil, condition=nil)
+          @OsType = ostype
+          @GroupId = groupid
+          @Condition = condition
+        end
+
+        def deserialize(params)
+          @OsType = params['OsType']
+          @GroupId = params['GroupId']
+          unless params['Condition'].nil?
+            @Condition = Condition.new
+            @Condition.deserialize(params['Condition'])
+          end
+        end
+      end
+
+      # DescribeSoftCensusListByDevice返回参数结构体
+      class DescribeSoftCensusListByDeviceResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 业务响应数据
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: :class:`Tencentcloud::Ioa.v20220601.models.DescribeSoftCensusListByDevicePageData`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = DescribeSoftCensusListByDevicePageData.new
             @Data.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']

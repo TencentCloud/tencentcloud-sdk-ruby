@@ -3132,10 +3132,18 @@ module TencentCloud
         # @type Topic: String
         # @param KafkaVersion: kafka集群的版本号
         # @type KafkaVersion: String
+        # @param SASLEnable: 是否开启SASL校验，默认不开启，0-关闭，1-开启
+        # @type SASLEnable: Integer
+        # @param SASLUser: SASL用户名
+        # @type SASLUser: String
+        # @param SASLPassword: SASL密码
+        # @type SASLPassword: String
+        # @param WriteConfig: 开启访问日志某些字段是否投递
+        # @type WriteConfig: :class:`Tencentcloud::Waf.v20180125.models.FieldWriteConfig`
 
-        attr_accessor :CKafkaRegion, :CKafkaID, :Brokers, :Compression, :VipType, :LogType, :Topic, :KafkaVersion
+        attr_accessor :CKafkaRegion, :CKafkaID, :Brokers, :Compression, :VipType, :LogType, :Topic, :KafkaVersion, :SASLEnable, :SASLUser, :SASLPassword, :WriteConfig
 
-        def initialize(ckafkaregion=nil, ckafkaid=nil, brokers=nil, compression=nil, viptype=nil, logtype=nil, topic=nil, kafkaversion=nil)
+        def initialize(ckafkaregion=nil, ckafkaid=nil, brokers=nil, compression=nil, viptype=nil, logtype=nil, topic=nil, kafkaversion=nil, saslenable=nil, sasluser=nil, saslpassword=nil, writeconfig=nil)
           @CKafkaRegion = ckafkaregion
           @CKafkaID = ckafkaid
           @Brokers = brokers
@@ -3144,6 +3152,10 @@ module TencentCloud
           @LogType = logtype
           @Topic = topic
           @KafkaVersion = kafkaversion
+          @SASLEnable = saslenable
+          @SASLUser = sasluser
+          @SASLPassword = saslpassword
+          @WriteConfig = writeconfig
         end
 
         def deserialize(params)
@@ -3155,6 +3167,13 @@ module TencentCloud
           @LogType = params['LogType']
           @Topic = params['Topic']
           @KafkaVersion = params['KafkaVersion']
+          @SASLEnable = params['SASLEnable']
+          @SASLUser = params['SASLUser']
+          @SASLPassword = params['SASLPassword']
+          unless params['WriteConfig'].nil?
+            @WriteConfig = FieldWriteConfig.new
+            @WriteConfig.deserialize(params['WriteConfig'])
+          end
         end
       end
 
@@ -9133,6 +9152,30 @@ module TencentCloud
         end
       end
 
+      # 设置哪些字段是否存储或转发
+      class FieldWriteConfig < TencentCloud::Common::AbstractModel
+        # @param EnableHeaders: 1:开启 0:不开启
+        # @type EnableHeaders: Integer
+        # @param EnableBody: 1:开启 0:不开启
+        # @type EnableBody: Integer
+        # @param EnableBot: 1:开启 0:不开启
+        # @type EnableBot: Integer
+
+        attr_accessor :EnableHeaders, :EnableBody, :EnableBot
+
+        def initialize(enableheaders=nil, enablebody=nil, enablebot=nil)
+          @EnableHeaders = enableheaders
+          @EnableBody = enablebody
+          @EnableBot = enablebot
+        end
+
+        def deserialize(params)
+          @EnableHeaders = params['EnableHeaders']
+          @EnableBody = params['EnableBody']
+          @EnableBot = params['EnableBot']
+        end
+      end
+
       # 过滤数组
       class FiltersItemNew < TencentCloud::Common::AbstractModel
         # @param Name: 字段名； 过滤
@@ -13766,12 +13809,22 @@ module TencentCloud
         # @type Topic: String
         # @param Compression: 压缩算法，支持gzip 和 lz4
         # @type Compression: String
+        # @param SASLEnable: 是否支持SASL,0-关闭，1-开启
+        # @type SASLEnable: Integer
+        # @param SASLUser: SASL用户名
+        # @type SASLUser: String
+        # @param SASLPassword: SALS密码
+        # @type SASLPassword: String
         # @param Content: 描述信息
         # @type Content: String
+        # @param VipType: 1-外网TGW，2-支撑环境，默认为支撑环境
+        # @type VipType: Integer
+        # @param WriteConfig: 配置状态
+        # @type WriteConfig: :class:`Tencentcloud::Waf.v20180125.models.FieldWriteConfig`
 
-        attr_accessor :FlowId, :LogType, :Status, :CKafkaRegion, :CKafkaID, :Brokers, :Version, :Topic, :Compression, :Content
+        attr_accessor :FlowId, :LogType, :Status, :CKafkaRegion, :CKafkaID, :Brokers, :Version, :Topic, :Compression, :SASLEnable, :SASLUser, :SASLPassword, :Content, :VipType, :WriteConfig
 
-        def initialize(flowid=nil, logtype=nil, status=nil, ckafkaregion=nil, ckafkaid=nil, brokers=nil, version=nil, topic=nil, compression=nil, content=nil)
+        def initialize(flowid=nil, logtype=nil, status=nil, ckafkaregion=nil, ckafkaid=nil, brokers=nil, version=nil, topic=nil, compression=nil, saslenable=nil, sasluser=nil, saslpassword=nil, content=nil, viptype=nil, writeconfig=nil)
           @FlowId = flowid
           @LogType = logtype
           @Status = status
@@ -13781,7 +13834,12 @@ module TencentCloud
           @Version = version
           @Topic = topic
           @Compression = compression
+          @SASLEnable = saslenable
+          @SASLUser = sasluser
+          @SASLPassword = saslpassword
           @Content = content
+          @VipType = viptype
+          @WriteConfig = writeconfig
         end
 
         def deserialize(params)
@@ -13794,7 +13852,15 @@ module TencentCloud
           @Version = params['Version']
           @Topic = params['Topic']
           @Compression = params['Compression']
+          @SASLEnable = params['SASLEnable']
+          @SASLUser = params['SASLUser']
+          @SASLPassword = params['SASLPassword']
           @Content = params['Content']
+          @VipType = params['VipType']
+          unless params['WriteConfig'].nil?
+            @WriteConfig = FieldWriteConfig.new
+            @WriteConfig.deserialize(params['WriteConfig'])
+          end
         end
       end
 

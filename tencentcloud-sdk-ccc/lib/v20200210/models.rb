@@ -5889,6 +5889,8 @@ module TencentCloud
         # @type Time: Integer
         # @param Direction: 呼入呼出方向 0 呼入 1 呼出
         # @type Direction: Integer
+        # @param CallType: 通话类型 1 呼出 2 呼入 3 音频呼入 5 预测式外呼 6 内线呼叫
+        # @type CallType: Integer
         # @param Duration: 通话时长
         # @type Duration: Integer
         # @param RecordURL: 录音信息
@@ -5901,15 +5903,15 @@ module TencentCloud
 
         # **场景	         EndStatus	EndStatusString	状态说明**
 
-        # 电话呼入&呼出	1	        ok	                        正常结束
+        # 电话呼入&呼出	1	        ok	                        正常通话
 
-        # 电话呼入&呼出	0	        error	                系统错误
+        # 电话呼入&呼出	0	        error	                异常结束
 
         # 电话呼入	             102	        ivrGiveUp	        IVR 期间用户放弃
 
-        # 电话呼入	             103	        waitingGiveUp	       会话排队期间用户放弃
+        # 电话呼入	             103	        waitingGiveUp	       排队时用户放弃
 
-        # 电话呼入	             104	        ringingGiveUp	       会话振铃期间用户放弃
+        # 电话呼入	             104	        ringingGiveUp	       振铃时用户放弃
 
         # 电话呼入	             105	        noSeatOnline	       无座席在线
 
@@ -5917,37 +5919,37 @@ module TencentCloud
 
         # 电话呼入	            107	       ivrEnd	               IVR 后直接结束
 
-        # 电话呼入	            100	      blackList 呼入黑名单
+        # 电话呼入	            100	      blackList 黑名单
 
         # 电话呼出               2	              unconnected	未接通
 
         # 电话呼出             108	        restrictedCallee	被叫因高风险受限
 
-        # 电话呼出             109	        tooManyRequest	    超频
+        # 电话呼出             109	        tooManyRequest	    外呼超频限制
 
-        # 电话呼出             110	        restrictedArea	    外呼盲区
+        # 电话呼出             110	        restrictedArea	    外呼区域限制
 
         # 电话呼出             111	        restrictedTime	外呼时间限制
 
         # 电话呼出             201            unknown	未知状态
 
-        # 电话呼出             202            notAnswer	未接听
+        # 电话呼出             202            notAnswer	 被叫未接听
 
-        # 电话呼出            203	    userReject	拒接挂断
+        # 电话呼出            203	    userReject	被叫拒接挂断
 
-        # 电话呼出	          204	    powerOff	关机
+        # 电话呼出	          204	    powerOff	被叫关机
 
-        # 电话呼出           205            numberNotExist	空号
+        # 电话呼出           205            numberNotExist	被叫空号
 
-        # 电话呼出	         206	           busy	通话中
+        # 电话呼出	         206	           busy	被叫忙
 
-        # 电话呼出   	        207	           outOfCredit	欠费
+        # 电话呼出   	        207	           outOfCredit	被叫欠费
 
         # 电话呼出	         208	           operatorError	运营商线路异常
 
         # 电话呼出         	209	           callerCancel	主叫取消
 
-        # 电话呼出	        210	           notInService	不在服务区
+        # 电话呼出	        210	           notInService	被叫不在服务区
 
         # 电话呼入&呼出	211    clientError    客户端错误
         # 电话呼出        212     carrierBlocked      运营商拦截
@@ -5976,15 +5978,15 @@ module TencentCloud
 
         # **场景	         EndStatus	EndStatusString	状态说明**
 
-        # 电话呼入&呼出	1	        ok	                        正常结束
+        # 电话呼入&呼出	1	        ok	                        正常通话
 
-        # 电话呼入&呼出	0	        error	                系统错误
+        # 电话呼入&呼出	0	        error	                异常结束
 
         # 电话呼入	             102	        ivrGiveUp	        IVR 期间用户放弃
 
-        # 电话呼入	             103	        waitingGiveUp	       会话排队期间用户放弃
+        # 电话呼入	             103	        waitingGiveUp	       排队时用户放弃
 
-        # 电话呼入	             104	        ringingGiveUp	       会话振铃期间用户放弃
+        # 电话呼入	             104	        ringingGiveUp	       振铃时用户放弃
 
         # 电话呼入	             105	        noSeatOnline	       无座席在线
 
@@ -5992,37 +5994,37 @@ module TencentCloud
 
         # 电话呼入	            107	       ivrEnd	               IVR 后直接结束
 
-        # 电话呼入	            100	      blackList 呼入黑名单
+        # 电话呼入	            100	      blackList 黑名单
 
         # 电话呼出               2	              unconnected	未接通
 
         # 电话呼出             108	        restrictedCallee	被叫因高风险受限
 
-        # 电话呼出             109	        tooManyRequest	    超频
+        # 电话呼出             109	        tooManyRequest	    外呼超频限制
 
-        # 电话呼出             110	        restrictedArea	    外呼盲区
+        # 电话呼出             110	        restrictedArea	    外呼区域限制
 
         # 电话呼出             111	        restrictedTime	外呼时间限制
 
         # 电话呼出             201            unknown	未知状态
 
-        # 电话呼出             202            notAnswer	未接听
+        # 电话呼出             202            notAnswer	 被叫未接听
 
-        # 电话呼出            203	    userReject	拒接挂断
+        # 电话呼出            203	    userReject	被叫拒接挂断
 
-        # 电话呼出	          204	    powerOff	关机
+        # 电话呼出	          204	    powerOff	被叫关机
 
-        # 电话呼出           205            numberNotExist	空号
+        # 电话呼出           205            numberNotExist	被叫空号
 
-        # 电话呼出	         206	           busy	通话中
+        # 电话呼出	         206	           busy	被叫忙
 
-        # 电话呼出   	        207	           outOfCredit	欠费
+        # 电话呼出   	        207	           outOfCredit	被叫欠费
 
         # 电话呼出	         208	           operatorError	运营商线路异常
 
         # 电话呼出         	209	           callerCancel	主叫取消
 
-        # 电话呼出	        210	           notInService	不在服务区
+        # 电话呼出	        210	           notInService	被叫不在服务区
 
         # 电话呼入&呼出	211    clientError    客户端错误
         # 电话呼出        212     carrierBlocked      运营商拦截
@@ -6068,16 +6070,17 @@ module TencentCloud
         # @param VoicemailAsrURL: 通话中语音留言ASR文本信息地址
         # @type VoicemailAsrURL: Array
 
-        attr_accessor :Caller, :Callee, :Time, :Direction, :Duration, :RecordURL, :RecordId, :SeatUser, :EndStatus, :SkillGroup, :CallerLocation, :IVRDuration, :RingTimestamp, :AcceptTimestamp, :EndedTimestamp, :IVRKeyPressed, :HungUpSide, :ServeParticipants, :SkillGroupId, :EndStatusString, :StartTimestamp, :QueuedTimestamp, :PostIVRKeyPressed, :QueuedSkillGroupId, :SessionId, :ProtectedCaller, :ProtectedCallee, :Uui, :UUI, :IVRKeyPressedEx, :AsrUrl, :AsrStatus, :CustomRecordURL, :Remark, :QueuedSkillGroupName, :VoicemailRecordURL, :VoicemailAsrURL
+        attr_accessor :Caller, :Callee, :Time, :Direction, :CallType, :Duration, :RecordURL, :RecordId, :SeatUser, :EndStatus, :SkillGroup, :CallerLocation, :IVRDuration, :RingTimestamp, :AcceptTimestamp, :EndedTimestamp, :IVRKeyPressed, :HungUpSide, :ServeParticipants, :SkillGroupId, :EndStatusString, :StartTimestamp, :QueuedTimestamp, :PostIVRKeyPressed, :QueuedSkillGroupId, :SessionId, :ProtectedCaller, :ProtectedCallee, :Uui, :UUI, :IVRKeyPressedEx, :AsrUrl, :AsrStatus, :CustomRecordURL, :Remark, :QueuedSkillGroupName, :VoicemailRecordURL, :VoicemailAsrURL
         extend Gem::Deprecate
         deprecate :Uui, :none, 2025, 4
         deprecate :Uui=, :none, 2025, 4
 
-        def initialize(caller=nil, callee=nil, time=nil, direction=nil, duration=nil, recordurl=nil, recordid=nil, seatuser=nil, endstatus=nil, skillgroup=nil, callerlocation=nil, ivrduration=nil, ringtimestamp=nil, accepttimestamp=nil, endedtimestamp=nil, ivrkeypressed=nil, hungupside=nil, serveparticipants=nil, skillgroupid=nil, endstatusstring=nil, starttimestamp=nil, queuedtimestamp=nil, postivrkeypressed=nil, queuedskillgroupid=nil, sessionid=nil, protectedcaller=nil, protectedcallee=nil, uui=nil, ivrkeypressedex=nil, asrurl=nil, asrstatus=nil, customrecordurl=nil, remark=nil, queuedskillgroupname=nil, voicemailrecordurl=nil, voicemailasrurl=nil)
+        def initialize(caller=nil, callee=nil, time=nil, direction=nil, calltype=nil, duration=nil, recordurl=nil, recordid=nil, seatuser=nil, endstatus=nil, skillgroup=nil, callerlocation=nil, ivrduration=nil, ringtimestamp=nil, accepttimestamp=nil, endedtimestamp=nil, ivrkeypressed=nil, hungupside=nil, serveparticipants=nil, skillgroupid=nil, endstatusstring=nil, starttimestamp=nil, queuedtimestamp=nil, postivrkeypressed=nil, queuedskillgroupid=nil, sessionid=nil, protectedcaller=nil, protectedcallee=nil, uui=nil, ivrkeypressedex=nil, asrurl=nil, asrstatus=nil, customrecordurl=nil, remark=nil, queuedskillgroupname=nil, voicemailrecordurl=nil, voicemailasrurl=nil)
           @Caller = caller
           @Callee = callee
           @Time = time
           @Direction = direction
+          @CallType = calltype
           @Duration = duration
           @RecordURL = recordurl
           @RecordId = recordid
@@ -6117,6 +6120,7 @@ module TencentCloud
           @Callee = params['Callee']
           @Time = params['Time']
           @Direction = params['Direction']
+          @CallType = params['CallType']
           @Duration = params['Duration']
           @RecordURL = params['RecordURL']
           @RecordId = params['RecordId']

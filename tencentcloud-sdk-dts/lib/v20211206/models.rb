@@ -4138,7 +4138,7 @@ module TencentCloud
         end
       end
 
-      # 目标端为kakfa时添加的同步选项字段
+      # 目标端为kafka时添加的同步选项字段
       class KafkaOption < TencentCloud::Common::AbstractModel
         # @param DataType: 投递到kafka的数据类型，如Avro,Json,canal-pb,canal-json
         # @type DataType: String

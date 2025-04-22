@@ -980,14 +980,12 @@ module TencentCloud
         # <li>false：关闭。</li>默认值：false。
         # @type SessionPersist: Boolean
         # @param SessionPersistTime: 会话保持的时间，只有当SessionPersist为true时，该值才会生效。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SessionPersistTime: Integer
         # @param OriginPort: 源站端口，支持格式：
         # <li>单端口，如：80。</li>
         # <li>端口段：81-82，表示81，82两个端口。</li>
         # @type OriginPort: String
         # @param RuleTag: 规则标签。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleTag: String
 
         attr_accessor :Proto, :Port, :OriginType, :OriginValue, :RuleId, :Status, :ForwardClientIp, :SessionPersist, :SessionPersistTime, :OriginPort, :RuleTag
@@ -1658,7 +1656,6 @@ module TencentCloud
         # @type Switch: String
         # @param CacheTime: 缓存过期时间设置。
         # 单位为秒，最大可设置为 365 天。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CacheTime: Integer
         # @param IgnoreCacheControl: 是否开启强制缓存，取值有：
         # <li>on：开启；</li>
@@ -1783,12 +1780,10 @@ module TencentCloud
         # @param FullUrlCache: 是否开启全路径缓存，取值有：
         # <li>on：开启全路径缓存（即关闭参数忽略）；</li>
         # <li>off：关闭全路径缓存（即开启参数忽略）。</li>
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FullUrlCache: String
         # @param IgnoreCase: 是否忽略大小写缓存，取值有：
         # <li>on：忽略；</li>
         # <li>off：不忽略。</li>
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IgnoreCase: String
         # @param QueryString: CacheKey 中包含请求参数。
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -2072,7 +2067,6 @@ module TencentCloud
         # <li>off：关闭。</li>
         # @type Switch: String
         # @param Percent: 缓存预刷新百分比，取值范围：1-99。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Percent: Integer
 
         attr_accessor :Switch, :Percent
@@ -2329,7 +2323,6 @@ module TencentCloud
         # <li>off：关闭。</li>
         # @type Switch: String
         # @param HeaderName: 回源时，存放客户端 IP 的请求头名称。当 Switch 为 on 时，该参数必填。该参数不允许填写 X-Forwarded-For。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HeaderName: String
 
         attr_accessor :Switch, :HeaderName
@@ -2352,10 +2345,9 @@ module TencentCloud
         # @param Cname: CNAME 地址。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Cname: String
-        # @param Status: Cname状态信息，取值有：
+        # @param Status: CNAME 状态信息，取值有：
         # <li>active：生效；</li>
-        # <li>moved：不生效。</li>
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # <li>moved：不生效；</li>
         # @type Status: String
 
         attr_accessor :RecordName, :Cname, :Status
@@ -2409,7 +2401,6 @@ module TencentCloud
         # @param Algorithms: 支持的压缩算法列表，取值有：
         # <li>brotli：brotli算法；</li>
         # <li>gzip：gzip算法。</li>
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Algorithms: Array
 
         attr_accessor :Switch, :Algorithms
@@ -4276,15 +4267,12 @@ module TencentCloud
         # <li>RspHeader：从 HTTP 响应头中提取指定字段值；</li>
         # <li>Cookie: 从 Cookie 中提取指定字段值；</li>
         # <li>ReqBody: 从 HTTP 请求正文中通过 Google RE2 正则表达式提取指定内容。</li>
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Value: 根据字段类型（Name）填入字段值的定义。需要区分大小写。
         # <li>当字段类型为 ReqHeader、RspHeader、Cookie 时，填入需要提取值的参数名称，例如：Accept-Language。可输入 1-100 个字符，允许的字符开头为字母，中间为字母、数字、-，结尾为字母、数字；</li>
         # <li>当字段类型为 ReqBody 时，填入 Google RE2 正则表达式，正则表达式长度上限为 4KB。</li>
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: String
         # @param Enabled: 是否投递该字段，不填表示不投递此字段。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Enabled: Boolean
 
         attr_accessor :Name, :Value, :Enabled
@@ -4399,10 +4387,8 @@ module TencentCloud
       # 负载均衡实例 HTTP/HTTPS 健康检查策略下可配置的自定义头部。
       class CustomizedHeader < TencentCloud::Common::AbstractModel
         # @param Key: 自定义头部 Key。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Key: String
         # @param Value: 自定义头部 Value。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: String
 
         attr_accessor :Key, :Value
@@ -4566,40 +4552,30 @@ module TencentCloud
       # https 服务端证书配置
       class DefaultServerCertInfo < TencentCloud::Common::AbstractModel
         # @param CertId: 服务器证书 ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CertId: String
         # @param Alias: 证书备注名。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Alias: String
         # @param Type: 证书类型，取值有：
         # <li>default: 默认证书;</li>
         # <li>upload:用户上传;</li>
         # <li>managed:腾讯云托管。</li>
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: String
         # @param ExpireTime: 证书过期时间。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExpireTime: String
         # @param EffectiveTime: 证书生效时间。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EffectiveTime: String
         # @param CommonName: 证书公用名。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CommonName: String
         # @param SubjectAltName: 证书SAN域名。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubjectAltName: Array
         # @param Status: 部署状态，取值有：
         # <li>processing: 部署中；</li>
         # <li>deployed: 已部署；</li>
         # <li>failed: 部署失败。</li>
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: String
         # @param Message: Status为失败时,此字段返回失败原因。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Message: String
         # @param SignAlgo: 证书算法。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SignAlgo: String
 
         attr_accessor :CertId, :Alias, :Type, :ExpireTime, :EffectiveTime, :CommonName, :SubjectAltName, :Status, :Message, :SignAlgo
@@ -5417,7 +5393,6 @@ module TencentCloud
         # @param Message: 发布结果信息。
         # @type Message: String
         # @param RecordId: 发布记录 ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RecordId: String
         # @param Description: 变更说明。
         # @type Description: String
@@ -9980,7 +9955,6 @@ module TencentCloud
         # @param RedirectStatusCode: 重定向状态码，取值有：
         # <li>301：301跳转；</li>
         # <li>302：302跳转。</li>
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RedirectStatusCode: Integer
 
         attr_accessor :Switch, :RedirectStatusCode
@@ -10521,17 +10495,14 @@ module TencentCloud
         # <li>off：关闭。</li>
         # @type Switch: String
         # @param MaxAge: MaxAge 数值。单位为秒，最大值为1天。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaxAge: Integer
         # @param IncludeSubDomains: 是否包含子域名，取值有：
         # <li>on：开启；</li>
         # <li>off：关闭。</li>
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IncludeSubDomains: String
         # @param Preload: 是否开启预加载，取值有：
         # <li>on：开启；</li>
         # <li>off：关闭。</li>
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Preload: String
 
         attr_accessor :Switch, :MaxAge, :IncludeSubDomains, :Preload
@@ -10556,19 +10527,16 @@ module TencentCloud
         # @param Http2: http2 配置开关，取值有：
         # <li>on：开启；</li>
         # <li>off：关闭。</li>
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Http2: String
         # @param OcspStapling: OCSP 配置开关，取值有：
         # <li>on：开启；</li>
         # <li>off：关闭。</li>
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OcspStapling: String
         # @param TlsVersion: Tls 版本设置，取值有：
         # <li>TLSv1：TLSv1版本；</li>
         # <li>TLSV1.1：TLSv1.1版本；</li>
         # <li>TLSV1.2：TLSv1.2版本；</li>
         # <li>TLSv1.3：TLSv1.3版本。</li>修改时必须开启连续的版本。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TlsVersion: Array
         # @param Hsts: HSTS 配置。
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -10579,13 +10547,11 @@ module TencentCloud
         # @param ApplyType: 申请类型，取值有：
         # <li>apply：托管EdgeOne；</li>
         # <li>none：不托管EdgeOne。</li>不填，默认取值为none。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApplyType: String
         # @param CipherSuite: 密码套件，取值有：
         # <li>loose-v2023：提供高兼容性，安全性一般，支持 TLS 1.0-1.3 密码套件；</li>
         # <li>general-v2023：提供较高兼容性，安全性中等，支持 TLS 1.2-1.3 密码套件；</li>
         # <li>strict-v2023：提供高安全性能，禁用所有含不安全隐患的加密套件，支持 TLS 1.2-1.3 密码套件。</li>
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CipherSuite: String
 
         attr_accessor :Http2, :OcspStapling, :TlsVersion, :Hsts, :CertInfo, :ApplyType, :CipherSuite
@@ -10745,7 +10711,6 @@ module TencentCloud
         # @param ZoneName: 站点名称。
         # @type ZoneName: String
         # @param Domain: 验证子域名。验证站点时，该值为空。验证子域名是为具体子域名。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Domain: String
         # @param Status: 验证状态，取值有：
         # <li> pending：验证中；</li>
@@ -10754,7 +10719,6 @@ module TencentCloud
         # @param Ascription: 站点归属权校验：Dns校验信息。
         # @type Ascription: :class:`Tencentcloud::Teo.v20220901.models.AscriptionInfo`
         # @param OriginalNameServers: 域名当前的 NS 记录。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OriginalNameServers: Array
         # @param FileAscription: 站点归属权校验：文件校验信息。
         # @type FileAscription: :class:`Tencentcloud::Teo.v20220901.models.FileAscriptionInfo`
@@ -13921,21 +13885,17 @@ module TencentCloud
       # 源站配置。
       class Origin < TencentCloud::Common::AbstractModel
         # @param Origins: 主源站列表。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Origins: Array
         # @param BackupOrigins: 备源站列表。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BackupOrigins: Array
         # @param OriginPullProtocol: 回源协议配置，取值有：
         # <li>http：强制 http 回源；</li>
         # <li>follow：协议跟随回源；</li>
         # <li>https：强制 https 回源。</li>
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OriginPullProtocol: String
         # @param CosPrivateAccess: 源站为腾讯云 COS 时，是否为私有访问 bucket，取值有：
         # <li>on：私有访问；</li>
         # <li>off：公共访问。</li>
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CosPrivateAccess: String
 
         attr_accessor :Origins, :BackupOrigins, :OriginPullProtocol, :CosPrivateAccess
@@ -14065,7 +14025,6 @@ module TencentCloud
         # @param UpdateTime: 源站组更新时间。
         # @type UpdateTime: String
         # @param HostHeader: 回源Host Header。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HostHeader: String
 
         attr_accessor :GroupId, :Name, :Type, :Records, :References, :CreateTime, :UpdateTime, :HostHeader
@@ -14617,7 +14576,6 @@ module TencentCloud
         # <li>off：关闭限制。</li>
         # @type Switch: String
         # @param MaxSize: 最大限制，取值在1MB和500MB之间。单位字节。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaxSize: Integer
 
         attr_accessor :Switch, :MaxSize
@@ -14761,10 +14719,8 @@ module TencentCloud
         # @param Action: CacheKey使用QueryString的方式，取值有：
         # <li>includeCustom：使用部分url参数；</li>
         # <li>excludeCustom：排除部分url参数。</li>
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Action: String
         # @param Value: 使用/排除的url参数数组。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: Array
 
         attr_accessor :Switch, :Action, :Value
@@ -16669,29 +16625,21 @@ module TencentCloud
       # https 服务端证书配置
       class ServerCertInfo < TencentCloud::Common::AbstractModel
         # @param CertId: 服务器证书 ID。来源于 SSL 侧，您可以前往 [SSL 证书列表](https://console.cloud.tencent.com/ssl) 查看 CertId。
-
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CertId: String
         # @param Alias: 证书备注名。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Alias: String
         # @param Type: 证书类型，取值有：
         # <li>default：默认证书；</li>
         # <li>upload：用户上传；</li>
         # <li>managed：腾讯云托管。</li>
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: String
         # @param ExpireTime: 证书过期时间。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExpireTime: String
         # @param DeployTime: 证书部署时间。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeployTime: String
         # @param SignAlgo: 签名算法。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SignAlgo: String
         # @param CommonName: 证书归属域名名称。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CommonName: String
 
         attr_accessor :CertId, :Alias, :Type, :ExpireTime, :DeployTime, :SignAlgo, :CommonName
@@ -17167,13 +17115,13 @@ module TencentCloud
         # @param Method: 节点缓存清除方法，取值有：
         # <li>invalidate：标记过期，用户请求时触发回源校验，即发送带有 If-None-Match 和 If-Modified-Since 头部的 HTTP 条件请求。若源站响应 200，则节点会回源拉取新的资源并更新缓存；若源站响应 304，则节点不会更新缓存；</li>
         # <li>delete：直接删除节点缓存，用户请求时触发回源拉取资源。</li>
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Method: String
         # @param Status: 状态。取值有：
         # <li>processing：处理中；</li>
         # <li>success：成功；</li>
         # <li> failed：失败；</li>
-        # <li>timeout：超时。</li>
+        # <li>timeout：超时；</li>
+        # <li>canceled：已取消。</li>
         # @type Status: String
         # @param CreateTime: 任务创建时间。
         # @type CreateTime: String
@@ -17977,7 +17925,6 @@ module TencentCloud
         # <li> paused：已停用。</li>
         # @type ActiveStatus: String
         # @param AliasZoneName: 站点别名。数字、英文、-和_组合，限制20个字符。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AliasZoneName: String
         # @param IsFake: 是否伪站点，取值有：
         # <li> 0：非伪站点；</li>
