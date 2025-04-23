@@ -81,6 +81,46 @@ module TencentCloud
         end
       end
 
+      # CreateDedicatedClusterImageCache请求参数结构体
+      class CreateDedicatedClusterImageCacheRequest < TencentCloud::Common::AbstractModel
+        # @param DedicatedClusterId: 集群ID
+        # @type DedicatedClusterId: String
+        # @param ImageId: 镜像ID
+        # @type ImageId: String
+
+        attr_accessor :DedicatedClusterId, :ImageId
+
+        def initialize(dedicatedclusterid=nil, imageid=nil)
+          @DedicatedClusterId = dedicatedclusterid
+          @ImageId = imageid
+        end
+
+        def deserialize(params)
+          @DedicatedClusterId = params['DedicatedClusterId']
+          @ImageId = params['ImageId']
+        end
+      end
+
+      # CreateDedicatedClusterImageCache返回参数结构体
+      class CreateDedicatedClusterImageCacheResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务id
+        # @type TaskId: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateDedicatedClusterOrder请求参数结构体
       class CreateDedicatedClusterOrderRequest < TencentCloud::Common::AbstractModel
         # @param DedicatedClusterId: 专用集群id
@@ -737,6 +777,42 @@ module TencentCloud
         def deserialize(params)
           @Id = params['Id']
           @Count = params['Count']
+        end
+      end
+
+      # DeleteDedicatedClusterImageCache请求参数结构体
+      class DeleteDedicatedClusterImageCacheRequest < TencentCloud::Common::AbstractModel
+        # @param DedicatedClusterId: 集群id
+        # @type DedicatedClusterId: String
+        # @param ImageId: 镜像id
+        # @type ImageId: String
+
+        attr_accessor :DedicatedClusterId, :ImageId
+
+        def initialize(dedicatedclusterid=nil, imageid=nil)
+          @DedicatedClusterId = dedicatedclusterid
+          @ImageId = imageid
+        end
+
+        def deserialize(params)
+          @DedicatedClusterId = params['DedicatedClusterId']
+          @ImageId = params['ImageId']
+        end
+      end
+
+      # DeleteDedicatedClusterImageCache返回参数结构体
+      class DeleteDedicatedClusterImageCacheResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 

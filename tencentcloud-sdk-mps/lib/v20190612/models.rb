@@ -7005,17 +7005,20 @@ module TencentCloud
 
       # CreateLiveRecordTemplate请求参数结构体
       class CreateLiveRecordTemplateRequest < TencentCloud::Common::AbstractModel
-        # @param HLSConfigure: HLS 配置参数
+        # @param HLSConfigure: HLS配置参数，和MP4Configure需要二选一必填。
         # @type HLSConfigure: :class:`Tencentcloud::Mps.v20190612.models.HLSConfigureInfo`
+        # @param MP4Configure: MP4配置参数，和HLSConfigure需要二选一必填。
+        # @type MP4Configure: :class:`Tencentcloud::Mps.v20190612.models.MP4ConfigureInfo`
         # @param Name: 录制模板名称，长度限制：64 个字符。
         # @type Name: String
         # @param Comment: 模板描述信息，长度限制：256 个字符。
         # @type Comment: String
 
-        attr_accessor :HLSConfigure, :Name, :Comment
+        attr_accessor :HLSConfigure, :MP4Configure, :Name, :Comment
 
-        def initialize(hlsconfigure=nil, name=nil, comment=nil)
+        def initialize(hlsconfigure=nil, mp4configure=nil, name=nil, comment=nil)
           @HLSConfigure = hlsconfigure
+          @MP4Configure = mp4configure
           @Name = name
           @Comment = comment
         end
@@ -7024,6 +7027,10 @@ module TencentCloud
           unless params['HLSConfigure'].nil?
             @HLSConfigure = HLSConfigureInfo.new
             @HLSConfigure.deserialize(params['HLSConfigure'])
+          end
+          unless params['MP4Configure'].nil?
+            @MP4Configure = MP4ConfigureInfo.new
+            @MP4Configure.deserialize(params['MP4Configure'])
           end
           @Name = params['Name']
           @Comment = params['Comment']
@@ -14698,6 +14705,8 @@ module TencentCloud
         # @type Definition: Integer
         # @param HLSConfigure: HLS 配置参数
         # @type HLSConfigure: :class:`Tencentcloud::Mps.v20190612.models.HLSConfigureInfo`
+        # @param MP4Configure: MP4配置参数
+        # @type MP4Configure: :class:`Tencentcloud::Mps.v20190612.models.MP4ConfigureInfo`
         # @param Name: 录制模板名称。
         # @type Name: String
         # @param Comment: 模板描述信息。
@@ -14711,11 +14720,12 @@ module TencentCloud
         # @param UpdateTime: 模板最后修改时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/862/37710#52)。
         # @type UpdateTime: String
 
-        attr_accessor :Definition, :HLSConfigure, :Name, :Comment, :Type, :CreateTime, :UpdateTime
+        attr_accessor :Definition, :HLSConfigure, :MP4Configure, :Name, :Comment, :Type, :CreateTime, :UpdateTime
 
-        def initialize(definition=nil, hlsconfigure=nil, name=nil, comment=nil, type=nil, createtime=nil, updatetime=nil)
+        def initialize(definition=nil, hlsconfigure=nil, mp4configure=nil, name=nil, comment=nil, type=nil, createtime=nil, updatetime=nil)
           @Definition = definition
           @HLSConfigure = hlsconfigure
+          @MP4Configure = mp4configure
           @Name = name
           @Comment = comment
           @Type = type
@@ -14728,6 +14738,10 @@ module TencentCloud
           unless params['HLSConfigure'].nil?
             @HLSConfigure = HLSConfigureInfo.new
             @HLSConfigure.deserialize(params['HLSConfigure'])
+          end
+          unless params['MP4Configure'].nil?
+            @MP4Configure = MP4ConfigureInfo.new
+            @MP4Configure.deserialize(params['MP4Configure'])
           end
           @Name = params['Name']
           @Comment = params['Comment']
@@ -15825,6 +15839,22 @@ module TencentCloud
         def deserialize(params)
           @Switch = params['Switch']
           @Type = params['Type']
+        end
+      end
+
+      # MP4配置参数
+      class MP4ConfigureInfo < TencentCloud::Common::AbstractModel
+        # @param Interval: 录制周期，单位：秒，取值范围 10 分钟到720分钟。默认值：60分钟（3600秒）。
+        # @type Interval: Integer
+
+        attr_accessor :Interval
+
+        def initialize(interval=nil)
+          @Interval = interval
+        end
+
+        def deserialize(params)
+          @Interval = params['Interval']
         end
       end
 
@@ -17562,6 +17592,8 @@ module TencentCloud
       # ModifyAsrHotwords请求参数结构体
       class ModifyAsrHotwordsRequest < TencentCloud::Common::AbstractModel
         # @param HotwordsId: 热词库 id
+        # 如果热词库是文本热词：Name 和 Content 至少填一个
+        # 如果热词库是：Name、FileContent 和 FileName 至少填一个
         # @type HotwordsId: String
         # @param Name: 热词库名称
         # @type Name: String
@@ -17884,18 +17916,21 @@ module TencentCloud
       class ModifyLiveRecordTemplateRequest < TencentCloud::Common::AbstractModel
         # @param Definition: 录制模板唯一标识。
         # @type Definition: Integer
-        # @param HLSConfigure: HLS 配置参数
+        # @param HLSConfigure: HLS配置参数，和MP4Configure需要二选一必填。
         # @type HLSConfigure: :class:`Tencentcloud::Mps.v20190612.models.HLSConfigureInfo`
+        # @param MP4Configure: MP4配置参数，和HLSConfigure需要二选一必填。
+        # @type MP4Configure: :class:`Tencentcloud::Mps.v20190612.models.MP4ConfigureInfo`
         # @param Name: 录制模板名称，长度限制：64 个字符。
         # @type Name: String
         # @param Comment: 模板描述信息，长度限制：256 个字符。
         # @type Comment: String
 
-        attr_accessor :Definition, :HLSConfigure, :Name, :Comment
+        attr_accessor :Definition, :HLSConfigure, :MP4Configure, :Name, :Comment
 
-        def initialize(definition=nil, hlsconfigure=nil, name=nil, comment=nil)
+        def initialize(definition=nil, hlsconfigure=nil, mp4configure=nil, name=nil, comment=nil)
           @Definition = definition
           @HLSConfigure = hlsconfigure
+          @MP4Configure = mp4configure
           @Name = name
           @Comment = comment
         end
@@ -17905,6 +17940,10 @@ module TencentCloud
           unless params['HLSConfigure'].nil?
             @HLSConfigure = HLSConfigureInfo.new
             @HLSConfigure.deserialize(params['HLSConfigure'])
+          end
+          unless params['MP4Configure'].nil?
+            @MP4Configure = MP4ConfigureInfo.new
+            @MP4Configure.deserialize(params['MP4Configure'])
           end
           @Name = params['Name']
           @Comment = params['Comment']
@@ -20415,9 +20454,12 @@ module TencentCloud
         # @param NoVideo: 为true时表示视频无视频轨。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NoVideo: Boolean
-        # @param QualityEvaluationScore: 视频无参考质量打分，百分制。
+        # @param QualityEvaluationScore: 视频无参考质量评分，百分制。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type QualityEvaluationScore: Integer
+        # @param QualityEvaluationMeanOpinionScore: 视频无参考质量评分，MOS分数。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type QualityEvaluationMeanOpinionScore: Float
         # @param QualityControlResultSet: 内容质检检出异常项。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type QualityControlResultSet: Array
@@ -20425,12 +20467,13 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ContainerDiagnoseResultSet: Array
 
-        attr_accessor :NoAudio, :NoVideo, :QualityEvaluationScore, :QualityControlResultSet, :ContainerDiagnoseResultSet
+        attr_accessor :NoAudio, :NoVideo, :QualityEvaluationScore, :QualityEvaluationMeanOpinionScore, :QualityControlResultSet, :ContainerDiagnoseResultSet
 
-        def initialize(noaudio=nil, novideo=nil, qualityevaluationscore=nil, qualitycontrolresultset=nil, containerdiagnoseresultset=nil)
+        def initialize(noaudio=nil, novideo=nil, qualityevaluationscore=nil, qualityevaluationmeanopinionscore=nil, qualitycontrolresultset=nil, containerdiagnoseresultset=nil)
           @NoAudio = noaudio
           @NoVideo = novideo
           @QualityEvaluationScore = qualityevaluationscore
+          @QualityEvaluationMeanOpinionScore = qualityevaluationmeanopinionscore
           @QualityControlResultSet = qualitycontrolresultset
           @ContainerDiagnoseResultSet = containerdiagnoseresultset
         end
@@ -20439,6 +20482,7 @@ module TencentCloud
           @NoAudio = params['NoAudio']
           @NoVideo = params['NoVideo']
           @QualityEvaluationScore = params['QualityEvaluationScore']
+          @QualityEvaluationMeanOpinionScore = params['QualityEvaluationMeanOpinionScore']
           unless params['QualityControlResultSet'].nil?
             @QualityControlResultSet = []
             params['QualityControlResultSet'].each do |i|
@@ -24983,19 +25027,23 @@ module TencentCloud
         # @type Start: Float
         # @param End: 字词结束时间戳，单位秒。
         # @type End: Float
+        # @param Trans: 翻译文本
+        # @type Trans: String
 
-        attr_accessor :Word, :Start, :End
+        attr_accessor :Word, :Start, :End, :Trans
 
-        def initialize(word=nil, start=nil, _end=nil)
+        def initialize(word=nil, start=nil, _end=nil, trans=nil)
           @Word = word
           @Start = start
           @End = _end
+          @Trans = trans
         end
 
         def deserialize(params)
           @Word = params['Word']
           @Start = params['Start']
           @End = params['End']
+          @Trans = params['Trans']
         end
       end
 

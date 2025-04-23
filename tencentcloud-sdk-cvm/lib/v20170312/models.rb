@@ -5081,13 +5081,20 @@ module TencentCloud
         # @type DataDisks: Array
         # @param ForceStop: 是否对运行中的实例选择强制关机。建议对运行中的实例先手动关机，然后再重置用户密码。取值范围：<br><li>true：表示在正常关机失败后进行强制关机</li><br><li>false：表示在正常关机失败后不进行强制关机</li><br>默认取值：false。<br><br>强制关机的效果等同于关闭物理计算机的电源开关。强制关机可能会导致数据丢失或文件系统损坏，请仅在服务器不能正常关机时使用。
         # @type ForceStop: Boolean
+        # @param SystemDisk: 待扩容的系统盘配置信息。只支持扩容云盘。
+        # <dx-alert infotype="explain" title="">您必须指定参数DataDisks与SystemDisk的其中一个，但不能同时指定。</dx-alert>
+        # @type SystemDisk: :class:`Tencentcloud::Cvm.v20170312.models.SystemDisk`
+        # @param ResizeOnline: 是否在线扩容
+        # @type ResizeOnline: Boolean
 
-        attr_accessor :InstanceId, :DataDisks, :ForceStop
+        attr_accessor :InstanceId, :DataDisks, :ForceStop, :SystemDisk, :ResizeOnline
 
-        def initialize(instanceid=nil, datadisks=nil, forcestop=nil)
+        def initialize(instanceid=nil, datadisks=nil, forcestop=nil, systemdisk=nil, resizeonline=nil)
           @InstanceId = instanceid
           @DataDisks = datadisks
           @ForceStop = forcestop
+          @SystemDisk = systemdisk
+          @ResizeOnline = resizeonline
         end
 
         def deserialize(params)
@@ -5101,6 +5108,11 @@ module TencentCloud
             end
           end
           @ForceStop = params['ForceStop']
+          unless params['SystemDisk'].nil?
+            @SystemDisk = SystemDisk.new
+            @SystemDisk.deserialize(params['SystemDisk'])
+          end
+          @ResizeOnline = params['ResizeOnline']
         end
       end
 

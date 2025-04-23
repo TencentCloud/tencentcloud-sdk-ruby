@@ -8272,14 +8272,17 @@ module TencentCloud
         # path 时填充绝对路径，如 /xxx/test.html
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RulePaths: Array
+        # @param Remark: 备注信息, 最多支持50个字符
+        # @type Remark: String
 
-        attr_accessor :FilterType, :Filters, :RuleType, :RulePaths
+        attr_accessor :FilterType, :Filters, :RuleType, :RulePaths, :Remark
 
-        def initialize(filtertype=nil, filters=nil, ruletype=nil, rulepaths=nil)
+        def initialize(filtertype=nil, filters=nil, ruletype=nil, rulepaths=nil, remark=nil)
           @FilterType = filtertype
           @Filters = filters
           @RuleType = ruletype
           @RulePaths = rulepaths
+          @Remark = remark
         end
 
         def deserialize(params)
@@ -8287,6 +8290,7 @@ module TencentCloud
           @Filters = params['Filters']
           @RuleType = params['RuleType']
           @RulePaths = params['RulePaths']
+          @Remark = params['Remark']
         end
       end
 

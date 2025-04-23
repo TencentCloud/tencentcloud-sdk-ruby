@@ -2233,6 +2233,50 @@ module TencentCloud
         end
       end
 
+      # DescribeDBDiagReportContent请求参数结构体
+      class DescribeDBDiagReportContentRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例名
+        # @type InstanceId: String
+        # @param AsyncRequestId: 异步任务ID
+        # @type AsyncRequestId: Integer
+        # @param Product: 服务产品类型，支持值："mysql" - 云数据库 MySQL，"redis" - 云数据库 Redis，"mongodb" - 云数据库 MongoDB，默认为"mysql"。
+        # @type Product: String
+
+        attr_accessor :InstanceId, :AsyncRequestId, :Product
+
+        def initialize(instanceid=nil, asyncrequestid=nil, product=nil)
+          @InstanceId = instanceid
+          @AsyncRequestId = asyncrequestid
+          @Product = product
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @AsyncRequestId = params['AsyncRequestId']
+          @Product = params['Product']
+        end
+      end
+
+      # DescribeDBDiagReportContent返回参数结构体
+      class DescribeDBDiagReportContentResponse < TencentCloud::Common::AbstractModel
+        # @param Report: 报告内容。
+        # @type Report: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Report, :RequestId
+
+        def initialize(report=nil, requestid=nil)
+          @Report = report
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Report = params['Report']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeDBDiagReportTasks请求参数结构体
       class DescribeDBDiagReportTasksRequest < TencentCloud::Common::AbstractModel
         # @param StartTime: 第一个任务的开始时间，用于范围查询，时间格式如：2019-09-10 12:13:14。

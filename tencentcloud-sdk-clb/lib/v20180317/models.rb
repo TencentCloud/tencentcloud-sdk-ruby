@@ -565,7 +565,6 @@ module TencentCloud
         # @param LocationId: 配置绑定的规则
         # @type LocationId: String
         # @param ListenerName: 监听器名字
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ListenerName: String
         # @param Protocol: 监听器协议
         # @type Protocol: String

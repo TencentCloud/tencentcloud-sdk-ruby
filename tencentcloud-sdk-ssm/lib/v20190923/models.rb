@@ -55,10 +55,12 @@ module TencentCloud
         # @type EnableRotation: Boolean
         # @param RotationFrequency: 轮转周期，以天为单位，默认为1天。
         # @type RotationFrequency: Integer
+        # @param KmsHsmClusterId: KMS的独享集群的ID。当KmsKeyId为空,并且用户的KMS存在有效的HsmClusterId时有效。
+        # @type KmsHsmClusterId: String
 
-        attr_accessor :SecretName, :UserNamePrefix, :ProductName, :InstanceID, :Domains, :PrivilegesList, :Description, :KmsKeyId, :Tags, :RotationBeginTime, :EnableRotation, :RotationFrequency
+        attr_accessor :SecretName, :UserNamePrefix, :ProductName, :InstanceID, :Domains, :PrivilegesList, :Description, :KmsKeyId, :Tags, :RotationBeginTime, :EnableRotation, :RotationFrequency, :KmsHsmClusterId
 
-        def initialize(secretname=nil, usernameprefix=nil, productname=nil, instanceid=nil, domains=nil, privilegeslist=nil, description=nil, kmskeyid=nil, tags=nil, rotationbegintime=nil, enablerotation=nil, rotationfrequency=nil)
+        def initialize(secretname=nil, usernameprefix=nil, productname=nil, instanceid=nil, domains=nil, privilegeslist=nil, description=nil, kmskeyid=nil, tags=nil, rotationbegintime=nil, enablerotation=nil, rotationfrequency=nil, kmshsmclusterid=nil)
           @SecretName = secretname
           @UserNamePrefix = usernameprefix
           @ProductName = productname
@@ -71,6 +73,7 @@ module TencentCloud
           @RotationBeginTime = rotationbegintime
           @EnableRotation = enablerotation
           @RotationFrequency = rotationfrequency
+          @KmsHsmClusterId = kmshsmclusterid
         end
 
         def deserialize(params)
@@ -100,6 +103,7 @@ module TencentCloud
           @RotationBeginTime = params['RotationBeginTime']
           @EnableRotation = params['EnableRotation']
           @RotationFrequency = params['RotationFrequency']
+          @KmsHsmClusterId = params['KmsHsmClusterId']
         end
       end
 
@@ -151,16 +155,19 @@ module TencentCloud
         # @type Tags: Array
         # @param SSHKeyName: 用户自定义输入的SSH密钥对的名称，可由数字，字母和下划线组成，只能以数字和字母开头，长度不超过25个字符。
         # @type SSHKeyName: String
+        # @param KmsHsmClusterId: KMS的独享集群的ID。当KmsKeyId为空,并且用户的KMS存在有效的HsmClusterId时有效。
+        # @type KmsHsmClusterId: String
 
-        attr_accessor :SecretName, :ProjectId, :Description, :KmsKeyId, :Tags, :SSHKeyName
+        attr_accessor :SecretName, :ProjectId, :Description, :KmsKeyId, :Tags, :SSHKeyName, :KmsHsmClusterId
 
-        def initialize(secretname=nil, projectid=nil, description=nil, kmskeyid=nil, tags=nil, sshkeyname=nil)
+        def initialize(secretname=nil, projectid=nil, description=nil, kmskeyid=nil, tags=nil, sshkeyname=nil, kmshsmclusterid=nil)
           @SecretName = secretname
           @ProjectId = projectid
           @Description = description
           @KmsKeyId = kmskeyid
           @Tags = tags
           @SSHKeyName = sshkeyname
+          @KmsHsmClusterId = kmshsmclusterid
         end
 
         def deserialize(params)
@@ -177,6 +184,7 @@ module TencentCloud
             end
           end
           @SSHKeyName = params['SSHKeyName']
+          @KmsHsmClusterId = params['KmsHsmClusterId']
         end
       end
 
@@ -236,10 +244,12 @@ module TencentCloud
         # @type AdditionalConfig: String
         # @param Tags: 标签列表
         # @type Tags: Array
+        # @param KmsHsmClusterId: KMS的独享集群的ID。当KmsKeyId为空,并且用户的KMS存在有效的HsmClusterId时有效。
+        # @type KmsHsmClusterId: String
 
-        attr_accessor :SecretName, :VersionId, :Description, :KmsKeyId, :SecretType, :SecretBinary, :SecretString, :AdditionalConfig, :Tags
+        attr_accessor :SecretName, :VersionId, :Description, :KmsKeyId, :SecretType, :SecretBinary, :SecretString, :AdditionalConfig, :Tags, :KmsHsmClusterId
 
-        def initialize(secretname=nil, versionid=nil, description=nil, kmskeyid=nil, secrettype=nil, secretbinary=nil, secretstring=nil, additionalconfig=nil, tags=nil)
+        def initialize(secretname=nil, versionid=nil, description=nil, kmskeyid=nil, secrettype=nil, secretbinary=nil, secretstring=nil, additionalconfig=nil, tags=nil, kmshsmclusterid=nil)
           @SecretName = secretname
           @VersionId = versionid
           @Description = description
@@ -249,6 +259,7 @@ module TencentCloud
           @SecretString = secretstring
           @AdditionalConfig = additionalconfig
           @Tags = tags
+          @KmsHsmClusterId = kmshsmclusterid
         end
 
         def deserialize(params)
@@ -268,6 +279,7 @@ module TencentCloud
               @Tags << tag_tmp
             end
           end
+          @KmsHsmClusterId = params['KmsHsmClusterId']
         end
       end
 

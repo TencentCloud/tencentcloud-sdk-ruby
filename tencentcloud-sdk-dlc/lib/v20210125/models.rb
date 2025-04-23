@@ -5089,6 +5089,54 @@ module TencentCloud
         end
       end
 
+      # DescribeClusterMonitorInfos请求参数结构体
+      class DescribeClusterMonitorInfosRequest < TencentCloud::Common::AbstractModel
+        # @param DataEngineId: 引擎Id
+        # @type DataEngineId: String
+        # @param TimeStart: 任务创建时间的起始时间
+        # @type TimeStart: String
+        # @param TimeEnd: 任务创建时间的结束时间
+        # @type TimeEnd: String
+        # @param MetricName: 指标名称
+        # @type MetricName: String
+
+        attr_accessor :DataEngineId, :TimeStart, :TimeEnd, :MetricName
+
+        def initialize(dataengineid=nil, timestart=nil, timeend=nil, metricname=nil)
+          @DataEngineId = dataengineid
+          @TimeStart = timestart
+          @TimeEnd = timeend
+          @MetricName = metricname
+        end
+
+        def deserialize(params)
+          @DataEngineId = params['DataEngineId']
+          @TimeStart = params['TimeStart']
+          @TimeEnd = params['TimeEnd']
+          @MetricName = params['MetricName']
+        end
+      end
+
+      # DescribeClusterMonitorInfos返回参数结构体
+      class DescribeClusterMonitorInfosResponse < TencentCloud::Common::AbstractModel
+        # @param Info: 集群监控信息列表
+        # @type Info: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Info, :RequestId
+
+        def initialize(info=nil, requestid=nil)
+          @Info = info
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Info = params['Info']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeDLCCatalogAccess请求参数结构体
       class DescribeDLCCatalogAccessRequest < TencentCloud::Common::AbstractModel
         # @param Limit: 显示条数

@@ -14944,7 +14944,7 @@ module TencentCloud
 
       # UpdateAlertRule请求参数结构体
       class UpdateAlertRuleRequest < TencentCloud::Common::AbstractModel
-        # @param RuleId: Prometheus 高警规则 ID
+        # @param RuleId: Prometheus 告警规则 ID
         # @type RuleId: String
         # @param InstanceId: Prometheus 实例 ID
         # @type InstanceId: String
@@ -14962,13 +14962,13 @@ module TencentCloud
         # @type Duration: String
         # @param Receivers: 告警规则接收组列表(当前规则绑定的接收组列表可通过 DescribeAlertRules 接口获取；用户已有的接收组列表可通过 DescribeAlarmNotices 接口获取)
         # @type Receivers: Array
-        # @param Labels: 报警规则标签列表
+        # @param Labels: 告警规则标签列表
         # @type Labels: Array
-        # @param Annotations: 报警规则注释列表。
+        # @param Annotations: 告警规则注释列表。
 
         # 告警对象和告警消息是 Prometheus Rule Annotations 的特殊字段，需要通过 annotations 来传递，对应的 Key 分别为summary/description。
         # @type Annotations: Array
-        # @param Type: 报警策略模板分类(自定义，可不填)
+        # @param Type: 告警策略模板分类(自定义，可不填)
         # @type Type: String
 
         attr_accessor :RuleId, :InstanceId, :RuleState, :RuleName, :Expr, :Duration, :Receivers, :Labels, :Annotations, :Type

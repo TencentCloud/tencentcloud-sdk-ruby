@@ -24,31 +24,23 @@ module TencentCloud
         # @param MaxReplicas: 弹性伸缩最大实例数
         # @type MaxReplicas: Integer
         # @param HorizontalAutoscaler: 指标弹性伸缩策略(指标策略和定时策略必须填写一个)
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HorizontalAutoscaler: Array
         # @param CronHorizontalAutoscaler: 定时弹性伸缩策略(指标策略和定时策略必须填写一个)
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CronHorizontalAutoscaler: Array
         # @param AutoscalerId: 弹性伸缩ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AutoscalerId: String
         # @param AutoscalerName: 弹性伸缩名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AutoscalerName: String
         # @param Description: 弹性伸缩描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
         # @param CreateDate: 创建日期
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateDate: String
         # @param ModifyDate: 修改时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ModifyDate: String
         # @param EnableDate: 启用时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EnableDate: String
         # @param Enabled: 是否启用
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Enabled: Boolean
 
         attr_accessor :MinReplicas, :MaxReplicas, :HorizontalAutoscaler, :CronHorizontalAutoscaler, :AutoscalerId, :AutoscalerName, :Description, :CreateDate, :ModifyDate, :EnableDate, :Enabled
@@ -220,7 +212,6 @@ module TencentCloud
       # CreateApplicationAutoscaler返回参数结构体
       class CreateApplicationAutoscalerResponse < TencentCloud::Common::AbstractModel
         # @param Result: 弹性伸缩策略组合ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -375,7 +366,6 @@ module TencentCloud
       # CreateApplicationService返回参数结构体
       class CreateApplicationServiceResponse < TencentCloud::Common::AbstractModel
         # @param Result: 是否成功
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -483,7 +473,6 @@ module TencentCloud
       # CreateCosToken返回参数结构体
       class CreateCosTokenResponse < TencentCloud::Common::AbstractModel
         # @param Result: 成功时为CosToken对象，失败为null
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: :class:`Tencentcloud::Tem.v20210701.models.CosToken`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -582,7 +571,6 @@ module TencentCloud
       # CreateEnvironment返回参数结构体
       class CreateEnvironmentResponse < TencentCloud::Common::AbstractModel
         # @param Result: 成功时为环境ID，失败为null
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -718,7 +706,6 @@ module TencentCloud
       # CreateResource返回参数结构体
       class CreateResourceResponse < TencentCloud::Common::AbstractModel
         # @param Result: 成功与否
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -787,7 +774,6 @@ module TencentCloud
         # 00:00（零点零分触发）
         # @type StartAt: String
         # @param TargetReplicas: 目标实例数（不大于50）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TargetReplicas: Integer
 
         attr_accessor :StartAt, :TargetReplicas
@@ -834,7 +820,6 @@ module TencentCloud
       # DeleteApplicationAutoscaler返回参数结构体
       class DeleteApplicationAutoscalerResponse < TencentCloud::Common::AbstractModel
         # @param Result: 是否成功
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -931,7 +916,6 @@ module TencentCloud
       # DeleteApplicationService返回参数结构体
       class DeleteApplicationServiceResponse < TencentCloud::Common::AbstractModel
         # @param Result: 是否成功
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1312,22 +1296,16 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NewPodList: :class:`Tencentcloud::Tem.v20210701.models.DeployServicePodDetail`
         # @param BatchStatus: 当前批次状态："WaitForTimeExceed", "WaitForResume", "Deploying", "Finish", "NotStart"
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BatchStatus: String
         # @param PodNum: 该批次预计旧实例数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PodNum: Integer
         # @param BatchIndex: 批次id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BatchIndex: Integer
         # @param OldPods: 旧实例列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OldPods: Array
         # @param NewPods: 新实例列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NewPods: Array
         # @param NextBatchStartTime: =0：手动确认批次；>0：下一批次开始时间戳
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NextBatchStartTime: Integer
 
         attr_accessor :OldPodList, :NewPodList, :BatchStatus, :PodNum, :BatchIndex, :OldPods, :NewPods, :NextBatchStartTime
@@ -1378,25 +1356,18 @@ module TencentCloud
       # 分批发布单批次详情
       class DeployServicePodDetail < TencentCloud::Common::AbstractModel
         # @param PodId: pod Id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PodId: String
         # @param PodStatus: pod状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PodStatus: Array
         # @param PodVersion: pod版本
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PodVersion: String
         # @param CreateTime: pod创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
         # @param Zone: pod所在可用区
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Zone: String
         # @param Webshell: webshell地址
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Webshell: String
         # @param Status: 状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: String
 
         attr_accessor :PodId, :PodStatus, :PodVersion, :CreateTime, :Zone, :Webshell, :Status
@@ -1485,7 +1456,6 @@ module TencentCloud
       # DescribeApplicationAutoscalerList返回参数结构体
       class DescribeApplicationAutoscalerListResponse < TencentCloud::Common::AbstractModel
         # @param Result: 弹性伸缩策略组合
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1799,7 +1769,6 @@ module TencentCloud
         # @param Records: 记录
         # @type Records: Array
         # @param ContinueToken: 分页游标，用以查询下一页
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ContinueToken: String
         # @param RemainingCount: 剩余数目
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -2213,7 +2182,6 @@ module TencentCloud
       # DescribeIngresses返回参数结构体
       class DescribeIngressesResponse < TencentCloud::Common::AbstractModel
         # @param Result: ingress 数组
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2375,7 +2343,6 @@ module TencentCloud
       # DescribeRelatedIngresses返回参数结构体
       class DescribeRelatedIngressesResponse < TencentCloud::Common::AbstractModel
         # @param Result: ingress 数组
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2598,7 +2565,6 @@ module TencentCloud
       # DisableApplicationAutoscaler返回参数结构体
       class DisableApplicationAutoscalerResponse < TencentCloud::Common::AbstractModel
         # @param Result: 是否成功
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2625,49 +2591,36 @@ module TencentCloud
         # @param Yaml: yaml 内容
         # @type Yaml: String
         # @param ApplicationName: 服务名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApplicationName: String
         # @param VersionName: 版本名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VersionName: String
         # @param ClusterIp: 内网ip
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterIp: Array
         # @param ExternalIp: 外网ip
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExternalIp: String
         # @param Type: 访问类型，可选值：
         # - EXTERNAL（公网访问）
         # - VPC（vpc内访问）
         # - CLUSTER（集群内访问）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: String
         # @param SubnetId: 子网ID，只在类型为vpc访问时才有值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubnetId: String
         # @param LoadBalanceId: 负载均衡ID，只在外网访问和vpc内访问才有值，默认自动创建
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LoadBalanceId: String
         # @param PortMappings: 端口映射
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PortMappings: Array
         # @param ServicePortMappingList: 每种类型访问配置详情
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ServicePortMappingList: Array
         # @param FlushAll: 刷新复写所有类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FlushAll: Boolean
         # @param EnableRegistryNextDeploy: 1: 下次部署自动注入注册中心信息；0：不注入
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EnableRegistryNextDeploy: Integer
         # @param ApplicationId: 返回应用id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApplicationId: String
         # @param AllIpDone: 所有服务IP是否已经ready
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AllIpDone: Boolean
         # @param ExternalDomain: clb 域名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExternalDomain: String
 
         attr_accessor :Name, :Ports, :Yaml, :ApplicationName, :VersionName, :ClusterIp, :ExternalIp, :Type, :SubnetId, :LoadBalanceId, :PortMappings, :ServicePortMappingList, :FlushAll, :EnableRegistryNextDeploy, :ApplicationId, :AllIpDone, :ExternalDomain
@@ -2758,7 +2711,6 @@ module TencentCloud
       # EnableApplicationAutoscaler返回参数结构体
       class EnableApplicationAutoscalerResponse < TencentCloud::Common::AbstractModel
         # @param Result: 是否成功
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2859,7 +2811,6 @@ module TencentCloud
       # GenerateApplicationPackageDownloadUrl返回参数结构体
       class GenerateApplicationPackageDownloadUrlResponse < TencentCloud::Common::AbstractModel
         # @param Result: 包下载临时链接
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2948,7 +2899,6 @@ module TencentCloud
         # @param Enabled: 是否启用
         # @type Enabled: Boolean
         # @param DoubleThreshold: 阈值（小数，优先使用）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DoubleThreshold: Float
 
         attr_accessor :MinReplicas, :MaxReplicas, :Metrics, :Threshold, :Enabled, :DoubleThreshold
@@ -2975,7 +2925,6 @@ module TencentCloud
       # Ingress 配置
       class IngressInfo < TencentCloud::Common::AbstractModel
         # @param EnvironmentId: 环境ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EnvironmentId: String
         # @param AddressIPVersion: ip version
         # @type AddressIPVersion: String
@@ -2984,7 +2933,6 @@ module TencentCloud
         # @param Rules: rules 配置
         # @type Rules: Array
         # @param ClbId: clb ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClbId: String
         # @param ClusterNamespace: 环境namespace
         # @type ClusterNamespace: String
@@ -2992,23 +2940,18 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tls: Array
         # @param ClusterId: 环境集群ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterId: String
         # @param Vip: clb ip
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Vip: String
         # @param CreateTime: 创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
         # @param Mixed: 是否混合 https，默认 false，可选值 true 代表有 https 协议监听
         # @type Mixed: Boolean
         # @param RewriteType: 重定向模式，可选值：
         # - AUTO（自动重定向http到https）
         # - NONE（不使用重定向）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RewriteType: String
         # @param Domain: clb 域名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Domain: String
 
         attr_accessor :EnvironmentId, :AddressIPVersion, :IngressName, :Rules, :ClbId, :ClusterNamespace, :Tls, :ClusterId, :Vip, :CreateTime, :Mixed, :RewriteType, :Domain
@@ -3065,7 +3008,6 @@ module TencentCloud
         # @param Http: ingress rule value
         # @type Http: :class:`Tencentcloud::Tem.v20210701.models.IngressRuleValue`
         # @param Host: host 地址
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Host: String
         # @param Protocol: 协议，选项为 http， https，默认为 http
         # @type Protocol: String
@@ -3185,36 +3127,26 @@ module TencentCloud
         # @param InputType: 收集类型，container_stdout 为标准输出；container_file 为文件；
         # @type InputType: String
         # @param LogsetId: 日志集 ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LogsetId: String
         # @param TopicId: 日志主题 ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TopicId: String
         # @param LogType: 日志提取模式，minimalist_log 为单行全文；multiline_log 为多行全文；  fullregex_log 为单行正则； multiline_fullregex_log 为多行正则； json_log 为 json；
         # @type LogType: String
         # @param BeginningRegex: 首行正则表达式，当 LogType 为多行全文、多行正则时生效
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BeginningRegex: String
         # @param LogPath: 收集文件目录，当 InputType=container_file 时生效
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LogPath: String
         # @param FilePattern: 收集文件名模式，当 InputType=container_file 时生效
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FilePattern: String
         # @param CreateDate: 创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateDate: String
         # @param ModifyDate: 更新时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ModifyDate: String
         # @param ApplicationId: 应用 ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApplicationId: String
         # @param ApplicationName: 应用名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApplicationName: String
         # @param ExtractRule: 导出规则
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExtractRule: :class:`Tencentcloud::Tem.v20210701.models.LogConfigExtractRule`
 
         attr_accessor :Name, :InputType, :LogsetId, :TopicId, :LogType, :BeginningRegex, :LogPath, :FilePattern, :CreateDate, :ModifyDate, :ApplicationId, :ApplicationName, :ExtractRule
@@ -3258,37 +3190,26 @@ module TencentCloud
       # 日志采集的导出规则配置
       class LogConfigExtractRule < TencentCloud::Common::AbstractModel
         # @param BeginningRegex: 首行正则表达式
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BeginningRegex: String
         # @param Keys: 提取结果
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Keys: Array
         # @param FilterKeys: 过滤键
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FilterKeys: Array
         # @param FilterRegex: 过滤值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FilterRegex: Array
         # @param LogRegex: 日志正则表达式
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LogRegex: String
         # @param TimeKey: 时间字段
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TimeKey: String
         # @param TimeFormat: 时间格式
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TimeFormat: String
         # @param UnMatchUpload: 是否上传解析失败日志
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UnMatchUpload: String
         # @param UnMatchedKey: 解析失败日志的键名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UnMatchedKey: String
         # @param Backtracking: tracking
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Backtracking: String
         # @param Delimiter: 分隔符
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Delimiter: String
 
         attr_accessor :BeginningRegex, :Keys, :FilterKeys, :FilterRegex, :LogRegex, :TimeKey, :TimeFormat, :UnMatchUpload, :UnMatchedKey, :Backtracking, :Delimiter
@@ -3325,10 +3246,8 @@ module TencentCloud
       # LogConfig 列表结果
       class LogConfigListPage < TencentCloud::Common::AbstractModel
         # @param Records: 记录
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Records: Array
         # @param ContinueToken: 翻页游标
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ContinueToken: String
 
         attr_accessor :Records, :ContinueToken
@@ -3421,7 +3340,6 @@ module TencentCloud
       # ModifyApplicationAutoscaler返回参数结构体
       class ModifyApplicationAutoscalerResponse < TencentCloud::Common::AbstractModel
         # @param Result: 是否成功
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3470,7 +3388,6 @@ module TencentCloud
       # ModifyApplicationInfo返回参数结构体
       class ModifyApplicationInfoResponse < TencentCloud::Common::AbstractModel
         # @param Result: 成功与否
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3519,7 +3436,6 @@ module TencentCloud
       # ModifyApplicationReplicas返回参数结构体
       class ModifyApplicationReplicasResponse < TencentCloud::Common::AbstractModel
         # @param Result: 是否成功
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3578,7 +3494,6 @@ module TencentCloud
       # ModifyApplicationService返回参数结构体
       class ModifyApplicationServiceResponse < TencentCloud::Common::AbstractModel
         # @param Result: 是否成功
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3694,7 +3609,6 @@ module TencentCloud
       # ModifyEnvironment返回参数结构体
       class ModifyEnvironmentResponse < TencentCloud::Common::AbstractModel
         # @param Result: 成功时为环境ID，失败为null
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3810,13 +3724,10 @@ module TencentCloud
       # 挂载配置信息
       class MountedSettingConf < TencentCloud::Common::AbstractModel
         # @param ConfigDataName: 配置名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ConfigDataName: String
         # @param MountedPath: 挂载路径
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MountedPath: String
         # @param Data: 配置内容
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: Array
         # @param SecretDataName: 加密配置名称
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -3863,19 +3774,14 @@ module TencentCloud
         # @param CreatedDate: 创建时间
         # @type CreatedDate: String
         # @param EnvironmentName: 环境名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EnvironmentName: String
         # @param ApmInstanceId: APM 资源 ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApmInstanceId: String
         # @param Locked: 环境是否上锁，1为上锁，0则未上锁
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Locked: Integer
         # @param Tags: 标签
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
         # @param EnvType: 环境类型：test、pre、prod
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EnvType: String
 
         attr_accessor :EnvironmentId, :NamespaceName, :Region, :VpcId, :SubnetIds, :Description, :CreatedDate, :EnvironmentName, :ApmInstanceId, :Locked, :Tags, :EnvType
@@ -3929,7 +3835,6 @@ module TencentCloud
         # @param Pages: 页数
         # @type Pages: Integer
         # @param Current: 当前条目
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Current: Integer
 
         attr_accessor :Records, :Total, :Size, :Pages, :Current
@@ -4007,16 +3912,12 @@ module TencentCloud
         # @param Name: node名字
         # @type Name: String
         # @param Zone: node可用区
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Zone: String
         # @param SubnetId: node子网ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubnetId: String
         # @param AvailableIpCount: 可用IP数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AvailableIpCount: String
         # @param Cidr: cidr块
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Cidr: String
 
         attr_accessor :Name, :Zone, :SubnetId, :AvailableIpCount, :Cidr
@@ -4045,13 +3946,10 @@ module TencentCloud
         # @param Value: 值
         # @type Value: String
         # @param Type: 类型，default 为自定义，reserved 为系统变量，referenced 为引用配置项
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: String
         # @param Config: 配置名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Config: String
         # @param Secret: 加密配置名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Secret: String
 
         attr_accessor :Key, :Value, :Type, :Config, :Secret
@@ -4164,7 +4062,6 @@ module TencentCloud
       # RestartApplicationPod返回参数结构体
       class RestartApplicationPodResponse < TencentCloud::Common::AbstractModel
         # @param Result: 返回结果
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4395,37 +4292,27 @@ module TencentCloud
         # @param PodIp: 实例的ip
         # @type PodIp: String
         # @param Zone: 可用区
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Zone: String
         # @param DeployVersion: 部署版本
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeployVersion: String
         # @param RestartCount: 重启次数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RestartCount: Integer
         # @param Ready: pod是否就绪
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Ready: Boolean
         # @param ContainerState: 容器状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ContainerState: String
         # @param NodeInfo: 实例所在节点信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NodeInfo: :class:`Tencentcloud::Tem.v20210701.models.NodeInfo`
         # @param StartTime: 启动时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StartTime: String
         # @param Unhealthy: 是否健康
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Unhealthy: Boolean
         # @param UnhealthyWarningMsg: 不健康时的提示信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UnhealthyWarningMsg: String
         # @param VersionId: 版本ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VersionId: String
         # @param ApplicationName: 应用名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApplicationName: String
 
         attr_accessor :Webshell, :PodId, :Status, :CreateTime, :PodIp, :Zone, :DeployVersion, :RestartCount, :Ready, :ContainerState, :NodeInfo, :StartTime, :Unhealthy, :UnhealthyWarningMsg, :VersionId, :ApplicationName
@@ -4483,7 +4370,6 @@ module TencentCloud
         # @param Pages: 页数
         # @type Pages: Integer
         # @param Current: 当前条数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Current: Integer
 
         attr_accessor :Records, :Total, :Size, :Pages, :Current
@@ -4515,37 +4401,26 @@ module TencentCloud
       # 端口映射详细信息结构体
       class ServicePortMapping < TencentCloud::Common::AbstractModel
         # @param Type: 服务类型：如：EXTERNAL，VPC，CLUSTER
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: String
         # @param ServiceName: 服务名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ServiceName: String
         # @param ClusterIp: 集群内访问vip
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterIp: String
         # @param ExternalIp: 集群外方位vip
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExternalIp: String
         # @param SubnetId: 子网id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubnetId: String
         # @param VpcId: vpc id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VpcId: String
         # @param LoadBalanceId: LoadBalance Id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LoadBalanceId: String
         # @param Yaml: yaml 内容
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Yaml: String
         # @param Ports: 暴露端口列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Ports: Array
         # @param PortMappingItemList: 端口映射数组
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PortMappingItemList: Array
         # @param ExternalDomain: clb domain
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExternalDomain: String
 
         attr_accessor :Type, :ServiceName, :ClusterIp, :ExternalIp, :SubnetId, :VpcId, :LoadBalanceId, :Yaml, :Ports, :PortMappingItemList, :ExternalDomain
@@ -4589,13 +4464,10 @@ module TencentCloud
       # 服务端口映射条目
       class ServicePortMappingItem < TencentCloud::Common::AbstractModel
         # @param Port: 应用访问端口
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Port: Integer
         # @param TargetPort: 应用监听端口
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TargetPort: Integer
         # @param Protocol: 协议类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Protocol: String
 
         attr_accessor :Port, :TargetPort, :Protocol
@@ -4632,34 +4504,25 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExpectedInstances: Integer
         # @param DeployMode: 部署方式
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeployMode: String
         # @param BuildTaskId: 建构任务ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BuildTaskId: String
         # @param EnvironmentId: 环境ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EnvironmentId: String
         # @param EnvironmentName: 环境name
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EnvironmentName: String
         # @param ApplicationId: 服务ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApplicationId: String
         # @param ApplicationName: 服务name
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApplicationName: String
         # @param UnderDeploying: 是否正在发布中
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UnderDeploying: Boolean
         # @param BatchDeployStatus: 分批次部署状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BatchDeployStatus: String
         # @param Zones: 可用区
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Zones: Array
         # @param NodeInfos: 节点信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NodeInfos: Array
         # @param PodList: 实例信息
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -4668,10 +4531,8 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WorkloadInfo: :class:`Tencentcloud::Tem.v20210701.models.WorkloadInfo`
         # @param CreateDate: 创建日期
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateDate: String
         # @param RegionId: 地域id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RegionId: String
 
         attr_accessor :VersionName, :Status, :EnableEs, :CurrentInstances, :VersionId, :LogOutputConf, :ExpectedInstances, :DeployMode, :BuildTaskId, :EnvironmentId, :EnvironmentName, :ApplicationId, :ApplicationName, :UnderDeploying, :BatchDeployStatus, :Zones, :NodeInfos, :PodList, :WorkloadInfo, :CreateDate, :RegionId
@@ -4812,7 +4673,6 @@ module TencentCloud
         # @param StorageVolPath: 存储卷路径
         # @type StorageVolPath: String
         # @param StorageVolIp: 存储卷IP
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StorageVolIp: String
 
         attr_accessor :StorageVolName, :StorageVolPath, :StorageVolIp
@@ -4853,10 +4713,8 @@ module TencentCloud
       # 标签
       class Tag < TencentCloud::Common::AbstractModel
         # @param TagKey: 标签键
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TagKey: String
         # @param TagValue: 标签值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TagValue: String
 
         attr_accessor :TagKey, :TagValue
@@ -4878,19 +4736,15 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeployStrategyConf: :class:`Tencentcloud::Tem.v20210701.models.DeployStrategyConf`
         # @param StartTime: 开始时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StartTime: String
         # @param EndTime: 结束时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EndTime: String
         # @param Status: 当前状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: String
         # @param BetaBatchDetail: beta分批详情
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BetaBatchDetail: :class:`Tencentcloud::Tem.v20210701.models.DeployServiceBatchDetail`
         # @param OtherBatchDetail: 其他分批详情
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OtherBatchDetail: Array
         # @param OldVersionPodList: 老版本pod列表
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -4899,19 +4753,14 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CurrentBatchIndex: Integer
         # @param ErrorMessage: 错误原因
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrorMessage: String
         # @param CurrentBatchStatus: 当前批次状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CurrentBatchStatus: String
         # @param NewDeployVersion: 新版本version
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NewDeployVersion: String
         # @param OldDeployVersion: 旧版本version
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OldDeployVersion: String
         # @param NewVersionPackageInfo: 包名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NewVersionPackageInfo: String
         # @param NextBatchStartTime: 下一批次开始时间
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -4973,13 +4822,10 @@ module TencentCloud
       # 环境启动进程（只统计由环境启动操作触发的应用数量）
       class TemEnvironmentStartingStatus < TencentCloud::Common::AbstractModel
         # @param ApplicationNumNeedToStart: 需要启动的应用数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApplicationNumNeedToStart: Integer
         # @param StartedApplicationNum: 已经启动的应用数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StartedApplicationNum: Integer
         # @param StartFailedApplicationNum: 启动失败的应用数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StartFailedApplicationNum: Integer
 
         attr_accessor :ApplicationNumNeedToStart, :StartedApplicationNum, :StartFailedApplicationNum
@@ -5000,13 +4846,10 @@ module TencentCloud
       # 环境停止进程（只统计由环境停止操作触发的应用数量）
       class TemEnvironmentStoppingStatus < TencentCloud::Common::AbstractModel
         # @param ApplicationNumNeedToStop: 需要停止的应用数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApplicationNumNeedToStop: Integer
         # @param StoppedApplicationNum: 已经停止的应用数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StoppedApplicationNum: Integer
         # @param StopFailedApplicationNum: 停止失败的应用数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StopFailedApplicationNum: Integer
 
         attr_accessor :ApplicationNumNeedToStop, :StoppedApplicationNum, :StopFailedApplicationNum
@@ -5035,7 +4878,6 @@ module TencentCloud
         # @param Region: 区域名称
         # @type Region: String
         # @param Description: 环境描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
         # @param Status: 状态,1:已销毁;0:正常
         # @type Status: Integer
@@ -5062,28 +4904,20 @@ module TencentCloud
         # @param Locked: 环境锁，1为上锁，0则为上锁
         # @type Locked: Integer
         # @param AppId: 用户AppId
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AppId: String
         # @param Uin: 用户Uin
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Uin: String
         # @param SubAccountUin: 用户SubAccountUin
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubAccountUin: String
         # @param ClusterId: 集群ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterId: String
         # @param Tags: 标签
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
         # @param HasAuthority: 资源是否有权限
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HasAuthority: Boolean
         # @param EnvType: 环境类型: test、pre、prod
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EnvType: String
         # @param RegionId: 地域码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RegionId: String
 
         attr_accessor :EnvironmentId, :Channel, :EnvironmentName, :Region, :Description, :Status, :Vpc, :CreateDate, :ModifyDate, :Modifier, :Creator, :ApplicationNum, :RunInstancesNum, :SubnetId, :ClusterStatus, :EnableTswTraceService, :Locked, :AppId, :Uin, :SubAccountUin, :ClusterId, :Tags, :HasAuthority, :EnvType, :RegionId
@@ -5155,58 +4989,40 @@ module TencentCloud
       # 服务
       class TemService < TencentCloud::Common::AbstractModel
         # @param ApplicationId: 主键
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApplicationId: String
         # @param ApplicationName: 服务名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApplicationName: String
         # @param Description: 描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
         # @param EnvironmentId: 命名空间id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EnvironmentId: String
         # @param CreateDate: 创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateDate: String
         # @param ModifyDate: 修改时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ModifyDate: String
         # @param Modifier: 修改人
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Modifier: String
         # @param Creator: 创建者
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Creator: String
         # @param RepoType: tcr个人版or企业版
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RepoType: Integer
         # @param InstanceId: 企业版实例id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceId: String
         # @param RepoName: 镜像仓库名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RepoName: String
         # @param CodingLanguage: 编程语言
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CodingLanguage: String
         # @param DeployMode: 部署方式
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeployMode: String
         # @param EnvironmentName: 环境名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EnvironmentName: String
         # @param ActiveVersions: 服务当前运行环境的实例信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ActiveVersions: Array
         # @param EnableTracing: 是否启用链路追踪
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EnableTracing: Integer
         # @param Tags: 标签
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
         # @param HasAuthority: 是否有资源权限
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HasAuthority: Boolean
 
         attr_accessor :ApplicationId, :ApplicationName, :Description, :EnvironmentId, :CreateDate, :ModifyDate, :Modifier, :Creator, :RepoType, :InstanceId, :RepoName, :CodingLanguage, :DeployMode, :EnvironmentName, :ActiveVersions, :EnableTracing, :Tags, :HasAuthority
@@ -5316,43 +5132,33 @@ module TencentCloud
         # @param ModifyDate: 修改时间
         # @type ModifyDate: String
         # @param StorageMountConfs: 挂载配置
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StorageMountConfs: Array
         # @param VersionName: 版本名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VersionName: String
         # @param LogOutputConf: 日志输出配置
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LogOutputConf: :class:`Tencentcloud::Tem.v20210701.models.LogOutputConf`
         # @param ApplicationName: 服务名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApplicationName: String
         # @param ApplicationDescription: 服务描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApplicationDescription: String
         # @param EnvironmentName: 环境名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EnvironmentName: String
         # @param EnvironmentId: 环境ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EnvironmentId: String
         # @param PublicDomain: 公网地址
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PublicDomain: String
         # @param EnablePublicAccess: 是否开通公网访问
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EnablePublicAccess: Boolean
         # @param CurrentInstances: 现有的实例
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CurrentInstances: Integer
         # @param ExpectedInstances: 期望的实例
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExpectedInstances: Integer
         # @param CodingLanguage: 编程语言
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CodingLanguage: String
         # @param PkgName: 程序包名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PkgName: String
         # @param EsEnable: 是否启用弹性伸缩
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -5361,40 +5167,30 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EsStrategy: Integer
         # @param ImageTag: 镜像tag
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ImageTag: String
         # @param LogEnable: 是否启用log
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LogEnable: Integer
         # @param MinAliveInstances: 最小实例数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MinAliveInstances: String
         # @param SecurityGroupIds: 安全组
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SecurityGroupIds: Array
         # @param ImageCommand: 镜像命令
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ImageCommand: String
         # @param ImageArgs: 镜像命令参数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ImageArgs: Array
         # @param UseRegistryDefaultConfig: 是否使用默认注册中心配置
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UseRegistryDefaultConfig: Boolean
         # @param Service: eks 访问设置
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Service: :class:`Tencentcloud::Tem.v20210701.models.EksService`
         # @param SettingConfs: 挂载配置信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SettingConfs: Array
         # @param LogConfs: log path数组信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LogConfs: Array
         # @param PostStart: 启动后立即执行的脚本
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PostStart: String
         # @param PreStop: 停止前执行的脚本
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PreStop: String
         # @param Liveness: 存活探针配置
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -5403,46 +5199,32 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Readiness: :class:`Tencentcloud::Tem.v20210701.models.HealthCheckConfig`
         # @param HorizontalAutoscaler: 弹性策略
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HorizontalAutoscaler: Array
         # @param CronHorizontalAutoscaler: 定时弹性策略
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CronHorizontalAutoscaler: Array
         # @param Zones: 应用实际可用区
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Zones: Array
         # @param LastDeployDate: 最新部署时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LastDeployDate: String
         # @param LastDeploySuccessDate: 最新部署成功时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LastDeploySuccessDate: String
         # @param NodeInfos: 应用所在node信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NodeInfos: Array
         # @param ImageType: image类型 -0 为demo -1为正常image
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ImageType: Integer
         # @param EnableTracing: 是否启用调用链组件
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EnableTracing: Integer
         # @param EnableTracingReport: 是否开启调用链上报，只有 EnableTracing=1 时生效（参数已弃用）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EnableTracingReport: Integer
         # @param RepoType: 镜像类型：0-个人镜像、1-企业镜像、2-公有镜像
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RepoType: Integer
         # @param BatchDeployStatus: 分批发布子状态：batch_updating、batch_updating_waiting_confirm
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BatchDeployStatus: String
         # @param ApmInstanceId: APM 资源 ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApmInstanceId: String
         # @param WorkloadInfo: 工作负载信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WorkloadInfo: :class:`Tencentcloud::Tem.v20210701.models.WorkloadInfo`
         # @param SpeedUp: 是否启用应用加速
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SpeedUp: Boolean
         # @param StartupProbe: 启动检测探针配置
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -5450,71 +5232,52 @@ module TencentCloud
         # @param OsFlavour: 操作系统版本，可选参数：
         # - ALPINE
         # - CENTOS
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OsFlavour: String
         # @param RepoServer: 镜像仓库server
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RepoServer: String
         # @param UnderDeploying: 是否正在发布中
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UnderDeploying: Boolean
         # @param EnablePrometheusConf: 监控业务指标监控
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EnablePrometheusConf: :class:`Tencentcloud::Tem.v20210701.models.EnablePrometheusConf`
         # @param StoppedManually: 是否为手动停止
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StoppedManually: Boolean
         # @param TcrInstanceId: tcr实例ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TcrInstanceId: String
         # @param EnableMetrics: 1：开始自动metrics采集（open-telemetry）；
         # 0：关闭metrics采集；
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EnableMetrics: Integer
         # @param AppId: 用户AppId
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AppId: String
         # @param SubAccountUin: 用户SubAccountUin
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubAccountUin: String
         # @param Uin: 用户Uin
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Uin: String
         # @param Region: 地域
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Region: String
         # @param GroupId: 应用分组ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GroupId: String
         # @param EnableRegistry: 是否启用注册中心
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EnableRegistry: Integer
         # @param AutoscalerList: 弹性伸缩数组
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AutoscalerList: Array
         # @param Modifier: 修改人
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Modifier: String
         # @param Creator: 创建人
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Creator: String
         # @param DeployStrategyConf: 部署策略
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeployStrategyConf: :class:`Tencentcloud::Tem.v20210701.models.DeployStrategyConf`
         # @param PodList: 实例列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PodList: :class:`Tencentcloud::Tem.v20210701.models.DescribeRunPodPage`
         # @param ConfEdited: 发布时配置是否有修改
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ConfEdited: Boolean
         # @param Tags: 标签
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
         # @param PreStopEncoded: 是否编码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PreStopEncoded: String
         # @param PostStartEncoded: 是否编码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PostStartEncoded: String
 
         attr_accessor :VersionId, :ApplicationId, :DeployMode, :JdkVersion, :Description, :DeployVersion, :PublishMode, :JvmOpts, :InitPodNum, :CpuSpec, :MemorySpec, :ImgRepo, :ImgName, :ImgVersion, :EsInfo, :EnvConf, :StorageConfs, :Status, :Vpc, :SubnetId, :CreateDate, :ModifyDate, :StorageMountConfs, :VersionName, :LogOutputConf, :ApplicationName, :ApplicationDescription, :EnvironmentName, :EnvironmentId, :PublicDomain, :EnablePublicAccess, :CurrentInstances, :ExpectedInstances, :CodingLanguage, :PkgName, :EsEnable, :EsStrategy, :ImageTag, :LogEnable, :MinAliveInstances, :SecurityGroupIds, :ImageCommand, :ImageArgs, :UseRegistryDefaultConfig, :Service, :SettingConfs, :LogConfs, :PostStart, :PreStop, :Liveness, :Readiness, :HorizontalAutoscaler, :CronHorizontalAutoscaler, :Zones, :LastDeployDate, :LastDeploySuccessDate, :NodeInfos, :ImageType, :EnableTracing, :EnableTracingReport, :RepoType, :BatchDeployStatus, :ApmInstanceId, :WorkloadInfo, :SpeedUp, :StartupProbe, :OsFlavour, :RepoServer, :UnderDeploying, :EnablePrometheusConf, :StoppedManually, :TcrInstanceId, :EnableMetrics, :AppId, :SubAccountUin, :Uin, :Region, :GroupId, :EnableRegistry, :AutoscalerList, :Modifier, :Creator, :DeployStrategyConf, :PodList, :ConfEdited, :Tags, :PreStopEncoded, :PostStartEncoded
@@ -5798,13 +5561,10 @@ module TencentCloud
       # 创建应用，创建仓库参数
       class UseDefaultRepoParameters < TencentCloud::Common::AbstractModel
         # @param EnterpriseInstanceName: 企业版实例名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EnterpriseInstanceName: String
         # @param EnterpriseInstanceChargeType: 企业版收费类型  0 按量收费   1 包年包月
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EnterpriseInstanceChargeType: Integer
         # @param EnterpriseInstanceType: 企业版规格：basic-基础班 ，standard-标准版，premium-高级版
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EnterpriseInstanceType: String
 
         attr_accessor :EnterpriseInstanceName, :EnterpriseInstanceChargeType, :EnterpriseInstanceType
@@ -5825,31 +5585,22 @@ module TencentCloud
       # 工作负载详情
       class WorkloadInfo < TencentCloud::Common::AbstractModel
         # @param ClusterId: 资源 ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterId: String
         # @param ApplicationName: 应用名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApplicationName: String
         # @param VersionName: 版本名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VersionName: String
         # @param ReadyReplicas: Ready实例数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReadyReplicas: Integer
         # @param Replicas: 实例数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Replicas: Integer
         # @param UpdatedReplicas: Updated实例数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdatedReplicas: Integer
         # @param UpdatedReadyReplicas: UpdatedReady实例数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdatedReadyReplicas: Integer
         # @param UpdateRevision: 更新版本
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateRevision: String
         # @param CurrentRevision: 当前版本
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CurrentRevision: String
 
         attr_accessor :ClusterId, :ApplicationName, :VersionName, :ReadyReplicas, :Replicas, :UpdatedReplicas, :UpdatedReadyReplicas, :UpdateRevision, :CurrentRevision

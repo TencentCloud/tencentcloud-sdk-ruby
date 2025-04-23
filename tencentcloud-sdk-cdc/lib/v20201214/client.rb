@@ -53,6 +53,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建云上镜像缓存到本地专用集群中
+
+        # @param request: Request instance for CreateDedicatedClusterImageCache.
+        # @type request: :class:`Tencentcloud::cdc::V20201214::CreateDedicatedClusterImageCacheRequest`
+        # @rtype: :class:`Tencentcloud::cdc::V20201214::CreateDedicatedClusterImageCacheResponse`
+        def CreateDedicatedClusterImageCache(request)
+          body = send_request('CreateDedicatedClusterImageCache', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateDedicatedClusterImageCacheResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建专用集群订单
 
         # @param request: Request instance for CreateDedicatedClusterOrder.
@@ -87,6 +111,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CreateSiteResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除本地专用集群的云上镜像缓存
+
+        # @param request: Request instance for DeleteDedicatedClusterImageCache.
+        # @type request: :class:`Tencentcloud::cdc::V20201214::DeleteDedicatedClusterImageCacheRequest`
+        # @rtype: :class:`Tencentcloud::cdc::V20201214::DeleteDedicatedClusterImageCacheResponse`
+        def DeleteDedicatedClusterImageCache(request)
+          body = send_request('DeleteDedicatedClusterImageCache', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteDedicatedClusterImageCacheResponse.new
             model.deserialize(response['Response'])
             model
           else
