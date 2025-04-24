@@ -657,6 +657,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 批量获取安卓实例日志
+
+        # @param request: Request instance for FetchAndroidInstancesLogs.
+        # @type request: :class:`Tencentcloud::gs::V20191118::FetchAndroidInstancesLogsRequest`
+        # @rtype: :class:`Tencentcloud::gs::V20191118::FetchAndroidInstancesLogsResponse`
+        def FetchAndroidInstancesLogs(request)
+          body = send_request('FetchAndroidInstancesLogs', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = FetchAndroidInstancesLogsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 安装安卓实例应用
 
         # @param request: Request instance for InstallAndroidInstancesApp.
@@ -763,6 +787,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyAndroidInstanceResolutionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 批量修改安卓实例信息
+
+        # @param request: Request instance for ModifyAndroidInstancesInformation.
+        # @type request: :class:`Tencentcloud::gs::V20191118::ModifyAndroidInstancesInformationRequest`
+        # @rtype: :class:`Tencentcloud::gs::V20191118::ModifyAndroidInstancesInformationResponse`
+        def ModifyAndroidInstancesInformation(request)
+          body = send_request('ModifyAndroidInstancesInformation', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyAndroidInstancesInformationResponse.new
             model.deserialize(response['Response'])
             model
           else

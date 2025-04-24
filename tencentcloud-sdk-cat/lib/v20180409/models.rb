@@ -410,16 +410,52 @@ module TencentCloud
 
       # DescribeNodeGroups返回参数结构体
       class DescribeNodeGroupsResponse < TencentCloud::Common::AbstractModel
+        # @param NodeList: 树状节点列表，总共两级
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NodeList: Array
+        # @param DistrictList: 省份或国家列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DistrictList: Array
+        # @param NetServiceList: 运营商列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NetServiceList: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :NodeList, :DistrictList, :NetServiceList, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(nodelist=nil, districtlist=nil, netservicelist=nil, requestid=nil)
+          @NodeList = nodelist
+          @DistrictList = districtlist
+          @NetServiceList = netservicelist
           @RequestId = requestid
         end
 
         def deserialize(params)
+          unless params['NodeList'].nil?
+            @NodeList = []
+            params['NodeList'].each do |i|
+              nodetree_tmp = NodeTree.new
+              nodetree_tmp.deserialize(i)
+              @NodeList << nodetree_tmp
+            end
+          end
+          unless params['DistrictList'].nil?
+            @DistrictList = []
+            params['DistrictList'].each do |i|
+              distinctornetserviceinfo_tmp = DistinctOrNetServiceInfo.new
+              distinctornetserviceinfo_tmp.deserialize(i)
+              @DistrictList << distinctornetserviceinfo_tmp
+            end
+          end
+          unless params['NetServiceList'].nil?
+            @NetServiceList = []
+            params['NetServiceList'].each do |i|
+              distinctornetserviceinfo_tmp = DistinctOrNetServiceInfo.new
+              distinctornetserviceinfo_tmp.deserialize(i)
+              @NetServiceList << distinctornetserviceinfo_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -795,6 +831,26 @@ module TencentCloud
         end
       end
 
+      # 省份(国际)或运营商基本信息
+      class DistinctOrNetServiceInfo < TencentCloud::Common::AbstractModel
+        # @param ID: 省份(国际)或运营商ID
+        # @type ID: String
+        # @param Name: 名称
+        # @type Name: String
+
+        attr_accessor :ID, :Name
+
+        def initialize(id=nil, name=nil)
+          @ID = id
+          @Name = name
+        end
+
+        def deserialize(params)
+          @ID = params['ID']
+          @Name = params['Name']
+        end
+      end
+
       # 储存float类型字段
       class Field < TencentCloud::Common::AbstractModel
         # @param ID: 自定义字段编号
@@ -988,6 +1044,88 @@ module TencentCloud
           @Location = params['Location']
           @CodeType = params['CodeType']
           @TaskTypes = params['TaskTypes']
+        end
+      end
+
+      # Node节点基本信息，用于新建任务页面重构节点选择
+      class NodeInfoBase < TencentCloud::Common::AbstractModel
+        # @param ID: 节点code
+        # @type ID: String
+        # @param Content: 节点名称
+        # @type Content: String
+
+        attr_accessor :ID, :Content
+
+        def initialize(id=nil, content=nil)
+          @ID = id
+          @Content = content
+        end
+
+        def deserialize(params)
+          @ID = params['ID']
+          @Content = params['Content']
+        end
+      end
+
+      # 子节点。用于新建任务重构页面的节点选择
+      class NodeLeaf < TencentCloud::Common::AbstractModel
+        # @param ID: 子节点ID
+        # @type ID: String
+        # @param Content: 子节点名称
+        # @type Content: String
+        # @param Children: 节点列表
+        # @type Children: Array
+
+        attr_accessor :ID, :Content, :Children
+
+        def initialize(id=nil, content=nil, children=nil)
+          @ID = id
+          @Content = content
+          @Children = children
+        end
+
+        def deserialize(params)
+          @ID = params['ID']
+          @Content = params['Content']
+          unless params['Children'].nil?
+            @Children = []
+            params['Children'].each do |i|
+              nodeinfobase_tmp = NodeInfoBase.new
+              nodeinfobase_tmp.deserialize(i)
+              @Children << nodeinfobase_tmp
+            end
+          end
+        end
+      end
+
+      # 拨测节点数（新建任务页面重构）
+      class NodeTree < TencentCloud::Common::AbstractModel
+        # @param ID: 节点ID
+        # @type ID: String
+        # @param Content: 节点名称
+        # @type Content: String
+        # @param Children: 子节点
+        # @type Children: Array
+
+        attr_accessor :ID, :Content, :Children
+
+        def initialize(id=nil, content=nil, children=nil)
+          @ID = id
+          @Content = content
+          @Children = children
+        end
+
+        def deserialize(params)
+          @ID = params['ID']
+          @Content = params['Content']
+          unless params['Children'].nil?
+            @Children = []
+            params['Children'].each do |i|
+              nodeleaf_tmp = NodeLeaf.new
+              nodeleaf_tmp.deserialize(i)
+              @Children << nodeleaf_tmp
+            end
+          end
         end
       end
 

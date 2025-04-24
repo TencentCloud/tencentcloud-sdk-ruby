@@ -5676,6 +5676,8 @@ module TencentCloud
         # @type RoleId: Integer
         # @param RoleIdList: 用户角色id列表
         # @type RoleIdList: Integer
+        # @param RoleList: 用户角色id列表
+        # @type RoleList: Array
         # @param SkillGroupList: 所属技能组列表
         # @type SkillGroupList: Array
         # @param LastModifyTimestamp: 最后修改时间
@@ -5683,12 +5685,14 @@ module TencentCloud
         # @param ExtensionNumber: 座席分机号（1 到 8 打头，4 - 6 位）
         # @type ExtensionNumber: String
 
-        attr_accessor :Name, :Mail, :Phone, :Nick, :StaffNumber, :RoleId, :RoleIdList, :SkillGroupList, :LastModifyTimestamp, :ExtensionNumber
+        attr_accessor :Name, :Mail, :Phone, :Nick, :StaffNumber, :RoleId, :RoleIdList, :RoleList, :SkillGroupList, :LastModifyTimestamp, :ExtensionNumber
         extend Gem::Deprecate
         deprecate :RoleId, :none, 2025, 4
         deprecate :RoleId=, :none, 2025, 4
+        deprecate :RoleIdList, :none, 2025, 4
+        deprecate :RoleIdList=, :none, 2025, 4
 
-        def initialize(name=nil, mail=nil, phone=nil, nick=nil, staffnumber=nil, roleid=nil, roleidlist=nil, skillgrouplist=nil, lastmodifytimestamp=nil, extensionnumber=nil)
+        def initialize(name=nil, mail=nil, phone=nil, nick=nil, staffnumber=nil, roleid=nil, roleidlist=nil, rolelist=nil, skillgrouplist=nil, lastmodifytimestamp=nil, extensionnumber=nil)
           @Name = name
           @Mail = mail
           @Phone = phone
@@ -5696,6 +5700,7 @@ module TencentCloud
           @StaffNumber = staffnumber
           @RoleId = roleid
           @RoleIdList = roleidlist
+          @RoleList = rolelist
           @SkillGroupList = skillgrouplist
           @LastModifyTimestamp = lastmodifytimestamp
           @ExtensionNumber = extensionnumber
@@ -5709,6 +5714,7 @@ module TencentCloud
           @StaffNumber = params['StaffNumber']
           @RoleId = params['RoleId']
           @RoleIdList = params['RoleIdList']
+          @RoleList = params['RoleList']
           unless params['SkillGroupList'].nil?
             @SkillGroupList = []
             params['SkillGroupList'].each do |i|

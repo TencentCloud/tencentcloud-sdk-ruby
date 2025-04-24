@@ -253,6 +253,26 @@ module TencentCloud
         end
       end
 
+      # 安卓实例信息
+      class AndroidInstanceInformation < TencentCloud::Common::AbstractModel
+        # @param AndroidInstanceId: 安卓实例 ID
+        # @type AndroidInstanceId: String
+        # @param Name: 实例名称
+        # @type Name: String
+
+        attr_accessor :AndroidInstanceId, :Name
+
+        def initialize(androidinstanceid=nil, name=nil)
+          @AndroidInstanceId = androidinstanceid
+          @Name = name
+        end
+
+        def deserialize(params)
+          @AndroidInstanceId = params['AndroidInstanceId']
+          @Name = params['Name']
+        end
+      end
+
       # 安卓实例标签
       class AndroidInstanceLabel < TencentCloud::Common::AbstractModel
         # @param Key: 标签键
@@ -1715,6 +1735,54 @@ module TencentCloud
         end
       end
 
+      # FetchAndroidInstancesLogs请求参数结构体
+      class FetchAndroidInstancesLogsRequest < TencentCloud::Common::AbstractModel
+        # @param AndroidInstanceIds: 安卓实例 ID 列表
+        # @type AndroidInstanceIds: Array
+        # @param BucketName: cos 桶名称
+        # @type BucketName: String
+        # @param BucketRegion: cos 桶区域
+        # @type BucketRegion: String
+        # @param BucketDirectory: cos 桶目录，默认为 /log/
+        # @type BucketDirectory: String
+        # @param RecentDays: 下载最近几天的日志，默认值为 1
+        # @type RecentDays: Integer
+
+        attr_accessor :AndroidInstanceIds, :BucketName, :BucketRegion, :BucketDirectory, :RecentDays
+
+        def initialize(androidinstanceids=nil, bucketname=nil, bucketregion=nil, bucketdirectory=nil, recentdays=nil)
+          @AndroidInstanceIds = androidinstanceids
+          @BucketName = bucketname
+          @BucketRegion = bucketregion
+          @BucketDirectory = bucketdirectory
+          @RecentDays = recentdays
+        end
+
+        def deserialize(params)
+          @AndroidInstanceIds = params['AndroidInstanceIds']
+          @BucketName = params['BucketName']
+          @BucketRegion = params['BucketRegion']
+          @BucketDirectory = params['BucketDirectory']
+          @RecentDays = params['RecentDays']
+        end
+      end
+
+      # FetchAndroidInstancesLogs返回参数结构体
+      class FetchAndroidInstancesLogsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 过滤
       class Filter < TencentCloud::Common::AbstractModel
         # @param Name: 字段名
@@ -1980,6 +2048,45 @@ module TencentCloud
 
       # ModifyAndroidInstanceResolution返回参数结构体
       class ModifyAndroidInstanceResolutionResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyAndroidInstancesInformation请求参数结构体
+      class ModifyAndroidInstancesInformationRequest < TencentCloud::Common::AbstractModel
+        # @param AndroidInstanceInformations: 安卓实例信息数据
+        # @type AndroidInstanceInformations: Array
+
+        attr_accessor :AndroidInstanceInformations
+
+        def initialize(androidinstanceinformations=nil)
+          @AndroidInstanceInformations = androidinstanceinformations
+        end
+
+        def deserialize(params)
+          unless params['AndroidInstanceInformations'].nil?
+            @AndroidInstanceInformations = []
+            params['AndroidInstanceInformations'].each do |i|
+              androidinstanceinformation_tmp = AndroidInstanceInformation.new
+              androidinstanceinformation_tmp.deserialize(i)
+              @AndroidInstanceInformations << androidinstanceinformation_tmp
+            end
+          end
+        end
+      end
+
+      # ModifyAndroidInstancesInformation返回参数结构体
+      class ModifyAndroidInstancesInformationResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 

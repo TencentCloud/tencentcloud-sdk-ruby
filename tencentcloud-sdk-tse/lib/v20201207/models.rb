@@ -1128,10 +1128,14 @@ module TencentCloud
         # @type ConfigFileSupportedClient: Integer
         # @param ConfigFilePersistent: 配置文件持久化
         # @type ConfigFilePersistent: :class:`Tencentcloud::Tse.v20201207.models.ConfigFilePersistent`
+        # @param Encrypted: 是否开启加密算法
+        # @type Encrypted: Boolean
+        # @param EncryptAlgo: 加密算法
+        # @type EncryptAlgo: String
 
-        attr_accessor :Id, :Name, :Namespace, :Group, :Content, :Format, :Comment, :Status, :Tags, :CreateTime, :CreateBy, :ModifyTime, :ModifyBy, :ReleaseTime, :ReleaseBy, :ConfigFileSupportedClient, :ConfigFilePersistent
+        attr_accessor :Id, :Name, :Namespace, :Group, :Content, :Format, :Comment, :Status, :Tags, :CreateTime, :CreateBy, :ModifyTime, :ModifyBy, :ReleaseTime, :ReleaseBy, :ConfigFileSupportedClient, :ConfigFilePersistent, :Encrypted, :EncryptAlgo
 
-        def initialize(id=nil, name=nil, namespace=nil, group=nil, content=nil, format=nil, comment=nil, status=nil, tags=nil, createtime=nil, createby=nil, modifytime=nil, modifyby=nil, releasetime=nil, releaseby=nil, configfilesupportedclient=nil, configfilepersistent=nil)
+        def initialize(id=nil, name=nil, namespace=nil, group=nil, content=nil, format=nil, comment=nil, status=nil, tags=nil, createtime=nil, createby=nil, modifytime=nil, modifyby=nil, releasetime=nil, releaseby=nil, configfilesupportedclient=nil, configfilepersistent=nil, encrypted=nil, encryptalgo=nil)
           @Id = id
           @Name = name
           @Namespace = namespace
@@ -1149,6 +1153,8 @@ module TencentCloud
           @ReleaseBy = releaseby
           @ConfigFileSupportedClient = configfilesupportedclient
           @ConfigFilePersistent = configfilepersistent
+          @Encrypted = encrypted
+          @EncryptAlgo = encryptalgo
         end
 
         def deserialize(params)
@@ -1179,6 +1185,8 @@ module TencentCloud
             @ConfigFilePersistent = ConfigFilePersistent.new
             @ConfigFilePersistent.deserialize(params['ConfigFilePersistent'])
           end
+          @Encrypted = params['Encrypted']
+          @EncryptAlgo = params['EncryptAlgo']
         end
       end
 
@@ -11089,10 +11097,12 @@ module TencentCloud
         # @type LimiterVpcInfos: Array
         # @param CLSTopics: 引擎关联CLS日志主题信息
         # @type CLSTopics: Array
+        # @param SubPassword: 子用户密码
+        # @type SubPassword: String
 
-        attr_accessor :EngineRegion, :BoundK8SInfos, :VpcInfos, :AuthOpen, :Features, :MainPassword, :PgwVpcInfos, :LimiterVpcInfos, :CLSTopics
+        attr_accessor :EngineRegion, :BoundK8SInfos, :VpcInfos, :AuthOpen, :Features, :MainPassword, :PgwVpcInfos, :LimiterVpcInfos, :CLSTopics, :SubPassword
 
-        def initialize(engineregion=nil, boundk8sinfos=nil, vpcinfos=nil, authopen=nil, features=nil, mainpassword=nil, pgwvpcinfos=nil, limitervpcinfos=nil, clstopics=nil)
+        def initialize(engineregion=nil, boundk8sinfos=nil, vpcinfos=nil, authopen=nil, features=nil, mainpassword=nil, pgwvpcinfos=nil, limitervpcinfos=nil, clstopics=nil, subpassword=nil)
           @EngineRegion = engineregion
           @BoundK8SInfos = boundk8sinfos
           @VpcInfos = vpcinfos
@@ -11102,6 +11112,7 @@ module TencentCloud
           @PgwVpcInfos = pgwvpcinfos
           @LimiterVpcInfos = limitervpcinfos
           @CLSTopics = clstopics
+          @SubPassword = subpassword
         end
 
         def deserialize(params)
@@ -11149,6 +11160,7 @@ module TencentCloud
               @CLSTopics << polarisclstopicinfo_tmp
             end
           end
+          @SubPassword = params['SubPassword']
         end
       end
 

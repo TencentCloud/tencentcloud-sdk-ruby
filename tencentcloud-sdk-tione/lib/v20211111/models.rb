@@ -17,6 +17,88 @@
 module TencentCloud
   module Tione
     module V20211111
+      # 在线服务的 AuthToken 数据
+      class AuthToken < TencentCloud::Common::AbstractModel
+        # @param Base: AuthToken 基础信息
+        # @type Base: :class:`Tencentcloud::Tione.v20211111.models.AuthTokenBase`
+        # @param Limits: AuthToken 限流数组
+        # @type Limits: Array
+
+        attr_accessor :Base, :Limits
+
+        def initialize(base=nil, limits=nil)
+          @Base = base
+          @Limits = limits
+        end
+
+        def deserialize(params)
+          unless params['Base'].nil?
+            @Base = AuthTokenBase.new
+            @Base.deserialize(params['Base'])
+          end
+          unless params['Limits'].nil?
+            @Limits = []
+            params['Limits'].each do |i|
+              authtokenlimit_tmp = AuthTokenLimit.new
+              authtokenlimit_tmp.deserialize(i)
+              @Limits << authtokenlimit_tmp
+            end
+          end
+        end
+      end
+
+      # AuthToken 的基础信息
+      class AuthTokenBase < TencentCloud::Common::AbstractModel
+        # @param Value: token 值
+        # @type Value: String
+        # @param Name: token 别名
+        # @type Name: String
+        # @param Description: token 描述
+        # @type Description: String
+        # @param CreateTime: token 创建时间
+        # @type CreateTime: String
+        # @param Status: token状态
+        # @type Status: String
+
+        attr_accessor :Value, :Name, :Description, :CreateTime, :Status
+
+        def initialize(value=nil, name=nil, description=nil, createtime=nil, status=nil)
+          @Value = value
+          @Name = name
+          @Description = description
+          @CreateTime = createtime
+          @Status = status
+        end
+
+        def deserialize(params)
+          @Value = params['Value']
+          @Name = params['Name']
+          @Description = params['Description']
+          @CreateTime = params['CreateTime']
+          @Status = params['Status']
+        end
+      end
+
+      # AuthToken 限流信息
+      class AuthTokenLimit < TencentCloud::Common::AbstractModel
+        # @param Strategy: 限频策略：PerMinute 每分钟限频；PerDay 每日限频
+        # @type Strategy: String
+        # @param Max: 上限值
+        # @type Max: Integer
+
+        attr_accessor :Strategy, :Max
+
+        def initialize(strategy=nil, max=nil)
+          @Strategy = strategy
+          @Max = max
+        end
+
+        def deserialize(params)
+          @Strategy = params['Strategy']
+          @Max = params['Max']
+        end
+      end
+
       # CBS存储配置
       class CBSConfig < TencentCloud::Common::AbstractModel
         # @param VolumeSizeInGB: 存储大小
@@ -547,10 +629,14 @@ module TencentCloud
         # @type TerminationGracePeriodSeconds: Integer
         # @param PreStopCommand: ["sleep","60"]
         # @type PreStopCommand: Array
+        # @param GrpcEnable: 是否启用 grpc 端口
+        # @type GrpcEnable: Boolean
+        # @param HealthProbe: 健康探针
+        # @type HealthProbe: :class:`Tencentcloud::Tione.v20211111.models.HealthProbe`
 
-        attr_accessor :ServiceGroupId, :ServiceGroupName, :ServiceDescription, :ChargeType, :ResourceGroupId, :ModelInfo, :ImageInfo, :Env, :Resources, :InstanceType, :ScaleMode, :Replicas, :HorizontalPodAutoscaler, :LogEnable, :LogConfig, :AuthorizationEnable, :Tags, :NewVersion, :CronScaleJobs, :ScaleStrategy, :HybridBillingPrepaidReplicas, :CreateSource, :ModelHotUpdateEnable, :ScheduledAction, :VolumeMount, :ServiceLimit, :CallbackUrl, :ModelTurboEnable, :ServiceCategory, :Command, :ServiceEIP, :CommandBase64, :ServicePort, :DeployType, :InstancePerReplicas, :TerminationGracePeriodSeconds, :PreStopCommand
+        attr_accessor :ServiceGroupId, :ServiceGroupName, :ServiceDescription, :ChargeType, :ResourceGroupId, :ModelInfo, :ImageInfo, :Env, :Resources, :InstanceType, :ScaleMode, :Replicas, :HorizontalPodAutoscaler, :LogEnable, :LogConfig, :AuthorizationEnable, :Tags, :NewVersion, :CronScaleJobs, :ScaleStrategy, :HybridBillingPrepaidReplicas, :CreateSource, :ModelHotUpdateEnable, :ScheduledAction, :VolumeMount, :ServiceLimit, :CallbackUrl, :ModelTurboEnable, :ServiceCategory, :Command, :ServiceEIP, :CommandBase64, :ServicePort, :DeployType, :InstancePerReplicas, :TerminationGracePeriodSeconds, :PreStopCommand, :GrpcEnable, :HealthProbe
 
-        def initialize(servicegroupid=nil, servicegroupname=nil, servicedescription=nil, chargetype=nil, resourcegroupid=nil, modelinfo=nil, imageinfo=nil, env=nil, resources=nil, instancetype=nil, scalemode=nil, replicas=nil, horizontalpodautoscaler=nil, logenable=nil, logconfig=nil, authorizationenable=nil, tags=nil, newversion=nil, cronscalejobs=nil, scalestrategy=nil, hybridbillingprepaidreplicas=nil, createsource=nil, modelhotupdateenable=nil, scheduledaction=nil, volumemount=nil, servicelimit=nil, callbackurl=nil, modelturboenable=nil, servicecategory=nil, command=nil, serviceeip=nil, commandbase64=nil, serviceport=nil, deploytype=nil, instanceperreplicas=nil, terminationgraceperiodseconds=nil, prestopcommand=nil)
+        def initialize(servicegroupid=nil, servicegroupname=nil, servicedescription=nil, chargetype=nil, resourcegroupid=nil, modelinfo=nil, imageinfo=nil, env=nil, resources=nil, instancetype=nil, scalemode=nil, replicas=nil, horizontalpodautoscaler=nil, logenable=nil, logconfig=nil, authorizationenable=nil, tags=nil, newversion=nil, cronscalejobs=nil, scalestrategy=nil, hybridbillingprepaidreplicas=nil, createsource=nil, modelhotupdateenable=nil, scheduledaction=nil, volumemount=nil, servicelimit=nil, callbackurl=nil, modelturboenable=nil, servicecategory=nil, command=nil, serviceeip=nil, commandbase64=nil, serviceport=nil, deploytype=nil, instanceperreplicas=nil, terminationgraceperiodseconds=nil, prestopcommand=nil, grpcenable=nil, healthprobe=nil)
           @ServiceGroupId = servicegroupid
           @ServiceGroupName = servicegroupname
           @ServiceDescription = servicedescription
@@ -588,6 +674,8 @@ module TencentCloud
           @InstancePerReplicas = instanceperreplicas
           @TerminationGracePeriodSeconds = terminationgraceperiodseconds
           @PreStopCommand = prestopcommand
+          @GrpcEnable = grpcenable
+          @HealthProbe = healthprobe
         end
 
         def deserialize(params)
@@ -676,6 +764,11 @@ module TencentCloud
           @InstancePerReplicas = params['InstancePerReplicas']
           @TerminationGracePeriodSeconds = params['TerminationGracePeriodSeconds']
           @PreStopCommand = params['PreStopCommand']
+          @GrpcEnable = params['GrpcEnable']
+          unless params['HealthProbe'].nil?
+            @HealthProbe = HealthProbe.new
+            @HealthProbe.deserialize(params['HealthProbe'])
+          end
         end
       end
 
@@ -3818,6 +3911,55 @@ module TencentCloud
         end
       end
 
+      # http get 行为
+      class HTTPGetAction < TencentCloud::Common::AbstractModel
+        # @param Path: http 路径
+        # @type Path: String
+
+        attr_accessor :Path
+
+        def initialize(path=nil)
+          @Path = path
+        end
+
+        def deserialize(params)
+          @Path = params['Path']
+        end
+      end
+
+      # 健康探针
+      class HealthProbe < TencentCloud::Common::AbstractModel
+        # @param LivenessProbe: 存活探针
+        # @type LivenessProbe: :class:`Tencentcloud::Tione.v20211111.models.Probe`
+        # @param ReadinessProbe: 就绪探针
+        # @type ReadinessProbe: :class:`Tencentcloud::Tione.v20211111.models.Probe`
+        # @param StartupProbe: 启动探针
+        # @type StartupProbe: :class:`Tencentcloud::Tione.v20211111.models.Probe`
+
+        attr_accessor :LivenessProbe, :ReadinessProbe, :StartupProbe
+
+        def initialize(livenessprobe=nil, readinessprobe=nil, startupprobe=nil)
+          @LivenessProbe = livenessprobe
+          @ReadinessProbe = readinessprobe
+          @StartupProbe = startupprobe
+        end
+
+        def deserialize(params)
+          unless params['LivenessProbe'].nil?
+            @LivenessProbe = Probe.new
+            @LivenessProbe.deserialize(params['LivenessProbe'])
+          end
+          unless params['ReadinessProbe'].nil?
+            @ReadinessProbe = Probe.new
+            @ReadinessProbe.deserialize(params['ReadinessProbe'])
+          end
+          unless params['StartupProbe'].nil?
+            @StartupProbe = Probe.new
+            @StartupProbe.deserialize(params['StartupProbe'])
+          end
+        end
+      end
+
       # hpa的描述
       class HorizontalPodAutoscaler < TencentCloud::Common::AbstractModel
         # @param MinReplicas: 最小实例数
@@ -5028,10 +5170,14 @@ module TencentCloud
         # @type TerminationGracePeriodSeconds: Integer
         # @param PreStopCommand: ["sleep","60"]
         # @type PreStopCommand: Array
+        # @param GrpcEnable: 是否启动grpc端口
+        # @type GrpcEnable: Boolean
+        # @param HealthProbe: 健康探针
+        # @type HealthProbe: :class:`Tencentcloud::Tione.v20211111.models.HealthProbe`
 
-        attr_accessor :ServiceId, :ModelInfo, :ImageInfo, :Env, :Resources, :InstanceType, :ScaleMode, :Replicas, :HorizontalPodAutoscaler, :LogEnable, :LogConfig, :ServiceAction, :ServiceDescription, :ScaleStrategy, :CronScaleJobs, :HybridBillingPrepaidReplicas, :ModelHotUpdateEnable, :ScheduledAction, :ServiceLimit, :VolumeMount, :ModelTurboEnable, :Command, :ServiceEIP, :CommandBase64, :ServicePort, :InstancePerReplicas, :TerminationGracePeriodSeconds, :PreStopCommand
+        attr_accessor :ServiceId, :ModelInfo, :ImageInfo, :Env, :Resources, :InstanceType, :ScaleMode, :Replicas, :HorizontalPodAutoscaler, :LogEnable, :LogConfig, :ServiceAction, :ServiceDescription, :ScaleStrategy, :CronScaleJobs, :HybridBillingPrepaidReplicas, :ModelHotUpdateEnable, :ScheduledAction, :ServiceLimit, :VolumeMount, :ModelTurboEnable, :Command, :ServiceEIP, :CommandBase64, :ServicePort, :InstancePerReplicas, :TerminationGracePeriodSeconds, :PreStopCommand, :GrpcEnable, :HealthProbe
 
-        def initialize(serviceid=nil, modelinfo=nil, imageinfo=nil, env=nil, resources=nil, instancetype=nil, scalemode=nil, replicas=nil, horizontalpodautoscaler=nil, logenable=nil, logconfig=nil, serviceaction=nil, servicedescription=nil, scalestrategy=nil, cronscalejobs=nil, hybridbillingprepaidreplicas=nil, modelhotupdateenable=nil, scheduledaction=nil, servicelimit=nil, volumemount=nil, modelturboenable=nil, command=nil, serviceeip=nil, commandbase64=nil, serviceport=nil, instanceperreplicas=nil, terminationgraceperiodseconds=nil, prestopcommand=nil)
+        def initialize(serviceid=nil, modelinfo=nil, imageinfo=nil, env=nil, resources=nil, instancetype=nil, scalemode=nil, replicas=nil, horizontalpodautoscaler=nil, logenable=nil, logconfig=nil, serviceaction=nil, servicedescription=nil, scalestrategy=nil, cronscalejobs=nil, hybridbillingprepaidreplicas=nil, modelhotupdateenable=nil, scheduledaction=nil, servicelimit=nil, volumemount=nil, modelturboenable=nil, command=nil, serviceeip=nil, commandbase64=nil, serviceport=nil, instanceperreplicas=nil, terminationgraceperiodseconds=nil, prestopcommand=nil, grpcenable=nil, healthprobe=nil)
           @ServiceId = serviceid
           @ModelInfo = modelinfo
           @ImageInfo = imageinfo
@@ -5060,6 +5206,8 @@ module TencentCloud
           @InstancePerReplicas = instanceperreplicas
           @TerminationGracePeriodSeconds = terminationgraceperiodseconds
           @PreStopCommand = prestopcommand
+          @GrpcEnable = grpcenable
+          @HealthProbe = healthprobe
         end
 
         def deserialize(params)
@@ -5132,6 +5280,11 @@ module TencentCloud
           @InstancePerReplicas = params['InstancePerReplicas']
           @TerminationGracePeriodSeconds = params['TerminationGracePeriodSeconds']
           @PreStopCommand = params['PreStopCommand']
+          @GrpcEnable = params['GrpcEnable']
+          unless params['HealthProbe'].nil?
+            @HealthProbe = HealthProbe.new
+            @HealthProbe.deserialize(params['HealthProbe'])
+          end
         end
       end
 
@@ -5768,15 +5921,18 @@ module TencentCloud
         # @param State: 私有连接状态
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type State: String
+        # @param InnerGrpcAddr: grpc内网调用地址
+        # @type InnerGrpcAddr: Array
 
-        attr_accessor :VpcId, :SubnetId, :InnerHttpAddr, :InnerHttpsAddr, :State
+        attr_accessor :VpcId, :SubnetId, :InnerHttpAddr, :InnerHttpsAddr, :State, :InnerGrpcAddr
 
-        def initialize(vpcid=nil, subnetid=nil, innerhttpaddr=nil, innerhttpsaddr=nil, state=nil)
+        def initialize(vpcid=nil, subnetid=nil, innerhttpaddr=nil, innerhttpsaddr=nil, state=nil, innergrpcaddr=nil)
           @VpcId = vpcid
           @SubnetId = subnetid
           @InnerHttpAddr = innerhttpaddr
           @InnerHttpsAddr = innerhttpsaddr
           @State = state
+          @InnerGrpcAddr = innergrpcaddr
         end
 
         def deserialize(params)
@@ -5785,6 +5941,65 @@ module TencentCloud
           @InnerHttpAddr = params['InnerHttpAddr']
           @InnerHttpsAddr = params['InnerHttpsAddr']
           @State = params['State']
+          @InnerGrpcAddr = params['InnerGrpcAddr']
+        end
+      end
+
+      # 探针结构信息
+      class Probe < TencentCloud::Common::AbstractModel
+        # @param ProbeAction: 探针行为
+        # @type ProbeAction: :class:`Tencentcloud::Tione.v20211111.models.ProbeAction`
+        # @param InitialDelaySeconds: 等待服务启动的延迟
+        # @type InitialDelaySeconds: Integer
+        # @param PeriodSeconds: 轮询检查时间间隔
+        # @type PeriodSeconds: Integer
+        # @param TimeoutSeconds: 检查超时时长
+        # @type TimeoutSeconds: Integer
+        # @param FailureThreshold: 检测失败认定次数
+        # @type FailureThreshold: Integer
+        # @param SuccessThreshold: 检测成功认定次数，就绪默认 3，存活/启动默认 1
+        # @type SuccessThreshold: Integer
+
+        attr_accessor :ProbeAction, :InitialDelaySeconds, :PeriodSeconds, :TimeoutSeconds, :FailureThreshold, :SuccessThreshold
+
+        def initialize(probeaction=nil, initialdelayseconds=nil, periodseconds=nil, timeoutseconds=nil, failurethreshold=nil, successthreshold=nil)
+          @ProbeAction = probeaction
+          @InitialDelaySeconds = initialdelayseconds
+          @PeriodSeconds = periodseconds
+          @TimeoutSeconds = timeoutseconds
+          @FailureThreshold = failurethreshold
+          @SuccessThreshold = successthreshold
+        end
+
+        def deserialize(params)
+          unless params['ProbeAction'].nil?
+            @ProbeAction = ProbeAction.new
+            @ProbeAction.deserialize(params['ProbeAction'])
+          end
+          @InitialDelaySeconds = params['InitialDelaySeconds']
+          @PeriodSeconds = params['PeriodSeconds']
+          @TimeoutSeconds = params['TimeoutSeconds']
+          @FailureThreshold = params['FailureThreshold']
+          @SuccessThreshold = params['SuccessThreshold']
+        end
+      end
+
+      # 探针行为
+      class ProbeAction < TencentCloud::Common::AbstractModel
+        # @param HTTPGet: http get 行为
+        # @type HTTPGet: :class:`Tencentcloud::Tione.v20211111.models.HTTPGetAction`
+
+        attr_accessor :HTTPGet
+
+        def initialize(httpget=nil)
+          @HTTPGet = httpget
+        end
+
+        def deserialize(params)
+          unless params['HTTPGet'].nil?
+            @HTTPGet = HTTPGetAction.new
+            @HTTPGet.deserialize(params['HTTPGet'])
+          end
         end
       end
 
@@ -6483,14 +6698,23 @@ module TencentCloud
         # @param AuthToken: 鉴权token，仅当AuthorizationEnable为true时有效
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AuthToken: String
+        # @param AuthTokens: LLM token 列表
+        # @type AuthTokens: Array
+        # @param EnableLimit: 是否开启限流
+        # @type EnableLimit: Boolean
+        # @param GrpcHost: 访问grpc时需携带的虚拟Host
+        # @type GrpcHost: String
 
-        attr_accessor :ServiceGroupId, :InternetEndpoint, :AuthorizationEnable, :AuthToken
+        attr_accessor :ServiceGroupId, :InternetEndpoint, :AuthorizationEnable, :AuthToken, :AuthTokens, :EnableLimit, :GrpcHost
 
-        def initialize(servicegroupid=nil, internetendpoint=nil, authorizationenable=nil, authtoken=nil)
+        def initialize(servicegroupid=nil, internetendpoint=nil, authorizationenable=nil, authtoken=nil, authtokens=nil, enablelimit=nil, grpchost=nil)
           @ServiceGroupId = servicegroupid
           @InternetEndpoint = internetendpoint
           @AuthorizationEnable = authorizationenable
           @AuthToken = authtoken
+          @AuthTokens = authtokens
+          @EnableLimit = enablelimit
+          @GrpcHost = grpchost
         end
 
         def deserialize(params)
@@ -6498,6 +6722,16 @@ module TencentCloud
           @InternetEndpoint = params['InternetEndpoint']
           @AuthorizationEnable = params['AuthorizationEnable']
           @AuthToken = params['AuthToken']
+          unless params['AuthTokens'].nil?
+            @AuthTokens = []
+            params['AuthTokens'].each do |i|
+              authtoken_tmp = AuthToken.new
+              authtoken_tmp.deserialize(i)
+              @AuthTokens << authtoken_tmp
+            end
+          end
+          @EnableLimit = params['EnableLimit']
+          @GrpcHost = params['GrpcHost']
         end
       end
 
@@ -6626,10 +6860,14 @@ module TencentCloud
         # @type SubUin: String
         # @param AppId: 服务组的app_id
         # @type AppId: Integer
+        # @param AuthorizationEnable: 是否开启鉴权
+        # @type AuthorizationEnable: Boolean
+        # @param AuthTokens: 限流鉴权 token 列表
+        # @type AuthTokens: Array
 
-        attr_accessor :ServiceGroupId, :ServiceGroupName, :CreatedBy, :CreateTime, :UpdateTime, :Uin, :ServiceCount, :RunningServiceCount, :Services, :Status, :Tags, :LatestVersion, :BusinessStatus, :BillingInfo, :CreateSource, :WeightUpdateStatus, :ReplicasCount, :AvailableReplicasCount, :SubUin, :AppId
+        attr_accessor :ServiceGroupId, :ServiceGroupName, :CreatedBy, :CreateTime, :UpdateTime, :Uin, :ServiceCount, :RunningServiceCount, :Services, :Status, :Tags, :LatestVersion, :BusinessStatus, :BillingInfo, :CreateSource, :WeightUpdateStatus, :ReplicasCount, :AvailableReplicasCount, :SubUin, :AppId, :AuthorizationEnable, :AuthTokens
 
-        def initialize(servicegroupid=nil, servicegroupname=nil, createdby=nil, createtime=nil, updatetime=nil, uin=nil, servicecount=nil, runningservicecount=nil, services=nil, status=nil, tags=nil, latestversion=nil, businessstatus=nil, billinginfo=nil, createsource=nil, weightupdatestatus=nil, replicascount=nil, availablereplicascount=nil, subuin=nil, appid=nil)
+        def initialize(servicegroupid=nil, servicegroupname=nil, createdby=nil, createtime=nil, updatetime=nil, uin=nil, servicecount=nil, runningservicecount=nil, services=nil, status=nil, tags=nil, latestversion=nil, businessstatus=nil, billinginfo=nil, createsource=nil, weightupdatestatus=nil, replicascount=nil, availablereplicascount=nil, subuin=nil, appid=nil, authorizationenable=nil, authtokens=nil)
           @ServiceGroupId = servicegroupid
           @ServiceGroupName = servicegroupname
           @CreatedBy = createdby
@@ -6650,6 +6888,8 @@ module TencentCloud
           @AvailableReplicasCount = availablereplicascount
           @SubUin = subuin
           @AppId = appid
+          @AuthorizationEnable = authorizationenable
+          @AuthTokens = authtokens
         end
 
         def deserialize(params)
@@ -6687,6 +6927,15 @@ module TencentCloud
           @AvailableReplicasCount = params['AvailableReplicasCount']
           @SubUin = params['SubUin']
           @AppId = params['AppId']
+          @AuthorizationEnable = params['AuthorizationEnable']
+          unless params['AuthTokens'].nil?
+            @AuthTokens = []
+            params['AuthTokens'].each do |i|
+              authtoken_tmp = AuthToken.new
+              authtoken_tmp.deserialize(i)
+              @AuthTokens << authtoken_tmp
+            end
+          end
         end
       end
 
@@ -6799,15 +7048,19 @@ module TencentCloud
         # @type TerminationGracePeriodSeconds: Integer
         # @param PreStopCommand: 服务实例停止前执行的命令，执行完毕或执行时间超过优雅退出时限后实例结束
         # @type PreStopCommand: Array
+        # @param GrpcEnable: 是否启用grpc端口
+        # @type GrpcEnable: Boolean
+        # @param HealthProbe: 健康探针
+        # @type HealthProbe: :class:`Tencentcloud::Tione.v20211111.models.HealthProbe`
 
-        attr_accessor :Replicas, :ImageInfo, :Env, :Resources, :InstanceType, :ModelInfo, :LogEnable, :LogConfig, :AuthorizationEnable, :HorizontalPodAutoscaler, :Status, :Weight, :ResourceTotal, :OldReplicas, :HybridBillingPrepaidReplicas, :OldHybridBillingPrepaidReplicas, :ModelHotUpdateEnable, :InstanceAlias, :ScaleMode, :CronScaleJobs, :ScaleStrategy, :ScheduledAction, :PodList, :Pods, :PodInfos, :ServiceLimit, :ModelTurboEnable, :VolumeMount, :InferCodeInfo, :Command, :ServiceEIP, :ServicePort, :TerminationGracePeriodSeconds, :PreStopCommand
+        attr_accessor :Replicas, :ImageInfo, :Env, :Resources, :InstanceType, :ModelInfo, :LogEnable, :LogConfig, :AuthorizationEnable, :HorizontalPodAutoscaler, :Status, :Weight, :ResourceTotal, :OldReplicas, :HybridBillingPrepaidReplicas, :OldHybridBillingPrepaidReplicas, :ModelHotUpdateEnable, :InstanceAlias, :ScaleMode, :CronScaleJobs, :ScaleStrategy, :ScheduledAction, :PodList, :Pods, :PodInfos, :ServiceLimit, :ModelTurboEnable, :VolumeMount, :InferCodeInfo, :Command, :ServiceEIP, :ServicePort, :TerminationGracePeriodSeconds, :PreStopCommand, :GrpcEnable, :HealthProbe
         extend Gem::Deprecate
         deprecate :PodList, :none, 2025, 4
         deprecate :PodList=, :none, 2025, 4
         deprecate :Pods, :none, 2025, 4
         deprecate :Pods=, :none, 2025, 4
 
-        def initialize(replicas=nil, imageinfo=nil, env=nil, resources=nil, instancetype=nil, modelinfo=nil, logenable=nil, logconfig=nil, authorizationenable=nil, horizontalpodautoscaler=nil, status=nil, weight=nil, resourcetotal=nil, oldreplicas=nil, hybridbillingprepaidreplicas=nil, oldhybridbillingprepaidreplicas=nil, modelhotupdateenable=nil, instancealias=nil, scalemode=nil, cronscalejobs=nil, scalestrategy=nil, scheduledaction=nil, podlist=nil, pods=nil, podinfos=nil, servicelimit=nil, modelturboenable=nil, volumemount=nil, infercodeinfo=nil, command=nil, serviceeip=nil, serviceport=nil, terminationgraceperiodseconds=nil, prestopcommand=nil)
+        def initialize(replicas=nil, imageinfo=nil, env=nil, resources=nil, instancetype=nil, modelinfo=nil, logenable=nil, logconfig=nil, authorizationenable=nil, horizontalpodautoscaler=nil, status=nil, weight=nil, resourcetotal=nil, oldreplicas=nil, hybridbillingprepaidreplicas=nil, oldhybridbillingprepaidreplicas=nil, modelhotupdateenable=nil, instancealias=nil, scalemode=nil, cronscalejobs=nil, scalestrategy=nil, scheduledaction=nil, podlist=nil, pods=nil, podinfos=nil, servicelimit=nil, modelturboenable=nil, volumemount=nil, infercodeinfo=nil, command=nil, serviceeip=nil, serviceport=nil, terminationgraceperiodseconds=nil, prestopcommand=nil, grpcenable=nil, healthprobe=nil)
           @Replicas = replicas
           @ImageInfo = imageinfo
           @Env = env
@@ -6842,6 +7095,8 @@ module TencentCloud
           @ServicePort = serviceport
           @TerminationGracePeriodSeconds = terminationgraceperiodseconds
           @PreStopCommand = prestopcommand
+          @GrpcEnable = grpcenable
+          @HealthProbe = healthprobe
         end
 
         def deserialize(params)
@@ -6939,6 +7194,11 @@ module TencentCloud
           @ServicePort = params['ServicePort']
           @TerminationGracePeriodSeconds = params['TerminationGracePeriodSeconds']
           @PreStopCommand = params['PreStopCommand']
+          @GrpcEnable = params['GrpcEnable']
+          unless params['HealthProbe'].nil?
+            @HealthProbe = HealthProbe.new
+            @HealthProbe.deserialize(params['HealthProbe'])
+          end
         end
       end
 

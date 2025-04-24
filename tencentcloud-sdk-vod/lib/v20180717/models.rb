@@ -13430,7 +13430,7 @@ module TencentCloud
         # <li>10：拼接时，以分辨率最高的输入为基准；</li>
         # <li>20：拼接时，以码率最高的输入为基准。</li>
         # @type Definition: Integer
-        # @param ProcedureName: [任务流模板](/document/product/266/11700#.E4.BB.BB.E5.8A.A1.E6.B5.81.E6.A8.A1.E6.9D.BF)名字，如果要对生成的新视频执行任务流时填写。
+        # @param ProcedureName: [任务流](https://cloud.tencent.com/document/product/266/33475#.E4.BB.BB.E5.8A.A1.E6.B5.81)名称，如果要对生成的新视频执行任务流时填写。
         # @type ProcedureName: String
         # @param OutputConfig: 编辑后生成的文件配置。
         # @type OutputConfig: :class:`Tencentcloud::Vod.v20180717.models.EditMediaOutputConfig`
@@ -22014,7 +22014,7 @@ module TencentCloud
       class ProcessMediaByProcedureRequest < TencentCloud::Common::AbstractModel
         # @param FileId: 媒体文件 ID。
         # @type FileId: String
-        # @param ProcedureName: [任务流模板](/document/product/266/11700#.E4.BB.BB.E5.8A.A1.E6.B5.81.E6.A8.A1.E6.9D.BF)名字。
+        # @param ProcedureName: [任务流](https://cloud.tencent.com/document/product/266/33475#.E4.BB.BB.E5.8A.A1.E6.B5.81)名称。
         # @type ProcedureName: String
         # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b>
         # @type SubAppId: Integer
@@ -26664,7 +26664,7 @@ module TencentCloud
         # <li>当数值大于0时（假设为 n），表示转码后的视频持续到原始视频第 n 秒时终止；</li>
         # <li>当数值小于0时（假设为 -n），表示转码后的视频持续到原始视频结束 n 秒前终止。</li>
         # @type EndTimeOffset: Float
-        # @param ProcedureName: [任务流模板](/document/product/266/11700#.E4.BB.BB.E5.8A.A1.E6.B5.81.E6.A8.A1.E6.9D.BF)名字，如果要对生成的新视频执行任务流时填写。
+        # @param ProcedureName: [任务流](https://cloud.tencent.com/document/product/266/33475#.E4.BB.BB.E5.8A.A1.E6.B5.81)名称。要对生成的新视频自动执行任务流时填写。
         # @type ProcedureName: String
         # @param OutputConfig: 视频拆条输出信息。
         # @type OutputConfig: :class:`Tencentcloud::Vod.v20180717.models.SplitMediaOutputConfig`

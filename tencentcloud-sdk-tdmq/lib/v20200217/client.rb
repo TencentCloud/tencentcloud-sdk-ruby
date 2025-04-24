@@ -317,7 +317,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 创建RabbitMQ专享版实例
+        # 创建 RabbitMQ 托管版实例
 
         # @param request: Request instance for CreateRabbitMQVipInstance.
         # @type request: :class:`Tencentcloud::tdmq::V20200217::CreateRabbitMQVipInstanceRequest`
@@ -845,7 +845,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 删除RabbitMQ专享版实例
+        # 删除 RabbitMQ 托管版实例
 
         # @param request: Request instance for DeleteRabbitMQVipInstance.
         # @type request: :class:`Tencentcloud::tdmq::V20200217::DeleteRabbitMQVipInstanceRequest`
@@ -1735,7 +1735,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # RabbitMQ专享版查询节点列表
+        # 查询 RabbitMQ 托管版节点列表
 
         # @param request: Request instance for DescribeRabbitMQNodeList.
         # @type request: :class:`Tencentcloud::tdmq::V20200217::DescribeRabbitMQNodeListRequest`
