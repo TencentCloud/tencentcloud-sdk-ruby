@@ -10766,10 +10766,14 @@ module TencentCloud
         # @type ImageUrl: String
         # @param ImageBase64: 图片的 Base64 值。支持的图片格式：PNG、JPG、JPEG，WORD，EXCEL，暂不支持 GIF 格式。支持的图片大小：所下载图片经Base64编码后不超过 7M。图片下载时间不超过 3 秒。支持的图片像素：需介于20-10000px之间。图片的 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。
         # @type ImageBase64: String
-        # @param PdfPageNumber: 需要识别的PDF页面的对应页码，仅支持PDF单页识别，当上传文件为PDF且IsPdf参数值为true时有效，默认值为1。
+        # @param PdfPageNumber: 需要识别的PDF页面的对应页码，仅支持PDF单页识别，当上传文件为PDF且IsPdf参数值为true时有效，默认值为前3页。
         # @type PdfPageNumber: Integer
         # @param ItemNames: 自定义结构化功能需返回的字段名称，例：若客户想新增返回姓名、性别两个字段的识别结果，则输入ItemNames=["姓名","性别"]
         # @type ItemNames: Array
+        # @param ItemNamesShowMode: true：仅输出自定义字段
+        # flase：输出默认字段+自定义字段
+        # 默认true
+        # @type ItemNamesShowMode: Boolean
         # @param ReturnFullText: 是否开启全文字段识别
         # @type ReturnFullText: Boolean
         # @param ConfigId: 配置id支持：
@@ -10788,6 +10792,7 @@ module TencentCloud
         # DispatchWeightNote -- 磅单发货单识别模板
         # ReceiptWeightNote -- 磅单收货单识别模板
         # ArticalRecognize -- 手写作文模版
+        # Table -- 表格模版
         # @type ConfigId: String
         # @param EnableCoord: 是否开启全文字段坐标值的识别
         # @type EnableCoord: Boolean
@@ -10796,13 +10801,14 @@ module TencentCloud
         # @param ConfigAdvanced: 模版的单个属性配置
         # @type ConfigAdvanced: :class:`Tencentcloud::Ocr.v20181119.models.ConfigAdvanced`
 
-        attr_accessor :ImageUrl, :ImageBase64, :PdfPageNumber, :ItemNames, :ReturnFullText, :ConfigId, :EnableCoord, :OutputParentKey, :ConfigAdvanced
+        attr_accessor :ImageUrl, :ImageBase64, :PdfPageNumber, :ItemNames, :ItemNamesShowMode, :ReturnFullText, :ConfigId, :EnableCoord, :OutputParentKey, :ConfigAdvanced
 
-        def initialize(imageurl=nil, imagebase64=nil, pdfpagenumber=nil, itemnames=nil, returnfulltext=nil, configid=nil, enablecoord=nil, outputparentkey=nil, configadvanced=nil)
+        def initialize(imageurl=nil, imagebase64=nil, pdfpagenumber=nil, itemnames=nil, itemnamesshowmode=nil, returnfulltext=nil, configid=nil, enablecoord=nil, outputparentkey=nil, configadvanced=nil)
           @ImageUrl = imageurl
           @ImageBase64 = imagebase64
           @PdfPageNumber = pdfpagenumber
           @ItemNames = itemnames
+          @ItemNamesShowMode = itemnamesshowmode
           @ReturnFullText = returnfulltext
           @ConfigId = configid
           @EnableCoord = enablecoord
@@ -10815,6 +10821,7 @@ module TencentCloud
           @ImageBase64 = params['ImageBase64']
           @PdfPageNumber = params['PdfPageNumber']
           @ItemNames = params['ItemNames']
+          @ItemNamesShowMode = params['ItemNamesShowMode']
           @ReturnFullText = params['ReturnFullText']
           @ConfigId = params['ConfigId']
           @EnableCoord = params['EnableCoord']
