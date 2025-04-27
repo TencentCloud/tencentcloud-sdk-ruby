@@ -2302,7 +2302,7 @@ module TencentCloud
 
       # DescribeImageSharePermission请求参数结构体
       class DescribeImageSharePermissionRequest < TencentCloud::Common::AbstractModel
-        # @param ImageId: 需要共享的镜像Id
+        # @param ImageId: 需要共享的镜像 ID，可通过 [DescribeImages](https://cloud.tencent.com/document/api/213/15715) 接口返回的`ImageId`获取。
         # @type ImageId: String
 
         attr_accessor :ImageId
@@ -2352,23 +2352,23 @@ module TencentCloud
         # <li><strong>image-id</strong></li>
         # <p style="padding-left: 30px;">按照【<strong>镜像ID</strong>】进行过滤。</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p>
         # <li><strong>image-type</strong></li>
-        # <p style="padding-left: 30px;">按照【<strong>镜像类型</strong>】进行过滤。</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p><p style="padding-left: 30px;">可选项：</p><p style="padding-left: 30px;">PRIVATE_IMAGE: 私有镜像 (本账户创建的镜像)</p><p style="padding-left: 30px;">PUBLIC_IMAGE: 公共镜像 (腾讯云官方镜像)</p><p style="padding-left: 30px;">SHARED_IMAGE: 共享镜像(其他账户共享给本账户的镜像)</p>
+        # <p style="padding-left: 30px;">按照【<strong>镜像类型</strong>】进行过滤。</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p><p style="padding-left: 30px;">可选项：</p><p style="padding-left: 30px;">PRIVATE_IMAGE: 自定义镜像 (本账户创建的镜像)</p><p style="padding-left: 30px;">PUBLIC_IMAGE: 公共镜像 (腾讯云官方镜像)</p><p style="padding-left: 30px;">SHARED_IMAGE: 共享镜像(其他账户共享给本账户的镜像)</p>
         # <li><strong>image-name</strong></li>
-        # <p style="padding-left: 30px;">按照【<strong>镜像名称</strong>】进行过滤。</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p>
+        # <p style="padding-left: 30px;">按照【<strong>镜像名称</strong>】进行过滤。支持模糊查询。</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p>
         # <li><strong>platform</strong></li>
-        # <p style="padding-left: 30px;">按照【<strong>镜像平台</strong>】进行过滤，如CentOS。</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p>
+        # <p style="padding-left: 30px;">按照【<strong>镜像平台</strong>】进行过滤，如 CentOS，支持模糊匹配。可通过 <a href="https://cloud.tencent.com/document/api/213/15715" target="_blank">DescribeImages</a> 接口返回的<code> Platform </code>获取。</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p>
         # <li><strong>tag-key</strong></li>
-        # <p style="padding-left: 30px;">按照【<strong>标签键</strong>】进行过滤。</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p>
+        # <p style="padding-left: 30px;">按照【<strong>标签键</strong>】进行过滤。可通过 <a href="https://cloud.tencent.com/document/product/651/72275" target="_blank"> GetTags </a> 接口返回的<code> TagKey </code>获取。</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p>
         # <li><strong>tag-value</strong></li>
-        # <p style="padding-left: 30px;">按照【<strong>标签值</strong>】进行过滤。</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p>
+        # <p style="padding-left: 30px;">按照【<strong>标签值</strong>】进行过滤。可通过 <a href="https://cloud.tencent.com/document/product/651/72275" target="_blank"> GetTags </a> 接口返回的<code> TagValue </code>获取。</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p>
         # <li><strong>tag:tag-key</strong></li>
-        # <p style="padding-left: 30px;">按照【<strong>标签键值对</strong>】进行过滤。tag-key使用具体的标签键进行替换。</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p>
+        # <p style="padding-left: 30px;">按照【<strong>标签键值对</strong>】进行过滤。tag-key使用具体的标签键进行替换。可通过 <a href="https://cloud.tencent.com/document/product/651/72275" target="_blank"> GetTags </a> 接口返回的<code> TagKey 和 TagValue </code>获取。</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p>
         # @type Filters: Array
         # @param Offset: 偏移量，默认为0。关于Offset详见[API简介](/document/api/213/568#.E8.BE.93.E5.85.A5.E5.8F.82.E6.95.B0.E4.B8.8E.E8.BF.94.E5.9B.9E.E5.8F.82.E6.95.B0.E9.87.8A.E4.B9.89)。
         # @type Offset: Integer
         # @param Limit: 数量限制，默认为20，最大值为100。关于Limit详见[API简介](/document/api/213/568#.E8.BE.93.E5.85.A5.E5.8F.82.E6.95.B0.E4.B8.8E.E8.BF.94.E5.9B.9E.E5.8F.82.E6.95.B0.E9.87.8A.E4.B9.89)。
         # @type Limit: Integer
-        # @param InstanceType: 实例类型，如 `S1.SMALL1`
+        # @param InstanceType: 实例类型，如 `S1.SMALL1`。可通过 [DescribeInstanceTypeConfigs](https://cloud.tencent.com/document/product/213/15749) 接口返回的 `InstanceType` 获取。
         # @type InstanceType: String
 
         attr_accessor :ImageIds, :Filters, :Offset, :Limit, :InstanceType
@@ -3880,9 +3880,9 @@ module TencentCloud
 
       # EnterRescueMode请求参数结构体
       class EnterRescueModeRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 需要进入救援模式的实例id
+        # @param InstanceId: 需要进入救援模式的实例ID。可通过 [DescribeInstances](https://cloud.tencent.com/document/api/213/15728) 接口返回值中的`InstanceId`获取。
         # @type InstanceId: String
-        # @param Password: 救援模式下系统密码
+        # @param Password: 救援模式下系统密码。不同操作系统类型密码复杂度限制不一样，具体如下：<li>Linux实例密码必须8到30位，至少包括两项[a-z]，[A-Z]、[0-9] 和 [( ) \` ~ ! @ # $ % ^ & *  - + = | { } [ ] : ; ' , . ? / ]中的特殊符号。</li><li>Windows实例密码必须12到30位，至少包括三项[a-z]，[A-Z]，[0-9] 和 [( ) \` ~ ! @ # $ % ^ & * - + = | { } [ ] : ; ' , . ? /]中的特殊符号。</li>
         # @type Password: String
         # @param Username: 救援模式下系统用户名
         # @type Username: String
@@ -4339,17 +4339,24 @@ module TencentCloud
         # @type ImageId: String
         # @param OsName: 镜像操作系统
         # @type OsName: String
-        # @param ImageType: 镜像类型
+        # @param ImageType: 镜像类型。镜像类型返回值包括：
+        # * `PUBLIC_IMAGE` 公共镜像
+        # * `PRIVATE_IMAGE` 自定义镜像
+        # * `SHARED_IMAGE` 共享镜像
         # @type ImageType: String
-        # @param CreatedTime: 镜像创建时间
+        # @param CreatedTime: 镜像创建时间。
+        # 按照 ISO8601 标准表示，并且使用 UTC 时间，格式为：YYYY-MM-DDThh:mm:ssZ。
         # @type CreatedTime: String
         # @param ImageName: 镜像名称
         # @type ImageName: String
         # @param ImageDescription: 镜像描述
         # @type ImageDescription: String
-        # @param ImageSize: 镜像大小
+        # @param ImageSize: 镜像大小，单位 GiB。
         # @type ImageSize: Integer
-        # @param Architecture: 镜像架构
+        # @param Architecture: 镜像架构。镜像架构返回值包括：
+        # * `x86_64`
+        # * `arm`
+        # * `i386`
         # @type Architecture: String
         # @param ImageState: 镜像状态:
         # CREATING-创建中
@@ -4364,7 +4371,10 @@ module TencentCloud
         # @type Platform: String
         # @param ImageCreator: 镜像创建者
         # @type ImageCreator: String
-        # @param ImageSource: 镜像来源
+        # @param ImageSource: 镜像来源。镜像来源返回值包括：
+        # * `OFFICIAL` 官方镜像
+        # * `CREATE_IMAGE` 用户自建镜像
+        # * `EXTERNAL_IMPORT` 用户外部导入镜像
         # @type ImageSource: String
         # @param SyncPercent: 同步百分比
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -4375,16 +4385,20 @@ module TencentCloud
         # @type SnapshotSet: Array
         # @param Tags: 镜像关联的标签列表。
         # @type Tags: Array
-        # @param LicenseType: 镜像许可类型
+        # @param LicenseType: 镜像许可类型。镜像许可类型返回值包括：
+        # * `TencentCloud` 腾讯云官方许可
+        # * `BYOL` 用户自带许可
         # @type LicenseType: String
         # @param ImageFamily: 镜像族
         # @type ImageFamily: String
         # @param ImageDeprecated: 镜像是否废弃
         # @type ImageDeprecated: Boolean
+        # @param CdcCacheStatus: CDC镜像缓存状态
+        # @type CdcCacheStatus: String
 
-        attr_accessor :ImageId, :OsName, :ImageType, :CreatedTime, :ImageName, :ImageDescription, :ImageSize, :Architecture, :ImageState, :Platform, :ImageCreator, :ImageSource, :SyncPercent, :IsSupportCloudinit, :SnapshotSet, :Tags, :LicenseType, :ImageFamily, :ImageDeprecated
+        attr_accessor :ImageId, :OsName, :ImageType, :CreatedTime, :ImageName, :ImageDescription, :ImageSize, :Architecture, :ImageState, :Platform, :ImageCreator, :ImageSource, :SyncPercent, :IsSupportCloudinit, :SnapshotSet, :Tags, :LicenseType, :ImageFamily, :ImageDeprecated, :CdcCacheStatus
 
-        def initialize(imageid=nil, osname=nil, imagetype=nil, createdtime=nil, imagename=nil, imagedescription=nil, imagesize=nil, architecture=nil, imagestate=nil, platform=nil, imagecreator=nil, imagesource=nil, syncpercent=nil, issupportcloudinit=nil, snapshotset=nil, tags=nil, licensetype=nil, imagefamily=nil, imagedeprecated=nil)
+        def initialize(imageid=nil, osname=nil, imagetype=nil, createdtime=nil, imagename=nil, imagedescription=nil, imagesize=nil, architecture=nil, imagestate=nil, platform=nil, imagecreator=nil, imagesource=nil, syncpercent=nil, issupportcloudinit=nil, snapshotset=nil, tags=nil, licensetype=nil, imagefamily=nil, imagedeprecated=nil, cdccachestatus=nil)
           @ImageId = imageid
           @OsName = osname
           @ImageType = imagetype
@@ -4404,6 +4418,7 @@ module TencentCloud
           @LicenseType = licensetype
           @ImageFamily = imagefamily
           @ImageDeprecated = imagedeprecated
+          @CdcCacheStatus = cdccachestatus
         end
 
         def deserialize(params)
@@ -4440,6 +4455,7 @@ module TencentCloud
           @LicenseType = params['LicenseType']
           @ImageFamily = params['ImageFamily']
           @ImageDeprecated = params['ImageDeprecated']
+          @CdcCacheStatus = params['CdcCacheStatus']
         end
       end
 
@@ -7360,9 +7376,9 @@ module TencentCloud
       class RebootInstancesRequest < TencentCloud::Common::AbstractModel
         # @param InstanceIds: 一个或多个待操作的实例ID。可通过 [DescribeInstances](https://cloud.tencent.com/document/api/213/15728) 接口返回值中的`InstanceId`获取。每次请求批量实例的上限为100。
         # @type InstanceIds: Array
-        # @param ForceReboot: 本参数已弃用，推荐使用StopType，不可以与参数StopType同时使用。表示是否在正常重启失败后选择强制重启实例。取值范围：<br><li>true：表示在正常重启失败后进行强制重启<br><li>false：表示在正常重启失败后不进行强制重启<br><br>默认取值：false。
+        # @param ForceReboot: 本参数已弃用，推荐使用StopType，不可以与参数StopType同时使用。表示是否在正常重启失败后选择强制重启实例。取值范围：<br><li>true：表示在正常重启失败后进行强制重启</li><li>false：表示在正常重启失败后不进行强制重启</li><br>默认取值：false。
         # @type ForceReboot: Boolean
-        # @param StopType: 关机类型。取值范围：<br><li>SOFT：表示软关机<br><li>HARD：表示硬关机<br><li>SOFT_FIRST：表示优先软关机，失败再执行硬关机<br><br>默认取值：SOFT。
+        # @param StopType: 关机类型。取值范围：<br><li>SOFT：表示软关机</li><li>HARD：表示硬关机</li><li>SOFT_FIRST：表示优先软关机，失败再执行硬关机</li><br>默认取值：SOFT。
         # @type StopType: String
 
         attr_accessor :InstanceIds, :ForceReboot, :StopType
@@ -8587,7 +8603,8 @@ module TencentCloud
 
       # 镜像分享信息结构
       class SharePermission < TencentCloud::Common::AbstractModel
-        # @param CreatedTime: 镜像分享时间
+        # @param CreatedTime: 镜像分享时间。
+        # 按照 ISO8601 标准表示，并且使用 UTC 时间，格式为：YYYY-MM-DDThh:mm:ssZ。
         # @type CreatedTime: String
         # @param AccountId: 镜像分享的账户ID
         # @type AccountId: String
@@ -8613,7 +8630,7 @@ module TencentCloud
         # SYSTEM_DISK：系统盘
         # DATA_DISK：数据盘。
         # @type DiskUsage: String
-        # @param DiskSize: 创建此快照的云硬盘大小，单位GB。
+        # @param DiskSize: 创建此快照的云硬盘大小，单位 GiB。
         # @type DiskSize: Integer
 
         attr_accessor :SnapshotId, :DiskUsage, :DiskSize

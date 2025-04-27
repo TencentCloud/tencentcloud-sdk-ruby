@@ -23,7 +23,7 @@ module TencentCloud
         # @type Bidder: String
         # @param AuctionTime: 竞拍时间
         # @type AuctionTime: String
-        # @param AuctionPrice: 竞拍价格
+        # @param AuctionPrice: 竞拍价格 单位元
         # @type AuctionPrice: Float
         # @param Status: 状态 up: 领先 down: 落后
         # @type Status: String
@@ -49,7 +49,8 @@ module TencentCloud
       class BatchModifyDomainInfoRequest < TencentCloud::Common::AbstractModel
         # @param Domains: 批量修改的域名。
         # @type Domains: Array
-        # @param TemplateId: 模板ID(可从模板列表接口获取)
+        # @param TemplateId: 模板ID
+        # 可从DescribeTemplates接口获取
         # @type TemplateId: String
         # @param LockTransfer: true： 开启60天内禁止转移注册商锁定
         # false：关闭60天内禁止转移注册商锁定
@@ -98,6 +99,16 @@ module TencentCloud
         # @param Status: 批量任务状态  doing：进行中  success：成功  failed：失败  partial_success：部分成功
         # @type Status: String
         # @param BatchAction: 批量任务类型
+        # new：注册域名
+        # renew：续费域名
+        # batch_transfer_prohibition_on：开启禁止转移锁
+        # batch_transfer_prohibition_off：关闭禁止转移锁
+        # batch_update_prohibition_on：开启禁止更新锁
+        # batch_update_prohibition_off：关闭禁止更新锁
+        # batch_modify_owner：域名转移
+        # batch_modify_domain_info：域名信息修改
+        # batch_transfer_in：域名转入
+        # batch_cancel_transfer_out：域名取消转出
         # @type BatchAction: String
 
         attr_accessor :LogId, :Status, :BatchAction
@@ -117,7 +128,8 @@ module TencentCloud
 
       # BidDetailPage请求参数结构体
       class BidDetailPageRequest < TencentCloud::Common::AbstractModel
-        # @param BusinessId: 业务ID
+        # @param BusinessId: 预约ID
+        # 可通过DescribeBiddingList接口获取
         # @type BusinessId: String
 
         attr_accessor :BusinessId
@@ -135,16 +147,16 @@ module TencentCloud
       class BidDetailPageResponse < TencentCloud::Common::AbstractModel
         # @param Domain: 域名
         # @type Domain: String
-        # @param CurrentPrice: 当前域名价格
+        # @param CurrentPrice: 当前域名价格 单位元
         # @type CurrentPrice: Float
-        # @param BidPrice: 用户上次出价
+        # @param BidPrice: 用户上次出价 单位元
         # @type BidPrice: Float
-        # @param CurrentPriceScope: 当前加价幅度
+        # @param CurrentPriceScope: 当前加价幅度 单位元
         # @type CurrentPriceScope: Float
         # @param PriceScope: 加价幅度区间配置
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PriceScope: Array
-        # @param DepositPrice: 用户当前已经支付了的保证金
+        # @param DepositPrice: 用户当前已经支付了的保证金 单位元
         # @type DepositPrice: Float
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -217,13 +229,13 @@ module TencentCloud
 
       # 我预定的域名结构体。
       class BiddingAppointResult < TencentCloud::Common::AbstractModel
-        # @param BusinessID: business_id
+        # @param BusinessID: 预约ID
         # @type BusinessID: String
         # @param Domain: 域名
         # @type Domain: String
-        # @param AppointPrice: 预定价格
+        # @param AppointPrice: 预定价格 单位元
         # @type AppointPrice: Integer
-        # @param AppointBondPrice: 预约保证金
+        # @param AppointBondPrice: 预约保证金 单位元
         # @type AppointBondPrice: Integer
         # @param AppointEndTime: 预约结束时间
         # @type AppointEndTime: String
@@ -258,8 +270,9 @@ module TencentCloud
       # BiddingPreRelease请求参数结构体
       class BiddingPreReleaseRequest < TencentCloud::Common::AbstractModel
         # @param BusinessId: 业务ID
+        # 可通过DescribeBiddingList接口获取
         # @type BusinessId: String
-        # @param Price: 价格
+        # @param Price: 价格 单位元
         # @type Price: Float
 
         attr_accessor :BusinessId, :Price
@@ -279,7 +292,7 @@ module TencentCloud
       class BiddingPreReleaseResponse < TencentCloud::Common::AbstractModel
         # @param IsNeedPay: 是否需要额外支付
         # @type IsNeedPay: Boolean
-        # @param BillingParam: 计费请求参数，以Json字符串的形式进行返回。
+        # @param BillingParam: 计费请求参数，以类Json字符串的形式进行返回。用于计费下单
         # @type BillingParam: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -301,17 +314,17 @@ module TencentCloud
 
       # 我竞价的域名结构体。
       class BiddingResult < TencentCloud::Common::AbstractModel
-        # @param BusinessID: business_id
+        # @param BusinessID: 预约ID
         # @type BusinessID: String
         # @param Domain: 域名
         # @type Domain: String
-        # @param CurrentPrice: 当前价格
+        # @param CurrentPrice: 当前价格 单位元
         # @type CurrentPrice: Integer
         # @param CurrentNickname: 当前用户昵称
         # @type CurrentNickname: String
-        # @param BiddingPrice: 我的出价
+        # @param BiddingPrice: 我的出价 单位元
         # @type BiddingPrice: Integer
-        # @param BiddingBondPrice: 竞价保证金
+        # @param BiddingBondPrice: 竞价保证金 单位元
         # @type BiddingBondPrice: Integer
         # @param BiddingEndTime: 竞价结束时间
         # @type BiddingEndTime: String
@@ -466,6 +479,15 @@ module TencentCloud
       # CheckBatchStatus请求参数结构体
       class CheckBatchStatusRequest < TencentCloud::Common::AbstractModel
         # @param LogIds: 操作日志 ID数组，最多 200 个
+        # 可通过任意批量操作接口获取，例如：
+        # BatchModifyDomainInfo
+        # ModifyDomainDNSBatch
+        # ModifyDomainOwnerBatch
+        # UpdateProhibitionBatch
+        # TransferProhibitionBatch
+        # TransferInDomainBatch
+        # TransferInDomainBatchBuy
+        # CancelTransferOutInBatch
         # @type LogIds: Array
 
         attr_accessor :LogIds
@@ -677,10 +699,13 @@ module TencentCloud
       # CreateCustomDnsHost请求参数结构体
       class CreateCustomDnsHostRequest < TencentCloud::Common::AbstractModel
         # @param DomainId: 域名实例ID
+        # 可通过DescribeDomainLIst接口获取
         # @type DomainId: String
         # @param DnsName: Dns名称
+        # 例如：<>.test.com;其中<>就是Dns名称，可以是任意域名允许的格式
         # @type DnsName: String
         # @param IpSet: IP地址列表
+        # 可选择：正常IP地址范围
         # @type IpSet: Array
 
         attr_accessor :DomainId, :DnsName, :IpSet
@@ -798,7 +823,8 @@ module TencentCloud
 
       # CreateDomainRedemption请求参数结构体
       class CreateDomainRedemptionRequest < TencentCloud::Common::AbstractModel
-        # @param DomainId: 域名 ID
+        # @param DomainId: 域名ID
+        # 可通过DescribeDomainList接口获取
         # @type DomainId: String
 
         attr_accessor :DomainId
@@ -834,7 +860,8 @@ module TencentCloud
         # @type Code: String
         # @param Type: 1：手机   2：邮箱
         # @type Type: Integer
-        # @param VerifyCode: 验证码(通过SendPhoneEmailCode发送到手机或邮箱的验证码)
+        # @param VerifyCode: 验证码
+        # 通过调用SendPhoneEmailCode接口发送到手机或邮箱的验证码：https://cloud.tencent.com/document/api/242/62666
         # @type VerifyCode: String
 
         attr_accessor :Code, :Type, :VerifyCode
@@ -939,7 +966,8 @@ module TencentCloud
 
       # DeleteBidding请求参数结构体
       class DeleteBiddingRequest < TencentCloud::Common::AbstractModel
-        # @param BusinessID: business_id
+        # @param BusinessID: 预约ID
+        # 可通过DescribeBiddingList接口获取
         # @type BusinessID: String
 
         attr_accessor :BusinessID
@@ -972,8 +1000,10 @@ module TencentCloud
       # DeleteCustomDnsHost请求参数结构体
       class DeleteCustomDnsHostRequest < TencentCloud::Common::AbstractModel
         # @param DomainId: 域名实例ID
+        # 可通过DescribeDomainList接口获取
         # @type DomainId: String
         # @param DnsName: DNS名称
+        # 例如：<>.test.com;其中<>就是Dns名称，可以是任意域名允许的格式
         # @type DnsName: String
 
         attr_accessor :DomainId, :DnsName
@@ -1079,7 +1109,8 @@ module TencentCloud
 
       # DeleteTemplate请求参数结构体
       class DeleteTemplateRequest < TencentCloud::Common::AbstractModel
-        # @param TemplateId: 模板ID(可通过模板信息列表获取)
+        # @param TemplateId: 模板ID
+        # 可通过DescribeTemplates接口获取
         # @type TemplateId: String
 
         attr_accessor :TemplateId
@@ -1113,9 +1144,9 @@ module TencentCloud
       class DescribeAuctionListRequest < TencentCloud::Common::AbstractModel
         # @param BusinessId: 业务ID，通过接口DescribeBiddingList返回结果中获取
         # @type BusinessId: String
-        # @param Limit: 条数，默认10条
+        # @param Limit: 条数，默认10，最大100
         # @type Limit: Integer
-        # @param OffSet: 偏移量
+        # @param OffSet: 偏移量 默认0
         # @type OffSet: Integer
 
         attr_accessor :BusinessId, :Limit, :OffSet
@@ -1272,7 +1303,8 @@ module TencentCloud
 
       # DescribeBiddingAppointDetail请求参数结构体
       class DescribeBiddingAppointDetailRequest < TencentCloud::Common::AbstractModel
-        # @param BusinessID: business_id
+        # @param BusinessID: 预约ID
+        # 可通过DescribeBiddingList接口获取
         # @type BusinessID: String
 
         attr_accessor :BusinessID
@@ -1302,9 +1334,9 @@ module TencentCloud
         # @type ExpireTime: String
         # @param DeleteTime: 删除时间
         # @type DeleteTime: String
-        # @param AppointPrice: 当前价格
+        # @param AppointPrice: 当前价格 单位元
         # @type AppointPrice: Integer
-        # @param AppointBondPrice: 预约保证金
+        # @param AppointBondPrice: 预约保证金 单位元
         # @type AppointBondPrice: Integer
         # @param Status: 1 已预约，2 竞价中，3 等待出价 4 竞价失败 5 等待支付 6 等待转移，7 转移中 8 交易成功 9 预约持有者赎回 10 竞价持有者赎回 11 其他阶段持有者赎回 12 违约
         # @type Status: Integer
@@ -1355,7 +1387,8 @@ module TencentCloud
         # @type PageSize: Integer
         # @param Domain: 域名
         # @type Domain: String
-        # @param Status: 状态： 1 已预约 9 预约持有者索回
+        # @param Status: 状态：
+        # 1 已预约，2 竞价中，3 等待出价 4 竞价失败 5 等待支付 6 等待转移，7 转移中 8 交易成功 9 预约持有者赎回 10 竞价持有者赎回 11 其他阶段持有者赎回 12 违约
         # @type Status: Array
         # @param SortField: 排序字段：AppointEndTime 预约结束时间
         # @type SortField: String
@@ -1416,7 +1449,8 @@ module TencentCloud
 
       # DescribeBiddingDetail请求参数结构体
       class DescribeBiddingDetailRequest < TencentCloud::Common::AbstractModel
-        # @param BusinessID: business_id
+        # @param BusinessID: 预约ID
+        # 可通过DescribeBiddingList接口获取
         # @type BusinessID: String
 
         attr_accessor :BusinessID
@@ -1446,11 +1480,11 @@ module TencentCloud
         # @type ExpireTime: String
         # @param DeleteTime: 删除时间
         # @type DeleteTime: String
-        # @param CurrentPrice: 当前价格
+        # @param CurrentPrice: 当前价格 单位元
         # @type CurrentPrice: Integer
         # @param CurrentNickname: 当前用户昵称
         # @type CurrentNickname: String
-        # @param BiddingBondPrice: 竞价保证金
+        # @param BiddingBondPrice: 竞价保证金 单位元
         # @type BiddingBondPrice: Integer
         # @param Status: 2 竞价中  3 等待出价 4 竞价失败 10 竞价持有者赎回
         # @type Status: Integer
@@ -1458,7 +1492,7 @@ module TencentCloud
         # @type BiddingFlag: Integer
         # @param BiddingBondRefund: 是否退款，yes表示退款，no表示不退款
         # @type BiddingBondRefund: String
-        # @param BiddingPrice: 我的出价
+        # @param BiddingPrice: 我的出价 单位元
         # @type BiddingPrice: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1572,7 +1606,8 @@ module TencentCloud
 
       # DescribeBiddingSuccessfulDetail请求参数结构体
       class DescribeBiddingSuccessfulDetailRequest < TencentCloud::Common::AbstractModel
-        # @param BusinessID: business_id
+        # @param BusinessID: 预约ID
+        # 可通过DescribeBiddingSuccessfulList接口获取
         # @type BusinessID: String
 
         attr_accessor :BusinessID
@@ -1592,7 +1627,7 @@ module TencentCloud
         # @type Domain: String
         # @param SuccessfulTime: 得标时间
         # @type SuccessfulTime: String
-        # @param SuccessfulPrice: 得标价格
+        # @param SuccessfulPrice: 得标价格 单位元
         # @type SuccessfulPrice: Float
         # @param RegTime:  注册时间
         # @type RegTime: String
@@ -1604,7 +1639,7 @@ module TencentCloud
         # @type PayEndTime: String
         # @param BiddingBondRefund: 保证金，是否退款，yes表示退款，no表示不退款
         # @type BiddingBondRefund: String
-        # @param BiddingBondPrice: 保证金
+        # @param BiddingBondPrice: 保证金 单位元
         # @type BiddingBondPrice: Float
         # @param Status: 状态：5 等待支付 6 等待转移， 7 转移中，8 交易成功，11 尾款阶段持有者索回，12 已违约
         # @type Status: Integer
@@ -1711,7 +1746,8 @@ module TencentCloud
 
       # DescribeCustomDnsHostSet请求参数结构体
       class DescribeCustomDnsHostSetRequest < TencentCloud::Common::AbstractModel
-        # @param DomainId: 域名实例ID(域名基本信息或我的域名列表接口可获取)
+        # @param DomainId: 域名实例ID
+        # 可通过DescribeDomainList接口获取
         # @type DomainId: String
         # @param Limit: 返回数量，默认为20，取值范围[1,100]
         # @type Limit: Integer
@@ -1959,6 +1995,7 @@ module TencentCloud
       # DescribePayWaitDetail请求参数结构体
       class DescribePayWaitDetailRequest < TencentCloud::Common::AbstractModel
         # @param BusinessId: 业务ID
+        # 可通过DescribeBiddingList接口获取
         # @type BusinessId: String
 
         attr_accessor :BusinessId
@@ -1977,14 +2014,18 @@ module TencentCloud
         # @param Domain: 域名
         # @type Domain: String
         # @param Status: 域名类型
+        # pay：等待支持
+        # sub：已经预订
+        # wait：等待出价
+        # finish：完成出价
         # @type Status: String
         # @param EndTime: 支付结束时间
         # @type EndTime: String
         # @param RegTime: 域名注册时间
         # @type RegTime: String
-        # @param Price: 域名成交价格
+        # @param Price: 域名成交价格 单位元
         # @type Price: Float
-        # @param RetDeposit: 待退还保证金
+        # @param RetDeposit: 待退还保证金 单位元
         # @type RetDeposit: Float
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2073,9 +2114,9 @@ module TencentCloud
 
       # DescribePreAuctionList请求参数结构体
       class DescribePreAuctionListRequest < TencentCloud::Common::AbstractModel
-        # @param PageNumber: 页码
+        # @param PageNumber: 页码 默认1
         # @type PageNumber: Integer
-        # @param PageSize: 条数
+        # @param PageSize: 条数 默认20 最大100
         # @type PageSize: Integer
 
         attr_accessor :PageNumber, :PageSize
@@ -2096,7 +2137,6 @@ module TencentCloud
         # @param TotalCount: 总数
         # @type TotalCount: Integer
         # @param PreAuctionList: 预释放竞价列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PreAuctionList: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2610,10 +2650,12 @@ module TencentCloud
         # @param ExpireTime: 到期时间
         # @type ExpireTime: String
         # @param Status: 域名状态
+        #  bid：出价
+        # noAction：无法操作
         # @type Status: String
-        # @param CurrentPrice: 域名价格
+        # @param CurrentPrice: 域名价格 单位元
         # @type CurrentPrice: Float
-        # @param AppointBondPrice: 域名保证金
+        # @param AppointBondPrice: 域名保证金 单位元
         # @type AppointBondPrice: Float
         # @param IsAppoint: 是否已经预约
         # @type IsAppoint: Boolean
@@ -2772,7 +2814,17 @@ module TencentCloud
       class DomainBatchDetailSet < TencentCloud::Common::AbstractModel
         # @param Id: 详情ID
         # @type Id: Integer
-        # @param Action: 类型  new: 注册域名 batch_transfer_prohibition_on:开启禁止转移  batch_transfer_prohibition_off:关闭禁止转移 batch_update_prohibition_on:开启禁止更新   batch_update_prohibition_off:关闭禁止更新
+        # @param Action: 类型
+        # new：注册域名
+        # renew：续费域名
+        # batch_transfer_prohibition_on：开启禁止转移锁
+        # batch_transfer_prohibition_off：关闭禁止转移锁
+        # batch_update_prohibition_on：开启禁止更新锁
+        # batch_update_prohibition_off：关闭禁止更新锁
+        # batch_modify_owner：域名转移
+        # batch_modify_domain_info：域名信息修改
+        # batch_transfer_in：域名转入
+        # batch_cancel_transfer_out：域名取消转出
         # @type Action: String
         # @param Domain: 域名
         # @type Domain: String
@@ -2781,7 +2833,7 @@ module TencentCloud
         # failed 操作失败。
         # success  操作成功。
         # @type Status: String
-        # @param Reason: 失败原因
+        # @param Reason: 失败原因，如果状态成功(Status:success),则该字段为空
         # @type Reason: String
         # @param CreatedOn: 创建时间
         # @type CreatedOn: String
@@ -3167,8 +3219,9 @@ module TencentCloud
       # ModifyDomainOwnerBatch请求参数结构体
       class ModifyDomainOwnerBatchRequest < TencentCloud::Common::AbstractModel
         # @param Domains: 要过户的域名。
+        # 一次提交不大于4000个
         # @type Domains: Array
-        # @param NewOwnerUin: 转入账户的uin。
+        # @param NewOwnerUin: 转入账户的主uin。
         # @type NewOwnerUin: String
         # @param TransferDns: 是否同时转移对应的 DNS 解析域名，默认false
         # @type TransferDns: Boolean
@@ -3343,11 +3396,13 @@ module TencentCloud
         # @type Domain: String
         # @param BiddingTime: 竞价倒计时
         # @type BiddingTime: String
-        # @param BidCount: 出价次数
+        # @param BidCount: 出价次数 单位元
         # @type BidCount: Integer
-        # @param Price: 当前价格
+        # @param Price: 当前价格 单位元
         # @type Price: Float
-        # @param Op: 用户操作 bid：出价 "noAction"：无法操作
+        # @param Op: 用户操作
+        # bid：出价
+        # noAction：无法操作
         # @type Op: String
         # @param BusinessId: 业务ID
         # @type BusinessId: String
@@ -3459,13 +3514,13 @@ module TencentCloud
 
       # 预释放价格区间配置
       class PriceScopeConf < TencentCloud::Common::AbstractModel
-        # @param MaxPrice: 最高价格
+        # @param MaxPrice: 最高价格 单位元
         # @type MaxPrice: Float
-        # @param MinPrice: 最低价格
+        # @param MinPrice: 最低价格 单位元
         # @type MinPrice: Float
-        # @param Price: 价格幅度
+        # @param Price: 价格幅度 单位元
         # @type Price: Float
-        # @param DepositPrice: 保证金
+        # @param DepositPrice: 保证金 单位元
         # @type DepositPrice: Float
 
         attr_accessor :MaxPrice, :MinPrice, :Price, :DepositPrice
@@ -3487,9 +3542,10 @@ module TencentCloud
 
       # RenewDomainBatch请求参数结构体
       class RenewDomainBatchRequest < TencentCloud::Common::AbstractModel
-        # @param Period: 域名续费的年限。
+        # @param Period: 域名续费的年限。取值范围[1,9]
         # @type Period: Integer
         # @param Domains: 批量续费的域名。
+        # 一次提交不大于4000个
         # @type Domains: Array
         # @param PayMode: 付费模式 0手动在线付费，1使用余额付费，2使用特惠包。
         # @type PayMode: Integer
@@ -3664,11 +3720,11 @@ module TencentCloud
       class ReservedPreDomainsRequest < TencentCloud::Common::AbstractModel
         # @param DomainList: 预约预释放域名列表
         # @type DomainList: Array
-        # @param TemplateId: 模板ID
+        # @param TemplateId: 模板ID 可通过DescribeTemplates接口获取
         # @type TemplateId: String
-        # @param IsAutoPay: 结束后是否自动支付尾款，默认开启 传入1关闭
+        # @param IsAutoPay: 结束后是否自动支付尾款，默认1 开启 传入0关闭
         # @type IsAutoPay: Integer
-        # @param IsBidAutoPay: 结束后是否自动进行梯度保证金扣除，默认开启 传入1关闭
+        # @param IsBidAutoPay: 结束后是否自动进行梯度保证金扣除，默认1开启 传入0关闭
         # @type IsBidAutoPay: Integer
 
         attr_accessor :DomainList, :TemplateId, :IsAutoPay, :IsBidAutoPay
@@ -3768,7 +3824,7 @@ module TencentCloud
 
       # SetDomainAutoRenew请求参数结构体
       class SetDomainAutoRenewRequest < TencentCloud::Common::AbstractModel
-        # @param DomainId: 域名ID 例如：domain-123abc
+        # @param DomainId: 域名ID 例如：domain-dwerewwq可通过DescribreDomainList接口获取
         # @type DomainId: String
         # @param AutoRenew: AutoRenew 有三个可选值：
         #  0：不设置自动续费
@@ -3827,7 +3883,7 @@ module TencentCloud
 
       # SyncCustomDnsHost请求参数结构体
       class SyncCustomDnsHostRequest < TencentCloud::Common::AbstractModel
-        # @param DomainId: 域名实例ID
+        # @param DomainId: 域名实例ID，可以通过DescribeDomainList接口获取
         # @type DomainId: String
 
         attr_accessor :DomainId
@@ -3865,7 +3921,12 @@ module TencentCloud
       class TemplateInfo < TencentCloud::Common::AbstractModel
         # @param TemplateId: 模板ID
         # @type TemplateId: String
-        # @param AuditStatus: 认证状态：未实名认证:NotUpload, 实名审核中:InAudit，已实名认证:Approved，实名审核失败:Reject
+        # @param AuditStatus: 认证状态:
+        # NotUpload: 未实名认证
+        # InAudit: 实名审核中
+        # Approved: 已实名认证
+        # Reject: 实名审核失败
+        # NotVerified: 实名信息待修改
         # @type AuditStatus: String
         # @param CreatedOn: 创建时间
         # @type CreatedOn: String
@@ -3930,10 +3991,12 @@ module TencentCloud
       # TransferInDomainBatch请求参数结构体
       class TransferInDomainBatchRequest < TencentCloud::Common::AbstractModel
         # @param Domains: 转入的域名名称数组。
+        # 一次提交不大于4000个
         # @type Domains: Array
         # @param PassWords: 域名转移码数组。
         # @type PassWords: Array
         # @param TemplateId: 模板ID。
+        # 可通过DescribeTemplates接口获取
         # @type TemplateId: String
         # @param PayMode: 付费模式 0手动在线付费，1使用余额付费。
         # @type PayMode: Integer
@@ -4010,10 +4073,11 @@ module TencentCloud
       # TransferProhibitionBatch请求参数结构体
       class TransferProhibitionBatchRequest < TencentCloud::Common::AbstractModel
         # @param Domains: 批量操作的域名。
+        # 一次提交不大于4000个
         # @type Domains: Array
         # @param Status: 是否开启禁止域名转移。
-        # True: 开启禁止域名转移状态。
-        # False：关闭禁止域名转移状态。
+        # true: 开启禁止域名转移状态。
+        # false：关闭禁止域名转移状态。
         # @type Status: Boolean
 
         attr_accessor :Domains, :Status
@@ -4052,10 +4116,11 @@ module TencentCloud
       # UpdateProhibitionBatch请求参数结构体
       class UpdateProhibitionBatchRequest < TencentCloud::Common::AbstractModel
         # @param Domains: 批量操作的域名。
+        # 一次提交不大于4000个
         # @type Domains: Array
         # @param Status: 是否开启禁止域名更新。
-        # True:开启禁止域名更新状态。
-        # False：关闭禁止域名更新状态。
+        # true:开启禁止域名更新状态。
+        # false：关闭禁止域名更新状态。
         # @type Status: Boolean
 
         attr_accessor :Domains, :Status

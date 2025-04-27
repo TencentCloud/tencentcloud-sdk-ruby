@@ -4238,6 +4238,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 租户全局范围的项目列表，与用户查看范围无关.
+
+        # @param request: Request instance for DescribeTenantProjects.
+        # @type request: :class:`Tencentcloud::wedata::V20210820::DescribeTenantProjectsRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20210820::DescribeTenantProjectsResponse`
+        def DescribeTenantProjects(request)
+          body = send_request('DescribeTenantProjects', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeTenantProjectsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取第三方运行日志
 
         # @param request: Request instance for DescribeThirdTaskRunLog.

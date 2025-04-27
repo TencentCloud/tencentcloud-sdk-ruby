@@ -126,16 +126,19 @@ module TencentCloud
         # @type TTSLatency: Integer
         # @param LLMLatency: llm时延（毫秒）
         # @type LLMLatency: Integer
+        # @param LLMFirstTokenLatency: llm首token时延(毫秒)
+        # @type LLMFirstTokenLatency: Integer
         # @param ETELatency: 端到端时延（毫秒）
         # @type ETELatency: Integer
 
-        attr_accessor :RoundId, :ASRLatency, :TTSLatency, :LLMLatency, :ETELatency
+        attr_accessor :RoundId, :ASRLatency, :TTSLatency, :LLMLatency, :LLMFirstTokenLatency, :ETELatency
 
-        def initialize(roundid=nil, asrlatency=nil, ttslatency=nil, llmlatency=nil, etelatency=nil)
+        def initialize(roundid=nil, asrlatency=nil, ttslatency=nil, llmlatency=nil, llmfirsttokenlatency=nil, etelatency=nil)
           @RoundId = roundid
           @ASRLatency = asrlatency
           @TTSLatency = ttslatency
           @LLMLatency = llmlatency
+          @LLMFirstTokenLatency = llmfirsttokenlatency
           @ETELatency = etelatency
         end
 
@@ -144,6 +147,7 @@ module TencentCloud
           @ASRLatency = params['ASRLatency']
           @TTSLatency = params['TTSLatency']
           @LLMLatency = params['LLMLatency']
+          @LLMFirstTokenLatency = params['LLMFirstTokenLatency']
           @ETELatency = params['ETELatency']
         end
       end

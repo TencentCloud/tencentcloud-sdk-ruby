@@ -18640,16 +18640,24 @@ module TencentCloud
 
       # 返回多运营商IPv6 Cidr Block
       class ISPIPv6CidrBlock < TencentCloud::Common::AbstractModel
+        # @param IPv6CidrBlock: IPv6 CIdr Block
+        # @type IPv6CidrBlock: String
+        # @param ISPType: 网络运营商类型 取值范围:'BGP'-默认, 'CMCC'-中国移动, 'CTCC'-中国电信, 'CUCC'-中国联调
+        # @type ISPType: String
         # @param AddressType: IPv6 Cidr 的类型：`GUA`(全球单播地址), `ULA`(唯一本地地址)
         # @type AddressType: String
 
-        attr_accessor :AddressType
+        attr_accessor :IPv6CidrBlock, :ISPType, :AddressType
 
-        def initialize(addresstype=nil)
+        def initialize(ipv6cidrblock=nil, isptype=nil, addresstype=nil)
+          @IPv6CidrBlock = ipv6cidrblock
+          @ISPType = isptype
           @AddressType = addresstype
         end
 
         def deserialize(params)
+          @IPv6CidrBlock = params['IPv6CidrBlock']
+          @ISPType = params['ISPType']
           @AddressType = params['AddressType']
         end
       end
@@ -19482,16 +19490,12 @@ module TencentCloud
       # 单项计费价格信息
       class ItemPrice < TencentCloud::Common::AbstractModel
         # @param UnitPrice: 按量计费后付费单价，单位：元。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UnitPrice: Float
         # @param ChargeUnit: 按量计费后付费计价单元，可取值范围： HOUR：表示计价单元是按每小时来计算。当前涉及该计价单元的场景有：实例按小时后付费（POSTPAID_BY_HOUR）、带宽按小时后付费（BANDWIDTH_POSTPAID_BY_HOUR）： GB：表示计价单元是按每GB来计算。当前涉及该计价单元的场景有：流量按小时后付费（TRAFFIC_POSTPAID_BY_HOUR）。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ChargeUnit: String
         # @param OriginalPrice: 预付费商品的原价，单位：元。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OriginalPrice: Float
         # @param DiscountPrice: 预付费商品的折扣价，单位：元。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DiscountPrice: Float
 
         attr_accessor :UnitPrice, :ChargeUnit, :OriginalPrice, :DiscountPrice
@@ -22956,36 +22960,26 @@ module TencentCloud
         # @param Zone: NAT网关所在的可用区。
         # @type Zone: String
         # @param DirectConnectGatewayIds: 绑定的专线网关ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DirectConnectGatewayIds: Array
         # @param SubnetId: 所属子网ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubnetId: String
         # @param TagSet: 标签键值对。
         # @type TagSet: Array
         # @param SecurityGroupSet: NAT网关绑定的安全组列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SecurityGroupSet: Array
         # @param SourceIpTranslationNatRuleSet: NAT网关的SNAT转发规则。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SourceIpTranslationNatRuleSet: Array
         # @param IsExclusive: 是否独享型NAT。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsExclusive: Boolean
         # @param ExclusiveGatewayBandwidth: 独享型NAT所在的网关集群的带宽(单位:Mbps)，当IsExclusive为false时无此字段。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExclusiveGatewayBandwidth: Integer
         # @param RestrictState: NAT网关是否被封禁。“NORMAL”：未被封禁，“RESTRICTED”：已被封禁。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RestrictState: String
         # @param NatProductVersion: NAT网关类型，1表示传统型NAT网关，2表示标准型NAT网关
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NatProductVersion: Integer
         # @param SmartScheduleMode: 是否启用根据目的网段选择SNAT使用的EIP功能
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SmartScheduleMode: Boolean
         # @param DedicatedClusterId: NAT实例归属的专属集群id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DedicatedClusterId: String
 
         attr_accessor :NatGatewayId, :NatGatewayName, :CreatedTime, :State, :InternetMaxBandwidthOut, :MaxConcurrentConnection, :PublicIpAddressSet, :NetworkState, :DestinationIpPortTranslationNatRuleSet, :VpcId, :Zone, :DirectConnectGatewayIds, :SubnetId, :TagSet, :SecurityGroupSet, :SourceIpTranslationNatRuleSet, :IsExclusive, :ExclusiveGatewayBandwidth, :RestrictState, :NatProductVersion, :SmartScheduleMode, :DedicatedClusterId
@@ -23112,13 +23106,10 @@ module TencentCloud
         # @param Description: NAT网关转发规则描述。
         # @type Description: String
         # @param NatGatewayId: NAT网关的ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NatGatewayId: String
         # @param VpcId: 私有网络VPC的ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VpcId: String
         # @param CreatedTime: NAT网关转发规则创建时间。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreatedTime: String
 
         attr_accessor :IpProtocol, :PublicIpAddress, :PublicPort, :PrivateIpAddress, :PrivatePort, :Description, :NatGatewayId, :VpcId, :CreatedTime
@@ -24011,13 +24002,10 @@ module TencentCloud
       # 私网NAT网关跨域信息
       class PrivateNatCrossDomainInfo < TencentCloud::Common::AbstractModel
         # @param CcnId: 跨域私网NAT关联的云联网ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CcnId: String
         # @param LocalVpcId: 跨域私网NAT本端Vpc
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LocalVpcId: String
         # @param PeerVpcId: 跨域私网NAT对端Vpc
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PeerVpcId: String
 
         attr_accessor :CcnId, :LocalVpcId, :PeerVpcId
@@ -24086,7 +24074,6 @@ module TencentCloud
         # @param NatGatewayName: 私网网关名称。
         # @type NatGatewayName: String
         # @param VpcId: 私网网关关联`VPC`实例`ID`。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VpcId: String
         # @param Status: 私网网关当前状态。
         # @type Status: String
@@ -24095,22 +24082,16 @@ module TencentCloud
         # @param CreatedTime: 创建时间
         # @type CreatedTime: String
         # @param TagSet: 标签键值对。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TagSet: Array
         # @param DirectConnectGatewayIds: 专线网关唯一`ID`
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DirectConnectGatewayIds: Array
         # @param NatType: 私网网关类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NatType: String
         # @param CrossDomainInfo: 私网NAT跨域信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CrossDomainInfo: :class:`Tencentcloud::Vpc.v20170312.models.PrivateNatCrossDomainInfo`
         # @param VpcType: 是否VPC型私网网关
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VpcType: Boolean
         # @param CcnId: 跨域私网NAT关联的云联网ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CcnId: String
 
         attr_accessor :NatGatewayId, :NatGatewayName, :VpcId, :Status, :CrossDomain, :CreatedTime, :TagSet, :DirectConnectGatewayIds, :NatType, :CrossDomainInfo, :VpcType, :CcnId
@@ -26811,7 +26792,6 @@ module TencentCloud
         # @param ResourceId: 资源ID，如果ResourceType为USERDEFINED，可以为空字符串
         # @type ResourceId: String
         # @param ResourceType: 资源类型，目前包含SUBNET、NETWORKINTERFACE、USERDEFINED
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceType: String
         # @param PrivateIpAddress: 源IP/网段
         # @type PrivateIpAddress: String
@@ -26822,13 +26802,10 @@ module TencentCloud
         # @param NatGatewaySnatId: Snat规则ID
         # @type NatGatewaySnatId: String
         # @param NatGatewayId: NAT网关的ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NatGatewayId: String
         # @param VpcId: 私有网络VPC的ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VpcId: String
         # @param CreatedTime: NAT网关SNAT规则创建时间。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreatedTime: String
 
         attr_accessor :ResourceId, :ResourceType, :PrivateIpAddress, :PublicIpAddresses, :Description, :NatGatewaySnatId, :NatGatewayId, :VpcId, :CreatedTime
@@ -27236,10 +27213,8 @@ module TencentCloud
       # 标签键值对
       class Tag < TencentCloud::Common::AbstractModel
         # @param Key: 标签键
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Key: String
         # @param Value: 标签值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: String
 
         attr_accessor :Key, :Value
@@ -27258,10 +27233,8 @@ module TencentCloud
       # 标签描述信息
       class Tags < TencentCloud::Common::AbstractModel
         # @param Key: 标签键
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Key: String
         # @param Value: 标签值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: String
 
         attr_accessor :Key, :Value
@@ -27682,10 +27655,8 @@ module TencentCloud
         # @param TranslationIp: 转换`IP`,当转换规则类型为四层时为`IP`池。
         # @type TranslationIp: String
         # @param Description: 转换规则描述。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
         # @param OriginalIp: 源`IP`,当转换规则类型为三层时有效。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OriginalIp: String
         # @param CreateTime: 创建时间。
         # @type CreateTime: String

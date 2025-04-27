@@ -6220,16 +6220,25 @@ module TencentCloud
         # @type LocalTaskID: Integer
         # @param RegistryTaskID: 仓库镜像重新漏洞扫描时的任务ID
         # @type RegistryTaskID: Integer
+        # @param LocalImageContainerRunning: 本地镜像容器运行中
+        # @type LocalImageContainerRunning: Boolean
+        # @param RegistryImageContainerRunning: 仓库镜像容器运行中
+        # @type RegistryImageContainerRunning: Boolean
+        # @param IsLatest: 仓库镜像是否是最新
+        # @type IsLatest: Boolean
 
-        attr_accessor :LocalImageScanType, :LocalImageIDs, :RegistryImageScanType, :RegistryImageIDs, :LocalTaskID, :RegistryTaskID
+        attr_accessor :LocalImageScanType, :LocalImageIDs, :RegistryImageScanType, :RegistryImageIDs, :LocalTaskID, :RegistryTaskID, :LocalImageContainerRunning, :RegistryImageContainerRunning, :IsLatest
 
-        def initialize(localimagescantype=nil, localimageids=nil, registryimagescantype=nil, registryimageids=nil, localtaskid=nil, registrytaskid=nil)
+        def initialize(localimagescantype=nil, localimageids=nil, registryimagescantype=nil, registryimageids=nil, localtaskid=nil, registrytaskid=nil, localimagecontainerrunning=nil, registryimagecontainerrunning=nil, islatest=nil)
           @LocalImageScanType = localimagescantype
           @LocalImageIDs = localimageids
           @RegistryImageScanType = registryimagescantype
           @RegistryImageIDs = registryimageids
           @LocalTaskID = localtaskid
           @RegistryTaskID = registrytaskid
+          @LocalImageContainerRunning = localimagecontainerrunning
+          @RegistryImageContainerRunning = registryimagecontainerrunning
+          @IsLatest = islatest
         end
 
         def deserialize(params)
@@ -6239,6 +6248,9 @@ module TencentCloud
           @RegistryImageIDs = params['RegistryImageIDs']
           @LocalTaskID = params['LocalTaskID']
           @RegistryTaskID = params['RegistryTaskID']
+          @LocalImageContainerRunning = params['LocalImageContainerRunning']
+          @RegistryImageContainerRunning = params['RegistryImageContainerRunning']
+          @IsLatest = params['IsLatest']
         end
       end
 

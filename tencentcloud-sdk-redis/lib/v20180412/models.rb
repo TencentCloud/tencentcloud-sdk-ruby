@@ -4859,20 +4859,35 @@ module TencentCloud
 
       # InquiryPriceCreateInstance返回参数结构体
       class InquiryPriceCreateInstanceResponse < TencentCloud::Common::AbstractModel
-        # @param Price: 价格，单位：分
+        # @param Price: 价格
         # @type Price: Float
+        # @param HighPrecisionPrice: 高精度价格
+        # @type HighPrecisionPrice: Float
+        # @param Currency: 币种
+        # @type Currency: String
+        # @param AmountUnit: 价格金额单位
+
+        # - pent: 分
+        # - microPent: 微分
+        # @type AmountUnit: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Price, :RequestId
+        attr_accessor :Price, :HighPrecisionPrice, :Currency, :AmountUnit, :RequestId
 
-        def initialize(price=nil, requestid=nil)
+        def initialize(price=nil, highprecisionprice=nil, currency=nil, amountunit=nil, requestid=nil)
           @Price = price
+          @HighPrecisionPrice = highprecisionprice
+          @Currency = currency
+          @AmountUnit = amountunit
           @RequestId = requestid
         end
 
         def deserialize(params)
           @Price = params['Price']
+          @HighPrecisionPrice = params['HighPrecisionPrice']
+          @Currency = params['Currency']
+          @AmountUnit = params['AmountUnit']
           @RequestId = params['RequestId']
         end
       end
@@ -4899,20 +4914,35 @@ module TencentCloud
 
       # InquiryPriceRenewInstance返回参数结构体
       class InquiryPriceRenewInstanceResponse < TencentCloud::Common::AbstractModel
-        # @param Price: 价格，单位：分。
+        # @param Price: 价格
         # @type Price: Float
+        # @param HighPrecisionPrice: 高精度价格
+        # @type HighPrecisionPrice: Float
+        # @param Currency: 币种
+        # @type Currency: String
+        # @param AmountUnit: 价格金额单位
+
+        # - pent: 分
+        # - microPent: 微分
+        # @type AmountUnit: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Price, :RequestId
+        attr_accessor :Price, :HighPrecisionPrice, :Currency, :AmountUnit, :RequestId
 
-        def initialize(price=nil, requestid=nil)
+        def initialize(price=nil, highprecisionprice=nil, currency=nil, amountunit=nil, requestid=nil)
           @Price = price
+          @HighPrecisionPrice = highprecisionprice
+          @Currency = currency
+          @AmountUnit = amountunit
           @RequestId = requestid
         end
 
         def deserialize(params)
           @Price = params['Price']
+          @HighPrecisionPrice = params['HighPrecisionPrice']
+          @Currency = params['Currency']
+          @AmountUnit = params['AmountUnit']
           @RequestId = params['RequestId']
         end
       end
@@ -4947,20 +4977,35 @@ module TencentCloud
 
       # InquiryPriceUpgradeInstance返回参数结构体
       class InquiryPriceUpgradeInstanceResponse < TencentCloud::Common::AbstractModel
-        # @param Price: 价格，单位：分
+        # @param Price: 价格
         # @type Price: Float
+        # @param HighPrecisionPrice: 高精度价格
+        # @type HighPrecisionPrice: Float
+        # @param Currency: 币种
+        # @type Currency: String
+        # @param AmountUnit: 价格金额单位
+
+        # - pent: 分
+        # - microPent: 微分
+        # @type AmountUnit: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Price, :RequestId
+        attr_accessor :Price, :HighPrecisionPrice, :Currency, :AmountUnit, :RequestId
 
-        def initialize(price=nil, requestid=nil)
+        def initialize(price=nil, highprecisionprice=nil, currency=nil, amountunit=nil, requestid=nil)
           @Price = price
+          @HighPrecisionPrice = highprecisionprice
+          @Currency = currency
+          @AmountUnit = amountunit
           @RequestId = requestid
         end
 
         def deserialize(params)
           @Price = params['Price']
+          @HighPrecisionPrice = params['HighPrecisionPrice']
+          @Currency = params['Currency']
+          @AmountUnit = params['AmountUnit']
           @RequestId = params['RequestId']
         end
       end

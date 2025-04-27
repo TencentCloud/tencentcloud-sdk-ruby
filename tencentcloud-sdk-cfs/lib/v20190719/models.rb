@@ -2543,16 +2543,20 @@ module TencentCloud
 
       # SetUserQuota返回参数结构体
       class SetUserQuotaResponse < TencentCloud::Common::AbstractModel
+        # @param UserId: UID/GID信息
+        # @type UserId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :UserId, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(userid=nil, requestid=nil)
+          @UserId = userid
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @UserId = params['UserId']
           @RequestId = params['RequestId']
         end
       end

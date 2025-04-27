@@ -11199,7 +11199,7 @@ module TencentCloud
 
       # DescribeSmartSubtitleTemplates请求参数结构体
       class DescribeSmartSubtitleTemplatesRequest < TencentCloud::Common::AbstractModel
-        # @param Definitions: 智能字幕模板唯一标识过滤条件，数组长度限制：10。
+        # @param Definitions: 智能字幕模板唯一标识过滤条件，数组长度限制：100。
         # @type Definitions: Array
         # @param Offset: 分页偏移量，默认值：0。
         # @type Offset: Integer

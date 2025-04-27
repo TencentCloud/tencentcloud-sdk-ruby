@@ -221,7 +221,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 创建赎回订单。
+        # 创建赎回订单。需要域名状态为：RedemptionPending：赎回期
 
         # @param request: Request instance for CreateDomainRedemption.
         # @type request: :class:`Tencentcloud::domain::V20180808::CreateDomainRedemptionRequest`
@@ -630,6 +630,7 @@ module TencentCloud
         end
 
         # 查询自定义DNS Host
+        # 当前域名在任意状态下均可获取(根据域名当前状态，不一定能获取到具体数据)
 
         # @param request: Request instance for DescribeCustomDnsHostSet.
         # @type request: :class:`Tencentcloud::domain::V20180808::DescribeCustomDnsHostSetRequest`
@@ -1206,6 +1207,7 @@ module TencentCloud
         end
 
         # 本接口 ( SetDomainAutoRenew ) 用于设置域名自动续费。
+        # 当前操作暂不受域名状态限制
 
         # @param request: Request instance for SetDomainAutoRenew.
         # @type request: :class:`Tencentcloud::domain::V20180808::SetDomainAutoRenewRequest`
@@ -1229,7 +1231,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 同步自定义DNS Host
+        # 同步自定义DNS Host，将域名已经设置的host配置数据从注册局同步下来
 
         # @param request: Request instance for SyncCustomDnsHost.
         # @type request: :class:`Tencentcloud::domain::V20180808::SyncCustomDnsHostRequest`

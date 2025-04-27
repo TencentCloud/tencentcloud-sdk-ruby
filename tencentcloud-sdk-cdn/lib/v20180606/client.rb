@@ -150,6 +150,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # SCDN平台已经正式下线，接口开始预下线处理
+
         # CreateScdnDomain 用于创建 SCDN 加速域名
 
         # @param request: Request instance for CreateScdnDomain.
@@ -174,6 +176,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # SCDN平台已经正式下线，接口开始预下线处理
+
         # CreateScdnFailedLogTask 用于重试创建失败的事件日志任务
 
         # @param request: Request instance for CreateScdnFailedLogTask.
@@ -197,6 +201,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # SCDN平台已经正式下线，接口开始预下线处理
 
         # CreateScdnLogTask 用于创建事件日志任务
 
@@ -296,6 +302,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # SCDN平台已经正式下线，接口开始预下线处理
 
         # 删除SCDN域名
 
@@ -976,6 +984,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # SCDN平台已经正式下线，接口开始预下线处理
+
         # 获取BOT统计数据列表
 
         # @param request: Request instance for DescribeScdnBotData.
@@ -999,6 +1009,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # SCDN平台已经正式下线，接口开始预下线处理
 
         # 查询BOT会话记录列表
 
@@ -1024,6 +1036,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # SCDN平台已经正式下线，接口开始预下线处理
+
         # DescribeScdnConfig 用于查询指定 SCDN 加速域名的安全相关配置
 
         # @param request: Request instance for DescribeScdnConfig.
@@ -1048,6 +1062,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # SCDN平台已经正式下线，接口开始预下线处理
+
         # 查询在SCDN IP安全策略
 
         # @param request: Request instance for DescribeScdnIpStrategy.
@@ -1071,6 +1087,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # SCDN平台已经正式下线，接口开始预下线处理
 
         # 获取SCDN的Top数据
 
@@ -1422,6 +1440,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # SCDN平台已经正式下线，接口开始预下线处理
+
         # ListScdnDomains 用于查询 SCDN 安全加速域名列表，及域名基本配置信息
 
         # @param request: Request instance for ListScdnDomains.
@@ -1446,6 +1466,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # SCDN平台已经正式下线，接口开始预下线处理
+
         # ListScdnLogTasks 用于查询SCDN日志下载任务列表,以及展示下载任务基本信息
 
         # @param request: Request instance for ListScdnLogTasks.
@@ -1469,6 +1491,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # SCDN平台已经正式下线，接口开始预下线处理
 
         # 获取Bot攻击的Top数据列表
 
@@ -1845,6 +1869,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # SCDN平台已经正式下线，接口开始预下线处理
+
         # StartScdnDomain 用于开启域名的安全防护配置
 
         # @param request: Request instance for StartScdnDomain.
@@ -1893,6 +1919,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # SCDN平台已经正式下线，接口开始预下线处理
 
         # StopScdnDomain 用于关闭域名的安全防护配置
 
@@ -1991,6 +2019,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # SCDN平台已经正式下线，接口开始预下线处理
 
         # UpdateScdnDomain 用于修改 SCDN 加速域名安全相关配置
 

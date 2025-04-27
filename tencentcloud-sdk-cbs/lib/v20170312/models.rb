@@ -1399,7 +1399,7 @@ module TencentCloud
 
       # DescribeDisks请求参数结构体
       class DescribeDisksRequest < TencentCloud::Common::AbstractModel
-        # @param Filters: 过滤条件。参数不支持同时指定`DiskIds`和`Filters`。<br> <li>disk-usage - Array of String - 是否必填：否 -（过滤条件）按云盘类型过滤。 (SYSTEM_DISK：表示系统盘 | DATA_DISK：表示数据盘)<br></li> <li>disk-charge-type - Array of String - 是否必填：否 -（过滤条件）按照云硬盘计费模式过滤。 (PREPAID：表示预付费，即包年包月 | POSTPAID_BY_HOUR：表示后付费，即按量计费。)<br></li> <li>portable - Array of String - 是否必填：否 -（过滤条件）按是否为弹性云盘过滤。 (TRUE：表示弹性云盘 | FALSE：表示非弹性云盘。)<br></li> <li>project-id - Array of Integer - 是否必填：否 -（过滤条件）按云硬盘所属项目ID过滤。<br></li> <li>disk-id - Array of String - 是否必填：否 -（过滤条件）按照云硬盘ID过滤。云盘ID形如：`disk-11112222`。<br></li> <li>disk-name - Array of String - 是否必填：否 -（过滤条件）按照云盘名称过滤。<br></li> <li>disk-type - Array of String - 是否必填：否 -（过滤条件）按照云盘介质类型过滤。(CLOUD_BASIC：表示普通云硬盘 | CLOUD_PREMIUM：表示高性能云硬盘。| CLOUD_SSD：表示SSD云硬盘 | CLOUD_HSSD：表示增强型SSD云硬盘。| CLOUD_TSSD：表示极速型云硬盘。)<br></li> <li>disk-state - Array of String - 是否必填：否 -（过滤条件）按照云盘状态过滤。(UNATTACHED：未挂载 | ATTACHING：挂载中 | ATTACHED：已挂载 | DETACHING：解挂中 | EXPANDING：扩容中 | ROLLBACKING：回滚中 | TORECYCLE：待回收。)<br></li> <li>instance-id - Array of String - 是否必填：否 -（过滤条件）按照云盘挂载的云主机实例ID过滤。可根据此参数查询挂载在指定云主机下的云硬盘。<br></li> <li>zone - Array of String - 是否必填：否 -（过滤条件）按照[可用区](/document/product/213/15753#ZoneInfo)过滤。<br></li> <li>instance-ip-address - Array of String - 是否必填：否 -（过滤条件）按云盘所挂载云主机的内网或外网IP过滤。<br></li> <li>instance-name - Array of String - 是否必填：否 -（过滤条件）按云盘所挂载的实例名称过滤。<br></li> <li>tag-key - Array of String - 是否必填：否 -（过滤条件）按照标签键进行过滤。<br></li> <li>tag-value - Array of String - 是否必填：否 -（过滤条件）照标签值进行过滤。<br></li> <li>tag:tag-key - Array of String - 是否必填：否 -（过滤条件）按照标签键值对进行过滤。 tag-key使用具体的标签键进行替换。<br></li> <li>dedicated-cluster-id - Array of String - 是否必填：否 -（过滤条件）按照 CDC 独享集群 ID 进行过滤。<br></li> <li>cluster-group-id - String - 是否必填：否 -（过滤条件）按照 集群群组 ID 进行过滤。</li>
+        # @param Filters: 过滤条件。参数不支持同时指定`DiskIds`和`Filters`。<br> <li>disk-usage - Array of String - 是否必填：否 -（过滤条件）按云盘类型过滤。 (SYSTEM_DISK：表示系统盘 | DATA_DISK：表示数据盘)<br></li> <li>disk-charge-type - Array of String - 是否必填：否 -（过滤条件）按照云硬盘计费模式过滤。 (PREPAID：表示预付费，即包年包月 | POSTPAID_BY_HOUR：表示后付费，即按量计费。)<br></li> <li>portable - Array of String - 是否必填：否 -（过滤条件）按是否为弹性云盘过滤。 (TRUE：表示弹性云盘 | FALSE：表示非弹性云盘。)<br></li> <li>project-id - Array of String - 是否必填：否 -（过滤条件）按云硬盘所属项目ID过滤。<br></li> <li>disk-id - Array of String - 是否必填：否 -（过滤条件）按照云硬盘ID过滤。云盘ID形如：`disk-11112222`。<br></li> <li>disk-name - Array of String - 是否必填：否 -（过滤条件）按照云盘名称过滤。<br></li> <li>disk-type - Array of String - 是否必填：否 -（过滤条件）按照云盘介质类型过滤。(CLOUD_BASIC：表示普通云硬盘 | CLOUD_PREMIUM：表示高性能云硬盘。| CLOUD_SSD：表示SSD云硬盘 | CLOUD_HSSD：表示增强型SSD云硬盘。| CLOUD_TSSD：表示极速型云硬盘。)<br></li> <li>disk-state - Array of String - 是否必填：否 -（过滤条件）按照云盘状态过滤。(UNATTACHED：未挂载 | ATTACHING：挂载中 | ATTACHED：已挂载 | DETACHING：解挂中 | EXPANDING：扩容中 | ROLLBACKING：回滚中 | TORECYCLE：待回收 | DUMPING：拷贝硬盘中。)<br></li> <li>instance-id - Array of String - 是否必填：否 -（过滤条件）按照云盘挂载的云主机实例ID过滤。可根据此参数查询挂载在指定云主机下的云硬盘。<br></li> <li>zone - Array of String - 是否必填：否 -（过滤条件）按照[可用区](/document/product/213/15753#ZoneInfo)过滤。<br></li> <li>instance-ip-address - Array of String - 是否必填：否 -（过滤条件）按云盘所挂载云主机的内网或外网IP过滤。<br></li> <li>instance-name - Array of String - 是否必填：否 -（过滤条件）按云盘所挂载的实例名称过滤。<br></li> <li>tag-key - Array of String - 是否必填：否 -（过滤条件）按照标签键进行过滤。<br></li> <li>tag-value - Array of String - 是否必填：否 -（过滤条件）照标签值进行过滤。<br></li> <li>tag:tag-key - Array of String - 是否必填：否 -（过滤条件）按照标签键值对进行过滤。 tag-key使用具体的标签键进行替换。<br></li> <li>dedicated-cluster-id - Array of String - 是否必填：否 -（过滤条件）按照 CDC 独享集群 ID 进行过滤。<br></li> <li>cluster-group-id - String - 是否必填：否 -（过滤条件）按照 集群群组 ID 进行过滤。</li>
         # @type Filters: Array
         # @param Limit: 返回数量，默认为20，最大值为100。关于`Limit`的更进一步介绍请参考 API [简介](/document/product/362/15633)中的相关小节。
         # @type Limit: Integer
@@ -1852,10 +1852,8 @@ module TencentCloud
       # 描述了云硬盘的详细信息
       class Disk < TencentCloud::Common::AbstractModel
         # @param DeleteWithInstance: 云盘是否与挂载的实例一起销毁。<br><li>true:销毁实例时会同时销毁云盘，只支持按小时后付费云盘。</li><li>false：销毁实例时不销毁云盘。</li>
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeleteWithInstance: Boolean
         # @param RenewFlag: 自动续费标识。取值范围：<br><li>NOTIFY_AND_AUTO_RENEW：通知过期且自动续费</li><li>NOTIFY_AND_MANUAL_RENEW：通知过期不自动续费</li><li>DISABLE_NOTIFY_AND_MANUAL_RENEW：不通知过期不自动续费。</li>
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RenewFlag: String
         # @param DiskType: 硬盘介质类型。取值范围：<br><li>CLOUD_BASIC：表示普通云硬盘</li><li>CLOUD_PREMIUM：表示高性能云硬盘</li><li>CLOUD_BSSD：表示通用型SSD云硬盘</li><li>CLOUD_SSD：表示SSD云硬盘</li><li>CLOUD_HSSD：表示增强型SSD云硬盘</li><li>CLOUD_TSSD：表示极速型SSD云硬盘。</li>
         # @type DiskType: String
@@ -1864,7 +1862,6 @@ module TencentCloud
         # @param SnapshotCount: 云盘拥有的快照总数。
         # @type SnapshotCount: Integer
         # @param AutoRenewFlagError: 云盘已挂载到子机，且子机与云盘都是包年包月。<br><li>true：子机设置了自动续费标识，但云盘未设置</li><li>false：云盘自动续费标识正常。</li>
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AutoRenewFlagError: Boolean
         # @param Rollbacking: 云盘是否处于快照回滚状态。取值范围：<br><li>false:表示不处于快照回滚状态</li><li>true:表示处于快照回滚状态。</li>
         # @type Rollbacking: Boolean
@@ -1877,25 +1874,21 @@ module TencentCloud
         # @param BackupDisk: 云硬盘因欠费销毁或者到期销毁时， 是否使用快照备份数据的标识。true表示销毁时创建快照进行数据备份。false表示直接销毁，不进行数据备份。
         # @type BackupDisk: Boolean
         # @param Tags: 与云盘绑定的标签，云盘未绑定标签则取值为空。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
         # @param InstanceId: 云硬盘挂载的云主机ID。
         # @type InstanceId: String
         # @param AttachMode: 云盘的挂载类型。取值范围：<br><li>PF: PF挂载</li><li>VF: VF挂载</li>
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AttachMode: String
-        # @param AutoSnapshotPolicyIds: 云盘关联的定期快照ID。只有在调用DescribeDisks接口时，入参ReturnBindAutoSnapshotPolicy取值为TRUE才会返回该参数。
+        # @param AutoSnapshotPolicyIds: 云盘关联的定期快照ID。只有在调用[DescribeDisks](/document/product/362/16315)接口时，入参ReturnBindAutoSnapshotPolicy取值为TRUE才会返回该参数。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AutoSnapshotPolicyIds: Array
-        # @param ThroughputPerformance: 云硬盘额外性能值，单位MB/s。
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param ThroughputPerformance: 云硬盘额外性能值，单位MiB/s。
         # @type ThroughputPerformance: Integer
         # @param Migrating: 云盘是否处于类型变更中。取值范围：<br><li>false:表示云盘不处于类型变更中</li><li>true:表示云盘已发起类型变更，正处于迁移中。</li>
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Migrating: Boolean
         # @param DiskId: 云硬盘ID。
         # @type DiskId: String
-        # @param SnapshotSize: 云盘拥有的快照总容量，单位为MB。
+        # @param SnapshotSize: 云盘拥有的快照总容量，单位为MiB。
         # @type SnapshotSize: Integer
         # @param Placement: 云硬盘所在的位置。
         # @type Placement: :class:`Tencentcloud::Cbs.v20170312.models.Placement`
@@ -1909,7 +1902,6 @@ module TencentCloud
         # @param DiskSize: 云硬盘大小，单位GiB。
         # @type DiskSize: Integer
         # @param MigratePercent: 云盘类型变更的迁移进度，取值0到100。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MigratePercent: Integer
         # @param DiskUsage: 云硬盘类型。取值范围：<br><li>SYSTEM_DISK：系统盘</li><li>DATA_DISK：数据盘。</li>
         # @type DiskUsage: String
@@ -1920,15 +1912,13 @@ module TencentCloud
         # @param SnapshotAbility: 云盘是否具备创建快照的能力。取值范围：<br><li>false表示不具备</li><li>true表示具备。</li>
         # @type SnapshotAbility: Boolean
         # @param DeadlineError: 在云盘已挂载到实例，且实例与云盘都是包年包月的条件下，此字段才有意义。<br><li>true:云盘到期时间早于实例。</li><li>false：云盘到期时间晚于实例。</li>
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeadlineError: Boolean
         # @param RollbackPercent: 云盘快照回滚的进度。
         # @type RollbackPercent: Integer
-        # @param DifferDaysOfDeadline: 当前时间距离盘到期的天数（仅对预付费盘有意义）。
+        # @param DifferDaysOfDeadline: 当前时间距离云硬盘到期的天数（仅对预付费云硬盘有意义）
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DifferDaysOfDeadline: Integer
-        # @param ReturnFailCode: 预付费云盘在不支持主动退还的情况下，该参数表明不支持主动退还的具体原因。取值范围：<br><li>1：云硬盘已经退还</li><li>2：云硬盘已过期</li><li>3：云盘不支持退还</li><li>8：超过可退还数量的限制。</li>
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param ReturnFailCode: 预付费云盘在不支持主动退还的情况下，该参数表明不支持主动退还的具体原因。取值范围：<br><li>1：云硬盘已经退还</li><li>2：云硬盘已过期</li><li>3：云盘不支持退还</li><li>8：超过可退还数量的限制。</li><li>10：非弹性云硬盘、系统盘、后付费云硬盘等不支持退还</li>
         # @type ReturnFailCode: Integer
         # @param Shareable: 云盘是否为共享型云盘。
         # @type Shareable: Boolean
@@ -1946,18 +1936,17 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LastAttachInsId: String
         # @param ErrorPrompt: 云硬盘最后一次操作错误提示
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrorPrompt: String
         # @param BurstPerformance: 云盘是否开启性能突发
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BurstPerformance: Boolean
         # @param EncryptType: 云硬盘加密类型，值为ENCRYPT_V1和ENCRYPT_V2，分别表示第一代和第二代加密技术，两种加密技术互不兼容
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EncryptType: String
+        # @param KmsKeyId: 加密盘密钥ID
+        # @type KmsKeyId: String
 
-        attr_accessor :DeleteWithInstance, :RenewFlag, :DiskType, :DiskState, :SnapshotCount, :AutoRenewFlagError, :Rollbacking, :InstanceIdList, :Encrypt, :DiskName, :BackupDisk, :Tags, :InstanceId, :AttachMode, :AutoSnapshotPolicyIds, :ThroughputPerformance, :Migrating, :DiskId, :SnapshotSize, :Placement, :IsReturnable, :DeadlineTime, :Attached, :DiskSize, :MigratePercent, :DiskUsage, :DiskChargeType, :Portable, :SnapshotAbility, :DeadlineError, :RollbackPercent, :DifferDaysOfDeadline, :ReturnFailCode, :Shareable, :CreateTime, :DeleteSnapshot, :DiskBackupQuota, :DiskBackupCount, :InstanceType, :LastAttachInsId, :ErrorPrompt, :BurstPerformance, :EncryptType
+        attr_accessor :DeleteWithInstance, :RenewFlag, :DiskType, :DiskState, :SnapshotCount, :AutoRenewFlagError, :Rollbacking, :InstanceIdList, :Encrypt, :DiskName, :BackupDisk, :Tags, :InstanceId, :AttachMode, :AutoSnapshotPolicyIds, :ThroughputPerformance, :Migrating, :DiskId, :SnapshotSize, :Placement, :IsReturnable, :DeadlineTime, :Attached, :DiskSize, :MigratePercent, :DiskUsage, :DiskChargeType, :Portable, :SnapshotAbility, :DeadlineError, :RollbackPercent, :DifferDaysOfDeadline, :ReturnFailCode, :Shareable, :CreateTime, :DeleteSnapshot, :DiskBackupQuota, :DiskBackupCount, :InstanceType, :LastAttachInsId, :ErrorPrompt, :BurstPerformance, :EncryptType, :KmsKeyId
 
-        def initialize(deletewithinstance=nil, renewflag=nil, disktype=nil, diskstate=nil, snapshotcount=nil, autorenewflagerror=nil, rollbacking=nil, instanceidlist=nil, encrypt=nil, diskname=nil, backupdisk=nil, tags=nil, instanceid=nil, attachmode=nil, autosnapshotpolicyids=nil, throughputperformance=nil, migrating=nil, diskid=nil, snapshotsize=nil, placement=nil, isreturnable=nil, deadlinetime=nil, attached=nil, disksize=nil, migratepercent=nil, diskusage=nil, diskchargetype=nil, portable=nil, snapshotability=nil, deadlineerror=nil, rollbackpercent=nil, differdaysofdeadline=nil, returnfailcode=nil, shareable=nil, createtime=nil, deletesnapshot=nil, diskbackupquota=nil, diskbackupcount=nil, instancetype=nil, lastattachinsid=nil, errorprompt=nil, burstperformance=nil, encrypttype=nil)
+        def initialize(deletewithinstance=nil, renewflag=nil, disktype=nil, diskstate=nil, snapshotcount=nil, autorenewflagerror=nil, rollbacking=nil, instanceidlist=nil, encrypt=nil, diskname=nil, backupdisk=nil, tags=nil, instanceid=nil, attachmode=nil, autosnapshotpolicyids=nil, throughputperformance=nil, migrating=nil, diskid=nil, snapshotsize=nil, placement=nil, isreturnable=nil, deadlinetime=nil, attached=nil, disksize=nil, migratepercent=nil, diskusage=nil, diskchargetype=nil, portable=nil, snapshotability=nil, deadlineerror=nil, rollbackpercent=nil, differdaysofdeadline=nil, returnfailcode=nil, shareable=nil, createtime=nil, deletesnapshot=nil, diskbackupquota=nil, diskbackupcount=nil, instancetype=nil, lastattachinsid=nil, errorprompt=nil, burstperformance=nil, encrypttype=nil, kmskeyid=nil)
           @DeleteWithInstance = deletewithinstance
           @RenewFlag = renewflag
           @DiskType = disktype
@@ -2001,6 +1990,7 @@ module TencentCloud
           @ErrorPrompt = errorprompt
           @BurstPerformance = burstperformance
           @EncryptType = encrypttype
+          @KmsKeyId = kmskeyid
         end
 
         def deserialize(params)
@@ -2057,6 +2047,7 @@ module TencentCloud
           @ErrorPrompt = params['ErrorPrompt']
           @BurstPerformance = params['BurstPerformance']
           @EncryptType = params['EncryptType']
+          @KmsKeyId = params['KmsKeyId']
         end
       end
 
@@ -2283,7 +2274,7 @@ module TencentCloud
 
       # InitializeDisks请求参数结构体
       class InitializeDisksRequest < TencentCloud::Common::AbstractModel
-        # @param DiskIds: 待重新初始化的云硬盘ID列表， 单次初始化限制20块以内
+        # @param DiskIds: 待重新初始化的云硬盘ID列表，可以通过[DescribeDisks](/document/product/362/16315)接口查询， 单次初始化限制20块以内
         # @type DiskIds: Array
 
         attr_accessor :DiskIds
@@ -2635,7 +2626,7 @@ module TencentCloud
 
       # ModifyDiskAttributes请求参数结构体
       class ModifyDiskAttributesRequest < TencentCloud::Common::AbstractModel
-        # @param DiskIds: 一个或多个待操作的云硬盘ID。如果传入多个云盘ID，仅支持所有云盘修改为同一属性。
+        # @param DiskIds: 一个或多个待操作的云硬盘ID，可以通过[DescribeDisks](/document/product/362/16315)接口查询。如果传入多个云盘ID，仅支持将所有云盘修改为同一属性。
         # @type DiskIds: Array
         # @param DiskName: 新的云硬盘名称。
         # @type DiskName: String
@@ -2646,8 +2637,11 @@ module TencentCloud
         # @param DeleteWithInstance: 成功挂载到云主机后该云硬盘是否随云主机销毁，TRUE表示随云主机销毁，FALSE表示不随云主机销毁。仅支持按量计费云硬盘数据盘。
         # @type DeleteWithInstance: Boolean
         # @param DiskType: 变更云盘类型时，可传入该参数，表示变更的目标类型，取值范围：<br><li>CLOUD_PREMIUM：表示高性能云硬盘</li><li>CLOUD_SSD：表示SSD云硬盘。</li>当前不支持批量变更类型，即传入DiskType时，DiskIds仅支持传入一块云盘；<br>变更云盘类型时不支持同时变更其他属性。
+        # 具体说明请参考[调整云硬盘类型](https://cloud.tencent.com/document/product/362/32540)
         # @type DiskType: String
-        # @param BurstPerformanceOperation: 开启/关闭云盘性能突发功能
+        # @param BurstPerformanceOperation: 开启/关闭云盘性能突发功能，取值范围：
+        # CREATE：开启
+        # CANCEL：关闭
         # @type BurstPerformanceOperation: String
 
         attr_accessor :DiskIds, :DiskName, :Portable, :ProjectId, :DeleteWithInstance, :DiskType, :BurstPerformanceOperation

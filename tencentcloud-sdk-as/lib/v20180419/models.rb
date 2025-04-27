@@ -70,8 +70,8 @@ module TencentCloud
 
         attr_accessor :AutoScalingGroupId, :ActivityId, :ActivityType, :StatusCode, :StatusMessage, :Cause, :Description, :StartTime, :EndTime, :CreatedTime, :ActivityRelatedInstanceSet, :StatusMessageSimplified, :LifecycleActionResultSet, :DetailedStatusMessageSet, :InvocationResultSet, :RelatedInstanceSet
         extend Gem::Deprecate
-        deprecate :ActivityRelatedInstanceSet, :none, 2025, 3
-        deprecate :ActivityRelatedInstanceSet=, :none, 2025, 3
+        deprecate :ActivityRelatedInstanceSet, :none, 2025, 4
+        deprecate :ActivityRelatedInstanceSet=, :none, 2025, 4
 
         def initialize(autoscalinggroupid=nil, activityid=nil, activitytype=nil, statuscode=nil, statusmessage=nil, cause=nil, description=nil, starttime=nil, endtime=nil, createdtime=nil, activityrelatedinstanceset=nil, statusmessagesimplified=nil, lifecycleactionresultset=nil, detailedstatusmessageset=nil, invocationresultset=nil, relatedinstanceset=nil)
           @AutoScalingGroupId = autoscalinggroupid
@@ -199,9 +199,13 @@ module TencentCloud
 
       # AttachInstances请求参数结构体
       class AttachInstancesRequest < TencentCloud::Common::AbstractModel
-        # @param AutoScalingGroupId: 伸缩组ID
+        # @param AutoScalingGroupId: 伸缩组ID。可以通过如下方式获取可用的伸缩组ID:
+        # <li>通过登录 [控制台](https://console.cloud.tencent.com/autoscaling/group) 查询伸缩组ID。</li>
+        # <li>通过调用接口 [DescribeAutoScalingGroups](https://cloud.tencent.com/document/api/377/20438) ，取返回信息中的 AutoScalingGroupId 获取伸缩组ID。</li>
         # @type AutoScalingGroupId: String
-        # @param InstanceIds: CVM实例ID列表
+        # @param InstanceIds: CVM实例ID列表。可以通过以下方式获取可用的实例ID：
+        # <li>通过登录[控制台](https://console.cloud.tencent.com/cvm/index)查询实例ID。</li>
+        # <li>通过调用接口 [DescribeInstances](https://cloud.tencent.com/document/api/213/15728) ，取返回信息中的 `InstanceId` 获取实例ID。</li>
         # @type InstanceIds: Array
 
         attr_accessor :AutoScalingGroupId, :InstanceIds
@@ -566,9 +570,11 @@ module TencentCloud
 
       # CancelInstanceRefresh请求参数结构体
       class CancelInstanceRefreshRequest < TencentCloud::Common::AbstractModel
-        # @param AutoScalingGroupId: 伸缩组ID。
+        # @param AutoScalingGroupId: 伸缩组ID。可以通过如下方式获取可用的伸缩组ID:
+        # <li>通过登录 [控制台](https://console.cloud.tencent.com/autoscaling/group) 查询伸缩组ID。</li>
+        # <li>通过调用接口 [DescribeAutoScalingGroups](https://cloud.tencent.com/document/api/377/20438) ，取返回信息中的 AutoScalingGroupId 获取伸缩组ID。</li>
         # @type AutoScalingGroupId: String
-        # @param RefreshActivityId: 刷新活动ID。
+        # @param RefreshActivityId: 刷新活动ID。可以通过调用接口 [DescribeRefreshActivities](https://cloud.tencent.com/document/api/377/99175) ，取返回信息中的 RefreshActivityId 获取实例刷新活动ID。
         # @type RefreshActivityId: String
 
         attr_accessor :AutoScalingGroupId, :RefreshActivityId
@@ -602,7 +608,9 @@ module TencentCloud
 
       # ClearLaunchConfigurationAttributes请求参数结构体
       class ClearLaunchConfigurationAttributesRequest < TencentCloud::Common::AbstractModel
-        # @param LaunchConfigurationId: 启动配置ID。
+        # @param LaunchConfigurationId: 启动配置ID。可通过如下方式获取：
+        # <li>通过登录 [控制台](https://console.cloud.tencent.com/autoscaling/config) 查询启动配置ID。</li>
+        # <li>通过调用接口 [DescribeLaunchConfigurations](https://cloud.tencent.com/document/api/377/20445) ，取返回信息中的 LaunchConfigurationId 获取启动配置ID。</li>
         # @type LaunchConfigurationId: String
         # @param ClearDataDisks: 是否清空数据盘信息，非必填，默认为 false。
         # 填 true 代表清空“数据盘”信息，清空后基于此新创建的云主机将不含有任何数据盘。
@@ -1397,7 +1405,9 @@ module TencentCloud
 
       # CreateScheduledAction请求参数结构体
       class CreateScheduledActionRequest < TencentCloud::Common::AbstractModel
-        # @param AutoScalingGroupId: 伸缩组ID
+        # @param AutoScalingGroupId: 伸缩组ID。可以通过如下方式获取可用的伸缩组ID:
+        # <li>通过登录 [控制台](https://console.cloud.tencent.com/autoscaling/group) 查询伸缩组ID。</li>
+        # <li>通过调用接口 [DescribeAutoScalingGroups](https://cloud.tencent.com/document/api/377/20438) ，取返回信息中的 AutoScalingGroupId 获取伸缩组ID。</li>
         # @type AutoScalingGroupId: String
         # @param ScheduledActionName: 定时任务名称。名称仅支持中文、英文、数字、下划线、分隔符"-"、小数点，最大长度不能超60个字节。同一伸缩组下必须唯一。
         # @type ScheduledActionName: String
@@ -1411,7 +1421,7 @@ module TencentCloud
         # @type StartTime: String
         # @param EndTime: 定时任务的结束时间，取值为`北京时间`（UTC+8），按照`ISO8601`标准，格式：`YYYY-MM-DDThh:mm:ss+08:00`。<br><br>此参数与`Recurrence`需要同时指定，到达结束时间之后，定时任务将不再生效。
         # @type EndTime: String
-        # @param Recurrence: 定时任务的重复方式。为标准 Cron 格式<br><br>此参数与`EndTime`需要同时指定。
+        # @param Recurrence: 定时任务的重复方式。为标准 Cron 格式。定时任务中的 [Recurrence参数限制](https://cloud.tencent.com/document/product/377/88119) 为5个字段，由空格分开，结构为：分，小时，日期，月份，星期。此参数与`EndTime`需要同时指定。
         # @type Recurrence: String
 
         attr_accessor :AutoScalingGroupId, :ScheduledActionName, :MaxSize, :MinSize, :DesiredCapacity, :StartTime, :EndTime, :Recurrence
@@ -1681,7 +1691,7 @@ module TencentCloud
 
       # DeleteScheduledAction请求参数结构体
       class DeleteScheduledActionRequest < TencentCloud::Common::AbstractModel
-        # @param ScheduledActionId: 待删除的定时任务ID。
+        # @param ScheduledActionId: 待删除的定时任务ID。可以通过调用接口 [DescribeScheduledActions](https://cloud.tencent.com/document/api/377/20450) ，取返回信息中的 ScheduledActionId 获取定时任务ID。
         # @type ScheduledActionId: String
 
         attr_accessor :ScheduledActionId
@@ -2418,9 +2428,9 @@ module TencentCloud
 
       # DescribeScheduledActions请求参数结构体
       class DescribeScheduledActionsRequest < TencentCloud::Common::AbstractModel
-        # @param ScheduledActionIds: 按照一个或者多个定时任务ID查询。实例ID形如：asst-am691zxo。每次请求的实例的上限为100。参数不支持同时指定ScheduledActionIds和Filters。
+        # @param ScheduledActionIds: 按照一个或者多个定时任务ID查询。可通过登录 [控制台](https://console.cloud.tencent.com/autoscaling/group) 获取定时任务 ID。每次请求的实例的上限为100。参数不支持同时指定ScheduledActionIds和Filters。
         # @type ScheduledActionIds: Array
-        # @param Filters: 过滤条件。
+        # @param Filters: 过滤条件。可通过登录 [控制台](https://console.cloud.tencent.com/autoscaling/group) 获取定时任务 ID，定时任务名称，伸缩组 ID。
         # <li> scheduled-action-id - String - 是否必填：否 -（过滤条件）按照定时任务ID过滤。</li>
         # <li> scheduled-action-name - String - 是否必填：否 - （过滤条件） 按照定时任务名称过滤。</li>
         # <li> auto-scaling-group-id - String - 是否必填：否 - （过滤条件） 按照伸缩组ID过滤。</li>
@@ -2487,9 +2497,13 @@ module TencentCloud
 
       # DetachInstances请求参数结构体
       class DetachInstancesRequest < TencentCloud::Common::AbstractModel
-        # @param AutoScalingGroupId: 伸缩组ID
+        # @param AutoScalingGroupId: 伸缩组ID。可以通过如下方式获取可用的伸缩组ID:
+        # <li>通过登录 [控制台](https://console.cloud.tencent.com/autoscaling/group) 查询伸缩组ID。</li>
+        # <li>通过调用接口 [DescribeAutoScalingGroups](https://cloud.tencent.com/document/api/377/20438) ，取返回信息中的 AutoScalingGroupId 获取伸缩组ID。</li>
         # @type AutoScalingGroupId: String
-        # @param InstanceIds: CVM实例ID列表
+        # @param InstanceIds: CVM实例ID列表。可以通过以下方式获取可用的实例ID：
+        # <li>通过登录[控制台](https://console.cloud.tencent.com/cvm/index)查询实例ID。</li>
+        # <li>通过调用接口 [DescribeInstances](https://cloud.tencent.com/document/api/213/15728) ，取返回信息中的 `InstanceId` 获取实例ID。</li>
         # @type InstanceIds: Array
 
         attr_accessor :AutoScalingGroupId, :InstanceIds
@@ -2693,8 +2707,8 @@ module TencentCloud
 
         attr_accessor :SecurityService, :MonitorService, :AutomationService, :AutomationToolsService
         extend Gem::Deprecate
-        deprecate :AutomationService, :none, 2025, 3
-        deprecate :AutomationService=, :none, 2025, 3
+        deprecate :AutomationService, :none, 2025, 4
+        deprecate :AutomationService=, :none, 2025, 4
 
         def initialize(securityservice=nil, monitorservice=nil, automationservice=nil, automationtoolsservice=nil)
           @SecurityService = securityservice
@@ -2729,9 +2743,13 @@ module TencentCloud
 
       # EnterStandby请求参数结构体
       class EnterStandbyRequest < TencentCloud::Common::AbstractModel
-        # @param AutoScalingGroupId: 伸缩组 ID。
+        # @param AutoScalingGroupId: 伸缩组 ID。可以通过如下方式获取可用的伸缩组ID:
+        # <li>通过登录 [控制台](https://console.cloud.tencent.com/autoscaling/group) 查询伸缩组ID。</li>
+        # <li>通过调用接口 [DescribeAutoScalingGroups](https://cloud.tencent.com/document/api/377/20438) ，取返回信息中的 AutoScalingGroupId 获取伸缩组ID。</li>
         # @type AutoScalingGroupId: String
-        # @param InstanceIds: 运行中状态实例列表，不支持传入非运行中状态实例。
+        # @param InstanceIds: 运行中状态实例列表，不支持传入非运行中状态实例。可以通过以下方式获取可用的实例ID：
+        # <li>通过登录[控制台](https://console.cloud.tencent.com/cvm/index)查询实例ID。</li>
+        # <li>通过调用接口 [DescribeInstances](https://cloud.tencent.com/document/api/213/15728) ，取返回信息中的 `InstanceId` 获取实例ID。</li>
         # @type InstanceIds: Array
 
         attr_accessor :AutoScalingGroupId, :InstanceIds
@@ -2813,9 +2831,13 @@ module TencentCloud
 
       # ExitStandby请求参数结构体
       class ExitStandbyRequest < TencentCloud::Common::AbstractModel
-        # @param AutoScalingGroupId: 伸缩组 ID。
+        # @param AutoScalingGroupId: 伸缩组 ID。可以通过如下方式获取可用的伸缩组ID:
+        # <li>通过登录 [控制台](https://console.cloud.tencent.com/autoscaling/group) 查询伸缩组ID。</li>
+        # <li>通过调用接口 [DescribeAutoScalingGroups](https://cloud.tencent.com/document/api/377/20438) ，取返回信息中的 AutoScalingGroupId 获取伸缩组ID。</li>
         # @type AutoScalingGroupId: String
-        # @param InstanceIds: 备用中状态 CVM 实例列表。
+        # @param InstanceIds: 备用中状态 CVM 实例列表。可以通过以下方式获取可用的实例ID：
+        # <li>通过登录[控制台](https://console.cloud.tencent.com/cvm/index)查询实例ID。</li>
+        # <li>通过调用接口 [DescribeInstances](https://cloud.tencent.com/document/api/213/15728) ，取返回信息中的 `InstanceId` 获取实例ID。</li>
         # @type InstanceIds: Array
 
         attr_accessor :AutoScalingGroupId, :InstanceIds
@@ -4161,27 +4183,27 @@ module TencentCloud
 
       # ModifyLifecycleHook请求参数结构体
       class ModifyLifecycleHookRequest < TencentCloud::Common::AbstractModel
-        # @param LifecycleHookId: 生命周期挂钩ID。
+        # @param LifecycleHookId: 生命周期挂钩ID。可以通过调用接口 [DescribeLifecycleHooks](https://cloud.tencent.com/document/api/377/34452) ，取返回信息中的 LifecycleHookId 获取生命周期挂钩ID。
         # @type LifecycleHookId: String
-        # @param LifecycleHookName: 生命周期挂钩名称。
+        # @param LifecycleHookName: 生命周期挂钩名称。名称仅支持中文、英文、数字、下划线（_）、短横线（-）、小数点（.），最大长度不能超128。
         # @type LifecycleHookName: String
-        # @param LifecycleTransition: 进入生命周期挂钩场景，取值包括：
-        # <li> INSTANCE_LAUNCHING：实例启动后</li>
-        # <li> INSTANCE_TERMINATING：实例销毁前</li>
+        # @param LifecycleTransition: 进入生命周期挂钩场景，取值范围如下:
+        # * INSTANCE_LAUNCHING: 扩容生命周期挂钩
+        # * INSTANCE_TERMINATING: 缩容生命周期挂钩
         # @type LifecycleTransition: String
-        # @param DefaultResult: 定义伸缩组在生命周期挂钩超时的情况下应采取的操作，取值包括：
-        # <li> CONTINUE： 超时后继续伸缩活动</li>
-        # <li> ABANDON：超时后终止伸缩活动</li>
+        # @param DefaultResult: 定义伸缩组在生命周期挂钩超时或 LifecycleCommand 执行失败时应采取的操作，取值范围如下：
+        # * CONTINUE: 默认值，表示继续执行扩缩容活动
+        # * ABANDON: 针对扩容挂钩，挂钩超时或 LifecycleCommand 执行失败的 CVM 实例会直接释放或移出；而针对缩容挂钩，会继续执行缩容活动。
         # @type DefaultResult: String
         # @param HeartbeatTimeout: 生命周期挂钩超时之前可以经过的最长时间（以秒为单位），范围从 30 到 7200 秒。
         # @type HeartbeatTimeout: Integer
-        # @param NotificationMetadata: 弹性伸缩向通知目标发送的附加信息。
+        # @param NotificationMetadata: 弹性伸缩向通知目标发送的附加信息。NotificationMetadata 与 LifecycleCommand互斥，二者不可同时指定。
         # @type NotificationMetadata: String
         # @param LifecycleTransitionType: 进行生命周期挂钩的场景类型，取值范围包括`NORMAL`和 `EXTENSION`。说明：设置为`EXTENSION`值，在AttachInstances、DetachInstances、RemoveInstances 接口时会触发生命周期挂钩操作，值为`NORMAL`则不会在这些接口中触发生命周期挂钩。
         # @type LifecycleTransitionType: String
-        # @param NotificationTarget: 通知目标信息。
+        # @param NotificationTarget: 通知目标信息。NotificationTarget 与 LifecycleCommand互斥，二者不可同时指定。
         # @type NotificationTarget: :class:`Tencentcloud::As.v20180419.models.NotificationTarget`
-        # @param LifecycleCommand: 远程命令执行对象。
+        # @param LifecycleCommand: 远程命令执行对象。通知参数 NotificationMetadata、NotificationTarget 与 LifecycleCommand互斥，不可同时指定。
         # @type LifecycleCommand: :class:`Tencentcloud::As.v20180419.models.LifecycleCommand`
 
         attr_accessor :LifecycleHookId, :LifecycleHookName, :LifecycleTransition, :DefaultResult, :HeartbeatTimeout, :NotificationMetadata, :LifecycleTransitionType, :NotificationTarget, :LifecycleCommand
@@ -4469,7 +4491,7 @@ module TencentCloud
 
       # ModifyScheduledAction请求参数结构体
       class ModifyScheduledActionRequest < TencentCloud::Common::AbstractModel
-        # @param ScheduledActionId: 待修改的定时任务ID
+        # @param ScheduledActionId: 待修改的定时任务ID。可以通过调用接口 [DescribeScheduledActions](https://cloud.tencent.com/document/api/377/20450) ，取返回信息中的 ScheduledActionId 获取定时任务ID。
         # @type ScheduledActionId: String
         # @param ScheduledActionName: 定时任务名称。名称仅支持中文、英文、数字、下划线、分隔符"-"、小数点，最大长度不能超60个字节。同一伸缩组下必须唯一。
         # @type ScheduledActionName: String
@@ -4483,7 +4505,7 @@ module TencentCloud
         # @type StartTime: String
         # @param EndTime: 定时任务的结束时间，取值为`北京时间`（UTC+8），按照`ISO8601`标准，格式：`YYYY-MM-DDThh:mm:ss+08:00`。<br>此参数与`Recurrence`需要同时指定，到达结束时间之后，定时任务将不再生效。
         # @type EndTime: String
-        # @param Recurrence: 定时任务的重复方式。为标准 Cron 格式<br>此参数与`EndTime`需要同时指定。
+        # @param Recurrence: 定时任务的重复方式。为标准 Cron 格式，[Recurrence参数限制](https://cloud.tencent.com/document/product/377/88119)为5个字段，由空格分开，结构为：分，小时，日期，月份，星期。此参数与`EndTime`需要同时指定。
         # @type Recurrence: String
 
         attr_accessor :ScheduledActionId, :ScheduledActionName, :MaxSize, :MinSize, :DesiredCapacity, :StartTime, :EndTime, :Recurrence
@@ -4756,9 +4778,13 @@ module TencentCloud
 
       # RemoveInstances请求参数结构体
       class RemoveInstancesRequest < TencentCloud::Common::AbstractModel
-        # @param AutoScalingGroupId: 伸缩组ID
+        # @param AutoScalingGroupId: 伸缩组ID。可以通过如下方式获取可用的伸缩组ID:
+        # <li>通过登录 [控制台](https://console.cloud.tencent.com/autoscaling/group) 查询伸缩组ID。</li>
+        # <li>通过调用接口 [DescribeAutoScalingGroups](https://cloud.tencent.com/document/api/377/20438) ，取返回信息中的 AutoScalingGroupId 获取伸缩组ID。</li>
         # @type AutoScalingGroupId: String
-        # @param InstanceIds: CVM实例ID列表
+        # @param InstanceIds: CVM实例ID列表。可以通过以下方式获取可用的实例ID：
+        # <li>通过登录[控制台](https://console.cloud.tencent.com/cvm/index)查询实例ID。</li>
+        # <li>通过调用接口 [DescribeInstances](https://cloud.tencent.com/document/api/213/15728) ，取返回信息中的 `InstanceId` 获取实例ID。</li>
         # @type InstanceIds: Array
 
         attr_accessor :AutoScalingGroupId, :InstanceIds
@@ -4796,9 +4822,11 @@ module TencentCloud
 
       # ResumeInstanceRefresh请求参数结构体
       class ResumeInstanceRefreshRequest < TencentCloud::Common::AbstractModel
-        # @param AutoScalingGroupId: 伸缩组ID。
+        # @param AutoScalingGroupId: 伸缩组ID。可通过如下方式获取：
+        # <li>通过登录 [控制台](https://console.cloud.tencent.com/autoscaling/group) 查询伸缩组ID。</li>
+        # <li>通过调用接口 [DescribeAutoScalingGroups](https://cloud.tencent.com/document/api/377/20438) ，取返回信息中的 AutoScalingGroupId 获取伸缩组ID。</li>
         # @type AutoScalingGroupId: String
-        # @param RefreshActivityId: 刷新活动ID。
+        # @param RefreshActivityId: 刷新活动ID。可以通过调用接口 [DescribeRefreshActivities](https://cloud.tencent.com/document/api/377/99175) ，取返回信息中的 RefreshActivityId 获取实例刷新活动ID。
         # @type RefreshActivityId: String
         # @param ResumeMode: 当前批次刷新失败实例的恢复方式，如不存在失败实例，该参数无效。默认值为RETRY，取值范围如下：<li>RETRY: 重试当前批次刷新失败实例</li><li>CONTINUE: 跳过当前批次刷新失败实例</li>
         # @type ResumeMode: String
@@ -4836,11 +4864,13 @@ module TencentCloud
 
       # RollbackInstanceRefresh请求参数结构体
       class RollbackInstanceRefreshRequest < TencentCloud::Common::AbstractModel
-        # @param AutoScalingGroupId: 伸缩组ID。
+        # @param AutoScalingGroupId: 伸缩组ID。可以通过以下方式获取可用的伸缩组ID：
+        # <li>通过登录 [控制台](https://console.cloud.tencent.com/autoscaling/group) 查询伸缩组ID。</li>
+        # <li>通过调用接口 [DescribeAutoScalingGroups](https://cloud.tencent.com/document/api/377/20438) ，取返回信息中的 AutoScalingGroupId 获取伸缩组ID。</li>
         # @type AutoScalingGroupId: String
         # @param RefreshSettings: 刷新设置。
         # @type RefreshSettings: :class:`Tencentcloud::As.v20180419.models.RefreshSettings`
-        # @param OriginRefreshActivityId: 原始刷新活动 ID。
+        # @param OriginRefreshActivityId: 原始刷新活动 ID。可以通过调用接口 [DescribeRefreshActivities](https://cloud.tencent.com/document/api/377/99175) ，取返回信息中的 OriginRefreshActivityId 获取原始刷新活动ID。
         # @type OriginRefreshActivityId: String
         # @param RefreshMode: 刷新模式，目前仅支持滚动更新，默认值为 ROLLING_UPDATE_RESET。
         # @type RefreshMode: String
@@ -5150,7 +5180,7 @@ module TencentCloud
         # @type AutoScalingGroupId: String
         # @param StartTime: 定时任务的开始时间。取值为`北京时间`（UTC+8），按照`ISO8601`标准，格式：`YYYY-MM-DDThh:mm:ss+08:00`。
         # @type StartTime: String
-        # @param Recurrence: 定时任务的重复方式。
+        # @param Recurrence: 定时任务的重复方式。定时任务中的[Recurrence参数限制](https://cloud.tencent.com/document/product/377/88119)为5个字段，由空格分开，结构为：分，小时，日期，月份，星期。
         # @type Recurrence: String
         # @param EndTime: 定时任务的结束时间。取值为`北京时间`（UTC+8），按照`ISO8601`标准，格式：`YYYY-MM-DDThh:mm:ss+08:00`。
         # @type EndTime: String
@@ -5160,7 +5190,7 @@ module TencentCloud
         # @type DesiredCapacity: Integer
         # @param MinSize: 定时任务设置的最小实例数。
         # @type MinSize: Integer
-        # @param CreatedTime: 定时任务的创建时间。取值为`UTC`时间，按照`ISO8601`标准，格式：`YYYY-MM-DDThh:mm:ssZ`。
+        # @param CreatedTime: 定时任务的创建时间。取值为标准`UTC`时间，按照`ISO8601`标准，格式：`YYYY-MM-DDThh:mm:ssZ`。
         # @type CreatedTime: String
         # @param ScheduledType: 定时任务的执行类型。取值范围：
         # <li>CRONTAB：代表定时任务为重复执行。</li>
@@ -5244,9 +5274,13 @@ module TencentCloud
 
       # SetInstancesProtection请求参数结构体
       class SetInstancesProtectionRequest < TencentCloud::Common::AbstractModel
-        # @param AutoScalingGroupId: 伸缩组ID。
+        # @param AutoScalingGroupId: 伸缩组ID。可以通过如下方式获取可用的伸缩组ID:
+        # <li>通过登录 [控制台](https://console.cloud.tencent.com/autoscaling/group) 查询伸缩组ID。</li>
+        # <li>通过调用接口 [DescribeAutoScalingGroups](https://cloud.tencent.com/document/api/377/20438) ，取返回信息中的 AutoScalingGroupId 获取伸缩组ID。</li>
         # @type AutoScalingGroupId: String
-        # @param InstanceIds: 实例ID。
+        # @param InstanceIds: 实例ID。可以通过以下方式获取可用的实例ID：
+        # <li>通过登录[控制台](https://console.cloud.tencent.com/cvm/index)查询实例ID。</li>
+        # <li>通过调用接口 [DescribeInstances](https://cloud.tencent.com/document/api/213/15728) ，取返回信息中的 `InstanceId` 获取实例ID。</li>
         # @type InstanceIds: Array
         # @param ProtectedFromScaleIn: 实例是否需要设置保护。
         # @type ProtectedFromScaleIn: Boolean
@@ -5343,9 +5377,13 @@ module TencentCloud
 
       # StartAutoScalingInstances请求参数结构体
       class StartAutoScalingInstancesRequest < TencentCloud::Common::AbstractModel
-        # @param AutoScalingGroupId: 伸缩组ID
+        # @param AutoScalingGroupId: 伸缩组ID。可以通过如下方式获取可用的伸缩组ID:
+        # <li>通过登录 [控制台](https://console.cloud.tencent.com/autoscaling/group) 查询伸缩组ID。</li>
+        # <li>通过调用接口 [DescribeAutoScalingGroups](https://cloud.tencent.com/document/api/377/20438) ，取返回信息中的 AutoScalingGroupId 获取伸缩组ID。</li>
         # @type AutoScalingGroupId: String
-        # @param InstanceIds: 待开启的CVM实例ID列表
+        # @param InstanceIds: 待开启的CVM实例ID列表。可以通过以下方式获取可用的实例ID：
+        # <li>通过登录[控制台](https://console.cloud.tencent.com/cvm/index)查询实例ID。</li>
+        # <li>通过调用接口 [DescribeInstances](https://cloud.tencent.com/document/api/213/15728) ，取返回信息中的 `InstanceId` 获取实例ID。</li>
         # @type InstanceIds: Array
 
         attr_accessor :AutoScalingGroupId, :InstanceIds
@@ -5432,9 +5470,13 @@ module TencentCloud
 
       # StopAutoScalingInstances请求参数结构体
       class StopAutoScalingInstancesRequest < TencentCloud::Common::AbstractModel
-        # @param AutoScalingGroupId: 伸缩组ID
+        # @param AutoScalingGroupId: 伸缩组ID。可以通过如下方式获取可用的伸缩组ID:
+        # <li>通过登录 [控制台](https://console.cloud.tencent.com/autoscaling/group) 查询伸缩组ID。</li>
+        # <li>通过调用接口 [DescribeAutoScalingGroups](https://cloud.tencent.com/document/api/377/20438) ，取返回信息中的 AutoScalingGroupId 获取伸缩组ID。</li>
         # @type AutoScalingGroupId: String
-        # @param InstanceIds: 待关闭的CVM实例ID列表
+        # @param InstanceIds: 待关闭的CVM实例ID列表。可以通过以下方式获取可用的实例ID：
+        # <li>通过登录[控制台](https://console.cloud.tencent.com/cvm/index)查询实例ID。</li>
+        # <li>通过调用接口 [DescribeInstances](https://cloud.tencent.com/document/api/213/15728) ，取返回信息中的 `InstanceId` 获取实例ID。</li>
         # @type InstanceIds: Array
         # @param StoppedMode: 关闭的实例是否收费，取值为：
         # KEEP_CHARGING：关机继续收费
@@ -5479,9 +5521,11 @@ module TencentCloud
 
       # StopInstanceRefresh请求参数结构体
       class StopInstanceRefreshRequest < TencentCloud::Common::AbstractModel
-        # @param AutoScalingGroupId: 伸缩组ID。
+        # @param AutoScalingGroupId: 伸缩组ID。可以通过以下方式获取可用的伸缩组ID：
+        # <li>通过登录 [控制台](https://console.cloud.tencent.com/autoscaling/group) 查询伸缩组ID。</li>
+        # <li>通过调用接口 [DescribeAutoScalingGroups](https://cloud.tencent.com/document/api/377/20438) ，取返回信息中的 AutoScalingGroupId 获取伸缩组ID。</li>
         # @type AutoScalingGroupId: String
-        # @param RefreshActivityId: 刷新活动ID。
+        # @param RefreshActivityId: 刷新活动ID。可以通过调用接口 [DescribeRefreshActivities](https://cloud.tencent.com/document/api/377/99175) ，取返回信息中的 RefreshActivityId 获取实例刷新活动ID。
         # @type RefreshActivityId: String
 
         attr_accessor :AutoScalingGroupId, :RefreshActivityId
@@ -5752,23 +5796,27 @@ module TencentCloud
 
       # UpgradeLifecycleHook请求参数结构体
       class UpgradeLifecycleHookRequest < TencentCloud::Common::AbstractModel
-        # @param LifecycleHookId: 生命周期挂钩ID
+        # @param LifecycleHookId: 生命周期挂钩ID。可以通过调用接口 [DescribeLifecycleHooks](https://cloud.tencent.com/document/api/377/34452) ，取返回信息中的 LifecycleHookId 获取生命周期挂钩ID。
         # @type LifecycleHookId: String
-        # @param LifecycleHookName: 生命周期挂钩名称
+        # @param LifecycleHookName: 生命周期挂钩名称。名称仅支持中文、英文、数字、下划线（_）、短横线（-）、小数点（.），最大长度不能超128个字符。
         # @type LifecycleHookName: String
-        # @param LifecycleTransition: 进行生命周期挂钩的场景，取值范围包括“INSTANCE_LAUNCHING”和“INSTANCE_TERMINATING”
+        # @param LifecycleTransition: 进行生命周期挂钩的场景，取值范围如下:
+        # * INSTANCE_LAUNCHING: 扩容生命周期挂钩
+        # * INSTANCE_TERMINATING: 缩容生命周期挂钩
         # @type LifecycleTransition: String
-        # @param DefaultResult: 定义伸缩组在生命周期挂钩超时的情况下应采取的操作，取值范围是“CONTINUE”或“ABANDON”，默认值为“CONTINUE”
+        # @param DefaultResult: 定义伸缩组在生命周期挂钩超时或 LifecycleCommand 执行失败时应采取的操作，取值范围是如下：
+        # * CONTINUE: 默认值，表示继续执行扩缩容活动
+        # * ABANDON: 针对扩容挂钩，挂钩超时或 LifecycleCommand 执行失败的 CVM 实例会直接释放或移出；而针对缩容挂钩，会继续执行缩容活动。
         # @type DefaultResult: String
         # @param HeartbeatTimeout: 生命周期挂钩超时之前可以经过的最长时间（以秒为单位），范围从30到7200秒，默认值为300秒
         # @type HeartbeatTimeout: Integer
-        # @param NotificationMetadata: 弹性伸缩向通知目标发送的附加信息，配置通知时使用，默认值为空字符串""
+        # @param NotificationMetadata: 弹性伸缩向通知目标发送的附加信息，配置通知时使用，默认值为空字符串。NotificationMetadata 和 LifecycleCommand参数互斥，二者不可同时指定。
         # @type NotificationMetadata: String
         # @param NotificationTarget: 通知目标。NotificationTarget和LifecycleCommand参数互斥，二者不可同时指定。
         # @type NotificationTarget: :class:`Tencentcloud::As.v20180419.models.NotificationTarget`
         # @param LifecycleTransitionType: 进行生命周期挂钩的场景类型，取值范围包括NORMAL 和 EXTENSION。说明：设置为EXTENSION值，在AttachInstances、DetachInstances、RemoveInstaces接口时会触发生命周期挂钩操作，值为NORMAL则不会在这些接口中触发生命周期挂钩。
         # @type LifecycleTransitionType: String
-        # @param LifecycleCommand: 远程命令执行对象。NotificationTarget和LifecycleCommand参数互斥，二者不可同时指定。
+        # @param LifecycleCommand: 远程命令执行对象。通知参数 NotificationMetadata、NotificationTarget 与 LifecycleCommand 互斥，不可同时指定。
         # @type LifecycleCommand: :class:`Tencentcloud::As.v20180419.models.LifecycleCommand`
 
         attr_accessor :LifecycleHookId, :LifecycleHookName, :LifecycleTransition, :DefaultResult, :HeartbeatTimeout, :NotificationMetadata, :NotificationTarget, :LifecycleTransitionType, :LifecycleCommand

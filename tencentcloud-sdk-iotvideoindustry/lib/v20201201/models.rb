@@ -1464,16 +1464,20 @@ module TencentCloud
 
       # DeleteWarning返回参数结构体
       class DeleteWarningResponse < TencentCloud::Common::AbstractModel
+        # @param Cnt: 操作个数
+        # @type Cnt: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :Cnt, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(cnt=nil, requestid=nil)
+          @Cnt = cnt
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @Cnt = params['Cnt']
           @RequestId = params['RequestId']
         end
       end

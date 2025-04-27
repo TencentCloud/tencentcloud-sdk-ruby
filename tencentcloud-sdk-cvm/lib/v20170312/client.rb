@@ -1378,7 +1378,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 进入救援模式
+        # 本接口（EnterRescueMode）用于进入救援模式。
 
         # @param request: Request instance for EnterRescueMode.
         # @type request: :class:`Tencentcloud::cvm::V20170312::EnterRescueModeRequest`

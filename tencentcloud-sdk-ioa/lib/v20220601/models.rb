@@ -1202,7 +1202,7 @@ module TencentCloud
         # @type DeviceStrategyVer: String
         # @param NGNStrategyVer: NGN策略版本
         # @type NGNStrategyVer: String
-        # @param IOAUserName: 最近登录账户的账号
+        # @param IOAUserName: 最近登录账户的账号(账号系统用户账号)
         # @type IOAUserName: String
         # @param DeviceNewStrategyVer: 设备管控新策略
         # @type DeviceNewStrategyVer: String
@@ -1220,14 +1220,16 @@ module TencentCloud
         # @type IdentityNewStrategyVer: String
         # @param AccountGroupName: 最近登录账号部门
         # @type AccountGroupName: String
-        # @param AccountName: 最近登录账户的姓名
+        # @param AccountName: 最近登录账户的姓名(账号系统用户姓名)
         # @type AccountName: String
         # @param AccountGroupId: 账号组id
         # @type AccountGroupId: Integer
+        # @param RemarkName: 终端备注名
+        # @type RemarkName: String
 
-        attr_accessor :Id, :Mid, :Name, :GroupId, :OsType, :Ip, :OnlineStatus, :Version, :StrVersion, :Itime, :ConnActiveTime, :Locked, :LocalIpList, :HostId, :GroupName, :GroupNamePath, :CriticalVulListCount, :ComputerName, :DomainName, :MacAddr, :VulCount, :RiskCount, :VirusVer, :VulVersion, :SysRepVersion, :VulCriticalList, :Tags, :UserName, :FirewallStatus, :SerialNum, :DeviceStrategyVer, :NGNStrategyVer, :IOAUserName, :DeviceNewStrategyVer, :NGNNewStrategyVer, :HostName, :BaseBoardSn, :AccountUsers, :IdentityStrategyVer, :IdentityNewStrategyVer, :AccountGroupName, :AccountName, :AccountGroupId
+        attr_accessor :Id, :Mid, :Name, :GroupId, :OsType, :Ip, :OnlineStatus, :Version, :StrVersion, :Itime, :ConnActiveTime, :Locked, :LocalIpList, :HostId, :GroupName, :GroupNamePath, :CriticalVulListCount, :ComputerName, :DomainName, :MacAddr, :VulCount, :RiskCount, :VirusVer, :VulVersion, :SysRepVersion, :VulCriticalList, :Tags, :UserName, :FirewallStatus, :SerialNum, :DeviceStrategyVer, :NGNStrategyVer, :IOAUserName, :DeviceNewStrategyVer, :NGNNewStrategyVer, :HostName, :BaseBoardSn, :AccountUsers, :IdentityStrategyVer, :IdentityNewStrategyVer, :AccountGroupName, :AccountName, :AccountGroupId, :RemarkName
 
-        def initialize(id=nil, mid=nil, name=nil, groupid=nil, ostype=nil, ip=nil, onlinestatus=nil, version=nil, strversion=nil, itime=nil, connactivetime=nil, locked=nil, localiplist=nil, hostid=nil, groupname=nil, groupnamepath=nil, criticalvullistcount=nil, computername=nil, domainname=nil, macaddr=nil, vulcount=nil, riskcount=nil, virusver=nil, vulversion=nil, sysrepversion=nil, vulcriticallist=nil, tags=nil, username=nil, firewallstatus=nil, serialnum=nil, devicestrategyver=nil, ngnstrategyver=nil, ioausername=nil, devicenewstrategyver=nil, ngnnewstrategyver=nil, hostname=nil, baseboardsn=nil, accountusers=nil, identitystrategyver=nil, identitynewstrategyver=nil, accountgroupname=nil, accountname=nil, accountgroupid=nil)
+        def initialize(id=nil, mid=nil, name=nil, groupid=nil, ostype=nil, ip=nil, onlinestatus=nil, version=nil, strversion=nil, itime=nil, connactivetime=nil, locked=nil, localiplist=nil, hostid=nil, groupname=nil, groupnamepath=nil, criticalvullistcount=nil, computername=nil, domainname=nil, macaddr=nil, vulcount=nil, riskcount=nil, virusver=nil, vulversion=nil, sysrepversion=nil, vulcriticallist=nil, tags=nil, username=nil, firewallstatus=nil, serialnum=nil, devicestrategyver=nil, ngnstrategyver=nil, ioausername=nil, devicenewstrategyver=nil, ngnnewstrategyver=nil, hostname=nil, baseboardsn=nil, accountusers=nil, identitystrategyver=nil, identitynewstrategyver=nil, accountgroupname=nil, accountname=nil, accountgroupid=nil, remarkname=nil)
           @Id = id
           @Mid = mid
           @Name = name
@@ -1271,6 +1273,7 @@ module TencentCloud
           @AccountGroupName = accountgroupname
           @AccountName = accountname
           @AccountGroupId = accountgroupid
+          @RemarkName = remarkname
         end
 
         def deserialize(params)
@@ -1317,6 +1320,7 @@ module TencentCloud
           @AccountGroupName = params['AccountGroupName']
           @AccountName = params['AccountName']
           @AccountGroupId = params['AccountGroupId']
+          @RemarkName = params['RemarkName']
         end
       end
 

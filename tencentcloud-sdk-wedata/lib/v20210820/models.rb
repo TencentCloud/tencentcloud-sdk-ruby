@@ -15047,6 +15047,91 @@ module TencentCloud
         end
       end
 
+      # DescribeTenantProjects请求参数结构体
+      class DescribeTenantProjectsRequest < TencentCloud::Common::AbstractModel
+        # @param PageNumber: 第几页
+        # @type PageNumber: Integer
+        # @param PageSize: 一页几条
+        # @type PageSize: Integer
+        # @param DescribeExecutors: 是否展示关联执行组的信息。正常应该不是从项目列表里获取
+        # @type DescribeExecutors: Boolean
+        # @param DescribeAdminUsers: 是否展示项目管理员信息，减少默认返回的请求内容
+        # @type DescribeAdminUsers: Boolean
+        # @param DescribeMemberCount: 统计项目人员数量。数据地图需求
+        # @type DescribeMemberCount: Boolean
+        # @param Filters: 自定义条件查询
+        # @type Filters: Array
+        # @param OrderFields: 排序字段
+        # @type OrderFields: Array
+        # @param DescribeCreator: 默认不提供创建者信息，该参数与CAM交互比较耗时
+        # @type DescribeCreator: Boolean
+        # @param DescribeResourcePools: 是否展示关联资源池信息
+        # @type DescribeResourcePools: Boolean
+
+        attr_accessor :PageNumber, :PageSize, :DescribeExecutors, :DescribeAdminUsers, :DescribeMemberCount, :Filters, :OrderFields, :DescribeCreator, :DescribeResourcePools
+
+        def initialize(pagenumber=nil, pagesize=nil, describeexecutors=nil, describeadminusers=nil, describemembercount=nil, filters=nil, orderfields=nil, describecreator=nil, describeresourcepools=nil)
+          @PageNumber = pagenumber
+          @PageSize = pagesize
+          @DescribeExecutors = describeexecutors
+          @DescribeAdminUsers = describeadminusers
+          @DescribeMemberCount = describemembercount
+          @Filters = filters
+          @OrderFields = orderfields
+          @DescribeCreator = describecreator
+          @DescribeResourcePools = describeresourcepools
+        end
+
+        def deserialize(params)
+          @PageNumber = params['PageNumber']
+          @PageSize = params['PageSize']
+          @DescribeExecutors = params['DescribeExecutors']
+          @DescribeAdminUsers = params['DescribeAdminUsers']
+          @DescribeMemberCount = params['DescribeMemberCount']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          unless params['OrderFields'].nil?
+            @OrderFields = []
+            params['OrderFields'].each do |i|
+              orderfield_tmp = OrderField.new
+              orderfield_tmp.deserialize(i)
+              @OrderFields << orderfield_tmp
+            end
+          end
+          @DescribeCreator = params['DescribeCreator']
+          @DescribeResourcePools = params['DescribeResourcePools']
+        end
+      end
+
+      # DescribeTenantProjects返回参数结构体
+      class DescribeTenantProjectsResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 项目列表
+        # @type Data: :class:`Tencentcloud::Wedata.v20210820.models.ProjectPage`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = ProjectPage.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeThirdTaskRunLog请求参数结构体
       class DescribeThirdTaskRunLogRequest < TencentCloud::Common::AbstractModel
         # @param TaskId: 任务ID
@@ -24214,6 +24299,50 @@ module TencentCloud
           @ProjectIdent = params['ProjectIdent']
           @ProjectName = params['ProjectName']
           @IsAdmin = params['IsAdmin']
+        end
+      end
+
+      # 查询数据源分页列表
+      class ProjectPage < TencentCloud::Common::AbstractModel
+        # @param PageNumber: 分页页码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PageNumber: Integer
+        # @param PageSize: 分页大小
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PageSize: Integer
+        # @param Rows: 数据源列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Rows: Array
+        # @param TotalCount: 总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+        # @param TotalPageNumber: 总分页页码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalPageNumber: Integer
+
+        attr_accessor :PageNumber, :PageSize, :Rows, :TotalCount, :TotalPageNumber
+
+        def initialize(pagenumber=nil, pagesize=nil, rows=nil, totalcount=nil, totalpagenumber=nil)
+          @PageNumber = pagenumber
+          @PageSize = pagesize
+          @Rows = rows
+          @TotalCount = totalcount
+          @TotalPageNumber = totalpagenumber
+        end
+
+        def deserialize(params)
+          @PageNumber = params['PageNumber']
+          @PageSize = params['PageSize']
+          unless params['Rows'].nil?
+            @Rows = []
+            params['Rows'].each do |i|
+              project_tmp = Project.new
+              project_tmp.deserialize(i)
+              @Rows << project_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @TotalPageNumber = params['TotalPageNumber']
         end
       end
 

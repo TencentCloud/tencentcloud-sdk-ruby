@@ -712,10 +712,14 @@ module TencentCloud
         # - `Highlight`：视频浓缩
         # - `VideoToText`：视频语义理解
         # @type ServiceType: String
-        # @param StartTime: 对应云存视频的起始时间
+        # @param StartTime: 对应云存视频的起始时间（秒级 UNIX 时间戳）
         # @type StartTime: Integer
-        # @param EndTime: 对应云存视频的结束时间
+        # @param StartTimeMs: 对应云存视频的起始时间（毫秒级 UNIX 时间戳）
+        # @type StartTimeMs: Integer
+        # @param EndTime: 对应云存视频的结束时间（秒级 UNIX 时间戳）
         # @type EndTime: Integer
+        # @param EndTimeMs: 对应云存视频的结束时间（毫秒级 UNIX 时间戳）
+        # @type EndTimeMs: Integer
         # @param Status: 任务状态（1：失败；2：成功但结果为空；3：成功且结果非空；4：执行中）
         # @type Status: Integer
         # @param Result: 任务结果
@@ -731,16 +735,18 @@ module TencentCloud
         # @param CustomId: 自定义任务 ID
         # @type CustomId: String
 
-        attr_accessor :TaskId, :ProductId, :DeviceName, :ChannelId, :ServiceType, :StartTime, :EndTime, :Status, :Result, :Files, :FilesInfo, :CreateTime, :UpdateTime, :CustomId
+        attr_accessor :TaskId, :ProductId, :DeviceName, :ChannelId, :ServiceType, :StartTime, :StartTimeMs, :EndTime, :EndTimeMs, :Status, :Result, :Files, :FilesInfo, :CreateTime, :UpdateTime, :CustomId
 
-        def initialize(taskid=nil, productid=nil, devicename=nil, channelid=nil, servicetype=nil, starttime=nil, endtime=nil, status=nil, result=nil, files=nil, filesinfo=nil, createtime=nil, updatetime=nil, customid=nil)
+        def initialize(taskid=nil, productid=nil, devicename=nil, channelid=nil, servicetype=nil, starttime=nil, starttimems=nil, endtime=nil, endtimems=nil, status=nil, result=nil, files=nil, filesinfo=nil, createtime=nil, updatetime=nil, customid=nil)
           @TaskId = taskid
           @ProductId = productid
           @DeviceName = devicename
           @ChannelId = channelid
           @ServiceType = servicetype
           @StartTime = starttime
+          @StartTimeMs = starttimems
           @EndTime = endtime
+          @EndTimeMs = endtimems
           @Status = status
           @Result = result
           @Files = files
@@ -757,7 +763,9 @@ module TencentCloud
           @ChannelId = params['ChannelId']
           @ServiceType = params['ServiceType']
           @StartTime = params['StartTime']
+          @StartTimeMs = params['StartTimeMs']
           @EndTime = params['EndTime']
+          @EndTimeMs = params['EndTimeMs']
           @Status = params['Status']
           @Result = params['Result']
           @Files = params['Files']
@@ -7796,14 +7804,17 @@ module TencentCloud
         # @type Query: String
         # @param SummaryLang: 搜索结果总结的语言类型，支持的类型有：en-US、zh-CN、id-ID、th-TH
         # @type SummaryLang: String
+        # @param ChannelId: 通道ID
+        # @type ChannelId: Integer
 
-        attr_accessor :ProductId, :DeviceName, :Query, :SummaryLang
+        attr_accessor :ProductId, :DeviceName, :Query, :SummaryLang, :ChannelId
 
-        def initialize(productid=nil, devicename=nil, query=nil, summarylang=nil)
+        def initialize(productid=nil, devicename=nil, query=nil, summarylang=nil, channelid=nil)
           @ProductId = productid
           @DeviceName = devicename
           @Query = query
           @SummaryLang = summarylang
+          @ChannelId = channelid
         end
 
         def deserialize(params)
@@ -7811,6 +7822,7 @@ module TencentCloud
           @DeviceName = params['DeviceName']
           @Query = params['Query']
           @SummaryLang = params['SummaryLang']
+          @ChannelId = params['ChannelId']
         end
       end
 
@@ -7820,14 +7832,17 @@ module TencentCloud
         # @type Summary: String
         # @param Targets: 视频结果集
         # @type Targets: Array
+        # @param VideoURL: 视频回放URL
+        # @type VideoURL: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Summary, :Targets, :RequestId
+        attr_accessor :Summary, :Targets, :VideoURL, :RequestId
 
-        def initialize(summary=nil, targets=nil, requestid=nil)
+        def initialize(summary=nil, targets=nil, videourl=nil, requestid=nil)
           @Summary = summary
           @Targets = targets
+          @VideoURL = videourl
           @RequestId = requestid
         end
 
@@ -7841,6 +7856,7 @@ module TencentCloud
               @Targets << targetinfo_tmp
             end
           end
+          @VideoURL = params['VideoURL']
           @RequestId = params['RequestId']
         end
       end
@@ -10818,10 +10834,14 @@ module TencentCloud
         # @type EventId: String
         # @param Summary: 视频内容摘要
         # @type Summary: String
+        # @param ChannelId: 通道ID
+        # @type ChannelId: Integer
+        # @param Thumbnail: 缩略图路径
+        # @type Thumbnail: String
 
-        attr_accessor :Id, :ProductId, :DeviceName, :StartTimeMs, :EndTimeMs, :EventId, :Summary
+        attr_accessor :Id, :ProductId, :DeviceName, :StartTimeMs, :EndTimeMs, :EventId, :Summary, :ChannelId, :Thumbnail
 
-        def initialize(id=nil, productid=nil, devicename=nil, starttimems=nil, endtimems=nil, eventid=nil, summary=nil)
+        def initialize(id=nil, productid=nil, devicename=nil, starttimems=nil, endtimems=nil, eventid=nil, summary=nil, channelid=nil, thumbnail=nil)
           @Id = id
           @ProductId = productid
           @DeviceName = devicename
@@ -10829,6 +10849,8 @@ module TencentCloud
           @EndTimeMs = endtimems
           @EventId = eventid
           @Summary = summary
+          @ChannelId = channelid
+          @Thumbnail = thumbnail
         end
 
         def deserialize(params)
@@ -10839,6 +10861,8 @@ module TencentCloud
           @EndTimeMs = params['EndTimeMs']
           @EventId = params['EventId']
           @Summary = params['Summary']
+          @ChannelId = params['ChannelId']
+          @Thumbnail = params['Thumbnail']
         end
       end
 
