@@ -1698,9 +1698,9 @@ module TencentCloud
         # @type Volume: Integer
         # @param DiskType: 磁盘类型。 CLOUD_SSD: SSD云硬盘; CLOUD_HSSD: 增强型SSD云硬盘
         # @type DiskType: String
-        # @param ClusterTopology: 集群版节点拓扑配置。
+        # @param ClusterTopology: 云盘版节点拓扑配置。
         # @type ClusterTopology: :class:`Tencentcloud::Cdb.v20170320.models.ClusterTopology`
-        # @param DeviceType: 迁移实例类型。支持值包括： "CLOUD_NATIVE_CLUSTER" - 标准型集群版实例， "CLOUD_NATIVE_CLUSTER_EXCLUSIVE" - 加强型集群版实例。
+        # @param DeviceType: 迁移实例类型。支持值包括： "CLOUD_NATIVE_CLUSTER" - 标准型云盘版实例， "CLOUD_NATIVE_CLUSTER_EXCLUSIVE" - 加强型云盘版实例。
         # @type DeviceType: String
         # @param RoInfo: 只读实例信息
         # @type RoInfo: Array
@@ -5692,11 +5692,11 @@ module TencentCloud
       class DescribeClusterInfoResponse < TencentCloud::Common::AbstractModel
         # @param ClusterName: 实例名称。
         # @type ClusterName: String
-        # @param ReadWriteAddress: 集群读写地址信息。
+        # @param ReadWriteAddress: 云盘版实例的读写地址信息。
         # @type ReadWriteAddress: :class:`Tencentcloud::Cdb.v20170320.models.AddressInfo`
-        # @param ReadOnlyAddress: 集群只读地址信息。
+        # @param ReadOnlyAddress: 云盘版实例的只读地址信息。
         # @type ReadOnlyAddress: Array
-        # @param NodeList: 集群节点列表信息。
+        # @param NodeList: 云盘版实例的节点列表信息。
         # @type NodeList: Array
         # @param ReadonlyLimit: 只读空间保护阈值,单位GB
         # @type ReadonlyLimit: Integer

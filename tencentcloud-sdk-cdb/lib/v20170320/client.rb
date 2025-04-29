@@ -173,7 +173,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（CheckMigrateCluster）用于高可用实例一键迁移到集群版校验。
+        # 本接口（CheckMigrateCluster）用于高可用实例一键迁移到云盘版校验。
 
         # @param request: Request instance for CheckMigrateCluster.
         # @type request: :class:`Tencentcloud::cdb::V20170320::CheckMigrateClusterRequest`
@@ -1587,7 +1587,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（DescribeClusterInfo）用于查询集群版实例信息。
+        # 本接口（DescribeClusterInfo）用于查询云盘版实例信息。
 
         # @param request: Request instance for DescribeClusterInfo.
         # @type request: :class:`Tencentcloud::cdb::V20170320::DescribeClusterInfoRequest`

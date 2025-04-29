@@ -2825,6 +2825,7 @@ module TencentCloud
         # <li>template-type</li>按照【防火墙模板的类型】进行过滤。
         # 类型：String
         # 必选：否
+        # 取值: "PRIVATE"(个人模版)
         # 每次请求的 Filters 的上限为 10，Filter.Values 的上限为 100。参数不支持同时指定 TemplateIds 和 Filters。
         # @type Filters: Array
         # @param Offset: 偏移量，默认为 0。

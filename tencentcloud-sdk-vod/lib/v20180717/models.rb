@@ -11509,6 +11509,7 @@ module TencentCloud
         # <li>Transcode: 转码，包含普通转码、极速高清和视频编辑（不推荐使用）</li>
         # <li>VoiceTranslation: 语音翻译</li>
         # <li>JITTranscoding: 即时转码</li>
+        # <li>VideoSnapshot: 视频截图</li>
         # @type Type: String
 
         attr_accessor :StartTime, :EndTime, :SubAppId, :Type
@@ -27304,6 +27305,7 @@ module TencentCloud
         # <li>Transcode: 转码，包含普通转码、极速高清和视频编辑（不推荐使用）</li>
         # <li>VoiceTranslation: 语音翻译</li>
         # <li>JITTranscoding: 即时转码</li>
+        # <li>VideoSnapshot: 视频截图</li>
         # @type TaskType: String
         # @param Summary: 任务数统计数据概览，用量单位为秒。
         # @type Summary: Array
@@ -27367,6 +27369,10 @@ module TencentCloud
         # <li>JITTranscoding.H264.2K: H.264编码方式2K即时转码</li>
         # <li>JITTranscoding.Audio: 音频即时转码</li>
         # <li>JITTranscoding.Copy: 转封装即时转码</li>
+        # 视频截图规格：
+        # <li>SnapshotByTimeOffset: 时间点截图</li>
+        # <li>SampleSnapshot: 采样截图</li>
+        # <li>ImageSprite: 雪碧图</li>
         # @type Details: Array
 
         attr_accessor :TaskType, :Summary, :Details

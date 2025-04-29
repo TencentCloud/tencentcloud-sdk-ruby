@@ -123,10 +123,8 @@ module TencentCloud
       class CreateGatewayLoadBalancerResponse < TencentCloud::Common::AbstractModel
         # @param LoadBalancerIds: 由网关负载均衡实例唯一 ID 组成的数组。
         # 存在某些场景，如创建出现延迟时，此字段可能返回为空；此时可以根据接口返回的RequestId或DealName参数，通过[DescribeTaskStatus](https://cloud.tencent.com/document/api/1782/111700)接口查询创建的资源ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LoadBalancerIds: Array
         # @param DealName: 订单号。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DealName: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -892,10 +890,8 @@ module TencentCloud
       # 描述了单项的价格信息
       class ItemPrice < TencentCloud::Common::AbstractModel
         # @param UnitPrice: 后付费单价，单位：元。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UnitPrice: Float
         # @param ChargeUnit: 后付费计价单元，可取值范围： HOUR：表示计价单元是按每小时来计算。当前涉及该计价单元的场景有：实例按小时后付费（POSTPAID_BY_HOUR）。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ChargeUnit: String
         # @param OriginalPrice: 预支费用的原价，单位：元。
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -904,10 +900,8 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DiscountPrice: Float
         # @param UnitPriceDiscount: 后付费的折扣单价，单位:元。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UnitPriceDiscount: Float
         # @param Discount: 折扣，如20.0代表2折。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Discount: Float
 
         attr_accessor :UnitPrice, :ChargeUnit, :OriginalPrice, :DiscountPrice, :UnitPriceDiscount, :Discount
@@ -1064,10 +1058,8 @@ module TencentCloud
       # 表示网关负载均衡的价格
       class Price < TencentCloud::Common::AbstractModel
         # @param InstancePrice: 描述了实例价格。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstancePrice: :class:`Tencentcloud::Gwlb.v20240906.models.ItemPrice`
         # @param LcuPrice: 描述了GLCU的价格。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LcuPrice: :class:`Tencentcloud::Gwlb.v20240906.models.ItemPrice`
 
         attr_accessor :InstancePrice, :LcuPrice
@@ -1185,16 +1177,12 @@ module TencentCloud
         # @param Weight: 后端服务的转发权重，取值为0或16
         # @type Weight: Integer
         # @param PublicIpAddresses: 后端服务的外网 IP
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PublicIpAddresses: Array
         # @param PrivateIpAddresses: 后端服务的内网 IP
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PrivateIpAddresses: Array
         # @param InstanceName: 后端服务的实例名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceName: String
         # @param RegisteredTime: 后端服务被绑定的时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RegisteredTime: String
         # @param EniId: 弹性网卡唯一ID
         # 注意：此字段可能返回 null，表示取不到有效值。

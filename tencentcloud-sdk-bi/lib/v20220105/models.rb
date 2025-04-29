@@ -1683,16 +1683,19 @@ module TencentCloud
         # @type IsFilterPerAuthUser: Boolean
         # @param IsFilterCurrentUser: 是否过滤掉当前用户
         # @type IsFilterCurrentUser: Boolean
+        # @param Keyword: 关键字
+        # @type Keyword: String
 
-        attr_accessor :ProjectId, :AllPage, :PageNo, :PageSize, :IsFilterPerAuthUser, :IsFilterCurrentUser
+        attr_accessor :ProjectId, :AllPage, :PageNo, :PageSize, :IsFilterPerAuthUser, :IsFilterCurrentUser, :Keyword
 
-        def initialize(projectid=nil, allpage=nil, pageno=nil, pagesize=nil, isfilterperauthuser=nil, isfiltercurrentuser=nil)
+        def initialize(projectid=nil, allpage=nil, pageno=nil, pagesize=nil, isfilterperauthuser=nil, isfiltercurrentuser=nil, keyword=nil)
           @ProjectId = projectid
           @AllPage = allpage
           @PageNo = pageno
           @PageSize = pagesize
           @IsFilterPerAuthUser = isfilterperauthuser
           @IsFilterCurrentUser = isfiltercurrentuser
+          @Keyword = keyword
         end
 
         def deserialize(params)
@@ -1702,6 +1705,7 @@ module TencentCloud
           @PageSize = params['PageSize']
           @IsFilterPerAuthUser = params['IsFilterPerAuthUser']
           @IsFilterCurrentUser = params['IsFilterCurrentUser']
+          @Keyword = params['Keyword']
         end
       end
 

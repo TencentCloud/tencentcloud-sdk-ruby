@@ -17779,7 +17779,9 @@ module TencentCloud
         # @type ProjectId: String
         # @param InstanceKey: **实例唯一标识**
         # @type InstanceKey: String
-        # @param LifeRoundNum: 生命周期编号
+        # @param LifeRoundNum: **实例生命周期编号，标识实例的某一次执行**
+
+        # 例如：周期实例第一次运行的编号为0，用户后期又重跑了该实例，第二次执行的编号为1
         # @type LifeRoundNum: Integer
         # @param ScheduleTimeZone: **时区**
         # timeZone, 默认UTC+8
@@ -17809,10 +17811,15 @@ module TencentCloud
         # @param EndLineCount: **获取日志的结束行 行号**
         # 默认 10000
         # @type EndLineCount: Integer
+        # @param ExtInfo: **分页查询日志时使用，无具体业务含义**
 
-        attr_accessor :ProjectId, :InstanceKey, :LifeRoundNum, :ScheduleTimeZone, :BrokerIp, :OriginFileName, :ExecutionJobId, :LogLevel, :StartLineNum, :EndLineCount
+        # 第一次查询时值为null
+        # 第二次及以后查询时使用上一次查询返回信息中的ExtInfo字段值即可
+        # @type ExtInfo: String
 
-        def initialize(projectid=nil, instancekey=nil, liferoundnum=nil, scheduletimezone=nil, brokerip=nil, originfilename=nil, executionjobid=nil, loglevel=nil, startlinenum=nil, endlinecount=nil)
+        attr_accessor :ProjectId, :InstanceKey, :LifeRoundNum, :ScheduleTimeZone, :BrokerIp, :OriginFileName, :ExecutionJobId, :LogLevel, :StartLineNum, :EndLineCount, :ExtInfo
+
+        def initialize(projectid=nil, instancekey=nil, liferoundnum=nil, scheduletimezone=nil, brokerip=nil, originfilename=nil, executionjobid=nil, loglevel=nil, startlinenum=nil, endlinecount=nil, extinfo=nil)
           @ProjectId = projectid
           @InstanceKey = instancekey
           @LifeRoundNum = liferoundnum
@@ -17823,6 +17830,7 @@ module TencentCloud
           @LogLevel = loglevel
           @StartLineNum = startlinenum
           @EndLineCount = endlinecount
+          @ExtInfo = extinfo
         end
 
         def deserialize(params)
@@ -17836,6 +17844,7 @@ module TencentCloud
           @LogLevel = params['LogLevel']
           @StartLineNum = params['StartLineNum']
           @EndLineCount = params['EndLineCount']
+          @ExtInfo = params['ExtInfo']
         end
       end
 
@@ -18368,7 +18377,9 @@ module TencentCloud
         # @param TotalRunNum: 累计运行次数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalRunNum: Integer
-        # @param LifeRoundNum: 生命周期编号
+        # @param LifeRoundNum: **实例生命周期编号，标识实例的某一次执行**
+
+        # 例如：周期实例第一次运行的编号为0，用户后期又重跑了该实例，第二次的执行的编号为1
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LifeRoundNum: Integer
         # @param InstanceType: **实例类型**
@@ -18654,7 +18665,9 @@ module TencentCloud
         # - [2] 表示 成功
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceState: Integer
-        # @param LifeRoundNum: 生命周期编号
+        # @param LifeRoundNum: **实例生命周期编号，标识实例的某一次执行**
+
+        # 例如：周期实例第一次运行的编号为0，用户后期又重跑了该实例，第二次执行的编号为1
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LifeRoundNum: Integer
         # @param RunType: **实例运行触发类型**
@@ -18682,6 +18695,8 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CodeFileName: String
         # @param ExecutionJobId: **下发执行ID**
+        # 统一执行平台下发执行到新版执行机标识某次执行的唯一ID，存量老执行机下发执行没有此ID。
+        # 如果不知道执行机版本是否支持此ID，可以联系腾讯云运维同学
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExecutionJobId: String
         # @param BrokerIp: 日志所在执行节点
@@ -18765,7 +18780,7 @@ module TencentCloud
         # - FAILED 表示 终态-失败重试
         # - EXPIRED 表示 终态-失败
         # - SKIP_RUNNING 表示 终态-被上游分支节点跳过的分支
-        # - HISTORY 表示 兼容历史实例
+        # - HISTORY 表示 兼容2024-03-30之前的历史实例，之后实例无需关注次枚举类型
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DetailState: String
         # @param EndTime: 该状态结束时间
@@ -19154,7 +19169,10 @@ module TencentCloud
         # @param LineCount: **本次查询返回的日志行数**
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LineCount: Integer
-        # @param ExtInfo: 执行平台日志分页查询参数, 每次请求透明传入。第一页查询时值为空字符串
+        # @param ExtInfo: **分页查询日志时使用，无具体业务含义**
+
+        # 第一次查询时值为null
+        # 第二次及以后查询时使用上一次查询返回信息中的ExtInfo字段值即可
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExtInfo: String
         # @param IsEnd: 日志分页查询，是否最后一页
@@ -20933,10 +20951,10 @@ module TencentCloud
       class ListInstancesRequest < TencentCloud::Common::AbstractModel
         # @param ProjectId: **项目ID**
         # @type ProjectId: String
-        # @param ScheduleTimeFrom: **实例计划调度时间**
+        # @param ScheduleTimeFrom: **实例计划调度时间过滤条件**
         # 过滤起始时间，时间格式为 yyyy-MM-dd HH:mm:ss
         # @type ScheduleTimeFrom: String
-        # @param ScheduleTimeTo: **实例计划调度时间**
+        # @param ScheduleTimeTo: **实例计划调度时间过滤条件**
         # 过滤截止时间，时间格式为 yyyy-MM-dd HH:mm:ss
         # @type ScheduleTimeTo: String
         # @param PageNumber: **页码，整型**
@@ -20947,10 +20965,10 @@ module TencentCloud
         # @type PageSize: Integer
         # @param SortColumn: **查询结果排序字段**
 
-        # - SCHEDULE_DATE 表示 计划调度时间
-        # - START_TIME 表示 实例开始执行时间
-        # - END_TIME 表示 实例结束执行时间
-        # - COST_TIME 表示 实例执行时长
+        # - SCHEDULE_DATE 表示 根据计划调度时间排序
+        # - START_TIME 表示 根据实例开始执行时间排序
+        # - END_TIME 表示 根据实例结束执行时间排序
+        # - COST_TIME 表示 根据实例执行时长排序
         # @type SortColumn: String
         # @param SortType: **实例排序方式**
 
@@ -21010,10 +21028,10 @@ module TencentCloud
         # 可以通过接口 DescribeNormalSchedulerExecutorGroups 获取项目下的所有调度资源组列表
         # 可以通过接口 DescribeNormalIntegrationExecutorGroups 获取项目下的所有集成资源组列表
         # @type ExecutorGroupIdList: Array
-        # @param StartTimeFrom: **开始时间**
+        # @param StartTimeFrom: **实例执行开始时间过滤条件**
         # 过滤起始时间，时间格式为 yyyy-MM-dd HH:mm:ss
         # @type StartTimeFrom: String
-        # @param StartTimeTo: **开始时间**
+        # @param StartTimeTo: **实例执行开始时间过滤条件**
         # 过滤截止时间，时间格式为 yyyy-MM-dd HH:mm:ss
         # @type StartTimeTo: String
         # @param ScheduleTimeZone: **时区**

@@ -2959,12 +2959,10 @@ module TencentCloud
       # CVM和IP信息
       class CvmAndIpInfo < TencentCloud::Common::AbstractModel
         # @param CkafkaInstanceId: ckafka集群实例Id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CkafkaInstanceId: String
         # @param InstanceId: CVM实例ID
         # @type InstanceId: String
         # @param Ip: IP地址
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Ip: String
 
         attr_accessor :CkafkaInstanceId, :InstanceId, :Ip
@@ -8484,10 +8482,8 @@ module TencentCloud
       # CVM和IP 信息列表
       class ListCvmAndIpInfoRsp < TencentCloud::Common::AbstractModel
         # @param CvmList: cvm和IP 列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CvmList: Array
         # @param TotalCount: 实例数据量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
 
         attr_accessor :CvmList, :TotalCount

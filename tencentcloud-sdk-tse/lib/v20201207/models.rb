@@ -564,10 +564,12 @@ module TencentCloud
         # @type SlaveZoneName: String
         # @param NetworkId: 网络 id
         # @type NetworkId: String
+        # @param IPV6FullChain: 是否为新 ipv6 CLB
+        # @type IPV6FullChain: Boolean
 
-        attr_accessor :ConsoleType, :HttpUrl, :HttpsUrl, :NetType, :AdminUser, :AdminPassword, :Status, :AccessControl, :SubnetId, :VpcId, :Description, :SlaType, :SlaName, :Vip, :InternetMaxBandwidthOut, :MultiZoneFlag, :MasterZoneId, :SlaveZoneId, :MasterZoneName, :SlaveZoneName, :NetworkId
+        attr_accessor :ConsoleType, :HttpUrl, :HttpsUrl, :NetType, :AdminUser, :AdminPassword, :Status, :AccessControl, :SubnetId, :VpcId, :Description, :SlaType, :SlaName, :Vip, :InternetMaxBandwidthOut, :MultiZoneFlag, :MasterZoneId, :SlaveZoneId, :MasterZoneName, :SlaveZoneName, :NetworkId, :IPV6FullChain
 
-        def initialize(consoletype=nil, httpurl=nil, httpsurl=nil, nettype=nil, adminuser=nil, adminpassword=nil, status=nil, accesscontrol=nil, subnetid=nil, vpcid=nil, description=nil, slatype=nil, slaname=nil, vip=nil, internetmaxbandwidthout=nil, multizoneflag=nil, masterzoneid=nil, slavezoneid=nil, masterzonename=nil, slavezonename=nil, networkid=nil)
+        def initialize(consoletype=nil, httpurl=nil, httpsurl=nil, nettype=nil, adminuser=nil, adminpassword=nil, status=nil, accesscontrol=nil, subnetid=nil, vpcid=nil, description=nil, slatype=nil, slaname=nil, vip=nil, internetmaxbandwidthout=nil, multizoneflag=nil, masterzoneid=nil, slavezoneid=nil, masterzonename=nil, slavezonename=nil, networkid=nil, ipv6fullchain=nil)
           @ConsoleType = consoletype
           @HttpUrl = httpurl
           @HttpsUrl = httpsurl
@@ -589,6 +591,7 @@ module TencentCloud
           @MasterZoneName = masterzonename
           @SlaveZoneName = slavezonename
           @NetworkId = networkid
+          @IPV6FullChain = ipv6fullchain
         end
 
         def deserialize(params)
@@ -616,6 +619,7 @@ module TencentCloud
           @MasterZoneName = params['MasterZoneName']
           @SlaveZoneName = params['SlaveZoneName']
           @NetworkId = params['NetworkId']
+          @IPV6FullChain = params['IPV6FullChain']
         end
       end
 
@@ -10313,10 +10317,14 @@ module TencentCloud
         # @type DefaultWeight: Integer
         # @param ElasticNumber: 弹性节点
         # @type ElasticNumber: Integer
+        # @param SupportTOA: 是否支持TOA
+        # @type SupportTOA: Boolean
+        # @param SupportIPV6: 是否支持IPV6
+        # @type SupportIPV6: Boolean
 
-        attr_accessor :GroupId, :Name, :Description, :NodeConfig, :Status, :CreateTime, :IsFirstGroup, :BindingStrategy, :GatewayId, :InternetMaxBandwidthOut, :ModifyTime, :SubnetIds, :DefaultWeight, :ElasticNumber
+        attr_accessor :GroupId, :Name, :Description, :NodeConfig, :Status, :CreateTime, :IsFirstGroup, :BindingStrategy, :GatewayId, :InternetMaxBandwidthOut, :ModifyTime, :SubnetIds, :DefaultWeight, :ElasticNumber, :SupportTOA, :SupportIPV6
 
-        def initialize(groupid=nil, name=nil, description=nil, nodeconfig=nil, status=nil, createtime=nil, isfirstgroup=nil, bindingstrategy=nil, gatewayid=nil, internetmaxbandwidthout=nil, modifytime=nil, subnetids=nil, defaultweight=nil, elasticnumber=nil)
+        def initialize(groupid=nil, name=nil, description=nil, nodeconfig=nil, status=nil, createtime=nil, isfirstgroup=nil, bindingstrategy=nil, gatewayid=nil, internetmaxbandwidthout=nil, modifytime=nil, subnetids=nil, defaultweight=nil, elasticnumber=nil, supporttoa=nil, supportipv6=nil)
           @GroupId = groupid
           @Name = name
           @Description = description
@@ -10331,6 +10339,8 @@ module TencentCloud
           @SubnetIds = subnetids
           @DefaultWeight = defaultweight
           @ElasticNumber = elasticnumber
+          @SupportTOA = supporttoa
+          @SupportIPV6 = supportipv6
         end
 
         def deserialize(params)
@@ -10354,6 +10364,8 @@ module TencentCloud
           @SubnetIds = params['SubnetIds']
           @DefaultWeight = params['DefaultWeight']
           @ElasticNumber = params['ElasticNumber']
+          @SupportTOA = params['SupportTOA']
+          @SupportIPV6 = params['SupportIPV6']
         end
       end
 

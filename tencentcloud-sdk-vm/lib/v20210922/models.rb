@@ -379,7 +379,7 @@ module TencentCloud
         # @type Type: String
         # @param Tasks: 输入的任务信息，最多可以同时创建10个任务
         # @type Tasks: Array
-        # @param Seed: 验证签名参数，具体可以参考[验签说明](https://cloud.tencent.com/document/product/1265/104001#42dd87d2-580f-46cf-a953-639a787d1eda)。
+        # @param Seed: 可选参数，该字段表示回调签名的key信息，用于保证数据的安全性。 签名方法为在返回的HTTP头部添加 X-Signature 的字段，值为： seed + body 的 SHA256 编码和Hex字符串，在收到回调数据后，可以根据返回的body，用 **sha256(seed + body)**, 计算出 `X-Signature` 进行验证。<br>具体使用实例可参考 [回调签名示例](https://cloud.tencent.com/document/product/1265/104001#42dd87d2-580f-46cf-a953-639a787d1eda)。
         # @type Seed: String
         # @param CallbackUrl: 接收审核信息回调地址。如果设置了该字段，在审核过程中发现违规音频片段和画面截帧结果将发送至该接口。更多详情请参阅[回调配置说明](https://cloud.tencent.com/document/product/1265/104001)。
         # @type CallbackUrl: String
@@ -1259,7 +1259,7 @@ module TencentCloud
         end
       end
 
-      #  数据存储信息
+      # 数据存储信息
       class StorageInfo < TencentCloud::Common::AbstractModel
         # @param Type: 类型 可选：
         # URL 资源链接类型

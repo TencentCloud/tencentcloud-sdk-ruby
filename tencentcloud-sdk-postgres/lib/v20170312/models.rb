@@ -1079,6 +1079,8 @@ module TencentCloud
         # @param KMSRegion: 使用KMS服务的地域，KMSRegion为空默认使用本地域的KMS，本地域不支持的情况下需自选其他KMS支持的地域。
         # KMSRegion相关介绍参考[开启透明数据加密](https://cloud.tencent.com/document/product/409/71749)
         # @type KMSRegion: String
+        # @param KMSClusterId: 指定KMS服务的集群，KMSClusterId为空使用默认集群的KMS，若选择指定KMS集群，则需要传入KMSClusterId。 KMSClusterId相关介绍参考开启透明数据加密
+        # @type KMSClusterId: String
         # @param DBEngine: 数据库引擎，支持：
         # <li>postgresql：云数据库PostgreSQL</li>
         # <li>mssql_compatible：MSSQL兼容-云数据库PostgreSQL</li>
@@ -1105,9 +1107,9 @@ module TencentCloud
         # 默认值：0
         # @type NeedSupportIpv6: Integer
 
-        attr_accessor :Zone, :SpecCode, :Storage, :InstanceCount, :Period, :Charset, :AdminName, :AdminPassword, :DBMajorVersion, :DBVersion, :DBKernelVersion, :InstanceChargeType, :VpcId, :SubnetId, :DBNodeSet, :AutoRenewFlag, :AutoVoucher, :VoucherIds, :ProjectId, :ActivityId, :Name, :TagList, :SecurityGroupIds, :NeedSupportTDE, :KMSKeyId, :KMSRegion, :DBEngine, :DBEngineConfig, :SyncMode, :NeedSupportIpv6
+        attr_accessor :Zone, :SpecCode, :Storage, :InstanceCount, :Period, :Charset, :AdminName, :AdminPassword, :DBMajorVersion, :DBVersion, :DBKernelVersion, :InstanceChargeType, :VpcId, :SubnetId, :DBNodeSet, :AutoRenewFlag, :AutoVoucher, :VoucherIds, :ProjectId, :ActivityId, :Name, :TagList, :SecurityGroupIds, :NeedSupportTDE, :KMSKeyId, :KMSRegion, :KMSClusterId, :DBEngine, :DBEngineConfig, :SyncMode, :NeedSupportIpv6
 
-        def initialize(zone=nil, speccode=nil, storage=nil, instancecount=nil, period=nil, charset=nil, adminname=nil, adminpassword=nil, dbmajorversion=nil, dbversion=nil, dbkernelversion=nil, instancechargetype=nil, vpcid=nil, subnetid=nil, dbnodeset=nil, autorenewflag=nil, autovoucher=nil, voucherids=nil, projectid=nil, activityid=nil, name=nil, taglist=nil, securitygroupids=nil, needsupporttde=nil, kmskeyid=nil, kmsregion=nil, dbengine=nil, dbengineconfig=nil, syncmode=nil, needsupportipv6=nil)
+        def initialize(zone=nil, speccode=nil, storage=nil, instancecount=nil, period=nil, charset=nil, adminname=nil, adminpassword=nil, dbmajorversion=nil, dbversion=nil, dbkernelversion=nil, instancechargetype=nil, vpcid=nil, subnetid=nil, dbnodeset=nil, autorenewflag=nil, autovoucher=nil, voucherids=nil, projectid=nil, activityid=nil, name=nil, taglist=nil, securitygroupids=nil, needsupporttde=nil, kmskeyid=nil, kmsregion=nil, kmsclusterid=nil, dbengine=nil, dbengineconfig=nil, syncmode=nil, needsupportipv6=nil)
           @Zone = zone
           @SpecCode = speccode
           @Storage = storage
@@ -1134,6 +1136,7 @@ module TencentCloud
           @NeedSupportTDE = needsupporttde
           @KMSKeyId = kmskeyid
           @KMSRegion = kmsregion
+          @KMSClusterId = kmsclusterid
           @DBEngine = dbengine
           @DBEngineConfig = dbengineconfig
           @SyncMode = syncmode
@@ -1181,6 +1184,7 @@ module TencentCloud
           @NeedSupportTDE = params['NeedSupportTDE']
           @KMSKeyId = params['KMSKeyId']
           @KMSRegion = params['KMSRegion']
+          @KMSClusterId = params['KMSClusterId']
           @DBEngine = params['DBEngine']
           @DBEngineConfig = params['DBEngineConfig']
           @SyncMode = params['SyncMode']
@@ -1694,12 +1698,10 @@ module TencentCloud
         # @param DBInstanceClass: 售卖规格ID
         # @type DBInstanceClass: String
         # @param DBMajorVersion: PostgreSQL大版本号，版本信息可从[DescribeDBVersions](https://cloud.tencent.com/document/api/409/89018)获取，目前支持10，11，12，13，14，15这几个大版本。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DBMajorVersion: String
         # @param DBVersion: PostgreSQL社区大版本+小版本号，如12.4，版本信息可从[DescribeDBVersions](https://cloud.tencent.com/document/api/409/89018)获取。
         # @type DBVersion: String
         # @param DBKernelVersion: PostgreSQL内核版本号，如v12.7_r1.8，版本信息可从[DescribeDBVersions](https://cloud.tencent.com/document/api/409/89018)获取。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DBKernelVersion: String
         # @param DBInstanceType: 实例类型，类型有：
         # <li>primary：主实例</li>
@@ -1741,19 +1743,14 @@ module TencentCloud
         # @param ProjectId: 项目ID。
         # @type ProjectId: Integer
         # @param TagList: 实例绑定的标签信息。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TagList: Array
         # @param MasterDBInstanceId: 主实例信息，仅在实例为只读实例时返回。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MasterDBInstanceId: String
         # @param ReadOnlyInstanceNum: 只读实例数量。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReadOnlyInstanceNum: Integer
         # @param StatusInReadonlyGroup: 只读实例在只读组中的状态。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StatusInReadonlyGroup: String
         # @param OfflineTime: 下线时间。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OfflineTime: String
         # @param DBNodeSet: 实例的节点信息。
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -1763,13 +1760,11 @@ module TencentCloud
         # <li>1：支持</li>
         # 默认值：0
         # TDE数据加密可参考[数据透明加密概述](https://cloud.tencent.com/document/product/409/71748)
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsSupportTDE: Integer
         # @param DBEngine: 数据库引擎，支持：
         # <li>postgresql：云数据库PostgreSQL</li>
         # <li>mssql_compatible：MSSQL兼容-云数据库PostgreSQL</li>
         # 默认值：postgresql
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DBEngine: String
         # @param DBEngineConfig: 数据库引擎的配置信息，配置格式如下：
         # {"$key1":"$value1", "$key2":"$value2"}
@@ -1779,7 +1774,6 @@ module TencentCloud
         # <li>defaultLocale：排序区域规则，可选参数，在初始化后不可修改，默认为en_US，可选值如下：
         # "af_ZA", "sq_AL", "ar_DZ", "ar_BH", "ar_EG", "ar_IQ", "ar_JO", "ar_KW", "ar_LB", "ar_LY", "ar_MA", "ar_OM", "ar_QA", "ar_SA", "ar_SY", "ar_TN", "ar_AE", "ar_YE", "hy_AM", "az_Cyrl_AZ", "az_Latn_AZ", "eu_ES", "be_BY", "bg_BG", "ca_ES", "zh_HK", "zh_MO", "zh_CN", "zh_SG", "zh_TW", "hr_HR", "cs_CZ", "da_DK", "nl_BE", "nl_NL", "en_AU", "en_BZ", "en_CA", "en_IE", "en_JM", "en_NZ", "en_PH", "en_ZA", "en_TT", "en_GB", "en_US", "en_ZW", "et_EE", "fo_FO", "fa_IR", "fi_FI", "fr_BE", "fr_CA", "fr_FR", "fr_LU", "fr_MC", "fr_CH", "mk_MK", "ka_GE", "de_AT", "de_DE", "de_LI", "de_LU", "de_CH", "el_GR", "gu_IN", "he_IL", "hi_IN", "hu_HU", "is_IS", "id_ID", "it_IT", "it_CH", "ja_JP", "kn_IN", "kok_IN", "ko_KR", "ky_KG", "lv_LV", "lt_LT", "ms_BN", "ms_MY", "mr_IN", "mn_MN", "nb_NO", "nn_NO", "pl_PL", "pt_BR", "pt_PT", "pa_IN", "ro_RO", "ru_RU", "sa_IN", "sr_Cyrl_RS", "sr_Latn_RS", "sk_SK", "sl_SI", "es_AR", "es_BO", "es_CL", "es_CO", "es_CR", "es_DO", "es_EC", "es_SV", "es_GT", "es_HN", "es_MX", "es_NI", "es_PA", "es_PY","es_PE", "es_PR", "es_ES", "es_TRADITIONAL", "es_UY", "es_VE", "sw_KE", "sv_FI", "sv_SE", "tt_RU", "te_IN", "th_TH", "tr_TR", "uk_UA", "ur_IN", "ur_PK", "uz_Cyrl_UZ", "uz_Latn_UZ", "vi_VN"。</li>
         # <li>serverCollationName：排序规则名称，可选参数，在初始化后不可修改，默认为sql_latin1_general_cp1_ci_as，可选值如下："bbf_unicode_general_ci_as", "bbf_unicode_cp1_ci_as", "bbf_unicode_CP1250_ci_as", "bbf_unicode_CP1251_ci_as", "bbf_unicode_cp1253_ci_as", "bbf_unicode_cp1254_ci_as", "bbf_unicode_cp1255_ci_as", "bbf_unicode_cp1256_ci_as", "bbf_unicode_cp1257_ci_as", "bbf_unicode_cp1258_ci_as", "bbf_unicode_cp874_ci_as", "sql_latin1_general_cp1250_ci_as", "sql_latin1_general_cp1251_ci_as", "sql_latin1_general_cp1_ci_as", "sql_latin1_general_cp1253_ci_as", "sql_latin1_general_cp1254_ci_as", "sql_latin1_general_cp1255_ci_as","sql_latin1_general_cp1256_ci_as", "sql_latin1_general_cp1257_ci_as", "sql_latin1_general_cp1258_ci_as", "chinese_prc_ci_as", "cyrillic_general_ci_as", "finnish_swedish_ci_as", "french_ci_as", "japanese_ci_as", "korean_wansung_ci_as", "latin1_general_ci_as", "modern_spanish_ci_as", "polish_ci_as", "thai_ci_as", "traditional_spanish_ci_as", "turkish_ci_as", "ukrainian_ci_as", "vietnamese_ci_as"。</li>
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DBEngineConfig: String
         # @param NetworkAccessList: 实例网络信息列表（此字段已废弃）
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -3782,7 +3776,6 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ObjectSet: Array
         # @param TotalCount: 查询对象总数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4213,25 +4206,19 @@ module TencentCloud
       # DescribeParameterTemplateAttributes返回参数结构体
       class DescribeParameterTemplateAttributesResponse < TencentCloud::Common::AbstractModel
         # @param TemplateId: 参数模板ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TemplateId: String
         # @param TotalCount: 参数模板包含的参数个数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
         # @param ParamInfoSet: 参数模板包含的参数信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ParamInfoSet: Array
         # @param TemplateName: 参数模板名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TemplateName: String
         # @param DBMajorVersion: 参数模板适用的数据库版本
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DBMajorVersion: String
         # @param DBEngine: 参数模板适用的数据库引擎
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DBEngine: String
         # @param TemplateDescription: 参数模板描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TemplateDescription: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5041,16 +5028,19 @@ module TencentCloud
         # @type KeyRegion: String
         # @param CreateTime: DEK密钥创建时间。
         # @type CreateTime: String
+        # @param KMSClusterId: 密钥所在的KMS服务集群Id，为空表示密钥在默认的KMS集群中，不为空表示在指定的KMS服务集群中
+        # @type KMSClusterId: String
 
-        attr_accessor :KeyId, :KeyAlias, :DEKCipherTextBlob, :IsEnabled, :KeyRegion, :CreateTime
+        attr_accessor :KeyId, :KeyAlias, :DEKCipherTextBlob, :IsEnabled, :KeyRegion, :CreateTime, :KMSClusterId
 
-        def initialize(keyid=nil, keyalias=nil, dekciphertextblob=nil, isenabled=nil, keyregion=nil, createtime=nil)
+        def initialize(keyid=nil, keyalias=nil, dekciphertextblob=nil, isenabled=nil, keyregion=nil, createtime=nil, kmsclusterid=nil)
           @KeyId = keyid
           @KeyAlias = keyalias
           @DEKCipherTextBlob = dekciphertextblob
           @IsEnabled = isenabled
           @KeyRegion = keyregion
           @CreateTime = createtime
+          @KMSClusterId = kmsclusterid
         end
 
         def deserialize(params)
@@ -5060,6 +5050,7 @@ module TencentCloud
           @IsEnabled = params['IsEnabled']
           @KeyRegion = params['KeyRegion']
           @CreateTime = params['CreateTime']
+          @KMSClusterId = params['KMSClusterId']
         end
       end
 
@@ -5638,10 +5629,12 @@ module TencentCloud
         # @param VpcRestrictionEffect: vpc限制效力，ALLOW 允许；DENY 拒绝。
         # @type VpcRestrictionEffect: String
         # @param VpcIdSet: 允许或拒绝下载备份文件的vpcId列表。
+        # **注意：**该入参会全量替换存量已有集合，非增量更新。修改需传入预期的全量集合。
         # @type VpcIdSet: Array
         # @param IpRestrictionEffect: ip限制效力，ALLOW 允许；DENY 拒绝。
         # @type IpRestrictionEffect: String
         # @param IpSet: 允许或拒绝下载备份文件的ip列表。
+        # **注意：**该入参会全量替换存量已有集合，非增量更新。修改需传入预期的全量集合。
         # @type IpSet: Array
 
         attr_accessor :RestrictionType, :VpcRestrictionEffect, :VpcIdSet, :IpRestrictionEffect, :IpSet
@@ -6137,6 +6130,7 @@ module TencentCloud
       class ModifyDBInstanceSecurityGroupsRequest < TencentCloud::Common::AbstractModel
         # @param SecurityGroupIdSet: 实例或只读组要绑定的安全组列表。
         # 安全组信息可以通过调用 [DescribeSecurityGroups](https://cloud.tencent.com/document/api/215/15808) 的返回值中的sgId字段来查询。
+        # **注意：**该入参会全量替换存量已有集合，非增量更新。修改需传入预期的全量集合。
         # @type SecurityGroupIdSet: Array
         # @param DBInstanceId: 实例ID，DBInstanceId和ReadOnlyGroupId至少传一个；如果都传，忽略ReadOnlyGroupId
         # @type DBInstanceId: String
@@ -6817,61 +6811,44 @@ module TencentCloud
       # 参数详情
       class ParamInfo < TencentCloud::Common::AbstractModel
         # @param ID: 参数ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ID: Integer
         # @param Name: 参数名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param ParamValueType: 参数值类型：integer（整型）、real（浮点型）、bool（布尔型）、enum（枚举类型）、mutil_enum（枚举类型、支持多选）。
         # 当参数类型为integer（整型）、real（浮点型）时，参数的取值范围根据返回值的Max、Min确定；
         # 当参数类型为bool（布尔型）时，参数设置值取值范围是true | false；
         # 当参数类型为enum（枚举类型）、mutil_enum（多枚举类型）时，参数的取值范围由返回值中的EnumValue确定。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ParamValueType: String
         # @param Unit: 参数值 单位。参数没有单位时，该字段返回空
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Unit: String
         # @param DefaultValue: 参数默认值。以字符串形式返回
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DefaultValue: String
         # @param CurrentValue: 参数当前运行值。以字符串形式返回
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CurrentValue: String
         # @param Max: 数值类型（integer、real）参数，取值下界
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Max: Float
         # @param EnumValue: 枚举类型参数，取值范围
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EnumValue: Array
         # @param Min: 数值类型（integer、real）参数，取值上界
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Min: Float
         # @param ParamDescriptionCH: 参数中文描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ParamDescriptionCH: String
         # @param ParamDescriptionEN: 参数英文描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ParamDescriptionEN: String
         # @param NeedReboot: 参数修改，是否重启生效。（true为需要，false为不需要）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NeedReboot: Boolean
         # @param ClassificationCN: 参数中文分类
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClassificationCN: String
         # @param ClassificationEN: 参数英文分类
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClassificationEN: String
         # @param SpecRelated: 是否和规格相关。（true为相关，false为不想关）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SpecRelated: Boolean
         # @param Advanced: 是否为重点参数。（true为重点参数，修改是需要重点关注，可能会影响实例性能）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Advanced: Boolean
         # @param LastModifyTime: 参数最后一次修改时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LastModifyTime: String
         # @param StandbyRelated: 参数主备制约，0：无主备制约关系，1:备机参数值需比主机大，2:主机参数值需比备机大
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StandbyRelated: Integer
         # @param VersionRelationSet: 参数版本关联信息，内容为相应内核版本下的参数详细信息
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -6946,22 +6923,16 @@ module TencentCloud
       # 各规格下的参数信息
       class ParamSpecRelation < TencentCloud::Common::AbstractModel
         # @param Name: 参数名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Memory: 参数信息所属规格
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Memory: String
         # @param Value: 参数在该规格下的默认值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: String
         # @param Unit: 参数值单位。参数没有单位时，该字段返回空
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Unit: String
         # @param Max: 数值类型（integer、real）参数，取值上界
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Max: Float
         # @param Min: 数值类型（integer、real）参数，取值下界
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Min: Float
         # @param EnumValue: 枚举类型参数，取值范围
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -6993,22 +6964,16 @@ module TencentCloud
       # 各版本下的参数信息
       class ParamVersionRelation < TencentCloud::Common::AbstractModel
         # @param Name: 参数名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param DBKernelVersion: 参数信息所属内核版本
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DBKernelVersion: String
         # @param Value: 参数在该版本该规格下的默认值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: String
         # @param Unit: 参数值单位。参数没有单位时，该字段返回空
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Unit: String
         # @param Max: 数值类型（integer、real）参数，取值上界
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Max: Float
         # @param Min: 数值类型（integer、real）参数，取值下界
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Min: Float
         # @param EnumValue: 枚举类型参数，取值范围
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -7176,19 +7141,14 @@ module TencentCloud
       # 只读组信息
       class ReadOnlyGroup < TencentCloud::Common::AbstractModel
         # @param ReadOnlyGroupId: 只读组标识
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReadOnlyGroupId: String
         # @param ReadOnlyGroupName: 只读组名字
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReadOnlyGroupName: String
         # @param ProjectId: 项目id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProjectId: Integer
         # @param MasterDBInstanceId: 主实例id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MasterDBInstanceId: String
         # @param MinDelayEliminateReserve: 最小保留实例数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MinDelayEliminateReserve: Integer
         # @param MaxReplayLatency: 延迟空间大小阈值
         # @type MaxReplayLatency: Integer
@@ -7201,7 +7161,6 @@ module TencentCloud
         # @param VpcId: 虚拟网络id
         # @type VpcId: String
         # @param SubnetId: 子网id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubnetId: String
         # @param Region: 地域id
         # @type Region: String

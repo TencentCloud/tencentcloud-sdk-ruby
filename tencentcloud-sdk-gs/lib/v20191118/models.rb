@@ -94,16 +94,19 @@ module TencentCloud
         # @type State: String
         # @param CreateTime: 安卓应用版本创建时间
         # @type CreateTime: String
-        # @param Command: shell 命令（支持多条命令执行，通过 && 组合；只在应用 AppMode 为 ADVANCED 高级模式下 才会生效）
+        # @param Command: shell 安装命令（支持多条命令执行，通过 && 组合；只在应用 AppMode 为 ADVANCED 高级模式下 才会生效）
         # @type Command: String
+        # @param UninstallCommand: shell 卸载命令（支持多条命令执行，通过 && 组合；只在应用 AppMode 为 ADVANCED 高级模式下 才会生效）
+        # @type UninstallCommand: String
 
-        attr_accessor :AndroidAppVersion, :State, :CreateTime, :Command
+        attr_accessor :AndroidAppVersion, :State, :CreateTime, :Command, :UninstallCommand
 
-        def initialize(androidappversion=nil, state=nil, createtime=nil, command=nil)
+        def initialize(androidappversion=nil, state=nil, createtime=nil, command=nil, uninstallcommand=nil)
           @AndroidAppVersion = androidappversion
           @State = state
           @CreateTime = createtime
           @Command = command
+          @UninstallCommand = uninstallcommand
         end
 
         def deserialize(params)
@@ -111,6 +114,7 @@ module TencentCloud
           @State = params['State']
           @CreateTime = params['CreateTime']
           @Command = params['Command']
+          @UninstallCommand = params['UninstallCommand']
         end
       end
 
@@ -581,21 +585,25 @@ module TencentCloud
         # @type AndroidAppId: String
         # @param DownloadUrl: 应用包下载地址
         # @type DownloadUrl: String
-        # @param Command: shell 命令（支持多条命令执行，通过 && 组合；只在应用 AppMode 为 ADVANCED 高级模式下 才会生效）
+        # @param Command: 应用 shell 安装命令（支持多条命令执行，通过 && 组合；只在应用 AppMode 为 ADVANCED 高级模式下 才会生效）
         # @type Command: String
+        # @param UninstallCommand: 应用 shell 卸载命令（支持多条命令执行，通过 && 组合；只在应用 AppMode 为 ADVANCED 高级模式下 才会生效）
+        # @type UninstallCommand: String
 
-        attr_accessor :AndroidAppId, :DownloadUrl, :Command
+        attr_accessor :AndroidAppId, :DownloadUrl, :Command, :UninstallCommand
 
-        def initialize(androidappid=nil, downloadurl=nil, command=nil)
+        def initialize(androidappid=nil, downloadurl=nil, command=nil, uninstallcommand=nil)
           @AndroidAppId = androidappid
           @DownloadUrl = downloadurl
           @Command = command
+          @UninstallCommand = uninstallcommand
         end
 
         def deserialize(params)
           @AndroidAppId = params['AndroidAppId']
           @DownloadUrl = params['DownloadUrl']
           @Command = params['Command']
+          @UninstallCommand = params['UninstallCommand']
         end
       end
 
@@ -1930,16 +1938,19 @@ module TencentCloud
         # @type AndroidAppVersion: String
         # @param AndroidAppVersionName: 安卓应用版本名称
         # @type AndroidAppVersionName: String
-        # @param Command: shell 命令（支持多条命令执行，通过 && 组合；只在应用 AppMode 为 ADVANCED 高级模式下 才会生效）
+        # @param Command: 应用 shell 安装命令（支持多条命令执行，通过 && 组合；只在应用 AppMode 为 ADVANCED 高级模式下 才会生效）
         # @type Command: String
+        # @param UninstallCommand: 应用 shell 卸载命令（支持多条命令执行，通过 && 组合；只在应用 AppMode 为 ADVANCED 高级模式下 才会生效）
+        # @type UninstallCommand: String
 
-        attr_accessor :AndroidAppId, :AndroidAppVersion, :AndroidAppVersionName, :Command
+        attr_accessor :AndroidAppId, :AndroidAppVersion, :AndroidAppVersionName, :Command, :UninstallCommand
 
-        def initialize(androidappid=nil, androidappversion=nil, androidappversionname=nil, command=nil)
+        def initialize(androidappid=nil, androidappversion=nil, androidappversionname=nil, command=nil, uninstallcommand=nil)
           @AndroidAppId = androidappid
           @AndroidAppVersion = androidappversion
           @AndroidAppVersionName = androidappversionname
           @Command = command
+          @UninstallCommand = uninstallcommand
         end
 
         def deserialize(params)
@@ -1947,6 +1958,7 @@ module TencentCloud
           @AndroidAppVersion = params['AndroidAppVersion']
           @AndroidAppVersionName = params['AndroidAppVersionName']
           @Command = params['Command']
+          @UninstallCommand = params['UninstallCommand']
         end
       end
 
