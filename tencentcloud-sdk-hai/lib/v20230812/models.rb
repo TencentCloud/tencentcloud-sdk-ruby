@@ -66,6 +66,50 @@ module TencentCloud
         end
       end
 
+      # CreateApplication请求参数结构体
+      class CreateApplicationRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 需要制作自定义应用的HAI实例ID
+        # @type InstanceId: String
+        # @param ApplicationName: 自定义应用的应用名称
+        # @type ApplicationName: String
+        # @param ApplicationDescription: 自定义应用的描述
+        # @type ApplicationDescription: String
+
+        attr_accessor :InstanceId, :ApplicationName, :ApplicationDescription
+
+        def initialize(instanceid=nil, applicationname=nil, applicationdescription=nil)
+          @InstanceId = instanceid
+          @ApplicationName = applicationname
+          @ApplicationDescription = applicationdescription
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @ApplicationName = params['ApplicationName']
+          @ApplicationDescription = params['ApplicationDescription']
+        end
+      end
+
+      # CreateApplication返回参数结构体
+      class CreateApplicationResponse < TencentCloud::Common::AbstractModel
+        # @param ApplicationId: HAI自定义应用ID
+        # @type ApplicationId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ApplicationId, :RequestId
+
+        def initialize(applicationid=nil, requestid=nil)
+          @ApplicationId = applicationid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ApplicationId = params['ApplicationId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateMuskPrompt请求参数结构体
       class CreateMuskPromptRequest < TencentCloud::Common::AbstractModel
         # @param WorkgroupId: workgroup id

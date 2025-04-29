@@ -74,10 +74,16 @@ module TencentCloud
         # @param ReplyIndex: 用于展示思考放在哪个回复气泡中
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReplyIndex: Integer
+        # @param SourceAgentName: 主agent
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SourceAgentName: String
+        # @param TargetAgentName: 挂号agent
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TargetAgentName: String
 
-        attr_accessor :Index, :Name, :Title, :Status, :Icon, :Debugging, :Switch, :WorkflowName, :Elapsed, :NodeName, :ReplyIndex
+        attr_accessor :Index, :Name, :Title, :Status, :Icon, :Debugging, :Switch, :WorkflowName, :Elapsed, :NodeName, :ReplyIndex, :SourceAgentName, :TargetAgentName
 
-        def initialize(index=nil, name=nil, title=nil, status=nil, icon=nil, debugging=nil, switch=nil, workflowname=nil, elapsed=nil, nodename=nil, replyindex=nil)
+        def initialize(index=nil, name=nil, title=nil, status=nil, icon=nil, debugging=nil, switch=nil, workflowname=nil, elapsed=nil, nodename=nil, replyindex=nil, sourceagentname=nil, targetagentname=nil)
           @Index = index
           @Name = name
           @Title = title
@@ -89,6 +95,8 @@ module TencentCloud
           @Elapsed = elapsed
           @NodeName = nodename
           @ReplyIndex = replyindex
+          @SourceAgentName = sourceagentname
+          @TargetAgentName = targetagentname
         end
 
         def deserialize(params)
@@ -106,6 +114,8 @@ module TencentCloud
           @Elapsed = params['Elapsed']
           @NodeName = params['NodeName']
           @ReplyIndex = params['ReplyIndex']
+          @SourceAgentName = params['SourceAgentName']
+          @TargetAgentName = params['TargetAgentName']
         end
       end
 
@@ -4331,13 +4341,13 @@ module TencentCloud
       class GetMsgRecordRequest < TencentCloud::Common::AbstractModel
         # @param Type: 类型
         # @type Type: Integer
-        # @param Count: 数量
+        # @param Count: 数量,  数量需大于2
         # @type Count: Integer
         # @param SessionId: 会话sessionid
         # @type SessionId: String
         # @param LastRecordId: 最后一条记录ID
         # @type LastRecordId: String
-        # @param BotAppKey: 应用AppKey, 当Type=5[API访客]时, 该字段必填
+        # @param BotAppKey: 应用AppKey, 当Type=5[API访客]时, 该字段必填  :</br>  获取方式:</br>   1、应用发布后在应用页面[发布管理]-[调用信息]-[API管理]处获取</br>   2、参考 https://cloud.tencent.com/document/product/1759/109469 第二项
         # @type BotAppKey: String
         # @param Scene: 场景, 体验: 1; 正式: 2
         # @type Scene: Integer
@@ -7047,10 +7057,14 @@ module TencentCloud
         # @type SupportWorkflowStatus: Integer
         # @param ModelCategory: 模型类别 generate：生成模型，thought：思考模型
         # @type ModelCategory: String
+        # @param IsDefault: 是否默认模型
+        # @type IsDefault: Boolean
+        # @param RoleLenLimit: 角色提示词输入长度限制
+        # @type RoleLenLimit: Integer
 
-        attr_accessor :ModelName, :ModelDesc, :AliasName, :ResourceStatus, :PromptWordsLimit, :TopP, :Temperature, :MaxTokens, :Source, :Icon, :IsFree, :InputLenLimit, :SupportWorkflowStatus, :ModelCategory
+        attr_accessor :ModelName, :ModelDesc, :AliasName, :ResourceStatus, :PromptWordsLimit, :TopP, :Temperature, :MaxTokens, :Source, :Icon, :IsFree, :InputLenLimit, :SupportWorkflowStatus, :ModelCategory, :IsDefault, :RoleLenLimit
 
-        def initialize(modelname=nil, modeldesc=nil, aliasname=nil, resourcestatus=nil, promptwordslimit=nil, topp=nil, temperature=nil, maxtokens=nil, source=nil, icon=nil, isfree=nil, inputlenlimit=nil, supportworkflowstatus=nil, modelcategory=nil)
+        def initialize(modelname=nil, modeldesc=nil, aliasname=nil, resourcestatus=nil, promptwordslimit=nil, topp=nil, temperature=nil, maxtokens=nil, source=nil, icon=nil, isfree=nil, inputlenlimit=nil, supportworkflowstatus=nil, modelcategory=nil, isdefault=nil, rolelenlimit=nil)
           @ModelName = modelname
           @ModelDesc = modeldesc
           @AliasName = aliasname
@@ -7065,6 +7079,8 @@ module TencentCloud
           @InputLenLimit = inputlenlimit
           @SupportWorkflowStatus = supportworkflowstatus
           @ModelCategory = modelcategory
+          @IsDefault = isdefault
+          @RoleLenLimit = rolelenlimit
         end
 
         def deserialize(params)
@@ -7091,6 +7107,8 @@ module TencentCloud
           @InputLenLimit = params['InputLenLimit']
           @SupportWorkflowStatus = params['SupportWorkflowStatus']
           @ModelCategory = params['ModelCategory']
+          @IsDefault = params['IsDefault']
+          @RoleLenLimit = params['RoleLenLimit']
         end
       end
 

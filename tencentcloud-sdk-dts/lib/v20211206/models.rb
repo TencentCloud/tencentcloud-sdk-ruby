@@ -4525,17 +4525,14 @@ module TencentCloud
         # @type ConsumerGroupName: String
         # @param NewPassword: 新密码。字符长度不小于3，不大于32
         # @type NewPassword: String
-        # @param OldPassword: 旧密码，非必选
-        # @type OldPassword: String
 
-        attr_accessor :SubscribeId, :AccountName, :ConsumerGroupName, :NewPassword, :OldPassword
+        attr_accessor :SubscribeId, :AccountName, :ConsumerGroupName, :NewPassword
 
-        def initialize(subscribeid=nil, accountname=nil, consumergroupname=nil, newpassword=nil, oldpassword=nil)
+        def initialize(subscribeid=nil, accountname=nil, consumergroupname=nil, newpassword=nil)
           @SubscribeId = subscribeid
           @AccountName = accountname
           @ConsumerGroupName = consumergroupname
           @NewPassword = newpassword
-          @OldPassword = oldpassword
         end
 
         def deserialize(params)
@@ -4543,7 +4540,6 @@ module TencentCloud
           @AccountName = params['AccountName']
           @ConsumerGroupName = params['ConsumerGroupName']
           @NewPassword = params['NewPassword']
-          @OldPassword = params['OldPassword']
         end
       end
 

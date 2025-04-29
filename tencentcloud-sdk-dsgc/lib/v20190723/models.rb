@@ -12466,16 +12466,19 @@ module TencentCloud
         # @type ResultDescription: String
         # @param Suggestion: 结果建议
         # @type Suggestion: String
+        # @param Progress: 扫描进度
+        # @type Progress: Float
 
-        attr_accessor :Id, :EndTime, :Status, :Result, :ResultDescription, :Suggestion
+        attr_accessor :Id, :EndTime, :Status, :Result, :ResultDescription, :Suggestion, :Progress
 
-        def initialize(id=nil, endtime=nil, status=nil, result=nil, resultdescription=nil, suggestion=nil)
+        def initialize(id=nil, endtime=nil, status=nil, result=nil, resultdescription=nil, suggestion=nil, progress=nil)
           @Id = id
           @EndTime = endtime
           @Status = status
           @Result = result
           @ResultDescription = resultdescription
           @Suggestion = suggestion
+          @Progress = progress
         end
 
         def deserialize(params)
@@ -12485,6 +12488,7 @@ module TencentCloud
           @Result = params['Result']
           @ResultDescription = params['ResultDescription']
           @Suggestion = params['Suggestion']
+          @Progress = params['Progress']
         end
       end
 

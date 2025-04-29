@@ -1664,10 +1664,12 @@ module TencentCloud
         # @type SmtpMessageId: String
         # @param SmtpHeaders: smtp头中可以设置的其它字段
         # @type SmtpHeaders: String
+        # @param HeaderFrom: smtp头中的from字段，建议域名与FromEmailAddress保持一致
+        # @type HeaderFrom: String
 
-        attr_accessor :FromEmailAddress, :Destination, :Subject, :ReplyToAddresses, :Cc, :Bcc, :Template, :Simple, :Attachments, :Unsubscribe, :TriggerType, :SmtpMessageId, :SmtpHeaders
+        attr_accessor :FromEmailAddress, :Destination, :Subject, :ReplyToAddresses, :Cc, :Bcc, :Template, :Simple, :Attachments, :Unsubscribe, :TriggerType, :SmtpMessageId, :SmtpHeaders, :HeaderFrom
 
-        def initialize(fromemailaddress=nil, destination=nil, subject=nil, replytoaddresses=nil, cc=nil, bcc=nil, template=nil, simple=nil, attachments=nil, unsubscribe=nil, triggertype=nil, smtpmessageid=nil, smtpheaders=nil)
+        def initialize(fromemailaddress=nil, destination=nil, subject=nil, replytoaddresses=nil, cc=nil, bcc=nil, template=nil, simple=nil, attachments=nil, unsubscribe=nil, triggertype=nil, smtpmessageid=nil, smtpheaders=nil, headerfrom=nil)
           @FromEmailAddress = fromemailaddress
           @Destination = destination
           @Subject = subject
@@ -1681,6 +1683,7 @@ module TencentCloud
           @TriggerType = triggertype
           @SmtpMessageId = smtpmessageid
           @SmtpHeaders = smtpheaders
+          @HeaderFrom = headerfrom
         end
 
         def deserialize(params)
@@ -1710,6 +1713,7 @@ module TencentCloud
           @TriggerType = params['TriggerType']
           @SmtpMessageId = params['SmtpMessageId']
           @SmtpHeaders = params['SmtpHeaders']
+          @HeaderFrom = params['HeaderFrom']
         end
       end
 

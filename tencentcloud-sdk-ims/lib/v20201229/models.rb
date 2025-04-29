@@ -154,10 +154,12 @@ module TencentCloud
         # @type User: :class:`Tencentcloud::Ims.v20201229.models.User`
         # @param Device: 该字段表示待检测对象对应的设备相关信息，若填入则可甄别相应违规风险设备。
         # @type Device: :class:`Tencentcloud::Ims.v20201229.models.Device`
+        # @param Type: 该字段表示送审的数据类型，默认为通用图片，可以选择。
+        # @type Type: String
 
-        attr_accessor :BizType, :DataId, :FileContent, :FileUrl, :Interval, :MaxFrames, :User, :Device
+        attr_accessor :BizType, :DataId, :FileContent, :FileUrl, :Interval, :MaxFrames, :User, :Device, :Type
 
-        def initialize(biztype=nil, dataid=nil, filecontent=nil, fileurl=nil, interval=nil, maxframes=nil, user=nil, device=nil)
+        def initialize(biztype=nil, dataid=nil, filecontent=nil, fileurl=nil, interval=nil, maxframes=nil, user=nil, device=nil, type=nil)
           @BizType = biztype
           @DataId = dataid
           @FileContent = filecontent
@@ -166,6 +168,7 @@ module TencentCloud
           @MaxFrames = maxframes
           @User = user
           @Device = device
+          @Type = type
         end
 
         def deserialize(params)
@@ -183,6 +186,7 @@ module TencentCloud
             @Device = Device.new
             @Device.deserialize(params['Device'])
           end
+          @Type = params['Type']
         end
       end
 
@@ -196,7 +200,9 @@ module TencentCloud
         # @type SubLabel: String
         # @param Score: 该字段用于返回当前标签（Label）下的置信度，取值范围：0（**置信度最低**）-100（**置信度最高** ），越高代表图片越有可能属于当前返回的标签；如：*色情 99*，则表明该图片非常有可能属于色情内容；*色情 0*，则表明该图片不属于色情内容。
         # @type Score: Integer
-        # @param LabelResults: 该字段用于返回分类模型命中的恶意标签的详细识别结果，包括涉黄、广告等令人反感、不安全或不适宜的内容类型识别结果。
+        # @param LabelResults: 该字段用于返回检测结果(LabelResults)中所对应的优先级最高的恶意标签，表示模型推荐的审核结果，建议您按照业务所需，对不同违规类型与建议值进行处理。
+
+        # 返回值标签示例：Normal:正常，Porn:色情，Abuse:谩骂，Ad:广告（说明：文档仅示例了部分风险类型，更多返回类型请以实际值为准或咨询客服）
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LabelResults: Array
         # @param ObjectResults: 该字段用于返回物体检测模型的详细检测结果；包括：实体、广告台标、二维码等内容命中的标签名称、标签分数、坐标信息、场景识别结果、建议操作等内容审核信息；详细返回值信息可参阅对应的数据结构（ObjectResults）描述。

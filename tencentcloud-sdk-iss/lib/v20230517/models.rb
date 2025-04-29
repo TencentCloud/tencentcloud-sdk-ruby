@@ -1224,6 +1224,38 @@ module TencentCloud
         end
       end
 
+      # BatchDeleteVideoDownloadTask请求参数结构体
+      class BatchDeleteVideoDownloadTaskRequest < TencentCloud::Common::AbstractModel
+        # @param DownloadTaskIds: 本地录像下载任务 ID 列表
+        # @type DownloadTaskIds: Array
+
+        attr_accessor :DownloadTaskIds
+
+        def initialize(downloadtaskids=nil)
+          @DownloadTaskIds = downloadtaskids
+        end
+
+        def deserialize(params)
+          @DownloadTaskIds = params['DownloadTaskIds']
+        end
+      end
+
+      # BatchDeleteVideoDownloadTask返回参数结构体
+      class BatchDeleteVideoDownloadTaskResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 批量操作设备返回结果
       class BatchOperateDeviceData < TencentCloud::Common::AbstractModel
         # @param TaskId: 任务 ID（用于在查询任务的子任务列表接口ListSubTasks中查询任务进度）
@@ -1853,6 +1885,69 @@ module TencentCloud
         end
       end
 
+      # CreateVideoDownloadTask请求参数结构体
+      class CreateVideoDownloadTaskRequest < TencentCloud::Common::AbstractModel
+        # @param ChannelId: 通道ID
+        # @type ChannelId: String
+        # @param BeginTime: 开始时间
+        # @type BeginTime: Integer
+        # @param EndTime: 结束时间
+        # @type EndTime: Integer
+        # @param Scale: 默认1倍速，支持（1,2,4,8）倍速
+        # @type Scale: Integer
+        # @param Expire: 转码后的mp4文件过期时间（支持7,15,30,60,90,180,365）
+        # @type Expire: Integer
+        # @param FileType: 下载文件格式，当前仅支持（1：mp4）
+        # @type FileType: Integer
+        # @param CompletionPolicy: 完成策略（0：拉流失败但是录像不完整则认为任务失败，不生成 MP4；1：拉流失败但是录像不完整则认为任务成功，生成 mp4）
+        # @type CompletionPolicy: Integer
+
+        attr_accessor :ChannelId, :BeginTime, :EndTime, :Scale, :Expire, :FileType, :CompletionPolicy
+
+        def initialize(channelid=nil, begintime=nil, endtime=nil, scale=nil, expire=nil, filetype=nil, completionpolicy=nil)
+          @ChannelId = channelid
+          @BeginTime = begintime
+          @EndTime = endtime
+          @Scale = scale
+          @Expire = expire
+          @FileType = filetype
+          @CompletionPolicy = completionpolicy
+        end
+
+        def deserialize(params)
+          @ChannelId = params['ChannelId']
+          @BeginTime = params['BeginTime']
+          @EndTime = params['EndTime']
+          @Scale = params['Scale']
+          @Expire = params['Expire']
+          @FileType = params['FileType']
+          @CompletionPolicy = params['CompletionPolicy']
+        end
+      end
+
+      # CreateVideoDownloadTask返回参数结构体
+      class CreateVideoDownloadTaskResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 下载任务返回结果
+        # @type Data: :class:`Tencentcloud::Iss.v20230517.models.VideoDownloadTaskData`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = VideoDownloadTaskData.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteAITask请求参数结构体
       class DeleteAITaskRequest < TencentCloud::Common::AbstractModel
         # @param TaskId: AI任务ID
@@ -2141,6 +2236,38 @@ module TencentCloud
         end
       end
 
+      # DeleteTask请求参数结构体
+      class DeleteTaskRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务ID
+        # @type TaskId: String
+
+        attr_accessor :TaskId
+
+        def initialize(taskid=nil)
+          @TaskId = taskid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+        end
+      end
+
+      # DeleteTask返回参数结构体
+      class DeleteTaskResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteUserDevice请求参数结构体
       class DeleteUserDeviceRequest < TencentCloud::Common::AbstractModel
         # @param DeviceId: 设备ID（从获取设备列表ListDevices接口中获取）
@@ -2322,6 +2449,29 @@ module TencentCloud
         def deserialize(params)
           @Data = params['Data']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 查询国标设备地址列表
+      class DescribeDeviceAddrList < TencentCloud::Common::AbstractModel
+        # @param RemoteAddrs: 设备地址列表
+        # @type RemoteAddrs: Array
+
+        attr_accessor :RemoteAddrs
+
+        def initialize(remoteaddrs=nil)
+          @RemoteAddrs = remoteaddrs
+        end
+
+        def deserialize(params)
+          unless params['RemoteAddrs'].nil?
+            @RemoteAddrs = []
+            params['RemoteAddrs'].each do |i|
+              remoteaddrinfo_tmp = RemoteAddrInfo.new
+              remoteaddrinfo_tmp.deserialize(i)
+              @RemoteAddrs << remoteaddrinfo_tmp
+            end
+          end
         end
       end
 
@@ -2824,6 +2974,45 @@ module TencentCloud
               describedomaindata_tmp.deserialize(i)
               @Data << describedomaindata_tmp
             end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeGBDeviceAddr请求参数结构体
+      class DescribeGBDeviceAddrRequest < TencentCloud::Common::AbstractModel
+        # @param DeviceIds: 设备ID列表
+        # @type DeviceIds: Array
+
+        attr_accessor :DeviceIds
+
+        def initialize(deviceids=nil)
+          @DeviceIds = deviceids
+        end
+
+        def deserialize(params)
+          @DeviceIds = params['DeviceIds']
+        end
+      end
+
+      # DescribeGBDeviceAddr返回参数结构体
+      class DescribeGBDeviceAddrResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 无
+        # @type Data: :class:`Tencentcloud::Iss.v20230517.models.DescribeDeviceAddrList`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = DescribeDeviceAddrList.new
+            @Data.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
         end
@@ -5715,6 +5904,106 @@ module TencentCloud
         end
       end
 
+      # 本地录像下载任务列表
+      class ListVideoDownloadTaskData < TencentCloud::Common::AbstractModel
+        # @param List: 任务列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type List: Array
+        # @param TotalCount: 任务总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+
+        attr_accessor :List, :TotalCount
+
+        def initialize(list=nil, totalcount=nil)
+          @List = list
+          @TotalCount = totalcount
+        end
+
+        def deserialize(params)
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              videodownloadtask_tmp = VideoDownloadTask.new
+              videodownloadtask_tmp.deserialize(i)
+              @List << videodownloadtask_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+        end
+      end
+
+      # ListVideoDownloadTask请求参数结构体
+      class ListVideoDownloadTaskRequest < TencentCloud::Common::AbstractModel
+        # @param DeviceName: 设备名称，用于模糊搜索
+        # @type DeviceName: String
+        # @param ChannelName: 通道名称，用于模糊搜索
+        # @type ChannelName: String
+        # @param Status: 任务状态（0：准备中，1：执行中，2：已完成，3：失败）
+        # @type Status: Integer
+        # @param SortRule: 排序规则（仅支持 StartTime，EndTime，倒序为-StartTime，-EndTime）
+        # @type SortRule: String
+        # @param WithPreviewUrl: 响应是否携带预览地址(0:不携带；1:携带)
+        # @type WithPreviewUrl: Integer
+        # @param PageNumber: 分页页数
+        # @type PageNumber: Integer
+        # @param PageSize: 分页大小
+        # @type PageSize: Integer
+        # @param DownloadTaskId: 下载任务 ID
+        # @type DownloadTaskId: String
+        # @param UrlExpires: 下载地址过期时间，单位秒，最大为 1 天， 86400秒
+        # @type UrlExpires: Integer
+
+        attr_accessor :DeviceName, :ChannelName, :Status, :SortRule, :WithPreviewUrl, :PageNumber, :PageSize, :DownloadTaskId, :UrlExpires
+
+        def initialize(devicename=nil, channelname=nil, status=nil, sortrule=nil, withpreviewurl=nil, pagenumber=nil, pagesize=nil, downloadtaskid=nil, urlexpires=nil)
+          @DeviceName = devicename
+          @ChannelName = channelname
+          @Status = status
+          @SortRule = sortrule
+          @WithPreviewUrl = withpreviewurl
+          @PageNumber = pagenumber
+          @PageSize = pagesize
+          @DownloadTaskId = downloadtaskid
+          @UrlExpires = urlexpires
+        end
+
+        def deserialize(params)
+          @DeviceName = params['DeviceName']
+          @ChannelName = params['ChannelName']
+          @Status = params['Status']
+          @SortRule = params['SortRule']
+          @WithPreviewUrl = params['WithPreviewUrl']
+          @PageNumber = params['PageNumber']
+          @PageSize = params['PageSize']
+          @DownloadTaskId = params['DownloadTaskId']
+          @UrlExpires = params['UrlExpires']
+        end
+      end
+
+      # ListVideoDownloadTask返回参数结构体
+      class ListVideoDownloadTaskResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 本地录像下载任务列表
+        # @type Data: :class:`Tencentcloud::Iss.v20230517.models.ListVideoDownloadTaskData`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = ListVideoDownloadTaskData.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # AI识别结果在画面中坐标
       class Location < TencentCloud::Common::AbstractModel
         # @param X: 左上角 X 坐标轴
@@ -6375,6 +6664,26 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 设备地址返回结果
+      class RemoteAddrInfo < TencentCloud::Common::AbstractModel
+        # @param DeviceId: 设备Id
+        # @type DeviceId: String
+        # @param Addr: IP地址
+        # @type Addr: String
+
+        attr_accessor :DeviceId, :Addr
+
+        def initialize(deviceid=nil, addr=nil)
+          @DeviceId = deviceid
+          @Addr = addr
+        end
+
+        def deserialize(params)
+          @DeviceId = params['DeviceId']
+          @Addr = params['Addr']
         end
       end
 
@@ -7710,6 +8019,121 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 本地录像下载任务
+      class VideoDownloadTask < TencentCloud::Common::AbstractModel
+        # @param DownloadTaskId: 下载任务 ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DownloadTaskId: String
+        # @param ChannelId: 通道 ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ChannelId: String
+        # @param ChannelName: 通道名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ChannelName: String
+        # @param ChannelCode: 通道编码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ChannelCode: String
+        # @param DeviceName: 设备名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeviceName: String
+        # @param DeviceCode: 设备编码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeviceCode: String
+        # @param Status: 任务状态（0：未执行；1：执行中；2 任务完成；
+        # 3：任务失败）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Integer
+        # @param VideoTimeSection: 下载录像时间段
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VideoTimeSection: String
+        # @param Scale: 倍速
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Scale: Integer
+        # @param DownloadTime: 下载时长
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DownloadTime: Integer
+        # @param VideoSize: 录像大小
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VideoSize: Integer
+        # @param StartTime: 任务开始时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StartTime: String
+        # @param EndTime: 任务结束时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EndTime: String
+        # @param FileDownloadUrl: 文件下载地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FileDownloadUrl: String
+        # @param FailedReason: 失败原因
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FailedReason: String
+        # @param Expire: 生命周期规则，热存天数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Expire: Integer
+        # @param PreviewUrl: mp4预览地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PreviewUrl: String
+
+        attr_accessor :DownloadTaskId, :ChannelId, :ChannelName, :ChannelCode, :DeviceName, :DeviceCode, :Status, :VideoTimeSection, :Scale, :DownloadTime, :VideoSize, :StartTime, :EndTime, :FileDownloadUrl, :FailedReason, :Expire, :PreviewUrl
+
+        def initialize(downloadtaskid=nil, channelid=nil, channelname=nil, channelcode=nil, devicename=nil, devicecode=nil, status=nil, videotimesection=nil, scale=nil, downloadtime=nil, videosize=nil, starttime=nil, endtime=nil, filedownloadurl=nil, failedreason=nil, expire=nil, previewurl=nil)
+          @DownloadTaskId = downloadtaskid
+          @ChannelId = channelid
+          @ChannelName = channelname
+          @ChannelCode = channelcode
+          @DeviceName = devicename
+          @DeviceCode = devicecode
+          @Status = status
+          @VideoTimeSection = videotimesection
+          @Scale = scale
+          @DownloadTime = downloadtime
+          @VideoSize = videosize
+          @StartTime = starttime
+          @EndTime = endtime
+          @FileDownloadUrl = filedownloadurl
+          @FailedReason = failedreason
+          @Expire = expire
+          @PreviewUrl = previewurl
+        end
+
+        def deserialize(params)
+          @DownloadTaskId = params['DownloadTaskId']
+          @ChannelId = params['ChannelId']
+          @ChannelName = params['ChannelName']
+          @ChannelCode = params['ChannelCode']
+          @DeviceName = params['DeviceName']
+          @DeviceCode = params['DeviceCode']
+          @Status = params['Status']
+          @VideoTimeSection = params['VideoTimeSection']
+          @Scale = params['Scale']
+          @DownloadTime = params['DownloadTime']
+          @VideoSize = params['VideoSize']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @FileDownloadUrl = params['FileDownloadUrl']
+          @FailedReason = params['FailedReason']
+          @Expire = params['Expire']
+          @PreviewUrl = params['PreviewUrl']
+        end
+      end
+
+      # 录像下载任务数据结构
+      class VideoDownloadTaskData < TencentCloud::Common::AbstractModel
+        # @param DownloadTaskId: 下载任务ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DownloadTaskId: String
+
+        attr_accessor :DownloadTaskId
+
+        def initialize(downloadtaskid=nil)
+          @DownloadTaskId = downloadtaskid
+        end
+
+        def deserialize(params)
+          @DownloadTaskId = params['DownloadTaskId']
         end
       end
 

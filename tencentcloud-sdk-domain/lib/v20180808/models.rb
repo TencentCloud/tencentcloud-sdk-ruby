@@ -2224,13 +2224,28 @@ module TencentCloud
 
       # DescribePreReleaseList请求参数结构体
       class DescribePreReleaseListRequest < TencentCloud::Common::AbstractModel
-        # @param Keywords: 关键词
+        # @param Keywords: 单独使用Keywords：使用域名关键词进行搜索
+        # Keywords+DomainStart（true）：使用域名开头关键词进行搜索
+        # Keywords+DomainEnd（true）：使用域名结尾关键词进行搜索
+        # Keywords+DomainStart（true）+DomainEnd（true）：使用域名开头或结尾关键词进行搜索
         # @type Keywords: String
-        # @param DomainStart: 搜索关键字，开头
+        # @param DomainStart: 是否以域名开头关键词进行搜索
+        # true：是
+        # false：否
         # @type DomainStart: Boolean
-        # @param DomainEnd: 搜索关键字结尾
+        # @param DomainEnd: 是否以域名结尾关键词进行搜索
+        # true：是
+        # false：否
         # @type DomainEnd: Boolean
-        # @param Sort: 排序
+        # @param Sort: 不同排序规则：
+        # 1： 价格升序
+        # 2： 价格降序
+        # 3： 域名升序
+        # 4： 结束时间升序
+        # 5： 店铺推荐升序
+        # 6： 结束时间降序
+        # 15:  创建时间升序
+        # 其他：结束时间升序
         # @type Sort: Integer
         # @param PriceStart: 起始价格
         # @type PriceStart: Float
@@ -2240,33 +2255,157 @@ module TencentCloud
         # @type LengthStart: Integer
         # @param LengthEnd: 结束域名长度
         # @type LengthEnd: Integer
-        # @param PageNumber: 页码
+        # @param PageNumber: 页码（默认为1）
         # @type PageNumber: Integer
-        # @param PageSize: 每页显示数
+        # @param PageSize: 每页显示数（默认为20）
         # @type PageSize: Integer
         # @param Suffix: 后缀
+        # 1="com"
+        # 2="net"
+        # 4="biz"
+        # 6="info"
+        # 7="co"
+        # 9="cn"
+        # 10="com.cn"
+        # 11="wang"
+        # 12="vip"
+        # 13="cc"
+        # 14="net.cn"
+        # 15="org.cn"
+        # 16="top"
+        # 17="asia"
+        # 18="tv"
+        # 19="club"
+        # 20="shop"
+        # 21 ="中国"
+        # 23="online"
+        # 24="xyz"
+        # 25="网店"
+        # 26="网址"
+        # 27="在线"
+        # 28="ltd"
+        # 29="fans"
+        # 30="ren"
+        # 31="icu"
         # @type Suffix: Array
         # @param ClassOne: 一级分类
+        # 1:"纯数字"
+        # 2:"单数字"
+        # 3:"双数字"
+        # 4:"三数字"
+        # 5:"四数字"
+        # 6:"五数字"
+        # 7:"六数字"
+        # 9:"单字母"
+        # 10:"双字母"
+        # 11:"三字母"
+        # 12:"四字母"
+        # 13:"五字母"
+        # 14:"单拼"
+        # 15:"双拼"
+        # 16:"三拼"
+        # 17:"杂米"
+        # 18:"两杂"
+        # 19:"三杂"
+        # 20:"四杂"
         # @type ClassOne: Integer
         # @param ClassTwo: 二级分类
+        # 13:"0开或带4"
+        # 14:"非0开不带4"
+        # 15:"不带0,4"
+        # 0:"非全声母"
+        # 6:"全声母"
+        # 16:"不带0,4"
+        # 32:"全声母"
+        # 5010:"CVCV"
         # @type ClassTwo: Array
         # @param ClassThree: 三级分类
+        # 111:"AAA"
+        # 401:"3A及以上"
+        # 402:"AA结尾"
+        # 1122:"AABB"
+        # 1123:"AABC"
+        # 1212:"ABAB"
+        # 1221:"ABBA"
+        # 1233:"ABCC"
+        # 501:"4A及以上"
+        # 502:"3A及以上"
+        # 503:"AAA开头"
+        # 504:"AAA结尾"
+        # 505:"AA开头"
+        # 506:"AA结尾"
+        # 507:"三顺子开头"
+        # 508:"三顺子结尾"
+        # 11223:"AABBC"
+        # 12233:"ABBCC"
+        # 601:"5A及以上"
+        # 602:"4A及以上"
+        # 603:"3A及以上"
+        # 604:"4A开头"
+        # 605:"4A结尾"
+        # 606:"AAA开头"
+        # 607:"AAA结尾"
+        # 608:"AA开头"
+        # 609:"AA结尾"
+        # 610:"ABAB开头"
+        # 611:"ABAB结尾"
+        # 612:"AABB开头"
+        # 613:"AABB结尾"
+        # 614:"四顺子开头"
+        # 615:"四顺子结尾"
+        # 616:"三顺子开头"
+        # 617:"三顺子结尾"
+        # 121212:"ABABAB"
+        # 112233:"AABBCC"
+        # 123123:"ABCABC"
+        # 211:"LNN"
+        # 221:"LLN"
+        # 121:"NLN"
+        # 212:"LNL"
+        # 122:"NLL"
+        # 1112:"NNNL"
+        # 2111:"LNNN"
+        # 1212:"NLNL"
+        # 2121:"LNLN"
+        # 1222:"NLLL"
+        # 2221:"LLLN"
+        # 1122:"NNLL"
+        # 2211:"LLNN"
+        # 31:"W结尾"
+        # 112:"AAB"
+        # 122:"ABB"
+        # 121:"ABA"
+        # 41:"W结尾"
+        # 1112:"AAAB"
+        # 1222:"ABBB"
+        # 1122:"AABB"
+        # 1212:"ABAB"
         # @type ClassThree: Array
         # @param ClassFour: 四级分类
+        # 1:"仅含2种数字"
+        # 1:"仅含2种数字"
+        # 2:"仅含3种数字"
+        # 4:"仅含1种字母"
+        # 8:"仅含1种数字"
         # @type ClassFour: Array
-        # @param FilterStart: 排除关键字，开头
+        # @param FilterStart: 是否以域名开头排除关键词进行搜索
         # @type FilterStart: Boolean
-        # @param FilterEnd: 排除关键字，结尾
+        # @param FilterEnd: 是否以域名结尾排除关键词进行搜索
         # @type FilterEnd: Boolean
-        # @param FilterWords: 排除关键字
+        # @param FilterWords: 域名排除关键词
+        # 单独使用FilterWords：使用排除关键词进行搜索
+        # FilterWords+FilterStart（true）：使用域名开头排除关键词进行搜索
+        # FilterWords+FilterEnd（true）：使用域名结尾排除关键词进行搜索
+        # FilterWords+FilterStart（true）+FilterEnd（true）：使用域名开头或结尾排除关键词进行搜索
         # @type FilterWords: String
-        # @param TransType: 交易类型
+        # @param TransType: 交易类型（目前只支持10）
+        # 10: 预释放域名
         # @type TransType: Integer
-        # @param IsTop: 搜索白金域名
+        # @param IsTop: 是否搜索白金域名
         # @type IsTop: Boolean
-        # @param EndTimeSort: 结束时间排序啊 desc:倒序 asc:正序
+        # @param EndTimeSort: 结束时间排序 desc:倒序 asc:正序
         # @type EndTimeSort: String
-        # @param EndTime: 结束时间
+        # @param EndTime: 结束时间（YYYY-MM-DD）
         # @type EndTime: String
 
         attr_accessor :Keywords, :DomainStart, :DomainEnd, :Sort, :PriceStart, :PriceEnd, :LengthStart, :LengthEnd, :PageNumber, :PageSize, :Suffix, :ClassOne, :ClassTwo, :ClassThree, :ClassFour, :FilterStart, :FilterEnd, :FilterWords, :TransType, :IsTop, :EndTimeSort, :EndTime
@@ -2553,7 +2692,8 @@ module TencentCloud
 
       # DescribeTemplate请求参数结构体
       class DescribeTemplateRequest < TencentCloud::Common::AbstractModel
-        # @param TemplateId: 模板ID(模板列表接口可获取)
+        # @param TemplateId: 模板ID
+        # 通过DescribeTemplateList接口获取:https://cloud.tencent.com/document/api/242/48940
         # @type TemplateId: String
 
         attr_accessor :TemplateId
@@ -3432,23 +3572,29 @@ module TencentCloud
       class PreReleaseInfo < TencentCloud::Common::AbstractModel
         # @param Domain: 域名
         # @type Domain: String
-        # @param ReservationTime: 预订倒计时
+        # @param ReservationTime: 预订倒计时(YYYY-MM-DD hh:mm:ss)
         # @type ReservationTime: String
-        # @param RegTime: 域名注册时间
+        # @param RegTime: 域名注册时间(YYYY-MM-DD hh:mm:ss)
         # @type RegTime: String
-        # @param DelTime: 域名删除时间
+        # @param DelTime: 域名删除时间(YYYY-MM-DD hh:mm:ss)
         # @type DelTime: String
         # @param CurrentPeople: 当前人数
         # @type CurrentPeople: Integer
         # @param Price: 当前价格
         # @type Price: Float
         # @param IsFollow: 是否收藏
+        # true：收藏
+        # false：未收藏
         # @type IsFollow: Boolean
         # @param IsAppoint: 是否已经预约
+        # true：预约
+        # false：未预约
         # @type IsAppoint: Boolean
         # @param BusinessId: 业务ID
         # @type BusinessId: String
         # @param IsDomainUser: 是否为原持有者
+        # true：是原持有人
+        # false：非原持有人
         # @type IsDomainUser: Boolean
 
         attr_accessor :Domain, :ReservationTime, :RegTime, :DelTime, :CurrentPeople, :Price, :IsFollow, :IsAppoint, :BusinessId, :IsDomainUser

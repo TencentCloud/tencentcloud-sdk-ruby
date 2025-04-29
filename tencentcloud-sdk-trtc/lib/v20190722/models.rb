@@ -2403,12 +2403,10 @@ module TencentCloud
         # @param MobileDeviceType: 移动设备类型，
         # 0: 手机
         # 1: 平板
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MobileDeviceType: Integer
         # @param ScreenOrientation: 屏幕方向，
         # 0: 竖屏，
         # 1: 横屏
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScreenOrientation: Integer
 
         attr_accessor :MobileDeviceType, :ScreenOrientation

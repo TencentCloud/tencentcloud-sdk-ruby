@@ -3251,16 +3251,19 @@ module TencentCloud
         # @type StepName: String
         # @param OwnerName: 处理人
         # @type OwnerName: String
+        # @param OwnerPhone: 处理人手机号
+        # @type OwnerPhone: String
         # @param FinishTime: 完成时间
         # @type FinishTime: String
         # @param StepStatus: 此步骤状态
         # @type StepStatus: String
 
-        attr_accessor :StepName, :OwnerName, :FinishTime, :StepStatus
+        attr_accessor :StepName, :OwnerName, :OwnerPhone, :FinishTime, :StepStatus
 
-        def initialize(stepname=nil, ownername=nil, finishtime=nil, stepstatus=nil)
+        def initialize(stepname=nil, ownername=nil, ownerphone=nil, finishtime=nil, stepstatus=nil)
           @StepName = stepname
           @OwnerName = ownername
+          @OwnerPhone = ownerphone
           @FinishTime = finishtime
           @StepStatus = stepstatus
         end
@@ -3268,6 +3271,7 @@ module TencentCloud
         def deserialize(params)
           @StepName = params['StepName']
           @OwnerName = params['OwnerName']
+          @OwnerPhone = params['OwnerPhone']
           @FinishTime = params['FinishTime']
           @StepStatus = params['StepStatus']
         end

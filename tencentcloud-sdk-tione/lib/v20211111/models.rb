@@ -5312,6 +5312,49 @@ module TencentCloud
         end
       end
 
+      # ModifyNotebookTags请求参数结构体
+      class ModifyNotebookTagsRequest < TencentCloud::Common::AbstractModel
+        # @param Id: Notebook Id
+        # @type Id: String
+        # @param Tags: Notebook修改标签集合
+        # @type Tags: Array
+
+        attr_accessor :Id, :Tags
+
+        def initialize(id=nil, tags=nil)
+          @Id = id
+          @Tags = tags
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
+        end
+      end
+
+      # ModifyNotebookTags返回参数结构体
+      class ModifyNotebookTagsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 多模态对话内容,支持图片与文字信息
       class MultiModalContent < TencentCloud::Common::AbstractModel
         # @param Type: 对话类型，text表示文本对话内容，image_url表示图片对话内容

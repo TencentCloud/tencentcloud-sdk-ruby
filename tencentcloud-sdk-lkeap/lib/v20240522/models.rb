@@ -116,15 +116,18 @@ module TencentCloud
         # @type Temperature: Float
         # @param MaxTokens: 最大生成的token数量，默认为4096，最大可设置为16384
         # @type MaxTokens: Integer
+        # @param EnableSearch: 是否启用联网搜索
+        # @type EnableSearch: Boolean
 
-        attr_accessor :Model, :Messages, :Stream, :Temperature, :MaxTokens
+        attr_accessor :Model, :Messages, :Stream, :Temperature, :MaxTokens, :EnableSearch
 
-        def initialize(model=nil, messages=nil, stream=nil, temperature=nil, maxtokens=nil)
+        def initialize(model=nil, messages=nil, stream=nil, temperature=nil, maxtokens=nil, enablesearch=nil)
           @Model = model
           @Messages = messages
           @Stream = stream
           @Temperature = temperature
           @MaxTokens = maxtokens
+          @EnableSearch = enablesearch
         end
 
         def deserialize(params)
@@ -140,6 +143,7 @@ module TencentCloud
           @Stream = params['Stream']
           @Temperature = params['Temperature']
           @MaxTokens = params['MaxTokens']
+          @EnableSearch = params['EnableSearch']
         end
       end
 
@@ -915,22 +919,30 @@ module TencentCloud
         # @type TotalToken: Integer
         # @param TotalTokens: 文档拆分任务消耗的总token数
         # @type TotalTokens: Integer
+        # @param SplitTokens: 拆分消耗的token数
+        # @type SplitTokens: Integer
+        # @param MllmTokens: mllm消耗的token数
+        # @type MllmTokens: Integer
 
-        attr_accessor :PageNumber, :TotalToken, :TotalTokens
+        attr_accessor :PageNumber, :TotalToken, :TotalTokens, :SplitTokens, :MllmTokens
         extend Gem::Deprecate
         deprecate :TotalToken, :none, 2025, 4
         deprecate :TotalToken=, :none, 2025, 4
 
-        def initialize(pagenumber=nil, totaltoken=nil, totaltokens=nil)
+        def initialize(pagenumber=nil, totaltoken=nil, totaltokens=nil, splittokens=nil, mllmtokens=nil)
           @PageNumber = pagenumber
           @TotalToken = totaltoken
           @TotalTokens = totaltokens
+          @SplitTokens = splittokens
+          @MllmTokens = mllmtokens
         end
 
         def deserialize(params)
           @PageNumber = params['PageNumber']
           @TotalToken = params['TotalToken']
           @TotalTokens = params['TotalTokens']
+          @SplitTokens = params['SplitTokens']
+          @MllmTokens = params['MllmTokens']
         end
       end
 
@@ -1411,19 +1423,30 @@ module TencentCloud
         # @param ReasoningContent: 思维链内容。
         # ReasoningConent参数仅支持出参，且只有deepseek-r1模型会返回。
         # @type ReasoningContent: String
+        # @param SearchResults: 搜索结果
+        # @type SearchResults: Array
 
-        attr_accessor :Role, :Content, :ReasoningContent
+        attr_accessor :Role, :Content, :ReasoningContent, :SearchResults
 
-        def initialize(role=nil, content=nil, reasoningcontent=nil)
+        def initialize(role=nil, content=nil, reasoningcontent=nil, searchresults=nil)
           @Role = role
           @Content = content
           @ReasoningContent = reasoningcontent
+          @SearchResults = searchresults
         end
 
         def deserialize(params)
           @Role = params['Role']
           @Content = params['Content']
           @ReasoningContent = params['ReasoningContent']
+          unless params['SearchResults'].nil?
+            @SearchResults = []
+            params['SearchResults'].each do |i|
+              searchresult_tmp = SearchResult.new
+              searchresult_tmp.deserialize(i)
+              @SearchResults << searchresult_tmp
+            end
+          end
         end
       end
 
@@ -1998,6 +2021,46 @@ module TencentCloud
             @Usage.deserialize(params['Usage'])
           end
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 搜索结果
+      class SearchResult < TencentCloud::Common::AbstractModel
+        # @param Index: 索引
+        # @type Index: Integer
+        # @param Url: 链接地址
+        # @type Url: String
+        # @param Name: 标题
+        # @type Name: String
+        # @param Snippet: 摘要
+        # @type Snippet: String
+        # @param Icon: 图标
+        # @type Icon: String
+        # @param Site: 站点
+        # @type Site: String
+        # @param PublishedTime: 1740412800
+        # @type PublishedTime: Integer
+
+        attr_accessor :Index, :Url, :Name, :Snippet, :Icon, :Site, :PublishedTime
+
+        def initialize(index=nil, url=nil, name=nil, snippet=nil, icon=nil, site=nil, publishedtime=nil)
+          @Index = index
+          @Url = url
+          @Name = name
+          @Snippet = snippet
+          @Icon = icon
+          @Site = site
+          @PublishedTime = publishedtime
+        end
+
+        def deserialize(params)
+          @Index = params['Index']
+          @Url = params['Url']
+          @Name = params['Name']
+          @Snippet = params['Snippet']
+          @Icon = params['Icon']
+          @Site = params['Site']
+          @PublishedTime = params['PublishedTime']
         end
       end
 

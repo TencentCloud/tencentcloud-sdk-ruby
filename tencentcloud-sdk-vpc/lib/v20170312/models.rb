@@ -12379,7 +12379,6 @@ module TencentCloud
       # DescribeNatGatewaySourceIpTranslationNatRules返回参数结构体
       class DescribeNatGatewaySourceIpTranslationNatRulesResponse < TencentCloud::Common::AbstractModel
         # @param SourceIpTranslationNatRuleSet: NAT网关SNAT规则对象数组。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SourceIpTranslationNatRuleSet: Array
         # @param TotalCount: 符合条件的NAT网关端口转发规则对象数目。
         # @type TotalCount: Integer

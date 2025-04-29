@@ -19,7 +19,7 @@ module TencentCloud
     module V20180410
       # AcceptDirectConnectTunnel请求参数结构体
       class AcceptDirectConnectTunnelRequest < TencentCloud::Common::AbstractModel
-        # @param DirectConnectTunnelId: 专用通道ID。可以通过[DescribeDirectConnectTunnel](https://cloud.tencent.com/document/product/216/19819)接口获取。
+        # @param DirectConnectTunnelId: 专用通道ID。可以通过[DescribeDirectConnectTunnels](https://cloud.tencent.com/document/product/216/19819)接口获取。
         # @type DirectConnectTunnelId: String
 
         attr_accessor :DirectConnectTunnelId
@@ -214,7 +214,7 @@ module TencentCloud
       # bgp参数，包括CloudAsn，Asn，AuthKey
       class BgpPeer < TencentCloud::Common::AbstractModel
         # @param CloudAsn: 腾讯侧BGP ASN
-        # @type CloudAsn: String
+        # @type CloudAsn: Integer
         # @param Asn: 用户侧BGP ASN
         # @type Asn: Integer
         # @param AuthKey: 用户侧BGP密钥
@@ -443,7 +443,7 @@ module TencentCloud
         # @param DirectConnectName: 物理专线的名称。
         # @type DirectConnectName: String
         # @param AccessPointId: 物理专线所在的接入点。
-        # 您可以通过调用 DescribeAccessPoints接口获取地域ID。所选择的接入点必须存在且处于可接入的状态。
+        # 您可以通过调用[DescribeAccessPoints](https://cloud.tencent.com/document/product/216/34827)接口获取接入点ID。
         # @type AccessPointId: String
         # @param LineOperator: 提供接入物理专线的运营商。
         # ChinaTelecom：中国电信；
@@ -768,8 +768,7 @@ module TencentCloud
 
       # DescribeAccessPoints请求参数结构体
       class DescribeAccessPointsRequest < TencentCloud::Common::AbstractModel
-        # @param RegionId: 接入点所在的地域。使用DescribeRegions查询。
-        # 您可以通过调用 DescribeRegions接口获取地域ID。
+        # @param RegionId: 接入点所在的地域。你可以通过调用[DescribeRegions](https://cloud.tencent.com/document/product/1596/77930)接口获取地域ID。
         # @type RegionId: String
         # @param Offset: 偏移量，默认为0。
         # @type Offset: Integer
@@ -944,7 +943,7 @@ module TencentCloud
 
       # DescribeDirectConnects请求参数结构体
       class DescribeDirectConnectsRequest < TencentCloud::Common::AbstractModel
-        # @param Filters: 过滤条件。
+        # @param Filters: 过滤条件。direct-connect-id：物理专线ID，states：物理专线状态（AVAILABLE-就绪，PENDING-申请中，REJECTED-申请被拒绝，PENDINGPAY-待付款，PAID-付款完成，BUILDING-建设中，STOPED-建设终止，DELETED-删除完成）。
         # @type Filters: Array
         # @param DirectConnectIds: 物理专线 ID数组。
         # @type DirectConnectIds: Array
@@ -1309,10 +1308,12 @@ module TencentCloud
         # @type Construct: Integer
         # @param AccessPointName: 物理专线的接入点名称
         # @type AccessPointName: String
+        # @param IsThreeArch: 是否三层架构
+        # @type IsThreeArch: Boolean
 
-        attr_accessor :DirectConnectId, :DirectConnectName, :AccessPointId, :State, :CreatedTime, :EnabledTime, :LineOperator, :Location, :Bandwidth, :PortType, :CircuitCode, :RedundantDirectConnectId, :Vlan, :TencentAddress, :CustomerAddress, :CustomerName, :CustomerContactMail, :CustomerContactNumber, :ExpiredTime, :ChargeType, :FaultReportContactPerson, :FaultReportContactNumber, :TagSet, :AccessPointType, :IdcCity, :ChargeState, :StartTime, :SignLaw, :LocalZone, :VlanZeroDirectConnectTunnelCount, :OtherVlanDirectConnectTunnelCount, :MinBandwidth, :Construct, :AccessPointName
+        attr_accessor :DirectConnectId, :DirectConnectName, :AccessPointId, :State, :CreatedTime, :EnabledTime, :LineOperator, :Location, :Bandwidth, :PortType, :CircuitCode, :RedundantDirectConnectId, :Vlan, :TencentAddress, :CustomerAddress, :CustomerName, :CustomerContactMail, :CustomerContactNumber, :ExpiredTime, :ChargeType, :FaultReportContactPerson, :FaultReportContactNumber, :TagSet, :AccessPointType, :IdcCity, :ChargeState, :StartTime, :SignLaw, :LocalZone, :VlanZeroDirectConnectTunnelCount, :OtherVlanDirectConnectTunnelCount, :MinBandwidth, :Construct, :AccessPointName, :IsThreeArch
 
-        def initialize(directconnectid=nil, directconnectname=nil, accesspointid=nil, state=nil, createdtime=nil, enabledtime=nil, lineoperator=nil, location=nil, bandwidth=nil, porttype=nil, circuitcode=nil, redundantdirectconnectid=nil, vlan=nil, tencentaddress=nil, customeraddress=nil, customername=nil, customercontactmail=nil, customercontactnumber=nil, expiredtime=nil, chargetype=nil, faultreportcontactperson=nil, faultreportcontactnumber=nil, tagset=nil, accesspointtype=nil, idccity=nil, chargestate=nil, starttime=nil, signlaw=nil, localzone=nil, vlanzerodirectconnecttunnelcount=nil, othervlandirectconnecttunnelcount=nil, minbandwidth=nil, construct=nil, accesspointname=nil)
+        def initialize(directconnectid=nil, directconnectname=nil, accesspointid=nil, state=nil, createdtime=nil, enabledtime=nil, lineoperator=nil, location=nil, bandwidth=nil, porttype=nil, circuitcode=nil, redundantdirectconnectid=nil, vlan=nil, tencentaddress=nil, customeraddress=nil, customername=nil, customercontactmail=nil, customercontactnumber=nil, expiredtime=nil, chargetype=nil, faultreportcontactperson=nil, faultreportcontactnumber=nil, tagset=nil, accesspointtype=nil, idccity=nil, chargestate=nil, starttime=nil, signlaw=nil, localzone=nil, vlanzerodirectconnecttunnelcount=nil, othervlandirectconnecttunnelcount=nil, minbandwidth=nil, construct=nil, accesspointname=nil, isthreearch=nil)
           @DirectConnectId = directconnectid
           @DirectConnectName = directconnectname
           @AccessPointId = accesspointid
@@ -1347,6 +1348,7 @@ module TencentCloud
           @MinBandwidth = minbandwidth
           @Construct = construct
           @AccessPointName = accesspointname
+          @IsThreeArch = isthreearch
         end
 
         def deserialize(params)
@@ -1391,6 +1393,7 @@ module TencentCloud
           @MinBandwidth = params['MinBandwidth']
           @Construct = params['Construct']
           @AccessPointName = params['AccessPointName']
+          @IsThreeArch = params['IsThreeArch']
         end
       end
 

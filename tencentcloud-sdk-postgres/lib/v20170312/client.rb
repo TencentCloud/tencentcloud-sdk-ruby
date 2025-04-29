@@ -101,6 +101,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 该产品形态需要下线，已完成客户实例全部下线、后端服务下线等
+
         # 【接口下线中，请勿使用】本接口（CloseServerlessDBExtranetAccess）用于关闭serverlessDB实例公网地址
 
         # @param request: Request instance for CloseServerlessDBExtranetAccess.
@@ -391,6 +393,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 该产品形态需要下线，已完成客户实例全部下线、后端服务下线等
+
         # 【接口下线中，请勿使用】本接口 (CreateServerlessDBInstance) 用于创建一个ServerlessDB实例，创建成功返回实例ID。
 
         # @param request: Request instance for CreateServerlessDBInstance.
@@ -606,6 +610,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 该产品形态需要下线，已完成客户实例全部下线、后端服务下线等
 
         # 【接口下线中，请勿使用】本接口 (DeleteServerlessDBInstance) 用于删除一个ServerlessDB实例。
 
@@ -1497,6 +1503,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 该产品形态需要下线，已完成客户实例全部下线、后端服务下线等
+
         # 【接口下线中，请勿使用】用于查询一个或多个serverlessDB实例的详细信息
 
         # @param request: Request instance for DescribeServerlessDBInstances.
@@ -2339,6 +2347,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 该产品形态需要下线，已完成客户实例全部下线、后端服务下线等
 
         # 【接口下线中，请勿使用】本接口（OpenServerlessDBExtranetAccess）用于开通serverlessDB实例公网地址。
 

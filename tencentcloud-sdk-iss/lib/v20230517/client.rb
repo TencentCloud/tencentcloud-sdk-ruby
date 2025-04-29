@@ -248,6 +248,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 用于批量删除本地录像下载失败的任务
+
+        # @param request: Request instance for BatchDeleteVideoDownloadTask.
+        # @type request: :class:`Tencentcloud::iss::V20230517::BatchDeleteVideoDownloadTaskRequest`
+        # @rtype: :class:`Tencentcloud::iss::V20230517::BatchDeleteVideoDownloadTaskResponse`
+        def BatchDeleteVideoDownloadTask(request)
+          body = send_request('BatchDeleteVideoDownloadTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = BatchDeleteVideoDownloadTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 用于批量操作（启用，禁用，删除）设备
 
         # @param request: Request instance for BatchOperateDevice.
@@ -426,6 +450,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ControlRecordTimelineResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 创建本地录像下载任务
+
+        # @param request: Request instance for CreateVideoDownloadTask.
+        # @type request: :class:`Tencentcloud::iss::V20230517::CreateVideoDownloadTaskRequest`
+        # @rtype: :class:`Tencentcloud::iss::V20230517::CreateVideoDownloadTaskResponse`
+        def CreateVideoDownloadTask(request)
+          body = send_request('CreateVideoDownloadTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateVideoDownloadTaskResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -656,6 +704,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 用于删除执行完成的任务
+
+        # @param request: Request instance for DeleteTask.
+        # @type request: :class:`Tencentcloud::iss::V20230517::DeleteTaskRequest`
+        # @rtype: :class:`Tencentcloud::iss::V20230517::DeleteTaskResponse`
+        def DeleteTask(request)
+          body = send_request('DeleteTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 用于删除已添加的设备。
 
         # @param request: Request instance for DeleteUserDevice.
@@ -858,6 +930,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeDomainRegionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 用于获取国标设备的公网地址
+
+        # @param request: Request instance for DescribeGBDeviceAddr.
+        # @type request: :class:`Tencentcloud::iss::V20230517::DescribeGBDeviceAddrRequest`
+        # @rtype: :class:`Tencentcloud::iss::V20230517::DescribeGBDeviceAddrResponse`
+        def DescribeGBDeviceAddr(request)
+          body = send_request('DescribeGBDeviceAddr', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeGBDeviceAddrResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1699,6 +1795,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ListTasksResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询本店里录像下载任务列表
+
+        # @param request: Request instance for ListVideoDownloadTask.
+        # @type request: :class:`Tencentcloud::iss::V20230517::ListVideoDownloadTaskRequest`
+        # @rtype: :class:`Tencentcloud::iss::V20230517::ListVideoDownloadTaskResponse`
+        def ListVideoDownloadTask(request)
+          body = send_request('ListVideoDownloadTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ListVideoDownloadTaskResponse.new
             model.deserialize(response['Response'])
             model
           else

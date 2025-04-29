@@ -4009,7 +4009,7 @@ module TencentCloud
       class DescribeCertDomainsRequest < TencentCloud::Common::AbstractModel
         # @param Cert: PEM格式证书Base64编码后的字符串
         # @type Cert: String
-        # @param CertId: 托管证书ID，Cert和CertId不能均未空，都填写时以CerId为准。
+        # @param CertId: 托管证书ID，Cert和CertId不能均未空，都填写时以CertId为准。
         # @type CertId: String
         # @param Product: 域名所属产品，cdn或ecdn，默认cdn。
         # @type Product: String
@@ -8977,7 +8977,7 @@ module TencentCloud
         # @type Url: String
         # @param Channel: 接入渠道，cdn或者ecdn，默认值为cdn
         # @type Channel: String
-        # @param Limit: 要查询的Top条数，最大值为100，默认为10
+        # @param Limit: 要查询的Top条数，建议最大值100，默认为10
         # @type Limit: Integer
         # @param Sort: 按请求量排序， asc（升序）或者 desc（降序），默认为 desc
         # @type Sort: String

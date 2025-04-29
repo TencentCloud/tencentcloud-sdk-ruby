@@ -29,6 +29,30 @@ module TencentCloud
         end
 
 
+        # 本接口（CreateApplicaiton）用于对HAI实例制作自定义应用。
+
+        # @param request: Request instance for CreateApplication.
+        # @type request: :class:`Tencentcloud::hai::V20230812::CreateApplicationRequest`
+        # @rtype: :class:`Tencentcloud::hai::V20230812::CreateApplicationResponse`
+        def CreateApplication(request)
+          body = send_request('CreateApplication', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateApplicationResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建musk prompt 任务
 
         # @param request: Request instance for CreateMuskPrompt.

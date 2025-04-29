@@ -531,12 +531,14 @@ module TencentCloud
         # @param QualityValue: 图片质量分数，请求EnableQualityValue时返回（取值范围：0-100，分数越低越模糊，建议阈值≥50）。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type QualityValue: Integer
+        # @param CardCategory: 卡类别， 如： 标准实体银行卡、电子银行卡信息截图
+        # @type CardCategory: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :CardNo, :BankInfo, :ValidDate, :CardType, :CardName, :BorderCutImage, :CardNoImage, :WarningCode, :QualityValue, :RequestId
+        attr_accessor :CardNo, :BankInfo, :ValidDate, :CardType, :CardName, :BorderCutImage, :CardNoImage, :WarningCode, :QualityValue, :CardCategory, :RequestId
 
-        def initialize(cardno=nil, bankinfo=nil, validdate=nil, cardtype=nil, cardname=nil, bordercutimage=nil, cardnoimage=nil, warningcode=nil, qualityvalue=nil, requestid=nil)
+        def initialize(cardno=nil, bankinfo=nil, validdate=nil, cardtype=nil, cardname=nil, bordercutimage=nil, cardnoimage=nil, warningcode=nil, qualityvalue=nil, cardcategory=nil, requestid=nil)
           @CardNo = cardno
           @BankInfo = bankinfo
           @ValidDate = validdate
@@ -546,6 +548,7 @@ module TencentCloud
           @CardNoImage = cardnoimage
           @WarningCode = warningcode
           @QualityValue = qualityvalue
+          @CardCategory = cardcategory
           @RequestId = requestid
         end
 
@@ -559,6 +562,7 @@ module TencentCloud
           @CardNoImage = params['CardNoImage']
           @WarningCode = params['WarningCode']
           @QualityValue = params['QualityValue']
+          @CardCategory = params['CardCategory']
           @RequestId = params['RequestId']
         end
       end
