@@ -1049,10 +1049,10 @@ module TencentCloud
 
         attr_accessor :Id, :ClusterId, :Ftitle, :ClusterName, :RegionId, :ZoneId, :AppId, :Uin, :ProjectId, :VpcId, :SubnetId, :Status, :AddTime, :RunTime, :Config, :MasterIp, :EmrVersion, :ChargeType, :TradeVersion, :ResourceOrderId, :IsTradeCluster, :AlarmInfo, :IsWoodpeckerCluster, :MetaDb, :Tags, :HiveMetaDb, :ServiceClass, :AliasInfo, :ProductId, :Zone, :SceneName, :SceneServiceClass, :SceneEmrVersion, :DisplayName, :VpcName, :SubnetName, :ClusterExternalServiceInfo, :UniqVpcId, :UniqSubnetId, :TopologyInfoList, :IsMultiZoneCluster, :IsCvmReplace, :ClusterTitle, :ConfigDetail, :BindFileSystemNum, :ClusterRelationInfoList
         extend Gem::Deprecate
-        deprecate :Ftitle, :none, 2025, 4
-        deprecate :Ftitle=, :none, 2025, 4
-        deprecate :Config, :none, 2025, 4
-        deprecate :Config=, :none, 2025, 4
+        deprecate :Ftitle, :none, 2025, 5
+        deprecate :Ftitle=, :none, 2025, 5
+        deprecate :Config, :none, 2025, 5
+        deprecate :Config=, :none, 2025, 5
 
         def initialize(id=nil, clusterid=nil, ftitle=nil, clustername=nil, regionid=nil, zoneid=nil, appid=nil, uin=nil, projectid=nil, vpcid=nil, subnetid=nil, status=nil, addtime=nil, runtime=nil, config=nil, masterip=nil, emrversion=nil, chargetype=nil, tradeversion=nil, resourceorderid=nil, istradecluster=nil, alarminfo=nil, iswoodpeckercluster=nil, metadb=nil, tags=nil, hivemetadb=nil, serviceclass=nil, aliasinfo=nil, productid=nil, zone=nil, scenename=nil, sceneserviceclass=nil, sceneemrversion=nil, displayname=nil, vpcname=nil, subnetname=nil, clusterexternalserviceinfo=nil, uniqvpcid=nil, uniqsubnetid=nil, topologyinfolist=nil, ismultizonecluster=nil, iscvmreplace=nil, clustertitle=nil, configdetail=nil, bindfilesystemnum=nil, clusterrelationinfolist=nil)
           @Id = id
@@ -8697,10 +8697,12 @@ module TencentCloud
         # @type TimingResource: Boolean
         # @param TkeClusterId: 资源类型（HardwareResourceType）为pod时，对应的TKE集群id
         # @type TkeClusterId: String
+        # @param ConfigurableServices: 新挂磁盘时可支持配置的服务名称列表
+        # @type ConfigurableServices: Array
 
-        attr_accessor :AppId, :SerialNo, :OrderNo, :WanIp, :Flag, :Spec, :CpuNum, :MemSize, :MemDesc, :RegionId, :ZoneId, :ApplyTime, :FreeTime, :DiskSize, :NameTag, :Services, :StorageType, :RootSize, :ChargeType, :CdbIp, :CdbPort, :HwDiskSize, :HwDiskSizeDesc, :HwMemSize, :HwMemSizeDesc, :ExpireTime, :EmrResourceId, :IsAutoRenew, :DeviceClass, :Mutable, :MCMultiDisk, :CdbNodeInfo, :Ip, :Destroyable, :Tags, :AutoFlag, :HardwareResourceType, :IsDynamicSpec, :DynamicPodSpec, :SupportModifyPayMode, :RootStorageType, :Zone, :SubnetInfo, :Clients, :CurrentTime, :IsFederation, :DeviceName, :ServiceClient, :DisableApiTermination, :TradeVersion, :ServicesStatus, :Remark, :SharedClusterId, :SharedClusterIdDesc, :TimingResource, :TkeClusterId
+        attr_accessor :AppId, :SerialNo, :OrderNo, :WanIp, :Flag, :Spec, :CpuNum, :MemSize, :MemDesc, :RegionId, :ZoneId, :ApplyTime, :FreeTime, :DiskSize, :NameTag, :Services, :StorageType, :RootSize, :ChargeType, :CdbIp, :CdbPort, :HwDiskSize, :HwDiskSizeDesc, :HwMemSize, :HwMemSizeDesc, :ExpireTime, :EmrResourceId, :IsAutoRenew, :DeviceClass, :Mutable, :MCMultiDisk, :CdbNodeInfo, :Ip, :Destroyable, :Tags, :AutoFlag, :HardwareResourceType, :IsDynamicSpec, :DynamicPodSpec, :SupportModifyPayMode, :RootStorageType, :Zone, :SubnetInfo, :Clients, :CurrentTime, :IsFederation, :DeviceName, :ServiceClient, :DisableApiTermination, :TradeVersion, :ServicesStatus, :Remark, :SharedClusterId, :SharedClusterIdDesc, :TimingResource, :TkeClusterId, :ConfigurableServices
 
-        def initialize(appid=nil, serialno=nil, orderno=nil, wanip=nil, flag=nil, spec=nil, cpunum=nil, memsize=nil, memdesc=nil, regionid=nil, zoneid=nil, applytime=nil, freetime=nil, disksize=nil, nametag=nil, services=nil, storagetype=nil, rootsize=nil, chargetype=nil, cdbip=nil, cdbport=nil, hwdisksize=nil, hwdisksizedesc=nil, hwmemsize=nil, hwmemsizedesc=nil, expiretime=nil, emrresourceid=nil, isautorenew=nil, deviceclass=nil, mutable=nil, mcmultidisk=nil, cdbnodeinfo=nil, ip=nil, destroyable=nil, tags=nil, autoflag=nil, hardwareresourcetype=nil, isdynamicspec=nil, dynamicpodspec=nil, supportmodifypaymode=nil, rootstoragetype=nil, zone=nil, subnetinfo=nil, clients=nil, currenttime=nil, isfederation=nil, devicename=nil, serviceclient=nil, disableapitermination=nil, tradeversion=nil, servicesstatus=nil, remark=nil, sharedclusterid=nil, sharedclusteriddesc=nil, timingresource=nil, tkeclusterid=nil)
+        def initialize(appid=nil, serialno=nil, orderno=nil, wanip=nil, flag=nil, spec=nil, cpunum=nil, memsize=nil, memdesc=nil, regionid=nil, zoneid=nil, applytime=nil, freetime=nil, disksize=nil, nametag=nil, services=nil, storagetype=nil, rootsize=nil, chargetype=nil, cdbip=nil, cdbport=nil, hwdisksize=nil, hwdisksizedesc=nil, hwmemsize=nil, hwmemsizedesc=nil, expiretime=nil, emrresourceid=nil, isautorenew=nil, deviceclass=nil, mutable=nil, mcmultidisk=nil, cdbnodeinfo=nil, ip=nil, destroyable=nil, tags=nil, autoflag=nil, hardwareresourcetype=nil, isdynamicspec=nil, dynamicpodspec=nil, supportmodifypaymode=nil, rootstoragetype=nil, zone=nil, subnetinfo=nil, clients=nil, currenttime=nil, isfederation=nil, devicename=nil, serviceclient=nil, disableapitermination=nil, tradeversion=nil, servicesstatus=nil, remark=nil, sharedclusterid=nil, sharedclusteriddesc=nil, timingresource=nil, tkeclusterid=nil, configurableservices=nil)
           @AppId = appid
           @SerialNo = serialno
           @OrderNo = orderno
@@ -8757,6 +8759,7 @@ module TencentCloud
           @SharedClusterIdDesc = sharedclusteriddesc
           @TimingResource = timingresource
           @TkeClusterId = tkeclusterid
+          @ConfigurableServices = configurableservices
         end
 
         def deserialize(params)
@@ -8836,6 +8839,7 @@ module TencentCloud
           @SharedClusterIdDesc = params['SharedClusterIdDesc']
           @TimingResource = params['TimingResource']
           @TkeClusterId = params['TkeClusterId']
+          @ConfigurableServices = params['ConfigurableServices']
         end
       end
 
@@ -11548,12 +11552,12 @@ module TencentCloud
 
         attr_accessor :DetectAlert, :DetetcFunctionKey, :DetetcFunctionValue, :DetetcTime, :DetectFunctionKey, :DetectFunctionValue, :DetectTime
         extend Gem::Deprecate
-        deprecate :DetetcFunctionKey, :none, 2025, 4
-        deprecate :DetetcFunctionKey=, :none, 2025, 4
-        deprecate :DetetcFunctionValue, :none, 2025, 4
-        deprecate :DetetcFunctionValue=, :none, 2025, 4
-        deprecate :DetetcTime, :none, 2025, 4
-        deprecate :DetetcTime=, :none, 2025, 4
+        deprecate :DetetcFunctionKey, :none, 2025, 5
+        deprecate :DetetcFunctionKey=, :none, 2025, 5
+        deprecate :DetetcFunctionValue, :none, 2025, 5
+        deprecate :DetetcFunctionValue=, :none, 2025, 5
+        deprecate :DetetcTime, :none, 2025, 5
+        deprecate :DetetcTime=, :none, 2025, 5
 
         def initialize(detectalert=nil, detetcfunctionkey=nil, detetcfunctionvalue=nil, detetctime=nil, detectfunctionkey=nil, detectfunctionvalue=nil, detecttime=nil)
           @DetectAlert = detectalert

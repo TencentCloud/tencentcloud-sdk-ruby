@@ -1185,10 +1185,8 @@ module TencentCloud
         # @param RegisteredTime: 后端服务被绑定的时间
         # @type RegisteredTime: String
         # @param EniId: 弹性网卡唯一ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EniId: String
         # @param ZoneId: 后端服务的可用区ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ZoneId: Integer
 
         attr_accessor :TargetGroupId, :Type, :InstanceId, :Port, :Weight, :PublicIpAddresses, :PrivateIpAddresses, :InstanceName, :RegisteredTime, :EniId, :ZoneId

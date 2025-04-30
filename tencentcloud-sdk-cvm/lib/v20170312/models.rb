@@ -1140,10 +1140,19 @@ module TencentCloud
         # @type DisableApiTermination: Boolean
         # @param LaunchTemplateTagSpecification: 标签描述列表。通过指定该参数可以绑定标签到实例启动模板。
         # @type LaunchTemplateTagSpecification: Array
+        # @param Metadata: 自定义metadata，支持创建 CVM 时添加自定义元数据键值对。
+        # **注：内测中**。
+        # @type Metadata: :class:`Tencentcloud::Cvm.v20170312.models.Metadata`
+        # @param TemplateDataModifyAction: 只允许传递 Update 和 Replace 参数，在模板使用自定义 Metadata 且在 RunInstances 也传递 Metadata 时生效。默认采用 Replace。
 
-        attr_accessor :LaunchTemplateName, :Placement, :ImageId, :LaunchTemplateVersionDescription, :InstanceType, :SystemDisk, :DataDisks, :VirtualPrivateCloud, :InternetAccessible, :InstanceCount, :InstanceName, :LoginSettings, :SecurityGroupIds, :EnhancedService, :ClientToken, :HostName, :ActionTimer, :DisasterRecoverGroupIds, :TagSpecification, :InstanceMarketOptions, :UserData, :DryRun, :CamRoleName, :HpcClusterId, :InstanceChargeType, :InstanceChargePrepaid, :DisableApiTermination, :LaunchTemplateTagSpecification
+        # - Update：设模板 t含本参数值为Update、 metadata=[k1:v1, k2:v2] ，则RunInstances（给metadata=[k2:v3]）+ t 创建的 cvm 使用metadata=[k1:v1, k2:v3]
+        # - Replace：模板 t含本参数值为Replace、 metadata=[k1:v1, k2:v2] ，则RunInstances（给metadata=[k2:v3]）+ t 创建的 cvm 使用metadata=[k2:v3]
+        # **注：内测中**。
+        # @type TemplateDataModifyAction: String
 
-        def initialize(launchtemplatename=nil, placement=nil, imageid=nil, launchtemplateversiondescription=nil, instancetype=nil, systemdisk=nil, datadisks=nil, virtualprivatecloud=nil, internetaccessible=nil, instancecount=nil, instancename=nil, loginsettings=nil, securitygroupids=nil, enhancedservice=nil, clienttoken=nil, hostname=nil, actiontimer=nil, disasterrecovergroupids=nil, tagspecification=nil, instancemarketoptions=nil, userdata=nil, dryrun=nil, camrolename=nil, hpcclusterid=nil, instancechargetype=nil, instancechargeprepaid=nil, disableapitermination=nil, launchtemplatetagspecification=nil)
+        attr_accessor :LaunchTemplateName, :Placement, :ImageId, :LaunchTemplateVersionDescription, :InstanceType, :SystemDisk, :DataDisks, :VirtualPrivateCloud, :InternetAccessible, :InstanceCount, :InstanceName, :LoginSettings, :SecurityGroupIds, :EnhancedService, :ClientToken, :HostName, :ActionTimer, :DisasterRecoverGroupIds, :TagSpecification, :InstanceMarketOptions, :UserData, :DryRun, :CamRoleName, :HpcClusterId, :InstanceChargeType, :InstanceChargePrepaid, :DisableApiTermination, :LaunchTemplateTagSpecification, :Metadata, :TemplateDataModifyAction
+
+        def initialize(launchtemplatename=nil, placement=nil, imageid=nil, launchtemplateversiondescription=nil, instancetype=nil, systemdisk=nil, datadisks=nil, virtualprivatecloud=nil, internetaccessible=nil, instancecount=nil, instancename=nil, loginsettings=nil, securitygroupids=nil, enhancedservice=nil, clienttoken=nil, hostname=nil, actiontimer=nil, disasterrecovergroupids=nil, tagspecification=nil, instancemarketoptions=nil, userdata=nil, dryrun=nil, camrolename=nil, hpcclusterid=nil, instancechargetype=nil, instancechargeprepaid=nil, disableapitermination=nil, launchtemplatetagspecification=nil, metadata=nil, templatedatamodifyaction=nil)
           @LaunchTemplateName = launchtemplatename
           @Placement = placement
           @ImageId = imageid
@@ -1172,6 +1181,8 @@ module TencentCloud
           @InstanceChargePrepaid = instancechargeprepaid
           @DisableApiTermination = disableapitermination
           @LaunchTemplateTagSpecification = launchtemplatetagspecification
+          @Metadata = metadata
+          @TemplateDataModifyAction = templatedatamodifyaction
         end
 
         def deserialize(params)
@@ -1251,6 +1262,11 @@ module TencentCloud
               @LaunchTemplateTagSpecification << tagspecification_tmp
             end
           end
+          unless params['Metadata'].nil?
+            @Metadata = Metadata.new
+            @Metadata.deserialize(params['Metadata'])
+          end
+          @TemplateDataModifyAction = params['TemplateDataModifyAction']
         end
       end
 
@@ -1337,10 +1353,19 @@ module TencentCloud
         # @type InstanceChargePrepaid: :class:`Tencentcloud::Cvm.v20170312.models.InstanceChargePrepaid`
         # @param DisableApiTermination: 实例销毁保护标志，表示是否允许通过api接口删除实例。取值范围：<br><li>TRUE：表示开启实例保护，不允许通过api接口删除实例</li><br><li>FALSE：表示关闭实例保护，允许通过api接口删除实例</li><br><br>默认取值：FALSE。
         # @type DisableApiTermination: Boolean
+        # @param Metadata: 自定义metadata，支持创建 CVM 时添加自定义元数据键值对。
+        # **注：内测中**。
+        # @type Metadata: :class:`Tencentcloud::Cvm.v20170312.models.Metadata`
+        # @param TemplateDataModifyAction: 只允许传递 Update 和 Replace 参数，在模板使用自定义 Metadata 且在 RunInstances 也传递 Metadata 时生效。默认采用 Replace。
 
-        attr_accessor :Placement, :LaunchTemplateId, :LaunchTemplateVersion, :LaunchTemplateVersionDescription, :InstanceType, :ImageId, :SystemDisk, :DataDisks, :VirtualPrivateCloud, :InternetAccessible, :InstanceCount, :InstanceName, :LoginSettings, :SecurityGroupIds, :EnhancedService, :ClientToken, :HostName, :ActionTimer, :DisasterRecoverGroupIds, :TagSpecification, :InstanceMarketOptions, :UserData, :DryRun, :CamRoleName, :HpcClusterId, :InstanceChargeType, :InstanceChargePrepaid, :DisableApiTermination
+        # - Update：设模板 t含本参数值为Update、 metadata=[k1:v1, k2:v2] ，则RunInstances（给metadata=[k2:v3]）+ t 创建的 cvm 使用metadata=[k1:v1, k2:v3]
+        # - Replace：模板 t含本参数值为Replace、 metadata=[k1:v1, k2:v2] ，则RunInstances（给metadata=[k2:v3]）+ t 创建的 cvm 使用metadata=[k2:v3]
+        # **注：内测中**。
+        # @type TemplateDataModifyAction: String
 
-        def initialize(placement=nil, launchtemplateid=nil, launchtemplateversion=nil, launchtemplateversiondescription=nil, instancetype=nil, imageid=nil, systemdisk=nil, datadisks=nil, virtualprivatecloud=nil, internetaccessible=nil, instancecount=nil, instancename=nil, loginsettings=nil, securitygroupids=nil, enhancedservice=nil, clienttoken=nil, hostname=nil, actiontimer=nil, disasterrecovergroupids=nil, tagspecification=nil, instancemarketoptions=nil, userdata=nil, dryrun=nil, camrolename=nil, hpcclusterid=nil, instancechargetype=nil, instancechargeprepaid=nil, disableapitermination=nil)
+        attr_accessor :Placement, :LaunchTemplateId, :LaunchTemplateVersion, :LaunchTemplateVersionDescription, :InstanceType, :ImageId, :SystemDisk, :DataDisks, :VirtualPrivateCloud, :InternetAccessible, :InstanceCount, :InstanceName, :LoginSettings, :SecurityGroupIds, :EnhancedService, :ClientToken, :HostName, :ActionTimer, :DisasterRecoverGroupIds, :TagSpecification, :InstanceMarketOptions, :UserData, :DryRun, :CamRoleName, :HpcClusterId, :InstanceChargeType, :InstanceChargePrepaid, :DisableApiTermination, :Metadata, :TemplateDataModifyAction
+
+        def initialize(placement=nil, launchtemplateid=nil, launchtemplateversion=nil, launchtemplateversiondescription=nil, instancetype=nil, imageid=nil, systemdisk=nil, datadisks=nil, virtualprivatecloud=nil, internetaccessible=nil, instancecount=nil, instancename=nil, loginsettings=nil, securitygroupids=nil, enhancedservice=nil, clienttoken=nil, hostname=nil, actiontimer=nil, disasterrecovergroupids=nil, tagspecification=nil, instancemarketoptions=nil, userdata=nil, dryrun=nil, camrolename=nil, hpcclusterid=nil, instancechargetype=nil, instancechargeprepaid=nil, disableapitermination=nil, metadata=nil, templatedatamodifyaction=nil)
           @Placement = placement
           @LaunchTemplateId = launchtemplateid
           @LaunchTemplateVersion = launchtemplateversion
@@ -1369,6 +1394,8 @@ module TencentCloud
           @InstanceChargeType = instancechargetype
           @InstanceChargePrepaid = instancechargeprepaid
           @DisableApiTermination = disableapitermination
+          @Metadata = metadata
+          @TemplateDataModifyAction = templatedatamodifyaction
         end
 
         def deserialize(params)
@@ -1441,6 +1468,11 @@ module TencentCloud
             @InstanceChargePrepaid.deserialize(params['InstanceChargePrepaid'])
           end
           @DisableApiTermination = params['DisableApiTermination']
+          unless params['Metadata'].nil?
+            @Metadata = Metadata.new
+            @Metadata.deserialize(params['Metadata'])
+          end
+          @TemplateDataModifyAction = params['TemplateDataModifyAction']
         end
       end
 
@@ -1970,8 +2002,8 @@ module TencentCloud
 
         attr_accessor :GroupQuota, :CurrentNum, :CvmInHostGroupQuota, :CvmInSwGroupQuota, :CvmInRackGroupQuota, :CvmInSwitchGroupQuota, :RequestId
         extend Gem::Deprecate
-        deprecate :CvmInSwGroupQuota, :none, 2025, 4
-        deprecate :CvmInSwGroupQuota=, :none, 2025, 4
+        deprecate :CvmInSwGroupQuota, :none, 2025, 5
+        deprecate :CvmInSwGroupQuota=, :none, 2025, 5
 
         def initialize(groupquota=nil, currentnum=nil, cvminhostgroupquota=nil, cvminswgroupquota=nil, cvminrackgroupquota=nil, cvminswitchgroupquota=nil, requestid=nil)
           @GroupQuota = groupquota
@@ -3893,8 +3925,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :Password, :Username, :ForceStop, :StopType
         extend Gem::Deprecate
-        deprecate :ForceStop, :none, 2025, 4
-        deprecate :ForceStop=, :none, 2025, 4
+        deprecate :ForceStop, :none, 2025, 5
+        deprecate :ForceStop=, :none, 2025, 5
 
         def initialize(instanceid=nil, password=nil, username=nil, forcestop=nil, stoptype=nil)
           @InstanceId = instanceid
@@ -5196,6 +5228,10 @@ module TencentCloud
         # @type TagSpecification: Array
         # @param InstanceMarketOptions: 实例的市场相关选项，如竞价实例相关参数
         # @type InstanceMarketOptions: :class:`Tencentcloud::Cvm.v20170312.models.InstanceMarketOptionsRequest`
+        # @param Metadata: 自定义metadata，支持创建 CVM 时添加自定义元数据键值对。
+
+        # **注：内测中**。
+        # @type Metadata: :class:`Tencentcloud::Cvm.v20170312.models.Metadata`
         # @param HpcClusterId: 高性能计算集群ID。
         # @type HpcClusterId: String
         # @param CpuTopology: 描述了实例CPU拓扑结构的相关信息。若不指定该参数，则按系统资源情况决定。
@@ -5203,9 +5239,9 @@ module TencentCloud
         # @param LaunchTemplate: 实例启动模板。
         # @type LaunchTemplate: :class:`Tencentcloud::Cvm.v20170312.models.LaunchTemplate`
 
-        attr_accessor :Placement, :ImageId, :InstanceChargeType, :InstanceChargePrepaid, :InstanceType, :SystemDisk, :DataDisks, :VirtualPrivateCloud, :InternetAccessible, :InstanceCount, :InstanceName, :LoginSettings, :SecurityGroupIds, :EnhancedService, :ClientToken, :HostName, :TagSpecification, :InstanceMarketOptions, :HpcClusterId, :CpuTopology, :LaunchTemplate
+        attr_accessor :Placement, :ImageId, :InstanceChargeType, :InstanceChargePrepaid, :InstanceType, :SystemDisk, :DataDisks, :VirtualPrivateCloud, :InternetAccessible, :InstanceCount, :InstanceName, :LoginSettings, :SecurityGroupIds, :EnhancedService, :ClientToken, :HostName, :TagSpecification, :InstanceMarketOptions, :Metadata, :HpcClusterId, :CpuTopology, :LaunchTemplate
 
-        def initialize(placement=nil, imageid=nil, instancechargetype=nil, instancechargeprepaid=nil, instancetype=nil, systemdisk=nil, datadisks=nil, virtualprivatecloud=nil, internetaccessible=nil, instancecount=nil, instancename=nil, loginsettings=nil, securitygroupids=nil, enhancedservice=nil, clienttoken=nil, hostname=nil, tagspecification=nil, instancemarketoptions=nil, hpcclusterid=nil, cputopology=nil, launchtemplate=nil)
+        def initialize(placement=nil, imageid=nil, instancechargetype=nil, instancechargeprepaid=nil, instancetype=nil, systemdisk=nil, datadisks=nil, virtualprivatecloud=nil, internetaccessible=nil, instancecount=nil, instancename=nil, loginsettings=nil, securitygroupids=nil, enhancedservice=nil, clienttoken=nil, hostname=nil, tagspecification=nil, instancemarketoptions=nil, metadata=nil, hpcclusterid=nil, cputopology=nil, launchtemplate=nil)
           @Placement = placement
           @ImageId = imageid
           @InstanceChargeType = instancechargetype
@@ -5224,6 +5260,7 @@ module TencentCloud
           @HostName = hostname
           @TagSpecification = tagspecification
           @InstanceMarketOptions = instancemarketoptions
+          @Metadata = metadata
           @HpcClusterId = hpcclusterid
           @CpuTopology = cputopology
           @LaunchTemplate = launchtemplate
@@ -5285,6 +5322,10 @@ module TencentCloud
           unless params['InstanceMarketOptions'].nil?
             @InstanceMarketOptions = InstanceMarketOptionsRequest.new
             @InstanceMarketOptions.deserialize(params['InstanceMarketOptions'])
+          end
+          unless params['Metadata'].nil?
+            @Metadata = Metadata.new
+            @Metadata.deserialize(params['Metadata'])
           end
           @HpcClusterId = params['HpcClusterId']
           unless params['CpuTopology'].nil?
@@ -6444,6 +6485,49 @@ module TencentCloud
           @Password = params['Password']
           @KeyIds = params['KeyIds']
           @KeepImageLogin = params['KeepImageLogin']
+        end
+      end
+
+      # 自定义metadata
+      class Metadata < TencentCloud::Common::AbstractModel
+        # @param Items: 自定义metadata键值对列表。
+        # @type Items: Array
+
+        attr_accessor :Items
+
+        def initialize(items=nil)
+          @Items = items
+        end
+
+        def deserialize(params)
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              metadataitem_tmp = MetadataItem.new
+              metadataitem_tmp.deserialize(i)
+              @Items << metadataitem_tmp
+            end
+          end
+        end
+      end
+
+      # 自定义metadata key和value
+      class MetadataItem < TencentCloud::Common::AbstractModel
+        # @param Key: 自定义metadata键，需符合正则 ^[a-zA-Z0-9_-]+$，长度 ≤128 字节（大小写敏感）；
+        # @type Key: String
+        # @param Value: 自定义metadata值，支持任意数据（含二进制），大小 ≤256 KB（大小写敏感）；
+        # @type Value: String
+
+        attr_accessor :Key, :Value
+
+        def initialize(key=nil, value=nil)
+          @Key = key
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Value = params['Value']
         end
       end
 
@@ -8414,6 +8498,9 @@ module TencentCloud
         # @type InstanceMarketOptions: :class:`Tencentcloud::Cvm.v20170312.models.InstanceMarketOptionsRequest`
         # @param UserData: 提供给实例使用的用户数据，需要以 base64 方式编码，支持的最大数据大小为 16KB。关于获取此参数的详细介绍，请参阅[Windows](https://cloud.tencent.com/document/product/213/17526)和[Linux](https://cloud.tencent.com/document/product/213/17525)启动时运行命令。
         # @type UserData: String
+        # @param Metadata: 自定义metadata，支持创建 CVM 时添加自定义元数据键值对。
+        # **注：内测中**。
+        # @type Metadata: :class:`Tencentcloud::Cvm.v20170312.models.Metadata`
         # @param DryRun: 是否只预检此次请求。
         # true：发送检查请求，不会创建实例。检查项包括是否填写了必需参数，请求格式，业务限制和云服务器库存。
         # 如果检查不通过，则返回对应错误码；
@@ -8435,9 +8522,9 @@ module TencentCloud
         # @param DisableApiTermination: 实例销毁保护标志，表示是否允许通过api接口删除实例。取值范围：<br><li>true：表示开启实例保护，不允许通过api接口删除实例</li><br><li>false：表示关闭实例保护，允许通过api接口删除实例</li><br><br>默认取值：false。
         # @type DisableApiTermination: Boolean
 
-        attr_accessor :InstanceChargeType, :InstanceChargePrepaid, :Placement, :InstanceType, :ImageId, :SystemDisk, :DataDisks, :VirtualPrivateCloud, :InternetAccessible, :InstanceCount, :InstanceName, :LoginSettings, :SecurityGroupIds, :EnhancedService, :ClientToken, :HostName, :ActionTimer, :DisasterRecoverGroupIds, :TagSpecification, :InstanceMarketOptions, :UserData, :DryRun, :CpuTopology, :CamRoleName, :HpcClusterId, :LaunchTemplate, :DedicatedClusterId, :ChcIds, :DisableApiTermination
+        attr_accessor :InstanceChargeType, :InstanceChargePrepaid, :Placement, :InstanceType, :ImageId, :SystemDisk, :DataDisks, :VirtualPrivateCloud, :InternetAccessible, :InstanceCount, :InstanceName, :LoginSettings, :SecurityGroupIds, :EnhancedService, :ClientToken, :HostName, :ActionTimer, :DisasterRecoverGroupIds, :TagSpecification, :InstanceMarketOptions, :UserData, :Metadata, :DryRun, :CpuTopology, :CamRoleName, :HpcClusterId, :LaunchTemplate, :DedicatedClusterId, :ChcIds, :DisableApiTermination
 
-        def initialize(instancechargetype=nil, instancechargeprepaid=nil, placement=nil, instancetype=nil, imageid=nil, systemdisk=nil, datadisks=nil, virtualprivatecloud=nil, internetaccessible=nil, instancecount=nil, instancename=nil, loginsettings=nil, securitygroupids=nil, enhancedservice=nil, clienttoken=nil, hostname=nil, actiontimer=nil, disasterrecovergroupids=nil, tagspecification=nil, instancemarketoptions=nil, userdata=nil, dryrun=nil, cputopology=nil, camrolename=nil, hpcclusterid=nil, launchtemplate=nil, dedicatedclusterid=nil, chcids=nil, disableapitermination=nil)
+        def initialize(instancechargetype=nil, instancechargeprepaid=nil, placement=nil, instancetype=nil, imageid=nil, systemdisk=nil, datadisks=nil, virtualprivatecloud=nil, internetaccessible=nil, instancecount=nil, instancename=nil, loginsettings=nil, securitygroupids=nil, enhancedservice=nil, clienttoken=nil, hostname=nil, actiontimer=nil, disasterrecovergroupids=nil, tagspecification=nil, instancemarketoptions=nil, userdata=nil, metadata=nil, dryrun=nil, cputopology=nil, camrolename=nil, hpcclusterid=nil, launchtemplate=nil, dedicatedclusterid=nil, chcids=nil, disableapitermination=nil)
           @InstanceChargeType = instancechargetype
           @InstanceChargePrepaid = instancechargeprepaid
           @Placement = placement
@@ -8459,6 +8546,7 @@ module TencentCloud
           @TagSpecification = tagspecification
           @InstanceMarketOptions = instancemarketoptions
           @UserData = userdata
+          @Metadata = metadata
           @DryRun = dryrun
           @CpuTopology = cputopology
           @CamRoleName = camrolename
@@ -8532,6 +8620,10 @@ module TencentCloud
             @InstanceMarketOptions.deserialize(params['InstanceMarketOptions'])
           end
           @UserData = params['UserData']
+          unless params['Metadata'].nil?
+            @Metadata = Metadata.new
+            @Metadata.deserialize(params['Metadata'])
+          end
           @DryRun = params['DryRun']
           unless params['CpuTopology'].nil?
             @CpuTopology = CpuTopology.new
