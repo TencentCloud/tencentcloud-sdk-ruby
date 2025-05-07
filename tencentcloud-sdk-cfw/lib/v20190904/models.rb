@@ -694,6 +694,26 @@ module TencentCloud
         end
       end
 
+      # 日志分析的列属性
+      class Column < TencentCloud::Common::AbstractModel
+        # @param Name: 列的名字
+        # @type Name: String
+        # @param Type: 列的属性
+        # @type Type: String
+
+        attr_accessor :Name, :Type
+
+        def initialize(name=nil, type=nil)
+          @Name = name
+          @Type = type
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Type = params['Type']
+        end
+      end
+
       # 通用的列表检索过滤选项
       class CommonFilter < TencentCloud::Common::AbstractModel
         # @param Name: 检索的键值
@@ -6120,6 +6140,109 @@ module TencentCloud
         end
       end
 
+      # 日志结果信息
+      class LogInfo < TencentCloud::Common::AbstractModel
+        # @param Time: 日志时间，单位ms
+        # @type Time: Integer
+        # @param TopicId: 日志主题ID
+        # @type TopicId: String
+        # @param TopicName: 日志主题名称
+        # @type TopicName: String
+        # @param Source: 日志来源IP
+        # @type Source: String
+        # @param FileName: 日志文件名称
+        # @type FileName: String
+        # @param PkgId: 日志上报请求包的ID
+        # @type PkgId: String
+        # @param PkgLogId: 请求包内日志的ID
+        # @type PkgLogId: String
+        # @param LogJson: 日志内容的Json序列化字符串
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LogJson: String
+        # @param HostName: 日志来源主机名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HostName: String
+        # @param RawLog: 原始日志(仅在日志创建索引异常时有值)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RawLog: String
+        # @param IndexStatus: 日志创建索引异常原因(仅在日志创建索引异常时有值)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IndexStatus: String
+
+        attr_accessor :Time, :TopicId, :TopicName, :Source, :FileName, :PkgId, :PkgLogId, :LogJson, :HostName, :RawLog, :IndexStatus
+
+        def initialize(time=nil, topicid=nil, topicname=nil, source=nil, filename=nil, pkgid=nil, pkglogid=nil, logjson=nil, hostname=nil, rawlog=nil, indexstatus=nil)
+          @Time = time
+          @TopicId = topicid
+          @TopicName = topicname
+          @Source = source
+          @FileName = filename
+          @PkgId = pkgid
+          @PkgLogId = pkglogid
+          @LogJson = logjson
+          @HostName = hostname
+          @RawLog = rawlog
+          @IndexStatus = indexstatus
+        end
+
+        def deserialize(params)
+          @Time = params['Time']
+          @TopicId = params['TopicId']
+          @TopicName = params['TopicName']
+          @Source = params['Source']
+          @FileName = params['FileName']
+          @PkgId = params['PkgId']
+          @PkgLogId = params['PkgLogId']
+          @LogJson = params['LogJson']
+          @HostName = params['HostName']
+          @RawLog = params['RawLog']
+          @IndexStatus = params['IndexStatus']
+        end
+      end
+
+      # 日志中的KV对
+      class LogItem < TencentCloud::Common::AbstractModel
+        # @param Key: 日志Key
+        # @type Key: String
+        # @param Value: 日志Value
+        # @type Value: String
+
+        attr_accessor :Key, :Value
+
+        def initialize(key=nil, value=nil)
+          @Key = key
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Value = params['Value']
+        end
+      end
+
+      # LogItem的数组
+      class LogItems < TencentCloud::Common::AbstractModel
+        # @param Data: 分析结果返回的KV数据对
+        # @type Data: Array
+
+        attr_accessor :Data
+
+        def initialize(data=nil)
+          @Data = data
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              logitem_tmp = LogItem.new
+              logitem_tmp.deserialize(i)
+              @Data << logitem_tmp
+            end
+          end
+        end
+      end
+
       # ModifyAcRule请求参数结构体
       class ModifyAcRuleRequest < TencentCloud::Common::AbstractModel
         # @param Data: 规则数组
@@ -7725,6 +7848,26 @@ module TencentCloud
         end
       end
 
+      # 多日志主题检索相关信息
+      class MultiTopicSearchInformation < TencentCloud::Common::AbstractModel
+        # @param TopicId: 要检索分析的日志主题ID
+        # @type TopicId: String
+        # @param Context: 透传上次接口返回的Context值，可获取后续更多日志，总计最多可获取1万条原始日志，过期时间1小时
+        # @type Context: String
+
+        attr_accessor :TopicId, :Context
+
+        def initialize(topicid=nil, context=nil)
+          @TopicId = topicid
+          @Context = context
+        end
+
+        def deserialize(params)
+          @TopicId = params['TopicId']
+          @Context = params['Context']
+        end
+      end
+
       # Nat防火墙弹性公网ip列表
       class NatFwEipsInfo < TencentCloud::Common::AbstractModel
         # @param Eip: 弹性公网ip
@@ -8373,6 +8516,290 @@ module TencentCloud
           @IdpStatus = params['IdpStatus']
           @LeakNum = params['LeakNum']
           @PortNum = params['PortNum']
+        end
+      end
+
+      # 多日志主题检索错误信息
+      class SearchLogErrors < TencentCloud::Common::AbstractModel
+        # @param TopicId: 日志主题ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TopicId: String
+        # @param ErrorMsg: 错误信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorMsg: String
+        # @param ErrorCodeStr: 错误码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorCodeStr: String
+
+        attr_accessor :TopicId, :ErrorMsg, :ErrorCodeStr
+
+        def initialize(topicid=nil, errormsg=nil, errorcodestr=nil)
+          @TopicId = topicid
+          @ErrorMsg = errormsg
+          @ErrorCodeStr = errorcodestr
+        end
+
+        def deserialize(params)
+          @TopicId = params['TopicId']
+          @ErrorMsg = params['ErrorMsg']
+          @ErrorCodeStr = params['ErrorCodeStr']
+        end
+      end
+
+      # 多日志主题检索topic信息
+      class SearchLogInfos < TencentCloud::Common::AbstractModel
+        # @param TopicId: 日志主题ID
+        # @type TopicId: String
+        # @param Period: 日志存储生命周期
+        # @type Period: Integer
+        # @param Context: 透传本次接口返回的Context值，可获取后续更多日志，过期时间1小时
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Context: String
+
+        attr_accessor :TopicId, :Period, :Context
+
+        def initialize(topicid=nil, period=nil, context=nil)
+          @TopicId = topicid
+          @Period = period
+          @Context = context
+        end
+
+        def deserialize(params)
+          @TopicId = params['TopicId']
+          @Period = params['Period']
+          @Context = params['Context']
+        end
+      end
+
+      # SearchLog请求参数结构体
+      class SearchLogRequest < TencentCloud::Common::AbstractModel
+        # @param From: 要检索分析的日志的起始时间，Unix时间戳（毫秒）
+        # @type From: Integer
+        # @param To: 要检索分析的日志的结束时间，Unix时间戳（毫秒）
+        # @type To: Integer
+        # @param Query: 检索分析语句，最大长度为12KB
+        # 语句由 <a href="https://cloud.tencent.com/document/product/614/47044" target="_blank">[检索条件]</a> | <a href="https://cloud.tencent.com/document/product/614/44061" target="_blank">[SQL语句]</a>构成，无需对日志进行统计分析时，可省略其中的管道符<code> | </code>及SQL语句
+        # 使用*或空字符串可查询所有日志
+        # @type Query: String
+        # @param SyntaxRule: 检索语法规则，默认值为0，推荐使用1 。
+
+        # - 0：Lucene语法
+        # - 1：CQL语法（日志服务专用检索语法，控制台默认也使用该语法规则）。
+
+        # 详细说明参见<a href="https://cloud.tencent.com/document/product/614/47044#RetrievesConditionalRules" target="_blank">检索条件语法规则</a>
+        # @type SyntaxRule: Integer
+        # @param TopicId: - 要检索分析的日志主题ID，仅能指定一个日志主题。
+        # - 如需同时检索多个日志主题，请使用Topics参数。
+        # - TopicId 和 Topics 不能同时使用，在一次请求中有且只能选择一个。
+        # @type TopicId: String
+        # @param Topics: - 要检索分析的日志主题列表，最大支持50个日志主题。
+        # - 检索单个日志主题时请使用TopicId。
+        # - TopicId 和 Topics 不能同时使用，在一次请求中有且只能选择一个。
+        # @type Topics: Array
+        # @param Sort: 原始日志是否按时间排序返回；可选值：asc(升序)、desc(降序)，默认为 desc
+        # 注意：
+        # * 仅当检索分析语句(Query)不包含SQL时有效
+        # * SQL结果排序方式参考<a href="https://cloud.tencent.com/document/product/614/58978" target="_blank">SQL ORDER BY语法</a>
+        # @type Sort: String
+        # @param Limit: 表示单次查询返回的原始日志条数，默认为100，最大值为1000。
+        # 注意：
+        # * 仅当检索分析语句(Query)不包含SQL时有效
+        # * SQL结果条数指定方式参考<a href="https://cloud.tencent.com/document/product/614/58977" target="_blank">SQL LIMIT语法</a>
+
+        # 可通过两种方式获取后续更多日志：
+        # * Context:透传上次接口返回的Context值，获取后续更多日志，总计最多可获取1万条原始日志
+        # * Offset:偏移量，表示从第几行开始返回原始日志，无日志条数限制
+        # @type Limit: Integer
+        # @param Offset: 查询原始日志的偏移量，表示从第几行开始返回原始日志，默认为0。
+        # 注意：
+        # * 仅当检索分析语句(Query)不包含SQL时有效
+        # * 不能与Context参数同时使用
+        # * 仅适用于单日志主题检索
+        # @type Offset: Integer
+        # @param Context: 透传上次接口返回的Context值，可获取后续更多日志，总计最多可获取1万条原始日志，过期时间1小时。
+        # 注意：
+        # * 透传该参数时，请勿修改除该参数外的其它参数
+        # * 仅适用于单日志主题检索，检索多个日志主题时，请使用Topics中的Context
+        # * 仅当检索分析语句(Query)不包含SQL时有效，SQL获取后续结果参考<a href="https://cloud.tencent.com/document/product/614/58977" target="_blank">SQL LIMIT语法</a>
+        # @type Context: String
+        # @param SamplingRate: 执行统计分析（Query中包含SQL）时，是否对原始日志先进行采样，再进行统计分析。
+        # 0：自动采样;
+        # 0～1：按指定采样率采样，例如0.02;
+        # 1：不采样，即精确分析
+        # 默认值为1
+        # @type SamplingRate: Float
+        # @param UseNewAnalysis: 为true代表使用新的检索结果返回方式，输出参数AnalysisRecords和Columns有效
+        # 为false时代表使用老的检索结果返回方式, 输出AnalysisResults和ColNames有效
+        # 两种返回方式在编码格式上有少量区别，建议使用true
+        # @type UseNewAnalysis: Boolean
+
+        attr_accessor :From, :To, :Query, :SyntaxRule, :TopicId, :Topics, :Sort, :Limit, :Offset, :Context, :SamplingRate, :UseNewAnalysis
+
+        def initialize(from=nil, to=nil, query=nil, syntaxrule=nil, topicid=nil, topics=nil, sort=nil, limit=nil, offset=nil, context=nil, samplingrate=nil, usenewanalysis=nil)
+          @From = from
+          @To = to
+          @Query = query
+          @SyntaxRule = syntaxrule
+          @TopicId = topicid
+          @Topics = topics
+          @Sort = sort
+          @Limit = limit
+          @Offset = offset
+          @Context = context
+          @SamplingRate = samplingrate
+          @UseNewAnalysis = usenewanalysis
+        end
+
+        def deserialize(params)
+          @From = params['From']
+          @To = params['To']
+          @Query = params['Query']
+          @SyntaxRule = params['SyntaxRule']
+          @TopicId = params['TopicId']
+          unless params['Topics'].nil?
+            @Topics = []
+            params['Topics'].each do |i|
+              multitopicsearchinformation_tmp = MultiTopicSearchInformation.new
+              multitopicsearchinformation_tmp.deserialize(i)
+              @Topics << multitopicsearchinformation_tmp
+            end
+          end
+          @Sort = params['Sort']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @Context = params['Context']
+          @SamplingRate = params['SamplingRate']
+          @UseNewAnalysis = params['UseNewAnalysis']
+        end
+      end
+
+      # SearchLog返回参数结构体
+      class SearchLogResponse < TencentCloud::Common::AbstractModel
+        # @param Context: 透传本次接口返回的Context值，可获取后续更多日志，过期时间1小时。
+        # 注意：
+        # * 仅适用于单日志主题检索，检索多个日志主题时，请使用Topics中的Context
+        # @type Context: String
+        # @param ListOver: 符合检索条件的日志是否已全部返回，如未全部返回可使用Context参数获取后续更多日志
+        # 注意：仅当检索分析语句(Query)不包含SQL时有效
+        # @type ListOver: Boolean
+        # @param Analysis: 返回的是否为统计分析（即SQL）结果
+        # @type Analysis: Boolean
+        # @param Results: 匹配检索条件的原始日志
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Results: Array
+        # @param ColNames: 日志统计分析结果的列名
+        # 当UseNewAnalysis为false时生效
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ColNames: Array
+        # @param AnalysisResults: 日志统计分析结果
+        # 当UseNewAnalysis为false时生效
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AnalysisResults: Array
+        # @param AnalysisRecords: 日志统计分析结果
+        # 当UseNewAnalysis为true时生效
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AnalysisRecords: Array
+        # @param Columns: 日志统计分析结果的列属性
+        # 当UseNewAnalysis为true时生效
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Columns: Array
+        # @param SamplingRate: 本次统计分析使用的采样率
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SamplingRate: Float
+        # @param Topics: 使用多日志主题检索时，各个日志主题的基本信息，例如报错信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Topics: :class:`Tencentcloud::Cfw.v20190904.models.SearchLogTopics`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Context, :ListOver, :Analysis, :Results, :ColNames, :AnalysisResults, :AnalysisRecords, :Columns, :SamplingRate, :Topics, :RequestId
+
+        def initialize(context=nil, listover=nil, analysis=nil, results=nil, colnames=nil, analysisresults=nil, analysisrecords=nil, columns=nil, samplingrate=nil, topics=nil, requestid=nil)
+          @Context = context
+          @ListOver = listover
+          @Analysis = analysis
+          @Results = results
+          @ColNames = colnames
+          @AnalysisResults = analysisresults
+          @AnalysisRecords = analysisrecords
+          @Columns = columns
+          @SamplingRate = samplingrate
+          @Topics = topics
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Context = params['Context']
+          @ListOver = params['ListOver']
+          @Analysis = params['Analysis']
+          unless params['Results'].nil?
+            @Results = []
+            params['Results'].each do |i|
+              loginfo_tmp = LogInfo.new
+              loginfo_tmp.deserialize(i)
+              @Results << loginfo_tmp
+            end
+          end
+          @ColNames = params['ColNames']
+          unless params['AnalysisResults'].nil?
+            @AnalysisResults = []
+            params['AnalysisResults'].each do |i|
+              logitems_tmp = LogItems.new
+              logitems_tmp.deserialize(i)
+              @AnalysisResults << logitems_tmp
+            end
+          end
+          @AnalysisRecords = params['AnalysisRecords']
+          unless params['Columns'].nil?
+            @Columns = []
+            params['Columns'].each do |i|
+              column_tmp = Column.new
+              column_tmp.deserialize(i)
+              @Columns << column_tmp
+            end
+          end
+          @SamplingRate = params['SamplingRate']
+          unless params['Topics'].nil?
+            @Topics = SearchLogTopics.new
+            @Topics.deserialize(params['Topics'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 多主题检索返回信息
+      class SearchLogTopics < TencentCloud::Common::AbstractModel
+        # @param Errors: 多日志主题检索对应的错误信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Errors: Array
+        # @param Infos: 多日志主题检索各日志主题信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Infos: Array
+
+        attr_accessor :Errors, :Infos
+
+        def initialize(errors=nil, infos=nil)
+          @Errors = errors
+          @Infos = infos
+        end
+
+        def deserialize(params)
+          unless params['Errors'].nil?
+            @Errors = []
+            params['Errors'].each do |i|
+              searchlogerrors_tmp = SearchLogErrors.new
+              searchlogerrors_tmp.deserialize(i)
+              @Errors << searchlogerrors_tmp
+            end
+          end
+          unless params['Infos'].nil?
+            @Infos = []
+            params['Infos'].each do |i|
+              searchloginfos_tmp = SearchLogInfos.new
+              searchloginfos_tmp.deserialize(i)
+              @Infos << searchloginfos_tmp
+            end
+          end
         end
       end
 

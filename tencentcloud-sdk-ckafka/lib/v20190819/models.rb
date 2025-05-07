@@ -2273,8 +2273,8 @@ module TencentCloud
 
         attr_accessor :ReturnCode, :ReturnMessage, :Data, :DeleteRouteTimestamp
         extend Gem::Deprecate
-        deprecate :DeleteRouteTimestamp, :none, 2025, 4
-        deprecate :DeleteRouteTimestamp=, :none, 2025, 4
+        deprecate :DeleteRouteTimestamp, :none, 2025, 5
+        deprecate :DeleteRouteTimestamp=, :none, 2025, 5
 
         def initialize(returncode=nil, returnmessage=nil, data=nil, deleteroutetimestamp=nil)
           @ReturnCode = returncode
@@ -5590,6 +5590,71 @@ module TencentCloud
         end
       end
 
+      # DescribeSecurityGroupRoutes请求参数结构体
+      class DescribeSecurityGroupRoutesRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceRoute: 路由信息
+        # @type InstanceRoute: :class:`Tencentcloud::Ckafka.v20190819.models.InstanceRoute`
+        # @param Filters: 过滤器
+        # @type Filters: Array
+        # @param Offset: 分页Offset,默认0
+        # @type Offset: Integer
+        # @param Limit: 分页Limit,默认20
+        # @type Limit: Integer
+        # @param SearchWord: 关键词,可根据实例id/实例名称/vip模糊搜索
+        # @type SearchWord: String
+
+        attr_accessor :InstanceRoute, :Filters, :Offset, :Limit, :SearchWord
+
+        def initialize(instanceroute=nil, filters=nil, offset=nil, limit=nil, searchword=nil)
+          @InstanceRoute = instanceroute
+          @Filters = filters
+          @Offset = offset
+          @Limit = limit
+          @SearchWord = searchword
+        end
+
+        def deserialize(params)
+          unless params['InstanceRoute'].nil?
+            @InstanceRoute = InstanceRoute.new
+            @InstanceRoute.deserialize(params['InstanceRoute'])
+          end
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              routefilter_tmp = RouteFilter.new
+              routefilter_tmp.deserialize(i)
+              @Filters << routefilter_tmp
+            end
+          end
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @SearchWord = params['SearchWord']
+        end
+      end
+
+      # DescribeSecurityGroupRoutes返回参数结构体
+      class DescribeSecurityGroupRoutesResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 返回的安全组路由信息结果对象
+        # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.SecurityGroupRouteResp`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = SecurityGroupRouteResp.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeTaskStatus请求参数结构体
       class DescribeTaskStatusRequest < TencentCloud::Common::AbstractModel
         # @param FlowId: 流程Id
@@ -8215,6 +8280,28 @@ module TencentCloud
         end
       end
 
+      # 实例路由
+      class InstanceRoute < TencentCloud::Common::AbstractModel
+        # @param InstanceId: ckafka集群实例Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceId: String
+        # @param RouteId: 路由Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RouteId: Integer
+
+        attr_accessor :InstanceId, :RouteId
+
+        def initialize(instanceid=nil, routeid=nil)
+          @InstanceId = instanceid
+          @RouteId = routeid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @RouteId = params['RouteId']
+        end
+      end
+
       # InstanceScalingDown请求参数结构体
       class InstanceScalingDownRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: ckafka集群实例Id
@@ -9069,8 +9156,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :MsgRetentionTime, :InstanceName, :Config, :DynamicRetentionConfig, :RebalanceTime, :PublicNetwork, :DynamicDiskConfig, :MaxMessageByte, :UncleanLeaderElectionEnable
         extend Gem::Deprecate
-        deprecate :DynamicDiskConfig, :none, 2025, 4
-        deprecate :DynamicDiskConfig=, :none, 2025, 4
+        deprecate :DynamicDiskConfig, :none, 2025, 5
+        deprecate :DynamicDiskConfig=, :none, 2025, 5
 
         def initialize(instanceid=nil, msgretentiontime=nil, instancename=nil, config=nil, dynamicretentionconfig=nil, rebalancetime=nil, publicnetwork=nil, dynamicdiskconfig=nil, maxmessagebyte=nil, uncleanleaderelectionenable=nil)
           @InstanceId = instanceid
@@ -10548,6 +10635,33 @@ module TencentCloud
         end
       end
 
+      # 路由列表过滤器
+      class RouteFilter < TencentCloud::Common::AbstractModel
+        # @param Name: 过滤名称,目前支持security-group-id,按安全组关联过滤
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Values: 过滤值,当过滤名称为security-group-id时仅支持传单个value
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Values: Array
+        # @param Relation: 过滤关系,支持IN和NOT_IN,默认为IN
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Relation: String
+
+        attr_accessor :Name, :Values, :Relation
+
+        def initialize(name=nil, values=nil, relation=nil)
+          @Name = name
+          @Values = values
+          @Relation = relation
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Values = params['Values']
+          @Relation = params['Relation']
+        end
+      end
+
       # 路由信息返回对象
       class RouteResponse < TencentCloud::Common::AbstractModel
         # @param Routers: 路由信息列表
@@ -10842,6 +10956,75 @@ module TencentCloud
 
         def deserialize(params)
           @Regex = params['Regex']
+        end
+      end
+
+      # 安全组路由信息
+      class SecurityGroupRoute < TencentCloud::Common::AbstractModel
+        # @param InstanceRoute: 路由信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceRoute: :class:`Tencentcloud::Ckafka.v20190819.models.InstanceRoute`
+        # @param SecurityGroupIds: 关联的安全组列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SecurityGroupIds: Array
+        # @param InstanceName: ckafka集群实例名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceName: String
+        # @param VpcId: 路由vpcId
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VpcId: String
+        # @param Vip: 路由vip
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Vip: String
+
+        attr_accessor :InstanceRoute, :SecurityGroupIds, :InstanceName, :VpcId, :Vip
+
+        def initialize(instanceroute=nil, securitygroupids=nil, instancename=nil, vpcid=nil, vip=nil)
+          @InstanceRoute = instanceroute
+          @SecurityGroupIds = securitygroupids
+          @InstanceName = instancename
+          @VpcId = vpcid
+          @Vip = vip
+        end
+
+        def deserialize(params)
+          unless params['InstanceRoute'].nil?
+            @InstanceRoute = InstanceRoute.new
+            @InstanceRoute.deserialize(params['InstanceRoute'])
+          end
+          @SecurityGroupIds = params['SecurityGroupIds']
+          @InstanceName = params['InstanceName']
+          @VpcId = params['VpcId']
+          @Vip = params['Vip']
+        end
+      end
+
+      # 安全组路由信息返回结果
+      class SecurityGroupRouteResp < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 符合条件的安全组路由信息总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+        # @param SecurityGroupRoutes: 符合条件的安全组路由信息列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SecurityGroupRoutes: Array
+
+        attr_accessor :TotalCount, :SecurityGroupRoutes
+
+        def initialize(totalcount=nil, securitygrouproutes=nil)
+          @TotalCount = totalcount
+          @SecurityGroupRoutes = securitygrouproutes
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['SecurityGroupRoutes'].nil?
+            @SecurityGroupRoutes = []
+            params['SecurityGroupRoutes'].each do |i|
+              securitygrouproute_tmp = SecurityGroupRoute.new
+              securitygrouproute_tmp.deserialize(i)
+              @SecurityGroupRoutes << securitygrouproute_tmp
+            end
+          end
         end
       end
 
@@ -12018,8 +12201,8 @@ module TencentCloud
 
         attr_accessor :ZoneId, :IsInternalApp, :AppId, :Flag, :ZoneName, :ZoneStatus, :Exflag, :SoldOut, :SalesInfo, :ExtraFlag
         extend Gem::Deprecate
-        deprecate :Exflag, :none, 2025, 4
-        deprecate :Exflag=, :none, 2025, 4
+        deprecate :Exflag, :none, 2025, 5
+        deprecate :Exflag=, :none, 2025, 5
 
         def initialize(zoneid=nil, isinternalapp=nil, appid=nil, flag=nil, zonename=nil, zonestatus=nil, exflag=nil, soldout=nil, salesinfo=nil, extraflag=nil)
           @ZoneId = zoneid

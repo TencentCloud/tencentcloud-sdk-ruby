@@ -2655,6 +2655,33 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口用于检索分析日志，使用该接口时请注意如下事项：
+        # 1. 该接口除受默认接口请求频率限制外，针对单个日志主题，查询并发数不能超过15。
+        # 2. 检索语法建议使用日志服务专用检索语法CQL，请使用SyntaxRule参数，将值设置为1，控制台默认也使用该语法规则。
+        # 3. API返回数据包最大49MB，建议启用 gzip 压缩（HTTP Request Header Accept-Encoding:gzip）。
+
+        # @param request: Request instance for SearchLog.
+        # @type request: :class:`Tencentcloud::cfw::V20190904::SearchLogRequest`
+        # @rtype: :class:`Tencentcloud::cfw::V20190904::SearchLogResponse`
+        def SearchLog(request)
+          body = send_request('SearchLog', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = SearchLogResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 配置防火墙Dnat规则
 
         # @param request: Request instance for SetNatFwDnatRule.

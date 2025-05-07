@@ -2258,6 +2258,49 @@ module TencentCloud
         end
       end
 
+      # RebootAndroidInstanceHosts请求参数结构体
+      class RebootAndroidInstanceHostsRequest < TencentCloud::Common::AbstractModel
+        # @param HostSerialNumbers: 宿主机序列号集合
+        # @type HostSerialNumbers: Array
+
+        attr_accessor :HostSerialNumbers
+
+        def initialize(hostserialnumbers=nil)
+          @HostSerialNumbers = hostserialnumbers
+        end
+
+        def deserialize(params)
+          @HostSerialNumbers = params['HostSerialNumbers']
+        end
+      end
+
+      # RebootAndroidInstanceHosts返回参数结构体
+      class RebootAndroidInstanceHostsResponse < TencentCloud::Common::AbstractModel
+        # @param TaskSet: 任务 ID 集合，以供任务状态查询，其中 InstanceId 为宿主机序列号
+        # @type TaskSet: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskSet, :RequestId
+
+        def initialize(taskset=nil, requestid=nil)
+          @TaskSet = taskset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['TaskSet'].nil?
+            @TaskSet = []
+            params['TaskSet'].each do |i|
+              androidinstancetask_tmp = AndroidInstanceTask.new
+              androidinstancetask_tmp.deserialize(i)
+              @TaskSet << androidinstancetask_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # RebootAndroidInstances请求参数结构体
       class RebootAndroidInstancesRequest < TencentCloud::Common::AbstractModel
         # @param AndroidInstanceIds: 实例ID

@@ -897,6 +897,33 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 重启安卓实例宿主机。请注意：
+
+        # - 当前每 15 分钟只能重启一次
+        # - 一个宿主机可能有多个云手机实例，重启宿主机会影响运行在上面的所有实例，请确保该宿主机上的所有云手机实例未投入业务使用
+
+        # @param request: Request instance for RebootAndroidInstanceHosts.
+        # @type request: :class:`Tencentcloud::gs::V20191118::RebootAndroidInstanceHostsRequest`
+        # @rtype: :class:`Tencentcloud::gs::V20191118::RebootAndroidInstanceHostsResponse`
+        def RebootAndroidInstanceHosts(request)
+          body = send_request('RebootAndroidInstanceHosts', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = RebootAndroidInstanceHostsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 重启安卓实例
 
         # @param request: Request instance for RebootAndroidInstances.
