@@ -168,8 +168,8 @@ module TencentCloud
 
         attr_accessor :Id, :Title, :Name, :Type, :Description, :Schema, :CmsProject, :PkgId, :SchemaVersion, :CreatorId, :CreatedAt, :UpdatedAt, :EnvId, :DataSourceVersion, :AppUsageList, :PublishedAt, :ChildDataSourceIds, :Fun, :ScfStatus, :Methods, :ChildDataSourceNames, :IsNewDataSource, :ViewId, :Configuration, :TemplateCode, :Source, :PublishVersion, :PublishViewId, :SubType, :AuthStatus, :AuthInfo, :PublishStatus, :UpdateVersion, :RelationFieldList, :DbInstanceType, :PreviewTableName, :PublishedTableName, :DbSourceType
         extend Gem::Deprecate
-        deprecate :PublishVersion, :none, 2025, 3
-        deprecate :PublishVersion=, :none, 2025, 3
+        deprecate :PublishVersion, :none, 2025, 5
+        deprecate :PublishVersion=, :none, 2025, 5
 
         def initialize(id=nil, title=nil, name=nil, type=nil, description=nil, schema=nil, cmsproject=nil, pkgid=nil, schemaversion=nil, creatorid=nil, createdat=nil, updatedat=nil, envid=nil, datasourceversion=nil, appusagelist=nil, publishedat=nil, childdatasourceids=nil, fun=nil, scfstatus=nil, methods=nil, childdatasourcenames=nil, isnewdatasource=nil, viewid=nil, configuration=nil, templatecode=nil, source=nil, publishversion=nil, publishviewid=nil, subtype=nil, authstatus=nil, authinfo=nil, publishstatus=nil, updateversion=nil, relationfieldlist=nil, dbinstancetype=nil, previewtablename=nil, publishedtablename=nil, dbsourcetype=nil)
           @Id = id
@@ -1374,14 +1374,16 @@ module TencentCloud
         # @type DocumentDesc: String
         # @param FileTitle: 文件标题
         # @type FileTitle: String
-        # @param FileMetaData: 	文件元信息，为jsonstring
+        # @param FileMetaData: 文件元信息，为jsonstring
         # @type FileMetaData: String
         # @param DocumentSetId: 文件id
         # @type DocumentSetId: String
+        # @param Delimiter: 使用 regex 分割文档
+        # @type Delimiter: String
 
-        attr_accessor :EnvId, :CollectionView, :FileName, :CosUrl, :DocumentType, :DocumentDesc, :FileTitle, :FileMetaData, :DocumentSetId
+        attr_accessor :EnvId, :CollectionView, :FileName, :CosUrl, :DocumentType, :DocumentDesc, :FileTitle, :FileMetaData, :DocumentSetId, :Delimiter
 
-        def initialize(envid=nil, collectionview=nil, filename=nil, cosurl=nil, documenttype=nil, documentdesc=nil, filetitle=nil, filemetadata=nil, documentsetid=nil)
+        def initialize(envid=nil, collectionview=nil, filename=nil, cosurl=nil, documenttype=nil, documentdesc=nil, filetitle=nil, filemetadata=nil, documentsetid=nil, delimiter=nil)
           @EnvId = envid
           @CollectionView = collectionview
           @FileName = filename
@@ -1391,6 +1393,7 @@ module TencentCloud
           @FileTitle = filetitle
           @FileMetaData = filemetadata
           @DocumentSetId = documentsetid
+          @Delimiter = delimiter
         end
 
         def deserialize(params)
@@ -1403,6 +1406,7 @@ module TencentCloud
           @FileTitle = params['FileTitle']
           @FileMetaData = params['FileMetaData']
           @DocumentSetId = params['DocumentSetId']
+          @Delimiter = params['Delimiter']
         end
       end
 

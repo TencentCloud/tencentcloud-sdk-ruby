@@ -1735,8 +1735,8 @@ module TencentCloud
 
         attr_accessor :EngineType, :DataEngineName, :ClusterType, :Mode, :AutoResume, :MinClusters, :MaxClusters, :DefaultDataEngine, :CidrBlock, :Message, :Size, :PayMode, :TimeSpan, :TimeUnit, :AutoRenew, :Tags, :AutoSuspend, :CrontabResumeSuspend, :CrontabResumeSuspendStrategy, :EngineExecType, :MaxConcurrency, :TolerableQueueTime, :AutoSuspendTime, :ResourceType, :DataEngineConfigPairs, :ImageVersionName, :MainClusterName, :ElasticSwitch, :ElasticLimit, :SessionResourceTemplate, :AutoAuthorization, :EngineNetworkId, :EngineGeneration
         extend Gem::Deprecate
-        deprecate :DefaultDataEngine, :none, 2025, 4
-        deprecate :DefaultDataEngine=, :none, 2025, 4
+        deprecate :DefaultDataEngine, :none, 2025, 5
+        deprecate :DefaultDataEngine=, :none, 2025, 5
 
         def initialize(enginetype=nil, dataenginename=nil, clustertype=nil, mode=nil, autoresume=nil, minclusters=nil, maxclusters=nil, defaultdataengine=nil, cidrblock=nil, message=nil, size=nil, paymode=nil, timespan=nil, timeunit=nil, autorenew=nil, tags=nil, autosuspend=nil, crontabresumesuspend=nil, crontabresumesuspendstrategy=nil, engineexectype=nil, maxconcurrency=nil, tolerablequeuetime=nil, autosuspendtime=nil, resourcetype=nil, dataengineconfigpairs=nil, imageversionname=nil, mainclustername=nil, elasticswitch=nil, elasticlimit=nil, sessionresourcetemplate=nil, autoauthorization=nil, enginenetworkid=nil, enginegeneration=nil)
           @EngineType = enginetype
@@ -8309,15 +8309,18 @@ module TencentCloud
         # @type SortBy: String
         # @param Sorting: 正序或者倒序，例如：desc
         # @type Sorting: String
+        # @param IsDefault: 是否设置为常驻：1非常驻（默认）、2常驻（仅能设置一个常驻）
+        # @type IsDefault: Integer
 
-        attr_accessor :Limit, :Offset, :Fuzzy, :SortBy, :Sorting
+        attr_accessor :Limit, :Offset, :Fuzzy, :SortBy, :Sorting, :IsDefault
 
-        def initialize(limit=nil, offset=nil, fuzzy=nil, sortby=nil, sorting=nil)
+        def initialize(limit=nil, offset=nil, fuzzy=nil, sortby=nil, sorting=nil, isdefault=nil)
           @Limit = limit
           @Offset = offset
           @Fuzzy = fuzzy
           @SortBy = sortby
           @Sorting = sorting
+          @IsDefault = isdefault
         end
 
         def deserialize(params)
@@ -8326,6 +8329,7 @@ module TencentCloud
           @Fuzzy = params['Fuzzy']
           @SortBy = params['SortBy']
           @Sorting = params['Sorting']
+          @IsDefault = params['IsDefault']
         end
       end
 
@@ -12553,10 +12557,10 @@ module TencentCloud
 
         attr_accessor :DatabaseName, :TableName, :DatasourceConnectionName, :TableComment, :Type, :TableFormat, :UserAlias, :UserSubUin, :GovernPolicy, :DbGovernPolicyIsDisable, :SmartPolicy, :PrimaryKeys
         extend Gem::Deprecate
-        deprecate :GovernPolicy, :none, 2025, 4
-        deprecate :GovernPolicy=, :none, 2025, 4
-        deprecate :DbGovernPolicyIsDisable, :none, 2025, 4
-        deprecate :DbGovernPolicyIsDisable=, :none, 2025, 4
+        deprecate :GovernPolicy, :none, 2025, 5
+        deprecate :GovernPolicy=, :none, 2025, 5
+        deprecate :DbGovernPolicyIsDisable, :none, 2025, 5
+        deprecate :DbGovernPolicyIsDisable=, :none, 2025, 5
 
         def initialize(databasename=nil, tablename=nil, datasourceconnectionname=nil, tablecomment=nil, type=nil, tableformat=nil, useralias=nil, usersubuin=nil, governpolicy=nil, dbgovernpolicyisdisable=nil, smartpolicy=nil, primarykeys=nil)
           @DatabaseName = databasename
@@ -13806,10 +13810,12 @@ module TencentCloud
         # @type CosPermissionList: Array
         # @param PermissionJson: cam策略json
         # @type PermissionJson: String
+        # @param IsDefault: 是否设置为常驻：1非常驻（默认）、2常驻（仅能设置一个常驻）
+        # @type IsDefault: Integer
 
-        attr_accessor :RoleId, :AppId, :Uin, :Arn, :ModifyTime, :Desc, :RoleName, :Creator, :CosPermissionList, :PermissionJson
+        attr_accessor :RoleId, :AppId, :Uin, :Arn, :ModifyTime, :Desc, :RoleName, :Creator, :CosPermissionList, :PermissionJson, :IsDefault
 
-        def initialize(roleid=nil, appid=nil, uin=nil, arn=nil, modifytime=nil, desc=nil, rolename=nil, creator=nil, cospermissionlist=nil, permissionjson=nil)
+        def initialize(roleid=nil, appid=nil, uin=nil, arn=nil, modifytime=nil, desc=nil, rolename=nil, creator=nil, cospermissionlist=nil, permissionjson=nil, isdefault=nil)
           @RoleId = roleid
           @AppId = appid
           @Uin = uin
@@ -13820,6 +13826,7 @@ module TencentCloud
           @Creator = creator
           @CosPermissionList = cospermissionlist
           @PermissionJson = permissionjson
+          @IsDefault = isdefault
         end
 
         def deserialize(params)
@@ -13840,6 +13847,7 @@ module TencentCloud
             end
           end
           @PermissionJson = params['PermissionJson']
+          @IsDefault = params['IsDefault']
         end
       end
 

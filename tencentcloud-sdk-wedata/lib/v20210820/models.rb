@@ -2431,8 +2431,8 @@ module TencentCloud
 
         attr_accessor :ProjectId, :AlarmRegularName, :TaskId, :Id, :TaskType, :MonitorType
         extend Gem::Deprecate
-        deprecate :TaskId, :none, 2025, 4
-        deprecate :TaskId=, :none, 2025, 4
+        deprecate :TaskId, :none, 2025, 5
+        deprecate :TaskId=, :none, 2025, 5
 
         def initialize(projectid=nil, alarmregularname=nil, taskid=nil, id=nil, tasktype=nil, monitortype=nil)
           @ProjectId = projectid
@@ -9066,12 +9066,12 @@ module TencentCloud
 
         attr_accessor :ProjectId, :Category, :PageNumber, :PageSize, :EventName, :EventType, :EventSubType, :EventBroadcastType, :Status, :CreationTimeStart, :CreationTimeEnd, :EventTriggeredTimeStart, :EventTriggeredTimeEnd, :LogTimeStart, :LogTimeEnd, :Dimension, :TimeToLive, :SortItem, :SortType
         extend Gem::Deprecate
-        deprecate :EventType, :none, 2025, 4
-        deprecate :EventType=, :none, 2025, 4
-        deprecate :EventBroadcastType, :none, 2025, 4
-        deprecate :EventBroadcastType=, :none, 2025, 4
-        deprecate :Status, :none, 2025, 4
-        deprecate :Status=, :none, 2025, 4
+        deprecate :EventType, :none, 2025, 5
+        deprecate :EventType=, :none, 2025, 5
+        deprecate :EventBroadcastType, :none, 2025, 5
+        deprecate :EventBroadcastType=, :none, 2025, 5
+        deprecate :Status, :none, 2025, 5
+        deprecate :Status=, :none, 2025, 5
 
         def initialize(projectid=nil, category=nil, pagenumber=nil, pagesize=nil, eventname=nil, eventtype=nil, eventsubtype=nil, eventbroadcasttype=nil, status=nil, creationtimestart=nil, creationtimeend=nil, eventtriggeredtimestart=nil, eventtriggeredtimeend=nil, logtimestart=nil, logtimeend=nil, dimension=nil, timetolive=nil, sortitem=nil, sorttype=nil)
           @ProjectId = projectid
@@ -15705,8 +15705,8 @@ module TencentCloud
 
         attr_accessor :DimType, :Count, :QualityDim
         extend Gem::Deprecate
-        deprecate :DimType, :none, 2025, 4
-        deprecate :DimType=, :none, 2025, 4
+        deprecate :DimType, :none, 2025, 5
+        deprecate :DimType=, :none, 2025, 5
 
         def initialize(dimtype=nil, count=nil, qualitydim=nil)
           @DimType = dimtype
@@ -17521,10 +17521,14 @@ module TencentCloud
         # @type Env: String
         # @param WriteMode: doris写入模式配置
         # @type WriteMode: String
+        # @param TaskType: 任务类型 201（实时）， 202（离线）
+        # @type TaskType: Integer
+        # @param SinkTableName: 目标端table名称
+        # @type SinkTableName: String
 
-        attr_accessor :ProjectId, :SinkDatabase, :Id, :MsType, :DatasourceId, :SourceDatabase, :TableName, :SinkType, :SchemaName, :SourceFieldInfoList, :Partitions, :Properties, :TableMode, :TableVersion, :UpsertFlag, :TableComment, :AddDataFiles, :AddEqualityDeletes, :AddPositionDeletes, :AddDeleteFiles, :TargetDatasourceId, :UpsertKeys, :TableBaseInfo, :SinkSchemaName, :Env, :WriteMode
+        attr_accessor :ProjectId, :SinkDatabase, :Id, :MsType, :DatasourceId, :SourceDatabase, :TableName, :SinkType, :SchemaName, :SourceFieldInfoList, :Partitions, :Properties, :TableMode, :TableVersion, :UpsertFlag, :TableComment, :AddDataFiles, :AddEqualityDeletes, :AddPositionDeletes, :AddDeleteFiles, :TargetDatasourceId, :UpsertKeys, :TableBaseInfo, :SinkSchemaName, :Env, :WriteMode, :TaskType, :SinkTableName
 
-        def initialize(projectid=nil, sinkdatabase=nil, id=nil, mstype=nil, datasourceid=nil, sourcedatabase=nil, tablename=nil, sinktype=nil, schemaname=nil, sourcefieldinfolist=nil, partitions=nil, properties=nil, tablemode=nil, tableversion=nil, upsertflag=nil, tablecomment=nil, adddatafiles=nil, addequalitydeletes=nil, addpositiondeletes=nil, adddeletefiles=nil, targetdatasourceid=nil, upsertkeys=nil, tablebaseinfo=nil, sinkschemaname=nil, env=nil, writemode=nil)
+        def initialize(projectid=nil, sinkdatabase=nil, id=nil, mstype=nil, datasourceid=nil, sourcedatabase=nil, tablename=nil, sinktype=nil, schemaname=nil, sourcefieldinfolist=nil, partitions=nil, properties=nil, tablemode=nil, tableversion=nil, upsertflag=nil, tablecomment=nil, adddatafiles=nil, addequalitydeletes=nil, addpositiondeletes=nil, adddeletefiles=nil, targetdatasourceid=nil, upsertkeys=nil, tablebaseinfo=nil, sinkschemaname=nil, env=nil, writemode=nil, tasktype=nil, sinktablename=nil)
           @ProjectId = projectid
           @SinkDatabase = sinkdatabase
           @Id = id
@@ -17551,6 +17555,8 @@ module TencentCloud
           @SinkSchemaName = sinkschemaname
           @Env = env
           @WriteMode = writemode
+          @TaskType = tasktype
+          @SinkTableName = sinktablename
         end
 
         def deserialize(params)
@@ -17604,6 +17610,8 @@ module TencentCloud
           @SinkSchemaName = params['SinkSchemaName']
           @Env = params['Env']
           @WriteMode = params['WriteMode']
+          @TaskType = params['TaskType']
+          @SinkTableName = params['SinkTableName']
         end
       end
 
@@ -22628,8 +22636,8 @@ module TencentCloud
 
         attr_accessor :ProjectId, :TaskId, :DelayTime, :StartupTime, :SelfDepend, :StartTime, :EndTime, :TaskAction, :CycleType, :CycleStep, :CrontabExpression, :ExecutionStartTime, :ExecutionEndTime, :TaskName, :RetryWait, :TryLimit, :Retriable, :RunPriority, :TaskExt, :ResourceGroup, :YarnQueue, :BrokerIp, :InCharge, :Notes, :TaskParamInfos, :SourceServer, :TargetServer, :DependencyWorkflow, :DependencyConfigDTOs, :ExecutionTTL, :ScriptChange, :InChargeIds
         extend Gem::Deprecate
-        deprecate :InCharge, :none, 2025, 4
-        deprecate :InCharge=, :none, 2025, 4
+        deprecate :InCharge, :none, 2025, 5
+        deprecate :InCharge=, :none, 2025, 5
 
         def initialize(projectid=nil, taskid=nil, delaytime=nil, startuptime=nil, selfdepend=nil, starttime=nil, endtime=nil, taskaction=nil, cycletype=nil, cyclestep=nil, crontabexpression=nil, executionstarttime=nil, executionendtime=nil, taskname=nil, retrywait=nil, trylimit=nil, retriable=nil, runpriority=nil, taskext=nil, resourcegroup=nil, yarnqueue=nil, brokerip=nil, incharge=nil, notes=nil, taskparaminfos=nil, sourceserver=nil, targetserver=nil, dependencyworkflow=nil, dependencyconfigdtos=nil, executionttl=nil, scriptchange=nil, inchargeids=nil)
           @ProjectId = projectid

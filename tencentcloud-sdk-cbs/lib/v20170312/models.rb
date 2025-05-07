@@ -3385,7 +3385,11 @@ module TencentCloud
         # @type ContainRootSnapshot: Boolean
         # @param SnapshotIdSet: 快照组包含的快照ID列表。
         # @type SnapshotIdSet: Array
-        # @param SnapshotGroupState: 快照组状态。<br><li>NORMAL: 正常<br><li>CREATING:创建中<br><li>ROLLBACKING:回滚中
+        # @param SnapshotGroupState: <ul>
+        #     <li>NORMAL: 正常</li>
+        #     <li>CREATING: 创建中</li>
+        #     <li>ROLLBACKING: 回滚中</li>
+        # </ul>
         # @type SnapshotGroupState: String
         # @param Percent: 快照组创建进度。
         # @type Percent: Integer
@@ -3404,10 +3408,13 @@ module TencentCloud
         # @param DeadlineTime: 快照组到期时间。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeadlineTime: String
+        # @param AutoSnapshotPolicyId: 来源自动快照策略ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AutoSnapshotPolicyId: String
 
-        attr_accessor :SnapshotGroupId, :SnapshotGroupType, :ContainRootSnapshot, :SnapshotIdSet, :SnapshotGroupState, :Percent, :CreateTime, :ModifyTime, :Images, :SnapshotGroupName, :ImageCount, :IsPermanent, :DeadlineTime
+        attr_accessor :SnapshotGroupId, :SnapshotGroupType, :ContainRootSnapshot, :SnapshotIdSet, :SnapshotGroupState, :Percent, :CreateTime, :ModifyTime, :Images, :SnapshotGroupName, :ImageCount, :IsPermanent, :DeadlineTime, :AutoSnapshotPolicyId
 
-        def initialize(snapshotgroupid=nil, snapshotgrouptype=nil, containrootsnapshot=nil, snapshotidset=nil, snapshotgroupstate=nil, percent=nil, createtime=nil, modifytime=nil, images=nil, snapshotgroupname=nil, imagecount=nil, ispermanent=nil, deadlinetime=nil)
+        def initialize(snapshotgroupid=nil, snapshotgrouptype=nil, containrootsnapshot=nil, snapshotidset=nil, snapshotgroupstate=nil, percent=nil, createtime=nil, modifytime=nil, images=nil, snapshotgroupname=nil, imagecount=nil, ispermanent=nil, deadlinetime=nil, autosnapshotpolicyid=nil)
           @SnapshotGroupId = snapshotgroupid
           @SnapshotGroupType = snapshotgrouptype
           @ContainRootSnapshot = containrootsnapshot
@@ -3421,6 +3428,7 @@ module TencentCloud
           @ImageCount = imagecount
           @IsPermanent = ispermanent
           @DeadlineTime = deadlinetime
+          @AutoSnapshotPolicyId = autosnapshotpolicyid
         end
 
         def deserialize(params)
@@ -3444,6 +3452,7 @@ module TencentCloud
           @ImageCount = params['ImageCount']
           @IsPermanent = params['IsPermanent']
           @DeadlineTime = params['DeadlineTime']
+          @AutoSnapshotPolicyId = params['AutoSnapshotPolicyId']
         end
       end
 

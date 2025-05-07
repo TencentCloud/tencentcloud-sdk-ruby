@@ -2144,8 +2144,8 @@ module TencentCloud
 
         attr_accessor :Name, :SegmentSet, :RecognitionSegmentSet
         extend Gem::Deprecate
-        deprecate :SegmentSet, :none, 2025, 4
-        deprecate :SegmentSet=, :none, 2025, 4
+        deprecate :SegmentSet, :none, 2025, 5
+        deprecate :SegmentSet=, :none, 2025, 5
 
         def initialize(name=nil, segmentset=nil, recognitionsegmentset=nil)
           @Name = name
@@ -10594,8 +10594,8 @@ module TencentCloud
 
         attr_accessor :DomainName, :Domain, :Scheme, :PlayKey, :RequestId
         extend Gem::Deprecate
-        deprecate :DomainName, :none, 2025, 4
-        deprecate :DomainName=, :none, 2025, 4
+        deprecate :DomainName, :none, 2025, 5
+        deprecate :DomainName=, :none, 2025, 5
 
         def initialize(domainname=nil, domain=nil, scheme=nil, playkey=nil, requestid=nil)
           @DomainName = domainname
@@ -18377,8 +18377,8 @@ module TencentCloud
 
         attr_accessor :Duration, :Transitions, :MediaTransitions
         extend Gem::Deprecate
-        deprecate :Transitions, :none, 2025, 4
-        deprecate :Transitions=, :none, 2025, 4
+        deprecate :Transitions, :none, 2025, 5
+        deprecate :Transitions=, :none, 2025, 5
 
         def initialize(duration=nil, transitions=nil, mediatransitions=nil)
           @Duration = duration
@@ -22295,8 +22295,8 @@ module TencentCloud
 
         attr_accessor :ProductType, :StartTime, :ExpireTime, :ProductInstanceId, :LastConsumeDate, :BindStatus, :ProductInstanceResourceSet, :ResourceSet, :ProductInstanceStatus, :RefundStatus, :RenewStatus
         extend Gem::Deprecate
-        deprecate :ProductInstanceResourceSet, :none, 2025, 4
-        deprecate :ProductInstanceResourceSet=, :none, 2025, 4
+        deprecate :ProductInstanceResourceSet, :none, 2025, 5
+        deprecate :ProductInstanceResourceSet=, :none, 2025, 5
 
         def initialize(producttype=nil, starttime=nil, expiretime=nil, productinstanceid=nil, lastconsumedate=nil, bindstatus=nil, productinstanceresourceset=nil, resourceset=nil, productinstancestatus=nil, refundstatus=nil, renewstatus=nil)
           @ProductType = producttype
@@ -22653,6 +22653,8 @@ module TencentCloud
         # @type StorageRegion: String
         # @param ClassId: 分类ID，用于对媒体进行分类管理，可通过[创建分类](https://cloud.tencent.com/document/product/266/7812)接口，创建分类，获得分类 ID。
         # @type ClassId: Integer
+        # @param TasksPriority: 任务的优先级，数值越大优先级越高，取值范围是 -10 到 10，不填代表 0。
+        # @type TasksPriority: Integer
         # @param SessionContext: 来源上下文，用于透传用户请求信息，当指定 Procedure 任务后，任务流状态变更回调将返回该字段值，最长 1000 个字符。
         # @type SessionContext: String
         # @param SessionId: 用于去重的识别码，如果三天内曾有过相同的识别码的请求，则本次的请求会返回错误。最长 50 个字符，不带或者带空字符串表示不做去重。
@@ -22662,9 +22664,9 @@ module TencentCloud
         # @param SourceContext: 来源上下文，用于透传用户请求信息，[上传完成回调](/document/product/266/7830) 将返回该字段值，最长 250 个字符。
         # @type SourceContext: String
 
-        attr_accessor :MediaUrl, :MediaType, :SubAppId, :MediaName, :CoverUrl, :Procedure, :ExpireTime, :StorageRegion, :ClassId, :SessionContext, :SessionId, :ExtInfo, :SourceContext
+        attr_accessor :MediaUrl, :MediaType, :SubAppId, :MediaName, :CoverUrl, :Procedure, :ExpireTime, :StorageRegion, :ClassId, :TasksPriority, :SessionContext, :SessionId, :ExtInfo, :SourceContext
 
-        def initialize(mediaurl=nil, mediatype=nil, subappid=nil, medianame=nil, coverurl=nil, procedure=nil, expiretime=nil, storageregion=nil, classid=nil, sessioncontext=nil, sessionid=nil, extinfo=nil, sourcecontext=nil)
+        def initialize(mediaurl=nil, mediatype=nil, subappid=nil, medianame=nil, coverurl=nil, procedure=nil, expiretime=nil, storageregion=nil, classid=nil, taskspriority=nil, sessioncontext=nil, sessionid=nil, extinfo=nil, sourcecontext=nil)
           @MediaUrl = mediaurl
           @MediaType = mediatype
           @SubAppId = subappid
@@ -22674,6 +22676,7 @@ module TencentCloud
           @ExpireTime = expiretime
           @StorageRegion = storageregion
           @ClassId = classid
+          @TasksPriority = taskspriority
           @SessionContext = sessioncontext
           @SessionId = sessionid
           @ExtInfo = extinfo
@@ -22690,6 +22693,7 @@ module TencentCloud
           @ExpireTime = params['ExpireTime']
           @StorageRegion = params['StorageRegion']
           @ClassId = params['ClassId']
+          @TasksPriority = params['TasksPriority']
           @SessionContext = params['SessionContext']
           @SessionId = params['SessionId']
           @ExtInfo = params['ExtInfo']
@@ -27109,8 +27113,8 @@ module TencentCloud
 
         attr_accessor :Width, :Height, :CycleConfig
         extend Gem::Deprecate
-        deprecate :CycleConfig, :none, 2025, 4
-        deprecate :CycleConfig=, :none, 2025, 4
+        deprecate :CycleConfig, :none, 2025, 5
+        deprecate :CycleConfig=, :none, 2025, 5
 
         def initialize(width=nil, height=nil, cycleconfig=nil)
           @Width = width

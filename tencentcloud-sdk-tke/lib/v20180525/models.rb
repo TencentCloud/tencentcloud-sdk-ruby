@@ -474,29 +474,29 @@ module TencentCloud
 
       # cuDNN的版本信息
       class CUDNN < TencentCloud::Common::AbstractModel
-        # @param Version: cuDNN的版本
-        # @type Version: String
         # @param Name: cuDNN的名字
         # @type Name: String
-        # @param DocName: cuDNN的Doc名字
-        # @type DocName: String
+        # @param Version: cuDNN的版本
+        # @type Version: String
         # @param DevName: cuDNN的Dev名字
         # @type DevName: String
+        # @param DocName: cuDNN的Doc名字
+        # @type DocName: String
 
-        attr_accessor :Version, :Name, :DocName, :DevName
+        attr_accessor :Name, :Version, :DevName, :DocName
 
-        def initialize(version=nil, name=nil, docname=nil, devname=nil)
-          @Version = version
+        def initialize(name=nil, version=nil, devname=nil, docname=nil)
           @Name = name
-          @DocName = docname
+          @Version = version
           @DevName = devname
+          @DocName = docname
         end
 
         def deserialize(params)
-          @Version = params['Version']
           @Name = params['Name']
-          @DocName = params['DocName']
+          @Version = params['Version']
           @DevName = params['DevName']
+          @DocName = params['DocName']
         end
       end
 
@@ -10663,21 +10663,21 @@ module TencentCloud
 
       # GPU驱动和CUDA的版本信息
       class DriverVersion < TencentCloud::Common::AbstractModel
-        # @param Version: GPU驱动或者CUDA的版本
-        # @type Version: String
         # @param Name: GPU驱动或者CUDA的名字
         # @type Name: String
+        # @param Version: GPU驱动或者CUDA的版本
+        # @type Version: String
 
-        attr_accessor :Version, :Name
+        attr_accessor :Name, :Version
 
-        def initialize(version=nil, name=nil)
-          @Version = version
+        def initialize(name=nil, version=nil)
           @Name = name
+          @Version = version
         end
 
         def deserialize(params)
-          @Version = params['Version']
           @Name = params['Name']
+          @Version = params['Version']
         end
       end
 
@@ -11996,33 +11996,28 @@ module TencentCloud
 
       # GPU相关的参数，包括驱动版本，CUDA版本，cuDNN版本以及是否开启MIG
       class GPUArgs < TencentCloud::Common::AbstractModel
-        # @param MIGEnable: 是否启用MIG特性
-        # @type MIGEnable: Boolean
-        # @param Driver: GPU驱动版本信息
-        # @type Driver: :class:`Tencentcloud::Tke.v20180525.models.DriverVersion`
         # @param CUDA: CUDA版本信息
         # @type CUDA: :class:`Tencentcloud::Tke.v20180525.models.DriverVersion`
         # @param CUDNN: cuDNN版本信息
         # @type CUDNN: :class:`Tencentcloud::Tke.v20180525.models.CUDNN`
         # @param CustomDriver: 自定义GPU驱动信息
         # @type CustomDriver: :class:`Tencentcloud::Tke.v20180525.models.CustomDriver`
+        # @param Driver: GPU驱动版本信息
+        # @type Driver: :class:`Tencentcloud::Tke.v20180525.models.DriverVersion`
+        # @param MIGEnable: 是否启用MIG特性
+        # @type MIGEnable: Boolean
 
-        attr_accessor :MIGEnable, :Driver, :CUDA, :CUDNN, :CustomDriver
+        attr_accessor :CUDA, :CUDNN, :CustomDriver, :Driver, :MIGEnable
 
-        def initialize(migenable=nil, driver=nil, cuda=nil, cudnn=nil, customdriver=nil)
-          @MIGEnable = migenable
-          @Driver = driver
+        def initialize(cuda=nil, cudnn=nil, customdriver=nil, driver=nil, migenable=nil)
           @CUDA = cuda
           @CUDNN = cudnn
           @CustomDriver = customdriver
+          @Driver = driver
+          @MIGEnable = migenable
         end
 
         def deserialize(params)
-          @MIGEnable = params['MIGEnable']
-          unless params['Driver'].nil?
-            @Driver = DriverVersion.new
-            @Driver.deserialize(params['Driver'])
-          end
           unless params['CUDA'].nil?
             @CUDA = DriverVersion.new
             @CUDA.deserialize(params['CUDA'])
@@ -12035,6 +12030,11 @@ module TencentCloud
             @CustomDriver = CustomDriver.new
             @CustomDriver.deserialize(params['CustomDriver'])
           end
+          unless params['Driver'].nil?
+            @Driver = DriverVersion.new
+            @Driver.deserialize(params['Driver'])
+          end
+          @MIGEnable = params['MIGEnable']
         end
       end
 

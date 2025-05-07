@@ -846,7 +846,7 @@ module TencentCloud
         # @type ExpressInfo: :class:`Tencentcloud::Chc.v20230418.models.ExpressDelivery`
         # @param Remark: 备注
         # @type Remark: String
-        # @param ServerDeviceList: 服务器收货列表
+        # @param ServerDeviceList: 服务器收货列表。最大值：200
         # @type ServerDeviceList: Array
         # @param NetDeviceList: 网络设备收货列表
         # @type NetDeviceList: Array
@@ -854,10 +854,20 @@ module TencentCloud
         # @type WireDeviceList: Array
         # @param OtherDeviceList: 其他设备收货列表
         # @type OtherDeviceList: Array
+        # @param WithRackOn: 收货后自动上架。此参数为true时，后台会自动提设备上架单
+        # @type WithRackOn: Boolean
+        # @param DeviceRackOnList: 设备上架信息。当WithRackOn为true此参数必传，且sn需要和收货的列表一致
+        # @type DeviceRackOnList: Array
+        # @param StuffOption: 上架人员 1.自行解决 2.由腾讯IDC负责
+        # @type StuffOption: String
+        # @param SelfOperationInfo: 自行解决信息。当StuffOption为1时，此参数必填
+        # @type SelfOperationInfo: :class:`Tencentcloud::Chc.v20230418.models.SelfOperation`
+        # @param WithPowerOn: 上架后自动开电。此参数为true时，后台会自动提设备开电单
+        # @type WithPowerOn: Boolean
 
-        attr_accessor :IdcId, :DeviceType, :EntryTime, :ReceivingOperation, :IsExpressDelivery, :ExpressInfo, :Remark, :ServerDeviceList, :NetDeviceList, :WireDeviceList, :OtherDeviceList
+        attr_accessor :IdcId, :DeviceType, :EntryTime, :ReceivingOperation, :IsExpressDelivery, :ExpressInfo, :Remark, :ServerDeviceList, :NetDeviceList, :WireDeviceList, :OtherDeviceList, :WithRackOn, :DeviceRackOnList, :StuffOption, :SelfOperationInfo, :WithPowerOn
 
-        def initialize(idcid=nil, devicetype=nil, entrytime=nil, receivingoperation=nil, isexpressdelivery=nil, expressinfo=nil, remark=nil, serverdevicelist=nil, netdevicelist=nil, wiredevicelist=nil, otherdevicelist=nil)
+        def initialize(idcid=nil, devicetype=nil, entrytime=nil, receivingoperation=nil, isexpressdelivery=nil, expressinfo=nil, remark=nil, serverdevicelist=nil, netdevicelist=nil, wiredevicelist=nil, otherdevicelist=nil, withrackon=nil, devicerackonlist=nil, stuffoption=nil, selfoperationinfo=nil, withpoweron=nil)
           @IdcId = idcid
           @DeviceType = devicetype
           @EntryTime = entrytime
@@ -869,6 +879,11 @@ module TencentCloud
           @NetDeviceList = netdevicelist
           @WireDeviceList = wiredevicelist
           @OtherDeviceList = otherdevicelist
+          @WithRackOn = withrackon
+          @DeviceRackOnList = devicerackonlist
+          @StuffOption = stuffoption
+          @SelfOperationInfo = selfoperationinfo
+          @WithPowerOn = withpoweron
         end
 
         def deserialize(params)
@@ -914,6 +929,21 @@ module TencentCloud
               @OtherDeviceList << otherdevreceivinginfo_tmp
             end
           end
+          @WithRackOn = params['WithRackOn']
+          unless params['DeviceRackOnList'].nil?
+            @DeviceRackOnList = []
+            params['DeviceRackOnList'].each do |i|
+              devicerackon_tmp = DeviceRackOn.new
+              devicerackon_tmp.deserialize(i)
+              @DeviceRackOnList << devicerackon_tmp
+            end
+          end
+          @StuffOption = params['StuffOption']
+          unless params['SelfOperationInfo'].nil?
+            @SelfOperationInfo = SelfOperation.new
+            @SelfOperationInfo.deserialize(params['SelfOperationInfo'])
+          end
+          @WithPowerOn = params['WithPowerOn']
         end
       end
 

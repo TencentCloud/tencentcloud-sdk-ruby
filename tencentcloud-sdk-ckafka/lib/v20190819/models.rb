@@ -8283,10 +8283,8 @@ module TencentCloud
       # 实例路由
       class InstanceRoute < TencentCloud::Common::AbstractModel
         # @param InstanceId: ckafka集群实例Id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceId: String
         # @param RouteId: 路由Id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RouteId: Integer
 
         attr_accessor :InstanceId, :RouteId
@@ -10638,13 +10636,10 @@ module TencentCloud
       # 路由列表过滤器
       class RouteFilter < TencentCloud::Common::AbstractModel
         # @param Name: 过滤名称,目前支持security-group-id,按安全组关联过滤
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Values: 过滤值,当过滤名称为security-group-id时仅支持传单个value
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Values: Array
         # @param Relation: 过滤关系,支持IN和NOT_IN,默认为IN
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Relation: String
 
         attr_accessor :Name, :Values, :Relation
@@ -10962,19 +10957,14 @@ module TencentCloud
       # 安全组路由信息
       class SecurityGroupRoute < TencentCloud::Common::AbstractModel
         # @param InstanceRoute: 路由信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceRoute: :class:`Tencentcloud::Ckafka.v20190819.models.InstanceRoute`
         # @param SecurityGroupIds: 关联的安全组列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SecurityGroupIds: Array
         # @param InstanceName: ckafka集群实例名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceName: String
         # @param VpcId: 路由vpcId
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VpcId: String
         # @param Vip: 路由vip
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Vip: String
 
         attr_accessor :InstanceRoute, :SecurityGroupIds, :InstanceName, :VpcId, :Vip
@@ -11002,10 +10992,8 @@ module TencentCloud
       # 安全组路由信息返回结果
       class SecurityGroupRouteResp < TencentCloud::Common::AbstractModel
         # @param TotalCount: 符合条件的安全组路由信息总数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
         # @param SecurityGroupRoutes: 符合条件的安全组路由信息列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SecurityGroupRoutes: Array
 
         attr_accessor :TotalCount, :SecurityGroupRoutes

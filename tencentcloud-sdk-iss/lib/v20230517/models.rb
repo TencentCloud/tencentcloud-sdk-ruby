@@ -5907,10 +5907,8 @@ module TencentCloud
       # 本地录像下载任务列表
       class ListVideoDownloadTaskData < TencentCloud::Common::AbstractModel
         # @param List: 任务列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type List: Array
         # @param TotalCount: 任务总数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
 
         attr_accessor :List, :TotalCount
@@ -8025,56 +8023,39 @@ module TencentCloud
       # 本地录像下载任务
       class VideoDownloadTask < TencentCloud::Common::AbstractModel
         # @param DownloadTaskId: 下载任务 ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DownloadTaskId: String
         # @param ChannelId: 通道 ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ChannelId: String
         # @param ChannelName: 通道名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ChannelName: String
         # @param ChannelCode: 通道编码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ChannelCode: String
         # @param DeviceName: 设备名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeviceName: String
         # @param DeviceCode: 设备编码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeviceCode: String
         # @param Status: 任务状态（0：未执行；1：执行中；2 任务完成；
         # 3：任务失败）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
         # @param VideoTimeSection: 下载录像时间段
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VideoTimeSection: String
         # @param Scale: 倍速
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Scale: Integer
         # @param DownloadTime: 下载时长
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DownloadTime: Integer
         # @param VideoSize: 录像大小
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VideoSize: Integer
         # @param StartTime: 任务开始时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StartTime: String
         # @param EndTime: 任务结束时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EndTime: String
         # @param FileDownloadUrl: 文件下载地址
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FileDownloadUrl: String
         # @param FailedReason: 失败原因
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FailedReason: String
         # @param Expire: 生命周期规则，热存天数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Expire: Integer
         # @param PreviewUrl: mp4预览地址
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PreviewUrl: String
 
         attr_accessor :DownloadTaskId, :ChannelId, :ChannelName, :ChannelCode, :DeviceName, :DeviceCode, :Status, :VideoTimeSection, :Scale, :DownloadTime, :VideoSize, :StartTime, :EndTime, :FileDownloadUrl, :FailedReason, :Expire, :PreviewUrl
@@ -8123,7 +8104,6 @@ module TencentCloud
       # 录像下载任务数据结构
       class VideoDownloadTaskData < TencentCloud::Common::AbstractModel
         # @param DownloadTaskId: 下载任务ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DownloadTaskId: String
 
         attr_accessor :DownloadTaskId

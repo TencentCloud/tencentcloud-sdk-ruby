@@ -19,15 +19,15 @@ module TencentCloud
     module V20250101
       # ChatCompletions请求参数结构体
       class ChatCompletionsRequest < TencentCloud::Common::AbstractModel
-        # @param Messages: 会话内容，按对话时间从旧到新在数组中排列，长度受模型窗口大小限制
+        # @param Messages: 会话内容，按对话时间从旧到新在数组中排列，长度受模型窗口大小限制。
         # @type Messages: Array
-        # @param ModelName: 模型名称
+        # @param ModelName: 模型名称，可选模型列表：hunyuan-turbo，hunyuan-large，hunyuan-large-longcontext，hunyuan-standard，hunyuan-standard-256K，deepseek-r1，deepseek-v3，deepseek-r1-distill-qwen-32b。
         # @type ModelName: String
-        # @param Stream: 是否以流式接口的形式返回数据，默认true
+        # @param Stream: 是否以流式接口的形式返回数据，默认true。
         # @type Stream: Boolean
-        # @param TopP: 取值区间为[0.0, 1.0], 非必要不建议使用, 不合理的取值会影响效果
+        # @param TopP: 取值区间为[0.0, 1.0], 非必要不建议使用, 不合理的取值会影响效果 。
         # @type TopP: Float
-        # @param Temperature: 取值区间为[0.0, 2.0], 非必要不建议使用, 不合理的取值会影响效果
+        # @param Temperature: 取值区间为[0.0, 2.0], 非必要不建议使用, 不合理的取值会影响效果 。
         # @type Temperature: Float
         # @param OnlineSearch: 是否开启联网搜索。默认为 false。
         # @type OnlineSearch: Boolean
@@ -194,9 +194,9 @@ module TencentCloud
 
       # 切片文档信息
       class ChunkDocument < TencentCloud::Common::AbstractModel
-        # @param FileType: 文件类型
+        # @param FileType: 文件类型，支持 MD，TXT 格式。
         # @type FileType: String
-        # @param FileContent: 文件的 base64值
+        # @param FileContent: 文本原文，使用字符串格式输入。
         # @type FileContent: String
 
         attr_accessor :FileType, :FileContent
@@ -214,11 +214,11 @@ module TencentCloud
 
       # ChunkDocumentAsync请求参数结构体
       class ChunkDocumentAsyncRequest < TencentCloud::Common::AbstractModel
-        # @param Document: 文件信息
+        # @param Document: 文件信息。
         # @type Document: :class:`Tencentcloud::Es.v20250101.models.Document`
-        # @param ModelName: 模型名称
+        # @param ModelName: 模型名称，可选模型列表：doc-tree-chunk。
         # @type ModelName: String
-        # @param Config: 文件切片配置
+        # @param Config: 文件切片配置。
         # @type Config: :class:`Tencentcloud::Es.v20250101.models.ChunkConfigAsync`
 
         attr_accessor :Document, :ModelName, :Config
@@ -264,11 +264,11 @@ module TencentCloud
 
       # ChunkDocument请求参数结构体
       class ChunkDocumentRequest < TencentCloud::Common::AbstractModel
-        # @param Document: 文件切片文件信息
+        # @param Document: 切片文件信息。
         # @type Document: :class:`Tencentcloud::Es.v20250101.models.ChunkDocument`
-        # @param ModelName: 模型名称
+        # @param ModelName: 模型名称，可选模型列表：doc-chunk。
         # @type ModelName: String
-        # @param Config: 文件切片配置
+        # @param Config: 文件切片配置。
         # @type Config: :class:`Tencentcloud::Es.v20250101.models.ChunkConfig`
 
         attr_accessor :Document, :ModelName, :Config
@@ -414,11 +414,11 @@ module TencentCloud
 
       # GetDocumentChunkResult返回参数结构体
       class GetDocumentChunkResultResponse < TencentCloud::Common::AbstractModel
-        # @param Status: 任务状态
+        # @param Status: 任务状态，-1：失败，0：运行中，1：成功。
         # @type Status: Integer
-        # @param DocumentChunkResultUrl: 切片结果
+        # @param DocumentChunkResultUrl: 切片结果文件。
         # @type DocumentChunkResultUrl: String
-        # @param Usage: 用量
+        # @param Usage: Token用量。
         # @type Usage: :class:`Tencentcloud::Es.v20250101.models.DocumentChunkUsage`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -461,11 +461,11 @@ module TencentCloud
 
       # GetDocumentParseResult返回参数结构体
       class GetDocumentParseResultResponse < TencentCloud::Common::AbstractModel
-        # @param Status: 任务状态
+        # @param Status: 任务状态，-1：失败，0：运行中，1：成功。
         # @type Status: Integer
-        # @param DocumentParseResultUrl: 结果文件
+        # @param DocumentParseResultUrl: 结果文件。
         # @type DocumentParseResultUrl: String
-        # @param FailedPages: 失败的页码
+        # @param FailedPages: 失败的页码。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FailedPages: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
@@ -490,9 +490,9 @@ module TencentCloud
 
       # GetTextEmbedding请求参数结构体
       class GetTextEmbeddingRequest < TencentCloud::Common::AbstractModel
-        # @param ModelName: 模型名称
+        # @param ModelName: 模型名称，可选模型列表：bge-base-zh-v1.5,conan-embedding-v1,bge-m3,KaLM-embedding-multilingual-mini-v1。
         # @type ModelName: String
-        # @param Texts: 需进行向量化的文本集
+        # @param Texts: 需进行向量化的文本集。
         # @type Texts: Array
 
         attr_accessor :ModelName, :Texts
@@ -512,7 +512,7 @@ module TencentCloud
       class GetTextEmbeddingResponse < TencentCloud::Common::AbstractModel
         # @param Data: 结果集
         # @type Data: Array
-        # @param Usage: 消耗token数量
+        # @param Usage: 向量化消耗的token数量。
         # @type Usage: :class:`Tencentcloud::Es.v20250101.models.Usage`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -635,9 +635,9 @@ module TencentCloud
 
       # ParseDocumentAsync请求参数结构体
       class ParseDocumentAsyncRequest < TencentCloud::Common::AbstractModel
-        # @param Document: 文件信息
+        # @param Document: 文件信息。
         # @type Document: :class:`Tencentcloud::Es.v20250101.models.Document`
-        # @param ModelName: 模型名称
+        # @param ModelName: 模型名称，可选模型列表：doc-llm。
         # @type ModelName: String
 
         attr_accessor :Document, :ModelName
@@ -680,7 +680,7 @@ module TencentCloud
       class ParseDocumentRequest < TencentCloud::Common::AbstractModel
         # @param Document: 文件信息
         # @type Document: :class:`Tencentcloud::Es.v20250101.models.ParseDocument`
-        # @param ModelName: 模型名称
+        # @param ModelName: 模型名称，doc-llm。
         # @type ModelName: String
 
         attr_accessor :Document, :ModelName
@@ -701,11 +701,11 @@ module TencentCloud
 
       # ParseDocument返回参数结构体
       class ParseDocumentResponse < TencentCloud::Common::AbstractModel
-        # @param Progress: 进度
+        # @param Progress: 进度：0-100。
         # @type Progress: String
-        # @param DocumentParseResultUrl:  解析文件结果
+        # @param DocumentParseResultUrl:  解析文件结果。
         # @type DocumentParseResultUrl: String
-        # @param FailedPages: 失败页码
+        # @param FailedPages: 失败页码。
         # @type FailedPages: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。本接口为流式响应接口，当请求成功时，RequestId 会被放在 HTTP 响应的 Header "X-TC-RequestId" 中。
         # @type RequestId: String
@@ -756,15 +756,15 @@ module TencentCloud
 
       # RunRerank请求参数结构体
       class RunRerankRequest < TencentCloud::Common::AbstractModel
-        # @param ModelName: 模型名称
+        # @param ModelName: 模型名称，可选模型列表：bge-reranker-large，bge-reranker-v2-m3。
         # @type ModelName: String
-        # @param Query: 查询文本
+        # @param Query: 查询文本。
         # @type Query: String
-        # @param Documents: 待排序的候选doc列表
+        # @param Documents: 待排序的候选doc列表。
         # @type Documents: Array
-        # @param TopN: 排序返回的top文档数量, 如果没有指定则返回全部候选doc，如果指定的top_n值大于输入的候选doc数量，返回全部doc
+        # @param TopN: 排序返回的top文档数量, 如果没有指定则返回全部候选doc，如果指定的top_n值大于输入的候选doc数量，返回全部doc。
         # @type TopN: Integer
-        # @param ReturnDocuments: 返回的排序结果列表里面是否返回每一条document原文，默认值False
+        # @param ReturnDocuments: 返回的排序结果列表里面是否返回每一条document原文，默认值False。
         # @type ReturnDocuments: Boolean
 
         attr_accessor :ModelName, :Query, :Documents, :TopN, :ReturnDocuments
@@ -788,9 +788,9 @@ module TencentCloud
 
       # RunRerank返回参数结构体
       class RunRerankResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 输出结果集
+        # @param Data: 输出结果集。
         # @type Data: Array
-        # @param Usage: 消耗token数量
+        # @param Usage: 消耗token数量。
         # @type Usage: :class:`Tencentcloud::Es.v20250101.models.Usage`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

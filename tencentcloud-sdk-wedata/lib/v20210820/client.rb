@@ -5321,7 +5321,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 更新工作流调度
+        # 更新工作流调度。本接口已废弃，请使用接口RenewWorkflowSchedulerInfoDs。
 
         # @param request: Request instance for ModifyWorkflowSchedule.
         # @type request: :class:`Tencentcloud::wedata::V20210820::ModifyWorkflowScheduleRequest`
@@ -5733,7 +5733,7 @@ module TencentCloud
         end
 
         # <p style="color:red;">[注意：该版本只满足广州区部分白名单客户使用]</p>
-        # 提交任务
+        # 提交任务。本接口已废弃，请使用接口CreateTaskVersionDs。
 
         # @param request: Request instance for SubmitTask.
         # @type request: :class:`Tencentcloud::wedata::V20210820::SubmitTaskRequest`
@@ -5781,7 +5781,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 提交工作流
+        # 提交工作流。本接口已废弃，请使用接口BatchCreateTaskVersionAsync。
 
         # @param request: Request instance for SubmitWorkflow.
         # @type request: :class:`Tencentcloud::wedata::V20210820::SubmitWorkflowRequest`
@@ -5878,7 +5878,7 @@ module TencentCloud
         end
 
         # <p style="color:red;">[注意：该版本只满足广州区部分白名单客户使用]</p>
-        # 触发事件
+        # 触发事件。本接口已废弃，请使用接口TriggerDsEvent。
 
         # @param request: Request instance for TriggerEvent.
         # @type request: :class:`Tencentcloud::wedata::V20210820::TriggerEventRequest`
