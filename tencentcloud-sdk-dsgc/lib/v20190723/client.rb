@@ -2131,6 +2131,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取分类分级任务列表
+
+        # @param request: Request instance for DescribeDSPADiscoveryTasks.
+        # @type request: :class:`Tencentcloud::dsgc::V20190723::DescribeDSPADiscoveryTasksRequest`
+        # @rtype: :class:`Tencentcloud::dsgc::V20190723::DescribeDSPADiscoveryTasksResponse`
+        def DescribeDSPADiscoveryTasks(request)
+          body = send_request('DescribeDSPADiscoveryTasks', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDSPADiscoveryTasksResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 根据合规组id，去查询ES的概览页统计数据
 
         # @param request: Request instance for DescribeDSPAESDataAssetByComplianceId.

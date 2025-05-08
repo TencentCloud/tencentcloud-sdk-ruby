@@ -424,8 +424,8 @@ module TencentCloud
 
         attr_accessor :Zone, :HaFlag, :UserVPCId, :UserSubnetId, :ProductVersion, :ChargeProperties, :InstanceName, :DataSpec, :Tags, :ClsLogSetId, :CosBucketName, :MountDiskType, :HAZk, :CommonSpec, :TagItems, :SecondaryZoneInfo
         extend Gem::Deprecate
-        deprecate :Tags, :none, 2025, 4
-        deprecate :Tags=, :none, 2025, 4
+        deprecate :Tags, :none, 2025, 5
+        deprecate :Tags=, :none, 2025, 5
 
         def initialize(zone=nil, haflag=nil, uservpcid=nil, usersubnetid=nil, productversion=nil, chargeproperties=nil, instancename=nil, dataspec=nil, tags=nil, clslogsetid=nil, cosbucketname=nil, mountdisktype=nil, hazk=nil, commonspec=nil, tagitems=nil, secondaryzoneinfo=nil)
           @Zone = zone

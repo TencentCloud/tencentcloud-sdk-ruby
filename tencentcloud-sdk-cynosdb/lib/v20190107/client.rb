@@ -245,6 +245,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 关闭SSL加密
+
+        # @param request: Request instance for CloseSSL.
+        # @type request: :class:`Tencentcloud::cynosdb::V20190107::CloseSSLRequest`
+        # @rtype: :class:`Tencentcloud::cynosdb::V20190107::CloseSSLResponse`
+        def CloseSSL(request)
+          body = send_request('CloseSSL', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CloseSSLResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（CloseWan）用于关闭外网。
 
         # @param request: Request instance for CloseWan.

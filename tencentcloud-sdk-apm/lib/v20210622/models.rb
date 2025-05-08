@@ -322,10 +322,14 @@ module TencentCloud
         # 8: 账号欠费
         # }
         # @type StopReason: Integer
+        # @param IsRemoteCommandExecutionAnalysis: 是否开远程命令执行检测（0=关， 1=开）
+        # @type IsRemoteCommandExecutionAnalysis: Integer
+        # @param IsMemoryHijackingAnalysis: 是否开内存马执行检测（0=关， 1=开）
+        # @type IsMemoryHijackingAnalysis: Integer
 
-        attr_accessor :InstanceId, :Name, :Description, :Status, :Region, :Tags, :AppId, :CreateUin, :AmountOfUsedStorage, :ServiceCount, :CountOfReportSpanPerDay, :TraceDuration, :SpanDailyCounters, :BillingInstance, :ErrRateThreshold, :SampleRate, :ErrorSample, :SlowRequestSavedThreshold, :LogRegion, :LogSource, :IsRelatedLog, :LogTopicID, :ClientCount, :TotalCount, :LogSet, :MetricDuration, :CustomShowTags, :PayMode, :PayModeEffective, :ResponseDurationWarningThreshold, :Free, :DefaultTSF, :IsRelatedDashboard, :DashboardTopicID, :IsInstrumentationVulnerabilityScan, :IsSqlInjectionAnalysis, :StopReason
+        attr_accessor :InstanceId, :Name, :Description, :Status, :Region, :Tags, :AppId, :CreateUin, :AmountOfUsedStorage, :ServiceCount, :CountOfReportSpanPerDay, :TraceDuration, :SpanDailyCounters, :BillingInstance, :ErrRateThreshold, :SampleRate, :ErrorSample, :SlowRequestSavedThreshold, :LogRegion, :LogSource, :IsRelatedLog, :LogTopicID, :ClientCount, :TotalCount, :LogSet, :MetricDuration, :CustomShowTags, :PayMode, :PayModeEffective, :ResponseDurationWarningThreshold, :Free, :DefaultTSF, :IsRelatedDashboard, :DashboardTopicID, :IsInstrumentationVulnerabilityScan, :IsSqlInjectionAnalysis, :StopReason, :IsRemoteCommandExecutionAnalysis, :IsMemoryHijackingAnalysis
 
-        def initialize(instanceid=nil, name=nil, description=nil, status=nil, region=nil, tags=nil, appid=nil, createuin=nil, amountofusedstorage=nil, servicecount=nil, countofreportspanperday=nil, traceduration=nil, spandailycounters=nil, billinginstance=nil, errratethreshold=nil, samplerate=nil, errorsample=nil, slowrequestsavedthreshold=nil, logregion=nil, logsource=nil, isrelatedlog=nil, logtopicid=nil, clientcount=nil, totalcount=nil, logset=nil, metricduration=nil, customshowtags=nil, paymode=nil, paymodeeffective=nil, responsedurationwarningthreshold=nil, free=nil, defaulttsf=nil, isrelateddashboard=nil, dashboardtopicid=nil, isinstrumentationvulnerabilityscan=nil, issqlinjectionanalysis=nil, stopreason=nil)
+        def initialize(instanceid=nil, name=nil, description=nil, status=nil, region=nil, tags=nil, appid=nil, createuin=nil, amountofusedstorage=nil, servicecount=nil, countofreportspanperday=nil, traceduration=nil, spandailycounters=nil, billinginstance=nil, errratethreshold=nil, samplerate=nil, errorsample=nil, slowrequestsavedthreshold=nil, logregion=nil, logsource=nil, isrelatedlog=nil, logtopicid=nil, clientcount=nil, totalcount=nil, logset=nil, metricduration=nil, customshowtags=nil, paymode=nil, paymodeeffective=nil, responsedurationwarningthreshold=nil, free=nil, defaulttsf=nil, isrelateddashboard=nil, dashboardtopicid=nil, isinstrumentationvulnerabilityscan=nil, issqlinjectionanalysis=nil, stopreason=nil, isremotecommandexecutionanalysis=nil, ismemoryhijackinganalysis=nil)
           @InstanceId = instanceid
           @Name = name
           @Description = description
@@ -363,6 +367,8 @@ module TencentCloud
           @IsInstrumentationVulnerabilityScan = isinstrumentationvulnerabilityscan
           @IsSqlInjectionAnalysis = issqlinjectionanalysis
           @StopReason = stopreason
+          @IsRemoteCommandExecutionAnalysis = isremotecommandexecutionanalysis
+          @IsMemoryHijackingAnalysis = ismemoryhijackinganalysis
         end
 
         def deserialize(params)
@@ -410,6 +416,8 @@ module TencentCloud
           @IsInstrumentationVulnerabilityScan = params['IsInstrumentationVulnerabilityScan']
           @IsSqlInjectionAnalysis = params['IsSqlInjectionAnalysis']
           @StopReason = params['StopReason']
+          @IsRemoteCommandExecutionAnalysis = params['IsRemoteCommandExecutionAnalysis']
+          @IsMemoryHijackingAnalysis = params['IsMemoryHijackingAnalysis']
         end
       end
 
@@ -1437,10 +1445,14 @@ module TencentCloud
         # @type IsSqlInjectionAnalysis: Integer
         # @param IsInstrumentationVulnerabilityScan: 是否开启组件漏洞检测（0=关,1=开）
         # @type IsInstrumentationVulnerabilityScan: Integer
+        # @param IsRemoteCommandExecutionAnalysis: 是否开启远程命令攻击检测
+        # @type IsRemoteCommandExecutionAnalysis: Integer
+        # @param IsMemoryHijackingAnalysis: 是否开启内存马检测
+        # @type IsMemoryHijackingAnalysis: Integer
 
-        attr_accessor :InstanceId, :Name, :Tags, :Description, :TraceDuration, :OpenBilling, :SpanDailyCounters, :ErrRateThreshold, :SampleRate, :ErrorSample, :SlowRequestSavedThreshold, :IsRelatedLog, :LogRegion, :LogTopicID, :LogSet, :LogSource, :CustomShowTags, :PayMode, :ResponseDurationWarningThreshold, :Free, :IsRelatedDashboard, :DashboardTopicID, :IsSqlInjectionAnalysis, :IsInstrumentationVulnerabilityScan
+        attr_accessor :InstanceId, :Name, :Tags, :Description, :TraceDuration, :OpenBilling, :SpanDailyCounters, :ErrRateThreshold, :SampleRate, :ErrorSample, :SlowRequestSavedThreshold, :IsRelatedLog, :LogRegion, :LogTopicID, :LogSet, :LogSource, :CustomShowTags, :PayMode, :ResponseDurationWarningThreshold, :Free, :IsRelatedDashboard, :DashboardTopicID, :IsSqlInjectionAnalysis, :IsInstrumentationVulnerabilityScan, :IsRemoteCommandExecutionAnalysis, :IsMemoryHijackingAnalysis
 
-        def initialize(instanceid=nil, name=nil, tags=nil, description=nil, traceduration=nil, openbilling=nil, spandailycounters=nil, errratethreshold=nil, samplerate=nil, errorsample=nil, slowrequestsavedthreshold=nil, isrelatedlog=nil, logregion=nil, logtopicid=nil, logset=nil, logsource=nil, customshowtags=nil, paymode=nil, responsedurationwarningthreshold=nil, free=nil, isrelateddashboard=nil, dashboardtopicid=nil, issqlinjectionanalysis=nil, isinstrumentationvulnerabilityscan=nil)
+        def initialize(instanceid=nil, name=nil, tags=nil, description=nil, traceduration=nil, openbilling=nil, spandailycounters=nil, errratethreshold=nil, samplerate=nil, errorsample=nil, slowrequestsavedthreshold=nil, isrelatedlog=nil, logregion=nil, logtopicid=nil, logset=nil, logsource=nil, customshowtags=nil, paymode=nil, responsedurationwarningthreshold=nil, free=nil, isrelateddashboard=nil, dashboardtopicid=nil, issqlinjectionanalysis=nil, isinstrumentationvulnerabilityscan=nil, isremotecommandexecutionanalysis=nil, ismemoryhijackinganalysis=nil)
           @InstanceId = instanceid
           @Name = name
           @Tags = tags
@@ -1465,6 +1477,8 @@ module TencentCloud
           @DashboardTopicID = dashboardtopicid
           @IsSqlInjectionAnalysis = issqlinjectionanalysis
           @IsInstrumentationVulnerabilityScan = isinstrumentationvulnerabilityscan
+          @IsRemoteCommandExecutionAnalysis = isremotecommandexecutionanalysis
+          @IsMemoryHijackingAnalysis = ismemoryhijackinganalysis
         end
 
         def deserialize(params)
@@ -1499,6 +1513,8 @@ module TencentCloud
           @DashboardTopicID = params['DashboardTopicID']
           @IsSqlInjectionAnalysis = params['IsSqlInjectionAnalysis']
           @IsInstrumentationVulnerabilityScan = params['IsInstrumentationVulnerabilityScan']
+          @IsRemoteCommandExecutionAnalysis = params['IsRemoteCommandExecutionAnalysis']
+          @IsMemoryHijackingAnalysis = params['IsMemoryHijackingAnalysis']
         end
       end
 

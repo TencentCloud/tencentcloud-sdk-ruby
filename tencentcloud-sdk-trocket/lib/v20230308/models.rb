@@ -68,6 +68,38 @@ module TencentCloud
         end
       end
 
+      # 客户端订阅详情，可用于辅助判断哪些客户端订阅关系不一致
+      class ClientSubscriptionInfo < TencentCloud::Common::AbstractModel
+        # @param ClientId: 客户端ID
+        # @type ClientId: String
+        # @param ClientAddr: 客户端地址
+        # @type ClientAddr: String
+        # @param Topic: 订阅主题
+        # @type Topic: String
+        # @param SubString: 订阅表达式
+        # @type SubString: String
+        # @param ExpressionType: 订阅方式
+        # @type ExpressionType: String
+
+        attr_accessor :ClientId, :ClientAddr, :Topic, :SubString, :ExpressionType
+
+        def initialize(clientid=nil, clientaddr=nil, topic=nil, substring=nil, expressiontype=nil)
+          @ClientId = clientid
+          @ClientAddr = clientaddr
+          @Topic = topic
+          @SubString = substring
+          @ExpressionType = expressiontype
+        end
+
+        def deserialize(params)
+          @ClientId = params['ClientId']
+          @ClientAddr = params['ClientAddr']
+          @Topic = params['Topic']
+          @SubString = params['SubString']
+          @ExpressionType = params['ExpressionType']
+        end
+      end
+
       # 消费组信息
       class ConsumeGroupItem < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID
@@ -177,16 +209,19 @@ module TencentCloud
         # @type ConsumerGroup: String
         # @param Remark: 备注
         # @type Remark: String
+        # @param TagList: 标签列表
+        # @type TagList: Array
 
-        attr_accessor :InstanceId, :MaxRetryTimes, :ConsumeEnable, :ConsumeMessageOrderly, :ConsumerGroup, :Remark
+        attr_accessor :InstanceId, :MaxRetryTimes, :ConsumeEnable, :ConsumeMessageOrderly, :ConsumerGroup, :Remark, :TagList
 
-        def initialize(instanceid=nil, maxretrytimes=nil, consumeenable=nil, consumemessageorderly=nil, consumergroup=nil, remark=nil)
+        def initialize(instanceid=nil, maxretrytimes=nil, consumeenable=nil, consumemessageorderly=nil, consumergroup=nil, remark=nil, taglist=nil)
           @InstanceId = instanceid
           @MaxRetryTimes = maxretrytimes
           @ConsumeEnable = consumeenable
           @ConsumeMessageOrderly = consumemessageorderly
           @ConsumerGroup = consumergroup
           @Remark = remark
+          @TagList = taglist
         end
 
         def deserialize(params)
@@ -196,6 +231,14 @@ module TencentCloud
           @ConsumeMessageOrderly = params['ConsumeMessageOrderly']
           @ConsumerGroup = params['ConsumerGroup']
           @Remark = params['Remark']
+          unless params['TagList'].nil?
+            @TagList = []
+            params['TagList'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @TagList << tag_tmp
+            end
+          end
         end
       end
 
@@ -679,16 +722,19 @@ module TencentCloud
         # @type Remark: String
         # @param MsgTTL: 消息保留时长
         # @type MsgTTL: Integer
+        # @param TagList: 标签列表
+        # @type TagList: Array
 
-        attr_accessor :InstanceId, :Topic, :TopicType, :QueueNum, :Remark, :MsgTTL
+        attr_accessor :InstanceId, :Topic, :TopicType, :QueueNum, :Remark, :MsgTTL, :TagList
 
-        def initialize(instanceid=nil, topic=nil, topictype=nil, queuenum=nil, remark=nil, msgttl=nil)
+        def initialize(instanceid=nil, topic=nil, topictype=nil, queuenum=nil, remark=nil, msgttl=nil, taglist=nil)
           @InstanceId = instanceid
           @Topic = topic
           @TopicType = topictype
           @QueueNum = queuenum
           @Remark = remark
           @MsgTTL = msgttl
+          @TagList = taglist
         end
 
         def deserialize(params)
@@ -698,6 +744,14 @@ module TencentCloud
           @QueueNum = params['QueueNum']
           @Remark = params['Remark']
           @MsgTTL = params['MsgTTL']
+          unless params['TagList'].nil?
+            @TagList = []
+            params['TagList'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @TagList << tag_tmp
+            end
+          end
         end
       end
 
@@ -1176,7 +1230,6 @@ module TencentCloud
       # DescribeConsumerGroupList返回参数结构体
       class DescribeConsumerGroupListResponse < TencentCloud::Common::AbstractModel
         # @param TotalCount: 查询总数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
         # @param Data: 消费组列表
         # @type Data: Array
@@ -1377,7 +1430,6 @@ module TencentCloud
       # DescribeFusionInstanceList返回参数结构体
       class DescribeFusionInstanceListResponse < TencentCloud::Common::AbstractModel
         # @param TotalCount: 查询总数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
         # @param Data: 实例列表
         # @type Data: Array
@@ -1451,7 +1503,6 @@ module TencentCloud
       # DescribeInstanceList返回参数结构体
       class DescribeInstanceListResponse < TencentCloud::Common::AbstractModel
         # @param TotalCount: 查询总数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
         # @param Data: 实例列表
         # @type Data: Array
@@ -2514,7 +2565,6 @@ module TencentCloud
       # DescribeMessageList返回参数结构体
       class DescribeMessageListResponse < TencentCloud::Common::AbstractModel
         # @param TotalCount: 查询总数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
         # @param Data: 消息记录列表
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -2980,7 +3030,6 @@ module TencentCloud
       # DescribeRoleList返回参数结构体
       class DescribeRoleListResponse < TencentCloud::Common::AbstractModel
         # @param TotalCount: 查询总数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
         # @param Data: 角色信息列表
         # @type Data: Array
@@ -3117,7 +3166,6 @@ module TencentCloud
       # DescribeTopicListByGroup返回参数结构体
       class DescribeTopicListByGroupResponse < TencentCloud::Common::AbstractModel
         # @param TotalCount: 查询总数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
         # @param Data: 主题列表
         # @type Data: Array
@@ -3566,10 +3614,13 @@ module TencentCloud
         # @param DestroyTime: 预销毁时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DestroyTime: Integer
+        # @param ZoneIds: 所属可用区列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ZoneIds: Array
 
-        attr_accessor :InstanceId, :InstanceName, :Version, :InstanceType, :InstanceStatus, :TopicNumLimit, :GroupNumLimit, :PayMode, :ExpiryTime, :Remark, :TopicNum, :GroupNum, :TagList, :SkuCode, :TpsLimit, :ScaledTpsLimit, :MessageRetention, :MaxMessageDelay, :RenewFlag, :InstanceItemExtraInfo, :DestroyTime
+        attr_accessor :InstanceId, :InstanceName, :Version, :InstanceType, :InstanceStatus, :TopicNumLimit, :GroupNumLimit, :PayMode, :ExpiryTime, :Remark, :TopicNum, :GroupNum, :TagList, :SkuCode, :TpsLimit, :ScaledTpsLimit, :MessageRetention, :MaxMessageDelay, :RenewFlag, :InstanceItemExtraInfo, :DestroyTime, :ZoneIds
 
-        def initialize(instanceid=nil, instancename=nil, version=nil, instancetype=nil, instancestatus=nil, topicnumlimit=nil, groupnumlimit=nil, paymode=nil, expirytime=nil, remark=nil, topicnum=nil, groupnum=nil, taglist=nil, skucode=nil, tpslimit=nil, scaledtpslimit=nil, messageretention=nil, maxmessagedelay=nil, renewflag=nil, instanceitemextrainfo=nil, destroytime=nil)
+        def initialize(instanceid=nil, instancename=nil, version=nil, instancetype=nil, instancestatus=nil, topicnumlimit=nil, groupnumlimit=nil, paymode=nil, expirytime=nil, remark=nil, topicnum=nil, groupnum=nil, taglist=nil, skucode=nil, tpslimit=nil, scaledtpslimit=nil, messageretention=nil, maxmessagedelay=nil, renewflag=nil, instanceitemextrainfo=nil, destroytime=nil, zoneids=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @Version = version
@@ -3591,6 +3642,7 @@ module TencentCloud
           @RenewFlag = renewflag
           @InstanceItemExtraInfo = instanceitemextrainfo
           @DestroyTime = destroytime
+          @ZoneIds = zoneids
         end
 
         def deserialize(params)
@@ -3625,6 +3677,7 @@ module TencentCloud
             @InstanceItemExtraInfo.deserialize(params['InstanceItemExtraInfo'])
           end
           @DestroyTime = params['DestroyTime']
+          @ZoneIds = params['ZoneIds']
         end
       end
 
@@ -3862,10 +3915,12 @@ module TencentCloud
         # @param InstanceStatus: 4.0共享集群状态
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceStatus: Integer
+        # @param IsFrozen: 是否已冻结
+        # @type IsFrozen: Boolean
 
-        attr_accessor :IsVip, :VipInstanceStatus, :MaxBandWidth, :SpecName, :NodeCount, :MaxStorage, :MaxRetention, :MinRetention, :InstanceStatus
+        attr_accessor :IsVip, :VipInstanceStatus, :MaxBandWidth, :SpecName, :NodeCount, :MaxStorage, :MaxRetention, :MinRetention, :InstanceStatus, :IsFrozen
 
-        def initialize(isvip=nil, vipinstancestatus=nil, maxbandwidth=nil, specname=nil, nodecount=nil, maxstorage=nil, maxretention=nil, minretention=nil, instancestatus=nil)
+        def initialize(isvip=nil, vipinstancestatus=nil, maxbandwidth=nil, specname=nil, nodecount=nil, maxstorage=nil, maxretention=nil, minretention=nil, instancestatus=nil, isfrozen=nil)
           @IsVip = isvip
           @VipInstanceStatus = vipinstancestatus
           @MaxBandWidth = maxbandwidth
@@ -3875,6 +3930,7 @@ module TencentCloud
           @MaxRetention = maxretention
           @MinRetention = minretention
           @InstanceStatus = instancestatus
+          @IsFrozen = isfrozen
         end
 
         def deserialize(params)
@@ -3887,6 +3943,7 @@ module TencentCloud
           @MaxRetention = params['MaxRetention']
           @MinRetention = params['MinRetention']
           @InstanceStatus = params['InstanceStatus']
+          @IsFrozen = params['IsFrozen']
         end
       end
 
@@ -5494,10 +5551,13 @@ module TencentCloud
         # CLUSTERING 集群模式;
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MessageModel: String
+        # @param ClientSubscriptionInfos: 订阅不一致的客户端列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClientSubscriptionInfos: Array
 
-        attr_accessor :InstanceId, :Topic, :TopicType, :TopicQueueNum, :ConsumerGroup, :IsOnline, :ConsumeType, :SubString, :ExpressionType, :Consistency, :ConsumerLag, :LastUpdateTime, :MaxRetryTimes, :ConsumeMessageOrderly, :MessageModel
+        attr_accessor :InstanceId, :Topic, :TopicType, :TopicQueueNum, :ConsumerGroup, :IsOnline, :ConsumeType, :SubString, :ExpressionType, :Consistency, :ConsumerLag, :LastUpdateTime, :MaxRetryTimes, :ConsumeMessageOrderly, :MessageModel, :ClientSubscriptionInfos
 
-        def initialize(instanceid=nil, topic=nil, topictype=nil, topicqueuenum=nil, consumergroup=nil, isonline=nil, consumetype=nil, substring=nil, expressiontype=nil, consistency=nil, consumerlag=nil, lastupdatetime=nil, maxretrytimes=nil, consumemessageorderly=nil, messagemodel=nil)
+        def initialize(instanceid=nil, topic=nil, topictype=nil, topicqueuenum=nil, consumergroup=nil, isonline=nil, consumetype=nil, substring=nil, expressiontype=nil, consistency=nil, consumerlag=nil, lastupdatetime=nil, maxretrytimes=nil, consumemessageorderly=nil, messagemodel=nil, clientsubscriptioninfos=nil)
           @InstanceId = instanceid
           @Topic = topic
           @TopicType = topictype
@@ -5513,6 +5573,7 @@ module TencentCloud
           @MaxRetryTimes = maxretrytimes
           @ConsumeMessageOrderly = consumemessageorderly
           @MessageModel = messagemodel
+          @ClientSubscriptionInfos = clientsubscriptioninfos
         end
 
         def deserialize(params)
@@ -5531,6 +5592,14 @@ module TencentCloud
           @MaxRetryTimes = params['MaxRetryTimes']
           @ConsumeMessageOrderly = params['ConsumeMessageOrderly']
           @MessageModel = params['MessageModel']
+          unless params['ClientSubscriptionInfos'].nil?
+            @ClientSubscriptionInfos = []
+            params['ClientSubscriptionInfos'].each do |i|
+              clientsubscriptioninfo_tmp = ClientSubscriptionInfo.new
+              clientsubscriptioninfo_tmp.deserialize(i)
+              @ClientSubscriptionInfos << clientsubscriptioninfo_tmp
+            end
+          end
         end
       end
 

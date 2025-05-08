@@ -20,19 +20,14 @@ module TencentCloud
       # AttributeKey值详情
       class AttributeKeyDetail < TencentCloud::Common::AbstractModel
         # @param LabelType: 输入框类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LabelType: String
         # @param Starter: 初始化展示
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Starter: String
         # @param Order: 展示排序
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Order: Integer
         # @param Value: AttributeKey值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: String
         # @param Label: 中文标签
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Label: String
 
         attr_accessor :LabelType, :Starter, :Order, :Value, :Label
@@ -57,16 +52,12 @@ module TencentCloud
       # 跟踪集概览
       class AuditSummary < TencentCloud::Common::AbstractModel
         # @param AuditStatus: 跟踪集状态，1：开启，0：关闭
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AuditStatus: Integer
         # @param CosBucketName: COS存储桶名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CosBucketName: String
         # @param AuditName: 跟踪集名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AuditName: String
         # @param LogFilePrefix: 日志前缀
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LogFilePrefix: String
 
         attr_accessor :AuditStatus, :CosBucketName, :AuditName, :LogFilePrefix
@@ -89,10 +80,8 @@ module TencentCloud
       # cmq地域信息
       class CmqRegionInfo < TencentCloud::Common::AbstractModel
         # @param CmqRegionName: 地域描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CmqRegionName: String
         # @param CmqRegion: cmq地域
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CmqRegion: String
 
         attr_accessor :CmqRegionName, :CmqRegion
@@ -400,10 +389,8 @@ module TencentCloud
         # @param CreateTime: 跟踪集创建时间
         # @type CreateTime: String
         # @param TrackForAllMembers: 是否开启将集团成员操作日志投递到集团管理账号或者可信服务管理账号
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TrackForAllMembers: Integer
         # @param Filters: 数据投递过滤条件
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Filters: :class:`Tencentcloud::Cloudaudit.v20190319.models.Filter`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -544,10 +531,8 @@ module TencentCloud
         # @param NextToken: 查看更多日志的凭证
         # @type NextToken: Integer
         # @param Events: 日志集合
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Events: Array
         # @param TotalCount: 此字段已经废弃。翻页请使用ListOver配合NextToken，在ListOver为false进行下一页数据读取。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -595,7 +580,6 @@ module TencentCloud
         # @param EventName: 事件名称
         # @type EventName: String
         # @param SecretId: 证书ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SecretId: String
         # @param EventSource: 请求来源
         # @type EventSource: String
@@ -606,7 +590,6 @@ module TencentCloud
         # @param AccountID: 主账号ID
         # @type AccountID: Integer
         # @param SourceIPAddress: 源IP
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SourceIPAddress: String
         # @param EventNameCn: 事件名称中文描述（此字段请按需使用，如果您是其他语言使用者，可以忽略该字段描述）
         # @type EventNameCn: String
@@ -666,7 +649,6 @@ module TencentCloud
       # 跟踪集数据投递筛选条件
       class Filter < TencentCloud::Common::AbstractModel
         # @param ResourceFields: 资源筛选条件
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceFields: Array
 
         attr_accessor :ResourceFields
@@ -764,10 +746,8 @@ module TencentCloud
       # CMK属性
       class KeyMetadata < TencentCloud::Common::AbstractModel
         # @param Alias: 作为密钥更容易辨识，更容易被人看懂的别名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Alias: String
         # @param KeyId: CMK的全局唯一标识
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type KeyId: String
 
         attr_accessor :Alias, :KeyId
@@ -797,7 +777,6 @@ module TencentCloud
       # ListAudits返回参数结构体
       class ListAuditsResponse < TencentCloud::Common::AbstractModel
         # @param AuditSummarys: 查询跟踪集概要集合
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AuditSummarys: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1009,16 +988,12 @@ module TencentCloud
       # LookUpEvents返回参数结构体
       class LookUpEventsResponse < TencentCloud::Common::AbstractModel
         # @param NextToken: 查看更多日志的凭证
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NextToken: String
         # @param Events: 日志集合
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Events: Array
         # @param ListOver: 日志集合是否结束
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ListOver: Boolean
         # @param TotalCount: 数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1193,10 +1168,8 @@ module TencentCloud
       # 资源类型
       class Resource < TencentCloud::Common::AbstractModel
         # @param ResourceType: 资源类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceType: String
         # @param ResourceName: 资源名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceName: String
 
         attr_accessor :ResourceType, :ResourceName
@@ -1215,13 +1188,10 @@ module TencentCloud
       # 资源筛选条件
       class ResourceField < TencentCloud::Common::AbstractModel
         # @param ResourceType: 跟踪事件所属产品（支持全部产品或单个产品，如：cam，全部：*）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceType: String
         # @param ActionType: 跟踪事件类型（读：Read；写：Write；全部：*）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ActionType: String
         # @param EventNames: 跟踪事件接口名列表（ResourceType为 * 时，EventNames必须为全部：[""]；指定ResourceType时，支持全部接口：[""]；支持部分接口：["cos", "cls"]，接口列表上限10个）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EventNames: Array
 
         attr_accessor :ResourceType, :ActionType, :EventNames
@@ -1322,10 +1292,8 @@ module TencentCloud
         # @param StoragePrefix: 存储目录前缀，cos日志文件前缀仅支持字母和数字的组合，3-40个字符
         # @type StoragePrefix: String
         # @param StorageAccountId: 被指定存储用户ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StorageAccountId: String
         # @param StorageAppId: 被指定存储用户appid
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StorageAppId: String
 
         attr_accessor :StorageType, :StorageRegion, :StorageName, :StoragePrefix, :StorageAccountId, :StorageAppId

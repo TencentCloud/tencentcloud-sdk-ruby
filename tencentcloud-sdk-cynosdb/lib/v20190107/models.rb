@@ -1424,6 +1424,52 @@ module TencentCloud
         end
       end
 
+      # CloseSSL请求参数结构体
+      class CloseSSLRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+
+        attr_accessor :ClusterId, :InstanceId
+
+        def initialize(clusterid=nil, instanceid=nil)
+          @ClusterId = clusterid
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # CloseSSL返回参数结构体
+      class CloseSSLResponse < TencentCloud::Common::AbstractModel
+        # @param FlowId: 流程ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FlowId: Integer
+        # @param TaskId: 任务id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskId: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FlowId, :TaskId, :RequestId
+
+        def initialize(flowid=nil, taskid=nil, requestid=nil)
+          @FlowId = flowid
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CloseWan请求参数结构体
       class CloseWanRequest < TencentCloud::Common::AbstractModel
         # @param InstanceGrpId: 实例组id

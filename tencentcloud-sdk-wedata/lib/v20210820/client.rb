@@ -917,7 +917,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 创建任务
+        # 创建任务。本接口已废弃，请使用接口CreateTaskNew。
 
         # @param request: Request instance for CreateTask.
         # @type request: :class:`Tencentcloud::wedata::V20210820::CreateTaskRequest`
@@ -975,6 +975,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CreateTaskFolderResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 聚合创建任务
+
+        # @param request: Request instance for CreateTaskNew.
+        # @type request: :class:`Tencentcloud::wedata::V20210820::CreateTaskNewRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20210820::CreateTaskNewResponse`
+        def CreateTaskNew(request)
+          body = send_request('CreateTaskNew', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateTaskNewResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -5224,7 +5248,7 @@ module TencentCloud
         end
 
         # <p style="color:red;">[注意：该版本只满足广州区部分白名单客户使用]</p>
-        # 添加父任务依赖
+        # 添加父任务依赖。本接口已废弃，请使用接口ModifyTaskLinksDs。
 
         # @param request: Request instance for ModifyTaskLinks.
         # @type request: :class:`Tencentcloud::wedata::V20210820::ModifyTaskLinksRequest`
@@ -5234,6 +5258,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyTaskLinksResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 添加父任务依赖
+
+        # @param request: Request instance for ModifyTaskLinksDs.
+        # @type request: :class:`Tencentcloud::wedata::V20210820::ModifyTaskLinksDsRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20210820::ModifyTaskLinksDsResponse`
+        def ModifyTaskLinksDs(request)
+          body = send_request('ModifyTaskLinksDs', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyTaskLinksDsResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -5297,7 +5345,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 更新工作流信息
+        # 更新工作流信息。本接口已废弃，请使用接口UpdateWorkflowInfo。
 
         # @param request: Request instance for ModifyWorkflowInfo.
         # @type request: :class:`Tencentcloud::wedata::V20210820::ModifyWorkflowInfoRequest`
@@ -5369,8 +5417,32 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # <p style="color:red;">[注意：该版本只满足广州区部分白名单客户使用]</p>
         # 注册事件
+
+        # @param request: Request instance for RegisterDsEvent.
+        # @type request: :class:`Tencentcloud::wedata::V20210820::RegisterDsEventRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20210820::RegisterDsEventResponse`
+        def RegisterDsEvent(request)
+          body = send_request('RegisterDsEvent', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = RegisterDsEventResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # <p style="color:red;">[注意：该版本只满足广州区部分白名单客户使用]</p>
+        # 注册事件。本接口已废弃，请使用接口RegisterDsEvent。
 
         # @param request: Request instance for RegisterEvent.
         # @type request: :class:`Tencentcloud::wedata::V20210820::RegisterEventRequest`
@@ -5429,6 +5501,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = RemoveWorkflowDsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 批量更新工作流下任务责任人
+
+        # @param request: Request instance for RenewWorkflowOwnerDs.
+        # @type request: :class:`Tencentcloud::wedata::V20210820::RenewWorkflowOwnerDsRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20210820::RenewWorkflowOwnerDsResponse`
+        def RenewWorkflowOwnerDs(request)
+          body = send_request('RenewWorkflowOwnerDs', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = RenewWorkflowOwnerDsResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -5998,7 +6094,32 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 修改工作流责任人
+        # <p style="color:red;">[该接口为 ds 中开发]</p>
+        # 更新工作流（包括工作流基本信息与工作流参数）
+
+        # @param request: Request instance for UpdateWorkflowInfo.
+        # @type request: :class:`Tencentcloud::wedata::V20210820::UpdateWorkflowInfoRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20210820::UpdateWorkflowInfoResponse`
+        def UpdateWorkflowInfo(request)
+          body = send_request('UpdateWorkflowInfo', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdateWorkflowInfoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改工作流责任人。本接口已废弃，请使用接口RenewWorkflowOwnerDs。
 
         # @param request: Request instance for UpdateWorkflowOwner.
         # @type request: :class:`Tencentcloud::wedata::V20210820::UpdateWorkflowOwnerRequest`

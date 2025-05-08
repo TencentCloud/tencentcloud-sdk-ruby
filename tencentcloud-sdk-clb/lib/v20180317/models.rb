@@ -106,7 +106,8 @@ module TencentCloud
 
       # AssociateTargetGroups请求参数结构体
       class AssociateTargetGroupsRequest < TencentCloud::Common::AbstractModel
-        # @param Associations: 绑定的关系数组。一次请求最多支持20个。
+        # @param Associations: 绑定的关系数组，目标组类型需要一致。
+        # 一次请求最多支持20个。
         # @type Associations: Array
 
         attr_accessor :Associations
@@ -727,9 +728,9 @@ module TencentCloud
         # @type CertKey: String
         # @param CertContent: 上传服务端证书的内容，如果没有 CertId，则此项必传。
         # @type CertContent: String
-        # @param CertCaName: 上传客户端 CA 证书的名称，如果 SSLMode=mutual，如果没有 CertCaId，则此项必传。
+        # @param CertCaName: 上传客户端 CA 证书的名称，如果 SSLMode=MUTUAL，如果没有 CertCaId，则此项必传。
         # @type CertCaName: String
-        # @param CertCaContent: 上传客户端证书的内容，如果 SSLMode=mutual，如果没有 CertCaId，则此项必传。
+        # @param CertCaContent: 上传客户端证书的内容，如果 SSLMode=MUTUAL，如果没有 CertCaId，则此项必传。
         # @type CertCaContent: String
 
         attr_accessor :SSLMode, :SSLVerifyClient, :CertId, :CertCaId, :CertName, :CertKey, :CertContent, :CertCaName, :CertCaContent
@@ -1351,15 +1352,17 @@ module TencentCloud
       class ConfigListItem < TencentCloud::Common::AbstractModel
         # @param UconfigId: 配置ID
         # @type UconfigId: String
-        # @param ConfigType: 配置类型
+        # @param ConfigType: 配置类型， 可选值：CLB（实例维度配置）， SERVER（服务维度配置），LOCATION（规则维度配置）
         # @type ConfigType: String
         # @param ConfigName: 配置名字
         # @type ConfigName: String
         # @param ConfigContent: 配置内容
         # @type ConfigContent: String
-        # @param CreateTimestamp: 增加配置时间
+        # @param CreateTimestamp: 配置的创建时间。
+        # 格式：YYYY-MM-DD HH:mm:ss
         # @type CreateTimestamp: String
-        # @param UpdateTimestamp: 修改配置时间
+        # @param UpdateTimestamp: 配置的修改时间。
+        # 格式：YYYY-MM-DD HH:mm:ss
         # @type UpdateTimestamp: String
 
         attr_accessor :UconfigId, :ConfigType, :ConfigName, :ConfigContent, :CreateTimestamp, :UpdateTimestamp
@@ -1760,9 +1763,9 @@ module TencentCloud
 
       # CreateLoadBalancerSnatIps请求参数结构体
       class CreateLoadBalancerSnatIpsRequest < TencentCloud::Common::AbstractModel
-        # @param LoadBalancerId: 负载均衡唯一性ID，例如：lb-12345678。
+        # @param LoadBalancerId: 负载均衡唯一性ID，可以通过 [DescribeLoadBalancers](https://cloud.tencent.com/document/product/214/30685) 接口查询。例如：lb-12345678。
         # @type LoadBalancerId: String
-        # @param SnatIps: 添加的SnatIp信息，可指定IP申请，或者指定子网自动申请。单个CLB实例可申请的默认上限为10个。
+        # @param SnatIps: 添加的SnatIp信息，可指定IP申请，或者指定子网自动申请。可以通过 [DescribeSubnets](https://cloud.tencent.com/document/api/215/15784) 查询获取，单个CLB实例可申请的默认上限为10个。
         # @type SnatIps: Array
         # @param Number: 添加的SnatIp的个数，可与SnatIps一起使用，但若指定IP时，则不能指定创建的SnatIp个数。默认值为1，数量上限与用户配置有关，默认上限为10。
         # @type Number: Integer
@@ -1807,9 +1810,9 @@ module TencentCloud
 
       # CreateRule请求参数结构体
       class CreateRuleRequest < TencentCloud::Common::AbstractModel
-        # @param LoadBalancerId: 负载均衡实例 ID。
+        # @param LoadBalancerId: 负载均衡实例 ID，可以通过 [DescribeLoadBalancers](https://cloud.tencent.com/document/product/214/30685) 接口获取
         # @type LoadBalancerId: String
-        # @param ListenerId: 监听器 ID。
+        # @param ListenerId: 监听器 ID，可以通过 [DescribeListeners](https://cloud.tencent.com/document/product/214/30686) 接口获取
         # @type ListenerId: String
         # @param Rules: 新建转发规则的信息。
         # @type Rules: Array
@@ -1877,13 +1880,18 @@ module TencentCloud
         #     <li>取值范围[0, 100]</li>
         #     <li>设置该值后，添加后端服务到目标组时， 若后端服务不单独设置权重， 则使用这里的默认权重。 </li>
         # </ul>
+        # v1 目标组类型不支持设置 Weight 参数。
         # @type Weight: Integer
         # @param FullListenSwitch: 全监听目标组标识，为true表示是全监听目标组，false表示不是全监听目标组。
         # @type FullListenSwitch: Boolean
+        # @param KeepaliveEnable: 是否开启长连接，此参数仅适用于HTTP/HTTPS目标组，0:关闭；1:开启， 默认关闭。
+        # @type KeepaliveEnable: Boolean
+        # @param SessionExpireTime: 会话保持时间，单位：秒。可选值：30~3600，默认 0，表示不开启。TCP/UDP目标组不支持该参数。
+        # @type SessionExpireTime: Integer
 
-        attr_accessor :TargetGroupName, :VpcId, :Port, :TargetGroupInstances, :Type, :Protocol, :Tags, :Weight, :FullListenSwitch
+        attr_accessor :TargetGroupName, :VpcId, :Port, :TargetGroupInstances, :Type, :Protocol, :Tags, :Weight, :FullListenSwitch, :KeepaliveEnable, :SessionExpireTime
 
-        def initialize(targetgroupname=nil, vpcid=nil, port=nil, targetgroupinstances=nil, type=nil, protocol=nil, tags=nil, weight=nil, fulllistenswitch=nil)
+        def initialize(targetgroupname=nil, vpcid=nil, port=nil, targetgroupinstances=nil, type=nil, protocol=nil, tags=nil, weight=nil, fulllistenswitch=nil, keepaliveenable=nil, sessionexpiretime=nil)
           @TargetGroupName = targetgroupname
           @VpcId = vpcid
           @Port = port
@@ -1893,6 +1901,8 @@ module TencentCloud
           @Tags = tags
           @Weight = weight
           @FullListenSwitch = fulllistenswitch
+          @KeepaliveEnable = keepaliveenable
+          @SessionExpireTime = sessionexpiretime
         end
 
         def deserialize(params)
@@ -1919,6 +1929,8 @@ module TencentCloud
           end
           @Weight = params['Weight']
           @FullListenSwitch = params['FullListenSwitch']
+          @KeepaliveEnable = params['KeepaliveEnable']
+          @SessionExpireTime = params['SessionExpireTime']
         end
       end
 
@@ -1950,7 +1962,7 @@ module TencentCloud
         # @type PartitionCount: Integer
         # @param TopicType: 日志类型，ACCESS：访问日志，HEALTH：健康检查日志，默认ACCESS。
         # @type TopicType: String
-        # @param Period: 存储时间，单位天
+        # @param Period: 存储时间，单位天，默认为 30。
         # - 日志接入标准存储时，支持1至3600天，值为3640时代表永久保存。
         # - 日志接入低频存储时，支持7至3600天，值为3640时代表永久保存。
         # @type Period: Integer
@@ -2183,9 +2195,9 @@ module TencentCloud
 
       # DeleteLoadBalancerSnatIps请求参数结构体
       class DeleteLoadBalancerSnatIpsRequest < TencentCloud::Common::AbstractModel
-        # @param LoadBalancerId: 负载均衡唯一ID，例如：lb-12345678。
+        # @param LoadBalancerId: 负载均衡唯一ID，可以通过 [DescribeLoadBalancers](https://cloud.tencent.com/document/product/1108/48459) 接口查询。例如：lb-12345678。
         # @type LoadBalancerId: String
-        # @param Ips: 删除SnatIp地址数组。
+        # @param Ips: 删除SnatIp地址数组，最大支持删除数量为20个。
         # @type Ips: Array
 
         attr_accessor :LoadBalancerId, :Ips
@@ -2415,7 +2427,7 @@ module TencentCloud
       class DeregisterTargetGroupInstancesRequest < TencentCloud::Common::AbstractModel
         # @param TargetGroupId: 目标组ID。
         # @type TargetGroupId: String
-        # @param TargetGroupInstances: 待解绑的服务器信息。
+        # @param TargetGroupInstances: 待解绑的服务器信息，支持批量解除绑定，单次批量解除数量最多为20个。
         # @type TargetGroupInstances: Array
 
         attr_accessor :TargetGroupId, :TargetGroupInstances
@@ -3066,17 +3078,25 @@ module TencentCloud
       class DescribeCustomizedConfigListRequest < TencentCloud::Common::AbstractModel
         # @param ConfigType: 配置类型:CLB 负载均衡维度。 SERVER 域名维度。 LOCATION 规则维度。
         # @type ConfigType: String
-        # @param Offset: 拉取页偏移，默认值0
+        # @param Offset: 拉取页偏移，默认值0。
         # @type Offset: Integer
-        # @param Limit: 拉取数目，默认值20
+        # @param Limit: 拉取数目，默认值20。
         # @type Limit: Integer
         # @param ConfigName: 拉取指定配置名字，模糊匹配。
         # @type ConfigName: String
-        # @param UconfigIds: 配置ID
+        # @param UconfigIds: 配置ID，可以通过 [DescribeCustomizedConfigList](https://cloud.tencent.com/document/api/214/60009) 接口查询。
         # @type UconfigIds: Array
         # @param Filters: 过滤条件如下：
-        # <li> loadbalancer-id - String - 是否必填：否 - （过滤条件）按照 负载均衡ID 过滤，如："lb-12345678"。</li>
-        # <li> vip - String - 是否必填：否 - （过滤条件）按照 负载均衡Vip 过滤，如："1.1.1.1","2204::22:3"。</li>
+        # - loadbalancer-id
+        # 按照【负载均衡 ID】进行过滤。实例计费模式例如：lb-9vxezxza。
+        # 类型：String
+        # 必选：否
+        # 获取方式：[DescribeLoadBalancers](https://cloud.tencent.com/document/product/1108/48459)
+        # - vip
+        # 按照【负载均衡VIP】进行过滤。网络计费模式例如："1.1.1.1","2204::22:3"。
+        # 类型：String
+        # 必选：否
+        # 获取方式：[DescribeLoadBalancers](https://cloud.tencent.com/document/product/1108/48459)
         # @type Filters: Array
 
         attr_accessor :ConfigType, :Offset, :Limit, :ConfigName, :UconfigIds, :Filters
@@ -3375,7 +3395,8 @@ module TencentCloud
 
       # DescribeLoadBalancerListByCertId请求参数结构体
       class DescribeLoadBalancerListByCertIdRequest < TencentCloud::Common::AbstractModel
-        # @param CertIds: 服务端证书的ID，或客户端证书的ID
+        # @param CertIds: 服务端证书的ID，或客户端证书的ID。可以通过 [DescribeCertificate](https://cloud.tencent.com/document/api/400/41674) 接口查询。
+        # 数组最大长度为20。
         # @type CertIds: Array
 
         attr_accessor :CertIds
@@ -3850,8 +3871,20 @@ module TencentCloud
         # @param Offset: 返回可用区资源列表起始偏移量，默认0。
         # @type Offset: Integer
         # @param Filters: 查询可用区资源列表条件，详细的过滤条件如下：
-        # <li>master-zone -- String - 是否必填：否 - （过滤条件）按照 地区 类型过滤，如："ap-guangzhou-2"。</li><li>ip-version -- String - 是否必填：否 - （过滤条件）按照 IP 类型过滤，可选值："IPv4"、"IPv6"、"IPv6_Nat"。</li>
-        # <li> isp -- String - 是否必填：否 - （过滤条件）按照 Isp 类型过滤，如："BGP","CMCC","CUCC","CTCC"。</li>
+        # - master-zone
+        # 按照【地域可用区】进行过滤，例如：ap-guangzhou-2。
+        # 类型：String
+        # 必选：否
+        # - ip-version
+        # 按照【IP 类型】进行过滤，例如：IPv4。
+        # 类型：String
+        # 必选：否
+        # 可选项：IPv4、IPv6、IPv6_Nat
+        # - isp
+        # 按照【ISP 类型】进行过滤，例如：BGP。
+        # 类型：String
+        # 必选：否
+        # 可选项：BGP、CMCC（中国移动）、CUCC（中国联通）、CTCC（中国电信）、BGP_PRO、INTERNAL（内网）
         # @type Filters: Array
 
         attr_accessor :Limit, :Offset, :Filters
@@ -3960,7 +3993,7 @@ module TencentCloud
 
       # DescribeTargetGroupInstances请求参数结构体
       class DescribeTargetGroupInstancesRequest < TencentCloud::Common::AbstractModel
-        # @param Filters: 过滤条件，当前仅支持TargetGroupId，BindIP，InstanceId过滤。
+        # @param Filters: 过滤条件，当前支持按照 TargetGroupId，BindIP，InstanceId 多个条件组合过滤。
         # @type Filters: Array
         # @param Limit: 显示数量限制，默认20。
         # @type Limit: Integer
@@ -4098,7 +4131,7 @@ module TencentCloud
         # @type Limit: Integer
         # @param Offset: 显示的偏移起始量。
         # @type Offset: Integer
-        # @param Filters: 过滤条件数组，与TargetGroupIds互斥，支持TargetGroupVpcId和TargetGroupName。
+        # @param Filters: 过滤条件数组，与TargetGroupIds互斥，支持 TargetGroupVpcId（私有网络 ID）和 TargetGroupName（目标组名称）以及 Tag（标签）。
         # @type Filters: Array
 
         attr_accessor :TargetGroupIds, :Limit, :Offset, :Filters
@@ -4372,7 +4405,7 @@ module TencentCloud
 
       # DisassociateTargetGroups请求参数结构体
       class DisassociateTargetGroupsRequest < TencentCloud::Common::AbstractModel
-        # @param Associations: 待解绑的规则关系数组。
+        # @param Associations: 待解绑的规则关系数组，支持批量解绑多个监听器，单次批量解除最多20个。
         # @type Associations: Array
 
         attr_accessor :Associations
@@ -4765,7 +4798,7 @@ module TencentCloud
 
       # InquiryPriceModifyLoadBalancer请求参数结构体
       class InquiryPriceModifyLoadBalancerRequest < TencentCloud::Common::AbstractModel
-        # @param LoadBalancerId: 负载均衡实例ID
+        # @param LoadBalancerId: 负载均衡实例 ID，可以通过 [DescribeLoadBalancers](https://cloud.tencent.com/document/product/1108/48459) 接口查询。
         # @type LoadBalancerId: String
         # @param InternetAccessible: 修改后的网络带宽信息
         # @type InternetAccessible: :class:`Tencentcloud::Clb.v20180317.models.InternetAccessible`
@@ -4850,7 +4883,7 @@ module TencentCloud
 
       # InquiryPriceRenewLoadBalancer请求参数结构体
       class InquiryPriceRenewLoadBalancerRequest < TencentCloud::Common::AbstractModel
-        # @param LoadBalancerId: 负载均衡实例ID
+        # @param LoadBalancerId: 负载均衡实例 ID，可以通过 [DescribeLoadBalancers](https://cloud.tencent.com/document/product/1108/48459) 接口查询。
         # @type LoadBalancerId: String
         # @param LoadBalancerChargePrepaid: 续费周期
         # @type LoadBalancerChargePrepaid: :class:`Tencentcloud::Clb.v20180317.models.LBChargePrepaid`
@@ -5031,8 +5064,10 @@ module TencentCloud
       # 查询类型
       class LbRsItem < TencentCloud::Common::AbstractModel
         # @param VpcId: vpc的字符串id，只支持字符串id。
+        # 可以通过 [DescribeVpcs](https://cloud.tencent.com/document/api/215/15778) 接口查询。
         # @type VpcId: String
-        # @param PrivateIp: 需要查询后端的内网ip，可以是cvm和弹性网卡。
+        # @param PrivateIp: 需要查询后端的内网 IP，可以是 CVM 和弹性网卡。
+        # 可以通过 [DescribeAddresses](https://cloud.tencent.com/document/product/215/16702) 接口查询。
         # @type PrivateIp: String
 
         attr_accessor :VpcId, :PrivateIp
@@ -5396,9 +5431,9 @@ module TencentCloud
         # @type VpcId: String
         # @param OpenBgp: 高防 LB 的标识，1：高防负载均衡 0：非高防负载均衡。
         # @type OpenBgp: Integer
-        # @param Snat: 在 2016 年 12 月份之前的传统型内网负载均衡都是开启了 snat 的。
+        # @param Snat: 是否开启 SNAT，在 2016 年 12 月份之前的传统型内网负载均衡都是开启了 SNAT 的。
         # @type Snat: Boolean
-        # @param Isolation: 0：表示未被隔离，1：表示被隔离。
+        # @param Isolation: 是否被隔离，0：表示未被隔离，1：表示被隔离。
         # @type Isolation: Integer
         # @param Log: 用户开启日志的信息，日志只有公网属性创建了 HTTP 、HTTPS 监听器的负载均衡才会有日志。
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -6327,7 +6362,7 @@ module TencentCloud
         # @type LoadBalancerId: String
         # @param ListenerId: 负载均衡监听器ID。
         # @type ListenerId: String
-        # @param FunctionTargets: 要修改的后端云函数服务列表。
+        # @param FunctionTargets: 要修改的后端云函数服务列表，仅支持 Event 函数类型。
         # @type FunctionTargets: Array
         # @param LocationId: 转发规则的ID，当绑定机器到七层转发规则时，必须提供此参数或Domain+Url两者之一。
         # @type LocationId: String
@@ -6575,6 +6610,7 @@ module TencentCloud
       # ModifyLoadBalancerMixIpTarget请求参数结构体
       class ModifyLoadBalancerMixIpTargetRequest < TencentCloud::Common::AbstractModel
         # @param LoadBalancerIds: 负载均衡实例ID数组，默认支持20个负载均衡实例ID。
+        # 可以通过 [DescribeLoadBalancers](https://cloud.tencent.com/document/product/1108/48459) 接口查询。
         # @type LoadBalancerIds: Array
         # @param MixIpTarget: 开启/关闭IPv6FullChain负载均衡7层监听器支持混绑IPv4/IPv6目标特性。
         # @type MixIpTarget: Boolean
@@ -6653,7 +6689,8 @@ module TencentCloud
 
       # ModifyLoadBalancersProject请求参数结构体
       class ModifyLoadBalancersProjectRequest < TencentCloud::Common::AbstractModel
-        # @param LoadBalancerIds: 一个或多个待操作的负载均衡实例ID。
+        # @param LoadBalancerIds: 一个或多个待操作的负载均衡实例ID，可以通过 [DescribeLoadBalancers](https://cloud.tencent.com/document/product/1108/48459) 接口查询。
+        # 列表支持最大长度为20。
         # @type LoadBalancerIds: Array
         # @param ProjectId: 项目ID。可以通过 [DescribeProject](https://cloud.tencent.com/document/api/651/78725) 接口获取。
         # @type ProjectId: Integer
@@ -6780,15 +6817,22 @@ module TencentCloud
         #     <li>取值范围[0, 100]</li>
         #     <li>设置该值后，添加后端服务到目标组时， 若后端服务不单独设置权重， 则使用这里的默认权重。 </li>
         # </ul>
+        # v1目标组类型不支持设置Weight参数。
         # @type Weight: Integer
+        # @param KeepaliveEnable: 是否开启长连接，此参数仅适用于HTTP/HTTPS目标组，true:关闭；false:开启， 默认关闭。
+        # @type KeepaliveEnable: Boolean
+        # @param SessionExpireTime: 会话保持时间，单位：秒。可选值：30~3600，默认 0，表示不开启。TCP/UDP目标组不支持该参数。
+        # @type SessionExpireTime: Integer
 
-        attr_accessor :TargetGroupId, :TargetGroupName, :Port, :Weight
+        attr_accessor :TargetGroupId, :TargetGroupName, :Port, :Weight, :KeepaliveEnable, :SessionExpireTime
 
-        def initialize(targetgroupid=nil, targetgroupname=nil, port=nil, weight=nil)
+        def initialize(targetgroupid=nil, targetgroupname=nil, port=nil, weight=nil, keepaliveenable=nil, sessionexpiretime=nil)
           @TargetGroupId = targetgroupid
           @TargetGroupName = targetgroupname
           @Port = port
           @Weight = weight
+          @KeepaliveEnable = keepaliveenable
+          @SessionExpireTime = sessionexpiretime
         end
 
         def deserialize(params)
@@ -6796,6 +6840,8 @@ module TencentCloud
           @TargetGroupName = params['TargetGroupName']
           @Port = params['Port']
           @Weight = params['Weight']
+          @KeepaliveEnable = params['KeepaliveEnable']
+          @SessionExpireTime = params['SessionExpireTime']
         end
       end
 
@@ -6819,7 +6865,7 @@ module TencentCloud
       class ModifyTargetGroupInstancesPortRequest < TencentCloud::Common::AbstractModel
         # @param TargetGroupId: 目标组ID。
         # @type TargetGroupId: String
-        # @param TargetGroupInstances: 待修改端口的服务器数组。
+        # @param TargetGroupInstances: 待修改端口的服务器数组，在这个接口 NewPort 和 Port 为必填项。
         # @type TargetGroupInstances: Array
 
         attr_accessor :TargetGroupId, :TargetGroupInstances
@@ -6862,7 +6908,7 @@ module TencentCloud
       class ModifyTargetGroupInstancesWeightRequest < TencentCloud::Common::AbstractModel
         # @param TargetGroupId: 目标组ID。
         # @type TargetGroupId: String
-        # @param TargetGroupInstances: 待修改权重的服务器数组。
+        # @param TargetGroupInstances: 待修改权重的服务器数组，在这个接口 Port 为必填项。
         # @type TargetGroupInstances: Array
 
         attr_accessor :TargetGroupId, :TargetGroupInstances
@@ -7127,8 +7173,9 @@ module TencentCloud
         # <li> TOTAL_LISTENER_QUOTA：一个CLB下的监听器配额 </li>
         # <li> TOTAL_LISTENER_RULE_QUOTA：一个监听器下的转发规则配额 </li>
         # <li> TOTAL_TARGET_BIND_QUOTA：一条转发规则下可绑定设备的配额 </li>
-        # <li> TOTAL_SNAP_IP_QUOTA： 一个CLB实例下跨地域2.0的SNAT IP配额 </li>
+        # <li> TOTAL_SNAT_IP_QUOTA： 一个CLB实例下跨地域2.0的SNAT IP配额 </li>
         # <li>TOTAL_ISP_CLB_QUOTA：用户当前地域下的三网CLB配额 </li>
+        # <li>TOTAL_FULL_PORT_RANGE_LISTENER_QUOTA：一个CLB实例下的单个协议全端口段监听器配额</li>
         # @type QuotaId: String
         # @param QuotaCurrent: 当前使用数量，为 null 时表示无意义。
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -7214,7 +7261,7 @@ module TencentCloud
       class RegisterTargetGroupInstancesRequest < TencentCloud::Common::AbstractModel
         # @param TargetGroupId: 目标组ID
         # @type TargetGroupId: String
-        # @param TargetGroupInstances: 服务器实例数组
+        # @param TargetGroupInstances: 服务器实例数组，服务器和目标组的 VPC 需相同。
         # @type TargetGroupInstances: Array
 
         attr_accessor :TargetGroupId, :TargetGroupInstances
@@ -7261,7 +7308,7 @@ module TencentCloud
         # @type ListenerId: String
         # @param Targets: 待绑定的后端服务列表，数组长度最大支持20。
         # @type Targets: Array
-        # @param LocationId: 转发规则的ID，当绑定后端服务到七层转发规则时，必须提供此参数或Domain+Url两者之一。
+        # @param LocationId: 转发规则的ID，可以通过 [DescribeListeners](https://cloud.tencent.com/document/product/214/30686) 接口获取，当绑定后端服务到七层转发规则时，必须提供此参数或Domain+Url两者之一。
         # @type LocationId: String
         # @param Domain: 目标转发规则的域名，提供LocationId参数时本参数不生效。
         # @type Domain: String
@@ -7657,7 +7704,7 @@ module TencentCloud
         # @param Scheduler: 规则的请求转发方式，可选值：WRR、LEAST_CONN、IP_HASH
         # 分别表示按权重轮询、最小连接数、按IP哈希， 默认为 WRR。
         # @type Scheduler: String
-        # @param ForwardType: 负载均衡与后端服务之间的转发协议，目前支持 HTTP/HTTPS/GRPC/TRPC，TRPC暂未对外开放，默认HTTP。
+        # @param ForwardType: 负载均衡与后端服务之间的转发协议，目前支持 HTTP/HTTPS/GRPC/GRPCS/TRPC，TRPC暂未对外开放，默认HTTP。
         # @type ForwardType: String
         # @param DefaultServer: 是否将该域名设为默认域名，注意，一个监听器下只能设置一个默认域名。
         # @type DefaultServer: Boolean
@@ -7942,7 +7989,7 @@ module TencentCloud
       # SetCustomizedConfigForLoadBalancer请求参数结构体
       class SetCustomizedConfigForLoadBalancerRequest < TencentCloud::Common::AbstractModel
         # @param OperationType: 操作类型。
-        # - ADD：添加
+        # - ADD：创建
         # - DELETE：删除
         # - UPDATE：修改
         # - BIND：绑定
@@ -7950,11 +7997,13 @@ module TencentCloud
         # @type OperationType: String
         # @param UconfigId: 个性化配置ID。除了创建个性化配置外，必传此字段，如：pz-1234abcd
         # @type UconfigId: String
-        # @param ConfigContent: 个性化配置内容。创建个性化配置或修改个性化配置的内容时，必传此字段
+        # @param ConfigContent: 个性化配置内容。创建个性化配置或修改个性化配置的内容时，必传此字段。
+        # 具体限制查看 [七层个性化配置](https://cloud.tencent.com/document/product/214/15171)
         # @type ConfigContent: String
-        # @param ConfigName: 个性化配置名称。创建个性化配置或修改个性化配置的名字时，必传此字段
+        # @param ConfigName: 个性化配置名称。创建个性化配置或修改个性化配置的名字时，必传此字段。
         # @type ConfigName: String
-        # @param LoadBalancerIds: 负载均衡实例ID。绑定解绑时，必传此字段
+        # @param LoadBalancerIds: 负载均衡实例ID。绑定解绑时，必传此字段。
+        # 可以通过 [DescribeLoadBalancers](https://cloud.tencent.com/document/product/1108/48459) 接口查询。
         # @type LoadBalancerIds: Array
 
         attr_accessor :OperationType, :UconfigId, :ConfigContent, :ConfigName, :LoadBalancerIds
@@ -7998,7 +8047,7 @@ module TencentCloud
 
       # SetLoadBalancerClsLog请求参数结构体
       class SetLoadBalancerClsLogRequest < TencentCloud::Common::AbstractModel
-        # @param LoadBalancerId: 负载均衡实例 ID。
+        # @param LoadBalancerId: 负载均衡实例 ID，可以通过 [DescribeLoadBalancers](https://cloud.tencent.com/document/product/1108/48459) 接口查询。
         # @type LoadBalancerId: String
         # @param LogSetId: 日志服务(CLS)的日志集 ID。
         # <li>增加和更新日志主题时可调用 [DescribeLogsets](https://cloud.tencent.com/document/product/614/58624) 接口获取日志集 ID。</li>
@@ -8049,9 +8098,10 @@ module TencentCloud
 
       # SetLoadBalancerSecurityGroups请求参数结构体
       class SetLoadBalancerSecurityGroupsRequest < TencentCloud::Common::AbstractModel
-        # @param LoadBalancerId: 负载均衡实例 ID
+        # @param LoadBalancerId: 负载均衡实例 ID，可以通过 [DescribeLoadBalancers](https://cloud.tencent.com/document/product/1108/48459) 接口查询。
         # @type LoadBalancerId: String
         # @param SecurityGroups: 安全组ID构成的数组，一个负载均衡实例最多可绑定50个安全组，如果要解绑所有安全组，可不传此参数。
+        # 可以通过 [DescribeSecurityGroups](https://cloud.tencent.com/document/product/215/15808) 接口查询。
         # @type SecurityGroups: Array
 
         attr_accessor :LoadBalancerId, :SecurityGroups
@@ -8125,12 +8175,13 @@ module TencentCloud
 
       # SetSecurityGroupForLoadbalancers请求参数结构体
       class SetSecurityGroupForLoadbalancersRequest < TencentCloud::Common::AbstractModel
-        # @param SecurityGroup: 安全组ID，如 sg-12345678
+        # @param SecurityGroup: 安全组ID，如 sg-12345678。可以通过 [DescribeSecurityGroups](https://cloud.tencent.com/document/product/215/15808) 接口获取。
         # @type SecurityGroup: String
         # @param OperationType: ADD 绑定安全组；
         # DEL 解绑安全组
         # @type OperationType: String
-        # @param LoadBalancerIds: 负载均衡实例ID数组
+        # @param LoadBalancerIds: 负载均衡实例ID数组，可以通过 [DescribeLoadBalancers](https://cloud.tencent.com/document/product/1108/48459) 接口查询。
+        # 列表支持的最大长度为20。
         # @type LoadBalancerIds: Array
 
         attr_accessor :SecurityGroup, :OperationType, :LoadBalancerIds
@@ -8166,7 +8217,8 @@ module TencentCloud
 
       # 升级为性能容量型参数
       class SlaUpdateParam < TencentCloud::Common::AbstractModel
-        # @param LoadBalancerId: lb的字符串ID
+        # @param LoadBalancerId: 负载均衡实例 ID。
+        # 可以通过 [DescribeLoadBalancers](https://cloud.tencent.com/document/product/1108/48459) 接口查询。
         # @type LoadBalancerId: String
         # @param SlaType: 性能容量型规格，取值范围：
         # <li> clb.c2.medium：标准型规格 </li>
@@ -8474,8 +8526,8 @@ module TencentCloud
         # @param Port: 目标组实例的端口，全监听目标组不支持传此字段。
         # @type Port: Integer
         # @param Weight: 目标组实例的权重
-
         # v2目标组需要配置权重，调用CreateTargetGroup接口创建目标组时该参数与创建接口中的Weight参数必填其一。
+        # 取值范围：0-100
         # @type Weight: Integer
         # @param NewPort: 目标组实例的新端口，全监听目标组不支持传此字段。
         # @type NewPort: Integer

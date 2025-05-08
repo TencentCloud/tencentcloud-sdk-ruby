@@ -74,10 +74,10 @@ module TencentCloud
 
         attr_accessor :Account, :LoginAccount, :LoginPassword, :DeviceId, :InstanceId, :Password, :PrivateKey, :PrivateKeyPassword, :Exe, :Drivers, :Width, :Height, :IntranetAccess, :AutoManageAccessCredential
         extend Gem::Deprecate
-        deprecate :LoginAccount, :none, 2025, 4
-        deprecate :LoginAccount=, :none, 2025, 4
-        deprecate :LoginPassword, :none, 2025, 4
-        deprecate :LoginPassword=, :none, 2025, 4
+        deprecate :LoginAccount, :none, 2025, 5
+        deprecate :LoginAccount=, :none, 2025, 5
+        deprecate :LoginPassword, :none, 2025, 5
+        deprecate :LoginPassword=, :none, 2025, 5
 
         def initialize(account=nil, loginaccount=nil, loginpassword=nil, deviceid=nil, instanceid=nil, password=nil, privatekey=nil, privatekeypassword=nil, exe=nil, drivers=nil, width=nil, height=nil, intranetaccess=nil, automanageaccesscredential=nil)
           @Account = account
@@ -1218,9 +1218,7 @@ module TencentCloud
         # @type Name: String
         # @param CmdList: 命令列表，\n分隔，最大长度32768字节
         # @type CmdList: String
-        # @param Encoding: 标识cmdlist字段前端是否为base64加密传值.
-        # 0:表示非base64加密
-        # 1:表示是base64加密
+        # @param Encoding: 标识CmdList字段前端是否为base64加密传值.0:表示非base64加密1:表示是base64加密
         # @type Encoding: Integer
 
         attr_accessor :Name, :CmdList, :Encoding
@@ -5131,7 +5129,7 @@ module TencentCloud
         # @type FromIp: String
         # @param SessionTime: 该命令所属会话的会话开始时间
         # @type SessionTime: String
-        # @param SessTime: 该命令所属会话的会话开始时间（废弃，使用SessionTime）
+        # @param SessTime: 该命令所属会话的会话开始时间（使用SessionTime）
         # @type SessTime: String
         # @param ConfirmTime: 复核时间
         # @type ConfirmTime: String

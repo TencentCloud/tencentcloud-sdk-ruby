@@ -77,8 +77,8 @@ module TencentCloud
 
         attr_accessor :BTime, :Count, :BeginTime
         extend Gem::Deprecate
-        deprecate :BTime, :none, 2025, 4
-        deprecate :BTime=, :none, 2025, 4
+        deprecate :BTime, :none, 2025, 5
+        deprecate :BTime=, :none, 2025, 5
 
         def initialize(btime=nil, count=nil, begintime=nil)
           @BTime = btime
@@ -595,8 +595,8 @@ module TencentCloud
 
         attr_accessor :Name, :SortId, :Strategies, :Domain, :ActionType, :Redirect, :ExpireTime, :Edition, :Bypass, :EventId, :JobType, :JobDateTime, :Source, :Label, :Status, :PageId, :LogicalOp
         extend Gem::Deprecate
-        deprecate :Bypass, :none, 2025, 4
-        deprecate :Bypass=, :none, 2025, 4
+        deprecate :Bypass, :none, 2025, 5
+        deprecate :Bypass=, :none, 2025, 5
 
         def initialize(name=nil, sortid=nil, strategies=nil, domain=nil, actiontype=nil, redirect=nil, expiretime=nil, edition=nil, bypass=nil, eventid=nil, jobtype=nil, jobdatetime=nil, source=nil, label=nil, status=nil, pageid=nil, logicalop=nil)
           @Name = name
@@ -1529,10 +1529,10 @@ module TencentCloud
 
         attr_accessor :Id, :ActionType, :Ip, :Note, :Source, :TsVersion, :ValidTs, :Hosts, :RuleId, :IpList, :CreateTime, :JobType, :CronType, :JobDateTime, :ValidStatus, :GroupIds
         extend Gem::Deprecate
-        deprecate :Id, :none, 2025, 4
-        deprecate :Id=, :none, 2025, 4
-        deprecate :Ip, :none, 2025, 4
-        deprecate :Ip=, :none, 2025, 4
+        deprecate :Id, :none, 2025, 5
+        deprecate :Id=, :none, 2025, 5
+        deprecate :Ip, :none, 2025, 5
+        deprecate :Ip=, :none, 2025, 5
 
         def initialize(id=nil, actiontype=nil, ip=nil, note=nil, source=nil, tsversion=nil, validts=nil, hosts=nil, ruleid=nil, iplist=nil, createtime=nil, jobtype=nil, crontype=nil, jobdatetime=nil, validstatus=nil, groupids=nil)
           @Id = id
@@ -3061,8 +3061,8 @@ module TencentCloud
 
         attr_accessor :Domain, :IpList, :ActionType, :ValidTS, :InstanceId, :Edition, :SourceType, :Note, :JobType, :JobDateTime
         extend Gem::Deprecate
-        deprecate :ValidTS, :none, 2025, 4
-        deprecate :ValidTS=, :none, 2025, 4
+        deprecate :ValidTS, :none, 2025, 5
+        deprecate :ValidTS=, :none, 2025, 5
 
         def initialize(domain=nil, iplist=nil, actiontype=nil, validts=nil, instanceid=nil, edition=nil, sourcetype=nil, note=nil, jobtype=nil, jobdatetime=nil)
           @Domain = domain
@@ -4019,8 +4019,8 @@ module TencentCloud
 
         attr_accessor :From, :To, :Query, :FieldName, :TopicId, :Sort, :Count
         extend Gem::Deprecate
-        deprecate :TopicId, :none, 2025, 4
-        deprecate :TopicId=, :none, 2025, 4
+        deprecate :TopicId, :none, 2025, 5
+        deprecate :TopicId=, :none, 2025, 5
 
         def initialize(from=nil, to=nil, query=nil, fieldname=nil, topicid=nil, sort=nil, count=nil)
           @From = from
@@ -6711,10 +6711,10 @@ module TencentCloud
 
         attr_accessor :Domain, :Count, :ActionType, :VtsMin, :VtsMax, :CtsMin, :CtsMax, :OffSet, :Limit, :Source, :Sort, :Ip, :ValidStatus, :ValidTimeStampMin, :ValidTimeStampMax, :RuleId, :TimerType
         extend Gem::Deprecate
-        deprecate :VtsMin, :none, 2025, 4
-        deprecate :VtsMin=, :none, 2025, 4
-        deprecate :VtsMax, :none, 2025, 4
-        deprecate :VtsMax=, :none, 2025, 4
+        deprecate :VtsMin, :none, 2025, 5
+        deprecate :VtsMin=, :none, 2025, 5
+        deprecate :VtsMax, :none, 2025, 5
+        deprecate :VtsMax=, :none, 2025, 5
 
         def initialize(domain=nil, count=nil, actiontype=nil, vtsmin=nil, vtsmax=nil, ctsmin=nil, ctsmax=nil, offset=nil, limit=nil, source=nil, sort=nil, ip=nil, validstatus=nil, validtimestampmin=nil, validtimestampmax=nil, ruleid=nil, timertype=nil)
           @Domain = domain
@@ -6817,10 +6817,10 @@ module TencentCloud
 
         attr_accessor :Domain, :Count, :Category, :VtsMin, :VtsMax, :CtsMin, :CtsMax, :Skip, :Limit, :Name, :Sort, :Ip, :ValidTimeStampMin, :ValidTimeStampMax
         extend Gem::Deprecate
-        deprecate :VtsMin, :none, 2025, 4
-        deprecate :VtsMin=, :none, 2025, 4
-        deprecate :VtsMax, :none, 2025, 4
-        deprecate :VtsMax=, :none, 2025, 4
+        deprecate :VtsMin, :none, 2025, 5
+        deprecate :VtsMin=, :none, 2025, 5
+        deprecate :VtsMax, :none, 2025, 5
+        deprecate :VtsMax=, :none, 2025, 5
 
         def initialize(domain=nil, count=nil, category=nil, vtsmin=nil, vtsmax=nil, ctsmin=nil, ctsmax=nil, skip=nil, limit=nil, name=nil, sort=nil, ip=nil, validtimestampmin=nil, validtimestampmax=nil)
           @Domain = domain
@@ -11905,8 +11905,8 @@ module TencentCloud
 
         attr_accessor :Domain, :RuleId, :RuleName, :RuleAction, :Strategies, :Edition, :Redirect, :Bypass, :SortId, :ExpireTime, :JobType, :JobDateTime, :Source, :Status, :PageId, :LogicalOp
         extend Gem::Deprecate
-        deprecate :Bypass, :none, 2025, 4
-        deprecate :Bypass=, :none, 2025, 4
+        deprecate :Bypass, :none, 2025, 5
+        deprecate :Bypass=, :none, 2025, 5
 
         def initialize(domain=nil, ruleid=nil, rulename=nil, ruleaction=nil, strategies=nil, edition=nil, redirect=nil, bypass=nil, sortid=nil, expiretime=nil, jobtype=nil, jobdatetime=nil, source=nil, status=nil, pageid=nil, logicalop=nil)
           @Domain = domain
@@ -12610,6 +12610,33 @@ module TencentCloud
         end
       end
 
+      # ModifyInstanceAttackLogPost请求参数结构体
+      class ModifyInstanceAttackLogPostRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # ModifyInstanceAttackLogPost返回参数结构体
+      class ModifyInstanceAttackLogPostResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyInstanceElasticMode请求参数结构体
       class ModifyInstanceElasticModeRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID
@@ -12790,8 +12817,8 @@ module TencentCloud
 
         attr_accessor :Domain, :IpList, :ActionType, :RuleId, :ValidTS, :InstanceId, :Edition, :SourceType, :Note, :JobType, :JobDateTime
         extend Gem::Deprecate
-        deprecate :ValidTS, :none, 2025, 4
-        deprecate :ValidTS=, :none, 2025, 4
+        deprecate :ValidTS, :none, 2025, 5
+        deprecate :ValidTS=, :none, 2025, 5
 
         def initialize(domain=nil, iplist=nil, actiontype=nil, ruleid=nil, validts=nil, instanceid=nil, edition=nil, sourcetype=nil, note=nil, jobtype=nil, jobdatetime=nil)
           @Domain = domain
@@ -14357,10 +14384,10 @@ module TencentCloud
 
         attr_accessor :Context, :ListOver, :Analysis, :ColNames, :Results, :AnalysisResults, :RequestId
         extend Gem::Deprecate
-        deprecate :ColNames, :none, 2025, 4
-        deprecate :ColNames=, :none, 2025, 4
-        deprecate :AnalysisResults, :none, 2025, 4
-        deprecate :AnalysisResults=, :none, 2025, 4
+        deprecate :ColNames, :none, 2025, 5
+        deprecate :ColNames=, :none, 2025, 5
+        deprecate :AnalysisResults, :none, 2025, 5
+        deprecate :AnalysisResults=, :none, 2025, 5
 
         def initialize(context=nil, listover=nil, analysis=nil, colnames=nil, results=nil, analysisresults=nil, requestid=nil)
           @Context = context

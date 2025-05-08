@@ -1870,17 +1870,28 @@ module TencentCloud
         # @type Name: String
         # @param Remark: 集群描述，128个字符以内
         # @type Remark: String
+        # @param TagList: 标签列表
+        # @type TagList: Array
 
-        attr_accessor :Name, :Remark
+        attr_accessor :Name, :Remark, :TagList
 
-        def initialize(name=nil, remark=nil)
+        def initialize(name=nil, remark=nil, taglist=nil)
           @Name = name
           @Remark = remark
+          @TagList = taglist
         end
 
         def deserialize(params)
           @Name = params['Name']
           @Remark = params['Remark']
+          unless params['TagList'].nil?
+            @TagList = []
+            params['TagList'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @TagList << tag_tmp
+            end
+          end
         end
       end
 
@@ -2431,10 +2442,14 @@ module TencentCloud
         # @type MsgTTL: Integer
         # @param UnackPolicy: 不传默认是原生策略，DefaultPolicy表示当订阅下达到最大未确认消息数 5000 时，服务端将不再向当前订阅下的所有消费者推送消息，DynamicPolicy表示动态调整订阅下的最大未确认消息数，具体配额是在 5000 和消费者数量*20之间取最大值。每个消费者默认最大 unack 消息数为 20，超过该限制时仅影响该消费者，不影响其他消费者。
         # @type UnackPolicy: String
+        # @param IsolateConsumerEnable: 是否开启异常消费者隔离
+        # @type IsolateConsumerEnable: Boolean
+        # @param AckTimeOut: 消费者 Ack 超时时间，单位：秒，范围60-（3600*24）
+        # @type AckTimeOut: Integer
 
-        attr_accessor :EnvironmentId, :TopicName, :Partitions, :ClusterId, :Remark, :TopicType, :PulsarTopicType, :MsgTTL, :UnackPolicy
+        attr_accessor :EnvironmentId, :TopicName, :Partitions, :ClusterId, :Remark, :TopicType, :PulsarTopicType, :MsgTTL, :UnackPolicy, :IsolateConsumerEnable, :AckTimeOut
 
-        def initialize(environmentid=nil, topicname=nil, partitions=nil, clusterid=nil, remark=nil, topictype=nil, pulsartopictype=nil, msgttl=nil, unackpolicy=nil)
+        def initialize(environmentid=nil, topicname=nil, partitions=nil, clusterid=nil, remark=nil, topictype=nil, pulsartopictype=nil, msgttl=nil, unackpolicy=nil, isolateconsumerenable=nil, acktimeout=nil)
           @EnvironmentId = environmentid
           @TopicName = topicname
           @Partitions = partitions
@@ -2444,6 +2459,8 @@ module TencentCloud
           @PulsarTopicType = pulsartopictype
           @MsgTTL = msgttl
           @UnackPolicy = unackpolicy
+          @IsolateConsumerEnable = isolateconsumerenable
+          @AckTimeOut = acktimeout
         end
 
         def deserialize(params)
@@ -2456,6 +2473,8 @@ module TencentCloud
           @PulsarTopicType = params['PulsarTopicType']
           @MsgTTL = params['MsgTTL']
           @UnackPolicy = params['UnackPolicy']
+          @IsolateConsumerEnable = params['IsolateConsumerEnable']
+          @AckTimeOut = params['AckTimeOut']
         end
       end
 
@@ -4273,10 +4292,12 @@ module TencentCloud
         # @type GroupName: String
         # @param QueryDlqMsg: 查询死信时该值为true，只对Rocketmq有效
         # @type QueryDlqMsg: Boolean
+        # @param ProduceTime: 生产时间
+        # @type ProduceTime: String
 
-        attr_accessor :Protocol, :MsgId, :ClusterId, :EnvironmentId, :TopicName, :QueueName, :GroupName, :QueryDlqMsg
+        attr_accessor :Protocol, :MsgId, :ClusterId, :EnvironmentId, :TopicName, :QueueName, :GroupName, :QueryDlqMsg, :ProduceTime
 
-        def initialize(protocol=nil, msgid=nil, clusterid=nil, environmentid=nil, topicname=nil, queuename=nil, groupname=nil, querydlqmsg=nil)
+        def initialize(protocol=nil, msgid=nil, clusterid=nil, environmentid=nil, topicname=nil, queuename=nil, groupname=nil, querydlqmsg=nil, producetime=nil)
           @Protocol = protocol
           @MsgId = msgid
           @ClusterId = clusterid
@@ -4285,6 +4306,7 @@ module TencentCloud
           @QueueName = queuename
           @GroupName = groupname
           @QueryDlqMsg = querydlqmsg
+          @ProduceTime = producetime
         end
 
         def deserialize(params)
@@ -4296,6 +4318,7 @@ module TencentCloud
           @QueueName = params['QueueName']
           @GroupName = params['GroupName']
           @QueryDlqMsg = params['QueryDlqMsg']
+          @ProduceTime = params['ProduceTime']
         end
       end
 
@@ -6285,8 +6308,8 @@ module TencentCloud
 
         attr_accessor :ClusterId, :EnvironmentId, :TopicName, :MsgId, :PulsarMsgId, :QueryDlqMsg, :QueryDeadLetterMessage, :Offset, :Limit, :FilterTrackGroup
         extend Gem::Deprecate
-        deprecate :QueryDlqMsg, :none, 2025, 4
-        deprecate :QueryDlqMsg=, :none, 2025, 4
+        deprecate :QueryDlqMsg, :none, 2025, 5
+        deprecate :QueryDlqMsg=, :none, 2025, 5
 
         def initialize(clusterid=nil, environmentid=nil, topicname=nil, msgid=nil, pulsarmsgid=nil, querydlqmsg=nil, querydeadlettermessage=nil, offset=nil, limit=nil, filtertrackgroup=nil)
           @ClusterId = clusterid
@@ -6391,8 +6414,8 @@ module TencentCloud
 
         attr_accessor :ClusterId, :EnvironmentId, :TopicName, :MsgId, :GroupName, :QueryDLQMsg, :QueryDeadLetterMessage
         extend Gem::Deprecate
-        deprecate :QueryDLQMsg, :none, 2025, 4
-        deprecate :QueryDLQMsg=, :none, 2025, 4
+        deprecate :QueryDLQMsg, :none, 2025, 5
+        deprecate :QueryDLQMsg=, :none, 2025, 5
 
         def initialize(clusterid=nil, environmentid=nil, topicname=nil, msgid=nil, groupname=nil, querydlqmsg=nil, querydeadlettermessage=nil)
           @ClusterId = clusterid
@@ -7232,8 +7255,8 @@ module TencentCloud
 
         attr_accessor :ClusterId, :EnvironmentId, :TopicName, :StartTime, :EndTime, :MsgId, :MsgKey, :Offset, :Limit, :TaskRequestId, :QueryDlqMsg, :NumOfLatestMsg, :Tag, :QueryDeadLetterMessage
         extend Gem::Deprecate
-        deprecate :QueryDlqMsg, :none, 2025, 4
-        deprecate :QueryDlqMsg=, :none, 2025, 4
+        deprecate :QueryDlqMsg, :none, 2025, 5
+        deprecate :QueryDlqMsg=, :none, 2025, 5
 
         def initialize(clusterid=nil, environmentid=nil, topicname=nil, starttime=nil, endtime=nil, msgid=nil, msgkey=nil, offset=nil, limit=nil, taskrequestid=nil, querydlqmsg=nil, numoflatestmsg=nil, tag=nil, querydeadlettermessage=nil)
           @ClusterId = clusterid
@@ -9703,10 +9726,14 @@ module TencentCloud
         # @type MsgTTL: Integer
         # @param UnackPolicy: 不传默认是原生策略，DefaultPolicy表示当订阅下达到最大未确认消息数 5000 时，服务端将不再向当前订阅下的所有消费者推送消息，DynamicPolicy表示动态调整订阅下的最大未确认消息数，具体配额是在 5000 和消费者数量*20之间取最大值。每个消费者默认最大 unack 消息数为 20，超过该限制时仅影响该消费者，不影响其他消费者。
         # @type UnackPolicy: String
+        # @param IsolateConsumerEnable: 是否开启异常消费者隔离
+        # @type IsolateConsumerEnable: Boolean
+        # @param AckTimeOut: 消费者 Ack 超时时间，单位：秒，范围60-（3600*24
+        # @type AckTimeOut: Integer
 
-        attr_accessor :EnvironmentId, :TopicName, :Partitions, :ClusterId, :Remark, :MsgTTL, :UnackPolicy
+        attr_accessor :EnvironmentId, :TopicName, :Partitions, :ClusterId, :Remark, :MsgTTL, :UnackPolicy, :IsolateConsumerEnable, :AckTimeOut
 
-        def initialize(environmentid=nil, topicname=nil, partitions=nil, clusterid=nil, remark=nil, msgttl=nil, unackpolicy=nil)
+        def initialize(environmentid=nil, topicname=nil, partitions=nil, clusterid=nil, remark=nil, msgttl=nil, unackpolicy=nil, isolateconsumerenable=nil, acktimeout=nil)
           @EnvironmentId = environmentid
           @TopicName = topicname
           @Partitions = partitions
@@ -9714,6 +9741,8 @@ module TencentCloud
           @Remark = remark
           @MsgTTL = msgttl
           @UnackPolicy = unackpolicy
+          @IsolateConsumerEnable = isolateconsumerenable
+          @AckTimeOut = acktimeout
         end
 
         def deserialize(params)
@@ -9724,6 +9753,8 @@ module TencentCloud
           @Remark = params['Remark']
           @MsgTTL = params['MsgTTL']
           @UnackPolicy = params['UnackPolicy']
+          @IsolateConsumerEnable = params['IsolateConsumerEnable']
+          @AckTimeOut = params['AckTimeOut']
         end
       end
 
@@ -11384,21 +11415,21 @@ module TencentCloud
         # @type NamespaceId: String
         # @param GroupId: 消费组名称
         # @type GroupId: String
-        # @param Topic: 主题名称
-        # @type Topic: String
         # @param Type: 重置方式，0表示从最新位点开始，1表示从指定时间点开始
         # @type Type: Integer
+        # @param Topic: 主题名称
+        # @type Topic: String
         # @param ResetTimestamp: 重置指定的时间戳，仅在 Type 为1是生效，以毫秒为单位
         # @type ResetTimestamp: Integer
 
-        attr_accessor :ClusterId, :NamespaceId, :GroupId, :Topic, :Type, :ResetTimestamp
+        attr_accessor :ClusterId, :NamespaceId, :GroupId, :Type, :Topic, :ResetTimestamp
 
-        def initialize(clusterid=nil, namespaceid=nil, groupid=nil, topic=nil, type=nil, resettimestamp=nil)
+        def initialize(clusterid=nil, namespaceid=nil, groupid=nil, type=nil, topic=nil, resettimestamp=nil)
           @ClusterId = clusterid
           @NamespaceId = namespaceid
           @GroupId = groupid
-          @Topic = topic
           @Type = type
+          @Topic = topic
           @ResetTimestamp = resettimestamp
         end
 
@@ -11406,8 +11437,8 @@ module TencentCloud
           @ClusterId = params['ClusterId']
           @NamespaceId = params['NamespaceId']
           @GroupId = params['GroupId']
-          @Topic = params['Topic']
           @Type = params['Type']
+          @Topic = params['Topic']
           @ResetTimestamp = params['ResetTimestamp']
         end
       end
@@ -11554,13 +11585,17 @@ module TencentCloud
         # @param TopicDistribution: topic分布
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TopicDistribution: Array
+        # @param MaxRoleNum: 最大角色数量
+        # @type MaxRoleNum: Integer
+        # @param MaxTpsLimit: TPS限额
+        # @type MaxTpsLimit: Integer
 
-        attr_accessor :MaxTpsPerNamespace, :MaxNamespaceNum, :UsedNamespaceNum, :MaxTopicNum, :UsedTopicNum, :MaxGroupNum, :UsedGroupNum, :MaxRetentionTime, :MaxLatencyTime, :MaxQueuesPerTopic, :TopicDistribution
+        attr_accessor :MaxTpsPerNamespace, :MaxNamespaceNum, :UsedNamespaceNum, :MaxTopicNum, :UsedTopicNum, :MaxGroupNum, :UsedGroupNum, :MaxRetentionTime, :MaxLatencyTime, :MaxQueuesPerTopic, :TopicDistribution, :MaxRoleNum, :MaxTpsLimit
         extend Gem::Deprecate
-        deprecate :MaxTpsPerNamespace, :none, 2025, 4
-        deprecate :MaxTpsPerNamespace=, :none, 2025, 4
+        deprecate :MaxTpsPerNamespace, :none, 2025, 5
+        deprecate :MaxTpsPerNamespace=, :none, 2025, 5
 
-        def initialize(maxtpspernamespace=nil, maxnamespacenum=nil, usednamespacenum=nil, maxtopicnum=nil, usedtopicnum=nil, maxgroupnum=nil, usedgroupnum=nil, maxretentiontime=nil, maxlatencytime=nil, maxqueuespertopic=nil, topicdistribution=nil)
+        def initialize(maxtpspernamespace=nil, maxnamespacenum=nil, usednamespacenum=nil, maxtopicnum=nil, usedtopicnum=nil, maxgroupnum=nil, usedgroupnum=nil, maxretentiontime=nil, maxlatencytime=nil, maxqueuespertopic=nil, topicdistribution=nil, maxrolenum=nil, maxtpslimit=nil)
           @MaxTpsPerNamespace = maxtpspernamespace
           @MaxNamespaceNum = maxnamespacenum
           @UsedNamespaceNum = usednamespacenum
@@ -11572,6 +11607,8 @@ module TencentCloud
           @MaxLatencyTime = maxlatencytime
           @MaxQueuesPerTopic = maxqueuespertopic
           @TopicDistribution = topicdistribution
+          @MaxRoleNum = maxrolenum
+          @MaxTpsLimit = maxtpslimit
         end
 
         def deserialize(params)
@@ -11593,6 +11630,8 @@ module TencentCloud
               @TopicDistribution << rocketmqtopicdistribution_tmp
             end
           end
+          @MaxRoleNum = params['MaxRoleNum']
+          @MaxTpsLimit = params['MaxTpsLimit']
         end
       end
 
@@ -11698,10 +11737,12 @@ module TencentCloud
         # @param ZoneIds: 集群节点所在的可用区，若该集群为跨可用区集群，则包含该集群节点所在的多个可用区。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ZoneIds: Array
+        # @param IsFrozen: 是否已冻结
+        # @type IsFrozen: Boolean
 
-        attr_accessor :ClusterId, :ClusterName, :Region, :CreateTime, :Remark, :PublicEndPoint, :VpcEndPoint, :SupportNamespaceEndpoint, :Vpcs, :IsVip, :RocketMQFlag, :Status, :IsolateTime, :HttpPublicEndpoint, :HttpVpcEndpoint, :InternalEndpoint, :HttpInternalEndpoint, :AclEnabled, :PublicClbId, :Vip, :VpcId, :SupportMigration, :InstanceStatus, :ZoneId, :ZoneIds
+        attr_accessor :ClusterId, :ClusterName, :Region, :CreateTime, :Remark, :PublicEndPoint, :VpcEndPoint, :SupportNamespaceEndpoint, :Vpcs, :IsVip, :RocketMQFlag, :Status, :IsolateTime, :HttpPublicEndpoint, :HttpVpcEndpoint, :InternalEndpoint, :HttpInternalEndpoint, :AclEnabled, :PublicClbId, :Vip, :VpcId, :SupportMigration, :InstanceStatus, :ZoneId, :ZoneIds, :IsFrozen
 
-        def initialize(clusterid=nil, clustername=nil, region=nil, createtime=nil, remark=nil, publicendpoint=nil, vpcendpoint=nil, supportnamespaceendpoint=nil, vpcs=nil, isvip=nil, rocketmqflag=nil, status=nil, isolatetime=nil, httppublicendpoint=nil, httpvpcendpoint=nil, internalendpoint=nil, httpinternalendpoint=nil, aclenabled=nil, publicclbid=nil, vip=nil, vpcid=nil, supportmigration=nil, instancestatus=nil, zoneid=nil, zoneids=nil)
+        def initialize(clusterid=nil, clustername=nil, region=nil, createtime=nil, remark=nil, publicendpoint=nil, vpcendpoint=nil, supportnamespaceendpoint=nil, vpcs=nil, isvip=nil, rocketmqflag=nil, status=nil, isolatetime=nil, httppublicendpoint=nil, httpvpcendpoint=nil, internalendpoint=nil, httpinternalendpoint=nil, aclenabled=nil, publicclbid=nil, vip=nil, vpcid=nil, supportmigration=nil, instancestatus=nil, zoneid=nil, zoneids=nil, isfrozen=nil)
           @ClusterId = clusterid
           @ClusterName = clustername
           @Region = region
@@ -11727,6 +11768,7 @@ module TencentCloud
           @InstanceStatus = instancestatus
           @ZoneId = zoneid
           @ZoneIds = zoneids
+          @IsFrozen = isfrozen
         end
 
         def deserialize(params)
@@ -11762,6 +11804,7 @@ module TencentCloud
           @InstanceStatus = params['InstanceStatus']
           @ZoneId = params['ZoneId']
           @ZoneIds = params['ZoneIds']
+          @IsFrozen = params['IsFrozen']
         end
       end
 
@@ -13427,10 +13470,14 @@ module TencentCloud
         # @type ClusterId: String
         # @param Tenant: 用户自定义的租户别名，如果没有，会复用专业集群 ID
         # @type Tenant: String
+        # @param IsolateConsumerEnable: 是否开启异常消费者隔离
+        # @type IsolateConsumerEnable: Boolean
+        # @param AckTimeOut: 消费者 Ack 超时时间，单位：秒
+        # @type AckTimeOut: Integer
 
-        attr_accessor :AverageMsgSize, :ConsumerCount, :LastConfirmedEntry, :LastLedgerCreatedTimestamp, :MsgRateIn, :MsgRateOut, :MsgThroughputIn, :MsgThroughputOut, :NumberOfEntries, :Partitions, :ProducerCount, :TotalSize, :SubTopicSets, :TopicType, :EnvironmentId, :TopicName, :Remark, :CreateTime, :UpdateTime, :ProducerLimit, :ConsumerLimit, :PulsarTopicType, :MsgTTL, :ClusterId, :Tenant
+        attr_accessor :AverageMsgSize, :ConsumerCount, :LastConfirmedEntry, :LastLedgerCreatedTimestamp, :MsgRateIn, :MsgRateOut, :MsgThroughputIn, :MsgThroughputOut, :NumberOfEntries, :Partitions, :ProducerCount, :TotalSize, :SubTopicSets, :TopicType, :EnvironmentId, :TopicName, :Remark, :CreateTime, :UpdateTime, :ProducerLimit, :ConsumerLimit, :PulsarTopicType, :MsgTTL, :ClusterId, :Tenant, :IsolateConsumerEnable, :AckTimeOut
 
-        def initialize(averagemsgsize=nil, consumercount=nil, lastconfirmedentry=nil, lastledgercreatedtimestamp=nil, msgratein=nil, msgrateout=nil, msgthroughputin=nil, msgthroughputout=nil, numberofentries=nil, partitions=nil, producercount=nil, totalsize=nil, subtopicsets=nil, topictype=nil, environmentid=nil, topicname=nil, remark=nil, createtime=nil, updatetime=nil, producerlimit=nil, consumerlimit=nil, pulsartopictype=nil, msgttl=nil, clusterid=nil, tenant=nil)
+        def initialize(averagemsgsize=nil, consumercount=nil, lastconfirmedentry=nil, lastledgercreatedtimestamp=nil, msgratein=nil, msgrateout=nil, msgthroughputin=nil, msgthroughputout=nil, numberofentries=nil, partitions=nil, producercount=nil, totalsize=nil, subtopicsets=nil, topictype=nil, environmentid=nil, topicname=nil, remark=nil, createtime=nil, updatetime=nil, producerlimit=nil, consumerlimit=nil, pulsartopictype=nil, msgttl=nil, clusterid=nil, tenant=nil, isolateconsumerenable=nil, acktimeout=nil)
           @AverageMsgSize = averagemsgsize
           @ConsumerCount = consumercount
           @LastConfirmedEntry = lastconfirmedentry
@@ -13456,6 +13503,8 @@ module TencentCloud
           @MsgTTL = msgttl
           @ClusterId = clusterid
           @Tenant = tenant
+          @IsolateConsumerEnable = isolateconsumerenable
+          @AckTimeOut = acktimeout
         end
 
         def deserialize(params)
@@ -13491,6 +13540,8 @@ module TencentCloud
           @MsgTTL = params['MsgTTL']
           @ClusterId = params['ClusterId']
           @Tenant = params['Tenant']
+          @IsolateConsumerEnable = params['IsolateConsumerEnable']
+          @AckTimeOut = params['AckTimeOut']
         end
       end
 

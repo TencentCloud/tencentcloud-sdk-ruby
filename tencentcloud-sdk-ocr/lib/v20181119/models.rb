@@ -3506,8 +3506,8 @@ module TencentCloud
 
         attr_accessor :TextDetections, :Angel, :Angle, :RequestId
         extend Gem::Deprecate
-        deprecate :Angel, :none, 2025, 4
-        deprecate :Angel=, :none, 2025, 4
+        deprecate :Angel, :none, 2025, 5
+        deprecate :Angel=, :none, 2025, 5
 
         def initialize(textdetections=nil, angel=nil, angle=nil, requestid=nil)
           @TextDetections = textdetections
@@ -3613,8 +3613,8 @@ module TencentCloud
 
         attr_accessor :TextDetections, :Language, :Angel, :PdfPageSize, :Angle, :RequestId
         extend Gem::Deprecate
-        deprecate :Angel, :none, 2025, 4
-        deprecate :Angel=, :none, 2025, 4
+        deprecate :Angel, :none, 2025, 5
+        deprecate :Angel=, :none, 2025, 5
 
         def initialize(textdetections=nil, language=nil, angel=nil, pdfpagesize=nil, angle=nil, requestid=nil)
           @TextDetections = textdetections
@@ -3710,8 +3710,8 @@ module TencentCloud
 
         attr_accessor :TextDetections, :Angel, :Angle, :RequestId
         extend Gem::Deprecate
-        deprecate :Angel, :none, 2025, 4
-        deprecate :Angel=, :none, 2025, 4
+        deprecate :Angel, :none, 2025, 5
+        deprecate :Angel=, :none, 2025, 5
 
         def initialize(textdetections=nil, angel=nil, angle=nil, requestid=nil)
           @TextDetections = textdetections
@@ -3864,8 +3864,8 @@ module TencentCloud
 
         attr_accessor :TextDetections, :Angel, :Angle, :RequestId
         extend Gem::Deprecate
-        deprecate :Angel, :none, 2025, 4
-        deprecate :Angel=, :none, 2025, 4
+        deprecate :Angel, :none, 2025, 5
+        deprecate :Angel=, :none, 2025, 5
 
         def initialize(textdetections=nil, angel=nil, angle=nil, requestid=nil)
           @TextDetections = textdetections
@@ -4094,8 +4094,8 @@ module TencentCloud
 
         attr_accessor :ReturnHeadImage, :DetectFake, :ImageBase64, :ImageUrl
         extend Gem::Deprecate
-        deprecate :DetectFake, :none, 2025, 4
-        deprecate :DetectFake=, :none, 2025, 4
+        deprecate :DetectFake, :none, 2025, 5
+        deprecate :DetectFake=, :none, 2025, 5
 
         def initialize(returnheadimage=nil, detectfake=nil, imagebase64=nil, imageurl=nil)
           @ReturnHeadImage = returnheadimage
@@ -4164,10 +4164,10 @@ module TencentCloud
 
         attr_accessor :CnName, :EnName, :TelexCode, :Sex, :Birthday, :Permanent, :IdNum, :Symbol, :FirstIssueDate, :CurrentIssueDate, :FakeDetectResult, :HeadImage, :WarningCode, :WarnCardInfos, :RequestId
         extend Gem::Deprecate
-        deprecate :FakeDetectResult, :none, 2025, 4
-        deprecate :FakeDetectResult=, :none, 2025, 4
-        deprecate :WarningCode, :none, 2025, 4
-        deprecate :WarningCode=, :none, 2025, 4
+        deprecate :FakeDetectResult, :none, 2025, 5
+        deprecate :FakeDetectResult=, :none, 2025, 5
+        deprecate :WarningCode, :none, 2025, 5
+        deprecate :WarningCode=, :none, 2025, 5
 
         def initialize(cnname=nil, enname=nil, telexcode=nil, sex=nil, birthday=nil, permanent=nil, idnum=nil, symbol=nil, firstissuedate=nil, currentissuedate=nil, fakedetectresult=nil, headimage=nil, warningcode=nil, warncardinfos=nil, requestid=nil)
           @CnName = cnname
@@ -4612,7 +4612,6 @@ module TencentCloud
         # BorderCodeValue，身份证边框不完整告警阈值分数，请求 Config.BorderCheckWarn时返回（取值范围：0 ~ 100，分数越低边框遮挡可能性越低，建议阈值≤50）;
 
         # WarnInfos，告警信息，Code 告警码列表和释义：
-        # -9100 身份证有效日期不合法告警，
         # -9101 身份证边框不完整告警，
 
         # -9102 身份证复印件告警（黑白及彩色复印件）,
@@ -5524,8 +5523,8 @@ module TencentCloud
 
         attr_accessor :ID, :Name, :Address, :Sex, :Warn, :Image, :AdvancedInfo, :Type, :Birthday, :MyKadNumber, :WarnCardInfos, :RequestId
         extend Gem::Deprecate
-        deprecate :Warn, :none, 2025, 4
-        deprecate :Warn=, :none, 2025, 4
+        deprecate :Warn, :none, 2025, 5
+        deprecate :Warn=, :none, 2025, 5
 
         def initialize(id=nil, name=nil, address=nil, sex=nil, warn=nil, image=nil, advancedinfo=nil, type=nil, birthday=nil, mykadnumber=nil, warncardinfos=nil, requestid=nil)
           @ID = id
@@ -9842,18 +9841,21 @@ module TencentCloud
         # @param Answer: 答案
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Answer: Array
+        # @param Parse: 解析
+        # @type Parse: Array
         # @param Coord: 整题的坐标
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Coord: Array
 
-        attr_accessor :Question, :Option, :Figure, :Table, :Answer, :Coord
+        attr_accessor :Question, :Option, :Figure, :Table, :Answer, :Parse, :Coord
 
-        def initialize(question=nil, option=nil, figure=nil, table=nil, answer=nil, coord=nil)
+        def initialize(question=nil, option=nil, figure=nil, table=nil, answer=nil, parse=nil, coord=nil)
           @Question = question
           @Option = option
           @Figure = figure
           @Table = table
           @Answer = answer
+          @Parse = parse
           @Coord = coord
         end
 
@@ -9896,6 +9898,14 @@ module TencentCloud
               element_tmp = Element.new
               element_tmp.deserialize(i)
               @Answer << element_tmp
+            end
+          end
+          unless params['Parse'].nil?
+            @Parse = []
+            params['Parse'].each do |i|
+              element_tmp = Element.new
+              element_tmp.deserialize(i)
+              @Parse << element_tmp
             end
           end
           unless params['Coord'].nil?

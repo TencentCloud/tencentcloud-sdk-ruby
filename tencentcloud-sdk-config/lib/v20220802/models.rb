@@ -26,30 +26,22 @@ module TencentCloud
         # @param ResourceId: 资源ID
         # @type ResourceId: String
         # @param ResourceRegion: 地域
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceRegion: String
         # @param ResourceStatus: 资源状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceStatus: String
         # @param ResourceDelete: 是否删除 1:已删除 0:未删除
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceDelete: Integer
         # @param ResourceCreateTime: 资源创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceCreateTime: String
         # @param Tags: 标签信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
         # @param ResourceZone: 可用区
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceZone: String
         # @param ComplianceResult: 合规状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ComplianceResult: String
         # @param ResourceOwnerId: 资源所属用户ID
         # @type ResourceOwnerId: Integer
         # @param ResourceOwnerName: 用户昵称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceOwnerName: String
 
         attr_accessor :ResourceType, :ResourceName, :ResourceId, :ResourceRegion, :ResourceStatus, :ResourceDelete, :ResourceCreateTime, :Tags, :ResourceZone, :ComplianceResult, :ResourceOwnerId, :ResourceOwnerName
@@ -95,10 +87,8 @@ module TencentCloud
       # 合规详情
       class Annotation < TencentCloud::Common::AbstractModel
         # @param Configuration: 资源当前实际配置。长度为0~256位字符，即资源不合规配置
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Configuration: String
         # @param DesiredValue: 资源期望配置。长度为0~256位字符，即资源合规配置
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DesiredValue: String
         # @param Operator: 资源当前配置和期望配置之间的比较运算符。长度为0~16位字符，自定义规则上报评估结果此字段可能为空
         # @type Operator: String
@@ -125,94 +115,67 @@ module TencentCloud
       # 规则详情
       class ConfigRule < TencentCloud::Common::AbstractModel
         # @param Identifier: 规则标识
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Identifier: String
         # @param RuleName: 规则名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleName: String
         # @param InputParameter: 规则参数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InputParameter: Array
         # @param SourceCondition: 规则触发条件
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SourceCondition: Array
         # @param ResourceType: 规则支持的资源类型，规则仅对指定资源类型的资源生效。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceType: Array
         # @param Labels: 规则所属标签
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Labels: Array
         # @param RiskLevel: 规则风险等级
         # 1:低风险
         # 2:中风险
         # 3:高风险
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RiskLevel: Integer
         # @param ServiceFunction: 规则对应的函数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ServiceFunction: String
         # @param CreateTime: 创建时间
         # 格式：YYYY-MM-DD h:i:s
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
         # @param Description: 规则描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
         # @param Status: ACTIVE：启用
         # NO_ACTIVE：停止
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: String
         # @param ComplianceResult: 合规： 'COMPLIANT'
         # 不合规： 'NON_COMPLIANT'
         # 无法应用规则： 'NOT_APPLICABLE'
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ComplianceResult: String
         # @param Annotation: ["",""]
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Annotation: :class:`Tencentcloud::Config.v20220802.models.Annotation`
         # @param ConfigRuleInvokedTime: 规则评估时间
         # 格式：YYYY-MM-DD h:i:s
-
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ConfigRuleInvokedTime: String
         # @param ConfigRuleId: 规则ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ConfigRuleId: String
         # @param IdentifierType: CUSTOMIZE：自定义规则、
         # SYSTEM：托管规则
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IdentifierType: String
         # @param CompliancePackId: 合规包ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CompliancePackId: String
         # @param TriggerType: 触发类型
         # ScheduledNotification：周期触发、
         # ConfigurationItemChangeNotification：变更触发
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TriggerType: Array
         # @param ManageInputParameter: 参数详情
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ManageInputParameter: Array
         # @param CompliancePackName: 合规包名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CompliancePackName: String
         # @param RegionsScope: 关联地域
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RegionsScope: Array
         # @param TagsScope: 关联标签
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TagsScope: Array
         # @param ExcludeResourceIdsScope:  规则对指定资源ID无效，即不对该资源执行评估。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExcludeResourceIdsScope: Array
         # @param AccountGroupId: 账号组ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AccountGroupId: String
         # @param AccountGroupName: 账号组名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AccountGroupName: String
         # @param RuleOwnerId: 规则所属用户ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleOwnerId: Integer
         # @param ManageTriggerType: 预设规则支持的触发方式
         # ScheduledNotification：周期触发
@@ -355,31 +318,22 @@ module TencentCloud
       # DescribeAggregateDiscoveredResource返回参数结构体
       class DescribeAggregateDiscoveredResourceResponse < TencentCloud::Common::AbstractModel
         # @param ResourceId: 资源Id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceId: String
         # @param ResourceType: 资源类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceType: String
         # @param ResourceName: 资源名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceName: String
         # @param ResourceRegion: 资源地域
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceRegion: String
         # @param ResourceZone: 资源可用区
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceZone: String
         # @param Configuration: 资源配置
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Configuration: String
         # @param ResourceCreateTime: 资源创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceCreateTime: String
         # @param Tags: 资源标签
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
         # @param UpdateTime: 资源更新时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -447,31 +401,22 @@ module TencentCloud
       # DescribeDiscoveredResource返回参数结构体
       class DescribeDiscoveredResourceResponse < TencentCloud::Common::AbstractModel
         # @param ResourceId: 资源Id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceId: String
         # @param ResourceType: 资源类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceType: String
         # @param ResourceName: 资源名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceName: String
         # @param ResourceRegion: 资源地域
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceRegion: String
         # @param ResourceZone: 资源可用区
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceZone: String
         # @param Configuration: 资源配置
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Configuration: String
         # @param ResourceCreateTime: 资源创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceCreateTime: String
         # @param Tags: 资源标签
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
         # @param UpdateTime: 资源更新时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -579,7 +524,6 @@ module TencentCloud
         # @param Type: 参数类型。必填类型：Require，可选类型：Optional。
         # @type Type: String
         # @param Value: 参数值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: String
 
         attr_accessor :ParameterKey, :Type, :Value
@@ -600,19 +544,14 @@ module TencentCloud
       # 规则入参
       class InputParameterForManage < TencentCloud::Common::AbstractModel
         # @param ValueType: 值类型。数值：Integer， 字符串：String
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ValueType: String
         # @param ParameterKey: 参数Key
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ParameterKey: String
         # @param Type: 参数类型。必填类型：Require，可选类型：Optional。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: String
         # @param DefaultValue: 默认值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DefaultValue: String
         # @param Description: 描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
 
         attr_accessor :ValueType, :ParameterKey, :Type, :DefaultValue, :Description
@@ -1011,25 +950,18 @@ module TencentCloud
         # @param ResourceId: 资源ID
         # @type ResourceId: String
         # @param ResourceRegion: 地域
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceRegion: String
         # @param ResourceStatus: 资源状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceStatus: String
         # @param ResourceDelete: 1 :已删除 2：未删除
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceDelete: Integer
         # @param ResourceCreateTime: 资源创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceCreateTime: String
         # @param Tags: 标签信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
         # @param ResourceZone: 可用区
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceZone: String
         # @param ComplianceResult: 合规状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ComplianceResult: String
 
         attr_accessor :ResourceType, :ResourceName, :ResourceId, :ResourceRegion, :ResourceStatus, :ResourceDelete, :ResourceCreateTime, :Tags, :ResourceZone, :ComplianceResult
@@ -1071,19 +1003,14 @@ module TencentCloud
       # 管理端规则条件
       class SourceConditionForManage < TencentCloud::Common::AbstractModel
         # @param EmptyAs: 条件为空，合规：COMPLIANT，不合规：NON_COMPLIANT，无法应用：NOT_APPLICABLE
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EmptyAs: String
         # @param SelectPath: 配置路径
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SelectPath: String
         # @param Operator: 操作运算符
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Operator: String
         # @param Required: 是否必须
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Required: Boolean
         # @param DesiredValue: 期望值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DesiredValue: String
 
         attr_accessor :EmptyAs, :SelectPath, :Operator, :Required, :DesiredValue
@@ -1108,10 +1035,8 @@ module TencentCloud
       # 标签
       class Tag < TencentCloud::Common::AbstractModel
         # @param TagKey: 标签key
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TagKey: String
         # @param TagValue: 标签value
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TagValue: String
 
         attr_accessor :TagKey, :TagValue
@@ -1132,7 +1057,6 @@ module TencentCloud
         # @param MessageType: 触发类型
         # @type MessageType: String
         # @param MaximumExecutionFrequency: 触发时间周期
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaximumExecutionFrequency: String
 
         attr_accessor :MessageType, :MaximumExecutionFrequency

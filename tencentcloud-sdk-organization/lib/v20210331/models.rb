@@ -6495,7 +6495,6 @@ module TencentCloud
         # @param PolicyId: 策略ID。
         # @type PolicyId: Integer
         # @param PolicyName: 策略名称。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PolicyName: String
 
         attr_accessor :PolicyId, :PolicyName
@@ -6520,8 +6519,8 @@ module TencentCloud
 
         attr_accessor :ProductResourceId, :ResourceGrantLast
         extend Gem::Deprecate
-        deprecate :ResourceGrantLast, :none, 2025, 4
-        deprecate :ResourceGrantLast=, :none, 2025, 4
+        deprecate :ResourceGrantLast, :none, 2025, 5
+        deprecate :ResourceGrantLast=, :none, 2025, 5
 
         def initialize(productresourceid=nil, resourcegrantlast=nil)
           @ProductResourceId = productresourceid
@@ -6989,7 +6988,6 @@ module TencentCloud
       # CIC的权限策略
       class RolePolicie < TencentCloud::Common::AbstractModel
         # @param RolePolicyId: 策略ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RolePolicyId: Integer
         # @param RolePolicyName: 权限策略名称
         # @type RolePolicyName: String
@@ -7030,13 +7028,10 @@ module TencentCloud
         # @param TargetUin: 授权的集团账号目标账号的UIN
         # @type TargetUin: Integer
         # @param TargetType: 同步的集团账号目标账号的类型，ManagerUin管理账号;MemberUin成员账号
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TargetType: String
         # @param TaskType: 任务类型。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskType: String
         # @param TaskStatus: 任务状态：InProgress: 进行中，Failed: 失败 3:Success: 成功
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskStatus: String
 
         attr_accessor :TaskId, :RoleConfigurationId, :RoleConfigurationName, :TargetUin, :TargetType, :TaskType, :TaskStatus
@@ -7355,8 +7350,8 @@ module TencentCloud
 
         attr_accessor :ResourceId, :ProductResourceId
         extend Gem::Deprecate
-        deprecate :ResourceId, :none, 2025, 4
-        deprecate :ResourceId=, :none, 2025, 4
+        deprecate :ResourceId, :none, 2025, 5
+        deprecate :ResourceId=, :none, 2025, 5
 
         def initialize(resourceid=nil, productresourceid=nil)
           @ResourceId = resourceid
@@ -7514,7 +7509,6 @@ module TencentCloud
         # @param Status: InProgress：任务执行中。 Success：任务执行成功。 Failed：任务执行失败。
         # @type Status: String
         # @param FailureReason: 失败原因
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FailureReason: String
 
         attr_accessor :TaskId, :RoleConfigurationId, :RoleConfigurationName, :TargetUin, :TargetType, :PrincipalId, :PrincipalType, :TaskType, :Status, :FailureReason

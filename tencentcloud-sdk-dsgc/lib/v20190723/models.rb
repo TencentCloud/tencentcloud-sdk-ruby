@@ -1415,12 +1415,12 @@ module TencentCloud
 
         attr_accessor :DspaId, :Name, :TemplateId, :BusinessName, :BusinessDept, :BusinessOwner, :ComplianceId, :DiscoveryCondition, :Description
         extend Gem::Deprecate
-        deprecate :BusinessName, :none, 2025, 4
-        deprecate :BusinessName=, :none, 2025, 4
-        deprecate :BusinessDept, :none, 2025, 4
-        deprecate :BusinessDept=, :none, 2025, 4
-        deprecate :BusinessOwner, :none, 2025, 4
-        deprecate :BusinessOwner=, :none, 2025, 4
+        deprecate :BusinessName, :none, 2025, 5
+        deprecate :BusinessName=, :none, 2025, 5
+        deprecate :BusinessDept, :none, 2025, 5
+        deprecate :BusinessDept=, :none, 2025, 5
+        deprecate :BusinessOwner, :none, 2025, 5
+        deprecate :BusinessOwner=, :none, 2025, 5
 
         def initialize(dspaid=nil, name=nil, templateid=nil, businessname=nil, businessdept=nil, businessowner=nil, complianceid=nil, discoverycondition=nil, description=nil)
           @DspaId = dspaid
@@ -1778,10 +1778,10 @@ module TencentCloud
 
         attr_accessor :DspaId, :ResourceRegion, :Buckets, :CosBucketItems
         extend Gem::Deprecate
-        deprecate :ResourceRegion, :none, 2025, 4
-        deprecate :ResourceRegion=, :none, 2025, 4
-        deprecate :Buckets, :none, 2025, 4
-        deprecate :Buckets=, :none, 2025, 4
+        deprecate :ResourceRegion, :none, 2025, 5
+        deprecate :ResourceRegion=, :none, 2025, 5
+        deprecate :Buckets, :none, 2025, 5
+        deprecate :Buckets=, :none, 2025, 5
 
         def initialize(dspaid=nil, resourceregion=nil, buckets=nil, cosbucketitems=nil)
           @DspaId = dspaid
@@ -1840,14 +1840,14 @@ module TencentCloud
 
         attr_accessor :DspaId, :MetaType, :ResourceRegion, :UpdateStatus, :UpdateId, :Items, :CloudResourceItems
         extend Gem::Deprecate
-        deprecate :ResourceRegion, :none, 2025, 4
-        deprecate :ResourceRegion=, :none, 2025, 4
-        deprecate :UpdateStatus, :none, 2025, 4
-        deprecate :UpdateStatus=, :none, 2025, 4
-        deprecate :UpdateId, :none, 2025, 4
-        deprecate :UpdateId=, :none, 2025, 4
-        deprecate :Items, :none, 2025, 4
-        deprecate :Items=, :none, 2025, 4
+        deprecate :ResourceRegion, :none, 2025, 5
+        deprecate :ResourceRegion=, :none, 2025, 5
+        deprecate :UpdateStatus, :none, 2025, 5
+        deprecate :UpdateStatus=, :none, 2025, 5
+        deprecate :UpdateId, :none, 2025, 5
+        deprecate :UpdateId=, :none, 2025, 5
+        deprecate :Items, :none, 2025, 5
+        deprecate :Items=, :none, 2025, 5
 
         def initialize(dspaid=nil, metatype=nil, resourceregion=nil, updatestatus=nil, updateid=nil, items=nil, cloudresourceitems=nil)
           @DspaId = dspaid
@@ -1899,10 +1899,10 @@ module TencentCloud
 
         attr_accessor :UpdateId, :MetaType, :DspaId, :ResourceRegion, :RequestId
         extend Gem::Deprecate
-        deprecate :UpdateId, :none, 2025, 4
-        deprecate :UpdateId=, :none, 2025, 4
-        deprecate :ResourceRegion, :none, 2025, 4
-        deprecate :ResourceRegion=, :none, 2025, 4
+        deprecate :UpdateId, :none, 2025, 5
+        deprecate :UpdateId=, :none, 2025, 5
+        deprecate :ResourceRegion, :none, 2025, 5
+        deprecate :ResourceRegion=, :none, 2025, 5
 
         def initialize(updateid=nil, metatype=nil, dspaid=nil, resourceregion=nil, requestid=nil)
           @UpdateId = updateid
@@ -2028,8 +2028,8 @@ module TencentCloud
 
         attr_accessor :DspaId, :Name, :DataSourceId, :Enable, :Plan, :Period, :ResourceRegion, :DataSourceType, :GeneralRuleSetEnable, :Description, :Condition, :ComplianceGroupIds, :TimingStartTime, :Order, :Rows, :GlobalOrderField
         extend Gem::Deprecate
-        deprecate :GeneralRuleSetEnable, :none, 2025, 4
-        deprecate :GeneralRuleSetEnable=, :none, 2025, 4
+        deprecate :GeneralRuleSetEnable, :none, 2025, 5
+        deprecate :GeneralRuleSetEnable=, :none, 2025, 5
 
         def initialize(dspaid=nil, name=nil, datasourceid=nil, enable=nil, plan=nil, period=nil, resourceregion=nil, datasourcetype=nil, generalrulesetenable=nil, description=nil, condition=nil, compliancegroupids=nil, timingstarttime=nil, order=nil, rows=nil, globalorderfield=nil)
           @DspaId = dspaid
@@ -3389,10 +3389,10 @@ module TencentCloud
 
         attr_accessor :DspaId, :DataSourceType, :DataSourceId
         extend Gem::Deprecate
-        deprecate :DataSourceType, :none, 2025, 4
-        deprecate :DataSourceType=, :none, 2025, 4
-        deprecate :DataSourceId, :none, 2025, 4
-        deprecate :DataSourceId=, :none, 2025, 4
+        deprecate :DataSourceType, :none, 2025, 5
+        deprecate :DataSourceType=, :none, 2025, 5
+        deprecate :DataSourceId, :none, 2025, 5
+        deprecate :DataSourceId=, :none, 2025, 5
 
         def initialize(dspaid=nil, datasourcetype=nil, datasourceid=nil)
           @DspaId = dspaid
@@ -6384,6 +6384,84 @@ module TencentCloud
         end
       end
 
+      # DescribeDSPADiscoveryTasks请求参数结构体
+      class DescribeDSPADiscoveryTasksRequest < TencentCloud::Common::AbstractModel
+        # @param DspaId: DSPA实例ID
+        # @type DspaId: String
+        # @param DataSourceType: 数据源类型，可取值如下：
+        # cdb 表示云数据库 MySQL,
+        # dcdb 表示TDSQL MySQL版,
+        # mariadb 表示云数据库 MariaDB,
+        # postgres 表示云数据库 PostgreSQL,
+        # cynosdbpg 表示TDSQL-C PostgreSQL版,
+        # cynosdbmysql 表示TDSQL-C MySQL版,
+        # selfbuilt-db 表示自建数据库
+        # @type DataSourceType: String
+        # @param TaskId: 任务ID
+        # @type TaskId: Integer
+        # @param Name: 任务名称
+        # @type Name: String
+        # @param StatusList: 任务扫描结果状态，可供选择的状态值有：-1待触发 0待扫描 1扫描中 2扫描终止 3扫描成功 4扫描失败
+        # @type StatusList: Array
+        # @param Offset: 偏移量，默认为0
+        # @type Offset: Integer
+        # @param Limit: 返回结果集数量，默认值是10000，最大值为10000，根据该资源的个数限制条件，该资源的个数不会超过10000，所以如果不输入该字段，默认获取全量数据
+        # @type Limit: Integer
+
+        attr_accessor :DspaId, :DataSourceType, :TaskId, :Name, :StatusList, :Offset, :Limit
+
+        def initialize(dspaid=nil, datasourcetype=nil, taskid=nil, name=nil, statuslist=nil, offset=nil, limit=nil)
+          @DspaId = dspaid
+          @DataSourceType = datasourcetype
+          @TaskId = taskid
+          @Name = name
+          @StatusList = statuslist
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @DspaId = params['DspaId']
+          @DataSourceType = params['DataSourceType']
+          @TaskId = params['TaskId']
+          @Name = params['Name']
+          @StatusList = params['StatusList']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeDSPADiscoveryTasks返回参数结构体
+      class DescribeDSPADiscoveryTasksResponse < TencentCloud::Common::AbstractModel
+        # @param Items: 任务列表
+        # @type Items: Array
+        # @param TotalCount: 符合条件的任务列表数
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Items, :TotalCount, :RequestId
+
+        def initialize(items=nil, totalcount=nil, requestid=nil)
+          @Items = items
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              dspadiscoverytask_tmp = DspaDiscoveryTask.new
+              dspadiscoverytask_tmp.deserialize(i)
+              @Items << dspadiscoverytask_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeDSPAESDataAssetByComplianceId请求参数结构体
       class DescribeDSPAESDataAssetByComplianceIdRequest < TencentCloud::Common::AbstractModel
         # @param DspaId: dspa实例id
@@ -8740,6 +8818,67 @@ module TencentCloud
         end
       end
 
+      # 分类分级任务相关信息
+      class DspaDiscoveryTask < TencentCloud::Common::AbstractModel
+        # @param Name: 任务名称
+        # @type Name: String
+        # @param Description: 任务描述
+        # @type Description: String
+        # @param Period: 执行周期，0单次 1每天 2每周 3每月
+        # @type Period: Integer
+        # @param Plan: 执行计划，0立即 1定时
+        # @type Plan: Integer
+        # @param Enable: 任务开关；1 打开，0 关闭
+        # @type Enable: Integer
+        # @param DataSourceInfo: 元数据对象信息
+        # @type DataSourceInfo: :class:`Tencentcloud::Dsgc.v20190723.models.DspaDiscoveryTaskDataSource`
+        # @param GeneralRuleSetEnable: 通用规则集开关，0 关闭，1 启用
+        # @type GeneralRuleSetEnable: Integer
+        # @param Result: 任务最新的一次执行结果信息，该字段用于查询任务列表接口
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Dsgc.v20190723.models.ScanTaskResult`
+        # @param TimingStartTime: 定时开始时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TimingStartTime: String
+        # @param ComplianceUpdate: 关联模板是否更新
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ComplianceUpdate: Boolean
+
+        attr_accessor :Name, :Description, :Period, :Plan, :Enable, :DataSourceInfo, :GeneralRuleSetEnable, :Result, :TimingStartTime, :ComplianceUpdate
+
+        def initialize(name=nil, description=nil, period=nil, plan=nil, enable=nil, datasourceinfo=nil, generalrulesetenable=nil, result=nil, timingstarttime=nil, complianceupdate=nil)
+          @Name = name
+          @Description = description
+          @Period = period
+          @Plan = plan
+          @Enable = enable
+          @DataSourceInfo = datasourceinfo
+          @GeneralRuleSetEnable = generalrulesetenable
+          @Result = result
+          @TimingStartTime = timingstarttime
+          @ComplianceUpdate = complianceupdate
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Description = params['Description']
+          @Period = params['Period']
+          @Plan = params['Plan']
+          @Enable = params['Enable']
+          unless params['DataSourceInfo'].nil?
+            @DataSourceInfo = DspaDiscoveryTaskDataSource.new
+            @DataSourceInfo.deserialize(params['DataSourceInfo'])
+          end
+          @GeneralRuleSetEnable = params['GeneralRuleSetEnable']
+          unless params['Result'].nil?
+            @Result = ScanTaskResult.new
+            @Result.deserialize(params['Result'])
+          end
+          @TimingStartTime = params['TimingStartTime']
+          @ComplianceUpdate = params['ComplianceUpdate']
+        end
+      end
+
       # 描述对象存储类敏感识别扫描人元数据条件。
       class DspaDiscoveryTaskCOSCondition < TencentCloud::Common::AbstractModel
         # @param Bucket: 数据桶名称
@@ -10533,8 +10672,8 @@ module TencentCloud
 
         attr_accessor :DspaId, :Status, :RiskLatestTableId, :Note, :ProcessPeople, :BathRiskIdList
         extend Gem::Deprecate
-        deprecate :RiskLatestTableId, :none, 2025, 4
-        deprecate :RiskLatestTableId=, :none, 2025, 4
+        deprecate :RiskLatestTableId, :none, 2025, 5
+        deprecate :RiskLatestTableId=, :none, 2025, 5
 
         def initialize(dspaid=nil, status=nil, risklatesttableid=nil, note=nil, processpeople=nil, bathriskidlist=nil)
           @DspaId = dspaid
