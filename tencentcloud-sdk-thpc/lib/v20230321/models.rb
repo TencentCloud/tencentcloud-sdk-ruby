@@ -203,7 +203,7 @@ module TencentCloud
       class AddQueueRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID。
         # @type ClusterId: String
-        # @param QueueName: 队列名称。<br><li>最多支持32个字符。
+        # @param QueueName: 队列名称。<br><li>最多支持32个字符。</li>
         # @type QueueName: String
 
         attr_accessor :ClusterId, :QueueName

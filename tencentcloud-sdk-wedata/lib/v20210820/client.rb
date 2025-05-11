@@ -1661,6 +1661,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 数据地图-信息配置 数据类目列表
+
+        # @param request: Request instance for DescribeBaseBizCatalogs.
+        # @type request: :class:`Tencentcloud::wedata::V20210820::DescribeBaseBizCatalogsRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20210820::DescribeBaseBizCatalogsResponse`
+        def DescribeBaseBizCatalogs(request)
+          body = send_request('DescribeBaseBizCatalogs', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeBaseBizCatalogsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 批量操作页面获取任务列表
 
         # @param request: Request instance for DescribeBatchOperateTask.

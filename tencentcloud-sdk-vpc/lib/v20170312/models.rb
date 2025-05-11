@@ -756,9 +756,9 @@ module TencentCloud
         # @type AddressChargePrepaid: :class:`Tencentcloud::Vpc.v20170312.models.AddressChargePrepaid`
         # @param AddressType: EIP类型。各种EIP类型详情可参考：[EIP 的 IP 地址类型](https://cloud.tencent.com/document/product/1199/41646)。默认值：EIP。
         # <li>EIP：弹性公网 IP。 </li>
-        # <li>AnycastEIP：加速 IP，已开通 [Anycast 公网加速](https://cloud.tencent.com/document/product/644)白名单的用户可选。仅部分地域支持加速IP。</li>
-        # <li>HighQualityEIP：精品 IP。仅部分地域支持精品IP。</li>
-        # <li>AntiDDoSEIP：高防 IP。仅部分地域支持高防IP。</li>
+        # <li>AnycastEIP：加速 IP，已开通 [Anycast 公网加速](https://cloud.tencent.com/document/product/644)白名单的用户可选。仅部分地域支持加速IP，详情可见Anycast公网加速[购买指南](https://cloud.tencent.com/document/product/644/12617)。</li>
+        # <li>HighQualityEIP：精品 IP。仅新加坡和中国香港支持精品IP。</li>
+        # <li>AntiDDoSEIP：高防 IP。仅部分地域支持高防IP，详情可见弹性公网IP[产品概述](https://cloud.tencent.com/document/product/1199/41646)。</li>
         # @type AddressType: String
         # @param AnycastZone: Anycast发布域。
         # <ul style="margin:0"><li>已开通Anycast公网加速白名单的用户，可选值：<ul><li>ANYCAST_ZONE_GLOBAL：全球发布域（需要额外开通Anycast全球加速白名单）</li><li>ANYCAST_ZONE_OVERSEAS：境外发布域</li><li><b>[已废弃]</b> ANYCAST_ZONE_A：发布域A（已更新为全球发布域）</li><li><b>[已废弃]</b> ANYCAST_ZONE_B：发布域B（已更新为全球发布域）</li></ul>默认值：ANYCAST_ZONE_OVERSEAS。</li></ul>
@@ -18838,9 +18838,9 @@ module TencentCloud
 
       # InquiryPriceModifyAddressesBandwidth请求参数结构体
       class InquiryPriceModifyAddressesBandwidthRequest < TencentCloud::Common::AbstractModel
-        # @param AddressIds: EIP唯一ID
+        # @param AddressIds: EIP唯一ID，可以使用[DescribeAddresses](https://cloud.tencent.com/document/product/215/16702)接口获取AddressId。
         # @type AddressIds: Array
-        # @param InternetMaxBandwidthOut: 新带宽值
+        # @param InternetMaxBandwidthOut: 新带宽值，可调整的带宽上限值参考产品文档[带宽上限](https://cloud.tencent.com/document/product/1199/48333)。
         # @type InternetMaxBandwidthOut: Integer
 
         attr_accessor :AddressIds, :InternetMaxBandwidthOut
@@ -20931,9 +20931,9 @@ module TencentCloud
 
       # ModifyIPv6AddressesBandwidth请求参数结构体
       class ModifyIPv6AddressesBandwidthRequest < TencentCloud::Common::AbstractModel
-        # @param IPv6AddressIds: 弹性公网IPv6地址唯一ID
+        # @param IPv6AddressIds: 弹性公网IPv6地址唯一ID，可以使用[DescribeIPv6Addresses](https://cloud.tencent.com/document/api/215/113677)接口获取IPv6AddressId。
         # @type IPv6AddressIds: Array
-        # @param InternetMaxBandwidthOut: 弹性公网IPv6地址网络带宽
+        # @param InternetMaxBandwidthOut: 弹性公网IPv6地址网络带宽，可调整的带宽上限值参考产品文档中[IPv6 计费限制说明](https://cloud.tencent.com/document/product/1142/38369)。
         # @type InternetMaxBandwidthOut: Integer
 
         attr_accessor :IPv6AddressIds, :InternetMaxBandwidthOut
@@ -25830,7 +25830,7 @@ module TencentCloud
 
       # ReturnNormalAddresses请求参数结构体
       class ReturnNormalAddressesRequest < TencentCloud::Common::AbstractModel
-        # @param AddressIps: 普通公网IP 的 IP 地址,示例：101.35.139.183
+        # @param AddressIps: 普通公网IP 的 IP 地址，可以使用[DescribeAddresses](https://cloud.tencent.com/document/product/215/16702)接口获取AddressIps。
         # @type AddressIps: Array
 
         attr_accessor :AddressIps

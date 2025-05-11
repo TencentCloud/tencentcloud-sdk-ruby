@@ -600,6 +600,68 @@ module TencentCloud
         end
       end
 
+      # DescribeProbeMetricTagValues请求参数结构体
+      class DescribeProbeMetricTagValuesRequest < TencentCloud::Common::AbstractModel
+        # @param AnalyzeTaskType: 分析任务类型，支持以下几种类型：
+        # AnalyzeTaskType_Network：网络质量
+        # AnalyzeTaskType_Browse：页面性能
+        # AnalyzeTaskType_Transport：端口性能
+        # AnalyzeTaskType_UploadDownload：文件传输
+        # AnalyzeTaskType_MediaStream：音视频体验
+        # @type AnalyzeTaskType: String
+        # @param Key: 维度标签值，参考：
+        # host：任务域名
+        # errorInfo：状态类型
+        # area：拨测点地区
+        # operator：拨测点运营商
+        # taskId：任务ID
+        # @type Key: String
+        # @param Filter: 过滤条件，可以传单个过滤条件也可以拼接多个参数，支持正则匹配
+        # @type Filter: String
+        # @param Filters: 过滤条件数组
+        # @type Filters: Array
+        # @param TimeRange: 时间范围
+        # @type TimeRange: String
+
+        attr_accessor :AnalyzeTaskType, :Key, :Filter, :Filters, :TimeRange
+
+        def initialize(analyzetasktype=nil, key=nil, filter=nil, filters=nil, timerange=nil)
+          @AnalyzeTaskType = analyzetasktype
+          @Key = key
+          @Filter = filter
+          @Filters = filters
+          @TimeRange = timerange
+        end
+
+        def deserialize(params)
+          @AnalyzeTaskType = params['AnalyzeTaskType']
+          @Key = params['Key']
+          @Filter = params['Filter']
+          @Filters = params['Filters']
+          @TimeRange = params['TimeRange']
+        end
+      end
+
+      # DescribeProbeMetricTagValues返回参数结构体
+      class DescribeProbeMetricTagValuesResponse < TencentCloud::Common::AbstractModel
+        # @param TagValueSet: 标签值序列化后的字符串
+        # @type TagValueSet: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TagValueSet, :RequestId
+
+        def initialize(tagvalueset=nil, requestid=nil)
+          @TagValueSet = tagvalueset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TagValueSet = params['TagValueSet']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeProbeNodes请求参数结构体
       class DescribeProbeNodesRequest < TencentCloud::Common::AbstractModel
         # @param NodeType: 节点类型

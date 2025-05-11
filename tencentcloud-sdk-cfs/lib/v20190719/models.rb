@@ -444,10 +444,14 @@ module TencentCloud
         # @type AutoSnapshotPolicyId: String
         # @param EnableAutoScaleUp: 是否开启默认扩容，仅Turbo类型文件存储支持
         # @type EnableAutoScaleUp: Boolean
+        # @param CfsVersion: v1.5：创建普通版的通用文件系统；
+        # v3.1：创建增强版的通用文件系统
+        # 说明：增强版的通用系统需要开通白名单才能使用，如有需要请提交工单与我们联系。
+        # @type CfsVersion: String
 
-        attr_accessor :Zone, :NetInterface, :PGroupId, :Protocol, :StorageType, :VpcId, :SubnetId, :MountIP, :FsName, :ResourceTags, :ClientToken, :CcnId, :CidrBlock, :Capacity, :SnapshotId, :AutoSnapshotPolicyId, :EnableAutoScaleUp
+        attr_accessor :Zone, :NetInterface, :PGroupId, :Protocol, :StorageType, :VpcId, :SubnetId, :MountIP, :FsName, :ResourceTags, :ClientToken, :CcnId, :CidrBlock, :Capacity, :SnapshotId, :AutoSnapshotPolicyId, :EnableAutoScaleUp, :CfsVersion
 
-        def initialize(zone=nil, netinterface=nil, pgroupid=nil, protocol=nil, storagetype=nil, vpcid=nil, subnetid=nil, mountip=nil, fsname=nil, resourcetags=nil, clienttoken=nil, ccnid=nil, cidrblock=nil, capacity=nil, snapshotid=nil, autosnapshotpolicyid=nil, enableautoscaleup=nil)
+        def initialize(zone=nil, netinterface=nil, pgroupid=nil, protocol=nil, storagetype=nil, vpcid=nil, subnetid=nil, mountip=nil, fsname=nil, resourcetags=nil, clienttoken=nil, ccnid=nil, cidrblock=nil, capacity=nil, snapshotid=nil, autosnapshotpolicyid=nil, enableautoscaleup=nil, cfsversion=nil)
           @Zone = zone
           @NetInterface = netinterface
           @PGroupId = pgroupid
@@ -465,6 +469,7 @@ module TencentCloud
           @SnapshotId = snapshotid
           @AutoSnapshotPolicyId = autosnapshotpolicyid
           @EnableAutoScaleUp = enableautoscaleup
+          @CfsVersion = cfsversion
         end
 
         def deserialize(params)
@@ -492,6 +497,7 @@ module TencentCloud
           @SnapshotId = params['SnapshotId']
           @AutoSnapshotPolicyId = params['AutoSnapshotPolicyId']
           @EnableAutoScaleUp = params['EnableAutoScaleUp']
+          @CfsVersion = params['CfsVersion']
         end
       end
 

@@ -675,6 +675,37 @@ module TencentCloud
         end
       end
 
+      # 订单价格详情
+      class DealPriceDetail < TencentCloud::Common::AbstractModel
+        # @param DealName: 子订单号
+        # @type DealName: String
+        # @param OwnerUin: 订单归属人uin（代客uin）
+        # @type OwnerUin: String
+        # @param SubProductPriceDetail: 子产品价格详情列表
+        # @type SubProductPriceDetail: Array
+
+        attr_accessor :DealName, :OwnerUin, :SubProductPriceDetail
+
+        def initialize(dealname=nil, owneruin=nil, subproductpricedetail=nil)
+          @DealName = dealname
+          @OwnerUin = owneruin
+          @SubProductPriceDetail = subproductpricedetail
+        end
+
+        def deserialize(params)
+          @DealName = params['DealName']
+          @OwnerUin = params['OwnerUin']
+          unless params['SubProductPriceDetail'].nil?
+            @SubProductPriceDetail = []
+            params['SubProductPriceDetail'].each do |i|
+              subproductpricedetail_tmp = SubProductPriceDetail.new
+              subproductpricedetail_tmp.deserialize(i)
+              @SubProductPriceDetail << subproductpricedetail_tmp
+            end
+          end
+        end
+      end
+
       # DescribeAgentAuditedClients请求参数结构体
       class DescribeAgentAuditedClientsRequest < TencentCloud::Common::AbstractModel
         # @param ClientUin: 客户账号ID
@@ -1043,6 +1074,57 @@ module TencentCloud
             end
           end
           @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAgentDealsPriceDetailByDealName请求参数结构体
+      class DescribeAgentDealsPriceDetailByDealNameRequest < TencentCloud::Common::AbstractModel
+        # @param DealCreatYear: 下单年份（订单创建时间归属年份）
+        # @type DealCreatYear: Integer
+        # @param DealNames: 子订单号，每个请求最多查询100条
+        # @type DealNames: Array
+        # @param OwnerUin: 订单归属代客uin
+        # @type OwnerUin: String
+
+        attr_accessor :DealCreatYear, :DealNames, :OwnerUin
+
+        def initialize(dealcreatyear=nil, dealnames=nil, owneruin=nil)
+          @DealCreatYear = dealcreatyear
+          @DealNames = dealnames
+          @OwnerUin = owneruin
+        end
+
+        def deserialize(params)
+          @DealCreatYear = params['DealCreatYear']
+          @DealNames = params['DealNames']
+          @OwnerUin = params['OwnerUin']
+        end
+      end
+
+      # DescribeAgentDealsPriceDetailByDealName返回参数结构体
+      class DescribeAgentDealsPriceDetailByDealNameResponse < TencentCloud::Common::AbstractModel
+        # @param DealList: 子订单的费用详情
+        # @type DealList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DealList, :RequestId
+
+        def initialize(deallist=nil, requestid=nil)
+          @DealList = deallist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['DealList'].nil?
+            @DealList = []
+            params['DealList'].each do |i|
+              dealpricedetail_tmp = DealPriceDetail.new
+              dealpricedetail_tmp.deserialize(i)
+              @DealList << dealpricedetail_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -1801,6 +1883,34 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 订单子产品价格详情
+      class SubProductPriceDetail < TencentCloud::Common::AbstractModel
+        # @param Name: 子产品名称
+        # @type Name: String
+        # @param DiscountValue: 折扣值，=100时表示无折扣，=85时表示8.5折
+        # @type DiscountValue: Float
+        # @param TotalCost: 原价，折扣前价格，单位：分
+        # @type TotalCost: Integer
+        # @param RealTotalCost: 折后价，单位：分
+        # @type RealTotalCost: Integer
+
+        attr_accessor :Name, :DiscountValue, :TotalCost, :RealTotalCost
+
+        def initialize(name=nil, discountvalue=nil, totalcost=nil, realtotalcost=nil)
+          @Name = name
+          @DiscountValue = discountvalue
+          @TotalCost = totalcost
+          @RealTotalCost = realtotalcost
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @DiscountValue = params['DiscountValue']
+          @TotalCost = params['TotalCost']
+          @RealTotalCost = params['RealTotalCost']
         end
       end
 

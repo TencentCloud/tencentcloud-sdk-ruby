@@ -268,8 +268,8 @@ module TencentCloud
 
         attr_accessor :Created, :Usage, :Note, :Id, :Choices, :ErrorMsg, :ModerationLevel, :SearchInfo, :Replaces, :RecommendedQuestions, :RequestId
         extend Gem::Deprecate
-        deprecate :ModerationLevel, :none, 2025, 4
-        deprecate :ModerationLevel=, :none, 2025, 4
+        deprecate :ModerationLevel, :none, 2025, 5
+        deprecate :ModerationLevel=, :none, 2025, 5
 
         def initialize(created=nil, usage=nil, note=nil, id=nil, choices=nil, errormsg=nil, moderationlevel=nil, searchinfo=nil, replaces=nil, recommendedquestions=nil, requestid=nil)
           @Created = created
@@ -577,13 +577,16 @@ module TencentCloud
 
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ToolCalls: Array
+        # @param ReasoningContent: 思维链内容。用于展示模型思考过程，仅 Hunyuan-T1 系列模型可用。注意：在进行多轮对话时，请不要将此字段拼接到 messages 中。请求 messages 的请求参数中包含 reasoning_content，接口将报错。
+        # @type ReasoningContent: String
 
-        attr_accessor :Role, :Content, :ToolCalls
+        attr_accessor :Role, :Content, :ToolCalls, :ReasoningContent
 
-        def initialize(role=nil, content=nil, toolcalls=nil)
+        def initialize(role=nil, content=nil, toolcalls=nil, reasoningcontent=nil)
           @Role = role
           @Content = content
           @ToolCalls = toolcalls
+          @ReasoningContent = reasoningcontent
         end
 
         def deserialize(params)
@@ -597,6 +600,7 @@ module TencentCloud
               @ToolCalls << toolcall_tmp
             end
           end
+          @ReasoningContent = params['ReasoningContent']
         end
       end
 
@@ -1008,10 +1012,10 @@ module TencentCloud
 
         attr_accessor :Data, :FirstID, :LastID, :HasMore, :Object, :FirstMsgID, :LastMsgID, :RequestId
         extend Gem::Deprecate
-        deprecate :FirstID, :none, 2025, 4
-        deprecate :FirstID=, :none, 2025, 4
-        deprecate :LastID, :none, 2025, 4
-        deprecate :LastID=, :none, 2025, 4
+        deprecate :FirstID, :none, 2025, 5
+        deprecate :FirstID=, :none, 2025, 5
+        deprecate :LastID, :none, 2025, 5
+        deprecate :LastID=, :none, 2025, 5
 
         def initialize(data=nil, firstid=nil, lastid=nil, hasmore=nil, object=nil, firstmsgid=nil, lastmsgid=nil, requestid=nil)
           @Data = data
@@ -1488,6 +1492,134 @@ module TencentCloud
         def deserialize(params)
           @ImageUrl = params['ImageUrl']
           @ImageBase64 = params['ImageBase64']
+        end
+      end
+
+      # 拍照解题内容
+      class ImageMessage < TencentCloud::Common::AbstractModel
+        # @param Role: 角色，可选值包括 system、user、assistant。
+        # @type Role: String
+        # @param Content: 文本内容
+        # @type Content: String
+        # @param Contents: 多种类型内容（目前支持图片和文本），仅 hunyuan-vision 和 hunyuan-turbo-vision 模型支持
+        # @type Contents: Array
+
+        attr_accessor :Role, :Content, :Contents
+
+        def initialize(role=nil, content=nil, contents=nil)
+          @Role = role
+          @Content = content
+          @Contents = contents
+        end
+
+        def deserialize(params)
+          @Role = params['Role']
+          @Content = params['Content']
+          unless params['Contents'].nil?
+            @Contents = []
+            params['Contents'].each do |i|
+              content_tmp = Content.new
+              content_tmp.deserialize(i)
+              @Contents << content_tmp
+            end
+          end
+        end
+      end
+
+      # ImageQuestion请求参数结构体
+      class ImageQuestionRequest < TencentCloud::Common::AbstractModel
+        # @param Model: 模型名称，可选值包括 hunyuan-vision-image-question。各模型介绍请阅读 [产品概述](https://cloud.tencent.com/document/product/1729/104753) 中的说明。注意：不同的模型计费不同，请根据 [购买指南](https://cloud.tencent.com/document/product/1729/97731) 按需调用。
+        # @type Model: String
+        # @param Messages: 聊天上下文信息。说明：1. 长度最多为 40，按对话时间从旧到新在数组中排列。2. Message.Role 可选值：system、user、assistant。其中，system 角色可选，如存在则必须位于列表的最开始。user 和 assistant 需交替出现（一问一答），以 user 提问开始，user提问结束，且 Content 不能为空。Role 的顺序示例：[system（可选） user assistant user assistant user ...]。3. Messages 中 Content 总长度不能超过模型输入长度上限（可参考 [产品概述](https://cloud.tencent.com/document/product/1729/104753) 文档），超过则会截断最前面的内容，只保留尾部内容。
+        # @type Messages: Array
+        # @param Stream: 流式调用开关。
+        # 说明：
+        # 1. 未传值时默认为非流式调用（false）。
+        # 2. 流式调用时以 SSE 协议增量返回结果（返回值取 Choices[n].Delta 中的值，需要拼接增量数据才能获得完整结果）。
+        # 3. 非流式调用时：
+        # 调用方式与普通 HTTP 请求无异。
+        # 接口响应耗时较长，**如需更低时延建议设置为 true**。
+        # 只返回一次最终结果（返回值取 Choices[n].Message 中的值）。
+
+        # 注意：
+        # 通过 SDK 调用时，流式和非流式调用需用**不同的方式**获取返回值，具体参考 SDK 中的注释或示例（在各语言 SDK 代码仓库的 examples/hunyuan/v20230901/ 目录中）。
+        # @type Stream: Boolean
+
+        attr_accessor :Model, :Messages, :Stream
+
+        def initialize(model=nil, messages=nil, stream=nil)
+          @Model = model
+          @Messages = messages
+          @Stream = stream
+        end
+
+        def deserialize(params)
+          @Model = params['Model']
+          unless params['Messages'].nil?
+            @Messages = []
+            params['Messages'].each do |i|
+              imagemessage_tmp = ImageMessage.new
+              imagemessage_tmp.deserialize(i)
+              @Messages << imagemessage_tmp
+            end
+          end
+          @Stream = params['Stream']
+        end
+      end
+
+      # ImageQuestion返回参数结构体
+      class ImageQuestionResponse < TencentCloud::Common::AbstractModel
+        # @param Created: Unix 时间戳，单位为秒。
+        # @type Created: Integer
+        # @param Usage: Token 统计信息。
+        # 按照总 Token 数量计费。
+        # @type Usage: :class:`Tencentcloud::Hunyuan.v20230901.models.Usage`
+        # @param Note: 免责声明。
+        # @type Note: String
+        # @param Id: 本次请求的 RequestId。
+        # @type Id: String
+        # @param Choices: 回复内容。
+        # @type Choices: Array
+        # @param ErrorMsg: 错误信息。
+        # 如果流式返回中服务处理异常，返回该错误信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorMsg: :class:`Tencentcloud::Hunyuan.v20230901.models.ErrorMsg`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。本接口为流式响应接口，当请求成功时，RequestId 会被放在 HTTP 响应的 Header "X-TC-RequestId" 中。
+        # @type RequestId: String
+
+        attr_accessor :Created, :Usage, :Note, :Id, :Choices, :ErrorMsg, :RequestId
+
+        def initialize(created=nil, usage=nil, note=nil, id=nil, choices=nil, errormsg=nil, requestid=nil)
+          @Created = created
+          @Usage = usage
+          @Note = note
+          @Id = id
+          @Choices = choices
+          @ErrorMsg = errormsg
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Created = params['Created']
+          unless params['Usage'].nil?
+            @Usage = Usage.new
+            @Usage.deserialize(params['Usage'])
+          end
+          @Note = params['Note']
+          @Id = params['Id']
+          unless params['Choices'].nil?
+            @Choices = []
+            params['Choices'].each do |i|
+              choice_tmp = Choice.new
+              choice_tmp.deserialize(i)
+              @Choices << choice_tmp
+            end
+          end
+          unless params['ErrorMsg'].nil?
+            @ErrorMsg = ErrorMsg.new
+            @ErrorMsg.deserialize(params['ErrorMsg'])
+          end
+          @RequestId = params['RequestId']
         end
       end
 

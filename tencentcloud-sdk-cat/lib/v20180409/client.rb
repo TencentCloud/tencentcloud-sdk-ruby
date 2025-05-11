@@ -198,6 +198,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询同个任务类型下的维度标签值，包括查询用户任务信息，具体任务下的多个维度标签信息。（通过为DescribeProbeMetricData接口的Filters参数添加维度筛选条件，可实现多维数据分析）
+
+        # @param request: Request instance for DescribeProbeMetricTagValues.
+        # @type request: :class:`Tencentcloud::cat::V20180409::DescribeProbeMetricTagValuesRequest`
+        # @rtype: :class:`Tencentcloud::cat::V20180409::DescribeProbeMetricTagValuesResponse`
+        def DescribeProbeMetricTagValues(request)
+          body = send_request('DescribeProbeMetricTagValues', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeProbeMetricTagValuesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询拨测节点
 
         # @param request: Request instance for DescribeProbeNodes.

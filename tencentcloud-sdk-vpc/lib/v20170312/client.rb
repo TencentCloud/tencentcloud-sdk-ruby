@@ -7190,7 +7190,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # EIP修改带宽询价
+        # 本接口（InquiryPriceModifyAddressesBandwidth）用于EIP修改带宽询价。
 
         # @param request: Request instance for InquiryPriceModifyAddressesBandwidth.
         # @type request: :class:`Tencentcloud::vpc::V20170312::InquiryPriceModifyAddressesBandwidthRequest`

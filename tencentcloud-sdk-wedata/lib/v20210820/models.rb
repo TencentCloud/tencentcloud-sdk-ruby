@@ -2380,6 +2380,48 @@ module TencentCloud
         end
       end
 
+      # 数据地图-数据类目信息
+      class BizCatalogsInfo < TencentCloud::Common::AbstractModel
+        # @param AppId: 应用id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AppId: String
+        # @param Id: 类目id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Id: Integer
+        # @param Level: 类目层级
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Level: Integer
+        # @param Name: 类目名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param ParentId: 上级类目id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ParentId: Integer
+        # @param Position: 类目顺序
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Position: Integer
+
+        attr_accessor :AppId, :Id, :Level, :Name, :ParentId, :Position
+
+        def initialize(appid=nil, id=nil, level=nil, name=nil, parentid=nil, position=nil)
+          @AppId = appid
+          @Id = id
+          @Level = level
+          @Name = name
+          @ParentId = parentid
+          @Position = position
+        end
+
+        def deserialize(params)
+          @AppId = params['AppId']
+          @Id = params['Id']
+          @Level = params['Level']
+          @Name = params['Name']
+          @ParentId = params['ParentId']
+          @Position = params['Position']
+        end
+      end
+
       # 实时任务同步速度 字节/s
       class BytesSpeed < TencentCloud::Common::AbstractModel
         # @param NodeType: 节点类型
@@ -7486,6 +7528,45 @@ module TencentCloud
               approvetype_tmp = ApproveType.new
               approvetype_tmp.deserialize(i)
               @Data << approvetype_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeBaseBizCatalogs请求参数结构体
+      class DescribeBaseBizCatalogsRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeBaseBizCatalogs返回参数结构体
+      class DescribeBaseBizCatalogsResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 类目列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              bizcatalogsinfo_tmp = BizCatalogsInfo.new
+              bizcatalogsinfo_tmp.deserialize(i)
+              @Data << bizcatalogsinfo_tmp
             end
           end
           @RequestId = params['RequestId']

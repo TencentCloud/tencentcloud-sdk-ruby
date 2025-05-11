@@ -12612,12 +12612,21 @@ module TencentCloud
 
       # ModifyInstanceAttackLogPost请求参数结构体
       class ModifyInstanceAttackLogPostRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param AttackLogPost: 攻击日志投递开关
+        # @type AttackLogPost: Integer
 
+        attr_accessor :InstanceId, :AttackLogPost
 
-        def initialize()
+        def initialize(instanceid=nil, attacklogpost=nil)
+          @InstanceId = instanceid
+          @AttackLogPost = attacklogpost
         end
 
         def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @AttackLogPost = params['AttackLogPost']
         end
       end
 
