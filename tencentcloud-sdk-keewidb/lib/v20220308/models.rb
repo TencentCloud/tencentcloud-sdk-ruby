@@ -633,6 +633,9 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :TotalCount, :BackupSet, :BackupRecord, :RequestId
+        extend Gem::Deprecate
+        deprecate :BackupSet, :none, 2025, 5
+        deprecate :BackupSet=, :none, 2025, 5
 
         def initialize(totalcount=nil, backupset=nil, backuprecord=nil, requestid=nil)
           @TotalCount = totalcount

@@ -319,32 +319,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 产品功能已下线，对应的api接口下线
-
-        # 本接口（CreateFirstLinkSession）用于创建接入段加速会话，创建有可能成功，也可能失败，需要通过返回码来进行判断。
-
-        # @param request: Request instance for CreateFirstLinkSession.
-        # @type request: :class:`Tencentcloud::gaap::V20180529::CreateFirstLinkSessionRequest`
-        # @rtype: :class:`Tencentcloud::gaap::V20180529::CreateFirstLinkSessionResponse`
-        def CreateFirstLinkSession(request)
-          body = send_request('CreateFirstLinkSession', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = CreateFirstLinkSessionResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 用来创建统一域名
 
         # @param request: Request instance for CreateGlobalDomain.
@@ -691,32 +665,6 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteDomainErrorPageInfoResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 产品功能已下线，下线对应的api接口
-
-        # 本接口（DeleteFirstLinkSession）用于删除接入段加速会话，删除加速会话后会停止加速。
-
-        # @param request: Request instance for DeleteFirstLinkSession.
-        # @type request: :class:`Tencentcloud::gaap::V20180529::DeleteFirstLinkSessionRequest`
-        # @rtype: :class:`Tencentcloud::gaap::V20180529::DeleteFirstLinkSessionResponse`
-        def DeleteFirstLinkSession(request)
-          body = send_request('DeleteFirstLinkSession', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DeleteFirstLinkSessionResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1173,32 +1121,6 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeDomainErrorPageInfoByIdsResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 产品功能已下线，下线对应的api接口
-
-        # 本接口（DescribeFirstLinkSession）用于查询接入段加速会话状态，包括会话状态，生效时长，加速套餐等信息。
-
-        # @param request: Request instance for DescribeFirstLinkSession.
-        # @type request: :class:`Tencentcloud::gaap::V20180529::DescribeFirstLinkSessionRequest`
-        # @rtype: :class:`Tencentcloud::gaap::V20180529::DescribeFirstLinkSessionResponse`
-        def DescribeFirstLinkSession(request)
-          body = send_request('DescribeFirstLinkSession', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeFirstLinkSessionResponse.new
             model.deserialize(response['Response'])
             model
           else

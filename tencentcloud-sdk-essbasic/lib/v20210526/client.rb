@@ -957,6 +957,34 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 接口（ChannelCreatePrepareFlowGroup）用于创建嵌入式合同组签署流程。
+
+        # - 该接口当前仅支持文件发起
+        # - 该接口能力和ChannelCreateFlowGroupByFiles，~~ChannelCreateFlowGroupByTemplates~~保持一致。
+        # - 返回的FlowGroupId 为临时id，只有在页面内成功发起后FlowGroupId才会有效。
+
+        # @param request: Request instance for ChannelCreatePrepareFlowGroup.
+        # @type request: :class:`Tencentcloud::essbasic::V20210526::ChannelCreatePrepareFlowGroupRequest`
+        # @rtype: :class:`Tencentcloud::essbasic::V20210526::ChannelCreatePrepareFlowGroupResponse`
+        def ChannelCreatePrepareFlowGroup(request)
+          body = send_request('ChannelCreatePrepareFlowGroup', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ChannelCreatePrepareFlowGroupResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（ChannelCreatePreparedPersonalEsign）用于创建导入个人印章（处方单场景专用，使用此接口请与客户经理确认）。
 
         # @param request: Request instance for ChannelCreatePreparedPersonalEsign.

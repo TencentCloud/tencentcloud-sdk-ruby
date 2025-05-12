@@ -677,7 +677,7 @@ module TencentCloud
       class File3D < TencentCloud::Common::AbstractModel
         # @param Type: 3D文件的格式。取值范围：GIF, OBJ
         # @type Type: String
-        # @param Url: 文件的Url
+        # @param Url: 文件的Url（有效期24小时）
         # @type Url: String
 
         attr_accessor :Type, :Url
@@ -2564,9 +2564,15 @@ module TencentCloud
       class SubmitHunyuanTo3DJobRequest < TencentCloud::Common::AbstractModel
         # @param Prompt: 3D内容的描述，中文正向提示词。最多支持200个 utf-8 字符，ImageBase64、ImageUrl和 Prompt必填其一，且Prompt和ImageBase64/ImageUrl不能同时存在。
         # @type Prompt: String
-        # @param ImageBase64: 输入图 Base64 数据。最多支持200个 utf-8 字符，ImageBase64、ImageUrl和 Prompt必填其一，且Prompt和ImageBase64/ImageUrl不能同时存在。
+        # @param ImageBase64: 输入图 Base64 数据。
+        # 大小：单边分辨率要求不小于50，不大于5000。大小不超过8m（base64编码后会大30%左右，建议实际输入图片不超过6m）
+        # 格式：jpg，png，jpeg，webp。
+        # ImageBase64、ImageUrl和 Prompt必填其一，且Prompt和ImageBase64/ImageUrl不能同时存在。
         # @type ImageBase64: String
-        # @param ImageUrl: 输入图Url。最多支持200个 utf-8 字符，ImageBase64、ImageUrl和 Prompt必填其一，且Prompt和ImageBase64/ImageUrl不能同时存在。
+        # @param ImageUrl: 输入图Url。
+        # 大小：单边分辨率要求不小于50，不大于5000。大小不超过8m（base64编码后会大30%左右，建议实际输入图片不超过6m）
+        # 格式：jpg，png，jpeg，webp。
+        # ImageBase64/ImageUrl和 Prompt必填其一，且Prompt和ImageBase64/ImageUrl不能同时存在。
         # @type ImageUrl: String
         # @param Num: 生成数量。默认1，当前限制只能为1。
         # @type Num: Integer
@@ -2590,7 +2596,7 @@ module TencentCloud
 
       # SubmitHunyuanTo3DJob返回参数结构体
       class SubmitHunyuanTo3DJobResponse < TencentCloud::Common::AbstractModel
-        # @param JobId: 任务id
+        # @param JobId: 任务id（有效期24小时）
         # @type JobId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

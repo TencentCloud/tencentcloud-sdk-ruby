@@ -2063,10 +2063,20 @@ module TencentCloud
         # @type SubnetName: String
         # @param CdcClusterId: 需要开通实例所属的CDC集群ID
         # @type CdcClusterId: String
+        # @param ShareClbId: 开通堡垒机指定共享的clbId
+        # @type ShareClbId: String
+        # @param WebAccess: 0-关闭web访问堡垒机，1-开启web访问堡垒机
+        # @type WebAccess: Integer
+        # @param ClientAccess: 0-关闭客户端访问堡垒机，1-开启客户端访问堡垒机
+        # @type ClientAccess: Integer
+        # @param IntranetAccess: 0-关闭内网访问堡垒机，1-开启内网访问堡垒机
+        # @type IntranetAccess: Integer
+        # @param ExternalAccess: 0-关闭公网访问堡垒机，1-开启公网访问堡垒机
+        # @type ExternalAccess: Integer
 
-        attr_accessor :ResourceId, :ApCode, :Zone, :VpcId, :SubnetId, :CidrBlock, :VpcName, :VpcCidrBlock, :SubnetName, :CdcClusterId
+        attr_accessor :ResourceId, :ApCode, :Zone, :VpcId, :SubnetId, :CidrBlock, :VpcName, :VpcCidrBlock, :SubnetName, :CdcClusterId, :ShareClbId, :WebAccess, :ClientAccess, :IntranetAccess, :ExternalAccess
 
-        def initialize(resourceid=nil, apcode=nil, zone=nil, vpcid=nil, subnetid=nil, cidrblock=nil, vpcname=nil, vpccidrblock=nil, subnetname=nil, cdcclusterid=nil)
+        def initialize(resourceid=nil, apcode=nil, zone=nil, vpcid=nil, subnetid=nil, cidrblock=nil, vpcname=nil, vpccidrblock=nil, subnetname=nil, cdcclusterid=nil, shareclbid=nil, webaccess=nil, clientaccess=nil, intranetaccess=nil, externalaccess=nil)
           @ResourceId = resourceid
           @ApCode = apcode
           @Zone = zone
@@ -2077,6 +2087,11 @@ module TencentCloud
           @VpcCidrBlock = vpccidrblock
           @SubnetName = subnetname
           @CdcClusterId = cdcclusterid
+          @ShareClbId = shareclbid
+          @WebAccess = webaccess
+          @ClientAccess = clientaccess
+          @IntranetAccess = intranetaccess
+          @ExternalAccess = externalaccess
         end
 
         def deserialize(params)
@@ -2090,6 +2105,11 @@ module TencentCloud
           @VpcCidrBlock = params['VpcCidrBlock']
           @SubnetName = params['SubnetName']
           @CdcClusterId = params['CdcClusterId']
+          @ShareClbId = params['ShareClbId']
+          @WebAccess = params['WebAccess']
+          @ClientAccess = params['ClientAccess']
+          @IntranetAccess = params['IntranetAccess']
+          @ExternalAccess = params['ExternalAccess']
         end
       end
 
@@ -2548,18 +2568,29 @@ module TencentCloud
       class DescribeDeviceAccountsResponse < TencentCloud::Common::AbstractModel
         # @param TotalCount: 记录总数
         # @type TotalCount: Integer
+        # @param DeviceAccountSet: 账号信息列表
+        # @type DeviceAccountSet: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TotalCount, :RequestId
+        attr_accessor :TotalCount, :DeviceAccountSet, :RequestId
 
-        def initialize(totalcount=nil, requestid=nil)
+        def initialize(totalcount=nil, deviceaccountset=nil, requestid=nil)
           @TotalCount = totalcount
+          @DeviceAccountSet = deviceaccountset
           @RequestId = requestid
         end
 
         def deserialize(params)
           @TotalCount = params['TotalCount']
+          unless params['DeviceAccountSet'].nil?
+            @DeviceAccountSet = []
+            params['DeviceAccountSet'].each do |i|
+              deviceaccount_tmp = DeviceAccount.new
+              deviceaccount_tmp.deserialize(i)
+              @DeviceAccountSet << deviceaccount_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -3507,6 +3538,38 @@ module TencentCloud
         end
       end
 
+      # 主机账号
+      class DeviceAccount < TencentCloud::Common::AbstractModel
+        # @param Id: 账号ID
+        # @type Id: Integer
+        # @param DeviceId: 主机ID
+        # @type DeviceId: Integer
+        # @param Account: 账号名
+        # @type Account: String
+        # @param BoundPassword: true-已托管密码，false-未托管密码
+        # @type BoundPassword: Boolean
+        # @param BoundPrivateKey: true-已托管私钥，false-未托管私钥
+        # @type BoundPrivateKey: Boolean
+
+        attr_accessor :Id, :DeviceId, :Account, :BoundPassword, :BoundPrivateKey
+
+        def initialize(id=nil, deviceid=nil, account=nil, boundpassword=nil, boundprivatekey=nil)
+          @Id = id
+          @DeviceId = deviceid
+          @Account = account
+          @BoundPassword = boundpassword
+          @BoundPrivateKey = boundprivatekey
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @DeviceId = params['DeviceId']
+          @Account = params['Account']
+          @BoundPassword = params['BoundPassword']
+          @BoundPrivateKey = params['BoundPrivateKey']
+        end
+      end
+
       # 网络域
       class Domain < TencentCloud::Common::AbstractModel
         # @param Id: 自增id
@@ -4266,7 +4329,7 @@ module TencentCloud
       class ModifyResourceRequest < TencentCloud::Common::AbstractModel
         # @param ResourceId: 需要开通服务的资源ID
         # @type ResourceId: String
-        # @param Status: 已废弃
+        # @param Status: 状态
         # @type Status: String
         # @param ResourceEdition: 实例版本
         # @type ResourceEdition: String
@@ -4282,6 +4345,9 @@ module TencentCloud
         # @type LogDelivery: Integer
 
         attr_accessor :ResourceId, :Status, :ResourceEdition, :ResourceNode, :AutoRenewFlag, :PackageBandwidth, :PackageNode, :LogDelivery
+        extend Gem::Deprecate
+        deprecate :Status, :none, 2025, 5
+        deprecate :Status=, :none, 2025, 5
 
         def initialize(resourceid=nil, status=nil, resourceedition=nil, resourcenode=nil, autorenewflag=nil, packagebandwidth=nil, packagenode=nil, logdelivery=nil)
           @ResourceId = resourceid
@@ -4702,10 +4768,26 @@ module TencentCloud
         # @type IntranetVpcId: String
         # @param IntranetVpcCidr: 开通内网访问vpc的网段
         # @type IntranetVpcCidr: String
+        # @param ShareClb: 是否共享clb，true-共享clb，false-独享clb
+        # @type ShareClb: Boolean
+        # @param OpenClbId: 共享clb id
+        # @type OpenClbId: String
+        # @param LbVipIsp: 运营商信息
+        # @type LbVipIsp: String
+        # @param TUICmdPort: linux资产命令行运维端口
+        # @type TUICmdPort: Integer
+        # @param TUIDirectPort: linux资产直连端口
+        # @type TUIDirectPort: Integer
+        # @param WebAccess: 1 默认值，web访问开启，0 web访问关闭，2 web访问开通中，3 web访问关闭中
+        # @type WebAccess: Integer
+        # @param ClientAccess: 1 默认值，客户单访问开启，0 客户端访问关闭，2 客户端访问开通中，3 客户端访问关闭中
+        # @type ClientAccess: Integer
+        # @param ExternalAccess: 1 默认值，外网访问开启，0 外网访问关闭，2 外网访问开通中，3 外网访问关闭中
+        # @type ExternalAccess: Integer
 
-        attr_accessor :ResourceId, :ApCode, :SvArgs, :VpcId, :Nodes, :RenewFlag, :ExpireTime, :Status, :ResourceName, :Pid, :CreateTime, :ProductCode, :SubProductCode, :Zone, :Expired, :Deployed, :VpcName, :VpcCidrBlock, :SubnetId, :SubnetName, :CidrBlock, :PublicIpSet, :PrivateIpSet, :ModuleSet, :UsedNodes, :ExtendPoints, :PackageBandwidth, :PackageNode, :LogDeliveryArgs, :ClbSet, :DomainCount, :UsedDomainCount, :Trial, :LogDelivery, :CdcClusterId, :DeployModel, :IntranetAccess, :IntranetPrivateIpSet, :IntranetVpcId, :IntranetVpcCidr
+        attr_accessor :ResourceId, :ApCode, :SvArgs, :VpcId, :Nodes, :RenewFlag, :ExpireTime, :Status, :ResourceName, :Pid, :CreateTime, :ProductCode, :SubProductCode, :Zone, :Expired, :Deployed, :VpcName, :VpcCidrBlock, :SubnetId, :SubnetName, :CidrBlock, :PublicIpSet, :PrivateIpSet, :ModuleSet, :UsedNodes, :ExtendPoints, :PackageBandwidth, :PackageNode, :LogDeliveryArgs, :ClbSet, :DomainCount, :UsedDomainCount, :Trial, :LogDelivery, :CdcClusterId, :DeployModel, :IntranetAccess, :IntranetPrivateIpSet, :IntranetVpcId, :IntranetVpcCidr, :ShareClb, :OpenClbId, :LbVipIsp, :TUICmdPort, :TUIDirectPort, :WebAccess, :ClientAccess, :ExternalAccess
 
-        def initialize(resourceid=nil, apcode=nil, svargs=nil, vpcid=nil, nodes=nil, renewflag=nil, expiretime=nil, status=nil, resourcename=nil, pid=nil, createtime=nil, productcode=nil, subproductcode=nil, zone=nil, expired=nil, deployed=nil, vpcname=nil, vpccidrblock=nil, subnetid=nil, subnetname=nil, cidrblock=nil, publicipset=nil, privateipset=nil, moduleset=nil, usednodes=nil, extendpoints=nil, packagebandwidth=nil, packagenode=nil, logdeliveryargs=nil, clbset=nil, domaincount=nil, useddomaincount=nil, trial=nil, logdelivery=nil, cdcclusterid=nil, deploymodel=nil, intranetaccess=nil, intranetprivateipset=nil, intranetvpcid=nil, intranetvpccidr=nil)
+        def initialize(resourceid=nil, apcode=nil, svargs=nil, vpcid=nil, nodes=nil, renewflag=nil, expiretime=nil, status=nil, resourcename=nil, pid=nil, createtime=nil, productcode=nil, subproductcode=nil, zone=nil, expired=nil, deployed=nil, vpcname=nil, vpccidrblock=nil, subnetid=nil, subnetname=nil, cidrblock=nil, publicipset=nil, privateipset=nil, moduleset=nil, usednodes=nil, extendpoints=nil, packagebandwidth=nil, packagenode=nil, logdeliveryargs=nil, clbset=nil, domaincount=nil, useddomaincount=nil, trial=nil, logdelivery=nil, cdcclusterid=nil, deploymodel=nil, intranetaccess=nil, intranetprivateipset=nil, intranetvpcid=nil, intranetvpccidr=nil, shareclb=nil, openclbid=nil, lbvipisp=nil, tuicmdport=nil, tuidirectport=nil, webaccess=nil, clientaccess=nil, externalaccess=nil)
           @ResourceId = resourceid
           @ApCode = apcode
           @SvArgs = svargs
@@ -4746,6 +4828,14 @@ module TencentCloud
           @IntranetPrivateIpSet = intranetprivateipset
           @IntranetVpcId = intranetvpcid
           @IntranetVpcCidr = intranetvpccidr
+          @ShareClb = shareclb
+          @OpenClbId = openclbid
+          @LbVipIsp = lbvipisp
+          @TUICmdPort = tuicmdport
+          @TUIDirectPort = tuidirectport
+          @WebAccess = webaccess
+          @ClientAccess = clientaccess
+          @ExternalAccess = externalaccess
         end
 
         def deserialize(params)
@@ -4796,6 +4886,14 @@ module TencentCloud
           @IntranetPrivateIpSet = params['IntranetPrivateIpSet']
           @IntranetVpcId = params['IntranetVpcId']
           @IntranetVpcCidr = params['IntranetVpcCidr']
+          @ShareClb = params['ShareClb']
+          @OpenClbId = params['OpenClbId']
+          @LbVipIsp = params['LbVipIsp']
+          @TUICmdPort = params['TUICmdPort']
+          @TUIDirectPort = params['TUIDirectPort']
+          @WebAccess = params['WebAccess']
+          @ClientAccess = params['ClientAccess']
+          @ExternalAccess = params['ExternalAccess']
         end
       end
 

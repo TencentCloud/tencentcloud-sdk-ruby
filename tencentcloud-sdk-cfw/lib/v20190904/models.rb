@@ -3388,18 +3388,22 @@ module TencentCloud
       class DescribeEnterpriseSGRuleProgressResponse < TencentCloud::Common::AbstractModel
         # @param Progress: 0-100，代表下发进度百分比
         # @type Progress: Integer
+        # @param UserStopped: 是否用户中止 用户中止返回true
+        # @type UserStopped: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Progress, :RequestId
+        attr_accessor :Progress, :UserStopped, :RequestId
 
-        def initialize(progress=nil, requestid=nil)
+        def initialize(progress=nil, userstopped=nil, requestid=nil)
           @Progress = progress
+          @UserStopped = userstopped
           @RequestId = requestid
         end
 
         def deserialize(params)
           @Progress = params['Progress']
+          @UserStopped = params['UserStopped']
           @RequestId = params['RequestId']
         end
       end
@@ -9088,7 +9092,7 @@ module TencentCloud
         # @type Description: String
         # @param OrderIndex: 规则顺序，-1表示最低，1表示最高，请勿和外层Type冲突（和外层的Type配合使用，当中间插入时，指定添加位置）
         # @type OrderIndex: String
-        # @param Protocol: 协议；TCP/UDP/ICMP/ANY
+        # @param Protocol: 协议；TCP/UDP/ICMP/ICMPv6/ANY
         # @type Protocol: String
         # @param Port: 访问控制策略的端口。取值：
         # -1/-1：全部端口

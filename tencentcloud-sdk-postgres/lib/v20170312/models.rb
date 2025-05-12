@@ -6433,13 +6433,10 @@ module TencentCloud
       # 用于修改数据库对象的权限，其中包含了数据库对象描述的数据结构、需要修改的权限列表以及修改的类型等。
       class ModifyPrivilege < TencentCloud::Common::AbstractModel
         # @param DatabasePrivilege: 要修改的数据库对象及权限列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DatabasePrivilege: :class:`Tencentcloud::Postgres.v20170312.models.DatabasePrivilege`
         # @param ModifyType: 修改的方式，当前仅支持grantObject、revokeObject、alterRole。grantObject代表授权、revokeObject代表收回权、alterRole代表修改账号类型。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ModifyType: String
         # @param IsCascade: 当ModifyType为revokeObject才需要此参数，参数为true时，撤销权限会级联撤销。默认为false。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsCascade: Boolean
 
         attr_accessor :DatabasePrivilege, :ModifyType, :IsCascade

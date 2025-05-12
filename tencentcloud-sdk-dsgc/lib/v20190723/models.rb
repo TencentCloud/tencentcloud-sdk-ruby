@@ -8820,6 +8820,8 @@ module TencentCloud
 
       # 分类分级任务相关信息
       class DspaDiscoveryTask < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务ID
+        # @type TaskId: Integer
         # @param Name: 任务名称
         # @type Name: String
         # @param Description: 任务描述
@@ -8844,9 +8846,10 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ComplianceUpdate: Boolean
 
-        attr_accessor :Name, :Description, :Period, :Plan, :Enable, :DataSourceInfo, :GeneralRuleSetEnable, :Result, :TimingStartTime, :ComplianceUpdate
+        attr_accessor :TaskId, :Name, :Description, :Period, :Plan, :Enable, :DataSourceInfo, :GeneralRuleSetEnable, :Result, :TimingStartTime, :ComplianceUpdate
 
-        def initialize(name=nil, description=nil, period=nil, plan=nil, enable=nil, datasourceinfo=nil, generalrulesetenable=nil, result=nil, timingstarttime=nil, complianceupdate=nil)
+        def initialize(taskid=nil, name=nil, description=nil, period=nil, plan=nil, enable=nil, datasourceinfo=nil, generalrulesetenable=nil, result=nil, timingstarttime=nil, complianceupdate=nil)
+          @TaskId = taskid
           @Name = name
           @Description = description
           @Period = period
@@ -8860,6 +8863,7 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @TaskId = params['TaskId']
           @Name = params['Name']
           @Description = params['Description']
           @Period = params['Period']

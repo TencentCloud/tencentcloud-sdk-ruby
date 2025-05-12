@@ -1203,9 +1203,9 @@ module TencentCloud
         # 1. 页码编号是从<font color="red">1</font>开始编号的。
         # 2.  <font color="red">页面编号不能超过PDF文件的页码总数</font>。如果指定的页码超过了PDF文件的页码总数，在填写和签署时会出现错误，导致无法正常进行操作。
         # @type ComponentPage: Integer
-        # @param ComponentPosX: **在绝对定位方式和关键字定位方式下**，可以指定控件横向位置的位置，单位为pt（点）。
+        # @param ComponentPosX: **在绝对定位方式下**，可以指定控件横向位置的位置，单位为pt（点）。
         # @type ComponentPosX: Float
-        # @param ComponentPosY: **在绝对定位方式和关键字定位方式下**，可以指定控件纵向位置的位置，单位为pt（点）。
+        # @param ComponentPosY: **在绝对定位方式下**，可以指定控件纵向位置的位置，单位为pt（点）。
         # @type ComponentPosY: Float
         # @param FileIndex: <font color="red">【暂未使用】</font>控件所属文件的序号（取值为：0-N）。 目前单文件的情况下，值一直为0
         # @type FileIndex: Integer
@@ -5022,10 +5022,12 @@ module TencentCloud
         # 您可以通过查询合同接口（DescribeFlowInfo）查询此参数。
         # 若传了此参数，则可以不传 UserId, Name, Mobile等参数
         # @type RecipientIds: Array
+        # @param FlowGroupId: 合同组Id，传入此参数则可以不传FlowIds
+        # @type FlowGroupId: String
 
-        attr_accessor :Operator, :FlowIds, :Agent, :UserId, :Name, :Mobile, :RecipientIds
+        attr_accessor :Operator, :FlowIds, :Agent, :UserId, :Name, :Mobile, :RecipientIds, :FlowGroupId
 
-        def initialize(operator=nil, flowids=nil, agent=nil, userid=nil, name=nil, mobile=nil, recipientids=nil)
+        def initialize(operator=nil, flowids=nil, agent=nil, userid=nil, name=nil, mobile=nil, recipientids=nil, flowgroupid=nil)
           @Operator = operator
           @FlowIds = flowids
           @Agent = agent
@@ -5033,6 +5035,7 @@ module TencentCloud
           @Name = name
           @Mobile = mobile
           @RecipientIds = recipientids
+          @FlowGroupId = flowgroupid
         end
 
         def deserialize(params)
@@ -5049,6 +5052,7 @@ module TencentCloud
           @Name = params['Name']
           @Mobile = params['Mobile']
           @RecipientIds = params['RecipientIds']
+          @FlowGroupId = params['FlowGroupId']
         end
       end
 
@@ -5371,6 +5375,77 @@ module TencentCloud
           @SerialNumber = params['SerialNumber']
           @ValidFrom = params['ValidFrom']
           @ValidTo = params['ValidTo']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreatePrepareFlowGroup请求参数结构体
+      class CreatePrepareFlowGroupRequest < TencentCloud::Common::AbstractModel
+        # @param Operator: 执行本接口操作的员工信息。
+        # 注: `在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。`
+        # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
+        # @param FlowGroupName: 合同（流程）组名称（可自定义此名称），长度不能超过200，只能由中文、字母、数字和下划线组成。
+        # @type FlowGroupName: String
+        # @param FlowGroupInfos: 合同（流程）组的子合同信息，支持2-50个子合同
+        # @type FlowGroupInfos: Array
+        # @param ResourceType: 资源类型，取值有： <ul><li> **1**：模板</li> <li> **2**：文件</li></ul>
+        # @type ResourceType: Integer
+        # @param Agent: 代理企业和员工的信息。
+        # 在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
+        # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
+
+        attr_accessor :Operator, :FlowGroupName, :FlowGroupInfos, :ResourceType, :Agent
+
+        def initialize(operator=nil, flowgroupname=nil, flowgroupinfos=nil, resourcetype=nil, agent=nil)
+          @Operator = operator
+          @FlowGroupName = flowgroupname
+          @FlowGroupInfos = flowgroupinfos
+          @ResourceType = resourcetype
+          @Agent = agent
+        end
+
+        def deserialize(params)
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
+          @FlowGroupName = params['FlowGroupName']
+          unless params['FlowGroupInfos'].nil?
+            @FlowGroupInfos = []
+            params['FlowGroupInfos'].each do |i|
+              flowgroupinfo_tmp = FlowGroupInfo.new
+              flowgroupinfo_tmp.deserialize(i)
+              @FlowGroupInfos << flowgroupinfo_tmp
+            end
+          end
+          @ResourceType = params['ResourceType']
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
+        end
+      end
+
+      # CreatePrepareFlowGroup返回参数结构体
+      class CreatePrepareFlowGroupResponse < TencentCloud::Common::AbstractModel
+        # @param FlowGroupId: 合同(流程)组的合同组Id
+        # @type FlowGroupId: String
+        # @param PrepareUrl: 嵌入式合同组发起链接
+        # @type PrepareUrl: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FlowGroupId, :PrepareUrl, :RequestId
+
+        def initialize(flowgroupid=nil, prepareurl=nil, requestid=nil)
+          @FlowGroupId = flowgroupid
+          @PrepareUrl = prepareurl
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FlowGroupId = params['FlowGroupId']
+          @PrepareUrl = params['PrepareUrl']
           @RequestId = params['RequestId']
         end
       end

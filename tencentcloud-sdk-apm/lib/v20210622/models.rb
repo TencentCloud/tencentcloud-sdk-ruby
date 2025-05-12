@@ -1449,10 +1449,14 @@ module TencentCloud
         # @type IsRemoteCommandExecutionAnalysis: Integer
         # @param IsMemoryHijackingAnalysis: 是否开启内存马检测
         # @type IsMemoryHijackingAnalysis: Integer
+        # @param LogIndexType: 0=全文索引，1=键值索引
+        # @type LogIndexType: Integer
+        # @param LogTraceIdKey: traceId的索引key
+        # @type LogTraceIdKey: String
 
-        attr_accessor :InstanceId, :Name, :Tags, :Description, :TraceDuration, :OpenBilling, :SpanDailyCounters, :ErrRateThreshold, :SampleRate, :ErrorSample, :SlowRequestSavedThreshold, :IsRelatedLog, :LogRegion, :LogTopicID, :LogSet, :LogSource, :CustomShowTags, :PayMode, :ResponseDurationWarningThreshold, :Free, :IsRelatedDashboard, :DashboardTopicID, :IsSqlInjectionAnalysis, :IsInstrumentationVulnerabilityScan, :IsRemoteCommandExecutionAnalysis, :IsMemoryHijackingAnalysis
+        attr_accessor :InstanceId, :Name, :Tags, :Description, :TraceDuration, :OpenBilling, :SpanDailyCounters, :ErrRateThreshold, :SampleRate, :ErrorSample, :SlowRequestSavedThreshold, :IsRelatedLog, :LogRegion, :LogTopicID, :LogSet, :LogSource, :CustomShowTags, :PayMode, :ResponseDurationWarningThreshold, :Free, :IsRelatedDashboard, :DashboardTopicID, :IsSqlInjectionAnalysis, :IsInstrumentationVulnerabilityScan, :IsRemoteCommandExecutionAnalysis, :IsMemoryHijackingAnalysis, :LogIndexType, :LogTraceIdKey
 
-        def initialize(instanceid=nil, name=nil, tags=nil, description=nil, traceduration=nil, openbilling=nil, spandailycounters=nil, errratethreshold=nil, samplerate=nil, errorsample=nil, slowrequestsavedthreshold=nil, isrelatedlog=nil, logregion=nil, logtopicid=nil, logset=nil, logsource=nil, customshowtags=nil, paymode=nil, responsedurationwarningthreshold=nil, free=nil, isrelateddashboard=nil, dashboardtopicid=nil, issqlinjectionanalysis=nil, isinstrumentationvulnerabilityscan=nil, isremotecommandexecutionanalysis=nil, ismemoryhijackinganalysis=nil)
+        def initialize(instanceid=nil, name=nil, tags=nil, description=nil, traceduration=nil, openbilling=nil, spandailycounters=nil, errratethreshold=nil, samplerate=nil, errorsample=nil, slowrequestsavedthreshold=nil, isrelatedlog=nil, logregion=nil, logtopicid=nil, logset=nil, logsource=nil, customshowtags=nil, paymode=nil, responsedurationwarningthreshold=nil, free=nil, isrelateddashboard=nil, dashboardtopicid=nil, issqlinjectionanalysis=nil, isinstrumentationvulnerabilityscan=nil, isremotecommandexecutionanalysis=nil, ismemoryhijackinganalysis=nil, logindextype=nil, logtraceidkey=nil)
           @InstanceId = instanceid
           @Name = name
           @Tags = tags
@@ -1479,6 +1483,8 @@ module TencentCloud
           @IsInstrumentationVulnerabilityScan = isinstrumentationvulnerabilityscan
           @IsRemoteCommandExecutionAnalysis = isremotecommandexecutionanalysis
           @IsMemoryHijackingAnalysis = ismemoryhijackinganalysis
+          @LogIndexType = logindextype
+          @LogTraceIdKey = logtraceidkey
         end
 
         def deserialize(params)
@@ -1515,6 +1521,8 @@ module TencentCloud
           @IsInstrumentationVulnerabilityScan = params['IsInstrumentationVulnerabilityScan']
           @IsRemoteCommandExecutionAnalysis = params['IsRemoteCommandExecutionAnalysis']
           @IsMemoryHijackingAnalysis = params['IsMemoryHijackingAnalysis']
+          @LogIndexType = params['LogIndexType']
+          @LogTraceIdKey = params['LogTraceIdKey']
         end
       end
 

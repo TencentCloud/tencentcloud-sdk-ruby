@@ -5035,7 +5035,7 @@ module TencentCloud
         # @type InstanceId: String
         # @param Offset: 偏移量，默认值 0
         # @type Offset: Integer
-        # @param Limit: 一页限制,moren
+        # @param Limit: 一页限制，默认值 20
         # @type Limit: Integer
         # @param NodeName: 模糊搜索节点名字
         # @type NodeName: String
@@ -9204,9 +9204,9 @@ module TencentCloud
       class ModifyRabbitMQVirtualHostRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例 ID，形如amqp-xxxxxxxx。有效的 InstanceId 可通过登录 [TDMQ RabbitMQ 控制台](https://console.cloud.tencent.com/trabbitmq/cluster?rid=1)查询。
         # @type InstanceId: String
-        # @param VirtualHost: vhost名
+        # @param VirtualHost: VirtualHost 名称，形如 testvhost。有效的 VirtualHost 名称可通过登录 [TDMQ RabbitMQ 控制台](https://console.cloud.tencent.com/trabbitmq/cluster?rid=1)查询，在左侧导航栏点击 Vhost，并在 Vhost 列表中找到Vhost名称。
         # @type VirtualHost: String
-        # @param Description: VirtualHost 名称，形如 testvhost。有效的 VirtualHost 名称可通过登录 [TDMQ RabbitMQ 控制台](https://console.cloud.tencent.com/trabbitmq/cluster?rid=1)查询，在左侧导航栏点击 Vhost，并在 Vhost 列表中找到Vhost名称。
+        # @param Description: Virtual Host 描述
         # @type Description: String
         # @param TraceFlag: 消息轨迹开关,true打开,false关闭
         # @type TraceFlag: Boolean

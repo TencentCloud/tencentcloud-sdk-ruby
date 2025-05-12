@@ -1735,6 +1735,34 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 接口（CreatePrepareFlowGroup）用于创建嵌入式合同组签署流程。
+
+        # - 该接口当前仅支持文件发起
+        # - 该接口能力和CreateFlowGroupByFiles，~~CreateFlowGroupByTemplates~~保持一致。
+        # - 返回的FlowGroupId 为临时id，只有在页面内成功发起后FlowGroupId才会有效。
+
+        # @param request: Request instance for CreatePrepareFlowGroup.
+        # @type request: :class:`Tencentcloud::ess::V20201111::CreatePrepareFlowGroupRequest`
+        # @rtype: :class:`Tencentcloud::ess::V20201111::CreatePrepareFlowGroupResponse`
+        def CreatePrepareFlowGroup(request)
+          body = send_request('CreatePrepareFlowGroup', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreatePrepareFlowGroupResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（CreatePreparedPersonalEsign）用于创建导入个人印章（处方单场景专用，使用此接口请与客户经理确认）。
 
         # @param request: Request instance for CreatePreparedPersonalEsign.

@@ -531,13 +531,15 @@ module TencentCloud
         # @type HotwordList: String
         # @param KeyWordLibIdList: 关键词识别ID列表，默认空为不进行识别，最多10个
         # @type KeyWordLibIdList: Array
+        # @param ReplaceTextId: 替换词汇表id,  适用于热词和自学习场景也无法解决的极端case词组,  会对识别结果强制替换。具体可参考[配置控制台](https://console.cloud.tencent.com/asr/replaceword);强制替换功能可能会影响正常识别结果，请谨慎使用
+        # @type ReplaceTextId: String
 
-        attr_accessor :EngineModelType, :ChannelNum, :ResTextFormat, :SourceType, :Data, :DataLen, :Url, :CallbackUrl, :SpeakerDiarization, :SpeakerNumber, :HotwordId, :ReinforceHotword, :CustomizationId, :EmotionRecognition, :EmotionalEnergy, :ConvertNumMode, :FilterDirty, :FilterPunc, :FilterModal, :SentenceMaxLength, :Extra, :HotwordList, :KeyWordLibIdList
+        attr_accessor :EngineModelType, :ChannelNum, :ResTextFormat, :SourceType, :Data, :DataLen, :Url, :CallbackUrl, :SpeakerDiarization, :SpeakerNumber, :HotwordId, :ReinforceHotword, :CustomizationId, :EmotionRecognition, :EmotionalEnergy, :ConvertNumMode, :FilterDirty, :FilterPunc, :FilterModal, :SentenceMaxLength, :Extra, :HotwordList, :KeyWordLibIdList, :ReplaceTextId
         extend Gem::Deprecate
         deprecate :ReinforceHotword, :none, 2025, 5
         deprecate :ReinforceHotword=, :none, 2025, 5
 
-        def initialize(enginemodeltype=nil, channelnum=nil, restextformat=nil, sourcetype=nil, data=nil, datalen=nil, url=nil, callbackurl=nil, speakerdiarization=nil, speakernumber=nil, hotwordid=nil, reinforcehotword=nil, customizationid=nil, emotionrecognition=nil, emotionalenergy=nil, convertnummode=nil, filterdirty=nil, filterpunc=nil, filtermodal=nil, sentencemaxlength=nil, extra=nil, hotwordlist=nil, keywordlibidlist=nil)
+        def initialize(enginemodeltype=nil, channelnum=nil, restextformat=nil, sourcetype=nil, data=nil, datalen=nil, url=nil, callbackurl=nil, speakerdiarization=nil, speakernumber=nil, hotwordid=nil, reinforcehotword=nil, customizationid=nil, emotionrecognition=nil, emotionalenergy=nil, convertnummode=nil, filterdirty=nil, filterpunc=nil, filtermodal=nil, sentencemaxlength=nil, extra=nil, hotwordlist=nil, keywordlibidlist=nil, replacetextid=nil)
           @EngineModelType = enginemodeltype
           @ChannelNum = channelnum
           @ResTextFormat = restextformat
@@ -561,6 +563,7 @@ module TencentCloud
           @Extra = extra
           @HotwordList = hotwordlist
           @KeyWordLibIdList = keywordlibidlist
+          @ReplaceTextId = replacetextid
         end
 
         def deserialize(params)
@@ -587,6 +590,7 @@ module TencentCloud
           @Extra = params['Extra']
           @HotwordList = params['HotwordList']
           @KeyWordLibIdList = params['KeyWordLibIdList']
+          @ReplaceTextId = params['ReplaceTextId']
         end
       end
 

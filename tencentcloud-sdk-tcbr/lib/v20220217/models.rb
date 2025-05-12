@@ -1063,10 +1063,16 @@ module TencentCloud
         # @type InternalAccess: String
         # @param InternalDomain: 内网域名
         # @type InternalDomain: String
+        # @param OperationMode: 运行模式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OperationMode: String
+        # @param TimerScale: 定时扩缩容配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TimerScale: Array
 
-        attr_accessor :EnvId, :ServerName, :OpenAccessTypes, :Cpu, :Mem, :MinNum, :MaxNum, :PolicyDetails, :CustomLogs, :EnvParams, :InitialDelaySeconds, :CreateTime, :Port, :HasDockerfile, :Dockerfile, :BuildDir, :LogType, :LogSetId, :LogTopicId, :LogParseType, :Tag, :InternalAccess, :InternalDomain
+        attr_accessor :EnvId, :ServerName, :OpenAccessTypes, :Cpu, :Mem, :MinNum, :MaxNum, :PolicyDetails, :CustomLogs, :EnvParams, :InitialDelaySeconds, :CreateTime, :Port, :HasDockerfile, :Dockerfile, :BuildDir, :LogType, :LogSetId, :LogTopicId, :LogParseType, :Tag, :InternalAccess, :InternalDomain, :OperationMode, :TimerScale
 
-        def initialize(envid=nil, servername=nil, openaccesstypes=nil, cpu=nil, mem=nil, minnum=nil, maxnum=nil, policydetails=nil, customlogs=nil, envparams=nil, initialdelayseconds=nil, createtime=nil, port=nil, hasdockerfile=nil, dockerfile=nil, builddir=nil, logtype=nil, logsetid=nil, logtopicid=nil, logparsetype=nil, tag=nil, internalaccess=nil, internaldomain=nil)
+        def initialize(envid=nil, servername=nil, openaccesstypes=nil, cpu=nil, mem=nil, minnum=nil, maxnum=nil, policydetails=nil, customlogs=nil, envparams=nil, initialdelayseconds=nil, createtime=nil, port=nil, hasdockerfile=nil, dockerfile=nil, builddir=nil, logtype=nil, logsetid=nil, logtopicid=nil, logparsetype=nil, tag=nil, internalaccess=nil, internaldomain=nil, operationmode=nil, timerscale=nil)
           @EnvId = envid
           @ServerName = servername
           @OpenAccessTypes = openaccesstypes
@@ -1090,6 +1096,8 @@ module TencentCloud
           @Tag = tag
           @InternalAccess = internalaccess
           @InternalDomain = internaldomain
+          @OperationMode = operationmode
+          @TimerScale = timerscale
         end
 
         def deserialize(params)
@@ -1123,6 +1131,15 @@ module TencentCloud
           @Tag = params['Tag']
           @InternalAccess = params['InternalAccess']
           @InternalDomain = params['InternalDomain']
+          @OperationMode = params['OperationMode']
+          unless params['TimerScale'].nil?
+            @TimerScale = []
+            params['TimerScale'].each do |i|
+              timerscale_tmp = TimerScale.new
+              timerscale_tmp.deserialize(i)
+              @TimerScale << timerscale_tmp
+            end
+          end
         end
       end
 
@@ -1374,6 +1391,48 @@ module TencentCloud
           @EndTime = params['EndTime']
           @CostTime = params['CostTime']
           @FailReason = params['FailReason']
+        end
+      end
+
+      # 定时扩缩容配置
+      class TimerScale < TencentCloud::Common::AbstractModel
+        # @param CycleType: 循环类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CycleType: String
+        # @param StartDate: 循环起始
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StartDate: String
+        # @param EndDate: 循环结束
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EndDate: String
+        # @param StartTime: 起始时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StartTime: String
+        # @param EndTime: 结束时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EndTime: String
+        # @param ReplicaNum: 副本个数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReplicaNum: Integer
+
+        attr_accessor :CycleType, :StartDate, :EndDate, :StartTime, :EndTime, :ReplicaNum
+
+        def initialize(cycletype=nil, startdate=nil, enddate=nil, starttime=nil, endtime=nil, replicanum=nil)
+          @CycleType = cycletype
+          @StartDate = startdate
+          @EndDate = enddate
+          @StartTime = starttime
+          @EndTime = endtime
+          @ReplicaNum = replicanum
+        end
+
+        def deserialize(params)
+          @CycleType = params['CycleType']
+          @StartDate = params['StartDate']
+          @EndDate = params['EndDate']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @ReplicaNum = params['ReplicaNum']
         end
       end
 

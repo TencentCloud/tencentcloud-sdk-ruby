@@ -2286,10 +2286,12 @@ module TencentCloud
         # @type SessionApplied: Array
         # @param CreateTime: 创建时间
         # @type CreateTime: Integer
+        # @param LimitMethod: 限频方式
+        # @type LimitMethod: String
 
-        attr_accessor :Name, :Status, :Advance, :Limit, :Interval, :Url, :MatchFunc, :ActionType, :Priority, :ValidTime, :TsVersion, :Options, :RuleId, :EventId, :SessionApplied, :CreateTime
+        attr_accessor :Name, :Status, :Advance, :Limit, :Interval, :Url, :MatchFunc, :ActionType, :Priority, :ValidTime, :TsVersion, :Options, :RuleId, :EventId, :SessionApplied, :CreateTime, :LimitMethod
 
-        def initialize(name=nil, status=nil, advance=nil, limit=nil, interval=nil, url=nil, matchfunc=nil, actiontype=nil, priority=nil, validtime=nil, tsversion=nil, options=nil, ruleid=nil, eventid=nil, sessionapplied=nil, createtime=nil)
+        def initialize(name=nil, status=nil, advance=nil, limit=nil, interval=nil, url=nil, matchfunc=nil, actiontype=nil, priority=nil, validtime=nil, tsversion=nil, options=nil, ruleid=nil, eventid=nil, sessionapplied=nil, createtime=nil, limitmethod=nil)
           @Name = name
           @Status = status
           @Advance = advance
@@ -2306,6 +2308,7 @@ module TencentCloud
           @EventId = eventid
           @SessionApplied = sessionapplied
           @CreateTime = createtime
+          @LimitMethod = limitmethod
         end
 
         def deserialize(params)
@@ -2325,6 +2328,7 @@ module TencentCloud
           @EventId = params['EventId']
           @SessionApplied = params['SessionApplied']
           @CreateTime = params['CreateTime']
+          @LimitMethod = params['LimitMethod']
         end
       end
 
@@ -2573,10 +2577,14 @@ module TencentCloud
         # @type ObjectFlowMode: Integer
         # @param NumericalVpcId: 数值形式的私有网络 ID
         # @type NumericalVpcId: Integer
+        # @param ModifyTime: 修改时间
+        # @type ModifyTime: String
+        # @param AddTime: 创建时间
+        # @type AddTime: String
 
-        attr_accessor :ObjectId, :InstanceId, :InstanceName, :PreciseDomains, :Status, :ClsStatus, :VirtualDomain, :ObjectName, :PublicIp, :PrivateIp, :VpcName, :Vpc, :InstanceLevel, :PostCLSStatus, :PostCKafkaStatus, :Type, :Region, :Proxy, :IpHeaders, :BotStatus, :ApiStatus, :ObjectFlowMode, :NumericalVpcId
+        attr_accessor :ObjectId, :InstanceId, :InstanceName, :PreciseDomains, :Status, :ClsStatus, :VirtualDomain, :ObjectName, :PublicIp, :PrivateIp, :VpcName, :Vpc, :InstanceLevel, :PostCLSStatus, :PostCKafkaStatus, :Type, :Region, :Proxy, :IpHeaders, :BotStatus, :ApiStatus, :ObjectFlowMode, :NumericalVpcId, :ModifyTime, :AddTime
 
-        def initialize(objectid=nil, instanceid=nil, instancename=nil, precisedomains=nil, status=nil, clsstatus=nil, virtualdomain=nil, objectname=nil, publicip=nil, privateip=nil, vpcname=nil, vpc=nil, instancelevel=nil, postclsstatus=nil, postckafkastatus=nil, type=nil, region=nil, proxy=nil, ipheaders=nil, botstatus=nil, apistatus=nil, objectflowmode=nil, numericalvpcid=nil)
+        def initialize(objectid=nil, instanceid=nil, instancename=nil, precisedomains=nil, status=nil, clsstatus=nil, virtualdomain=nil, objectname=nil, publicip=nil, privateip=nil, vpcname=nil, vpc=nil, instancelevel=nil, postclsstatus=nil, postckafkastatus=nil, type=nil, region=nil, proxy=nil, ipheaders=nil, botstatus=nil, apistatus=nil, objectflowmode=nil, numericalvpcid=nil, modifytime=nil, addtime=nil)
           @ObjectId = objectid
           @InstanceId = instanceid
           @InstanceName = instancename
@@ -2600,6 +2608,8 @@ module TencentCloud
           @ApiStatus = apistatus
           @ObjectFlowMode = objectflowmode
           @NumericalVpcId = numericalvpcid
+          @ModifyTime = modifytime
+          @AddTime = addtime
         end
 
         def deserialize(params)
@@ -2626,6 +2636,8 @@ module TencentCloud
           @ApiStatus = params['ApiStatus']
           @ObjectFlowMode = params['ObjectFlowMode']
           @NumericalVpcId = params['NumericalVpcId']
+          @ModifyTime = params['ModifyTime']
+          @AddTime = params['AddTime']
         end
       end
 
@@ -2994,7 +3006,7 @@ module TencentCloud
 
       # CreateHost请求参数结构体
       class CreateHostRequest < TencentCloud::Common::AbstractModel
-        # @param Host: 防护域名配置信息
+        # @param Host: 防护域名配置信息。内网负载均衡器必须携带对应的NumericalVpcId。
         # @type Host: :class:`Tencentcloud::Waf.v20180125.models.HostRecord`
         # @param InstanceID: 实例id
         # @type InstanceID: String
@@ -5138,10 +5150,12 @@ module TencentCloud
         # @type IsDefault: Boolean
         # @param IsValid: 是否仅显示生效场景
         # @type IsValid: Boolean
+        # @param SceneId: 要查询的场景id
+        # @type SceneId: String
 
-        attr_accessor :Domain, :Limit, :Offset, :BusinessType, :SceneName, :IsDefault, :IsValid
+        attr_accessor :Domain, :Limit, :Offset, :BusinessType, :SceneName, :IsDefault, :IsValid, :SceneId
 
-        def initialize(domain=nil, limit=nil, offset=nil, businesstype=nil, scenename=nil, isdefault=nil, isvalid=nil)
+        def initialize(domain=nil, limit=nil, offset=nil, businesstype=nil, scenename=nil, isdefault=nil, isvalid=nil, sceneid=nil)
           @Domain = domain
           @Limit = limit
           @Offset = offset
@@ -5149,6 +5163,7 @@ module TencentCloud
           @SceneName = scenename
           @IsDefault = isdefault
           @IsValid = isvalid
+          @SceneId = sceneid
         end
 
         def deserialize(params)
@@ -5159,6 +5174,7 @@ module TencentCloud
           @SceneName = params['SceneName']
           @IsDefault = params['IsDefault']
           @IsValid = params['IsValid']
+          @SceneId = params['SceneId']
         end
       end
 
@@ -5222,7 +5238,6 @@ module TencentCloud
         # @param ValidSceneCount: 生效场景数
         # @type ValidSceneCount: Integer
         # @param CurrentGlobalScene: 当前开启的、匹配范围为全局、优先级最高的场景
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CurrentGlobalScene: :class:`Tencentcloud::Waf.v20180125.models.GlobalSceneInfo`
         # @param CustomRuleNums: 自定义规则总数，不包括BOT白名单
         # @type CustomRuleNums: Integer
@@ -5275,10 +5290,12 @@ module TencentCloud
         # @type TimerType: Integer
         # @param ValidStatus: 0-全部 1-生效中 2-已过期
         # @type ValidStatus: Integer
+        # @param RuleId: 规则id
+        # @type RuleId: String
 
-        attr_accessor :Domain, :Skip, :Limit, :Sort, :SceneId, :Operate, :Name, :VersionFlag, :TimerType, :ValidStatus
+        attr_accessor :Domain, :Skip, :Limit, :Sort, :SceneId, :Operate, :Name, :VersionFlag, :TimerType, :ValidStatus, :RuleId
 
-        def initialize(domain=nil, skip=nil, limit=nil, sort=nil, sceneid=nil, operate=nil, name=nil, versionflag=nil, timertype=nil, validstatus=nil)
+        def initialize(domain=nil, skip=nil, limit=nil, sort=nil, sceneid=nil, operate=nil, name=nil, versionflag=nil, timertype=nil, validstatus=nil, ruleid=nil)
           @Domain = domain
           @Skip = skip
           @Limit = limit
@@ -5289,6 +5306,7 @@ module TencentCloud
           @VersionFlag = versionflag
           @TimerType = timertype
           @ValidStatus = validstatus
+          @RuleId = ruleid
         end
 
         def deserialize(params)
@@ -5302,13 +5320,13 @@ module TencentCloud
           @VersionFlag = params['VersionFlag']
           @TimerType = params['TimerType']
           @ValidStatus = params['ValidStatus']
+          @RuleId = params['RuleId']
         end
       end
 
       # DescribeBotSceneUCBRule返回参数结构体
       class DescribeBotSceneUCBRuleResponse < TencentCloud::Common::AbstractModel
         # @param Data: 返回数据包
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: :class:`Tencentcloud::Waf.v20180125.models.DescribeBotUCBRuleRsp`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5521,7 +5539,7 @@ module TencentCloud
       class DescribeCertificateVerifyResultRequest < TencentCloud::Common::AbstractModel
         # @param Domain: 域名
         # @type Domain: String
-        # @param CertType: 证书类型。 0：不检测国际标准证书 1：证书来源为自有证书 2：证书来源为托管证书
+        # @param CertType: 证书类型，此参数和GmCertType不可同时为0。 0：不检测国际标准证书 1：证书来源为自有证书 2：证书来源为托管证书
         # @type CertType: Integer
         # @param Certificate: CertType为1时，需要填充此参数，表示自有证书的证书链
         # @type Certificate: String
@@ -5529,7 +5547,7 @@ module TencentCloud
         # @type CertID: String
         # @param PrivateKey: CertType为1时，需要填充此参数，表示自有证书的私钥
         # @type PrivateKey: String
-        # @param GmCertType: 国密证书类型。0：不检测国密证书 1：证书来源为自有国密证书 2：证书来源为托管国密证书
+        # @param GmCertType: 国密证书类型，此参数和CertType不可同时为0。0：不检测国密证书 1：证书来源为自有国密证书 2：证书来源为托管国密证书
         # @type GmCertType: Integer
         # @param GmCert: GmCertType为1时，需要填充此参数，表示自有国密证书的证书链
         # @type GmCert: String
@@ -6944,11 +6962,17 @@ module TencentCloud
       class DescribeObjectsRequest < TencentCloud::Common::AbstractModel
         # @param Filters: 支持的过滤器:	ObjectId: clb实例ID	VIP: clb实例的公网IP	InstanceId: waf实例ID	Domain: 精准域名	Status: waf防护开关状态: 0关闭，1开启	ClsStatus: waf日志开关: 0关闭，1开启
         # @type Filters: Array
+        # @param Order: 排序方式，支持asc或者desc
+        # @type Order: String
+        # @param By: 根据哪个字段排序
+        # @type By: String
 
-        attr_accessor :Filters
+        attr_accessor :Filters, :Order, :By
 
-        def initialize(filters=nil)
+        def initialize(filters=nil, order=nil, by=nil)
           @Filters = filters
+          @Order = order
+          @By = by
         end
 
         def deserialize(params)
@@ -6960,6 +6984,8 @@ module TencentCloud
               @Filters << filtersitemnew_tmp
             end
           end
+          @Order = params['Order']
+          @By = params['By']
         end
       end
 
@@ -10205,10 +10231,12 @@ module TencentCloud
         # @type BlockPageId: Integer
         # @param ActionList: 当Action=intercept时，此字段必填
         # @type ActionList: Array
+        # @param DelayTime: 惩罚时间
+        # @type DelayTime: Integer
 
-        attr_accessor :Domain, :Name, :Rule, :Action, :OnOff, :RuleType, :Prior, :Timestamp, :Label, :Id, :SceneId, :ValidTime, :Appid, :AdditionArg, :Desc, :RuleId, :PreDefine, :JobType, :JobDateTime, :ExpireTime, :ValidStatus, :BlockPageId, :ActionList
+        attr_accessor :Domain, :Name, :Rule, :Action, :OnOff, :RuleType, :Prior, :Timestamp, :Label, :Id, :SceneId, :ValidTime, :Appid, :AdditionArg, :Desc, :RuleId, :PreDefine, :JobType, :JobDateTime, :ExpireTime, :ValidStatus, :BlockPageId, :ActionList, :DelayTime
 
-        def initialize(domain=nil, name=nil, rule=nil, action=nil, onoff=nil, ruletype=nil, prior=nil, timestamp=nil, label=nil, id=nil, sceneid=nil, validtime=nil, appid=nil, additionarg=nil, desc=nil, ruleid=nil, predefine=nil, jobtype=nil, jobdatetime=nil, expiretime=nil, validstatus=nil, blockpageid=nil, actionlist=nil)
+        def initialize(domain=nil, name=nil, rule=nil, action=nil, onoff=nil, ruletype=nil, prior=nil, timestamp=nil, label=nil, id=nil, sceneid=nil, validtime=nil, appid=nil, additionarg=nil, desc=nil, ruleid=nil, predefine=nil, jobtype=nil, jobdatetime=nil, expiretime=nil, validstatus=nil, blockpageid=nil, actionlist=nil, delaytime=nil)
           @Domain = domain
           @Name = name
           @Rule = rule
@@ -10232,6 +10260,7 @@ module TencentCloud
           @ValidStatus = validstatus
           @BlockPageId = blockpageid
           @ActionList = actionlist
+          @DelayTime = delaytime
         end
 
         def deserialize(params)
@@ -10275,6 +10304,7 @@ module TencentCloud
               @ActionList << ucbactionproportion_tmp
             end
           end
+          @DelayTime = params['DelayTime']
         end
       end
 
@@ -10298,10 +10328,12 @@ module TencentCloud
         # @type Areas: Array
         # @param Lang: 语言环境
         # @type Lang: String
+        # @param ParamCompareList: 参数匹配
+        # @type ParamCompareList: Array
 
-        attr_accessor :Key, :Op, :Value, :OpOp, :OpArg, :OpValue, :Name, :Areas, :Lang
+        attr_accessor :Key, :Op, :Value, :OpOp, :OpArg, :OpValue, :Name, :Areas, :Lang, :ParamCompareList
 
-        def initialize(key=nil, op=nil, value=nil, opop=nil, oparg=nil, opvalue=nil, name=nil, areas=nil, lang=nil)
+        def initialize(key=nil, op=nil, value=nil, opop=nil, oparg=nil, opvalue=nil, name=nil, areas=nil, lang=nil, paramcomparelist=nil)
           @Key = key
           @Op = op
           @Value = value
@@ -10311,6 +10343,7 @@ module TencentCloud
           @Name = name
           @Areas = areas
           @Lang = lang
+          @ParamCompareList = paramcomparelist
         end
 
         def deserialize(params)
@@ -10333,6 +10366,14 @@ module TencentCloud
             end
           end
           @Lang = params['Lang']
+          unless params['ParamCompareList'].nil?
+            @ParamCompareList = []
+            params['ParamCompareList'].each do |i|
+              paramcomparelist_tmp = ParamCompareList.new
+              paramcomparelist_tmp.deserialize(i)
+              @ParamCompareList << paramcomparelist_tmp
+            end
+          end
         end
       end
 
@@ -10824,8 +10865,6 @@ module TencentCloud
         # @type ListenerId: String
         # @param ListenerName: 负载均衡监听器的名称
         # @type ListenerName: String
-        # @param Vip: 负载均衡实例的IP
-        # @type Vip: String
         # @param Vport: 负载均衡实例的端口
         # @type Vport: Integer
         # @param Region: 负载均衡LD的地域
@@ -10834,6 +10873,8 @@ module TencentCloud
         # @type Protocol: String
         # @param Zone: 负载均衡监听器所在的zone
         # @type Zone: String
+        # @param Vip: 负载均衡实例的IP。域名化CLB VIP可填空。
+        # @type Vip: String
         # @param NumericalVpcId: 负载均衡的VPCID，公网为-1，内网按实际填写
         # @type NumericalVpcId: Integer
         # @param LoadBalancerType: 负载均衡的网络类型。OPEN： 公网 INTERNAL ：内网
@@ -10841,18 +10882,18 @@ module TencentCloud
         # @param LoadBalancerDomain: 负载均衡的域名
         # @type LoadBalancerDomain: String
 
-        attr_accessor :LoadBalancerId, :LoadBalancerName, :ListenerId, :ListenerName, :Vip, :Vport, :Region, :Protocol, :Zone, :NumericalVpcId, :LoadBalancerType, :LoadBalancerDomain
+        attr_accessor :LoadBalancerId, :LoadBalancerName, :ListenerId, :ListenerName, :Vport, :Region, :Protocol, :Zone, :Vip, :NumericalVpcId, :LoadBalancerType, :LoadBalancerDomain
 
-        def initialize(loadbalancerid=nil, loadbalancername=nil, listenerid=nil, listenername=nil, vip=nil, vport=nil, region=nil, protocol=nil, zone=nil, numericalvpcid=nil, loadbalancertype=nil, loadbalancerdomain=nil)
+        def initialize(loadbalancerid=nil, loadbalancername=nil, listenerid=nil, listenername=nil, vport=nil, region=nil, protocol=nil, zone=nil, vip=nil, numericalvpcid=nil, loadbalancertype=nil, loadbalancerdomain=nil)
           @LoadBalancerId = loadbalancerid
           @LoadBalancerName = loadbalancername
           @ListenerId = listenerid
           @ListenerName = listenername
-          @Vip = vip
           @Vport = vport
           @Region = region
           @Protocol = protocol
           @Zone = zone
+          @Vip = vip
           @NumericalVpcId = numericalvpcid
           @LoadBalancerType = loadbalancertype
           @LoadBalancerDomain = loadbalancerdomain
@@ -10863,11 +10904,11 @@ module TencentCloud
           @LoadBalancerName = params['LoadBalancerName']
           @ListenerId = params['ListenerId']
           @ListenerName = params['ListenerName']
-          @Vip = params['Vip']
           @Vport = params['Vport']
           @Region = params['Region']
           @Protocol = params['Protocol']
           @Zone = params['Zone']
+          @Vip = params['Vip']
           @NumericalVpcId = params['NumericalVpcId']
           @LoadBalancerType = params['LoadBalancerType']
           @LoadBalancerDomain = params['LoadBalancerDomain']
@@ -11777,18 +11818,22 @@ module TencentCloud
       class ModifyBotSceneUCBRuleResponse < TencentCloud::Common::AbstractModel
         # @param Data: 正常情况下为null
         # @type Data: String
+        # @param RuleIdList: ["1231"]
+        # @type RuleIdList: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Data, :RequestId
+        attr_accessor :Data, :RuleIdList, :RequestId
 
-        def initialize(data=nil, requestid=nil)
+        def initialize(data=nil, ruleidlist=nil, requestid=nil)
           @Data = data
+          @RuleIdList = ruleidlist
           @RequestId = requestid
         end
 
         def deserialize(params)
           @Data = params['Data']
+          @RuleIdList = params['RuleIdList']
           @RequestId = params['RequestId']
         end
       end
@@ -13636,6 +13681,26 @@ module TencentCloud
         end
       end
 
+      # bot-自定义规则请求参数比对结构体
+      class ParamCompareList < TencentCloud::Common::AbstractModel
+        # @param Key: 请求参数比对的匹配参数
+        # @type Key: String
+        # @param Value: 请求参数比对的匹配值
+        # @type Value: String
+
+        attr_accessor :Key, :Value
+
+        def initialize(key=nil, value=nil)
+          @Key = key
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Value = params['Value']
+        end
+      end
+
       # PeakPoints数组项
       class PeakPointsItem < TencentCloud::Common::AbstractModel
         # @param Time: 秒级别时间戳
@@ -14625,7 +14690,7 @@ module TencentCloud
 
       # waf斯巴达-编辑防护域名中的端口结构
       class SpartaProtectionPort < TencentCloud::Common::AbstractModel
-        # @param NginxServerId: 分配的服务器id
+        # @param NginxServerId: 分配的服务器id。首次接入的域名和端口该参数填0，已接入的域名和端口分配的id可以通过DescribeDomainDetailsSaas或DescribeDomains接口获取。
         # @type NginxServerId: Integer
         # @param Port: 端口
         # @type Port: String
@@ -15117,7 +15182,7 @@ module TencentCloud
         # @type Priority: Integer
         # @param ValidTime: 动作有效时间
         # @type ValidTime: Integer
-        # @param OptionsArr: CC的匹配条件JSON序列化的字符串，示例：[{\"key\":\"Method\",\"args\":[\"=R0VU\"],\"match\":\"0\",\"encodeflag\":true}] Key可选值为 Method、Post、Referer、Cookie、User-Agent、CustomHeader match可选值为，当Key为Method的时候可选值为0（等于）、3（不等于）。 Key为Post的时候可选值为0（等于）、3（不等于），Key为Cookie的时候可选值为0（等于）、2（包含），3（不等于）、7（不包含）、 当Key为Referer的时候可选值为0（等于）、3（不等于）、1（前缀匹配）、6（后缀匹配）、2（包含）、7（不包含）、12（存在）、5（不存在）、4（内容为空）， 当Key为Cookie的时候可选值为0（等于）、3（不等于）、2（包含）、7（不包含）、12（存在）、5（不存在）、4（内容为空）， 当Key为User-Agent的时候可选值为0（等于）、3（不等于）、1（前缀匹配）、6（后缀匹配）、2（包含）、7（不包含）、12（存在）、5（不存在）、4（内容为空）， 当Key为CustomHeader的时候可选值为0（等于）、3（不等于）、2（包含）、7（不包含）、12（存在）、5（不存在）、4（内容为空）。 args用来表示匹配内容，需要设置encodeflag为true，当Key为Post、Cookie、CustomHeader时，用等号=来分别串接Key和Value，并分别用Base64编码，类似YWJj=YWJj。当Key为Referer、User-Agent时，用等号=来串接Value，类似=YWJj。
+        # @param OptionsArr: CC的匹配条件JSON序列化的字符串，示例：[{\"key\":\"Method\",\"args\":[\"=R0VU\"],\"match\":\"0\",\"encodeflag\":true}] Key可选值为 Method、Post、Referer、Cookie、User-Agent、CustomHeader match可选值为，当Key为Method的时候可选值为0（等于）、3（不等于）。 Key为Post的时候可选值为0（等于）、3（不等于），Key为Cookie的时候可选值为0（等于）、2（包含），3（不等于）、7（不包含）、 当Key为Referer的时候可选值为0（等于）、3（不等于）、1（前缀匹配）、6（后缀匹配）、2（包含）、7（不包含）、12（存在）、5（不存在）、4（内容为空）， 当Key为Cookie的时候可选值为0（等于）、3（不等于）、2（包含）、7（不包含）、12（存在）、5（不存在）、4（内容为空）， 当Key为User-Agent的时候可选值为0（等于）、3（不等于）、1（前缀匹配）、6（后缀匹配）、2（包含）、7（不包含）、12（存在）、5（不存在）、4（内容为空）， 当Key为CustomHeader的时候可选值为0（等于）、3（不等于）、2（包含）、7（不包含）、12（存在）、5（不存在）、4（内容为空）。 Key为IPLocation时，可选值为13（属于）、14（不属于）。args用来表示匹配内容，需要设置encodeflag为true，当Key为Post、Cookie、CustomHeader时，用等号=来分别串接Key和Value，并分别用Base64编码，类似YWJj=YWJj。当Key为Referer、User-Agent时，用等号=来串接Value，类似=YWJj。
         # @type OptionsArr: String
         # @param Edition: waf版本，sparta-waf或者clb-waf
         # @type Edition: String
@@ -15133,10 +15198,12 @@ module TencentCloud
         # @type CreateTime: Integer
         # @param Length: url长度
         # @type Length: Integer
+        # @param LimitMethod: 限频方式
+        # @type LimitMethod: String
 
-        attr_accessor :Domain, :Name, :Status, :Advance, :Limit, :Interval, :Url, :MatchFunc, :ActionType, :Priority, :ValidTime, :OptionsArr, :Edition, :Type, :EventId, :SessionApplied, :RuleId, :CreateTime, :Length
+        attr_accessor :Domain, :Name, :Status, :Advance, :Limit, :Interval, :Url, :MatchFunc, :ActionType, :Priority, :ValidTime, :OptionsArr, :Edition, :Type, :EventId, :SessionApplied, :RuleId, :CreateTime, :Length, :LimitMethod
 
-        def initialize(domain=nil, name=nil, status=nil, advance=nil, limit=nil, interval=nil, url=nil, matchfunc=nil, actiontype=nil, priority=nil, validtime=nil, optionsarr=nil, edition=nil, type=nil, eventid=nil, sessionapplied=nil, ruleid=nil, createtime=nil, length=nil)
+        def initialize(domain=nil, name=nil, status=nil, advance=nil, limit=nil, interval=nil, url=nil, matchfunc=nil, actiontype=nil, priority=nil, validtime=nil, optionsarr=nil, edition=nil, type=nil, eventid=nil, sessionapplied=nil, ruleid=nil, createtime=nil, length=nil, limitmethod=nil)
           @Domain = domain
           @Name = name
           @Status = status
@@ -15156,6 +15223,7 @@ module TencentCloud
           @RuleId = ruleid
           @CreateTime = createtime
           @Length = length
+          @LimitMethod = limitmethod
         end
 
         def deserialize(params)
@@ -15178,6 +15246,7 @@ module TencentCloud
           @RuleId = params['RuleId']
           @CreateTime = params['CreateTime']
           @Length = params['Length']
+          @LimitMethod = params['LimitMethod']
         end
       end
 
