@@ -20933,7 +20933,7 @@ module TencentCloud
       class ModifyIPv6AddressesBandwidthRequest < TencentCloud::Common::AbstractModel
         # @param IPv6AddressIds: 弹性公网IPv6地址唯一ID，可以使用[DescribeIPv6Addresses](https://cloud.tencent.com/document/api/215/113677)接口获取IPv6AddressId。
         # @type IPv6AddressIds: Array
-        # @param InternetMaxBandwidthOut: 弹性公网IPv6地址网络带宽，可调整的带宽上限值参考产品文档中[IPv6 计费限制说明](https://cloud.tencent.com/document/product/1142/38369)。
+        # @param InternetMaxBandwidthOut: 弹性公网IPv6地址网络带宽，可调整的带宽上限值参考产品文档中[IPv6 计费限制说明](https://write.woa.com/document/123652708247588864#IPv6)。
         # @type InternetMaxBandwidthOut: Integer
 
         attr_accessor :IPv6AddressIds, :InternetMaxBandwidthOut
@@ -20967,7 +20967,7 @@ module TencentCloud
 
       # ModifyIp6AddressesBandwidth请求参数结构体
       class ModifyIp6AddressesBandwidthRequest < TencentCloud::Common::AbstractModel
-        # @param InternetMaxBandwidthOut: 修改的目标带宽，单位Mbps。可调整的带宽上限值参考产品文档中[IPv6 计费限制说明](https://cloud.tencent.com/document/product/1142/38369)。
+        # @param InternetMaxBandwidthOut: 修改的目标带宽，单位Mbps。可调整的带宽上限值参考产品文档中[IPv6 计费限制说明](https://write.woa.com/document/123652708247588864#IPv6)。
         # @type InternetMaxBandwidthOut: Integer
         # @param Ip6Addresses: IPv6地址。可以使用[DescribeIp6Addresses](https://cloud.tencent.com/document/product/215/40089)接口查询Ip6Addresses。Ip6Addresses和Ip6AddressIds必须且只能传一个。
         # @type Ip6Addresses: Array

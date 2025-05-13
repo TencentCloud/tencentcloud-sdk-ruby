@@ -9841,7 +9841,7 @@ module TencentCloud
         # <li>Yunnan：云南。</li>
         # <li>Chongqing：重庆。</li>
         # <li>Sichuan：四川。</li>
-        # <li>Tibet：西藏。</li>
+        # <li>Xizang：西藏。</li>
         # <li>Guangdong：广东。</li>
         # <li>Guangxi：广西。</li>
         # <li>Hainan：海南。</li>

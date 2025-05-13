@@ -29,6 +29,30 @@ module TencentCloud
         end
 
 
+        # 创建公摊规则
+
+        # @param request: Request instance for CreateAllocationRule.
+        # @type request: :class:`Tencentcloud::billing::V20180709::CreateAllocationRuleRequest`
+        # @rtype: :class:`Tencentcloud::billing::V20180709::CreateAllocationRuleResponse`
+        def CreateAllocationRule(request)
+          body = send_request('CreateAllocationRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateAllocationRuleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 批量设置分账标签
 
         # @param request: Request instance for CreateAllocationTag.
@@ -53,6 +77,78 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建分账单元
+
+        # @param request: Request instance for CreateAllocationUnit.
+        # @type request: :class:`Tencentcloud::billing::V20180709::CreateAllocationUnitRequest`
+        # @rtype: :class:`Tencentcloud::billing::V20180709::CreateAllocationUnitResponse`
+        def CreateAllocationUnit(request)
+          body = send_request('CreateAllocationUnit', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateAllocationUnitResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 创建归集规则
+
+        # @param request: Request instance for CreateGatherRule.
+        # @type request: :class:`Tencentcloud::billing::V20180709::CreateGatherRuleRequest`
+        # @rtype: :class:`Tencentcloud::billing::V20180709::CreateGatherRuleResponse`
+        def CreateGatherRule(request)
+          body = send_request('CreateGatherRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateGatherRuleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 公摊规则删除接口
+
+        # @param request: Request instance for DeleteAllocationRule.
+        # @type request: :class:`Tencentcloud::billing::V20180709::DeleteAllocationRuleRequest`
+        # @rtype: :class:`Tencentcloud::billing::V20180709::DeleteAllocationRuleResponse`
+        def DeleteAllocationRule(request)
+          body = send_request('DeleteAllocationRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteAllocationRuleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 批量取消设置分账标签
 
         # @param request: Request instance for DeleteAllocationTag.
@@ -63,6 +159,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteAllocationTagResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除分账单元
+
+        # @param request: Request instance for DeleteAllocationUnit.
+        # @type request: :class:`Tencentcloud::billing::V20180709::DeleteAllocationUnitRequest`
+        # @rtype: :class:`Tencentcloud::billing::V20180709::DeleteAllocationUnitResponse`
+        def DeleteAllocationUnit(request)
+          body = send_request('DeleteAllocationUnit', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteAllocationUnitResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除归集规则
+
+        # @param request: Request instance for DeleteGatherRule.
+        # @type request: :class:`Tencentcloud::billing::V20180709::DeleteGatherRuleRequest`
+        # @rtype: :class:`Tencentcloud::billing::V20180709::DeleteGatherRuleResponse`
+        def DeleteGatherRule(request)
+          body = send_request('DeleteGatherRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteGatherRuleResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -221,6 +365,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询公摊规则详情
+
+        # @param request: Request instance for DescribeAllocationRuleDetail.
+        # @type request: :class:`Tencentcloud::billing::V20180709::DescribeAllocationRuleDetailRequest`
+        # @rtype: :class:`Tencentcloud::billing::V20180709::DescribeAllocationRuleDetailResponse`
+        def DescribeAllocationRuleDetail(request)
+          body = send_request('DescribeAllocationRuleDetail', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAllocationRuleDetailResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询所有公摊规则概览
+
+        # @param request: Request instance for DescribeAllocationRuleSummary.
+        # @type request: :class:`Tencentcloud::billing::V20180709::DescribeAllocationRuleSummaryRequest`
+        # @rtype: :class:`Tencentcloud::billing::V20180709::DescribeAllocationRuleSummaryResponse`
+        def DescribeAllocationRuleSummary(request)
+          body = send_request('DescribeAllocationRuleSummary', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAllocationRuleSummaryResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询分账账单按产品汇总
 
         # @param request: Request instance for DescribeAllocationSummaryByBusiness.
@@ -293,6 +485,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询分账目录树
+
+        # @param request: Request instance for DescribeAllocationTree.
+        # @type request: :class:`Tencentcloud::billing::V20180709::DescribeAllocationTreeRequest`
+        # @rtype: :class:`Tencentcloud::billing::V20180709::DescribeAllocationTreeResponse`
+        def DescribeAllocationTree(request)
+          body = send_request('DescribeAllocationTree', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAllocationTreeResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询分账账单费用趋势
 
         # @param request: Request instance for DescribeAllocationTrendByMonth.
@@ -303,6 +519,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeAllocationTrendByMonthResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询分账单元详情
+
+        # @param request: Request instance for DescribeAllocationUnitDetail.
+        # @type request: :class:`Tencentcloud::billing::V20180709::DescribeAllocationUnitDetailRequest`
+        # @rtype: :class:`Tencentcloud::billing::V20180709::DescribeAllocationUnitDetailResponse`
+        def DescribeAllocationUnitDetail(request)
+          body = send_request('DescribeAllocationUnitDetail', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAllocationUnitDetailResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -924,6 +1164,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询归集规则详情
+
+        # @param request: Request instance for DescribeGatherRuleDetail.
+        # @type request: :class:`Tencentcloud::billing::V20180709::DescribeGatherRuleDetailRequest`
+        # @rtype: :class:`Tencentcloud::billing::V20180709::DescribeGatherRuleDetailResponse`
+        def DescribeGatherRuleDetail(request)
+          body = send_request('DescribeGatherRuleDetail', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeGatherRuleDetailResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询节省计划详情
 
         # @param request: Request instance for DescribeSavingPlanResourceInfo.
@@ -1006,6 +1270,78 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeVoucherUsageDetailsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 编辑公摊规则
+
+        # @param request: Request instance for ModifyAllocationRule.
+        # @type request: :class:`Tencentcloud::billing::V20180709::ModifyAllocationRuleRequest`
+        # @rtype: :class:`Tencentcloud::billing::V20180709::ModifyAllocationRuleResponse`
+        def ModifyAllocationRule(request)
+          body = send_request('ModifyAllocationRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyAllocationRuleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改分账单元信息
+
+        # @param request: Request instance for ModifyAllocationUnit.
+        # @type request: :class:`Tencentcloud::billing::V20180709::ModifyAllocationUnitRequest`
+        # @rtype: :class:`Tencentcloud::billing::V20180709::ModifyAllocationUnitResponse`
+        def ModifyAllocationUnit(request)
+          body = send_request('ModifyAllocationUnit', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyAllocationUnitResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 编辑归集规则
+
+        # @param request: Request instance for ModifyGatherRule.
+        # @type request: :class:`Tencentcloud::billing::V20180709::ModifyGatherRuleRequest`
+        # @rtype: :class:`Tencentcloud::billing::V20180709::ModifyGatherRuleResponse`
+        def ModifyGatherRule(request)
+          body = send_request('ModifyGatherRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyGatherRuleResponse.new
             model.deserialize(response['Response'])
             model
           else

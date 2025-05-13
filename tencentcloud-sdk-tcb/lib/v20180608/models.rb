@@ -4892,19 +4892,27 @@ module TencentCloud
         # @type IsVisible: Boolean
         # @param Channels: 渠道列表，代表可见或不可见渠道由IsVisible参数指定
         # @type Channels: Array
+        # @param Limit: 分页参数，单页限制个数
+        # @type Limit: Integer
+        # @param Offset: 分页参数，偏移量
+        # @type Offset: Integer
 
-        attr_accessor :EnvId, :IsVisible, :Channels
+        attr_accessor :EnvId, :IsVisible, :Channels, :Limit, :Offset
 
-        def initialize(envid=nil, isvisible=nil, channels=nil)
+        def initialize(envid=nil, isvisible=nil, channels=nil, limit=nil, offset=nil)
           @EnvId = envid
           @IsVisible = isvisible
           @Channels = channels
+          @Limit = limit
+          @Offset = offset
         end
 
         def deserialize(params)
           @EnvId = params['EnvId']
           @IsVisible = params['IsVisible']
           @Channels = params['Channels']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
         end
       end
 

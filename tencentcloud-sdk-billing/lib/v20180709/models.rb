@@ -312,10 +312,10 @@ module TencentCloud
 
         attr_accessor :TreeNodeUniqKey, :TreeNodeUniqKeyName, :BillDate, :PayerUin, :OwnerUin, :OperateUin, :BusinessCode, :BusinessCodeName, :PayMode, :PayModeName, :ProjectId, :ProjectName, :RegionId, :RegionName, :ZoneId, :ZoneName, :ResourceId, :ResourceName, :InstanceType, :InstanceTypeName, :SplitItemId, :SplitItemName, :ProductCode, :ProductCodeName, :ActionType, :ActionTypeName, :OrderId, :BillId, :PayTime, :FeeBeginTime, :FeeEndTime, :ComponentCode, :ComponentCodeName, :SinglePrice, :ContractPrice, :SinglePriceUnit, :UsedAmount, :UsedAmountUnit, :TimeSpan, :TimeUnit, :ReserveDetail, :SplitRatio, :TotalCost, :RITimeSpan, :RICost, :SPCost, :Discount, :BlendedDiscount, :RealTotalCost, :CashPayAmount, :VoucherPayAmount, :IncentivePayAmount, :TransferPayAmount, :Tag, :RegionType, :RegionTypeName, :ItemCode, :ItemCodeName, :AssociatedOrder, :PriceInfo, :Formula, :FormulaUrl, :RealTotalMeasure, :DeductedMeasure, :ComponentConfig, :AllocationType, :DiscountObject, :DiscountType, :DiscountContent, :SPDeduction, :SPDeductionRate, :BillMonth
         extend Gem::Deprecate
-        deprecate :SplitItemId, :none, 2025, 4
-        deprecate :SplitItemId=, :none, 2025, 4
-        deprecate :SplitItemName, :none, 2025, 4
-        deprecate :SplitItemName=, :none, 2025, 4
+        deprecate :SplitItemId, :none, 2025, 5
+        deprecate :SplitItemId=, :none, 2025, 5
+        deprecate :SplitItemName, :none, 2025, 5
+        deprecate :SplitItemName=, :none, 2025, 5
 
         def initialize(treenodeuniqkey=nil, treenodeuniqkeyname=nil, billdate=nil, payeruin=nil, owneruin=nil, operateuin=nil, businesscode=nil, businesscodename=nil, paymode=nil, paymodename=nil, projectid=nil, projectname=nil, regionid=nil, regionname=nil, zoneid=nil, zonename=nil, resourceid=nil, resourcename=nil, instancetype=nil, instancetypename=nil, splititemid=nil, splititemname=nil, productcode=nil, productcodename=nil, actiontype=nil, actiontypename=nil, orderid=nil, billid=nil, paytime=nil, feebegintime=nil, feeendtime=nil, componentcode=nil, componentcodename=nil, singleprice=nil, contractprice=nil, singlepriceunit=nil, usedamount=nil, usedamountunit=nil, timespan=nil, timeunit=nil, reservedetail=nil, splitratio=nil, totalcost=nil, ritimespan=nil, ricost=nil, spcost=nil, discount=nil, blendeddiscount=nil, realtotalcost=nil, cashpayamount=nil, voucherpayamount=nil, incentivepayamount=nil, transferpayamount=nil, tag=nil, regiontype=nil, regiontypename=nil, itemcode=nil, itemcodename=nil, associatedorder=nil, priceinfo=nil, formula=nil, formulaurl=nil, realtotalmeasure=nil, deductedmeasure=nil, componentconfig=nil, allocationtype=nil, discountobject=nil, discounttype=nil, discountcontent=nil, spdeduction=nil, spdeductionrate=nil, billmonth=nil)
           @TreeNodeUniqKey = treenodeuniqkey
@@ -748,6 +748,26 @@ module TencentCloud
         end
       end
 
+      # 分摊比例表达式
+      class AllocationRationExpression < TencentCloud::Common::AbstractModel
+        # @param NodeId: 公摊规则所属分账单元ID
+        # @type NodeId: Integer
+        # @param Ratio: 分账单元所占公摊比例，按占比分摊传0
+        # @type Ratio: Float
+
+        attr_accessor :NodeId, :Ratio
+
+        def initialize(nodeid=nil, ratio=nil)
+          @NodeId = nodeid
+          @Ratio = ratio
+        end
+
+        def deserialize(params)
+          @NodeId = params['NodeId']
+          @Ratio = params['Ratio']
+        end
+      end
+
       # 当前资源命中公摊规则信息
       class AllocationRule < TencentCloud::Common::AbstractModel
         # @param RuleId: 公摊规则ID
@@ -765,6 +785,147 @@ module TencentCloud
         def deserialize(params)
           @RuleId = params['RuleId']
           @RuleName = params['RuleName']
+        end
+      end
+
+      # 分账规则表达式
+      class AllocationRuleExpression < TencentCloud::Common::AbstractModel
+        # @param RuleKey: RuleKey：分账维度
+        # 枚举值：
+        # ownerUin - 使用者UIN,
+        # operateUin - 操作者UIN,
+        # businessCode - 产品一层编码,
+        # productCode - 产品二层编码,
+        # itemCode - 产品四层编码,
+        # projectId - 项目ID,
+        # regionId - 地域ID,
+        # resourceId - 资源ID,
+        # tag - 标签键值对,
+        # payMode - 计费模式,
+        # instanceType - 实例类型,
+        # actionType - 交易类型
+        # @type RuleKey: String
+        # @param Operator: 分账维度规则
+        # 枚举值：
+        # in - 是
+        # not in - 不是
+        # @type Operator: String
+        # @param RuleValue: 分账维度值，例如当RuleKey为businessCode时，["p_cbs","p_sqlserver"]表示产品一层是"p_cbs","p_sqlserver"的费用
+        # @type RuleValue: Array
+        # @param Connectors: 分账逻辑连接词，枚举值如下：
+        # and - 且
+        # or - 或
+        # @type Connectors: String
+        # @param Children: 嵌套规则
+        # @type Children: Array
+
+        attr_accessor :RuleKey, :Operator, :RuleValue, :Connectors, :Children
+
+        def initialize(rulekey=nil, operator=nil, rulevalue=nil, connectors=nil, children=nil)
+          @RuleKey = rulekey
+          @Operator = operator
+          @RuleValue = rulevalue
+          @Connectors = connectors
+          @Children = children
+        end
+
+        def deserialize(params)
+          @RuleKey = params['RuleKey']
+          @Operator = params['Operator']
+          @RuleValue = params['RuleValue']
+          @Connectors = params['Connectors']
+          unless params['Children'].nil?
+            @Children = []
+            params['Children'].each do |i|
+              allocationruleexpression_tmp = AllocationRuleExpression.new
+              allocationruleexpression_tmp.deserialize(i)
+              @Children << allocationruleexpression_tmp
+            end
+          end
+        end
+      end
+
+      # 公摊规则概览
+      class AllocationRuleOverview < TencentCloud::Common::AbstractModel
+        # @param RuleId: 公摊规则ID
+        # @type RuleId: Integer
+        # @param RuleName: 公摊规则名称
+        # @type RuleName: String
+        # @param Type: 公摊策略类型
+        # 枚举值：
+        # 1 - 自定义分摊占比
+        # 2 - 等比分摊
+        # 3 - 按占比分摊
+        # @type Type: Integer
+        # @param UpdateTime: 公摊规则最后更新时间
+        # @type UpdateTime: String
+        # @param AllocationNode: 分账单元概览
+        # @type AllocationNode: Array
+
+        attr_accessor :RuleId, :RuleName, :Type, :UpdateTime, :AllocationNode
+
+        def initialize(ruleid=nil, rulename=nil, type=nil, updatetime=nil, allocationnode=nil)
+          @RuleId = ruleid
+          @RuleName = rulename
+          @Type = type
+          @UpdateTime = updatetime
+          @AllocationNode = allocationnode
+        end
+
+        def deserialize(params)
+          @RuleId = params['RuleId']
+          @RuleName = params['RuleName']
+          @Type = params['Type']
+          @UpdateTime = params['UpdateTime']
+          unless params['AllocationNode'].nil?
+            @AllocationNode = []
+            params['AllocationNode'].each do |i|
+              allocationunit_tmp = AllocationUnit.new
+              allocationunit_tmp.deserialize(i)
+              @AllocationNode << allocationunit_tmp
+            end
+          end
+        end
+      end
+
+      # 公摊规则列表
+      class AllocationRulesSummary < TencentCloud::Common::AbstractModel
+        # @param Name: 新增公摊规则名称
+        # @type Name: String
+        # @param Type: 公摊策略类型，枚举值如下：
+        # 1 - 自定义分摊占比
+        # 2 - 等比分摊
+        # 3 - 按占比分摊
+        # @type Type: Integer
+        # @param RuleDetail: 公摊规则表达式
+        # @type RuleDetail: :class:`Tencentcloud::Billing.v20180709.models.AllocationRuleExpression`
+        # @param RatioDetail: 公摊比例表达式，按占比分摊不传
+        # @type RatioDetail: Array
+
+        attr_accessor :Name, :Type, :RuleDetail, :RatioDetail
+
+        def initialize(name=nil, type=nil, ruledetail=nil, ratiodetail=nil)
+          @Name = name
+          @Type = type
+          @RuleDetail = ruledetail
+          @RatioDetail = ratiodetail
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Type = params['Type']
+          unless params['RuleDetail'].nil?
+            @RuleDetail = AllocationRuleExpression.new
+            @RuleDetail.deserialize(params['RuleDetail'])
+          end
+          unless params['RatioDetail'].nil?
+            @RatioDetail = []
+            params['RatioDetail'].each do |i|
+              allocationrationexpression_tmp = AllocationRationExpression.new
+              allocationrationexpression_tmp.deserialize(i)
+              @RatioDetail << allocationrationexpression_tmp
+            end
+          end
         end
       end
 
@@ -1074,10 +1235,10 @@ module TencentCloud
 
         attr_accessor :TreeNodeUniqKey, :TreeNodeUniqKeyName, :BillDate, :PayerUin, :OwnerUin, :OperateUin, :PayMode, :PayModeName, :ActionType, :ActionTypeName, :BusinessCode, :BusinessCodeName, :ProductCode, :ProductCodeName, :RegionId, :RegionName, :ZoneId, :ZoneName, :InstanceType, :InstanceTypeName, :ResourceId, :ResourceName, :Tag, :ProjectId, :ProjectName, :AllocationType, :TotalCost, :RiTimeSpan, :RiCost, :RealTotalCost, :CashPayAmount, :VoucherPayAmount, :IncentivePayAmount, :TransferPayAmount, :ItemCode, :ItemCodeName, :ComponentCode, :ComponentCodeName, :SplitItemId, :SplitItemName, :FeeBeginTime, :FeeEndTime, :SPCost, :RegionType, :RegionTypeName, :SinglePrice, :ContractPrice, :SinglePriceUnit, :UsedAmount, :UsedAmountUnit, :TimeSpan, :TimeUnit, :ReserveDetail, :RealTotalMeasure, :DeductedMeasure, :Discount, :BlendedDiscount, :PriceInfo, :Formula, :FormulaUrl, :ComponentConfig, :SPDeduction, :SPDeductionRate, :AssociatedOrder, :DiscountObject, :DiscountType, :DiscountContent, :BillMonth
         extend Gem::Deprecate
-        deprecate :SplitItemId, :none, 2025, 4
-        deprecate :SplitItemId=, :none, 2025, 4
-        deprecate :SplitItemName, :none, 2025, 4
-        deprecate :SplitItemName=, :none, 2025, 4
+        deprecate :SplitItemId, :none, 2025, 5
+        deprecate :SplitItemId=, :none, 2025, 5
+        deprecate :SplitItemName, :none, 2025, 5
+        deprecate :SplitItemName=, :none, 2025, 5
 
         def initialize(treenodeuniqkey=nil, treenodeuniqkeyname=nil, billdate=nil, payeruin=nil, owneruin=nil, operateuin=nil, paymode=nil, paymodename=nil, actiontype=nil, actiontypename=nil, businesscode=nil, businesscodename=nil, productcode=nil, productcodename=nil, regionid=nil, regionname=nil, zoneid=nil, zonename=nil, instancetype=nil, instancetypename=nil, resourceid=nil, resourcename=nil, tag=nil, projectid=nil, projectname=nil, allocationtype=nil, totalcost=nil, ritimespan=nil, ricost=nil, realtotalcost=nil, cashpayamount=nil, voucherpayamount=nil, incentivepayamount=nil, transferpayamount=nil, itemcode=nil, itemcodename=nil, componentcode=nil, componentcodename=nil, splititemid=nil, splititemname=nil, feebegintime=nil, feeendtime=nil, spcost=nil, regiontype=nil, regiontypename=nil, singleprice=nil, contractprice=nil, singlepriceunit=nil, usedamount=nil, usedamountunit=nil, timespan=nil, timeunit=nil, reservedetail=nil, realtotalmeasure=nil, deductedmeasure=nil, discount=nil, blendeddiscount=nil, priceinfo=nil, formula=nil, formulaurl=nil, componentconfig=nil, spdeduction=nil, spdeductionrate=nil, associatedorder=nil, discountobject=nil, discounttype=nil, discountcontent=nil, billmonth=nil)
           @TreeNodeUniqKey = treenodeuniqkey
@@ -1327,10 +1488,10 @@ module TencentCloud
 
         attr_accessor :TreeNodeUniqKey, :TreeNodeUniqKeyName, :BillDate, :PayerUin, :OwnerUin, :OperateUin, :PayMode, :PayModeName, :ActionType, :ActionTypeName, :BusinessCode, :BusinessCodeName, :ProductCode, :ProductCodeName, :RegionId, :RegionName, :ZoneId, :ZoneName, :InstanceType, :InstanceTypeName, :ResourceId, :ResourceName, :Tag, :ProjectId, :ProjectName, :AllocationType, :TotalCost, :RiTimeSpan, :RiCost, :RealTotalCost, :CashPayAmount, :VoucherPayAmount, :IncentivePayAmount, :TransferPayAmount, :SplitItemId, :SplitItemName, :FeeBeginTime, :FeeEndTime, :SPCost, :RegionType, :RegionTypeName, :ComponentConfig, :SPDeduction, :BillMonth
         extend Gem::Deprecate
-        deprecate :SplitItemId, :none, 2025, 4
-        deprecate :SplitItemId=, :none, 2025, 4
-        deprecate :SplitItemName, :none, 2025, 4
-        deprecate :SplitItemName=, :none, 2025, 4
+        deprecate :SplitItemId, :none, 2025, 5
+        deprecate :SplitItemId=, :none, 2025, 5
+        deprecate :SplitItemName, :none, 2025, 5
+        deprecate :SplitItemName=, :none, 2025, 5
 
         def initialize(treenodeuniqkey=nil, treenodeuniqkeyname=nil, billdate=nil, payeruin=nil, owneruin=nil, operateuin=nil, paymode=nil, paymodename=nil, actiontype=nil, actiontypename=nil, businesscode=nil, businesscodename=nil, productcode=nil, productcodename=nil, regionid=nil, regionname=nil, zoneid=nil, zonename=nil, instancetype=nil, instancetypename=nil, resourceid=nil, resourcename=nil, tag=nil, projectid=nil, projectname=nil, allocationtype=nil, totalcost=nil, ritimespan=nil, ricost=nil, realtotalcost=nil, cashpayamount=nil, voucherpayamount=nil, incentivepayamount=nil, transferpayamount=nil, splititemid=nil, splititemname=nil, feebegintime=nil, feeendtime=nil, spcost=nil, regiontype=nil, regiontypename=nil, componentconfig=nil, spdeduction=nil, billmonth=nil)
           @TreeNodeUniqKey = treenodeuniqkey
@@ -1434,6 +1595,41 @@ module TencentCloud
         end
       end
 
+      # 分账目录树
+      class AllocationTree < TencentCloud::Common::AbstractModel
+        # @param Id: 分账单元ID
+        # @type Id: Integer
+        # @param Name: 分账单元名称
+        # @type Name: String
+        # @param TreeNodeUniqKey: 分账单元唯一标识
+        # @type TreeNodeUniqKey: String
+        # @param Children: 子树
+        # @type Children: Array
+
+        attr_accessor :Id, :Name, :TreeNodeUniqKey, :Children
+
+        def initialize(id=nil, name=nil, treenodeuniqkey=nil, children=nil)
+          @Id = id
+          @Name = name
+          @TreeNodeUniqKey = treenodeuniqkey
+          @Children = children
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Name = params['Name']
+          @TreeNodeUniqKey = params['TreeNodeUniqKey']
+          unless params['Children'].nil?
+            @Children = []
+            params['Children'].each do |i|
+              allocationtree_tmp = AllocationTree.new
+              allocationtree_tmp.deserialize(i)
+              @Children << allocationtree_tmp
+            end
+          end
+        end
+      end
+
       # 当前归属单元信息
       class AllocationTreeNode < TencentCloud::Common::AbstractModel
         # @param TreeNodeUniqKey: 分账单元唯一标识
@@ -1450,6 +1646,26 @@ module TencentCloud
 
         def deserialize(params)
           @TreeNodeUniqKey = params['TreeNodeUniqKey']
+          @TreeNodeUniqKeyName = params['TreeNodeUniqKeyName']
+        end
+      end
+
+      # 分账单元id和名称
+      class AllocationUnit < TencentCloud::Common::AbstractModel
+        # @param NodeId: 分账单元ID
+        # @type NodeId: Integer
+        # @param TreeNodeUniqKeyName: 分账规则名称
+        # @type TreeNodeUniqKeyName: String
+
+        attr_accessor :NodeId, :TreeNodeUniqKeyName
+
+        def initialize(nodeid=nil, treenodeuniqkeyname=nil)
+          @NodeId = nodeid
+          @TreeNodeUniqKeyName = treenodeuniqkeyname
+        end
+
+        def deserialize(params)
+          @NodeId = params['NodeId']
           @TreeNodeUniqKeyName = params['TreeNodeUniqKeyName']
         end
       end
@@ -2283,10 +2499,10 @@ module TencentCloud
 
         attr_accessor :ComponentCodeName, :ItemCodeName, :SinglePrice, :SpecifiedPrice, :PriceUnit, :UsedAmount, :UsedAmountUnit, :RealTotalMeasure, :DeductedMeasure, :TimeSpan, :TimeUnitName, :Cost, :Discount, :ReduceType, :RealCost, :VoucherPayAmount, :CashPayAmount, :IncentivePayAmount, :TransferPayAmount, :ItemCode, :ComponentCode, :ContractPrice, :InstanceType, :RiTimeSpan, :OriginalCostWithRI, :SPDeductionRate, :SPDeduction, :OriginalCostWithSP, :BlendedDiscount, :ComponentConfig
         extend Gem::Deprecate
-        deprecate :SpecifiedPrice, :none, 2025, 4
-        deprecate :SpecifiedPrice=, :none, 2025, 4
-        deprecate :SPDeduction, :none, 2025, 4
-        deprecate :SPDeduction=, :none, 2025, 4
+        deprecate :SpecifiedPrice, :none, 2025, 5
+        deprecate :SpecifiedPrice=, :none, 2025, 5
+        deprecate :SPDeduction, :none, 2025, 5
+        deprecate :SPDeduction=, :none, 2025, 5
 
         def initialize(componentcodename=nil, itemcodename=nil, singleprice=nil, specifiedprice=nil, priceunit=nil, usedamount=nil, usedamountunit=nil, realtotalmeasure=nil, deductedmeasure=nil, timespan=nil, timeunitname=nil, cost=nil, discount=nil, reducetype=nil, realcost=nil, voucherpayamount=nil, cashpayamount=nil, incentivepayamount=nil, transferpayamount=nil, itemcode=nil, componentcode=nil, contractprice=nil, instancetype=nil, ritimespan=nil, originalcostwithri=nil, spdeductionrate=nil, spdeduction=nil, originalcostwithsp=nil, blendeddiscount=nil, componentconfig=nil)
           @ComponentCodeName = componentcodename
@@ -2463,8 +2679,8 @@ module TencentCloud
 
         attr_accessor :BusinessCodeName, :ProductCodeName, :PayModeName, :ProjectName, :RegionName, :ZoneName, :ResourceId, :ResourceName, :ActionTypeName, :OrderId, :PayTime, :FeeBeginTime, :FeeEndTime, :ConfigDesc, :ExtendField1, :ExtendField2, :TotalCost, :Discount, :ReduceType, :RealTotalCost, :VoucherPayAmount, :CashPayAmount, :IncentivePayAmount, :TransferPayAmount, :ExtendField3, :ExtendField4, :ExtendField5, :Tags, :OwnerUin, :OperateUin, :BusinessCode, :ProductCode, :RegionId, :InstanceType, :OriginalCostWithRI, :SPDeduction, :OriginalCostWithSP, :BillMonth
         extend Gem::Deprecate
-        deprecate :SPDeduction, :none, 2025, 4
-        deprecate :SPDeduction=, :none, 2025, 4
+        deprecate :SPDeduction, :none, 2025, 5
+        deprecate :SPDeduction=, :none, 2025, 5
 
         def initialize(businesscodename=nil, productcodename=nil, paymodename=nil, projectname=nil, regionname=nil, zonename=nil, resourceid=nil, resourcename=nil, actiontypename=nil, orderid=nil, paytime=nil, feebegintime=nil, feeendtime=nil, configdesc=nil, extendfield1=nil, extendfield2=nil, totalcost=nil, discount=nil, reducetype=nil, realtotalcost=nil, voucherpayamount=nil, cashpayamount=nil, incentivepayamount=nil, transferpayamount=nil, extendfield3=nil, extendfield4=nil, extendfield5=nil, tags=nil, owneruin=nil, operateuin=nil, businesscode=nil, productcode=nil, regionid=nil, instancetype=nil, originalcostwithri=nil, spdeduction=nil, originalcostwithsp=nil, billmonth=nil)
           @BusinessCodeName = businesscodename
@@ -2822,8 +3038,8 @@ module TencentCloud
 
         attr_accessor :BusinessCodeName, :ProductCodeName, :PayModeName, :ProjectName, :RegionName, :ZoneName, :ResourceId, :ResourceName, :ActionTypeName, :OrderId, :PayTime, :FeeBeginTime, :FeeEndTime, :ConfigDesc, :ExtendField1, :ExtendField2, :TotalCost, :Discount, :ReduceType, :RealTotalCost, :VoucherPayAmount, :CashPayAmount, :IncentivePayAmount, :TransferPayAmount, :ExtendField3, :ExtendField4, :ExtendField5, :Tags, :PayerUin, :OwnerUin, :OperateUin, :BusinessCode, :ProductCode, :RegionId, :InstanceType, :OriginalCostWithRI, :SPDeduction, :OriginalCostWithSP, :BillMonth
         extend Gem::Deprecate
-        deprecate :SPDeduction, :none, 2025, 4
-        deprecate :SPDeduction=, :none, 2025, 4
+        deprecate :SPDeduction, :none, 2025, 5
+        deprecate :SPDeduction=, :none, 2025, 5
 
         def initialize(businesscodename=nil, productcodename=nil, paymodename=nil, projectname=nil, regionname=nil, zonename=nil, resourceid=nil, resourcename=nil, actiontypename=nil, orderid=nil, paytime=nil, feebegintime=nil, feeendtime=nil, configdesc=nil, extendfield1=nil, extendfield2=nil, totalcost=nil, discount=nil, reducetype=nil, realtotalcost=nil, voucherpayamount=nil, cashpayamount=nil, incentivepayamount=nil, transferpayamount=nil, extendfield3=nil, extendfield4=nil, extendfield5=nil, tags=nil, payeruin=nil, owneruin=nil, operateuin=nil, businesscode=nil, productcode=nil, regionid=nil, instancetype=nil, originalcostwithri=nil, spdeduction=nil, originalcostwithsp=nil, billmonth=nil)
           @BusinessCodeName = businesscodename
@@ -3947,6 +4163,49 @@ module TencentCloud
         end
       end
 
+      # CreateAllocationRule请求参数结构体
+      class CreateAllocationRuleRequest < TencentCloud::Common::AbstractModel
+        # @param RuleList: 公摊规则列表
+        # @type RuleList: :class:`Tencentcloud::Billing.v20180709.models.AllocationRulesSummary`
+        # @param Month: 月份，不传默认当前月
+        # @type Month: String
+
+        attr_accessor :RuleList, :Month
+
+        def initialize(rulelist=nil, month=nil)
+          @RuleList = rulelist
+          @Month = month
+        end
+
+        def deserialize(params)
+          unless params['RuleList'].nil?
+            @RuleList = AllocationRulesSummary.new
+            @RuleList.deserialize(params['RuleList'])
+          end
+          @Month = params['Month']
+        end
+      end
+
+      # CreateAllocationRule返回参数结构体
+      class CreateAllocationRuleResponse < TencentCloud::Common::AbstractModel
+        # @param Id: 新增公摊规则ID
+        # @type Id: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Id, :RequestId
+
+        def initialize(id=nil, requestid=nil)
+          @Id = id
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateAllocationTag请求参数结构体
       class CreateAllocationTagRequest < TencentCloud::Common::AbstractModel
         # @param TagKey: 用户分账标签键
@@ -3975,6 +4234,101 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateAllocationUnit请求参数结构体
+      class CreateAllocationUnitRequest < TencentCloud::Common::AbstractModel
+        # @param ParentId: 新增分账单元父节点ID
+        # @type ParentId: Integer
+        # @param Name: 新增分账单元名称
+        # @type Name: String
+        # @param Month: 月份，不传默认当前月
+        # @type Month: String
+
+        attr_accessor :ParentId, :Name, :Month
+
+        def initialize(parentid=nil, name=nil, month=nil)
+          @ParentId = parentid
+          @Name = name
+          @Month = month
+        end
+
+        def deserialize(params)
+          @ParentId = params['ParentId']
+          @Name = params['Name']
+          @Month = params['Month']
+        end
+      end
+
+      # CreateAllocationUnit返回参数结构体
+      class CreateAllocationUnitResponse < TencentCloud::Common::AbstractModel
+        # @param Id: 新增分账单元ID
+        # @type Id: Integer
+        # @param TreeNodeUniqKey: 分账单元唯一标识
+        # @type TreeNodeUniqKey: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Id, :TreeNodeUniqKey, :RequestId
+
+        def initialize(id=nil, treenodeuniqkey=nil, requestid=nil)
+          @Id = id
+          @TreeNodeUniqKey = treenodeuniqkey
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @TreeNodeUniqKey = params['TreeNodeUniqKey']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateGatherRule请求参数结构体
+      class CreateGatherRuleRequest < TencentCloud::Common::AbstractModel
+        # @param Id: 规则所属分账单元ID
+        # @type Id: Integer
+        # @param RuleList: 归集规则详情
+        # @type RuleList: :class:`Tencentcloud::Billing.v20180709.models.GatherRuleSummary`
+        # @param Month: 月份，不传默认当前月
+        # @type Month: String
+
+        attr_accessor :Id, :RuleList, :Month
+
+        def initialize(id=nil, rulelist=nil, month=nil)
+          @Id = id
+          @RuleList = rulelist
+          @Month = month
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          unless params['RuleList'].nil?
+            @RuleList = GatherRuleSummary.new
+            @RuleList.deserialize(params['RuleList'])
+          end
+          @Month = params['Month']
+        end
+      end
+
+      # CreateGatherRule返回参数结构体
+      class CreateGatherRuleResponse < TencentCloud::Common::AbstractModel
+        # @param Id: 归集规则ID
+        # @type Id: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Id, :RequestId
+
+        def initialize(id=nil, requestid=nil)
+          @Id = id
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
           @RequestId = params['RequestId']
         end
       end
@@ -4115,6 +4469,42 @@ module TencentCloud
         end
       end
 
+      # DeleteAllocationRule请求参数结构体
+      class DeleteAllocationRuleRequest < TencentCloud::Common::AbstractModel
+        # @param RuleId: 所删除公摊规则ID
+        # @type RuleId: Integer
+        # @param Month: 月份，不传默认当前月
+        # @type Month: String
+
+        attr_accessor :RuleId, :Month
+
+        def initialize(ruleid=nil, month=nil)
+          @RuleId = ruleid
+          @Month = month
+        end
+
+        def deserialize(params)
+          @RuleId = params['RuleId']
+          @Month = params['Month']
+        end
+      end
+
+      # DeleteAllocationRule返回参数结构体
+      class DeleteAllocationRuleResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteAllocationTag请求参数结构体
       class DeleteAllocationTagRequest < TencentCloud::Common::AbstractModel
         # @param TagKey: 用户分账标签键
@@ -4133,6 +4523,78 @@ module TencentCloud
 
       # DeleteAllocationTag返回参数结构体
       class DeleteAllocationTagResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteAllocationUnit请求参数结构体
+      class DeleteAllocationUnitRequest < TencentCloud::Common::AbstractModel
+        # @param Id: 所删除分账单元ID
+        # @type Id: Integer
+        # @param Month: 月份，不传默认当前月
+        # @type Month: String
+
+        attr_accessor :Id, :Month
+
+        def initialize(id=nil, month=nil)
+          @Id = id
+          @Month = month
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Month = params['Month']
+        end
+      end
+
+      # DeleteAllocationUnit返回参数结构体
+      class DeleteAllocationUnitResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteGatherRule请求参数结构体
+      class DeleteGatherRuleRequest < TencentCloud::Common::AbstractModel
+        # @param RuleId: 所删除归集规则ID
+        # @type RuleId: Integer
+        # @param Month: 月份，不传默认当前月
+        # @type Month: String
+
+        attr_accessor :RuleId, :Month
+
+        def initialize(ruleid=nil, month=nil)
+          @RuleId = ruleid
+          @Month = month
+        end
+
+        def deserialize(params)
+          @RuleId = params['RuleId']
+          @Month = params['Month']
+        end
+      end
+
+      # DeleteGatherRule返回参数结构体
+      class DeleteGatherRuleResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -4191,10 +4653,10 @@ module TencentCloud
 
         attr_accessor :Balance, :Uin, :RealBalance, :CashAccountBalance, :IncomeIntoAccountBalance, :PresentAccountBalance, :FreezeAmount, :OweAmount, :IsAllowArrears, :IsCreditLimited, :CreditAmount, :CreditBalance, :RealCreditBalance, :RequestId
         extend Gem::Deprecate
-        deprecate :IsAllowArrears, :none, 2025, 4
-        deprecate :IsAllowArrears=, :none, 2025, 4
-        deprecate :IsCreditLimited, :none, 2025, 4
-        deprecate :IsCreditLimited=, :none, 2025, 4
+        deprecate :IsAllowArrears, :none, 2025, 5
+        deprecate :IsAllowArrears=, :none, 2025, 5
+        deprecate :IsCreditLimited, :none, 2025, 5
+        deprecate :IsCreditLimited=, :none, 2025, 5
 
         def initialize(balance=nil, uin=nil, realbalance=nil, cashaccountbalance=nil, incomeintoaccountbalance=nil, presentaccountbalance=nil, freezeamount=nil, oweamount=nil, isallowarrears=nil, iscreditlimited=nil, creditamount=nil, creditbalance=nil, realcreditbalance=nil, requestid=nil)
           @Balance = balance
@@ -4945,6 +5407,146 @@ module TencentCloud
         end
       end
 
+      # DescribeAllocationRuleDetail请求参数结构体
+      class DescribeAllocationRuleDetailRequest < TencentCloud::Common::AbstractModel
+        # @param RuleId: 所查询公摊规则ID
+        # @type RuleId: Integer
+        # @param Month: 月份，不传默认当前月
+        # @type Month: String
+
+        attr_accessor :RuleId, :Month
+
+        def initialize(ruleid=nil, month=nil)
+          @RuleId = ruleid
+          @Month = month
+        end
+
+        def deserialize(params)
+          @RuleId = params['RuleId']
+          @Month = params['Month']
+        end
+      end
+
+      # DescribeAllocationRuleDetail返回参数结构体
+      class DescribeAllocationRuleDetailResponse < TencentCloud::Common::AbstractModel
+        # @param Id: 公摊规则ID
+        # @type Id: Integer
+        # @param Uin: 公摊规则所属UIN
+        # @type Uin: String
+        # @param Name: 公摊规则名称
+        # @type Name: String
+        # @param Type: 公摊策略类型，枚举值如下：
+        # 1 - 自定义分摊占比
+        # 2 - 等比分摊
+        # 3 - 按占比分摊
+        # @type Type: Integer
+        # @param RuleDetail: 公摊规则表达式
+        # @type RuleDetail: :class:`Tencentcloud::Billing.v20180709.models.AllocationRuleExpression`
+        # @param RatioDetail: 公摊比例表达式，Type为1和2时返回
+        # @type RatioDetail: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Id, :Uin, :Name, :Type, :RuleDetail, :RatioDetail, :RequestId
+
+        def initialize(id=nil, uin=nil, name=nil, type=nil, ruledetail=nil, ratiodetail=nil, requestid=nil)
+          @Id = id
+          @Uin = uin
+          @Name = name
+          @Type = type
+          @RuleDetail = ruledetail
+          @RatioDetail = ratiodetail
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Uin = params['Uin']
+          @Name = params['Name']
+          @Type = params['Type']
+          unless params['RuleDetail'].nil?
+            @RuleDetail = AllocationRuleExpression.new
+            @RuleDetail.deserialize(params['RuleDetail'])
+          end
+          unless params['RatioDetail'].nil?
+            @RatioDetail = []
+            params['RatioDetail'].each do |i|
+              allocationrationexpression_tmp = AllocationRationExpression.new
+              allocationrationexpression_tmp.deserialize(i)
+              @RatioDetail << allocationrationexpression_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAllocationRuleSummary请求参数结构体
+      class DescribeAllocationRuleSummaryRequest < TencentCloud::Common::AbstractModel
+        # @param Limit: 每次获取数据量，最大值1000
+        # @type Limit: Integer
+        # @param Offset: 分页偏移量
+        # @type Offset: Integer
+        # @param Month: 月份，不传默认当前月
+        # @type Month: String
+        # @param Type: 公摊策略类型，用于筛选。
+        # 枚举值如下：
+        # 1 - 自定义分摊占比
+        # 2 - 等比分摊
+        # 3 - 按占比分摊
+        # @type Type: Integer
+        # @param Name: 公摊规则名称或分账单元名称，用于模糊筛选。
+        # @type Name: String
+
+        attr_accessor :Limit, :Offset, :Month, :Type, :Name
+
+        def initialize(limit=nil, offset=nil, month=nil, type=nil, name=nil)
+          @Limit = limit
+          @Offset = offset
+          @Month = month
+          @Type = type
+          @Name = name
+        end
+
+        def deserialize(params)
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @Month = params['Month']
+          @Type = params['Type']
+          @Name = params['Name']
+        end
+      end
+
+      # DescribeAllocationRuleSummary返回参数结构体
+      class DescribeAllocationRuleSummaryResponse < TencentCloud::Common::AbstractModel
+        # @param RuleList: 公摊规则表达式
+        # @type RuleList: Array
+        # @param Total: 规则总数
+        # @type Total: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RuleList, :Total, :RequestId
+
+        def initialize(rulelist=nil, total=nil, requestid=nil)
+          @RuleList = rulelist
+          @Total = total
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['RuleList'].nil?
+            @RuleList = []
+            params['RuleList'].each do |i|
+              allocationruleoverview_tmp = AllocationRuleOverview.new
+              allocationruleoverview_tmp.deserialize(i)
+              @RuleList << allocationruleoverview_tmp
+            end
+          end
+          @Total = params['Total']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeAllocationSummaryByBusiness请求参数结构体
       class DescribeAllocationSummaryByBusinessRequest < TencentCloud::Common::AbstractModel
         # @param Limit: 数量，最大值为1000
@@ -4992,8 +5594,8 @@ module TencentCloud
 
         attr_accessor :Limit, :Offset, :Month, :PeriodType, :TreeNodeUniqKeys, :SortType, :Sort, :BillDates, :BusinessCodes, :SearchKey
         extend Gem::Deprecate
-        deprecate :SearchKey, :none, 2025, 4
-        deprecate :SearchKey=, :none, 2025, 4
+        deprecate :SearchKey, :none, 2025, 5
+        deprecate :SearchKey=, :none, 2025, 5
 
         def initialize(limit=nil, offset=nil, month=nil, periodtype=nil, treenodeuniqkeys=nil, sorttype=nil, sort=nil, billdates=nil, businesscodes=nil, searchkey=nil)
           @Limit = limit
@@ -5366,6 +5968,61 @@ module TencentCloud
         end
       end
 
+      # DescribeAllocationTree请求参数结构体
+      class DescribeAllocationTreeRequest < TencentCloud::Common::AbstractModel
+        # @param Month: 月份，不传默认当前月
+        # @type Month: String
+
+        attr_accessor :Month
+
+        def initialize(month=nil)
+          @Month = month
+        end
+
+        def deserialize(params)
+          @Month = params['Month']
+        end
+      end
+
+      # DescribeAllocationTree返回参数结构体
+      class DescribeAllocationTreeResponse < TencentCloud::Common::AbstractModel
+        # @param Id: 分账单元ID
+        # @type Id: Integer
+        # @param Name: 分账单元名称
+        # @type Name: String
+        # @param TreeNodeUniqKey: 分账单元唯一标识
+        # @type TreeNodeUniqKey: String
+        # @param Children: 子树
+        # @type Children: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Id, :Name, :TreeNodeUniqKey, :Children, :RequestId
+
+        def initialize(id=nil, name=nil, treenodeuniqkey=nil, children=nil, requestid=nil)
+          @Id = id
+          @Name = name
+          @TreeNodeUniqKey = treenodeuniqkey
+          @Children = children
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Name = params['Name']
+          @TreeNodeUniqKey = params['TreeNodeUniqKey']
+          unless params['Children'].nil?
+            @Children = []
+            params['Children'].each do |i|
+              allocationtree_tmp = AllocationTree.new
+              allocationtree_tmp.deserialize(i)
+              @Children << allocationtree_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeAllocationTrendByMonth请求参数结构体
       class DescribeAllocationTrendByMonthRequest < TencentCloud::Common::AbstractModel
         # @param Month: 账单月份，格式为2024-02，不传默认当前月
@@ -5427,6 +6084,78 @@ module TencentCloud
             @Stat = AllocationStat.new
             @Stat.deserialize(params['Stat'])
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAllocationUnitDetail请求参数结构体
+      class DescribeAllocationUnitDetailRequest < TencentCloud::Common::AbstractModel
+        # @param Id: 所查询分账单元Id
+        # @type Id: Integer
+        # @param Month: 月份，不传默认当前月
+        # @type Month: String
+
+        attr_accessor :Id, :Month
+
+        def initialize(id=nil, month=nil)
+          @Id = id
+          @Month = month
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Month = params['Month']
+        end
+      end
+
+      # DescribeAllocationUnitDetail返回参数结构体
+      class DescribeAllocationUnitDetailResponse < TencentCloud::Common::AbstractModel
+        # @param Id: 分账单元ID
+        # @type Id: Integer
+        # @param Uin: 分账单元所属UIN
+        # @type Uin: String
+        # @param Name: 分账单元名称
+        # @type Name: String
+        # @param ParentId: 分账单元父节点ID
+        # @type ParentId: Integer
+        # @param SourceName: 源组织名称
+        # @type SourceName: String
+        # @param SourceId: 源组织ID
+        # @type SourceId: String
+        # @param Remark: 备注说明
+        # @type Remark: String
+        # @param TreeNodeUniqKey: 分账单元标识
+        # @type TreeNodeUniqKey: String
+        # @param RuleId: 若分账单元设置归集规则，返回归集规则ID，若无分账规则，则不返回
+        # @type RuleId: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Id, :Uin, :Name, :ParentId, :SourceName, :SourceId, :Remark, :TreeNodeUniqKey, :RuleId, :RequestId
+
+        def initialize(id=nil, uin=nil, name=nil, parentid=nil, sourcename=nil, sourceid=nil, remark=nil, treenodeuniqkey=nil, ruleid=nil, requestid=nil)
+          @Id = id
+          @Uin = uin
+          @Name = name
+          @ParentId = parentid
+          @SourceName = sourcename
+          @SourceId = sourceid
+          @Remark = remark
+          @TreeNodeUniqKey = treenodeuniqkey
+          @RuleId = ruleid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Uin = params['Uin']
+          @Name = params['Name']
+          @ParentId = params['ParentId']
+          @SourceName = params['SourceName']
+          @SourceId = params['SourceId']
+          @Remark = params['Remark']
+          @TreeNodeUniqKey = params['TreeNodeUniqKey']
+          @RuleId = params['RuleId']
           @RequestId = params['RequestId']
         end
       end
@@ -5550,8 +6279,8 @@ module TencentCloud
 
         attr_accessor :Offset, :Limit, :PeriodType, :Month, :BeginTime, :EndTime, :NeedRecordNum, :PayMode, :ResourceId, :ActionType, :ProjectId, :BusinessCode, :Context
         extend Gem::Deprecate
-        deprecate :PeriodType, :none, 2025, 4
-        deprecate :PeriodType=, :none, 2025, 4
+        deprecate :PeriodType, :none, 2025, 5
+        deprecate :PeriodType=, :none, 2025, 5
 
         def initialize(offset=nil, limit=nil, periodtype=nil, month=nil, begintime=nil, endtime=nil, needrecordnum=nil, paymode=nil, resourceid=nil, actiontype=nil, projectid=nil, businesscode=nil, context=nil)
           @Offset = offset
@@ -5687,8 +6416,10 @@ module TencentCloud
 
         attr_accessor :Offset, :Limit, :PeriodType, :Month, :BeginTime, :EndTime, :NeedRecordNum, :ProductCode, :PayMode, :ResourceId, :ActionType, :ProjectId, :BusinessCode, :Context, :PayerUin
         extend Gem::Deprecate
-        deprecate :PeriodType, :none, 2025, 4
-        deprecate :PeriodType=, :none, 2025, 4
+        deprecate :PeriodType, :none, 2025, 5
+        deprecate :PeriodType=, :none, 2025, 5
+        deprecate :ProductCode, :none, 2025, 5
+        deprecate :ProductCode=, :none, 2025, 5
 
         def initialize(offset=nil, limit=nil, periodtype=nil, month=nil, begintime=nil, endtime=nil, needrecordnum=nil, productcode=nil, paymode=nil, resourceid=nil, actiontype=nil, projectid=nil, businesscode=nil, context=nil, payeruin=nil)
           @Offset = offset
@@ -6010,8 +6741,8 @@ module TencentCloud
 
         attr_accessor :Offset, :Limit, :Month, :PeriodType, :NeedRecordNum, :ActionType, :ResourceId, :PayMode, :BusinessCode, :TagKey, :TagValue
         extend Gem::Deprecate
-        deprecate :PeriodType, :none, 2025, 4
-        deprecate :PeriodType=, :none, 2025, 4
+        deprecate :PeriodType, :none, 2025, 5
+        deprecate :PeriodType=, :none, 2025, 5
 
         def initialize(offset=nil, limit=nil, month=nil, periodtype=nil, needrecordnum=nil, actiontype=nil, resourceid=nil, paymode=nil, businesscode=nil, tagkey=nil, tagvalue=nil)
           @Offset = offset
@@ -6134,8 +6865,8 @@ module TencentCloud
 
         attr_accessor :Offset, :Limit, :Month, :PeriodType, :NeedRecordNum, :ActionType, :ResourceId, :PayMode, :BusinessCode, :PayerUin, :TagKey, :TagValue
         extend Gem::Deprecate
-        deprecate :PeriodType, :none, 2025, 4
-        deprecate :PeriodType=, :none, 2025, 4
+        deprecate :PeriodType, :none, 2025, 5
+        deprecate :PeriodType=, :none, 2025, 5
 
         def initialize(offset=nil, limit=nil, month=nil, periodtype=nil, needrecordnum=nil, actiontype=nil, resourceid=nil, paymode=nil, businesscode=nil, payeruin=nil, tagkey=nil, tagvalue=nil)
           @Offset = offset
@@ -7702,6 +8433,61 @@ module TencentCloud
         end
       end
 
+      # DescribeGatherRuleDetail请求参数结构体
+      class DescribeGatherRuleDetailRequest < TencentCloud::Common::AbstractModel
+        # @param Id: 所查询归集规则ID
+        # @type Id: Integer
+        # @param Month: 月份，不传默认当前月
+        # @type Month: String
+
+        attr_accessor :Id, :Month
+
+        def initialize(id=nil, month=nil)
+          @Id = id
+          @Month = month
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Month = params['Month']
+        end
+      end
+
+      # DescribeGatherRuleDetail返回参数结构体
+      class DescribeGatherRuleDetailResponse < TencentCloud::Common::AbstractModel
+        # @param Id: 归集规则ID
+        # @type Id: Integer
+        # @param Uin: 归集规则所属UIN
+        # @type Uin: String
+        # @param UpdateTime: 归集规则最后更新时间
+        # @type UpdateTime: String
+        # @param RuleDetail: 归集规则详情
+        # @type RuleDetail: :class:`Tencentcloud::Billing.v20180709.models.AllocationRuleExpression`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Id, :Uin, :UpdateTime, :RuleDetail, :RequestId
+
+        def initialize(id=nil, uin=nil, updatetime=nil, ruledetail=nil, requestid=nil)
+          @Id = id
+          @Uin = uin
+          @UpdateTime = updatetime
+          @RuleDetail = ruledetail
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Uin = params['Uin']
+          @UpdateTime = params['UpdateTime']
+          unless params['RuleDetail'].nil?
+            @RuleDetail = AllocationRuleExpression.new
+            @RuleDetail.deserialize(params['RuleDetail'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeSavingPlanResourceInfo请求参数结构体
       class DescribeSavingPlanResourceInfoRequest < TencentCloud::Common::AbstractModel
         # @param Limit: 数量，最大值为100
@@ -8317,10 +9103,10 @@ module TencentCloud
 
         attr_accessor :PayerUin, :OwnerUin, :OperateUin, :InstanceType, :InstanceTypeName, :ResourceId, :ResourceName, :TreeNodeUniqKey, :TreeNodeUniqKeyName, :RuleId, :RuleName, :BusinessCode, :BusinessCodeName, :ItemCode, :ItemCodeName, :RegionId, :RegionName, :Tag, :RealTotalCost, :CashPayAmount, :VoucherPayAmount, :IncentivePayAmount, :TransferPayAmount, :AllocationType, :BelongTreeNodeUniqKey, :BelongRule, :OtherTreeNodeUniqKeys, :OtherRules, :ProjectId, :ProjectName, :ProductCode, :ProductCodeName, :PayMode, :PayModeName, :ActionType, :ActionTypeName, :SplitItemId, :SplitItemName
         extend Gem::Deprecate
-        deprecate :SplitItemId, :none, 2025, 4
-        deprecate :SplitItemId=, :none, 2025, 4
-        deprecate :SplitItemName, :none, 2025, 4
-        deprecate :SplitItemName=, :none, 2025, 4
+        deprecate :SplitItemId, :none, 2025, 5
+        deprecate :SplitItemId=, :none, 2025, 5
+        deprecate :SplitItemName, :none, 2025, 5
+        deprecate :SplitItemName=, :none, 2025, 5
 
         def initialize(payeruin=nil, owneruin=nil, operateuin=nil, instancetype=nil, instancetypename=nil, resourceid=nil, resourcename=nil, treenodeuniqkey=nil, treenodeuniqkeyname=nil, ruleid=nil, rulename=nil, businesscode=nil, businesscodename=nil, itemcode=nil, itemcodename=nil, regionid=nil, regionname=nil, tag=nil, realtotalcost=nil, cashpayamount=nil, voucherpayamount=nil, incentivepayamount=nil, transferpayamount=nil, allocationtype=nil, belongtreenodeuniqkey=nil, belongrule=nil, othertreenodeuniqkeys=nil, otherrules=nil, projectid=nil, projectname=nil, productcode=nil, productcodename=nil, paymode=nil, paymodename=nil, actiontype=nil, actiontypename=nil, splititemid=nil, splititemname=nil)
           @PayerUin = payeruin
@@ -8432,6 +9218,25 @@ module TencentCloud
         end
       end
 
+      # 归集规则列表
+      class GatherRuleSummary < TencentCloud::Common::AbstractModel
+        # @param RuleDetail: 分账规则表达式
+        # @type RuleDetail: :class:`Tencentcloud::Billing.v20180709.models.AllocationRuleExpression`
+
+        attr_accessor :RuleDetail
+
+        def initialize(ruledetail=nil)
+          @RuleDetail = ruledetail
+        end
+
+        def deserialize(params)
+          unless params['RuleDetail'].nil?
+            @RuleDetail = AllocationRuleExpression.new
+            @RuleDetail.deserialize(params['RuleDetail'])
+          end
+        end
+      end
+
       # Json对象
       class JsonObject < TencentCloud::Common::AbstractModel
         # @param Key: key值
@@ -8449,6 +9254,163 @@ module TencentCloud
         def deserialize(params)
           @Key = params['Key']
           @Value = params['Value']
+        end
+      end
+
+      # ModifyAllocationRule请求参数结构体
+      class ModifyAllocationRuleRequest < TencentCloud::Common::AbstractModel
+        # @param RuleId: 所编辑公摊规则ID
+        # @type RuleId: Integer
+        # @param Name: 编辑后公摊规则名称
+        # @type Name: String
+        # @param Type: 公摊策略类型，枚举值如下： 1 - 自定义分摊占比 2 - 等比分摊 3 - 按占比分摊
+        # @type Type: Integer
+        # @param RuleDetail: 编辑后公摊规则表达式
+        # @type RuleDetail: :class:`Tencentcloud::Billing.v20180709.models.AllocationRuleExpression`
+        # @param RatioDetail: 编辑后公摊比例表达式
+        # @type RatioDetail: Array
+        # @param Month: 月份，不传默认当前月
+        # @type Month: String
+
+        attr_accessor :RuleId, :Name, :Type, :RuleDetail, :RatioDetail, :Month
+
+        def initialize(ruleid=nil, name=nil, type=nil, ruledetail=nil, ratiodetail=nil, month=nil)
+          @RuleId = ruleid
+          @Name = name
+          @Type = type
+          @RuleDetail = ruledetail
+          @RatioDetail = ratiodetail
+          @Month = month
+        end
+
+        def deserialize(params)
+          @RuleId = params['RuleId']
+          @Name = params['Name']
+          @Type = params['Type']
+          unless params['RuleDetail'].nil?
+            @RuleDetail = AllocationRuleExpression.new
+            @RuleDetail.deserialize(params['RuleDetail'])
+          end
+          unless params['RatioDetail'].nil?
+            @RatioDetail = []
+            params['RatioDetail'].each do |i|
+              allocationrationexpression_tmp = AllocationRationExpression.new
+              allocationrationexpression_tmp.deserialize(i)
+              @RatioDetail << allocationrationexpression_tmp
+            end
+          end
+          @Month = params['Month']
+        end
+      end
+
+      # ModifyAllocationRule返回参数结构体
+      class ModifyAllocationRuleResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyAllocationUnit请求参数结构体
+      class ModifyAllocationUnitRequest < TencentCloud::Common::AbstractModel
+        # @param Id: 所修改分账单元ID
+        # @type Id: Integer
+        # @param Name: 修改后分账单元名称
+        # @type Name: String
+        # @param SourceName: 修改后分账单元源组织名称
+        # @type SourceName: String
+        # @param SourceId: 修改后分账单元源组织ID
+        # @type SourceId: String
+        # @param Remark: 分账单元备注说明
+        # @type Remark: String
+        # @param Month: 月份，不传默认当前月
+        # @type Month: String
+
+        attr_accessor :Id, :Name, :SourceName, :SourceId, :Remark, :Month
+
+        def initialize(id=nil, name=nil, sourcename=nil, sourceid=nil, remark=nil, month=nil)
+          @Id = id
+          @Name = name
+          @SourceName = sourcename
+          @SourceId = sourceid
+          @Remark = remark
+          @Month = month
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Name = params['Name']
+          @SourceName = params['SourceName']
+          @SourceId = params['SourceId']
+          @Remark = params['Remark']
+          @Month = params['Month']
+        end
+      end
+
+      # ModifyAllocationUnit返回参数结构体
+      class ModifyAllocationUnitResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyGatherRule请求参数结构体
+      class ModifyGatherRuleRequest < TencentCloud::Common::AbstractModel
+        # @param Id: 所编辑归集规则ID
+        # @type Id: Integer
+        # @param RuleDetail: 所编辑分账规则详情
+        # @type RuleDetail: :class:`Tencentcloud::Billing.v20180709.models.AllocationRuleExpression`
+        # @param Month: 月份，不传默认当前月
+        # @type Month: String
+
+        attr_accessor :Id, :RuleDetail, :Month
+
+        def initialize(id=nil, ruledetail=nil, month=nil)
+          @Id = id
+          @RuleDetail = ruledetail
+          @Month = month
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          unless params['RuleDetail'].nil?
+            @RuleDetail = AllocationRuleExpression.new
+            @RuleDetail.deserialize(params['RuleDetail'])
+          end
+          @Month = params['Month']
+        end
+      end
+
+      # ModifyGatherRule返回参数结构体
+      class ModifyGatherRuleResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 

@@ -3941,19 +3941,22 @@ module TencentCloud
         # 挪威语: no
         # 丹麦语: da
         # @type TranslationLanguage: String
+        # @param HotWordList: 热词表：该参数用于提升识别准确率。 单个热词限制："热词|权重"，单个热词不超过30个字符（最多10个汉字），权重[1-11]或者100，如：“腾讯云|5” 或 “ASR|11”； 热词表限制：多个热词用英文逗号分割，最多支持300个热词，如：“腾讯云|10,语音识别|5,ASR|11”；
+        # @type HotWordList: String
 
-        attr_accessor :Language, :AlternativeLanguage, :Model, :TranslationLanguage
+        attr_accessor :Language, :AlternativeLanguage, :Model, :TranslationLanguage, :HotWordList
         extend Gem::Deprecate
-        deprecate :Model, :none, 2025, 4
-        deprecate :Model=, :none, 2025, 4
-        deprecate :TranslationLanguage, :none, 2025, 4
-        deprecate :TranslationLanguage=, :none, 2025, 4
+        deprecate :Model, :none, 2025, 5
+        deprecate :Model=, :none, 2025, 5
+        deprecate :TranslationLanguage, :none, 2025, 5
+        deprecate :TranslationLanguage=, :none, 2025, 5
 
-        def initialize(language=nil, alternativelanguage=nil, model=nil, translationlanguage=nil)
+        def initialize(language=nil, alternativelanguage=nil, model=nil, translationlanguage=nil, hotwordlist=nil)
           @Language = language
           @AlternativeLanguage = alternativelanguage
           @Model = model
           @TranslationLanguage = translationlanguage
+          @HotWordList = hotwordlist
         end
 
         def deserialize(params)
@@ -3961,6 +3964,7 @@ module TencentCloud
           @AlternativeLanguage = params['AlternativeLanguage']
           @Model = params['Model']
           @TranslationLanguage = params['TranslationLanguage']
+          @HotWordList = params['HotWordList']
         end
       end
 
@@ -4914,12 +4918,12 @@ module TencentCloud
 
         attr_accessor :SdkAppId, :RoomId, :RoomIdType, :UserId, :UserSig, :StreamUrl, :PrivateMapKey, :VideoEncodeParams, :AudioEncodeParams, :SourceUrl, :SeekSecond, :AutoPush, :RepeatNum, :MaxDuration, :Volume
         extend Gem::Deprecate
-        deprecate :VideoEncodeParams, :none, 2025, 4
-        deprecate :VideoEncodeParams=, :none, 2025, 4
-        deprecate :AudioEncodeParams, :none, 2025, 4
-        deprecate :AudioEncodeParams=, :none, 2025, 4
-        deprecate :SourceUrl, :none, 2025, 4
-        deprecate :SourceUrl=, :none, 2025, 4
+        deprecate :VideoEncodeParams, :none, 2025, 5
+        deprecate :VideoEncodeParams=, :none, 2025, 5
+        deprecate :AudioEncodeParams, :none, 2025, 5
+        deprecate :AudioEncodeParams=, :none, 2025, 5
+        deprecate :SourceUrl, :none, 2025, 5
+        deprecate :SourceUrl=, :none, 2025, 5
 
         def initialize(sdkappid=nil, roomid=nil, roomidtype=nil, userid=nil, usersig=nil, streamurl=nil, privatemapkey=nil, videoencodeparams=nil, audioencodeparams=nil, sourceurl=nil, seeksecond=nil, autopush=nil, repeatnum=nil, maxduration=nil, volume=nil)
           @SdkAppId = sdkappid
@@ -5567,10 +5571,10 @@ module TencentCloud
 
         attr_accessor :UserId, :UserSig, :IMAdminUserId, :IMAdminUserSig, :MaxIdleTime, :TranscriptionMode, :TargetUserId, :TargetUserIdList
         extend Gem::Deprecate
-        deprecate :IMAdminUserId, :none, 2025, 4
-        deprecate :IMAdminUserId=, :none, 2025, 4
-        deprecate :IMAdminUserSig, :none, 2025, 4
-        deprecate :IMAdminUserSig=, :none, 2025, 4
+        deprecate :IMAdminUserId, :none, 2025, 5
+        deprecate :IMAdminUserId=, :none, 2025, 5
+        deprecate :IMAdminUserSig, :none, 2025, 5
+        deprecate :IMAdminUserSig=, :none, 2025, 5
 
         def initialize(userid=nil, usersig=nil, imadminuserid=nil, imadminusersig=nil, maxidletime=nil, transcriptionmode=nil, targetuserid=nil, targetuseridlist=nil)
           @UserId = userid

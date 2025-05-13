@@ -3752,6 +3752,22 @@ module TencentCloud
         end
       end
 
+      # 执行命令探针检查行为
+      class ExecAction < TencentCloud::Common::AbstractModel
+        # @param Command: 执行命令列表
+        # @type Command: Array
+
+        attr_accessor :Command
+
+        def initialize(command=nil)
+          @Command = command
+        end
+
+        def deserialize(params)
+          @Command = params['Command']
+        end
+      end
+
       # 过滤器
       class Filter < TencentCloud::Common::AbstractModel
         # @param Name: 过滤字段名称
@@ -3915,15 +3931,19 @@ module TencentCloud
       class HTTPGetAction < TencentCloud::Common::AbstractModel
         # @param Path: http 路径
         # @type Path: String
+        # @param Port: 调用端口
+        # @type Port: Integer
 
-        attr_accessor :Path
+        attr_accessor :Path, :Port
 
-        def initialize(path=nil)
+        def initialize(path=nil, port=nil)
           @Path = path
+          @Port = port
         end
 
         def deserialize(params)
           @Path = params['Path']
+          @Port = params['Port']
         end
       end
 
@@ -5805,6 +5825,26 @@ module TencentCloud
         end
       end
 
+      # 用于表示百分比或数量
+      class NumOrPercent < TencentCloud::Common::AbstractModel
+        # @param Type: Num,Percent ,分别表示数量和百分比，默认为 Num
+        # @type Type: String
+        # @param Value: 数值
+        # @type Value: Integer
+
+        attr_accessor :Type, :Value
+
+        def initialize(type=nil, value=nil)
+          @Type = type
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @Value = params['Value']
+        end
+      end
+
       # 键值对
       class Option < TencentCloud::Common::AbstractModel
         # @param Name: 指标名
@@ -6031,11 +6071,20 @@ module TencentCloud
       class ProbeAction < TencentCloud::Common::AbstractModel
         # @param HTTPGet: http get 行为
         # @type HTTPGet: :class:`Tencentcloud::Tione.v20211111.models.HTTPGetAction`
+        # @param Exec: 执行命令检查 行为
+        # @type Exec: :class:`Tencentcloud::Tione.v20211111.models.ExecAction`
+        # @param TCPSocket: tcp socket 检查行为
+        # @type TCPSocket: :class:`Tencentcloud::Tione.v20211111.models.TCPSocketAction`
+        # @param ActionType: 探针类型，默认 HTTPGet，可选值：HTTPGet、Exec、TCPSocket
+        # @type ActionType: String
 
-        attr_accessor :HTTPGet
+        attr_accessor :HTTPGet, :Exec, :TCPSocket, :ActionType
 
-        def initialize(httpget=nil)
+        def initialize(httpget=nil, exec=nil, tcpsocket=nil, actiontype=nil)
           @HTTPGet = httpget
+          @Exec = exec
+          @TCPSocket = tcpsocket
+          @ActionType = actiontype
         end
 
         def deserialize(params)
@@ -6043,6 +6092,15 @@ module TencentCloud
             @HTTPGet = HTTPGetAction.new
             @HTTPGet.deserialize(params['HTTPGet'])
           end
+          unless params['Exec'].nil?
+            @Exec = ExecAction.new
+            @Exec.deserialize(params['Exec'])
+          end
+          unless params['TCPSocket'].nil?
+            @TCPSocket = TCPSocketAction.new
+            @TCPSocket.deserialize(params['TCPSocket'])
+          end
+          @ActionType = params['ActionType']
         end
       end
 
@@ -6390,6 +6448,32 @@ module TencentCloud
           @TaskType = params['TaskType']
           @TaskId = params['TaskId']
           @TaskName = params['TaskName']
+        end
+      end
+
+      # 滚动更新策略
+      class RollingUpdate < TencentCloud::Common::AbstractModel
+        # @param MaxUnavailable: 滚动更新的最大不可用
+        # @type MaxUnavailable: :class:`Tencentcloud::Tione.v20211111.models.NumOrPercent`
+        # @param MaxSurge: 滚动更新的最大新增实例
+        # @type MaxSurge: :class:`Tencentcloud::Tione.v20211111.models.NumOrPercent`
+
+        attr_accessor :MaxUnavailable, :MaxSurge
+
+        def initialize(maxunavailable=nil, maxsurge=nil)
+          @MaxUnavailable = maxunavailable
+          @MaxSurge = maxsurge
+        end
+
+        def deserialize(params)
+          unless params['MaxUnavailable'].nil?
+            @MaxUnavailable = NumOrPercent.new
+            @MaxUnavailable.deserialize(params['MaxUnavailable'])
+          end
+          unless params['MaxSurge'].nil?
+            @MaxSurge = NumOrPercent.new
+            @MaxSurge.deserialize(params['MaxSurge'])
+          end
         end
       end
 
@@ -6907,10 +6991,12 @@ module TencentCloud
         # @type AuthorizationEnable: Boolean
         # @param AuthTokens: 限流鉴权 token 列表
         # @type AuthTokens: Array
+        # @param MonitorSource: 用于监控的创建来源字段
+        # @type MonitorSource: String
 
-        attr_accessor :ServiceGroupId, :ServiceGroupName, :CreatedBy, :CreateTime, :UpdateTime, :Uin, :ServiceCount, :RunningServiceCount, :Services, :Status, :Tags, :LatestVersion, :BusinessStatus, :BillingInfo, :CreateSource, :WeightUpdateStatus, :ReplicasCount, :AvailableReplicasCount, :SubUin, :AppId, :AuthorizationEnable, :AuthTokens
+        attr_accessor :ServiceGroupId, :ServiceGroupName, :CreatedBy, :CreateTime, :UpdateTime, :Uin, :ServiceCount, :RunningServiceCount, :Services, :Status, :Tags, :LatestVersion, :BusinessStatus, :BillingInfo, :CreateSource, :WeightUpdateStatus, :ReplicasCount, :AvailableReplicasCount, :SubUin, :AppId, :AuthorizationEnable, :AuthTokens, :MonitorSource
 
-        def initialize(servicegroupid=nil, servicegroupname=nil, createdby=nil, createtime=nil, updatetime=nil, uin=nil, servicecount=nil, runningservicecount=nil, services=nil, status=nil, tags=nil, latestversion=nil, businessstatus=nil, billinginfo=nil, createsource=nil, weightupdatestatus=nil, replicascount=nil, availablereplicascount=nil, subuin=nil, appid=nil, authorizationenable=nil, authtokens=nil)
+        def initialize(servicegroupid=nil, servicegroupname=nil, createdby=nil, createtime=nil, updatetime=nil, uin=nil, servicecount=nil, runningservicecount=nil, services=nil, status=nil, tags=nil, latestversion=nil, businessstatus=nil, billinginfo=nil, createsource=nil, weightupdatestatus=nil, replicascount=nil, availablereplicascount=nil, subuin=nil, appid=nil, authorizationenable=nil, authtokens=nil, monitorsource=nil)
           @ServiceGroupId = servicegroupid
           @ServiceGroupName = servicegroupname
           @CreatedBy = createdby
@@ -6933,6 +7019,7 @@ module TencentCloud
           @AppId = appid
           @AuthorizationEnable = authorizationenable
           @AuthTokens = authtokens
+          @MonitorSource = monitorsource
         end
 
         def deserialize(params)
@@ -6979,6 +7066,7 @@ module TencentCloud
               @AuthTokens << authtoken_tmp
             end
           end
+          @MonitorSource = params['MonitorSource']
         end
       end
 
@@ -7095,15 +7183,17 @@ module TencentCloud
         # @type GrpcEnable: Boolean
         # @param HealthProbe: 健康探针
         # @type HealthProbe: :class:`Tencentcloud::Tione.v20211111.models.HealthProbe`
+        # @param RollingUpdate: 滚动更新配置
+        # @type RollingUpdate: :class:`Tencentcloud::Tione.v20211111.models.RollingUpdate`
 
-        attr_accessor :Replicas, :ImageInfo, :Env, :Resources, :InstanceType, :ModelInfo, :LogEnable, :LogConfig, :AuthorizationEnable, :HorizontalPodAutoscaler, :Status, :Weight, :ResourceTotal, :OldReplicas, :HybridBillingPrepaidReplicas, :OldHybridBillingPrepaidReplicas, :ModelHotUpdateEnable, :InstanceAlias, :ScaleMode, :CronScaleJobs, :ScaleStrategy, :ScheduledAction, :PodList, :Pods, :PodInfos, :ServiceLimit, :ModelTurboEnable, :VolumeMount, :InferCodeInfo, :Command, :ServiceEIP, :ServicePort, :TerminationGracePeriodSeconds, :PreStopCommand, :GrpcEnable, :HealthProbe
+        attr_accessor :Replicas, :ImageInfo, :Env, :Resources, :InstanceType, :ModelInfo, :LogEnable, :LogConfig, :AuthorizationEnable, :HorizontalPodAutoscaler, :Status, :Weight, :ResourceTotal, :OldReplicas, :HybridBillingPrepaidReplicas, :OldHybridBillingPrepaidReplicas, :ModelHotUpdateEnable, :InstanceAlias, :ScaleMode, :CronScaleJobs, :ScaleStrategy, :ScheduledAction, :PodList, :Pods, :PodInfos, :ServiceLimit, :ModelTurboEnable, :VolumeMount, :InferCodeInfo, :Command, :ServiceEIP, :ServicePort, :TerminationGracePeriodSeconds, :PreStopCommand, :GrpcEnable, :HealthProbe, :RollingUpdate
         extend Gem::Deprecate
         deprecate :PodList, :none, 2025, 5
         deprecate :PodList=, :none, 2025, 5
         deprecate :Pods, :none, 2025, 5
         deprecate :Pods=, :none, 2025, 5
 
-        def initialize(replicas=nil, imageinfo=nil, env=nil, resources=nil, instancetype=nil, modelinfo=nil, logenable=nil, logconfig=nil, authorizationenable=nil, horizontalpodautoscaler=nil, status=nil, weight=nil, resourcetotal=nil, oldreplicas=nil, hybridbillingprepaidreplicas=nil, oldhybridbillingprepaidreplicas=nil, modelhotupdateenable=nil, instancealias=nil, scalemode=nil, cronscalejobs=nil, scalestrategy=nil, scheduledaction=nil, podlist=nil, pods=nil, podinfos=nil, servicelimit=nil, modelturboenable=nil, volumemount=nil, infercodeinfo=nil, command=nil, serviceeip=nil, serviceport=nil, terminationgraceperiodseconds=nil, prestopcommand=nil, grpcenable=nil, healthprobe=nil)
+        def initialize(replicas=nil, imageinfo=nil, env=nil, resources=nil, instancetype=nil, modelinfo=nil, logenable=nil, logconfig=nil, authorizationenable=nil, horizontalpodautoscaler=nil, status=nil, weight=nil, resourcetotal=nil, oldreplicas=nil, hybridbillingprepaidreplicas=nil, oldhybridbillingprepaidreplicas=nil, modelhotupdateenable=nil, instancealias=nil, scalemode=nil, cronscalejobs=nil, scalestrategy=nil, scheduledaction=nil, podlist=nil, pods=nil, podinfos=nil, servicelimit=nil, modelturboenable=nil, volumemount=nil, infercodeinfo=nil, command=nil, serviceeip=nil, serviceport=nil, terminationgraceperiodseconds=nil, prestopcommand=nil, grpcenable=nil, healthprobe=nil, rollingupdate=nil)
           @Replicas = replicas
           @ImageInfo = imageinfo
           @Env = env
@@ -7140,6 +7230,7 @@ module TencentCloud
           @PreStopCommand = prestopcommand
           @GrpcEnable = grpcenable
           @HealthProbe = healthprobe
+          @RollingUpdate = rollingupdate
         end
 
         def deserialize(params)
@@ -7241,6 +7332,10 @@ module TencentCloud
           unless params['HealthProbe'].nil?
             @HealthProbe = HealthProbe.new
             @HealthProbe.deserialize(params['HealthProbe'])
+          end
+          unless params['RollingUpdate'].nil?
+            @RollingUpdate = RollingUpdate.new
+            @RollingUpdate.deserialize(params['RollingUpdate'])
           end
         end
       end
@@ -7606,6 +7701,22 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # tcp socket 健康探针检查行为
+      class TCPSocketAction < TencentCloud::Common::AbstractModel
+        # @param Port: 调用端口
+        # @type Port: Integer
+
+        attr_accessor :Port
+
+        def initialize(port=nil)
+          @Port = port
+        end
+
+        def deserialize(params)
+          @Port = params['Port']
         end
       end
 

@@ -326,10 +326,14 @@ module TencentCloud
         # @type IsRemoteCommandExecutionAnalysis: Integer
         # @param IsMemoryHijackingAnalysis: 是否开内存马执行检测（0=关， 1=开）
         # @type IsMemoryHijackingAnalysis: Integer
+        # @param LogIndexType: CLS索引类型(0=全文索引，1=键值索引)
+        # @type LogIndexType: Integer
+        # @param LogTraceIdKey: traceId的索引key: 当CLS索引类型为键值索引时生效
+        # @type LogTraceIdKey: String
 
-        attr_accessor :InstanceId, :Name, :Description, :Status, :Region, :Tags, :AppId, :CreateUin, :AmountOfUsedStorage, :ServiceCount, :CountOfReportSpanPerDay, :TraceDuration, :SpanDailyCounters, :BillingInstance, :ErrRateThreshold, :SampleRate, :ErrorSample, :SlowRequestSavedThreshold, :LogRegion, :LogSource, :IsRelatedLog, :LogTopicID, :ClientCount, :TotalCount, :LogSet, :MetricDuration, :CustomShowTags, :PayMode, :PayModeEffective, :ResponseDurationWarningThreshold, :Free, :DefaultTSF, :IsRelatedDashboard, :DashboardTopicID, :IsInstrumentationVulnerabilityScan, :IsSqlInjectionAnalysis, :StopReason, :IsRemoteCommandExecutionAnalysis, :IsMemoryHijackingAnalysis
+        attr_accessor :InstanceId, :Name, :Description, :Status, :Region, :Tags, :AppId, :CreateUin, :AmountOfUsedStorage, :ServiceCount, :CountOfReportSpanPerDay, :TraceDuration, :SpanDailyCounters, :BillingInstance, :ErrRateThreshold, :SampleRate, :ErrorSample, :SlowRequestSavedThreshold, :LogRegion, :LogSource, :IsRelatedLog, :LogTopicID, :ClientCount, :TotalCount, :LogSet, :MetricDuration, :CustomShowTags, :PayMode, :PayModeEffective, :ResponseDurationWarningThreshold, :Free, :DefaultTSF, :IsRelatedDashboard, :DashboardTopicID, :IsInstrumentationVulnerabilityScan, :IsSqlInjectionAnalysis, :StopReason, :IsRemoteCommandExecutionAnalysis, :IsMemoryHijackingAnalysis, :LogIndexType, :LogTraceIdKey
 
-        def initialize(instanceid=nil, name=nil, description=nil, status=nil, region=nil, tags=nil, appid=nil, createuin=nil, amountofusedstorage=nil, servicecount=nil, countofreportspanperday=nil, traceduration=nil, spandailycounters=nil, billinginstance=nil, errratethreshold=nil, samplerate=nil, errorsample=nil, slowrequestsavedthreshold=nil, logregion=nil, logsource=nil, isrelatedlog=nil, logtopicid=nil, clientcount=nil, totalcount=nil, logset=nil, metricduration=nil, customshowtags=nil, paymode=nil, paymodeeffective=nil, responsedurationwarningthreshold=nil, free=nil, defaulttsf=nil, isrelateddashboard=nil, dashboardtopicid=nil, isinstrumentationvulnerabilityscan=nil, issqlinjectionanalysis=nil, stopreason=nil, isremotecommandexecutionanalysis=nil, ismemoryhijackinganalysis=nil)
+        def initialize(instanceid=nil, name=nil, description=nil, status=nil, region=nil, tags=nil, appid=nil, createuin=nil, amountofusedstorage=nil, servicecount=nil, countofreportspanperday=nil, traceduration=nil, spandailycounters=nil, billinginstance=nil, errratethreshold=nil, samplerate=nil, errorsample=nil, slowrequestsavedthreshold=nil, logregion=nil, logsource=nil, isrelatedlog=nil, logtopicid=nil, clientcount=nil, totalcount=nil, logset=nil, metricduration=nil, customshowtags=nil, paymode=nil, paymodeeffective=nil, responsedurationwarningthreshold=nil, free=nil, defaulttsf=nil, isrelateddashboard=nil, dashboardtopicid=nil, isinstrumentationvulnerabilityscan=nil, issqlinjectionanalysis=nil, stopreason=nil, isremotecommandexecutionanalysis=nil, ismemoryhijackinganalysis=nil, logindextype=nil, logtraceidkey=nil)
           @InstanceId = instanceid
           @Name = name
           @Description = description
@@ -369,6 +373,8 @@ module TencentCloud
           @StopReason = stopreason
           @IsRemoteCommandExecutionAnalysis = isremotecommandexecutionanalysis
           @IsMemoryHijackingAnalysis = ismemoryhijackinganalysis
+          @LogIndexType = logindextype
+          @LogTraceIdKey = logtraceidkey
         end
 
         def deserialize(params)
@@ -418,6 +424,8 @@ module TencentCloud
           @StopReason = params['StopReason']
           @IsRemoteCommandExecutionAnalysis = params['IsRemoteCommandExecutionAnalysis']
           @IsMemoryHijackingAnalysis = params['IsMemoryHijackingAnalysis']
+          @LogIndexType = params['LogIndexType']
+          @LogTraceIdKey = params['LogTraceIdKey']
         end
       end
 
@@ -1449,9 +1457,9 @@ module TencentCloud
         # @type IsRemoteCommandExecutionAnalysis: Integer
         # @param IsMemoryHijackingAnalysis: 是否开启内存马检测
         # @type IsMemoryHijackingAnalysis: Integer
-        # @param LogIndexType: 0=全文索引，1=键值索引
+        # @param LogIndexType: CLS索引类型(0=全文索引，1=键值索引)
         # @type LogIndexType: Integer
-        # @param LogTraceIdKey: traceId的索引key
+        # @param LogTraceIdKey: traceId的索引key: 当CLS索引类型为键值索引时生效
         # @type LogTraceIdKey: String
 
         attr_accessor :InstanceId, :Name, :Tags, :Description, :TraceDuration, :OpenBilling, :SpanDailyCounters, :ErrRateThreshold, :SampleRate, :ErrorSample, :SlowRequestSavedThreshold, :IsRelatedLog, :LogRegion, :LogTopicID, :LogSet, :LogSource, :CustomShowTags, :PayMode, :ResponseDurationWarningThreshold, :Free, :IsRelatedDashboard, :DashboardTopicID, :IsSqlInjectionAnalysis, :IsInstrumentationVulnerabilityScan, :IsRemoteCommandExecutionAnalysis, :IsMemoryHijackingAnalysis, :LogIndexType, :LogTraceIdKey

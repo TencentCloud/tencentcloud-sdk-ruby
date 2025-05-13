@@ -70,8 +70,8 @@ module TencentCloud
 
         attr_accessor :AutoScalingGroupId, :ActivityId, :ActivityType, :StatusCode, :StatusMessage, :Cause, :Description, :StartTime, :EndTime, :CreatedTime, :ActivityRelatedInstanceSet, :StatusMessageSimplified, :LifecycleActionResultSet, :DetailedStatusMessageSet, :InvocationResultSet, :RelatedInstanceSet
         extend Gem::Deprecate
-        deprecate :ActivityRelatedInstanceSet, :none, 2025, 4
-        deprecate :ActivityRelatedInstanceSet=, :none, 2025, 4
+        deprecate :ActivityRelatedInstanceSet, :none, 2025, 5
+        deprecate :ActivityRelatedInstanceSet=, :none, 2025, 5
 
         def initialize(autoscalinggroupid=nil, activityid=nil, activitytype=nil, statuscode=nil, statusmessage=nil, cause=nil, description=nil, starttime=nil, endtime=nil, createdtime=nil, activityrelatedinstanceset=nil, statusmessagesimplified=nil, lifecycleactionresultset=nil, detailedstatusmessageset=nil, invocationresultset=nil, relatedinstanceset=nil)
           @AutoScalingGroupId = autoscalinggroupid
@@ -1595,7 +1595,7 @@ module TencentCloud
 
       # DeleteLifecycleHook请求参数结构体
       class DeleteLifecycleHookRequest < TencentCloud::Common::AbstractModel
-        # @param LifecycleHookId: 生命周期挂钩ID
+        # @param LifecycleHookId: 生命周期挂钩ID。可以通过调用接口 [DescribeLifecycleHooks](https://cloud.tencent.com/document/api/377/34452) ，取返回信息中的 LifecycleHookId 获取生命周期挂钩ID。
         # @type LifecycleHookId: String
 
         attr_accessor :LifecycleHookId
@@ -1890,15 +1890,19 @@ module TencentCloud
       class DescribeAutoScalingGroupLastActivitiesRequest < TencentCloud::Common::AbstractModel
         # @param AutoScalingGroupIds: 伸缩组ID列表
         # @type AutoScalingGroupIds: Array
+        # @param ExcludeCancelledActivity: 查询时排除取消类型活动。默认值为 false，表示不排除取消类型活动。
+        # @type ExcludeCancelledActivity: Boolean
 
-        attr_accessor :AutoScalingGroupIds
+        attr_accessor :AutoScalingGroupIds, :ExcludeCancelledActivity
 
-        def initialize(autoscalinggroupids=nil)
+        def initialize(autoscalinggroupids=nil, excludecancelledactivity=nil)
           @AutoScalingGroupIds = autoscalinggroupids
+          @ExcludeCancelledActivity = excludecancelledactivity
         end
 
         def deserialize(params)
           @AutoScalingGroupIds = params['AutoScalingGroupIds']
+          @ExcludeCancelledActivity = params['ExcludeCancelledActivity']
         end
       end
 
@@ -2707,8 +2711,8 @@ module TencentCloud
 
         attr_accessor :SecurityService, :MonitorService, :AutomationService, :AutomationToolsService
         extend Gem::Deprecate
-        deprecate :AutomationService, :none, 2025, 4
-        deprecate :AutomationService=, :none, 2025, 4
+        deprecate :AutomationService, :none, 2025, 5
+        deprecate :AutomationService=, :none, 2025, 5
 
         def initialize(securityservice=nil, monitorservice=nil, automationservice=nil, automationtoolsservice=nil)
           @SecurityService = securityservice
@@ -3598,19 +3602,24 @@ module TencentCloud
         # @type LifecycleHookName: String
         # @param AutoScalingGroupId: 伸缩组ID
         # @type AutoScalingGroupId: String
-        # @param DefaultResult: 生命周期挂钩默认结果
+        # @param DefaultResult: 定义伸缩组在生命周期挂钩超时或 LifecycleCommand 执行失败时应采取的操作，取值范围如下：
+        # - CONTINUE: 默认值，表示继续执行扩缩容活动
+        # - ABANDON: 针对扩容挂钩，挂钩超时或 LifecycleCommand 执行失败的 CVM 实例会直接释放或移出；而针对缩容挂钩，会继续执行缩容活动
         # @type DefaultResult: String
-        # @param HeartbeatTimeout: 生命周期挂钩等待超时时间
+        # @param HeartbeatTimeout: 生命周期挂钩超时等待时间（以秒为单位），范围从 30 到 7200 秒。
         # @type HeartbeatTimeout: Integer
-        # @param LifecycleTransition: 生命周期挂钩适用场景
+        # @param LifecycleTransition: 生命周期挂钩场景，取值范围如下:
+        # - INSTANCE_LAUNCHING: 扩容生命周期挂钩
+        # - INSTANCE_TERMINATING: 缩容生命周期挂钩
         # @type LifecycleTransition: String
         # @param NotificationMetadata: 通知目标的附加信息
         # @type NotificationMetadata: String
-        # @param CreatedTime: 创建时间
+        # @param CreatedTime: 创建时间，采用 UTC 标准计时
         # @type CreatedTime: String
         # @param NotificationTarget: 通知目标
         # @type NotificationTarget: :class:`Tencentcloud::As.v20180419.models.NotificationTarget`
-        # @param LifecycleTransitionType: 生命周期挂钩适用场景
+        # @param LifecycleTransitionType: 进行生命周期挂钩的场景类型，取值范围包括 NORMAL 和 EXTENSION，默认值为 NORMAL。
+        # 说明：设置为EXTENSION值，在AttachInstances、DetachInstances、RemoveInstances 接口时会触发生命周期挂钩操作，值为NORMAL则不会在这些接口中触发生命周期挂钩。
         # @type LifecycleTransitionType: String
         # @param LifecycleCommand: 远程命令执行对象
         # @type LifecycleCommand: :class:`Tencentcloud::As.v20180419.models.LifecycleCommand`
@@ -5007,9 +5016,11 @@ module TencentCloud
 
       # ScaleInInstances请求参数结构体
       class ScaleInInstancesRequest < TencentCloud::Common::AbstractModel
-        # @param AutoScalingGroupId: 伸缩组ID。
+        # @param AutoScalingGroupId: 伸缩组ID。可以通过如下方式获取可用的伸缩组ID:
+        # <li>通过登录 [控制台](https://console.cloud.tencent.com/autoscaling/group) 查询伸缩组ID。</li>
+        # <li>通过调用接口 [DescribeAutoScalingGroups](https://cloud.tencent.com/document/api/377/20438) ，取返回信息中的 AutoScalingGroupId 获取伸缩组ID。</li>
         # @type AutoScalingGroupId: String
-        # @param ScaleInNumber: 希望缩容的实例数量。
+        # @param ScaleInNumber: 希望缩容的实例数量。该参数的静态取值范围是 [1,2000]，同时该参数不得大于期望数与最小值的差值。例如伸缩组期望数为 100，最小值为 20，此时可取值范围为 [1,80]。
         # @type ScaleInNumber: Integer
 
         attr_accessor :AutoScalingGroupId, :ScaleInNumber

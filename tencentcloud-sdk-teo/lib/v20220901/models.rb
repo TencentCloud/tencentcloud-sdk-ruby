@@ -345,7 +345,6 @@ module TencentCloud
         # @param AclUserRules: 用户自定义规则。
         # @type AclUserRules: Array
         # @param Customizes: 托管定制规则
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Customizes: Array
 
         attr_accessor :Switch, :AclUserRules, :Customizes
@@ -668,7 +667,6 @@ module TencentCloud
         # @param AlgConditions: 自定义规则。
         # @type AlgConditions: Array
         # @param AlgDetectSession: Cookie校验和会话行为分析。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AlgDetectSession: :class:`Tencentcloud::Teo.v20220901.models.AlgDetectSession`
         # @param AlgDetectJS: 客户端行为校验。
         # @type AlgDetectJS: Array
@@ -9368,10 +9366,8 @@ module TencentCloud
         # <li>off：关闭。</li>
         # @type Switch: String
         # @param WafDropPageDetail: Waf(托管规则)模块的拦截页面配置。如果为null，默认使用历史配置。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WafDropPageDetail: :class:`Tencentcloud::Teo.v20220901.models.DropPageDetail`
         # @param AclDropPageDetail: 自定义页面的拦截页面配置。如果为null，默认使用历史配置。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AclDropPageDetail: :class:`Tencentcloud::Teo.v20220901.models.DropPageDetail`
 
         attr_accessor :Switch, :WafDropPageDetail, :AclDropPageDetail
@@ -10907,10 +10903,8 @@ module TencentCloud
         # @param Switch: 开关，取值有：
         # <li>on：开启；</li>
         # <li>off：关闭。</li>
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Switch: String
         # @param IntelligenceRuleItems: 规则详情。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IntelligenceRuleItems: Array
 
         attr_accessor :Switch, :IntelligenceRuleItems
@@ -16705,14 +16699,12 @@ module TencentCloud
         # <li>wildcard：通配符匹配，支持 * 通配。</li>
         # @type MatchFromType: String
         # @param MatchFrom: 匹配Key的值。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MatchFrom: Array
         # @param MatchContentType: 匹配Content所使用的匹配方式，取值为：
         # <li>equal：精准匹配，等于；</li>
         # <li>wildcard：通配符匹配，支持 * 通配。</li>
         # @type MatchContentType: String
         # @param MatchContent: 匹配Value的值。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MatchContent: Array
 
         attr_accessor :Type, :Selector, :MatchFromType, :MatchFrom, :MatchContentType, :MatchContent
@@ -16789,10 +16781,8 @@ module TencentCloud
         # <li>off：关闭。</li>
         # @type Switch: String
         # @param Interval: 统计的间隔，单位是秒，即在首段包传输结束后，将数据传输轴按照本参数切分，每个分片独立计算慢速攻击。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Interval: Integer
         # @param Threshold: 统计时应用的速率阈值，单位是bps，即如果本分片中的传输速率没达到本参数的值，则判定为慢速攻击，应用慢速攻击的处置方式。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Threshold: Integer
 
         attr_accessor :Switch, :Interval, :Threshold

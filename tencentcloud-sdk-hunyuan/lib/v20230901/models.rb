@@ -49,6 +49,38 @@ module TencentCloud
         end
       end
 
+      # 用户位置信息
+      class Approximate < TencentCloud::Common::AbstractModel
+        # @param Country: 表示 ISO 国家代码
+        # @type Country: String
+        # @param City: 表示城市名称
+        # @type City: String
+        # @param Region: 表示区域名称
+        # @type Region: String
+        # @param Timezone: 表示IANA时区
+        # @type Timezone: String
+        # @param Address: 表示详细地址
+        # @type Address: String
+
+        attr_accessor :Country, :City, :Region, :Timezone, :Address
+
+        def initialize(country=nil, city=nil, region=nil, timezone=nil, address=nil)
+          @Country = country
+          @City = city
+          @Region = region
+          @Timezone = timezone
+          @Address = address
+        end
+
+        def deserialize(params)
+          @Country = params['Country']
+          @City = params['City']
+          @Region = params['Region']
+          @Timezone = params['Timezone']
+          @Address = params['Address']
+        end
+      end
+
       # 人物描述
       class Character < TencentCloud::Common::AbstractModel
         # @param Name: 人物名称
@@ -168,10 +200,12 @@ module TencentCloud
         # @type EnableRecommendedQuestions: Boolean
         # @param EnableDeepRead: 是否开启深度阅读，默认是false，在值为true时，会返回深度阅读的结果信息。说明:1.深度阅读需要开启插件增强,即设置EnableEnhancement为true,当设置EnableDeepRead为true时EnableEnhancement默认为true；2.目前暂时只支持单文档单轮的深度阅读；3.深度阅读功能的文件上传可以使用FilesUploads接口，具体参数详见FilesUploads接口文档
         # @type EnableDeepRead: Boolean
+        # @param WebSearchOptions: 知识注入相关的参数信息
+        # @type WebSearchOptions: :class:`Tencentcloud::Hunyuan.v20230901.models.WebSearchOptions`
 
-        attr_accessor :Model, :Messages, :Stream, :StreamModeration, :TopP, :Temperature, :EnableEnhancement, :Tools, :ToolChoice, :CustomTool, :SearchInfo, :Citation, :EnableSpeedSearch, :EnableMultimedia, :EnableDeepSearch, :Seed, :ForceSearchEnhancement, :Stop, :EnableRecommendedQuestions, :EnableDeepRead
+        attr_accessor :Model, :Messages, :Stream, :StreamModeration, :TopP, :Temperature, :EnableEnhancement, :Tools, :ToolChoice, :CustomTool, :SearchInfo, :Citation, :EnableSpeedSearch, :EnableMultimedia, :EnableDeepSearch, :Seed, :ForceSearchEnhancement, :Stop, :EnableRecommendedQuestions, :EnableDeepRead, :WebSearchOptions
 
-        def initialize(model=nil, messages=nil, stream=nil, streammoderation=nil, topp=nil, temperature=nil, enableenhancement=nil, tools=nil, toolchoice=nil, customtool=nil, searchinfo=nil, citation=nil, enablespeedsearch=nil, enablemultimedia=nil, enabledeepsearch=nil, seed=nil, forcesearchenhancement=nil, stop=nil, enablerecommendedquestions=nil, enabledeepread=nil)
+        def initialize(model=nil, messages=nil, stream=nil, streammoderation=nil, topp=nil, temperature=nil, enableenhancement=nil, tools=nil, toolchoice=nil, customtool=nil, searchinfo=nil, citation=nil, enablespeedsearch=nil, enablemultimedia=nil, enabledeepsearch=nil, seed=nil, forcesearchenhancement=nil, stop=nil, enablerecommendedquestions=nil, enabledeepread=nil, websearchoptions=nil)
           @Model = model
           @Messages = messages
           @Stream = stream
@@ -192,6 +226,7 @@ module TencentCloud
           @Stop = stop
           @EnableRecommendedQuestions = enablerecommendedquestions
           @EnableDeepRead = enabledeepread
+          @WebSearchOptions = websearchoptions
         end
 
         def deserialize(params)
@@ -232,6 +267,10 @@ module TencentCloud
           @Stop = params['Stop']
           @EnableRecommendedQuestions = params['EnableRecommendedQuestions']
           @EnableDeepRead = params['EnableDeepRead']
+          unless params['WebSearchOptions'].nil?
+            @WebSearchOptions = WebSearchOptions.new
+            @WebSearchOptions.deserialize(params['WebSearchOptions'])
+          end
         end
       end
 
@@ -1637,6 +1676,22 @@ module TencentCloud
 
         def deserialize(params)
           @Url = params['Url']
+        end
+      end
+
+      # 外部知识
+      class Knowledge < TencentCloud::Common::AbstractModel
+        # @param Text: 表示具体的知识信息文本
+        # @type Text: String
+
+        attr_accessor :Text
+
+        def initialize(text=nil)
+          @Text = text
+        end
+
+        def deserialize(params)
+          @Text = params['Text']
         end
       end
 
@@ -3077,6 +3132,59 @@ module TencentCloud
           @PromptTokens = params['PromptTokens']
           @CompletionTokens = params['CompletionTokens']
           @TotalTokens = params['TotalTokens']
+        end
+      end
+
+      # 用户位置详细信息
+      class UserLocation < TencentCloud::Common::AbstractModel
+        # @param Type: 表示位置类型
+        # @type Type: String
+        # @param Approximate: 用户近似位置的详细信息
+        # @type Approximate: :class:`Tencentcloud::Hunyuan.v20230901.models.Approximate`
+
+        attr_accessor :Type, :Approximate
+
+        def initialize(type=nil, approximate=nil)
+          @Type = type
+          @Approximate = approximate
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          unless params['Approximate'].nil?
+            @Approximate = Approximate.new
+            @Approximate.deserialize(params['Approximate'])
+          end
+        end
+      end
+
+      # 知识注入相关的参数信息
+      class WebSearchOptions < TencentCloud::Common::AbstractModel
+        # @param Knowledge: 表示用户注入的知识信息
+        # @type Knowledge: Array
+        # @param UserLocation: 用户位置详细信息
+        # @type UserLocation: :class:`Tencentcloud::Hunyuan.v20230901.models.UserLocation`
+
+        attr_accessor :Knowledge, :UserLocation
+
+        def initialize(knowledge=nil, userlocation=nil)
+          @Knowledge = knowledge
+          @UserLocation = userlocation
+        end
+
+        def deserialize(params)
+          unless params['Knowledge'].nil?
+            @Knowledge = []
+            params['Knowledge'].each do |i|
+              knowledge_tmp = Knowledge.new
+              knowledge_tmp.deserialize(i)
+              @Knowledge << knowledge_tmp
+            end
+          end
+          unless params['UserLocation'].nil?
+            @UserLocation = UserLocation.new
+            @UserLocation.deserialize(params['UserLocation'])
+          end
         end
       end
 
