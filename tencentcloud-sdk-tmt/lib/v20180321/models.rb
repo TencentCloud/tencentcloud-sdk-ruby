@@ -17,6 +17,34 @@
 module TencentCloud
   module Tmt
     module V20180321
+      # 段落文本框位置：x，y代表左上顶点，width和height代表宽高
+      class BoundingBox < TencentCloud::Common::AbstractModel
+        # @param X: 左上顶点x坐标
+        # @type X: Integer
+        # @param Y: 左上顶点y坐标
+        # @type Y: Integer
+        # @param Width: 宽
+        # @type Width: Integer
+        # @param Height: 高
+        # @type Height: Integer
+
+        attr_accessor :X, :Y, :Width, :Height
+
+        def initialize(x=nil, y=nil, width=nil, height=nil)
+          @X = x
+          @Y = y
+          @Width = width
+          @Height = height
+        end
+
+        def deserialize(params)
+          @X = params['X']
+          @Y = params['Y']
+          @Width = params['Width']
+          @Height = params['Height']
+        end
+      end
+
       # FileTranslate请求参数结构体
       class FileTranslateRequest < TencentCloud::Common::AbstractModel
         # @param Source: 源语言，支持
@@ -220,6 +248,53 @@ module TencentCloud
               @Value << itemvalue_tmp
             end
           end
+        end
+      end
+
+      # ImageTranslateLLM请求参数结构体
+      class ImageTranslateLLMRequest < TencentCloud::Common::AbstractModel
+        # @param Url: 输入图 Url。 使用Url的时候，Data参数需要传入""。 图片限制：小于 10MB，分辨率建议600*800以上，格式支持 jpg、jpeg、png。
+        # @type Url: String
+
+        attr_accessor :Url
+
+        def initialize(url=nil)
+          @Url = url
+        end
+
+        def deserialize(params)
+          @Url = params['Url']
+        end
+      end
+
+      # ImageTranslateLLM返回参数结构体
+      class ImageTranslateLLMResponse < TencentCloud::Common::AbstractModel
+        # @param Angle: 逆时针图片角度，取值范围为0-359
+        # @type Angle: Float
+        # @param TransDetails: 翻译详情信息
+        # @type TransDetails: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Angle, :TransDetails, :RequestId
+
+        def initialize(angle=nil, transdetails=nil, requestid=nil)
+          @Angle = angle
+          @TransDetails = transdetails
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Angle = params['Angle']
+          unless params['TransDetails'].nil?
+            @TransDetails = []
+            params['TransDetails'].each do |i|
+              transdetail_tmp = TransDetail.new
+              transdetail_tmp.deserialize(i)
+              @TransDetails << transdetail_tmp
+            end
+          end
+          @RequestId = params['RequestId']
         end
       end
 
@@ -719,6 +794,45 @@ module TencentCloud
           @Target = params['Target']
           @UsedAmount = params['UsedAmount']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 大模型图片翻译详情信息
+      class TransDetail < TencentCloud::Common::AbstractModel
+        # @param SourceLineText: 当前行的原文本
+        # @type SourceLineText: String
+        # @param TargetLineText: 当前行的译文
+        # @type TargetLineText: String
+        # @param BoundingBox: 段落文本框位置
+        # @type BoundingBox: :class:`Tencentcloud::Tmt.v20180321.models.BoundingBox`
+        # @param LinesCount: 行数
+        # @type LinesCount: Integer
+        # @param LineHeight: 行高
+        # @type LineHeight: Integer
+        # @param SpamCode: 正常段落spam_code字段为0；如果存在spam_code字段且值大于0（1: 命中垃圾检查；2: 命中安全策略；3: 其他。），则命中安全检查被过滤。
+        # @type SpamCode: Integer
+
+        attr_accessor :SourceLineText, :TargetLineText, :BoundingBox, :LinesCount, :LineHeight, :SpamCode
+
+        def initialize(sourcelinetext=nil, targetlinetext=nil, boundingbox=nil, linescount=nil, lineheight=nil, spamcode=nil)
+          @SourceLineText = sourcelinetext
+          @TargetLineText = targetlinetext
+          @BoundingBox = boundingbox
+          @LinesCount = linescount
+          @LineHeight = lineheight
+          @SpamCode = spamcode
+        end
+
+        def deserialize(params)
+          @SourceLineText = params['SourceLineText']
+          @TargetLineText = params['TargetLineText']
+          unless params['BoundingBox'].nil?
+            @BoundingBox = BoundingBox.new
+            @BoundingBox.deserialize(params['BoundingBox'])
+          end
+          @LinesCount = params['LinesCount']
+          @LineHeight = params['LineHeight']
+          @SpamCode = params['SpamCode']
         end
       end
 

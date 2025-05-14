@@ -2170,6 +2170,42 @@ module TencentCloud
         end
       end
 
+      # ModifyWorkspacesRenewFlag请求参数结构体
+      class ModifyWorkspacesRenewFlagRequest < TencentCloud::Common::AbstractModel
+        # @param SpaceIds: 工作空间列表
+        # @type SpaceIds: Array
+        # @param RenewFlag: 自动续费标识。取值范围：<br><li>NOTIFY_AND_AUTO_RENEW：通知过期且自动续费</li><li>NOTIFY_AND_MANUAL_RENEW：通知过期不自动续费</li><li>DISABLE_NOTIFY_AND_MANUAL_RENEW：不通知过期不自动续费</li><br>若该参数指定为NOTIFY_AND_AUTO_RENEW，在账户余额充足的情况下，实例到期后将按月自动续费。
+        # @type RenewFlag: String
+
+        attr_accessor :SpaceIds, :RenewFlag
+
+        def initialize(spaceids=nil, renewflag=nil)
+          @SpaceIds = spaceids
+          @RenewFlag = renewflag
+        end
+
+        def deserialize(params)
+          @SpaceIds = params['SpaceIds']
+          @RenewFlag = params['RenewFlag']
+        end
+      end
+
+      # ModifyWorkspacesRenewFlag返回参数结构体
+      class ModifyWorkspacesRenewFlagResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 节点活动信息。
       class NodeActivity < TencentCloud::Common::AbstractModel
         # @param NodeInstanceId: 节点活动所在的实例ID。

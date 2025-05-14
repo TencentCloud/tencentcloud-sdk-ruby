@@ -29,7 +29,7 @@ module TencentCloud
         # @type EnvId: String
         # @param Cause: 起因
         # @type Cause: String
-        # @param ActivityState: 活动状态
+        # @param ActivityState: 活动状态。取值范围：<br><li>SUBMITTED：已提交</li><li>PROCESSING：处理中</li><li>SUCCEED：成功</li><li>FAILED：失败</li>
         # @type ActivityState: String
         # @param StateReason: 状态原因
         # @type StateReason: String
@@ -138,13 +138,13 @@ module TencentCloud
       class Application < TencentCloud::Common::AbstractModel
         # @param DeliveryForm: 应用程序的交付方式，包括PACKAGE、LOCAL 两种取值，分别指远程存储的软件包、计算环境本地。
         # @type DeliveryForm: String
-        # @param Command: 任务执行命令。与Commands不能同时指定。
+        # @param Command: 松耦合任务执行命令。与Commands不能同时指定，一般使用Command字段提交任务。
         # @type Command: String
         # @param PackagePath: 应用程序软件包的远程存储路径
         # @type PackagePath: String
         # @param Docker: 应用使用Docker的相关配置。在使用Docker配置的情况下，DeliveryForm 为 LOCAL 表示直接使用Docker镜像内部的应用软件，通过Docker方式运行；DeliveryForm 为 PACKAGE，表示将远程应用包注入到Docker镜像后，通过Docker方式运行。为避免Docker不同版本的兼容性问题，Docker安装包及相关依赖由Batch统一负责，对于已安装Docker的自定义镜像，请卸载后再使用Docker特性。
         # @type Docker: :class:`Tencentcloud::Batch.v20170312.models.Docker`
-        # @param Commands: 任务执行命令信息。与Command不能同时指定。
+        # @param Commands: 紧耦合任务执行命令信息。与Command不能同时指定。Command和Commands必须指定一个。
         # @type Commands: Array
 
         attr_accessor :DeliveryForm, :Command, :PackagePath, :Docker, :Commands
@@ -178,9 +178,9 @@ module TencentCloud
 
       # AttachInstances请求参数结构体
       class AttachInstancesRequest < TencentCloud::Common::AbstractModel
-        # @param EnvId: 计算环境ID
+        # @param EnvId: 计算环境ID，环境ID通过调用接口 [DescribeComputeEnv](https://cloud.tencent.com/document/api/599/15892)获取。
         # @type EnvId: String
-        # @param Instances: 加入计算环境实例列表
+        # @param Instances: 加入计算环境实例列表，每次请求的实例的上限为100。
         # @type Instances: Array
 
         attr_accessor :EnvId, :Instances
@@ -445,7 +445,7 @@ module TencentCloud
         # @type ComputeNodeId: String
         # @param ComputeNodeInstanceId: 计算节点实例ID，对于CVM场景，即为CVM的InstanceId
         # @type ComputeNodeInstanceId: String
-        # @param ComputeNodeState: 计算节点状态
+        # @param ComputeNodeState: 计算节点状态。取值范围：<br><li>PENDING：表示创建中</li><li>SUBMITTED：表示已提交创建</li><li>CREATING：表示创建中</li><li>CREATED：表示创建完成</li><li>CREATION_FAILED：表示创建失败。</li><li>RUNNING：表示运行中。</li><li>ABNORMAL：表示节点异常。</li><li>DELETING：表示删除中。</li>
         # @type ComputeNodeState: String
         # @param Cpu: CPU核数
         # @type Cpu: Integer
@@ -592,11 +592,11 @@ module TencentCloud
 
       # CreateTaskTemplate请求参数结构体
       class CreateTaskTemplateRequest < TencentCloud::Common::AbstractModel
-        # @param TaskTemplateName: 任务模板名称
+        # @param TaskTemplateName: 任务模板名称，最大长度限制60个字符。
         # @type TaskTemplateName: String
         # @param TaskTemplateInfo: 任务模板内容，参数要求与任务一致
         # @type TaskTemplateInfo: :class:`Tencentcloud::Batch.v20170312.models.Task`
-        # @param TaskTemplateDescription: 任务模板描述
+        # @param TaskTemplateDescription: 任务模板描述，最大长度限制200个字符。
         # @type TaskTemplateDescription: String
         # @param Tags: 标签列表。通过指定该参数可以支持绑定标签到任务模板。每个任务模板最多绑定10个标签。
         # @type Tags: Array
@@ -712,7 +712,7 @@ module TencentCloud
 
       # DeleteComputeEnv请求参数结构体
       class DeleteComputeEnvRequest < TencentCloud::Common::AbstractModel
-        # @param EnvId: 计算环境ID
+        # @param EnvId: 计算环境ID，环境ID通过调用接口 [DescribeComputeEnv](https://cloud.tencent.com/document/api/599/15892)获取。
         # @type EnvId: String
 
         attr_accessor :EnvId
@@ -744,7 +744,7 @@ module TencentCloud
 
       # DeleteJob请求参数结构体
       class DeleteJobRequest < TencentCloud::Common::AbstractModel
-        # @param JobId: 作业ID
+        # @param JobId: 作业ID；JobId详见[作业列表](https://cloud.tencent.com/document/product/599/15909)
         # @type JobId: String
 
         attr_accessor :JobId
@@ -776,7 +776,7 @@ module TencentCloud
 
       # DeleteTaskTemplates请求参数结构体
       class DeleteTaskTemplatesRequest < TencentCloud::Common::AbstractModel
-        # @param TaskTemplateIds: 用于删除任务模板信息
+        # @param TaskTemplateIds: 用于删除任务模板信息，最大数量上限100，环境模版ID通过调用接口 [DescribeTaskTemplates](https://cloud.tencent.com/document/api/599/15902)获取。
         # @type TaskTemplateIds: Array
 
         attr_accessor :TaskTemplateIds
@@ -829,8 +829,8 @@ module TencentCloud
       # DescribeAvailableCvmInstanceTypes请求参数结构体
       class DescribeAvailableCvmInstanceTypesRequest < TencentCloud::Common::AbstractModel
         # @param Filters: 过滤条件。
-        # <li> zone - String - 是否必填：否 -（过滤条件）按照可用区过滤。</li>
-        # <li> instance-family String - 是否必填：否 -（过滤条件）按照机型系列过滤。实例机型系列形如：S1、I1、M1等。</li>
+        # <li> zone - String - 是否必填：否 -（过滤条件）按照[可用区](https://cloud.tencent.com/document/product/213/15707)过滤。</li>
+        # <li> instance-family String - 是否必填：否 -（过滤条件）按照[机型系列](https://cloud.tencent.com/document/product/213/15748)过滤。实例机型系列形如：S1、I1、M1等。</li>
         # @type Filters: Array
 
         attr_accessor :Filters
@@ -880,11 +880,11 @@ module TencentCloud
 
       # DescribeComputeEnvActivities请求参数结构体
       class DescribeComputeEnvActivitiesRequest < TencentCloud::Common::AbstractModel
-        # @param EnvId: 计算环境ID
+        # @param EnvId: 计算环境ID，环境ID通过调用接口 [DescribeComputeEnv](https://cloud.tencent.com/document/api/599/15892)获取。
         # @type EnvId: String
-        # @param Offset: 偏移量
+        # @param Offset: 偏移量，默认为0.
         # @type Offset: Integer
-        # @param Limit: 返回数量
+        # @param Limit: 返回数量，默认值20，最大值100.
         # @type Limit: Integer
         # @param Filters: 过滤条件
         # <li> compute-node-id - String - 是否必填：否 -（过滤条件）按照计算节点ID过滤。</li>
@@ -943,7 +943,7 @@ module TencentCloud
 
       # DescribeComputeEnvCreateInfo请求参数结构体
       class DescribeComputeEnvCreateInfoRequest < TencentCloud::Common::AbstractModel
-        # @param EnvId: 计算环境ID
+        # @param EnvId: 计算环境ID，环境ID通过调用接口 [DescribeComputeEnv](https://cloud.tencent.com/document/api/599/15892)获取。
         # @type EnvId: String
 
         attr_accessor :EnvId
@@ -1058,17 +1058,13 @@ module TencentCloud
 
       # DescribeComputeEnvCreateInfos请求参数结构体
       class DescribeComputeEnvCreateInfosRequest < TencentCloud::Common::AbstractModel
-        # @param EnvIds: 计算环境ID列表，与Filters参数不能同时指定。
+        # @param EnvIds: 计算环境ID列表，与Filters参数不能同时指定，最大限制100。环境ID通过调用接口 [DescribeComputeEnv](https://cloud.tencent.com/document/api/599/15892)获取。
         # @type EnvIds: Array
-        # @param Filters: 过滤条件
-        # <li> zone - String - 是否必填：否 -（过滤条件）按照可用区过滤。</li>
-        # <li> env-id - String - 是否必填：否 -（过滤条件）按照计算环境ID过滤。</li>
-        # <li> env-name - String - 是否必填：否 -（过滤条件）按照计算环境名称过滤。</li>
-        # 与EnvIds参数不能同时指定。
+        # @param Filters: 过滤条件<li> zone - String - 是否必填：否 -（过滤条件）按照可用区过滤，可用区通过调用接口 [DescribeZones](https://cloud.tencent.com/document/api/213/15707)获取。</li><li> env-id - String - 是否必填：否 -（过滤条件）按照计算环境ID过滤。</li><li> env-name - String - 是否必填：否 -（过滤条件）按照计算环境名称过滤。</li>与EnvIds参数不能同时指定。
         # @type Filters: Array
         # @param Offset: 偏移量
         # @type Offset: Integer
-        # @param Limit: 返回数量
+        # @param Limit: 返回数量，默认值20，最大值100。
         # @type Limit: Integer
 
         attr_accessor :EnvIds, :Filters, :Offset, :Limit
@@ -1144,7 +1140,7 @@ module TencentCloud
 
       # DescribeComputeEnv返回参数结构体
       class DescribeComputeEnvResponse < TencentCloud::Common::AbstractModel
-        # @param EnvId: 计算环境ID
+        # @param EnvId: 计算环境ID，环境ID通过调用接口 [DescribeComputeEnv](https://cloud.tencent.com/document/api/599/15892)获取。
         # @type EnvId: String
         # @param EnvName: 计算环境名称
         # @type EnvName: String
@@ -1158,11 +1154,11 @@ module TencentCloud
         # @type ComputeNodeMetrics: :class:`Tencentcloud::Batch.v20170312.models.ComputeNodeMetrics`
         # @param DesiredComputeNodeCount: 计算节点期望个数
         # @type DesiredComputeNodeCount: Integer
-        # @param EnvType: 计算环境类型
+        # @param EnvType: 计算环境管理类型，枚举如下： MANAGED: 由客户在Batch平台主动创建； THPC_QUEUE: 由thpc平台创建，关联thpc平台集群队列。
         # @type EnvType: String
         # @param ResourceType: 计算环境资源类型，当前为CVM和CPM（黑石）
         # @type ResourceType: String
-        # @param NextAction: 下一步动作
+        # @param NextAction: 下一步的动作，枚举如下： DELETING: 删除中
         # @type NextAction: String
         # @param AttachedComputeNodeCount: 用户添加到计算环境中的计算节点个数
         # @type AttachedComputeNodeCount: Integer
@@ -1229,21 +1225,13 @@ module TencentCloud
 
       # DescribeComputeEnvs请求参数结构体
       class DescribeComputeEnvsRequest < TencentCloud::Common::AbstractModel
-        # @param EnvIds: 计算环境ID列表，与Filters参数不能同时指定。
+        # @param EnvIds: 计算环境ID列表，与Filters参数不能同时指定。最大数量上限100，环境ID通过调用接口 [DescribeComputeEnv](https://cloud.tencent.com/document/api/599/15892)获取。
         # @type EnvIds: Array
-        # @param Filters: 过滤条件
-        # <li> zone - String - 是否必填：否 -（过滤条件）按照可用区过滤。</li>
-        # <li> env-id - String - 是否必填：否 -（过滤条件）按照计算环境ID过滤。</li>
-        # <li> env-name - String - 是否必填：否 -（过滤条件）按照计算环境名称过滤。</li>
-        # <li> resource-type - String - 是否必填：否 -（过滤条件）按照计算资源类型过滤，取值CVM或者CPM(黑石)。</li>
-        # <li> tag-key - String - 是否必填：否 -（过滤条件）按照标签键进行过滤。</li>
-        # <li>tag-value - String - 是否必填：否 -（过滤条件）按照标签值进行过滤。</li>
-        # <li>tag:tag-key - String - 是否必填：否 -（过滤条件）按照标签键值对进行过滤。 tag-key使用具体的标签键进行替换。</li>
-        # 与EnvIds参数不能同时指定。
+        # @param Filters: 过滤条件<li> zone - String - 是否必填：否 -（过滤条件）按照可用区过滤，可用区通过调用接口 [DescribeZones](https://cloud.tencent.com/document/api/213/15707)获取。</li><li> env-id - String - 是否必填：否 -（过滤条件）按照计算环境ID过滤。</li><li> env-name - String - 是否必填：否 -（过滤条件）按照计算环境名称过滤。</li><li> resource-type - String - 是否必填：否 -（过滤条件）按照计算资源类型过滤，取值CVM或者CPM(黑石)。</li><li> tag-key - String - 是否必填：否 -（过滤条件）按照标签键进行过滤。</li><li>tag-value - String - 是否必填：否 -（过滤条件）按照标签值进行过滤。</li><li>tag:tag-key - String - 是否必填：否 -（过滤条件）按照标签键值对进行过滤。 tag-key使用具体的标签键进行替换。</li>与EnvIds参数不能同时指定。
         # @type Filters: Array
         # @param Offset: 偏移量
         # @type Offset: Integer
-        # @param Limit: 返回数量
+        # @param Limit: 返回数量，默认值20，最大值100。
         # @type Limit: Integer
 
         attr_accessor :EnvIds, :Filters, :Offset, :Limit
@@ -1304,9 +1292,9 @@ module TencentCloud
       # DescribeCvmZoneInstanceConfigInfos请求参数结构体
       class DescribeCvmZoneInstanceConfigInfosRequest < TencentCloud::Common::AbstractModel
         # @param Filters: 过滤条件。
-        # <li> zone - String - 是否必填：否 -（过滤条件）按照可用区过滤。</li>
-        # <li> instance-family String - 是否必填：否 -（过滤条件）按照机型系列过滤。实例机型系列形如：S1、I1、M1等。</li>
-        # <li> instance-type - String - 是否必填：否 - （过滤条件）按照机型过滤。</li>
+        # <li> zone - String - 是否必填：否 -（过滤条件）按照[可用区](https://cloud.tencent.com/document/product/213/15707)过滤。</li>
+        # <li> instance-family String - 是否必填：否 -（过滤条件）按照[机型系列](https://cloud.tencent.com/document/product/213/15748)过滤。实例机型系列形如：S1、I1、M1等。</li>
+        # <li> instance-type - String - 是否必填：否 - （过滤条件）按照[机型](https://cloud.tencent.com/document/product/213/15749)过滤。实例机型形如：：S5.12XLARGE128、S5.12XLARGE96等。</li>
         # <li> instance-charge-type - String - 是否必填：否 -（过滤条件）按照实例计费模式过滤。 ( POSTPAID_BY_HOUR：表示后付费，即按量计费机型 | SPOTPAID：表示竞价付费机型。 )  </li>
         # @type Filters: Array
 
@@ -1395,7 +1383,7 @@ module TencentCloud
 
       # DescribeJob请求参数结构体
       class DescribeJobRequest < TencentCloud::Common::AbstractModel
-        # @param JobId: 作业标识
+        # @param JobId: 作业ID；JobId详见[作业列表](https://cloud.tencent.com/document/product/599/15909)
         # @type JobId: String
 
         attr_accessor :JobId
@@ -1421,9 +1409,9 @@ module TencentCloud
         # @type Priority: Integer
         # @param JobState: 作业状态
         # @type JobState: String
-        # @param CreateTime: 创建时间
+        # @param CreateTime: 创建时间。按照ISO8601标准表示，并且使用UTC时间。格式为：YYYY-MM-DDThh:mm:ssZ。
         # @type CreateTime: String
-        # @param EndTime: 结束时间
+        # @param EndTime: 结束时间。按照ISO8601标准表示，并且使用UTC时间。格式为：YYYY-MM-DDThh:mm:ssZ。
         # @type EndTime: String
         # @param TaskSet: 任务视图信息
         # @type TaskSet: Array
@@ -1599,7 +1587,17 @@ module TencentCloud
         # <li> job-id - String - 是否必填：否 -（过滤条件）按照作业ID过滤。</li>
         # <li> job-name - String - 是否必填：否 -（过滤条件）按照作业名称过滤。</li>
         # <li> job-state - String - 是否必填：否 -（过滤条件）按照作业状态过滤。</li>
-        # <li> zone - String - 是否必填：否 -（过滤条件）按照可用区过滤。</li>
+
+        #     - SUBMITTED：已提交；
+        #     - PENDING：等待中；
+        #     - RUNNABLE：可运行；
+        #     - STARTING：启动中；
+        #     - RUNNING：运行中；
+        #     - SUCCEED：成功；
+        #     - FAILED：失败；
+        #     - FAILED_INTERRUPTED：失败后保留实例。
+
+        # <li> zone - String - 是否必填：否 -（过滤条件）按照[可用区](https://cloud.tencent.com/document/product/213/15707)过滤。</li>
         # <li> tag-key - String - 是否必填：否 -（过滤条件）按照标签键进行过滤。</li>
         # <li> tag-value - String - 是否必填：否 -（过滤条件）按照标签值进行过滤。</li>
         # <li> tag:tag-key - String - 是否必填：否 -（过滤条件）按照标签键值对进行过滤。 tag-key使用具体的标签键进行替换。</li>
@@ -1607,7 +1605,7 @@ module TencentCloud
         # @type Filters: Array
         # @param Offset: 偏移量
         # @type Offset: Integer
-        # @param Limit: 返回数量
+        # @param Limit: 返回job数量限制，最大值: 100，默认值: 20.
         # @type Limit: Integer
 
         attr_accessor :JobIds, :Filters, :Offset, :Limit
@@ -1667,15 +1665,15 @@ module TencentCloud
 
       # DescribeTaskLogs请求参数结构体
       class DescribeTaskLogsRequest < TencentCloud::Common::AbstractModel
-        # @param JobId: 作业ID
+        # @param JobId: 作业ID。JobId详见[作业列表](https://cloud.tencent.com/document/product/599/15909)。
         # @type JobId: String
         # @param TaskName: 任务名称
         # @type TaskName: String
-        # @param TaskInstanceIndexes: 任务实例集合
+        # @param TaskInstanceIndexes: 任务实例集合；与Offset不能同时指定。
         # @type TaskInstanceIndexes: Array
-        # @param Offset: 起始任务实例
+        # @param Offset: 起始任务实例。与TaskInstanceIndexes参数不能同时指定。
         # @type Offset: Integer
-        # @param Limit: 最大任务实例数
+        # @param Limit: 最大任务实例数, 最大值为10.
         # @type Limit: Integer
 
         attr_accessor :JobId, :TaskName, :TaskInstanceIndexes, :Offset, :Limit
@@ -1730,7 +1728,7 @@ module TencentCloud
 
       # DescribeTask请求参数结构体
       class DescribeTaskRequest < TencentCloud::Common::AbstractModel
-        # @param JobId: 作业ID
+        # @param JobId: 作业ID；JobId详见[作业列表](https://cloud.tencent.com/document/product/599/15909)
         # @type JobId: String
         # @param TaskName: 任务名称
         # @type TaskName: String
@@ -1739,7 +1737,16 @@ module TencentCloud
         # @param Limit: 返回数量。默认取值100，最大取值1000。
         # @type Limit: Integer
         # @param Filters: 过滤条件，详情如下：
-        # <li> task-instance-type - String - 是否必填： 否 - 按照任务实例状态进行过滤（SUBMITTED：已提交；PENDING：等待中；RUNNABLE：可运行；STARTING：启动中；RUNNING：运行中；SUCCEED：成功；FAILED：失败；FAILED_INTERRUPTED：失败后保留实例）。</li>
+        # task-instance-state     - String - 是否必填： 否 - 按照任务实例状态进行过滤（
+
+        # - SUBMITTED：已提交；
+        # - PENDING：等待中；
+        # - RUNNABLE：可运行；
+        # - STARTING：启动中；
+        # - RUNNING：运行中；
+        # - SUCCEED：成功；
+        # - FAILED：失败；
+        # - FAILED_INTERRUPTED：失败后保留实例）。
         # @type Filters: Array
 
         attr_accessor :JobId, :TaskName, :Offset, :Limit, :Filters
@@ -1899,9 +1906,9 @@ module TencentCloud
 
       # DetachInstances请求参数结构体
       class DetachInstancesRequest < TencentCloud::Common::AbstractModel
-        # @param EnvId: 计算环境ID
+        # @param EnvId: 计算环境ID，环境ID通过调用接口 [DescribeComputeEnv](https://cloud.tencent.com/document/api/599/15892)获取。
         # @type EnvId: String
-        # @param InstanceIds: 实例ID列表
+        # @param InstanceIds: 实例ID列表，实例ID通过调用接口 [DescribeInstances](https://cloud.tencent.com/document/api/213/15728)获取。
         # @type InstanceIds: Array
 
         attr_accessor :EnvId, :InstanceIds
@@ -2639,11 +2646,11 @@ module TencentCloud
       class Job < TencentCloud::Common::AbstractModel
         # @param Tasks: 任务信息
         # @type Tasks: Array
-        # @param JobName: 作业名称
+        # @param JobName: 作业名称; 字符串长度限制60.
         # @type JobName: String
-        # @param JobDescription: 作业描述
+        # @param JobDescription: 作业描述；字符串长度限制200.
         # @type JobDescription: String
-        # @param Priority: 作业优先级，任务（Task）和任务实例（TaskInstance）会继承作业优先级
+        # @param Priority: 作业优先级，任务（Task）和任务实例（TaskInstance）会继承作业优先级；范围0～100，数值越大，优先级越高。
         # @type Priority: Integer
         # @param Dependences: 依赖信息
         # @type Dependences: Array
@@ -2720,19 +2727,27 @@ module TencentCloud
 
       # 作业信息
       class JobView < TencentCloud::Common::AbstractModel
-        # @param JobId: 作业ID
+        # @param JobId: 作业ID；JobId详见[作业列表](https://cloud.tencent.com/document/product/599/15909)
         # @type JobId: String
         # @param JobName: 作业名称
         # @type JobName: String
-        # @param JobState: 作业状态
+        # @param JobState: 作业状态:
+        # - SUBMITTED：已提交；
+        # - PENDING：等待中；
+        # - RUNNABLE：可运行；
+        # - STARTING：启动中；
+        # - RUNNING：运行中；
+        # - SUCCEED：成功；
+        # - FAILED：失败；
+        # - FAILED_INTERRUPTED：失败后保留实例。
         # @type JobState: String
         # @param Priority: 作业优先级
         # @type Priority: Integer
         # @param Placement: 位置信息
         # @type Placement: :class:`Tencentcloud::Batch.v20170312.models.Placement`
-        # @param CreateTime: 创建时间
+        # @param CreateTime: 创建时间。按照ISO8601标准表示，并且使用UTC时间。格式为：YYYY-MM-DDThh:mm:ssZ
         # @type CreateTime: String
-        # @param EndTime: 结束时间
+        # @param EndTime: 结束时间。按照ISO8601标准表示，并且使用UTC时间。格式为：YYYY-MM-DDThh:mm:ssZ
         # @type EndTime: String
         # @param TaskMetrics: 任务统计指标
         # @type TaskMetrics: :class:`Tencentcloud::Batch.v20170312.models.TaskMetrics`
@@ -2838,9 +2853,9 @@ module TencentCloud
 
       # ModifyComputeEnv请求参数结构体
       class ModifyComputeEnvRequest < TencentCloud::Common::AbstractModel
-        # @param EnvId: 计算环境ID
+        # @param EnvId: 计算环境ID，环境ID通过调用接口 [DescribeComputeEnv](https://cloud.tencent.com/document/api/599/15892)获取。
         # @type EnvId: String
-        # @param DesiredComputeNodeCount: 计算节点期望个数
+        # @param DesiredComputeNodeCount: 计算节点期望个数，最大上限2000。
         # @type DesiredComputeNodeCount: Integer
         # @param EnvName: 计算环境名称
         # @type EnvName: String
@@ -2889,11 +2904,11 @@ module TencentCloud
 
       # ModifyTaskTemplate请求参数结构体
       class ModifyTaskTemplateRequest < TencentCloud::Common::AbstractModel
-        # @param TaskTemplateId: 任务模板ID
+        # @param TaskTemplateId: 任务模板ID; 详见[任务模版](https://cloud.tencent.com/document/product/599/15902)。
         # @type TaskTemplateId: String
-        # @param TaskTemplateName: 任务模板名称
+        # @param TaskTemplateName: 任务模板名称；字节长度限制60。
         # @type TaskTemplateName: String
-        # @param TaskTemplateDescription: 任务模板描述
+        # @param TaskTemplateDescription: 任务模板描述；字节长度限制200。
         # @type TaskTemplateDescription: String
         # @param TaskTemplateInfo: 任务模板信息
         # @type TaskTemplateInfo: :class:`Tencentcloud::Batch.v20170312.models.Task`
@@ -2958,11 +2973,13 @@ module TencentCloud
       class NamedComputeEnv < TencentCloud::Common::AbstractModel
         # @param EnvName: 计算环境名称
         # @type EnvName: String
-        # @param DesiredComputeNodeCount: 计算节点期望个数
+        # @param DesiredComputeNodeCount: 计算节点期望个数，最大上限2000.
         # @type DesiredComputeNodeCount: Integer
         # @param EnvDescription: 计算环境描述
         # @type EnvDescription: String
-        # @param EnvType: 计算环境管理类型
+        # @param EnvType: 计算环境管理类型，枚举如下：
+        # MANAGED: 由客户在Batch平台主动创建；
+        # THPC_QUEUE: 由THPC平台创建，关联THPC平台的集群队列。
         # @type EnvType: String
         # @param EnvData: 计算环境具体参数
         # @type EnvData: :class:`Tencentcloud::Batch.v20170312.models.EnvData`
@@ -3248,7 +3265,7 @@ module TencentCloud
 
       # RetryJobs请求参数结构体
       class RetryJobsRequest < TencentCloud::Common::AbstractModel
-        # @param JobIds: 作业ID列表。
+        # @param JobIds: 作业ID列表。最大重试作业数100；JobId详见[作业列表](https://cloud.tencent.com/document/product/599/15909)。
         # @type JobIds: Array
 
         attr_accessor :JobIds
@@ -3708,7 +3725,14 @@ module TencentCloud
       class TaskInstanceView < TencentCloud::Common::AbstractModel
         # @param TaskInstanceIndex: 任务实例索引
         # @type TaskInstanceIndex: Integer
-        # @param TaskInstanceState: 任务实例状态
+        # @param TaskInstanceState: 任务实例状态:
+        # - PENDING：等待中；
+        # - RUNNABLE：可运行；
+        # - STARTING：启动中；
+        # - RUNNING：运行中；
+        # - SUCCEED：成功；
+        # - FAILED：失败；
+        # - FAILED_INTERRUPTED：失败后保留实例。
         # @type TaskInstanceState: String
         # @param ExitCode: 应用程序执行结束的exit code
         # @type ExitCode: Integer
@@ -3716,13 +3740,13 @@ module TencentCloud
         # @type StateReason: String
         # @param ComputeNodeInstanceId: 任务实例运行时所在计算节点（例如CVM）的InstanceId。任务实例未运行或者完结时，本字段为空。任务实例重试时，本字段会随之变化
         # @type ComputeNodeInstanceId: String
-        # @param CreateTime: 创建时间
+        # @param CreateTime: 创建时间。按照ISO8601标准表示，并且使用UTC时间。格式为：YYYY-MM-DDThh:mm:ssZ。
         # @type CreateTime: String
-        # @param LaunchTime: 启动时间
+        # @param LaunchTime: 启动时间。按照ISO8601标准表示，并且使用UTC时间。格式为：YYYY-MM-DDThh:mm:ssZ。
         # @type LaunchTime: String
-        # @param RunningTime: 开始运行时间
+        # @param RunningTime: 开始运行时间。按照ISO8601标准表示，并且使用UTC时间。格式为：YYYY-MM-DDThh:mm:ssZ。
         # @type RunningTime: String
-        # @param EndTime: 结束时间
+        # @param EndTime: 结束时间。按照ISO8601标准表示，并且使用UTC时间。格式为：YYYY-MM-DDThh:mm:ssZ。
         # @type EndTime: String
         # @param RedirectInfo: 重定向信息
         # @type RedirectInfo: :class:`Tencentcloud::Batch.v20170312.models.RedirectInfo`
@@ -3858,11 +3882,18 @@ module TencentCloud
       class TaskView < TencentCloud::Common::AbstractModel
         # @param TaskName: 任务名称
         # @type TaskName: String
-        # @param TaskState: 任务状态
+        # @param TaskState: 任务状态:
+        # - PENDING：等待中；
+        # - RUNNABLE：可运行；
+        # - STARTING：启动中；
+        # - RUNNING：运行中；
+        # - SUCCEED：成功；
+        # - FAILED：失败；
+        # - FAILED_INTERRUPTED：失败后保留实例。
         # @type TaskState: String
-        # @param CreateTime: 开始时间
+        # @param CreateTime: 开始时间。按照ISO8601标准表示，并且使用UTC时间。格式为：YYYY-MM-DDThh:mm:ssZ。
         # @type CreateTime: String
-        # @param EndTime: 结束时间
+        # @param EndTime: 结束时间。按照ISO8601标准表示，并且使用UTC时间。格式为：YYYY-MM-DDThh:mm:ssZ。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EndTime: String
 
@@ -3885,9 +3916,9 @@ module TencentCloud
 
       # TerminateComputeNode请求参数结构体
       class TerminateComputeNodeRequest < TencentCloud::Common::AbstractModel
-        # @param EnvId: 计算环境ID
+        # @param EnvId: 计算环境ID，环境ID通过调用接口 [DescribeComputeEnv](https://cloud.tencent.com/document/api/599/15892)获取。
         # @type EnvId: String
-        # @param ComputeNodeId: 计算节点ID
+        # @param ComputeNodeId: 计算节点ID，节点ID通过调用接口 [DescribeComputeEnv](https://cloud.tencent.com/document/api/599/15892)获取。
         # @type ComputeNodeId: String
 
         attr_accessor :EnvId, :ComputeNodeId
@@ -3921,9 +3952,9 @@ module TencentCloud
 
       # TerminateComputeNodes请求参数结构体
       class TerminateComputeNodesRequest < TencentCloud::Common::AbstractModel
-        # @param EnvId: 计算环境ID
+        # @param EnvId: 计算环境ID，环境ID通过调用接口 [DescribeComputeEnv](https://cloud.tencent.com/document/api/599/15892)获取。
         # @type EnvId: String
-        # @param ComputeNodeIds: 计算节点ID列表
+        # @param ComputeNodeIds: 计算节点ID列表，最大数量上限100，节点ID通过调用接口 [DescribeComputeEnv](https://cloud.tencent.com/document/api/599/15892)获取。
         # @type ComputeNodeIds: Array
 
         attr_accessor :EnvId, :ComputeNodeIds
@@ -3957,7 +3988,7 @@ module TencentCloud
 
       # TerminateJob请求参数结构体
       class TerminateJobRequest < TencentCloud::Common::AbstractModel
-        # @param JobId: 作业ID
+        # @param JobId: 作业ID；JobId详见[作业列表](https://cloud.tencent.com/document/product/599/15909)
         # @type JobId: String
 
         attr_accessor :JobId
@@ -3989,9 +4020,9 @@ module TencentCloud
 
       # TerminateTaskInstance请求参数结构体
       class TerminateTaskInstanceRequest < TencentCloud::Common::AbstractModel
-        # @param JobId: 作业ID
+        # @param JobId: 作业ID；详见[作业列表](https://cloud.tencent.com/document/product/599/15909)。
         # @type JobId: String
-        # @param TaskName: 任务名称
+        # @param TaskName: 任务名称；详见[作业提交信息](https://cloud.tencent.com/document/product/599/15910)
         # @type TaskName: String
         # @param TaskInstanceIndex: 任务实例索引
         # @type TaskInstanceIndex: Integer

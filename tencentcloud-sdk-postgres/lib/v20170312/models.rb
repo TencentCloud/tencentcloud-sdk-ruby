@@ -1323,12 +1323,15 @@ module TencentCloud
         # @type NeedSupportIpv6: Integer
         # @param Name: 实例名(后续支持)
         # @type Name: String
-        # @param DBVersion: 【废弃】不再需要指定，内核版本号与主实例保持一致
+        # @param DBVersion: 不再需要指定，内核版本号与主实例保持一致
         # @type DBVersion: String
         # @param DedicatedClusterId: 专属集群ID
         # @type DedicatedClusterId: String
 
         attr_accessor :Zone, :MasterDBInstanceId, :SpecCode, :Storage, :InstanceCount, :Period, :VpcId, :SubnetId, :InstanceChargeType, :AutoVoucher, :VoucherIds, :AutoRenewFlag, :ProjectId, :ActivityId, :ReadOnlyGroupId, :TagList, :SecurityGroupIds, :NeedSupportIpv6, :Name, :DBVersion, :DedicatedClusterId
+        extend Gem::Deprecate
+        deprecate :DBVersion, :none, 2025, 5
+        deprecate :DBVersion=, :none, 2025, 5
 
         def initialize(zone=nil, masterdbinstanceid=nil, speccode=nil, storage=nil, instancecount=nil, period=nil, vpcid=nil, subnetid=nil, instancechargetype=nil, autovoucher=nil, voucherids=nil, autorenewflag=nil, projectid=nil, activityid=nil, readonlygroupid=nil, taglist=nil, securitygroupids=nil, needsupportipv6=nil, name=nil, dbversion=nil, dedicatedclusterid=nil)
           @Zone = zone
@@ -5363,12 +5366,15 @@ module TencentCloud
         # @type Memory: Integer
         # @param DBInstanceId: 实例ID，形如postgres-hez4fh0v
         # @type DBInstanceId: String
-        # @param InstanceChargeType: 【废弃参数，不再生效】，实例计费类型。
+        # @param InstanceChargeType: 实例计费类型。
         # @type InstanceChargeType: String
         # @param Cpu: 实例的Cpu大小，单位Core
         # @type Cpu: Integer
 
         attr_accessor :Storage, :Memory, :DBInstanceId, :InstanceChargeType, :Cpu
+        extend Gem::Deprecate
+        deprecate :InstanceChargeType, :none, 2025, 5
+        deprecate :InstanceChargeType=, :none, 2025, 5
 
         def initialize(storage=nil, memory=nil, dbinstanceid=nil, instancechargetype=nil, cpu=nil)
           @Storage = storage

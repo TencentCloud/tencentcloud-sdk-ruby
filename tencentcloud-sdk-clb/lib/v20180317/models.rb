@@ -1478,13 +1478,16 @@ module TencentCloud
         # @type MaxCps: Integer
         # @param IdleConnectTimeout: 空闲连接超时时间，此参数仅适用于TCP监听器，单位：秒。取值范围：共享型实例和独占型实例支持：300-900，性能容量型实例支持：300-1980。如需设置请通过 [工单申请](https://console.cloud.tencent.com/workorder/category)。
         # @type IdleConnectTimeout: Integer
-        # @param SnatEnable: 是否开启SNAT，True（开启）、False（关闭）
+        # @param SnatEnable: 是否开启SNAT，True（开启）、False（关闭）。
+        # 默认为关闭。
         # @type SnatEnable: Boolean
         # @param FullEndPorts: 全端口段监听器的结束端口，端口范围：2 - 65535
         # @type FullEndPorts: Array
-        # @param H2cSwitch: 内网http监听器开启h2c开关，True（开启）、False（关闭）
+        # @param H2cSwitch: 内网http监听器开启h2c开关，True（开启）、False（关闭）。
+        # 默认为关闭。
         # @type H2cSwitch: Boolean
-        # @param SslCloseSwitch: TCP_SSL监听器支持关闭SSL后仍然支持混绑，此参数为关闭开关。True（关闭）、False（开启）
+        # @param SslCloseSwitch: TCP_SSL监听器支持关闭SSL后仍然支持混绑，此参数为关闭开关。True（关闭）、False（开启）.
+        # 默认为关闭。
         # @type SslCloseSwitch: Boolean
         # @param DataCompressMode: 数据压缩模式。可选值：transparent（透传模式）、compatibility（兼容模式）
         # @type DataCompressMode: String
@@ -2158,7 +2161,7 @@ module TencentCloud
 
       # DeleteLoadBalancer请求参数结构体
       class DeleteLoadBalancerRequest < TencentCloud::Common::AbstractModel
-        # @param LoadBalancerIds: 要删除的负载均衡实例 ID 数组，可以通过 [DescribeLoadBalancers](https://cloud.tencent.com/document/product/214/30685) 接口获取数组大小最大支持20。
+        # @param LoadBalancerIds: 要删除的负载均衡实例 ID 数组，可以通过 [DescribeLoadBalancers](https://cloud.tencent.com/document/product/214/30685) 接口获取，数组大小最大支持20。
         # @type LoadBalancerIds: Array
         # @param ForceDelete: 是否强制删除clb。True表示强制删除，False表示不是强制删除，需要做拦截校验。
         # 默认为 False
@@ -2286,11 +2289,11 @@ module TencentCloud
         # @type LoadBalancerId: String
         # @param ListenerId: 负载均衡监听器ID，可以通过 [DescribeListeners](https://cloud.tencent.com/document/product/214/30686) 接口查询。
         # @type ListenerId: String
-        # @param LocationIds: 要删除的转发规则的ID组成的数组，可以通过 [DescribeListeners](https://cloud.tencent.com/document/product/214/30686) 接口查询。
+        # @param LocationIds: 要删除的转发规则的ID组成的数组，可以通过 [DescribeLoadBalancersDetail](https://cloud.tencent.com/document/api/214/46916) 接口查询。
         # @type LocationIds: Array
-        # @param Domain: 要删除的转发规则的域名，如果是多域名，可以指定多域名列表中的任意一个，可以通过 [DescribeListeners](https://cloud.tencent.com/document/product/214/30686) 接口查询。
+        # @param Domain: 要删除的转发规则的域名，如果是多域名，可以指定多域名列表中的任意一个，可以通过 [DescribeLoadBalancersDetail](https://cloud.tencent.com/document/api/214/46916) 接口查询。
         # @type Domain: String
-        # @param Url: 要删除的转发规则的转发路径，可以通过 [DescribeListeners](https://cloud.tencent.com/document/product/214/30686) 接口查询。
+        # @param Url: 要删除的转发规则的转发路径，可以通过 [DescribeLoadBalancersDetail](https://cloud.tencent.com/document/api/214/46916) 接口查询。
         # @type Url: String
         # @param NewDefaultServerDomain: 监听器下必须配置一个默认域名，当需要删除默认域名时，可以指定另一个域名作为新的默认域名，如果新的默认域名是多域名，可以指定多域名列表中的任意一个，可以通过 [DescribeListeners](https://cloud.tencent.com/document/product/214/30686) 接口查询。
         # @type NewDefaultServerDomain: String
@@ -2334,7 +2337,7 @@ module TencentCloud
 
       # DeleteTargetGroups请求参数结构体
       class DeleteTargetGroupsRequest < TencentCloud::Common::AbstractModel
-        # @param TargetGroupIds: 目标组的ID数组。
+        # @param TargetGroupIds: 目标组的ID数组，单次最多支持删除20个。
         # @type TargetGroupIds: Array
 
         attr_accessor :TargetGroupIds
@@ -2428,6 +2431,7 @@ module TencentCloud
         # @param TargetGroupId: 目标组ID。
         # @type TargetGroupId: String
         # @param TargetGroupInstances: 待解绑的服务器信息，支持批量解除绑定，单次批量解除数量最多为20个。
+        # 在这个接口 Port 参数为必填项。
         # @type TargetGroupInstances: Array
 
         attr_accessor :TargetGroupId, :TargetGroupInstances
@@ -3235,7 +3239,7 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 返回负载均衡实例的数量，默认为20，最大值为100。
         # @type Limit: Integer
-        # @param LoadBalancerRegion: 负载均衡所在地域。
+        # @param LoadBalancerRegion: 负载均衡所在地域，可以通过 [DescribeRegions](https://cloud.tencent.com/document/product/1596/77930) 查询获取。
         # @type LoadBalancerRegion: String
 
         attr_accessor :Offset, :Limit, :LoadBalancerRegion
@@ -4844,7 +4848,7 @@ module TencentCloud
 
       # InquiryPriceRefundLoadBalancer请求参数结构体
       class InquiryPriceRefundLoadBalancerRequest < TencentCloud::Common::AbstractModel
-        # @param LoadBalancerId: 负载均衡实例ID
+        # @param LoadBalancerId: 负载均衡实例ID。可以通过 [DescribeLoadBalancers](https://cloud.tencent.com/document/product/1108/48459) 接口查询。
         # @type LoadBalancerId: String
 
         attr_accessor :LoadBalancerId
@@ -6443,6 +6447,7 @@ module TencentCloud
         # @type KeepaliveEnable: Integer
         # @param DeregisterTargetRst: 解绑后端目标时，是否发RST给客户端，此参数仅适用于TCP监听器。
         # True表示发送 RST 给客户端，False表示不发送 RST 给客户端。
+        # 不传则表示不修改。
         # @type DeregisterTargetRst: Boolean
         # @param SessionType: 会话保持类型。NORMAL表示默认会话保持类型。QUIC_CID表示根据Quic Connection ID做会话保持。QUIC_CID只支持UDP协议。
         # 使用场景：适用于TCP/UDP/TCP_SSL/QUIC监听器。
@@ -6459,6 +6464,7 @@ module TencentCloud
         # @param IdleConnectTimeout: 空闲连接超时时间，此参数仅适用于TCP监听器，单位：秒。默认值：900，取值范围：共享型实例和独占型实例支持：300～900，性能容量型实例支持：300~1980。如需设置超过2000s，请通过 [工单申请](https://console.cloud.tencent.com/workorder/category),最大可设置到3600s。
         # @type IdleConnectTimeout: Integer
         # @param SnatEnable: 是否开启SNAT， True 表示开启 SNAT，False 表示不开启 SNAT。
+        # 不传则表示不修改。
         # @type SnatEnable: Boolean
         # @param DataCompressMode: 数据压缩模式
         # @type DataCompressMode: String
@@ -7016,35 +7022,32 @@ module TencentCloud
         # @type LoadBalancerId: String
         # @param ListenerId: 负载均衡监听器ID。
         # @type ListenerId: String
+        # @param Targets: 要修改权重的后端服务列表。
+        # @type Targets: Array
         # @param LocationId: 转发规则的ID，当绑定机器到七层转发规则时，必须提供此参数或Domain+Url两者之一。
         # @type LocationId: String
         # @param Domain: 目标规则的域名，提供LocationId参数时本参数不生效。
         # @type Domain: String
         # @param Url: 目标规则的URL，提供LocationId参数时本参数不生效。
         # @type Url: String
-        # @param Targets: 要修改权重的后端服务列表。
-        # @type Targets: Array
         # @param Weight: 后端服务新的转发权重，取值范围：0~100，默认值10。如果设置了 Targets.Weight 参数，则此参数不生效。
         # @type Weight: Integer
 
-        attr_accessor :LoadBalancerId, :ListenerId, :LocationId, :Domain, :Url, :Targets, :Weight
+        attr_accessor :LoadBalancerId, :ListenerId, :Targets, :LocationId, :Domain, :Url, :Weight
 
-        def initialize(loadbalancerid=nil, listenerid=nil, locationid=nil, domain=nil, url=nil, targets=nil, weight=nil)
+        def initialize(loadbalancerid=nil, listenerid=nil, targets=nil, locationid=nil, domain=nil, url=nil, weight=nil)
           @LoadBalancerId = loadbalancerid
           @ListenerId = listenerid
+          @Targets = targets
           @LocationId = locationid
           @Domain = domain
           @Url = url
-          @Targets = targets
           @Weight = weight
         end
 
         def deserialize(params)
           @LoadBalancerId = params['LoadBalancerId']
           @ListenerId = params['ListenerId']
-          @LocationId = params['LocationId']
-          @Domain = params['Domain']
-          @Url = params['Url']
           unless params['Targets'].nil?
             @Targets = []
             params['Targets'].each do |i|
@@ -7053,6 +7056,9 @@ module TencentCloud
               @Targets << target_tmp
             end
           end
+          @LocationId = params['LocationId']
+          @Domain = params['Domain']
+          @Url = params['Url']
           @Weight = params['Weight']
         end
       end
@@ -8137,7 +8143,7 @@ module TencentCloud
       class SetLoadBalancerStartStatusRequest < TencentCloud::Common::AbstractModel
         # @param OperationType: 操作类型。Start：启动实例，Stop：停止实例。
         # @type OperationType: String
-        # @param LoadBalancerId: 负载均衡实例ID。
+        # @param LoadBalancerId: 负载均衡实例ID，可以通过 [DescribeLoadBalancers](https://cloud.tencent.com/document/product/1108/48459) 接口查询。
         # @type LoadBalancerId: String
         # @param ListenerIds: 监听器ID。如果该字段为空，则表示操作负载均衡实例，如果不为空，则表示操作监听器。
         # @type ListenerIds: Array

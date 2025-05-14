@@ -150,6 +150,100 @@ module TencentCloud
         end
       end
 
+      # 批量操作筛选域名信息
+      class BatchSearchDomainInfo < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名
+        # @type Domain: String
+        # @param DomainId: 域名 ID
+        # @type DomainId: Integer
+        # @param DomainGrade: 域名套餐等级
+        # @type DomainGrade: String
+        # @param RecordList: 记录信息列表
+        # @type RecordList: Array
+
+        attr_accessor :Domain, :DomainId, :DomainGrade, :RecordList
+
+        def initialize(domain=nil, domainid=nil, domaingrade=nil, recordlist=nil)
+          @Domain = domain
+          @DomainId = domainid
+          @DomainGrade = domaingrade
+          @RecordList = recordlist
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @DomainId = params['DomainId']
+          @DomainGrade = params['DomainGrade']
+          unless params['RecordList'].nil?
+            @RecordList = []
+            params['RecordList'].each do |i|
+              batchsearchrecordinfo_tmp = BatchSearchRecordInfo.new
+              batchsearchrecordinfo_tmp.deserialize(i)
+              @RecordList << batchsearchrecordinfo_tmp
+            end
+          end
+        end
+      end
+
+      # 批量操作筛选记录信息
+      class BatchSearchRecordInfo < TencentCloud::Common::AbstractModel
+        # @param RecordId: 解析记录 ID
+        # @type RecordId: Integer
+        # @param Area: 解析线路
+        # @type Area: String
+        # @param Remark: 记录备注
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Remark: String
+        # @param TTL: TTL(秒)
+        # @type TTL: Integer
+        # @param RecordType: 记录类型
+        # @type RecordType: String
+        # @param Enabled: 记录是否启用
+        # @type Enabled: Integer
+        # @param Weight: 权重
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Weight: Integer
+        # @param GroupId: 记录分组 ID
+        # @type GroupId: Integer
+        # @param SubDomain: 子域名
+        # @type SubDomain: String
+        # @param Value: 解析值
+        # @type Value: String
+        # @param MX: MX优先级
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MX: Integer
+
+        attr_accessor :RecordId, :Area, :Remark, :TTL, :RecordType, :Enabled, :Weight, :GroupId, :SubDomain, :Value, :MX
+
+        def initialize(recordid=nil, area=nil, remark=nil, ttl=nil, recordtype=nil, enabled=nil, weight=nil, groupid=nil, subdomain=nil, value=nil, mx=nil)
+          @RecordId = recordid
+          @Area = area
+          @Remark = remark
+          @TTL = ttl
+          @RecordType = recordtype
+          @Enabled = enabled
+          @Weight = weight
+          @GroupId = groupid
+          @SubDomain = subdomain
+          @Value = value
+          @MX = mx
+        end
+
+        def deserialize(params)
+          @RecordId = params['RecordId']
+          @Area = params['Area']
+          @Remark = params['Remark']
+          @TTL = params['TTL']
+          @RecordType = params['RecordType']
+          @Enabled = params['Enabled']
+          @Weight = params['Weight']
+          @GroupId = params['GroupId']
+          @SubDomain = params['SubDomain']
+          @Value = params['Value']
+          @MX = params['MX']
+        end
+      end
+
       # CheckRecordSnapshotRollback请求参数结构体
       class CheckRecordSnapshotRollbackRequest < TencentCloud::Common::AbstractModel
         # @param Domain: 域名
@@ -2129,6 +2223,87 @@ module TencentCloud
               domainaliasanalyticsitem_tmp = DomainAliasAnalyticsItem.new
               domainaliasanalyticsitem_tmp.deserialize(i)
               @AliasData << domainaliasanalyticsitem_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDomainAndRecordList请求参数结构体
+      class DescribeDomainAndRecordListRequest < TencentCloud::Common::AbstractModel
+        # @param AllDomain: 搜索所有域名。AllDomain、GroupIdList、DomainList、DomainIdList 参数传任一个即可。优先级为：AllDomain > GroupIdList  > DomainList > DomainIdList。
+        # @type AllDomain: String
+        # @param DomainList: 要搜索的域名列表。
+        # @type DomainList: Array
+        # @param DomainIdList: 要搜索的域名 ID 列表。
+        # @type DomainIdList: Array
+        # @param GroupIdList: 要搜索的域名分组 ID 列表。
+        # @type GroupIdList: Array
+        # @param RecordType: 记录类型筛选
+        # @type RecordType: String
+        # @param SubKeyword: 子域名筛选
+        # @type SubKeyword: String
+        # @param ValueKeyword: 记录值筛选
+        # @type ValueKeyword: String
+        # @param Area: 线路筛选
+        # @type Area: String
+        # @param Remark: 备注筛选
+        # @type Remark: String
+        # @param Enabled: 记录状态筛选
+        # 1：正常
+        # 0：暂停
+        # @type Enabled: String
+
+        attr_accessor :AllDomain, :DomainList, :DomainIdList, :GroupIdList, :RecordType, :SubKeyword, :ValueKeyword, :Area, :Remark, :Enabled
+
+        def initialize(alldomain=nil, domainlist=nil, domainidlist=nil, groupidlist=nil, recordtype=nil, subkeyword=nil, valuekeyword=nil, area=nil, remark=nil, enabled=nil)
+          @AllDomain = alldomain
+          @DomainList = domainlist
+          @DomainIdList = domainidlist
+          @GroupIdList = groupidlist
+          @RecordType = recordtype
+          @SubKeyword = subkeyword
+          @ValueKeyword = valuekeyword
+          @Area = area
+          @Remark = remark
+          @Enabled = enabled
+        end
+
+        def deserialize(params)
+          @AllDomain = params['AllDomain']
+          @DomainList = params['DomainList']
+          @DomainIdList = params['DomainIdList']
+          @GroupIdList = params['GroupIdList']
+          @RecordType = params['RecordType']
+          @SubKeyword = params['SubKeyword']
+          @ValueKeyword = params['ValueKeyword']
+          @Area = params['Area']
+          @Remark = params['Remark']
+          @Enabled = params['Enabled']
+        end
+      end
+
+      # DescribeDomainAndRecordList返回参数结构体
+      class DescribeDomainAndRecordListResponse < TencentCloud::Common::AbstractModel
+        # @param DetailList: 域名列表
+        # @type DetailList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DetailList, :RequestId
+
+        def initialize(detaillist=nil, requestid=nil)
+          @DetailList = detaillist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['DetailList'].nil?
+            @DetailList = []
+            params['DetailList'].each do |i|
+              batchsearchdomaininfo_tmp = BatchSearchDomainInfo.new
+              batchsearchdomaininfo_tmp.deserialize(i)
+              @DetailList << batchsearchdomaininfo_tmp
             end
           end
           @RequestId = params['RequestId']

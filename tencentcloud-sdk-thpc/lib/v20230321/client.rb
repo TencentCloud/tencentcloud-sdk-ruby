@@ -540,6 +540,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口 (ModifyWorkspacesAttribute) 用于修改工作空间的属性（目前只支持修改工作空间的名称）。
+
+        # @param request: Request instance for ModifyWorkspacesRenewFlag.
+        # @type request: :class:`Tencentcloud::thpc::V20230321::ModifyWorkspacesRenewFlagRequest`
+        # @rtype: :class:`Tencentcloud::thpc::V20230321::ModifyWorkspacesRenewFlagResponse`
+        def ModifyWorkspacesRenewFlag(request)
+          body = send_request('ModifyWorkspacesRenewFlag', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyWorkspacesRenewFlagResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口(SetAutoScalingConfiguration)用于为集群设置集群弹性伸缩配置信息。
 
         # @param request: Request instance for SetAutoScalingConfiguration.

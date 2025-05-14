@@ -10477,10 +10477,12 @@ module TencentCloud
         # @type Last3MaxBandwidth: Integer
         # @param MajorEventsProPkg: 重保增强包
         # @type MajorEventsProPkg: :class:`Tencentcloud::Waf.v20180125.models.MajorEventsProPkg`
+        # @param BasicFlag: 1是基础2025版本；0不是
+        # @type BasicFlag: Integer
 
-        attr_accessor :InstanceId, :InstanceName, :ResourceIds, :Region, :PayMode, :RenewFlag, :Mode, :Level, :ValidTime, :BeginTime, :DomainCount, :SubDomainLimit, :MainDomainCount, :MainDomainLimit, :MaxQPS, :QPS, :DomainPkg, :AppId, :Edition, :FraudPkg, :BotPkg, :BotQPS, :ElasticBilling, :AttackLogPost, :MaxBandwidth, :APISecurity, :QpsStandard, :BandwidthStandard, :Status, :SandboxQps, :IsAPISecurityTrial, :MajorEventsPkg, :HybridPkg, :ApiPkg, :MiniPkg, :MiniQpsStandard, :MiniMaxQPS, :LastQpsExceedTime, :MiniExtendPkg, :BillingItem, :FreeDelayFlag, :Last3MaxQPS, :Last3MaxBandwidth, :MajorEventsProPkg
+        attr_accessor :InstanceId, :InstanceName, :ResourceIds, :Region, :PayMode, :RenewFlag, :Mode, :Level, :ValidTime, :BeginTime, :DomainCount, :SubDomainLimit, :MainDomainCount, :MainDomainLimit, :MaxQPS, :QPS, :DomainPkg, :AppId, :Edition, :FraudPkg, :BotPkg, :BotQPS, :ElasticBilling, :AttackLogPost, :MaxBandwidth, :APISecurity, :QpsStandard, :BandwidthStandard, :Status, :SandboxQps, :IsAPISecurityTrial, :MajorEventsPkg, :HybridPkg, :ApiPkg, :MiniPkg, :MiniQpsStandard, :MiniMaxQPS, :LastQpsExceedTime, :MiniExtendPkg, :BillingItem, :FreeDelayFlag, :Last3MaxQPS, :Last3MaxBandwidth, :MajorEventsProPkg, :BasicFlag
 
-        def initialize(instanceid=nil, instancename=nil, resourceids=nil, region=nil, paymode=nil, renewflag=nil, mode=nil, level=nil, validtime=nil, begintime=nil, domaincount=nil, subdomainlimit=nil, maindomaincount=nil, maindomainlimit=nil, maxqps=nil, qps=nil, domainpkg=nil, appid=nil, edition=nil, fraudpkg=nil, botpkg=nil, botqps=nil, elasticbilling=nil, attacklogpost=nil, maxbandwidth=nil, apisecurity=nil, qpsstandard=nil, bandwidthstandard=nil, status=nil, sandboxqps=nil, isapisecuritytrial=nil, majoreventspkg=nil, hybridpkg=nil, apipkg=nil, minipkg=nil, miniqpsstandard=nil, minimaxqps=nil, lastqpsexceedtime=nil, miniextendpkg=nil, billingitem=nil, freedelayflag=nil, last3maxqps=nil, last3maxbandwidth=nil, majoreventspropkg=nil)
+        def initialize(instanceid=nil, instancename=nil, resourceids=nil, region=nil, paymode=nil, renewflag=nil, mode=nil, level=nil, validtime=nil, begintime=nil, domaincount=nil, subdomainlimit=nil, maindomaincount=nil, maindomainlimit=nil, maxqps=nil, qps=nil, domainpkg=nil, appid=nil, edition=nil, fraudpkg=nil, botpkg=nil, botqps=nil, elasticbilling=nil, attacklogpost=nil, maxbandwidth=nil, apisecurity=nil, qpsstandard=nil, bandwidthstandard=nil, status=nil, sandboxqps=nil, isapisecuritytrial=nil, majoreventspkg=nil, hybridpkg=nil, apipkg=nil, minipkg=nil, miniqpsstandard=nil, minimaxqps=nil, lastqpsexceedtime=nil, miniextendpkg=nil, billingitem=nil, freedelayflag=nil, last3maxqps=nil, last3maxbandwidth=nil, majoreventspropkg=nil, basicflag=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @ResourceIds = resourceids
@@ -10525,6 +10527,7 @@ module TencentCloud
           @Last3MaxQPS = last3maxqps
           @Last3MaxBandwidth = last3maxbandwidth
           @MajorEventsProPkg = majoreventspropkg
+          @BasicFlag = basicflag
         end
 
         def deserialize(params)
@@ -10605,6 +10608,7 @@ module TencentCloud
             @MajorEventsProPkg = MajorEventsProPkg.new
             @MajorEventsProPkg.deserialize(params['MajorEventsProPkg'])
           end
+          @BasicFlag = params['BasicFlag']
         end
       end
 

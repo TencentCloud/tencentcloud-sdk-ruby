@@ -47,10 +47,11 @@ module TencentCloud
 
       # BatchModifyDomainInfo请求参数结构体
       class BatchModifyDomainInfoRequest < TencentCloud::Common::AbstractModel
-        # @param Domains: 批量修改的域名。
+        # @param Domains: 批量修改的域名数组
+        # 个数最大不超过4000
         # @type Domains: Array
         # @param TemplateId: 模板ID
-        # 可从DescribeTemplates接口获取
+        # 可从[DescribeTemplateList](https://cloud.tencent.com/document/api/242/48940)接口获取
         # @type TemplateId: String
         # @param LockTransfer: true： 开启60天内禁止转移注册商锁定
         # false：关闭60天内禁止转移注册商锁定
@@ -291,8 +292,10 @@ module TencentCloud
       # BiddingPreRelease返回参数结构体
       class BiddingPreReleaseResponse < TencentCloud::Common::AbstractModel
         # @param IsNeedPay: 是否需要额外支付
+        # true: 需要额外支付
+        # false: 不需要额外支付
         # @type IsNeedPay: Boolean
-        # @param BillingParam: 计费请求参数，以类Json字符串的形式进行返回。用于计费下单
+        # @param BillingParam: 计费请求参数，以类Json字符串的形式进行返回。json字符串前有一个">"特定标识符号，去掉标识符的字符串可用于计费下单
         # @type BillingParam: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -698,7 +701,7 @@ module TencentCloud
       # CreateCustomDnsHost请求参数结构体
       class CreateCustomDnsHostRequest < TencentCloud::Common::AbstractModel
         # @param DomainId: 域名实例ID
-        # 可通过DescribeDomainNameList接口获取(https://cloud.tencent.com/document/api/242/48941)
+        # 可通过[DescribeDomainNameList](https://cloud.tencent.com/document/api/242/48941)接口获取
         # @type DomainId: String
         # @param DnsName: Dns名称
         # 例如：<>.test.com;其中<>就是Dns名称，可以是任意域名允许的格式
@@ -860,7 +863,7 @@ module TencentCloud
         # @param Type: 1：手机   2：邮箱
         # @type Type: Integer
         # @param VerifyCode: 验证码
-        # 通过调用SendPhoneEmailCode接口发送到手机或邮箱的验证码：https://cloud.tencent.com/document/api/242/62666
+        # 通过调用[SendPhoneEmailCode](https://cloud.tencent.com/document/api/242/62666)接口发送到手机或邮箱的验证码
         # @type VerifyCode: String
 
         attr_accessor :Code, :Type, :VerifyCode
@@ -1109,7 +1112,7 @@ module TencentCloud
       # DeleteTemplate请求参数结构体
       class DeleteTemplateRequest < TencentCloud::Common::AbstractModel
         # @param TemplateId: 模板ID
-        # 可通过DescribeTemplates接口获取
+        # 可通过[DescribeTemplateList](https://cloud.tencent.com/document/api/242/48940)接口获取
         # @type TemplateId: String
 
         attr_accessor :TemplateId
@@ -1390,7 +1393,7 @@ module TencentCloud
         # 默认值1
         # @type PageNumber: Integer
         # @param PageSize: 每页数量
-        # 默认：20 取值范围【1，200】
+        # 默认：20 取值范围[1，200]
         # @type PageSize: Integer
         # @param Domain: 域名
         # @type Domain: String
@@ -1404,7 +1407,10 @@ module TencentCloud
         # BiddingPrice 竞价保证金
         # BiddingEndTime 竞价结束时间
         # @type SortField: String
-        # @param SortOrder: 排序规则：asc升序，desc降序
+        # @param SortOrder: 排序规则：
+        # asc:升序
+        # desc:降序
+        # 默认：asc
         # @type SortOrder: String
 
         attr_accessor :PageNumber, :PageSize, :Domain, :Status, :SortField, :SortOrder
@@ -1624,7 +1630,7 @@ module TencentCloud
       # DescribeBiddingSuccessfulDetail请求参数结构体
       class DescribeBiddingSuccessfulDetailRequest < TencentCloud::Common::AbstractModel
         # @param BusinessID: 预约ID
-        # 可通过[DescribeBiddingSuccessfulList](https://cloud.tencent.com/document/api/242/106596)接口获取
+        # 可通过[DescribeBiddingList](https://cloud.tencent.com/document/api/242/106598)接口获取
         # @type BusinessID: String
 
         attr_accessor :BusinessID
@@ -1705,7 +1711,7 @@ module TencentCloud
         # 默认：1
         # @type PageNumber: Integer
         # @param PageSize: 每页数量
-        # 默认：20 取值范围【1，200】
+        # 默认：20 取值范围[1，200]
         # @type PageSize: Integer
         # @param Domain: 域名
         # @type Domain: String
@@ -1715,7 +1721,10 @@ module TencentCloud
         # 默认<空>，不排序
         # SuccessfulTime 预约结束时间
         # @type SortField: String
-        # @param SortOrder: 排序规则：asc升序，desc降序
+        # @param SortOrder: 排序规则：
+        # asc：升序
+        # desc：降序
+        # 默认：asc
         # @type SortOrder: String
 
         attr_accessor :PageNumber, :PageSize, :Domain, :Status, :SortField, :SortOrder
@@ -1829,7 +1838,7 @@ module TencentCloud
       # DescribeDomainBaseInfo请求参数结构体
       class DescribeDomainBaseInfoRequest < TencentCloud::Common::AbstractModel
         # @param Domain: 域名
-        # 可通过DescribeDomainNameList接口获取(https://cloud.tencent.com/document/api/242/48941)
+        # 可通过[DescribeDomainNameList](https://cloud.tencent.com/document/api/242/48941)接口获取
         # @type Domain: String
 
         attr_accessor :Domain
@@ -2722,7 +2731,7 @@ module TencentCloud
       # DescribeTemplate请求参数结构体
       class DescribeTemplateRequest < TencentCloud::Common::AbstractModel
         # @param TemplateId: 模板ID
-        # 通过DescribeTemplateList接口获取:https://cloud.tencent.com/document/api/242/48940
+        # 通过[DescribeTemplateList](https://cloud.tencent.com/document/api/242/48940)接口获取
         # @type TemplateId: String
 
         attr_accessor :TemplateId
@@ -2917,7 +2926,7 @@ module TencentCloud
         # clientUpdateProhibited：注册商禁止更新
         # clientDeleteProhibited：注册商禁止删除
         # serverRenewProhibited: 注册局禁止续费
-        # clientRenewProhobited: 注册商禁止续费
+        # clientRenewProhibited: 注册商禁止续费
         # @type DomainStatus: Array
         # @param BuyStatus: 域名购买状态。
         # ok：正常
@@ -3210,7 +3219,7 @@ module TencentCloud
         # clientUpdateProhibited：注册商禁止更新
         # clientDeleteProhibited：注册商禁止删除
         # serverRenewProhibited: 注册局禁止续费
-        # clientRenewProhobited: 注册商禁止续费
+        # clientRenewProhibited: 注册商禁止续费
         # @type DomainStatus: Array
         # @param BuyStatus: 域名购买状态。
         # ok：正常
@@ -4021,7 +4030,7 @@ module TencentCloud
       # SetDomainAutoRenew请求参数结构体
       class SetDomainAutoRenewRequest < TencentCloud::Common::AbstractModel
         # @param DomainId: 域名实例ID
-        # 可通过DescribeDomainNameList接口获取(https://cloud.tencent.com/document/api/242/48941)
+        # 可通过[DescribeDomainNameList](https://cloud.tencent.com/document/api/242/48941)接口获取
         # @type DomainId: String
         # @param AutoRenew: AutoRenew 有三个可选值：
         #  0：不设置自动续费
@@ -4127,8 +4136,10 @@ module TencentCloud
         # NotVerified: 实名信息待修改
         # @type AuditStatus: String
         # @param CreatedOn: 创建时间
+        # 格式:YYYY-MM-DD HH:mm:ss
         # @type CreatedOn: String
         # @param UpdatedOn: 更新时间
+        # 格式:YYYY-MM-DD HH:mm:ss
         # @type UpdatedOn: String
         # @param UserUin: 用户UIN
         # @type UserUin: String
@@ -4194,7 +4205,7 @@ module TencentCloud
         # @param PassWords: 域名转移码数组。
         # @type PassWords: Array
         # @param TemplateId: 模板ID。
-        # 可通过DescribeTemplates接口获取
+        # 可通过[DescribeTemplateList](https://cloud.tencent.com/document/api/242/48940)接口获取
         # @type TemplateId: String
         # @param PayMode: 付费模式 0手动在线付费，1使用余额付费。
         # @type PayMode: Integer

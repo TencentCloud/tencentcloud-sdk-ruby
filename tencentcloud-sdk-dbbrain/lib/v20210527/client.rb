@@ -77,6 +77,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 自治中心-终止自治事件
+
+        # @param request: Request instance for CancelDBAutonomyEvent.
+        # @type request: :class:`Tencentcloud::dbbrain::V20210527::CancelDBAutonomyEventRequest`
+        # @rtype: :class:`Tencentcloud::dbbrain::V20210527::CancelDBAutonomyEventResponse`
+        def CancelDBAutonomyEvent(request)
+          body = send_request('CancelDBAutonomyEvent', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CancelDBAutonomyEventResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 终止中断会话任务。
 
         # @param request: Request instance for CancelKillTask.
@@ -639,6 +663,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeAuditLogFilesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 自治中心-查询自治事件任务详情。
+
+        # @param request: Request instance for DescribeDBAutonomyAction.
+        # @type request: :class:`Tencentcloud::dbbrain::V20210527::DescribeDBAutonomyActionRequest`
+        # @rtype: :class:`Tencentcloud::dbbrain::V20210527::DescribeDBAutonomyActionResponse`
+        def DescribeDBAutonomyAction(request)
+          body = send_request('DescribeDBAutonomyAction', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDBAutonomyActionResponse.new
             model.deserialize(response['Response'])
             model
           else

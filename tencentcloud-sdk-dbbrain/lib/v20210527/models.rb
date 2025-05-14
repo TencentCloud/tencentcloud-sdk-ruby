@@ -589,6 +589,46 @@ module TencentCloud
         end
       end
 
+      # CancelDBAutonomyEvent请求参数结构体
+      class CancelDBAutonomyEventRequest < TencentCloud::Common::AbstractModel
+        # @param EventId: 自治事件ID。
+        # @type EventId: Integer
+        # @param InstanceId: 实列ID。
+        # @type InstanceId: String
+        # @param Product: 服务产品类型，支持值包括： "redis" - 云数据库 Redis。
+        # @type Product: String
+
+        attr_accessor :EventId, :InstanceId, :Product
+
+        def initialize(eventid=nil, instanceid=nil, product=nil)
+          @EventId = eventid
+          @InstanceId = instanceid
+          @Product = product
+        end
+
+        def deserialize(params)
+          @EventId = params['EventId']
+          @InstanceId = params['InstanceId']
+          @Product = params['Product']
+        end
+      end
+
+      # CancelDBAutonomyEvent返回参数结构体
+      class CancelDBAutonomyEventResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CancelKillTask请求参数结构体
       class CancelKillTaskRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID。
@@ -1897,6 +1937,94 @@ module TencentCloud
               @Items << auditlogfile_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDBAutonomyAction请求参数结构体
+      class DescribeDBAutonomyActionRequest < TencentCloud::Common::AbstractModel
+        # @param ActionId: 自治任务ID。
+        # @type ActionId: Integer
+        # @param InstanceId: 实列ID。
+        # @type InstanceId: String
+        # @param Product: 服务产品类型，支持值包括： "redis" - 云数据库 Redis。
+        # @type Product: String
+
+        attr_accessor :ActionId, :InstanceId, :Product
+
+        def initialize(actionid=nil, instanceid=nil, product=nil)
+          @ActionId = actionid
+          @InstanceId = instanceid
+          @Product = product
+        end
+
+        def deserialize(params)
+          @ActionId = params['ActionId']
+          @InstanceId = params['InstanceId']
+          @Product = params['Product']
+        end
+      end
+
+      # DescribeDBAutonomyAction返回参数结构体
+      class DescribeDBAutonomyActionResponse < TencentCloud::Common::AbstractModel
+        # @param ActionId: 自治任务ID。
+        # @type ActionId: Integer
+        # @param EventId: 自治事件ID。
+        # @type EventId: Integer
+        # @param TaskId: 任务ID。
+        # @type TaskId: Integer
+        # @param Type: 类型：支持RedisAutoScaleUp
+        # @type Type: String
+        # @param TriggerTime: 自治任务触发时间。
+        # @type TriggerTime: String
+        # @param CreateTime: 自治任务创建时间。
+        # @type CreateTime: String
+        # @param UpdateTime: 自治任务更新时间。
+        # @type UpdateTime: String
+        # @param FinishTime: 自治任务完成时间。
+        # @type FinishTime: String
+        # @param ExpireTime: 剩余时间，单位：秒。
+        # @type ExpireTime: Integer
+        # @param Reason: 触发原因。
+        # @type Reason: String
+        # @param Status: 自治任务状态：支持 RUNNING，FINISHED，TERMINATED，CANCELLED
+        # @type Status: String
+        # @param Info: 任务相关的图表等信息。
+        # @type Info: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ActionId, :EventId, :TaskId, :Type, :TriggerTime, :CreateTime, :UpdateTime, :FinishTime, :ExpireTime, :Reason, :Status, :Info, :RequestId
+
+        def initialize(actionid=nil, eventid=nil, taskid=nil, type=nil, triggertime=nil, createtime=nil, updatetime=nil, finishtime=nil, expiretime=nil, reason=nil, status=nil, info=nil, requestid=nil)
+          @ActionId = actionid
+          @EventId = eventid
+          @TaskId = taskid
+          @Type = type
+          @TriggerTime = triggertime
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @FinishTime = finishtime
+          @ExpireTime = expiretime
+          @Reason = reason
+          @Status = status
+          @Info = info
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ActionId = params['ActionId']
+          @EventId = params['EventId']
+          @TaskId = params['TaskId']
+          @Type = params['Type']
+          @TriggerTime = params['TriggerTime']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          @FinishTime = params['FinishTime']
+          @ExpireTime = params['ExpireTime']
+          @Reason = params['Reason']
+          @Status = params['Status']
+          @Info = params['Info']
           @RequestId = params['RequestId']
         end
       end

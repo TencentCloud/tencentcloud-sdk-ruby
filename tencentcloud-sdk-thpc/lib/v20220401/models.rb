@@ -90,7 +90,7 @@ module TencentCloud
         # @type SecurityGroupIds: Array
         # @param ClientToken: 用于保证请求幂等性的字符串。该字符串由客户生成，需保证不同请求之间唯一，最大值不超过64个ASCII字符。若不指定该参数，则无法保证请求的幂等性。
         # @type ClientToken: String
-        # @param QueueName: 队列名称。不指定则为默认队列。<li>SLURM默认队列为：compute。</li><li>SGE默认队列为：all.q。</li>
+        # @param QueueName: 队列名称。不指定则为默认队列。<li>SLURM默认队列为：compute。</li>
         # @type QueueName: String
         # @param NodeRole: 添加节点角色。默认值：Compute<br><li>Compute：计算节点。</li><br><li>Login：登录节点。</li>
         # @type NodeRole: String
@@ -600,7 +600,7 @@ module TencentCloud
         # @type ComputeNode: :class:`Tencentcloud::Thpc.v20220401.models.ComputeNode`
         # @param ComputeNodeCount: 指定计算节点的数量。默认取值：0。
         # @type ComputeNodeCount: Integer
-        # @param SchedulerType: 调度器类型。默认取值：SLURM。<br><li>SGE：SGE调度器。</li><br><li>SLURM：SLURM调度器。</li>
+        # @param SchedulerType: 调度器类型。默认取值：SLURM。<br><li>SLURM：SLURM调度器。</li>
         # @type SchedulerType: String
         # @param ImageId: 指定有效的[镜像](https://cloud.tencent.com/document/product/213/4940)ID，格式形如`img-xxx`。目前支持部分公有镜像和自定义镜像。
         # @type ImageId: String

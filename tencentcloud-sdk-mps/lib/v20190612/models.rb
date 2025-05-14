@@ -2071,8 +2071,8 @@ module TencentCloud
 
         attr_accessor :SegmentSet, :SubtitlePath, :OutputStorage
         extend Gem::Deprecate
-        deprecate :OutputStorage, :none, 2025, 4
-        deprecate :OutputStorage=, :none, 2025, 4
+        deprecate :OutputStorage, :none, 2025, 5
+        deprecate :OutputStorage=, :none, 2025, 5
 
         def initialize(segmentset=nil, subtitlepath=nil, outputstorage=nil)
           @SegmentSet = segmentset
@@ -14159,9 +14159,35 @@ module TencentCloud
         end
       end
 
+      # 图片框选区域信息
+      class ImageAreaBoxInfo < TencentCloud::Common::AbstractModel
+        # @param Type: 图片框选区域类型，可选值：
+        # <li>logo：图标；</li>
+        # <li>text：文字。</li>
+        # 默认值：logo。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+        # @param AreaCoordSet: 图片框选区域坐标 (像素级)，[x1, y1, x2, y2]，即左上角坐标、右下角坐标。
+        # 示例值：[101, 85, 111, 95]
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AreaCoordSet: Array
+
+        attr_accessor :Type, :AreaCoordSet
+
+        def initialize(type=nil, areacoordset=nil)
+          @Type = type
+          @AreaCoordSet = areacoordset
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @AreaCoordSet = params['AreaCoordSet']
+        end
+      end
+
       # 图片编码格式参数
       class ImageEncodeConfig < TencentCloud::Common::AbstractModel
-        # @param Format: 图片格式，取值范围：JPG、BMP、GIF、PNG、WebP，缺省为原图格式。
+        # @param Format: 图片格式，取值范围：JPEG、PNG、BMP、WebP，缺省为原图格式。不支持动画。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Format: String
         # @param Quality: 图片的相对质量，取值范围：1 - 100，数值以原图质量为标准，缺省为原图质量。
@@ -14186,6 +14212,9 @@ module TencentCloud
         # @param SuperResolution: 超分配置。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SuperResolution: :class:`Tencentcloud::Mps.v20190612.models.SuperResolutionConfig`
+        # @param ImageQualityEnhance: 综合增强配置。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ImageQualityEnhance: :class:`Tencentcloud::Mps.v20190612.models.ImageQualityEnhanceConfig`
         # @param ColorEnhance: 色彩增强配置。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ColorEnhance: :class:`Tencentcloud::Mps.v20190612.models.ColorEnhanceConfig`
@@ -14196,10 +14225,11 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FaceEnhance: :class:`Tencentcloud::Mps.v20190612.models.FaceEnhanceConfig`
 
-        attr_accessor :SuperResolution, :ColorEnhance, :SharpEnhance, :FaceEnhance
+        attr_accessor :SuperResolution, :ImageQualityEnhance, :ColorEnhance, :SharpEnhance, :FaceEnhance
 
-        def initialize(superresolution=nil, colorenhance=nil, sharpenhance=nil, faceenhance=nil)
+        def initialize(superresolution=nil, imagequalityenhance=nil, colorenhance=nil, sharpenhance=nil, faceenhance=nil)
           @SuperResolution = superresolution
+          @ImageQualityEnhance = imagequalityenhance
           @ColorEnhance = colorenhance
           @SharpEnhance = sharpenhance
           @FaceEnhance = faceenhance
@@ -14209,6 +14239,10 @@ module TencentCloud
           unless params['SuperResolution'].nil?
             @SuperResolution = SuperResolutionConfig.new
             @SuperResolution.deserialize(params['SuperResolution'])
+          end
+          unless params['ImageQualityEnhance'].nil?
+            @ImageQualityEnhance = ImageQualityEnhanceConfig.new
+            @ImageQualityEnhance.deserialize(params['ImageQualityEnhance'])
           end
           unless params['ColorEnhance'].nil?
             @ColorEnhance = ColorEnhanceConfig.new
@@ -14221,6 +14255,59 @@ module TencentCloud
           unless params['FaceEnhance'].nil?
             @FaceEnhance = FaceEnhanceConfig.new
             @FaceEnhance.deserialize(params['FaceEnhance'])
+          end
+        end
+      end
+
+      # 图片擦除参数
+      class ImageEraseConfig < TencentCloud::Common::AbstractModel
+        # @param ImageEraseLogo: 图标擦除配置。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ImageEraseLogo: :class:`Tencentcloud::Mps.v20190612.models.ImageEraseLogoConfig`
+
+        attr_accessor :ImageEraseLogo
+
+        def initialize(imageeraselogo=nil)
+          @ImageEraseLogo = imageeraselogo
+        end
+
+        def deserialize(params)
+          unless params['ImageEraseLogo'].nil?
+            @ImageEraseLogo = ImageEraseLogoConfig.new
+            @ImageEraseLogo.deserialize(params['ImageEraseLogo'])
+          end
+        end
+      end
+
+      # 图标擦除配置
+      class ImageEraseLogoConfig < TencentCloud::Common::AbstractModel
+        # @param Switch: 能力配置开关，可选值：
+        # <li>ON：开启；</li>
+        # <li>OFF：关闭。</li>
+        # 默认值：ON。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Switch: String
+        # @param ImageAreaBoxes: 需要擦除的多个框选区域，注意：参数数组长度最大为2。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ImageAreaBoxes: Array
+
+        attr_accessor :Switch, :ImageAreaBoxes
+
+        def initialize(switch=nil, imageareaboxes=nil)
+          @Switch = switch
+          @ImageAreaBoxes = imageareaboxes
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
+          unless params['ImageAreaBoxes'].nil?
+            @ImageAreaBoxes = []
+            params['ImageAreaBoxes'].each do |i|
+              imageareaboxinfo_tmp = ImageAreaBoxInfo.new
+              imageareaboxinfo_tmp.deserialize(i)
+              @ImageAreaBoxes << imageareaboxinfo_tmp
+            end
           end
         end
       end
@@ -14398,12 +14485,16 @@ module TencentCloud
         # @param EnhanceConfig: 图片增强配置。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EnhanceConfig: :class:`Tencentcloud::Mps.v20190612.models.ImageEnhanceConfig`
+        # @param EraseConfig: 图片擦除配置。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EraseConfig: :class:`Tencentcloud::Mps.v20190612.models.ImageEraseConfig`
 
-        attr_accessor :EncodeConfig, :EnhanceConfig
+        attr_accessor :EncodeConfig, :EnhanceConfig, :EraseConfig
 
-        def initialize(encodeconfig=nil, enhanceconfig=nil)
+        def initialize(encodeconfig=nil, enhanceconfig=nil, eraseconfig=nil)
           @EncodeConfig = encodeconfig
           @EnhanceConfig = enhanceconfig
+          @EraseConfig = eraseconfig
         end
 
         def deserialize(params)
@@ -14414,6 +14505,10 @@ module TencentCloud
           unless params['EnhanceConfig'].nil?
             @EnhanceConfig = ImageEnhanceConfig.new
             @EnhanceConfig.deserialize(params['EnhanceConfig'])
+          end
+          unless params['EraseConfig'].nil?
+            @EraseConfig = ImageEraseConfig.new
+            @EraseConfig.deserialize(params['EraseConfig'])
           end
         end
       end
@@ -14930,10 +15025,10 @@ module TencentCloud
 
         attr_accessor :QualityControlResults, :DiagnoseResults, :QualityControlResultSet, :DiagnoseResultSet
         extend Gem::Deprecate
-        deprecate :QualityControlResults, :none, 2025, 4
-        deprecate :QualityControlResults=, :none, 2025, 4
-        deprecate :DiagnoseResults, :none, 2025, 4
-        deprecate :DiagnoseResults=, :none, 2025, 4
+        deprecate :QualityControlResults, :none, 2025, 5
+        deprecate :QualityControlResults=, :none, 2025, 5
+        deprecate :DiagnoseResults, :none, 2025, 5
+        deprecate :DiagnoseResults=, :none, 2025, 5
 
         def initialize(qualitycontrolresults=nil, diagnoseresults=nil, qualitycontrolresultset=nil, diagnoseresultset=nil)
           @QualityControlResults = qualitycontrolresults

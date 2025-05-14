@@ -2686,6 +2686,106 @@ module TencentCloud
         end
       end
 
+      # 模版详情
+      class CodeTemplateDetail < TencentCloud::Common::AbstractModel
+        # @param ProjectId: 项目id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProjectId: String
+        # @param CodeTemplateName: 模版名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CodeTemplateName: String
+        # @param TaskType: 任务类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskType: Integer
+        # @param CodeTemplateDesc: 代码模版描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CodeTemplateDesc: String
+        # @param FolderId: 文件夹id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FolderId: String
+        # @param FolderName: 文件夹名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FolderName: String
+        # @param InCharge: 责任人名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InCharge: String
+        # @param InChargeId: 责任人id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InChargeId: String
+        # @param Ext: 扩展信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Ext: :class:`Tencentcloud::Wedata.v20210820.models.TaskExtDsVO`
+        # @param CodeTemplateId: 模版id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CodeTemplateId: String
+        # @param LastUpdateTime: 最后更新时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LastUpdateTime: String
+        # @param UpdateUser: 更新人名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateUser: String
+        # @param UpdateUserId: 更新人id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateUserId: String
+        # @param BrokerIp: 执行ip
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BrokerIp: String
+        # @param ResourceGroup: 资源组id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceGroup: String
+        # @param Submit: 是否提交
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Submit: Boolean
+        # @param ScriptChange: 任务脚本是否发生变化
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ScriptChange: Boolean
+
+        attr_accessor :ProjectId, :CodeTemplateName, :TaskType, :CodeTemplateDesc, :FolderId, :FolderName, :InCharge, :InChargeId, :Ext, :CodeTemplateId, :LastUpdateTime, :UpdateUser, :UpdateUserId, :BrokerIp, :ResourceGroup, :Submit, :ScriptChange
+
+        def initialize(projectid=nil, codetemplatename=nil, tasktype=nil, codetemplatedesc=nil, folderid=nil, foldername=nil, incharge=nil, inchargeid=nil, ext=nil, codetemplateid=nil, lastupdatetime=nil, updateuser=nil, updateuserid=nil, brokerip=nil, resourcegroup=nil, submit=nil, scriptchange=nil)
+          @ProjectId = projectid
+          @CodeTemplateName = codetemplatename
+          @TaskType = tasktype
+          @CodeTemplateDesc = codetemplatedesc
+          @FolderId = folderid
+          @FolderName = foldername
+          @InCharge = incharge
+          @InChargeId = inchargeid
+          @Ext = ext
+          @CodeTemplateId = codetemplateid
+          @LastUpdateTime = lastupdatetime
+          @UpdateUser = updateuser
+          @UpdateUserId = updateuserid
+          @BrokerIp = brokerip
+          @ResourceGroup = resourcegroup
+          @Submit = submit
+          @ScriptChange = scriptchange
+        end
+
+        def deserialize(params)
+          @ProjectId = params['ProjectId']
+          @CodeTemplateName = params['CodeTemplateName']
+          @TaskType = params['TaskType']
+          @CodeTemplateDesc = params['CodeTemplateDesc']
+          @FolderId = params['FolderId']
+          @FolderName = params['FolderName']
+          @InCharge = params['InCharge']
+          @InChargeId = params['InChargeId']
+          unless params['Ext'].nil?
+            @Ext = TaskExtDsVO.new
+            @Ext.deserialize(params['Ext'])
+          end
+          @CodeTemplateId = params['CodeTemplateId']
+          @LastUpdateTime = params['LastUpdateTime']
+          @UpdateUser = params['UpdateUser']
+          @UpdateUserId = params['UpdateUserId']
+          @BrokerIp = params['BrokerIp']
+          @ResourceGroup = params['ResourceGroup']
+          @Submit = params['Submit']
+          @ScriptChange = params['ScriptChange']
+        end
+      end
+
       # 文件夹列表
       class CollectionFolderOpsDto < TencentCloud::Common::AbstractModel
         # @param TotalCount: 总数
@@ -15503,6 +15603,85 @@ module TencentCloud
         end
       end
 
+      # DescribeTaskTemplates请求参数结构体
+      class DescribeTaskTemplatesRequest < TencentCloud::Common::AbstractModel
+        # @param ProjectId: 项目id
+        # @type ProjectId: String
+        # @param PageNumber: 页号
+        # @type PageNumber: Integer
+        # @param PageSize: 分页大小
+        # @type PageSize: Integer
+        # @param OrderFields: 排序字段, 仅支持更新时间, 取值示例
+
+        # - UpdateTime
+        # @type OrderFields: Array
+        # @param Filters: 过滤条件, 取值列表
+
+        # - TemplateName    模版名称
+        # - TaskType    支持任务类型
+        # - InCharge    责任人
+        # - FolderId    文件夹id
+        # - Status    提交状态
+        # - UpdateStartTime    更新时间,时间区间查询
+        # - UpdateEndTime    更新时间,时间区间查询
+        # @type Filters: Array
+
+        attr_accessor :ProjectId, :PageNumber, :PageSize, :OrderFields, :Filters
+
+        def initialize(projectid=nil, pagenumber=nil, pagesize=nil, orderfields=nil, filters=nil)
+          @ProjectId = projectid
+          @PageNumber = pagenumber
+          @PageSize = pagesize
+          @OrderFields = orderfields
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @ProjectId = params['ProjectId']
+          @PageNumber = params['PageNumber']
+          @PageSize = params['PageSize']
+          unless params['OrderFields'].nil?
+            @OrderFields = []
+            params['OrderFields'].each do |i|
+              orderfield_tmp = OrderField.new
+              orderfield_tmp.deserialize(i)
+              @OrderFields << orderfield_tmp
+            end
+          end
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeTaskTemplates返回参数结构体
+      class DescribeTaskTemplatesResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 查询项目下所有任务信息,不包括虚拟任务和离线任务
+        # @type Data: :class:`Tencentcloud::Wedata.v20210820.models.PageTaskTemplateInfo`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = PageTaskTemplateInfo.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 批量操作任务列表分页
       class DescribeTasksForCodeTemplatePage < TencentCloud::Common::AbstractModel
         # @param PageCount: 总页码数
@@ -16603,6 +16782,90 @@ module TencentCloud
           @MinInputFiles = params['MinInputFiles']
           @TargetFileSizeBytes = params['TargetFileSizeBytes']
           @IntervalMin = params['IntervalMin']
+        end
+      end
+
+      # DownloadLogByLine请求参数结构体
+      class DownloadLogByLineRequest < TencentCloud::Common::AbstractModel
+        # @param StartLine: 开始行
+        # @type StartLine: Integer
+        # @param LineCount: 读取行
+        # @type LineCount: Integer
+        # @param ProjectId: 项目id
+        # @type ProjectId: String
+        # @param TaskId: 任务id
+        # @type TaskId: String
+        # @param CurRunDate: 实例运行时间
+        # @type CurRunDate: String
+        # @param DetailId: 任务详情id，用于读取切分的日志文件
+        # @type DetailId: String
+        # @param FilePath: base64编码的文件路径
+        # @type FilePath: String
+        # @param RecordId: 任务记录id
+        # @type RecordId: String
+        # @param SubJobId: 子job id
+        # @type SubJobId: String
+        # @param JobType: hiveSql:34,sparkSql:36 dlcSql: 32
+        # @type JobType: String
+        # @param ParseErrorTip: true:解析错误信息。false:不解析错误信息
+        # @type ParseErrorTip: Boolean
+        # @param FileType: log 0 code 1 result 2 custo 3
+        # @type FileType: Integer
+
+        attr_accessor :StartLine, :LineCount, :ProjectId, :TaskId, :CurRunDate, :DetailId, :FilePath, :RecordId, :SubJobId, :JobType, :ParseErrorTip, :FileType
+
+        def initialize(startline=nil, linecount=nil, projectid=nil, taskid=nil, currundate=nil, detailid=nil, filepath=nil, recordid=nil, subjobid=nil, jobtype=nil, parseerrortip=nil, filetype=nil)
+          @StartLine = startline
+          @LineCount = linecount
+          @ProjectId = projectid
+          @TaskId = taskid
+          @CurRunDate = currundate
+          @DetailId = detailid
+          @FilePath = filepath
+          @RecordId = recordid
+          @SubJobId = subjobid
+          @JobType = jobtype
+          @ParseErrorTip = parseerrortip
+          @FileType = filetype
+        end
+
+        def deserialize(params)
+          @StartLine = params['StartLine']
+          @LineCount = params['LineCount']
+          @ProjectId = params['ProjectId']
+          @TaskId = params['TaskId']
+          @CurRunDate = params['CurRunDate']
+          @DetailId = params['DetailId']
+          @FilePath = params['FilePath']
+          @RecordId = params['RecordId']
+          @SubJobId = params['SubJobId']
+          @JobType = params['JobType']
+          @ParseErrorTip = params['ParseErrorTip']
+          @FileType = params['FileType']
+        end
+      end
+
+      # DownloadLogByLine返回参数结构体
+      class DownloadLogByLineResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 日志信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: :class:`Tencentcloud::Wedata.v20210820.models.InstanceLogByLine`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = InstanceLogByLine.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
         end
       end
 
@@ -19711,6 +19974,61 @@ module TencentCloud
         end
       end
 
+      # 日志信息
+      class InstanceLogByLine < TencentCloud::Common::AbstractModel
+        # @param Count: 返回行数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Count: Integer
+        # @param Content: 内容
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Content: Array
+        # @param Over: 文件是否读取完
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Over: Boolean
+        # @param InstanceState: 实例状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceState: String
+        # @param InstanceId: 实例id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceId: String
+        # @param TaskId: 任务id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskId: String
+        # @param WorkerType: 执行机类型 0:老执行机loader 1:新执行机woker
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WorkerType: Integer
+        # @param JobLogErrorTip: 日志sql错误信息，包含行列信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type JobLogErrorTip: :class:`Tencentcloud::Wedata.v20210820.models.JobLogErrorTip`
+
+        attr_accessor :Count, :Content, :Over, :InstanceState, :InstanceId, :TaskId, :WorkerType, :JobLogErrorTip
+
+        def initialize(count=nil, content=nil, over=nil, instancestate=nil, instanceid=nil, taskid=nil, workertype=nil, joblogerrortip=nil)
+          @Count = count
+          @Content = content
+          @Over = over
+          @InstanceState = instancestate
+          @InstanceId = instanceid
+          @TaskId = taskid
+          @WorkerType = workertype
+          @JobLogErrorTip = joblogerrortip
+        end
+
+        def deserialize(params)
+          @Count = params['Count']
+          @Content = params['Content']
+          @Over = params['Over']
+          @InstanceState = params['InstanceState']
+          @InstanceId = params['InstanceId']
+          @TaskId = params['TaskId']
+          @WorkerType = params['WorkerType']
+          unless params['JobLogErrorTip'].nil?
+            @JobLogErrorTip = JobLogErrorTip.new
+            @JobLogErrorTip.deserialize(params['JobLogErrorTip'])
+          end
+        end
+      end
+
       # 实例日志简述信息
       class InstanceLogInfo < TencentCloud::Common::AbstractModel
         # @param TaskId: 任务id
@@ -21437,6 +21755,33 @@ module TencentCloud
           end
           @BusinessLatency = params['BusinessLatency']
           @CurrentSyncPosition = params['CurrentSyncPosition']
+        end
+      end
+
+      # 调度任务日志错误提示信息
+      class JobLogErrorTip < TencentCloud::Common::AbstractModel
+        # @param Content: 执行日志错误信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Content: String
+        # @param LineNum: 对应sql的行下标
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LineNum: Integer
+        # @param ColumnNum: 对应sql的列下标
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ColumnNum: Integer
+
+        attr_accessor :Content, :LineNum, :ColumnNum
+
+        def initialize(content=nil, linenum=nil, columnnum=nil)
+          @Content = content
+          @LineNum = linenum
+          @ColumnNum = columnnum
+        end
+
+        def deserialize(params)
+          @Content = params['Content']
+          @LineNum = params['LineNum']
+          @ColumnNum = params['ColumnNum']
         end
       end
 
@@ -24953,6 +25298,45 @@ module TencentCloud
           @PageSize = params['PageSize']
           @TotalCount = params['TotalCount']
           @TotalPageNumber = params['TotalPageNumber']
+        end
+      end
+
+      # 任务模版分页
+      class PageTaskTemplateInfo < TencentCloud::Common::AbstractModel
+        # @param Items: 任务集合信息
+        # @type Items: Array
+        # @param PageCount: 总页数
+        # @type PageCount: Integer
+        # @param TotalCount: 总数量
+        # @type TotalCount: Integer
+        # @param PageNumber: 当前页
+        # @type PageNumber: Integer
+        # @param PageSize: 每页显示数
+        # @type PageSize: Integer
+
+        attr_accessor :Items, :PageCount, :TotalCount, :PageNumber, :PageSize
+
+        def initialize(items=nil, pagecount=nil, totalcount=nil, pagenumber=nil, pagesize=nil)
+          @Items = items
+          @PageCount = pagecount
+          @TotalCount = totalcount
+          @PageNumber = pagenumber
+          @PageSize = pagesize
+        end
+
+        def deserialize(params)
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              codetemplatedetail_tmp = CodeTemplateDetail.new
+              codetemplatedetail_tmp.deserialize(i)
+              @Items << codetemplatedetail_tmp
+            end
+          end
+          @PageCount = params['PageCount']
+          @TotalCount = params['TotalCount']
+          @PageNumber = params['PageNumber']
+          @PageSize = params['PageSize']
         end
       end
 
@@ -33853,10 +34237,12 @@ module TencentCloud
         # @type RequestFromSource: String
         # @param ScriptChange: 脚本是否发生变化
         # @type ScriptChange: Boolean
+        # @param Content: 转Base64的代码内容
+        # @type Content: String
 
-        attr_accessor :ProjectId, :CodeTemplateId, :CodeTemplateName, :InChargeId, :InCharge, :Ext, :BrokerIp, :ResourceGroup, :CodeTemplateDesc, :RequestFromSource, :ScriptChange
+        attr_accessor :ProjectId, :CodeTemplateId, :CodeTemplateName, :InChargeId, :InCharge, :Ext, :BrokerIp, :ResourceGroup, :CodeTemplateDesc, :RequestFromSource, :ScriptChange, :Content
 
-        def initialize(projectid=nil, codetemplateid=nil, codetemplatename=nil, inchargeid=nil, incharge=nil, ext=nil, brokerip=nil, resourcegroup=nil, codetemplatedesc=nil, requestfromsource=nil, scriptchange=nil)
+        def initialize(projectid=nil, codetemplateid=nil, codetemplatename=nil, inchargeid=nil, incharge=nil, ext=nil, brokerip=nil, resourcegroup=nil, codetemplatedesc=nil, requestfromsource=nil, scriptchange=nil, content=nil)
           @ProjectId = projectid
           @CodeTemplateId = codetemplateid
           @CodeTemplateName = codetemplatename
@@ -33868,6 +34254,7 @@ module TencentCloud
           @CodeTemplateDesc = codetemplatedesc
           @RequestFromSource = requestfromsource
           @ScriptChange = scriptchange
+          @Content = content
         end
 
         def deserialize(params)
@@ -33885,6 +34272,7 @@ module TencentCloud
           @CodeTemplateDesc = params['CodeTemplateDesc']
           @RequestFromSource = params['RequestFromSource']
           @ScriptChange = params['ScriptChange']
+          @Content = params['Content']
         end
       end
 

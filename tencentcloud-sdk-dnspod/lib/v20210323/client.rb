@@ -802,6 +802,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 批量操作中搜索域名
+
+        # @param request: Request instance for DescribeDomainAndRecordList.
+        # @type request: :class:`Tencentcloud::dnspod::V20210323::DescribeDomainAndRecordListRequest`
+        # @rtype: :class:`Tencentcloud::dnspod::V20210323::DescribeDomainAndRecordListResponse`
+        def DescribeDomainAndRecordList(request)
+          body = send_request('DescribeDomainAndRecordList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDomainAndRecordListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取域名的自定义线路列表
 
         # @param request: Request instance for DescribeDomainCustomLineList.

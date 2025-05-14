@@ -4358,6 +4358,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询项目下所有任务列表,包括虚拟任务
+
+        # @param request: Request instance for DescribeTaskTemplates.
+        # @type request: :class:`Tencentcloud::wedata::V20210820::DescribeTaskTemplatesRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20210820::DescribeTaskTemplatesResponse`
+        def DescribeTaskTemplates(request)
+          body = send_request('DescribeTaskTemplates', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeTaskTemplatesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 分页查询引用模板的任务列表
 
         # @param request: Request instance for DescribeTasksForCodeTemplate.
@@ -4656,6 +4680,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DiagnoseProResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 按行下载日志信息
+
+        # @param request: Request instance for DownloadLogByLine.
+        # @type request: :class:`Tencentcloud::wedata::V20210820::DownloadLogByLineRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20210820::DownloadLogByLineResponse`
+        def DownloadLogByLine(request)
+          body = send_request('DownloadLogByLine', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DownloadLogByLineResponse.new
             model.deserialize(response['Response'])
             model
           else

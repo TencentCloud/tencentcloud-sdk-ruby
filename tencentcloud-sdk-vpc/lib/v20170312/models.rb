@@ -983,13 +983,15 @@ module TencentCloud
 
       # AllocateIp6AddressesBandwidth请求参数结构体
       class AllocateIp6AddressesBandwidthRequest < TencentCloud::Common::AbstractModel
-        # @param Ip6Addresses: 需要开通公网访问能力的IPv6地址
+        # @param Ip6Addresses: 需要开通公网访问能力的IPv6地址，可以使用[DescribeIp6Addresses](https://cloud.tencent.com/document/product/215/40089)接口查询Ip6Addresses。
         # @type Ip6Addresses: Array
-        # @param InternetMaxBandwidthOut: 带宽，单位Mbps。默认是1Mbps
+        # @param InternetMaxBandwidthOut: 带宽上限，单位Mbps。可调整的带宽上限值参考产品文档中[IPv6 计费限制说明](https://cloud.tencent.com/document/product/1142/38369#IPv6)。
+        # 默认值：1Mbps
         # @type InternetMaxBandwidthOut: Integer
-        # @param InternetChargeType: 网络计费模式。IPv6当前支持"TRAFFIC_POSTPAID_BY_HOUR"，"BANDWIDTH_PACKAGE"。默认网络计费模式是"TRAFFIC_POSTPAID_BY_HOUR"。
+        # @param InternetChargeType: 网络计费模式。IPv6当前支持：<li>TRAFFIC_POSTPAID_BY_HOUR：流量按小时后付费</li><li>BANDWIDTH_PACKAGE：共享带宽包付费</li>
+        # 默认值：TRAFFIC_POSTPAID_BY_HOUR
         # @type InternetChargeType: String
-        # @param BandwidthPackageId: 带宽包id，上移账号，申请带宽包计费模式的IPv6地址需要传入.
+        # @param BandwidthPackageId: 带宽包id，设定该参数且InternetChargeType为BANDWIDTH_PACKAGE，则表示创建的IPv6加入该带宽包并采用带宽包计费。可以使用[DescribeBandwidthPackages](https://cloud.tencent.com/document/product/215/19209)接口查询BandwidthPackageId。
         # @type BandwidthPackageId: String
         # @param Tags: 需要关联的标签列表。
         # @type Tags: Array
@@ -11819,11 +11821,11 @@ module TencentCloud
 
       # DescribeIp6Addresses请求参数结构体
       class DescribeIp6AddressesRequest < TencentCloud::Common::AbstractModel
-        # @param Ip6AddressIds: 标识 IPv6 的唯一 ID 列表。IPv6 唯一 ID 形如：`eip-11112222`。参数不支持同时指定`Ip6AddressIds`和`Filters`。
+        # @param Ip6AddressIds: 标识 IPv6 的唯一 ID 列表。IPv6 唯一 ID 形如：`eip-11112222`。参数不支持同时指定`Ip6AddressIds`和`Filters`。可以使用[DescribeIp6Addresses](https://cloud.tencent.com/document/product/215/40089)接口查询Ip6AddressIds。
         # @type Ip6AddressIds: Array
         # @param Filters: 每次请求的`Filters`的上限为10，`Filter.Values`的上限为100。参数不支持同时指定`AddressIds`和`Filters`。详细的过滤条件如下：
-        # <li> address-ip - String - 是否必填：否 - （过滤条件）按照 IPv6 的 IP 地址过滤。</li>
-        # <li> network-interface-id - String - 是否必填：否 - （过滤条件）按照弹性网卡的唯一ID过滤。</li>
+        # <li> address-ip - String - 是否必填：否 - （过滤条件）按照 IPv6 的 IP 地址过滤。可以使用[DescribeIp6Addresses](https://cloud.tencent.com/document/product/215/40089)接口查询address-ip。</li>
+        # <li> network-interface-id - String - 是否必填：否 - （过滤条件）按照弹性网卡的唯一ID过滤。可以使用[DescribeNetworkInterfaces](https://cloud.tencent.com/document/product/215/15817)接口查询network-interface-id。</li>
         # @type Filters: Array
         # @param Offset: 偏移量，默认为0。关于`Offset`的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/api/213/11646)中的相关小节。
         # @type Offset: Integer
@@ -20933,7 +20935,7 @@ module TencentCloud
       class ModifyIPv6AddressesBandwidthRequest < TencentCloud::Common::AbstractModel
         # @param IPv6AddressIds: 弹性公网IPv6地址唯一ID，可以使用[DescribeIPv6Addresses](https://cloud.tencent.com/document/api/215/113677)接口获取IPv6AddressId。
         # @type IPv6AddressIds: Array
-        # @param InternetMaxBandwidthOut: 弹性公网IPv6地址网络带宽，可调整的带宽上限值参考产品文档中[IPv6 计费限制说明](https://write.woa.com/document/123652708247588864#IPv6)。
+        # @param InternetMaxBandwidthOut: 弹性公网IPv6地址网络带宽，可调整的带宽上限值参考产品文档中[IPv6 计费限制说明](https://cloud.tencent.com/document/product/1142/38369#IPv6)。
         # @type InternetMaxBandwidthOut: Integer
 
         attr_accessor :IPv6AddressIds, :InternetMaxBandwidthOut
@@ -20967,7 +20969,7 @@ module TencentCloud
 
       # ModifyIp6AddressesBandwidth请求参数结构体
       class ModifyIp6AddressesBandwidthRequest < TencentCloud::Common::AbstractModel
-        # @param InternetMaxBandwidthOut: 修改的目标带宽，单位Mbps。可调整的带宽上限值参考产品文档中[IPv6 计费限制说明](https://write.woa.com/document/123652708247588864#IPv6)。
+        # @param InternetMaxBandwidthOut: 修改的目标带宽，单位Mbps。可调整的带宽上限值参考产品文档中[IPv6 计费限制说明](https://cloud.tencent.com/document/product/1142/38369#IPv6)。
         # @type InternetMaxBandwidthOut: Integer
         # @param Ip6Addresses: IPv6地址。可以使用[DescribeIp6Addresses](https://cloud.tencent.com/document/product/215/40089)接口查询Ip6Addresses。Ip6Addresses和Ip6AddressIds必须且只能传一个。
         # @type Ip6Addresses: Array

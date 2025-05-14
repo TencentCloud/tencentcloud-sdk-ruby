@@ -166,9 +166,9 @@ module TencentCloud
         # @type SnapshotId: String
         # @param DiskId: 快照原云硬盘ID，可通过[DescribeDisks](/document/product/362/16315)接口查询。
         # @type DiskId: String
-        # @param AutoStopInstance: 回滚前是否执行自动关机
+        # @param AutoStopInstance: 回滚前是否执行自动关机，仅支持回滚快照至已挂载的云硬盘时传入。
         # @type AutoStopInstance: Boolean
-        # @param AutoStartInstance: 回滚完成后是否自动开机
+        # @param AutoStartInstance: 回滚完成后是否自动开机，仅支持回滚快照至已挂载的云硬盘时传入。该参数传入时，需要同时传入AutoStopInstance参数。
         # @type AutoStartInstance: Boolean
 
         attr_accessor :SnapshotId, :DiskId, :AutoStopInstance, :AutoStartInstance
@@ -1126,7 +1126,7 @@ module TencentCloud
 
       # DescribeDiskAssociatedAutoSnapshotPolicy请求参数结构体
       class DescribeDiskAssociatedAutoSnapshotPolicyRequest < TencentCloud::Common::AbstractModel
-        # @param DiskId: 要查询的云硬盘ID。
+        # @param DiskId: 要查询的云硬盘ID，通过[DescribeDisks](https://tcloud4api.woa.com/document/product/362/15601?!preview&!document=1)接口查询。
         # @type DiskId: String
 
         attr_accessor :DiskId
@@ -1924,7 +1924,7 @@ module TencentCloud
         # @type Shareable: Boolean
         # @param CreateTime: 云硬盘的创建时间。
         # @type CreateTime: String
-        # @param DeleteSnapshot: 销毁云盘时删除关联的非永久保留快照。0 表示非永久快照不随云盘销毁而销毁，1表示非永久快照随云盘销毁而销毁，默认取0。快照是否永久保留可以通过DescribeSnapshots接口返回的快照详情的IsPermanent字段来判断，true表示永久快照，false表示非永久快照。
+        # @param DeleteSnapshot: 销毁云盘时删除关联的非永久保留快照。0 表示非永久快照不随云盘销毁而销毁，1表示非永久快照随云盘销毁而销毁，默认取0。快照是否永久保留可以通过[DescribeSnapshots](https://cloud.tencent.com/document/product/362/15647)接口返回的快照详情的IsPermanent字段来判断，true表示永久快照，false表示非永久快照。
         # @type DeleteSnapshot: Integer
         # @param DiskBackupQuota: 云硬盘备份点配额。表示最大可以保留的备份点数量。
         # @type DiskBackupQuota: Integer
@@ -2685,9 +2685,9 @@ module TencentCloud
 
       # ModifyDiskBackupQuota请求参数结构体
       class ModifyDiskBackupQuotaRequest < TencentCloud::Common::AbstractModel
-        # @param DiskId: 云硬盘ID。
+        # @param DiskId: 云硬盘ID。可通过[DescribeDisks](/document/product/362/16315)接口查询。
         # @type DiskId: String
-        # @param DiskBackupQuota: 调整之后的云硬盘备份点配额。
+        # @param DiskBackupQuota: 调整之后的云硬盘备份点配额。取值范围为1 ~ 1024。
         # @type DiskBackupQuota: Integer
 
         attr_accessor :DiskId, :DiskBackupQuota
@@ -2721,9 +2721,9 @@ module TencentCloud
 
       # ModifyDiskExtraPerformance请求参数结构体
       class ModifyDiskExtraPerformanceRequest < TencentCloud::Common::AbstractModel
-        # @param ThroughputPerformance: 额外购买的云硬盘性能值，单位MB/s。
+        # @param ThroughputPerformance: 额外购买的云硬盘性能值，单位MiB/s。
         # @type ThroughputPerformance: Integer
-        # @param DiskId: 需要创建快照的云硬盘ID，可通过[DescribeDisks](/document/product/362/16315)接口查询。
+        # @param DiskId: 需要购买额外性能值的云硬盘ID，可通过[DescribeDisks](/document/product/362/16315)接口查询。仅大小超过460GiB的增强型SSD（CLOUD_HSSD）和极速型SSD（CLOUD_TSSD）云硬盘才支持购买额外性能。
         # @type DiskId: String
 
         attr_accessor :ThroughputPerformance, :DiskId
@@ -2846,7 +2846,7 @@ module TencentCloud
         # @type IsPermanent: Boolean
         # @param SnapshotName: 新的快照名称。最长为60个字符。
         # @type SnapshotName: String
-        # @param Deadline: 快照的到期时间；设置好快照将会被同时设置为非永久保留方式；超过到期时间后快照将会被自动删除。
+        # @param Deadline: 快照的到期时间；设置好快照将会被同时设置为非永久保留方式；超过到期时间后快照将会被自动删除。注：该参数仅在参数IsPermanent为False时生效。
         # @type Deadline: String
 
         attr_accessor :SnapshotId, :IsPermanent, :SnapshotName, :Deadline
