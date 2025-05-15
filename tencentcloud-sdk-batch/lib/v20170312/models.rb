@@ -1673,7 +1673,7 @@ module TencentCloud
         # @type TaskInstanceIndexes: Array
         # @param Offset: 起始任务实例。与TaskInstanceIndexes参数不能同时指定。
         # @type Offset: Integer
-        # @param Limit: 最大任务实例数, 最大值为10.
+        # @param Limit: 最大任务实例数；默认值为5， 最大值为10。
         # @type Limit: Integer
 
         attr_accessor :JobId, :TaskName, :TaskInstanceIndexes, :Offset, :Limit

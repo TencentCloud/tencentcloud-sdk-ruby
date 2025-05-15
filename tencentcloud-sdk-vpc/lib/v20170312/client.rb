@@ -3438,7 +3438,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（DeleteVpcEndPointService）用于删除终端节点服务。
+        # 本接口（DeleteVpcEndPointService）用于删除终端节点服务。限制：当有终端节点关联到终端节点服务时，无法删除终端节点服务。
 
         # @param request: Request instance for DeleteVpcEndPointService.
         # @type request: :class:`Tencentcloud::vpc::V20170312::DeleteVpcEndPointServiceRequest`

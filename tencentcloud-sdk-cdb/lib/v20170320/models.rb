@@ -8818,18 +8818,21 @@ module TencentCloud
         # @type Dir: String
         # @param AddressModule: 地址模块
         # @type AddressModule: String
+        # @param Id: 规则ID，嵌套安全组的规则ID
+        # @type Id: String
         # @param Desc: 规则描述
         # @type Desc: String
 
-        attr_accessor :Action, :CidrIp, :PortRange, :IpProtocol, :Dir, :AddressModule, :Desc
+        attr_accessor :Action, :CidrIp, :PortRange, :IpProtocol, :Dir, :AddressModule, :Id, :Desc
 
-        def initialize(action=nil, cidrip=nil, portrange=nil, ipprotocol=nil, dir=nil, addressmodule=nil, desc=nil)
+        def initialize(action=nil, cidrip=nil, portrange=nil, ipprotocol=nil, dir=nil, addressmodule=nil, id=nil, desc=nil)
           @Action = action
           @CidrIp = cidrip
           @PortRange = portrange
           @IpProtocol = ipprotocol
           @Dir = dir
           @AddressModule = addressmodule
+          @Id = id
           @Desc = desc
         end
 
@@ -8840,6 +8843,7 @@ module TencentCloud
           @IpProtocol = params['IpProtocol']
           @Dir = params['Dir']
           @AddressModule = params['AddressModule']
+          @Id = params['Id']
           @Desc = params['Desc']
         end
       end
@@ -11400,7 +11404,7 @@ module TencentCloud
         # 7 - 一周
         # 30 - 一个月；
         # @type HighLogExpireDay: Integer
-        # @param AuditRuleFilters: 审计规则。同RuleTemplateIds都不填是全审计。
+        # @param AuditRuleFilters: 审计规则（该参数已废弃，不再生效）。
         # @type AuditRuleFilters: Array
         # @param RuleTemplateIds: 规则模板ID。同AuditRuleFilters都不填是全审计。
         # @type RuleTemplateIds: Array
@@ -12646,10 +12650,12 @@ module TencentCloud
         # @type DeadlineTime: String
         # @param PayType: RO实例计费类型，可能返回值：0-包年包月，1-按量计费，2-后付费月结
         # @type PayType: Integer
+        # @param ReplicationStatus: RO延迟复制状态。
+        # @type ReplicationStatus: String
 
-        attr_accessor :MasterInstanceId, :RoStatus, :OfflineTime, :Weight, :Region, :Zone, :InstanceId, :Status, :InstanceType, :InstanceName, :HourFeeStatus, :TaskStatus, :Memory, :Volume, :Qps, :Vip, :Vport, :VpcId, :SubnetId, :DeviceType, :EngineVersion, :DeadlineTime, :PayType
+        attr_accessor :MasterInstanceId, :RoStatus, :OfflineTime, :Weight, :Region, :Zone, :InstanceId, :Status, :InstanceType, :InstanceName, :HourFeeStatus, :TaskStatus, :Memory, :Volume, :Qps, :Vip, :Vport, :VpcId, :SubnetId, :DeviceType, :EngineVersion, :DeadlineTime, :PayType, :ReplicationStatus
 
-        def initialize(masterinstanceid=nil, rostatus=nil, offlinetime=nil, weight=nil, region=nil, zone=nil, instanceid=nil, status=nil, instancetype=nil, instancename=nil, hourfeestatus=nil, taskstatus=nil, memory=nil, volume=nil, qps=nil, vip=nil, vport=nil, vpcid=nil, subnetid=nil, devicetype=nil, engineversion=nil, deadlinetime=nil, paytype=nil)
+        def initialize(masterinstanceid=nil, rostatus=nil, offlinetime=nil, weight=nil, region=nil, zone=nil, instanceid=nil, status=nil, instancetype=nil, instancename=nil, hourfeestatus=nil, taskstatus=nil, memory=nil, volume=nil, qps=nil, vip=nil, vport=nil, vpcid=nil, subnetid=nil, devicetype=nil, engineversion=nil, deadlinetime=nil, paytype=nil, replicationstatus=nil)
           @MasterInstanceId = masterinstanceid
           @RoStatus = rostatus
           @OfflineTime = offlinetime
@@ -12673,6 +12679,7 @@ module TencentCloud
           @EngineVersion = engineversion
           @DeadlineTime = deadlinetime
           @PayType = paytype
+          @ReplicationStatus = replicationstatus
         end
 
         def deserialize(params)
@@ -12699,6 +12706,7 @@ module TencentCloud
           @EngineVersion = params['EngineVersion']
           @DeadlineTime = params['DeadlineTime']
           @PayType = params['PayType']
+          @ReplicationStatus = params['ReplicationStatus']
         end
       end
 

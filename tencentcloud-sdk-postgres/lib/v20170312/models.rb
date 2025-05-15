@@ -6755,42 +6755,6 @@ module TencentCloud
         end
       end
 
-      # OpenServerlessDBExtranetAccess请求参数结构体
-      class OpenServerlessDBExtranetAccessRequest < TencentCloud::Common::AbstractModel
-        # @param DBInstanceId: 实例的唯一标识符
-        # @type DBInstanceId: String
-        # @param DBInstanceName: 实例名称
-        # @type DBInstanceName: String
-
-        attr_accessor :DBInstanceId, :DBInstanceName
-
-        def initialize(dbinstanceid=nil, dbinstancename=nil)
-          @DBInstanceId = dbinstanceid
-          @DBInstanceName = dbinstancename
-        end
-
-        def deserialize(params)
-          @DBInstanceId = params['DBInstanceId']
-          @DBInstanceName = params['DBInstanceName']
-        end
-      end
-
-      # OpenServerlessDBExtranetAccess返回参数结构体
-      class OpenServerlessDBExtranetAccessResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :RequestId
-
-        def initialize(requestid=nil)
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @RequestId = params['RequestId']
-        end
-      end
-
       # 批量修改参数
       class ParamEntry < TencentCloud::Common::AbstractModel
         # @param Name: 参数名

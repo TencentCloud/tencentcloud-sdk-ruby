@@ -1985,6 +1985,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询套餐信息列表，支持分页。
+
+        # @param request: Request instance for DescribePlans.
+        # @type request: :class:`Tencentcloud::teo::V20220901::DescribePlansRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::DescribePlansResponse`
+        def DescribePlans(request)
+          body = send_request('DescribePlans', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribePlansResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # DescribePrefetchTasks 用于查询预热任务提交历史记录及执行进度，通过 CreatePrefetchTasks 接口提交的任务可通过此接口进行查询。
 
         # @param request: Request instance for DescribePrefetchTasks.

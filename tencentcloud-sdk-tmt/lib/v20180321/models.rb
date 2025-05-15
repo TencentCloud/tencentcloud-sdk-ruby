@@ -253,22 +253,60 @@ module TencentCloud
 
       # ImageTranslateLLM请求参数结构体
       class ImageTranslateLLMRequest < TencentCloud::Common::AbstractModel
+        # @param Data: 图片数据的Base64字符串，经Base64编码后不超过 9M，分辨率建议600*800以上，支持PNG、JPG、JPEG格式。
+        # @type Data: String
+        # @param Target: 目标语言，支持语言列表：
+
+        # - 中文：zh
+        # - 繁体（台湾）：zh-TW
+        # - 繁体（香港）：zh-HK
+        # - 英文：en
+        # - 日语：ja
+        # - 韩语：ko
+        # - 泰语：th
+        # - 越南语：vi
+        # - 俄语：ru
+        # - 德语：de
+        # - 法语：fr
+        # - 阿拉伯语：ar
+        # - 西班牙语：es
+        # - 意大利语：it
+        # - 印度尼西亚语：id
+        # - 马来西亚语：ms
+        # - 葡萄牙语：pt
+        # - 土耳其语：tr
+        # -
+        # @type Target: String
         # @param Url: 输入图 Url。 使用Url的时候，Data参数需要传入""。 图片限制：小于 10MB，分辨率建议600*800以上，格式支持 jpg、jpeg、png。
         # @type Url: String
 
-        attr_accessor :Url
+        attr_accessor :Data, :Target, :Url
 
-        def initialize(url=nil)
+        def initialize(data=nil, target=nil, url=nil)
+          @Data = data
+          @Target = target
           @Url = url
         end
 
         def deserialize(params)
+          @Data = params['Data']
+          @Target = params['Target']
           @Url = params['Url']
         end
       end
 
       # ImageTranslateLLM返回参数结构体
       class ImageTranslateLLMResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 图片数据的Base64字符串，输出格式为JPG。
+        # @type Data: String
+        # @param Source: 原文本主要源语言。
+        # @type Source: String
+        # @param Target: 目标翻译语言。
+        # @type Target: String
+        # @param SourceText: 图片中的全部原文本。
+        # @type SourceText: String
+        # @param TargetText: 图片中全部译文。
+        # @type TargetText: String
         # @param Angle: 逆时针图片角度，取值范围为0-359
         # @type Angle: Float
         # @param TransDetails: 翻译详情信息
@@ -276,15 +314,25 @@ module TencentCloud
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Angle, :TransDetails, :RequestId
+        attr_accessor :Data, :Source, :Target, :SourceText, :TargetText, :Angle, :TransDetails, :RequestId
 
-        def initialize(angle=nil, transdetails=nil, requestid=nil)
+        def initialize(data=nil, source=nil, target=nil, sourcetext=nil, targettext=nil, angle=nil, transdetails=nil, requestid=nil)
+          @Data = data
+          @Source = source
+          @Target = target
+          @SourceText = sourcetext
+          @TargetText = targettext
           @Angle = angle
           @TransDetails = transdetails
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @Data = params['Data']
+          @Source = params['Source']
+          @Target = params['Target']
+          @SourceText = params['SourceText']
+          @TargetText = params['TargetText']
           @Angle = params['Angle']
           unless params['TransDetails'].nil?
             @TransDetails = []

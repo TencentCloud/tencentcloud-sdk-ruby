@@ -3517,7 +3517,7 @@ module TencentCloud
 
       # CreateAndAttachNetworkInterface请求参数结构体
       class CreateAndAttachNetworkInterfaceRequest < TencentCloud::Common::AbstractModel
-        # @param VpcId: VPC实例ID。可通过[DescribeVpcs](https://cloud.tencent.com/document/product/1108/43663)接口获取。
+        # @param VpcId: VPC实例ID。可通过[DescribeVpcs](https://cloud.tencent.com/document/product/215/15778)接口获取。
         # @type VpcId: String
         # @param NetworkInterfaceName: 弹性网卡名称，最大长度不能超过60个字符。
         # @type NetworkInterfaceName: String
@@ -5117,7 +5117,7 @@ module TencentCloud
 
       # CreateNetworkInterface请求参数结构体
       class CreateNetworkInterfaceRequest < TencentCloud::Common::AbstractModel
-        # @param VpcId: VPC实例ID。可通过[DescribeVpcs](https://cloud.tencent.com/document/product/1108/43663)接口获取。
+        # @param VpcId: VPC实例ID。可通过[DescribeVpcs](https://cloud.tencent.com/document/product/215/15778)接口获取。
         # @type VpcId: String
         # @param NetworkInterfaceName: 弹性网卡名称，最大长度不能超过60个字节。
         # @type NetworkInterfaceName: String
@@ -6263,17 +6263,17 @@ module TencentCloud
 
       # CreateVpcEndPoint请求参数结构体
       class CreateVpcEndPointRequest < TencentCloud::Common::AbstractModel
-        # @param VpcId: VPC实例ID。
+        # @param VpcId: VPC实例ID。可通过[DescribeVpcs](https://cloud.tencent.com/document/product/1108/43663)接口获取。
         # @type VpcId: String
-        # @param SubnetId: 子网实例ID。
+        # @param SubnetId: 子网实例ID。可通过[DescribeSubnets](https://cloud.tencent.com/document/product/215/15784)接口获取。
         # @type SubnetId: String
-        # @param EndPointName: 终端节点名称。
+        # @param EndPointName: 终端节点名称。限制为60个字符。
         # @type EndPointName: String
-        # @param EndPointServiceId: 终端节点服务ID。
+        # @param EndPointServiceId: 终端节点服务ID。可通过[DescribeVpcEndPointService](https://cloud.tencent.com/document/product/215/54678)接口获取。
         # @type EndPointServiceId: String
         # @param EndPointVip: 终端节点VIP，可以指定IP申请。
         # @type EndPointVip: String
-        # @param SecurityGroupId: 安全组ID。
+        # @param SecurityGroupId: 安全组ID。可通过[DescribeSecurityGroups](https://cloud.tencent.com/document/product/215/15808)接口获取。
         # @type SecurityGroupId: String
         # @param Tags: 指定绑定的标签列表，例如：[{"Key": "city", "Value": "shanghai"}]。
         # @type Tags: Array
@@ -6337,17 +6337,17 @@ module TencentCloud
 
       # CreateVpcEndPointService请求参数结构体
       class CreateVpcEndPointServiceRequest < TencentCloud::Common::AbstractModel
-        # @param VpcId: VPC实例ID。
+        # @param VpcId: VPC实例ID。可通过[DescribeVpcs](https://cloud.tencent.com/document/product/1108/43663)接口获取。
         # @type VpcId: String
         # @param EndPointServiceName: 终端节点服务名称。
         # @type EndPointServiceName: String
         # @param AutoAcceptFlag: 是否自动接受。
         # @type AutoAcceptFlag: Boolean
-        # @param ServiceInstanceId: 后端服务ID，比如lb-xxx。
+        # @param ServiceInstanceId: 后端服务ID，比如lb-p1hiksdg。CLB可通过[DescribeLoadBalancers](https://cloud.tencent.com/document/product/1108/48459)接口获取；CDB可通过[DescribeDBInstances](https://cloud.tencent.com/document/api/240/38568)接口获取；CRS可通过[DescribeInstances](https://cloud.tencent.com/document/product/239/20018)接口获取；GWLB可通过[DescribeGatewayLoadBalancers](https://cloud.tencent.com/document/product/1782/111683)接口获取。
         # @type ServiceInstanceId: String
         # @param IsPassService: ~~是否是PassService类型。该字段已废弃，请不要使用该字段。~~
         # @type IsPassService: Boolean
-        # @param ServiceType: 挂载的PAAS服务类型，CLB,CDB,CRS，不填默认挂载为CLB。
+        # @param ServiceType: 挂载的PAAS服务类型，CLB（负载均衡），CDB（云数据库 MySQL），CRS（云数据库 Redis），GWLB（网关负载均衡）。不填默认挂载为CLB。
         # @type ServiceType: String
         # @param Tags: 指定绑定的标签列表，例如：[{"Key": "city", "Value": "shanghai"}]。
         # @type Tags: Array
@@ -6411,11 +6411,11 @@ module TencentCloud
 
       # CreateVpcEndPointServiceWhiteList请求参数结构体
       class CreateVpcEndPointServiceWhiteListRequest < TencentCloud::Common::AbstractModel
-        # @param UserUin: UIN。
+        # @param UserUin: UIN。腾讯云账号中心控制台获取。
         # @type UserUin: String
-        # @param EndPointServiceId: 终端节点服务ID。
+        # @param EndPointServiceId: 终端节点服务ID。可通过[DescribeVpcEndPointService](https://cloud.tencent.com/document/product/215/54678)接口获取。
         # @type EndPointServiceId: String
-        # @param Description: 白名单描述。
+        # @param Description: 白名单描述。长度不超过60个字符。
         # @type Description: String
 
         attr_accessor :UserUin, :EndPointServiceId, :Description
@@ -7730,7 +7730,7 @@ module TencentCloud
       class DeleteFlowLogRequest < TencentCloud::Common::AbstractModel
         # @param FlowLogId: 流日志唯一ID。可通过[CreateFlowLog](https://cloud.tencent.com/document/product/215/35015)接口创建；可通过[DescribeFlowLogs](https://cloud.tencent.com/document/product/215/35012)接口获取。
         # @type FlowLogId: String
-        # @param VpcId: 私用网络唯一ID。删除云联网流日志时，可不填，其他流日志类型必填。可通过[DescribeFlowLogs](https://cloud.tencent.com/document/product/215/35012)接口获取流日志对应的私有网络唯一ID。也可通过[DescribeVpcs](https://cloud.tencent.com/document/product/1108/43663)接口获取当前账户的私有网络唯一ID。
+        # @param VpcId: 私用网络唯一ID。删除云联网流日志时，可不填，其他流日志类型必填。可通过[DescribeFlowLogs](https://cloud.tencent.com/document/product/215/35012)接口获取流日志对应的私有网络唯一ID。也可通过[DescribeVpcs](https://cloud.tencent.com/document/product/215/15778)接口获取当前账户的私有网络唯一ID。
         # @type VpcId: String
 
         attr_accessor :FlowLogId, :VpcId
@@ -8874,7 +8874,7 @@ module TencentCloud
 
       # DeleteVpcEndPoint请求参数结构体
       class DeleteVpcEndPointRequest < TencentCloud::Common::AbstractModel
-        # @param EndPointId: 终端节点ID。
+        # @param EndPointId: 终端节点ID。可通过[DescribeVpcEndPoint](https://cloud.tencent.com/document/product/215/54679) 获取。
         # @type EndPointId: String
         # @param IpAddressType: 协议类型，支持 Ipv4，Ipv6，默认 Ipv4。
         # @type IpAddressType: String
@@ -8910,7 +8910,7 @@ module TencentCloud
 
       # DeleteVpcEndPointService请求参数结构体
       class DeleteVpcEndPointServiceRequest < TencentCloud::Common::AbstractModel
-        # @param EndPointServiceId: 终端节点ID。
+        # @param EndPointServiceId: 终端节点ID。可通过[DescribeVpcEndPointService](https://cloud.tencent.com/document/product/215/54678)接口获取。
         # @type EndPointServiceId: String
         # @param IpAddressType: 协议类型，支持 Ipv4，Ipv6，默认 Ipv4。
         # @type IpAddressType: String
@@ -8946,9 +8946,9 @@ module TencentCloud
 
       # DeleteVpcEndPointServiceWhiteList请求参数结构体
       class DeleteVpcEndPointServiceWhiteListRequest < TencentCloud::Common::AbstractModel
-        # @param UserUin: 用户UIN数组。
+        # @param UserUin: 用户UIN数组。登录 腾讯云账号中心控制台
         # @type UserUin: Array
-        # @param EndPointServiceId: 终端节点服务ID。
+        # @param EndPointServiceId: 终端节点服务ID。可通过[DescribeVpcEndPointService](https://cloud.tencent.com/document/product/215/54678)接口获取。
         # @type EndPointServiceId: String
 
         attr_accessor :UserUin, :EndPointServiceId
@@ -9597,7 +9597,9 @@ module TencentCloud
         # @param VpcIds: `VPC`实例`ID`数组。形如：[`vpc-6v2ht8q5`]
         # @type VpcIds: Array
         # @param Filters: 过滤条件，参数不支持同时指定VpcIds和Filters。
-        # <li>vpc-id - String - （过滤条件）VPC实例ID，形如：vpc-f49l6u0z。</li>
+
+        # 当前支持的过滤条件如下：
+        # <li>vpc-id - String - （过滤条件）VPC实例ID，形如：vpc-f49l6u0z。（当前仅支持该过滤条件）</li>
         # @type Filters: Array
         # @param Offset: 偏移量，默认为0。
         # @type Offset: Integer
@@ -11092,7 +11094,7 @@ module TencentCloud
 
       # DescribeFlowLog请求参数结构体
       class DescribeFlowLogRequest < TencentCloud::Common::AbstractModel
-        # @param VpcId: 私用网络唯一ID。可通过[DescribeVpcs](https://cloud.tencent.com/document/product/1108/43663)接口获取。该接口不支持拉取CCN类型的流日志，所以该字段为必选。
+        # @param VpcId: 私用网络唯一ID。可通过[DescribeVpcs](https://cloud.tencent.com/document/product/215/15778)接口获取。该接口不支持拉取CCN类型的流日志，所以该字段为必选。
         # @type VpcId: String
         # @param FlowLogId: 流日志唯一ID。可通过[CreateFlowLog](https://cloud.tencent.com/document/product/215/35015)接口创建；可通过[DescribeFlowLogs](https://cloud.tencent.com/document/product/215/35012)接口获取；
         # @type FlowLogId: String
@@ -11139,7 +11141,7 @@ module TencentCloud
 
       # DescribeFlowLogs请求参数结构体
       class DescribeFlowLogsRequest < TencentCloud::Common::AbstractModel
-        # @param VpcId: 私用网络唯一ID。可通过[DescribeVpcs](https://cloud.tencent.com/document/product/1108/43663)接口获取。
+        # @param VpcId: 私用网络唯一ID。可通过[DescribeVpcs](https://cloud.tencent.com/document/product/215/15778)接口获取。
         # @type VpcId: String
         # @param FlowLogId: 流日志唯一ID。可通过[CreateFlowLog](https://cloud.tencent.com/document/product/215/35015)接口创建。
         # @type FlowLogId: String
@@ -12875,7 +12877,7 @@ module TencentCloud
         # @param NetworkInterfaceIds: 弹性网卡实例ID查询。形如：eni-pxir56ns。每次请求的实例的上限为100。参数不支持同时指定NetworkInterfaceIds和Filters。可通过[DescribeNetworkInterfaces](https://cloud.tencent.com/document/product/215/15817)接口获取。
         # @type NetworkInterfaceIds: Array
         # @param Filters: 过滤条件，参数不支持同时指定NetworkInterfaceIds和Filters。
-        # <li>vpc-id - String - （过滤条件）VPC实例ID，形如：vpc-f49l6u0z。可通过[DescribeVpcs](https://cloud.tencent.com/document/product/1108/43663)接口获取。
+        # <li>vpc-id - String - （过滤条件）VPC实例ID，形如：vpc-f49l6u0z。可通过可通过[DescribeVpcs](https://cloud.tencent.com/document/product/215/15778)接口获取。
         # </li>
         # <li>subnet-id - String - （过滤条件）所属子网实例ID，形如：subnet-f49l6u0z。可通过[DescribeSubnets](https://cloud.tencent.com/document/product/215/15784)接口获取。
         # </li>
@@ -14737,7 +14739,7 @@ module TencentCloud
 
       # DescribeSubnets请求参数结构体
       class DescribeSubnetsRequest < TencentCloud::Common::AbstractModel
-        # @param SubnetIds: 子网实例ID查询。形如：subnet-pxir56ns。每次请求的实例的上限为100。参数不支持同时指定SubnetIds和Filters。
+        # @param SubnetIds: 子网实例ID查询。形如：subnet-pxir56ns。每次请求的实例的上限为100（该参数指定的子网是否返回，需要结合分页拉取参数Limit和Offset）。参数不支持同时指定SubnetIds和Filters。
         # @type SubnetIds: Array
         # @param Filters: 过滤条件，参数不支持同时指定SubnetIds和Filters。
         # <li>subnet-id - String - （过滤条件）Subnet实例名称。</li>
@@ -15212,17 +15214,21 @@ module TencentCloud
 
       # DescribeVpcEndPoint请求参数结构体
       class DescribeVpcEndPointRequest < TencentCloud::Common::AbstractModel
-        # @param Filters: 过滤条件。
-        # <li> end-point-service-id- String - （过滤条件）终端节点服务ID。</li>
+        # @param Filters: 过滤条件。当前支持如下过滤条件：
+        # <li> end-point-service-id- String - （过滤条件）终端节点服务ID。可通过[DescribeVpcEndPointService](https://cloud.tencent.com/document/product/215/54678)接口获取。
+        # </li>
         # <li>end-point-name - String - （过滤条件）终端节点实例名称。</li>
-        # <li> end-point-id- String - （过滤条件）终端节点实例ID。</li>
-        # <li> vpc-id- String - （过滤条件）VPC实例ID。</li>
+        # <li> end-point-id- String - （过滤条件）终端节点实例ID。可通过[DescribeVpcEndPoint](https://cloud.tencent.com/document/product/215/54679)
+        # 接口获取。</li>
+        # <li> vpc-id- String - （过滤条件）VPC实例ID。可通过[DescribeVpcs](https://cloud.tencent.com/document/product/1108/43663)接口获取。
+        # </li>
         # @type Filters: Array
         # @param Offset: 偏移量，默认为0。
         # @type Offset: Integer
         # @param Limit: 单页返回数量，默认为20，最大值为100。
         # @type Limit: Integer
-        # @param EndPointId: 终端节点ID列表。
+        # @param EndPointId: 终端节点ID列表。可通过[DescribeVpcEndPoint](https://cloud.tencent.com/document/product/215/54679)
+        # 获取。
         # @type EndPointId: Array
         # @param IpAddressType: 协议类型，支持 Ipv4，Ipv6，默认 Ipv4。
         # @type IpAddressType: String
@@ -15287,16 +15293,21 @@ module TencentCloud
       # DescribeVpcEndPointService请求参数结构体
       class DescribeVpcEndPointServiceRequest < TencentCloud::Common::AbstractModel
         # @param Filters: 过滤条件。不支持同时传入参数 EndPointServiceIds and Filters。
-        # <li> service-id - String - （过滤条件）终端节点服务唯一ID。</li>
+        # <li> service-id - String - （过滤条件）终端节点服务唯一ID。可通过[DescribeVpcEndPointService](https://cloud.tencent.com/document/product/215/54678)接口获取。
+        # </li>
         # <li>service-name - String - （过滤条件）终端节点实例名称。</li>
-        # <li>service-instance-id - String - （过滤条件）后端服务的唯一ID，比如lb-xxx。</li>
-        # <li>service-type - String - （过滤条件）后端PAAS服务类型，CLB,CDB,CRS，不填默认查询类型为CLB。</li>
+        # <li>service-instance-id - String - （过滤条件）后端服务的唯一ID，比如lb-dehd3e33。CLB可通过[DescribeLoadBalancers](https://cloud.tencent.com/document/product/1108/48459)接口获取；
+        # MYSQL可通过[DescribeDBInstances](https://cloud.tencent.com/document/api/240/38568)接口获取；
+        # CRS可通过[DescribeInstances](https://cloud.tencent.com/document/product/239/20018)接口获取；
+        # GWLB可通过[DescribeGatewayLoadBalancers](https://cloud.tencent.com/document/product/1782/111683)接口获取。
+        # </li>
+        # <li>service-type - String - （过滤条件）后端PAAS服务类型，CLB（负载均衡），CDB（云数据库 MySQL），CRS（云数据库 Redis），GWLB（网关负载均衡），不填默认查询类型为CLB。</li>
         # @type Filters: Array
         # @param Offset: 偏移量，默认为0。
         # @type Offset: Integer
         # @param Limit: 单页返回数量，默认为20，最大值为100。
         # @type Limit: Integer
-        # @param EndPointServiceIds: 终端节点服务ID。不支持同时传入参数 EndPointServiceIds and Filters。
+        # @param EndPointServiceIds: 终端节点服务ID。可通过[DescribeVpcEndPointService](https://cloud.tencent.com/document/product/215/54678)接口获取。不支持同时传入参数 EndPointServiceIds and Filters。
         # @type EndPointServiceIds: Array
         # @param IsListAuthorizedEndPointService: <li>不支持同时传入参数 Filters 。</li> <li>列出授权给当前账号的终端节点服务信息。可以配合EndPointServiceIds参数进行过滤，哪些终端节点服务授权了该账户。</li>
         # @type IsListAuthorizedEndPointService: Boolean
@@ -15369,8 +15380,9 @@ module TencentCloud
         # @param Limit: 单页返回数量，默认为20，最大值为100。
         # @type Limit: Integer
         # @param Filters: 过滤条件。
-        # <li> user-uin String - （过滤条件）用户UIN。</li>
-        # <li> end-point-service-id String - （过滤条件）终端节点服务ID。</li>
+        # <li> user-uin String - （过滤条件）用户UIN。登录 腾讯云账号中心控制台 获取。</li>
+        # <li> end-point-service-id String - （过滤条件）终端节点服务ID。可通过[DescribeVpcEndPointService](https://cloud.tencent.com/document/product/215/54678)接口获取。
+        # </li>
         # @type Filters: Array
 
         attr_accessor :Offset, :Limit, :Filters
@@ -17278,9 +17290,9 @@ module TencentCloud
 
       # DisassociateVpcEndPointSecurityGroups请求参数结构体
       class DisassociateVpcEndPointSecurityGroupsRequest < TencentCloud::Common::AbstractModel
-        # @param SecurityGroupIds: 安全组ID数组。
+        # @param SecurityGroupIds: 安全组ID数组。可通过[DescribeSecurityGroups](https://cloud.tencent.com/document/product/215/15808)接口获取。
         # @type SecurityGroupIds: Array
-        # @param EndPointId: 终端节点ID。
+        # @param EndPointId: 终端节点ID。可通过[DescribeVpcEndPoint](https://cloud.tencent.com/document/product/215/54679) 获取。
         # @type EndPointId: String
 
         attr_accessor :SecurityGroupIds, :EndPointId
@@ -17603,9 +17615,9 @@ module TencentCloud
 
       # EnableVpcEndPointConnect请求参数结构体
       class EnableVpcEndPointConnectRequest < TencentCloud::Common::AbstractModel
-        # @param EndPointServiceId: 终端节点服务ID。
+        # @param EndPointServiceId: 终端节点服务ID。可通过[DescribeVpcEndPointService](https://cloud.tencent.com/document/product/215/54678)接口获取。
         # @type EndPointServiceId: String
-        # @param EndPointId: 终端节点ID。
+        # @param EndPointId: 终端节点ID。可通过[DescribeVpcEndPoint](https://cloud.tencent.com/document/product/215/54679) 获取。
         # @type EndPointId: Array
         # @param AcceptFlag: 是否接受终端节点连接请求。
         # <li> true：自动接受。</li> <li> false：不自动接受。</li>
@@ -17690,7 +17702,7 @@ module TencentCloud
       class EndPoint < TencentCloud::Common::AbstractModel
         # @param EndPointId: 终端节点ID。
         # @type EndPointId: String
-        # @param VpcId: VPC唯一ID。可通过[DescribeVpcs](https://cloud.tencent.com/document/product/1108/43663)接口获取。
+        # @param VpcId: VPC唯一ID。可通过[DescribeVpcs](https://cloud.tencent.com/document/product/215/15778)接口获取。
         # @type VpcId: String
         # @param SubnetId: 子网ID。
         # @type SubnetId: String
@@ -17893,7 +17905,7 @@ module TencentCloud
 
       # 流日志
       class FlowLog < TencentCloud::Common::AbstractModel
-        # @param VpcId: 私用网络唯一ID。可通过[DescribeVpcs](https://cloud.tencent.com/document/product/1108/43663)接口获取。
+        # @param VpcId: 私用网络唯一ID。可通过[DescribeVpcs](https://cloud.tencent.com/document/product/215/15778)接口获取。
         # @type VpcId: String
         # @param FlowLogId: 流日志唯一ID。
         # @type FlowLogId: String
@@ -22370,11 +22382,11 @@ module TencentCloud
 
       # ModifyVpcEndPointAttribute请求参数结构体
       class ModifyVpcEndPointAttributeRequest < TencentCloud::Common::AbstractModel
-        # @param EndPointId: 终端节点ID。
+        # @param EndPointId: 终端节点ID。可通过[DescribeVpcEndPoint](https://cloud.tencent.com/document/product/215/54679) 获取。
         # @type EndPointId: String
-        # @param EndPointName: 终端节点名称。
+        # @param EndPointName: 终端节点名称。长度限制为60个字符。
         # @type EndPointName: String
-        # @param SecurityGroupIds: 安全组ID列表。
+        # @param SecurityGroupIds: 安全组ID列表。可通过[DescribeSecurityGroups](https://cloud.tencent.com/document/product/215/15808)接口获取。
         # @type SecurityGroupIds: Array
         # @param IpAddressType: 协议类型，支持 Ipv4，Ipv6，默认 Ipv4。
         # @type IpAddressType: String
@@ -22414,15 +22426,18 @@ module TencentCloud
 
       # ModifyVpcEndPointServiceAttribute请求参数结构体
       class ModifyVpcEndPointServiceAttributeRequest < TencentCloud::Common::AbstractModel
-        # @param EndPointServiceId: 终端节点服务ID。
+        # @param EndPointServiceId: 终端节点服务ID。可通过[DescribeVpcEndPointService](https://cloud.tencent.com/document/product/215/54678)接口获取。
         # @type EndPointServiceId: String
-        # @param VpcId: VPCID。
+        # @param VpcId: VPC唯一ID。可通过[DescribeVpcs](https://cloud.tencent.com/document/product/1108/43663)接口获取。
         # @type VpcId: String
-        # @param EndPointServiceName: 终端节点服务名称。
+        # @param EndPointServiceName: 终端节点服务名称。长度不超过60个字符。
         # @type EndPointServiceName: String
         # @param AutoAcceptFlag: 是否自动接受终端节点的连接请求。<ul><li>true：自动接受</li><li>false：不自动接受</li></ul>
         # @type AutoAcceptFlag: Boolean
-        # @param ServiceInstanceId: 后端服务的ID，比如lb-xxx。
+        # @param ServiceInstanceId: 后端服务的ID，比如lb-p1hiksdg。CLB可通过[DescribeLoadBalancers](https://cloud.tencent.com/document/product/1108/48459)接口获取；
+        # MYSQL可通过[DescribeDBInstances](https://cloud.tencent.com/document/api/240/38568)接口获取；
+        # CRS可通过[DescribeInstances](https://cloud.tencent.com/document/product/239/20018)接口获取；
+        # GWLB可通过[DescribeGatewayLoadBalancers](https://cloud.tencent.com/document/product/1782/111683)接口获取
         # @type ServiceInstanceId: String
         # @param IpAddressType: 协议类型，支持 Ipv4，Ipv6，默认 Ipv4。
         # @type IpAddressType: String
@@ -22466,11 +22481,11 @@ module TencentCloud
 
       # ModifyVpcEndPointServiceWhiteList请求参数结构体
       class ModifyVpcEndPointServiceWhiteListRequest < TencentCloud::Common::AbstractModel
-        # @param UserUin: 用户UIN。
+        # @param UserUin: 用户UIN。可以通过终端节点所在的用户通过登录 腾讯云账号中心控制台获取。
         # @type UserUin: String
-        # @param EndPointServiceId: 终端节点服务ID。
+        # @param EndPointServiceId: 终端节点服务ID。可通过[DescribeVpcEndPointService](https://cloud.tencent.com/document/product/215/54678)接口获取。
         # @type EndPointServiceId: String
-        # @param Description: 白名单描述信息。
+        # @param Description: 白名单描述信息。长度不超过60个字符。
         # @type Description: String
 
         attr_accessor :UserUin, :EndPointServiceId, :Description

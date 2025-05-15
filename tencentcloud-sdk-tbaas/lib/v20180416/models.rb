@@ -448,8 +448,8 @@ module TencentCloud
 
         attr_accessor :CertName, :CertCtx, :Cert, :RequestId
         extend Gem::Deprecate
-        deprecate :CertCtx, :none, 2025, 3
-        deprecate :CertCtx=, :none, 2025, 3
+        deprecate :CertCtx, :none, 2025, 5
+        deprecate :CertCtx=, :none, 2025, 5
 
         def initialize(certname=nil, certctx=nil, cert=nil, requestid=nil)
           @CertName = certname
@@ -816,89 +816,6 @@ module TencentCloud
           @TxValidationCode = params['TxValidationCode']
           @TxValidationMsg = params['TxValidationMsg']
           @BlockId = params['BlockId']
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # GetLatesdTransactionList请求参数结构体
-      class GetLatesdTransactionListRequest < TencentCloud::Common::AbstractModel
-        # @param Module: 模块名称，固定字段：transaction
-        # @type Module: String
-        # @param Operation: 操作名称，固定字段：latest_transaction_list
-        # @type Operation: String
-        # @param GroupId: 组织ID，固定字段：0
-        # @type GroupId: Integer
-        # @param ChannelId: 通道ID，固定字段：0
-        # @type ChannelId: Integer
-        # @param LatestBlockNumber: 获取的最新交易的区块数量，取值范围1~5
-        # @type LatestBlockNumber: Integer
-        # @param GroupName: 调用接口的组织名称，可以在组织管理列表中获取当前组织的名称
-        # @type GroupName: String
-        # @param ChannelName: 需要查询的通道名称，可在通道详情或列表中获取
-        # @type ChannelName: String
-        # @param ClusterId: 区块链网络ID，可在区块链网络详情或列表中获取
-        # @type ClusterId: String
-        # @param Offset: 需要获取的起始交易偏移
-        # @type Offset: Integer
-        # @param Limit: 需要获取的交易数量
-        # @type Limit: Integer
-
-        attr_accessor :Module, :Operation, :GroupId, :ChannelId, :LatestBlockNumber, :GroupName, :ChannelName, :ClusterId, :Offset, :Limit
-
-        def initialize(_module=nil, operation=nil, groupid=nil, channelid=nil, latestblocknumber=nil, groupname=nil, channelname=nil, clusterid=nil, offset=nil, limit=nil)
-          @Module = _module
-          @Operation = operation
-          @GroupId = groupid
-          @ChannelId = channelid
-          @LatestBlockNumber = latestblocknumber
-          @GroupName = groupname
-          @ChannelName = channelname
-          @ClusterId = clusterid
-          @Offset = offset
-          @Limit = limit
-        end
-
-        def deserialize(params)
-          @Module = params['Module']
-          @Operation = params['Operation']
-          @GroupId = params['GroupId']
-          @ChannelId = params['ChannelId']
-          @LatestBlockNumber = params['LatestBlockNumber']
-          @GroupName = params['GroupName']
-          @ChannelName = params['ChannelName']
-          @ClusterId = params['ClusterId']
-          @Offset = params['Offset']
-          @Limit = params['Limit']
-        end
-      end
-
-      # GetLatesdTransactionList返回参数结构体
-      class GetLatesdTransactionListResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 交易总数量
-        # @type TotalCount: Integer
-        # @param TransactionList: 交易列表
-        # @type TransactionList: Array
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :TotalCount, :TransactionList, :RequestId
-
-        def initialize(totalcount=nil, transactionlist=nil, requestid=nil)
-          @TotalCount = totalcount
-          @TransactionList = transactionlist
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @TotalCount = params['TotalCount']
-          unless params['TransactionList'].nil?
-            @TransactionList = []
-            params['TransactionList'].each do |i|
-              transactionitem_tmp = TransactionItem.new
-              transactionitem_tmp.deserialize(i)
-              @TransactionList << transactionitem_tmp
-            end
-          end
           @RequestId = params['RequestId']
         end
       end
@@ -1355,8 +1272,8 @@ module TencentCloud
 
         attr_accessor :Txid, :Events, :TxId, :RequestId
         extend Gem::Deprecate
-        deprecate :Txid, :none, 2025, 3
-        deprecate :Txid=, :none, 2025, 3
+        deprecate :Txid, :none, 2025, 5
+        deprecate :Txid=, :none, 2025, 5
 
         def initialize(events=nil, txid=nil, requestid=nil)
           @Events = events

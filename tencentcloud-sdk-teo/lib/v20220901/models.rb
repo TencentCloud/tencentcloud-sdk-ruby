@@ -1318,14 +1318,12 @@ module TencentCloud
         # @param BotPortraitRule: 用户画像规则。如果为null，默认使用历史配置。
         # @type BotPortraitRule: :class:`Tencentcloud::Teo.v20220901.models.BotPortraitRule`
         # @param IntelligenceRule: Bot智能分析。如果为null，默认使用历史配置。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IntelligenceRule: :class:`Tencentcloud::Teo.v20220901.models.IntelligenceRule`
         # @param BotUserRules: Bot自定义规则。如果为null，默认使用历史配置。
         # @type BotUserRules: Array
         # @param AlgDetectRule: Bot主动特征识别规则。
         # @type AlgDetectRule: Array
         # @param Customizes: Bot托管定制策略，入参可不填，仅出参使用。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Customizes: Array
 
         attr_accessor :Switch, :BotManagedRule, :BotPortraitRule, :IntelligenceRule, :BotUserRules, :AlgDetectRule, :Customizes
@@ -1393,7 +1391,6 @@ module TencentCloud
         # <li>longdelay：长时响应。</li>
         # @type Action: String
         # @param Percent: 处置方式的触发概率，范围0-100。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Percent: Integer
 
         attr_accessor :Action, :Percent
@@ -1420,19 +1417,14 @@ module TencentCloud
         # @param RuleID: 本规则的ID。仅出参使用。
         # @type RuleID: Integer
         # @param TransManagedIds: 放行的规则ID。默认所有规则不配置放行。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TransManagedIds: Array
         # @param AlgManagedIds: JS挑战的规则ID。默认所有规则不配置JS挑战。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AlgManagedIds: Array
         # @param CapManagedIds: 数字验证码的规则ID。默认所有规则不配置数字验证码。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CapManagedIds: Array
         # @param MonManagedIds: 观察的规则ID。默认所有规则不配置观察。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MonManagedIds: Array
         # @param DropManagedIds: 拦截的规则ID。默认所有规则不配置拦截。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DropManagedIds: Array
 
         attr_accessor :Action, :RuleID, :TransManagedIds, :AlgManagedIds, :CapManagedIds, :MonManagedIds, :DropManagedIds
@@ -1467,16 +1459,12 @@ module TencentCloud
         # @param RuleID: 本规则的ID。仅出参使用。
         # @type RuleID: Integer
         # @param AlgManagedIds: JS挑战的规则ID。默认所有规则不配置JS挑战。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AlgManagedIds: Array
         # @param CapManagedIds: 数字验证码的规则ID。默认所有规则不配置数字验证码。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CapManagedIds: Array
         # @param MonManagedIds: 观察的规则ID。默认所有规则不配置观察。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MonManagedIds: Array
         # @param DropManagedIds: 拦截的规则ID。默认所有规则不配置拦截。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DropManagedIds: Array
 
         attr_accessor :Switch, :RuleID, :AlgManagedIds, :CapManagedIds, :MonManagedIds, :DropManagedIds
@@ -7576,6 +7564,80 @@ module TencentCloud
         end
       end
 
+      # DescribePlans请求参数结构体
+      class DescribePlansRequest < TencentCloud::Common::AbstractModel
+        # @param Filters: 过滤条件，Filters.Values 的上限为 20。详细的过滤条件如下：<li>plan-type<br>  按照【<strong>套餐类型</strong>】进行过滤。<br>  可选的类型有：<br>  plan-trial：试用版套餐；<br>  plan-personal：个人版套餐；<br>  plan-basic：基础版套餐； <br>  plan-standard：标准版套餐； <br>  plan-enterprise：企业版套餐。 </li><li>plan-id<br>  按照【<strong>套餐 ID</strong>】进行过滤。套餐 ID 形如：edgeone-268z103ob0sx。</li><li>area<br>  按照【<strong>套餐加速地域</strong>】进行过滤。</li>  服务区域，可选的类型有：<br>  mainland: 中国大陆；<br>  overseas: 全球（不包括中国大陆)；<br>  global: 全球（包括中国大陆)。<br><li>status<br>  按照【<strong>套餐状态</strong>】进行过滤。<br>  可选的状态有：<br>  normal：正常状态；<br>  expiring-soon：即将过期；<br>  expired：已到期;<br>  isolated：已隔离。</li>
+        # @type Filters: Array
+        # @param Order: 排序字段，取值有：
+        # <li> enable-time：生效时间；</li>
+        # <li> expire-time：过期时间。</li>不填写使用默认值 enable-time。
+        # @type Order: String
+        # @param Direction: 排序方向，取值有：
+        # <li>asc：从小到大排序；</li>
+        # <li>desc：从大到小排序。</li>不填写使用默认值 desc。
+        # @type Direction: String
+        # @param Limit: 分页查询限制数目。默认值：20，最大值：200。
+        # @type Limit: Integer
+        # @param Offset: 分页查询偏移量。默认值：0。
+        # @type Offset: Integer
+
+        attr_accessor :Filters, :Order, :Direction, :Limit, :Offset
+
+        def initialize(filters=nil, order=nil, direction=nil, limit=nil, offset=nil)
+          @Filters = filters
+          @Order = order
+          @Direction = direction
+          @Limit = limit
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @Order = params['Order']
+          @Direction = params['Direction']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+        end
+      end
+
+      # DescribePlans返回参数结构体
+      class DescribePlansResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 符合条件的套餐个数。
+        # @type TotalCount: Integer
+        # @param Plans: 套餐信息列表。
+        # @type Plans: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Plans, :RequestId
+
+        def initialize(totalcount=nil, plans=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Plans = plans
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Plans'].nil?
+            @Plans = []
+            params['Plans'].each do |i|
+              plan_tmp = Plan.new
+              plan_tmp.deserialize(i)
+              @Plans << plan_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribePrefetchTasks请求参数结构体
       class DescribePrefetchTasksRequest < TencentCloud::Common::AbstractModel
         # @param ZoneId: 站点ID。该参数必填。
@@ -9572,7 +9634,6 @@ module TencentCloud
         # <li>off：关闭。</li>
         # @type Switch: String
         # @param ExceptUserRules: 例外规则详情。如果为null，默认使用历史配置。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExceptUserRules: Array
 
         attr_accessor :Switch, :ExceptUserRules
@@ -9608,13 +9669,10 @@ module TencentCloud
         # @param RuleID: 规则ID。仅出参使用。默认由底层生成。
         # @type RuleID: Integer
         # @param UpdateTime: 更新时间，如果为null，默认由底层按当前时间生成。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: String
         # @param ExceptUserRuleConditions: 匹配条件。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExceptUserRuleConditions: Array
         # @param ExceptUserRuleScope: 规则生效的范围。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExceptUserRuleScope: :class:`Tencentcloud::Teo.v20220901.models.ExceptUserRuleScope`
         # @param RulePriority: 优先级，取值范围0-100。如果为null，默认由底层设置为0。
         # @type RulePriority: Integer
@@ -9721,13 +9779,10 @@ module TencentCloud
         # <li>acl：自定义规则；</li>
         # <li>cc：cc攻击防护；</li>
         # <li>bot：Bot防护。</li>
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Modules: Array
         # @param PartialModules: 跳过部分规则ID的例外规则详情。如果为null，默认使用历史配置。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PartialModules: Array
         # @param SkipConditions: 跳过具体字段不去扫描的例外规则详情。如果为null，默认使用历史配置。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SkipConditions: Array
 
         attr_accessor :Type, :Modules, :PartialModules, :SkipConditions
@@ -9889,10 +9944,8 @@ module TencentCloud
         # @param Switch: 开关，取值有：
         # <li>on：开启；</li>
         # <li>off：关闭。</li>
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Switch: String
         # @param StatTime: 首段包的统计时长，单位是秒，即期望首段包的统计时长是多少，默认5秒。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StatTime: Integer
 
         attr_accessor :Switch, :StatTime
@@ -10961,10 +11014,8 @@ module TencentCloud
         # @param Switch: 开关，取值有：
         # <li>on：开启；</li>
         # <li>off：关闭；</li>
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Switch: String
         # @param IpTableRules: 基础管控规则。如果为null，默认使用历史配置。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IpTableRules: Array
 
         attr_accessor :Switch, :IpTableRules
@@ -11026,7 +11077,6 @@ module TencentCloud
         # 当入参缺省时，按 on 取值。
         # @type Status: String
         # @param RuleName: 规则名。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleName: String
         # @param MatchContent: 匹配内容。支持多值输入。
         # <li>当输入多个匹配值时，请使用英文逗号分隔；</li>
@@ -14481,7 +14531,6 @@ module TencentCloud
         # <li>waf：托管规则。</li>
         # @type Module: String
         # @param Include: 模块下的需要例外的具体规则ID列表。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Include: Array
 
         attr_accessor :Module, :Include
@@ -14494,6 +14543,120 @@ module TencentCloud
         def deserialize(params)
           @Module = params['Module']
           @Include = params['Include']
+        end
+      end
+
+      # 套餐信息
+      class Plan < TencentCloud::Common::AbstractModel
+        # @param PlanType: 套餐类型。取值有：
+        # <li>plan-trial: 试用版套餐；</li>
+        # <li>plan-personal: 个人版套餐；</li>
+        # <li>plan-basic: 基础版套餐；</li>
+        # <li>plan-standard: 标准版套餐；</li>
+        # <li>plan-enterprise-v2: 企业版套餐；</li>
+        # <li>plan-enterprise-model-a: 企业版 Model A 套餐。</li>
+        # <li>plan-enterprise: 旧企业版套餐。</li>
+        # @type PlanType: String
+        # @param PlanId: 套餐 ID。形如 edgeone-2y041pblwaxe。
+        # @type PlanId: String
+        # @param Area: 服务区域，取值有：
+        # <li>mainland: 中国大陆；</li>
+        # <li>overseas: 全球（不包括中国大陆)；</li>
+        # <li>global: 全球（包括中国大陆)。</li>
+        # @type Area: String
+        # @param Status: 套餐状态，取值有：
+        # <li>normal：正常状态；</li>
+        # <li>expiring-soon：即将到期状态；</li>
+        # <li>expired：到期状态；</li>
+        # <li>isolated：隔离状态；</li>
+        # <li>overdue-isolated：欠费隔离状态。</li>
+        # @type Status: String
+        # @param PayMode: 付费类型，取值有：
+        # <li>0: 后付费；</li>
+        # <li>1: 预付费。</li>
+        # @type PayMode: Integer
+        # @param ZonesInfo: 套餐绑定的站点信息，包括站点id和站点名称，站点状态。
+        # @type ZonesInfo: Array
+        # @param SmartRequestCapacity: 套餐内智能加速请求数规格，单位：次。
+        # @type SmartRequestCapacity: Integer
+        # @param VAUCapacity: 套餐内VAU规格，单位：个。
+        # @type VAUCapacity: Integer
+        # @param AccTrafficCapacity: 套餐内内容加速流量规格，单位：字节。
+        # @type AccTrafficCapacity: Integer
+        # @param SmartTrafficCapacity: 套餐内智能加速流量规格，单位：字节。
+        # @type SmartTrafficCapacity: Integer
+        # @param DDoSTrafficCapacity: 套餐内DDoS防护流量规格，单位：字节。
+        # @type DDoSTrafficCapacity: Integer
+        # @param SecTrafficCapacity: 套餐内安全流量规格，单位：字节。
+        # @type SecTrafficCapacity: Integer
+        # @param SecRequestCapacity: 套餐内安全请求数规格，单位：次。
+        # @type SecRequestCapacity: Integer
+        # @param L4TrafficCapacity: 套餐内四层加速流量规格，单位：字节。
+        # @type L4TrafficCapacity: Integer
+        # @param CrossMLCTrafficCapacity: 套餐内中国大陆网络优化流量规格，单位：字节。
+        # @type CrossMLCTrafficCapacity: Integer
+        # @param Bindable: 套餐是否允许绑定新站点，取值有：
+        # <li>true: 允许绑定新站点；</li>
+        # <li>false: 不允许绑定新站点。</li>
+        # @type Bindable: String
+        # @param EnabledTime: 套餐生效时间。
+        # @type EnabledTime: String
+        # @param ExpiredTime: 套餐过期时间。
+        # @type ExpiredTime: String
+        # @param Features: 套餐所支持的功能，取值有：<li>ContentAcceleration：内容加速功能；</li><li>SmartAcceleration：智能加速功能；</li><li>L4：四层加速功能；</li><li>Waf：高级 Web 防护；</li><li>QUIC：QUIC功能；</li><li>CrossMLC：中国大陆网络优化功能；</li><li>ProcessMedia：媒体处理功能；</li><li>L4DDoS：四层DDoS防护功能；</li>L7DDoS功能只会出现以下所有规格中的一项<li>L7DDoS.CM30G；七层DDoS防护功能-中国大陆30G保底带宽规格；</li><li>L7DDoS.CM60G；七层DDoS防护功能-中国大陆60G保底带宽规格；</li><li>L7DDoS.CM100G；七层DDoS防护功能-中国大陆100G保底带宽规格；</li><li>L7DDoS.Anycast300G；七层DDoS防护功能-中国大陆以外Anycast300G保底带宽规格；</li><li>L7DDoS.AnycastUnlimited；七层DDoS防护功能-中国大陆以外Anycast无上限全力防护规格；</li><li>L7DDoS.CM30G_Anycast300G；七层DDoS防护功能-中国大陆30G保底带宽规格，中国大陆以外Anycast300G保底带宽规格；</li><li>L7DDoS.CM60G_Anycast300G；七层DDoS防护功能-中国大陆60G保底带宽规格，中国大陆以外Anycast300G保底带宽规格；</li><li>L7DDoS.CM100G_Anycast300G；七层DDoS防护功能-中国大陆100G保底带宽规格，中国大陆以外Anycast300G保底带宽规格；</li><li>L7DDoS.CM30G_AnycastUnlimited；七层DDoS防护功能-中国大陆30G保底带宽规格，中国大陆以外Anycast无上限全力防护规格；</li><li>L7DDoS.CM60G_AnycastUnlimited；七层DDoS防护功能-中国大陆60G保底带宽规格，中国大陆以外Anycast无上限全力防护规格；</li><li>L7DDoS.CM100G_AnycastUnlimited；七层DDoS防护功能-中国大陆100G保底带宽规格，中国大陆以外Anycast无上限全力防护规格；</li>
+        # @type Features: Array
+
+        attr_accessor :PlanType, :PlanId, :Area, :Status, :PayMode, :ZonesInfo, :SmartRequestCapacity, :VAUCapacity, :AccTrafficCapacity, :SmartTrafficCapacity, :DDoSTrafficCapacity, :SecTrafficCapacity, :SecRequestCapacity, :L4TrafficCapacity, :CrossMLCTrafficCapacity, :Bindable, :EnabledTime, :ExpiredTime, :Features
+
+        def initialize(plantype=nil, planid=nil, area=nil, status=nil, paymode=nil, zonesinfo=nil, smartrequestcapacity=nil, vaucapacity=nil, acctrafficcapacity=nil, smarttrafficcapacity=nil, ddostrafficcapacity=nil, sectrafficcapacity=nil, secrequestcapacity=nil, l4trafficcapacity=nil, crossmlctrafficcapacity=nil, bindable=nil, enabledtime=nil, expiredtime=nil, features=nil)
+          @PlanType = plantype
+          @PlanId = planid
+          @Area = area
+          @Status = status
+          @PayMode = paymode
+          @ZonesInfo = zonesinfo
+          @SmartRequestCapacity = smartrequestcapacity
+          @VAUCapacity = vaucapacity
+          @AccTrafficCapacity = acctrafficcapacity
+          @SmartTrafficCapacity = smarttrafficcapacity
+          @DDoSTrafficCapacity = ddostrafficcapacity
+          @SecTrafficCapacity = sectrafficcapacity
+          @SecRequestCapacity = secrequestcapacity
+          @L4TrafficCapacity = l4trafficcapacity
+          @CrossMLCTrafficCapacity = crossmlctrafficcapacity
+          @Bindable = bindable
+          @EnabledTime = enabledtime
+          @ExpiredTime = expiredtime
+          @Features = features
+        end
+
+        def deserialize(params)
+          @PlanType = params['PlanType']
+          @PlanId = params['PlanId']
+          @Area = params['Area']
+          @Status = params['Status']
+          @PayMode = params['PayMode']
+          unless params['ZonesInfo'].nil?
+            @ZonesInfo = []
+            params['ZonesInfo'].each do |i|
+              zoneinfo_tmp = ZoneInfo.new
+              zoneinfo_tmp.deserialize(i)
+              @ZonesInfo << zoneinfo_tmp
+            end
+          end
+          @SmartRequestCapacity = params['SmartRequestCapacity']
+          @VAUCapacity = params['VAUCapacity']
+          @AccTrafficCapacity = params['AccTrafficCapacity']
+          @SmartTrafficCapacity = params['SmartTrafficCapacity']
+          @DDoSTrafficCapacity = params['DDoSTrafficCapacity']
+          @SecTrafficCapacity = params['SecTrafficCapacity']
+          @SecRequestCapacity = params['SecRequestCapacity']
+          @L4TrafficCapacity = params['L4TrafficCapacity']
+          @CrossMLCTrafficCapacity = params['CrossMLCTrafficCapacity']
+          @Bindable = params['Bindable']
+          @EnabledTime = params['EnabledTime']
+          @ExpiredTime = params['ExpiredTime']
+          @Features = params['Features']
         end
       end
 
@@ -14810,13 +14973,10 @@ module TencentCloud
         # @param RateLimitUserRules: 速率限制-用户规则列表。如果为null，默认使用历史配置。
         # @type RateLimitUserRules: Array
         # @param RateLimitTemplate: 速率限制模板功能。如果为null，默认使用历史配置。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RateLimitTemplate: :class:`Tencentcloud::Teo.v20220901.models.RateLimitTemplate`
         # @param RateLimitIntelligence: 智能客户端过滤。如果为null，默认使用历史配置。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RateLimitIntelligence: :class:`Tencentcloud::Teo.v20220901.models.RateLimitIntelligence`
         # @param RateLimitCustomizes: 速率限制-托管定制规则。如果为null，默认使用历史配置。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RateLimitCustomizes: Array
 
         attr_accessor :Switch, :RateLimitUserRules, :RateLimitTemplate, :RateLimitIntelligence, :RateLimitCustomizes
@@ -14930,17 +15090,14 @@ module TencentCloud
         # <li>normal：适中；</li>
         # <li>strict：严格；</li>
         # <li>close：关闭，仅精准速率限制生效。</li>
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Mode: String
         # @param ID: 唯一id。
         # @type ID: Integer
         # @param Action: 模板处置方式，取值有：
         # <li>alg：JavaScript挑战；</li>
         # <li>monitor：观察。</li>
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Action: String
         # @param PunishTime: 惩罚时间，取值范围0-2天，单位秒。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PunishTime: Integer
         # @param Threshold: 统计阈值，单位是次，取值范围0-4294967294。
         # @type Threshold: Integer
@@ -16448,37 +16605,26 @@ module TencentCloud
       # Web安全配置
       class SecurityConfig < TencentCloud::Common::AbstractModel
         # @param WafConfig: 托管规则。如果入参为空或不填，默认使用历史配置。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WafConfig: :class:`Tencentcloud::Teo.v20220901.models.WafConfig`
         # @param RateLimitConfig: 速率限制。如果入参为空或不填，默认使用历史配置。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RateLimitConfig: :class:`Tencentcloud::Teo.v20220901.models.RateLimitConfig`
         # @param AclConfig: 自定义规则。如果入参为空或不填，默认使用历史配置。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AclConfig: :class:`Tencentcloud::Teo.v20220901.models.AclConfig`
         # @param BotConfig: Bot配置。如果入参为空或不填，默认使用历史配置。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BotConfig: :class:`Tencentcloud::Teo.v20220901.models.BotConfig`
         # @param SwitchConfig: 七层防护总开关。如果入参为空或不填，默认使用历史配置。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SwitchConfig: :class:`Tencentcloud::Teo.v20220901.models.SwitchConfig`
         # @param IpTableConfig: 基础访问管控。如果入参为空或不填，默认使用历史配置。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IpTableConfig: :class:`Tencentcloud::Teo.v20220901.models.IpTableConfig`
         # @param ExceptConfig: 例外规则配置。如果入参为空或不填，默认使用历史配置。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExceptConfig: :class:`Tencentcloud::Teo.v20220901.models.ExceptConfig`
         # @param DropPageConfig: 自定义拦截页面配置。如果入参为空或不填，默认使用历史配置。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DropPageConfig: :class:`Tencentcloud::Teo.v20220901.models.DropPageConfig`
         # @param TemplateConfig: 模板配置。此处仅出参数使用。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TemplateConfig: :class:`Tencentcloud::Teo.v20220901.models.TemplateConfig`
         # @param SlowPostConfig: 慢速攻击配置。如果入参为空或不填，默认使用历史配置。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SlowPostConfig: :class:`Tencentcloud::Teo.v20220901.models.SlowPostConfig`
         # @param DetectLengthLimitConfig: 检测长度限制配置。仅出参使用。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DetectLengthLimitConfig: :class:`Tencentcloud::Teo.v20220901.models.DetectLengthLimitConfig`
 
         attr_accessor :WafConfig, :RateLimitConfig, :AclConfig, :BotConfig, :SwitchConfig, :IpTableConfig, :ExceptConfig, :DropPageConfig, :TemplateConfig, :SlowPostConfig, :DetectLengthLimitConfig
@@ -16735,18 +16881,14 @@ module TencentCloud
         # <li>off：关闭。</li>
         # @type Switch: String
         # @param FirstPartConfig: 首包配置。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FirstPartConfig: :class:`Tencentcloud::Teo.v20220901.models.FirstPartConfig`
         # @param SlowRateConfig: 基础配置。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SlowRateConfig: :class:`Tencentcloud::Teo.v20220901.models.SlowRateConfig`
         # @param Action: 慢速攻击的处置动作，取值有：
         # <li>monitor：观察；</li>
         # <li>drop：拦截。</li>
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Action: String
         # @param RuleId: 本规则的Id。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleId: Integer
 
         attr_accessor :Switch, :FirstPartConfig, :SlowRateConfig, :Action, :RuleId
@@ -18222,6 +18364,31 @@ module TencentCloud
             @ZoneConfig = ZoneConfig.new
             @ZoneConfig.deserialize(params['ZoneConfig'])
           end
+        end
+      end
+
+      # 返回站点信息
+      class ZoneInfo < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点id。
+        # @type ZoneId: String
+        # @param ZoneName: 站点名称。
+        # @type ZoneName: String
+        # @param Paused: 站点是否停用。取值有：<li>false：非停用；</li>
+        # <li>true：停用。</li>
+        # @type Paused: Boolean
+
+        attr_accessor :ZoneId, :ZoneName, :Paused
+
+        def initialize(zoneid=nil, zonename=nil, paused=nil)
+          @ZoneId = zoneid
+          @ZoneName = zonename
+          @Paused = paused
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @ZoneName = params['ZoneName']
+          @Paused = params['Paused']
         end
       end
 

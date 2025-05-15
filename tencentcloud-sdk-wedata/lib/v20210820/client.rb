@@ -1781,6 +1781,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询代码模版具体详情
+
+        # @param request: Request instance for DescribeCodeTemplateDetail.
+        # @type request: :class:`Tencentcloud::wedata::V20210820::DescribeCodeTemplateDetailRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20210820::DescribeCodeTemplateDetailResponse`
+        def DescribeCodeTemplateDetail(request)
+          body = send_request('DescribeCodeTemplateDetail', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCodeTemplateDetailResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 列出字段血缘信息
 
         # @param request: Request instance for DescribeColumnLineage.
@@ -4838,6 +4862,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取批量操作错误日志
+
+        # @param request: Request instance for GetBatchDetailErrorLog.
+        # @type request: :class:`Tencentcloud::wedata::V20210820::GetBatchDetailErrorLogRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20210820::GetBatchDetailErrorLogResponse`
+        def GetBatchDetailErrorLog(request)
+          body = send_request('GetBatchDetailErrorLog', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GetBatchDetailErrorLogResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取cos token
 
         # @param request: Request instance for GetCosToken.
@@ -5064,6 +5112,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = KillScheduleInstancesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取批量操作详情列表
+
+        # @param request: Request instance for ListBatchDetail.
+        # @type request: :class:`Tencentcloud::wedata::V20210820::ListBatchDetailRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20210820::ListBatchDetailResponse`
+        def ListBatchDetail(request)
+          body = send_request('ListBatchDetail', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ListBatchDetailResponse.new
             model.deserialize(response['Response'])
             model
           else

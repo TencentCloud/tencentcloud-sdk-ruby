@@ -572,19 +572,23 @@ module TencentCloud
         # @type LastStatus: Integer
         # @param InProcess: 同步任务是否正在进行中
         # @type InProcess: Boolean
+        # @param ErrMsg: 任务错误消息
+        # @type ErrMsg: String
 
-        attr_accessor :LastTime, :LastStatus, :InProcess
+        attr_accessor :LastTime, :LastStatus, :InProcess, :ErrMsg
 
-        def initialize(lasttime=nil, laststatus=nil, inprocess=nil)
+        def initialize(lasttime=nil, laststatus=nil, inprocess=nil, errmsg=nil)
           @LastTime = lasttime
           @LastStatus = laststatus
           @InProcess = inprocess
+          @ErrMsg = errmsg
         end
 
         def deserialize(params)
           @LastTime = params['LastTime']
           @LastStatus = params['LastStatus']
           @InProcess = params['InProcess']
+          @ErrMsg = params['ErrMsg']
         end
       end
 
@@ -3355,16 +3359,20 @@ module TencentCloud
         # @type AuthorizedDeviceIdSet: Array
         # @param AuthorizedAppAssetIdSet: 查询具有指定应用资产ID访问权限的用户
         # @type AuthorizedAppAssetIdSet: Array
-        # @param AuthTypeSet: 认证方式，0 - 本地, 1 - LDAP, 2 - OAuth, 不传为全部
+        # @param AuthTypeSet: 认证方式，0 - 本地, 1 - LDAP, 2 - OAuth, 3-ioa 不传为全部
         # @type AuthTypeSet: Array
         # @param DepartmentId: 部门ID，用于过滤属于某个部门的用户
         # @type DepartmentId: String
         # @param Filters: 参数过滤数组
         # @type Filters: Array
+        # @param IsCamUser: 是否获取cam用户, 0-否，1-是
+        # @type IsCamUser: Integer
+        # @param UserFromSet: 用户来源，0-bh，1-ioa,不传为全部
+        # @type UserFromSet: Array
 
-        attr_accessor :IdSet, :Name, :Offset, :Limit, :UserName, :Phone, :Email, :AuthorizedDeviceIdSet, :AuthorizedAppAssetIdSet, :AuthTypeSet, :DepartmentId, :Filters
+        attr_accessor :IdSet, :Name, :Offset, :Limit, :UserName, :Phone, :Email, :AuthorizedDeviceIdSet, :AuthorizedAppAssetIdSet, :AuthTypeSet, :DepartmentId, :Filters, :IsCamUser, :UserFromSet
 
-        def initialize(idset=nil, name=nil, offset=nil, limit=nil, username=nil, phone=nil, email=nil, authorizeddeviceidset=nil, authorizedappassetidset=nil, authtypeset=nil, departmentid=nil, filters=nil)
+        def initialize(idset=nil, name=nil, offset=nil, limit=nil, username=nil, phone=nil, email=nil, authorizeddeviceidset=nil, authorizedappassetidset=nil, authtypeset=nil, departmentid=nil, filters=nil, iscamuser=nil, userfromset=nil)
           @IdSet = idset
           @Name = name
           @Offset = offset
@@ -3377,6 +3385,8 @@ module TencentCloud
           @AuthTypeSet = authtypeset
           @DepartmentId = departmentid
           @Filters = filters
+          @IsCamUser = iscamuser
+          @UserFromSet = userfromset
         end
 
         def deserialize(params)
@@ -3399,6 +3409,8 @@ module TencentCloud
               @Filters << filter_tmp
             end
           end
+          @IsCamUser = params['IsCamUser']
+          @UserFromSet = params['UserFromSet']
         end
       end
 
@@ -3475,10 +3487,12 @@ module TencentCloud
         # @type EnableSSL: Integer
         # @param SSLCertName: 已上传的SSL证书名称
         # @type SSLCertName: String
+        # @param IOAId: IOA侧的资源ID
+        # @type IOAId: Integer
 
-        attr_accessor :Id, :InstanceId, :Name, :PublicIp, :PrivateIp, :ApCode, :OsName, :Kind, :Port, :GroupSet, :AccountCount, :VpcId, :SubnetId, :Resource, :Department, :IpPortSet, :DomainId, :DomainName, :EnableSSL, :SSLCertName
+        attr_accessor :Id, :InstanceId, :Name, :PublicIp, :PrivateIp, :ApCode, :OsName, :Kind, :Port, :GroupSet, :AccountCount, :VpcId, :SubnetId, :Resource, :Department, :IpPortSet, :DomainId, :DomainName, :EnableSSL, :SSLCertName, :IOAId
 
-        def initialize(id=nil, instanceid=nil, name=nil, publicip=nil, privateip=nil, apcode=nil, osname=nil, kind=nil, port=nil, groupset=nil, accountcount=nil, vpcid=nil, subnetid=nil, resource=nil, department=nil, ipportset=nil, domainid=nil, domainname=nil, enablessl=nil, sslcertname=nil)
+        def initialize(id=nil, instanceid=nil, name=nil, publicip=nil, privateip=nil, apcode=nil, osname=nil, kind=nil, port=nil, groupset=nil, accountcount=nil, vpcid=nil, subnetid=nil, resource=nil, department=nil, ipportset=nil, domainid=nil, domainname=nil, enablessl=nil, sslcertname=nil, ioaid=nil)
           @Id = id
           @InstanceId = instanceid
           @Name = name
@@ -3499,6 +3513,7 @@ module TencentCloud
           @DomainName = domainname
           @EnableSSL = enablessl
           @SSLCertName = sslcertname
+          @IOAId = ioaid
         end
 
         def deserialize(params)
@@ -3535,6 +3550,7 @@ module TencentCloud
           @DomainName = params['DomainName']
           @EnableSSL = params['EnableSSL']
           @SSLCertName = params['SSLCertName']
+          @IOAId = params['IOAId']
         end
       end
 
@@ -3716,6 +3732,38 @@ module TencentCloud
             @Department.deserialize(params['Department'])
           end
           @Count = params['Count']
+        end
+      end
+
+      # 同步过来的ioa用户分组信息
+      class IOAUserGroup < TencentCloud::Common::AbstractModel
+        # @param OrgId: ioa用户组织id
+        # @type OrgId: Integer
+        # @param OrgName: ioa用户组织名称
+        # @type OrgName: String
+        # @param OrgIdPath: ioa用户组织id路径
+        # @type OrgIdPath: String
+        # @param OrgNamePath: ioa用户组织名称路径
+        # @type OrgNamePath: String
+        # @param Source: ioa关联用户源类型
+        # @type Source: Integer
+
+        attr_accessor :OrgId, :OrgName, :OrgIdPath, :OrgNamePath, :Source
+
+        def initialize(orgid=nil, orgname=nil, orgidpath=nil, orgnamepath=nil, source=nil)
+          @OrgId = orgid
+          @OrgName = orgname
+          @OrgIdPath = orgidpath
+          @OrgNamePath = orgnamepath
+          @Source = source
+        end
+
+        def deserialize(params)
+          @OrgId = params['OrgId']
+          @OrgName = params['OrgName']
+          @OrgIdPath = params['OrgIdPath']
+          @OrgNamePath = params['OrgNamePath']
+          @Source = params['Source']
         end
       end
 
@@ -4784,10 +4832,16 @@ module TencentCloud
         # @type ClientAccess: Integer
         # @param ExternalAccess: 1 默认值，外网访问开启，0 外网访问关闭，2 外网访问开通中，3 外网访问关闭中
         # @type ExternalAccess: Integer
+        # @param IOAResource: 0默认值。0-免费版（试用版）ioa，1-付费版ioa
+        # @type IOAResource: Integer
+        # @param PackageIOAUserCount: 零信任堡垒机用户扩展包个数。1个扩展包对应20个用户数
+        # @type PackageIOAUserCount: Integer
+        # @param PackageIOABandwidth:  零信任堡垒机带宽扩展包个数。一个扩展包表示4M带宽
+        # @type PackageIOABandwidth: Integer
 
-        attr_accessor :ResourceId, :ApCode, :SvArgs, :VpcId, :Nodes, :RenewFlag, :ExpireTime, :Status, :ResourceName, :Pid, :CreateTime, :ProductCode, :SubProductCode, :Zone, :Expired, :Deployed, :VpcName, :VpcCidrBlock, :SubnetId, :SubnetName, :CidrBlock, :PublicIpSet, :PrivateIpSet, :ModuleSet, :UsedNodes, :ExtendPoints, :PackageBandwidth, :PackageNode, :LogDeliveryArgs, :ClbSet, :DomainCount, :UsedDomainCount, :Trial, :LogDelivery, :CdcClusterId, :DeployModel, :IntranetAccess, :IntranetPrivateIpSet, :IntranetVpcId, :IntranetVpcCidr, :ShareClb, :OpenClbId, :LbVipIsp, :TUICmdPort, :TUIDirectPort, :WebAccess, :ClientAccess, :ExternalAccess
+        attr_accessor :ResourceId, :ApCode, :SvArgs, :VpcId, :Nodes, :RenewFlag, :ExpireTime, :Status, :ResourceName, :Pid, :CreateTime, :ProductCode, :SubProductCode, :Zone, :Expired, :Deployed, :VpcName, :VpcCidrBlock, :SubnetId, :SubnetName, :CidrBlock, :PublicIpSet, :PrivateIpSet, :ModuleSet, :UsedNodes, :ExtendPoints, :PackageBandwidth, :PackageNode, :LogDeliveryArgs, :ClbSet, :DomainCount, :UsedDomainCount, :Trial, :LogDelivery, :CdcClusterId, :DeployModel, :IntranetAccess, :IntranetPrivateIpSet, :IntranetVpcId, :IntranetVpcCidr, :ShareClb, :OpenClbId, :LbVipIsp, :TUICmdPort, :TUIDirectPort, :WebAccess, :ClientAccess, :ExternalAccess, :IOAResource, :PackageIOAUserCount, :PackageIOABandwidth
 
-        def initialize(resourceid=nil, apcode=nil, svargs=nil, vpcid=nil, nodes=nil, renewflag=nil, expiretime=nil, status=nil, resourcename=nil, pid=nil, createtime=nil, productcode=nil, subproductcode=nil, zone=nil, expired=nil, deployed=nil, vpcname=nil, vpccidrblock=nil, subnetid=nil, subnetname=nil, cidrblock=nil, publicipset=nil, privateipset=nil, moduleset=nil, usednodes=nil, extendpoints=nil, packagebandwidth=nil, packagenode=nil, logdeliveryargs=nil, clbset=nil, domaincount=nil, useddomaincount=nil, trial=nil, logdelivery=nil, cdcclusterid=nil, deploymodel=nil, intranetaccess=nil, intranetprivateipset=nil, intranetvpcid=nil, intranetvpccidr=nil, shareclb=nil, openclbid=nil, lbvipisp=nil, tuicmdport=nil, tuidirectport=nil, webaccess=nil, clientaccess=nil, externalaccess=nil)
+        def initialize(resourceid=nil, apcode=nil, svargs=nil, vpcid=nil, nodes=nil, renewflag=nil, expiretime=nil, status=nil, resourcename=nil, pid=nil, createtime=nil, productcode=nil, subproductcode=nil, zone=nil, expired=nil, deployed=nil, vpcname=nil, vpccidrblock=nil, subnetid=nil, subnetname=nil, cidrblock=nil, publicipset=nil, privateipset=nil, moduleset=nil, usednodes=nil, extendpoints=nil, packagebandwidth=nil, packagenode=nil, logdeliveryargs=nil, clbset=nil, domaincount=nil, useddomaincount=nil, trial=nil, logdelivery=nil, cdcclusterid=nil, deploymodel=nil, intranetaccess=nil, intranetprivateipset=nil, intranetvpcid=nil, intranetvpccidr=nil, shareclb=nil, openclbid=nil, lbvipisp=nil, tuicmdport=nil, tuidirectport=nil, webaccess=nil, clientaccess=nil, externalaccess=nil, ioaresource=nil, packageioausercount=nil, packageioabandwidth=nil)
           @ResourceId = resourceid
           @ApCode = apcode
           @SvArgs = svargs
@@ -4836,6 +4890,9 @@ module TencentCloud
           @WebAccess = webaccess
           @ClientAccess = clientaccess
           @ExternalAccess = externalaccess
+          @IOAResource = ioaresource
+          @PackageIOAUserCount = packageioausercount
+          @PackageIOABandwidth = packageioabandwidth
         end
 
         def deserialize(params)
@@ -4894,6 +4951,9 @@ module TencentCloud
           @WebAccess = params['WebAccess']
           @ClientAccess = params['ClientAccess']
           @ExternalAccess = params['ExternalAccess']
+          @IOAResource = params['IOAResource']
+          @PackageIOAUserCount = params['PackageIOAUserCount']
+          @PackageIOABandwidth = params['PackageIOABandwidth']
         end
       end
 
@@ -6174,10 +6234,14 @@ module TencentCloud
         # @type Status: String
         # @param AclVersion: 权限版本
         # @type AclVersion: Integer
+        # @param UserFrom: 用户来源，0-bh,1-ioa
+        # @type UserFrom: Integer
+        # @param IOAUserGroup: ioa同步过来的用户相关信息
+        # @type IOAUserGroup: :class:`Tencentcloud::Bh.v20230418.models.IOAUserGroup`
 
-        attr_accessor :UserName, :RealName, :Id, :Phone, :Email, :ValidateFrom, :ValidateTo, :GroupSet, :AuthType, :ValidateTime, :Department, :DepartmentId, :ActiveStatus, :LockStatus, :UKeyStatus, :Status, :AclVersion
+        attr_accessor :UserName, :RealName, :Id, :Phone, :Email, :ValidateFrom, :ValidateTo, :GroupSet, :AuthType, :ValidateTime, :Department, :DepartmentId, :ActiveStatus, :LockStatus, :UKeyStatus, :Status, :AclVersion, :UserFrom, :IOAUserGroup
 
-        def initialize(username=nil, realname=nil, id=nil, phone=nil, email=nil, validatefrom=nil, validateto=nil, groupset=nil, authtype=nil, validatetime=nil, department=nil, departmentid=nil, activestatus=nil, lockstatus=nil, ukeystatus=nil, status=nil, aclversion=nil)
+        def initialize(username=nil, realname=nil, id=nil, phone=nil, email=nil, validatefrom=nil, validateto=nil, groupset=nil, authtype=nil, validatetime=nil, department=nil, departmentid=nil, activestatus=nil, lockstatus=nil, ukeystatus=nil, status=nil, aclversion=nil, userfrom=nil, ioausergroup=nil)
           @UserName = username
           @RealName = realname
           @Id = id
@@ -6195,6 +6259,8 @@ module TencentCloud
           @UKeyStatus = ukeystatus
           @Status = status
           @AclVersion = aclversion
+          @UserFrom = userfrom
+          @IOAUserGroup = ioausergroup
         end
 
         def deserialize(params)
@@ -6225,6 +6291,11 @@ module TencentCloud
           @UKeyStatus = params['UKeyStatus']
           @Status = params['Status']
           @AclVersion = params['AclVersion']
+          @UserFrom = params['UserFrom']
+          unless params['IOAUserGroup'].nil?
+            @IOAUserGroup = IOAUserGroup.new
+            @IOAUserGroup.deserialize(params['IOAUserGroup'])
+          end
         end
       end
 

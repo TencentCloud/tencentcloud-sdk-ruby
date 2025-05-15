@@ -245,30 +245,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 获取最新交易列表（已废弃）
-
-        # @param request: Request instance for GetLatesdTransactionList.
-        # @type request: :class:`Tencentcloud::tbaas::V20180416::GetLatesdTransactionListRequest`
-        # @rtype: :class:`Tencentcloud::tbaas::V20180416::GetLatesdTransactionListResponse`
-        def GetLatesdTransactionList(request)
-          body = send_request('GetLatesdTransactionList', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = GetLatesdTransactionListResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 获取fabric最新交易列表
 
         # @param request: Request instance for GetLatestTransactionList.

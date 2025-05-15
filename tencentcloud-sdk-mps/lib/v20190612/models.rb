@@ -14287,7 +14287,7 @@ module TencentCloud
         # 默认值：ON。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Switch: String
-        # @param ImageAreaBoxes: 需要擦除的多个框选区域，注意：参数数组长度最大为2。
+        # @param ImageAreaBoxes: 需要擦除的多个框选区域，最多开启16个区域。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ImageAreaBoxes: Array

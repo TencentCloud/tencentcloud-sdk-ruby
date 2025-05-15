@@ -567,16 +567,19 @@ module TencentCloud
         # @type DownloadUrl: String
         # @param ErrMsg: 错误信息。
         # @type ErrMsg: String
+        # @param ProgressRate: 日志下载进度。
+        # @type ProgressRate: Integer
 
-        attr_accessor :FileName, :CreateTime, :Status, :FileSize, :DownloadUrl, :ErrMsg
+        attr_accessor :FileName, :CreateTime, :Status, :FileSize, :DownloadUrl, :ErrMsg, :ProgressRate
 
-        def initialize(filename=nil, createtime=nil, status=nil, filesize=nil, downloadurl=nil, errmsg=nil)
+        def initialize(filename=nil, createtime=nil, status=nil, filesize=nil, downloadurl=nil, errmsg=nil, progressrate=nil)
           @FileName = filename
           @CreateTime = createtime
           @Status = status
           @FileSize = filesize
           @DownloadUrl = downloadurl
           @ErrMsg = errmsg
+          @ProgressRate = progressrate
         end
 
         def deserialize(params)
@@ -586,6 +589,7 @@ module TencentCloud
           @FileSize = params['FileSize']
           @DownloadUrl = params['DownloadUrl']
           @ErrMsg = params['ErrMsg']
+          @ProgressRate = params['ProgressRate']
         end
       end
 
@@ -10965,7 +10969,7 @@ module TencentCloud
         # @type LogExpireDay: Integer
         # @param HighLogExpireDay: 高频日志保留时长。
         # @type HighLogExpireDay: Integer
-        # @param AuditRuleFilters: 审计规则。同RuleTemplateIds都不填是全审计。
+        # @param AuditRuleFilters: 审计规则(废弃)。
         # @type AuditRuleFilters: Array
         # @param RuleTemplateIds: 规则模板ID。同AuditRuleFilters都不填是全审计。
         # @type RuleTemplateIds: Array
@@ -10973,6 +10977,9 @@ module TencentCloud
         # @type AuditAll: Boolean
 
         attr_accessor :InstanceId, :LogExpireDay, :HighLogExpireDay, :AuditRuleFilters, :RuleTemplateIds, :AuditAll
+        extend Gem::Deprecate
+        deprecate :AuditRuleFilters, :none, 2025, 5
+        deprecate :AuditRuleFilters=, :none, 2025, 5
 
         def initialize(instanceid=nil, logexpireday=nil, highlogexpireday=nil, auditrulefilters=nil, ruletemplateids=nil, auditall=nil)
           @InstanceId = instanceid

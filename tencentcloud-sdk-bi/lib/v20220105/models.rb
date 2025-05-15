@@ -555,10 +555,12 @@ module TencentCloud
         # @type TokenType: Integer
         # @param TokenNum: 一次创建的token数
         # @type TokenNum: Integer
+        # @param ConfigParam: 嵌出显示配置，目前为ChatBI嵌出场景用，TableFilter表示数据表列表过滤，SqlView表示sql查看功能
+        # @type ConfigParam: String
 
-        attr_accessor :ProjectId, :PageId, :Intention, :Scope, :ExpireTime, :ExtraParam, :UserCorpId, :UserId, :TicketNum, :GlobalParam, :TokenType, :TokenNum
+        attr_accessor :ProjectId, :PageId, :Intention, :Scope, :ExpireTime, :ExtraParam, :UserCorpId, :UserId, :TicketNum, :GlobalParam, :TokenType, :TokenNum, :ConfigParam
 
-        def initialize(projectid=nil, pageid=nil, intention=nil, scope=nil, expiretime=nil, extraparam=nil, usercorpid=nil, userid=nil, ticketnum=nil, globalparam=nil, tokentype=nil, tokennum=nil)
+        def initialize(projectid=nil, pageid=nil, intention=nil, scope=nil, expiretime=nil, extraparam=nil, usercorpid=nil, userid=nil, ticketnum=nil, globalparam=nil, tokentype=nil, tokennum=nil, configparam=nil)
           @ProjectId = projectid
           @PageId = pageid
           @Intention = intention
@@ -571,6 +573,7 @@ module TencentCloud
           @GlobalParam = globalparam
           @TokenType = tokentype
           @TokenNum = tokennum
+          @ConfigParam = configparam
         end
 
         def deserialize(params)
@@ -586,6 +589,7 @@ module TencentCloud
           @GlobalParam = params['GlobalParam']
           @TokenType = params['TokenType']
           @TokenNum = params['TokenNum']
+          @ConfigParam = params['ConfigParam']
         end
       end
 
@@ -723,8 +727,8 @@ module TencentCloud
 
         attr_accessor :ProjectId, :RoleIdList, :UserList, :UserInfoList
         extend Gem::Deprecate
-        deprecate :UserList, :none, 2025, 4
-        deprecate :UserList=, :none, 2025, 4
+        deprecate :UserList, :none, 2025, 5
+        deprecate :UserList=, :none, 2025, 5
 
         def initialize(projectid=nil, roleidlist=nil, userlist=nil, userinfolist=nil)
           @ProjectId = projectid
@@ -808,8 +812,8 @@ module TencentCloud
 
         attr_accessor :RoleIdList, :UserList, :UserInfoList
         extend Gem::Deprecate
-        deprecate :UserList, :none, 2025, 4
-        deprecate :UserList=, :none, 2025, 4
+        deprecate :UserList, :none, 2025, 5
+        deprecate :UserList=, :none, 2025, 5
 
         def initialize(roleidlist=nil, userlist=nil, userinfolist=nil)
           @RoleIdList = roleidlist
@@ -1972,10 +1976,13 @@ module TencentCloud
         # @param SingleUserMultiToken: 是否单用户多token
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SingleUserMultiToken: Boolean
+        # @param ConfigParam: 嵌出显示配置，目前为ChatBI嵌出场景用，TableFilter表示数据表列表过滤，SqlView表示sql查看功能
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConfigParam: String
 
-        attr_accessor :Id, :BIToken, :ProjectId, :CreatedUser, :CreatedAt, :UpdatedUser, :UpdatedAt, :PageId, :ExtraParam, :Scope, :ExpireTime, :UserCorpId, :UserId, :TicketNum, :GlobalParam, :Intention, :TokenType, :TokenNum, :SingleUserMultiToken
+        attr_accessor :Id, :BIToken, :ProjectId, :CreatedUser, :CreatedAt, :UpdatedUser, :UpdatedAt, :PageId, :ExtraParam, :Scope, :ExpireTime, :UserCorpId, :UserId, :TicketNum, :GlobalParam, :Intention, :TokenType, :TokenNum, :SingleUserMultiToken, :ConfigParam
 
-        def initialize(id=nil, bitoken=nil, projectid=nil, createduser=nil, createdat=nil, updateduser=nil, updatedat=nil, pageid=nil, extraparam=nil, scope=nil, expiretime=nil, usercorpid=nil, userid=nil, ticketnum=nil, globalparam=nil, intention=nil, tokentype=nil, tokennum=nil, singleusermultitoken=nil)
+        def initialize(id=nil, bitoken=nil, projectid=nil, createduser=nil, createdat=nil, updateduser=nil, updatedat=nil, pageid=nil, extraparam=nil, scope=nil, expiretime=nil, usercorpid=nil, userid=nil, ticketnum=nil, globalparam=nil, intention=nil, tokentype=nil, tokennum=nil, singleusermultitoken=nil, configparam=nil)
           @Id = id
           @BIToken = bitoken
           @ProjectId = projectid
@@ -1995,6 +2002,7 @@ module TencentCloud
           @TokenType = tokentype
           @TokenNum = tokennum
           @SingleUserMultiToken = singleusermultitoken
+          @ConfigParam = configparam
         end
 
         def deserialize(params)
@@ -2017,6 +2025,7 @@ module TencentCloud
           @TokenType = params['TokenType']
           @TokenNum = params['TokenNum']
           @SingleUserMultiToken = params['SingleUserMultiToken']
+          @ConfigParam = params['ConfigParam']
         end
       end
 

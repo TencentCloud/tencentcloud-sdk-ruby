@@ -12730,14 +12730,17 @@ module TencentCloud
         # @type PassWord: String
         # @param ReMark: 备注
         # @type ReMark: String
+        # @param Groups: 用户副组
+        # @type Groups: Array
 
-        attr_accessor :UserName, :UserGroup, :PassWord, :ReMark
+        attr_accessor :UserName, :UserGroup, :PassWord, :ReMark, :Groups
 
-        def initialize(username=nil, usergroup=nil, password=nil, remark=nil)
+        def initialize(username=nil, usergroup=nil, password=nil, remark=nil, groups=nil)
           @UserName = username
           @UserGroup = usergroup
           @PassWord = password
           @ReMark = remark
+          @Groups = groups
         end
 
         def deserialize(params)
@@ -12745,6 +12748,7 @@ module TencentCloud
           @UserGroup = params['UserGroup']
           @PassWord = params['PassWord']
           @ReMark = params['ReMark']
+          @Groups = params['Groups']
         end
       end
 
@@ -12754,17 +12758,21 @@ module TencentCloud
         # @type UserName: String
         # @param UserType: 用户来源
         # @type UserType: String
+        # @param Groups: 组名
+        # @type Groups: String
 
-        attr_accessor :UserName, :UserType
+        attr_accessor :UserName, :UserType, :Groups
 
-        def initialize(username=nil, usertype=nil)
+        def initialize(username=nil, usertype=nil, groups=nil)
           @UserName = username
           @UserType = usertype
+          @Groups = groups
         end
 
         def deserialize(params)
           @UserName = params['UserName']
           @UserType = params['UserType']
+          @Groups = params['Groups']
         end
       end
 

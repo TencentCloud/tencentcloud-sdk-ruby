@@ -841,6 +841,45 @@ module TencentCloud
         end
       end
 
+      # 操作资源DTO
+      class AsyncResourceVO < TencentCloud::Common::AbstractModel
+        # @param ProcessId: 处理Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProcessId: Integer
+        # @param ResourceId: 资源Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceId: String
+        # @param ResourceName: 资源名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceName: String
+        # @param ExtraInfo: 自定义信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExtraInfo: Array
+
+        attr_accessor :ProcessId, :ResourceId, :ResourceName, :ExtraInfo
+
+        def initialize(processid=nil, resourceid=nil, resourcename=nil, extrainfo=nil)
+          @ProcessId = processid
+          @ResourceId = resourceid
+          @ResourceName = resourcename
+          @ExtraInfo = extrainfo
+        end
+
+        def deserialize(params)
+          @ProcessId = params['ProcessId']
+          @ResourceId = params['ResourceId']
+          @ResourceName = params['ResourceName']
+          unless params['ExtraInfo'].nil?
+            @ExtraInfo = []
+            params['ExtraInfo'].each do |i|
+              paraminfo_tmp = ParamInfo.new
+              paraminfo_tmp.deserialize(i)
+              @ExtraInfo << paraminfo_tmp
+            end
+          end
+        end
+      end
+
       # aiops基础信息
       class AttributeItemDTO < TencentCloud::Common::AbstractModel
         # @param Key: key
@@ -2736,13 +2775,16 @@ module TencentCloud
         # @param Submit: 是否提交
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Submit: Boolean
-        # @param ScriptChange: 任务脚本是否发生变化
+        # @param ScriptChange: 模版脚本是否发生变化
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScriptChange: Boolean
+        # @param Content: 代码模版脚本，base64编码返回
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Content: String
 
-        attr_accessor :ProjectId, :CodeTemplateName, :TaskType, :CodeTemplateDesc, :FolderId, :FolderName, :InCharge, :InChargeId, :Ext, :CodeTemplateId, :LastUpdateTime, :UpdateUser, :UpdateUserId, :BrokerIp, :ResourceGroup, :Submit, :ScriptChange
+        attr_accessor :ProjectId, :CodeTemplateName, :TaskType, :CodeTemplateDesc, :FolderId, :FolderName, :InCharge, :InChargeId, :Ext, :CodeTemplateId, :LastUpdateTime, :UpdateUser, :UpdateUserId, :BrokerIp, :ResourceGroup, :Submit, :ScriptChange, :Content
 
-        def initialize(projectid=nil, codetemplatename=nil, tasktype=nil, codetemplatedesc=nil, folderid=nil, foldername=nil, incharge=nil, inchargeid=nil, ext=nil, codetemplateid=nil, lastupdatetime=nil, updateuser=nil, updateuserid=nil, brokerip=nil, resourcegroup=nil, submit=nil, scriptchange=nil)
+        def initialize(projectid=nil, codetemplatename=nil, tasktype=nil, codetemplatedesc=nil, folderid=nil, foldername=nil, incharge=nil, inchargeid=nil, ext=nil, codetemplateid=nil, lastupdatetime=nil, updateuser=nil, updateuserid=nil, brokerip=nil, resourcegroup=nil, submit=nil, scriptchange=nil, content=nil)
           @ProjectId = projectid
           @CodeTemplateName = codetemplatename
           @TaskType = tasktype
@@ -2760,6 +2802,7 @@ module TencentCloud
           @ResourceGroup = resourcegroup
           @Submit = submit
           @ScriptChange = scriptchange
+          @Content = content
         end
 
         def deserialize(params)
@@ -2783,6 +2826,7 @@ module TencentCloud
           @ResourceGroup = params['ResourceGroup']
           @Submit = params['Submit']
           @ScriptChange = params['ScriptChange']
+          @Content = params['Content']
         end
       end
 
@@ -8210,6 +8254,54 @@ module TencentCloud
         def deserialize(params)
           unless params['Data'].nil?
             @Data = DescribeBatchOperateTaskPage.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCodeTemplateDetail请求参数结构体
+      class DescribeCodeTemplateDetailRequest < TencentCloud::Common::AbstractModel
+        # @param ProjectId: 项目Id
+        # @type ProjectId: String
+        # @param CodeTemplateId: 模版Id
+        # @type CodeTemplateId: String
+        # @param NeedReturnScriptContent: 是否需要返回脚本内容，默认false。
+        # @type NeedReturnScriptContent: Boolean
+
+        attr_accessor :ProjectId, :CodeTemplateId, :NeedReturnScriptContent
+
+        def initialize(projectid=nil, codetemplateid=nil, needreturnscriptcontent=nil)
+          @ProjectId = projectid
+          @CodeTemplateId = codetemplateid
+          @NeedReturnScriptContent = needreturnscriptcontent
+        end
+
+        def deserialize(params)
+          @ProjectId = params['ProjectId']
+          @CodeTemplateId = params['CodeTemplateId']
+          @NeedReturnScriptContent = params['NeedReturnScriptContent']
+        end
+      end
+
+      # DescribeCodeTemplateDetail返回参数结构体
+      class DescribeCodeTemplateDetailResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 代码详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: :class:`Tencentcloud::Wedata.v20210820.models.CodeTemplateDetail`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = CodeTemplateDetail.new
             @Data.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
@@ -18751,6 +18843,51 @@ module TencentCloud
         end
       end
 
+      # GetBatchDetailErrorLog请求参数结构体
+      class GetBatchDetailErrorLogRequest < TencentCloud::Common::AbstractModel
+        # @param JobId: 批量操作ID
+        # @type JobId: Integer
+        # @param ResourceId: 资源对象ID
+        # @type ResourceId: String
+        # @param ProjectId: 项目ID
+        # @type ProjectId: String
+
+        attr_accessor :JobId, :ResourceId, :ProjectId
+
+        def initialize(jobid=nil, resourceid=nil, projectid=nil)
+          @JobId = jobid
+          @ResourceId = resourceid
+          @ProjectId = projectid
+        end
+
+        def deserialize(params)
+          @JobId = params['JobId']
+          @ResourceId = params['ResourceId']
+          @ProjectId = params['ProjectId']
+        end
+      end
+
+      # GetBatchDetailErrorLog返回参数结构体
+      class GetBatchDetailErrorLogResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 日志返回
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Data = params['Data']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # GetCosToken请求参数结构体
       class GetCosTokenRequest < TencentCloud::Common::AbstractModel
         # @param ProjectId: 项目id
@@ -22159,6 +22296,116 @@ module TencentCloud
           @Offset = params['Offset']
           @LinkType = params['LinkType']
           @WorkflowId = params['WorkflowId']
+        end
+      end
+
+      # ListBatchDetail请求参数结构体
+      class ListBatchDetailRequest < TencentCloud::Common::AbstractModel
+        # @param JobId: 批量操作历史Id
+        # @type JobId: Integer
+        # @param ProjectId: 项目Id
+        # @type ProjectId: String
+
+        attr_accessor :JobId, :ProjectId
+
+        def initialize(jobid=nil, projectid=nil)
+          @JobId = jobid
+          @ProjectId = projectid
+        end
+
+        def deserialize(params)
+          @JobId = params['JobId']
+          @ProjectId = params['ProjectId']
+        end
+      end
+
+      # ListBatchDetail返回参数结构体
+      class ListBatchDetailResponse < TencentCloud::Common::AbstractModel
+        # @param JobId: 批量操作ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type JobId: Integer
+        # @param RunType: 运行类型：
+        # ASYNC-异步
+        # SYNC-同步
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RunType: String
+        # @param SuccessResource: 成功列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SuccessResource: Array
+        # @param FailResource: 失败列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FailResource: Array
+        # @param JobType: job类型
+        # BATCH_DELETE --批量删除：1、任务名称：ResourceName
+        # BATCH_CREATE_VERSION --批量提交：1、任务名称：ResourceId 2、资源组：GroupId
+        # BATCH_MODIFY_DATASOURCE --批量修改数据源：1、任务名称：ResourceName
+        # BATCH_MODIFY_INCHARGE --批量修改责任人：1、任务名称：ResourceName
+        # BATCH_MODIFY_PARAMETER --批量修改参数：1、任务名称：ResourceName
+        # BATCH_MODIFY_SCHEDULE --批量修改调度计划：1、任务名称：ResourceName
+        # BATCH_MODIFY_GROUPID --批量修改资源组：1、任务名称：ResourceName
+        # BATCH_MODIFY_CONFIG --批量修改高级配置：1、任务名称：ResourceName
+        # BATCH_MODIFY_SCHEDULE_PARAMETER --批量修改调度参数：1、任务名称：ResourceName
+        # FORM_CREATE_VERSION--模版提交
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type JobType: String
+        # @param JobStatus: CREATING("CREATING", "创建中"),
+        # INIT("INIT", "已被创建"),
+        # RUNNING("RUNNING", "运行中"),
+        # SUCCESS("SUCCESS", "成功"),
+        # FAIL("FAIL", "失败"),
+        # PART_SUCCESS("PART_SUCCESS", "部分成功"),
+        # PART_SUCCESS_WITH_ALARM("PART_SUCCESS_WITH_ALARM", "部分成功有告警"),
+        # SUCCESS_WITH_ALARM("SUCCESS_WITH_ALARM", "成功有告警"),
+        # UNKNOWN("UNKNOWN", "未知状态");
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type JobStatus: String
+        # @param TotalResource: 资源总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalResource: Integer
+        # @param NeedApprove: 批量提交是是否需要审批，其他的批量操作默认为null
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NeedApprove: Boolean
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :JobId, :RunType, :SuccessResource, :FailResource, :JobType, :JobStatus, :TotalResource, :NeedApprove, :RequestId
+
+        def initialize(jobid=nil, runtype=nil, successresource=nil, failresource=nil, jobtype=nil, jobstatus=nil, totalresource=nil, needapprove=nil, requestid=nil)
+          @JobId = jobid
+          @RunType = runtype
+          @SuccessResource = successresource
+          @FailResource = failresource
+          @JobType = jobtype
+          @JobStatus = jobstatus
+          @TotalResource = totalresource
+          @NeedApprove = needapprove
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @JobId = params['JobId']
+          @RunType = params['RunType']
+          unless params['SuccessResource'].nil?
+            @SuccessResource = []
+            params['SuccessResource'].each do |i|
+              asyncresourcevo_tmp = AsyncResourceVO.new
+              asyncresourcevo_tmp.deserialize(i)
+              @SuccessResource << asyncresourcevo_tmp
+            end
+          end
+          unless params['FailResource'].nil?
+            @FailResource = []
+            params['FailResource'].each do |i|
+              asyncresourcevo_tmp = AsyncResourceVO.new
+              asyncresourcevo_tmp.deserialize(i)
+              @FailResource << asyncresourcevo_tmp
+            end
+          end
+          @JobType = params['JobType']
+          @JobStatus = params['JobStatus']
+          @TotalResource = params['TotalResource']
+          @NeedApprove = params['NeedApprove']
+          @RequestId = params['RequestId']
         end
       end
 

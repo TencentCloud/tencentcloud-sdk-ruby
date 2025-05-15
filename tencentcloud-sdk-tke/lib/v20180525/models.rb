@@ -861,22 +861,34 @@ module TencentCloud
 
       # 集群高级配置
       class ClusterAdvancedSettings < TencentCloud::Common::AbstractModel
-        # @param IPVS: 是否启用IPVS
-        # @type IPVS: Boolean
         # @param AsEnabled: 是否启用集群节点自动扩缩容(创建集群流程不支持开启此功能)
         # @type AsEnabled: Boolean
+        # @param AuditEnabled: 是否开启审计开关
+        # @type AuditEnabled: Boolean
+        # @param AuditLogTopicId: 审计日志上传到的topic
+        # @type AuditLogTopicId: String
+        # @param AuditLogsetId: 审计日志上传到的logset日志集
+        # @type AuditLogsetId: String
+        # @param BasePodNumber: 自定义模式下的基础pod数量
+        # @type BasePodNumber: Integer
+        # @param CiliumMode: 启用 CiliumMode 的模式，空值表示不启用，“clusterIP” 表示启用 Cilium 支持 ClusterIP
+        # @type CiliumMode: String
         # @param ContainerRuntime: 集群使用的runtime类型，包括"docker"和"containerd"两种类型，默认为"docker"
         # @type ContainerRuntime: String
-        # @param NodeNameType: 集群中节点NodeName类型（包括 hostname,lan-ip两种形式，默认为lan-ip。如果开启了hostname模式，创建节点时需要设置HostName参数，并且InstanceName需要和HostName一致）
-        # @type NodeNameType: String
-        # @param ExtraArgs: 集群自定义参数
-        # @type ExtraArgs: :class:`Tencentcloud::Tke.v20180525.models.ClusterExtraArgs`
-        # @param NetworkType: 集群网络类型（包括GR(全局路由)和VPC-CNI两种模式，默认为GR。
-        # @type NetworkType: String
-        # @param IsNonStaticIpMode: 集群VPC-CNI模式是否为非固定IP，默认: FALSE 固定IP。
-        # @type IsNonStaticIpMode: Boolean
         # @param DeletionProtection: 是否启用集群删除保护
         # @type DeletionProtection: Boolean
+        # @param EnableCustomizedPodCIDR: 是否开节点podCIDR大小的自定义模式
+        # @type EnableCustomizedPodCIDR: Boolean
+        # @param EtcdOverrideConfigs: 元数据拆分存储Etcd配置
+        # @type EtcdOverrideConfigs: Array
+        # @param ExtraArgs: 集群自定义参数
+        # @type ExtraArgs: :class:`Tencentcloud::Tke.v20180525.models.ClusterExtraArgs`
+        # @param IPVS: 是否启用IPVS
+        # @type IPVS: Boolean
+        # @param IsDualStack: 集群VPC-CNI模式下是否是双栈集群，默认false，表明非双栈集群。
+        # @type IsDualStack: Boolean
+        # @param IsNonStaticIpMode: 集群VPC-CNI模式是否为非固定IP，默认: FALSE 固定IP。
+        # @type IsNonStaticIpMode: Boolean
         # @param KubeProxyMode: 集群的网络代理模型，目前tke集群支持的网络代理模式有三种：iptables,ipvs,ipvs-bpf，此参数仅在使用ipvs-bpf模式时使用，三种网络模式的参数设置关系如下：
         # iptables模式：IPVS和KubeProxyMode都不设置
         # ipvs模式: 设置IPVS为true, KubeProxyMode不设置
@@ -885,74 +897,73 @@ module TencentCloud
         # 1. 集群版本必须为1.14及以上；
         # 2. 系统镜像必须是: Tencent Linux 2.4；
         # @type KubeProxyMode: String
-        # @param AuditEnabled: 是否开启审计开关
-        # @type AuditEnabled: Boolean
-        # @param AuditLogsetId: 审计日志上传到的logset日志集
-        # @type AuditLogsetId: String
-        # @param AuditLogTopicId: 审计日志上传到的topic
-        # @type AuditLogTopicId: String
-        # @param VpcCniType: 区分共享网卡多IP模式和独立网卡模式，共享网卡多 IP 模式填写"tke-route-eni"，独立网卡模式填写"tke-direct-eni"，默认为共享网卡模式
-        # @type VpcCniType: String
-        # @param RuntimeVersion: 运行时版本
-        # @type RuntimeVersion: String
-        # @param EnableCustomizedPodCIDR: 是否开节点podCIDR大小的自定义模式
-        # @type EnableCustomizedPodCIDR: Boolean
-        # @param BasePodNumber: 自定义模式下的基础pod数量
-        # @type BasePodNumber: Integer
-        # @param CiliumMode: 启用 CiliumMode 的模式，空值表示不启用，“clusterIP” 表示启用 Cilium 支持 ClusterIP
-        # @type CiliumMode: String
-        # @param IsDualStack: 集群VPC-CNI模式下是否是双栈集群，默认false，表明非双栈集群。
-        # @type IsDualStack: Boolean
+        # @param NetworkType: 集群网络类型（包括GR(全局路由)和VPC-CNI两种模式，默认为GR。
+        # @type NetworkType: String
+        # @param NodeNameType: 集群中节点NodeName类型（包括 hostname,lan-ip两种形式，默认为lan-ip。如果开启了hostname模式，创建节点时需要设置HostName参数，并且InstanceName需要和HostName一致）
+        # @type NodeNameType: String
         # @param QGPUShareEnable: 是否开启QGPU共享
         # @type QGPUShareEnable: Boolean
+        # @param RuntimeVersion: 运行时版本
+        # @type RuntimeVersion: String
+        # @param VpcCniType: 区分共享网卡多IP模式和独立网卡模式，共享网卡多 IP 模式填写"tke-route-eni"，独立网卡模式填写"tke-direct-eni"，默认为共享网卡模式
+        # @type VpcCniType: String
 
-        attr_accessor :IPVS, :AsEnabled, :ContainerRuntime, :NodeNameType, :ExtraArgs, :NetworkType, :IsNonStaticIpMode, :DeletionProtection, :KubeProxyMode, :AuditEnabled, :AuditLogsetId, :AuditLogTopicId, :VpcCniType, :RuntimeVersion, :EnableCustomizedPodCIDR, :BasePodNumber, :CiliumMode, :IsDualStack, :QGPUShareEnable
+        attr_accessor :AsEnabled, :AuditEnabled, :AuditLogTopicId, :AuditLogsetId, :BasePodNumber, :CiliumMode, :ContainerRuntime, :DeletionProtection, :EnableCustomizedPodCIDR, :EtcdOverrideConfigs, :ExtraArgs, :IPVS, :IsDualStack, :IsNonStaticIpMode, :KubeProxyMode, :NetworkType, :NodeNameType, :QGPUShareEnable, :RuntimeVersion, :VpcCniType
 
-        def initialize(ipvs=nil, asenabled=nil, containerruntime=nil, nodenametype=nil, extraargs=nil, networktype=nil, isnonstaticipmode=nil, deletionprotection=nil, kubeproxymode=nil, auditenabled=nil, auditlogsetid=nil, auditlogtopicid=nil, vpccnitype=nil, runtimeversion=nil, enablecustomizedpodcidr=nil, basepodnumber=nil, ciliummode=nil, isdualstack=nil, qgpushareenable=nil)
-          @IPVS = ipvs
+        def initialize(asenabled=nil, auditenabled=nil, auditlogtopicid=nil, auditlogsetid=nil, basepodnumber=nil, ciliummode=nil, containerruntime=nil, deletionprotection=nil, enablecustomizedpodcidr=nil, etcdoverrideconfigs=nil, extraargs=nil, ipvs=nil, isdualstack=nil, isnonstaticipmode=nil, kubeproxymode=nil, networktype=nil, nodenametype=nil, qgpushareenable=nil, runtimeversion=nil, vpccnitype=nil)
           @AsEnabled = asenabled
-          @ContainerRuntime = containerruntime
-          @NodeNameType = nodenametype
-          @ExtraArgs = extraargs
-          @NetworkType = networktype
-          @IsNonStaticIpMode = isnonstaticipmode
-          @DeletionProtection = deletionprotection
-          @KubeProxyMode = kubeproxymode
           @AuditEnabled = auditenabled
-          @AuditLogsetId = auditlogsetid
           @AuditLogTopicId = auditlogtopicid
-          @VpcCniType = vpccnitype
-          @RuntimeVersion = runtimeversion
-          @EnableCustomizedPodCIDR = enablecustomizedpodcidr
+          @AuditLogsetId = auditlogsetid
           @BasePodNumber = basepodnumber
           @CiliumMode = ciliummode
+          @ContainerRuntime = containerruntime
+          @DeletionProtection = deletionprotection
+          @EnableCustomizedPodCIDR = enablecustomizedpodcidr
+          @EtcdOverrideConfigs = etcdoverrideconfigs
+          @ExtraArgs = extraargs
+          @IPVS = ipvs
           @IsDualStack = isdualstack
+          @IsNonStaticIpMode = isnonstaticipmode
+          @KubeProxyMode = kubeproxymode
+          @NetworkType = networktype
+          @NodeNameType = nodenametype
           @QGPUShareEnable = qgpushareenable
+          @RuntimeVersion = runtimeversion
+          @VpcCniType = vpccnitype
         end
 
         def deserialize(params)
-          @IPVS = params['IPVS']
           @AsEnabled = params['AsEnabled']
+          @AuditEnabled = params['AuditEnabled']
+          @AuditLogTopicId = params['AuditLogTopicId']
+          @AuditLogsetId = params['AuditLogsetId']
+          @BasePodNumber = params['BasePodNumber']
+          @CiliumMode = params['CiliumMode']
           @ContainerRuntime = params['ContainerRuntime']
-          @NodeNameType = params['NodeNameType']
+          @DeletionProtection = params['DeletionProtection']
+          @EnableCustomizedPodCIDR = params['EnableCustomizedPodCIDR']
+          unless params['EtcdOverrideConfigs'].nil?
+            @EtcdOverrideConfigs = []
+            params['EtcdOverrideConfigs'].each do |i|
+              etcdoverrideconfig_tmp = EtcdOverrideConfig.new
+              etcdoverrideconfig_tmp.deserialize(i)
+              @EtcdOverrideConfigs << etcdoverrideconfig_tmp
+            end
+          end
           unless params['ExtraArgs'].nil?
             @ExtraArgs = ClusterExtraArgs.new
             @ExtraArgs.deserialize(params['ExtraArgs'])
           end
-          @NetworkType = params['NetworkType']
-          @IsNonStaticIpMode = params['IsNonStaticIpMode']
-          @DeletionProtection = params['DeletionProtection']
-          @KubeProxyMode = params['KubeProxyMode']
-          @AuditEnabled = params['AuditEnabled']
-          @AuditLogsetId = params['AuditLogsetId']
-          @AuditLogTopicId = params['AuditLogTopicId']
-          @VpcCniType = params['VpcCniType']
-          @RuntimeVersion = params['RuntimeVersion']
-          @EnableCustomizedPodCIDR = params['EnableCustomizedPodCIDR']
-          @BasePodNumber = params['BasePodNumber']
-          @CiliumMode = params['CiliumMode']
+          @IPVS = params['IPVS']
           @IsDualStack = params['IsDualStack']
+          @IsNonStaticIpMode = params['IsNonStaticIpMode']
+          @KubeProxyMode = params['KubeProxyMode']
+          @NetworkType = params['NetworkType']
+          @NodeNameType = params['NodeNameType']
           @QGPUShareEnable = params['QGPUShareEnable']
+          @RuntimeVersion = params['RuntimeVersion']
+          @VpcCniType = params['VpcCniType']
         end
       end
 
@@ -1270,6 +1281,9 @@ module TencentCloud
 
       # 集群master自定义参数
       class ClusterExtraArgs < TencentCloud::Common::AbstractModel
+        # @param Etcd: etcd自定义参数，只支持独立集群
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Etcd: Array
         # @param KubeAPIServer: kube-apiserver自定义参数，参数格式为["k1=v1", "k1=v2"]， 例如["max-requests-inflight=500","feature-gates=PodShareProcessNamespace=true,DynamicKubeletConfig=true"]
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type KubeAPIServer: Array
@@ -1279,24 +1293,21 @@ module TencentCloud
         # @param KubeScheduler: kube-scheduler自定义参数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type KubeScheduler: Array
-        # @param Etcd: etcd自定义参数，只支持独立集群
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Etcd: Array
 
-        attr_accessor :KubeAPIServer, :KubeControllerManager, :KubeScheduler, :Etcd
+        attr_accessor :Etcd, :KubeAPIServer, :KubeControllerManager, :KubeScheduler
 
-        def initialize(kubeapiserver=nil, kubecontrollermanager=nil, kubescheduler=nil, etcd=nil)
+        def initialize(etcd=nil, kubeapiserver=nil, kubecontrollermanager=nil, kubescheduler=nil)
+          @Etcd = etcd
           @KubeAPIServer = kubeapiserver
           @KubeControllerManager = kubecontrollermanager
           @KubeScheduler = kubescheduler
-          @Etcd = etcd
         end
 
         def deserialize(params)
+          @Etcd = params['Etcd']
           @KubeAPIServer = params['KubeAPIServer']
           @KubeControllerManager = params['KubeControllerManager']
           @KubeScheduler = params['KubeScheduler']
-          @Etcd = params['Etcd']
         end
       end
 
@@ -11601,6 +11612,22 @@ module TencentCloud
         end
       end
 
+      # 元数据拆分存储Etcd配置
+      class EtcdOverrideConfig < TencentCloud::Common::AbstractModel
+        # @param Resources: k8s资源，支持核心资源，控制类资源，配置及敏感资源
+        # @type Resources: Array
+
+        attr_accessor :Resources
+
+        def initialize(resources=nil)
+          @Resources = resources
+        end
+
+        def deserialize(params)
+          @Resources = params['Resources']
+        end
+      end
+
       # 服务事件
       class Event < TencentCloud::Common::AbstractModel
         # @param PodName: pod名称
@@ -12598,6 +12625,7 @@ module TencentCloud
         # @param CreatedTime: 添加时间
         # @type CreatedTime: String
         # @param LanIP: 节点内网IP
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LanIP: String
         # @param NodePoolId: 资源池ID
         # @type NodePoolId: String
