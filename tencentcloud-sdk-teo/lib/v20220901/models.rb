@@ -15859,9 +15859,9 @@ module TencentCloud
         # <li>ErrorPage：自定义错误页面；</li>
         # <li>ModifyResponseHeader：修改 HTTP 节点响应头；</li>
         # <li>ModifyRequestHeader：修改 HTTP 节点请求头；</li>
-        # <li>ResponseSpeedLimit：单连接下载限速。</li>
-        # <li>SetContentIdentifierParameters：设置内容标识符。</li>
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # <li>ResponseSpeedLimit：单连接下载限速；</li>
+        # <li>SetContentIdentifier：设置内容标识符；</li>
+        # <li>Vary：Vary 特性配置。该功能灰度中，如需使用，请联系腾讯云客服。</li>
         # @type Name: String
         # @param CacheParameters: 节点缓存 TTL 配置参数，当 Name 取值为 Cache 时，该参数必填。
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -15962,14 +15962,17 @@ module TencentCloud
         # @param ResponseSpeedLimitParameters: 单连接下载限速配置参数，当 Name 取值为 ResponseSpeedLimit 时，该参数必填。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResponseSpeedLimitParameters: :class:`Tencentcloud::Teo.v20220901.models.ResponseSpeedLimitParameters`
-        # @param SetContentIdentifierParameters: 内容标识配置参数，当 Name 取值为 HttpResponse 时，该参数必填。
+        # @param SetContentIdentifierParameters: 内容标识配置参数，当 Name 取值为 SetContentIdentifier 时，该参数必填。
 
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SetContentIdentifierParameters: :class:`Tencentcloud::Teo.v20220901.models.SetContentIdentifierParameters`
+        # @param VaryParameters: Vary 特性配置参数，当 Name 取值为 Vary 时，该参数必填。
+        # 该功能灰度中，如需使用，请联系腾讯云客服。
+        # @type VaryParameters: :class:`Tencentcloud::Teo.v20220901.models.VaryParameters`
 
-        attr_accessor :Name, :CacheParameters, :CacheKeyParameters, :CachePrefreshParameters, :AccessURLRedirectParameters, :UpstreamURLRewriteParameters, :QUICParameters, :WebSocketParameters, :AuthenticationParameters, :MaxAgeParameters, :StatusCodeCacheParameters, :OfflineCacheParameters, :SmartRoutingParameters, :RangeOriginPullParameters, :UpstreamHTTP2Parameters, :HostHeaderParameters, :ForceRedirectHTTPSParameters, :CompressionParameters, :HSTSParameters, :ClientIPHeaderParameters, :OCSPStaplingParameters, :HTTP2Parameters, :PostMaxSizeParameters, :ClientIPCountryParameters, :UpstreamFollowRedirectParameters, :UpstreamRequestParameters, :TLSConfigParameters, :ModifyOriginParameters, :HTTPUpstreamTimeoutParameters, :HttpResponseParameters, :ErrorPageParameters, :ModifyResponseHeaderParameters, :ModifyRequestHeaderParameters, :ResponseSpeedLimitParameters, :SetContentIdentifierParameters
+        attr_accessor :Name, :CacheParameters, :CacheKeyParameters, :CachePrefreshParameters, :AccessURLRedirectParameters, :UpstreamURLRewriteParameters, :QUICParameters, :WebSocketParameters, :AuthenticationParameters, :MaxAgeParameters, :StatusCodeCacheParameters, :OfflineCacheParameters, :SmartRoutingParameters, :RangeOriginPullParameters, :UpstreamHTTP2Parameters, :HostHeaderParameters, :ForceRedirectHTTPSParameters, :CompressionParameters, :HSTSParameters, :ClientIPHeaderParameters, :OCSPStaplingParameters, :HTTP2Parameters, :PostMaxSizeParameters, :ClientIPCountryParameters, :UpstreamFollowRedirectParameters, :UpstreamRequestParameters, :TLSConfigParameters, :ModifyOriginParameters, :HTTPUpstreamTimeoutParameters, :HttpResponseParameters, :ErrorPageParameters, :ModifyResponseHeaderParameters, :ModifyRequestHeaderParameters, :ResponseSpeedLimitParameters, :SetContentIdentifierParameters, :VaryParameters
 
-        def initialize(name=nil, cacheparameters=nil, cachekeyparameters=nil, cacheprefreshparameters=nil, accessurlredirectparameters=nil, upstreamurlrewriteparameters=nil, quicparameters=nil, websocketparameters=nil, authenticationparameters=nil, maxageparameters=nil, statuscodecacheparameters=nil, offlinecacheparameters=nil, smartroutingparameters=nil, rangeoriginpullparameters=nil, upstreamhttp2parameters=nil, hostheaderparameters=nil, forceredirecthttpsparameters=nil, compressionparameters=nil, hstsparameters=nil, clientipheaderparameters=nil, ocspstaplingparameters=nil, http2parameters=nil, postmaxsizeparameters=nil, clientipcountryparameters=nil, upstreamfollowredirectparameters=nil, upstreamrequestparameters=nil, tlsconfigparameters=nil, modifyoriginparameters=nil, httpupstreamtimeoutparameters=nil, httpresponseparameters=nil, errorpageparameters=nil, modifyresponseheaderparameters=nil, modifyrequestheaderparameters=nil, responsespeedlimitparameters=nil, setcontentidentifierparameters=nil)
+        def initialize(name=nil, cacheparameters=nil, cachekeyparameters=nil, cacheprefreshparameters=nil, accessurlredirectparameters=nil, upstreamurlrewriteparameters=nil, quicparameters=nil, websocketparameters=nil, authenticationparameters=nil, maxageparameters=nil, statuscodecacheparameters=nil, offlinecacheparameters=nil, smartroutingparameters=nil, rangeoriginpullparameters=nil, upstreamhttp2parameters=nil, hostheaderparameters=nil, forceredirecthttpsparameters=nil, compressionparameters=nil, hstsparameters=nil, clientipheaderparameters=nil, ocspstaplingparameters=nil, http2parameters=nil, postmaxsizeparameters=nil, clientipcountryparameters=nil, upstreamfollowredirectparameters=nil, upstreamrequestparameters=nil, tlsconfigparameters=nil, modifyoriginparameters=nil, httpupstreamtimeoutparameters=nil, httpresponseparameters=nil, errorpageparameters=nil, modifyresponseheaderparameters=nil, modifyrequestheaderparameters=nil, responsespeedlimitparameters=nil, setcontentidentifierparameters=nil, varyparameters=nil)
           @Name = name
           @CacheParameters = cacheparameters
           @CacheKeyParameters = cachekeyparameters
@@ -16005,6 +16008,7 @@ module TencentCloud
           @ModifyRequestHeaderParameters = modifyrequestheaderparameters
           @ResponseSpeedLimitParameters = responsespeedlimitparameters
           @SetContentIdentifierParameters = setcontentidentifierparameters
+          @VaryParameters = varyparameters
         end
 
         def deserialize(params)
@@ -16144,6 +16148,10 @@ module TencentCloud
           unless params['SetContentIdentifierParameters'].nil?
             @SetContentIdentifierParameters = SetContentIdentifierParameters.new
             @SetContentIdentifierParameters.deserialize(params['SetContentIdentifierParameters'])
+          end
+          unless params['VaryParameters'].nil?
+            @VaryParameters = VaryParameters.new
+            @VaryParameters.deserialize(params['VaryParameters'])
           end
         end
       end
@@ -17825,6 +17833,25 @@ module TencentCloud
         def deserialize(params)
           @Name = params['Name']
           @IPv4 = params['IPv4']
+        end
+      end
+
+      # [Vary 特性](https://cloud.tencent.com/document/product/1552/89301) 配置参数。
+      # 该功能灰度中，如需使用，请联系腾讯云客服。
+      class VaryParameters < TencentCloud::Common::AbstractModel
+        # @param Switch: Vary 特性配置开关，取值有：
+        # <li>on：开启；</li>
+        # <li>off：关闭。</li>
+        # @type Switch: String
+
+        attr_accessor :Switch
+
+        def initialize(switch=nil)
+          @Switch = switch
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
         end
       end
 

@@ -5586,7 +5586,7 @@ module TencentCloud
 
       # ListApp请求参数结构体
       class ListAppRequest < TencentCloud::Common::AbstractModel
-        # @param AppType: 应用类型；knowledge_qa-知识问答管理；summary-知识摘要；classifys-知识标签提取
+        # @param AppType: 应用类型；knowledge_qa - 知识问答管理
         # @type AppType: String
         # @param PageSize: 每页数目，整型
         # @type PageSize: Integer

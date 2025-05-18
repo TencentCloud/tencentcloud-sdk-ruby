@@ -47,10 +47,12 @@ module TencentCloud
         # @type NodeIpType: Integer
         # @param SubSyncFlag: 供应商子账户同步标志
         # @type SubSyncFlag: Integer
+        # @param RtxName: 创建者名称
+        # @type RtxName: String
 
-        attr_accessor :BatchTasks, :TaskType, :Nodes, :Interval, :Parameters, :TaskCategory, :Cron, :Tag, :ProbeType, :PluginSource, :ClientNum, :NodeIpType, :SubSyncFlag
+        attr_accessor :BatchTasks, :TaskType, :Nodes, :Interval, :Parameters, :TaskCategory, :Cron, :Tag, :ProbeType, :PluginSource, :ClientNum, :NodeIpType, :SubSyncFlag, :RtxName
 
-        def initialize(batchtasks=nil, tasktype=nil, nodes=nil, interval=nil, parameters=nil, taskcategory=nil, cron=nil, tag=nil, probetype=nil, pluginsource=nil, clientnum=nil, nodeiptype=nil, subsyncflag=nil)
+        def initialize(batchtasks=nil, tasktype=nil, nodes=nil, interval=nil, parameters=nil, taskcategory=nil, cron=nil, tag=nil, probetype=nil, pluginsource=nil, clientnum=nil, nodeiptype=nil, subsyncflag=nil, rtxname=nil)
           @BatchTasks = batchtasks
           @TaskType = tasktype
           @Nodes = nodes
@@ -64,6 +66,7 @@ module TencentCloud
           @ClientNum = clientnum
           @NodeIpType = nodeiptype
           @SubSyncFlag = subsyncflag
+          @RtxName = rtxname
         end
 
         def deserialize(params)
@@ -94,6 +97,7 @@ module TencentCloud
           @ClientNum = params['ClientNum']
           @NodeIpType = params['NodeIpType']
           @SubSyncFlag = params['SubSyncFlag']
+          @RtxName = params['RtxName']
         end
       end
 

@@ -270,7 +270,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（DeleteCfsPGroup）用于删除权限组。
+        # 本接口（DeleteCfsPGroup）用于删除权限组，只有未绑定文件系统的权限组才能够被此接口删除。
 
         # @param request: Request instance for DeleteCfsPGroup.
         # @type request: :class:`Tencentcloud::cfs::V20190719::DeleteCfsPGroupRequest`

@@ -739,11 +739,11 @@ module TencentCloud
         # @type AutoScalingGroupName: String
         # @param InstanceId: 实例ID。可通过登录[控制台](https://console.cloud.tencent.com/cvm/index)或调用接口 [DescribeInstances](https://cloud.tencent.com/document/api/213/15728) ，取返回信息中的 `InstanceId` 获取实例ID。
         # @type InstanceId: String
-        # @param MinSize: 最小实例数，取值范围为0-2000。需满足最大值大于等于期望值，期望值大于等于最小值。
+        # @param MinSize: 最小实例数，取值范围为 [0,2000]，同时需满足 MaxSize >= DesiredCapacity >= MinSize 。
         # @type MinSize: Integer
-        # @param MaxSize: 最大实例数，取值范围为0-2000。需满足最大值大于等于期望值，期望值大于等于最小值。
+        # @param MaxSize: 最大实例数，取值范围为 [0,2000]，同时需满足 MaxSize >= DesiredCapacity >= MinSize 。
         # @type MaxSize: Integer
-        # @param DesiredCapacity: 期望实例数，大小介于最小实例数和最大实例数之间。不传入时默认值等于最小值。
+        # @param DesiredCapacity: 期望实例数，取值范围 [0,2000]，默认值等于当前 MinSize，同时需满足 MaxSize >= DesiredCapacity >= MinSize 。
         # @type DesiredCapacity: Integer
         # @param InheritInstanceTag: 是否继承实例标签，默认值为False
         # @type InheritInstanceTag: Boolean
@@ -795,15 +795,15 @@ module TencentCloud
         # @type AutoScalingGroupName: String
         # @param LaunchConfigurationId: 启动配置ID。可通过登录 [控制台](https://console.cloud.tencent.com/autoscaling/config) 或调用接口 [DescribeLaunchConfigurations](https://cloud.tencent.com/document/api/377/20445) ，取返回信息中的 LaunchConfigurationId 获取启动配置ID。
         # @type LaunchConfigurationId: String
-        # @param MaxSize: 最大实例数，取值范围为0-2000。需满足最大值大于等于期望值，期望值大于等于最小值。
+        # @param MaxSize: 最大实例数，取值范围为 [0,2000]，同时需满足 MaxSize >= DesiredCapacity >= MinSize 。
         # @type MaxSize: Integer
-        # @param MinSize: 最小实例数，取值范围为0-2000。需满足最大值大于等于期望值，期望值大于等于最小值。
+        # @param MinSize: 最小实例数，取值范围为 [0,2000]，同时需满足 MaxSize >= DesiredCapacity >= MinSize 。
         # @type MinSize: Integer
         # @param VpcId: 私有网络ID。有效的VpcId可通过登录[控制台](https://console.cloud.tencent.com/vpc/vpc)查询；也可以调用接口 [DescribeVpc](https://cloud.tencent.com/document/api/215/15778) ，从接口返回中的VpcId字段获取。
         # @type VpcId: String
         # @param DefaultCooldown: 默认冷却时间，单位秒，默认值为300。取值范围为 [0,3600]。
         # @type DefaultCooldown: Integer
-        # @param DesiredCapacity: 期望实例数，取值范围 [0,2000]，默认值为最小值。需满足最大值大于等于期望值，期望值大于等于最小值。
+        # @param DesiredCapacity: 期望实例数，取值范围 [0,2000]，默认值等于当前 MinSize，同时需满足 MaxSize >= DesiredCapacity >= MinSize 。
         # @type DesiredCapacity: Integer
         # @param LoadBalancerIds: 传统负载均衡器ID列表，目前长度上限为20，LoadBalancerIds 和 ForwardLoadBalancers 二者同时最多只能指定一个。可以通过 [DescribeLoadBalancers](https://cloud.tencent.com/document/product/214/30685) 接口获取。
         # @type LoadBalancerIds: Array
@@ -3994,11 +3994,11 @@ module TencentCloud
       class ModifyDesiredCapacityRequest < TencentCloud::Common::AbstractModel
         # @param AutoScalingGroupId: 伸缩组ID。可通过登录 [控制台](https://console.cloud.tencent.com/autoscaling/group) 或调用接口 [DescribeAutoScalingGroups](https://cloud.tencent.com/document/api/377/20438) ，取返回信息中的 AutoScalingGroupId 获取伸缩组ID。
         # @type AutoScalingGroupId: String
-        # @param DesiredCapacity: 期望实例数，取值范围 [0,2000]。需满足最大值大于等于期望值，期望值大于等于最小值。
+        # @param DesiredCapacity: 期望实例数，取值范围 [0,2000]，同时需满足 MaxSize >= DesiredCapacity >= MinSize 。
         # @type DesiredCapacity: Integer
-        # @param MinSize: 最小实例数，取值范围为0-2000。需满足最大值大于等于期望值，期望值大于等于最小值。
+        # @param MinSize: 最小实例数，取值范围为 [0,2000]，同时需满足 MaxSize >= DesiredCapacity >= MinSize 。
         # @type MinSize: Integer
-        # @param MaxSize: 最大实例数，取值范围为0-2000。需满足最大值大于等于期望值，期望值大于等于最小值。
+        # @param MaxSize: 最大实例数，取值范围为 [0,2000]，同时需满足 MaxSize >= DesiredCapacity >= MinSize 。
         # @type MaxSize: Integer
 
         attr_accessor :AutoScalingGroupId, :DesiredCapacity, :MinSize, :MaxSize

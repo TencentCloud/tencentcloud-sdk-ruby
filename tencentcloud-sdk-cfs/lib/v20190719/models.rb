@@ -45,7 +45,7 @@ module TencentCloud
       class AutoSnapshotPolicyInfo < TencentCloud::Common::AbstractModel
         # @param AutoSnapshotPolicyId: 快照策略ID
         # @type AutoSnapshotPolicyId: String
-        # @param PolicyName: 快照策略ID
+        # @param PolicyName: 快照策略名称
         # @type PolicyName: String
         # @param CreationTime: 快照策略创建时间
         # @type CreationTime: String
@@ -59,7 +59,7 @@ module TencentCloud
         # @type IsActivated: Integer
         # @param NextActiveTime: 下一次触发快照时间
         # @type NextActiveTime: String
-        # @param Status: 快照策略状态，1代表快照策略状态正常。这里只有一种状态
+        # @param Status: 快照策略状态，available代表快照策略状态正常。这里只有一种状态
         # @type Status: String
         # @param AppId: 账号ID
         # @type AppId: Integer
@@ -257,9 +257,9 @@ module TencentCloud
 
       # BindAutoSnapshotPolicy请求参数结构体
       class BindAutoSnapshotPolicyRequest < TencentCloud::Common::AbstractModel
-        # @param AutoSnapshotPolicyId: 快照策略ID
+        # @param AutoSnapshotPolicyId: 快照策略ID，通过快照策略列表获取
         # @type AutoSnapshotPolicyId: String
-        # @param FileSystemIds: 文件系统列表
+        # @param FileSystemIds: 文件系统id列表，用“,”分隔，文件系统id通过查询文件系统列表获得
         # @type FileSystemIds: String
 
         attr_accessor :AutoSnapshotPolicyId, :FileSystemIds
@@ -318,7 +318,7 @@ module TencentCloud
 
       # CreateAccessCert请求参数结构体
       class CreateAccessCertRequest < TencentCloud::Common::AbstractModel
-        # @param CertDesc: 证书描述
+        # @param CertDesc: 证书描述，不超过64字符
         # @type CertDesc: String
 
         attr_accessor :CertDesc
@@ -354,17 +354,17 @@ module TencentCloud
 
       # CreateAutoSnapshotPolicy请求参数结构体
       class CreateAutoSnapshotPolicyRequest < TencentCloud::Common::AbstractModel
-        # @param Hour: 快照重复时间点,0-23
+        # @param Hour: 快照重复时间点,0-23，小时
         # @type Hour: String
         # @param PolicyName: 策略名称
         # @type PolicyName: String
-        # @param DayOfWeek: 快照重复日期，星期一到星期日。 1代表星期一、7代表星期天
+        # @param DayOfWeek: 快照重复日期，星期一到星期日。 1代表星期一、7代表星期天，与DayOfMonth，IntervalDays 三者选一
         # @type DayOfWeek: String
-        # @param AliveDays: 快照保留时长，单位天
+        # @param AliveDays: 快照保留时长，单位天，默认永久0
         # @type AliveDays: Integer
-        # @param DayOfMonth: 快照按月重复，每月1-31号，选择一天，每月将在这一天自动创建快照。
+        # @param DayOfMonth: 快照按月重复，每月1-31号，选择一天，每月将在这一天自动创建快照。与DayOfWeek，IntervalDays 三者选一
         # @type DayOfMonth: String
-        # @param IntervalDays: 间隔天数
+        # @param IntervalDays: 间隔天数，与DayOfWeek，DayOfMonth 三者选一
         # @type IntervalDays: Integer
 
         attr_accessor :Hour, :PolicyName, :DayOfWeek, :AliveDays, :DayOfMonth, :IntervalDays
@@ -607,7 +607,7 @@ module TencentCloud
 
       # CreateCfsRule请求参数结构体
       class CreateCfsRuleRequest < TencentCloud::Common::AbstractModel
-        # @param PGroupId: 权限组 ID
+        # @param PGroupId: 权限组 ID，通过创建权限组接口或者创建权限组规则接口获取
         # @type PGroupId: String
         # @param AuthClientIp: 可以填写单个 IP 或者单个网段，例如 10.1.10.11 或者 10.10.1.0/24。默认来访地址为*表示允许所有。同时需要注意，此处需填写 CVM 的内网 IP。
         # @type AuthClientIp: String
@@ -683,9 +683,9 @@ module TencentCloud
 
       # CreateCfsSnapshot请求参数结构体
       class CreateCfsSnapshotRequest < TencentCloud::Common::AbstractModel
-        # @param FileSystemId: 文件系统id
+        # @param FileSystemId: 文件系统 ID，通过查询文件系统接口获取
         # @type FileSystemId: String
-        # @param SnapshotName: 快照名称
+        # @param SnapshotName: 快照名称，不超过64字符
         # @type SnapshotName: String
         # @param ResourceTags: 快照标签
         # @type ResourceTags: Array
@@ -898,7 +898,7 @@ module TencentCloud
 
       # DeleteCfsPGroup请求参数结构体
       class DeleteCfsPGroupRequest < TencentCloud::Common::AbstractModel
-        # @param PGroupId: 权限组 ID
+        # @param PGroupId: 权限组 ID，通过创建权限组接口或者创建权限组规则接口获取
         # @type PGroupId: String
 
         attr_accessor :PGroupId
@@ -938,9 +938,9 @@ module TencentCloud
 
       # DeleteCfsRule请求参数结构体
       class DeleteCfsRuleRequest < TencentCloud::Common::AbstractModel
-        # @param PGroupId: 权限组 ID
+        # @param PGroupId: 权限组 ID，通过创建权限组接口或者创建权限组规则接口获取
         # @type PGroupId: String
-        # @param RuleId: 规则 ID
+        # @param RuleId: 规则 ID，通过查询权限组规则接口获取
         # @type RuleId: String
 
         attr_accessor :PGroupId, :RuleId
@@ -982,9 +982,9 @@ module TencentCloud
 
       # DeleteCfsSnapshot请求参数结构体
       class DeleteCfsSnapshotRequest < TencentCloud::Common::AbstractModel
-        # @param SnapshotId: 文件系统快照id
+        # @param SnapshotId: 文件系统快照id，可通过查询快照列表接口获取
         # @type SnapshotId: String
-        # @param SnapshotIds: 需要删除的文件文件系统快照ID 列表，快照ID，跟ID列表至少填一项
+        # @param SnapshotIds: 需要删除的文件系统快照ID 列表，快照ID，跟ID列表至少填一项
         # @type SnapshotIds: Array
 
         attr_accessor :SnapshotId, :SnapshotIds
@@ -1090,13 +1090,13 @@ module TencentCloud
 
       # DeleteUserQuota请求参数结构体
       class DeleteUserQuotaRequest < TencentCloud::Common::AbstractModel
-        # @param FileSystemId: 文件系统 ID
+        # @param FileSystemId: 文件系统 ID，通过查询文件系统接口获取
         # @type FileSystemId: String
-        # @param UserType: 指定配额类型，包括Uid、Gid、Dir
+        # @param UserType: 指定配额类型，包括Uid（按用户ID限制）、Gid（按用户组ID限制）、Dir（按目录限制）
         # @type UserType: String
-        # @param UserId: UID/GID信息
+        # @param UserId: UID/GID信息，和DirectoryPath参数，两者必须填写一个
         # @type UserId: String
-        # @param DirectoryPath: 设置目录配额的目录的绝对路径
+        # @param DirectoryPath: 设置目录配额的目录的绝对路径，和UserId参数，两者必须填写一个
         # @type DirectoryPath: String
 
         attr_accessor :FileSystemId, :UserType, :UserId, :DirectoryPath
@@ -1301,11 +1301,11 @@ module TencentCloud
 
       # DescribeCfsFileSystemClients请求参数结构体
       class DescribeCfsFileSystemClientsRequest < TencentCloud::Common::AbstractModel
-        # @param FileSystemId: 文件系统 ID。
+        # @param FileSystemId: 文件系统 ID，通过查询文件系统接口获取
         # @type FileSystemId: String
-        # @param Offset: Offset 分页码
+        # @param Offset: Offset 分页码，默认为0
         # @type Offset: Integer
-        # @param Limit: Limit 页面大小
+        # @param Limit: Limit 页面大小，默认为10，最大值为100
         # @type Limit: Integer
 
         attr_accessor :FileSystemId, :Offset, :Limit
@@ -1362,9 +1362,9 @@ module TencentCloud
         # @type VpcId: String
         # @param SubnetId: 子网 ID
         # @type SubnetId: String
-        # @param Offset: Offset 分页码
+        # @param Offset: Offset 分页码,默认0
         # @type Offset: Integer
-        # @param Limit: Limit 页面大小
+        # @param Limit: Limit 页面大小，默认10
         # @type Limit: Integer
         # @param CreationToken: 用户自定义名称
         # @type CreationToken: String
@@ -1461,7 +1461,7 @@ module TencentCloud
 
       # DescribeCfsRules请求参数结构体
       class DescribeCfsRulesRequest < TencentCloud::Common::AbstractModel
-        # @param PGroupId: 权限组 ID
+        # @param PGroupId: 权限组 ID，通过创建权限组接口或者创建权限组规则接口获取
         # @type PGroupId: String
 
         attr_accessor :PGroupId
@@ -1739,7 +1739,7 @@ module TencentCloud
 
       # DescribeMountTargets请求参数结构体
       class DescribeMountTargetsRequest < TencentCloud::Common::AbstractModel
-        # @param FileSystemId: 文件系统 ID
+        # @param FileSystemId: 文件系统 ID，查询文件系统列表可以获得id
         # @type FileSystemId: String
 
         attr_accessor :FileSystemId
@@ -1786,7 +1786,7 @@ module TencentCloud
 
       # DescribeSnapshotOperationLogs请求参数结构体
       class DescribeSnapshotOperationLogsRequest < TencentCloud::Common::AbstractModel
-        # @param SnapshotId: 文件系统快照ID
+        # @param SnapshotId: 文件系统快照ID，通过快照创建接口获得
         # @type SnapshotId: String
         # @param StartTime: 起始时间
         # @type StartTime: String
@@ -2029,7 +2029,7 @@ module TencentCloud
         # @type BandwidthLimit: Float
         # @param AutoSnapshotPolicyId: 文件系统关联的快照策略
         # @type AutoSnapshotPolicyId: String
-        # @param SnapStatus: 文件系统处理快照状态
+        # @param SnapStatus: 文件系统处理快照状态,snapping：快照中，normal：正常状态
         # @type SnapStatus: String
         # @param Capacity: 文件系统容量规格上限
         # 单位:GiB
@@ -2330,9 +2330,11 @@ module TencentCloud
         # @type IpAddress: String
         # @param FSID: 挂载根目录
         # @type FSID: String
-        # @param LifeCycleState: 挂载点状态
+        # @param LifeCycleState: 挂载点状态，包括creating：创建中；available：运行中；
+        # deleting：删除中；
+        # create_failed： 创建失败
         # @type LifeCycleState: String
-        # @param NetworkInterface: 网络类型
+        # @param NetworkInterface: 网络类型，包括VPC,CCN
         # @type NetworkInterface: String
         # @param VpcId: 私有网络 ID
         # @type VpcId: String
@@ -2725,7 +2727,7 @@ module TencentCloud
         # @type Region: String
         # @param SnapshotNumber: 快照总个数
         # @type SnapshotNumber: Integer
-        # @param SnapshotSize: 快照总容量
+        # @param SnapshotSize: 快照总容量，单位是MiB
         # @type SnapshotSize: Integer
 
         attr_accessor :Region, :SnapshotNumber, :SnapshotSize
@@ -2825,9 +2827,9 @@ module TencentCloud
 
       # UnbindAutoSnapshotPolicy请求参数结构体
       class UnbindAutoSnapshotPolicyRequest < TencentCloud::Common::AbstractModel
-        # @param FileSystemIds: 需要解绑的文件系统ID列表，用"," 分割
+        # @param FileSystemIds: 需要解绑的文件系统ID列表，用"," 分割，文件系统id 通创建文件系统接口获得
         # @type FileSystemIds: String
-        # @param AutoSnapshotPolicyId: 解绑的快照ID
+        # @param AutoSnapshotPolicyId: 解绑的快照ID，通过创建快照策略接口获得
         # @type AutoSnapshotPolicyId: String
 
         attr_accessor :FileSystemIds, :AutoSnapshotPolicyId
@@ -2865,21 +2867,21 @@ module TencentCloud
 
       # UpdateAutoSnapshotPolicy请求参数结构体
       class UpdateAutoSnapshotPolicyRequest < TencentCloud::Common::AbstractModel
-        # @param AutoSnapshotPolicyId: 快照策略ID
+        # @param AutoSnapshotPolicyId: 快照策略ID,查询快照策略列表获取
         # @type AutoSnapshotPolicyId: String
-        # @param PolicyName: 快照策略名称
+        # @param PolicyName: 快照策略名称，不超过64个字符
         # @type PolicyName: String
-        # @param DayOfWeek: 快照定期备份，按照星期一到星期日。 1代表星期一，7代表星期日
+        # @param DayOfWeek: 快照定期备份，按照星期一到星期日。 1代表星期一，7代表星期日，与DayOfMonth，IntervalDays 三者选一个
         # @type DayOfWeek: String
         # @param Hour: 快照定期备份在一天的哪一小时
         # @type Hour: String
-        # @param AliveDays: 快照保留日期
+        # @param AliveDays: 快照保留天数
         # @type AliveDays: Integer
         # @param IsActivated: 是否激活定期快照功能；1代表激活，0代表未激活
         # @type IsActivated: Integer
-        # @param DayOfMonth: 定期快照在每月的第几天创建快照，该参数与DayOfWeek互斥
+        # @param DayOfMonth: 定期快照在每月的第几天创建快照，该参数与DayOfWeek,IntervalDays 三者选一
         # @type DayOfMonth: String
-        # @param IntervalDays: 间隔天数定期执行快照，该参数与DayOfWeek,DayOfMonth 互斥
+        # @param IntervalDays: 间隔天数定期执行快照，该参数与DayOfWeek,DayOfMonth 三者选一
         # @type IntervalDays: Integer
 
         attr_accessor :AutoSnapshotPolicyId, :PolicyName, :DayOfWeek, :Hour, :AliveDays, :IsActivated, :DayOfMonth, :IntervalDays
@@ -2977,9 +2979,9 @@ module TencentCloud
 
       # UpdateCfsFileSystemPGroup请求参数结构体
       class UpdateCfsFileSystemPGroupRequest < TencentCloud::Common::AbstractModel
-        # @param PGroupId: 权限组 ID
+        # @param PGroupId: 权限组 ID，通过创建权限组接口或者创建权限组规则接口获取
         # @type PGroupId: String
-        # @param FileSystemId: 文件系统 ID
+        # @param FileSystemId: 文件系统 ID，通过查询文件系统接口获取
         # @type FileSystemId: String
 
         attr_accessor :PGroupId, :FileSystemId
@@ -3057,7 +3059,7 @@ module TencentCloud
 
       # UpdateCfsPGroup请求参数结构体
       class UpdateCfsPGroupRequest < TencentCloud::Common::AbstractModel
-        # @param PGroupId: 权限组 ID
+        # @param PGroupId: 权限组 ID，通过创建权限组接口或者创建权限组规则接口获取
         # @type PGroupId: String
         # @param Name: 权限组名称，1-64个字符且只能为中文，字母，数字，下划线或横线
         # @type Name: String
@@ -3109,21 +3111,21 @@ module TencentCloud
 
       # UpdateCfsRule请求参数结构体
       class UpdateCfsRuleRequest < TencentCloud::Common::AbstractModel
-        # @param PGroupId: 权限组 ID
+        # @param PGroupId: 权限组 ID，通过创建权限组接口或者创建权限组规则接口获取
         # @type PGroupId: String
-        # @param RuleId: 规则 ID
+        # @param RuleId: 规则 ID，通过查询权限组规则接口获取
         # @type RuleId: String
         # @param AuthClientIp: 可以填写单个 IP 或者单个网段，例如 10.1.10.11 或者 10.10.1.0/24。默认来访地址为*表示允许所有。同时需要注意，此处需填写 CVM 的内网 IP。
         # @type AuthClientIp: String
         # @param RWPermission: 读写权限, 值为RO、RW；其中 RO 为只读，RW 为读写，不填默认为只读
         # @type RWPermission: String
-        # @param UserPermission: 用户权限，值为all_squash、no_all_squash、root_squash、no_root_squash。
+        # @param UserPermission: 用户权限，值为all_squash、no_all_squash、root_squash、no_root_squash，默认值为root_squash
         # all_squash：所有访问用户（含 root 用户）都会被映射为匿名用户或用户组。
         # no_all_squash：所有访问用户（含 root 用户）均保持原有的 UID/GID 信息。
         # root_squash：将来访的 root 用户映射为匿名用户或用户组，非 root 用户保持原有的 UID/GID 信息。
         # no_root_squash：与 no_all_squash 效果一致，所有访问用户（含 root 用户）均保持原有的 UID/GID 信息
         # @type UserPermission: String
-        # @param Priority: 规则优先级，参数范围1-100。 其中 1 为最高，100为最低
+        # @param Priority: 规则优先级，参数范围1-100。 其中 1 为最高，100为最低，默认值为100
         # @type Priority: Integer
 
         attr_accessor :PGroupId, :RuleId, :AuthClientIp, :RWPermission, :UserPermission, :Priority
@@ -3189,11 +3191,11 @@ module TencentCloud
 
       # UpdateCfsSnapshotAttribute请求参数结构体
       class UpdateCfsSnapshotAttributeRequest < TencentCloud::Common::AbstractModel
-        # @param SnapshotId: 文件系统快照ID
+        # @param SnapshotId: 文件系统快照ID,查询文件系统快照列表获取
         # @type SnapshotId: String
-        # @param SnapshotName: 文件系统快照名称
+        # @param SnapshotName: 文件系统快照名称，与AliveDays 必须填一个
         # @type SnapshotName: String
-        # @param AliveDays: 文件系统快照保留天数
+        # @param AliveDays: 文件系统快照保留天数，与SnapshotName必须填一个，如果原来是永久保留时间，不允许修改成短期有效期
         # @type AliveDays: Integer
 
         attr_accessor :SnapshotId, :SnapshotName, :AliveDays

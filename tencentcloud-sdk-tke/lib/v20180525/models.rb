@@ -569,7 +569,7 @@ module TencentCloud
         end
       end
 
-      # EKS Instnace CBS volume
+      # EKS Instance CBS volume
       class CbsVolume < TencentCloud::Common::AbstractModel
         # @param CbsDiskId: 腾讯云cbs盘Id
         # @type CbsDiskId: String
@@ -11094,9 +11094,9 @@ module TencentCloud
         # @param EipAddress: 容器实例绑定的Eip地址，注意可能为空
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EipAddress: String
-        # @param EksCiId: EKS Cotainer Instance Id
+        # @param EksCiId: EKS Container Instance Id
         # @type EksCiId: String
-        # @param EksCiName: EKS Cotainer Instance Name
+        # @param EksCiName: EKS Container Instance Name
         # @type EksCiName: String
         # @param EksCiVolume: 数据卷信息
         # @type EksCiVolume: :class:`Tencentcloud::Tke.v20180525.models.EksCiVolume`
