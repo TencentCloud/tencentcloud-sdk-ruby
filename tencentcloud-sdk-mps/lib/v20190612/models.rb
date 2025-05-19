@@ -4945,6 +4945,127 @@ module TencentCloud
         end
       end
 
+      # BatchProcessMedia请求参数结构体
+      class BatchProcessMediaRequest < TencentCloud::Common::AbstractModel
+        # @param InputInfo: 媒体处理的文件输入信息。
+        # @type InputInfo: Array
+        # @param OutputStorage: 媒体处理输出文件的目标存储。不填则继承 InputInfo 中的存储位置。
+        # 注意：当InputInfo.Type为URL时，该参数是必填项
+        # @type OutputStorage: :class:`Tencentcloud::Mps.v20190612.models.TaskOutputStorage`
+        # @param OutputDir: 媒体处理生成的文件输出的目标目录，必选以 / 开头和结尾，如`/movie/201907/`。
+        # 如果不填，表示与 InputInfo 中文件所在的目录一致。
+        # @type OutputDir: String
+        # @param SmartSubtitlesTask: 智能字幕
+        # @type SmartSubtitlesTask: :class:`Tencentcloud::Mps.v20190612.models.SmartSubtitlesTaskInput`
+        # @param TaskNotifyConfig: 任务的事件通知信息，不填代表不获取事件通知。
+        # @type TaskNotifyConfig: :class:`Tencentcloud::Mps.v20190612.models.TaskNotifyConfig`
+        # @param TasksPriority: 任务流的优先级，数值越大优先级越高，取值范围是-10到 10，不填代表0。
+        # @type TasksPriority: Integer
+        # @param SessionContext: 来源上下文，用于透传用户请求信息，任务流状态变更回调将返回该字段值，最长 1000 个字符。
+        # @type SessionContext: String
+        # @param ResourceId: 资源ID，需要保证对应资源是开启状态。默认为帐号主资源ID。
+        # @type ResourceId: String
+        # @param SkipMateData: 是否跳过元信息获取，可选值：
+        # 0：表示不跳过
+        # 1：表示跳过
+        # 默认值：0
+        # @type SkipMateData: Integer
+
+        attr_accessor :InputInfo, :OutputStorage, :OutputDir, :SmartSubtitlesTask, :TaskNotifyConfig, :TasksPriority, :SessionContext, :ResourceId, :SkipMateData
+
+        def initialize(inputinfo=nil, outputstorage=nil, outputdir=nil, smartsubtitlestask=nil, tasknotifyconfig=nil, taskspriority=nil, sessioncontext=nil, resourceid=nil, skipmatedata=nil)
+          @InputInfo = inputinfo
+          @OutputStorage = outputstorage
+          @OutputDir = outputdir
+          @SmartSubtitlesTask = smartsubtitlestask
+          @TaskNotifyConfig = tasknotifyconfig
+          @TasksPriority = taskspriority
+          @SessionContext = sessioncontext
+          @ResourceId = resourceid
+          @SkipMateData = skipmatedata
+        end
+
+        def deserialize(params)
+          unless params['InputInfo'].nil?
+            @InputInfo = []
+            params['InputInfo'].each do |i|
+              mediainputinfo_tmp = MediaInputInfo.new
+              mediainputinfo_tmp.deserialize(i)
+              @InputInfo << mediainputinfo_tmp
+            end
+          end
+          unless params['OutputStorage'].nil?
+            @OutputStorage = TaskOutputStorage.new
+            @OutputStorage.deserialize(params['OutputStorage'])
+          end
+          @OutputDir = params['OutputDir']
+          unless params['SmartSubtitlesTask'].nil?
+            @SmartSubtitlesTask = SmartSubtitlesTaskInput.new
+            @SmartSubtitlesTask.deserialize(params['SmartSubtitlesTask'])
+          end
+          unless params['TaskNotifyConfig'].nil?
+            @TaskNotifyConfig = TaskNotifyConfig.new
+            @TaskNotifyConfig.deserialize(params['TaskNotifyConfig'])
+          end
+          @TasksPriority = params['TasksPriority']
+          @SessionContext = params['SessionContext']
+          @ResourceId = params['ResourceId']
+          @SkipMateData = params['SkipMateData']
+        end
+      end
+
+      # BatchProcessMedia返回参数结构体
+      class BatchProcessMediaResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务 ID。
+        # @type TaskId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 智能字幕结果。
+      class BatchSmartSubtitlesResult < TencentCloud::Common::AbstractModel
+        # @param Input: 智能字幕任务输入信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Input: :class:`Tencentcloud::Mps.v20190612.models.SmartSubtitleTaskResultInput`
+        # @param Outputs: 智能字幕输出信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Outputs: Array
+
+        attr_accessor :Input, :Outputs
+
+        def initialize(input=nil, outputs=nil)
+          @Input = input
+          @Outputs = outputs
+        end
+
+        def deserialize(params)
+          unless params['Input'].nil?
+            @Input = SmartSubtitleTaskResultInput.new
+            @Input.deserialize(params['Input'])
+          end
+          unless params['Outputs'].nil?
+            @Outputs = []
+            params['Outputs'].each do |i|
+              smartsubtitletaskbatchoutput_tmp = SmartSubtitleTaskBatchOutput.new
+              smartsubtitletaskbatchoutput_tmp.deserialize(i)
+              @Outputs << smartsubtitletaskbatchoutput_tmp
+            end
+          end
+        end
+      end
+
       # BatchStartStreamLinkFlow请求参数结构体
       class BatchStartStreamLinkFlowRequest < TencentCloud::Common::AbstractModel
         # @param EventId: EventId。
@@ -5014,6 +5135,50 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 批量任务子任务结果
+      class BatchSubTaskResult < TencentCloud::Common::AbstractModel
+        # @param InputInfos: 批量任务输入信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InputInfos: Array
+        # @param Metadatas: 原始视频的元信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Metadatas: Array
+        # @param SmartSubtitlesTaskResult: 智能字幕任务的执行结果
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SmartSubtitlesTaskResult: :class:`Tencentcloud::Mps.v20190612.models.BatchSmartSubtitlesResult`
+
+        attr_accessor :InputInfos, :Metadatas, :SmartSubtitlesTaskResult
+
+        def initialize(inputinfos=nil, metadatas=nil, smartsubtitlestaskresult=nil)
+          @InputInfos = inputinfos
+          @Metadatas = metadatas
+          @SmartSubtitlesTaskResult = smartsubtitlestaskresult
+        end
+
+        def deserialize(params)
+          unless params['InputInfos'].nil?
+            @InputInfos = []
+            params['InputInfos'].each do |i|
+              mediainputinfo_tmp = MediaInputInfo.new
+              mediainputinfo_tmp.deserialize(i)
+              @InputInfos << mediainputinfo_tmp
+            end
+          end
+          unless params['Metadatas'].nil?
+            @Metadatas = []
+            params['Metadatas'].each do |i|
+              mediametadata_tmp = MediaMetaData.new
+              mediametadata_tmp.deserialize(i)
+              @Metadatas << mediametadata_tmp
+            end
+          end
+          unless params['SmartSubtitlesTaskResult'].nil?
+            @SmartSubtitlesTaskResult = BatchSmartSubtitlesResult.new
+            @SmartSubtitlesTaskResult.deserialize(params['SmartSubtitlesTaskResult'])
+          end
         end
       end
 
@@ -9678,6 +9843,98 @@ module TencentCloud
         end
       end
 
+      # DescribeBatchTaskDetail请求参数结构体
+      class DescribeBatchTaskDetailRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: 视频处理任务的任务 ID。
+        # @type TaskId: String
+
+        attr_accessor :TaskId
+
+        def initialize(taskid=nil)
+          @TaskId = taskid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+        end
+      end
+
+      # DescribeBatchTaskDetail返回参数结构体
+      class DescribeBatchTaskDetailResponse < TencentCloud::Common::AbstractModel
+        # @param TaskType: 任务类型，目前取值有：
+        # <li>BatchTask：视频工作流批量处理任务。</li>
+        # @type TaskType: String
+        # @param Status: 任务状态，取值：
+        # <li>WAITING：等待中；</li>
+        # <li>PROCESSING：处理中；</li>
+        # <li>FINISH：已完成。</li>
+        # @type Status: String
+        # @param CreateTime: 任务的创建时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/862/37710#52)。
+        # @type CreateTime: String
+        # @param BeginProcessTime: 任务开始执行的时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/862/37710#52)。
+        # @type BeginProcessTime: String
+        # @param FinishTime: 任务执行完毕的时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/862/37710#52)。
+        # @type FinishTime: String
+        # @param TaskId: 媒体处理任务 ID。
+        # @type TaskId: String
+        # @param BatchTaskResult: 视频处理任务信息，仅当 TaskType 为 BatchTask，该字段有值。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BatchTaskResult: :class:`Tencentcloud::Mps.v20190612.models.BatchSubTaskResult`
+        # @param TaskNotifyConfig: 任务的事件通知信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskNotifyConfig: :class:`Tencentcloud::Mps.v20190612.models.TaskNotifyConfig`
+        # @param TasksPriority: 任务流的优先级，取值范围为 [-10, 10]。
+        # @type TasksPriority: Integer
+        # @param SessionId: 用于去重的识别码，如果七天内曾有过相同的识别码的请求，则本次的请求会返回错误。最长50个字符，不带或者带空字符串表示不做去重。
+        # @type SessionId: String
+        # @param SessionContext: 来源上下文，用于透传用户请求信息，任务流状态变更回调将返回该字段值，最长1000个字符。
+        # @type SessionContext: String
+        # @param ExtInfo: 扩展信息字段，仅用于特定场景。
+        # @type ExtInfo: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskType, :Status, :CreateTime, :BeginProcessTime, :FinishTime, :TaskId, :BatchTaskResult, :TaskNotifyConfig, :TasksPriority, :SessionId, :SessionContext, :ExtInfo, :RequestId
+
+        def initialize(tasktype=nil, status=nil, createtime=nil, beginprocesstime=nil, finishtime=nil, taskid=nil, batchtaskresult=nil, tasknotifyconfig=nil, taskspriority=nil, sessionid=nil, sessioncontext=nil, extinfo=nil, requestid=nil)
+          @TaskType = tasktype
+          @Status = status
+          @CreateTime = createtime
+          @BeginProcessTime = beginprocesstime
+          @FinishTime = finishtime
+          @TaskId = taskid
+          @BatchTaskResult = batchtaskresult
+          @TaskNotifyConfig = tasknotifyconfig
+          @TasksPriority = taskspriority
+          @SessionId = sessionid
+          @SessionContext = sessioncontext
+          @ExtInfo = extinfo
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskType = params['TaskType']
+          @Status = params['Status']
+          @CreateTime = params['CreateTime']
+          @BeginProcessTime = params['BeginProcessTime']
+          @FinishTime = params['FinishTime']
+          @TaskId = params['TaskId']
+          unless params['BatchTaskResult'].nil?
+            @BatchTaskResult = BatchSubTaskResult.new
+            @BatchTaskResult.deserialize(params['BatchTaskResult'])
+          end
+          unless params['TaskNotifyConfig'].nil?
+            @TaskNotifyConfig = TaskNotifyConfig.new
+            @TaskNotifyConfig.deserialize(params['TaskNotifyConfig'])
+          end
+          @TasksPriority = params['TasksPriority']
+          @SessionId = params['SessionId']
+          @SessionContext = params['SessionContext']
+          @ExtInfo = params['ExtInfo']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeContentReviewTemplates请求参数结构体
       class DescribeContentReviewTemplatesRequest < TencentCloud::Common::AbstractModel
         # @param Definitions: 智能审核模板唯一标识过滤条件，数组长度限制：50。
@@ -9997,6 +10254,63 @@ module TencentCloud
               @ImageSpriteTemplateSet << imagespritetemplate_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeImageTaskDetail请求参数结构体
+      class DescribeImageTaskDetailRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: 图片处理任务的任务 ID。
+        # @type TaskId: String
+
+        attr_accessor :TaskId
+
+        def initialize(taskid=nil)
+          @TaskId = taskid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+        end
+      end
+
+      # DescribeImageTaskDetail返回参数结构体
+      class DescribeImageTaskDetailResponse < TencentCloud::Common::AbstractModel
+        # @param TaskType: 任务类型，目前取值有：
+        # <li>WorkflowTask：工作流处理任务。</li>
+
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskType: String
+        # @param Status: 任务状态，取值：
+        # <li>WAITING：等待中；</li>
+        # <li>PROCESSING：处理中；</li>
+        # <li>FINISH：已完成。</li>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: String
+        # @param CreateTime: 任务的创建时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/862/37710#52)。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param FinishTime: 任务执行完毕的时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/862/37710#52)。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FinishTime: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskType, :Status, :CreateTime, :FinishTime, :RequestId
+
+        def initialize(tasktype=nil, status=nil, createtime=nil, finishtime=nil, requestid=nil)
+          @TaskType = tasktype
+          @Status = status
+          @CreateTime = createtime
+          @FinishTime = finishtime
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskType = params['TaskType']
+          @Status = params['Status']
+          @CreateTime = params['CreateTime']
+          @FinishTime = params['FinishTime']
           @RequestId = params['RequestId']
         end
       end
@@ -22397,6 +22711,50 @@ module TencentCloud
               wordresult_tmp.deserialize(i)
               @Wordlist << wordresult_tmp
             end
+          end
+        end
+      end
+
+      # 智能字幕输出信息
+      class SmartSubtitleTaskBatchOutput < TencentCloud::Common::AbstractModel
+        # @param Progress: 任务进度。
+        # @type Progress: Integer
+        # @param Status: 任务状态，有 PROCESSING，SUCCESS 和 FAIL 三种。
+        # @type Status: String
+        # @param ErrCodeExt: 错误码，空字符串表示成功，其他值表示失败，取值请参考 [媒体处理类错误码](https://cloud.tencent.com/document/product/862/50369#.E8.A7.86.E9.A2.91.E5.A4.84.E7.90.86.E7.B1.BB.E9.94.99.E8.AF.AF.E7.A0.81) 列表。
+        # @type ErrCodeExt: String
+        # @param Message: 错误信息。
+        # @type Message: String
+        # @param TransTextTask: 翻译任务输出信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TransTextTask: :class:`Tencentcloud::Mps.v20190612.models.SmartSubtitleTaskTransTextResultOutput`
+        # @param AsrFullTextTask: 语音全文识别任务输出信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AsrFullTextTask: :class:`Tencentcloud::Mps.v20190612.models.SmartSubtitleTaskAsrFullTextResultOutput`
+
+        attr_accessor :Progress, :Status, :ErrCodeExt, :Message, :TransTextTask, :AsrFullTextTask
+
+        def initialize(progress=nil, status=nil, errcodeext=nil, message=nil, transtexttask=nil, asrfulltexttask=nil)
+          @Progress = progress
+          @Status = status
+          @ErrCodeExt = errcodeext
+          @Message = message
+          @TransTextTask = transtexttask
+          @AsrFullTextTask = asrfulltexttask
+        end
+
+        def deserialize(params)
+          @Progress = params['Progress']
+          @Status = params['Status']
+          @ErrCodeExt = params['ErrCodeExt']
+          @Message = params['Message']
+          unless params['TransTextTask'].nil?
+            @TransTextTask = SmartSubtitleTaskTransTextResultOutput.new
+            @TransTextTask.deserialize(params['TransTextTask'])
+          end
+          unless params['AsrFullTextTask'].nil?
+            @AsrFullTextTask = SmartSubtitleTaskAsrFullTextResultOutput.new
+            @AsrFullTextTask.deserialize(params['AsrFullTextTask'])
           end
         end
       end

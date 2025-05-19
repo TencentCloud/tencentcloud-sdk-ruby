@@ -53,6 +53,31 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 对 URL视频链接批量发起处理任务，功能包括：
+        # 智能字幕（语音全文、语音热词、语音翻译）
+
+        # @param request: Request instance for BatchProcessMedia.
+        # @type request: :class:`Tencentcloud::mps::V20190612::BatchProcessMediaRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::BatchProcessMediaResponse`
+        def BatchProcessMedia(request)
+          body = send_request('BatchProcessMedia', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = BatchProcessMediaResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 批量启动媒体传输流。
 
         # @param request: Request instance for BatchStartStreamLinkFlow.
@@ -1398,6 +1423,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 通过任务 ID 查询任务的执行状态和结果的详细信息（最多可以查询7天之内提交的任务）。
+
+        # @param request: Request instance for DescribeBatchTaskDetail.
+        # @type request: :class:`Tencentcloud::mps::V20190612::DescribeBatchTaskDetailRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::DescribeBatchTaskDetailResponse`
+        def DescribeBatchTaskDetail(request)
+          body = send_request('DescribeBatchTaskDetail', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeBatchTaskDetailResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 根据智能审核模板唯一标识，获取智能审核模板详情列表。返回结果包含符合条件的所有用户自定义模板及系统预置智能审核模板。
 
         # @param request: Request instance for DescribeContentReviewTemplates.
@@ -1456,6 +1505,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeImageSpriteTemplatesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 通过任务 ID 查询任务的执行状态和结果的详细信息（最多可以查询7天之内提交的任务）。
+
+        # @param request: Request instance for DescribeImageTaskDetail.
+        # @type request: :class:`Tencentcloud::mps::V20190612::DescribeImageTaskDetailRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::DescribeImageTaskDetailResponse`
+        def DescribeImageTaskDetail(request)
+          body = send_request('DescribeImageTaskDetail', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeImageTaskDetailResponse.new
             model.deserialize(response['Response'])
             model
           else
