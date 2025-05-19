@@ -2744,18 +2744,21 @@ module TencentCloud
         # NeedExtraDetail为true时返回
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FlowExtraDetail: Array
+        # @param FlowInfo: 流程描述
+        # @type FlowInfo: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :StageDetails, :FlowDesc, :FlowName, :FlowTotalProgress, :FlowTotalStatus, :FlowExtraDetail, :RequestId
+        attr_accessor :StageDetails, :FlowDesc, :FlowName, :FlowTotalProgress, :FlowTotalStatus, :FlowExtraDetail, :FlowInfo, :RequestId
 
-        def initialize(stagedetails=nil, flowdesc=nil, flowname=nil, flowtotalprogress=nil, flowtotalstatus=nil, flowextradetail=nil, requestid=nil)
+        def initialize(stagedetails=nil, flowdesc=nil, flowname=nil, flowtotalprogress=nil, flowtotalstatus=nil, flowextradetail=nil, flowinfo=nil, requestid=nil)
           @StageDetails = stagedetails
           @FlowDesc = flowdesc
           @FlowName = flowname
           @FlowTotalProgress = flowtotalprogress
           @FlowTotalStatus = flowtotalstatus
           @FlowExtraDetail = flowextradetail
+          @FlowInfo = flowinfo
           @RequestId = requestid
         end
 
@@ -2787,6 +2790,7 @@ module TencentCloud
               @FlowExtraDetail << flowextradetail_tmp
             end
           end
+          @FlowInfo = params['FlowInfo']
           @RequestId = params['RequestId']
         end
       end

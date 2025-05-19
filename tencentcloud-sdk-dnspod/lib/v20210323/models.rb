@@ -192,7 +192,6 @@ module TencentCloud
         # @param Area: 解析线路
         # @type Area: String
         # @param Remark: 记录备注
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Remark: String
         # @param TTL: TTL(秒)
         # @type TTL: Integer

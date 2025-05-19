@@ -1275,7 +1275,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口(DescribeBackupConfig)用于查询数据库备份配置信息。
+        # 本接口（DescribeBackupConfig）用于查询数据库备份配置信息。
 
         # @param request: Request instance for DescribeBackupConfig.
         # @type request: :class:`Tencentcloud::cdb::V20170320::DescribeBackupConfigRequest`

@@ -19,13 +19,13 @@ module TencentCloud
     module V20201028
       # 私有域解析账号Vpc信息
       class AccountVpcInfo < TencentCloud::Common::AbstractModel
-        # @param UniqVpcId: VpcId： vpc-xadsafsdasd
+        # @param UniqVpcId: VpcId
         # @type UniqVpcId: String
-        # @param Region: Vpc所属地区: ap-guangzhou, ap-shanghai
+        # @param Region: Vpc所属地区
         # @type Region: String
-        # @param Uin: Vpc所属账号: 123456789
+        # @param Uin: Vpc所属账号
         # @type Uin: String
-        # @param VpcName: vpc资源名称：testname
+        # @param VpcName: vpc资源名称
         # @type VpcName: String
 
         attr_accessor :UniqVpcId, :Region, :Uin, :VpcName
@@ -364,8 +364,8 @@ module TencentCloud
 
         attr_accessor :Domain, :TagSet, :VpcSet, :Remark, :DnsForwardStatus, :Vpcs, :AccountVpcSet, :CnameSpeedupStatus
         extend Gem::Deprecate
-        deprecate :Vpcs, :none, 2025, 4
-        deprecate :Vpcs=, :none, 2025, 4
+        deprecate :Vpcs, :none, 2025, 5
+        deprecate :Vpcs=, :none, 2025, 5
 
         def initialize(domain=nil, tagset=nil, vpcset=nil, remark=nil, dnsforwardstatus=nil, vpcs=nil, accountvpcset=nil, cnamespeedupstatus=nil)
           @Domain = domain

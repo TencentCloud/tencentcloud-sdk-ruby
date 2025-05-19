@@ -11901,66 +11901,6 @@ module TencentCloud
         end
       end
 
-      # ForwardApplicationRequestV3请求参数结构体
-      class ForwardApplicationRequestV3Request < TencentCloud::Common::AbstractModel
-        # @param Method: 请求集群addon的访问
-        # @type Method: String
-        # @param Path: 请求集群addon的路径
-        # @type Path: String
-        # @param Accept: 请求集群addon后允许接收的数据格式
-        # @type Accept: String
-        # @param ContentType: 请求集群addon的数据格式
-        # @type ContentType: String
-        # @param RequestBody: 请求集群addon的数据
-        # @type RequestBody: String
-        # @param ClusterName: 集群名称
-        # @type ClusterName: String
-        # @param EncodedBody: 是否编码请求内容
-        # @type EncodedBody: String
-
-        attr_accessor :Method, :Path, :Accept, :ContentType, :RequestBody, :ClusterName, :EncodedBody
-
-        def initialize(method=nil, path=nil, accept=nil, contenttype=nil, requestbody=nil, clustername=nil, encodedbody=nil)
-          @Method = method
-          @Path = path
-          @Accept = accept
-          @ContentType = contenttype
-          @RequestBody = requestbody
-          @ClusterName = clustername
-          @EncodedBody = encodedbody
-        end
-
-        def deserialize(params)
-          @Method = params['Method']
-          @Path = params['Path']
-          @Accept = params['Accept']
-          @ContentType = params['ContentType']
-          @RequestBody = params['RequestBody']
-          @ClusterName = params['ClusterName']
-          @EncodedBody = params['EncodedBody']
-        end
-      end
-
-      # ForwardApplicationRequestV3返回参数结构体
-      class ForwardApplicationRequestV3Response < TencentCloud::Common::AbstractModel
-        # @param ResponseBody: 请求集群addon后返回的数据
-        # @type ResponseBody: String
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :ResponseBody, :RequestId
-
-        def initialize(responsebody=nil, requestid=nil)
-          @ResponseBody = responsebody
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @ResponseBody = params['ResponseBody']
-          @RequestId = params['RequestId']
-        end
-      end
-
       # ForwardTKEEdgeApplicationRequestV3请求参数结构体
       class ForwardTKEEdgeApplicationRequestV3Request < TencentCloud::Common::AbstractModel
         # @param Method: 请求集群addon的访问
@@ -15042,24 +14982,24 @@ module TencentCloud
 
       # 策略实例信息
       class OpenConstraintInfo < TencentCloud::Common::AbstractModel
-        # @param Name: 策略实例名称
-        # @type Name: String
         # @param EventNums: 策略实例关联事件数
         # @type EventNums: Integer
+        # @param Name: 策略实例名称
+        # @type Name: String
         # @param YamlDetail: 实例yaml详情base64编码
         # @type YamlDetail: String
 
-        attr_accessor :Name, :EventNums, :YamlDetail
+        attr_accessor :EventNums, :Name, :YamlDetail
 
-        def initialize(name=nil, eventnums=nil, yamldetail=nil)
-          @Name = name
+        def initialize(eventnums=nil, name=nil, yamldetail=nil)
           @EventNums = eventnums
+          @Name = name
           @YamlDetail = yamldetail
         end
 
         def deserialize(params)
-          @Name = params['Name']
           @EventNums = params['EventNums']
+          @Name = params['Name']
           @YamlDetail = params['YamlDetail']
         end
       end

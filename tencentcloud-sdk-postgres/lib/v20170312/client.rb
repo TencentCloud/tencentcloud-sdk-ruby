@@ -101,32 +101,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 该产品形态需要下线，已完成客户实例全部下线、后端服务下线等
-
-        # 【接口下线中，请勿使用】本接口（CloseServerlessDBExtranetAccess）用于关闭serverlessDB实例公网地址
-
-        # @param request: Request instance for CloseServerlessDBExtranetAccess.
-        # @type request: :class:`Tencentcloud::postgres::V20170312::CloseServerlessDBExtranetAccessRequest`
-        # @rtype: :class:`Tencentcloud::postgres::V20170312::CloseServerlessDBExtranetAccessResponse`
-        def CloseServerlessDBExtranetAccess(request)
-          body = send_request('CloseServerlessDBExtranetAccess', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = CloseServerlessDBExtranetAccessResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 此接口用于创建数据账号，返回的Oid为账号唯一标识。与数据库系统表pg_roles中记录的oid一致。
 
         # @param request: Request instance for CreateAccount.
@@ -599,32 +573,6 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteReadOnlyGroupNetworkAccessResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 该产品形态需要下线，已完成客户实例全部下线、后端服务下线等
-
-        # 【接口下线中，请勿使用】本接口 (DeleteServerlessDBInstance) 用于删除一个ServerlessDB实例。
-
-        # @param request: Request instance for DeleteServerlessDBInstance.
-        # @type request: :class:`Tencentcloud::postgres::V20170312::DeleteServerlessDBInstanceRequest`
-        # @rtype: :class:`Tencentcloud::postgres::V20170312::DeleteServerlessDBInstanceResponse`
-        def DeleteServerlessDBInstance(request)
-          body = send_request('DeleteServerlessDBInstance', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DeleteServerlessDBInstanceResponse.new
             model.deserialize(response['Response'])
             model
           else

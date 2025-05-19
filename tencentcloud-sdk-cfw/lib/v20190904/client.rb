@@ -1523,7 +1523,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 防火墙开关列表，已废弃，请使用DescribeFwEdgeIps
+        # 防火墙开关列表，请换用DescribeFwEdgeIps
 
         # @param request: Request instance for DescribeSwitchLists.
         # @type request: :class:`Tencentcloud::cfw::V20190904::DescribeSwitchListsRequest`

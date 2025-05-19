@@ -17,6 +17,49 @@
 module TencentCloud
   module Lke
     module V20231130
+      # 智能通话
+      class AICallConfig < TencentCloud::Common::AbstractModel
+        # @param EnableVoiceInteract: 启用语音互动功能
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnableVoiceInteract: Boolean
+        # @param EnableVoiceCall: 启用语音通话
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnableVoiceCall: Boolean
+        # @param EnableDigitalHuman: 启用数智人
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnableDigitalHuman: Boolean
+        # @param Voice: 音色配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Voice: :class:`Tencentcloud::Lke.v20231130.models.VoiceConfig`
+        # @param DigitalHuman: 数智人配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DigitalHuman: :class:`Tencentcloud::Lke.v20231130.models.DigitalHumanConfig`
+
+        attr_accessor :EnableVoiceInteract, :EnableVoiceCall, :EnableDigitalHuman, :Voice, :DigitalHuman
+
+        def initialize(enablevoiceinteract=nil, enablevoicecall=nil, enabledigitalhuman=nil, voice=nil, digitalhuman=nil)
+          @EnableVoiceInteract = enablevoiceinteract
+          @EnableVoiceCall = enablevoicecall
+          @EnableDigitalHuman = enabledigitalhuman
+          @Voice = voice
+          @DigitalHuman = digitalhuman
+        end
+
+        def deserialize(params)
+          @EnableVoiceInteract = params['EnableVoiceInteract']
+          @EnableVoiceCall = params['EnableVoiceCall']
+          @EnableDigitalHuman = params['EnableDigitalHuman']
+          unless params['Voice'].nil?
+            @Voice = VoiceConfig.new
+            @Voice.deserialize(params['Voice'])
+          end
+          unless params['DigitalHuman'].nil?
+            @DigitalHuman = DigitalHumanConfig.new
+            @DigitalHuman.deserialize(params['DigitalHuman'])
+          end
+        end
+      end
+
       # Agent调试信息
       class AgentDebugInfo < TencentCloud::Common::AbstractModel
         # @param Input: 工具、大模型的输入信息，json
@@ -80,10 +123,13 @@ module TencentCloud
         # @param TargetAgentName: 挂号agent
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TargetAgentName: String
+        # @param AgentIcon: Agent的图标
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AgentIcon: String
 
-        attr_accessor :Index, :Name, :Title, :Status, :Icon, :Debugging, :Switch, :WorkflowName, :Elapsed, :NodeName, :ReplyIndex, :SourceAgentName, :TargetAgentName
+        attr_accessor :Index, :Name, :Title, :Status, :Icon, :Debugging, :Switch, :WorkflowName, :Elapsed, :NodeName, :ReplyIndex, :SourceAgentName, :TargetAgentName, :AgentIcon
 
-        def initialize(index=nil, name=nil, title=nil, status=nil, icon=nil, debugging=nil, switch=nil, workflowname=nil, elapsed=nil, nodename=nil, replyindex=nil, sourceagentname=nil, targetagentname=nil)
+        def initialize(index=nil, name=nil, title=nil, status=nil, icon=nil, debugging=nil, switch=nil, workflowname=nil, elapsed=nil, nodename=nil, replyindex=nil, sourceagentname=nil, targetagentname=nil, agenticon=nil)
           @Index = index
           @Name = name
           @Title = title
@@ -97,6 +143,7 @@ module TencentCloud
           @ReplyIndex = replyindex
           @SourceAgentName = sourceagentname
           @TargetAgentName = targetagentname
+          @AgentIcon = agenticon
         end
 
         def deserialize(params)
@@ -116,6 +163,7 @@ module TencentCloud
           @ReplyIndex = params['ReplyIndex']
           @SourceAgentName = params['SourceAgentName']
           @TargetAgentName = params['TargetAgentName']
+          @AgentIcon = params['AgentIcon']
         end
       end
 
@@ -136,15 +184,27 @@ module TencentCloud
         # @param References: 具体的参考来源
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type References: Array
+        # @param DisplayStatus: 展示正在执行的状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DisplayStatus: String
+        # @param SandboxUrl: 云桌面的URL地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SandboxUrl: String
+        # @param DisplayUrl: 云桌面里面通过浏览器打开的URL地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DisplayUrl: String
 
-        attr_accessor :Content, :DisplayContent, :DisplayType, :QuoteInfos, :References
+        attr_accessor :Content, :DisplayContent, :DisplayType, :QuoteInfos, :References, :DisplayStatus, :SandboxUrl, :DisplayUrl
 
-        def initialize(content=nil, displaycontent=nil, displaytype=nil, quoteinfos=nil, references=nil)
+        def initialize(content=nil, displaycontent=nil, displaytype=nil, quoteinfos=nil, references=nil, displaystatus=nil, sandboxurl=nil, displayurl=nil)
           @Content = content
           @DisplayContent = displaycontent
           @DisplayType = displaytype
           @QuoteInfos = quoteinfos
           @References = references
+          @DisplayStatus = displaystatus
+          @SandboxUrl = sandboxurl
+          @DisplayUrl = displayurl
         end
 
         def deserialize(params)
@@ -167,6 +227,9 @@ module TencentCloud
               @References << agentreference_tmp
             end
           end
+          @DisplayStatus = params['DisplayStatus']
+          @SandboxUrl = params['SandboxUrl']
+          @DisplayUrl = params['DisplayUrl']
         end
       end
 
@@ -258,10 +321,13 @@ module TencentCloud
         # @param TraceId: TraceId
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TraceId: String
+        # @param Files: 文件信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Files: Array
 
-        attr_accessor :SessionId, :RequestId, :RecordId, :Elapsed, :IsWorkflow, :WorkflowName, :Procedures, :TraceId
+        attr_accessor :SessionId, :RequestId, :RecordId, :Elapsed, :IsWorkflow, :WorkflowName, :Procedures, :TraceId, :Files
 
-        def initialize(sessionid=nil, requestid=nil, recordid=nil, elapsed=nil, isworkflow=nil, workflowname=nil, procedures=nil, traceid=nil)
+        def initialize(sessionid=nil, requestid=nil, recordid=nil, elapsed=nil, isworkflow=nil, workflowname=nil, procedures=nil, traceid=nil, files=nil)
           @SessionId = sessionid
           @RequestId = requestid
           @RecordId = recordid
@@ -270,6 +336,7 @@ module TencentCloud
           @WorkflowName = workflowname
           @Procedures = procedures
           @TraceId = traceid
+          @Files = files
         end
 
         def deserialize(params)
@@ -288,6 +355,14 @@ module TencentCloud
             end
           end
           @TraceId = params['TraceId']
+          unless params['Files'].nil?
+            @Files = []
+            params['Files'].each do |i|
+              fileinfo_tmp = FileInfo.new
+              fileinfo_tmp.deserialize(i)
+              @Files << fileinfo_tmp
+            end
+          end
         end
       end
 
@@ -1713,19 +1788,24 @@ module TencentCloud
         # @param TmpSecretKey: 临时证书密钥Key
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TmpSecretKey: String
+        # @param AppId: 临时证书appid
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AppId: Integer
 
-        attr_accessor :Token, :TmpSecretId, :TmpSecretKey
+        attr_accessor :Token, :TmpSecretId, :TmpSecretKey, :AppId
 
-        def initialize(token=nil, tmpsecretid=nil, tmpsecretkey=nil)
+        def initialize(token=nil, tmpsecretid=nil, tmpsecretkey=nil, appid=nil)
           @Token = token
           @TmpSecretId = tmpsecretid
           @TmpSecretKey = tmpsecretkey
+          @AppId = appid
         end
 
         def deserialize(params)
           @Token = params['Token']
           @TmpSecretId = params['TmpSecretId']
           @TmpSecretKey = params['TmpSecretKey']
+          @AppId = params['AppId']
         end
       end
 
@@ -3480,6 +3560,30 @@ module TencentCloud
         end
       end
 
+      # 数智人配置
+      class DigitalHumanConfig < TencentCloud::Common::AbstractModel
+        # @param AssetKey: 数智人资产key
+        # @type AssetKey: String
+        # @param Name: 数智人名称
+        # @type Name: String
+        # @param Avatar: 图像
+        # @type Avatar: String
+
+        attr_accessor :AssetKey, :Name, :Avatar
+
+        def initialize(assetkey=nil, name=nil, avatar=nil)
+          @AssetKey = assetkey
+          @Name = name
+          @Avatar = avatar
+        end
+
+        def deserialize(params)
+          @AssetKey = params['AssetKey']
+          @Name = params['Name']
+          @Avatar = params['Avatar']
+        end
+      end
+
       # 文档列表筛选标识位
       class DocFilterFlag < TencentCloud::Common::AbstractModel
         # @param Flag: 标识位
@@ -3882,15 +3986,19 @@ module TencentCloud
         # @param DocId: 解析后返回的DocID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DocId: String
+        # @param CreatedAt: 创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreatedAt: String
 
-        attr_accessor :FileName, :FileSize, :FileUrl, :FileType, :DocId
+        attr_accessor :FileName, :FileSize, :FileUrl, :FileType, :DocId, :CreatedAt
 
-        def initialize(filename=nil, filesize=nil, fileurl=nil, filetype=nil, docid=nil)
+        def initialize(filename=nil, filesize=nil, fileurl=nil, filetype=nil, docid=nil, createdat=nil)
           @FileName = filename
           @FileSize = filesize
           @FileUrl = fileurl
           @FileType = filetype
           @DocId = docid
+          @CreatedAt = createdat
         end
 
         def deserialize(params)
@@ -3899,6 +4007,7 @@ module TencentCloud
           @FileUrl = params['FileUrl']
           @FileType = params['FileType']
           @DocId = params['DocId']
+          @CreatedAt = params['CreatedAt']
         end
       end
 
@@ -5129,10 +5238,13 @@ module TencentCloud
         # @param ImageTextRetrieval: 是否开启图文检索
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ImageTextRetrieval: Boolean
+        # @param AiCall: 配置语音通话参数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AiCall: :class:`Tencentcloud::Lke.v20231130.models.AICallConfig`
 
-        attr_accessor :Greeting, :RoleDescription, :Model, :Search, :Output, :Workflow, :SearchRange, :Pattern, :SearchStrategy, :SingleWorkflow, :Plugins, :ThoughtModel, :IntentAchievements, :ImageTextRetrieval
+        attr_accessor :Greeting, :RoleDescription, :Model, :Search, :Output, :Workflow, :SearchRange, :Pattern, :SearchStrategy, :SingleWorkflow, :Plugins, :ThoughtModel, :IntentAchievements, :ImageTextRetrieval, :AiCall
 
-        def initialize(greeting=nil, roledescription=nil, model=nil, search=nil, output=nil, workflow=nil, searchrange=nil, pattern=nil, searchstrategy=nil, singleworkflow=nil, plugins=nil, thoughtmodel=nil, intentachievements=nil, imagetextretrieval=nil)
+        def initialize(greeting=nil, roledescription=nil, model=nil, search=nil, output=nil, workflow=nil, searchrange=nil, pattern=nil, searchstrategy=nil, singleworkflow=nil, plugins=nil, thoughtmodel=nil, intentachievements=nil, imagetextretrieval=nil, aicall=nil)
           @Greeting = greeting
           @RoleDescription = roledescription
           @Model = model
@@ -5147,6 +5259,7 @@ module TencentCloud
           @ThoughtModel = thoughtmodel
           @IntentAchievements = intentachievements
           @ImageTextRetrieval = imagetextretrieval
+          @AiCall = aicall
         end
 
         def deserialize(params)
@@ -5206,6 +5319,10 @@ module TencentCloud
             end
           end
           @ImageTextRetrieval = params['ImageTextRetrieval']
+          unless params['AiCall'].nil?
+            @AiCall = AICallConfig.new
+            @AiCall.deserialize(params['AiCall'])
+          end
         end
       end
 
@@ -5377,15 +5494,18 @@ module TencentCloud
         # @type Status: String
         # @param IsEnable: 工作流是否启用
         # @type IsEnable: Boolean
+        # @param AsyncWorkflow: 是否开启异步调用工作流
+        # @type AsyncWorkflow: Boolean
 
-        attr_accessor :WorkflowId, :WorkflowName, :WorkflowDesc, :Status, :IsEnable
+        attr_accessor :WorkflowId, :WorkflowName, :WorkflowDesc, :Status, :IsEnable, :AsyncWorkflow
 
-        def initialize(workflowid=nil, workflowname=nil, workflowdesc=nil, status=nil, isenable=nil)
+        def initialize(workflowid=nil, workflowname=nil, workflowdesc=nil, status=nil, isenable=nil, asyncworkflow=nil)
           @WorkflowId = workflowid
           @WorkflowName = workflowname
           @WorkflowDesc = workflowdesc
           @Status = status
           @IsEnable = isenable
+          @AsyncWorkflow = asyncworkflow
         end
 
         def deserialize(params)
@@ -5394,6 +5514,7 @@ module TencentCloud
           @WorkflowDesc = params['WorkflowDesc']
           @Status = params['Status']
           @IsEnable = params['IsEnable']
+          @AsyncWorkflow = params['AsyncWorkflow']
         end
       end
 
@@ -7092,10 +7213,12 @@ module TencentCloud
         # @type RoleLenLimit: Integer
         # @param IsExclusive: 是否专属并发模型
         # @type IsExclusive: Boolean
+        # @param SupportAiCallStatus: 模型支持智能通话效果
+        # @type SupportAiCallStatus: Integer
 
-        attr_accessor :ModelName, :ModelDesc, :AliasName, :ResourceStatus, :PromptWordsLimit, :TopP, :Temperature, :MaxTokens, :Source, :Icon, :IsFree, :InputLenLimit, :SupportWorkflowStatus, :ModelCategory, :IsDefault, :RoleLenLimit, :IsExclusive
+        attr_accessor :ModelName, :ModelDesc, :AliasName, :ResourceStatus, :PromptWordsLimit, :TopP, :Temperature, :MaxTokens, :Source, :Icon, :IsFree, :InputLenLimit, :SupportWorkflowStatus, :ModelCategory, :IsDefault, :RoleLenLimit, :IsExclusive, :SupportAiCallStatus
 
-        def initialize(modelname=nil, modeldesc=nil, aliasname=nil, resourcestatus=nil, promptwordslimit=nil, topp=nil, temperature=nil, maxtokens=nil, source=nil, icon=nil, isfree=nil, inputlenlimit=nil, supportworkflowstatus=nil, modelcategory=nil, isdefault=nil, rolelenlimit=nil, isexclusive=nil)
+        def initialize(modelname=nil, modeldesc=nil, aliasname=nil, resourcestatus=nil, promptwordslimit=nil, topp=nil, temperature=nil, maxtokens=nil, source=nil, icon=nil, isfree=nil, inputlenlimit=nil, supportworkflowstatus=nil, modelcategory=nil, isdefault=nil, rolelenlimit=nil, isexclusive=nil, supportaicallstatus=nil)
           @ModelName = modelname
           @ModelDesc = modeldesc
           @AliasName = aliasname
@@ -7113,6 +7236,7 @@ module TencentCloud
           @IsDefault = isdefault
           @RoleLenLimit = rolelenlimit
           @IsExclusive = isexclusive
+          @SupportAiCallStatus = supportaicallstatus
         end
 
         def deserialize(params)
@@ -7142,6 +7266,7 @@ module TencentCloud
           @IsDefault = params['IsDefault']
           @RoleLenLimit = params['RoleLenLimit']
           @IsExclusive = params['IsExclusive']
+          @SupportAiCallStatus = params['SupportAiCallStatus']
         end
       end
 
@@ -7827,10 +7952,13 @@ module TencentCloud
         # @param ExtraInfo: 扩展信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExtraInfo: :class:`Tencentcloud::Lke.v20231130.models.ExtraInfo`
+        # @param WorkFlow: 工作流信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WorkFlow: :class:`Tencentcloud::Lke.v20231130.models.WorkflowInfo`
 
-        attr_accessor :Content, :SessionId, :RecordId, :RelatedRecordId, :IsFromSelf, :FromName, :FromAvatar, :Timestamp, :HasRead, :Score, :CanRating, :CanFeedback, :Type, :References, :Reasons, :IsLlmGenerated, :ImageUrls, :TokenStat, :ReplyMethod, :OptionCards, :TaskFlow, :FileInfos, :QuoteInfos, :AgentThought, :ExtraInfo
+        attr_accessor :Content, :SessionId, :RecordId, :RelatedRecordId, :IsFromSelf, :FromName, :FromAvatar, :Timestamp, :HasRead, :Score, :CanRating, :CanFeedback, :Type, :References, :Reasons, :IsLlmGenerated, :ImageUrls, :TokenStat, :ReplyMethod, :OptionCards, :TaskFlow, :FileInfos, :QuoteInfos, :AgentThought, :ExtraInfo, :WorkFlow
 
-        def initialize(content=nil, sessionid=nil, recordid=nil, relatedrecordid=nil, isfromself=nil, fromname=nil, fromavatar=nil, timestamp=nil, hasread=nil, score=nil, canrating=nil, canfeedback=nil, type=nil, references=nil, reasons=nil, isllmgenerated=nil, imageurls=nil, tokenstat=nil, replymethod=nil, optioncards=nil, taskflow=nil, fileinfos=nil, quoteinfos=nil, agentthought=nil, extrainfo=nil)
+        def initialize(content=nil, sessionid=nil, recordid=nil, relatedrecordid=nil, isfromself=nil, fromname=nil, fromavatar=nil, timestamp=nil, hasread=nil, score=nil, canrating=nil, canfeedback=nil, type=nil, references=nil, reasons=nil, isllmgenerated=nil, imageurls=nil, tokenstat=nil, replymethod=nil, optioncards=nil, taskflow=nil, fileinfos=nil, quoteinfos=nil, agentthought=nil, extrainfo=nil, workflow=nil)
           @Content = content
           @SessionId = sessionid
           @RecordId = recordid
@@ -7856,6 +7984,7 @@ module TencentCloud
           @QuoteInfos = quoteinfos
           @AgentThought = agentthought
           @ExtraInfo = extrainfo
+          @WorkFlow = workflow
         end
 
         def deserialize(params)
@@ -7916,6 +8045,10 @@ module TencentCloud
           unless params['ExtraInfo'].nil?
             @ExtraInfo = ExtraInfo.new
             @ExtraInfo.deserialize(params['ExtraInfo'])
+          end
+          unless params['WorkFlow'].nil?
+            @WorkFlow = WorkflowInfo.new
+            @WorkFlow.deserialize(params['WorkFlow'])
           end
         end
       end
@@ -7990,7 +8123,7 @@ module TencentCloud
         # @type Name: String
         # @param Desc: 参数描述
         # @type Desc: String
-        # @param Type: 参数类型，0:string, 1:int, 2:float，3:bool 4:object 5:array_string, 6:array_int, 7:array_float, 8:array_bool, 9:array_object
+        # @param Type: 参数类型，0:string, 1:int, 2:float，3:bool 4:object 5:array_string, 6:array_int, 7:array_float, 8:array_bool, 9:array_object, 99:null, 100:upspecified
         # @type Type: Integer
         # @param IsRequired: 参数是否必填
         # @type IsRequired: Boolean
@@ -8000,10 +8133,14 @@ module TencentCloud
         # @type SubParams: Array
         # @param GlobalHidden: 插件参数配置是否隐藏不可见，true-隐藏不可见，false-可见
         # @type GlobalHidden: Boolean
+        # @param OneOf: OneOf类型参数
+        # @type OneOf: Array
+        # @param AnyOf: AnyOf类型参数
+        # @type AnyOf: Array
 
-        attr_accessor :Name, :Desc, :Type, :IsRequired, :DefaultValue, :SubParams, :GlobalHidden
+        attr_accessor :Name, :Desc, :Type, :IsRequired, :DefaultValue, :SubParams, :GlobalHidden, :OneOf, :AnyOf
 
-        def initialize(name=nil, desc=nil, type=nil, isrequired=nil, defaultvalue=nil, subparams=nil, globalhidden=nil)
+        def initialize(name=nil, desc=nil, type=nil, isrequired=nil, defaultvalue=nil, subparams=nil, globalhidden=nil, oneof=nil, anyof=nil)
           @Name = name
           @Desc = desc
           @Type = type
@@ -8011,6 +8148,8 @@ module TencentCloud
           @DefaultValue = defaultvalue
           @SubParams = subparams
           @GlobalHidden = globalhidden
+          @OneOf = oneof
+          @AnyOf = anyof
         end
 
         def deserialize(params)
@@ -8028,6 +8167,22 @@ module TencentCloud
             end
           end
           @GlobalHidden = params['GlobalHidden']
+          unless params['OneOf'].nil?
+            @OneOf = []
+            params['OneOf'].each do |i|
+              plugintoolreqparam_tmp = PluginToolReqParam.new
+              plugintoolreqparam_tmp.deserialize(i)
+              @OneOf << plugintoolreqparam_tmp
+            end
+          end
+          unless params['AnyOf'].nil?
+            @AnyOf = []
+            params['AnyOf'].each do |i|
+              plugintoolreqparam_tmp = PluginToolReqParam.new
+              plugintoolreqparam_tmp.deserialize(i)
+              @AnyOf << plugintoolreqparam_tmp
+            end
+          end
         end
       end
 
@@ -8140,10 +8295,12 @@ module TencentCloud
         # @param Agent: Agent调试信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Agent: :class:`Tencentcloud::Lke.v20231130.models.AgentDebugInfo`
+        # @param CustomVariables: 自定义参数
+        # @type CustomVariables: Array
 
-        attr_accessor :Content, :System, :Histories, :Knowledge, :TaskFlow, :WorkFlow, :Agent
+        attr_accessor :Content, :System, :Histories, :Knowledge, :TaskFlow, :WorkFlow, :Agent, :CustomVariables
 
-        def initialize(content=nil, system=nil, histories=nil, knowledge=nil, taskflow=nil, workflow=nil, agent=nil)
+        def initialize(content=nil, system=nil, histories=nil, knowledge=nil, taskflow=nil, workflow=nil, agent=nil, customvariables=nil)
           @Content = content
           @System = system
           @Histories = histories
@@ -8151,6 +8308,7 @@ module TencentCloud
           @TaskFlow = taskflow
           @WorkFlow = workflow
           @Agent = agent
+          @CustomVariables = customvariables
         end
 
         def deserialize(params)
@@ -8184,6 +8342,7 @@ module TencentCloud
             @Agent = AgentDebugInfo.new
             @Agent.deserialize(params['Agent'])
           end
+          @CustomVariables = params['CustomVariables']
         end
       end
 
@@ -10068,6 +10227,33 @@ module TencentCloud
         end
       end
 
+      # 音色参数
+      class VoiceConfig < TencentCloud::Common::AbstractModel
+        # @param VoiceType: 公有云音色id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VoiceType: Integer
+        # @param TimbreKey: 音色key
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TimbreKey: String
+        # @param VoiceName: 音色名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VoiceName: String
+
+        attr_accessor :VoiceType, :TimbreKey, :VoiceName
+
+        def initialize(voicetype=nil, timbrekey=nil, voicename=nil)
+          @VoiceType = voicetype
+          @TimbreKey = timbrekey
+          @VoiceName = voicename
+        end
+
+        def deserialize(params)
+          @VoiceType = params['VoiceType']
+          @TimbreKey = params['TimbreKey']
+          @VoiceName = params['VoiceName']
+        end
+      end
+
       # 解析为 word 文档的结果
       class WordRecognizeInfo < TencentCloud::Common::AbstractModel
         # @param PageNumber: 输入文件的页码数
@@ -10104,14 +10290,26 @@ module TencentCloud
         # @param RunNodes: 节点信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RunNodes: Array
+        # @param OptionCards: 选项卡
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OptionCards: Array
+        # @param Outputs: 多气泡的输出结果
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Outputs: Array
+        # @param WorkflowReleaseTime: 工作流发布时间，unix时间戳
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WorkflowReleaseTime: String
 
-        attr_accessor :WorkflowId, :WorkflowName, :WorkflowRunId, :RunNodes
+        attr_accessor :WorkflowId, :WorkflowName, :WorkflowRunId, :RunNodes, :OptionCards, :Outputs, :WorkflowReleaseTime
 
-        def initialize(workflowid=nil, workflowname=nil, workflowrunid=nil, runnodes=nil)
+        def initialize(workflowid=nil, workflowname=nil, workflowrunid=nil, runnodes=nil, optioncards=nil, outputs=nil, workflowreleasetime=nil)
           @WorkflowId = workflowid
           @WorkflowName = workflowname
           @WorkflowRunId = workflowrunid
           @RunNodes = runnodes
+          @OptionCards = optioncards
+          @Outputs = outputs
+          @WorkflowReleaseTime = workflowreleasetime
         end
 
         def deserialize(params)
@@ -10126,6 +10324,51 @@ module TencentCloud
               @RunNodes << workflowrunnodeinfo_tmp
             end
           end
+          @OptionCards = params['OptionCards']
+          @Outputs = params['Outputs']
+          @WorkflowReleaseTime = params['WorkflowReleaseTime']
+        end
+      end
+
+      # 工作流信息
+      class WorkflowInfo < TencentCloud::Common::AbstractModel
+        # @param WorkflowId: 工作流ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WorkflowId: String
+        # @param WorkflowName: 工作流名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WorkflowName: String
+        # @param WorkflowRunId: 工作流运行ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WorkflowRunId: String
+        # @param OptionCards: 选项卡
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OptionCards: Array
+        # @param Outputs: 多气泡的输出结果
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Outputs: Array
+        # @param WorkflowReleaseTime: 工作流发布时间，unix时间戳
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WorkflowReleaseTime: String
+
+        attr_accessor :WorkflowId, :WorkflowName, :WorkflowRunId, :OptionCards, :Outputs, :WorkflowReleaseTime
+
+        def initialize(workflowid=nil, workflowname=nil, workflowrunid=nil, optioncards=nil, outputs=nil, workflowreleasetime=nil)
+          @WorkflowId = workflowid
+          @WorkflowName = workflowname
+          @WorkflowRunId = workflowrunid
+          @OptionCards = optioncards
+          @Outputs = outputs
+          @WorkflowReleaseTime = workflowreleasetime
+        end
+
+        def deserialize(params)
+          @WorkflowId = params['WorkflowId']
+          @WorkflowName = params['WorkflowName']
+          @WorkflowRunId = params['WorkflowRunId']
+          @OptionCards = params['OptionCards']
+          @Outputs = params['Outputs']
+          @WorkflowReleaseTime = params['WorkflowReleaseTime']
         end
       end
 

@@ -27,16 +27,16 @@ module TencentCloud
         # @type Description: String
         # @param ConfigEnvironment: 应用的环境配置
         # @type ConfigEnvironment: String
-        # @param MinSystemDiskSize: 系统盘大小下限
+        # @param MinSystemDiskSize: 系统盘大小下限，单位GB
         # @type MinSystemDiskSize: Integer
-        # @param ApplicationType: 应用类型，目前该项取值可以为PRIVATE_APPLICATION或者PUBLIC_APPLICATION
+        # @param ApplicationType: 应用类型，目前该项取值可以为PUBLIC_APPLICATION（公共应用）；PRIVATE_APPLICATION（自定义应用）；COMMUNITY_APPLICATION（社区应用）
         # @type ApplicationType: String
         # @param ApplicationState: 应用状态：CREATING-创建中；ONLINE -正常在线；DELETING -删除中；ARREARS - 欠费隔离
         # 示例值：ONLINE
         # @type ApplicationState: String
-        # @param CreateTime: 应用创建时间
+        # @param CreateTime: 应用创建时间，格式：%Y-%m-%d %H:%M:%S
         # @type CreateTime: String
-        # @param ApplicationSize: 应用大小
+        # @param ApplicationSize: 应用大小，单位GB
         # @type ApplicationSize: Integer
 
         attr_accessor :ApplicationId, :ApplicationName, :Description, :ConfigEnvironment, :MinSystemDiskSize, :ApplicationType, :ApplicationState, :CreateTime, :ApplicationSize
@@ -158,17 +158,11 @@ module TencentCloud
       class DescribeApplicationsRequest < TencentCloud::Common::AbstractModel
         # @param ApplicationIds: 应用id列表
         # @type ApplicationIds: Array
-        # @param Filters: 过滤器，跟ApplicationIds不能共用，支持的filter主要有：
-        # application-id: 精确匹配;
-        # scene-id: 精确匹配;
-        # application-name: 模糊匹配;
-        # application-type: 精确匹配;
+        # @param Filters: 过滤器，跟ApplicationIds不能共用，支持的filter主要有：application-id: 精确匹配;scene-id: 精确匹配，通过调用接口 [DescribeScenes](https://cloud.tencent.com/document/api/1721/101608)获取;application-name: 模糊匹配;application-type: 精确匹配，枚举类型如下：PUBLIC_APPLICATION（公共应用）/ PRIVATE_APPLICATION（自定义应用）/ COMMUNITY_APPLICATION（社区应用）;
         # @type Filters: Array
-        # @param Offset: 偏移量，默认为0
+        # @param Offset: 偏移量，不得小于0，默认为0
         # @type Offset: Integer
-        # @param Limit: 返回量，默认为20
-        # MC：1000
-        # 用户：100
+        # @param Limit: 返回量，不得大于100，默认为20
         # @type Limit: Integer
         # @param OrderField: 应用列表排序的依据字段。取值范围："CREATED_TIME"：依据应用的创建时间排序。 "APPLICATION_SIZE"：依据应用的大小排序。默认按应用的创建时间排序。
         # @type OrderField: String
@@ -236,7 +230,7 @@ module TencentCloud
 
       # DescribeInstanceNetworkStatus请求参数结构体
       class DescribeInstanceNetworkStatusRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceIds: 实例ID数组，单次请求最多不超过100个实例
+        # @param InstanceIds: 实例ID数组，单次请求最多不超过100个实例；实例ID通过调用接口[DescribeInstances](https://cloud.tencent.com/document/api/1721/101612)获取。
         # @type InstanceIds: Array
 
         attr_accessor :InstanceIds
@@ -283,13 +277,13 @@ module TencentCloud
 
       # DescribeInstances请求参数结构体
       class DescribeInstancesRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceIds: 实例元组
+        # @param InstanceIds: 实例元组，数量上限100
         # @type InstanceIds: Array
-        # @param Filters: 描述键值对过滤器，用于条件过滤查询。目前支持的过滤器有：instance-id，实例id；instance-state，实例状态；charge-type，付费方式；public-ip-address，公网IP过滤
+        # @param Filters: 描述键值对过滤器，用于条件过滤查询。目前支持的过滤器有： instance-id，实例id； instance-state，实例状态：RUNNING，PENDING，STOPPED，ARREARS，STOPPED_NO_CHARGE； charge-type，付费方式：PREPAID_BY_MONTH，POSTPAID_BY_HOUR； public-ip-address，公网IP过滤
         # @type Filters: Array
-        # @param Offset: 偏移量，默认为0
+        # @param Offset: 偏移量，默认为0，不得大于100
         # @type Offset: Integer
-        # @param Limit: 返回量，默认为20
+        # @param Limit: 返回量，默认为20，不能小于0
         # @type Limit: Integer
 
         attr_accessor :InstanceIds, :Filters, :Offset, :Limit
@@ -457,7 +451,7 @@ module TencentCloud
 
       # DescribeScenes请求参数结构体
       class DescribeScenesRequest < TencentCloud::Common::AbstractModel
-        # @param SceneIds: 场景id列表
+        # @param SceneIds: 场景id列表，单次能查询100个场景id
         # @type SceneIds: Array
 
         attr_accessor :SceneIds
@@ -500,7 +494,7 @@ module TencentCloud
 
       # DescribeServiceLoginSettings请求参数结构体
       class DescribeServiceLoginSettingsRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例id
+        # @param InstanceId: 实例ID通过调用接口[DescribeInstances](https://cloud.tencent.com/document/api/1721/101612)获取。
         # @type InstanceId: String
         # @param ServiceName: 服务名称
         # @type ServiceName: String
@@ -570,15 +564,15 @@ module TencentCloud
 
       # InquirePriceRunInstances请求参数结构体
       class InquirePriceRunInstancesRequest < TencentCloud::Common::AbstractModel
-        # @param ApplicationId: 应用ID
+        # @param ApplicationId: 应用ID通过调用接口[DescribeApplications](https://cloud.tencent.com/document/api/1721/101609)获取。
         # @type ApplicationId: String
-        # @param BundleType: 算力套餐类型
+        # @param BundleType: 算力套餐类型, 枚举：XL,XL_2X, 3XL, 3XL_2X, 4XL, 24GB_A.
         # @type BundleType: String
         # @param SystemDisk: 实例系统盘配置信息。若不指定该参数，则按照系统默认值进行分配。
         # @type SystemDisk: :class:`Tencentcloud::Hai.v20230812.models.SystemDisk`
-        # @param InstanceCount: 购买实例数量。
+        # @param InstanceCount: 购买实例数量，单次请求实例数量上限为10。
         # @type InstanceCount: Integer
-        # @param InstanceName: 实例显示名称
+        # @param InstanceName: 实例显示名称，名称长度限制为128个字符。
         # @type InstanceName: String
         # @param ClientToken: 幂等请求token
         # @type ClientToken: String
@@ -668,11 +662,11 @@ module TencentCloud
         # @type GPUCount: Integer
         # @param GPUPerformance: 算力
         # @type GPUPerformance: String
-        # @param GPUMemory: 显存
+        # @param GPUMemory: 显存，单位：GB
         # @type GPUMemory: String
-        # @param CPU: CPU核数
+        # @param CPU: CPU核数，单位：核
         # @type CPU: String
-        # @param Memory: 内存
+        # @param Memory: 内存，单位：GB
         # @type Memory: String
         # @param SystemDisk: 系统盘数据
         # @type SystemDisk: :class:`Tencentcloud::Hai.v20230812.models.SystemDisk`
@@ -689,17 +683,17 @@ module TencentCloud
         # OPERATING：表示操作执行中
         # FAILED：表示操作失败
         # @type LatestOperationState: String
-        # @param CreateTime: 实例创建时间
+        # @param CreateTime: 实例创建时间，时间格式："YYYY-MM-DD HH:MM:SS"
         # @type CreateTime: String
-        # @param MaxOutBandwidth: 公网出带宽上限，默认10Mbps
+        # @param MaxOutBandwidth: 公网出带宽上限，默认10Mbps，单位：Mbps
         # @type MaxOutBandwidth: String
-        # @param MaxFreeTraffic: 每月免费流量，默认500G
+        # @param MaxFreeTraffic: 每月免费流量，默认500G，单位：GB
         # @type MaxFreeTraffic: String
         # @param ConfigurationEnvironment: 应用配置环境
         # @type ConfigurationEnvironment: String
         # @param LoginServices: 实例包含的登录服务详情
         # @type LoginServices: Array
-        # @param OSType: 应用服务的操作系统类型
+        # @param OSType: 应用服务的操作系统类型；参数：linux、windows
         # @type OSType: String
 
         attr_accessor :InstanceId, :InstanceName, :InstanceState, :ApplicationName, :BundleName, :GPUCount, :GPUPerformance, :GPUMemory, :CPU, :Memory, :SystemDisk, :PrivateIpAddresses, :PublicIpAddresses, :SecurityGroupIds, :LatestOperation, :LatestOperationState, :CreateTime, :MaxOutBandwidth, :MaxFreeTraffic, :ConfigurationEnvironment, :LoginServices, :OSType
@@ -1022,15 +1016,15 @@ module TencentCloud
 
       # 地域列表
       class RegionInfo < TencentCloud::Common::AbstractModel
-        # @param Region: ap-guangzhou
+        # @param Region: 地域
         # @type Region: String
-        # @param RegionName: 华南地区(广州)
+        # @param RegionName: 地域名称
         # @type RegionName: String
         # @param RegionState: 地域是否可用状态
         # AVAILABLE：可用
         # @type RegionState: String
         # @param ScholarRocketSupportState: 学术加速是否支持：
-        # NO_NEED_SUPPORT表示不需支持；NOT_SUPPORT_YET表示暂未支持；ALREADY_SUPPORT表示已经支持。对于ALREADY_SUPPORT的地域才需进一步调用DescribeScholarRocketStatus查看学术加速是开启还是关闭
+        # NO_NEED_SUPPORT表示不需支持；NOT_SUPPORT_YET表示暂未支持；ALREADY_SUPPORT表示已经支持。
         # @type ScholarRocketSupportState: String
 
         attr_accessor :Region, :RegionName, :RegionState, :ScholarRocketSupportState
@@ -1052,15 +1046,15 @@ module TencentCloud
 
       # RunInstances请求参数结构体
       class RunInstancesRequest < TencentCloud::Common::AbstractModel
-        # @param ApplicationId: 应用ID
+        # @param ApplicationId: 应用ID通过调用接口[DescribeApplications](https://cloud.tencent.com/document/api/1721/101609)获取。
         # @type ApplicationId: String
-        # @param BundleType: 算力套餐类型
+        # @param BundleType: 算力套餐类型, 枚举：XL,XL_2X, 3XL, 3XL_2X, 4XL, 24GB_A
         # @type BundleType: String
         # @param SystemDisk: 实例系统盘配置信息。若不指定该参数，则按照系统默认值进行分配。
         # @type SystemDisk: :class:`Tencentcloud::Hai.v20230812.models.SystemDisk`
-        # @param InstanceCount: 购买实例数量。
+        # @param InstanceCount: 购买实例数量，单次请求实例数量上限为10.
         # @type InstanceCount: Integer
-        # @param InstanceName: 实例显示名称
+        # @param InstanceName: 实例显示名称，名称长度限制为128个字符.
         # @type InstanceName: String
         # @param ClientToken: 幂等请求的token
         # @type ClientToken: String
@@ -1136,6 +1130,7 @@ module TencentCloud
       # StartInstance请求参数结构体
       class StartInstanceRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID
+        # 可通过DescribeInstances获取实例ID
         # @type InstanceId: String
         # @param DryRun: 默认为False，True代表只验证接口连通性
         # @type DryRun: Boolean
@@ -1176,6 +1171,7 @@ module TencentCloud
       # StopInstance请求参数结构体
       class StopInstanceRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID
+        # 可通过DescribeInstances获取实例ID
         # @type InstanceId: String
         # @param StopMode: hai实例关机的模式，目前仅支持关机不收费：
         # STOP_CHARGE -- 关闭hai实例，释放计算资源，停止收取计算资源的费用。
@@ -1223,7 +1219,7 @@ module TencentCloud
       class SystemDisk < TencentCloud::Common::AbstractModel
         # @param DiskType: 系统盘类型。取值范围：<li>CLOUD_PREMIUM：高性能云硬盘</li><li>CLOUD_HSSD：增强型SSD云盘</li>默认取值：当前有库存的硬盘类型。
         # @type DiskType: String
-        # @param DiskSize: 系统盘大小，单位：GB。默认值为 80
+        # @param DiskSize: 系统盘大小，单位：GB。默认值为 80，取值范围：80-1000
         # @type DiskSize: Integer
         # @param DiskName: 系统盘分区盘符
         # @type DiskName: String
@@ -1246,6 +1242,7 @@ module TencentCloud
       # TerminateInstances请求参数结构体
       class TerminateInstancesRequest < TencentCloud::Common::AbstractModel
         # @param InstanceIds: 实例ID列表
+        # 可通过DescribeInstances接口获取ID列表.单次能查询100个InstanceId
         # @type InstanceIds: Array
         # @param DryRun: 默认为False，True代表只验证接口连通性
         # @type DryRun: Boolean

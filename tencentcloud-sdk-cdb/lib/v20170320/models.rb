@@ -4988,6 +4988,11 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :StartTimeMin, :StartTimeMax, :BackupExpireDays, :BackupMethod, :BinlogExpireDays, :BackupTimeWindow, :EnableBackupPeriodSave, :BackupPeriodSaveDays, :BackupPeriodSaveInterval, :BackupPeriodSaveCount, :StartBackupPeriodSaveDate, :EnableBackupArchive, :BackupArchiveDays, :EnableBinlogArchive, :BinlogArchiveDays, :EnableBackupStandby, :BackupStandbyDays, :EnableBinlogStandby, :BinlogStandbyDays, :RequestId
+        extend Gem::Deprecate
+        deprecate :StartTimeMin, :none, 2025, 5
+        deprecate :StartTimeMin=, :none, 2025, 5
+        deprecate :StartTimeMax, :none, 2025, 5
+        deprecate :StartTimeMax=, :none, 2025, 5
 
         def initialize(starttimemin=nil, starttimemax=nil, backupexpiredays=nil, backupmethod=nil, binlogexpiredays=nil, backuptimewindow=nil, enablebackupperiodsave=nil, backupperiodsavedays=nil, backupperiodsaveinterval=nil, backupperiodsavecount=nil, startbackupperiodsavedate=nil, enablebackuparchive=nil, backuparchivedays=nil, enablebinlogarchive=nil, binlogarchivedays=nil, enablebackupstandby=nil, backupstandbydays=nil, enablebinlogstandby=nil, binlogstandbydays=nil, requestid=nil)
           @StartTimeMin = starttimemin
@@ -9393,6 +9398,9 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :AsyncRequestId, :RequestId
+        extend Gem::Deprecate
+        deprecate :AsyncRequestId, :none, 2025, 5
+        deprecate :AsyncRequestId=, :none, 2025, 5
 
         def initialize(asyncrequestid=nil, requestid=nil)
           @AsyncRequestId = asyncrequestid
@@ -10810,6 +10818,9 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :AsyncRequestId, :RequestId
+        extend Gem::Deprecate
+        deprecate :AsyncRequestId, :none, 2025, 5
+        deprecate :AsyncRequestId=, :none, 2025, 5
 
         def initialize(asyncrequestid=nil, requestid=nil)
           @AsyncRequestId = asyncrequestid
@@ -11229,6 +11240,9 @@ module TencentCloud
         # @type ReplicationDelayTime: Integer
 
         attr_accessor :RoGroupId, :RoGroupInfo, :RoWeightValues, :IsBalanceRoLoad, :ReplicationDelayTime
+        extend Gem::Deprecate
+        deprecate :ReplicationDelayTime, :none, 2025, 5
+        deprecate :ReplicationDelayTime=, :none, 2025, 5
 
         def initialize(rogroupid=nil, rogroupinfo=nil, roweightvalues=nil, isbalanceroload=nil, replicationdelaytime=nil)
           @RoGroupId = rogroupid

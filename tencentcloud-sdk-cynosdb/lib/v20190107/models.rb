@@ -1814,6 +1814,9 @@ module TencentCloud
         # @type ColumnFilter: Array
 
         attr_accessor :InstanceId, :StartTime, :EndTime, :Order, :OrderBy, :Filter, :LogFilter, :ColumnFilter
+        extend Gem::Deprecate
+        deprecate :Filter, :none, 2025, 5
+        deprecate :Filter=, :none, 2025, 5
 
         def initialize(instanceid=nil, starttime=nil, endtime=nil, order=nil, orderby=nil, filter=nil, logfilter=nil, columnfilter=nil)
           @InstanceId = instanceid
@@ -2230,10 +2233,14 @@ module TencentCloud
         # @type SlaveZone: String
         # @param InstanceInitInfos: 实例初始化配置信息，主要用于购买集群时选不同规格实例
         # @type InstanceInitInfos: Array
+        # @param GdnId: 全球数据库唯一标识
+        # @type GdnId: String
+        # @param ProxyConfig: 数据库代理配置
+        # @type ProxyConfig: :class:`Tencentcloud::Cynosdb.v20190107.models.ProxyConfig`
 
-        attr_accessor :Zone, :VpcId, :SubnetId, :DbType, :DbVersion, :ProjectId, :Cpu, :Memory, :InstanceCount, :Storage, :ClusterName, :AdminPassword, :Port, :PayMode, :Count, :RollbackStrategy, :RollbackId, :OriginalClusterId, :ExpectTime, :ExpectTimeThresh, :StorageLimit, :TimeSpan, :TimeUnit, :AutoRenewFlag, :AutoVoucher, :HaCount, :OrderSource, :ResourceTags, :DbMode, :MinCpu, :MaxCpu, :AutoPause, :AutoPauseDelay, :StoragePayMode, :SecurityGroupIds, :AlarmPolicyIds, :ClusterParams, :DealMode, :ParamTemplateId, :SlaveZone, :InstanceInitInfos
+        attr_accessor :Zone, :VpcId, :SubnetId, :DbType, :DbVersion, :ProjectId, :Cpu, :Memory, :InstanceCount, :Storage, :ClusterName, :AdminPassword, :Port, :PayMode, :Count, :RollbackStrategy, :RollbackId, :OriginalClusterId, :ExpectTime, :ExpectTimeThresh, :StorageLimit, :TimeSpan, :TimeUnit, :AutoRenewFlag, :AutoVoucher, :HaCount, :OrderSource, :ResourceTags, :DbMode, :MinCpu, :MaxCpu, :AutoPause, :AutoPauseDelay, :StoragePayMode, :SecurityGroupIds, :AlarmPolicyIds, :ClusterParams, :DealMode, :ParamTemplateId, :SlaveZone, :InstanceInitInfos, :GdnId, :ProxyConfig
 
-        def initialize(zone=nil, vpcid=nil, subnetid=nil, dbtype=nil, dbversion=nil, projectid=nil, cpu=nil, memory=nil, instancecount=nil, storage=nil, clustername=nil, adminpassword=nil, port=nil, paymode=nil, count=nil, rollbackstrategy=nil, rollbackid=nil, originalclusterid=nil, expecttime=nil, expecttimethresh=nil, storagelimit=nil, timespan=nil, timeunit=nil, autorenewflag=nil, autovoucher=nil, hacount=nil, ordersource=nil, resourcetags=nil, dbmode=nil, mincpu=nil, maxcpu=nil, autopause=nil, autopausedelay=nil, storagepaymode=nil, securitygroupids=nil, alarmpolicyids=nil, clusterparams=nil, dealmode=nil, paramtemplateid=nil, slavezone=nil, instanceinitinfos=nil)
+        def initialize(zone=nil, vpcid=nil, subnetid=nil, dbtype=nil, dbversion=nil, projectid=nil, cpu=nil, memory=nil, instancecount=nil, storage=nil, clustername=nil, adminpassword=nil, port=nil, paymode=nil, count=nil, rollbackstrategy=nil, rollbackid=nil, originalclusterid=nil, expecttime=nil, expecttimethresh=nil, storagelimit=nil, timespan=nil, timeunit=nil, autorenewflag=nil, autovoucher=nil, hacount=nil, ordersource=nil, resourcetags=nil, dbmode=nil, mincpu=nil, maxcpu=nil, autopause=nil, autopausedelay=nil, storagepaymode=nil, securitygroupids=nil, alarmpolicyids=nil, clusterparams=nil, dealmode=nil, paramtemplateid=nil, slavezone=nil, instanceinitinfos=nil, gdnid=nil, proxyconfig=nil)
           @Zone = zone
           @VpcId = vpcid
           @SubnetId = subnetid
@@ -2275,6 +2282,8 @@ module TencentCloud
           @ParamTemplateId = paramtemplateid
           @SlaveZone = slavezone
           @InstanceInitInfos = instanceinitinfos
+          @GdnId = gdnid
+          @ProxyConfig = proxyconfig
         end
 
         def deserialize(params)
@@ -2339,6 +2348,11 @@ module TencentCloud
               instanceinitinfo_tmp.deserialize(i)
               @InstanceInitInfos << instanceinitinfo_tmp
             end
+          end
+          @GdnId = params['GdnId']
+          unless params['ProxyConfig'].nil?
+            @ProxyConfig = ProxyConfig.new
+            @ProxyConfig.deserialize(params['ProxyConfig'])
           end
         end
       end
@@ -2856,10 +2870,12 @@ module TencentCloud
         # @type Ability: :class:`Tencentcloud::Cynosdb.v20190107.models.Ability`
         # @param ResourcePackages: 实例绑定资源包信息（此处只返回存储资源包，即packageType=DISK）
         # @type ResourcePackages: Array
+        # @param GdnId: 全球数据库唯一标识
+        # @type GdnId: String
 
-        attr_accessor :Status, :UpdateTime, :Zone, :ClusterName, :Region, :DbVersion, :ClusterId, :InstanceNum, :Uin, :DbType, :AppId, :StatusDesc, :CreateTime, :PayMode, :PeriodEndTime, :Vip, :Vport, :ProjectID, :VpcId, :SubnetId, :CynosVersion, :StorageLimit, :RenewFlag, :ProcessingTask, :Tasks, :ResourceTags, :DbMode, :ServerlessStatus, :Storage, :StorageId, :StoragePayMode, :MinStorageSize, :MaxStorageSize, :NetAddrs, :PhysicalZone, :MasterZone, :HasSlaveZone, :SlaveZones, :BusinessType, :IsFreeze, :OrderSource, :Ability, :ResourcePackages
+        attr_accessor :Status, :UpdateTime, :Zone, :ClusterName, :Region, :DbVersion, :ClusterId, :InstanceNum, :Uin, :DbType, :AppId, :StatusDesc, :CreateTime, :PayMode, :PeriodEndTime, :Vip, :Vport, :ProjectID, :VpcId, :SubnetId, :CynosVersion, :StorageLimit, :RenewFlag, :ProcessingTask, :Tasks, :ResourceTags, :DbMode, :ServerlessStatus, :Storage, :StorageId, :StoragePayMode, :MinStorageSize, :MaxStorageSize, :NetAddrs, :PhysicalZone, :MasterZone, :HasSlaveZone, :SlaveZones, :BusinessType, :IsFreeze, :OrderSource, :Ability, :ResourcePackages, :GdnId
 
-        def initialize(status=nil, updatetime=nil, zone=nil, clustername=nil, region=nil, dbversion=nil, clusterid=nil, instancenum=nil, uin=nil, dbtype=nil, appid=nil, statusdesc=nil, createtime=nil, paymode=nil, periodendtime=nil, vip=nil, vport=nil, projectid=nil, vpcid=nil, subnetid=nil, cynosversion=nil, storagelimit=nil, renewflag=nil, processingtask=nil, tasks=nil, resourcetags=nil, dbmode=nil, serverlessstatus=nil, storage=nil, storageid=nil, storagepaymode=nil, minstoragesize=nil, maxstoragesize=nil, netaddrs=nil, physicalzone=nil, masterzone=nil, hasslavezone=nil, slavezones=nil, businesstype=nil, isfreeze=nil, ordersource=nil, ability=nil, resourcepackages=nil)
+        def initialize(status=nil, updatetime=nil, zone=nil, clustername=nil, region=nil, dbversion=nil, clusterid=nil, instancenum=nil, uin=nil, dbtype=nil, appid=nil, statusdesc=nil, createtime=nil, paymode=nil, periodendtime=nil, vip=nil, vport=nil, projectid=nil, vpcid=nil, subnetid=nil, cynosversion=nil, storagelimit=nil, renewflag=nil, processingtask=nil, tasks=nil, resourcetags=nil, dbmode=nil, serverlessstatus=nil, storage=nil, storageid=nil, storagepaymode=nil, minstoragesize=nil, maxstoragesize=nil, netaddrs=nil, physicalzone=nil, masterzone=nil, hasslavezone=nil, slavezones=nil, businesstype=nil, isfreeze=nil, ordersource=nil, ability=nil, resourcepackages=nil, gdnid=nil)
           @Status = status
           @UpdateTime = updatetime
           @Zone = zone
@@ -2903,6 +2919,7 @@ module TencentCloud
           @OrderSource = ordersource
           @Ability = ability
           @ResourcePackages = resourcepackages
+          @GdnId = gdnid
         end
 
         def deserialize(params)
@@ -2980,6 +2997,7 @@ module TencentCloud
               @ResourcePackages << resourcepackage_tmp
             end
           end
+          @GdnId = params['GdnId']
         end
       end
 
@@ -3091,10 +3109,17 @@ module TencentCloud
         # @type SlaveZoneAttr: Array
         # @param CynosVersionTag: 版本标签
         # @type CynosVersionTag: String
+        # @param GdnId: 全球数据库网络唯一标识
+        # @type GdnId: String
+        # @param GdnRole: 集群在全球数据网络中的角色。
+        # 主集群- primary
+        # 从集群 - standby
+        # 如为空，该字段无效
+        # @type GdnRole: String
 
-        attr_accessor :ClusterId, :ClusterName, :Region, :Zone, :PhysicalZone, :Status, :StatusDesc, :ServerlessStatus, :StorageId, :Storage, :MaxStorageSize, :MinStorageSize, :StoragePayMode, :VpcName, :VpcId, :SubnetName, :SubnetId, :Charset, :CreateTime, :DbType, :DbMode, :DbVersion, :StorageLimit, :UsedStorage, :Vip, :Vport, :RoAddr, :Ability, :CynosVersion, :BusinessType, :HasSlaveZone, :IsFreeze, :Tasks, :MasterZone, :SlaveZones, :InstanceSet, :PayMode, :PeriodEndTime, :ProjectID, :ResourceTags, :ProxyStatus, :LogBin, :IsSkipTrade, :PitrType, :IsOpenPasswordComplexity, :NetworkStatus, :ResourcePackages, :RenewFlag, :NetworkType, :SlaveZoneAttr, :CynosVersionTag
+        attr_accessor :ClusterId, :ClusterName, :Region, :Zone, :PhysicalZone, :Status, :StatusDesc, :ServerlessStatus, :StorageId, :Storage, :MaxStorageSize, :MinStorageSize, :StoragePayMode, :VpcName, :VpcId, :SubnetName, :SubnetId, :Charset, :CreateTime, :DbType, :DbMode, :DbVersion, :StorageLimit, :UsedStorage, :Vip, :Vport, :RoAddr, :Ability, :CynosVersion, :BusinessType, :HasSlaveZone, :IsFreeze, :Tasks, :MasterZone, :SlaveZones, :InstanceSet, :PayMode, :PeriodEndTime, :ProjectID, :ResourceTags, :ProxyStatus, :LogBin, :IsSkipTrade, :PitrType, :IsOpenPasswordComplexity, :NetworkStatus, :ResourcePackages, :RenewFlag, :NetworkType, :SlaveZoneAttr, :CynosVersionTag, :GdnId, :GdnRole
 
-        def initialize(clusterid=nil, clustername=nil, region=nil, zone=nil, physicalzone=nil, status=nil, statusdesc=nil, serverlessstatus=nil, storageid=nil, storage=nil, maxstoragesize=nil, minstoragesize=nil, storagepaymode=nil, vpcname=nil, vpcid=nil, subnetname=nil, subnetid=nil, charset=nil, createtime=nil, dbtype=nil, dbmode=nil, dbversion=nil, storagelimit=nil, usedstorage=nil, vip=nil, vport=nil, roaddr=nil, ability=nil, cynosversion=nil, businesstype=nil, hasslavezone=nil, isfreeze=nil, tasks=nil, masterzone=nil, slavezones=nil, instanceset=nil, paymode=nil, periodendtime=nil, projectid=nil, resourcetags=nil, proxystatus=nil, logbin=nil, isskiptrade=nil, pitrtype=nil, isopenpasswordcomplexity=nil, networkstatus=nil, resourcepackages=nil, renewflag=nil, networktype=nil, slavezoneattr=nil, cynosversiontag=nil)
+        def initialize(clusterid=nil, clustername=nil, region=nil, zone=nil, physicalzone=nil, status=nil, statusdesc=nil, serverlessstatus=nil, storageid=nil, storage=nil, maxstoragesize=nil, minstoragesize=nil, storagepaymode=nil, vpcname=nil, vpcid=nil, subnetname=nil, subnetid=nil, charset=nil, createtime=nil, dbtype=nil, dbmode=nil, dbversion=nil, storagelimit=nil, usedstorage=nil, vip=nil, vport=nil, roaddr=nil, ability=nil, cynosversion=nil, businesstype=nil, hasslavezone=nil, isfreeze=nil, tasks=nil, masterzone=nil, slavezones=nil, instanceset=nil, paymode=nil, periodendtime=nil, projectid=nil, resourcetags=nil, proxystatus=nil, logbin=nil, isskiptrade=nil, pitrtype=nil, isopenpasswordcomplexity=nil, networkstatus=nil, resourcepackages=nil, renewflag=nil, networktype=nil, slavezoneattr=nil, cynosversiontag=nil, gdnid=nil, gdnrole=nil)
           @ClusterId = clusterid
           @ClusterName = clustername
           @Region = region
@@ -3146,6 +3171,8 @@ module TencentCloud
           @NetworkType = networktype
           @SlaveZoneAttr = slavezoneattr
           @CynosVersionTag = cynosversiontag
+          @GdnId = gdnid
+          @GdnRole = gdnrole
         end
 
         def deserialize(params)
@@ -3245,6 +3272,8 @@ module TencentCloud
             end
           end
           @CynosVersionTag = params['CynosVersionTag']
+          @GdnId = params['GdnId']
+          @GdnRole = params['GdnRole']
         end
       end
 
@@ -3395,10 +3424,12 @@ module TencentCloud
         # @type CynosVersionTag: String
         # @param NodeList: libradb 节点信息
         # @type NodeList: Array
+        # @param GdnId: 全球数据库唯一标识
+        # @type GdnId: String
 
-        attr_accessor :Uin, :AppId, :ClusterId, :ClusterName, :InstanceId, :InstanceName, :ProjectId, :Region, :Zone, :Status, :StatusDesc, :DbMode, :DbType, :DbVersion, :Cpu, :Memory, :Storage, :InstanceType, :InstanceRole, :UpdateTime, :CreateTime, :VpcId, :SubnetId, :Vip, :Vport, :PayMode, :PeriodEndTime, :DestroyDeadlineText, :IsolateTime, :NetType, :WanDomain, :WanIP, :WanPort, :WanStatus, :DestroyTime, :CynosVersion, :ProcessingTask, :RenewFlag, :MinCpu, :MaxCpu, :ServerlessStatus, :StorageId, :StoragePayMode, :PhysicalZone, :BusinessType, :Tasks, :IsFreeze, :ResourceTags, :MasterZone, :SlaveZones, :InstanceNetInfo, :ResourcePackages, :InstanceIndexMode, :InstanceAbility, :DeviceType, :InstanceStorageType, :CynosVersionTag, :NodeList
+        attr_accessor :Uin, :AppId, :ClusterId, :ClusterName, :InstanceId, :InstanceName, :ProjectId, :Region, :Zone, :Status, :StatusDesc, :DbMode, :DbType, :DbVersion, :Cpu, :Memory, :Storage, :InstanceType, :InstanceRole, :UpdateTime, :CreateTime, :VpcId, :SubnetId, :Vip, :Vport, :PayMode, :PeriodEndTime, :DestroyDeadlineText, :IsolateTime, :NetType, :WanDomain, :WanIP, :WanPort, :WanStatus, :DestroyTime, :CynosVersion, :ProcessingTask, :RenewFlag, :MinCpu, :MaxCpu, :ServerlessStatus, :StorageId, :StoragePayMode, :PhysicalZone, :BusinessType, :Tasks, :IsFreeze, :ResourceTags, :MasterZone, :SlaveZones, :InstanceNetInfo, :ResourcePackages, :InstanceIndexMode, :InstanceAbility, :DeviceType, :InstanceStorageType, :CynosVersionTag, :NodeList, :GdnId
 
-        def initialize(uin=nil, appid=nil, clusterid=nil, clustername=nil, instanceid=nil, instancename=nil, projectid=nil, region=nil, zone=nil, status=nil, statusdesc=nil, dbmode=nil, dbtype=nil, dbversion=nil, cpu=nil, memory=nil, storage=nil, instancetype=nil, instancerole=nil, updatetime=nil, createtime=nil, vpcid=nil, subnetid=nil, vip=nil, vport=nil, paymode=nil, periodendtime=nil, destroydeadlinetext=nil, isolatetime=nil, nettype=nil, wandomain=nil, wanip=nil, wanport=nil, wanstatus=nil, destroytime=nil, cynosversion=nil, processingtask=nil, renewflag=nil, mincpu=nil, maxcpu=nil, serverlessstatus=nil, storageid=nil, storagepaymode=nil, physicalzone=nil, businesstype=nil, tasks=nil, isfreeze=nil, resourcetags=nil, masterzone=nil, slavezones=nil, instancenetinfo=nil, resourcepackages=nil, instanceindexmode=nil, instanceability=nil, devicetype=nil, instancestoragetype=nil, cynosversiontag=nil, nodelist=nil)
+        def initialize(uin=nil, appid=nil, clusterid=nil, clustername=nil, instanceid=nil, instancename=nil, projectid=nil, region=nil, zone=nil, status=nil, statusdesc=nil, dbmode=nil, dbtype=nil, dbversion=nil, cpu=nil, memory=nil, storage=nil, instancetype=nil, instancerole=nil, updatetime=nil, createtime=nil, vpcid=nil, subnetid=nil, vip=nil, vport=nil, paymode=nil, periodendtime=nil, destroydeadlinetext=nil, isolatetime=nil, nettype=nil, wandomain=nil, wanip=nil, wanport=nil, wanstatus=nil, destroytime=nil, cynosversion=nil, processingtask=nil, renewflag=nil, mincpu=nil, maxcpu=nil, serverlessstatus=nil, storageid=nil, storagepaymode=nil, physicalzone=nil, businesstype=nil, tasks=nil, isfreeze=nil, resourcetags=nil, masterzone=nil, slavezones=nil, instancenetinfo=nil, resourcepackages=nil, instanceindexmode=nil, instanceability=nil, devicetype=nil, instancestoragetype=nil, cynosversiontag=nil, nodelist=nil, gdnid=nil)
           @Uin = uin
           @AppId = appid
           @ClusterId = clusterid
@@ -3457,6 +3488,7 @@ module TencentCloud
           @InstanceStorageType = instancestoragetype
           @CynosVersionTag = cynosversiontag
           @NodeList = nodelist
+          @GdnId = gdnid
         end
 
         def deserialize(params)
@@ -3549,6 +3581,7 @@ module TencentCloud
           @InstanceStorageType = params['InstanceStorageType']
           @CynosVersionTag = params['CynosVersionTag']
           @NodeList = params['NodeList']
+          @GdnId = params['GdnId']
         end
       end
 
@@ -4711,6 +4744,9 @@ module TencentCloud
         # @type LogFilter: Array
 
         attr_accessor :InstanceId, :StartTime, :EndTime, :Order, :OrderBy, :Filter, :Limit, :Offset, :LogFilter
+        extend Gem::Deprecate
+        deprecate :Filter, :none, 2025, 5
+        deprecate :Filter=, :none, 2025, 5
 
         def initialize(instanceid=nil, starttime=nil, endtime=nil, order=nil, orderby=nil, filter=nil, limit=nil, offset=nil, logfilter=nil)
           @InstanceId = instanceid
@@ -11875,6 +11911,57 @@ module TencentCloud
           @AddressModule = params['AddressModule']
           @Id = params['Id']
           @Desc = params['Desc']
+        end
+      end
+
+      # 访问代理配置
+      class ProxyConfig < TencentCloud::Common::AbstractModel
+        # @param ProxyCount: 数据库代理组节点个数（该参数不再建议使用，建议使用ProxyZones)
+        # @type ProxyCount: Integer
+        # @param Cpu: cpu核数
+        # @type Cpu: Integer
+        # @param Mem: 内存
+        # @type Mem: Integer
+        # @param ConnectionPoolType: 连接池类型：SessionConnectionPool(会话级别连接池 )
+        # @type ConnectionPoolType: String
+        # @param OpenConnectionPool: 是否开启连接池,yes-开启，no-不开启
+        # @type OpenConnectionPool: String
+        # @param ConnectionPoolTimeOut: 连接池阈值：单位（秒）
+        # @type ConnectionPoolTimeOut: Integer
+        # @param Description: 描述说明
+        # @type Description: String
+        # @param ProxyZones: 数据库节点信息（该参数与ProxyCount需要任选一个输入）
+        # @type ProxyZones: Array
+
+        attr_accessor :ProxyCount, :Cpu, :Mem, :ConnectionPoolType, :OpenConnectionPool, :ConnectionPoolTimeOut, :Description, :ProxyZones
+
+        def initialize(proxycount=nil, cpu=nil, mem=nil, connectionpooltype=nil, openconnectionpool=nil, connectionpooltimeout=nil, description=nil, proxyzones=nil)
+          @ProxyCount = proxycount
+          @Cpu = cpu
+          @Mem = mem
+          @ConnectionPoolType = connectionpooltype
+          @OpenConnectionPool = openconnectionpool
+          @ConnectionPoolTimeOut = connectionpooltimeout
+          @Description = description
+          @ProxyZones = proxyzones
+        end
+
+        def deserialize(params)
+          @ProxyCount = params['ProxyCount']
+          @Cpu = params['Cpu']
+          @Mem = params['Mem']
+          @ConnectionPoolType = params['ConnectionPoolType']
+          @OpenConnectionPool = params['OpenConnectionPool']
+          @ConnectionPoolTimeOut = params['ConnectionPoolTimeOut']
+          @Description = params['Description']
+          unless params['ProxyZones'].nil?
+            @ProxyZones = []
+            params['ProxyZones'].each do |i|
+              proxyzone_tmp = ProxyZone.new
+              proxyzone_tmp.deserialize(i)
+              @ProxyZones << proxyzone_tmp
+            end
+          end
         end
       end
 

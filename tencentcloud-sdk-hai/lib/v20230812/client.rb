@@ -77,7 +77,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询应用
+        # 本接口（DescribeApplications）用于查询应用
 
         # @param request: Request instance for DescribeApplications.
         # @type request: :class:`Tencentcloud::hai::V20230812::DescribeApplicationsRequest`
@@ -101,7 +101,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询实例的网络配置及消耗情况
+        # 本接口（DescribeInstanceNetworkStatus）用于查询实例的网络配置及消耗情况
 
         # @param request: Request instance for DescribeInstanceNetworkStatus.
         # @type request: :class:`Tencentcloud::hai::V20230812::DescribeInstanceNetworkStatusRequest`
@@ -125,7 +125,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询实例
+        # 本接口（DescribeInstances）用户查询实例
 
         # @param request: Request instance for DescribeInstances.
         # @type request: :class:`Tencentcloud::hai::V20230812::DescribeInstancesRequest`
@@ -173,7 +173,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询地域列表
+        # 本接口（DescribeRegions）用于查询地域列表
 
         # @param request: Request instance for DescribeRegions.
         # @type request: :class:`Tencentcloud::hai::V20230812::DescribeRegionsRequest`
@@ -197,7 +197,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询场景
+        # 本接口（DescribeScenes）用于查询场景
 
         # @param request: Request instance for DescribeScenes.
         # @type request: :class:`Tencentcloud::hai::V20230812::DescribeScenesRequest`
@@ -221,7 +221,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询服务登录配置
+        # 本接口（DescribeServiceLoginSettings）用于查询服务登录配置
 
         # @param request: Request instance for DescribeServiceLoginSettings.
         # @type request: :class:`Tencentcloud::hai::V20230812::DescribeServiceLoginSettingsRequest`
@@ -294,6 +294,7 @@ module TencentCloud
         end
 
         # 本接口 (StartInstance) 用于主动启动实例。
+        # ‘运行中’、‘预付费’的实例不支持启动实例
 
         # @param request: Request instance for StartInstance.
         # @type request: :class:`Tencentcloud::hai::V20230812::StartInstanceRequest`
@@ -318,6 +319,7 @@ module TencentCloud
         end
 
         # 本接口 (StopInstance) 用于主动关闭实例。
+        # ‘已关机’、‘预付费’的实例不支持关机
 
         # @param request: Request instance for StopInstance.
         # @type request: :class:`Tencentcloud::hai::V20230812::StopInstanceRequest`

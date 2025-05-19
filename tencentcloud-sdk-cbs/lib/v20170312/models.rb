@@ -67,13 +67,13 @@ module TencentCloud
 
       # ApplyDiskBackup请求参数结构体
       class ApplyDiskBackupRequest < TencentCloud::Common::AbstractModel
-        # @param DiskBackupId: 云硬盘备份点ID，可通过 DescribeDiskBackups 查询。
+        # @param DiskBackupId: 云硬盘备份点ID，可以通过[DescribeDiskBackups](/document/product/362/80278)接口查询。
         # @type DiskBackupId: String
-        # @param DiskId: 云硬盘备份点原云硬盘ID，可通过DescribeDisks接口查询。
+        # @param DiskId: 云硬盘备份点原云硬盘ID，可以通过[DescribeDisks](/document/product/362/16315)接口查。
         # @type DiskId: String
         # @param AutoStopInstance: 回滚云硬盘备份点前是否自动关机，默认为FALSE，表示不自动关机
         # @type AutoStopInstance: Boolean
-        # @param AutoStartInstance: 回滚云硬盘备份点完成后是否自动开机，默认为FALSE，表示不自动开机
+        # @param AutoStartInstance: 回滚云硬盘备份点完成后是否自动开机，默认为FALSE，表示不自动开机; AutoStartInstance参数需要在AutoStopInstance为true时才能为true。
         # @type AutoStartInstance: Boolean
 
         attr_accessor :DiskBackupId, :DiskId, :AutoStopInstance, :AutoStartInstance
@@ -406,7 +406,7 @@ module TencentCloud
 
       # BindAutoSnapshotPolicy请求参数结构体
       class BindAutoSnapshotPolicyRequest < TencentCloud::Common::AbstractModel
-        # @param AutoSnapshotPolicyId: 要绑定的定期快照策略ID。
+        # @param AutoSnapshotPolicyId: 要绑定的定期快照策略ID，通过[ DescribeAutoSnapshotPolicies](https://cloud.tencent.com/document/api/362/33556)接口查询。
         # @type AutoSnapshotPolicyId: String
         # @param DiskIds: 要绑定的云硬盘ID列表，一次请求最多绑定80块云盘。
         # @type DiskIds: Array
@@ -680,7 +680,7 @@ module TencentCloud
         # @type Placement: :class:`Tencentcloud::Cbs.v20170312.models.Placement`
         # @param DiskChargeType: 云硬盘计费类型。<br><li>PREPAID：预付费，即包年包月</li><br><li>POSTPAID_BY_HOUR：按小时后付费</li><br><li>CDCPAID：独享集群付费<br>各类型价格请参考云硬盘[价格总览](/document/product/362/2413)。</li>
         # @type DiskChargeType: String
-        # @param DiskType: 硬盘介质类型。取值范围：<br><li>CLOUD_BASIC：表示普通云硬盘</li><br><li>CLOUD_PREMIUM：表示高性能云硬盘</li><br><li>CLOUD_BSSD：表示通用型SSD云硬盘</li><br><li>CLOUD_SSD：表示SSD云硬盘</li><br><li>CLOUD_HSSD：表示增强型SSD云硬盘</li><br><li>CLOUD_TSSD：表示极速型SSD云硬盘。</li>
+        # @param DiskType: 硬盘介质类型。取值范围：<br><li>CLOUD_PREMIUM：表示高性能云硬盘</li><br><li>CLOUD_BSSD：表示通用型SSD云硬盘</li><br><li>CLOUD_SSD：表示SSD云硬盘</li><br><li>CLOUD_HSSD：表示增强型SSD云硬盘</li><br><li>CLOUD_TSSD：表示极速型SSD云硬盘。</li>极速型SSD云硬盘（CLOUD_TSSD）仅支持随部分实例类型一同购买，暂不支持单独创建。
         # @type DiskType: String
         # @param DiskName: 云盘显示名称。不传则默认为“未命名”。最大长度不能超60个字节。
         # @type DiskName: String
@@ -690,27 +690,27 @@ module TencentCloud
         # @type SnapshotId: String
         # @param DiskCount: 创建云硬盘数量，不传则默认为1。单次请求最多可创建的云盘数有限制，具体参见[云硬盘使用限制](https://cloud.tencent.com/doc/product/362/5145)。
         # @type DiskCount: Integer
-        # @param ThroughputPerformance: 可选参数。使用此参数可给云硬盘购买额外的性能。<br>当前仅支持极速型云盘（CLOUD_TSSD）和增强型SSD云硬盘（CLOUD_HSSD）
+        # @param ThroughputPerformance: 使用此参数可给云硬盘购买额外的性能，单位MB/s。<br>当前仅支持极速型云盘（CLOUD_TSSD）和增强型SSD云硬盘（CLOUD_HSSD）。
         # @type ThroughputPerformance: Integer
-        # @param KmsKeyId: 可选参数。购买加密盘时自定义密钥， 当传入该参数时, Encrypt入参不为空
+        # @param KmsKeyId: 购买加密盘时自定义密钥，当传入该参数时，Encrypt参数不得为空。
         # @type KmsKeyId: String
         # @param DiskSize: 云硬盘大小，单位为GiB。<br><li>如果传入`SnapshotId`则可不传`DiskSize`，此时新建云盘的大小为快照大小</li><br><li>如果传入`SnapshotId`同时传入`DiskSize`，则云盘大小必须大于或等于快照大小</li><br><li>云盘大小取值范围参见云硬盘[产品分类](/document/product/362/2353)的说明。</li>
         # @type DiskSize: Integer
-        # @param Shareable: 可选参数，默认为False。传入True时，云盘将创建为共享型云盘。
+        # @param Shareable: 传入True时，云盘将创建为共享型云盘，默认为False。因共享型云盘不支持加密，此参数与Encrypt参数不可同时传入。
         # @type Shareable: Boolean
         # @param ClientToken: 用于保证请求幂等性的字符串。该字符串由客户生成，需保证不同请求之间唯一，最大值不超过64个ASCII字符。若不指定该参数，则无法保证请求的幂等性。
         # @type ClientToken: String
-        # @param Encrypt: 传入该参数用于创建加密云盘，取值固定为ENCRYPT。
+        # @param Encrypt: 传入该参数用于创建加密云盘，取值固定为ENCRYPT。因共享型云盘不支持加密，此参数与Shareable参数不可同时传入。
         # @type Encrypt: String
         # @param DiskChargePrepaid: 预付费模式，即包年包月相关参数设置。通过该参数指定包年包月云盘的购买时长、是否设置自动续费等属性。<br>创建预付费云盘该参数必传，创建按小时后付费云盘无需传该参数。
         # @type DiskChargePrepaid: :class:`Tencentcloud::Cbs.v20170312.models.DiskChargePrepaid`
-        # @param DeleteSnapshot: 销毁云盘时删除关联的非永久保留快照。0 表示非永久快照不随云盘销毁而销毁，1表示非永久快照随云盘销毁而销毁，默认取0。快照是否永久保留可以通过DescribeSnapshots接口返回的快照详情的IsPermanent字段来判断，true表示永久快照，false表示非永久快照。
+        # @param DeleteSnapshot: 销毁云盘时删除关联的非永久保留快照。0 表示非永久快照不随云盘销毁而销毁，1表示非永久快照随云盘销毁而销毁，默认取0。快照是否永久保留可以通过[DescribeSnapshots](document/api/362/15647)接口返回的快照详情的IsPermanent字段来判断，True表示永久快照，False表示非永久快照。
         # @type DeleteSnapshot: Integer
-        # @param AutoMountConfiguration: 创建云盘时指定自动挂载并初始化该数据盘。
+        # @param AutoMountConfiguration: 创建云盘时指定自动挂载并初始化该数据盘。因加密盘不支持自动挂载及初始化，此参数与Encrypt参数不可同时传入。
         # @type AutoMountConfiguration: :class:`Tencentcloud::Cbs.v20170312.models.AutoMountConfiguration`
         # @param DiskBackupQuota: 指定云硬盘备份点配额。
         # @type DiskBackupQuota: Integer
-        # @param BurstPerformance: 创建云盘时是否开启性能突发
+        # @param BurstPerformance: 创建云盘时是否开启性能突发。
         # @type BurstPerformance: Boolean
         # @param EncryptType: 指定云硬盘加密类型，取值为ENCRYPT_V1和ENCRYPT_V2，分别表示第一代和第二代加密技术，两种加密技术互不兼容。推荐优先使用第二代加密技术ENCRYPT_V2，第一代加密技术仅支持在部分老旧机型使用。该参数仅当创建加密云硬盘时有效。
         # @type EncryptType: String
@@ -912,7 +912,7 @@ module TencentCloud
 
       # DeleteAutoSnapshotPolicies请求参数结构体
       class DeleteAutoSnapshotPoliciesRequest < TencentCloud::Common::AbstractModel
-        # @param AutoSnapshotPolicyIds: 要删除的定期快照策略ID列表。
+        # @param AutoSnapshotPolicyIds: 要删除的定期快照策略ID列表，通过[ DescribeAutoSnapshotPolicies](https://cloud.tencent.com/document/api/362/33556)接口查询。
         # @type AutoSnapshotPolicyIds: Array
 
         attr_accessor :AutoSnapshotPolicyIds
@@ -944,7 +944,7 @@ module TencentCloud
 
       # DeleteDiskBackups请求参数结构体
       class DeleteDiskBackupsRequest < TencentCloud::Common::AbstractModel
-        # @param DiskBackupIds: 待删除的云硬盘备份点ID。
+        # @param DiskBackupIds: 待删除的云硬盘备份点ID，可以通过[DescribeDiskBackups](/document/product/362/80278)接口查询。
         # @type DiskBackupIds: Array
 
         attr_accessor :DiskBackupIds
@@ -1054,15 +1054,18 @@ module TencentCloud
       class DescribeAutoSnapshotPoliciesRequest < TencentCloud::Common::AbstractModel
         # @param AutoSnapshotPolicyIds: 要查询的定期快照策略ID列表。参数不支持同时指定`AutoSnapshotPolicyIds`和`Filters`。
         # @type AutoSnapshotPolicyIds: Array
-        # @param Filters: 过滤条件。参数不支持同时指定`AutoSnapshotPolicyIds`和`Filters`。<br><li>auto-snapshot-policy-id - Array of String - 是否必填：否 -（过滤条件）按定期快照策略ID进行过滤。定期快照策略ID形如：`asp-11112222`。<br><li>auto-snapshot-policy-state - Array of String - 是否必填：否 -（过滤条件）按定期快照策略的状态进行过滤。定期快照策略ID形如：`asp-11112222`。(NORMAL：正常 | ISOLATED：已隔离。)<br><li>auto-snapshot-policy-name - Array of String - 是否必填：否 -（过滤条件）按定期快照策略名称进行过滤。
+        # @param Filters: 过滤条件。参数不支持同时指定`AutoSnapshotPolicyIds`和`Filters`。<br>
+        # <li>auto-snapshot-policy-id - Array of String - 是否必填：否 -（过滤条件）按定期快照策略ID进行过滤。定期快照策略ID形如：`asp-3stvwfxx`。</li>
+        # <li>auto-snapshot-policy-state - Array of String - 是否必填：否 -（过滤条件）按定期快照策略的状态进行过滤。定期快照策略ID形如：`asp-3stvwfxx`。(NORMAL：正常 | ISOLATED：已隔离。)</li>
+        # <li>auto-snapshot-policy-name - Array of String - 是否必填：否 -（过滤条件）按定期快照策略名称进行过滤。</li>
         # @type Filters: Array
         # @param Limit: 返回数量，默认为20，最大值为100。关于`Limit`的更进一步介绍请参考 API [简介](/document/product/362/15633)中的相关小节。
         # @type Limit: Integer
         # @param Offset: 偏移量，默认为0。关于`Offset`的更进一步介绍请参考API[简介](/document/product/362/15633)中的相关小节。
         # @type Offset: Integer
-        # @param Order: 输出定期快照列表的排列顺序。取值范围：<br><li>ASC：升序排列<br><li>DESC：降序排列。
+        # @param Order: 输出定期快照列表的排列顺序。取值范围：<br><li>ASC：升序排列<br></li><li>DESC：降序排列。</li>
         # @type Order: String
-        # @param OrderField: 定期快照列表排序的依据字段。取值范围：<br><li>CREATETIME：依据定期快照的创建时间排序<br>默认按创建时间排序。
+        # @param OrderField: 定期快照列表排序的依据字段。取值范围：<br><li>CREATE_TIME：依据定期快照的创建时间排序，默认按创建时间排序。</li>
         # @type OrderField: String
 
         attr_accessor :AutoSnapshotPolicyIds, :Filters, :Limit, :Offset, :Order, :OrderField
@@ -1126,7 +1129,7 @@ module TencentCloud
 
       # DescribeDiskAssociatedAutoSnapshotPolicy请求参数结构体
       class DescribeDiskAssociatedAutoSnapshotPolicyRequest < TencentCloud::Common::AbstractModel
-        # @param DiskId: 要查询的云硬盘ID，通过[DescribeDisks](https://tcloud4api.woa.com/document/product/362/15601?!preview&!document=1)接口查询。
+        # @param DiskId: 要查询的云硬盘ID，通过[DescribeDisks](https://cloud.tencent.com/document/api/362/16315)接口查询。
         # @type DiskId: String
 
         attr_accessor :DiskId
@@ -2306,7 +2309,7 @@ module TencentCloud
 
       # InquirePriceModifyDiskBackupQuota请求参数结构体
       class InquirePriceModifyDiskBackupQuotaRequest < TencentCloud::Common::AbstractModel
-        # @param DiskId: 云硬盘ID， 通过DescribeDisks（查询云硬盘信息）接口查询。
+        # @param DiskId: 云硬盘ID， 通过[DescribeDisks](/document/product/362/16315)接口查询。
         # @type DiskId: String
         # @param DiskBackupQuota: 修改后的云硬盘备份点配额，即云盘可以拥有的备份点数量，单位为个。
         # @type DiskBackupQuota: Integer
@@ -2569,9 +2572,9 @@ module TencentCloud
       class ModifyAutoSnapshotPolicyAttributeRequest < TencentCloud::Common::AbstractModel
         # @param AutoSnapshotPolicyId: 定期快照策略ID。可以通过[查询定期快照策略](https://cloud.tencent.com/document/product/362/33556)API查询。
         # @type AutoSnapshotPolicyId: String
-        # @param IsActivated: 是否激活定期快照策略，FALSE表示未激活，TRUE表示激活，默认为TRUE。
+        # @param IsActivated: 是否激活定期快照策略，`false`表示未激活，`true`表示激活；默认为`true`。
         # @type IsActivated: Boolean
-        # @param IsPermanent: 通过该定期快照策略创建的快照是否永久保留。FALSE表示非永久保留，TRUE表示永久保留，默认为FALSE。
+        # @param IsPermanent: 通过该定期快照策略创建的快照是否永久保留。`false`表示非永久保留，`true`表示永久保留，默认为`false`。
         # @type IsPermanent: Boolean
         # @param AutoSnapshotPolicyName: 要创建的定期快照策略名。不传则默认为“未命名”。最大长度不能超60个字节。
         # @type AutoSnapshotPolicyName: String
@@ -2757,7 +2760,7 @@ module TencentCloud
 
       # ModifyDisksChargeType请求参数结构体
       class ModifyDisksChargeTypeRequest < TencentCloud::Common::AbstractModel
-        # @param DiskIds: 一个或多个待操作的云硬盘ID。每次请求批量云硬盘上限为100。
+        # @param DiskIds: 一个或多个待操作的云硬盘ID,可以通过[DescribeDisks](/document/product/362/16315)接口查询。每次请求批量云硬盘上限为100。
         # @type DiskIds: Array
         # @param DiskChargePrepaid: 设置为预付费模式，即包年包月相关参数设置。通过该参数可以指定包年包月实例的购买时长、是否设置自动续费等属性。
         # @type DiskChargePrepaid: :class:`Tencentcloud::Cbs.v20170312.models.DiskChargePrepaid`
@@ -2840,7 +2843,7 @@ module TencentCloud
 
       # ModifySnapshotAttribute请求参数结构体
       class ModifySnapshotAttributeRequest < TencentCloud::Common::AbstractModel
-        # @param SnapshotId: 快照ID, 可通过[DescribeSnapshots](/document/product/362/15647)查询。
+        # @param SnapshotId: 快照ID, 可通过[DescribeSnapshots](https://cloud.tencent.com/document/api/362/15647)查询。
         # @type SnapshotId: String
         # @param IsPermanent: 快照的保留方式，FALSE表示非永久保留，TRUE表示永久保留。
         # @type IsPermanent: Boolean
@@ -2966,7 +2969,7 @@ module TencentCloud
         end
       end
 
-      # 描述了定期快照的执行策略。可理解为在DayOfWeek/DayOfMonth指定的几天中，或者是IntervalDays设定的间隔的几天，在Hour指定的时刻点执行该条定期快照策。注：DayOfWeek/DayOfMonth/IntervalDays为互斥规则，仅可设置其中一条策略规则。
+      # 描述了定期快照的执行策略。可理解为在DayOfWeek/DayOfMonth指定的几天中，或者是IntervalDays设定的间隔的几天，在Hour指定的时刻点执行该条定期快照策。注：DayOfWeek/DayOfMonth/IntervalDays为互斥规则，必填且仅可设置其中一条策略规则。如果同时传入互斥规则，则只有一条生效，优先级为上文列出顺序：例如将三条规则全部设置，只有 DayOfWeek 生效。
       class Policy < TencentCloud::Common::AbstractModel
         # @param Hour: 指定定期快照策略的触发时间。单位为小时，取值范围：[0, 23]。00:00 ~ 23:00 共 24 个时间点可选，1表示 01:00，依此类推。
         # @type Hour: Array
@@ -3250,13 +3253,13 @@ module TencentCloud
         # @type Images: Array
         # @param ShareReference: 快照当前被共享数。
         # @type ShareReference: Integer
-        # @param SnapshotType: 快照类型，目前该项取值可以为PRIVATE_SNAPSHOT或者SHARED_SNAPSHOT
+        # @param SnapshotType: 快照类型，目前该项取值可以为`PRIVATE_SNAPSHOT`（私有快照）或者`SHARED_SNAPSHOT`（共享快照）
         # @type SnapshotType: String
-        # @param DiskSize: 创建此快照的云硬盘大小，单位GB。
+        # @param DiskSize: 创建此快照的云硬盘大小，单位GiB。
         # @type DiskSize: Integer
         # @param DiskId: 创建此快照的云硬盘ID。
         # @type DiskId: String
-        # @param CopyingToRegions: 快照正在跨地域复制的目的地域，默认取值为[]。
+        # @param CopyingToRegions: 快照正在跨地域复制的目的地域，若没有则返回`[]`。
         # @type CopyingToRegions: Array
         # @param Encrypt: 是否为加密盘创建的快照。取值范围：
         # <ul>
@@ -3516,19 +3519,23 @@ module TencentCloud
       class UnbindAutoSnapshotPolicyRequest < TencentCloud::Common::AbstractModel
         # @param AutoSnapshotPolicyId: 要解绑的定期快照策略ID。
         # @type AutoSnapshotPolicyId: String
-        # @param DiskIds: 要解绑定期快照策略的云盘ID列表。
+        # @param DiskIds: 要解绑定期快照策略的云盘ID列表。此参数与 InstanceIds 参数至少需要传入一个。
         # @type DiskIds: Array
+        # @param InstanceIds: 要解绑定期快照策略的实例ID列表。此参数与 DiskIds 参数至少需要传入一个。
+        # @type InstanceIds: Array
 
-        attr_accessor :AutoSnapshotPolicyId, :DiskIds
+        attr_accessor :AutoSnapshotPolicyId, :DiskIds, :InstanceIds
 
-        def initialize(autosnapshotpolicyid=nil, diskids=nil)
+        def initialize(autosnapshotpolicyid=nil, diskids=nil, instanceids=nil)
           @AutoSnapshotPolicyId = autosnapshotpolicyid
           @DiskIds = diskids
+          @InstanceIds = instanceids
         end
 
         def deserialize(params)
           @AutoSnapshotPolicyId = params['AutoSnapshotPolicyId']
           @DiskIds = params['DiskIds']
+          @InstanceIds = params['InstanceIds']
         end
       end
 

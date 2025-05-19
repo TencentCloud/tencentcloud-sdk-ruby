@@ -4549,30 +4549,40 @@ module TencentCloud
 
       # ImportImage请求参数结构体
       class ImportImageRequest < TencentCloud::Common::AbstractModel
-        # @param Architecture: 导入镜像的操作系统架构，`x86_64` 或 `i386`
+        # @param Architecture: 导入镜像的操作系统架构。
+        # 取值范围包括：`x86_64` 、`i386`、`arm_64`
         # @type Architecture: String
-        # @param OsType: 导入镜像的操作系统类型，通过`DescribeImportImageOs`获取
+        # @param OsType: 导入镜像的操作系统类型 。
+        # 可通过 [DescribeImportImageOs](https://cloud.tencent.com/document/api/213/15718) 接口返回值中的`ImportImageOsListSupported`获取。
         # @type OsType: String
-        # @param OsVersion: 导入镜像的操作系统版本，通过`DescribeImportImageOs`获取
+        # @param OsVersion: 导入镜像的操作系统版本。
+        # 可通过 [DescribeImportImageOs](https://cloud.tencent.com/document/api/213/15718) 接口返回值中的`ImportImageOsVersionSet`获取。
         # @type OsVersion: String
         # @param ImageUrl: 导入镜像存放的cos地址
         # @type ImageUrl: String
-        # @param ImageName: 镜像名称
+        # @param ImageName: 镜像名称。
+        # 最多支持 60 个字符。
         # @type ImageName: String
-        # @param ImageDescription: 镜像描述
+        # @param ImageDescription: 镜像描述。
+        # 最多支持 256 个字符。
         # @type ImageDescription: String
-        # @param DryRun: 只检查参数，不执行任务
+        # @param DryRun: 只检查参数，不执行任务。
+        # 默认值：false
         # @type DryRun: Boolean
         # @param Force: 是否强制导入，参考[强制导入镜像](https://cloud.tencent.com/document/product/213/12849)
+        # 默认值：false
         # @type Force: Boolean
         # @param TagSpecification: 标签描述列表。通过指定该参数可以同时绑定标签到自定义镜像。
         # @type TagSpecification: Array
         # @param LicenseType: 导入镜像后，激活操作系统采用的许可证类型。
-        # 可选项：
+        # 默认值：TencentCloud
+        # 取值范围：
         # TencentCloud: 腾讯云官方许可
         # BYOL: 自带许可（Bring Your Own License）
         # @type LicenseType: String
-        # @param BootMode: 启动模式
+        # @param BootMode: 启动模式。
+        # 取值范围：`Legacy BIOS`、`UEFI`
+        # 默认值：Legacy BIOS
         # @type BootMode: String
         # @param ImageFamily:  镜像族
         # @type ImageFamily: String

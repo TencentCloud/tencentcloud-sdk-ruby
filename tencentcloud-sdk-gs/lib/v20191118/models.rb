@@ -148,10 +148,14 @@ module TencentCloud
         # @type UserId: String
         # @param PrivateIP: 内网 IP
         # @type PrivateIP: String
+        # @param CreateTime: 创建时间
+        # @type CreateTime: String
+        # @param HostServerSerialNumber: 机箱 ID
+        # @type HostServerSerialNumber: String
 
-        attr_accessor :AndroidInstanceId, :AndroidInstanceRegion, :AndroidInstanceZone, :State, :AndroidInstanceType, :AndroidInstanceImageId, :Width, :Height, :HostSerialNumber, :AndroidInstanceGroupId, :AndroidInstanceLabels, :Name, :UserId, :PrivateIP
+        attr_accessor :AndroidInstanceId, :AndroidInstanceRegion, :AndroidInstanceZone, :State, :AndroidInstanceType, :AndroidInstanceImageId, :Width, :Height, :HostSerialNumber, :AndroidInstanceGroupId, :AndroidInstanceLabels, :Name, :UserId, :PrivateIP, :CreateTime, :HostServerSerialNumber
 
-        def initialize(androidinstanceid=nil, androidinstanceregion=nil, androidinstancezone=nil, state=nil, androidinstancetype=nil, androidinstanceimageid=nil, width=nil, height=nil, hostserialnumber=nil, androidinstancegroupid=nil, androidinstancelabels=nil, name=nil, userid=nil, privateip=nil)
+        def initialize(androidinstanceid=nil, androidinstanceregion=nil, androidinstancezone=nil, state=nil, androidinstancetype=nil, androidinstanceimageid=nil, width=nil, height=nil, hostserialnumber=nil, androidinstancegroupid=nil, androidinstancelabels=nil, name=nil, userid=nil, privateip=nil, createtime=nil, hostserverserialnumber=nil)
           @AndroidInstanceId = androidinstanceid
           @AndroidInstanceRegion = androidinstanceregion
           @AndroidInstanceZone = androidinstancezone
@@ -166,6 +170,8 @@ module TencentCloud
           @Name = name
           @UserId = userid
           @PrivateIP = privateip
+          @CreateTime = createtime
+          @HostServerSerialNumber = hostserverserialnumber
         end
 
         def deserialize(params)
@@ -190,6 +196,8 @@ module TencentCloud
           @Name = params['Name']
           @UserId = params['UserId']
           @PrivateIP = params['PrivateIP']
+          @CreateTime = params['CreateTime']
+          @HostServerSerialNumber = params['HostServerSerialNumber']
         end
       end
 

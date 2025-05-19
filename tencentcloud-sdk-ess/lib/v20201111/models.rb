@@ -162,9 +162,9 @@ module TencentCloud
 
         # 注: `如果是用模板发起, 优先使用此处上传的, 如果不传则用模板的配置的`
         # @type ApproverRoleName: String
-        # @param VerifyChannel: <font coloe="red">【已废弃】</font>签署意愿确认渠道，默认为WEIXINAPP:人脸识别
+        # @param VerifyChannel: <font color="red">【已不再使用】</font>签署意愿确认渠道，默认为WEIXINAPP:人脸识别
 
-        # 注: 将要废弃, 用ApproverSignTypes签署人签署合同时的认证方式代替, 新客户可请用ApproverSignTypes来设置
+        # 注: 该字段已不再使用, 请用ApproverSignTypes签署人签署合同时的认证方式代替, 新客户可请用ApproverSignTypes来设置
         # @type VerifyChannel: Array
         # @param PreReadTime: 签署方在签署合同之前，需要强制阅读合同的时长，可指定为3秒至300秒之间的任意值。
 
@@ -2299,7 +2299,7 @@ module TencentCloud
         # @param Agent: 代理企业和员工的信息。
         # 在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
         # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
-        # @param ClientToken: 已废弃字段，客户端Token，保持接口幂等性,最大长度64个字符
+        # @param ClientToken: 该字段已不再使用
         # @type ClientToken: String
 
         attr_accessor :Operator, :TemplateId, :FlowId, :FileNames, :FormFields, :NeedPreview, :PreviewType, :Agent, :ClientToken
@@ -3743,10 +3743,13 @@ module TencentCloud
         # @param SignComponentConfig: 签署控件的配置信息，用在嵌入式发起的页面配置，包括
         #  - 签署控件 是否默认展示日期.
         # @type SignComponentConfig: :class:`Tencentcloud::Ess.v20201111.models.SignComponentConfig`
+        # @param ForbidEditWatermark: 是否禁止编辑（展示）水印控件属性
+        # <ul><li>（默认） false -否</li> <li> true - 禁止编辑</li></ul>
+        # @type ForbidEditWatermark: Boolean
 
-        attr_accessor :CanEditFlow, :CanEditFormField, :HideShowFlowName, :HideShowFlowType, :HideShowDeadline, :CanSkipAddApprover, :SkipUploadFile, :ForbidEditFillComponent, :CustomCreateFlowDescription, :ForbidAddApprover, :ForbidEditApprover, :ForbidEditFlowProperties, :HideComponentTypes, :ShowComponentTypes, :ResultPageConfig, :SignComponentConfig
+        attr_accessor :CanEditFlow, :CanEditFormField, :HideShowFlowName, :HideShowFlowType, :HideShowDeadline, :CanSkipAddApprover, :SkipUploadFile, :ForbidEditFillComponent, :CustomCreateFlowDescription, :ForbidAddApprover, :ForbidEditApprover, :ForbidEditFlowProperties, :HideComponentTypes, :ShowComponentTypes, :ResultPageConfig, :SignComponentConfig, :ForbidEditWatermark
 
-        def initialize(caneditflow=nil, caneditformfield=nil, hideshowflowname=nil, hideshowflowtype=nil, hideshowdeadline=nil, canskipaddapprover=nil, skipuploadfile=nil, forbideditfillcomponent=nil, customcreateflowdescription=nil, forbidaddapprover=nil, forbideditapprover=nil, forbideditflowproperties=nil, hidecomponenttypes=nil, showcomponenttypes=nil, resultpageconfig=nil, signcomponentconfig=nil)
+        def initialize(caneditflow=nil, caneditformfield=nil, hideshowflowname=nil, hideshowflowtype=nil, hideshowdeadline=nil, canskipaddapprover=nil, skipuploadfile=nil, forbideditfillcomponent=nil, customcreateflowdescription=nil, forbidaddapprover=nil, forbideditapprover=nil, forbideditflowproperties=nil, hidecomponenttypes=nil, showcomponenttypes=nil, resultpageconfig=nil, signcomponentconfig=nil, forbideditwatermark=nil)
           @CanEditFlow = caneditflow
           @CanEditFormField = caneditformfield
           @HideShowFlowName = hideshowflowname
@@ -3763,6 +3766,7 @@ module TencentCloud
           @ShowComponentTypes = showcomponenttypes
           @ResultPageConfig = resultpageconfig
           @SignComponentConfig = signcomponentconfig
+          @ForbidEditWatermark = forbideditwatermark
         end
 
         def deserialize(params)
@@ -3792,6 +3796,7 @@ module TencentCloud
             @SignComponentConfig = SignComponentConfig.new
             @SignComponentConfig.deserialize(params['SignComponentConfig'])
           end
+          @ForbidEditWatermark = params['ForbidEditWatermark']
         end
       end
 
@@ -3877,7 +3882,7 @@ module TencentCloud
         # @param FlowType: 合同流程的类别分类（可自定义名称，如销售合同/入职合同等），最大长度为200个字符，仅限中文、字母、数字和下划线组成。
         # 此合同类型需要跟模板配置的合同类型保持一致。
         # @type FlowType: String
-        # @param ClientToken: 已经废弃字段，客户端Token，保持接口幂等性,最大长度64个字符
+        # @param ClientToken: 该字段已不再使用
         # @type ClientToken: String
         # @param DeadLine: 合同流程的签署截止时间，格式为Unix标准时间戳（秒），如果未设置签署截止时间，则默认为合同流程创建后的365天时截止。
         # 如果在签署截止时间前未完成签署，则合同状态会变为已过期，导致合同作废。
@@ -5497,7 +5502,7 @@ module TencentCloud
         # <ul><li> **OPEN**：开启（默认值）</li>
         # <li> **CLOSE**：关闭</li></ul>
         # @type IntelligentStatus: String
-        # @param Components: 该字段已废弃，请使用InitiatorComponents
+        # @param Components: 该字段已不再使用，请使用InitiatorComponents
         # @type Components: :class:`Tencentcloud::Ess.v20201111.models.Component`
         # @param FlowOption: 发起合同个性化参数
         # 用于满足创建及页面操作过程中的个性化要求
@@ -5532,7 +5537,7 @@ module TencentCloud
         # @type InitiatorComponents: Array
         # @param FlowDisplayType: 在短信通知、填写、签署流程中，若标题、按钮、合同详情等地方存在“合同”字样时，可根据此配置指定文案，可选文案如下：  <ul><li> <b>0</b> :合同（默认值）</li> <li> <b>1</b> :文件</li> <li> <b>2</b> :协议</li><li> <b>3</b> :文书</li></ul>效果如下:![FlowDisplayType](https://qcloudimg.tencent-cloud.cn/raw/e4a2c4d638717cc901d3dbd5137c9bbc.png)
         # @type FlowDisplayType: Integer
-        # @param SignComponentConfig: <font color="red">此参数已经废弃，请使用 CreateFlowOption 里面的 SignComponentConfig</font>
+        # @param SignComponentConfig: <font color="red">此字段已不再使用，请使用 CreateFlowOption 里面的 SignComponentConfig</font>
         # 签署控件的配置信息，用在嵌入式发起的页面配置，
         # 包括
 
@@ -5672,15 +5677,13 @@ module TencentCloud
         # <li>HONGKONG_AND_MACAO : 中国港澳居民来往内地通行证</li>
         # <li>HONGKONG_MACAO_AND_TAIWAN : 中国港澳台居民居住证(格式同 中国大陆居民身份证)</li></ul>
         # @type IdCardType: String
-        # @param SealImage: 印章图片的base64
-        # 注：已废弃
-        # 请先通过UploadFiles接口上传文件，获取 FileId
+        # @param SealImage: 该字段已不再使用
         # @type SealImage: String
         # @param SealImageCompress: 是否开启印章图片压缩处理，默认不开启，如需开启请设置为 true。当印章超过 2M 时建议开启，开启后图片的 hash 将发生变化。
         # @type SealImageCompress: Boolean
         # @param Mobile: 手机号码；当需要开通自动签时，该参数必传
         # @type Mobile: String
-        # @param EnableAutoSign: 此字段已废弃，请勿继续使用。
+        # @param EnableAutoSign: 该字段已不再使用
         # @type EnableAutoSign: Boolean
         # @param SealColor: 印章颜色（参数ProcessSeal=true时生效）
         # 默认值：BLACK黑色
@@ -9367,19 +9370,24 @@ module TencentCloud
 
         # 注意: 此参数仅针对**EmbedType=CREATE_TEMPLATE(创建模板)和EmbedType=CREATE_CONTRACT_DRAFT_COOPEDIT(创建起草合同)有效**，
         # @type SkipUploadFile: Boolean
+        # @param ForbidEditWatermark: 是否禁止编辑（展示）水印控件属性
+        # <ul><li>（默认） false -否</li> <li> true - 禁止编辑</li></ul>
+        # @type ForbidEditWatermark: Boolean
 
-        attr_accessor :ShowFlowDetailComponent, :ShowTemplateComponent, :SkipUploadFile
+        attr_accessor :ShowFlowDetailComponent, :ShowTemplateComponent, :SkipUploadFile, :ForbidEditWatermark
 
-        def initialize(showflowdetailcomponent=nil, showtemplatecomponent=nil, skipuploadfile=nil)
+        def initialize(showflowdetailcomponent=nil, showtemplatecomponent=nil, skipuploadfile=nil, forbideditwatermark=nil)
           @ShowFlowDetailComponent = showflowdetailcomponent
           @ShowTemplateComponent = showtemplatecomponent
           @SkipUploadFile = skipuploadfile
+          @ForbidEditWatermark = forbideditwatermark
         end
 
         def deserialize(params)
           @ShowFlowDetailComponent = params['ShowFlowDetailComponent']
           @ShowTemplateComponent = params['ShowTemplateComponent']
           @SkipUploadFile = params['SkipUploadFile']
+          @ForbidEditWatermark = params['ForbidEditWatermark']
         end
       end
 
@@ -13853,9 +13861,7 @@ module TencentCloud
 
         # 注: `该参数仅在关键字定位时，需要去除关键字所在的灰框场景下使用。`
         # @type CoverRect: Boolean
-        # @param CustomIds: 用户自定义ID数组，与上传文件一一对应
-
-        # 注: `历史遗留问题，已经废弃，调用接口时不用赋值`
+        # @param CustomIds: 该字段已不再使用
         # @type CustomIds: Array
         # @param FileUrls: 不再使用，上传文件链接数组，最多支持20个URL
         # @type FileUrls: String

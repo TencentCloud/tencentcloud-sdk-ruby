@@ -578,42 +578,6 @@ module TencentCloud
         end
       end
 
-      # CloseServerlessDBExtranetAccess请求参数结构体
-      class CloseServerlessDBExtranetAccessRequest < TencentCloud::Common::AbstractModel
-        # @param DBInstanceId: 实例唯一标识符
-        # @type DBInstanceId: String
-        # @param DBInstanceName: 实例名称
-        # @type DBInstanceName: String
-
-        attr_accessor :DBInstanceId, :DBInstanceName
-
-        def initialize(dbinstanceid=nil, dbinstancename=nil)
-          @DBInstanceId = dbinstanceid
-          @DBInstanceName = dbinstancename
-        end
-
-        def deserialize(params)
-          @DBInstanceId = params['DBInstanceId']
-          @DBInstanceName = params['DBInstanceName']
-        end
-      end
-
-      # CloseServerlessDBExtranetAccess返回参数结构体
-      class CloseServerlessDBExtranetAccessResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :RequestId
-
-        def initialize(requestid=nil)
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @RequestId = params['RequestId']
-        end
-      end
-
       # CreateAccount请求参数结构体
       class CreateAccountRequest < TencentCloud::Common::AbstractModel
         # @param DBInstanceId: 实例ID。
@@ -2433,42 +2397,6 @@ module TencentCloud
 
         def deserialize(params)
           @FlowId = params['FlowId']
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # DeleteServerlessDBInstance请求参数结构体
-      class DeleteServerlessDBInstanceRequest < TencentCloud::Common::AbstractModel
-        # @param DBInstanceName: DB实例名称，实例名和实例ID必须至少传一个，如果同时存在，将只以实例ID为准。
-        # @type DBInstanceName: String
-        # @param DBInstanceId: DB实例ID，实例名和实例ID必须至少传一个，如果同时存在，将只以实例ID为准。
-        # @type DBInstanceId: String
-
-        attr_accessor :DBInstanceName, :DBInstanceId
-
-        def initialize(dbinstancename=nil, dbinstanceid=nil)
-          @DBInstanceName = dbinstancename
-          @DBInstanceId = dbinstanceid
-        end
-
-        def deserialize(params)
-          @DBInstanceName = params['DBInstanceName']
-          @DBInstanceId = params['DBInstanceId']
-        end
-      end
-
-      # DeleteServerlessDBInstance返回参数结构体
-      class DeleteServerlessDBInstanceResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :RequestId
-
-        def initialize(requestid=nil)
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end

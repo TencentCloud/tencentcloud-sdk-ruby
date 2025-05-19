@@ -1055,7 +1055,7 @@ module TencentCloud
         # @param FlowApproverInfo: 批量签署的流程签署人，其中姓名(ApproverName)、参与人类型(ApproverType)必传，手机号(ApproverMobile)和证件信息(ApproverIdCardType、ApproverIdCardNumber)可任选一种或全部传入。
         # <ul>
         # <li>若为个人参与方：ApproverType:"PERSON"</li>
-        # <li>若为企业参与方：ApproverType:"ORGANIZATION"。同时若签署方为saas企业员工， OrganizationName 参数需传入参与方企业名称。若签署方为渠道子客企业员工，还需要传 OpenId、OrganizationOpenId。</li>
+        # <li>若为企业参与方：ApproverType:"ORGANIZATION"。同时若签署方为saas企业员工， OrganizationName 参数需传入参与方企业名称。若签署方为渠道子客企业员工，除了 OrganizationName 还需要传 OpenId、OrganizationOpenId。（如果OrganizationOpenId对应子客企业已经认证激活，则可以省略OrganizationName参数）</li>
         # </ul>
 
         # 注:
@@ -2390,7 +2390,7 @@ module TencentCloud
         # @type FlowId: String
         # @param FlowApproverInfos: 流程签署人列表，其中结构体的ApproverType必传。
         # 若为个人签署方或saas企业签署方，则Name，Mobile必传。OrganizationName 传对应企业名称。
-        # 若为子客企业签署方则需传OpenId、OrganizationOpenId，OrganizationName 其他可不传。（如果对应OrganizationOpenId 子客已经认证激活了，则可以省去OrganizationName）
+        # 若为子客企业签署方则需传OpenId、OrganizationOpenId、OrganizationName， 其他可不传。（如果对应OrganizationOpenId 子客已经认证激活了，则可以省去OrganizationName）
 
         # 此结构体和发起接口参与方结构体复用，除了上述参数外，可传递的参数有：
         # 1. RecipientId: 发起合同会返回，可以直接用于指定需要生成链接的签署方。
@@ -2983,7 +2983,7 @@ module TencentCloud
         # @type SealImageCompress: Boolean
         # @param Mobile: 手机号码；当需要开通自动签时，该参数必传
         # @type Mobile: String
-        # @param EnableAutoSign: 此字段已废弃，请勿继续使用。
+        # @param EnableAutoSign: 该字段已不再使用
         # @type EnableAutoSign: Boolean
         # @param LicenseType: 设置用户开通自动签时是否绑定个人自动签账号许可。一旦绑定后，将扣减购买的个人自动签账号许可一次（1年有效期），不可解绑释放。不传默认为绑定自动签账号许可。 0-绑定个人自动签账号许可，开通后将扣减购买的个人自动签账号许可一次 1-不绑定，发起合同时将按标准合同套餐进行扣减
         # @type LicenseType: Integer
@@ -6602,10 +6602,13 @@ module TencentCloud
         # @param SignComponentConfig: 签署控件的配置信息，用在嵌入式发起的页面配置，包括
         #  - 签署控件 是否默认展示日期.
         # @type SignComponentConfig: :class:`Tencentcloud::Essbasic.v20210526.models.SignComponentConfig`
+        # @param ForbidEditWatermark: 是否禁止编辑（展示）水印控件属性
+        # <ul><li>（默认） false -否</li> <li> true - 禁止编辑</li></ul>
+        # @type ForbidEditWatermark: Boolean
 
-        attr_accessor :CanEditFlow, :HideShowFlowName, :HideShowFlowType, :HideShowDeadline, :CanSkipAddApprover, :ForbidEditApprover, :CustomCreateFlowDescription, :ForbidEditFillComponent, :SkipUploadFile, :SignComponentConfig
+        attr_accessor :CanEditFlow, :HideShowFlowName, :HideShowFlowType, :HideShowDeadline, :CanSkipAddApprover, :ForbidEditApprover, :CustomCreateFlowDescription, :ForbidEditFillComponent, :SkipUploadFile, :SignComponentConfig, :ForbidEditWatermark
 
-        def initialize(caneditflow=nil, hideshowflowname=nil, hideshowflowtype=nil, hideshowdeadline=nil, canskipaddapprover=nil, forbideditapprover=nil, customcreateflowdescription=nil, forbideditfillcomponent=nil, skipuploadfile=nil, signcomponentconfig=nil)
+        def initialize(caneditflow=nil, hideshowflowname=nil, hideshowflowtype=nil, hideshowdeadline=nil, canskipaddapprover=nil, forbideditapprover=nil, customcreateflowdescription=nil, forbideditfillcomponent=nil, skipuploadfile=nil, signcomponentconfig=nil, forbideditwatermark=nil)
           @CanEditFlow = caneditflow
           @HideShowFlowName = hideshowflowname
           @HideShowFlowType = hideshowflowtype
@@ -6616,6 +6619,7 @@ module TencentCloud
           @ForbidEditFillComponent = forbideditfillcomponent
           @SkipUploadFile = skipuploadfile
           @SignComponentConfig = signcomponentconfig
+          @ForbidEditWatermark = forbideditwatermark
         end
 
         def deserialize(params)
@@ -6632,6 +6636,7 @@ module TencentCloud
             @SignComponentConfig = SignComponentConfig.new
             @SignComponentConfig.deserialize(params['SignComponentConfig'])
           end
+          @ForbidEditWatermark = params['ForbidEditWatermark']
         end
       end
 
@@ -8574,19 +8579,24 @@ module TencentCloud
 
         # 注意: 此参数仅针对**EmbedType=CREATE_TEMPLATE(创建模板)有效**，
         # @type SkipUploadFile: String
+        # @param ForbidEditWatermark: 是否禁止编辑（展示）水印控件属性
+        # <ul><li>（默认） false -否</li> <li> true - 禁止编辑</li></ul>
+        # @type ForbidEditWatermark: Boolean
 
-        attr_accessor :ShowFlowDetailComponent, :ShowTemplateComponent, :SkipUploadFile
+        attr_accessor :ShowFlowDetailComponent, :ShowTemplateComponent, :SkipUploadFile, :ForbidEditWatermark
 
-        def initialize(showflowdetailcomponent=nil, showtemplatecomponent=nil, skipuploadfile=nil)
+        def initialize(showflowdetailcomponent=nil, showtemplatecomponent=nil, skipuploadfile=nil, forbideditwatermark=nil)
           @ShowFlowDetailComponent = showflowdetailcomponent
           @ShowTemplateComponent = showtemplatecomponent
           @SkipUploadFile = skipuploadfile
+          @ForbidEditWatermark = forbideditwatermark
         end
 
         def deserialize(params)
           @ShowFlowDetailComponent = params['ShowFlowDetailComponent']
           @ShowTemplateComponent = params['ShowTemplateComponent']
           @SkipUploadFile = params['SkipUploadFile']
+          @ForbidEditWatermark = params['ForbidEditWatermark']
         end
       end
 

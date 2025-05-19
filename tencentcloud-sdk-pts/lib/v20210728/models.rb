@@ -1054,14 +1054,17 @@ module TencentCloud
         # @param Streams: 指标序列数组
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Streams: Array
+        # @param Step: 两个时间点的时间间隔，单位纳秒
+        # @type Step: Integer
 
-        attr_accessor :Metric, :Aggregation, :Unit, :Streams
+        attr_accessor :Metric, :Aggregation, :Unit, :Streams, :Step
 
-        def initialize(metric=nil, aggregation=nil, unit=nil, streams=nil)
+        def initialize(metric=nil, aggregation=nil, unit=nil, streams=nil, step=nil)
           @Metric = metric
           @Aggregation = aggregation
           @Unit = unit
           @Streams = streams
+          @Step = step
         end
 
         def deserialize(params)
@@ -1076,6 +1079,7 @@ module TencentCloud
               @Streams << samplestream_tmp
             end
           end
+          @Step = params['Step']
         end
       end
 
