@@ -706,7 +706,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 获取任务详情
+        # 获取批量操作任务执行详情
 
         # @param request: Request instance for DescribeBatchTask.
         # @type request: :class:`Tencentcloud::dnspod::V20210323::DescribeBatchTaskRequest`

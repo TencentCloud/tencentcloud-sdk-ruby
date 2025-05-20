@@ -8669,6 +8669,8 @@ module TencentCloud
         # @param RecipientId: 签署方经办人在模板中配置的参与方ID，与控件绑定，是控件的归属方，ID为32位字符串。
         # @type RecipientId: String
         # @param OpenId: 指定企业经办签署人OpenId
+
+        # 注: `签署人OpenId未实名时，需要传入签署人姓名以及手机号码。`
         # @type OpenId: String
         # @param ApproverName: 签署人姓名
         # @type ApproverName: String
@@ -11983,6 +11985,8 @@ module TencentCloud
         # @param FlowGroupId: 合同组签署链接对应的合同组id
         # @type FlowGroupId: String
         # @param SignQrcodeUrl: 二维码，在生成动态签署人跳转封面页链接时返回
+
+        # 注：`此二维码下载链接有效期为5分钟，可下载二维码后本地保存。`
         # @type SignQrcodeUrl: String
 
         attr_accessor :SignUrl, :Deadline, :SignOrder, :SignId, :CustomUserId, :Name, :Mobile, :OrganizationName, :ApproverType, :IdCardNumber, :FlowId, :OpenId, :FlowGroupId, :SignQrcodeUrl

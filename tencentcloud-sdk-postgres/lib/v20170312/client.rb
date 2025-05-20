@@ -1626,32 +1626,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 早期接口，不规范，已提供新接口 CreateInstances 替换
-
-        # 本接口（InitDBInstances）用于初始化云数据库PostgreSQL实例。本接口已废弃，推荐使用接口[CreateInstances](https://cloud.tencent.com/document/api/409/56107)替代。
-
-        # @param request: Request instance for InitDBInstances.
-        # @type request: :class:`Tencentcloud::postgres::V20170312::InitDBInstancesRequest`
-        # @rtype: :class:`Tencentcloud::postgres::V20170312::InitDBInstancesResponse`
-        def InitDBInstances(request)
-          body = send_request('InitDBInstances', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = InitDBInstancesResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 本接口 (InquiryPriceCreateDBInstances) 用于查询购买实例的价格信息。
 
         # @param request: Request instance for InquiryPriceCreateDBInstances.

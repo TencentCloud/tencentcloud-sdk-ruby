@@ -1002,7 +1002,7 @@ module TencentCloud
       # DeleteCustomDnsHost请求参数结构体
       class DeleteCustomDnsHostRequest < TencentCloud::Common::AbstractModel
         # @param DomainId: 域名实例ID
-        # 可通过DescribeDomainNameList接口获取(https://cloud.tencent.com/document/api/242/48941)
+        # 可通过[DescribeDomainNameList](https://cloud.tencent.com/document/api/242/48941)接口获取
         # @type DomainId: String
         # @param DnsName: DNS名称
         # 例如：<>.test.com;其中<>就是Dns名称，可以是任意域名允许的格式
@@ -1782,7 +1782,7 @@ module TencentCloud
       # DescribeCustomDnsHostSet请求参数结构体
       class DescribeCustomDnsHostSetRequest < TencentCloud::Common::AbstractModel
         # @param DomainId: 域名实例ID
-        # 可通过DescribeDomainNameList接口获取(https://cloud.tencent.com/document/api/242/48941)
+        # 可通过[DescribeDomainNameList](https://cloud.tencent.com/document/api/242/48941)接口获取
         # @type DomainId: String
         # @param Limit: 返回数量，默认为20，取值范围[1,100]
         # @type Limit: Integer
@@ -2421,7 +2421,6 @@ module TencentCloud
         # @type ClassThree: Array
         # @param ClassFour: 四级分类
         # 1:"仅含2种数字"
-        # 1:"仅含2种数字"
         # 2:"仅含3种数字"
         # 4:"仅含1种字母"
         # 8:"仅含1种数字"
@@ -2439,7 +2438,7 @@ module TencentCloud
         # @param TransType: 交易类型（目前只支持10）
         # 10: 预释放域名
         # @type TransType: Integer
-        # @param IsTop: 是否搜索白金域名
+        # @param IsTop: 是否搜索白金域名（默认值为false）
         # @type IsTop: Boolean
         # @param EndTimeSort: 结束时间排序 desc:倒序 asc:正序
         # @type EndTimeSort: String
@@ -3329,7 +3328,7 @@ module TencentCloud
       # ModifyCustomDnsHost请求参数结构体
       class ModifyCustomDnsHostRequest < TencentCloud::Common::AbstractModel
         # @param DomainId: 域名实例ID
-        # 可通过DescribeDomainNameList接口获取(https://cloud.tencent.com/document/api/242/48941)
+        # 可通过[DescribeDomainNameList](https://cloud.tencent.com/document/api/242/48941)接口获取
         # @type DomainId: String
         # @param DnsName: Dns名称 例如：<>.test.com;其中<>就是Dns名称，可以是任意域名允许的格式
         # @type DnsName: String
@@ -4090,7 +4089,7 @@ module TencentCloud
       # SyncCustomDnsHost请求参数结构体
       class SyncCustomDnsHostRequest < TencentCloud::Common::AbstractModel
         # @param DomainId: 域名实例ID
-        # 可通过DescribeDomainNameList接口获取(https://cloud.tencent.com/document/api/242/48941)
+        # 可通过[DescribeDomainNameList](https://cloud.tencent.com/document/api/242/48941)接口获取
         # @type DomainId: String
 
         attr_accessor :DomainId

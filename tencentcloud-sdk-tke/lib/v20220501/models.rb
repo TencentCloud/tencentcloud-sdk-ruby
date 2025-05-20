@@ -1690,10 +1690,12 @@ module TencentCloud
         # @type GPU: Integer
         # @param RenewFlag: 自动续费标识
         # @type RenewFlag: String
-        # @param PayMode: 节点计费模式（已弃用）
+        # @param PayMode: 节点计费模式
         # @type PayMode: String
         # @param Memory: 节点内存容量，单位：`GB`
         # @type Memory: Integer
+        # @param SystemDisk: 节点系统盘配置信息
+        # @type SystemDisk: :class:`Tencentcloud::Tke.v20220501.models.Disk`
         # @param InternetAccessible: 公网带宽相关信息设置
         # @type InternetAccessible: :class:`Tencentcloud::Tke.v20220501.models.InternetAccessible`
         # @param InstanceFamily: 机型所属机型族
@@ -1705,6 +1707,18 @@ module TencentCloud
         # @param ExpiredTime: 包年包月节点计费过期时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExpiredTime: String
+        # @param WanIp: 节点外网 IP
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WanIp: String
+        # @param KeyIds: 节点密钥 ID 列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type KeyIds: Array
+        # @param GPUParams: 节点GPU相关配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GPUParams: :class:`Tencentcloud::Tke.v20220501.models.GPUParams`
+        # @param DataDisks: 数据盘列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DataDisks: Array
         # @param SecurityGroupIDs: 安全组列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SecurityGroupIDs: Array
@@ -1715,6 +1729,11 @@ module TencentCloud
         # @param OsImage: OS的名称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OsImage: String
+        # @param MachineType: **原生节点的 Machine 类型**
+
+        # - Native 表示 CXM 类型的原生节点
+        # - NativeCVM 表示 CVM 类型的原生节点
+        # @type MachineType: String
         # @param InstanceId: **原生节点对应的实例 ID**
 
         # - ins-q47ofw6 表示这个实例是一个 CVM 的实例
@@ -1722,9 +1741,9 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceId: String
 
-        attr_accessor :MachineName, :MachineState, :Zone, :InstanceChargeType, :CreatedAt, :LoginStatus, :IsProtectedFromScaleIn, :DisplayName, :CPU, :GPU, :RenewFlag, :PayMode, :Memory, :InternetAccessible, :InstanceFamily, :LanIp, :InstanceType, :ExpiredTime, :SecurityGroupIDs, :VpcId, :SubnetId, :OsImage, :InstanceId
+        attr_accessor :MachineName, :MachineState, :Zone, :InstanceChargeType, :CreatedAt, :LoginStatus, :IsProtectedFromScaleIn, :DisplayName, :CPU, :GPU, :RenewFlag, :PayMode, :Memory, :SystemDisk, :InternetAccessible, :InstanceFamily, :LanIp, :InstanceType, :ExpiredTime, :WanIp, :KeyIds, :GPUParams, :DataDisks, :SecurityGroupIDs, :VpcId, :SubnetId, :OsImage, :MachineType, :InstanceId
 
-        def initialize(machinename=nil, machinestate=nil, zone=nil, instancechargetype=nil, createdat=nil, loginstatus=nil, isprotectedfromscalein=nil, displayname=nil, cpu=nil, gpu=nil, renewflag=nil, paymode=nil, memory=nil, internetaccessible=nil, instancefamily=nil, lanip=nil, instancetype=nil, expiredtime=nil, securitygroupids=nil, vpcid=nil, subnetid=nil, osimage=nil, instanceid=nil)
+        def initialize(machinename=nil, machinestate=nil, zone=nil, instancechargetype=nil, createdat=nil, loginstatus=nil, isprotectedfromscalein=nil, displayname=nil, cpu=nil, gpu=nil, renewflag=nil, paymode=nil, memory=nil, systemdisk=nil, internetaccessible=nil, instancefamily=nil, lanip=nil, instancetype=nil, expiredtime=nil, wanip=nil, keyids=nil, gpuparams=nil, datadisks=nil, securitygroupids=nil, vpcid=nil, subnetid=nil, osimage=nil, machinetype=nil, instanceid=nil)
           @MachineName = machinename
           @MachineState = machinestate
           @Zone = zone
@@ -1738,15 +1757,21 @@ module TencentCloud
           @RenewFlag = renewflag
           @PayMode = paymode
           @Memory = memory
+          @SystemDisk = systemdisk
           @InternetAccessible = internetaccessible
           @InstanceFamily = instancefamily
           @LanIp = lanip
           @InstanceType = instancetype
           @ExpiredTime = expiredtime
+          @WanIp = wanip
+          @KeyIds = keyids
+          @GPUParams = gpuparams
+          @DataDisks = datadisks
           @SecurityGroupIDs = securitygroupids
           @VpcId = vpcid
           @SubnetId = subnetid
           @OsImage = osimage
+          @MachineType = machinetype
           @InstanceId = instanceid
         end
 
@@ -1764,6 +1789,10 @@ module TencentCloud
           @RenewFlag = params['RenewFlag']
           @PayMode = params['PayMode']
           @Memory = params['Memory']
+          unless params['SystemDisk'].nil?
+            @SystemDisk = Disk.new
+            @SystemDisk.deserialize(params['SystemDisk'])
+          end
           unless params['InternetAccessible'].nil?
             @InternetAccessible = InternetAccessible.new
             @InternetAccessible.deserialize(params['InternetAccessible'])
@@ -1772,10 +1801,25 @@ module TencentCloud
           @LanIp = params['LanIp']
           @InstanceType = params['InstanceType']
           @ExpiredTime = params['ExpiredTime']
+          @WanIp = params['WanIp']
+          @KeyIds = params['KeyIds']
+          unless params['GPUParams'].nil?
+            @GPUParams = GPUParams.new
+            @GPUParams.deserialize(params['GPUParams'])
+          end
+          unless params['DataDisks'].nil?
+            @DataDisks = []
+            params['DataDisks'].each do |i|
+              datadisk_tmp = DataDisk.new
+              datadisk_tmp.deserialize(i)
+              @DataDisks << datadisk_tmp
+            end
+          end
           @SecurityGroupIDs = params['SecurityGroupIDs']
           @VpcId = params['VpcId']
           @SubnetId = params['SubnetId']
           @OsImage = params['OsImage']
+          @MachineType = params['MachineType']
           @InstanceId = params['InstanceId']
         end
       end

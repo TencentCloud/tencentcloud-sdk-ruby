@@ -1897,6 +1897,75 @@ module TencentCloud
         end
       end
 
+      # RetrieveKnowledgeRealtime请求参数结构体
+      class RetrieveKnowledgeRealtimeRequest < TencentCloud::Common::AbstractModel
+        # @param KnowledgeBaseId: 知识库ID。
+        # @type KnowledgeBaseId: String
+        # @param Query: 用于检索的文本。
+        # @type Query: String
+        # @param DocIds: 实时文件ID列表。
+        # @type DocIds: Array
+        # @param RetrievalMethod: 检索方法，默认使用`HYBRID`混合检索。
+        # - `SEMANTIC`：语义检索
+        # - `FULL_TEXT`：全文检索
+        # - `HYBRID`：混合检索
+        # @type RetrievalMethod: String
+        # @param RetrievalSetting: 检索设置。
+        # @type RetrievalSetting: :class:`Tencentcloud::Lkeap.v20240522.models.RetrievalSetting`
+
+        attr_accessor :KnowledgeBaseId, :Query, :DocIds, :RetrievalMethod, :RetrievalSetting
+
+        def initialize(knowledgebaseid=nil, query=nil, docids=nil, retrievalmethod=nil, retrievalsetting=nil)
+          @KnowledgeBaseId = knowledgebaseid
+          @Query = query
+          @DocIds = docids
+          @RetrievalMethod = retrievalmethod
+          @RetrievalSetting = retrievalsetting
+        end
+
+        def deserialize(params)
+          @KnowledgeBaseId = params['KnowledgeBaseId']
+          @Query = params['Query']
+          @DocIds = params['DocIds']
+          @RetrievalMethod = params['RetrievalMethod']
+          unless params['RetrievalSetting'].nil?
+            @RetrievalSetting = RetrievalSetting.new
+            @RetrievalSetting.deserialize(params['RetrievalSetting'])
+          end
+        end
+      end
+
+      # RetrieveKnowledgeRealtime返回参数结构体
+      class RetrieveKnowledgeRealtimeResponse < TencentCloud::Common::AbstractModel
+        # @param Records: 检索结果
+        # @type Records: Array
+        # @param TotalCount: 检索结果数量
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Records, :TotalCount, :RequestId
+
+        def initialize(records=nil, totalcount=nil, requestid=nil)
+          @Records = records
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Records'].nil?
+            @Records = []
+            params['Records'].each do |i|
+              retrievalrecord_tmp = RetrievalRecord.new
+              retrievalrecord_tmp.deserialize(i)
+              @Records << retrievalrecord_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # RetrieveKnowledge请求参数结构体
       class RetrieveKnowledgeRequest < TencentCloud::Common::AbstractModel
         # @param KnowledgeBaseId: 知识库ID。
@@ -2094,64 +2163,6 @@ module TencentCloud
 
         def deserialize(params)
           @PageNumber = params['PageNumber']
-        end
-      end
-
-      # UploadDocRealtime请求参数结构体
-      class UploadDocRealtimeRequest < TencentCloud::Common::AbstractModel
-        # @param KnowledgeBaseId: 知识库ID
-        # @type KnowledgeBaseId: String
-        # @param FileName: 文件名，可选。
-        # **需带文件类型后缀**，当文件名无法从传入的`FileUrl`获取时需要通过该字段来明确。
-        # @type FileName: String
-        # @param FileType: 文件类型。
-        # **支持的文件类型：**
-        # - `PDF`、`DOC`、`DOCX`、`XLS`、`XLSX`、`PPT`、`PPTX`、`MD`、`TXT`、`PNG`、`JPG`、`JPEG`、`CSV`、`HTML`、`EPUB`
-
-        # **支持的文件大小：**
-        #  - `PDF`、`DOCX`、`DOC`、`PPT`、`PPTX` 最大 200M
-        #  - `TXT`、`MD` 最大10M
-        #  - 其他 最大20M
-        # @type FileType: String
-        # @param FileUrl: 文件的 URL 地址。
-        # 文件存储于腾讯云的 URL 可保障更高的下载速度和稳定性，建议文件存储于腾讯云。 非腾讯云存储的 URL 速度和稳定性可能受一定影响。
-        # 参考：[腾讯云COS文档](https://cloud.tencent.com/document/product/436/7749)
-        # @type FileUrl: String
-        # @param ExpireTime: 过期时间的秒数，最长24小时，默认24小时
-        # @type ExpireTime: Integer
-
-        attr_accessor :KnowledgeBaseId, :FileName, :FileType, :FileUrl, :ExpireTime
-
-        def initialize(knowledgebaseid=nil, filename=nil, filetype=nil, fileurl=nil, expiretime=nil)
-          @KnowledgeBaseId = knowledgebaseid
-          @FileName = filename
-          @FileType = filetype
-          @FileUrl = fileurl
-          @ExpireTime = expiretime
-        end
-
-        def deserialize(params)
-          @KnowledgeBaseId = params['KnowledgeBaseId']
-          @FileName = params['FileName']
-          @FileType = params['FileType']
-          @FileUrl = params['FileUrl']
-          @ExpireTime = params['ExpireTime']
-        end
-      end
-
-      # UploadDocRealtime返回参数结构体
-      class UploadDocRealtimeResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。本接口为流式响应接口，当请求成功时，RequestId 会被放在 HTTP 响应的 Header "X-TC-RequestId" 中。
-        # @type RequestId: String
-
-        attr_accessor :RequestId
-
-        def initialize(requestid=nil)
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @RequestId = params['RequestId']
         end
       end
 

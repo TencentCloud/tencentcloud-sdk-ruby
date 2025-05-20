@@ -4466,28 +4466,32 @@ module TencentCloud
       class GetMsgRecordRequest < TencentCloud::Common::AbstractModel
         # @param Type: 类型
         # @type Type: Integer
-        # @param Count: 数量,  数量需大于2
+        # @param Count: 数量,  数量需大于2, 最大1000
         # @type Count: Integer
         # @param SessionId: 会话sessionid
         # @type SessionId: String
-        # @param LastRecordId: 最后一条记录ID
-        # @type LastRecordId: String
         # @param BotAppKey: 应用AppKey, 当Type=5[API访客]时, 该字段必填  :</br>  获取方式:</br>   1、应用发布后在应用页面[发布管理]-[调用信息]-[API管理]处获取</br>   2、参考 https://cloud.tencent.com/document/product/1759/109469 第二项
         # @type BotAppKey: String
         # @param Scene: 场景, 体验: 1; 正式: 2
         # @type Scene: Integer
+        # @param LastRecordId: 最后一条记录ID， 消息从后往前获取
+
+        # MidRecordId与LastRecordId只能选择一个
+        # @type LastRecordId: String
         # @param MidRecordId: 传该值，代表拉取该记录id的前后总共count条消息记录
+
+        # MidRecordId与LastRecordId只能选择一个
         # @type MidRecordId: String
 
-        attr_accessor :Type, :Count, :SessionId, :LastRecordId, :BotAppKey, :Scene, :MidRecordId
+        attr_accessor :Type, :Count, :SessionId, :BotAppKey, :Scene, :LastRecordId, :MidRecordId
 
-        def initialize(type=nil, count=nil, sessionid=nil, lastrecordid=nil, botappkey=nil, scene=nil, midrecordid=nil)
+        def initialize(type=nil, count=nil, sessionid=nil, botappkey=nil, scene=nil, lastrecordid=nil, midrecordid=nil)
           @Type = type
           @Count = count
           @SessionId = sessionid
-          @LastRecordId = lastrecordid
           @BotAppKey = botappkey
           @Scene = scene
+          @LastRecordId = lastrecordid
           @MidRecordId = midrecordid
         end
 
@@ -4495,9 +4499,9 @@ module TencentCloud
           @Type = params['Type']
           @Count = params['Count']
           @SessionId = params['SessionId']
-          @LastRecordId = params['LastRecordId']
           @BotAppKey = params['BotAppKey']
           @Scene = params['Scene']
+          @LastRecordId = params['LastRecordId']
           @MidRecordId = params['MidRecordId']
         end
       end

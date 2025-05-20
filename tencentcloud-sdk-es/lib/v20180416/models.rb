@@ -757,10 +757,14 @@ module TencentCloud
         # @type TagList: Array
         # @param OperationDuration: 可维护时间段
         # @type OperationDuration: :class:`Tencentcloud::Es.v20180416.models.OperationDuration`
+        # @param MultiZoneInfo: 多可用区部署时可用区的详细信息
+        # @type MultiZoneInfo: Array
+        # @param DeployMode: 部署模式，0：单可用区、1：多可用区
+        # @type DeployMode: Integer
 
-        attr_accessor :InstanceName, :Zone, :LogstashVersion, :VpcId, :SubnetId, :NodeNum, :ChargeType, :ChargePeriod, :TimeUnit, :AutoVoucher, :VoucherIds, :RenewFlag, :NodeType, :DiskType, :DiskSize, :LicenseType, :TagList, :OperationDuration
+        attr_accessor :InstanceName, :Zone, :LogstashVersion, :VpcId, :SubnetId, :NodeNum, :ChargeType, :ChargePeriod, :TimeUnit, :AutoVoucher, :VoucherIds, :RenewFlag, :NodeType, :DiskType, :DiskSize, :LicenseType, :TagList, :OperationDuration, :MultiZoneInfo, :DeployMode
 
-        def initialize(instancename=nil, zone=nil, logstashversion=nil, vpcid=nil, subnetid=nil, nodenum=nil, chargetype=nil, chargeperiod=nil, timeunit=nil, autovoucher=nil, voucherids=nil, renewflag=nil, nodetype=nil, disktype=nil, disksize=nil, licensetype=nil, taglist=nil, operationduration=nil)
+        def initialize(instancename=nil, zone=nil, logstashversion=nil, vpcid=nil, subnetid=nil, nodenum=nil, chargetype=nil, chargeperiod=nil, timeunit=nil, autovoucher=nil, voucherids=nil, renewflag=nil, nodetype=nil, disktype=nil, disksize=nil, licensetype=nil, taglist=nil, operationduration=nil, multizoneinfo=nil, deploymode=nil)
           @InstanceName = instancename
           @Zone = zone
           @LogstashVersion = logstashversion
@@ -779,6 +783,8 @@ module TencentCloud
           @LicenseType = licensetype
           @TagList = taglist
           @OperationDuration = operationduration
+          @MultiZoneInfo = multizoneinfo
+          @DeployMode = deploymode
         end
 
         def deserialize(params)
@@ -810,6 +816,15 @@ module TencentCloud
             @OperationDuration = OperationDuration.new
             @OperationDuration.deserialize(params['OperationDuration'])
           end
+          unless params['MultiZoneInfo'].nil?
+            @MultiZoneInfo = []
+            params['MultiZoneInfo'].each do |i|
+              zonedetail_tmp = ZoneDetail.new
+              zonedetail_tmp.deserialize(i)
+              @MultiZoneInfo << zonedetail_tmp
+            end
+          end
+          @DeployMode = params['DeployMode']
         end
       end
 
@@ -4726,10 +4741,14 @@ module TencentCloud
         # @param MemSize: 内存大小
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MemSize: Integer
+        # @param DeployMode: 部署模式，0：单可用区、1：多可用区
+        # @type DeployMode: Integer
+        # @param MultiZoneInfo: 多可用区部署时可用区的详细信息
+        # @type MultiZoneInfo: Array
 
-        attr_accessor :InstanceId, :InstanceName, :Region, :Zone, :AppId, :Uin, :VpcId, :SubnetId, :Status, :ChargeType, :ChargePeriod, :RenewFlag, :NodeType, :NodeNum, :DiskType, :DiskSize, :LogstashVersion, :LicenseType, :CreateTime, :UpdateTime, :Deadline, :Nodes, :BindedESInstanceId, :YMLConfig, :ExtendedFiles, :OperationDuration, :CpuNum, :TagList, :MemSize
+        attr_accessor :InstanceId, :InstanceName, :Region, :Zone, :AppId, :Uin, :VpcId, :SubnetId, :Status, :ChargeType, :ChargePeriod, :RenewFlag, :NodeType, :NodeNum, :DiskType, :DiskSize, :LogstashVersion, :LicenseType, :CreateTime, :UpdateTime, :Deadline, :Nodes, :BindedESInstanceId, :YMLConfig, :ExtendedFiles, :OperationDuration, :CpuNum, :TagList, :MemSize, :DeployMode, :MultiZoneInfo
 
-        def initialize(instanceid=nil, instancename=nil, region=nil, zone=nil, appid=nil, uin=nil, vpcid=nil, subnetid=nil, status=nil, chargetype=nil, chargeperiod=nil, renewflag=nil, nodetype=nil, nodenum=nil, disktype=nil, disksize=nil, logstashversion=nil, licensetype=nil, createtime=nil, updatetime=nil, deadline=nil, nodes=nil, bindedesinstanceid=nil, ymlconfig=nil, extendedfiles=nil, operationduration=nil, cpunum=nil, taglist=nil, memsize=nil)
+        def initialize(instanceid=nil, instancename=nil, region=nil, zone=nil, appid=nil, uin=nil, vpcid=nil, subnetid=nil, status=nil, chargetype=nil, chargeperiod=nil, renewflag=nil, nodetype=nil, nodenum=nil, disktype=nil, disksize=nil, logstashversion=nil, licensetype=nil, createtime=nil, updatetime=nil, deadline=nil, nodes=nil, bindedesinstanceid=nil, ymlconfig=nil, extendedfiles=nil, operationduration=nil, cpunum=nil, taglist=nil, memsize=nil, deploymode=nil, multizoneinfo=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @Region = region
@@ -4759,6 +4778,8 @@ module TencentCloud
           @CpuNum = cpunum
           @TagList = taglist
           @MemSize = memsize
+          @DeployMode = deploymode
+          @MultiZoneInfo = multizoneinfo
         end
 
         def deserialize(params)
@@ -4815,6 +4836,15 @@ module TencentCloud
             end
           end
           @MemSize = params['MemSize']
+          @DeployMode = params['DeployMode']
+          unless params['MultiZoneInfo'].nil?
+            @MultiZoneInfo = []
+            params['MultiZoneInfo'].each do |i|
+              zonedetail_tmp = ZoneDetail.new
+              zonedetail_tmp.deserialize(i)
+              @MultiZoneInfo << zonedetail_tmp
+            end
+          end
         end
       end
 
@@ -7589,17 +7619,22 @@ module TencentCloud
         # @type Zone: String
         # @param SubnetId: 子网ID
         # @type SubnetId: String
+        # @param Hidden: 是否为隐藏可用区
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Hidden: Boolean
 
-        attr_accessor :Zone, :SubnetId
+        attr_accessor :Zone, :SubnetId, :Hidden
 
-        def initialize(zone=nil, subnetid=nil)
+        def initialize(zone=nil, subnetid=nil, hidden=nil)
           @Zone = zone
           @SubnetId = subnetid
+          @Hidden = hidden
         end
 
         def deserialize(params)
           @Zone = params['Zone']
           @SubnetId = params['SubnetId']
+          @Hidden = params['Hidden']
         end
       end
 

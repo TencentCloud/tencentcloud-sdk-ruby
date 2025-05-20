@@ -5110,54 +5110,6 @@ module TencentCloud
         end
       end
 
-      # InitDBInstances请求参数结构体
-      class InitDBInstancesRequest < TencentCloud::Common::AbstractModel
-        # @param DBInstanceIdSet: 实例ID集合。
-        # @type DBInstanceIdSet: Array
-        # @param AdminName: 实例根账号用户名。
-        # @type AdminName: String
-        # @param AdminPassword: 实例根账号用户名对应的密码。
-        # @type AdminPassword: String
-        # @param Charset: 实例字符集，目前只支持：UTF8、LATIN1。
-        # @type Charset: String
-
-        attr_accessor :DBInstanceIdSet, :AdminName, :AdminPassword, :Charset
-
-        def initialize(dbinstanceidset=nil, adminname=nil, adminpassword=nil, charset=nil)
-          @DBInstanceIdSet = dbinstanceidset
-          @AdminName = adminname
-          @AdminPassword = adminpassword
-          @Charset = charset
-        end
-
-        def deserialize(params)
-          @DBInstanceIdSet = params['DBInstanceIdSet']
-          @AdminName = params['AdminName']
-          @AdminPassword = params['AdminPassword']
-          @Charset = params['Charset']
-        end
-      end
-
-      # InitDBInstances返回参数结构体
-      class InitDBInstancesResponse < TencentCloud::Common::AbstractModel
-        # @param DBInstanceIdSet: 实例ID集合。
-        # @type DBInstanceIdSet: Array
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :DBInstanceIdSet, :RequestId
-
-        def initialize(dbinstanceidset=nil, requestid=nil)
-          @DBInstanceIdSet = dbinstanceidset
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @DBInstanceIdSet = params['DBInstanceIdSet']
-          @RequestId = params['RequestId']
-        end
-      end
-
       # InquiryPriceCreateDBInstances请求参数结构体
       class InquiryPriceCreateDBInstancesRequest < TencentCloud::Common::AbstractModel
         # @param Zone: 可用区ID。该参数可以通过调用 DescribeZones 接口的返回值中的Zone字段来获取。

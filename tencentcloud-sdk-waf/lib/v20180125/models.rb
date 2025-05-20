@@ -694,10 +694,12 @@ module TencentCloud
         # @type JobType: String
         # @param JobDateTime: 定时任务配置
         # @type JobDateTime: :class:`Tencentcloud::Waf.v20180125.models.JobDateTime`
+        # @param LogicalOp: 匹配条件的逻辑关系，支持and、or，分别表示多个逻辑匹配条件是与、或的关系
+        # @type LogicalOp: String
 
-        attr_accessor :Name, :SortId, :Strategies, :Domain, :Bypass, :ExpireTime, :JobType, :JobDateTime
+        attr_accessor :Name, :SortId, :Strategies, :Domain, :Bypass, :ExpireTime, :JobType, :JobDateTime, :LogicalOp
 
-        def initialize(name=nil, sortid=nil, strategies=nil, domain=nil, bypass=nil, expiretime=nil, jobtype=nil, jobdatetime=nil)
+        def initialize(name=nil, sortid=nil, strategies=nil, domain=nil, bypass=nil, expiretime=nil, jobtype=nil, jobdatetime=nil, logicalop=nil)
           @Name = name
           @SortId = sortid
           @Strategies = strategies
@@ -706,6 +708,7 @@ module TencentCloud
           @ExpireTime = expiretime
           @JobType = jobtype
           @JobDateTime = jobdatetime
+          @LogicalOp = logicalop
         end
 
         def deserialize(params)
@@ -727,6 +730,7 @@ module TencentCloud
             @JobDateTime = JobDateTime.new
             @JobDateTime.deserialize(params['JobDateTime'])
           end
+          @LogicalOp = params['LogicalOp']
         end
       end
 
@@ -2288,10 +2292,14 @@ module TencentCloud
         # @type CreateTime: Integer
         # @param LimitMethod: 限频方式
         # @type LimitMethod: String
+        # @param CelRule: cel表达式
+        # @type CelRule: String
+        # @param LogicalOp: 逻辑操作符
+        # @type LogicalOp: String
 
-        attr_accessor :Name, :Status, :Advance, :Limit, :Interval, :Url, :MatchFunc, :ActionType, :Priority, :ValidTime, :TsVersion, :Options, :RuleId, :EventId, :SessionApplied, :CreateTime, :LimitMethod
+        attr_accessor :Name, :Status, :Advance, :Limit, :Interval, :Url, :MatchFunc, :ActionType, :Priority, :ValidTime, :TsVersion, :Options, :RuleId, :EventId, :SessionApplied, :CreateTime, :LimitMethod, :CelRule, :LogicalOp
 
-        def initialize(name=nil, status=nil, advance=nil, limit=nil, interval=nil, url=nil, matchfunc=nil, actiontype=nil, priority=nil, validtime=nil, tsversion=nil, options=nil, ruleid=nil, eventid=nil, sessionapplied=nil, createtime=nil, limitmethod=nil)
+        def initialize(name=nil, status=nil, advance=nil, limit=nil, interval=nil, url=nil, matchfunc=nil, actiontype=nil, priority=nil, validtime=nil, tsversion=nil, options=nil, ruleid=nil, eventid=nil, sessionapplied=nil, createtime=nil, limitmethod=nil, celrule=nil, logicalop=nil)
           @Name = name
           @Status = status
           @Advance = advance
@@ -2309,6 +2317,8 @@ module TencentCloud
           @SessionApplied = sessionapplied
           @CreateTime = createtime
           @LimitMethod = limitmethod
+          @CelRule = celrule
+          @LogicalOp = logicalop
         end
 
         def deserialize(params)
@@ -2329,6 +2339,8 @@ module TencentCloud
           @SessionApplied = params['SessionApplied']
           @CreateTime = params['CreateTime']
           @LimitMethod = params['LimitMethod']
+          @CelRule = params['CelRule']
+          @LogicalOp = params['LogicalOp']
         end
       end
 
@@ -3504,7 +3516,6 @@ module TencentCloud
       # DeleteBotSceneUCBRule返回参数结构体
       class DeleteBotSceneUCBRuleResponse < TencentCloud::Common::AbstractModel
         # @param Data: 正常情况下为null
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -12111,10 +12122,12 @@ module TencentCloud
         # @type JobType: String
         # @param JobDateTime: 定时任务配置
         # @type JobDateTime: :class:`Tencentcloud::Waf.v20180125.models.JobDateTime`
+        # @param LogicalOp: 匹配条件的逻辑关系，支持and、or，分别表示多个逻辑匹配条件是与、或的关系
+        # @type LogicalOp: String
 
-        attr_accessor :Domain, :RuleId, :RuleName, :Bypass, :SortId, :ExpireTime, :Strategies, :JobType, :JobDateTime
+        attr_accessor :Domain, :RuleId, :RuleName, :Bypass, :SortId, :ExpireTime, :Strategies, :JobType, :JobDateTime, :LogicalOp
 
-        def initialize(domain=nil, ruleid=nil, rulename=nil, bypass=nil, sortid=nil, expiretime=nil, strategies=nil, jobtype=nil, jobdatetime=nil)
+        def initialize(domain=nil, ruleid=nil, rulename=nil, bypass=nil, sortid=nil, expiretime=nil, strategies=nil, jobtype=nil, jobdatetime=nil, logicalop=nil)
           @Domain = domain
           @RuleId = ruleid
           @RuleName = rulename
@@ -12124,6 +12137,7 @@ module TencentCloud
           @Strategies = strategies
           @JobType = jobtype
           @JobDateTime = jobdatetime
+          @LogicalOp = logicalop
         end
 
         def deserialize(params)
@@ -12146,6 +12160,7 @@ module TencentCloud
             @JobDateTime = JobDateTime.new
             @JobDateTime.deserialize(params['JobDateTime'])
           end
+          @LogicalOp = params['LogicalOp']
         end
       end
 
@@ -15176,16 +15191,16 @@ module TencentCloud
         # @type Limit: String
         # @param Interval: CC检测周期
         # @type Interval: String
-        # @param Url: 检测Url
-        # @type Url: String
-        # @param MatchFunc: 匹配方法，0表示等于，1表示前缀匹配，2表示包含，3表示不等于，6表示后缀匹配，7表示不包含
-        # @type MatchFunc: Integer
         # @param ActionType: 动作，20表示观察，21表示人机识别，22表示拦截，23表示精准拦截，26表示精准人机识别，27表示JS校验
         # @type ActionType: String
         # @param Priority: 优先级
         # @type Priority: Integer
         # @param ValidTime: 动作有效时间
         # @type ValidTime: Integer
+        # @param Url: 检测Url
+        # @type Url: String
+        # @param MatchFunc: 匹配方法，0表示等于，1表示前缀匹配，2表示包含，3表示不等于，6表示后缀匹配，7表示不包含
+        # @type MatchFunc: Integer
         # @param OptionsArr: CC的匹配条件JSON序列化的字符串，示例：[{\"key\":\"Method\",\"args\":[\"=R0VU\"],\"match\":\"0\",\"encodeflag\":true}] Key可选值为 Method、Post、Referer、Cookie、User-Agent、CustomHeader match可选值为，当Key为Method的时候可选值为0（等于）、3（不等于）。 Key为Post的时候可选值为0（等于）、3（不等于），Key为Cookie的时候可选值为0（等于）、2（包含），3（不等于）、7（不包含）、 当Key为Referer的时候可选值为0（等于）、3（不等于）、1（前缀匹配）、6（后缀匹配）、2（包含）、7（不包含）、12（存在）、5（不存在）、4（内容为空）， 当Key为Cookie的时候可选值为0（等于）、3（不等于）、2（包含）、7（不包含）、12（存在）、5（不存在）、4（内容为空）， 当Key为User-Agent的时候可选值为0（等于）、3（不等于）、1（前缀匹配）、6（后缀匹配）、2（包含）、7（不包含）、12（存在）、5（不存在）、4（内容为空）， 当Key为CustomHeader的时候可选值为0（等于）、3（不等于）、2（包含）、7（不包含）、12（存在）、5（不存在）、4（内容为空）。 Key为IPLocation时，可选值为13（属于）、14（不属于）。args用来表示匹配内容，需要设置encodeflag为true，当Key为Post、Cookie、CustomHeader时，用等号=来分别串接Key和Value，并分别用Base64编码，类似YWJj=YWJj。当Key为Referer、User-Agent时，用等号=来串接Value，类似=YWJj。
         # @type OptionsArr: String
         # @param Edition: waf版本，sparta-waf或者clb-waf
@@ -15204,21 +15219,25 @@ module TencentCloud
         # @type Length: Integer
         # @param LimitMethod: 限频方式
         # @type LimitMethod: String
+        # @param CelRule: cel表达式
+        # @type CelRule: String
+        # @param LogicalOp: 配置方式的逻辑操作符，and或者or
+        # @type LogicalOp: String
 
-        attr_accessor :Domain, :Name, :Status, :Advance, :Limit, :Interval, :Url, :MatchFunc, :ActionType, :Priority, :ValidTime, :OptionsArr, :Edition, :Type, :EventId, :SessionApplied, :RuleId, :CreateTime, :Length, :LimitMethod
+        attr_accessor :Domain, :Name, :Status, :Advance, :Limit, :Interval, :ActionType, :Priority, :ValidTime, :Url, :MatchFunc, :OptionsArr, :Edition, :Type, :EventId, :SessionApplied, :RuleId, :CreateTime, :Length, :LimitMethod, :CelRule, :LogicalOp
 
-        def initialize(domain=nil, name=nil, status=nil, advance=nil, limit=nil, interval=nil, url=nil, matchfunc=nil, actiontype=nil, priority=nil, validtime=nil, optionsarr=nil, edition=nil, type=nil, eventid=nil, sessionapplied=nil, ruleid=nil, createtime=nil, length=nil, limitmethod=nil)
+        def initialize(domain=nil, name=nil, status=nil, advance=nil, limit=nil, interval=nil, actiontype=nil, priority=nil, validtime=nil, url=nil, matchfunc=nil, optionsarr=nil, edition=nil, type=nil, eventid=nil, sessionapplied=nil, ruleid=nil, createtime=nil, length=nil, limitmethod=nil, celrule=nil, logicalop=nil)
           @Domain = domain
           @Name = name
           @Status = status
           @Advance = advance
           @Limit = limit
           @Interval = interval
-          @Url = url
-          @MatchFunc = matchfunc
           @ActionType = actiontype
           @Priority = priority
           @ValidTime = validtime
+          @Url = url
+          @MatchFunc = matchfunc
           @OptionsArr = optionsarr
           @Edition = edition
           @Type = type
@@ -15228,6 +15247,8 @@ module TencentCloud
           @CreateTime = createtime
           @Length = length
           @LimitMethod = limitmethod
+          @CelRule = celrule
+          @LogicalOp = logicalop
         end
 
         def deserialize(params)
@@ -15237,11 +15258,11 @@ module TencentCloud
           @Advance = params['Advance']
           @Limit = params['Limit']
           @Interval = params['Interval']
-          @Url = params['Url']
-          @MatchFunc = params['MatchFunc']
           @ActionType = params['ActionType']
           @Priority = params['Priority']
           @ValidTime = params['ValidTime']
+          @Url = params['Url']
+          @MatchFunc = params['MatchFunc']
           @OptionsArr = params['OptionsArr']
           @Edition = params['Edition']
           @Type = params['Type']
@@ -15251,6 +15272,8 @@ module TencentCloud
           @CreateTime = params['CreateTime']
           @Length = params['Length']
           @LimitMethod = params['LimitMethod']
+          @CelRule = params['CelRule']
+          @LogicalOp = params['LogicalOp']
         end
       end
 

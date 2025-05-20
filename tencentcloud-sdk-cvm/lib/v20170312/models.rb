@@ -2177,19 +2177,19 @@ module TencentCloud
 
       # DescribeHpcClusters请求参数结构体
       class DescribeHpcClustersRequest < TencentCloud::Common::AbstractModel
-        # @param HpcClusterIds: 高性能计算集群ID数组。
+        # @param HpcClusterIds: 一个或多个待操作的高性能计算集群ID。集群ID信息可通过 [查询高性能集群信息](https://cloud.tencent.com/document/api/213/83220) 接口获取。每次请求高性能计算集群信息的批量上限为100，默认配合Limit传参数，不能超过Limit值，Limit默认20。
         # @type HpcClusterIds: Array
-        # @param Name: 高性能计算集群名称。
+        # @param Name: 高性能计算集群名称，长度限制[1-60]。
         # @type Name: String
-        # @param Zone: 可用区。
+        # @param Zone: 可用区信息。可用区信息可通过 [查询可用区信息](https://cloud.tencent.com/document/api/213/15707) 接口获取。
         # @type Zone: String
         # @param Offset: 偏移量, 默认值0。
         # @type Offset: Integer
-        # @param Limit: 本次请求量, 默认值20。
+        # @param Limit: 本次请求量, 默认值20，范围限制为[1-100]。
         # @type Limit: Integer
-        # @param HpcClusterType: 高性能计算集群类型。
+        # @param HpcClusterType: 高性能计算集群类型，当前有三个取值：分别是CDC/CHC/STANDARD，其中STANDARD是默认的标准模式。
         # @type HpcClusterType: String
-        # @param HpcClusterBusinessId: 高性能计算集群对应的业务场景标识，当前只支持CDC。
+        # @param HpcClusterBusinessId: 高性能计算集群对应的业务场景标识，当前只支持CDC场景类型。
         # @type HpcClusterBusinessId: String
         # @param InstanceType: 高性能计算集群实例类型
         # @type InstanceType: String
@@ -6675,11 +6675,11 @@ module TencentCloud
 
       # ModifyHpcClusterAttribute请求参数结构体
       class ModifyHpcClusterAttributeRequest < TencentCloud::Common::AbstractModel
-        # @param HpcClusterId: 高性能计算集群ID。
+        # @param HpcClusterId: 高性能计算集群ID。集群ID可通过 [查询高性能集群信息](https://cloud.tencent.com/document/api/213/83220) 接口获取。
         # @type HpcClusterId: String
-        # @param Name: 高性能计算集群新名称。
+        # @param Name: 高性能计算集群新名称，长度限制[1-60]。
         # @type Name: String
-        # @param Remark: 高性能计算集群新备注。
+        # @param Remark: 高性能计算集群新备注，长度[1-256]。
         # @type Remark: String
 
         attr_accessor :HpcClusterId, :Name, :Remark
@@ -6867,7 +6867,7 @@ module TencentCloud
         # @type HostName: String
         # @param DisableApiTermination: 实例销毁保护标志，表示是否允许通过api接口删除实例。取值范围：<li>true：表示开启实例保护，不允许通过api接口删除实例</li><li>false：表示关闭实例保护，允许通过api接口删除实例</li>默认取值：false。
         # @type DisableApiTermination: Boolean
-        # @param CamRoleType: 角色类别，与CamRoleName搭配使用，该值可从CAM DescribeRoleList, GetRole接口返回RoleType字段获取，当前只接受user、system和service_linked三种类别。
+        # @param CamRoleType: 角色类别，与CamRoleName搭配使用，该值可从CAM [ DescribeRoleList ](https://cloud.tencent.com/document/product/598/36223)或[ GetRole ](https://cloud.tencent.com/document/product/598/36221)接口返回RoleType字段获取，当前只接受user、system和service_linked三种类别。
         # 举例：一般CamRoleName中包含“LinkedRoleIn”（如TKE_QCSLinkedRoleInPrometheusService）时，DescribeRoleList和GetRole返回的RoleType为service_linked，则本参数也需要传递service_linked。
         # 该参数默认值为user，若CameRoleName为非service_linked类型，本参数可不传递。
         # @type CamRoleType: String
@@ -6969,7 +6969,7 @@ module TencentCloud
 
       # ModifyInstancesDisasterRecoverGroup请求参数结构体
       class ModifyInstancesDisasterRecoverGroupRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceIds: 一个或多个待操作的实例ID。可通过[`DescribeInstances`](https://cloud.tencent.com/document/api/213/15728)接口返回值中的`InstanceId`获取。每次请求批量实例的上限为1
+        # @param InstanceIds: 一个或多个待操作的实例ID。可通过[ DescribeInstances ](https://cloud.tencent.com/document/api/213/15728)接口返回值中的`InstanceId`获取。每次请求批量实例的上限为100
         # @type InstanceIds: Array
         # @param DisasterRecoverGroupId: 分散置放群组ID，可使用[DescribeDisasterRecoverGroups](https://cloud.tencent.com/document/api/213/17810)接口获取
         # @type DisasterRecoverGroupId: String
@@ -9073,7 +9073,7 @@ module TencentCloud
 
       # 创建资源实例时同时绑定的标签对说明
       class TagSpecification < TencentCloud::Common::AbstractModel
-        # @param ResourceType: 标签绑定的资源类型，云服务器为“instance”，专用宿主机为“host”，镜像为“image”，密钥为“keypair”
+        # @param ResourceType: 标签绑定的资源类型，云服务器为“instance”，专用宿主机为“host”，镜像为“image”，密钥为“keypair”，置放群组为“ps”，高性能计算集群为“hpc”。
         # @type ResourceType: String
         # @param Tags: 标签对列表
         # @type Tags: Array

@@ -3633,17 +3633,30 @@ module TencentCloud
         # @type EncodeUrl: Boolean
         # @param Headers: 附带的http头部信息。
         # @type Headers: Array
+        # @param PrefetchMediaSegments: 媒体分片预热控制，取值有：
+        # <li>on：开启分片预热，预热描述文件，并递归解析描述文件分片进行预热；</li>
+        # <li>off：仅预热提交的描述文件；</li>不填写时，默认值为 off。
 
-        attr_accessor :ZoneId, :Targets, :EncodeUrl, :Headers
+        # 注意事项：
+        # 1. 支持的描述文件为 M3U8，对应分片为 TS；
+        # 2. 要求描述文件能正常请求，并按行业标准描述分片路径；
+        # 3. 递归解析深度不超过 3 层；
+        # 4. 解析获取的分片会正常累加每日预热用量，当用量超出配额时，会静默处理，不再执行预热。
+
+        # 该参数为白名单功能，如有需要，请联系腾讯云工程师处理。
+        # @type PrefetchMediaSegments: String
+
+        attr_accessor :ZoneId, :Targets, :EncodeUrl, :Headers, :PrefetchMediaSegments
         extend Gem::Deprecate
         deprecate :EncodeUrl, :none, 2025, 5
         deprecate :EncodeUrl=, :none, 2025, 5
 
-        def initialize(zoneid=nil, targets=nil, encodeurl=nil, headers=nil)
+        def initialize(zoneid=nil, targets=nil, encodeurl=nil, headers=nil, prefetchmediasegments=nil)
           @ZoneId = zoneid
           @Targets = targets
           @EncodeUrl = encodeurl
           @Headers = headers
+          @PrefetchMediaSegments = prefetchmediasegments
         end
 
         def deserialize(params)
@@ -3658,6 +3671,7 @@ module TencentCloud
               @Headers << header_tmp
             end
           end
+          @PrefetchMediaSegments = params['PrefetchMediaSegments']
         end
       end
 
@@ -13089,13 +13103,13 @@ module TencentCloud
         # <li>https：使用 HTTPS 协议；</li>
         # <li>follow：协议跟随。</li>
         # @type OriginProtocol: String
-        # @param HTTPOriginPort: HTTP 回源端口，取值范围 1～65535。该参数仅当回源协议 OriginProtocol 为 http 或者 follow 时生效。
+        # @param HTTPOriginPort: HTTP 回源端口，取值范围 1～65535。当回源协议 OriginProtocol 为 http 或者 follow 时该参数必填。
         # @type HTTPOriginPort: Integer
-        # @param HTTPSOriginPort: HTTPS 回源端口，取值范围 1～65535。该参数仅当回源协议 OriginProtocol 为 https 或者 follow 时生效。
+        # @param HTTPSOriginPort: HTTPS 回源端口，取值范围 1～65535。当回源协议 OriginProtocol 为 https 或者 follow 时该参数必填。
         # @type HTTPSOriginPort: Integer
-        # @param PrivateAccess: 指定是否允许访问私有对象存储源站，该参数仅当源站类型 OriginType = COS 或 AWSS3 时会生效，取值有：
+        # @param PrivateAccess: 指定是否允许访问私有对象存储源站，当源站类型 OriginType = COS 或 AWSS3 时该参数必填，取值有：
         # <li>on：使用私有鉴权；</li>
-        # <li>off：不使用私有鉴权。</li>不填写时，默认值为off。
+        # <li>off：不使用私有鉴权。</li>
         # @type PrivateAccess: String
         # @param PrivateParameters: 私有鉴权使用参数，该参数仅当 OriginType = AWSS3 且 PrivateAccess = on 时会生效。
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -13991,6 +14005,8 @@ module TencentCloud
         # @param PrivateParameters: 私有鉴权使用参数，该参数仅当源站类型 PrivateAccess = on 时会生效。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PrivateParameters: Array
+        # @param HostHeader: 当前配置的回源 HOST 头。
+        # @type HostHeader: String
         # @param VodeoSubAppId: MO 子应用 ID
         # @type VodeoSubAppId: Integer
         # @param VodeoDistributionRange: MO 分发范围，取值有： <li>All：全部</li> <li>Bucket：存储桶</li>
@@ -14003,7 +14019,7 @@ module TencentCloud
         # @param VodBucketId: 云点播存储桶 ID，该参数当 OriginType = VOD 且 VodOriginScope = bucket 时必填。数据来源：云点播专业版应用下存储桶的存储 ID 。
         # @type VodBucketId: String
 
-        attr_accessor :OriginType, :Origin, :BackupOrigin, :OriginGroupName, :BackOriginGroupName, :PrivateAccess, :PrivateParameters, :VodeoSubAppId, :VodeoDistributionRange, :VodeoBucketId, :VodOriginScope, :VodBucketId
+        attr_accessor :OriginType, :Origin, :BackupOrigin, :OriginGroupName, :BackOriginGroupName, :PrivateAccess, :PrivateParameters, :HostHeader, :VodeoSubAppId, :VodeoDistributionRange, :VodeoBucketId, :VodOriginScope, :VodBucketId
         extend Gem::Deprecate
         deprecate :VodeoSubAppId, :none, 2025, 5
         deprecate :VodeoSubAppId=, :none, 2025, 5
@@ -14012,7 +14028,7 @@ module TencentCloud
         deprecate :VodeoBucketId, :none, 2025, 5
         deprecate :VodeoBucketId=, :none, 2025, 5
 
-        def initialize(origintype=nil, origin=nil, backuporigin=nil, origingroupname=nil, backorigingroupname=nil, privateaccess=nil, privateparameters=nil, vodeosubappid=nil, vodeodistributionrange=nil, vodeobucketid=nil, vodoriginscope=nil, vodbucketid=nil)
+        def initialize(origintype=nil, origin=nil, backuporigin=nil, origingroupname=nil, backorigingroupname=nil, privateaccess=nil, privateparameters=nil, hostheader=nil, vodeosubappid=nil, vodeodistributionrange=nil, vodeobucketid=nil, vodoriginscope=nil, vodbucketid=nil)
           @OriginType = origintype
           @Origin = origin
           @BackupOrigin = backuporigin
@@ -14020,6 +14036,7 @@ module TencentCloud
           @BackOriginGroupName = backorigingroupname
           @PrivateAccess = privateaccess
           @PrivateParameters = privateparameters
+          @HostHeader = hostheader
           @VodeoSubAppId = vodeosubappid
           @VodeoDistributionRange = vodeodistributionrange
           @VodeoBucketId = vodeobucketid
@@ -14042,6 +14059,7 @@ module TencentCloud
               @PrivateParameters << privateparameter_tmp
             end
           end
+          @HostHeader = params['HostHeader']
           @VodeoSubAppId = params['VodeoSubAppId']
           @VodeoDistributionRange = params['VodeoDistributionRange']
           @VodeoBucketId = params['VodeoBucketId']
@@ -14292,6 +14310,11 @@ module TencentCloud
         # @type PrivateAccess: String
         # @param PrivateParameters: 私有鉴权使用参数，该参数仅当源站类型 PrivateAccess = on 时会生效。
         # @type PrivateParameters: Array
+        # @param HostHeader: 自定义回源 HOST 头，该参数仅当 OriginType=IP_DOMAIN 时生效。
+        # 如果 OriginType=COS 或 AWS_S3 时，回源 HOST 头将与源站域名保持一致。
+        # 如果OriginType=ORIGIN_GROUP 或 LB 时，回源 HOST 头遵循源站组内配置，如果没有配置则默认为加速域名。
+        # 如果 OriginType=VOD 或 SPACE 时，无需配置该头部，按对应的回源域名生效。
+        # @type HostHeader: String
         # @param VodeoSubAppId: VODEO 子应用 ID。该参数当 OriginType = VODEO 时必填。
         # @type VodeoSubAppId: Integer
         # @param VodeoDistributionRange: VODEO 分发范围，该参数当 OriginType = VODEO 时必填。取值有：
@@ -14306,7 +14329,7 @@ module TencentCloud
         # @param VodBucketId: VOD 存储桶 ID，该参数当 OriginType = VOD 且 VodOriginScope = bucket 时必填。数据来源：云点播专业版应用下存储桶的存储 ID 。
         # @type VodBucketId: String
 
-        attr_accessor :OriginType, :Origin, :BackupOrigin, :PrivateAccess, :PrivateParameters, :VodeoSubAppId, :VodeoDistributionRange, :VodeoBucketId, :VodOriginScope, :VodBucketId
+        attr_accessor :OriginType, :Origin, :BackupOrigin, :PrivateAccess, :PrivateParameters, :HostHeader, :VodeoSubAppId, :VodeoDistributionRange, :VodeoBucketId, :VodOriginScope, :VodBucketId
         extend Gem::Deprecate
         deprecate :VodeoSubAppId, :none, 2025, 5
         deprecate :VodeoSubAppId=, :none, 2025, 5
@@ -14315,12 +14338,13 @@ module TencentCloud
         deprecate :VodeoBucketId, :none, 2025, 5
         deprecate :VodeoBucketId=, :none, 2025, 5
 
-        def initialize(origintype=nil, origin=nil, backuporigin=nil, privateaccess=nil, privateparameters=nil, vodeosubappid=nil, vodeodistributionrange=nil, vodeobucketid=nil, vodoriginscope=nil, vodbucketid=nil)
+        def initialize(origintype=nil, origin=nil, backuporigin=nil, privateaccess=nil, privateparameters=nil, hostheader=nil, vodeosubappid=nil, vodeodistributionrange=nil, vodeobucketid=nil, vodoriginscope=nil, vodbucketid=nil)
           @OriginType = origintype
           @Origin = origin
           @BackupOrigin = backuporigin
           @PrivateAccess = privateaccess
           @PrivateParameters = privateparameters
+          @HostHeader = hostheader
           @VodeoSubAppId = vodeosubappid
           @VodeoDistributionRange = vodeodistributionrange
           @VodeoBucketId = vodeobucketid
@@ -14341,6 +14365,7 @@ module TencentCloud
               @PrivateParameters << privateparameter_tmp
             end
           end
+          @HostHeader = params['HostHeader']
           @VodeoSubAppId = params['VodeoSubAppId']
           @VodeoDistributionRange = params['VodeoDistributionRange']
           @VodeoBucketId = params['VodeoBucketId']
@@ -15861,7 +15886,7 @@ module TencentCloud
         # <li>ModifyRequestHeader：修改 HTTP 节点请求头；</li>
         # <li>ResponseSpeedLimit：单连接下载限速；</li>
         # <li>SetContentIdentifier：设置内容标识符；</li>
-        # <li>Vary：Vary 特性配置。该功能灰度中，如需使用，请联系腾讯云客服。</li>
+        # <li>Vary：Vary 特性配置。</li>
         # @type Name: String
         # @param CacheParameters: 节点缓存 TTL 配置参数，当 Name 取值为 Cache 时，该参数必填。
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -15967,7 +15992,6 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SetContentIdentifierParameters: :class:`Tencentcloud::Teo.v20220901.models.SetContentIdentifierParameters`
         # @param VaryParameters: Vary 特性配置参数，当 Name 取值为 Vary 时，该参数必填。
-        # 该功能灰度中，如需使用，请联系腾讯云客服。
         # @type VaryParameters: :class:`Tencentcloud::Teo.v20220901.models.VaryParameters`
 
         attr_accessor :Name, :CacheParameters, :CacheKeyParameters, :CachePrefreshParameters, :AccessURLRedirectParameters, :UpstreamURLRewriteParameters, :QUICParameters, :WebSocketParameters, :AuthenticationParameters, :MaxAgeParameters, :StatusCodeCacheParameters, :OfflineCacheParameters, :SmartRoutingParameters, :RangeOriginPullParameters, :UpstreamHTTP2Parameters, :HostHeaderParameters, :ForceRedirectHTTPSParameters, :CompressionParameters, :HSTSParameters, :ClientIPHeaderParameters, :OCSPStaplingParameters, :HTTP2Parameters, :PostMaxSizeParameters, :ClientIPCountryParameters, :UpstreamFollowRedirectParameters, :UpstreamRequestParameters, :TLSConfigParameters, :ModifyOriginParameters, :HTTPUpstreamTimeoutParameters, :HttpResponseParameters, :ErrorPageParameters, :ModifyResponseHeaderParameters, :ModifyRequestHeaderParameters, :ResponseSpeedLimitParameters, :SetContentIdentifierParameters, :VaryParameters
@@ -17837,7 +17861,6 @@ module TencentCloud
       end
 
       # [Vary 特性](https://cloud.tencent.com/document/product/1552/89301) 配置参数。
-      # 该功能灰度中，如需使用，请联系腾讯云客服。
       class VaryParameters < TencentCloud::Common::AbstractModel
         # @param Switch: Vary 特性配置开关，取值有：
         # <li>on：开启；</li>

@@ -3525,7 +3525,11 @@ module TencentCloud
         # @type EnvVars: Array
         # @param Authentications: 授权信息
         # @type Authentications: Array
-        # @param FailedAction: TaskInstance失败后处理方式，取值包括TERMINATE（默认）、INTERRUPT、FAST_INTERRUPT。
+        # @param FailedAction: TaskInstance失败后处理方式，取值包括
+
+        # - TERMINATE：销毁计算实例（默认）、
+        # - INTERRUPT：中断任务，保留计算实例、
+        # - FAST_INTERRUPT： 快速中断任务， 保留计算实例。
         # @type FailedAction: String
         # @param MaxRetryCount: 任务失败后的最大重试次数，默认为0
         # @type MaxRetryCount: Integer

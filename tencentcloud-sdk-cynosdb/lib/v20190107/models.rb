@@ -2824,6 +2824,8 @@ module TencentCloud
         # @type SubnetId: String
         # @param CynosVersion: cynos内核版本
         # @type CynosVersion: String
+        # @param CynosVersionTag: cynos版本标签
+        # @type CynosVersionTag: String
         # @param StorageLimit: 存储容量
         # @type StorageLimit: Integer
         # @param RenewFlag: 续费标志
@@ -2872,10 +2874,12 @@ module TencentCloud
         # @type ResourcePackages: Array
         # @param GdnId: 全球数据库唯一标识
         # @type GdnId: String
+        # @param GdnRole: 集群角色。主集群- primary，从集群 - standby，如果 GdnId为空，该字段无效。
+        # @type GdnRole: String
 
-        attr_accessor :Status, :UpdateTime, :Zone, :ClusterName, :Region, :DbVersion, :ClusterId, :InstanceNum, :Uin, :DbType, :AppId, :StatusDesc, :CreateTime, :PayMode, :PeriodEndTime, :Vip, :Vport, :ProjectID, :VpcId, :SubnetId, :CynosVersion, :StorageLimit, :RenewFlag, :ProcessingTask, :Tasks, :ResourceTags, :DbMode, :ServerlessStatus, :Storage, :StorageId, :StoragePayMode, :MinStorageSize, :MaxStorageSize, :NetAddrs, :PhysicalZone, :MasterZone, :HasSlaveZone, :SlaveZones, :BusinessType, :IsFreeze, :OrderSource, :Ability, :ResourcePackages, :GdnId
+        attr_accessor :Status, :UpdateTime, :Zone, :ClusterName, :Region, :DbVersion, :ClusterId, :InstanceNum, :Uin, :DbType, :AppId, :StatusDesc, :CreateTime, :PayMode, :PeriodEndTime, :Vip, :Vport, :ProjectID, :VpcId, :SubnetId, :CynosVersion, :CynosVersionTag, :StorageLimit, :RenewFlag, :ProcessingTask, :Tasks, :ResourceTags, :DbMode, :ServerlessStatus, :Storage, :StorageId, :StoragePayMode, :MinStorageSize, :MaxStorageSize, :NetAddrs, :PhysicalZone, :MasterZone, :HasSlaveZone, :SlaveZones, :BusinessType, :IsFreeze, :OrderSource, :Ability, :ResourcePackages, :GdnId, :GdnRole
 
-        def initialize(status=nil, updatetime=nil, zone=nil, clustername=nil, region=nil, dbversion=nil, clusterid=nil, instancenum=nil, uin=nil, dbtype=nil, appid=nil, statusdesc=nil, createtime=nil, paymode=nil, periodendtime=nil, vip=nil, vport=nil, projectid=nil, vpcid=nil, subnetid=nil, cynosversion=nil, storagelimit=nil, renewflag=nil, processingtask=nil, tasks=nil, resourcetags=nil, dbmode=nil, serverlessstatus=nil, storage=nil, storageid=nil, storagepaymode=nil, minstoragesize=nil, maxstoragesize=nil, netaddrs=nil, physicalzone=nil, masterzone=nil, hasslavezone=nil, slavezones=nil, businesstype=nil, isfreeze=nil, ordersource=nil, ability=nil, resourcepackages=nil, gdnid=nil)
+        def initialize(status=nil, updatetime=nil, zone=nil, clustername=nil, region=nil, dbversion=nil, clusterid=nil, instancenum=nil, uin=nil, dbtype=nil, appid=nil, statusdesc=nil, createtime=nil, paymode=nil, periodendtime=nil, vip=nil, vport=nil, projectid=nil, vpcid=nil, subnetid=nil, cynosversion=nil, cynosversiontag=nil, storagelimit=nil, renewflag=nil, processingtask=nil, tasks=nil, resourcetags=nil, dbmode=nil, serverlessstatus=nil, storage=nil, storageid=nil, storagepaymode=nil, minstoragesize=nil, maxstoragesize=nil, netaddrs=nil, physicalzone=nil, masterzone=nil, hasslavezone=nil, slavezones=nil, businesstype=nil, isfreeze=nil, ordersource=nil, ability=nil, resourcepackages=nil, gdnid=nil, gdnrole=nil)
           @Status = status
           @UpdateTime = updatetime
           @Zone = zone
@@ -2897,6 +2901,7 @@ module TencentCloud
           @VpcId = vpcid
           @SubnetId = subnetid
           @CynosVersion = cynosversion
+          @CynosVersionTag = cynosversiontag
           @StorageLimit = storagelimit
           @RenewFlag = renewflag
           @ProcessingTask = processingtask
@@ -2920,6 +2925,7 @@ module TencentCloud
           @Ability = ability
           @ResourcePackages = resourcepackages
           @GdnId = gdnid
+          @GdnRole = gdnrole
         end
 
         def deserialize(params)
@@ -2944,6 +2950,7 @@ module TencentCloud
           @VpcId = params['VpcId']
           @SubnetId = params['SubnetId']
           @CynosVersion = params['CynosVersion']
+          @CynosVersionTag = params['CynosVersionTag']
           @StorageLimit = params['StorageLimit']
           @RenewFlag = params['RenewFlag']
           @ProcessingTask = params['ProcessingTask']
@@ -2998,6 +3005,7 @@ module TencentCloud
             end
           end
           @GdnId = params['GdnId']
+          @GdnRole = params['GdnRole']
         end
       end
 
@@ -12831,9 +12839,9 @@ module TencentCloud
         # @type RollbackStrategy: String
         # @param SnapshotTime: 快照时间
         # @type SnapshotTime: String
-        # @param MinCpu: 回档到serverlessls集群时最小CPU
+        # @param MinCpu: 回档到 Serverless 集群时最小 CPU
         # @type MinCpu: Integer
-        # @param MaxCpu: 回档到serverlessls集群时最大CPU
+        # @param MaxCpu: 回档到 Serverless 集群时最大 CPU
         # @type MaxCpu: Integer
         # @param SnapShotId: 快照ID
         # @type SnapShotId: Integer

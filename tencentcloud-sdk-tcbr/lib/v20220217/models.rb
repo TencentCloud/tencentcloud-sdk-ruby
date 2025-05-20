@@ -1064,10 +1064,8 @@ module TencentCloud
         # @param InternalDomain: 内网域名
         # @type InternalDomain: String
         # @param OperationMode: 运行模式
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OperationMode: String
         # @param TimerScale: 定时扩缩容配置
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TimerScale: Array
 
         attr_accessor :EnvId, :ServerName, :OpenAccessTypes, :Cpu, :Mem, :MinNum, :MaxNum, :PolicyDetails, :CustomLogs, :EnvParams, :InitialDelaySeconds, :CreateTime, :Port, :HasDockerfile, :Dockerfile, :BuildDir, :LogType, :LogSetId, :LogTopicId, :LogParseType, :Tag, :InternalAccess, :InternalDomain, :OperationMode, :TimerScale
@@ -1397,22 +1395,16 @@ module TencentCloud
       # 定时扩缩容配置
       class TimerScale < TencentCloud::Common::AbstractModel
         # @param CycleType: 循环类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CycleType: String
         # @param StartDate: 循环起始
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StartDate: String
         # @param EndDate: 循环结束
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EndDate: String
         # @param StartTime: 起始时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StartTime: String
         # @param EndTime: 结束时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EndTime: String
         # @param ReplicaNum: 副本个数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReplicaNum: Integer
 
         attr_accessor :CycleType, :StartDate, :EndDate, :StartTime, :EndTime, :ReplicaNum

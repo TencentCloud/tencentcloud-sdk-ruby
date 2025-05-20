@@ -8256,10 +8256,12 @@ module TencentCloud
         # @type TEHDConfig: :class:`Tencentcloud::Mps.v20190612.models.TEHDConfig`
         # @param EnhanceConfig: 音视频增强配置。
         # @type EnhanceConfig: :class:`Tencentcloud::Mps.v20190612.models.EnhanceConfig`
+        # @param StdExtInfo: 扩展参数，序列化的 json 字符串。
+        # @type StdExtInfo: String
 
-        attr_accessor :Container, :Name, :Comment, :RemoveVideo, :RemoveAudio, :VideoTemplate, :AudioTemplate, :TEHDConfig, :EnhanceConfig
+        attr_accessor :Container, :Name, :Comment, :RemoveVideo, :RemoveAudio, :VideoTemplate, :AudioTemplate, :TEHDConfig, :EnhanceConfig, :StdExtInfo
 
-        def initialize(container=nil, name=nil, comment=nil, removevideo=nil, removeaudio=nil, videotemplate=nil, audiotemplate=nil, tehdconfig=nil, enhanceconfig=nil)
+        def initialize(container=nil, name=nil, comment=nil, removevideo=nil, removeaudio=nil, videotemplate=nil, audiotemplate=nil, tehdconfig=nil, enhanceconfig=nil, stdextinfo=nil)
           @Container = container
           @Name = name
           @Comment = comment
@@ -8269,6 +8271,7 @@ module TencentCloud
           @AudioTemplate = audiotemplate
           @TEHDConfig = tehdconfig
           @EnhanceConfig = enhanceconfig
+          @StdExtInfo = stdextinfo
         end
 
         def deserialize(params)
@@ -8293,6 +8296,7 @@ module TencentCloud
             @EnhanceConfig = EnhanceConfig.new
             @EnhanceConfig.deserialize(params['EnhanceConfig'])
           end
+          @StdExtInfo = params['StdExtInfo']
         end
       end
 
@@ -10287,6 +10291,9 @@ module TencentCloud
         # <li>FINISH：已完成。</li>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: String
+        # @param ImageProcessTaskResultSet: 图片处理任务的执行状态与结果。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ImageProcessTaskResultSet: Array
         # @param CreateTime: 任务的创建时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/862/37710#52)。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
@@ -10296,11 +10303,12 @@ module TencentCloud
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TaskType, :Status, :CreateTime, :FinishTime, :RequestId
+        attr_accessor :TaskType, :Status, :ImageProcessTaskResultSet, :CreateTime, :FinishTime, :RequestId
 
-        def initialize(tasktype=nil, status=nil, createtime=nil, finishtime=nil, requestid=nil)
+        def initialize(tasktype=nil, status=nil, imageprocesstaskresultset=nil, createtime=nil, finishtime=nil, requestid=nil)
           @TaskType = tasktype
           @Status = status
+          @ImageProcessTaskResultSet = imageprocesstaskresultset
           @CreateTime = createtime
           @FinishTime = finishtime
           @RequestId = requestid
@@ -10309,6 +10317,14 @@ module TencentCloud
         def deserialize(params)
           @TaskType = params['TaskType']
           @Status = params['Status']
+          unless params['ImageProcessTaskResultSet'].nil?
+            @ImageProcessTaskResultSet = []
+            params['ImageProcessTaskResultSet'].each do |i|
+              imageprocesstaskresult_tmp = ImageProcessTaskResult.new
+              imageprocesstaskresult_tmp.deserialize(i)
+              @ImageProcessTaskResultSet << imageprocesstaskresult_tmp
+            end
+          end
           @CreateTime = params['CreateTime']
           @FinishTime = params['FinishTime']
           @RequestId = params['RequestId']
@@ -14499,6 +14515,33 @@ module TencentCloud
         end
       end
 
+      # 图片降噪配置
+      class ImageDenoiseConfig < TencentCloud::Common::AbstractModel
+        # @param Switch: 能力配置开关，可选值：
+        # <li>ON：开启；</li>
+        # <li>OFF：关闭。</li>
+        # 默认值：ON。
+        # @type Switch: String
+        # @param Type: 类型，可选值：
+        # <li>weak</li>
+        # <li>strong</li>
+        # 默认值：weak。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+
+        attr_accessor :Switch, :Type
+
+        def initialize(switch=nil, type=nil)
+          @Switch = switch
+          @Type = type
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
+          @Type = params['Type']
+        end
+      end
+
       # 图片编码格式参数
       class ImageEncodeConfig < TencentCloud::Common::AbstractModel
         # @param Format: 图片格式，取值范围：JPEG、PNG、BMP、WebP，缺省为原图格式。不支持动画。
@@ -14526,6 +14569,9 @@ module TencentCloud
         # @param SuperResolution: 超分配置。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SuperResolution: :class:`Tencentcloud::Mps.v20190612.models.SuperResolutionConfig`
+        # @param Denoise: 降噪配置。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Denoise: :class:`Tencentcloud::Mps.v20190612.models.ImageDenoiseConfig`
         # @param ImageQualityEnhance: 综合增强配置。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ImageQualityEnhance: :class:`Tencentcloud::Mps.v20190612.models.ImageQualityEnhanceConfig`
@@ -14538,21 +14584,30 @@ module TencentCloud
         # @param FaceEnhance: 人脸增强配置。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FaceEnhance: :class:`Tencentcloud::Mps.v20190612.models.FaceEnhanceConfig`
+        # @param LowLightEnhance: 低光照增强配置。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LowLightEnhance: :class:`Tencentcloud::Mps.v20190612.models.LowLightEnhanceConfig`
 
-        attr_accessor :SuperResolution, :ImageQualityEnhance, :ColorEnhance, :SharpEnhance, :FaceEnhance
+        attr_accessor :SuperResolution, :Denoise, :ImageQualityEnhance, :ColorEnhance, :SharpEnhance, :FaceEnhance, :LowLightEnhance
 
-        def initialize(superresolution=nil, imagequalityenhance=nil, colorenhance=nil, sharpenhance=nil, faceenhance=nil)
+        def initialize(superresolution=nil, denoise=nil, imagequalityenhance=nil, colorenhance=nil, sharpenhance=nil, faceenhance=nil, lowlightenhance=nil)
           @SuperResolution = superresolution
+          @Denoise = denoise
           @ImageQualityEnhance = imagequalityenhance
           @ColorEnhance = colorenhance
           @SharpEnhance = sharpenhance
           @FaceEnhance = faceenhance
+          @LowLightEnhance = lowlightenhance
         end
 
         def deserialize(params)
           unless params['SuperResolution'].nil?
             @SuperResolution = SuperResolutionConfig.new
             @SuperResolution.deserialize(params['SuperResolution'])
+          end
+          unless params['Denoise'].nil?
+            @Denoise = ImageDenoiseConfig.new
+            @Denoise.deserialize(params['Denoise'])
           end
           unless params['ImageQualityEnhance'].nil?
             @ImageQualityEnhance = ImageQualityEnhanceConfig.new
@@ -14569,6 +14624,10 @@ module TencentCloud
           unless params['FaceEnhance'].nil?
             @FaceEnhance = FaceEnhanceConfig.new
             @FaceEnhance.deserialize(params['FaceEnhance'])
+          end
+          unless params['LowLightEnhance'].nil?
+            @LowLightEnhance = LowLightEnhanceConfig.new
+            @LowLightEnhance.deserialize(params['LowLightEnhance'])
           end
         end
       end
@@ -14623,6 +14682,66 @@ module TencentCloud
               @ImageAreaBoxes << imageareaboxinfo_tmp
             end
           end
+        end
+      end
+
+      # 图片处理结果信息
+      class ImageProcessTaskOutput < TencentCloud::Common::AbstractModel
+        # @param Path: 输出文件的路径。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Path: String
+        # @param OutputStorage: 输出文件的存储位置。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OutputStorage: :class:`Tencentcloud::Mps.v20190612.models.TaskOutputStorage`
+
+        attr_accessor :Path, :OutputStorage
+
+        def initialize(path=nil, outputstorage=nil)
+          @Path = path
+          @OutputStorage = outputstorage
+        end
+
+        def deserialize(params)
+          @Path = params['Path']
+          unless params['OutputStorage'].nil?
+            @OutputStorage = TaskOutputStorage.new
+            @OutputStorage.deserialize(params['OutputStorage'])
+          end
+        end
+      end
+
+      # 图片处理任务结果类型
+      class ImageProcessTaskResult < TencentCloud::Common::AbstractModel
+        # @param Status: 任务状态，有 PROCESSING，SUCCESS 和 FAIL 三种。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: String
+        # @param Message: 错误信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Message: String
+        # @param Output: 转码任务的输出。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Output: :class:`Tencentcloud::Mps.v20190612.models.ImageProcessTaskOutput`
+        # @param Progress: 转码进度，取值范围 [0-100]
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Progress: Integer
+
+        attr_accessor :Status, :Message, :Output, :Progress
+
+        def initialize(status=nil, message=nil, output=nil, progress=nil)
+          @Status = status
+          @Message = message
+          @Output = output
+          @Progress = progress
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @Message = params['Message']
+          unless params['Output'].nil?
+            @Output = ImageProcessTaskOutput.new
+            @Output.deserialize(params['Output'])
+          end
+          @Progress = params['Progress']
         end
       end
 
@@ -21378,16 +21497,24 @@ module TencentCloud
         # @type AudioTemplate: :class:`Tencentcloud::Mps.v20190612.models.AudioTemplateInfo`
         # @param TEHDConfig: 极速高清转码参数。
         # @type TEHDConfig: :class:`Tencentcloud::Mps.v20190612.models.TEHDConfig`
+        # @param StdExtInfo: 扩展参数，序列化的 json 字符串。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StdExtInfo: String
+        # @param EnhanceConfig: 音视频增强配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnhanceConfig: :class:`Tencentcloud::Mps.v20190612.models.EnhanceConfig`
 
-        attr_accessor :Container, :RemoveVideo, :RemoveAudio, :VideoTemplate, :AudioTemplate, :TEHDConfig
+        attr_accessor :Container, :RemoveVideo, :RemoveAudio, :VideoTemplate, :AudioTemplate, :TEHDConfig, :StdExtInfo, :EnhanceConfig
 
-        def initialize(container=nil, removevideo=nil, removeaudio=nil, videotemplate=nil, audiotemplate=nil, tehdconfig=nil)
+        def initialize(container=nil, removevideo=nil, removeaudio=nil, videotemplate=nil, audiotemplate=nil, tehdconfig=nil, stdextinfo=nil, enhanceconfig=nil)
           @Container = container
           @RemoveVideo = removevideo
           @RemoveAudio = removeaudio
           @VideoTemplate = videotemplate
           @AudioTemplate = audiotemplate
           @TEHDConfig = tehdconfig
+          @StdExtInfo = stdextinfo
+          @EnhanceConfig = enhanceconfig
         end
 
         def deserialize(params)
@@ -21405,6 +21532,11 @@ module TencentCloud
           unless params['TEHDConfig'].nil?
             @TEHDConfig = TEHDConfig.new
             @TEHDConfig.deserialize(params['TEHDConfig'])
+          end
+          @StdExtInfo = params['StdExtInfo']
+          unless params['EnhanceConfig'].nil?
+            @EnhanceConfig = EnhanceConfig.new
+            @EnhanceConfig.deserialize(params['EnhanceConfig'])
           end
         end
       end

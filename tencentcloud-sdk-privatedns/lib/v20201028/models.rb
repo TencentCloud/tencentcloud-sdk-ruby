@@ -47,7 +47,7 @@ module TencentCloud
 
       # 查询关联账号VPC列表出参
       class AccountVpcInfoOut < TencentCloud::Common::AbstractModel
-        # @param VpcId: VpcId： vpc-xadsafsdasd
+        # @param VpcId: VpcId
         # @type VpcId: String
         # @param Region: Vpc所属地区: ap-guangzhou, ap-shanghai
         # @type Region: String
@@ -1861,7 +1861,7 @@ module TencentCloud
 
       # Vpc信息
       class VpcInfo < TencentCloud::Common::AbstractModel
-        # @param UniqVpcId: VpcId： vpc-xadsafsdasd
+        # @param UniqVpcId: VpcId
         # @type UniqVpcId: String
         # @param Region: Vpc所属地区: ap-guangzhou, ap-shanghai
         # @type Region: String
