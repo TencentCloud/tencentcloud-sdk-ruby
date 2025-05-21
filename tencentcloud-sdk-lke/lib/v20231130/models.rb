@@ -2585,16 +2585,12 @@ module TencentCloud
         # @type AttrLabels: Array
         # @param CateBizId: 分类ID
         # @type CateBizId: String
-        # @param CustomerKnowledgeId: 文档的用户自定义ID
-        # @type CustomerKnowledgeId: String
-        # @param AttributeFlags: 文档的属性标记，0: 不做用户外部权限校验
-        # @type AttributeFlags: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :DocBizId, :FileName, :FileType, :CosUrl, :UpdateTime, :Status, :StatusDesc, :Reason, :IsRefer, :QaNum, :IsDeleted, :Source, :SourceDesc, :IsAllowRestart, :IsDeletedQa, :IsCreatingQa, :IsAllowDelete, :IsAllowRefer, :IsCreatedQa, :DocCharSize, :IsAllowEdit, :AttrRange, :AttrLabels, :CateBizId, :CustomerKnowledgeId, :AttributeFlags, :RequestId
+        attr_accessor :DocBizId, :FileName, :FileType, :CosUrl, :UpdateTime, :Status, :StatusDesc, :Reason, :IsRefer, :QaNum, :IsDeleted, :Source, :SourceDesc, :IsAllowRestart, :IsDeletedQa, :IsCreatingQa, :IsAllowDelete, :IsAllowRefer, :IsCreatedQa, :DocCharSize, :IsAllowEdit, :AttrRange, :AttrLabels, :CateBizId, :RequestId
 
-        def initialize(docbizid=nil, filename=nil, filetype=nil, cosurl=nil, updatetime=nil, status=nil, statusdesc=nil, reason=nil, isrefer=nil, qanum=nil, isdeleted=nil, source=nil, sourcedesc=nil, isallowrestart=nil, isdeletedqa=nil, iscreatingqa=nil, isallowdelete=nil, isallowrefer=nil, iscreatedqa=nil, doccharsize=nil, isallowedit=nil, attrrange=nil, attrlabels=nil, catebizid=nil, customerknowledgeid=nil, attributeflags=nil, requestid=nil)
+        def initialize(docbizid=nil, filename=nil, filetype=nil, cosurl=nil, updatetime=nil, status=nil, statusdesc=nil, reason=nil, isrefer=nil, qanum=nil, isdeleted=nil, source=nil, sourcedesc=nil, isallowrestart=nil, isdeletedqa=nil, iscreatingqa=nil, isallowdelete=nil, isallowrefer=nil, iscreatedqa=nil, doccharsize=nil, isallowedit=nil, attrrange=nil, attrlabels=nil, catebizid=nil, requestid=nil)
           @DocBizId = docbizid
           @FileName = filename
           @FileType = filetype
@@ -2619,8 +2615,6 @@ module TencentCloud
           @AttrRange = attrrange
           @AttrLabels = attrlabels
           @CateBizId = catebizid
-          @CustomerKnowledgeId = customerknowledgeid
-          @AttributeFlags = attributeflags
           @RequestId = requestid
         end
 
@@ -2656,8 +2650,6 @@ module TencentCloud
             end
           end
           @CateBizId = params['CateBizId']
-          @CustomerKnowledgeId = params['CustomerKnowledgeId']
-          @AttributeFlags = params['AttributeFlags']
           @RequestId = params['RequestId']
         end
       end
@@ -7553,14 +7545,10 @@ module TencentCloud
         # @type ExpireEnd: String
         # @param CateBizId: 分类ID
         # @type CateBizId: String
-        # @param CustomerKnowledgeId: 文档的用户自定义ID
-        # @type CustomerKnowledgeId: String
-        # @param AttributeFlags: 文档的属性标记，0: 不做用户外部权限校验
-        # @type AttributeFlags: Array
 
-        attr_accessor :BotBizId, :DocBizId, :IsRefer, :AttrRange, :LoginUin, :LoginSubAccountUin, :AttrLabels, :WebUrl, :ReferUrlType, :ExpireStart, :ExpireEnd, :CateBizId, :CustomerKnowledgeId, :AttributeFlags
+        attr_accessor :BotBizId, :DocBizId, :IsRefer, :AttrRange, :LoginUin, :LoginSubAccountUin, :AttrLabels, :WebUrl, :ReferUrlType, :ExpireStart, :ExpireEnd, :CateBizId
 
-        def initialize(botbizid=nil, docbizid=nil, isrefer=nil, attrrange=nil, loginuin=nil, loginsubaccountuin=nil, attrlabels=nil, weburl=nil, referurltype=nil, expirestart=nil, expireend=nil, catebizid=nil, customerknowledgeid=nil, attributeflags=nil)
+        def initialize(botbizid=nil, docbizid=nil, isrefer=nil, attrrange=nil, loginuin=nil, loginsubaccountuin=nil, attrlabels=nil, weburl=nil, referurltype=nil, expirestart=nil, expireend=nil, catebizid=nil)
           @BotBizId = botbizid
           @DocBizId = docbizid
           @IsRefer = isrefer
@@ -7573,8 +7561,6 @@ module TencentCloud
           @ExpireStart = expirestart
           @ExpireEnd = expireend
           @CateBizId = catebizid
-          @CustomerKnowledgeId = customerknowledgeid
-          @AttributeFlags = attributeflags
         end
 
         def deserialize(params)
@@ -7597,8 +7583,6 @@ module TencentCloud
           @ExpireStart = params['ExpireStart']
           @ExpireEnd = params['ExpireEnd']
           @CateBizId = params['CateBizId']
-          @CustomerKnowledgeId = params['CustomerKnowledgeId']
-          @AttributeFlags = params['AttributeFlags']
         end
       end
 
@@ -9393,14 +9377,10 @@ module TencentCloud
         # @type Opt: Integer
         # @param CateBizId: 分类ID
         # @type CateBizId: String
-        # @param CustomerKnowledgeId: 文档的用户自定义ID
-        # @type CustomerKnowledgeId: String
-        # @param AttributeFlags: 文档的属性标记，0: 不做用户外部权限校验
-        # @type AttributeFlags: Array
 
-        attr_accessor :BotBizId, :FileName, :FileType, :CosUrl, :ETag, :CosHash, :Size, :AttrRange, :Source, :WebUrl, :AttrLabels, :ReferUrlType, :ExpireStart, :ExpireEnd, :IsRefer, :Opt, :CateBizId, :CustomerKnowledgeId, :AttributeFlags
+        attr_accessor :BotBizId, :FileName, :FileType, :CosUrl, :ETag, :CosHash, :Size, :AttrRange, :Source, :WebUrl, :AttrLabels, :ReferUrlType, :ExpireStart, :ExpireEnd, :IsRefer, :Opt, :CateBizId
 
-        def initialize(botbizid=nil, filename=nil, filetype=nil, cosurl=nil, etag=nil, coshash=nil, size=nil, attrrange=nil, source=nil, weburl=nil, attrlabels=nil, referurltype=nil, expirestart=nil, expireend=nil, isrefer=nil, opt=nil, catebizid=nil, customerknowledgeid=nil, attributeflags=nil)
+        def initialize(botbizid=nil, filename=nil, filetype=nil, cosurl=nil, etag=nil, coshash=nil, size=nil, attrrange=nil, source=nil, weburl=nil, attrlabels=nil, referurltype=nil, expirestart=nil, expireend=nil, isrefer=nil, opt=nil, catebizid=nil)
           @BotBizId = botbizid
           @FileName = filename
           @FileType = filetype
@@ -9418,8 +9398,6 @@ module TencentCloud
           @IsRefer = isrefer
           @Opt = opt
           @CateBizId = catebizid
-          @CustomerKnowledgeId = customerknowledgeid
-          @AttributeFlags = attributeflags
         end
 
         def deserialize(params)
@@ -9447,8 +9425,6 @@ module TencentCloud
           @IsRefer = params['IsRefer']
           @Opt = params['Opt']
           @CateBizId = params['CateBizId']
-          @CustomerKnowledgeId = params['CustomerKnowledgeId']
-          @AttributeFlags = params['AttributeFlags']
         end
       end
 

@@ -173,6 +173,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建Fileset
+
+        # @param request: Request instance for CreateFileset.
+        # @type request: :class:`Tencentcloud::goosefs::V20220519::CreateFilesetRequest`
+        # @rtype: :class:`Tencentcloud::goosefs::V20220519::CreateFilesetResponse`
+        def CreateFileset(request)
+          body = send_request('CreateFileset', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateFilesetResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 为客户端节点删除跨vpc子网访问能力
 
         # @param request: Request instance for DeleteCrossVpcSubnetSupportForClientNode.
@@ -207,6 +231,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteFileSystemResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除Fileset
+
+        # @param request: Request instance for DeleteFileset.
+        # @type request: :class:`Tencentcloud::goosefs::V20220519::DeleteFilesetRequest`
+        # @rtype: :class:`Tencentcloud::goosefs::V20220519::DeleteFilesetResponse`
+        def DeleteFileset(request)
+          body = send_request('DeleteFileset', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteFilesetResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -389,6 +437,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询Fileset通用配置
+
+        # @param request: Request instance for DescribeFilesetGeneralConfig.
+        # @type request: :class:`Tencentcloud::goosefs::V20220519::DescribeFilesetGeneralConfigRequest`
+        # @rtype: :class:`Tencentcloud::goosefs::V20220519::DescribeFilesetGeneralConfigResponse`
+        def DescribeFilesetGeneralConfig(request)
+          body = send_request('DescribeFilesetGeneralConfig', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeFilesetGeneralConfigResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询Fileset列表
+
+        # @param request: Request instance for DescribeFilesets.
+        # @type request: :class:`Tencentcloud::goosefs::V20220519::DescribeFilesetsRequest`
+        # @rtype: :class:`Tencentcloud::goosefs::V20220519::DescribeFilesetsResponse`
+        def DescribeFilesets(request)
+          body = send_request('DescribeFilesets', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeFilesetsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 解绑文件系统与Bucket的映射
 
         # @param request: Request instance for DetachFileSystemBucket.
@@ -495,6 +591,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = QueryDataRepositoryBandwidthResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改FIleset
+
+        # @param request: Request instance for UpdateFileset.
+        # @type request: :class:`Tencentcloud::goosefs::V20220519::UpdateFilesetRequest`
+        # @rtype: :class:`Tencentcloud::goosefs::V20220519::UpdateFilesetResponse`
+        def UpdateFileset(request)
+          body = send_request('UpdateFileset', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdateFilesetResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改Fileset通用配置
+
+        # @param request: Request instance for UpdateFilesetGeneralConfig.
+        # @type request: :class:`Tencentcloud::goosefs::V20220519::UpdateFilesetGeneralConfigRequest`
+        # @rtype: :class:`Tencentcloud::goosefs::V20220519::UpdateFilesetGeneralConfigResponse`
+        def UpdateFilesetGeneralConfig(request)
+          body = send_request('UpdateFilesetGeneralConfig', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdateFilesetGeneralConfigResponse.new
             model.deserialize(response['Response'])
             model
           else

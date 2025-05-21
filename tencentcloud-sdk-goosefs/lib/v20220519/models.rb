@@ -479,6 +479,62 @@ module TencentCloud
         end
       end
 
+      # CreateFileset请求参数结构体
+      class CreateFilesetRequest < TencentCloud::Common::AbstractModel
+        # @param FileSystemId: 文件系统id
+        # @type FileSystemId: String
+        # @param FsetName: Fileset名称
+        # @type FsetName: String
+        # @param FsetDir: Fileset目录
+        # @type FsetDir: String
+        # @param QuotaSizeLimit: Fileset容量配额（需带单位G）
+        # @type QuotaSizeLimit: String
+        # @param QuotaFilesLimit: Fileset文件数配额
+        # @type QuotaFilesLimit: String
+        # @param AuditState: Fileset文件删除操作审计
+        # @type AuditState: String
+
+        attr_accessor :FileSystemId, :FsetName, :FsetDir, :QuotaSizeLimit, :QuotaFilesLimit, :AuditState
+
+        def initialize(filesystemid=nil, fsetname=nil, fsetdir=nil, quotasizelimit=nil, quotafileslimit=nil, auditstate=nil)
+          @FileSystemId = filesystemid
+          @FsetName = fsetname
+          @FsetDir = fsetdir
+          @QuotaSizeLimit = quotasizelimit
+          @QuotaFilesLimit = quotafileslimit
+          @AuditState = auditstate
+        end
+
+        def deserialize(params)
+          @FileSystemId = params['FileSystemId']
+          @FsetName = params['FsetName']
+          @FsetDir = params['FsetDir']
+          @QuotaSizeLimit = params['QuotaSizeLimit']
+          @QuotaFilesLimit = params['QuotaFilesLimit']
+          @AuditState = params['AuditState']
+        end
+      end
+
+      # CreateFileset返回参数结构体
+      class CreateFilesetResponse < TencentCloud::Common::AbstractModel
+        # @param FsetId: Fileset id
+        # @type FsetId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FsetId, :RequestId
+
+        def initialize(fsetid=nil, requestid=nil)
+          @FsetId = fsetid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FsetId = params['FsetId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteCrossVpcSubnetSupportForClientNode请求参数结构体
       class DeleteCrossVpcSubnetSupportForClientNodeRequest < TencentCloud::Common::AbstractModel
         # @param FileSystemId: 文件系统ID
@@ -536,6 +592,42 @@ module TencentCloud
 
       # DeleteFileSystem返回参数结构体
       class DeleteFileSystemResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteFileset请求参数结构体
+      class DeleteFilesetRequest < TencentCloud::Common::AbstractModel
+        # @param FileSystemId: 文件系统id
+        # @type FileSystemId: String
+        # @param FsetId: Fileset id
+        # @type FsetId: String
+
+        attr_accessor :FileSystemId, :FsetId
+
+        def initialize(filesystemid=nil, fsetid=nil)
+          @FileSystemId = filesystemid
+          @FsetId = fsetid
+        end
+
+        def deserialize(params)
+          @FileSystemId = params['FileSystemId']
+          @FsetId = params['FsetId']
+        end
+      end
+
+      # DeleteFileset返回参数结构体
+      class DeleteFilesetResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -876,6 +968,97 @@ module TencentCloud
         end
       end
 
+      # DescribeFilesetGeneralConfig请求参数结构体
+      class DescribeFilesetGeneralConfigRequest < TencentCloud::Common::AbstractModel
+        # @param FileSystemId: 文件系统id
+        # @type FileSystemId: String
+
+        attr_accessor :FileSystemId
+
+        def initialize(filesystemid=nil)
+          @FileSystemId = filesystemid
+        end
+
+        def deserialize(params)
+          @FileSystemId = params['FileSystemId']
+        end
+      end
+
+      # DescribeFilesetGeneralConfig返回参数结构体
+      class DescribeFilesetGeneralConfigResponse < TencentCloud::Common::AbstractModel
+        # @param EnforceQuotaOnRoot: 配额对root用户生效
+        # @type EnforceQuotaOnRoot: String
+        # @param Status: 配置状态
+        # @type Status: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :EnforceQuotaOnRoot, :Status, :RequestId
+
+        def initialize(enforcequotaonroot=nil, status=nil, requestid=nil)
+          @EnforceQuotaOnRoot = enforcequotaonroot
+          @Status = status
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @EnforceQuotaOnRoot = params['EnforceQuotaOnRoot']
+          @Status = params['Status']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeFilesets请求参数结构体
+      class DescribeFilesetsRequest < TencentCloud::Common::AbstractModel
+        # @param FileSystemId: 文件系统id
+        # @type FileSystemId: String
+        # @param FilesetIds: FsetId列表
+        # @type FilesetIds: Array
+        # @param FilesetDirs: FsetDir列表
+        # @type FilesetDirs: Array
+
+        attr_accessor :FileSystemId, :FilesetIds, :FilesetDirs
+
+        def initialize(filesystemid=nil, filesetids=nil, filesetdirs=nil)
+          @FileSystemId = filesystemid
+          @FilesetIds = filesetids
+          @FilesetDirs = filesetdirs
+        end
+
+        def deserialize(params)
+          @FileSystemId = params['FileSystemId']
+          @FilesetIds = params['FilesetIds']
+          @FilesetDirs = params['FilesetDirs']
+        end
+      end
+
+      # DescribeFilesets返回参数结构体
+      class DescribeFilesetsResponse < TencentCloud::Common::AbstractModel
+        # @param FilesetList: Fileset列表
+        # @type FilesetList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FilesetList, :RequestId
+
+        def initialize(filesetlist=nil, requestid=nil)
+          @FilesetList = filesetlist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['FilesetList'].nil?
+            @FilesetList = []
+            params['FilesetList'].each do |i|
+              filesetinfo_tmp = FilesetInfo.new
+              filesetinfo_tmp.deserialize(i)
+              @FilesetList << filesetinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DetachFileSystemBucket请求参数结构体
       class DetachFileSystemBucketRequest < TencentCloud::Common::AbstractModel
         # @param FileSystemId: 文件系统ID
@@ -1026,6 +1209,70 @@ module TencentCloud
             @ChargeAttribute = ChargeAttribute.new
             @ChargeAttribute.deserialize(params['ChargeAttribute'])
           end
+        end
+      end
+
+      # Fileset信息
+      class FilesetInfo < TencentCloud::Common::AbstractModel
+        # @param FsetId: Fileset id
+        # @type FsetId: String
+        # @param FsetName: Fileset名称
+        # @type FsetName: String
+        # @param FsetDir: Fileset目录
+        # @type FsetDir: String
+        # @param QuotaSizeLimit: Fileset容量配额限定值
+        # @type QuotaSizeLimit: String
+        # @param QuotaSizeUsed: 已使用容量配额
+        # @type QuotaSizeUsed: String
+        # @param QuotaSizeUsedPercent: 容量配额使用占比
+        # @type QuotaSizeUsedPercent: String
+        # @param QuotaFilesLimit: Fileset文件数配额限定值
+        # @type QuotaFilesLimit: String
+        # @param QuotaFilesUsed: 已使用文件数配额
+        # @type QuotaFilesUsed: String
+        # @param QuotaFilesUsedPercent: 文件数配额使用占比
+        # @type QuotaFilesUsedPercent: String
+        # @param AuditState: Fileset审计
+        # @type AuditState: String
+        # @param CreateTime: 创建时间
+        # @type CreateTime: String
+        # @param ModifyTime: 修改时间
+        # @type ModifyTime: String
+        # @param Status: Fileset状态：creating 配置中 active 已生效 modify 修改中
+        # @type Status: String
+
+        attr_accessor :FsetId, :FsetName, :FsetDir, :QuotaSizeLimit, :QuotaSizeUsed, :QuotaSizeUsedPercent, :QuotaFilesLimit, :QuotaFilesUsed, :QuotaFilesUsedPercent, :AuditState, :CreateTime, :ModifyTime, :Status
+
+        def initialize(fsetid=nil, fsetname=nil, fsetdir=nil, quotasizelimit=nil, quotasizeused=nil, quotasizeusedpercent=nil, quotafileslimit=nil, quotafilesused=nil, quotafilesusedpercent=nil, auditstate=nil, createtime=nil, modifytime=nil, status=nil)
+          @FsetId = fsetid
+          @FsetName = fsetname
+          @FsetDir = fsetdir
+          @QuotaSizeLimit = quotasizelimit
+          @QuotaSizeUsed = quotasizeused
+          @QuotaSizeUsedPercent = quotasizeusedpercent
+          @QuotaFilesLimit = quotafileslimit
+          @QuotaFilesUsed = quotafilesused
+          @QuotaFilesUsedPercent = quotafilesusedpercent
+          @AuditState = auditstate
+          @CreateTime = createtime
+          @ModifyTime = modifytime
+          @Status = status
+        end
+
+        def deserialize(params)
+          @FsetId = params['FsetId']
+          @FsetName = params['FsetName']
+          @FsetDir = params['FsetDir']
+          @QuotaSizeLimit = params['QuotaSizeLimit']
+          @QuotaSizeUsed = params['QuotaSizeUsed']
+          @QuotaSizeUsedPercent = params['QuotaSizeUsedPercent']
+          @QuotaFilesLimit = params['QuotaFilesLimit']
+          @QuotaFilesUsed = params['QuotaFilesUsed']
+          @QuotaFilesUsedPercent = params['QuotaFilesUsedPercent']
+          @AuditState = params['AuditState']
+          @CreateTime = params['CreateTime']
+          @ModifyTime = params['ModifyTime']
+          @Status = params['Status']
         end
       end
 
@@ -1369,6 +1616,90 @@ module TencentCloud
         def deserialize(params)
           @Key = params['Key']
           @Value = params['Value']
+        end
+      end
+
+      # UpdateFilesetGeneralConfig请求参数结构体
+      class UpdateFilesetGeneralConfigRequest < TencentCloud::Common::AbstractModel
+        # @param FileSystemId: 文件系统id
+        # @type FileSystemId: String
+        # @param EnforceQuotaOnRoot: 配额对root用户生效
+        # @type EnforceQuotaOnRoot: String
+
+        attr_accessor :FileSystemId, :EnforceQuotaOnRoot
+
+        def initialize(filesystemid=nil, enforcequotaonroot=nil)
+          @FileSystemId = filesystemid
+          @EnforceQuotaOnRoot = enforcequotaonroot
+        end
+
+        def deserialize(params)
+          @FileSystemId = params['FileSystemId']
+          @EnforceQuotaOnRoot = params['EnforceQuotaOnRoot']
+        end
+      end
+
+      # UpdateFilesetGeneralConfig返回参数结构体
+      class UpdateFilesetGeneralConfigResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # UpdateFileset请求参数结构体
+      class UpdateFilesetRequest < TencentCloud::Common::AbstractModel
+        # @param FileSystemId: 文件系统id
+        # @type FileSystemId: String
+        # @param FsetId: Fileset id
+        # @type FsetId: String
+        # @param QuotaSizeLimit: 容量配额限定值
+        # @type QuotaSizeLimit: String
+        # @param QuotaFilesLimit: 文件数配额限定值
+        # @type QuotaFilesLimit: String
+        # @param AuditState: Fileset文件删除操作审计
+        # @type AuditState: String
+
+        attr_accessor :FileSystemId, :FsetId, :QuotaSizeLimit, :QuotaFilesLimit, :AuditState
+
+        def initialize(filesystemid=nil, fsetid=nil, quotasizelimit=nil, quotafileslimit=nil, auditstate=nil)
+          @FileSystemId = filesystemid
+          @FsetId = fsetid
+          @QuotaSizeLimit = quotasizelimit
+          @QuotaFilesLimit = quotafileslimit
+          @AuditState = auditstate
+        end
+
+        def deserialize(params)
+          @FileSystemId = params['FileSystemId']
+          @FsetId = params['FsetId']
+          @QuotaSizeLimit = params['QuotaSizeLimit']
+          @QuotaFilesLimit = params['QuotaFilesLimit']
+          @AuditState = params['AuditState']
+        end
+      end
+
+      # UpdateFileset返回参数结构体
+      class UpdateFilesetResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 

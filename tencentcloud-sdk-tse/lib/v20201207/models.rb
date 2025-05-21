@@ -823,8 +823,8 @@ module TencentCloud
 
         attr_accessor :StrategyId, :StrategyName, :CreateTime, :ModifyTime, :Description, :Config, :GatewayId, :CronConfig, :MaxReplicas
         extend Gem::Deprecate
-        deprecate :MaxReplicas, :none, 2025, 4
-        deprecate :MaxReplicas=, :none, 2025, 4
+        deprecate :MaxReplicas, :none, 2025, 5
+        deprecate :MaxReplicas=, :none, 2025, 5
 
         def initialize(strategyid=nil, strategyname=nil, createtime=nil, modifytime=nil, description=nil, config=nil, gatewayid=nil, cronconfig=nil, maxreplicas=nil)
           @StrategyId = strategyid
@@ -885,16 +885,16 @@ module TencentCloud
 
         attr_accessor :MaxReplicas, :Metrics, :Enabled, :CreateTime, :ModifyTime, :StrategyId, :AutoScalerId, :Behavior
         extend Gem::Deprecate
-        deprecate :Enabled, :none, 2025, 4
-        deprecate :Enabled=, :none, 2025, 4
-        deprecate :CreateTime, :none, 2025, 4
-        deprecate :CreateTime=, :none, 2025, 4
-        deprecate :ModifyTime, :none, 2025, 4
-        deprecate :ModifyTime=, :none, 2025, 4
-        deprecate :StrategyId, :none, 2025, 4
-        deprecate :StrategyId=, :none, 2025, 4
-        deprecate :AutoScalerId, :none, 2025, 4
-        deprecate :AutoScalerId=, :none, 2025, 4
+        deprecate :Enabled, :none, 2025, 5
+        deprecate :Enabled=, :none, 2025, 5
+        deprecate :CreateTime, :none, 2025, 5
+        deprecate :CreateTime=, :none, 2025, 5
+        deprecate :ModifyTime, :none, 2025, 5
+        deprecate :ModifyTime=, :none, 2025, 5
+        deprecate :StrategyId, :none, 2025, 5
+        deprecate :StrategyId=, :none, 2025, 5
+        deprecate :AutoScalerId, :none, 2025, 5
+        deprecate :AutoScalerId=, :none, 2025, 5
 
         def initialize(maxreplicas=nil, metrics=nil, enabled=nil, createtime=nil, modifytime=nil, strategyid=nil, autoscalerid=nil, behavior=nil)
           @MaxReplicas = maxreplicas
@@ -1015,14 +1015,14 @@ module TencentCloud
 
         attr_accessor :Enabled, :Params, :CreateTime, :ModifyTime, :StrategyId
         extend Gem::Deprecate
-        deprecate :Enabled, :none, 2025, 4
-        deprecate :Enabled=, :none, 2025, 4
-        deprecate :CreateTime, :none, 2025, 4
-        deprecate :CreateTime=, :none, 2025, 4
-        deprecate :ModifyTime, :none, 2025, 4
-        deprecate :ModifyTime=, :none, 2025, 4
-        deprecate :StrategyId, :none, 2025, 4
-        deprecate :StrategyId=, :none, 2025, 4
+        deprecate :Enabled, :none, 2025, 5
+        deprecate :Enabled=, :none, 2025, 5
+        deprecate :CreateTime, :none, 2025, 5
+        deprecate :CreateTime=, :none, 2025, 5
+        deprecate :ModifyTime, :none, 2025, 5
+        deprecate :ModifyTime=, :none, 2025, 5
+        deprecate :StrategyId, :none, 2025, 5
+        deprecate :StrategyId=, :none, 2025, 5
 
         def initialize(enabled=nil, params=nil, createtime=nil, modifytime=nil, strategyid=nil)
           @Enabled = enabled
@@ -1700,10 +1700,10 @@ module TencentCloud
 
         attr_accessor :GatewayId, :StrategyName, :Description, :Config, :CronScalerConfig, :MaxReplicas, :CronConfig
         extend Gem::Deprecate
-        deprecate :CronScalerConfig, :none, 2025, 4
-        deprecate :CronScalerConfig=, :none, 2025, 4
-        deprecate :MaxReplicas, :none, 2025, 4
-        deprecate :MaxReplicas=, :none, 2025, 4
+        deprecate :CronScalerConfig, :none, 2025, 5
+        deprecate :CronScalerConfig=, :none, 2025, 5
+        deprecate :MaxReplicas, :none, 2025, 5
+        deprecate :MaxReplicas=, :none, 2025, 5
 
         def initialize(gatewayid=nil, strategyname=nil, description=nil, config=nil, cronscalerconfig=nil, maxreplicas=nil, cronconfig=nil)
           @GatewayId = gatewayid
@@ -1746,8 +1746,8 @@ module TencentCloud
 
         attr_accessor :Result, :StrategyId, :RequestId
         extend Gem::Deprecate
-        deprecate :Result, :none, 2025, 4
-        deprecate :Result=, :none, 2025, 4
+        deprecate :Result, :none, 2025, 5
+        deprecate :Result=, :none, 2025, 5
 
         def initialize(result=nil, strategyid=nil, requestid=nil)
           @Result = result
@@ -1833,10 +1833,10 @@ module TencentCloud
 
         attr_accessor :GatewayId, :BindDomains, :CertId, :Name, :Key, :Crt
         extend Gem::Deprecate
-        deprecate :Key, :none, 2025, 4
-        deprecate :Key=, :none, 2025, 4
-        deprecate :Crt, :none, 2025, 4
-        deprecate :Crt=, :none, 2025, 4
+        deprecate :Key, :none, 2025, 5
+        deprecate :Key=, :none, 2025, 5
+        deprecate :Crt, :none, 2025, 5
+        deprecate :Crt=, :none, 2025, 5
 
         def initialize(gatewayid=nil, binddomains=nil, certid=nil, name=nil, key=nil, crt=nil)
           @GatewayId = gatewayid
@@ -2171,8 +2171,8 @@ module TencentCloud
 
         attr_accessor :GatewayId, :ServiceID, :RouteName, :Methods, :Hosts, :Paths, :Protocols, :PreserveHost, :HttpsRedirectStatusCode, :StripPath, :ForceHttps, :DestinationPorts, :Headers, :RequestBuffering, :ResponseBuffering, :RegexPriority
         extend Gem::Deprecate
-        deprecate :ForceHttps, :none, 2025, 4
-        deprecate :ForceHttps=, :none, 2025, 4
+        deprecate :ForceHttps, :none, 2025, 5
+        deprecate :ForceHttps=, :none, 2025, 5
 
         def initialize(gatewayid=nil, serviceid=nil, routename=nil, methods=nil, hosts=nil, paths=nil, protocols=nil, preservehost=nil, httpsredirectstatuscode=nil, strippath=nil, forcehttps=nil, destinationports=nil, headers=nil, requestbuffering=nil, responsebuffering=nil, regexpriority=nil)
           @GatewayId = gatewayid
@@ -6993,8 +6993,8 @@ module TencentCloud
 
         attr_accessor :GatewayId, :Type, :TypeList
         extend Gem::Deprecate
-        deprecate :Type, :none, 2025, 4
-        deprecate :Type=, :none, 2025, 4
+        deprecate :Type, :none, 2025, 5
+        deprecate :Type=, :none, 2025, 5
 
         def initialize(gatewayid=nil, type=nil, typelist=nil)
           @GatewayId = gatewayid
@@ -7458,10 +7458,13 @@ module TencentCloud
         # @type Id: String
         # @param Editable: 该服务别名是否可以编辑
         # @type Editable: Boolean
+        # @param Metadatas: 元数据信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Metadatas: Array
 
-        attr_accessor :Alias, :AliasNamespace, :Service, :Namespace, :Comment, :CreateTime, :ModifyTime, :Id, :Editable
+        attr_accessor :Alias, :AliasNamespace, :Service, :Namespace, :Comment, :CreateTime, :ModifyTime, :Id, :Editable, :Metadatas
 
-        def initialize(_alias=nil, aliasnamespace=nil, service=nil, namespace=nil, comment=nil, createtime=nil, modifytime=nil, id=nil, editable=nil)
+        def initialize(_alias=nil, aliasnamespace=nil, service=nil, namespace=nil, comment=nil, createtime=nil, modifytime=nil, id=nil, editable=nil, metadatas=nil)
           @Alias = _alias
           @AliasNamespace = aliasnamespace
           @Service = service
@@ -7471,6 +7474,7 @@ module TencentCloud
           @ModifyTime = modifytime
           @Id = id
           @Editable = editable
+          @Metadatas = metadatas
         end
 
         def deserialize(params)
@@ -7483,6 +7487,14 @@ module TencentCloud
           @ModifyTime = params['ModifyTime']
           @Id = params['Id']
           @Editable = params['Editable']
+          unless params['Metadatas'].nil?
+            @Metadatas = []
+            params['Metadatas'].each do |i|
+              metadata_tmp = Metadata.new
+              metadata_tmp.deserialize(i)
+              @Metadatas << metadata_tmp
+            end
+          end
         end
       end
 
@@ -7784,10 +7796,13 @@ module TencentCloud
         # @type ServiceExportTo: Array
         # @param SyncToGlobalRegistry: 是否开启同步到全局注册中心
         # @type SyncToGlobalRegistry: Boolean
+        # @param Metadatas: 元数据
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Metadatas: Array
 
-        attr_accessor :Name, :Comment, :CreateTime, :ModifyTime, :TotalServiceCount, :TotalHealthInstanceCount, :TotalInstanceCount, :Id, :Editable, :UserIds, :GroupIds, :RemoveUserIds, :RemoveGroupIds, :ServiceExportTo, :SyncToGlobalRegistry
+        attr_accessor :Name, :Comment, :CreateTime, :ModifyTime, :TotalServiceCount, :TotalHealthInstanceCount, :TotalInstanceCount, :Id, :Editable, :UserIds, :GroupIds, :RemoveUserIds, :RemoveGroupIds, :ServiceExportTo, :SyncToGlobalRegistry, :Metadatas
 
-        def initialize(name=nil, comment=nil, createtime=nil, modifytime=nil, totalservicecount=nil, totalhealthinstancecount=nil, totalinstancecount=nil, id=nil, editable=nil, userids=nil, groupids=nil, removeuserids=nil, removegroupids=nil, serviceexportto=nil, synctoglobalregistry=nil)
+        def initialize(name=nil, comment=nil, createtime=nil, modifytime=nil, totalservicecount=nil, totalhealthinstancecount=nil, totalinstancecount=nil, id=nil, editable=nil, userids=nil, groupids=nil, removeuserids=nil, removegroupids=nil, serviceexportto=nil, synctoglobalregistry=nil, metadatas=nil)
           @Name = name
           @Comment = comment
           @CreateTime = createtime
@@ -7803,6 +7818,7 @@ module TencentCloud
           @RemoveGroupIds = removegroupids
           @ServiceExportTo = serviceexportto
           @SyncToGlobalRegistry = synctoglobalregistry
+          @Metadatas = metadatas
         end
 
         def deserialize(params)
@@ -7821,6 +7837,14 @@ module TencentCloud
           @RemoveGroupIds = params['RemoveGroupIds']
           @ServiceExportTo = params['ServiceExportTo']
           @SyncToGlobalRegistry = params['SyncToGlobalRegistry']
+          unless params['Metadatas'].nil?
+            @Metadatas = []
+            params['Metadatas'].each do |i|
+              metadata_tmp = Metadata.new
+              metadata_tmp.deserialize(i)
+              @Metadatas << metadata_tmp
+            end
+          end
         end
       end
 
@@ -7990,10 +8014,13 @@ module TencentCloud
         # @type ModifyTime: String
         # @param Interfaces: 契约接口列表
         # @type Interfaces: Array
+        # @param Metadatas: 元数据
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Metadatas: Array
 
-        attr_accessor :Name, :Namespace, :Protocol, :ID, :Service, :Version, :Revision, :Content, :CreateTime, :ModifyTime, :Interfaces
+        attr_accessor :Name, :Namespace, :Protocol, :ID, :Service, :Version, :Revision, :Content, :CreateTime, :ModifyTime, :Interfaces, :Metadatas
 
-        def initialize(name=nil, namespace=nil, protocol=nil, id=nil, service=nil, version=nil, revision=nil, content=nil, createtime=nil, modifytime=nil, interfaces=nil)
+        def initialize(name=nil, namespace=nil, protocol=nil, id=nil, service=nil, version=nil, revision=nil, content=nil, createtime=nil, modifytime=nil, interfaces=nil, metadatas=nil)
           @Name = name
           @Namespace = namespace
           @Protocol = protocol
@@ -8005,6 +8032,7 @@ module TencentCloud
           @CreateTime = createtime
           @ModifyTime = modifytime
           @Interfaces = interfaces
+          @Metadatas = metadatas
         end
 
         def deserialize(params)
@@ -8024,6 +8052,14 @@ module TencentCloud
               governanceinterfacedescription_tmp = GovernanceInterfaceDescription.new
               governanceinterfacedescription_tmp.deserialize(i)
               @Interfaces << governanceinterfacedescription_tmp
+            end
+          end
+          unless params['Metadatas'].nil?
+            @Metadatas = []
+            params['Metadatas'].each do |i|
+              metadata_tmp = Metadata.new
+              metadata_tmp.deserialize(i)
+              @Metadatas << metadata_tmp
             end
           end
         end
@@ -8332,8 +8368,8 @@ module TencentCloud
 
         attr_accessor :Total, :CertificatesList, :Pages
         extend Gem::Deprecate
-        deprecate :Pages, :none, 2025, 4
-        deprecate :Pages=, :none, 2025, 4
+        deprecate :Pages, :none, 2025, 5
+        deprecate :Pages=, :none, 2025, 5
 
         def initialize(total=nil, certificateslist=nil, pages=nil)
           @Total = total
@@ -8474,8 +8510,8 @@ module TencentCloud
 
         attr_accessor :ID, :Name, :Methods, :Paths, :Hosts, :Protocols, :PreserveHost, :HttpsRedirectStatusCode, :StripPath, :CreatedTime, :ForceHttps, :ServiceName, :ServiceID, :DestinationPorts, :Headers, :RequestBuffering, :ResponseBuffering, :RegexPriority
         extend Gem::Deprecate
-        deprecate :ForceHttps, :none, 2025, 4
-        deprecate :ForceHttps=, :none, 2025, 4
+        deprecate :ForceHttps, :none, 2025, 5
+        deprecate :ForceHttps=, :none, 2025, 5
 
         def initialize(id=nil, name=nil, methods=nil, paths=nil, hosts=nil, protocols=nil, preservehost=nil, httpsredirectstatuscode=nil, strippath=nil, createdtime=nil, forcehttps=nil, servicename=nil, serviceid=nil, destinationports=nil, headers=nil, requestbuffering=nil, responsebuffering=nil, regexpriority=nil)
           @ID = id
@@ -9126,10 +9162,10 @@ module TencentCloud
 
         attr_accessor :GatewayId, :StrategyId, :StrategyName, :Description, :Config, :CronScalerConfig, :MaxReplicas, :CronConfig
         extend Gem::Deprecate
-        deprecate :CronScalerConfig, :none, 2025, 4
-        deprecate :CronScalerConfig=, :none, 2025, 4
-        deprecate :MaxReplicas, :none, 2025, 4
-        deprecate :MaxReplicas=, :none, 2025, 4
+        deprecate :CronScalerConfig, :none, 2025, 5
+        deprecate :CronScalerConfig=, :none, 2025, 5
+        deprecate :MaxReplicas, :none, 2025, 5
+        deprecate :MaxReplicas=, :none, 2025, 5
 
         def initialize(gatewayid=nil, strategyid=nil, strategyname=nil, description=nil, config=nil, cronscalerconfig=nil, maxreplicas=nil, cronconfig=nil)
           @GatewayId = gatewayid
@@ -9264,10 +9300,10 @@ module TencentCloud
 
         attr_accessor :GatewayId, :Id, :Name, :Key, :Crt, :BindDomains, :CertId, :CertSource
         extend Gem::Deprecate
-        deprecate :Name, :none, 2025, 4
-        deprecate :Name=, :none, 2025, 4
-        deprecate :BindDomains, :none, 2025, 4
-        deprecate :BindDomains=, :none, 2025, 4
+        deprecate :Name, :none, 2025, 5
+        deprecate :Name=, :none, 2025, 5
+        deprecate :BindDomains, :none, 2025, 5
+        deprecate :BindDomains=, :none, 2025, 5
 
         def initialize(gatewayid=nil, id=nil, name=nil, key=nil, crt=nil, binddomains=nil, certid=nil, certsource=nil)
           @GatewayId = gatewayid
@@ -9457,8 +9493,8 @@ module TencentCloud
 
         attr_accessor :GatewayId, :ServiceID, :RouteID, :RouteName, :Methods, :Hosts, :Paths, :Protocols, :PreserveHost, :HttpsRedirectStatusCode, :StripPath, :ForceHttps, :DestinationPorts, :Headers, :RequestBuffering, :ResponseBuffering, :RegexPriority
         extend Gem::Deprecate
-        deprecate :ForceHttps, :none, 2025, 4
-        deprecate :ForceHttps=, :none, 2025, 4
+        deprecate :ForceHttps, :none, 2025, 5
+        deprecate :ForceHttps=, :none, 2025, 5
 
         def initialize(gatewayid=nil, serviceid=nil, routeid=nil, routename=nil, methods=nil, hosts=nil, paths=nil, protocols=nil, preservehost=nil, httpsredirectstatuscode=nil, strippath=nil, forcehttps=nil, destinationports=nil, headers=nil, requestbuffering=nil, responsebuffering=nil, regexpriority=nil)
           @GatewayId = gatewayid
@@ -10962,10 +10998,18 @@ module TencentCloud
         # @type ZookeeperRegionInfo: :class:`Tencentcloud::Tse.v20201207.models.ZookeeperRegionInfo`
         # @param DeployMode: 部署架构
         # @type DeployMode: String
+        # @param GlobalType: 全局属性
+        # @type GlobalType: String
+        # @param GroupType: 所属组类型
+        # @type GroupType: String
+        # @param GroupId: 组id
+        # @type GroupId: Array
+        # @param IsMainRegion: 是否为主地域
+        # @type IsMainRegion: Boolean
 
-        attr_accessor :InstanceId, :Name, :Edition, :Status, :SpecId, :Replica, :Type, :VpcId, :SubnetIds, :EnableStorage, :StorageType, :StorageCapacity, :Paymode, :EKSClusterID, :CreateTime, :EnvInfos, :EngineRegion, :EnableInternet, :VpcInfos, :ServiceGovernanceInfos, :Tags, :EnableConsoleInternet, :EnableConsoleIntranet, :ConfigInfoVisible, :ConsoleDefaultPwd, :TradeType, :AutoRenewFlag, :CurDeadline, :IsolateTime, :RegionInfos, :EKSType, :FeatureVersion, :EnableClientIntranet, :StorageOption, :ZookeeperRegionInfo, :DeployMode
+        attr_accessor :InstanceId, :Name, :Edition, :Status, :SpecId, :Replica, :Type, :VpcId, :SubnetIds, :EnableStorage, :StorageType, :StorageCapacity, :Paymode, :EKSClusterID, :CreateTime, :EnvInfos, :EngineRegion, :EnableInternet, :VpcInfos, :ServiceGovernanceInfos, :Tags, :EnableConsoleInternet, :EnableConsoleIntranet, :ConfigInfoVisible, :ConsoleDefaultPwd, :TradeType, :AutoRenewFlag, :CurDeadline, :IsolateTime, :RegionInfos, :EKSType, :FeatureVersion, :EnableClientIntranet, :StorageOption, :ZookeeperRegionInfo, :DeployMode, :GlobalType, :GroupType, :GroupId, :IsMainRegion
 
-        def initialize(instanceid=nil, name=nil, edition=nil, status=nil, specid=nil, replica=nil, type=nil, vpcid=nil, subnetids=nil, enablestorage=nil, storagetype=nil, storagecapacity=nil, paymode=nil, eksclusterid=nil, createtime=nil, envinfos=nil, engineregion=nil, enableinternet=nil, vpcinfos=nil, servicegovernanceinfos=nil, tags=nil, enableconsoleinternet=nil, enableconsoleintranet=nil, configinfovisible=nil, consoledefaultpwd=nil, tradetype=nil, autorenewflag=nil, curdeadline=nil, isolatetime=nil, regioninfos=nil, ekstype=nil, featureversion=nil, enableclientintranet=nil, storageoption=nil, zookeeperregioninfo=nil, deploymode=nil)
+        def initialize(instanceid=nil, name=nil, edition=nil, status=nil, specid=nil, replica=nil, type=nil, vpcid=nil, subnetids=nil, enablestorage=nil, storagetype=nil, storagecapacity=nil, paymode=nil, eksclusterid=nil, createtime=nil, envinfos=nil, engineregion=nil, enableinternet=nil, vpcinfos=nil, servicegovernanceinfos=nil, tags=nil, enableconsoleinternet=nil, enableconsoleintranet=nil, configinfovisible=nil, consoledefaultpwd=nil, tradetype=nil, autorenewflag=nil, curdeadline=nil, isolatetime=nil, regioninfos=nil, ekstype=nil, featureversion=nil, enableclientintranet=nil, storageoption=nil, zookeeperregioninfo=nil, deploymode=nil, globaltype=nil, grouptype=nil, groupid=nil, ismainregion=nil)
           @InstanceId = instanceid
           @Name = name
           @Edition = edition
@@ -11002,6 +11046,10 @@ module TencentCloud
           @StorageOption = storageoption
           @ZookeeperRegionInfo = zookeeperregioninfo
           @DeployMode = deploymode
+          @GlobalType = globaltype
+          @GroupType = grouptype
+          @GroupId = groupid
+          @IsMainRegion = ismainregion
         end
 
         def deserialize(params)
@@ -11086,6 +11134,10 @@ module TencentCloud
             @ZookeeperRegionInfo.deserialize(params['ZookeeperRegionInfo'])
           end
           @DeployMode = params['DeployMode']
+          @GlobalType = params['GlobalType']
+          @GroupType = params['GroupType']
+          @GroupId = params['GroupId']
+          @IsMainRegion = params['IsMainRegion']
         end
       end
 
@@ -11631,8 +11683,8 @@ module TencentCloud
 
         attr_accessor :EnableActiveHealthCheck, :ActiveHealthCheck, :EnablePassiveHealthCheck, :PassiveHealthCheck, :Successes, :Failures, :Timeouts, :HealthyHttpStatuses, :UnhealthyHttpStatuses, :IgnoreZeroWeightNodes, :ZeroWeightHeathCheck
         extend Gem::Deprecate
-        deprecate :IgnoreZeroWeightNodes, :none, 2025, 4
-        deprecate :IgnoreZeroWeightNodes=, :none, 2025, 4
+        deprecate :IgnoreZeroWeightNodes, :none, 2025, 5
+        deprecate :IgnoreZeroWeightNodes=, :none, 2025, 5
 
         def initialize(enableactivehealthcheck=nil, activehealthcheck=nil, enablepassivehealthcheck=nil, passivehealthcheck=nil, successes=nil, failures=nil, timeouts=nil, healthyhttpstatuses=nil, unhealthyhttpstatuses=nil, ignorezeroweightnodes=nil, zeroweightheathcheck=nil)
           @EnableActiveHealthCheck = enableactivehealthcheck

@@ -641,10 +641,14 @@ module TencentCloud
         # @type TechEmail: String
         # @param TechTitle: 联系人职位。若没有传ManagerId， 则此字段必传
         # @type TechTitle: String
+        # @param Type: 证书类型
+        # @type Type: Integer
+        # @param CaType: 只针对Dnspod系列证书有效，ca机构类型可为sectigo和digicert
+        # @type CaType: String
 
-        attr_accessor :CertId, :GenCsrType, :CertCommonName, :CompanyType, :CompanyId, :OrgIdType, :OrgIdNumber, :AdminIdType, :AdminIdNumber, :TechIdType, :TechIdNumber, :Csr, :DnsNames, :KeyPass, :OrgOrganization, :OrgDivision, :OrgAddress, :OrgCountry, :OrgCity, :OrgRegion, :OrgPhoneArea, :OrgPhoneNumber, :VerifyType, :AdminFirstName, :AdminLastName, :AdminPhone, :AdminEmail, :AdminTitle, :TechFirstName, :TechLastName, :ContactEmail, :AutoRenewFlag, :CsrKeyParameter, :CsrEncryptAlgo, :ManagerId, :TechPhone, :TechEmail, :TechTitle
+        attr_accessor :CertId, :GenCsrType, :CertCommonName, :CompanyType, :CompanyId, :OrgIdType, :OrgIdNumber, :AdminIdType, :AdminIdNumber, :TechIdType, :TechIdNumber, :Csr, :DnsNames, :KeyPass, :OrgOrganization, :OrgDivision, :OrgAddress, :OrgCountry, :OrgCity, :OrgRegion, :OrgPhoneArea, :OrgPhoneNumber, :VerifyType, :AdminFirstName, :AdminLastName, :AdminPhone, :AdminEmail, :AdminTitle, :TechFirstName, :TechLastName, :ContactEmail, :AutoRenewFlag, :CsrKeyParameter, :CsrEncryptAlgo, :ManagerId, :TechPhone, :TechEmail, :TechTitle, :Type, :CaType
 
-        def initialize(certid=nil, gencsrtype=nil, certcommonname=nil, companytype=nil, companyid=nil, orgidtype=nil, orgidnumber=nil, adminidtype=nil, adminidnumber=nil, techidtype=nil, techidnumber=nil, csr=nil, dnsnames=nil, keypass=nil, orgorganization=nil, orgdivision=nil, orgaddress=nil, orgcountry=nil, orgcity=nil, orgregion=nil, orgphonearea=nil, orgphonenumber=nil, verifytype=nil, adminfirstname=nil, adminlastname=nil, adminphone=nil, adminemail=nil, admintitle=nil, techfirstname=nil, techlastname=nil, contactemail=nil, autorenewflag=nil, csrkeyparameter=nil, csrencryptalgo=nil, managerid=nil, techphone=nil, techemail=nil, techtitle=nil)
+        def initialize(certid=nil, gencsrtype=nil, certcommonname=nil, companytype=nil, companyid=nil, orgidtype=nil, orgidnumber=nil, adminidtype=nil, adminidnumber=nil, techidtype=nil, techidnumber=nil, csr=nil, dnsnames=nil, keypass=nil, orgorganization=nil, orgdivision=nil, orgaddress=nil, orgcountry=nil, orgcity=nil, orgregion=nil, orgphonearea=nil, orgphonenumber=nil, verifytype=nil, adminfirstname=nil, adminlastname=nil, adminphone=nil, adminemail=nil, admintitle=nil, techfirstname=nil, techlastname=nil, contactemail=nil, autorenewflag=nil, csrkeyparameter=nil, csrencryptalgo=nil, managerid=nil, techphone=nil, techemail=nil, techtitle=nil, type=nil, catype=nil)
           @CertId = certid
           @GenCsrType = gencsrtype
           @CertCommonName = certcommonname
@@ -683,6 +687,8 @@ module TencentCloud
           @TechPhone = techphone
           @TechEmail = techemail
           @TechTitle = techtitle
+          @Type = type
+          @CaType = catype
         end
 
         def deserialize(params)
@@ -724,6 +730,8 @@ module TencentCloud
           @TechPhone = params['TechPhone']
           @TechEmail = params['TechEmail']
           @TechTitle = params['TechTitle']
+          @Type = params['Type']
+          @CaType = params['CaType']
         end
       end
 

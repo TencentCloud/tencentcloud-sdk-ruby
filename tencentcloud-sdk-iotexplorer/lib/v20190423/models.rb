@@ -69,8 +69,8 @@ module TencentCloud
 
         attr_accessor :PkgType, :MiniProgramAppId, :DeviceList
         extend Gem::Deprecate
-        deprecate :MiniProgramAppId, :none, 2025, 4
-        deprecate :MiniProgramAppId=, :none, 2025, 4
+        deprecate :MiniProgramAppId, :none, 2025, 5
+        deprecate :MiniProgramAppId=, :none, 2025, 5
 
         def initialize(pkgtype=nil, miniprogramappid=nil, devicelist=nil)
           @PkgType = pkgtype
@@ -105,8 +105,8 @@ module TencentCloud
 
         attr_accessor :DeviceList, :FailureList, :SuccessList, :RequestId
         extend Gem::Deprecate
-        deprecate :DeviceList, :none, 2025, 4
-        deprecate :DeviceList=, :none, 2025, 4
+        deprecate :DeviceList, :none, 2025, 5
+        deprecate :DeviceList=, :none, 2025, 5
 
         def initialize(devicelist=nil, failurelist=nil, successlist=nil, requestid=nil)
           @DeviceList = devicelist
@@ -5921,8 +5921,8 @@ module TencentCloud
 
         attr_accessor :ModelId, :Sn, :ErrCode, :ExpireTime
         extend Gem::Deprecate
-        deprecate :ModelId, :none, 2025, 4
-        deprecate :ModelId=, :none, 2025, 4
+        deprecate :ModelId, :none, 2025, 5
+        deprecate :ModelId=, :none, 2025, 5
 
         def initialize(modelid=nil, sn=nil, errcode=nil, expiretime=nil)
           @ModelId = modelid
@@ -7491,8 +7491,8 @@ module TencentCloud
 
         attr_accessor :MiniProgramAppId, :DeviceList
         extend Gem::Deprecate
-        deprecate :MiniProgramAppId, :none, 2025, 4
-        deprecate :MiniProgramAppId=, :none, 2025, 4
+        deprecate :MiniProgramAppId, :none, 2025, 5
+        deprecate :MiniProgramAppId=, :none, 2025, 5
 
         def initialize(miniprogramappid=nil, devicelist=nil)
           @MiniProgramAppId = miniprogramappid
@@ -10745,8 +10745,8 @@ module TencentCloud
 
         attr_accessor :ModelId, :Sn, :ExpireTime, :PkgType
         extend Gem::Deprecate
-        deprecate :ModelId, :none, 2025, 4
-        deprecate :ModelId=, :none, 2025, 4
+        deprecate :ModelId, :none, 2025, 5
+        deprecate :ModelId=, :none, 2025, 5
 
         def initialize(modelid=nil, sn=nil, expiretime=nil, pkgtype=nil)
           @ModelId = modelid
@@ -10776,10 +10776,10 @@ module TencentCloud
 
         attr_accessor :Sn, :ModelId, :ActiveNum
         extend Gem::Deprecate
-        deprecate :ModelId, :none, 2025, 4
-        deprecate :ModelId=, :none, 2025, 4
-        deprecate :ActiveNum, :none, 2025, 4
-        deprecate :ActiveNum=, :none, 2025, 4
+        deprecate :ModelId, :none, 2025, 5
+        deprecate :ModelId=, :none, 2025, 5
+        deprecate :ActiveNum, :none, 2025, 5
+        deprecate :ActiveNum=, :none, 2025, 5
 
         def initialize(sn=nil, modelid=nil, activenum=nil)
           @Sn = sn
@@ -11439,7 +11439,7 @@ module TencentCloud
 
       # TWeSee 语义理解结果
       class VisionRecognitionResult < TencentCloud::Common::AbstractModel
-        # @param Status: 任务状态（1：失败；2：成功但结果为空；3：成功且结果非空）
+        # @param Status: 任务状态（1：分析失败；2：下载/读取视频/图片失败；3：成功）
         # @type Status: Integer
         # @param DetectedClassifications: 识别到的目标类型。可能取值：
 
@@ -11452,21 +11452,25 @@ module TencentCloud
         # - `package`：快递包裹
         # - `license_plate`：车牌
         # @type DetectedClassifications: Array
-        # @param Summary: 视频摘要文本
+        # @param Summary: 摘要文本
         # @type Summary: String
+        # @param AlternativeSummary: 摘要文本（次选语言）
+        # @type AlternativeSummary: String
 
-        attr_accessor :Status, :DetectedClassifications, :Summary
+        attr_accessor :Status, :DetectedClassifications, :Summary, :AlternativeSummary
 
-        def initialize(status=nil, detectedclassifications=nil, summary=nil)
+        def initialize(status=nil, detectedclassifications=nil, summary=nil, alternativesummary=nil)
           @Status = status
           @DetectedClassifications = detectedclassifications
           @Summary = summary
+          @AlternativeSummary = alternativesummary
         end
 
         def deserialize(params)
           @Status = params['Status']
           @DetectedClassifications = params['DetectedClassifications']
           @Summary = params['Summary']
+          @AlternativeSummary = params['AlternativeSummary']
         end
       end
 

@@ -1550,10 +1550,10 @@ module TencentCloud
 
         attr_accessor :FunctionName, :RetMsg, :RequestId, :StartTime, :RetCode, :InvokeFinished, :Duration, :BillDuration, :MemUsage, :Log, :Level, :Source, :RetryNum
         extend Gem::Deprecate
-        deprecate :Level, :none, 2025, 3
-        deprecate :Level=, :none, 2025, 3
-        deprecate :Source, :none, 2025, 3
-        deprecate :Source=, :none, 2025, 3
+        deprecate :Level, :none, 2025, 5
+        deprecate :Level=, :none, 2025, 5
+        deprecate :Source, :none, 2025, 5
+        deprecate :Source=, :none, 2025, 5
 
         def initialize(functionname=nil, retmsg=nil, requestid=nil, starttime=nil, retcode=nil, invokefinished=nil, duration=nil, billduration=nil, memusage=nil, log=nil, level=nil, source=nil, retrynum=nil)
           @FunctionName = functionname
@@ -2589,7 +2589,7 @@ module TencentCloud
         # @param RegistryId: 用于企业版TCR获取镜像拉取临时凭证，ImageType为"enterprise"时必填
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RegistryId: String
-        # @param EntryPoint: 参数已废弃
+        # @param EntryPoint: 该参数即将下线，不推荐用户使用
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EntryPoint: String
         # @param Command: 容器的启动命令。该参数为可选参数，如果不填写，则默认使用 Dockerfile 中的 Entrypoint。传入规范，填写可运行的指令，例如 python
@@ -4326,7 +4326,7 @@ module TencentCloud
         # @type BillDuration: Integer
         # @param FunctionRequestId: 此次函数执行的Id
         # @type FunctionRequestId: String
-        # @param InvokeResult: 请求 Invoke 接口，该参数已弃用。请求 InvokeFunction 接口，该参数值为请求执行[状态码](https://cloud.tencent.com/document/product/583/42611)。
+        # @param InvokeResult: 该参数不再维护，不推荐用户继续使用。
         # @type InvokeResult: Integer
 
         attr_accessor :Log, :RetMsg, :ErrMsg, :MemUsage, :Duration, :BillDuration, :FunctionRequestId, :InvokeResult
@@ -4560,12 +4560,12 @@ module TencentCloud
 
         attr_accessor :ModTime, :Type, :TriggerDesc, :TriggerName, :AddTime, :Enable, :CustomArgument, :AvailableStatus, :ResourceId, :BindStatus, :TriggerAttribute, :Qualifier, :Description
         extend Gem::Deprecate
-        deprecate :ResourceId, :none, 2025, 3
-        deprecate :ResourceId=, :none, 2025, 3
-        deprecate :BindStatus, :none, 2025, 3
-        deprecate :BindStatus=, :none, 2025, 3
-        deprecate :TriggerAttribute, :none, 2025, 3
-        deprecate :TriggerAttribute=, :none, 2025, 3
+        deprecate :ResourceId, :none, 2025, 5
+        deprecate :ResourceId=, :none, 2025, 5
+        deprecate :BindStatus, :none, 2025, 5
+        deprecate :BindStatus=, :none, 2025, 5
+        deprecate :TriggerAttribute, :none, 2025, 5
+        deprecate :TriggerAttribute=, :none, 2025, 5
 
         def initialize(modtime=nil, type=nil, triggerdesc=nil, triggername=nil, addtime=nil, enable=nil, customargument=nil, availablestatus=nil, resourceid=nil, bindstatus=nil, triggerattribute=nil, qualifier=nil, description=nil)
           @ModTime = modtime
@@ -4724,12 +4724,12 @@ module TencentCloud
 
         attr_accessor :Enable, :Qualifier, :TriggerName, :Type, :TriggerDesc, :AvailableStatus, :CustomArgument, :AddTime, :ModTime, :ResourceId, :BindStatus, :TriggerAttribute, :Description, :BoundResources
         extend Gem::Deprecate
-        deprecate :ResourceId, :none, 2025, 3
-        deprecate :ResourceId=, :none, 2025, 3
-        deprecate :BindStatus, :none, 2025, 3
-        deprecate :BindStatus=, :none, 2025, 3
-        deprecate :TriggerAttribute, :none, 2025, 3
-        deprecate :TriggerAttribute=, :none, 2025, 3
+        deprecate :ResourceId, :none, 2025, 5
+        deprecate :ResourceId=, :none, 2025, 5
+        deprecate :BindStatus, :none, 2025, 5
+        deprecate :BindStatus=, :none, 2025, 5
+        deprecate :TriggerAttribute, :none, 2025, 5
+        deprecate :TriggerAttribute=, :none, 2025, 5
 
         def initialize(enable=nil, qualifier=nil, triggername=nil, type=nil, triggerdesc=nil, availablestatus=nil, customargument=nil, addtime=nil, modtime=nil, resourceid=nil, bindstatus=nil, triggerattribute=nil, description=nil, boundresources=nil)
           @Enable = enable

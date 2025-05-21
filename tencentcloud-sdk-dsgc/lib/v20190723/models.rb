@@ -4649,13 +4649,19 @@ module TencentCloud
       class DescribeDSPAAssessmentRiskSideListResponse < TencentCloud::Common::AbstractModel
         # @param RiskSideItmeList: 风险面列表
         # @type RiskSideItmeList: Array
+        # @param RiskSideItemList: 风险面列表
+        # @type RiskSideItemList: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RiskSideItmeList, :RequestId
+        attr_accessor :RiskSideItmeList, :RiskSideItemList, :RequestId
+        extend Gem::Deprecate
+        deprecate :RiskSideItmeList, :none, 2025, 5
+        deprecate :RiskSideItmeList=, :none, 2025, 5
 
-        def initialize(risksideitmelist=nil, requestid=nil)
+        def initialize(risksideitmelist=nil, risksideitemlist=nil, requestid=nil)
           @RiskSideItmeList = risksideitmelist
+          @RiskSideItemList = risksideitemlist
           @RequestId = requestid
         end
 
@@ -4666,6 +4672,14 @@ module TencentCloud
               note_tmp = Note.new
               note_tmp.deserialize(i)
               @RiskSideItmeList << note_tmp
+            end
+          end
+          unless params['RiskSideItemList'].nil?
+            @RiskSideItemList = []
+            params['RiskSideItemList'].each do |i|
+              note_tmp = Note.new
+              note_tmp.deserialize(i)
+              @RiskSideItemList << note_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -8837,13 +8851,11 @@ module TencentCloud
         # @param GeneralRuleSetEnable: 通用规则集开关，0 关闭，1 启用
         # @type GeneralRuleSetEnable: Integer
         # @param Result: 任务最新的一次执行结果信息，该字段用于查询任务列表接口
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: :class:`Tencentcloud::Dsgc.v20190723.models.ScanTaskResult`
         # @param TimingStartTime: 定时开始时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TimingStartTime: String
         # @param ComplianceUpdate: 关联模板是否更新
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ComplianceUpdate: Boolean
 
         attr_accessor :TaskId, :Name, :Description, :Period, :Plan, :Enable, :DataSourceInfo, :GeneralRuleSetEnable, :Result, :TimingStartTime, :ComplianceUpdate

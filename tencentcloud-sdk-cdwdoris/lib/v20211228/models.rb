@@ -4701,14 +4701,17 @@ module TencentCloud
         # @type Type: String
         # @param HaType: 缩容后集群高可用类型：0：非高可用，1：读高可用，2：读写高可用。
         # @type HaType: Integer
+        # @param CheckAuth: 前端鉴权使用
+        # @type CheckAuth: Boolean
 
-        attr_accessor :InstanceId, :DelHosts, :Type, :HaType
+        attr_accessor :InstanceId, :DelHosts, :Type, :HaType, :CheckAuth
 
-        def initialize(instanceid=nil, delhosts=nil, type=nil, hatype=nil)
+        def initialize(instanceid=nil, delhosts=nil, type=nil, hatype=nil, checkauth=nil)
           @InstanceId = instanceid
           @DelHosts = delhosts
           @Type = type
           @HaType = hatype
+          @CheckAuth = checkauth
         end
 
         def deserialize(params)
@@ -4716,6 +4719,7 @@ module TencentCloud
           @DelHosts = params['DelHosts']
           @Type = params['Type']
           @HaType = params['HaType']
+          @CheckAuth = params['CheckAuth']
         end
       end
 
@@ -5161,14 +5165,17 @@ module TencentCloud
         # @type NodeCount: Integer
         # @param HaType: 扩容后集群高可用类型：0：非高可用，1：读高可用，2：读写高可用。
         # @type HaType: Integer
+        # @param CheckAuth: 前端鉴权使用
+        # @type CheckAuth: Boolean
 
-        attr_accessor :InstanceId, :Type, :NodeCount, :HaType
+        attr_accessor :InstanceId, :Type, :NodeCount, :HaType, :CheckAuth
 
-        def initialize(instanceid=nil, type=nil, nodecount=nil, hatype=nil)
+        def initialize(instanceid=nil, type=nil, nodecount=nil, hatype=nil, checkauth=nil)
           @InstanceId = instanceid
           @Type = type
           @NodeCount = nodecount
           @HaType = hatype
+          @CheckAuth = checkauth
         end
 
         def deserialize(params)
@@ -5176,6 +5183,7 @@ module TencentCloud
           @Type = params['Type']
           @NodeCount = params['NodeCount']
           @HaType = params['HaType']
+          @CheckAuth = params['CheckAuth']
         end
       end
 
@@ -5213,21 +5221,29 @@ module TencentCloud
         # @type InstanceId: String
         # @param SpecName: 节点规格
         # @type SpecName: String
-        # @param Type: 角色（MATER/CORE），MASTER 对应 FE，CORE对应BE
+        # @param Type: 角色（MASTER/CORE），MASTER 对应 FE，CORE对应BE
         # @type Type: String
+        # @param CheckAuth: 前端鉴权使用，后端API调用传false，传true不会执行变配
+        # @type CheckAuth: Boolean
+        # @param RollingRestart: 是否滚动重启
+        # @type RollingRestart: Boolean
 
-        attr_accessor :InstanceId, :SpecName, :Type
+        attr_accessor :InstanceId, :SpecName, :Type, :CheckAuth, :RollingRestart
 
-        def initialize(instanceid=nil, specname=nil, type=nil)
+        def initialize(instanceid=nil, specname=nil, type=nil, checkauth=nil, rollingrestart=nil)
           @InstanceId = instanceid
           @SpecName = specname
           @Type = type
+          @CheckAuth = checkauth
+          @RollingRestart = rollingrestart
         end
 
         def deserialize(params)
           @InstanceId = params['InstanceId']
           @SpecName = params['SpecName']
           @Type = params['Type']
+          @CheckAuth = params['CheckAuth']
+          @RollingRestart = params['RollingRestart']
         end
       end
 

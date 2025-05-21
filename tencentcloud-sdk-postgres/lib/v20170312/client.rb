@@ -2495,32 +2495,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 早期接口，不规范，已提供新接口 ModifyDBInstanceSpec 替换
-
-        # 本接口（UpgradeDBInstance）用于升级实例配置。本接口已废弃，推荐使用接口[ModifyDBInstanceSpec](https://cloud.tencent.com/document/api/409/63689)替代。
-
-        # @param request: Request instance for UpgradeDBInstance.
-        # @type request: :class:`Tencentcloud::postgres::V20170312::UpgradeDBInstanceRequest`
-        # @rtype: :class:`Tencentcloud::postgres::V20170312::UpgradeDBInstanceResponse`
-        def UpgradeDBInstance(request)
-          body = send_request('UpgradeDBInstance', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = UpgradeDBInstanceResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 本接口（UpgradeDBInstanceKernelVersion）用于升级实例的内核版本号。
 
         # @param request: Request instance for UpgradeDBInstanceKernelVersion.

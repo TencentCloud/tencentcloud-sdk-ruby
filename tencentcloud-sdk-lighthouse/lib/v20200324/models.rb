@@ -6610,6 +6610,8 @@ module TencentCloud
       # 续费云硬盘包年包月相关参数设置。
       class RenewDiskChargePrepaid < TencentCloud::Common::AbstractModel
         # @param Period: 续费周期。
+        # 单位：月。
+        # 取值范围: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 24, 36]
         # @type Period: Integer
         # @param RenewFlag: 自动续费标识。
         # 取值范围：

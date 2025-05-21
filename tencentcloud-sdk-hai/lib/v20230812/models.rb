@@ -769,7 +769,7 @@ module TencentCloud
         # DISABLE_NOTIFY_AND_MANUAL_RENEW：表示明确不自动续费(用户设置)
         # 默认值：NOTIFY_AND_MANUAL_RENEW
         # @type RenewFlag: String
-        # @param TimeUnit: 时长单位，默认值MONTH
+        # @param TimeUnit: 时长单位，枚举： MONTH, DAY, HOUR；释义：月，日，小时
         # @type TimeUnit: String
 
         attr_accessor :Period, :RenewFlag, :TimeUnit
@@ -789,9 +789,9 @@ module TencentCloud
 
       # 套餐价格
       class ItemPrice < TencentCloud::Common::AbstractModel
-        # @param UnitPrice: 原单价
+        # @param UnitPrice: 原单价，元
         # @type UnitPrice: Float
-        # @param DiscountUnitPrice: 折扣后单价
+        # @param DiscountUnitPrice: 折扣后单价，元
         # @type DiscountUnitPrice: Float
         # @param Discount: 折扣
         # @type Discount: Float

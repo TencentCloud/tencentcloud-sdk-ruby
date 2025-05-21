@@ -173,6 +173,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 旧版本DSGC接口下线
+
         # 创建识别规则
 
         # @param request: Request instance for CreateClassificationRule.
@@ -581,6 +583,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 旧版本DSGC接口下线
+
         # 创建新分类
 
         # @param request: Request instance for CreateNewClassification.
@@ -604,6 +608,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 旧版本DSGC接口下线
 
         # 创建或复制分级分类模板
 
@@ -925,6 +931,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 旧版本DSGC接口下线
+
         # 查询分类信息
 
         # @param request: Request instance for DescribeClassificationInfo.
@@ -948,6 +956,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 旧版本DSGC接口下线
 
         # 查询标准下所有分类的识别规则数量(不算子分类下的识别规则)
 
@@ -2444,6 +2454,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 旧版本DSGC接口下线
+
         # 查询标准下所有叶子节点分类
 
         # @param request: Request instance for DescribeLeafClassification.
@@ -2563,6 +2575,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 旧版本DSGC接口下线
 
         # 查询分类下规则列表
 
@@ -2877,6 +2891,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 旧版本DSGC接口下线
+
         # 编辑识别规则
 
         # @param request: Request instance for ModifyClassificationRule.
@@ -2900,6 +2916,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 旧版本DSGC接口下线
 
         # 修改识别规则状态
 
@@ -3270,6 +3288,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 旧版本DSGC接口下线
+
         # 修改敏感级别信息
 
         # @param request: Request instance for ModifyLevelInfo.
@@ -3293,6 +3313,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 旧版本DSGC接口下线
 
         # 修改级别名称
 
@@ -3318,6 +3340,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 旧版本DSGC接口下线
+
         # 开启级别或关闭级别
 
         # @param request: Request instance for ModifyLevelState.
@@ -3341,6 +3365,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 旧版本DSGC接口下线
 
         # 一个分类合并到另一个分类中（分类拖拽功能）
 
@@ -3366,6 +3392,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 旧版本DSGC接口下线
+
         # 修改分类信息
 
         # @param request: Request instance for ModifyNewClassification.
@@ -3389,6 +3417,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 旧版本DSGC接口下线
 
         # 修改分级分类模板信息
 

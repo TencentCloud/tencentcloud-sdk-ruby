@@ -1095,14 +1095,19 @@ module TencentCloud
         # @type TypeList: Array
         # @param MonitorVersion: 内部参数，用户可忽略。
         # @type MonitorVersion: String
-        # @param InstanceTags: 根据标签的 Key 和 Value 筛选资源。该参数不配置或者数组设置为空值，则不根据标签进行过滤。
+        # @param InstanceTags: 废弃字段。请使用TagList传参。
         # @type InstanceTags: :class:`Tencentcloud::Keewidb.v20220308.models.InstanceTagInfo`
         # @param TagKeys: 根据标签的 Key 筛选资源，该参数不配置或者数组设置为空值，则不根据标签Key进行过滤。
         # @type TagKeys: Array
+        # @param TagList: 根据标签的 Key 和 Value 筛选资源。该参数不配置或者数组设置为空值，则不根据标签进行过滤。
+        # @type TagList: Array
 
-        attr_accessor :Limit, :Offset, :InstanceId, :OrderBy, :OrderType, :VpcIds, :SubnetIds, :ProjectIds, :SearchKey, :InstanceName, :UniqVpcIds, :UniqSubnetIds, :Status, :AutoRenew, :BillingMode, :Type, :SearchKeys, :TypeList, :MonitorVersion, :InstanceTags, :TagKeys
+        attr_accessor :Limit, :Offset, :InstanceId, :OrderBy, :OrderType, :VpcIds, :SubnetIds, :ProjectIds, :SearchKey, :InstanceName, :UniqVpcIds, :UniqSubnetIds, :Status, :AutoRenew, :BillingMode, :Type, :SearchKeys, :TypeList, :MonitorVersion, :InstanceTags, :TagKeys, :TagList
+        extend Gem::Deprecate
+        deprecate :InstanceTags, :none, 2025, 5
+        deprecate :InstanceTags=, :none, 2025, 5
 
-        def initialize(limit=nil, offset=nil, instanceid=nil, orderby=nil, ordertype=nil, vpcids=nil, subnetids=nil, projectids=nil, searchkey=nil, instancename=nil, uniqvpcids=nil, uniqsubnetids=nil, status=nil, autorenew=nil, billingmode=nil, type=nil, searchkeys=nil, typelist=nil, monitorversion=nil, instancetags=nil, tagkeys=nil)
+        def initialize(limit=nil, offset=nil, instanceid=nil, orderby=nil, ordertype=nil, vpcids=nil, subnetids=nil, projectids=nil, searchkey=nil, instancename=nil, uniqvpcids=nil, uniqsubnetids=nil, status=nil, autorenew=nil, billingmode=nil, type=nil, searchkeys=nil, typelist=nil, monitorversion=nil, instancetags=nil, tagkeys=nil, taglist=nil)
           @Limit = limit
           @Offset = offset
           @InstanceId = instanceid
@@ -1124,6 +1129,7 @@ module TencentCloud
           @MonitorVersion = monitorversion
           @InstanceTags = instancetags
           @TagKeys = tagkeys
+          @TagList = taglist
         end
 
         def deserialize(params)
@@ -1151,6 +1157,14 @@ module TencentCloud
             @InstanceTags.deserialize(params['InstanceTags'])
           end
           @TagKeys = params['TagKeys']
+          unless params['TagList'].nil?
+            @TagList = []
+            params['TagList'].each do |i|
+              instancetaginfo_tmp = InstanceTagInfo.new
+              instancetaginfo_tmp.deserialize(i)
+              @TagList << instancetaginfo_tmp
+            end
+          end
         end
       end
 

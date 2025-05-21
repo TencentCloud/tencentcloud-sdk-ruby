@@ -9507,7 +9507,9 @@ module TencentCloud
         # @type GroupId: String
         # @param GroupName: 机器组名称
         # @type GroupName: String
-        # @param MachineGroupType: 机器组类型。Type：ip，Values中为ip字符串列表机器组；Type：label，Values中为标签字符串列表机器组。
+        # @param MachineGroupType: 机器组类型。
+        # Type：ip，Values中为ip字符串列表机器组；
+        # Type：label，Values中为标签字符串列表机器组。
         # @type MachineGroupType: :class:`Tencentcloud::Cls.v20201016.models.MachineGroupTypeInfo`
         # @param Tags: 标签列表
         # @type Tags: Array
@@ -10921,10 +10923,12 @@ module TencentCloud
         # @type SyntaxRule: Integer
         # @param HasServicesLog: 是否开启投递服务日志。1：关闭，2：开启。
         # @type HasServicesLog: Integer
+        # @param FullQuery: 全文检索标记。1：关闭，2：打开。
+        # @type FullQuery: Integer
 
-        attr_accessor :TaskId, :Name, :SrcTopicId, :SrcTopicName, :DstResource, :CreateTime, :UpdateTime, :Status, :EnableFlag, :ScheduledSqlContent, :ProcessStartTime, :ProcessType, :ProcessEndTime, :ProcessPeriod, :ProcessTimeWindow, :ProcessDelay, :SrcTopicRegion, :SyntaxRule, :HasServicesLog
+        attr_accessor :TaskId, :Name, :SrcTopicId, :SrcTopicName, :DstResource, :CreateTime, :UpdateTime, :Status, :EnableFlag, :ScheduledSqlContent, :ProcessStartTime, :ProcessType, :ProcessEndTime, :ProcessPeriod, :ProcessTimeWindow, :ProcessDelay, :SrcTopicRegion, :SyntaxRule, :HasServicesLog, :FullQuery
 
-        def initialize(taskid=nil, name=nil, srctopicid=nil, srctopicname=nil, dstresource=nil, createtime=nil, updatetime=nil, status=nil, enableflag=nil, scheduledsqlcontent=nil, processstarttime=nil, processtype=nil, processendtime=nil, processperiod=nil, processtimewindow=nil, processdelay=nil, srctopicregion=nil, syntaxrule=nil, hasserviceslog=nil)
+        def initialize(taskid=nil, name=nil, srctopicid=nil, srctopicname=nil, dstresource=nil, createtime=nil, updatetime=nil, status=nil, enableflag=nil, scheduledsqlcontent=nil, processstarttime=nil, processtype=nil, processendtime=nil, processperiod=nil, processtimewindow=nil, processdelay=nil, srctopicregion=nil, syntaxrule=nil, hasserviceslog=nil, fullquery=nil)
           @TaskId = taskid
           @Name = name
           @SrcTopicId = srctopicid
@@ -10944,6 +10948,7 @@ module TencentCloud
           @SrcTopicRegion = srctopicregion
           @SyntaxRule = syntaxrule
           @HasServicesLog = hasserviceslog
+          @FullQuery = fullquery
         end
 
         def deserialize(params)
@@ -10969,6 +10974,7 @@ module TencentCloud
           @SrcTopicRegion = params['SrcTopicRegion']
           @SyntaxRule = params['SyntaxRule']
           @HasServicesLog = params['HasServicesLog']
+          @FullQuery = params['FullQuery']
         end
       end
 
