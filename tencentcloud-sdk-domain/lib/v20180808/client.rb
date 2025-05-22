@@ -1114,7 +1114,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 修改模板信息
+        # 修改模板信息,仅能修改模板未通过审核的，即[模板详情](https://cloud.tencent.com/document/product/242/50018)中：AuditStatus不为Approved状态的
 
         # @param request: Request instance for ModifyTemplate.
         # @type request: :class:`Tencentcloud::domain::V20180808::ModifyTemplateRequest`

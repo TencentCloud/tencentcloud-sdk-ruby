@@ -10876,9 +10876,9 @@ module TencentCloud
       class MidQueryCondition < TencentCloud::Common::AbstractModel
         # @param Key: 维度
         # @type Key: String
-        # @param Operator: 操作符，支持等于(eq)、不等于(ne)，以及in
+        # @param Operator: 操作符，支持=、in
         # @type Operator: String
-        # @param Value: 维度值，当Op是eq、ne时，只使用第一个元素
+        # @param Value: 维度值，当Op是=时，只使用第一个元素
         # @type Value: Array
 
         attr_accessor :Key, :Operator, :Value
@@ -14107,10 +14107,10 @@ module TencentCloud
 
         attr_accessor :URL, :URLRelabelConfig, :BasicAuth, :MaxBlockSize, :Label, :Headers
         extend Gem::Deprecate
-        deprecate :MaxBlockSize, :none, 2025, 4
-        deprecate :MaxBlockSize=, :none, 2025, 4
-        deprecate :Label, :none, 2025, 4
-        deprecate :Label=, :none, 2025, 4
+        deprecate :MaxBlockSize, :none, 2025, 5
+        deprecate :MaxBlockSize=, :none, 2025, 5
+        deprecate :Label, :none, 2025, 5
+        deprecate :Label=, :none, 2025, 5
 
         def initialize(url=nil, urlrelabelconfig=nil, basicauth=nil, maxblocksize=nil, label=nil, headers=nil)
           @URL = url

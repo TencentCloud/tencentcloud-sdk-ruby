@@ -3028,6 +3028,7 @@ module TencentCloud
         # 发起图片处理，功能包括：
         # 1. 格式转换；
         # 2. 图像增强；
+        # 3. 图像擦除;
 
         # @param request: Request instance for ProcessImage.
         # @type request: :class:`Tencentcloud::mps::V20190612::ProcessImageRequest`

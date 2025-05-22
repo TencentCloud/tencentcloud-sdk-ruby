@@ -2240,7 +2240,7 @@ module TencentCloud
         # @type ResourceName: String
         # @param ActionTypeName: 交易类型，如包年包月新购、包年包月续费、按量计费扣费等类型
         # @type ActionTypeName: String
-        # @param OrderId: 订单ID：包年包月计费模式下订购的订单号
+        # @param OrderId: 订单ID：包年包月计费模式下对应子订单号。后付费计费模式下账单费用不存在订单概念，可忽略此参数。
         # @type OrderId: String
         # @param BillId: 交易ID：结算扣费单号
         # @type BillId: String

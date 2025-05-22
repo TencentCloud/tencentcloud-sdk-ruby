@@ -1950,7 +1950,7 @@ module TencentCloud
         # @param Status: 是否开启告警策略。
         # 默认值为true
         # @type Status: Boolean
-        # @param Enable: 该参数已废弃，请使用Status参数控制是否开启告警策略。
+        # @param Enable: 请使用Status参数控制是否开启告警策略。
         # @type Enable: Boolean
         # @param MessageTemplate: 用户自定义告警内容
         # @type MessageTemplate: String
@@ -1978,6 +1978,9 @@ module TencentCloud
         # @type Classifications: Array
 
         attr_accessor :Name, :AlarmTargets, :MonitorTime, :TriggerCount, :AlarmPeriod, :AlarmNoticeIds, :Condition, :AlarmLevel, :MultiConditions, :Status, :Enable, :MessageTemplate, :CallBack, :Analysis, :GroupTriggerStatus, :GroupTriggerCondition, :Tags, :MonitorObjectType, :Classifications
+        extend Gem::Deprecate
+        deprecate :Enable, :none, 2025, 5
+        deprecate :Enable=, :none, 2025, 5
 
         def initialize(name=nil, alarmtargets=nil, monitortime=nil, triggercount=nil, alarmperiod=nil, alarmnoticeids=nil, condition=nil, alarmlevel=nil, multiconditions=nil, status=nil, enable=nil, messagetemplate=nil, callback=nil, analysis=nil, grouptriggerstatus=nil, grouptriggercondition=nil, tags=nil, monitorobjecttype=nil, classifications=nil)
           @Name = name
@@ -2273,7 +2276,7 @@ module TencentCloud
         # @type ContainerFile: :class:`Tencentcloud::Cls.v20201016.models.ContainerFileInfo`
         # @param ContainerStdout: 容器标准输出类型配置。
         # @type ContainerStdout: :class:`Tencentcloud::Cls.v20201016.models.ContainerStdoutInfo`
-        # @param LogFormat: 日志格式化方式，用于容器采集场景。 - 已废弃
+        # @param LogFormat: 日志格式化方式，用于容器采集场景。
         # - stdout-docker-json：用于docker容器采集场景
         # - stdout-containerd：用于containerd容器采集场景
         # @type LogFormat: String
@@ -2299,6 +2302,9 @@ module TencentCloud
         # @type AdvancedConfig: String
 
         attr_accessor :Name, :TopicId, :Type, :LogType, :ConfigFlag, :LogsetId, :LogsetName, :TopicName, :HostFile, :ContainerFile, :ContainerStdout, :LogFormat, :ExtractRule, :ExcludePaths, :UserDefineRule, :GroupId, :GroupIds, :CollectInfos, :AdvancedConfig
+        extend Gem::Deprecate
+        deprecate :LogFormat, :none, 2025, 5
+        deprecate :LogFormat=, :none, 2025, 5
 
         def initialize(name=nil, topicid=nil, type=nil, logtype=nil, configflag=nil, logsetid=nil, logsetname=nil, topicname=nil, hostfile=nil, containerfile=nil, containerstdout=nil, logformat=nil, extractrule=nil, excludepaths=nil, userdefinerule=nil, groupid=nil, groupids=nil, collectinfos=nil, advancedconfig=nil)
           @Name = name
@@ -3715,16 +3721,16 @@ module TencentCloud
         # <li/>WeCom: 企业微信回调
         # @type ReceiverType: String
         # @param Values: 知方式对应的值。
-        # <br> <li/> 当ReceiverType不是 Wecom 时，Values必填。
+        # <br> <li/> 当ReceiverType不是 WeCom 时，Values必填。
         # @type Values: Array
         # @param ReceiverChannels: 仪表盘通知渠道。
         # <br><li/> 支持：["Email","Sms","WeChat","Phone"]。
-        # <br><li/> 当ReceiverType是 Email 或 Wecom 时，ReceiverChannels不能赋值。
+        # <br><li/> 当ReceiverType是 Email 或 WeCom 时，ReceiverChannels不能赋值。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReceiverChannels: Array
         # @param Url: 回调Url。
-        # <br><li/> 当ReceiverType是 Wecom 时，Url必填。
-        # <br><li/> 当ReceiverType不是 Wecom 时，Url不能填写。
+        # <br><li/> 当ReceiverType是 WeCom 时，Url必填。
+        # <br><li/> 当ReceiverType不是 WeCom 时，Url不能填写。
         # @type Url: String
 
         attr_accessor :ReceiverType, :Values, :ReceiverChannels, :Url
@@ -8534,6 +8540,9 @@ module TencentCloud
         # @type Classifications: Array
 
         attr_accessor :AlarmId, :Name, :MonitorTime, :Condition, :AlarmLevel, :MultiConditions, :TriggerCount, :AlarmPeriod, :AlarmNoticeIds, :AlarmTargets, :Status, :Enable, :MessageTemplate, :CallBack, :Analysis, :GroupTriggerStatus, :GroupTriggerCondition, :Tags, :MonitorObjectType, :Classifications
+        extend Gem::Deprecate
+        deprecate :Enable, :none, 2025, 5
+        deprecate :Enable=, :none, 2025, 5
 
         def initialize(alarmid=nil, name=nil, monitortime=nil, condition=nil, alarmlevel=nil, multiconditions=nil, triggercount=nil, alarmperiod=nil, alarmnoticeids=nil, alarmtargets=nil, status=nil, enable=nil, messagetemplate=nil, callback=nil, analysis=nil, grouptriggerstatus=nil, grouptriggercondition=nil, tags=nil, monitorobjecttype=nil, classifications=nil)
           @AlarmId = alarmid
@@ -8783,7 +8792,7 @@ module TencentCloud
         # - multiline_fullregex_log代表：多行完全正则-文件日志（详见[使用多行-完全正则提取模式采集日志](https://cloud.tencent.com/document/product/614/52366)）；
         # - user_define_log代表：组合解析（适用于多格式嵌套的日志，详见[使用组合解析提取模式采集日志](https://cloud.tencent.com/document/product/614/61310)）。
         # @type LogType: String
-        # @param LogFormat: 日志格式化方式，用于容器采集场景。目前已经废弃
+        # @param LogFormat: 日志格式化方式，用于容器采集场景。
         # - stdout-docker-json：用于docker容器采集场景
         # - stdout-containerd：用于containerd容器采集场景
         # @type LogFormat: String
@@ -8815,6 +8824,9 @@ module TencentCloud
         # @type AdvancedConfig: String
 
         attr_accessor :ConfigExtraId, :Name, :TopicId, :HostFile, :ContainerFile, :ContainerStdout, :LogType, :LogFormat, :ExtractRule, :ExcludePaths, :UserDefineRule, :Type, :GroupId, :ConfigFlag, :LogsetId, :LogsetName, :TopicName, :AdvancedConfig
+        extend Gem::Deprecate
+        deprecate :LogFormat, :none, 2025, 5
+        deprecate :LogFormat=, :none, 2025, 5
 
         def initialize(configextraid=nil, name=nil, topicid=nil, hostfile=nil, containerfile=nil, containerstdout=nil, logtype=nil, logformat=nil, extractrule=nil, excludepaths=nil, userdefinerule=nil, type=nil, groupid=nil, configflag=nil, logsetid=nil, logsetname=nil, topicname=nil, advancedconfig=nil)
           @ConfigExtraId = configextraid
@@ -11916,6 +11928,11 @@ module TencentCloud
         # @type Index: Integer
 
         attr_accessor :CallbackType, :Url, :WebCallbackId, :Method, :NoticeContentId, :RemindType, :Mobiles, :UserIds, :Headers, :Body, :Index
+        extend Gem::Deprecate
+        deprecate :Headers, :none, 2025, 5
+        deprecate :Headers=, :none, 2025, 5
+        deprecate :Body, :none, 2025, 5
+        deprecate :Body=, :none, 2025, 5
 
         def initialize(callbacktype=nil, url=nil, webcallbackid=nil, method=nil, noticecontentid=nil, remindtype=nil, mobiles=nil, userids=nil, headers=nil, body=nil, index=nil)
           @CallbackType = callbacktype

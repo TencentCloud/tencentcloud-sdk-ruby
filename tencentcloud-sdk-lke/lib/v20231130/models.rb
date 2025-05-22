@@ -9373,7 +9373,7 @@ module TencentCloud
         # @type ExpireEnd: String
         # @param IsRefer: 是否引用链接
         # @type IsRefer: Boolean
-        # @param Opt: 文档操作类型：1：批量导入（批量导入问答对）；2:文档导入（正常导入单个文档） 默认为1  <br> 请注意，opt=1的时候请从知识引擎页面下载excel模板
+        # @param Opt: 文档操作类型：1：批量导入（批量导入问答对）；2:文档导入（正常导入单个文档） 默认为1  <br> 请注意，opt=1的时候请从腾讯云智能体开发平台页面下载excel模板
         # @type Opt: Integer
         # @param CateBizId: 分类ID
         # @type CateBizId: String

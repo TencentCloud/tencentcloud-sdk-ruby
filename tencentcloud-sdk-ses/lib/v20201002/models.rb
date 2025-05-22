@@ -295,15 +295,19 @@ module TencentCloud
       class CreateEmailIdentityRequest < TencentCloud::Common::AbstractModel
         # @param EmailIdentity: 您的发信域名，建议使用三级以上域名。例如：mail.qcloud.com。
         # @type EmailIdentity: String
+        # @param DKIMOption: 生成的dkim密钥长度。0:1024，1:2048
+        # @type DKIMOption: Integer
 
-        attr_accessor :EmailIdentity
+        attr_accessor :EmailIdentity, :DKIMOption
 
-        def initialize(emailidentity=nil)
+        def initialize(emailidentity=nil, dkimoption=nil)
           @EmailIdentity = emailidentity
+          @DKIMOption = dkimoption
         end
 
         def deserialize(params)
           @EmailIdentity = params['EmailIdentity']
+          @DKIMOption = params['DKIMOption']
         end
       end
 

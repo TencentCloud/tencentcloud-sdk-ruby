@@ -4030,7 +4030,7 @@ module TencentCloud
         # @type VersionName: String
         # @param Remark: 备注
         # @type Remark: String
-        # @param DockerfilePath: Dockefile的路径
+        # @param DockerfilePath: Dockerfile的路径
         # @type DockerfilePath: String
         # @param BuildDir: DockerBuild的目录
         # @type BuildDir: String

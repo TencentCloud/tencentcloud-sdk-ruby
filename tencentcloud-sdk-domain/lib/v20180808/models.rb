@@ -3512,6 +3512,7 @@ module TencentCloud
         # @param ContactInfo: 联系人信息
         # @type ContactInfo: :class:`Tencentcloud::Domain.v20180808.models.ContactInfo`
         # @param TemplateId: 模板ID
+        # 可通过接口: [DescribeTemplateList](https://cloud.tencent.com/document/product/242/48940)
         # @type TemplateId: String
 
         attr_accessor :CertificateInfo, :ContactInfo, :TemplateId

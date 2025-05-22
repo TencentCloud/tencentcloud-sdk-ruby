@@ -4856,19 +4856,23 @@ module TencentCloud
         # @type Ip: String
         # @param Port: 节点端口
         # @type Port: Integer
+        # @param Zone: 节点所在zone
+        # @type Zone: String
 
-        attr_accessor :NodeId, :Ip, :Port
+        attr_accessor :NodeId, :Ip, :Port, :Zone
 
-        def initialize(nodeid=nil, ip=nil, port=nil)
+        def initialize(nodeid=nil, ip=nil, port=nil, zone=nil)
           @NodeId = nodeid
           @Ip = ip
           @Port = port
+          @Zone = zone
         end
 
         def deserialize(params)
           @NodeId = params['NodeId']
           @Ip = params['Ip']
           @Port = params['Port']
+          @Zone = params['Zone']
         end
       end
 

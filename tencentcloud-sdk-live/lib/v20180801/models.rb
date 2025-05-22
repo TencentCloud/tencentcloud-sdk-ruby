@@ -13506,10 +13506,12 @@ module TencentCloud
         # @type Flux: Float
         # @param ServerIp: 推流服务端 IP。
         # @type ServerIp: String
+        # @param GopSize: 关键帧间隔 GOP ，单位：ms。
+        # @type GopSize: Integer
 
-        attr_accessor :Time, :PushDomain, :AppName, :ClientIp, :BeginPushTime, :Resolution, :VCodec, :ACodec, :Sequence, :VideoFps, :VideoRate, :AudioFps, :AudioRate, :LocalTs, :VideoTs, :AudioTs, :MetaVideoRate, :MetaAudioRate, :MateFps, :StreamParam, :Bandwidth, :Flux, :ServerIp
+        attr_accessor :Time, :PushDomain, :AppName, :ClientIp, :BeginPushTime, :Resolution, :VCodec, :ACodec, :Sequence, :VideoFps, :VideoRate, :AudioFps, :AudioRate, :LocalTs, :VideoTs, :AudioTs, :MetaVideoRate, :MetaAudioRate, :MateFps, :StreamParam, :Bandwidth, :Flux, :ServerIp, :GopSize
 
-        def initialize(time=nil, pushdomain=nil, appname=nil, clientip=nil, beginpushtime=nil, resolution=nil, vcodec=nil, acodec=nil, sequence=nil, videofps=nil, videorate=nil, audiofps=nil, audiorate=nil, localts=nil, videots=nil, audiots=nil, metavideorate=nil, metaaudiorate=nil, matefps=nil, streamparam=nil, bandwidth=nil, flux=nil, serverip=nil)
+        def initialize(time=nil, pushdomain=nil, appname=nil, clientip=nil, beginpushtime=nil, resolution=nil, vcodec=nil, acodec=nil, sequence=nil, videofps=nil, videorate=nil, audiofps=nil, audiorate=nil, localts=nil, videots=nil, audiots=nil, metavideorate=nil, metaaudiorate=nil, matefps=nil, streamparam=nil, bandwidth=nil, flux=nil, serverip=nil, gopsize=nil)
           @Time = time
           @PushDomain = pushdomain
           @AppName = appname
@@ -13533,6 +13535,7 @@ module TencentCloud
           @Bandwidth = bandwidth
           @Flux = flux
           @ServerIp = serverip
+          @GopSize = gopsize
         end
 
         def deserialize(params)
@@ -13559,6 +13562,7 @@ module TencentCloud
           @Bandwidth = params['Bandwidth']
           @Flux = params['Flux']
           @ServerIp = params['ServerIp']
+          @GopSize = params['GopSize']
         end
       end
 

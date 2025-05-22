@@ -4328,10 +4328,16 @@ module TencentCloud
         # @type Zone: String
         # @param Id: Id
         # @type Id: String
+        # @param RIp: RIP
+        # @type RIp: String
+        # @param ComputeGroupId: 计算组ID
+        # @type ComputeGroupId: String
+        # @param CreateTime: 创建时间
+        # @type CreateTime: String
 
-        attr_accessor :Ip, :Status, :NodeName, :ComponentName, :NodeRole, :LastRestartTime, :Zone, :Id
+        attr_accessor :Ip, :Status, :NodeName, :ComponentName, :NodeRole, :LastRestartTime, :Zone, :Id, :RIp, :ComputeGroupId, :CreateTime
 
-        def initialize(ip=nil, status=nil, nodename=nil, componentname=nil, noderole=nil, lastrestarttime=nil, zone=nil, id=nil)
+        def initialize(ip=nil, status=nil, nodename=nil, componentname=nil, noderole=nil, lastrestarttime=nil, zone=nil, id=nil, rip=nil, computegroupid=nil, createtime=nil)
           @Ip = ip
           @Status = status
           @NodeName = nodename
@@ -4340,6 +4346,9 @@ module TencentCloud
           @LastRestartTime = lastrestarttime
           @Zone = zone
           @Id = id
+          @RIp = rip
+          @ComputeGroupId = computegroupid
+          @CreateTime = createtime
         end
 
         def deserialize(params)
@@ -4351,6 +4360,9 @@ module TencentCloud
           @LastRestartTime = params['LastRestartTime']
           @Zone = params['Zone']
           @Id = params['Id']
+          @RIp = params['RIp']
+          @ComputeGroupId = params['ComputeGroupId']
+          @CreateTime = params['CreateTime']
         end
       end
 

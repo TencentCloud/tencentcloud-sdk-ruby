@@ -173,32 +173,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 旧版本DSGC接口下线
-
-        # 创建识别规则
-
-        # @param request: Request instance for CreateClassificationRule.
-        # @type request: :class:`Tencentcloud::dsgc::V20190723::CreateClassificationRuleRequest`
-        # @rtype: :class:`Tencentcloud::dsgc::V20190723::CreateClassificationRuleResponse`
-        def CreateClassificationRule(request)
-          body = send_request('CreateClassificationRule', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = CreateClassificationRuleResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 风险项页面---创建风险等级
 
         # @param request: Request instance for CreateDSPAAssessmentRiskLevel.
@@ -583,58 +557,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 旧版本DSGC接口下线
-
-        # 创建新分类
-
-        # @param request: Request instance for CreateNewClassification.
-        # @type request: :class:`Tencentcloud::dsgc::V20190723::CreateNewClassificationRequest`
-        # @rtype: :class:`Tencentcloud::dsgc::V20190723::CreateNewClassificationResponse`
-        def CreateNewClassification(request)
-          body = send_request('CreateNewClassification', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = CreateNewClassificationResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 旧版本DSGC接口下线
-
-        # 创建或复制分级分类模板
-
-        # @param request: Request instance for CreateOrCopyStandard.
-        # @type request: :class:`Tencentcloud::dsgc::V20190723::CreateOrCopyStandardRequest`
-        # @rtype: :class:`Tencentcloud::dsgc::V20190723::CreateOrCopyStandardResponse`
-        def CreateOrCopyStandard(request)
-          body = send_request('CreateOrCopyStandard', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = CreateOrCopyStandardResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 风险等级的定义页面-创建风险等级的时候生成的一个默认的矩阵
 
         # @param request: Request instance for DecribeSuggestRiskLevelMatrix.
@@ -917,58 +839,6 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeCOSAssetSensitiveDistributionResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 旧版本DSGC接口下线
-
-        # 查询分类信息
-
-        # @param request: Request instance for DescribeClassificationInfo.
-        # @type request: :class:`Tencentcloud::dsgc::V20190723::DescribeClassificationInfoRequest`
-        # @rtype: :class:`Tencentcloud::dsgc::V20190723::DescribeClassificationInfoResponse`
-        def DescribeClassificationInfo(request)
-          body = send_request('DescribeClassificationInfo', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeClassificationInfoResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 旧版本DSGC接口下线
-
-        # 查询标准下所有分类的识别规则数量(不算子分类下的识别规则)
-
-        # @param request: Request instance for DescribeClassificationRuleCount.
-        # @type request: :class:`Tencentcloud::dsgc::V20190723::DescribeClassificationRuleCountRequest`
-        # @rtype: :class:`Tencentcloud::dsgc::V20190723::DescribeClassificationRuleCountResponse`
-        def DescribeClassificationRuleCount(request)
-          body = send_request('DescribeClassificationRuleCount', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeClassificationRuleCountResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -2454,32 +2324,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 旧版本DSGC接口下线
-
-        # 查询标准下所有叶子节点分类
-
-        # @param request: Request instance for DescribeLeafClassification.
-        # @type request: :class:`Tencentcloud::dsgc::V20190723::DescribeLeafClassificationRequest`
-        # @rtype: :class:`Tencentcloud::dsgc::V20190723::DescribeLeafClassificationResponse`
-        def DescribeLeafClassification(request)
-          body = send_request('DescribeLeafClassification', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeLeafClassificationResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 数据资产报告-查询mongo 的敏感资产报告，包含（数据库资产，设敏级别数据库top10，资产详情）
 
         # @param request: Request instance for DescribeMongoAssetSensitiveDistribution.
@@ -2562,32 +2406,6 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeReportTasksResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 旧版本DSGC接口下线
-
-        # 查询分类下规则列表
-
-        # @param request: Request instance for DescribeRuleList.
-        # @type request: :class:`Tencentcloud::dsgc::V20190723::DescribeRuleListRequest`
-        # @rtype: :class:`Tencentcloud::dsgc::V20190723::DescribeRuleListResponse`
-        def DescribeRuleList(request)
-          body = send_request('DescribeRuleList', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeRuleListResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -2877,58 +2695,6 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ListDSPAMetaResourcesResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 旧版本DSGC接口下线
-
-        # 编辑识别规则
-
-        # @param request: Request instance for ModifyClassificationRule.
-        # @type request: :class:`Tencentcloud::dsgc::V20190723::ModifyClassificationRuleRequest`
-        # @rtype: :class:`Tencentcloud::dsgc::V20190723::ModifyClassificationRuleResponse`
-        def ModifyClassificationRule(request)
-          body = send_request('ModifyClassificationRule', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = ModifyClassificationRuleResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 旧版本DSGC接口下线
-
-        # 修改识别规则状态
-
-        # @param request: Request instance for ModifyClassificationRuleState.
-        # @type request: :class:`Tencentcloud::dsgc::V20190723::ModifyClassificationRuleStateRequest`
-        # @rtype: :class:`Tencentcloud::dsgc::V20190723::ModifyClassificationRuleStateResponse`
-        def ModifyClassificationRuleState(request)
-          body = send_request('ModifyClassificationRuleState', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = ModifyClassificationRuleStateResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -3274,162 +3040,6 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyDSPATaskResultResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 旧版本DSGC接口下线
-
-        # 修改敏感级别信息
-
-        # @param request: Request instance for ModifyLevelInfo.
-        # @type request: :class:`Tencentcloud::dsgc::V20190723::ModifyLevelInfoRequest`
-        # @rtype: :class:`Tencentcloud::dsgc::V20190723::ModifyLevelInfoResponse`
-        def ModifyLevelInfo(request)
-          body = send_request('ModifyLevelInfo', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = ModifyLevelInfoResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 旧版本DSGC接口下线
-
-        # 修改级别名称
-
-        # @param request: Request instance for ModifyLevelName.
-        # @type request: :class:`Tencentcloud::dsgc::V20190723::ModifyLevelNameRequest`
-        # @rtype: :class:`Tencentcloud::dsgc::V20190723::ModifyLevelNameResponse`
-        def ModifyLevelName(request)
-          body = send_request('ModifyLevelName', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = ModifyLevelNameResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 旧版本DSGC接口下线
-
-        # 开启级别或关闭级别
-
-        # @param request: Request instance for ModifyLevelState.
-        # @type request: :class:`Tencentcloud::dsgc::V20190723::ModifyLevelStateRequest`
-        # @rtype: :class:`Tencentcloud::dsgc::V20190723::ModifyLevelStateResponse`
-        def ModifyLevelState(request)
-          body = send_request('ModifyLevelState', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = ModifyLevelStateResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 旧版本DSGC接口下线
-
-        # 一个分类合并到另一个分类中（分类拖拽功能）
-
-        # @param request: Request instance for ModifyMergeClassification.
-        # @type request: :class:`Tencentcloud::dsgc::V20190723::ModifyMergeClassificationRequest`
-        # @rtype: :class:`Tencentcloud::dsgc::V20190723::ModifyMergeClassificationResponse`
-        def ModifyMergeClassification(request)
-          body = send_request('ModifyMergeClassification', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = ModifyMergeClassificationResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 旧版本DSGC接口下线
-
-        # 修改分类信息
-
-        # @param request: Request instance for ModifyNewClassification.
-        # @type request: :class:`Tencentcloud::dsgc::V20190723::ModifyNewClassificationRequest`
-        # @rtype: :class:`Tencentcloud::dsgc::V20190723::ModifyNewClassificationResponse`
-        def ModifyNewClassification(request)
-          body = send_request('ModifyNewClassification', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = ModifyNewClassificationResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 旧版本DSGC接口下线
-
-        # 修改分级分类模板信息
-
-        # @param request: Request instance for ModifyStandardInfo.
-        # @type request: :class:`Tencentcloud::dsgc::V20190723::ModifyStandardInfoRequest`
-        # @rtype: :class:`Tencentcloud::dsgc::V20190723::ModifyStandardInfoResponse`
-        def ModifyStandardInfo(request)
-          body = send_request('ModifyStandardInfo', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = ModifyStandardInfoResponse.new
             model.deserialize(response['Response'])
             model
           else

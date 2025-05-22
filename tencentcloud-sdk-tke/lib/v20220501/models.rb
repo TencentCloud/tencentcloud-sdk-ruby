@@ -845,15 +845,19 @@ module TencentCloud
         # @type FileSystem: String
         # @param MountTarget: 挂载目录
         # @type MountTarget: String
+        # @param DiskId: 云盘ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DiskId: String
 
-        attr_accessor :DiskType, :DiskSize, :AutoFormatAndMount, :FileSystem, :MountTarget
+        attr_accessor :DiskType, :DiskSize, :AutoFormatAndMount, :FileSystem, :MountTarget, :DiskId
 
-        def initialize(disktype=nil, disksize=nil, autoformatandmount=nil, filesystem=nil, mounttarget=nil)
+        def initialize(disktype=nil, disksize=nil, autoformatandmount=nil, filesystem=nil, mounttarget=nil, diskid=nil)
           @DiskType = disktype
           @DiskSize = disksize
           @AutoFormatAndMount = autoformatandmount
           @FileSystem = filesystem
           @MountTarget = mounttarget
+          @DiskId = diskid
         end
 
         def deserialize(params)
@@ -862,6 +866,7 @@ module TencentCloud
           @AutoFormatAndMount = params['AutoFormatAndMount']
           @FileSystem = params['FileSystem']
           @MountTarget = params['MountTarget']
+          @DiskId = params['DiskId']
         end
       end
 

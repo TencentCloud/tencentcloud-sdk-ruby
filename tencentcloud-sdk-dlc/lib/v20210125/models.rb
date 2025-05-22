@@ -2453,10 +2453,12 @@ module TencentCloud
         # @type IsInherit: Integer
         # @param IsSessionStarted: 是否使用session脚本的sql运行任务：false：否，true：是
         # @type IsSessionStarted: Boolean
+        # @param DependencyPackages: 依赖包信息
+        # @type DependencyPackages: Array
 
-        attr_accessor :AppName, :AppType, :DataEngine, :AppFile, :RoleArn, :AppDriverSize, :AppExecutorSize, :AppExecutorNums, :Eni, :IsLocal, :MainClass, :AppConf, :IsLocalJars, :AppJars, :IsLocalFiles, :AppFiles, :CmdArgs, :MaxRetries, :DataSource, :IsLocalPythonFiles, :AppPythonFiles, :IsLocalArchives, :AppArchives, :SparkImage, :SparkImageVersion, :AppExecutorMaxNumbers, :SessionId, :IsInherit, :IsSessionStarted
+        attr_accessor :AppName, :AppType, :DataEngine, :AppFile, :RoleArn, :AppDriverSize, :AppExecutorSize, :AppExecutorNums, :Eni, :IsLocal, :MainClass, :AppConf, :IsLocalJars, :AppJars, :IsLocalFiles, :AppFiles, :CmdArgs, :MaxRetries, :DataSource, :IsLocalPythonFiles, :AppPythonFiles, :IsLocalArchives, :AppArchives, :SparkImage, :SparkImageVersion, :AppExecutorMaxNumbers, :SessionId, :IsInherit, :IsSessionStarted, :DependencyPackages
 
-        def initialize(appname=nil, apptype=nil, dataengine=nil, appfile=nil, rolearn=nil, appdriversize=nil, appexecutorsize=nil, appexecutornums=nil, eni=nil, islocal=nil, mainclass=nil, appconf=nil, islocaljars=nil, appjars=nil, islocalfiles=nil, appfiles=nil, cmdargs=nil, maxretries=nil, datasource=nil, islocalpythonfiles=nil, apppythonfiles=nil, islocalarchives=nil, apparchives=nil, sparkimage=nil, sparkimageversion=nil, appexecutormaxnumbers=nil, sessionid=nil, isinherit=nil, issessionstarted=nil)
+        def initialize(appname=nil, apptype=nil, dataengine=nil, appfile=nil, rolearn=nil, appdriversize=nil, appexecutorsize=nil, appexecutornums=nil, eni=nil, islocal=nil, mainclass=nil, appconf=nil, islocaljars=nil, appjars=nil, islocalfiles=nil, appfiles=nil, cmdargs=nil, maxretries=nil, datasource=nil, islocalpythonfiles=nil, apppythonfiles=nil, islocalarchives=nil, apparchives=nil, sparkimage=nil, sparkimageversion=nil, appexecutormaxnumbers=nil, sessionid=nil, isinherit=nil, issessionstarted=nil, dependencypackages=nil)
           @AppName = appname
           @AppType = apptype
           @DataEngine = dataengine
@@ -2486,6 +2488,7 @@ module TencentCloud
           @SessionId = sessionid
           @IsInherit = isinherit
           @IsSessionStarted = issessionstarted
+          @DependencyPackages = dependencypackages
         end
 
         def deserialize(params)
@@ -2518,6 +2521,14 @@ module TencentCloud
           @SessionId = params['SessionId']
           @IsInherit = params['IsInherit']
           @IsSessionStarted = params['IsSessionStarted']
+          unless params['DependencyPackages'].nil?
+            @DependencyPackages = []
+            params['DependencyPackages'].each do |i|
+              dependencypackage_tmp = DependencyPackage.new
+              dependencypackage_tmp.deserialize(i)
+              @DependencyPackages << dependencypackage_tmp
+            end
+          end
         end
       end
 
@@ -5039,6 +5050,58 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 任务依赖包信息
+      class DependencyPackage < TencentCloud::Common::AbstractModel
+        # @param PackageSource: 依赖包类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PackageSource: String
+        # @param MavenPackage: 依赖包信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MavenPackage: String
+        # @param MavenRepository: 依赖包仓库
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MavenRepository: String
+        # @param MavenExclusion: maven包exclusion信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MavenExclusion: String
+        # @param PypiPackage: pypi包信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PypiPackage: String
+        # @param PypiIndexUrl: pypi索引地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PypiIndexUrl: String
+        # @param PackageType: 文件包的类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PackageType: String
+        # @param PackagePath: 文件包的路径
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PackagePath: String
+
+        attr_accessor :PackageSource, :MavenPackage, :MavenRepository, :MavenExclusion, :PypiPackage, :PypiIndexUrl, :PackageType, :PackagePath
+
+        def initialize(packagesource=nil, mavenpackage=nil, mavenrepository=nil, mavenexclusion=nil, pypipackage=nil, pypiindexurl=nil, packagetype=nil, packagepath=nil)
+          @PackageSource = packagesource
+          @MavenPackage = mavenpackage
+          @MavenRepository = mavenrepository
+          @MavenExclusion = mavenexclusion
+          @PypiPackage = pypipackage
+          @PypiIndexUrl = pypiindexurl
+          @PackageType = packagetype
+          @PackagePath = packagepath
+        end
+
+        def deserialize(params)
+          @PackageSource = params['PackageSource']
+          @MavenPackage = params['MavenPackage']
+          @MavenRepository = params['MavenRepository']
+          @MavenExclusion = params['MavenExclusion']
+          @PypiPackage = params['PypiPackage']
+          @PypiIndexUrl = params['PypiIndexUrl']
+          @PackageType = params['PackageType']
+          @PackagePath = params['PackagePath']
         end
       end
 
@@ -10043,10 +10106,12 @@ module TencentCloud
         # @type IsInherit: Integer
         # @param IsSessionStarted: 是否使用session脚本的sql运行任务：false：否，true：是
         # @type IsSessionStarted: Boolean
+        # @param DependencyPackages: 标准引擎依赖包
+        # @type DependencyPackages: Array
 
-        attr_accessor :AppName, :AppType, :DataEngine, :AppFile, :RoleArn, :AppDriverSize, :AppExecutorSize, :AppExecutorNums, :SparkAppId, :Eni, :IsLocal, :MainClass, :AppConf, :IsLocalJars, :AppJars, :IsLocalFiles, :AppFiles, :IsLocalPythonFiles, :AppPythonFiles, :CmdArgs, :MaxRetries, :DataSource, :IsLocalArchives, :AppArchives, :SparkImage, :SparkImageVersion, :AppExecutorMaxNumbers, :SessionId, :IsInherit, :IsSessionStarted
+        attr_accessor :AppName, :AppType, :DataEngine, :AppFile, :RoleArn, :AppDriverSize, :AppExecutorSize, :AppExecutorNums, :SparkAppId, :Eni, :IsLocal, :MainClass, :AppConf, :IsLocalJars, :AppJars, :IsLocalFiles, :AppFiles, :IsLocalPythonFiles, :AppPythonFiles, :CmdArgs, :MaxRetries, :DataSource, :IsLocalArchives, :AppArchives, :SparkImage, :SparkImageVersion, :AppExecutorMaxNumbers, :SessionId, :IsInherit, :IsSessionStarted, :DependencyPackages
 
-        def initialize(appname=nil, apptype=nil, dataengine=nil, appfile=nil, rolearn=nil, appdriversize=nil, appexecutorsize=nil, appexecutornums=nil, sparkappid=nil, eni=nil, islocal=nil, mainclass=nil, appconf=nil, islocaljars=nil, appjars=nil, islocalfiles=nil, appfiles=nil, islocalpythonfiles=nil, apppythonfiles=nil, cmdargs=nil, maxretries=nil, datasource=nil, islocalarchives=nil, apparchives=nil, sparkimage=nil, sparkimageversion=nil, appexecutormaxnumbers=nil, sessionid=nil, isinherit=nil, issessionstarted=nil)
+        def initialize(appname=nil, apptype=nil, dataengine=nil, appfile=nil, rolearn=nil, appdriversize=nil, appexecutorsize=nil, appexecutornums=nil, sparkappid=nil, eni=nil, islocal=nil, mainclass=nil, appconf=nil, islocaljars=nil, appjars=nil, islocalfiles=nil, appfiles=nil, islocalpythonfiles=nil, apppythonfiles=nil, cmdargs=nil, maxretries=nil, datasource=nil, islocalarchives=nil, apparchives=nil, sparkimage=nil, sparkimageversion=nil, appexecutormaxnumbers=nil, sessionid=nil, isinherit=nil, issessionstarted=nil, dependencypackages=nil)
           @AppName = appname
           @AppType = apptype
           @DataEngine = dataengine
@@ -10077,6 +10142,7 @@ module TencentCloud
           @SessionId = sessionid
           @IsInherit = isinherit
           @IsSessionStarted = issessionstarted
+          @DependencyPackages = dependencypackages
         end
 
         def deserialize(params)
@@ -10110,6 +10176,14 @@ module TencentCloud
           @SessionId = params['SessionId']
           @IsInherit = params['IsInherit']
           @IsSessionStarted = params['IsSessionStarted']
+          unless params['DependencyPackages'].nil?
+            @DependencyPackages = []
+            params['DependencyPackages'].each do |i|
+              dependencypackage_tmp = DependencyPackage.new
+              dependencypackage_tmp.deserialize(i)
+              @DependencyPackages << dependencypackage_tmp
+            end
+          end
         end
       end
 
