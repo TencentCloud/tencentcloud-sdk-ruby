@@ -8481,10 +8481,12 @@ module TencentCloud
         # @param SubUinName: 任务创建者名称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubUinName: String
+        # @param AppId: 任务AppId
+        # @type AppId: String
 
-        attr_accessor :Id, :Name, :FrameworkName, :FrameworkVersion, :FrameworkEnvironment, :ChargeType, :ChargeStatus, :ResourceGroupId, :ResourceConfigInfos, :TrainingMode, :Status, :RuntimeInSeconds, :CreateTime, :StartTime, :EndTime, :Output, :FailureReason, :UpdateTime, :BillingInfo, :ResourceGroupName, :ImageInfo, :Message, :Tags, :CallbackUrl, :SubUin, :SubUinName
+        attr_accessor :Id, :Name, :FrameworkName, :FrameworkVersion, :FrameworkEnvironment, :ChargeType, :ChargeStatus, :ResourceGroupId, :ResourceConfigInfos, :TrainingMode, :Status, :RuntimeInSeconds, :CreateTime, :StartTime, :EndTime, :Output, :FailureReason, :UpdateTime, :BillingInfo, :ResourceGroupName, :ImageInfo, :Message, :Tags, :CallbackUrl, :SubUin, :SubUinName, :AppId
 
-        def initialize(id=nil, name=nil, frameworkname=nil, frameworkversion=nil, frameworkenvironment=nil, chargetype=nil, chargestatus=nil, resourcegroupid=nil, resourceconfiginfos=nil, trainingmode=nil, status=nil, runtimeinseconds=nil, createtime=nil, starttime=nil, endtime=nil, output=nil, failurereason=nil, updatetime=nil, billinginfo=nil, resourcegroupname=nil, imageinfo=nil, message=nil, tags=nil, callbackurl=nil, subuin=nil, subuinname=nil)
+        def initialize(id=nil, name=nil, frameworkname=nil, frameworkversion=nil, frameworkenvironment=nil, chargetype=nil, chargestatus=nil, resourcegroupid=nil, resourceconfiginfos=nil, trainingmode=nil, status=nil, runtimeinseconds=nil, createtime=nil, starttime=nil, endtime=nil, output=nil, failurereason=nil, updatetime=nil, billinginfo=nil, resourcegroupname=nil, imageinfo=nil, message=nil, tags=nil, callbackurl=nil, subuin=nil, subuinname=nil, appid=nil)
           @Id = id
           @Name = name
           @FrameworkName = frameworkname
@@ -8511,6 +8513,7 @@ module TencentCloud
           @CallbackUrl = callbackurl
           @SubUin = subuin
           @SubUinName = subuinname
+          @AppId = appid
         end
 
         def deserialize(params)
@@ -8560,6 +8563,7 @@ module TencentCloud
           @CallbackUrl = params['CallbackUrl']
           @SubUin = params['SubUin']
           @SubUinName = params['SubUinName']
+          @AppId = params['AppId']
         end
       end
 

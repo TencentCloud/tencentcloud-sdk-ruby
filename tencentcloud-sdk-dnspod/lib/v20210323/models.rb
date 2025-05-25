@@ -29,30 +29,21 @@ module TencentCloud
         # @type RecordLine: String
         # @param RecordLineId: 解析记录的线路 ID，RecordLine和RecordLineId都有时，系统优先取 RecordLineId。
         # @type RecordLineId: String
-        # @param Weight: 记录权重值(暂未支持)。
-        # @type Weight: Integer
         # @param MX: 记录的 MX 记录值，非 MX 记录类型，默认为 0，MX记录则必选。
         # @type MX: Integer
         # @param TTL: 记录的 TTL 值，默认600。
         # @type TTL: Integer
-        # @param Enabled: 记录状态(暂未支持)。0表示禁用，1表示启用。默认启用。
-        # @type Enabled: Integer
-        # @param Remark: 记录备注(暂未支持)。
-        # @type Remark: String
 
-        attr_accessor :RecordType, :Value, :SubDomain, :RecordLine, :RecordLineId, :Weight, :MX, :TTL, :Enabled, :Remark
+        attr_accessor :RecordType, :Value, :SubDomain, :RecordLine, :RecordLineId, :MX, :TTL
 
-        def initialize(recordtype=nil, value=nil, subdomain=nil, recordline=nil, recordlineid=nil, weight=nil, mx=nil, ttl=nil, enabled=nil, remark=nil)
+        def initialize(recordtype=nil, value=nil, subdomain=nil, recordline=nil, recordlineid=nil, mx=nil, ttl=nil)
           @RecordType = recordtype
           @Value = value
           @SubDomain = subdomain
           @RecordLine = recordline
           @RecordLineId = recordlineid
-          @Weight = weight
           @MX = mx
           @TTL = ttl
-          @Enabled = enabled
-          @Remark = remark
         end
 
         def deserialize(params)
@@ -61,11 +52,8 @@ module TencentCloud
           @SubDomain = params['SubDomain']
           @RecordLine = params['RecordLine']
           @RecordLineId = params['RecordLineId']
-          @Weight = params['Weight']
           @MX = params['MX']
           @TTL = params['TTL']
-          @Enabled = params['Enabled']
-          @Remark = params['Remark']
         end
       end
 
