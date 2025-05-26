@@ -1774,9 +1774,9 @@ module TencentCloud
         # @type CWPStatus: Integer
         # @param AssetCreateTime: 资产创建时间
         # @type AssetCreateTime: String
-        # @param PublicIp: 公网ip
+        # @param PublicIp: 公网IP
         # @type PublicIp: String
-        # @param PrivateIp: 私网ip
+        # @param PrivateIp: 私网IP
         # @type PrivateIp: String
         # @param VpcId: vpc id
         # @type VpcId: String
@@ -1796,9 +1796,9 @@ module TencentCloud
         # @type SubnetId: String
         # @param SubnetName: 子网名
         # @type SubnetName: String
-        # @param InstanceUuid: uuid
+        # @param InstanceUuid: 主机安全Agent UUID
         # @type InstanceUuid: String
-        # @param InstanceQUuid: qquid
+        # @param InstanceQUuid: 云主机 CVM UUID
         # @type InstanceQUuid: String
         # @param OsName: os名
         # @type OsName: String
@@ -6094,7 +6094,7 @@ module TencentCloud
         # @type Tag: Array
         # @param SourceType: 关联实例类型
         # @type SourceType: String
-        # @param MemberId: memberiD
+        # @param MemberId: memberId信息
         # @type MemberId: String
         # @param CCAttack: cc攻击
         # @type CCAttack: Integer
@@ -6443,7 +6443,7 @@ module TencentCloud
         # @type CFWStatus: Integer
         # @param AssetCreateTime: 资产创建时间
         # @type AssetCreateTime: String
-        # @param PublicIp: 公网ip
+        # @param PublicIp: 公网IP
         # @type PublicIp: String
         # @param PublicIpType: 公网ip类型
         # @type PublicIpType: Integer
@@ -6493,7 +6493,7 @@ module TencentCloud
         # @type Tag: Array
         # @param AddressId: eip主键
         # @type AddressId: String
-        # @param MemberId: memberid信息
+        # @param MemberId: MemberId信息
         # @type MemberId: String
         # @param RiskExposure: 风险服务暴露
         # @type RiskExposure: Integer
@@ -8094,8 +8094,7 @@ module TencentCloud
 
       # 子账号详情
       class SubUserInfo < TencentCloud::Common::AbstractModel
-        # @param ID: 主键ID，无业务意义
-        # 仅作为唯一键
+        # @param ID: 主键ID，无业务意义仅作为唯一键
         # @type ID: Integer
         # @param AppID: 子账号Appid
         # @type AppID: String
@@ -8109,7 +8108,7 @@ module TencentCloud
         # @type OwnerUin: String
         # @param OwnerNickName: 主账号名称
         # @type OwnerNickName: String
-        # @param OwnerMemberID: 所属主账号memberid
+        # @param OwnerMemberID: 所属主账号memberId信息
         # @type OwnerMemberID: String
         # @param CloudType: 账户类型，0为腾讯云账户，1为AWS账户
         # @type CloudType: Integer

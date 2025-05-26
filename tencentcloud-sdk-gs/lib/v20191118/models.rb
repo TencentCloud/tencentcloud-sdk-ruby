@@ -2414,17 +2414,21 @@ module TencentCloud
         # @type AndroidInstanceIds: Array
         # @param PackageName: 应用包名
         # @type PackageName: String
+        # @param Activity: 启动页。建议指定启动页来启动应用，避免启动失败。如果启动页为空，系统尝试根据 PackageName 启动，但不保证成功。
+        # @type Activity: String
 
-        attr_accessor :AndroidInstanceIds, :PackageName
+        attr_accessor :AndroidInstanceIds, :PackageName, :Activity
 
-        def initialize(androidinstanceids=nil, packagename=nil)
+        def initialize(androidinstanceids=nil, packagename=nil, activity=nil)
           @AndroidInstanceIds = androidinstanceids
           @PackageName = packagename
+          @Activity = activity
         end
 
         def deserialize(params)
           @AndroidInstanceIds = params['AndroidInstanceIds']
           @PackageName = params['PackageName']
+          @Activity = params['Activity']
         end
       end
 
@@ -2572,17 +2576,21 @@ module TencentCloud
         # @type AndroidInstanceIds: Array
         # @param PackageName: 应用包名
         # @type PackageName: String
+        # @param Activity: 启动页。建议指定启动页来启动应用，避免启动失败。如果启动页为空，系统尝试根据 PackageName 启动，但不保证成功。
+        # @type Activity: String
 
-        attr_accessor :AndroidInstanceIds, :PackageName
+        attr_accessor :AndroidInstanceIds, :PackageName, :Activity
 
-        def initialize(androidinstanceids=nil, packagename=nil)
+        def initialize(androidinstanceids=nil, packagename=nil, activity=nil)
           @AndroidInstanceIds = androidinstanceids
           @PackageName = packagename
+          @Activity = activity
         end
 
         def deserialize(params)
           @AndroidInstanceIds = params['AndroidInstanceIds']
           @PackageName = params['PackageName']
+          @Activity = params['Activity']
         end
       end
 

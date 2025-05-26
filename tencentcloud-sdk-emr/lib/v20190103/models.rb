@@ -1810,6 +1810,60 @@ module TencentCloud
         end
       end
 
+      # CreateGroupsSTD请求参数结构体
+      class CreateGroupsSTDRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 集群名称
+        # @type InstanceId: String
+        # @param Groups: 批量用户组信息
+        # @type Groups: Array
+
+        attr_accessor :InstanceId, :Groups
+
+        def initialize(instanceid=nil, groups=nil)
+          @InstanceId = instanceid
+          @Groups = groups
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          unless params['Groups'].nil?
+            @Groups = []
+            params['Groups'].each do |i|
+              groupinfo_tmp = GroupInfo.new
+              groupinfo_tmp.deserialize(i)
+              @Groups << groupinfo_tmp
+            end
+          end
+        end
+      end
+
+      # CreateGroupsSTD返回参数结构体
+      class CreateGroupsSTDResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 每个用户组的输出结果
+        # @type Data: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              resultitem_tmp = ResultItem.new
+              resultitem_tmp.deserialize(i)
+              @Data << resultitem_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateInstance请求参数结构体
       class CreateInstanceRequest < TencentCloud::Common::AbstractModel
         # @param ProductId: 产品ID，不同产品ID表示不同的EMR产品版本。取值范围：
@@ -2339,6 +2393,53 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteGroupsSTD请求参数结构体
+      class DeleteGroupsSTDRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 集群名称
+        # @type InstanceId: String
+        # @param GroupNames: 用户组名称数组
+        # @type GroupNames: Array
+
+        attr_accessor :InstanceId, :GroupNames
+
+        def initialize(instanceid=nil, groupnames=nil)
+          @InstanceId = instanceid
+          @GroupNames = groupnames
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @GroupNames = params['GroupNames']
+        end
+      end
+
+      # DeleteGroupsSTD返回参数结构体
+      class DeleteGroupsSTDResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 删除返回结果
+        # @type Data: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              resultitem_tmp = ResultItem.new
+              resultitem_tmp.deserialize(i)
+              @Data << resultitem_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -5974,6 +6075,30 @@ module TencentCloud
         end
       end
 
+      # 用户组信息
+      class GroupInfo < TencentCloud::Common::AbstractModel
+        # @param GroupName: 组名
+        # @type GroupName: String
+        # @param Description: 备注
+        # @type Description: String
+        # @param Users: 用户列表
+        # @type Users: Array
+
+        attr_accessor :GroupName, :Description, :Users
+
+        def initialize(groupname=nil, description=nil, users=nil)
+          @GroupName = groupname
+          @Description = description
+          @Users = users
+        end
+
+        def deserialize(params)
+          @GroupName = params['GroupName']
+          @Description = params['Description']
+          @Users = params['Users']
+        end
+      end
+
       # 进程健康状态
       class HealthStatus < TencentCloud::Common::AbstractModel
         # @param Code: 运行正常
@@ -8204,6 +8329,50 @@ module TencentCloud
         end
       end
 
+      # ModifyUserGroup请求参数结构体
+      class ModifyUserGroupRequest < TencentCloud::Common::AbstractModel
+        # @param Users: 用户信息列表
+        # @type Users: Array
+        # @param UserGroup: 用户主组，cvm集群为必填参数，tke集群选填
+        # @type UserGroup: String
+        # @param Groups: 用户副组
+        # @type Groups: Array
+        # @param Remark: 备注
+        # @type Remark: String
+
+        attr_accessor :Users, :UserGroup, :Groups, :Remark
+
+        def initialize(users=nil, usergroup=nil, groups=nil, remark=nil)
+          @Users = users
+          @UserGroup = usergroup
+          @Groups = groups
+          @Remark = remark
+        end
+
+        def deserialize(params)
+          @Users = params['Users']
+          @UserGroup = params['UserGroup']
+          @Groups = params['Groups']
+          @Remark = params['Remark']
+        end
+      end
+
+      # ModifyUserGroup返回参数结构体
+      class ModifyUserGroupResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyUserManagerPwd请求参数结构体
       class ModifyUserManagerPwdRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 集群实例ID
@@ -8240,6 +8409,65 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyUsersOfGroupSTD请求参数结构体
+      class ModifyUsersOfGroupSTDRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 集群名称
+        # @type InstanceId: String
+        # @param Group: 用户组名
+        # @type Group: String
+        # @param Users: 用户列表
+        # @type Users: Array
+        # @param Description: 用户组描述
+        # @type Description: String
+        # @param OperateAction: 枚举类, ADD, DELETE, SYNC
+
+
+        # 枚举类说明:
+        # - ADD: 新增的批量用户, 多次新增相同的用户不会报错
+        # - DELETE: 从用户组里删除的批量用户, 删除不存在的用户不会报错
+        # - SYNC: 用于同步整个用户组, 当列表为空时代表清空整个用户组
+        # 默认为SYNC
+        # @type OperateAction: String
+
+        attr_accessor :InstanceId, :Group, :Users, :Description, :OperateAction
+
+        def initialize(instanceid=nil, group=nil, users=nil, description=nil, operateaction=nil)
+          @InstanceId = instanceid
+          @Group = group
+          @Users = users
+          @Description = description
+          @OperateAction = operateaction
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Group = params['Group']
+          @Users = params['Users']
+          @Description = params['Description']
+          @OperateAction = params['OperateAction']
+        end
+      end
+
+      # ModifyUsersOfGroupSTD返回参数结构体
+      class ModifyUsersOfGroupSTDResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 是否修改成功
+        # @type Data: Boolean
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Data = params['Data']
           @RequestId = params['RequestId']
         end
       end
@@ -10600,6 +10828,30 @@ module TencentCloud
           @Describe = params['Describe']
           @BatchSizeRange = params['BatchSizeRange']
           @IsDefault = params['IsDefault']
+        end
+      end
+
+      # 用户组的输出结果
+      class ResultItem < TencentCloud::Common::AbstractModel
+        # @param Item: 此处为用户组名
+        # @type Item: String
+        # @param Result: 创建用户组是否成功
+        # @type Result: Boolean
+        # @param Reason: 若是创建失败, 提供失败原因
+        # @type Reason: String
+
+        attr_accessor :Item, :Result, :Reason
+
+        def initialize(item=nil, result=nil, reason=nil)
+          @Item = item
+          @Result = result
+          @Reason = reason
+        end
+
+        def deserialize(params)
+          @Item = params['Item']
+          @Result = params['Result']
+          @Reason = params['Reason']
         end
       end
 

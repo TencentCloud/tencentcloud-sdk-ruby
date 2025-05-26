@@ -1127,18 +1127,26 @@ module TencentCloud
         # @type PickUpStuff: String
         # @param PickUpStuffContact: 自提人电话
         # @type PickUpStuffContact: String
-        # @param PickUpStuffIDCard: 自提人身份证号
+        # @param PickUpStuffIDCard: 自提人证件号码
         # @type PickUpStuffIDCard: String
         # @param PickUpTime: 自提时间
         # @type PickUpTime: String
+        # @param IDCardType: 证件类型，非必传，默认为IDENTITY_CARD。
+        # 对应关系如下：IDENTITY_CARD: 身份证,
+        # HONG_KONG_AND_MACAO_PASS: 港澳通行证',
+        # PASSPORT: 护照,
+        # DRIVING_LICENSE: 驾照,
+        # OTHER: 其他
+        # @type IDCardType: String
 
-        attr_accessor :PickUpStuff, :PickUpStuffContact, :PickUpStuffIDCard, :PickUpTime
+        attr_accessor :PickUpStuff, :PickUpStuffContact, :PickUpStuffIDCard, :PickUpTime, :IDCardType
 
-        def initialize(pickupstuff=nil, pickupstuffcontact=nil, pickupstuffidcard=nil, pickuptime=nil)
+        def initialize(pickupstuff=nil, pickupstuffcontact=nil, pickupstuffidcard=nil, pickuptime=nil, idcardtype=nil)
           @PickUpStuff = pickupstuff
           @PickUpStuffContact = pickupstuffcontact
           @PickUpStuffIDCard = pickupstuffidcard
           @PickUpTime = pickuptime
+          @IDCardType = idcardtype
         end
 
         def deserialize(params)
@@ -1146,6 +1154,7 @@ module TencentCloud
           @PickUpStuffContact = params['PickUpStuffContact']
           @PickUpStuffIDCard = params['PickUpStuffIDCard']
           @PickUpTime = params['PickUpTime']
+          @IDCardType = params['IDCardType']
         end
       end
 
@@ -2120,14 +2129,17 @@ module TencentCloud
         # @type Filters: Array
         # @param DstService: 传入目标服务，返回允许进行此服务的机架列表；可以和Filters一起使用。允许的值：('rackPowerOn', 'rackPowerOff')
         # @type DstService: String
+        # @param RackName: 机架名称关键字实现模糊搜索
+        # @type RackName: String
 
-        attr_accessor :Offset, :Limit, :Filters, :DstService
+        attr_accessor :Offset, :Limit, :Filters, :DstService, :RackName
 
-        def initialize(offset=nil, limit=nil, filters=nil, dstservice=nil)
+        def initialize(offset=nil, limit=nil, filters=nil, dstservice=nil, rackname=nil)
           @Offset = offset
           @Limit = limit
           @Filters = filters
           @DstService = dstservice
+          @RackName = rackname
         end
 
         def deserialize(params)
@@ -2142,6 +2154,7 @@ module TencentCloud
             end
           end
           @DstService = params['DstService']
+          @RackName = params['RackName']
         end
       end
 
@@ -3619,20 +3632,28 @@ module TencentCloud
       class SelfOperation < TencentCloud::Common::AbstractModel
         # @param StuffContact: 联系人员电话
         # @type StuffContact: String
-        # @param StuffIDCard: 身份证号
+        # @param StuffIDCard: 证件号码
         # @type StuffIDCard: String
         # @param StuffName: 人员姓名
         # @type StuffName: String
         # @param OperationTime: 上门时间
         # @type OperationTime: String
+        # @param IDCardType: 证件类型，非必传，默认为IDENTITY_CARD。
+        # 对应关系如下：IDENTITY_CARD: 身份证,
+        # HONG_KONG_AND_MACAO_PASS: 港澳通行证',
+        # PASSPORT: 护照,
+        # DRIVING_LICENSE: 驾照,
+        # OTHER: 其他
+        # @type IDCardType: String
 
-        attr_accessor :StuffContact, :StuffIDCard, :StuffName, :OperationTime
+        attr_accessor :StuffContact, :StuffIDCard, :StuffName, :OperationTime, :IDCardType
 
-        def initialize(stuffcontact=nil, stuffidcard=nil, stuffname=nil, operationtime=nil)
+        def initialize(stuffcontact=nil, stuffidcard=nil, stuffname=nil, operationtime=nil, idcardtype=nil)
           @StuffContact = stuffcontact
           @StuffIDCard = stuffidcard
           @StuffName = stuffname
           @OperationTime = operationtime
+          @IDCardType = idcardtype
         end
 
         def deserialize(params)
@@ -3640,6 +3661,7 @@ module TencentCloud
           @StuffIDCard = params['StuffIDCard']
           @StuffName = params['StuffName']
           @OperationTime = params['OperationTime']
+          @IDCardType = params['IDCardType']
         end
       end
 

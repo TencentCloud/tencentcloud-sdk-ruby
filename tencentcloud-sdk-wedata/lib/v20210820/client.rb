@@ -3247,6 +3247,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 数据集成分页获取数据库SCHEMA信息
+
+        # @param request: Request instance for DescribeRealViewSchemaPage.
+        # @type request: :class:`Tencentcloud::wedata::V20210820::DescribeRealViewSchemaPageRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20210820::DescribeRealViewSchemaPageResponse`
+        def DescribeRealViewSchemaPage(request)
+          body = send_request('DescribeRealViewSchemaPage', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeRealViewSchemaPageResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询上报任务详情
 
         # @param request: Request instance for DescribeReportTaskDetail.

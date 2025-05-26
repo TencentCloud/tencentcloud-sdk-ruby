@@ -174,6 +174,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 用户管理-批量创建用户组
+
+        # @param request: Request instance for CreateGroupsSTD.
+        # @type request: :class:`Tencentcloud::emr::V20190103::CreateGroupsSTDRequest`
+        # @rtype: :class:`Tencentcloud::emr::V20190103::CreateGroupsSTDResponse`
+        def CreateGroupsSTD(request)
+          body = send_request('CreateGroupsSTD', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateGroupsSTDResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建EMR集群实例
 
         # @param request: Request instance for CreateInstance.
@@ -234,6 +258,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteAutoScaleStrategyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 批量删除用户组
+
+        # @param request: Request instance for DeleteGroupsSTD.
+        # @type request: :class:`Tencentcloud::emr::V20190103::DeleteGroupsSTDRequest`
+        # @rtype: :class:`Tencentcloud::emr::V20190103::DeleteGroupsSTDResponse`
+        def DeleteGroupsSTD(request)
+          body = send_request('DeleteGroupsSTD', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteGroupsSTDResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1596,6 +1644,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 用户管理-修改用户组
+
+        # @param request: Request instance for ModifyUserGroup.
+        # @type request: :class:`Tencentcloud::emr::V20190103::ModifyUserGroupRequest`
+        # @rtype: :class:`Tencentcloud::emr::V20190103::ModifyUserGroupResponse`
+        def ModifyUserGroup(request)
+          body = send_request('ModifyUserGroup', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyUserGroupResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 修改用户密码（用户管理）
 
         # @param request: Request instance for ModifyUserManagerPwd.
@@ -1606,6 +1678,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyUserManagerPwdResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 变更用户组用户信息
+
+        # @param request: Request instance for ModifyUsersOfGroupSTD.
+        # @type request: :class:`Tencentcloud::emr::V20190103::ModifyUsersOfGroupSTDRequest`
+        # @rtype: :class:`Tencentcloud::emr::V20190103::ModifyUsersOfGroupSTDResponse`
+        def ModifyUsersOfGroupSTD(request)
+          body = send_request('ModifyUsersOfGroupSTD', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyUsersOfGroupSTDResponse.new
             model.deserialize(response['Response'])
             model
           else

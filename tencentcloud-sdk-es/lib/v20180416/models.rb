@@ -7624,7 +7624,6 @@ module TencentCloud
         # @param SubnetId: 子网ID
         # @type SubnetId: String
         # @param Hidden: 是否为隐藏可用区
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Hidden: Boolean
 
         attr_accessor :Zone, :SubnetId, :Hidden

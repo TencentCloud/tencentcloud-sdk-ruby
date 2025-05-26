@@ -1776,10 +1776,15 @@ module TencentCloud
         # @type TaskId: String
         # @param Tags: 标签列表
         # @type Tags: Array
+        # @param Description: 任务描述信息
+        # @type Description: String
 
-        attr_accessor :TaskName, :TaskType, :SourceResource, :TargetResource, :TransformParam, :PrivateLinkParam, :SchemaId, :TransformsParam, :TaskId, :Tags
+        attr_accessor :TaskName, :TaskType, :SourceResource, :TargetResource, :TransformParam, :PrivateLinkParam, :SchemaId, :TransformsParam, :TaskId, :Tags, :Description
+        extend Gem::Deprecate
+        deprecate :PrivateLinkParam, :none, 2025, 5
+        deprecate :PrivateLinkParam=, :none, 2025, 5
 
-        def initialize(taskname=nil, tasktype=nil, sourceresource=nil, targetresource=nil, transformparam=nil, privatelinkparam=nil, schemaid=nil, transformsparam=nil, taskid=nil, tags=nil)
+        def initialize(taskname=nil, tasktype=nil, sourceresource=nil, targetresource=nil, transformparam=nil, privatelinkparam=nil, schemaid=nil, transformsparam=nil, taskid=nil, tags=nil, description=nil)
           @TaskName = taskname
           @TaskType = tasktype
           @SourceResource = sourceresource
@@ -1790,6 +1795,7 @@ module TencentCloud
           @TransformsParam = transformsparam
           @TaskId = taskid
           @Tags = tags
+          @Description = description
         end
 
         def deserialize(params)
@@ -1825,6 +1831,7 @@ module TencentCloud
               @Tags << tag_tmp
             end
           end
+          @Description = params['Description']
         end
       end
 
@@ -5321,6 +5328,9 @@ module TencentCloud
         # @type TagList: Array
 
         attr_accessor :InstanceId, :SearchWord, :Status, :Offset, :Limit, :TagKey, :Filters, :InstanceIds, :InstanceIdList, :TagList
+        extend Gem::Deprecate
+        deprecate :InstanceIds, :none, 2025, 5
+        deprecate :InstanceIds=, :none, 2025, 5
 
         def initialize(instanceid=nil, searchword=nil, status=nil, offset=nil, limit=nil, tagkey=nil, filters=nil, instanceids=nil, instanceidlist=nil, taglist=nil)
           @InstanceId = instanceid
@@ -5404,6 +5414,9 @@ module TencentCloud
         # @type VpcId: String
 
         attr_accessor :InstanceId, :SearchWord, :Status, :Offset, :Limit, :TagKey, :VpcId
+        extend Gem::Deprecate
+        deprecate :TagKey, :none, 2025, 5
+        deprecate :TagKey=, :none, 2025, 5
 
         def initialize(instanceid=nil, searchword=nil, status=nil, offset=nil, limit=nil, tagkey=nil, vpcid=nil)
           @InstanceId = instanceid
@@ -6752,7 +6765,7 @@ module TencentCloud
 
       # 数据处理规则失败处理
       class FailureParam < TencentCloud::Common::AbstractModel
-        # @param Type: 类型，DLQ死信队列，IGNORE_ERROR保留，DROP废弃
+        # @param Type: 类型，DLQ死信队列，IGNORE_ERROR保留，DROP丢弃
         # @type Type: String
         # @param KafkaParam: Ckafka类型死信队列
         # @type KafkaParam: :class:`Tencentcloud::Ckafka.v20190819.models.KafkaParam`

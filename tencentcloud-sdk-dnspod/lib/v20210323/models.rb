@@ -5550,7 +5550,7 @@ module TencentCloud
 
       # ModifyRecordBatch请求参数结构体
       class ModifyRecordBatchRequest < TencentCloud::Common::AbstractModel
-        # @param RecordIdList: 记录ID数组。可以通过接口DescribeRecordList查到所有的解析记录列表以及对应的RecordId
+        # @param RecordIdList: 记录ID数组。可以通过接口DescribeRecordList查到所有的解析记录列表以及对应的RecordId。单次最多修改5000条记录。
         # @type RecordIdList: Array
         # @param Change: 要修改的字段，可选值为 [“sub_domain”、”record_type”、”area”、”value”、”mx”、”ttl”、”status”] 中的某一个。
         # @type Change: String

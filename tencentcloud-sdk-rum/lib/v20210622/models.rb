@@ -1627,10 +1627,12 @@ module TencentCloud
         # @type Env: String
         # @param NetStatus: 网络状态
         # @type NetStatus: String
+        # @param WebVitals: 是否返回webvitals数据
+        # @type WebVitals: Boolean
 
-        attr_accessor :ID, :StartTime, :EndTime, :Type, :Level, :Isp, :Area, :NetType, :Platform, :Device, :VersionNum, :ExtFirst, :ExtSecond, :ExtThird, :IsAbroad, :Browser, :Os, :Engine, :Brand, :From, :CostType, :Env, :NetStatus
+        attr_accessor :ID, :StartTime, :EndTime, :Type, :Level, :Isp, :Area, :NetType, :Platform, :Device, :VersionNum, :ExtFirst, :ExtSecond, :ExtThird, :IsAbroad, :Browser, :Os, :Engine, :Brand, :From, :CostType, :Env, :NetStatus, :WebVitals
 
-        def initialize(id=nil, starttime=nil, endtime=nil, type=nil, level=nil, isp=nil, area=nil, nettype=nil, platform=nil, device=nil, versionnum=nil, extfirst=nil, extsecond=nil, extthird=nil, isabroad=nil, browser=nil, os=nil, engine=nil, brand=nil, from=nil, costtype=nil, env=nil, netstatus=nil)
+        def initialize(id=nil, starttime=nil, endtime=nil, type=nil, level=nil, isp=nil, area=nil, nettype=nil, platform=nil, device=nil, versionnum=nil, extfirst=nil, extsecond=nil, extthird=nil, isabroad=nil, browser=nil, os=nil, engine=nil, brand=nil, from=nil, costtype=nil, env=nil, netstatus=nil, webvitals=nil)
           @ID = id
           @StartTime = starttime
           @EndTime = endtime
@@ -1654,6 +1656,7 @@ module TencentCloud
           @CostType = costtype
           @Env = env
           @NetStatus = netstatus
+          @WebVitals = webvitals
         end
 
         def deserialize(params)
@@ -1680,6 +1683,7 @@ module TencentCloud
           @CostType = params['CostType']
           @Env = params['Env']
           @NetStatus = params['NetStatus']
+          @WebVitals = params['WebVitals']
         end
       end
 
@@ -2757,8 +2761,8 @@ module TencentCloud
 
         attr_accessor :Limit, :Offset, :Filters, :IsDemo
         extend Gem::Deprecate
-        deprecate :IsDemo, :none, 2025, 3
-        deprecate :IsDemo=, :none, 2025, 3
+        deprecate :IsDemo, :none, 2025, 5
+        deprecate :IsDemo=, :none, 2025, 5
 
         def initialize(limit=nil, offset=nil, filters=nil, isdemo=nil)
           @Limit = limit
@@ -3272,8 +3276,8 @@ module TencentCloud
 
         attr_accessor :EndTime, :StartTime, :ID, :IsDemo
         extend Gem::Deprecate
-        deprecate :IsDemo, :none, 2025, 3
-        deprecate :IsDemo=, :none, 2025, 3
+        deprecate :IsDemo, :none, 2025, 5
+        deprecate :IsDemo=, :none, 2025, 5
 
         def initialize(endtime=nil, starttime=nil, id=nil, isdemo=nil)
           @EndTime = endtime
@@ -3403,12 +3407,12 @@ module TencentCloud
 
         attr_accessor :ChargeStatuses, :ChargeTypes, :Limit, :Offset, :AreaIds, :InstanceStatuses, :InstanceIds, :Filters, :IsDemo
         extend Gem::Deprecate
-        deprecate :InstanceStatuses, :none, 2025, 3
-        deprecate :InstanceStatuses=, :none, 2025, 3
-        deprecate :InstanceIds, :none, 2025, 3
-        deprecate :InstanceIds=, :none, 2025, 3
-        deprecate :IsDemo, :none, 2025, 3
-        deprecate :IsDemo=, :none, 2025, 3
+        deprecate :InstanceStatuses, :none, 2025, 5
+        deprecate :InstanceStatuses=, :none, 2025, 5
+        deprecate :InstanceIds, :none, 2025, 5
+        deprecate :InstanceIds=, :none, 2025, 5
+        deprecate :IsDemo, :none, 2025, 5
+        deprecate :IsDemo=, :none, 2025, 5
 
         def initialize(chargestatuses=nil, chargetypes=nil, limit=nil, offset=nil, areaids=nil, instancestatuses=nil, instanceids=nil, filters=nil, isdemo=nil)
           @ChargeStatuses = chargestatuses

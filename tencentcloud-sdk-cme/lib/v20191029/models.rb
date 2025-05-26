@@ -2828,7 +2828,7 @@ module TencentCloud
         # 当 Operation 为 AddDestination、DeleteDestination、EnableDestination、DisableDestination、ModifyDestination 时必填。
         # @type DestinationInfos: Array
         # @param OutputMediaSetting: 输出媒体配置。具体操作方式详见 [操作类型](#Operation) 及下文示例。
-        # 当 Operation 为 ModfiyOutputSetting 时必填。
+        # 当 Operation 为 ModifyOutputSetting 时必填。
         # @type OutputMediaSetting: :class:`Tencentcloud::Cme.v20191029.models.MediaCastOutputMediaSetting`
         # @param PlaySetting: 播放控制参数。具体操作方式详见 [操作类型](#Operation) 及下文示例。
         # 当 Operation 为 ModifyPlaySetting 时必填。

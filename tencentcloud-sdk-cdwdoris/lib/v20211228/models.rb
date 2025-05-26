@@ -908,13 +908,19 @@ module TencentCloud
         # @type UserMultiZoneInfos: :class:`Tencentcloud::Cdwdoris.v20211228.models.NetworkInfo`
         # @param UserMultiZoneInfoArr: 开启多可用区后，用户的所有可用区和子网信息
         # @type UserMultiZoneInfoArr: Array
+        # @param IsSSC: 是否存算分离
+        # @type IsSSC: Boolean
+        # @param SSCCU: CU数
+        # @type SSCCU: Integer
+        # @param CacheDiskSize: 缓存盘大小
+        # @type CacheDiskSize: String
 
-        attr_accessor :Zone, :FeSpec, :BeSpec, :HaFlag, :UserVPCId, :UserSubnetId, :ProductVersion, :ChargeProperties, :InstanceName, :DorisUserPwd, :Tags, :HaType, :CaseSensitive, :EnableMultiZones, :UserMultiZoneInfos, :UserMultiZoneInfoArr
+        attr_accessor :Zone, :FeSpec, :BeSpec, :HaFlag, :UserVPCId, :UserSubnetId, :ProductVersion, :ChargeProperties, :InstanceName, :DorisUserPwd, :Tags, :HaType, :CaseSensitive, :EnableMultiZones, :UserMultiZoneInfos, :UserMultiZoneInfoArr, :IsSSC, :SSCCU, :CacheDiskSize
         extend Gem::Deprecate
         deprecate :UserMultiZoneInfos, :none, 2025, 5
         deprecate :UserMultiZoneInfos=, :none, 2025, 5
 
-        def initialize(zone=nil, fespec=nil, bespec=nil, haflag=nil, uservpcid=nil, usersubnetid=nil, productversion=nil, chargeproperties=nil, instancename=nil, dorisuserpwd=nil, tags=nil, hatype=nil, casesensitive=nil, enablemultizones=nil, usermultizoneinfos=nil, usermultizoneinfoarr=nil)
+        def initialize(zone=nil, fespec=nil, bespec=nil, haflag=nil, uservpcid=nil, usersubnetid=nil, productversion=nil, chargeproperties=nil, instancename=nil, dorisuserpwd=nil, tags=nil, hatype=nil, casesensitive=nil, enablemultizones=nil, usermultizoneinfos=nil, usermultizoneinfoarr=nil, isssc=nil, ssccu=nil, cachedisksize=nil)
           @Zone = zone
           @FeSpec = fespec
           @BeSpec = bespec
@@ -931,6 +937,9 @@ module TencentCloud
           @EnableMultiZones = enablemultizones
           @UserMultiZoneInfos = usermultizoneinfos
           @UserMultiZoneInfoArr = usermultizoneinfoarr
+          @IsSSC = isssc
+          @SSCCU = ssccu
+          @CacheDiskSize = cachedisksize
         end
 
         def deserialize(params)
@@ -976,6 +985,9 @@ module TencentCloud
               @UserMultiZoneInfoArr << networkinfo_tmp
             end
           end
+          @IsSSC = params['IsSSC']
+          @SSCCU = params['SSCCU']
+          @CacheDiskSize = params['CacheDiskSize']
         end
       end
 

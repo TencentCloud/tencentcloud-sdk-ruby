@@ -12096,10 +12096,12 @@ module TencentCloud
         # @type AddressElectronic: String
         # @param IssueAuthorityElectronic: 发证机关
         # @type IssueAuthorityElectronic: String
+        # @param CarBodyColor: 车身颜色
+        # @type CarBodyColor: String
 
-        attr_accessor :PlateNo, :FileNo, :AllowNum, :TotalMass, :CurbWeight, :LoadQuality, :ExternalSize, :Marks, :Record, :TotalQuasiMass, :SubPageCode, :FuelType, :AddressElectronic, :IssueAuthorityElectronic
+        attr_accessor :PlateNo, :FileNo, :AllowNum, :TotalMass, :CurbWeight, :LoadQuality, :ExternalSize, :Marks, :Record, :TotalQuasiMass, :SubPageCode, :FuelType, :AddressElectronic, :IssueAuthorityElectronic, :CarBodyColor
 
-        def initialize(plateno=nil, fileno=nil, allownum=nil, totalmass=nil, curbweight=nil, loadquality=nil, externalsize=nil, marks=nil, record=nil, totalquasimass=nil, subpagecode=nil, fueltype=nil, addresselectronic=nil, issueauthorityelectronic=nil)
+        def initialize(plateno=nil, fileno=nil, allownum=nil, totalmass=nil, curbweight=nil, loadquality=nil, externalsize=nil, marks=nil, record=nil, totalquasimass=nil, subpagecode=nil, fueltype=nil, addresselectronic=nil, issueauthorityelectronic=nil, carbodycolor=nil)
           @PlateNo = plateno
           @FileNo = fileno
           @AllowNum = allownum
@@ -12114,6 +12116,7 @@ module TencentCloud
           @FuelType = fueltype
           @AddressElectronic = addresselectronic
           @IssueAuthorityElectronic = issueauthorityelectronic
+          @CarBodyColor = carbodycolor
         end
 
         def deserialize(params)
@@ -12131,6 +12134,7 @@ module TencentCloud
           @FuelType = params['FuelType']
           @AddressElectronic = params['AddressElectronic']
           @IssueAuthorityElectronic = params['IssueAuthorityElectronic']
+          @CarBodyColor = params['CarBodyColor']
         end
       end
 

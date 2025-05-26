@@ -6450,6 +6450,28 @@ module TencentCloud
         end
       end
 
+      # 数据库Schema信息
+      class DatabaseSchemaIInfo < TencentCloud::Common::AbstractModel
+        # @param SchemaName: schema名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SchemaName: String
+        # @param OriginDatabaseName: 数据库名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OriginDatabaseName: String
+
+        attr_accessor :SchemaName, :OriginDatabaseName
+
+        def initialize(schemaname=nil, origindatabasename=nil)
+          @SchemaName = schemaname
+          @OriginDatabaseName = origindatabasename
+        end
+
+        def deserialize(params)
+          @SchemaName = params['SchemaName']
+          @OriginDatabaseName = params['OriginDatabaseName']
+        end
+      end
+
       # 数据源对象
       class DatasourceBaseInfo < TencentCloud::Common::AbstractModel
         # @param DatabaseNames: 若数据源列表为绑定数据库，则为db名称
@@ -12596,6 +12618,102 @@ module TencentCloud
             @Data = RealTimeTaskSpeed.new
             @Data.deserialize(params['Data'])
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeRealViewSchemaPage请求参数结构体
+      class DescribeRealViewSchemaPageRequest < TencentCloud::Common::AbstractModel
+        # @param PageNumber: 页码
+        # @type PageNumber: Integer
+        # @param PageSize: 每页记录数
+        # @type PageSize: Integer
+        # @param DatabaseName: 数据库名称
+        # @type DatabaseName: String
+        # @param DatasourceId: 数据源id
+        # @type DatasourceId: String
+        # @param DataSourceType: 数据type
+        # @type DataSourceType: String
+        # @param ProjectId: 项目id
+        # @type ProjectId: String
+        # @param Env: 环境信息
+        # @type Env: String
+        # @param Model: 项目model
+        # @type Model: String
+        # @param DevDatasourceId: dev的数据源Id
+        # @type DevDatasourceId: String
+        # @param Keyword: 过滤字段
+        # @type Keyword: String
+
+        attr_accessor :PageNumber, :PageSize, :DatabaseName, :DatasourceId, :DataSourceType, :ProjectId, :Env, :Model, :DevDatasourceId, :Keyword
+
+        def initialize(pagenumber=nil, pagesize=nil, databasename=nil, datasourceid=nil, datasourcetype=nil, projectid=nil, env=nil, model=nil, devdatasourceid=nil, keyword=nil)
+          @PageNumber = pagenumber
+          @PageSize = pagesize
+          @DatabaseName = databasename
+          @DatasourceId = datasourceid
+          @DataSourceType = datasourcetype
+          @ProjectId = projectid
+          @Env = env
+          @Model = model
+          @DevDatasourceId = devdatasourceid
+          @Keyword = keyword
+        end
+
+        def deserialize(params)
+          @PageNumber = params['PageNumber']
+          @PageSize = params['PageSize']
+          @DatabaseName = params['DatabaseName']
+          @DatasourceId = params['DatasourceId']
+          @DataSourceType = params['DataSourceType']
+          @ProjectId = params['ProjectId']
+          @Env = params['Env']
+          @Model = params['Model']
+          @DevDatasourceId = params['DevDatasourceId']
+          @Keyword = params['Keyword']
+        end
+      end
+
+      # DescribeRealViewSchemaPage返回参数结构体
+      class DescribeRealViewSchemaPageResponse < TencentCloud::Common::AbstractModel
+        # @param Items: 数据库schema信息列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Items: Array
+        # @param PageNumber: 页码
+        # @type PageNumber: Integer
+        # @param PageSize: 每页记录数
+        # @type PageSize: Integer
+        # @param TotalCount: 总记录数
+        # @type TotalCount: Integer
+        # @param TotalPage: 总页数
+        # @type TotalPage: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Items, :PageNumber, :PageSize, :TotalCount, :TotalPage, :RequestId
+
+        def initialize(items=nil, pagenumber=nil, pagesize=nil, totalcount=nil, totalpage=nil, requestid=nil)
+          @Items = items
+          @PageNumber = pagenumber
+          @PageSize = pagesize
+          @TotalCount = totalcount
+          @TotalPage = totalpage
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              databaseschemaiinfo_tmp = DatabaseSchemaIInfo.new
+              databaseschemaiinfo_tmp.deserialize(i)
+              @Items << databaseschemaiinfo_tmp
+            end
+          end
+          @PageNumber = params['PageNumber']
+          @PageSize = params['PageSize']
+          @TotalCount = params['TotalCount']
+          @TotalPage = params['TotalPage']
           @RequestId = params['RequestId']
         end
       end
