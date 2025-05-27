@@ -914,13 +914,17 @@ module TencentCloud
         # @type SSCCU: Integer
         # @param CacheDiskSize: 缓存盘大小
         # @type CacheDiskSize: String
+        # @param CacheDataDiskSize: 缓存盘大小
+        # @type CacheDataDiskSize: Integer
 
-        attr_accessor :Zone, :FeSpec, :BeSpec, :HaFlag, :UserVPCId, :UserSubnetId, :ProductVersion, :ChargeProperties, :InstanceName, :DorisUserPwd, :Tags, :HaType, :CaseSensitive, :EnableMultiZones, :UserMultiZoneInfos, :UserMultiZoneInfoArr, :IsSSC, :SSCCU, :CacheDiskSize
+        attr_accessor :Zone, :FeSpec, :BeSpec, :HaFlag, :UserVPCId, :UserSubnetId, :ProductVersion, :ChargeProperties, :InstanceName, :DorisUserPwd, :Tags, :HaType, :CaseSensitive, :EnableMultiZones, :UserMultiZoneInfos, :UserMultiZoneInfoArr, :IsSSC, :SSCCU, :CacheDiskSize, :CacheDataDiskSize
         extend Gem::Deprecate
         deprecate :UserMultiZoneInfos, :none, 2025, 5
         deprecate :UserMultiZoneInfos=, :none, 2025, 5
+        deprecate :CacheDiskSize, :none, 2025, 5
+        deprecate :CacheDiskSize=, :none, 2025, 5
 
-        def initialize(zone=nil, fespec=nil, bespec=nil, haflag=nil, uservpcid=nil, usersubnetid=nil, productversion=nil, chargeproperties=nil, instancename=nil, dorisuserpwd=nil, tags=nil, hatype=nil, casesensitive=nil, enablemultizones=nil, usermultizoneinfos=nil, usermultizoneinfoarr=nil, isssc=nil, ssccu=nil, cachedisksize=nil)
+        def initialize(zone=nil, fespec=nil, bespec=nil, haflag=nil, uservpcid=nil, usersubnetid=nil, productversion=nil, chargeproperties=nil, instancename=nil, dorisuserpwd=nil, tags=nil, hatype=nil, casesensitive=nil, enablemultizones=nil, usermultizoneinfos=nil, usermultizoneinfoarr=nil, isssc=nil, ssccu=nil, cachedisksize=nil, cachedatadisksize=nil)
           @Zone = zone
           @FeSpec = fespec
           @BeSpec = bespec
@@ -940,6 +944,7 @@ module TencentCloud
           @IsSSC = isssc
           @SSCCU = ssccu
           @CacheDiskSize = cachedisksize
+          @CacheDataDiskSize = cachedatadisksize
         end
 
         def deserialize(params)
@@ -988,6 +993,7 @@ module TencentCloud
           @IsSSC = params['IsSSC']
           @SSCCU = params['SSCCU']
           @CacheDiskSize = params['CacheDiskSize']
+          @CacheDataDiskSize = params['CacheDataDiskSize']
         end
       end
 

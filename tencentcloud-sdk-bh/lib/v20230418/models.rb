@@ -676,19 +676,43 @@ module TencentCloud
         # @type ResourceId: String
         # @param DomainId: 网络域ID
         # @type DomainId: String
+        # @param ManageDimension: K8S集群托管账号维度。1-集群，2-命名空间，3-工作负载
+        # @type ManageDimension: Integer
+        # @param ManageAccountId: K8S集群托管账号id
+        # @type ManageAccountId: Integer
+        # @param ManageAccount: K8S集群托管账号名称
+        # @type ManageAccount: String
+        # @param ManageKubeconfig: K8S集群托管账号凭证
+        # @type ManageKubeconfig: String
+        # @param Namespace: K8S集群托管的namespace
+        # @type Namespace: String
+        # @param Workload: K8S集群托管的workload
+        # @type Workload: String
 
-        attr_accessor :DeviceIdSet, :ResourceId, :DomainId
+        attr_accessor :DeviceIdSet, :ResourceId, :DomainId, :ManageDimension, :ManageAccountId, :ManageAccount, :ManageKubeconfig, :Namespace, :Workload
 
-        def initialize(deviceidset=nil, resourceid=nil, domainid=nil)
+        def initialize(deviceidset=nil, resourceid=nil, domainid=nil, managedimension=nil, manageaccountid=nil, manageaccount=nil, managekubeconfig=nil, namespace=nil, workload=nil)
           @DeviceIdSet = deviceidset
           @ResourceId = resourceid
           @DomainId = domainid
+          @ManageDimension = managedimension
+          @ManageAccountId = manageaccountid
+          @ManageAccount = manageaccount
+          @ManageKubeconfig = managekubeconfig
+          @Namespace = namespace
+          @Workload = workload
         end
 
         def deserialize(params)
           @DeviceIdSet = params['DeviceIdSet']
           @ResourceId = params['ResourceId']
           @DomainId = params['DomainId']
+          @ManageDimension = params['ManageDimension']
+          @ManageAccountId = params['ManageAccountId']
+          @ManageAccount = params['ManageAccount']
+          @ManageKubeconfig = params['ManageKubeconfig']
+          @Namespace = params['Namespace']
+          @Workload = params['Workload']
         end
       end
 
@@ -1432,10 +1456,12 @@ module TencentCloud
         # @type DeployZone: String
         # @param Trial: 0非试用版，1试用版
         # @type Trial: Integer
+        # @param ShareClb: 是否共享clb，0：不共享，1：共享
+        # @type ShareClb: Integer
 
-        attr_accessor :DeployRegion, :VpcId, :SubnetId, :ResourceEdition, :ResourceNode, :TimeUnit, :TimeSpan, :PayMode, :AutoRenewFlag, :DeployZone, :Trial
+        attr_accessor :DeployRegion, :VpcId, :SubnetId, :ResourceEdition, :ResourceNode, :TimeUnit, :TimeSpan, :PayMode, :AutoRenewFlag, :DeployZone, :Trial, :ShareClb
 
-        def initialize(deployregion=nil, vpcid=nil, subnetid=nil, resourceedition=nil, resourcenode=nil, timeunit=nil, timespan=nil, paymode=nil, autorenewflag=nil, deployzone=nil, trial=nil)
+        def initialize(deployregion=nil, vpcid=nil, subnetid=nil, resourceedition=nil, resourcenode=nil, timeunit=nil, timespan=nil, paymode=nil, autorenewflag=nil, deployzone=nil, trial=nil, shareclb=nil)
           @DeployRegion = deployregion
           @VpcId = vpcid
           @SubnetId = subnetid
@@ -1447,6 +1473,7 @@ module TencentCloud
           @AutoRenewFlag = autorenewflag
           @DeployZone = deployzone
           @Trial = trial
+          @ShareClb = shareclb
         end
 
         def deserialize(params)
@@ -1461,6 +1488,7 @@ module TencentCloud
           @AutoRenewFlag = params['AutoRenewFlag']
           @DeployZone = params['DeployZone']
           @Trial = params['Trial']
+          @ShareClb = params['ShareClb']
         end
       end
 
@@ -3489,10 +3517,22 @@ module TencentCloud
         # @type SSLCertName: String
         # @param IOAId: IOA侧的资源ID
         # @type IOAId: Integer
+        # @param ManageDimension: K8S集群托管维度。1-集群，2-命名空间，3-工作负载
+        # @type ManageDimension: Integer
+        # @param ManageAccountId: K8S集群托管账号id
+        # @type ManageAccountId: Integer
+        # @param Namespace: K8S集群命名空间
+        # @type Namespace: String
+        # @param Workload: K8S集群工作负载
+        # @type Workload: String
+        # @param SyncPodCount: K8S集群pod已同步数量
+        # @type SyncPodCount: Integer
+        # @param TotalPodCount: K8S集群pod总数量
+        # @type TotalPodCount: Integer
 
-        attr_accessor :Id, :InstanceId, :Name, :PublicIp, :PrivateIp, :ApCode, :OsName, :Kind, :Port, :GroupSet, :AccountCount, :VpcId, :SubnetId, :Resource, :Department, :IpPortSet, :DomainId, :DomainName, :EnableSSL, :SSLCertName, :IOAId
+        attr_accessor :Id, :InstanceId, :Name, :PublicIp, :PrivateIp, :ApCode, :OsName, :Kind, :Port, :GroupSet, :AccountCount, :VpcId, :SubnetId, :Resource, :Department, :IpPortSet, :DomainId, :DomainName, :EnableSSL, :SSLCertName, :IOAId, :ManageDimension, :ManageAccountId, :Namespace, :Workload, :SyncPodCount, :TotalPodCount
 
-        def initialize(id=nil, instanceid=nil, name=nil, publicip=nil, privateip=nil, apcode=nil, osname=nil, kind=nil, port=nil, groupset=nil, accountcount=nil, vpcid=nil, subnetid=nil, resource=nil, department=nil, ipportset=nil, domainid=nil, domainname=nil, enablessl=nil, sslcertname=nil, ioaid=nil)
+        def initialize(id=nil, instanceid=nil, name=nil, publicip=nil, privateip=nil, apcode=nil, osname=nil, kind=nil, port=nil, groupset=nil, accountcount=nil, vpcid=nil, subnetid=nil, resource=nil, department=nil, ipportset=nil, domainid=nil, domainname=nil, enablessl=nil, sslcertname=nil, ioaid=nil, managedimension=nil, manageaccountid=nil, namespace=nil, workload=nil, syncpodcount=nil, totalpodcount=nil)
           @Id = id
           @InstanceId = instanceid
           @Name = name
@@ -3514,6 +3554,12 @@ module TencentCloud
           @EnableSSL = enablessl
           @SSLCertName = sslcertname
           @IOAId = ioaid
+          @ManageDimension = managedimension
+          @ManageAccountId = manageaccountid
+          @Namespace = namespace
+          @Workload = workload
+          @SyncPodCount = syncpodcount
+          @TotalPodCount = totalpodcount
         end
 
         def deserialize(params)
@@ -3551,6 +3597,12 @@ module TencentCloud
           @EnableSSL = params['EnableSSL']
           @SSLCertName = params['SSLCertName']
           @IOAId = params['IOAId']
+          @ManageDimension = params['ManageDimension']
+          @ManageAccountId = params['ManageAccountId']
+          @Namespace = params['Namespace']
+          @Workload = params['Workload']
+          @SyncPodCount = params['SyncPodCount']
+          @TotalPodCount = params['TotalPodCount']
         end
       end
 
@@ -3566,15 +3618,21 @@ module TencentCloud
         # @type BoundPassword: Boolean
         # @param BoundPrivateKey: true-已托管私钥，false-未托管私钥
         # @type BoundPrivateKey: Boolean
+        # @param BoundKubeconfig: 是否托管凭证, true-托管，false-未托管
+        # @type BoundKubeconfig: Boolean
+        # @param IsK8SManageAccount: 是否为k8s资产管理账号
+        # @type IsK8SManageAccount: Boolean
 
-        attr_accessor :Id, :DeviceId, :Account, :BoundPassword, :BoundPrivateKey
+        attr_accessor :Id, :DeviceId, :Account, :BoundPassword, :BoundPrivateKey, :BoundKubeconfig, :IsK8SManageAccount
 
-        def initialize(id=nil, deviceid=nil, account=nil, boundpassword=nil, boundprivatekey=nil)
+        def initialize(id=nil, deviceid=nil, account=nil, boundpassword=nil, boundprivatekey=nil, boundkubeconfig=nil, isk8smanageaccount=nil)
           @Id = id
           @DeviceId = deviceid
           @Account = account
           @BoundPassword = boundpassword
           @BoundPrivateKey = boundprivatekey
+          @BoundKubeconfig = boundkubeconfig
+          @IsK8SManageAccount = isk8smanageaccount
         end
 
         def deserialize(params)
@@ -3583,6 +3641,8 @@ module TencentCloud
           @Account = params['Account']
           @BoundPassword = params['BoundPassword']
           @BoundPrivateKey = params['BoundPrivateKey']
+          @BoundKubeconfig = params['BoundKubeconfig']
+          @IsK8SManageAccount = params['IsK8SManageAccount']
         end
       end
 
@@ -4838,10 +4898,12 @@ module TencentCloud
         # @type PackageIOAUserCount: Integer
         # @param PackageIOABandwidth:  零信任堡垒机带宽扩展包个数。一个扩展包表示4M带宽
         # @type PackageIOABandwidth: Integer
+        # @param IOAResourceId: 堡垒机实例对应的零信任实例id
+        # @type IOAResourceId: String
 
-        attr_accessor :ResourceId, :ApCode, :SvArgs, :VpcId, :Nodes, :RenewFlag, :ExpireTime, :Status, :ResourceName, :Pid, :CreateTime, :ProductCode, :SubProductCode, :Zone, :Expired, :Deployed, :VpcName, :VpcCidrBlock, :SubnetId, :SubnetName, :CidrBlock, :PublicIpSet, :PrivateIpSet, :ModuleSet, :UsedNodes, :ExtendPoints, :PackageBandwidth, :PackageNode, :LogDeliveryArgs, :ClbSet, :DomainCount, :UsedDomainCount, :Trial, :LogDelivery, :CdcClusterId, :DeployModel, :IntranetAccess, :IntranetPrivateIpSet, :IntranetVpcId, :IntranetVpcCidr, :ShareClb, :OpenClbId, :LbVipIsp, :TUICmdPort, :TUIDirectPort, :WebAccess, :ClientAccess, :ExternalAccess, :IOAResource, :PackageIOAUserCount, :PackageIOABandwidth
+        attr_accessor :ResourceId, :ApCode, :SvArgs, :VpcId, :Nodes, :RenewFlag, :ExpireTime, :Status, :ResourceName, :Pid, :CreateTime, :ProductCode, :SubProductCode, :Zone, :Expired, :Deployed, :VpcName, :VpcCidrBlock, :SubnetId, :SubnetName, :CidrBlock, :PublicIpSet, :PrivateIpSet, :ModuleSet, :UsedNodes, :ExtendPoints, :PackageBandwidth, :PackageNode, :LogDeliveryArgs, :ClbSet, :DomainCount, :UsedDomainCount, :Trial, :LogDelivery, :CdcClusterId, :DeployModel, :IntranetAccess, :IntranetPrivateIpSet, :IntranetVpcId, :IntranetVpcCidr, :ShareClb, :OpenClbId, :LbVipIsp, :TUICmdPort, :TUIDirectPort, :WebAccess, :ClientAccess, :ExternalAccess, :IOAResource, :PackageIOAUserCount, :PackageIOABandwidth, :IOAResourceId
 
-        def initialize(resourceid=nil, apcode=nil, svargs=nil, vpcid=nil, nodes=nil, renewflag=nil, expiretime=nil, status=nil, resourcename=nil, pid=nil, createtime=nil, productcode=nil, subproductcode=nil, zone=nil, expired=nil, deployed=nil, vpcname=nil, vpccidrblock=nil, subnetid=nil, subnetname=nil, cidrblock=nil, publicipset=nil, privateipset=nil, moduleset=nil, usednodes=nil, extendpoints=nil, packagebandwidth=nil, packagenode=nil, logdeliveryargs=nil, clbset=nil, domaincount=nil, useddomaincount=nil, trial=nil, logdelivery=nil, cdcclusterid=nil, deploymodel=nil, intranetaccess=nil, intranetprivateipset=nil, intranetvpcid=nil, intranetvpccidr=nil, shareclb=nil, openclbid=nil, lbvipisp=nil, tuicmdport=nil, tuidirectport=nil, webaccess=nil, clientaccess=nil, externalaccess=nil, ioaresource=nil, packageioausercount=nil, packageioabandwidth=nil)
+        def initialize(resourceid=nil, apcode=nil, svargs=nil, vpcid=nil, nodes=nil, renewflag=nil, expiretime=nil, status=nil, resourcename=nil, pid=nil, createtime=nil, productcode=nil, subproductcode=nil, zone=nil, expired=nil, deployed=nil, vpcname=nil, vpccidrblock=nil, subnetid=nil, subnetname=nil, cidrblock=nil, publicipset=nil, privateipset=nil, moduleset=nil, usednodes=nil, extendpoints=nil, packagebandwidth=nil, packagenode=nil, logdeliveryargs=nil, clbset=nil, domaincount=nil, useddomaincount=nil, trial=nil, logdelivery=nil, cdcclusterid=nil, deploymodel=nil, intranetaccess=nil, intranetprivateipset=nil, intranetvpcid=nil, intranetvpccidr=nil, shareclb=nil, openclbid=nil, lbvipisp=nil, tuicmdport=nil, tuidirectport=nil, webaccess=nil, clientaccess=nil, externalaccess=nil, ioaresource=nil, packageioausercount=nil, packageioabandwidth=nil, ioaresourceid=nil)
           @ResourceId = resourceid
           @ApCode = apcode
           @SvArgs = svargs
@@ -4893,6 +4955,7 @@ module TencentCloud
           @IOAResource = ioaresource
           @PackageIOAUserCount = packageioausercount
           @PackageIOABandwidth = packageioabandwidth
+          @IOAResourceId = ioaresourceid
         end
 
         def deserialize(params)
@@ -4954,6 +5017,7 @@ module TencentCloud
           @IOAResource = params['IOAResource']
           @PackageIOAUserCount = params['PackageIOAUserCount']
           @PackageIOABandwidth = params['PackageIOABandwidth']
+          @IOAResourceId = params['IOAResourceId']
         end
       end
 
@@ -5303,10 +5367,12 @@ module TencentCloud
         # @type Size: Integer
         # @param SignValue: 签名值
         # @type SignValue: String
+        # @param DeviceKind: 资产类型
+        # @type DeviceKind: String
 
-        attr_accessor :Time, :UserName, :RealName, :InstanceId, :DeviceName, :PublicIp, :PrivateIp, :Cmd, :Action, :Sid, :TimeOffset, :Account, :FromIp, :SessionTime, :SessTime, :ConfirmTime, :UserDepartmentId, :UserDepartmentName, :DeviceDepartmentId, :DeviceDepartmentName, :Size, :SignValue
+        attr_accessor :Time, :UserName, :RealName, :InstanceId, :DeviceName, :PublicIp, :PrivateIp, :Cmd, :Action, :Sid, :TimeOffset, :Account, :FromIp, :SessionTime, :SessTime, :ConfirmTime, :UserDepartmentId, :UserDepartmentName, :DeviceDepartmentId, :DeviceDepartmentName, :Size, :SignValue, :DeviceKind
 
-        def initialize(time=nil, username=nil, realname=nil, instanceid=nil, devicename=nil, publicip=nil, privateip=nil, cmd=nil, action=nil, sid=nil, timeoffset=nil, account=nil, fromip=nil, sessiontime=nil, sesstime=nil, confirmtime=nil, userdepartmentid=nil, userdepartmentname=nil, devicedepartmentid=nil, devicedepartmentname=nil, size=nil, signvalue=nil)
+        def initialize(time=nil, username=nil, realname=nil, instanceid=nil, devicename=nil, publicip=nil, privateip=nil, cmd=nil, action=nil, sid=nil, timeoffset=nil, account=nil, fromip=nil, sessiontime=nil, sesstime=nil, confirmtime=nil, userdepartmentid=nil, userdepartmentname=nil, devicedepartmentid=nil, devicedepartmentname=nil, size=nil, signvalue=nil, devicekind=nil)
           @Time = time
           @UserName = username
           @RealName = realname
@@ -5329,6 +5395,7 @@ module TencentCloud
           @DeviceDepartmentName = devicedepartmentname
           @Size = size
           @SignValue = signvalue
+          @DeviceKind = devicekind
         end
 
         def deserialize(params)
@@ -5354,6 +5421,7 @@ module TencentCloud
           @DeviceDepartmentName = params['DeviceDepartmentName']
           @Size = params['Size']
           @SignValue = params['SignValue']
+          @DeviceKind = params['DeviceKind']
         end
       end
 
@@ -6076,10 +6144,18 @@ module TencentCloud
         # @type AppAssetUrl: String
         # @param ReplayType: 回放类型 默认0, 1-rfb 2-mp4 3-ssh
         # @type ReplayType: Integer
+        # @param DeviceKind: 会话资产类型
+        # @type DeviceKind: String
+        # @param Namespace: K8S集群命名空间
+        # @type Namespace: String
+        # @param Workload: K8S集群工作负载
+        # @type Workload: String
+        # @param PodName: K8S集群容器名称
+        # @type PodName: String
 
-        attr_accessor :UserName, :RealName, :Account, :StartTime, :EndTime, :Size, :InstanceId, :DeviceName, :PrivateIp, :PublicIp, :FromIp, :Duration, :Count, :DangerCount, :Status, :Id, :ApCode, :Protocol, :AppAssetKind, :AppAssetUrl, :ReplayType
+        attr_accessor :UserName, :RealName, :Account, :StartTime, :EndTime, :Size, :InstanceId, :DeviceName, :PrivateIp, :PublicIp, :FromIp, :Duration, :Count, :DangerCount, :Status, :Id, :ApCode, :Protocol, :AppAssetKind, :AppAssetUrl, :ReplayType, :DeviceKind, :Namespace, :Workload, :PodName
 
-        def initialize(username=nil, realname=nil, account=nil, starttime=nil, endtime=nil, size=nil, instanceid=nil, devicename=nil, privateip=nil, publicip=nil, fromip=nil, duration=nil, count=nil, dangercount=nil, status=nil, id=nil, apcode=nil, protocol=nil, appassetkind=nil, appasseturl=nil, replaytype=nil)
+        def initialize(username=nil, realname=nil, account=nil, starttime=nil, endtime=nil, size=nil, instanceid=nil, devicename=nil, privateip=nil, publicip=nil, fromip=nil, duration=nil, count=nil, dangercount=nil, status=nil, id=nil, apcode=nil, protocol=nil, appassetkind=nil, appasseturl=nil, replaytype=nil, devicekind=nil, namespace=nil, workload=nil, podname=nil)
           @UserName = username
           @RealName = realname
           @Account = account
@@ -6101,6 +6177,10 @@ module TencentCloud
           @AppAssetKind = appassetkind
           @AppAssetUrl = appasseturl
           @ReplayType = replaytype
+          @DeviceKind = devicekind
+          @Namespace = namespace
+          @Workload = workload
+          @PodName = podname
         end
 
         def deserialize(params)
@@ -6125,6 +6205,10 @@ module TencentCloud
           @AppAssetKind = params['AppAssetKind']
           @AppAssetUrl = params['AppAssetUrl']
           @ReplayType = params['ReplayType']
+          @DeviceKind = params['DeviceKind']
+          @Namespace = params['Namespace']
+          @Workload = params['Workload']
+          @PodName = params['PodName']
         end
       end
 

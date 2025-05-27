@@ -57,6 +57,9 @@ module TencentCloud
         # @type OpenCam: Boolean
 
         attr_accessor :Notes, :Host, :User, :ModifyTime, :ModifyPasswordTime, :CreateTime, :MaxUserConnections, :OpenCam
+        extend Gem::Deprecate
+        deprecate :CreateTime, :none, 2025, 5
+        deprecate :CreateTime=, :none, 2025, 5
 
         def initialize(notes=nil, host=nil, user=nil, modifytime=nil, modifypasswordtime=nil, createtime=nil, maxuserconnections=nil, opencam=nil)
           @Notes = notes
@@ -369,6 +372,50 @@ module TencentCloud
           @AggregationField = params['AggregationField']
           @Offset = params['Offset']
           @Limit = params['Limit']
+        end
+      end
+
+      # 分析引擎节点信息
+      class AnalysisNodeInfo < TencentCloud::Common::AbstractModel
+        # @param NodeId: 节点ID
+        # @type NodeId: String
+        # @param Status: 节点状态
+        # @type Status: String
+        # @param DataStatus: 数据加载状态
+        # @type DataStatus: String
+        # @param Cpu: cpu核数，单位：核
+        # @type Cpu: Integer
+        # @param Memory: 内存大小，单位: MB
+        # @type Memory: Integer
+        # @param Storage: 磁盘大小，单位：GB
+        # @type Storage: Integer
+        # @param Zone: 节点所在可用区
+        # @type Zone: String
+        # @param Message: 数据同步错误信息
+        # @type Message: String
+
+        attr_accessor :NodeId, :Status, :DataStatus, :Cpu, :Memory, :Storage, :Zone, :Message
+
+        def initialize(nodeid=nil, status=nil, datastatus=nil, cpu=nil, memory=nil, storage=nil, zone=nil, message=nil)
+          @NodeId = nodeid
+          @Status = status
+          @DataStatus = datastatus
+          @Cpu = cpu
+          @Memory = memory
+          @Storage = storage
+          @Zone = zone
+          @Message = message
+        end
+
+        def deserialize(params)
+          @NodeId = params['NodeId']
+          @Status = params['Status']
+          @DataStatus = params['DataStatus']
+          @Cpu = params['Cpu']
+          @Memory = params['Memory']
+          @Storage = params['Storage']
+          @Zone = params['Zone']
+          @Message = params['Message']
         end
       end
 
@@ -5758,6 +5805,77 @@ module TencentCloud
         end
       end
 
+      # DescribeCpuExpandHistory请求参数结构体
+      class DescribeCpuExpandHistoryRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例 ID
+        # @type InstanceId: String
+        # @param ExpandStrategy: 扩容策略，值包括：all，manual，auto
+        # @type ExpandStrategy: String
+        # @param Status: 扩容状态，值包括：all，extend，reduce，extend_failed
+        # @type Status: String
+        # @param StartTime: 查询的开始时间。只能查看30天内的扩容历史
+        # @type StartTime: Integer
+        # @param EndTime: 查询的结束时间。只能查看30天内的扩容历史
+        # @type EndTime: Integer
+        # @param Offset: 分页入参
+        # @type Offset: Integer
+        # @param Limit: 分页入参
+        # @type Limit: Integer
+
+        attr_accessor :InstanceId, :ExpandStrategy, :Status, :StartTime, :EndTime, :Offset, :Limit
+
+        def initialize(instanceid=nil, expandstrategy=nil, status=nil, starttime=nil, endtime=nil, offset=nil, limit=nil)
+          @InstanceId = instanceid
+          @ExpandStrategy = expandstrategy
+          @Status = status
+          @StartTime = starttime
+          @EndTime = endtime
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @ExpandStrategy = params['ExpandStrategy']
+          @Status = params['Status']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeCpuExpandHistory返回参数结构体
+      class DescribeCpuExpandHistoryResponse < TencentCloud::Common::AbstractModel
+        # @param Items: 满足查询要求的扩容历史
+        # @type Items: Array
+        # @param TotalCount: 总数出参
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Items, :TotalCount, :RequestId
+
+        def initialize(items=nil, totalcount=nil, requestid=nil)
+          @Items = items
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              historyjob_tmp = HistoryJob.new
+              historyjob_tmp.deserialize(i)
+              @Items << historyjob_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeDBFeatures请求参数结构体
       class DescribeDBFeaturesRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例 ID，格式如：cdb-c1nl9rpv 或者 cdbro-c1nl9rpv，与云数据库控制台页面中显示的实例 ID 相同。
@@ -8753,6 +8871,50 @@ module TencentCloud
         end
       end
 
+      # 单条扩容历史记录
+      class HistoryJob < TencentCloud::Common::AbstractModel
+        # @param OperationType: 操作类型
+        # @type OperationType: String
+        # @param ExpandType: 扩容类型
+        # @type ExpandType: String
+        # @param StartTime: 扩容开始时间
+        # @type StartTime: Integer
+        # @param EndTime: 扩容结束时间
+        # @type EndTime: Integer
+        # @param OldCpu: 扩容前核数
+        # @type OldCpu: Integer
+        # @param NewCpu: 扩容后核数
+        # @type NewCpu: Integer
+        # @param ExtendCPUNum: 增减的cpu数
+        # @type ExtendCPUNum: Integer
+        # @param Error: extend_failed操作上报
+        # @type Error: String
+
+        attr_accessor :OperationType, :ExpandType, :StartTime, :EndTime, :OldCpu, :NewCpu, :ExtendCPUNum, :Error
+
+        def initialize(operationtype=nil, expandtype=nil, starttime=nil, endtime=nil, oldcpu=nil, newcpu=nil, extendcpunum=nil, error=nil)
+          @OperationType = operationtype
+          @ExpandType = expandtype
+          @StartTime = starttime
+          @EndTime = endtime
+          @OldCpu = oldcpu
+          @NewCpu = newcpu
+          @ExtendCPUNum = extendcpunum
+          @Error = error
+        end
+
+        def deserialize(params)
+          @OperationType = params['OperationType']
+          @ExpandType = params['ExpandType']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @OldCpu = params['OldCpu']
+          @NewCpu = params['NewCpu']
+          @ExtendCPUNum = params['ExtendCPUNum']
+          @Error = params['Error']
+        end
+      end
+
       # 导入任务记录
       class ImportRecord < TencentCloud::Common::AbstractModel
         # @param Status: 状态值
@@ -9184,10 +9346,14 @@ module TencentCloud
         # @type ExpandCpu: Integer
         # @param ClusterInfo: 实例集群版节点信息
         # @type ClusterInfo: Array
+        # @param AnalysisNodeInfos: 分析引擎节点列表
+        # @type AnalysisNodeInfos: Array
+        # @param DeviceBandwidth: 设备带宽，单位G。当DeviceClass不为空时此参数才有效。例：25-表示当前设备带宽为25G；10-表示当前设备带宽为10G。
+        # @type DeviceBandwidth: Integer
 
-        attr_accessor :WanStatus, :Zone, :InitFlag, :RoVipInfo, :Memory, :Status, :VpcId, :SlaveInfo, :InstanceId, :Volume, :AutoRenew, :ProtectMode, :RoGroups, :SubnetId, :InstanceType, :ProjectId, :Region, :DeadlineTime, :DeployMode, :TaskStatus, :MasterInfo, :DeviceType, :EngineVersion, :InstanceName, :DrInfo, :WanDomain, :WanPort, :PayType, :CreateTime, :Vip, :Vport, :CdbError, :UniqVpcId, :UniqSubnetId, :PhysicalId, :Cpu, :Qps, :ZoneName, :DeviceClass, :DeployGroupId, :ZoneId, :InstanceNodes, :TagList, :EngineType, :MaxDelayTime, :DiskType, :ExpandCpu, :ClusterInfo
+        attr_accessor :WanStatus, :Zone, :InitFlag, :RoVipInfo, :Memory, :Status, :VpcId, :SlaveInfo, :InstanceId, :Volume, :AutoRenew, :ProtectMode, :RoGroups, :SubnetId, :InstanceType, :ProjectId, :Region, :DeadlineTime, :DeployMode, :TaskStatus, :MasterInfo, :DeviceType, :EngineVersion, :InstanceName, :DrInfo, :WanDomain, :WanPort, :PayType, :CreateTime, :Vip, :Vport, :CdbError, :UniqVpcId, :UniqSubnetId, :PhysicalId, :Cpu, :Qps, :ZoneName, :DeviceClass, :DeployGroupId, :ZoneId, :InstanceNodes, :TagList, :EngineType, :MaxDelayTime, :DiskType, :ExpandCpu, :ClusterInfo, :AnalysisNodeInfos, :DeviceBandwidth
 
-        def initialize(wanstatus=nil, zone=nil, initflag=nil, rovipinfo=nil, memory=nil, status=nil, vpcid=nil, slaveinfo=nil, instanceid=nil, volume=nil, autorenew=nil, protectmode=nil, rogroups=nil, subnetid=nil, instancetype=nil, projectid=nil, region=nil, deadlinetime=nil, deploymode=nil, taskstatus=nil, masterinfo=nil, devicetype=nil, engineversion=nil, instancename=nil, drinfo=nil, wandomain=nil, wanport=nil, paytype=nil, createtime=nil, vip=nil, vport=nil, cdberror=nil, uniqvpcid=nil, uniqsubnetid=nil, physicalid=nil, cpu=nil, qps=nil, zonename=nil, deviceclass=nil, deploygroupid=nil, zoneid=nil, instancenodes=nil, taglist=nil, enginetype=nil, maxdelaytime=nil, disktype=nil, expandcpu=nil, clusterinfo=nil)
+        def initialize(wanstatus=nil, zone=nil, initflag=nil, rovipinfo=nil, memory=nil, status=nil, vpcid=nil, slaveinfo=nil, instanceid=nil, volume=nil, autorenew=nil, protectmode=nil, rogroups=nil, subnetid=nil, instancetype=nil, projectid=nil, region=nil, deadlinetime=nil, deploymode=nil, taskstatus=nil, masterinfo=nil, devicetype=nil, engineversion=nil, instancename=nil, drinfo=nil, wandomain=nil, wanport=nil, paytype=nil, createtime=nil, vip=nil, vport=nil, cdberror=nil, uniqvpcid=nil, uniqsubnetid=nil, physicalid=nil, cpu=nil, qps=nil, zonename=nil, deviceclass=nil, deploygroupid=nil, zoneid=nil, instancenodes=nil, taglist=nil, enginetype=nil, maxdelaytime=nil, disktype=nil, expandcpu=nil, clusterinfo=nil, analysisnodeinfos=nil, devicebandwidth=nil)
           @WanStatus = wanstatus
           @Zone = zone
           @InitFlag = initflag
@@ -9236,6 +9402,8 @@ module TencentCloud
           @DiskType = disktype
           @ExpandCpu = expandcpu
           @ClusterInfo = clusterinfo
+          @AnalysisNodeInfos = analysisnodeinfos
+          @DeviceBandwidth = devicebandwidth
         end
 
         def deserialize(params)
@@ -9324,6 +9492,15 @@ module TencentCloud
               @ClusterInfo << clusterinfo_tmp
             end
           end
+          unless params['AnalysisNodeInfos'].nil?
+            @AnalysisNodeInfos = []
+            params['AnalysisNodeInfos'].each do |i|
+              analysisnodeinfo_tmp = AnalysisNodeInfo.new
+              analysisnodeinfo_tmp.deserialize(i)
+              @AnalysisNodeInfos << analysisnodeinfo_tmp
+            end
+          end
+          @DeviceBandwidth = params['DeviceBandwidth']
         end
       end
 
@@ -11858,6 +12035,32 @@ module TencentCloud
         end
       end
 
+      # 按周期扩容策略中的所选择的周期
+      class PeriodStrategy < TencentCloud::Common::AbstractModel
+        # @param TimeCycle: 扩容周期
+        # @type TimeCycle: :class:`Tencentcloud::Cdb.v20170320.models.TImeCycle`
+        # @param TimeInterval: 时间间隔
+        # @type TimeInterval: :class:`Tencentcloud::Cdb.v20170320.models.TimeInterval`
+
+        attr_accessor :TimeCycle, :TimeInterval
+
+        def initialize(timecycle=nil, timeinterval=nil)
+          @TimeCycle = timecycle
+          @TimeInterval = timeinterval
+        end
+
+        def deserialize(params)
+          unless params['TimeCycle'].nil?
+            @TimeCycle = TImeCycle.new
+            @TimeCycle.deserialize(params['TimeCycle'])
+          end
+          unless params['TimeInterval'].nil?
+            @TimeInterval = TimeInterval.new
+            @TimeInterval.deserialize(params['TimeInterval'])
+          end
+        end
+      end
+
       # 数据库代理地址信息
       class ProxyAddress < TencentCloud::Common::AbstractModel
         # @param ProxyAddressId: 代理组地址ID
@@ -13408,14 +13611,20 @@ module TencentCloud
         # @type ExpandCpu: Integer
         # @param AutoStrategy: 自动扩容策略。Type 为 auto 时必传。
         # @type AutoStrategy: :class:`Tencentcloud::Cdb.v20170320.models.AutoStrategy`
+        # @param TimeIntervalStrategy: 按时间段扩容策略
+        # @type TimeIntervalStrategy: :class:`Tencentcloud::Cdb.v20170320.models.TimeIntervalStrategy`
+        # @param PeriodStrategy: 按周期扩容策略
+        # @type PeriodStrategy: :class:`Tencentcloud::Cdb.v20170320.models.PeriodStrategy`
 
-        attr_accessor :InstanceId, :Type, :ExpandCpu, :AutoStrategy
+        attr_accessor :InstanceId, :Type, :ExpandCpu, :AutoStrategy, :TimeIntervalStrategy, :PeriodStrategy
 
-        def initialize(instanceid=nil, type=nil, expandcpu=nil, autostrategy=nil)
+        def initialize(instanceid=nil, type=nil, expandcpu=nil, autostrategy=nil, timeintervalstrategy=nil, periodstrategy=nil)
           @InstanceId = instanceid
           @Type = type
           @ExpandCpu = expandcpu
           @AutoStrategy = autostrategy
+          @TimeIntervalStrategy = timeintervalstrategy
+          @PeriodStrategy = periodstrategy
         end
 
         def deserialize(params)
@@ -13425,6 +13634,14 @@ module TencentCloud
           unless params['AutoStrategy'].nil?
             @AutoStrategy = AutoStrategy.new
             @AutoStrategy.deserialize(params['AutoStrategy'])
+          end
+          unless params['TimeIntervalStrategy'].nil?
+            @TimeIntervalStrategy = TimeIntervalStrategy.new
+            @TimeIntervalStrategy.deserialize(params['TimeIntervalStrategy'])
+          end
+          unless params['PeriodStrategy'].nil?
+            @PeriodStrategy = PeriodStrategy.new
+            @PeriodStrategy.deserialize(params['PeriodStrategy'])
           end
         end
       end
@@ -13821,6 +14038,46 @@ module TencentCloud
         end
       end
 
+      # 扩容的周期
+      class TImeCycle < TencentCloud::Common::AbstractModel
+        # @param Monday: 周一的扩容时间段
+        # @type Monday: Boolean
+        # @param Tuesday: 周二的扩容时间段
+        # @type Tuesday: Boolean
+        # @param Wednesday: 周三的扩容时间段
+        # @type Wednesday: Boolean
+        # @param Thursday: 周四的扩容时间段
+        # @type Thursday: Boolean
+        # @param Friday: 周五的扩容时间段
+        # @type Friday: Boolean
+        # @param Saturday: 周六的扩容时间段
+        # @type Saturday: Boolean
+        # @param Sunday: 周日的扩容时间段
+        # @type Sunday: Boolean
+
+        attr_accessor :Monday, :Tuesday, :Wednesday, :Thursday, :Friday, :Saturday, :Sunday
+
+        def initialize(monday=nil, tuesday=nil, wednesday=nil, thursday=nil, friday=nil, saturday=nil, sunday=nil)
+          @Monday = monday
+          @Tuesday = tuesday
+          @Wednesday = wednesday
+          @Thursday = thursday
+          @Friday = friday
+          @Saturday = saturday
+          @Sunday = sunday
+        end
+
+        def deserialize(params)
+          @Monday = params['Monday']
+          @Tuesday = params['Tuesday']
+          @Wednesday = params['Wednesday']
+          @Thursday = params['Thursday']
+          @Friday = params['Friday']
+          @Saturday = params['Saturday']
+          @Sunday = params['Sunday']
+        end
+      end
+
       # 数据库表权限
       class TablePrivilege < TencentCloud::Common::AbstractModel
         # @param Database: 数据库名
@@ -14055,6 +14312,46 @@ module TencentCloud
               @TaskAttachInfo << taskattachinfo_tmp
             end
           end
+        end
+      end
+
+      # 时间段
+      class TimeInterval < TencentCloud::Common::AbstractModel
+        # @param StartTime: 开始时间
+        # @type StartTime: String
+        # @param EndTime: 结束时间
+        # @type EndTime: String
+
+        attr_accessor :StartTime, :EndTime
+
+        def initialize(starttime=nil, endtime=nil)
+          @StartTime = starttime
+          @EndTime = endtime
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+        end
+      end
+
+      # 按时间段扩容策略
+      class TimeIntervalStrategy < TencentCloud::Common::AbstractModel
+        # @param StartTime: 开始扩容时间
+        # @type StartTime: Integer
+        # @param EndTime: 结束扩容时间
+        # @type EndTime: Integer
+
+        attr_accessor :StartTime, :EndTime
+
+        def initialize(starttime=nil, endtime=nil)
+          @StartTime = starttime
+          @EndTime = endtime
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
         end
       end
 

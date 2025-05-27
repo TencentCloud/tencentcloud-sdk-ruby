@@ -4009,7 +4009,6 @@ module TencentCloud
         # @param Mail: 0: 非邮箱校验 1: 邮箱校验
         # @type Mail: Integer
         # @param U2FToken: 0: 非u2f硬件token 1: u2f硬件token
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type U2FToken: Integer
 
         attr_accessor :Phone, :Token, :Stoken, :Wechat, :Custom, :Mail, :U2FToken
@@ -4050,7 +4049,6 @@ module TencentCloud
         # @param Mail: 邮件
         # @type Mail: Integer
         # @param U2FToken: u2f硬件token
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type U2FToken: Integer
 
         attr_accessor :Phone, :Token, :Stoken, :Wechat, :Custom, :Mail, :U2FToken
@@ -4685,10 +4683,8 @@ module TencentCloud
         # @param Email: 邮箱
         # @type Email: String
         # @param CreateTime: 创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
         # @param NickName: 昵称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NickName: String
 
         attr_accessor :Uin, :Name, :Uid, :Remark, :ConsoleLogin, :PhoneNum, :CountryCode, :Email, :CreateTime, :NickName

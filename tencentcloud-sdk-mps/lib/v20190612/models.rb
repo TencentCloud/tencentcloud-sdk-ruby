@@ -11952,10 +11952,12 @@ module TencentCloud
         # @param EndTime: 统计的结束时间，默认为StartTime后一小时，最多支持查询24小时的数据。
         # UTC时间，如'2020-01-01T12:00:00Z'。
         # @type EndTime: String
+        # @param RemoteIp: 对端客户端或者服务端的IP地址
+        # @type RemoteIp: String
 
-        attr_accessor :FlowId, :Type, :InputOutputId, :Pipeline, :Period, :StartTime, :EndTime
+        attr_accessor :FlowId, :Type, :InputOutputId, :Pipeline, :Period, :StartTime, :EndTime, :RemoteIp
 
-        def initialize(flowid=nil, type=nil, inputoutputid=nil, pipeline=nil, period=nil, starttime=nil, endtime=nil)
+        def initialize(flowid=nil, type=nil, inputoutputid=nil, pipeline=nil, period=nil, starttime=nil, endtime=nil, remoteip=nil)
           @FlowId = flowid
           @Type = type
           @InputOutputId = inputoutputid
@@ -11963,6 +11965,7 @@ module TencentCloud
           @Period = period
           @StartTime = starttime
           @EndTime = endtime
+          @RemoteIp = remoteip
         end
 
         def deserialize(params)
@@ -11973,6 +11976,7 @@ module TencentCloud
           @Period = params['Period']
           @StartTime = params['StartTime']
           @EndTime = params['EndTime']
+          @RemoteIp = params['RemoteIp']
         end
       end
 
@@ -12115,10 +12119,12 @@ module TencentCloud
         # @type EndTime: String
         # @param Period: 查询间隔，可选[5s|1min|5min|15min]。
         # @type Period: String
+        # @param RemoteIp: 对端客户端或者服务端的IP地址
+        # @type RemoteIp: String
 
-        attr_accessor :FlowId, :Type, :InputOutputId, :Pipeline, :StartTime, :EndTime, :Period
+        attr_accessor :FlowId, :Type, :InputOutputId, :Pipeline, :StartTime, :EndTime, :Period, :RemoteIp
 
-        def initialize(flowid=nil, type=nil, inputoutputid=nil, pipeline=nil, starttime=nil, endtime=nil, period=nil)
+        def initialize(flowid=nil, type=nil, inputoutputid=nil, pipeline=nil, starttime=nil, endtime=nil, period=nil, remoteip=nil)
           @FlowId = flowid
           @Type = type
           @InputOutputId = inputoutputid
@@ -12126,6 +12132,7 @@ module TencentCloud
           @StartTime = starttime
           @EndTime = endtime
           @Period = period
+          @RemoteIp = remoteip
         end
 
         def deserialize(params)
@@ -12136,6 +12143,7 @@ module TencentCloud
           @StartTime = params['StartTime']
           @EndTime = params['EndTime']
           @Period = params['Period']
+          @RemoteIp = params['RemoteIp']
         end
       end
 
@@ -12184,10 +12192,12 @@ module TencentCloud
         # @param EndTime: 统计的结束时间，默认为StartTime后一小时，最多支持查询24小时的数据。
         # UTC时间，如'2020-01-01T12:00:00Z'。
         # @type EndTime: String
+        # @param RemoteIp: 对端客户端或者服务端的IP地址
+        # @type RemoteIp: String
 
-        attr_accessor :FlowId, :Type, :InputOutputId, :Pipeline, :Period, :StartTime, :EndTime
+        attr_accessor :FlowId, :Type, :InputOutputId, :Pipeline, :Period, :StartTime, :EndTime, :RemoteIp
 
-        def initialize(flowid=nil, type=nil, inputoutputid=nil, pipeline=nil, period=nil, starttime=nil, endtime=nil)
+        def initialize(flowid=nil, type=nil, inputoutputid=nil, pipeline=nil, period=nil, starttime=nil, endtime=nil, remoteip=nil)
           @FlowId = flowid
           @Type = type
           @InputOutputId = inputoutputid
@@ -12195,6 +12205,7 @@ module TencentCloud
           @Period = period
           @StartTime = starttime
           @EndTime = endtime
+          @RemoteIp = remoteip
         end
 
         def deserialize(params)
@@ -12205,6 +12216,7 @@ module TencentCloud
           @Period = params['Period']
           @StartTime = params['StartTime']
           @EndTime = params['EndTime']
+          @RemoteIp = params['RemoteIp']
         end
       end
 

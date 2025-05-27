@@ -136,7 +136,7 @@ module TencentCloud
         # @type OwnerUin: String
         # @param CreatorUin: 创建者 UIN
         # @type CreatorUin: String
-        # @param Status: 集群状态, 1 未初始化,，3 初始化中，2 运行中
+        # @param Status: 集群状态, 1 未初始化,3 初始化中，2 运行中
         # @type Status: Integer
         # @param Remark: 描述
         # @type Remark: String
@@ -258,10 +258,13 @@ module TencentCloud
         # @type RunningCpu: Float
         # @param RunningMem: 运行的内存
         # @type RunningMem: Float
+        # @param Setats: setats集群
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Setats: :class:`Tencentcloud::Oceanus.v20190422.models.Setats`
 
-        attr_accessor :ClusterId, :Name, :Region, :AppId, :OwnerUin, :CreatorUin, :Status, :Remark, :CreateTime, :UpdateTime, :CuNum, :CuMem, :Zone, :StatusDesc, :CCNs, :NetEnvironmentType, :FreeCuNum, :Tags, :IsolatedTime, :ExpireTime, :SecondsUntilExpiry, :AutoRenewFlag, :DefaultCOSBucket, :CLSLogSet, :CLSTopicId, :CLSLogName, :CLSTopicName, :Version, :FreeCu, :DefaultLogCollectConf, :CustomizedDNSEnabled, :Correlations, :RunningCu, :PayMode, :IsNeedManageNode, :ClusterSessions, :ArchGeneration, :ClusterType, :Orders, :SqlGateways, :WebUIType, :Type, :SubEks, :AgentSerialId, :ResourceType, :BillingResourceMode, :MemRatio, :CrossTenantEniMode, :TotalCpu, :TotalMem, :RunningCpu, :RunningMem
+        attr_accessor :ClusterId, :Name, :Region, :AppId, :OwnerUin, :CreatorUin, :Status, :Remark, :CreateTime, :UpdateTime, :CuNum, :CuMem, :Zone, :StatusDesc, :CCNs, :NetEnvironmentType, :FreeCuNum, :Tags, :IsolatedTime, :ExpireTime, :SecondsUntilExpiry, :AutoRenewFlag, :DefaultCOSBucket, :CLSLogSet, :CLSTopicId, :CLSLogName, :CLSTopicName, :Version, :FreeCu, :DefaultLogCollectConf, :CustomizedDNSEnabled, :Correlations, :RunningCu, :PayMode, :IsNeedManageNode, :ClusterSessions, :ArchGeneration, :ClusterType, :Orders, :SqlGateways, :WebUIType, :Type, :SubEks, :AgentSerialId, :ResourceType, :BillingResourceMode, :MemRatio, :CrossTenantEniMode, :TotalCpu, :TotalMem, :RunningCpu, :RunningMem, :Setats
 
-        def initialize(clusterid=nil, name=nil, region=nil, appid=nil, owneruin=nil, creatoruin=nil, status=nil, remark=nil, createtime=nil, updatetime=nil, cunum=nil, cumem=nil, zone=nil, statusdesc=nil, ccns=nil, netenvironmenttype=nil, freecunum=nil, tags=nil, isolatedtime=nil, expiretime=nil, secondsuntilexpiry=nil, autorenewflag=nil, defaultcosbucket=nil, clslogset=nil, clstopicid=nil, clslogname=nil, clstopicname=nil, version=nil, freecu=nil, defaultlogcollectconf=nil, customizeddnsenabled=nil, correlations=nil, runningcu=nil, paymode=nil, isneedmanagenode=nil, clustersessions=nil, archgeneration=nil, clustertype=nil, orders=nil, sqlgateways=nil, webuitype=nil, type=nil, subeks=nil, agentserialid=nil, resourcetype=nil, billingresourcemode=nil, memratio=nil, crosstenantenimode=nil, totalcpu=nil, totalmem=nil, runningcpu=nil, runningmem=nil)
+        def initialize(clusterid=nil, name=nil, region=nil, appid=nil, owneruin=nil, creatoruin=nil, status=nil, remark=nil, createtime=nil, updatetime=nil, cunum=nil, cumem=nil, zone=nil, statusdesc=nil, ccns=nil, netenvironmenttype=nil, freecunum=nil, tags=nil, isolatedtime=nil, expiretime=nil, secondsuntilexpiry=nil, autorenewflag=nil, defaultcosbucket=nil, clslogset=nil, clstopicid=nil, clslogname=nil, clstopicname=nil, version=nil, freecu=nil, defaultlogcollectconf=nil, customizeddnsenabled=nil, correlations=nil, runningcu=nil, paymode=nil, isneedmanagenode=nil, clustersessions=nil, archgeneration=nil, clustertype=nil, orders=nil, sqlgateways=nil, webuitype=nil, type=nil, subeks=nil, agentserialid=nil, resourcetype=nil, billingresourcemode=nil, memratio=nil, crosstenantenimode=nil, totalcpu=nil, totalmem=nil, runningcpu=nil, runningmem=nil, setats=nil)
           @ClusterId = clusterid
           @Name = name
           @Region = region
@@ -314,6 +317,7 @@ module TencentCloud
           @TotalMem = totalmem
           @RunningCpu = runningcpu
           @RunningMem = runningmem
+          @Setats = setats
         end
 
         def deserialize(params)
@@ -417,6 +421,10 @@ module TencentCloud
           @TotalMem = params['TotalMem']
           @RunningCpu = params['RunningCpu']
           @RunningMem = params['RunningMem']
+          unless params['Setats'].nil?
+            @Setats = Setats.new
+            @Setats.deserialize(params['Setats'])
+          end
         end
       end
 
@@ -2156,16 +2164,19 @@ module TencentCloud
         # @type WorkSpaceId: String
         # @param ExtraResult: 查询额外的作业信息,例如 JobEventInfo
         # @type ExtraResult: Array
+        # @param ConnectorOptions: 查询引用connector
+        # @type ConnectorOptions: String
 
-        attr_accessor :JobIds, :Filters, :Offset, :Limit, :WorkSpaceId, :ExtraResult
+        attr_accessor :JobIds, :Filters, :Offset, :Limit, :WorkSpaceId, :ExtraResult, :ConnectorOptions
 
-        def initialize(jobids=nil, filters=nil, offset=nil, limit=nil, workspaceid=nil, extraresult=nil)
+        def initialize(jobids=nil, filters=nil, offset=nil, limit=nil, workspaceid=nil, extraresult=nil, connectoroptions=nil)
           @JobIds = jobids
           @Filters = filters
           @Offset = offset
           @Limit = limit
           @WorkSpaceId = workspaceid
           @ExtraResult = extraresult
+          @ConnectorOptions = connectoroptions
         end
 
         def deserialize(params)
@@ -2182,6 +2193,7 @@ module TencentCloud
           @Limit = params['Limit']
           @WorkSpaceId = params['WorkSpaceId']
           @ExtraResult = params['ExtraResult']
+          @ConnectorOptions = params['ConnectorOptions']
         end
       end
 
@@ -4412,6 +4424,48 @@ module TencentCloud
         end
       end
 
+      # 资源引用
+      class ResourceRefLatest < TencentCloud::Common::AbstractModel
+        # @param ResourceId: 资源id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceId: String
+        # @param Version: 版本号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Version: Integer
+        # @param Type: 资源类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: Integer
+        # @param Status: 状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Integer
+        # @param WorkspaceId: 空间id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WorkspaceId: String
+        # @param Name: 资源名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+
+        attr_accessor :ResourceId, :Version, :Type, :Status, :WorkspaceId, :Name
+
+        def initialize(resourceid=nil, version=nil, type=nil, status=nil, workspaceid=nil, name=nil)
+          @ResourceId = resourceid
+          @Version = version
+          @Type = type
+          @Status = status
+          @WorkspaceId = workspaceid
+          @Name = name
+        end
+
+        def deserialize(params)
+          @ResourceId = params['ResourceId']
+          @Version = params['Version']
+          @Type = params['Type']
+          @Status = params['Status']
+          @WorkspaceId = params['WorkspaceId']
+          @Name = params['Name']
+        end
+      end
+
       # Sql Gateway返回Column类型
       class ResultColumn < TencentCloud::Common::AbstractModel
         # @param Name: 名称
@@ -4784,6 +4838,162 @@ module TencentCloud
           @ResourceId = params['ResourceId']
           @Version = params['Version']
           @Type = params['Type']
+        end
+      end
+
+      # setats类型
+      class Setats < TencentCloud::Common::AbstractModel
+        # @param SetatsSerialId: setats serialId
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SetatsSerialId: String
+        # @param Status: 1  // 停止
+        # 2  // 运行中
+        # 3  // 初始化中
+        # 4  // 扩容中
+        # 5  // Warehoouse未配置
+        # 6  // Warehoouse配置中
+        # 7  // 重启中
+        # -2 // 已删除(集群被销毁时更新为此状态)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Integer
+        # @param Warehouse: setats warehouse
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Warehouse: :class:`Tencentcloud::Oceanus.v20190422.models.Warehouse`
+        # @param MasterInfo: setats master 机器规格
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MasterInfo: :class:`Tencentcloud::Oceanus.v20190422.models.SetatsCvmInfo`
+        # @param WorkerInfo: setats worker规格
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WorkerInfo: :class:`Tencentcloud::Oceanus.v20190422.models.SetatsCvmInfo`
+        # @param Tags: 标签
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: Array
+        # @param AutoRenewFlag: 自动续费
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AutoRenewFlag: Integer
+        # @param ExpireTime: 过期时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExpireTime: String
+        # @param SecondsUntilExpiry: 过期时间 秒
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SecondsUntilExpiry: String
+        # @param CreateTime: 创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param ManagerUrl: manager url
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ManagerUrl: String
+        # @param IsolatedTime: 隔离时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsolatedTime: String
+
+        attr_accessor :SetatsSerialId, :Status, :Warehouse, :MasterInfo, :WorkerInfo, :Tags, :AutoRenewFlag, :ExpireTime, :SecondsUntilExpiry, :CreateTime, :ManagerUrl, :IsolatedTime
+
+        def initialize(setatsserialid=nil, status=nil, warehouse=nil, masterinfo=nil, workerinfo=nil, tags=nil, autorenewflag=nil, expiretime=nil, secondsuntilexpiry=nil, createtime=nil, managerurl=nil, isolatedtime=nil)
+          @SetatsSerialId = setatsserialid
+          @Status = status
+          @Warehouse = warehouse
+          @MasterInfo = masterinfo
+          @WorkerInfo = workerinfo
+          @Tags = tags
+          @AutoRenewFlag = autorenewflag
+          @ExpireTime = expiretime
+          @SecondsUntilExpiry = secondsuntilexpiry
+          @CreateTime = createtime
+          @ManagerUrl = managerurl
+          @IsolatedTime = isolatedtime
+        end
+
+        def deserialize(params)
+          @SetatsSerialId = params['SetatsSerialId']
+          @Status = params['Status']
+          unless params['Warehouse'].nil?
+            @Warehouse = Warehouse.new
+            @Warehouse.deserialize(params['Warehouse'])
+          end
+          unless params['MasterInfo'].nil?
+            @MasterInfo = SetatsCvmInfo.new
+            @MasterInfo.deserialize(params['MasterInfo'])
+          end
+          unless params['WorkerInfo'].nil?
+            @WorkerInfo = SetatsCvmInfo.new
+            @WorkerInfo.deserialize(params['WorkerInfo'])
+          end
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
+          @AutoRenewFlag = params['AutoRenewFlag']
+          @ExpireTime = params['ExpireTime']
+          @SecondsUntilExpiry = params['SecondsUntilExpiry']
+          @CreateTime = params['CreateTime']
+          @ManagerUrl = params['ManagerUrl']
+          @IsolatedTime = params['IsolatedTime']
+        end
+      end
+
+      # setats 机器规格
+      class SetatsCvmInfo < TencentCloud::Common::AbstractModel
+        # @param Cpu: setats机器cpu
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Cpu: Float
+        # @param Mem: setats机器内存
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Mem: Float
+        # @param DefaultParallelism: setats worker 并行度
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DefaultParallelism: Integer
+        # @param Disk: setats 机器磁盘
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Disk: :class:`Tencentcloud::Oceanus.v20190422.models.SetatsDisk`
+
+        attr_accessor :Cpu, :Mem, :DefaultParallelism, :Disk
+
+        def initialize(cpu=nil, mem=nil, defaultparallelism=nil, disk=nil)
+          @Cpu = cpu
+          @Mem = mem
+          @DefaultParallelism = defaultparallelism
+          @Disk = disk
+        end
+
+        def deserialize(params)
+          @Cpu = params['Cpu']
+          @Mem = params['Mem']
+          @DefaultParallelism = params['DefaultParallelism']
+          unless params['Disk'].nil?
+            @Disk = SetatsDisk.new
+            @Disk.deserialize(params['Disk'])
+          end
+        end
+      end
+
+      # setats disk
+      class SetatsDisk < TencentCloud::Common::AbstractModel
+        # @param DiskType: 磁盘类型
+        # CLOUD_BSSD
+        # CLOUD_SSD
+        # CLOUD_HSSD
+        # CLOUD_PREMIUM
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DiskType: String
+        # @param DiskSize: 磁盘大小
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DiskSize: Integer
+
+        attr_accessor :DiskType, :DiskSize
+
+        def initialize(disktype=nil, disksize=nil)
+          @DiskType = disktype
+          @DiskSize = disksize
+        end
+
+        def deserialize(params)
+          @DiskType = params['DiskType']
+          @DiskSize = params['DiskSize']
         end
       end
 
@@ -5372,6 +5582,77 @@ module TencentCloud
           @FinalSavepointPath = params['FinalSavepointPath']
           @SavepointId = params['SavepointId']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # Setats Warehouse结构
+      class Warehouse < TencentCloud::Common::AbstractModel
+        # @param Status: 状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Integer
+        # @param Location: location
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Location: String
+        # @param CatalogType: catalogtype
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CatalogType: String
+        # @param Uri: uri
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Uri: String
+        # @param WarehouseUrl: warehouse url
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WarehouseUrl: String
+        # @param Authentication: 认证方式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Authentication: String
+        # @param ResourceRefs: 资源
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceRefs: Array
+        # @param HiveUri: hive warehouse uri
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HiveUri: String
+        # @param Properties: 高级参数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Properties: Array
+
+        attr_accessor :Status, :Location, :CatalogType, :Uri, :WarehouseUrl, :Authentication, :ResourceRefs, :HiveUri, :Properties
+
+        def initialize(status=nil, location=nil, catalogtype=nil, uri=nil, warehouseurl=nil, authentication=nil, resourcerefs=nil, hiveuri=nil, properties=nil)
+          @Status = status
+          @Location = location
+          @CatalogType = catalogtype
+          @Uri = uri
+          @WarehouseUrl = warehouseurl
+          @Authentication = authentication
+          @ResourceRefs = resourcerefs
+          @HiveUri = hiveuri
+          @Properties = properties
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @Location = params['Location']
+          @CatalogType = params['CatalogType']
+          @Uri = params['Uri']
+          @WarehouseUrl = params['WarehouseUrl']
+          @Authentication = params['Authentication']
+          unless params['ResourceRefs'].nil?
+            @ResourceRefs = []
+            params['ResourceRefs'].each do |i|
+              resourcereflatest_tmp = ResourceRefLatest.new
+              resourcereflatest_tmp.deserialize(i)
+              @ResourceRefs << resourcereflatest_tmp
+            end
+          end
+          @HiveUri = params['HiveUri']
+          unless params['Properties'].nil?
+            @Properties = []
+            params['Properties'].each do |i|
+              property_tmp = Property.new
+              property_tmp.deserialize(i)
+              @Properties << property_tmp
+            end
+          end
         end
       end
 

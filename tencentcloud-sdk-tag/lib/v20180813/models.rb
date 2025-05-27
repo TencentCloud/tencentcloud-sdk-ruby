@@ -688,7 +688,6 @@ module TencentCloud
         # @param Offset: 数据位移偏量
         # @type Offset: Integer
         # @param Limit: 每页大小
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Limit: Integer
         # @param Rows: 资源标签
         # @type Rows: Array
@@ -779,7 +778,6 @@ module TencentCloud
         # @param Offset: 数据位移偏量
         # @type Offset: Integer
         # @param Limit: 每页大小
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Limit: Integer
         # @param Rows: 资源标签
         # @type Rows: Array
@@ -1726,10 +1724,8 @@ module TencentCloud
       # 资源标签键值
       class ResourceIdTag < TencentCloud::Common::AbstractModel
         # @param ResourceId: 资源唯一标识
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceId: String
         # @param TagKeyValues: 标签键值对
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TagKeyValues: Array
 
         attr_accessor :ResourceId, :TagKeyValues
@@ -1755,19 +1751,14 @@ module TencentCloud
       # 资源标签
       class ResourceTag < TencentCloud::Common::AbstractModel
         # @param ResourceRegion: 资源所在地域
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceRegion: String
         # @param ServiceType: 业务类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ServiceType: String
         # @param ResourcePrefix: 资源前缀
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourcePrefix: String
         # @param ResourceId: 资源唯一标记
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceId: String
         # @param Tags: 资源标签
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
 
         attr_accessor :ResourceRegion, :ServiceType, :ResourcePrefix, :ResourceId, :Tags
@@ -1831,7 +1822,6 @@ module TencentCloud
         # @param TagValue: 标签值
         # @type TagValue: String
         # @param Category: 标签类型。取值： Custom：自定义标签。 System：系统标签。 All：全部标签。 默认值：All。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Category: String
 
         attr_accessor :TagKey, :TagValue, :Category
@@ -1898,10 +1888,8 @@ module TencentCloud
         # @param TagValueMd5: 标签值MD5值
         # @type TagValueMd5: String
         # @param ServiceType: 资源类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ServiceType: String
         # @param Category: 标签类型。取值： Custom：自定义标签。 System：系统标签。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Category: String
 
         attr_accessor :TagKey, :TagValue, :ResourceId, :TagKeyMd5, :TagValueMd5, :ServiceType, :Category
@@ -1997,7 +1985,6 @@ module TencentCloud
         # @param CanDelete: 是否可以删除
         # @type CanDelete: Integer
         # @param Category: 标签类型。取值： Custom：自定义标签。 System：系统标签。 All：全部标签。 默认值：All。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Category: String
 
         attr_accessor :TagKey, :TagValue, :CanDelete, :Category

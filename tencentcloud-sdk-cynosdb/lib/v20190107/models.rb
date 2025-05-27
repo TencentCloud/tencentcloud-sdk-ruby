@@ -1024,15 +1024,17 @@ module TencentCloud
         # @type InstanceCLSDeliveryInfos: Array
         # @param TaskProgressInfo: 任务进度信息
         # @type TaskProgressInfo: :class:`Tencentcloud::Cynosdb.v20190107.models.TaskProgressInfo`
+        # @param GdnTaskInfo: 全球数据库网络任务
+        # @type GdnTaskInfo: :class:`Tencentcloud::Cynosdb.v20190107.models.GdnTaskInfo`
 
-        attr_accessor :ID, :AppId, :ClusterId, :Region, :CreateTime, :DelayTime, :ErrMsg, :FlowId, :Input, :InstanceGrpId, :InstanceGroupId, :InstanceId, :ObjectId, :ObjectType, :Operator, :Output, :Status, :TaskType, :TriggerTaskId, :UpdateTime, :StartTime, :EndTime, :ClusterName, :InstanceName, :Process, :ModifyParamsData, :CreateClustersData, :RollbackData, :ModifyInstanceData, :ManualBackupData, :ModifyDbVersionData, :ClusterSlaveData, :SwitchClusterLogBin, :ModifyInstanceParamsData, :TaskMaintainInfo, :InstanceCLSDeliveryInfos, :TaskProgressInfo
+        attr_accessor :ID, :AppId, :ClusterId, :Region, :CreateTime, :DelayTime, :ErrMsg, :FlowId, :Input, :InstanceGrpId, :InstanceGroupId, :InstanceId, :ObjectId, :ObjectType, :Operator, :Output, :Status, :TaskType, :TriggerTaskId, :UpdateTime, :StartTime, :EndTime, :ClusterName, :InstanceName, :Process, :ModifyParamsData, :CreateClustersData, :RollbackData, :ModifyInstanceData, :ManualBackupData, :ModifyDbVersionData, :ClusterSlaveData, :SwitchClusterLogBin, :ModifyInstanceParamsData, :TaskMaintainInfo, :InstanceCLSDeliveryInfos, :TaskProgressInfo, :GdnTaskInfo
         extend Gem::Deprecate
         deprecate :InstanceGrpId, :none, 2025, 5
         deprecate :InstanceGrpId=, :none, 2025, 5
         deprecate :ModifyParamsData, :none, 2025, 5
         deprecate :ModifyParamsData=, :none, 2025, 5
 
-        def initialize(id=nil, appid=nil, clusterid=nil, region=nil, createtime=nil, delaytime=nil, errmsg=nil, flowid=nil, input=nil, instancegrpid=nil, instancegroupid=nil, instanceid=nil, objectid=nil, objecttype=nil, operator=nil, output=nil, status=nil, tasktype=nil, triggertaskid=nil, updatetime=nil, starttime=nil, endtime=nil, clustername=nil, instancename=nil, process=nil, modifyparamsdata=nil, createclustersdata=nil, rollbackdata=nil, modifyinstancedata=nil, manualbackupdata=nil, modifydbversiondata=nil, clusterslavedata=nil, switchclusterlogbin=nil, modifyinstanceparamsdata=nil, taskmaintaininfo=nil, instanceclsdeliveryinfos=nil, taskprogressinfo=nil)
+        def initialize(id=nil, appid=nil, clusterid=nil, region=nil, createtime=nil, delaytime=nil, errmsg=nil, flowid=nil, input=nil, instancegrpid=nil, instancegroupid=nil, instanceid=nil, objectid=nil, objecttype=nil, operator=nil, output=nil, status=nil, tasktype=nil, triggertaskid=nil, updatetime=nil, starttime=nil, endtime=nil, clustername=nil, instancename=nil, process=nil, modifyparamsdata=nil, createclustersdata=nil, rollbackdata=nil, modifyinstancedata=nil, manualbackupdata=nil, modifydbversiondata=nil, clusterslavedata=nil, switchclusterlogbin=nil, modifyinstanceparamsdata=nil, taskmaintaininfo=nil, instanceclsdeliveryinfos=nil, taskprogressinfo=nil, gdntaskinfo=nil)
           @ID = id
           @AppId = appid
           @ClusterId = clusterid
@@ -1070,6 +1072,7 @@ module TencentCloud
           @TaskMaintainInfo = taskmaintaininfo
           @InstanceCLSDeliveryInfos = instanceclsdeliveryinfos
           @TaskProgressInfo = taskprogressinfo
+          @GdnTaskInfo = gdntaskinfo
         end
 
         def deserialize(params)
@@ -1153,6 +1156,10 @@ module TencentCloud
           unless params['TaskProgressInfo'].nil?
             @TaskProgressInfo = TaskProgressInfo.new
             @TaskProgressInfo.deserialize(params['TaskProgressInfo'])
+          end
+          unless params['GdnTaskInfo'].nil?
+            @GdnTaskInfo = GdnTaskInfo.new
+            @GdnTaskInfo.deserialize(params['GdnTaskInfo'])
           end
         end
       end
@@ -3122,10 +3129,16 @@ module TencentCloud
         # 从集群 - standby
         # 如为空，该字段无效
         # @type GdnRole: String
+        # @param UsedArchiveStorage: 二级存储使用量，单位：G
+        # @type UsedArchiveStorage: Integer
+        # @param ArchiveStatus: 归档状态，枚举值<li>normal:正常</li><li>archiving:归档中</li><li>resuming:恢复中</li><li>archived :已归档</li>
+        # @type ArchiveStatus: String
+        # @param ArchiveProgress: 归档进度，百分比。
+        # @type ArchiveProgress: Integer
 
-        attr_accessor :ClusterId, :ClusterName, :Region, :Zone, :PhysicalZone, :Status, :StatusDesc, :ServerlessStatus, :StorageId, :Storage, :MaxStorageSize, :MinStorageSize, :StoragePayMode, :VpcName, :VpcId, :SubnetName, :SubnetId, :Charset, :CreateTime, :DbType, :DbMode, :DbVersion, :StorageLimit, :UsedStorage, :Vip, :Vport, :RoAddr, :Ability, :CynosVersion, :BusinessType, :HasSlaveZone, :IsFreeze, :Tasks, :MasterZone, :SlaveZones, :InstanceSet, :PayMode, :PeriodEndTime, :ProjectID, :ResourceTags, :ProxyStatus, :LogBin, :IsSkipTrade, :PitrType, :IsOpenPasswordComplexity, :NetworkStatus, :ResourcePackages, :RenewFlag, :NetworkType, :SlaveZoneAttr, :CynosVersionTag, :GdnId, :GdnRole
+        attr_accessor :ClusterId, :ClusterName, :Region, :Zone, :PhysicalZone, :Status, :StatusDesc, :ServerlessStatus, :StorageId, :Storage, :MaxStorageSize, :MinStorageSize, :StoragePayMode, :VpcName, :VpcId, :SubnetName, :SubnetId, :Charset, :CreateTime, :DbType, :DbMode, :DbVersion, :StorageLimit, :UsedStorage, :Vip, :Vport, :RoAddr, :Ability, :CynosVersion, :BusinessType, :HasSlaveZone, :IsFreeze, :Tasks, :MasterZone, :SlaveZones, :InstanceSet, :PayMode, :PeriodEndTime, :ProjectID, :ResourceTags, :ProxyStatus, :LogBin, :IsSkipTrade, :PitrType, :IsOpenPasswordComplexity, :NetworkStatus, :ResourcePackages, :RenewFlag, :NetworkType, :SlaveZoneAttr, :CynosVersionTag, :GdnId, :GdnRole, :UsedArchiveStorage, :ArchiveStatus, :ArchiveProgress
 
-        def initialize(clusterid=nil, clustername=nil, region=nil, zone=nil, physicalzone=nil, status=nil, statusdesc=nil, serverlessstatus=nil, storageid=nil, storage=nil, maxstoragesize=nil, minstoragesize=nil, storagepaymode=nil, vpcname=nil, vpcid=nil, subnetname=nil, subnetid=nil, charset=nil, createtime=nil, dbtype=nil, dbmode=nil, dbversion=nil, storagelimit=nil, usedstorage=nil, vip=nil, vport=nil, roaddr=nil, ability=nil, cynosversion=nil, businesstype=nil, hasslavezone=nil, isfreeze=nil, tasks=nil, masterzone=nil, slavezones=nil, instanceset=nil, paymode=nil, periodendtime=nil, projectid=nil, resourcetags=nil, proxystatus=nil, logbin=nil, isskiptrade=nil, pitrtype=nil, isopenpasswordcomplexity=nil, networkstatus=nil, resourcepackages=nil, renewflag=nil, networktype=nil, slavezoneattr=nil, cynosversiontag=nil, gdnid=nil, gdnrole=nil)
+        def initialize(clusterid=nil, clustername=nil, region=nil, zone=nil, physicalzone=nil, status=nil, statusdesc=nil, serverlessstatus=nil, storageid=nil, storage=nil, maxstoragesize=nil, minstoragesize=nil, storagepaymode=nil, vpcname=nil, vpcid=nil, subnetname=nil, subnetid=nil, charset=nil, createtime=nil, dbtype=nil, dbmode=nil, dbversion=nil, storagelimit=nil, usedstorage=nil, vip=nil, vport=nil, roaddr=nil, ability=nil, cynosversion=nil, businesstype=nil, hasslavezone=nil, isfreeze=nil, tasks=nil, masterzone=nil, slavezones=nil, instanceset=nil, paymode=nil, periodendtime=nil, projectid=nil, resourcetags=nil, proxystatus=nil, logbin=nil, isskiptrade=nil, pitrtype=nil, isopenpasswordcomplexity=nil, networkstatus=nil, resourcepackages=nil, renewflag=nil, networktype=nil, slavezoneattr=nil, cynosversiontag=nil, gdnid=nil, gdnrole=nil, usedarchivestorage=nil, archivestatus=nil, archiveprogress=nil)
           @ClusterId = clusterid
           @ClusterName = clustername
           @Region = region
@@ -3179,6 +3192,9 @@ module TencentCloud
           @CynosVersionTag = cynosversiontag
           @GdnId = gdnid
           @GdnRole = gdnrole
+          @UsedArchiveStorage = usedarchivestorage
+          @ArchiveStatus = archivestatus
+          @ArchiveProgress = archiveprogress
         end
 
         def deserialize(params)
@@ -3280,6 +3296,9 @@ module TencentCloud
           @CynosVersionTag = params['CynosVersionTag']
           @GdnId = params['GdnId']
           @GdnRole = params['GdnRole']
+          @UsedArchiveStorage = params['UsedArchiveStorage']
+          @ArchiveStatus = params['ArchiveStatus']
+          @ArchiveProgress = params['ArchiveProgress']
         end
       end
 
@@ -7594,18 +7613,21 @@ module TencentCloud
         # @type AutoScaleUp: String
         # @param AutoScaleDown: 集群是否允许向下缩容，可选范围<li>yes</li><li>no</li>
         # @type AutoScaleDown: String
+        # @param AutoArchive: 是否开启归档，可选范围<li>yes</li><li>no</li>默认值:yes
+        # @type AutoArchive: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :AutoPauseDelay, :AutoScaleUpDelay, :AutoScaleDownDelay, :AutoPause, :AutoScaleUp, :AutoScaleDown, :RequestId
+        attr_accessor :AutoPauseDelay, :AutoScaleUpDelay, :AutoScaleDownDelay, :AutoPause, :AutoScaleUp, :AutoScaleDown, :AutoArchive, :RequestId
 
-        def initialize(autopausedelay=nil, autoscaleupdelay=nil, autoscaledowndelay=nil, autopause=nil, autoscaleup=nil, autoscaledown=nil, requestid=nil)
+        def initialize(autopausedelay=nil, autoscaleupdelay=nil, autoscaledowndelay=nil, autopause=nil, autoscaleup=nil, autoscaledown=nil, autoarchive=nil, requestid=nil)
           @AutoPauseDelay = autopausedelay
           @AutoScaleUpDelay = autoscaleupdelay
           @AutoScaleDownDelay = autoscaledowndelay
           @AutoPause = autopause
           @AutoScaleUp = autoscaleup
           @AutoScaleDown = autoscaledown
+          @AutoArchive = autoarchive
           @RequestId = requestid
         end
 
@@ -7616,6 +7638,7 @@ module TencentCloud
           @AutoPause = params['AutoPause']
           @AutoScaleUp = params['AutoScaleUp']
           @AutoScaleDown = params['AutoScaleDown']
+          @AutoArchive = params['AutoArchive']
           @RequestId = params['RequestId']
         end
       end
@@ -8174,6 +8197,46 @@ module TencentCloud
         def deserialize(params)
           @FileContent = params['FileContent']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 全球数据库任务信息
+      class GdnTaskInfo < TencentCloud::Common::AbstractModel
+        # @param GdnId: 全球数据库唯一标识
+        # @type GdnId: String
+        # @param GdnName: 全球数据库唯一别名
+        # @type GdnName: String
+        # @param PrimaryClusterId: 主集群ID
+        # @type PrimaryClusterId: String
+        # @param PrimaryClusterRegion: 主集群所在地域
+        # @type PrimaryClusterRegion: String
+        # @param StandbyClusterRegion: 从集群所在地域
+        # @type StandbyClusterRegion: String
+        # @param StandbyClusterId: 从集群ID
+        # @type StandbyClusterId: String
+        # @param StandbyClusterName: 从集群别名
+        # @type StandbyClusterName: String
+
+        attr_accessor :GdnId, :GdnName, :PrimaryClusterId, :PrimaryClusterRegion, :StandbyClusterRegion, :StandbyClusterId, :StandbyClusterName
+
+        def initialize(gdnid=nil, gdnname=nil, primaryclusterid=nil, primaryclusterregion=nil, standbyclusterregion=nil, standbyclusterid=nil, standbyclustername=nil)
+          @GdnId = gdnid
+          @GdnName = gdnname
+          @PrimaryClusterId = primaryclusterid
+          @PrimaryClusterRegion = primaryclusterregion
+          @StandbyClusterRegion = standbyclusterregion
+          @StandbyClusterId = standbyclusterid
+          @StandbyClusterName = standbyclustername
+        end
+
+        def deserialize(params)
+          @GdnId = params['GdnId']
+          @GdnName = params['GdnName']
+          @PrimaryClusterId = params['PrimaryClusterId']
+          @PrimaryClusterRegion = params['PrimaryClusterRegion']
+          @StandbyClusterRegion = params['StandbyClusterRegion']
+          @StandbyClusterId = params['StandbyClusterId']
+          @StandbyClusterName = params['StandbyClusterName']
         end
       end
 
@@ -10647,10 +10710,12 @@ module TencentCloud
         # @type MinRoCount: Integer
         # @param MaxRoCount: 只读节点最大个数
         # @type MaxRoCount: Integer
+        # @param AutoArchive: 是否开启归档，可选范围<li>yes</li><li>no</li>默认值:yes
+        # @type AutoArchive: String
 
-        attr_accessor :ClusterId, :AutoPause, :AutoPauseDelay, :AutoScaleUpDelay, :AutoScaleDownDelay, :MinCpu, :MaxCpu, :MinRoCpu, :MaxRoCpu, :MinRoCount, :MaxRoCount
+        attr_accessor :ClusterId, :AutoPause, :AutoPauseDelay, :AutoScaleUpDelay, :AutoScaleDownDelay, :MinCpu, :MaxCpu, :MinRoCpu, :MaxRoCpu, :MinRoCount, :MaxRoCount, :AutoArchive
 
-        def initialize(clusterid=nil, autopause=nil, autopausedelay=nil, autoscaleupdelay=nil, autoscaledowndelay=nil, mincpu=nil, maxcpu=nil, minrocpu=nil, maxrocpu=nil, minrocount=nil, maxrocount=nil)
+        def initialize(clusterid=nil, autopause=nil, autopausedelay=nil, autoscaleupdelay=nil, autoscaledowndelay=nil, mincpu=nil, maxcpu=nil, minrocpu=nil, maxrocpu=nil, minrocount=nil, maxrocount=nil, autoarchive=nil)
           @ClusterId = clusterid
           @AutoPause = autopause
           @AutoPauseDelay = autopausedelay
@@ -10662,6 +10727,7 @@ module TencentCloud
           @MaxRoCpu = maxrocpu
           @MinRoCount = minrocount
           @MaxRoCount = maxrocount
+          @AutoArchive = autoarchive
         end
 
         def deserialize(params)
@@ -10676,6 +10742,7 @@ module TencentCloud
           @MaxRoCpu = params['MaxRoCpu']
           @MinRoCount = params['MinRoCount']
           @MaxRoCount = params['MaxRoCount']
+          @AutoArchive = params['AutoArchive']
         end
       end
 
@@ -11922,17 +11989,17 @@ module TencentCloud
 
       # 访问代理配置
       class ProxyConfig < TencentCloud::Common::AbstractModel
-        # @param ProxyCount: 数据库代理组节点个数（该参数不再建议使用，建议使用ProxyZones)
+        # @param ProxyCount: 数据库代理组节点个数。该参数不再建议使用,建议使用ProxyZones
         # @type ProxyCount: Integer
         # @param Cpu: cpu核数
         # @type Cpu: Integer
         # @param Mem: 内存
         # @type Mem: Integer
-        # @param ConnectionPoolType: 连接池类型：SessionConnectionPool(会话级别连接池 )
+        # @param ConnectionPoolType: 连接池类型:SessionConnectionPool(会话级别连接池 )
         # @type ConnectionPoolType: String
         # @param OpenConnectionPool: 是否开启连接池,yes-开启，no-不开启
         # @type OpenConnectionPool: String
-        # @param ConnectionPoolTimeOut: 连接池阈值：单位（秒）
+        # @param ConnectionPoolTimeOut: 连接池阈值:单位（秒）
         # @type ConnectionPoolTimeOut: Integer
         # @param Description: 描述说明
         # @type Description: String
@@ -13208,10 +13275,12 @@ module TencentCloud
         # @type OriginalROInstanceList: Array
         # @param ProjectId: 项目id
         # @type ProjectId: Integer
+        # @param AutoArchive: 是否开启归档，可选范围<li>yes</li><li>no</li>默认值:yes
+        # @type AutoArchive: String
 
-        attr_accessor :Zone, :OriginalClusterId, :UniqVpcId, :UniqSubnetId, :ClusterName, :RollbackId, :ExpectTime, :AutoVoucher, :ResourceTags, :DbMode, :MinCpu, :MaxCpu, :AutoPause, :AutoPauseDelay, :SecurityGroupIds, :AlarmPolicyIds, :ClusterParams, :ParamTemplateId, :InstanceInitInfos, :DealMode, :PayMode, :TimeSpan, :TimeUnit, :RollbackDatabases, :RollbackTables, :OriginalROInstanceList, :ProjectId
+        attr_accessor :Zone, :OriginalClusterId, :UniqVpcId, :UniqSubnetId, :ClusterName, :RollbackId, :ExpectTime, :AutoVoucher, :ResourceTags, :DbMode, :MinCpu, :MaxCpu, :AutoPause, :AutoPauseDelay, :SecurityGroupIds, :AlarmPolicyIds, :ClusterParams, :ParamTemplateId, :InstanceInitInfos, :DealMode, :PayMode, :TimeSpan, :TimeUnit, :RollbackDatabases, :RollbackTables, :OriginalROInstanceList, :ProjectId, :AutoArchive
 
-        def initialize(zone=nil, originalclusterid=nil, uniqvpcid=nil, uniqsubnetid=nil, clustername=nil, rollbackid=nil, expecttime=nil, autovoucher=nil, resourcetags=nil, dbmode=nil, mincpu=nil, maxcpu=nil, autopause=nil, autopausedelay=nil, securitygroupids=nil, alarmpolicyids=nil, clusterparams=nil, paramtemplateid=nil, instanceinitinfos=nil, dealmode=nil, paymode=nil, timespan=nil, timeunit=nil, rollbackdatabases=nil, rollbacktables=nil, originalroinstancelist=nil, projectid=nil)
+        def initialize(zone=nil, originalclusterid=nil, uniqvpcid=nil, uniqsubnetid=nil, clustername=nil, rollbackid=nil, expecttime=nil, autovoucher=nil, resourcetags=nil, dbmode=nil, mincpu=nil, maxcpu=nil, autopause=nil, autopausedelay=nil, securitygroupids=nil, alarmpolicyids=nil, clusterparams=nil, paramtemplateid=nil, instanceinitinfos=nil, dealmode=nil, paymode=nil, timespan=nil, timeunit=nil, rollbackdatabases=nil, rollbacktables=nil, originalroinstancelist=nil, projectid=nil, autoarchive=nil)
           @Zone = zone
           @OriginalClusterId = originalclusterid
           @UniqVpcId = uniqvpcid
@@ -13239,6 +13308,7 @@ module TencentCloud
           @RollbackTables = rollbacktables
           @OriginalROInstanceList = originalroinstancelist
           @ProjectId = projectid
+          @AutoArchive = autoarchive
         end
 
         def deserialize(params)
@@ -13304,6 +13374,7 @@ module TencentCloud
           end
           @OriginalROInstanceList = params['OriginalROInstanceList']
           @ProjectId = params['ProjectId']
+          @AutoArchive = params['AutoArchive']
         end
       end
 

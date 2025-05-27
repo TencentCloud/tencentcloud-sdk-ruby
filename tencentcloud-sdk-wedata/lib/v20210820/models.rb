@@ -3653,7 +3653,7 @@ module TencentCloud
 
       # 返回命令id
       class CommonIdOpsDto < TencentCloud::Common::AbstractModel
-        # @param Id: 返回补录计划id
+        # @param Id: 返回补录计划名称_ok
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Id: String
 
@@ -4847,10 +4847,16 @@ module TencentCloud
         # @type SameSelfWorkflowDependType: Boolean
         # @param SelfWorkflowDependency: 补录扩展属性
         # @type SelfWorkflowDependency: String
+        # @param MakeType: 任务 TASK； 项目： PROJECT
+        # @type MakeType: String
+        # @param StatusList: 任务状态
+        # @type StatusList: String
+        # @param MakeCheckEventType: 补录是否跳过事件检查
+        # @type MakeCheckEventType: String
 
-        attr_accessor :ProjectId, :MakeName, :TaskIdList, :MakeDatetimeList, :ProjectIdent, :CheckParent, :CheckParentType, :ProjectName, :SelfDependence, :ParallelNum, :SameCycle, :TargetTaskCycle, :TargetTaskAction, :MapParamList, :CreatorId, :Creator, :Remark, :SameSelfDependType, :SourceTaskCycle, :SchedulerResourceGroup, :IntegrationResourceGroup, :SchedulerResourceGroupName, :IntegrationResourceGroupName, :MakeExtList, :SameSelfWorkflowDependType, :SelfWorkflowDependency
+        attr_accessor :ProjectId, :MakeName, :TaskIdList, :MakeDatetimeList, :ProjectIdent, :CheckParent, :CheckParentType, :ProjectName, :SelfDependence, :ParallelNum, :SameCycle, :TargetTaskCycle, :TargetTaskAction, :MapParamList, :CreatorId, :Creator, :Remark, :SameSelfDependType, :SourceTaskCycle, :SchedulerResourceGroup, :IntegrationResourceGroup, :SchedulerResourceGroupName, :IntegrationResourceGroupName, :MakeExtList, :SameSelfWorkflowDependType, :SelfWorkflowDependency, :MakeType, :StatusList, :MakeCheckEventType
 
-        def initialize(projectid=nil, makename=nil, taskidlist=nil, makedatetimelist=nil, projectident=nil, checkparent=nil, checkparenttype=nil, projectname=nil, selfdependence=nil, parallelnum=nil, samecycle=nil, targettaskcycle=nil, targettaskaction=nil, mapparamlist=nil, creatorid=nil, creator=nil, remark=nil, sameselfdependtype=nil, sourcetaskcycle=nil, schedulerresourcegroup=nil, integrationresourcegroup=nil, schedulerresourcegroupname=nil, integrationresourcegroupname=nil, makeextlist=nil, sameselfworkflowdependtype=nil, selfworkflowdependency=nil)
+        def initialize(projectid=nil, makename=nil, taskidlist=nil, makedatetimelist=nil, projectident=nil, checkparent=nil, checkparenttype=nil, projectname=nil, selfdependence=nil, parallelnum=nil, samecycle=nil, targettaskcycle=nil, targettaskaction=nil, mapparamlist=nil, creatorid=nil, creator=nil, remark=nil, sameselfdependtype=nil, sourcetaskcycle=nil, schedulerresourcegroup=nil, integrationresourcegroup=nil, schedulerresourcegroupname=nil, integrationresourcegroupname=nil, makeextlist=nil, sameselfworkflowdependtype=nil, selfworkflowdependency=nil, maketype=nil, statuslist=nil, makecheckeventtype=nil)
           @ProjectId = projectid
           @MakeName = makename
           @TaskIdList = taskidlist
@@ -4877,6 +4883,9 @@ module TencentCloud
           @MakeExtList = makeextlist
           @SameSelfWorkflowDependType = sameselfworkflowdependtype
           @SelfWorkflowDependency = selfworkflowdependency
+          @MakeType = maketype
+          @StatusList = statuslist
+          @MakeCheckEventType = makecheckeventtype
         end
 
         def deserialize(params)
@@ -4927,6 +4936,9 @@ module TencentCloud
           end
           @SameSelfWorkflowDependType = params['SameSelfWorkflowDependType']
           @SelfWorkflowDependency = params['SelfWorkflowDependency']
+          @MakeType = params['MakeType']
+          @StatusList = params['StatusList']
+          @MakeCheckEventType = params['MakeCheckEventType']
         end
       end
 
@@ -17021,10 +17033,14 @@ module TencentCloud
         # @type ParseErrorTip: Boolean
         # @param FileType: log 0 code 1 result 2 custo 3
         # @type FileType: Integer
+        # @param QueryFileFlag: 查询文件标志：0: 从执行机获取，1: 从cos获取，获取不到会再从执行机获取
+        # @type QueryFileFlag: Integer
+        # @param ExtInfo: 透传字段，如果queryFileFlag为1，则ext回作为上一页的分页标识offset
+        # @type ExtInfo: String
 
-        attr_accessor :StartLine, :LineCount, :ProjectId, :TaskId, :CurRunDate, :DetailId, :FilePath, :RecordId, :SubJobId, :JobType, :ParseErrorTip, :FileType
+        attr_accessor :StartLine, :LineCount, :ProjectId, :TaskId, :CurRunDate, :DetailId, :FilePath, :RecordId, :SubJobId, :JobType, :ParseErrorTip, :FileType, :QueryFileFlag, :ExtInfo
 
-        def initialize(startline=nil, linecount=nil, projectid=nil, taskid=nil, currundate=nil, detailid=nil, filepath=nil, recordid=nil, subjobid=nil, jobtype=nil, parseerrortip=nil, filetype=nil)
+        def initialize(startline=nil, linecount=nil, projectid=nil, taskid=nil, currundate=nil, detailid=nil, filepath=nil, recordid=nil, subjobid=nil, jobtype=nil, parseerrortip=nil, filetype=nil, queryfileflag=nil, extinfo=nil)
           @StartLine = startline
           @LineCount = linecount
           @ProjectId = projectid
@@ -17037,6 +17053,8 @@ module TencentCloud
           @JobType = jobtype
           @ParseErrorTip = parseerrortip
           @FileType = filetype
+          @QueryFileFlag = queryfileflag
+          @ExtInfo = extinfo
         end
 
         def deserialize(params)
@@ -17052,6 +17070,8 @@ module TencentCloud
           @JobType = params['JobType']
           @ParseErrorTip = params['ParseErrorTip']
           @FileType = params['FileType']
+          @QueryFileFlag = params['QueryFileFlag']
+          @ExtInfo = params['ExtInfo']
         end
       end
 
@@ -18271,6 +18291,33 @@ module TencentCloud
           @DlcResourceConfig = params['DlcResourceConfig']
           @Script = params['Script']
           @OfflineSyncTask = params['OfflineSyncTask']
+        end
+      end
+
+      # key-value 键值对
+      class ExtensionInfoVO < TencentCloud::Common::AbstractModel
+        # @param Key: key
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Key: String
+        # @param Value: value
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Value: String
+        # @param Description: 描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+
+        attr_accessor :Key, :Value, :Description
+
+        def initialize(key=nil, value=nil, description=nil)
+          @Key = key
+          @Value = value
+          @Description = description
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Value = params['Value']
+          @Description = params['Description']
         end
       end
 
@@ -20255,10 +20302,16 @@ module TencentCloud
         # @param JobLogErrorTip: 日志sql错误信息，包含行列信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type JobLogErrorTip: :class:`Tencentcloud::Wedata.v20210820.models.JobLogErrorTip`
+        # @param ExecutionExtendedProps: 执行实例的扩展属性
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExecutionExtendedProps: Array
+        # @param ExtInfo: 如果queryFileFlag为1，则ext返回当前页数据的结束行信息，下一页把这个extInfo透传过来
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExtInfo: String
 
-        attr_accessor :Count, :Content, :Over, :InstanceState, :InstanceId, :TaskId, :WorkerType, :JobLogErrorTip
+        attr_accessor :Count, :Content, :Over, :InstanceState, :InstanceId, :TaskId, :WorkerType, :JobLogErrorTip, :ExecutionExtendedProps, :ExtInfo
 
-        def initialize(count=nil, content=nil, over=nil, instancestate=nil, instanceid=nil, taskid=nil, workertype=nil, joblogerrortip=nil)
+        def initialize(count=nil, content=nil, over=nil, instancestate=nil, instanceid=nil, taskid=nil, workertype=nil, joblogerrortip=nil, executionextendedprops=nil, extinfo=nil)
           @Count = count
           @Content = content
           @Over = over
@@ -20267,6 +20320,8 @@ module TencentCloud
           @TaskId = taskid
           @WorkerType = workertype
           @JobLogErrorTip = joblogerrortip
+          @ExecutionExtendedProps = executionextendedprops
+          @ExtInfo = extinfo
         end
 
         def deserialize(params)
@@ -20281,6 +20336,15 @@ module TencentCloud
             @JobLogErrorTip = JobLogErrorTip.new
             @JobLogErrorTip.deserialize(params['JobLogErrorTip'])
           end
+          unless params['ExecutionExtendedProps'].nil?
+            @ExecutionExtendedProps = []
+            params['ExecutionExtendedProps'].each do |i|
+              extensioninfovo_tmp = ExtensionInfoVO.new
+              extensioninfovo_tmp.deserialize(i)
+              @ExecutionExtendedProps << extensioninfovo_tmp
+            end
+          end
+          @ExtInfo = params['ExtInfo']
         end
       end
 

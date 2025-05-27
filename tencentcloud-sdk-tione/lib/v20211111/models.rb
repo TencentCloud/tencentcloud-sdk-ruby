@@ -6089,13 +6089,17 @@ module TencentCloud
         # @type CrossTenantENIInfo: :class:`Tencentcloud::Tione.v20211111.models.CrossTenantENIInfo`
         # @param Status: 实例的状态信息
         # @type Status: String
+        # @param StartScheduleTime: 实例的开始调度时间
+        # @type StartScheduleTime: String
+        # @param Message: 实例状态的补充信息
+        # @type Message: String
 
-        attr_accessor :Name, :Uid, :ChargeType, :Phase, :IP, :CreateTime, :Containers, :ContainerInfos, :CrossTenantENIInfo, :Status
+        attr_accessor :Name, :Uid, :ChargeType, :Phase, :IP, :CreateTime, :Containers, :ContainerInfos, :CrossTenantENIInfo, :Status, :StartScheduleTime, :Message
         extend Gem::Deprecate
         deprecate :Containers, :none, 2025, 5
         deprecate :Containers=, :none, 2025, 5
 
-        def initialize(name=nil, uid=nil, chargetype=nil, phase=nil, ip=nil, createtime=nil, containers=nil, containerinfos=nil, crosstenanteniinfo=nil, status=nil)
+        def initialize(name=nil, uid=nil, chargetype=nil, phase=nil, ip=nil, createtime=nil, containers=nil, containerinfos=nil, crosstenanteniinfo=nil, status=nil, startscheduletime=nil, message=nil)
           @Name = name
           @Uid = uid
           @ChargeType = chargetype
@@ -6106,6 +6110,8 @@ module TencentCloud
           @ContainerInfos = containerinfos
           @CrossTenantENIInfo = crosstenanteniinfo
           @Status = status
+          @StartScheduleTime = startscheduletime
+          @Message = message
         end
 
         def deserialize(params)
@@ -6132,6 +6138,8 @@ module TencentCloud
             @CrossTenantENIInfo.deserialize(params['CrossTenantENIInfo'])
           end
           @Status = params['Status']
+          @StartScheduleTime = params['StartScheduleTime']
+          @Message = params['Message']
         end
       end
 
@@ -6860,15 +6868,18 @@ module TencentCloud
         # @param InstancePerReplicas: 单副本下的实例数，仅在部署类型为DIST时生效，默认1
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstancePerReplicas: String
+        # @param MonitorSource: 用于监控查询的Source
+        # 枚举值，部分情况下与CreateSource不同，通过该字段兼容
+        # @type MonitorSource: String
 
-        attr_accessor :ServiceGroupId, :ServiceId, :ServiceGroupName, :ServiceDescription, :ServiceInfo, :ClusterId, :Region, :Namespace, :ChargeType, :ResourceGroupId, :ResourceGroupName, :Tags, :IngressName, :CreatedBy, :CreateTime, :UpdateTime, :Uin, :SubUin, :AppId, :BusinessStatus, :ServiceLimit, :ScheduledAction, :CreateFailedReason, :Status, :BillingInfo, :Weight, :CreateSource, :Version, :LatestVersion, :ResourceGroupSWType, :ArchiveStatus, :DeployType, :InstancePerReplicas
+        attr_accessor :ServiceGroupId, :ServiceId, :ServiceGroupName, :ServiceDescription, :ServiceInfo, :ClusterId, :Region, :Namespace, :ChargeType, :ResourceGroupId, :ResourceGroupName, :Tags, :IngressName, :CreatedBy, :CreateTime, :UpdateTime, :Uin, :SubUin, :AppId, :BusinessStatus, :ServiceLimit, :ScheduledAction, :CreateFailedReason, :Status, :BillingInfo, :Weight, :CreateSource, :Version, :LatestVersion, :ResourceGroupSWType, :ArchiveStatus, :DeployType, :InstancePerReplicas, :MonitorSource
         extend Gem::Deprecate
         deprecate :ServiceLimit, :none, 2025, 5
         deprecate :ServiceLimit=, :none, 2025, 5
         deprecate :ScheduledAction, :none, 2025, 5
         deprecate :ScheduledAction=, :none, 2025, 5
 
-        def initialize(servicegroupid=nil, serviceid=nil, servicegroupname=nil, servicedescription=nil, serviceinfo=nil, clusterid=nil, region=nil, namespace=nil, chargetype=nil, resourcegroupid=nil, resourcegroupname=nil, tags=nil, ingressname=nil, createdby=nil, createtime=nil, updatetime=nil, uin=nil, subuin=nil, appid=nil, businessstatus=nil, servicelimit=nil, scheduledaction=nil, createfailedreason=nil, status=nil, billinginfo=nil, weight=nil, createsource=nil, version=nil, latestversion=nil, resourcegroupswtype=nil, archivestatus=nil, deploytype=nil, instanceperreplicas=nil)
+        def initialize(servicegroupid=nil, serviceid=nil, servicegroupname=nil, servicedescription=nil, serviceinfo=nil, clusterid=nil, region=nil, namespace=nil, chargetype=nil, resourcegroupid=nil, resourcegroupname=nil, tags=nil, ingressname=nil, createdby=nil, createtime=nil, updatetime=nil, uin=nil, subuin=nil, appid=nil, businessstatus=nil, servicelimit=nil, scheduledaction=nil, createfailedreason=nil, status=nil, billinginfo=nil, weight=nil, createsource=nil, version=nil, latestversion=nil, resourcegroupswtype=nil, archivestatus=nil, deploytype=nil, instanceperreplicas=nil, monitorsource=nil)
           @ServiceGroupId = servicegroupid
           @ServiceId = serviceid
           @ServiceGroupName = servicegroupname
@@ -6902,6 +6913,7 @@ module TencentCloud
           @ArchiveStatus = archivestatus
           @DeployType = deploytype
           @InstancePerReplicas = instanceperreplicas
+          @MonitorSource = monitorsource
         end
 
         def deserialize(params)
@@ -6954,6 +6966,7 @@ module TencentCloud
           @ArchiveStatus = params['ArchiveStatus']
           @DeployType = params['DeployType']
           @InstancePerReplicas = params['InstancePerReplicas']
+          @MonitorSource = params['MonitorSource']
         end
       end
 
@@ -7191,10 +7204,12 @@ module TencentCloud
         # @type AuthTokens: Array
         # @param MonitorSource: 用于监控的创建来源字段
         # @type MonitorSource: String
+        # @param SubUinName: 子用户的 nickname
+        # @type SubUinName: String
 
-        attr_accessor :ServiceGroupId, :ServiceGroupName, :CreatedBy, :CreateTime, :UpdateTime, :Uin, :ServiceCount, :RunningServiceCount, :Services, :Status, :Tags, :LatestVersion, :BusinessStatus, :BillingInfo, :CreateSource, :WeightUpdateStatus, :ReplicasCount, :AvailableReplicasCount, :SubUin, :AppId, :AuthorizationEnable, :AuthTokens, :MonitorSource
+        attr_accessor :ServiceGroupId, :ServiceGroupName, :CreatedBy, :CreateTime, :UpdateTime, :Uin, :ServiceCount, :RunningServiceCount, :Services, :Status, :Tags, :LatestVersion, :BusinessStatus, :BillingInfo, :CreateSource, :WeightUpdateStatus, :ReplicasCount, :AvailableReplicasCount, :SubUin, :AppId, :AuthorizationEnable, :AuthTokens, :MonitorSource, :SubUinName
 
-        def initialize(servicegroupid=nil, servicegroupname=nil, createdby=nil, createtime=nil, updatetime=nil, uin=nil, servicecount=nil, runningservicecount=nil, services=nil, status=nil, tags=nil, latestversion=nil, businessstatus=nil, billinginfo=nil, createsource=nil, weightupdatestatus=nil, replicascount=nil, availablereplicascount=nil, subuin=nil, appid=nil, authorizationenable=nil, authtokens=nil, monitorsource=nil)
+        def initialize(servicegroupid=nil, servicegroupname=nil, createdby=nil, createtime=nil, updatetime=nil, uin=nil, servicecount=nil, runningservicecount=nil, services=nil, status=nil, tags=nil, latestversion=nil, businessstatus=nil, billinginfo=nil, createsource=nil, weightupdatestatus=nil, replicascount=nil, availablereplicascount=nil, subuin=nil, appid=nil, authorizationenable=nil, authtokens=nil, monitorsource=nil, subuinname=nil)
           @ServiceGroupId = servicegroupid
           @ServiceGroupName = servicegroupname
           @CreatedBy = createdby
@@ -7218,6 +7233,7 @@ module TencentCloud
           @AuthorizationEnable = authorizationenable
           @AuthTokens = authtokens
           @MonitorSource = monitorsource
+          @SubUinName = subuinname
         end
 
         def deserialize(params)
@@ -7265,6 +7281,7 @@ module TencentCloud
             end
           end
           @MonitorSource = params['MonitorSource']
+          @SubUinName = params['SubUinName']
         end
       end
 

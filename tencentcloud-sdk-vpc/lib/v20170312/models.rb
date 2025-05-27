@@ -761,7 +761,7 @@ module TencentCloud
         # <li>AntiDDoSEIP：高防 IP。仅部分地域支持高防IP，详情可见弹性公网IP[产品概述](https://cloud.tencent.com/document/product/1199/41646)。</li>
         # @type AddressType: String
         # @param AnycastZone: Anycast发布域。
-        # <ul style="margin:0"><li>已开通Anycast公网加速白名单的用户，可选值：<ul><li>ANYCAST_ZONE_GLOBAL：全球发布域（需要额外开通Anycast全球加速白名单）</li><li>ANYCAST_ZONE_OVERSEAS：境外发布域</li><li><b>[已废弃]</b> ANYCAST_ZONE_A：发布域A（已更新为全球发布域）</li><li><b>[已废弃]</b> ANYCAST_ZONE_B：发布域B（已更新为全球发布域）</li></ul>默认值：ANYCAST_ZONE_OVERSEAS。</li></ul>
+        # <ul style="margin:0"><li>已开通Anycast公网加速白名单的用户，可选值：<ul><li>ANYCAST_ZONE_GLOBAL：全球发布域（需要额外开通Anycast全球加速白名单）</li><li>ANYCAST_ZONE_OVERSEAS：境外发布域</li></ul>默认值：ANYCAST_ZONE_OVERSEAS。</li></ul>
         # @type AnycastZone: String
         # @param VipCluster: 指定IP地址申请EIP，每个账户每个月只有三次配额
         # @type VipCluster: Array
@@ -792,6 +792,9 @@ module TencentCloud
         # @type ClientToken: String
 
         attr_accessor :AddressCount, :InternetServiceProvider, :InternetChargeType, :InternetMaxBandwidthOut, :AddressChargePrepaid, :AddressType, :AnycastZone, :VipCluster, :ApplicableForCLB, :Tags, :BandwidthPackageId, :AddressName, :DedicatedClusterId, :IsDedicatedAddressPool, :Egress, :AntiDDoSPackageId, :ClientToken
+        extend Gem::Deprecate
+        deprecate :ApplicableForCLB, :none, 2025, 5
+        deprecate :ApplicableForCLB=, :none, 2025, 5
 
         def initialize(addresscount=nil, internetserviceprovider=nil, internetchargetype=nil, internetmaxbandwidthout=nil, addresschargeprepaid=nil, addresstype=nil, anycastzone=nil, vipcluster=nil, applicableforclb=nil, tags=nil, bandwidthpackageid=nil, addressname=nil, dedicatedclusterid=nil, isdedicatedaddresspool=nil, egress=nil, antiddospackageid=nil, clienttoken=nil)
           @AddressCount = addresscount
@@ -20031,6 +20034,11 @@ module TencentCloud
         # @type EndTime: String
 
         attr_accessor :AddressIds, :InternetMaxBandwidthOut, :StartTime, :EndTime
+        extend Gem::Deprecate
+        deprecate :StartTime, :none, 2025, 5
+        deprecate :StartTime=, :none, 2025, 5
+        deprecate :EndTime, :none, 2025, 5
+        deprecate :EndTime=, :none, 2025, 5
 
         def initialize(addressids=nil, internetmaxbandwidthout=nil, starttime=nil, endtime=nil)
           @AddressIds = addressids

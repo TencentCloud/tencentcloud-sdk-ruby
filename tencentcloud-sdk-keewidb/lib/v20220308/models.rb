@@ -310,9 +310,9 @@ module TencentCloud
         # @param MachineMemory: 实例内存容量，单位：GB。
         # KeeWiDB 内存容量<b>MachineMemory</b>与持久内存容量<b>MemSize</b>为固定搭配，即2GB内存，固定分配8GB的持久内存，不可选择。具体信息，请参见[产品规格](https://cloud.tencent.com/document/product/1520/80808)。
         # @type MachineMemory: Integer
-        # @param ZoneId: 实例所属的可用区ID。<ul><li>具体取值，请参见[地域和可用区](https://cloud.tencent.com/document/product/239/4106)获取。</li><li>参数<b>ZoneId</b>和<b>ZoneName</b>至少配置其中一个。</li></u>
+        # @param ZoneId: 实例所属的可用区ID。<ul><li>具体取值，请参见[地域和可用区](https://cloud.tencent.com/document/product/239/4106)获取。</li><li>参数<b>ZoneId</b>和<b>ZoneName</b>至少配置其中一个。</li></ul>
         # @type ZoneId: Integer
-        # @param ZoneName: 实例所属的可用区名称。<ul><li>具体取值，请参见[地域和可用区](https://cloud.tencent.com/document/product/239/4106)获取。</li><li>参数<b>ZoneId</b>和<b>ZoneName</b>至少配置其中一个。</li></u>
+        # @param ZoneName: 实例所属的可用区名称。<ul><li>具体取值，请参见[地域和可用区](https://cloud.tencent.com/document/product/239/4106)获取。</li><li>参数<b>ZoneId</b>和<b>ZoneName</b>至少配置其中一个。</li></ul>
         # @type ZoneName: String
         # @param InstanceName: 创建实例的名称。
         # 仅支持长度小于60的中文、英文或者数字，短划线"-"、下划线"_"。
@@ -324,7 +324,7 @@ module TencentCloud
         # @type Password: String
         # @param VPort: 自定义端口。默认为6379，范围[1024,65535]。
         # @type VPort: Integer
-        # @param AutoRenew: 包年包月计费的续费模式。<ul><li>0：默认状态，指手动续费。</li><li>1：自动续费。</li><li>2：到期不再续费。</ul>
+        # @param AutoRenew: 包年包月计费的续费模式。<ul><li>0：默认状态，指手动续费。</li><li>1：自动续费。</li><li>2：到期不再续费。</li></ul>
         # @type AutoRenew: Integer
         # @param SecurityGroupIdList: 给实例设置安全组 ID 数组。
         # @type SecurityGroupIdList: Array
@@ -340,7 +340,7 @@ module TencentCloud
         # @type MachineCpu: Integer
         # @param ProjectId: 项目id，取值以用户账户>用户账户相关接口查询>项目列表返回的projectId为准。
         # @type ProjectId: Integer
-        # @param Compression: 数据压缩开关。<ul><li>ON：开启，默认开启压缩。</li><li>OFF：关闭。</li>
+        # @param Compression: 数据压缩开关。<ul><li>ON：开启，默认开启压缩。</li><li>OFF：关闭。</li></ul>
         # @type Compression: String
 
         attr_accessor :TypeId, :UniqVpcId, :UniqSubnetId, :BillingMode, :GoodsNum, :Period, :ShardNum, :ReplicasNum, :MachineMemory, :ZoneId, :ZoneName, :InstanceName, :NoAuth, :Password, :VPort, :AutoRenew, :SecurityGroupIdList, :ResourceTags, :MemSize, :DiskSize, :MachineCpu, :ProjectId, :Compression

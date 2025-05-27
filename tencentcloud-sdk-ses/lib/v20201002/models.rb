@@ -17,6 +17,30 @@
 module TencentCloud
   module Ses
     module V20201002
+      # 地址级退订配置
+      class AddressUnsubscribeConfigData < TencentCloud::Common::AbstractModel
+        # @param Address: 发信地址
+        # @type Address: String
+        # @param UnsubscribeConfig: 退订链接选项 0: 不加入退订链接 1: 简体中文 2: 英文 3: 繁体中文 4: 西班牙语 5: 法语 6: 德语 7: 日语 8: 韩语 9: 阿拉伯语 10: 泰语
+        # @type UnsubscribeConfig: String
+        # @param Status: 0:关闭，1:开启
+        # @type Status: Integer
+
+        attr_accessor :Address, :UnsubscribeConfig, :Status
+
+        def initialize(address=nil, unsubscribeconfig=nil, status=nil)
+          @Address = address
+          @UnsubscribeConfig = unsubscribeconfig
+          @Status = status
+        end
+
+        def deserialize(params)
+          @Address = params['Address']
+          @UnsubscribeConfig = params['UnsubscribeConfig']
+          @Status = params['Status']
+        end
+      end
+
       # 附件结构，包含附件名和base64之后的附件内容。
       class Attachment < TencentCloud::Common::AbstractModel
         # @param FileName: 附件名称，最大支持255个字符长度，不支持部分附件类型，详情请参考[附件类型](https://cloud.tencent.com/document/product/1288/51951)。
@@ -1075,6 +1099,57 @@ module TencentCloud
             @OverallVolume = Volume.new
             @OverallVolume.deserialize(params['OverallVolume'])
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ListAddressUnsubscribeConfig请求参数结构体
+      class ListAddressUnsubscribeConfigRequest < TencentCloud::Common::AbstractModel
+        # @param Offset: 偏移量
+        # @type Offset: Integer
+        # @param Limit: 拉取最大条数，不超过100
+        # @type Limit: String
+
+        attr_accessor :Offset, :Limit
+
+        def initialize(offset=nil, limit=nil)
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # ListAddressUnsubscribeConfig返回参数结构体
+      class ListAddressUnsubscribeConfigResponse < TencentCloud::Common::AbstractModel
+        # @param AddressUnsubscribeConfigList: 地址级退订配置
+        # @type AddressUnsubscribeConfigList: Array
+        # @param Total: 总数
+        # @type Total: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :AddressUnsubscribeConfigList, :Total, :RequestId
+
+        def initialize(addressunsubscribeconfiglist=nil, total=nil, requestid=nil)
+          @AddressUnsubscribeConfigList = addressunsubscribeconfiglist
+          @Total = total
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['AddressUnsubscribeConfigList'].nil?
+            @AddressUnsubscribeConfigList = []
+            params['AddressUnsubscribeConfigList'].each do |i|
+              addressunsubscribeconfigdata_tmp = AddressUnsubscribeConfigData.new
+              addressunsubscribeconfigdata_tmp.deserialize(i)
+              @AddressUnsubscribeConfigList << addressunsubscribeconfigdata_tmp
+            end
+          end
+          @Total = params['Total']
           @RequestId = params['RequestId']
         end
       end

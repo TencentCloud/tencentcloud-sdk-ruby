@@ -1285,13 +1285,16 @@ module TencentCloud
         # @type LoadBalancerName: String
         # @param Listeners: CLB监听器列表
         # @type Listeners: Array
+        # @param Forward: 负载均衡类型，0 传统型负载均衡； 1 应用型负载均衡
+        # @type Forward: Integer
 
-        attr_accessor :LoadBalancerId, :LoadBalancerName, :Listeners
+        attr_accessor :LoadBalancerId, :LoadBalancerName, :Listeners, :Forward
 
-        def initialize(loadbalancerid=nil, loadbalancername=nil, listeners=nil)
+        def initialize(loadbalancerid=nil, loadbalancername=nil, listeners=nil, forward=nil)
           @LoadBalancerId = loadbalancerid
           @LoadBalancerName = loadbalancername
           @Listeners = listeners
+          @Forward = forward
         end
 
         def deserialize(params)
@@ -1305,6 +1308,7 @@ module TencentCloud
               @Listeners << clblistener_tmp
             end
           end
+          @Forward = params['Forward']
         end
       end
 

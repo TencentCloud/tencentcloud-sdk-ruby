@@ -178,7 +178,7 @@ module TencentCloud
 
       # AttachInstances请求参数结构体
       class AttachInstancesRequest < TencentCloud::Common::AbstractModel
-        # @param EnvId: 计算环境ID，环境ID通过调用接口 [DescribeComputeEnv](https://cloud.tencent.com/document/api/599/15892)获取。
+        # @param EnvId: 计算环境ID，环境ID通过调用接口 [DescribeComputeEnvs](https://cloud.tencent.com/document/api/599/15893)获取。
         # @type EnvId: String
         # @param Instances: 加入计算环境实例列表，每次请求的实例的上限为100。
         # @type Instances: Array
@@ -712,7 +712,7 @@ module TencentCloud
 
       # DeleteComputeEnv请求参数结构体
       class DeleteComputeEnvRequest < TencentCloud::Common::AbstractModel
-        # @param EnvId: 计算环境ID，环境ID通过调用接口 [DescribeComputeEnv](https://cloud.tencent.com/document/api/599/15892)获取。
+        # @param EnvId: 计算环境ID，环境ID通过调用接口 [DescribeComputeEnvs](https://cloud.tencent.com/document/api/599/15893)获取，不能对状态处于删除中或者存在计算实例未销毁的环境发起删除动作。
         # @type EnvId: String
 
         attr_accessor :EnvId
@@ -880,14 +880,13 @@ module TencentCloud
 
       # DescribeComputeEnvActivities请求参数结构体
       class DescribeComputeEnvActivitiesRequest < TencentCloud::Common::AbstractModel
-        # @param EnvId: 计算环境ID，环境ID通过调用接口 [DescribeComputeEnv](https://cloud.tencent.com/document/api/599/15892)获取。
+        # @param EnvId: 计算环境ID，环境ID通过调用接口 [DescribeComputeEnvs](https://cloud.tencent.com/document/api/599/15893)获取。
         # @type EnvId: String
         # @param Offset: 偏移量，默认为0.
         # @type Offset: Integer
         # @param Limit: 返回数量，默认值20，最大值100.
         # @type Limit: Integer
-        # @param Filters: 过滤条件
-        # <li> compute-node-id - String - 是否必填：否 -（过滤条件）按照计算节点ID过滤。</li>
+        # @param Filters: 过滤条件<li> compute-node-id - String - 是否必填：否 -（过滤条件）按照计算节点ID过滤，节点ID通过调用接口 [DescribeComputeEnv](https://cloud.tencent.com/document/api/599/15892)获取。</li>
         # @type Filters: :class:`Tencentcloud::Batch.v20170312.models.Filter`
 
         attr_accessor :EnvId, :Offset, :Limit, :Filters
@@ -1058,7 +1057,7 @@ module TencentCloud
 
       # DescribeComputeEnvCreateInfos请求参数结构体
       class DescribeComputeEnvCreateInfosRequest < TencentCloud::Common::AbstractModel
-        # @param EnvIds: 计算环境ID列表，与Filters参数不能同时指定，最大限制100。环境ID通过调用接口 [DescribeComputeEnv](https://cloud.tencent.com/document/api/599/15892)获取。
+        # @param EnvIds: 计算环境ID列表，与Filters参数不能同时指定，最大限制100，环境ID通过调用接口 [DescribeComputeEnvs](https://cloud.tencent.com/document/api/599/15893)获取。
         # @type EnvIds: Array
         # @param Filters: 过滤条件<li> zone - String - 是否必填：否 -（过滤条件）按照可用区过滤，可用区通过调用接口 [DescribeZones](https://cloud.tencent.com/document/api/213/15707)获取。</li><li> env-id - String - 是否必填：否 -（过滤条件）按照计算环境ID过滤。</li><li> env-name - String - 是否必填：否 -（过滤条件）按照计算环境名称过滤。</li>与EnvIds参数不能同时指定。
         # @type Filters: Array
@@ -1124,7 +1123,7 @@ module TencentCloud
 
       # DescribeComputeEnv请求参数结构体
       class DescribeComputeEnvRequest < TencentCloud::Common::AbstractModel
-        # @param EnvId: 计算环境ID
+        # @param EnvId: 计算环境ID，环境ID通过调用接口 [DescribeComputeEnvs](https://cloud.tencent.com/document/api/599/15893)获取。
         # @type EnvId: String
 
         attr_accessor :EnvId
@@ -1225,7 +1224,7 @@ module TencentCloud
 
       # DescribeComputeEnvs请求参数结构体
       class DescribeComputeEnvsRequest < TencentCloud::Common::AbstractModel
-        # @param EnvIds: 计算环境ID列表，与Filters参数不能同时指定。最大数量上限100，环境ID通过调用接口 [DescribeComputeEnv](https://cloud.tencent.com/document/api/599/15892)获取。
+        # @param EnvIds: 计算环境ID列表，与Filters参数不能同时指定。最大数量上限100。
         # @type EnvIds: Array
         # @param Filters: 过滤条件<li> zone - String - 是否必填：否 -（过滤条件）按照可用区过滤，可用区通过调用接口 [DescribeZones](https://cloud.tencent.com/document/api/213/15707)获取。</li><li> env-id - String - 是否必填：否 -（过滤条件）按照计算环境ID过滤。</li><li> env-name - String - 是否必填：否 -（过滤条件）按照计算环境名称过滤。</li><li> resource-type - String - 是否必填：否 -（过滤条件）按照计算资源类型过滤，取值CVM或者CPM(黑石)。</li><li> tag-key - String - 是否必填：否 -（过滤条件）按照标签键进行过滤。</li><li>tag-value - String - 是否必填：否 -（过滤条件）按照标签值进行过滤。</li><li>tag:tag-key - String - 是否必填：否 -（过滤条件）按照标签键值对进行过滤。 tag-key使用具体的标签键进行替换。</li>与EnvIds参数不能同时指定。
         # @type Filters: Array
@@ -1906,7 +1905,7 @@ module TencentCloud
 
       # DetachInstances请求参数结构体
       class DetachInstancesRequest < TencentCloud::Common::AbstractModel
-        # @param EnvId: 计算环境ID，环境ID通过调用接口 [DescribeComputeEnv](https://cloud.tencent.com/document/api/599/15892)获取。
+        # @param EnvId: 计算环境ID，环境ID通过调用接口 [DescribeComputeEnvs](https://cloud.tencent.com/document/api/599/15893)获取。
         # @type EnvId: String
         # @param InstanceIds: 实例ID列表，实例ID通过调用接口 [DescribeInstances](https://cloud.tencent.com/document/api/213/15728)获取。
         # @type InstanceIds: Array
@@ -2275,9 +2274,9 @@ module TencentCloud
 
       # 描述实例的信息
       class Instance < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
+        # @param InstanceId: 实例ID，可通过调用接口[DescribeInstances](https://cloud.tencent.com/document/product/213/15728)获取。
         # @type InstanceId: String
-        # @param ImageId: 镜像ID
+        # @param ImageId: 镜像ID，可通过调用接口[DescribeImages](https://cloud.tencent.com/document/product/213/15715)获取。
         # @type ImageId: String
         # @param LoginSettings: 实例登录设置。
         # @type LoginSettings: :class:`Tencentcloud::Batch.v20170312.models.LoginSettings`
@@ -2853,7 +2852,7 @@ module TencentCloud
 
       # ModifyComputeEnv请求参数结构体
       class ModifyComputeEnvRequest < TencentCloud::Common::AbstractModel
-        # @param EnvId: 计算环境ID，环境ID通过调用接口 [DescribeComputeEnv](https://cloud.tencent.com/document/api/599/15892)获取。
+        # @param EnvId: 计算环境ID，环境ID通过调用接口 [DescribeComputeEnvs](https://cloud.tencent.com/document/api/599/15893)获取。
         # @type EnvId: String
         # @param DesiredComputeNodeCount: 计算节点期望个数，最大上限2000。
         # @type DesiredComputeNodeCount: Integer
@@ -3920,7 +3919,7 @@ module TencentCloud
 
       # TerminateComputeNode请求参数结构体
       class TerminateComputeNodeRequest < TencentCloud::Common::AbstractModel
-        # @param EnvId: 计算环境ID，环境ID通过调用接口 [DescribeComputeEnv](https://cloud.tencent.com/document/api/599/15892)获取。
+        # @param EnvId: 计算环境ID，环境ID通过调用接口 [DescribeComputeEnvs](https://cloud.tencent.com/document/api/599/15893)获取。
         # @type EnvId: String
         # @param ComputeNodeId: 计算节点ID，节点ID通过调用接口 [DescribeComputeEnv](https://cloud.tencent.com/document/api/599/15892)获取。
         # @type ComputeNodeId: String
