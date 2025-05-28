@@ -55,10 +55,12 @@ module TencentCloud
         # @type LifeSpanUnit: String
         # @param LicenseType: 授权的类型：Standard正式版/Development开发版/Trial体验版
         # @type LicenseType: String
+        # @param LicenseLevel: 授权的层级：Master 主授权；Child 子授权/增强型授权
+        # @type LicenseLevel: String
 
-        attr_accessor :LicenseId, :LicenseMode, :LicenseStatus, :ProviderId, :SoftwarePackageId, :SoftwarePackageVersion, :AuthorizedUserUin, :AuthorizedCloudappId, :AuthorizedCloudappRoleId, :AuthorizedSpecification, :BillingMode, :LifeSpan, :IssueDate, :ActivationDate, :ExpirationDate, :LifeSpanUnit, :LicenseType
+        attr_accessor :LicenseId, :LicenseMode, :LicenseStatus, :ProviderId, :SoftwarePackageId, :SoftwarePackageVersion, :AuthorizedUserUin, :AuthorizedCloudappId, :AuthorizedCloudappRoleId, :AuthorizedSpecification, :BillingMode, :LifeSpan, :IssueDate, :ActivationDate, :ExpirationDate, :LifeSpanUnit, :LicenseType, :LicenseLevel
 
-        def initialize(licenseid=nil, licensemode=nil, licensestatus=nil, providerid=nil, softwarepackageid=nil, softwarepackageversion=nil, authorizeduseruin=nil, authorizedcloudappid=nil, authorizedcloudapproleid=nil, authorizedspecification=nil, billingmode=nil, lifespan=nil, issuedate=nil, activationdate=nil, expirationdate=nil, lifespanunit=nil, licensetype=nil)
+        def initialize(licenseid=nil, licensemode=nil, licensestatus=nil, providerid=nil, softwarepackageid=nil, softwarepackageversion=nil, authorizeduseruin=nil, authorizedcloudappid=nil, authorizedcloudapproleid=nil, authorizedspecification=nil, billingmode=nil, lifespan=nil, issuedate=nil, activationdate=nil, expirationdate=nil, lifespanunit=nil, licensetype=nil, licenselevel=nil)
           @LicenseId = licenseid
           @LicenseMode = licensemode
           @LicenseStatus = licensestatus
@@ -76,6 +78,7 @@ module TencentCloud
           @ExpirationDate = expirationdate
           @LifeSpanUnit = lifespanunit
           @LicenseType = licensetype
+          @LicenseLevel = licenselevel
         end
 
         def deserialize(params)
@@ -103,6 +106,7 @@ module TencentCloud
           @ExpirationDate = params['ExpirationDate']
           @LifeSpanUnit = params['LifeSpanUnit']
           @LicenseType = params['LicenseType']
+          @LicenseLevel = params['LicenseLevel']
         end
       end
 

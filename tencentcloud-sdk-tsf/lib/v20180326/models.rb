@@ -1108,19 +1108,30 @@ module TencentCloud
         # @type MaxUnbalanceQuantity: Integer
         # @param IsForceSchedule: -
         # @type IsForceSchedule: Boolean
+        # @param Paths: -
+        # @type Paths: Array
 
-        attr_accessor :ScatterDimension, :MaxUnbalanceQuantity, :IsForceSchedule
+        attr_accessor :ScatterDimension, :MaxUnbalanceQuantity, :IsForceSchedule, :Paths
 
-        def initialize(scatterdimension=nil, maxunbalancequantity=nil, isforceschedule=nil)
+        def initialize(scatterdimension=nil, maxunbalancequantity=nil, isforceschedule=nil, paths=nil)
           @ScatterDimension = scatterdimension
           @MaxUnbalanceQuantity = maxunbalancequantity
           @IsForceSchedule = isforceschedule
+          @Paths = paths
         end
 
         def deserialize(params)
           @ScatterDimension = params['ScatterDimension']
           @MaxUnbalanceQuantity = params['MaxUnbalanceQuantity']
           @IsForceSchedule = params['IsForceSchedule']
+          unless params['Paths'].nil?
+            @Paths = []
+            params['Paths'].each do |i|
+              commonoption_tmp = CommonOption.new
+              commonoption_tmp.deserialize(i)
+              @Paths << commonoption_tmp
+            end
+          end
         end
       end
 

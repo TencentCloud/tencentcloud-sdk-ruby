@@ -9358,9 +9358,9 @@ module TencentCloud
         # @type Size: String
         # @param AttrRange: 标签适用范围，需要传参为1
         # @type AttrRange: Integer
-        # @param Source: 来源(0 源文件导入 1 网页导入)
+        # @param Source: 来源（0 从本地文档导入），默认值为0
         # @type Source: Integer
-        # @param WebUrl: 网页(或自定义链接)地址
+        # @param WebUrl: 自定义链接地址, IsRefer为true的时候，该值才有意义
         # @type WebUrl: String
         # @param AttrLabels: 标签引用
         # @type AttrLabels: Array

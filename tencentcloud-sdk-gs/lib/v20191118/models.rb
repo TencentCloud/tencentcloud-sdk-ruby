@@ -791,15 +791,18 @@ module TencentCloud
         # @type Address: String
         # @param Zone: 连接区域
         # @type Zone: String
+        # @param ConnectUrl: 访问链接，可以直接使用此链接访问 WebShell
+        # @type ConnectUrl: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Key, :Address, :Zone, :RequestId
+        attr_accessor :Key, :Address, :Zone, :ConnectUrl, :RequestId
 
-        def initialize(key=nil, address=nil, zone=nil, requestid=nil)
+        def initialize(key=nil, address=nil, zone=nil, connecturl=nil, requestid=nil)
           @Key = key
           @Address = address
           @Zone = zone
+          @ConnectUrl = connecturl
           @RequestId = requestid
         end
 
@@ -807,6 +810,7 @@ module TencentCloud
           @Key = params['Key']
           @Address = params['Address']
           @Zone = params['Zone']
+          @ConnectUrl = params['ConnectUrl']
           @RequestId = params['RequestId']
         end
       end

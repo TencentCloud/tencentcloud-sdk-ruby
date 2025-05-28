@@ -888,15 +888,20 @@ module TencentCloud
       class Data < TencentCloud::Common::AbstractModel
         # @param Id: 项目Id
         # @type Id: Integer
+        # @param EditUrl: url
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EditUrl: String
 
-        attr_accessor :Id
+        attr_accessor :Id, :EditUrl
 
-        def initialize(id=nil)
+        def initialize(id=nil, editurl=nil)
           @Id = id
+          @EditUrl = editurl
         end
 
         def deserialize(params)
           @Id = params['Id']
+          @EditUrl = params['EditUrl']
         end
       end
 
@@ -1851,16 +1856,22 @@ module TencentCloud
         # @type AllPage: Boolean
         # @param RoleCode: 角色编码
         # @type RoleCode: String
+        # @param UserIdList: 用户id列表
+        # @type UserIdList: Array
+        # @param Keyword: 搜索关键词
+        # @type Keyword: String
 
-        attr_accessor :PageNo, :PageSize, :ProjectId, :IsOnlyBindAppUser, :AllPage, :RoleCode
+        attr_accessor :PageNo, :PageSize, :ProjectId, :IsOnlyBindAppUser, :AllPage, :RoleCode, :UserIdList, :Keyword
 
-        def initialize(pageno=nil, pagesize=nil, projectid=nil, isonlybindappuser=nil, allpage=nil, rolecode=nil)
+        def initialize(pageno=nil, pagesize=nil, projectid=nil, isonlybindappuser=nil, allpage=nil, rolecode=nil, useridlist=nil, keyword=nil)
           @PageNo = pageno
           @PageSize = pagesize
           @ProjectId = projectid
           @IsOnlyBindAppUser = isonlybindappuser
           @AllPage = allpage
           @RoleCode = rolecode
+          @UserIdList = useridlist
+          @Keyword = keyword
         end
 
         def deserialize(params)
@@ -1870,6 +1881,8 @@ module TencentCloud
           @IsOnlyBindAppUser = params['IsOnlyBindAppUser']
           @AllPage = params['AllPage']
           @RoleCode = params['RoleCode']
+          @UserIdList = params['UserIdList']
+          @Keyword = params['Keyword']
         end
       end
 
@@ -2929,10 +2942,22 @@ module TencentCloud
         # @param OwnerName: 所属人
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OwnerName: String
+        # @param NormalCount: 仪表盘页面数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NormalCount: Integer
+        # @param FreeCount: 自由画布页面数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FreeCount: Integer
+        # @param AdhocCount: 即席分析页面数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AdhocCount: Integer
+        # @param BriefingCount: 简报页面数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BriefingCount: Integer
 
-        attr_accessor :Id, :Logo, :Name, :ColorCode, :CreatedUser, :CreatedAt, :MemberCount, :PageCount, :LastModifyName, :Source, :Apply, :UpdatedUser, :UpdatedAt, :CorpId, :Mark, :Seed, :AuthList, :PanelScope, :IsExternalManage, :ManagePlatform, :ConfigList, :CreatedUserName, :Owner, :OwnerName
+        attr_accessor :Id, :Logo, :Name, :ColorCode, :CreatedUser, :CreatedAt, :MemberCount, :PageCount, :LastModifyName, :Source, :Apply, :UpdatedUser, :UpdatedAt, :CorpId, :Mark, :Seed, :AuthList, :PanelScope, :IsExternalManage, :ManagePlatform, :ConfigList, :CreatedUserName, :Owner, :OwnerName, :NormalCount, :FreeCount, :AdhocCount, :BriefingCount
 
-        def initialize(id=nil, logo=nil, name=nil, colorcode=nil, createduser=nil, createdat=nil, membercount=nil, pagecount=nil, lastmodifyname=nil, source=nil, apply=nil, updateduser=nil, updatedat=nil, corpid=nil, mark=nil, seed=nil, authlist=nil, panelscope=nil, isexternalmanage=nil, manageplatform=nil, configlist=nil, createdusername=nil, owner=nil, ownername=nil)
+        def initialize(id=nil, logo=nil, name=nil, colorcode=nil, createduser=nil, createdat=nil, membercount=nil, pagecount=nil, lastmodifyname=nil, source=nil, apply=nil, updateduser=nil, updatedat=nil, corpid=nil, mark=nil, seed=nil, authlist=nil, panelscope=nil, isexternalmanage=nil, manageplatform=nil, configlist=nil, createdusername=nil, owner=nil, ownername=nil, normalcount=nil, freecount=nil, adhoccount=nil, briefingcount=nil)
           @Id = id
           @Logo = logo
           @Name = name
@@ -2957,6 +2982,10 @@ module TencentCloud
           @CreatedUserName = createdusername
           @Owner = owner
           @OwnerName = ownername
+          @NormalCount = normalcount
+          @FreeCount = freecount
+          @AdhocCount = adhoccount
+          @BriefingCount = briefingcount
         end
 
         def deserialize(params)
@@ -2991,6 +3020,10 @@ module TencentCloud
           @CreatedUserName = params['CreatedUserName']
           @Owner = params['Owner']
           @OwnerName = params['OwnerName']
+          @NormalCount = params['NormalCount']
+          @FreeCount = params['FreeCount']
+          @AdhocCount = params['AdhocCount']
+          @BriefingCount = params['BriefingCount']
         end
       end
 

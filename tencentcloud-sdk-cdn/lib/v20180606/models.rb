@@ -4323,7 +4323,7 @@ module TencentCloud
       class DescribeDomainsConfigRequest < TencentCloud::Common::AbstractModel
         # @param Offset: 分页查询偏移量，默认为 0
         # @type Offset: Integer
-        # @param Limit: 分页查询限制数目，默认为 100，最大可设置为 1000
+        # @param Limit: 分页查询限制数目，默认为 100，最大可设置为 100
         # @type Limit: Integer
         # @param Filters: 查询条件过滤器，复杂类型
         # @type Filters: Array

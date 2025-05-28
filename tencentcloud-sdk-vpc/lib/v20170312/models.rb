@@ -1446,6 +1446,33 @@ module TencentCloud
         end
       end
 
+      # AssociateHaVipInstance请求参数结构体
+      class AssociateHaVipInstanceRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # AssociateHaVipInstance返回参数结构体
+      class AssociateHaVipInstanceResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # AssociateIPv6Address请求参数结构体
       class AssociateIPv6AddressRequest < TencentCloud::Common::AbstractModel
         # @param IPv6AddressId: 弹性公网IPv6唯一ID，EIPv6 唯一 ID 形如：eipv6-11112222。可以使用[DescribeIPv6Addresses](https://cloud.tencent.com/document/api/215/113677)接口获取IPv6AddressId。
@@ -17133,6 +17160,45 @@ module TencentCloud
 
       # DisassociateDirectConnectGatewayNatGateway返回参数结构体
       class DisassociateDirectConnectGatewayNatGatewayResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DisassociateHaVipInstance请求参数结构体
+      class DisassociateHaVipInstanceRequest < TencentCloud::Common::AbstractModel
+        # @param HaVipAssociationSet: HaVip解绑的子机或网卡。最多支持10个实例。
+        # @type HaVipAssociationSet: Array
+
+        attr_accessor :HaVipAssociationSet
+
+        def initialize(havipassociationset=nil)
+          @HaVipAssociationSet = havipassociationset
+        end
+
+        def deserialize(params)
+          unless params['HaVipAssociationSet'].nil?
+            @HaVipAssociationSet = []
+            params['HaVipAssociationSet'].each do |i|
+              havipassociation_tmp = HaVipAssociation.new
+              havipassociation_tmp.deserialize(i)
+              @HaVipAssociationSet << havipassociation_tmp
+            end
+          end
+        end
+      end
+
+      # DisassociateHaVipInstance返回参数结构体
+      class DisassociateHaVipInstanceResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 

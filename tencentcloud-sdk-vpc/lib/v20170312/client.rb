@@ -448,6 +448,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（AssociateHaVipInstance）用于HAVIP绑定子机或网卡（限制HaVip的飘移范围）。
+
+        # @param request: Request instance for AssociateHaVipInstance.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::AssociateHaVipInstanceRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::AssociateHaVipInstanceResponse`
+        def AssociateHaVipInstance(request)
+          body = send_request('AssociateHaVipInstance', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = AssociateHaVipInstanceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（AssociateIPv6Address）用于将弹性公网IPv6（简称EIPv6）实例绑定到 CVM 或弹性网卡配置的内网 IPv6 地址上。
 
         # - 将 EIPv6 绑定到 CVM 上，其本质是将 EIPv6 绑定到 CVM 弹性网卡所配置的内网 IPv6 地址上。
@@ -6665,6 +6689,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DisassociateDirectConnectGatewayNatGatewayResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（DisassociateHaVipInstance）用于HAVIP解绑子机或网卡（去掉HaVip飘移范围）。
+
+        # @param request: Request instance for DisassociateHaVipInstance.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::DisassociateHaVipInstanceRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::DisassociateHaVipInstanceResponse`
+        def DisassociateHaVipInstance(request)
+          body = send_request('DisassociateHaVipInstance', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DisassociateHaVipInstanceResponse.new
             model.deserialize(response['Response'])
             model
           else

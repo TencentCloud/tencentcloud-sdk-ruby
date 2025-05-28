@@ -2145,10 +2145,12 @@ module TencentCloud
         # @type MaxBandWidth: Integer
         # @param PublicNetworkTps: 公网带宽，已废弃
         # @type PublicNetworkTps: Integer
+        # @param Features: 实例对应的功能列表，true表示支持，false 表示不支持
+        # @type Features: String
 
-        attr_accessor :SpecName, :MaxTps, :MaxQueueNum, :MaxExchangeNum, :MaxVhostNum, :MaxConnNum, :MaxUserNum, :MaxBandWidth, :PublicNetworkTps
+        attr_accessor :SpecName, :MaxTps, :MaxQueueNum, :MaxExchangeNum, :MaxVhostNum, :MaxConnNum, :MaxUserNum, :MaxBandWidth, :PublicNetworkTps, :Features
 
-        def initialize(specname=nil, maxtps=nil, maxqueuenum=nil, maxexchangenum=nil, maxvhostnum=nil, maxconnnum=nil, maxusernum=nil, maxbandwidth=nil, publicnetworktps=nil)
+        def initialize(specname=nil, maxtps=nil, maxqueuenum=nil, maxexchangenum=nil, maxvhostnum=nil, maxconnnum=nil, maxusernum=nil, maxbandwidth=nil, publicnetworktps=nil, features=nil)
           @SpecName = specname
           @MaxTps = maxtps
           @MaxQueueNum = maxqueuenum
@@ -2158,6 +2160,7 @@ module TencentCloud
           @MaxUserNum = maxusernum
           @MaxBandWidth = maxbandwidth
           @PublicNetworkTps = publicnetworktps
+          @Features = features
         end
 
         def deserialize(params)
@@ -2170,6 +2173,7 @@ module TencentCloud
           @MaxUserNum = params['MaxUserNum']
           @MaxBandWidth = params['MaxBandWidth']
           @PublicNetworkTps = params['PublicNetworkTps']
+          @Features = params['Features']
         end
       end
 
@@ -2554,10 +2558,12 @@ module TencentCloud
         # @type MaxStorage: Integer
         # @param IsolatedTime: 隔离时间
         # @type IsolatedTime: Integer
+        # @param ServerlessExt: Serverless 扩展字段
+        # @type ServerlessExt: String
 
-        attr_accessor :InstanceId, :InstanceName, :InstanceVersion, :Status, :MaxTps, :MaxBandWidth, :ExpireTime, :AutoRenewFlag, :PayMode, :Remark, :SpecName, :ExceptionInformation, :PublicAccessEndpoint, :Vpcs, :ClusterStatus, :InstanceType, :CreateTime, :NodeCount, :MaxStorage, :IsolatedTime
+        attr_accessor :InstanceId, :InstanceName, :InstanceVersion, :Status, :MaxTps, :MaxBandWidth, :ExpireTime, :AutoRenewFlag, :PayMode, :Remark, :SpecName, :ExceptionInformation, :PublicAccessEndpoint, :Vpcs, :ClusterStatus, :InstanceType, :CreateTime, :NodeCount, :MaxStorage, :IsolatedTime, :ServerlessExt
 
-        def initialize(instanceid=nil, instancename=nil, instanceversion=nil, status=nil, maxtps=nil, maxbandwidth=nil, expiretime=nil, autorenewflag=nil, paymode=nil, remark=nil, specname=nil, exceptioninformation=nil, publicaccessendpoint=nil, vpcs=nil, clusterstatus=nil, instancetype=nil, createtime=nil, nodecount=nil, maxstorage=nil, isolatedtime=nil)
+        def initialize(instanceid=nil, instancename=nil, instanceversion=nil, status=nil, maxtps=nil, maxbandwidth=nil, expiretime=nil, autorenewflag=nil, paymode=nil, remark=nil, specname=nil, exceptioninformation=nil, publicaccessendpoint=nil, vpcs=nil, clusterstatus=nil, instancetype=nil, createtime=nil, nodecount=nil, maxstorage=nil, isolatedtime=nil, serverlessext=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @InstanceVersion = instanceversion
@@ -2578,6 +2584,7 @@ module TencentCloud
           @NodeCount = nodecount
           @MaxStorage = maxstorage
           @IsolatedTime = isolatedtime
+          @ServerlessExt = serverlessext
         end
 
         def deserialize(params)
@@ -2608,6 +2615,7 @@ module TencentCloud
           @NodeCount = params['NodeCount']
           @MaxStorage = params['MaxStorage']
           @IsolatedTime = params['IsolatedTime']
+          @ServerlessExt = params['ServerlessExt']
         end
       end
 

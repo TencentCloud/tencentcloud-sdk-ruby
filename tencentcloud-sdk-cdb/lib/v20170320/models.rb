@@ -5569,15 +5569,21 @@ module TencentCloud
         # @param AutoStrategy: 自动扩容策略。Type 为 auto 时有效
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AutoStrategy: :class:`Tencentcloud::Cdb.v20170320.models.AutoStrategy`
+        # @param PeriodStrategy: 按周期扩容策略。
+        # @type PeriodStrategy: :class:`Tencentcloud::Cdb.v20170320.models.PeriodStrategy`
+        # @param TimeIntervalStrategy: 按时间段扩容策略
+        # @type TimeIntervalStrategy: :class:`Tencentcloud::Cdb.v20170320.models.TimeIntervalStrategy`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Type, :ExpandCpu, :AutoStrategy, :RequestId
+        attr_accessor :Type, :ExpandCpu, :AutoStrategy, :PeriodStrategy, :TimeIntervalStrategy, :RequestId
 
-        def initialize(type=nil, expandcpu=nil, autostrategy=nil, requestid=nil)
+        def initialize(type=nil, expandcpu=nil, autostrategy=nil, periodstrategy=nil, timeintervalstrategy=nil, requestid=nil)
           @Type = type
           @ExpandCpu = expandcpu
           @AutoStrategy = autostrategy
+          @PeriodStrategy = periodstrategy
+          @TimeIntervalStrategy = timeintervalstrategy
           @RequestId = requestid
         end
 
@@ -5587,6 +5593,14 @@ module TencentCloud
           unless params['AutoStrategy'].nil?
             @AutoStrategy = AutoStrategy.new
             @AutoStrategy.deserialize(params['AutoStrategy'])
+          end
+          unless params['PeriodStrategy'].nil?
+            @PeriodStrategy = PeriodStrategy.new
+            @PeriodStrategy.deserialize(params['PeriodStrategy'])
+          end
+          unless params['TimeIntervalStrategy'].nil?
+            @TimeIntervalStrategy = TimeIntervalStrategy.new
+            @TimeIntervalStrategy.deserialize(params['TimeIntervalStrategy'])
           end
           @RequestId = params['RequestId']
         end

@@ -3358,6 +3358,79 @@ module TencentCloud
         end
       end
 
+      # DescribeGroupsSTD请求参数结构体
+      class DescribeGroupsSTDRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 集群名称
+        # @type InstanceId: String
+        # @param Filters: 描述键值对过滤器，用于条件过滤查询
+        # @type Filters: Array
+        # @param OrderFields: 描述排序，用于排序
+        # @type OrderFields: :class:`Tencentcloud::Emr.v20190103.models.Order`
+        # @param Limit: 返回数量
+        # @type Limit: Integer
+        # @param Offset: 分页参数
+        # @type Offset: Integer
+
+        attr_accessor :InstanceId, :Filters, :OrderFields, :Limit, :Offset
+
+        def initialize(instanceid=nil, filters=nil, orderfields=nil, limit=nil, offset=nil)
+          @InstanceId = instanceid
+          @Filters = filters
+          @OrderFields = orderfields
+          @Limit = limit
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          unless params['OrderFields'].nil?
+            @OrderFields = Order.new
+            @OrderFields.deserialize(params['OrderFields'])
+          end
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+        end
+      end
+
+      # DescribeGroupsSTD返回参数结构体
+      class DescribeGroupsSTDResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 用户组信息
+        # @type Data: Array
+        # @param TotalCount: 符合条件的用户组数量
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :TotalCount, :RequestId
+
+        def initialize(data=nil, totalcount=nil, requestid=nil)
+          @Data = data
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              groupinfos_tmp = GroupInfos.new
+              groupinfos_tmp.deserialize(i)
+              @Data << groupinfos_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeHBaseTableOverview请求参数结构体
       class DescribeHBaseTableOverviewRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID
@@ -5953,6 +6026,26 @@ module TencentCloud
         end
       end
 
+      # 键值对过滤器，用于条件过滤查询.
+      class Filter < TencentCloud::Common::AbstractModel
+        # @param Name: 需要过滤的字段。
+        # @type Name: String
+        # @param Values: 字段的过滤值。
+        # @type Values: Array
+
+        attr_accessor :Name, :Values
+
+        def initialize(name=nil, values=nil)
+          @Name = name
+          @Values = values
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Values = params['Values']
+        end
+      end
+
       # Emr集群列表实例自定义查询过滤
       class Filters < TencentCloud::Common::AbstractModel
         # @param Name: 字段名称
@@ -6096,6 +6189,42 @@ module TencentCloud
           @GroupName = params['GroupName']
           @Description = params['Description']
           @Users = params['Users']
+        end
+      end
+
+      # 用户组信息
+      class GroupInfos < TencentCloud::Common::AbstractModel
+        # @param GroupName: 用户组名称
+        # @type GroupName: String
+        # @param Users: 用户名称列表
+        # @type Users: Array
+        # @param Description: 备注
+        # @type Description: String
+        # @param CreateTime: 创建时间
+        # @type CreateTime: String
+        # @param GroupType: 用户组类型
+        # @type GroupType: Integer
+        # @param GroupTypeDesc: 用户组类型描述
+        # @type GroupTypeDesc: String
+
+        attr_accessor :GroupName, :Users, :Description, :CreateTime, :GroupType, :GroupTypeDesc
+
+        def initialize(groupname=nil, users=nil, description=nil, createtime=nil, grouptype=nil, grouptypedesc=nil)
+          @GroupName = groupname
+          @Users = users
+          @Description = description
+          @CreateTime = createtime
+          @GroupType = grouptype
+          @GroupTypeDesc = grouptypedesc
+        end
+
+        def deserialize(params)
+          @GroupName = params['GroupName']
+          @Users = params['Users']
+          @Description = params['Description']
+          @CreateTime = params['CreateTime']
+          @GroupType = params['GroupType']
+          @GroupTypeDesc = params['GroupTypeDesc']
         end
       end
 
@@ -9373,6 +9502,26 @@ module TencentCloud
               @ServiceInfoList << servicebasicrestartinfo_tmp
             end
           end
+        end
+      end
+
+      # 描述排序，用于排序.
+      class Order < TencentCloud::Common::AbstractModel
+        # @param Name: 排序字段。
+        # @type Name: String
+        # @param Direction: Desc or Asc。
+        # @type Direction: String
+
+        attr_accessor :Name, :Direction
+
+        def initialize(name=nil, direction=nil)
+          @Name = name
+          @Direction = direction
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Direction = params['Direction']
         end
       end
 
