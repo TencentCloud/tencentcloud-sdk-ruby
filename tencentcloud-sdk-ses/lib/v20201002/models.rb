@@ -223,6 +223,46 @@ module TencentCloud
         end
       end
 
+      # CreateAddressUnsubscribeConfig请求参数结构体
+      class CreateAddressUnsubscribeConfigRequest < TencentCloud::Common::AbstractModel
+        # @param Address: 发信地址
+        # @type Address: String
+        # @param UnsubscribeConfig: 退订链接选项 0: 不加入退订链接 1: 简体中文 2: 英文 3: 繁体中文 4: 西班牙语 5: 法语 6: 德语 7: 日语 8: 韩语 9: 阿拉伯语 10: 泰语
+        # @type UnsubscribeConfig: String
+        # @param Status: 0:关闭，1:打开
+        # @type Status: Integer
+
+        attr_accessor :Address, :UnsubscribeConfig, :Status
+
+        def initialize(address=nil, unsubscribeconfig=nil, status=nil)
+          @Address = address
+          @UnsubscribeConfig = unsubscribeconfig
+          @Status = status
+        end
+
+        def deserialize(params)
+          @Address = params['Address']
+          @UnsubscribeConfig = params['UnsubscribeConfig']
+          @Status = params['Status']
+        end
+      end
+
+      # CreateAddressUnsubscribeConfig返回参数结构体
+      class CreateAddressUnsubscribeConfigResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateCustomBlacklist请求参数结构体
       class CreateCustomBlacklistRequest < TencentCloud::Common::AbstractModel
         # @param Emails: 添加到黑名单的邮件地址
@@ -625,6 +665,38 @@ module TencentCloud
           @ExpectedValue = params['ExpectedValue']
           @CurrentValue = params['CurrentValue']
           @Status = params['Status']
+        end
+      end
+
+      # DeleteAddressUnsubscribeConfig请求参数结构体
+      class DeleteAddressUnsubscribeConfigRequest < TencentCloud::Common::AbstractModel
+        # @param Address: 需要操作的发信地址
+        # @type Address: String
+
+        attr_accessor :Address
+
+        def initialize(address=nil)
+          @Address = address
+        end
+
+        def deserialize(params)
+          @Address = params['Address']
+        end
+      end
+
+      # DeleteAddressUnsubscribeConfig返回参数结构体
+      class DeleteAddressUnsubscribeConfigResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 
@@ -2101,6 +2173,46 @@ module TencentCloud
 
         def deserialize(params)
           @BeginTime = params['BeginTime']
+        end
+      end
+
+      # UpdateAddressUnsubscribeConfig请求参数结构体
+      class UpdateAddressUnsubscribeConfigRequest < TencentCloud::Common::AbstractModel
+        # @param Address: 发信地址
+        # @type Address: String
+        # @param UnsubscribeConfig: 退订链接选项 0: 不加入退订链接 1: 简体中文 2: 英文 3: 繁体中文 4: 西班牙语 5: 法语 6: 德语 7: 日语 8: 韩语 9: 阿拉伯语 10: 泰语
+        # @type UnsubscribeConfig: String
+        # @param Status: 0:关闭配置，1:打开配置
+        # @type Status: Integer
+
+        attr_accessor :Address, :UnsubscribeConfig, :Status
+
+        def initialize(address=nil, unsubscribeconfig=nil, status=nil)
+          @Address = address
+          @UnsubscribeConfig = unsubscribeconfig
+          @Status = status
+        end
+
+        def deserialize(params)
+          @Address = params['Address']
+          @UnsubscribeConfig = params['UnsubscribeConfig']
+          @Status = params['Status']
+        end
+      end
+
+      # UpdateAddressUnsubscribeConfig返回参数结构体
+      class UpdateAddressUnsubscribeConfigResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 

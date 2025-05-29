@@ -799,6 +799,90 @@ module TencentCloud
         end
       end
 
+      # 备份下载集群限制参数
+      class BackupLimitClusterRestriction < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群id
+        # @type ClusterId: String
+        # @param BackupLimitRestriction: 下载限制配置
+        # @type BackupLimitRestriction: :class:`Tencentcloud::Cynosdb.v20190107.models.BackupLimitRestriction`
+
+        attr_accessor :ClusterId, :BackupLimitRestriction
+
+        def initialize(clusterid=nil, backuplimitrestriction=nil)
+          @ClusterId = clusterid
+          @BackupLimitRestriction = backuplimitrestriction
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          unless params['BackupLimitRestriction'].nil?
+            @BackupLimitRestriction = BackupLimitRestriction.new
+            @BackupLimitRestriction.deserialize(params['BackupLimitRestriction'])
+          end
+        end
+      end
+
+      # 备份下载限制参数
+      class BackupLimitRestriction < TencentCloud::Common::AbstractModel
+        # @param LimitType: 限制类型
+        # @type LimitType: String
+        # @param VpcComparisonSymbol: 该参数仅支持 In， 表示 LimitVpc 指定的vpc可以下载。默认为In
+        # @type VpcComparisonSymbol: String
+        # @param IpComparisonSymbol: In: 指定的ip可以下载； NotIn: 指定的ip不可以下载
+        # @type IpComparisonSymbol: String
+        # @param LimitVpcs: 限制下载的vpc设置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LimitVpcs: Array
+        # @param LimitIps: 限制下载的ip设置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LimitIps: Array
+
+        attr_accessor :LimitType, :VpcComparisonSymbol, :IpComparisonSymbol, :LimitVpcs, :LimitIps
+
+        def initialize(limittype=nil, vpccomparisonsymbol=nil, ipcomparisonsymbol=nil, limitvpcs=nil, limitips=nil)
+          @LimitType = limittype
+          @VpcComparisonSymbol = vpccomparisonsymbol
+          @IpComparisonSymbol = ipcomparisonsymbol
+          @LimitVpcs = limitvpcs
+          @LimitIps = limitips
+        end
+
+        def deserialize(params)
+          @LimitType = params['LimitType']
+          @VpcComparisonSymbol = params['VpcComparisonSymbol']
+          @IpComparisonSymbol = params['IpComparisonSymbol']
+          unless params['LimitVpcs'].nil?
+            @LimitVpcs = []
+            params['LimitVpcs'].each do |i|
+              backuplimitvpcitem_tmp = BackupLimitVpcItem.new
+              backuplimitvpcitem_tmp.deserialize(i)
+              @LimitVpcs << backuplimitvpcitem_tmp
+            end
+          end
+          @LimitIps = params['LimitIps']
+        end
+      end
+
+      # 备份文件限制下载来源VPC设置项
+      class BackupLimitVpcItem < TencentCloud::Common::AbstractModel
+        # @param Region: 限制下载来源的地域。目前仅支持当前地域
+        # @type Region: String
+        # @param VpcList: 限制下载的vpc列表
+        # @type VpcList: Array
+
+        attr_accessor :Region, :VpcList
+
+        def initialize(region=nil, vpclist=nil)
+          @Region = region
+          @VpcList = vpclist
+        end
+
+        def deserialize(params)
+          @Region = params['Region']
+          @VpcList = params['VpcList']
+        end
+      end
+
       # 计费资源信息
       class BillingResourceInfo < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID
@@ -1661,6 +1745,26 @@ module TencentCloud
         end
       end
 
+      # 集群只读开关列表
+      class ClusterReadOnlyValue < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param ReadOnlyValue: 只读开关值
+        # @type ReadOnlyValue: String
+
+        attr_accessor :ClusterId, :ReadOnlyValue
+
+        def initialize(clusterid=nil, readonlyvalue=nil)
+          @ClusterId = clusterid
+          @ReadOnlyValue = readonlyvalue
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @ReadOnlyValue = params['ReadOnlyValue']
+        end
+      end
+
       # 集群从可用区信息
       class ClusterSlaveData < TencentCloud::Common::AbstractModel
         # @param OldMasterZone: 旧主可用区
@@ -1710,6 +1814,26 @@ module TencentCloud
               @OldSlaveZoneAttr << slavezoneattritem_tmp
             end
           end
+        end
+      end
+
+      # 集群任务ID
+      class ClusterTaskId < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param TaskId: 任务ID
+        # @type TaskId: String
+
+        attr_accessor :ClusterId, :TaskId
+
+        def initialize(clusterid=nil, taskid=nil)
+          @ClusterId = clusterid
+          @TaskId = taskid
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @TaskId = params['TaskId']
         end
       end
 
@@ -5018,23 +5142,74 @@ module TencentCloud
         end
       end
 
+      # DescribeBackupDownloadRestriction请求参数结构体
+      class DescribeBackupDownloadRestrictionRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterIds: 集群ID
+        # @type ClusterIds: Array
+
+        attr_accessor :ClusterIds
+
+        def initialize(clusterids=nil)
+          @ClusterIds = clusterids
+        end
+
+        def deserialize(params)
+          @ClusterIds = params['ClusterIds']
+        end
+      end
+
+      # DescribeBackupDownloadRestriction返回参数结构体
+      class DescribeBackupDownloadRestrictionResponse < TencentCloud::Common::AbstractModel
+        # @param BackupLimitClusterRestrictions: 集群备份下载限制
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BackupLimitClusterRestrictions: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :BackupLimitClusterRestrictions, :RequestId
+
+        def initialize(backuplimitclusterrestrictions=nil, requestid=nil)
+          @BackupLimitClusterRestrictions = backuplimitclusterrestrictions
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['BackupLimitClusterRestrictions'].nil?
+            @BackupLimitClusterRestrictions = []
+            params['BackupLimitClusterRestrictions'].each do |i|
+              backuplimitclusterrestriction_tmp = BackupLimitClusterRestriction.new
+              backuplimitclusterrestriction_tmp.deserialize(i)
+              @BackupLimitClusterRestrictions << backuplimitclusterrestriction_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeBackupDownloadUrl请求参数结构体
       class DescribeBackupDownloadUrlRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID
         # @type ClusterId: String
         # @param BackupId: 备份ID
         # @type BackupId: Integer
+        # @param DownloadRestriction: 备份下载来源限制条件
+        # @type DownloadRestriction: :class:`Tencentcloud::Cynosdb.v20190107.models.BackupLimitRestriction`
 
-        attr_accessor :ClusterId, :BackupId
+        attr_accessor :ClusterId, :BackupId, :DownloadRestriction
 
-        def initialize(clusterid=nil, backupid=nil)
+        def initialize(clusterid=nil, backupid=nil, downloadrestriction=nil)
           @ClusterId = clusterid
           @BackupId = backupid
+          @DownloadRestriction = downloadrestriction
         end
 
         def deserialize(params)
           @ClusterId = params['ClusterId']
           @BackupId = params['BackupId']
+          unless params['DownloadRestriction'].nil?
+            @DownloadRestriction = BackupLimitRestriction.new
+            @DownloadRestriction.deserialize(params['DownloadRestriction'])
+          end
         end
       end
 
@@ -5054,6 +5229,62 @@ module TencentCloud
 
         def deserialize(params)
           @DownloadUrl = params['DownloadUrl']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeBackupDownloadUserRestriction请求参数结构体
+      class DescribeBackupDownloadUserRestrictionRequest < TencentCloud::Common::AbstractModel
+        # @param Limit: 分页大小
+        # @type Limit: Integer
+        # @param Offset: 偏移量
+        # @type Offset: Integer
+        # @param OnlyUserRestriction: 是否只查询用户级别下载限制，true-是，false-否
+        # @type OnlyUserRestriction: Boolean
+
+        attr_accessor :Limit, :Offset, :OnlyUserRestriction
+
+        def initialize(limit=nil, offset=nil, onlyuserrestriction=nil)
+          @Limit = limit
+          @Offset = offset
+          @OnlyUserRestriction = onlyuserrestriction
+        end
+
+        def deserialize(params)
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @OnlyUserRestriction = params['OnlyUserRestriction']
+        end
+      end
+
+      # DescribeBackupDownloadUserRestriction返回参数结构体
+      class DescribeBackupDownloadUserRestrictionResponse < TencentCloud::Common::AbstractModel
+        # @param BackupLimitClusterRestrictions: 集群备份下载限制信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BackupLimitClusterRestrictions: Array
+        # @param TotalCount: 总条数
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :BackupLimitClusterRestrictions, :TotalCount, :RequestId
+
+        def initialize(backuplimitclusterrestrictions=nil, totalcount=nil, requestid=nil)
+          @BackupLimitClusterRestrictions = backuplimitclusterrestrictions
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['BackupLimitClusterRestrictions'].nil?
+            @BackupLimitClusterRestrictions = []
+            params['BackupLimitClusterRestrictions'].each do |i|
+              backuplimitclusterrestriction_tmp = BackupLimitClusterRestriction.new
+              backuplimitclusterrestriction_tmp.deserialize(i)
+              @BackupLimitClusterRestrictions << backuplimitclusterrestriction_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
       end
@@ -5211,17 +5442,24 @@ module TencentCloud
         # @type ClusterId: String
         # @param BinlogId: Binlog文件ID
         # @type BinlogId: Integer
+        # @param DownloadRestriction: 备份下载来源限制条件
+        # @type DownloadRestriction: :class:`Tencentcloud::Cynosdb.v20190107.models.BackupLimitRestriction`
 
-        attr_accessor :ClusterId, :BinlogId
+        attr_accessor :ClusterId, :BinlogId, :DownloadRestriction
 
-        def initialize(clusterid=nil, binlogid=nil)
+        def initialize(clusterid=nil, binlogid=nil, downloadrestriction=nil)
           @ClusterId = clusterid
           @BinlogId = binlogid
+          @DownloadRestriction = downloadrestriction
         end
 
         def deserialize(params)
           @ClusterId = params['ClusterId']
           @BinlogId = params['BinlogId']
+          unless params['DownloadRestriction'].nil?
+            @DownloadRestriction = BackupLimitRestriction.new
+            @DownloadRestriction.deserialize(params['DownloadRestriction'])
+          end
         end
       end
 
@@ -5917,6 +6155,49 @@ module TencentCloud
           unless params['ValidatePasswordSpecialCharCount'].nil?
             @ValidatePasswordSpecialCharCount = ParamInfo.new
             @ValidatePasswordSpecialCharCount.deserialize(params['ValidatePasswordSpecialCharCount'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeClusterReadOnly请求参数结构体
+      class DescribeClusterReadOnlyRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterIds: 集群ID列表
+        # @type ClusterIds: Array
+
+        attr_accessor :ClusterIds
+
+        def initialize(clusterids=nil)
+          @ClusterIds = clusterids
+        end
+
+        def deserialize(params)
+          @ClusterIds = params['ClusterIds']
+        end
+      end
+
+      # DescribeClusterReadOnly返回参数结构体
+      class DescribeClusterReadOnlyResponse < TencentCloud::Common::AbstractModel
+        # @param ClusterReadOnlyValues: 集群只读开关列表
+        # @type ClusterReadOnlyValues: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ClusterReadOnlyValues, :RequestId
+
+        def initialize(clusterreadonlyvalues=nil, requestid=nil)
+          @ClusterReadOnlyValues = clusterreadonlyvalues
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ClusterReadOnlyValues'].nil?
+            @ClusterReadOnlyValues = []
+            params['ClusterReadOnlyValues'].each do |i|
+              clusterreadonlyvalue_tmp = ClusterReadOnlyValue.new
+              clusterreadonlyvalue_tmp.deserialize(i)
+              @ClusterReadOnlyValues << clusterreadonlyvalue_tmp
+            end
           end
           @RequestId = params['RequestId']
         end
@@ -9572,6 +9853,120 @@ module TencentCloud
         end
       end
 
+      # ModifyBackupDownloadRestriction请求参数结构体
+      class ModifyBackupDownloadRestrictionRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterIds: 集群ID
+        # @type ClusterIds: Array
+        # @param LimitType: 下载限制类型，NoLimit-不限制,LimitOnlyIntranet-限制内网 ,Customize-自定义
+        # @type LimitType: String
+        # @param VpcComparisonSymbol: 该参数仅支持 In， 表示 LimitVpc 指定的vpc可以下载。默认为In
+        # @type VpcComparisonSymbol: String
+        # @param IpComparisonSymbol: In: 指定的ip可以下载； NotIn: 指定的ip不可以下载
+        # @type IpComparisonSymbol: String
+        # @param LimitVpcs: 限制下载的vpc设置
+        # @type LimitVpcs: Array
+        # @param LimitIps: 限制下载的ip设置
+        # @type LimitIps: Array
+
+        attr_accessor :ClusterIds, :LimitType, :VpcComparisonSymbol, :IpComparisonSymbol, :LimitVpcs, :LimitIps
+
+        def initialize(clusterids=nil, limittype=nil, vpccomparisonsymbol=nil, ipcomparisonsymbol=nil, limitvpcs=nil, limitips=nil)
+          @ClusterIds = clusterids
+          @LimitType = limittype
+          @VpcComparisonSymbol = vpccomparisonsymbol
+          @IpComparisonSymbol = ipcomparisonsymbol
+          @LimitVpcs = limitvpcs
+          @LimitIps = limitips
+        end
+
+        def deserialize(params)
+          @ClusterIds = params['ClusterIds']
+          @LimitType = params['LimitType']
+          @VpcComparisonSymbol = params['VpcComparisonSymbol']
+          @IpComparisonSymbol = params['IpComparisonSymbol']
+          unless params['LimitVpcs'].nil?
+            @LimitVpcs = []
+            params['LimitVpcs'].each do |i|
+              backuplimitvpcitem_tmp = BackupLimitVpcItem.new
+              backuplimitvpcitem_tmp.deserialize(i)
+              @LimitVpcs << backuplimitvpcitem_tmp
+            end
+          end
+          @LimitIps = params['LimitIps']
+        end
+      end
+
+      # ModifyBackupDownloadRestriction返回参数结构体
+      class ModifyBackupDownloadRestrictionResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyBackupDownloadUserRestriction请求参数结构体
+      class ModifyBackupDownloadUserRestrictionRequest < TencentCloud::Common::AbstractModel
+        # @param LimitType: 下载限制类型，NoLimit-不限制,LimitOnlyIntranet-限制内网 ,Customize-自定义
+        # @type LimitType: String
+        # @param VpcComparisonSymbol: 该参数仅支持 In， 表示 LimitVpc 指定的vpc可以下载。默认为In
+        # @type VpcComparisonSymbol: String
+        # @param IpComparisonSymbol: In: 指定的ip可以下载； NotIn: 指定的ip不可以下载
+        # @type IpComparisonSymbol: String
+        # @param LimitVpcs: 限制下载的vpc设置
+        # @type LimitVpcs: Array
+        # @param LimitIps: 限制下载的ip设置
+        # @type LimitIps: Array
+
+        attr_accessor :LimitType, :VpcComparisonSymbol, :IpComparisonSymbol, :LimitVpcs, :LimitIps
+
+        def initialize(limittype=nil, vpccomparisonsymbol=nil, ipcomparisonsymbol=nil, limitvpcs=nil, limitips=nil)
+          @LimitType = limittype
+          @VpcComparisonSymbol = vpccomparisonsymbol
+          @IpComparisonSymbol = ipcomparisonsymbol
+          @LimitVpcs = limitvpcs
+          @LimitIps = limitips
+        end
+
+        def deserialize(params)
+          @LimitType = params['LimitType']
+          @VpcComparisonSymbol = params['VpcComparisonSymbol']
+          @IpComparisonSymbol = params['IpComparisonSymbol']
+          unless params['LimitVpcs'].nil?
+            @LimitVpcs = []
+            params['LimitVpcs'].each do |i|
+              backuplimitvpcitem_tmp = BackupLimitVpcItem.new
+              backuplimitvpcitem_tmp.deserialize(i)
+              @LimitVpcs << backuplimitvpcitem_tmp
+            end
+          end
+          @LimitIps = params['LimitIps']
+        end
+      end
+
+      # ModifyBackupDownloadUserRestriction返回参数结构体
+      class ModifyBackupDownloadUserRestrictionResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyBackupName请求参数结构体
       class ModifyBackupNameRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID
@@ -9892,6 +10287,57 @@ module TencentCloud
 
         def deserialize(params)
           @FlowId = params['FlowId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyClusterReadOnly请求参数结构体
+      class ModifyClusterReadOnlyRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterIds: 集群ID列表
+        # @type ClusterIds: Array
+        # @param ReadOnlyOperation: 集群只读开关，可选值：ON，OFF
+        # @type ReadOnlyOperation: String
+        # @param IsInMaintainPeriod: yes：在运维时间窗内修改，no：立即执行（默认值）
+        # @type IsInMaintainPeriod: String
+
+        attr_accessor :ClusterIds, :ReadOnlyOperation, :IsInMaintainPeriod
+
+        def initialize(clusterids=nil, readonlyoperation=nil, isinmaintainperiod=nil)
+          @ClusterIds = clusterids
+          @ReadOnlyOperation = readonlyoperation
+          @IsInMaintainPeriod = isinmaintainperiod
+        end
+
+        def deserialize(params)
+          @ClusterIds = params['ClusterIds']
+          @ReadOnlyOperation = params['ReadOnlyOperation']
+          @IsInMaintainPeriod = params['IsInMaintainPeriod']
+        end
+      end
+
+      # ModifyClusterReadOnly返回参数结构体
+      class ModifyClusterReadOnlyResponse < TencentCloud::Common::AbstractModel
+        # @param ClusterTaskIds: 集群任务ID列表
+        # @type ClusterTaskIds: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ClusterTaskIds, :RequestId
+
+        def initialize(clustertaskids=nil, requestid=nil)
+          @ClusterTaskIds = clustertaskids
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ClusterTaskIds'].nil?
+            @ClusterTaskIds = []
+            params['ClusterTaskIds'].each do |i|
+              clustertaskid_tmp = ClusterTaskId.new
+              clustertaskid_tmp.deserialize(i)
+              @ClusterTaskIds << clustertaskid_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end

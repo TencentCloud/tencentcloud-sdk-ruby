@@ -1543,6 +1543,33 @@ module TencentCloud
         end
       end
 
+      # 海关进/出口货物报关单
+      class CustomsDeclaration < TencentCloud::Common::AbstractModel
+        # @param Title: 发票名称
+        # @type Title: String
+        # @param Content: 识别出的字段名称(关键字)
+        # @type Content: Array
+
+        attr_accessor :Title, :Content
+
+        def initialize(title=nil, content=nil)
+          @Title = title
+          @Content = content
+        end
+
+        def deserialize(params)
+          @Title = params['Title']
+          unless params['Content'].nil?
+            @Content = []
+            params['Content'].each do |i|
+              otherinvoiceitem_tmp = OtherInvoiceItem.new
+              otherinvoiceitem_tmp.deserialize(i)
+              @Content << otherinvoiceitem_tmp
+            end
+          end
+        end
+      end
+
       # 海关缴款书
       class CustomsPaymentReceipt < TencentCloud::Common::AbstractModel
         # @param Title: 发票名称
@@ -5156,10 +5183,12 @@ module TencentCloud
         # @type SubTypeDescription: String
         # @param ItemPolygon: 该发票中所有字段坐标信息。包括字段英文名称、字段值所在位置四点坐标、字段所属行号，具体内容请点击左侧链接。
         # @type ItemPolygon: Array
+        # @param QRCode: 二维码数据。
+        # @type QRCode: String
 
-        attr_accessor :Code, :Type, :Polygon, :Angle, :SingleInvoiceInfos, :Page, :SubType, :TypeDescription, :CutImage, :SubTypeDescription, :ItemPolygon
+        attr_accessor :Code, :Type, :Polygon, :Angle, :SingleInvoiceInfos, :Page, :SubType, :TypeDescription, :CutImage, :SubTypeDescription, :ItemPolygon, :QRCode
 
-        def initialize(code=nil, type=nil, polygon=nil, angle=nil, singleinvoiceinfos=nil, page=nil, subtype=nil, typedescription=nil, cutimage=nil, subtypedescription=nil, itempolygon=nil)
+        def initialize(code=nil, type=nil, polygon=nil, angle=nil, singleinvoiceinfos=nil, page=nil, subtype=nil, typedescription=nil, cutimage=nil, subtypedescription=nil, itempolygon=nil, qrcode=nil)
           @Code = code
           @Type = type
           @Polygon = polygon
@@ -5171,6 +5200,7 @@ module TencentCloud
           @CutImage = cutimage
           @SubTypeDescription = subtypedescription
           @ItemPolygon = itempolygon
+          @QRCode = qrcode
         end
 
         def deserialize(params)
@@ -5198,6 +5228,7 @@ module TencentCloud
               @ItemPolygon << itempolygoninfo_tmp
             end
           end
+          @QRCode = params['QRCode']
         end
       end
 
@@ -6681,6 +6712,33 @@ module TencentCloud
         end
       end
 
+      # 网约车行程单
+      class OnlineTaxiItinerary < TencentCloud::Common::AbstractModel
+        # @param Title: 发票名称
+        # @type Title: String
+        # @param Content: 识别出的字段名称(关键字)
+        # @type Content: Array
+
+        attr_accessor :Title, :Content
+
+        def initialize(title=nil, content=nil)
+          @Title = title
+          @Content = content
+        end
+
+        def deserialize(params)
+          @Title = params['Title']
+          unless params['Content'].nil?
+            @Content = []
+            params['Content'].each do |i|
+              otherinvoiceitem_tmp = OtherInvoiceItem.new
+              otherinvoiceitem_tmp.deserialize(i)
+              @Content << otherinvoiceitem_tmp
+            end
+          end
+        end
+      end
+
       # 网约车行程单识别结果
       class OnlineTaxiItineraryInfo < TencentCloud::Common::AbstractModel
         # @param Name: 识别出的字段名称(关键字)，支持以下字段：
@@ -6849,6 +6907,33 @@ module TencentCloud
               otherinvoiceitem_tmp = OtherInvoiceItem.new
               otherinvoiceitem_tmp.deserialize(i)
               @OtherInvoiceItemList << otherinvoiceitem_tmp
+            end
+          end
+        end
+      end
+
+      # 海外发票
+      class OverseasInvoice < TencentCloud::Common::AbstractModel
+        # @param Title: 发票名称
+        # @type Title: String
+        # @param Content: 识别出的字段名称(关键字)
+        # @type Content: Array
+
+        attr_accessor :Title, :Content
+
+        def initialize(title=nil, content=nil)
+          @Title = title
+          @Content = content
+        end
+
+        def deserialize(params)
+          @Title = params['Title']
+          unless params['Content'].nil?
+            @Content = []
+            params['Content'].each do |i|
+              otherinvoiceitem_tmp = OtherInvoiceItem.new
+              otherinvoiceitem_tmp.deserialize(i)
+              @Content << otherinvoiceitem_tmp
             end
           end
         end
@@ -8591,6 +8676,11 @@ module TencentCloud
         # 18：完税凭证
         # 19：海关缴款书
         # 20：银行回单
+        # 21：网约车行程单
+        # 22：海关进/出口货物报关单
+        # 23：海外发票
+        # 24：购物小票
+        # 25：销货清单
         # -1：其他发票
         # @type Types: Array
         # @param EnableOther: 是否开启其他票识别，默认值为true，开启后可支持其他发票的智能识别。
@@ -8605,10 +8695,12 @@ module TencentCloud
         # @type EnableCutImage: Boolean
         # @param EnableItemPolygon: 是否打开字段坐标返回。默认为false。
         # @type EnableItemPolygon: Boolean
+        # @param EnableQRCode: 是否开启二维码识别。
+        # @type EnableQRCode: Boolean
 
-        attr_accessor :ImageBase64, :ImageUrl, :Types, :EnableOther, :EnablePdf, :PdfPageNumber, :EnableMultiplePage, :EnableCutImage, :EnableItemPolygon
+        attr_accessor :ImageBase64, :ImageUrl, :Types, :EnableOther, :EnablePdf, :PdfPageNumber, :EnableMultiplePage, :EnableCutImage, :EnableItemPolygon, :EnableQRCode
 
-        def initialize(imagebase64=nil, imageurl=nil, types=nil, enableother=nil, enablepdf=nil, pdfpagenumber=nil, enablemultiplepage=nil, enablecutimage=nil, enableitempolygon=nil)
+        def initialize(imagebase64=nil, imageurl=nil, types=nil, enableother=nil, enablepdf=nil, pdfpagenumber=nil, enablemultiplepage=nil, enablecutimage=nil, enableitempolygon=nil, enableqrcode=nil)
           @ImageBase64 = imagebase64
           @ImageUrl = imageurl
           @Types = types
@@ -8618,6 +8710,7 @@ module TencentCloud
           @EnableMultiplePage = enablemultiplepage
           @EnableCutImage = enablecutimage
           @EnableItemPolygon = enableitempolygon
+          @EnableQRCode = enableqrcode
         end
 
         def deserialize(params)
@@ -8630,6 +8723,7 @@ module TencentCloud
           @EnableMultiplePage = params['EnableMultiplePage']
           @EnableCutImage = params['EnableCutImage']
           @EnableItemPolygon = params['EnableItemPolygon']
+          @EnableQRCode = params['EnableQRCode']
         end
       end
 
@@ -10039,6 +10133,33 @@ module TencentCloud
         end
       end
 
+      # 销货清单
+      class SaleInventory < TencentCloud::Common::AbstractModel
+        # @param Title: 发票名称
+        # @type Title: String
+        # @param Content: 识别出的字段名称(关键字)
+        # @type Content: Array
+
+        attr_accessor :Title, :Content
+
+        def initialize(title=nil, content=nil)
+          @Title = title
+          @Content = content
+        end
+
+        def deserialize(params)
+          @Title = params['Title']
+          unless params['Content'].nil?
+            @Content = []
+            params['Content'].each do |i|
+              otherinvoiceitem_tmp = OtherInvoiceItem.new
+              otherinvoiceitem_tmp.deserialize(i)
+              @Content << otherinvoiceitem_tmp
+            end
+          end
+        end
+      end
+
       # 印章信息
       class SealInfo < TencentCloud::Common::AbstractModel
         # @param SealBody: 印章主体内容
@@ -10318,6 +10439,33 @@ module TencentCloud
         end
       end
 
+      # 购物小票
+      class ShoppingReceipt < TencentCloud::Common::AbstractModel
+        # @param Title: 发票名称
+        # @type Title: String
+        # @param Content: 识别出的字段名称(关键字)
+        # @type Content: Array
+
+        attr_accessor :Title, :Content
+
+        def initialize(title=nil, content=nil)
+          @Title = title
+          @Content = content
+        end
+
+        def deserialize(params)
+          @Title = params['Title']
+          unless params['Content'].nil?
+            @Content = []
+            params['Content'].each do |i|
+              otherinvoiceitem_tmp = OtherInvoiceItem.new
+              otherinvoiceitem_tmp.deserialize(i)
+              @Content << otherinvoiceitem_tmp
+            end
+          end
+        end
+      end
+
       # 混贴票据中单张发票的内容
       class SingleInvoiceInfo < TencentCloud::Common::AbstractModel
         # @param Name: 识别出的字段名称
@@ -10434,10 +10582,25 @@ module TencentCloud
         # @param BankSlip: 银行回单
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BankSlip: :class:`Tencentcloud::Ocr.v20181119.models.BankSlip`
+        # @param OnlineTaxiItinerary: 网约车行程单
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OnlineTaxiItinerary: :class:`Tencentcloud::Ocr.v20181119.models.OnlineTaxiItinerary`
+        # @param CustomsDeclaration: 海关进/出口货物报关单
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CustomsDeclaration: :class:`Tencentcloud::Ocr.v20181119.models.CustomsDeclaration`
+        # @param OverseasInvoice: 海外发票
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OverseasInvoice: :class:`Tencentcloud::Ocr.v20181119.models.OverseasInvoice`
+        # @param ShoppingReceipt: 购物小票
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ShoppingReceipt: :class:`Tencentcloud::Ocr.v20181119.models.ShoppingReceipt`
+        # @param SaleInventory: 销货清单
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SaleInventory: :class:`Tencentcloud::Ocr.v20181119.models.SaleInventory`
 
-        attr_accessor :VatSpecialInvoice, :VatCommonInvoice, :VatElectronicCommonInvoice, :VatElectronicSpecialInvoice, :VatElectronicInvoiceBlockchain, :VatElectronicInvoiceToll, :VatElectronicSpecialInvoiceFull, :VatElectronicInvoiceFull, :MachinePrintedInvoice, :BusInvoice, :ShippingInvoice, :TollInvoice, :OtherInvoice, :MotorVehicleSaleInvoice, :UsedCarPurchaseInvoice, :VatInvoiceRoll, :TaxiTicket, :QuotaInvoice, :AirTransport, :NonTaxIncomeGeneralBill, :NonTaxIncomeElectronicBill, :TrainTicket, :MedicalOutpatientInvoice, :MedicalHospitalizedInvoice, :VatSalesList, :ElectronicTrainTicketFull, :ElectronicFlightTicketFull, :TaxPayment, :CustomsPaymentReceipt, :BankSlip
+        attr_accessor :VatSpecialInvoice, :VatCommonInvoice, :VatElectronicCommonInvoice, :VatElectronicSpecialInvoice, :VatElectronicInvoiceBlockchain, :VatElectronicInvoiceToll, :VatElectronicSpecialInvoiceFull, :VatElectronicInvoiceFull, :MachinePrintedInvoice, :BusInvoice, :ShippingInvoice, :TollInvoice, :OtherInvoice, :MotorVehicleSaleInvoice, :UsedCarPurchaseInvoice, :VatInvoiceRoll, :TaxiTicket, :QuotaInvoice, :AirTransport, :NonTaxIncomeGeneralBill, :NonTaxIncomeElectronicBill, :TrainTicket, :MedicalOutpatientInvoice, :MedicalHospitalizedInvoice, :VatSalesList, :ElectronicTrainTicketFull, :ElectronicFlightTicketFull, :TaxPayment, :CustomsPaymentReceipt, :BankSlip, :OnlineTaxiItinerary, :CustomsDeclaration, :OverseasInvoice, :ShoppingReceipt, :SaleInventory
 
-        def initialize(vatspecialinvoice=nil, vatcommoninvoice=nil, vatelectroniccommoninvoice=nil, vatelectronicspecialinvoice=nil, vatelectronicinvoiceblockchain=nil, vatelectronicinvoicetoll=nil, vatelectronicspecialinvoicefull=nil, vatelectronicinvoicefull=nil, machineprintedinvoice=nil, businvoice=nil, shippinginvoice=nil, tollinvoice=nil, otherinvoice=nil, motorvehiclesaleinvoice=nil, usedcarpurchaseinvoice=nil, vatinvoiceroll=nil, taxiticket=nil, quotainvoice=nil, airtransport=nil, nontaxincomegeneralbill=nil, nontaxincomeelectronicbill=nil, trainticket=nil, medicaloutpatientinvoice=nil, medicalhospitalizedinvoice=nil, vatsaleslist=nil, electronictrainticketfull=nil, electronicflightticketfull=nil, taxpayment=nil, customspaymentreceipt=nil, bankslip=nil)
+        def initialize(vatspecialinvoice=nil, vatcommoninvoice=nil, vatelectroniccommoninvoice=nil, vatelectronicspecialinvoice=nil, vatelectronicinvoiceblockchain=nil, vatelectronicinvoicetoll=nil, vatelectronicspecialinvoicefull=nil, vatelectronicinvoicefull=nil, machineprintedinvoice=nil, businvoice=nil, shippinginvoice=nil, tollinvoice=nil, otherinvoice=nil, motorvehiclesaleinvoice=nil, usedcarpurchaseinvoice=nil, vatinvoiceroll=nil, taxiticket=nil, quotainvoice=nil, airtransport=nil, nontaxincomegeneralbill=nil, nontaxincomeelectronicbill=nil, trainticket=nil, medicaloutpatientinvoice=nil, medicalhospitalizedinvoice=nil, vatsaleslist=nil, electronictrainticketfull=nil, electronicflightticketfull=nil, taxpayment=nil, customspaymentreceipt=nil, bankslip=nil, onlinetaxiitinerary=nil, customsdeclaration=nil, overseasinvoice=nil, shoppingreceipt=nil, saleinventory=nil)
           @VatSpecialInvoice = vatspecialinvoice
           @VatCommonInvoice = vatcommoninvoice
           @VatElectronicCommonInvoice = vatelectroniccommoninvoice
@@ -10468,6 +10631,11 @@ module TencentCloud
           @TaxPayment = taxpayment
           @CustomsPaymentReceipt = customspaymentreceipt
           @BankSlip = bankslip
+          @OnlineTaxiItinerary = onlinetaxiitinerary
+          @CustomsDeclaration = customsdeclaration
+          @OverseasInvoice = overseasinvoice
+          @ShoppingReceipt = shoppingreceipt
+          @SaleInventory = saleinventory
         end
 
         def deserialize(params)
@@ -10590,6 +10758,26 @@ module TencentCloud
           unless params['BankSlip'].nil?
             @BankSlip = BankSlip.new
             @BankSlip.deserialize(params['BankSlip'])
+          end
+          unless params['OnlineTaxiItinerary'].nil?
+            @OnlineTaxiItinerary = OnlineTaxiItinerary.new
+            @OnlineTaxiItinerary.deserialize(params['OnlineTaxiItinerary'])
+          end
+          unless params['CustomsDeclaration'].nil?
+            @CustomsDeclaration = CustomsDeclaration.new
+            @CustomsDeclaration.deserialize(params['CustomsDeclaration'])
+          end
+          unless params['OverseasInvoice'].nil?
+            @OverseasInvoice = OverseasInvoice.new
+            @OverseasInvoice.deserialize(params['OverseasInvoice'])
+          end
+          unless params['ShoppingReceipt'].nil?
+            @ShoppingReceipt = ShoppingReceipt.new
+            @ShoppingReceipt.deserialize(params['ShoppingReceipt'])
+          end
+          unless params['SaleInventory'].nil?
+            @SaleInventory = SaleInventory.new
+            @SaleInventory.deserialize(params['SaleInventory'])
           end
         end
       end

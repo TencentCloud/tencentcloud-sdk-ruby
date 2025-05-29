@@ -53,6 +53,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建地址级退订配置
+
+        # @param request: Request instance for CreateAddressUnsubscribeConfig.
+        # @type request: :class:`Tencentcloud::ses::V20201002::CreateAddressUnsubscribeConfigRequest`
+        # @rtype: :class:`Tencentcloud::ses::V20201002::CreateAddressUnsubscribeConfigResponse`
+        def CreateAddressUnsubscribeConfig(request)
+          body = send_request('CreateAddressUnsubscribeConfig', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateAddressUnsubscribeConfigResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 添加自定义黑名单
 
         # @param request: Request instance for CreateCustomBlacklist.
@@ -208,6 +232,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CreateReceiverDetailWithDataResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除地址级退订配置
+
+        # @param request: Request instance for DeleteAddressUnsubscribeConfig.
+        # @type request: :class:`Tencentcloud::ses::V20201002::DeleteAddressUnsubscribeConfigRequest`
+        # @rtype: :class:`Tencentcloud::ses::V20201002::DeleteAddressUnsubscribeConfigResponse`
+        def DeleteAddressUnsubscribeConfig(request)
+          body = send_request('DeleteAddressUnsubscribeConfig', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteAddressUnsubscribeConfigResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -688,6 +736,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = SendEmailResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 用于更新地址级退订配置
+
+        # @param request: Request instance for UpdateAddressUnsubscribeConfig.
+        # @type request: :class:`Tencentcloud::ses::V20201002::UpdateAddressUnsubscribeConfigRequest`
+        # @rtype: :class:`Tencentcloud::ses::V20201002::UpdateAddressUnsubscribeConfigResponse`
+        def UpdateAddressUnsubscribeConfig(request)
+          body = send_request('UpdateAddressUnsubscribeConfig', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdateAddressUnsubscribeConfigResponse.new
             model.deserialize(response['Response'])
             model
           else

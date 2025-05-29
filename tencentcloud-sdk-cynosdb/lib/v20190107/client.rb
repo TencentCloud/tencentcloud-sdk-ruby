@@ -965,6 +965,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 该接口用户查询当前地域用户设置的默认备份下载来源限制
+
+        # @param request: Request instance for DescribeBackupDownloadRestriction.
+        # @type request: :class:`Tencentcloud::cynosdb::V20190107::DescribeBackupDownloadRestrictionRequest`
+        # @rtype: :class:`Tencentcloud::cynosdb::V20190107::DescribeBackupDownloadRestrictionResponse`
+        def DescribeBackupDownloadRestriction(request)
+          body = send_request('DescribeBackupDownloadRestriction', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeBackupDownloadRestrictionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（DescribeBackupDownloadUrl）用于查询集群备份文件下载地址。
 
         # @param request: Request instance for DescribeBackupDownloadUrl.
@@ -975,6 +999,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeBackupDownloadUrlResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 该接口用户查询当前地域用户级别设置的默认备份下载来源限制
+
+        # @param request: Request instance for DescribeBackupDownloadUserRestriction.
+        # @type request: :class:`Tencentcloud::cynosdb::V20190107::DescribeBackupDownloadUserRestrictionRequest`
+        # @rtype: :class:`Tencentcloud::cynosdb::V20190107::DescribeBackupDownloadUserRestrictionResponse`
+        def DescribeBackupDownloadUserRestriction(request)
+          body = send_request('DescribeBackupDownloadUserRestriction', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeBackupDownloadUserRestrictionResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1335,6 +1383,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeClusterPasswordComplexityResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（DescribeClusterReadOnly）用于查询集群只读开关。
+
+        # @param request: Request instance for DescribeClusterReadOnly.
+        # @type request: :class:`Tencentcloud::cynosdb::V20190107::DescribeClusterReadOnlyRequest`
+        # @rtype: :class:`Tencentcloud::cynosdb::V20190107::DescribeClusterReadOnlyResponse`
+        def DescribeClusterReadOnly(request)
+          body = send_request('DescribeClusterReadOnly', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeClusterReadOnlyResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -2525,6 +2597,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 该接口用于修改用户当前地域的备份文件限制下载来源，可以设置内外网均可下载、仅内网可下载，或内网指定的vpc、ip可以下载。
+
+        # @param request: Request instance for ModifyBackupDownloadRestriction.
+        # @type request: :class:`Tencentcloud::cynosdb::V20190107::ModifyBackupDownloadRestrictionRequest`
+        # @rtype: :class:`Tencentcloud::cynosdb::V20190107::ModifyBackupDownloadRestrictionResponse`
+        def ModifyBackupDownloadRestriction(request)
+          body = send_request('ModifyBackupDownloadRestriction', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyBackupDownloadRestrictionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 该接口用于修改用户当前地域的备份文件限制下载来源，可以设置内外网均可下载、仅内网可下载，或内网指定的vpc、ip可以下载。
+
+        # @param request: Request instance for ModifyBackupDownloadUserRestriction.
+        # @type request: :class:`Tencentcloud::cynosdb::V20190107::ModifyBackupDownloadUserRestrictionRequest`
+        # @rtype: :class:`Tencentcloud::cynosdb::V20190107::ModifyBackupDownloadUserRestrictionResponse`
+        def ModifyBackupDownloadUserRestriction(request)
+          body = send_request('ModifyBackupDownloadUserRestriction', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyBackupDownloadUserRestrictionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 此接口（ModifyBackupName）用于修改备份文件备注名。
 
         # @param request: Request instance for ModifyBackupName.
@@ -2679,6 +2799,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyClusterPasswordComplexityResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（ModifyClusterReadOnly）用于修改集群只读开关。
+
+        # @param request: Request instance for ModifyClusterReadOnly.
+        # @type request: :class:`Tencentcloud::cynosdb::V20190107::ModifyClusterReadOnlyRequest`
+        # @rtype: :class:`Tencentcloud::cynosdb::V20190107::ModifyClusterReadOnlyResponse`
+        def ModifyClusterReadOnly(request)
+          body = send_request('ModifyClusterReadOnly', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyClusterReadOnlyResponse.new
             model.deserialize(response['Response'])
             model
           else

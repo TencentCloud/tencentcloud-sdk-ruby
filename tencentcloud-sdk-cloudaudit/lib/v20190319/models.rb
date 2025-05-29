@@ -100,10 +100,8 @@ module TencentCloud
       # cos地域信息
       class CosRegionInfo < TencentCloud::Common::AbstractModel
         # @param CosRegion: cos地域
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CosRegion: String
         # @param CosRegionName: 地域描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CosRegionName: String
 
         attr_accessor :CosRegion, :CosRegionName

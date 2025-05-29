@@ -652,7 +652,7 @@ module TencentCloud
       class DataDisk < TencentCloud::Common::AbstractModel
         # @param DiskSize: 数据盘大小，单位：GiB。最小调整步长为10GiB，不同数据盘类型取值范围不同，具体限制详见：[存储概述](https://cloud.tencent.com/document/product/213/4952)。默认值为0，表示不购买数据盘。更多限制详见产品文档。
         # @type DiskSize: Integer
-        # @param DiskType: 数据盘类型。数据盘类型限制详见[存储概述](https://cloud.tencent.com/document/product/213/4952)。取值范围：<br /><li>LOCAL_BASIC：本地硬盘<br /> <li>LOCAL_SSD：本地SSD硬盘<br /><li>LOCAL_NVME：本地NVME硬盘，与InstanceType强相关，不支持指定<br /><li>LOCAL_PRO：本地HDD硬盘，与InstanceType强相关，不支持指定<br /><li>CLOUD_BASIC：普通云硬盘<br /><li> CLOUD_PREMIUM：高性能云硬盘<br /><li>CLOUD_SSD：SSD云硬盘<br /><li> CLOUD_HSSD：增强型SSD云硬盘<br /> <li>CLOUD_TSSD：极速型SSD云硬盘<br /><li>CLOUD_BSSD：通用型SSD云硬盘<br /><br />默认取值：LOCAL_BASIC。<br /><br />该参数对`ResizeInstanceDisk`接口无效。</li></li></li> </li> </li></li></li></li></li></li>
+        # @param DiskType: 数据盘类型。数据盘类型限制详见[存储概述](https://cloud.tencent.com/document/product/213/4952)。取值范围：<br /><li>LOCAL_BASIC：本地硬盘 </li> <li>LOCAL_SSD：本地SSD硬盘</li><li>LOCAL_NVME：本地NVME硬盘，与InstanceType强相关，不支持指定</li><li>LOCAL_PRO：本地HDD硬盘，与InstanceType强相关，不支持指定</li><li>CLOUD_BASIC：普通云硬盘</li><li> CLOUD_PREMIUM：高性能云硬盘</li><li>CLOUD_SSD：SSD云硬盘</li><li> CLOUD_HSSD：增强型SSD云硬盘</li> <li>CLOUD_TSSD：极速型SSD云硬盘</li><li>CLOUD_BSSD：通用型SSD云硬盘</li><br />默认取值：LOCAL_BASIC<br/><br />该参数对`ResizeInstanceDisk`接口无效。
         # @type DiskType: String
         # @param DiskId: 数据盘ID。
         # 该参数目前仅用于`DescribeInstances`等查询类接口的返回参数，不可用于`RunInstances`等写接口的入参。
@@ -666,14 +666,16 @@ module TencentCloud
         # @param KmsKeyId: 自定义CMK对应的ID，取值为UUID或者类似kms-abcd1234。用于加密云盘。
 
         # 该参数目前仅用于 `RunInstances` 接口。
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type KmsKeyId: String
         # @param ThroughputPerformance: 云硬盘性能，单位：MiB/s。使用此参数可给云硬盘购买额外的性能。
         # 当前仅支持极速型云盘（CLOUD_TSSD）和增强型SSD云硬盘（CLOUD_HSSD）
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ThroughputPerformance: Integer
         # @param CdcId: 所属的独享集群ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CdcId: String
         # @param BurstPerformance: 突发性能
-
         #  <b>注：内测中。</b>
         # @type BurstPerformance: Boolean
         # @param DiskName: 磁盘名称，长度不超过128 个字符。
@@ -942,7 +944,7 @@ module TencentCloud
 
       # DescribeComputeEnvCreateInfo请求参数结构体
       class DescribeComputeEnvCreateInfoRequest < TencentCloud::Common::AbstractModel
-        # @param EnvId: 计算环境ID，环境ID通过调用接口 [DescribeComputeEnv](https://cloud.tencent.com/document/api/599/15892)获取。
+        # @param EnvId: 计算环境ID，环境ID通过调用接口 [DescribeComputeEnvs](https://cloud.tencent.com/document/api/599/15893)获取。
         # @type EnvId: String
 
         attr_accessor :EnvId

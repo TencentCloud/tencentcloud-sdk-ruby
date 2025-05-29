@@ -1459,7 +1459,7 @@ module TencentCloud
         # @type HandleTaskId: String
         # @param EngineSource: 引擎来源
         # @type EngineSource: String
-        # @param VulRiskId: 新的漏洞风险id(同全网漏洞表的riskid)
+        # @param VulRiskId: 新的漏洞风险id(同全网漏洞表的RiskId)
         # @type VulRiskId: String
         # @param TvdID: 新版漏洞id
         # @type TvdID: String
