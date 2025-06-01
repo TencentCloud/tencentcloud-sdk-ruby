@@ -69,8 +69,8 @@ module TencentCloud
 
         attr_accessor :PkgType, :MiniProgramAppId, :DeviceList
         extend Gem::Deprecate
-        deprecate :MiniProgramAppId, :none, 2025, 5
-        deprecate :MiniProgramAppId=, :none, 2025, 5
+        deprecate :MiniProgramAppId, :none, 2025, 6
+        deprecate :MiniProgramAppId=, :none, 2025, 6
 
         def initialize(pkgtype=nil, miniprogramappid=nil, devicelist=nil)
           @PkgType = pkgtype
@@ -105,8 +105,8 @@ module TencentCloud
 
         attr_accessor :DeviceList, :FailureList, :SuccessList, :RequestId
         extend Gem::Deprecate
-        deprecate :DeviceList, :none, 2025, 5
-        deprecate :DeviceList=, :none, 2025, 5
+        deprecate :DeviceList, :none, 2025, 6
+        deprecate :DeviceList=, :none, 2025, 6
 
         def initialize(devicelist=nil, failurelist=nil, successlist=nil, requestid=nil)
           @DeviceList = devicelist
@@ -2008,7 +2008,7 @@ module TencentCloud
         # @type CategoryId: Integer
         # @param ProductType: 产品类型 填写 ( 0 普通产品 ， 5 网关产品)
         # @type ProductType: Integer
-        # @param EncryptionType: 加密类型 ，1表示证书认证，2表示秘钥认证，21表示TID认证-SE方式，22表示TID认证-软加固方式
+        # @param EncryptionType: 加密类型 ，1表示证书认证，2表示密钥认证，21表示TID认证-SE方式，22表示TID认证-软加固方式
         # @type EncryptionType: String
         # @param NetType: 连接类型 可以填写 wifi、wifi-ble、cellular、5g、lorawan、ble、ethernet、wifi-ethernet、else、sub_zigbee、sub_ble、sub_433mhz、sub_else、sub_blemesh
         # @type NetType: String
@@ -5921,8 +5921,8 @@ module TencentCloud
 
         attr_accessor :ModelId, :Sn, :ErrCode, :ExpireTime
         extend Gem::Deprecate
-        deprecate :ModelId, :none, 2025, 5
-        deprecate :ModelId=, :none, 2025, 5
+        deprecate :ModelId, :none, 2025, 6
+        deprecate :ModelId=, :none, 2025, 6
 
         def initialize(modelid=nil, sn=nil, errcode=nil, expiretime=nil)
           @ModelId = modelid
@@ -7491,8 +7491,8 @@ module TencentCloud
 
         attr_accessor :MiniProgramAppId, :DeviceList
         extend Gem::Deprecate
-        deprecate :MiniProgramAppId, :none, 2025, 5
-        deprecate :MiniProgramAppId=, :none, 2025, 5
+        deprecate :MiniProgramAppId, :none, 2025, 6
+        deprecate :MiniProgramAppId=, :none, 2025, 6
 
         def initialize(miniprogramappid=nil, devicelist=nil)
           @MiniProgramAppId = miniprogramappid
@@ -10745,8 +10745,8 @@ module TencentCloud
 
         attr_accessor :ModelId, :Sn, :ExpireTime, :PkgType
         extend Gem::Deprecate
-        deprecate :ModelId, :none, 2025, 5
-        deprecate :ModelId=, :none, 2025, 5
+        deprecate :ModelId, :none, 2025, 6
+        deprecate :ModelId=, :none, 2025, 6
 
         def initialize(modelid=nil, sn=nil, expiretime=nil, pkgtype=nil)
           @ModelId = modelid
@@ -10776,10 +10776,10 @@ module TencentCloud
 
         attr_accessor :Sn, :ModelId, :ActiveNum
         extend Gem::Deprecate
-        deprecate :ModelId, :none, 2025, 5
-        deprecate :ModelId=, :none, 2025, 5
-        deprecate :ActiveNum, :none, 2025, 5
-        deprecate :ActiveNum=, :none, 2025, 5
+        deprecate :ModelId, :none, 2025, 6
+        deprecate :ModelId=, :none, 2025, 6
+        deprecate :ActiveNum, :none, 2025, 6
+        deprecate :ActiveNum=, :none, 2025, 6
 
         def initialize(sn=nil, modelid=nil, activenum=nil)
           @Sn = sn

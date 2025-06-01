@@ -243,8 +243,8 @@ module TencentCloud
 
         attr_accessor :ClusterId, :Cpu, :Memory, :ReadOnlyCount, :DeviceType, :InstanceGrpId, :VpcId, :SubnetId, :Port, :InstanceName, :AutoVoucher, :DbType, :OrderSource, :DealMode, :ParamTemplateId, :InstanceParams, :SecurityGroupIds, :UpgradeProxy
         extend Gem::Deprecate
-        deprecate :InstanceGrpId, :none, 2025, 5
-        deprecate :InstanceGrpId=, :none, 2025, 5
+        deprecate :InstanceGrpId, :none, 2025, 6
+        deprecate :InstanceGrpId=, :none, 2025, 6
 
         def initialize(clusterid=nil, cpu=nil, memory=nil, readonlycount=nil, devicetype=nil, instancegrpid=nil, vpcid=nil, subnetid=nil, port=nil, instancename=nil, autovoucher=nil, dbtype=nil, ordersource=nil, dealmode=nil, paramtemplateid=nil, instanceparams=nil, securitygroupids=nil, upgradeproxy=nil)
           @ClusterId = clusterid
@@ -1113,10 +1113,10 @@ module TencentCloud
 
         attr_accessor :ID, :AppId, :ClusterId, :Region, :CreateTime, :DelayTime, :ErrMsg, :FlowId, :Input, :InstanceGrpId, :InstanceGroupId, :InstanceId, :ObjectId, :ObjectType, :Operator, :Output, :Status, :TaskType, :TriggerTaskId, :UpdateTime, :StartTime, :EndTime, :ClusterName, :InstanceName, :Process, :ModifyParamsData, :CreateClustersData, :RollbackData, :ModifyInstanceData, :ManualBackupData, :ModifyDbVersionData, :ClusterSlaveData, :SwitchClusterLogBin, :ModifyInstanceParamsData, :TaskMaintainInfo, :InstanceCLSDeliveryInfos, :TaskProgressInfo, :GdnTaskInfo
         extend Gem::Deprecate
-        deprecate :InstanceGrpId, :none, 2025, 5
-        deprecate :InstanceGrpId=, :none, 2025, 5
-        deprecate :ModifyParamsData, :none, 2025, 5
-        deprecate :ModifyParamsData=, :none, 2025, 5
+        deprecate :InstanceGrpId, :none, 2025, 6
+        deprecate :InstanceGrpId=, :none, 2025, 6
+        deprecate :ModifyParamsData, :none, 2025, 6
+        deprecate :ModifyParamsData=, :none, 2025, 6
 
         def initialize(id=nil, appid=nil, clusterid=nil, region=nil, createtime=nil, delaytime=nil, errmsg=nil, flowid=nil, input=nil, instancegrpid=nil, instancegroupid=nil, instanceid=nil, objectid=nil, objecttype=nil, operator=nil, output=nil, status=nil, tasktype=nil, triggertaskid=nil, updatetime=nil, starttime=nil, endtime=nil, clustername=nil, instancename=nil, process=nil, modifyparamsdata=nil, createclustersdata=nil, rollbackdata=nil, modifyinstancedata=nil, manualbackupdata=nil, modifydbversiondata=nil, clusterslavedata=nil, switchclusterlogbin=nil, modifyinstanceparamsdata=nil, taskmaintaininfo=nil, instanceclsdeliveryinfos=nil, taskprogressinfo=nil, gdntaskinfo=nil)
           @ID = id
@@ -1574,8 +1574,8 @@ module TencentCloud
 
         attr_accessor :InstanceGrpId, :InstanceGroupId, :InstanceId
         extend Gem::Deprecate
-        deprecate :InstanceGrpId, :none, 2025, 5
-        deprecate :InstanceGrpId=, :none, 2025, 5
+        deprecate :InstanceGrpId, :none, 2025, 6
+        deprecate :InstanceGrpId=, :none, 2025, 6
 
         def initialize(instancegrpid=nil, instancegroupid=nil, instanceid=nil)
           @InstanceGrpId = instancegrpid
@@ -1944,8 +1944,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :StartTime, :EndTime, :Order, :OrderBy, :Filter, :LogFilter, :ColumnFilter
         extend Gem::Deprecate
-        deprecate :Filter, :none, 2025, 5
-        deprecate :Filter=, :none, 2025, 5
+        deprecate :Filter, :none, 2025, 6
+        deprecate :Filter=, :none, 2025, 6
 
         def initialize(instanceid=nil, starttime=nil, endtime=nil, order=nil, orderby=nil, filter=nil, logfilter=nil, columnfilter=nil)
           @InstanceId = instanceid
@@ -4894,8 +4894,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :StartTime, :EndTime, :Order, :OrderBy, :Filter, :Limit, :Offset, :LogFilter
         extend Gem::Deprecate
-        deprecate :Filter, :none, 2025, 5
-        deprecate :Filter=, :none, 2025, 5
+        deprecate :Filter, :none, 2025, 6
+        deprecate :Filter=, :none, 2025, 6
 
         def initialize(instanceid=nil, starttime=nil, endtime=nil, order=nil, orderby=nil, filter=nil, limit=nil, offset=nil, logfilter=nil)
           @InstanceId = instanceid
@@ -5932,8 +5932,8 @@ module TencentCloud
 
         attr_accessor :TotalCount, :InstanceGrpInfoList, :InstanceGroupInfoList, :RequestId
         extend Gem::Deprecate
-        deprecate :InstanceGrpInfoList, :none, 2025, 5
-        deprecate :InstanceGrpInfoList=, :none, 2025, 5
+        deprecate :InstanceGrpInfoList, :none, 2025, 6
+        deprecate :InstanceGrpInfoList=, :none, 2025, 6
 
         def initialize(totalcount=nil, instancegrpinfolist=nil, instancegroupinfolist=nil, requestid=nil)
           @TotalCount = totalcount
@@ -6330,8 +6330,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :InstanceGroupId
         extend Gem::Deprecate
-        deprecate :InstanceId, :none, 2025, 5
-        deprecate :InstanceId=, :none, 2025, 5
+        deprecate :InstanceId, :none, 2025, 6
+        deprecate :InstanceId=, :none, 2025, 6
 
         def initialize(instanceid=nil, instancegroupid=nil)
           @InstanceId = instanceid
@@ -8025,7 +8025,7 @@ module TencentCloud
         # @type StartTimeBegin: String
         # @param StartTimeEnd: 任务开始时间结束值
         # @type StartTimeEnd: String
-        # @param Filters: 过滤条件
+        # @param Filters: 过滤条件，支持的搜索字段："ClusterId"、"ClusterName"、"InstanceId"、"InstanceName"、"Status"、"TaskId"、"TaskType"
         # @type Filters: Array
         # @param Limit: 查询列表长度
         # @type Limit: Integer
@@ -11232,8 +11232,8 @@ module TencentCloud
 
         attr_accessor :ClusterId, :InstanceGrpId, :InstanceGroupId, :Vip, :Vport, :DbType, :OldIpReserveHours
         extend Gem::Deprecate
-        deprecate :InstanceGrpId, :none, 2025, 5
-        deprecate :InstanceGrpId=, :none, 2025, 5
+        deprecate :InstanceGrpId, :none, 2025, 6
+        deprecate :InstanceGrpId=, :none, 2025, 6
 
         def initialize(clusterid=nil, instancegrpid=nil, instancegroupid=nil, vip=nil, vport=nil, dbtype=nil, oldipreservehours=nil)
           @ClusterId = clusterid
@@ -11533,8 +11533,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :LogExpireDay, :HighLogExpireDay, :AuditRuleFilters, :RuleTemplateIds, :AuditAll
         extend Gem::Deprecate
-        deprecate :AuditRuleFilters, :none, 2025, 5
-        deprecate :AuditRuleFilters=, :none, 2025, 5
+        deprecate :AuditRuleFilters, :none, 2025, 6
+        deprecate :AuditRuleFilters=, :none, 2025, 6
 
         def initialize(instanceid=nil, logexpireday=nil, highlogexpireday=nil, auditrulefilters=nil, ruletemplateids=nil, auditall=nil)
           @InstanceId = instanceid
@@ -11841,8 +11841,8 @@ module TencentCloud
 
         attr_accessor :InstanceGrpId, :InstanceId, :InstanceGroupId
         extend Gem::Deprecate
-        deprecate :InstanceGrpId, :none, 2025, 5
-        deprecate :InstanceGrpId=, :none, 2025, 5
+        deprecate :InstanceGrpId, :none, 2025, 6
+        deprecate :InstanceGrpId=, :none, 2025, 6
 
         def initialize(instancegrpid=nil, instanceid=nil, instancegroupid=nil)
           @InstanceGrpId = instancegrpid
@@ -12821,10 +12821,10 @@ module TencentCloud
 
       # 查询过滤器
       class QueryFilter < TencentCloud::Common::AbstractModel
-        # @param Names: 搜索字段，目前支持："InstanceId", "ProjectId", "InstanceName", "Vip"
-        # @type Names: Array
         # @param Values: 搜索字符串
         # @type Values: Array
+        # @param Names: 搜索字段，目前支持："InstanceId", "ProjectId", "InstanceName", "Vip"
+        # @type Names: Array
         # @param ExactMatch: 是否精确匹配
         # @type ExactMatch: Boolean
         # @param Name: 搜索字段
@@ -12832,19 +12832,19 @@ module TencentCloud
         # @param Operator: 操作符
         # @type Operator: String
 
-        attr_accessor :Names, :Values, :ExactMatch, :Name, :Operator
+        attr_accessor :Values, :Names, :ExactMatch, :Name, :Operator
 
-        def initialize(names=nil, values=nil, exactmatch=nil, name=nil, operator=nil)
-          @Names = names
+        def initialize(values=nil, names=nil, exactmatch=nil, name=nil, operator=nil)
           @Values = values
+          @Names = names
           @ExactMatch = exactmatch
           @Name = name
           @Operator = operator
         end
 
         def deserialize(params)
-          @Names = params['Names']
           @Values = params['Values']
+          @Names = params['Names']
           @ExactMatch = params['ExactMatch']
           @Name = params['Name']
           @Operator = params['Operator']

@@ -149,7 +149,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 为MQTT实例创建公网接入点
+        # 为MQTT实例创建公网接入点，未开启公网的集群可调用。
 
         # @param request: Request instance for CreateInsPublicEndpoint.
         # @type request: :class:`Tencentcloud::mqtt::V20240516::CreateInsPublicEndpointRequest`
@@ -802,6 +802,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 根据订阅查询消息
+
+        # @param request: Request instance for DescribeMessageByTopic.
+        # @type request: :class:`Tencentcloud::mqtt::V20240516::DescribeMessageByTopicRequest`
+        # @rtype: :class:`Tencentcloud::mqtt::V20240516::DescribeMessageByTopicResponse`
+        def DescribeMessageByTopic(request)
+          body = send_request('DescribeMessageByTopic', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeMessageByTopicResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 根据一级Topic查询消息列表
 
         # @param request: Request instance for DescribeMessageList.
@@ -951,7 +975,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 修改策略规则
+        # 修改策略规则，可参考 [数据面授权策略说明](https://cloud.tencent.com/document/product/1778/109715)
 
         # @param request: Request instance for ModifyAuthorizationPolicy.
         # @type request: :class:`Tencentcloud::mqtt::V20240516::ModifyAuthorizationPolicyRequest`
@@ -1072,7 +1096,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 修改MQTT JWKS 认证器
+        # 修改MQTT JWKS 认证器，全量配置修改，需要提交完整的修改后配置。
 
         # @param request: Request instance for ModifyJWKSAuthenticator.
         # @type request: :class:`Tencentcloud::mqtt::V20240516::ModifyJWKSAuthenticatorRequest`

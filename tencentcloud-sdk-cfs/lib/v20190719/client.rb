@@ -754,7 +754,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 用来设置文件系统扩容策略，，该接口只支持turbo文件系统
+        # 用来设置文件系统扩容策略，该接口只支持turbo文件系统
 
         # @param request: Request instance for ModifyFileSystemAutoScaleUpRule.
         # @type request: :class:`Tencentcloud::cfs::V20190719::ModifyFileSystemAutoScaleUpRuleRequest`
@@ -850,7 +850,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 用于终止迁移任务。
+        # 用于终止迁移任务，非运行中状态不支持终止。
         # 此接口需提交工单，开启白名单之后才能使用。
 
         # @param request: Request instance for StopMigrationTask.

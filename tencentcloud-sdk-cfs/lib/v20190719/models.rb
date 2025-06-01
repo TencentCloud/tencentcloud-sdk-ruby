@@ -612,7 +612,7 @@ module TencentCloud
 
       # CreateCfsRule请求参数结构体
       class CreateCfsRuleRequest < TencentCloud::Common::AbstractModel
-        # @param PGroupId: 权限组 ID，通过创建权限组接口或者创建权限组规则接口获取
+        # @param PGroupId: 权限组 ID，可通过[DescribeCfsPGroups接口](https://cloud.tencent.com/document/api/582/38157)获取
         # @type PGroupId: String
         # @param AuthClientIp: 可以填写单个 IP 或者单个网段，例如 10.1.10.11 或者 10.10.1.0/24。默认来访地址为*表示允许所有。同时需要注意，此处需填写 CVM 的内网 IP。
         # @type AuthClientIp: String
@@ -620,7 +620,7 @@ module TencentCloud
         # @type Priority: Integer
         # @param RWPermission: 读写权限, 值为 RO、RW；其中 RO 为只读，RW 为读写，不填默认为只读
         # @type RWPermission: String
-        # @param UserPermission: 用户权限，值为 all_squash、no_all_squash、root_squash、no_root_squash。
+        # @param UserPermission: 用户权限，值为 all_squash、no_all_squash、root_squash、no_root_squash。默认值为root_squash
         # all_squash：所有访问用户（含 root 用户）都会被映射为匿名用户或用户组。
         # no_all_squash：所有访问用户（含 root 用户）均保持原有的 UID/GID 信息。
         # root_squash：将来访的 root 用户映射为匿名用户或用户组，非 root 用户保持原有的 UID/GID 信息。
@@ -688,9 +688,9 @@ module TencentCloud
 
       # CreateCfsSnapshot请求参数结构体
       class CreateCfsSnapshotRequest < TencentCloud::Common::AbstractModel
-        # @param FileSystemId: 文件系统 ID，通过查询文件系统接口获取
+        # @param FileSystemId: 文件系统ID，通过查询文件系统列表获取；[DescribeCfsFileSystems](https://cloud.tencent.com/document/product/582/38170)
         # @type FileSystemId: String
-        # @param SnapshotName: 快照名称，不超过64字符
+        # @param SnapshotName: 快照名称，支持不超过64字符长度，支持中文、数字、_、-
         # @type SnapshotName: String
         # @param ResourceTags: 快照标签
         # @type ResourceTags: Array
@@ -835,7 +835,7 @@ module TencentCloud
 
       # DeleteAutoSnapshotPolicy请求参数结构体
       class DeleteAutoSnapshotPolicyRequest < TencentCloud::Common::AbstractModel
-        # @param AutoSnapshotPolicyId: 快照策略ID，查询快照策略接口获取
+        # @param AutoSnapshotPolicyId: 快照策略ID，查询快照策略接口获取,[DescribeAutoSnapshotPolicies](https://cloud.tencent.com/document/api/582/80208)
         # @type AutoSnapshotPolicyId: String
 
         attr_accessor :AutoSnapshotPolicyId
@@ -871,7 +871,7 @@ module TencentCloud
 
       # DeleteCfsFileSystem请求参数结构体
       class DeleteCfsFileSystemRequest < TencentCloud::Common::AbstractModel
-        # @param FileSystemId: 文件系统 ID。说明，进行删除文件系统操作前需要先调用 DeleteMountTarget 接口删除该文件系统的挂载点，否则会删除失败。
+        # @param FileSystemId: 文件系统 ID，通过[查询文件系统接口](https://cloud.tencent.com/document/api/582/38170)获取。说明，进行删除文件系统操作前需要先调用 DeleteMountTarget 接口删除该文件系统的挂载点，否则会删除失败。
         # @type FileSystemId: String
 
         attr_accessor :FileSystemId
@@ -903,7 +903,7 @@ module TencentCloud
 
       # DeleteCfsPGroup请求参数结构体
       class DeleteCfsPGroupRequest < TencentCloud::Common::AbstractModel
-        # @param PGroupId: 权限组 ID，通过创建权限组接口或者创建权限组规则接口获取
+        # @param PGroupId: 权限组 ID，可通过[DescribeCfsPGroups接口](https://cloud.tencent.com/document/api/582/38157)获取
         # @type PGroupId: String
 
         attr_accessor :PGroupId
@@ -943,9 +943,9 @@ module TencentCloud
 
       # DeleteCfsRule请求参数结构体
       class DeleteCfsRuleRequest < TencentCloud::Common::AbstractModel
-        # @param PGroupId: 权限组 ID，通过创建权限组接口或者创建权限组规则接口获取
+        # @param PGroupId: 权限组 ID，可通过[DescribeCfsPGroups接口](https://cloud.tencent.com/document/api/582/38157)获取
         # @type PGroupId: String
-        # @param RuleId: 规则 ID，通过查询权限组规则接口获取
+        # @param RuleId: 规则 ID，可通过[DescribeCfsRules](https://cloud.tencent.com/document/api/582/38156)接口获取
         # @type RuleId: String
 
         attr_accessor :PGroupId, :RuleId
@@ -987,9 +987,10 @@ module TencentCloud
 
       # DeleteCfsSnapshot请求参数结构体
       class DeleteCfsSnapshotRequest < TencentCloud::Common::AbstractModel
-        # @param SnapshotId: 文件系统快照id，可通过查询快照列表接口获取
+        # @param SnapshotId: 快照ID，可以通过[DescribeCfsSnapshots](https://cloud.tencent.com/document/api/582/80206) 查询获取
         # @type SnapshotId: String
         # @param SnapshotIds: 需要删除的文件系统快照ID 列表，快照ID，跟ID列表至少填一项
+        # 快照ID，可以通过[DescribeCfsSnapshots](https://cloud.tencent.com/document/api/582/80206) 查询获取
         # @type SnapshotIds: Array
 
         attr_accessor :SnapshotId, :SnapshotIds
@@ -1095,7 +1096,7 @@ module TencentCloud
 
       # DeleteUserQuota请求参数结构体
       class DeleteUserQuotaRequest < TencentCloud::Common::AbstractModel
-        # @param FileSystemId: 文件系统 ID，通过查询文件系统接口获取
+        # @param FileSystemId: 文件系统ID，通过查询文件系统列表获取；[DescribeCfsFileSystems](https://cloud.tencent.com/document/product/582/38170)
         # @type FileSystemId: String
         # @param UserType: 指定配额类型，包括Uid（按用户ID限制）、Gid（按用户组ID限制）、Dir（按目录限制）
         # @type UserType: String
@@ -1306,7 +1307,7 @@ module TencentCloud
 
       # DescribeCfsFileSystemClients请求参数结构体
       class DescribeCfsFileSystemClientsRequest < TencentCloud::Common::AbstractModel
-        # @param FileSystemId: 文件系统 ID，通过查询文件系统接口获取
+        # @param FileSystemId: 文件系统 ID，通过[查询文件系统接口](https://cloud.tencent.com/document/api/582/38170)获取
         # @type FileSystemId: String
         # @param Offset: Offset 分页码，默认为0
         # @type Offset: Integer
@@ -1466,7 +1467,7 @@ module TencentCloud
 
       # DescribeCfsRules请求参数结构体
       class DescribeCfsRulesRequest < TencentCloud::Common::AbstractModel
-        # @param PGroupId: 权限组 ID，通过创建权限组接口或者创建权限组规则接口获取
+        # @param PGroupId: 权限组 ID，可通过[DescribeCfsPGroups接口](https://cloud.tencent.com/document/api/582/38157)获取
         # @type PGroupId: String
 
         attr_accessor :PGroupId
@@ -1596,7 +1597,7 @@ module TencentCloud
         # <br>tag-key - Array of String - 是否必填：否 -（过滤条件）按照标签键进行过滤。
         # <br>tag:tag-key - Array of String - 是否必填：否 -（过滤条件）按照标签键值对进行过滤。 tag-key使用具体的标签键进行替换。
         # @type Filters: Array
-        # @param OrderField: 按创建时间排序取值CreationTime
+        # @param OrderField: 按创建时间排序取值
         # @type OrderField: String
         # @param Order: 排序 升序或者降序
         # @type Order: String
@@ -1672,21 +1673,7 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 分页单页限制数目，默认值为20，最大值100。
         # @type Limit: Integer
-        # @param Filters: <br><li> taskId
-
-        # 按照【迁移任务id】进行过滤。
-        # 类型：String
-
-        # 必选：否
-
-        # <br><li> taskName
-
-        # 按照【迁移任务名字】进行模糊搜索过滤。
-        # 类型：String
-
-        # 必选：否
-
-        # 每次请求的Filters的上限为10，Filter.Values的上限为100。
+        # @param Filters: <br><li> taskId按照【迁移任务id】进行过滤。类型：String必选：否<br></li><br><li>  taskName按照【迁移任务名字】进行模糊搜索过滤。类型：String必选：否每次请求的Filters的上限为10，Filter.Values的上限为100。</li>
         # @type Filters: Array
 
         attr_accessor :Offset, :Limit, :Filters
@@ -1713,7 +1700,7 @@ module TencentCloud
 
       # DescribeMigrationTasks返回参数结构体
       class DescribeMigrationTasksResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 迁移任务的数量
+        # @param TotalCount: 迁移任务的总数量
         # @type TotalCount: Integer
         # @param MigrationTasks: 迁移任务详情
         # @type MigrationTasks: Array
@@ -1744,7 +1731,7 @@ module TencentCloud
 
       # DescribeMountTargets请求参数结构体
       class DescribeMountTargetsRequest < TencentCloud::Common::AbstractModel
-        # @param FileSystemId: 文件系统 ID，查询文件系统列表可以获得id
+        # @param FileSystemId: 文件系统 ID，[查询文件系统列表](https://cloud.tencent.com/document/api/582/38170)可以获得id
         # @type FileSystemId: String
 
         attr_accessor :FileSystemId
@@ -1791,11 +1778,11 @@ module TencentCloud
 
       # DescribeSnapshotOperationLogs请求参数结构体
       class DescribeSnapshotOperationLogsRequest < TencentCloud::Common::AbstractModel
-        # @param SnapshotId: 文件系统快照ID，通过快照创建接口获得
+        # @param SnapshotId: 快照ID，可以通过[DescribeCfsSnapshots](https://cloud.tencent.com/document/api/582/80206) 查询获取
         # @type SnapshotId: String
-        # @param StartTime: 起始时间
+        # @param StartTime: 起始时间，格式“YYYY-MM-DD hh:mm:ss”
         # @type StartTime: String
-        # @param EndTime: 结束时间
+        # @param EndTime: 结束时间，格式“YYYY-MM-DD hh:mm:ss”
         # @type EndTime: String
 
         attr_accessor :SnapshotId, :StartTime, :EndTime
@@ -1846,7 +1833,7 @@ module TencentCloud
 
       # DescribeUserQuota请求参数结构体
       class DescribeUserQuotaRequest < TencentCloud::Common::AbstractModel
-        # @param FileSystemId: 文件系统 ID,通过查询文件系统列表获取
+        # @param FileSystemId: 文件系统 ID,通过[查询文件系统列表](https://cloud.tencent.com/document/api/582/38170)获取
         # @type FileSystemId: String
         # @param Filters: 过滤条件。
         # UserType - Array of String - 是否必填：否 -（过滤条件）按配额类型过滤。(Uid|Gid|Dir，分别对应用户，用户组，目录 )
@@ -1960,7 +1947,7 @@ module TencentCloud
         # @type ClientIp: String
         # @param VpcId: 文件系统所属VPCID
         # @type VpcId: String
-        # @param Zone: 可用区名称，例如ap-beijing-1，请参考 概览文档中的地域与可用区列表
+        # @param Zone: 可用区名称，例如ap-beijing-1，参考[简介](https://cloud.tencent.com/document/api/582/38144)文档中的地域与可用区列表
         # @type Zone: String
         # @param ZoneName: 可用区中文名称
         # @type ZoneName: String
@@ -2267,7 +2254,7 @@ module TencentCloud
 
       # ModifyFileSystemAutoScaleUpRule请求参数结构体
       class ModifyFileSystemAutoScaleUpRuleRequest < TencentCloud::Common::AbstractModel
-        # @param FileSystemId: 文件系统id,通过查询文件系统列表获取该参数
+        # @param FileSystemId: 文件系统ID，通过查询文件系统列表获取；[DescribeCfsFileSystems](https://cloud.tencent.com/document/product/582/38170)
         # @type FileSystemId: String
         # @param ScaleUpThreshold: 扩容阈值，范围[10-90]
         # @type ScaleUpThreshold: Integer
@@ -2520,7 +2507,7 @@ module TencentCloud
 
       # SetUserQuota请求参数结构体
       class SetUserQuotaRequest < TencentCloud::Common::AbstractModel
-        # @param FileSystemId: 文件系统 ID,通过查询文件系统列表获取
+        # @param FileSystemId: 文件系统 ID,通过[查询文件系统列表](https://cloud.tencent.com/document/api/582/38170)获取
         # @type FileSystemId: String
         # @param UserType: 指定配额类型，包括Uid、Gid，Dir，分别代表用户配额，用户组配额，目录配额
         # @type UserType: String
@@ -2832,9 +2819,9 @@ module TencentCloud
 
       # UnbindAutoSnapshotPolicy请求参数结构体
       class UnbindAutoSnapshotPolicyRequest < TencentCloud::Common::AbstractModel
-        # @param FileSystemIds: 需要解绑的文件系统ID列表，用"," 分割，文件系统id 通创建文件系统接口获得
+        # @param FileSystemIds: 需要解绑的文件系统ID列表，用"," 分割，文件系统ID，通过查询文件系统列表获取；[DescribeCfsFileSystems](https://cloud.tencent.com/document/product/582/38170)
         # @type FileSystemIds: String
-        # @param AutoSnapshotPolicyId: 解绑的快照ID，通过创建快照策略接口获得
+        # @param AutoSnapshotPolicyId: 解绑的快照策略ID，可以通过[DescribeAutoSnapshotPolicies](https://cloud.tencent.com/document/api/582/80208) 查询获取
         # @type AutoSnapshotPolicyId: String
 
         attr_accessor :FileSystemIds, :AutoSnapshotPolicyId
@@ -2872,7 +2859,7 @@ module TencentCloud
 
       # UpdateAutoSnapshotPolicy请求参数结构体
       class UpdateAutoSnapshotPolicyRequest < TencentCloud::Common::AbstractModel
-        # @param AutoSnapshotPolicyId: 快照策略ID,查询快照策略列表获取
+        # @param AutoSnapshotPolicyId: 解绑的快照策略ID，可以通过[DescribeAutoSnapshotPolicies](https://cloud.tencent.com/document/api/582/80208) 查询获取
         # @type AutoSnapshotPolicyId: String
         # @param PolicyName: 快照策略名称，不超过64个字符
         # @type PolicyName: String
@@ -2936,9 +2923,9 @@ module TencentCloud
 
       # UpdateCfsFileSystemName请求参数结构体
       class UpdateCfsFileSystemNameRequest < TencentCloud::Common::AbstractModel
-        # @param FileSystemId: 文件系统 ID
+        # @param FileSystemId: 文件系统 ID,通过[查询文件系统接口](https://cloud.tencent.com/document/api/582/38170)获取
         # @type FileSystemId: String
-        # @param FsName: 用户自定义文件系统名称
+        # @param FsName: 用户自定义文件系统名称，64字节内的中文字母数字或者 _,-,与CreationToken 至少填一个
         # @type FsName: String
 
         attr_accessor :FileSystemId, :FsName
@@ -2984,9 +2971,9 @@ module TencentCloud
 
       # UpdateCfsFileSystemPGroup请求参数结构体
       class UpdateCfsFileSystemPGroupRequest < TencentCloud::Common::AbstractModel
-        # @param PGroupId: 权限组 ID，通过创建权限组接口或者创建权限组规则接口获取
+        # @param PGroupId: 权限组 ID，可通过[DescribeCfsPGroups接口](https://cloud.tencent.com/document/api/582/38157)获取
         # @type PGroupId: String
-        # @param FileSystemId: 文件系统 ID，通过查询文件系统接口获取
+        # @param FileSystemId: 文件系统 ID，通过[查询文件系统接口](https://cloud.tencent.com/document/api/582/38170)获取
         # @type FileSystemId: String
 
         attr_accessor :PGroupId, :FileSystemId
@@ -3064,7 +3051,7 @@ module TencentCloud
 
       # UpdateCfsPGroup请求参数结构体
       class UpdateCfsPGroupRequest < TencentCloud::Common::AbstractModel
-        # @param PGroupId: 权限组 ID，通过创建权限组接口或者创建权限组规则接口获取
+        # @param PGroupId: 权限组 ID，可通过[DescribeCfsPGroups接口](https://cloud.tencent.com/document/api/582/38157)获取
         # @type PGroupId: String
         # @param Name: 权限组名称，1-64个字符且只能为中文，字母，数字，下划线或横线
         # @type Name: String
@@ -3116,9 +3103,9 @@ module TencentCloud
 
       # UpdateCfsRule请求参数结构体
       class UpdateCfsRuleRequest < TencentCloud::Common::AbstractModel
-        # @param PGroupId: 权限组 ID，通过创建权限组接口或者创建权限组规则接口获取
+        # @param PGroupId: 权限组 ID，可通过[DescribeCfsPGroups接口](https://cloud.tencent.com/document/api/582/38157)获取
         # @type PGroupId: String
-        # @param RuleId: 规则 ID，通过查询权限组规则接口获取
+        # @param RuleId: 规则 ID，可通过[DescribeCfsRules](https://cloud.tencent.com/document/api/582/38156)接口获取
         # @type RuleId: String
         # @param AuthClientIp: 可以填写单个 IP 或者单个网段，例如 10.1.10.11 或者 10.10.1.0/24。默认来访地址为*表示允许所有。同时需要注意，此处需填写 CVM 的内网 IP。
         # @type AuthClientIp: String
@@ -3196,9 +3183,9 @@ module TencentCloud
 
       # UpdateCfsSnapshotAttribute请求参数结构体
       class UpdateCfsSnapshotAttributeRequest < TencentCloud::Common::AbstractModel
-        # @param SnapshotId: 文件系统快照ID,查询文件系统快照列表获取
+        # @param SnapshotId: 快照ID，可以通过[DescribeCfsSnapshots](https://cloud.tencent.com/document/api/582/80206) 查询获取
         # @type SnapshotId: String
-        # @param SnapshotName: 文件系统快照名称，与AliveDays 必须填一个
+        # @param SnapshotName: 文件系统快照名称，与AliveDays 必须填一个，快照名称，支持不超过64字符长度，支持中文、数字、_、-
         # @type SnapshotName: String
         # @param AliveDays: 文件系统快照保留天数，与SnapshotName必须填一个，如果原来是永久保留时间，不允许修改成短期有效期
         # @type AliveDays: Integer
@@ -3240,7 +3227,7 @@ module TencentCloud
 
       # UpdateFileSystemBandwidthLimit请求参数结构体
       class UpdateFileSystemBandwidthLimitRequest < TencentCloud::Common::AbstractModel
-        # @param FileSystemId: 文件系统 ID,通过查询文件系统列表获取
+        # @param FileSystemId: 文件系统 ID,可通过[DescribeCfsFileSystems](https://cloud.tencent.com/document/api/582/38170)接口获取
         # @type FileSystemId: String
         # @param BandwidthLimit: 文件系统带宽，仅吞吐型可填。单位MiB/s，最小为1GiB/s，最大200GiB/s。
         # @type BandwidthLimit: Integer

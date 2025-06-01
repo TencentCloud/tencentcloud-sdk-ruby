@@ -70,8 +70,8 @@ module TencentCloud
 
         attr_accessor :AutoScalingGroupId, :ActivityId, :ActivityType, :StatusCode, :StatusMessage, :Cause, :Description, :StartTime, :EndTime, :CreatedTime, :ActivityRelatedInstanceSet, :StatusMessageSimplified, :LifecycleActionResultSet, :DetailedStatusMessageSet, :InvocationResultSet, :RelatedInstanceSet
         extend Gem::Deprecate
-        deprecate :ActivityRelatedInstanceSet, :none, 2025, 5
-        deprecate :ActivityRelatedInstanceSet=, :none, 2025, 5
+        deprecate :ActivityRelatedInstanceSet, :none, 2025, 6
+        deprecate :ActivityRelatedInstanceSet=, :none, 2025, 6
 
         def initialize(autoscalinggroupid=nil, activityid=nil, activitytype=nil, statuscode=nil, statusmessage=nil, cause=nil, description=nil, starttime=nil, endtime=nil, createdtime=nil, activityrelatedinstanceset=nil, statusmessagesimplified=nil, lifecycleactionresultset=nil, detailedstatusmessageset=nil, invocationresultset=nil, relatedinstanceset=nil)
           @AutoScalingGroupId = autoscalinggroupid
@@ -1514,7 +1514,7 @@ module TencentCloud
         # <li>CLOUD_BSSD：通用型SSD云硬盘</li>
         # 默认取值与系统盘类型（SystemDisk.DiskType）保持一致。
         # @type DiskType: String
-        # @param DiskSize: 数据盘大小，单位：GB。不同数据盘类型取值范围不同，具体限制详见：[CVM实例配置](https://cloud.tencent.com/document/product/213/2177)。默认值为0，表示不购买数据盘。更多限制详见产品文档。
+        # @param DiskSize: 数据盘大小，单位：GB。不同数据盘类型取值范围不同，具体限制详见：[CVM实例配置](https://cloud.tencent.com/document/product/213/2177)。默认值为0，表示不购买数据盘。更多限制详见[产品文档](https://cloud.tencent.com/document/product/362/5145)。
         # @type DiskSize: Integer
         # @param SnapshotId: 数据盘快照 ID，可通过 [DescribeSnapshots](https://cloud.tencent.com/document/product/362/15647) 接口获取该参数。
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -2747,8 +2747,8 @@ module TencentCloud
 
         attr_accessor :SecurityService, :MonitorService, :AutomationService, :AutomationToolsService
         extend Gem::Deprecate
-        deprecate :AutomationService, :none, 2025, 5
-        deprecate :AutomationService=, :none, 2025, 5
+        deprecate :AutomationService, :none, 2025, 6
+        deprecate :AutomationService=, :none, 2025, 6
 
         def initialize(securityservice=nil, monitorservice=nil, automationservice=nil, automationtoolsservice=nil)
           @SecurityService = securityservice
