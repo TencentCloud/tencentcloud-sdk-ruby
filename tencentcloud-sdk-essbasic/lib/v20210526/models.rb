@@ -5459,8 +5459,8 @@ module TencentCloud
         # <li>true：锁定控件值，在页面编辑控件值</li></ul>
         # @type LockComponentValue: Boolean
         # @param ForbidMoveAndDelete: **web嵌入发起合同场景下**，是否禁止移动和删除填写和签署控件
-        # <ul><li> <b>false（默认）</b> :不禁止移动和删除控件</li>
-        # <li> <b>true</b> : 可以移动和删除控件</li></ul>
+        # <ul><li> <b>false（默认）</b> :可以移动和删除控件</li>
+        # <li> <b>true</b> : 禁止移动和删除控件</li></ul>
         # @type ForbidMoveAndDelete: Boolean
 
         attr_accessor :ComponentId, :ComponentType, :ComponentName, :ComponentRequired, :ComponentRecipientId, :FileIndex, :GenerateMode, :ComponentWidth, :ComponentHeight, :ComponentPage, :ComponentPosX, :ComponentPosY, :ComponentExtra, :ComponentValue, :ComponentDateFontSize, :DocumentId, :ComponentDescription, :OffsetX, :OffsetY, :ChannelComponentId, :KeywordOrder, :KeywordPage, :RelativeLocation, :KeywordIndexes, :Placeholder, :LockComponentValue, :ForbidMoveAndDelete

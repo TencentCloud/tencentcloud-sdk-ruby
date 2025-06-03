@@ -633,6 +633,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 分发文件到安卓实例
+
+        # @param request: Request instance for DistributeFileToAndroidInstances.
+        # @type request: :class:`Tencentcloud::gs::V20191118::DistributeFileToAndroidInstancesRequest`
+        # @rtype: :class:`Tencentcloud::gs::V20191118::DistributeFileToAndroidInstancesResponse`
+        def DistributeFileToAndroidInstances(request)
+          body = send_request('DistributeFileToAndroidInstances', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DistributeFileToAndroidInstancesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 在安卓实例上异步执行命令，命令输出结果如果内容过长会被截断
 
         # @param request: Request instance for ExecuteCommandOnAndroidInstances.
@@ -1366,6 +1390,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = UploadFileToAndroidInstancesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 批量上传文件到安卓实例
+
+        # @param request: Request instance for UploadFilesToAndroidInstances.
+        # @type request: :class:`Tencentcloud::gs::V20191118::UploadFilesToAndroidInstancesRequest`
+        # @rtype: :class:`Tencentcloud::gs::V20191118::UploadFilesToAndroidInstancesResponse`
+        def UploadFilesToAndroidInstances(request)
+          body = send_request('UploadFilesToAndroidInstances', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UploadFilesToAndroidInstancesResponse.new
             model.deserialize(response['Response'])
             model
           else

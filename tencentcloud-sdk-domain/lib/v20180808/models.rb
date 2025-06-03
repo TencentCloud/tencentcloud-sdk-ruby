@@ -826,7 +826,7 @@ module TencentCloud
       # CreateDomainRedemption请求参数结构体
       class CreateDomainRedemptionRequest < TencentCloud::Common::AbstractModel
         # @param DomainId: 域名ID
-        # 可通过DescribeDomainList接口获取
+        # 可通过[DescribeDomainNameList](https://cloud.tencent.com/document/api/242/48941)接口获取
         # @type DomainId: String
 
         attr_accessor :DomainId

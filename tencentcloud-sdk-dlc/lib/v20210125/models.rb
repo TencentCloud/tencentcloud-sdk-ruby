@@ -1735,8 +1735,8 @@ module TencentCloud
 
         attr_accessor :EngineType, :DataEngineName, :ClusterType, :Mode, :AutoResume, :MinClusters, :MaxClusters, :DefaultDataEngine, :CidrBlock, :Message, :Size, :PayMode, :TimeSpan, :TimeUnit, :AutoRenew, :Tags, :AutoSuspend, :CrontabResumeSuspend, :CrontabResumeSuspendStrategy, :EngineExecType, :MaxConcurrency, :TolerableQueueTime, :AutoSuspendTime, :ResourceType, :DataEngineConfigPairs, :ImageVersionName, :MainClusterName, :ElasticSwitch, :ElasticLimit, :SessionResourceTemplate, :AutoAuthorization, :EngineNetworkId, :EngineGeneration
         extend Gem::Deprecate
-        deprecate :DefaultDataEngine, :none, 2025, 5
-        deprecate :DefaultDataEngine=, :none, 2025, 5
+        deprecate :DefaultDataEngine, :none, 2025, 6
+        deprecate :DefaultDataEngine=, :none, 2025, 6
 
         def initialize(enginetype=nil, dataenginename=nil, clustertype=nil, mode=nil, autoresume=nil, minclusters=nil, maxclusters=nil, defaultdataengine=nil, cidrblock=nil, message=nil, size=nil, paymode=nil, timespan=nil, timeunit=nil, autorenew=nil, tags=nil, autosuspend=nil, crontabresumesuspend=nil, crontabresumesuspendstrategy=nil, engineexectype=nil, maxconcurrency=nil, tolerablequeuetime=nil, autosuspendtime=nil, resourcetype=nil, dataengineconfigpairs=nil, imageversionname=nil, mainclustername=nil, elasticswitch=nil, elasticlimit=nil, sessionresourcetemplate=nil, autoauthorization=nil, enginenetworkid=nil, enginegeneration=nil)
           @EngineType = enginetype
@@ -6056,16 +6056,20 @@ module TencentCloud
         # @type Sort: String
         # @param Asc: 排序类型：false：降序（默认）、true：升序
         # @type Asc: Boolean
+        # @param DescribeType: 查询类型：all：全部数据（默认）、permission：有权限的数据
+        # 注意：此字段需要开启白名单使用，如果需要使用，请提交工单联系我们。
+        # @type DescribeType: String
 
-        attr_accessor :Limit, :Offset, :KeyWord, :DatasourceConnectionName, :Sort, :Asc
+        attr_accessor :Limit, :Offset, :KeyWord, :DatasourceConnectionName, :Sort, :Asc, :DescribeType
 
-        def initialize(limit=nil, offset=nil, keyword=nil, datasourceconnectionname=nil, sort=nil, asc=nil)
+        def initialize(limit=nil, offset=nil, keyword=nil, datasourceconnectionname=nil, sort=nil, asc=nil, describetype=nil)
           @Limit = limit
           @Offset = offset
           @KeyWord = keyword
           @DatasourceConnectionName = datasourceconnectionname
           @Sort = sort
           @Asc = asc
+          @DescribeType = describetype
         end
 
         def deserialize(params)
@@ -6075,6 +6079,7 @@ module TencentCloud
           @DatasourceConnectionName = params['DatasourceConnectionName']
           @Sort = params['Sort']
           @Asc = params['Asc']
+          @DescribeType = params['DescribeType']
         end
       end
 
@@ -7345,6 +7350,33 @@ module TencentCloud
         end
       end
 
+      # DescribeTablePartitions请求参数结构体
+      class DescribeTablePartitionsRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeTablePartitions返回参数结构体
+      class DescribeTablePartitionsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeTable请求参数结构体
       class DescribeTableRequest < TencentCloud::Common::AbstractModel
         # @param TableName: 查询对象表名称
@@ -7507,10 +7539,13 @@ module TencentCloud
         # @type TableType: String
         # @param TableFormat: 筛选字段-表格式：不传（默认）为查全部；LAKEFS：托管表；ICEBERG：非托管iceberg表；HIVE：非托管hive表；OTHER：非托管其它；
         # @type TableFormat: String
+        # @param DescribeType: 查询类型：all：全部数据（默认）、permission：有权限的数据
+        # 注意：此字段需要开启白名单使用，如果需要使用，请提交工单联系我们。
+        # @type DescribeType: String
 
-        attr_accessor :DatabaseName, :Limit, :Offset, :Filters, :DatasourceConnectionName, :StartTime, :EndTime, :Sort, :Asc, :TableType, :TableFormat
+        attr_accessor :DatabaseName, :Limit, :Offset, :Filters, :DatasourceConnectionName, :StartTime, :EndTime, :Sort, :Asc, :TableType, :TableFormat, :DescribeType
 
-        def initialize(databasename=nil, limit=nil, offset=nil, filters=nil, datasourceconnectionname=nil, starttime=nil, endtime=nil, sort=nil, asc=nil, tabletype=nil, tableformat=nil)
+        def initialize(databasename=nil, limit=nil, offset=nil, filters=nil, datasourceconnectionname=nil, starttime=nil, endtime=nil, sort=nil, asc=nil, tabletype=nil, tableformat=nil, describetype=nil)
           @DatabaseName = databasename
           @Limit = limit
           @Offset = offset
@@ -7522,6 +7557,7 @@ module TencentCloud
           @Asc = asc
           @TableType = tabletype
           @TableFormat = tableformat
+          @DescribeType = describetype
         end
 
         def deserialize(params)
@@ -7543,6 +7579,7 @@ module TencentCloud
           @Asc = params['Asc']
           @TableType = params['TableType']
           @TableFormat = params['TableFormat']
+          @DescribeType = params['DescribeType']
         end
       end
 
@@ -8559,10 +8596,13 @@ module TencentCloud
         # @type StartTime: String
         # @param EndTime: 按视图更新时间筛选，结束时间，如2021-11-12 00:00:00
         # @type EndTime: String
+        # @param DescribeType: 查询类型：all：全部数据（默认）、permission：有权限的数据
+        # 注意：此字段需要开启白名单使用，如果需要使用，请提交工单联系我们。
+        # @type DescribeType: String
 
-        attr_accessor :DatabaseName, :Limit, :Offset, :Filters, :DatasourceConnectionName, :Sort, :Asc, :StartTime, :EndTime
+        attr_accessor :DatabaseName, :Limit, :Offset, :Filters, :DatasourceConnectionName, :Sort, :Asc, :StartTime, :EndTime, :DescribeType
 
-        def initialize(databasename=nil, limit=nil, offset=nil, filters=nil, datasourceconnectionname=nil, sort=nil, asc=nil, starttime=nil, endtime=nil)
+        def initialize(databasename=nil, limit=nil, offset=nil, filters=nil, datasourceconnectionname=nil, sort=nil, asc=nil, starttime=nil, endtime=nil, describetype=nil)
           @DatabaseName = databasename
           @Limit = limit
           @Offset = offset
@@ -8572,6 +8612,7 @@ module TencentCloud
           @Asc = asc
           @StartTime = starttime
           @EndTime = endtime
+          @DescribeType = describetype
         end
 
         def deserialize(params)
@@ -8591,6 +8632,7 @@ module TencentCloud
           @Asc = params['Asc']
           @StartTime = params['StartTime']
           @EndTime = params['EndTime']
+          @DescribeType = params['DescribeType']
         end
       end
 
@@ -12631,10 +12673,10 @@ module TencentCloud
 
         attr_accessor :DatabaseName, :TableName, :DatasourceConnectionName, :TableComment, :Type, :TableFormat, :UserAlias, :UserSubUin, :GovernPolicy, :DbGovernPolicyIsDisable, :SmartPolicy, :PrimaryKeys
         extend Gem::Deprecate
-        deprecate :GovernPolicy, :none, 2025, 5
-        deprecate :GovernPolicy=, :none, 2025, 5
-        deprecate :DbGovernPolicyIsDisable, :none, 2025, 5
-        deprecate :DbGovernPolicyIsDisable=, :none, 2025, 5
+        deprecate :GovernPolicy, :none, 2025, 6
+        deprecate :GovernPolicy=, :none, 2025, 6
+        deprecate :DbGovernPolicyIsDisable, :none, 2025, 6
+        deprecate :DbGovernPolicyIsDisable=, :none, 2025, 6
 
         def initialize(databasename=nil, tablename=nil, datasourceconnectionname=nil, tablecomment=nil, type=nil, tableformat=nil, useralias=nil, usersubuin=nil, governpolicy=nil, dbgovernpolicyisdisable=nil, smartpolicy=nil, primarykeys=nil)
           @DatabaseName = databasename

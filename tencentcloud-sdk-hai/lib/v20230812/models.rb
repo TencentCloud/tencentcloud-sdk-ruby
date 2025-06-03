@@ -156,7 +156,7 @@ module TencentCloud
 
       # DescribeApplications请求参数结构体
       class DescribeApplicationsRequest < TencentCloud::Common::AbstractModel
-        # @param ApplicationIds: 应用id列表
+        # @param ApplicationIds: 应用id列表。单次请求数量上限为100个。
         # @type ApplicationIds: Array
         # @param Filters: 过滤器，跟ApplicationIds不能共用，支持的filter主要有：application-id: 精确匹配;scene-id: 精确匹配，通过调用接口 [DescribeScenes](https://cloud.tencent.com/document/api/1721/101608)获取;application-name: 模糊匹配;application-type: 精确匹配，枚举类型如下：PUBLIC_APPLICATION（公共应用）/ PRIVATE_APPLICATION（自定义应用）/ COMMUNITY_APPLICATION（社区应用）;
         # @type Filters: Array
@@ -1129,8 +1129,7 @@ module TencentCloud
 
       # StartInstance请求参数结构体
       class StartInstanceRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
-        # 可通过DescribeInstances获取实例ID
+        # @param InstanceId: 实例ID。可通过[DescribeInstances](https://cloud.tencent.com/document/api/1721/101612) API获取实例ID。
         # @type InstanceId: String
         # @param DryRun: 默认为False，True代表只验证接口连通性
         # @type DryRun: Boolean
@@ -1170,8 +1169,7 @@ module TencentCloud
 
       # StopInstance请求参数结构体
       class StopInstanceRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
-        # 可通过DescribeInstances获取实例ID
+        # @param InstanceId: 实例ID。可通过[DescribeInstances](https://cloud.tencent.com/document/api/1721/101612) API获取实例ID。
         # @type InstanceId: String
         # @param StopMode: hai实例关机的模式，目前仅支持关机不收费：
         # STOP_CHARGE -- 关闭hai实例，释放计算资源，停止收取计算资源的费用。
@@ -1241,8 +1239,7 @@ module TencentCloud
 
       # TerminateInstances请求参数结构体
       class TerminateInstancesRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceIds: 实例ID列表
-        # 可通过DescribeInstances接口获取ID列表.单次能查询100个InstanceId
+        # @param InstanceIds: 实例ID列表。可通过[DescribeInstances](https://cloud.tencent.com/document/api/1721/101612) API获取实例ID列表。单次能查询100个InstanceId。
         # @type InstanceIds: Array
         # @param DryRun: 默认为False，True代表只验证接口连通性
         # @type DryRun: Boolean

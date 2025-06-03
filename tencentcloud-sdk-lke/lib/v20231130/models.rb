@@ -1554,95 +1554,6 @@ module TencentCloud
         end
       end
 
-      # 创建智能文档解析任务的配置信息
-      class CreateReconstructDocumentFlowConfig < TencentCloud::Common::AbstractModel
-        # @param TableResultType: Markdown文件中表格返回的形式
-        # 0，表格以MD形式返回
-        # 1，表格以HTML形式返回
-        # 默认为1
-        # @type TableResultType: String
-        # @param ResultType: 智能文档解析返回结果的格式
-        # 0：只返回全文MD；
-        # 1：只返回每一页的OCR原始Json；
-        # 2：只返回每一页的MD，
-        # 3：返回全文MD + 每一页的OCR原始Json；
-        # 4：返回全文MD + 每一页的MD，
-        # 默认值为3（返回全文MD + 每一页的OCR原始Json）
-
-        # @type ResultType: String
-
-        attr_accessor :TableResultType, :ResultType
-
-        def initialize(tableresulttype=nil, resulttype=nil)
-          @TableResultType = tableresulttype
-          @ResultType = resulttype
-        end
-
-        def deserialize(params)
-          @TableResultType = params['TableResultType']
-          @ResultType = params['ResultType']
-        end
-      end
-
-      # CreateReconstructDocumentFlow请求参数结构体
-      class CreateReconstructDocumentFlowRequest < TencentCloud::Common::AbstractModel
-        # @param FileType: 文件类型。支持的文件类型：PDF、DOC、DOCX、PPT、PPTX、MD、TXT、XLS、XLSX、CSV、PNG、JPG、JPEG、BMP、GIF、WEBP、HEIC、EPS、ICNS、IM、PCX、PPM、TIFF、XBM、HEIF、JP2。
-        # @type FileType: String
-        # @param FileBase64: 文件的 Base64 值。支持的文件大小：所下载文件经Base64编码后不超过 8M。文件下载时间不超过 3 秒。支持的图片像素：单边介于20-10000px之间。文件的 FileUrl、FileBase64 必须提供一个，如果都提供，只使用 FileUrl。
-        # @type FileBase64: String
-        # @param FileUrl: <p>文件的Url地址。文件下载时间不超过15秒。支持的图片像素：单边介于20-10000px之间。文件存储于腾讯云的Url可保障更高的下载速度和稳定性，建议文件存储于腾讯云。非腾讯云存储的 Url 速度和稳定性可能受一定影响。所下载文件经 Base64 编码后不超过支持的文件大小：</p><table>  <tbody>    <tr>      <td>文件类型</td>      <td>支持的文件大小</td>    </tr>    <tr>      <td>PDF</td>      <td>200M</td>    </tr>    <tr>      <td>DOC</td>      <td>200M</td>    </tr>    <tr>      <td>DOCX</td>      <td>200M</td>    </tr>    <tr>      <td>PPT</td>      <td>200M</td>    </tr>    <tr>      <td>PPTX</td>      <td>200M</td>    </tr>    <tr>      <td>MD</td>      <td>10M</td>    </tr>    <tr>      <td>TXT</td>      <td>10M</td>    </tr>    <tr>      <td>XLS</td>      <td>20M</td>    </tr>    <tr>      <td>XLSX</td>      <td>20M</td>    </tr>    <tr>      <td>CSV</td>      <td>20M</td>    </tr>    <tr>      <td>PNG</td>      <td>20M</td>    </tr>    <tr>      <td>JPG</td>      <td>20M</td>    </tr>    <tr>      <td>JPEG</td>      <td>20M</td>    </tr>    <tr>      <td>BMP</td>      <td>20M</td>    </tr>    <tr>      <td>GIF</td>      <td>20M</td>    </tr>    <tr>      <td>WEBP</td>      <td>20M</td>    </tr>    <tr>      <td>HEIC</td>      <td>20M</td>    </tr>    <tr>      <td>EPS</td>      <td>20M</td>    </tr>    <tr>      <td>ICNS</td>      <td>20M</td>    </tr>    <tr>      <td>IM</td>      <td>20M</td>    </tr>    <tr>      <td>PCX</td>      <td>20M</td>    </tr>    <tr>      <td>PPM</td>      <td>20M</td>    </tr>    <tr>      <td>TIFF</td>      <td>20M</td>    </tr>    <tr>      <td>XBM</td>      <td>20M</td>    </tr>    <tr>      <td>HEIF</td>      <td>20M</td>    </tr>    <tr>      <td>JP2</td>      <td>20M</td>    </tr>  </tbody>  <colgroup>    <col>    <col>  </colgroup></table>
-        # @type FileUrl: String
-        # @param FileStartPageNumber: 当传入文件类型为PDF、DOC、DOCX、PPT、PPTX，用来指定文件识别的起始页码，识别的页码包含当前值。默认为1，表示从文件的第1页开始识别。
-        # @type FileStartPageNumber: Integer
-        # @param FileEndPageNumber: 当传入文件类型为PDF、DOC、DOCX、PPT、PPTX，用来指定文件识别的结束页码，识别的页码包含当前值。默认为100，表示识别到文件的第100页。单次调用最多支持识别1000页内容，即FileEndPageNumber-FileStartPageNumber需要不大于1000。
-        # @type FileEndPageNumber: Integer
-        # @param Config: 创建文档解析任务配置信息。
-        # @type Config: :class:`Tencentcloud::Lke.v20231130.models.CreateReconstructDocumentFlowConfig`
-
-        attr_accessor :FileType, :FileBase64, :FileUrl, :FileStartPageNumber, :FileEndPageNumber, :Config
-
-        def initialize(filetype=nil, filebase64=nil, fileurl=nil, filestartpagenumber=nil, fileendpagenumber=nil, config=nil)
-          @FileType = filetype
-          @FileBase64 = filebase64
-          @FileUrl = fileurl
-          @FileStartPageNumber = filestartpagenumber
-          @FileEndPageNumber = fileendpagenumber
-          @Config = config
-        end
-
-        def deserialize(params)
-          @FileType = params['FileType']
-          @FileBase64 = params['FileBase64']
-          @FileUrl = params['FileUrl']
-          @FileStartPageNumber = params['FileStartPageNumber']
-          @FileEndPageNumber = params['FileEndPageNumber']
-          unless params['Config'].nil?
-            @Config = CreateReconstructDocumentFlowConfig.new
-            @Config.deserialize(params['Config'])
-          end
-        end
-      end
-
-      # CreateReconstructDocumentFlow返回参数结构体
-      class CreateReconstructDocumentFlowResponse < TencentCloud::Common::AbstractModel
-        # @param TaskId: 任务唯一ID。30天内可以通过[GetReconstructDocumentResult](https://cloud.tencent.com/document/product/1759/107505)接口查询TaskId对应的处理结果。
-        # @type TaskId: String
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :TaskId, :RequestId
-
-        def initialize(taskid=nil, requestid=nil)
-          @TaskId = taskid
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @TaskId = params['TaskId']
-          @RequestId = params['RequestId']
-        end
-      end
-
       # CreateRejectedQuestion请求参数结构体
       class CreateRejectedQuestionRequest < TencentCloud::Common::AbstractModel
         # @param BotBizId: 应用ID
@@ -9275,10 +9186,10 @@ module TencentCloud
 
         attr_accessor :Query, :Docs, :Model, :DataList, :Online
         extend Gem::Deprecate
-        deprecate :DataList, :none, 2025, 5
-        deprecate :DataList=, :none, 2025, 5
-        deprecate :Online, :none, 2025, 5
-        deprecate :Online=, :none, 2025, 5
+        deprecate :DataList, :none, 2025, 6
+        deprecate :DataList=, :none, 2025, 6
+        deprecate :Online, :none, 2025, 6
+        deprecate :Online=, :none, 2025, 6
 
         def initialize(query=nil, docs=nil, model=nil, datalist=nil, online=nil)
           @Query = query

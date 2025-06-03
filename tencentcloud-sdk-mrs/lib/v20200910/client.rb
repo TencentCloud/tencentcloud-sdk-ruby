@@ -78,6 +78,7 @@ module TencentCloud
         end
 
         # 图片脱敏-异步接口
+        # 短时间大批量调用（例如>100上传/10分钟），如果遇到错误码“FalledOperation.AsyncQueueFullError”，请于数分钟后再次尝试提交。
 
         # @param request: Request instance for ImageMaskAsync.
         # @type request: :class:`Tencentcloud::mrs::V20200910::ImageMaskAsyncRequest`
@@ -102,6 +103,7 @@ module TencentCloud
         end
 
         # 图片脱敏-异步获取结果接口
+        # 请于上传请求后24小时内获取结果。
 
         # @param request: Request instance for ImageMaskAsyncGetResult.
         # @type request: :class:`Tencentcloud::mrs::V20200910::ImageMaskAsyncGetResultRequest`

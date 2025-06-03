@@ -252,30 +252,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # WebSearch API 是一个网页搜索服务，支持多种搜索引擎，可以获取网页的标题、URL、摘要和正文内容。
-
-        # @param request: Request instance for WebSearch.
-        # @type request: :class:`Tencentcloud::es::V20250101::WebSearchRequest`
-        # @rtype: :class:`Tencentcloud::es::V20250101::WebSearchResponse`
-        def WebSearch(request)
-          body = send_request('WebSearch', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = WebSearchResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
 
       end
     end

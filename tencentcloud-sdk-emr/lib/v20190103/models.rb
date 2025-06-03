@@ -180,20 +180,24 @@ module TencentCloud
         # @param FailedUserList: 添加失败的用户列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FailedUserList: Array
+        # @param FlowId: 流程id。大于0表示启动了流程；等于0表示没有启动流程
+        # @type FlowId: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :SuccessUserList, :FailedUserList, :RequestId
+        attr_accessor :SuccessUserList, :FailedUserList, :FlowId, :RequestId
 
-        def initialize(successuserlist=nil, faileduserlist=nil, requestid=nil)
+        def initialize(successuserlist=nil, faileduserlist=nil, flowid=nil, requestid=nil)
           @SuccessUserList = successuserlist
           @FailedUserList = faileduserlist
+          @FlowId = flowid
           @RequestId = requestid
         end
 
         def deserialize(params)
           @SuccessUserList = params['SuccessUserList']
           @FailedUserList = params['FailedUserList']
+          @FlowId = params['FlowId']
           @RequestId = params['RequestId']
         end
       end
@@ -1049,10 +1053,10 @@ module TencentCloud
 
         attr_accessor :Id, :ClusterId, :Ftitle, :ClusterName, :RegionId, :ZoneId, :AppId, :Uin, :ProjectId, :VpcId, :SubnetId, :Status, :AddTime, :RunTime, :Config, :MasterIp, :EmrVersion, :ChargeType, :TradeVersion, :ResourceOrderId, :IsTradeCluster, :AlarmInfo, :IsWoodpeckerCluster, :MetaDb, :Tags, :HiveMetaDb, :ServiceClass, :AliasInfo, :ProductId, :Zone, :SceneName, :SceneServiceClass, :SceneEmrVersion, :DisplayName, :VpcName, :SubnetName, :ClusterExternalServiceInfo, :UniqVpcId, :UniqSubnetId, :TopologyInfoList, :IsMultiZoneCluster, :IsCvmReplace, :ClusterTitle, :ConfigDetail, :BindFileSystemNum, :ClusterRelationInfoList
         extend Gem::Deprecate
-        deprecate :Ftitle, :none, 2025, 5
-        deprecate :Ftitle=, :none, 2025, 5
-        deprecate :Config, :none, 2025, 5
-        deprecate :Config=, :none, 2025, 5
+        deprecate :Ftitle, :none, 2025, 6
+        deprecate :Ftitle=, :none, 2025, 6
+        deprecate :Config, :none, 2025, 6
+        deprecate :Config=, :none, 2025, 6
 
         def initialize(id=nil, clusterid=nil, ftitle=nil, clustername=nil, regionid=nil, zoneid=nil, appid=nil, uin=nil, projectid=nil, vpcid=nil, subnetid=nil, status=nil, addtime=nil, runtime=nil, config=nil, masterip=nil, emrversion=nil, chargetype=nil, tradeversion=nil, resourceorderid=nil, istradecluster=nil, alarminfo=nil, iswoodpeckercluster=nil, metadb=nil, tags=nil, hivemetadb=nil, serviceclass=nil, aliasinfo=nil, productid=nil, zone=nil, scenename=nil, sceneserviceclass=nil, sceneemrversion=nil, displayname=nil, vpcname=nil, subnetname=nil, clusterexternalserviceinfo=nil, uniqvpcid=nil, uniqsubnetid=nil, topologyinfolist=nil, ismultizonecluster=nil, iscvmreplace=nil, clustertitle=nil, configdetail=nil, bindfilesystemnum=nil, clusterrelationinfolist=nil)
           @Id = id
@@ -11957,12 +11961,12 @@ module TencentCloud
 
         attr_accessor :DetectAlert, :DetetcFunctionKey, :DetetcFunctionValue, :DetetcTime, :DetectFunctionKey, :DetectFunctionValue, :DetectTime
         extend Gem::Deprecate
-        deprecate :DetetcFunctionKey, :none, 2025, 5
-        deprecate :DetetcFunctionKey=, :none, 2025, 5
-        deprecate :DetetcFunctionValue, :none, 2025, 5
-        deprecate :DetetcFunctionValue=, :none, 2025, 5
-        deprecate :DetetcTime, :none, 2025, 5
-        deprecate :DetetcTime=, :none, 2025, 5
+        deprecate :DetetcFunctionKey, :none, 2025, 6
+        deprecate :DetetcFunctionKey=, :none, 2025, 6
+        deprecate :DetetcFunctionValue, :none, 2025, 6
+        deprecate :DetetcFunctionValue=, :none, 2025, 6
+        deprecate :DetetcTime, :none, 2025, 6
+        deprecate :DetetcTime=, :none, 2025, 6
 
         def initialize(detectalert=nil, detetcfunctionkey=nil, detetcfunctionvalue=nil, detetctime=nil, detectfunctionkey=nil, detectfunctionvalue=nil, detecttime=nil)
           @DetectAlert = detectalert

@@ -103,17 +103,25 @@ module TencentCloud
         # @type JobId: String
         # @param TargetRequestsPerSecond: 目标 RPS。其取值应大于起始 RPS，并且小于最大 RPS
         # @type TargetRequestsPerSecond: Integer
+        # @param ProjectId: 压测项目ID
+        # @type ProjectId: String
+        # @param ScenarioId: 测试场景ID
+        # @type ScenarioId: String
 
-        attr_accessor :JobId, :TargetRequestsPerSecond
+        attr_accessor :JobId, :TargetRequestsPerSecond, :ProjectId, :ScenarioId
 
-        def initialize(jobid=nil, targetrequestspersecond=nil)
+        def initialize(jobid=nil, targetrequestspersecond=nil, projectid=nil, scenarioid=nil)
           @JobId = jobid
           @TargetRequestsPerSecond = targetrequestspersecond
+          @ProjectId = projectid
+          @ScenarioId = scenarioid
         end
 
         def deserialize(params)
           @JobId = params['JobId']
           @TargetRequestsPerSecond = params['TargetRequestsPerSecond']
+          @ProjectId = params['ProjectId']
+          @ScenarioId = params['ScenarioId']
         end
       end
 

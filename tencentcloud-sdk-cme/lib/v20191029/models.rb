@@ -681,6 +681,9 @@ module TencentCloud
         # @type MediaCastProjectInput: :class:`Tencentcloud::Cme.v20191029.models.MediaCastProjectInput`
 
         attr_accessor :Platform, :Name, :Owner, :Category, :Mode, :AspectRatio, :Description, :SwitcherProjectInput, :LiveStreamClipProjectInput, :VideoEditProjectInput, :VideoSegmentationProjectInput, :StreamConnectProjectInput, :RecordReplayProjectInput, :MediaCastProjectInput
+        extend Gem::Deprecate
+        deprecate :AspectRatio, :none, 2025, 6
+        deprecate :AspectRatio=, :none, 2025, 6
 
         def initialize(platform=nil, name=nil, owner=nil, category=nil, mode=nil, aspectratio=nil, description=nil, switcherprojectinput=nil, livestreamclipprojectinput=nil, videoeditprojectinput=nil, videosegmentationprojectinput=nil, streamconnectprojectinput=nil, recordreplayprojectinput=nil, mediacastprojectinput=nil)
           @Platform = platform
@@ -2612,6 +2615,9 @@ module TencentCloud
         # @type StorageId: String
 
         attr_accessor :MediaKey, :Definition, :StorageId
+        extend Gem::Deprecate
+        deprecate :Definition, :none, 2025, 6
+        deprecate :Definition=, :none, 2025, 6
 
         def initialize(mediakey=nil, definition=nil, storageid=nil)
           @MediaKey = mediakey
@@ -3580,6 +3586,9 @@ module TencentCloud
         # @type TagInfoSet: Array
 
         attr_accessor :MaterialId, :MaterialType, :Owner, :Name, :CreateTime, :UpdateTime, :ClassPath, :PresetTagSet, :TagSet, :PreviewUrl, :TagInfoSet
+        extend Gem::Deprecate
+        deprecate :TagInfoSet, :none, 2025, 6
+        deprecate :TagInfoSet=, :none, 2025, 6
 
         def initialize(materialid=nil, materialtype=nil, owner=nil, name=nil, createtime=nil, updatetime=nil, classpath=nil, presettagset=nil, tagset=nil, previewurl=nil, taginfoset=nil)
           @MaterialId = materialid
@@ -5635,6 +5644,9 @@ module TencentCloud
         # @type SourceContext: String
 
         attr_accessor :FileId, :MaterialId, :Operator, :OperationType, :Owner, :ClassPath, :TaskId, :SourceContext
+        extend Gem::Deprecate
+        deprecate :Operator, :none, 2025, 6
+        deprecate :Operator=, :none, 2025, 6
 
         def initialize(fileid=nil, materialid=nil, operator=nil, operationtype=nil, owner=nil, classpath=nil, taskid=nil, sourcecontext=nil)
           @FileId = fileid

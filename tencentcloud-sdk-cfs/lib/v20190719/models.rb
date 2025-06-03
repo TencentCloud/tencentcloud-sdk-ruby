@@ -2166,7 +2166,7 @@ module TencentCloud
         # @type CreateTime: Integer
         # @param EndTime: 完成/终止时间
         # @type EndTime: Integer
-        # @param Status: 迁移状态。0: 已完成；1: 进行中；2: 已终止
+        # @param Status: 迁移状态。0: 已完成；1: 创建中；2: 运行中；3: 终止中；4: 已终止；5: 创建失败；6: 运行失败；7: 结束中；8: 删除中；9: 等待中
         # @type Status: Integer
         # @param FileTotalCount: 文件数量
         # @type FileTotalCount: Integer
@@ -2757,7 +2757,7 @@ module TencentCloud
       class StopMigrationTaskResponse < TencentCloud::Common::AbstractModel
         # @param TaskId: 迁移任务Id
         # @type TaskId: String
-        # @param Status: 迁移状态。0: 已完成；1: 进行中；2: 已终止
+        # @param Status: 迁移状态。0: 已完成；1: 创建中；2: 运行中；3: 终止中；4: 已终止；5: 创建失败；6: 运行失败；7: 结束中；8: 删除中；9: 等待中
         # @type Status: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

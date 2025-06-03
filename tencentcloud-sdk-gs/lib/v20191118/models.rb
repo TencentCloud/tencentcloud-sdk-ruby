@@ -365,6 +365,30 @@ module TencentCloud
         end
       end
 
+      # 安卓实例上传文件信息
+      class AndroidInstanceUploadFile < TencentCloud::Common::AbstractModel
+        # @param AndroidInstanceId: 安卓实例 ID
+        # @type AndroidInstanceId: String
+        # @param FileURL: 文件上传 URL
+        # @type FileURL: String
+        # @param DestinationDirectory: 上传目标目录，只能上传到 /sdcard/ 目录或其子目录下
+        # @type DestinationDirectory: String
+
+        attr_accessor :AndroidInstanceId, :FileURL, :DestinationDirectory
+
+        def initialize(androidinstanceid=nil, fileurl=nil, destinationdirectory=nil)
+          @AndroidInstanceId = androidinstanceid
+          @FileURL = fileurl
+          @DestinationDirectory = destinationdirectory
+        end
+
+        def deserialize(params)
+          @AndroidInstanceId = params['AndroidInstanceId']
+          @FileURL = params['FileURL']
+          @DestinationDirectory = params['DestinationDirectory']
+        end
+      end
+
       # BackUpAndroidInstanceToStorage请求参数结构体
       class BackUpAndroidInstanceToStorageRequest < TencentCloud::Common::AbstractModel
         # @param AndroidInstanceId: 安卓实例ID
@@ -1704,6 +1728,57 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DistributeFileToAndroidInstances请求参数结构体
+      class DistributeFileToAndroidInstancesRequest < TencentCloud::Common::AbstractModel
+        # @param AndroidInstanceIds: 安卓实例 ID 列表
+        # @type AndroidInstanceIds: Array
+        # @param FileURL: 文件下载 URL
+        # @type FileURL: String
+        # @param DestinationDirectory: 上传目标目录，只能上传到 /sdcard/ 目录或其子目录下
+        # @type DestinationDirectory: String
+
+        attr_accessor :AndroidInstanceIds, :FileURL, :DestinationDirectory
+
+        def initialize(androidinstanceids=nil, fileurl=nil, destinationdirectory=nil)
+          @AndroidInstanceIds = androidinstanceids
+          @FileURL = fileurl
+          @DestinationDirectory = destinationdirectory
+        end
+
+        def deserialize(params)
+          @AndroidInstanceIds = params['AndroidInstanceIds']
+          @FileURL = params['FileURL']
+          @DestinationDirectory = params['DestinationDirectory']
+        end
+      end
+
+      # DistributeFileToAndroidInstances返回参数结构体
+      class DistributeFileToAndroidInstancesResponse < TencentCloud::Common::AbstractModel
+        # @param TaskSet: 实例任务集合
+        # @type TaskSet: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskSet, :RequestId
+
+        def initialize(taskset=nil, requestid=nil)
+          @TaskSet = taskset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['TaskSet'].nil?
+            @TaskSet = []
+            params['TaskSet'].each do |i|
+              androidinstancetask_tmp = AndroidInstanceTask.new
+              androidinstancetask_tmp.deserialize(i)
+              @TaskSet << androidinstancetask_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -3187,6 +3262,56 @@ module TencentCloud
 
       # UploadFileToAndroidInstances返回参数结构体
       class UploadFileToAndroidInstancesResponse < TencentCloud::Common::AbstractModel
+        # @param TaskSet: 实例任务集合
+        # @type TaskSet: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskSet, :RequestId
+
+        def initialize(taskset=nil, requestid=nil)
+          @TaskSet = taskset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['TaskSet'].nil?
+            @TaskSet = []
+            params['TaskSet'].each do |i|
+              androidinstancetask_tmp = AndroidInstanceTask.new
+              androidinstancetask_tmp.deserialize(i)
+              @TaskSet << androidinstancetask_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # UploadFilesToAndroidInstances请求参数结构体
+      class UploadFilesToAndroidInstancesRequest < TencentCloud::Common::AbstractModel
+        # @param Files: 上传文件信息列表
+        # @type Files: Array
+
+        attr_accessor :Files
+
+        def initialize(files=nil)
+          @Files = files
+        end
+
+        def deserialize(params)
+          unless params['Files'].nil?
+            @Files = []
+            params['Files'].each do |i|
+              androidinstanceuploadfile_tmp = AndroidInstanceUploadFile.new
+              androidinstanceuploadfile_tmp.deserialize(i)
+              @Files << androidinstanceuploadfile_tmp
+            end
+          end
+        end
+      end
+
+      # UploadFilesToAndroidInstances返回参数结构体
+      class UploadFilesToAndroidInstancesResponse < TencentCloud::Common::AbstractModel
         # @param TaskSet: 实例任务集合
         # @type TaskSet: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。

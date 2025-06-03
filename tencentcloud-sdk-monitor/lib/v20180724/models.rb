@@ -5564,6 +5564,46 @@ module TencentCloud
         end
       end
 
+      # DescribeExternalClusterRegisterCommand请求参数结构体
+      class DescribeExternalClusterRegisterCommandRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例 ID
+        # @type InstanceId: String
+        # @param ClusterId: 集群 ID
+        # @type ClusterId: String
+
+        attr_accessor :InstanceId, :ClusterId
+
+        def initialize(instanceid=nil, clusterid=nil)
+          @InstanceId = instanceid
+          @ClusterId = clusterid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @ClusterId = params['ClusterId']
+        end
+      end
+
+      # DescribeExternalClusterRegisterCommand返回参数结构体
+      class DescribeExternalClusterRegisterCommandResponse < TencentCloud::Common::AbstractModel
+        # @param Command: 注册命令
+        # @type Command: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Command, :RequestId
+
+        def initialize(command=nil, requestid=nil)
+          @Command = command
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Command = params['Command']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeGrafanaChannels请求参数结构体
       class DescribeGrafanaChannelsRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: Grafana 实例 ID，例如：grafana-12345678
@@ -12773,7 +12813,7 @@ module TencentCloud
       class PrometheusClusterAgentBasic < TencentCloud::Common::AbstractModel
         # @param Region: 地域
         # @type Region: String
-        # @param ClusterType: 集群类型。可填入tke、eks、tkeedge、tdcc，分别代表标准集群、弹性集群、边缘集群、注册集群
+        # @param ClusterType: 集群类型。可填入tke、eks、tkeedge、tdcc、external，分别代表标准集群、弹性集群、边缘集群、注册集群 和外部集群
         # @type ClusterType: String
         # @param ClusterId: 集群 ID
         # @type ClusterId: String
@@ -14107,10 +14147,10 @@ module TencentCloud
 
         attr_accessor :URL, :URLRelabelConfig, :BasicAuth, :MaxBlockSize, :Label, :Headers
         extend Gem::Deprecate
-        deprecate :MaxBlockSize, :none, 2025, 5
-        deprecate :MaxBlockSize=, :none, 2025, 5
-        deprecate :Label, :none, 2025, 5
-        deprecate :Label=, :none, 2025, 5
+        deprecate :MaxBlockSize, :none, 2025, 6
+        deprecate :MaxBlockSize=, :none, 2025, 6
+        deprecate :Label, :none, 2025, 6
+        deprecate :Label=, :none, 2025, 6
 
         def initialize(url=nil, urlrelabelconfig=nil, basicauth=nil, maxblocksize=nil, label=nil, headers=nil)
           @URL = url

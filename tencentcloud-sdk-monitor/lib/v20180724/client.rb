@@ -1600,6 +1600,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查看外部集群注册命令
+
+        # @param request: Request instance for DescribeExternalClusterRegisterCommand.
+        # @type request: :class:`Tencentcloud::monitor::V20180724::DescribeExternalClusterRegisterCommandRequest`
+        # @rtype: :class:`Tencentcloud::monitor::V20180724::DescribeExternalClusterRegisterCommandResponse`
+        def DescribeExternalClusterRegisterCommand(request)
+          body = send_request('DescribeExternalClusterRegisterCommand', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeExternalClusterRegisterCommandResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 列出 Grafana 所有告警通道
 
         # @param request: Request instance for DescribeGrafanaChannels.
