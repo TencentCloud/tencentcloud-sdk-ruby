@@ -58,8 +58,8 @@ module TencentCloud
 
         attr_accessor :Notes, :Host, :User, :ModifyTime, :ModifyPasswordTime, :CreateTime, :MaxUserConnections, :OpenCam
         extend Gem::Deprecate
-        deprecate :CreateTime, :none, 2025, 5
-        deprecate :CreateTime=, :none, 2025, 5
+        deprecate :CreateTime, :none, 2025, 6
+        deprecate :CreateTime=, :none, 2025, 6
 
         def initialize(notes=nil, host=nil, user=nil, modifytime=nil, modifypasswordtime=nil, createtime=nil, maxuserconnections=nil, opencam=nil)
           @Notes = notes
@@ -436,8 +436,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :StartTime, :EndTime, :AggregationConditions, :AuditLogFilter, :LogFilter
         extend Gem::Deprecate
-        deprecate :AuditLogFilter, :none, 2025, 5
-        deprecate :AuditLogFilter=, :none, 2025, 5
+        deprecate :AuditLogFilter, :none, 2025, 6
+        deprecate :AuditLogFilter=, :none, 2025, 6
 
         def initialize(instanceid=nil, starttime=nil, endtime=nil, aggregationconditions=nil, auditlogfilter=nil, logfilter=nil)
           @InstanceId = instanceid
@@ -1096,10 +1096,10 @@ module TencentCloud
 
         attr_accessor :ExpandThreshold, :ShrinkThreshold, :ExpandPeriod, :ShrinkPeriod, :ExpandSecondPeriod, :ShrinkSecondPeriod
         extend Gem::Deprecate
-        deprecate :ExpandPeriod, :none, 2025, 5
-        deprecate :ExpandPeriod=, :none, 2025, 5
-        deprecate :ShrinkPeriod, :none, 2025, 5
-        deprecate :ShrinkPeriod=, :none, 2025, 5
+        deprecate :ExpandPeriod, :none, 2025, 6
+        deprecate :ExpandPeriod=, :none, 2025, 6
+        deprecate :ShrinkPeriod, :none, 2025, 6
+        deprecate :ShrinkPeriod=, :none, 2025, 6
 
         def initialize(expandthreshold=nil, shrinkthreshold=nil, expandperiod=nil, shrinkperiod=nil, expandsecondperiod=nil, shrinksecondperiod=nil)
           @ExpandThreshold = expandthreshold
@@ -2334,8 +2334,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :StartTime, :EndTime, :Order, :OrderBy, :Filter, :LogFilter, :ColumnFilter
         extend Gem::Deprecate
-        deprecate :Filter, :none, 2025, 5
-        deprecate :Filter=, :none, 2025, 5
+        deprecate :Filter, :none, 2025, 6
+        deprecate :Filter=, :none, 2025, 6
 
         def initialize(instanceid=nil, starttime=nil, endtime=nil, order=nil, orderby=nil, filter=nil, logfilter=nil, columnfilter=nil)
           @InstanceId = instanceid
@@ -5044,10 +5044,10 @@ module TencentCloud
 
         attr_accessor :StartTimeMin, :StartTimeMax, :BackupExpireDays, :BackupMethod, :BinlogExpireDays, :BackupTimeWindow, :EnableBackupPeriodSave, :BackupPeriodSaveDays, :BackupPeriodSaveInterval, :BackupPeriodSaveCount, :StartBackupPeriodSaveDate, :EnableBackupArchive, :BackupArchiveDays, :EnableBinlogArchive, :BinlogArchiveDays, :EnableBackupStandby, :BackupStandbyDays, :EnableBinlogStandby, :BinlogStandbyDays, :RequestId
         extend Gem::Deprecate
-        deprecate :StartTimeMin, :none, 2025, 5
-        deprecate :StartTimeMin=, :none, 2025, 5
-        deprecate :StartTimeMax, :none, 2025, 5
-        deprecate :StartTimeMax=, :none, 2025, 5
+        deprecate :StartTimeMin, :none, 2025, 6
+        deprecate :StartTimeMin=, :none, 2025, 6
+        deprecate :StartTimeMax, :none, 2025, 6
+        deprecate :StartTimeMax=, :none, 2025, 6
 
         def initialize(starttimemin=nil, starttimemax=nil, backupexpiredays=nil, backupmethod=nil, binlogexpiredays=nil, backuptimewindow=nil, enablebackupperiodsave=nil, backupperiodsavedays=nil, backupperiodsaveinterval=nil, backupperiodsavecount=nil, startbackupperiodsavedate=nil, enablebackuparchive=nil, backuparchivedays=nil, enablebinlogarchive=nil, binlogarchivedays=nil, enablebackupstandby=nil, backupstandbydays=nil, enablebinlogstandby=nil, binlogstandbydays=nil, requestid=nil)
           @StartTimeMin = starttimemin
@@ -8892,8 +8892,10 @@ module TencentCloud
         # @param ExpandType: 扩容类型
         # @type ExpandType: String
         # @param StartTime: 扩容开始时间
+        # 说明：此项显示的格式是 int 类型的 unix 时间戳
         # @type StartTime: Integer
         # @param EndTime: 扩容结束时间
+        # 说明：此项显示的格式是 int 类型的 unix 时间戳
         # @type EndTime: Integer
         # @param OldCpu: 扩容前核数
         # @type OldCpu: Integer
@@ -9598,8 +9600,8 @@ module TencentCloud
 
         attr_accessor :AsyncRequestId, :RequestId
         extend Gem::Deprecate
-        deprecate :AsyncRequestId, :none, 2025, 5
-        deprecate :AsyncRequestId=, :none, 2025, 5
+        deprecate :AsyncRequestId, :none, 2025, 6
+        deprecate :AsyncRequestId=, :none, 2025, 6
 
         def initialize(asyncrequestid=nil, requestid=nil)
           @AsyncRequestId = asyncrequestid
@@ -10322,8 +10324,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :LogExpireDay, :HighLogExpireDay, :AuditAll, :AuditRuleFilters, :RuleTemplateIds
         extend Gem::Deprecate
-        deprecate :AuditRuleFilters, :none, 2025, 5
-        deprecate :AuditRuleFilters=, :none, 2025, 5
+        deprecate :AuditRuleFilters, :none, 2025, 6
+        deprecate :AuditRuleFilters=, :none, 2025, 6
 
         def initialize(instanceid=nil, logexpireday=nil, highlogexpireday=nil, auditall=nil, auditrulefilters=nil, ruletemplateids=nil)
           @InstanceId = instanceid
@@ -11021,8 +11023,8 @@ module TencentCloud
 
         attr_accessor :AsyncRequestId, :RequestId
         extend Gem::Deprecate
-        deprecate :AsyncRequestId, :none, 2025, 5
-        deprecate :AsyncRequestId=, :none, 2025, 5
+        deprecate :AsyncRequestId, :none, 2025, 6
+        deprecate :AsyncRequestId=, :none, 2025, 6
 
         def initialize(asyncrequestid=nil, requestid=nil)
           @AsyncRequestId = asyncrequestid
@@ -11443,8 +11445,8 @@ module TencentCloud
 
         attr_accessor :RoGroupId, :RoGroupInfo, :RoWeightValues, :IsBalanceRoLoad, :ReplicationDelayTime
         extend Gem::Deprecate
-        deprecate :ReplicationDelayTime, :none, 2025, 5
-        deprecate :ReplicationDelayTime=, :none, 2025, 5
+        deprecate :ReplicationDelayTime, :none, 2025, 6
+        deprecate :ReplicationDelayTime=, :none, 2025, 6
 
         def initialize(rogroupid=nil, rogroupinfo=nil, roweightvalues=nil, isbalanceroload=nil, replicationdelaytime=nil)
           @RoGroupId = rogroupid
@@ -11629,8 +11631,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :LogExpireDay, :HighLogExpireDay, :AuditRuleFilters, :RuleTemplateIds, :AuditAll
         extend Gem::Deprecate
-        deprecate :AuditRuleFilters, :none, 2025, 5
-        deprecate :AuditRuleFilters=, :none, 2025, 5
+        deprecate :AuditRuleFilters, :none, 2025, 6
+        deprecate :AuditRuleFilters=, :none, 2025, 6
 
         def initialize(instanceid=nil, logexpireday=nil, highlogexpireday=nil, auditrulefilters=nil, ruletemplateids=nil, auditall=nil)
           @InstanceId = instanceid
@@ -11909,8 +11911,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :ParamName, :OldValue, :NewValue, :IsSucess, :ModifyTime, :IsSuccess
         extend Gem::Deprecate
-        deprecate :IsSucess, :none, 2025, 5
-        deprecate :IsSucess=, :none, 2025, 5
+        deprecate :IsSucess, :none, 2025, 6
+        deprecate :IsSucess=, :none, 2025, 6
 
         def initialize(instanceid=nil, paramname=nil, oldvalue=nil, newvalue=nil, issucess=nil, modifytime=nil, issuccess=nil)
           @InstanceId = instanceid

@@ -2050,6 +2050,73 @@ module TencentCloud
         end
       end
 
+      # CreateExternalCluster请求参数结构体
+      class CreateExternalClusterRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例 ID
+        # @type InstanceId: String
+        # @param ClusterRegion: 集群所在地域
+        # @type ClusterRegion: String
+        # @param ClusterName: 集群名称
+        # @type ClusterName: String
+        # @param ClusterId: 集群 ID
+        # @type ClusterId: String
+        # @param ExternalLabels: 外部标签
+        # @type ExternalLabels: Array
+        # @param OpenDefaultRecord: 是否打开预聚合规则
+        # @type OpenDefaultRecord: Boolean
+        # @param EnableExternal: 是否开启公网
+        # @type EnableExternal: Boolean
+
+        attr_accessor :InstanceId, :ClusterRegion, :ClusterName, :ClusterId, :ExternalLabels, :OpenDefaultRecord, :EnableExternal
+
+        def initialize(instanceid=nil, clusterregion=nil, clustername=nil, clusterid=nil, externallabels=nil, opendefaultrecord=nil, enableexternal=nil)
+          @InstanceId = instanceid
+          @ClusterRegion = clusterregion
+          @ClusterName = clustername
+          @ClusterId = clusterid
+          @ExternalLabels = externallabels
+          @OpenDefaultRecord = opendefaultrecord
+          @EnableExternal = enableexternal
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @ClusterRegion = params['ClusterRegion']
+          @ClusterName = params['ClusterName']
+          @ClusterId = params['ClusterId']
+          unless params['ExternalLabels'].nil?
+            @ExternalLabels = []
+            params['ExternalLabels'].each do |i|
+              label_tmp = Label.new
+              label_tmp.deserialize(i)
+              @ExternalLabels << label_tmp
+            end
+          end
+          @OpenDefaultRecord = params['OpenDefaultRecord']
+          @EnableExternal = params['EnableExternal']
+        end
+      end
+
+      # CreateExternalCluster返回参数结构体
+      class CreateExternalClusterResponse < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群 ID
+        # @type ClusterId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ClusterId, :RequestId
+
+        def initialize(clusterid=nil, requestid=nil)
+          @ClusterId = clusterid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateGrafanaInstance请求参数结构体
       class CreateGrafanaInstanceRequest < TencentCloud::Common::AbstractModel
         # @param InstanceName: 实例名
@@ -5587,6 +5654,46 @@ module TencentCloud
       # DescribeExternalClusterRegisterCommand返回参数结构体
       class DescribeExternalClusterRegisterCommandResponse < TencentCloud::Common::AbstractModel
         # @param Command: 注册命令
+        # @type Command: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Command, :RequestId
+
+        def initialize(command=nil, requestid=nil)
+          @Command = command
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Command = params['Command']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeExternalClusterUninstallCommand请求参数结构体
+      class DescribeExternalClusterUninstallCommandRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例 ID
+        # @type InstanceId: String
+        # @param ClusterId: 集群 ID
+        # @type ClusterId: String
+
+        attr_accessor :InstanceId, :ClusterId
+
+        def initialize(instanceid=nil, clusterid=nil)
+          @InstanceId = instanceid
+          @ClusterId = clusterid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @ClusterId = params['ClusterId']
+        end
+      end
+
+      # DescribeExternalClusterUninstallCommand返回参数结构体
+      class DescribeExternalClusterUninstallCommandResponse < TencentCloud::Common::AbstractModel
+        # @param Command: 卸载命令
         # @type Command: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

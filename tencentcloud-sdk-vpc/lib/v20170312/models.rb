@@ -793,8 +793,8 @@ module TencentCloud
 
         attr_accessor :AddressCount, :InternetServiceProvider, :InternetChargeType, :InternetMaxBandwidthOut, :AddressChargePrepaid, :AddressType, :AnycastZone, :VipCluster, :ApplicableForCLB, :Tags, :BandwidthPackageId, :AddressName, :DedicatedClusterId, :IsDedicatedAddressPool, :Egress, :AntiDDoSPackageId, :ClientToken
         extend Gem::Deprecate
-        deprecate :ApplicableForCLB, :none, 2025, 5
-        deprecate :ApplicableForCLB=, :none, 2025, 5
+        deprecate :ApplicableForCLB, :none, 2025, 6
+        deprecate :ApplicableForCLB=, :none, 2025, 6
 
         def initialize(addresscount=nil, internetserviceprovider=nil, internetchargetype=nil, internetmaxbandwidthout=nil, addresschargeprepaid=nil, addresstype=nil, anycastzone=nil, vipcluster=nil, applicableforclb=nil, tags=nil, bandwidthpackageid=nil, addressname=nil, dedicatedclusterid=nil, isdedicatedaddresspool=nil, egress=nil, antiddospackageid=nil, clienttoken=nil)
           @AddressCount = addresscount
@@ -4301,8 +4301,7 @@ module TencentCloud
         # @param FlowLogDescription: 流日志实例描述。长度不超过512个字符。
         # @type FlowLogDescription: String
         # @param CloudLogId: 流日志存储ID（cls的日志主题ID，
-        # 可通过[DescribeTopics](https://cloud.tencent.com/document/product/614/56454)接口获取。
-        # ）。当StorageType为cls时，CloudLogId为必选。
+        # 可通过[DescribeTopics](https://cloud.tencent.com/document/product/614/56454)接口获取）。当StorageType为cls时，CloudLogId为必选。
         # @type CloudLogId: String
         # @param Tags: 指定绑定的标签列表，例如：[{"Key": "city", "Value": "shanghai"}]。
         # @type Tags: Array
@@ -4804,8 +4803,8 @@ module TencentCloud
 
         attr_accessor :NatGatewayName, :VpcId, :InternetMaxBandwidthOut, :MaxConcurrentConnection, :AddressCount, :PublicIpAddresses, :Zone, :Tags, :SubnetId, :StockPublicIpAddressesBandwidthOut, :PublicIpAddressesBandwidthOut, :PublicIpFromSameZone, :NatProductVersion
         extend Gem::Deprecate
-        deprecate :SubnetId, :none, 2025, 5
-        deprecate :SubnetId=, :none, 2025, 5
+        deprecate :SubnetId, :none, 2025, 6
+        deprecate :SubnetId=, :none, 2025, 6
 
         def initialize(natgatewayname=nil, vpcid=nil, internetmaxbandwidthout=nil, maxconcurrentconnection=nil, addresscount=nil, publicipaddresses=nil, zone=nil, tags=nil, subnetid=nil, stockpublicipaddressesbandwidthout=nil, publicipaddressesbandwidthout=nil, publicipfromsamezone=nil, natproductversion=nil)
           @NatGatewayName = natgatewayname
@@ -12130,7 +12129,11 @@ module TencentCloud
 
       # DescribeLocalGateway请求参数结构体
       class DescribeLocalGatewayRequest < TencentCloud::Common::AbstractModel
-        # @param Filters: 支持的过滤条件如下:\n<li>vpc-id:按照VPCID过滤。</li>\n<li>local-gateway-name:本地网关名称,支持模糊查询。</li>\n<li>local-gateway-id:本地网关实例ID。</li>\n<li>cdc-id:cdc实例ID。</li>
+        # @param Filters: 支持的过滤条件如下:
+        # <li>vpc-id:按照VPCID过滤。</li>
+        # <li>local-gateway-name:本地网关名称,支持模糊查询。</li>
+        # <li>local-gateway-id:本地网关实例ID。</li>
+        # <li>cdc-id:cdc实例ID。</li>
         # @type Filters: Array
         # @param Offset: 偏移量，默认为0。关于`Offset`的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/api/213/11646)中的相关小节。
         # @type Offset: Integer
@@ -18713,8 +18716,8 @@ module TencentCloud
 
         attr_accessor :EncryptAlgorithm, :IntegrityAlgorith, :IPSECSaLifetimeSeconds, :PfsDhGroup, :IPSECSaLifetimeTraffic, :IntegrityAlgorithm
         extend Gem::Deprecate
-        deprecate :IntegrityAlgorith, :none, 2025, 5
-        deprecate :IntegrityAlgorith=, :none, 2025, 5
+        deprecate :IntegrityAlgorith, :none, 2025, 6
+        deprecate :IntegrityAlgorith=, :none, 2025, 6
 
         def initialize(encryptalgorithm=nil, integrityalgorith=nil, ipsecsalifetimeseconds=nil, pfsdhgroup=nil, ipsecsalifetimetraffic=nil, integrityalgorithm=nil)
           @EncryptAlgorithm = encryptalgorithm
@@ -20101,10 +20104,10 @@ module TencentCloud
 
         attr_accessor :AddressIds, :InternetMaxBandwidthOut, :StartTime, :EndTime
         extend Gem::Deprecate
-        deprecate :StartTime, :none, 2025, 5
-        deprecate :StartTime=, :none, 2025, 5
-        deprecate :EndTime, :none, 2025, 5
-        deprecate :EndTime=, :none, 2025, 5
+        deprecate :StartTime, :none, 2025, 6
+        deprecate :StartTime=, :none, 2025, 6
+        deprecate :EndTime, :none, 2025, 6
+        deprecate :EndTime=, :none, 2025, 6
 
         def initialize(addressids=nil, internetmaxbandwidthout=nil, starttime=nil, endtime=nil)
           @AddressIds = addressids

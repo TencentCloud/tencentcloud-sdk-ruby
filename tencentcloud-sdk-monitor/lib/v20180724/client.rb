@@ -271,6 +271,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 注册外部集群到云上 TMP 实例
+
+        # @param request: Request instance for CreateExternalCluster.
+        # @type request: :class:`Tencentcloud::monitor::V20180724::CreateExternalClusterRequest`
+        # @rtype: :class:`Tencentcloud::monitor::V20180724::CreateExternalClusterResponse`
+        def CreateExternalCluster(request)
+          body = send_request('CreateExternalCluster', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateExternalClusterResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（CreateGrafanaInstance）用于创建 Grafana 包年包月实例，默认基础版、到期自动续费、不可使用代金券。
 
         # @param request: Request instance for CreateGrafanaInstance.
@@ -1610,6 +1634,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeExternalClusterRegisterCommandResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查看外部集群 Agent 卸载命令
+
+        # @param request: Request instance for DescribeExternalClusterUninstallCommand.
+        # @type request: :class:`Tencentcloud::monitor::V20180724::DescribeExternalClusterUninstallCommandRequest`
+        # @rtype: :class:`Tencentcloud::monitor::V20180724::DescribeExternalClusterUninstallCommandResponse`
+        def DescribeExternalClusterUninstallCommand(request)
+          body = send_request('DescribeExternalClusterUninstallCommand', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeExternalClusterUninstallCommandResponse.new
             model.deserialize(response['Response'])
             model
           else

@@ -168,8 +168,8 @@ module TencentCloud
 
         attr_accessor :Id, :Title, :Name, :Type, :Description, :Schema, :CmsProject, :PkgId, :SchemaVersion, :CreatorId, :CreatedAt, :UpdatedAt, :EnvId, :DataSourceVersion, :AppUsageList, :PublishedAt, :ChildDataSourceIds, :Fun, :ScfStatus, :Methods, :ChildDataSourceNames, :IsNewDataSource, :ViewId, :Configuration, :TemplateCode, :Source, :PublishVersion, :PublishViewId, :SubType, :AuthStatus, :AuthInfo, :PublishStatus, :UpdateVersion, :RelationFieldList, :DbInstanceType, :PreviewTableName, :PublishedTableName, :DbSourceType
         extend Gem::Deprecate
-        deprecate :PublishVersion, :none, 2025, 5
-        deprecate :PublishVersion=, :none, 2025, 5
+        deprecate :PublishVersion, :none, 2025, 6
+        deprecate :PublishVersion=, :none, 2025, 6
 
         def initialize(id=nil, title=nil, name=nil, type=nil, description=nil, schema=nil, cmsproject=nil, pkgid=nil, schemaversion=nil, creatorid=nil, createdat=nil, updatedat=nil, envid=nil, datasourceversion=nil, appusagelist=nil, publishedat=nil, childdatasourceids=nil, fun=nil, scfstatus=nil, methods=nil, childdatasourcenames=nil, isnewdatasource=nil, viewid=nil, configuration=nil, templatecode=nil, source=nil, publishversion=nil, publishviewid=nil, subtype=nil, authstatus=nil, authinfo=nil, publishstatus=nil, updateversion=nil, relationfieldlist=nil, dbinstancetype=nil, previewtablename=nil, publishedtablename=nil, dbsourcetype=nil)
           @Id = id
@@ -822,10 +822,16 @@ module TencentCloud
         # @type FileMetaData: String
         # @param Author: 作者
         # @type Author: String
+        # @param DocStatus: 上传文件状态
+        # @type DocStatus: String
+        # @param ErrMsg: 文件上传失败的具体原因
+        # @type ErrMsg: String
+        # @param FileId: Cos存储文件ID
+        # @type FileId: String
 
-        attr_accessor :DocumentSetId, :DocumentSetName, :Text, :TextPrefix, :DocumentSetInfo, :SplitterPreprocess, :Name, :FileTitle, :FileMetaData, :Author
+        attr_accessor :DocumentSetId, :DocumentSetName, :Text, :TextPrefix, :DocumentSetInfo, :SplitterPreprocess, :Name, :FileTitle, :FileMetaData, :Author, :DocStatus, :ErrMsg, :FileId
 
-        def initialize(documentsetid=nil, documentsetname=nil, text=nil, textprefix=nil, documentsetinfo=nil, splitterpreprocess=nil, name=nil, filetitle=nil, filemetadata=nil, author=nil)
+        def initialize(documentsetid=nil, documentsetname=nil, text=nil, textprefix=nil, documentsetinfo=nil, splitterpreprocess=nil, name=nil, filetitle=nil, filemetadata=nil, author=nil, docstatus=nil, errmsg=nil, fileid=nil)
           @DocumentSetId = documentsetid
           @DocumentSetName = documentsetname
           @Text = text
@@ -836,6 +842,9 @@ module TencentCloud
           @FileTitle = filetitle
           @FileMetaData = filemetadata
           @Author = author
+          @DocStatus = docstatus
+          @ErrMsg = errmsg
+          @FileId = fileid
         end
 
         def deserialize(params)
@@ -855,6 +864,9 @@ module TencentCloud
           @FileTitle = params['FileTitle']
           @FileMetaData = params['FileMetaData']
           @Author = params['Author']
+          @DocStatus = params['DocStatus']
+          @ErrMsg = params['ErrMsg']
+          @FileId = params['FileId']
         end
       end
 
@@ -1054,10 +1066,16 @@ module TencentCloud
         # @type Name: String
         # @param Author: 作者
         # @type Author: String
+        # @param DocStatus: 文档上传状态
+        # @type DocStatus: String
+        # @param ErrMsg: 上传文件失败时具体的错误消息
+        # @type ErrMsg: String
+        # @param FileId: Cos存储文件ID
+        # @type FileId: String
 
-        attr_accessor :DocumentSetId, :DocumentSetName, :TextPrefix, :SplitterPreprocess, :DocumentSetInfo, :FileTitle, :FileMetaData, :Name, :Author
+        attr_accessor :DocumentSetId, :DocumentSetName, :TextPrefix, :SplitterPreprocess, :DocumentSetInfo, :FileTitle, :FileMetaData, :Name, :Author, :DocStatus, :ErrMsg, :FileId
 
-        def initialize(documentsetid=nil, documentsetname=nil, textprefix=nil, splitterpreprocess=nil, documentsetinfo=nil, filetitle=nil, filemetadata=nil, name=nil, author=nil)
+        def initialize(documentsetid=nil, documentsetname=nil, textprefix=nil, splitterpreprocess=nil, documentsetinfo=nil, filetitle=nil, filemetadata=nil, name=nil, author=nil, docstatus=nil, errmsg=nil, fileid=nil)
           @DocumentSetId = documentsetid
           @DocumentSetName = documentsetname
           @TextPrefix = textprefix
@@ -1067,6 +1085,9 @@ module TencentCloud
           @FileMetaData = filemetadata
           @Name = name
           @Author = author
+          @DocStatus = docstatus
+          @ErrMsg = errmsg
+          @FileId = fileid
         end
 
         def deserialize(params)
@@ -1085,6 +1106,9 @@ module TencentCloud
           @FileMetaData = params['FileMetaData']
           @Name = params['Name']
           @Author = params['Author']
+          @DocStatus = params['DocStatus']
+          @ErrMsg = params['ErrMsg']
+          @FileId = params['FileId']
         end
       end
 

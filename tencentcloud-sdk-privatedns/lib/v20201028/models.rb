@@ -1137,6 +1137,49 @@ module TencentCloud
         end
       end
 
+      # DescribeRecord请求参数结构体
+      class DescribeRecordRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 私有域ID
+        # @type ZoneId: String
+        # @param RecordId: 记录ID
+        # @type RecordId: String
+
+        attr_accessor :ZoneId, :RecordId
+
+        def initialize(zoneid=nil, recordid=nil)
+          @ZoneId = zoneid
+          @RecordId = recordid
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @RecordId = params['RecordId']
+        end
+      end
+
+      # DescribeRecord返回参数结构体
+      class DescribeRecordResponse < TencentCloud::Common::AbstractModel
+        # @param RecordInfo: 记录信息
+        # @type RecordInfo: :class:`Tencentcloud::Privatedns.v20201028.models.RecordInfo`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RecordInfo, :RequestId
+
+        def initialize(recordinfo=nil, requestid=nil)
+          @RecordInfo = recordinfo
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['RecordInfo'].nil?
+            @RecordInfo = RecordInfo.new
+            @RecordInfo.deserialize(params['RecordInfo'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeRequestData请求参数结构体
       class DescribeRequestDataRequest < TencentCloud::Common::AbstractModel
         # @param TimeRangeBegin: 请求量统计起始时间，格式：2020-11-22 00:00:00
@@ -1777,6 +1820,66 @@ module TencentCloud
           @Status = params['Status']
           @ErrorMsg = params['ErrorMsg']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 私有域信息
+      class RecordInfo < TencentCloud::Common::AbstractModel
+        # @param RecordId: 记录id
+        # @type RecordId: String
+        # @param ZoneId: 私有域id: zone-xxxxxxxx
+        # @type ZoneId: String
+        # @param SubDomain: 子域名
+        # @type SubDomain: String
+        # @param RecordType: 记录类型，可选的记录类型为："A", "AAAA", "CNAME", "MX", "TXT", "PTR"
+        # @type RecordType: String
+        # @param RecordValue: 记录值
+        # @type RecordValue: String
+        # @param TTL: 记录缓存时间，数值越小生效越快，取值1-86400s, 默认 600
+        # @type TTL: Integer
+        # @param MX: MX优先级：记录类型为MX时必填。取值范围：5,10,15,20,30,40,50
+        # @type MX: Integer
+        # @param Weight: 记录权重，值为1-100
+        # @type Weight: Integer
+        # @param CreatedOn: 记录创建时间
+        # @type CreatedOn: String
+        # @param UpdatedOn: 记录更新时间
+        # @type UpdatedOn: String
+        # @param Enabled: 0暂停，1启用
+        # @type Enabled: Integer
+        # @param Remark: 备注
+        # @type Remark: String
+
+        attr_accessor :RecordId, :ZoneId, :SubDomain, :RecordType, :RecordValue, :TTL, :MX, :Weight, :CreatedOn, :UpdatedOn, :Enabled, :Remark
+
+        def initialize(recordid=nil, zoneid=nil, subdomain=nil, recordtype=nil, recordvalue=nil, ttl=nil, mx=nil, weight=nil, createdon=nil, updatedon=nil, enabled=nil, remark=nil)
+          @RecordId = recordid
+          @ZoneId = zoneid
+          @SubDomain = subdomain
+          @RecordType = recordtype
+          @RecordValue = recordvalue
+          @TTL = ttl
+          @MX = mx
+          @Weight = weight
+          @CreatedOn = createdon
+          @UpdatedOn = updatedon
+          @Enabled = enabled
+          @Remark = remark
+        end
+
+        def deserialize(params)
+          @RecordId = params['RecordId']
+          @ZoneId = params['ZoneId']
+          @SubDomain = params['SubDomain']
+          @RecordType = params['RecordType']
+          @RecordValue = params['RecordValue']
+          @TTL = params['TTL']
+          @MX = params['MX']
+          @Weight = params['Weight']
+          @CreatedOn = params['CreatedOn']
+          @UpdatedOn = params['UpdatedOn']
+          @Enabled = params['Enabled']
+          @Remark = params['Remark']
         end
       end
 

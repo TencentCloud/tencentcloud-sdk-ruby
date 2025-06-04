@@ -1464,14 +1464,8 @@ module TencentCloud
 
       # 任务输出标签
       class TaskLabel < TencentCloud::Common::AbstractModel
-        # @param Label: 命中的标签
-        # Porn 色情
-        # Sexy 性感
-        # Polity 政治
-        # Illegal 违法
-        # Abuse 谩骂
-        # Terror 暴恐
-        # Ad 广告
+        # @param Label: 该字段用于返回检测结果所对应的恶意标签。
+        # 返回值：Porn：色情，Abuse：谩骂，Ad：广告；以及其他令人反感、不安全或不适宜的内容类型。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Label: String
         # @param Suggestion: 审核建议，可选值：

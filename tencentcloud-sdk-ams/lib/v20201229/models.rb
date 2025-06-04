@@ -217,8 +217,8 @@ module TencentCloud
 
         attr_accessor :Label, :Score, :StartTime, :EndTime, :SubLabelCode, :SubLabel, :Suggestion
         extend Gem::Deprecate
-        deprecate :SubLabelCode, :none, 2025, 5
-        deprecate :SubLabelCode=, :none, 2025, 5
+        deprecate :SubLabelCode, :none, 2025, 6
+        deprecate :SubLabelCode=, :none, 2025, 6
 
         def initialize(label=nil, score=nil, starttime=nil, endtime=nil, sublabelcode=nil, sublabel=nil, suggestion=nil)
           @Label = label

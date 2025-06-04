@@ -7154,16 +7154,19 @@ module TencentCloud
         # @type Selected: String
         # @param Enable: 是否开启监控
         # @type Enable: String
+        # @param SettingsJson: 事件Json模板
+        # @type SettingsJson: String
 
-        attr_accessor :TaskType, :Group, :Name, :TaskSettings, :Selected, :Enable
+        attr_accessor :TaskType, :Group, :Name, :TaskSettings, :Selected, :Enable, :SettingsJson
 
-        def initialize(tasktype=nil, group=nil, name=nil, tasksettings=nil, selected=nil, enable=nil)
+        def initialize(tasktype=nil, group=nil, name=nil, tasksettings=nil, selected=nil, enable=nil, settingsjson=nil)
           @TaskType = tasktype
           @Group = group
           @Name = name
           @TaskSettings = tasksettings
           @Selected = selected
           @Enable = enable
+          @SettingsJson = settingsjson
         end
 
         def deserialize(params)
@@ -7180,6 +7183,7 @@ module TencentCloud
           end
           @Selected = params['Selected']
           @Enable = params['Enable']
+          @SettingsJson = params['SettingsJson']
         end
       end
 
@@ -9641,16 +9645,19 @@ module TencentCloud
         # @type StoreFileSize: Float
         # @param Operation: regions，点击可跳转
         # @type Operation: String
+        # @param StoreFileNum: StoreFile数量
+        # @type StoreFileNum: Float
 
-        attr_accessor :Table, :ReadRequestCount, :WriteRequestCount, :MemstoreSize, :StoreFileSize, :Operation
+        attr_accessor :Table, :ReadRequestCount, :WriteRequestCount, :MemstoreSize, :StoreFileSize, :Operation, :StoreFileNum
 
-        def initialize(table=nil, readrequestcount=nil, writerequestcount=nil, memstoresize=nil, storefilesize=nil, operation=nil)
+        def initialize(table=nil, readrequestcount=nil, writerequestcount=nil, memstoresize=nil, storefilesize=nil, operation=nil, storefilenum=nil)
           @Table = table
           @ReadRequestCount = readrequestcount
           @WriteRequestCount = writerequestcount
           @MemstoreSize = memstoresize
           @StoreFileSize = storefilesize
           @Operation = operation
+          @StoreFileNum = storefilenum
         end
 
         def deserialize(params)
@@ -9660,6 +9667,7 @@ module TencentCloud
           @MemstoreSize = params['MemstoreSize']
           @StoreFileSize = params['StoreFileSize']
           @Operation = params['Operation']
+          @StoreFileNum = params['StoreFileNum']
         end
       end
 

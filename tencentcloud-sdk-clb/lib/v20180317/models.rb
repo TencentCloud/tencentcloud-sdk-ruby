@@ -1397,8 +1397,8 @@ module TencentCloud
 
         attr_accessor :LogsetName, :Period, :LogsetType
         extend Gem::Deprecate
-        deprecate :Period, :none, 2025, 5
-        deprecate :Period=, :none, 2025, 5
+        deprecate :Period, :none, 2025, 6
+        deprecate :Period=, :none, 2025, 6
 
         def initialize(logsetname=nil, period=nil, logsettype=nil)
           @LogsetName = logsetname
@@ -3342,6 +3342,49 @@ module TencentCloud
         end
       end
 
+      # DescribeLBOperateProtect请求参数结构体
+      class DescribeLBOperateProtectRequest < TencentCloud::Common::AbstractModel
+        # @param LoadBalancerIds: 负载均衡实例ID。
+        # @type LoadBalancerIds: Array
+
+        attr_accessor :LoadBalancerIds
+
+        def initialize(loadbalancerids=nil)
+          @LoadBalancerIds = loadbalancerids
+        end
+
+        def deserialize(params)
+          @LoadBalancerIds = params['LoadBalancerIds']
+        end
+      end
+
+      # DescribeLBOperateProtect返回参数结构体
+      class DescribeLBOperateProtectResponse < TencentCloud::Common::AbstractModel
+        # @param LoadBalancerSet: 返回的负载均衡操作保护信息数组。
+        # @type LoadBalancerSet: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :LoadBalancerSet, :RequestId
+
+        def initialize(loadbalancerset=nil, requestid=nil)
+          @LoadBalancerSet = loadbalancerset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['LoadBalancerSet'].nil?
+            @LoadBalancerSet = []
+            params['LoadBalancerSet'].each do |i|
+              lboperateprotectinfo_tmp = LBOperateProtectInfo.new
+              lboperateprotectinfo_tmp.deserialize(i)
+              @LoadBalancerSet << lboperateprotectinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeListeners请求参数结构体
       class DescribeListenersRequest < TencentCloud::Common::AbstractModel
         # @param LoadBalancerId: 负载均衡实例 ID，可以通过 [DescribeLoadBalancers](https://cloud.tencent.com/document/api/214/30685) 接口获取。
@@ -5069,6 +5112,41 @@ module TencentCloud
         end
       end
 
+      # 负载均衡的操作保护信息
+      class LBOperateProtectInfo < TencentCloud::Common::AbstractModel
+        # @param LoadBalancerId: 负载均衡实例 ID。
+        # @type LoadBalancerId: String
+        # @param ProtectState: 保护状态，true：表示开启了操作保护，false：表示未开启操作保护。
+        # @type ProtectState: Boolean
+        # @param OperatorUin: 操作保护的设置uin。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OperatorUin: String
+        # @param Description: 设置操作保护时的描述信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+        # @param ModifyTime: 最后修改时间。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModifyTime: String
+
+        attr_accessor :LoadBalancerId, :ProtectState, :OperatorUin, :Description, :ModifyTime
+
+        def initialize(loadbalancerid=nil, protectstate=nil, operatoruin=nil, description=nil, modifytime=nil)
+          @LoadBalancerId = loadbalancerid
+          @ProtectState = protectstate
+          @OperatorUin = operatoruin
+          @Description = description
+          @ModifyTime = modifytime
+        end
+
+        def deserialize(params)
+          @LoadBalancerId = params['LoadBalancerId']
+          @ProtectState = params['ProtectState']
+          @OperatorUin = params['OperatorUin']
+          @Description = params['Description']
+          @ModifyTime = params['ModifyTime']
+        end
+      end
+
       # 查询类型
       class LbRsItem < TencentCloud::Common::AbstractModel
         # @param VpcId: vpc的字符串id，只支持字符串id。
@@ -5580,8 +5658,8 @@ module TencentCloud
 
         attr_accessor :LoadBalancerId, :LoadBalancerName, :LoadBalancerType, :Forward, :Domain, :LoadBalancerVips, :Status, :CreateTime, :StatusTime, :ProjectId, :VpcId, :OpenBgp, :Snat, :Isolation, :Log, :SubnetId, :Tags, :SecureGroups, :TargetRegionInfo, :AnycastZone, :AddressIPVersion, :NumericalVpcId, :VipIsp, :MasterZone, :BackupZoneSet, :IsolatedTime, :ExpireTime, :ChargeType, :NetworkAttributes, :PrepaidAttributes, :LogSetId, :LogTopicId, :AddressIPv6, :ExtraInfo, :IsDDos, :ConfigId, :LoadBalancerPassToTarget, :ExclusiveCluster, :IPv6Mode, :SnatPro, :SnatIps, :SlaType, :IsBlock, :IsBlockTime, :LocalBgp, :ClusterTag, :MixIpTarget, :Zones, :NfvInfo, :HealthLogSetId, :HealthLogTopicId, :ClusterIds, :AttributeFlags, :LoadBalancerDomain, :Egress, :Exclusive, :TargetCount
         extend Gem::Deprecate
-        deprecate :Log, :none, 2025, 5
-        deprecate :Log=, :none, 2025, 5
+        deprecate :Log, :none, 2025, 6
+        deprecate :Log=, :none, 2025, 6
 
         def initialize(loadbalancerid=nil, loadbalancername=nil, loadbalancertype=nil, forward=nil, domain=nil, loadbalancervips=nil, status=nil, createtime=nil, statustime=nil, projectid=nil, vpcid=nil, openbgp=nil, snat=nil, isolation=nil, log=nil, subnetid=nil, tags=nil, securegroups=nil, targetregioninfo=nil, anycastzone=nil, addressipversion=nil, numericalvpcid=nil, vipisp=nil, masterzone=nil, backupzoneset=nil, isolatedtime=nil, expiretime=nil, chargetype=nil, networkattributes=nil, prepaidattributes=nil, logsetid=nil, logtopicid=nil, addressipv6=nil, extrainfo=nil, isddos=nil, configid=nil, loadbalancerpasstotarget=nil, exclusivecluster=nil, ipv6mode=nil, snatpro=nil, snatips=nil, slatype=nil, isblock=nil, isblocktime=nil, localbgp=nil, clustertag=nil, mixiptarget=nil, zones=nil, nfvinfo=nil, healthlogsetid=nil, healthlogtopicid=nil, clusterids=nil, attributeflags=nil, loadbalancerdomain=nil, egress=nil, exclusive=nil, targetcount=nil)
           @LoadBalancerId = loadbalancerid
@@ -7631,10 +7709,10 @@ module TencentCloud
 
         attr_accessor :ListenerId, :Targets, :LocationId, :Domain, :Url, :Weight
         extend Gem::Deprecate
-        deprecate :Domain, :none, 2025, 5
-        deprecate :Domain=, :none, 2025, 5
-        deprecate :Url, :none, 2025, 5
-        deprecate :Url=, :none, 2025, 5
+        deprecate :Domain, :none, 2025, 6
+        deprecate :Domain=, :none, 2025, 6
+        deprecate :Url, :none, 2025, 6
+        deprecate :Url=, :none, 2025, 6
 
         def initialize(listenerid=nil, targets=nil, locationid=nil, domain=nil, url=nil, weight=nil)
           @ListenerId = listenerid
@@ -8580,8 +8658,8 @@ module TencentCloud
 
         attr_accessor :IP, :Port, :HealthStatus, :TargetId, :HealthStatusDetail, :HealthStatusDetial, :TargetGroupId, :Weight
         extend Gem::Deprecate
-        deprecate :HealthStatusDetial, :none, 2025, 5
-        deprecate :HealthStatusDetial=, :none, 2025, 5
+        deprecate :HealthStatusDetial, :none, 2025, 6
+        deprecate :HealthStatusDetial=, :none, 2025, 6
 
         def initialize(ip=nil, port=nil, healthstatus=nil, targetid=nil, healthstatusdetail=nil, healthstatusdetial=nil, targetgroupid=nil, weight=nil)
           @IP = ip

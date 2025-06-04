@@ -98,15 +98,18 @@ module TencentCloud
         # @type Command: String
         # @param UninstallCommand: shell 卸载命令（支持多条命令执行，通过 && 组合；只在应用 AppMode 为 ADVANCED 高级模式下 才会生效）
         # @type UninstallCommand: String
+        # @param CleanupMode: 应用资源清理模式（实例安装应用所用资源），取值：CLEANUP_ON_UNINSTALL（默认值），卸载 App 时清理；CLEANUP_AFTER_INSTALL，安装 App 后立即清理。普通应用只有 CLEANUP_AFTER_INSTALL 模式。
+        # @type CleanupMode: String
 
-        attr_accessor :AndroidAppVersion, :State, :CreateTime, :Command, :UninstallCommand
+        attr_accessor :AndroidAppVersion, :State, :CreateTime, :Command, :UninstallCommand, :CleanupMode
 
-        def initialize(androidappversion=nil, state=nil, createtime=nil, command=nil, uninstallcommand=nil)
+        def initialize(androidappversion=nil, state=nil, createtime=nil, command=nil, uninstallcommand=nil, cleanupmode=nil)
           @AndroidAppVersion = androidappversion
           @State = state
           @CreateTime = createtime
           @Command = command
           @UninstallCommand = uninstallcommand
+          @CleanupMode = cleanupmode
         end
 
         def deserialize(params)
@@ -115,6 +118,7 @@ module TencentCloud
           @CreateTime = params['CreateTime']
           @Command = params['Command']
           @UninstallCommand = params['UninstallCommand']
+          @CleanupMode = params['CleanupMode']
         end
       end
 
@@ -237,6 +241,26 @@ module TencentCloud
         end
       end
 
+      # 安卓实例设备信息
+      class AndroidInstanceDevice < TencentCloud::Common::AbstractModel
+        # @param Brand: 品牌
+        # @type Brand: String
+        # @param Model: 型号
+        # @type Model: String
+
+        attr_accessor :Brand, :Model
+
+        def initialize(brand=nil, model=nil)
+          @Brand = brand
+          @Model = model
+        end
+
+        def deserialize(params)
+          @Brand = params['Brand']
+          @Model = params['Model']
+        end
+      end
+
       # 安卓实例镜像信息
       class AndroidInstanceImage < TencentCloud::Common::AbstractModel
         # @param AndroidInstanceImageId: 镜像 ID
@@ -290,6 +314,26 @@ module TencentCloud
         # @param Key: 标签键
         # @type Key: String
         # @param Value: 标签值
+        # @type Value: String
+
+        attr_accessor :Key, :Value
+
+        def initialize(key=nil, value=nil)
+          @Key = key
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Value = params['Value']
+        end
+      end
+
+      # 安卓实例属性
+      class AndroidInstanceProperty < TencentCloud::Common::AbstractModel
+        # @param Key: 属性键
+        # @type Key: String
+        # @param Value: 属性值
         # @type Value: String
 
         attr_accessor :Key, :Value
@@ -621,14 +665,17 @@ module TencentCloud
         # @type Command: String
         # @param UninstallCommand: 应用 shell 卸载命令（支持多条命令执行，通过 && 组合；只在应用 AppMode 为 ADVANCED 高级模式下 才会生效）
         # @type UninstallCommand: String
+        # @param CleanupMode: 应用资源清理模式（实例安装应用所用资源），取值：CLEANUP_ON_UNINSTALL（默认值），卸载 App 时清理；CLEANUP_AFTER_INSTALL，安装 App 后立即清理。普通应用只有 CLEANUP_AFTER_INSTALL 模式。
+        # @type CleanupMode: String
 
-        attr_accessor :AndroidAppId, :DownloadUrl, :Command, :UninstallCommand
+        attr_accessor :AndroidAppId, :DownloadUrl, :Command, :UninstallCommand, :CleanupMode
 
-        def initialize(androidappid=nil, downloadurl=nil, command=nil, uninstallcommand=nil)
+        def initialize(androidappid=nil, downloadurl=nil, command=nil, uninstallcommand=nil, cleanupmode=nil)
           @AndroidAppId = androidappid
           @DownloadUrl = downloadurl
           @Command = command
           @UninstallCommand = uninstallcommand
+          @CleanupMode = cleanupmode
         end
 
         def deserialize(params)
@@ -636,6 +683,7 @@ module TencentCloud
           @DownloadUrl = params['DownloadUrl']
           @Command = params['Command']
           @UninstallCommand = params['UninstallCommand']
+          @CleanupMode = params['CleanupMode']
         end
       end
 
@@ -655,6 +703,58 @@ module TencentCloud
 
         def deserialize(params)
           @AndroidAppVersion = params['AndroidAppVersion']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateAndroidInstanceADB请求参数结构体
+      class CreateAndroidInstanceADBRequest < TencentCloud::Common::AbstractModel
+        # @param AndroidInstanceId: 安卓实例 ID
+        # @type AndroidInstanceId: String
+
+        attr_accessor :AndroidInstanceId
+
+        def initialize(androidinstanceid=nil)
+          @AndroidInstanceId = androidinstanceid
+        end
+
+        def deserialize(params)
+          @AndroidInstanceId = params['AndroidInstanceId']
+        end
+      end
+
+      # CreateAndroidInstanceADB返回参数结构体
+      class CreateAndroidInstanceADBResponse < TencentCloud::Common::AbstractModel
+        # @param PrivateKey: 连接私钥，需要保存为文件形式，例如 private_key.pem
+        # @type PrivateKey: String
+        # @param UserName: 用户名称
+        # @type UserName: String
+        # @param HostName: 连接地址
+        # @type HostName: String
+        # @param Port: 连接端口
+        # @type Port: Integer
+        # @param ConnectCommand: 连接参考命令
+        # @type ConnectCommand: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :PrivateKey, :UserName, :HostName, :Port, :ConnectCommand, :RequestId
+
+        def initialize(privatekey=nil, username=nil, hostname=nil, port=nil, connectcommand=nil, requestid=nil)
+          @PrivateKey = privatekey
+          @UserName = username
+          @HostName = hostname
+          @Port = port
+          @ConnectCommand = connectcommand
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @PrivateKey = params['PrivateKey']
+          @UserName = params['UserName']
+          @HostName = params['HostName']
+          @Port = params['Port']
+          @ConnectCommand = params['ConnectCommand']
           @RequestId = params['RequestId']
         end
       end
@@ -1949,6 +2049,54 @@ module TencentCloud
         end
       end
 
+      # InstallAndroidInstancesAppWithURL请求参数结构体
+      class InstallAndroidInstancesAppWithURLRequest < TencentCloud::Common::AbstractModel
+        # @param AndroidInstanceIds: 实例ID
+        # @type AndroidInstanceIds: Array
+        # @param AndroidAppURL: 安卓应用下载 URL
+        # @type AndroidAppURL: String
+
+        attr_accessor :AndroidInstanceIds, :AndroidAppURL
+
+        def initialize(androidinstanceids=nil, androidappurl=nil)
+          @AndroidInstanceIds = androidinstanceids
+          @AndroidAppURL = androidappurl
+        end
+
+        def deserialize(params)
+          @AndroidInstanceIds = params['AndroidInstanceIds']
+          @AndroidAppURL = params['AndroidAppURL']
+        end
+      end
+
+      # InstallAndroidInstancesAppWithURL返回参数结构体
+      class InstallAndroidInstancesAppWithURLResponse < TencentCloud::Common::AbstractModel
+        # @param TaskSet: 任务集合
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskSet: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskSet, :RequestId
+
+        def initialize(taskset=nil, requestid=nil)
+          @TaskSet = taskset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['TaskSet'].nil?
+            @TaskSet = []
+            params['TaskSet'].each do |i|
+              androidinstancetask_tmp = AndroidInstanceTask.new
+              androidinstancetask_tmp.deserialize(i)
+              @TaskSet << androidinstancetask_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 标签要求
       class LabelRequirement < TencentCloud::Common::AbstractModel
         # @param Key: 标签键
@@ -2233,6 +2381,56 @@ module TencentCloud
 
       # ModifyAndroidInstancesLabels返回参数结构体
       class ModifyAndroidInstancesLabelsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyAndroidInstancesProperties请求参数结构体
+      class ModifyAndroidInstancesPropertiesRequest < TencentCloud::Common::AbstractModel
+        # @param AndroidInstanceIds: 安卓实例 ID 列表
+        # @type AndroidInstanceIds: Array
+        # @param AndroidInstanceDevice: 安卓实例设备
+        # @type AndroidInstanceDevice: :class:`Tencentcloud::Gs.v20191118.models.AndroidInstanceDevice`
+        # @param AndroidInstanceProperties: 安卓实例其它属性列表
+        # @type AndroidInstanceProperties: Array
+
+        attr_accessor :AndroidInstanceIds, :AndroidInstanceDevice, :AndroidInstanceProperties
+
+        def initialize(androidinstanceids=nil, androidinstancedevice=nil, androidinstanceproperties=nil)
+          @AndroidInstanceIds = androidinstanceids
+          @AndroidInstanceDevice = androidinstancedevice
+          @AndroidInstanceProperties = androidinstanceproperties
+        end
+
+        def deserialize(params)
+          @AndroidInstanceIds = params['AndroidInstanceIds']
+          unless params['AndroidInstanceDevice'].nil?
+            @AndroidInstanceDevice = AndroidInstanceDevice.new
+            @AndroidInstanceDevice.deserialize(params['AndroidInstanceDevice'])
+          end
+          unless params['AndroidInstanceProperties'].nil?
+            @AndroidInstanceProperties = []
+            params['AndroidInstanceProperties'].each do |i|
+              androidinstanceproperty_tmp = AndroidInstanceProperty.new
+              androidinstanceproperty_tmp.deserialize(i)
+              @AndroidInstanceProperties << androidinstanceproperty_tmp
+            end
+          end
+        end
+      end
+
+      # ModifyAndroidInstancesProperties返回参数结构体
+      class ModifyAndroidInstancesPropertiesResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 

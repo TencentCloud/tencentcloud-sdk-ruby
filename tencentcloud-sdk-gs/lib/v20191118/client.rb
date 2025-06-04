@@ -29,7 +29,7 @@ module TencentCloud
         end
 
 
-        # 备份云手机到指定存储
+        # 备份云手机数据到指定存储，支持 COS 和兼容 AWS S3 协议的对象存储服务。如果是备份到 COS 时，会使用公网流量，授权 COS bucket 请在控制台中操作。
 
         # @param request: Request instance for BackUpAndroidInstanceToStorage.
         # @type request: :class:`Tencentcloud::gs::V20191118::BackUpAndroidInstanceToStorageRequest`
@@ -78,7 +78,7 @@ module TencentCloud
         end
 
         # 复制安卓实例：
-        # 1. 排除和包含文件只能指定/data下的文件，不指定时复制整个/data目录
+        # 1. 排除和包含文件只能指定 /data 下的文件，不指定时复制整个 /data 目录
         # 2. 源实例和目的实例必须在同一区域
         # 3. 复制时，源实例和目的实例都会停机，复制完后实例会自动启动
         # 4. 复制时会产生大量内网流量，请限制并发
@@ -153,6 +153,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建云手机实例 ADB 连接信息，请将返回结果的 PrivateKey 字段保存为 pem 文件，并将 pem 文件权限设置为 600，再参考返回结果的 ConnectCommand 使用 adb 连接实例。
+
+        # @param request: Request instance for CreateAndroidInstanceADB.
+        # @type request: :class:`Tencentcloud::gs::V20191118::CreateAndroidInstanceADBRequest`
+        # @rtype: :class:`Tencentcloud::gs::V20191118::CreateAndroidInstanceADBResponse`
+        def CreateAndroidInstanceADB(request)
+          body = send_request('CreateAndroidInstanceADB', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateAndroidInstanceADBResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建安卓实例镜像
 
         # @param request: Request instance for CreateAndroidInstanceImage.
@@ -201,7 +225,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 创建安卓实例 SSH 连接
+        # 创建安卓实例 SSH 连接信息，请将返回结果的 PrivateKey 字段保存为 pem 文件，并将 pem 文件权限设置为 600，再参考返回结果的 ConnectCommand 使用 ssh 连接实例。
 
         # @param request: Request instance for CreateAndroidInstanceSSH.
         # @type request: :class:`Tencentcloud::gs::V20191118::CreateAndroidInstanceSSHRequest`
@@ -225,7 +249,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 创建安卓实例 WebShell 连接
+        # 创建安卓实例 WebShell 连接信息，返回的 ConnectUrl 可通过浏览器直接打开访问，链接有效期 1 小时，链接打开后可持续使用。
 
         # @param request: Request instance for CreateAndroidInstanceWebShell.
         # @type request: :class:`Tencentcloud::gs::V20191118::CreateAndroidInstanceWebShellRequest`
@@ -633,7 +657,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 分发文件到安卓实例
+        # 将一个文件批量分发到多个实例，一次接口调用触发一次文件分发，一次文件分发只会从公网下载一次，然后文件会走内网分发到实例列表中的实例。
 
         # @param request: Request instance for DistributeFileToAndroidInstances.
         # @type request: :class:`Tencentcloud::gs::V20191118::DistributeFileToAndroidInstancesRequest`
@@ -681,7 +705,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 批量获取安卓实例日志
+        # 批量将实例的 logcat 日志文件上传到您已授权的 COS bucket 中，授权 COS bucket 请在控制台中操作。
 
         # @param request: Request instance for FetchAndroidInstancesLogs.
         # @type request: :class:`Tencentcloud::gs::V20191118::FetchAndroidInstancesLogsRequest`
@@ -715,6 +739,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = InstallAndroidInstancesAppResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 安装安卓实例应用
+
+        # @param request: Request instance for InstallAndroidInstancesAppWithURL.
+        # @type request: :class:`Tencentcloud::gs::V20191118::InstallAndroidInstancesAppWithURLRequest`
+        # @rtype: :class:`Tencentcloud::gs::V20191118::InstallAndroidInstancesAppWithURLResponse`
+        def InstallAndroidInstancesAppWithURL(request)
+          body = send_request('InstallAndroidInstancesAppWithURL', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = InstallAndroidInstancesAppWithURLResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -859,6 +907,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyAndroidInstancesLabelsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 批量修改安卓实例属性
+
+        # @param request: Request instance for ModifyAndroidInstancesProperties.
+        # @type request: :class:`Tencentcloud::gs::V20191118::ModifyAndroidInstancesPropertiesRequest`
+        # @rtype: :class:`Tencentcloud::gs::V20191118::ModifyAndroidInstancesPropertiesResponse`
+        def ModifyAndroidInstancesProperties(request)
+          body = send_request('ModifyAndroidInstancesProperties', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyAndroidInstancesPropertiesResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1020,7 +1092,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 指定存储还原云手机
+        # 使用指定存储数据还原云手机，支持 COS 和兼容 AWS S3 协议的对象存储服务。如果还原数据来自 COS 时，会使用公网流量，授权 COS bucket 请在控制台中操作。
 
         # @param request: Request instance for RestoreAndroidInstanceFromStorage.
         # @type request: :class:`Tencentcloud::gs::V20191118::RestoreAndroidInstanceFromStorageRequest`
@@ -1380,7 +1452,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 上传文件到安卓实例
+        # 将文件下载到指定实例列表的实例上，每个实例都会从公网下载文件。如果您需要将同一个文件分发到多个实例，建议使用 DistributeFileToAndroidInstances 接口减少公网下载的流量。如果您需要将不同的文件下载到不同的实例，可考虑使用 UploadFilesToAndroidInstances 接口批量将不同文件下载到不同的实例。
 
         # @param request: Request instance for UploadFileToAndroidInstances.
         # @type request: :class:`Tencentcloud::gs::V20191118::UploadFileToAndroidInstancesRequest`
@@ -1404,7 +1476,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 批量上传文件到安卓实例
+        # 批量将不同的文件下载到不同的实例，每个实例下载文件都是从公网下载，建议只用在文件下载使用一次的场景。如果您需要将同一个文件分发到不同实例，建议使用 DistributeFileToAndroidInstances 接口。
 
         # @param request: Request instance for UploadFilesToAndroidInstances.
         # @type request: :class:`Tencentcloud::gs::V20191118::UploadFilesToAndroidInstancesRequest`
