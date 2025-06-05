@@ -638,13 +638,13 @@ module TencentCloud
         # @type Storage: Integer
         # @param ClusterId: 独享集群集群uuid
         # @type ClusterId: String
-        # @param Zone: （废弃）可用区
+        # @param Zone: 可用区
         # @type Zone: String
         # @param ProjectId: 项目ID
         # @type ProjectId: Integer
-        # @param Pid: （废弃）Pid，可通过获取独享集群售卖配置接口得到
+        # @param Pid: Pid，可通过获取独享集群售卖配置接口得到
         # @type Pid: Integer
-        # @param Machine: （废弃）机型
+        # @param Machine: 机型
         # @type Machine: String
         # @param VpcId: 网络Id
         # @type VpcId: String
@@ -652,9 +652,9 @@ module TencentCloud
         # @type SubnetId: String
         # @param DbVersionId: db类型，不传默认8.0
         # @type DbVersionId: String
-        # @param Manual: （废弃）是否手动指定一组服务器分配, 运维使用
+        # @param Manual: 是否手动指定一组服务器分配, 运维使用
         # @type Manual: Integer
-        # @param DeviceNo: （废弃）DeviceNo参数
+        # @param DeviceNo: DeviceNo参数
         # @type DeviceNo: String
         # @param SecurityGroupIds: 安全组ID
         # @type SecurityGroupIds: Array
@@ -684,6 +684,17 @@ module TencentCloud
         # @type DcnSyncMode: Integer
 
         attr_accessor :GoodsNum, :Memory, :Storage, :ClusterId, :Zone, :ProjectId, :Pid, :Machine, :VpcId, :SubnetId, :DbVersionId, :Manual, :DeviceNo, :SecurityGroupIds, :DcnInstanceId, :DcnRegion, :InstanceName, :ResourceTags, :Ipv6Flag, :InitParams, :NodeNum, :MasterHostId, :SlaveHostIds, :RollbackInstanceId, :RollbackTime, :DcnSyncMode
+        extend Gem::Deprecate
+        deprecate :Zone, :none, 2025, 6
+        deprecate :Zone=, :none, 2025, 6
+        deprecate :Pid, :none, 2025, 6
+        deprecate :Pid=, :none, 2025, 6
+        deprecate :Machine, :none, 2025, 6
+        deprecate :Machine=, :none, 2025, 6
+        deprecate :Manual, :none, 2025, 6
+        deprecate :Manual=, :none, 2025, 6
+        deprecate :DeviceNo, :none, 2025, 6
+        deprecate :DeviceNo=, :none, 2025, 6
 
         def initialize(goodsnum=nil, memory=nil, storage=nil, clusterid=nil, zone=nil, projectid=nil, pid=nil, machine=nil, vpcid=nil, subnetid=nil, dbversionid=nil, manual=nil, deviceno=nil, securitygroupids=nil, dcninstanceid=nil, dcnregion=nil, instancename=nil, resourcetags=nil, ipv6flag=nil, initparams=nil, nodenum=nil, masterhostid=nil, slavehostids=nil, rollbackinstanceid=nil, rollbacktime=nil, dcnsyncmode=nil)
           @GoodsNum = goodsnum

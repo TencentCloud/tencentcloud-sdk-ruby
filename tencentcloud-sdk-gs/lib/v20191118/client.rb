@@ -53,6 +53,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 批量清理安卓实例应用数据
+
+        # @param request: Request instance for CleanAndroidInstancesAppData.
+        # @type request: :class:`Tencentcloud::gs::V20191118::CleanAndroidInstancesAppDataRequest`
+        # @rtype: :class:`Tencentcloud::gs::V20191118::CleanAndroidInstancesAppDataResponse`
+        def CleanAndroidInstancesAppData(request)
+          body = send_request('CleanAndroidInstancesAppData', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CleanAndroidInstancesAppDataResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 连接安卓实例
 
         # @param request: Request instance for ConnectAndroidInstance.
@@ -177,7 +201,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 创建安卓实例镜像
+        # 使用指定的安卓实例创建镜像，创建镜像时指定的实例会关机，镜像创建完成后实例会自动开机。当镜像的 AndroidInstanceImageState 为 NORMAL 时，镜像创建完成处于可用状态。
 
         # @param request: Request instance for CreateAndroidInstanceImage.
         # @type request: :class:`Tencentcloud::gs::V20191118::CreateAndroidInstanceImageRequest`
@@ -513,7 +537,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询安卓实例镜像
+        # 查询安卓实例镜像信息，当镜像的 AndroidInstanceImageState 为 NORMAL 时，镜像处于可用状态。
 
         # @param request: Request instance for DescribeAndroidInstanceImages.
         # @type request: :class:`Tencentcloud::gs::V20191118::DescribeAndroidInstanceImagesRequest`
@@ -657,6 +681,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 批量禁用安卓实例应用
+
+        # @param request: Request instance for DisableAndroidInstancesApp.
+        # @type request: :class:`Tencentcloud::gs::V20191118::DisableAndroidInstancesAppRequest`
+        # @rtype: :class:`Tencentcloud::gs::V20191118::DisableAndroidInstancesAppResponse`
+        def DisableAndroidInstancesApp(request)
+          body = send_request('DisableAndroidInstancesApp', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DisableAndroidInstancesAppResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 将一个文件批量分发到多个实例，一次接口调用触发一次文件分发，一次文件分发只会从公网下载一次，然后文件会走内网分发到实例列表中的实例。
 
         # @param request: Request instance for DistributeFileToAndroidInstances.
@@ -667,6 +715,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DistributeFileToAndroidInstancesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 批量启用安卓实例应用
+
+        # @param request: Request instance for EnableAndroidInstancesApp.
+        # @type request: :class:`Tencentcloud::gs::V20191118::EnableAndroidInstancesAppRequest`
+        # @rtype: :class:`Tencentcloud::gs::V20191118::EnableAndroidInstancesAppResponse`
+        def EnableAndroidInstancesApp(request)
+          body = send_request('EnableAndroidInstancesApp', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = EnableAndroidInstancesAppResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1356,7 +1428,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 同步安卓实例镜像
+        # 同步安卓实例镜像到其他区域，当镜像的 AndroidInstanceImageState 为 NORMAL 时，镜像已经同步完成处于可用状态。
 
         # @param request: Request instance for SyncAndroidInstanceImage.
         # @type request: :class:`Tencentcloud::gs::V20191118::SyncAndroidInstanceImageRequest`

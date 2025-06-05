@@ -2004,8 +2004,8 @@ module TencentCloud
 
         attr_accessor :GroupQuota, :CurrentNum, :CvmInHostGroupQuota, :CvmInSwGroupQuota, :CvmInRackGroupQuota, :CvmInSwitchGroupQuota, :RequestId
         extend Gem::Deprecate
-        deprecate :CvmInSwGroupQuota, :none, 2025, 5
-        deprecate :CvmInSwGroupQuota=, :none, 2025, 5
+        deprecate :CvmInSwGroupQuota, :none, 2025, 6
+        deprecate :CvmInSwGroupQuota=, :none, 2025, 6
 
         def initialize(groupquota=nil, currentnum=nil, cvminhostgroupquota=nil, cvminswgroupquota=nil, cvminrackgroupquota=nil, cvminswitchgroupquota=nil, requestid=nil)
           @GroupQuota = groupquota
@@ -3927,8 +3927,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :Password, :Username, :ForceStop, :StopType
         extend Gem::Deprecate
-        deprecate :ForceStop, :none, 2025, 5
-        deprecate :ForceStop=, :none, 2025, 5
+        deprecate :ForceStop, :none, 2025, 6
+        deprecate :ForceStop=, :none, 2025, 6
 
         def initialize(instanceid=nil, password=nil, username=nil, forcestop=nil, stoptype=nil)
           @InstanceId = instanceid
@@ -7478,6 +7478,9 @@ module TencentCloud
         # @type StopType: String
 
         attr_accessor :InstanceIds, :ForceReboot, :StopType
+        extend Gem::Deprecate
+        deprecate :ForceReboot, :none, 2025, 6
+        deprecate :ForceReboot=, :none, 2025, 6
 
         def initialize(instanceids=nil, forcereboot=nil, stoptype=nil)
           @InstanceIds = instanceids
@@ -8860,6 +8863,9 @@ module TencentCloud
         # @type StoppedMode: String
 
         attr_accessor :InstanceIds, :ForceStop, :StopType, :StoppedMode
+        extend Gem::Deprecate
+        deprecate :ForceStop, :none, 2025, 6
+        deprecate :ForceStop=, :none, 2025, 6
 
         def initialize(instanceids=nil, forcestop=nil, stoptype=nil, stoppedmode=nil)
           @InstanceIds = instanceids

@@ -3949,10 +3949,10 @@ module TencentCloud
 
         attr_accessor :Language, :AlternativeLanguage, :Model, :TranslationLanguage, :HotWordList, :VadSilenceTime
         extend Gem::Deprecate
-        deprecate :Model, :none, 2025, 5
-        deprecate :Model=, :none, 2025, 5
-        deprecate :TranslationLanguage, :none, 2025, 5
-        deprecate :TranslationLanguage=, :none, 2025, 5
+        deprecate :Model, :none, 2025, 6
+        deprecate :Model=, :none, 2025, 6
+        deprecate :TranslationLanguage, :none, 2025, 6
+        deprecate :TranslationLanguage=, :none, 2025, 6
 
         def initialize(language=nil, alternativelanguage=nil, model=nil, translationlanguage=nil, hotwordlist=nil, vadsilencetime=nil)
           @Language = language
@@ -4209,6 +4209,9 @@ module TencentCloud
         # - "zh": 中文（简体）
         # - "zh-TW": 中文（繁体）
         # - "en": 英语
+        # - "16k_zh_edu"：中文教育
+        # - "16k_zh_medical"：中文医疗
+        # - "16k_zh_court"：中文法庭
 
         # **标准版：**
         # - "8k_zh_large": 普方大模型引擎. 当前模型同时支持中文等语言的识别，模型参数量极大，语言模型性能增强，针对电话音频中各类场景、各类中文方言的识别准确率极大提升.
@@ -4242,8 +4245,8 @@ module TencentCloud
         # **注意：**
         # 如果缺少满足您需求的语言，请联系我们技术人员。
         # @type Language: String
-        # @param AlternativeLanguage: **发起模糊识别为高级版能力,默认按照高级版收费,仅支持填写基础版和高级版语言.**
-        # 注意：不支持填写"zh-dialect"
+        # @param AlternativeLanguage: **发起模糊识别为高级版能力,默认按照高级版收费**
+        # 注意：不支持填写"zh-dialect", "16k_zh_edu", "16k_zh_medical", "16k_zh_court", "8k_zh_large", "16k_zh_large","16k_multi_lang", "16k_zh_en"
         # @type AlternativeLanguage: Array
         # @param CustomParam: 自定义参数，联系后台使用
         # @type CustomParam: String
@@ -4939,12 +4942,12 @@ module TencentCloud
 
         attr_accessor :SdkAppId, :RoomId, :RoomIdType, :UserId, :UserSig, :StreamUrl, :PrivateMapKey, :VideoEncodeParams, :AudioEncodeParams, :SourceUrl, :SeekSecond, :AutoPush, :RepeatNum, :MaxDuration, :Volume
         extend Gem::Deprecate
-        deprecate :VideoEncodeParams, :none, 2025, 5
-        deprecate :VideoEncodeParams=, :none, 2025, 5
-        deprecate :AudioEncodeParams, :none, 2025, 5
-        deprecate :AudioEncodeParams=, :none, 2025, 5
-        deprecate :SourceUrl, :none, 2025, 5
-        deprecate :SourceUrl=, :none, 2025, 5
+        deprecate :VideoEncodeParams, :none, 2025, 6
+        deprecate :VideoEncodeParams=, :none, 2025, 6
+        deprecate :AudioEncodeParams, :none, 2025, 6
+        deprecate :AudioEncodeParams=, :none, 2025, 6
+        deprecate :SourceUrl, :none, 2025, 6
+        deprecate :SourceUrl=, :none, 2025, 6
 
         def initialize(sdkappid=nil, roomid=nil, roomidtype=nil, userid=nil, usersig=nil, streamurl=nil, privatemapkey=nil, videoencodeparams=nil, audioencodeparams=nil, sourceurl=nil, seeksecond=nil, autopush=nil, repeatnum=nil, maxduration=nil, volume=nil)
           @SdkAppId = sdkappid
@@ -5592,10 +5595,10 @@ module TencentCloud
 
         attr_accessor :UserId, :UserSig, :IMAdminUserId, :IMAdminUserSig, :MaxIdleTime, :TranscriptionMode, :TargetUserId, :TargetUserIdList
         extend Gem::Deprecate
-        deprecate :IMAdminUserId, :none, 2025, 5
-        deprecate :IMAdminUserId=, :none, 2025, 5
-        deprecate :IMAdminUserSig, :none, 2025, 5
-        deprecate :IMAdminUserSig=, :none, 2025, 5
+        deprecate :IMAdminUserId, :none, 2025, 6
+        deprecate :IMAdminUserId=, :none, 2025, 6
+        deprecate :IMAdminUserSig, :none, 2025, 6
+        deprecate :IMAdminUserSig=, :none, 2025, 6
 
         def initialize(userid=nil, usersig=nil, imadminuserid=nil, imadminusersig=nil, maxidletime=nil, transcriptionmode=nil, targetuserid=nil, targetuseridlist=nil)
           @UserId = userid

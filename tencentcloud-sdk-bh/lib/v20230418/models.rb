@@ -74,10 +74,10 @@ module TencentCloud
 
         attr_accessor :Account, :LoginAccount, :LoginPassword, :DeviceId, :InstanceId, :Password, :PrivateKey, :PrivateKeyPassword, :Exe, :Drivers, :Width, :Height, :IntranetAccess, :AutoManageAccessCredential
         extend Gem::Deprecate
-        deprecate :LoginAccount, :none, 2025, 5
-        deprecate :LoginAccount=, :none, 2025, 5
-        deprecate :LoginPassword, :none, 2025, 5
-        deprecate :LoginPassword=, :none, 2025, 5
+        deprecate :LoginAccount, :none, 2025, 6
+        deprecate :LoginAccount=, :none, 2025, 6
+        deprecate :LoginPassword, :none, 2025, 6
+        deprecate :LoginPassword=, :none, 2025, 6
 
         def initialize(account=nil, loginaccount=nil, loginpassword=nil, deviceid=nil, instanceid=nil, password=nil, privatekey=nil, privatekeypassword=nil, exe=nil, drivers=nil, width=nil, height=nil, intranetaccess=nil, automanageaccesscredential=nil)
           @Account = account
@@ -4454,8 +4454,8 @@ module TencentCloud
 
         attr_accessor :ResourceId, :Status, :ResourceEdition, :ResourceNode, :AutoRenewFlag, :PackageBandwidth, :PackageNode, :LogDelivery
         extend Gem::Deprecate
-        deprecate :Status, :none, 2025, 5
-        deprecate :Status=, :none, 2025, 5
+        deprecate :Status, :none, 2025, 6
+        deprecate :Status=, :none, 2025, 6
 
         def initialize(resourceid=nil, status=nil, resourceedition=nil, resourcenode=nil, autorenewflag=nil, packagebandwidth=nil, packagenode=nil, logdelivery=nil)
           @ResourceId = resourceid
@@ -5893,10 +5893,12 @@ module TencentCloud
         # @type AppAssetKindSet: Array
         # @param AppAssetUrl: 应用资产Url
         # @type AppAssetUrl: String
+        # @param DeviceKind: 资产类型
+        # @type DeviceKind: String
 
-        attr_accessor :PrivateIp, :PublicIp, :UserName, :Account, :FromIp, :StartTime, :EndTime, :Kind, :Offset, :Limit, :RealName, :DeviceName, :Status, :Id, :AppAssetKindSet, :AppAssetUrl
+        attr_accessor :PrivateIp, :PublicIp, :UserName, :Account, :FromIp, :StartTime, :EndTime, :Kind, :Offset, :Limit, :RealName, :DeviceName, :Status, :Id, :AppAssetKindSet, :AppAssetUrl, :DeviceKind
 
-        def initialize(privateip=nil, publicip=nil, username=nil, account=nil, fromip=nil, starttime=nil, endtime=nil, kind=nil, offset=nil, limit=nil, realname=nil, devicename=nil, status=nil, id=nil, appassetkindset=nil, appasseturl=nil)
+        def initialize(privateip=nil, publicip=nil, username=nil, account=nil, fromip=nil, starttime=nil, endtime=nil, kind=nil, offset=nil, limit=nil, realname=nil, devicename=nil, status=nil, id=nil, appassetkindset=nil, appasseturl=nil, devicekind=nil)
           @PrivateIp = privateip
           @PublicIp = publicip
           @UserName = username
@@ -5913,6 +5915,7 @@ module TencentCloud
           @Id = id
           @AppAssetKindSet = appassetkindset
           @AppAssetUrl = appasseturl
+          @DeviceKind = devicekind
         end
 
         def deserialize(params)
@@ -5932,6 +5935,7 @@ module TencentCloud
           @Id = params['Id']
           @AppAssetKindSet = params['AppAssetKindSet']
           @AppAssetUrl = params['AppAssetUrl']
+          @DeviceKind = params['DeviceKind']
         end
       end
 

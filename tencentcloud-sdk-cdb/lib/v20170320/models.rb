@@ -2873,10 +2873,14 @@ module TencentCloud
         # @type Period: Integer
         # @param ClusterTopology: 集群版节点拓扑配置。
         # @type ClusterTopology: :class:`Tencentcloud::Cdb.v20170320.models.ClusterTopology`
+        # @param SrcRegion: 原实例所在地域名，当传入异地备份时为必选项，例：ap-guangzhou
+        # @type SrcRegion: String
+        # @param SpecifiedSubBackupId: 异地数据备份id
+        # @type SpecifiedSubBackupId: Integer
 
-        attr_accessor :InstanceId, :SpecifiedRollbackTime, :SpecifiedBackupId, :UniqVpcId, :UniqSubnetId, :Memory, :Volume, :InstanceName, :SecurityGroup, :ResourceTags, :Cpu, :ProtectMode, :DeployMode, :SlaveZone, :BackupZone, :DeviceType, :InstanceNodes, :DeployGroupId, :DryRun, :CageId, :ProjectId, :PayType, :Period, :ClusterTopology
+        attr_accessor :InstanceId, :SpecifiedRollbackTime, :SpecifiedBackupId, :UniqVpcId, :UniqSubnetId, :Memory, :Volume, :InstanceName, :SecurityGroup, :ResourceTags, :Cpu, :ProtectMode, :DeployMode, :SlaveZone, :BackupZone, :DeviceType, :InstanceNodes, :DeployGroupId, :DryRun, :CageId, :ProjectId, :PayType, :Period, :ClusterTopology, :SrcRegion, :SpecifiedSubBackupId
 
-        def initialize(instanceid=nil, specifiedrollbacktime=nil, specifiedbackupid=nil, uniqvpcid=nil, uniqsubnetid=nil, memory=nil, volume=nil, instancename=nil, securitygroup=nil, resourcetags=nil, cpu=nil, protectmode=nil, deploymode=nil, slavezone=nil, backupzone=nil, devicetype=nil, instancenodes=nil, deploygroupid=nil, dryrun=nil, cageid=nil, projectid=nil, paytype=nil, period=nil, clustertopology=nil)
+        def initialize(instanceid=nil, specifiedrollbacktime=nil, specifiedbackupid=nil, uniqvpcid=nil, uniqsubnetid=nil, memory=nil, volume=nil, instancename=nil, securitygroup=nil, resourcetags=nil, cpu=nil, protectmode=nil, deploymode=nil, slavezone=nil, backupzone=nil, devicetype=nil, instancenodes=nil, deploygroupid=nil, dryrun=nil, cageid=nil, projectid=nil, paytype=nil, period=nil, clustertopology=nil, srcregion=nil, specifiedsubbackupid=nil)
           @InstanceId = instanceid
           @SpecifiedRollbackTime = specifiedrollbacktime
           @SpecifiedBackupId = specifiedbackupid
@@ -2901,6 +2905,8 @@ module TencentCloud
           @PayType = paytype
           @Period = period
           @ClusterTopology = clustertopology
+          @SrcRegion = srcregion
+          @SpecifiedSubBackupId = specifiedsubbackupid
         end
 
         def deserialize(params)
@@ -2938,6 +2944,8 @@ module TencentCloud
             @ClusterTopology = ClusterTopology.new
             @ClusterTopology.deserialize(params['ClusterTopology'])
           end
+          @SrcRegion = params['SrcRegion']
+          @SpecifiedSubBackupId = params['SpecifiedSubBackupId']
         end
       end
 

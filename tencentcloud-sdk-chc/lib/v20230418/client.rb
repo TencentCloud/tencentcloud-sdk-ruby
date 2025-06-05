@@ -893,6 +893,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 导出工单详情
+
+        # @param request: Request instance for ExportCustomerWorkOrderDetail.
+        # @type request: :class:`Tencentcloud::chc::V20230418::ExportCustomerWorkOrderDetailRequest`
+        # @rtype: :class:`Tencentcloud::chc::V20230418::ExportCustomerWorkOrderDetailResponse`
+        def ExportCustomerWorkOrderDetail(request)
+          body = send_request('ExportCustomerWorkOrderDetail', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ExportCustomerWorkOrderDetailResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 如果当前该工单类型是收藏状态，调用接口后变成未收藏状态，如果是未收藏状态，调用该接口变为收藏状态
 
         # @param request: Request instance for ModifyWorkOrderTypeCollectFlag.

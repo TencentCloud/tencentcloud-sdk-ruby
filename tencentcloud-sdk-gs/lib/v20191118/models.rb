@@ -261,6 +261,29 @@ module TencentCloud
         end
       end
 
+      # 安卓实例错误信息，用于批量安卓实例操作中返回部分操作错误的情况
+      class AndroidInstanceError < TencentCloud::Common::AbstractModel
+        # @param AndroidInstanceId: 安卓实例 ID
+        # @type AndroidInstanceId: String
+        # @param Error: 错误信息
+        # @type Error: :class:`Tencentcloud::Gs.v20191118.models.Error`
+
+        attr_accessor :AndroidInstanceId, :Error
+
+        def initialize(androidinstanceid=nil, error=nil)
+          @AndroidInstanceId = androidinstanceid
+          @Error = error
+        end
+
+        def deserialize(params)
+          @AndroidInstanceId = params['AndroidInstanceId']
+          unless params['Error'].nil?
+            @Error = Error.new
+            @Error.deserialize(params['Error'])
+          end
+        end
+      end
+
       # 安卓实例镜像信息
       class AndroidInstanceImage < TencentCloud::Common::AbstractModel
         # @param AndroidInstanceImageId: 镜像 ID
@@ -516,6 +539,53 @@ module TencentCloud
         def deserialize(params)
           @Bucket = params['Bucket']
           @Region = params['Region']
+        end
+      end
+
+      # CleanAndroidInstancesAppData请求参数结构体
+      class CleanAndroidInstancesAppDataRequest < TencentCloud::Common::AbstractModel
+        # @param AndroidInstanceIds: 安卓实例 ID 列表（最大100条数据）
+        # @type AndroidInstanceIds: Array
+        # @param PackageName: 应用包名
+        # @type PackageName: String
+
+        attr_accessor :AndroidInstanceIds, :PackageName
+
+        def initialize(androidinstanceids=nil, packagename=nil)
+          @AndroidInstanceIds = androidinstanceids
+          @PackageName = packagename
+        end
+
+        def deserialize(params)
+          @AndroidInstanceIds = params['AndroidInstanceIds']
+          @PackageName = params['PackageName']
+        end
+      end
+
+      # CleanAndroidInstancesAppData返回参数结构体
+      class CleanAndroidInstancesAppDataResponse < TencentCloud::Common::AbstractModel
+        # @param AndroidInstanceErrors: 错误列表。如果实例操作都成功，则响应没有这个字段；如果有实例操作失败，该字段包含了实例操作的错误信息
+        # @type AndroidInstanceErrors: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :AndroidInstanceErrors, :RequestId
+
+        def initialize(androidinstanceerrors=nil, requestid=nil)
+          @AndroidInstanceErrors = androidinstanceerrors
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['AndroidInstanceErrors'].nil?
+            @AndroidInstanceErrors = []
+            params['AndroidInstanceErrors'].each do |i|
+              androidinstanceerror_tmp = AndroidInstanceError.new
+              androidinstanceerror_tmp.deserialize(i)
+              @AndroidInstanceErrors << androidinstanceerror_tmp
+            end
+          end
+          @RequestId = params['RequestId']
         end
       end
 
@@ -1832,6 +1902,53 @@ module TencentCloud
         end
       end
 
+      # DisableAndroidInstancesApp请求参数结构体
+      class DisableAndroidInstancesAppRequest < TencentCloud::Common::AbstractModel
+        # @param AndroidInstanceIds: 安卓实例 ID 列表（最大100条数据）
+        # @type AndroidInstanceIds: Array
+        # @param PackageName: 应用包名
+        # @type PackageName: String
+
+        attr_accessor :AndroidInstanceIds, :PackageName
+
+        def initialize(androidinstanceids=nil, packagename=nil)
+          @AndroidInstanceIds = androidinstanceids
+          @PackageName = packagename
+        end
+
+        def deserialize(params)
+          @AndroidInstanceIds = params['AndroidInstanceIds']
+          @PackageName = params['PackageName']
+        end
+      end
+
+      # DisableAndroidInstancesApp返回参数结构体
+      class DisableAndroidInstancesAppResponse < TencentCloud::Common::AbstractModel
+        # @param AndroidInstanceErrors: 错误列表。如果实例操作都成功，则响应没有这个字段；如果有实例操作失败，该字段包含了实例操作的错误信息
+        # @type AndroidInstanceErrors: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :AndroidInstanceErrors, :RequestId
+
+        def initialize(androidinstanceerrors=nil, requestid=nil)
+          @AndroidInstanceErrors = androidinstanceerrors
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['AndroidInstanceErrors'].nil?
+            @AndroidInstanceErrors = []
+            params['AndroidInstanceErrors'].each do |i|
+              androidinstanceerror_tmp = AndroidInstanceError.new
+              androidinstanceerror_tmp.deserialize(i)
+              @AndroidInstanceErrors << androidinstanceerror_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DistributeFileToAndroidInstances请求参数结构体
       class DistributeFileToAndroidInstancesRequest < TencentCloud::Common::AbstractModel
         # @param AndroidInstanceIds: 安卓实例 ID 列表
@@ -1880,6 +1997,73 @@ module TencentCloud
             end
           end
           @RequestId = params['RequestId']
+        end
+      end
+
+      # EnableAndroidInstancesApp请求参数结构体
+      class EnableAndroidInstancesAppRequest < TencentCloud::Common::AbstractModel
+        # @param AndroidInstanceIds: 安卓实例 ID 列表（最大100条数据）
+        # @type AndroidInstanceIds: Array
+        # @param PackageName: 应用包名
+        # @type PackageName: String
+
+        attr_accessor :AndroidInstanceIds, :PackageName
+
+        def initialize(androidinstanceids=nil, packagename=nil)
+          @AndroidInstanceIds = androidinstanceids
+          @PackageName = packagename
+        end
+
+        def deserialize(params)
+          @AndroidInstanceIds = params['AndroidInstanceIds']
+          @PackageName = params['PackageName']
+        end
+      end
+
+      # EnableAndroidInstancesApp返回参数结构体
+      class EnableAndroidInstancesAppResponse < TencentCloud::Common::AbstractModel
+        # @param AndroidInstanceErrors: 错误列表。如果实例操作都成功，则响应没有这个字段；如果有实例操作失败，该字段包含了实例操作的错误信息
+        # @type AndroidInstanceErrors: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :AndroidInstanceErrors, :RequestId
+
+        def initialize(androidinstanceerrors=nil, requestid=nil)
+          @AndroidInstanceErrors = androidinstanceerrors
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['AndroidInstanceErrors'].nil?
+            @AndroidInstanceErrors = []
+            params['AndroidInstanceErrors'].each do |i|
+              androidinstanceerror_tmp = AndroidInstanceError.new
+              androidinstanceerror_tmp.deserialize(i)
+              @AndroidInstanceErrors << androidinstanceerror_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 错误信息，用于批量接口中返回部分操作错误
+      class Error < TencentCloud::Common::AbstractModel
+        # @param Code: 错误码
+        # @type Code: String
+        # @param Message: 错误详细信息
+        # @type Message: String
+
+        attr_accessor :Code, :Message
+
+        def initialize(code=nil, message=nil)
+          @Code = code
+          @Message = message
+        end
+
+        def deserialize(params)
+          @Code = params['Code']
+          @Message = params['Message']
         end
       end
 

@@ -2828,6 +2828,50 @@ module TencentCloud
         end
       end
 
+      # ExportCustomerWorkOrderDetail请求参数结构体
+      class ExportCustomerWorkOrderDetailRequest < TencentCloud::Common::AbstractModel
+        # @param WorkOrderType: 服务工单类型
+        # @type WorkOrderType: Array
+        # @param BeginDateTime: 要导出的工单的起始时间
+        # @type BeginDateTime: String
+        # @param EndDateTime: 要导出的工单的结束时间
+        # @type EndDateTime: String
+
+        attr_accessor :WorkOrderType, :BeginDateTime, :EndDateTime
+
+        def initialize(workordertype=nil, begindatetime=nil, enddatetime=nil)
+          @WorkOrderType = workordertype
+          @BeginDateTime = begindatetime
+          @EndDateTime = enddatetime
+        end
+
+        def deserialize(params)
+          @WorkOrderType = params['WorkOrderType']
+          @BeginDateTime = params['BeginDateTime']
+          @EndDateTime = params['EndDateTime']
+        end
+      end
+
+      # ExportCustomerWorkOrderDetail返回参数结构体
+      class ExportCustomerWorkOrderDetailResponse < TencentCloud::Common::AbstractModel
+        # @param DownloadUrl: 返回下载地址
+        # @type DownloadUrl: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DownloadUrl, :RequestId
+
+        def initialize(downloadurl=nil, requestid=nil)
+          @DownloadUrl = downloadurl
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @DownloadUrl = params['DownloadUrl']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 快递寄件信息,快递寄件必填
       class ExpressDelivery < TencentCloud::Common::AbstractModel
         # @param LogisticsCompany: 物流公司

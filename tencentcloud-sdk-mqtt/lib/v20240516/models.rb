@@ -2903,12 +2903,12 @@ module TencentCloud
 
         attr_accessor :MsgId, :Tags, :Keys, :ProducerAddr, :ProduceTime, :DeadLetterResendTimes, :DeadLetterResendSuccessTimes, :SubTopic, :Qos
         extend Gem::Deprecate
-        deprecate :DeadLetterResendTimes, :none, 2025, 5
-        deprecate :DeadLetterResendTimes=, :none, 2025, 5
-        deprecate :DeadLetterResendSuccessTimes, :none, 2025, 5
-        deprecate :DeadLetterResendSuccessTimes=, :none, 2025, 5
-        deprecate :SubTopic, :none, 2025, 5
-        deprecate :SubTopic=, :none, 2025, 5
+        deprecate :DeadLetterResendTimes, :none, 2025, 6
+        deprecate :DeadLetterResendTimes=, :none, 2025, 6
+        deprecate :DeadLetterResendSuccessTimes, :none, 2025, 6
+        deprecate :DeadLetterResendSuccessTimes=, :none, 2025, 6
+        deprecate :SubTopic, :none, 2025, 6
+        deprecate :SubTopic=, :none, 2025, 6
 
         def initialize(msgid=nil, tags=nil, keys=nil, produceraddr=nil, producetime=nil, deadletterresendtimes=nil, deadletterresendsuccesstimes=nil, subtopic=nil, qos=nil)
           @MsgId = msgid
@@ -3295,10 +3295,10 @@ module TencentCloud
 
         attr_accessor :InstanceId, :Name, :Remark, :SkuCode, :DeviceCertificateProvisionType, :AutomaticActivation, :AuthorizationPolicy
         extend Gem::Deprecate
-        deprecate :DeviceCertificateProvisionType, :none, 2025, 5
-        deprecate :DeviceCertificateProvisionType=, :none, 2025, 5
-        deprecate :AutomaticActivation, :none, 2025, 5
-        deprecate :AutomaticActivation=, :none, 2025, 5
+        deprecate :DeviceCertificateProvisionType, :none, 2025, 6
+        deprecate :DeviceCertificateProvisionType=, :none, 2025, 6
+        deprecate :AutomaticActivation, :none, 2025, 6
+        deprecate :AutomaticActivation=, :none, 2025, 6
 
         def initialize(instanceid=nil, name=nil, remark=nil, skucode=nil, devicecertificateprovisiontype=nil, automaticactivation=nil, authorizationpolicy=nil)
           @InstanceId = instanceid
@@ -3418,8 +3418,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :Algorithm, :From, :Secret, :PublicKey, :Status, :Remark, :Text
         extend Gem::Deprecate
-        deprecate :Text, :none, 2025, 5
-        deprecate :Text=, :none, 2025, 5
+        deprecate :Text, :none, 2025, 6
+        deprecate :Text=, :none, 2025, 6
 
         def initialize(instanceid=nil, algorithm=nil, from=nil, secret=nil, publickey=nil, status=nil, remark=nil, text=nil)
           @InstanceId = instanceid

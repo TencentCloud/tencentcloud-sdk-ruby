@@ -6247,7 +6247,6 @@ module TencentCloud
         # <li>51200: 50TB流量，有效期一个月</li>
         # <li>60: 60GB流量，有效期半年</li>
         # <li>300: 300GB流量，有效期半年</li>
-        # <li>600: 600GB流量，有效期半年</li>
         # <li>3072: 3TB流量，有效期半年</li>
         # <li>6144: 6TB流量，有效期半年</li>
         # <li>30720: 30TB流量，有效期半年</li>
@@ -6256,17 +6255,23 @@ module TencentCloud
         # @type TrafficAmount: Integer
         # @param TrafficPackageCount: 流量包数量，可选范围 1~20。
         # @type TrafficPackageCount: Integer
+        # @param DeductType: 抵扣类型，默认为 FULL_TIME，可选值:
+        # <li>FULL_TIME: 全时流量包</li>
+        # <li>IDLE_TIME: 闲时流量包</li>
+        # @type DeductType: String
 
-        attr_accessor :TrafficAmount, :TrafficPackageCount
+        attr_accessor :TrafficAmount, :TrafficPackageCount, :DeductType
 
-        def initialize(trafficamount=nil, trafficpackagecount=nil)
+        def initialize(trafficamount=nil, trafficpackagecount=nil, deducttype=nil)
           @TrafficAmount = trafficamount
           @TrafficPackageCount = trafficpackagecount
+          @DeductType = deducttype
         end
 
         def deserialize(params)
           @TrafficAmount = params['TrafficAmount']
           @TrafficPackageCount = params['TrafficPackageCount']
+          @DeductType = params['DeductType']
         end
       end
 

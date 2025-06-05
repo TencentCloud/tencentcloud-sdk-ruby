@@ -4419,8 +4419,8 @@ module TencentCloud
 
         attr_accessor :Id, :Uuid, :Name, :Level, :Rule, :Decription, :Operator, :IsGlobal, :Status, :CreateTime, :ModifyTime, :Hostip, :Uuids, :White, :DealOldEvents, :Description
         extend Gem::Deprecate
-        deprecate :Decription, :none, 2025, 5
-        deprecate :Decription=, :none, 2025, 5
+        deprecate :Decription, :none, 2025, 6
+        deprecate :Decription=, :none, 2025, 6
 
         def initialize(id=nil, uuid=nil, name=nil, level=nil, rule=nil, decription=nil, operator=nil, isglobal=nil, status=nil, createtime=nil, modifytime=nil, hostip=nil, uuids=nil, white=nil, dealoldevents=nil, description=nil)
           @Id = id
@@ -17193,16 +17193,16 @@ module TencentCloud
 
         attr_accessor :MachineCnt, :TencentCloudMachineCnt, :AliCloudMachineCnt, :BaiduCloudMachineCnt, :IDCMachineCnt, :OtherCloudMachineCnt, :ProtectMachineCnt, :BaseMachineCnt, :SpecialtyMachineCnt, :FlagshipMachineCnt, :RiskMachineCnt, :CompareYesterdayRiskMachineCnt, :CompareYesterdayNotProtectMachineCnt, :CompareYesterdayDeadlineMachineCnt, :DeadlineMachineCnt, :NotProtectMachineCnt, :LHGeneralDiscountCnt, :CompareYesterdayMachineCnt, :MachineDestroyAfterOfflineHours, :CloudFrom, :RequestId
         extend Gem::Deprecate
-        deprecate :TencentCloudMachineCnt, :none, 2025, 5
-        deprecate :TencentCloudMachineCnt=, :none, 2025, 5
-        deprecate :AliCloudMachineCnt, :none, 2025, 5
-        deprecate :AliCloudMachineCnt=, :none, 2025, 5
-        deprecate :BaiduCloudMachineCnt, :none, 2025, 5
-        deprecate :BaiduCloudMachineCnt=, :none, 2025, 5
-        deprecate :IDCMachineCnt, :none, 2025, 5
-        deprecate :IDCMachineCnt=, :none, 2025, 5
-        deprecate :OtherCloudMachineCnt, :none, 2025, 5
-        deprecate :OtherCloudMachineCnt=, :none, 2025, 5
+        deprecate :TencentCloudMachineCnt, :none, 2025, 6
+        deprecate :TencentCloudMachineCnt=, :none, 2025, 6
+        deprecate :AliCloudMachineCnt, :none, 2025, 6
+        deprecate :AliCloudMachineCnt=, :none, 2025, 6
+        deprecate :BaiduCloudMachineCnt, :none, 2025, 6
+        deprecate :BaiduCloudMachineCnt=, :none, 2025, 6
+        deprecate :IDCMachineCnt, :none, 2025, 6
+        deprecate :IDCMachineCnt=, :none, 2025, 6
+        deprecate :OtherCloudMachineCnt, :none, 2025, 6
+        deprecate :OtherCloudMachineCnt=, :none, 2025, 6
 
         def initialize(machinecnt=nil, tencentcloudmachinecnt=nil, alicloudmachinecnt=nil, baiducloudmachinecnt=nil, idcmachinecnt=nil, othercloudmachinecnt=nil, protectmachinecnt=nil, basemachinecnt=nil, specialtymachinecnt=nil, flagshipmachinecnt=nil, riskmachinecnt=nil, compareyesterdayriskmachinecnt=nil, compareyesterdaynotprotectmachinecnt=nil, compareyesterdaydeadlinemachinecnt=nil, deadlinemachinecnt=nil, notprotectmachinecnt=nil, lhgeneraldiscountcnt=nil, compareyesterdaymachinecnt=nil, machinedestroyafterofflinehours=nil, cloudfrom=nil, requestid=nil)
           @MachineCnt = machinecnt
@@ -27509,10 +27509,10 @@ module TencentCloud
 
         attr_accessor :Filters, :Fileds, :Fields, :Where
         extend Gem::Deprecate
-        deprecate :Fileds, :none, 2025, 5
-        deprecate :Fileds=, :none, 2025, 5
-        deprecate :Fields, :none, 2025, 5
-        deprecate :Fields=, :none, 2025, 5
+        deprecate :Fileds, :none, 2025, 6
+        deprecate :Fileds=, :none, 2025, 6
+        deprecate :Fields, :none, 2025, 6
+        deprecate :Fields=, :none, 2025, 6
 
         def initialize(filters=nil, fileds=nil, fields=nil, where=nil)
           @Filters = filters
@@ -29468,14 +29468,17 @@ module TencentCloud
         # <li>write 修改文件</li>
         # <li>read-write 读取修改文件</li>
         # @type FileAction: String
+        # @param Args: 命令行参数 没有填*
+        # @type Args: String
 
-        attr_accessor :ProcessPath, :Target, :Action, :FileAction
+        attr_accessor :ProcessPath, :Target, :Action, :FileAction, :Args
 
-        def initialize(processpath=nil, target=nil, action=nil, fileaction=nil)
+        def initialize(processpath=nil, target=nil, action=nil, fileaction=nil, args=nil)
           @ProcessPath = processpath
           @Target = target
           @Action = action
           @FileAction = fileaction
+          @Args = args
         end
 
         def deserialize(params)
@@ -29483,6 +29486,7 @@ module TencentCloud
           @Target = params['Target']
           @Action = params['Action']
           @FileAction = params['FileAction']
+          @Args = params['Args']
         end
       end
 
@@ -40586,10 +40590,20 @@ module TencentCloud
         # @type CloudTags: Array
         # @param MachineExtraInfo: 主机额外信息
         # @type MachineExtraInfo: :class:`Tencentcloud::Cwp.v20180228.models.MachineExtraInfo`
+        # @param MachineType: 主机类型
+        # @type MachineType: String
+        # @param RegionId: 可用区ID
+        # @type RegionId: Integer
+        # @param HasSnapshot: 修复任务是否创建了快照： 0-未创建，其他-已创建
+        # @type HasSnapshot: Integer
+        # @param LatestFixTime: 最后修复时间
+        # @type LatestFixTime: String
+        # @param DescriptionEn: 说明
+        # @type DescriptionEn: String
 
-        attr_accessor :EventId, :Status, :LastTime, :Level, :Quuid, :Uuid, :HostIp, :AliasName, :Tags, :Description, :HostVersion, :IsSupportAutoFix, :FixStatusMsg, :FirstDiscoveryTime, :InstanceState, :PublicIpAddresses, :CloudTags, :MachineExtraInfo
+        attr_accessor :EventId, :Status, :LastTime, :Level, :Quuid, :Uuid, :HostIp, :AliasName, :Tags, :Description, :HostVersion, :IsSupportAutoFix, :FixStatusMsg, :FirstDiscoveryTime, :InstanceState, :PublicIpAddresses, :CloudTags, :MachineExtraInfo, :MachineType, :RegionId, :HasSnapshot, :LatestFixTime, :DescriptionEn
 
-        def initialize(eventid=nil, status=nil, lasttime=nil, level=nil, quuid=nil, uuid=nil, hostip=nil, aliasname=nil, tags=nil, description=nil, hostversion=nil, issupportautofix=nil, fixstatusmsg=nil, firstdiscoverytime=nil, instancestate=nil, publicipaddresses=nil, cloudtags=nil, machineextrainfo=nil)
+        def initialize(eventid=nil, status=nil, lasttime=nil, level=nil, quuid=nil, uuid=nil, hostip=nil, aliasname=nil, tags=nil, description=nil, hostversion=nil, issupportautofix=nil, fixstatusmsg=nil, firstdiscoverytime=nil, instancestate=nil, publicipaddresses=nil, cloudtags=nil, machineextrainfo=nil, machinetype=nil, regionid=nil, hassnapshot=nil, latestfixtime=nil, descriptionen=nil)
           @EventId = eventid
           @Status = status
           @LastTime = lasttime
@@ -40608,6 +40622,11 @@ module TencentCloud
           @PublicIpAddresses = publicipaddresses
           @CloudTags = cloudtags
           @MachineExtraInfo = machineextrainfo
+          @MachineType = machinetype
+          @RegionId = regionid
+          @HasSnapshot = hassnapshot
+          @LatestFixTime = latestfixtime
+          @DescriptionEn = descriptionen
         end
 
         def deserialize(params)
@@ -40639,6 +40658,11 @@ module TencentCloud
             @MachineExtraInfo = MachineExtraInfo.new
             @MachineExtraInfo.deserialize(params['MachineExtraInfo'])
           end
+          @MachineType = params['MachineType']
+          @RegionId = params['RegionId']
+          @HasSnapshot = params['HasSnapshot']
+          @LatestFixTime = params['LatestFixTime']
+          @DescriptionEn = params['DescriptionEn']
         end
       end
 
@@ -40809,14 +40833,16 @@ module TencentCloud
         # @type SnapshotId: String
         # @param Id: 记录唯一id
         # @type Id: Integer
-        # @param Status: 快照状态 0-初始状态1-快照创建成功；2-快照创建失败；
+        # @param Status: 快照状态 0-初始状态1-快照创建成功；2-快照创建失败；10-不支持，11-无需创建
         # @type Status: Integer
         # @param FailReason: 快照创建失败原因
         # @type FailReason: String
+        # @param MachineType: 主机类型
+        # @type MachineType: String
 
-        attr_accessor :Quuid, :HostName, :HostIp, :SnapshotName, :ModifyTime, :SnapshotId, :Id, :Status, :FailReason
+        attr_accessor :Quuid, :HostName, :HostIp, :SnapshotName, :ModifyTime, :SnapshotId, :Id, :Status, :FailReason, :MachineType
 
-        def initialize(quuid=nil, hostname=nil, hostip=nil, snapshotname=nil, modifytime=nil, snapshotid=nil, id=nil, status=nil, failreason=nil)
+        def initialize(quuid=nil, hostname=nil, hostip=nil, snapshotname=nil, modifytime=nil, snapshotid=nil, id=nil, status=nil, failreason=nil, machinetype=nil)
           @Quuid = quuid
           @HostName = hostname
           @HostIp = hostip
@@ -40826,6 +40852,7 @@ module TencentCloud
           @Id = id
           @Status = status
           @FailReason = failreason
+          @MachineType = machinetype
         end
 
         def deserialize(params)
@@ -40838,6 +40865,7 @@ module TencentCloud
           @Id = params['Id']
           @Status = params['Status']
           @FailReason = params['FailReason']
+          @MachineType = params['MachineType']
         end
       end
 
@@ -40912,10 +40940,12 @@ module TencentCloud
         # @type Uuid: String
         # @param InstanceId: 主机InstanceId
         # @type InstanceId: String
+        # @param MachineType: 主机类型
+        # @type MachineType: String
 
-        attr_accessor :HostName, :HostIp, :Tags, :Quuid, :IsSupportAutoFix, :Uuid, :InstanceId
+        attr_accessor :HostName, :HostIp, :Tags, :Quuid, :IsSupportAutoFix, :Uuid, :InstanceId, :MachineType
 
-        def initialize(hostname=nil, hostip=nil, tags=nil, quuid=nil, issupportautofix=nil, uuid=nil, instanceid=nil)
+        def initialize(hostname=nil, hostip=nil, tags=nil, quuid=nil, issupportautofix=nil, uuid=nil, instanceid=nil, machinetype=nil)
           @HostName = hostname
           @HostIp = hostip
           @Tags = tags
@@ -40923,6 +40953,7 @@ module TencentCloud
           @IsSupportAutoFix = issupportautofix
           @Uuid = uuid
           @InstanceId = instanceid
+          @MachineType = machinetype
         end
 
         def deserialize(params)
@@ -40933,6 +40964,7 @@ module TencentCloud
           @IsSupportAutoFix = params['IsSupportAutoFix']
           @Uuid = params['Uuid']
           @InstanceId = params['InstanceId']
+          @MachineType = params['MachineType']
         end
       end
 
@@ -41000,10 +41032,12 @@ module TencentCloud
         # @type Method: Integer
         # @param VulFixSwitch: 漏洞是否支持修复 0不支持，1支持
         # @type VulFixSwitch: Integer
+        # @param LatestFixTime: 最近修复时间
+        # @type LatestFixTime: String
 
-        attr_accessor :Ids, :Name, :Status, :VulId, :PublishTime, :LastTime, :HostCount, :Level, :From, :Descript, :PublishTimeWisteria, :NameWisteria, :DescriptWisteria, :StatusStr, :CveId, :CvssScore, :Labels, :FixSwitch, :TaskId, :IsSupportDefense, :DefenseAttackCount, :FirstAppearTime, :VulCategory, :AttackLevel, :FixNoNeedRestart, :Method, :VulFixSwitch
+        attr_accessor :Ids, :Name, :Status, :VulId, :PublishTime, :LastTime, :HostCount, :Level, :From, :Descript, :PublishTimeWisteria, :NameWisteria, :DescriptWisteria, :StatusStr, :CveId, :CvssScore, :Labels, :FixSwitch, :TaskId, :IsSupportDefense, :DefenseAttackCount, :FirstAppearTime, :VulCategory, :AttackLevel, :FixNoNeedRestart, :Method, :VulFixSwitch, :LatestFixTime
 
-        def initialize(ids=nil, name=nil, status=nil, vulid=nil, publishtime=nil, lasttime=nil, hostcount=nil, level=nil, from=nil, descript=nil, publishtimewisteria=nil, namewisteria=nil, descriptwisteria=nil, statusstr=nil, cveid=nil, cvssscore=nil, labels=nil, fixswitch=nil, taskid=nil, issupportdefense=nil, defenseattackcount=nil, firstappeartime=nil, vulcategory=nil, attacklevel=nil, fixnoneedrestart=nil, method=nil, vulfixswitch=nil)
+        def initialize(ids=nil, name=nil, status=nil, vulid=nil, publishtime=nil, lasttime=nil, hostcount=nil, level=nil, from=nil, descript=nil, publishtimewisteria=nil, namewisteria=nil, descriptwisteria=nil, statusstr=nil, cveid=nil, cvssscore=nil, labels=nil, fixswitch=nil, taskid=nil, issupportdefense=nil, defenseattackcount=nil, firstappeartime=nil, vulcategory=nil, attacklevel=nil, fixnoneedrestart=nil, method=nil, vulfixswitch=nil, latestfixtime=nil)
           @Ids = ids
           @Name = name
           @Status = status
@@ -41031,6 +41065,7 @@ module TencentCloud
           @FixNoNeedRestart = fixnoneedrestart
           @Method = method
           @VulFixSwitch = vulfixswitch
+          @LatestFixTime = latestfixtime
         end
 
         def deserialize(params)
@@ -41061,6 +41096,7 @@ module TencentCloud
           @FixNoNeedRestart = params['FixNoNeedRestart']
           @Method = params['Method']
           @VulFixSwitch = params['VulFixSwitch']
+          @LatestFixTime = params['LatestFixTime']
         end
       end
 

@@ -970,10 +970,12 @@ module TencentCloud
         # @type WebhookUrl: String
         # @param WebhookToken: webhook接入token
         # @type WebhookToken: String
+        # @param InstanceId: tcr实例ID
+        # @type InstanceId: String
 
-        attr_accessor :Name, :Username, :Password, :Url, :RegistryType, :NetType, :RegistryVersion, :RegistryRegion, :SpeedLimit, :Insecure, :ConnDetectConfig, :NeedScan, :SyncMode, :WebhookUrl, :WebhookToken
+        attr_accessor :Name, :Username, :Password, :Url, :RegistryType, :NetType, :RegistryVersion, :RegistryRegion, :SpeedLimit, :Insecure, :ConnDetectConfig, :NeedScan, :SyncMode, :WebhookUrl, :WebhookToken, :InstanceId
 
-        def initialize(name=nil, username=nil, password=nil, url=nil, registrytype=nil, nettype=nil, registryversion=nil, registryregion=nil, speedlimit=nil, insecure=nil, conndetectconfig=nil, needscan=nil, syncmode=nil, webhookurl=nil, webhooktoken=nil)
+        def initialize(name=nil, username=nil, password=nil, url=nil, registrytype=nil, nettype=nil, registryversion=nil, registryregion=nil, speedlimit=nil, insecure=nil, conndetectconfig=nil, needscan=nil, syncmode=nil, webhookurl=nil, webhooktoken=nil, instanceid=nil)
           @Name = name
           @Username = username
           @Password = password
@@ -989,6 +991,7 @@ module TencentCloud
           @SyncMode = syncmode
           @WebhookUrl = webhookurl
           @WebhookToken = webhooktoken
+          @InstanceId = instanceid
         end
 
         def deserialize(params)
@@ -1014,6 +1017,7 @@ module TencentCloud
           @SyncMode = params['SyncMode']
           @WebhookUrl = params['WebhookUrl']
           @WebhookToken = params['WebhookToken']
+          @InstanceId = params['InstanceId']
         end
       end
 
@@ -23621,21 +23625,33 @@ module TencentCloud
 
       # ModifyAsset请求参数结构体
       class ModifyAssetRequest < TencentCloud::Common::AbstractModel
-        # @param All: 全部同步，俩参数必选一个 All优先
+        # @param All: 同步全部普通节点
         # @type All: Boolean
-        # @param Hosts: 要同步的主机列表uuid ，俩参数必选一个 All优先
+        # @param Hosts: 要同步的主机列表uuid
         # @type Hosts: Array
+        # @param AllSuperHost: 同步全部超级节点
+        # @type AllSuperHost: Boolean
+        # @param NodeUniqueIds: 要同步的超级节点唯一id
+        # @type NodeUniqueIds: Array
+        # @param TimeoutSec: 超时时间(秒) 最低3600s
+        # @type TimeoutSec: Integer
 
-        attr_accessor :All, :Hosts
+        attr_accessor :All, :Hosts, :AllSuperHost, :NodeUniqueIds, :TimeoutSec
 
-        def initialize(all=nil, hosts=nil)
+        def initialize(all=nil, hosts=nil, allsuperhost=nil, nodeuniqueids=nil, timeoutsec=nil)
           @All = all
           @Hosts = hosts
+          @AllSuperHost = allsuperhost
+          @NodeUniqueIds = nodeuniqueids
+          @TimeoutSec = timeoutsec
         end
 
         def deserialize(params)
           @All = params['All']
           @Hosts = params['Hosts']
+          @AllSuperHost = params['AllSuperHost']
+          @NodeUniqueIds = params['NodeUniqueIds']
+          @TimeoutSec = params['TimeoutSec']
         end
       end
 
@@ -23643,18 +23659,22 @@ module TencentCloud
       class ModifyAssetResponse < TencentCloud::Common::AbstractModel
         # @param Status: 同步任务发送结果
         # @type Status: String
+        # @param TaskId: 任务id
+        # @type TaskId: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Status, :RequestId
+        attr_accessor :Status, :TaskId, :RequestId
 
-        def initialize(status=nil, requestid=nil)
+        def initialize(status=nil, taskid=nil, requestid=nil)
           @Status = status
+          @TaskId = taskid
           @RequestId = requestid
         end
 
         def deserialize(params)
           @Status = params['Status']
+          @TaskId = params['TaskId']
           @RequestId = params['RequestId']
         end
       end
@@ -28155,10 +28175,12 @@ module TencentCloud
         # @type SyncMode: Integer
         # @param NeedScan: 是否自动授权&扫描，选择增量同步时参数生效，包含所有新增镜像
         # @type NeedScan: Boolean
+        # @param InstanceId: tcr实例ID
+        # @type InstanceId: String
 
-        attr_accessor :Name, :Username, :Password, :Url, :RegistryType, :NetType, :RegistryVersion, :RegistryRegion, :SpeedLimit, :Insecure, :ConnDetectConfig, :RegistryId, :SyncMode, :NeedScan
+        attr_accessor :Name, :Username, :Password, :Url, :RegistryType, :NetType, :RegistryVersion, :RegistryRegion, :SpeedLimit, :Insecure, :ConnDetectConfig, :RegistryId, :SyncMode, :NeedScan, :InstanceId
 
-        def initialize(name=nil, username=nil, password=nil, url=nil, registrytype=nil, nettype=nil, registryversion=nil, registryregion=nil, speedlimit=nil, insecure=nil, conndetectconfig=nil, registryid=nil, syncmode=nil, needscan=nil)
+        def initialize(name=nil, username=nil, password=nil, url=nil, registrytype=nil, nettype=nil, registryversion=nil, registryregion=nil, speedlimit=nil, insecure=nil, conndetectconfig=nil, registryid=nil, syncmode=nil, needscan=nil, instanceid=nil)
           @Name = name
           @Username = username
           @Password = password
@@ -28173,6 +28195,7 @@ module TencentCloud
           @RegistryId = registryid
           @SyncMode = syncmode
           @NeedScan = needscan
+          @InstanceId = instanceid
         end
 
         def deserialize(params)
@@ -28197,6 +28220,7 @@ module TencentCloud
           @RegistryId = params['RegistryId']
           @SyncMode = params['SyncMode']
           @NeedScan = params['NeedScan']
+          @InstanceId = params['InstanceId']
         end
       end
 
