@@ -2745,9 +2745,9 @@ module TencentCloud
         # @type InstanceId: String
         # @param Db: 数据库名称。
         # @type Db: String
-        # @param Collection: 表明。
+        # @param Collection: 表名。
         # @type Collection: String
-        # @param Signs: 签名。
+        # @param Signs: 签名。这个值是DescribelndexRecommendInfo接口返回
         # @type Signs: Array
 
         attr_accessor :Product, :InstanceId, :Db, :Collection, :Signs

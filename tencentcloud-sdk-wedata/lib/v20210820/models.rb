@@ -2539,8 +2539,8 @@ module TencentCloud
 
         attr_accessor :ProjectId, :AlarmRegularName, :TaskId, :Id, :TaskType, :MonitorType
         extend Gem::Deprecate
-        deprecate :TaskId, :none, 2025, 5
-        deprecate :TaskId=, :none, 2025, 5
+        deprecate :TaskId, :none, 2025, 6
+        deprecate :TaskId=, :none, 2025, 6
 
         def initialize(projectid=nil, alarmregularname=nil, taskid=nil, id=nil, tasktype=nil, monitortype=nil)
           @ProjectId = projectid
@@ -9736,12 +9736,12 @@ module TencentCloud
 
         attr_accessor :ProjectId, :Category, :PageNumber, :PageSize, :EventName, :EventType, :EventSubType, :EventBroadcastType, :Status, :CreationTimeStart, :CreationTimeEnd, :EventTriggeredTimeStart, :EventTriggeredTimeEnd, :LogTimeStart, :LogTimeEnd, :Dimension, :TimeToLive, :SortItem, :SortType
         extend Gem::Deprecate
-        deprecate :EventType, :none, 2025, 5
-        deprecate :EventType=, :none, 2025, 5
-        deprecate :EventBroadcastType, :none, 2025, 5
-        deprecate :EventBroadcastType=, :none, 2025, 5
-        deprecate :Status, :none, 2025, 5
-        deprecate :Status=, :none, 2025, 5
+        deprecate :EventType, :none, 2025, 6
+        deprecate :EventType=, :none, 2025, 6
+        deprecate :EventBroadcastType, :none, 2025, 6
+        deprecate :EventBroadcastType=, :none, 2025, 6
+        deprecate :Status, :none, 2025, 6
+        deprecate :Status=, :none, 2025, 6
 
         def initialize(projectid=nil, category=nil, pagenumber=nil, pagesize=nil, eventname=nil, eventtype=nil, eventsubtype=nil, eventbroadcasttype=nil, status=nil, creationtimestart=nil, creationtimeend=nil, eventtriggeredtimestart=nil, eventtriggeredtimeend=nil, logtimestart=nil, logtimeend=nil, dimension=nil, timetolive=nil, sortitem=nil, sorttype=nil)
           @ProjectId = projectid
@@ -9946,6 +9946,74 @@ module TencentCloud
         def deserialize(params)
           unless params['Data'].nil?
             @Data = RuleGroupExecStrategy.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeExecutorGroupMetric请求参数结构体
+      class DescribeExecutorGroupMetricRequest < TencentCloud::Common::AbstractModel
+        # @param ExecutorGroupId: 执行资源组id
+        # @type ExecutorGroupId: String
+        # @param TrendStartTime: 使用趋势开始时间(毫秒)
+        # @type TrendStartTime: Integer
+        # @param TrendEndTime: 使用趋势结束时间(毫秒)
+        # @type TrendEndTime: Integer
+        # @param ExecutorGroupType: 执行资源组类型
+        # @type ExecutorGroupType: String
+        # @param ExecutorResourceType: 执行资源类型
+        # @type ExecutorResourceType: String
+        # @param LoaderId: 执行机ID
+        # @type LoaderId: String
+        # @param MetricType: 指标维度
+        # @type MetricType: String
+        # @param Granularity: 指标采集粒度
+        # @type Granularity: Integer
+
+        attr_accessor :ExecutorGroupId, :TrendStartTime, :TrendEndTime, :ExecutorGroupType, :ExecutorResourceType, :LoaderId, :MetricType, :Granularity
+
+        def initialize(executorgroupid=nil, trendstarttime=nil, trendendtime=nil, executorgrouptype=nil, executorresourcetype=nil, loaderid=nil, metrictype=nil, granularity=nil)
+          @ExecutorGroupId = executorgroupid
+          @TrendStartTime = trendstarttime
+          @TrendEndTime = trendendtime
+          @ExecutorGroupType = executorgrouptype
+          @ExecutorResourceType = executorresourcetype
+          @LoaderId = loaderid
+          @MetricType = metrictype
+          @Granularity = granularity
+        end
+
+        def deserialize(params)
+          @ExecutorGroupId = params['ExecutorGroupId']
+          @TrendStartTime = params['TrendStartTime']
+          @TrendEndTime = params['TrendEndTime']
+          @ExecutorGroupType = params['ExecutorGroupType']
+          @ExecutorResourceType = params['ExecutorResourceType']
+          @LoaderId = params['LoaderId']
+          @MetricType = params['MetricType']
+          @Granularity = params['Granularity']
+        end
+      end
+
+      # DescribeExecutorGroupMetric返回参数结构体
+      class DescribeExecutorGroupMetricResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 执行组指标信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: :class:`Tencentcloud::Wedata.v20210820.models.ExecutorResourceGroupInfo`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = ExecutorResourceGroupInfo.new
             @Data.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
@@ -16715,8 +16783,8 @@ module TencentCloud
 
         attr_accessor :DimType, :Count, :QualityDim
         extend Gem::Deprecate
-        deprecate :DimType, :none, 2025, 5
-        deprecate :DimType=, :none, 2025, 5
+        deprecate :DimType, :none, 2025, 6
+        deprecate :DimType=, :none, 2025, 6
 
         def initialize(dimtype=nil, count=nil, qualitydim=nil)
           @DimType = dimtype
@@ -18234,6 +18302,528 @@ module TencentCloud
               @EventCases << eventcaseopsdto_tmp
             end
           end
+        end
+      end
+
+      # 资源组详情
+      class ExecutorResourceGroupInfo < TencentCloud::Common::AbstractModel
+        # @param ExecutorGroupId: 执行组id, 仅更新资源时需要传
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExecutorGroupId: String
+        # @param ExecutorGroupName: 执行组名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExecutorGroupName: String
+        # @param ExecutorGroupDesc: 执行组描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExecutorGroupDesc: String
+        # @param ExecutorResourceType: SCHEDULER （标准调度资源组），CUSTOM_SCHEDULER （自定义调度资源），INTEGRATION（集成资源组），DATA_SERVICE（数据服务资源组）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExecutorResourceType: Integer
+        # @param Region: 区域中文
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Region: String
+        # @param VpcId: vpcId, 托管服务时需要传递
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VpcId: String
+        # @param SubnetId: subnetId, 托管服务时需要传递
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubnetId: String
+        # @param ProjectId: 项目id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProjectId: String
+        # @param BasicResourcePackage: 基础资源包，资源组至少包含一个基础资源包
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BasicResourcePackage: :class:`Tencentcloud::Wedata.v20210820.models.ExecutorResourcePackageInfo`
+        # @param AdvanceResourcePackage: 增强资源包
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AdvanceResourcePackage: :class:`Tencentcloud::Wedata.v20210820.models.ExecutorResourcePackageInfo`
+        # @param AutoRenewFlag: 是否自动续费
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AutoRenewFlag: Integer
+        # @param RegionEn: 区域英文
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RegionEn: String
+        # @param RegionId: 区域Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RegionId: Integer
+        # @param ProjectName: 项目名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProjectName: String
+        # @param ProjectDisplayName: 项目展示名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProjectDisplayName: String
+        # @param AssociateProjectNums: 资源组关联项目数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AssociateProjectNums: Integer
+        # @param IsLocked: 是否锁定，false为未锁定，true为锁定
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsLocked: Boolean
+        # @param SourceType: 来源类型，0为系统默认，1为自定义
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SourceType: Integer
+        # @param MQPackageVO: 队列资源包
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MQPackageVO: :class:`Tencentcloud::Wedata.v20210820.models.MQPackageVO`
+        # @param FirstChoice: 是否首选
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FirstChoice: Boolean
+        # @param PythonSubVersions: 资源组python版本绑定详情
+        # @type PythonSubVersions: Array
+
+        attr_accessor :ExecutorGroupId, :ExecutorGroupName, :ExecutorGroupDesc, :ExecutorResourceType, :Region, :VpcId, :SubnetId, :ProjectId, :BasicResourcePackage, :AdvanceResourcePackage, :AutoRenewFlag, :RegionEn, :RegionId, :ProjectName, :ProjectDisplayName, :AssociateProjectNums, :IsLocked, :SourceType, :MQPackageVO, :FirstChoice, :PythonSubVersions
+
+        def initialize(executorgroupid=nil, executorgroupname=nil, executorgroupdesc=nil, executorresourcetype=nil, region=nil, vpcid=nil, subnetid=nil, projectid=nil, basicresourcepackage=nil, advanceresourcepackage=nil, autorenewflag=nil, regionen=nil, regionid=nil, projectname=nil, projectdisplayname=nil, associateprojectnums=nil, islocked=nil, sourcetype=nil, mqpackagevo=nil, firstchoice=nil, pythonsubversions=nil)
+          @ExecutorGroupId = executorgroupid
+          @ExecutorGroupName = executorgroupname
+          @ExecutorGroupDesc = executorgroupdesc
+          @ExecutorResourceType = executorresourcetype
+          @Region = region
+          @VpcId = vpcid
+          @SubnetId = subnetid
+          @ProjectId = projectid
+          @BasicResourcePackage = basicresourcepackage
+          @AdvanceResourcePackage = advanceresourcepackage
+          @AutoRenewFlag = autorenewflag
+          @RegionEn = regionen
+          @RegionId = regionid
+          @ProjectName = projectname
+          @ProjectDisplayName = projectdisplayname
+          @AssociateProjectNums = associateprojectnums
+          @IsLocked = islocked
+          @SourceType = sourcetype
+          @MQPackageVO = mqpackagevo
+          @FirstChoice = firstchoice
+          @PythonSubVersions = pythonsubversions
+        end
+
+        def deserialize(params)
+          @ExecutorGroupId = params['ExecutorGroupId']
+          @ExecutorGroupName = params['ExecutorGroupName']
+          @ExecutorGroupDesc = params['ExecutorGroupDesc']
+          @ExecutorResourceType = params['ExecutorResourceType']
+          @Region = params['Region']
+          @VpcId = params['VpcId']
+          @SubnetId = params['SubnetId']
+          @ProjectId = params['ProjectId']
+          unless params['BasicResourcePackage'].nil?
+            @BasicResourcePackage = ExecutorResourcePackageInfo.new
+            @BasicResourcePackage.deserialize(params['BasicResourcePackage'])
+          end
+          unless params['AdvanceResourcePackage'].nil?
+            @AdvanceResourcePackage = ExecutorResourcePackageInfo.new
+            @AdvanceResourcePackage.deserialize(params['AdvanceResourcePackage'])
+          end
+          @AutoRenewFlag = params['AutoRenewFlag']
+          @RegionEn = params['RegionEn']
+          @RegionId = params['RegionId']
+          @ProjectName = params['ProjectName']
+          @ProjectDisplayName = params['ProjectDisplayName']
+          @AssociateProjectNums = params['AssociateProjectNums']
+          @IsLocked = params['IsLocked']
+          @SourceType = params['SourceType']
+          unless params['MQPackageVO'].nil?
+            @MQPackageVO = MQPackageVO.new
+            @MQPackageVO.deserialize(params['MQPackageVO'])
+          end
+          @FirstChoice = params['FirstChoice']
+          @PythonSubVersions = params['PythonSubVersions']
+        end
+      end
+
+      # 执行资源包额外信息
+      class ExecutorResourcePackageExtInfo < TencentCloud::Common::AbstractModel
+        # @param InlongGroupId: 集成资源组：InLong集群id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InlongGroupId: String
+        # @param OceanusClusterId: 集成资源组：oceanus集群id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OceanusClusterId: String
+        # @param ProductResourceIdList: 计费相关：产品资源id列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProductResourceIdList: Array
+        # @param BillingSuccess: 当前资源包对应订单是否发货成功
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BillingSuccess: Boolean
+        # @param ApigwServiceId: apigw服务id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApigwServiceId: String
+        # @param ApigwServiceName: apigw服务名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApigwServiceName: String
+        # @param DataProxySpec: 数据集成相关：dataProxy配置规格
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DataProxySpec: Integer
+        # @param DataProxyNum: dataProxy数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DataProxyNum: Integer
+        # @param DataProxyStatus: dataProxy状态，同ExecutorGroupStatus
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DataProxyStatus: Integer
+        # @param InLongManagerUrl: inlongManager地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InLongManagerUrl: String
+        # @param InLongVersion: inlong版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InLongVersion: String
+        # @param ExecutorMachineIpList: 私有化资源组相关: 执行及机器ip列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExecutorMachineIpList: String
+
+        attr_accessor :InlongGroupId, :OceanusClusterId, :ProductResourceIdList, :BillingSuccess, :ApigwServiceId, :ApigwServiceName, :DataProxySpec, :DataProxyNum, :DataProxyStatus, :InLongManagerUrl, :InLongVersion, :ExecutorMachineIpList
+
+        def initialize(inlonggroupid=nil, oceanusclusterid=nil, productresourceidlist=nil, billingsuccess=nil, apigwserviceid=nil, apigwservicename=nil, dataproxyspec=nil, dataproxynum=nil, dataproxystatus=nil, inlongmanagerurl=nil, inlongversion=nil, executormachineiplist=nil)
+          @InlongGroupId = inlonggroupid
+          @OceanusClusterId = oceanusclusterid
+          @ProductResourceIdList = productresourceidlist
+          @BillingSuccess = billingsuccess
+          @ApigwServiceId = apigwserviceid
+          @ApigwServiceName = apigwservicename
+          @DataProxySpec = dataproxyspec
+          @DataProxyNum = dataproxynum
+          @DataProxyStatus = dataproxystatus
+          @InLongManagerUrl = inlongmanagerurl
+          @InLongVersion = inlongversion
+          @ExecutorMachineIpList = executormachineiplist
+        end
+
+        def deserialize(params)
+          @InlongGroupId = params['InlongGroupId']
+          @OceanusClusterId = params['OceanusClusterId']
+          @ProductResourceIdList = params['ProductResourceIdList']
+          @BillingSuccess = params['BillingSuccess']
+          @ApigwServiceId = params['ApigwServiceId']
+          @ApigwServiceName = params['ApigwServiceName']
+          @DataProxySpec = params['DataProxySpec']
+          @DataProxyNum = params['DataProxyNum']
+          @DataProxyStatus = params['DataProxyStatus']
+          @InLongManagerUrl = params['InLongManagerUrl']
+          @InLongVersion = params['InLongVersion']
+          @ExecutorMachineIpList = params['ExecutorMachineIpList']
+        end
+      end
+
+      # 执行资源包
+      class ExecutorResourcePackageInfo < TencentCloud::Common::AbstractModel
+        # @param ResourcePackageNum: 资源包规格相关：资源包个数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourcePackageNum: Integer
+        # @param CpuNum: 资源包规格相关：cpu个数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CpuNum: Integer
+        # @param ExecutorResourcePackageId: 资源包id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExecutorResourcePackageId: String
+        # @param MemSize: 资源包规格相关：内存大小，单位:G
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MemSize: Integer
+        # @param Status: 资源包状态， /**
+        #      * 初始化中
+        #      */
+        #     INIT(0),
+        #     /**
+        #      * 运行中
+        #      */
+        #     RUNNING(1),
+        #     /**
+        #      * 运行异常
+        #      */
+        #     RUNNING_FAILED(2),
+        #     /**
+        #      * 释放中
+        #      */
+        #     DELETEING(3),
+        #     /**
+        #      * 已释放
+        #      */
+        #     DELETED(4),
+        #     /**
+        #      * 创建中
+        #      */
+        #     CREATING(5),
+        #     /**
+        #      * 创建失败
+        #      */
+        #     CREATE_FAILED(6),
+        #     /**
+        #      * 更新中
+        #      */
+        #     UPDATING(7),
+        #     /**
+        #      * 更新失败
+        #      */
+        #     UPDATE_FAILED(8),
+        #     /**
+        #      * 已到期
+        #      */
+        #     EXPIRED(9);
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Integer
+        # @param StatusDescription: 资源包状态描述：保存创建失败，运行异常和更新失败的原因
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StatusDescription: String
+        # @param ExpireTime: 资源包到期时间，时间戳毫秒
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExpireTime: Integer
+        # @param ExtInfo: 资源包额外属性
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExtInfo: :class:`Tencentcloud::Wedata.v20210820.models.ExecutorResourcePackageExtInfo`
+        # @param ProjectId: 绑定的项目id，可为空
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProjectId: String
+        # @param ProjectBindTime: 资源组绑定的时间，时间戳毫秒
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProjectBindTime: Integer
+        # @param ResourcePackageUsage: 资源包使用状态: cpu使用，内存使用及趋势
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourcePackageUsage: :class:`Tencentcloud::Wedata.v20210820.models.ExecutorResourcePackageUsageInfo`
+        # @param ProductResourceIdList: 计费相关：产品资源id列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProductResourceIdList: Array
+        # @param LifeTime: 生命周期
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LifeTime: Integer
+        # @param VpcId: 私有网络Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VpcId: String
+        # @param VpcName: 私有网络名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VpcName: String
+        # @param SubnetId: 子网Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubnetId: String
+        # @param SubnetName: 子网名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubnetName: String
+        # @param ResourceStandard: 执行资源相关：资源规格描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceStandard: String
+        # @param TotalMemory: 内存总数
+        # @type TotalMemory: Integer
+
+        attr_accessor :ResourcePackageNum, :CpuNum, :ExecutorResourcePackageId, :MemSize, :Status, :StatusDescription, :ExpireTime, :ExtInfo, :ProjectId, :ProjectBindTime, :ResourcePackageUsage, :ProductResourceIdList, :LifeTime, :VpcId, :VpcName, :SubnetId, :SubnetName, :ResourceStandard, :TotalMemory
+
+        def initialize(resourcepackagenum=nil, cpunum=nil, executorresourcepackageid=nil, memsize=nil, status=nil, statusdescription=nil, expiretime=nil, extinfo=nil, projectid=nil, projectbindtime=nil, resourcepackageusage=nil, productresourceidlist=nil, lifetime=nil, vpcid=nil, vpcname=nil, subnetid=nil, subnetname=nil, resourcestandard=nil, totalmemory=nil)
+          @ResourcePackageNum = resourcepackagenum
+          @CpuNum = cpunum
+          @ExecutorResourcePackageId = executorresourcepackageid
+          @MemSize = memsize
+          @Status = status
+          @StatusDescription = statusdescription
+          @ExpireTime = expiretime
+          @ExtInfo = extinfo
+          @ProjectId = projectid
+          @ProjectBindTime = projectbindtime
+          @ResourcePackageUsage = resourcepackageusage
+          @ProductResourceIdList = productresourceidlist
+          @LifeTime = lifetime
+          @VpcId = vpcid
+          @VpcName = vpcname
+          @SubnetId = subnetid
+          @SubnetName = subnetname
+          @ResourceStandard = resourcestandard
+          @TotalMemory = totalmemory
+        end
+
+        def deserialize(params)
+          @ResourcePackageNum = params['ResourcePackageNum']
+          @CpuNum = params['CpuNum']
+          @ExecutorResourcePackageId = params['ExecutorResourcePackageId']
+          @MemSize = params['MemSize']
+          @Status = params['Status']
+          @StatusDescription = params['StatusDescription']
+          @ExpireTime = params['ExpireTime']
+          unless params['ExtInfo'].nil?
+            @ExtInfo = ExecutorResourcePackageExtInfo.new
+            @ExtInfo.deserialize(params['ExtInfo'])
+          end
+          @ProjectId = params['ProjectId']
+          @ProjectBindTime = params['ProjectBindTime']
+          unless params['ResourcePackageUsage'].nil?
+            @ResourcePackageUsage = ExecutorResourcePackageUsageInfo.new
+            @ResourcePackageUsage.deserialize(params['ResourcePackageUsage'])
+          end
+          @ProductResourceIdList = params['ProductResourceIdList']
+          @LifeTime = params['LifeTime']
+          @VpcId = params['VpcId']
+          @VpcName = params['VpcName']
+          @SubnetId = params['SubnetId']
+          @SubnetName = params['SubnetName']
+          @ResourceStandard = params['ResourceStandard']
+          @TotalMemory = params['TotalMemory']
+        end
+      end
+
+      # 执行资源包使用情况
+      class ExecutorResourcePackageUsageInfo < TencentCloud::Common::AbstractModel
+        # @param CpuUsagePercent: CPU占用百分比
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CpuUsagePercent: Float
+        # @param MemUsagePercent: 内存占用百分比
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MemUsagePercent: Float
+        # @param Status: 资源包状态, /**
+        #      * 初始化中
+        #      */
+        #     INIT(0),
+        #     /**
+        #      * 运行中
+        #      */
+        #     RUNNING(1),
+        #     /**
+        #      * 运行异常
+        #      */
+        #     RUNNING_FAILED(2),
+        #     /**
+        #      * 释放中
+        #      */
+        #     DELETEING(3),
+        #     /**
+        #      * 已释放
+        #      */
+        #     DELETED(4),
+        #     /**
+        #      * 创建中
+        #      */
+        #     CREATING(5),
+        #     /**
+        #      * 创建失败
+        #      */
+        #     CREATE_FAILED(6),
+        #     /**
+        #      * 更新中
+        #      */
+        #     UPDATING(7),
+        #     /**
+        #      * 更新失败
+        #      */
+        #     UPDATE_FAILED(8),
+        #     /**
+        #      * 已到期
+        #      */
+        #     EXPIRED(9);
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Float
+        # @param RunningTaskNum: /**
+        #      * 初始化中
+        #      */
+        #     INIT(0),
+        #     /**
+        #      * 运行中
+        #      */
+        #     RUNNING(1),
+        #     /**
+        #      * 运行异常
+        #      */
+        #     RUNNING_FAILED(2),
+        #     /**
+        #      * 释放中
+        #      */
+        #     DELETEING(3),
+        #     /**
+        #      * 已释放
+        #      */
+        #     DELETED(4),
+        #     /**
+        #      * 创建中
+        #      */
+        #     CREATING(5),
+        #     /**
+        #      * 创建失败
+        #      */
+        #     CREATE_FAILED(6),
+        #     /**
+        #      * 更新中
+        #      */
+        #     UPDATING(7),
+        #     /**
+        #      * 更新失败
+        #      */
+        #     UPDATE_FAILED(8),
+        #     /**
+        #      * 已到期
+        #      */
+        # 运行中的任务数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RunningTaskNum: Integer
+        # @param WaitingTaskNum: 等待中的任务数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WaitingTaskNum: Integer
+        # @param UsageTrendStartTime: 资源使用趋势: 开始时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UsageTrendStartTime: String
+        # @param UsageTrendEndTime: 资源使用趋势: 结束时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UsageTrendEndTime: String
+        # @param UsageTrendList: 资源使用趋势列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UsageTrendList: Array
+
+        attr_accessor :CpuUsagePercent, :MemUsagePercent, :Status, :RunningTaskNum, :WaitingTaskNum, :UsageTrendStartTime, :UsageTrendEndTime, :UsageTrendList
+
+        def initialize(cpuusagepercent=nil, memusagepercent=nil, status=nil, runningtasknum=nil, waitingtasknum=nil, usagetrendstarttime=nil, usagetrendendtime=nil, usagetrendlist=nil)
+          @CpuUsagePercent = cpuusagepercent
+          @MemUsagePercent = memusagepercent
+          @Status = status
+          @RunningTaskNum = runningtasknum
+          @WaitingTaskNum = waitingtasknum
+          @UsageTrendStartTime = usagetrendstarttime
+          @UsageTrendEndTime = usagetrendendtime
+          @UsageTrendList = usagetrendlist
+        end
+
+        def deserialize(params)
+          @CpuUsagePercent = params['CpuUsagePercent']
+          @MemUsagePercent = params['MemUsagePercent']
+          @Status = params['Status']
+          @RunningTaskNum = params['RunningTaskNum']
+          @WaitingTaskNum = params['WaitingTaskNum']
+          @UsageTrendStartTime = params['UsageTrendStartTime']
+          @UsageTrendEndTime = params['UsageTrendEndTime']
+          unless params['UsageTrendList'].nil?
+            @UsageTrendList = []
+            params['UsageTrendList'].each do |i|
+              executorusagetrendinfo_tmp = ExecutorUsageTrendInfo.new
+              executorusagetrendinfo_tmp.deserialize(i)
+              @UsageTrendList << executorusagetrendinfo_tmp
+            end
+          end
+        end
+      end
+
+      # 资源组/资源包使用趋势
+      class ExecutorUsageTrendInfo < TencentCloud::Common::AbstractModel
+        # @param Timestamp: 时间戳，单位：毫秒
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Timestamp: Integer
+        # @param CpuUsagePercent: CPU占用百分比
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CpuUsagePercent: Float
+        # @param MemUsagePercent: 内存占用百分比
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MemUsagePercent: Float
+        # @param ConcurrencyUsage: 当前并发度使用百分比
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConcurrencyUsage: Float
+        # @param OceanusCuUsage: oceanus CU使用百分比
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OceanusCuUsage: Float
+
+        attr_accessor :Timestamp, :CpuUsagePercent, :MemUsagePercent, :ConcurrencyUsage, :OceanusCuUsage
+
+        def initialize(timestamp=nil, cpuusagepercent=nil, memusagepercent=nil, concurrencyusage=nil, oceanuscuusage=nil)
+          @Timestamp = timestamp
+          @CpuUsagePercent = cpuusagepercent
+          @MemUsagePercent = memusagepercent
+          @ConcurrencyUsage = concurrencyusage
+          @OceanusCuUsage = oceanuscuusage
+        end
+
+        def deserialize(params)
+          @Timestamp = params['Timestamp']
+          @CpuUsagePercent = params['CpuUsagePercent']
+          @MemUsagePercent = params['MemUsagePercent']
+          @ConcurrencyUsage = params['ConcurrencyUsage']
+          @OceanusCuUsage = params['OceanusCuUsage']
         end
       end
 
@@ -22855,6 +23445,88 @@ module TencentCloud
         end
       end
 
+      # MQPackageVO
+      class MQPackageVO < TencentCloud::Common::AbstractModel
+        # @param Type: ckafka消息队列
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+        # @param InstanceId: 实例Id/集群Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceId: String
+        # @param InstanceName: 实例名称/集群名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceName: String
+        # @param VpcId: 局域网Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VpcId: String
+        # @param SubnetId: 子网Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubnetId: String
+        # @param Status: 资源状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Integer
+        # @param StatusDescription: 资源状态描述：保存创建失败，运行异常和更新失败的原因
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StatusDescription: String
+        # @param DataProxySpec: DataProxy规格
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DataProxySpec: String
+        # @param DataProxyNum: DataProxy数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DataProxyNum: Integer
+        # @param DataProxyStatus: DataProxy状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DataProxyStatus: Integer
+        # @param DataProxyStatusDescription: DataProxy状态描述：保存创建失败，运行异常和更新失败的原因
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DataProxyStatusDescription: String
+        # @param BillingType: 计费类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BillingType: String
+        # @param ExpireTime: 资源到期时间，时间戳毫秒
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExpireTime: Integer
+        # @param LifeTime: 资源生命周期
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LifeTime: Integer
+
+        attr_accessor :Type, :InstanceId, :InstanceName, :VpcId, :SubnetId, :Status, :StatusDescription, :DataProxySpec, :DataProxyNum, :DataProxyStatus, :DataProxyStatusDescription, :BillingType, :ExpireTime, :LifeTime
+
+        def initialize(type=nil, instanceid=nil, instancename=nil, vpcid=nil, subnetid=nil, status=nil, statusdescription=nil, dataproxyspec=nil, dataproxynum=nil, dataproxystatus=nil, dataproxystatusdescription=nil, billingtype=nil, expiretime=nil, lifetime=nil)
+          @Type = type
+          @InstanceId = instanceid
+          @InstanceName = instancename
+          @VpcId = vpcid
+          @SubnetId = subnetid
+          @Status = status
+          @StatusDescription = statusdescription
+          @DataProxySpec = dataproxyspec
+          @DataProxyNum = dataproxynum
+          @DataProxyStatus = dataproxystatus
+          @DataProxyStatusDescription = dataproxystatusdescription
+          @BillingType = billingtype
+          @ExpireTime = expiretime
+          @LifeTime = lifetime
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @InstanceId = params['InstanceId']
+          @InstanceName = params['InstanceName']
+          @VpcId = params['VpcId']
+          @SubnetId = params['SubnetId']
+          @Status = params['Status']
+          @StatusDescription = params['StatusDescription']
+          @DataProxySpec = params['DataProxySpec']
+          @DataProxyNum = params['DataProxyNum']
+          @DataProxyStatus = params['DataProxyStatus']
+          @DataProxyStatusDescription = params['DataProxyStatusDescription']
+          @BillingType = params['BillingType']
+          @ExpireTime = params['ExpireTime']
+          @LifeTime = params['LifeTime']
+        end
+      end
+
       # 补录计划实例集合
       class MakePlanInstanceOpsDtoCollection < TencentCloud::Common::AbstractModel
         # @param TotalCount: 记录总数
@@ -24272,8 +24944,8 @@ module TencentCloud
 
         attr_accessor :ProjectId, :TaskId, :DelayTime, :StartupTime, :SelfDepend, :StartTime, :EndTime, :TaskAction, :CycleType, :CycleStep, :CrontabExpression, :ExecutionStartTime, :ExecutionEndTime, :TaskName, :RetryWait, :TryLimit, :Retriable, :RunPriority, :TaskExt, :ResourceGroup, :YarnQueue, :BrokerIp, :InCharge, :Notes, :TaskParamInfos, :SourceServer, :TargetServer, :DependencyWorkflow, :DependencyConfigDTOs, :ExecutionTTL, :ScriptChange, :InChargeIds
         extend Gem::Deprecate
-        deprecate :InCharge, :none, 2025, 5
-        deprecate :InCharge=, :none, 2025, 5
+        deprecate :InCharge, :none, 2025, 6
+        deprecate :InCharge=, :none, 2025, 6
 
         def initialize(projectid=nil, taskid=nil, delaytime=nil, startuptime=nil, selfdepend=nil, starttime=nil, endtime=nil, taskaction=nil, cycletype=nil, cyclestep=nil, crontabexpression=nil, executionstarttime=nil, executionendtime=nil, taskname=nil, retrywait=nil, trylimit=nil, retriable=nil, runpriority=nil, taskext=nil, resourcegroup=nil, yarnqueue=nil, brokerip=nil, incharge=nil, notes=nil, taskparaminfos=nil, sourceserver=nil, targetserver=nil, dependencyworkflow=nil, dependencyconfigdtos=nil, executionttl=nil, scriptchange=nil, inchargeids=nil)
           @ProjectId = projectid
@@ -26562,12 +27234,12 @@ module TencentCloud
 
         attr_accessor :ProjectId, :Name, :EventSubType, :TimeToLive, :TimeUnit, :Owner, :Description, :EventType, :EventBroadcastType, :DimensionFormat
         extend Gem::Deprecate
-        deprecate :EventType, :none, 2025, 5
-        deprecate :EventType=, :none, 2025, 5
-        deprecate :EventBroadcastType, :none, 2025, 5
-        deprecate :EventBroadcastType=, :none, 2025, 5
-        deprecate :DimensionFormat, :none, 2025, 5
-        deprecate :DimensionFormat=, :none, 2025, 5
+        deprecate :EventType, :none, 2025, 6
+        deprecate :EventType=, :none, 2025, 6
+        deprecate :EventBroadcastType, :none, 2025, 6
+        deprecate :EventBroadcastType=, :none, 2025, 6
+        deprecate :DimensionFormat, :none, 2025, 6
+        deprecate :DimensionFormat=, :none, 2025, 6
 
         def initialize(projectid=nil, name=nil, eventsubtype=nil, timetolive=nil, timeunit=nil, owner=nil, description=nil, eventtype=nil, eventbroadcasttype=nil, dimensionformat=nil)
           @ProjectId = projectid

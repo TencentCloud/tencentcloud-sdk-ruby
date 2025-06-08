@@ -1040,6 +1040,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 修改网关的转发配置
+
+        # @param request: Request instance for ModifyGatewayIngress.
+        # @type request: :class:`Tencentcloud::tem::V20210701::ModifyGatewayIngressRequest`
+        # @rtype: :class:`Tencentcloud::tem::V20210701::ModifyGatewayIngressResponse`
+        def ModifyGatewayIngress(request)
+          body = send_request('ModifyGatewayIngress', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyGatewayIngressResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 此接口没有被使用了
 
         # 创建或者更新 Ingress 规则

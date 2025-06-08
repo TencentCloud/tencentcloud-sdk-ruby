@@ -633,6 +633,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询安卓实例黑名单
+
+        # @param request: Request instance for DescribeAndroidInstancesAppBlacklist.
+        # @type request: :class:`Tencentcloud::gs::V20191118::DescribeAndroidInstancesAppBlacklistRequest`
+        # @rtype: :class:`Tencentcloud::gs::V20191118::DescribeAndroidInstancesAppBlacklistResponse`
+        def DescribeAndroidInstancesAppBlacklist(request)
+          body = send_request('DescribeAndroidInstancesAppBlacklist', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAndroidInstancesAppBlacklistResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询安装指定应用的安卓实例
+
+        # @param request: Request instance for DescribeAndroidInstancesByApps.
+        # @type request: :class:`Tencentcloud::gs::V20191118::DescribeAndroidInstancesByAppsRequest`
+        # @rtype: :class:`Tencentcloud::gs::V20191118::DescribeAndroidInstancesByAppsResponse`
+        def DescribeAndroidInstancesByApps(request)
+          body = send_request('DescribeAndroidInstancesByApps', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAndroidInstancesByAppsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取并发总数和运行数
 
         # @param request: Request instance for DescribeInstancesCount.
@@ -801,6 +849,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 导入安卓实例镜像，当镜像的 AndroidInstanceImageState 为 NORMAL 时，镜像导入完成处于可用状态。
+
+        # @param request: Request instance for ImportAndroidInstanceImage.
+        # @type request: :class:`Tencentcloud::gs::V20191118::ImportAndroidInstanceImageRequest`
+        # @rtype: :class:`Tencentcloud::gs::V20191118::ImportAndroidInstanceImageResponse`
+        def ImportAndroidInstanceImage(request)
+          body = send_request('ImportAndroidInstanceImage', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ImportAndroidInstanceImageResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 安装安卓实例应用
 
         # @param request: Request instance for InstallAndroidInstancesApp.
@@ -945,6 +1017,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 修改安卓实例应用黑名单
+
+        # @param request: Request instance for ModifyAndroidInstancesAppBlacklist.
+        # @type request: :class:`Tencentcloud::gs::V20191118::ModifyAndroidInstancesAppBlacklistRequest`
+        # @rtype: :class:`Tencentcloud::gs::V20191118::ModifyAndroidInstancesAppBlacklistResponse`
+        def ModifyAndroidInstancesAppBlacklist(request)
+          body = send_request('ModifyAndroidInstancesAppBlacklist', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyAndroidInstancesAppBlacklistResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 批量修改安卓实例信息
 
         # @param request: Request instance for ModifyAndroidInstancesInformation.
@@ -1027,6 +1123,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyAndroidInstancesResolutionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 批量修改安卓实例资源限制
+
+        # @param request: Request instance for ModifyAndroidInstancesResources.
+        # @type request: :class:`Tencentcloud::gs::V20191118::ModifyAndroidInstancesResourcesRequest`
+        # @rtype: :class:`Tencentcloud::gs::V20191118::ModifyAndroidInstancesResourcesResponse`
+        def ModifyAndroidInstancesResources(request)
+          body = send_request('ModifyAndroidInstancesResources', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyAndroidInstancesResourcesResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1198,6 +1318,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = SaveGameArchiveResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 批量设置安卓实例应用后台保活，开启应用保活，只是降低应用被杀死或回收的优先级，并不能保证应用不会被杀死或回收（如出现内存不足等资源限制时，应用也有概率被杀死或回收）
+
+        # @param request: Request instance for SetAndroidInstancesBGAppKeepAlive.
+        # @type request: :class:`Tencentcloud::gs::V20191118::SetAndroidInstancesBGAppKeepAliveRequest`
+        # @rtype: :class:`Tencentcloud::gs::V20191118::SetAndroidInstancesBGAppKeepAliveResponse`
+        def SetAndroidInstancesBGAppKeepAlive(request)
+          body = send_request('SetAndroidInstancesBGAppKeepAlive', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = SetAndroidInstancesBGAppKeepAliveResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 批量设置安卓实例应用前台保活，开启应用保活，只是降低应用被杀死或回收的优先级，并不能保证应用不会被杀死或回收（如出现内存不足等资源限制时，应用也有概率被杀死或回收）
+
+        # @param request: Request instance for SetAndroidInstancesFGAppKeepAlive.
+        # @type request: :class:`Tencentcloud::gs::V20191118::SetAndroidInstancesFGAppKeepAliveRequest`
+        # @rtype: :class:`Tencentcloud::gs::V20191118::SetAndroidInstancesFGAppKeepAliveResponse`
+        def SetAndroidInstancesFGAppKeepAlive(request)
+          body = send_request('SetAndroidInstancesFGAppKeepAlive', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = SetAndroidInstancesFGAppKeepAliveResponse.new
             model.deserialize(response['Response'])
             model
           else

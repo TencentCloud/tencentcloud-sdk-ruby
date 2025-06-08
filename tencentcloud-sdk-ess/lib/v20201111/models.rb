@@ -2187,6 +2187,67 @@ module TencentCloud
         end
       end
 
+      # CreateContractDiffTaskWebUrl请求参数结构体
+      class CreateContractDiffTaskWebUrlRequest < TencentCloud::Common::AbstractModel
+        # @param Operator: 执行本接口操作的员工信息。使用此接口时，必须填写userId。
+
+        # 注: `在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。`
+        # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
+        # @param SkipFileUpload: 是否跳过文件上传确认页。
+        # 当该参数值为`false`时，`OriginalFileResourceId`和`DiffFileResourceId`参数不需要传值，需要在生成的web页面中上传对比文件；
+        # 当该参数值为`true`时，`OriginalFileResourceId`和`DiffFileResourceId`参数必填，生成的web页面将跳过上传页面显示对比结果。
+        # @type SkipFileUpload: Boolean
+        # @param OriginalFileResourceId: 需要对比的原合同文件资源ID，通过<a href="https://qian.tencent.com/developers/companyApis/templatesAndFiles/UploadFiles" target="_blank">UploadFiles</a>接口获取文件资源ID。
+        # @type OriginalFileResourceId: String
+        # @param DiffFileResourceId: 需要对比的新合同文件资源ID，通过<a href="https://qian.tencent.com/developers/companyApis/templatesAndFiles/UploadFiles" target="_blank">UploadFiles</a>接口获取文件资源ID。
+        # @type DiffFileResourceId: String
+
+        attr_accessor :Operator, :SkipFileUpload, :OriginalFileResourceId, :DiffFileResourceId
+
+        def initialize(operator=nil, skipfileupload=nil, originalfileresourceid=nil, difffileresourceid=nil)
+          @Operator = operator
+          @SkipFileUpload = skipfileupload
+          @OriginalFileResourceId = originalfileresourceid
+          @DiffFileResourceId = difffileresourceid
+        end
+
+        def deserialize(params)
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
+          @SkipFileUpload = params['SkipFileUpload']
+          @OriginalFileResourceId = params['OriginalFileResourceId']
+          @DiffFileResourceId = params['DiffFileResourceId']
+        end
+      end
+
+      # CreateContractDiffTaskWebUrl返回参数结构体
+      class CreateContractDiffTaskWebUrlResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 接口返回的合同对比任务ID，可以调用接口<a href="https://qian.tencent.com/developers/companyApis/embedPages/DescribeContractDiffTaskWebUrl" target="_blank">获取合同对比结果web页面</a>查看对比任务的结果。
+        # 当`SkipFileUpload`参数为`true`时才会返回值，否则为空。
+        # @type TaskId: String
+        # @param WebUrl: 合同对比嵌入式web页面链接，有效期：5分钟
+        # 链接仅能使用一次
+        # @type WebUrl: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :WebUrl, :RequestId
+
+        def initialize(taskid=nil, weburl=nil, requestid=nil)
+          @TaskId = taskid
+          @WebUrl = weburl
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @WebUrl = params['WebUrl']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateConvertTaskApi请求参数结构体
       class CreateConvertTaskApiRequest < TencentCloud::Common::AbstractModel
         # @param ResourceType: 需要进行转换的资源文件类型
@@ -7622,6 +7683,52 @@ module TencentCloud
               @FailureFlows << cancelfailureflow_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeContractDiffTaskWebUrl请求参数结构体
+      class DescribeContractDiffTaskWebUrlRequest < TencentCloud::Common::AbstractModel
+        # @param Operator: 执行本接口操作的员工信息。使用此接口时，必须填写userId。
+
+        # 注: `在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。`
+        # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
+        # @param TaskId: 合同对比任务ID，该参数通过调用接口<a href="https://qian.tencent.com/developers/companyApis/embedPages/CreateContractDiffTaskWebUrl" target="_blank">创建合同对比web页面</a>获取。
+        # @type TaskId: String
+
+        attr_accessor :Operator, :TaskId
+
+        def initialize(operator=nil, taskid=nil)
+          @Operator = operator
+          @TaskId = taskid
+        end
+
+        def deserialize(params)
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
+          @TaskId = params['TaskId']
+        end
+      end
+
+      # DescribeContractDiffTaskWebUrl返回参数结构体
+      class DescribeContractDiffTaskWebUrlResponse < TencentCloud::Common::AbstractModel
+        # @param WebUrl: 合同对比嵌入式web页面链接，有效期：5分钟
+        # 链接仅能使用一次
+        # @type WebUrl: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :WebUrl, :RequestId
+
+        def initialize(weburl=nil, requestid=nil)
+          @WebUrl = weburl
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @WebUrl = params['WebUrl']
           @RequestId = params['RequestId']
         end
       end

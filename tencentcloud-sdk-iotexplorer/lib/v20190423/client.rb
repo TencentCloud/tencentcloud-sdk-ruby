@@ -917,7 +917,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 提供删除某个项目的能力
+        # 提供删除某个项目的能力。
 
         # @param request: Request instance for DeleteProject.
         # @type request: :class:`Tencentcloud::iotexplorer::V20190423::DeleteProjectRequest`
@@ -3319,7 +3319,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 修改项目
+        # 修改项目。
 
         # @param request: Request instance for ModifyProject.
         # @type request: :class:`Tencentcloud::iotexplorer::V20190423::ModifyProjectRequest`

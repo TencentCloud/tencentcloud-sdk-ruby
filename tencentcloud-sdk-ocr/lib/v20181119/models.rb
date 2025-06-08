@@ -3478,13 +3478,9 @@ module TencentCloud
 
       # GeneralAccurateOCR请求参数结构体
       class GeneralAccurateOCRRequest < TencentCloud::Common::AbstractModel
-        # @param ImageBase64: 图片的 Base64 值。
-        # 要求图片经Base64编码后不超过 7M，分辨率建议600*800以上，支持PNG、JPG、JPEG、BMP格式。
-        # 图片的 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。
+        # @param ImageBase64: 图片/PDF的 Base64 值。要求图片经Base64编码后不超过 10M，分辨率建议600*800以上，支持PNG、JPG、JPEG、BMP、PDF格式。图片的 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。
         # @type ImageBase64: String
-        # @param ImageUrl: 图片的 Url 地址。
-        # 要求图片经Base64编码后不超过 7M，分辨率建议600*800以上，支持PNG、JPG、JPEG、BMP格式。图片下载时间不超过 3 秒。
-        # 图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。非腾讯云存储的 Url 速度和稳定性可能受一定影响。
+        # @param ImageUrl: 图片/PDF的 Url 地址。要求图片经Base64编码后不超过10M，分辨率建议600*800以上，支持PNG、JPG、JPEG、BMP、PDF格式。图片下载时间不超过 3 秒。图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。非腾讯云存储的 Url 速度和稳定性可能受一定影响。
         # @type ImageUrl: String
         # @param IsWords: 是否返回单字信息，默认关
         # @type IsWords: Boolean
@@ -3533,8 +3529,8 @@ module TencentCloud
 
         attr_accessor :TextDetections, :Angel, :Angle, :RequestId
         extend Gem::Deprecate
-        deprecate :Angel, :none, 2025, 5
-        deprecate :Angel=, :none, 2025, 5
+        deprecate :Angel, :none, 2025, 6
+        deprecate :Angel=, :none, 2025, 6
 
         def initialize(textdetections=nil, angel=nil, angle=nil, requestid=nil)
           @TextDetections = textdetections
@@ -3640,8 +3636,8 @@ module TencentCloud
 
         attr_accessor :TextDetections, :Language, :Angel, :PdfPageSize, :Angle, :RequestId
         extend Gem::Deprecate
-        deprecate :Angel, :none, 2025, 5
-        deprecate :Angel=, :none, 2025, 5
+        deprecate :Angel, :none, 2025, 6
+        deprecate :Angel=, :none, 2025, 6
 
         def initialize(textdetections=nil, language=nil, angel=nil, pdfpagesize=nil, angle=nil, requestid=nil)
           @TextDetections = textdetections
@@ -3737,8 +3733,8 @@ module TencentCloud
 
         attr_accessor :TextDetections, :Angel, :Angle, :RequestId
         extend Gem::Deprecate
-        deprecate :Angel, :none, 2025, 5
-        deprecate :Angel=, :none, 2025, 5
+        deprecate :Angel, :none, 2025, 6
+        deprecate :Angel=, :none, 2025, 6
 
         def initialize(textdetections=nil, angel=nil, angle=nil, requestid=nil)
           @TextDetections = textdetections
@@ -3891,8 +3887,8 @@ module TencentCloud
 
         attr_accessor :TextDetections, :Angel, :Angle, :RequestId
         extend Gem::Deprecate
-        deprecate :Angel, :none, 2025, 5
-        deprecate :Angel=, :none, 2025, 5
+        deprecate :Angel, :none, 2025, 6
+        deprecate :Angel=, :none, 2025, 6
 
         def initialize(textdetections=nil, angel=nil, angle=nil, requestid=nil)
           @TextDetections = textdetections
@@ -4121,8 +4117,8 @@ module TencentCloud
 
         attr_accessor :ReturnHeadImage, :DetectFake, :ImageBase64, :ImageUrl
         extend Gem::Deprecate
-        deprecate :DetectFake, :none, 2025, 5
-        deprecate :DetectFake=, :none, 2025, 5
+        deprecate :DetectFake, :none, 2025, 6
+        deprecate :DetectFake=, :none, 2025, 6
 
         def initialize(returnheadimage=nil, detectfake=nil, imagebase64=nil, imageurl=nil)
           @ReturnHeadImage = returnheadimage
@@ -4191,10 +4187,10 @@ module TencentCloud
 
         attr_accessor :CnName, :EnName, :TelexCode, :Sex, :Birthday, :Permanent, :IdNum, :Symbol, :FirstIssueDate, :CurrentIssueDate, :FakeDetectResult, :HeadImage, :WarningCode, :WarnCardInfos, :RequestId
         extend Gem::Deprecate
-        deprecate :FakeDetectResult, :none, 2025, 5
-        deprecate :FakeDetectResult=, :none, 2025, 5
-        deprecate :WarningCode, :none, 2025, 5
-        deprecate :WarningCode=, :none, 2025, 5
+        deprecate :FakeDetectResult, :none, 2025, 6
+        deprecate :FakeDetectResult=, :none, 2025, 6
+        deprecate :WarningCode, :none, 2025, 6
+        deprecate :WarningCode=, :none, 2025, 6
 
         def initialize(cnname=nil, enname=nil, telexcode=nil, sex=nil, birthday=nil, permanent=nil, idnum=nil, symbol=nil, firstissuedate=nil, currentissuedate=nil, fakedetectresult=nil, headimage=nil, warningcode=nil, warncardinfos=nil, requestid=nil)
           @CnName = cnname
@@ -5171,7 +5167,7 @@ module TencentCloud
         # @type Angle: Float
         # @param SingleInvoiceInfos: 识别到的内容。
         # @type SingleInvoiceInfos: :class:`Tencentcloud::Ocr.v20181119.models.SingleInvoiceItem`
-        # @param Page: 发票处于识别图片或PDF文件中的页教，默认从1开始。
+        # @param Page: 发票处于识别图片或PDF文件中的页码，默认从1开始。
         # @type Page: Integer
         # @param SubType: 发票详细类型，详见票据识别（高级版）接口文档说明中 SubType 返回值说明
         # @type SubType: String
@@ -5185,10 +5181,12 @@ module TencentCloud
         # @type ItemPolygon: Array
         # @param QRCode: 二维码数据。
         # @type QRCode: String
+        # @param InvoiceSealInfo: 印章信息
+        # @type InvoiceSealInfo: :class:`Tencentcloud::Ocr.v20181119.models.InvoiceSealInfo`
 
-        attr_accessor :Code, :Type, :Polygon, :Angle, :SingleInvoiceInfos, :Page, :SubType, :TypeDescription, :CutImage, :SubTypeDescription, :ItemPolygon, :QRCode
+        attr_accessor :Code, :Type, :Polygon, :Angle, :SingleInvoiceInfos, :Page, :SubType, :TypeDescription, :CutImage, :SubTypeDescription, :ItemPolygon, :QRCode, :InvoiceSealInfo
 
-        def initialize(code=nil, type=nil, polygon=nil, angle=nil, singleinvoiceinfos=nil, page=nil, subtype=nil, typedescription=nil, cutimage=nil, subtypedescription=nil, itempolygon=nil, qrcode=nil)
+        def initialize(code=nil, type=nil, polygon=nil, angle=nil, singleinvoiceinfos=nil, page=nil, subtype=nil, typedescription=nil, cutimage=nil, subtypedescription=nil, itempolygon=nil, qrcode=nil, invoicesealinfo=nil)
           @Code = code
           @Type = type
           @Polygon = polygon
@@ -5201,6 +5199,7 @@ module TencentCloud
           @SubTypeDescription = subtypedescription
           @ItemPolygon = itempolygon
           @QRCode = qrcode
+          @InvoiceSealInfo = invoicesealinfo
         end
 
         def deserialize(params)
@@ -5229,6 +5228,38 @@ module TencentCloud
             end
           end
           @QRCode = params['QRCode']
+          unless params['InvoiceSealInfo'].nil?
+            @InvoiceSealInfo = InvoiceSealInfo.new
+            @InvoiceSealInfo.deserialize(params['InvoiceSealInfo'])
+          end
+        end
+      end
+
+      # 印章信息
+      class InvoiceSealInfo < TencentCloud::Common::AbstractModel
+        # @param CompanySealMark: 是否有公司印章（0：没有，1：有）
+        # @type CompanySealMark: String
+        # @param SupervisionSealMark: 是否有监制印章（0：没有，1：有）
+        # @type SupervisionSealMark: String
+        # @param CompanySealMarkInfo: 公司印章信息
+        # @type CompanySealMarkInfo: Array
+        # @param SupervisionSealMarkInfo: 监制印章信息
+        # @type SupervisionSealMarkInfo: Array
+
+        attr_accessor :CompanySealMark, :SupervisionSealMark, :CompanySealMarkInfo, :SupervisionSealMarkInfo
+
+        def initialize(companysealmark=nil, supervisionsealmark=nil, companysealmarkinfo=nil, supervisionsealmarkinfo=nil)
+          @CompanySealMark = companysealmark
+          @SupervisionSealMark = supervisionsealmark
+          @CompanySealMarkInfo = companysealmarkinfo
+          @SupervisionSealMarkInfo = supervisionsealmarkinfo
+        end
+
+        def deserialize(params)
+          @CompanySealMark = params['CompanySealMark']
+          @SupervisionSealMark = params['SupervisionSealMark']
+          @CompanySealMarkInfo = params['CompanySealMarkInfo']
+          @SupervisionSealMarkInfo = params['SupervisionSealMarkInfo']
         end
       end
 
@@ -5554,8 +5585,8 @@ module TencentCloud
 
         attr_accessor :ID, :Name, :Address, :Sex, :Warn, :Image, :AdvancedInfo, :Type, :Birthday, :MyKadNumber, :WarnCardInfos, :RequestId
         extend Gem::Deprecate
-        deprecate :Warn, :none, 2025, 5
-        deprecate :Warn=, :none, 2025, 5
+        deprecate :Warn, :none, 2025, 6
+        deprecate :Warn=, :none, 2025, 6
 
         def initialize(id=nil, name=nil, address=nil, sex=nil, warn=nil, image=nil, advancedinfo=nil, type=nil, birthday=nil, mykadnumber=nil, warncardinfos=nil, requestid=nil)
           @ID = id
@@ -5898,7 +5929,9 @@ module TencentCloud
         # @param RetProfile: 是否返回头像。默认不返回。
         # @type RetProfile: Boolean
         # @param CardSide: 图片正反面
-        # FRONT：正面、BACK：反面，默认为FRONT
+        # FRONT：正面
+        # BACK：反面
+        # 默认为FRONT
         # @type CardSide: String
 
         attr_accessor :ImageBase64, :ImageUrl, :RetProfile, :CardSide
@@ -5938,7 +5971,7 @@ module TencentCloud
         # @type IssueAddress: String
         # @param IssueNumber: 签发次数
         # @type IssueNumber: String
-        # @param Type: 证件类别， 如：台湾居民来往大陆通行证、港澳居民来往内地通行证。
+        # @param Type: 证件类别， 如：台湾居民来往大陆通行证、港澳居民来往内地通行证、往来港澳通行证。
         # @type Type: String
         # @param Profile: RetProfile为True时返回头像字段， Base64编码
         # @type Profile: String
@@ -8697,10 +8730,12 @@ module TencentCloud
         # @type EnableItemPolygon: Boolean
         # @param EnableQRCode: 是否开启二维码识别。
         # @type EnableQRCode: Boolean
+        # @param EnableSeal: 是否开启印章识别，默认为false
+        # @type EnableSeal: Boolean
 
-        attr_accessor :ImageBase64, :ImageUrl, :Types, :EnableOther, :EnablePdf, :PdfPageNumber, :EnableMultiplePage, :EnableCutImage, :EnableItemPolygon, :EnableQRCode
+        attr_accessor :ImageBase64, :ImageUrl, :Types, :EnableOther, :EnablePdf, :PdfPageNumber, :EnableMultiplePage, :EnableCutImage, :EnableItemPolygon, :EnableQRCode, :EnableSeal
 
-        def initialize(imagebase64=nil, imageurl=nil, types=nil, enableother=nil, enablepdf=nil, pdfpagenumber=nil, enablemultiplepage=nil, enablecutimage=nil, enableitempolygon=nil, enableqrcode=nil)
+        def initialize(imagebase64=nil, imageurl=nil, types=nil, enableother=nil, enablepdf=nil, pdfpagenumber=nil, enablemultiplepage=nil, enablecutimage=nil, enableitempolygon=nil, enableqrcode=nil, enableseal=nil)
           @ImageBase64 = imagebase64
           @ImageUrl = imageurl
           @Types = types
@@ -8711,6 +8746,7 @@ module TencentCloud
           @EnableCutImage = enablecutimage
           @EnableItemPolygon = enableitempolygon
           @EnableQRCode = enableqrcode
+          @EnableSeal = enableseal
         end
 
         def deserialize(params)
@@ -8724,6 +8760,7 @@ module TencentCloud
           @EnableCutImage = params['EnableCutImage']
           @EnableItemPolygon = params['EnableItemPolygon']
           @EnableQRCode = params['EnableQRCode']
+          @EnableSeal = params['EnableSeal']
         end
       end
 
@@ -10995,6 +11032,8 @@ module TencentCloud
         # ReceiptWeightNote -- 磅单收货单识别模板
         # ArticalRecognize -- 手写作文模版
         # Table -- 表格模版
+        # SteelLabel -- 实物标签识别模板
+        # CarInsurance -- 车辆保险单识别模板
         # @type ConfigId: String
         # @param EnableCoord: 是否开启全文字段坐标值的识别
         # @type EnableCoord: Boolean

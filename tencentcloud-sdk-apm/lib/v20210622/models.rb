@@ -609,8 +609,10 @@ module TencentCloud
       class DescribeApmInstancesRequest < TencentCloud::Common::AbstractModel
         # @param Tags: Tag 列表
         # @type Tags: Array
-        # @param InstanceName: 按业务系统名过滤
+        # @param InstanceName: 按业务系统名过滤，支持模糊检索
         # @type InstanceName: String
+        # @param InstanceId: 按业务系统 ID 过滤，支持模糊检索
+        # @type InstanceId: String
         # @param InstanceIds: 按业务系统 ID 过滤
         # @type InstanceIds: Array
         # @param DemoInstanceFlag: 是否查询官方 Demo 业务系统（0=非 Demo 业务系统，1=Demo 业务系统，默认为0）
@@ -618,11 +620,12 @@ module TencentCloud
         # @param AllRegionsFlag: 是否查询全地域业务系统（0=不查询全地域，1=查询全地域，默认为0）
         # @type AllRegionsFlag: Integer
 
-        attr_accessor :Tags, :InstanceName, :InstanceIds, :DemoInstanceFlag, :AllRegionsFlag
+        attr_accessor :Tags, :InstanceName, :InstanceId, :InstanceIds, :DemoInstanceFlag, :AllRegionsFlag
 
-        def initialize(tags=nil, instancename=nil, instanceids=nil, demoinstanceflag=nil, allregionsflag=nil)
+        def initialize(tags=nil, instancename=nil, instanceid=nil, instanceids=nil, demoinstanceflag=nil, allregionsflag=nil)
           @Tags = tags
           @InstanceName = instancename
+          @InstanceId = instanceid
           @InstanceIds = instanceids
           @DemoInstanceFlag = demoinstanceflag
           @AllRegionsFlag = allregionsflag
@@ -638,6 +641,7 @@ module TencentCloud
             end
           end
           @InstanceName = params['InstanceName']
+          @InstanceId = params['InstanceId']
           @InstanceIds = params['InstanceIds']
           @DemoInstanceFlag = params['DemoInstanceFlag']
           @AllRegionsFlag = params['AllRegionsFlag']

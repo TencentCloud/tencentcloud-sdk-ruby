@@ -16806,6 +16806,9 @@ module TencentCloud
         # @type PicUrlExpireTime: String
 
         attr_accessor :StartTimeOffset, :EndTimeOffset, :Confidence, :Label, :Suggestion, :Url, :PicUrlExpireTimeStamp, :PicUrlExpireTime
+        extend Gem::Deprecate
+        deprecate :PicUrlExpireTimeStamp, :none, 2025, 6
+        deprecate :PicUrlExpireTimeStamp=, :none, 2025, 6
 
         def initialize(starttimeoffset=nil, endtimeoffset=nil, confidence=nil, label=nil, suggestion=nil, url=nil, picurlexpiretimestamp=nil, picurlexpiretime=nil)
           @StartTimeOffset = starttimeoffset

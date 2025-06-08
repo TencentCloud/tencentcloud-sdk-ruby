@@ -3626,6 +3626,87 @@ module TencentCloud
         end
       end
 
+      # ModifyGatewayIngress请求参数结构体
+      class ModifyGatewayIngressRequest < TencentCloud::Common::AbstractModel
+        # @param EnvironmentId: 环境 ID
+        # @type EnvironmentId: String
+        # @param GatewayName: 网关名称
+        # @type GatewayName: String
+        # @param GatewayType: 网关类型，如 clb
+        # @type GatewayType: String
+        # @param Name: 转发配置名称
+        # @type Name: String
+        # @param Rules: rules 配置
+        # @type Rules: Array
+        # @param Mixed: 是否混合 https，默认 false，可选值 true 代表有 https 协议监听
+        # @type Mixed: Boolean
+        # @param Tls: tls 配置
+        # @type Tls: Array
+        # @param RewriteType: 重定向模式，可选值：
+        # - AUTO（自动重定向http到https）
+        # - NONE（不使用重定向）
+        # @type RewriteType: String
+
+        attr_accessor :EnvironmentId, :GatewayName, :GatewayType, :Name, :Rules, :Mixed, :Tls, :RewriteType
+
+        def initialize(environmentid=nil, gatewayname=nil, gatewaytype=nil, name=nil, rules=nil, mixed=nil, tls=nil, rewritetype=nil)
+          @EnvironmentId = environmentid
+          @GatewayName = gatewayname
+          @GatewayType = gatewaytype
+          @Name = name
+          @Rules = rules
+          @Mixed = mixed
+          @Tls = tls
+          @RewriteType = rewritetype
+        end
+
+        def deserialize(params)
+          @EnvironmentId = params['EnvironmentId']
+          @GatewayName = params['GatewayName']
+          @GatewayType = params['GatewayType']
+          @Name = params['Name']
+          unless params['Rules'].nil?
+            @Rules = []
+            params['Rules'].each do |i|
+              ingressrule_tmp = IngressRule.new
+              ingressrule_tmp.deserialize(i)
+              @Rules << ingressrule_tmp
+            end
+          end
+          @Mixed = params['Mixed']
+          unless params['Tls'].nil?
+            @Tls = []
+            params['Tls'].each do |i|
+              ingresstls_tmp = IngressTls.new
+              ingresstls_tmp.deserialize(i)
+              @Tls << ingresstls_tmp
+            end
+          end
+          @RewriteType = params['RewriteType']
+        end
+      end
+
+      # ModifyGatewayIngress返回参数结构体
+      class ModifyGatewayIngressResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 是否成功
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: Boolean
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyIngress请求参数结构体
       class ModifyIngressRequest < TencentCloud::Common::AbstractModel
         # @param Ingress: Ingress 规则配置

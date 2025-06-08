@@ -396,6 +396,25 @@ module TencentCloud
         end
       end
 
+      # 自动伸缩组高级设置
+      class AutoScaleGroupAdvanceAttrs < TencentCloud::Common::AbstractModel
+        # @param ComputeResourceAdvanceParams: 计算资源高级设置
+        # @type ComputeResourceAdvanceParams: :class:`Tencentcloud::Emr.v20190103.models.ComputeResourceAdvanceParams`
+
+        attr_accessor :ComputeResourceAdvanceParams
+
+        def initialize(computeresourceadvanceparams=nil)
+          @ComputeResourceAdvanceParams = computeresourceadvanceparams
+        end
+
+        def deserialize(params)
+          unless params['ComputeResourceAdvanceParams'].nil?
+            @ComputeResourceAdvanceParams = ComputeResourceAdvanceParams.new
+            @ComputeResourceAdvanceParams.deserialize(params['ComputeResourceAdvanceParams'])
+          end
+        end
+      end
+
       # 弹性扩缩容记录
       class AutoScaleRecord < TencentCloud::Common::AbstractModel
         # @param StrategyName: 扩缩容规则名。
@@ -480,7 +499,7 @@ module TencentCloud
         # @type ScaleUpperBound: Integer
         # @param StrategyType: 扩容规则类型，1为按负载指标扩容规则，2为按时间扩容规则
         # @type StrategyType: Integer
-        # @param NextTimeCanScale: 下次能可扩容时间。
+        # @param NextTimeCanScale: 下次可扩容时间。
         # @type NextTimeCanScale: Integer
         # @param GraceDownFlag: 优雅缩容开关
         # @type GraceDownFlag: Boolean
@@ -490,7 +509,7 @@ module TencentCloud
         # @type PayMode: String
         # @param PostPayPercentMin: 竞价实例优先的场景下，按量计费资源数量的最低百分比，整数
         # @type PostPayPercentMin: Integer
-        # @param ChangeToPod: 预设资源类型为HOST时，支持勾选“资源不足时切换POD”；支持取消勾选；默认不勾选（0），勾选（1)
+        # @param ChangeToPod: 预设资源类型为HOST时，支持勾选“资源不足时切换POD”；支持取消勾选；0表示默认不勾选（0），1表示勾选
         # @type ChangeToPod: Integer
         # @param GroupName: 伸缩组名
         # @type GroupName: String
@@ -502,10 +521,12 @@ module TencentCloud
         # @type Parallel: Integer
         # @param EnableMNode: 是否支持MNode
         # @type EnableMNode: Integer
+        # @param ExtraAdvanceAttrs: 伸缩组更多设置
+        # @type ExtraAdvanceAttrs: :class:`Tencentcloud::Emr.v20190103.models.AutoScaleGroupAdvanceAttrs`
 
-        attr_accessor :Id, :ClusterId, :ScaleLowerBound, :ScaleUpperBound, :StrategyType, :NextTimeCanScale, :GraceDownFlag, :HardwareType, :PayMode, :PostPayPercentMin, :ChangeToPod, :GroupName, :YarnNodeLabel, :GroupStatus, :Parallel, :EnableMNode
+        attr_accessor :Id, :ClusterId, :ScaleLowerBound, :ScaleUpperBound, :StrategyType, :NextTimeCanScale, :GraceDownFlag, :HardwareType, :PayMode, :PostPayPercentMin, :ChangeToPod, :GroupName, :YarnNodeLabel, :GroupStatus, :Parallel, :EnableMNode, :ExtraAdvanceAttrs
 
-        def initialize(id=nil, clusterid=nil, scalelowerbound=nil, scaleupperbound=nil, strategytype=nil, nexttimecanscale=nil, gracedownflag=nil, hardwaretype=nil, paymode=nil, postpaypercentmin=nil, changetopod=nil, groupname=nil, yarnnodelabel=nil, groupstatus=nil, parallel=nil, enablemnode=nil)
+        def initialize(id=nil, clusterid=nil, scalelowerbound=nil, scaleupperbound=nil, strategytype=nil, nexttimecanscale=nil, gracedownflag=nil, hardwaretype=nil, paymode=nil, postpaypercentmin=nil, changetopod=nil, groupname=nil, yarnnodelabel=nil, groupstatus=nil, parallel=nil, enablemnode=nil, extraadvanceattrs=nil)
           @Id = id
           @ClusterId = clusterid
           @ScaleLowerBound = scalelowerbound
@@ -522,6 +543,7 @@ module TencentCloud
           @GroupStatus = groupstatus
           @Parallel = parallel
           @EnableMNode = enablemnode
+          @ExtraAdvanceAttrs = extraadvanceattrs
         end
 
         def deserialize(params)
@@ -541,6 +563,10 @@ module TencentCloud
           @GroupStatus = params['GroupStatus']
           @Parallel = params['Parallel']
           @EnableMNode = params['EnableMNode']
+          unless params['ExtraAdvanceAttrs'].nil?
+            @ExtraAdvanceAttrs = AutoScaleGroupAdvanceAttrs.new
+            @ExtraAdvanceAttrs.deserialize(params['ExtraAdvanceAttrs'])
+          end
         end
       end
 
@@ -1318,6 +1344,48 @@ module TencentCloud
         def deserialize(params)
           @ComponentName = params['ComponentName']
           @IpList = params['IpList']
+        end
+      end
+
+      # 计算资源高级设置
+      class ComputeResourceAdvanceParams < TencentCloud::Common::AbstractModel
+        # @param Labels: 节点Label数组
+        # @type Labels: Array
+        # @param Taints: 节点污点
+        # @type Taints: Array
+        # @param PreStartUserScript: base64 编码的用户脚本，在初始化节点之前执行
+        # @type PreStartUserScript: String
+        # @param UserScript: base64 编码的用户脚本, 此脚本会在 k8s 组件运行后执行, 需要用户保证脚本的可重入及重试逻辑, 脚本及其生成的日志文件可在节点的 /data/ccs_userscript/ 路径查看
+        # @type UserScript: String
+
+        attr_accessor :Labels, :Taints, :PreStartUserScript, :UserScript
+
+        def initialize(labels=nil, taints=nil, prestartuserscript=nil, userscript=nil)
+          @Labels = labels
+          @Taints = taints
+          @PreStartUserScript = prestartuserscript
+          @UserScript = userscript
+        end
+
+        def deserialize(params)
+          unless params['Labels'].nil?
+            @Labels = []
+            params['Labels'].each do |i|
+              tkelabel_tmp = TkeLabel.new
+              tkelabel_tmp.deserialize(i)
+              @Labels << tkelabel_tmp
+            end
+          end
+          unless params['Taints'].nil?
+            @Taints = []
+            params['Taints'].each do |i|
+              taint_tmp = Taint.new
+              taint_tmp.deserialize(i)
+              @Taints << taint_tmp
+            end
+          end
+          @PreStartUserScript = params['PreStartUserScript']
+          @UserScript = params['UserScript']
         end
       end
 
@@ -11479,10 +11547,12 @@ module TencentCloud
         # @type ResourceBaseType: String
         # @param ComputeResourceId: 计算资源id
         # @type ComputeResourceId: String
+        # @param ComputeResourceAdvanceParams: 计算资源高级设置
+        # @type ComputeResourceAdvanceParams: :class:`Tencentcloud::Emr.v20190103.models.ComputeResourceAdvanceParams`
 
-        attr_accessor :TimeUnit, :TimeSpan, :InstanceId, :PayMode, :ClientToken, :PreExecutedFileSettings, :TaskCount, :CoreCount, :UnNecessaryNodeList, :RouterCount, :SoftDeployInfo, :ServiceNodeInfo, :DisasterRecoverGroupIds, :Tags, :HardwareResourceType, :PodSpec, :ClickHouseClusterName, :ClickHouseClusterType, :YarnNodeLabel, :PodParameter, :MasterCount, :StartServiceAfterScaleOut, :ZoneId, :SubnetId, :ScaleOutServiceConfAssign, :AutoRenew, :ResourceBaseType, :ComputeResourceId
+        attr_accessor :TimeUnit, :TimeSpan, :InstanceId, :PayMode, :ClientToken, :PreExecutedFileSettings, :TaskCount, :CoreCount, :UnNecessaryNodeList, :RouterCount, :SoftDeployInfo, :ServiceNodeInfo, :DisasterRecoverGroupIds, :Tags, :HardwareResourceType, :PodSpec, :ClickHouseClusterName, :ClickHouseClusterType, :YarnNodeLabel, :PodParameter, :MasterCount, :StartServiceAfterScaleOut, :ZoneId, :SubnetId, :ScaleOutServiceConfAssign, :AutoRenew, :ResourceBaseType, :ComputeResourceId, :ComputeResourceAdvanceParams
 
-        def initialize(timeunit=nil, timespan=nil, instanceid=nil, paymode=nil, clienttoken=nil, preexecutedfilesettings=nil, taskcount=nil, corecount=nil, unnecessarynodelist=nil, routercount=nil, softdeployinfo=nil, servicenodeinfo=nil, disasterrecovergroupids=nil, tags=nil, hardwareresourcetype=nil, podspec=nil, clickhouseclustername=nil, clickhouseclustertype=nil, yarnnodelabel=nil, podparameter=nil, mastercount=nil, startserviceafterscaleout=nil, zoneid=nil, subnetid=nil, scaleoutserviceconfassign=nil, autorenew=nil, resourcebasetype=nil, computeresourceid=nil)
+        def initialize(timeunit=nil, timespan=nil, instanceid=nil, paymode=nil, clienttoken=nil, preexecutedfilesettings=nil, taskcount=nil, corecount=nil, unnecessarynodelist=nil, routercount=nil, softdeployinfo=nil, servicenodeinfo=nil, disasterrecovergroupids=nil, tags=nil, hardwareresourcetype=nil, podspec=nil, clickhouseclustername=nil, clickhouseclustertype=nil, yarnnodelabel=nil, podparameter=nil, mastercount=nil, startserviceafterscaleout=nil, zoneid=nil, subnetid=nil, scaleoutserviceconfassign=nil, autorenew=nil, resourcebasetype=nil, computeresourceid=nil, computeresourceadvanceparams=nil)
           @TimeUnit = timeunit
           @TimeSpan = timespan
           @InstanceId = instanceid
@@ -11511,6 +11581,7 @@ module TencentCloud
           @AutoRenew = autorenew
           @ResourceBaseType = resourcebasetype
           @ComputeResourceId = computeresourceid
+          @ComputeResourceAdvanceParams = computeresourceadvanceparams
         end
 
         def deserialize(params)
@@ -11562,6 +11633,10 @@ module TencentCloud
           @AutoRenew = params['AutoRenew']
           @ResourceBaseType = params['ResourceBaseType']
           @ComputeResourceId = params['ComputeResourceId']
+          unless params['ComputeResourceAdvanceParams'].nil?
+            @ComputeResourceAdvanceParams = ComputeResourceAdvanceParams.new
+            @ComputeResourceAdvanceParams.deserialize(params['ComputeResourceAdvanceParams'])
+          end
         end
       end
 
@@ -12629,6 +12704,30 @@ module TencentCloud
         end
       end
 
+      # Kubernetes Taint
+      class Taint < TencentCloud::Common::AbstractModel
+        # @param Key: Taint Key
+        # @type Key: String
+        # @param Value: Taint Value
+        # @type Value: String
+        # @param Effect: Taint Effect
+        # @type Effect: String
+
+        attr_accessor :Key, :Value, :Effect
+
+        def initialize(key=nil, value=nil, effect=nil)
+          @Key = key
+          @Value = value
+          @Effect = effect
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Value = params['Value']
+          @Effect = params['Effect']
+        end
+      end
+
       # 巡检任务参数
       class TaskSettings < TencentCloud::Common::AbstractModel
         # @param Name: 参数名称
@@ -12877,10 +12976,12 @@ module TencentCloud
         # @type CompensateFlag: Integer
         # @param GroupId: 伸缩组id
         # @type GroupId: Integer
+        # @param GraceDownLabel: 优雅缩容业务pod标签，当node不存在上述pod或超过优雅缩容时间时，缩容节点
+        # @type GraceDownLabel: Array
 
-        attr_accessor :StrategyName, :IntervalTime, :ScaleAction, :ScaleNum, :StrategyStatus, :Priority, :RetryValidTime, :RepeatStrategy, :StrategyId, :GraceDownFlag, :GraceDownTime, :Tags, :ConfigGroupAssigned, :MeasureMethod, :TerminatePolicy, :MaxUse, :SoftDeployInfo, :ServiceNodeInfo, :CompensateFlag, :GroupId
+        attr_accessor :StrategyName, :IntervalTime, :ScaleAction, :ScaleNum, :StrategyStatus, :Priority, :RetryValidTime, :RepeatStrategy, :StrategyId, :GraceDownFlag, :GraceDownTime, :Tags, :ConfigGroupAssigned, :MeasureMethod, :TerminatePolicy, :MaxUse, :SoftDeployInfo, :ServiceNodeInfo, :CompensateFlag, :GroupId, :GraceDownLabel
 
-        def initialize(strategyname=nil, intervaltime=nil, scaleaction=nil, scalenum=nil, strategystatus=nil, priority=nil, retryvalidtime=nil, repeatstrategy=nil, strategyid=nil, gracedownflag=nil, gracedowntime=nil, tags=nil, configgroupassigned=nil, measuremethod=nil, terminatepolicy=nil, maxuse=nil, softdeployinfo=nil, servicenodeinfo=nil, compensateflag=nil, groupid=nil)
+        def initialize(strategyname=nil, intervaltime=nil, scaleaction=nil, scalenum=nil, strategystatus=nil, priority=nil, retryvalidtime=nil, repeatstrategy=nil, strategyid=nil, gracedownflag=nil, gracedowntime=nil, tags=nil, configgroupassigned=nil, measuremethod=nil, terminatepolicy=nil, maxuse=nil, softdeployinfo=nil, servicenodeinfo=nil, compensateflag=nil, groupid=nil, gracedownlabel=nil)
           @StrategyName = strategyname
           @IntervalTime = intervaltime
           @ScaleAction = scaleaction
@@ -12901,6 +13002,7 @@ module TencentCloud
           @ServiceNodeInfo = servicenodeinfo
           @CompensateFlag = compensateflag
           @GroupId = groupid
+          @GraceDownLabel = gracedownlabel
         end
 
         def deserialize(params)
@@ -12934,6 +13036,34 @@ module TencentCloud
           @ServiceNodeInfo = params['ServiceNodeInfo']
           @CompensateFlag = params['CompensateFlag']
           @GroupId = params['GroupId']
+          unless params['GraceDownLabel'].nil?
+            @GraceDownLabel = []
+            params['GraceDownLabel'].each do |i|
+              tkelabel_tmp = TkeLabel.new
+              tkelabel_tmp.deserialize(i)
+              @GraceDownLabel << tkelabel_tmp
+            end
+          end
+        end
+      end
+
+      # Kubernetes Label
+      class TkeLabel < TencentCloud::Common::AbstractModel
+        # @param Name: Label Name
+        # @type Name: String
+        # @param Value: Label Value
+        # @type Value: String
+
+        attr_accessor :Name, :Value
+
+        def initialize(name=nil, value=nil)
+          @Name = name
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Value = params['Value']
         end
       end
 

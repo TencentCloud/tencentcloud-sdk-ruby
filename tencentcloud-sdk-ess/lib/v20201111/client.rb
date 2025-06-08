@@ -390,6 +390,36 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 接口（CreateContractDiffTaskWebUrl）用于创建合同对比的可嵌入web页面链接（此web页面可以通过iframe方式嵌入到贵方系统的网页中）。
+        # 注：本接口生成的web页面暂不支持<a href="https://qian.tencent.com/developers/companyApis/embedPages/CreateWebThemeConfig" target="_blank">设置本企业嵌入式页面主题配置</a>
+
+        # 未跳过上传确认的嵌入页面长相如下：
+        # ![image](https://qcloudimg.tencent-cloud.cn/raw/32f3526ad7152757202a7e4e760356db.jpg)
+        # 跳过上传确认的嵌入页面长相如下：
+        # ![image](https://qcloudimg.tencent-cloud.cn/raw/c68047feddbc106e261870687b6ab89d.jpg)
+
+        # @param request: Request instance for CreateContractDiffTaskWebUrl.
+        # @type request: :class:`Tencentcloud::ess::V20201111::CreateContractDiffTaskWebUrlRequest`
+        # @rtype: :class:`Tencentcloud::ess::V20201111::CreateContractDiffTaskWebUrlResponse`
+        def CreateContractDiffTaskWebUrl(request)
+          body = send_request('CreateContractDiffTaskWebUrl', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateContractDiffTaskWebUrlResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 此接口（CreateConvertTaskApi）用来将word、excel、html、图片、txt类型文件转换为PDF文件。<br />
         # 前提条件：源文件已经通过 <a href="https://qian.tencent.com/developers/companyApis/templatesAndFiles/UploadFiles" target="_blank">文件上传接口</a>完成上传，并得到了源文件的资源Id。<br />
         # 适用场景1：已经上传了一个word文件，希望将该word文件转换成pdf文件后发起合同
@@ -2336,6 +2366,34 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeCancelFlowsTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 接口（DescribeContractDiffTaskWebUrl）用于获取合同对比结果可嵌入的web页面链接（此web页面可以通过iframe方式嵌入到贵方系统的网页中）。
+        # 注：本接口生成的web页面暂不支持<a href="https://qian.tencent.com/developers/companyApis/embedPages/CreateWebThemeConfig" target="_blank">设置本企业嵌入式页面主题配置</a>
+
+        # 嵌入页面长相如下：
+        # ![image](https://qcloudimg.tencent-cloud.cn/raw/c68047feddbc106e261870687b6ab89d.jpg)
+
+        # @param request: Request instance for DescribeContractDiffTaskWebUrl.
+        # @type request: :class:`Tencentcloud::ess::V20201111::DescribeContractDiffTaskWebUrlRequest`
+        # @rtype: :class:`Tencentcloud::ess::V20201111::DescribeContractDiffTaskWebUrlResponse`
+        def DescribeContractDiffTaskWebUrl(request)
+          body = send_request('DescribeContractDiffTaskWebUrl', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeContractDiffTaskWebUrlResponse.new
             model.deserialize(response['Response'])
             model
           else
