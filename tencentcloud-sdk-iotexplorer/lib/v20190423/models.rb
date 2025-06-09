@@ -6204,6 +6204,35 @@ module TencentCloud
         end
       end
 
+      # Diary Simple Highlight 配置
+      class DiarySHLConfig < TencentCloud::Common::AbstractModel
+        # @param StartOffset: 每个视频偏移时长，单位秒
+        # @type StartOffset: Integer
+        # @param PlaySpeed: 视频浓缩倍数，支持1,2,4之间
+        # @type PlaySpeed: Integer
+        # @param MiniExtract: 单个视频最小提取时长，单位秒
+        # @type MiniExtract: Integer
+        # @param OutDuration: 每天最终输出视频时长，单位秒
+        # 注：免费版固定10s
+        # @type OutDuration: Integer
+
+        attr_accessor :StartOffset, :PlaySpeed, :MiniExtract, :OutDuration
+
+        def initialize(startoffset=nil, playspeed=nil, miniextract=nil, outduration=nil)
+          @StartOffset = startoffset
+          @PlaySpeed = playspeed
+          @MiniExtract = miniextract
+          @OutDuration = outduration
+        end
+
+        def deserialize(params)
+          @StartOffset = params['StartOffset']
+          @PlaySpeed = params['PlaySpeed']
+          @MiniExtract = params['MiniExtract']
+          @OutDuration = params['OutDuration']
+        end
+      end
+
       # DirectBindDeviceInFamily请求参数结构体
       class DirectBindDeviceInFamilyRequest < TencentCloud::Common::AbstractModel
         # @param IotAppID: 小程序appid
@@ -8753,6 +8782,7 @@ module TencentCloud
         # @param ServiceType: 云存 AI 服务类型。可选值：
         # - `RealtimeObjectDetect`：目标检测
         # - `Highlight`：视频浓缩
+        # - `SimpleHighlight`：TrueX SimpleHighlight
         # @type ServiceType: String
         # @param Enabled: 视频分析启用状态
         # @type Enabled: Boolean
@@ -8760,16 +8790,19 @@ module TencentCloud
         # @type ROI: String
         # @param Config: 视频分析配置参数
         # @type Config: String
+        # @param SHLConfig: SimpleHighlight 算法配置参数
+        # @type SHLConfig: :class:`Tencentcloud::Iotexplorer.v20190423.models.DiarySHLConfig`
 
-        attr_accessor :ProductId, :DeviceName, :ServiceType, :Enabled, :ROI, :Config
+        attr_accessor :ProductId, :DeviceName, :ServiceType, :Enabled, :ROI, :Config, :SHLConfig
 
-        def initialize(productid=nil, devicename=nil, servicetype=nil, enabled=nil, roi=nil, config=nil)
+        def initialize(productid=nil, devicename=nil, servicetype=nil, enabled=nil, roi=nil, config=nil, shlconfig=nil)
           @ProductId = productid
           @DeviceName = devicename
           @ServiceType = servicetype
           @Enabled = enabled
           @ROI = roi
           @Config = config
+          @SHLConfig = shlconfig
         end
 
         def deserialize(params)
@@ -8779,6 +8812,10 @@ module TencentCloud
           @Enabled = params['Enabled']
           @ROI = params['ROI']
           @Config = params['Config']
+          unless params['SHLConfig'].nil?
+            @SHLConfig = DiarySHLConfig.new
+            @SHLConfig.deserialize(params['SHLConfig'])
+          end
         end
       end
 

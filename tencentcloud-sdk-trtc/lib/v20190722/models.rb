@@ -108,10 +108,14 @@ module TencentCloud
         # 5：英文花括号{}
         # 默认值为空，表示不进行过滤。
         # @type FilterBracketsContent: Integer
+        # @param AmbientSound: 环境音设置
+        # @type AmbientSound: :class:`Tencentcloud::Trtc.v20190722.models.AmbientSound`
+        # @param VoicePrint: 声纹配置
+        # @type VoicePrint: :class:`Tencentcloud::Trtc.v20190722.models.VoicePrint`
 
-        attr_accessor :UserId, :UserSig, :TargetUserId, :MaxIdleTime, :WelcomeMessage, :InterruptMode, :InterruptSpeechDuration, :TurnDetectionMode, :FilterOneWord, :WelcomeMessagePriority, :FilterBracketsContent
+        attr_accessor :UserId, :UserSig, :TargetUserId, :MaxIdleTime, :WelcomeMessage, :InterruptMode, :InterruptSpeechDuration, :TurnDetectionMode, :FilterOneWord, :WelcomeMessagePriority, :FilterBracketsContent, :AmbientSound, :VoicePrint
 
-        def initialize(userid=nil, usersig=nil, targetuserid=nil, maxidletime=nil, welcomemessage=nil, interruptmode=nil, interruptspeechduration=nil, turndetectionmode=nil, filteroneword=nil, welcomemessagepriority=nil, filterbracketscontent=nil)
+        def initialize(userid=nil, usersig=nil, targetuserid=nil, maxidletime=nil, welcomemessage=nil, interruptmode=nil, interruptspeechduration=nil, turndetectionmode=nil, filteroneword=nil, welcomemessagepriority=nil, filterbracketscontent=nil, ambientsound=nil, voiceprint=nil)
           @UserId = userid
           @UserSig = usersig
           @TargetUserId = targetuserid
@@ -123,6 +127,8 @@ module TencentCloud
           @FilterOneWord = filteroneword
           @WelcomeMessagePriority = welcomemessagepriority
           @FilterBracketsContent = filterbracketscontent
+          @AmbientSound = ambientsound
+          @VoicePrint = voiceprint
         end
 
         def deserialize(params)
@@ -137,6 +143,14 @@ module TencentCloud
           @FilterOneWord = params['FilterOneWord']
           @WelcomeMessagePriority = params['WelcomeMessagePriority']
           @FilterBracketsContent = params['FilterBracketsContent']
+          unless params['AmbientSound'].nil?
+            @AmbientSound = AmbientSound.new
+            @AmbientSound.deserialize(params['AmbientSound'])
+          end
+          unless params['VoicePrint'].nil?
+            @VoicePrint = VoicePrint.new
+            @VoicePrint.deserialize(params['VoicePrint'])
+          end
         end
       end
 
@@ -161,6 +175,30 @@ module TencentCloud
           @UserId = params['UserId']
           @UserSig = params['UserSig']
           @MaxIdleTime = params['MaxIdleTime']
+        end
+      end
+
+      # 背景音设置，将在通话中添加环境音效，使体验更加逼真。目前支持以下选项：
+      # coffee_shop: 咖啡店氛围，背景中有人聊天。
+      # busy_office: 客服中心
+      # street_traffic: 户外街道
+      # evening_mountain: 户外山林
+      class AmbientSound < TencentCloud::Common::AbstractModel
+        # @param Scene: 环境场景选择
+        # @type Scene: String
+        # @param Volume: 控制环境音的音量。取值的范围是 [0,2]。值越低，环境音越小；值越高，环境音越响亮。如果未设置，则使用默认值 1。
+        # @type Volume: Float
+
+        attr_accessor :Scene, :Volume
+
+        def initialize(scene=nil, volume=nil)
+          @Scene = scene
+          @Volume = volume
+        end
+
+        def deserialize(params)
+          @Scene = params['Scene']
+          @Volume = params['Volume']
         end
       end
 
@@ -735,6 +773,38 @@ module TencentCloud
 
       # DeletePicture返回参数结构体
       class DeletePictureResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteVoicePrint请求参数结构体
+      class DeleteVoicePrintRequest < TencentCloud::Common::AbstractModel
+        # @param VoicePrintId: 声纹信息ID
+        # @type VoicePrintId: String
+
+        attr_accessor :VoicePrintId
+
+        def initialize(voiceprintid=nil)
+          @VoicePrintId = voiceprintid
+        end
+
+        def deserialize(params)
+          @VoicePrintId = params['VoicePrintId']
+        end
+      end
+
+      # DeleteVoicePrint返回参数结构体
+      class DeleteVoicePrintResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -2267,6 +2337,65 @@ module TencentCloud
               userinformation_tmp = UserInformation.new
               userinformation_tmp.deserialize(i)
               @UserList << userinformation_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeVoicePrint请求参数结构体
+      class DescribeVoicePrintRequest < TencentCloud::Common::AbstractModel
+        # @param DescribeMode: 查询方式，0表示查询特定VoicePrintId，1表示分页查询
+        # @type DescribeMode: Integer
+        # @param VoicePrintIdList: 声纹ID
+        # @type VoicePrintIdList: Array
+        # @param PageIndex: 当前页码,从1开始,DescribeMode为1时填写
+        # @type PageIndex: Integer
+        # @param PageSize: 每页条数 最少20,DescribeMode为1时填写
+        # @type PageSize: Integer
+
+        attr_accessor :DescribeMode, :VoicePrintIdList, :PageIndex, :PageSize
+
+        def initialize(describemode=nil, voiceprintidlist=nil, pageindex=nil, pagesize=nil)
+          @DescribeMode = describemode
+          @VoicePrintIdList = voiceprintidlist
+          @PageIndex = pageindex
+          @PageSize = pagesize
+        end
+
+        def deserialize(params)
+          @DescribeMode = params['DescribeMode']
+          @VoicePrintIdList = params['VoicePrintIdList']
+          @PageIndex = params['PageIndex']
+          @PageSize = params['PageSize']
+        end
+      end
+
+      # DescribeVoicePrint返回参数结构体
+      class DescribeVoicePrintResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总的条数
+        # @type TotalCount: Integer
+        # @param Data: 声纹信息
+        # @type Data: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Data, :RequestId
+
+        def initialize(totalcount=nil, data=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              voiceprintinfo_tmp = VoicePrintInfo.new
+              voiceprintinfo_tmp.deserialize(i)
+              @Data << voiceprintinfo_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -4064,6 +4193,58 @@ module TencentCloud
         end
       end
 
+      # RegisterVoicePrint请求参数结构体
+      class RegisterVoicePrintRequest < TencentCloud::Common::AbstractModel
+        # @param Audio: 整个wav音频文件的base64字符串,其中wav文件限定为16k或8k采样率, 16bit位深, 单声道, 8到18秒有效音频时长,编码数据大小不超过2M
+        # @type Audio: String
+        # @param ReqTimestamp: 毫秒时间戳
+        # @type ReqTimestamp: Integer
+        # @param AudioFormat: 音频格式,目前只支持0,代表wav
+        # @type AudioFormat: Integer
+        # @param AudioName: 音频名称,长度不要超过32
+        # @type AudioName: String
+        # @param AudioMetaInfo: 和声纹绑定的MetaInfo，长度最大不超过512
+        # @type AudioMetaInfo: String
+
+        attr_accessor :Audio, :ReqTimestamp, :AudioFormat, :AudioName, :AudioMetaInfo
+
+        def initialize(audio=nil, reqtimestamp=nil, audioformat=nil, audioname=nil, audiometainfo=nil)
+          @Audio = audio
+          @ReqTimestamp = reqtimestamp
+          @AudioFormat = audioformat
+          @AudioName = audioname
+          @AudioMetaInfo = audiometainfo
+        end
+
+        def deserialize(params)
+          @Audio = params['Audio']
+          @ReqTimestamp = params['ReqTimestamp']
+          @AudioFormat = params['AudioFormat']
+          @AudioName = params['AudioName']
+          @AudioMetaInfo = params['AudioMetaInfo']
+        end
+      end
+
+      # RegisterVoicePrint返回参数结构体
+      class RegisterVoicePrintResponse < TencentCloud::Common::AbstractModel
+        # @param VoicePrintId: 声纹信息ID
+        # @type VoicePrintId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :VoicePrintId, :RequestId
+
+        def initialize(voiceprintid=nil, requestid=nil)
+          @VoicePrintId = voiceprintid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @VoicePrintId = params['VoicePrintId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # RemoveUserByStrRoomId请求参数结构体
       class RemoveUserByStrRoomIdRequest < TencentCloud::Common::AbstractModel
         # @param SdkAppId: TRTC的SDKAppId。
@@ -5850,6 +6031,54 @@ module TencentCloud
         end
       end
 
+      # UpdateVoicePrint请求参数结构体
+      class UpdateVoicePrintRequest < TencentCloud::Common::AbstractModel
+        # @param VoicePrintId: 声纹信息ID
+        # @type VoicePrintId: String
+        # @param ReqTimestamp: 毫秒时间戳
+        # @type ReqTimestamp: Integer
+        # @param AudioFormat: 音频格式,目前只支持0,代表wav
+        # @type AudioFormat: Integer
+        # @param Audio: 整个wav音频文件的base64字符串,其中wav文件限定为16k或8k采样率, 16bit位深, 单声道, 8到18秒有效音频时长,编码数据大小不超过2M
+        # @type Audio: String
+        # @param AudioMetaInfo: 和声纹绑定的MetaInfo，长度最大不超过512
+        # @type AudioMetaInfo: String
+
+        attr_accessor :VoicePrintId, :ReqTimestamp, :AudioFormat, :Audio, :AudioMetaInfo
+
+        def initialize(voiceprintid=nil, reqtimestamp=nil, audioformat=nil, audio=nil, audiometainfo=nil)
+          @VoicePrintId = voiceprintid
+          @ReqTimestamp = reqtimestamp
+          @AudioFormat = audioformat
+          @Audio = audio
+          @AudioMetaInfo = audiometainfo
+        end
+
+        def deserialize(params)
+          @VoicePrintId = params['VoicePrintId']
+          @ReqTimestamp = params['ReqTimestamp']
+          @AudioFormat = params['AudioFormat']
+          @Audio = params['Audio']
+          @AudioMetaInfo = params['AudioMetaInfo']
+        end
+      end
+
+      # UpdateVoicePrint返回参数结构体
+      class UpdateVoicePrintResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 用户信息，包括用户进房时间，退房时间等
       class UserInformation < TencentCloud::Common::AbstractModel
         # @param RoomStr: 房间号
@@ -6010,6 +6239,70 @@ module TencentCloud
           @Fps = params['Fps']
           @BitRate = params['BitRate']
           @Gop = params['Gop']
+        end
+      end
+
+      # 声纹配置参数
+      class VoicePrint < TencentCloud::Common::AbstractModel
+        # @param Mode: 默认为0，表示不启用声纹。1表示使用固定声纹，且需要填写voiceprint id。2表示使用动态声纹，不需要使用voiceprint id，内部动态选择主讲人声纹
+        # @type Mode: Integer
+        # @param IdList: 只有当VoicePrint Mode为1时需要填写，目前仅支持填写一个声纹id
+        # @type IdList: Array
+
+        attr_accessor :Mode, :IdList
+
+        def initialize(mode=nil, idlist=nil)
+          @Mode = mode
+          @IdList = idlist
+        end
+
+        def deserialize(params)
+          @Mode = params['Mode']
+          @IdList = params['IdList']
+        end
+      end
+
+      # 声纹查询数据
+      class VoicePrintInfo < TencentCloud::Common::AbstractModel
+        # @param VoicePrintId: 声纹ID
+        # @type VoicePrintId: String
+        # @param AppId: 应用id
+        # @type AppId: Integer
+        # @param VoicePrintMetaInfo: 和声纹绑定的MetaInfo
+        # @type VoicePrintMetaInfo: String
+        # @param CreateTime: 创建时间
+        # @type CreateTime: String
+        # @param UpdateTime: 更新时间
+        # @type UpdateTime: String
+        # @param AudioFormat: 音频格式,当前只有0(代表wav)
+        # @type AudioFormat: Integer
+        # @param AudioName: 音频名称
+        # @type AudioName: String
+        # @param ReqTimestamp: 请求毫秒时间戳
+        # @type ReqTimestamp: Integer
+
+        attr_accessor :VoicePrintId, :AppId, :VoicePrintMetaInfo, :CreateTime, :UpdateTime, :AudioFormat, :AudioName, :ReqTimestamp
+
+        def initialize(voiceprintid=nil, appid=nil, voiceprintmetainfo=nil, createtime=nil, updatetime=nil, audioformat=nil, audioname=nil, reqtimestamp=nil)
+          @VoicePrintId = voiceprintid
+          @AppId = appid
+          @VoicePrintMetaInfo = voiceprintmetainfo
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @AudioFormat = audioformat
+          @AudioName = audioname
+          @ReqTimestamp = reqtimestamp
+        end
+
+        def deserialize(params)
+          @VoicePrintId = params['VoicePrintId']
+          @AppId = params['AppId']
+          @VoicePrintMetaInfo = params['VoicePrintMetaInfo']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          @AudioFormat = params['AudioFormat']
+          @AudioName = params['AudioName']
+          @ReqTimestamp = params['ReqTimestamp']
         end
       end
 

@@ -1044,6 +1044,50 @@ module TencentCloud
         end
       end
 
+      # ResetInstancesPassword请求参数结构体
+      class ResetInstancesPasswordRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceIds: 实例ID列表
+        # @type InstanceIds: Array
+        # @param Password: 实例密码必须8-30位，推荐使用12位以上密码，不能以“/”开头，至少包含以下字符中的三种不同字符，字符种类：<br><li>小写字母：[a-z]</li><br><li>大写字母：[A-Z]</li><br><li>数字：0-9</li><br><li>特殊字符： ()\`\~!@#$%^&\*-+=\_|{}[]:;'<>,.?/</li>
+        # @type Password: String
+        # @param DryRun: 默认为False，True代表只验证接口连通性
+        # @type DryRun: Boolean
+
+        attr_accessor :InstanceIds, :Password, :DryRun
+
+        def initialize(instanceids=nil, password=nil, dryrun=nil)
+          @InstanceIds = instanceids
+          @Password = password
+          @DryRun = dryrun
+        end
+
+        def deserialize(params)
+          @InstanceIds = params['InstanceIds']
+          @Password = params['Password']
+          @DryRun = params['DryRun']
+        end
+      end
+
+      # ResetInstancesPassword返回参数结构体
+      class ResetInstancesPasswordResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: task任务id
+        # @type TaskId: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # RunInstances请求参数结构体
       class RunInstancesRequest < TencentCloud::Common::AbstractModel
         # @param ApplicationId: 应用ID通过调用接口[DescribeApplications](https://cloud.tencent.com/document/api/1721/101609)获取。

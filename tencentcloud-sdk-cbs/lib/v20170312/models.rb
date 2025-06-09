@@ -167,6 +167,7 @@ module TencentCloud
         # @param DiskId: 快照原云硬盘ID，可通过[DescribeDisks](/document/product/362/16315)接口查询。
         # @type DiskId: String
         # @param AutoStopInstance: 回滚前是否执行自动关机，仅支持回滚快照至已挂载的云硬盘时传入。
+        # 此参数为true时，AutoStartInstance才能为true。
         # @type AutoStopInstance: Boolean
         # @param AutoStartInstance: 回滚完成后是否自动开机，仅支持回滚快照至已挂载的云硬盘时传入。该参数传入时，需要同时传入AutoStopInstance参数。
         # @type AutoStartInstance: Boolean
@@ -299,6 +300,7 @@ module TencentCloud
       # 描述了定期快照策略的详细信息
       class AutoSnapshotPolicy < TencentCloud::Common::AbstractModel
         # @param DiskIdSet: 已绑定当前定期快照策略的云盘ID列表。
+        # DescribeDiskAssociatedAutoSnapshotPolicy场景下该字段返回为空。
         # @type DiskIdSet: Array
         # @param IsActivated: 定期快照策略是否激活。
         # @type IsActivated: Boolean
@@ -308,7 +310,7 @@ module TencentCloud
         #   <li>ISOLATED：已隔离</li>
         # </ul>
         # @type AutoSnapshotPolicyState: String
-        # @param IsCopyToRemote: 是否是跨账号复制快照快照, 1：是, 0: 不是
+        # @param IsCopyToRemote: 是否是跨账号复制快照, 1：是, 0: 不是
         # @type IsCopyToRemote: Integer
         # @param IsPermanent: 使用该定期快照策略创建出来的快照是否永久保留。
         # @type IsPermanent: Boolean
@@ -710,7 +712,7 @@ module TencentCloud
         # @type AutoMountConfiguration: :class:`Tencentcloud::Cbs.v20170312.models.AutoMountConfiguration`
         # @param DiskBackupQuota: 指定云硬盘备份点配额。
         # @type DiskBackupQuota: Integer
-        # @param BurstPerformance: 创建云盘时是否开启性能突发。当前仅支持极速型云盘（CLOUD_TSSD）和增强型SSD云硬盘（CLOUD_HSSD）。
+        # @param BurstPerformance: 创建云盘时是否开启性能突发。当前仅支持极速型云盘（CLOUD_TSSD）和增强型SSD云硬盘（CLOUD_HSSD）且云盘大小不小于460GiB。
         # @type BurstPerformance: Boolean
         # @param EncryptType: 指定云硬盘加密类型，取值为ENCRYPT_V1和ENCRYPT_V2，分别表示第一代和第二代加密技术，两种加密技术互不兼容。推荐优先使用第二代加密技术ENCRYPT_V2，第一代加密技术仅支持在部分老旧机型使用。该参数仅当创建加密云硬盘时有效。
         # @type EncryptType: String
@@ -1184,7 +1186,7 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 返回数量，默认为20，最大值为100。关于`Limit`的更进一步介绍请参考 API [简介](/document/product/362/15633)中的相关小节。
         # @type Limit: Integer
-        # @param Order: 输出云硬盘备份点列表的排列顺序。取值范围：<br><li>ASC：升序排列</li><br><li>DESC：降序排列。</li>
+        # @param Order: 输出云硬盘备份点列表的排列顺序，默认排序：ASC。取值范围：<br><li>ASC：升序排列</li><br><li>DESC：降序排列。</li>
         # @type Order: String
         # @param OrderField: 云硬盘备份点列表排序的依据字段。取值范围：<br><li>CREATE_TIME：依据云硬盘备份点的创建时间排序</li><br>默认按创建时间排序。
         # @type OrderField: String
@@ -2948,7 +2950,7 @@ module TencentCloud
       class Placement < TencentCloud::Common::AbstractModel
         # @param Zone: 云硬盘所属的[可用区](/document/product/213/15753#ZoneInfo)。该参数也可以通过调用  [DescribeZones](/document/product/213/15707) 的返回值中的Zone字段来获取。
         # @type Zone: String
-        # @param CageId: 围笼Id。作为入参时，表示对指定的CageId的资源进行操作，可为空。 作为出参时，表示资源所属围笼ID，可为空。
+        # @param CageId: 围笼Id，可通过 [DescribeDiskStoragePool](https://cloud.tencent.com/document/api/362/62143) 获取。作为入参时，表示对指定的CageId的资源进行操作，可为空。 作为出参时，表示资源所属围笼ID，可为空。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CageId: String
         # @param ProjectId: 实例所属项目ID，可通过[DescribeProject](/document/api/651/78725)获取。不填默认为0，表示默认项目。
@@ -2959,7 +2961,7 @@ module TencentCloud
         # @param CdcName: 独享集群名字。作为入参时，忽略。作为出参时，表示云硬盘所属的独享集群名，可为空。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CdcName: String
-        # @param CdcId: 实例所属的独享集群ID。作为入参时，表示对指定的CdcId独享集群的资源进行操作，可为空。 作为出参时，表示资源所属的独享集群的ID，可为空。
+        # @param CdcId: 实例所属的独享集群ID。可通过 [DescribeDiskStoragePool](https://cloud.tencent.com/document/api/362/62143) 获取。作为入参时，表示对指定的CdcId独享集群的资源进行操作，可为空。 作为出参时，表示资源所属的独享集群的ID，可为空。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CdcId: String
         # @param DedicatedClusterId: 独享集群id。

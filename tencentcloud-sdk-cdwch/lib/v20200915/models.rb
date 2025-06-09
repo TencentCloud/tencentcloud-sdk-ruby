@@ -44,7 +44,6 @@ module TencentCloud
       # ActionAlterCkUser返回参数结构体
       class ActionAlterCkUserResponse < TencentCloud::Common::AbstractModel
         # @param ErrMsg: 错误信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrMsg: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -424,8 +423,8 @@ module TencentCloud
 
         attr_accessor :Zone, :HaFlag, :UserVPCId, :UserSubnetId, :ProductVersion, :ChargeProperties, :InstanceName, :DataSpec, :Tags, :ClsLogSetId, :CosBucketName, :MountDiskType, :HAZk, :CommonSpec, :TagItems, :SecondaryZoneInfo
         extend Gem::Deprecate
-        deprecate :Tags, :none, 2025, 5
-        deprecate :Tags=, :none, 2025, 5
+        deprecate :Tags, :none, 2025, 6
+        deprecate :Tags=, :none, 2025, 6
 
         def initialize(zone=nil, haflag=nil, uservpcid=nil, usersubnetid=nil, productversion=nil, chargeproperties=nil, instancename=nil, dataspec=nil, tags=nil, clslogsetid=nil, cosbucketname=nil, mountdisktype=nil, hazk=nil, commonspec=nil, tagitems=nil, secondaryzoneinfo=nil)
           @Zone = zone

@@ -10986,6 +10986,7 @@ module TencentCloud
         # <li>DELETE:  删除</li>
         # <li>ENABLE: 启用</li>
         # <li>DISABLE: 停用</li>
+        # <li>COPY: 复制新建</li>
         # </ul>
         # @type OperateType: String
 

@@ -559,6 +559,166 @@ module TencentCloud
         end
       end
 
+      # 终端硬件信息列表Item数据
+      class DescribeDeviceHardwareInfoItem < TencentCloud::Common::AbstractModel
+        # @param Id: 设备ID
+        # @type Id: Integer
+        # @param Mid: 设备唯一标识符
+        # @type Mid: String
+        # @param OsType: OS平台 0 Windows 1 Linux 2 macOS 4 Android 5 iOS
+        # @type OsType: Integer
+        # @param Name: 终端名
+        # @type Name: String
+        # @param UserName: 终端用户名
+        # @type UserName: String
+        # @param Status: 授权状态（ 4未授权 5已授权）
+        # @type Status: Integer
+        # @param GroupId: 设备所属分组ID
+        # @type GroupId: Integer
+        # @param GroupName: 设备所属分组名
+        # @type GroupName: String
+        # @param GroupNamePath: 设备所属分组路径
+        # @type GroupNamePath: String
+        # @param AccountName: 最近登录账户的姓名
+        # @type AccountName: String
+        # @param Ip: 出口IP
+        # @type Ip: String
+        # @param MacAddr: MAC地址
+        # @type MacAddr: String
+        # @param Cpu: CPU品牌型号
+        # @type Cpu: String
+        # @param Memory: 内存信息
+        # @type Memory: String
+        # @param HardDiskSize: 硬盘信息
+        # @type HardDiskSize: String
+        # @param Monitor: 显示器品牌型号
+        # @type Monitor: String
+
+        attr_accessor :Id, :Mid, :OsType, :Name, :UserName, :Status, :GroupId, :GroupName, :GroupNamePath, :AccountName, :Ip, :MacAddr, :Cpu, :Memory, :HardDiskSize, :Monitor
+
+        def initialize(id=nil, mid=nil, ostype=nil, name=nil, username=nil, status=nil, groupid=nil, groupname=nil, groupnamepath=nil, accountname=nil, ip=nil, macaddr=nil, cpu=nil, memory=nil, harddisksize=nil, monitor=nil)
+          @Id = id
+          @Mid = mid
+          @OsType = ostype
+          @Name = name
+          @UserName = username
+          @Status = status
+          @GroupId = groupid
+          @GroupName = groupname
+          @GroupNamePath = groupnamepath
+          @AccountName = accountname
+          @Ip = ip
+          @MacAddr = macaddr
+          @Cpu = cpu
+          @Memory = memory
+          @HardDiskSize = harddisksize
+          @Monitor = monitor
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Mid = params['Mid']
+          @OsType = params['OsType']
+          @Name = params['Name']
+          @UserName = params['UserName']
+          @Status = params['Status']
+          @GroupId = params['GroupId']
+          @GroupName = params['GroupName']
+          @GroupNamePath = params['GroupNamePath']
+          @AccountName = params['AccountName']
+          @Ip = params['Ip']
+          @MacAddr = params['MacAddr']
+          @Cpu = params['Cpu']
+          @Memory = params['Memory']
+          @HardDiskSize = params['HardDiskSize']
+          @Monitor = params['Monitor']
+        end
+      end
+
+      # DescribeDeviceHardwareInfoList请求参数结构体
+      class DescribeDeviceHardwareInfoListRequest < TencentCloud::Common::AbstractModel
+        # @param GroupId: 【必填】设备分组id（需要和OsType匹配），下面是私有化场景下默认id：id-名称-操作系统1	全网终端	Win2	未分组终端	Win30000000	服务器	Win40000101	全网终端	Linux40000102	未分组终端	Linux40000103	服务器	Linux40000201	全网终端	macOS40000202	未分组终端	macOS40000203	服务器	macOS40000401	全网终端	Android40000402	未分组终端	Android40000501	全网终端	iOS40000502	未分组终端	iOSSaaS需要调用分组接口DescribeDeviceChildGroups获取对应分组id
+        # @type GroupId: Integer
+        # @param OsType: 【必填】操作系统类型（0: win，1：linux，2: mac，4：android，5：ios   默认值0），需要和GroupId或者GroupIds匹配
+        # @type OsType: Integer
+        # @param DomainInstanceId: 管理域实例ID，用于CAM管理域权限分配。若企业未进行管理域的划分，可直接传入根域"1"，此时表示针对当前企业的全部设备和账号进行接口CRUD，具体CRUD的影响范围限制于相应接口的入参。
+        # @type DomainInstanceId: String
+        # @param Condition: 过滤条件参数（字段含义请参考接口返回值） - Name, 类型String，支持操作：【eq，like，ilike】，支持排序 - UserName, 类型String，支持操作：【eq，like，ilike】，支持排序 - IoaUserName，类型String，支持操作：【eq，like，ilike】，支持排序 - MacAddr, 类型String，支持操作：【eq，like，ilike】，支持排序 - Ip, 类型String，支持操作：【eq，like，ilike】，支持排序 ，支持排序分页参数- PageNum 从1开始，小于等于0时使用默认参数- PageSize 最大值5000，最好不超过100
+        # @type Condition: :class:`Tencentcloud::Ioa.v20220601.models.Condition`
+
+        attr_accessor :GroupId, :OsType, :DomainInstanceId, :Condition
+
+        def initialize(groupid=nil, ostype=nil, domaininstanceid=nil, condition=nil)
+          @GroupId = groupid
+          @OsType = ostype
+          @DomainInstanceId = domaininstanceid
+          @Condition = condition
+        end
+
+        def deserialize(params)
+          @GroupId = params['GroupId']
+          @OsType = params['OsType']
+          @DomainInstanceId = params['DomainInstanceId']
+          unless params['Condition'].nil?
+            @Condition = Condition.new
+            @Condition.deserialize(params['Condition'])
+          end
+        end
+      end
+
+      # DescribeDeviceHardwareInfoList返回参数结构体
+      class DescribeDeviceHardwareInfoListResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 分页的data数据
+        # @type Data: :class:`Tencentcloud::Ioa.v20220601.models.DescribeDeviceHardwareInfoListRspData`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = DescribeDeviceHardwareInfoListRspData.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 终端硬件信息列表响应详情
+      class DescribeDeviceHardwareInfoListRspData < TencentCloud::Common::AbstractModel
+        # @param Page: 分页数据
+        # @type Page: :class:`Tencentcloud::Ioa.v20220601.models.Paging`
+        # @param Items: 终端硬件信息数据数组
+        # @type Items: Array
+
+        attr_accessor :Page, :Items
+
+        def initialize(page=nil, items=nil)
+          @Page = page
+          @Items = items
+        end
+
+        def deserialize(params)
+          unless params['Page'].nil?
+            @Page = Paging.new
+            @Page.deserialize(params['Page'])
+          end
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              describedevicehardwareinfoitem_tmp = DescribeDeviceHardwareInfoItem.new
+              describedevicehardwareinfoitem_tmp.deserialize(i)
+              @Items << describedevicehardwareinfoitem_tmp
+            end
+          end
+        end
+      end
+
       # 分页的data数据
       class DescribeDevicesPageRsp < TencentCloud::Common::AbstractModel
         # @param Paging: 数据分页信息

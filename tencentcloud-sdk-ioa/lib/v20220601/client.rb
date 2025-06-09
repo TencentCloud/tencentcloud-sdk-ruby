@@ -149,6 +149,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询满足条件的查询终端硬件信息列表，私有化调用path为：/capi/Assets/Device/DescribeDeviceHardwareInfoList
+
+        # @param request: Request instance for DescribeDeviceHardwareInfoList.
+        # @type request: :class:`Tencentcloud::ioa::V20220601::DescribeDeviceHardwareInfoListRequest`
+        # @rtype: :class:`Tencentcloud::ioa::V20220601::DescribeDeviceHardwareInfoListResponse`
+        def DescribeDeviceHardwareInfoList(request)
+          body = send_request('DescribeDeviceHardwareInfoList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDeviceHardwareInfoListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询满足条件的终端数据详情，私有化调用path为：/capi/Assets/Device/DescribeDevices
 
         # @param request: Request instance for DescribeDevices.

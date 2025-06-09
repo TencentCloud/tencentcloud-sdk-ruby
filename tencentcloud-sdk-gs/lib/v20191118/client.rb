@@ -225,7 +225,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 创建安卓实例
+        # 创建安卓实例标签
 
         # @param request: Request instance for CreateAndroidInstanceLabel.
         # @type request: :class:`Tencentcloud::gs::V20191118::CreateAndroidInstanceLabelRequest`
@@ -465,7 +465,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 创建安卓实例
+        # 删除安卓实例标签
 
         # @param request: Request instance for DeleteAndroidInstanceLabel.
         # @type request: :class:`Tencentcloud::gs::V20191118::DeleteAndroidInstanceLabelRequest`
@@ -561,7 +561,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 创建安卓实例
+        # 查询安卓实例标签
 
         # @param request: Request instance for DescribeAndroidInstanceLabels.
         # @type request: :class:`Tencentcloud::gs::V20191118::DescribeAndroidInstanceLabelsRequest`
@@ -777,6 +777,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 将一张照片批量分发到多个实例的相册中，一次接口调用触发一次照片分发，一次照片分发只会从公网下载一次，然后照片会走内网分发到实例列表中的实例。
+
+        # @param request: Request instance for DistributePhotoToAndroidInstances.
+        # @type request: :class:`Tencentcloud::gs::V20191118::DistributePhotoToAndroidInstancesRequest`
+        # @rtype: :class:`Tencentcloud::gs::V20191118::DistributePhotoToAndroidInstancesResponse`
+        def DistributePhotoToAndroidInstances(request)
+          body = send_request('DistributePhotoToAndroidInstances', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DistributePhotoToAndroidInstancesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 批量启用安卓实例应用
 
         # @param request: Request instance for EnableAndroidInstancesApp.
@@ -897,7 +921,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 安装安卓实例应用
+        # 通过 URL 安装安卓实例应用
 
         # @param request: Request instance for InstallAndroidInstancesAppWithURL.
         # @type request: :class:`Tencentcloud::gs::V20191118::InstallAndroidInstancesAppWithURLRequest`
@@ -1065,7 +1089,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 修改安卓实例分辨率。需要注意的是该接口可能导致正在运行的应用出现闪退，所以建议在实例维护时期才进行调用。
+        # 批量修改安卓实例的标签
 
         # @param request: Request instance for ModifyAndroidInstancesLabels.
         # @type request: :class:`Tencentcloud::gs::V20191118::ModifyAndroidInstancesLabelsRequest`
@@ -1260,7 +1284,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 启动安卓实例应用
+        # 重启安卓实例应用
 
         # @param request: Request instance for RestartAndroidInstancesApp.
         # @type request: :class:`Tencentcloud::gs::V20191118::RestartAndroidInstancesAppRequest`
@@ -1380,7 +1404,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 重启安卓实例
+        # 开机安卓实例
 
         # @param request: Request instance for StartAndroidInstances.
         # @type request: :class:`Tencentcloud::gs::V20191118::StartAndroidInstancesRequest`
@@ -1476,7 +1500,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 重启安卓实例
+        # 关机安卓实例
 
         # @param request: Request instance for StopAndroidInstances.
         # @type request: :class:`Tencentcloud::gs::V20191118::StopAndroidInstancesRequest`

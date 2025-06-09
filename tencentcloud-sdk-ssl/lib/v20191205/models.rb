@@ -1009,10 +1009,12 @@ module TencentCloud
         # @param HostingConfig: 托管配置信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HostingConfig: :class:`Tencentcloud::Ssl.v20191205.models.HostingConfig`
+        # @param IsHostingUploadRenewCert: 是否是上传托管续费证书
+        # @type IsHostingUploadRenewCert: Boolean
 
-        attr_accessor :OwnerUin, :ProjectId, :From, :PackageType, :CertificateType, :ProductZhName, :Domain, :Alias, :Status, :CertificateExtra, :VulnerabilityStatus, :StatusMsg, :VerifyType, :CertBeginTime, :CertEndTime, :ValidityPeriod, :InsertTime, :CertificateId, :SubjectAltName, :PackageTypeName, :StatusName, :IsVip, :IsDv, :IsWildcard, :IsVulnerability, :RenewAble, :ProjectInfo, :BoundResource, :Deployable, :Tags, :IsIgnore, :IsSM, :EncryptAlgorithm, :CAEncryptAlgorithms, :CAEndTimes, :CACommonNames, :PreAuditInfo, :AutoRenewFlag, :HostingStatus, :HostingCompleteTime, :HostingRenewCertId, :HasRenewOrder, :ReplaceOriCertIsDelete, :IsExpiring, :DVAuthDeadline, :ValidationPassedTime, :CertSANs, :AwaitingValidationMsg, :AllowDownload, :IsDNSPODResolve, :IsPackage, :KeyPasswordCustomFlag, :SupportDownloadType, :CertRevokedTime, :HostingResourceTypes, :HostingConfig
+        attr_accessor :OwnerUin, :ProjectId, :From, :PackageType, :CertificateType, :ProductZhName, :Domain, :Alias, :Status, :CertificateExtra, :VulnerabilityStatus, :StatusMsg, :VerifyType, :CertBeginTime, :CertEndTime, :ValidityPeriod, :InsertTime, :CertificateId, :SubjectAltName, :PackageTypeName, :StatusName, :IsVip, :IsDv, :IsWildcard, :IsVulnerability, :RenewAble, :ProjectInfo, :BoundResource, :Deployable, :Tags, :IsIgnore, :IsSM, :EncryptAlgorithm, :CAEncryptAlgorithms, :CAEndTimes, :CACommonNames, :PreAuditInfo, :AutoRenewFlag, :HostingStatus, :HostingCompleteTime, :HostingRenewCertId, :HasRenewOrder, :ReplaceOriCertIsDelete, :IsExpiring, :DVAuthDeadline, :ValidationPassedTime, :CertSANs, :AwaitingValidationMsg, :AllowDownload, :IsDNSPODResolve, :IsPackage, :KeyPasswordCustomFlag, :SupportDownloadType, :CertRevokedTime, :HostingResourceTypes, :HostingConfig, :IsHostingUploadRenewCert
 
-        def initialize(owneruin=nil, projectid=nil, from=nil, packagetype=nil, certificatetype=nil, productzhname=nil, domain=nil, _alias=nil, status=nil, certificateextra=nil, vulnerabilitystatus=nil, statusmsg=nil, verifytype=nil, certbegintime=nil, certendtime=nil, validityperiod=nil, inserttime=nil, certificateid=nil, subjectaltname=nil, packagetypename=nil, statusname=nil, isvip=nil, isdv=nil, iswildcard=nil, isvulnerability=nil, renewable=nil, projectinfo=nil, boundresource=nil, deployable=nil, tags=nil, isignore=nil, issm=nil, encryptalgorithm=nil, caencryptalgorithms=nil, caendtimes=nil, cacommonnames=nil, preauditinfo=nil, autorenewflag=nil, hostingstatus=nil, hostingcompletetime=nil, hostingrenewcertid=nil, hasreneworder=nil, replaceoricertisdelete=nil, isexpiring=nil, dvauthdeadline=nil, validationpassedtime=nil, certsans=nil, awaitingvalidationmsg=nil, allowdownload=nil, isdnspodresolve=nil, ispackage=nil, keypasswordcustomflag=nil, supportdownloadtype=nil, certrevokedtime=nil, hostingresourcetypes=nil, hostingconfig=nil)
+        def initialize(owneruin=nil, projectid=nil, from=nil, packagetype=nil, certificatetype=nil, productzhname=nil, domain=nil, _alias=nil, status=nil, certificateextra=nil, vulnerabilitystatus=nil, statusmsg=nil, verifytype=nil, certbegintime=nil, certendtime=nil, validityperiod=nil, inserttime=nil, certificateid=nil, subjectaltname=nil, packagetypename=nil, statusname=nil, isvip=nil, isdv=nil, iswildcard=nil, isvulnerability=nil, renewable=nil, projectinfo=nil, boundresource=nil, deployable=nil, tags=nil, isignore=nil, issm=nil, encryptalgorithm=nil, caencryptalgorithms=nil, caendtimes=nil, cacommonnames=nil, preauditinfo=nil, autorenewflag=nil, hostingstatus=nil, hostingcompletetime=nil, hostingrenewcertid=nil, hasreneworder=nil, replaceoricertisdelete=nil, isexpiring=nil, dvauthdeadline=nil, validationpassedtime=nil, certsans=nil, awaitingvalidationmsg=nil, allowdownload=nil, isdnspodresolve=nil, ispackage=nil, keypasswordcustomflag=nil, supportdownloadtype=nil, certrevokedtime=nil, hostingresourcetypes=nil, hostingconfig=nil, ishostinguploadrenewcert=nil)
           @OwnerUin = owneruin
           @ProjectId = projectid
           @From = from
@@ -1069,6 +1071,7 @@ module TencentCloud
           @CertRevokedTime = certrevokedtime
           @HostingResourceTypes = hostingresourcetypes
           @HostingConfig = hostingconfig
+          @IsHostingUploadRenewCert = ishostinguploadrenewcert
         end
 
         def deserialize(params)
@@ -1150,6 +1153,7 @@ module TencentCloud
             @HostingConfig = HostingConfig.new
             @HostingConfig.deserialize(params['HostingConfig'])
           end
+          @IsHostingUploadRenewCert = params['IsHostingUploadRenewCert']
         end
       end
 
@@ -3082,12 +3086,16 @@ module TencentCloud
         # @param CertChainInfo: 证书链信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CertChainInfo: Array
+        # @param DomainType: 证书域名类型， 1（单域名）；2（多域名）；3（泛域名）；4（多泛域名）
+        # @type DomainType: Integer
+        # @param CertType: 证书类型，DV（域名型）；OV（企业型）；EV（增强型）
+        # @type CertType: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :OwnerUin, :ProjectId, :From, :CertificateType, :PackageType, :ProductZhName, :Domain, :Alias, :Status, :StatusMsg, :VerifyType, :VulnerabilityStatus, :CertBeginTime, :CertEndTime, :ValidityPeriod, :InsertTime, :OrderId, :CertificateExtra, :CertificatePrivateKey, :CertificatePublicKey, :DvAuthDetail, :VulnerabilityReport, :CertificateId, :TypeName, :StatusName, :SubjectAltName, :IsVip, :IsWildcard, :IsDv, :IsVulnerability, :SubmittedData, :RenewAble, :Deployable, :Tags, :RootCert, :EncryptCert, :EncryptPrivateKey, :CertFingerprint, :EncryptCertFingerprint, :EncryptAlgorithm, :DvRevokeAuthDetail, :CertChainInfo, :RequestId
+        attr_accessor :OwnerUin, :ProjectId, :From, :CertificateType, :PackageType, :ProductZhName, :Domain, :Alias, :Status, :StatusMsg, :VerifyType, :VulnerabilityStatus, :CertBeginTime, :CertEndTime, :ValidityPeriod, :InsertTime, :OrderId, :CertificateExtra, :CertificatePrivateKey, :CertificatePublicKey, :DvAuthDetail, :VulnerabilityReport, :CertificateId, :TypeName, :StatusName, :SubjectAltName, :IsVip, :IsWildcard, :IsDv, :IsVulnerability, :SubmittedData, :RenewAble, :Deployable, :Tags, :RootCert, :EncryptCert, :EncryptPrivateKey, :CertFingerprint, :EncryptCertFingerprint, :EncryptAlgorithm, :DvRevokeAuthDetail, :CertChainInfo, :DomainType, :CertType, :RequestId
 
-        def initialize(owneruin=nil, projectid=nil, from=nil, certificatetype=nil, packagetype=nil, productzhname=nil, domain=nil, _alias=nil, status=nil, statusmsg=nil, verifytype=nil, vulnerabilitystatus=nil, certbegintime=nil, certendtime=nil, validityperiod=nil, inserttime=nil, orderid=nil, certificateextra=nil, certificateprivatekey=nil, certificatepublickey=nil, dvauthdetail=nil, vulnerabilityreport=nil, certificateid=nil, typename=nil, statusname=nil, subjectaltname=nil, isvip=nil, iswildcard=nil, isdv=nil, isvulnerability=nil, submitteddata=nil, renewable=nil, deployable=nil, tags=nil, rootcert=nil, encryptcert=nil, encryptprivatekey=nil, certfingerprint=nil, encryptcertfingerprint=nil, encryptalgorithm=nil, dvrevokeauthdetail=nil, certchaininfo=nil, requestid=nil)
+        def initialize(owneruin=nil, projectid=nil, from=nil, certificatetype=nil, packagetype=nil, productzhname=nil, domain=nil, _alias=nil, status=nil, statusmsg=nil, verifytype=nil, vulnerabilitystatus=nil, certbegintime=nil, certendtime=nil, validityperiod=nil, inserttime=nil, orderid=nil, certificateextra=nil, certificateprivatekey=nil, certificatepublickey=nil, dvauthdetail=nil, vulnerabilityreport=nil, certificateid=nil, typename=nil, statusname=nil, subjectaltname=nil, isvip=nil, iswildcard=nil, isdv=nil, isvulnerability=nil, submitteddata=nil, renewable=nil, deployable=nil, tags=nil, rootcert=nil, encryptcert=nil, encryptprivatekey=nil, certfingerprint=nil, encryptcertfingerprint=nil, encryptalgorithm=nil, dvrevokeauthdetail=nil, certchaininfo=nil, domaintype=nil, certtype=nil, requestid=nil)
           @OwnerUin = owneruin
           @ProjectId = projectid
           @From = from
@@ -3130,6 +3138,8 @@ module TencentCloud
           @EncryptAlgorithm = encryptalgorithm
           @DvRevokeAuthDetail = dvrevokeauthdetail
           @CertChainInfo = certchaininfo
+          @DomainType = domaintype
+          @CertType = certtype
           @RequestId = requestid
         end
 
@@ -3209,6 +3219,8 @@ module TencentCloud
               @CertChainInfo << certbasicinfo_tmp
             end
           end
+          @DomainType = params['DomainType']
+          @CertType = params['CertType']
           @RequestId = params['RequestId']
         end
       end
@@ -3937,8 +3949,8 @@ module TencentCloud
 
         attr_accessor :CertificateId, :IsCache, :Filters, :ResourceType, :OldCertificateId, :Limit, :Offset
         extend Gem::Deprecate
-        deprecate :ResourceType, :none, 2025, 5
-        deprecate :ResourceType=, :none, 2025, 5
+        deprecate :ResourceType, :none, 2025, 6
+        deprecate :ResourceType=, :none, 2025, 6
 
         def initialize(certificateid=nil, iscache=nil, filters=nil, resourcetype=nil, oldcertificateid=nil, limit=nil, offset=nil)
           @CertificateId = certificateid
@@ -4020,8 +4032,8 @@ module TencentCloud
 
         attr_accessor :CertificateId, :IsCache, :Filters, :ResourceType, :OldCertificateId, :Offset, :Limit, :AsyncCache
         extend Gem::Deprecate
-        deprecate :ResourceType, :none, 2025, 5
-        deprecate :ResourceType=, :none, 2025, 5
+        deprecate :ResourceType, :none, 2025, 6
+        deprecate :ResourceType=, :none, 2025, 6
 
         def initialize(certificateid=nil, iscache=nil, filters=nil, resourcetype=nil, oldcertificateid=nil, offset=nil, limit=nil, asynccache=nil)
           @CertificateId = certificateid
@@ -4497,8 +4509,8 @@ module TencentCloud
 
         attr_accessor :CertificateId, :IsCache, :Filters, :ResourceType
         extend Gem::Deprecate
-        deprecate :ResourceType, :none, 2025, 5
-        deprecate :ResourceType=, :none, 2025, 5
+        deprecate :ResourceType, :none, 2025, 6
+        deprecate :ResourceType=, :none, 2025, 6
 
         def initialize(certificateid=nil, iscache=nil, filters=nil, resourcetype=nil)
           @CertificateId = certificateid
@@ -4568,8 +4580,8 @@ module TencentCloud
 
         attr_accessor :CertificateId, :IsCache, :Filters, :ResourceType, :OldCertificateId
         extend Gem::Deprecate
-        deprecate :ResourceType, :none, 2025, 5
-        deprecate :ResourceType=, :none, 2025, 5
+        deprecate :ResourceType, :none, 2025, 6
+        deprecate :ResourceType=, :none, 2025, 6
 
         def initialize(certificateid=nil, iscache=nil, filters=nil, resourcetype=nil, oldcertificateid=nil)
           @CertificateId = certificateid
@@ -4643,8 +4655,8 @@ module TencentCloud
 
         attr_accessor :CertificateId, :ResourceType, :IsCache, :Filters, :OldCertificateId, :Offset, :Limit, :AsyncCache
         extend Gem::Deprecate
-        deprecate :ResourceType, :none, 2025, 5
-        deprecate :ResourceType=, :none, 2025, 5
+        deprecate :ResourceType, :none, 2025, 6
+        deprecate :ResourceType=, :none, 2025, 6
 
         def initialize(certificateid=nil, resourcetype=nil, iscache=nil, filters=nil, oldcertificateid=nil, offset=nil, limit=nil, asynccache=nil)
           @CertificateId = certificateid
@@ -4938,8 +4950,8 @@ module TencentCloud
 
         attr_accessor :CertificateId, :IsCache, :Filters, :ResourceType, :OldCertificateId
         extend Gem::Deprecate
-        deprecate :ResourceType, :none, 2025, 5
-        deprecate :ResourceType=, :none, 2025, 5
+        deprecate :ResourceType, :none, 2025, 6
+        deprecate :ResourceType=, :none, 2025, 6
 
         def initialize(certificateid=nil, iscache=nil, filters=nil, resourcetype=nil, oldcertificateid=nil)
           @CertificateId = certificateid
@@ -5011,8 +5023,8 @@ module TencentCloud
 
         attr_accessor :CertificateId, :IsCache, :Filters, :ResourceType, :OldCertificateId
         extend Gem::Deprecate
-        deprecate :ResourceType, :none, 2025, 5
-        deprecate :ResourceType=, :none, 2025, 5
+        deprecate :ResourceType, :none, 2025, 6
+        deprecate :ResourceType=, :none, 2025, 6
 
         def initialize(certificateid=nil, iscache=nil, filters=nil, resourcetype=nil, oldcertificateid=nil)
           @CertificateId = certificateid
@@ -5076,10 +5088,10 @@ module TencentCloud
 
         attr_accessor :ManagerId, :Limit, :Offset
         extend Gem::Deprecate
-        deprecate :Limit, :none, 2025, 5
-        deprecate :Limit=, :none, 2025, 5
-        deprecate :Offset, :none, 2025, 5
-        deprecate :Offset=, :none, 2025, 5
+        deprecate :Limit, :none, 2025, 6
+        deprecate :Limit=, :none, 2025, 6
+        deprecate :Offset, :none, 2025, 6
+        deprecate :Offset=, :none, 2025, 6
 
         def initialize(managerid=nil, limit=nil, offset=nil)
           @ManagerId = managerid
@@ -5141,8 +5153,8 @@ module TencentCloud
 
         attr_accessor :Status, :ManagerFirstName, :ManagerMail, :ContactFirstName, :ManagerLastName, :ContactPosition, :ManagerPosition, :VerifyTime, :CreateTime, :ExpireTime, :ContactLastName, :ManagerPhone, :ContactPhone, :ContactMail, :ManagerDepartment, :CompanyInfo, :CompanyId, :ManagerId, :StatusInfo, :RequestId
         extend Gem::Deprecate
-        deprecate :Status, :none, 2025, 5
-        deprecate :Status=, :none, 2025, 5
+        deprecate :Status, :none, 2025, 6
+        deprecate :Status=, :none, 2025, 6
 
         def initialize(status=nil, managerfirstname=nil, managermail=nil, contactfirstname=nil, managerlastname=nil, contactposition=nil, managerposition=nil, verifytime=nil, createtime=nil, expiretime=nil, contactlastname=nil, managerphone=nil, contactphone=nil, contactmail=nil, managerdepartment=nil, companyinfo=nil, companyid=nil, managerid=nil, statusinfo=nil, requestid=nil)
           @Status = status
@@ -5809,6 +5821,30 @@ module TencentCloud
         end
       end
 
+      # 管理人预审核的域名列表
+      class ManagerPreAuditDomain < TencentCloud::Common::AbstractModel
+        # @param Domain: 预审核域名信息
+        # @type Domain: String
+        # @param CreateTime: 预审核域名创建时间
+        # @type CreateTime: String
+        # @param ExpireTime: 预审核域名过期时间
+        # @type ExpireTime: String
+
+        attr_accessor :Domain, :CreateTime, :ExpireTime
+
+        def initialize(domain=nil, createtime=nil, expiretime=nil)
+          @Domain = domain
+          @CreateTime = createtime
+          @ExpireTime = expiretime
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @CreateTime = params['CreateTime']
+          @ExpireTime = params['ExpireTime']
+        end
+      end
+
       # 管理人的四种审核状态
       class ManagerStatusInfo < TencentCloud::Common::AbstractModel
         # @param Type: 审核类型，枚举值：ov,ev
@@ -5819,14 +5855,17 @@ module TencentCloud
         # @type CreateTime: String
         # @param ExpireTime: 过期时间
         # @type ExpireTime: String
+        # @param ManagerPreAuditDomains: 管理人预审核的域名列表
+        # @type ManagerPreAuditDomains: Array
 
-        attr_accessor :Type, :Status, :CreateTime, :ExpireTime
+        attr_accessor :Type, :Status, :CreateTime, :ExpireTime, :ManagerPreAuditDomains
 
-        def initialize(type=nil, status=nil, createtime=nil, expiretime=nil)
+        def initialize(type=nil, status=nil, createtime=nil, expiretime=nil, managerpreauditdomains=nil)
           @Type = type
           @Status = status
           @CreateTime = createtime
           @ExpireTime = expiretime
+          @ManagerPreAuditDomains = managerpreauditdomains
         end
 
         def deserialize(params)
@@ -5834,6 +5873,14 @@ module TencentCloud
           @Status = params['Status']
           @CreateTime = params['CreateTime']
           @ExpireTime = params['ExpireTime']
+          unless params['ManagerPreAuditDomains'].nil?
+            @ManagerPreAuditDomains = []
+            params['ManagerPreAuditDomains'].each do |i|
+              managerpreauditdomain_tmp = ManagerPreAuditDomain.new
+              managerpreauditdomain_tmp.deserialize(i)
+              @ManagerPreAuditDomains << managerpreauditdomain_tmp
+            end
+          end
         end
       end
 
@@ -7384,8 +7431,8 @@ module TencentCloud
 
         attr_accessor :OldCertificateId, :ResourceTypes, :CertificateId, :Regions, :ResourceTypesRegions, :CertificatePublicKey, :CertificatePrivateKey, :ExpiringNotificationSwitch, :Repeatable, :AllowDownload, :Tags, :ProjectId
         extend Gem::Deprecate
-        deprecate :Regions, :none, 2025, 5
-        deprecate :Regions=, :none, 2025, 5
+        deprecate :Regions, :none, 2025, 6
+        deprecate :Regions=, :none, 2025, 6
 
         def initialize(oldcertificateid=nil, resourcetypes=nil, certificateid=nil, regions=nil, resourcetypesregions=nil, certificatepublickey=nil, certificateprivatekey=nil, expiringnotificationswitch=nil, repeatable=nil, allowdownload=nil, tags=nil, projectid=nil)
           @OldCertificateId = oldcertificateid

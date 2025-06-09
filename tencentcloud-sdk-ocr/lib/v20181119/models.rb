@@ -4587,6 +4587,9 @@ module TencentCloud
         # @type EnableDateVerify: Boolean
 
         attr_accessor :ImageBase64, :ImageUrl, :CardSide, :Config, :EnableRecognitionRectify, :EnableReflectDetail, :EnableDateVerify
+        extend Gem::Deprecate
+        deprecate :EnableDateVerify, :none, 2025, 6
+        deprecate :EnableDateVerify=, :none, 2025, 6
 
         def initialize(imagebase64=nil, imageurl=nil, cardside=nil, config=nil, enablerecognitionrectify=nil, enablereflectdetail=nil, enabledateverify=nil)
           @ImageBase64 = imagebase64

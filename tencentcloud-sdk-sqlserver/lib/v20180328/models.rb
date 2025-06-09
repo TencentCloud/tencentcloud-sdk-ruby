@@ -2675,8 +2675,8 @@ module TencentCloud
 
         attr_accessor :IsSubscribed, :CollationName, :IsAutoCleanupOn, :IsBrokerEnabled, :IsCdcEnabled, :IsDbChainingOn, :IsEncrypted, :IsFulltextEnabled, :IsMirroring, :IsPublished, :IsReadCommittedSnapshotOn, :IsTrustworthyOn, :MirroringState, :Name, :RecoveryModelDesc, :RetentionPeriod, :StateDesc, :UserAccessDesc, :CreateTime, :IsFullTextEnabled
         extend Gem::Deprecate
-        deprecate :IsFulltextEnabled, :none, 2025, 5
-        deprecate :IsFulltextEnabled=, :none, 2025, 5
+        deprecate :IsFulltextEnabled, :none, 2025, 6
+        deprecate :IsFulltextEnabled=, :none, 2025, 6
 
         def initialize(issubscribed=nil, collationname=nil, isautocleanupon=nil, isbrokerenabled=nil, iscdcenabled=nil, isdbchainingon=nil, isencrypted=nil, ismirroring=nil, ispublished=nil, isreadcommittedsnapshoton=nil, istrustworthyon=nil, mirroringstate=nil, name=nil, recoverymodeldesc=nil, retentionperiod=nil, statedesc=nil, useraccessdesc=nil, createtime=nil, isfulltextenabled=nil)
           @IsSubscribed = issubscribed
@@ -3420,18 +3420,21 @@ module TencentCloud
         # @type Offset: Integer
         # @param DatabaseName: 按照备份的库名称筛选，不填则不筛选此项
         # @type DatabaseName: String
-        # @param OrderBy: 列表项排序，目前只按照备份大小排序（desc-降序，asc-升序），默认desc
+        # @param OrderBy: 列表项排序，desc-降序、asc-升序，按size排序默认desc，按database排序默认asc
         # @type OrderBy: String
+        # @param OrderByType: 排序字段（Size-按备份大小排序，DBs-按数据库名称排序），默认size
+        # @type OrderByType: String
 
-        attr_accessor :InstanceId, :GroupId, :Limit, :Offset, :DatabaseName, :OrderBy
+        attr_accessor :InstanceId, :GroupId, :Limit, :Offset, :DatabaseName, :OrderBy, :OrderByType
 
-        def initialize(instanceid=nil, groupid=nil, limit=nil, offset=nil, databasename=nil, orderby=nil)
+        def initialize(instanceid=nil, groupid=nil, limit=nil, offset=nil, databasename=nil, orderby=nil, orderbytype=nil)
           @InstanceId = instanceid
           @GroupId = groupid
           @Limit = limit
           @Offset = offset
           @DatabaseName = databasename
           @OrderBy = orderby
+          @OrderByType = orderbytype
         end
 
         def deserialize(params)
@@ -3441,6 +3444,7 @@ module TencentCloud
           @Offset = params['Offset']
           @DatabaseName = params['DatabaseName']
           @OrderBy = params['OrderBy']
+          @OrderByType = params['OrderByType']
         end
       end
 
@@ -4800,16 +4804,19 @@ module TencentCloud
         # @type OrderByType: String
         # @param Encryption: 是否已开启TDE加密，enable-已加密，disable-未加密
         # @type Encryption: String
+        # @param OrderBy: 排序字段（Name-按名称排序，CreateTime-按创建时间排序），默认CreateTime
+        # @type OrderBy: String
 
-        attr_accessor :InstanceIdSet, :Limit, :Offset, :Name, :OrderByType, :Encryption
+        attr_accessor :InstanceIdSet, :Limit, :Offset, :Name, :OrderByType, :Encryption, :OrderBy
 
-        def initialize(instanceidset=nil, limit=nil, offset=nil, name=nil, orderbytype=nil, encryption=nil)
+        def initialize(instanceidset=nil, limit=nil, offset=nil, name=nil, orderbytype=nil, encryption=nil, orderby=nil)
           @InstanceIdSet = instanceidset
           @Limit = limit
           @Offset = offset
           @Name = name
           @OrderByType = orderbytype
           @Encryption = encryption
+          @OrderBy = orderby
         end
 
         def deserialize(params)
@@ -4819,6 +4826,7 @@ module TencentCloud
           @Name = params['Name']
           @OrderByType = params['OrderByType']
           @Encryption = params['Encryption']
+          @OrderBy = params['OrderBy']
         end
       end
 
@@ -4958,16 +4966,19 @@ module TencentCloud
         # @type OrderByType: String
         # @param Encryption: 是否已开启TDE加密，enable-已加密，disable-未加密
         # @type Encryption: String
+        # @param OrderBy: 排序字段（Name-按名称排序，CreateTime-按创建时间排序），默认CreateTime
+        # @type OrderBy: String
 
-        attr_accessor :InstanceIdSet, :Limit, :Offset, :Name, :OrderByType, :Encryption
+        attr_accessor :InstanceIdSet, :Limit, :Offset, :Name, :OrderByType, :Encryption, :OrderBy
 
-        def initialize(instanceidset=nil, limit=nil, offset=nil, name=nil, orderbytype=nil, encryption=nil)
+        def initialize(instanceidset=nil, limit=nil, offset=nil, name=nil, orderbytype=nil, encryption=nil, orderby=nil)
           @InstanceIdSet = instanceidset
           @Limit = limit
           @Offset = offset
           @Name = name
           @OrderByType = orderbytype
           @Encryption = encryption
+          @OrderBy = orderby
         end
 
         def deserialize(params)
@@ -4977,6 +4988,7 @@ module TencentCloud
           @Name = params['Name']
           @OrderByType = params['OrderByType']
           @Encryption = params['Encryption']
+          @OrderBy = params['OrderBy']
         end
       end
 
@@ -6786,8 +6798,8 @@ module TencentCloud
 
         attr_accessor :TotalCount, :Slowlogs, :SlowLogs, :RequestId
         extend Gem::Deprecate
-        deprecate :Slowlogs, :none, 2025, 5
-        deprecate :Slowlogs=, :none, 2025, 5
+        deprecate :Slowlogs, :none, 2025, 6
+        deprecate :Slowlogs=, :none, 2025, 6
 
         def initialize(totalcount=nil, slowlogs=nil, requestid=nil)
           @TotalCount = totalcount
@@ -7007,8 +7019,8 @@ module TencentCloud
 
         attr_accessor :BucketName, :Region, :Path, :TmpSecretId, :TmpSecretKey, :XCosSecurityToken, :StartTime, :ExpiredTime, :CosSecurityToken, :RequestId
         extend Gem::Deprecate
-        deprecate :XCosSecurityToken, :none, 2025, 5
-        deprecate :XCosSecurityToken=, :none, 2025, 5
+        deprecate :XCosSecurityToken, :none, 2025, 6
+        deprecate :XCosSecurityToken=, :none, 2025, 6
 
         def initialize(bucketname=nil, region=nil, path=nil, tmpsecretid=nil, tmpsecretkey=nil, xcossecuritytoken=nil, starttime=nil, expiredtime=nil, cossecuritytoken=nil, requestid=nil)
           @BucketName = bucketname
@@ -7086,8 +7098,8 @@ module TencentCloud
 
         attr_accessor :BucketName, :Region, :Path, :TmpSecretId, :TmpSecretKey, :XCosSecurityToken, :StartTime, :ExpiredTime, :CosSecurityToken, :RequestId
         extend Gem::Deprecate
-        deprecate :XCosSecurityToken, :none, 2025, 5
-        deprecate :XCosSecurityToken=, :none, 2025, 5
+        deprecate :XCosSecurityToken, :none, 2025, 6
+        deprecate :XCosSecurityToken=, :none, 2025, 6
 
         def initialize(bucketname=nil, region=nil, path=nil, tmpsecretid=nil, tmpsecretkey=nil, xcossecuritytoken=nil, starttime=nil, expiredtime=nil, cossecuritytoken=nil, requestid=nil)
           @BucketName = bucketname
@@ -8415,8 +8427,8 @@ module TencentCloud
 
         attr_accessor :Errno, :Msg, :Code, :RequestId
         extend Gem::Deprecate
-        deprecate :Errno, :none, 2025, 5
-        deprecate :Errno=, :none, 2025, 5
+        deprecate :Errno, :none, 2025, 6
+        deprecate :Errno=, :none, 2025, 6
 
         def initialize(errno=nil, msg=nil, code=nil, requestid=nil)
           @Errno = errno

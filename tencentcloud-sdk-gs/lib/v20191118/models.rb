@@ -2120,6 +2120,53 @@ module TencentCloud
         end
       end
 
+      # DistributePhotoToAndroidInstances请求参数结构体
+      class DistributePhotoToAndroidInstancesRequest < TencentCloud::Common::AbstractModel
+        # @param AndroidInstanceIds: 安卓实例 ID 列表
+        # @type AndroidInstanceIds: Array
+        # @param PhotoURL: 照片下载 URL
+        # @type PhotoURL: String
+
+        attr_accessor :AndroidInstanceIds, :PhotoURL
+
+        def initialize(androidinstanceids=nil, photourl=nil)
+          @AndroidInstanceIds = androidinstanceids
+          @PhotoURL = photourl
+        end
+
+        def deserialize(params)
+          @AndroidInstanceIds = params['AndroidInstanceIds']
+          @PhotoURL = params['PhotoURL']
+        end
+      end
+
+      # DistributePhotoToAndroidInstances返回参数结构体
+      class DistributePhotoToAndroidInstancesResponse < TencentCloud::Common::AbstractModel
+        # @param TaskSet: 实例任务集合
+        # @type TaskSet: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskSet, :RequestId
+
+        def initialize(taskset=nil, requestid=nil)
+          @TaskSet = taskset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['TaskSet'].nil?
+            @TaskSet = []
+            params['TaskSet'].each do |i|
+              androidinstancetask_tmp = AndroidInstanceTask.new
+              androidinstancetask_tmp.deserialize(i)
+              @TaskSet << androidinstancetask_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # EnableAndroidInstancesApp请求参数结构体
       class EnableAndroidInstancesAppRequest < TencentCloud::Common::AbstractModel
         # @param AndroidInstanceIds: 安卓实例 ID 列表（最大100条数据）

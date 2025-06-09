@@ -355,8 +355,8 @@ module TencentCloud
 
         attr_accessor :User, :Message, :Timestamp, :Start, :End
         extend Gem::Deprecate
-        deprecate :Timestamp, :none, 2025, 4
-        deprecate :Timestamp=, :none, 2025, 4
+        deprecate :Timestamp, :none, 2025, 6
+        deprecate :Timestamp=, :none, 2025, 6
 
         def initialize(user=nil, message=nil, timestamp=nil, start=nil, _end=nil)
           @User = user
@@ -530,8 +530,8 @@ module TencentCloud
 
         attr_accessor :SdkAppId, :StaffEmail, :SkillGroupList, :StaffSkillGroupList
         extend Gem::Deprecate
-        deprecate :SkillGroupList, :none, 2025, 4
-        deprecate :SkillGroupList=, :none, 2025, 4
+        deprecate :SkillGroupList, :none, 2025, 6
+        deprecate :SkillGroupList=, :none, 2025, 6
 
         def initialize(sdkappid=nil, staffemail=nil, skillgrouplist=nil, staffskillgrouplist=nil)
           @SdkAppId = sdkappid
@@ -763,6 +763,26 @@ module TencentCloud
         end
       end
 
+      # 座席登录的终端信息
+      class Client < TencentCloud::Common::AbstractModel
+        # @param ClientType: 登录的端类型，"Web"表示web工作台，"WeChatMiniProgram"表示微信小程序
+        # @type ClientType: String
+        # @param IsConnected: 当前登录的端是否在前台。若登录的端是Web，则该值为true；若登录的端是WeChatMiniProgram，true表示打开着微信小程序，false表示微信小程序退到后台
+        # @type IsConnected: Boolean
+
+        attr_accessor :ClientType, :IsConnected
+
+        def initialize(clienttype=nil, isconnected=nil)
+          @ClientType = clienttype
+          @IsConnected = isconnected
+        end
+
+        def deserialize(params)
+          @ClientType = params['ClientType']
+          @IsConnected = params['IsConnected']
+        end
+      end
+
       # 企业资质申请信息
       class CompanyApplyInfo < TencentCloud::Common::AbstractModel
         # @param ApplicantType: 申请人身份，0-公司法定代表人，1-经办人（受法定代表人委托）
@@ -936,8 +956,8 @@ module TencentCloud
 
         attr_accessor :SdkAppId, :AIAgentId, :Callee, :Callers, :PromptVariables, :Variables
         extend Gem::Deprecate
-        deprecate :PromptVariables, :none, 2025, 4
-        deprecate :PromptVariables=, :none, 2025, 4
+        deprecate :PromptVariables, :none, 2025, 6
+        deprecate :PromptVariables=, :none, 2025, 6
 
         def initialize(sdkappid=nil, aiagentid=nil, callee=nil, callers=nil, promptvariables=nil, variables=nil)
           @SdkAppId = sdkappid
@@ -1225,8 +1245,8 @@ module TencentCloud
 
         attr_accessor :SdkAppId, :Callee, :LLMType, :APIKey, :APIUrl, :SystemPrompt, :Model, :VoiceType, :Callers, :WelcomeMessage, :WelcomeType, :WelcomeMessagePriority, :MaxDuration, :Languages, :InterruptMode, :InterruptSpeechDuration, :EndFunctionEnable, :EndFunctionDesc, :TransferFunctionEnable, :TransferItems, :NotifyDuration, :NotifyMessage, :NotifyMaxCount, :CustomTTSConfig, :PromptVariables, :VadSilenceTime, :ExtractConfig, :Temperature, :Variables
         extend Gem::Deprecate
-        deprecate :PromptVariables, :none, 2025, 4
-        deprecate :PromptVariables=, :none, 2025, 4
+        deprecate :PromptVariables, :none, 2025, 6
+        deprecate :PromptVariables=, :none, 2025, 6
 
         def initialize(sdkappid=nil, callee=nil, llmtype=nil, apikey=nil, apiurl=nil, systemprompt=nil, model=nil, voicetype=nil, callers=nil, welcomemessage=nil, welcometype=nil, welcomemessagepriority=nil, maxduration=nil, languages=nil, interruptmode=nil, interruptspeechduration=nil, endfunctionenable=nil, endfunctiondesc=nil, transferfunctionenable=nil, transferitems=nil, notifyduration=nil, notifymessage=nil, notifymaxcount=nil, customttsconfig=nil, promptvariables=nil, vadsilencetime=nil, extractconfig=nil, temperature=nil, variables=nil)
           @SdkAppId = sdkappid
@@ -1636,8 +1656,8 @@ module TencentCloud
 
         attr_accessor :SdkAppId, :UserId, :Callee, :Caller, :Callers, :IsForceUseMobile, :Uui, :UUI
         extend Gem::Deprecate
-        deprecate :Uui, :none, 2025, 4
-        deprecate :Uui=, :none, 2025, 4
+        deprecate :Uui, :none, 2025, 6
+        deprecate :Uui=, :none, 2025, 6
 
         def initialize(sdkappid=nil, userid=nil, callee=nil, caller=nil, callers=nil, isforceusemobile=nil, uui=nil)
           @SdkAppId = sdkappid
@@ -2980,10 +3000,10 @@ module TencentCloud
 
         attr_accessor :SdkAppId, :InstanceId, :CdrId, :Limit, :Offset, :Order, :SessionId
         extend Gem::Deprecate
-        deprecate :InstanceId, :none, 2025, 4
-        deprecate :InstanceId=, :none, 2025, 4
-        deprecate :CdrId, :none, 2025, 4
-        deprecate :CdrId=, :none, 2025, 4
+        deprecate :InstanceId, :none, 2025, 6
+        deprecate :InstanceId=, :none, 2025, 6
+        deprecate :CdrId, :none, 2025, 6
+        deprecate :CdrId=, :none, 2025, 6
 
         def initialize(sdkappid=nil, instanceid=nil, cdrid=nil, limit=nil, offset=nil, order=nil, sessionid=nil)
           @SdkAppId = sdkappid
@@ -3309,8 +3329,8 @@ module TencentCloud
 
         attr_accessor :StartTimestamp, :EndTimestamp, :InstanceId, :SdkAppId, :Limit, :Offset, :Type
         extend Gem::Deprecate
-        deprecate :InstanceId, :none, 2025, 4
-        deprecate :InstanceId=, :none, 2025, 4
+        deprecate :InstanceId, :none, 2025, 6
+        deprecate :InstanceId=, :none, 2025, 6
 
         def initialize(starttimestamp=nil, endtimestamp=nil, instanceid=nil, sdkappid=nil, limit=nil, offset=nil, type=nil)
           @StartTimestamp = starttimestamp
@@ -3347,8 +3367,8 @@ module TencentCloud
 
         attr_accessor :TotalCount, :IMCdrs, :IMCdrList, :RequestId
         extend Gem::Deprecate
-        deprecate :IMCdrs, :none, 2025, 4
-        deprecate :IMCdrs=, :none, 2025, 4
+        deprecate :IMCdrs, :none, 2025, 6
+        deprecate :IMCdrs=, :none, 2025, 6
 
         def initialize(totalcount=nil, imcdrs=nil, imcdrlist=nil, requestid=nil)
           @TotalCount = totalcount
@@ -3840,8 +3860,8 @@ module TencentCloud
 
         attr_accessor :TotalCount, :TelCdrs, :TelCdrList, :RequestId
         extend Gem::Deprecate
-        deprecate :TelCdrs, :none, 2025, 4
-        deprecate :TelCdrs=, :none, 2025, 4
+        deprecate :TelCdrs, :none, 2025, 6
+        deprecate :TelCdrs=, :none, 2025, 6
 
         def initialize(totalcount=nil, telcdrs=nil, telcdrlist=nil, requestid=nil)
           @TotalCount = totalcount
@@ -4106,8 +4126,8 @@ module TencentCloud
 
         attr_accessor :TelCallOutCount, :TelCallInCount, :SeatUsedCount, :VoipCallInCount, :VOIPCallInCount, :AsrOfflineCount, :AsrRealtimeCount, :RequestId
         extend Gem::Deprecate
-        deprecate :VoipCallInCount, :none, 2025, 4
-        deprecate :VoipCallInCount=, :none, 2025, 4
+        deprecate :VoipCallInCount, :none, 2025, 6
+        deprecate :VoipCallInCount=, :none, 2025, 6
 
         def initialize(telcalloutcount=nil, telcallincount=nil, seatusedcount=nil, voipcallincount=nil, asrofflinecount=nil, asrrealtimecount=nil, requestid=nil)
           @TelCallOutCount = telcalloutcount
@@ -4155,8 +4175,8 @@ module TencentCloud
 
         attr_accessor :StartTimeStamp, :EndTimeStamp, :InstanceId, :Limit, :Offset, :SdkAppId, :PageSize, :PageNumber, :Phones, :SessionIds
         extend Gem::Deprecate
-        deprecate :InstanceId, :none, 2025, 4
-        deprecate :InstanceId=, :none, 2025, 4
+        deprecate :InstanceId, :none, 2025, 6
+        deprecate :InstanceId=, :none, 2025, 6
 
         def initialize(starttimestamp=nil, endtimestamp=nil, instanceid=nil, limit=nil, offset=nil, sdkappid=nil, pagesize=nil, pagenumber=nil, phones=nil, sessionids=nil)
           @StartTimeStamp = starttimestamp
@@ -4198,8 +4218,8 @@ module TencentCloud
 
         attr_accessor :TotalCount, :TelCdrs, :TelCdrList, :RequestId
         extend Gem::Deprecate
-        deprecate :TelCdrs, :none, 2025, 4
-        deprecate :TelCdrs=, :none, 2025, 4
+        deprecate :TelCdrs, :none, 2025, 6
+        deprecate :TelCdrs=, :none, 2025, 6
 
         def initialize(totalcount=nil, telcdrs=nil, telcdrlist=nil, requestid=nil)
           @TotalCount = totalcount
@@ -5691,10 +5711,10 @@ module TencentCloud
 
         attr_accessor :Name, :Mail, :Phone, :Nick, :StaffNumber, :RoleId, :RoleIdList, :RoleList, :SkillGroupList, :LastModifyTimestamp, :ExtensionNumber
         extend Gem::Deprecate
-        deprecate :RoleId, :none, 2025, 4
-        deprecate :RoleId=, :none, 2025, 4
-        deprecate :RoleIdList, :none, 2025, 4
-        deprecate :RoleIdList=, :none, 2025, 4
+        deprecate :RoleId, :none, 2025, 6
+        deprecate :RoleId=, :none, 2025, 6
+        deprecate :RoleIdList, :none, 2025, 6
+        deprecate :RoleIdList=, :none, 2025, 6
 
         def initialize(name=nil, mail=nil, phone=nil, nick=nil, staffnumber=nil, roleid=nil, roleidlist=nil, rolelist=nil, skillgrouplist=nil, lastmodifytimestamp=nil, extensionnumber=nil)
           @Name = name
@@ -5808,10 +5828,12 @@ module TencentCloud
         # @param LastStatusTimestamp: 最近一次状态时间戳
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LastStatusTimestamp: Integer
+        # @param ClientInfo: 客服登录的端信息
+        # @type ClientInfo: Array
 
-        attr_accessor :Email, :Status, :StatusExtra, :OnlineDuration, :FreeDuration, :BusyDuration, :NotReadyDuration, :RestDuration, :AfterCallWorkDuration, :Reason, :ReserveRest, :ReserveNotReady, :UseMobileAccept, :UseMobileCallOut, :LastOnlineTimestamp, :LastStatusTimestamp
+        attr_accessor :Email, :Status, :StatusExtra, :OnlineDuration, :FreeDuration, :BusyDuration, :NotReadyDuration, :RestDuration, :AfterCallWorkDuration, :Reason, :ReserveRest, :ReserveNotReady, :UseMobileAccept, :UseMobileCallOut, :LastOnlineTimestamp, :LastStatusTimestamp, :ClientInfo
 
-        def initialize(email=nil, status=nil, statusextra=nil, onlineduration=nil, freeduration=nil, busyduration=nil, notreadyduration=nil, restduration=nil, aftercallworkduration=nil, reason=nil, reserverest=nil, reservenotready=nil, usemobileaccept=nil, usemobilecallout=nil, lastonlinetimestamp=nil, laststatustimestamp=nil)
+        def initialize(email=nil, status=nil, statusextra=nil, onlineduration=nil, freeduration=nil, busyduration=nil, notreadyduration=nil, restduration=nil, aftercallworkduration=nil, reason=nil, reserverest=nil, reservenotready=nil, usemobileaccept=nil, usemobilecallout=nil, lastonlinetimestamp=nil, laststatustimestamp=nil, clientinfo=nil)
           @Email = email
           @Status = status
           @StatusExtra = statusextra
@@ -5828,6 +5850,7 @@ module TencentCloud
           @UseMobileCallOut = usemobilecallout
           @LastOnlineTimestamp = lastonlinetimestamp
           @LastStatusTimestamp = laststatustimestamp
+          @ClientInfo = clientinfo
         end
 
         def deserialize(params)
@@ -5850,6 +5873,14 @@ module TencentCloud
           @UseMobileCallOut = params['UseMobileCallOut']
           @LastOnlineTimestamp = params['LastOnlineTimestamp']
           @LastStatusTimestamp = params['LastStatusTimestamp']
+          unless params['ClientInfo'].nil?
+            @ClientInfo = []
+            params['ClientInfo'].each do |i|
+              client_tmp = Client.new
+              client_tmp.deserialize(i)
+              @ClientInfo << client_tmp
+            end
+          end
         end
       end
 
@@ -6082,8 +6113,8 @@ module TencentCloud
 
         attr_accessor :Caller, :Callee, :Time, :Direction, :CallType, :Duration, :RecordURL, :RecordId, :SeatUser, :EndStatus, :SkillGroup, :CallerLocation, :IVRDuration, :RingTimestamp, :AcceptTimestamp, :EndedTimestamp, :IVRKeyPressed, :HungUpSide, :ServeParticipants, :SkillGroupId, :EndStatusString, :StartTimestamp, :QueuedTimestamp, :PostIVRKeyPressed, :QueuedSkillGroupId, :SessionId, :ProtectedCaller, :ProtectedCallee, :Uui, :UUI, :IVRKeyPressedEx, :AsrUrl, :AsrStatus, :CustomRecordURL, :Remark, :QueuedSkillGroupName, :VoicemailRecordURL, :VoicemailAsrURL
         extend Gem::Deprecate
-        deprecate :Uui, :none, 2025, 4
-        deprecate :Uui=, :none, 2025, 4
+        deprecate :Uui, :none, 2025, 6
+        deprecate :Uui=, :none, 2025, 6
 
         def initialize(caller=nil, callee=nil, time=nil, direction=nil, calltype=nil, duration=nil, recordurl=nil, recordid=nil, seatuser=nil, endstatus=nil, skillgroup=nil, callerlocation=nil, ivrduration=nil, ringtimestamp=nil, accepttimestamp=nil, endedtimestamp=nil, ivrkeypressed=nil, hungupside=nil, serveparticipants=nil, skillgroupid=nil, endstatusstring=nil, starttimestamp=nil, queuedtimestamp=nil, postivrkeypressed=nil, queuedskillgroupid=nil, sessionid=nil, protectedcaller=nil, protectedcallee=nil, uui=nil, ivrkeypressedex=nil, asrurl=nil, asrstatus=nil, customrecordurl=nil, remark=nil, queuedskillgroupname=nil, voicemailrecordurl=nil, voicemailasrurl=nil)
           @Caller = caller

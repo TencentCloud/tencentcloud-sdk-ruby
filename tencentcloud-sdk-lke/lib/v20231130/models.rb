@@ -735,6 +735,33 @@ module TencentCloud
         end
       end
 
+      # 标签值引用的工作流详情
+      class AttributeLabelRefByWorkflow < TencentCloud::Common::AbstractModel
+        # @param AttributeLabelBizId: 标签值id
+        # @type AttributeLabelBizId: String
+        # @param WorkflowList: 标签值引用的工作流列表
+        # @type WorkflowList: Array
+
+        attr_accessor :AttributeLabelBizId, :WorkflowList
+
+        def initialize(attributelabelbizid=nil, workflowlist=nil)
+          @AttributeLabelBizId = attributelabelbizid
+          @WorkflowList = workflowlist
+        end
+
+        def deserialize(params)
+          @AttributeLabelBizId = params['AttributeLabelBizId']
+          unless params['WorkflowList'].nil?
+            @WorkflowList = []
+            params['WorkflowList'].each do |i|
+              workflowref_tmp = WorkflowRef.new
+              workflowref_tmp.deserialize(i)
+              @WorkflowList << workflowref_tmp
+            end
+          end
+        end
+      end
+
       # 应用基础配置
       class BaseConfig < TencentCloud::Common::AbstractModel
         # @param Name: 应用名称
@@ -984,18 +1011,30 @@ module TencentCloud
       class CheckAttributeLabelReferResponse < TencentCloud::Common::AbstractModel
         # @param IsRefer: 是否引用
         # @type IsRefer: Boolean
+        # @param List: 引用的工作流详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type List: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :IsRefer, :RequestId
+        attr_accessor :IsRefer, :List, :RequestId
 
-        def initialize(isrefer=nil, requestid=nil)
+        def initialize(isrefer=nil, list=nil, requestid=nil)
           @IsRefer = isrefer
+          @List = list
           @RequestId = requestid
         end
 
         def deserialize(params)
           @IsRefer = params['IsRefer']
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              attributelabelrefbyworkflow_tmp = AttributeLabelRefByWorkflow.new
+              attributelabelrefbyworkflow_tmp.deserialize(i)
+              @List << attributelabelrefbyworkflow_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -1201,12 +1240,15 @@ module TencentCloud
         # @type AppType: String
         # @param BaseConfig: 应用基础配置
         # @type BaseConfig: :class:`Tencentcloud::Lke.v20231130.models.BaseConfig`
+        # @param Pattern: 应用模式 standard:标准模式, agent: agent模式，single_workflow：单工作流模式
+        # @type Pattern: String
 
-        attr_accessor :AppType, :BaseConfig
+        attr_accessor :AppType, :BaseConfig, :Pattern
 
-        def initialize(apptype=nil, baseconfig=nil)
+        def initialize(apptype=nil, baseconfig=nil, pattern=nil)
           @AppType = apptype
           @BaseConfig = baseconfig
+          @Pattern = pattern
         end
 
         def deserialize(params)
@@ -1215,6 +1257,7 @@ module TencentCloud
             @BaseConfig = BaseConfig.new
             @BaseConfig.deserialize(params['BaseConfig'])
           end
+          @Pattern = params['Pattern']
         end
       end
 
@@ -1650,14 +1693,20 @@ module TencentCloud
         # @type VarDesc: String
         # @param VarType: 变量类型定义，支持类型如下：(STRING,INT,FLOAT,BOOL,OBJECT,ARRAY_STRING,ARRAY_INT,ARRAY_FLOAT,ARRAY_BOOL,ARRAY_OBJECT,FILE,DOCUMENT,IMAGE,AUDIO);传输过程是json字符串，标签中仅支持"STRING"类型使用
         # @type VarType: String
+        # @param VarDefaultValue: 自定义变量默认值
+        # @type VarDefaultValue: String
+        # @param VarDefaultFileName: 自定义变量文件默认名称
+        # @type VarDefaultFileName: String
 
-        attr_accessor :AppBizId, :VarName, :VarDesc, :VarType
+        attr_accessor :AppBizId, :VarName, :VarDesc, :VarType, :VarDefaultValue, :VarDefaultFileName
 
-        def initialize(appbizid=nil, varname=nil, vardesc=nil, vartype=nil)
+        def initialize(appbizid=nil, varname=nil, vardesc=nil, vartype=nil, vardefaultvalue=nil, vardefaultfilename=nil)
           @AppBizId = appbizid
           @VarName = varname
           @VarDesc = vardesc
           @VarType = vartype
+          @VarDefaultValue = vardefaultvalue
+          @VarDefaultFileName = vardefaultfilename
         end
 
         def deserialize(params)
@@ -1665,6 +1714,8 @@ module TencentCloud
           @VarName = params['VarName']
           @VarDesc = params['VarDesc']
           @VarType = params['VarType']
+          @VarDefaultValue = params['VarDefaultValue']
+          @VarDefaultFileName = params['VarDefaultFileName']
         end
       end
 
@@ -2187,10 +2238,12 @@ module TencentCloud
         # @type AppBizIds: Array
         # @param SubScenes: 筛选子场景(文档解析场景使用)
         # @type SubScenes: Array
+        # @param AppType: 应用类型(knowledge_qa应用管理， shared_knowlege 共享知识库)
+        # @type AppType: String
 
-        attr_accessor :UinAccount, :LoginUin, :LoginSubAccountUin, :SubBizType, :ModelName, :StartTime, :EndTime, :AppBizIds, :SubScenes
+        attr_accessor :UinAccount, :LoginUin, :LoginSubAccountUin, :SubBizType, :ModelName, :StartTime, :EndTime, :AppBizIds, :SubScenes, :AppType
 
-        def initialize(uinaccount=nil, loginuin=nil, loginsubaccountuin=nil, subbiztype=nil, modelname=nil, starttime=nil, endtime=nil, appbizids=nil, subscenes=nil)
+        def initialize(uinaccount=nil, loginuin=nil, loginsubaccountuin=nil, subbiztype=nil, modelname=nil, starttime=nil, endtime=nil, appbizids=nil, subscenes=nil, apptype=nil)
           @UinAccount = uinaccount
           @LoginUin = loginuin
           @LoginSubAccountUin = loginsubaccountuin
@@ -2200,6 +2253,7 @@ module TencentCloud
           @EndTime = endtime
           @AppBizIds = appbizids
           @SubScenes = subscenes
+          @AppType = apptype
         end
 
         def deserialize(params)
@@ -2212,6 +2266,7 @@ module TencentCloud
           @EndTime = params['EndTime']
           @AppBizIds = params['AppBizIds']
           @SubScenes = params['SubScenes']
+          @AppType = params['AppType']
         end
       end
 
@@ -2496,12 +2551,14 @@ module TencentCloud
         # @type AttrLabels: Array
         # @param CateBizId: 分类ID
         # @type CateBizId: String
+        # @param IsDisabled: 文档是否停用，false:未停用，true:已停用
+        # @type IsDisabled: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :DocBizId, :FileName, :FileType, :CosUrl, :UpdateTime, :Status, :StatusDesc, :Reason, :IsRefer, :QaNum, :IsDeleted, :Source, :SourceDesc, :IsAllowRestart, :IsDeletedQa, :IsCreatingQa, :IsAllowDelete, :IsAllowRefer, :IsCreatedQa, :DocCharSize, :IsAllowEdit, :AttrRange, :AttrLabels, :CateBizId, :RequestId
+        attr_accessor :DocBizId, :FileName, :FileType, :CosUrl, :UpdateTime, :Status, :StatusDesc, :Reason, :IsRefer, :QaNum, :IsDeleted, :Source, :SourceDesc, :IsAllowRestart, :IsDeletedQa, :IsCreatingQa, :IsAllowDelete, :IsAllowRefer, :IsCreatedQa, :DocCharSize, :IsAllowEdit, :AttrRange, :AttrLabels, :CateBizId, :IsDisabled, :RequestId
 
-        def initialize(docbizid=nil, filename=nil, filetype=nil, cosurl=nil, updatetime=nil, status=nil, statusdesc=nil, reason=nil, isrefer=nil, qanum=nil, isdeleted=nil, source=nil, sourcedesc=nil, isallowrestart=nil, isdeletedqa=nil, iscreatingqa=nil, isallowdelete=nil, isallowrefer=nil, iscreatedqa=nil, doccharsize=nil, isallowedit=nil, attrrange=nil, attrlabels=nil, catebizid=nil, requestid=nil)
+        def initialize(docbizid=nil, filename=nil, filetype=nil, cosurl=nil, updatetime=nil, status=nil, statusdesc=nil, reason=nil, isrefer=nil, qanum=nil, isdeleted=nil, source=nil, sourcedesc=nil, isallowrestart=nil, isdeletedqa=nil, iscreatingqa=nil, isallowdelete=nil, isallowrefer=nil, iscreatedqa=nil, doccharsize=nil, isallowedit=nil, attrrange=nil, attrlabels=nil, catebizid=nil, isdisabled=nil, requestid=nil)
           @DocBizId = docbizid
           @FileName = filename
           @FileType = filetype
@@ -2526,6 +2583,7 @@ module TencentCloud
           @AttrRange = attrrange
           @AttrLabels = attrlabels
           @CateBizId = catebizid
+          @IsDisabled = isdisabled
           @RequestId = requestid
         end
 
@@ -2561,6 +2619,7 @@ module TencentCloud
             end
           end
           @CateBizId = params['CateBizId']
+          @IsDisabled = params['IsDisabled']
           @RequestId = params['RequestId']
         end
       end
@@ -2731,12 +2790,14 @@ module TencentCloud
         # @type VideoAuditStatus: Integer
         # @param QuestionDesc: 问题描述
         # @type QuestionDesc: String
+        # @param IsDisabled: 问答是否停用，false:未停用，true已停用
+        # @type IsDisabled: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :QaBizId, :Question, :Answer, :CustomParam, :Source, :SourceDesc, :UpdateTime, :Status, :StatusDesc, :CateBizId, :IsAllowAccept, :IsAllowDelete, :IsAllowEdit, :DocBizId, :FileName, :FileType, :SegmentBizId, :PageContent, :Highlights, :OrgData, :AttrRange, :AttrLabels, :ExpireStart, :ExpireEnd, :SimilarQuestions, :QaAuditStatus, :PicAuditStatus, :VideoAuditStatus, :QuestionDesc, :RequestId
+        attr_accessor :QaBizId, :Question, :Answer, :CustomParam, :Source, :SourceDesc, :UpdateTime, :Status, :StatusDesc, :CateBizId, :IsAllowAccept, :IsAllowDelete, :IsAllowEdit, :DocBizId, :FileName, :FileType, :SegmentBizId, :PageContent, :Highlights, :OrgData, :AttrRange, :AttrLabels, :ExpireStart, :ExpireEnd, :SimilarQuestions, :QaAuditStatus, :PicAuditStatus, :VideoAuditStatus, :QuestionDesc, :IsDisabled, :RequestId
 
-        def initialize(qabizid=nil, question=nil, answer=nil, customparam=nil, source=nil, sourcedesc=nil, updatetime=nil, status=nil, statusdesc=nil, catebizid=nil, isallowaccept=nil, isallowdelete=nil, isallowedit=nil, docbizid=nil, filename=nil, filetype=nil, segmentbizid=nil, pagecontent=nil, highlights=nil, orgdata=nil, attrrange=nil, attrlabels=nil, expirestart=nil, expireend=nil, similarquestions=nil, qaauditstatus=nil, picauditstatus=nil, videoauditstatus=nil, questiondesc=nil, requestid=nil)
+        def initialize(qabizid=nil, question=nil, answer=nil, customparam=nil, source=nil, sourcedesc=nil, updatetime=nil, status=nil, statusdesc=nil, catebizid=nil, isallowaccept=nil, isallowdelete=nil, isallowedit=nil, docbizid=nil, filename=nil, filetype=nil, segmentbizid=nil, pagecontent=nil, highlights=nil, orgdata=nil, attrrange=nil, attrlabels=nil, expirestart=nil, expireend=nil, similarquestions=nil, qaauditstatus=nil, picauditstatus=nil, videoauditstatus=nil, questiondesc=nil, isdisabled=nil, requestid=nil)
           @QaBizId = qabizid
           @Question = question
           @Answer = answer
@@ -2766,6 +2827,7 @@ module TencentCloud
           @PicAuditStatus = picauditstatus
           @VideoAuditStatus = videoauditstatus
           @QuestionDesc = questiondesc
+          @IsDisabled = isdisabled
           @RequestId = requestid
         end
 
@@ -2820,6 +2882,7 @@ module TencentCloud
           @PicAuditStatus = params['PicAuditStatus']
           @VideoAuditStatus = params['VideoAuditStatus']
           @QuestionDesc = params['QuestionDesc']
+          @IsDisabled = params['IsDisabled']
           @RequestId = params['RequestId']
         end
       end
@@ -3236,16 +3299,19 @@ module TencentCloud
         # @type EndTime: String
         # @param AppBizIds: 应用id列表
         # @type AppBizIds: Array
+        # @param AppType: 应用类型(knowledge_qa应用管理， shared_knowlege 共享知识库)
+        # @type AppType: String
 
-        attr_accessor :UinAccount, :SubBizType, :ModelName, :StartTime, :EndTime, :AppBizIds
+        attr_accessor :UinAccount, :SubBizType, :ModelName, :StartTime, :EndTime, :AppBizIds, :AppType
 
-        def initialize(uinaccount=nil, subbiztype=nil, modelname=nil, starttime=nil, endtime=nil, appbizids=nil)
+        def initialize(uinaccount=nil, subbiztype=nil, modelname=nil, starttime=nil, endtime=nil, appbizids=nil, apptype=nil)
           @UinAccount = uinaccount
           @SubBizType = subbiztype
           @ModelName = modelname
           @StartTime = starttime
           @EndTime = endtime
           @AppBizIds = appbizids
+          @AppType = apptype
         end
 
         def deserialize(params)
@@ -3255,6 +3321,7 @@ module TencentCloud
           @StartTime = params['StartTime']
           @EndTime = params['EndTime']
           @AppBizIds = params['AppBizIds']
+          @AppType = params['AppType']
         end
       end
 
@@ -3327,10 +3394,12 @@ module TencentCloud
         # @type AppBizIds: Array
         # @param SubScenes: 筛选子场景(文档解析场景使用)
         # @type SubScenes: Array
+        # @param AppType: 应用类型(knowledge_qa应用管理， shared_knowlege 共享知识库)
+        # @type AppType: String
 
-        attr_accessor :UinAccount, :LoginUin, :LoginSubAccountUin, :SubBizType, :ModelName, :StartTime, :EndTime, :AppBizIds, :SubScenes
+        attr_accessor :UinAccount, :LoginUin, :LoginSubAccountUin, :SubBizType, :ModelName, :StartTime, :EndTime, :AppBizIds, :SubScenes, :AppType
 
-        def initialize(uinaccount=nil, loginuin=nil, loginsubaccountuin=nil, subbiztype=nil, modelname=nil, starttime=nil, endtime=nil, appbizids=nil, subscenes=nil)
+        def initialize(uinaccount=nil, loginuin=nil, loginsubaccountuin=nil, subbiztype=nil, modelname=nil, starttime=nil, endtime=nil, appbizids=nil, subscenes=nil, apptype=nil)
           @UinAccount = uinaccount
           @LoginUin = loginuin
           @LoginSubAccountUin = loginsubaccountuin
@@ -3340,6 +3409,7 @@ module TencentCloud
           @EndTime = endtime
           @AppBizIds = appbizids
           @SubScenes = subscenes
+          @AppType = apptype
         end
 
         def deserialize(params)
@@ -3352,6 +3422,7 @@ module TencentCloud
           @EndTime = params['EndTime']
           @AppBizIds = params['AppBizIds']
           @SubScenes = params['SubScenes']
+          @AppType = params['AppType']
         end
       end
 
@@ -3471,19 +3542,23 @@ module TencentCloud
         # @type Name: String
         # @param Avatar: 图像
         # @type Avatar: String
+        # @param PreviewUrl: 预览图
+        # @type PreviewUrl: String
 
-        attr_accessor :AssetKey, :Name, :Avatar
+        attr_accessor :AssetKey, :Name, :Avatar, :PreviewUrl
 
-        def initialize(assetkey=nil, name=nil, avatar=nil)
+        def initialize(assetkey=nil, name=nil, avatar=nil, previewurl=nil)
           @AssetKey = assetkey
           @Name = name
           @Avatar = avatar
+          @PreviewUrl = previewurl
         end
 
         def deserialize(params)
           @AssetKey = params['AssetKey']
           @Name = params['Name']
           @Avatar = params['Avatar']
+          @PreviewUrl = params['PreviewUrl']
         end
       end
 
@@ -5148,10 +5223,12 @@ module TencentCloud
         # @param AiCall: 配置语音通话参数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AiCall: :class:`Tencentcloud::Lke.v20231130.models.AICallConfig`
+        # @param ShareKnowledgeBases: 共享知识库关联配置
+        # @type ShareKnowledgeBases: Array
 
-        attr_accessor :Greeting, :RoleDescription, :Model, :Search, :Output, :Workflow, :SearchRange, :Pattern, :SearchStrategy, :SingleWorkflow, :Plugins, :ThoughtModel, :IntentAchievements, :ImageTextRetrieval, :AiCall
+        attr_accessor :Greeting, :RoleDescription, :Model, :Search, :Output, :Workflow, :SearchRange, :Pattern, :SearchStrategy, :SingleWorkflow, :Plugins, :ThoughtModel, :IntentAchievements, :ImageTextRetrieval, :AiCall, :ShareKnowledgeBases
 
-        def initialize(greeting=nil, roledescription=nil, model=nil, search=nil, output=nil, workflow=nil, searchrange=nil, pattern=nil, searchstrategy=nil, singleworkflow=nil, plugins=nil, thoughtmodel=nil, intentachievements=nil, imagetextretrieval=nil, aicall=nil)
+        def initialize(greeting=nil, roledescription=nil, model=nil, search=nil, output=nil, workflow=nil, searchrange=nil, pattern=nil, searchstrategy=nil, singleworkflow=nil, plugins=nil, thoughtmodel=nil, intentachievements=nil, imagetextretrieval=nil, aicall=nil, shareknowledgebases=nil)
           @Greeting = greeting
           @RoleDescription = roledescription
           @Model = model
@@ -5167,6 +5244,7 @@ module TencentCloud
           @IntentAchievements = intentachievements
           @ImageTextRetrieval = imagetextretrieval
           @AiCall = aicall
+          @ShareKnowledgeBases = shareknowledgebases
         end
 
         def deserialize(params)
@@ -5229,6 +5307,14 @@ module TencentCloud
           unless params['AiCall'].nil?
             @AiCall = AICallConfig.new
             @AiCall.deserialize(params['AiCall'])
+          end
+          unless params['ShareKnowledgeBases'].nil?
+            @ShareKnowledgeBases = []
+            params['ShareKnowledgeBases'].each do |i|
+              shareknowledgebase_tmp = ShareKnowledgeBase.new
+              shareknowledgebase_tmp.deserialize(i)
+              @ShareKnowledgeBases << shareknowledgebase_tmp
+            end
           end
         end
       end
@@ -5334,7 +5420,7 @@ module TencentCloud
 
       # 检索配置
       class KnowledgeQaSearch < TencentCloud::Common::AbstractModel
-        # @param Type: 知识来源 doc：文档，qa：问答  taskflow：业务流程，search：搜索增强
+        # @param Type: 知识来源 doc：文档，qa：问答  taskflow：业务流程，search：搜索增强，database:数据库
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: String
         # @param ReplyFlexibility: 问答-回复灵活度 1：已采纳答案直接回复 2：已采纳润色后回复
@@ -5890,10 +5976,12 @@ module TencentCloud
         # @type CustomerKnowledgeId: String
         # @param AttributeFlags: 文档的属性标记，0: 不做用户外部权限校验
         # @type AttributeFlags: Array
+        # @param IsDisabled: false:未停用，ture:已停用
+        # @type IsDisabled: Boolean
 
-        attr_accessor :DocBizId, :FileName, :NewName, :FileType, :CosUrl, :UpdateTime, :Status, :StatusDesc, :Reason, :IsRefer, :QaNum, :IsDeleted, :Source, :SourceDesc, :IsAllowRestart, :IsDeletedQa, :IsCreatingQa, :IsAllowDelete, :IsAllowRefer, :IsCreatedQa, :DocCharSize, :AttrRange, :AttrLabels, :IsAllowEdit, :ReferUrlType, :WebUrl, :ExpireStart, :ExpireEnd, :IsAllowRetry, :Processing, :CreateTime, :CateBizId, :CustomerKnowledgeId, :AttributeFlags
+        attr_accessor :DocBizId, :FileName, :NewName, :FileType, :CosUrl, :UpdateTime, :Status, :StatusDesc, :Reason, :IsRefer, :QaNum, :IsDeleted, :Source, :SourceDesc, :IsAllowRestart, :IsDeletedQa, :IsCreatingQa, :IsAllowDelete, :IsAllowRefer, :IsCreatedQa, :DocCharSize, :AttrRange, :AttrLabels, :IsAllowEdit, :ReferUrlType, :WebUrl, :ExpireStart, :ExpireEnd, :IsAllowRetry, :Processing, :CreateTime, :CateBizId, :CustomerKnowledgeId, :AttributeFlags, :IsDisabled
 
-        def initialize(docbizid=nil, filename=nil, newname=nil, filetype=nil, cosurl=nil, updatetime=nil, status=nil, statusdesc=nil, reason=nil, isrefer=nil, qanum=nil, isdeleted=nil, source=nil, sourcedesc=nil, isallowrestart=nil, isdeletedqa=nil, iscreatingqa=nil, isallowdelete=nil, isallowrefer=nil, iscreatedqa=nil, doccharsize=nil, attrrange=nil, attrlabels=nil, isallowedit=nil, referurltype=nil, weburl=nil, expirestart=nil, expireend=nil, isallowretry=nil, processing=nil, createtime=nil, catebizid=nil, customerknowledgeid=nil, attributeflags=nil)
+        def initialize(docbizid=nil, filename=nil, newname=nil, filetype=nil, cosurl=nil, updatetime=nil, status=nil, statusdesc=nil, reason=nil, isrefer=nil, qanum=nil, isdeleted=nil, source=nil, sourcedesc=nil, isallowrestart=nil, isdeletedqa=nil, iscreatingqa=nil, isallowdelete=nil, isallowrefer=nil, iscreatedqa=nil, doccharsize=nil, attrrange=nil, attrlabels=nil, isallowedit=nil, referurltype=nil, weburl=nil, expirestart=nil, expireend=nil, isallowretry=nil, processing=nil, createtime=nil, catebizid=nil, customerknowledgeid=nil, attributeflags=nil, isdisabled=nil)
           @DocBizId = docbizid
           @FileName = filename
           @NewName = newname
@@ -5928,6 +6016,7 @@ module TencentCloud
           @CateBizId = catebizid
           @CustomerKnowledgeId = customerknowledgeid
           @AttributeFlags = attributeflags
+          @IsDisabled = isdisabled
         end
 
         def deserialize(params)
@@ -5972,6 +6061,7 @@ module TencentCloud
           @CateBizId = params['CateBizId']
           @CustomerKnowledgeId = params['CustomerKnowledgeId']
           @AttributeFlags = params['AttributeFlags']
+          @IsDisabled = params['IsDisabled']
         end
       end
 
@@ -5984,6 +6074,8 @@ module TencentCloud
         # @param PageSize: 每页数量
         # @type PageSize: Integer
         # @param Query: 查询内容
+
+        # 输入特定标识 lke:system:untagged  将查询所有未关联标签的文档
         # @type Query: String
         # @param Status: 文档状态： 1-未生成 2-生成中 3-生成成功 4-生成失败 5-删除中 6-删除成功  7-审核中  8-审核失败 9-审核成功  10-待发布  11-发布中  12-已发布  13-学习中  14-学习失败  15-更新中  16-更新失败  17-解析中  18-解析失败  19-导入失败   20-已过期 21-超量失效 22-超量失效恢复
         # @type Status: Array
@@ -5995,10 +6087,12 @@ module TencentCloud
         # @type FileTypes: Array
         # @param FilterFlag: 文档列表筛选标识位
         # @type FilterFlag: Array
+        # @param ShowCurrCate: 是否只展示当前分类的数据 0不是，1是
+        # @type ShowCurrCate: Integer
 
-        attr_accessor :BotBizId, :PageNumber, :PageSize, :Query, :Status, :QueryType, :CateBizId, :FileTypes, :FilterFlag
+        attr_accessor :BotBizId, :PageNumber, :PageSize, :Query, :Status, :QueryType, :CateBizId, :FileTypes, :FilterFlag, :ShowCurrCate
 
-        def initialize(botbizid=nil, pagenumber=nil, pagesize=nil, query=nil, status=nil, querytype=nil, catebizid=nil, filetypes=nil, filterflag=nil)
+        def initialize(botbizid=nil, pagenumber=nil, pagesize=nil, query=nil, status=nil, querytype=nil, catebizid=nil, filetypes=nil, filterflag=nil, showcurrcate=nil)
           @BotBizId = botbizid
           @PageNumber = pagenumber
           @PageSize = pagesize
@@ -6008,6 +6102,7 @@ module TencentCloud
           @CateBizId = catebizid
           @FileTypes = filetypes
           @FilterFlag = filterflag
+          @ShowCurrCate = showcurrcate
         end
 
         def deserialize(params)
@@ -6027,6 +6122,7 @@ module TencentCloud
               @FilterFlag << docfilterflag_tmp
             end
           end
+          @ShowCurrCate = params['ShowCurrCate']
         end
       end
 
@@ -6172,6 +6268,8 @@ module TencentCloud
         # @param PageSize: 每页大小
         # @type PageSize: Integer
         # @param Query: 查询问题
+
+        # 输入特定标识 lke:system:untagged  将查询所有未关联标签的问答
         # @type Query: String
         # @param AcceptStatus: 校验状态(1未校验2采纳3不采纳)
         # @type AcceptStatus: Array
@@ -6189,10 +6287,12 @@ module TencentCloud
         # @type QaBizIds: Array
         # @param QueryType: 查询类型 filename 名称、 attribute 标签
         # @type QueryType: String
+        # @param ShowCurrCate: 是否只展示当前分类的数据 0不是，1是
+        # @type ShowCurrCate: Integer
 
-        attr_accessor :BotBizId, :PageNumber, :PageSize, :Query, :AcceptStatus, :ReleaseStatus, :DocBizId, :Source, :QueryAnswer, :CateBizId, :QaBizIds, :QueryType
+        attr_accessor :BotBizId, :PageNumber, :PageSize, :Query, :AcceptStatus, :ReleaseStatus, :DocBizId, :Source, :QueryAnswer, :CateBizId, :QaBizIds, :QueryType, :ShowCurrCate
 
-        def initialize(botbizid=nil, pagenumber=nil, pagesize=nil, query=nil, acceptstatus=nil, releasestatus=nil, docbizid=nil, source=nil, queryanswer=nil, catebizid=nil, qabizids=nil, querytype=nil)
+        def initialize(botbizid=nil, pagenumber=nil, pagesize=nil, query=nil, acceptstatus=nil, releasestatus=nil, docbizid=nil, source=nil, queryanswer=nil, catebizid=nil, qabizids=nil, querytype=nil, showcurrcate=nil)
           @BotBizId = botbizid
           @PageNumber = pagenumber
           @PageSize = pagesize
@@ -6205,6 +6305,7 @@ module TencentCloud
           @CateBizId = catebizid
           @QaBizIds = qabizids
           @QueryType = querytype
+          @ShowCurrCate = showcurrcate
         end
 
         def deserialize(params)
@@ -6220,6 +6321,7 @@ module TencentCloud
           @CateBizId = params['CateBizId']
           @QaBizIds = params['QaBizIds']
           @QueryType = params['QueryType']
+          @ShowCurrCate = params['ShowCurrCate']
         end
       end
 
@@ -6316,10 +6418,12 @@ module TencentCloud
         # @type SimilarQuestionNum: Integer
         # @param SimilarQuestionTips: 返回问答关联的相似问,联动搜索,仅展示一条
         # @type SimilarQuestionTips: String
+        # @param IsDisabled: 问答是否停用，false:未停用，ture:已停用
+        # @type IsDisabled: Boolean
 
-        attr_accessor :QaBizId, :Question, :Answer, :Source, :SourceDesc, :UpdateTime, :Status, :StatusDesc, :DocBizId, :CreateTime, :IsAllowEdit, :IsAllowDelete, :IsAllowAccept, :FileName, :FileType, :QaCharSize, :ExpireStart, :ExpireEnd, :AttrRange, :AttrLabels, :SimilarQuestionNum, :SimilarQuestionTips
+        attr_accessor :QaBizId, :Question, :Answer, :Source, :SourceDesc, :UpdateTime, :Status, :StatusDesc, :DocBizId, :CreateTime, :IsAllowEdit, :IsAllowDelete, :IsAllowAccept, :FileName, :FileType, :QaCharSize, :ExpireStart, :ExpireEnd, :AttrRange, :AttrLabels, :SimilarQuestionNum, :SimilarQuestionTips, :IsDisabled
 
-        def initialize(qabizid=nil, question=nil, answer=nil, source=nil, sourcedesc=nil, updatetime=nil, status=nil, statusdesc=nil, docbizid=nil, createtime=nil, isallowedit=nil, isallowdelete=nil, isallowaccept=nil, filename=nil, filetype=nil, qacharsize=nil, expirestart=nil, expireend=nil, attrrange=nil, attrlabels=nil, similarquestionnum=nil, similarquestiontips=nil)
+        def initialize(qabizid=nil, question=nil, answer=nil, source=nil, sourcedesc=nil, updatetime=nil, status=nil, statusdesc=nil, docbizid=nil, createtime=nil, isallowedit=nil, isallowdelete=nil, isallowaccept=nil, filename=nil, filetype=nil, qacharsize=nil, expirestart=nil, expireend=nil, attrrange=nil, attrlabels=nil, similarquestionnum=nil, similarquestiontips=nil, isdisabled=nil)
           @QaBizId = qabizid
           @Question = question
           @Answer = answer
@@ -6342,6 +6446,7 @@ module TencentCloud
           @AttrLabels = attrlabels
           @SimilarQuestionNum = similarquestionnum
           @SimilarQuestionTips = similarquestiontips
+          @IsDisabled = isdisabled
         end
 
         def deserialize(params)
@@ -6374,6 +6479,7 @@ module TencentCloud
           end
           @SimilarQuestionNum = params['SimilarQuestionNum']
           @SimilarQuestionTips = params['SimilarQuestionTips']
+          @IsDisabled = params['IsDisabled']
         end
       end
 
@@ -6990,10 +7096,12 @@ module TencentCloud
         # @type CallType: String
         # @param SubScenes: 筛选子场景
         # @type SubScenes: Array
+        # @param AppType: 应用类型(knowledge_qa应用管理， shared_knowlege 共享知识库)
+        # @type AppType: String
 
-        attr_accessor :ModelName, :StartTime, :EndTime, :PageNumber, :PageSize, :UinAccount, :AppBizIds, :CallType, :SubScenes
+        attr_accessor :ModelName, :StartTime, :EndTime, :PageNumber, :PageSize, :UinAccount, :AppBizIds, :CallType, :SubScenes, :AppType
 
-        def initialize(modelname=nil, starttime=nil, endtime=nil, pagenumber=nil, pagesize=nil, uinaccount=nil, appbizids=nil, calltype=nil, subscenes=nil)
+        def initialize(modelname=nil, starttime=nil, endtime=nil, pagenumber=nil, pagesize=nil, uinaccount=nil, appbizids=nil, calltype=nil, subscenes=nil, apptype=nil)
           @ModelName = modelname
           @StartTime = starttime
           @EndTime = endtime
@@ -7003,6 +7111,7 @@ module TencentCloud
           @AppBizIds = appbizids
           @CallType = calltype
           @SubScenes = subscenes
+          @AppType = apptype
         end
 
         def deserialize(params)
@@ -7015,6 +7124,7 @@ module TencentCloud
           @AppBizIds = params['AppBizIds']
           @CallType = params['CallType']
           @SubScenes = params['SubScenes']
+          @AppType = params['AppType']
         end
       end
 
@@ -7122,10 +7232,12 @@ module TencentCloud
         # @type IsExclusive: Boolean
         # @param SupportAiCallStatus: 模型支持智能通话效果
         # @type SupportAiCallStatus: Integer
+        # @param Concurrency: 专属并发数
+        # @type Concurrency: Integer
 
-        attr_accessor :ModelName, :ModelDesc, :AliasName, :ResourceStatus, :PromptWordsLimit, :TopP, :Temperature, :MaxTokens, :Source, :Icon, :IsFree, :InputLenLimit, :SupportWorkflowStatus, :ModelCategory, :IsDefault, :RoleLenLimit, :IsExclusive, :SupportAiCallStatus
+        attr_accessor :ModelName, :ModelDesc, :AliasName, :ResourceStatus, :PromptWordsLimit, :TopP, :Temperature, :MaxTokens, :Source, :Icon, :IsFree, :InputLenLimit, :SupportWorkflowStatus, :ModelCategory, :IsDefault, :RoleLenLimit, :IsExclusive, :SupportAiCallStatus, :Concurrency
 
-        def initialize(modelname=nil, modeldesc=nil, aliasname=nil, resourcestatus=nil, promptwordslimit=nil, topp=nil, temperature=nil, maxtokens=nil, source=nil, icon=nil, isfree=nil, inputlenlimit=nil, supportworkflowstatus=nil, modelcategory=nil, isdefault=nil, rolelenlimit=nil, isexclusive=nil, supportaicallstatus=nil)
+        def initialize(modelname=nil, modeldesc=nil, aliasname=nil, resourcestatus=nil, promptwordslimit=nil, topp=nil, temperature=nil, maxtokens=nil, source=nil, icon=nil, isfree=nil, inputlenlimit=nil, supportworkflowstatus=nil, modelcategory=nil, isdefault=nil, rolelenlimit=nil, isexclusive=nil, supportaicallstatus=nil, concurrency=nil)
           @ModelName = modelname
           @ModelDesc = modeldesc
           @AliasName = aliasname
@@ -7144,6 +7256,7 @@ module TencentCloud
           @RoleLenLimit = rolelenlimit
           @IsExclusive = isexclusive
           @SupportAiCallStatus = supportaicallstatus
+          @Concurrency = concurrency
         end
 
         def deserialize(params)
@@ -7174,6 +7287,7 @@ module TencentCloud
           @RoleLenLimit = params['RoleLenLimit']
           @IsExclusive = params['IsExclusive']
           @SupportAiCallStatus = params['SupportAiCallStatus']
+          @Concurrency = params['Concurrency']
         end
       end
 
@@ -8688,10 +8802,12 @@ module TencentCloud
         # @param DocBizId: 文档ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DocBizId: String
+        # @param KnowledgeBizId: 知识库ID
+        # @type KnowledgeBizId: String
 
-        attr_accessor :ReferBizId, :DocType, :DocName, :PageContent, :Question, :Answer, :Confidence, :Mark, :Highlights, :OrgData, :PageInfos, :SheetInfos, :DocBizId
+        attr_accessor :ReferBizId, :DocType, :DocName, :PageContent, :Question, :Answer, :Confidence, :Mark, :Highlights, :OrgData, :PageInfos, :SheetInfos, :DocBizId, :KnowledgeBizId
 
-        def initialize(referbizid=nil, doctype=nil, docname=nil, pagecontent=nil, question=nil, answer=nil, confidence=nil, mark=nil, highlights=nil, orgdata=nil, pageinfos=nil, sheetinfos=nil, docbizid=nil)
+        def initialize(referbizid=nil, doctype=nil, docname=nil, pagecontent=nil, question=nil, answer=nil, confidence=nil, mark=nil, highlights=nil, orgdata=nil, pageinfos=nil, sheetinfos=nil, docbizid=nil, knowledgebizid=nil)
           @ReferBizId = referbizid
           @DocType = doctype
           @DocName = docname
@@ -8705,6 +8821,7 @@ module TencentCloud
           @PageInfos = pageinfos
           @SheetInfos = sheetinfos
           @DocBizId = docbizid
+          @KnowledgeBizId = knowledgebizid
         end
 
         def deserialize(params)
@@ -8728,6 +8845,7 @@ module TencentCloud
           @PageInfos = params['PageInfos']
           @SheetInfos = params['SheetInfos']
           @DocBizId = params['DocBizId']
+          @KnowledgeBizId = params['KnowledgeBizId']
         end
       end
 
@@ -9422,6 +9540,29 @@ module TencentCloud
         end
       end
 
+      # 共享知识库配置
+      class ShareKnowledgeBase < TencentCloud::Common::AbstractModel
+        # @param KnowledgeBizId: 共享知识库ID
+        # @type KnowledgeBizId: String
+        # @param SearchRange: 检索范围
+        # @type SearchRange: :class:`Tencentcloud::Lke.v20231130.models.SearchRange`
+
+        attr_accessor :KnowledgeBizId, :SearchRange
+
+        def initialize(knowledgebizid=nil, searchrange=nil)
+          @KnowledgeBizId = knowledgebizid
+          @SearchRange = searchrange
+        end
+
+        def deserialize(params)
+          @KnowledgeBizId = params['KnowledgeBizId']
+          unless params['SearchRange'].nil?
+            @SearchRange = SearchRange.new
+            @SearchRange.deserialize(params['SearchRange'])
+          end
+        end
+      end
+
       # 相似问信息
       class SimilarQuestion < TencentCloud::Common::AbstractModel
         # @param SimBizId: 相似问ID
@@ -9681,14 +9822,20 @@ module TencentCloud
         # @type VarDesc: String
         # @param VarType: 变量类型 (STRING,INT,FLOAT,BOOL,OBJECT,ARRAY_STRING,ARRAY_INT,ARRAY_FLOAT,ARRAY_BOOL,ARRAY_OBJECT,FILE,DOCUMENT,IMAGE,AUDIO)
         # @type VarType: String
+        # @param VarDefaultValue: 自定义变量默认值
+        # @type VarDefaultValue: String
+        # @param VarDefaultFileName: 自定义变量文件默认名称
+        # @type VarDefaultFileName: String
 
-        attr_accessor :VarId, :VarName, :VarDesc, :VarType
+        attr_accessor :VarId, :VarName, :VarDesc, :VarType, :VarDefaultValue, :VarDefaultFileName
 
-        def initialize(varid=nil, varname=nil, vardesc=nil, vartype=nil)
+        def initialize(varid=nil, varname=nil, vardesc=nil, vartype=nil, vardefaultvalue=nil, vardefaultfilename=nil)
           @VarId = varid
           @VarName = varname
           @VarDesc = vardesc
           @VarType = vartype
+          @VarDefaultValue = vardefaultvalue
+          @VarDefaultFileName = vardefaultfilename
         end
 
         def deserialize(params)
@@ -9696,6 +9843,8 @@ module TencentCloud
           @VarName = params['VarName']
           @VarDesc = params['VarDesc']
           @VarType = params['VarType']
+          @VarDefaultValue = params['VarDefaultValue']
+          @VarDefaultFileName = params['VarDefaultFileName']
         end
       end
 
@@ -10260,6 +10409,38 @@ module TencentCloud
           @OptionCards = params['OptionCards']
           @Outputs = params['Outputs']
           @WorkflowReleaseTime = params['WorkflowReleaseTime']
+        end
+      end
+
+      # WorkflowRef详情
+      class WorkflowRef < TencentCloud::Common::AbstractModel
+        # @param WorkflowId: 任务流ID
+        # @type WorkflowId: String
+        # @param WorkflowName: 任务流名称
+        # @type WorkflowName: String
+        # @param WorkflowDesc: 任务流描述
+        # @type WorkflowDesc: String
+        # @param AppBizId: 应用ID
+        # @type AppBizId: String
+        # @param UpdateTime: 更新时间
+        # @type UpdateTime: Integer
+
+        attr_accessor :WorkflowId, :WorkflowName, :WorkflowDesc, :AppBizId, :UpdateTime
+
+        def initialize(workflowid=nil, workflowname=nil, workflowdesc=nil, appbizid=nil, updatetime=nil)
+          @WorkflowId = workflowid
+          @WorkflowName = workflowname
+          @WorkflowDesc = workflowdesc
+          @AppBizId = appbizid
+          @UpdateTime = updatetime
+        end
+
+        def deserialize(params)
+          @WorkflowId = params['WorkflowId']
+          @WorkflowName = params['WorkflowName']
+          @WorkflowDesc = params['WorkflowDesc']
+          @AppBizId = params['AppBizId']
+          @UpdateTime = params['UpdateTime']
         end
       end
 

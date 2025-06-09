@@ -424,6 +424,50 @@ module TencentCloud
         end
       end
 
+      # DeleteClusterMachines请求参数结构体
+      class DeleteClusterMachinesRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群 ID
+        # @type ClusterId: String
+        # @param MachineNames: 节点名列表
+        # @type MachineNames: Array
+        # @param EnableScaleDown: 删除节点时是否缩容节点池，true为缩容
+        # @type EnableScaleDown: Boolean
+        # @param InstanceDeleteMode: 集群实例删除时的策略：terminate（销毁实例，仅支持按量计费云主机实例）retain（仅移除，保留实例）
+        # @type InstanceDeleteMode: String
+
+        attr_accessor :ClusterId, :MachineNames, :EnableScaleDown, :InstanceDeleteMode
+
+        def initialize(clusterid=nil, machinenames=nil, enablescaledown=nil, instancedeletemode=nil)
+          @ClusterId = clusterid
+          @MachineNames = machinenames
+          @EnableScaleDown = enablescaledown
+          @InstanceDeleteMode = instancedeletemode
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @MachineNames = params['MachineNames']
+          @EnableScaleDown = params['EnableScaleDown']
+          @InstanceDeleteMode = params['InstanceDeleteMode']
+        end
+      end
+
+      # DeleteClusterMachines返回参数结构体
+      class DeleteClusterMachinesResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteHealthCheckPolicy请求参数结构体
       class DeleteHealthCheckPolicyRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群 ID

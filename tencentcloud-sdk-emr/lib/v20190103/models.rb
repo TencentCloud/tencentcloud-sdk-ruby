@@ -5511,6 +5511,10 @@ module TencentCloud
         # <li>CLOUD_HSSD：表示增强型SSD云硬盘。</li>
         # <li>CLOUD_THROUGHPUT：表示吞吐型云硬盘。</li>
         # <li>CLOUD_TSSD：表示极速型SSD云硬盘。</li>
+        # <li>CLOUD_BIGDATA：表示大数据型云硬盘。</li>
+        # <li>CLOUD_HIGHIO：表示高IO型云硬盘。</li>
+        # <li>CLOUD_BSSD：表示通用型SSD云硬盘。</li>
+        # <li>REMOTE_SSD：表示远端SSD盘。</li>
         # @type DiskType: String
         # @param DiskSize: 数据容量，单位为GB
         # @type DiskSize: Integer
