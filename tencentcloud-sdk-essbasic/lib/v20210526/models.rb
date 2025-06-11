@@ -1296,10 +1296,12 @@ module TencentCloud
         # @param CanBatchReject: 是否允许此链接中签署方批量拒签。 <ul><li>false (默认): 不允许批量拒签</li> <li>true : 允许批量拒签。</li></ul>
         # 注：`1. 合同组暂不支持批量拒签功能。2. 如果是链接直接跳转至详情页（JumpToDetail参数为true），也不支持批量拒签功能`
         # @type CanBatchReject: Boolean
+        # @param CanSkipReadFlow: 是否允许此链接中签署方批量确认已读文件。 <ul><li>false (默认): 批量确认已读文件。</li> <li>true : 允许批量确认已读文件。</li></ul>注：`1. 此功能为白名单功能，使用前请联系对应客户经理进行开通。2. 使用此功能时，FlowIds参数必传。3. 对于企业签署方，如果有签名控件，则会使用用户首次选择的签名类型签署所有含有签名控件的合同。`
+        # @type CanSkipReadFlow: Boolean
 
-        attr_accessor :Agent, :Name, :Mobile, :Operator, :IdCardType, :IdCardNumber, :NotifyType, :FlowIds, :OrganizationName, :SignatureTypes, :JumpToDetail, :FlowBatchUrlInfo, :OpenId, :OrganizationOpenId, :AutoJumpBack, :UrlUseEnv, :CanBatchReject
+        attr_accessor :Agent, :Name, :Mobile, :Operator, :IdCardType, :IdCardNumber, :NotifyType, :FlowIds, :OrganizationName, :SignatureTypes, :JumpToDetail, :FlowBatchUrlInfo, :OpenId, :OrganizationOpenId, :AutoJumpBack, :UrlUseEnv, :CanBatchReject, :CanSkipReadFlow
 
-        def initialize(agent=nil, name=nil, mobile=nil, operator=nil, idcardtype=nil, idcardnumber=nil, notifytype=nil, flowids=nil, organizationname=nil, signaturetypes=nil, jumptodetail=nil, flowbatchurlinfo=nil, openid=nil, organizationopenid=nil, autojumpback=nil, urluseenv=nil, canbatchreject=nil)
+        def initialize(agent=nil, name=nil, mobile=nil, operator=nil, idcardtype=nil, idcardnumber=nil, notifytype=nil, flowids=nil, organizationname=nil, signaturetypes=nil, jumptodetail=nil, flowbatchurlinfo=nil, openid=nil, organizationopenid=nil, autojumpback=nil, urluseenv=nil, canbatchreject=nil, canskipreadflow=nil)
           @Agent = agent
           @Name = name
           @Mobile = mobile
@@ -1317,6 +1319,7 @@ module TencentCloud
           @AutoJumpBack = autojumpback
           @UrlUseEnv = urluseenv
           @CanBatchReject = canbatchreject
+          @CanSkipReadFlow = canskipreadflow
         end
 
         def deserialize(params)
@@ -1346,6 +1349,7 @@ module TencentCloud
           @AutoJumpBack = params['AutoJumpBack']
           @UrlUseEnv = params['UrlUseEnv']
           @CanBatchReject = params['CanBatchReject']
+          @CanSkipReadFlow = params['CanSkipReadFlow']
         end
       end
 
@@ -2852,7 +2856,7 @@ module TencentCloud
         # @type ResourceId: String
         # @param FlowOption: 合同流程配置信息，用于配置发起合同时定制化如是否允许修改，某些按钮的隐藏等逻辑
         # @type FlowOption: :class:`Tencentcloud::Essbasic.v20210526.models.CreateFlowOption`
-        # @param FlowApproverList: 合同签署人信息
+        # @param FlowApproverList: 已废弃，请用FlowInfo.Approvers
         # @type FlowApproverList: Array
         # @param FlowId: 合同Id：用于通过一个已发起的合同快速生成一个发起流程web链接
         # 注: `该参数必须是一个待发起审核的合同id，并且还未审核通过`
@@ -2871,6 +2875,8 @@ module TencentCloud
 
         attr_accessor :ResourceType, :FlowInfo, :Agent, :ResourceId, :FlowOption, :FlowApproverList, :FlowId, :NeedPreview, :Organization, :Operator, :SignComponentConfig
         extend Gem::Deprecate
+        deprecate :FlowApproverList, :none, 2025, 6
+        deprecate :FlowApproverList=, :none, 2025, 6
         deprecate :NeedPreview, :none, 2025, 6
         deprecate :NeedPreview=, :none, 2025, 6
         deprecate :Organization, :none, 2025, 6

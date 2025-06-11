@@ -1088,6 +1088,42 @@ module TencentCloud
         end
       end
 
+      # ResizeInstanceDisk请求参数结构体
+      class ResizeInstanceDiskRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 需要扩容云盘的HAI实例ID
+        # @type InstanceId: String
+        # @param DiskSize: 扩容云硬盘大小，单位为GB，必须大于当前云硬盘大小。
+        # @type DiskSize: Integer
+
+        attr_accessor :InstanceId, :DiskSize
+
+        def initialize(instanceid=nil, disksize=nil)
+          @InstanceId = instanceid
+          @DiskSize = disksize
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @DiskSize = params['DiskSize']
+        end
+      end
+
+      # ResizeInstanceDisk返回参数结构体
+      class ResizeInstanceDiskResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # RunInstances请求参数结构体
       class RunInstancesRequest < TencentCloud::Common::AbstractModel
         # @param ApplicationId: 应用ID通过调用接口[DescribeApplications](https://cloud.tencent.com/document/api/1721/101609)获取。

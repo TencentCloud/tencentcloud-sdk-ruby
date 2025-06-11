@@ -1927,16 +1927,19 @@ module TencentCloud
         # VipIsp含义：CMCC | CTCC | CUCC，分别对应 移动 | 电信 | 联通，如果不指定本参数，则默认使用BGP。可通过 DescribeSingleIsp 接口查询一个地域所支持的Isp。如果指定运营商，则网络计费式只能使用按带宽包计费BANDWIDTH_PACKAGE。
         # BandwidthPackageId含义：带宽包ID，指定此参数时，网络计费方式InternetAccessible.InternetChargeType只支持按带宽包计费BANDWIDTH_PACKAGE。
         # @type ExtensiveParameters: String
+        # @param ExistedLoadBalancerId: 使用已有clb开启内网或外网访问
+        # @type ExistedLoadBalancerId: String
 
-        attr_accessor :ClusterId, :SubnetId, :IsExtranet, :Domain, :SecurityGroup, :ExtensiveParameters
+        attr_accessor :ClusterId, :SubnetId, :IsExtranet, :Domain, :SecurityGroup, :ExtensiveParameters, :ExistedLoadBalancerId
 
-        def initialize(clusterid=nil, subnetid=nil, isextranet=nil, domain=nil, securitygroup=nil, extensiveparameters=nil)
+        def initialize(clusterid=nil, subnetid=nil, isextranet=nil, domain=nil, securitygroup=nil, extensiveparameters=nil, existedloadbalancerid=nil)
           @ClusterId = clusterid
           @SubnetId = subnetid
           @IsExtranet = isextranet
           @Domain = domain
           @SecurityGroup = securitygroup
           @ExtensiveParameters = extensiveparameters
+          @ExistedLoadBalancerId = existedloadbalancerid
         end
 
         def deserialize(params)
@@ -1946,6 +1949,7 @@ module TencentCloud
           @Domain = params['Domain']
           @SecurityGroup = params['SecurityGroup']
           @ExtensiveParameters = params['ExtensiveParameters']
+          @ExistedLoadBalancerId = params['ExistedLoadBalancerId']
         end
       end
 
@@ -17995,15 +17999,27 @@ module TencentCloud
         # @type Memory: Float
         # @param Gpu: 节点上的总 GPU 卡数
         # @type Gpu: Float
+        # @param QuotaType: 节点资源的配额类型，exact表示精确配额，fuzzy 表示模糊配额。
+        # @type QuotaType: String
+        # @param ChargeType: 配额的计费类型，PREPAID表示包月，POSTPAID_BY_HOUR表示按量。
+        # @type ChargeType: String
+        # @param ResourceType: QuotaType为 exact 时，此字段有效，表示精确配额的资源类型。
+        # @type ResourceType: String
+        # @param DisasterRecoverGroupId: 置放群组 ID
+        # @type DisasterRecoverGroupId: String
 
-        attr_accessor :NodeName, :Num, :Cpu, :Memory, :Gpu
+        attr_accessor :NodeName, :Num, :Cpu, :Memory, :Gpu, :QuotaType, :ChargeType, :ResourceType, :DisasterRecoverGroupId
 
-        def initialize(nodename=nil, num=nil, cpu=nil, memory=nil, gpu=nil)
+        def initialize(nodename=nil, num=nil, cpu=nil, memory=nil, gpu=nil, quotatype=nil, chargetype=nil, resourcetype=nil, disasterrecovergroupid=nil)
           @NodeName = nodename
           @Num = num
           @Cpu = cpu
           @Memory = memory
           @Gpu = gpu
+          @QuotaType = quotatype
+          @ChargeType = chargetype
+          @ResourceType = resourcetype
+          @DisasterRecoverGroupId = disasterrecovergroupid
         end
 
         def deserialize(params)
@@ -18012,6 +18028,10 @@ module TencentCloud
           @Cpu = params['Cpu']
           @Memory = params['Memory']
           @Gpu = params['Gpu']
+          @QuotaType = params['QuotaType']
+          @ChargeType = params['ChargeType']
+          @ResourceType = params['ResourceType']
+          @DisasterRecoverGroupId = params['DisasterRecoverGroupId']
         end
       end
 

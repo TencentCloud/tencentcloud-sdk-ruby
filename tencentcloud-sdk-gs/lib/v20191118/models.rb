@@ -1864,6 +1864,8 @@ module TencentCloud
         # @param Filters: 字段过滤器。Filter 的 Name 有以下值：
         # Name：实例名称
         # UserId：实例用户ID
+        # HostSerialNumber：宿主机序列号
+        # HostServerSerialNumber：机箱序列号
         # @type Filters: Array
 
         attr_accessor :Offset, :Limit, :AndroidInstanceIds, :AndroidInstanceRegion, :AndroidInstanceZone, :AndroidInstanceGroupIds, :LabelSelector, :Filters

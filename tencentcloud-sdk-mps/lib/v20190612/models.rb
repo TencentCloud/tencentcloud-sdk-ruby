@@ -2071,8 +2071,8 @@ module TencentCloud
 
         attr_accessor :SegmentSet, :SubtitlePath, :OutputStorage
         extend Gem::Deprecate
-        deprecate :OutputStorage, :none, 2025, 5
-        deprecate :OutputStorage=, :none, 2025, 5
+        deprecate :OutputStorage, :none, 2025, 6
+        deprecate :OutputStorage=, :none, 2025, 6
 
         def initialize(segmentset=nil, subtitlepath=nil, outputstorage=nil)
           @SegmentSet = segmentset
@@ -14683,12 +14683,18 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ImageAreaBoxes: Array
+        # @param DetectTypes: 图片框选区域类型，可选值：
+        # <li>logo：图标；</li>
+        # <li>text：文字；</li>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DetectTypes: Array
 
-        attr_accessor :Switch, :ImageAreaBoxes
+        attr_accessor :Switch, :ImageAreaBoxes, :DetectTypes
 
-        def initialize(switch=nil, imageareaboxes=nil)
+        def initialize(switch=nil, imageareaboxes=nil, detecttypes=nil)
           @Switch = switch
           @ImageAreaBoxes = imageareaboxes
+          @DetectTypes = detecttypes
         end
 
         def deserialize(params)
@@ -14701,6 +14707,7 @@ module TencentCloud
               @ImageAreaBoxes << imageareaboxinfo_tmp
             end
           end
+          @DetectTypes = params['DetectTypes']
         end
       end
 
@@ -15477,10 +15484,10 @@ module TencentCloud
 
         attr_accessor :QualityControlResults, :DiagnoseResults, :QualityControlResultSet, :DiagnoseResultSet
         extend Gem::Deprecate
-        deprecate :QualityControlResults, :none, 2025, 5
-        deprecate :QualityControlResults=, :none, 2025, 5
-        deprecate :DiagnoseResults, :none, 2025, 5
-        deprecate :DiagnoseResults=, :none, 2025, 5
+        deprecate :QualityControlResults, :none, 2025, 6
+        deprecate :QualityControlResults=, :none, 2025, 6
+        deprecate :DiagnoseResults, :none, 2025, 6
+        deprecate :DiagnoseResults=, :none, 2025, 6
 
         def initialize(qualitycontrolresults=nil, diagnoseresults=nil, qualitycontrolresultset=nil, diagnoseresultset=nil)
           @QualityControlResults = qualitycontrolresults

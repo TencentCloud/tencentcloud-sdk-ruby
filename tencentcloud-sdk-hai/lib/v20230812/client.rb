@@ -293,6 +293,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（ResizeInstanceDisk）用于对指定HAI实例进行扩容云硬盘操作。
+
+        # @param request: Request instance for ResizeInstanceDisk.
+        # @type request: :class:`Tencentcloud::hai::V20230812::ResizeInstanceDiskRequest`
+        # @rtype: :class:`Tencentcloud::hai::V20230812::ResizeInstanceDiskResponse`
+        def ResizeInstanceDisk(request)
+          body = send_request('ResizeInstanceDisk', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ResizeInstanceDiskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口 (RunInstances) 用于创建一个或多个指定配置的实例。
 
         # @param request: Request instance for RunInstances.

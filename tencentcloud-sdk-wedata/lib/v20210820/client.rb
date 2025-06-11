@@ -1349,6 +1349,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 删除任务连接
+
+        # @param request: Request instance for DeleteLink.
+        # @type request: :class:`Tencentcloud::wedata::V20210820::DeleteLinkRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20210820::DeleteLinkResponse`
+        def DeleteLink(request)
+          body = send_request('DeleteLink', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteLinkResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 删除任务
 
         # @param request: Request instance for DeleteOfflineTask.
@@ -1421,7 +1445,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 资源管理删除资源
+        # 资源管理删除资源。本接口已废弃，请使用接口DeleteResourceFile。
 
         # @param request: Request instance for DeleteResource.
         # @type request: :class:`Tencentcloud::wedata::V20210820::DeleteResourceRequest`
@@ -3079,6 +3103,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询任务父依赖
+
+        # @param request: Request instance for DescribeParentTask.
+        # @type request: :class:`Tencentcloud::wedata::V20210820::DescribeParentTaskRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20210820::DescribeParentTaskResponse`
+        def DescribeParentTask(request)
+          body = send_request('DescribeParentTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeParentTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取待提交任务预提交校验信息（注意：工作流编号或者任务编号列表，必须填一项）
 
         # @param request: Request instance for DescribePendingSubmitTaskList.
@@ -3281,6 +3329,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeRealViewSchemaPageResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 根据任务ID分页查询任务绑定监听的事件
+
+        # @param request: Request instance for DescribeRelatedTasksByTaskId.
+        # @type request: :class:`Tencentcloud::wedata::V20210820::DescribeRelatedTasksByTaskIdRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20210820::DescribeRelatedTasksByTaskIdResponse`
+        def DescribeRelatedTasksByTaskId(request)
+          body = send_request('DescribeRelatedTasksByTaskId', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeRelatedTasksByTaskIdResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -4310,6 +4382,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询任务具体详情【新】
+
+        # @param request: Request instance for DescribeTaskDetailDs.
+        # @type request: :class:`Tencentcloud::wedata::V20210820::DescribeTaskDetailDsRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20210820::DescribeTaskDetailDsResponse`
+        def DescribeTaskDetailDs(request)
+          body = send_request('DescribeTaskDetailDs', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeTaskDetailDsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 通过任务查询表的血缘关系
 
         # @param request: Request instance for DescribeTaskLineage.
@@ -4584,6 +4680,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeTrendStatResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 根据文件夹查询工作流
+
+        # @param request: Request instance for DescribeWorkflowByFordIds.
+        # @type request: :class:`Tencentcloud::wedata::V20210820::DescribeWorkflowByFordIdsRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20210820::DescribeWorkflowByFordIdsResponse`
+        def DescribeWorkflowByFordIds(request)
+          body = send_request('DescribeWorkflowByFordIds', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeWorkflowByFordIdsResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -5535,7 +5655,7 @@ module TencentCloud
         end
 
         # <p style="color:red;">[注意：该版本只满足广州区部分白名单客户使用]</p>
-        # 更新任务
+        # 更新任务。本接口已废弃，请使用接口ModifyTaskInfoDs。
 
         # @param request: Request instance for ModifyTaskInfo.
         # @type request: :class:`Tencentcloud::wedata::V20210820::ModifyTaskInfoRequest`
@@ -5753,6 +5873,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 注册事件监听者
+
+        # @param request: Request instance for RegisterDsEventListener.
+        # @type request: :class:`Tencentcloud::wedata::V20210820::RegisterDsEventListenerRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20210820::RegisterDsEventListenerResponse`
+        def RegisterDsEventListener(request)
+          body = send_request('RegisterDsEventListener', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = RegisterDsEventListenerResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # <p style="color:red;">[注意：该版本只满足广州区部分白名单客户使用]</p>
         # 注册事件。本接口已废弃，请使用接口RegisterDsEvent。
 
@@ -5779,7 +5923,7 @@ module TencentCloud
         end
 
         # <p style="color:red;">[注意：该版本只满足广州区部分白名单客户使用]</p>
-        # 注册事件监听器
+        # 注册事件监听器。本接口已废弃，请使用接口RegisterDsEventListener。
 
         # @param request: Request instance for RegisterEventListener.
         # @type request: :class:`Tencentcloud::wedata::V20210820::RegisterEventListenerRequest`

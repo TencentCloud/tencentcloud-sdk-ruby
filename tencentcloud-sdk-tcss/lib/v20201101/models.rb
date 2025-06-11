@@ -24224,6 +24224,65 @@ module TencentCloud
         end
       end
 
+      # ModifyRiskDnsEventStatus请求参数结构体
+      class ModifyRiskDnsEventStatusRequest < TencentCloud::Common::AbstractModel
+        # @param EventIDSet: 恶意请求事件ID数组。加白时必需，否则Filters和EventIDSet二者选其一。
+        # @type EventIDSet: Array
+        # @param EventStatus: 标记事件的状态：
+        # EVENT_UNDEAL:未处理（取消忽略），
+        # EVENT_DEALED:已处理，
+        # EVENT_IGNORE:忽略，
+        # EVENT_DELETE：已删除
+        # EVENT_ADD_WHITE：加白
+        # EVENT_ISOLATE_CONTAINER：隔离容器
+        # EVENT_RESOTRE_CONTAINER：恢复容器
+        # @type EventStatus: String
+        # @param Address: 白名单域名/IP
+        # @type Address: String
+        # @param Remark: 备注
+        # @type Remark: String
+        # @param AllSameEventAddWhite: 相同的请求域名/IP事件加白处理
+        # @type AllSameEventAddWhite: Boolean
+        # @param AddWhiteEventType: 加白的事件类型，恶意域名请求：DOMAIN，恶意IP请求：IP
+        # @type AddWhiteEventType: String
+
+        attr_accessor :EventIDSet, :EventStatus, :Address, :Remark, :AllSameEventAddWhite, :AddWhiteEventType
+
+        def initialize(eventidset=nil, eventstatus=nil, address=nil, remark=nil, allsameeventaddwhite=nil, addwhiteeventtype=nil)
+          @EventIDSet = eventidset
+          @EventStatus = eventstatus
+          @Address = address
+          @Remark = remark
+          @AllSameEventAddWhite = allsameeventaddwhite
+          @AddWhiteEventType = addwhiteeventtype
+        end
+
+        def deserialize(params)
+          @EventIDSet = params['EventIDSet']
+          @EventStatus = params['EventStatus']
+          @Address = params['Address']
+          @Remark = params['Remark']
+          @AllSameEventAddWhite = params['AllSameEventAddWhite']
+          @AddWhiteEventType = params['AddWhiteEventType']
+        end
+      end
+
+      # ModifyRiskDnsEventStatus返回参数结构体
+      class ModifyRiskDnsEventStatusResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyRiskSyscallStatus请求参数结构体
       class ModifyRiskSyscallStatusRequest < TencentCloud::Common::AbstractModel
         # @param EventIdSet: 处理事件ids

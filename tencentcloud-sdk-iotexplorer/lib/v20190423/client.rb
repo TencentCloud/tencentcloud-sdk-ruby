@@ -989,7 +989,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 删除规则
+        # 删除规则。
 
         # @param request: Request instance for DeleteTopicRule.
         # @type request: :class:`Tencentcloud::iotexplorer::V20190423::DeleteTopicRuleRequest`

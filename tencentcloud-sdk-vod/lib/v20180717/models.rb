@@ -4773,7 +4773,7 @@ module TencentCloud
         # <li>pcm16。</li>
         # @type Codec: String
         # @param Bitrate: 音频流的码率，取值范围：0 和 [26, 256]，单位：kbps。
-        # 当取值为 0，表示音频码率和原始音频保持一致。
+        # 当取值为 0，表示由云点播自动设置码率。
         # @type Bitrate: Integer
         # @param SampleRate: 音频流的采样率，可选值：
         # <li>16000，仅当 Codec 为 pcm16 时可选。</li>
@@ -4830,7 +4830,7 @@ module TencentCloud
         # 当外层参数 Container 为 wav 时，可选值为：
         # <li>pcm16。</li>
         # @type Codec: String
-        # @param Bitrate: 音频流的码率，取值范围：0 和 [26, 256]，单位：kbps。 当取值为 0，表示音频码率和原始音频保持一致。
+        # @param Bitrate: 音频流的码率，取值范围：0 和 [26, 256]，单位：kbps。 当取值为 0，表示由云点播自动设置码率。
         # @type Bitrate: Integer
         # @param SampleRate: 音频流的采样率，可选值：
         # <li>16000，仅当 Codec 为 pcm16 时可选。</li>
@@ -13553,7 +13553,7 @@ module TencentCloud
         # @param Type: 极速高清类型，可选值：<li>TEHD-100 表示极速高清-100;</li> <li>OFF 表示关闭极速高清。</li>不填表示 OFF。
         # @type Type: String
         # @param MaxVideoBitrate: 视频码率上限，当 Type 指定了极速高清类型时有效。
-        # 不填或填0表示不设视频码率上限。
+        # 不填或填0表示由云点播自动设置码率上限。
         # @type MaxVideoBitrate: Integer
 
         attr_accessor :Type, :MaxVideoBitrate
@@ -13731,7 +13731,7 @@ module TencentCloud
         # <li>H.266：H.266 编码。</li>
         # @type Codec: String
         # @param Bitrate: 视频流的码率，取值范围：0 和 [128, 100000]，单位：kbps。
-        # 当取值为 0 或不填时，表示自动选择最佳视频码率。
+        # 当取值为 0 或不填时，表示由云点播自动设置码率。
         # @type Bitrate: Integer
         # @param ResolutionAdaptive: 分辨率自适应，可选值：
         # <li>open：开启，此时，Width 代表视频的长边，Height 表示视频的短边；</li>
@@ -21816,6 +21816,11 @@ module TencentCloud
         # @type OperationType: String
 
         attr_accessor :TaskId, :Status, :ErrCode, :Message, :FileId, :FileName, :FileUrl, :MetaData, :MediaProcessResultSet, :AiContentReviewResultSet, :AiAnalysisResultSet, :AiRecognitionResultSet, :TasksPriority, :TasksNotifyMode, :SessionContext, :SessionId, :Operator, :OperationType
+        extend Gem::Deprecate
+        deprecate :ErrCode, :none, 2025, 6
+        deprecate :ErrCode=, :none, 2025, 6
+        deprecate :Message, :none, 2025, 6
+        deprecate :Message=, :none, 2025, 6
 
         def initialize(taskid=nil, status=nil, errcode=nil, message=nil, fileid=nil, filename=nil, fileurl=nil, metadata=nil, mediaprocessresultset=nil, aicontentreviewresultset=nil, aianalysisresultset=nil, airecognitionresultset=nil, taskspriority=nil, tasksnotifymode=nil, sessioncontext=nil, sessionid=nil, operator=nil, operationtype=nil)
           @TaskId = taskid
@@ -23676,7 +23681,7 @@ module TencentCloud
         # <li>libfdk_aac。</li>
         # @type Codec: String
         # @param Bitrate: 音频流的码率，取值范围：0 和 [26, 256]，单位：kbps。
-        # 当取值为 0，表示音频码率和原始音频保持一致。
+        # 当取值为 0，表示由云点播自动设置码率。
         # @type Bitrate: Integer
         # @param SampleRate: 音频流的采样率，可选值：
         # <li>32000</li>
@@ -23783,7 +23788,7 @@ module TencentCloud
         # 默认视频流的编码格式为 H.264 编码。
         # @type Codec: String
         # @param Bitrate: 视频流的码率，取值范围：0 和 [128, 35000]，单位：kbps。
-        # 当取值为 0，表示视频码率和原始视频保持一致。
+        # 当取值为 0，表示由云点播自动设置码率。
         # @type Bitrate: Integer
         # @param Fps: 视频帧率，取值范围：[0, 100]，单位：Hz。 当取值为 0，表示帧率和原始视频保持一致。
         # @type Fps: Integer
@@ -27166,7 +27171,7 @@ module TencentCloud
         # @param Type: 极速高清类型，可选值：<li>TEHD-100 表示极速高清-100;</li> <li>OFF 表示关闭极速高清。</li>不填表示 OFF。
         # @type Type: String
         # @param MaxVideoBitrate: 视频码率上限，当 Type 指定了极速高清类型时有效。
-        # 不填或填0表示不设视频码率上限。
+        # 不填或填0表示由云点播自动设置码率上限。
         # @type MaxVideoBitrate: Integer
 
         attr_accessor :Type, :MaxVideoBitrate
@@ -28565,7 +28570,7 @@ module TencentCloud
         # 默认值：open。
         # @type ResolutionAdaptive: String
         # @param Bitrate: 视频流的码率，取值范围：0 和 [128, 10000]，单位：kbps。
-        # 当取值为 0，表示视频码率和原始视频保持一致。
+        # 当取值为 0，表示由云点播自动设置码率。
         # @type Bitrate: Integer
 
         attr_accessor :Width, :Height, :ResolutionAdaptive, :Bitrate
@@ -28610,7 +28615,7 @@ module TencentCloud
         # 默认值：open。
         # @type ResolutionAdaptive: String
         # @param Bitrate: 视频流的码率，取值范围：0 和 [128, 10000]，单位：kbps。
-        # 当取值为 0，表示视频码率和原始视频保持一致。
+        # 当取值为 0，表示由云点播自动设置码率。
         # @type Bitrate: Integer
 
         attr_accessor :Width, :Height, :ResolutionAdaptive, :Bitrate
@@ -28692,7 +28697,7 @@ module TencentCloud
         # 当取值为 0，表示帧率和原始视频保持一致。
         # @type Fps: Integer
         # @param Bitrate: 视频流的码率，取值范围：0 和 [128, 100000]，单位：kbps。
-        # 当取值为 0，表示视频码率和原始视频保持一致。
+        # 当取值为 0，表示由云点播自动设置码率。
         # @type Bitrate: Integer
         # @param ResolutionAdaptive: 分辨率自适应，可选值：
         # <li>open：开启，此时，Width 代表视频的长边，Height 表示视频的短边；</li>
@@ -28787,7 +28792,7 @@ module TencentCloud
         # 当取值为 0，表示帧率和原始视频保持一致。
         # @type Fps: Integer
         # @param Bitrate: 视频流的码率，取值范围：0 和 [128, 100000]，单位：kbps。
-        # 当取值为 0，表示视频码率和原始视频保持一致。
+        # 当取值为 0，表示由云点播自动设置码率。
         # @type Bitrate: Integer
         # @param ResolutionAdaptive: 分辨率自适应，可选值：
         # <li>open：开启，此时，Width 代表视频的长边，Height 表示视频的短边；</li>

@@ -1781,8 +1781,8 @@ module TencentCloud
 
         attr_accessor :TaskName, :TaskType, :SourceResource, :TargetResource, :TransformParam, :PrivateLinkParam, :SchemaId, :TransformsParam, :TaskId, :Tags, :Description
         extend Gem::Deprecate
-        deprecate :PrivateLinkParam, :none, 2025, 5
-        deprecate :PrivateLinkParam=, :none, 2025, 5
+        deprecate :PrivateLinkParam, :none, 2025, 6
+        deprecate :PrivateLinkParam=, :none, 2025, 6
 
         def initialize(taskname=nil, tasktype=nil, sourceresource=nil, targetresource=nil, transformparam=nil, privatelinkparam=nil, schemaid=nil, transformsparam=nil, taskid=nil, tags=nil, description=nil)
           @TaskName = taskname
@@ -2280,8 +2280,8 @@ module TencentCloud
 
         attr_accessor :ReturnCode, :ReturnMessage, :Data, :DeleteRouteTimestamp
         extend Gem::Deprecate
-        deprecate :DeleteRouteTimestamp, :none, 2025, 5
-        deprecate :DeleteRouteTimestamp=, :none, 2025, 5
+        deprecate :DeleteRouteTimestamp, :none, 2025, 6
+        deprecate :DeleteRouteTimestamp=, :none, 2025, 6
 
         def initialize(returncode=nil, returnmessage=nil, data=nil, deleteroutetimestamp=nil)
           @ReturnCode = returncode
@@ -5329,8 +5329,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :SearchWord, :Status, :Offset, :Limit, :TagKey, :Filters, :InstanceIds, :InstanceIdList, :TagList
         extend Gem::Deprecate
-        deprecate :InstanceIds, :none, 2025, 5
-        deprecate :InstanceIds=, :none, 2025, 5
+        deprecate :InstanceIds, :none, 2025, 6
+        deprecate :InstanceIds=, :none, 2025, 6
 
         def initialize(instanceid=nil, searchword=nil, status=nil, offset=nil, limit=nil, tagkey=nil, filters=nil, instanceids=nil, instanceidlist=nil, taglist=nil)
           @InstanceId = instanceid
@@ -5415,8 +5415,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :SearchWord, :Status, :Offset, :Limit, :TagKey, :VpcId
         extend Gem::Deprecate
-        deprecate :TagKey, :none, 2025, 5
-        deprecate :TagKey=, :none, 2025, 5
+        deprecate :TagKey, :none, 2025, 6
+        deprecate :TagKey=, :none, 2025, 6
 
         def initialize(instanceid=nil, searchword=nil, status=nil, offset=nil, limit=nil, tagkey=nil, vpcid=nil)
           @InstanceId = instanceid
@@ -8956,17 +8956,21 @@ module TencentCloud
         # @type TaskId: String
         # @param TaskName: 任务名称
         # @type TaskName: String
+        # @param Description: 任务描述信息
+        # @type Description: String
 
-        attr_accessor :TaskId, :TaskName
+        attr_accessor :TaskId, :TaskName, :Description
 
-        def initialize(taskid=nil, taskname=nil)
+        def initialize(taskid=nil, taskname=nil, description=nil)
           @TaskId = taskid
           @TaskName = taskname
+          @Description = description
         end
 
         def deserialize(params)
           @TaskId = params['TaskId']
           @TaskName = params['TaskName']
+          @Description = params['Description']
         end
       end
 
@@ -9167,8 +9171,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :MsgRetentionTime, :InstanceName, :Config, :DynamicRetentionConfig, :RebalanceTime, :PublicNetwork, :DynamicDiskConfig, :MaxMessageByte, :UncleanLeaderElectionEnable
         extend Gem::Deprecate
-        deprecate :DynamicDiskConfig, :none, 2025, 5
-        deprecate :DynamicDiskConfig=, :none, 2025, 5
+        deprecate :DynamicDiskConfig, :none, 2025, 6
+        deprecate :DynamicDiskConfig=, :none, 2025, 6
 
         def initialize(instanceid=nil, msgretentiontime=nil, instancename=nil, config=nil, dynamicretentionconfig=nil, rebalancetime=nil, publicnetwork=nil, dynamicdiskconfig=nil, maxmessagebyte=nil, uncleanleaderelectionenable=nil)
           @InstanceId = instanceid
@@ -12202,8 +12206,8 @@ module TencentCloud
 
         attr_accessor :ZoneId, :IsInternalApp, :AppId, :Flag, :ZoneName, :ZoneStatus, :Exflag, :SoldOut, :SalesInfo, :ExtraFlag
         extend Gem::Deprecate
-        deprecate :Exflag, :none, 2025, 5
-        deprecate :Exflag=, :none, 2025, 5
+        deprecate :Exflag, :none, 2025, 6
+        deprecate :Exflag=, :none, 2025, 6
 
         def initialize(zoneid=nil, isinternalapp=nil, appid=nil, flag=nil, zonename=nil, zonestatus=nil, exflag=nil, soldout=nil, salesinfo=nil, extraflag=nil)
           @ZoneId = zoneid

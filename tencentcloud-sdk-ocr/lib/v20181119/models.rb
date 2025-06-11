@@ -8641,12 +8641,20 @@ module TencentCloud
         # @type Reflection: :class:`Tencentcloud::Ocr.v20181119.models.GeneralCardWarnInfo`
         # @param Reprint: 翻拍件信息
         # @type Reprint: :class:`Tencentcloud::Ocr.v20181119.models.GeneralCardWarnInfo`
+        # @param Screenshot: 是否截图
+        # @type Screenshot: :class:`Tencentcloud::Ocr.v20181119.models.GeneralCardWarnInfo`
+        # @param Cover: 是否遮挡
+        # @type Cover: :class:`Tencentcloud::Ocr.v20181119.models.GeneralCardWarnInfo`
+        # @param Overlap: 是否重叠
+        # @type Overlap: :class:`Tencentcloud::Ocr.v20181119.models.GeneralCardWarnInfo`
+        # @param Watermark: 是否水印
+        # @type Watermark: :class:`Tencentcloud::Ocr.v20181119.models.GeneralCardWarnInfo`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :CardType, :Blur, :BorderIncomplete, :Copy, :Ps, :Reflection, :Reprint, :RequestId
+        attr_accessor :CardType, :Blur, :BorderIncomplete, :Copy, :Ps, :Reflection, :Reprint, :Screenshot, :Cover, :Overlap, :Watermark, :RequestId
 
-        def initialize(cardtype=nil, blur=nil, borderincomplete=nil, copy=nil, ps=nil, reflection=nil, reprint=nil, requestid=nil)
+        def initialize(cardtype=nil, blur=nil, borderincomplete=nil, copy=nil, ps=nil, reflection=nil, reprint=nil, screenshot=nil, cover=nil, overlap=nil, watermark=nil, requestid=nil)
           @CardType = cardtype
           @Blur = blur
           @BorderIncomplete = borderincomplete
@@ -8654,6 +8662,10 @@ module TencentCloud
           @Ps = ps
           @Reflection = reflection
           @Reprint = reprint
+          @Screenshot = screenshot
+          @Cover = cover
+          @Overlap = overlap
+          @Watermark = watermark
           @RequestId = requestid
         end
 
@@ -8682,6 +8694,22 @@ module TencentCloud
           unless params['Reprint'].nil?
             @Reprint = GeneralCardWarnInfo.new
             @Reprint.deserialize(params['Reprint'])
+          end
+          unless params['Screenshot'].nil?
+            @Screenshot = GeneralCardWarnInfo.new
+            @Screenshot.deserialize(params['Screenshot'])
+          end
+          unless params['Cover'].nil?
+            @Cover = GeneralCardWarnInfo.new
+            @Cover.deserialize(params['Cover'])
+          end
+          unless params['Overlap'].nil?
+            @Overlap = GeneralCardWarnInfo.new
+            @Overlap.deserialize(params['Overlap'])
+          end
+          unless params['Watermark'].nil?
+            @Watermark = GeneralCardWarnInfo.new
+            @Watermark.deserialize(params['Watermark'])
           end
           @RequestId = params['RequestId']
         end

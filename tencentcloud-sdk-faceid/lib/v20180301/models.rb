@@ -316,8 +316,8 @@ module TencentCloud
 
         attr_accessor :ReqTime, :Seq, :IdCard, :Idcard, :Name, :Sim, :IsNeedCharge, :ChargeType, :ErrorCode, :ErrorMessage
         extend Gem::Deprecate
-        deprecate :Idcard, :none, 2025, 5
-        deprecate :Idcard=, :none, 2025, 5
+        deprecate :Idcard, :none, 2025, 6
+        deprecate :Idcard=, :none, 2025, 6
 
         def initialize(reqtime=nil, seq=nil, idcard=nil, name=nil, sim=nil, isneedcharge=nil, chargetype=nil, errorcode=nil, errormessage=nil)
           @ReqTime = reqtime
@@ -1358,15 +1358,27 @@ module TencentCloud
         # @param LivenessVideo: 活体视频的base64编码。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LivenessVideo: String
+        # @param LivenessVideos: 当次token中所有用户活体视频的COS存储路径，仅当您开启数据存储服务且“IsReturnAllVideo”入参取值为true 时返回。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LivenessVideos: Array
 
-        attr_accessor :LivenessVideo
+        attr_accessor :LivenessVideo, :LivenessVideos
 
-        def initialize(livenessvideo=nil)
+        def initialize(livenessvideo=nil, livenessvideos=nil)
           @LivenessVideo = livenessvideo
+          @LivenessVideos = livenessvideos
         end
 
         def deserialize(params)
           @LivenessVideo = params['LivenessVideo']
+          unless params['LivenessVideos'].nil?
+            @LivenessVideos = []
+            params['LivenessVideos'].each do |i|
+              videodetaildata_tmp = VideoDetailData.new
+              videodetaildata_tmp.deserialize(i)
+              @LivenessVideos << videodetaildata_tmp
+            end
+          end
         end
       end
 
@@ -1599,10 +1611,12 @@ module TencentCloud
         # @type Encryption: :class:`Tencentcloud::Faceid.v20180301.models.Encryption`
         # @param IsEncryptResponse: 是否对回包整体进行加密。
         # @type IsEncryptResponse: Boolean
+        # @param IsReturnAllVideo: 是否需要返回认证中间过程的刷脸重试视频，默认不开启，多段视频需要存储到COS空间中，因此开启后还需要额外开启数据存储服务才可生效。详见[数据存储指引](https://cloud.tencent.com/document/product/1007/104229)。
+        # @type IsReturnAllVideo: Boolean
 
-        attr_accessor :BizToken, :RuleId, :InfoType, :BestFramesCount, :IsCutIdCardImage, :IsNeedIdCardAvatar, :IsEncrypt, :Encryption, :IsEncryptResponse
+        attr_accessor :BizToken, :RuleId, :InfoType, :BestFramesCount, :IsCutIdCardImage, :IsNeedIdCardAvatar, :IsEncrypt, :Encryption, :IsEncryptResponse, :IsReturnAllVideo
 
-        def initialize(biztoken=nil, ruleid=nil, infotype=nil, bestframescount=nil, iscutidcardimage=nil, isneedidcardavatar=nil, isencrypt=nil, encryption=nil, isencryptresponse=nil)
+        def initialize(biztoken=nil, ruleid=nil, infotype=nil, bestframescount=nil, iscutidcardimage=nil, isneedidcardavatar=nil, isencrypt=nil, encryption=nil, isencryptresponse=nil, isreturnallvideo=nil)
           @BizToken = biztoken
           @RuleId = ruleid
           @InfoType = infotype
@@ -1612,6 +1626,7 @@ module TencentCloud
           @IsEncrypt = isencrypt
           @Encryption = encryption
           @IsEncryptResponse = isencryptresponse
+          @IsReturnAllVideo = isreturnallvideo
         end
 
         def deserialize(params)
@@ -1627,6 +1642,7 @@ module TencentCloud
             @Encryption.deserialize(params['Encryption'])
           end
           @IsEncryptResponse = params['IsEncryptResponse']
+          @IsReturnAllVideo = params['IsReturnAllVideo']
         end
       end
 
@@ -3135,8 +3151,8 @@ module TencentCloud
 
         attr_accessor :IntentionVerifyVideo, :AsrResult, :ErrorCode, :ErrorMessage, :IntentionVerifyBestFrame, :AsrResultSimilarity
         extend Gem::Deprecate
-        deprecate :AsrResultSimilarity, :none, 2025, 5
-        deprecate :AsrResultSimilarity=, :none, 2025, 5
+        deprecate :AsrResultSimilarity, :none, 2025, 6
+        deprecate :AsrResultSimilarity=, :none, 2025, 6
 
         def initialize(intentionverifyvideo=nil, asrresult=nil, errorcode=nil, errormessage=nil, intentionverifybestframe=nil, asrresultsimilarity=nil)
           @IntentionVerifyVideo = intentionverifyvideo
@@ -4171,6 +4187,28 @@ module TencentCloud
           @IntentionType = params['IntentionType']
           @MouthOpenRecognition = params['MouthOpenRecognition']
           @Speed = params['Speed']
+        end
+      end
+
+      # 核身过程视频信息。
+      class VideoDetailData < TencentCloud::Common::AbstractModel
+        # @param Seq: 本次活体一比一请求的唯一标记。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Seq: String
+        # @param Video: 活体视频的base64编码。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Video: String
+
+        attr_accessor :Seq, :Video
+
+        def initialize(seq=nil, video=nil)
+          @Seq = seq
+          @Video = video
+        end
+
+        def deserialize(params)
+          @Seq = params['Seq']
+          @Video = params['Video']
         end
       end
 
