@@ -269,6 +269,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查看指定终端的软件详情列表,私有化调用path为：capi/Software/DescribeSoftwareInformation
+
+        # @param request: Request instance for DescribeSoftwareInformation.
+        # @type request: :class:`Tencentcloud::ioa::V20220601::DescribeSoftwareInformationRequest`
+        # @rtype: :class:`Tencentcloud::ioa::V20220601::DescribeSoftwareInformationResponse`
+        def DescribeSoftwareInformation(request)
+          body = send_request('DescribeSoftwareInformation', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeSoftwareInformationResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
 
       end
     end

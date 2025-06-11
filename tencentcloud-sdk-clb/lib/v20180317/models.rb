@@ -1478,6 +1478,8 @@ module TencentCloud
         # @type MaxCps: Integer
         # @param IdleConnectTimeout: 空闲连接超时时间，此参数仅适用于TCP监听器，单位：秒。取值范围：共享型实例和独占型实例支持：300-900，性能容量型实例支持：300-1980。如需设置请通过 [工单申请](https://console.cloud.tencent.com/workorder/category)。
         # @type IdleConnectTimeout: Integer
+        # @param ProxyProtocol: TCP_SSL和QUIC是否支持PP
+        # @type ProxyProtocol: Boolean
         # @param SnatEnable: 是否开启SNAT，True（开启）、False（关闭）。
         # 默认为关闭。
         # @type SnatEnable: Boolean
@@ -1492,9 +1494,9 @@ module TencentCloud
         # @param DataCompressMode: 数据压缩模式。可选值：transparent（透传模式）、compatibility（兼容模式）
         # @type DataCompressMode: String
 
-        attr_accessor :LoadBalancerId, :Ports, :Protocol, :ListenerNames, :HealthCheck, :Certificate, :SessionExpireTime, :Scheduler, :SniSwitch, :TargetType, :SessionType, :KeepaliveEnable, :EndPort, :DeregisterTargetRst, :MultiCertInfo, :MaxConn, :MaxCps, :IdleConnectTimeout, :SnatEnable, :FullEndPorts, :H2cSwitch, :SslCloseSwitch, :DataCompressMode
+        attr_accessor :LoadBalancerId, :Ports, :Protocol, :ListenerNames, :HealthCheck, :Certificate, :SessionExpireTime, :Scheduler, :SniSwitch, :TargetType, :SessionType, :KeepaliveEnable, :EndPort, :DeregisterTargetRst, :MultiCertInfo, :MaxConn, :MaxCps, :IdleConnectTimeout, :ProxyProtocol, :SnatEnable, :FullEndPorts, :H2cSwitch, :SslCloseSwitch, :DataCompressMode
 
-        def initialize(loadbalancerid=nil, ports=nil, protocol=nil, listenernames=nil, healthcheck=nil, certificate=nil, sessionexpiretime=nil, scheduler=nil, sniswitch=nil, targettype=nil, sessiontype=nil, keepaliveenable=nil, endport=nil, deregistertargetrst=nil, multicertinfo=nil, maxconn=nil, maxcps=nil, idleconnecttimeout=nil, snatenable=nil, fullendports=nil, h2cswitch=nil, sslcloseswitch=nil, datacompressmode=nil)
+        def initialize(loadbalancerid=nil, ports=nil, protocol=nil, listenernames=nil, healthcheck=nil, certificate=nil, sessionexpiretime=nil, scheduler=nil, sniswitch=nil, targettype=nil, sessiontype=nil, keepaliveenable=nil, endport=nil, deregistertargetrst=nil, multicertinfo=nil, maxconn=nil, maxcps=nil, idleconnecttimeout=nil, proxyprotocol=nil, snatenable=nil, fullendports=nil, h2cswitch=nil, sslcloseswitch=nil, datacompressmode=nil)
           @LoadBalancerId = loadbalancerid
           @Ports = ports
           @Protocol = protocol
@@ -1513,6 +1515,7 @@ module TencentCloud
           @MaxConn = maxconn
           @MaxCps = maxcps
           @IdleConnectTimeout = idleconnecttimeout
+          @ProxyProtocol = proxyprotocol
           @SnatEnable = snatenable
           @FullEndPorts = fullendports
           @H2cSwitch = h2cswitch
@@ -1548,6 +1551,7 @@ module TencentCloud
           @MaxConn = params['MaxConn']
           @MaxCps = params['MaxCps']
           @IdleConnectTimeout = params['IdleConnectTimeout']
+          @ProxyProtocol = params['ProxyProtocol']
           @SnatEnable = params['SnatEnable']
           @FullEndPorts = params['FullEndPorts']
           @H2cSwitch = params['H2cSwitch']
@@ -6545,15 +6549,17 @@ module TencentCloud
         # @type MaxCps: Integer
         # @param IdleConnectTimeout: 空闲连接超时时间，此参数仅适用于TCP监听器，单位：秒。默认值：900，取值范围：共享型实例和独占型实例支持：300～900，性能容量型实例支持：300~1980。如需设置超过2000s，请通过 [工单申请](https://console.cloud.tencent.com/workorder/category),最大可设置到3600s。
         # @type IdleConnectTimeout: Integer
+        # @param ProxyProtocol: TCP_SSL和QUIC是否支持PP
+        # @type ProxyProtocol: Boolean
         # @param SnatEnable: 是否开启SNAT， True 表示开启 SNAT，False 表示不开启 SNAT。
         # 不传则表示不修改。
         # @type SnatEnable: Boolean
         # @param DataCompressMode: 数据压缩模式
         # @type DataCompressMode: String
 
-        attr_accessor :LoadBalancerId, :ListenerId, :ListenerName, :SessionExpireTime, :HealthCheck, :Certificate, :Scheduler, :SniSwitch, :TargetType, :KeepaliveEnable, :DeregisterTargetRst, :SessionType, :MultiCertInfo, :MaxConn, :MaxCps, :IdleConnectTimeout, :SnatEnable, :DataCompressMode
+        attr_accessor :LoadBalancerId, :ListenerId, :ListenerName, :SessionExpireTime, :HealthCheck, :Certificate, :Scheduler, :SniSwitch, :TargetType, :KeepaliveEnable, :DeregisterTargetRst, :SessionType, :MultiCertInfo, :MaxConn, :MaxCps, :IdleConnectTimeout, :ProxyProtocol, :SnatEnable, :DataCompressMode
 
-        def initialize(loadbalancerid=nil, listenerid=nil, listenername=nil, sessionexpiretime=nil, healthcheck=nil, certificate=nil, scheduler=nil, sniswitch=nil, targettype=nil, keepaliveenable=nil, deregistertargetrst=nil, sessiontype=nil, multicertinfo=nil, maxconn=nil, maxcps=nil, idleconnecttimeout=nil, snatenable=nil, datacompressmode=nil)
+        def initialize(loadbalancerid=nil, listenerid=nil, listenername=nil, sessionexpiretime=nil, healthcheck=nil, certificate=nil, scheduler=nil, sniswitch=nil, targettype=nil, keepaliveenable=nil, deregistertargetrst=nil, sessiontype=nil, multicertinfo=nil, maxconn=nil, maxcps=nil, idleconnecttimeout=nil, proxyprotocol=nil, snatenable=nil, datacompressmode=nil)
           @LoadBalancerId = loadbalancerid
           @ListenerId = listenerid
           @ListenerName = listenername
@@ -6570,6 +6576,7 @@ module TencentCloud
           @MaxConn = maxconn
           @MaxCps = maxcps
           @IdleConnectTimeout = idleconnecttimeout
+          @ProxyProtocol = proxyprotocol
           @SnatEnable = snatenable
           @DataCompressMode = datacompressmode
         end
@@ -6600,6 +6607,7 @@ module TencentCloud
           @MaxConn = params['MaxConn']
           @MaxCps = params['MaxCps']
           @IdleConnectTimeout = params['IdleConnectTimeout']
+          @ProxyProtocol = params['ProxyProtocol']
           @SnatEnable = params['SnatEnable']
           @DataCompressMode = params['DataCompressMode']
         end

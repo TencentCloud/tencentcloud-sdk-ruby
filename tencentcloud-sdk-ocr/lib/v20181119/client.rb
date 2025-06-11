@@ -454,6 +454,88 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口支持识别并提取制式卡证、票据、表单等结构化场景的字段信息。无需任何配置，灵活高效。适用于各类结构化信息录入场景。点击[立即体验](https://ocrdemo.cloud.tencent.com/)。
+
+        # 接口别名：SmartStructuralOCRV2
+
+        # 默认接口请求频率限制：5次/秒。
+
+        # @param request: Request instance for ExtractDocBasic.
+        # @type request: :class:`Tencentcloud::ocr::V20181119::ExtractDocBasicRequest`
+        # @rtype: :class:`Tencentcloud::ocr::V20181119::ExtractDocBasicResponse`
+        def ExtractDocBasic(request)
+          body = send_request('ExtractDocBasic', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ExtractDocBasicResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口支持识别并提取场景复杂、版式多等结构化场景的字段信息。重点场景包括：金融、医疗、交通、出行、保险。点击[立即体验](https://ocrdemo.cloud.tencent.com/)。
+
+        # 接口别名：SmartStructuralPro
+
+        # 默认接口请求频率限制：5次/秒。
+
+        # @param request: Request instance for ExtractDocMulti.
+        # @type request: :class:`Tencentcloud::ocr::V20181119::ExtractDocMultiRequest`
+        # @rtype: :class:`Tencentcloud::ocr::V20181119::ExtractDocMultiResponse`
+        def ExtractDocMulti(request)
+          body = send_request('ExtractDocMulti', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ExtractDocMultiResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口当前仅支持复杂磅单收发货单抽取，更多强推理场景支持定制咨询。点击[立即体验](https://ocrdemo.cloud.tencent.com/)。
+
+        # 默认接口请求频率限制：5次/秒。
+
+        # @param request: Request instance for ExtractDocMultiPro.
+        # @type request: :class:`Tencentcloud::ocr::V20181119::ExtractDocMultiProRequest`
+        # @rtype: :class:`Tencentcloud::ocr::V20181119::ExtractDocMultiProResponse`
+        def ExtractDocMultiPro(request)
+          body = send_request('ExtractDocMultiPro', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ExtractDocMultiProResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口支持常见银行票据的自动分类和识别。整单识别包括支票（含现金支票、普通支票、转账支票），承兑汇票（含银行承兑汇票、商业承兑汇票）以及进账单等，适用于中国人民银行印发的 2010 版银行票据凭证版式（银发[2010]299 号）。
 
         # 默认接口请求频率限制：5次/秒。
@@ -928,6 +1010,32 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = HKIDCardOCRResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口专为教育场景设计，可高精度识别中英文手写字符，智能分栏并按阅读顺序分割内容，自动过滤手写与印刷体混排干扰，精准返回词、行、段落及标题的文本与坐标信息。点击[立即体验](https://ocrdemo.cloud.tencent.com/)。
+
+        # 默认接口请求频率限制：5次/秒。
+
+        # @param request: Request instance for HandwritingEssayOCR.
+        # @type request: :class:`Tencentcloud::ocr::V20181119::HandwritingEssayOCRRequest`
+        # @rtype: :class:`Tencentcloud::ocr::V20181119::HandwritingEssayOCRResponse`
+        def HandwritingEssayOCR(request)
+          body = send_request('HandwritingEssayOCR', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = HandwritingEssayOCRResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -2311,7 +2419,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口支持智能提取各类证照、票据、表单、合同等结构化场景的key:value字段信息，并支持提取表格信息的key:value组的结构化，灵活高效，适用于各类非标准材料的信息录入场景，点击[立即体验](https://ocrdemo.cloud.tencent.com/)。
+        # 本接口支持识别并提取制式卡证、票据、表单等结构化场景的字段信息。无需任何配置，灵活高效。适用于各类结构化信息录入场景。点击[立即体验](https://ocrdemo.cloud.tencent.com/)。
 
         # 默认接口请求频率限制：5次/秒。
 
@@ -2337,7 +2445,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口支持智能提取各类证照、票据、表单、合同等结构化场景的key:value字段信息，并支持提取表格信息的key:value组的结构化，灵活高效，适用于各类非标准材料的信息录入场景，点击[立即体验](https://ocrdemo.cloud.tencent.com/)。
+        # 本接口支持识别并提取场景复杂、版式多等结构化场景的字段信息。重点场景包括：金融、医疗、交通、出行、保险。点击[立即体验](https://ocrdemo.cloud.tencent.com/)。
 
         # 默认接口请求频率限制：5次/秒。
 

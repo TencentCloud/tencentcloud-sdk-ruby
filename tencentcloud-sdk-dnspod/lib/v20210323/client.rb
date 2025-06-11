@@ -1043,6 +1043,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取套餐列表
+
+        # @param request: Request instance for DescribeDomainVipList.
+        # @type request: :class:`Tencentcloud::dnspod::V20210323::DescribeDomainVipListRequest`
+        # @rtype: :class:`Tencentcloud::dnspod::V20210323::DescribeDomainVipListResponse`
+        def DescribeDomainVipList(request)
+          body = send_request('DescribeDomainVipList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDomainVipListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取域名Whois信息
 
         # @param request: Request instance for DescribeDomainWhois.
@@ -1539,6 +1563,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeVASStatisticResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取增值服务列表
+
+        # @param request: Request instance for DescribeVasList.
+        # @type request: :class:`Tencentcloud::dnspod::V20210323::DescribeVasListRequest`
+        # @rtype: :class:`Tencentcloud::dnspod::V20210323::DescribeVasListResponse`
+        def DescribeVasList(request)
+          body = send_request('DescribeVasList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeVasListResponse.new
             model.deserialize(response['Response'])
             model
           else

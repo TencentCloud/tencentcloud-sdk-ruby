@@ -49,8 +49,6 @@ module TencentCloud
         # 5：政府/机关事业单位/其他机构，可选 DocumentType 有（2，3）。
         # 注1：必须按照对应关系选择证明类型，否则会审核失败。
         # 注2：签名类型2（网站）、3（公众号）、6（小程序）已不再支持，具体可参考 [关于腾讯云短信签名申请规则更新的公告](https://cloud.tencent.com/document/product/382/116397)。
-        # 示例值：0
-
         # @type SignType: Integer
         # @param DocumentType: 证明类型：
         # 0：三证合一。
@@ -60,7 +58,6 @@ module TencentCloud
         # 4：应用后台管理截图（个人开发APP）。
         # 7：商标注册书。
         # 注：证明类型5（网站备案后台截图）、6（小程序设置页面截图）、8（公众号设置页面截图）已不再支持，具体可参考 [关于腾讯云短信签名申请规则更新的公告](https://cloud.tencent.com/document/product/382/116397)。
-        # 示例值：1
         # @type DocumentType: Integer
         # @param International: 是否国际/港澳台短信：
         # 0：表示国内短信。
@@ -651,8 +648,6 @@ module TencentCloud
         # 5：政府/机关事业单位/其他机构，可选 DocumentType 有（2，3）。
         # 注1：必须按照对应关系选择证明类型，否则会审核失败。
         # 注2：签名类型2（网站）、3（公众号）、6（小程序）已不再支持，具体可参考 [关于腾讯云短信签名申请规则更新的公告](https://cloud.tencent.com/document/product/382/116397)。
-        # 示例值：0
-
         # @type SignType: Integer
         # @param DocumentType: 证明类型：
         # 0：三证合一。
@@ -662,7 +657,6 @@ module TencentCloud
         # 4：应用后台管理截图（个人开发APP）。
         # 7：商标注册书。
         # 注：证明类型5（网站备案后台截图）、6（小程序设置页面截图）、8（公众号设置页面截图）已不再支持，具体可参考 [关于腾讯云短信签名申请规则更新的公告](https://cloud.tencent.com/document/product/382/116397)。
-        # 示例值：1
         # @type DocumentType: Integer
         # @param International: 是否国际/港澳台短信：
         # 0：表示国内短信。

@@ -11757,7 +11757,7 @@ module TencentCloud
         # <li>Deleting：删除中；</li>
         # <li>Running：已生效。</li>
         # @type Status: String
-        # @param L4UsedList: 该负载均衡实例绑的定四层层代理实例的列表。
+        # @param L4UsedList: 该负载均衡实例绑的四层代理实例的列表。
         # @type L4UsedList: Array
         # @param L7UsedList: 该负载均衡实例绑定的七层域名列表。
         # @type L7UsedList: Array

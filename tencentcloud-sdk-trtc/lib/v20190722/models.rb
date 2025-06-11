@@ -6247,9 +6247,9 @@ module TencentCloud
 
       # 声纹配置参数
       class VoicePrint < TencentCloud::Common::AbstractModel
-        # @param Mode: 默认为0，表示不启用声纹。1表示使用固定声纹，且需要填写voiceprint id。2表示使用动态声纹，不需要使用voiceprint id，内部动态选择主讲人声纹
+        # @param Mode: 默认为0，表示不启用声纹。1表示启用声纹，此时需要填写voiceprint id。
         # @type Mode: Integer
-        # @param IdList: 只有当VoicePrint Mode为1时需要填写，目前仅支持填写一个声纹id
+        # @param IdList: VoicePrint Mode为1时需要填写，目前仅支持填写一个声纹id
         # @type IdList: Array
 
         attr_accessor :Mode, :IdList

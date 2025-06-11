@@ -2844,6 +2844,336 @@ module TencentCloud
         end
       end
 
+      # ExtractDocBasic请求参数结构体
+      class ExtractDocBasicRequest < TencentCloud::Common::AbstractModel
+        # @param ImageUrl: 图片的 Url 地址。支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。支持的图片大小：所下载图片经 Base64 编码后不超过 10M。图片下载时间不超过 3 秒。支持的图片像素：需介于20-10000px之间。图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。非腾讯云存储的 Url 速度和稳定性可能受一定影响。
+        # @type ImageUrl: String
+        # @param ImageBase64: 图片的 Base64 值。支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。支持的图片大小：所下载图片经Base64编码后不超过 10M。图片下载时间不超过 3 秒。支持的图片像素：需介于20-10000px之间。图片的 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。
+        # @type ImageBase64: String
+        # @param IsPdf: 是否开启PDF识别，默认值为false，开启后可同时支持图片和PDF的识别。
+        # @type IsPdf: Boolean
+        # @param PdfPageNumber: 需要识别的PDF页面的对应页码，仅支持PDF单页识别，当上传文件为PDF且IsPdf参数值为true时有效，默认值为1。
+        # @type PdfPageNumber: Integer
+        # @param ItemNames: 自定义结构化功能需返回的字段名称，例：
+        # 若客户只想返回姓名、性别两个字段的识别结果，则输入
+        # ItemNames=["姓名","性别"]
+        # @type ItemNames: Array
+        # @param ReturnFullText: 是否开启全文字段识别
+        # @type ReturnFullText: Boolean
+        # @param ConfigId: 配置id支持：
+        # General -- 通用场景
+        # OnlineTaxiItinerary -- 网约车行程单
+        # RideHailingDriverLicense -- 网约车驾驶证
+        # RideHailingTransportLicense -- 网约车运输证
+        # WayBill -- 快递运单
+        # AccountOpeningPermit -- 银行开户许可证
+        # InvoiceEng -- 海外发票模版
+        # Coin --钱币识别模板
+        # OnboardingDocuments -- 入职材料识别
+        # PropertyOwnershipCertificate -- 房产证识别
+        # RealEstateCertificate --不动产权证识别
+        # HouseEncumbranceCertificate -- 他权证识别
+        # CarInsurance -- 车险保单
+        # MultiRealEstateCertificate -- 房产证、不动产证、产权证等材料合一模板
+        # @type ConfigId: String
+        # @param EnableSealRecognize: 是否打开印章识别
+        # @type EnableSealRecognize: Boolean
+
+        attr_accessor :ImageUrl, :ImageBase64, :IsPdf, :PdfPageNumber, :ItemNames, :ReturnFullText, :ConfigId, :EnableSealRecognize
+
+        def initialize(imageurl=nil, imagebase64=nil, ispdf=nil, pdfpagenumber=nil, itemnames=nil, returnfulltext=nil, configid=nil, enablesealrecognize=nil)
+          @ImageUrl = imageurl
+          @ImageBase64 = imagebase64
+          @IsPdf = ispdf
+          @PdfPageNumber = pdfpagenumber
+          @ItemNames = itemnames
+          @ReturnFullText = returnfulltext
+          @ConfigId = configid
+          @EnableSealRecognize = enablesealrecognize
+        end
+
+        def deserialize(params)
+          @ImageUrl = params['ImageUrl']
+          @ImageBase64 = params['ImageBase64']
+          @IsPdf = params['IsPdf']
+          @PdfPageNumber = params['PdfPageNumber']
+          @ItemNames = params['ItemNames']
+          @ReturnFullText = params['ReturnFullText']
+          @ConfigId = params['ConfigId']
+          @EnableSealRecognize = params['EnableSealRecognize']
+        end
+      end
+
+      # ExtractDocBasic返回参数结构体
+      class ExtractDocBasicResponse < TencentCloud::Common::AbstractModel
+        # @param Angle: 图片旋转角度(角度制)，文本的水平方向
+        # 为 0；顺时针为正，逆时针为负
+        # @type Angle: Float
+        # @param StructuralList: 配置结构化文本信息
+        # @type StructuralList: Array
+        # @param WordList: 还原文本信息
+        # @type WordList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Angle, :StructuralList, :WordList, :RequestId
+
+        def initialize(angle=nil, structurallist=nil, wordlist=nil, requestid=nil)
+          @Angle = angle
+          @StructuralList = structurallist
+          @WordList = wordlist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Angle = params['Angle']
+          unless params['StructuralList'].nil?
+            @StructuralList = []
+            params['StructuralList'].each do |i|
+              groupinfo_tmp = GroupInfo.new
+              groupinfo_tmp.deserialize(i)
+              @StructuralList << groupinfo_tmp
+            end
+          end
+          unless params['WordList'].nil?
+            @WordList = []
+            params['WordList'].each do |i|
+              worditem_tmp = WordItem.new
+              worditem_tmp.deserialize(i)
+              @WordList << worditem_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ExtractDocMultiPro请求参数结构体
+      class ExtractDocMultiProRequest < TencentCloud::Common::AbstractModel
+        # @param ImageUrl: 图片的 Url 地址。支持的图片格式：PNG、JPG、JPEG，WORD，EXCEL，暂不支持 GIF 格式。支持的图片大小：所下载图片经 Base64 编码后不超过 7M。图片下载时间不超过 3 秒。支持的图片像素：需介于20-10000px之间。图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。非腾讯云存储的 Url 速度和稳定性可能受一定影响。
+        # @type ImageUrl: String
+        # @param ImageBase64: 图片的 Base64 值。支持的图片格式：PNG、JPG、JPEG，WORD，EXCEL，暂不支持 GIF 格式。支持的图片大小：所下载图片经Base64编码后不超过 7M。图片下载时间不超过 3 秒。支持的图片像素：需介于20-10000px之间。图片的 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。
+        # @type ImageBase64: String
+        # @param PdfPageNumber: 需要识别的PDF页面的对应页码，仅支持PDF单页识别，当上传文件为PDF且IsPdf参数值为true时有效，默认值为前3页。
+        # @type PdfPageNumber: Integer
+        # @param ItemNames: 自定义结构化功能需返回的字段名称，例：若客户想新增返回姓名、性别两个字段的识别结果，则输入ItemNames=["姓名","性别"]
+        # @type ItemNames: Array
+        # @param ItemNamesShowMode: true：仅输出自定义字段
+        # flase：输出默认字段+自定义字段
+        # 默认true
+        # @type ItemNamesShowMode: Boolean
+        # @param ReturnFullText: 是否开启全文字段识别
+        # @type ReturnFullText: Boolean
+        # @param ConfigId: 配置id支持：
+        # DispatchWeightNote -- 磅单发货单识别模板
+        # ReceiptWeightNote -- 磅单收货单识别模板
+        # 默认：DispatchWeightNote
+        # @type ConfigId: String
+        # @param EnableCoord: 是否开启全文字段坐标值的识别
+        # @type EnableCoord: Boolean
+        # @param OutputParentKey: 是否开启父子key识别，默认是
+        # @type OutputParentKey: Boolean
+        # @param ConfigAdvanced: 模版的单个属性配置
+        # @type ConfigAdvanced: :class:`Tencentcloud::Ocr.v20181119.models.ConfigAdvanced`
+
+        attr_accessor :ImageUrl, :ImageBase64, :PdfPageNumber, :ItemNames, :ItemNamesShowMode, :ReturnFullText, :ConfigId, :EnableCoord, :OutputParentKey, :ConfigAdvanced
+
+        def initialize(imageurl=nil, imagebase64=nil, pdfpagenumber=nil, itemnames=nil, itemnamesshowmode=nil, returnfulltext=nil, configid=nil, enablecoord=nil, outputparentkey=nil, configadvanced=nil)
+          @ImageUrl = imageurl
+          @ImageBase64 = imagebase64
+          @PdfPageNumber = pdfpagenumber
+          @ItemNames = itemnames
+          @ItemNamesShowMode = itemnamesshowmode
+          @ReturnFullText = returnfulltext
+          @ConfigId = configid
+          @EnableCoord = enablecoord
+          @OutputParentKey = outputparentkey
+          @ConfigAdvanced = configadvanced
+        end
+
+        def deserialize(params)
+          @ImageUrl = params['ImageUrl']
+          @ImageBase64 = params['ImageBase64']
+          @PdfPageNumber = params['PdfPageNumber']
+          @ItemNames = params['ItemNames']
+          @ItemNamesShowMode = params['ItemNamesShowMode']
+          @ReturnFullText = params['ReturnFullText']
+          @ConfigId = params['ConfigId']
+          @EnableCoord = params['EnableCoord']
+          @OutputParentKey = params['OutputParentKey']
+          unless params['ConfigAdvanced'].nil?
+            @ConfigAdvanced = ConfigAdvanced.new
+            @ConfigAdvanced.deserialize(params['ConfigAdvanced'])
+          end
+        end
+      end
+
+      # ExtractDocMultiPro返回参数结构体
+      class ExtractDocMultiProResponse < TencentCloud::Common::AbstractModel
+        # @param Angle: 图片旋转角度(角度制)，文本的水平方向为 0；顺时针为正，逆时针为负
+        # @type Angle: Float
+        # @param StructuralList: 配置结构化文本信息
+        # @type StructuralList: Array
+        # @param WordList: 还原文本信息
+        # @type WordList: Array
+        # @param TokenNum: 样本识别字段数
+        # @type TokenNum: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Angle, :StructuralList, :WordList, :TokenNum, :RequestId
+
+        def initialize(angle=nil, structurallist=nil, wordlist=nil, tokennum=nil, requestid=nil)
+          @Angle = angle
+          @StructuralList = structurallist
+          @WordList = wordlist
+          @TokenNum = tokennum
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Angle = params['Angle']
+          unless params['StructuralList'].nil?
+            @StructuralList = []
+            params['StructuralList'].each do |i|
+              groupinfo_tmp = GroupInfo.new
+              groupinfo_tmp.deserialize(i)
+              @StructuralList << groupinfo_tmp
+            end
+          end
+          unless params['WordList'].nil?
+            @WordList = []
+            params['WordList'].each do |i|
+              worditem_tmp = WordItem.new
+              worditem_tmp.deserialize(i)
+              @WordList << worditem_tmp
+            end
+          end
+          @TokenNum = params['TokenNum']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ExtractDocMulti请求参数结构体
+      class ExtractDocMultiRequest < TencentCloud::Common::AbstractModel
+        # @param ImageUrl: 图片的 Url 地址。支持的图片格式：PNG、JPG、JPEG，WORD，EXCEL，暂不支持 GIF 格式。支持的图片大小：所下载图片经 Base64 编码后不超过 7M。图片下载时间不超过 3 秒。支持的图片像素：需介于20-10000px之间。图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。非腾讯云存储的 Url 速度和稳定性可能受一定影响。
+        # @type ImageUrl: String
+        # @param ImageBase64: 图片的 Base64 值。支持的图片格式：PNG、JPG、JPEG，WORD，EXCEL，暂不支持 GIF 格式。支持的图片大小：所下载图片经Base64编码后不超过 7M。图片下载时间不超过 3 秒。支持的图片像素：需介于20-10000px之间。图片的 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。
+        # @type ImageBase64: String
+        # @param PdfPageNumber: 需要识别的PDF页面的对应页码，仅支持PDF单页识别，当上传文件为PDF且IsPdf参数值为true时有效，默认值为前3页。
+        # @type PdfPageNumber: Integer
+        # @param ItemNames: 自定义结构化功能需返回的字段名称，例：若客户想新增返回姓名、性别两个字段的识别结果，则输入ItemNames=["姓名","性别"]
+        # @type ItemNames: Array
+        # @param ItemNamesShowMode: true：仅输出自定义字段
+        # flase：输出默认字段+自定义字段
+        # 默认true
+        # @type ItemNamesShowMode: Boolean
+        # @param ReturnFullText: 是否开启全文字段识别
+        # @type ReturnFullText: Boolean
+        # @param ConfigId: 配置id支持：
+        # General -- 通用场景
+        # InvoiceEng -- 国际invoice模版
+        # WayBillEng --海运订单模板
+        # CustomsDeclaration -- 进出口报关单
+        # WeightNote -- 磅单
+        # MedicalMeter -- 血压仪表识别
+        # BillOfLading -- 海运提单
+        # EntrustmentBook -- 海运托书
+        # WordRecognize -- 手写英文作文模版
+        # Statement -- 对账单识别模板
+        # BookingConfirmation -- 配舱通知书识别模板
+        # AirWayBill -- 航空运单识别模板
+        # DispatchWeightNote -- 磅单发货单识别模板
+        # ReceiptWeightNote -- 磅单收货单识别模板
+        # ArticalRecognize -- 手写作文模版
+        # Table -- 表格模版
+        # SteelLabel -- 实物标签识别模板
+        # CarInsurance -- 车辆保险单识别模板
+        # @type ConfigId: String
+        # @param EnableCoord: 是否开启全文字段坐标值的识别
+        # @type EnableCoord: Boolean
+        # @param OutputParentKey: 是否开启父子key识别，默认是
+        # @type OutputParentKey: Boolean
+        # @param ConfigAdvanced: 模版的单个属性配置
+        # @type ConfigAdvanced: :class:`Tencentcloud::Ocr.v20181119.models.ConfigAdvanced`
+
+        attr_accessor :ImageUrl, :ImageBase64, :PdfPageNumber, :ItemNames, :ItemNamesShowMode, :ReturnFullText, :ConfigId, :EnableCoord, :OutputParentKey, :ConfigAdvanced
+
+        def initialize(imageurl=nil, imagebase64=nil, pdfpagenumber=nil, itemnames=nil, itemnamesshowmode=nil, returnfulltext=nil, configid=nil, enablecoord=nil, outputparentkey=nil, configadvanced=nil)
+          @ImageUrl = imageurl
+          @ImageBase64 = imagebase64
+          @PdfPageNumber = pdfpagenumber
+          @ItemNames = itemnames
+          @ItemNamesShowMode = itemnamesshowmode
+          @ReturnFullText = returnfulltext
+          @ConfigId = configid
+          @EnableCoord = enablecoord
+          @OutputParentKey = outputparentkey
+          @ConfigAdvanced = configadvanced
+        end
+
+        def deserialize(params)
+          @ImageUrl = params['ImageUrl']
+          @ImageBase64 = params['ImageBase64']
+          @PdfPageNumber = params['PdfPageNumber']
+          @ItemNames = params['ItemNames']
+          @ItemNamesShowMode = params['ItemNamesShowMode']
+          @ReturnFullText = params['ReturnFullText']
+          @ConfigId = params['ConfigId']
+          @EnableCoord = params['EnableCoord']
+          @OutputParentKey = params['OutputParentKey']
+          unless params['ConfigAdvanced'].nil?
+            @ConfigAdvanced = ConfigAdvanced.new
+            @ConfigAdvanced.deserialize(params['ConfigAdvanced'])
+          end
+        end
+      end
+
+      # ExtractDocMulti返回参数结构体
+      class ExtractDocMultiResponse < TencentCloud::Common::AbstractModel
+        # @param Angle: 图片旋转角度(角度制)，文本的水平方向为 0；顺时针为正，逆时针为负
+        # @type Angle: Float
+        # @param StructuralList: 配置结构化文本信息
+        # @type StructuralList: Array
+        # @param WordList: 还原文本信息
+        # @type WordList: Array
+        # @param TokenNum: 样本识别字段数
+        # @type TokenNum: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Angle, :StructuralList, :WordList, :TokenNum, :RequestId
+
+        def initialize(angle=nil, structurallist=nil, wordlist=nil, tokennum=nil, requestid=nil)
+          @Angle = angle
+          @StructuralList = structurallist
+          @WordList = wordlist
+          @TokenNum = tokennum
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Angle = params['Angle']
+          unless params['StructuralList'].nil?
+            @StructuralList = []
+            params['StructuralList'].each do |i|
+              groupinfo_tmp = GroupInfo.new
+              groupinfo_tmp.deserialize(i)
+              @StructuralList << groupinfo_tmp
+            end
+          end
+          unless params['WordList'].nil?
+            @WordList = []
+            params['WordList'].each do |i|
+              worditem_tmp = WordItem.new
+              worditem_tmp.deserialize(i)
+              @WordList << worditem_tmp
+            end
+          end
+          @TokenNum = params['TokenNum']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 金融票据整单识别单个字段的内容
       class FinanBillInfo < TencentCloud::Common::AbstractModel
         # @param Name: 识别出的字段名称(关键字)，支持以下字段：
@@ -4225,6 +4555,71 @@ module TencentCloud
           @HeadImage = params['HeadImage']
           @WarningCode = params['WarningCode']
           @WarnCardInfos = params['WarnCardInfos']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # HandwritingEssayOCR请求参数结构体
+      class HandwritingEssayOCRRequest < TencentCloud::Common::AbstractModel
+        # @param ImageUrl: 图片的 Url 地址。支持的图片格式：PNG、JPG、JPEG，WORD，EXCEL，暂不支持 GIF 格式。支持的图片大小：所下载图片经 Base64 编码后不超过 7M。图片下载时间不超过 3 秒。支持的图片像素：需介于20-10000px之间。图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。非腾讯云存储的 Url 速度和稳定性可能受一定影响。
+        # @type ImageUrl: String
+        # @param ImageBase64: 图片的 Base64 值。支持的图片格式：PNG、JPG、JPEG，WORD，EXCEL，暂不支持 GIF 格式。支持的图片大小：所下载图片经Base64编码后不超过 7M。图片下载时间不超过 3 秒。支持的图片像素：需介于20-10000px之间。图片的 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。
+        # @type ImageBase64: String
+        # @param PdfPageNumber: 需要识别的PDF页面的对应页码，仅支持PDF单页识别，当上传文件为PDF且IsPdf参数值为true时有效，默认值为前3页。
+        # @type PdfPageNumber: Integer
+        # @param ConfigId: 配置id支持：
+        # ArticleRecognize -- 手写作文模版
+        # 默认：ArticleRecognize
+        # @type ConfigId: String
+        # @param Scene: 模版的单个属性配置
+        # @type Scene: String
+
+        attr_accessor :ImageUrl, :ImageBase64, :PdfPageNumber, :ConfigId, :Scene
+
+        def initialize(imageurl=nil, imagebase64=nil, pdfpagenumber=nil, configid=nil, scene=nil)
+          @ImageUrl = imageurl
+          @ImageBase64 = imagebase64
+          @PdfPageNumber = pdfpagenumber
+          @ConfigId = configid
+          @Scene = scene
+        end
+
+        def deserialize(params)
+          @ImageUrl = params['ImageUrl']
+          @ImageBase64 = params['ImageBase64']
+          @PdfPageNumber = params['PdfPageNumber']
+          @ConfigId = params['ConfigId']
+          @Scene = params['Scene']
+        end
+      end
+
+      # HandwritingEssayOCR返回参数结构体
+      class HandwritingEssayOCRResponse < TencentCloud::Common::AbstractModel
+        # @param Angle: 图片旋转角度(角度制)，文本的水平方向为 0；顺时针为正，逆时针为负
+        # @type Angle: Float
+        # @param WordList: 还原文本信息
+        # @type WordList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Angle, :WordList, :RequestId
+
+        def initialize(angle=nil, wordlist=nil, requestid=nil)
+          @Angle = angle
+          @WordList = wordlist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Angle = params['Angle']
+          unless params['WordList'].nil?
+            @WordList = []
+            params['WordList'].each do |i|
+              worditem_tmp = WordItem.new
+              worditem_tmp.deserialize(i)
+              @WordList << worditem_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -11113,15 +11508,18 @@ module TencentCloud
         # @type StructuralList: Array
         # @param WordList: 还原文本信息
         # @type WordList: Array
+        # @param TokenNum: 识别出的token个数
+        # @type TokenNum: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Angle, :StructuralList, :WordList, :RequestId
+        attr_accessor :Angle, :StructuralList, :WordList, :TokenNum, :RequestId
 
-        def initialize(angle=nil, structurallist=nil, wordlist=nil, requestid=nil)
+        def initialize(angle=nil, structurallist=nil, wordlist=nil, tokennum=nil, requestid=nil)
           @Angle = angle
           @StructuralList = structurallist
           @WordList = wordlist
+          @TokenNum = tokennum
           @RequestId = requestid
         end
 
@@ -11143,6 +11541,7 @@ module TencentCloud
               @WordList << worditem_tmp
             end
           end
+          @TokenNum = params['TokenNum']
           @RequestId = params['RequestId']
         end
       end

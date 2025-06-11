@@ -295,6 +295,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建共享知识库。
+
+        # @param request: Request instance for CreateSharedKnowledge.
+        # @type request: :class:`Tencentcloud::lke::V20231130::CreateSharedKnowledgeRequest`
+        # @rtype: :class:`Tencentcloud::lke::V20231130::CreateSharedKnowledgeResponse`
+        def CreateSharedKnowledge(request)
+          body = send_request('CreateSharedKnowledge', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateSharedKnowledgeResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建变量
 
         # @param request: Request instance for CreateVar.
@@ -473,6 +497,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteRejectedQuestionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除共享知识库。
+
+        # @param request: Request instance for DeleteSharedKnowledge.
+        # @type request: :class:`Tencentcloud::lke::V20231130::DeleteSharedKnowledgeRequest`
+        # @rtype: :class:`Tencentcloud::lke::V20231130::DeleteSharedKnowledgeResponse`
+        def DeleteSharedKnowledge(request)
+          body = send_request('DeleteSharedKnowledge', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteSharedKnowledgeResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -857,6 +905,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeSegmentsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询共享知识库。
+
+        # @param request: Request instance for DescribeSharedKnowledge.
+        # @type request: :class:`Tencentcloud::lke::V20231130::DescribeSharedKnowledgeRequest`
+        # @rtype: :class:`Tencentcloud::lke::V20231130::DescribeSharedKnowledgeResponse`
+        def DescribeSharedKnowledge(request)
+          body = send_request('DescribeSharedKnowledge', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeSharedKnowledgeResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1642,6 +1714,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查看应用引用了哪些共享知识库，可以看到共享知识库的基础信息，包括名称，id等
+
+        # @param request: Request instance for ListReferShareKnowledge.
+        # @type request: :class:`Tencentcloud::lke::V20231130::ListReferShareKnowledgeRequest`
+        # @rtype: :class:`Tencentcloud::lke::V20231130::ListReferShareKnowledgeResponse`
+        def ListReferShareKnowledge(request)
+          body = send_request('ListReferShareKnowledge', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ListReferShareKnowledgeResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取拒答问题
 
         # @param request: Request instance for ListRejectedQuestion.
@@ -1796,6 +1892,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ListSelectDocResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 列举共享知识库。
+
+        # @param request: Request instance for ListSharedKnowledge.
+        # @type request: :class:`Tencentcloud::lke::V20231130::ListSharedKnowledgeRequest`
+        # @rtype: :class:`Tencentcloud::lke::V20231130::ListSharedKnowledgeResponse`
+        def ListSharedKnowledge(request)
+          body = send_request('ListSharedKnowledge', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ListSharedKnowledgeResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -2149,6 +2269,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 应用引用共享知识库，可以引用一个或多个，每次都是全量覆盖
+
+        # @param request: Request instance for ReferShareKnowledge.
+        # @type request: :class:`Tencentcloud::lke::V20231130::ReferShareKnowledgeRequest`
+        # @rtype: :class:`Tencentcloud::lke::V20231130::ReferShareKnowledgeResponse`
+        def ReferShareKnowledge(request)
+          body = send_request('ReferShareKnowledge', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ReferShareKnowledgeResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 文档重命名
 
         # @param request: Request instance for RenameDoc.
@@ -2308,6 +2452,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = StopDocParseResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 更新共享知识库。
+
+        # @param request: Request instance for UpdateSharedKnowledge.
+        # @type request: :class:`Tencentcloud::lke::V20231130::UpdateSharedKnowledgeRequest`
+        # @rtype: :class:`Tencentcloud::lke::V20231130::UpdateSharedKnowledgeResponse`
+        def UpdateSharedKnowledge(request)
+          body = send_request('UpdateSharedKnowledge', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdateSharedKnowledgeResponse.new
             model.deserialize(response['Response'])
             model
           else

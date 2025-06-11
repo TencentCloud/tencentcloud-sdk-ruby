@@ -1340,7 +1340,7 @@ module TencentCloud
 
       # CreateSubdomainValidateTXTValue返回参数结构体
       class CreateSubdomainValidateTXTValueResponse < TencentCloud::Common::AbstractModel
-        # @param Domain: 需要添加 TXT 记录的域名。
+        # @param Domain: 需要添加 TXT 记录的主域名。
         # @type Domain: String
         # @param Subdomain: 需要添加 TXT 记录的主机记录。
         # @type Subdomain: String
@@ -1348,16 +1348,19 @@ module TencentCloud
         # @type RecordType: String
         # @param Value: 需要添加 TXT 记录的记录值。
         # @type Value: String
+        # @param ParentDomain: 需要添加 TXT 记录的上级域名(可选，主域名和上级域名任选一个添加即可)。
+        # @type ParentDomain: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Domain, :Subdomain, :RecordType, :Value, :RequestId
+        attr_accessor :Domain, :Subdomain, :RecordType, :Value, :ParentDomain, :RequestId
 
-        def initialize(domain=nil, subdomain=nil, recordtype=nil, value=nil, requestid=nil)
+        def initialize(domain=nil, subdomain=nil, recordtype=nil, value=nil, parentdomain=nil, requestid=nil)
           @Domain = domain
           @Subdomain = subdomain
           @RecordType = recordtype
           @Value = value
+          @ParentDomain = parentdomain
           @RequestId = requestid
         end
 
@@ -1366,6 +1369,7 @@ module TencentCloud
           @Subdomain = params['Subdomain']
           @RecordType = params['RecordType']
           @Value = params['Value']
+          @ParentDomain = params['ParentDomain']
           @RequestId = params['RequestId']
         end
       end
@@ -2880,6 +2884,73 @@ module TencentCloud
         end
       end
 
+      # DescribeDomainVipList请求参数结构体
+      class DescribeDomainVipListRequest < TencentCloud::Common::AbstractModel
+        # @param Offset: 偏移量，默认值为0。
+        # @type Offset: Integer
+        # @param Limit: 限制数量，默认值为20。
+        # @type Limit: Integer
+        # @param Keyword: 通过关键字搜索域名关联的套餐，默认值为空，为空时不作为筛选条件。
+        # @type Keyword: String
+        # @param ResourceIdList: 使用资源ID列表查询
+        # @type ResourceIdList: Array
+        # @param GradeList: 需要筛选的套餐版本
+        # @type GradeList: Array
+        # @param GetUnbindResource: 是否只获取未绑定域名套餐
+        # @type GetUnbindResource: Boolean
+
+        attr_accessor :Offset, :Limit, :Keyword, :ResourceIdList, :GradeList, :GetUnbindResource
+
+        def initialize(offset=nil, limit=nil, keyword=nil, resourceidlist=nil, gradelist=nil, getunbindresource=nil)
+          @Offset = offset
+          @Limit = limit
+          @Keyword = keyword
+          @ResourceIdList = resourceidlist
+          @GradeList = gradelist
+          @GetUnbindResource = getunbindresource
+        end
+
+        def deserialize(params)
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @Keyword = params['Keyword']
+          @ResourceIdList = params['ResourceIdList']
+          @GradeList = params['GradeList']
+          @GetUnbindResource = params['GetUnbindResource']
+        end
+      end
+
+      # DescribeDomainVipList返回参数结构体
+      class DescribeDomainVipListResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 符合筛选条件的套餐总数
+        # @type TotalCount: Integer
+        # @param PackageList: 套餐信息列表
+        # @type PackageList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :PackageList, :RequestId
+
+        def initialize(totalcount=nil, packagelist=nil, requestid=nil)
+          @TotalCount = totalcount
+          @PackageList = packagelist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['PackageList'].nil?
+            @PackageList = []
+            params['PackageList'].each do |i|
+              packagelistitem_tmp = PackageListItem.new
+              packagelistitem_tmp.deserialize(i)
+              @PackageList << packagelistitem_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeDomainWhois请求参数结构体
       class DescribeDomainWhoisRequest < TencentCloud::Common::AbstractModel
         # @param Domain: 域名
@@ -4132,6 +4203,69 @@ module TencentCloud
               vasstatisticitem_tmp = VASStatisticItem.new
               vasstatisticitem_tmp.deserialize(i)
               @VASList << vasstatisticitem_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeVasList请求参数结构体
+      class DescribeVasListRequest < TencentCloud::Common::AbstractModel
+        # @param Offset: 偏移量，默认值为0。
+        # @type Offset: Integer
+        # @param Limit: 限制数量，默认值为20。
+        # @type Limit: Integer
+        # @param DomainId: 域名ID
+        # @type DomainId: Integer
+        # @param ResourceIdList: 使用资源 ID 列表查询
+        # @type ResourceIdList: Array
+        # @param LimitType: 增值服务类型
+        # @type LimitType: String
+
+        attr_accessor :Offset, :Limit, :DomainId, :ResourceIdList, :LimitType
+
+        def initialize(offset=nil, limit=nil, domainid=nil, resourceidlist=nil, limittype=nil)
+          @Offset = offset
+          @Limit = limit
+          @DomainId = domainid
+          @ResourceIdList = resourceidlist
+          @LimitType = limittype
+        end
+
+        def deserialize(params)
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @DomainId = params['DomainId']
+          @ResourceIdList = params['ResourceIdList']
+          @LimitType = params['LimitType']
+        end
+      end
+
+      # DescribeVasList返回参数结构体
+      class DescribeVasListResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 符合筛选条件的套餐总数
+        # @type TotalCount: Integer
+        # @param VasList: 增值服务信息列表
+        # @type VasList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :VasList, :RequestId
+
+        def initialize(totalcount=nil, vaslist=nil, requestid=nil)
+          @TotalCount = totalcount
+          @VasList = vaslist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['VasList'].nil?
+            @VasList = []
+            params['VasList'].each do |i|
+              vaslistitem_tmp = VasListItem.new
+              vaslistitem_tmp.deserialize(i)
+              @VasList << vaslistitem_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -6190,6 +6324,85 @@ module TencentCloud
         end
       end
 
+      # 套餐列表元素
+      class PackageListItem < TencentCloud::Common::AbstractModel
+        # @param DomainId: 域名ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DomainId: Integer
+        # @param Domain: 域名的原始格式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Domain: String
+        # @param Grade: 套餐等级代码
+        # @type Grade: String
+        # @param GradeTitle: 套餐名称
+        # @type GradeTitle: String
+        # @param VipStartAt: 付费套餐开通时间
+        # @type VipStartAt: String
+        # @param VipEndAt: 付费套餐到期时间
+        # @type VipEndAt: String
+        # @param VipAutoRenew: 域名是否开通VIP自动续费，是：YES，否：NO，默认：DEFAULT
+        # @type VipAutoRenew: String
+        # @param RemainTimes: 套餐剩余换绑/绑定域名次数
+        # @type RemainTimes: Integer
+        # @param ResourceId: 套餐资源ID
+        # @type ResourceId: String
+        # @param GradeLevel: 域名等级代号
+        # @type GradeLevel: Integer
+        # @param Status: 套餐绑定的域名的状态
+        # @type Status: String
+        # @param IsGracePeriod: 套餐是否处于宽限期
+        # @type IsGracePeriod: String
+        # @param Downgrade: 是否降级
+        # @type Downgrade: Boolean
+        # @param SecurityInfo: 关联安全防护信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SecurityInfo: :class:`Tencentcloud::Dnspod.v20210323.models.SecurityInfo`
+        # @param IsSubDomain: 套餐绑定的域名是否为子域名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsSubDomain: Boolean
+
+        attr_accessor :DomainId, :Domain, :Grade, :GradeTitle, :VipStartAt, :VipEndAt, :VipAutoRenew, :RemainTimes, :ResourceId, :GradeLevel, :Status, :IsGracePeriod, :Downgrade, :SecurityInfo, :IsSubDomain
+
+        def initialize(domainid=nil, domain=nil, grade=nil, gradetitle=nil, vipstartat=nil, vipendat=nil, vipautorenew=nil, remaintimes=nil, resourceid=nil, gradelevel=nil, status=nil, isgraceperiod=nil, downgrade=nil, securityinfo=nil, issubdomain=nil)
+          @DomainId = domainid
+          @Domain = domain
+          @Grade = grade
+          @GradeTitle = gradetitle
+          @VipStartAt = vipstartat
+          @VipEndAt = vipendat
+          @VipAutoRenew = vipautorenew
+          @RemainTimes = remaintimes
+          @ResourceId = resourceid
+          @GradeLevel = gradelevel
+          @Status = status
+          @IsGracePeriod = isgraceperiod
+          @Downgrade = downgrade
+          @SecurityInfo = securityinfo
+          @IsSubDomain = issubdomain
+        end
+
+        def deserialize(params)
+          @DomainId = params['DomainId']
+          @Domain = params['Domain']
+          @Grade = params['Grade']
+          @GradeTitle = params['GradeTitle']
+          @VipStartAt = params['VipStartAt']
+          @VipEndAt = params['VipEndAt']
+          @VipAutoRenew = params['VipAutoRenew']
+          @RemainTimes = params['RemainTimes']
+          @ResourceId = params['ResourceId']
+          @GradeLevel = params['GradeLevel']
+          @Status = params['Status']
+          @IsGracePeriod = params['IsGracePeriod']
+          @Downgrade = params['Downgrade']
+          unless params['SecurityInfo'].nil?
+            @SecurityInfo = SecurityInfo.new
+            @SecurityInfo.deserialize(params['SecurityInfo'])
+          end
+          @IsSubDomain = params['IsSubDomain']
+        end
+      end
+
       # PayOrderWithBalance请求参数结构体
       class PayOrderWithBalanceRequest < TencentCloud::Common::AbstractModel
         # @param BigDealIdList: 需要支付的大订单号数组
@@ -6618,6 +6831,30 @@ module TencentCloud
         end
       end
 
+      # 套餐中安全防护信息
+      class SecurityInfo < TencentCloud::Common::AbstractModel
+        # @param IsDefendFree: 是否是免费赠送：yes-是；no-不是
+        # @type IsDefendFree: String
+        # @param Key: 防护类型
+        # @type Key: String
+        # @param ResourceId: 资源 ID
+        # @type ResourceId: String
+
+        attr_accessor :IsDefendFree, :Key, :ResourceId
+
+        def initialize(isdefendfree=nil, key=nil, resourceid=nil)
+          @IsDefendFree = isdefendfree
+          @Key = key
+          @ResourceId = resourceid
+        end
+
+        def deserialize(params)
+          @IsDefendFree = params['IsDefendFree']
+          @Key = params['Key']
+          @ResourceId = params['ResourceId']
+        end
+      end
+
       # 域名解析快照配置
       class SnapshotConfig < TencentCloud::Common::AbstractModel
         # @param Config: 配置类型：空字符串-不备份，half_hour-每半小时，hourly-每小时，daily-每天，monthly-每月
@@ -6980,6 +7217,62 @@ module TencentCloud
           @Key = params['Key']
           @LimitCount = params['LimitCount']
           @UseCount = params['UseCount']
+        end
+      end
+
+      # 增值服务信息
+      class VasListItem < TencentCloud::Common::AbstractModel
+        # @param LimitNumber: 规格总数
+        # @type LimitNumber: Integer
+        # @param StartedAt: 购买时间
+        # @type StartedAt: String
+        # @param EndedAt: 到期时间
+        # @type EndedAt: String
+        # @param ResourceId: 资源唯一 ID
+        # @type ResourceId: String
+        # @param AutoRenew: 自动续费标识
+        # @type AutoRenew: String
+        # @param Domain: 已绑定的域名
+        # @type Domain: String
+        # @param BindType: 绑定类型
+        # @type BindType: String
+        # @param Key: 增值服务类型
+        # @type Key: String
+        # @param Name: 增值服务名
+        # @type Name: String
+        # @param CanRenew: 是否可续费
+        # @type CanRenew: Boolean
+        # @param VipDomain: 是否只允许付费套餐域名可购买
+        # @type VipDomain: Boolean
+
+        attr_accessor :LimitNumber, :StartedAt, :EndedAt, :ResourceId, :AutoRenew, :Domain, :BindType, :Key, :Name, :CanRenew, :VipDomain
+
+        def initialize(limitnumber=nil, startedat=nil, endedat=nil, resourceid=nil, autorenew=nil, domain=nil, bindtype=nil, key=nil, name=nil, canrenew=nil, vipdomain=nil)
+          @LimitNumber = limitnumber
+          @StartedAt = startedat
+          @EndedAt = endedat
+          @ResourceId = resourceid
+          @AutoRenew = autorenew
+          @Domain = domain
+          @BindType = bindtype
+          @Key = key
+          @Name = name
+          @CanRenew = canrenew
+          @VipDomain = vipdomain
+        end
+
+        def deserialize(params)
+          @LimitNumber = params['LimitNumber']
+          @StartedAt = params['StartedAt']
+          @EndedAt = params['EndedAt']
+          @ResourceId = params['ResourceId']
+          @AutoRenew = params['AutoRenew']
+          @Domain = params['Domain']
+          @BindType = params['BindType']
+          @Key = params['Key']
+          @Name = params['Name']
+          @CanRenew = params['CanRenew']
+          @VipDomain = params['VipDomain']
         end
       end
 

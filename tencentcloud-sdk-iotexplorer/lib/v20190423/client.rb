@@ -101,7 +101,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 批量绑定子产品
+        # 批量绑定子产品。
 
         # @param request: Request instance for BindProducts.
         # @type request: :class:`Tencentcloud::iotexplorer::V20190423::BindProductsRequest`
@@ -1951,7 +1951,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 用于获取网关可绑定或解绑的子产品
+        # 用于获取网关可绑定或解绑的子产品。
 
         # @param request: Request instance for DescribeGatewaySubProducts.
         # @type request: :class:`Tencentcloud::iotexplorer::V20190423::DescribeGatewaySubProductsRequest`
@@ -3899,7 +3899,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 批量解绑子产品
+        # 批量解绑子产品。
 
         # @param request: Request instance for UnbindProducts.
         # @type request: :class:`Tencentcloud::iotexplorer::V20190423::UnbindProductsRequest`

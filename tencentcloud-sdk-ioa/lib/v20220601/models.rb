@@ -643,7 +643,7 @@ module TencentCloud
         # @type OsType: Integer
         # @param DomainInstanceId: 管理域实例ID，用于CAM管理域权限分配。若企业未进行管理域的划分，可直接传入根域"1"，此时表示针对当前企业的全部设备和账号进行接口CRUD，具体CRUD的影响范围限制于相应接口的入参。
         # @type DomainInstanceId: String
-        # @param Condition: 过滤条件参数（字段含义请参考接口返回值） - Name, 类型String，支持操作：【eq，like，ilike】，支持排序 - UserName, 类型String，支持操作：【eq，like，ilike】，支持排序 - IoaUserName，类型String，支持操作：【eq，like，ilike】，支持排序 - MacAddr, 类型String，支持操作：【eq，like，ilike】，支持排序 - Ip, 类型String，支持操作：【eq，like，ilike】，支持排序 ，支持排序分页参数- PageNum 从1开始，小于等于0时使用默认参数- PageSize 最大值5000，最好不超过100
+        # @param Condition: 过滤条件参数（字段含义请参考接口返回值）  - Name, 类型String，支持操作：【eq，like，ilike】，支持排序  - UserName, 类型String，支持操作：【eq，like，ilike】，支持排序  - IoaUserName，类型String，支持操作：【eq，like，ilike】，支持排序  - MacAddr, 类型String，支持操作：【eq，like，ilike】，支持排序  - Ip, 类型String，支持操作：【eq，like，ilike】，支持排序  - Mid, 类型String，支持操作：【eq，like，ilike】，支持排序  ，支持排序分页参数  - PageNum 从1开始，小于等于0时使用默认参数 - PageSize 最大值5000，最好不超过100
         # @type Condition: :class:`Tencentcloud::Ioa.v20220601.models.Condition`
 
         attr_accessor :GroupId, :OsType, :DomainInstanceId, :Condition
@@ -1297,6 +1297,83 @@ module TencentCloud
       end
 
       # 业务响应数据
+      class DescribeSoftwareInformationPageData < TencentCloud::Common::AbstractModel
+        # @param Items: 软件详情响应对象集合
+        # @type Items: Array
+        # @param Page: 分页公共对象
+        # @type Page: :class:`Tencentcloud::Ioa.v20220601.models.Paging`
+
+        attr_accessor :Items, :Page
+
+        def initialize(items=nil, page=nil)
+          @Items = items
+          @Page = page
+        end
+
+        def deserialize(params)
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              softwareinformationdata_tmp = SoftwareInformationData.new
+              softwareinformationdata_tmp.deserialize(i)
+              @Items << softwareinformationdata_tmp
+            end
+          end
+          unless params['Page'].nil?
+            @Page = Paging.new
+            @Page.deserialize(params['Page'])
+          end
+        end
+      end
+
+      # DescribeSoftwareInformation请求参数结构体
+      class DescribeSoftwareInformationRequest < TencentCloud::Common::AbstractModel
+        # @param Mid: 终端唯一标识Mid
+        # @type Mid: String
+        # @param Condition: 过滤条件、分页参数
+        # <li>Name - String - 过滤支持：是 - 操作符:eq,like - 排序支持：是 。</li>
+        # @type Condition: :class:`Tencentcloud::Ioa.v20220601.models.Condition`
+
+        attr_accessor :Mid, :Condition
+
+        def initialize(mid=nil, condition=nil)
+          @Mid = mid
+          @Condition = condition
+        end
+
+        def deserialize(params)
+          @Mid = params['Mid']
+          unless params['Condition'].nil?
+            @Condition = Condition.new
+            @Condition.deserialize(params['Condition'])
+          end
+        end
+      end
+
+      # DescribeSoftwareInformation返回参数结构体
+      class DescribeSoftwareInformationResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 业务响应数据
+        # @type Data: :class:`Tencentcloud::Ioa.v20220601.models.DescribeSoftwareInformationPageData`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = DescribeSoftwareInformationPageData.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 业务响应数据
       class DeviceDetail < TencentCloud::Common::AbstractModel
         # @param Id: 设备ID
         # @type Id: Integer
@@ -1718,6 +1795,50 @@ module TencentCloud
             end
           end
           @Relation = params['Relation']
+        end
+      end
+
+      # 软件详情响应对象集合
+      class SoftwareInformationData < TencentCloud::Common::AbstractModel
+        # @param Name: 软件名称
+        # @type Name: String
+        # @param InstallDate: 安装时间
+        # @type InstallDate: String
+        # @param SoftwareId: 软件列表id(只支持32位)
+        # @type SoftwareId: Integer
+        # @param Mid: 唯一标识Mid
+        # @type Mid: String
+        # @param Version: 软件版本
+        # @type Version: String
+        # @param CorpName: 公司名
+        # @type CorpName: String
+        # @param Id: 列表Id(只支持32位)
+        # @type Id: Integer
+        # @param PiracyRisk: 盗版风险（0:未支持，1:风险，2:未发现，3:未开启）
+        # @type PiracyRisk: Integer
+
+        attr_accessor :Name, :InstallDate, :SoftwareId, :Mid, :Version, :CorpName, :Id, :PiracyRisk
+
+        def initialize(name=nil, installdate=nil, softwareid=nil, mid=nil, version=nil, corpname=nil, id=nil, piracyrisk=nil)
+          @Name = name
+          @InstallDate = installdate
+          @SoftwareId = softwareid
+          @Mid = mid
+          @Version = version
+          @CorpName = corpname
+          @Id = id
+          @PiracyRisk = piracyrisk
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @InstallDate = params['InstallDate']
+          @SoftwareId = params['SoftwareId']
+          @Mid = params['Mid']
+          @Version = params['Version']
+          @CorpName = params['CorpName']
+          @Id = params['Id']
+          @PiracyRisk = params['PiracyRisk']
         end
       end
 

@@ -932,10 +932,12 @@ module TencentCloud
         # @type UpdateTime: String
         # @param Meta: 知识库的meta信息
         # @type Meta: String
+        # @param TotalSize: 知识库容量,单位字节
+        # @type TotalSize: String
 
-        attr_accessor :Name, :Title, :Desc, :Active, :CreateTime, :UpdateTime, :Meta
+        attr_accessor :Name, :Title, :Desc, :Active, :CreateTime, :UpdateTime, :Meta, :TotalSize
 
-        def initialize(name=nil, title=nil, desc=nil, active=nil, createtime=nil, updatetime=nil, meta=nil)
+        def initialize(name=nil, title=nil, desc=nil, active=nil, createtime=nil, updatetime=nil, meta=nil, totalsize=nil)
           @Name = name
           @Title = title
           @Desc = desc
@@ -943,6 +945,7 @@ module TencentCloud
           @CreateTime = createtime
           @UpdateTime = updatetime
           @Meta = meta
+          @TotalSize = totalsize
         end
 
         def deserialize(params)
@@ -953,6 +956,7 @@ module TencentCloud
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
           @Meta = params['Meta']
+          @TotalSize = params['TotalSize']
         end
       end
 
@@ -1202,10 +1206,12 @@ module TencentCloud
         # @type DocDesc: String
         # @param FileSize: 文档大小
         # @type FileSize: Integer
+        # @param FileId: Cos存储文件ID
+        # @type FileId: String
 
-        attr_accessor :CollectionViewName, :DocSetId, :DocSetName, :DocType, :FileTitle, :FileMetaData, :DocDesc, :FileSize
+        attr_accessor :CollectionViewName, :DocSetId, :DocSetName, :DocType, :FileTitle, :FileMetaData, :DocDesc, :FileSize, :FileId
 
-        def initialize(collectionviewname=nil, docsetid=nil, docsetname=nil, doctype=nil, filetitle=nil, filemetadata=nil, docdesc=nil, filesize=nil)
+        def initialize(collectionviewname=nil, docsetid=nil, docsetname=nil, doctype=nil, filetitle=nil, filemetadata=nil, docdesc=nil, filesize=nil, fileid=nil)
           @CollectionViewName = collectionviewname
           @DocSetId = docsetid
           @DocSetName = docsetname
@@ -1214,6 +1220,7 @@ module TencentCloud
           @FileMetaData = filemetadata
           @DocDesc = docdesc
           @FileSize = filesize
+          @FileId = fileid
         end
 
         def deserialize(params)
@@ -1225,6 +1232,7 @@ module TencentCloud
           @FileMetaData = params['FileMetaData']
           @DocDesc = params['DocDesc']
           @FileSize = params['FileSize']
+          @FileId = params['FileId']
         end
       end
 
@@ -1404,10 +1412,12 @@ module TencentCloud
         # @type DocumentSetId: String
         # @param Delimiter: 使用 regex 分割文档
         # @type Delimiter: String
+        # @param FileId: Cos存储文件ID
+        # @type FileId: String
 
-        attr_accessor :EnvId, :CollectionView, :FileName, :CosUrl, :DocumentType, :DocumentDesc, :FileTitle, :FileMetaData, :DocumentSetId, :Delimiter
+        attr_accessor :EnvId, :CollectionView, :FileName, :CosUrl, :DocumentType, :DocumentDesc, :FileTitle, :FileMetaData, :DocumentSetId, :Delimiter, :FileId
 
-        def initialize(envid=nil, collectionview=nil, filename=nil, cosurl=nil, documenttype=nil, documentdesc=nil, filetitle=nil, filemetadata=nil, documentsetid=nil, delimiter=nil)
+        def initialize(envid=nil, collectionview=nil, filename=nil, cosurl=nil, documenttype=nil, documentdesc=nil, filetitle=nil, filemetadata=nil, documentsetid=nil, delimiter=nil, fileid=nil)
           @EnvId = envid
           @CollectionView = collectionview
           @FileName = filename
@@ -1418,6 +1428,7 @@ module TencentCloud
           @FileMetaData = filemetadata
           @DocumentSetId = documentsetid
           @Delimiter = delimiter
+          @FileId = fileid
         end
 
         def deserialize(params)
@@ -1431,6 +1442,7 @@ module TencentCloud
           @FileMetaData = params['FileMetaData']
           @DocumentSetId = params['DocumentSetId']
           @Delimiter = params['Delimiter']
+          @FileId = params['FileId']
         end
       end
 
@@ -1467,14 +1479,20 @@ module TencentCloud
         # @type FileTitle: String
         # @param FileMetaData: 文件元信息，为jsonstring
         # @type FileMetaData: String
+        # @param FileId: Cos存储文件ID
+        # @type FileId: String
 
-        attr_accessor :DocumentSetId, :DocumentSetName, :FileTitle, :FileMetaData
+        attr_accessor :DocumentSetId, :DocumentSetName, :FileTitle, :FileMetaData, :FileId
+        extend Gem::Deprecate
+        deprecate :DocumentSetId, :none, 2025, 6
+        deprecate :DocumentSetId=, :none, 2025, 6
 
-        def initialize(documentsetid=nil, documentsetname=nil, filetitle=nil, filemetadata=nil)
+        def initialize(documentsetid=nil, documentsetname=nil, filetitle=nil, filemetadata=nil, fileid=nil)
           @DocumentSetId = documentsetid
           @DocumentSetName = documentsetname
           @FileTitle = filetitle
           @FileMetaData = filemetadata
+          @FileId = fileid
         end
 
         def deserialize(params)
@@ -1482,6 +1500,7 @@ module TencentCloud
           @DocumentSetName = params['DocumentSetName']
           @FileTitle = params['FileTitle']
           @FileMetaData = params['FileMetaData']
+          @FileId = params['FileId']
         end
       end
 

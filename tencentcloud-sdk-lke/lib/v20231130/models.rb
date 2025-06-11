@@ -388,6 +388,27 @@ module TencentCloud
         end
       end
 
+      # 应用基础信息
+      class AppBaseInfo < TencentCloud::Common::AbstractModel
+        # @param AppBizId: 应用ID
+        # @type AppBizId: String
+        # @param AppName: 应用名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AppName: String
+
+        attr_accessor :AppBizId, :AppName
+
+        def initialize(appbizid=nil, appname=nil)
+          @AppBizId = appbizid
+          @AppName = appname
+        end
+
+        def deserialize(params)
+          @AppBizId = params['AppBizId']
+          @AppName = params['AppName']
+        end
+      end
+
       # 应用配置
       class AppConfig < TencentCloud::Common::AbstractModel
         # @param KnowledgeQa: 知识问答管理应用配置
@@ -1683,6 +1704,50 @@ module TencentCloud
         end
       end
 
+      # CreateSharedKnowledge请求参数结构体
+      class CreateSharedKnowledgeRequest < TencentCloud::Common::AbstractModel
+        # @param KnowledgeName: 共享知识库名称，字符数量范围：[1, 50]
+        # @type KnowledgeName: String
+        # @param KnowledgeDescription: 共享知识库描述，字符数量上限2000
+        # @type KnowledgeDescription: String
+        # @param EmbeddingModel: Embedding模型，字符数量上限128
+        # @type EmbeddingModel: String
+
+        attr_accessor :KnowledgeName, :KnowledgeDescription, :EmbeddingModel
+
+        def initialize(knowledgename=nil, knowledgedescription=nil, embeddingmodel=nil)
+          @KnowledgeName = knowledgename
+          @KnowledgeDescription = knowledgedescription
+          @EmbeddingModel = embeddingmodel
+        end
+
+        def deserialize(params)
+          @KnowledgeName = params['KnowledgeName']
+          @KnowledgeDescription = params['KnowledgeDescription']
+          @EmbeddingModel = params['EmbeddingModel']
+        end
+      end
+
+      # CreateSharedKnowledge返回参数结构体
+      class CreateSharedKnowledgeResponse < TencentCloud::Common::AbstractModel
+        # @param KnowledgeBizId: 共享知识库业务ID
+        # @type KnowledgeBizId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :KnowledgeBizId, :RequestId
+
+        def initialize(knowledgebizid=nil, requestid=nil)
+          @KnowledgeBizId = knowledgebizid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @KnowledgeBizId = params['KnowledgeBizId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateVar请求参数结构体
       class CreateVarRequest < TencentCloud::Common::AbstractModel
         # @param AppBizId: 应用ID
@@ -2029,6 +2094,42 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteSharedKnowledge请求参数结构体
+      class DeleteSharedKnowledgeRequest < TencentCloud::Common::AbstractModel
+        # @param KnowledgeBizId: 共享知识库业务ID
+        # @type KnowledgeBizId: String
+
+        attr_accessor :KnowledgeBizId
+
+        def initialize(knowledgebizid=nil)
+          @KnowledgeBizId = knowledgebizid
+        end
+
+        def deserialize(params)
+          @KnowledgeBizId = params['KnowledgeBizId']
+        end
+      end
+
+      # DeleteSharedKnowledge返回参数结构体
+      class DeleteSharedKnowledgeResponse < TencentCloud::Common::AbstractModel
+        # @param KnowledgeBizId: 共享知识库业务ID
+        # @type KnowledgeBizId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :KnowledgeBizId, :RequestId
+
+        def initialize(knowledgebizid=nil, requestid=nil)
+          @KnowledgeBizId = knowledgebizid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @KnowledgeBizId = params['KnowledgeBizId']
           @RequestId = params['RequestId']
         end
       end
@@ -3193,6 +3294,46 @@ module TencentCloud
               docsegment_tmp.deserialize(i)
               @List << docsegment_tmp
             end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeSharedKnowledge请求参数结构体
+      class DescribeSharedKnowledgeRequest < TencentCloud::Common::AbstractModel
+        # @param KnowledgeBizId: 共享知识库业务ID
+        # @type KnowledgeBizId: String
+
+        attr_accessor :KnowledgeBizId
+
+        def initialize(knowledgebizid=nil)
+          @KnowledgeBizId = knowledgebizid
+        end
+
+        def deserialize(params)
+          @KnowledgeBizId = params['KnowledgeBizId']
+        end
+      end
+
+      # DescribeSharedKnowledge返回参数结构体
+      class DescribeSharedKnowledgeResponse < TencentCloud::Common::AbstractModel
+        # @param Info: 知识库列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Info: :class:`Tencentcloud::Lke.v20231130.models.KnowledgeDetailInfo`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Info, :RequestId
+
+        def initialize(info=nil, requestid=nil)
+          @Info = info
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Info'].nil?
+            @Info = KnowledgeDetailInfo.new
+            @Info.deserialize(params['Info'])
           end
           @RequestId = params['RequestId']
         end
@@ -5105,6 +5246,46 @@ module TencentCloud
         end
       end
 
+      # 共享知识库基础信息
+      class KnowledgeBaseInfo < TencentCloud::Common::AbstractModel
+        # @param KnowledgeBizId: 共享知识库业务ID
+        # @type KnowledgeBizId: String
+        # @param KnowledgeName: 共享知识库名称
+        # @type KnowledgeName: String
+        # @param KnowledgeDescription: 共享知识库描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type KnowledgeDescription: String
+        # @param EmbeddingModel: Embedding模型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EmbeddingModel: String
+        # @param QaExtractModel: 问答提取模型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type QaExtractModel: String
+        # @param UpdateTime: 更新时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTime: String
+
+        attr_accessor :KnowledgeBizId, :KnowledgeName, :KnowledgeDescription, :EmbeddingModel, :QaExtractModel, :UpdateTime
+
+        def initialize(knowledgebizid=nil, knowledgename=nil, knowledgedescription=nil, embeddingmodel=nil, qaextractmodel=nil, updatetime=nil)
+          @KnowledgeBizId = knowledgebizid
+          @KnowledgeName = knowledgename
+          @KnowledgeDescription = knowledgedescription
+          @EmbeddingModel = embeddingmodel
+          @QaExtractModel = qaextractmodel
+          @UpdateTime = updatetime
+        end
+
+        def deserialize(params)
+          @KnowledgeBizId = params['KnowledgeBizId']
+          @KnowledgeName = params['KnowledgeName']
+          @KnowledgeDescription = params['KnowledgeDescription']
+          @EmbeddingModel = params['EmbeddingModel']
+          @QaExtractModel = params['QaExtractModel']
+          @UpdateTime = params['UpdateTime']
+        end
+      end
+
       # 知识库容量饼图详情
       class KnowledgeCapacityPieGraphDetail < TencentCloud::Common::AbstractModel
         # @param AppName: 当前应用名称
@@ -5161,6 +5342,46 @@ module TencentCloud
           @UsedCharSize = params['UsedCharSize']
           @Proportion = params['Proportion']
           @ExceedCharSize = params['ExceedCharSize']
+        end
+      end
+
+      # 知识库详情信息
+      class KnowledgeDetailInfo < TencentCloud::Common::AbstractModel
+        # @param Knowledge: 知识库信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Knowledge: :class:`Tencentcloud::Lke.v20231130.models.KnowledgeBaseInfo`
+        # @param AppList: 应用列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AppList: Array
+        # @param User: 用户信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type User: :class:`Tencentcloud::Lke.v20231130.models.UserBaseInfo`
+
+        attr_accessor :Knowledge, :AppList, :User
+
+        def initialize(knowledge=nil, applist=nil, user=nil)
+          @Knowledge = knowledge
+          @AppList = applist
+          @User = user
+        end
+
+        def deserialize(params)
+          unless params['Knowledge'].nil?
+            @Knowledge = KnowledgeBaseInfo.new
+            @Knowledge.deserialize(params['Knowledge'])
+          end
+          unless params['AppList'].nil?
+            @AppList = []
+            params['AppList'].each do |i|
+              appbaseinfo_tmp = AppBaseInfo.new
+              appbaseinfo_tmp.deserialize(i)
+              @AppList << appbaseinfo_tmp
+            end
+          end
+          unless params['User'].nil?
+            @User = UserBaseInfo.new
+            @User.deserialize(params['User'])
+          end
         end
       end
 
@@ -5530,6 +5751,37 @@ module TencentCloud
         def deserialize(params)
           @Type = params['Type']
           @Content = params['Content']
+        end
+      end
+
+      # 共享知识库更新信息
+      class KnowledgeUpdateInfo < TencentCloud::Common::AbstractModel
+        # @param KnowledgeName: 共享知识库名称
+        # @type KnowledgeName: String
+        # @param KnowledgeDescription: 共享知识库描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type KnowledgeDescription: String
+        # @param EmbeddingModel: Embedding模型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EmbeddingModel: String
+        # @param QaExtractModel: 问答提取模型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type QaExtractModel: String
+
+        attr_accessor :KnowledgeName, :KnowledgeDescription, :EmbeddingModel, :QaExtractModel
+
+        def initialize(knowledgename=nil, knowledgedescription=nil, embeddingmodel=nil, qaextractmodel=nil)
+          @KnowledgeName = knowledgename
+          @KnowledgeDescription = knowledgedescription
+          @EmbeddingModel = embeddingmodel
+          @QaExtractModel = qaextractmodel
+        end
+
+        def deserialize(params)
+          @KnowledgeName = params['KnowledgeName']
+          @KnowledgeDescription = params['KnowledgeDescription']
+          @EmbeddingModel = params['EmbeddingModel']
+          @QaExtractModel = params['QaExtractModel']
         end
       end
 
@@ -6483,6 +6735,57 @@ module TencentCloud
         end
       end
 
+      # ListReferShareKnowledge请求参数结构体
+      class ListReferShareKnowledgeRequest < TencentCloud::Common::AbstractModel
+        # @param AppBizId: 应用业务id
+        # @type AppBizId: String
+        # @param LoginUin: 登录用户主账号(集成商模式必填)
+        # @type LoginUin: String
+        # @param LoginSubAccountUin: 登录用户子账号(集成商模式必填)
+        # @type LoginSubAccountUin: String
+
+        attr_accessor :AppBizId, :LoginUin, :LoginSubAccountUin
+
+        def initialize(appbizid=nil, loginuin=nil, loginsubaccountuin=nil)
+          @AppBizId = appbizid
+          @LoginUin = loginuin
+          @LoginSubAccountUin = loginsubaccountuin
+        end
+
+        def deserialize(params)
+          @AppBizId = params['AppBizId']
+          @LoginUin = params['LoginUin']
+          @LoginSubAccountUin = params['LoginSubAccountUin']
+        end
+      end
+
+      # ListReferShareKnowledge返回参数结构体
+      class ListReferShareKnowledgeResponse < TencentCloud::Common::AbstractModel
+        # @param List: 共享知识库信息列表
+        # @type List: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :List, :RequestId
+
+        def initialize(list=nil, requestid=nil)
+          @List = list
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              knowledgebaseinfo_tmp = KnowledgeBaseInfo.new
+              knowledgebaseinfo_tmp.deserialize(i)
+              @List << knowledgebaseinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ListRejectedQuestionPreview请求参数结构体
       class ListRejectedQuestionPreviewRequest < TencentCloud::Common::AbstractModel
         # @param BotBizId: 应用ID
@@ -6998,6 +7301,62 @@ module TencentCloud
               option_tmp = Option.new
               option_tmp.deserialize(i)
               @List << option_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ListSharedKnowledge请求参数结构体
+      class ListSharedKnowledgeRequest < TencentCloud::Common::AbstractModel
+        # @param PageNumber: 分页序号，编码从1开始
+        # @type PageNumber: Integer
+        # @param PageSize: 分页大小，有效范围为[1,200]
+        # @type PageSize: Integer
+        # @param Keyword: 搜索关键字
+        # @type Keyword: String
+
+        attr_accessor :PageNumber, :PageSize, :Keyword
+
+        def initialize(pagenumber=nil, pagesize=nil, keyword=nil)
+          @PageNumber = pagenumber
+          @PageSize = pagesize
+          @Keyword = keyword
+        end
+
+        def deserialize(params)
+          @PageNumber = params['PageNumber']
+          @PageSize = params['PageSize']
+          @Keyword = params['Keyword']
+        end
+      end
+
+      # ListSharedKnowledge返回参数结构体
+      class ListSharedKnowledgeResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 累计数量
+        # @type Total: Integer
+        # @param KnowledgeList: 知识库列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type KnowledgeList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :KnowledgeList, :RequestId
+
+        def initialize(total=nil, knowledgelist=nil, requestid=nil)
+          @Total = total
+          @KnowledgeList = knowledgelist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          unless params['KnowledgeList'].nil?
+            @KnowledgeList = []
+            params['KnowledgeList'].each do |i|
+              knowledgedetailinfo_tmp = KnowledgeDetailInfo.new
+              knowledgedetailinfo_tmp.deserialize(i)
+              @KnowledgeList << knowledgedetailinfo_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -8849,6 +9208,50 @@ module TencentCloud
         end
       end
 
+      # ReferShareKnowledge请求参数结构体
+      class ReferShareKnowledgeRequest < TencentCloud::Common::AbstractModel
+        # @param AppBizId: 应用业务id
+        # @type AppBizId: String
+        # @param KnowledgeBizId: 共享知识库业务id列表
+        # @type KnowledgeBizId: Array
+        # @param LoginUin: 登录用户主账号(集成商模式必填)
+        # @type LoginUin: String
+        # @param LoginSubAccountUin: 登录用户子账号(集成商模式必填)
+        # @type LoginSubAccountUin: String
+
+        attr_accessor :AppBizId, :KnowledgeBizId, :LoginUin, :LoginSubAccountUin
+
+        def initialize(appbizid=nil, knowledgebizid=nil, loginuin=nil, loginsubaccountuin=nil)
+          @AppBizId = appbizid
+          @KnowledgeBizId = knowledgebizid
+          @LoginUin = loginuin
+          @LoginSubAccountUin = loginsubaccountuin
+        end
+
+        def deserialize(params)
+          @AppBizId = params['AppBizId']
+          @KnowledgeBizId = params['KnowledgeBizId']
+          @LoginUin = params['LoginUin']
+          @LoginSubAccountUin = params['LoginSubAccountUin']
+        end
+      end
+
+      # ReferShareKnowledge返回参数结构体
+      class ReferShareKnowledgeResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 发布拒答
       class RejectedQuestion < TencentCloud::Common::AbstractModel
         # @param RejectedBizId: 拒答问题ID
@@ -10068,6 +10471,49 @@ module TencentCloud
         end
       end
 
+      # UpdateSharedKnowledge请求参数结构体
+      class UpdateSharedKnowledgeRequest < TencentCloud::Common::AbstractModel
+        # @param KnowledgeBizId: 共享知识库业务ID
+        # @type KnowledgeBizId: String
+        # @param Info: 共享知识库更新信息
+        # @type Info: :class:`Tencentcloud::Lke.v20231130.models.KnowledgeUpdateInfo`
+
+        attr_accessor :KnowledgeBizId, :Info
+
+        def initialize(knowledgebizid=nil, info=nil)
+          @KnowledgeBizId = knowledgebizid
+          @Info = info
+        end
+
+        def deserialize(params)
+          @KnowledgeBizId = params['KnowledgeBizId']
+          unless params['Info'].nil?
+            @Info = KnowledgeUpdateInfo.new
+            @Info.deserialize(params['Info'])
+          end
+        end
+      end
+
+      # UpdateSharedKnowledge返回参数结构体
+      class UpdateSharedKnowledgeResponse < TencentCloud::Common::AbstractModel
+        # @param KnowledgeBizId: 共享知识库业务ID
+        # @type KnowledgeBizId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :KnowledgeBizId, :RequestId
+
+        def initialize(knowledgebizid=nil, requestid=nil)
+          @KnowledgeBizId = knowledgebizid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @KnowledgeBizId = params['KnowledgeBizId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # UploadAttributeLabel请求参数结构体
       class UploadAttributeLabelRequest < TencentCloud::Common::AbstractModel
         # @param BotBizId: 应用ID
@@ -10161,6 +10607,27 @@ module TencentCloud
           @InputTokens = params['InputTokens']
           @OutputTokens = params['OutputTokens']
           @TotalTokens = params['TotalTokens']
+        end
+      end
+
+      # 用户基础信息
+      class UserBaseInfo < TencentCloud::Common::AbstractModel
+        # @param UserBizId: 用户ID
+        # @type UserBizId: String
+        # @param UserName: 用户名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserName: String
+
+        attr_accessor :UserBizId, :UserName
+
+        def initialize(userbizid=nil, username=nil)
+          @UserBizId = userbizid
+          @UserName = username
+        end
+
+        def deserialize(params)
+          @UserBizId = params['UserBizId']
+          @UserName = params['UserName']
         end
       end
 

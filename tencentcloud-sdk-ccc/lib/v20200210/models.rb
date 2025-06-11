@@ -477,6 +477,49 @@ module TencentCloud
         end
       end
 
+      # BindNumberCallInInterface请求参数结构体
+      class BindNumberCallInInterfaceRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
+        # @type SdkAppId: Integer
+        # @param Number: 待绑定的号码
+        # @type Number: String
+        # @param CallInInterface: 待绑定的回调地址
+        # @type CallInInterface: :class:`Tencentcloud::Ccc.v20200210.models.Interface`
+
+        attr_accessor :SdkAppId, :Number, :CallInInterface
+
+        def initialize(sdkappid=nil, number=nil, callininterface=nil)
+          @SdkAppId = sdkappid
+          @Number = number
+          @CallInInterface = callininterface
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @Number = params['Number']
+          unless params['CallInInterface'].nil?
+            @CallInInterface = Interface.new
+            @CallInInterface.deserialize(params['CallInInterface'])
+          end
+        end
+      end
+
+      # BindNumberCallInInterface返回参数结构体
+      class BindNumberCallInInterfaceResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # BindNumberCallOutSkillGroup请求参数结构体
       class BindNumberCallOutSkillGroupRequest < TencentCloud::Common::AbstractModel
         # @param SdkAppId: 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
@@ -764,7 +807,7 @@ module TencentCloud
       end
 
       # 座席登录的终端信息
-      class Client < TencentCloud::Common::AbstractModel
+      class ClientInfo < TencentCloud::Common::AbstractModel
         # @param ClientType: 登录的端类型，"Web"表示web工作台，"WeChatMiniProgram"表示微信小程序
         # @type ClientType: String
         # @param IsConnected: 当前登录的端是否在前台。若登录的端是Web，则该值为true；若登录的端是WeChatMiniProgram，true表示打开着微信小程序，false表示微信小程序退到后台
@@ -4681,6 +4724,22 @@ module TencentCloud
         end
       end
 
+      # 回调接口
+      class Interface < TencentCloud::Common::AbstractModel
+        # @param URL: 接口地址
+        # @type URL: String
+
+        attr_accessor :URL
+
+        def initialize(url=nil)
+          @URL = url
+        end
+
+        def deserialize(params)
+          @URL = params['URL']
+        end
+      end
+
       # 单条消息
       class Message < TencentCloud::Common::AbstractModel
         # @param Type: 消息类型
@@ -5876,9 +5935,9 @@ module TencentCloud
           unless params['ClientInfo'].nil?
             @ClientInfo = []
             params['ClientInfo'].each do |i|
-              client_tmp = Client.new
-              client_tmp.deserialize(i)
-              @ClientInfo << client_tmp
+              clientinfo_tmp = ClientInfo.new
+              clientinfo_tmp.deserialize(i)
+              @ClientInfo << clientinfo_tmp
             end
           end
         end

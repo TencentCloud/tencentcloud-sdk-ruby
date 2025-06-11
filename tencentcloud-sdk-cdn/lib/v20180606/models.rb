@@ -5232,7 +5232,7 @@ module TencentCloud
 
       # DescribePurgeTasks返回参数结构体
       class DescribePurgeTasksResponse < TencentCloud::Common::AbstractModel
-        # @param PurgeLogs: 详细刷新记录
+        # @param PurgeLogs: 详细刷新纪录
         # @type PurgeLogs: Array
         # @param TotalCount: 任务总数，用于分页
         # @type TotalCount: Integer
