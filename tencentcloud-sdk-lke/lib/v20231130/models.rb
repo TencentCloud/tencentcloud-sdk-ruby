@@ -1804,6 +1804,88 @@ module TencentCloud
         end
       end
 
+      # CreateWorkflowRun请求参数结构体
+      class CreateWorkflowRunRequest < TencentCloud::Common::AbstractModel
+        # @param RunEnv: 运行环境。0: 测试环境； 1: 正式环境
+        # @type RunEnv: Integer
+        # @param AppBizId: 应用ID
+        # @type AppBizId: String
+        # @param Query: 用户输入的内容
+        # @type Query: String
+        # @param CustomVariables: API参数配置
+        # @type CustomVariables: Array
+
+        attr_accessor :RunEnv, :AppBizId, :Query, :CustomVariables
+
+        def initialize(runenv=nil, appbizid=nil, query=nil, customvariables=nil)
+          @RunEnv = runenv
+          @AppBizId = appbizid
+          @Query = query
+          @CustomVariables = customvariables
+        end
+
+        def deserialize(params)
+          @RunEnv = params['RunEnv']
+          @AppBizId = params['AppBizId']
+          @Query = params['Query']
+          unless params['CustomVariables'].nil?
+            @CustomVariables = []
+            params['CustomVariables'].each do |i|
+              customvariable_tmp = CustomVariable.new
+              customvariable_tmp.deserialize(i)
+              @CustomVariables << customvariable_tmp
+            end
+          end
+        end
+      end
+
+      # CreateWorkflowRun返回参数结构体
+      class CreateWorkflowRunResponse < TencentCloud::Common::AbstractModel
+        # @param AppBizId: 应用ID
+        # @type AppBizId: String
+        # @param WorkflowRunId: 工作流运行实例的ID
+        # @type WorkflowRunId: String
+        # @param RunEnv: 运行环境。0: 测试环境； 1: 正式环境
+        # @type RunEnv: Integer
+        # @param Query: 用户输入的内容
+        # @type Query: String
+        # @param CustomVariables: API参数配置
+        # @type CustomVariables: Array
+        # @param CreateTime: 创建时间（毫秒时间戳）
+        # @type CreateTime: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :AppBizId, :WorkflowRunId, :RunEnv, :Query, :CustomVariables, :CreateTime, :RequestId
+
+        def initialize(appbizid=nil, workflowrunid=nil, runenv=nil, query=nil, customvariables=nil, createtime=nil, requestid=nil)
+          @AppBizId = appbizid
+          @WorkflowRunId = workflowrunid
+          @RunEnv = runenv
+          @Query = query
+          @CustomVariables = customvariables
+          @CreateTime = createtime
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @AppBizId = params['AppBizId']
+          @WorkflowRunId = params['WorkflowRunId']
+          @RunEnv = params['RunEnv']
+          @Query = params['Query']
+          unless params['CustomVariables'].nil?
+            @CustomVariables = []
+            params['CustomVariables'].each do |i|
+              customvariable_tmp = CustomVariable.new
+              customvariable_tmp.deserialize(i)
+              @CustomVariables << customvariable_tmp
+            end
+          end
+          @CreateTime = params['CreateTime']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 临时密钥结构
       class Credentials < TencentCloud::Common::AbstractModel
         # @param Token: token
@@ -1833,6 +1915,26 @@ module TencentCloud
           @TmpSecretId = params['TmpSecretId']
           @TmpSecretKey = params['TmpSecretKey']
           @AppId = params['AppId']
+        end
+      end
+
+      # 工作流的API参数
+      class CustomVariable < TencentCloud::Common::AbstractModel
+        # @param Name: 参数名称
+        # @type Name: String
+        # @param Value: 参数的值
+        # @type Value: String
+
+        attr_accessor :Name, :Value
+
+        def initialize(name=nil, value=nil)
+          @Name = name
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Value = params['Value']
         end
       end
 
@@ -2811,6 +2913,45 @@ module TencentCloud
         end
       end
 
+      # DescribeNodeRun请求参数结构体
+      class DescribeNodeRunRequest < TencentCloud::Common::AbstractModel
+        # @param NodeRunId: 节点运行实例ID
+        # @type NodeRunId: String
+
+        attr_accessor :NodeRunId
+
+        def initialize(noderunid=nil)
+          @NodeRunId = noderunid
+        end
+
+        def deserialize(params)
+          @NodeRunId = params['NodeRunId']
+        end
+      end
+
+      # DescribeNodeRun返回参数结构体
+      class DescribeNodeRunResponse < TencentCloud::Common::AbstractModel
+        # @param NodeRun: 节点运行实例详情
+        # @type NodeRun: :class:`Tencentcloud::Lke.v20231130.models.NodeRunDetail`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :NodeRun, :RequestId
+
+        def initialize(noderun=nil, requestid=nil)
+          @NodeRun = noderun
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['NodeRun'].nil?
+            @NodeRun = NodeRunDetail.new
+            @NodeRun.deserialize(params['NodeRun'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeQA请求参数结构体
       class DescribeQARequest < TencentCloud::Common::AbstractModel
         # @param QaBizId: QA业务ID
@@ -3669,6 +3810,56 @@ module TencentCloud
               context_tmp = Context.new
               context_tmp.deserialize(i)
               @List << context_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeWorkflowRun请求参数结构体
+      class DescribeWorkflowRunRequest < TencentCloud::Common::AbstractModel
+        # @param WorkflowRunId: 工作流运行实例ID
+        # @type WorkflowRunId: String
+
+        attr_accessor :WorkflowRunId
+
+        def initialize(workflowrunid=nil)
+          @WorkflowRunId = workflowrunid
+        end
+
+        def deserialize(params)
+          @WorkflowRunId = params['WorkflowRunId']
+        end
+      end
+
+      # DescribeWorkflowRun返回参数结构体
+      class DescribeWorkflowRunResponse < TencentCloud::Common::AbstractModel
+        # @param WorkflowRun: 总数
+        # @type WorkflowRun: :class:`Tencentcloud::Lke.v20231130.models.WorkflowRunDetail`
+        # @param NodeRuns: 节点列表
+        # @type NodeRuns: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :WorkflowRun, :NodeRuns, :RequestId
+
+        def initialize(workflowrun=nil, noderuns=nil, requestid=nil)
+          @WorkflowRun = workflowrun
+          @NodeRuns = noderuns
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['WorkflowRun'].nil?
+            @WorkflowRun = WorkflowRunDetail.new
+            @WorkflowRun.deserialize(params['WorkflowRun'])
+          end
+          unless params['NodeRuns'].nil?
+            @NodeRuns = []
+            params['NodeRuns'].each do |i|
+              noderunbase_tmp = NodeRunBase.new
+              noderunbase_tmp.deserialize(i)
+              @NodeRuns << noderunbase_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -7518,6 +7709,73 @@ module TencentCloud
         end
       end
 
+      # ListWorkflowRuns请求参数结构体
+      class ListWorkflowRunsRequest < TencentCloud::Common::AbstractModel
+        # @param RunEnv: 运行环境。0: 测试环境； 1: 正式环境
+        # @type RunEnv: Integer
+        # @param AppBizId: 应用ID
+        # @type AppBizId: String
+        # @param Page: 页码
+        # @type Page: Integer
+        # @param PageSize: 每页数量
+        # @type PageSize: Integer
+        # @param LoginUin: 登录用户主账号(集成商模式必填)
+        # @type LoginUin: String
+        # @param LoginSubAccountUin: 登录用户子账号(集成商模式必填)
+        # @type LoginSubAccountUin: String
+
+        attr_accessor :RunEnv, :AppBizId, :Page, :PageSize, :LoginUin, :LoginSubAccountUin
+
+        def initialize(runenv=nil, appbizid=nil, page=nil, pagesize=nil, loginuin=nil, loginsubaccountuin=nil)
+          @RunEnv = runenv
+          @AppBizId = appbizid
+          @Page = page
+          @PageSize = pagesize
+          @LoginUin = loginuin
+          @LoginSubAccountUin = loginsubaccountuin
+        end
+
+        def deserialize(params)
+          @RunEnv = params['RunEnv']
+          @AppBizId = params['AppBizId']
+          @Page = params['Page']
+          @PageSize = params['PageSize']
+          @LoginUin = params['LoginUin']
+          @LoginSubAccountUin = params['LoginSubAccountUin']
+        end
+      end
+
+      # ListWorkflowRuns返回参数结构体
+      class ListWorkflowRunsResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 总数
+        # @type Total: Integer
+        # @param WorkflowRuns: 工作流运行列表
+        # @type WorkflowRuns: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :WorkflowRuns, :RequestId
+
+        def initialize(total=nil, workflowruns=nil, requestid=nil)
+          @Total = total
+          @WorkflowRuns = workflowruns
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          unless params['WorkflowRuns'].nil?
+            @WorkflowRuns = []
+            params['WorkflowRuns'].each do |i|
+              workflowrunbase_tmp = WorkflowRunBase.new
+              workflowrunbase_tmp.deserialize(i)
+              @WorkflowRuns << workflowrunbase_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 一条message代表一条对话记录
       # role表示角色  user或者assistant
       # content表示对话内容
@@ -8454,6 +8712,199 @@ module TencentCloud
           @Type = params['Type']
           @Name = params['Name']
           @DocId = params['DocId']
+        end
+      end
+
+      # 节点运行的基本信息
+      class NodeRunBase < TencentCloud::Common::AbstractModel
+        # @param NodeRunId: 节点运行的ID
+        # @type NodeRunId: String
+        # @param NodeId: 节点ID
+        # @type NodeId: String
+        # @param WorkflowRunId: 工作流运行实例的ID
+        # @type WorkflowRunId: String
+        # @param NodeName: 节点名称
+        # @type NodeName: String
+        # @param NodeType: 节点类型。
+        # 1： 开始节点
+        # 2：参数提取节点
+        # 3：大模型节点
+        # 4：知识问答节点
+        # 5：知识检索节点
+        # 6：标签提取节点
+        # 7：代码执行节点
+        # 8：工具节点
+        # 9：逻辑判断节点
+        # 10：回复节点
+        # 11：选项卡节点
+        # 12：循环节点
+        # 13：意图识别节点
+        # 14：工作流节点
+        # 15：插件节点
+        # 16：结束节点
+        # 17: 变量聚合节点数据
+        # 18: 批处理节点
+        # 19: 消息队列节点
+        # @type NodeType: Integer
+        # @param State: 运行状态。0: 初始状态；1: 运行中；2: 运行成功； 3: 运行失败； 4: 已取消
+        # @type State: Integer
+        # @param FailCode: 错误码
+        # @type FailCode: String
+        # @param FailMessage: 错误信息
+        # @type FailMessage: String
+        # @param CostMilliseconds: 消耗时间（毫秒）
+        # @type CostMilliseconds: Integer
+        # @param TotalTokens: 消耗的token总数
+        # @type TotalTokens: Integer
+
+        attr_accessor :NodeRunId, :NodeId, :WorkflowRunId, :NodeName, :NodeType, :State, :FailCode, :FailMessage, :CostMilliseconds, :TotalTokens
+
+        def initialize(noderunid=nil, nodeid=nil, workflowrunid=nil, nodename=nil, nodetype=nil, state=nil, failcode=nil, failmessage=nil, costmilliseconds=nil, totaltokens=nil)
+          @NodeRunId = noderunid
+          @NodeId = nodeid
+          @WorkflowRunId = workflowrunid
+          @NodeName = nodename
+          @NodeType = nodetype
+          @State = state
+          @FailCode = failcode
+          @FailMessage = failmessage
+          @CostMilliseconds = costmilliseconds
+          @TotalTokens = totaltokens
+        end
+
+        def deserialize(params)
+          @NodeRunId = params['NodeRunId']
+          @NodeId = params['NodeId']
+          @WorkflowRunId = params['WorkflowRunId']
+          @NodeName = params['NodeName']
+          @NodeType = params['NodeType']
+          @State = params['State']
+          @FailCode = params['FailCode']
+          @FailMessage = params['FailMessage']
+          @CostMilliseconds = params['CostMilliseconds']
+          @TotalTokens = params['TotalTokens']
+        end
+      end
+
+      # 工作流节点运行详情
+      class NodeRunDetail < TencentCloud::Common::AbstractModel
+        # @param NodeRunId: 节点运行的ID
+        # @type NodeRunId: String
+        # @param NodeId: 节点ID
+        # @type NodeId: String
+        # @param WorkflowRunId: 工作流运行实例的ID
+        # @type WorkflowRunId: String
+        # @param NodeName: 节点名称
+        # @type NodeName: String
+        # @param NodeType: 节点类型。
+        # 1： 开始节点
+        # 2：参数提取节点
+        # 3：大模型节点
+        # 4：知识问答节点
+        # 5：知识检索节点
+        # 6：标签提取节点
+        # 7：代码执行节点
+        # 8：工具节点
+        # 9：逻辑判断节点
+        # 10：回复节点
+        # 11：选项卡节点
+        # 12：循环节点
+        # 13：意图识别节点
+        # 14：工作流节点
+        # 15：插件节点
+        # 16：结束节点
+        # 17: 变量聚合节点数据
+        # 18: 批处理节点
+        # 19: 消息队列节点
+        # @type NodeType: Integer
+        # @param State: 运行状态。0: 初始状态；1: 运行中；2: 运行成功； 3: 运行失败； 4: 已取消
+        # @type State: Integer
+        # @param FailCode: 错误码
+        # @type FailCode: String
+        # @param FailMessage: 错误信息
+        # @type FailMessage: String
+        # @param CostMilliseconds: 消耗时间（毫秒）
+        # @type CostMilliseconds: Integer
+        # @param TotalTokens: 消耗的token总数
+        # @type TotalTokens: Integer
+        # @param Input: 输入变量信息
+        # @type Input: String
+        # @param InputRef: 节点的输入的完整内容的链接。（当Input内容超过限制的时候此字段才有值）
+        # @type InputRef: String
+        # @param Output: 输出变量信息
+        # @type Output: String
+        # @param OutputRef: 节点的输出的完整内容的链接。（当Output内容超过限制的时候此字段才有值）
+        # @type OutputRef: String
+        # @param TaskOutput: 原始输出信息。部分节点才有值，如工具节点、代码节点
+        # @type TaskOutput: String
+        # @param TaskOutputRef: 任务的原始输出的完整内容的链接。（当TaskOutput内容超过限制的时候此字段才有值）
+        # @type TaskOutputRef: String
+        # @param Log: 节点的日志
+        # @type Log: String
+        # @param LogRef: 节点的日志的完整内容的链接志（当Log内容超过限制的时候才有值）
+        # @type LogRef: String
+        # @param StartTime: 开始时间戳（毫秒）
+        # @type StartTime: String
+        # @param EndTime: 结束时间戳（毫秒）
+        # @type EndTime: String
+        # @param StatisticInfos: LLM统计信息。
+        # @type StatisticInfos: Array
+
+        attr_accessor :NodeRunId, :NodeId, :WorkflowRunId, :NodeName, :NodeType, :State, :FailCode, :FailMessage, :CostMilliseconds, :TotalTokens, :Input, :InputRef, :Output, :OutputRef, :TaskOutput, :TaskOutputRef, :Log, :LogRef, :StartTime, :EndTime, :StatisticInfos
+
+        def initialize(noderunid=nil, nodeid=nil, workflowrunid=nil, nodename=nil, nodetype=nil, state=nil, failcode=nil, failmessage=nil, costmilliseconds=nil, totaltokens=nil, input=nil, inputref=nil, output=nil, outputref=nil, taskoutput=nil, taskoutputref=nil, log=nil, logref=nil, starttime=nil, endtime=nil, statisticinfos=nil)
+          @NodeRunId = noderunid
+          @NodeId = nodeid
+          @WorkflowRunId = workflowrunid
+          @NodeName = nodename
+          @NodeType = nodetype
+          @State = state
+          @FailCode = failcode
+          @FailMessage = failmessage
+          @CostMilliseconds = costmilliseconds
+          @TotalTokens = totaltokens
+          @Input = input
+          @InputRef = inputref
+          @Output = output
+          @OutputRef = outputref
+          @TaskOutput = taskoutput
+          @TaskOutputRef = taskoutputref
+          @Log = log
+          @LogRef = logref
+          @StartTime = starttime
+          @EndTime = endtime
+          @StatisticInfos = statisticinfos
+        end
+
+        def deserialize(params)
+          @NodeRunId = params['NodeRunId']
+          @NodeId = params['NodeId']
+          @WorkflowRunId = params['WorkflowRunId']
+          @NodeName = params['NodeName']
+          @NodeType = params['NodeType']
+          @State = params['State']
+          @FailCode = params['FailCode']
+          @FailMessage = params['FailMessage']
+          @CostMilliseconds = params['CostMilliseconds']
+          @TotalTokens = params['TotalTokens']
+          @Input = params['Input']
+          @InputRef = params['InputRef']
+          @Output = params['Output']
+          @OutputRef = params['OutputRef']
+          @TaskOutput = params['TaskOutput']
+          @TaskOutputRef = params['TaskOutputRef']
+          @Log = params['Log']
+          @LogRef = params['LogRef']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          unless params['StatisticInfos'].nil?
+            @StatisticInfos = []
+            params['StatisticInfos'].each do |i|
+              statisticinfo_tmp = StatisticInfo.new
+              statisticinfo_tmp.deserialize(i)
+              @StatisticInfos << statisticinfo_tmp
+            end
+          end
         end
       end
 
@@ -10131,6 +10582,38 @@ module TencentCloud
         end
       end
 
+      # StopWorkflowRun请求参数结构体
+      class StopWorkflowRunRequest < TencentCloud::Common::AbstractModel
+        # @param WorkflowRunId: 工作流运行实例ID
+        # @type WorkflowRunId: String
+
+        attr_accessor :WorkflowRunId
+
+        def initialize(workflowrunid=nil)
+          @WorkflowRunId = workflowrunid
+        end
+
+        def deserialize(params)
+          @WorkflowRunId = params['WorkflowRunId']
+        end
+      end
+
+      # StopWorkflowRun返回参数结构体
+      class StopWorkflowRunResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 字符串KV信息
       class StrValue < TencentCloud::Common::AbstractModel
         # @param Name: 名称
@@ -10908,6 +11391,141 @@ module TencentCloud
           @WorkflowDesc = params['WorkflowDesc']
           @AppBizId = params['AppBizId']
           @UpdateTime = params['UpdateTime']
+        end
+      end
+
+      # 工作流运行实例的基本信息
+      class WorkflowRunBase < TencentCloud::Common::AbstractModel
+        # @param RunEnv: 运行环境。0: 测试环境； 1: 正式环境
+        # @type RunEnv: Integer
+        # @param AppBizId: 应用ID
+        # @type AppBizId: String
+        # @param WorkflowRunId: 工作流运行实例的ID
+        # @type WorkflowRunId: String
+        # @param WorkflowId: 所属工作流ID
+        # @type WorkflowId: String
+        # @param Name: 名称
+        # @type Name: String
+        # @param State: 运行状态。0: 排队中；1: 运行中；2: 运行成功；3: 运行失败； 4: 已取消
+        # @type State: Integer
+        # @param FailMessage: 错误信息
+        # @type FailMessage: String
+        # @param TotalTokens: 消耗的token总数
+        # @type TotalTokens: Integer
+        # @param CreateTime: 创建时间（毫秒时间戳）
+        # @type CreateTime: String
+        # @param StartTime: 开始时间（毫秒时间戳）
+        # @type StartTime: String
+        # @param EndTime: 结束时间（毫秒时间戳）
+        # @type EndTime: String
+
+        attr_accessor :RunEnv, :AppBizId, :WorkflowRunId, :WorkflowId, :Name, :State, :FailMessage, :TotalTokens, :CreateTime, :StartTime, :EndTime
+
+        def initialize(runenv=nil, appbizid=nil, workflowrunid=nil, workflowid=nil, name=nil, state=nil, failmessage=nil, totaltokens=nil, createtime=nil, starttime=nil, endtime=nil)
+          @RunEnv = runenv
+          @AppBizId = appbizid
+          @WorkflowRunId = workflowrunid
+          @WorkflowId = workflowid
+          @Name = name
+          @State = state
+          @FailMessage = failmessage
+          @TotalTokens = totaltokens
+          @CreateTime = createtime
+          @StartTime = starttime
+          @EndTime = endtime
+        end
+
+        def deserialize(params)
+          @RunEnv = params['RunEnv']
+          @AppBizId = params['AppBizId']
+          @WorkflowRunId = params['WorkflowRunId']
+          @WorkflowId = params['WorkflowId']
+          @Name = params['Name']
+          @State = params['State']
+          @FailMessage = params['FailMessage']
+          @TotalTokens = params['TotalTokens']
+          @CreateTime = params['CreateTime']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+        end
+      end
+
+      # 工作流运行实例详情
+      class WorkflowRunDetail < TencentCloud::Common::AbstractModel
+        # @param RunEnv: 运行环境。0: 测试环境； 1: 正式环境
+        # @type RunEnv: Integer
+        # @param AppBizId: 应用ID
+        # @type AppBizId: String
+        # @param WorkflowRunId: 工作流运行实例的ID
+        # @type WorkflowRunId: String
+        # @param WorkflowId: 所属工作流ID
+        # @type WorkflowId: String
+        # @param Name: 名称
+        # @type Name: String
+        # @param State: 运行状态。0: 排队中；1: 运行中；2: 运行成功；3: 运行失败； 4: 已取消
+        # @type State: Integer
+        # @param FailMessage: 错误信息
+        # @type FailMessage: String
+        # @param TotalTokens: 消耗的token总数
+        # @type TotalTokens: Integer
+        # @param CreateTime: 创建时间（毫秒时间戳）
+        # @type CreateTime: String
+        # @param StartTime: 开始时间（毫秒时间戳）
+        # @type StartTime: String
+        # @param EndTime: 结束时间（毫秒时间戳）
+        # @type EndTime: String
+        # @param DialogJson: 工作流画布Json
+        # @type DialogJson: String
+        # @param Query: 用户的输入
+        # @type Query: String
+        # @param MainModelName: 主模型名称
+        # @type MainModelName: String
+        # @param CustomVariables: API参数配置
+        # @type CustomVariables: Array
+
+        attr_accessor :RunEnv, :AppBizId, :WorkflowRunId, :WorkflowId, :Name, :State, :FailMessage, :TotalTokens, :CreateTime, :StartTime, :EndTime, :DialogJson, :Query, :MainModelName, :CustomVariables
+
+        def initialize(runenv=nil, appbizid=nil, workflowrunid=nil, workflowid=nil, name=nil, state=nil, failmessage=nil, totaltokens=nil, createtime=nil, starttime=nil, endtime=nil, dialogjson=nil, query=nil, mainmodelname=nil, customvariables=nil)
+          @RunEnv = runenv
+          @AppBizId = appbizid
+          @WorkflowRunId = workflowrunid
+          @WorkflowId = workflowid
+          @Name = name
+          @State = state
+          @FailMessage = failmessage
+          @TotalTokens = totaltokens
+          @CreateTime = createtime
+          @StartTime = starttime
+          @EndTime = endtime
+          @DialogJson = dialogjson
+          @Query = query
+          @MainModelName = mainmodelname
+          @CustomVariables = customvariables
+        end
+
+        def deserialize(params)
+          @RunEnv = params['RunEnv']
+          @AppBizId = params['AppBizId']
+          @WorkflowRunId = params['WorkflowRunId']
+          @WorkflowId = params['WorkflowId']
+          @Name = params['Name']
+          @State = params['State']
+          @FailMessage = params['FailMessage']
+          @TotalTokens = params['TotalTokens']
+          @CreateTime = params['CreateTime']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @DialogJson = params['DialogJson']
+          @Query = params['Query']
+          @MainModelName = params['MainModelName']
+          unless params['CustomVariables'].nil?
+            @CustomVariables = []
+            params['CustomVariables'].each do |i|
+              customvariable_tmp = CustomVariable.new
+              customvariable_tmp.deserialize(i)
+              @CustomVariables << customvariable_tmp
+            end
+          end
         end
       end
 

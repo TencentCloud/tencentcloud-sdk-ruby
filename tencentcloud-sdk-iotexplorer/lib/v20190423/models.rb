@@ -60,7 +60,7 @@ module TencentCloud
 
       # ActivateTWeCallLicense请求参数结构体
       class ActivateTWeCallLicenseRequest < TencentCloud::Common::AbstractModel
-        # @param PkgType: TWecall类型：0-体验套餐；1-家庭安防场景； 2-穿戴类场景； 3-生活娱乐场景； 4-对讲及其它场景
+        # @param PkgType: TWecall类型：0-体验套餐；1-基础版；3-高级版；
         # @type PkgType: Integer
         # @param MiniProgramAppId: 参数已弃用，不用传参
         # @type MiniProgramAppId: String

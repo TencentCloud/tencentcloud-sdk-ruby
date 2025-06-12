@@ -77,10 +77,12 @@ module TencentCloud
         # @type AvailablePortInfo: Array
         # @param Address: 接入点地址。
         # @type Address: String
+        # @param IsMacSec: 是否MACsec
+        # @type IsMacSec: Boolean
 
-        attr_accessor :AccessPointName, :AccessPointId, :State, :Location, :LineOperator, :RegionId, :AvailablePortType, :Coordinate, :City, :Area, :AccessPointType, :AvailablePortInfo, :Address
+        attr_accessor :AccessPointName, :AccessPointId, :State, :Location, :LineOperator, :RegionId, :AvailablePortType, :Coordinate, :City, :Area, :AccessPointType, :AvailablePortInfo, :Address, :IsMacSec
 
-        def initialize(accesspointname=nil, accesspointid=nil, state=nil, location=nil, lineoperator=nil, regionid=nil, availableporttype=nil, coordinate=nil, city=nil, area=nil, accesspointtype=nil, availableportinfo=nil, address=nil)
+        def initialize(accesspointname=nil, accesspointid=nil, state=nil, location=nil, lineoperator=nil, regionid=nil, availableporttype=nil, coordinate=nil, city=nil, area=nil, accesspointtype=nil, availableportinfo=nil, address=nil, ismacsec=nil)
           @AccessPointName = accesspointname
           @AccessPointId = accesspointid
           @State = state
@@ -94,6 +96,7 @@ module TencentCloud
           @AccessPointType = accesspointtype
           @AvailablePortInfo = availableportinfo
           @Address = address
+          @IsMacSec = ismacsec
         end
 
         def deserialize(params)
@@ -120,6 +123,7 @@ module TencentCloud
             end
           end
           @Address = params['Address']
+          @IsMacSec = params['IsMacSec']
         end
       end
 
@@ -488,10 +492,12 @@ module TencentCloud
         # @type SignLaw: Boolean
         # @param Tags: 标签键值对
         # @type Tags: Array
+        # @param IsMacSec: 是否MACsec需求
+        # @type IsMacSec: Boolean
 
-        attr_accessor :DirectConnectName, :AccessPointId, :LineOperator, :PortType, :CircuitCode, :Location, :Bandwidth, :RedundantDirectConnectId, :Vlan, :TencentAddress, :CustomerAddress, :CustomerName, :CustomerContactMail, :CustomerContactNumber, :FaultReportContactPerson, :FaultReportContactNumber, :SignLaw, :Tags
+        attr_accessor :DirectConnectName, :AccessPointId, :LineOperator, :PortType, :CircuitCode, :Location, :Bandwidth, :RedundantDirectConnectId, :Vlan, :TencentAddress, :CustomerAddress, :CustomerName, :CustomerContactMail, :CustomerContactNumber, :FaultReportContactPerson, :FaultReportContactNumber, :SignLaw, :Tags, :IsMacSec
 
-        def initialize(directconnectname=nil, accesspointid=nil, lineoperator=nil, porttype=nil, circuitcode=nil, location=nil, bandwidth=nil, redundantdirectconnectid=nil, vlan=nil, tencentaddress=nil, customeraddress=nil, customername=nil, customercontactmail=nil, customercontactnumber=nil, faultreportcontactperson=nil, faultreportcontactnumber=nil, signlaw=nil, tags=nil)
+        def initialize(directconnectname=nil, accesspointid=nil, lineoperator=nil, porttype=nil, circuitcode=nil, location=nil, bandwidth=nil, redundantdirectconnectid=nil, vlan=nil, tencentaddress=nil, customeraddress=nil, customername=nil, customercontactmail=nil, customercontactnumber=nil, faultreportcontactperson=nil, faultreportcontactnumber=nil, signlaw=nil, tags=nil, ismacsec=nil)
           @DirectConnectName = directconnectname
           @AccessPointId = accesspointid
           @LineOperator = lineoperator
@@ -510,6 +516,7 @@ module TencentCloud
           @FaultReportContactNumber = faultreportcontactnumber
           @SignLaw = signlaw
           @Tags = tags
+          @IsMacSec = ismacsec
         end
 
         def deserialize(params)
@@ -538,6 +545,7 @@ module TencentCloud
               @Tags << tag_tmp
             end
           end
+          @IsMacSec = params['IsMacSec']
         end
       end
 
@@ -1310,10 +1318,14 @@ module TencentCloud
         # @type AccessPointName: String
         # @param IsThreeArch: 是否三层架构
         # @type IsThreeArch: Boolean
+        # @param IsMacSec: 是否MACsec
+        # @type IsMacSec: Boolean
+        # @param PortSpecification: 端口规格(Mbps)
+        # @type PortSpecification: Integer
 
-        attr_accessor :DirectConnectId, :DirectConnectName, :AccessPointId, :State, :CreatedTime, :EnabledTime, :LineOperator, :Location, :Bandwidth, :PortType, :CircuitCode, :RedundantDirectConnectId, :Vlan, :TencentAddress, :CustomerAddress, :CustomerName, :CustomerContactMail, :CustomerContactNumber, :ExpiredTime, :ChargeType, :FaultReportContactPerson, :FaultReportContactNumber, :TagSet, :AccessPointType, :IdcCity, :ChargeState, :StartTime, :SignLaw, :LocalZone, :VlanZeroDirectConnectTunnelCount, :OtherVlanDirectConnectTunnelCount, :MinBandwidth, :Construct, :AccessPointName, :IsThreeArch
+        attr_accessor :DirectConnectId, :DirectConnectName, :AccessPointId, :State, :CreatedTime, :EnabledTime, :LineOperator, :Location, :Bandwidth, :PortType, :CircuitCode, :RedundantDirectConnectId, :Vlan, :TencentAddress, :CustomerAddress, :CustomerName, :CustomerContactMail, :CustomerContactNumber, :ExpiredTime, :ChargeType, :FaultReportContactPerson, :FaultReportContactNumber, :TagSet, :AccessPointType, :IdcCity, :ChargeState, :StartTime, :SignLaw, :LocalZone, :VlanZeroDirectConnectTunnelCount, :OtherVlanDirectConnectTunnelCount, :MinBandwidth, :Construct, :AccessPointName, :IsThreeArch, :IsMacSec, :PortSpecification
 
-        def initialize(directconnectid=nil, directconnectname=nil, accesspointid=nil, state=nil, createdtime=nil, enabledtime=nil, lineoperator=nil, location=nil, bandwidth=nil, porttype=nil, circuitcode=nil, redundantdirectconnectid=nil, vlan=nil, tencentaddress=nil, customeraddress=nil, customername=nil, customercontactmail=nil, customercontactnumber=nil, expiredtime=nil, chargetype=nil, faultreportcontactperson=nil, faultreportcontactnumber=nil, tagset=nil, accesspointtype=nil, idccity=nil, chargestate=nil, starttime=nil, signlaw=nil, localzone=nil, vlanzerodirectconnecttunnelcount=nil, othervlandirectconnecttunnelcount=nil, minbandwidth=nil, construct=nil, accesspointname=nil, isthreearch=nil)
+        def initialize(directconnectid=nil, directconnectname=nil, accesspointid=nil, state=nil, createdtime=nil, enabledtime=nil, lineoperator=nil, location=nil, bandwidth=nil, porttype=nil, circuitcode=nil, redundantdirectconnectid=nil, vlan=nil, tencentaddress=nil, customeraddress=nil, customername=nil, customercontactmail=nil, customercontactnumber=nil, expiredtime=nil, chargetype=nil, faultreportcontactperson=nil, faultreportcontactnumber=nil, tagset=nil, accesspointtype=nil, idccity=nil, chargestate=nil, starttime=nil, signlaw=nil, localzone=nil, vlanzerodirectconnecttunnelcount=nil, othervlandirectconnecttunnelcount=nil, minbandwidth=nil, construct=nil, accesspointname=nil, isthreearch=nil, ismacsec=nil, portspecification=nil)
           @DirectConnectId = directconnectid
           @DirectConnectName = directconnectname
           @AccessPointId = accesspointid
@@ -1349,6 +1361,8 @@ module TencentCloud
           @Construct = construct
           @AccessPointName = accesspointname
           @IsThreeArch = isthreearch
+          @IsMacSec = ismacsec
+          @PortSpecification = portspecification
         end
 
         def deserialize(params)
@@ -1394,6 +1408,8 @@ module TencentCloud
           @Construct = params['Construct']
           @AccessPointName = params['AccessPointName']
           @IsThreeArch = params['IsThreeArch']
+          @IsMacSec = params['IsMacSec']
+          @PortSpecification = params['PortSpecification']
         end
       end
 

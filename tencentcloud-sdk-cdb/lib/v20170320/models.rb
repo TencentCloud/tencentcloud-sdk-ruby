@@ -5552,7 +5552,7 @@ module TencentCloud
 
       # DescribeCPUExpandStrategyInfo请求参数结构体
       class DescribeCPUExpandStrategyInfoRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例 ID 。
+        # @param InstanceId: 实例 ID。
         # @type InstanceId: String
 
         attr_accessor :InstanceId
@@ -5568,18 +5568,18 @@ module TencentCloud
 
       # DescribeCPUExpandStrategyInfo返回参数结构体
       class DescribeCPUExpandStrategyInfoResponse < TencentCloud::Common::AbstractModel
-        # @param Type: 策略类型。可选值 auto、manual。如果返回为NULL说明尚未开通弹性扩容策略
+        # @param Type: 策略类型。输出值 auto、manual。如果返回为 NULL 说明尚未开通弹性扩容策略。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: String
-        # @param ExpandCpu: 手动扩容的 CPU 。Type为 manual 时有效。
+        # @param ExpandCpu: 手动扩容的 CPU 。Type 为 manual 时有效。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExpandCpu: Integer
-        # @param AutoStrategy: 自动扩容策略。Type 为 auto 时有效
+        # @param AutoStrategy: 自动扩容策略。Type 为 auto 时有效。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AutoStrategy: :class:`Tencentcloud::Cdb.v20170320.models.AutoStrategy`
         # @param PeriodStrategy: 按周期扩容策略。
         # @type PeriodStrategy: :class:`Tencentcloud::Cdb.v20170320.models.PeriodStrategy`
-        # @param TimeIntervalStrategy: 按时间段扩容策略
+        # @param TimeIntervalStrategy: 按时间段扩容策略。
         # @type TimeIntervalStrategy: :class:`Tencentcloud::Cdb.v20170320.models.TimeIntervalStrategy`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -13626,18 +13626,18 @@ module TencentCloud
 
       # StartCpuExpand请求参数结构体
       class StartCpuExpandRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例 ID 。
+        # @param InstanceId: 实例 ID。
         # @type InstanceId: String
-        # @param Type: 扩容类型。auto 自动  manual 立即生效 timeInterval 按时间段 period 按周期
+        # @param Type: 扩容类型。auto 自动  manual 立即生效 timeInterval 按时间段 period 按周期。
         # @type Type: String
         # @param ExpandCpu: 手动扩容时，扩容的 CPU 核心数。
         # 说明：1. Type 为 manual 时必传。2. 扩容的 CPU 核心数上限为当前实例 CPU 核心数，比如8核16G最大可手动扩容的 CPU 核心数为8，即范围为1 - 8。
         # @type ExpandCpu: Integer
         # @param AutoStrategy: 自动扩容策略。Type 为 auto 时必传。
         # @type AutoStrategy: :class:`Tencentcloud::Cdb.v20170320.models.AutoStrategy`
-        # @param TimeIntervalStrategy: 按时间段扩容策略
+        # @param TimeIntervalStrategy: 按时间段扩容策略。
         # @type TimeIntervalStrategy: :class:`Tencentcloud::Cdb.v20170320.models.TimeIntervalStrategy`
-        # @param PeriodStrategy: 按周期扩容策略
+        # @param PeriodStrategy: 按周期扩容策略。
         # @type PeriodStrategy: :class:`Tencentcloud::Cdb.v20170320.models.PeriodStrategy`
 
         attr_accessor :InstanceId, :Type, :ExpandCpu, :AutoStrategy, :TimeIntervalStrategy, :PeriodStrategy
@@ -14064,19 +14064,26 @@ module TencentCloud
 
       # 扩容的周期
       class TImeCycle < TencentCloud::Common::AbstractModel
-        # @param Monday: 周一的扩容时间段
+        # @param Monday: 按周期扩容时，是否选择周一扩容。
+        # 说明：取值 true，表示选择，取值 false，表示不选择。
         # @type Monday: Boolean
-        # @param Tuesday: 周二的扩容时间段
+        # @param Tuesday: 按周期扩容时，是否选择周二扩容。
+        # 说明：取值 true，表示选择，取值 false，表示不选择。
         # @type Tuesday: Boolean
-        # @param Wednesday: 周三的扩容时间段
+        # @param Wednesday: 按周期扩容时，是否选择周三扩容。
+        # 说明：取值 true，表示选择，取值 false，表示不选择。
         # @type Wednesday: Boolean
-        # @param Thursday: 周四的扩容时间段
+        # @param Thursday: 按周期扩容时，是否选择周四扩容。
+        # 说明：取值 true，表示选择，取值 false，表示不选择。
         # @type Thursday: Boolean
-        # @param Friday: 周五的扩容时间段
+        # @param Friday: 按周期扩容时，是否选择周五扩容。
+        # 说明：取值 true，表示选择，取值 false，表示不选择。
         # @type Friday: Boolean
-        # @param Saturday: 周六的扩容时间段
+        # @param Saturday: 按周期扩容时，是否选择周六扩容。
+        # 说明：取值 true，表示选择，取值 false，表示不选择。
         # @type Saturday: Boolean
-        # @param Sunday: 周日的扩容时间段
+        # @param Sunday: 按周期扩容时，是否选择周日扩容。
+        # 说明：取值 true，表示选择，取值 false，表示不选择。
         # @type Sunday: Boolean
 
         attr_accessor :Monday, :Tuesday, :Wednesday, :Thursday, :Friday, :Saturday, :Sunday
@@ -14341,9 +14348,9 @@ module TencentCloud
 
       # 时间段
       class TimeInterval < TencentCloud::Common::AbstractModel
-        # @param StartTime: 开始时间
+        # @param StartTime: 开始时间。
         # @type StartTime: String
-        # @param EndTime: 结束时间
+        # @param EndTime: 结束时间。
         # @type EndTime: String
 
         attr_accessor :StartTime, :EndTime
@@ -14361,9 +14368,11 @@ module TencentCloud
 
       # 按时间段扩容策略
       class TimeIntervalStrategy < TencentCloud::Common::AbstractModel
-        # @param StartTime: 开始扩容时间
+        # @param StartTime: 开始扩容时间。
+        # 说明：此值的格式为 Integer 的时间戳。
         # @type StartTime: Integer
-        # @param EndTime: 结束扩容时间
+        # @param EndTime: 结束扩容时间。
+        # 说明：此值的格式为 Integer 的时间戳。
         # @type EndTime: Integer
 
         attr_accessor :StartTime, :EndTime

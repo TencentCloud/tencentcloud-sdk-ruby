@@ -12278,9 +12278,9 @@ module TencentCloud
         # @type NatGatewayId: String
         # @param VpcId: vpc的唯一标识
         # @type VpcId: String
-        # @param Limit: 0到200之间
+        # @param Limit: 查询NAT网关绑定的路由数量，可选值0-200，默认为10
         # @type Limit: Integer
-        # @param Offset: 大于0
+        # @param Offset: 数据偏移量，默认为0
         # @type Offset: Integer
 
         attr_accessor :NatGatewayId, :VpcId, :Limit, :Offset

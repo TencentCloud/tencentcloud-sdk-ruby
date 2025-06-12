@@ -3181,10 +3181,12 @@ module TencentCloud
         # @type DatahubId: String
         # @param StepList: 步骤列表
         # @type StepList: Array
+        # @param Description: 任务描述信息
+        # @type Description: String
 
-        attr_accessor :TaskId, :TaskName, :TaskType, :Status, :SourceResource, :TargetResource, :CreateTime, :ErrorMessage, :TaskProgress, :TaskCurrentStep, :DatahubId, :StepList
+        attr_accessor :TaskId, :TaskName, :TaskType, :Status, :SourceResource, :TargetResource, :CreateTime, :ErrorMessage, :TaskProgress, :TaskCurrentStep, :DatahubId, :StepList, :Description
 
-        def initialize(taskid=nil, taskname=nil, tasktype=nil, status=nil, sourceresource=nil, targetresource=nil, createtime=nil, errormessage=nil, taskprogress=nil, taskcurrentstep=nil, datahubid=nil, steplist=nil)
+        def initialize(taskid=nil, taskname=nil, tasktype=nil, status=nil, sourceresource=nil, targetresource=nil, createtime=nil, errormessage=nil, taskprogress=nil, taskcurrentstep=nil, datahubid=nil, steplist=nil, description=nil)
           @TaskId = taskid
           @TaskName = taskname
           @TaskType = tasktype
@@ -3197,6 +3199,7 @@ module TencentCloud
           @TaskCurrentStep = taskcurrentstep
           @DatahubId = datahubid
           @StepList = steplist
+          @Description = description
         end
 
         def deserialize(params)
@@ -3218,6 +3221,7 @@ module TencentCloud
           @TaskCurrentStep = params['TaskCurrentStep']
           @DatahubId = params['DatahubId']
           @StepList = params['StepList']
+          @Description = params['Description']
         end
       end
 

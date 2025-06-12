@@ -343,6 +343,31 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口用来创建工作流的异步运行实例，创建成功后工作流会在后台异步运行，接口返回工作流运行实例ID（WorkflowRunId）等信息。后面可通过调用DescribeWorkflowRun接口查工作流运行的详情。
+        # 注意：工作流的异步运行是基于应用的，需要先把对应的应用配置成“单工作流模式”，并且打开“异步调用”的开关，才能创建成功。
+
+        # @param request: Request instance for CreateWorkflowRun.
+        # @type request: :class:`Tencentcloud::lke::V20231130::CreateWorkflowRunRequest`
+        # @rtype: :class:`Tencentcloud::lke::V20231130::CreateWorkflowRunResponse`
+        def CreateWorkflowRun(request)
+          body = send_request('CreateWorkflowRun', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateWorkflowRunResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 删除应用
 
         # @param request: Request instance for DeleteApp.
@@ -751,6 +776,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 通过DescribeWorkflowRun接口获取了工作流异步运行的整体内容，其中包含了基本的节点信息，再通用本接口可查看节点的运行详情（包括输入、输出、日志等）。
+
+        # @param request: Request instance for DescribeNodeRun.
+        # @type request: :class:`Tencentcloud::lke::V20231130::DescribeNodeRunRequest`
+        # @rtype: :class:`Tencentcloud::lke::V20231130::DescribeNodeRunResponse`
+        def DescribeNodeRun(request)
+          body = send_request('DescribeNodeRun', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeNodeRunResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 问答详情
 
         # @param request: Request instance for DescribeQA.
@@ -1025,6 +1074,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeUnsatisfiedReplyContextResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 创建了工作流的异步运行实例后，通过本接口可以查询整体的运行详情。
+
+        # @param request: Request instance for DescribeWorkflowRun.
+        # @type request: :class:`Tencentcloud::lke::V20231130::DescribeWorkflowRunRequest`
+        # @rtype: :class:`Tencentcloud::lke::V20231130::DescribeWorkflowRunResponse`
+        def DescribeWorkflowRun(request)
+          body = send_request('DescribeWorkflowRun', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeWorkflowRunResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1978,6 +2051,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 此接口可查询已创建的所有工作流异步运行实例。
+
+        # @param request: Request instance for ListWorkflowRuns.
+        # @type request: :class:`Tencentcloud::lke::V20231130::ListWorkflowRunsRequest`
+        # @rtype: :class:`Tencentcloud::lke::V20231130::ListWorkflowRunsResponse`
+        def ListWorkflowRuns(request)
+          body = send_request('ListWorkflowRuns', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ListWorkflowRunsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 修改应用请求结构体
 
         # @param request: Request instance for ModifyApp.
@@ -2452,6 +2549,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = StopDocParseResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 此接口用来停止正在进行的工作流异步运行实例。
+
+        # @param request: Request instance for StopWorkflowRun.
+        # @type request: :class:`Tencentcloud::lke::V20231130::StopWorkflowRunRequest`
+        # @rtype: :class:`Tencentcloud::lke::V20231130::StopWorkflowRunResponse`
+        def StopWorkflowRun(request)
+          body = send_request('StopWorkflowRun', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = StopWorkflowRunResponse.new
             model.deserialize(response['Response'])
             model
           else

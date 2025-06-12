@@ -341,6 +341,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 接口废弃
+
         # 查询GooseFS集群角色
 
         # @param request: Request instance for DescribeClusterRoles.
