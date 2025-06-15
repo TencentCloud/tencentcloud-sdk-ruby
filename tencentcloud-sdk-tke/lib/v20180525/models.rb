@@ -8084,6 +8084,50 @@ module TencentCloud
         end
       end
 
+      # DescribeMasterComponent请求参数结构体
+      class DescribeMasterComponentRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param Component: master组件名称，支持kube-apiserver、kube-scheduler、kube-controller-manager
+        # @type Component: String
+
+        attr_accessor :ClusterId, :Component
+
+        def initialize(clusterid=nil, component=nil)
+          @ClusterId = clusterid
+          @Component = component
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @Component = params['Component']
+        end
+      end
+
+      # DescribeMasterComponent返回参数结构体
+      class DescribeMasterComponentResponse < TencentCloud::Common::AbstractModel
+        # @param Component: master组件名称
+        # @type Component: String
+        # @param Status: master组件状态，三种状态：running、updating、shutdown
+        # @type Status: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Component, :Status, :RequestId
+
+        def initialize(component=nil, status=nil, requestid=nil)
+          @Component = component
+          @Status = status
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Component = params['Component']
+          @Status = params['Status']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeOSImages请求参数结构体
       class DescribeOSImagesRequest < TencentCloud::Common::AbstractModel
 
@@ -14093,6 +14137,50 @@ module TencentCloud
 
       # ModifyClusterVirtualNodePool返回参数结构体
       class ModifyClusterVirtualNodePoolResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyMasterComponent请求参数结构体
+      class ModifyMasterComponentRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param Component: master组件名称，支持kube-apiserver、kube-scheduler、kube-controller-manager
+        # @type Component: String
+        # @param Operation: 停机或恢复，值只能为：shutdown或restore
+        # @type Operation: String
+        # @param DryRun: 为true时，不真正执行停机或恢复操作
+        # @type DryRun: Boolean
+
+        attr_accessor :ClusterId, :Component, :Operation, :DryRun
+
+        def initialize(clusterid=nil, component=nil, operation=nil, dryrun=nil)
+          @ClusterId = clusterid
+          @Component = component
+          @Operation = operation
+          @DryRun = dryrun
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @Component = params['Component']
+          @Operation = params['Operation']
+          @DryRun = params['DryRun']
+        end
+      end
+
+      # ModifyMasterComponent返回参数结构体
+      class ModifyMasterComponentResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 

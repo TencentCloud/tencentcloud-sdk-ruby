@@ -315,14 +315,17 @@ module TencentCloud
         # @type AndroidInstanceImageState: String
         # @param AndroidInstanceImageZone: 镜像可用区
         # @type AndroidInstanceImageZone: String
+        # @param AndroidVersion: 安卓10
+        # @type AndroidVersion: String
 
-        attr_accessor :AndroidInstanceImageId, :AndroidInstanceImageName, :AndroidInstanceImageState, :AndroidInstanceImageZone
+        attr_accessor :AndroidInstanceImageId, :AndroidInstanceImageName, :AndroidInstanceImageState, :AndroidInstanceImageZone, :AndroidVersion
 
-        def initialize(androidinstanceimageid=nil, androidinstanceimagename=nil, androidinstanceimagestate=nil, androidinstanceimagezone=nil)
+        def initialize(androidinstanceimageid=nil, androidinstanceimagename=nil, androidinstanceimagestate=nil, androidinstanceimagezone=nil, androidversion=nil)
           @AndroidInstanceImageId = androidinstanceimageid
           @AndroidInstanceImageName = androidinstanceimagename
           @AndroidInstanceImageState = androidinstanceimagestate
           @AndroidInstanceImageZone = androidinstanceimagezone
+          @AndroidVersion = androidversion
         end
 
         def deserialize(params)
@@ -330,6 +333,7 @@ module TencentCloud
           @AndroidInstanceImageName = params['AndroidInstanceImageName']
           @AndroidInstanceImageState = params['AndroidInstanceImageState']
           @AndroidInstanceImageZone = params['AndroidInstanceImageZone']
+          @AndroidVersion = params['AndroidVersion']
         end
       end
 
@@ -1030,6 +1034,61 @@ module TencentCloud
         end
       end
 
+      # CreateAndroidInstancesAccessToken请求参数结构体
+      class CreateAndroidInstancesAccessTokenRequest < TencentCloud::Common::AbstractModel
+        # @param AndroidInstanceIds: 实例 ID 列表。每次请求的实例的上限为 500。
+        # @type AndroidInstanceIds: Array
+        # @param ExpirationDuration: 有效期，默认为 12 小时，最大为 24 小时。支持 s（秒）、m（分）、h（小时）等单位，比如 12h 表示 12 小时，1h2m3s 表示一小时两分三秒
+        # @type ExpirationDuration: String
+
+        attr_accessor :AndroidInstanceIds, :ExpirationDuration
+
+        def initialize(androidinstanceids=nil, expirationduration=nil)
+          @AndroidInstanceIds = androidinstanceids
+          @ExpirationDuration = expirationduration
+        end
+
+        def deserialize(params)
+          @AndroidInstanceIds = params['AndroidInstanceIds']
+          @ExpirationDuration = params['ExpirationDuration']
+        end
+      end
+
+      # CreateAndroidInstancesAccessToken返回参数结构体
+      class CreateAndroidInstancesAccessTokenResponse < TencentCloud::Common::AbstractModel
+        # @param Token: token
+        # @type Token: String
+        # @param AccessInfo: 访问信息
+        # @type AccessInfo: String
+        # @param AndroidInstanceErrors: 安卓实例错误列表。列表包含有问题的安卓实例 ID，生成的 Token 对这些有问题的实例无效。
+        # @type AndroidInstanceErrors: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Token, :AccessInfo, :AndroidInstanceErrors, :RequestId
+
+        def initialize(token=nil, accessinfo=nil, androidinstanceerrors=nil, requestid=nil)
+          @Token = token
+          @AccessInfo = accessinfo
+          @AndroidInstanceErrors = androidinstanceerrors
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Token = params['Token']
+          @AccessInfo = params['AccessInfo']
+          unless params['AndroidInstanceErrors'].nil?
+            @AndroidInstanceErrors = []
+            params['AndroidInstanceErrors'].each do |i|
+              androidinstanceerror_tmp = AndroidInstanceError.new
+              androidinstanceerror_tmp.deserialize(i)
+              @AndroidInstanceErrors << androidinstanceerror_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateAndroidInstances请求参数结构体
       class CreateAndroidInstancesRequest < TencentCloud::Common::AbstractModel
         # @param Zone: 安卓实例可用区。
@@ -1375,6 +1434,60 @@ module TencentCloud
 
       # DeleteAndroidAppVersion返回参数结构体
       class DeleteAndroidAppVersionResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteAndroidInstanceBackupFiles请求参数结构体
+      class DeleteAndroidInstanceBackupFilesRequest < TencentCloud::Common::AbstractModel
+        # @param ObjectKeys: 文件对象键列表
+        # @type ObjectKeys: Array
+        # @param StorageType: 存储服务器类型，如 COS、S3。注意：使用 COS 和 S3 都将占用外网带宽。
+        # @type StorageType: String
+        # @param COSOptions: COS协议选项
+        # @type COSOptions: :class:`Tencentcloud::Gs.v20191118.models.COSOptions`
+        # @param S3Options: S3存储协议选项
+        # @type S3Options: :class:`Tencentcloud::Gs.v20191118.models.S3Options`
+        # @param AndroidInstanceZone: 安卓实例可用区。StorageType 为 S3 时，需要填写该字段；StorageType 为 COS 时，不需要填写该字段
+        # @type AndroidInstanceZone: String
+
+        attr_accessor :ObjectKeys, :StorageType, :COSOptions, :S3Options, :AndroidInstanceZone
+
+        def initialize(objectkeys=nil, storagetype=nil, cosoptions=nil, s3options=nil, androidinstancezone=nil)
+          @ObjectKeys = objectkeys
+          @StorageType = storagetype
+          @COSOptions = cosoptions
+          @S3Options = s3options
+          @AndroidInstanceZone = androidinstancezone
+        end
+
+        def deserialize(params)
+          @ObjectKeys = params['ObjectKeys']
+          @StorageType = params['StorageType']
+          unless params['COSOptions'].nil?
+            @COSOptions = COSOptions.new
+            @COSOptions.deserialize(params['COSOptions'])
+          end
+          unless params['S3Options'].nil?
+            @S3Options = S3Options.new
+            @S3Options.deserialize(params['S3Options'])
+          end
+          @AndroidInstanceZone = params['AndroidInstanceZone']
+        end
+      end
+
+      # DeleteAndroidInstanceBackupFiles返回参数结构体
+      class DeleteAndroidInstanceBackupFilesResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -2890,16 +3003,27 @@ module TencentCloud
 
       # ModifyAndroidInstancesProperties返回参数结构体
       class ModifyAndroidInstancesPropertiesResponse < TencentCloud::Common::AbstractModel
+        # @param AndroidInstanceErrors: 安卓实例错误列表
+        # @type AndroidInstanceErrors: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :AndroidInstanceErrors, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(androidinstanceerrors=nil, requestid=nil)
+          @AndroidInstanceErrors = androidinstanceerrors
           @RequestId = requestid
         end
 
         def deserialize(params)
+          unless params['AndroidInstanceErrors'].nil?
+            @AndroidInstanceErrors = []
+            params['AndroidInstanceErrors'].each do |i|
+              androidinstanceerror_tmp = AndroidInstanceError.new
+              androidinstanceerror_tmp.deserialize(i)
+              @AndroidInstanceErrors << androidinstanceerror_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -2952,16 +3076,27 @@ module TencentCloud
 
       # ModifyAndroidInstancesResolution返回参数结构体
       class ModifyAndroidInstancesResolutionResponse < TencentCloud::Common::AbstractModel
+        # @param AndroidInstanceErrors: 安卓实例错误列表
+        # @type AndroidInstanceErrors: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :AndroidInstanceErrors, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(androidinstanceerrors=nil, requestid=nil)
+          @AndroidInstanceErrors = androidinstanceerrors
           @RequestId = requestid
         end
 
         def deserialize(params)
+          unless params['AndroidInstanceErrors'].nil?
+            @AndroidInstanceErrors = []
+            params['AndroidInstanceErrors'].each do |i|
+              androidinstanceerror_tmp = AndroidInstanceError.new
+              androidinstanceerror_tmp.deserialize(i)
+              @AndroidInstanceErrors << androidinstanceerror_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -3131,6 +3266,42 @@ module TencentCloud
               @TaskSet << androidinstancetask_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # RenewAndroidInstancesAccessToken请求参数结构体
+      class RenewAndroidInstancesAccessTokenRequest < TencentCloud::Common::AbstractModel
+        # @param AccessToken: token
+        # @type AccessToken: String
+        # @param ExpirationDuration: 有效期，默认为 12 小时，最大为 24 小时。支持 s（秒）、m（分）、h（小时）等单位，比如 12h 表示 12 小时，1h2m3s 表示一小时两分三秒
+        # @type ExpirationDuration: String
+
+        attr_accessor :AccessToken, :ExpirationDuration
+
+        def initialize(accesstoken=nil, expirationduration=nil)
+          @AccessToken = accesstoken
+          @ExpirationDuration = expirationduration
+        end
+
+        def deserialize(params)
+          @AccessToken = params['AccessToken']
+          @ExpirationDuration = params['ExpirationDuration']
+        end
+      end
+
+      # RenewAndroidInstancesAccessToken返回参数结构体
+      class RenewAndroidInstancesAccessTokenResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end

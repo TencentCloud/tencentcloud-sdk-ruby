@@ -2981,6 +2981,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 进行master组件停机故障演练时，获取master组件运行状态，支持kube-apiserver、kube-scheduler、kube-controller-manager
+
+        # @param request: Request instance for DescribeMasterComponent.
+        # @type request: :class:`Tencentcloud::tke::V20180525::DescribeMasterComponentRequest`
+        # @rtype: :class:`Tencentcloud::tke::V20180525::DescribeMasterComponentResponse`
+        def DescribeMasterComponent(request)
+          body = send_request('DescribeMasterComponent', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeMasterComponentResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取OS聚合信息
 
         # @param request: Request instance for DescribeOSImages.
@@ -4647,6 +4671,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyClusterVirtualNodePoolResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改master组件，支持kube-apiserver、kube-scheduler、kube-controller-manager副本数调整为0和恢复
+
+        # @param request: Request instance for ModifyMasterComponent.
+        # @type request: :class:`Tencentcloud::tke::V20180525::ModifyMasterComponentRequest`
+        # @rtype: :class:`Tencentcloud::tke::V20180525::ModifyMasterComponentResponse`
+        def ModifyMasterComponent(request)
+          body = send_request('ModifyMasterComponent', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyMasterComponentResponse.new
             model.deserialize(response['Response'])
             model
           else

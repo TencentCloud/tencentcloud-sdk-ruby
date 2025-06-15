@@ -12830,11 +12830,11 @@ module TencentCloud
         # @param Seal: 印章
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Seal: String
-        # @param StateElectronic: 状态
+        # @param StateElectronic: 状态，该字段仅支持电子行驶证返回
         # @type StateElectronic: String
-        # @param InspectionValidityTimeElectronic: 检验有效期
+        # @param InspectionValidityTimeElectronic: 检验有效期，该字段仅支持电子行驶证返回
         # @type InspectionValidityTimeElectronic: String
-        # @param GenerationTimeElectronic: 生成时间
+        # @param GenerationTimeElectronic: 生成时间，该字段仅支持电子行驶证返回
         # @type GenerationTimeElectronic: String
 
         attr_accessor :PlateNo, :VehicleType, :Owner, :Address, :UseCharacter, :Model, :Vin, :EngineNo, :RegisterDate, :IssueDate, :Seal, :StateElectronic, :InspectionValidityTimeElectronic, :GenerationTimeElectronic

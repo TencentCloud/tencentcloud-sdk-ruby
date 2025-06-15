@@ -848,10 +848,12 @@ module TencentCloud
         # @param SubScene: 筛选子场景
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubScene: String
+        # @param BillingTag: 账单明细对应的自定义tag
+        # @type BillingTag: String
 
-        attr_accessor :Id, :CallTime, :TotalTokenUsage, :InputTokenUsage, :OutputTokenUsage, :SearchUsage, :ModelName, :CallType, :UinAccount, :AppName, :PageUsage, :SubScene
+        attr_accessor :Id, :CallTime, :TotalTokenUsage, :InputTokenUsage, :OutputTokenUsage, :SearchUsage, :ModelName, :CallType, :UinAccount, :AppName, :PageUsage, :SubScene, :BillingTag
 
-        def initialize(id=nil, calltime=nil, totaltokenusage=nil, inputtokenusage=nil, outputtokenusage=nil, searchusage=nil, modelname=nil, calltype=nil, uinaccount=nil, appname=nil, pageusage=nil, subscene=nil)
+        def initialize(id=nil, calltime=nil, totaltokenusage=nil, inputtokenusage=nil, outputtokenusage=nil, searchusage=nil, modelname=nil, calltype=nil, uinaccount=nil, appname=nil, pageusage=nil, subscene=nil, billingtag=nil)
           @Id = id
           @CallTime = calltime
           @TotalTokenUsage = totaltokenusage
@@ -864,6 +866,7 @@ module TencentCloud
           @AppName = appname
           @PageUsage = pageusage
           @SubScene = subscene
+          @BillingTag = billingtag
         end
 
         def deserialize(params)
@@ -879,6 +882,7 @@ module TencentCloud
           @AppName = params['AppName']
           @PageUsage = params['PageUsage']
           @SubScene = params['SubScene']
+          @BillingTag = params['BillingTag']
         end
       end
 
@@ -2288,12 +2292,14 @@ module TencentCloud
         # @type AppStatus: Integer
         # @param AppStatusDesc: 状态说明
         # @type AppStatusDesc: String
+        # @param IsCopying: 应用是否在复制中
+        # @type IsCopying: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :AppBizId, :AppType, :AppTypeDesc, :BaseConfig, :AppConfig, :AvatarInAppeal, :RoleInAppeal, :NameInAppeal, :GreetingInAppeal, :BareAnswerInAppeal, :AppKey, :AppStatus, :AppStatusDesc, :RequestId
+        attr_accessor :AppBizId, :AppType, :AppTypeDesc, :BaseConfig, :AppConfig, :AvatarInAppeal, :RoleInAppeal, :NameInAppeal, :GreetingInAppeal, :BareAnswerInAppeal, :AppKey, :AppStatus, :AppStatusDesc, :IsCopying, :RequestId
 
-        def initialize(appbizid=nil, apptype=nil, apptypedesc=nil, baseconfig=nil, appconfig=nil, avatarinappeal=nil, roleinappeal=nil, nameinappeal=nil, greetinginappeal=nil, bareanswerinappeal=nil, appkey=nil, appstatus=nil, appstatusdesc=nil, requestid=nil)
+        def initialize(appbizid=nil, apptype=nil, apptypedesc=nil, baseconfig=nil, appconfig=nil, avatarinappeal=nil, roleinappeal=nil, nameinappeal=nil, greetinginappeal=nil, bareanswerinappeal=nil, appkey=nil, appstatus=nil, appstatusdesc=nil, iscopying=nil, requestid=nil)
           @AppBizId = appbizid
           @AppType = apptype
           @AppTypeDesc = apptypedesc
@@ -2307,6 +2313,7 @@ module TencentCloud
           @AppKey = appkey
           @AppStatus = appstatus
           @AppStatusDesc = appstatusdesc
+          @IsCopying = iscopying
           @RequestId = requestid
         end
 
@@ -2330,6 +2337,7 @@ module TencentCloud
           @AppKey = params['AppKey']
           @AppStatus = params['AppStatus']
           @AppStatusDesc = params['AppStatusDesc']
+          @IsCopying = params['IsCopying']
           @RequestId = params['RequestId']
         end
       end
@@ -7634,9 +7642,9 @@ module TencentCloud
         # @type StartTime: String
         # @param EndTime: 结束时间
         # @type EndTime: String
-        # @param PageNumber: 页码
+        # @param PageNumber: 页码（从1开始）
         # @type PageNumber: Integer
-        # @param PageSize: 分页数量
+        # @param PageSize: 分页数量(最大值1000)
         # @type PageSize: Integer
         # @param UinAccount: uin列表
         # @type UinAccount: Array
@@ -7648,10 +7656,12 @@ module TencentCloud
         # @type SubScenes: Array
         # @param AppType: 应用类型(knowledge_qa应用管理， shared_knowlege 共享知识库)
         # @type AppType: String
+        # @param BillingTag: 账单明细对应的自定义tag
+        # @type BillingTag: String
 
-        attr_accessor :ModelName, :StartTime, :EndTime, :PageNumber, :PageSize, :UinAccount, :AppBizIds, :CallType, :SubScenes, :AppType
+        attr_accessor :ModelName, :StartTime, :EndTime, :PageNumber, :PageSize, :UinAccount, :AppBizIds, :CallType, :SubScenes, :AppType, :BillingTag
 
-        def initialize(modelname=nil, starttime=nil, endtime=nil, pagenumber=nil, pagesize=nil, uinaccount=nil, appbizids=nil, calltype=nil, subscenes=nil, apptype=nil)
+        def initialize(modelname=nil, starttime=nil, endtime=nil, pagenumber=nil, pagesize=nil, uinaccount=nil, appbizids=nil, calltype=nil, subscenes=nil, apptype=nil, billingtag=nil)
           @ModelName = modelname
           @StartTime = starttime
           @EndTime = endtime
@@ -7662,6 +7672,7 @@ module TencentCloud
           @CallType = calltype
           @SubScenes = subscenes
           @AppType = apptype
+          @BillingTag = billingtag
         end
 
         def deserialize(params)
@@ -7675,6 +7686,7 @@ module TencentCloud
           @CallType = params['CallType']
           @SubScenes = params['SubScenes']
           @AppType = params['AppType']
+          @BillingTag = params['BillingTag']
         end
       end
 

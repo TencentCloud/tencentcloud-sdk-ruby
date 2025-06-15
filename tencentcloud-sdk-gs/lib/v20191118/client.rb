@@ -321,6 +321,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建安卓实例访问Token
+
+        # @param request: Request instance for CreateAndroidInstancesAccessToken.
+        # @type request: :class:`Tencentcloud::gs::V20191118::CreateAndroidInstancesAccessTokenRequest`
+        # @rtype: :class:`Tencentcloud::gs::V20191118::CreateAndroidInstancesAccessTokenResponse`
+        def CreateAndroidInstancesAccessToken(request)
+          body = send_request('CreateAndroidInstancesAccessToken', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateAndroidInstancesAccessTokenResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 安卓实例截图
 
         # @param request: Request instance for CreateAndroidInstancesScreenshot.
@@ -427,6 +451,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteAndroidAppVersionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除安卓实例备份文件
+
+        # @param request: Request instance for DeleteAndroidInstanceBackupFiles.
+        # @type request: :class:`Tencentcloud::gs::V20191118::DeleteAndroidInstanceBackupFilesRequest`
+        # @rtype: :class:`Tencentcloud::gs::V20191118::DeleteAndroidInstanceBackupFilesResponse`
+        def DeleteAndroidInstanceBackupFiles(request)
+          body = send_request('DeleteAndroidInstanceBackupFiles', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteAndroidInstanceBackupFilesResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1246,6 +1294,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = RebootAndroidInstancesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 续期安卓实例访问Token
+
+        # @param request: Request instance for RenewAndroidInstancesAccessToken.
+        # @type request: :class:`Tencentcloud::gs::V20191118::RenewAndroidInstancesAccessTokenRequest`
+        # @rtype: :class:`Tencentcloud::gs::V20191118::RenewAndroidInstancesAccessTokenResponse`
+        def RenewAndroidInstancesAccessToken(request)
+          body = send_request('RenewAndroidInstancesAccessToken', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = RenewAndroidInstancesAccessTokenResponse.new
             model.deserialize(response['Response'])
             model
           else

@@ -166,6 +166,38 @@ module TencentCloud
         end
       end
 
+      # CreateDeviceTask请求参数结构体
+      class CreateDeviceTaskRequest < TencentCloud::Common::AbstractModel
+        # @param Mid: 终端id
+        # @type Mid: String
+
+        attr_accessor :Mid
+
+        def initialize(mid=nil)
+          @Mid = mid
+        end
+
+        def deserialize(params)
+          @Mid = params['Mid']
+        end
+      end
+
+      # CreateDeviceTask返回参数结构体
+      class CreateDeviceTaskResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateDeviceVirtualGroup请求参数结构体
       class CreateDeviceVirtualGroupRequest < TencentCloud::Common::AbstractModel
         # @param DeviceVirtualGroupName: 必填，终端自定义分组名
@@ -714,6 +746,98 @@ module TencentCloud
               describedevicehardwareinfoitem_tmp = DescribeDeviceHardwareInfoItem.new
               describedevicehardwareinfoitem_tmp.deserialize(i)
               @Items << describedevicehardwareinfoitem_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeDeviceInfo请求参数结构体
+      class DescribeDeviceInfoRequest < TencentCloud::Common::AbstractModel
+        # @param Mid: 终端id
+        # @type Mid: String
+        # @param Type: 查询类型  process_list network_list service_list
+        # @type Type: String
+
+        attr_accessor :Mid, :Type
+
+        def initialize(mid=nil, type=nil)
+          @Mid = mid
+          @Type = type
+        end
+
+        def deserialize(params)
+          @Mid = params['Mid']
+          @Type = params['Type']
+        end
+      end
+
+      # DescribeDeviceInfo返回参数结构体
+      class DescribeDeviceInfoResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 业务响应数据
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: :class:`Tencentcloud::Ioa.v20220601.models.DescribeDeviceInfoRspData`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = DescribeDeviceInfoRspData.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 业务响应数据
+      class DescribeDeviceInfoRspData < TencentCloud::Common::AbstractModel
+        # @param ProcessList: 分页的具体数据对象
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProcessList: Array
+        # @param NetworkList: 分页的具体数据对象
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NetworkList: Array
+        # @param ServiceList: 分页的具体数据对象
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ServiceList: Array
+
+        attr_accessor :ProcessList, :NetworkList, :ServiceList
+
+        def initialize(processlist=nil, networklist=nil, servicelist=nil)
+          @ProcessList = processlist
+          @NetworkList = networklist
+          @ServiceList = servicelist
+        end
+
+        def deserialize(params)
+          unless params['ProcessList'].nil?
+            @ProcessList = []
+            params['ProcessList'].each do |i|
+              deviceprocessinfo_tmp = DeviceProcessInfo.new
+              deviceprocessinfo_tmp.deserialize(i)
+              @ProcessList << deviceprocessinfo_tmp
+            end
+          end
+          unless params['NetworkList'].nil?
+            @NetworkList = []
+            params['NetworkList'].each do |i|
+              devicenetworkinfo_tmp = DeviceNetworkInfo.new
+              devicenetworkinfo_tmp.deserialize(i)
+              @NetworkList << devicenetworkinfo_tmp
+            end
+          end
+          unless params['ServiceList'].nil?
+            @ServiceList = []
+            params['ServiceList'].each do |i|
+              deviceserviceinfo_tmp = DeviceServiceInfo.new
+              deviceserviceinfo_tmp.deserialize(i)
+              @ServiceList << deviceserviceinfo_tmp
             end
           end
         end
@@ -1558,6 +1682,147 @@ module TencentCloud
           @AccountName = params['AccountName']
           @AccountGroupId = params['AccountGroupId']
           @RemarkName = params['RemarkName']
+        end
+      end
+
+      # 分页的具体数据对象
+      class DeviceNetworkInfo < TencentCloud::Common::AbstractModel
+        # @param LocalAddr: 本地地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LocalAddr: String
+        # @param LocalPort: 本地端口
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LocalPort: Integer
+        # @param ProcessId: 进程id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProcessId: Integer
+        # @param ProcessName: 进程名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProcessName: String
+        # @param Protocol: 协议
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Protocol: String
+        # @param RemoteAddr: 远程地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RemoteAddr: String
+        # @param RemotePort: 远程端口
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RemotePort: Integer
+        # @param State: 状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type State: Integer
+
+        attr_accessor :LocalAddr, :LocalPort, :ProcessId, :ProcessName, :Protocol, :RemoteAddr, :RemotePort, :State
+
+        def initialize(localaddr=nil, localport=nil, processid=nil, processname=nil, protocol=nil, remoteaddr=nil, remoteport=nil, state=nil)
+          @LocalAddr = localaddr
+          @LocalPort = localport
+          @ProcessId = processid
+          @ProcessName = processname
+          @Protocol = protocol
+          @RemoteAddr = remoteaddr
+          @RemotePort = remoteport
+          @State = state
+        end
+
+        def deserialize(params)
+          @LocalAddr = params['LocalAddr']
+          @LocalPort = params['LocalPort']
+          @ProcessId = params['ProcessId']
+          @ProcessName = params['ProcessName']
+          @Protocol = params['Protocol']
+          @RemoteAddr = params['RemoteAddr']
+          @RemotePort = params['RemotePort']
+          @State = params['State']
+        end
+      end
+
+      # 分页的具体数据对象
+      class DeviceProcessInfo < TencentCloud::Common::AbstractModel
+        # @param CmdLine: 命令行
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CmdLine: String
+        # @param Memory: 内存
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Memory: String
+        # @param Name: 名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Path: 路径
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Path: String
+        # @param ProcessId: 进程id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProcessId: Integer
+        # @param User: 启动用户
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type User: String
+
+        attr_accessor :CmdLine, :Memory, :Name, :Path, :ProcessId, :User
+
+        def initialize(cmdline=nil, memory=nil, name=nil, path=nil, processid=nil, user=nil)
+          @CmdLine = cmdline
+          @Memory = memory
+          @Name = name
+          @Path = path
+          @ProcessId = processid
+          @User = user
+        end
+
+        def deserialize(params)
+          @CmdLine = params['CmdLine']
+          @Memory = params['Memory']
+          @Name = params['Name']
+          @Path = params['Path']
+          @ProcessId = params['ProcessId']
+          @User = params['User']
+        end
+      end
+
+      # 分页的具体数据对象
+      class DeviceServiceInfo < TencentCloud::Common::AbstractModel
+        # @param CmdLine: 命令行
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CmdLine: String
+        # @param Description: 内存
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+        # @param Name: 名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param ProcessId: 进程id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProcessId: Integer
+        # @param StartType: 启动类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StartType: Integer
+        # @param State: 状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type State: Integer
+        # @param User: 启动用户
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type User: String
+
+        attr_accessor :CmdLine, :Description, :Name, :ProcessId, :StartType, :State, :User
+
+        def initialize(cmdline=nil, description=nil, name=nil, processid=nil, starttype=nil, state=nil, user=nil)
+          @CmdLine = cmdline
+          @Description = description
+          @Name = name
+          @ProcessId = processid
+          @StartType = starttype
+          @State = state
+          @User = user
+        end
+
+        def deserialize(params)
+          @CmdLine = params['CmdLine']
+          @Description = params['Description']
+          @Name = params['Name']
+          @ProcessId = params['ProcessId']
+          @StartType = params['StartType']
+          @State = params['State']
+          @User = params['User']
         end
       end
 

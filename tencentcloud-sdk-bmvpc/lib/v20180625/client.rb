@@ -53,6 +53,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 黑石1.0接口，业务已下线，90天无调用
+
         # 批量注册虚拟IP，异步接口。通过接口来查询任务进度。每次请求最多注册256个IP
 
         # @param request: Request instance for AsyncRegisterIps.
@@ -101,6 +103,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 黑石1.0接口，业务已下线，90天无调用
+
         # 可用于将子网的部分IP绑定到NAT网关
 
         # @param request: Request instance for BindIpsToNatGateway.
@@ -125,6 +129,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 黑石1.0接口，业务已下线，90天无调用
+
         # NAT网关绑定子网后，该子网内全部IP可出公网
 
         # @param request: Request instance for BindSubnetsToNatGateway.
@@ -148,6 +154,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 90天无调用
 
         # 本接口（CreateCustomerGateway）用于创建对端网关。
 
@@ -196,6 +204,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 黑石1.0接口，业务已下线，90天无调用
 
         # 本接口（CreateHostedInterface）用于黑石托管机器加入带VLANID不为5的子网。
 
@@ -249,6 +259,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 黑石1.0接口，业务已下线，90天无调用
+
         # 创建NAT网关接口，可针对网段方式、子网全部IP、子网部分IP这三种方式创建NAT网关
 
         # @param request: Request instance for CreateNatGateway.
@@ -272,6 +284,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 黑石1.0接口，业务已下线，90天无调用
 
         # 创建黑石路由表的路由规则
 
@@ -346,6 +360,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 黑石1.0接口，业务已下线，90天无调用
+
         # 创建黑石私有网络
 
         # @param request: Request instance for CreateVpc.
@@ -369,6 +385,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 黑石1.0接口，业务已下线，90天无调用
 
         # 创建对等连接
 
@@ -492,6 +510,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 黑石1.0接口，业务已下线，90天无调用
+
         # 删除NAT网关
 
         # @param request: Request instance for DeleteNatGateway.
@@ -515,6 +535,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 黑石1.0接口，业务已下线，90天无调用
 
         # 删除黑石路由表路由规则
 
@@ -686,6 +708,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 黑石1.0接口，业务已下线，90天无调用
 
         # 注销私有网络IP为空闲
 
@@ -1120,6 +1144,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 90天无调用
+
         # 本接口(DownloadCustomerGatewayConfiguration)用于下载VPN通道配置。
 
         # @param request: Request instance for DownloadCustomerGatewayConfiguration.
@@ -1168,6 +1194,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 黑石1.0接口，业务已下线，90天无调用
+
         # 修改自定义路由
 
         # @param request: Request instance for ModifyRoutePolicy.
@@ -1191,6 +1219,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 黑石1.0接口，业务已下线，90天无调用
 
         # 修改路由表
 
@@ -1432,6 +1462,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 黑石1.0接口，业务已下线，90天无调用
+
         # NAT网关解绑IP接口，可将子网的部分IP从NAT网关中解绑
 
         # @param request: Request instance for UnbindIpsFromNatGateway.
@@ -1456,6 +1488,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 黑石1.0接口，业务已下线，90天无调用
+
         # NAT网关解绑子网接口，可将子网解绑NAT网关
 
         # @param request: Request instance for UnbindSubnetsFromNatGateway.
@@ -1479,6 +1513,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 黑石1.0接口，业务已下线，90天无调用
 
         # 升级NAT网关接口，可NAT网关修改为小型NAT网关、中型NAT网关、以及大型NAT网关
 

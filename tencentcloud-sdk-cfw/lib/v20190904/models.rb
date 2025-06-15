@@ -3230,7 +3230,7 @@ module TencentCloud
         # @type Mode: Integer
         # @param NatGatewayId: ALL：查询所有弹性公网ip; nat-xxxxx：接入模式场景指定网关的弹性公网ip
         # @type NatGatewayId: String
-        # @param CfwInstance: 防火墙实例id，当前仅支持接入模式的实例
+        # @param CfwInstance: 防火墙实例id，当前仅支持接入模式的实例，该字段必填
         # @type CfwInstance: String
 
         attr_accessor :Mode, :NatGatewayId, :CfwInstance

@@ -53,6 +53,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建获取终端进程网络服务信息任务，私有化调用path为：capi/Assets/Device/DescribeDeviceInfo
+
+        # @param request: Request instance for CreateDeviceTask.
+        # @type request: :class:`Tencentcloud::ioa::V20220601::CreateDeviceTaskRequest`
+        # @rtype: :class:`Tencentcloud::ioa::V20220601::CreateDeviceTaskResponse`
+        def CreateDeviceTask(request)
+          body = send_request('CreateDeviceTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateDeviceTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建终端自定义分组，私有化调用path为：/capi/Assets/Device/CreateDeviceVirtualGroup
 
         # @param request: Request instance for CreateDeviceVirtualGroup.
@@ -159,6 +183,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeDeviceHardwareInfoListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取终端进程网络服务信息，私有化调用path为：capi/Assets/Device/DescribeDeviceInfo
+
+        # @param request: Request instance for DescribeDeviceInfo.
+        # @type request: :class:`Tencentcloud::ioa::V20220601::DescribeDeviceInfoRequest`
+        # @rtype: :class:`Tencentcloud::ioa::V20220601::DescribeDeviceInfoResponse`
+        def DescribeDeviceInfo(request)
+          body = send_request('DescribeDeviceInfo', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDeviceInfoResponse.new
             model.deserialize(response['Response'])
             model
           else
