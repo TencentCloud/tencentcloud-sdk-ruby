@@ -112,10 +112,12 @@ module TencentCloud
         # @type AmbientSound: :class:`Tencentcloud::Trtc.v20190722.models.AmbientSound`
         # @param VoicePrint: 声纹配置
         # @type VoicePrint: :class:`Tencentcloud::Trtc.v20190722.models.VoicePrint`
+        # @param TurnDetection: 语义断句检测
+        # @type TurnDetection: :class:`Tencentcloud::Trtc.v20190722.models.TurnDetection`
 
-        attr_accessor :UserId, :UserSig, :TargetUserId, :MaxIdleTime, :WelcomeMessage, :InterruptMode, :InterruptSpeechDuration, :TurnDetectionMode, :FilterOneWord, :WelcomeMessagePriority, :FilterBracketsContent, :AmbientSound, :VoicePrint
+        attr_accessor :UserId, :UserSig, :TargetUserId, :MaxIdleTime, :WelcomeMessage, :InterruptMode, :InterruptSpeechDuration, :TurnDetectionMode, :FilterOneWord, :WelcomeMessagePriority, :FilterBracketsContent, :AmbientSound, :VoicePrint, :TurnDetection
 
-        def initialize(userid=nil, usersig=nil, targetuserid=nil, maxidletime=nil, welcomemessage=nil, interruptmode=nil, interruptspeechduration=nil, turndetectionmode=nil, filteroneword=nil, welcomemessagepriority=nil, filterbracketscontent=nil, ambientsound=nil, voiceprint=nil)
+        def initialize(userid=nil, usersig=nil, targetuserid=nil, maxidletime=nil, welcomemessage=nil, interruptmode=nil, interruptspeechduration=nil, turndetectionmode=nil, filteroneword=nil, welcomemessagepriority=nil, filterbracketscontent=nil, ambientsound=nil, voiceprint=nil, turndetection=nil)
           @UserId = userid
           @UserSig = usersig
           @TargetUserId = targetuserid
@@ -129,6 +131,7 @@ module TencentCloud
           @FilterBracketsContent = filterbracketscontent
           @AmbientSound = ambientsound
           @VoicePrint = voiceprint
+          @TurnDetection = turndetection
         end
 
         def deserialize(params)
@@ -150,6 +153,10 @@ module TencentCloud
           unless params['VoicePrint'].nil?
             @VoicePrint = VoicePrint.new
             @VoicePrint.deserialize(params['VoicePrint'])
+          end
+          unless params['TurnDetection'].nil?
+            @TurnDetection = TurnDetection.new
+            @TurnDetection.deserialize(params['TurnDetection'])
           end
         end
       end
@@ -4198,7 +4205,7 @@ module TencentCloud
 
       # RegisterVoicePrint请求参数结构体
       class RegisterVoicePrintRequest < TencentCloud::Common::AbstractModel
-        # @param Audio: 整个wav音频文件的base64字符串,其中wav文件限定为16k或8k采样率, 16bit位深, 单声道, 8到18秒有效音频时长,编码数据大小不超过2M
+        # @param Audio: 整个wav音频文件的base64字符串,其中wav文件限定为16k采样率, 16bit位深, 单声道, 8到18秒音频时长,有效音频不小于6秒(不能有太多静音段),编码数据大小不超过2M
         # @type Audio: String
         # @param ReqTimestamp: 毫秒时间戳
         # @type ReqTimestamp: Integer
@@ -5831,6 +5838,38 @@ module TencentCloud
         end
       end
 
+      # 断句配置
+      class TurnDetection < TencentCloud::Common::AbstractModel
+        # @param SemanticEagerness: TurnDetectionMode为3时生效，语义断句的灵敏程度
+
+
+        # 功能简介：根据用户所说的话来判断其已完成发言来分割音频
+
+
+        # 可选: "low" | "medium" | "high" | "auto"
+
+
+        # auto 是默认值，与 medium 相同。
+        # low 将让用户有足够的时间说话。
+        # high 将尽快对音频进行分块。
+
+
+        # 如果您希望模型在对话模式下更频繁地响应，可以将 SemanticEagerness 设置为 high
+        # 如果您希望在用户停顿时，AI能够等待片刻，可以将 SemanticEagerness 设置为 low
+        # 无论什么模式，最终都会分割送个大模型进行回复
+        # @type SemanticEagerness: String
+
+        attr_accessor :SemanticEagerness
+
+        def initialize(semanticeagerness=nil)
+          @SemanticEagerness = semanticeagerness
+        end
+
+        def deserialize(params)
+          @SemanticEagerness = params['SemanticEagerness']
+        end
+      end
+
       # UpdateAIConversation请求参数结构体
       class UpdateAIConversationRequest < TencentCloud::Common::AbstractModel
         # @param TaskId: 唯一标识一个任务
@@ -6042,7 +6081,7 @@ module TencentCloud
         # @type ReqTimestamp: Integer
         # @param AudioFormat: 音频格式,目前只支持0,代表wav
         # @type AudioFormat: Integer
-        # @param Audio: 整个wav音频文件的base64字符串,其中wav文件限定为16k或8k采样率, 16bit位深, 单声道, 8到18秒有效音频时长,编码数据大小不超过2M
+        # @param Audio: 整个wav音频文件的base64字符串,其中wav文件限定为16k采样率, 16bit位深, 单声道, 8到18秒音频时长,有效音频不小于6秒(不能有太多静音段),编码数据大小不超过2M
         # @type Audio: String
         # @param AudioMetaInfo: 和声纹绑定的MetaInfo，长度最大不超过512
         # @type AudioMetaInfo: String

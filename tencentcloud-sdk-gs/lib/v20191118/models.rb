@@ -100,16 +100,19 @@ module TencentCloud
         # @type UninstallCommand: String
         # @param CleanupMode: 应用资源清理模式（实例安装应用所用资源），取值：CLEANUP_ON_UNINSTALL（默认值），卸载 App 时清理；CLEANUP_AFTER_INSTALL，安装 App 后立即清理。普通应用只有 CLEANUP_AFTER_INSTALL 模式。
         # @type CleanupMode: String
+        # @param AndroidAppVersionName: 安卓应用版本名称
+        # @type AndroidAppVersionName: String
 
-        attr_accessor :AndroidAppVersion, :State, :CreateTime, :Command, :UninstallCommand, :CleanupMode
+        attr_accessor :AndroidAppVersion, :State, :CreateTime, :Command, :UninstallCommand, :CleanupMode, :AndroidAppVersionName
 
-        def initialize(androidappversion=nil, state=nil, createtime=nil, command=nil, uninstallcommand=nil, cleanupmode=nil)
+        def initialize(androidappversion=nil, state=nil, createtime=nil, command=nil, uninstallcommand=nil, cleanupmode=nil, androidappversionname=nil)
           @AndroidAppVersion = androidappversion
           @State = state
           @CreateTime = createtime
           @Command = command
           @UninstallCommand = uninstallcommand
           @CleanupMode = cleanupmode
+          @AndroidAppVersionName = androidappversionname
         end
 
         def deserialize(params)
@@ -119,6 +122,7 @@ module TencentCloud
           @Command = params['Command']
           @UninstallCommand = params['UninstallCommand']
           @CleanupMode = params['CleanupMode']
+          @AndroidAppVersionName = params['AndroidAppVersionName']
         end
       end
 
@@ -1578,7 +1582,7 @@ module TencentCloud
         # @type Limit: Integer
         # @param AndroidAppIds: 应用ID数组
         # @type AndroidAppIds: Array
-        # @param Filters: 过滤条件
+        # @param Filters: 过滤条件，支持过滤的字段有：UserId
         # @type Filters: Array
 
         attr_accessor :Offset, :Limit, :AndroidAppIds, :Filters

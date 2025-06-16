@@ -3671,6 +3671,80 @@ module TencentCloud
         end
       end
 
+      # DescribeExposures请求参数结构体
+      class DescribeExposuresRequest < TencentCloud::Common::AbstractModel
+        # @param MemberId: 集团账号的成员id
+        # @type MemberId: Array
+        # @param Filters: 过滤内容
+        # @type Filters: Array
+        # @param Limit: 分页大小
+        # @type Limit: Integer
+        # @param Offset: 偏移量
+        # @type Offset: Integer
+        # @param Order: 排序类型
+        # @type Order: String
+        # @param By: 排序字段
+        # @type By: String
+
+        attr_accessor :MemberId, :Filters, :Limit, :Offset, :Order, :By
+
+        def initialize(memberid=nil, filters=nil, limit=nil, offset=nil, order=nil, by=nil)
+          @MemberId = memberid
+          @Filters = filters
+          @Limit = limit
+          @Offset = offset
+          @Order = order
+          @By = by
+        end
+
+        def deserialize(params)
+          @MemberId = params['MemberId']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filters_tmp = Filters.new
+              filters_tmp.deserialize(i)
+              @Filters << filters_tmp
+            end
+          end
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @Order = params['Order']
+          @By = params['By']
+        end
+      end
+
+      # DescribeExposures返回参数结构体
+      class DescribeExposuresResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 互联网暴露资产数量
+        # @type TotalCount: Integer
+        # @param ExposeList: 互联网暴露资产列表
+        # @type ExposeList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :ExposeList, :RequestId
+
+        def initialize(totalcount=nil, exposelist=nil, requestid=nil)
+          @TotalCount = totalcount
+          @ExposeList = exposelist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['ExposeList'].nil?
+            @ExposeList = []
+            params['ExposeList'].each do |i|
+              exposesitem_tmp = ExposesItem.new
+              exposesitem_tmp.deserialize(i)
+              @ExposeList << exposesitem_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeGatewayAssets请求参数结构体
       class DescribeGatewayAssetsRequest < TencentCloud::Common::AbstractModel
         # @param MemberId: 集团账号的成员id
@@ -5547,21 +5621,41 @@ module TencentCloud
 
       # DescribeTopAttackInfo请求参数结构体
       class DescribeTopAttackInfoRequest < TencentCloud::Common::AbstractModel
+        # @param StartTime: 起始时间
+        # @type StartTime: String
+        # @param EndTime: 结束时间
+        # @type EndTime: String
+        # @param QueryType: 1:攻击类型 2:攻击者
+        # @type QueryType: Integer
         # @param MemberId: 集团账号的成员id
         # @type MemberId: Array
         # @param OperatedMemberId: 被调用的集团账号的成员id
         # @type OperatedMemberId: Array
+        # @param AssetName: 资产名称
+        # @type AssetName: String
+        # @param AssetType: 0: 默认全部 1:资产ID 2:域名
+        # @type AssetType: Integer
 
-        attr_accessor :MemberId, :OperatedMemberId
+        attr_accessor :StartTime, :EndTime, :QueryType, :MemberId, :OperatedMemberId, :AssetName, :AssetType
 
-        def initialize(memberid=nil, operatedmemberid=nil)
+        def initialize(starttime=nil, endtime=nil, querytype=nil, memberid=nil, operatedmemberid=nil, assetname=nil, assettype=nil)
+          @StartTime = starttime
+          @EndTime = endtime
+          @QueryType = querytype
           @MemberId = memberid
           @OperatedMemberId = operatedmemberid
+          @AssetName = assetname
+          @AssetType = assettype
         end
 
         def deserialize(params)
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @QueryType = params['QueryType']
           @MemberId = params['MemberId']
           @OperatedMemberId = params['OperatedMemberId']
+          @AssetName = params['AssetName']
+          @AssetType = params['AssetType']
         end
       end
 
@@ -6227,6 +6321,130 @@ module TencentCloud
         end
       end
 
+      # 暴露资产
+      class ExposesItem < TencentCloud::Common::AbstractModel
+        # @param Provider: 云厂商
+        # @type Provider: String
+        # @param CloudAccountName: 云账号名称
+        # @type CloudAccountName: String
+        # @param CloudAccountId: 云账号
+        # @type CloudAccountId: String
+        # @param Domain: 域名
+        # @type Domain: String
+        # @param Ip: IP
+        # @type Ip: String
+        # @param Port: 端口或者端口范围
+        # @type Port: String
+        # @param Status: 开放
+        # @type Status: String
+        # @param RiskType: 风险类型
+        # @type RiskType: String
+        # @param AclType: acl类型
+        # @type AclType: String
+        # @param AclList: acl列表
+        # @type AclList: String
+        # @param AssetId: 资产ID
+        # @type AssetId: String
+        # @param InstanceName: 实例名称
+        # @type InstanceName: String
+        # @param AssetType: 资产类型
+        # @type AssetType: String
+        # @param PortServiceCount: 端口服务数量
+        # @type PortServiceCount: Integer
+        # @param HighRiskPortServiceCount: 高危端口数量
+        # @type HighRiskPortServiceCount: Integer
+        # @param WebAppCount: web应用数量
+        # @type WebAppCount: Integer
+        # @param RiskWebAppCount: 有风险web应用数量
+        # @type RiskWebAppCount: Integer
+        # @param WeakPasswordCount: 弱口令数量
+        # @type WeakPasswordCount: Integer
+        # @param VulCount: 漏洞数量
+        # @type VulCount: Integer
+        # @param CreateTime: 首次发现时间
+        # @type CreateTime: String
+        # @param UpdateTime: 最近更新时间
+        # @type UpdateTime: String
+        # @param AssetTypeName: 实例类型名称
+        # @type AssetTypeName: String
+        # @param DisplayStatus: 开放状态
+        # @type DisplayStatus: String
+        # @param DisplayRiskType: 端口状态
+        # @type DisplayRiskType: String
+        # @param ScanTaskStatus: 扫描任务状态
+        # @type ScanTaskStatus: String
+        # @param Uuid: uuid
+        # @type Uuid: String
+        # @param HasScan: 是否进行过安全体检
+        # @type HasScan: String
+        # @param AppId: 租户ID
+        # @type AppId: Integer
+
+        attr_accessor :Provider, :CloudAccountName, :CloudAccountId, :Domain, :Ip, :Port, :Status, :RiskType, :AclType, :AclList, :AssetId, :InstanceName, :AssetType, :PortServiceCount, :HighRiskPortServiceCount, :WebAppCount, :RiskWebAppCount, :WeakPasswordCount, :VulCount, :CreateTime, :UpdateTime, :AssetTypeName, :DisplayStatus, :DisplayRiskType, :ScanTaskStatus, :Uuid, :HasScan, :AppId
+
+        def initialize(provider=nil, cloudaccountname=nil, cloudaccountid=nil, domain=nil, ip=nil, port=nil, status=nil, risktype=nil, acltype=nil, acllist=nil, assetid=nil, instancename=nil, assettype=nil, portservicecount=nil, highriskportservicecount=nil, webappcount=nil, riskwebappcount=nil, weakpasswordcount=nil, vulcount=nil, createtime=nil, updatetime=nil, assettypename=nil, displaystatus=nil, displayrisktype=nil, scantaskstatus=nil, uuid=nil, hasscan=nil, appid=nil)
+          @Provider = provider
+          @CloudAccountName = cloudaccountname
+          @CloudAccountId = cloudaccountid
+          @Domain = domain
+          @Ip = ip
+          @Port = port
+          @Status = status
+          @RiskType = risktype
+          @AclType = acltype
+          @AclList = acllist
+          @AssetId = assetid
+          @InstanceName = instancename
+          @AssetType = assettype
+          @PortServiceCount = portservicecount
+          @HighRiskPortServiceCount = highriskportservicecount
+          @WebAppCount = webappcount
+          @RiskWebAppCount = riskwebappcount
+          @WeakPasswordCount = weakpasswordcount
+          @VulCount = vulcount
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @AssetTypeName = assettypename
+          @DisplayStatus = displaystatus
+          @DisplayRiskType = displayrisktype
+          @ScanTaskStatus = scantaskstatus
+          @Uuid = uuid
+          @HasScan = hasscan
+          @AppId = appid
+        end
+
+        def deserialize(params)
+          @Provider = params['Provider']
+          @CloudAccountName = params['CloudAccountName']
+          @CloudAccountId = params['CloudAccountId']
+          @Domain = params['Domain']
+          @Ip = params['Ip']
+          @Port = params['Port']
+          @Status = params['Status']
+          @RiskType = params['RiskType']
+          @AclType = params['AclType']
+          @AclList = params['AclList']
+          @AssetId = params['AssetId']
+          @InstanceName = params['InstanceName']
+          @AssetType = params['AssetType']
+          @PortServiceCount = params['PortServiceCount']
+          @HighRiskPortServiceCount = params['HighRiskPortServiceCount']
+          @WebAppCount = params['WebAppCount']
+          @RiskWebAppCount = params['RiskWebAppCount']
+          @WeakPasswordCount = params['WeakPasswordCount']
+          @VulCount = params['VulCount']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          @AssetTypeName = params['AssetTypeName']
+          @DisplayStatus = params['DisplayStatus']
+          @DisplayRiskType = params['DisplayRiskType']
+          @ScanTaskStatus = params['ScanTaskStatus']
+          @Uuid = params['Uuid']
+          @HasScan = params['HasScan']
+          @AppId = params['AppId']
+        end
+      end
+
       # 列表查询接口采用新filter 接口，直接传给后台供后台查询过滤
       class Filter < TencentCloud::Common::AbstractModel
         # @param Limit: 查询数量限制
@@ -6291,6 +6509,33 @@ module TencentCloud
         def deserialize(params)
           @Value = params['Value']
           @Text = params['Text']
+        end
+      end
+
+      # filter过滤条件
+      class Filters < TencentCloud::Common::AbstractModel
+        # @param Name: 无
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Values: 无
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Values: Array
+        # @param ExactMatch: 模糊匹配
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExactMatch: String
+
+        attr_accessor :Name, :Values, :ExactMatch
+
+        def initialize(name=nil, values=nil, exactmatch=nil)
+          @Name = name
+          @Values = values
+          @ExactMatch = exactmatch
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Values = params['Values']
+          @ExactMatch = params['ExactMatch']
         end
       end
 

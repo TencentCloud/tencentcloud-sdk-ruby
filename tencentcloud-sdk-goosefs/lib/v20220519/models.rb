@@ -189,6 +189,46 @@ module TencentCloud
         end
       end
 
+      # BuildClientNodeMountCommand请求参数结构体
+      class BuildClientNodeMountCommandRequest < TencentCloud::Common::AbstractModel
+        # @param FileSystemId: 文件系统ID
+        # @type FileSystemId: String
+        # @param CustomMountDir: 自定义挂载目录的绝对路径, 如果未指定, 则会使用默认值, 格式/goosefsx/${fs_id}-proxy. 比如/goosefsx/x-c60-a2b3d4-proxy
+        # @type CustomMountDir: String
+
+        attr_accessor :FileSystemId, :CustomMountDir
+
+        def initialize(filesystemid=nil, custommountdir=nil)
+          @FileSystemId = filesystemid
+          @CustomMountDir = custommountdir
+        end
+
+        def deserialize(params)
+          @FileSystemId = params['FileSystemId']
+          @CustomMountDir = params['CustomMountDir']
+        end
+      end
+
+      # BuildClientNodeMountCommand返回参数结构体
+      class BuildClientNodeMountCommandResponse < TencentCloud::Common::AbstractModel
+        # @param Command: 挂载命令
+        # @type Command: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Command, :RequestId
+
+        def initialize(command=nil, requestid=nil)
+          @Command = command
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Command = params['Command']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 付费信息详情
       class ChargeAttribute < TencentCloud::Common::AbstractModel
         # @param CurDeadline: 到期时间

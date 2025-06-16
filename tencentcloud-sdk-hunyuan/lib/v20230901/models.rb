@@ -202,10 +202,12 @@ module TencentCloud
         # @type EnableDeepRead: Boolean
         # @param WebSearchOptions: 知识注入相关的参数信息
         # @type WebSearchOptions: :class:`Tencentcloud::Hunyuan.v20230901.models.WebSearchOptions`
+        # @param TopicChoice: 用户传入Topic
+        # @type TopicChoice: String
 
-        attr_accessor :Model, :Messages, :Stream, :StreamModeration, :TopP, :Temperature, :EnableEnhancement, :Tools, :ToolChoice, :CustomTool, :SearchInfo, :Citation, :EnableSpeedSearch, :EnableMultimedia, :EnableDeepSearch, :Seed, :ForceSearchEnhancement, :Stop, :EnableRecommendedQuestions, :EnableDeepRead, :WebSearchOptions
+        attr_accessor :Model, :Messages, :Stream, :StreamModeration, :TopP, :Temperature, :EnableEnhancement, :Tools, :ToolChoice, :CustomTool, :SearchInfo, :Citation, :EnableSpeedSearch, :EnableMultimedia, :EnableDeepSearch, :Seed, :ForceSearchEnhancement, :Stop, :EnableRecommendedQuestions, :EnableDeepRead, :WebSearchOptions, :TopicChoice
 
-        def initialize(model=nil, messages=nil, stream=nil, streammoderation=nil, topp=nil, temperature=nil, enableenhancement=nil, tools=nil, toolchoice=nil, customtool=nil, searchinfo=nil, citation=nil, enablespeedsearch=nil, enablemultimedia=nil, enabledeepsearch=nil, seed=nil, forcesearchenhancement=nil, stop=nil, enablerecommendedquestions=nil, enabledeepread=nil, websearchoptions=nil)
+        def initialize(model=nil, messages=nil, stream=nil, streammoderation=nil, topp=nil, temperature=nil, enableenhancement=nil, tools=nil, toolchoice=nil, customtool=nil, searchinfo=nil, citation=nil, enablespeedsearch=nil, enablemultimedia=nil, enabledeepsearch=nil, seed=nil, forcesearchenhancement=nil, stop=nil, enablerecommendedquestions=nil, enabledeepread=nil, websearchoptions=nil, topicchoice=nil)
           @Model = model
           @Messages = messages
           @Stream = stream
@@ -227,6 +229,7 @@ module TencentCloud
           @EnableRecommendedQuestions = enablerecommendedquestions
           @EnableDeepRead = enabledeepread
           @WebSearchOptions = websearchoptions
+          @TopicChoice = topicchoice
         end
 
         def deserialize(params)
@@ -271,6 +274,7 @@ module TencentCloud
             @WebSearchOptions = WebSearchOptions.new
             @WebSearchOptions.deserialize(params['WebSearchOptions'])
           end
+          @TopicChoice = params['TopicChoice']
         end
       end
 
@@ -302,15 +306,17 @@ module TencentCloud
         # @type Replaces: Array
         # @param RecommendedQuestions: 推荐问答。
         # @type RecommendedQuestions: Array
+        # @param Processes: AI搜索返回状态
+        # @type Processes: :class:`Tencentcloud::Hunyuan.v20230901.models.Processes`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。本接口为流式响应接口，当请求成功时，RequestId 会被放在 HTTP 响应的 Header "X-TC-RequestId" 中。
         # @type RequestId: String
 
-        attr_accessor :Created, :Usage, :Note, :Id, :Choices, :ErrorMsg, :ModerationLevel, :SearchInfo, :Replaces, :RecommendedQuestions, :RequestId
+        attr_accessor :Created, :Usage, :Note, :Id, :Choices, :ErrorMsg, :ModerationLevel, :SearchInfo, :Replaces, :RecommendedQuestions, :Processes, :RequestId
         extend Gem::Deprecate
-        deprecate :ModerationLevel, :none, 2025, 5
-        deprecate :ModerationLevel=, :none, 2025, 5
+        deprecate :ModerationLevel, :none, 2025, 6
+        deprecate :ModerationLevel=, :none, 2025, 6
 
-        def initialize(created=nil, usage=nil, note=nil, id=nil, choices=nil, errormsg=nil, moderationlevel=nil, searchinfo=nil, replaces=nil, recommendedquestions=nil, requestid=nil)
+        def initialize(created=nil, usage=nil, note=nil, id=nil, choices=nil, errormsg=nil, moderationlevel=nil, searchinfo=nil, replaces=nil, recommendedquestions=nil, processes=nil, requestid=nil)
           @Created = created
           @Usage = usage
           @Note = note
@@ -321,6 +327,7 @@ module TencentCloud
           @SearchInfo = searchinfo
           @Replaces = replaces
           @RecommendedQuestions = recommendedquestions
+          @Processes = processes
           @RequestId = requestid
         end
 
@@ -358,6 +365,10 @@ module TencentCloud
             end
           end
           @RecommendedQuestions = params['RecommendedQuestions']
+          unless params['Processes'].nil?
+            @Processes = Processes.new
+            @Processes.deserialize(params['Processes'])
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -1051,10 +1062,10 @@ module TencentCloud
 
         attr_accessor :Data, :FirstID, :LastID, :HasMore, :Object, :FirstMsgID, :LastMsgID, :RequestId
         extend Gem::Deprecate
-        deprecate :FirstID, :none, 2025, 5
-        deprecate :FirstID=, :none, 2025, 5
-        deprecate :LastID, :none, 2025, 5
-        deprecate :LastID=, :none, 2025, 5
+        deprecate :FirstID, :none, 2025, 6
+        deprecate :FirstID=, :none, 2025, 6
+        deprecate :LastID, :none, 2025, 6
+        deprecate :LastID=, :none, 2025, 6
 
         def initialize(data=nil, firstid=nil, lastid=nil, hasmore=nil, object=nil, firstmsgid=nil, lastmsgid=nil, requestid=nil)
           @Data = data
@@ -1888,6 +1899,32 @@ module TencentCloud
             @Ext = SongExt.new
             @Ext.deserialize(params['Ext'])
           end
+        end
+      end
+
+      # 大模型执行状态
+      class Processes < TencentCloud::Common::AbstractModel
+        # @param Message: 输出信息
+        # @type Message: String
+        # @param State: plan:开始获取资料…
+        # recall:找到 n 篇相关资料
+        # quote:引用 n 篇资料作为参考
+        # @type State: String
+        # @param Num: 当状态是recall和quote，会给出来相关数量
+        # @type Num: Integer
+
+        attr_accessor :Message, :State, :Num
+
+        def initialize(message=nil, state=nil, num=nil)
+          @Message = message
+          @State = state
+          @Num = num
+        end
+
+        def deserialize(params)
+          @Message = params['Message']
+          @State = params['State']
+          @Num = params['Num']
         end
       end
 
@@ -3164,12 +3201,15 @@ module TencentCloud
         # @type Knowledge: Array
         # @param UserLocation: 用户位置详细信息
         # @type UserLocation: :class:`Tencentcloud::Hunyuan.v20230901.models.UserLocation`
+        # @param Processes: 打开开关，会返回搜索状态
+        # @type Processes: Boolean
 
-        attr_accessor :Knowledge, :UserLocation
+        attr_accessor :Knowledge, :UserLocation, :Processes
 
-        def initialize(knowledge=nil, userlocation=nil)
+        def initialize(knowledge=nil, userlocation=nil, processes=nil)
           @Knowledge = knowledge
           @UserLocation = userlocation
+          @Processes = processes
         end
 
         def deserialize(params)
@@ -3185,6 +3225,7 @@ module TencentCloud
             @UserLocation = UserLocation.new
             @UserLocation.deserialize(params['UserLocation'])
           end
+          @Processes = params['Processes']
         end
       end
 

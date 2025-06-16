@@ -1248,7 +1248,7 @@ module TencentCloud
         # <li>**SMS** : 短信通知（发送短信通知到Mobile参数所传的手机号）</li>
         # </ul>
         # @type NotifyType: String
-        # @param FlowIds: 批量签署的合同流程ID数组。
+        # @param FlowIds: 批量签署的合同流程ID数组。<font color="red">此参数必传。</font>
         # 注: `在调用此接口时，请确保合同流程均为本企业发起，且合同数量不超过100个。`
         # @type FlowIds: Array
         # @param OrganizationName: SaaS平台企业员工签署方的企业名称。目标签署人如果为saas应用企业员工身份，此参数必填。
@@ -6133,11 +6133,6 @@ module TencentCloud
         # @param AuthorizationTypes: 可选的此企业允许的授权方式, 可以设置的方式有:
         # <ul><li>1：上传授权书</li>
         # <li>2：转法定代表人授权</li>
-        # <li>4：企业实名认证（信任第三方认证源）（此项有排他性, 选择后不能增添其他的方式）</li></ul>
-        # 注:<ul>
-        # <li>未选择信任第三方认证源时，如果是法人进行企业激活，仅支持法人扫脸直接授权，该配置不对此法人生效`</li>
-        # <li>选择信任第三方认证源时，请先通过<a href="https://qian.tencent.com/developers/partnerApis/accounts/SyncProxyOrganization" target="_blank">同步企业信息</a>接口同步信息。</li>
-        # <li>该参数仅在企业未激活时生效</li>
         # </ul>
         # @type AuthorizationTypes: Array
         # @param Operator: 暂未开放
@@ -10998,13 +10993,17 @@ module TencentCloud
         # <li>COPY: 复制新建</li>
         # </ul>
         # @type OperateType: String
+        # @param TemplateName: 模板名称，长度不超过64字符。<br>
+        # 模板复制时指定有效，若为空，则复制后模板名称为 **原模板名称_副本**。
+        # @type TemplateName: String
 
-        attr_accessor :Agent, :TemplateId, :OperateType
+        attr_accessor :Agent, :TemplateId, :OperateType, :TemplateName
 
-        def initialize(agent=nil, templateid=nil, operatetype=nil)
+        def initialize(agent=nil, templateid=nil, operatetype=nil, templatename=nil)
           @Agent = agent
           @TemplateId = templateid
           @OperateType = operatetype
+          @TemplateName = templatename
         end
 
         def deserialize(params)
@@ -11014,21 +11013,30 @@ module TencentCloud
           end
           @TemplateId = params['TemplateId']
           @OperateType = params['OperateType']
+          @TemplateName = params['TemplateName']
         end
       end
 
       # OperateTemplate返回参数结构体
       class OperateTemplateResponse < TencentCloud::Common::AbstractModel
+        # @param TemplateId: 模板ID，为32位字符串，模板复制新建时返回
+        # @type TemplateId: String
+        # @param TemplateName: 模板名称，模板复制新建时返回
+        # @type TemplateName: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :TemplateId, :TemplateName, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(templateid=nil, templatename=nil, requestid=nil)
+          @TemplateId = templateid
+          @TemplateName = templatename
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @TemplateId = params['TemplateId']
+          @TemplateName = params['TemplateName']
           @RequestId = params['RequestId']
         end
       end

@@ -125,6 +125,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 生成客户端的挂载命令
+
+        # @param request: Request instance for BuildClientNodeMountCommand.
+        # @type request: :class:`Tencentcloud::goosefs::V20220519::BuildClientNodeMountCommandRequest`
+        # @rtype: :class:`Tencentcloud::goosefs::V20220519::BuildClientNodeMountCommandResponse`
+        def BuildClientNodeMountCommand(request)
+          body = send_request('BuildClientNodeMountCommand', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = BuildClientNodeMountCommandResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建数据流通任务,包括从将文件系统的数据上传到存储桶下, 以及从存储桶下载到文件系统里。
 
         # @param request: Request instance for CreateDataRepositoryTask.
