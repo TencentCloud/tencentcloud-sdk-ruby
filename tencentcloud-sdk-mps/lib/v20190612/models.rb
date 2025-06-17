@@ -717,6 +717,34 @@ module TencentCloud
         end
       end
 
+      # 增加盲水印配置
+      class AddBlindWatermarkConfig < TencentCloud::Common::AbstractModel
+        # @param Switch: 能力配置开关，可选值：
+        # <li>ON：开启；</li>
+        # <li>OFF：关闭。</li>
+        # 默认值：ON。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Switch: String
+        # @param EmbedInfo: 盲水印嵌入数据
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EmbedInfo: :class:`Tencentcloud::Mps.v20190612.models.BlindWatermarkEmbedInfo`
+
+        attr_accessor :Switch, :EmbedInfo
+
+        def initialize(switch=nil, embedinfo=nil)
+          @Switch = switch
+          @EmbedInfo = embedinfo
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
+          unless params['EmbedInfo'].nil?
+            @EmbedInfo = BlindWatermarkEmbedInfo.new
+            @EmbedInfo.deserialize(params['EmbedInfo'])
+          end
+        end
+      end
+
       # 外挂字幕。
       class AddOnSubtitle < TencentCloud::Common::AbstractModel
         # @param Type: 插入形式，可选值：
@@ -5179,6 +5207,59 @@ module TencentCloud
             @SmartSubtitlesTaskResult = BatchSmartSubtitlesResult.new
             @SmartSubtitlesTaskResult.deserialize(params['SmartSubtitlesTaskResult'])
           end
+        end
+      end
+
+      # 盲水印配置
+      class BlindWatermarkConfig < TencentCloud::Common::AbstractModel
+        # @param AddBlindWatermark: 增加盲水印
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AddBlindWatermark: :class:`Tencentcloud::Mps.v20190612.models.AddBlindWatermarkConfig`
+        # @param ExtractBlindWatermark: 提取盲水印
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExtractBlindWatermark: :class:`Tencentcloud::Mps.v20190612.models.ExtractBlindWatermarkConfig`
+        # @param RemoveBlindWatermark: 移除盲水印
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RemoveBlindWatermark: :class:`Tencentcloud::Mps.v20190612.models.RemoveBlindWatermarkConfig`
+
+        attr_accessor :AddBlindWatermark, :ExtractBlindWatermark, :RemoveBlindWatermark
+
+        def initialize(addblindwatermark=nil, extractblindwatermark=nil, removeblindwatermark=nil)
+          @AddBlindWatermark = addblindwatermark
+          @ExtractBlindWatermark = extractblindwatermark
+          @RemoveBlindWatermark = removeblindwatermark
+        end
+
+        def deserialize(params)
+          unless params['AddBlindWatermark'].nil?
+            @AddBlindWatermark = AddBlindWatermarkConfig.new
+            @AddBlindWatermark.deserialize(params['AddBlindWatermark'])
+          end
+          unless params['ExtractBlindWatermark'].nil?
+            @ExtractBlindWatermark = ExtractBlindWatermarkConfig.new
+            @ExtractBlindWatermark.deserialize(params['ExtractBlindWatermark'])
+          end
+          unless params['RemoveBlindWatermark'].nil?
+            @RemoveBlindWatermark = RemoveBlindWatermarkConfig.new
+            @RemoveBlindWatermark.deserialize(params['RemoveBlindWatermark'])
+          end
+        end
+      end
+
+      # 嵌入盲水印配置
+      class BlindWatermarkEmbedInfo < TencentCloud::Common::AbstractModel
+        # @param EmbedText: 盲水印文字，需要经过 URL 安全的 Base64 编码。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EmbedText: String
+
+        attr_accessor :EmbedText
+
+        def initialize(embedtext=nil)
+          @EmbedText = embedtext
+        end
+
+        def deserialize(params)
+          @EmbedText = params['EmbedText']
         end
       end
 
@@ -13623,6 +13704,26 @@ module TencentCloud
         end
       end
 
+      # 提取盲水印配置
+      class ExtractBlindWatermarkConfig < TencentCloud::Common::AbstractModel
+        # @param Switch: 能力配置开关，可选值：
+        # <li>ON：开启；</li>
+        # <li>OFF：关闭。</li>
+        # 默认值：ON。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Switch: String
+
+        attr_accessor :Switch
+
+        def initialize(switch=nil)
+          @Switch = switch
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
+        end
+      end
+
       # 人脸识别任务控制参数
       class FaceConfigureInfo < TencentCloud::Common::AbstractModel
         # @param Switch: 人脸识别任务开关，可选值：
@@ -14947,13 +15048,17 @@ module TencentCloud
         # @param EraseConfig: 图片擦除配置。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EraseConfig: :class:`Tencentcloud::Mps.v20190612.models.ImageEraseConfig`
+        # @param BlindWatermarkConfig: 盲水印配置。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BlindWatermarkConfig: :class:`Tencentcloud::Mps.v20190612.models.BlindWatermarkConfig`
 
-        attr_accessor :EncodeConfig, :EnhanceConfig, :EraseConfig
+        attr_accessor :EncodeConfig, :EnhanceConfig, :EraseConfig, :BlindWatermarkConfig
 
-        def initialize(encodeconfig=nil, enhanceconfig=nil, eraseconfig=nil)
+        def initialize(encodeconfig=nil, enhanceconfig=nil, eraseconfig=nil, blindwatermarkconfig=nil)
           @EncodeConfig = encodeconfig
           @EnhanceConfig = enhanceconfig
           @EraseConfig = eraseconfig
+          @BlindWatermarkConfig = blindwatermarkconfig
         end
 
         def deserialize(params)
@@ -14968,6 +15073,10 @@ module TencentCloud
           unless params['EraseConfig'].nil?
             @EraseConfig = ImageEraseConfig.new
             @EraseConfig.deserialize(params['EraseConfig'])
+          end
+          unless params['BlindWatermarkConfig'].nil?
+            @BlindWatermarkConfig = BlindWatermarkConfig.new
+            @BlindWatermarkConfig.deserialize(params['BlindWatermarkConfig'])
           end
         end
       end
@@ -21677,6 +21786,26 @@ module TencentCloud
 
         def deserialize(params)
           @Name = params['Name']
+        end
+      end
+
+      # 移除盲水印配置
+      class RemoveBlindWatermarkConfig < TencentCloud::Common::AbstractModel
+        # @param Switch: 能力配置开关，可选值：
+        # <li>ON：开启；</li>
+        # <li>OFF：关闭。</li>
+        # 默认值：ON。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Switch: String
+
+        attr_accessor :Switch
+
+        def initialize(switch=nil)
+          @Switch = switch
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
         end
       end
 

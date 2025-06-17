@@ -9417,7 +9417,7 @@ module TencentCloud
       class RateMsgRecordRequest < TencentCloud::Common::AbstractModel
         # @param BotAppKey: 应用appKey
         # @type BotAppKey: String
-        # @param RecordId: 消息ID
+        # @param RecordId: 消息ID 【大模型回复答案的RecordID】
         # @type RecordId: String
         # @param Score: 1点赞2点踩
         # @type Score: Integer

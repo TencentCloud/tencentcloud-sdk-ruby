@@ -8037,6 +8037,81 @@ module TencentCloud
         end
       end
 
+      # UploadUpdateCertificateInstance请求参数结构体
+      class UploadUpdateCertificateInstanceRequest < TencentCloud::Common::AbstractModel
+        # @param OldCertificateId: 一键更新的旧证书ID。 通过查询该证书ID绑定的云资源，然后使用新证书对这些云资源进行更新
+        # @type OldCertificateId: String
+        # @param ResourceTypes: 需要部署的资源类型，参数值可选（小写）：clb
+        # @type ResourceTypes: Array
+        # @param CertificatePublicKey: 公钥证书
+        # @type CertificatePublicKey: String
+        # @param CertificatePrivateKey: 私钥证书
+        # @type CertificatePrivateKey: String
+        # @param ResourceTypesRegions: 云资源需要部署的地域列表，支持地域的云资源类型必传，取值：clb
+        # @type ResourceTypesRegions: Array
+
+        attr_accessor :OldCertificateId, :ResourceTypes, :CertificatePublicKey, :CertificatePrivateKey, :ResourceTypesRegions
+
+        def initialize(oldcertificateid=nil, resourcetypes=nil, certificatepublickey=nil, certificateprivatekey=nil, resourcetypesregions=nil)
+          @OldCertificateId = oldcertificateid
+          @ResourceTypes = resourcetypes
+          @CertificatePublicKey = certificatepublickey
+          @CertificatePrivateKey = certificateprivatekey
+          @ResourceTypesRegions = resourcetypesregions
+        end
+
+        def deserialize(params)
+          @OldCertificateId = params['OldCertificateId']
+          @ResourceTypes = params['ResourceTypes']
+          @CertificatePublicKey = params['CertificatePublicKey']
+          @CertificatePrivateKey = params['CertificatePrivateKey']
+          unless params['ResourceTypesRegions'].nil?
+            @ResourceTypesRegions = []
+            params['ResourceTypesRegions'].each do |i|
+              resourcetyperegions_tmp = ResourceTypeRegions.new
+              resourcetyperegions_tmp.deserialize(i)
+              @ResourceTypesRegions << resourcetyperegions_tmp
+            end
+          end
+        end
+      end
+
+      # UploadUpdateCertificateInstance返回参数结构体
+      class UploadUpdateCertificateInstanceResponse < TencentCloud::Common::AbstractModel
+        # @param DeployRecordId: 云资源更新任务ID， DeployRecordId为0表示任务进行中， 重复请求这个接口， 当返回DeployRecordId大于0则表示任务创建成功。 未创建成功则会抛出异常
+        # @type DeployRecordId: Integer
+        # @param DeployStatus: 更新任务创建状态；1表示创建成功； 0表示当前存在更新中的任务，未创建新的更新任务；返回值DeployRecordId为更新中的任务ID
+        # @type DeployStatus: Integer
+        # @param UpdateSyncProgress: 更新异步创建任务进度详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateSyncProgress: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DeployRecordId, :DeployStatus, :UpdateSyncProgress, :RequestId
+
+        def initialize(deployrecordid=nil, deploystatus=nil, updatesyncprogress=nil, requestid=nil)
+          @DeployRecordId = deployrecordid
+          @DeployStatus = deploystatus
+          @UpdateSyncProgress = updatesyncprogress
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @DeployRecordId = params['DeployRecordId']
+          @DeployStatus = params['DeployStatus']
+          unless params['UpdateSyncProgress'].nil?
+            @UpdateSyncProgress = []
+            params['UpdateSyncProgress'].each do |i|
+              updatesyncprogress_tmp = UpdateSyncProgress.new
+              updatesyncprogress_tmp.deserialize(i)
+              @UpdateSyncProgress << updatesyncprogress_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # vod实例详情 - 异步关联云资源数据结构
       class VODInstanceList < TencentCloud::Common::AbstractModel
         # @param InstanceList: vod实例详情
