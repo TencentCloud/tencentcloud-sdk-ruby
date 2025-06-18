@@ -269,6 +269,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建视频语义异步搜索任务
+
+        # @param request: Request instance for CreateAISearchTaskAsync.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::CreateAISearchTaskAsyncRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::CreateAISearchTaskAsyncResponse`
+        def CreateAISearchTaskAsync(request)
+          body = send_request('CreateAISearchTaskAsync', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateAISearchTaskAsyncResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 用于新建批量生产设备
 
         # @param request: Request instance for CreateBatchProduction.
@@ -999,6 +1023,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteTopicRuleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取视频语义异步搜索任务详情
+
+        # @param request: Request instance for DescribeAISearchTaskAsync.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::DescribeAISearchTaskAsyncRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::DescribeAISearchTaskAsyncResponse`
+        def DescribeAISearchTaskAsync(request)
+          body = send_request('DescribeAISearchTaskAsync', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAISearchTaskAsyncResponse.new
             model.deserialize(response['Response'])
             model
           else

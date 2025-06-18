@@ -5526,14 +5526,18 @@ module TencentCloud
         # @param ExceedCharSize: 超量字符数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExceedCharSize: String
+        # @param IsSharedKnowledge: 是否共享知识库类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsSharedKnowledge: Boolean
 
-        attr_accessor :AppName, :UsedCharSize, :Proportion, :ExceedCharSize
+        attr_accessor :AppName, :UsedCharSize, :Proportion, :ExceedCharSize, :IsSharedKnowledge
 
-        def initialize(appname=nil, usedcharsize=nil, proportion=nil, exceedcharsize=nil)
+        def initialize(appname=nil, usedcharsize=nil, proportion=nil, exceedcharsize=nil, issharedknowledge=nil)
           @AppName = appname
           @UsedCharSize = usedcharsize
           @Proportion = proportion
           @ExceedCharSize = exceedcharsize
+          @IsSharedKnowledge = issharedknowledge
         end
 
         def deserialize(params)
@@ -5541,6 +5545,7 @@ module TencentCloud
           @UsedCharSize = params['UsedCharSize']
           @Proportion = params['Proportion']
           @ExceedCharSize = params['ExceedCharSize']
+          @IsSharedKnowledge = params['IsSharedKnowledge']
         end
       end
 
@@ -8180,7 +8185,7 @@ module TencentCloud
         # @type DocBizId: String
         # @param IsRefer: 是否引用链接
         # @type IsRefer: Boolean
-        # @param AttrRange: 标签适用范围 1：全部，2：按条件
+        # @param AttrRange: 标签适用范围，需要传参为1
         # @type AttrRange: Integer
         # @param LoginUin: 登录用户主账号(集成商模式必填)
         # @type LoginUin: String
@@ -8199,10 +8204,12 @@ module TencentCloud
         # @type ExpireEnd: String
         # @param CateBizId: 分类ID
         # @type CateBizId: String
+        # @param IsDownload: 是否可下载，IsRefer为true并且ReferUrlType为0时，该值才有意义
+        # @type IsDownload: Boolean
 
-        attr_accessor :BotBizId, :DocBizId, :IsRefer, :AttrRange, :LoginUin, :LoginSubAccountUin, :AttrLabels, :WebUrl, :ReferUrlType, :ExpireStart, :ExpireEnd, :CateBizId
+        attr_accessor :BotBizId, :DocBizId, :IsRefer, :AttrRange, :LoginUin, :LoginSubAccountUin, :AttrLabels, :WebUrl, :ReferUrlType, :ExpireStart, :ExpireEnd, :CateBizId, :IsDownload
 
-        def initialize(botbizid=nil, docbizid=nil, isrefer=nil, attrrange=nil, loginuin=nil, loginsubaccountuin=nil, attrlabels=nil, weburl=nil, referurltype=nil, expirestart=nil, expireend=nil, catebizid=nil)
+        def initialize(botbizid=nil, docbizid=nil, isrefer=nil, attrrange=nil, loginuin=nil, loginsubaccountuin=nil, attrlabels=nil, weburl=nil, referurltype=nil, expirestart=nil, expireend=nil, catebizid=nil, isdownload=nil)
           @BotBizId = botbizid
           @DocBizId = docbizid
           @IsRefer = isrefer
@@ -8215,6 +8222,7 @@ module TencentCloud
           @ExpireStart = expirestart
           @ExpireEnd = expireend
           @CateBizId = catebizid
+          @IsDownload = isdownload
         end
 
         def deserialize(params)
@@ -8237,6 +8245,7 @@ module TencentCloud
           @ExpireStart = params['ExpireStart']
           @ExpireEnd = params['ExpireEnd']
           @CateBizId = params['CateBizId']
+          @IsDownload = params['IsDownload']
         end
       end
 

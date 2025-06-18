@@ -1067,10 +1067,14 @@ module TencentCloud
         # @type OperationMode: String
         # @param TimerScale: 定时扩缩容配置
         # @type TimerScale: Array
+        # @param EntryPoint: Dockerfile EntryPoint 参数
+        # @type EntryPoint: Array
+        # @param Cmd: Dockerfile Cmd 参数
+        # @type Cmd: Array
 
-        attr_accessor :EnvId, :ServerName, :OpenAccessTypes, :Cpu, :Mem, :MinNum, :MaxNum, :PolicyDetails, :CustomLogs, :EnvParams, :InitialDelaySeconds, :CreateTime, :Port, :HasDockerfile, :Dockerfile, :BuildDir, :LogType, :LogSetId, :LogTopicId, :LogParseType, :Tag, :InternalAccess, :InternalDomain, :OperationMode, :TimerScale
+        attr_accessor :EnvId, :ServerName, :OpenAccessTypes, :Cpu, :Mem, :MinNum, :MaxNum, :PolicyDetails, :CustomLogs, :EnvParams, :InitialDelaySeconds, :CreateTime, :Port, :HasDockerfile, :Dockerfile, :BuildDir, :LogType, :LogSetId, :LogTopicId, :LogParseType, :Tag, :InternalAccess, :InternalDomain, :OperationMode, :TimerScale, :EntryPoint, :Cmd
 
-        def initialize(envid=nil, servername=nil, openaccesstypes=nil, cpu=nil, mem=nil, minnum=nil, maxnum=nil, policydetails=nil, customlogs=nil, envparams=nil, initialdelayseconds=nil, createtime=nil, port=nil, hasdockerfile=nil, dockerfile=nil, builddir=nil, logtype=nil, logsetid=nil, logtopicid=nil, logparsetype=nil, tag=nil, internalaccess=nil, internaldomain=nil, operationmode=nil, timerscale=nil)
+        def initialize(envid=nil, servername=nil, openaccesstypes=nil, cpu=nil, mem=nil, minnum=nil, maxnum=nil, policydetails=nil, customlogs=nil, envparams=nil, initialdelayseconds=nil, createtime=nil, port=nil, hasdockerfile=nil, dockerfile=nil, builddir=nil, logtype=nil, logsetid=nil, logtopicid=nil, logparsetype=nil, tag=nil, internalaccess=nil, internaldomain=nil, operationmode=nil, timerscale=nil, entrypoint=nil, cmd=nil)
           @EnvId = envid
           @ServerName = servername
           @OpenAccessTypes = openaccesstypes
@@ -1096,6 +1100,8 @@ module TencentCloud
           @InternalDomain = internaldomain
           @OperationMode = operationmode
           @TimerScale = timerscale
+          @EntryPoint = entrypoint
+          @Cmd = cmd
         end
 
         def deserialize(params)
@@ -1138,6 +1144,8 @@ module TencentCloud
               @TimerScale << timerscale_tmp
             end
           end
+          @EntryPoint = params['EntryPoint']
+          @Cmd = params['Cmd']
         end
       end
 

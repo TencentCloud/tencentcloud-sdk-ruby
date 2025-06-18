@@ -2254,13 +2254,13 @@ module TencentCloud
 
       # ModifyFileSystemAutoScaleUpRule请求参数结构体
       class ModifyFileSystemAutoScaleUpRuleRequest < TencentCloud::Common::AbstractModel
-        # @param FileSystemId: 文件系统ID，通过查询文件系统列表获取；[DescribeCfsFileSystems](https://cloud.tencent.com/document/product/582/38170)
+        # @param FileSystemId: 文件系统 ID，通过查询文件系统列表获取；[DescribeCfsFileSystems](https://cloud.tencent.com/document/product/582/38170)
         # @type FileSystemId: String
         # @param ScaleUpThreshold: 扩容阈值，范围[10-90]
         # @type ScaleUpThreshold: Integer
-        # @param TargetThreshold: 扩容后目标阈值,范围[10-90],该值要小于ScaleUpThreshold
+        # @param TargetThreshold: 扩容后目标阈值，范围[1-90]，该值要小于 ScaleUpThreshold
         # @type TargetThreshold: Integer
-        # @param Status: 规则状态0:关闭，1 开启；不传保留原状态
+        # @param Status: 规则状态 0：关闭，1：开启；不传保留原状态
         # @type Status: Integer
 
         attr_accessor :FileSystemId, :ScaleUpThreshold, :TargetThreshold, :Status
@@ -2282,13 +2282,13 @@ module TencentCloud
 
       # ModifyFileSystemAutoScaleUpRule返回参数结构体
       class ModifyFileSystemAutoScaleUpRuleResponse < TencentCloud::Common::AbstractModel
-        # @param FileSystemId: 文件系统id
+        # @param FileSystemId: 文件系统 ID
         # @type FileSystemId: String
-        # @param Status: 规则状态0:关闭，1 开启
+        # @param Status: 规则状态 0：关闭，1：开启
         # @type Status: Integer
-        # @param ScaleUpThreshold: 扩容阈值,范围[10-90]
+        # @param ScaleUpThreshold: 扩容阈值，范围[10-90]
         # @type ScaleUpThreshold: Integer
-        # @param TargetThreshold: 扩容后达到阈值,范围[1-90]
+        # @param TargetThreshold: 扩容后达到阈值，范围[1-90]
         # @type TargetThreshold: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

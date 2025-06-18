@@ -727,8 +727,8 @@ module TencentCloud
 
         attr_accessor :ProjectId, :RoleIdList, :UserList, :UserInfoList
         extend Gem::Deprecate
-        deprecate :UserList, :none, 2025, 5
-        deprecate :UserList=, :none, 2025, 5
+        deprecate :UserList, :none, 2025, 6
+        deprecate :UserList=, :none, 2025, 6
 
         def initialize(projectid=nil, roleidlist=nil, userlist=nil, userinfolist=nil)
           @ProjectId = projectid
@@ -812,8 +812,8 @@ module TencentCloud
 
         attr_accessor :RoleIdList, :UserList, :UserInfoList
         extend Gem::Deprecate
-        deprecate :UserList, :none, 2025, 5
-        deprecate :UserList=, :none, 2025, 5
+        deprecate :UserList, :none, 2025, 6
+        deprecate :UserList=, :none, 2025, 6
 
         def initialize(roleidlist=nil, userlist=nil, userinfolist=nil)
           @RoleIdList = roleidlist
@@ -3117,6 +3117,53 @@ module TencentCloud
         end
       end
 
+      # 用户组
+      class UserGroupDTO < TencentCloud::Common::AbstractModel
+        # @param Id: id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Id: Integer
+        # @param GroupName: 用户组名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GroupName: String
+        # @param ParentId: 父节点id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ParentId: Integer
+        # @param IsDefault: 是否为默认
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsDefault: Integer
+        # @param AdminUserId: 管理员用户id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AdminUserId: String
+        # @param Description: 描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+        # @param Location: 定位
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Location: Integer
+
+        attr_accessor :Id, :GroupName, :ParentId, :IsDefault, :AdminUserId, :Description, :Location
+
+        def initialize(id=nil, groupname=nil, parentid=nil, isdefault=nil, adminuserid=nil, description=nil, location=nil)
+          @Id = id
+          @GroupName = groupname
+          @ParentId = parentid
+          @IsDefault = isdefault
+          @AdminUserId = adminuserid
+          @Description = description
+          @Location = location
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @GroupName = params['GroupName']
+          @ParentId = params['ParentId']
+          @IsDefault = params['IsDefault']
+          @AdminUserId = params['AdminUserId']
+          @Description = params['Description']
+          @Location = params['Location']
+        end
+      end
+
       # 用户ID和用户名
       class UserIdAndUserName < TencentCloud::Common::AbstractModel
         # @param UserId: 用户ID
@@ -3430,10 +3477,13 @@ module TencentCloud
         # @param EmailActivationStatus: 邮箱激活状态
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EmailActivationStatus: Integer
+        # @param UserGroupList: 用户组信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserGroupList: Array
 
-        attr_accessor :Id, :RoleList, :RoleIdList, :UserId, :UserName, :CorpId, :Email, :CreatedUser, :CreatedAt, :UpdatedUser, :UpdatedAt, :LastLogin, :Status, :PhoneNumber, :AreaCode, :RootAccount, :CorpAdmin, :AppUserId, :AppUserAliasName, :AppUserName, :InValidateAppRange, :AppOpenUserId, :EmailActivationStatus
+        attr_accessor :Id, :RoleList, :RoleIdList, :UserId, :UserName, :CorpId, :Email, :CreatedUser, :CreatedAt, :UpdatedUser, :UpdatedAt, :LastLogin, :Status, :PhoneNumber, :AreaCode, :RootAccount, :CorpAdmin, :AppUserId, :AppUserAliasName, :AppUserName, :InValidateAppRange, :AppOpenUserId, :EmailActivationStatus, :UserGroupList
 
-        def initialize(id=nil, rolelist=nil, roleidlist=nil, userid=nil, username=nil, corpid=nil, email=nil, createduser=nil, createdat=nil, updateduser=nil, updatedat=nil, lastlogin=nil, status=nil, phonenumber=nil, areacode=nil, rootaccount=nil, corpadmin=nil, appuserid=nil, appuseraliasname=nil, appusername=nil, invalidateapprange=nil, appopenuserid=nil, emailactivationstatus=nil)
+        def initialize(id=nil, rolelist=nil, roleidlist=nil, userid=nil, username=nil, corpid=nil, email=nil, createduser=nil, createdat=nil, updateduser=nil, updatedat=nil, lastlogin=nil, status=nil, phonenumber=nil, areacode=nil, rootaccount=nil, corpadmin=nil, appuserid=nil, appuseraliasname=nil, appusername=nil, invalidateapprange=nil, appopenuserid=nil, emailactivationstatus=nil, usergrouplist=nil)
           @Id = id
           @RoleList = rolelist
           @RoleIdList = roleidlist
@@ -3457,6 +3507,7 @@ module TencentCloud
           @InValidateAppRange = invalidateapprange
           @AppOpenUserId = appopenuserid
           @EmailActivationStatus = emailactivationstatus
+          @UserGroupList = usergrouplist
         end
 
         def deserialize(params)
@@ -3490,6 +3541,14 @@ module TencentCloud
           @InValidateAppRange = params['InValidateAppRange']
           @AppOpenUserId = params['AppOpenUserId']
           @EmailActivationStatus = params['EmailActivationStatus']
+          unless params['UserGroupList'].nil?
+            @UserGroupList = []
+            params['UserGroupList'].each do |i|
+              usergroupdto_tmp = UserGroupDTO.new
+              usergroupdto_tmp.deserialize(i)
+              @UserGroupList << usergroupdto_tmp
+            end
+          end
         end
       end
 

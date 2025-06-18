@@ -17,6 +17,37 @@
 module TencentCloud
   module Iotexplorer
     module V20190423
+      # AI视频搜索结果结构体。
+      class AISearchInfo < TencentCloud::Common::AbstractModel
+        # @param Summary: 基于搜索结果的总结
+        # @type Summary: String
+        # @param Targets: 视频结果集
+        # @type Targets: Array
+        # @param VideoURL: 视频回放URL
+        # @type VideoURL: String
+
+        attr_accessor :Summary, :Targets, :VideoURL
+
+        def initialize(summary=nil, targets=nil, videourl=nil)
+          @Summary = summary
+          @Targets = targets
+          @VideoURL = videourl
+        end
+
+        def deserialize(params)
+          @Summary = params['Summary']
+          unless params['Targets'].nil?
+            @Targets = []
+            params['Targets'].each do |i|
+              targetinfo_tmp = TargetInfo.new
+              targetinfo_tmp.deserialize(i)
+              @Targets << targetinfo_tmp
+            end
+          end
+          @VideoURL = params['VideoURL']
+        end
+      end
+
       # 设备激活详情信息
       class ActivateDeviceInfo < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID
@@ -1138,6 +1169,58 @@ module TencentCloud
           @EventExceptionNum = params['EventExceptionNum']
           @EventSuccessNum = params['EventSuccessNum']
           @EventSuccessRate = params['EventSuccessRate']
+        end
+      end
+
+      # CreateAISearchTaskAsync请求参数结构体
+      class CreateAISearchTaskAsyncRequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: 产品ID
+        # @type ProductId: String
+        # @param DeviceName: 设备名称
+        # @type DeviceName: String
+        # @param Query: 自然语言查询
+        # @type Query: String
+        # @param SummaryLang: 搜索结果总结的语言类型，支持的类型有：en-US、zh-CN、id-ID、th-TH
+        # @type SummaryLang: String
+        # @param ChannelId: 通道ID
+        # @type ChannelId: Integer
+
+        attr_accessor :ProductId, :DeviceName, :Query, :SummaryLang, :ChannelId
+
+        def initialize(productid=nil, devicename=nil, query=nil, summarylang=nil, channelid=nil)
+          @ProductId = productid
+          @DeviceName = devicename
+          @Query = query
+          @SummaryLang = summarylang
+          @ChannelId = channelid
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @DeviceName = params['DeviceName']
+          @Query = params['Query']
+          @SummaryLang = params['SummaryLang']
+          @ChannelId = params['ChannelId']
+        end
+      end
+
+      # CreateAISearchTaskAsync返回参数结构体
+      class CreateAISearchTaskAsyncResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务ID
+        # @type TaskId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
         end
       end
 
@@ -2737,6 +2820,49 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAISearchTaskAsync请求参数结构体
+      class DescribeAISearchTaskAsyncRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务ID
+        # @type TaskId: String
+
+        attr_accessor :TaskId
+
+        def initialize(taskid=nil)
+          @TaskId = taskid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+        end
+      end
+
+      # DescribeAISearchTaskAsync返回参数结构体
+      class DescribeAISearchTaskAsyncResponse < TencentCloud::Common::AbstractModel
+        # @param Status: 状态。0-初始状态；1-正在处理；2-处理失败；3-成功
+        # @type Status: Integer
+        # @param Data: 任务处理结果数据
+        # @type Data: :class:`Tencentcloud::Iotexplorer.v20190423.models.AISearchInfo`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Status, :Data, :RequestId
+
+        def initialize(status=nil, data=nil, requestid=nil)
+          @Status = status
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          unless params['Data'].nil?
+            @Data = AISearchInfo.new
+            @Data.deserialize(params['Data'])
+          end
           @RequestId = params['RequestId']
         end
       end

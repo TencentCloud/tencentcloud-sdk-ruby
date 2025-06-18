@@ -1979,8 +1979,8 @@ module TencentCloud
 
         attr_accessor :Name, :AlarmTargets, :MonitorTime, :TriggerCount, :AlarmPeriod, :AlarmNoticeIds, :Condition, :AlarmLevel, :MultiConditions, :Status, :Enable, :MessageTemplate, :CallBack, :Analysis, :GroupTriggerStatus, :GroupTriggerCondition, :Tags, :MonitorObjectType, :Classifications
         extend Gem::Deprecate
-        deprecate :Enable, :none, 2025, 5
-        deprecate :Enable=, :none, 2025, 5
+        deprecate :Enable, :none, 2025, 6
+        deprecate :Enable=, :none, 2025, 6
 
         def initialize(name=nil, alarmtargets=nil, monitortime=nil, triggercount=nil, alarmperiod=nil, alarmnoticeids=nil, condition=nil, alarmlevel=nil, multiconditions=nil, status=nil, enable=nil, messagetemplate=nil, callback=nil, analysis=nil, grouptriggerstatus=nil, grouptriggercondition=nil, tags=nil, monitorobjecttype=nil, classifications=nil)
           @Name = name
@@ -2303,8 +2303,8 @@ module TencentCloud
 
         attr_accessor :Name, :TopicId, :Type, :LogType, :ConfigFlag, :LogsetId, :LogsetName, :TopicName, :HostFile, :ContainerFile, :ContainerStdout, :LogFormat, :ExtractRule, :ExcludePaths, :UserDefineRule, :GroupId, :GroupIds, :CollectInfos, :AdvancedConfig
         extend Gem::Deprecate
-        deprecate :LogFormat, :none, 2025, 5
-        deprecate :LogFormat=, :none, 2025, 5
+        deprecate :LogFormat, :none, 2025, 6
+        deprecate :LogFormat=, :none, 2025, 6
 
         def initialize(name=nil, topicid=nil, type=nil, logtype=nil, configflag=nil, logsetid=nil, logsetname=nil, topicname=nil, hostfile=nil, containerfile=nil, containerstdout=nil, logformat=nil, extractrule=nil, excludepaths=nil, userdefinerule=nil, groupid=nil, groupids=nil, collectinfos=nil, advancedconfig=nil)
           @Name = name
@@ -3067,12 +3067,15 @@ module TencentCloud
         # @type LogsetName: String
         # @param Tags: 标签描述列表。最大支持10个标签键值对，并且不能有重复的键值对
         # @type Tags: Array
+        # @param LogsetId: 日志集ID，格式为：用户自定义部分-用户appid，用户自定义部分仅支持小写字母、数字和-，且不能以-开头和结尾，长度为3至40字符，尾部需要使用-拼接用户appid
+        # @type LogsetId: String
 
-        attr_accessor :LogsetName, :Tags
+        attr_accessor :LogsetName, :Tags, :LogsetId
 
-        def initialize(logsetname=nil, tags=nil)
+        def initialize(logsetname=nil, tags=nil, logsetid=nil)
           @LogsetName = logsetname
           @Tags = tags
+          @LogsetId = logsetid
         end
 
         def deserialize(params)
@@ -3085,6 +3088,7 @@ module TencentCloud
               @Tags << tag_tmp
             end
           end
+          @LogsetId = params['LogsetId']
         end
       end
 
@@ -8541,8 +8545,8 @@ module TencentCloud
 
         attr_accessor :AlarmId, :Name, :MonitorTime, :Condition, :AlarmLevel, :MultiConditions, :TriggerCount, :AlarmPeriod, :AlarmNoticeIds, :AlarmTargets, :Status, :Enable, :MessageTemplate, :CallBack, :Analysis, :GroupTriggerStatus, :GroupTriggerCondition, :Tags, :MonitorObjectType, :Classifications
         extend Gem::Deprecate
-        deprecate :Enable, :none, 2025, 5
-        deprecate :Enable=, :none, 2025, 5
+        deprecate :Enable, :none, 2025, 6
+        deprecate :Enable=, :none, 2025, 6
 
         def initialize(alarmid=nil, name=nil, monitortime=nil, condition=nil, alarmlevel=nil, multiconditions=nil, triggercount=nil, alarmperiod=nil, alarmnoticeids=nil, alarmtargets=nil, status=nil, enable=nil, messagetemplate=nil, callback=nil, analysis=nil, grouptriggerstatus=nil, grouptriggercondition=nil, tags=nil, monitorobjecttype=nil, classifications=nil)
           @AlarmId = alarmid
@@ -8825,8 +8829,8 @@ module TencentCloud
 
         attr_accessor :ConfigExtraId, :Name, :TopicId, :HostFile, :ContainerFile, :ContainerStdout, :LogType, :LogFormat, :ExtractRule, :ExcludePaths, :UserDefineRule, :Type, :GroupId, :ConfigFlag, :LogsetId, :LogsetName, :TopicName, :AdvancedConfig
         extend Gem::Deprecate
-        deprecate :LogFormat, :none, 2025, 5
-        deprecate :LogFormat=, :none, 2025, 5
+        deprecate :LogFormat, :none, 2025, 6
+        deprecate :LogFormat=, :none, 2025, 6
 
         def initialize(configextraid=nil, name=nil, topicid=nil, hostfile=nil, containerfile=nil, containerstdout=nil, logtype=nil, logformat=nil, extractrule=nil, excludepaths=nil, userdefinerule=nil, type=nil, groupid=nil, configflag=nil, logsetid=nil, logsetname=nil, topicname=nil, advancedconfig=nil)
           @ConfigExtraId = configextraid
@@ -10579,8 +10583,8 @@ module TencentCloud
 
         attr_accessor :LogContent, :LineNum, :DstTopicId, :FailReason, :Time, :DstTopicName
         extend Gem::Deprecate
-        deprecate :DstTopicName, :none, 2025, 5
-        deprecate :DstTopicName=, :none, 2025, 5
+        deprecate :DstTopicName, :none, 2025, 6
+        deprecate :DstTopicName=, :none, 2025, 6
 
         def initialize(logcontent=nil, linenum=nil, dsttopicid=nil, failreason=nil, time=nil, dsttopicname=nil)
           @LogContent = logcontent
@@ -11820,8 +11824,8 @@ module TencentCloud
 
         attr_accessor :TopicId, :HashKey, :CompressType
         extend Gem::Deprecate
-        deprecate :HashKey, :none, 2025, 5
-        deprecate :HashKey=, :none, 2025, 5
+        deprecate :HashKey, :none, 2025, 6
+        deprecate :HashKey=, :none, 2025, 6
 
         def initialize(topicid=nil, hashkey=nil, compresstype=nil)
           @TopicId = topicid
@@ -11929,10 +11933,10 @@ module TencentCloud
 
         attr_accessor :CallbackType, :Url, :WebCallbackId, :Method, :NoticeContentId, :RemindType, :Mobiles, :UserIds, :Headers, :Body, :Index
         extend Gem::Deprecate
-        deprecate :Headers, :none, 2025, 5
-        deprecate :Headers=, :none, 2025, 5
-        deprecate :Body, :none, 2025, 5
-        deprecate :Body=, :none, 2025, 5
+        deprecate :Headers, :none, 2025, 6
+        deprecate :Headers=, :none, 2025, 6
+        deprecate :Body, :none, 2025, 6
+        deprecate :Body=, :none, 2025, 6
 
         def initialize(callbacktype=nil, url=nil, webcallbackid=nil, method=nil, noticecontentid=nil, remindtype=nil, mobiles=nil, userids=nil, headers=nil, body=nil, index=nil)
           @CallbackType = callbacktype
