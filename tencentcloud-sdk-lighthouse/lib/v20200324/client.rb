@@ -2702,6 +2702,36 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口 (SyncBlueprint) 用于将自定义镜像同步到其它地域。
+
+        # * 支持向多个地域同步。最多10个地域。
+        # * 不支持向源地域同步。
+        # * 只支持NORMAL状态的镜像进行同步。
+        # * 不支持中国大陆地域和非中国大陆地域之间同步。
+        # * 可以通过[DescribeBlueprints](https://cloud.tencent.com/document/api/1207/47689)查询镜像状态，当镜像状态为NORMAL时表示源地域同步结束。
+
+        # @param request: Request instance for SyncBlueprint.
+        # @type request: :class:`Tencentcloud::lighthouse::V20200324::SyncBlueprintRequest`
+        # @rtype: :class:`Tencentcloud::lighthouse::V20200324::SyncBlueprintResponse`
+        def SyncBlueprint(request)
+          body = send_request('SyncBlueprint', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = SyncBlueprintResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（TerminateDisks）用于销毁一个或多个云硬盘。
         # 云硬盘状态必须处于SHUTDOWN（已隔离）状态。
 

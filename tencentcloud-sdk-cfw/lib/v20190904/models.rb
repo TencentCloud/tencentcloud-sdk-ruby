@@ -975,17 +975,21 @@ module TencentCloud
         # @param TableType: 忽略数据来源：
         # AlertTable 告警中心  InterceptionTable拦截列表
         # @type TableType: String
+        # @param HandleEventIdList: 处置对象,事件ID列表
+        # @type HandleEventIdList: Array
 
-        attr_accessor :HandleIdList, :TableType
+        attr_accessor :HandleIdList, :TableType, :HandleEventIdList
 
-        def initialize(handleidlist=nil, tabletype=nil)
+        def initialize(handleidlist=nil, tabletype=nil, handleeventidlist=nil)
           @HandleIdList = handleidlist
           @TableType = tabletype
+          @HandleEventIdList = handleeventidlist
         end
 
         def deserialize(params)
           @HandleIdList = params['HandleIdList']
           @TableType = params['TableType']
+          @HandleEventIdList = params['HandleEventIdList']
         end
       end
 

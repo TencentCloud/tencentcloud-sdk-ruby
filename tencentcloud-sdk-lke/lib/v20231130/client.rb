@@ -560,6 +560,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 删除变量
+
+        # @param request: Request instance for DeleteVar.
+        # @type request: :class:`Tencentcloud::lke::V20231130::DeleteVarRequest`
+        # @rtype: :class:`Tencentcloud::lke::V20231130::DeleteVarResponse`
+        def DeleteVar(request)
+          body = send_request('DeleteVar', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteVarResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取企业下应用详情
 
         # @param request: Request instance for DescribeApp.
@@ -2597,6 +2621,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = UpdateSharedKnowledgeResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 更新变量
+
+        # @param request: Request instance for UpdateVar.
+        # @type request: :class:`Tencentcloud::lke::V20231130::UpdateVarRequest`
+        # @rtype: :class:`Tencentcloud::lke::V20231130::UpdateVarResponse`
+        def UpdateVar(request)
+          body = send_request('UpdateVar', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdateVarResponse.new
             model.deserialize(response['Response'])
             model
           else

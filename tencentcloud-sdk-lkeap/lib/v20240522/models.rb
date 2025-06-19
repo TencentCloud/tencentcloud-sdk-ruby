@@ -999,9 +999,11 @@ module TencentCloud
 
       # GetEmbedding请求参数结构体
       class GetEmbeddingRequest < TencentCloud::Common::AbstractModel
-        # @param Model: 模型名称
+        # @param Model: 说明：选择生成向量的模型
+        # 备注：仅一个模型可选
         # @type Model: String
-        # @param Inputs: 需要 embedding 的文本, 单条文本最大长度500个字符, 总条数最大7条
+        # @param Inputs: 说明：需要 embedding 的文本
+        # 备注：单条query最多2000个字符，总条数最多7条
         # @type Inputs: Array
 
         attr_accessor :Model, :Inputs

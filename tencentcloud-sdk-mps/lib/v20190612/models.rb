@@ -5248,7 +5248,7 @@ module TencentCloud
 
       # 嵌入盲水印配置
       class BlindWatermarkEmbedInfo < TencentCloud::Common::AbstractModel
-        # @param EmbedText: 盲水印文字，需要经过 URL 安全的 Base64 编码。
+        # @param EmbedText: 盲水印文字，经过URL安全的Base64编码的4Byte数据。Base64解码之后，少于4Byte将会填充0x00到4Byte，超过4Byte将会截断为4Byte。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EmbedText: String
 
@@ -7214,10 +7214,12 @@ module TencentCloud
         # @type PbKeyLen: Integer
         # @param SourceAddresses: SRT对端地址，当Mode为CALLER时必填，且只能填1组。
         # @type SourceAddresses: Array
+        # @param FEC: SRT FEC 设置
+        # @type FEC: :class:`Tencentcloud::Mps.v20190612.models.SRTFECSimpleOptions`
 
-        attr_accessor :Mode, :StreamId, :Latency, :RecvLatency, :PeerLatency, :PeerIdleTimeout, :Passphrase, :PbKeyLen, :SourceAddresses
+        attr_accessor :Mode, :StreamId, :Latency, :RecvLatency, :PeerLatency, :PeerIdleTimeout, :Passphrase, :PbKeyLen, :SourceAddresses, :FEC
 
-        def initialize(mode=nil, streamid=nil, latency=nil, recvlatency=nil, peerlatency=nil, peeridletimeout=nil, passphrase=nil, pbkeylen=nil, sourceaddresses=nil)
+        def initialize(mode=nil, streamid=nil, latency=nil, recvlatency=nil, peerlatency=nil, peeridletimeout=nil, passphrase=nil, pbkeylen=nil, sourceaddresses=nil, fec=nil)
           @Mode = mode
           @StreamId = streamid
           @Latency = latency
@@ -7227,6 +7229,7 @@ module TencentCloud
           @Passphrase = passphrase
           @PbKeyLen = pbkeylen
           @SourceAddresses = sourceaddresses
+          @FEC = fec
         end
 
         def deserialize(params)
@@ -7245,6 +7248,10 @@ module TencentCloud
               srtsourceaddressreq_tmp.deserialize(i)
               @SourceAddresses << srtsourceaddressreq_tmp
             end
+          end
+          unless params['FEC'].nil?
+            @FEC = SRTFECSimpleOptions.new
+            @FEC.deserialize(params['FEC'])
           end
         end
       end
@@ -7533,10 +7540,12 @@ module TencentCloud
         # @type PbKeyLen: Integer
         # @param Mode: SRT模式，可选[LISTENER|CALLER]，默认为CALLER。
         # @type Mode: String
+        # @param FEC: SRT FEC 设置
+        # @type FEC: :class:`Tencentcloud::Mps.v20190612.models.SRTFECFullOptions`
 
-        attr_accessor :Destinations, :StreamId, :Latency, :RecvLatency, :PeerLatency, :PeerIdleTimeout, :Passphrase, :PbKeyLen, :Mode
+        attr_accessor :Destinations, :StreamId, :Latency, :RecvLatency, :PeerLatency, :PeerIdleTimeout, :Passphrase, :PbKeyLen, :Mode, :FEC
 
-        def initialize(destinations=nil, streamid=nil, latency=nil, recvlatency=nil, peerlatency=nil, peeridletimeout=nil, passphrase=nil, pbkeylen=nil, mode=nil)
+        def initialize(destinations=nil, streamid=nil, latency=nil, recvlatency=nil, peerlatency=nil, peeridletimeout=nil, passphrase=nil, pbkeylen=nil, mode=nil, fec=nil)
           @Destinations = destinations
           @StreamId = streamid
           @Latency = latency
@@ -7546,6 +7555,7 @@ module TencentCloud
           @Passphrase = passphrase
           @PbKeyLen = pbkeylen
           @Mode = mode
+          @FEC = fec
         end
 
         def deserialize(params)
@@ -7565,6 +7575,10 @@ module TencentCloud
           @Passphrase = params['Passphrase']
           @PbKeyLen = params['PbKeyLen']
           @Mode = params['Mode']
+          unless params['FEC'].nil?
+            @FEC = SRTFECFullOptions.new
+            @FEC.deserialize(params['FEC'])
+          end
         end
       end
 
@@ -10705,10 +10719,12 @@ module TencentCloud
         # @param SourceAddresses: SRT对端地址。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SourceAddresses: Array
+        # @param FEC: FEC  设置
+        # @type FEC: :class:`Tencentcloud::Mps.v20190612.models.SRTFECSimpleOptions`
 
-        attr_accessor :Mode, :StreamId, :Latency, :RecvLatency, :PeerLatency, :PeerIdleTimeout, :Passphrase, :PbKeyLen, :SourceAddresses
+        attr_accessor :Mode, :StreamId, :Latency, :RecvLatency, :PeerLatency, :PeerIdleTimeout, :Passphrase, :PbKeyLen, :SourceAddresses, :FEC
 
-        def initialize(mode=nil, streamid=nil, latency=nil, recvlatency=nil, peerlatency=nil, peeridletimeout=nil, passphrase=nil, pbkeylen=nil, sourceaddresses=nil)
+        def initialize(mode=nil, streamid=nil, latency=nil, recvlatency=nil, peerlatency=nil, peeridletimeout=nil, passphrase=nil, pbkeylen=nil, sourceaddresses=nil, fec=nil)
           @Mode = mode
           @StreamId = streamid
           @Latency = latency
@@ -10718,6 +10734,7 @@ module TencentCloud
           @Passphrase = passphrase
           @PbKeyLen = pbkeylen
           @SourceAddresses = sourceaddresses
+          @FEC = fec
         end
 
         def deserialize(params)
@@ -10736,6 +10753,10 @@ module TencentCloud
               srtsourceaddressresp_tmp.deserialize(i)
               @SourceAddresses << srtsourceaddressresp_tmp
             end
+          end
+          unless params['FEC'].nil?
+            @FEC = SRTFECSimpleOptions.new
+            @FEC.deserialize(params['FEC'])
           end
         end
       end
@@ -11253,10 +11274,12 @@ module TencentCloud
         # @param SourceAddresses: 服务器监听地址，SRT模式为LISTENER时使用。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SourceAddresses: Array
+        # @param FEC: FEC 配置
+        # @type FEC: :class:`Tencentcloud::Mps.v20190612.models.SRTFECFullOptions`
 
-        attr_accessor :Destinations, :StreamId, :Latency, :RecvLatency, :PeerLatency, :PeerIdleTimeout, :Passphrase, :PbKeyLen, :Mode, :SourceAddresses
+        attr_accessor :Destinations, :StreamId, :Latency, :RecvLatency, :PeerLatency, :PeerIdleTimeout, :Passphrase, :PbKeyLen, :Mode, :SourceAddresses, :FEC
 
-        def initialize(destinations=nil, streamid=nil, latency=nil, recvlatency=nil, peerlatency=nil, peeridletimeout=nil, passphrase=nil, pbkeylen=nil, mode=nil, sourceaddresses=nil)
+        def initialize(destinations=nil, streamid=nil, latency=nil, recvlatency=nil, peerlatency=nil, peeridletimeout=nil, passphrase=nil, pbkeylen=nil, mode=nil, sourceaddresses=nil, fec=nil)
           @Destinations = destinations
           @StreamId = streamid
           @Latency = latency
@@ -11267,6 +11290,7 @@ module TencentCloud
           @PbKeyLen = pbkeylen
           @Mode = mode
           @SourceAddresses = sourceaddresses
+          @FEC = fec
         end
 
         def deserialize(params)
@@ -11293,6 +11317,10 @@ module TencentCloud
               outputsrtsourceaddressresp_tmp.deserialize(i)
               @SourceAddresses << outputsrtsourceaddressresp_tmp
             end
+          end
+          unless params['FEC'].nil?
+            @FEC = SRTFECFullOptions.new
+            @FEC.deserialize(params['FEC'])
           end
         end
       end
@@ -22014,6 +22042,54 @@ module TencentCloud
         def deserialize(params)
           @Ip = params['Ip']
           @Port = params['Port']
+        end
+      end
+
+      # SRT FEC 高级配置
+      class SRTFECFullOptions < TencentCloud::Common::AbstractModel
+        # @param Enable: 是否开启 FEC
+        # @type Enable: Boolean
+        # @param Cols: FEC 数据包 Layout 列数量. 取值范围>0
+        # @type Cols: Integer
+        # @param Rows: FEC 数据包 Layout 行数量. 取值范围 >=2 或者 <=-2
+        # @type Rows: Integer
+        # @param ARQ: FEC 开启的情况下，ARQ的策略。取值 "always", "onreq", "never"
+        # @type ARQ: String
+        # @param Layout: FEC 数据包 Layout 组织形式，取值 "even", "staircase"
+        # @type Layout: String
+
+        attr_accessor :Enable, :Cols, :Rows, :ARQ, :Layout
+
+        def initialize(enable=nil, cols=nil, rows=nil, arq=nil, layout=nil)
+          @Enable = enable
+          @Cols = cols
+          @Rows = rows
+          @ARQ = arq
+          @Layout = layout
+        end
+
+        def deserialize(params)
+          @Enable = params['Enable']
+          @Cols = params['Cols']
+          @Rows = params['Rows']
+          @ARQ = params['ARQ']
+          @Layout = params['Layout']
+        end
+      end
+
+      # SRT FEC 设置
+      class SRTFECSimpleOptions < TencentCloud::Common::AbstractModel
+        # @param Enable: 是否开启 FEC
+        # @type Enable: Boolean
+
+        attr_accessor :Enable
+
+        def initialize(enable=nil)
+          @Enable = enable
+        end
+
+        def deserialize(params)
+          @Enable = params['Enable']
         end
       end
 

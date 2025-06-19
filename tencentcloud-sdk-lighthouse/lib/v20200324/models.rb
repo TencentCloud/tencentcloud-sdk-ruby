@@ -7586,6 +7586,42 @@ module TencentCloud
         end
       end
 
+      # SyncBlueprint请求参数结构体
+      class SyncBlueprintRequest < TencentCloud::Common::AbstractModel
+        # @param BlueprintId: 镜像ID。
+        # @type BlueprintId: String
+        # @param DestinationRegions: 同步镜像的目的地域列表。
+        # @type DestinationRegions: Array
+
+        attr_accessor :BlueprintId, :DestinationRegions
+
+        def initialize(blueprintid=nil, destinationregions=nil)
+          @BlueprintId = blueprintid
+          @DestinationRegions = destinationregions
+        end
+
+        def deserialize(params)
+          @BlueprintId = params['BlueprintId']
+          @DestinationRegions = params['DestinationRegions']
+        end
+      end
+
+      # SyncBlueprint返回参数结构体
+      class SyncBlueprintResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 描述了操作系统所在块设备即系统盘的信息。
       class SystemDisk < TencentCloud::Common::AbstractModel
         # @param DiskType: 系统盘类型。

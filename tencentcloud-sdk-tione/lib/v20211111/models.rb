@@ -530,6 +530,46 @@ module TencentCloud
         end
       end
 
+      # CreateModelServiceAuthToken请求参数结构体
+      class CreateModelServiceAuthTokenRequest < TencentCloud::Common::AbstractModel
+        # @param ServiceGroupId: 服务组 id
+        # @type ServiceGroupId: String
+        # @param Name: token 名称
+        # @type Name: String
+        # @param Description: Description 描述
+        # @type Description: String
+
+        attr_accessor :ServiceGroupId, :Name, :Description
+
+        def initialize(servicegroupid=nil, name=nil, description=nil)
+          @ServiceGroupId = servicegroupid
+          @Name = name
+          @Description = description
+        end
+
+        def deserialize(params)
+          @ServiceGroupId = params['ServiceGroupId']
+          @Name = params['Name']
+          @Description = params['Description']
+        end
+      end
+
+      # CreateModelServiceAuthToken返回参数结构体
+      class CreateModelServiceAuthTokenResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateModelService请求参数结构体
       class CreateModelServiceRequest < TencentCloud::Common::AbstractModel
         # @param ServiceGroupId: 新增版本时需要填写
@@ -2019,6 +2059,42 @@ module TencentCloud
 
         def deserialize(params)
           @DatasetId = params['DatasetId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteModelServiceAuthToken请求参数结构体
+      class DeleteModelServiceAuthTokenRequest < TencentCloud::Common::AbstractModel
+        # @param ServiceGroupId: 服务组 id
+        # @type ServiceGroupId: String
+        # @param AuthTokenValue: token 值
+        # @type AuthTokenValue: String
+
+        attr_accessor :ServiceGroupId, :AuthTokenValue
+
+        def initialize(servicegroupid=nil, authtokenvalue=nil)
+          @ServiceGroupId = servicegroupid
+          @AuthTokenValue = authtokenvalue
+        end
+
+        def deserialize(params)
+          @ServiceGroupId = params['ServiceGroupId']
+          @AuthTokenValue = params['AuthTokenValue']
+        end
+      end
+
+      # DeleteModelServiceAuthToken返回参数结构体
+      class DeleteModelServiceAuthTokenResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
@@ -5283,6 +5359,85 @@ module TencentCloud
         end
       end
 
+      # ModifyModelServiceAuthToken请求参数结构体
+      class ModifyModelServiceAuthTokenRequest < TencentCloud::Common::AbstractModel
+        # @param ServiceGroupId: 服务组 id
+        # @type ServiceGroupId: String
+        # @param NeedReset: 是否需要重置，如果为 true，重置 token 值
+        # @type NeedReset: Boolean
+        # @param AuthToken: AuthToken 数据
+        # @type AuthToken: :class:`Tencentcloud::Tione.v20211111.models.AuthToken`
+
+        attr_accessor :ServiceGroupId, :NeedReset, :AuthToken
+
+        def initialize(servicegroupid=nil, needreset=nil, authtoken=nil)
+          @ServiceGroupId = servicegroupid
+          @NeedReset = needreset
+          @AuthToken = authtoken
+        end
+
+        def deserialize(params)
+          @ServiceGroupId = params['ServiceGroupId']
+          @NeedReset = params['NeedReset']
+          unless params['AuthToken'].nil?
+            @AuthToken = AuthToken.new
+            @AuthToken.deserialize(params['AuthToken'])
+          end
+        end
+      end
+
+      # ModifyModelServiceAuthToken返回参数结构体
+      class ModifyModelServiceAuthTokenResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyModelServiceAuthorization请求参数结构体
+      class ModifyModelServiceAuthorizationRequest < TencentCloud::Common::AbstractModel
+        # @param ServiceGroupId: 服务组Id
+        # @type ServiceGroupId: String
+        # @param AuthorizationEnable: 是否开启鉴权,true表示开启
+        # @type AuthorizationEnable: Boolean
+
+        attr_accessor :ServiceGroupId, :AuthorizationEnable
+
+        def initialize(servicegroupid=nil, authorizationenable=nil)
+          @ServiceGroupId = servicegroupid
+          @AuthorizationEnable = authorizationenable
+        end
+
+        def deserialize(params)
+          @ServiceGroupId = params['ServiceGroupId']
+          @AuthorizationEnable = params['AuthorizationEnable']
+        end
+      end
+
+      # ModifyModelServiceAuthorization返回参数结构体
+      class ModifyModelServiceAuthorizationResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyModelService请求参数结构体
       class ModifyModelServiceRequest < TencentCloud::Common::AbstractModel
         # @param ServiceId: 服务id
@@ -6096,8 +6251,8 @@ module TencentCloud
 
         attr_accessor :Name, :Uid, :ChargeType, :Phase, :IP, :CreateTime, :Containers, :ContainerInfos, :CrossTenantENIInfo, :Status, :StartScheduleTime, :Message
         extend Gem::Deprecate
-        deprecate :Containers, :none, 2025, 5
-        deprecate :Containers=, :none, 2025, 5
+        deprecate :Containers, :none, 2025, 6
+        deprecate :Containers=, :none, 2025, 6
 
         def initialize(name=nil, uid=nil, chargetype=nil, phase=nil, ip=nil, createtime=nil, containers=nil, containerinfos=nil, crosstenanteniinfo=nil, status=nil, startscheduletime=nil, message=nil)
           @Name = name
@@ -6874,10 +7029,10 @@ module TencentCloud
 
         attr_accessor :ServiceGroupId, :ServiceId, :ServiceGroupName, :ServiceDescription, :ServiceInfo, :ClusterId, :Region, :Namespace, :ChargeType, :ResourceGroupId, :ResourceGroupName, :Tags, :IngressName, :CreatedBy, :CreateTime, :UpdateTime, :Uin, :SubUin, :AppId, :BusinessStatus, :ServiceLimit, :ScheduledAction, :CreateFailedReason, :Status, :BillingInfo, :Weight, :CreateSource, :Version, :LatestVersion, :ResourceGroupSWType, :ArchiveStatus, :DeployType, :InstancePerReplicas, :MonitorSource
         extend Gem::Deprecate
-        deprecate :ServiceLimit, :none, 2025, 5
-        deprecate :ServiceLimit=, :none, 2025, 5
-        deprecate :ScheduledAction, :none, 2025, 5
-        deprecate :ScheduledAction=, :none, 2025, 5
+        deprecate :ServiceLimit, :none, 2025, 6
+        deprecate :ServiceLimit=, :none, 2025, 6
+        deprecate :ScheduledAction, :none, 2025, 6
+        deprecate :ScheduledAction=, :none, 2025, 6
 
         def initialize(servicegroupid=nil, serviceid=nil, servicegroupname=nil, servicedescription=nil, serviceinfo=nil, clusterid=nil, region=nil, namespace=nil, chargetype=nil, resourcegroupid=nil, resourcegroupname=nil, tags=nil, ingressname=nil, createdby=nil, createtime=nil, updatetime=nil, uin=nil, subuin=nil, appid=nil, businessstatus=nil, servicelimit=nil, scheduledaction=nil, createfailedreason=nil, status=nil, billinginfo=nil, weight=nil, createsource=nil, version=nil, latestversion=nil, resourcegroupswtype=nil, archivestatus=nil, deploytype=nil, instanceperreplicas=nil, monitorsource=nil)
           @ServiceGroupId = servicegroupid
@@ -7403,10 +7558,10 @@ module TencentCloud
 
         attr_accessor :Replicas, :ImageInfo, :Env, :Resources, :InstanceType, :ModelInfo, :LogEnable, :LogConfig, :AuthorizationEnable, :HorizontalPodAutoscaler, :Status, :Weight, :ResourceTotal, :OldReplicas, :HybridBillingPrepaidReplicas, :OldHybridBillingPrepaidReplicas, :ModelHotUpdateEnable, :InstanceAlias, :ScaleMode, :CronScaleJobs, :ScaleStrategy, :ScheduledAction, :PodList, :Pods, :PodInfos, :ServiceLimit, :ModelTurboEnable, :VolumeMount, :InferCodeInfo, :Command, :ServiceEIP, :ServicePort, :TerminationGracePeriodSeconds, :PreStopCommand, :GrpcEnable, :HealthProbe, :RollingUpdate
         extend Gem::Deprecate
-        deprecate :PodList, :none, 2025, 5
-        deprecate :PodList=, :none, 2025, 5
-        deprecate :Pods, :none, 2025, 5
-        deprecate :Pods=, :none, 2025, 5
+        deprecate :PodList, :none, 2025, 6
+        deprecate :PodList=, :none, 2025, 6
+        deprecate :Pods, :none, 2025, 6
+        deprecate :Pods=, :none, 2025, 6
 
         def initialize(replicas=nil, imageinfo=nil, env=nil, resources=nil, instancetype=nil, modelinfo=nil, logenable=nil, logconfig=nil, authorizationenable=nil, horizontalpodautoscaler=nil, status=nil, weight=nil, resourcetotal=nil, oldreplicas=nil, hybridbillingprepaidreplicas=nil, oldhybridbillingprepaidreplicas=nil, modelhotupdateenable=nil, instancealias=nil, scalemode=nil, cronscalejobs=nil, scalestrategy=nil, scheduledaction=nil, podlist=nil, pods=nil, podinfos=nil, servicelimit=nil, modelturboenable=nil, volumemount=nil, infercodeinfo=nil, command=nil, serviceeip=nil, serviceport=nil, terminationgraceperiodseconds=nil, prestopcommand=nil, grpcenable=nil, healthprobe=nil, rollingupdate=nil)
           @Replicas = replicas
@@ -8660,8 +8815,8 @@ module TencentCloud
 
         attr_accessor :Replicas, :UpdatedReplicas, :ReadyReplicas, :AvailableReplicas, :UnavailableReplicas, :Status, :StatefulSetCondition, :Conditions, :Reason
         extend Gem::Deprecate
-        deprecate :StatefulSetCondition, :none, 2025, 5
-        deprecate :StatefulSetCondition=, :none, 2025, 5
+        deprecate :StatefulSetCondition, :none, 2025, 6
+        deprecate :StatefulSetCondition=, :none, 2025, 6
 
         def initialize(replicas=nil, updatedreplicas=nil, readyreplicas=nil, availablereplicas=nil, unavailablereplicas=nil, status=nil, statefulsetcondition=nil, conditions=nil, reason=nil)
           @Replicas = replicas

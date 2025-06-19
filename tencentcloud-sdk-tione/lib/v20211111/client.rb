@@ -104,6 +104,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建一个 AuthToken
+
+        # @param request: Request instance for CreateModelServiceAuthToken.
+        # @type request: :class:`Tencentcloud::tione::V20211111::CreateModelServiceAuthTokenRequest`
+        # @rtype: :class:`Tencentcloud::tione::V20211111::CreateModelServiceAuthTokenResponse`
+        def CreateModelServiceAuthToken(request)
+          body = send_request('CreateModelServiceAuthToken', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateModelServiceAuthTokenResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建Notebook
 
         # @param request: Request instance for CreateNotebook.
@@ -234,6 +258,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteModelServiceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除一个 AuthToken
+
+        # @param request: Request instance for DeleteModelServiceAuthToken.
+        # @type request: :class:`Tencentcloud::tione::V20211111::DeleteModelServiceAuthTokenRequest`
+        # @rtype: :class:`Tencentcloud::tione::V20211111::DeleteModelServiceAuthTokenResponse`
+        def DeleteModelServiceAuthToken(request)
+          body = send_request('DeleteModelServiceAuthToken', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteModelServiceAuthTokenResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -956,6 +1004,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyModelServiceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改一个 AuthToken
+
+        # @param request: Request instance for ModifyModelServiceAuthToken.
+        # @type request: :class:`Tencentcloud::tione::V20211111::ModifyModelServiceAuthTokenRequest`
+        # @rtype: :class:`Tencentcloud::tione::V20211111::ModifyModelServiceAuthTokenResponse`
+        def ModifyModelServiceAuthToken(request)
+          body = send_request('ModifyModelServiceAuthToken', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyModelServiceAuthTokenResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改服务鉴权配置
+
+        # @param request: Request instance for ModifyModelServiceAuthorization.
+        # @type request: :class:`Tencentcloud::tione::V20211111::ModifyModelServiceAuthorizationRequest`
+        # @rtype: :class:`Tencentcloud::tione::V20211111::ModifyModelServiceAuthorizationResponse`
+        def ModifyModelServiceAuthorization(request)
+          body = send_request('ModifyModelServiceAuthorization', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyModelServiceAuthorizationResponse.new
             model.deserialize(response['Response'])
             model
           else

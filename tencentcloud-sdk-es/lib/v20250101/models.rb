@@ -374,6 +374,23 @@ module TencentCloud
         end
       end
 
+      # 文档解析配置
+      class DocumentParseConfig < TencentCloud::Common::AbstractModel
+        # @param ImageResponseType: 0:图片以链接形式返回
+        # 1:返回图片中提取的文本内容
+        # @type ImageResponseType: Integer
+
+        attr_accessor :ImageResponseType
+
+        def initialize(imageresponsetype=nil)
+          @ImageResponseType = imageresponsetype
+        end
+
+        def deserialize(params)
+          @ImageResponseType = params['ImageResponseType']
+        end
+      end
+
       # 向量内容
       class EmbeddingData < TencentCloud::Common::AbstractModel
         # @param Embedding: embedding 内容
@@ -617,19 +634,34 @@ module TencentCloud
         # 支持的文件大小：所下载文件经Base64编码后不超过 8M。文件下载时间不超过3秒。
         # 支持的图片像素：单边介于20-10000px之间。
         # @type FileContent: String
+        # @param DocumentParseConfig: 文档解析配置
+        # @type DocumentParseConfig: :class:`Tencentcloud::Es.v20250101.models.DocumentParseConfig`
+        # @param FileStartPageNumber: 文档的起始页码
+        # @type FileStartPageNumber: Integer
+        # @param FileEndPageNumber: 文档的结束页码
+        # @type FileEndPageNumber: Integer
 
-        attr_accessor :FileType, :FileUrl, :FileContent
+        attr_accessor :FileType, :FileUrl, :FileContent, :DocumentParseConfig, :FileStartPageNumber, :FileEndPageNumber
 
-        def initialize(filetype=nil, fileurl=nil, filecontent=nil)
+        def initialize(filetype=nil, fileurl=nil, filecontent=nil, documentparseconfig=nil, filestartpagenumber=nil, fileendpagenumber=nil)
           @FileType = filetype
           @FileUrl = fileurl
           @FileContent = filecontent
+          @DocumentParseConfig = documentparseconfig
+          @FileStartPageNumber = filestartpagenumber
+          @FileEndPageNumber = fileendpagenumber
         end
 
         def deserialize(params)
           @FileType = params['FileType']
           @FileUrl = params['FileUrl']
           @FileContent = params['FileContent']
+          unless params['DocumentParseConfig'].nil?
+            @DocumentParseConfig = DocumentParseConfig.new
+            @DocumentParseConfig.deserialize(params['DocumentParseConfig'])
+          end
+          @FileStartPageNumber = params['FileStartPageNumber']
+          @FileEndPageNumber = params['FileEndPageNumber']
         end
       end
 

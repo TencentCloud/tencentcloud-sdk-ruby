@@ -1807,14 +1807,25 @@ module TencentCloud
         # <li>SHORT_H5：生成H5跳转短链</li>
         # </ul>
         # @type Endpoint: String
+        # @param BatchAuthMethod: 认证链接使用单链接还是多链接模式
 
-        attr_accessor :Operator, :RegistrationOrganizations, :Agent, :Endpoint
+        # <ul>
+        # <li>0 - 多链接(默认)，指批量生成链接， 每一个企业会拥有一个认证链接，然后分别认证</li>
+        # <li>1 - 单链接 ， 指批量生成链接，然后会将多个链接聚合成一个链接，进行认证</li>
+        # </ul>
 
-        def initialize(operator=nil, registrationorganizations=nil, agent=nil, endpoint=nil)
+        # p.s.
+        # 请注意， 如果使用单链接的模式并且认证方式是授权书方式的时候，必须在接口中传递超管授权书。
+        # @type BatchAuthMethod: Integer
+
+        attr_accessor :Operator, :RegistrationOrganizations, :Agent, :Endpoint, :BatchAuthMethod
+
+        def initialize(operator=nil, registrationorganizations=nil, agent=nil, endpoint=nil, batchauthmethod=nil)
           @Operator = operator
           @RegistrationOrganizations = registrationorganizations
           @Agent = agent
           @Endpoint = endpoint
+          @BatchAuthMethod = batchauthmethod
         end
 
         def deserialize(params)
@@ -1835,6 +1846,7 @@ module TencentCloud
             @Agent.deserialize(params['Agent'])
           end
           @Endpoint = params['Endpoint']
+          @BatchAuthMethod = params['BatchAuthMethod']
         end
       end
 

@@ -3494,7 +3494,7 @@ module TencentCloud
         # @type Domain: String
         # @param ProtoInfo: 协议及端口列表，协议可取值TCP, UDP, HTTP, HTTPS，仅统计纬度为连接数时有效
         # @type ProtoInfo: Array
-        # @param BusinessType: 业务类型可取值domain, port
+        # @param BusinessType: 业务类型：</br>
         # port：端口业务
         # domain：域名业务
         # @type BusinessType: String
@@ -4620,7 +4620,7 @@ module TencentCloud
         # @type FilterPlanCntFlag: Integer
         # @param FilterTransRegionFlag: 是否跨区域产品 0: 不包含跨区域产品 1: 中国大陆跨区域产品 2: 非中国大陆跨区域产品 3: 包含全部
         # @type FilterTransRegionFlag: Integer
-        # @param FilterZoneIdList: zoenid列表
+        # @param FilterZoneIdList: ZoneID列表
         # @type FilterZoneIdList: Array
 
         attr_accessor :Offset, :Limit, :FilterIp, :FilterInstanceId, :FilterRegion, :FilterName, :FilterLine, :FilterStatus, :FilterBoundStatus, :FilterInstanceIdList, :FilterEnterpriseFlag, :FilterLightFlag, :FilterChannelFlag, :FilterTag, :FilterTrialFlag, :FilterConvoy, :ExcludeAdvancedInfo, :FilterAssetIpList, :FilterBasicPlusFlag, :FilterPlanCntFlag, :FilterTransRegionFlag, :FilterZoneIdList

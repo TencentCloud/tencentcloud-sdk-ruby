@@ -2953,6 +2953,69 @@ module TencentCloud
         end
       end
 
+      # DescribeMigrationTaskList请求参数结构体
+      class DescribeMigrationTaskListRequest < TencentCloud::Common::AbstractModel
+        # @param Filters: 查询条件列表
+        # @type Filters: Array
+        # @param Offset: 查询起始位置
+        # @type Offset: Integer
+        # @param Limit: 查询结果限制数量
+        # @type Limit: Integer
+
+        attr_accessor :Filters, :Offset, :Limit
+
+        def initialize(filters=nil, offset=nil, limit=nil)
+          @Filters = filters
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeMigrationTaskList返回参数结构体
+      class DescribeMigrationTaskListResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 查询总数
+        # @type TotalCount: Integer
+        # @param Tasks: 迁移任务列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tasks: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Tasks, :RequestId
+
+        def initialize(totalcount=nil, tasks=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Tasks = tasks
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Tasks'].nil?
+            @Tasks = []
+            params['Tasks'].each do |i|
+              migrationtaskitem_tmp = MigrationTaskItem.new
+              migrationtaskitem_tmp.deserialize(i)
+              @Tasks << migrationtaskitem_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeProductSKUs请求参数结构体
       class DescribeProductSKUsRequest < TencentCloud::Common::AbstractModel
 
@@ -4406,7 +4469,12 @@ module TencentCloud
       class MigratingTopic < TencentCloud::Common::AbstractModel
         # @param TopicName: 主题名称
         # @type TopicName: String
-        # @param MigrationStatus: 迁移状态 S_RW_D_NA 源集群读写 S_RW_D_R 源集群读写目标集群读 S_RW_D_RW 源集群读写目标集群读写 S_R_D_RW 源集群读目标集群读写 S_NA_D_RW 目标集群读写
+        # @param MigrationStatus: 迁移状态
+        # S_RW_D_NA 源集群读写，
+        # S_RW_D_R 源集群读写目标集群读，
+        # S_RW_D_RW 源集群读写目标集群读写，
+        # S_R_D_RW 源集群读目标集群读写，
+        # S_NA_D_RW 目标集群读写
         # @type MigrationStatus: String
         # @param HealthCheckPassed: 是否完成健康检查
         # @type HealthCheckPassed: Boolean
@@ -4450,6 +4518,47 @@ module TencentCloud
           @TopicNameV4 = params['TopicNameV4']
           @FullNamespaceV4 = params['FullNamespaceV4']
           @HealthCheckErrorList = params['HealthCheckErrorList']
+        end
+      end
+
+      # 迁移任务信息
+      class MigrationTaskItem < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务ID
+        # @type TaskId: String
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param Type: 0 - 未指定（存量）
+        # 1 - 元数据导入
+        # @type Type: Integer
+        # @param TopicNum: 主题总数
+        # @type TopicNum: Integer
+        # @param GroupNum: 消费组总数
+        # @type GroupNum: Integer
+        # @param Status: 任务状态： 0，迁移中 1，迁移成功 2，迁移完成，只有部分数据完成迁移
+        # @type Status: Integer
+        # @param CreateTime: 创建时间
+        # @type CreateTime: Integer
+
+        attr_accessor :TaskId, :InstanceId, :Type, :TopicNum, :GroupNum, :Status, :CreateTime
+
+        def initialize(taskid=nil, instanceid=nil, type=nil, topicnum=nil, groupnum=nil, status=nil, createtime=nil)
+          @TaskId = taskid
+          @InstanceId = instanceid
+          @Type = type
+          @TopicNum = topicnum
+          @GroupNum = groupnum
+          @Status = status
+          @CreateTime = createtime
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @InstanceId = params['InstanceId']
+          @Type = params['Type']
+          @TopicNum = params['TopicNum']
+          @GroupNum = params['GroupNum']
+          @Status = params['Status']
+          @CreateTime = params['CreateTime']
         end
       end
 

@@ -3355,6 +3355,11 @@ module TencentCloud
         # @type CreateSameNameImageRepository: Boolean
 
         attr_accessor :ApplicationName, :ApplicationType, :MicroserviceType, :ApplicationDesc, :ApplicationLogConfig, :ApplicationResourceType, :ApplicationRuntimeType, :ProgramId, :ServiceConfigList, :IgnoreCreateImageRepository, :ProgramIdList, :ApmInstanceId, :ProgramLanguage, :FrameworkType, :ServiceGovernanceConfig, :CreateSameNameImageRepository
+        extend Gem::Deprecate
+        deprecate :ApplicationLogConfig, :none, 2025, 6
+        deprecate :ApplicationLogConfig=, :none, 2025, 6
+        deprecate :ApplicationResourceType, :none, 2025, 6
+        deprecate :ApplicationResourceType=, :none, 2025, 6
 
         def initialize(applicationname=nil, applicationtype=nil, microservicetype=nil, applicationdesc=nil, applicationlogconfig=nil, applicationresourcetype=nil, applicationruntimetype=nil, programid=nil, serviceconfiglist=nil, ignorecreateimagerepository=nil, programidlist=nil, apminstanceid=nil, programlanguage=nil, frameworktype=nil, servicegovernanceconfig=nil, createsamenameimagerepository=nil)
           @ApplicationName = applicationname

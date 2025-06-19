@@ -2240,6 +2240,42 @@ module TencentCloud
         end
       end
 
+      # DeleteVar请求参数结构体
+      class DeleteVarRequest < TencentCloud::Common::AbstractModel
+        # @param AppBizId: 应用ID
+        # @type AppBizId: String
+        # @param VarId: 变量ID
+        # @type VarId: String
+
+        attr_accessor :AppBizId, :VarId
+
+        def initialize(appbizid=nil, varid=nil)
+          @AppBizId = appbizid
+          @VarId = varid
+        end
+
+        def deserialize(params)
+          @AppBizId = params['AppBizId']
+          @VarId = params['VarId']
+        end
+      end
+
+      # DeleteVar返回参数结构体
+      class DeleteVarResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeApp请求参数结构体
       class DescribeAppRequest < TencentCloud::Common::AbstractModel
         # @param AppBizId: 应用ID
@@ -11014,6 +11050,66 @@ module TencentCloud
 
         def deserialize(params)
           @KnowledgeBizId = params['KnowledgeBizId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # UpdateVar请求参数结构体
+      class UpdateVarRequest < TencentCloud::Common::AbstractModel
+        # @param AppBizId: 应用ID
+        # @type AppBizId: String
+        # @param VarId: 变量ID
+        # @type VarId: String
+        # @param VarName: 变量名称，最大支持50个字符
+        # @type VarName: String
+        # @param VarDesc: 参数描述
+        # @type VarDesc: String
+        # @param VarType: 参数类型
+        # @type VarType: String
+        # @param VarDefaultValue: 自定义变量默认值
+        # @type VarDefaultValue: String
+        # @param VarDefaultFileName: 自定义变量文件默认名称
+        # @type VarDefaultFileName: String
+
+        attr_accessor :AppBizId, :VarId, :VarName, :VarDesc, :VarType, :VarDefaultValue, :VarDefaultFileName
+
+        def initialize(appbizid=nil, varid=nil, varname=nil, vardesc=nil, vartype=nil, vardefaultvalue=nil, vardefaultfilename=nil)
+          @AppBizId = appbizid
+          @VarId = varid
+          @VarName = varname
+          @VarDesc = vardesc
+          @VarType = vartype
+          @VarDefaultValue = vardefaultvalue
+          @VarDefaultFileName = vardefaultfilename
+        end
+
+        def deserialize(params)
+          @AppBizId = params['AppBizId']
+          @VarId = params['VarId']
+          @VarName = params['VarName']
+          @VarDesc = params['VarDesc']
+          @VarType = params['VarType']
+          @VarDefaultValue = params['VarDefaultValue']
+          @VarDefaultFileName = params['VarDefaultFileName']
+        end
+      end
+
+      # UpdateVar返回参数结构体
+      class UpdateVarResponse < TencentCloud::Common::AbstractModel
+        # @param VarId: 变量ID
+        # @type VarId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :VarId, :RequestId
+
+        def initialize(varid=nil, requestid=nil)
+          @VarId = varid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @VarId = params['VarId']
           @RequestId = params['RequestId']
         end
       end

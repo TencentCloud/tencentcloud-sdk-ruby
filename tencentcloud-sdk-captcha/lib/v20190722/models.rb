@@ -1211,12 +1211,14 @@ module TencentCloud
         # @param DeviceRiskCategory: 设备风险大类
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeviceRiskCategory: String
+        # @param Score: 验证码评分
+        # @type Score: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :CaptchaCode, :CaptchaMsg, :EvilLevel, :GetCaptchaTime, :EvilBitmap, :SubmitCaptchaTime, :DeviceRiskCategory, :RequestId
+        attr_accessor :CaptchaCode, :CaptchaMsg, :EvilLevel, :GetCaptchaTime, :EvilBitmap, :SubmitCaptchaTime, :DeviceRiskCategory, :Score, :RequestId
 
-        def initialize(captchacode=nil, captchamsg=nil, evillevel=nil, getcaptchatime=nil, evilbitmap=nil, submitcaptchatime=nil, deviceriskcategory=nil, requestid=nil)
+        def initialize(captchacode=nil, captchamsg=nil, evillevel=nil, getcaptchatime=nil, evilbitmap=nil, submitcaptchatime=nil, deviceriskcategory=nil, score=nil, requestid=nil)
           @CaptchaCode = captchacode
           @CaptchaMsg = captchamsg
           @EvilLevel = evillevel
@@ -1224,6 +1226,7 @@ module TencentCloud
           @EvilBitmap = evilbitmap
           @SubmitCaptchaTime = submitcaptchatime
           @DeviceRiskCategory = deviceriskcategory
+          @Score = score
           @RequestId = requestid
         end
 
@@ -1235,6 +1238,7 @@ module TencentCloud
           @EvilBitmap = params['EvilBitmap']
           @SubmitCaptchaTime = params['SubmitCaptchaTime']
           @DeviceRiskCategory = params['DeviceRiskCategory']
+          @Score = params['Score']
           @RequestId = params['RequestId']
         end
       end

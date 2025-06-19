@@ -5178,9 +5178,9 @@ module TencentCloud
 
       # DescribeRabbitMQQueueDetail请求参数结构体
       class DescribeRabbitMQQueueDetailRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例Id
+        # @param InstanceId: 实例 ID，形如 amqp-xxxxxxxx。有效的 InstanceId 可通过登录 [TDMQ RabbitMQ 控制台](https://console.cloud.tencent.com/trabbitmq/cluster?rid=1)查询
         # @type InstanceId: String
-        # @param VirtualHost: Vhost参数
+        # @param VirtualHost: VirtualHost 名称，形如 testvhost。有效的 VirtualHost 名称可通过登录 [TDMQ RabbitMQ 控制台](https://console.cloud.tencent.com/trabbitmq/cluster?rid=1)查询，在左侧导航栏点击 Vhost，并在 Vhost 列表中找到 Vhost 名称
         # @type VirtualHost: String
         # @param QueueName: 队列名称
         # @type QueueName: String
@@ -5284,12 +5284,16 @@ module TencentCloud
         # @type Policy: String
         # @param Arguments: 扩展参数 key-value
         # @type Arguments: String
+        # @param CreateTs: 创建时间时间戳
+        # @type CreateTs: Integer
+        # @param ModifyTs: 修改时间时间戳
+        # @type ModifyTs: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :InstanceId, :VirtualHost, :QueueName, :QueueType, :Consumers, :Durable, :AutoDelete, :Remark, :MessageTTL, :AutoExpire, :MaxLength, :MaxLengthBytes, :DeliveryLimit, :OverflowBehaviour, :DeadLetterExchange, :DeadLetterRoutingKey, :SingleActiveConsumer, :MaximumPriority, :LazyMode, :MasterLocator, :MaxInMemoryLength, :MaxInMemoryBytes, :CreateTime, :Node, :DeadLetterStrategy, :QueueLeaderLocator, :QuorumInitialGroupSize, :Exclusive, :Policy, :Arguments, :RequestId
+        attr_accessor :InstanceId, :VirtualHost, :QueueName, :QueueType, :Consumers, :Durable, :AutoDelete, :Remark, :MessageTTL, :AutoExpire, :MaxLength, :MaxLengthBytes, :DeliveryLimit, :OverflowBehaviour, :DeadLetterExchange, :DeadLetterRoutingKey, :SingleActiveConsumer, :MaximumPriority, :LazyMode, :MasterLocator, :MaxInMemoryLength, :MaxInMemoryBytes, :CreateTime, :Node, :DeadLetterStrategy, :QueueLeaderLocator, :QuorumInitialGroupSize, :Exclusive, :Policy, :Arguments, :CreateTs, :ModifyTs, :RequestId
 
-        def initialize(instanceid=nil, virtualhost=nil, queuename=nil, queuetype=nil, consumers=nil, durable=nil, autodelete=nil, remark=nil, messagettl=nil, autoexpire=nil, maxlength=nil, maxlengthbytes=nil, deliverylimit=nil, overflowbehaviour=nil, deadletterexchange=nil, deadletterroutingkey=nil, singleactiveconsumer=nil, maximumpriority=nil, lazymode=nil, masterlocator=nil, maxinmemorylength=nil, maxinmemorybytes=nil, createtime=nil, node=nil, deadletterstrategy=nil, queueleaderlocator=nil, quoruminitialgroupsize=nil, exclusive=nil, policy=nil, arguments=nil, requestid=nil)
+        def initialize(instanceid=nil, virtualhost=nil, queuename=nil, queuetype=nil, consumers=nil, durable=nil, autodelete=nil, remark=nil, messagettl=nil, autoexpire=nil, maxlength=nil, maxlengthbytes=nil, deliverylimit=nil, overflowbehaviour=nil, deadletterexchange=nil, deadletterroutingkey=nil, singleactiveconsumer=nil, maximumpriority=nil, lazymode=nil, masterlocator=nil, maxinmemorylength=nil, maxinmemorybytes=nil, createtime=nil, node=nil, deadletterstrategy=nil, queueleaderlocator=nil, quoruminitialgroupsize=nil, exclusive=nil, policy=nil, arguments=nil, createts=nil, modifyts=nil, requestid=nil)
           @InstanceId = instanceid
           @VirtualHost = virtualhost
           @QueueName = queuename
@@ -5320,6 +5324,8 @@ module TencentCloud
           @Exclusive = exclusive
           @Policy = policy
           @Arguments = arguments
+          @CreateTs = createts
+          @ModifyTs = modifyts
           @RequestId = requestid
         end
 
@@ -5354,23 +5360,25 @@ module TencentCloud
           @Exclusive = params['Exclusive']
           @Policy = params['Policy']
           @Arguments = params['Arguments']
+          @CreateTs = params['CreateTs']
+          @ModifyTs = params['ModifyTs']
           @RequestId = params['RequestId']
         end
       end
 
       # DescribeRabbitMQQueues请求参数结构体
       class DescribeRabbitMQQueuesRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例Id
+        # @param InstanceId: 实例 ID，形如 amqp-xxxxxxxx。有效的 InstanceId 可通过登录 [TDMQ RabbitMQ 控制台](https://console.cloud.tencent.com/trabbitmq/cluster?rid=1)查询。
         # @type InstanceId: String
-        # @param VirtualHost: Vhost参数
+        # @param VirtualHost: VirtualHost 名称，形如 testvhost。有效的 VirtualHost 名称可通过登录 [TDMQ RabbitMQ 控制台](https://console.cloud.tencent.com/trabbitmq/cluster?rid=1)查询，在左侧导航栏点击 Vhost，并在 Vhost 列表中找到Vhost名称。
         # @type VirtualHost: String
-        # @param Offset: 分页Offset
+        # @param Offset: 分页 Offset，默认 0
         # @type Offset: Integer
-        # @param Limit: 分页Limit
+        # @param Limit: 分页 Limit，默认 20
         # @type Limit: Integer
         # @param SearchWord: 搜索关键词
         # @type SearchWord: String
-        # @param QueueType: 队列类型筛选，不填或 "all"：classic 和 quorum 队列；"classic"：筛选 classic 队列；"quorum"：筛选 quorum 队列
+        # @param QueueType: 队列类型筛选，不填或 "all"：筛选普通队列 和 quorum 队列；"classic"：筛选 classic(普通) 队列；"quorum"：筛选 quorum 队列
         # @type QueueType: String
         # @param SortElement: 排序依据的字段：
         # ConsumerNumber - 在线消费者数量；
@@ -5380,6 +5388,8 @@ module TencentCloud
         # MessageRateOut - 消费速率；
         # @type SortElement: String
         # @param SortOrder: 排序顺序，ascend 或 descend
+        # ascend：升序
+        # descend：降序
         # @type SortOrder: String
 
         attr_accessor :InstanceId, :VirtualHost, :Offset, :Limit, :SearchWord, :QueueType, :SortElement, :SortOrder
@@ -5409,9 +5419,9 @@ module TencentCloud
 
       # DescribeRabbitMQQueues返回参数结构体
       class DescribeRabbitMQQueuesResponse < TencentCloud::Common::AbstractModel
-        # @param QueueInfoList: 列表信息
+        # @param QueueInfoList: 队列列表信息
         # @type QueueInfoList: Array
-        # @param TotalCount: 数量
+        # @param TotalCount: 队列数量
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6308,8 +6318,8 @@ module TencentCloud
 
         attr_accessor :ClusterId, :EnvironmentId, :TopicName, :MsgId, :PulsarMsgId, :QueryDlqMsg, :QueryDeadLetterMessage, :Offset, :Limit, :FilterTrackGroup
         extend Gem::Deprecate
-        deprecate :QueryDlqMsg, :none, 2025, 5
-        deprecate :QueryDlqMsg=, :none, 2025, 5
+        deprecate :QueryDlqMsg, :none, 2025, 6
+        deprecate :QueryDlqMsg=, :none, 2025, 6
 
         def initialize(clusterid=nil, environmentid=nil, topicname=nil, msgid=nil, pulsarmsgid=nil, querydlqmsg=nil, querydeadlettermessage=nil, offset=nil, limit=nil, filtertrackgroup=nil)
           @ClusterId = clusterid
@@ -6414,8 +6424,8 @@ module TencentCloud
 
         attr_accessor :ClusterId, :EnvironmentId, :TopicName, :MsgId, :GroupName, :QueryDLQMsg, :QueryDeadLetterMessage
         extend Gem::Deprecate
-        deprecate :QueryDLQMsg, :none, 2025, 5
-        deprecate :QueryDLQMsg=, :none, 2025, 5
+        deprecate :QueryDLQMsg, :none, 2025, 6
+        deprecate :QueryDLQMsg=, :none, 2025, 6
 
         def initialize(clusterid=nil, environmentid=nil, topicname=nil, msgid=nil, groupname=nil, querydlqmsg=nil, querydeadlettermessage=nil)
           @ClusterId = clusterid
@@ -7255,8 +7265,8 @@ module TencentCloud
 
         attr_accessor :ClusterId, :EnvironmentId, :TopicName, :StartTime, :EndTime, :MsgId, :MsgKey, :Offset, :Limit, :TaskRequestId, :QueryDlqMsg, :NumOfLatestMsg, :Tag, :QueryDeadLetterMessage
         extend Gem::Deprecate
-        deprecate :QueryDlqMsg, :none, 2025, 5
-        deprecate :QueryDlqMsg=, :none, 2025, 5
+        deprecate :QueryDlqMsg, :none, 2025, 6
+        deprecate :QueryDlqMsg=, :none, 2025, 6
 
         def initialize(clusterid=nil, environmentid=nil, topicname=nil, starttime=nil, endtime=nil, msgid=nil, msgkey=nil, offset=nil, limit=nil, taskrequestid=nil, querydlqmsg=nil, numoflatestmsg=nil, tag=nil, querydeadlettermessage=nil)
           @ClusterId = clusterid
@@ -10421,11 +10431,11 @@ module TencentCloud
         end
       end
 
-      # Rabbitmq路由关系列表成员
+      # RabbitMQ 路由关系列表成员
       class RabbitMQBindingListInfo < TencentCloud::Common::AbstractModel
         # @param BindingId: 路由关系id
         # @type BindingId: Integer
-        # @param VirtualHost: Vhost参数
+        # @param VirtualHost: VhostName
         # @type VirtualHost: String
         # @param Source: 源exchange名称
         # @type Source: String
@@ -10441,10 +10451,14 @@ module TencentCloud
         # @type CreateTime: String
         # @param ModifyTime: 修改时间
         # @type ModifyTime: String
+        # @param CreateTs: 创建时间时间戳
+        # @type CreateTs: Integer
+        # @param ModifyTs: 修改时间时间戳
+        # @type ModifyTs: Integer
 
-        attr_accessor :BindingId, :VirtualHost, :Source, :DestinationType, :Destination, :RoutingKey, :SourceExchangeType, :CreateTime, :ModifyTime
+        attr_accessor :BindingId, :VirtualHost, :Source, :DestinationType, :Destination, :RoutingKey, :SourceExchangeType, :CreateTime, :ModifyTime, :CreateTs, :ModifyTs
 
-        def initialize(bindingid=nil, virtualhost=nil, source=nil, destinationtype=nil, destination=nil, routingkey=nil, sourceexchangetype=nil, createtime=nil, modifytime=nil)
+        def initialize(bindingid=nil, virtualhost=nil, source=nil, destinationtype=nil, destination=nil, routingkey=nil, sourceexchangetype=nil, createtime=nil, modifytime=nil, createts=nil, modifyts=nil)
           @BindingId = bindingid
           @VirtualHost = virtualhost
           @Source = source
@@ -10454,6 +10468,8 @@ module TencentCloud
           @SourceExchangeType = sourceexchangetype
           @CreateTime = createtime
           @ModifyTime = modifytime
+          @CreateTs = createts
+          @ModifyTs = modifyts
         end
 
         def deserialize(params)
@@ -10466,6 +10482,8 @@ module TencentCloud
           @SourceExchangeType = params['SourceExchangeType']
           @CreateTime = params['CreateTime']
           @ModifyTime = params['ModifyTime']
+          @CreateTs = params['CreateTs']
+          @ModifyTs = params['ModifyTs']
         end
       end
 
@@ -10741,14 +10759,14 @@ module TencentCloud
 
       # RabbitMQ exchange列表成员信息
       class RabbitMQExchangeListInfo < TencentCloud::Common::AbstractModel
-        # @param ExchangeName: exchange 名
+        # @param ExchangeName: exchange 名称
         # @type ExchangeName: String
         # @param Remark: 备注说明
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Remark: String
         # @param ExchangeType: exchange 类型, 支持 "fanout","direct","topic","headers"
         # @type ExchangeType: String
-        # @param VirtualHost: VHost参数
+        # @param VirtualHost: 交换机所属 Virtual Host 名称
         # @type VirtualHost: String
         # @param ExchangeCreator: exchange 创建者, "system":"系统创建", "user":"用户创建"
         # @type ExchangeCreator: String
@@ -10778,10 +10796,14 @@ module TencentCloud
         # @param MessagesDelayed: 未调度的延时消息数量
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MessagesDelayed: Integer
+        # @param CreateTs: 创建时间时间戳
+        # @type CreateTs: Integer
+        # @param ModifyTs: 修改时间时间戳
+        # @type ModifyTs: Integer
 
-        attr_accessor :ExchangeName, :Remark, :ExchangeType, :VirtualHost, :ExchangeCreator, :CreateTimeStamp, :ModTimeStamp, :MessageRateIn, :MessageRateOut, :Durable, :AutoDelete, :Internal, :InstanceId, :Policy, :Arguments, :MessagesDelayed
+        attr_accessor :ExchangeName, :Remark, :ExchangeType, :VirtualHost, :ExchangeCreator, :CreateTimeStamp, :ModTimeStamp, :MessageRateIn, :MessageRateOut, :Durable, :AutoDelete, :Internal, :InstanceId, :Policy, :Arguments, :MessagesDelayed, :CreateTs, :ModifyTs
 
-        def initialize(exchangename=nil, remark=nil, exchangetype=nil, virtualhost=nil, exchangecreator=nil, createtimestamp=nil, modtimestamp=nil, messageratein=nil, messagerateout=nil, durable=nil, autodelete=nil, internal=nil, instanceid=nil, policy=nil, arguments=nil, messagesdelayed=nil)
+        def initialize(exchangename=nil, remark=nil, exchangetype=nil, virtualhost=nil, exchangecreator=nil, createtimestamp=nil, modtimestamp=nil, messageratein=nil, messagerateout=nil, durable=nil, autodelete=nil, internal=nil, instanceid=nil, policy=nil, arguments=nil, messagesdelayed=nil, createts=nil, modifyts=nil)
           @ExchangeName = exchangename
           @Remark = remark
           @ExchangeType = exchangetype
@@ -10798,6 +10820,8 @@ module TencentCloud
           @Policy = policy
           @Arguments = arguments
           @MessagesDelayed = messagesdelayed
+          @CreateTs = createts
+          @ModifyTs = modifyts
         end
 
         def deserialize(params)
@@ -10817,16 +10841,18 @@ module TencentCloud
           @Policy = params['Policy']
           @Arguments = params['Arguments']
           @MessagesDelayed = params['MessagesDelayed']
+          @CreateTs = params['CreateTs']
+          @ModifyTs = params['ModifyTs']
         end
       end
 
       # RabbitMQ权限详情
       class RabbitMQPermission < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 集群实例Id
+        # @param InstanceId: 实例 ID，形如 amqp-xxxxxxxx。有效的 InstanceId 可通过登录 [TDMQ RabbitMQ 控制台](https://console.cloud.tencent.com/trabbitmq/cluster?rid=1)查询。
         # @type InstanceId: String
-        # @param User: 用户名，权限关联的用户
+        # @param User: 用户名，形如 admin。有效的 User 名称可通过登录 [TDMQ RabbitMQ 控制台](https://console.cloud.tencent.com/trabbitmq/cluster?rid=1)查询，点击集群列表中的集群，进入集群详情，并在用户与权限页签中找到用户列表，从而找到用户名称。
         # @type User: String
-        # @param VirtualHost: vhost名
+        # @param VirtualHost: VirtualHost 名称，形如 testvhost。有效的 VirtualHost 名称可通过登录 [TDMQ RabbitMQ 控制台](https://console.cloud.tencent.com/trabbitmq/cluster?rid=1)查询，在左侧导航栏点击 Vhost，并在 Vhost 列表中找到 Vhost 名称。
         # @type VirtualHost: String
         # @param ConfigRegexp: 权限类型，declare相关操作，该用户可操作该vhost下的资源名称正则表达式
         # @type ConfigRegexp: String
@@ -10838,10 +10864,14 @@ module TencentCloud
         # @type CreateTime: String
         # @param ModifyTime: 修改时间
         # @type ModifyTime: String
+        # @param CreateTs: 创建时间时间戳
+        # @type CreateTs: Integer
+        # @param ModifyTs: 修改时间时间戳
+        # @type ModifyTs: Integer
 
-        attr_accessor :InstanceId, :User, :VirtualHost, :ConfigRegexp, :WriteRegexp, :ReadRegexp, :CreateTime, :ModifyTime
+        attr_accessor :InstanceId, :User, :VirtualHost, :ConfigRegexp, :WriteRegexp, :ReadRegexp, :CreateTime, :ModifyTime, :CreateTs, :ModifyTs
 
-        def initialize(instanceid=nil, user=nil, virtualhost=nil, configregexp=nil, writeregexp=nil, readregexp=nil, createtime=nil, modifytime=nil)
+        def initialize(instanceid=nil, user=nil, virtualhost=nil, configregexp=nil, writeregexp=nil, readregexp=nil, createtime=nil, modifytime=nil, createts=nil, modifyts=nil)
           @InstanceId = instanceid
           @User = user
           @VirtualHost = virtualhost
@@ -10850,6 +10880,8 @@ module TencentCloud
           @ReadRegexp = readregexp
           @CreateTime = createtime
           @ModifyTime = modifytime
+          @CreateTs = createts
+          @ModifyTs = modifyts
         end
 
         def deserialize(params)
@@ -10861,6 +10893,8 @@ module TencentCloud
           @ReadRegexp = params['ReadRegexp']
           @CreateTime = params['CreateTime']
           @ModifyTime = params['ModifyTime']
+          @CreateTs = params['CreateTs']
+          @ModifyTs = params['ModifyTs']
         end
       end
 
@@ -10964,10 +10998,14 @@ module TencentCloud
         # @type Arguments: String
         # @param Exclusive: 是否独占队列
         # @type Exclusive: Boolean
+        # @param CreateTs: 创建时间时间戳
+        # @type CreateTs: Integer
+        # @param ModifyTs: 修改时间时间戳
+        # @type ModifyTs: Integer
 
-        attr_accessor :QueueName, :Remark, :ConsumerDetail, :QueueType, :MessageHeapCount, :MessageRateIn, :MessageRateOut, :CreateTime, :ModifyTime, :Durable, :AutoDelete, :InstanceId, :VirtualHost, :Node, :Policy, :Arguments, :Exclusive
+        attr_accessor :QueueName, :Remark, :ConsumerDetail, :QueueType, :MessageHeapCount, :MessageRateIn, :MessageRateOut, :CreateTime, :ModifyTime, :Durable, :AutoDelete, :InstanceId, :VirtualHost, :Node, :Policy, :Arguments, :Exclusive, :CreateTs, :ModifyTs
 
-        def initialize(queuename=nil, remark=nil, consumerdetail=nil, queuetype=nil, messageheapcount=nil, messageratein=nil, messagerateout=nil, createtime=nil, modifytime=nil, durable=nil, autodelete=nil, instanceid=nil, virtualhost=nil, node=nil, policy=nil, arguments=nil, exclusive=nil)
+        def initialize(queuename=nil, remark=nil, consumerdetail=nil, queuetype=nil, messageheapcount=nil, messageratein=nil, messagerateout=nil, createtime=nil, modifytime=nil, durable=nil, autodelete=nil, instanceid=nil, virtualhost=nil, node=nil, policy=nil, arguments=nil, exclusive=nil, createts=nil, modifyts=nil)
           @QueueName = queuename
           @Remark = remark
           @ConsumerDetail = consumerdetail
@@ -10985,6 +11023,8 @@ module TencentCloud
           @Policy = policy
           @Arguments = arguments
           @Exclusive = exclusive
+          @CreateTs = createts
+          @ModifyTs = modifyts
         end
 
         def deserialize(params)
@@ -11008,12 +11048,14 @@ module TencentCloud
           @Policy = params['Policy']
           @Arguments = params['Arguments']
           @Exclusive = params['Exclusive']
+          @CreateTs = params['CreateTs']
+          @ModifyTs = params['ModifyTs']
         end
       end
 
       # RabbitMQ用户实体详情
       class RabbitMQUser < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 集群实例Id
+        # @param InstanceId: 实例 ID，形如 amqp-xxxxxxxx。有效的 InstanceId 可通过登录 [TDMQ RabbitMQ 控制台](https://console.cloud.tencent.com/trabbitmq/cluster?rid=1)查询。
         # @type InstanceId: String
         # @param User: 用户名，登录时使用
         # @type User: String
@@ -11035,10 +11077,14 @@ module TencentCloud
         # @param MaxChannels: 单个用户最大可用通道数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaxChannels: Integer
+        # @param CreateTs: 创建时间时间戳
+        # @type CreateTs: Integer
+        # @param ModifyTs: 修改时间时间戳
+        # @type ModifyTs: Integer
 
-        attr_accessor :InstanceId, :User, :Password, :Description, :Tags, :CreateTime, :ModifyTime, :Type, :MaxConnections, :MaxChannels
+        attr_accessor :InstanceId, :User, :Password, :Description, :Tags, :CreateTime, :ModifyTime, :Type, :MaxConnections, :MaxChannels, :CreateTs, :ModifyTs
 
-        def initialize(instanceid=nil, user=nil, password=nil, description=nil, tags=nil, createtime=nil, modifytime=nil, type=nil, maxconnections=nil, maxchannels=nil)
+        def initialize(instanceid=nil, user=nil, password=nil, description=nil, tags=nil, createtime=nil, modifytime=nil, type=nil, maxconnections=nil, maxchannels=nil, createts=nil, modifyts=nil)
           @InstanceId = instanceid
           @User = user
           @Password = password
@@ -11049,6 +11095,8 @@ module TencentCloud
           @Type = type
           @MaxConnections = maxconnections
           @MaxChannels = maxchannels
+          @CreateTs = createts
+          @ModifyTs = modifyts
         end
 
         def deserialize(params)
@@ -11062,6 +11110,8 @@ module TencentCloud
           @Type = params['Type']
           @MaxConnections = params['MaxConnections']
           @MaxChannels = params['MaxChannels']
+          @CreateTs = params['CreateTs']
+          @ModifyTs = params['ModifyTs']
         end
       end
 
@@ -11199,10 +11249,14 @@ module TencentCloud
         # @type MessageRateOut: Float
         # @param MirrorQueuePolicyFlag: 是否存在镜像队列策略，true 为存在，false 为不存
         # @type MirrorQueuePolicyFlag: Boolean
+        # @param CreateTs: 创建时间时间戳
+        # @type CreateTs: Integer
+        # @param ModifyTs: 修改时间时间戳
+        # @type ModifyTs: Integer
 
-        attr_accessor :InstanceId, :VirtualHost, :Description, :Tags, :CreateTime, :ModifyTime, :VirtualHostStatistics, :TraceFlag, :Status, :MessageHeapCount, :MessageRateIn, :MessageRateOut, :MirrorQueuePolicyFlag
+        attr_accessor :InstanceId, :VirtualHost, :Description, :Tags, :CreateTime, :ModifyTime, :VirtualHostStatistics, :TraceFlag, :Status, :MessageHeapCount, :MessageRateIn, :MessageRateOut, :MirrorQueuePolicyFlag, :CreateTs, :ModifyTs
 
-        def initialize(instanceid=nil, virtualhost=nil, description=nil, tags=nil, createtime=nil, modifytime=nil, virtualhoststatistics=nil, traceflag=nil, status=nil, messageheapcount=nil, messageratein=nil, messagerateout=nil, mirrorqueuepolicyflag=nil)
+        def initialize(instanceid=nil, virtualhost=nil, description=nil, tags=nil, createtime=nil, modifytime=nil, virtualhoststatistics=nil, traceflag=nil, status=nil, messageheapcount=nil, messageratein=nil, messagerateout=nil, mirrorqueuepolicyflag=nil, createts=nil, modifyts=nil)
           @InstanceId = instanceid
           @VirtualHost = virtualhost
           @Description = description
@@ -11216,6 +11270,8 @@ module TencentCloud
           @MessageRateIn = messageratein
           @MessageRateOut = messagerateout
           @MirrorQueuePolicyFlag = mirrorqueuepolicyflag
+          @CreateTs = createts
+          @ModifyTs = modifyts
         end
 
         def deserialize(params)
@@ -11235,6 +11291,8 @@ module TencentCloud
           @MessageRateIn = params['MessageRateIn']
           @MessageRateOut = params['MessageRateOut']
           @MirrorQueuePolicyFlag = params['MirrorQueuePolicyFlag']
+          @CreateTs = params['CreateTs']
+          @ModifyTs = params['ModifyTs']
         end
       end
 
@@ -11592,8 +11650,8 @@ module TencentCloud
 
         attr_accessor :MaxTpsPerNamespace, :MaxNamespaceNum, :UsedNamespaceNum, :MaxTopicNum, :UsedTopicNum, :MaxGroupNum, :UsedGroupNum, :MaxRetentionTime, :MaxLatencyTime, :MaxQueuesPerTopic, :TopicDistribution, :MaxRoleNum, :MaxTpsLimit
         extend Gem::Deprecate
-        deprecate :MaxTpsPerNamespace, :none, 2025, 5
-        deprecate :MaxTpsPerNamespace=, :none, 2025, 5
+        deprecate :MaxTpsPerNamespace, :none, 2025, 6
+        deprecate :MaxTpsPerNamespace=, :none, 2025, 6
 
         def initialize(maxtpspernamespace=nil, maxnamespacenum=nil, usednamespacenum=nil, maxtopicnum=nil, usedtopicnum=nil, maxgroupnum=nil, usedgroupnum=nil, maxretentiontime=nil, maxlatencytime=nil, maxqueuespertopic=nil, topicdistribution=nil, maxrolenum=nil, maxtpslimit=nil)
           @MaxTpsPerNamespace = maxtpspernamespace

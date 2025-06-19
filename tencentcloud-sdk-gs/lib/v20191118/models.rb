@@ -33,10 +33,12 @@ module TencentCloud
         # @type UserId: String
         # @param AppMode: 应用模式（NORMAL : 普通模式；ADVANCED : 高级模式）
         # @type AppMode: String
+        # @param UpdateState: 应用更新状态，取值：UPLOADING 上传中、CREATING 创建中、CREATE_FAIL 创建失败、CREATE_SUCCESS 创建成功、NORMAL 默认状态
+        # @type UpdateState: String
 
-        attr_accessor :AndroidAppId, :Name, :State, :AndroidAppVersionInfo, :CreateTime, :UserId, :AppMode
+        attr_accessor :AndroidAppId, :Name, :State, :AndroidAppVersionInfo, :CreateTime, :UserId, :AppMode, :UpdateState
 
-        def initialize(androidappid=nil, name=nil, state=nil, androidappversioninfo=nil, createtime=nil, userid=nil, appmode=nil)
+        def initialize(androidappid=nil, name=nil, state=nil, androidappversioninfo=nil, createtime=nil, userid=nil, appmode=nil, updatestate=nil)
           @AndroidAppId = androidappid
           @Name = name
           @State = state
@@ -44,6 +46,7 @@ module TencentCloud
           @CreateTime = createtime
           @UserId = userid
           @AppMode = appmode
+          @UpdateState = updatestate
         end
 
         def deserialize(params)
@@ -61,6 +64,7 @@ module TencentCloud
           @CreateTime = params['CreateTime']
           @UserId = params['UserId']
           @AppMode = params['AppMode']
+          @UpdateState = params['UpdateState']
         end
       end
 
@@ -1582,7 +1586,7 @@ module TencentCloud
         # @type Limit: Integer
         # @param AndroidAppIds: 应用ID数组
         # @type AndroidAppIds: Array
-        # @param Filters: 过滤条件，支持过滤的字段有：UserId
+        # @param Filters: 过滤条件，支持过滤的字段有：UserId、State、UpdateState、Name、AppMode 。其中 Name 为模糊匹配，其他参数为精确匹配。
         # @type Filters: Array
 
         attr_accessor :Offset, :Limit, :AndroidAppIds, :Filters

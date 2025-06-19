@@ -6379,10 +6379,12 @@ module TencentCloud
         # @type HasScan: String
         # @param AppId: 租户ID
         # @type AppId: Integer
+        # @param AppIdStr: 租户ID字符串
+        # @type AppIdStr: String
 
-        attr_accessor :Provider, :CloudAccountName, :CloudAccountId, :Domain, :Ip, :Port, :Status, :RiskType, :AclType, :AclList, :AssetId, :InstanceName, :AssetType, :PortServiceCount, :HighRiskPortServiceCount, :WebAppCount, :RiskWebAppCount, :WeakPasswordCount, :VulCount, :CreateTime, :UpdateTime, :AssetTypeName, :DisplayStatus, :DisplayRiskType, :ScanTaskStatus, :Uuid, :HasScan, :AppId
+        attr_accessor :Provider, :CloudAccountName, :CloudAccountId, :Domain, :Ip, :Port, :Status, :RiskType, :AclType, :AclList, :AssetId, :InstanceName, :AssetType, :PortServiceCount, :HighRiskPortServiceCount, :WebAppCount, :RiskWebAppCount, :WeakPasswordCount, :VulCount, :CreateTime, :UpdateTime, :AssetTypeName, :DisplayStatus, :DisplayRiskType, :ScanTaskStatus, :Uuid, :HasScan, :AppId, :AppIdStr
 
-        def initialize(provider=nil, cloudaccountname=nil, cloudaccountid=nil, domain=nil, ip=nil, port=nil, status=nil, risktype=nil, acltype=nil, acllist=nil, assetid=nil, instancename=nil, assettype=nil, portservicecount=nil, highriskportservicecount=nil, webappcount=nil, riskwebappcount=nil, weakpasswordcount=nil, vulcount=nil, createtime=nil, updatetime=nil, assettypename=nil, displaystatus=nil, displayrisktype=nil, scantaskstatus=nil, uuid=nil, hasscan=nil, appid=nil)
+        def initialize(provider=nil, cloudaccountname=nil, cloudaccountid=nil, domain=nil, ip=nil, port=nil, status=nil, risktype=nil, acltype=nil, acllist=nil, assetid=nil, instancename=nil, assettype=nil, portservicecount=nil, highriskportservicecount=nil, webappcount=nil, riskwebappcount=nil, weakpasswordcount=nil, vulcount=nil, createtime=nil, updatetime=nil, assettypename=nil, displaystatus=nil, displayrisktype=nil, scantaskstatus=nil, uuid=nil, hasscan=nil, appid=nil, appidstr=nil)
           @Provider = provider
           @CloudAccountName = cloudaccountname
           @CloudAccountId = cloudaccountid
@@ -6411,6 +6413,7 @@ module TencentCloud
           @Uuid = uuid
           @HasScan = hasscan
           @AppId = appid
+          @AppIdStr = appidstr
         end
 
         def deserialize(params)
@@ -6442,6 +6445,7 @@ module TencentCloud
           @Uuid = params['Uuid']
           @HasScan = params['HasScan']
           @AppId = params['AppId']
+          @AppIdStr = params['AppIdStr']
         end
       end
 
