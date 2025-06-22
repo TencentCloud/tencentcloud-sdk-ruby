@@ -1536,6 +1536,49 @@ module TencentCloud
         end
       end
 
+      # 云端特效信息。
+      class CloudEffectInfo < TencentCloud::Common::AbstractModel
+        # @param Id: 云端特效 ID。
+        # @type Id: String
+        # @param Prompt: 云端特效描述词。
+        # @type Prompt: String
+        # @param Flag: 云端特效标签。
+        # @type Flag: String
+        # @param PreviewImageUrl: 云端特效预览图片。
+        # @type PreviewImageUrl: String
+        # @param Type: 云端特效类型。
+        # PGC : 官方精品特效。
+        # AIGC : AI生成的特效。
+        # UGC : 用户上传特效。
+        # @type Type: String
+        # @param CreateTime: 云端特效创建时间。
+        # @type CreateTime: String
+        # @param UpdateTime: 云端特效更新时间。
+        # @type UpdateTime: String
+
+        attr_accessor :Id, :Prompt, :Flag, :PreviewImageUrl, :Type, :CreateTime, :UpdateTime
+
+        def initialize(id=nil, prompt=nil, flag=nil, previewimageurl=nil, type=nil, createtime=nil, updatetime=nil)
+          @Id = id
+          @Prompt = prompt
+          @Flag = flag
+          @PreviewImageUrl = previewimageurl
+          @Type = type
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Prompt = params['Prompt']
+          @Flag = params['Flag']
+          @PreviewImageUrl = params['PreviewImageUrl']
+          @Type = params['Type']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+        end
+      end
+
       # 通用混流控制参数
       class CommonMixControlParams < TencentCloud::Common::AbstractModel
         # @param UseMixCropCenter: 取值范围[0,1]。
@@ -6114,6 +6157,61 @@ module TencentCloud
         end
       end
 
+      # DescribeLiveCloudEffectList请求参数结构体
+      class DescribeLiveCloudEffectListRequest < TencentCloud::Common::AbstractModel
+        # @param Id: 云端特效ID。
+        # @type Id: String
+        # @param Prompt: 云端特效描述词。由用户原始输入的描述词。
+        # @type Prompt: String
+        # @param Flag: 云端特效标签。对云端特效进行分类标签，可用于分类搜索。
+        # @type Flag: String
+        # @param Type: 云端特效类型, 默认不填，返回全部。PGC: 特效库中的特效；AICG : AI生成的特效；UGC：用户自定义上传的特效；
+        # @type Type: String
+
+        attr_accessor :Id, :Prompt, :Flag, :Type
+
+        def initialize(id=nil, prompt=nil, flag=nil, type=nil)
+          @Id = id
+          @Prompt = prompt
+          @Flag = flag
+          @Type = type
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Prompt = params['Prompt']
+          @Flag = params['Flag']
+          @Type = params['Type']
+        end
+      end
+
+      # DescribeLiveCloudEffectList返回参数结构体
+      class DescribeLiveCloudEffectListResponse < TencentCloud::Common::AbstractModel
+        # @param InfoList: 云端特效信息列表。
+        # @type InfoList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :InfoList, :RequestId
+
+        def initialize(infolist=nil, requestid=nil)
+          @InfoList = infolist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['InfoList'].nil?
+            @InfoList = []
+            params['InfoList'].each do |i|
+              cloudeffectinfo_tmp = CloudEffectInfo.new
+              cloudeffectinfo_tmp.deserialize(i)
+              @InfoList << cloudeffectinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeLiveDelayInfoList请求参数结构体
       class DescribeLiveDelayInfoListRequest < TencentCloud::Common::AbstractModel
 
@@ -6803,6 +6901,81 @@ module TencentCloud
               @Rules << ruleinfo_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeLivePadStreamList请求参数结构体
+      class DescribeLivePadStreamListRequest < TencentCloud::Common::AbstractModel
+        # @param AppName: 推流路径，与推流和播放地址中的AppName保持一致，默认为 live。
+        # @type AppName: String
+        # @param DomainName: 您的推流域名。
+        # @type DomainName: String
+        # @param StreamName: 流名称。
+        # @type StreamName: String
+        # @param PageNum: 分页页数。
+        # @type PageNum: Integer
+        # @param PageSize: 每页个数。
+        # @type PageSize: Integer
+
+        attr_accessor :AppName, :DomainName, :StreamName, :PageNum, :PageSize
+
+        def initialize(appname=nil, domainname=nil, streamname=nil, pagenum=nil, pagesize=nil)
+          @AppName = appname
+          @DomainName = domainname
+          @StreamName = streamname
+          @PageNum = pagenum
+          @PageSize = pagesize
+        end
+
+        def deserialize(params)
+          @AppName = params['AppName']
+          @DomainName = params['DomainName']
+          @StreamName = params['StreamName']
+          @PageNum = params['PageNum']
+          @PageSize = params['PageSize']
+        end
+      end
+
+      # DescribeLivePadStreamList返回参数结构体
+      class DescribeLivePadStreamListResponse < TencentCloud::Common::AbstractModel
+        # @param StreamInfoList: 当前正在拉取垫片的流信息列表。
+        # @type StreamInfoList: Array
+        # @param PageNum: 传入的分页页数。
+        # @type PageNum: Integer
+        # @param PageSize: 传入的分页个数。
+        # @type PageSize: Integer
+        # @param TotalNum: 查询到的总个数。
+        # @type TotalNum: Integer
+        # @param TotalPage: 可以分的总页数。
+        # @type TotalPage: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :StreamInfoList, :PageNum, :PageSize, :TotalNum, :TotalPage, :RequestId
+
+        def initialize(streaminfolist=nil, pagenum=nil, pagesize=nil, totalnum=nil, totalpage=nil, requestid=nil)
+          @StreamInfoList = streaminfolist
+          @PageNum = pagenum
+          @PageSize = pagesize
+          @TotalNum = totalnum
+          @TotalPage = totalpage
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['StreamInfoList'].nil?
+            @StreamInfoList = []
+            params['StreamInfoList'].each do |i|
+              padstreaminfo_tmp = PadStreamInfo.new
+              padstreaminfo_tmp.deserialize(i)
+              @StreamInfoList << padstreaminfo_tmp
+            end
+          end
+          @PageNum = params['PageNum']
+          @PageSize = params['PageSize']
+          @TotalNum = params['TotalNum']
+          @TotalPage = params['TotalPage']
           @RequestId = params['RequestId']
         end
       end
@@ -12746,6 +12919,40 @@ module TencentCloud
         end
       end
 
+      # 查询当前垫片流的信息
+      class PadStreamInfo < TencentCloud::Common::AbstractModel
+        # @param StreamName: 流名称。
+        # @type StreamName: String
+        # @param AppName: 应用名称。
+        # @type AppName: String
+        # @param DomainName: 推流域名。
+        # @type DomainName: String
+        # @param PadStreamType: 垫片流类型。
+        # 0-自动垫片；
+        # 1-手动切入垫片。
+        # @type PadStreamType: String
+        # @param PublishTime: 垫片流开始时间。UTC时间，示例：2025-04-10T00:01:00Z。注意：该时间与北京时间相差八小时。
+        # @type PublishTime: String
+
+        attr_accessor :StreamName, :AppName, :DomainName, :PadStreamType, :PublishTime
+
+        def initialize(streamname=nil, appname=nil, domainname=nil, padstreamtype=nil, publishtime=nil)
+          @StreamName = streamname
+          @AppName = appname
+          @DomainName = domainname
+          @PadStreamType = padstreamtype
+          @PublishTime = publishtime
+        end
+
+        def deserialize(params)
+          @StreamName = params['StreamName']
+          @AppName = params['AppName']
+          @DomainName = params['DomainName']
+          @PadStreamType = params['PadStreamType']
+          @PublishTime = params['PublishTime']
+        end
+      end
+
       # 直播垫片模板。
       class PadTemplate < TencentCloud::Common::AbstractModel
         # @param TemplateId: 模板id。
@@ -14079,6 +14286,69 @@ module TencentCloud
         end
       end
 
+      # SendLiveCloudEffect请求参数结构体
+      class SendLiveCloudEffectRequest < TencentCloud::Common::AbstractModel
+        # @param AppName: 推流路径，与推流和播放地址中的AppName保持一致，默认为 live。
+        # @type AppName: String
+        # @param PushDomainName: 您的推流域名。
+        # @type PushDomainName: String
+        # @param StreamName: 流名称。
+        # @type StreamName: String
+        # @param Id: 云端特效 ID。
+        # @type Id: String
+        # @param Operator: 操作人备注信息。
+        # @type Operator: String
+        # @param ZoomFactor: 缩小比例，默认0 不缩放。
+        # 可选值：0-9， 值越大，越缩小。
+        # @type ZoomFactor: Integer
+        # @param XPosition: 指定云端特效渲染位置百分比。默认居中显示。
+        # 原点为画面左上角，该参数指定特效渲染离原点的横向比例，可选值 0 - 100。
+        # @type XPosition: String
+        # @param YPosition: 指定云端特效渲染位置百分比。默认居中显示。
+        # 原点为画面左上角，该参数指定特效渲染离原点的纵向比例，可选值 0 - 100。
+        # @type YPosition: String
+
+        attr_accessor :AppName, :PushDomainName, :StreamName, :Id, :Operator, :ZoomFactor, :XPosition, :YPosition
+
+        def initialize(appname=nil, pushdomainname=nil, streamname=nil, id=nil, operator=nil, zoomfactor=nil, xposition=nil, yposition=nil)
+          @AppName = appname
+          @PushDomainName = pushdomainname
+          @StreamName = streamname
+          @Id = id
+          @Operator = operator
+          @ZoomFactor = zoomfactor
+          @XPosition = xposition
+          @YPosition = yposition
+        end
+
+        def deserialize(params)
+          @AppName = params['AppName']
+          @PushDomainName = params['PushDomainName']
+          @StreamName = params['StreamName']
+          @Id = params['Id']
+          @Operator = params['Operator']
+          @ZoomFactor = params['ZoomFactor']
+          @XPosition = params['XPosition']
+          @YPosition = params['YPosition']
+        end
+      end
+
+      # SendLiveCloudEffect返回参数结构体
+      class SendLiveCloudEffectResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 截图模板信息。
       class SnapshotTemplateInfo < TencentCloud::Common::AbstractModel
         # @param TemplateId: 模板 ID。
@@ -14140,6 +14410,50 @@ module TencentCloud
           @Description = params['Description']
           @CosPrefix = params['CosPrefix']
           @CosFileName = params['CosFileName']
+        end
+      end
+
+      # StartLivePadStream请求参数结构体
+      class StartLivePadStreamRequest < TencentCloud::Common::AbstractModel
+        # @param AppName: 推流路径，与推流和播放地址中的AppName保持一致，默认为 live。
+        # @type AppName: String
+        # @param PushDomainName: 您的推流域名。
+        # @type PushDomainName: String
+        # @param StreamName: 流名称。
+        # @type StreamName: String
+        # @param Operator: 操作人备注信息。
+        # @type Operator: String
+
+        attr_accessor :AppName, :PushDomainName, :StreamName, :Operator
+
+        def initialize(appname=nil, pushdomainname=nil, streamname=nil, operator=nil)
+          @AppName = appname
+          @PushDomainName = pushdomainname
+          @StreamName = streamname
+          @Operator = operator
+        end
+
+        def deserialize(params)
+          @AppName = params['AppName']
+          @PushDomainName = params['PushDomainName']
+          @StreamName = params['StreamName']
+          @Operator = params['Operator']
+        end
+      end
+
+      # StartLivePadStream返回参数结构体
+      class StartLivePadStreamResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 
@@ -14289,6 +14603,50 @@ module TencentCloud
 
         def deserialize(params)
           @ResultMessage = params['ResultMessage']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # StopLivePadStream请求参数结构体
+      class StopLivePadStreamRequest < TencentCloud::Common::AbstractModel
+        # @param AppName: 推流路径，与推流和播放地址中的AppName保持一致，默认为 live。
+        # @type AppName: String
+        # @param PushDomainName: 您的推流域名。
+        # @type PushDomainName: String
+        # @param StreamName: 流名称。
+        # @type StreamName: String
+        # @param Operator: 操作人备注信息。
+        # @type Operator: String
+
+        attr_accessor :AppName, :PushDomainName, :StreamName, :Operator
+
+        def initialize(appname=nil, pushdomainname=nil, streamname=nil, operator=nil)
+          @AppName = appname
+          @PushDomainName = pushdomainname
+          @StreamName = streamname
+          @Operator = operator
+        end
+
+        def deserialize(params)
+          @AppName = params['AppName']
+          @PushDomainName = params['PushDomainName']
+          @StreamName = params['StreamName']
+          @Operator = params['Operator']
+        end
+      end
+
+      # StopLivePadStream返回参数结构体
+      class StopLivePadStreamResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end

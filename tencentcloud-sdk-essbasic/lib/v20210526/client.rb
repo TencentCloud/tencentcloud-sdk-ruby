@@ -2325,6 +2325,33 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（CreateModifyAdminAuthorizationUrl）用于重新上传超管授权书。
+
+        # 注意:
+        # 1. 重新上传超管授权书，必须是审核失败的情况下才能重新上传,可以通过回调[!授权书审核结果回调](https://qian.tencent.com/developers/partner/callback_types_staffs#%E5%9B%9B-%E6%8E%88%E6%9D%83%E4%B9%A6%E5%AE%A1%E6%A0%B8%E7%BB%93%E6%9E%9C%E5%9B%9E%E8%B0%83)得到
+
+        # @param request: Request instance for CreateModifyAdminAuthorizationUrl.
+        # @type request: :class:`Tencentcloud::essbasic::V20210526::CreateModifyAdminAuthorizationUrlRequest`
+        # @rtype: :class:`Tencentcloud::essbasic::V20210526::CreateModifyAdminAuthorizationUrlResponse`
+        def CreateModifyAdminAuthorizationUrl(request)
+          body = send_request('CreateModifyAdminAuthorizationUrl', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateModifyAdminAuthorizationUrlResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 生成合成后的各类企业授权书，包括：
         # - 企业认证超管授权书
         # - 超管变更授权书
@@ -2509,6 +2536,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteOrganizationAuthorizationsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（DescribeBatchOrganizationRegistrationTasks）用于查询企业批量认证任务状态。
+
+        # @param request: Request instance for DescribeBatchOrganizationRegistrationTasks.
+        # @type request: :class:`Tencentcloud::essbasic::V20210526::DescribeBatchOrganizationRegistrationTasksRequest`
+        # @rtype: :class:`Tencentcloud::essbasic::V20210526::DescribeBatchOrganizationRegistrationTasksResponse`
+        def DescribeBatchOrganizationRegistrationTasks(request)
+          body = send_request('DescribeBatchOrganizationRegistrationTasks', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeBatchOrganizationRegistrationTasksResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -3097,6 +3148,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 已经不再使用
 
         # 该接口 (PrepareFlows) 用于创建待发起文件
         # 用户通过该接口进入签署流程发起的确认页面，进行发起信息二次确认， 如果确认则进行正常发起。

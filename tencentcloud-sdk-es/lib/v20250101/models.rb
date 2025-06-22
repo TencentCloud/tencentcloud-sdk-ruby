@@ -162,17 +162,21 @@ module TencentCloud
         # @type MaxChunkSize: Integer
         # @param Delimiters: 分隔符列表
         # @type Delimiters: Array
+        # @param ChunkOverlap: 相邻切片重合字符数，需要小于分片长度
+        # @type ChunkOverlap: Integer
 
-        attr_accessor :MaxChunkSize, :Delimiters
+        attr_accessor :MaxChunkSize, :Delimiters, :ChunkOverlap
 
-        def initialize(maxchunksize=nil, delimiters=nil)
+        def initialize(maxchunksize=nil, delimiters=nil, chunkoverlap=nil)
           @MaxChunkSize = maxchunksize
           @Delimiters = delimiters
+          @ChunkOverlap = chunkoverlap
         end
 
         def deserialize(params)
           @MaxChunkSize = params['MaxChunkSize']
           @Delimiters = params['Delimiters']
+          @ChunkOverlap = params['ChunkOverlap']
         end
       end
 
@@ -296,13 +300,16 @@ module TencentCloud
       class ChunkDocumentResponse < TencentCloud::Common::AbstractModel
         # @param Chunks: 无
         # @type Chunks: Array
+        # @param Usage: token消耗量
+        # @type Usage: :class:`Tencentcloud::Es.v20250101.models.Usage`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Chunks, :RequestId
+        attr_accessor :Chunks, :Usage, :RequestId
 
-        def initialize(chunks=nil, requestid=nil)
+        def initialize(chunks=nil, usage=nil, requestid=nil)
           @Chunks = chunks
+          @Usage = usage
           @RequestId = requestid
         end
 
@@ -314,6 +321,10 @@ module TencentCloud
               chunk_tmp.deserialize(i)
               @Chunks << chunk_tmp
             end
+          end
+          unless params['Usage'].nil?
+            @Usage = Usage.new
+            @Usage.deserialize(params['Usage'])
           end
           @RequestId = params['RequestId']
         end

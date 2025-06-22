@@ -1166,6 +1166,36 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 用于查询平滑迁移任务列表
+
+        # 查询参数Filters， 支持的字段如下：
+        # TaskStatus, 支持多选
+        # ConnectionType，支持多选
+        # InstanceId，精确搜索
+        # TaskName，支持模糊搜索
+
+        # @param request: Request instance for DescribeSmoothMigrationTaskList.
+        # @type request: :class:`Tencentcloud::trocket::V20230308::DescribeSmoothMigrationTaskListRequest`
+        # @rtype: :class:`Tencentcloud::trocket::V20230308::DescribeSmoothMigrationTaskListResponse`
+        def DescribeSmoothMigrationTaskList(request)
+          body = send_request('DescribeSmoothMigrationTaskList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeSmoothMigrationTaskListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 平滑迁移过程获取源集群group列表接口
 
         # 查询过滤器，支持字段

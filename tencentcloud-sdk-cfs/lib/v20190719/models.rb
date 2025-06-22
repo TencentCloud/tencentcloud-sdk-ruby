@@ -23,7 +23,7 @@ module TencentCloud
         # @type Status: String
         # @param ScaleThreshold: 集群用量占比，到达这个值后开始扩容,范围[10-90]
         # @type ScaleThreshold: Integer
-        # @param TargetThreshold: 扩容后使用量跟集群总量比例,范围[1-90]
+        # @param TargetThreshold: 扩容后使用量跟集群总量比例,范围[10-90]
         # @type TargetThreshold: Integer
 
         attr_accessor :Status, :ScaleThreshold, :TargetThreshold
@@ -2258,7 +2258,7 @@ module TencentCloud
         # @type FileSystemId: String
         # @param ScaleUpThreshold: 扩容阈值，范围[10-90]
         # @type ScaleUpThreshold: Integer
-        # @param TargetThreshold: 扩容后目标阈值，范围[1-90]，该值要小于 ScaleUpThreshold
+        # @param TargetThreshold: 扩容后目标阈值，范围[10-90]，该值要小于 ScaleUpThreshold
         # @type TargetThreshold: Integer
         # @param Status: 规则状态 0：关闭，1：开启；不传保留原状态
         # @type Status: Integer
@@ -2288,7 +2288,7 @@ module TencentCloud
         # @type Status: Integer
         # @param ScaleUpThreshold: 扩容阈值，范围[10-90]
         # @type ScaleUpThreshold: Integer
-        # @param TargetThreshold: 扩容后达到阈值，范围[1-90]
+        # @param TargetThreshold: 扩容后达到阈值，范围[10-90]
         # @type TargetThreshold: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

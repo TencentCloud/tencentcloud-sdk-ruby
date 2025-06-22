@@ -2238,6 +2238,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 使用该接口查询云端特效列表，特效列表中包含一部分官方精品特效，同时包含用户自定义生成的特效。
+
+        # @param request: Request instance for DescribeLiveCloudEffectList.
+        # @type request: :class:`Tencentcloud::live::V20180801::DescribeLiveCloudEffectListRequest`
+        # @rtype: :class:`Tencentcloud::live::V20180801::DescribeLiveCloudEffectListResponse`
+        def DescribeLiveCloudEffectList(request)
+          body = send_request('DescribeLiveCloudEffectList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeLiveCloudEffectListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取直播延播列表。
 
         # @param request: Request instance for DescribeLiveDelayInfoList.
@@ -2516,6 +2540,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeLivePadRulesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 使用该接口查询垫片流列表。垫片流状态更新存在一定延迟，可间隔30秒以上查询，避免频繁查询该接口。
+
+        # @param request: Request instance for DescribeLivePadStreamList.
+        # @type request: :class:`Tencentcloud::live::V20180801::DescribeLivePadStreamListRequest`
+        # @rtype: :class:`Tencentcloud::live::V20180801::DescribeLivePadStreamListResponse`
+        def DescribeLivePadStreamList(request)
+          body = send_request('DescribeLivePadStreamList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeLivePadStreamListResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -4578,6 +4626,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 使用该接口发送云端特效到线上正活跃的直播流，观众可在播放端看到特效从直播流画面中展示。
+
+        # @param request: Request instance for SendLiveCloudEffect.
+        # @type request: :class:`Tencentcloud::live::V20180801::SendLiveCloudEffectRequest`
+        # @rtype: :class:`Tencentcloud::live::V20180801::SendLiveCloudEffectResponse`
+        def SendLiveCloudEffect(request)
+          body = send_request('SendLiveCloudEffect', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = SendLiveCloudEffectResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 使用该接口将直播流开始切入垫片。
+
+        # @param request: Request instance for StartLivePadStream.
+        # @type request: :class:`Tencentcloud::live::V20180801::StartLivePadStreamRequest`
+        # @rtype: :class:`Tencentcloud::live::V20180801::StartLivePadStreamResponse`
+        def StartLivePadStream(request)
+          body = send_request('StartLivePadStream', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = StartLivePadStreamResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 该接口用来启动直播流监播任务。
 
         # @param request: Request instance for StartLiveStreamMonitor.
@@ -4661,6 +4757,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = StopLivePadProcessorResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 使用该接口将直播流停止切入垫片。
+
+        # @param request: Request instance for StopLivePadStream.
+        # @type request: :class:`Tencentcloud::live::V20180801::StopLivePadStreamRequest`
+        # @rtype: :class:`Tencentcloud::live::V20180801::StopLivePadStreamResponse`
+        def StopLivePadStream(request)
+          body = send_request('StopLivePadStream', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = StopLivePadStreamResponse.new
             model.deserialize(response['Response'])
             model
           else

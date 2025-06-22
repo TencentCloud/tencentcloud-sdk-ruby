@@ -3121,6 +3121,70 @@ module TencentCloud
         end
       end
 
+      # DescribeSmoothMigrationTaskList请求参数结构体
+      class DescribeSmoothMigrationTaskListRequest < TencentCloud::Common::AbstractModel
+        # @param Offset: 查询起始位置
+        # @type Offset: Integer
+        # @param Limit: 查询结果限制数量
+        # @type Limit: Integer
+        # @param Filters: 查询条件列表
+        # @type Filters: Array
+
+        attr_accessor :Offset, :Limit, :Filters
+
+        def initialize(offset=nil, limit=nil, filters=nil)
+          @Offset = offset
+          @Limit = limit
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeSmoothMigrationTaskList返回参数结构体
+      class DescribeSmoothMigrationTaskListResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 查询总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+        # @param Data: 任务列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Data, :RequestId
+
+        def initialize(totalcount=nil, data=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              smoothmigrationtaskitem_tmp = SmoothMigrationTaskItem.new
+              smoothmigrationtaskitem_tmp.deserialize(i)
+              @Data << smoothmigrationtaskitem_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeSourceClusterGroupList请求参数结构体
       class DescribeSourceClusterGroupListRequest < TencentCloud::Common::AbstractModel
         # @param TaskId: 任务ID
@@ -5450,6 +5514,63 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 平滑迁移任务
+      class SmoothMigrationTaskItem < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskId: String
+        # @param TaskName: 任务名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskName: String
+        # @param SourceClusterName: 源集群名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SourceClusterName: String
+        # @param InstanceId: 目标集群实例ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceId: String
+        # @param ConnectionType: 网络连接类型，
+        # PUBLIC 公网
+        # VPC 私有网络
+        # OTHER 其他
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConnectionType: String
+        # @param SourceNameServer: 源集群NameServer地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SourceNameServer: String
+        # @param TaskStatus: 任务状态 Configuration 迁移配置 SourceConnecting 连接源集群中 MetaDataImport 元数据导入 EndpointSetup 切换接入点 ServiceMigration 切流中 Completed 已完成 Cancelled 已取消
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskStatus: String
+        # @param InstanceVersion: 目标集群实例版本，
+        # 4 表示4.x版本
+        # 5 表示5.x版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceVersion: String
+
+        attr_accessor :TaskId, :TaskName, :SourceClusterName, :InstanceId, :ConnectionType, :SourceNameServer, :TaskStatus, :InstanceVersion
+
+        def initialize(taskid=nil, taskname=nil, sourceclustername=nil, instanceid=nil, connectiontype=nil, sourcenameserver=nil, taskstatus=nil, instanceversion=nil)
+          @TaskId = taskid
+          @TaskName = taskname
+          @SourceClusterName = sourceclustername
+          @InstanceId = instanceid
+          @ConnectionType = connectiontype
+          @SourceNameServer = sourcenameserver
+          @TaskStatus = taskstatus
+          @InstanceVersion = instanceversion
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @TaskName = params['TaskName']
+          @SourceClusterName = params['SourceClusterName']
+          @InstanceId = params['InstanceId']
+          @ConnectionType = params['ConnectionType']
+          @SourceNameServer = params['SourceNameServer']
+          @TaskStatus = params['TaskStatus']
+          @InstanceVersion = params['InstanceVersion']
         end
       end
 
