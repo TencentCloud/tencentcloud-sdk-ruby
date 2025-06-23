@@ -86,7 +86,7 @@ module TencentCloud
 
       # AddTimeWindow请求参数结构体
       class AddTimeWindowRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例 ID，格式如：cdb-c1nl9rpv 或者 cdbro-c1nl9rpv，与云数据库控制台页面中显示的实例 ID 相同。
+        # @param InstanceId: 实例 ID。可通过 [DescribeDBInstances](https://cloud.tencent.com/document/product/236/15872) 接口获取。
         # @type InstanceId: String
         # @param Monday: 星期一的可维护时间段，其中每一个时间段的格式形如：10:00-12:00；起始时间按半个小时对齐；最短半个小时，最长三个小时；可设置多个时间段。 一周中应至少设置一天的时间窗。下同。
         # @type Monday: Array
@@ -102,7 +102,7 @@ module TencentCloud
         # @type Saturday: Array
         # @param Sunday: 星期日的可维护时间窗口。 一周中应至少设置一天的时间窗。
         # @type Sunday: Array
-        # @param MaxDelayTime: 最大延迟阈值，仅对主实例和灾备实例有效。
+        # @param MaxDelayTime: 最大延迟阈值（秒），仅对主实例和灾备实例有效。默认值：10，取值范围：1-10的整数。
         # @type MaxDelayTime: Integer
 
         attr_accessor :InstanceId, :Monday, :Tuesday, :Wednesday, :Thursday, :Friday, :Saturday, :Sunday, :MaxDelayTime
@@ -1089,9 +1089,9 @@ module TencentCloud
         # @param ShrinkPeriod: 自动缩容观测周期，单位是分钟，可选值5、10、15、30。后台会按照配置的周期进行缩容判断。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ShrinkPeriod: Integer
-        # @param ExpandSecondPeriod: 弹性扩容观测周期（秒级）
+        # @param ExpandSecondPeriod: 弹性扩容观测周期（秒级），可取值为：5，30，45，60，180，300，600，900，1800。
         # @type ExpandSecondPeriod: Integer
-        # @param ShrinkSecondPeriod: 缩容观测周期（秒级）
+        # @param ShrinkSecondPeriod: 缩容观测周期（秒级），可取值为：300。
         # @type ShrinkSecondPeriod: Integer
 
         attr_accessor :ExpandThreshold, :ShrinkThreshold, :ExpandPeriod, :ShrinkPeriod, :ExpandSecondPeriod, :ShrinkSecondPeriod
@@ -1349,7 +1349,7 @@ module TencentCloud
 
       # BalanceRoGroupLoad请求参数结构体
       class BalanceRoGroupLoadRequest < TencentCloud::Common::AbstractModel
-        # @param RoGroupId: RO 组的 ID，格式如：cdbrg-c1nl9rpv。
+        # @param RoGroupId: RO 组的 ID，格式如：cdbrg-c1nl9rpv。可通过 [DescribeRoGroups](https://cloud.tencent.com/document/api/236/40939) 获取。
         # @type RoGroupId: String
 
         attr_accessor :RoGroupId
@@ -2047,9 +2047,9 @@ module TencentCloud
 
       # CloseWanService请求参数结构体
       class CloseWanServiceRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例 ID，格式如：cdb-c1nl9rpv，与云数据库控制台页面中显示的实例 ID 相同，可使用 [查询实例列表](https://cloud.tencent.com/document/api/236/15872) 接口获取，其值为输出参数中字段 InstanceId 的值。
+        # @param InstanceId: 实例 ID，格式如：cdb-c1nl9rpv，与云数据库控制台页面中显示的实例 ID 相同，可使用 [查询实例列表](https://cloud.tencent.com/document/api/236/15872) 接口获取，其值为输出参数中字段 InstanceId 的值。可传入只读组 ID 关闭只读组外网访问。
         # @type InstanceId: String
-        # @param OpResourceId: 变更集群版实例只读组时，InstanceId传实例id，需要额外指定该参数表示操作只读组。 如果操作读写节点则不需指定该参数。
+        # @param OpResourceId: 变更云盘版实例只读组时，InstanceId 传实例 ID，需要额外指定该参数表示操作只读组。如果操作读写节点则不需指定该参数。
         # @type OpResourceId: String
 
         attr_accessor :InstanceId, :OpResourceId
@@ -10871,6 +10871,7 @@ module TencentCloud
         #   ]
         # @type InstanceIds: Array
         # @param NewProjectId: 实例所属项目的 ID，可在账号中心下的项目管理页面查询。
+        # 说明：此项为必填。
         # @type NewProjectId: Integer
 
         attr_accessor :InstanceIds, :NewProjectId
@@ -10987,9 +10988,9 @@ module TencentCloud
       class ModifyDBInstanceVipVportRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例 ID，格式如：cdb-c1nl9rpv 或者 cdbro-c2nl9rpv 或者 cdbrg-c3nl9rpv，与云数据库控制台页面中显示的实例 ID 相同，可使用 [查询实例列表](https://cloud.tencent.com/document/api/236/15872) 接口获取，其值为输出参数中字段 InstanceId 的值。
         # @type InstanceId: String
-        # @param DstIp: 目标 IP。该参数和 DstPort 参数，两者必传一个。
+        # @param DstIp: 目标 IP。
         # @type DstIp: String
-        # @param DstPort: 目标端口，支持范围为：[1024-65535]。该参数和 DstIp 参数，两者必传一个。
+        # @param DstPort: 目标端口，支持范围为：[1024-65535]。
         # @type DstPort: Integer
         # @param UniqVpcId: 私有网络统一 ID。
         # @type UniqVpcId: String
@@ -11506,7 +11507,7 @@ module TencentCloud
 
       # ModifyTimeWindow请求参数结构体
       class ModifyTimeWindowRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例 ID，格式如：cdb-c1nl9rpv 或者 cdbro-c1nl9rpv，与云数据库控制台页面中显示的实例 ID 相同。
+        # @param InstanceId: 实例 ID。可通过 [DescribeDBInstances](https://cloud.tencent.com/document/product/236/15872) 接口获取。
         # @type InstanceId: String
         # @param TimeRanges: 修改后的可维护时间段，其中每一个时间段的格式形如：10:00-12:00；起止时间按半个小时对齐；最短半个小时，最长三个小时；最多设置两个时间段；起止时间范围为：[00:00, 24:00]。
         # 说明：设置两个时间段的 json 示例如下。
@@ -11522,7 +11523,7 @@ module TencentCloud
         #     "tuesday"
         #   ]
         # @type Weekdays: Array
-        # @param MaxDelayTime: 数据延迟阈值，仅对主实例和灾备实例有效，不传默认修改为10
+        # @param MaxDelayTime: 数据延迟阈值（秒），仅对主实例和灾备实例有效。不传默认不修改，保持原来的阈值，取值范围：1-10的整数。
         # @type MaxDelayTime: Integer
 
         attr_accessor :InstanceId, :TimeRanges, :Weekdays, :MaxDelayTime
@@ -12744,12 +12745,13 @@ module TencentCloud
         # @param RoGroupMode: 只读组模式，可选值为：alone-系统自动分配只读组；allinone-新建只读组；join-使用现有只读组。
         # @type RoGroupMode: String
         # @param RoGroupId: 只读组 ID。
+        # 说明：若此数据结构在购买实例操作中被使用，则当只读组模式选择 join 时，此项为必填。
         # @type RoGroupId: String
         # @param RoGroupName: 只读组名称。
         # @type RoGroupName: String
         # @param RoOfflineDelay: 是否启用延迟超限剔除功能，启用该功能后，只读实例与主实例的延迟超过延迟阈值，只读实例将被隔离。可选值：1-启用；0-不启用。
         # @type RoOfflineDelay: Integer
-        # @param RoMaxDelayTime: 延迟阈值。
+        # @param RoMaxDelayTime: 延迟阈值。单位：秒。值范围：1-10000，整数。
         # @type RoMaxDelayTime: Integer
         # @param MinRoInGroup: 最少实例保留个数，若购买只读实例数量小于设置数量将不做剔除。
         # @type MinRoInGroup: Integer
@@ -12771,7 +12773,7 @@ module TencentCloud
         # @type RoGroupRegion: String
         # @param RoGroupZone: 只读组所在的可用区。
         # @type RoGroupZone: String
-        # @param DelayReplicationTime: 延迟复制时间。
+        # @param DelayReplicationTime: 延迟复制时间。单位：秒。值范围：1-259200，整数。
         # @type DelayReplicationTime: Integer
 
         attr_accessor :RoGroupMode, :RoGroupId, :RoGroupName, :RoOfflineDelay, :RoMaxDelayTime, :MinRoInGroup, :WeightMode, :Weight, :RoInstances, :Vip, :Vport, :UniqVpcId, :UniqSubnetId, :RoGroupRegion, :RoGroupZone, :DelayReplicationTime
@@ -13694,7 +13696,7 @@ module TencentCloud
 
       # StartReplication请求参数结构体
       class StartReplicationRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例 ID。仅支持只读实例。
+        # @param InstanceId: 实例 ID。仅支持只读实例。可通过 [DescribeDBInstances](https://cloud.tencent.com/document/product/236/15872) 接口获取。
         # @type InstanceId: String
 
         attr_accessor :InstanceId
@@ -13730,7 +13732,7 @@ module TencentCloud
 
       # StopCpuExpand请求参数结构体
       class StopCpuExpandRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例 ID 。
+        # @param InstanceId: 实例 ID。可通过 [DescribeDBInstances](https://cloud.tencent.com/document/product/236/15872) 接口获取。
         # @type InstanceId: String
 
         attr_accessor :InstanceId
@@ -13746,7 +13748,7 @@ module TencentCloud
 
       # StopCpuExpand返回参数结构体
       class StopCpuExpandResponse < TencentCloud::Common::AbstractModel
-        # @param AsyncRequestId: 异步任务 ID 。可以调用DescribeAsyncRequest 传入该 ID ，进行任务执行进度的查询
+        # @param AsyncRequestId: 异步任务 ID。在调用 [DescribeAsyncRequestInfo](https://cloud.tencent.com/document/api/236/20410) 进行任务执行进度的查询时，可以传入该 ID。
         # @type AsyncRequestId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -13798,7 +13800,7 @@ module TencentCloud
 
       # StopReplication请求参数结构体
       class StopReplicationRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例 ID。仅支持只读实例。
+        # @param InstanceId: 实例 ID。仅支持只读实例。可通过 [DescribeDBInstances](https://cloud.tencent.com/document/product/236/15872) 接口获取。
         # @type InstanceId: String
 
         attr_accessor :InstanceId
@@ -14371,10 +14373,10 @@ module TencentCloud
       # 按时间段扩容策略
       class TimeIntervalStrategy < TencentCloud::Common::AbstractModel
         # @param StartTime: 开始扩容时间。
-        # 说明：此值的格式为 Integer 的时间戳。
+        # 说明：此值的格式为 Integer 的时间戳（秒级）。
         # @type StartTime: Integer
         # @param EndTime: 结束扩容时间。
-        # 说明：此值的格式为 Integer 的时间戳。
+        # 说明：此值的格式为 Integer 的时间戳（秒级）。
         # @type EndTime: Integer
 
         attr_accessor :StartTime, :EndTime

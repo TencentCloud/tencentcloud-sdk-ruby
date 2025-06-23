@@ -3332,6 +3332,38 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建一个用于更新他方自动签授权的链接（可选择他方授权或我方授权）。通过这个链接，合作方企业可以直接进入小程序，进行自动签授权的更新（更新印章）操作。
+
+        # 如果授权企业尚未开通企业自动签功能，该链接还将引导他们首先开通本企业的自动签服务
+
+        # 注:
+        # 1. <font color='red'>所在企业的超管、法人才有权限调用此接口</font>(Operator.UserId 需要传递超管或者法人的UserId)
+        # 2. 只能更新授权的印章，被授权的企业无法更新
+        # 3. 授权企业和被授权企业必须都是已认证企业
+        # 4. <font color='red'>需要授权企业或被授权企业的超管或者法人打开链接</font>走开通逻辑。
+
+        # @param request: Request instance for ModifyPartnerAutoSignAuthUrl.
+        # @type request: :class:`Tencentcloud::ess::V20201111::ModifyPartnerAutoSignAuthUrlRequest`
+        # @rtype: :class:`Tencentcloud::ess::V20201111::ModifyPartnerAutoSignAuthUrlResponse`
+        def ModifyPartnerAutoSignAuthUrl(request)
+          body = send_request('ModifyPartnerAutoSignAuthUrl', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyPartnerAutoSignAuthUrlResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 修改印章状态（停用、启用）
 
         # @param request: Request instance for OperateSeals.

@@ -2449,6 +2449,57 @@ module TencentCloud
         end
       end
 
+      # 托管记录
+      class DeployRecord < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总数
+        # @type TotalCount: Integer
+        # @param SuccessTotalCount: 成功总数
+        # @type SuccessTotalCount: Integer
+        # @param FailedTotalCount: 失败总数
+        # @type FailedTotalCount: Integer
+        # @param RunningTotalCount: 部署中总数
+        # @type RunningTotalCount: Integer
+        # @param Type: 部署记录类型 0 为部署， 1 为回滚
+        # @type Type: Integer
+        # @param RecordDetailList: 部署记录详情列表
+        # @type RecordDetailList: Array
+        # @param Status: 托管资源部署状态：0 等待部署， 1 部署成功， 2 部署失败 3 部署中， 4 回滚成功， 5 回滚失败
+        # @type Status: Integer
+        # @param CreateTime: 托管资源创建时间
+        # @type CreateTime: String
+
+        attr_accessor :TotalCount, :SuccessTotalCount, :FailedTotalCount, :RunningTotalCount, :Type, :RecordDetailList, :Status, :CreateTime
+
+        def initialize(totalcount=nil, successtotalcount=nil, failedtotalcount=nil, runningtotalcount=nil, type=nil, recorddetaillist=nil, status=nil, createtime=nil)
+          @TotalCount = totalcount
+          @SuccessTotalCount = successtotalcount
+          @FailedTotalCount = failedtotalcount
+          @RunningTotalCount = runningtotalcount
+          @Type = type
+          @RecordDetailList = recorddetaillist
+          @Status = status
+          @CreateTime = createtime
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          @SuccessTotalCount = params['SuccessTotalCount']
+          @FailedTotalCount = params['FailedTotalCount']
+          @RunningTotalCount = params['RunningTotalCount']
+          @Type = params['Type']
+          unless params['RecordDetailList'].nil?
+            @RecordDetailList = []
+            params['RecordDetailList'].each do |i|
+              deployrecordlist_tmp = DeployRecordList.new
+              deployrecordlist_tmp.deserialize(i)
+              @RecordDetailList << deployrecordlist_tmp
+            end
+          end
+          @Status = params['Status']
+          @CreateTime = params['CreateTime']
+        end
+      end
+
       # 部署记录详情
       class DeployRecordDetail < TencentCloud::Common::AbstractModel
         # @param Id: 部署记录详情ID
@@ -2586,6 +2637,134 @@ module TencentCloud
           @Status = params['Status']
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
+        end
+      end
+
+      # 部署记录详情
+      class DeployRecordItem < TencentCloud::Common::AbstractModel
+        # @param Id: 部署记录详情ID
+        # @type Id: Integer
+        # @param OldCertId: 原绑定证书ID
+        # @type OldCertId: String
+        # @param InstanceId: 部署实例ID
+        # @type InstanceId: String
+        # @param InstanceName: 部署实例名称
+        # @type InstanceName: String
+        # @param ListenerId: 部署监听器ID
+        # @type ListenerId: String
+        # @param Domains: 部署域名列表
+        # @type Domains: Array
+        # @param Protocol: 部署监听器协议
+        # @type Protocol: String
+        # @param Status: 部署状态
+        # @type Status: Integer
+        # @param ErrorMsg: 部署错误信息
+        # @type ErrorMsg: String
+        # @param CreateTime: 部署记录详情创建时间
+        # @type CreateTime: String
+        # @param UpdateTime: 部署记录详情最后一次更新时间
+        # @type UpdateTime: String
+        # @param ListenerName: 部署监听器名称
+        # @type ListenerName: String
+        # @param SniSwitch: 是否开启SNI
+        # @type SniSwitch: Integer
+        # @param Bucket: COS存储桶名称
+        # @type Bucket: String
+        # @param Namespace: 命名空间名称
+        # @type Namespace: String
+        # @param SecretName: secret名称
+        # @type SecretName: String
+        # @param Port: 端口
+        # @type Port: Integer
+        # @param Region: 部署的TCB地域
+        # @type Region: String
+        # @param Forward: 负载均衡类型，0 传统型负载均衡； 1 应用型负载均衡
+        # @type Forward: Integer
+        # @param SSLMode: 证书认证模式：UNIDIRECTIONAL单向认证，MUTUAL双向认证
+        # @type SSLMode: String
+        # @param ResourceType: 部署资源类型
+        # @type ResourceType: String
+
+        attr_accessor :Id, :OldCertId, :InstanceId, :InstanceName, :ListenerId, :Domains, :Protocol, :Status, :ErrorMsg, :CreateTime, :UpdateTime, :ListenerName, :SniSwitch, :Bucket, :Namespace, :SecretName, :Port, :Region, :Forward, :SSLMode, :ResourceType
+
+        def initialize(id=nil, oldcertid=nil, instanceid=nil, instancename=nil, listenerid=nil, domains=nil, protocol=nil, status=nil, errormsg=nil, createtime=nil, updatetime=nil, listenername=nil, sniswitch=nil, bucket=nil, namespace=nil, secretname=nil, port=nil, region=nil, forward=nil, sslmode=nil, resourcetype=nil)
+          @Id = id
+          @OldCertId = oldcertid
+          @InstanceId = instanceid
+          @InstanceName = instancename
+          @ListenerId = listenerid
+          @Domains = domains
+          @Protocol = protocol
+          @Status = status
+          @ErrorMsg = errormsg
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @ListenerName = listenername
+          @SniSwitch = sniswitch
+          @Bucket = bucket
+          @Namespace = namespace
+          @SecretName = secretname
+          @Port = port
+          @Region = region
+          @Forward = forward
+          @SSLMode = sslmode
+          @ResourceType = resourcetype
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @OldCertId = params['OldCertId']
+          @InstanceId = params['InstanceId']
+          @InstanceName = params['InstanceName']
+          @ListenerId = params['ListenerId']
+          @Domains = params['Domains']
+          @Protocol = params['Protocol']
+          @Status = params['Status']
+          @ErrorMsg = params['ErrorMsg']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          @ListenerName = params['ListenerName']
+          @SniSwitch = params['SniSwitch']
+          @Bucket = params['Bucket']
+          @Namespace = params['Namespace']
+          @SecretName = params['SecretName']
+          @Port = params['Port']
+          @Region = params['Region']
+          @Forward = params['Forward']
+          @SSLMode = params['SSLMode']
+          @ResourceType = params['ResourceType']
+        end
+      end
+
+      # 托管记录详情信息
+      class DeployRecordList < TencentCloud::Common::AbstractModel
+        # @param ResourceType: 部署资源类型
+        # @type ResourceType: String
+        # @param List: 部署资源详情列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type List: Array
+        # @param TotalCount: 该部署资源总数
+        # @type TotalCount: Integer
+
+        attr_accessor :ResourceType, :List, :TotalCount
+
+        def initialize(resourcetype=nil, list=nil, totalcount=nil)
+          @ResourceType = resourcetype
+          @List = list
+          @TotalCount = totalcount
+        end
+
+        def deserialize(params)
+          @ResourceType = params['ResourceType']
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              deployrecorditem_tmp = DeployRecordItem.new
+              deployrecorditem_tmp.deserialize(i)
+              @List << deployrecorditem_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
         end
       end
 
@@ -4927,6 +5106,112 @@ module TencentCloud
               updaterecordinfo_tmp = UpdateRecordInfo.new
               updaterecordinfo_tmp.deserialize(i)
               @DeployRecordList << updaterecordinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeHostUploadUpdateRecordDetail请求参数结构体
+      class DescribeHostUploadUpdateRecordDetailRequest < TencentCloud::Common::AbstractModel
+        # @param DeployRecordId: 托管记录ID
+        # @type DeployRecordId: Integer
+        # @param Limit: 每页数量，默认为10，最大为200， 超过200则为200
+        # @type Limit: Integer
+        # @param Offset: 偏移量，默认为0
+        # @type Offset: Integer
+
+        attr_accessor :DeployRecordId, :Limit, :Offset
+
+        def initialize(deployrecordid=nil, limit=nil, offset=nil)
+          @DeployRecordId = deployrecordid
+          @Limit = limit
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          @DeployRecordId = params['DeployRecordId']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+        end
+      end
+
+      # DescribeHostUploadUpdateRecordDetail返回参数结构体
+      class DescribeHostUploadUpdateRecordDetailResponse < TencentCloud::Common::AbstractModel
+        # @param DeployRecordDetail: 托管记录详情列表
+        # @type DeployRecordDetail: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DeployRecordDetail, :RequestId
+
+        def initialize(deployrecorddetail=nil, requestid=nil)
+          @DeployRecordDetail = deployrecorddetail
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['DeployRecordDetail'].nil?
+            @DeployRecordDetail = []
+            params['DeployRecordDetail'].each do |i|
+              deployrecord_tmp = DeployRecord.new
+              deployrecord_tmp.deserialize(i)
+              @DeployRecordDetail << deployrecord_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeHostUploadUpdateRecord请求参数结构体
+      class DescribeHostUploadUpdateRecordRequest < TencentCloud::Common::AbstractModel
+        # @param Offset: 分页偏移量，从0开始。
+        # @type Offset: Integer
+        # @param Limit: 每页数量，默认10。
+        # @type Limit: Integer
+        # @param OldCertificateId: 原证书ID
+        # @type OldCertificateId: String
+
+        attr_accessor :Offset, :Limit, :OldCertificateId
+
+        def initialize(offset=nil, limit=nil, oldcertificateid=nil)
+          @Offset = offset
+          @Limit = limit
+          @OldCertificateId = oldcertificateid
+        end
+
+        def deserialize(params)
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @OldCertificateId = params['OldCertificateId']
+        end
+      end
+
+      # DescribeHostUploadUpdateRecord返回参数结构体
+      class DescribeHostUploadUpdateRecordResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总数
+        # @type TotalCount: Integer
+        # @param DeployRecordList: 证书部署记录列表
+        # @type DeployRecordList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :DeployRecordList, :RequestId
+
+        def initialize(totalcount=nil, deployrecordlist=nil, requestid=nil)
+          @TotalCount = totalcount
+          @DeployRecordList = deployrecordlist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['DeployRecordList'].nil?
+            @DeployRecordList = []
+            params['DeployRecordList'].each do |i|
+              uploadupdaterecordinfo_tmp = UploadUpdateRecordInfo.new
+              uploadupdaterecordinfo_tmp.deserialize(i)
+              @DeployRecordList << uploadupdaterecordinfo_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -8109,6 +8394,110 @@ module TencentCloud
             end
           end
           @RequestId = params['RequestId']
+        end
+      end
+
+      # UploadUpdateCertificateRecordRetry请求参数结构体
+      class UploadUpdateCertificateRecordRetryRequest < TencentCloud::Common::AbstractModel
+        # @param DeployRecordId: 待重试部署记录ID,通过UpdateCertificateInstance得到部署记录ID。 本参数不传的话，则DeployRecordDetailId必传
+        # @type DeployRecordId: Integer
+        # @param DeployRecordDetailId: 待重试部署记录详情ID,通过DescribeHostUpdateRecordDetail接口获得， 本参数不传的话， 则DeployRecordId必传
+        # @type DeployRecordDetailId: Integer
+
+        attr_accessor :DeployRecordId, :DeployRecordDetailId
+
+        def initialize(deployrecordid=nil, deployrecorddetailid=nil)
+          @DeployRecordId = deployrecordid
+          @DeployRecordDetailId = deployrecorddetailid
+        end
+
+        def deserialize(params)
+          @DeployRecordId = params['DeployRecordId']
+          @DeployRecordDetailId = params['DeployRecordDetailId']
+        end
+      end
+
+      # UploadUpdateCertificateRecordRetry返回参数结构体
+      class UploadUpdateCertificateRecordRetryResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # UploadUpdateCertificateRecordRollback请求参数结构体
+      class UploadUpdateCertificateRecordRollbackRequest < TencentCloud::Common::AbstractModel
+        # @param DeployRecordId: 更新证书待回滚的记录ID, 通过UpdateCertificateInstance获得
+        # @type DeployRecordId: Integer
+
+        attr_accessor :DeployRecordId
+
+        def initialize(deployrecordid=nil)
+          @DeployRecordId = deployrecordid
+        end
+
+        def deserialize(params)
+          @DeployRecordId = params['DeployRecordId']
+        end
+      end
+
+      # UploadUpdateCertificateRecordRollback返回参数结构体
+      class UploadUpdateCertificateRecordRollbackResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 部署记录列表信息
+      class UploadUpdateRecordInfo < TencentCloud::Common::AbstractModel
+        # @param Id: 记录ID
+        # @type Id: Integer
+        # @param OldCertId: 原证书ID
+        # @type OldCertId: String
+        # @param ResourceTypes: 部署资源类型列表
+        # @type ResourceTypes: Array
+        # @param Status: 部署状态
+        # @type Status: Integer
+        # @param CreateTime: 部署时间
+        # @type CreateTime: String
+        # @param UpdateTime: 最后一次更新时间
+        # @type UpdateTime: String
+
+        attr_accessor :Id, :OldCertId, :ResourceTypes, :Status, :CreateTime, :UpdateTime
+
+        def initialize(id=nil, oldcertid=nil, resourcetypes=nil, status=nil, createtime=nil, updatetime=nil)
+          @Id = id
+          @OldCertId = oldcertid
+          @ResourceTypes = resourcetypes
+          @Status = status
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @OldCertId = params['OldCertId']
+          @ResourceTypes = params['ResourceTypes']
+          @Status = params['Status']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
         end
       end
 

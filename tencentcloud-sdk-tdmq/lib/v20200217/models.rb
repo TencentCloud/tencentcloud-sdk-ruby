@@ -4870,19 +4870,19 @@ module TencentCloud
 
       # DescribeRabbitMQBindings请求参数结构体
       class DescribeRabbitMQBindingsRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例Id
+        # @param InstanceId: 实例 ID，形如 amqp-xxxxxxxx。有效的 InstanceId 可通过登录 [TDMQ RabbitMQ 控制台](https://console.cloud.tencent.com/trabbitmq/cluster?rid=1)查询。
         # @type InstanceId: String
-        # @param VirtualHost: Vhost名称
+        # @param VirtualHost: VirtualHost 名称，形如 testvhost。有效的 VirtualHost 名称可通过登录 [TDMQ RabbitMQ 控制台](https://console.cloud.tencent.com/trabbitmq/cluster?rid=1)查询，在左侧导航栏点击 Vhost，并在 Vhost 列表中找到Vhost名称。
         # @type VirtualHost: String
-        # @param Offset: 分页offset
+        # @param Offset: 分页 offset，默认 0
         # @type Offset: Integer
-        # @param Limit: 分页limit
+        # @param Limit: 分页 limit，默认 20
         # @type Limit: Integer
         # @param SearchWord: 搜索关键词，根据源exchange名称/目标资源名称/绑定key进行模糊搜索
         # @type SearchWord: String
         # @param SourceExchange: 根据源Exchange精准搜索过滤
         # @type SourceExchange: String
-        # @param QueueName: 根据目标QueueName精准搜索过滤，和DestinationExchange过滤不可同时设置
+        # @param QueueName: 根据目标队列名精准搜索过滤，和 DestinationExchange 过滤不可同时设置
         # @type QueueName: String
         # @param DestinationExchange: 根据目标Exchange精准搜索过滤，和QueueName过滤不可同时设置
         # @type DestinationExchange: String
@@ -4916,7 +4916,7 @@ module TencentCloud
       class DescribeRabbitMQBindingsResponse < TencentCloud::Common::AbstractModel
         # @param BindingInfoList: 路由关系列表
         # @type BindingInfoList: Array
-        # @param TotalCount: 数量
+        # @param TotalCount: 路由关系数量
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4945,17 +4945,17 @@ module TencentCloud
 
       # DescribeRabbitMQExchanges请求参数结构体
       class DescribeRabbitMQExchangesRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例 id
+        # @param InstanceId: 实例 ID，形如 amqp-xxxxxxxx。有效的 InstanceId 可通过登录 [TDMQ RabbitMQ 控制台](https://console.cloud.tencent.com/trabbitmq/cluster?rid=1)查询。
         # @type InstanceId: String
-        # @param VirtualHost: vhost 参数
+        # @param VirtualHost: VirtualHost 名称，形如 testvhost。有效的 VirtualHost 名称可通过登录 [TDMQ RabbitMQ 控制台](https://console.cloud.tencent.com/trabbitmq/cluster?rid=1)查询，在左侧导航栏点击 Vhost，并在 Vhost 列表中找到Vhost名称。
         # @type VirtualHost: String
-        # @param Offset: 分页 offset
+        # @param Offset: 分页 offset，默认 0
         # @type Offset: Integer
-        # @param Limit: 分页 limit
+        # @param Limit: 分页 limit，默认 20
         # @type Limit: Integer
         # @param SearchWord: 搜索关键词, 支持模糊匹配
         # @type SearchWord: String
-        # @param ExchangeTypeFilters: 筛选 exchange 类型, 数组中每个元素为选中的过滤类型
+        # @param ExchangeTypeFilters: 筛选 exchange 类型, 数组中每个元素为选中的过滤类型，仅支持 direct、fanout、topic、header
         # @type ExchangeTypeFilters: Array
         # @param ExchangeCreatorFilters: 筛选 exchange 创建来源,  "system":"系统创建", "user":"用户创建"
         # @type ExchangeCreatorFilters: Array
@@ -4967,6 +4967,8 @@ module TencentCloud
         # MessageRateOut - 消费速率；
         # @type SortElement: String
         # @param SortOrder: 排序顺序，ascend 或 descend
+        # ascend：升序
+        # descend：降序
         # @type SortOrder: String
 
         attr_accessor :InstanceId, :VirtualHost, :Offset, :Limit, :SearchWord, :ExchangeTypeFilters, :ExchangeCreatorFilters, :ExchangeName, :SortElement, :SortOrder
@@ -5115,15 +5117,15 @@ module TencentCloud
 
       # DescribeRabbitMQPermission请求参数结构体
       class DescribeRabbitMQPermissionRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 集群实例id
+        # @param InstanceId: 实例 ID，形如 amqp-xxxxxxxx。有效的 InstanceId 可通过登录 [TDMQ RabbitMQ 控制台](https://console.cloud.tencent.com/trabbitmq/cluster?rid=1)查询。
         # @type InstanceId: String
-        # @param User: 用户名，用于查询过滤，不传则查询全部
+        # @param User: 用户名，形如 admin。有效的 User 名称可通过登录 [TDMQ RabbitMQ 控制台](https://console.cloud.tencent.com/trabbitmq/cluster?rid=1)查询，点击集群列表中的集群，进入集群详情，并在用户与权限页签中找到用户列表，从而找到用户名称。
         # @type User: String
-        # @param VirtualHost: vhost名，用于查询过滤，不传则查询全部
+        # @param VirtualHost: VirtualHost 名称，形如 testvhost。有效的 VirtualHost 名称可通过登录 [TDMQ RabbitMQ 控制台](https://console.cloud.tencent.com/trabbitmq/cluster?rid=1)查询，在左侧导航栏点击 Vhost，并在 Vhost 列表中找到 Vhost 名称。
         # @type VirtualHost: String
-        # @param Offset: 分页Offset
+        # @param Offset: 分页 Offset，默认 0
         # @type Offset: Integer
-        # @param Limit: 分页Limit
+        # @param Limit: 分页 Limit，默认 20
         # @type Limit: Integer
 
         attr_accessor :InstanceId, :User, :VirtualHost, :Offset, :Limit
@@ -5450,17 +5452,18 @@ module TencentCloud
 
       # DescribeRabbitMQUser请求参数结构体
       class DescribeRabbitMQUserRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 集群实例Id
+        # @param InstanceId: 实例 ID，形如 amqp-xxxxxxxx。有效的 InstanceId 可通过登录 [TDMQ RabbitMQ 控制台](https://console.cloud.tencent.com/trabbitmq/cluster?rid=1)查询。
         # @type InstanceId: String
         # @param SearchUser: 用户名检索，支持前缀匹配，后缀匹配
         # @type SearchUser: String
-        # @param Offset: 分页Offset
+        # @param Offset: 分页 Offset，默认 0
         # @type Offset: Integer
-        # @param Limit: 分页Limit
+        # @param Limit: 分页 Limit，默认 20
         # @type Limit: Integer
         # @param User: 用户名，精确查询
         # @type User: String
-        # @param Tags: 用户标签，根据标签过滤列表
+        # @param Tags: 用户标签，用于决定改用户访问 RabbitMQ Management 的权限范围
+        # management：普通控制台用户，monitoring：管理型控制台用户，其他值：非控制台用户
         # @type Tags: Array
 
         attr_accessor :InstanceId, :SearchUser, :Offset, :Limit, :User, :Tags
@@ -5517,7 +5520,7 @@ module TencentCloud
 
       # DescribeRabbitMQVipInstance请求参数结构体
       class DescribeRabbitMQVipInstanceRequest < TencentCloud::Common::AbstractModel
-        # @param ClusterId: 集群ID
+        # @param ClusterId: 集群 ID
         # @type ClusterId: String
 
         attr_accessor :ClusterId
@@ -5600,9 +5603,9 @@ module TencentCloud
       class DescribeRabbitMQVipInstancesRequest < TencentCloud::Common::AbstractModel
         # @param Filters: 查询条件过滤器
         # @type Filters: Array
-        # @param Limit: 查询数目上限，默认20
+        # @param Limit: 查询数目上限，默认 20
         # @type Limit: Integer
-        # @param Offset: 查询起始位置
+        # @param Offset: 查询起始位置，默认 0
         # @type Offset: Integer
 
         attr_accessor :Filters, :Limit, :Offset
@@ -9419,14 +9422,17 @@ module TencentCloud
         # @type Remark: String
         # @param MessageRetention: 实例消息保留时间，小时为单位
         # @type MessageRetention: Integer
+        # @param EnableDeletionProtection: 是否开启删除保护
+        # @type EnableDeletionProtection: Boolean
 
-        attr_accessor :InstanceId, :Name, :Remark, :MessageRetention
+        attr_accessor :InstanceId, :Name, :Remark, :MessageRetention, :EnableDeletionProtection
 
-        def initialize(instanceid=nil, name=nil, remark=nil, messageretention=nil)
+        def initialize(instanceid=nil, name=nil, remark=nil, messageretention=nil, enabledeletionprotection=nil)
           @InstanceId = instanceid
           @Name = name
           @Remark = remark
           @MessageRetention = messageretention
+          @EnableDeletionProtection = enabledeletionprotection
         end
 
         def deserialize(params)
@@ -9434,6 +9440,7 @@ module TencentCloud
           @Name = params['Name']
           @Remark = params['Remark']
           @MessageRetention = params['MessageRetention']
+          @EnableDeletionProtection = params['EnableDeletionProtection']
         end
       end
 
@@ -10563,15 +10570,15 @@ module TencentCloud
         end
       end
 
-      # RabbiteMQ集群基本信息
+      # RabbitMQ 集群基本信息
       class RabbitMQClusterInfo < TencentCloud::Common::AbstractModel
-        # @param ClusterId: 集群ID
+        # @param ClusterId: 集群 ID
         # @type ClusterId: String
         # @param ClusterName: 集群名称
         # @type ClusterName: String
         # @param Region: 地域信息
         # @type Region: String
-        # @param CreateTime: 创建时间，毫秒为单位
+        # @param CreateTime: 创建时间，毫秒为单位。unix 时间戳
         # @type CreateTime: Integer
         # @param Remark: 集群说明信息
         # @type Remark: String
@@ -10587,7 +10594,7 @@ module TencentCloud
         # @type MessagePublishRate: Float
         # @param MessageStackNumber: 堆积消息数 单位：条
         # @type MessageStackNumber: Integer
-        # @param ExpireTime: 过期时间
+        # @param ExpireTime: 实例到期时间，按量付费的资源该值为 0，毫秒为单位。unix 时间戳
         # @type ExpireTime: Integer
         # @param ChannelNumber: Channel数量
         # @type ChannelNumber: Integer
@@ -10614,7 +10621,7 @@ module TencentCloud
         # @type PayMode: Integer
         # @param InstanceType: 实例类型，0 专享版、1 Serverless 版
         # @type InstanceType: Integer
-        # @param IsolatedTime: 开始隔离时间
+        # @param IsolatedTime: 开始隔离时间。unix 时间戳
         # @type IsolatedTime: Integer
         # @param Container: 是否为容器实例，默认 true
         # @type Container: Boolean
@@ -11115,9 +11122,9 @@ module TencentCloud
         end
       end
 
-      # RabbitMQ专享实例信息
+      # RabbitMQ 托管版实例信息
       class RabbitMQVipInstance < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例id
+        # @param InstanceId: 实例 ID
         # @type InstanceId: String
         # @param InstanceName: 实例名称
         # @type InstanceName: String
@@ -11135,17 +11142,26 @@ module TencentCloud
         # @type MaxBandWidth: Integer
         # @param MaxStorage: 存储容量，GB为单位
         # @type MaxStorage: Integer
-        # @param ExpireTime: 实例到期时间，毫秒为单位
+        # @param ExpireTime: 实例到期时间，按量付费的资源该值为 0，毫秒为单位。unix 时间戳
         # @type ExpireTime: Integer
         # @param AutoRenewFlag: 自动续费标记，0表示默认状态(用户未设置，即初始状态即手动续费)， 1表示自动续费，2表示明确不自动续费(用户设置)
         # @type AutoRenewFlag: Integer
-        # @param PayMode: 0-后付费，1-预付费
+        # @param PayMode: 1 表示预付费，0 表示后付费
         # @type PayMode: Integer
         # @param Remark: 备注信息
         # @type Remark: String
-        # @param SpecName: 实例配置ID
+        # @param SpecName: 集群的节点规格，需要输入对应的规格标识：
+        # 2C8G：rabbit-vip-basic-2c8g
+        # 4C16G：rabbit-vip-basic-4c16g
+        # 8C32G：rabbit-vip-basic-8c32g
+        # 16C32G：rabbit-vip-basic-4
+        # 16C64G：rabbit-vip-basic-16c64g
+        # 2C4G：rabbit-vip-basic-5
+        # 4C8G：rabbit-vip-basic-1
+        # 8C16G（已售罄）：rabbit-vip-basic-2
+        # 不传默认为4C8G：rabbit-vip-basic-1
         # @type SpecName: String
-        # @param ExceptionInformation: 集群异常。
+        # @param ExceptionInformation: 集群异常信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExceptionInformation: String
         # @param ClusterStatus: 实例状态，0表示创建中，1表示正常，2表示隔离中，3表示已销毁，4 - 异常, 5 - 发货失败
@@ -11156,7 +11172,7 @@ module TencentCloud
         # @type PublicAccessEndpoint: String
         # @param Vpcs: VPC 接入点列表
         # @type Vpcs: Array
-        # @param CreateTime: 创建时间，毫秒为单位
+        # @param CreateTime: 创建时间，毫秒为单位。unix 时间戳
         # @type CreateTime: Integer
         # @param InstanceType: 实例类型，0 专享版、1 Serverless 版
         # @type InstanceType: Integer

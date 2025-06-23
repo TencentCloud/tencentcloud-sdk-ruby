@@ -252,17 +252,33 @@ module TencentCloud
         # @type IsAutoBackup: Boolean
         # @param BackupTime: 自动备份执行时间（精确到小时）, e.g. "22:00"
         # @type BackupTime: String
+        # @param EsRepositoryType: 0 腾讯云仓库; 1 客户仓库
+        # @type EsRepositoryType: Integer
+        # @param UserEsRepository: 客户快照仓库名称
+        # @type UserEsRepository: String
+        # @param StorageDuration: 快照存储周期 单位天
+        # @type StorageDuration: Integer
+        # @param AutoBackupInterval: 自动备份频率单位小时
+        # @type AutoBackupInterval: Integer
 
-        attr_accessor :IsAutoBackup, :BackupTime
+        attr_accessor :IsAutoBackup, :BackupTime, :EsRepositoryType, :UserEsRepository, :StorageDuration, :AutoBackupInterval
 
-        def initialize(isautobackup=nil, backuptime=nil)
+        def initialize(isautobackup=nil, backuptime=nil, esrepositorytype=nil, useresrepository=nil, storageduration=nil, autobackupinterval=nil)
           @IsAutoBackup = isautobackup
           @BackupTime = backuptime
+          @EsRepositoryType = esrepositorytype
+          @UserEsRepository = useresrepository
+          @StorageDuration = storageduration
+          @AutoBackupInterval = autobackupinterval
         end
 
         def deserialize(params)
           @IsAutoBackup = params['IsAutoBackup']
           @BackupTime = params['BackupTime']
+          @EsRepositoryType = params['EsRepositoryType']
+          @UserEsRepository = params['UserEsRepository']
+          @StorageDuration = params['StorageDuration']
+          @AutoBackupInterval = params['AutoBackupInterval']
         end
       end
 
@@ -6369,6 +6385,9 @@ module TencentCloud
         # @param Uuid: 快照Uuid
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Uuid: String
+        # @param Repository: 仓库名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Repository: String
         # @param Version: 该快照所属集群的版本号
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Version: String
@@ -6414,11 +6433,12 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UserBackUp: String
 
-        attr_accessor :SnapshotName, :Uuid, :Version, :Indices, :DataStreams, :State, :StartTime, :EndTime, :DurationInMillis, :TotalShards, :FailedShards, :SuccessfulShards, :Failures, :UserBackUp
+        attr_accessor :SnapshotName, :Uuid, :Repository, :Version, :Indices, :DataStreams, :State, :StartTime, :EndTime, :DurationInMillis, :TotalShards, :FailedShards, :SuccessfulShards, :Failures, :UserBackUp
 
-        def initialize(snapshotname=nil, uuid=nil, version=nil, indices=nil, datastreams=nil, state=nil, starttime=nil, endtime=nil, durationinmillis=nil, totalshards=nil, failedshards=nil, successfulshards=nil, failures=nil, userbackup=nil)
+        def initialize(snapshotname=nil, uuid=nil, repository=nil, version=nil, indices=nil, datastreams=nil, state=nil, starttime=nil, endtime=nil, durationinmillis=nil, totalshards=nil, failedshards=nil, successfulshards=nil, failures=nil, userbackup=nil)
           @SnapshotName = snapshotname
           @Uuid = uuid
+          @Repository = repository
           @Version = version
           @Indices = indices
           @DataStreams = datastreams
@@ -6436,6 +6456,7 @@ module TencentCloud
         def deserialize(params)
           @SnapshotName = params['SnapshotName']
           @Uuid = params['Uuid']
+          @Repository = params['Repository']
           @Version = params['Version']
           @Indices = params['Indices']
           @DataStreams = params['DataStreams']

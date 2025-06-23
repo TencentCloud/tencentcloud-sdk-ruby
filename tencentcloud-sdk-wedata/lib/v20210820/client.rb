@@ -2911,6 +2911,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询手动任务触发记录
+
+        # @param request: Request instance for DescribeManualTriggerRecordPage.
+        # @type request: :class:`Tencentcloud::wedata::V20210820::DescribeManualTriggerRecordPageRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20210820::DescribeManualTriggerRecordPageResponse`
+        def DescribeManualTriggerRecordPage(request)
+          body = send_request('DescribeManualTriggerRecordPage', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeManualTriggerRecordPageResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取离线任务长连接Token
 
         # @param request: Request instance for DescribeOfflineTaskToken.
@@ -5665,6 +5689,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyTaskInfoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 更新任务Ds
+
+        # @param request: Request instance for ModifyTaskInfoDs.
+        # @type request: :class:`Tencentcloud::wedata::V20210820::ModifyTaskInfoDsRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20210820::ModifyTaskInfoDsResponse`
+        def ModifyTaskInfoDs(request)
+          body = send_request('ModifyTaskInfoDs', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyTaskInfoDsResponse.new
             model.deserialize(response['Response'])
             model
           else

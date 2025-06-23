@@ -1044,6 +1044,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询证书云资源更新（证书ID不变）记录列表
+
+        # @param request: Request instance for DescribeHostUploadUpdateRecord.
+        # @type request: :class:`Tencentcloud::ssl::V20191205::DescribeHostUploadUpdateRecordRequest`
+        # @rtype: :class:`Tencentcloud::ssl::V20191205::DescribeHostUploadUpdateRecordResponse`
+        def DescribeHostUploadUpdateRecord(request)
+          body = send_request('DescribeHostUploadUpdateRecord', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeHostUploadUpdateRecordResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询证书更新（证书ID不变）部署记录详情
+
+        # @param request: Request instance for DescribeHostUploadUpdateRecordDetail.
+        # @type request: :class:`Tencentcloud::ssl::V20191205::DescribeHostUploadUpdateRecordDetailRequest`
+        # @rtype: :class:`Tencentcloud::ssl::V20191205::DescribeHostUploadUpdateRecordDetailResponse`
+        def DescribeHostUploadUpdateRecordDetail(request)
+          body = send_request('DescribeHostUploadUpdateRecordDetail', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeHostUploadUpdateRecordDetailResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询证书Vod云资源部署实例列表
 
         # @param request: Request instance for DescribeHostVodInstanceList.
@@ -1534,6 +1582,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = UploadUpdateCertificateInstanceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 云资源更新（证书ID不变）重试部署记录
+
+        # @param request: Request instance for UploadUpdateCertificateRecordRetry.
+        # @type request: :class:`Tencentcloud::ssl::V20191205::UploadUpdateCertificateRecordRetryRequest`
+        # @rtype: :class:`Tencentcloud::ssl::V20191205::UploadUpdateCertificateRecordRetryResponse`
+        def UploadUpdateCertificateRecordRetry(request)
+          body = send_request('UploadUpdateCertificateRecordRetry', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UploadUpdateCertificateRecordRetryResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 云资源更新成功（证书ID不变）记录回滚， 会对全量任务进行回滚
+
+        # @param request: Request instance for UploadUpdateCertificateRecordRollback.
+        # @type request: :class:`Tencentcloud::ssl::V20191205::UploadUpdateCertificateRecordRollbackRequest`
+        # @rtype: :class:`Tencentcloud::ssl::V20191205::UploadUpdateCertificateRecordRollbackResponse`
+        def UploadUpdateCertificateRecordRollback(request)
+          body = send_request('UploadUpdateCertificateRecordRollback', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UploadUpdateCertificateRecordRollbackResponse.new
             model.deserialize(response['Response'])
             model
           else

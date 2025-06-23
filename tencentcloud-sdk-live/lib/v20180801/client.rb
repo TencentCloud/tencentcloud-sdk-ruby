@@ -2506,30 +2506,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 使用该接口查询垫片流。垫片流状态更新存在一定延迟，可间隔30秒以上查询，避免频繁查询该接口。
-
-        # @param request: Request instance for DescribeLivePadProcessorList.
-        # @type request: :class:`Tencentcloud::live::V20180801::DescribeLivePadProcessorListRequest`
-        # @rtype: :class:`Tencentcloud::live::V20180801::DescribeLivePadProcessorListResponse`
-        def DescribeLivePadProcessorList(request)
-          body = send_request('DescribeLivePadProcessorList', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeLivePadProcessorListResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 获取直播垫片规则列表。
 
         # @param request: Request instance for DescribeLivePadRules.
@@ -4733,30 +4709,6 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = StopCasterPvwResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 使用该接口停止垫片流。
-
-        # @param request: Request instance for StopLivePadProcessor.
-        # @type request: :class:`Tencentcloud::live::V20180801::StopLivePadProcessorRequest`
-        # @rtype: :class:`Tencentcloud::live::V20180801::StopLivePadProcessorResponse`
-        def StopLivePadProcessor(request)
-          body = send_request('StopLivePadProcessor', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = StopLivePadProcessorResponse.new
             model.deserialize(response['Response'])
             model
           else

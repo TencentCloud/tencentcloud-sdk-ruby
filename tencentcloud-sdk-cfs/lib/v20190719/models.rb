@@ -453,10 +453,14 @@ module TencentCloud
         # v3.1：创建增强版的通用文件系统
         # 说明：增强版的通用系统需要开通白名单才能使用，如有需要请提交工单与我们联系。
         # @type CfsVersion: String
+        # @param MetaType: turbo文件系统元数据属性
+        # basic：创建标准型的元数据
+        # enhanced：创建增强型的元数据
+        # @type MetaType: String
 
-        attr_accessor :Zone, :NetInterface, :PGroupId, :Protocol, :StorageType, :VpcId, :SubnetId, :MountIP, :FsName, :ResourceTags, :ClientToken, :CcnId, :CidrBlock, :Capacity, :SnapshotId, :AutoSnapshotPolicyId, :EnableAutoScaleUp, :CfsVersion
+        attr_accessor :Zone, :NetInterface, :PGroupId, :Protocol, :StorageType, :VpcId, :SubnetId, :MountIP, :FsName, :ResourceTags, :ClientToken, :CcnId, :CidrBlock, :Capacity, :SnapshotId, :AutoSnapshotPolicyId, :EnableAutoScaleUp, :CfsVersion, :MetaType
 
-        def initialize(zone=nil, netinterface=nil, pgroupid=nil, protocol=nil, storagetype=nil, vpcid=nil, subnetid=nil, mountip=nil, fsname=nil, resourcetags=nil, clienttoken=nil, ccnid=nil, cidrblock=nil, capacity=nil, snapshotid=nil, autosnapshotpolicyid=nil, enableautoscaleup=nil, cfsversion=nil)
+        def initialize(zone=nil, netinterface=nil, pgroupid=nil, protocol=nil, storagetype=nil, vpcid=nil, subnetid=nil, mountip=nil, fsname=nil, resourcetags=nil, clienttoken=nil, ccnid=nil, cidrblock=nil, capacity=nil, snapshotid=nil, autosnapshotpolicyid=nil, enableautoscaleup=nil, cfsversion=nil, metatype=nil)
           @Zone = zone
           @NetInterface = netinterface
           @PGroupId = pgroupid
@@ -475,6 +479,7 @@ module TencentCloud
           @AutoSnapshotPolicyId = autosnapshotpolicyid
           @EnableAutoScaleUp = enableautoscaleup
           @CfsVersion = cfsversion
+          @MetaType = metatype
         end
 
         def deserialize(params)
@@ -503,6 +508,7 @@ module TencentCloud
           @AutoSnapshotPolicyId = params['AutoSnapshotPolicyId']
           @EnableAutoScaleUp = params['EnableAutoScaleUp']
           @CfsVersion = params['CfsVersion']
+          @MetaType = params['MetaType']
         end
       end
 

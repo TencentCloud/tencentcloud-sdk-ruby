@@ -437,7 +437,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 创建围栏绑定信息
+        # > 创建围栏绑定信息。
 
         # @param request: Request instance for CreateFenceBind.
         # @type request: :class:`Tencentcloud::iotexplorer::V20190423::CreateFenceBindRequest`
@@ -557,7 +557,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 创建围栏
+        # 创建围栏。
 
         # @param request: Request instance for CreatePositionFence.
         # @type request: :class:`Tencentcloud::iotexplorer::V20190423::CreatePositionFenceRequest`
@@ -821,7 +821,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 删除围栏绑定信息
+        # 删除围栏绑定信息。
 
         # @param request: Request instance for DeleteFenceBind.
         # @type request: :class:`Tencentcloud::iotexplorer::V20190423::DeleteFenceBindRequest`
@@ -893,7 +893,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 删除围栏
+        # 删除围栏。
 
         # @param request: Request instance for DeletePositionFence.
         # @type request: :class:`Tencentcloud::iotexplorer::V20190423::DeletePositionFenceRequest`
@@ -917,7 +917,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 删除位置空间
+        # 删除位置空间。
 
         # @param request: Request instance for DeletePositionSpace.
         # @type request: :class:`Tencentcloud::iotexplorer::V20190423::DeletePositionSpaceRequest`
@@ -1807,7 +1807,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 获取围栏绑定信息列表
+        # 获取围栏绑定信息列表。
 
         # @param request: Request instance for DescribeFenceBindList.
         # @type request: :class:`Tencentcloud::iotexplorer::V20190423::DescribeFenceBindListRequest`
@@ -1831,7 +1831,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 获取围栏告警事件列表
+        # 获取围栏告警事件列表。
 
         # @param request: Request instance for DescribeFenceEventList.
         # @type request: :class:`Tencentcloud::iotexplorer::V20190423::DescribeFenceEventListRequest`
@@ -2239,7 +2239,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 获取位置空间中围栏告警事件列表
+        # 获取位置空间中围栏告警事件列表。
 
         # @param request: Request instance for DescribeSpaceFenceEventList.
         # @type request: :class:`Tencentcloud::iotexplorer::V20190423::DescribeSpaceFenceEventListRequest`
@@ -3055,6 +3055,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取某个时间段的视频内容关键字
+
+        # @param request: Request instance for InvokeVideosKeywordsAnalyzer.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::InvokeVideosKeywordsAnalyzerRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::InvokeVideosKeywordsAnalyzerResponse`
+        def InvokeVideosKeywordsAnalyzer(request)
+          body = send_request('InvokeVideosKeywordsAnalyzer', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = InvokeVideosKeywordsAnalyzerResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取设备的历史事件
 
         # @param request: Request instance for ListEventHistory.
@@ -3199,7 +3223,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 更新围栏绑定信息
+        # 更新围栏绑定信息。
 
         # @param request: Request instance for ModifyFenceBind.
         # @type request: :class:`Tencentcloud::iotexplorer::V20190423::ModifyFenceBindRequest`
@@ -3295,7 +3319,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 更新围栏
+        # 更新围栏。
 
         # @param request: Request instance for ModifyPositionFence.
         # @type request: :class:`Tencentcloud::iotexplorer::V20190423::ModifyPositionFenceRequest`
@@ -3319,7 +3343,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 更新位置空间
+        # 更新位置空间。
 
         # @param request: Request instance for ModifyPositionSpace.
         # @type request: :class:`Tencentcloud::iotexplorer::V20190423::ModifyPositionSpaceRequest`

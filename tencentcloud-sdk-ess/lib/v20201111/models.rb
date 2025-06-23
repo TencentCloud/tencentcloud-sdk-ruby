@@ -1320,9 +1320,11 @@ module TencentCloud
 
         # <font color="red">ComponentType为WATERMARK时</font>，支持以下参数：
         # <ul><li> <b>Font</b>：目前只支持黑体、宋体、仿宋</li>
-        # <li> <b>FontSize</b>： 范围6 :24</li>
+        # <li> <b>FontSize</b>： 范围6 :72</li>
         # <li> <b>Opacity</b>： 透明度，范围0 :1</li>
+        # <li> <b>Rotate</b>： 水印旋转角度，范围0 :359</li>
         # <li> <b>Density</b>： 水印样式，1-宽松，2-标准（默认值），3-密集，</li>
+        # <li> <b>Position</b>： 水印位置，None-平铺（默认值），LeftTop-左上，LeftBottom-左下，RightTop-右上，RightBottom-右下，Center-居中</li>
         # <li> <b>SubType</b>： 水印类型：CUSTOM_WATERMARK-自定义内容，PERSON_INFO_WATERMARK-访问者信息</li></ul>
         # <b>参数样例</b>：`"{\"Font\":\"黑体\",\"FontSize\":20,\"Opacity\":0.1,\"Density\":2,\"SubType\":\"PERSON_INFO_WATERMARK\"}"`
 
@@ -5043,9 +5045,8 @@ module TencentCloud
         # @param AuthorizationTypes: 指定授权方式 支持多选:
 
         # <ul>
-        # <li><strong>1</strong>:上传授权书方式</li>
         # <li><strong>2</strong>: 法人授权方式</li>
-        # <li><strong>3</strong>: 法人身份认证方式</li>
+        # <li><strong>5</strong>: 授权书+对公打款方式</li>
         # </ul>
         # @type AuthorizationTypes: Array
         # @param OrganizationName: 认证企业名称，请确认该名称与企业营业执照中注册的名称一致。
@@ -10479,7 +10480,7 @@ module TencentCloud
         # 注意，在合同中，不同的或签参与人必须保证其CustomApproverTag唯一。
         # 如果或签签署人为本方企业微信参与人，则需要指定ApproverSource参数为WEWORKAPP。
         # @type CustomApproverTag: String
-        # @param RegisterInfo: <font color="red">不再使用</font >, 快速注册相关信息
+        # @param RegisterInfo: 快速注册相关信息
         # @type RegisterInfo: :class:`Tencentcloud::Ess.v20201111.models.RegisterInfo`
         # @param ApproverOption: 签署人个性化能力值，如是否可以转发他人处理、是否可以拒签、是否为动态补充签署人等功能开关。
         # @type ApproverOption: :class:`Tencentcloud::Ess.v20201111.models.ApproverOption`
@@ -12347,6 +12348,77 @@ module TencentCloud
         end
       end
 
+      # ModifyPartnerAutoSignAuthUrl请求参数结构体
+      class ModifyPartnerAutoSignAuthUrlRequest < TencentCloud::Common::AbstractModel
+        # @param Agent: 代理企业和员工的信息。<br/>在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
+        # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
+        # @param Operator: 执行本接口操作的员工信息。<br/>注: `在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。`
+        # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
+        # @param AuthorizedOrganizationId: 被授企业id/授权方企业id（即OrganizationId），和AuthorizedOrganizationName二选一传入
+        # @type AuthorizedOrganizationId: String
+        # @param AuthorizedOrganizationName: 被授企业名称/授权方企业的名字，和AuthorizedOrganizationId二选一传入即可。请确认该名称与企业营业执照中注册的名称一致。
+        # 注: `如果名称中包含英文括号()，请使用中文括号（）代替。`
+        # @type AuthorizedOrganizationName: String
+        # @param AuthToMe: 在处理授权关系时，授权的方向
+        # <ul>
+        # <li><strong>false</strong>（默认值）：表示我方授权他方。在这种情况下，<code>AuthorizedOrganizationName</code> 代表的是【被授权方】的企业名称，即接收授权的企业。</li>
+        # <li><strong>true</strong>：表示他方授权我方。在这种情况下，<code>AuthorizedOrganizationName</code> 代表的是【授权方】的企业名称，即提供授权的企业。</li>
+        # </ul>
+        # @type AuthToMe: Boolean
+
+        attr_accessor :Agent, :Operator, :AuthorizedOrganizationId, :AuthorizedOrganizationName, :AuthToMe
+
+        def initialize(agent=nil, operator=nil, authorizedorganizationid=nil, authorizedorganizationname=nil, authtome=nil)
+          @Agent = agent
+          @Operator = operator
+          @AuthorizedOrganizationId = authorizedorganizationid
+          @AuthorizedOrganizationName = authorizedorganizationname
+          @AuthToMe = authtome
+        end
+
+        def deserialize(params)
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
+          @AuthorizedOrganizationId = params['AuthorizedOrganizationId']
+          @AuthorizedOrganizationName = params['AuthorizedOrganizationName']
+          @AuthToMe = params['AuthToMe']
+        end
+      end
+
+      # ModifyPartnerAutoSignAuthUrl返回参数结构体
+      class ModifyPartnerAutoSignAuthUrlResponse < TencentCloud::Common::AbstractModel
+        # @param Url: 授权链接，以短链形式返回，短链的有效期参考回参中的 ExpiredTime。
+        # @type Url: String
+        # @param MiniAppPath: 从客户小程序或者客户APP跳转至腾讯电子签小程序进行批量签署的跳转路径
+        # @type MiniAppPath: String
+        # @param ExpireTime: 链接过期时间以 Unix 时间戳格式表示，从生成链接时间起，往后7天有效期。过期后短链将失效，无法打开。
+        # @type ExpireTime: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Url, :MiniAppPath, :ExpireTime, :RequestId
+
+        def initialize(url=nil, miniapppath=nil, expiretime=nil, requestid=nil)
+          @Url = url
+          @MiniAppPath = miniapppath
+          @ExpireTime = expiretime
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Url = params['Url']
+          @MiniAppPath = params['MiniAppPath']
+          @ExpireTime = params['ExpireTime']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 需要进行签署审核的签署人信息
       class NeedReviewApproverInfo < TencentCloud::Common::AbstractModel
         # @param ApproverType: 签署方经办人的类型，支持以下类型
@@ -13128,22 +13200,31 @@ module TencentCloud
         # @type Uscc: String
         # @param UnifiedSocialCreditCode: 社会统一信用代码
         # @type UnifiedSocialCreditCode: String
+        # @param AuthorizationTypes: 指定企业认证的授权方式 支持多选:
 
-        attr_accessor :LegalName, :Uscc, :UnifiedSocialCreditCode
+        # <ul>
+        # <li><strong>2</strong>: 法人授权方式</li>
+        # <li><strong>5</strong>: 授权书+对公打款方式</li>
+        # </ul>
+        # @type AuthorizationTypes: Array
+
+        attr_accessor :LegalName, :Uscc, :UnifiedSocialCreditCode, :AuthorizationTypes
         extend Gem::Deprecate
         deprecate :Uscc, :none, 2025, 6
         deprecate :Uscc=, :none, 2025, 6
 
-        def initialize(legalname=nil, uscc=nil, unifiedsocialcreditcode=nil)
+        def initialize(legalname=nil, uscc=nil, unifiedsocialcreditcode=nil, authorizationtypes=nil)
           @LegalName = legalname
           @Uscc = uscc
           @UnifiedSocialCreditCode = unifiedsocialcreditcode
+          @AuthorizationTypes = authorizationtypes
         end
 
         def deserialize(params)
           @LegalName = params['LegalName']
           @Uscc = params['Uscc']
           @UnifiedSocialCreditCode = params['UnifiedSocialCreditCode']
+          @AuthorizationTypes = params['AuthorizationTypes']
         end
       end
 

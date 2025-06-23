@@ -4559,6 +4559,61 @@ module TencentCloud
         end
       end
 
+      # 呼转配置
+      class ForwardingConfig < TencentCloud::Common::AbstractModel
+        # @param Enabled: 是否启用
+        # @type Enabled: Boolean
+        # @param Condition: 1 无条件呼转 2 有条件呼转
+        # @type Condition: Integer
+        # @param Target: 呼转目标
+        # @type Target: :class:`Tencentcloud::Ccc.v20200210.models.ForwardingTarget`
+
+        attr_accessor :Enabled, :Condition, :Target
+
+        def initialize(enabled=nil, condition=nil, target=nil)
+          @Enabled = enabled
+          @Condition = condition
+          @Target = target
+        end
+
+        def deserialize(params)
+          @Enabled = params['Enabled']
+          @Condition = params['Condition']
+          unless params['Target'].nil?
+            @Target = ForwardingTarget.new
+            @Target.deserialize(params['Target'])
+          end
+        end
+      end
+
+      # 呼转目标
+      class ForwardingTarget < TencentCloud::Common::AbstractModel
+        # @param Type: 呼转目标类型 1 座席 2 技能组 3 分机
+        # @type Type: Integer
+        # @param StaffUserId: 呼转目标为座席的账号 Type 为 1 时填写
+        # @type StaffUserId: String
+        # @param SkillGroupId: 呼转目标为技能组的 ID，Type 为 2 时填写
+        # @type SkillGroupId: Integer
+        # @param Extension: 呼转目标为分机的账号，Type 为 3 时填写
+        # @type Extension: String
+
+        attr_accessor :Type, :StaffUserId, :SkillGroupId, :Extension
+
+        def initialize(type=nil, staffuserid=nil, skillgroupid=nil, extension=nil)
+          @Type = type
+          @StaffUserId = staffuserid
+          @SkillGroupId = skillgroupid
+          @Extension = extension
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @StaffUserId = params['StaffUserId']
+          @SkillGroupId = params['SkillGroupId']
+          @Extension = params['Extension']
+        end
+      end
+
       # HangUpCall请求参数结构体
       class HangUpCallRequest < TencentCloud::Common::AbstractModel
         # @param SdkAppId: 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
@@ -5754,8 +5809,7 @@ module TencentCloud
         # @type Nick: String
         # @param StaffNumber: 座席工号
         # @type StaffNumber: String
-        # @param RoleId: 用户角色id
-        # 一个用户绑定了多个角色时以RoleIdList为准
+        # @param RoleId: 用户角色 ID，一个用户绑定了多个角色时以RoleIdList为准
         # @type RoleId: Integer
         # @param RoleIdList: 用户角色id列表
         # @type RoleIdList: Integer
@@ -5767,15 +5821,17 @@ module TencentCloud
         # @type LastModifyTimestamp: Integer
         # @param ExtensionNumber: 座席分机号（1 到 8 打头，4 - 6 位）
         # @type ExtensionNumber: String
+        # @param ForwardingConfig: 呼叫转移配置
+        # @type ForwardingConfig: :class:`Tencentcloud::Ccc.v20200210.models.ForwardingConfig`
 
-        attr_accessor :Name, :Mail, :Phone, :Nick, :StaffNumber, :RoleId, :RoleIdList, :RoleList, :SkillGroupList, :LastModifyTimestamp, :ExtensionNumber
+        attr_accessor :Name, :Mail, :Phone, :Nick, :StaffNumber, :RoleId, :RoleIdList, :RoleList, :SkillGroupList, :LastModifyTimestamp, :ExtensionNumber, :ForwardingConfig
         extend Gem::Deprecate
         deprecate :RoleId, :none, 2025, 6
         deprecate :RoleId=, :none, 2025, 6
         deprecate :RoleIdList, :none, 2025, 6
         deprecate :RoleIdList=, :none, 2025, 6
 
-        def initialize(name=nil, mail=nil, phone=nil, nick=nil, staffnumber=nil, roleid=nil, roleidlist=nil, rolelist=nil, skillgrouplist=nil, lastmodifytimestamp=nil, extensionnumber=nil)
+        def initialize(name=nil, mail=nil, phone=nil, nick=nil, staffnumber=nil, roleid=nil, roleidlist=nil, rolelist=nil, skillgrouplist=nil, lastmodifytimestamp=nil, extensionnumber=nil, forwardingconfig=nil)
           @Name = name
           @Mail = mail
           @Phone = phone
@@ -5787,6 +5843,7 @@ module TencentCloud
           @SkillGroupList = skillgrouplist
           @LastModifyTimestamp = lastmodifytimestamp
           @ExtensionNumber = extensionnumber
+          @ForwardingConfig = forwardingconfig
         end
 
         def deserialize(params)
@@ -5808,6 +5865,10 @@ module TencentCloud
           end
           @LastModifyTimestamp = params['LastModifyTimestamp']
           @ExtensionNumber = params['ExtensionNumber']
+          unless params['ForwardingConfig'].nil?
+            @ForwardingConfig = ForwardingConfig.new
+            @ForwardingConfig.deserialize(params['ForwardingConfig'])
+          end
         end
       end
 

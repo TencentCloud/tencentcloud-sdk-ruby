@@ -4708,10 +4708,12 @@ module TencentCloud
         # @type LoadBalancerType: String
         # @param PublicIpAddresses: 公网IP地址列表
         # @type PublicIpAddresses: Array
+        # @param DeleteProtect: 是否开启删除保护
+        # @type DeleteProtect: Boolean
 
-        attr_accessor :GatewayId, :Status, :Name, :Type, :GatewayVersion, :NodeConfig, :VpcConfig, :Description, :CreateTime, :Tags, :EnableCls, :TradeType, :FeatureVersion, :InternetMaxBandwidthOut, :AutoRenewFlag, :CurDeadline, :IsolateTime, :EnableInternet, :EngineRegion, :IngressClassName, :InternetPayMode, :GatewayMinorVersion, :InstancePort, :LoadBalancerType, :PublicIpAddresses
+        attr_accessor :GatewayId, :Status, :Name, :Type, :GatewayVersion, :NodeConfig, :VpcConfig, :Description, :CreateTime, :Tags, :EnableCls, :TradeType, :FeatureVersion, :InternetMaxBandwidthOut, :AutoRenewFlag, :CurDeadline, :IsolateTime, :EnableInternet, :EngineRegion, :IngressClassName, :InternetPayMode, :GatewayMinorVersion, :InstancePort, :LoadBalancerType, :PublicIpAddresses, :DeleteProtect
 
-        def initialize(gatewayid=nil, status=nil, name=nil, type=nil, gatewayversion=nil, nodeconfig=nil, vpcconfig=nil, description=nil, createtime=nil, tags=nil, enablecls=nil, tradetype=nil, featureversion=nil, internetmaxbandwidthout=nil, autorenewflag=nil, curdeadline=nil, isolatetime=nil, enableinternet=nil, engineregion=nil, ingressclassname=nil, internetpaymode=nil, gatewayminorversion=nil, instanceport=nil, loadbalancertype=nil, publicipaddresses=nil)
+        def initialize(gatewayid=nil, status=nil, name=nil, type=nil, gatewayversion=nil, nodeconfig=nil, vpcconfig=nil, description=nil, createtime=nil, tags=nil, enablecls=nil, tradetype=nil, featureversion=nil, internetmaxbandwidthout=nil, autorenewflag=nil, curdeadline=nil, isolatetime=nil, enableinternet=nil, engineregion=nil, ingressclassname=nil, internetpaymode=nil, gatewayminorversion=nil, instanceport=nil, loadbalancertype=nil, publicipaddresses=nil, deleteprotect=nil)
           @GatewayId = gatewayid
           @Status = status
           @Name = name
@@ -4737,6 +4739,7 @@ module TencentCloud
           @InstancePort = instanceport
           @LoadBalancerType = loadbalancertype
           @PublicIpAddresses = publicipaddresses
+          @DeleteProtect = deleteprotect
         end
 
         def deserialize(params)
@@ -4781,6 +4784,7 @@ module TencentCloud
           end
           @LoadBalancerType = params['LoadBalancerType']
           @PublicIpAddresses = params['PublicIpAddresses']
+          @DeleteProtect = params['DeleteProtect']
         end
       end
 
@@ -9356,15 +9360,18 @@ module TencentCloud
         # @type EnableCls: Boolean
         # @param InternetPayMode: 公网计费模式。可选取值 BANDWIDTH | TRAFFIC ，表示按带宽和按流量计费。
         # @type InternetPayMode: String
+        # @param DeleteProtect: 是否开启实例删除保护,默认false
+        # @type DeleteProtect: Boolean
 
-        attr_accessor :GatewayId, :Name, :Description, :EnableCls, :InternetPayMode
+        attr_accessor :GatewayId, :Name, :Description, :EnableCls, :InternetPayMode, :DeleteProtect
 
-        def initialize(gatewayid=nil, name=nil, description=nil, enablecls=nil, internetpaymode=nil)
+        def initialize(gatewayid=nil, name=nil, description=nil, enablecls=nil, internetpaymode=nil, deleteprotect=nil)
           @GatewayId = gatewayid
           @Name = name
           @Description = description
           @EnableCls = enablecls
           @InternetPayMode = internetpaymode
+          @DeleteProtect = deleteprotect
         end
 
         def deserialize(params)
@@ -9373,6 +9380,7 @@ module TencentCloud
           @Description = params['Description']
           @EnableCls = params['EnableCls']
           @InternetPayMode = params['InternetPayMode']
+          @DeleteProtect = params['DeleteProtect']
         end
       end
 

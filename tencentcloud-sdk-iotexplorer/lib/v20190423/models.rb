@@ -3177,12 +3177,14 @@ module TencentCloud
         # @type Config: String
         # @param ROI: 视频分析识别区域
         # @type ROI: String
+        # @param PackageId: 云存 AI 套餐 ID
+        # @type PackageId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Type, :Status, :ExpireTime, :UserId, :Enabled, :Config, :ROI, :RequestId
+        attr_accessor :Type, :Status, :ExpireTime, :UserId, :Enabled, :Config, :ROI, :PackageId, :RequestId
 
-        def initialize(type=nil, status=nil, expiretime=nil, userid=nil, enabled=nil, config=nil, roi=nil, requestid=nil)
+        def initialize(type=nil, status=nil, expiretime=nil, userid=nil, enabled=nil, config=nil, roi=nil, packageid=nil, requestid=nil)
           @Type = type
           @Status = status
           @ExpireTime = expiretime
@@ -3190,6 +3192,7 @@ module TencentCloud
           @Enabled = enabled
           @Config = config
           @ROI = roi
+          @PackageId = packageid
           @RequestId = requestid
         end
 
@@ -3201,6 +3204,7 @@ module TencentCloud
           @Enabled = params['Enabled']
           @Config = params['Config']
           @ROI = params['ROI']
+          @PackageId = params['PackageId']
           @RequestId = params['RequestId']
         end
       end
@@ -7961,15 +7965,40 @@ module TencentCloud
         # @type SummaryLang: String
         # @param ChannelId: 通道ID
         # @type ChannelId: Integer
+        # @param EnableSummary: 是否需要返回总结，默认为False；  开启后会加大接口响应时长
+        # @type EnableSummary: Boolean
+        # @param StartTimeMs: 开始时间。
 
-        attr_accessor :ProductId, :DeviceName, :Query, :SummaryLang, :ChannelId
+        # 注：
+        # 1. 单位为毫秒（ms）
+        # 2. 如果同时指定了StartTimeMs与EndTimeMs，时间区间不能大于7天；如果只指定其中一个（例如只指定StartTimeMs，则查询自StartTimeMs后7天内的数据， 反之EndTimeMs也一样）
+        # 3. 只要指定了其中一个参数，接口则会忽略Query参数中关于时间的描述；（例如Query为"过去三天关于猫咪的视频"， 则会将"过去三天忽略"）
+        # @type StartTimeMs: Integer
+        # @param EndTimeMs: 结束时间。
 
-        def initialize(productid=nil, devicename=nil, query=nil, summarylang=nil, channelid=nil)
+        # 注：
+        # 1. 单位为毫秒（ms）
+        # 2. 如果同时指定了StartTimeMs与EndTimeMs，时间区间不能大于7天；如果只指定其中一个（例如只指定StartTimeMs，则查询自StartTimeMs后7天内的数据， 反之EndTimeMs也一样）
+        # 3. 只要指定了其中一个参数，接口则会忽略Query参数中关于时间的描述；（例如Query为"过去三天关于猫咪的视频"， 则会将"过去三天忽略"）
+        # @type EndTimeMs: Integer
+        # @param TimeZone: 时区。默认值：Asia/Shanghai
+
+        # 注：
+        # 符合iana标准 https://www.iana.org/time-zones，例如Asia/Shanghai、Asia/Bangkok
+        # @type TimeZone: String
+
+        attr_accessor :ProductId, :DeviceName, :Query, :SummaryLang, :ChannelId, :EnableSummary, :StartTimeMs, :EndTimeMs, :TimeZone
+
+        def initialize(productid=nil, devicename=nil, query=nil, summarylang=nil, channelid=nil, enablesummary=nil, starttimems=nil, endtimems=nil, timezone=nil)
           @ProductId = productid
           @DeviceName = devicename
           @Query = query
           @SummaryLang = summarylang
           @ChannelId = channelid
+          @EnableSummary = enablesummary
+          @StartTimeMs = starttimems
+          @EndTimeMs = endtimems
+          @TimeZone = timezone
         end
 
         def deserialize(params)
@@ -7978,6 +8007,10 @@ module TencentCloud
           @Query = params['Query']
           @SummaryLang = params['SummaryLang']
           @ChannelId = params['ChannelId']
+          @EnableSummary = params['EnableSummary']
+          @StartTimeMs = params['StartTimeMs']
+          @EndTimeMs = params['EndTimeMs']
+          @TimeZone = params['TimeZone']
         end
       end
 
@@ -8261,6 +8294,66 @@ module TencentCloud
             @Result = VisionRecognitionResult.new
             @Result.deserialize(params['Result'])
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # InvokeVideosKeywordsAnalyzer请求参数结构体
+      class InvokeVideosKeywordsAnalyzerRequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: 产品ID
+        # @type ProductId: String
+        # @param DeviceName: 设备名称
+        # @type DeviceName: String
+        # @param StartTimeMs: 开始时间。
+
+        # 注：
+        # 1. 单位为毫秒（ms）
+        # 2. 时间区间必须控制在某一个自然天内，不支持跨天
+        # @type StartTimeMs: Integer
+        # @param EndTimeMs: 结束时间。
+
+        # 注：
+        # 1. 单位为毫秒（ms）
+        # 2. 时间区间必须控制在某一个自然天内，不支持跨天
+        # @type EndTimeMs: Integer
+        # @param KeywordsMaxNum: 返回的关键字最大数量，默认为5；最大不能超过10
+        # @type KeywordsMaxNum: Integer
+
+        attr_accessor :ProductId, :DeviceName, :StartTimeMs, :EndTimeMs, :KeywordsMaxNum
+
+        def initialize(productid=nil, devicename=nil, starttimems=nil, endtimems=nil, keywordsmaxnum=nil)
+          @ProductId = productid
+          @DeviceName = devicename
+          @StartTimeMs = starttimems
+          @EndTimeMs = endtimems
+          @KeywordsMaxNum = keywordsmaxnum
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @DeviceName = params['DeviceName']
+          @StartTimeMs = params['StartTimeMs']
+          @EndTimeMs = params['EndTimeMs']
+          @KeywordsMaxNum = params['KeywordsMaxNum']
+        end
+      end
+
+      # InvokeVideosKeywordsAnalyzer返回参数结构体
+      class InvokeVideosKeywordsAnalyzerResponse < TencentCloud::Common::AbstractModel
+        # @param Keywords: 基于搜索结果的总结
+        # @type Keywords: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Keywords, :RequestId
+
+        def initialize(keywords=nil, requestid=nil)
+          @Keywords = keywords
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Keywords = params['Keywords']
           @RequestId = params['RequestId']
         end
       end

@@ -1533,6 +1533,16 @@ module TencentCloud
         # @type GroupNamePath: String
         # @param CriticalVulListCount: 未修复高危漏洞数(只支持32位)
         # @type CriticalVulListCount: Integer
+        # @param Os: 操作系统名称
+        # @type Os: String
+        # @param OsBits: 操作系统位数
+        # @type OsBits: Integer
+        # @param OsVersion: 操作系统版本
+        # @type OsVersion: String
+        # @param OsLanguage: 操作系统语言
+        # @type OsLanguage: String
+        # @param OsInstallDate: 操作系统安装时间
+        # @type OsInstallDate: String
         # @param ComputerName: 设备名，和Name相同
         # @type ComputerName: String
         # @param DomainName: 登录域名
@@ -1588,9 +1598,9 @@ module TencentCloud
         # @param RemarkName: 终端备注名
         # @type RemarkName: String
 
-        attr_accessor :Id, :Mid, :Name, :GroupId, :OsType, :Ip, :OnlineStatus, :Version, :StrVersion, :Itime, :ConnActiveTime, :Locked, :LocalIpList, :HostId, :GroupName, :GroupNamePath, :CriticalVulListCount, :ComputerName, :DomainName, :MacAddr, :VulCount, :RiskCount, :VirusVer, :VulVersion, :SysRepVersion, :VulCriticalList, :Tags, :UserName, :FirewallStatus, :SerialNum, :DeviceStrategyVer, :NGNStrategyVer, :IOAUserName, :DeviceNewStrategyVer, :NGNNewStrategyVer, :HostName, :BaseBoardSn, :AccountUsers, :IdentityStrategyVer, :IdentityNewStrategyVer, :AccountGroupName, :AccountName, :AccountGroupId, :RemarkName
+        attr_accessor :Id, :Mid, :Name, :GroupId, :OsType, :Ip, :OnlineStatus, :Version, :StrVersion, :Itime, :ConnActiveTime, :Locked, :LocalIpList, :HostId, :GroupName, :GroupNamePath, :CriticalVulListCount, :Os, :OsBits, :OsVersion, :OsLanguage, :OsInstallDate, :ComputerName, :DomainName, :MacAddr, :VulCount, :RiskCount, :VirusVer, :VulVersion, :SysRepVersion, :VulCriticalList, :Tags, :UserName, :FirewallStatus, :SerialNum, :DeviceStrategyVer, :NGNStrategyVer, :IOAUserName, :DeviceNewStrategyVer, :NGNNewStrategyVer, :HostName, :BaseBoardSn, :AccountUsers, :IdentityStrategyVer, :IdentityNewStrategyVer, :AccountGroupName, :AccountName, :AccountGroupId, :RemarkName
 
-        def initialize(id=nil, mid=nil, name=nil, groupid=nil, ostype=nil, ip=nil, onlinestatus=nil, version=nil, strversion=nil, itime=nil, connactivetime=nil, locked=nil, localiplist=nil, hostid=nil, groupname=nil, groupnamepath=nil, criticalvullistcount=nil, computername=nil, domainname=nil, macaddr=nil, vulcount=nil, riskcount=nil, virusver=nil, vulversion=nil, sysrepversion=nil, vulcriticallist=nil, tags=nil, username=nil, firewallstatus=nil, serialnum=nil, devicestrategyver=nil, ngnstrategyver=nil, ioausername=nil, devicenewstrategyver=nil, ngnnewstrategyver=nil, hostname=nil, baseboardsn=nil, accountusers=nil, identitystrategyver=nil, identitynewstrategyver=nil, accountgroupname=nil, accountname=nil, accountgroupid=nil, remarkname=nil)
+        def initialize(id=nil, mid=nil, name=nil, groupid=nil, ostype=nil, ip=nil, onlinestatus=nil, version=nil, strversion=nil, itime=nil, connactivetime=nil, locked=nil, localiplist=nil, hostid=nil, groupname=nil, groupnamepath=nil, criticalvullistcount=nil, os=nil, osbits=nil, osversion=nil, oslanguage=nil, osinstalldate=nil, computername=nil, domainname=nil, macaddr=nil, vulcount=nil, riskcount=nil, virusver=nil, vulversion=nil, sysrepversion=nil, vulcriticallist=nil, tags=nil, username=nil, firewallstatus=nil, serialnum=nil, devicestrategyver=nil, ngnstrategyver=nil, ioausername=nil, devicenewstrategyver=nil, ngnnewstrategyver=nil, hostname=nil, baseboardsn=nil, accountusers=nil, identitystrategyver=nil, identitynewstrategyver=nil, accountgroupname=nil, accountname=nil, accountgroupid=nil, remarkname=nil)
           @Id = id
           @Mid = mid
           @Name = name
@@ -1608,6 +1618,11 @@ module TencentCloud
           @GroupName = groupname
           @GroupNamePath = groupnamepath
           @CriticalVulListCount = criticalvullistcount
+          @Os = os
+          @OsBits = osbits
+          @OsVersion = osversion
+          @OsLanguage = oslanguage
+          @OsInstallDate = osinstalldate
           @ComputerName = computername
           @DomainName = domainname
           @MacAddr = macaddr
@@ -1655,6 +1670,11 @@ module TencentCloud
           @GroupName = params['GroupName']
           @GroupNamePath = params['GroupNamePath']
           @CriticalVulListCount = params['CriticalVulListCount']
+          @Os = params['Os']
+          @OsBits = params['OsBits']
+          @OsVersion = params['OsVersion']
+          @OsLanguage = params['OsLanguage']
+          @OsInstallDate = params['OsInstallDate']
           @ComputerName = params['ComputerName']
           @DomainName = params['DomainName']
           @MacAddr = params['MacAddr']

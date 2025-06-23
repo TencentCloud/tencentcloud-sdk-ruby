@@ -11056,10 +11056,16 @@ module TencentCloud
         # @param SaleInventory: 销货清单
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SaleInventory: :class:`Tencentcloud::Ocr.v20181119.models.SaleInventory`
+        # @param MotorVehicleSaleInvoiceElectronic: 机动车销售统一发票（电子）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MotorVehicleSaleInvoiceElectronic: :class:`Tencentcloud::Ocr.v20181119.models.MotorVehicleSaleInvoice`
+        # @param UsedCarPurchaseInvoiceElectronic: 二手车销售统一发票（电子）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UsedCarPurchaseInvoiceElectronic: :class:`Tencentcloud::Ocr.v20181119.models.UsedCarPurchaseInvoice`
 
-        attr_accessor :VatSpecialInvoice, :VatCommonInvoice, :VatElectronicCommonInvoice, :VatElectronicSpecialInvoice, :VatElectronicInvoiceBlockchain, :VatElectronicInvoiceToll, :VatElectronicSpecialInvoiceFull, :VatElectronicInvoiceFull, :MachinePrintedInvoice, :BusInvoice, :ShippingInvoice, :TollInvoice, :OtherInvoice, :MotorVehicleSaleInvoice, :UsedCarPurchaseInvoice, :VatInvoiceRoll, :TaxiTicket, :QuotaInvoice, :AirTransport, :NonTaxIncomeGeneralBill, :NonTaxIncomeElectronicBill, :TrainTicket, :MedicalOutpatientInvoice, :MedicalHospitalizedInvoice, :VatSalesList, :ElectronicTrainTicketFull, :ElectronicFlightTicketFull, :TaxPayment, :CustomsPaymentReceipt, :BankSlip, :OnlineTaxiItinerary, :CustomsDeclaration, :OverseasInvoice, :ShoppingReceipt, :SaleInventory
+        attr_accessor :VatSpecialInvoice, :VatCommonInvoice, :VatElectronicCommonInvoice, :VatElectronicSpecialInvoice, :VatElectronicInvoiceBlockchain, :VatElectronicInvoiceToll, :VatElectronicSpecialInvoiceFull, :VatElectronicInvoiceFull, :MachinePrintedInvoice, :BusInvoice, :ShippingInvoice, :TollInvoice, :OtherInvoice, :MotorVehicleSaleInvoice, :UsedCarPurchaseInvoice, :VatInvoiceRoll, :TaxiTicket, :QuotaInvoice, :AirTransport, :NonTaxIncomeGeneralBill, :NonTaxIncomeElectronicBill, :TrainTicket, :MedicalOutpatientInvoice, :MedicalHospitalizedInvoice, :VatSalesList, :ElectronicTrainTicketFull, :ElectronicFlightTicketFull, :TaxPayment, :CustomsPaymentReceipt, :BankSlip, :OnlineTaxiItinerary, :CustomsDeclaration, :OverseasInvoice, :ShoppingReceipt, :SaleInventory, :MotorVehicleSaleInvoiceElectronic, :UsedCarPurchaseInvoiceElectronic
 
-        def initialize(vatspecialinvoice=nil, vatcommoninvoice=nil, vatelectroniccommoninvoice=nil, vatelectronicspecialinvoice=nil, vatelectronicinvoiceblockchain=nil, vatelectronicinvoicetoll=nil, vatelectronicspecialinvoicefull=nil, vatelectronicinvoicefull=nil, machineprintedinvoice=nil, businvoice=nil, shippinginvoice=nil, tollinvoice=nil, otherinvoice=nil, motorvehiclesaleinvoice=nil, usedcarpurchaseinvoice=nil, vatinvoiceroll=nil, taxiticket=nil, quotainvoice=nil, airtransport=nil, nontaxincomegeneralbill=nil, nontaxincomeelectronicbill=nil, trainticket=nil, medicaloutpatientinvoice=nil, medicalhospitalizedinvoice=nil, vatsaleslist=nil, electronictrainticketfull=nil, electronicflightticketfull=nil, taxpayment=nil, customspaymentreceipt=nil, bankslip=nil, onlinetaxiitinerary=nil, customsdeclaration=nil, overseasinvoice=nil, shoppingreceipt=nil, saleinventory=nil)
+        def initialize(vatspecialinvoice=nil, vatcommoninvoice=nil, vatelectroniccommoninvoice=nil, vatelectronicspecialinvoice=nil, vatelectronicinvoiceblockchain=nil, vatelectronicinvoicetoll=nil, vatelectronicspecialinvoicefull=nil, vatelectronicinvoicefull=nil, machineprintedinvoice=nil, businvoice=nil, shippinginvoice=nil, tollinvoice=nil, otherinvoice=nil, motorvehiclesaleinvoice=nil, usedcarpurchaseinvoice=nil, vatinvoiceroll=nil, taxiticket=nil, quotainvoice=nil, airtransport=nil, nontaxincomegeneralbill=nil, nontaxincomeelectronicbill=nil, trainticket=nil, medicaloutpatientinvoice=nil, medicalhospitalizedinvoice=nil, vatsaleslist=nil, electronictrainticketfull=nil, electronicflightticketfull=nil, taxpayment=nil, customspaymentreceipt=nil, bankslip=nil, onlinetaxiitinerary=nil, customsdeclaration=nil, overseasinvoice=nil, shoppingreceipt=nil, saleinventory=nil, motorvehiclesaleinvoiceelectronic=nil, usedcarpurchaseinvoiceelectronic=nil)
           @VatSpecialInvoice = vatspecialinvoice
           @VatCommonInvoice = vatcommoninvoice
           @VatElectronicCommonInvoice = vatelectroniccommoninvoice
@@ -11095,6 +11101,8 @@ module TencentCloud
           @OverseasInvoice = overseasinvoice
           @ShoppingReceipt = shoppingreceipt
           @SaleInventory = saleinventory
+          @MotorVehicleSaleInvoiceElectronic = motorvehiclesaleinvoiceelectronic
+          @UsedCarPurchaseInvoiceElectronic = usedcarpurchaseinvoiceelectronic
         end
 
         def deserialize(params)
@@ -11237,6 +11245,14 @@ module TencentCloud
           unless params['SaleInventory'].nil?
             @SaleInventory = SaleInventory.new
             @SaleInventory.deserialize(params['SaleInventory'])
+          end
+          unless params['MotorVehicleSaleInvoiceElectronic'].nil?
+            @MotorVehicleSaleInvoiceElectronic = MotorVehicleSaleInvoice.new
+            @MotorVehicleSaleInvoiceElectronic.deserialize(params['MotorVehicleSaleInvoiceElectronic'])
+          end
+          unless params['UsedCarPurchaseInvoiceElectronic'].nil?
+            @UsedCarPurchaseInvoiceElectronic = UsedCarPurchaseInvoice.new
+            @UsedCarPurchaseInvoiceElectronic.deserialize(params['UsedCarPurchaseInvoiceElectronic'])
           end
         end
       end

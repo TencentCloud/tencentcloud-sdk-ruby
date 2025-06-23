@@ -722,30 +722,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 用于实时检索在UploadDocRealtime接口上传的实时文档内容。 使用场景：适用于在会话中对文档进行问答的场景
-
-        # @param request: Request instance for RetrieveKnowledgeRealtime.
-        # @type request: :class:`Tencentcloud::lkeap::V20240522::RetrieveKnowledgeRealtimeRequest`
-        # @rtype: :class:`Tencentcloud::lkeap::V20240522::RetrieveKnowledgeRealtimeResponse`
-        def RetrieveKnowledgeRealtime(request)
-          body = send_request('RetrieveKnowledgeRealtime', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = RetrieveKnowledgeRealtimeResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 基于知识引擎精调模型技术的rerank模型，支持对多路召回的结果进行重排序，根据query与切片内容的相关性，按分数由高到低对切片进行排序，并输出对应的打分结果。
 
         # @param request: Request instance for RunRerank.
