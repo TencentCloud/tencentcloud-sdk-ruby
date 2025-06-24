@@ -1691,21 +1691,25 @@ module TencentCloud
       class DescribeAndroidInstanceImagesRequest < TencentCloud::Common::AbstractModel
         # @param AndroidInstanceImageIds: 镜像 ID 列表
         # @type AndroidInstanceImageIds: Array
+        # @param AndroidInstanceImageZones: 镜像可用区列表
+        # @type AndroidInstanceImageZones: Array
         # @param Offset: 偏移量，默认为0
         # @type Offset: Integer
         # @param Limit: 限制量，默认为20，最大值为100
         # @type Limit: Integer
 
-        attr_accessor :AndroidInstanceImageIds, :Offset, :Limit
+        attr_accessor :AndroidInstanceImageIds, :AndroidInstanceImageZones, :Offset, :Limit
 
-        def initialize(androidinstanceimageids=nil, offset=nil, limit=nil)
+        def initialize(androidinstanceimageids=nil, androidinstanceimagezones=nil, offset=nil, limit=nil)
           @AndroidInstanceImageIds = androidinstanceimageids
+          @AndroidInstanceImageZones = androidinstanceimagezones
           @Offset = offset
           @Limit = limit
         end
 
         def deserialize(params)
           @AndroidInstanceImageIds = params['AndroidInstanceImageIds']
+          @AndroidInstanceImageZones = params['AndroidInstanceImageZones']
           @Offset = params['Offset']
           @Limit = params['Limit']
         end

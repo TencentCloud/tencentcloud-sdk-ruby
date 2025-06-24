@@ -14249,6 +14249,8 @@ module TencentCloud
         # @type StreamName: String
         # @param Id: 云端特效 ID。
         # @type Id: String
+        # @param LoopTimes: 默认随系统配置，云端特效循环 少于5次。可自定义指定礼物循环次数，不超过100次。
+        # @type LoopTimes: Integer
         # @param Operator: 操作人备注信息。
         # @type Operator: String
         # @param ZoomFactor: 缩小比例，默认0 不缩放。
@@ -14261,13 +14263,14 @@ module TencentCloud
         # 原点为画面左上角，该参数指定特效渲染离原点的纵向比例，可选值 0 - 100。
         # @type YPosition: String
 
-        attr_accessor :AppName, :PushDomainName, :StreamName, :Id, :Operator, :ZoomFactor, :XPosition, :YPosition
+        attr_accessor :AppName, :PushDomainName, :StreamName, :Id, :LoopTimes, :Operator, :ZoomFactor, :XPosition, :YPosition
 
-        def initialize(appname=nil, pushdomainname=nil, streamname=nil, id=nil, operator=nil, zoomfactor=nil, xposition=nil, yposition=nil)
+        def initialize(appname=nil, pushdomainname=nil, streamname=nil, id=nil, looptimes=nil, operator=nil, zoomfactor=nil, xposition=nil, yposition=nil)
           @AppName = appname
           @PushDomainName = pushdomainname
           @StreamName = streamname
           @Id = id
+          @LoopTimes = looptimes
           @Operator = operator
           @ZoomFactor = zoomfactor
           @XPosition = xposition
@@ -14279,6 +14282,7 @@ module TencentCloud
           @PushDomainName = params['PushDomainName']
           @StreamName = params['StreamName']
           @Id = params['Id']
+          @LoopTimes = params['LoopTimes']
           @Operator = params['Operator']
           @ZoomFactor = params['ZoomFactor']
           @XPosition = params['XPosition']

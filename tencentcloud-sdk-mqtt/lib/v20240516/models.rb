@@ -1942,12 +1942,20 @@ module TencentCloud
         # @type MaxSubscription: Integer
         # @param AuthorizationPolicy: 授权策略开关
         # @type AuthorizationPolicy: Boolean
+        # @param SharedSubscriptionGroupLimit: 共享订阅组数最大限制
+        # @type SharedSubscriptionGroupLimit: Integer
+        # @param MaxTopicFilterPerSharedSubscriptionGroup: 单个共享订阅组TopicFilter数限制
+        # @type MaxTopicFilterPerSharedSubscriptionGroup: Integer
+        # @param AutoSubscriptionPolicyLimit: 自动订阅规则条数限制
+        # @type AutoSubscriptionPolicyLimit: Integer
+        # @param MaxTopicFilterPerAutoSubscriptionPolicy: 单条自动订阅规则TopicFilter数限制
+        # @type MaxTopicFilterPerAutoSubscriptionPolicy: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :InstanceType, :InstanceId, :InstanceName, :TopicNum, :TopicNumLimit, :TpsLimit, :CreatedTime, :Remark, :InstanceStatus, :SkuCode, :MaxSubscriptionPerClient, :AuthorizationPolicyLimit, :ClientNumLimit, :DeviceCertificateProvisionType, :AutomaticActivation, :RenewFlag, :PayMode, :ExpiryTime, :DestroyTime, :X509Mode, :MaxCaNum, :RegistrationCode, :MaxSubscription, :AuthorizationPolicy, :RequestId
+        attr_accessor :InstanceType, :InstanceId, :InstanceName, :TopicNum, :TopicNumLimit, :TpsLimit, :CreatedTime, :Remark, :InstanceStatus, :SkuCode, :MaxSubscriptionPerClient, :AuthorizationPolicyLimit, :ClientNumLimit, :DeviceCertificateProvisionType, :AutomaticActivation, :RenewFlag, :PayMode, :ExpiryTime, :DestroyTime, :X509Mode, :MaxCaNum, :RegistrationCode, :MaxSubscription, :AuthorizationPolicy, :SharedSubscriptionGroupLimit, :MaxTopicFilterPerSharedSubscriptionGroup, :AutoSubscriptionPolicyLimit, :MaxTopicFilterPerAutoSubscriptionPolicy, :RequestId
 
-        def initialize(instancetype=nil, instanceid=nil, instancename=nil, topicnum=nil, topicnumlimit=nil, tpslimit=nil, createdtime=nil, remark=nil, instancestatus=nil, skucode=nil, maxsubscriptionperclient=nil, authorizationpolicylimit=nil, clientnumlimit=nil, devicecertificateprovisiontype=nil, automaticactivation=nil, renewflag=nil, paymode=nil, expirytime=nil, destroytime=nil, x509mode=nil, maxcanum=nil, registrationcode=nil, maxsubscription=nil, authorizationpolicy=nil, requestid=nil)
+        def initialize(instancetype=nil, instanceid=nil, instancename=nil, topicnum=nil, topicnumlimit=nil, tpslimit=nil, createdtime=nil, remark=nil, instancestatus=nil, skucode=nil, maxsubscriptionperclient=nil, authorizationpolicylimit=nil, clientnumlimit=nil, devicecertificateprovisiontype=nil, automaticactivation=nil, renewflag=nil, paymode=nil, expirytime=nil, destroytime=nil, x509mode=nil, maxcanum=nil, registrationcode=nil, maxsubscription=nil, authorizationpolicy=nil, sharedsubscriptiongrouplimit=nil, maxtopicfilterpersharedsubscriptiongroup=nil, autosubscriptionpolicylimit=nil, maxtopicfilterperautosubscriptionpolicy=nil, requestid=nil)
           @InstanceType = instancetype
           @InstanceId = instanceid
           @InstanceName = instancename
@@ -1972,6 +1980,10 @@ module TencentCloud
           @RegistrationCode = registrationcode
           @MaxSubscription = maxsubscription
           @AuthorizationPolicy = authorizationpolicy
+          @SharedSubscriptionGroupLimit = sharedsubscriptiongrouplimit
+          @MaxTopicFilterPerSharedSubscriptionGroup = maxtopicfilterpersharedsubscriptiongroup
+          @AutoSubscriptionPolicyLimit = autosubscriptionpolicylimit
+          @MaxTopicFilterPerAutoSubscriptionPolicy = maxtopicfilterperautosubscriptionpolicy
           @RequestId = requestid
         end
 
@@ -2000,6 +2012,10 @@ module TencentCloud
           @RegistrationCode = params['RegistrationCode']
           @MaxSubscription = params['MaxSubscription']
           @AuthorizationPolicy = params['AuthorizationPolicy']
+          @SharedSubscriptionGroupLimit = params['SharedSubscriptionGroupLimit']
+          @MaxTopicFilterPerSharedSubscriptionGroup = params['MaxTopicFilterPerSharedSubscriptionGroup']
+          @AutoSubscriptionPolicyLimit = params['AutoSubscriptionPolicyLimit']
+          @MaxTopicFilterPerAutoSubscriptionPolicy = params['MaxTopicFilterPerAutoSubscriptionPolicy']
           @RequestId = params['RequestId']
         end
       end
@@ -2795,10 +2811,18 @@ module TencentCloud
         # @type MaxCaNum: Integer
         # @param MaxSubscription: 最大订阅数
         # @type MaxSubscription: Integer
+        # @param SharedSubscriptionGroupLimit: 共享订阅组数最大限制
+        # @type SharedSubscriptionGroupLimit: Integer
+        # @param MaxTopicFilterPerSharedSubscriptionGroup: 单个共享订阅组TopicFilter数限制
+        # @type MaxTopicFilterPerSharedSubscriptionGroup: Integer
+        # @param AutoSubscriptionPolicyLimit: 自动订阅规则条数限制
+        # @type AutoSubscriptionPolicyLimit: Integer
+        # @param MaxTopicFilterPerAutoSubscriptionPolicy: 单条自动订阅规则TopicFilter数限制
+        # @type MaxTopicFilterPerAutoSubscriptionPolicy: Integer
 
-        attr_accessor :InstanceId, :InstanceName, :Version, :InstanceType, :InstanceStatus, :TopicNumLimit, :Remark, :TopicNum, :SkuCode, :TpsLimit, :CreateTime, :MaxSubscriptionPerClient, :ClientNumLimit, :RenewFlag, :PayMode, :ExpiryTime, :DestroyTime, :AuthorizationPolicyLimit, :MaxCaNum, :MaxSubscription
+        attr_accessor :InstanceId, :InstanceName, :Version, :InstanceType, :InstanceStatus, :TopicNumLimit, :Remark, :TopicNum, :SkuCode, :TpsLimit, :CreateTime, :MaxSubscriptionPerClient, :ClientNumLimit, :RenewFlag, :PayMode, :ExpiryTime, :DestroyTime, :AuthorizationPolicyLimit, :MaxCaNum, :MaxSubscription, :SharedSubscriptionGroupLimit, :MaxTopicFilterPerSharedSubscriptionGroup, :AutoSubscriptionPolicyLimit, :MaxTopicFilterPerAutoSubscriptionPolicy
 
-        def initialize(instanceid=nil, instancename=nil, version=nil, instancetype=nil, instancestatus=nil, topicnumlimit=nil, remark=nil, topicnum=nil, skucode=nil, tpslimit=nil, createtime=nil, maxsubscriptionperclient=nil, clientnumlimit=nil, renewflag=nil, paymode=nil, expirytime=nil, destroytime=nil, authorizationpolicylimit=nil, maxcanum=nil, maxsubscription=nil)
+        def initialize(instanceid=nil, instancename=nil, version=nil, instancetype=nil, instancestatus=nil, topicnumlimit=nil, remark=nil, topicnum=nil, skucode=nil, tpslimit=nil, createtime=nil, maxsubscriptionperclient=nil, clientnumlimit=nil, renewflag=nil, paymode=nil, expirytime=nil, destroytime=nil, authorizationpolicylimit=nil, maxcanum=nil, maxsubscription=nil, sharedsubscriptiongrouplimit=nil, maxtopicfilterpersharedsubscriptiongroup=nil, autosubscriptionpolicylimit=nil, maxtopicfilterperautosubscriptionpolicy=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @Version = version
@@ -2819,6 +2843,10 @@ module TencentCloud
           @AuthorizationPolicyLimit = authorizationpolicylimit
           @MaxCaNum = maxcanum
           @MaxSubscription = maxsubscription
+          @SharedSubscriptionGroupLimit = sharedsubscriptiongrouplimit
+          @MaxTopicFilterPerSharedSubscriptionGroup = maxtopicfilterpersharedsubscriptiongroup
+          @AutoSubscriptionPolicyLimit = autosubscriptionpolicylimit
+          @MaxTopicFilterPerAutoSubscriptionPolicy = maxtopicfilterperautosubscriptionpolicy
         end
 
         def deserialize(params)
@@ -2842,6 +2870,10 @@ module TencentCloud
           @AuthorizationPolicyLimit = params['AuthorizationPolicyLimit']
           @MaxCaNum = params['MaxCaNum']
           @MaxSubscription = params['MaxSubscription']
+          @SharedSubscriptionGroupLimit = params['SharedSubscriptionGroupLimit']
+          @MaxTopicFilterPerSharedSubscriptionGroup = params['MaxTopicFilterPerSharedSubscriptionGroup']
+          @AutoSubscriptionPolicyLimit = params['AutoSubscriptionPolicyLimit']
+          @MaxTopicFilterPerAutoSubscriptionPolicy = params['MaxTopicFilterPerAutoSubscriptionPolicy']
         end
       end
 

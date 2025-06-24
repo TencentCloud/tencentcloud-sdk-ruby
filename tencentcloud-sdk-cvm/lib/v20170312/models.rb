@@ -4983,15 +4983,18 @@ module TencentCloud
         # @type LoginSettings: :class:`Tencentcloud::Cvm.v20170312.models.LoginSettings`
         # @param EnhancedService: 增强服务。通过该参数可以指定是否开启云安全、云监控等服务。若不指定该参数，则默认开启云监控、云安全服务。
         # @type EnhancedService: :class:`Tencentcloud::Cvm.v20170312.models.EnhancedService`
+        # @param UserData: 提供给实例使用的用户数据，需要以 base64 方式编码，支持的最大数据大小为 16KB。关于获取此参数的详细介绍，请参阅[Windows](https://cloud.tencent.com/document/product/213/17526)和[Linux](https://cloud.tencent.com/document/product/213/17525)启动时运行命令。
+        # @type UserData: String
 
-        attr_accessor :InstanceId, :ImageId, :SystemDisk, :LoginSettings, :EnhancedService
+        attr_accessor :InstanceId, :ImageId, :SystemDisk, :LoginSettings, :EnhancedService, :UserData
 
-        def initialize(instanceid=nil, imageid=nil, systemdisk=nil, loginsettings=nil, enhancedservice=nil)
+        def initialize(instanceid=nil, imageid=nil, systemdisk=nil, loginsettings=nil, enhancedservice=nil, userdata=nil)
           @InstanceId = instanceid
           @ImageId = imageid
           @SystemDisk = systemdisk
           @LoginSettings = loginsettings
           @EnhancedService = enhancedservice
+          @UserData = userdata
         end
 
         def deserialize(params)
@@ -5009,6 +5012,7 @@ module TencentCloud
             @EnhancedService = EnhancedService.new
             @EnhancedService.deserialize(params['EnhancedService'])
           end
+          @UserData = params['UserData']
         end
       end
 

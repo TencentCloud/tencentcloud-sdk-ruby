@@ -6519,8 +6519,8 @@ module TencentCloud
 
         attr_accessor :ProductResourceId, :ResourceGrantLast
         extend Gem::Deprecate
-        deprecate :ResourceGrantLast, :none, 2025, 5
-        deprecate :ResourceGrantLast=, :none, 2025, 5
+        deprecate :ResourceGrantLast, :none, 2025, 6
+        deprecate :ResourceGrantLast=, :none, 2025, 6
 
         def initialize(productresourceid=nil, resourcegrantlast=nil)
           @ProductResourceId = productresourceid
@@ -7350,8 +7350,8 @@ module TencentCloud
 
         attr_accessor :ResourceId, :ProductResourceId
         extend Gem::Deprecate
-        deprecate :ResourceId, :none, 2025, 5
-        deprecate :ResourceId=, :none, 2025, 5
+        deprecate :ResourceId, :none, 2025, 6
+        deprecate :ResourceId=, :none, 2025, 6
 
         def initialize(resourceid=nil, productresourceid=nil)
           @ResourceId = resourceid
@@ -8345,10 +8345,12 @@ module TencentCloud
         # @type UpdateTime: String
         # @param IsSelected: 是否选中
         # @type IsSelected: Boolean
+        # @param Password: 用户密码
+        # @type Password: String
 
-        attr_accessor :UserName, :FirstName, :LastName, :DisplayName, :Description, :Email, :UserStatus, :UserType, :UserId, :CreateTime, :UpdateTime, :IsSelected
+        attr_accessor :UserName, :FirstName, :LastName, :DisplayName, :Description, :Email, :UserStatus, :UserType, :UserId, :CreateTime, :UpdateTime, :IsSelected, :Password
 
-        def initialize(username=nil, firstname=nil, lastname=nil, displayname=nil, description=nil, email=nil, userstatus=nil, usertype=nil, userid=nil, createtime=nil, updatetime=nil, isselected=nil)
+        def initialize(username=nil, firstname=nil, lastname=nil, displayname=nil, description=nil, email=nil, userstatus=nil, usertype=nil, userid=nil, createtime=nil, updatetime=nil, isselected=nil, password=nil)
           @UserName = username
           @FirstName = firstname
           @LastName = lastname
@@ -8361,6 +8363,7 @@ module TencentCloud
           @CreateTime = createtime
           @UpdateTime = updatetime
           @IsSelected = isselected
+          @Password = password
         end
 
         def deserialize(params)
@@ -8376,6 +8379,7 @@ module TencentCloud
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
           @IsSelected = params['IsSelected']
+          @Password = params['Password']
         end
       end
 

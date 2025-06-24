@@ -4832,6 +4832,69 @@ module TencentCloud
         end
       end
 
+      # DescribeSparkApplications请求参数结构体
+      class DescribeSparkApplicationsRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 集群id
+        # @type InstanceId: String
+        # @param StartTime: 查询开始时间
+        # @type StartTime: Integer
+        # @param EndTime: 查询结束时间
+        # @type EndTime: Integer
+        # @param PageSize: 每一页条数
+        # @type PageSize: Integer
+        # @param Page: 第几页
+        # @type Page: Integer
+
+        attr_accessor :InstanceId, :StartTime, :EndTime, :PageSize, :Page
+
+        def initialize(instanceid=nil, starttime=nil, endtime=nil, pagesize=nil, page=nil)
+          @InstanceId = instanceid
+          @StartTime = starttime
+          @EndTime = endtime
+          @PageSize = pagesize
+          @Page = page
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @PageSize = params['PageSize']
+          @Page = params['Page']
+        end
+      end
+
+      # DescribeSparkApplications返回参数结构体
+      class DescribeSparkApplicationsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 返回数量
+        # @type TotalCount: Integer
+        # @param ResultList: spark应用列表
+        # @type ResultList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :ResultList, :RequestId
+
+        def initialize(totalcount=nil, resultlist=nil, requestid=nil)
+          @TotalCount = totalcount
+          @ResultList = resultlist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['ResultList'].nil?
+            @ResultList = []
+            params['ResultList'].each do |i|
+              sparkapplicationslist_tmp = SparkApplicationsList.new
+              sparkapplicationslist_tmp.deserialize(i)
+              @ResultList << sparkapplicationslist_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeSparkQueries请求参数结构体
       class DescribeSparkQueriesRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 集群ID
@@ -12165,6 +12228,62 @@ module TencentCloud
         def deserialize(params)
           @SoftName = params['SoftName']
           @Required = params['Required']
+        end
+      end
+
+      # spark任务列表
+      class SparkApplicationsList < TencentCloud::Common::AbstractModel
+        # @param ID: 应用id
+        # @type ID: String
+        # @param Name: 应用名称
+        # @type Name: String
+        # @param User: 用户
+        # @type User: String
+        # @param StartTime: 起始时间
+        # @type StartTime: Integer
+        # @param EndTime: 结束时间
+        # @type EndTime: Integer
+        # @param Duration: 持续时间
+        # @type Duration: Integer
+        # @param State: 状态
+        # @type State: String
+        # @param ApplicationType: 类型
+        # @type ApplicationType: String
+        # @param CoreSeconds: 核数*秒
+        # @type CoreSeconds: Integer
+        # @param MemorySeconds: 内存MB*秒
+        # @type MemorySeconds: String
+        # @param Insight: 洞察结果
+        # @type Insight: String
+
+        attr_accessor :ID, :Name, :User, :StartTime, :EndTime, :Duration, :State, :ApplicationType, :CoreSeconds, :MemorySeconds, :Insight
+
+        def initialize(id=nil, name=nil, user=nil, starttime=nil, endtime=nil, duration=nil, state=nil, applicationtype=nil, coreseconds=nil, memoryseconds=nil, insight=nil)
+          @ID = id
+          @Name = name
+          @User = user
+          @StartTime = starttime
+          @EndTime = endtime
+          @Duration = duration
+          @State = state
+          @ApplicationType = applicationtype
+          @CoreSeconds = coreseconds
+          @MemorySeconds = memoryseconds
+          @Insight = insight
+        end
+
+        def deserialize(params)
+          @ID = params['ID']
+          @Name = params['Name']
+          @User = params['User']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Duration = params['Duration']
+          @State = params['State']
+          @ApplicationType = params['ApplicationType']
+          @CoreSeconds = params['CoreSeconds']
+          @MemorySeconds = params['MemorySeconds']
+          @Insight = params['Insight']
         end
       end
 

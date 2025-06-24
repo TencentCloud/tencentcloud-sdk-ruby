@@ -803,10 +803,12 @@ module TencentCloud
         # @type FirstTime: String
         # @param NextTime: 下次执行时间
         # @type NextTime: String
+        # @param LastTime: 上次执行时间
+        # @type LastTime: String
 
-        attr_accessor :Id, :OperationId, :TaskName, :Department, :ChangeMethod, :RunAccount, :AuthGenerationStrategy, :PasswordLength, :SmallLetter, :BigLetter, :Digit, :Symbol, :CompleteNotify, :NotifyEmails, :FilePassword, :AccountSet, :DeviceSet, :Type, :Period, :FirstTime, :NextTime
+        attr_accessor :Id, :OperationId, :TaskName, :Department, :ChangeMethod, :RunAccount, :AuthGenerationStrategy, :PasswordLength, :SmallLetter, :BigLetter, :Digit, :Symbol, :CompleteNotify, :NotifyEmails, :FilePassword, :AccountSet, :DeviceSet, :Type, :Period, :FirstTime, :NextTime, :LastTime
 
-        def initialize(id=nil, operationid=nil, taskname=nil, department=nil, changemethod=nil, runaccount=nil, authgenerationstrategy=nil, passwordlength=nil, smallletter=nil, bigletter=nil, digit=nil, symbol=nil, completenotify=nil, notifyemails=nil, filepassword=nil, accountset=nil, deviceset=nil, type=nil, period=nil, firsttime=nil, nexttime=nil)
+        def initialize(id=nil, operationid=nil, taskname=nil, department=nil, changemethod=nil, runaccount=nil, authgenerationstrategy=nil, passwordlength=nil, smallletter=nil, bigletter=nil, digit=nil, symbol=nil, completenotify=nil, notifyemails=nil, filepassword=nil, accountset=nil, deviceset=nil, type=nil, period=nil, firsttime=nil, nexttime=nil, lasttime=nil)
           @Id = id
           @OperationId = operationid
           @TaskName = taskname
@@ -828,6 +830,7 @@ module TencentCloud
           @Period = period
           @FirstTime = firsttime
           @NextTime = nexttime
+          @LastTime = lasttime
         end
 
         def deserialize(params)
@@ -862,6 +865,7 @@ module TencentCloud
           @Period = params['Period']
           @FirstTime = params['FirstTime']
           @NextTime = params['NextTime']
+          @LastTime = params['LastTime']
         end
       end
 

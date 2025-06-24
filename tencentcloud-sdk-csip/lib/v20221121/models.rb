@@ -4265,7 +4265,6 @@ module TencentCloud
       # DescribeExposePath返回参数结构体
       class DescribeExposePathResponse < TencentCloud::Common::AbstractModel
         # @param Content: 暴露路径节点内容
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Content: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4736,19 +4735,23 @@ module TencentCloud
 
       # DescribeOtherCloudAssets请求参数结构体
       class DescribeOtherCloudAssetsRequest < TencentCloud::Common::AbstractModel
+        # @param MemberId: 集团账号的成员id
+        # @type MemberId: Array
         # @param Filter: -
         # @type Filter: :class:`Tencentcloud::Csip.v20221121.models.Filter`
         # @param AssetTypes: 资产类型:MYSQL/MARIADB/REDIS/MONGODB/POSTGRES/CTS/ES/KAFKA/COS/CBS/CFS
         # @type AssetTypes: Array
 
-        attr_accessor :Filter, :AssetTypes
+        attr_accessor :MemberId, :Filter, :AssetTypes
 
-        def initialize(filter=nil, assettypes=nil)
+        def initialize(memberid=nil, filter=nil, assettypes=nil)
+          @MemberId = memberid
           @Filter = filter
           @AssetTypes = assettypes
         end
 
         def deserialize(params)
+          @MemberId = params['MemberId']
           unless params['Filter'].nil?
             @Filter = Filter.new
             @Filter.deserialize(params['Filter'])
@@ -4971,16 +4974,20 @@ module TencentCloud
 
       # DescribeRepositoryImageAssets请求参数结构体
       class DescribeRepositoryImageAssetsRequest < TencentCloud::Common::AbstractModel
+        # @param MemberId: 集团账号的成员id
+        # @type MemberId: Array
         # @param Filter: filter过滤条件
         # @type Filter: :class:`Tencentcloud::Csip.v20221121.models.Filter`
 
-        attr_accessor :Filter
+        attr_accessor :MemberId, :Filter
 
-        def initialize(filter=nil)
+        def initialize(memberid=nil, filter=nil)
+          @MemberId = memberid
           @Filter = filter
         end
 
         def deserialize(params)
+          @MemberId = params['MemberId']
           unless params['Filter'].nil?
             @Filter = Filter.new
             @Filter.deserialize(params['Filter'])
@@ -5524,16 +5531,20 @@ module TencentCloud
 
       # DescribeRiskCenterCFGViewCFGRiskList请求参数结构体
       class DescribeRiskCenterCFGViewCFGRiskListRequest < TencentCloud::Common::AbstractModel
+        # @param MemberId: 集团账号的成员id
+        # @type MemberId: Array
         # @param Filter: 过滤内容
         # @type Filter: :class:`Tencentcloud::Csip.v20221121.models.Filter`
 
-        attr_accessor :Filter
+        attr_accessor :MemberId, :Filter
 
-        def initialize(filter=nil)
+        def initialize(memberid=nil, filter=nil)
+          @MemberId = memberid
           @Filter = filter
         end
 
         def deserialize(params)
+          @MemberId = params['MemberId']
           unless params['Filter'].nil?
             @Filter = Filter.new
             @Filter.deserialize(params['Filter'])
@@ -6120,7 +6131,6 @@ module TencentCloud
       # DescribeRiskRuleDetail返回参数结构体
       class DescribeRiskRuleDetailResponse < TencentCloud::Common::AbstractModel
         # @param RiskRuleId: 风险规则ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RiskRuleId: String
         # @param Provider: 云厂商
         # @type Provider: String

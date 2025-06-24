@@ -1001,9 +1001,9 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 限制数目 最大200
         # @type Limit: Integer
-        # @param CreatTimeRangeStart: 下单时间范围起始点【请保持时间范围最大90天】
+        # @param CreatTimeRangeStart: 下单时间范围起始点【*请必传并控制时间范围最大90天，避免出现超时】
         # @type CreatTimeRangeStart: String
-        # @param CreatTimeRangeEnd: 下单时间范围终止点【请保持时间范围最大90天】
+        # @param CreatTimeRangeEnd: 下单时间范围终止点【*请必传并控制时间范围最大90天，避免出现超时】
         # @type CreatTimeRangeEnd: String
         # @param Order: 0:下单时间降序；其他：下单时间升序
         # @type Order: Integer

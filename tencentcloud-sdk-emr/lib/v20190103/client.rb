@@ -1064,6 +1064,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取spark应用列表
+
+        # @param request: Request instance for DescribeSparkApplications.
+        # @type request: :class:`Tencentcloud::emr::V20190103::DescribeSparkApplicationsRequest`
+        # @rtype: :class:`Tencentcloud::emr::V20190103::DescribeSparkApplicationsResponse`
+        def DescribeSparkApplications(request)
+          body = send_request('DescribeSparkApplications', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeSparkApplicationsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询Spark查询信息列表
 
         # @param request: Request instance for DescribeSparkQueries.
