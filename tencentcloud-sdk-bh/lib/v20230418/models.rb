@@ -869,6 +869,70 @@ module TencentCloud
         end
       end
 
+      # CheckLDAPConnection请求参数结构体
+      class CheckLDAPConnectionRequest < TencentCloud::Common::AbstractModel
+        # @param Enable: 是否开启LDAP认证，必须为true
+        # @type Enable: Boolean
+        # @param Ip: 服务器地址
+        # @type Ip: String
+        # @param Port: 服务端口
+        # @type Port: Integer
+        # @param EnableSSL: 是否开启SSL，false-不开启，true-开启
+        # @type EnableSSL: Boolean
+        # @param BaseDN: Base DN
+        # @type BaseDN: String
+        # @param AdminAccount: 管理员账号
+        # @type AdminAccount: String
+        # @param AdminPassword: 管理员密码
+        # @type AdminPassword: String
+        # @param IpBackup: 备用服务器地址
+        # @type IpBackup: String
+        # @param DomainId: 网络域id
+        # @type DomainId: String
+
+        attr_accessor :Enable, :Ip, :Port, :EnableSSL, :BaseDN, :AdminAccount, :AdminPassword, :IpBackup, :DomainId
+
+        def initialize(enable=nil, ip=nil, port=nil, enablessl=nil, basedn=nil, adminaccount=nil, adminpassword=nil, ipbackup=nil, domainid=nil)
+          @Enable = enable
+          @Ip = ip
+          @Port = port
+          @EnableSSL = enablessl
+          @BaseDN = basedn
+          @AdminAccount = adminaccount
+          @AdminPassword = adminpassword
+          @IpBackup = ipbackup
+          @DomainId = domainid
+        end
+
+        def deserialize(params)
+          @Enable = params['Enable']
+          @Ip = params['Ip']
+          @Port = params['Port']
+          @EnableSSL = params['EnableSSL']
+          @BaseDN = params['BaseDN']
+          @AdminAccount = params['AdminAccount']
+          @AdminPassword = params['AdminPassword']
+          @IpBackup = params['IpBackup']
+          @DomainId = params['DomainId']
+        end
+      end
+
+      # CheckLDAPConnection返回参数结构体
+      class CheckLDAPConnectionResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 负载均衡
       class Clb < TencentCloud::Common::AbstractModel
         # @param ClbIp: 负载均衡IP
@@ -2960,6 +3024,82 @@ module TencentCloud
         end
       end
 
+      # DescribeLDAPUnitSet请求参数结构体
+      class DescribeLDAPUnitSetRequest < TencentCloud::Common::AbstractModel
+        # @param Enable: 是否开启LDAP认证，true-开启
+        # @type Enable: Boolean
+        # @param Ip: 服务器地址
+        # @type Ip: String
+        # @param Port: 服务端口
+        # @type Port: Integer
+        # @param EnableSSL: 是否开启SSL，false-不开启，true-开启
+        # @type EnableSSL: Boolean
+        # @param BaseDN: Base DN
+        # @type BaseDN: String
+        # @param AdminAccount: 管理员账号
+        # @type AdminAccount: String
+        # @param AdminPassword: 管理员密码
+        # @type AdminPassword: String
+        # @param AttributeUserName: 用户名映射属性
+        # @type AttributeUserName: String
+        # @param AttributeUnit: 部门过滤
+        # @type AttributeUnit: String
+        # @param IpBackup: 备用服务器地址
+        # @type IpBackup: String
+        # @param DomainId: 网络域Id
+        # @type DomainId: String
+
+        attr_accessor :Enable, :Ip, :Port, :EnableSSL, :BaseDN, :AdminAccount, :AdminPassword, :AttributeUserName, :AttributeUnit, :IpBackup, :DomainId
+
+        def initialize(enable=nil, ip=nil, port=nil, enablessl=nil, basedn=nil, adminaccount=nil, adminpassword=nil, attributeusername=nil, attributeunit=nil, ipbackup=nil, domainid=nil)
+          @Enable = enable
+          @Ip = ip
+          @Port = port
+          @EnableSSL = enablessl
+          @BaseDN = basedn
+          @AdminAccount = adminaccount
+          @AdminPassword = adminpassword
+          @AttributeUserName = attributeusername
+          @AttributeUnit = attributeunit
+          @IpBackup = ipbackup
+          @DomainId = domainid
+        end
+
+        def deserialize(params)
+          @Enable = params['Enable']
+          @Ip = params['Ip']
+          @Port = params['Port']
+          @EnableSSL = params['EnableSSL']
+          @BaseDN = params['BaseDN']
+          @AdminAccount = params['AdminAccount']
+          @AdminPassword = params['AdminPassword']
+          @AttributeUserName = params['AttributeUserName']
+          @AttributeUnit = params['AttributeUnit']
+          @IpBackup = params['IpBackup']
+          @DomainId = params['DomainId']
+        end
+      end
+
+      # DescribeLDAPUnitSet返回参数结构体
+      class DescribeLDAPUnitSetResponse < TencentCloud::Common::AbstractModel
+        # @param UnitSet: ou 列表
+        # @type UnitSet: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :UnitSet, :RequestId
+
+        def initialize(unitset=nil, requestid=nil)
+          @UnitSet = unitset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @UnitSet = params['UnitSet']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeLoginEvent请求参数结构体
       class DescribeLoginEventRequest < TencentCloud::Common::AbstractModel
         # @param UserName: 用户名，如果不包含其他条件时对user_name or real_name两个字段模糊查询
@@ -4309,6 +4449,114 @@ module TencentCloud
         end
       end
 
+      # ModifyLDAPSetting请求参数结构体
+      class ModifyLDAPSettingRequest < TencentCloud::Common::AbstractModel
+        # @param Enable: 是否开启LDAP认证，false-不开启，true-开启
+        # @type Enable: Boolean
+        # @param Ip: 服务器地址
+        # @type Ip: String
+        # @param IpBackup: 备用服务器地址
+        # @type IpBackup: String
+        # @param Port: 服务端口
+        # @type Port: Integer
+        # @param EnableSSL: 是否开启SSL，false-不开启，true-开启
+        # @type EnableSSL: Boolean
+        # @param BaseDN: Base DN
+        # @type BaseDN: String
+        # @param AdminAccount: 管理员账号
+        # @type AdminAccount: String
+        # @param AdminPassword: 管理员密码
+        # @type AdminPassword: String
+        # @param AttributeUser: 用户属性
+        # @type AttributeUser: String
+        # @param AttributeUserName: 用户名属性
+        # @type AttributeUserName: String
+        # @param AutoSync: 自动同步，false-不开启，true-开启
+        # @type AutoSync: Boolean
+        # @param Overwrite: 覆盖用户信息，false-不开启，true-开启
+        # @type Overwrite: Boolean
+        # @param SyncPeriod: 同步周期，30～60000之间的整数
+        # @type SyncPeriod: Integer
+        # @param SyncAll: 是否同步全部，false-不开启，true-开启
+        # @type SyncAll: Boolean
+        # @param SyncUnitSet: 同步OU列表，SyncAll为false时必传
+        # @type SyncUnitSet: Array
+        # @param AttributeUnit: 组织单元属性
+        # @type AttributeUnit: String
+        # @param AttributeRealName: 用户姓名属性
+        # @type AttributeRealName: String
+        # @param AttributePhone: 手机号属性
+        # @type AttributePhone: String
+        # @param AttributeEmail: 邮箱属性
+        # @type AttributeEmail: String
+        # @param DomainId: 网络域Id
+        # @type DomainId: String
+
+        attr_accessor :Enable, :Ip, :IpBackup, :Port, :EnableSSL, :BaseDN, :AdminAccount, :AdminPassword, :AttributeUser, :AttributeUserName, :AutoSync, :Overwrite, :SyncPeriod, :SyncAll, :SyncUnitSet, :AttributeUnit, :AttributeRealName, :AttributePhone, :AttributeEmail, :DomainId
+
+        def initialize(enable=nil, ip=nil, ipbackup=nil, port=nil, enablessl=nil, basedn=nil, adminaccount=nil, adminpassword=nil, attributeuser=nil, attributeusername=nil, autosync=nil, overwrite=nil, syncperiod=nil, syncall=nil, syncunitset=nil, attributeunit=nil, attributerealname=nil, attributephone=nil, attributeemail=nil, domainid=nil)
+          @Enable = enable
+          @Ip = ip
+          @IpBackup = ipbackup
+          @Port = port
+          @EnableSSL = enablessl
+          @BaseDN = basedn
+          @AdminAccount = adminaccount
+          @AdminPassword = adminpassword
+          @AttributeUser = attributeuser
+          @AttributeUserName = attributeusername
+          @AutoSync = autosync
+          @Overwrite = overwrite
+          @SyncPeriod = syncperiod
+          @SyncAll = syncall
+          @SyncUnitSet = syncunitset
+          @AttributeUnit = attributeunit
+          @AttributeRealName = attributerealname
+          @AttributePhone = attributephone
+          @AttributeEmail = attributeemail
+          @DomainId = domainid
+        end
+
+        def deserialize(params)
+          @Enable = params['Enable']
+          @Ip = params['Ip']
+          @IpBackup = params['IpBackup']
+          @Port = params['Port']
+          @EnableSSL = params['EnableSSL']
+          @BaseDN = params['BaseDN']
+          @AdminAccount = params['AdminAccount']
+          @AdminPassword = params['AdminPassword']
+          @AttributeUser = params['AttributeUser']
+          @AttributeUserName = params['AttributeUserName']
+          @AutoSync = params['AutoSync']
+          @Overwrite = params['Overwrite']
+          @SyncPeriod = params['SyncPeriod']
+          @SyncAll = params['SyncAll']
+          @SyncUnitSet = params['SyncUnitSet']
+          @AttributeUnit = params['AttributeUnit']
+          @AttributeRealName = params['AttributeRealName']
+          @AttributePhone = params['AttributePhone']
+          @AttributeEmail = params['AttributeEmail']
+          @DomainId = params['DomainId']
+        end
+      end
+
+      # ModifyLDAPSetting返回参数结构体
+      class ModifyLDAPSettingResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyOAuthSetting请求参数结构体
       class ModifyOAuthSettingRequest < TencentCloud::Common::AbstractModel
         # @param Enable: 是否开启OAuth认证，false-不开启，true-开启。
@@ -4699,6 +4947,38 @@ module TencentCloud
           @Period = params['Period']
           @NextTime = params['NextTime']
           @FirstTime = params['FirstTime']
+        end
+      end
+
+      # ReplaySession请求参数结构体
+      class ReplaySessionRequest < TencentCloud::Common::AbstractModel
+        # @param Sid: 会话Sid
+        # @type Sid: String
+
+        attr_accessor :Sid
+
+        def initialize(sid=nil)
+          @Sid = sid
+        end
+
+        def deserialize(params)
+          @Sid = params['Sid']
+        end
+      end
+
+      # ReplaySession返回参数结构体
+      class ReplaySessionResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 
@@ -6220,6 +6500,33 @@ module TencentCloud
         end
       end
 
+      # SetLDAPSyncFlag请求参数结构体
+      class SetLDAPSyncFlagRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # SetLDAPSyncFlag返回参数结构体
+      class SetLDAPSyncFlagResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 资产标签
       class TagFilter < TencentCloud::Common::AbstractModel
         # @param TagKey: 标签键
@@ -6285,6 +6592,38 @@ module TencentCloud
           @Status = params['Status']
           @StartTime = params['StartTime']
           @EndTime = params['EndTime']
+        end
+      end
+
+      # UnlockUser请求参数结构体
+      class UnlockUserRequest < TencentCloud::Common::AbstractModel
+        # @param IdSet: 用户id
+        # @type IdSet: Array
+
+        attr_accessor :IdSet
+
+        def initialize(idset=nil)
+          @IdSet = idset
+        end
+
+        def deserialize(params)
+          @IdSet = params['IdSet']
+        end
+      end
+
+      # UnlockUser返回参数结构体
+      class UnlockUserResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 

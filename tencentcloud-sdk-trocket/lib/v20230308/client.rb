@@ -269,7 +269,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 删除 RocketMQ 5.x 集群。
+        # 删除 RocketMQ 5.x 集群，删除前请先删除正在使用的主题、消费组和角色信息。
 
         # @param request: Request instance for DeleteInstance.
         # @type request: :class:`Tencentcloud::trocket::V20230308::DeleteInstanceRequest`
@@ -471,6 +471,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeConsumerClientResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询消费组下的客户端连接列表。
+
+        # @param request: Request instance for DescribeConsumerClientList.
+        # @type request: :class:`Tencentcloud::trocket::V20230308::DescribeConsumerClientListRequest`
+        # @rtype: :class:`Tencentcloud::trocket::V20230308::DescribeConsumerClientListResponse`
+        def DescribeConsumerClientList(request)
+          body = send_request('DescribeConsumerClientList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeConsumerClientListResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1422,7 +1446,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 修改 RocketMQ 5.x 集群属性。
+        # 修改 RocketMQ 5.x 集群属性，仅支持修改运行中的集群。
 
         # @param request: Request instance for ModifyInstance.
         # @type request: :class:`Tencentcloud::trocket::V20230308::ModifyInstanceRequest`
@@ -1446,7 +1470,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 修改 RocketMQ 5.x 集群接入点。
+        # 修改 RocketMQ 5.x 集群接入点，操作前请先确认接入点已存在。
 
         # @param request: Request instance for ModifyInstanceEndpoint.
         # @type request: :class:`Tencentcloud::trocket::V20230308::ModifyInstanceEndpointRequest`

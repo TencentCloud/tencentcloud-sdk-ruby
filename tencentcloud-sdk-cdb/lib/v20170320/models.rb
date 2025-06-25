@@ -19,9 +19,12 @@ module TencentCloud
     module V20170320
       # 数据库账号信息
       class Account < TencentCloud::Common::AbstractModel
-        # @param User: 新账户的名称
+        # @param User: 账号名，可输入1 - 32个字符。
         # @type User: String
-        # @param Host: 新账户的域名
+        # @param Host: 账号的主机。
+        # 说明：
+        # 1. IP 形式，支持填入%。
+        # 2. 多个主机以分隔符分隔，分隔符支持;,|换行符和空格。
         # @type Host: String
 
         attr_accessor :User, :Host
@@ -190,16 +193,17 @@ module TencentCloud
 
       # AdjustCdbProxyAddress请求参数结构体
       class AdjustCdbProxyAddressRequest < TencentCloud::Common::AbstractModel
-        # @param ProxyGroupId: 代理组ID
+        # @param ProxyGroupId: 代理组 ID。可通过 [DescribeCdbProxyInfo](https://cloud.tencent.com/document/api/236/90585) 接口获取。
         # @type ProxyGroupId: String
         # @param WeightMode: 权重分配模式，
         # 系统自动分配："system"， 自定义："custom"
         # @type WeightMode: String
         # @param IsKickOut: 是否开启延迟剔除，取值："true" | "false"
         # @type IsKickOut: Boolean
-        # @param MinCount: 最小保留数量，最小取值：0
+        # @param MinCount: 最小保留数量，最小取值：0。
+        # 说明：当 IsKickOut 为 true 时才有效。
         # @type MinCount: Integer
-        # @param MaxDelay: 延迟剔除阈值，最小取值：0
+        # @param MaxDelay: 延迟剔除阈值，最小取值：1，取值范围：[1,10000]，整数。
         # @type MaxDelay: Integer
         # @param FailOver: 是否开启故障转移，取值："true" | "false"
         # @type FailOver: Boolean
@@ -207,18 +211,18 @@ module TencentCloud
         # @type AutoAddRo: Boolean
         # @param ReadOnly: 是否是只读，取值："true" | "false"
         # @type ReadOnly: Boolean
-        # @param ProxyAddressId: 代理组地址ID
+        # @param ProxyAddressId: 代理组地址 ID。可通过 [DescribeCdbProxyInfo](https://cloud.tencent.com/document/api/236/90585) 接口获取。
         # @type ProxyAddressId: String
-        # @param TransSplit: 是否开启事务分离，取值："true" | "false"
+        # @param TransSplit: 是否开启事务分离，取值："true" | "false"，默认值 false。
         # @type TransSplit: Boolean
-        # @param ConnectionPool: 是否开启连接池
+        # @param ConnectionPool: 是否开启连接池。默认关闭。
         # 注意：如需使用数据库代理连接池能力，MySQL 8.0 主实例的内核小版本要大于等于 MySQL 8.0 20230630。
         # @type ConnectionPool: Boolean
         # @param ProxyAllocation: 读写权重分配。如果 WeightMode 传的是 system ，则传入的权重不生效，由系统分配默认权重。
         # @type ProxyAllocation: Array
-        # @param AutoLoadBalance: 是否开启自适应负载均衡
+        # @param AutoLoadBalance: 是否开启自适应负载均衡。默认关闭。
         # @type AutoLoadBalance: Boolean
-        # @param AccessMode: 访问模式：就近访问，均衡分配
+        # @param AccessMode: 访问模式：nearby - 就近访问，balance - 均衡分配，默认就近访问。
         # @type AccessMode: String
 
         attr_accessor :ProxyGroupId, :WeightMode, :IsKickOut, :MinCount, :MaxDelay, :FailOver, :AutoAddRo, :ReadOnly, :ProxyAddressId, :TransSplit, :ConnectionPool, :ProxyAllocation, :AutoLoadBalance, :AccessMode
@@ -287,9 +291,9 @@ module TencentCloud
 
       # AdjustCdbProxy请求参数结构体
       class AdjustCdbProxyRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
+        # @param InstanceId: 实例 ID。可通过 [DescribeDBInstances](https://cloud.tencent.com/document/product/236/15872) 接口获取。
         # @type InstanceId: String
-        # @param ProxyGroupId: 代理组ID
+        # @param ProxyGroupId: 代理组 ID。可通过 [DescribeCdbProxyInfo](https://cloud.tencent.com/document/api/236/90585) 接口获取。
         # @type ProxyGroupId: String
         # @param ProxyNodeCustom: 节点规格配置
         # 备注：数据库代理支持的节点规格为：2C4000MB、4C8000MB、8C16000MB。
@@ -421,7 +425,7 @@ module TencentCloud
 
       # AnalyzeAuditLogs请求参数结构体
       class AnalyzeAuditLogsRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID。
+        # @param InstanceId: 实例 ID。可通过 [DescribeDBInstances](https://cloud.tencent.com/document/product/236/15872) 接口获取。
         # @type InstanceId: String
         # @param StartTime: 要分析的日志开始时间，格式为："2023-02-16 00:00:20"。
         # @type StartTime: String
@@ -1899,7 +1903,7 @@ module TencentCloud
 
       # CloseAuditService请求参数结构体
       class CloseAuditServiceRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID。
+        # @param InstanceId: 实例 ID。可通过 [DescribeDBInstances](https://cloud.tencent.com/document/product/236/15872) 接口获取。
         # @type InstanceId: String
 
         attr_accessor :InstanceId
@@ -1931,9 +1935,9 @@ module TencentCloud
 
       # CloseCDBProxy请求参数结构体
       class CloseCDBProxyRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
+        # @param InstanceId: 实例 ID。可通过 [DescribeDBInstances](https://cloud.tencent.com/document/product/236/15872) 接口获取。
         # @type InstanceId: String
-        # @param ProxyGroupId: 代理组ID
+        # @param ProxyGroupId: 代理组 ID。可通过 [DescribeCdbProxyInfo](https://cloud.tencent.com/document/api/236/90585) 接口获取。
         # @type ProxyGroupId: String
         # @param OnlyCloseRW: 是否只关闭读写分离，取值："true" | "false"，默认为"false"
         # @type OnlyCloseRW: Boolean
@@ -1971,9 +1975,9 @@ module TencentCloud
 
       # CloseCdbProxyAddress请求参数结构体
       class CloseCdbProxyAddressRequest < TencentCloud::Common::AbstractModel
-        # @param ProxyGroupId: 代理组ID
+        # @param ProxyGroupId: 代理组 ID。可通过 [DescribeCdbProxyInfo](https://cloud.tencent.com/document/api/236/90585) 接口获取。
         # @type ProxyGroupId: String
-        # @param ProxyAddressId: 代理组地址ID
+        # @param ProxyAddressId: 代理组地址 ID。可通过 [DescribeCdbProxyInfo](https://cloud.tencent.com/document/api/236/90585) 接口获取。
         # @type ProxyAddressId: String
 
         attr_accessor :ProxyGroupId, :ProxyAddressId
@@ -2007,9 +2011,9 @@ module TencentCloud
 
       # CloseSSL请求参数结构体
       class CloseSSLRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例 ID 。只读组 ID为空时必填。
+        # @param InstanceId: 实例 ID。只读组 ID 为空时必填。可通过 [DescribeDBInstances](https://cloud.tencent.com/document/product/236/15872) 接口获取。
         # @type InstanceId: String
-        # @param RoGroupId: 只读组 ID。实例 ID为空时必填。
+        # @param RoGroupId: 只读组 ID。实例 ID 为空时必填。可通过 [DescribeRoGroups](https://cloud.tencent.com/document/api/236/40939) 接口获取。
         # @type RoGroupId: String
 
         attr_accessor :InstanceId, :RoGroupId
@@ -2502,15 +2506,15 @@ module TencentCloud
 
       # CreateAuditRuleTemplate请求参数结构体
       class CreateAuditRuleTemplateRequest < TencentCloud::Common::AbstractModel
-        # @param RuleFilters: 审计规则
+        # @param RuleFilters: 审计规则。
         # @type RuleFilters: Array
-        # @param RuleTemplateName: 规则模板名称
+        # @param RuleTemplateName: 规则模板名称。最多支持输入30个字符。
         # @type RuleTemplateName: String
-        # @param Description: 规则模板描述
+        # @param Description: 规则模板描述。最多支持输入200个字符。
         # @type Description: String
-        # @param AlarmLevel: 告警等级。1-低风险，2-中风险，3-高风险
+        # @param AlarmLevel: 告警等级。1 - 低风险，2 - 中风险，3 - 高风险。默认值为1。
         # @type AlarmLevel: Integer
-        # @param AlarmPolicy: 告警策略。0-不告警，1-告警
+        # @param AlarmPolicy: 告警策略。0 - 不告警，1 - 告警。默认值为0。
         # @type AlarmPolicy: Integer
 
         attr_accessor :RuleFilters, :RuleTemplateName, :Description, :AlarmLevel, :AlarmPolicy
@@ -2621,7 +2625,7 @@ module TencentCloud
 
       # CreateCdbProxyAddress请求参数结构体
       class CreateCdbProxyAddressRequest < TencentCloud::Common::AbstractModel
-        # @param ProxyGroupId: 代理组ID
+        # @param ProxyGroupId: 代理组 ID。可通过 [DescribeCdbProxyInfo](https://cloud.tencent.com/document/api/236/90585) 接口获取。
         # @type ProxyGroupId: String
         # @param WeightMode: 权重分配模式，
         # 系统自动分配："system"， 自定义："custom"
@@ -2630,7 +2634,7 @@ module TencentCloud
         # @type IsKickOut: Boolean
         # @param MinCount: 最小保留数量，最小取值：0
         # @type MinCount: Integer
-        # @param MaxDelay: 延迟剔除阈值，最小取值：0
+        # @param MaxDelay: 延迟剔除阈值，最小取值：1，范围：1 - 10000，整数。
         # @type MaxDelay: Integer
         # @param FailOver: 是否开启故障转移，取值："true" | "false"
         # @type FailOver: Boolean
@@ -2642,26 +2646,26 @@ module TencentCloud
         # @type TransSplit: Boolean
         # @param ProxyAllocation: 读写权重分配
         # @type ProxyAllocation: Array
-        # @param UniqVpcId: 私有网络ID
+        # @param UniqVpcId: 私有网络 ID。可通过 [DescribeDBInstances](https://cloud.tencent.com/document/product/236/15872) 接口获取。
         # @type UniqVpcId: String
-        # @param UniqSubnetId: 私有子网ID
+        # @param UniqSubnetId: 私有子网 ID。可通过 [DescribeDBInstances](https://cloud.tencent.com/document/product/236/15872) 接口获取。
         # @type UniqSubnetId: String
-        # @param ConnectionPool: 是否开启连接池
+        # @param ConnectionPool: 是否开启连接池。默认关闭。
         # 注意：如需使用数据库代理连接池能力，MySQL 8.0 主实例的内核小版本要大于等于 MySQL 8.0 20230630。
         # @type ConnectionPool: Boolean
         # @param Desc: 描述
         # @type Desc: String
-        # @param Vip: IP地址
+        # @param Vip: IP 地址。不填则默认为所选 VPC 下支持的随机一个 IP。
         # @type Vip: String
-        # @param VPort: 端口
+        # @param VPort: 端口。默认值3306。
         # @type VPort: Integer
         # @param SecurityGroup: 安全组
         # @type SecurityGroup: Array
-        # @param ConnectionPoolType: 连接池类型。可选值 transaction（事务级别连接池），connection（会话级别连接池），ConnectionPool为true时生效。
+        # @param ConnectionPoolType: 连接池类型。可选值 transaction（事务级别连接池），connection（会话级别连接池），ConnectionPool 为 true 时生效。默认值：connection。
         # @type ConnectionPoolType: String
-        # @param AutoLoadBalance: 是否自适应负载均衡
+        # @param AutoLoadBalance: 是否开启自适应负载均衡。默认关闭。
         # @type AutoLoadBalance: Boolean
-        # @param AccessMode: 接入模式
+        # @param AccessMode: 接入模式。nearBy - 就近访问，balance - 均衡分配，默认值：nearBy。
         # @type AccessMode: String
 
         attr_accessor :ProxyGroupId, :WeightMode, :IsKickOut, :MinCount, :MaxDelay, :FailOver, :AutoAddRo, :ReadOnly, :TransSplit, :ProxyAllocation, :UniqVpcId, :UniqSubnetId, :ConnectionPool, :Desc, :Vip, :VPort, :SecurityGroup, :ConnectionPoolType, :AutoLoadBalance, :AccessMode
@@ -2742,11 +2746,11 @@ module TencentCloud
 
       # CreateCdbProxy请求参数结构体
       class CreateCdbProxyRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
+        # @param InstanceId: 实例 ID。可通过 [DescribeDBInstances](https://cloud.tencent.com/document/product/236/15872) 接口获取。
         # @type InstanceId: String
-        # @param UniqVpcId: 私有网络ID
+        # @param UniqVpcId: 私有网络 ID。可通过 [DescribeDBInstances](https://cloud.tencent.com/document/product/236/15872) 接口获取。
         # @type UniqVpcId: String
-        # @param UniqSubnetId: 私有子网ID
+        # @param UniqSubnetId: 私有子网 ID。可通过 [DescribeDBInstances](https://cloud.tencent.com/document/product/236/15872) 接口获取。
         # @type UniqSubnetId: String
         # @param ProxyNodeCustom: 节点规格配置。
         # 示例中参数说明：
@@ -3887,9 +3891,9 @@ module TencentCloud
 
       # DeleteAuditLogFile请求参数结构体
       class DeleteAuditLogFileRequest < TencentCloud::Common::AbstractModel
-        # @param FileName: 审计日志文件名称。
+        # @param FileName: 审计日志文件名称。可通过 [DescribeAuditLogFiles](https://cloud.tencent.com/document/api/236/45454) 接口获取。
         # @type FileName: String
-        # @param InstanceId: 实例 ID。
+        # @param InstanceId: 实例 ID。可通过 [DescribeDBInstances](https://cloud.tencent.com/document/product/236/15872) 接口获取。
         # @type InstanceId: String
 
         attr_accessor :FileName, :InstanceId
@@ -4285,9 +4289,9 @@ module TencentCloud
       class DescribeAccountPrivilegesRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例 ID，格式如：cdb-c1nl9rpv，与云数据库控制台页面中显示的实例 ID 相同。
         # @type InstanceId: String
-        # @param User: 数据库的账号名称。
+        # @param User: 数据库的账号名称。可通过 [DescribeAccounts](https://cloud.tencent.com/document/api/236/17499) 接口获取。
         # @type User: String
-        # @param Host: 数据库的账号域名。
+        # @param Host: 数据库的账号域名。可通过 [DescribeAccounts](https://cloud.tencent.com/document/api/236/17499) 接口获取。
         # @type Host: String
 
         attr_accessor :InstanceId, :User, :Host
@@ -4584,7 +4588,7 @@ module TencentCloud
       class DescribeAuditLogFilesRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例 ID，格式如：cdb-c1nl9rpv 或者 cdbro-c1nl9rpv，与云数据库控制台页面中显示的实例 ID 相同。
         # @type InstanceId: String
-        # @param Limit: 分页大小参数。默认值为 20，最小值为 1，最大值为 100。
+        # @param Limit: 分页大小参数。默认值为20，最小值为1，最大值为300。
         # @type Limit: Integer
         # @param Offset: 分页偏移量。
         # @type Offset: Integer
@@ -4870,7 +4874,7 @@ module TencentCloud
         # @type RuleTemplateIds: Array
         # @param RuleTemplateNames: 规则模板名称。
         # @type RuleTemplateNames: Array
-        # @param Limit: 单次请求返回的数量。默认值20。
+        # @param Limit: 单次请求返回的数量。默认值20，最大值为1000。
         # @type Limit: Integer
         # @param Offset: 偏移量，默认值为 0。
         # @type Offset: Integer
@@ -5552,7 +5556,7 @@ module TencentCloud
 
       # DescribeCPUExpandStrategyInfo请求参数结构体
       class DescribeCPUExpandStrategyInfoRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例 ID。
+        # @param InstanceId: 实例 ID。可通过 [DescribeDBInstances](https://cloud.tencent.com/document/product/236/15872) 接口获取。
         # @type InstanceId: String
 
         attr_accessor :InstanceId
@@ -5568,18 +5572,19 @@ module TencentCloud
 
       # DescribeCPUExpandStrategyInfo返回参数结构体
       class DescribeCPUExpandStrategyInfoResponse < TencentCloud::Common::AbstractModel
-        # @param Type: 策略类型。输出值 auto、manual。如果返回为 NULL 说明尚未开通弹性扩容策略。
+        # @param Type: 策略类型。输出值：auto、manual、timeInterval、period。
+        # 说明：1. auto 表示自动扩容。2. manual 表示自定义扩容，扩容时间为立即生效。3. timeInterval 表示自定义扩容，扩容时间为按时间段。4. period 表示自定义扩容，扩容时间为按周期。5. 如果返回为 NULL 说明尚未开通弹性扩容策略。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: String
-        # @param ExpandCpu: 手动扩容的 CPU 。Type 为 manual 时有效。
+        # @param ExpandCpu: 自定义扩容，且扩容时间为立即生效时的 CPU。Type 为 manual 时有效。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExpandCpu: Integer
         # @param AutoStrategy: 自动扩容策略。Type 为 auto 时有效。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AutoStrategy: :class:`Tencentcloud::Cdb.v20170320.models.AutoStrategy`
-        # @param PeriodStrategy: 按周期扩容策略。
+        # @param PeriodStrategy: 按周期扩容策略。当 Type 为 period 时有效。
         # @type PeriodStrategy: :class:`Tencentcloud::Cdb.v20170320.models.PeriodStrategy`
-        # @param TimeIntervalStrategy: 按时间段扩容策略。
+        # @param TimeIntervalStrategy: 按时间段扩容策略。当 Type 为 timeInterval 时有效。
         # @type TimeIntervalStrategy: :class:`Tencentcloud::Cdb.v20170320.models.TimeIntervalStrategy`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5756,7 +5761,8 @@ module TencentCloud
 
       # DescribeClusterInfo请求参数结构体
       class DescribeClusterInfoRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例 ID。
+        # @param InstanceId: 实例 ID。可通过 [DescribeDBInstances](https://cloud.tencent.com/document/product/236/15872) 接口获取。
+        # 说明：仅能输入实例架构为云盘版的实例 ID，对应控制台实例配置显示为“云盘版（云盘）”的实例。
         # @type InstanceId: String
 
         attr_accessor :InstanceId
@@ -7296,9 +7302,10 @@ module TencentCloud
 
       # DescribeInstanceUpgradeCheckJob请求参数结构体
       class DescribeInstanceUpgradeCheckJobRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
+        # @param InstanceId: 实例 ID。可通过 [DescribeDBInstances](https://cloud.tencent.com/document/product/236/15872) 接口获取。
         # @type InstanceId: String
-        # @param DstMysqlVersion: 目标数据库版本
+        # @param DstMysqlVersion: 目标数据库版本。
+        # 说明：可选值5.6、5.7、8.0，不支持跨版本升级，升级后不支持版本降级。
         # @type DstMysqlVersion: String
 
         attr_accessor :InstanceId, :DstMysqlVersion
@@ -7610,7 +7617,7 @@ module TencentCloud
 
       # DescribeProjectSecurityGroups请求参数结构体
       class DescribeProjectSecurityGroupsRequest < TencentCloud::Common::AbstractModel
-        # @param ProjectId: 项目ID。
+        # @param ProjectId: 项目 ID。可通过 [DescribeProjects](https://cloud.tencent.com/document/api/651/78725) 接口获取。
         # @type ProjectId: Integer
 
         attr_accessor :ProjectId
@@ -7715,7 +7722,7 @@ module TencentCloud
 
       # DescribeProxySupportParam请求参数结构体
       class DescribeProxySupportParamRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
+        # @param InstanceId: 实例 ID。可通过 [DescribeDBInstances](https://cloud.tencent.com/document/product/236/15872) 接口获取。
         # @type InstanceId: String
 
         attr_accessor :InstanceId
@@ -9905,11 +9912,11 @@ module TencentCloud
       class ModifyAccountHostRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例 ID，格式如：cdb-c1nl9rpv，与云数据库控制台页面中显示的实例 ID 相同。
         # @type InstanceId: String
-        # @param User: 账户的名称
+        # @param User: 账户的名称。可通过 [DescribeAccounts](https://cloud.tencent.com/document/api/236/17499) 接口获取。
         # @type User: String
-        # @param Host: 账户的旧主机
+        # @param Host: 账户的旧主机。格式：IP 形式，支持单个 IP 地址或者%。
         # @type Host: String
-        # @param NewHost: 账户的新主机
+        # @param NewHost: 账户的新主机。格式：IP 形式，支持单个 IP 地址或者%。
         # @type NewHost: String
 
         attr_accessor :InstanceId, :User, :Host, :NewHost
@@ -10145,7 +10152,7 @@ module TencentCloud
 
       # ModifyAuditConfig请求参数结构体
       class ModifyAuditConfigRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例 ID。
+        # @param InstanceId: 实例 ID。可通过 [DescribeDBInstances](https://cloud.tencent.com/document/product/236/15872) 接口获取。
         # @type InstanceId: String
         # @param LogExpireDay: 审计日志保存时长。支持值包括：
         # 7 - 一周
@@ -10156,8 +10163,10 @@ module TencentCloud
         # 1825 - 五年；
         # @type LogExpireDay: Integer
         # @param CloseAudit: 是否关闭审计服务。可选值：true - 关闭审计服务；false - 不关闭审计服务。默认值为 false。
-        # 当关闭审计服务时，会删除用户的审计日志和文件，并删除该实例的所有审计策略。
-        # CloseAudit、LogExpireDay必须至少提供一个，如果两个都提供则按照CloseAudit优先的逻辑处理。
+        # 说明：
+        # 1. 当关闭审计服务时，会删除用户的审计日志和文件，并删除该实例的所有审计策略。
+        # 2. CloseAudit、LogExpireDay 必须至少提供一个，如果两个都提供则按照 CloseAudit 优先的逻辑处理。
+        # 3. 可通过设置此参数来关闭审计服务，已关闭后不能通过此接口来开启审计服务。
         # @type CloseAudit: Boolean
         # @param HighLogExpireDay: 高频审计日志保存时长。支持值包括：
         # 7 - 一周
@@ -10258,7 +10267,7 @@ module TencentCloud
 
       # ModifyAuditRuleTemplates请求参数结构体
       class ModifyAuditRuleTemplatesRequest < TencentCloud::Common::AbstractModel
-        # @param RuleTemplateIds: 审计规则模板ID。
+        # @param RuleTemplateIds: 审计规则模板 ID。可通过 [DescribeAuditRuleTemplates](https://cloud.tencent.com/document/api/236/101811) 接口获取。
         # @type RuleTemplateIds: Array
         # @param RuleFilters: 修改后的审计规则。
         # @type RuleFilters: Array
@@ -10317,17 +10326,32 @@ module TencentCloud
 
       # ModifyAuditService请求参数结构体
       class ModifyAuditServiceRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID。
+        # @param InstanceId: 实例 ID。可通过 [DescribeDBInstances](https://cloud.tencent.com/document/product/236/15872) 接口获取。
         # @type InstanceId: String
-        # @param LogExpireDay: 日志保留时长。
+        # @param LogExpireDay: 日志保留时长。支持值包括：
+        # 7 - 一周；
+        # 30 - 一个月；
+        # 90 - 三个月；
+        # 180 - 六个月；
+        # 365 - 一年；
+        # 1095 - 三年；
+        # 1825 - 五年。
         # @type LogExpireDay: Integer
-        # @param HighLogExpireDay: 高频日志保留时长。
+        # @param HighLogExpireDay: 高频日志保留时长。默认值为7，此项取值需小于等于 LogExpireDay，支持值包括：
+        # 3 - 3天；
+        # 7 - 一周；
+        # 30 - 一个月；
+        # 90 - 三个月；
+        # 180 - 六个月；
+        # 365 - 一年；
+        # 1095 - 三年；
+        # 1825 - 五年。
         # @type HighLogExpireDay: Integer
         # @param AuditAll: 修改实例审计规则为全审计。
         # @type AuditAll: Boolean
         # @param AuditRuleFilters: 废弃。
         # @type AuditRuleFilters: Array
-        # @param RuleTemplateIds: 规则模板ID。
+        # @param RuleTemplateIds: 规则模板 ID。可通过 [DescribeAuditRuleTemplates](https://cloud.tencent.com/document/api/236/101811) 接口获取。
         # @type RuleTemplateIds: Array
 
         attr_accessor :InstanceId, :LogExpireDay, :HighLogExpireDay, :AuditAll, :AuditRuleFilters, :RuleTemplateIds
@@ -10622,9 +10646,9 @@ module TencentCloud
 
       # ModifyCdbProxyAddressDesc请求参数结构体
       class ModifyCdbProxyAddressDescRequest < TencentCloud::Common::AbstractModel
-        # @param ProxyGroupId: 代理组ID
+        # @param ProxyGroupId: 代理组 ID。可通过 [DescribeCdbProxyInfo](https://cloud.tencent.com/document/api/236/90585) 接口获取。
         # @type ProxyGroupId: String
-        # @param ProxyAddressId: 代理组地址ID
+        # @param ProxyAddressId: 代理组地址 ID。可通过 [DescribeCdbProxyInfo](https://cloud.tencent.com/document/api/236/90585) 接口获取。
         # @type ProxyAddressId: String
         # @param Desc: 描述
         # @type Desc: String
@@ -10662,19 +10686,19 @@ module TencentCloud
 
       # ModifyCdbProxyAddressVipAndVPort请求参数结构体
       class ModifyCdbProxyAddressVipAndVPortRequest < TencentCloud::Common::AbstractModel
-        # @param ProxyGroupId: 代理组ID
+        # @param ProxyGroupId: 代理组 ID。可通过 [DescribeCdbProxyInfo](https://cloud.tencent.com/document/api/236/90585) 接口获取。
         # @type ProxyGroupId: String
-        # @param ProxyAddressId: 代理组地址ID
+        # @param ProxyAddressId: 代理组地址 ID。可通过 [DescribeCdbProxyInfo](https://cloud.tencent.com/document/api/236/90585) 接口获取。
         # @type ProxyAddressId: String
-        # @param UniqVpcId: 私有网络ID
+        # @param UniqVpcId: 私有网络 ID。可通过 [DescribeDBInstances](https://cloud.tencent.com/document/product/236/15872) 接口获取。
         # @type UniqVpcId: String
-        # @param UniqSubnetId: 私有子网ID
+        # @param UniqSubnetId: 私有子网 ID。可通过 [DescribeDBInstances](https://cloud.tencent.com/document/product/236/15872) 接口获取。
         # @type UniqSubnetId: String
-        # @param Vip: IP地址
+        # @param Vip: IP 地址。若不填写则自动分配子网下的可用 IP。
         # @type Vip: String
-        # @param VPort: 端口
+        # @param VPort: 端口。默认值3306，取值范围：1024 - 65535。
         # @type VPort: Integer
-        # @param ReleaseDuration: 旧IP地址回收时间
+        # @param ReleaseDuration: 旧 IP 地址回收时间。单位：小时，默认值：24，取值范围：0 - 168。
         # @type ReleaseDuration: Integer
 
         attr_accessor :ProxyGroupId, :ProxyAddressId, :UniqVpcId, :UniqSubnetId, :Vip, :VPort, :ReleaseDuration
@@ -10718,11 +10742,11 @@ module TencentCloud
 
       # ModifyCdbProxyParam请求参数结构体
       class ModifyCdbProxyParamRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
+        # @param InstanceId: 实例 ID。可通过 [DescribeDBInstances](https://cloud.tencent.com/document/product/236/15872) 接口获取。
         # @type InstanceId: String
-        # @param ProxyGroupId: 代理组ID
+        # @param ProxyGroupId: 代理组 ID。可通过 [DescribeCdbProxyInfo](https://cloud.tencent.com/document/api/236/90585) 接口获取。
         # @type ProxyGroupId: String
-        # @param ConnectionPoolLimit: 连接池阈值
+        # @param ConnectionPoolLimit: 连接池阈值。取值范围：大于0，小于等于300。
         # 注意：如需使用数据库代理连接池能力，MySQL 8.0 主实例的内核小版本要大于等于 MySQL 8.0 20230630。
         # @type ConnectionPoolLimit: Integer
 
@@ -11617,26 +11641,32 @@ module TencentCloud
 
       # OpenAuditService请求参数结构体
       class OpenAuditServiceRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: CDB实例ID
+        # @param InstanceId: CDB 实例 ID。可通过 [DescribeDBInstances](https://cloud.tencent.com/document/product/236/15872) 接口获取。
         # @type InstanceId: String
         # @param LogExpireDay: 审计日志保存时长。支持值包括：
-        # 7 - 一周
+        # 7 - 一周；
         # 30 - 一个月；
         # 90 - 三个月；
         # 180 - 六个月；
         # 365 - 一年；
         # 1095 - 三年；
-        # 1825 - 五年；
+        # 1825 - 五年。
         # @type LogExpireDay: Integer
-        # @param HighLogExpireDay: 高频审计日志保存时长。支持值包括：
-        # 7 - 一周
+        # @param HighLogExpireDay: 高频审计日志保存时长。默认值为7，此项取值需小于等于 LogExpireDay，支持值包括：
+        # 3 - 3天；
+        # 7 - 一周；
         # 30 - 一个月；
+        # 90 - 三个月；
+        # 180 - 六个月；
+        # 365 - 一年；
+        # 1095 - 三年；
+        # 1825 - 五年。
         # @type HighLogExpireDay: Integer
         # @param AuditRuleFilters: 审计规则（该参数已废弃，不再生效）。
         # @type AuditRuleFilters: Array
-        # @param RuleTemplateIds: 规则模板ID。同AuditRuleFilters都不填是全审计。
+        # @param RuleTemplateIds: 规则模板 ID。
         # @type RuleTemplateIds: Array
-        # @param AuditAll: 审计类型。true-全审计；默认false-规则审计。
+        # @param AuditAll: 审计类型。true - 全审计；默认 false - 规则审计。
         # @type AuditAll: Boolean
 
         attr_accessor :InstanceId, :LogExpireDay, :HighLogExpireDay, :AuditRuleFilters, :RuleTemplateIds, :AuditAll
@@ -11688,7 +11718,7 @@ module TencentCloud
 
       # OpenDBInstanceEncryption请求参数结构体
       class OpenDBInstanceEncryptionRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 云数据库实例 ID。
+        # @param InstanceId: 云数据库实例 ID。可通过 [DescribeDBInstances](https://cloud.tencent.com/document/product/236/15872) 接口获取。
         # @type InstanceId: String
         # @param KeyId: 用户自定义密钥 ID，CMK 唯一标识符。该值为空时，将使用腾讯云自动生成的密钥 KMS-CDB。
         # @type KeyId: String
@@ -11764,9 +11794,9 @@ module TencentCloud
 
       # OpenSSL请求参数结构体
       class OpenSSLRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例 ID 。
+        # @param InstanceId: 实例 ID。只读组 ID 为空时必填。可通过 [DescribeDBInstances](https://cloud.tencent.com/document/product/236/15872) 接口获取。
         # @type InstanceId: String
-        # @param RoGroupId: 只读组 ID。
+        # @param RoGroupId: 只读组 ID。实例 ID 为空时必填。可通过 [DescribeRoGroups](https://cloud.tencent.com/document/api/236/40939) 接口获取。
         # @type RoGroupId: String
 
         attr_accessor :InstanceId, :RoGroupId
@@ -11804,7 +11834,7 @@ module TencentCloud
 
       # OpenWanService请求参数结构体
       class OpenWanServiceRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例 ID，格式如：cdb-c1nl9rpv，与云数据库控制台页面中显示的实例 ID 相同，可使用 [查询实例列表](https://cloud.tencent.com/document/api/236/15872) 接口获取，其值为输出参数中字段 InstanceId 的值。
+        # @param InstanceId: 实例 ID，格式如：cdb-c1nl9rpv，与云数据库控制台页面中显示的实例 ID 相同，可使用 [查询实例列表](https://cloud.tencent.com/document/api/236/15872) 接口获取，其值为输出参数中字段 InstanceId 的值。可以传入只读组 ID。
         # @type InstanceId: String
         # @param OpResourceId: 变更集群版实例只读组时，InstanceId传实例id，需要额外指定该参数表示操作只读组。 如果操作读写节点则不需指定该参数。
         # @type OpResourceId: String
@@ -12828,15 +12858,17 @@ module TencentCloud
       class RoGroupAttr < TencentCloud::Common::AbstractModel
         # @param RoGroupName: RO 组名称。
         # @type RoGroupName: String
-        # @param RoMaxDelayTime: RO 实例最大延迟阈值。单位为秒，最小值为 1。注意，RO 组必须设置了开启实例延迟剔除策略，该值才有效。
+        # @param RoMaxDelayTime: RO 实例最大延迟阈值。单位为秒，最小值为 1。范围：[1,10000]，整数。
+        # 注意：RO 组必须设置了开启实例延迟剔除策略，该值才有效。
         # @type RoMaxDelayTime: Integer
         # @param RoOfflineDelay: 是否开启实例延迟剔除。支持的值包括：1 - 开启；0 - 不开启。注意，若设置开启实例延迟剔除，则必须设置延迟阈值（RoMaxDelayTime）参数。
         # @type RoOfflineDelay: Integer
-        # @param MinRoInGroup: 最少保留实例数。可设置为小于或等于该 RO 组下 RO 实例个数的任意值。注意，若设置值大于 RO 实例数量将不做剔除；若设置为 0，所有实例延迟超限都会被剔除。
+        # @param MinRoInGroup: 最少保留实例数。可设置为小于或等于该 RO 组下 RO 实例个数的任意值。默认值为1。
+        # 注意：若设置值大于 RO 实例数量将不做剔除；若设置为 0，所有实例延迟超限都会被剔除。
         # @type MinRoInGroup: Integer
         # @param WeightMode: 权重模式。支持值包括："system" - 系统自动分配； "custom" - 用户自定义设置。注意，若设置 "custom" 模式，则必须设置 RO 实例权重配置（RoWeightValues）参数。
         # @type WeightMode: String
-        # @param ReplicationDelayTime: 延迟复制时间。
+        # @param ReplicationDelayTime: 延迟复制时间。单位：秒，范围：1 - 259200秒，不传此参数表示不开启实例延迟复制。
         # @type ReplicationDelayTime: Integer
 
         attr_accessor :RoGroupName, :RoMaxDelayTime, :RoOfflineDelay, :MinRoInGroup, :WeightMode, :ReplicationDelayTime
@@ -13629,7 +13661,7 @@ module TencentCloud
 
       # StartCpuExpand请求参数结构体
       class StartCpuExpandRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例 ID。
+        # @param InstanceId: 实例 ID。可通过 [DescribeDBInstances](https://cloud.tencent.com/document/product/236/15872) 接口获取。
         # @type InstanceId: String
         # @param Type: 扩容类型，支持自动扩容和自定义扩容。
         # 说明：1. auto 表示自动扩容。2. manual 表示自定义扩容，扩容时间为立即生效。3. timeInterval 表示自定义扩容，扩容时间为按时间段。4. period 表示自定义扩容，扩容时间为按周期。
@@ -13640,8 +13672,10 @@ module TencentCloud
         # @param AutoStrategy: 自动扩容策略。Type 为 auto 时必传。
         # @type AutoStrategy: :class:`Tencentcloud::Cdb.v20170320.models.AutoStrategy`
         # @param TimeIntervalStrategy: 按时间段扩容策略。
+        # 说明：当 Type 为 timeInterval 时，TimeIntervalStrategy 必填。
         # @type TimeIntervalStrategy: :class:`Tencentcloud::Cdb.v20170320.models.TimeIntervalStrategy`
         # @param PeriodStrategy: 按周期扩容策略。
+        # 说明：当 Type 为 period 时，PeriodStrategy 必填。
         # @type PeriodStrategy: :class:`Tencentcloud::Cdb.v20170320.models.PeriodStrategy`
 
         attr_accessor :InstanceId, :Type, :ExpandCpu, :AutoStrategy, :TimeIntervalStrategy, :PeriodStrategy
@@ -13676,7 +13710,7 @@ module TencentCloud
 
       # StartCpuExpand返回参数结构体
       class StartCpuExpandResponse < TencentCloud::Common::AbstractModel
-        # @param AsyncRequestId: 异步任务 ID 。可以调用DescribeAsyncRequest 传入该 ID ，进行任务执行进度的查询
+        # @param AsyncRequestId: 异步任务 ID 。可以调用 DescribeAsyncRequest 传入该 ID，进行任务执行进度的查询。
         # @type AsyncRequestId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -13872,9 +13906,10 @@ module TencentCloud
 
       # SubmitInstanceUpgradeCheckJob请求参数结构体
       class SubmitInstanceUpgradeCheckJobRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例 ID。
+        # @param InstanceId: 实例 ID。可通过 [DescribeDBInstances](https://cloud.tencent.com/document/product/236/15872) 接口获取。
         # @type InstanceId: String
         # @param DstMysqlVersion: 目标数据库版本。
+        # 说明：可选值5.6、5.7、8.0，不支持跨版本升级，升级后不支持版本降级。
         # @type DstMysqlVersion: String
 
         attr_accessor :InstanceId, :DstMysqlVersion
@@ -13912,9 +13947,9 @@ module TencentCloud
 
       # SwitchCDBProxy请求参数结构体
       class SwitchCDBProxyRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
+        # @param InstanceId: 实例 ID。可通过 [DescribeDBInstances](https://cloud.tencent.com/document/product/236/15872) 接口获取。
         # @type InstanceId: String
-        # @param ProxyGroupId: 数据库代理ID
+        # @param ProxyGroupId: 数据库代理 ID。可通过 [DescribeCdbProxyInfo](https://cloud.tencent.com/document/api/236/90585) 接口获取。
         # @type ProxyGroupId: String
 
         attr_accessor :InstanceId, :ProxyGroupId
@@ -14394,9 +14429,9 @@ module TencentCloud
 
       # UpgradeCDBProxyVersion请求参数结构体
       class UpgradeCDBProxyVersionRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
+        # @param InstanceId: 实例 ID。可通过 [DescribeDBInstances](https://cloud.tencent.com/document/product/236/15872) 接口获取。
         # @type InstanceId: String
-        # @param ProxyGroupId: 数据库代理ID
+        # @param ProxyGroupId: 数据库代理 ID。可通过 [DescribeCdbProxyInfo](https://cloud.tencent.com/document/api/236/90585) 接口获取。
         # @type ProxyGroupId: String
         # @param SrcProxyVersion: 数据库代理当前版本
         # @type SrcProxyVersion: String
@@ -14526,11 +14561,12 @@ module TencentCloud
         # @type DeployMode: Integer
         # @param SlaveZone: 备库1的可用区信息，默认和实例的 Zone 参数一致，升级主实例为多可用区部署时可指定该参数，升级只读实例或者灾备实例时指定该参数无意义。可通过 [获取云数据库可售卖规格](https://cloud.tencent.com/document/product/236/17229) 接口查询支持的可用区。
         # @type SlaveZone: String
-        # @param EngineVersion: 主实例数据库引擎版本，支持值包括：5.5、5.6 和 5.7。
+        # @param EngineVersion: 主实例数据库引擎版本，支持值包括：5.5、5.6、5.7、8.0。
+        # 说明：升级数据库版本请使用 [UpgradeDBInstanceEngineVersion](https://cloud.tencent.com/document/api/236/15870) 接口。
         # @type EngineVersion: String
         # @param WaitSwitch: 切换访问新实例的方式，默认为 0。支持值包括：0 - 立刻切换，1 - 时间窗切换；当该值为 1 时，升级过程中，切换访问新实例的流程将会在时间窗内进行，或者用户主动调用接口 [切换访问新实例](https://cloud.tencent.com/document/product/236/15864) 触发该流程。
         # @type WaitSwitch: Integer
-        # @param BackupZone: 备库 2 的可用区信息，默认为空，升级主实例时可指定该参数，升级只读实例或者灾备实例时指定该参数无意义。
+        # @param BackupZone: 备库2的可用区信息，默认为空，升级主实例时可指定该参数，升级只读实例或者灾备实例时指定该参数无意义。可通过 [获取云数据库可售卖规格](https://cloud.tencent.com/document/product/236/17229) 接口查询支持的可用区。
         # 备注：如您要将三节点降级至双节点，将该参数设置为空值即可实现。
         # @type BackupZone: String
         # @param InstanceRole: 实例类型，默认为 master，支持值包括：master - 表示主实例，dr - 表示灾备实例，ro - 表示只读实例。
@@ -14618,7 +14654,7 @@ module TencentCloud
       class UpgradeDBInstanceResponse < TencentCloud::Common::AbstractModel
         # @param DealIds: 订单 ID。
         # @type DealIds: Array
-        # @param AsyncRequestId: 异步任务的请求 ID，可使用此 ID 查询异步任务的执行结果。
+        # @param AsyncRequestId: 异步任务的请求 ID，可使用此 ID [查询异步任务的执行结果](https://cloud.tencent.com/document/product/236/20410)。
         # @type AsyncRequestId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

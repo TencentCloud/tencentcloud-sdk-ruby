@@ -6248,13 +6248,15 @@ module TencentCloud
         # @type StartScheduleTime: String
         # @param Message: 实例状态的补充信息
         # @type Message: String
+        # @param NodeIP: 当前实例所在的节点 IP
+        # @type NodeIP: String
 
-        attr_accessor :Name, :Uid, :ChargeType, :Phase, :IP, :CreateTime, :Containers, :ContainerInfos, :CrossTenantENIInfo, :Status, :StartScheduleTime, :Message
+        attr_accessor :Name, :Uid, :ChargeType, :Phase, :IP, :CreateTime, :Containers, :ContainerInfos, :CrossTenantENIInfo, :Status, :StartScheduleTime, :Message, :NodeIP
         extend Gem::Deprecate
         deprecate :Containers, :none, 2025, 6
         deprecate :Containers=, :none, 2025, 6
 
-        def initialize(name=nil, uid=nil, chargetype=nil, phase=nil, ip=nil, createtime=nil, containers=nil, containerinfos=nil, crosstenanteniinfo=nil, status=nil, startscheduletime=nil, message=nil)
+        def initialize(name=nil, uid=nil, chargetype=nil, phase=nil, ip=nil, createtime=nil, containers=nil, containerinfos=nil, crosstenanteniinfo=nil, status=nil, startscheduletime=nil, message=nil, nodeip=nil)
           @Name = name
           @Uid = uid
           @ChargeType = chargetype
@@ -6267,6 +6269,7 @@ module TencentCloud
           @Status = status
           @StartScheduleTime = startscheduletime
           @Message = message
+          @NodeIP = nodeip
         end
 
         def deserialize(params)
@@ -6295,6 +6298,7 @@ module TencentCloud
           @Status = params['Status']
           @StartScheduleTime = params['StartScheduleTime']
           @Message = params['Message']
+          @NodeIP = params['NodeIP']
         end
       end
 

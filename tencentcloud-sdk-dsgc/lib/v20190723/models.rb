@@ -1998,13 +1998,15 @@ module TencentCloud
         # @type Rows: Integer
         # @param GlobalOrderField: 抽样的排序字段
         # @type GlobalOrderField: String
+        # @param ScanRange: full:全量扫描 incre:变更扫描
+        # @type ScanRange: String
 
-        attr_accessor :DspaId, :Name, :DataSourceId, :Enable, :Plan, :Period, :ResourceRegion, :DataSourceType, :GeneralRuleSetEnable, :Description, :Condition, :ComplianceGroupIds, :TimingStartTime, :Order, :Rows, :GlobalOrderField
+        attr_accessor :DspaId, :Name, :DataSourceId, :Enable, :Plan, :Period, :ResourceRegion, :DataSourceType, :GeneralRuleSetEnable, :Description, :Condition, :ComplianceGroupIds, :TimingStartTime, :Order, :Rows, :GlobalOrderField, :ScanRange
         extend Gem::Deprecate
         deprecate :GeneralRuleSetEnable, :none, 2025, 6
         deprecate :GeneralRuleSetEnable=, :none, 2025, 6
 
-        def initialize(dspaid=nil, name=nil, datasourceid=nil, enable=nil, plan=nil, period=nil, resourceregion=nil, datasourcetype=nil, generalrulesetenable=nil, description=nil, condition=nil, compliancegroupids=nil, timingstarttime=nil, order=nil, rows=nil, globalorderfield=nil)
+        def initialize(dspaid=nil, name=nil, datasourceid=nil, enable=nil, plan=nil, period=nil, resourceregion=nil, datasourcetype=nil, generalrulesetenable=nil, description=nil, condition=nil, compliancegroupids=nil, timingstarttime=nil, order=nil, rows=nil, globalorderfield=nil, scanrange=nil)
           @DspaId = dspaid
           @Name = name
           @DataSourceId = datasourceid
@@ -2021,6 +2023,7 @@ module TencentCloud
           @Order = order
           @Rows = rows
           @GlobalOrderField = globalorderfield
+          @ScanRange = scanrange
         end
 
         def deserialize(params)
@@ -2040,6 +2043,7 @@ module TencentCloud
           @Order = params['Order']
           @Rows = params['Rows']
           @GlobalOrderField = params['GlobalOrderField']
+          @ScanRange = params['ScanRange']
         end
       end
 
@@ -5169,19 +5173,26 @@ module TencentCloud
         # @type TaskId: Integer
         # @param BucketResultId: 扫描Bucket任务结果ID
         # @type BucketResultId: Integer
+        # @param ScanResultId: 扫描结果id
+        # @type ScanResultId: Integer
 
-        attr_accessor :DspaId, :TaskId, :BucketResultId
+        attr_accessor :DspaId, :TaskId, :BucketResultId, :ScanResultId
+        extend Gem::Deprecate
+        deprecate :BucketResultId, :none, 2025, 6
+        deprecate :BucketResultId=, :none, 2025, 6
 
-        def initialize(dspaid=nil, taskid=nil, bucketresultid=nil)
+        def initialize(dspaid=nil, taskid=nil, bucketresultid=nil, scanresultid=nil)
           @DspaId = dspaid
           @TaskId = taskid
           @BucketResultId = bucketresultid
+          @ScanResultId = scanresultid
         end
 
         def deserialize(params)
           @DspaId = params['DspaId']
           @TaskId = params['TaskId']
           @BucketResultId = params['BucketResultId']
+          @ScanResultId = params['ScanResultId']
         end
       end
 
@@ -5221,14 +5232,23 @@ module TencentCloud
         # ResourceRegion：资源所在地域
         # 每项过滤条件最多支持5个。
         # @type Filters: Array
+        # @param StartTime: 开始时间
+        # @type StartTime: String
+        # @param EndTime: 结束时间
+        # @type EndTime: String
+        # @param FetchHistory: 是否查询历史结果
+        # @type FetchHistory: Boolean
 
-        attr_accessor :DspaId, :Offset, :Limit, :Filters
+        attr_accessor :DspaId, :Offset, :Limit, :Filters, :StartTime, :EndTime, :FetchHistory
 
-        def initialize(dspaid=nil, offset=nil, limit=nil, filters=nil)
+        def initialize(dspaid=nil, offset=nil, limit=nil, filters=nil, starttime=nil, endtime=nil, fetchhistory=nil)
           @DspaId = dspaid
           @Offset = offset
           @Limit = limit
           @Filters = filters
+          @StartTime = starttime
+          @EndTime = endtime
+          @FetchHistory = fetchhistory
         end
 
         def deserialize(params)
@@ -5243,6 +5263,9 @@ module TencentCloud
               @Filters << filter_tmp
             end
           end
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @FetchHistory = params['FetchHistory']
         end
       end
 
@@ -5252,14 +5275,17 @@ module TencentCloud
         # @type Items: Array
         # @param TotalCount: 符合条件的数据结果数目
         # @type TotalCount: Integer
+        # @param MaxCount: 最大展示扫描结果次数
+        # @type MaxCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Items, :TotalCount, :RequestId
+        attr_accessor :Items, :TotalCount, :MaxCount, :RequestId
 
-        def initialize(items=nil, totalcount=nil, requestid=nil)
+        def initialize(items=nil, totalcount=nil, maxcount=nil, requestid=nil)
           @Items = items
           @TotalCount = totalcount
+          @MaxCount = maxcount
           @RequestId = requestid
         end
 
@@ -5273,6 +5299,7 @@ module TencentCloud
             end
           end
           @TotalCount = params['TotalCount']
+          @MaxCount = params['MaxCount']
           @RequestId = params['RequestId']
         end
       end
@@ -5350,10 +5377,10 @@ module TencentCloud
         # @type DspaId: String
         # @param TaskId: 任务ID
         # @type TaskId: Integer
-        # @param BucketResultId: 扫描Bucket结果ID
-        # @type BucketResultId: Integer
         # @param ComplianceId: 合规组ID
         # @type ComplianceId: Integer
+        # @param BucketResultId: 扫描Bucket结果ID
+        # @type BucketResultId: Integer
         # @param FileName: 文件名
         # @type FileName: String
         # @param CategoryId: 敏感数据分类ID
@@ -5368,14 +5395,19 @@ module TencentCloud
         # @type BucketName: String
         # @param CategoryIdList: 多级分类的分类ID集合
         # @type CategoryIdList: Array
+        # @param ScanResultId: 扫描结果id
+        # @type ScanResultId: Integer
 
-        attr_accessor :DspaId, :TaskId, :BucketResultId, :ComplianceId, :FileName, :CategoryId, :LevelId, :Offset, :Limit, :BucketName, :CategoryIdList
+        attr_accessor :DspaId, :TaskId, :ComplianceId, :BucketResultId, :FileName, :CategoryId, :LevelId, :Offset, :Limit, :BucketName, :CategoryIdList, :ScanResultId
+        extend Gem::Deprecate
+        deprecate :BucketResultId, :none, 2025, 6
+        deprecate :BucketResultId=, :none, 2025, 6
 
-        def initialize(dspaid=nil, taskid=nil, bucketresultid=nil, complianceid=nil, filename=nil, categoryid=nil, levelid=nil, offset=nil, limit=nil, bucketname=nil, categoryidlist=nil)
+        def initialize(dspaid=nil, taskid=nil, complianceid=nil, bucketresultid=nil, filename=nil, categoryid=nil, levelid=nil, offset=nil, limit=nil, bucketname=nil, categoryidlist=nil, scanresultid=nil)
           @DspaId = dspaid
           @TaskId = taskid
-          @BucketResultId = bucketresultid
           @ComplianceId = complianceid
+          @BucketResultId = bucketresultid
           @FileName = filename
           @CategoryId = categoryid
           @LevelId = levelid
@@ -5383,13 +5415,14 @@ module TencentCloud
           @Limit = limit
           @BucketName = bucketname
           @CategoryIdList = categoryidlist
+          @ScanResultId = scanresultid
         end
 
         def deserialize(params)
           @DspaId = params['DspaId']
           @TaskId = params['TaskId']
-          @BucketResultId = params['BucketResultId']
           @ComplianceId = params['ComplianceId']
+          @BucketResultId = params['BucketResultId']
           @FileName = params['FileName']
           @CategoryId = params['CategoryId']
           @LevelId = params['LevelId']
@@ -5397,6 +5430,7 @@ module TencentCloud
           @Limit = params['Limit']
           @BucketName = params['BucketName']
           @CategoryIdList = params['CategoryIdList']
+          @ScanResultId = params['ScanResultId']
         end
       end
 
@@ -6059,10 +6093,12 @@ module TencentCloud
         # @type Limit: Integer
         # @param CategoryIdList: 多级分类的分类ID集合
         # @type CategoryIdList: Array
+        # @param ScanResultId: 任务扫描id
+        # @type ScanResultId: Integer
 
-        attr_accessor :DspaId, :TaskId, :DbResultId, :ComplianceId, :DbName, :TableName, :CategoryId, :LevelId, :Offset, :Limit, :CategoryIdList
+        attr_accessor :DspaId, :TaskId, :DbResultId, :ComplianceId, :DbName, :TableName, :CategoryId, :LevelId, :Offset, :Limit, :CategoryIdList, :ScanResultId
 
-        def initialize(dspaid=nil, taskid=nil, dbresultid=nil, complianceid=nil, dbname=nil, tablename=nil, categoryid=nil, levelid=nil, offset=nil, limit=nil, categoryidlist=nil)
+        def initialize(dspaid=nil, taskid=nil, dbresultid=nil, complianceid=nil, dbname=nil, tablename=nil, categoryid=nil, levelid=nil, offset=nil, limit=nil, categoryidlist=nil, scanresultid=nil)
           @DspaId = dspaid
           @TaskId = taskid
           @DbResultId = dbresultid
@@ -6074,6 +6110,7 @@ module TencentCloud
           @Offset = offset
           @Limit = limit
           @CategoryIdList = categoryidlist
+          @ScanResultId = scanresultid
         end
 
         def deserialize(params)
@@ -6088,6 +6125,7 @@ module TencentCloud
           @Offset = params['Offset']
           @Limit = params['Limit']
           @CategoryIdList = params['CategoryIdList']
+          @ScanResultId = params['ScanResultId']
         end
       end
 
@@ -6149,10 +6187,16 @@ module TencentCloud
         # @type Limit: Integer
         # @param ResourceRegion: 资源所在地域
         # @type ResourceRegion: String
+        # @param StartTime: 开始时间
+        # @type StartTime: String
+        # @param EndTime: 结束时间
+        # @type EndTime: String
+        # @param FetchHistory: 是否查询历史结果
+        # @type FetchHistory: Boolean
 
-        attr_accessor :DspaId, :DataSourceType, :TaskId, :TaskName, :DataSourceId, :DbName, :Offset, :Limit, :ResourceRegion
+        attr_accessor :DspaId, :DataSourceType, :TaskId, :TaskName, :DataSourceId, :DbName, :Offset, :Limit, :ResourceRegion, :StartTime, :EndTime, :FetchHistory
 
-        def initialize(dspaid=nil, datasourcetype=nil, taskid=nil, taskname=nil, datasourceid=nil, dbname=nil, offset=nil, limit=nil, resourceregion=nil)
+        def initialize(dspaid=nil, datasourcetype=nil, taskid=nil, taskname=nil, datasourceid=nil, dbname=nil, offset=nil, limit=nil, resourceregion=nil, starttime=nil, endtime=nil, fetchhistory=nil)
           @DspaId = dspaid
           @DataSourceType = datasourcetype
           @TaskId = taskid
@@ -6162,6 +6206,9 @@ module TencentCloud
           @Offset = offset
           @Limit = limit
           @ResourceRegion = resourceregion
+          @StartTime = starttime
+          @EndTime = endtime
+          @FetchHistory = fetchhistory
         end
 
         def deserialize(params)
@@ -6174,6 +6221,9 @@ module TencentCloud
           @Offset = params['Offset']
           @Limit = params['Limit']
           @ResourceRegion = params['ResourceRegion']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @FetchHistory = params['FetchHistory']
         end
       end
 
@@ -6183,14 +6233,17 @@ module TencentCloud
         # @type Items: Array
         # @param TotalCount: 符合条件的扫描任务结果记录数
         # @type TotalCount: Integer
+        # @param MaxCount: 最大展示扫描结果次数
+        # @type MaxCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Items, :TotalCount, :RequestId
+        attr_accessor :Items, :TotalCount, :MaxCount, :RequestId
 
-        def initialize(items=nil, totalcount=nil, requestid=nil)
+        def initialize(items=nil, totalcount=nil, maxcount=nil, requestid=nil)
           @Items = items
           @TotalCount = totalcount
+          @MaxCount = maxcount
           @RequestId = requestid
         end
 
@@ -6204,6 +6257,7 @@ module TencentCloud
             end
           end
           @TotalCount = params['TotalCount']
+          @MaxCount = params['MaxCount']
           @RequestId = params['RequestId']
         end
       end
@@ -6218,14 +6272,20 @@ module TencentCloud
         # @type DbResultId: Integer
         # @param DbName: db名称
         # @type DbName: String
+        # @param ScanResultId: 任务扫描id
+        # @type ScanResultId: Integer
 
-        attr_accessor :DspaId, :TaskId, :DbResultId, :DbName
+        attr_accessor :DspaId, :TaskId, :DbResultId, :DbName, :ScanResultId
+        extend Gem::Deprecate
+        deprecate :DbResultId, :none, 2025, 6
+        deprecate :DbResultId=, :none, 2025, 6
 
-        def initialize(dspaid=nil, taskid=nil, dbresultid=nil, dbname=nil)
+        def initialize(dspaid=nil, taskid=nil, dbresultid=nil, dbname=nil, scanresultid=nil)
           @DspaId = dspaid
           @TaskId = taskid
           @DbResultId = dbresultid
           @DbName = dbname
+          @ScanResultId = scanresultid
         end
 
         def deserialize(params)
@@ -6233,6 +6293,7 @@ module TencentCloud
           @TaskId = params['TaskId']
           @DbResultId = params['DbResultId']
           @DbName = params['DbName']
+          @ScanResultId = params['ScanResultId']
         end
       end
 
@@ -7977,10 +8038,14 @@ module TencentCloud
         # @type ResourceRegion: String
         # @param OverSize: 是否超额
         # @type OverSize: String
+        # @param TaskInstanceId: 任务实例id
+        # @type TaskInstanceId: String
+        # @param StartTime: 开始时间
+        # @type StartTime: String
 
-        attr_accessor :BucketResultId, :TaskId, :TaskName, :ResultId, :DataSourceId, :BucketName, :TotalFiles, :SensitiveDataNums, :EndTime, :DataSourceName, :Status, :ErrorInfo, :ResourceRegion, :OverSize
+        attr_accessor :BucketResultId, :TaskId, :TaskName, :ResultId, :DataSourceId, :BucketName, :TotalFiles, :SensitiveDataNums, :EndTime, :DataSourceName, :Status, :ErrorInfo, :ResourceRegion, :OverSize, :TaskInstanceId, :StartTime
 
-        def initialize(bucketresultid=nil, taskid=nil, taskname=nil, resultid=nil, datasourceid=nil, bucketname=nil, totalfiles=nil, sensitivedatanums=nil, endtime=nil, datasourcename=nil, status=nil, errorinfo=nil, resourceregion=nil, oversize=nil)
+        def initialize(bucketresultid=nil, taskid=nil, taskname=nil, resultid=nil, datasourceid=nil, bucketname=nil, totalfiles=nil, sensitivedatanums=nil, endtime=nil, datasourcename=nil, status=nil, errorinfo=nil, resourceregion=nil, oversize=nil, taskinstanceid=nil, starttime=nil)
           @BucketResultId = bucketresultid
           @TaskId = taskid
           @TaskName = taskname
@@ -7995,6 +8060,8 @@ module TencentCloud
           @ErrorInfo = errorinfo
           @ResourceRegion = resourceregion
           @OverSize = oversize
+          @TaskInstanceId = taskinstanceid
+          @StartTime = starttime
         end
 
         def deserialize(params)
@@ -8012,6 +8079,8 @@ module TencentCloud
           @ErrorInfo = params['ErrorInfo']
           @ResourceRegion = params['ResourceRegion']
           @OverSize = params['OverSize']
+          @TaskInstanceId = params['TaskInstanceId']
+          @StartTime = params['StartTime']
         end
       end
 
@@ -8668,10 +8737,12 @@ module TencentCloud
         # @type TimingStartTime: String
         # @param ComplianceUpdate: 关联模板是否更新
         # @type ComplianceUpdate: Boolean
+        # @param ScanRange: 	full:全量扫描 incre:变更扫描
+        # @type ScanRange: String
 
-        attr_accessor :TaskId, :Name, :Description, :Period, :Plan, :Enable, :DataSourceInfo, :GeneralRuleSetEnable, :Result, :TimingStartTime, :ComplianceUpdate
+        attr_accessor :TaskId, :Name, :Description, :Period, :Plan, :Enable, :DataSourceInfo, :GeneralRuleSetEnable, :Result, :TimingStartTime, :ComplianceUpdate, :ScanRange
 
-        def initialize(taskid=nil, name=nil, description=nil, period=nil, plan=nil, enable=nil, datasourceinfo=nil, generalrulesetenable=nil, result=nil, timingstarttime=nil, complianceupdate=nil)
+        def initialize(taskid=nil, name=nil, description=nil, period=nil, plan=nil, enable=nil, datasourceinfo=nil, generalrulesetenable=nil, result=nil, timingstarttime=nil, complianceupdate=nil, scanrange=nil)
           @TaskId = taskid
           @Name = name
           @Description = description
@@ -8683,6 +8754,7 @@ module TencentCloud
           @Result = result
           @TimingStartTime = timingstarttime
           @ComplianceUpdate = complianceupdate
+          @ScanRange = scanrange
         end
 
         def deserialize(params)
@@ -8703,6 +8775,7 @@ module TencentCloud
           end
           @TimingStartTime = params['TimingStartTime']
           @ComplianceUpdate = params['ComplianceUpdate']
+          @ScanRange = params['ScanRange']
         end
       end
 
@@ -8798,10 +8871,16 @@ module TencentCloud
         # @type SensitiveField: Integer
         # @param TotalField: 总的字段数
         # @type TotalField: Integer
+        # @param TaskInstanceId: 任务实例id
+        # @type TaskInstanceId: String
+        # @param StartTime: 开始时间
+        # @type StartTime: String
+        # @param ScanRange: 扫描范围（full:全量扫描 incre：变更扫描）
+        # @type ScanRange: String
 
-        attr_accessor :DbResultId, :TaskId, :TaskName, :ResultId, :DataSourceId, :DbName, :TotalTables, :SensitiveTables, :EndTime, :DataSourceName, :Status, :ErrorInfo, :ResourceRegion, :SensitiveField, :TotalField
+        attr_accessor :DbResultId, :TaskId, :TaskName, :ResultId, :DataSourceId, :DbName, :TotalTables, :SensitiveTables, :EndTime, :DataSourceName, :Status, :ErrorInfo, :ResourceRegion, :SensitiveField, :TotalField, :TaskInstanceId, :StartTime, :ScanRange
 
-        def initialize(dbresultid=nil, taskid=nil, taskname=nil, resultid=nil, datasourceid=nil, dbname=nil, totaltables=nil, sensitivetables=nil, endtime=nil, datasourcename=nil, status=nil, errorinfo=nil, resourceregion=nil, sensitivefield=nil, totalfield=nil)
+        def initialize(dbresultid=nil, taskid=nil, taskname=nil, resultid=nil, datasourceid=nil, dbname=nil, totaltables=nil, sensitivetables=nil, endtime=nil, datasourcename=nil, status=nil, errorinfo=nil, resourceregion=nil, sensitivefield=nil, totalfield=nil, taskinstanceid=nil, starttime=nil, scanrange=nil)
           @DbResultId = dbresultid
           @TaskId = taskid
           @TaskName = taskname
@@ -8817,6 +8896,9 @@ module TencentCloud
           @ResourceRegion = resourceregion
           @SensitiveField = sensitivefield
           @TotalField = totalfield
+          @TaskInstanceId = taskinstanceid
+          @StartTime = starttime
+          @ScanRange = scanrange
         end
 
         def deserialize(params)
@@ -8835,6 +8917,9 @@ module TencentCloud
           @ResourceRegion = params['ResourceRegion']
           @SensitiveField = params['SensitiveField']
           @TotalField = params['TotalField']
+          @TaskInstanceId = params['TaskInstanceId']
+          @StartTime = params['StartTime']
+          @ScanRange = params['ScanRange']
         end
       end
 
@@ -8860,10 +8945,12 @@ module TencentCloud
         # @type CustomComplianceInfo: Array
         # @param TimingStartTime: 定时开始时间
         # @type TimingStartTime: String
+        # @param ScanRange: full:全量扫描 incre:变更扫描
+        # @type ScanRange: String
 
-        attr_accessor :Name, :Description, :Period, :Plan, :Enable, :DataSourceInfo, :GeneralRuleSetEnable, :DefaultComplianceInfo, :CustomComplianceInfo, :TimingStartTime
+        attr_accessor :Name, :Description, :Period, :Plan, :Enable, :DataSourceInfo, :GeneralRuleSetEnable, :DefaultComplianceInfo, :CustomComplianceInfo, :TimingStartTime, :ScanRange
 
-        def initialize(name=nil, description=nil, period=nil, plan=nil, enable=nil, datasourceinfo=nil, generalrulesetenable=nil, defaultcomplianceinfo=nil, customcomplianceinfo=nil, timingstarttime=nil)
+        def initialize(name=nil, description=nil, period=nil, plan=nil, enable=nil, datasourceinfo=nil, generalrulesetenable=nil, defaultcomplianceinfo=nil, customcomplianceinfo=nil, timingstarttime=nil, scanrange=nil)
           @Name = name
           @Description = description
           @Period = period
@@ -8874,6 +8961,7 @@ module TencentCloud
           @DefaultComplianceInfo = defaultcomplianceinfo
           @CustomComplianceInfo = customcomplianceinfo
           @TimingStartTime = timingstarttime
+          @ScanRange = scanrange
         end
 
         def deserialize(params)
@@ -8904,6 +8992,7 @@ module TencentCloud
             end
           end
           @TimingStartTime = params['TimingStartTime']
+          @ScanRange = params['ScanRange']
         end
       end
 
@@ -11058,10 +11147,12 @@ module TencentCloud
         # cynosdbmysql 表示TDSQL-C MySQL版,
         # selfbuilt-db 表示自建数据库
         # @type DataSourceType: String
+        # @param ScanRange: 	full:全量扫描 incre:变更扫描
+        # @type ScanRange: String
 
-        attr_accessor :DspaId, :TaskId, :Name, :Description, :Enable, :DataSourceId, :Condition, :GeneralRuleSetEnable, :ComplianceGroupIds, :Plan, :Period, :TimingStartTime, :ResourceRegion, :DataSourceType
+        attr_accessor :DspaId, :TaskId, :Name, :Description, :Enable, :DataSourceId, :Condition, :GeneralRuleSetEnable, :ComplianceGroupIds, :Plan, :Period, :TimingStartTime, :ResourceRegion, :DataSourceType, :ScanRange
 
-        def initialize(dspaid=nil, taskid=nil, name=nil, description=nil, enable=nil, datasourceid=nil, condition=nil, generalrulesetenable=nil, compliancegroupids=nil, plan=nil, period=nil, timingstarttime=nil, resourceregion=nil, datasourcetype=nil)
+        def initialize(dspaid=nil, taskid=nil, name=nil, description=nil, enable=nil, datasourceid=nil, condition=nil, generalrulesetenable=nil, compliancegroupids=nil, plan=nil, period=nil, timingstarttime=nil, resourceregion=nil, datasourcetype=nil, scanrange=nil)
           @DspaId = dspaid
           @TaskId = taskid
           @Name = name
@@ -11076,6 +11167,7 @@ module TencentCloud
           @TimingStartTime = timingstarttime
           @ResourceRegion = resourceregion
           @DataSourceType = datasourcetype
+          @ScanRange = scanrange
         end
 
         def deserialize(params)
@@ -11093,6 +11185,7 @@ module TencentCloud
           @TimingStartTime = params['TimingStartTime']
           @ResourceRegion = params['ResourceRegion']
           @DataSourceType = params['DataSourceType']
+          @ScanRange = params['ScanRange']
         end
       end
 

@@ -787,7 +787,7 @@ module TencentCloud
         # @type VirtualPrivateCloud: :class:`Tencentcloud::Thpc.v20230321.models.SpaceVirtualPrivateCloud`
         # @param InternetAccessible: 公网带宽相关信息设置
         # @type InternetAccessible: :class:`Tencentcloud::Thpc.v20230321.models.SpaceInternetAccessible`
-        # @param SpaceCount: 购买工作空间数量
+        # @param SpaceCount: 购买工作空间实例的数量
         # @type SpaceCount: Integer
         # @param SpaceName: 工作空间显示名称
         # @type SpaceName: String
@@ -2239,6 +2239,8 @@ module TencentCloud
 
       # 节点概览信息。
       class NodeOverview < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
         # @param InstanceId: 节点实例ID。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceId: String
@@ -2265,10 +2267,15 @@ module TencentCloud
         # @type NodeId: String
         # @param NodeAllocateState: 节点的工作状态
         # @type NodeAllocateState: String
+        # @param NodeName: 节点的名称
+        # @type NodeName: String
+        # @param CreateTime: 节点的创建时间
+        # @type CreateTime: String
 
-        attr_accessor :InstanceId, :Zone, :NodeState, :ImageId, :QueueName, :NodeRole, :NodeType, :NodeId, :NodeAllocateState
+        attr_accessor :ClusterId, :InstanceId, :Zone, :NodeState, :ImageId, :QueueName, :NodeRole, :NodeType, :NodeId, :NodeAllocateState, :NodeName, :CreateTime
 
-        def initialize(instanceid=nil, zone=nil, nodestate=nil, imageid=nil, queuename=nil, noderole=nil, nodetype=nil, nodeid=nil, nodeallocatestate=nil)
+        def initialize(clusterid=nil, instanceid=nil, zone=nil, nodestate=nil, imageid=nil, queuename=nil, noderole=nil, nodetype=nil, nodeid=nil, nodeallocatestate=nil, nodename=nil, createtime=nil)
+          @ClusterId = clusterid
           @InstanceId = instanceid
           @Zone = zone
           @NodeState = nodestate
@@ -2278,9 +2285,12 @@ module TencentCloud
           @NodeType = nodetype
           @NodeId = nodeid
           @NodeAllocateState = nodeallocatestate
+          @NodeName = nodename
+          @CreateTime = createtime
         end
 
         def deserialize(params)
+          @ClusterId = params['ClusterId']
           @InstanceId = params['InstanceId']
           @Zone = params['Zone']
           @NodeState = params['NodeState']
@@ -2290,6 +2300,8 @@ module TencentCloud
           @NodeType = params['NodeType']
           @NodeId = params['NodeId']
           @NodeAllocateState = params['NodeAllocateState']
+          @NodeName = params['NodeName']
+          @CreateTime = params['CreateTime']
         end
       end
 

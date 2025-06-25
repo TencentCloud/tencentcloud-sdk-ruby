@@ -201,6 +201,42 @@ module TencentCloud
         end
       end
 
+      # CancelDataKeyDeletion请求参数结构体
+      class CancelDataKeyDeletionRequest < TencentCloud::Common::AbstractModel
+        # @param DataKeyId: 数据密钥的唯一标志符
+        # @type DataKeyId: String
+
+        attr_accessor :DataKeyId
+
+        def initialize(datakeyid=nil)
+          @DataKeyId = datakeyid
+        end
+
+        def deserialize(params)
+          @DataKeyId = params['DataKeyId']
+        end
+      end
+
+      # CancelDataKeyDeletion返回参数结构体
+      class CancelDataKeyDeletionResponse < TencentCloud::Common::AbstractModel
+        # @param DataKeyId: 唯一标志被计划删除的数据密钥
+        # @type DataKeyId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DataKeyId, :RequestId
+
+        def initialize(datakeyid=nil, requestid=nil)
+          @DataKeyId = datakeyid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @DataKeyId = params['DataKeyId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CancelKeyArchive请求参数结构体
       class CancelKeyArchiveRequest < TencentCloud::Common::AbstractModel
         # @param KeyId: CMK唯一标识符
@@ -435,6 +471,86 @@ module TencentCloud
         end
       end
 
+      # 数据密钥属性
+      class DataKey < TencentCloud::Common::AbstractModel
+        # @param DataKeyId: DataKey的全局唯一标识。
+        # @type DataKeyId: String
+
+        attr_accessor :DataKeyId
+
+        def initialize(datakeyid=nil)
+          @DataKeyId = datakeyid
+        end
+
+        def deserialize(params)
+          @DataKeyId = params['DataKeyId']
+        end
+      end
+
+      # 数据密钥属性信息
+      class DataKeyMetadata < TencentCloud::Common::AbstractModel
+        # @param DataKeyId: DataKey的全局唯一标识
+        # @type DataKeyId: String
+        # @param KeyId: CMK的全局唯一标识
+        # @type KeyId: String
+        # @param DataKeyName: 作为密钥更容易辨识，更容易被人看懂的数据密钥名称
+        # @type DataKeyName: String
+        # @param NumberOfBytes: 数据密钥的长度,单位字节
+        # @type NumberOfBytes: Integer
+        # @param CreateTime: 密钥创建时间
+        # @type CreateTime: Integer
+        # @param Description: DataKey的描述
+        # @type Description: String
+        # @param KeyState: DataKey的状态， 取值为：Enabled | Disabled | PendingDelete
+        # @type KeyState: String
+        # @param CreatorUin: 创建者
+        # @type CreatorUin: Integer
+        # @param Owner: 数据密钥的创建者，用户创建的为 user，授权各云产品自动创建的为对应的产品名
+        # @type Owner: String
+        # @param DeletionDate: 计划删除的时间
+        # @type DeletionDate: Integer
+        # @param Origin: DataKey 密钥材料类型，由KMS创建的为： TENCENT_KMS， 由用户导入的类型为：EXTERNAL
+        # @type Origin: String
+        # @param HsmClusterId: HSM 集群 ID（仅对 KMS 独占版/托管版服务实例有效）
+        # @type HsmClusterId: String
+        # @param ResourceId: 资源ID，格式：creatorUin/$creatorUin/$dataKeyId
+        # @type ResourceId: String
+
+        attr_accessor :DataKeyId, :KeyId, :DataKeyName, :NumberOfBytes, :CreateTime, :Description, :KeyState, :CreatorUin, :Owner, :DeletionDate, :Origin, :HsmClusterId, :ResourceId
+
+        def initialize(datakeyid=nil, keyid=nil, datakeyname=nil, numberofbytes=nil, createtime=nil, description=nil, keystate=nil, creatoruin=nil, owner=nil, deletiondate=nil, origin=nil, hsmclusterid=nil, resourceid=nil)
+          @DataKeyId = datakeyid
+          @KeyId = keyid
+          @DataKeyName = datakeyname
+          @NumberOfBytes = numberofbytes
+          @CreateTime = createtime
+          @Description = description
+          @KeyState = keystate
+          @CreatorUin = creatoruin
+          @Owner = owner
+          @DeletionDate = deletiondate
+          @Origin = origin
+          @HsmClusterId = hsmclusterid
+          @ResourceId = resourceid
+        end
+
+        def deserialize(params)
+          @DataKeyId = params['DataKeyId']
+          @KeyId = params['KeyId']
+          @DataKeyName = params['DataKeyName']
+          @NumberOfBytes = params['NumberOfBytes']
+          @CreateTime = params['CreateTime']
+          @Description = params['Description']
+          @KeyState = params['KeyState']
+          @CreatorUin = params['CreatorUin']
+          @Owner = params['Owner']
+          @DeletionDate = params['DeletionDate']
+          @Origin = params['Origin']
+          @HsmClusterId = params['HsmClusterId']
+          @ResourceId = params['ResourceId']
+        end
+      end
+
       # Decrypt请求参数结构体
       class DecryptRequest < TencentCloud::Common::AbstractModel
         # @param CiphertextBlob: 待解密的密文数据
@@ -548,6 +664,88 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDataKey请求参数结构体
+      class DescribeDataKeyRequest < TencentCloud::Common::AbstractModel
+        # @param DataKeyId: 数据密钥全局唯一标识符
+        # @type DataKeyId: String
+
+        attr_accessor :DataKeyId
+
+        def initialize(datakeyid=nil)
+          @DataKeyId = datakeyid
+        end
+
+        def deserialize(params)
+          @DataKeyId = params['DataKeyId']
+        end
+      end
+
+      # DescribeDataKey返回参数结构体
+      class DescribeDataKeyResponse < TencentCloud::Common::AbstractModel
+        # @param DataKeyMetadata: 数据密钥属性信息
+        # @type DataKeyMetadata: :class:`Tencentcloud::Kms.v20190118.models.DataKeyMetadata`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DataKeyMetadata, :RequestId
+
+        def initialize(datakeymetadata=nil, requestid=nil)
+          @DataKeyMetadata = datakeymetadata
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['DataKeyMetadata'].nil?
+            @DataKeyMetadata = DataKeyMetadata.new
+            @DataKeyMetadata.deserialize(params['DataKeyMetadata'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDataKeys请求参数结构体
+      class DescribeDataKeysRequest < TencentCloud::Common::AbstractModel
+        # @param DataKeyIds: 查询DataKey的ID列表，批量查询一次最多支持100个DataKeyId
+        # @type DataKeyIds: Array
+
+        attr_accessor :DataKeyIds
+
+        def initialize(datakeyids=nil)
+          @DataKeyIds = datakeyids
+        end
+
+        def deserialize(params)
+          @DataKeyIds = params['DataKeyIds']
+        end
+      end
+
+      # DescribeDataKeys返回参数结构体
+      class DescribeDataKeysResponse < TencentCloud::Common::AbstractModel
+        # @param DataKeyMetadatas: 返回数据密钥属性信息列表
+        # @type DataKeyMetadatas: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DataKeyMetadatas, :RequestId
+
+        def initialize(datakeymetadatas=nil, requestid=nil)
+          @DataKeyMetadatas = datakeymetadatas
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['DataKeyMetadatas'].nil?
+            @DataKeyMetadatas = []
+            params['DataKeyMetadatas'].each do |i|
+              datakeymetadata_tmp = DataKeyMetadata.new
+              datakeymetadata_tmp.deserialize(i)
+              @DataKeyMetadatas << datakeymetadata_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -869,6 +1067,70 @@ module TencentCloud
         end
       end
 
+      # DisableDataKey请求参数结构体
+      class DisableDataKeyRequest < TencentCloud::Common::AbstractModel
+        # @param DataKeyId: 数据密钥唯一标识符
+        # @type DataKeyId: String
+
+        attr_accessor :DataKeyId
+
+        def initialize(datakeyid=nil)
+          @DataKeyId = datakeyid
+        end
+
+        def deserialize(params)
+          @DataKeyId = params['DataKeyId']
+        end
+      end
+
+      # DisableDataKey返回参数结构体
+      class DisableDataKeyResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DisableDataKeys请求参数结构体
+      class DisableDataKeysRequest < TencentCloud::Common::AbstractModel
+        # @param DataKeyIds: 需要批量禁用的DataKey Id 列表，数据密钥数量最大支持100
+        # @type DataKeyIds: Array
+
+        attr_accessor :DataKeyIds
+
+        def initialize(datakeyids=nil)
+          @DataKeyIds = datakeyids
+        end
+
+        def deserialize(params)
+          @DataKeyIds = params['DataKeyIds']
+        end
+      end
+
+      # DisableDataKeys返回参数结构体
+      class DisableDataKeysResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DisableKey请求参数结构体
       class DisableKeyRequest < TencentCloud::Common::AbstractModel
         # @param KeyId: CMK唯一标识符
@@ -1015,6 +1277,70 @@ module TencentCloud
 
       # DisableWhiteBoxKeys返回参数结构体
       class DisableWhiteBoxKeysResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # EnableDataKey请求参数结构体
+      class EnableDataKeyRequest < TencentCloud::Common::AbstractModel
+        # @param DataKeyId: 数据密钥唯一标识符
+        # @type DataKeyId: String
+
+        attr_accessor :DataKeyId
+
+        def initialize(datakeyid=nil)
+          @DataKeyId = datakeyid
+        end
+
+        def deserialize(params)
+          @DataKeyId = params['DataKeyId']
+        end
+      end
+
+      # EnableDataKey返回参数结构体
+      class EnableDataKeyResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # EnableDataKeys请求参数结构体
+      class EnableDataKeysRequest < TencentCloud::Common::AbstractModel
+        # @param DataKeyIds: 需要批量启用的DataKey Id 列表， 数据密钥数量最大支持100
+        # @type DataKeyIds: Array
+
+        attr_accessor :DataKeyIds
+
+        def initialize(datakeyids=nil)
+          @DataKeyIds = datakeyids
+        end
+
+        def deserialize(params)
+          @DataKeyIds = params['DataKeyIds']
+        end
+      end
+
+      # EnableDataKeys返回参数结构体
+      class EnableDataKeysResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -1323,16 +1649,30 @@ module TencentCloud
         # @type EncryptionPublicKey: String
         # @param EncryptionAlgorithm: 非对称加密算法，配合 EncryptionPublicKey 对返回数据进行加密。目前支持：SM2（以 C1C3C2 格式返回密文），SM2_C1C3C2_ASN1 （以 C1C3C2 ASN1 格式返回密文），RSAES_PKCS1_V1_5，RSAES_OAEP_SHA_1，RSAES_OAEP_SHA_256。若为空，则默认为 SM2。
         # @type EncryptionAlgorithm: String
+        # @param IsHostedByKms: 表示生成的数据密钥是否被KMS托管。1:表示被KMS托管保存,0:表示KMS不托管。表示生成的数据密钥是否被KMS托管。1:表示被KMS托管保存,0:表示KMS不托管。
+        # @type IsHostedByKms: Integer
+        # @param DataKeyName: 数据密钥的名称，当IsHostedByKms为1时,必须填写。当IsHostedByKms为0时,可以不填，KMS不托管。
+        # @type DataKeyName: String
+        # @param Description: 数据密钥 的描述，最大100字节
+        # @type Description: String
+        # @param HsmClusterId: KMS 独享版对应的 HSM 集群 ID。
+        # 当KeyId 没有传入时有效，如果指定HsmClusterId,会默认在此集群下生成根密钥，然后利用创建的根密钥产生数据密钥。
+        # 如果没有指定HsmClusterId，则会在公有云共享集群下创建一个根密钥，然后利用创建的根密钥产生数据密钥。
+        # @type HsmClusterId: String
 
-        attr_accessor :KeyId, :KeySpec, :NumberOfBytes, :EncryptionContext, :EncryptionPublicKey, :EncryptionAlgorithm
+        attr_accessor :KeyId, :KeySpec, :NumberOfBytes, :EncryptionContext, :EncryptionPublicKey, :EncryptionAlgorithm, :IsHostedByKms, :DataKeyName, :Description, :HsmClusterId
 
-        def initialize(keyid=nil, keyspec=nil, numberofbytes=nil, encryptioncontext=nil, encryptionpublickey=nil, encryptionalgorithm=nil)
+        def initialize(keyid=nil, keyspec=nil, numberofbytes=nil, encryptioncontext=nil, encryptionpublickey=nil, encryptionalgorithm=nil, ishostedbykms=nil, datakeyname=nil, description=nil, hsmclusterid=nil)
           @KeyId = keyid
           @KeySpec = keyspec
           @NumberOfBytes = numberofbytes
           @EncryptionContext = encryptioncontext
           @EncryptionPublicKey = encryptionpublickey
           @EncryptionAlgorithm = encryptionalgorithm
+          @IsHostedByKms = ishostedbykms
+          @DataKeyName = datakeyname
+          @Description = description
+          @HsmClusterId = hsmclusterid
         end
 
         def deserialize(params)
@@ -1342,6 +1682,10 @@ module TencentCloud
           @EncryptionContext = params['EncryptionContext']
           @EncryptionPublicKey = params['EncryptionPublicKey']
           @EncryptionAlgorithm = params['EncryptionAlgorithm']
+          @IsHostedByKms = params['IsHostedByKms']
+          @DataKeyName = params['DataKeyName']
+          @Description = params['Description']
+          @HsmClusterId = params['HsmClusterId']
         end
       end
 
@@ -1354,15 +1698,18 @@ module TencentCloud
         # @type Plaintext: String
         # @param CiphertextBlob: 数据密钥DataKey加密后的密文，用户需要自行保存该密文，KMS不托管用户的数据密钥。可以通过Decrypt接口从CiphertextBlob中获取数据密钥DataKey明文
         # @type CiphertextBlob: String
+        # @param DataKeyId: DataKey的全局唯一标识,当KMS托管数据密钥时返回。
+        # @type DataKeyId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :KeyId, :Plaintext, :CiphertextBlob, :RequestId
+        attr_accessor :KeyId, :Plaintext, :CiphertextBlob, :DataKeyId, :RequestId
 
-        def initialize(keyid=nil, plaintext=nil, ciphertextblob=nil, requestid=nil)
+        def initialize(keyid=nil, plaintext=nil, ciphertextblob=nil, datakeyid=nil, requestid=nil)
           @KeyId = keyid
           @Plaintext = plaintext
           @CiphertextBlob = ciphertextblob
+          @DataKeyId = datakeyid
           @RequestId = requestid
         end
 
@@ -1370,6 +1717,7 @@ module TencentCloud
           @KeyId = params['KeyId']
           @Plaintext = params['Plaintext']
           @CiphertextBlob = params['CiphertextBlob']
+          @DataKeyId = params['DataKeyId']
           @RequestId = params['RequestId']
         end
       end
@@ -1393,6 +1741,86 @@ module TencentCloud
       # GenerateRandom返回参数结构体
       class GenerateRandomResponse < TencentCloud::Common::AbstractModel
         # @param Plaintext: 生成的随机数的明文，该明文使用base64编码，用户需要使用base64解码得到明文。
+        # @type Plaintext: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Plaintext, :RequestId
+
+        def initialize(plaintext=nil, requestid=nil)
+          @Plaintext = plaintext
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Plaintext = params['Plaintext']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # GetDataKeyCiphertextBlob请求参数结构体
+      class GetDataKeyCiphertextBlobRequest < TencentCloud::Common::AbstractModel
+        # @param DataKeyId: 数据密钥的唯一标志符
+        # @type DataKeyId: String
+
+        attr_accessor :DataKeyId
+
+        def initialize(datakeyid=nil)
+          @DataKeyId = datakeyid
+        end
+
+        def deserialize(params)
+          @DataKeyId = params['DataKeyId']
+        end
+      end
+
+      # GetDataKeyCiphertextBlob返回参数结构体
+      class GetDataKeyCiphertextBlobResponse < TencentCloud::Common::AbstractModel
+        # @param CiphertextBlob: 数据密钥的密文
+        # @type CiphertextBlob: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :CiphertextBlob, :RequestId
+
+        def initialize(ciphertextblob=nil, requestid=nil)
+          @CiphertextBlob = ciphertextblob
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @CiphertextBlob = params['CiphertextBlob']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # GetDataKeyPlaintext请求参数结构体
+      class GetDataKeyPlaintextRequest < TencentCloud::Common::AbstractModel
+        # @param DataKeyId: 数据密钥的唯一标志符
+        # @type DataKeyId: String
+        # @param EncryptionPublicKey: PEM 格式公钥字符串，支持 RSA2048 和 SM2 公钥，用于对返回数据中的 Plaintext 值进行加密。若为空，则不对 Plaintext 值加密。
+        # @type EncryptionPublicKey: String
+        # @param EncryptionAlgorithm: 非对称加密算法，配合 EncryptionPublicKey 对返回数据进行加密。目前支持：SM2（以 C1C3C2 格式返回密文），SM2_C1C3C2_ASN1 （以 C1C3C2 ASN1 格式返回密文），RSAES_PKCS1_V1_5，RSAES_OAEP_SHA_1，RSAES_OAEP_SHA_256。若为空，则默认为 SM2。
+        # @type EncryptionAlgorithm: String
+
+        attr_accessor :DataKeyId, :EncryptionPublicKey, :EncryptionAlgorithm
+
+        def initialize(datakeyid=nil, encryptionpublickey=nil, encryptionalgorithm=nil)
+          @DataKeyId = datakeyid
+          @EncryptionPublicKey = encryptionpublickey
+          @EncryptionAlgorithm = encryptionalgorithm
+        end
+
+        def deserialize(params)
+          @DataKeyId = params['DataKeyId']
+          @EncryptionPublicKey = params['EncryptionPublicKey']
+          @EncryptionAlgorithm = params['EncryptionAlgorithm']
+        end
+      end
+
+      # GetDataKeyPlaintext返回参数结构体
+      class GetDataKeyPlaintextResponse < TencentCloud::Common::AbstractModel
+        # @param Plaintext: 若调用时未提供 EncryptionPublicKey，该字段值为 Base64 编码的明文，需进行 Base64 解码以获取明文。 若调用时提供了 EncryptionPublicKey，则该字段值为使用 EncryptionPublicKey 公钥进行非对称加密后的 Base64 编码的密文。需在 Base64 解码后，使用用户上传的公钥对应的私钥进行进一步解密，以获取明文。
         # @type Plaintext: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1600,7 +2028,7 @@ module TencentCloud
         # @type ProExpireTime: Integer
         # @param ProRenewFlag: 旗舰版是否自动续费：0-不自动续费，1-自动续费
         # @type ProRenewFlag: Integer
-        # @param ProResourceId: 旗舰版购买记录的唯一性标识。如果为开通旗舰版，则返回值为空
+        # @param ProResourceId: 旗舰版购买记录的唯一性标识。如果未开通旗舰版，则返回值为空
         # @type ProResourceId: String
         # @param ExclusiveVSMEnabled: 是否开通 KMS 托管版
         # @type ExclusiveVSMEnabled: Boolean
@@ -1614,12 +2042,20 @@ module TencentCloud
         # @type CmkLimit: Integer
         # @param ExclusiveHSMList: 返回独享集群组
         # @type ExclusiveHSMList: Array
+        # @param IsAllowedDataKeyHosted: 是否支持数据密钥托管。1:支持，0:不支持。
+        # @type IsAllowedDataKeyHosted: Boolean
+        # @param DataKeyLimit: IsAllowedDataKeyHosted为1时有效，数据密钥的购买额度
+        # @type DataKeyLimit: Integer
+        # @param FreeDataKeyLimit: IsAllowedDataKeyHosted为1时有效，数据密钥免费额度。
+        # @type FreeDataKeyLimit: Integer
+        # @param DataKeyUsedCount: IsAllowedDataKeyHosted为1时有效，已使用的数据密钥数量。
+        # @type DataKeyUsedCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ServiceEnabled, :InvalidType, :UserLevel, :ProExpireTime, :ProRenewFlag, :ProResourceId, :ExclusiveVSMEnabled, :ExclusiveHSMEnabled, :SubscriptionInfo, :CmkUserCount, :CmkLimit, :ExclusiveHSMList, :RequestId
+        attr_accessor :ServiceEnabled, :InvalidType, :UserLevel, :ProExpireTime, :ProRenewFlag, :ProResourceId, :ExclusiveVSMEnabled, :ExclusiveHSMEnabled, :SubscriptionInfo, :CmkUserCount, :CmkLimit, :ExclusiveHSMList, :IsAllowedDataKeyHosted, :DataKeyLimit, :FreeDataKeyLimit, :DataKeyUsedCount, :RequestId
 
-        def initialize(serviceenabled=nil, invalidtype=nil, userlevel=nil, proexpiretime=nil, prorenewflag=nil, proresourceid=nil, exclusivevsmenabled=nil, exclusivehsmenabled=nil, subscriptioninfo=nil, cmkusercount=nil, cmklimit=nil, exclusivehsmlist=nil, requestid=nil)
+        def initialize(serviceenabled=nil, invalidtype=nil, userlevel=nil, proexpiretime=nil, prorenewflag=nil, proresourceid=nil, exclusivevsmenabled=nil, exclusivehsmenabled=nil, subscriptioninfo=nil, cmkusercount=nil, cmklimit=nil, exclusivehsmlist=nil, isalloweddatakeyhosted=nil, datakeylimit=nil, freedatakeylimit=nil, datakeyusedcount=nil, requestid=nil)
           @ServiceEnabled = serviceenabled
           @InvalidType = invalidtype
           @UserLevel = userlevel
@@ -1632,6 +2068,10 @@ module TencentCloud
           @CmkUserCount = cmkusercount
           @CmkLimit = cmklimit
           @ExclusiveHSMList = exclusivehsmlist
+          @IsAllowedDataKeyHosted = isalloweddatakeyhosted
+          @DataKeyLimit = datakeylimit
+          @FreeDataKeyLimit = freedatakeylimit
+          @DataKeyUsedCount = datakeyusedcount
           @RequestId = requestid
         end
 
@@ -1655,6 +2095,75 @@ module TencentCloud
               @ExclusiveHSMList << exclusivehsm_tmp
             end
           end
+          @IsAllowedDataKeyHosted = params['IsAllowedDataKeyHosted']
+          @DataKeyLimit = params['DataKeyLimit']
+          @FreeDataKeyLimit = params['FreeDataKeyLimit']
+          @DataKeyUsedCount = params['DataKeyUsedCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ImportDataKey请求参数结构体
+      class ImportDataKeyRequest < TencentCloud::Common::AbstractModel
+        # @param DataKeyName: 数据密钥的名称
+        # @type DataKeyName: String
+        # @param ImportKeyMaterial: 如果导入的是明文数据密钥，则是base64 转换后的明文数据密钥，  如果导入的是密文数据密钥，则是由KMS GenerateDataKey接口生成的密文数据密钥。
+        # @type ImportKeyMaterial: String
+        # @param ImportType: 1:密文导入(由KMS接口生成的密文数据密钥)，2:明文导入。
+        # @type ImportType: Integer
+        # @param Description: 数据密钥 的描述，最大100字节
+        # @type Description: String
+        # @param KeyId: 当导入密文数据密钥时，无需传入根密钥,如果传入也会忽略。
+        # 当KeyId 为空，如果指定了独享集群HsmClusterId，则会在独享集群下创建一个根密钥，根据生成的根密钥加密数据密钥。
+        # 如果没有指定独享集群HsmClusterId,则会在公有云共享集群下创建一个根密钥，根据生成的根密钥加密数据密钥。
+        # 如果KeyId 不为空，根据指定的根密钥加密数据密钥。
+        # @type KeyId: String
+        # @param HsmClusterId: KMS 独享版对应的 HSM 集群 ID。
+        # 当KeyId 没有传入时有效，如果指定了独享集群HsmClusterId，则会在独享集群下创建一个根密钥，根据产生的根密钥加密数据密钥。
+        # 如果没有指定独享集群HsmClusterId,则会在公有云共享集群下创建一个根密钥，根据产生的根密钥加密数据密钥。
+        # @type HsmClusterId: String
+
+        attr_accessor :DataKeyName, :ImportKeyMaterial, :ImportType, :Description, :KeyId, :HsmClusterId
+
+        def initialize(datakeyname=nil, importkeymaterial=nil, importtype=nil, description=nil, keyid=nil, hsmclusterid=nil)
+          @DataKeyName = datakeyname
+          @ImportKeyMaterial = importkeymaterial
+          @ImportType = importtype
+          @Description = description
+          @KeyId = keyid
+          @HsmClusterId = hsmclusterid
+        end
+
+        def deserialize(params)
+          @DataKeyName = params['DataKeyName']
+          @ImportKeyMaterial = params['ImportKeyMaterial']
+          @ImportType = params['ImportType']
+          @Description = params['Description']
+          @KeyId = params['KeyId']
+          @HsmClusterId = params['HsmClusterId']
+        end
+      end
+
+      # ImportDataKey返回参数结构体
+      class ImportDataKeyResponse < TencentCloud::Common::AbstractModel
+        # @param KeyId: CMK的全局唯一标识
+        # @type KeyId: String
+        # @param DataKeyId: DataKey的全局唯一标识  否  官网/国内&国际站展示
+        # @type DataKeyId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :KeyId, :DataKeyId, :RequestId
+
+        def initialize(keyid=nil, datakeyid=nil, requestid=nil)
+          @KeyId = keyid
+          @DataKeyId = datakeyid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @KeyId = params['KeyId']
+          @DataKeyId = params['DataKeyId']
           @RequestId = params['RequestId']
         end
       end
@@ -1859,6 +2368,148 @@ module TencentCloud
               @AsymmetricSignVerifyAlgorithms << algorithminfo_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ListDataKeyDetail请求参数结构体
+      class ListDataKeyDetailRequest < TencentCloud::Common::AbstractModel
+        # @param Offset: 含义跟 SQL 查询的 Offset 一致，表示本次获取从按一定顺序排列数组的第 Offset 个元素开始，缺省为0
+        # @type Offset: Integer
+        # @param Limit: 含义跟 SQL 查询的 Limit 一致，表示本次最多获取 Limit 个元素。缺省值为10，最大值为200
+        # @type Limit: Integer
+        # @param Role: 根据创建者角色筛选，默认 0 表示用户自己创建的数据密钥， 1 表示授权其它云产品自动创建的数据密钥
+        # @type Role: Integer
+        # @param OrderType: 根据DataKey创建时间排序， 0 表示按照降序排序，1表示按照升序排序
+        # @type OrderType: Integer
+        # @param KeyState: 根据DataKey状态筛选， 0表示全部DataKey， 1 表示仅查询Enabled DataKey， 2 表示仅查询Disabled DataKey，3 表示查询PendingDelete 状态的DataKey(处于计划删除状态的Key)。
+        # @type KeyState: Integer
+        # @param SearchKeyAlias: 根据DataKeyId或者DataKeyName进行模糊匹配查询
+        # @type SearchKeyAlias: String
+        # @param Origin: 根据DateKey类型筛选， "TENCENT_KMS" 表示筛选密钥材料由KMS创建的数据密钥， "EXTERNAL" 表示筛选密钥材料需要用户导入的 EXTERNAL类型数据密钥，"ALL" 或者不设置表示两种类型都查询，大小写敏感。
+        # @type Origin: String
+        # @param HsmClusterId: KMS 高级版对应的 HSM 集群 ID。
+        # @type HsmClusterId: String
+        # @param KeyId: 根密钥全局唯一标识符
+        # @type KeyId: String
+        # @param DataKeyLen: 数据密钥的长度
+        # @type DataKeyLen: Integer
+
+        attr_accessor :Offset, :Limit, :Role, :OrderType, :KeyState, :SearchKeyAlias, :Origin, :HsmClusterId, :KeyId, :DataKeyLen
+
+        def initialize(offset=nil, limit=nil, role=nil, ordertype=nil, keystate=nil, searchkeyalias=nil, origin=nil, hsmclusterid=nil, keyid=nil, datakeylen=nil)
+          @Offset = offset
+          @Limit = limit
+          @Role = role
+          @OrderType = ordertype
+          @KeyState = keystate
+          @SearchKeyAlias = searchkeyalias
+          @Origin = origin
+          @HsmClusterId = hsmclusterid
+          @KeyId = keyid
+          @DataKeyLen = datakeylen
+        end
+
+        def deserialize(params)
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @Role = params['Role']
+          @OrderType = params['OrderType']
+          @KeyState = params['KeyState']
+          @SearchKeyAlias = params['SearchKeyAlias']
+          @Origin = params['Origin']
+          @HsmClusterId = params['HsmClusterId']
+          @KeyId = params['KeyId']
+          @DataKeyLen = params['DataKeyLen']
+        end
+      end
+
+      # ListDataKeyDetail返回参数结构体
+      class ListDataKeyDetailResponse < TencentCloud::Common::AbstractModel
+        # @param DataKeyMetadatas: 返回的属性信息列表。
+        # @type DataKeyMetadatas: Array
+        # @param TotalCount: DataKey的总数量
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DataKeyMetadatas, :TotalCount, :RequestId
+
+        def initialize(datakeymetadatas=nil, totalcount=nil, requestid=nil)
+          @DataKeyMetadatas = datakeymetadatas
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['DataKeyMetadatas'].nil?
+            @DataKeyMetadatas = []
+            params['DataKeyMetadatas'].each do |i|
+              datakeymetadata_tmp = DataKeyMetadata.new
+              datakeymetadata_tmp.deserialize(i)
+              @DataKeyMetadatas << datakeymetadata_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ListDataKeys请求参数结构体
+      class ListDataKeysRequest < TencentCloud::Common::AbstractModel
+        # @param Offset: 含义跟 SQL 查询的 Offset 一致，表示本次获取从按一定顺序排列数组的第 Offset 个元素开始，缺省为0
+        # @type Offset: Integer
+        # @param Limit: 含义跟 SQL 查询的 Limit 一致，表示本次最多获取 Limit 个元素。缺省值为10，最大值为200
+        # @type Limit: Integer
+        # @param Role: 根据创建者角色筛选，默认 0 表示用户自己创建的数据密钥， 1 表示授权其它云产品自动创建的数据密钥
+        # @type Role: Integer
+        # @param HsmClusterId: KMS 高级版对应的 HSM 集群 ID（仅对 KMS 独占版/托管版服务实例有效）
+        # @type HsmClusterId: String
+
+        attr_accessor :Offset, :Limit, :Role, :HsmClusterId
+
+        def initialize(offset=nil, limit=nil, role=nil, hsmclusterid=nil)
+          @Offset = offset
+          @Limit = limit
+          @Role = role
+          @HsmClusterId = hsmclusterid
+        end
+
+        def deserialize(params)
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @Role = params['Role']
+          @HsmClusterId = params['HsmClusterId']
+        end
+      end
+
+      # ListDataKeys返回参数结构体
+      class ListDataKeysResponse < TencentCloud::Common::AbstractModel
+        # @param DataKeys: 数据密钥Id列表数组
+        # @type DataKeys: Array
+        # @param TotalCount: 数据密钥的总数量
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DataKeys, :TotalCount, :RequestId
+
+        def initialize(datakeys=nil, totalcount=nil, requestid=nil)
+          @DataKeys = datakeys
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['DataKeys'].nil?
+            @DataKeys = []
+            params['DataKeys'].each do |i|
+              datakey_tmp = DataKey.new
+              datakey_tmp.deserialize(i)
+              @DataKeys << datakey_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
       end
@@ -2292,6 +2943,50 @@ module TencentCloud
         end
       end
 
+      # ScheduleDataKeyDeletion请求参数结构体
+      class ScheduleDataKeyDeletionRequest < TencentCloud::Common::AbstractModel
+        # @param DataKeyId: 数据密钥的唯一标志符
+        # @type DataKeyId: String
+        # @param PendingWindowInDays: 计划删除时间区间[7,30]
+        # @type PendingWindowInDays: Integer
+
+        attr_accessor :DataKeyId, :PendingWindowInDays
+
+        def initialize(datakeyid=nil, pendingwindowindays=nil)
+          @DataKeyId = datakeyid
+          @PendingWindowInDays = pendingwindowindays
+        end
+
+        def deserialize(params)
+          @DataKeyId = params['DataKeyId']
+          @PendingWindowInDays = params['PendingWindowInDays']
+        end
+      end
+
+      # ScheduleDataKeyDeletion返回参数结构体
+      class ScheduleDataKeyDeletionResponse < TencentCloud::Common::AbstractModel
+        # @param DeletionDate: 计划删除执行时间
+        # @type DeletionDate: Integer
+        # @param DataKeyId: 唯一标志被计划删除的数据密钥
+        # @type DataKeyId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DeletionDate, :DataKeyId, :RequestId
+
+        def initialize(deletiondate=nil, datakeyid=nil, requestid=nil)
+          @DeletionDate = deletiondate
+          @DataKeyId = datakeyid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @DeletionDate = params['DeletionDate']
+          @DataKeyId = params['DataKeyId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ScheduleKeyDeletion请求参数结构体
       class ScheduleKeyDeletionRequest < TencentCloud::Common::AbstractModel
         # @param KeyId: CMK的唯一标志
@@ -2486,6 +3181,78 @@ module TencentCloud
 
       # UpdateAlias返回参数结构体
       class UpdateAliasResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # UpdateDataKeyDescription请求参数结构体
+      class UpdateDataKeyDescriptionRequest < TencentCloud::Common::AbstractModel
+        # @param DataKeyId: 数据密钥的唯一标志符
+        # @type DataKeyId: String
+        # @param Description: 数据密钥 的描述，最大100字节
+        # @type Description: String
+
+        attr_accessor :DataKeyId, :Description
+
+        def initialize(datakeyid=nil, description=nil)
+          @DataKeyId = datakeyid
+          @Description = description
+        end
+
+        def deserialize(params)
+          @DataKeyId = params['DataKeyId']
+          @Description = params['Description']
+        end
+      end
+
+      # UpdateDataKeyDescription返回参数结构体
+      class UpdateDataKeyDescriptionResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # UpdateDataKeyName请求参数结构体
+      class UpdateDataKeyNameRequest < TencentCloud::Common::AbstractModel
+        # @param DataKeyId: 数据密钥的唯一标志符
+        # @type DataKeyId: String
+        # @param DataKeyName: 数据密钥的名称
+        # @type DataKeyName: String
+
+        attr_accessor :DataKeyId, :DataKeyName
+
+        def initialize(datakeyid=nil, datakeyname=nil)
+          @DataKeyId = datakeyid
+          @DataKeyName = datakeyname
+        end
+
+        def deserialize(params)
+          @DataKeyId = params['DataKeyId']
+          @DataKeyName = params['DataKeyName']
+        end
+      end
+
+      # UpdateDataKeyName返回参数结构体
+      class UpdateDataKeyNameResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 

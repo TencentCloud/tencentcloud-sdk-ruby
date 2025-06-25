@@ -2002,7 +2002,6 @@ module TencentCloud
         # @param Subject: 邮件主题
         # @type Subject: String
         # @param Template: 模板和模板数据
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Template: :class:`Tencentcloud::Ses.v20201002.models.Template`
         # @param CycleParam: 周期任务参数
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -2011,7 +2010,6 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TimedParam: :class:`Tencentcloud::Ses.v20201002.models.TimedEmailParam`
         # @param ErrMsg: 任务异常信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrMsg: String
         # @param ReceiversName: 收件人列表名称
         # @type ReceiversName: String
@@ -2389,7 +2387,6 @@ module TencentCloud
       # 统计数据的结构体
       class Volume < TencentCloud::Common::AbstractModel
         # @param SendDate: 日期
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SendDate: String
         # @param RequestCount: 邮件请求数量
         # @type RequestCount: Integer
@@ -2404,7 +2401,6 @@ module TencentCloud
         # @param BounceCount: 退信数量
         # @type BounceCount: Integer
         # @param UnsubscribeCount: 取消订阅的用户数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UnsubscribeCount: Integer
 
         attr_accessor :SendDate, :RequestCount, :AcceptedCount, :DeliveredCount, :OpenedCount, :ClickedCount, :BounceCount, :UnsubscribeCount

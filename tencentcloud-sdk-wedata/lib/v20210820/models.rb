@@ -9858,6 +9858,106 @@ module TencentCloud
         end
       end
 
+      # DescribeDsTaskVersionInfo请求参数结构体
+      class DescribeDsTaskVersionInfoRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务ID
+        # @type TaskId: String
+        # @param TaskVersion: 版本
+        # @type TaskVersion: String
+        # @param ProjectId: 项目id
+        # @type ProjectId: String
+
+        attr_accessor :TaskId, :TaskVersion, :ProjectId
+
+        def initialize(taskid=nil, taskversion=nil, projectid=nil)
+          @TaskId = taskid
+          @TaskVersion = taskversion
+          @ProjectId = projectid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @TaskVersion = params['TaskVersion']
+          @ProjectId = params['ProjectId']
+        end
+      end
+
+      # DescribeDsTaskVersionInfo返回参数结构体
+      class DescribeDsTaskVersionInfoResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 任务版本详情信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: :class:`Tencentcloud::Wedata.v20210820.models.TaskVersionDsDTO`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = TaskVersionDsDTO.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDsTaskVersionList请求参数结构体
+      class DescribeDsTaskVersionListRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务ID
+        # @type TaskId: String
+        # @param ProjectId: 项目ID
+        # @type ProjectId: String
+        # @param IsOnlyCurrentEditingVersion: 是否仅返回当前编辑版本
+        # @type IsOnlyCurrentEditingVersion: Boolean
+
+        attr_accessor :TaskId, :ProjectId, :IsOnlyCurrentEditingVersion
+
+        def initialize(taskid=nil, projectid=nil, isonlycurrenteditingversion=nil)
+          @TaskId = taskid
+          @ProjectId = projectid
+          @IsOnlyCurrentEditingVersion = isonlycurrenteditingversion
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @ProjectId = params['ProjectId']
+          @IsOnlyCurrentEditingVersion = params['IsOnlyCurrentEditingVersion']
+        end
+      end
+
+      # DescribeDsTaskVersionList返回参数结构体
+      class DescribeDsTaskVersionListResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 版本列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              taskversiondsdto_tmp = TaskVersionDsDTO.new
+              taskversiondsdto_tmp.deserialize(i)
+              @Data << taskversiondsdto_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeDutyScheduleDetails请求参数结构体
       class DescribeDutyScheduleDetailsRequest < TencentCloud::Common::AbstractModel
         # @param Id: 值班表id
@@ -16441,7 +16541,7 @@ module TencentCloud
 
       # DescribeTaskScript返回参数结构体
       class DescribeTaskScriptResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 任务脚本内容
+        # @param Data: 任务脚本内容，BASE64编码
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: :class:`Tencentcloud::Wedata.v20210820.models.TaskScriptContent`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
@@ -19014,6 +19114,50 @@ module TencentCloud
               @EventCases << eventcaseopsdto_tmp
             end
           end
+        end
+      end
+
+      # 事件发布者信息
+      class EventPublisherDTO < TencentCloud::Common::AbstractModel
+        # @param Key: 关键字，一般为任务id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Key: String
+        # @param Type: REST_API、KAFKA
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+        # @param CreationTs: 创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreationTs: String
+        # @param PropertiesList: 配置信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PropertiesList: Array
+        # @param Description: 描述信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+
+        attr_accessor :Key, :Type, :CreationTs, :PropertiesList, :Description
+
+        def initialize(key=nil, type=nil, creationts=nil, propertieslist=nil, description=nil)
+          @Key = key
+          @Type = type
+          @CreationTs = creationts
+          @PropertiesList = propertieslist
+          @Description = description
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Type = params['Type']
+          @CreationTs = params['CreationTs']
+          unless params['PropertiesList'].nil?
+            @PropertiesList = []
+            params['PropertiesList'].each do |i|
+              paraminfods_tmp = ParamInfoDs.new
+              paraminfods_tmp.deserialize(i)
+              @PropertiesList << paraminfods_tmp
+            end
+          end
+          @Description = params['Description']
         end
       end
 
@@ -26222,7 +26366,7 @@ module TencentCloud
         # @type ProjectId: String
         # @param TaskId: 任务ID
         # @type TaskId: String
-        # @param ScriptContent: 脚本内容 base64编码
+        # @param ScriptContent: 必填，脚本内容 base64编码
         # @type ScriptContent: String
         # @param IntegrationNodeDetails: 集成任务脚本配置
         # @type IntegrationNodeDetails: Array
@@ -37434,6 +37578,182 @@ module TencentCloud
           @TypeDesc = params['TypeDesc']
           @TypeId = params['TypeId']
           @TypeSort = params['TypeSort']
+        end
+      end
+
+      # TaskVersionVO
+      class TaskVersionDsDTO < TencentCloud::Common::AbstractModel
+        # @param VersionId: 版本ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VersionId: String
+        # @param TaskId: 任务id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskId: String
+        # @param VersionNum: 版本号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VersionNum: String
+        # @param VersionRemark: 版本备注
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VersionRemark: String
+        # @param Creator: 版本创建人
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Creator: String
+        # @param CreateTime: 版本创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param UpdateTime: 版本更新时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTime: String
+        # @param LastSchedulerCommitTime: 最新调度计划变更时间 生产态存储
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LastSchedulerCommitTime: String
+        # @param UsedVersion: 版本是否正在使用
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UsedVersion: Integer
+        # @param TaskInfo: 任务信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskInfo: :class:`Tencentcloud::Wedata.v20210820.models.TaskDsDTO`
+        # @param TaskParaInfo: 任务参数信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskParaInfo: Array
+        # @param TaskInputParam: TaskInputParam输入参数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskInputParam: Array
+        # @param TaskOutputParam: TaskOutputParam输出参数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskOutputParam: Array
+        # @param TaskLinkInfo: 任务上游依赖信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskLinkInfo: Array
+        # @param ApproveStatus: 审批状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApproveStatus: String
+        # @param ApproveName: 审批人名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApproveName: String
+        # @param TaskEventPublisher: 任务事件绑定
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskEventPublisher: Array
+        # @param TaskRegisterOutputTable: 任务产出登记信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskRegisterOutputTable: Array
+        # @param TaskCycleLinkInfo: 循环依赖信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskCycleLinkInfo: Array
+        # @param TaskEventListener: 事件监听信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskEventListener: Array
+        # @param ApproveTime: 审批时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApproveTime: String
+
+        attr_accessor :VersionId, :TaskId, :VersionNum, :VersionRemark, :Creator, :CreateTime, :UpdateTime, :LastSchedulerCommitTime, :UsedVersion, :TaskInfo, :TaskParaInfo, :TaskInputParam, :TaskOutputParam, :TaskLinkInfo, :ApproveStatus, :ApproveName, :TaskEventPublisher, :TaskRegisterOutputTable, :TaskCycleLinkInfo, :TaskEventListener, :ApproveTime
+
+        def initialize(versionid=nil, taskid=nil, versionnum=nil, versionremark=nil, creator=nil, createtime=nil, updatetime=nil, lastschedulercommittime=nil, usedversion=nil, taskinfo=nil, taskparainfo=nil, taskinputparam=nil, taskoutputparam=nil, tasklinkinfo=nil, approvestatus=nil, approvename=nil, taskeventpublisher=nil, taskregisteroutputtable=nil, taskcyclelinkinfo=nil, taskeventlistener=nil, approvetime=nil)
+          @VersionId = versionid
+          @TaskId = taskid
+          @VersionNum = versionnum
+          @VersionRemark = versionremark
+          @Creator = creator
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @LastSchedulerCommitTime = lastschedulercommittime
+          @UsedVersion = usedversion
+          @TaskInfo = taskinfo
+          @TaskParaInfo = taskparainfo
+          @TaskInputParam = taskinputparam
+          @TaskOutputParam = taskoutputparam
+          @TaskLinkInfo = tasklinkinfo
+          @ApproveStatus = approvestatus
+          @ApproveName = approvename
+          @TaskEventPublisher = taskeventpublisher
+          @TaskRegisterOutputTable = taskregisteroutputtable
+          @TaskCycleLinkInfo = taskcyclelinkinfo
+          @TaskEventListener = taskeventlistener
+          @ApproveTime = approvetime
+        end
+
+        def deserialize(params)
+          @VersionId = params['VersionId']
+          @TaskId = params['TaskId']
+          @VersionNum = params['VersionNum']
+          @VersionRemark = params['VersionRemark']
+          @Creator = params['Creator']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          @LastSchedulerCommitTime = params['LastSchedulerCommitTime']
+          @UsedVersion = params['UsedVersion']
+          unless params['TaskInfo'].nil?
+            @TaskInfo = TaskDsDTO.new
+            @TaskInfo.deserialize(params['TaskInfo'])
+          end
+          unless params['TaskParaInfo'].nil?
+            @TaskParaInfo = []
+            params['TaskParaInfo'].each do |i|
+              parametertaskdsdto_tmp = ParameterTaskDsDto.new
+              parametertaskdsdto_tmp.deserialize(i)
+              @TaskParaInfo << parametertaskdsdto_tmp
+            end
+          end
+          unless params['TaskInputParam'].nil?
+            @TaskInputParam = []
+            params['TaskInputParam'].each do |i|
+              parametertaskindsdto_tmp = ParameterTaskInDsDto.new
+              parametertaskindsdto_tmp.deserialize(i)
+              @TaskInputParam << parametertaskindsdto_tmp
+            end
+          end
+          unless params['TaskOutputParam'].nil?
+            @TaskOutputParam = []
+            params['TaskOutputParam'].each do |i|
+              parametertaskoutdsdto_tmp = ParameterTaskOutDsDto.new
+              parametertaskoutdsdto_tmp.deserialize(i)
+              @TaskOutputParam << parametertaskoutdsdto_tmp
+            end
+          end
+          unless params['TaskLinkInfo'].nil?
+            @TaskLinkInfo = []
+            params['TaskLinkInfo'].each do |i|
+              tasklinkdsdto_tmp = TaskLinkDsDTO.new
+              tasklinkdsdto_tmp.deserialize(i)
+              @TaskLinkInfo << tasklinkdsdto_tmp
+            end
+          end
+          @ApproveStatus = params['ApproveStatus']
+          @ApproveName = params['ApproveName']
+          unless params['TaskEventPublisher'].nil?
+            @TaskEventPublisher = []
+            params['TaskEventPublisher'].each do |i|
+              eventpublisherdto_tmp = EventPublisherDTO.new
+              eventpublisherdto_tmp.deserialize(i)
+              @TaskEventPublisher << eventpublisherdto_tmp
+            end
+          end
+          unless params['TaskRegisterOutputTable'].nil?
+            @TaskRegisterOutputTable = []
+            params['TaskRegisterOutputTable'].each do |i|
+              taskdataregistrydto_tmp = TaskDataRegistryDTO.new
+              taskdataregistrydto_tmp.deserialize(i)
+              @TaskRegisterOutputTable << taskdataregistrydto_tmp
+            end
+          end
+          unless params['TaskCycleLinkInfo'].nil?
+            @TaskCycleLinkInfo = []
+            params['TaskCycleLinkInfo'].each do |i|
+              taskcyclelinkdto_tmp = TaskCycleLinkDTO.new
+              taskcyclelinkdto_tmp.deserialize(i)
+              @TaskCycleLinkInfo << taskcyclelinkdto_tmp
+            end
+          end
+          unless params['TaskEventListener'].nil?
+            @TaskEventListener = []
+            params['TaskEventListener'].each do |i|
+              eventlistenerdto_tmp = EventListenerDTO.new
+              eventlistenerdto_tmp.deserialize(i)
+              @TaskEventListener << eventlistenerdto_tmp
+            end
+          end
+          @ApproveTime = params['ApproveTime']
         end
       end
 

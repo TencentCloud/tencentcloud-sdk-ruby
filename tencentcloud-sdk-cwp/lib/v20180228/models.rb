@@ -15720,13 +15720,19 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 需要返回的数量，默认为10，最大值为100
         # @type Limit: Integer
+        # @param Order: 排序，大小写无关：asc 升序，desc降序
+        # @type Order: String
+        # @param By: 排序列，严格相等：最近检测时间RecentFoundTime
+        # @type By: String
 
-        attr_accessor :Filters, :Offset, :Limit
+        attr_accessor :Filters, :Offset, :Limit, :Order, :By
 
-        def initialize(filters=nil, offset=nil, limit=nil)
+        def initialize(filters=nil, offset=nil, limit=nil, order=nil, by=nil)
           @Filters = filters
           @Offset = offset
           @Limit = limit
+          @Order = order
+          @By = by
         end
 
         def deserialize(params)
@@ -15740,6 +15746,8 @@ module TencentCloud
           end
           @Offset = params['Offset']
           @Limit = params['Limit']
+          @Order = params['Order']
+          @By = params['By']
         end
       end
 
@@ -16102,12 +16110,16 @@ module TencentCloud
         # @type DestroyOrderNum: Integer
         # @param RepurchaseRenewSwitch: 自动加购是否自动续费开关,true 开启,false 关闭
         # @type RepurchaseRenewSwitch: Boolean
+        # @param AutoBindRaspSwitch: 是否自动新增机器绑定rasp防护,false 关闭 true 开启
+        # @type AutoBindRaspSwitch: Boolean
+        # @param AutoOpenRaspSwitch: 是否自动新增机器开启rasp防护,false 关闭 true 开启
+        # @type AutoOpenRaspSwitch: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :LicenseCnt, :AvailableLicenseCnt, :AvailableProVersionLicenseCnt, :AvailableFlagshipVersionLicenseCnt, :NearExpiryLicenseCnt, :ExpireLicenseCnt, :AutoOpenStatus, :ProtectType, :IsOpenStatusHistory, :UsedLicenseCnt, :NotExpiredLicenseCnt, :FlagshipVersionLicenseCnt, :ProVersionLicenseCnt, :CwpVersionLicenseCnt, :AvailableLHLicenseCnt, :AutoRepurchaseSwitch, :AutoRepurchaseRenewSwitch, :DestroyOrderNum, :RepurchaseRenewSwitch, :RequestId
+        attr_accessor :LicenseCnt, :AvailableLicenseCnt, :AvailableProVersionLicenseCnt, :AvailableFlagshipVersionLicenseCnt, :NearExpiryLicenseCnt, :ExpireLicenseCnt, :AutoOpenStatus, :ProtectType, :IsOpenStatusHistory, :UsedLicenseCnt, :NotExpiredLicenseCnt, :FlagshipVersionLicenseCnt, :ProVersionLicenseCnt, :CwpVersionLicenseCnt, :AvailableLHLicenseCnt, :AutoRepurchaseSwitch, :AutoRepurchaseRenewSwitch, :DestroyOrderNum, :RepurchaseRenewSwitch, :AutoBindRaspSwitch, :AutoOpenRaspSwitch, :RequestId
 
-        def initialize(licensecnt=nil, availablelicensecnt=nil, availableproversionlicensecnt=nil, availableflagshipversionlicensecnt=nil, nearexpirylicensecnt=nil, expirelicensecnt=nil, autoopenstatus=nil, protecttype=nil, isopenstatushistory=nil, usedlicensecnt=nil, notexpiredlicensecnt=nil, flagshipversionlicensecnt=nil, proversionlicensecnt=nil, cwpversionlicensecnt=nil, availablelhlicensecnt=nil, autorepurchaseswitch=nil, autorepurchaserenewswitch=nil, destroyordernum=nil, repurchaserenewswitch=nil, requestid=nil)
+        def initialize(licensecnt=nil, availablelicensecnt=nil, availableproversionlicensecnt=nil, availableflagshipversionlicensecnt=nil, nearexpirylicensecnt=nil, expirelicensecnt=nil, autoopenstatus=nil, protecttype=nil, isopenstatushistory=nil, usedlicensecnt=nil, notexpiredlicensecnt=nil, flagshipversionlicensecnt=nil, proversionlicensecnt=nil, cwpversionlicensecnt=nil, availablelhlicensecnt=nil, autorepurchaseswitch=nil, autorepurchaserenewswitch=nil, destroyordernum=nil, repurchaserenewswitch=nil, autobindraspswitch=nil, autoopenraspswitch=nil, requestid=nil)
           @LicenseCnt = licensecnt
           @AvailableLicenseCnt = availablelicensecnt
           @AvailableProVersionLicenseCnt = availableproversionlicensecnt
@@ -16127,6 +16139,8 @@ module TencentCloud
           @AutoRepurchaseRenewSwitch = autorepurchaserenewswitch
           @DestroyOrderNum = destroyordernum
           @RepurchaseRenewSwitch = repurchaserenewswitch
+          @AutoBindRaspSwitch = autobindraspswitch
+          @AutoOpenRaspSwitch = autoopenraspswitch
           @RequestId = requestid
         end
 
@@ -16150,6 +16164,8 @@ module TencentCloud
           @AutoRepurchaseRenewSwitch = params['AutoRepurchaseRenewSwitch']
           @DestroyOrderNum = params['DestroyOrderNum']
           @RepurchaseRenewSwitch = params['RepurchaseRenewSwitch']
+          @AutoBindRaspSwitch = params['AutoBindRaspSwitch']
+          @AutoOpenRaspSwitch = params['AutoOpenRaspSwitch']
           @RequestId = params['RequestId']
         end
       end
@@ -24049,12 +24065,14 @@ module TencentCloud
         # @type SuccessFixCount: Integer
         # @param FixSwitch: 修复是否支持：0-windows/linux均不支持修复 ;1-windows/linux 均支持修复 ;2-仅linux支持修复;3-仅windows支持修复
         # @type FixSwitch: Integer
+        # @param SupportDefence: 是否支持防御： 0-不支持 1-支持
+        # @type SupportDefence: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :VulId, :VulName, :VulLevel, :VulType, :Description, :RepairPlan, :CveId, :Reference, :CVSS, :PublicDate, :CvssScore, :CveInfo, :CvssScoreFloat, :Labels, :DefenseAttackCount, :SuccessFixCount, :FixSwitch, :RequestId
+        attr_accessor :VulId, :VulName, :VulLevel, :VulType, :Description, :RepairPlan, :CveId, :Reference, :CVSS, :PublicDate, :CvssScore, :CveInfo, :CvssScoreFloat, :Labels, :DefenseAttackCount, :SuccessFixCount, :FixSwitch, :SupportDefence, :RequestId
 
-        def initialize(vulid=nil, vulname=nil, vullevel=nil, vultype=nil, description=nil, repairplan=nil, cveid=nil, reference=nil, cvss=nil, publicdate=nil, cvssscore=nil, cveinfo=nil, cvssscorefloat=nil, labels=nil, defenseattackcount=nil, successfixcount=nil, fixswitch=nil, requestid=nil)
+        def initialize(vulid=nil, vulname=nil, vullevel=nil, vultype=nil, description=nil, repairplan=nil, cveid=nil, reference=nil, cvss=nil, publicdate=nil, cvssscore=nil, cveinfo=nil, cvssscorefloat=nil, labels=nil, defenseattackcount=nil, successfixcount=nil, fixswitch=nil, supportdefence=nil, requestid=nil)
           @VulId = vulid
           @VulName = vulname
           @VulLevel = vullevel
@@ -24072,6 +24090,7 @@ module TencentCloud
           @DefenseAttackCount = defenseattackcount
           @SuccessFixCount = successfixcount
           @FixSwitch = fixswitch
+          @SupportDefence = supportdefence
           @RequestId = requestid
         end
 
@@ -24093,6 +24112,7 @@ module TencentCloud
           @DefenseAttackCount = params['DefenseAttackCount']
           @SuccessFixCount = params['SuccessFixCount']
           @FixSwitch = params['FixSwitch']
+          @SupportDefence = params['SupportDefence']
           @RequestId = params['RequestId']
         end
       end
@@ -27808,12 +27828,18 @@ module TencentCloud
         # @type Filters: Array
         # @param Where: 导出字段
         # @type Where: Array
+        # @param Order: 排序，大小写无关：asc 升序，desc降序
+        # @type Order: String
+        # @param By: 排序列，严格相等：最近检测时间RecentFoundTime
+        # @type By: String
 
-        attr_accessor :Filters, :Where
+        attr_accessor :Filters, :Where, :Order, :By
 
-        def initialize(filters=nil, where=nil)
+        def initialize(filters=nil, where=nil, order=nil, by=nil)
           @Filters = filters
           @Where = where
+          @Order = order
+          @By = by
         end
 
         def deserialize(params)
@@ -27826,6 +27852,8 @@ module TencentCloud
             end
           end
           @Where = params['Where']
+          @Order = params['Order']
+          @By = params['By']
         end
       end
 
@@ -32117,14 +32145,20 @@ module TencentCloud
         # @type AutoRepurchaseRenewSwitch: Integer
         # @param RepurchaseRenewSwitch: 手动购买的订单是否自动续费,默认0, 0关闭 ,1 开启
         # @type RepurchaseRenewSwitch: Integer
+        # @param AutoBindRaspSwitch: 新增机器自动绑定rasp,0 关闭 1开启
+        # @type AutoBindRaspSwitch: Integer
+        # @param AutoOpenRaspSwitch: 新增机器自动开启rasp防护,默认关闭,0 关闭 1开启
+        # @type AutoOpenRaspSwitch: Integer
 
-        attr_accessor :Status, :AutoRepurchaseSwitch, :AutoRepurchaseRenewSwitch, :RepurchaseRenewSwitch
+        attr_accessor :Status, :AutoRepurchaseSwitch, :AutoRepurchaseRenewSwitch, :RepurchaseRenewSwitch, :AutoBindRaspSwitch, :AutoOpenRaspSwitch
 
-        def initialize(status=nil, autorepurchaseswitch=nil, autorepurchaserenewswitch=nil, repurchaserenewswitch=nil)
+        def initialize(status=nil, autorepurchaseswitch=nil, autorepurchaserenewswitch=nil, repurchaserenewswitch=nil, autobindraspswitch=nil, autoopenraspswitch=nil)
           @Status = status
           @AutoRepurchaseSwitch = autorepurchaseswitch
           @AutoRepurchaseRenewSwitch = autorepurchaserenewswitch
           @RepurchaseRenewSwitch = repurchaserenewswitch
+          @AutoBindRaspSwitch = autobindraspswitch
+          @AutoOpenRaspSwitch = autoopenraspswitch
         end
 
         def deserialize(params)
@@ -32132,6 +32166,8 @@ module TencentCloud
           @AutoRepurchaseSwitch = params['AutoRepurchaseSwitch']
           @AutoRepurchaseRenewSwitch = params['AutoRepurchaseRenewSwitch']
           @RepurchaseRenewSwitch = params['RepurchaseRenewSwitch']
+          @AutoBindRaspSwitch = params['AutoBindRaspSwitch']
+          @AutoOpenRaspSwitch = params['AutoOpenRaspSwitch']
         end
       end
 
@@ -40716,14 +40752,20 @@ module TencentCloud
         # @type Name: String
         # @param NameEn: 漏洞名,英文描述
         # @type NameEn: String
+        # @param SupportFix: 是否支持自动修复 0:不支持 >0: 支持
+        # @type SupportFix: Integer
+        # @param SupportDefense: 是否支持自动防御 0:不支持 1:支持
+        # @type SupportDefense: Integer
 
-        attr_accessor :VulId, :PublishTime, :Name, :NameEn
+        attr_accessor :VulId, :PublishTime, :Name, :NameEn, :SupportFix, :SupportDefense
 
-        def initialize(vulid=nil, publishtime=nil, name=nil, nameen=nil)
+        def initialize(vulid=nil, publishtime=nil, name=nil, nameen=nil, supportfix=nil, supportdefense=nil)
           @VulId = vulid
           @PublishTime = publishtime
           @Name = name
           @NameEn = nameen
+          @SupportFix = supportfix
+          @SupportDefense = supportdefense
         end
 
         def deserialize(params)
@@ -40731,6 +40773,8 @@ module TencentCloud
           @PublishTime = params['PublishTime']
           @Name = params['Name']
           @NameEn = params['NameEn']
+          @SupportFix = params['SupportFix']
+          @SupportDefense = params['SupportDefense']
         end
       end
 

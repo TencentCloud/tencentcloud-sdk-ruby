@@ -860,7 +860,7 @@ module TencentCloud
         # @type PrivateKey: String
         # @param SSLId: CertType为2时，需要填充此参数，表示腾讯云SSL平台托管的证书id
         # @type SSLId: String
-        # @param ResourceId: 待废弃，可不填。Waf的资源ID。
+        # @param ResourceId: Waf的资源ID。
         # @type ResourceId: String
         # @param IpHeaders: IsCdn为3时，需要填此参数，表示自定义header
         # @type IpHeaders: Array
@@ -870,9 +870,9 @@ module TencentCloud
         # @type UpstreamScheme: String
         # @param HttpsUpstreamPort: HTTPS回源端口,仅UpstreamScheme为http时需要填当前字段
         # @type HttpsUpstreamPort: String
-        # @param IsGray: 待废弃，可不填。是否开启灰度，0表示不开启灰度。
+        # @param IsGray: 是否开启灰度，0表示不开启灰度。
         # @type IsGray: Integer
-        # @param GrayAreas: 待废弃，可不填。灰度的地区
+        # @param GrayAreas: 灰度的地区
         # @type GrayAreas: Array
         # @param HttpsRewrite: 必填项，是否开启HTTP强制跳转到HTTPS。
         # 0：不强制跳转
@@ -886,12 +886,12 @@ module TencentCloud
         # 0：关闭
         # 1：开启
         # @type IsHttp2: Integer
-        # @param Edition: 待废弃，可不填。WAF实例类型。
+        # @param Edition: WAF实例类型。
         # sparta-waf：SAAS型WAF
         # clb-waf：负载均衡型WAF
         # cdn-waf：CDN上的Web防护能力
         # @type Edition: String
-        # @param Anycast: 待废弃，目前填0即可。anycast IP类型开关： 0 普通IP 1 Anycast IP
+        # @param Anycast: 目前填0即可。anycast IP类型开关： 0 普通IP 1 Anycast IP
         # @type Anycast: Integer
         # @param Weights: 回源IP列表各IP的权重，和SrcList一一对应。当且仅当UpstreamType为0，并且SrcList有多个IP，并且LoadBalance为2时需要填写，否则填 []
         # @type Weights: Array
@@ -949,10 +949,23 @@ module TencentCloud
         # @type UpstreamPolicy: Integer
         # @param UpstreamRules: 分流回源时生效，分流回源的规则。
         # @type UpstreamRules: Array
+        # @param UseCase: 业务场景。0：默认值，表示常规业务场景 1：大模型业务场景
+        # @type UseCase: Integer
 
-        attr_accessor :Domain, :CertType, :IsCdn, :UpstreamType, :IsWebsocket, :LoadBalance, :Ports, :IsKeepAlive, :InstanceID, :Cert, :PrivateKey, :SSLId, :ResourceId, :IpHeaders, :UpstreamScheme, :HttpsUpstreamPort, :IsGray, :GrayAreas, :HttpsRewrite, :UpstreamDomain, :SrcList, :IsHttp2, :Edition, :Anycast, :Weights, :ActiveCheck, :TLSVersion, :CipherTemplate, :Ciphers, :ProxyReadTimeout, :ProxySendTimeout, :SniType, :SniHost, :XFFReset, :Note, :UpstreamHost, :ProxyBuffer, :ProbeStatus, :GmType, :GmCertType, :GmCert, :GmPrivateKey, :GmEncCert, :GmEncPrivateKey, :GmSSLId, :UpstreamPolicy, :UpstreamRules
+        attr_accessor :Domain, :CertType, :IsCdn, :UpstreamType, :IsWebsocket, :LoadBalance, :Ports, :IsKeepAlive, :InstanceID, :Cert, :PrivateKey, :SSLId, :ResourceId, :IpHeaders, :UpstreamScheme, :HttpsUpstreamPort, :IsGray, :GrayAreas, :HttpsRewrite, :UpstreamDomain, :SrcList, :IsHttp2, :Edition, :Anycast, :Weights, :ActiveCheck, :TLSVersion, :CipherTemplate, :Ciphers, :ProxyReadTimeout, :ProxySendTimeout, :SniType, :SniHost, :XFFReset, :Note, :UpstreamHost, :ProxyBuffer, :ProbeStatus, :GmType, :GmCertType, :GmCert, :GmPrivateKey, :GmEncCert, :GmEncPrivateKey, :GmSSLId, :UpstreamPolicy, :UpstreamRules, :UseCase
+        extend Gem::Deprecate
+        deprecate :ResourceId, :none, 2025, 6
+        deprecate :ResourceId=, :none, 2025, 6
+        deprecate :IsGray, :none, 2025, 6
+        deprecate :IsGray=, :none, 2025, 6
+        deprecate :GrayAreas, :none, 2025, 6
+        deprecate :GrayAreas=, :none, 2025, 6
+        deprecate :Edition, :none, 2025, 6
+        deprecate :Edition=, :none, 2025, 6
+        deprecate :Anycast, :none, 2025, 6
+        deprecate :Anycast=, :none, 2025, 6
 
-        def initialize(domain=nil, certtype=nil, iscdn=nil, upstreamtype=nil, iswebsocket=nil, loadbalance=nil, ports=nil, iskeepalive=nil, instanceid=nil, cert=nil, privatekey=nil, sslid=nil, resourceid=nil, ipheaders=nil, upstreamscheme=nil, httpsupstreamport=nil, isgray=nil, grayareas=nil, httpsrewrite=nil, upstreamdomain=nil, srclist=nil, ishttp2=nil, edition=nil, anycast=nil, weights=nil, activecheck=nil, tlsversion=nil, ciphertemplate=nil, ciphers=nil, proxyreadtimeout=nil, proxysendtimeout=nil, snitype=nil, snihost=nil, xffreset=nil, note=nil, upstreamhost=nil, proxybuffer=nil, probestatus=nil, gmtype=nil, gmcerttype=nil, gmcert=nil, gmprivatekey=nil, gmenccert=nil, gmencprivatekey=nil, gmsslid=nil, upstreampolicy=nil, upstreamrules=nil)
+        def initialize(domain=nil, certtype=nil, iscdn=nil, upstreamtype=nil, iswebsocket=nil, loadbalance=nil, ports=nil, iskeepalive=nil, instanceid=nil, cert=nil, privatekey=nil, sslid=nil, resourceid=nil, ipheaders=nil, upstreamscheme=nil, httpsupstreamport=nil, isgray=nil, grayareas=nil, httpsrewrite=nil, upstreamdomain=nil, srclist=nil, ishttp2=nil, edition=nil, anycast=nil, weights=nil, activecheck=nil, tlsversion=nil, ciphertemplate=nil, ciphers=nil, proxyreadtimeout=nil, proxysendtimeout=nil, snitype=nil, snihost=nil, xffreset=nil, note=nil, upstreamhost=nil, proxybuffer=nil, probestatus=nil, gmtype=nil, gmcerttype=nil, gmcert=nil, gmprivatekey=nil, gmenccert=nil, gmencprivatekey=nil, gmsslid=nil, upstreampolicy=nil, upstreamrules=nil, usecase=nil)
           @Domain = domain
           @CertType = certtype
           @IsCdn = iscdn
@@ -1000,6 +1013,7 @@ module TencentCloud
           @GmSSLId = gmsslid
           @UpstreamPolicy = upstreampolicy
           @UpstreamRules = upstreamrules
+          @UseCase = usecase
         end
 
         def deserialize(params)
@@ -1064,6 +1078,7 @@ module TencentCloud
               @UpstreamRules << upstreamrule_tmp
             end
           end
+          @UseCase = params['UseCase']
         end
       end
 
@@ -2494,10 +2509,12 @@ module TencentCloud
         # @type Note: String
         # @param Labels: 域名标签
         # @type Labels: Array
+        # @param AccessStatus: clbwaf接入状态，0代表“尚无流量接入”，1代表“流量接入”，2代表“CLB监听器已注销”，3代表“配置生效中”，4代表“配置下发失败中”
+        # @type AccessStatus: Integer
 
-        attr_accessor :Domain, :DomainId, :InstanceId, :InstanceName, :Edition, :IsCdn, :LoadBalancerSet, :FlowMode, :State, :AlbType, :IpHeaders, :CdcClusters, :CloudType, :Note, :Labels
+        attr_accessor :Domain, :DomainId, :InstanceId, :InstanceName, :Edition, :IsCdn, :LoadBalancerSet, :FlowMode, :State, :AlbType, :IpHeaders, :CdcClusters, :CloudType, :Note, :Labels, :AccessStatus
 
-        def initialize(domain=nil, domainid=nil, instanceid=nil, instancename=nil, edition=nil, iscdn=nil, loadbalancerset=nil, flowmode=nil, state=nil, albtype=nil, ipheaders=nil, cdcclusters=nil, cloudtype=nil, note=nil, labels=nil)
+        def initialize(domain=nil, domainid=nil, instanceid=nil, instancename=nil, edition=nil, iscdn=nil, loadbalancerset=nil, flowmode=nil, state=nil, albtype=nil, ipheaders=nil, cdcclusters=nil, cloudtype=nil, note=nil, labels=nil, accessstatus=nil)
           @Domain = domain
           @DomainId = domainid
           @InstanceId = instanceid
@@ -2513,6 +2530,7 @@ module TencentCloud
           @CloudType = cloudtype
           @Note = note
           @Labels = labels
+          @AccessStatus = accessstatus
         end
 
         def deserialize(params)
@@ -2538,6 +2556,7 @@ module TencentCloud
           @CloudType = params['CloudType']
           @Note = params['Note']
           @Labels = params['Labels']
+          @AccessStatus = params['AccessStatus']
         end
       end
 
@@ -8612,7 +8631,7 @@ module TencentCloud
         # @type UpstreamDomainList: Array
         # @param SgID: 安全组ID
         # @type SgID: String
-        # @param AccessStatus: clbwaf接入状态
+        # @param AccessStatus: clbwaf接入状态，0代表“尚无流量接入”，1代表“流量接入”，2代表“CLB监听器已注销”，3代表“配置生效中”，4代表“配置下发失败中”
         # @type AccessStatus: Integer
         # @param Labels: 域名标签
         # @type Labels: Array
@@ -8825,7 +8844,7 @@ module TencentCloud
         # 2：有部署代理服务，waf将使用remote_addr获取客户端IP
         # 3：有部署代理服务，waf将使用ip_headers中的自定义header获取客户端IP
         # @type IsCdn: Integer
-        # @param IsGray: 是否开启灰度，已废弃。
+        # @param IsGray: 是否开启灰度。
         # @type IsGray: Integer
         # @param IsHttp2: 是否开启HTTP2，需要开启HTTPS协议支持。
         # 0：关闭
@@ -8943,10 +8962,15 @@ module TencentCloud
         # @type UpstreamPolicy: Integer
         # @param UpstreamRules: 分流回源策略
         # @type UpstreamRules: Array
+        # @param UseCase: 业务场景。0：默认值，表示常规业务场景 1：大模型业务场景
+        # @type UseCase: Integer
 
-        attr_accessor :Domain, :DomainId, :InstanceId, :Edition, :InstanceName, :Cert, :CreateTime, :Engine, :HttpsRewrite, :HttpsUpstreamPort, :IsCdn, :IsGray, :IsHttp2, :IsWebsocket, :LoadBalance, :Mode, :PrivateKey, :SSLId, :UpstreamDomain, :UpstreamType, :SrcList, :Ports, :CertType, :UpstreamScheme, :Cls, :Cname, :IsKeepAlive, :ActiveCheck, :TLSVersion, :Ciphers, :CipherTemplate, :ProxyReadTimeout, :ProxySendTimeout, :SniType, :SniHost, :Weights, :IpHeaders, :XFFReset, :Note, :UpstreamHost, :Level, :ProxyBuffer, :GmType, :GmCertType, :GmCert, :GmPrivateKey, :GmEncCert, :GmEncPrivateKey, :GmSSLId, :Labels, :ProbeStatus, :UpstreamPolicy, :UpstreamRules
+        attr_accessor :Domain, :DomainId, :InstanceId, :Edition, :InstanceName, :Cert, :CreateTime, :Engine, :HttpsRewrite, :HttpsUpstreamPort, :IsCdn, :IsGray, :IsHttp2, :IsWebsocket, :LoadBalance, :Mode, :PrivateKey, :SSLId, :UpstreamDomain, :UpstreamType, :SrcList, :Ports, :CertType, :UpstreamScheme, :Cls, :Cname, :IsKeepAlive, :ActiveCheck, :TLSVersion, :Ciphers, :CipherTemplate, :ProxyReadTimeout, :ProxySendTimeout, :SniType, :SniHost, :Weights, :IpHeaders, :XFFReset, :Note, :UpstreamHost, :Level, :ProxyBuffer, :GmType, :GmCertType, :GmCert, :GmPrivateKey, :GmEncCert, :GmEncPrivateKey, :GmSSLId, :Labels, :ProbeStatus, :UpstreamPolicy, :UpstreamRules, :UseCase
+        extend Gem::Deprecate
+        deprecate :IsGray, :none, 2025, 6
+        deprecate :IsGray=, :none, 2025, 6
 
-        def initialize(domain=nil, domainid=nil, instanceid=nil, edition=nil, instancename=nil, cert=nil, createtime=nil, engine=nil, httpsrewrite=nil, httpsupstreamport=nil, iscdn=nil, isgray=nil, ishttp2=nil, iswebsocket=nil, loadbalance=nil, mode=nil, privatekey=nil, sslid=nil, upstreamdomain=nil, upstreamtype=nil, srclist=nil, ports=nil, certtype=nil, upstreamscheme=nil, cls=nil, cname=nil, iskeepalive=nil, activecheck=nil, tlsversion=nil, ciphers=nil, ciphertemplate=nil, proxyreadtimeout=nil, proxysendtimeout=nil, snitype=nil, snihost=nil, weights=nil, ipheaders=nil, xffreset=nil, note=nil, upstreamhost=nil, level=nil, proxybuffer=nil, gmtype=nil, gmcerttype=nil, gmcert=nil, gmprivatekey=nil, gmenccert=nil, gmencprivatekey=nil, gmsslid=nil, labels=nil, probestatus=nil, upstreampolicy=nil, upstreamrules=nil)
+        def initialize(domain=nil, domainid=nil, instanceid=nil, edition=nil, instancename=nil, cert=nil, createtime=nil, engine=nil, httpsrewrite=nil, httpsupstreamport=nil, iscdn=nil, isgray=nil, ishttp2=nil, iswebsocket=nil, loadbalance=nil, mode=nil, privatekey=nil, sslid=nil, upstreamdomain=nil, upstreamtype=nil, srclist=nil, ports=nil, certtype=nil, upstreamscheme=nil, cls=nil, cname=nil, iskeepalive=nil, activecheck=nil, tlsversion=nil, ciphers=nil, ciphertemplate=nil, proxyreadtimeout=nil, proxysendtimeout=nil, snitype=nil, snihost=nil, weights=nil, ipheaders=nil, xffreset=nil, note=nil, upstreamhost=nil, level=nil, proxybuffer=nil, gmtype=nil, gmcerttype=nil, gmcert=nil, gmprivatekey=nil, gmenccert=nil, gmencprivatekey=nil, gmsslid=nil, labels=nil, probestatus=nil, upstreampolicy=nil, upstreamrules=nil, usecase=nil)
           @Domain = domain
           @DomainId = domainid
           @InstanceId = instanceid
@@ -9000,6 +9024,7 @@ module TencentCloud
           @ProbeStatus = probestatus
           @UpstreamPolicy = upstreampolicy
           @UpstreamRules = upstreamrules
+          @UseCase = usecase
         end
 
         def deserialize(params)
@@ -9070,6 +9095,7 @@ module TencentCloud
               @UpstreamRules << upstreamrule_tmp
             end
           end
+          @UseCase = params['UseCase']
         end
       end
 
@@ -13181,7 +13207,7 @@ module TencentCloud
         # @type IsWebsocket: Integer
         # @param LoadBalance: 回源负载均衡策略。0：轮询1：IP hash2：加权轮询
         # @type LoadBalance: Integer
-        # @param IsGray: 待废弃，可不填。是否开启灰度，0表示不开启灰度。
+        # @param IsGray: 是否开启灰度，0表示不开启灰度。
         # @type IsGray: Integer
         # @param Edition: 域名所属实例类型
         # @type Edition: String
@@ -13189,7 +13215,7 @@ module TencentCloud
         # @type Ports: Array
         # @param IsKeepAlive: 是否开启长连接。0： 短连接1： 长连接
         # @type IsKeepAlive: String
-        # @param Anycast: 待废弃。目前填0即可。anycast IP类型开关： 0 普通IP 1 Anycast IP
+        # @param Anycast: 目前填0即可。anycast IP类型开关： 0 普通IP 1 Anycast IP
         # @type Anycast: Integer
         # @param Weights: 回源IP列表各IP的权重，和SrcList一一对应。当且仅当UpstreamType为0，并且SrcList有多个IP，并且LoadBalance为2时需要填写，否则填 []
         # @type Weights: Array
@@ -13243,10 +13269,17 @@ module TencentCloud
         # @type UpstreamPolicy: Integer
         # @param UpstreamRules: 分流回源时生效，分流回源的规则。
         # @type UpstreamRules: Array
+        # @param UseCase: 业务场景。0：默认值，表示常规业务场景 1：大模型业务场景
+        # @type UseCase: Integer
 
-        attr_accessor :Domain, :DomainId, :InstanceID, :CertType, :Cert, :PrivateKey, :SSLId, :IsCdn, :UpstreamScheme, :HttpsUpstreamPort, :HttpsRewrite, :UpstreamType, :UpstreamDomain, :SrcList, :IsHttp2, :IsWebsocket, :LoadBalance, :IsGray, :Edition, :Ports, :IsKeepAlive, :Anycast, :Weights, :ActiveCheck, :TLSVersion, :Ciphers, :CipherTemplate, :ProxyReadTimeout, :ProxySendTimeout, :SniType, :SniHost, :IpHeaders, :XFFReset, :Note, :UpstreamHost, :ProxyBuffer, :ProbeStatus, :GmType, :GmCertType, :GmCert, :GmPrivateKey, :GmEncCert, :GmEncPrivateKey, :GmSSLId, :UpstreamPolicy, :UpstreamRules
+        attr_accessor :Domain, :DomainId, :InstanceID, :CertType, :Cert, :PrivateKey, :SSLId, :IsCdn, :UpstreamScheme, :HttpsUpstreamPort, :HttpsRewrite, :UpstreamType, :UpstreamDomain, :SrcList, :IsHttp2, :IsWebsocket, :LoadBalance, :IsGray, :Edition, :Ports, :IsKeepAlive, :Anycast, :Weights, :ActiveCheck, :TLSVersion, :Ciphers, :CipherTemplate, :ProxyReadTimeout, :ProxySendTimeout, :SniType, :SniHost, :IpHeaders, :XFFReset, :Note, :UpstreamHost, :ProxyBuffer, :ProbeStatus, :GmType, :GmCertType, :GmCert, :GmPrivateKey, :GmEncCert, :GmEncPrivateKey, :GmSSLId, :UpstreamPolicy, :UpstreamRules, :UseCase
+        extend Gem::Deprecate
+        deprecate :IsGray, :none, 2025, 6
+        deprecate :IsGray=, :none, 2025, 6
+        deprecate :Anycast, :none, 2025, 6
+        deprecate :Anycast=, :none, 2025, 6
 
-        def initialize(domain=nil, domainid=nil, instanceid=nil, certtype=nil, cert=nil, privatekey=nil, sslid=nil, iscdn=nil, upstreamscheme=nil, httpsupstreamport=nil, httpsrewrite=nil, upstreamtype=nil, upstreamdomain=nil, srclist=nil, ishttp2=nil, iswebsocket=nil, loadbalance=nil, isgray=nil, edition=nil, ports=nil, iskeepalive=nil, anycast=nil, weights=nil, activecheck=nil, tlsversion=nil, ciphers=nil, ciphertemplate=nil, proxyreadtimeout=nil, proxysendtimeout=nil, snitype=nil, snihost=nil, ipheaders=nil, xffreset=nil, note=nil, upstreamhost=nil, proxybuffer=nil, probestatus=nil, gmtype=nil, gmcerttype=nil, gmcert=nil, gmprivatekey=nil, gmenccert=nil, gmencprivatekey=nil, gmsslid=nil, upstreampolicy=nil, upstreamrules=nil)
+        def initialize(domain=nil, domainid=nil, instanceid=nil, certtype=nil, cert=nil, privatekey=nil, sslid=nil, iscdn=nil, upstreamscheme=nil, httpsupstreamport=nil, httpsrewrite=nil, upstreamtype=nil, upstreamdomain=nil, srclist=nil, ishttp2=nil, iswebsocket=nil, loadbalance=nil, isgray=nil, edition=nil, ports=nil, iskeepalive=nil, anycast=nil, weights=nil, activecheck=nil, tlsversion=nil, ciphers=nil, ciphertemplate=nil, proxyreadtimeout=nil, proxysendtimeout=nil, snitype=nil, snihost=nil, ipheaders=nil, xffreset=nil, note=nil, upstreamhost=nil, proxybuffer=nil, probestatus=nil, gmtype=nil, gmcerttype=nil, gmcert=nil, gmprivatekey=nil, gmenccert=nil, gmencprivatekey=nil, gmsslid=nil, upstreampolicy=nil, upstreamrules=nil, usecase=nil)
           @Domain = domain
           @DomainId = domainid
           @InstanceID = instanceid
@@ -13293,6 +13326,7 @@ module TencentCloud
           @GmSSLId = gmsslid
           @UpstreamPolicy = upstreampolicy
           @UpstreamRules = upstreamrules
+          @UseCase = usecase
         end
 
         def deserialize(params)
@@ -13356,6 +13390,7 @@ module TencentCloud
               @UpstreamRules << upstreamrule_tmp
             end
           end
+          @UseCase = params['UseCase']
         end
       end
 

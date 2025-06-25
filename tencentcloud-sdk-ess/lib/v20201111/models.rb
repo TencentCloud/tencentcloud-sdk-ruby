@@ -13193,12 +13193,12 @@ module TencentCloud
 
       # 发起流程快速注册相关信息
       class RegisterInfo < TencentCloud::Common::AbstractModel
-        # @param LegalName: 法人姓名
+        # @param LegalName: <font color="red">字段不再使用</font>，法人姓名
         # @type LegalName: String
         # @param Uscc: 社会统一信用代码
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Uscc: String
-        # @param UnifiedSocialCreditCode: 社会统一信用代码
+        # @param UnifiedSocialCreditCode: <font color="red">字段不再使用</font>，社会统一信用代码
         # @type UnifiedSocialCreditCode: String
         # @param AuthorizationTypes: 指定企业认证的授权方式 支持多选:
 
@@ -13207,17 +13207,27 @@ module TencentCloud
         # <li><strong>5</strong>: 授权书+对公打款方式</li>
         # </ul>
         # @type AuthorizationTypes: Array
+        # @param AuthorizationType: 指定企业认证的授权方式 支持多选:
 
-        attr_accessor :LegalName, :Uscc, :UnifiedSocialCreditCode, :AuthorizationTypes
+        # <ul>
+        # <li><strong>2</strong>: 法人授权方式</li>
+        # <li><strong>5</strong>: 授权书+对公打款方式</li>
+        # </ul>
+        # @type AuthorizationType: Integer
+
+        attr_accessor :LegalName, :Uscc, :UnifiedSocialCreditCode, :AuthorizationTypes, :AuthorizationType
         extend Gem::Deprecate
         deprecate :Uscc, :none, 2025, 6
         deprecate :Uscc=, :none, 2025, 6
+        deprecate :AuthorizationTypes, :none, 2025, 6
+        deprecate :AuthorizationTypes=, :none, 2025, 6
 
-        def initialize(legalname=nil, uscc=nil, unifiedsocialcreditcode=nil, authorizationtypes=nil)
+        def initialize(legalname=nil, uscc=nil, unifiedsocialcreditcode=nil, authorizationtypes=nil, authorizationtype=nil)
           @LegalName = legalname
           @Uscc = uscc
           @UnifiedSocialCreditCode = unifiedsocialcreditcode
           @AuthorizationTypes = authorizationtypes
+          @AuthorizationType = authorizationtype
         end
 
         def deserialize(params)
@@ -13225,6 +13235,7 @@ module TencentCloud
           @Uscc = params['Uscc']
           @UnifiedSocialCreditCode = params['UnifiedSocialCreditCode']
           @AuthorizationTypes = params['AuthorizationTypes']
+          @AuthorizationType = params['AuthorizationType']
         end
       end
 

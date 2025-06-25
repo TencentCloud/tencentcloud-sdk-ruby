@@ -15316,17 +15316,20 @@ module TencentCloud
         # @type Status: String
         # @param CVEID: 漏洞CVEID
         # @type CVEID: String
+        # @param SupportDefense: 漏洞是否支持防御 0:不支持 1:支持
+        # @type SupportDefense: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :PocID, :VulName, :SubmitTime, :Status, :CVEID, :RequestId
+        attr_accessor :PocID, :VulName, :SubmitTime, :Status, :CVEID, :SupportDefense, :RequestId
 
-        def initialize(pocid=nil, vulname=nil, submittime=nil, status=nil, cveid=nil, requestid=nil)
+        def initialize(pocid=nil, vulname=nil, submittime=nil, status=nil, cveid=nil, supportdefense=nil, requestid=nil)
           @PocID = pocid
           @VulName = vulname
           @SubmitTime = submittime
           @Status = status
           @CVEID = cveid
+          @SupportDefense = supportdefense
           @RequestId = requestid
         end
 
@@ -15336,6 +15339,7 @@ module TencentCloud
           @SubmitTime = params['SubmitTime']
           @Status = params['Status']
           @CVEID = params['CVEID']
+          @SupportDefense = params['SupportDefense']
           @RequestId = params['RequestId']
         end
       end

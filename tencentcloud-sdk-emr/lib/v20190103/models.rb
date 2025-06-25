@@ -1770,10 +1770,12 @@ module TencentCloud
         # @type ZoneResourceConfiguration: Array
         # @param CosBucket: cos桶路径，创建StarRocks存算分离集群时用到
         # @type CosBucket: String
+        # @param NodeMarks: 节点标识信息，目前只提供给tf平台使用
+        # @type NodeMarks: Array
 
-        attr_accessor :ProductVersion, :EnableSupportHAFlag, :InstanceName, :InstanceChargeType, :LoginSettings, :SceneSoftwareConfig, :InstanceChargePrepaid, :SecurityGroupIds, :ScriptBootstrapActionConfig, :ClientToken, :NeedMasterWan, :EnableRemoteLoginFlag, :EnableKerberosFlag, :CustomConf, :Tags, :DisasterRecoverGroupIds, :EnableCbsEncryptFlag, :MetaDBInfo, :DependService, :ZoneResourceConfiguration, :CosBucket
+        attr_accessor :ProductVersion, :EnableSupportHAFlag, :InstanceName, :InstanceChargeType, :LoginSettings, :SceneSoftwareConfig, :InstanceChargePrepaid, :SecurityGroupIds, :ScriptBootstrapActionConfig, :ClientToken, :NeedMasterWan, :EnableRemoteLoginFlag, :EnableKerberosFlag, :CustomConf, :Tags, :DisasterRecoverGroupIds, :EnableCbsEncryptFlag, :MetaDBInfo, :DependService, :ZoneResourceConfiguration, :CosBucket, :NodeMarks
 
-        def initialize(productversion=nil, enablesupporthaflag=nil, instancename=nil, instancechargetype=nil, loginsettings=nil, scenesoftwareconfig=nil, instancechargeprepaid=nil, securitygroupids=nil, scriptbootstrapactionconfig=nil, clienttoken=nil, needmasterwan=nil, enableremoteloginflag=nil, enablekerberosflag=nil, customconf=nil, tags=nil, disasterrecovergroupids=nil, enablecbsencryptflag=nil, metadbinfo=nil, dependservice=nil, zoneresourceconfiguration=nil, cosbucket=nil)
+        def initialize(productversion=nil, enablesupporthaflag=nil, instancename=nil, instancechargetype=nil, loginsettings=nil, scenesoftwareconfig=nil, instancechargeprepaid=nil, securitygroupids=nil, scriptbootstrapactionconfig=nil, clienttoken=nil, needmasterwan=nil, enableremoteloginflag=nil, enablekerberosflag=nil, customconf=nil, tags=nil, disasterrecovergroupids=nil, enablecbsencryptflag=nil, metadbinfo=nil, dependservice=nil, zoneresourceconfiguration=nil, cosbucket=nil, nodemarks=nil)
           @ProductVersion = productversion
           @EnableSupportHAFlag = enablesupporthaflag
           @InstanceName = instancename
@@ -1795,6 +1797,7 @@ module TencentCloud
           @DependService = dependservice
           @ZoneResourceConfiguration = zoneresourceconfiguration
           @CosBucket = cosbucket
+          @NodeMarks = nodemarks
         end
 
         def deserialize(params)
@@ -1859,6 +1862,14 @@ module TencentCloud
             end
           end
           @CosBucket = params['CosBucket']
+          unless params['NodeMarks'].nil?
+            @NodeMarks = []
+            params['NodeMarks'].each do |i|
+              nodemark_tmp = NodeMark.new
+              nodemark_tmp.deserialize(i)
+              @NodeMarks << nodemark_tmp
+            end
+          end
         end
       end
 
@@ -2043,10 +2054,12 @@ module TencentCloud
         # @type MultiZoneSettings: Array
         # @param CosBucket: cos桶路径，创建StarRocks存算分离集群时用到
         # @type CosBucket: String
+        # @param NodeMarks: 节点标识信息，目前只提供给tf平台使用
+        # @type NodeMarks: Array
 
-        attr_accessor :ProductId, :Software, :SupportHA, :InstanceName, :PayMode, :TimeSpan, :TimeUnit, :LoginSettings, :VPCSettings, :ResourceSpec, :COSSettings, :Placement, :SgId, :PreExecutedFileSettings, :AutoRenew, :ClientToken, :NeedMasterWan, :RemoteLoginAtCreate, :CheckSecurity, :ExtendFsField, :Tags, :DisasterRecoverGroupIds, :CbsEncrypt, :MetaType, :UnifyMetaInstanceId, :MetaDBInfo, :ApplicationRole, :SceneName, :ExternalService, :VersionID, :MultiZone, :MultiZoneSettings, :CosBucket
+        attr_accessor :ProductId, :Software, :SupportHA, :InstanceName, :PayMode, :TimeSpan, :TimeUnit, :LoginSettings, :VPCSettings, :ResourceSpec, :COSSettings, :Placement, :SgId, :PreExecutedFileSettings, :AutoRenew, :ClientToken, :NeedMasterWan, :RemoteLoginAtCreate, :CheckSecurity, :ExtendFsField, :Tags, :DisasterRecoverGroupIds, :CbsEncrypt, :MetaType, :UnifyMetaInstanceId, :MetaDBInfo, :ApplicationRole, :SceneName, :ExternalService, :VersionID, :MultiZone, :MultiZoneSettings, :CosBucket, :NodeMarks
 
-        def initialize(productid=nil, software=nil, supportha=nil, instancename=nil, paymode=nil, timespan=nil, timeunit=nil, loginsettings=nil, vpcsettings=nil, resourcespec=nil, cossettings=nil, placement=nil, sgid=nil, preexecutedfilesettings=nil, autorenew=nil, clienttoken=nil, needmasterwan=nil, remoteloginatcreate=nil, checksecurity=nil, extendfsfield=nil, tags=nil, disasterrecovergroupids=nil, cbsencrypt=nil, metatype=nil, unifymetainstanceid=nil, metadbinfo=nil, applicationrole=nil, scenename=nil, externalservice=nil, versionid=nil, multizone=nil, multizonesettings=nil, cosbucket=nil)
+        def initialize(productid=nil, software=nil, supportha=nil, instancename=nil, paymode=nil, timespan=nil, timeunit=nil, loginsettings=nil, vpcsettings=nil, resourcespec=nil, cossettings=nil, placement=nil, sgid=nil, preexecutedfilesettings=nil, autorenew=nil, clienttoken=nil, needmasterwan=nil, remoteloginatcreate=nil, checksecurity=nil, extendfsfield=nil, tags=nil, disasterrecovergroupids=nil, cbsencrypt=nil, metatype=nil, unifymetainstanceid=nil, metadbinfo=nil, applicationrole=nil, scenename=nil, externalservice=nil, versionid=nil, multizone=nil, multizonesettings=nil, cosbucket=nil, nodemarks=nil)
           @ProductId = productid
           @Software = software
           @SupportHA = supportha
@@ -2080,6 +2093,7 @@ module TencentCloud
           @MultiZone = multizone
           @MultiZoneSettings = multizonesettings
           @CosBucket = cosbucket
+          @NodeMarks = nodemarks
         end
 
         def deserialize(params)
@@ -2162,6 +2176,14 @@ module TencentCloud
             end
           end
           @CosBucket = params['CosBucket']
+          unless params['NodeMarks'].nil?
+            @NodeMarks = []
+            params['NodeMarks'].each do |i|
+              nodemark_tmp = NodeMark.new
+              nodemark_tmp.deserialize(i)
+              @NodeMarks << nodemark_tmp
+            end
+          end
         end
       end
 
@@ -9203,10 +9225,12 @@ module TencentCloud
         # @type TkeClusterId: String
         # @param ConfigurableServices: 新挂磁盘时可支持配置的服务名称列表
         # @type ConfigurableServices: Array
+        # @param NodeMark: 节点标注信息，目前只提供给tf平台使用
+        # @type NodeMark: String
 
-        attr_accessor :AppId, :SerialNo, :OrderNo, :WanIp, :Flag, :Spec, :CpuNum, :MemSize, :MemDesc, :RegionId, :ZoneId, :ApplyTime, :FreeTime, :DiskSize, :NameTag, :Services, :StorageType, :RootSize, :ChargeType, :CdbIp, :CdbPort, :HwDiskSize, :HwDiskSizeDesc, :HwMemSize, :HwMemSizeDesc, :ExpireTime, :EmrResourceId, :IsAutoRenew, :DeviceClass, :Mutable, :MCMultiDisk, :CdbNodeInfo, :Ip, :Destroyable, :Tags, :AutoFlag, :HardwareResourceType, :IsDynamicSpec, :DynamicPodSpec, :SupportModifyPayMode, :RootStorageType, :Zone, :SubnetInfo, :Clients, :CurrentTime, :IsFederation, :DeviceName, :ServiceClient, :DisableApiTermination, :TradeVersion, :ServicesStatus, :Remark, :SharedClusterId, :SharedClusterIdDesc, :TimingResource, :TkeClusterId, :ConfigurableServices
+        attr_accessor :AppId, :SerialNo, :OrderNo, :WanIp, :Flag, :Spec, :CpuNum, :MemSize, :MemDesc, :RegionId, :ZoneId, :ApplyTime, :FreeTime, :DiskSize, :NameTag, :Services, :StorageType, :RootSize, :ChargeType, :CdbIp, :CdbPort, :HwDiskSize, :HwDiskSizeDesc, :HwMemSize, :HwMemSizeDesc, :ExpireTime, :EmrResourceId, :IsAutoRenew, :DeviceClass, :Mutable, :MCMultiDisk, :CdbNodeInfo, :Ip, :Destroyable, :Tags, :AutoFlag, :HardwareResourceType, :IsDynamicSpec, :DynamicPodSpec, :SupportModifyPayMode, :RootStorageType, :Zone, :SubnetInfo, :Clients, :CurrentTime, :IsFederation, :DeviceName, :ServiceClient, :DisableApiTermination, :TradeVersion, :ServicesStatus, :Remark, :SharedClusterId, :SharedClusterIdDesc, :TimingResource, :TkeClusterId, :ConfigurableServices, :NodeMark
 
-        def initialize(appid=nil, serialno=nil, orderno=nil, wanip=nil, flag=nil, spec=nil, cpunum=nil, memsize=nil, memdesc=nil, regionid=nil, zoneid=nil, applytime=nil, freetime=nil, disksize=nil, nametag=nil, services=nil, storagetype=nil, rootsize=nil, chargetype=nil, cdbip=nil, cdbport=nil, hwdisksize=nil, hwdisksizedesc=nil, hwmemsize=nil, hwmemsizedesc=nil, expiretime=nil, emrresourceid=nil, isautorenew=nil, deviceclass=nil, mutable=nil, mcmultidisk=nil, cdbnodeinfo=nil, ip=nil, destroyable=nil, tags=nil, autoflag=nil, hardwareresourcetype=nil, isdynamicspec=nil, dynamicpodspec=nil, supportmodifypaymode=nil, rootstoragetype=nil, zone=nil, subnetinfo=nil, clients=nil, currenttime=nil, isfederation=nil, devicename=nil, serviceclient=nil, disableapitermination=nil, tradeversion=nil, servicesstatus=nil, remark=nil, sharedclusterid=nil, sharedclusteriddesc=nil, timingresource=nil, tkeclusterid=nil, configurableservices=nil)
+        def initialize(appid=nil, serialno=nil, orderno=nil, wanip=nil, flag=nil, spec=nil, cpunum=nil, memsize=nil, memdesc=nil, regionid=nil, zoneid=nil, applytime=nil, freetime=nil, disksize=nil, nametag=nil, services=nil, storagetype=nil, rootsize=nil, chargetype=nil, cdbip=nil, cdbport=nil, hwdisksize=nil, hwdisksizedesc=nil, hwmemsize=nil, hwmemsizedesc=nil, expiretime=nil, emrresourceid=nil, isautorenew=nil, deviceclass=nil, mutable=nil, mcmultidisk=nil, cdbnodeinfo=nil, ip=nil, destroyable=nil, tags=nil, autoflag=nil, hardwareresourcetype=nil, isdynamicspec=nil, dynamicpodspec=nil, supportmodifypaymode=nil, rootstoragetype=nil, zone=nil, subnetinfo=nil, clients=nil, currenttime=nil, isfederation=nil, devicename=nil, serviceclient=nil, disableapitermination=nil, tradeversion=nil, servicesstatus=nil, remark=nil, sharedclusterid=nil, sharedclusteriddesc=nil, timingresource=nil, tkeclusterid=nil, configurableservices=nil, nodemark=nil)
           @AppId = appid
           @SerialNo = serialno
           @OrderNo = orderno
@@ -9264,6 +9288,7 @@ module TencentCloud
           @TimingResource = timingresource
           @TkeClusterId = tkeclusterid
           @ConfigurableServices = configurableservices
+          @NodeMark = nodemark
         end
 
         def deserialize(params)
@@ -9344,6 +9369,31 @@ module TencentCloud
           @TimingResource = params['TimingResource']
           @TkeClusterId = params['TkeClusterId']
           @ConfigurableServices = params['ConfigurableServices']
+          @NodeMark = params['NodeMark']
+        end
+      end
+
+      # 节点标记信息
+      class NodeMark < TencentCloud::Common::AbstractModel
+        # @param NodeType: 节点类型：master,core,task,router
+        # @type NodeType: String
+        # @param NodeNames: 节点标记信息，目前只提供给tf平台使用，作为入参区分同类型节点信息
+        # @type NodeNames: Array
+        # @param Zone: 可用区名称
+        # @type Zone: String
+
+        attr_accessor :NodeType, :NodeNames, :Zone
+
+        def initialize(nodetype=nil, nodenames=nil, zone=nil)
+          @NodeType = nodetype
+          @NodeNames = nodenames
+          @Zone = zone
+        end
+
+        def deserialize(params)
+          @NodeType = params['NodeType']
+          @NodeNames = params['NodeNames']
+          @Zone = params['Zone']
         end
       end
 
@@ -11421,10 +11471,12 @@ module TencentCloud
         # @type SubnetId: String
         # @param ScaleOutServiceConfGroupsInfo: 扩容指定配置组
         # @type ScaleOutServiceConfGroupsInfo: Array
+        # @param NodeMarks: 节点标记信息，当前只提供给tf平台使用
+        # @type NodeMarks: :class:`Tencentcloud::Emr.v20190103.models.NodeMark`
 
-        attr_accessor :InstanceChargeType, :InstanceId, :ScaleOutNodeConfig, :ClientToken, :InstanceChargePrepaid, :ScriptBootstrapActionConfig, :SoftDeployInfo, :ServiceNodeInfo, :DisasterRecoverGroupIds, :Tags, :HardwareSourceType, :PodSpecInfo, :ClickHouseClusterName, :ClickHouseClusterType, :YarnNodeLabel, :EnableStartServiceFlag, :ResourceSpec, :Zone, :SubnetId, :ScaleOutServiceConfGroupsInfo
+        attr_accessor :InstanceChargeType, :InstanceId, :ScaleOutNodeConfig, :ClientToken, :InstanceChargePrepaid, :ScriptBootstrapActionConfig, :SoftDeployInfo, :ServiceNodeInfo, :DisasterRecoverGroupIds, :Tags, :HardwareSourceType, :PodSpecInfo, :ClickHouseClusterName, :ClickHouseClusterType, :YarnNodeLabel, :EnableStartServiceFlag, :ResourceSpec, :Zone, :SubnetId, :ScaleOutServiceConfGroupsInfo, :NodeMarks
 
-        def initialize(instancechargetype=nil, instanceid=nil, scaleoutnodeconfig=nil, clienttoken=nil, instancechargeprepaid=nil, scriptbootstrapactionconfig=nil, softdeployinfo=nil, servicenodeinfo=nil, disasterrecovergroupids=nil, tags=nil, hardwaresourcetype=nil, podspecinfo=nil, clickhouseclustername=nil, clickhouseclustertype=nil, yarnnodelabel=nil, enablestartserviceflag=nil, resourcespec=nil, zone=nil, subnetid=nil, scaleoutserviceconfgroupsinfo=nil)
+        def initialize(instancechargetype=nil, instanceid=nil, scaleoutnodeconfig=nil, clienttoken=nil, instancechargeprepaid=nil, scriptbootstrapactionconfig=nil, softdeployinfo=nil, servicenodeinfo=nil, disasterrecovergroupids=nil, tags=nil, hardwaresourcetype=nil, podspecinfo=nil, clickhouseclustername=nil, clickhouseclustertype=nil, yarnnodelabel=nil, enablestartserviceflag=nil, resourcespec=nil, zone=nil, subnetid=nil, scaleoutserviceconfgroupsinfo=nil, nodemarks=nil)
           @InstanceChargeType = instancechargetype
           @InstanceId = instanceid
           @ScaleOutNodeConfig = scaleoutnodeconfig
@@ -11445,6 +11497,7 @@ module TencentCloud
           @Zone = zone
           @SubnetId = subnetid
           @ScaleOutServiceConfGroupsInfo = scaleoutserviceconfgroupsinfo
+          @NodeMarks = nodemarks
         end
 
         def deserialize(params)
@@ -11500,6 +11553,10 @@ module TencentCloud
               scaleoutserviceconfgroupsinfo_tmp.deserialize(i)
               @ScaleOutServiceConfGroupsInfo << scaleoutserviceconfgroupsinfo_tmp
             end
+          end
+          unless params['NodeMarks'].nil?
+            @NodeMarks = NodeMark.new
+            @NodeMarks.deserialize(params['NodeMarks'])
           end
         end
       end
@@ -11616,10 +11673,12 @@ module TencentCloud
         # @type ComputeResourceId: String
         # @param ComputeResourceAdvanceParams: 计算资源高级设置
         # @type ComputeResourceAdvanceParams: :class:`Tencentcloud::Emr.v20190103.models.ComputeResourceAdvanceParams`
+        # @param NodeMarks: 节点标记信息，目前只提供tf平台使用
+        # @type NodeMarks: :class:`Tencentcloud::Emr.v20190103.models.NodeMark`
 
-        attr_accessor :TimeUnit, :TimeSpan, :InstanceId, :PayMode, :ClientToken, :PreExecutedFileSettings, :TaskCount, :CoreCount, :UnNecessaryNodeList, :RouterCount, :SoftDeployInfo, :ServiceNodeInfo, :DisasterRecoverGroupIds, :Tags, :HardwareResourceType, :PodSpec, :ClickHouseClusterName, :ClickHouseClusterType, :YarnNodeLabel, :PodParameter, :MasterCount, :StartServiceAfterScaleOut, :ZoneId, :SubnetId, :ScaleOutServiceConfAssign, :AutoRenew, :ResourceBaseType, :ComputeResourceId, :ComputeResourceAdvanceParams
+        attr_accessor :TimeUnit, :TimeSpan, :InstanceId, :PayMode, :ClientToken, :PreExecutedFileSettings, :TaskCount, :CoreCount, :UnNecessaryNodeList, :RouterCount, :SoftDeployInfo, :ServiceNodeInfo, :DisasterRecoverGroupIds, :Tags, :HardwareResourceType, :PodSpec, :ClickHouseClusterName, :ClickHouseClusterType, :YarnNodeLabel, :PodParameter, :MasterCount, :StartServiceAfterScaleOut, :ZoneId, :SubnetId, :ScaleOutServiceConfAssign, :AutoRenew, :ResourceBaseType, :ComputeResourceId, :ComputeResourceAdvanceParams, :NodeMarks
 
-        def initialize(timeunit=nil, timespan=nil, instanceid=nil, paymode=nil, clienttoken=nil, preexecutedfilesettings=nil, taskcount=nil, corecount=nil, unnecessarynodelist=nil, routercount=nil, softdeployinfo=nil, servicenodeinfo=nil, disasterrecovergroupids=nil, tags=nil, hardwareresourcetype=nil, podspec=nil, clickhouseclustername=nil, clickhouseclustertype=nil, yarnnodelabel=nil, podparameter=nil, mastercount=nil, startserviceafterscaleout=nil, zoneid=nil, subnetid=nil, scaleoutserviceconfassign=nil, autorenew=nil, resourcebasetype=nil, computeresourceid=nil, computeresourceadvanceparams=nil)
+        def initialize(timeunit=nil, timespan=nil, instanceid=nil, paymode=nil, clienttoken=nil, preexecutedfilesettings=nil, taskcount=nil, corecount=nil, unnecessarynodelist=nil, routercount=nil, softdeployinfo=nil, servicenodeinfo=nil, disasterrecovergroupids=nil, tags=nil, hardwareresourcetype=nil, podspec=nil, clickhouseclustername=nil, clickhouseclustertype=nil, yarnnodelabel=nil, podparameter=nil, mastercount=nil, startserviceafterscaleout=nil, zoneid=nil, subnetid=nil, scaleoutserviceconfassign=nil, autorenew=nil, resourcebasetype=nil, computeresourceid=nil, computeresourceadvanceparams=nil, nodemarks=nil)
           @TimeUnit = timeunit
           @TimeSpan = timespan
           @InstanceId = instanceid
@@ -11649,6 +11708,7 @@ module TencentCloud
           @ResourceBaseType = resourcebasetype
           @ComputeResourceId = computeresourceid
           @ComputeResourceAdvanceParams = computeresourceadvanceparams
+          @NodeMarks = nodemarks
         end
 
         def deserialize(params)
@@ -11703,6 +11763,10 @@ module TencentCloud
           unless params['ComputeResourceAdvanceParams'].nil?
             @ComputeResourceAdvanceParams = ComputeResourceAdvanceParams.new
             @ComputeResourceAdvanceParams.deserialize(params['ComputeResourceAdvanceParams'])
+          end
+          unless params['NodeMarks'].nil?
+            @NodeMarks = NodeMark.new
+            @NodeMarks.deserialize(params['NodeMarks'])
           end
         end
       end

@@ -2215,6 +2215,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查看任务版本详细信息
+
+        # @param request: Request instance for DescribeDsTaskVersionInfo.
+        # @type request: :class:`Tencentcloud::wedata::V20210820::DescribeDsTaskVersionInfoRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20210820::DescribeDsTaskVersionInfoResponse`
+        def DescribeDsTaskVersionInfo(request)
+          body = send_request('DescribeDsTaskVersionInfo', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDsTaskVersionInfoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 拉取任务版本列表
+
+        # @param request: Request instance for DescribeDsTaskVersionList.
+        # @type request: :class:`Tencentcloud::wedata::V20210820::DescribeDsTaskVersionListRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20210820::DescribeDsTaskVersionListResponse`
+        def DescribeDsTaskVersionList(request)
+          body = send_request('DescribeDsTaskVersionList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDsTaskVersionListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取值班日历
 
         # @param request: Request instance for DescribeDutyScheduleDetails.
@@ -4502,7 +4550,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询任务脚本
+        # 查询任务脚本。本接口已废弃，请使用接口GetPaginationTaskScript。
 
         # @param request: Request instance for DescribeTaskScript.
         # @type request: :class:`Tencentcloud::wedata::V20210820::DescribeTaskScriptRequest`
@@ -5801,7 +5849,7 @@ module TencentCloud
         end
 
         # <p style="color:red;">[注意：该版本只满足广州区部分白名单客户使用]</p>
-        # 修改任务脚本
+        # 修改任务脚本。本接口已废弃，请使用接口ModifyTaskInfoDs。
 
         # @param request: Request instance for ModifyTaskScript.
         # @type request: :class:`Tencentcloud::wedata::V20210820::ModifyTaskScriptRequest`

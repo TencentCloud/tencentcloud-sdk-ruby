@@ -2366,10 +2366,14 @@ module TencentCloud
         # @type GdnId: String
         # @param ProxyConfig: 数据库代理配置
         # @type ProxyConfig: :class:`Tencentcloud::Cynosdb.v20190107.models.ProxyConfig`
+        # @param AutoArchive: 是否自动归档
+        # @type AutoArchive: String
+        # @param AutoArchiveDelayHours: 暂停后的归档处理时间
+        # @type AutoArchiveDelayHours: Integer
 
-        attr_accessor :Zone, :VpcId, :SubnetId, :DbType, :DbVersion, :ProjectId, :Cpu, :Memory, :InstanceCount, :Storage, :ClusterName, :AdminPassword, :Port, :PayMode, :Count, :RollbackStrategy, :RollbackId, :OriginalClusterId, :ExpectTime, :ExpectTimeThresh, :StorageLimit, :TimeSpan, :TimeUnit, :AutoRenewFlag, :AutoVoucher, :HaCount, :OrderSource, :ResourceTags, :DbMode, :MinCpu, :MaxCpu, :AutoPause, :AutoPauseDelay, :StoragePayMode, :SecurityGroupIds, :AlarmPolicyIds, :ClusterParams, :DealMode, :ParamTemplateId, :SlaveZone, :InstanceInitInfos, :GdnId, :ProxyConfig
+        attr_accessor :Zone, :VpcId, :SubnetId, :DbType, :DbVersion, :ProjectId, :Cpu, :Memory, :InstanceCount, :Storage, :ClusterName, :AdminPassword, :Port, :PayMode, :Count, :RollbackStrategy, :RollbackId, :OriginalClusterId, :ExpectTime, :ExpectTimeThresh, :StorageLimit, :TimeSpan, :TimeUnit, :AutoRenewFlag, :AutoVoucher, :HaCount, :OrderSource, :ResourceTags, :DbMode, :MinCpu, :MaxCpu, :AutoPause, :AutoPauseDelay, :StoragePayMode, :SecurityGroupIds, :AlarmPolicyIds, :ClusterParams, :DealMode, :ParamTemplateId, :SlaveZone, :InstanceInitInfos, :GdnId, :ProxyConfig, :AutoArchive, :AutoArchiveDelayHours
 
-        def initialize(zone=nil, vpcid=nil, subnetid=nil, dbtype=nil, dbversion=nil, projectid=nil, cpu=nil, memory=nil, instancecount=nil, storage=nil, clustername=nil, adminpassword=nil, port=nil, paymode=nil, count=nil, rollbackstrategy=nil, rollbackid=nil, originalclusterid=nil, expecttime=nil, expecttimethresh=nil, storagelimit=nil, timespan=nil, timeunit=nil, autorenewflag=nil, autovoucher=nil, hacount=nil, ordersource=nil, resourcetags=nil, dbmode=nil, mincpu=nil, maxcpu=nil, autopause=nil, autopausedelay=nil, storagepaymode=nil, securitygroupids=nil, alarmpolicyids=nil, clusterparams=nil, dealmode=nil, paramtemplateid=nil, slavezone=nil, instanceinitinfos=nil, gdnid=nil, proxyconfig=nil)
+        def initialize(zone=nil, vpcid=nil, subnetid=nil, dbtype=nil, dbversion=nil, projectid=nil, cpu=nil, memory=nil, instancecount=nil, storage=nil, clustername=nil, adminpassword=nil, port=nil, paymode=nil, count=nil, rollbackstrategy=nil, rollbackid=nil, originalclusterid=nil, expecttime=nil, expecttimethresh=nil, storagelimit=nil, timespan=nil, timeunit=nil, autorenewflag=nil, autovoucher=nil, hacount=nil, ordersource=nil, resourcetags=nil, dbmode=nil, mincpu=nil, maxcpu=nil, autopause=nil, autopausedelay=nil, storagepaymode=nil, securitygroupids=nil, alarmpolicyids=nil, clusterparams=nil, dealmode=nil, paramtemplateid=nil, slavezone=nil, instanceinitinfos=nil, gdnid=nil, proxyconfig=nil, autoarchive=nil, autoarchivedelayhours=nil)
           @Zone = zone
           @VpcId = vpcid
           @SubnetId = subnetid
@@ -2413,6 +2417,8 @@ module TencentCloud
           @InstanceInitInfos = instanceinitinfos
           @GdnId = gdnid
           @ProxyConfig = proxyconfig
+          @AutoArchive = autoarchive
+          @AutoArchiveDelayHours = autoarchivedelayhours
         end
 
         def deserialize(params)
@@ -2483,6 +2489,8 @@ module TencentCloud
             @ProxyConfig = ProxyConfig.new
             @ProxyConfig.deserialize(params['ProxyConfig'])
           end
+          @AutoArchive = params['AutoArchive']
+          @AutoArchiveDelayHours = params['AutoArchiveDelayHours']
         end
       end
 
@@ -6799,10 +6807,12 @@ module TencentCloud
         # @type Status: String
         # @param InstanceIds: 实例id列表
         # @type InstanceIds: Array
+        # @param ClusterType: 集群类型，取值范围<li> CYNOSDB：事务集群 </li><li> LIBRADB：分析集群 </li><li> ALL：全部 </li>，缺省为 ALL
+        # @type ClusterType: String
 
-        attr_accessor :Limit, :Offset, :OrderBy, :OrderByType, :Filters, :DbType, :Status, :InstanceIds
+        attr_accessor :Limit, :Offset, :OrderBy, :OrderByType, :Filters, :DbType, :Status, :InstanceIds, :ClusterType
 
-        def initialize(limit=nil, offset=nil, orderby=nil, orderbytype=nil, filters=nil, dbtype=nil, status=nil, instanceids=nil)
+        def initialize(limit=nil, offset=nil, orderby=nil, orderbytype=nil, filters=nil, dbtype=nil, status=nil, instanceids=nil, clustertype=nil)
           @Limit = limit
           @Offset = offset
           @OrderBy = orderby
@@ -6811,6 +6821,7 @@ module TencentCloud
           @DbType = dbtype
           @Status = status
           @InstanceIds = instanceids
+          @ClusterType = clustertype
         end
 
         def deserialize(params)
@@ -6829,6 +6840,7 @@ module TencentCloud
           @DbType = params['DbType']
           @Status = params['Status']
           @InstanceIds = params['InstanceIds']
+          @ClusterType = params['ClusterType']
         end
       end
 

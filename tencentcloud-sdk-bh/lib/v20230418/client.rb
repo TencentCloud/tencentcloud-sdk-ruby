@@ -173,6 +173,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 测试LDAP连接
+
+        # @param request: Request instance for CheckLDAPConnection.
+        # @type request: :class:`Tencentcloud::bh::V20230418::CheckLDAPConnectionRequest`
+        # @rtype: :class:`Tencentcloud::bh::V20230418::CheckLDAPConnectionResponse`
+        def CheckLDAPConnection(request)
+          body = send_request('CheckLDAPConnection', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CheckLDAPConnectionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 添加访问白名单规则
 
         # @param request: Request instance for CreateAccessWhiteListRule.
@@ -1013,6 +1037,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取LDAP ou 列表
+
+        # @param request: Request instance for DescribeLDAPUnitSet.
+        # @type request: :class:`Tencentcloud::bh::V20230418::DescribeLDAPUnitSetRequest`
+        # @rtype: :class:`Tencentcloud::bh::V20230418::DescribeLDAPUnitSetResponse`
+        def DescribeLDAPUnitSet(request)
+          body = send_request('DescribeLDAPUnitSet', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeLDAPUnitSetResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询登录日志
 
         # @param request: Request instance for DescribeLoginEvent.
@@ -1325,6 +1373,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 修改LDAP配置信息
+
+        # @param request: Request instance for ModifyLDAPSetting.
+        # @type request: :class:`Tencentcloud::bh::V20230418::ModifyLDAPSettingRequest`
+        # @rtype: :class:`Tencentcloud::bh::V20230418::ModifyLDAPSettingResponse`
+        def ModifyLDAPSetting(request)
+          body = send_request('ModifyLDAPSetting', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyLDAPSettingResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 设置OAuth认证参数
 
         # @param request: Request instance for ModifyOAuthSetting.
@@ -1431,6 +1503,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyUserGroupResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 会话回放
+
+        # @param request: Request instance for ReplaySession.
+        # @type request: :class:`Tencentcloud::bh::V20230418::ReplaySessionRequest`
+        # @rtype: :class:`Tencentcloud::bh::V20230418::ReplaySessionResponse`
+        def ReplaySession(request)
+          body = send_request('ReplaySession', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ReplaySessionResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1767,6 +1863,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = SearchTaskResultResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 设置LDAP 立即同步标记
+
+        # @param request: Request instance for SetLDAPSyncFlag.
+        # @type request: :class:`Tencentcloud::bh::V20230418::SetLDAPSyncFlagRequest`
+        # @rtype: :class:`Tencentcloud::bh::V20230418::SetLDAPSyncFlagResponse`
+        def SetLDAPSyncFlag(request)
+          body = send_request('SetLDAPSyncFlag', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = SetLDAPSyncFlagResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 解锁用户
+
+        # @param request: Request instance for UnlockUser.
+        # @type request: :class:`Tencentcloud::bh::V20230418::UnlockUserRequest`
+        # @rtype: :class:`Tencentcloud::bh::V20230418::UnlockUserResponse`
+        def UnlockUser(request)
+          body = send_request('UnlockUser', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UnlockUserResponse.new
             model.deserialize(response['Response'])
             model
           else

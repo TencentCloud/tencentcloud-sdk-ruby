@@ -125,6 +125,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 取消计划删除数据密钥
+
+        # @param request: Request instance for CancelDataKeyDeletion.
+        # @type request: :class:`Tencentcloud::kms::V20190118::CancelDataKeyDeletionRequest`
+        # @rtype: :class:`Tencentcloud::kms::V20190118::CancelDataKeyDeletionResponse`
+        def CancelDataKeyDeletion(request)
+          body = send_request('CancelDataKeyDeletion', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CancelDataKeyDeletionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 取消密钥归档，取消后密钥的状态变为Enabled。
 
         # @param request: Request instance for CancelKeyArchive.
@@ -279,6 +303,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteWhiteBoxKeyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取数据密钥的详情
+
+        # @param request: Request instance for DescribeDataKey.
+        # @type request: :class:`Tencentcloud::kms::V20190118::DescribeDataKeyRequest`
+        # @rtype: :class:`Tencentcloud::kms::V20190118::DescribeDataKeyResponse`
+        def DescribeDataKey(request)
+          body = send_request('DescribeDataKey', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDataKeyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 返回数据密钥属性信息列表
+
+        # @param request: Request instance for DescribeDataKeys.
+        # @type request: :class:`Tencentcloud::kms::V20190118::DescribeDataKeysRequest`
+        # @rtype: :class:`Tencentcloud::kms::V20190118::DescribeDataKeysResponse`
+        def DescribeDataKeys(request)
+          body = send_request('DescribeDataKeys', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDataKeysResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -461,6 +533,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 禁用数据密钥
+
+        # @param request: Request instance for DisableDataKey.
+        # @type request: :class:`Tencentcloud::kms::V20190118::DisableDataKeyRequest`
+        # @rtype: :class:`Tencentcloud::kms::V20190118::DisableDataKeyResponse`
+        def DisableDataKey(request)
+          body = send_request('DisableDataKey', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DisableDataKeyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 批量禁用数据密钥
+
+        # @param request: Request instance for DisableDataKeys.
+        # @type request: :class:`Tencentcloud::kms::V20190118::DisableDataKeysRequest`
+        # @rtype: :class:`Tencentcloud::kms::V20190118::DisableDataKeysResponse`
+        def DisableDataKeys(request)
+          body = send_request('DisableDataKeys', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DisableDataKeysResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口用于禁用一个主密钥，处于禁用状态的Key无法用于加密、解密操作。
 
         # @param request: Request instance for DisableKey.
@@ -567,6 +687,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DisableWhiteBoxKeysResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 启用数据密钥
+
+        # @param request: Request instance for EnableDataKey.
+        # @type request: :class:`Tencentcloud::kms::V20190118::EnableDataKeyRequest`
+        # @rtype: :class:`Tencentcloud::kms::V20190118::EnableDataKeyResponse`
+        def EnableDataKey(request)
+          body = send_request('EnableDataKey', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = EnableDataKeyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 批量启用数据密钥
+
+        # @param request: Request instance for EnableDataKeys.
+        # @type request: :class:`Tencentcloud::kms::V20190118::EnableDataKeysRequest`
+        # @rtype: :class:`Tencentcloud::kms::V20190118::EnableDataKeysResponse`
+        def EnableDataKeys(request)
+          body = send_request('EnableDataKeys', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = EnableDataKeysResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -797,6 +965,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 下载数据密钥密文
+
+        # @param request: Request instance for GetDataKeyCiphertextBlob.
+        # @type request: :class:`Tencentcloud::kms::V20190118::GetDataKeyCiphertextBlobRequest`
+        # @rtype: :class:`Tencentcloud::kms::V20190118::GetDataKeyCiphertextBlobResponse`
+        def GetDataKeyCiphertextBlob(request)
+          body = send_request('GetDataKeyCiphertextBlob', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GetDataKeyCiphertextBlobResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取数据密钥明文
+
+        # @param request: Request instance for GetDataKeyPlaintext.
+        # @type request: :class:`Tencentcloud::kms::V20190118::GetDataKeyPlaintextRequest`
+        # @rtype: :class:`Tencentcloud::kms::V20190118::GetDataKeyPlaintextResponse`
+        def GetDataKeyPlaintext(request)
+          body = send_request('GetDataKeyPlaintext', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GetDataKeyPlaintextResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询指定的CMK是否开启了密钥轮换功能。
 
         # @param request: Request instance for GetKeyRotationStatus.
@@ -917,6 +1133,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 数据密钥导入接口，并托管到KMS
+
+        # @param request: Request instance for ImportDataKey.
+        # @type request: :class:`Tencentcloud::kms::V20190118::ImportDataKeyRequest`
+        # @rtype: :class:`Tencentcloud::kms::V20190118::ImportDataKeyResponse`
+        def ImportDataKey(request)
+          body = send_request('ImportDataKey', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ImportDataKeyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 用于导入密钥材料。只有类型为EXTERNAL 的CMK 才可以导入，导入的密钥材料使用 GetParametersForImport 获取的密钥进行加密。可以为指定的 CMK 重新导入密钥材料，并重新指定过期时间，但必须导入相同的密钥材料。CMK 密钥材料导入后不可以更换密钥材料。导入的密钥材料过期或者被删除后，指定的CMK将无法使用，需要再次导入相同的密钥材料才能正常使用。CMK是独立的，同样的密钥材料可导入不同的 CMK 中，但使用其中一个 CMK 加密的数据无法使用另一个 CMK解密。
         # 只有Enabled 和 PendingImport状态的CMK可以导入密钥材料。
 
@@ -952,6 +1192,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ListAlgorithmsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 根据指定Offset和Limit获取数据密钥列表详情。
+
+        # @param request: Request instance for ListDataKeyDetail.
+        # @type request: :class:`Tencentcloud::kms::V20190118::ListDataKeyDetailRequest`
+        # @rtype: :class:`Tencentcloud::kms::V20190118::ListDataKeyDetailResponse`
+        def ListDataKeyDetail(request)
+          body = send_request('ListDataKeyDetail', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ListDataKeyDetailResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 用于查询数据密钥的列表
+
+        # @param request: Request instance for ListDataKeys.
+        # @type request: :class:`Tencentcloud::kms::V20190118::ListDataKeysRequest`
+        # @rtype: :class:`Tencentcloud::kms::V20190118::ListDataKeysResponse`
+        def ListDataKeys(request)
+          body = send_request('ListDataKeys', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ListDataKeysResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1158,6 +1446,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 计划删除数据密钥
+
+        # @param request: Request instance for ScheduleDataKeyDeletion.
+        # @type request: :class:`Tencentcloud::kms::V20190118::ScheduleDataKeyDeletionRequest`
+        # @rtype: :class:`Tencentcloud::kms::V20190118::ScheduleDataKeyDeletionResponse`
+        def ScheduleDataKeyDeletion(request)
+          body = send_request('ScheduleDataKeyDeletion', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ScheduleDataKeyDeletionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # CMK计划删除接口，用于指定CMK删除的时间，可选时间区间为[7,30]天
 
         # @param request: Request instance for ScheduleKeyDeletion.
@@ -1241,6 +1553,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = UpdateAliasResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改数据密钥描述
+
+        # @param request: Request instance for UpdateDataKeyDescription.
+        # @type request: :class:`Tencentcloud::kms::V20190118::UpdateDataKeyDescriptionRequest`
+        # @rtype: :class:`Tencentcloud::kms::V20190118::UpdateDataKeyDescriptionResponse`
+        def UpdateDataKeyDescription(request)
+          body = send_request('UpdateDataKeyDescription', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdateDataKeyDescriptionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改数据密钥名称
+
+        # @param request: Request instance for UpdateDataKeyName.
+        # @type request: :class:`Tencentcloud::kms::V20190118::UpdateDataKeyNameRequest`
+        # @rtype: :class:`Tencentcloud::kms::V20190118::UpdateDataKeyNameResponse`
+        def UpdateDataKeyName(request)
+          body = send_request('UpdateDataKeyName', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdateDataKeyNameResponse.new
             model.deserialize(response['Response'])
             model
           else
