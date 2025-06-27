@@ -1384,15 +1384,18 @@ module TencentCloud
         # @type DataSerial: Array
         # @param Tags: 维度列表
         # @type Tags: Array
+        # @param MetricUnit: 指标数据单位
+        # @type MetricUnit: String
 
-        attr_accessor :MetricName, :MetricNameCN, :TimeSerial, :DataSerial, :Tags
+        attr_accessor :MetricName, :MetricNameCN, :TimeSerial, :DataSerial, :Tags, :MetricUnit
 
-        def initialize(metricname=nil, metricnamecn=nil, timeserial=nil, dataserial=nil, tags=nil)
+        def initialize(metricname=nil, metricnamecn=nil, timeserial=nil, dataserial=nil, tags=nil, metricunit=nil)
           @MetricName = metricname
           @MetricNameCN = metricnamecn
           @TimeSerial = timeserial
           @DataSerial = dataserial
           @Tags = tags
+          @MetricUnit = metricunit
         end
 
         def deserialize(params)
@@ -1408,6 +1411,7 @@ module TencentCloud
               @Tags << apmtag_tmp
             end
           end
+          @MetricUnit = params['MetricUnit']
         end
       end
 

@@ -305,13 +305,10 @@ module TencentCloud
       # 用于返回分类模型命中子标签的详细结果
       class LabelDetailItem < TencentCloud::Common::AbstractModel
         # @param Id: 该字段用于返回识别对象的ID以方便识别和区分。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Id: Integer
-        # @param Name: 该字段用于返回识命中的子标签名称。
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param Name: 该字段用于返回时命中的子标签名称。
         # @type Name: String
         # @param Score: 该字段用于返回对应子标签命中的分值，取值为**0-100**，如：*Porn-SexBehavior 99* 则代表相应识别内容命中色情-性行为标签的分值为99。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Score: Integer
 
         attr_accessor :Id, :Name, :Score
@@ -342,7 +339,6 @@ module TencentCloud
         # @param Score: 该字段用于返回当前标签（Label）下的置信度，取值范围：0（**置信度最低**）-100（**置信度最高** ），越高代表图片越有可能属于当前返回的标签；如：*色情 99*，则表明该图片非常有可能属于色情内容；*色情 0*，则表明该图片不属于色情内容。
         # @type Score: Integer
         # @param Details: 该字段用于返回分类模型命中子标签的详细信息，如：序号、命中标签名称、分数等信息。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Details: Array
 
         attr_accessor :Scene, :Suggestion, :Label, :SubLabel, :Score, :Details
@@ -429,7 +425,6 @@ module TencentCloud
         # @param Score: 该字段用于返回图片检索模型识别的分值，取值为**0-100**，表示该审核图片**与库中样本的相似分值**，得分越高，代表当前内容越有可能命中相似图库内的样本。
         # @type Score: Integer
         # @param Details: 该字段用于返回黑白库比对结果的详细信息，如：序号、库名称、恶意标签等信息；详细返回信息敬请参考对应数据结构（[LibDetail](https://cloud.tencent.com/document/product/1125/53274#LibDetail)）的描述文档
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Details: Array
 
         attr_accessor :Scene, :Suggestion, :Label, :SubLabel, :Score, :Details
@@ -507,7 +502,6 @@ module TencentCloud
         # @param SubLabel: 该参数用于返回命中的实体二级标签。
         # @type SubLabel: String
         # @param ObjectId: 该参数用于返回命中的人脸id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ObjectId: String
 
         attr_accessor :Id, :Name, :Value, :Score, :Location, :SubLabel, :ObjectId
@@ -549,11 +543,9 @@ module TencentCloud
         # @param Score: 该字段用于返回命中当前恶意标签下子标签的分值，取值为**0-100**，如：*Porn-SexBehavior 99* 则代表相应识别内容命中色情-性行为标签的分值为99。
         # @type Score: Integer
         # @param Names: 该标签用于返回所识别出的实体名称。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Names: Array
         # @param Details: 该标签用于返回所识别出实体的详细信息，如：序号、命中标签名称、位置坐标等信息，详细返回内容敬请参考相应数据结构（[ObjectDetail
         # ](https://cloud.tencent.com/document/api/1125/53274#ObjectDetail)）。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Details: Array
 
         attr_accessor :Scene, :Suggestion, :Label, :SubLabel, :Score, :Names, :Details
@@ -634,7 +626,6 @@ module TencentCloud
         # @param Score: 该字段用于返回当前标签（Label）下的置信度，取值范围：0（**置信度最低**）-100（**置信度最高** ），越高代表文本越有可能属于当前返回的标签；如：*色情 99*，则表明该文本非常有可能属于色情内容；*色情 0*，则表明该文本不属于色情内容。
         # @type Score: Integer
         # @param Details: 该字段用于返回OCR识别出的结果的详细内容，如：文本内容、对应标签、识别框位置等信息。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Details: Array
         # @param Text: 该字段用于返回OCR识别出的文字信息。
         # @type Text: String
@@ -754,10 +745,8 @@ module TencentCloud
       # 识别类型标签结果信息
       class RecognitionResult < TencentCloud::Common::AbstractModel
         # @param Label: 当前可能的取值：Scene（图片场景模型）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Label: String
         # @param Tags: Label对应模型下的识别标签信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
 
         attr_accessor :Label, :Tags
@@ -783,13 +772,10 @@ module TencentCloud
       # 识别类型标签信息
       class RecognitionTag < TencentCloud::Common::AbstractModel
         # @param Name: 标签名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Score: 置信分：0～100，数值越大表示置信度越高
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Score: Integer
         # @param Location: 标签位置信息，若模型无位置信息，则可能为零值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Location: :class:`Tencentcloud::Ims.v20201229.models.Location`
 
         attr_accessor :Name, :Score, :Location

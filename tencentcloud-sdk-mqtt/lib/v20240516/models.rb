@@ -2075,6 +2075,81 @@ module TencentCloud
         end
       end
 
+      # DescribeMessageDetails请求参数结构体
+      class DescribeMessageDetailsRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 腾讯云MQTT实例ID，从 [DescribeInstanceList](https://cloud.tencent.com/document/api/1778/111029)接口或控制台获得。
+        # @type InstanceId: String
+        # @param MessageId: 消息ID
+        # @type MessageId: String
+        # @param Subscription: 订阅表达式
+        # @type Subscription: String
+
+        attr_accessor :InstanceId, :MessageId, :Subscription
+
+        def initialize(instanceid=nil, messageid=nil, subscription=nil)
+          @InstanceId = instanceid
+          @MessageId = messageid
+          @Subscription = subscription
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @MessageId = params['MessageId']
+          @Subscription = params['Subscription']
+        end
+      end
+
+      # DescribeMessageDetails返回参数结构体
+      class DescribeMessageDetailsResponse < TencentCloud::Common::AbstractModel
+        # @param Body: 消息体
+        # @type Body: String
+        # @param UserProperties: 用户自定义属性
+        # @type UserProperties: Array
+        # @param StoreTimestamp: 消息存储时间，毫秒级时间戳。
+        # @type StoreTimestamp: Integer
+        # @param MessageId: 消息ID
+        # @type MessageId: String
+        # @param ClientId: 生产者地址
+        # @type ClientId: String
+        # @param Qos: Topic
+        # @type Qos: String
+        # @param OriginTopic: 源topic
+        # @type OriginTopic: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Body, :UserProperties, :StoreTimestamp, :MessageId, :ClientId, :Qos, :OriginTopic, :RequestId
+
+        def initialize(body=nil, userproperties=nil, storetimestamp=nil, messageid=nil, clientid=nil, qos=nil, origintopic=nil, requestid=nil)
+          @Body = body
+          @UserProperties = userproperties
+          @StoreTimestamp = storetimestamp
+          @MessageId = messageid
+          @ClientId = clientid
+          @Qos = qos
+          @OriginTopic = origintopic
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Body = params['Body']
+          unless params['UserProperties'].nil?
+            @UserProperties = []
+            params['UserProperties'].each do |i|
+              userproperty_tmp = UserProperty.new
+              userproperty_tmp.deserialize(i)
+              @UserProperties << userproperty_tmp
+            end
+          end
+          @StoreTimestamp = params['StoreTimestamp']
+          @MessageId = params['MessageId']
+          @ClientId = params['ClientId']
+          @Qos = params['Qos']
+          @OriginTopic = params['OriginTopic']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeMessageList请求参数结构体
       class DescribeMessageListRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 腾讯云MQTT实例ID，从 [DescribeInstanceList](https://cloud.tencent.com/document/api/1778/111029)接口或控制台获得。
@@ -3984,6 +4059,26 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # map结构返回
+      class UserProperty < TencentCloud::Common::AbstractModel
+        # @param Key: key
+        # @type Key: String
+        # @param Value: value
+        # @type Value: String
+
+        attr_accessor :Key, :Value
+
+        def initialize(key=nil, value=nil)
+          @Key = key
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Value = params['Value']
         end
       end
 

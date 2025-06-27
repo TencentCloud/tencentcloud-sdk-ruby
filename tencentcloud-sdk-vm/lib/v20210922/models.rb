@@ -56,10 +56,12 @@ module TencentCloud
         # @type SubTagCode: String
         # @param LabelResults: 该字段用于返回音频文件歌曲识别的详细审核结果
         # @type LabelResults: Array
+        # @param HitType: 审核命中类型
+        # @type HitType: String
 
-        attr_accessor :HitFlag, :Label, :Suggestion, :Score, :Text, :Url, :Duration, :Extra, :TextResults, :MoanResults, :LanguageResults, :SubLabel, :RecognitionResults, :SpeakerResults, :TravelResults, :SubTag, :SubTagCode, :LabelResults
+        attr_accessor :HitFlag, :Label, :Suggestion, :Score, :Text, :Url, :Duration, :Extra, :TextResults, :MoanResults, :LanguageResults, :SubLabel, :RecognitionResults, :SpeakerResults, :TravelResults, :SubTag, :SubTagCode, :LabelResults, :HitType
 
-        def initialize(hitflag=nil, label=nil, suggestion=nil, score=nil, text=nil, url=nil, duration=nil, extra=nil, textresults=nil, moanresults=nil, languageresults=nil, sublabel=nil, recognitionresults=nil, speakerresults=nil, travelresults=nil, subtag=nil, subtagcode=nil, labelresults=nil)
+        def initialize(hitflag=nil, label=nil, suggestion=nil, score=nil, text=nil, url=nil, duration=nil, extra=nil, textresults=nil, moanresults=nil, languageresults=nil, sublabel=nil, recognitionresults=nil, speakerresults=nil, travelresults=nil, subtag=nil, subtagcode=nil, labelresults=nil, hittype=nil)
           @HitFlag = hitflag
           @Label = label
           @Suggestion = suggestion
@@ -78,6 +80,7 @@ module TencentCloud
           @SubTag = subtag
           @SubTagCode = subtagcode
           @LabelResults = labelresults
+          @HitType = hittype
         end
 
         def deserialize(params)
@@ -148,25 +151,21 @@ module TencentCloud
               @LabelResults << labelresult_tmp
             end
           end
+          @HitType = params['HitType']
         end
       end
 
       # 音频小语种检测结果
       class AudioResultDetailLanguageResult < TencentCloud::Common::AbstractModel
         # @param Label: 语种
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Label: String
         # @param Score: 得分
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Score: Integer
         # @param StartTime: 开始时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StartTime: Float
         # @param EndTime: 结束时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EndTime: Float
         # @param SubLabelCode: 子标签码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubLabelCode: String
 
         attr_accessor :Label, :Score, :StartTime, :EndTime, :SubLabelCode
@@ -191,7 +190,6 @@ module TencentCloud
       # 音频呻吟审核结果
       class AudioResultDetailMoanResult < TencentCloud::Common::AbstractModel
         # @param Label: 该字段用于返回检测结果需要检测的内容类型，此处固定为**Moan**（呻吟）以调用呻吟检测功能。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Label: String
         # @param Score: 该字段用于返回呻吟检测的置信度，取值范围：0（**置信度最低**）-100（**置信度最高**），越高代表音频越有可能属于呻吟内容。
         # @type Score: Integer
@@ -424,7 +422,6 @@ module TencentCloud
       # CreateVideoModerationTask返回参数结构体
       class CreateVideoModerationTaskResponse < TencentCloud::Common::AbstractModel
         # @param Results: 任务创建结果
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Results: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -472,50 +469,35 @@ module TencentCloud
       # DescribeTaskDetail返回参数结构体
       class DescribeTaskDetailResponse < TencentCloud::Common::AbstractModel
         # @param TaskId: 该字段用于返回创建视频审核任务后返回的任务ID（在Results参数中），用于标识需要查询任务详情的审核任务。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskId: String
         # @param DataId: 该字段用于返回调用视频审核接口时传入的数据ID参数，方便数据的辨别和管理。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DataId: String
         # @param BizType: 该字段用于返回调用视频审核接口时传入的BizType参数，方便数据的辨别和管理。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BizType: String
         # @param Name: 该字段用于返回调用视频审核接口时传入的TaskInput参数中的任务名称，方便任务的识别与管理。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Status: 该字段用于返回所查询内容的任务状态。
         # <br>取值：**FINISH**（任务已完成）、**PENDING** （任务等待中）、**RUNNING** （任务进行中）、**ERROR** （任务出错）、**CANCELLED** （任务已取消）。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: String
         # @param Type: 该字段用于返回调用视频审核接口时输入的视频审核类型，取值为：**VIDEO**（点播视频）和**LIVE_VIDEO**（直播视频），默认值为VIDEO。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: String
         # @param Suggestion: 该字段用于返回基于恶意标签的后续操作建议。当您获取到判定结果后，返回值表示系统推荐的后续操作；建议您按照业务所需，对不同违规类型与建议值进行处理。<br>返回值：**Block**：建议屏蔽，**Review** ：建议人工复审，**Pass**：建议通过
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Suggestion: String
         # @param Labels: 该字段用于返回检测结果所对应的恶意标签。<br>返回值：**Porn**：色情，**Abuse**：谩骂，**Ad**：广告，**Custom**：自定义违规；以及其他令人反感、不安全或不适宜的内容类型。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Labels: Array
         # @param MediaInfo: 该字段用于返回输入媒体文件的详细信息，包括编解码格式、分片时长等信息。详细内容敬请参考MediaInfo数据结构的描述。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MediaInfo: :class:`Tencentcloud::Vm.v20210922.models.MediaInfo`
         # @param InputInfo: 该字段用于返回审核服务的媒体内容信息，主要包括传入文件类型和访问地址。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InputInfo: :class:`Tencentcloud::Vm.v20210922.models.InputInfo`
         # @param CreatedAt: 该字段用于返回被查询任务创建的时间，格式采用 ISO 8601标准。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreatedAt: String
         # @param UpdatedAt: 该字段用于返回被查询任务最后更新时间，格式采用 ISO 8601标准。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdatedAt: String
         # @param TryInSeconds: 在秒后重试
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TryInSeconds: Integer
         # @param ImageSegments: 该字段用于返回视频中截帧审核的结果，详细返回内容敬请参考ImageSegments数据结构的描述。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ImageSegments: Array
         # @param AudioSegments: 该字段用于返回视频中音频审核的结果，详细返回内容敬请参考AudioSegments数据结构的描述。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AudioSegments: Array
         # @param ErrorType: 当任务状态为Error时，返回对应错误的类型，取值：
         # **DECODE_ERROR**: 解码失败。（输入资源中可能包含无法解码的视频）
@@ -525,22 +507,16 @@ module TencentCloud
         # **MODERATION_ERROR**：审核失败。
         # **URL_NOT_SUPPORTED**：源文件太大或没有图片音频帧
         # 任务状态非Error时默认返回为空。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrorType: String
         # @param ErrorDescription: 当任务状态为Error时，该字段用于返回对应错误的详细描述，任务状态非Error时默认返回为空。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrorDescription: String
         # @param Label: 该字段用于返回检测结果所对应的标签。如果未命中恶意，返回Normal，如果命中恶意，则返回Labels中优先级最高的标签
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Label: String
         # @param AudioText: 该字段用于返回音频文件识别出的对应文本内容，最大支持**前1000个字符**。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AudioText: String
         # @param Asrs: 该字段用于返回音频文件识别出的对应文本内容。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Asrs: Array
         # @param SegmentCosUrlList: 该字段用于返回检测结果明细数据相关的cos url
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SegmentCosUrlList: :class:`Tencentcloud::Vm.v20210922.models.SegmentCosUrlList`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -673,13 +649,10 @@ module TencentCloud
       # DescribeTasks返回参数结构体
       class DescribeTasksResponse < TencentCloud::Common::AbstractModel
         # @param Total: 该字段用于返回当前查询的任务总量，格式为int字符串。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Total: String
         # @param Data: 该字段用于返回当前页的任务详细数据，具体输出内容请参见TaskData数据结构的详细描述。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: Array
         # @param PageToken: 该字段用于返回翻页时使用的Token信息，由系统自动生成，并在翻页时向下一个生成的页面传递此参数，以方便快速翻页功能的实现。当到最后一页时，该字段为空。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PageToken: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -740,10 +713,12 @@ module TencentCloud
         # @type SubLabel: String
         # @param RecognitionResults: 场景结果
         # @type RecognitionResults: Array
+        # @param HitType: 审核命中类型
+        # @type HitType: String
 
-        attr_accessor :HitFlag, :Label, :Suggestion, :Score, :Results, :Url, :Extra, :SubLabel, :RecognitionResults
+        attr_accessor :HitFlag, :Label, :Suggestion, :Score, :Results, :Url, :Extra, :SubLabel, :RecognitionResults, :HitType
 
-        def initialize(hitflag=nil, label=nil, suggestion=nil, score=nil, results=nil, url=nil, extra=nil, sublabel=nil, recognitionresults=nil)
+        def initialize(hitflag=nil, label=nil, suggestion=nil, score=nil, results=nil, url=nil, extra=nil, sublabel=nil, recognitionresults=nil, hittype=nil)
           @HitFlag = hitflag
           @Label = label
           @Suggestion = suggestion
@@ -753,6 +728,7 @@ module TencentCloud
           @Extra = extra
           @SubLabel = sublabel
           @RecognitionResults = recognitionresults
+          @HitType = hittype
         end
 
         def deserialize(params)
@@ -779,6 +755,7 @@ module TencentCloud
               @RecognitionResults << recognitionresult_tmp
             end
           end
+          @HitType = params['HitType']
         end
       end
 
@@ -792,41 +769,34 @@ module TencentCloud
         # Abuse 谩骂
         # Terror 暴恐
         # Ad 广告
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Scene: String
         # @param HitFlag: 是否命中
         # 0 未命中
         # 1 命中
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HitFlag: Integer
         # @param Suggestion: 审核建议，可选值：
         # Pass 通过，
         # Review 建议人审，
         # Block 确认违规
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Suggestion: String
         # @param Label: 标签
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Label: String
         # @param SubLabel: 子标签
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubLabel: String
         # @param Score: 分数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Score: Integer
         # @param Names: 人物名称列表，如未识别，则为null
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Names: Array
         # @param Text: 图片OCR文本
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Text: String
         # @param Details: 其他详情
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Details: Array
+        # @param HitType: 审核命中类型
+        # @type HitType: String
 
-        attr_accessor :Scene, :HitFlag, :Suggestion, :Label, :SubLabel, :Score, :Names, :Text, :Details
+        attr_accessor :Scene, :HitFlag, :Suggestion, :Label, :SubLabel, :Score, :Names, :Text, :Details, :HitType
 
-        def initialize(scene=nil, hitflag=nil, suggestion=nil, label=nil, sublabel=nil, score=nil, names=nil, text=nil, details=nil)
+        def initialize(scene=nil, hitflag=nil, suggestion=nil, label=nil, sublabel=nil, score=nil, names=nil, text=nil, details=nil, hittype=nil)
           @Scene = scene
           @HitFlag = hitflag
           @Suggestion = suggestion
@@ -836,6 +806,7 @@ module TencentCloud
           @Names = names
           @Text = text
           @Details = details
+          @HitType = hittype
         end
 
         def deserialize(params)
@@ -855,40 +826,31 @@ module TencentCloud
               @Details << imageresultsresultdetail_tmp
             end
           end
+          @HitType = params['HitType']
         end
       end
 
       # 具体场景下的图片识别结果
       class ImageResultsResultDetail < TencentCloud::Common::AbstractModel
         # @param Name: 任务名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Text: OCR识别文本
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Text: String
         # @param Location: 位置信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Location: :class:`Tencentcloud::Vm.v20210922.models.ImageResultsResultDetailLocation`
         # @param Label: 标签
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Label: String
         # @param LibId: 库ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LibId: String
         # @param LibName: 库名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LibName: String
         # @param Keywords: 命中的关键词
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Keywords: Array
         # @param Suggestion: 建议
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Suggestion: String
         # @param Score: 得分
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Score: Integer
         # @param SubLabelCode: 子标签码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubLabelCode: String
         # @param SubLabel: 子标签
         # @type SubLabel: String
@@ -941,19 +903,14 @@ module TencentCloud
       # 图片详情位置信息
       class ImageResultsResultDetailLocation < TencentCloud::Common::AbstractModel
         # @param X: x坐标
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type X: Float
         # @param Y: y坐标
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Y: Float
         # @param Width: 宽度
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Width: Integer
         # @param Height: 高度
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Height: Integer
         # @param Rotate: 旋转角度
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Rotate: Float
 
         attr_accessor :X, :Y, :Width, :Height, :Rotate
@@ -1011,10 +968,8 @@ module TencentCloud
       # 输入信息详情
       class InputInfo < TencentCloud::Common::AbstractModel
         # @param Type: 传入的类型可选：URL，COS
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: String
         # @param Url: Url地址
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Url: String
         # @param BucketInfo: 桶信息。当输入当时COS时，该字段不为空
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -1146,10 +1101,8 @@ module TencentCloud
       # 审核切片asr文本信息
       class RcbAsr < TencentCloud::Common::AbstractModel
         # @param Text: 该字段用于返回音频文件识别出的对应文本内容，最大支持**前1000个字符**。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Text: String
         # @param CreatedAt: 该字段用于返回被查询任务创建的时间，格式采用 ISO 8601标准。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreatedAt: String
 
         attr_accessor :Text, :CreatedAt
@@ -1168,10 +1121,8 @@ module TencentCloud
       # 识别类标签结果信息
       class RecognitionResult < TencentCloud::Common::AbstractModel
         # @param Label: 可能的取值有：Teenager 、Gender
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Label: String
         # @param Tags: 识别标签列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
 
         attr_accessor :Label, :Tags
@@ -1197,19 +1148,14 @@ module TencentCloud
       # 明细数据相关的cos url
       class SegmentCosUrlList < TencentCloud::Common::AbstractModel
         # @param ImageAllUrl: 全量图片片段的cos url
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ImageAllUrl: String
         # @param AudioAllUrl: 全量音频片段的cos url
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AudioAllUrl: String
         # @param ImageBlockUrl: 违规图片片段的cos url
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ImageBlockUrl: String
         # @param AudioBlockUrl: 违规音频片段的cos url
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AudioBlockUrl: String
         # @param AsrUrl: 全量音频识别文本的cos url
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AsrUrl: String
 
         attr_accessor :ImageAllUrl, :AudioAllUrl, :ImageBlockUrl, :AudioBlockUrl, :AsrUrl
@@ -1293,16 +1239,12 @@ module TencentCloud
         # @param Name: 根据Label字段确定具体名称：
         # 当Label 为Teenager 时 Name可能取值有：Teenager
         # 当Label 为Gender 时 Name可能取值有：Male 、Female
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Score: 置信分：0～100，数值越大表示置信度越高
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Score: Integer
         # @param StartTime: 识别开始偏移时间，单位：毫秒
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StartTime: Float
         # @param EndTime: 识别结束偏移时间，单位：毫秒
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EndTime: Float
 
         attr_accessor :Name, :Score, :StartTime, :EndTime
@@ -1325,40 +1267,28 @@ module TencentCloud
       # 任务数据
       class TaskData < TencentCloud::Common::AbstractModel
         # @param TaskId: 任务ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskId: String
         # @param DataId: 输入的数据ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DataId: String
         # @param BizType: 业务类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BizType: String
         # @param Name: 任务名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Status: 状态，可选：PENDING，RUNNING，ERROR，FINISH，CANCELLED
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: String
         # @param Type: 任务类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: String
         # @param Suggestion: 处理建议
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Suggestion: String
         # @param Labels: 标签
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Labels: Array
         # @param MediaInfo: 媒体信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MediaInfo: :class:`Tencentcloud::Vm.v20210922.models.MediaInfo`
         # @param InputInfo: 输入信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InputInfo: :class:`Tencentcloud::Vm.v20210922.models.InputInfo`
         # @param CreatedAt: 创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreatedAt: String
         # @param UpdatedAt: 更新时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdatedAt: String
 
         attr_accessor :TaskId, :DataId, :BizType, :Name, :Status, :Type, :Suggestion, :Labels, :MediaInfo, :InputInfo, :CreatedAt, :UpdatedAt
@@ -1501,16 +1431,12 @@ module TencentCloud
       # 创建任务时的返回结果
       class TaskResult < TencentCloud::Common::AbstractModel
         # @param DataId: 请求时传入的DataId
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DataId: String
         # @param TaskId: TaskId，任务ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskId: String
         # @param Code: 错误码。如果code为OK，则表示创建成功，其他则参考公共错误码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Code: String
         # @param Message: 如果错误，该字段表示错误详情
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Message: String
 
         attr_accessor :DataId, :TaskId, :Code, :Message

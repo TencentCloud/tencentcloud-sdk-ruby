@@ -426,9 +426,10 @@ module TencentCloud
         # @type SQL: String
         # @param DataEngineName: 计算资源名字
         # @type DataEngineName: String
-        # @param JobTimeSum: 单位毫秒，引擎内执行耗时
+        # @param JobTimeSum: 单位毫秒，引擎内执行耗时, 反映真正用于计算所需的耗时，即从  Spark 任务第一个 Task  开始执行到任务结束之间的耗时。
+        # 具体的：会统计任务的每个 Spark Stage 第一个 Task 到最后一个 Task 完成时长之和，不包含任务开始的排队耗时（即剔除从任务提交到 Spark Task 开始执行之间的调度等其他耗时），也不包含任务执行过程中多个 Spark Stage 之间因 executor 资源不足而等待执行 Task 所消耗的时间。
         # @type JobTimeSum: Integer
-        # @param TaskTimeSum: 单位秒，统计参与计算所用 Spark Executor 每个 core 的 CPU 执行时长总和
+        # @param TaskTimeSum: 单位秒，累计 CPU* 秒 ( 累计 CPU * 时 = 累计 CPU* 秒/ 3600)，统计参与计算所用 Spark Executor 每个 core 的 CPU 执行时长总和
         # @type TaskTimeSum: Integer
         # @param InputRecordsSum: 数据扫描总行数
         # @type InputRecordsSum: Integer
@@ -2743,14 +2744,16 @@ module TencentCloud
         # @type ExecutorNumbers: Integer
         # @param ExecutorMaxNumbers: 指定使用的executor最大数量, 当该值大于ExecutorNums则自动开启动态
         # @type ExecutorMaxNumbers: Integer
-        # @param CmdArgs: 提交任务的附加配置集合，当前支持Key包含：MAINARGS：程序入口参数，空格分割(SqlType任务通过该值指定base64加密后的sql)、SPARKCONFIG：Spark配置，以换行符分隔、ENI：Eni连接信息、DEPENDENCYPACKAGEPATH：依赖的程序包（--jars、--py-files:支持py/zip/egg等归档格式），多文件以逗号分隔、DEPENDENCYFILEPATH：依赖文件资源（--files: 非jar、zip），多文件以逗号分隔、DEPENDENCYARCHIVESPATH：依赖archives资源（--archives: 支持tar.gz/tgz/tar等归档格式)，多文件以逗号分隔、MAXRETRIES：任务重试次数，非流任务默认为1、SPARKIMAGE：Spark镜像版本号，支持使用dlc镜像/用户自定的tcr镜像运行任务、SPARKIMAGEVERSION：Spark镜像版本名称，与SPARKIMAGE一一对应
+        # @param CmdArgs: 提交任务的附加配置集合，当前支持Key包含：MAINARGS：程序入口参数，空格分割(SqlType任务通过该值指定base64加密后的sql)、SPARKCONFIG：Spark配置，以换行符分隔、ENI：Eni连接信息、DEPENDENCYPACKAGEPATH：依赖的程序包（--jars、--py-files:支持py/zip/egg等归档格式），多文件以逗号分隔、DEPENDENCYFILEPATH：依赖文件资源（--files: 非jar、zip），多文件以逗号分隔、DEPENDENCYARCHIVESPATH：依赖archives资源（--archives: 支持tar.gz/tgz/tar等归档格式)，多文件以逗号分隔、MAXRETRIES：任务重试次数，非流任务默认为1、SPARKIMAGE：Spark镜像版本号，支持使用dlc镜像/用户自定的tcr镜像运行任务、SPARKIMAGEVERSION：Spark镜像版本名称，与SPARKIMAGE一一对应；SPARKPRESETCODE：base64后的notebook预置代码；SPARKENV：base64后的spark环境变量；SPARKGITINFO：base64后的git相关信息
         # @type CmdArgs: Array
         # @param SourceInfo: 任务来源信息
         # @type SourceInfo: Array
+        # @param ResourceGroupName: ai资源组名称
+        # @type ResourceGroupName: String
 
-        attr_accessor :TaskName, :TaskType, :DataEngineName, :PackagePath, :RoleArn, :IsInherit, :MainClass, :DriverSize, :ExecutorSize, :ExecutorNumbers, :ExecutorMaxNumbers, :CmdArgs, :SourceInfo
+        attr_accessor :TaskName, :TaskType, :DataEngineName, :PackagePath, :RoleArn, :IsInherit, :MainClass, :DriverSize, :ExecutorSize, :ExecutorNumbers, :ExecutorMaxNumbers, :CmdArgs, :SourceInfo, :ResourceGroupName
 
-        def initialize(taskname=nil, tasktype=nil, dataenginename=nil, packagepath=nil, rolearn=nil, isinherit=nil, mainclass=nil, driversize=nil, executorsize=nil, executornumbers=nil, executormaxnumbers=nil, cmdargs=nil, sourceinfo=nil)
+        def initialize(taskname=nil, tasktype=nil, dataenginename=nil, packagepath=nil, rolearn=nil, isinherit=nil, mainclass=nil, driversize=nil, executorsize=nil, executornumbers=nil, executormaxnumbers=nil, cmdargs=nil, sourceinfo=nil, resourcegroupname=nil)
           @TaskName = taskname
           @TaskType = tasktype
           @DataEngineName = dataenginename
@@ -2764,6 +2767,7 @@ module TencentCloud
           @ExecutorMaxNumbers = executormaxnumbers
           @CmdArgs = cmdargs
           @SourceInfo = sourceinfo
+          @ResourceGroupName = resourcegroupname
         end
 
         def deserialize(params)
@@ -2794,6 +2798,7 @@ module TencentCloud
               @SourceInfo << kvpair_tmp
             end
           end
+          @ResourceGroupName = params['ResourceGroupName']
         end
       end
 
@@ -12498,7 +12503,7 @@ module TencentCloud
         end
       end
 
-      # Doirs数据源详细信息
+      # Doris数据源详细信息
       class TCHouseD < TencentCloud::Common::AbstractModel
         # @param InstanceId: 数据源实例的唯一ID
         # @type InstanceId: String

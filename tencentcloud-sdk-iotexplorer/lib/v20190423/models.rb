@@ -6899,7 +6899,7 @@ module TencentCloud
       class GenerateSignedVideoURLRequest < TencentCloud::Common::AbstractModel
         # @param VideoURL: 视频播放原始URL地址
         # @type VideoURL: String
-        # @param ExpireTime: 播放链接过期时间
+        # @param ExpireTime: 播放链接过期时间（时间戳，单位秒）
         # @type ExpireTime: Integer
         # @param ChannelId: 通道ID 非NVR设备不填 NVR设备必填 默认为无
         # @type ChannelId: Integer
@@ -7965,7 +7965,7 @@ module TencentCloud
         # @type SummaryLang: String
         # @param ChannelId: 通道ID
         # @type ChannelId: Integer
-        # @param EnableSummary: 是否需要返回总结，默认为False；  开启后会加大接口响应时长
+        # @param EnableSummary: 是否需要返回总结，默认为True；  开启后会加大接口响应时长
         # @type EnableSummary: Boolean
         # @param StartTimeMs: 开始时间。
 

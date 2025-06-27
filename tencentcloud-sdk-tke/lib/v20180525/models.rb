@@ -1464,10 +1464,14 @@ module TencentCloud
         # @param CiliumMode: 集群Cilium Mode配置
         # - clusterIP
         # @type CiliumMode: String
+        # @param SubnetId: 控制面子网信息，仅在以下场景返回。
+        # - 容器网络插件为CiliumOverlay。
+        # - 支持CDC的托管集群，且网络插件为VPC-CNI。
+        # @type SubnetId: String
 
-        attr_accessor :ClusterCIDR, :IgnoreClusterCIDRConflict, :MaxNodePodNum, :MaxClusterServiceNum, :Ipvs, :VpcId, :Cni, :KubeProxyMode, :ServiceCIDR, :Subnets, :IgnoreServiceCIDRConflict, :IsDualStack, :Ipv6ServiceCIDR, :CiliumMode
+        attr_accessor :ClusterCIDR, :IgnoreClusterCIDRConflict, :MaxNodePodNum, :MaxClusterServiceNum, :Ipvs, :VpcId, :Cni, :KubeProxyMode, :ServiceCIDR, :Subnets, :IgnoreServiceCIDRConflict, :IsDualStack, :Ipv6ServiceCIDR, :CiliumMode, :SubnetId
 
-        def initialize(clustercidr=nil, ignoreclustercidrconflict=nil, maxnodepodnum=nil, maxclusterservicenum=nil, ipvs=nil, vpcid=nil, cni=nil, kubeproxymode=nil, servicecidr=nil, subnets=nil, ignoreservicecidrconflict=nil, isdualstack=nil, ipv6servicecidr=nil, ciliummode=nil)
+        def initialize(clustercidr=nil, ignoreclustercidrconflict=nil, maxnodepodnum=nil, maxclusterservicenum=nil, ipvs=nil, vpcid=nil, cni=nil, kubeproxymode=nil, servicecidr=nil, subnets=nil, ignoreservicecidrconflict=nil, isdualstack=nil, ipv6servicecidr=nil, ciliummode=nil, subnetid=nil)
           @ClusterCIDR = clustercidr
           @IgnoreClusterCIDRConflict = ignoreclustercidrconflict
           @MaxNodePodNum = maxnodepodnum
@@ -1482,6 +1486,7 @@ module TencentCloud
           @IsDualStack = isdualstack
           @Ipv6ServiceCIDR = ipv6servicecidr
           @CiliumMode = ciliummode
+          @SubnetId = subnetid
         end
 
         def deserialize(params)
@@ -1499,6 +1504,7 @@ module TencentCloud
           @IsDualStack = params['IsDualStack']
           @Ipv6ServiceCIDR = params['Ipv6ServiceCIDR']
           @CiliumMode = params['CiliumMode']
+          @SubnetId = params['SubnetId']
         end
       end
 

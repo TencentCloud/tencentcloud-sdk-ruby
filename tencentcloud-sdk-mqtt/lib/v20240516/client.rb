@@ -826,6 +826,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询MQTT消息详情
+
+        # @param request: Request instance for DescribeMessageDetails.
+        # @type request: :class:`Tencentcloud::mqtt::V20240516::DescribeMessageDetailsRequest`
+        # @rtype: :class:`Tencentcloud::mqtt::V20240516::DescribeMessageDetailsResponse`
+        def DescribeMessageDetails(request)
+          body = send_request('DescribeMessageDetails', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeMessageDetailsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 根据一级Topic查询消息列表
 
         # @param request: Request instance for DescribeMessageList.

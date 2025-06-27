@@ -16643,15 +16643,19 @@ module TencentCloud
         # @param Paragraphs: 分段结果。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Paragraphs: Array
+        # @param MindMapUrl: 摘要思维导图地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MindMapUrl: String
 
-        attr_accessor :Description, :Confidence, :Title, :Keywords, :Paragraphs
+        attr_accessor :Description, :Confidence, :Title, :Keywords, :Paragraphs, :MindMapUrl
 
-        def initialize(description=nil, confidence=nil, title=nil, keywords=nil, paragraphs=nil)
+        def initialize(description=nil, confidence=nil, title=nil, keywords=nil, paragraphs=nil, mindmapurl=nil)
           @Description = description
           @Confidence = confidence
           @Title = title
           @Keywords = keywords
           @Paragraphs = paragraphs
+          @MindMapUrl = mindmapurl
         end
 
         def deserialize(params)
@@ -16667,6 +16671,7 @@ module TencentCloud
               @Paragraphs << aiparagraphinfo_tmp
             end
           end
+          @MindMapUrl = params['MindMapUrl']
         end
       end
 
@@ -23760,21 +23765,38 @@ module TencentCloud
         # @param Path: 要压制到视频中的字幕文件地址。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Path: String
-        # @param StreamIndex: 指定要压制到视频中的字幕轨道，如果有指定Path，则Path 优先级更高。Path 和 StreamIndex 至少指定一个。
+        # @param StreamIndex: 指定要压制到视频中的字幕轨道，Path 和 StreamIndex 至少指定一个；如果指定了Path，则优先使用Path。
+        # Streamindex的取值须与源文件中的字幕轨索引一致。例如，源文件中的字幕轨为stream#0:3，则StreamIndex应为3，否则可能导致任务处理失败。
+
+
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StreamIndex: Integer
-        # @param FontType: 字体类型，
+        # @param FontType: 字体类型，支持：
         # <li>hei.ttf：黑体</li>
         # <li>song.ttf：宋体</li>
-        # <li>simkai.ttf：楷体</li>
+        # <li>kai.ttf（推荐）或 simkai.ttf：楷体</li>
+        # <li>msyh.ttf：微软雅黑</li>
+        # <li>msyhbd.ttf：微软雅黑加粗</li>
+        # <li>hkjgt.ttf：华康金刚体</li>
+        # <li>dhttx.ttf：典黑体特细</li>
+        # <li>xqgdzt.ttf：喜鹊古字典体</li>
+        # <li>qpcyt.ttf：巧拼超圆体</li>
         # <li>arial.ttf：仅支持英文</li>
-        # 默认hei.ttf
+        # <li>dinalternate.ttf：DIN Alternate Bold</li>
+        # <li>helveticalt.ttf：Helvetica</li>
+        # <li>helveticains.ttf：Helvetica Inserat</li>
+        # <li>trajanpro.ttf：TrajanPro-Bold</li>
+        # <li>korean.ttf：韩语</li>
+        # <li>japanese.ttf：日语</li>
+        # <li>thai.ttf：泰语</li>
+        # 默认：hei.ttf 黑体。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FontType: String
         # @param FontSize: 字体大小，格式：Npx，N 为数值，不指定则以字幕文件中为准。
+        # 默认源视频高度的5%。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FontSize: String
-        # @param FontColor: 字体颜色，格式：0xRRGGBB，默认值：0xFFFFFF（白色）
+        # @param FontColor: 字体颜色，格式：0xRRGGBB，默认值：0xFFFFFF（白色）。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FontColor: String
         # @param FontAlpha: 文字透明度，取值范围：(0, 1]
@@ -23783,16 +23805,63 @@ module TencentCloud
         # 默认值：1。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FontAlpha: Float
+        # @param YPos: 字幕y轴坐标位置，指定此参数会忽略字幕文件自带坐标；支持像素和百分比格式：
 
-        attr_accessor :Path, :StreamIndex, :FontType, :FontSize, :FontColor, :FontAlpha
+        # - 像素：Npx，N范围：[0,4096]。
+        # - 百分百：N%，N范围：[0,100]；例如10%表示字幕y坐标=10%*源视频高度。
 
-        def initialize(path=nil, streamindex=nil, fonttype=nil, fontsize=nil, fontcolor=nil, fontalpha=nil)
+        # 默认值：源视频高度*4%。
+        # 注意：坐标轴原点在源视频中轴线底部，字幕基准点在字幕中轴线底部，参考下图：
+        # ![image](https://ie-mps-1258344699.cos.ap-nanjing.tencentcos.cn/common/cloud/mps-demo/102_ai_subtitle/subtitle_style.png)
+
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type YPos: String
+        # @param BoardY: 字幕背景底板的y轴坐标位置；支持像素和百分比格式：
+
+        # - 像素：Npx，N范围：[0,4096]。
+        # - 百分百：N%，N范围：[0,100]；例如10%表示字幕背景底板y坐标=10%*源视频高度。
+
+        # 不传表示不开启字幕背景底板。
+        # 注意：坐标轴原点位于源视频的中轴线底部，字幕背景底板的基准点在其中轴线底部，参考下图：
+        # ![image](https://ie-mps-1258344699.cos.ap-nanjing.tencentcos.cn/common/cloud/mps-demo/102_ai_subtitle/subtitle_style.png)
+
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BoardY: String
+        # @param BoardWidth: 底板的宽度，单位为像素，取值范围：[0,4096]。
+        # 默认源视频宽像素的90%。
+
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BoardWidth: Integer
+        # @param BoardHeight: 底板的高度。单位为像素，取值范围：[0,4096]。
+        # 默认为源视频高像素的15%。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BoardHeight: Integer
+        # @param BoardColor: 底板颜色。格式：0xRRGGBB，
+        # 默认值：0x000000（黑色）。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BoardColor: String
+        # @param BoardAlpha: 字幕背景板透明度，取值范围：[0, 1]
+        # <li>0：完全透明</li>
+        # <li>1：完全不透明</li>
+        # 默认值：0.8。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BoardAlpha: Float
+
+        attr_accessor :Path, :StreamIndex, :FontType, :FontSize, :FontColor, :FontAlpha, :YPos, :BoardY, :BoardWidth, :BoardHeight, :BoardColor, :BoardAlpha
+
+        def initialize(path=nil, streamindex=nil, fonttype=nil, fontsize=nil, fontcolor=nil, fontalpha=nil, ypos=nil, boardy=nil, boardwidth=nil, boardheight=nil, boardcolor=nil, boardalpha=nil)
           @Path = path
           @StreamIndex = streamindex
           @FontType = fonttype
           @FontSize = fontsize
           @FontColor = fontcolor
           @FontAlpha = fontalpha
+          @YPos = ypos
+          @BoardY = boardy
+          @BoardWidth = boardwidth
+          @BoardHeight = boardheight
+          @BoardColor = boardcolor
+          @BoardAlpha = boardalpha
         end
 
         def deserialize(params)
@@ -23802,6 +23871,12 @@ module TencentCloud
           @FontSize = params['FontSize']
           @FontColor = params['FontColor']
           @FontAlpha = params['FontAlpha']
+          @YPos = params['YPos']
+          @BoardY = params['BoardY']
+          @BoardWidth = params['BoardWidth']
+          @BoardHeight = params['BoardHeight']
+          @BoardColor = params['BoardColor']
+          @BoardAlpha = params['BoardAlpha']
         end
       end
 
@@ -25737,10 +25812,10 @@ module TencentCloud
         # @param UpdateTime: 模板最后修改时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/862/37710#52)。
         # @type UpdateTime: String
         # @param CoordinateOrigin: 原点位置，可选值：
-        # <li>topLeft：表示坐标原点位于视频图像左上角，水印原点为图片或文字的左上角；</li>
-        # <li>topRight：表示坐标原点位于视频图像的右上角，水印原点为图片或文字的右上角；</li>
-        # <li>bottomLeft：表示坐标原点位于视频图像的左下角，水印原点为图片或文字的左下角；</li>
-        # <li>bottomRight：表示坐标原点位于视频图像的右下角，水印原点为图片或文字的右下。；</li>
+        # <li>TopLeft：表示坐标原点位于视频图像左上角，水印原点为图片或文字的左上角；</li>
+        # <li>TopRight：表示坐标原点位于视频图像的右上角，水印原点为图片或文字的右上角；</li>
+        # <li>BottomLeft：表示坐标原点位于视频图像的左下角，水印原点为图片或文字的左下角；</li>
+        # <li>BottomRight：表示坐标原点位于视频图像的右下角，水印原点为图片或文字的右下角。</li>
         # @type CoordinateOrigin: String
 
         attr_accessor :Definition, :Type, :Name, :Comment, :XPos, :YPos, :ImageTemplate, :TextTemplate, :SvgTemplate, :CreateTime, :UpdateTime, :CoordinateOrigin

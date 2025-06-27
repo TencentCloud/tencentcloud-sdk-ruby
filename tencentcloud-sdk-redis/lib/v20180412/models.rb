@@ -3712,7 +3712,7 @@ module TencentCloud
       class DescribeProxySlowLogResponse < TencentCloud::Common::AbstractModel
         # @param TotalCount: 慢查询总数。
         # @type TotalCount: Integer
-        # @param InstanceProxySlowLogDetail: 慢查询详情。
+        # @param InstanceProxySlowLogDetail: 慢查询详情，注意：TotalCount大于1W，即慢日志超过1万条，不支持返回日志详情，返回数据为空。 建议缩小BeginTime和EndTime的时间间隔，多次查询。
         # @type InstanceProxySlowLogDetail: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4146,7 +4146,7 @@ module TencentCloud
         # @type TotalCount: Integer
         # @param InstanceSlowlogDetail: 已废弃，该参数存在命名不规范问题，后续用参数InstanceSlowLogDetail取代。慢查询详情。
         # @type InstanceSlowlogDetail: Array
-        # @param InstanceSlowLogDetail: 慢查询详情。
+        # @param InstanceSlowLogDetail: 慢查询详情，注意：TotalCount大于1W，即慢日志超过1万条，不支持返回日志详情，返回数据为空。 建议缩小BeginTime和EndTime的时间间隔，多次查询。
         # @type InstanceSlowLogDetail: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4427,7 +4427,7 @@ module TencentCloud
       class DescribeTendisSlowLogResponse < TencentCloud::Common::AbstractModel
         # @param TotalCount: 慢查询总数
         # @type TotalCount: Integer
-        # @param TendisSlowLogDetail: 慢查询详情
+        # @param TendisSlowLogDetail: 慢查询详情，注意：TotalCount大于1W，即慢日志超过1万条，不支持返回日志详情，返回数据为空。 建议缩小BeginTime和EndTime的时间间隔，多次查询。
         # @type TendisSlowLogDetail: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

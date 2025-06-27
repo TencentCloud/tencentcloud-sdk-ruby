@@ -3531,8 +3531,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :Memory, :Volume, :OplogSize, :NodeNum, :ReplicateSetNum, :InMaintenance, :MongosMemory, :AddNodeList, :RemoveNodeList
         extend Gem::Deprecate
-        deprecate :OplogSize, :none, 2025, 5
-        deprecate :OplogSize=, :none, 2025, 5
+        deprecate :OplogSize, :none, 2025, 6
+        deprecate :OplogSize=, :none, 2025, 6
 
         def initialize(instanceid=nil, memory=nil, volume=nil, oplogsize=nil, nodenum=nil, replicatesetnum=nil, inmaintenance=nil, mongosmemory=nil, addnodelist=nil, removenodelist=nil)
           @InstanceId = instanceid
@@ -4418,6 +4418,8 @@ module TencentCloud
       class SlowLogPattern < TencentCloud::Common::AbstractModel
         # @param Pattern: 慢日志模式
         # @type Pattern: String
+        # @param QueryHash: queryHash
+        # @type QueryHash: String
         # @param MaxTime: 最大执行时间
         # @type MaxTime: Integer
         # @param AverageTime: 平均执行时间
@@ -4425,10 +4427,11 @@ module TencentCloud
         # @param Total: 该模式慢日志条数
         # @type Total: Integer
 
-        attr_accessor :Pattern, :MaxTime, :AverageTime, :Total
+        attr_accessor :Pattern, :QueryHash, :MaxTime, :AverageTime, :Total
 
-        def initialize(pattern=nil, maxtime=nil, averagetime=nil, total=nil)
+        def initialize(pattern=nil, queryhash=nil, maxtime=nil, averagetime=nil, total=nil)
           @Pattern = pattern
+          @QueryHash = queryhash
           @MaxTime = maxtime
           @AverageTime = averagetime
           @Total = total
@@ -4436,6 +4439,7 @@ module TencentCloud
 
         def deserialize(params)
           @Pattern = params['Pattern']
+          @QueryHash = params['QueryHash']
           @MaxTime = params['MaxTime']
           @AverageTime = params['AverageTime']
           @Total = params['Total']

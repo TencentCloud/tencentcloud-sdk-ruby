@@ -3807,7 +3807,7 @@ module TencentCloud
       class GenerateSignedVideoURLRequest < TencentCloud::Common::AbstractModel
         # @param VideoURL: 视频播放原始URL地址
         # @type VideoURL: String
-        # @param ExpireTime: 播放链接过期时间
+        # @param ExpireTime: 播放链接过期时间（时间戳，单位秒）
         # @type ExpireTime: Integer
 
         attr_accessor :VideoURL, :ExpireTime

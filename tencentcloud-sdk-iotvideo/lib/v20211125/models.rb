@@ -5377,7 +5377,7 @@ module TencentCloud
       class GenerateSignedVideoURLRequest < TencentCloud::Common::AbstractModel
         # @param VideoURL: 视频播放原始URL地址
         # @type VideoURL: String
-        # @param ExpireTime: 播放链接过期时间
+        # @param ExpireTime: 播放链接过期时间（时间戳，单位秒）
         # @type ExpireTime: Integer
         # @param ChannelId: 通道ID 非NVR设备不填 NVR设备必填 默认为无
         # @type ChannelId: Integer

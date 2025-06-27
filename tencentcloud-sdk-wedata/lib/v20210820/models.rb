@@ -20890,6 +20890,100 @@ module TencentCloud
         end
       end
 
+      # GetPaginationTaskScript请求参数结构体
+      class GetPaginationTaskScriptRequest < TencentCloud::Common::AbstractModel
+        # @param ProjectId: 项目编号
+        # @type ProjectId: String
+        # @param TaskId: 任务编号
+        # @type TaskId: String
+        # @param PageNum: 页码（从1开始）
+        # @type PageNum: Integer
+
+        attr_accessor :ProjectId, :TaskId, :PageNum
+
+        def initialize(projectid=nil, taskid=nil, pagenum=nil)
+          @ProjectId = projectid
+          @TaskId = taskid
+          @PageNum = pagenum
+        end
+
+        def deserialize(params)
+          @ProjectId = params['ProjectId']
+          @TaskId = params['TaskId']
+          @PageNum = params['PageNum']
+        end
+      end
+
+      # GetPaginationTaskScript返回参数结构体
+      class GetPaginationTaskScriptResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 返回数据
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              getpaginationtaskscriptresponseinfo_tmp = GetPaginationTaskScriptResponseInfo.new
+              getpaginationtaskscriptresponseinfo_tmp.deserialize(i)
+              @Data << getpaginationtaskscriptresponseinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 获取任务脚本内容返回体
+      class GetPaginationTaskScriptResponseInfo < TencentCloud::Common::AbstractModel
+        # @param ProjectId: 项目编号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProjectId: String
+        # @param TaskId: 任务编号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskId: String
+        # @param PageSize: 页内尺寸
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PageSize: Integer
+        # @param PageNum: 页码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PageNum: Integer
+        # @param PageTotal: 总页数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PageTotal: Integer
+        # @param Base64ScriptContent: 分页内容
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Base64ScriptContent: String
+
+        attr_accessor :ProjectId, :TaskId, :PageSize, :PageNum, :PageTotal, :Base64ScriptContent
+
+        def initialize(projectid=nil, taskid=nil, pagesize=nil, pagenum=nil, pagetotal=nil, base64scriptcontent=nil)
+          @ProjectId = projectid
+          @TaskId = taskid
+          @PageSize = pagesize
+          @PageNum = pagenum
+          @PageTotal = pagetotal
+          @Base64ScriptContent = base64scriptcontent
+        end
+
+        def deserialize(params)
+          @ProjectId = params['ProjectId']
+          @TaskId = params['TaskId']
+          @PageSize = params['PageSize']
+          @PageNum = params['PageNum']
+          @PageTotal = params['PageTotal']
+          @Base64ScriptContent = params['Base64ScriptContent']
+        end
+      end
+
       # GetTaskInstance请求参数结构体
       class GetTaskInstanceRequest < TencentCloud::Common::AbstractModel
         # @param ProjectId: **项目ID**

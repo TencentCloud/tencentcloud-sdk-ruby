@@ -6304,19 +6304,23 @@ module TencentCloud
         # @param Proportion: 当前应用对于总用量的占比
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Proportion: Float
+        # @param KnowledgeType: 知识库类型:0默认1共享
+        # @type KnowledgeType: Integer
 
-        attr_accessor :AppName, :UsedCharSize, :Proportion
+        attr_accessor :AppName, :UsedCharSize, :Proportion, :KnowledgeType
 
-        def initialize(appname=nil, usedcharsize=nil, proportion=nil)
+        def initialize(appname=nil, usedcharsize=nil, proportion=nil, knowledgetype=nil)
           @AppName = appname
           @UsedCharSize = usedcharsize
           @Proportion = proportion
+          @KnowledgeType = knowledgetype
         end
 
         def deserialize(params)
           @AppName = params['AppName']
           @UsedCharSize = params['UsedCharSize']
           @Proportion = params['Proportion']
+          @KnowledgeType = params['KnowledgeType']
         end
       end
 
@@ -6334,18 +6338,21 @@ module TencentCloud
         # @param ExceedCharSize: 超量字符数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExceedCharSize: String
-        # @param IsSharedKnowledge: 是否共享知识库类型
+        # @param IsSharedKnowledge: 废弃
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsSharedKnowledge: Boolean
+        # @param KnowledgeType: 知识库类型:0默认1共享
+        # @type KnowledgeType: Integer
 
-        attr_accessor :AppName, :UsedCharSize, :Proportion, :ExceedCharSize, :IsSharedKnowledge
+        attr_accessor :AppName, :UsedCharSize, :Proportion, :ExceedCharSize, :IsSharedKnowledge, :KnowledgeType
 
-        def initialize(appname=nil, usedcharsize=nil, proportion=nil, exceedcharsize=nil, issharedknowledge=nil)
+        def initialize(appname=nil, usedcharsize=nil, proportion=nil, exceedcharsize=nil, issharedknowledge=nil, knowledgetype=nil)
           @AppName = appname
           @UsedCharSize = usedcharsize
           @Proportion = proportion
           @ExceedCharSize = exceedcharsize
           @IsSharedKnowledge = issharedknowledge
+          @KnowledgeType = knowledgetype
         end
 
         def deserialize(params)
@@ -6354,6 +6361,7 @@ module TencentCloud
           @Proportion = params['Proportion']
           @ExceedCharSize = params['ExceedCharSize']
           @IsSharedKnowledge = params['IsSharedKnowledge']
+          @KnowledgeType = params['KnowledgeType']
         end
       end
 

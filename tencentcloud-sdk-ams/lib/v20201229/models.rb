@@ -20,23 +20,17 @@ module TencentCloud
       # 音频审核输出参数
       class AudioResult < TencentCloud::Common::AbstractModel
         # @param HitFlag: 该字段用于返回审核内容是否命中审核模型；取值：0（**未命中**）、1（**命中**）。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HitFlag: Integer
         # @param Label: 该字段用于返回检测结果所对应的恶意标签。<br>返回值：**Normal**：正常，**Porn**：色情，**Abuse**：谩骂，**Ad**：广告，**Custom**：自定义违规；以及其他令人反感、不安全或不适宜的内容类型。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Label: String
         # @param Suggestion: 该字段用于返回后续操作建议。当您获取到判定结果后，返回值表示具体的后续建议操作。<br>
         # 返回值：**Block**：建议屏蔽，**Review** ：建议人工复审，**Pass**：建议通过
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Suggestion: String
         # @param Score: 该字段用于返回当前标签下的置信度，取值范围：0（**置信度最低**）-100（**置信度最高** ），越高代表文本越有可能属于当前返回的标签；如：*色情 99*，则表明该文本非常有可能属于色情内容。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Score: Integer
         # @param Text: 该字段用于返回音频文件经ASR识别后的文本信息。最长可识别**5小时**的音频文件，若超出时长限制，接口将会报错。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Text: String
         # @param Url: 该字段用于返回审核结果的访问链接（URL）。<br>备注：链接默认有效期为12小时。如果您需要更长时效的链接，请使用[COS预签名](https://cloud.tencent.com/document/product/1265/104001)功能更新签名时效。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Url: String
         # @param Duration: 该字段用于返回音频文件的时长，单位为毫秒。
         # @type Duration: String
@@ -49,10 +43,8 @@ module TencentCloud
         # @param LanguageResults: 该字段用于返回音频小语种检测的详细审核结果。具体结果内容请参见AudioResultDetailLanguageResult数据结构的细节描述。
         # @type LanguageResults: Array
         # @param SubLabel: 该字段用于返回当前标签（Lable）下的二级标签。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubLabel: String
         # @param RecognitionResults: 识别类标签结果信息列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RecognitionResults: Array
         # @param SpeakerResults: 说话人结果
         # @type SpeakerResults: Array
@@ -64,10 +56,12 @@ module TencentCloud
         # @type SubTag: String
         # @param SubTagCode: 三级标签码
         # @type SubTagCode: String
+        # @param HitType: 审核检测类型
+        # @type HitType: String
 
-        attr_accessor :HitFlag, :Label, :Suggestion, :Score, :Text, :Url, :Duration, :Extra, :TextResults, :MoanResults, :LanguageResults, :SubLabel, :RecognitionResults, :SpeakerResults, :LabelResults, :TravelResults, :SubTag, :SubTagCode
+        attr_accessor :HitFlag, :Label, :Suggestion, :Score, :Text, :Url, :Duration, :Extra, :TextResults, :MoanResults, :LanguageResults, :SubLabel, :RecognitionResults, :SpeakerResults, :LabelResults, :TravelResults, :SubTag, :SubTagCode, :HitType
 
-        def initialize(hitflag=nil, label=nil, suggestion=nil, score=nil, text=nil, url=nil, duration=nil, extra=nil, textresults=nil, moanresults=nil, languageresults=nil, sublabel=nil, recognitionresults=nil, speakerresults=nil, labelresults=nil, travelresults=nil, subtag=nil, subtagcode=nil)
+        def initialize(hitflag=nil, label=nil, suggestion=nil, score=nil, text=nil, url=nil, duration=nil, extra=nil, textresults=nil, moanresults=nil, languageresults=nil, sublabel=nil, recognitionresults=nil, speakerresults=nil, labelresults=nil, travelresults=nil, subtag=nil, subtagcode=nil, hittype=nil)
           @HitFlag = hitflag
           @Label = label
           @Suggestion = suggestion
@@ -86,6 +80,7 @@ module TencentCloud
           @TravelResults = travelresults
           @SubTag = subtag
           @SubTagCode = subtagcode
+          @HitType = hittype
         end
 
         def deserialize(params)
@@ -156,25 +151,21 @@ module TencentCloud
           end
           @SubTag = params['SubTag']
           @SubTagCode = params['SubTagCode']
+          @HitType = params['HitType']
         end
       end
 
       # 音频语言种类检测结果
       class AudioResultDetailLanguageResult < TencentCloud::Common::AbstractModel
         # @param Label: 该字段用于返回对应的语言种类信息。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Label: String
         # @param Score: 该参数用于返回当前标签下的置信度，取值范围：0（**置信度最低**）-100（**置信度最高**），越高代表音频越有可能属于当前返回的语种标签；
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Score: Integer
         # @param StartTime: 该参数用于返回对应语种标签的片段在音频文件内的开始时间，单位为秒。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StartTime: Float
         # @param EndTime: 该参数用于返回对应语种标签的片段在音频文件内的结束时间，单位为秒。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EndTime: Float
         # @param SubLabelCode: *内测中，敬请期待*
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubLabelCode: String
 
         attr_accessor :Label, :Score, :StartTime, :EndTime, :SubLabelCode
@@ -329,16 +320,13 @@ module TencentCloud
         end
       end
 
-      # 表示声音段信息
+      # 表示该段声音的信息
       class AudioSegments < TencentCloud::Common::AbstractModel
         # @param OffsetTime: 该字段用于返回音频片段的开始时间，单位为秒。对于点播文件，该参数代表对应音频相对于完整音轨的偏移时间，如0（代表不偏移），5（音轨开始后5秒），10（音轨开始后10秒）；对于直播文件，该参数则返回对应音频片段开始时的Unix时间戳，如：1594650717。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OffsetTime: String
         # @param Result: 该字段用于返回音频片段的具体审核结果，详细内容敬请参考AudioResult数据结构的描述。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: :class:`Tencentcloud::Ams.v20201229.models.AudioResult`
         # @param CreatedAt: 入库时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreatedAt: String
 
         attr_accessor :OffsetTime, :Result, :CreatedAt
@@ -363,13 +351,10 @@ module TencentCloud
       # 参考腾讯云存储相关说明 https://cloud.tencent.com/document/product/436/44352
       class BucketInfo < TencentCloud::Common::AbstractModel
         # @param Bucket: 该字段用于标识腾讯云对象存储的存储桶名称,关于文件桶的详细信息敬请参考 [腾讯云存储相关说明](https://cloud.tencent.com/document/product/436/44352)。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Bucket: String
         # @param Region: 该字段用于标识腾讯云对象存储的托管机房的分布地区，对象存储 COS 的数据存放在这些地域的存储桶中。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Region: String
         # @param Object: 该字段用于标识腾讯云对象存储的对象Key,对象作为基本单元被存放在存储桶中；用户可以通过腾讯云控制台、API、SDK 等多种方式管理对象。有关对象的详细描述敬请参阅相应 [产品文档](https://cloud.tencent.com/document/product/436/13324)。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Object: String
 
         attr_accessor :Bucket, :Region, :Object
@@ -635,7 +620,6 @@ module TencentCloud
       # CreateAudioModerationTask返回参数结构体
       class CreateAudioModerationTaskResponse < TencentCloud::Common::AbstractModel
         # @param Results: 该字段用于返回任务创建的结果，具体输出内容请参见TaskResult数据结构的详细描述。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Results: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -684,56 +668,39 @@ module TencentCloud
       # DescribeTaskDetail返回参数结构体
       class DescribeTaskDetailResponse < TencentCloud::Common::AbstractModel
         # @param TaskId: 该字段用于返回创建音频审核任务后返回的任务ID（在Results参数中），用于标识需要查询任务详情的审核任务。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskId: String
         # @param DataId: 该字段用于返回调用音频审核接口时在Tasks参数内传入的数据ID参数，方便数据的辨别和管理。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DataId: String
         # @param BizType: 该字段用于返回调用音频审核接口时传入的BizType参数，方便数据的辨别和管理。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BizType: String
         # @param Name: 该字段用于返回调用音频审核接口时传入的TaskInput参数中的任务名称，方便任务的识别与管理。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Status: 该字段用于返回所查询内容的任务状态。
         # <br>取值：**FINISH**（任务已完成）、**PENDING** （任务等待中）、**RUNNING** （任务进行中）、**ERROR** （任务出错）、**CANCELLED** （任务已取消）。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: String
         # @param Type: 该字段用于返回调用音频审核接口时输入的音频审核类型，取值为：**AUDIO**（点播音频）和**LIVE_AUDIO**（直播音频），默认值为AUDIO。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: String
         # @param Suggestion: 该字段用于返回基于恶意标签的后续操作建议。当您获取到判定结果后，返回值表示系统推荐的后续操作；建议您按照业务所需，对不同违规类型与建议值进行处理。<br>返回值：**Block**：建议屏蔽，**Review** ：建议人工复审，**Pass**：建议通过
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Suggestion: String
         # @param Labels: 该字段用于返回检测结果所对应的恶意标签。<br>返回值：**Porn**：色情，**Abuse**：谩骂，**Ad**：广告，**Custom**：自定义违规；以及其他令人反感、不安全或不适宜的内容类型。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Labels: Array
         # @param InputInfo: 该字段用于返回审核服务的媒体内容信息，主要包括传入文件类型和访问地址。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InputInfo: :class:`Tencentcloud::Ams.v20201229.models.InputInfo`
         # @param AudioText: 该字段用于返回音频文件识别出的对应文本内容，最大支持**前1000个字符**。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AudioText: String
         # @param AudioSegments: 该字段用于返回音频片段的审核结果，主要包括开始时间和音频审核的相应结果。<br>具体输出内容请参见AudioSegments及AudioResult数据结构的详细描述。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AudioSegments: Array
         # @param ErrorType: 当任务状态为Error时，该字段用于返回对应错误的类型；任务状态非Error时，默认返回为空。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrorType: String
         # @param ErrorDescription: 当任务状态为Error时，该字段用于返回对应错误的详细描述，任务状态非Error时默认返回为空。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrorDescription: String
         # @param CreatedAt: 该字段用于返回被查询任务创建的时间，格式采用 ISO 8601标准。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreatedAt: String
         # @param UpdatedAt: 该字段用于返回被查询任务最后更新时间，格式采用 ISO 8601标准。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdatedAt: String
         # @param Label: 该字段用于返回检测结果所对应的标签。如果未命中恶意，返回Normal，如果命中恶意，则返回Labels中优先级最高的标签
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Label: String
         # @param MediaInfo: 媒体信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MediaInfo: :class:`Tencentcloud::Ams.v20201229.models.MediaInfo`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -841,13 +808,10 @@ module TencentCloud
       # DescribeTasks返回参数结构体
       class DescribeTasksResponse < TencentCloud::Common::AbstractModel
         # @param Total: 该字段用于返回当前查询的任务总量，格式为int字符串。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Total: String
         # @param Data: 该字段用于返回当前页的任务详细数据，具体输出内容请参见TaskData数据结构的详细描述。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: Array
         # @param PageToken: 该字段用于返回翻页时使用的Token信息，由系统自动生成，并在翻页时向下一个生成的页面传递此参数，以方便快速翻页功能的实现。当到最后一页时，该字段为空。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PageToken: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -914,10 +878,8 @@ module TencentCloud
       # 输入信息详情
       class InputInfo < TencentCloud::Common::AbstractModel
         # @param Type: 该字段表示文件访问类型，取值为**URL**（资源链接）和**COS** (腾讯云对象存储)。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: String
         # @param Url: 该字段表示文件访问的链接地址，格式为标准URL格式。<br> 备注：当Type为URL时此字段不为空。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Url: String
         # @param BucketInfo: 该字段表示文件访问的腾讯云存储桶信息。<br> 备注：当Type为COS时此字段不为空。
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -944,25 +906,18 @@ module TencentCloud
       # 歌曲识别结果
       class LabelResults < TencentCloud::Common::AbstractModel
         # @param Scene: 场景
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Scene: String
         # @param Suggestion: 建议
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Suggestion: Integer
         # @param Label: 标签
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Label: String
         # @param Name: 名称：歌曲名，语种名，说话人名 等
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Score: 得分
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Score: Integer
         # @param StartTime: 开始时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StartTime: Float
         # @param EndTime: 结束时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EndTime: Float
 
         attr_accessor :Scene, :Suggestion, :Label, :Name, :Score, :StartTime, :EndTime
@@ -1023,7 +978,6 @@ module TencentCloud
       # 呻吟低俗检测结果
       class MoanResult < TencentCloud::Common::AbstractModel
         # @param Label: 固定取值为Moan（呻吟/娇喘），如音频中无复杂类型「MoanResult」的返回则代表该音频中无呻吟/娇喘相关违规内容；
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Label: String
         # @param Score: 机器判断当前分类的置信度，取值范围：0~100。分数越高，表示越有可能属于当前分类。
         # （如：Moan 99，则该样本属于呻吟/娇喘的置信度非常高。）
@@ -1036,8 +990,6 @@ module TencentCloud
         # @param EndTime: 违规事件结束时间，单位为秒（s）；
         # @type EndTime: Float
         # @param SubLabel: 该字段用于返回当前标签（Lable）下的二级标签。
-        # 注意：此字段可能返回null，表示取不到有效值。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubLabel: String
 
         attr_accessor :Label, :Score, :Suggestion, :StartTime, :EndTime, :SubLabel
@@ -1084,10 +1036,8 @@ module TencentCloud
       # 识别类标签结果信息
       class RecognitionResult < TencentCloud::Common::AbstractModel
         # @param Label: 可能的取值有：Teenager 、Gender
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Label: String
         # @param Tags: 识别标签列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
 
         attr_accessor :Label, :Tags
@@ -1113,16 +1063,12 @@ module TencentCloud
       # 说话人结果
       class SpeakerResults < TencentCloud::Common::AbstractModel
         # @param Label: 标签
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Label: String
         # @param Score: 得分
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Score: Integer
         # @param StartTime: 开始时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StartTime: Float
         # @param EndTime: 结束时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EndTime: String
 
         attr_accessor :Label, :Score, :StartTime, :EndTime
@@ -1174,16 +1120,12 @@ module TencentCloud
         # @param Name: 根据Label字段确定具体名称：
         # 当Label 为Teenager 时 Name可能取值有：Teenager
         # 当Label 为Gender 时 Name可能取值有：Male 、Female
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Score: 置信分：0～100，数值越大表示置信度越高
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Score: Integer
         # @param StartTime: 识别开始偏移时间，单位：毫秒
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StartTime: Float
         # @param EndTime: 识别结束偏移时间，单位：毫秒
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EndTime: Float
 
         attr_accessor :Name, :Score, :StartTime, :EndTime
@@ -1206,7 +1148,6 @@ module TencentCloud
       # 任务数据
       class TaskData < TencentCloud::Common::AbstractModel
         # @param DataId: 该字段用于返回音频审核任务数据所对应的数据ID，方便后续查询和管理审核任务。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DataId: String
         # @param TaskId: 该字段用于返回音频审核任务所生成的任务ID，用于标识具体审核任务，方便后续查询和管理。
         # @type TaskId: String
@@ -1214,30 +1155,22 @@ module TencentCloud
         # <br>取值：**FINISH**（任务已完成）、**PENDING** （任务等待中）、**RUNNING** （任务进行中）、**ERROR** （任务出错）、**CANCELLED** （任务已取消）。
         # @type Status: String
         # @param Name: 该字段用于返回音频审核任务所对应的任务名称，方便后续查询和管理审核任务。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param BizType: 该字段用于返回调用音频审核接口时传入的BizType参数，方便数据的辨别和管理。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BizType: String
         # @param Type: 该字段用于返回调用音频审核接口时输入的音频审核类型，取值为：**AUDIO**（点播音频）和**LIVE_AUDIO**（直播音频），默认值为AUDIO。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: String
         # @param Suggestion: 该字段用于返回基于恶意标签的后续操作建议。当您获取到判定结果后，返回值表示系统推荐的后续操作；建议您按照业务所需，对不同违规类型与建议值进行处理。<br>返回值：**Block**：建议屏蔽，**Review** ：建议人工复审，**Pass**：建议通过
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Suggestion: String
         # @param MediaInfo: 输入信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MediaInfo: :class:`Tencentcloud::Ams.v20201229.models.MediaInfo`
         # @param Labels: 该字段用于返回检测结果所对应的恶意标签。<br>返回值：**Normal**：正常，**Porn**：色情，**Abuse**：谩骂，**Ad**：广告，**Custom**：自定义违规；以及其他令人反感、不安全或不适宜的内容类型。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Labels: Array
         # @param CreatedAt: 该字段用于返回被查询任务创建的时间，格式采用 ISO 8601标准。
         # @type CreatedAt: String
         # @param UpdatedAt: 该字段用于返回被查询任务最后更新时间，格式采用 ISO 8601标准。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdatedAt: String
         # @param InputInfo: 任务信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InputInfo: :class:`Tencentcloud::Ams.v20201229.models.InputInfo`
 
         attr_accessor :DataId, :TaskId, :Status, :Name, :BizType, :Type, :Suggestion, :MediaInfo, :Labels, :CreatedAt, :UpdatedAt, :InputInfo
@@ -1344,16 +1277,12 @@ module TencentCloud
       # 用于返回审核任务输出的标签
       class TaskLabel < TencentCloud::Common::AbstractModel
         # @param Label: 该字段用于返回检测结果所对应的恶意标签。<br>返回值：**Normal**：正常，**Porn**：色情，**Abuse**：谩骂，**Ad**：广告，**Custom**：自定义违规；以及其他令人反感、不安全或不适宜的内容类型。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Label: String
         # @param Suggestion: 该字段用于返回当前标签对应的后续操作建议。当您获取到判定结果后，返回值表示系统推荐的后续操作；建议您按照业务所需，对不同违规类型与建议值进行处理。<br>返回值：**Block**：建议屏蔽，**Review** ：建议人工复审，**Pass**：建议通过
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Suggestion: String
         # @param Score: 该字段用于返回当前标签（Label）下的置信度，取值范围：0（**置信度最低**）-100（**置信度最高** ），越高代表文本越有可能属于当前返回的标签；如：*色情 99*，则表明该文本非常有可能属于色情内容；*色情 0*，则表明该文本不属于色情内容。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Score: Integer
         # @param SubLabel: 该字段用于返回当前标签（Lable）下的二级标签。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubLabel: String
 
         attr_accessor :Label, :Suggestion, :Score, :SubLabel
@@ -1376,16 +1305,12 @@ module TencentCloud
       # 创建任务时的返回结果
       class TaskResult < TencentCloud::Common::AbstractModel
         # @param DataId: 该字段用于返回创建音频审核任务时在TaskInput结构内传入的DataId，用于标识具体审核任务。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DataId: String
         # @param TaskId: 该字段用于返回音频审核任务所生成的任务ID，用于标识具体审核任务，方便后续查询和管理。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskId: String
         # @param Code: 该字段用于返回任务创建的状态，如返回OK则代表任务创建成功，其他返回值可参考公共错误码。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Code: String
         # @param Message: **仅在Code的返回值为错误码时生效**，用于返回错误的详情内容。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Message: String
 
         attr_accessor :DataId, :TaskId, :Code, :Message
@@ -1411,32 +1336,24 @@ module TencentCloud
         # 以及其他令人反感、不安全或不适宜的内容类型。
 
         # 如音频中无复杂类型「TextResults」的返回则代表该音频中无相关违规内容；
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Label: String
         # @param Keywords: 命中的关键词，为空则代表该违规内容出自于模型的判断；
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Keywords: Array
         # @param LibId: 命中关键词库的库标识；
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LibId: String
         # @param LibName: 命中关键词库的名字；
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LibName: String
         # @param Score: 机器判断当前分类的置信度，取值范围：0~100。分数越高，表示越有可能属于当前分类。
         # （如：Porn 99，则该样本属于色情的置信度非常高。）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Score: Integer
         # @param Suggestion: 建议您拿到判断结果后的执行操作。
         # 建议值，Block：建议屏蔽，Review：建议复审，Pass：建议通过
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Suggestion: String
         # @param LibType: 自定义词库的类型，自定义词库相关的信息可登录控制台中查看；
         # 1：自定义黑白库；
         # 2：公库；
         # @type LibType: Integer
         # @param SubLabel: 该字段用于返回当前标签（Lable）下的二级标签。
-        # 注意：此字段可能返回null，表示取不到有效值。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubLabel: String
         # @param HitInfos: 该字段用于返回违规文本命中信息
         # @type HitInfos: Array
@@ -1478,25 +1395,18 @@ module TencentCloud
       # 出行结果
       class TravelResults < TencentCloud::Common::AbstractModel
         # @param Label: 一级标签
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Label: String
         # @param SubLabel: 二级标签
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubLabel: String
         # @param RiskLevel: 风险等级
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RiskLevel: String
         # @param AudioRole: 出行音频角色
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AudioRole: String
         # @param AudioText: 出行语音文本
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AudioText: String
         # @param StartTime: 开始时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StartTime: Float
         # @param EndTime: 结束时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EndTime: Float
 
         attr_accessor :Label, :SubLabel, :RiskLevel, :AudioRole, :AudioText, :StartTime, :EndTime

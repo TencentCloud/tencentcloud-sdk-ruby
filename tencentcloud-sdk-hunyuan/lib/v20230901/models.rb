@@ -152,7 +152,7 @@ module TencentCloud
         # 4. 安全审核能力不属于功能增强范围，不受此字段影响。
         # 5. 2025-04-20 00:00:00起，由默认开启状态转为默认关闭状态。
         # @type EnableEnhancement: Boolean
-        # @param Tools: 可调用的工具列表，仅对 hunyuan-turbo、hunyuan-functioncall 模型生效。
+        # @param Tools: 可调用的工具列表，仅对 hunyuan-turbos、hunyuan-t1、hunyuan-functioncall 模型生效。
         # @type Tools: Array
         # @param ToolChoice: 工具使用选项，可选值包括 none、auto、custom。说明：1. 仅对 hunyuan-turbo、hunyuan-functioncall 模型生效。2. none：不调用工具；auto：模型自行选择生成回复或调用工具；custom：强制模型调用指定的工具。3. 未设置时，默认值为auto
         # @type ToolChoice: String
@@ -206,10 +206,12 @@ module TencentCloud
         # @type WebSearchOptions: :class:`Tencentcloud::Hunyuan.v20230901.models.WebSearchOptions`
         # @param TopicChoice: 用户传入Topic
         # @type TopicChoice: String
+        # @param EnableThinking: 模型思维链开关 说明： 1. 未传值时默认开启，打开模型思维链推理能力。 2. 关闭后，关闭模型思维链推理能力。  开关当前仅对hunyuan-a13b模型生效 示例值：ture
+        # @type EnableThinking: Boolean
 
-        attr_accessor :Model, :Messages, :Stream, :StreamModeration, :TopP, :Temperature, :EnableEnhancement, :Tools, :ToolChoice, :CustomTool, :SearchInfo, :Citation, :EnableSpeedSearch, :EnableMultimedia, :EnableDeepSearch, :Seed, :ForceSearchEnhancement, :Stop, :EnableRecommendedQuestions, :EnableDeepRead, :WebSearchOptions, :TopicChoice
+        attr_accessor :Model, :Messages, :Stream, :StreamModeration, :TopP, :Temperature, :EnableEnhancement, :Tools, :ToolChoice, :CustomTool, :SearchInfo, :Citation, :EnableSpeedSearch, :EnableMultimedia, :EnableDeepSearch, :Seed, :ForceSearchEnhancement, :Stop, :EnableRecommendedQuestions, :EnableDeepRead, :WebSearchOptions, :TopicChoice, :EnableThinking
 
-        def initialize(model=nil, messages=nil, stream=nil, streammoderation=nil, topp=nil, temperature=nil, enableenhancement=nil, tools=nil, toolchoice=nil, customtool=nil, searchinfo=nil, citation=nil, enablespeedsearch=nil, enablemultimedia=nil, enabledeepsearch=nil, seed=nil, forcesearchenhancement=nil, stop=nil, enablerecommendedquestions=nil, enabledeepread=nil, websearchoptions=nil, topicchoice=nil)
+        def initialize(model=nil, messages=nil, stream=nil, streammoderation=nil, topp=nil, temperature=nil, enableenhancement=nil, tools=nil, toolchoice=nil, customtool=nil, searchinfo=nil, citation=nil, enablespeedsearch=nil, enablemultimedia=nil, enabledeepsearch=nil, seed=nil, forcesearchenhancement=nil, stop=nil, enablerecommendedquestions=nil, enabledeepread=nil, websearchoptions=nil, topicchoice=nil, enablethinking=nil)
           @Model = model
           @Messages = messages
           @Stream = stream
@@ -232,6 +234,7 @@ module TencentCloud
           @EnableDeepRead = enabledeepread
           @WebSearchOptions = websearchoptions
           @TopicChoice = topicchoice
+          @EnableThinking = enablethinking
         end
 
         def deserialize(params)
@@ -277,6 +280,7 @@ module TencentCloud
             @WebSearchOptions.deserialize(params['WebSearchOptions'])
           end
           @TopicChoice = params['TopicChoice']
+          @EnableThinking = params['EnableThinking']
         end
       end
 
