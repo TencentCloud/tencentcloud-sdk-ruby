@@ -1576,12 +1576,15 @@ module TencentCloud
         # @type Title: String
         # @param Content: 识别出的字段名称(关键字)，支持以下字段： 税号 、纳税人识别号 、纳税人名称 、金额合计大写 、金额合计小写 、填发日期 、税务机关 、填票人。 示例值：纳税人识别号
         # @type Content: Array
+        # @param CommonContent: 海关缴款书常用字段
+        # @type CommonContent: Array
 
-        attr_accessor :Title, :Content
+        attr_accessor :Title, :Content, :CommonContent
 
-        def initialize(title=nil, content=nil)
+        def initialize(title=nil, content=nil, commoncontent=nil)
           @Title = title
           @Content = content
+          @CommonContent = commoncontent
         end
 
         def deserialize(params)
@@ -1592,6 +1595,14 @@ module TencentCloud
               otherinvoiceitem_tmp = OtherInvoiceItem.new
               otherinvoiceitem_tmp.deserialize(i)
               @Content << otherinvoiceitem_tmp
+            end
+          end
+          unless params['CommonContent'].nil?
+            @CommonContent = []
+            params['CommonContent'].each do |i|
+              otherinvoiceitem_tmp = OtherInvoiceItem.new
+              otherinvoiceitem_tmp.deserialize(i)
+              @CommonContent << otherinvoiceitem_tmp
             end
           end
         end

@@ -558,6 +558,26 @@ module TencentCloud
         end
       end
 
+      # IP 网段详情。
+      class Addresses < TencentCloud::Common::AbstractModel
+        # @param IPv4: IPv4 网段列表。
+        # @type IPv4: Array
+        # @param IPv6: IPv6 网段列表。
+        # @type IPv6: Array
+
+        attr_accessor :IPv4, :IPv6
+
+        def initialize(ipv4=nil, ipv6=nil)
+          @IPv4 = ipv4
+          @IPv6 = ipv6
+        end
+
+        def deserialize(params)
+          @IPv4 = params['IPv4']
+          @IPv6 = params['IPv6']
+        end
+      end
+
       # 描述键值对过滤器，用于条件过滤查询，支持模糊查询。例如过滤ID、名称、状态等。
       # 若存在多个Filter时，Filter间的关系为逻辑与（AND）关系。
       # 若同一个Filter存在多个Values，同一Filter下Values间的关系为逻辑或（OR）关系。
@@ -2568,6 +2588,38 @@ module TencentCloud
         end
       end
 
+      # ConfirmOriginACLUpdate请求参数结构体
+      class ConfirmOriginACLUpdateRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点 ID。
+        # @type ZoneId: String
+
+        attr_accessor :ZoneId
+
+        def initialize(zoneid=nil)
+          @ZoneId = zoneid
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+        end
+      end
+
+      # ConfirmOriginACLUpdate返回参数结构体
+      class ConfirmOriginACLUpdateResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 内容标识符。该功能仅白名单开放。
       class ContentIdentifier < TencentCloud::Common::AbstractModel
         # @param ContentId: 内容标识符 ID。
@@ -4262,6 +4314,43 @@ module TencentCloud
             @OwnershipVerification.deserialize(params['OwnershipVerification'])
           end
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 当前生效的回源 IP 网段。
+      class CurrentOriginACL < TencentCloud::Common::AbstractModel
+        # @param EntireAddresses: 回源 IP 网段详情。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EntireAddresses: :class:`Tencentcloud::Teo.v20220901.models.Addresses`
+        # @param Version: 版本号。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Version: String
+        # @param ActiveTime: 版本生效时间，时间是北京时间 UTC+8， 遵循 ISO 8601 标准的日期和时间格式。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ActiveTime: String
+        # @param IsPlaned: 本参数用于记录当前版本生效前是否完成「我已更新至最新回源 IP 网段」的确认。取值有：
+        # <li>true：版本生效时，已完成更新至最新回源 IP 的确认；</li>
+        # <li>false：版本生效时，仍未完成已更新至最新回源 IP 的确认，回源 IP 网段由后台强制更新至最新版本。</li>注意：本参数返回 false 时，请及时确认您的源站防火墙配置是否已更新至最新的回源 IP 网段，以避免出现回源失败。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsPlaned: String
+
+        attr_accessor :EntireAddresses, :Version, :ActiveTime, :IsPlaned
+
+        def initialize(entireaddresses=nil, version=nil, activetime=nil, isplaned=nil)
+          @EntireAddresses = entireaddresses
+          @Version = version
+          @ActiveTime = activetime
+          @IsPlaned = isplaned
+        end
+
+        def deserialize(params)
+          unless params['EntireAddresses'].nil?
+            @EntireAddresses = Addresses.new
+            @EntireAddresses.deserialize(params['EntireAddresses'])
+          end
+          @Version = params['Version']
+          @ActiveTime = params['ActiveTime']
+          @IsPlaned = params['IsPlaned']
         end
       end
 
@@ -7430,6 +7519,45 @@ module TencentCloud
         end
       end
 
+      # DescribeOriginACL请求参数结构体
+      class DescribeOriginACLRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点 ID。
+        # @type ZoneId: String
+
+        attr_accessor :ZoneId
+
+        def initialize(zoneid=nil)
+          @ZoneId = zoneid
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+        end
+      end
+
+      # DescribeOriginACL返回参数结构体
+      class DescribeOriginACLResponse < TencentCloud::Common::AbstractModel
+        # @param OriginACLInfo: 七层加速域名/四层代理实例与回源 IP 网段的绑定关系详情。
+        # @type OriginACLInfo: :class:`Tencentcloud::Teo.v20220901.models.OriginACLInfo`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :OriginACLInfo, :RequestId
+
+        def initialize(originaclinfo=nil, requestid=nil)
+          @OriginACLInfo = originaclinfo
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['OriginACLInfo'].nil?
+            @OriginACLInfo = OriginACLInfo.new
+            @OriginACLInfo.deserialize(params['OriginACLInfo'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeOriginGroupHealthStatus请求参数结构体
       class DescribeOriginGroupHealthStatusRequest < TencentCloud::Common::AbstractModel
         # @param ZoneId: 站点 ID。
@@ -9354,6 +9482,38 @@ module TencentCloud
         end
       end
 
+      # DisableOriginACL请求参数结构体
+      class DisableOriginACLRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点 ID。
+        # @type ZoneId: String
+
+        attr_accessor :ZoneId
+
+        def initialize(zoneid=nil)
+          @ZoneId = zoneid
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+        end
+      end
+
+      # DisableOriginACL返回参数结构体
+      class DisableOriginACLResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DNS 记录
       class DnsRecord < TencentCloud::Common::AbstractModel
         # @param ZoneId: 站点 ID。<br>注意：ZoneId 仅做出参使用，在 ModifyDnsRecords 不可作为入参使用，如有传此参数，会忽略。
@@ -9643,6 +9803,60 @@ module TencentCloud
           @Name = params['Name']
           @Type = params['Type']
           @CustomResponseId = params['CustomResponseId']
+        end
+      end
+
+      # EnableOriginACL请求参数结构体
+      class EnableOriginACLRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点ID。
+        # @type ZoneId: String
+        # @param L7EnableMode: 七层加速域名开启回源白名单的模式。
+        # <li>all：为站点下的所有七层加速域名开启回源白名单。</li>
+        # <li>specific：为站点下指定的七层加速域名开启回源白名单。</li>
+        # 当参数为空时，默认为specific。
+        # @type L7EnableMode: String
+        # @param L7Hosts: 开启回源白名单的七层加速域名列表，当请求参数 L7EnableMode 为 all 时必须为空。
+        # @type L7Hosts: Array
+        # @param L4EnableMode: 四层代理 ID 开启回源白名单的模式。
+        # <li>all：为站点下的所有四层代理开启回源白名单。</li>
+        # <li>specific：为站点下指定的四层代理 ID 开启回源白名单。</li>
+        # 当参数为空时，默认为specific。
+        # @type L4EnableMode: String
+        # @param L4ProxyIds: 开启回源白名单的四层代理 ID 列表，当请求参数 L4EnableMode 为 all 时必须为空。单次最多支持 200 个实例。
+        # @type L4ProxyIds: Array
+
+        attr_accessor :ZoneId, :L7EnableMode, :L7Hosts, :L4EnableMode, :L4ProxyIds
+
+        def initialize(zoneid=nil, l7enablemode=nil, l7hosts=nil, l4enablemode=nil, l4proxyids=nil)
+          @ZoneId = zoneid
+          @L7EnableMode = l7enablemode
+          @L7Hosts = l7hosts
+          @L4EnableMode = l4enablemode
+          @L4ProxyIds = l4proxyids
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @L7EnableMode = params['L7EnableMode']
+          @L7Hosts = params['L7Hosts']
+          @L4EnableMode = params['L4EnableMode']
+          @L4ProxyIds = params['L4ProxyIds']
+        end
+      end
+
+      # EnableOriginACL返回参数结构体
+      class EnableOriginACLResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 
@@ -13312,6 +13526,49 @@ module TencentCloud
         end
       end
 
+      # ModifyOriginACL请求参数结构体
+      class ModifyOriginACLRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点 ID。
+        # @type ZoneId: String
+        # @param OriginACLEntities: 需要启用/关闭特定回源 IP 网段回源的实例。
+        # @type OriginACLEntities: Array
+
+        attr_accessor :ZoneId, :OriginACLEntities
+
+        def initialize(zoneid=nil, originaclentities=nil)
+          @ZoneId = zoneid
+          @OriginACLEntities = originaclentities
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          unless params['OriginACLEntities'].nil?
+            @OriginACLEntities = []
+            params['OriginACLEntities'].each do |i|
+              originaclentity_tmp = OriginACLEntity.new
+              originaclentity_tmp.deserialize(i)
+              @OriginACLEntities << originaclentity_tmp
+            end
+          end
+        end
+      end
+
+      # ModifyOriginACL返回参数结构体
+      class ModifyOriginACLResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyOriginGroup请求参数结构体
       class ModifyOriginGroupRequest < TencentCloud::Common::AbstractModel
         # @param ZoneId: 站点 ID
@@ -14116,6 +14373,54 @@ module TencentCloud
         end
       end
 
+      # 当回源 IP 网段发生更新时，该字段会返回下一个版本将要生效的回源 IP 网段，包含与当前生效的回源 IP 网段的对比。
+      class NextOriginACL < TencentCloud::Common::AbstractModel
+        # @param Version: 版本号。
+        # @type Version: String
+        # @param PlannedActiveTime: 版本生效时间，时间是北京时间 UTC+8， 遵循 ISO 8601 标准的日期和时间格式。
+        # @type PlannedActiveTime: String
+        # @param EntireAddresses: 回源 IP 网段详情。
+        # @type EntireAddresses: :class:`Tencentcloud::Teo.v20220901.models.Addresses`
+        # @param AddedAddresses: 最新回源 IP 网段相较于 CurrentOrginACL 中回源 IP 网段新增的部分。
+        # @type AddedAddresses: :class:`Tencentcloud::Teo.v20220901.models.Addresses`
+        # @param RemovedAddresses: 最新回源 IP 网段相较于 CurrentOrginACL 中回源 IP 网段删减的部分。
+        # @type RemovedAddresses: :class:`Tencentcloud::Teo.v20220901.models.Addresses`
+        # @param NoChangeAddresses: 最新回源 IP 网段相较于 CurrentOrginACL 中回源 IP 网段无变化的部分。
+        # @type NoChangeAddresses: :class:`Tencentcloud::Teo.v20220901.models.Addresses`
+
+        attr_accessor :Version, :PlannedActiveTime, :EntireAddresses, :AddedAddresses, :RemovedAddresses, :NoChangeAddresses
+
+        def initialize(version=nil, plannedactivetime=nil, entireaddresses=nil, addedaddresses=nil, removedaddresses=nil, nochangeaddresses=nil)
+          @Version = version
+          @PlannedActiveTime = plannedactivetime
+          @EntireAddresses = entireaddresses
+          @AddedAddresses = addedaddresses
+          @RemovedAddresses = removedaddresses
+          @NoChangeAddresses = nochangeaddresses
+        end
+
+        def deserialize(params)
+          @Version = params['Version']
+          @PlannedActiveTime = params['PlannedActiveTime']
+          unless params['EntireAddresses'].nil?
+            @EntireAddresses = Addresses.new
+            @EntireAddresses.deserialize(params['EntireAddresses'])
+          end
+          unless params['AddedAddresses'].nil?
+            @AddedAddresses = Addresses.new
+            @AddedAddresses.deserialize(params['AddedAddresses'])
+          end
+          unless params['RemovedAddresses'].nil?
+            @RemovedAddresses = Addresses.new
+            @RemovedAddresses.deserialize(params['RemovedAddresses'])
+          end
+          unless params['NoChangeAddresses'].nil?
+            @NoChangeAddresses = Addresses.new
+            @NoChangeAddresses.deserialize(params['NoChangeAddresses'])
+          end
+        end
+      end
+
       # 不缓存配置
       class NoCache < TencentCloud::Common::AbstractModel
         # @param Switch: 不缓存配置开关，取值有：
@@ -14261,6 +14566,79 @@ module TencentCloud
           @BackupOrigins = params['BackupOrigins']
           @OriginPullProtocol = params['OriginPullProtocol']
           @CosPrivateAccess = params['CosPrivateAccess']
+        end
+      end
+
+      # 需要配置特定回源 IP 网段回源的实例。
+      class OriginACLEntity < TencentCloud::Common::AbstractModel
+        # @param Type: 实例类型，取值有：
+        # - l7：七层加速域名；
+        # - l4：四层代理实例。
+        # @type Type: String
+        # @param Instances: 实例详情，取值有：
+        # - 当 Type = l7 时，请填写七层加速域名；
+        # - 当 Type = l4 时，请填写四层代理实例 ID。
+        # @type Instances: Array
+        # @param OperationMode: 操作模式，取值有：
+        # <li>enable：启用；</li>
+        # <li>disable：停用。</li>
+        # @type OperationMode: String
+
+        attr_accessor :Type, :Instances, :OperationMode
+
+        def initialize(type=nil, instances=nil, operationmode=nil)
+          @Type = type
+          @Instances = instances
+          @OperationMode = operationmode
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @Instances = params['Instances']
+          @OperationMode = params['OperationMode']
+        end
+      end
+
+      # 七层加速域名/四层代理实例与回源 IP 网段的绑定关系，以及回源 IP 网段详情。
+      class OriginACLInfo < TencentCloud::Common::AbstractModel
+        # @param L7Hosts: 启用了特定回源 IP 网段回源的七层加速域名列表。源站防护未开启时为空。
+        # @type L7Hosts: Array
+        # @param L4ProxyIds: 启用了特定回源 IP 网段回源的四层代理实例列表。源站防护未开启时为空。
+        # @type L4ProxyIds: Array
+        # @param CurrentOriginACL: 当前生效的回源 IP 网段。源站防护未开启时为空。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CurrentOriginACL: :class:`Tencentcloud::Teo.v20220901.models.CurrentOriginACL`
+        # @param NextOriginACL: 当回源 IP 网段发生更新时，该字段会返回下一个版本将要生效的回源 IP 网段，包含与当前回源 IP 网段的对比。无更新或者源站防护未开启时该字段为空。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NextOriginACL: :class:`Tencentcloud::Teo.v20220901.models.NextOriginACL`
+        # @param Status: 源站防护状态，取值有：
+        # <li>online：已生效；</li>
+        # <li>offline：已停用；</li>
+        # <li>updating: 配置部署中。</li>
+        # @type Status: String
+
+        attr_accessor :L7Hosts, :L4ProxyIds, :CurrentOriginACL, :NextOriginACL, :Status
+
+        def initialize(l7hosts=nil, l4proxyids=nil, currentoriginacl=nil, nextoriginacl=nil, status=nil)
+          @L7Hosts = l7hosts
+          @L4ProxyIds = l4proxyids
+          @CurrentOriginACL = currentoriginacl
+          @NextOriginACL = nextoriginacl
+          @Status = status
+        end
+
+        def deserialize(params)
+          @L7Hosts = params['L7Hosts']
+          @L4ProxyIds = params['L4ProxyIds']
+          unless params['CurrentOriginACL'].nil?
+            @CurrentOriginACL = CurrentOriginACL.new
+            @CurrentOriginACL.deserialize(params['CurrentOriginACL'])
+          end
+          unless params['NextOriginACL'].nil?
+            @NextOriginACL = NextOriginACL.new
+            @NextOriginACL.deserialize(params['NextOriginACL'])
+          end
+          @Status = params['Status']
         end
       end
 

@@ -1946,6 +1946,97 @@ module TencentCloud
         end
       end
 
+      # DescribeDetailedSlowLogs请求参数结构体
+      class DescribeDetailedSlowLogsRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例id
+        # @type InstanceId: String
+        # @param StartTime: 待查询慢日志的开始时间
+        # @type StartTime: String
+        # @param EndTime: 待慢日志的结束时间
+        # @type EndTime: String
+        # @param ExecTime: 过滤执行时间大于此值的慢日志，单位ms，默认值100
+        # @type ExecTime: Integer
+        # @param Commands: 过滤慢日志的命令类型
+        # @type Commands: Array
+        # @param Texts: 全文搜索关键字，多个关键字间为或关系
+        # @type Texts: Array
+        # @param NodeNames: 根据节点名过滤
+        # @type NodeNames: Array
+        # @param QueryHash: 根据queryHash过滤
+        # @type QueryHash: Array
+        # @param Offset: 分页偏移量
+        # @type Offset: Integer
+        # @param Limit: 返回条数
+        # @type Limit: Integer
+        # @param OrderBy: 排序条件，只支持StartTime(按慢日志生成时间)和ExecTime(慢日志执行时间)
+        # @type OrderBy: String
+        # @param OrderByType: 排序。desc倒排，asc正排
+        # @type OrderByType: String
+
+        attr_accessor :InstanceId, :StartTime, :EndTime, :ExecTime, :Commands, :Texts, :NodeNames, :QueryHash, :Offset, :Limit, :OrderBy, :OrderByType
+
+        def initialize(instanceid=nil, starttime=nil, endtime=nil, exectime=nil, commands=nil, texts=nil, nodenames=nil, queryhash=nil, offset=nil, limit=nil, orderby=nil, orderbytype=nil)
+          @InstanceId = instanceid
+          @StartTime = starttime
+          @EndTime = endtime
+          @ExecTime = exectime
+          @Commands = commands
+          @Texts = texts
+          @NodeNames = nodenames
+          @QueryHash = queryhash
+          @Offset = offset
+          @Limit = limit
+          @OrderBy = orderby
+          @OrderByType = orderbytype
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @ExecTime = params['ExecTime']
+          @Commands = params['Commands']
+          @Texts = params['Texts']
+          @NodeNames = params['NodeNames']
+          @QueryHash = params['QueryHash']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @OrderBy = params['OrderBy']
+          @OrderByType = params['OrderByType']
+        end
+      end
+
+      # DescribeDetailedSlowLogs返回参数结构体
+      class DescribeDetailedSlowLogsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 满足条件的慢日志数量
+        # @type TotalCount: Integer
+        # @param DetailedSlowLogs: 慢日志详情
+        # @type DetailedSlowLogs: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :DetailedSlowLogs, :RequestId
+
+        def initialize(totalcount=nil, detailedslowlogs=nil, requestid=nil)
+          @TotalCount = totalcount
+          @DetailedSlowLogs = detailedslowlogs
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['DetailedSlowLogs'].nil?
+            @DetailedSlowLogs = []
+            params['DetailedSlowLogs'].each do |i|
+              slowlogitem_tmp = SlowLogItem.new
+              slowlogitem_tmp.deserialize(i)
+              @DetailedSlowLogs << slowlogitem_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeInstanceParams请求参数结构体
       class DescribeInstanceParamsRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 指定待查询参数列表的实例 ID。例如：cmgo-p8vn****。请登录 [MongoDB 控制台](https://console.cloud.tencent.com/mongodb)在实例列表复制实例 ID。
@@ -4411,6 +4502,30 @@ module TencentCloud
           @OplogSize = params['OplogSize']
           @SecondaryNum = params['SecondaryNum']
           @RealReplicaSetId = params['RealReplicaSetId']
+        end
+      end
+
+      # 慢日志详情
+      class SlowLogItem < TencentCloud::Common::AbstractModel
+        # @param Log: 慢日志
+        # @type Log: String
+        # @param NodeName: 节点名称
+        # @type NodeName: String
+        # @param QueryHash: queryHash
+        # @type QueryHash: String
+
+        attr_accessor :Log, :NodeName, :QueryHash
+
+        def initialize(log=nil, nodename=nil, queryhash=nil)
+          @Log = log
+          @NodeName = nodename
+          @QueryHash = queryhash
+        end
+
+        def deserialize(params)
+          @Log = params['Log']
+          @NodeName = params['NodeName']
+          @QueryHash = params['QueryHash']
         end
       end
 

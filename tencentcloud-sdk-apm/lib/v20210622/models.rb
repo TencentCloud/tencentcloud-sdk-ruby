@@ -554,6 +554,70 @@ module TencentCloud
         end
       end
 
+      # CreateProfileTask请求参数结构体
+      class CreateProfileTaskRequest < TencentCloud::Common::AbstractModel
+        # @param ServiceName: 应用名称
+        # @type ServiceName: String
+        # @param InstanceId: APM业务系统ID
+        # @type InstanceId: String
+        # @param ServiceInstance: 应用实例（在线）
+        # @type ServiceInstance: String
+        # @param Event: 事件类型（cpu、alloc）
+        # @type Event: String
+        # @param Duration: 任务持续时长(单位：毫秒)，范围限制在5~180秒
+        # @type Duration: Integer
+        # @param AllTimes: 执行次数，范围限制在1~100次
+        # @type AllTimes: Integer
+        # @param StartTime: 开始时间戳，0代表从当前开始(单位：秒)
+        # @type StartTime: Integer
+        # @param TaskInterval: 任务执行间隔(单位：毫秒)，范围限制在10~600秒，不可小于1.5倍的Duration
+        # @type TaskInterval: Integer
+
+        attr_accessor :ServiceName, :InstanceId, :ServiceInstance, :Event, :Duration, :AllTimes, :StartTime, :TaskInterval
+
+        def initialize(servicename=nil, instanceid=nil, serviceinstance=nil, event=nil, duration=nil, alltimes=nil, starttime=nil, taskinterval=nil)
+          @ServiceName = servicename
+          @InstanceId = instanceid
+          @ServiceInstance = serviceinstance
+          @Event = event
+          @Duration = duration
+          @AllTimes = alltimes
+          @StartTime = starttime
+          @TaskInterval = taskinterval
+        end
+
+        def deserialize(params)
+          @ServiceName = params['ServiceName']
+          @InstanceId = params['InstanceId']
+          @ServiceInstance = params['ServiceInstance']
+          @Event = params['Event']
+          @Duration = params['Duration']
+          @AllTimes = params['AllTimes']
+          @StartTime = params['StartTime']
+          @TaskInterval = params['TaskInterval']
+        end
+      end
+
+      # CreateProfileTask返回参数结构体
+      class CreateProfileTaskResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务ID
+        # @type TaskId: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeApmAgent请求参数结构体
       class DescribeApmAgentRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 业务系统 ID

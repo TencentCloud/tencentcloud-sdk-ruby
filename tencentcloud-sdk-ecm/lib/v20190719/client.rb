@@ -256,6 +256,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # CBS在ECM早已下线
+
         # 本接口（AttachDisks）用于挂载云硬盘。
 
         # * 支持批量操作，将多块云盘挂载到同一云主机。如果多个云盘中存在不允许挂载的云盘，则操作不执行，返回特定的错误码。
@@ -378,6 +380,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # CBS在ECM早已下线
 
         # 本接口（CreateDisks）用于创建云硬盘。
 
@@ -998,6 +1002,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # CBS在ECM早已下线
+
         # 本接口（DeleteSnapshots）用于删除快照。
 
         # * 快照必须处于NORMAL状态，快照状态可以通过[DescribeSnapshots](/document/product/362/15647)接口查询，见输出参数中SnapshotState字段解释。
@@ -1216,6 +1222,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # CBS在ECM早已下线
 
         # 本接口（DescribeDisks）用于查询云硬盘列表。
 
@@ -1868,6 +1876,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # CBS在ECM早已下线
+
         # 本接口（DescribeSnapshots）用于查询快照的详细信息。
 
         # * 根据快照ID、创建快照的云硬盘ID、创建快照的云硬盘类型等对结果进行过滤，不同条件之间为与(AND)的关系，过滤信息详细请见过滤器`Filter`。
@@ -2038,6 +2048,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # CBS在ECM早已下线
 
         # 本接口（DetachDisks）用于卸载云硬盘。
 
@@ -3347,6 +3359,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # CBS在ECM早已下线
 
         # 本接口（TerminateDisks）用于退还云硬盘。
 

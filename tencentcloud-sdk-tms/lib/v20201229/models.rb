@@ -22,31 +22,23 @@ module TencentCloud
         # @param Label: 该字段用于返回检测结果所对应的全部恶意标签。<br>返回值：**Normal**：正常，**Porn**：色情，**Abuse**：谩骂，**Ad**：广告；以及其他令人反感、不安全或不适宜的内容类型。
         # @type Label: String
         # @param Suggestion: 该字段用于返回对应当前标签的后续操作建议。当您获取到判定结果后，返回值表示系统推荐的后续操作；建议您按照业务所需，对不同违规类型与建议值进行处理。<br>返回值：**Block**：建议屏蔽，**Review** ：建议人工复审，**Pass**：建议通过
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Suggestion: String
         # @param Keywords: 该字段用于返回检测文本命中的关键词信息，用于标注文本违规的具体原因（如：*加我微信*）。该参数可能会有多个返回值，代表命中的多个关键词；如返回值为空且Score不为空，则代表识别结果所对应的恶意标签（Label）是来自于语义模型判断的返回值。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Keywords: Array
         # @param Score: 该字段用于返回当前标签（Label）下的置信度，取值范围：0（**置信度最低**）-100（**置信度最高** ），越高代表文本越有可能属于当前返回的标签；如：*色情 99*，则表明该文本非常有可能属于色情内容；*色情 0*，则表明该文本不属于色情内容。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Score: Integer
         # @param LibType: 该字段用于返回自定义关键词对应的词库类型，取值为**1**（黑白库）和**2**（自定义关键词库），若未配置自定义关键词库,则默认值为1（黑白库匹配）。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LibType: Integer
         # @param LibId: 该字段用于返回自定义库的ID，以方便自定义库管理和配置。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LibId: String
         # @param LibName: 该字段用于返回自定义库的名称,以方便自定义库管理和配置。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LibName: String
         # @param SubLabel: 该字段用于返回当前标签（Label）下的二级标签。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubLabel: String
         # @param Tags: 该字段用于返回当前一级标签（Label）下的关键词、子标签及分数。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
         # @param HitInfos: 该字段用于返回违规文本命中信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HitInfos: Array
 
         attr_accessor :Label, :Suggestion, :Keywords, :Score, :LibType, :LibId, :LibName, :SubLabel, :Tags, :HitInfos
@@ -137,16 +129,12 @@ module TencentCloud
       # 关键词命中位置信息
       class HitInfo < TencentCloud::Common::AbstractModel
         # @param Type: 标识模型命中还是关键词命中
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: String
         # @param Keyword: 命中关键词
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Keyword: String
         # @param LibName: 自定义词库名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LibName: String
         # @param Positions: 位置信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Positions: Array
 
         attr_accessor :Type, :Keyword, :LibName, :Positions
@@ -176,10 +164,8 @@ module TencentCloud
       # 标识命中的违规关键词位置信息
       class Positions < TencentCloud::Common::AbstractModel
         # @param Start: 关键词起始位置
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Start: Integer
         # @param End: 关键词结束位置
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type End: Integer
 
         attr_accessor :Start, :End
@@ -218,18 +204,14 @@ module TencentCloud
       # 情感分析结果
       class SentimentAnalysis < TencentCloud::Common::AbstractModel
         # @param Label: 情感标签
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Label: String
         # @param Score: 标签分数，取值范围0到100
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Score: Integer
         # @param Detail: 情感分析明细
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Detail: :class:`Tencentcloud::Tms.v20201229.models.SentimentDetail`
         # @param Code: 响应码，成功为"OK"，失败为"InternalError"
         # @type Code: String
         # @param Message: 异常信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Message: String
 
         attr_accessor :Label, :Score, :Detail, :Code, :Message
@@ -257,10 +239,8 @@ module TencentCloud
       # 情感分析明细
       class SentimentDetail < TencentCloud::Common::AbstractModel
         # @param Positive: 正向分数，取值范围0到100
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Positive: Integer
         # @param Negative: 负向分数，取值范围0到100
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Negative: Integer
 
         attr_accessor :Positive, :Negative
@@ -279,13 +259,10 @@ module TencentCloud
       # 该字段用于返回审核结果明细字段的标签及分数
       class Tag < TencentCloud::Common::AbstractModel
         # @param Keyword: 该字段用于返回命中的关键词
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Keyword: String
         # @param SubLabel: 该字段用于返回子标签
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubLabel: String
         # @param Score: 该字段用于返回子标签对应的分数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Score: Integer
 
         attr_accessor :Keyword, :SubLabel, :Score
@@ -307,7 +284,7 @@ module TencentCloud
       class TextModerationRequest < TencentCloud::Common::AbstractModel
         # @param Content: 该字段表示待检测对象的文本内容，文本需要按utf-8格式编码，长度不能超过10000个字符（按unicode编码计算），并进行 Base64加密
         # @type Content: String
-        # @param BizType: 该字段表示使用的策略的具体编号，该字段需要先在[内容安全控制台](#https://console.cloud.tencent.com/cms/clouds/manage)中配置，控制台访问地址：。
+        # @param BizType: 该字段表示使用的策略的具体编号，该字段需要先在[内容安全控制台](https://console.cloud.tencent.com/cms/clouds/manage)中配置，控制台访问地址：。
         # 备注：不同Biztype关联不同的业务场景与识别能力策略，调用前请确认正确的Biztype。
         # @type BizType: String
         # @param DataId: 该字段表示您为待检测对象分配的数据ID，传入后可方便您对文件进行标识和管理。<br>取值：由英文字母（大小写均可）、数字及四个特殊符号（_，-，@，#）组成，**长度不超过64个字符**
@@ -316,9 +293,9 @@ module TencentCloud
         # @type User: :class:`Tencentcloud::Tms.v20201229.models.User`
         # @param Device: 该字段表示待检测对象对应的设备相关信息，传入后可便于甄别相应违规风险设备
         # @type Device: :class:`Tencentcloud::Tms.v20201229.models.Device`
-        # @param SourceLanguage: 表示Content的原始语种，枚举值包括 "en" 和 "zh"。其中，"en" 表示英文，"zh" 表示中文。非中文场景的处理耗时较高，具体情况取决于送审文本长度，非中文场景需[反馈工单](#https://console.cloud.tencent.com/workorder/category?level1_id=141&level2_id=1287&source=14&data_title=%E6%96%87%E6%9C%AC%E5%86%85%E5%AE%B9%E5%AE%89%E5%85%A8&step=1)确认。
+        # @param SourceLanguage: 表示Content的原始语种，枚举值包括 "en" 和 "zh"。其中，"en" 表示英文，"zh" 表示中文。非中文场景的处理耗时较高，具体情况取决于送审文本长度，非中文场景需[反馈工单](https://console.cloud.tencent.com/workorder/category?level1_id=141&level2_id=1287&source=14&data_title=%E6%96%87%E6%9C%AC%E5%86%85%E5%AE%B9%E5%AE%89%E5%85%A8&step=1)确认。
         # @type SourceLanguage: String
-        # @param Type: 审核的业务类型，枚举值包括 "TEXT" 和 "TEXT_AIGC"。"TEXT" 表示传统文本审核，"TEXT_AIGC" 表示文本AIGC审核。
+        # @param Type: 审核的业务类型，枚举值包括"TEXT"和"TEXT_AIGC"。其中"TEXT"表示传统文本审核，"TEXT_AIGC”表示AI生成检测（生成检测能力具体能力了解可[参见文档](https://cloud.tencent.com/document/product/1124/118694)）。
         # @type Type: String
 
         attr_accessor :Content, :BizType, :DataId, :User, :Device, :SourceLanguage, :Type
@@ -370,16 +347,12 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RiskDetails: Array
         # @param Extra: 该字段用于返回根据您的需求配置的额外附加信息（Extra），如未配置则默认返回值为空。<br>备注：不同客户或Biztype下返回信息不同，如需配置该字段请提交工单咨询或联系售后专员处理
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Extra: String
         # @param DataId: 该字段用于返回检测对象对应请求参数中的DataId，与输入的DataId字段中的内容对应
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DataId: String
         # @param SubLabel: 该字段用于返回当前标签（Label）下的二级标签。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubLabel: String
         # @param ContextText: 该字段用于返回上下文关联文本
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ContextText: String
         # @param SentimentAnalysis: 情感分析结果
         # 注意：此字段可能返回 null，表示取不到有效值。

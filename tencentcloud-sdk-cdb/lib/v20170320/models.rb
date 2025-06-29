@@ -12708,7 +12708,7 @@ module TencentCloud
 
       # ResetRootAccount请求参数结构体
       class ResetRootAccountRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例id
+        # @param InstanceId: 实例 ID。可通过 [DescribeDBInstances](https://cloud.tencent.com/document/product/236/15872) 接口获取。
         # @type InstanceId: String
 
         attr_accessor :InstanceId
