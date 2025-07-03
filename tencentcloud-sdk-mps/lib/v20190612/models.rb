@@ -2099,8 +2099,8 @@ module TencentCloud
 
         attr_accessor :SegmentSet, :SubtitlePath, :OutputStorage
         extend Gem::Deprecate
-        deprecate :OutputStorage, :none, 2025, 6
-        deprecate :OutputStorage=, :none, 2025, 6
+        deprecate :OutputStorage, :none, 2025, 7
+        deprecate :OutputStorage=, :none, 2025, 7
 
         def initialize(segmentset=nil, subtitlepath=nil, outputstorage=nil)
           @SegmentSet = segmentset
@@ -7682,13 +7682,17 @@ module TencentCloud
         # @type QualityControlItemSet: Array
         # @param Comment: 媒体质检模板描述信息，长度限制：256 个字符。
         # @type Comment: String
+        # @param RecordFormat: 录制文件格式。可选值：
+        # <li>PNG: PNG图片</li>
+        # @type RecordFormat: String
 
-        attr_accessor :Name, :QualityControlItemSet, :Comment
+        attr_accessor :Name, :QualityControlItemSet, :Comment, :RecordFormat
 
-        def initialize(name=nil, qualitycontrolitemset=nil, comment=nil)
+        def initialize(name=nil, qualitycontrolitemset=nil, comment=nil, recordformat=nil)
           @Name = name
           @QualityControlItemSet = qualitycontrolitemset
           @Comment = comment
+          @RecordFormat = recordformat
         end
 
         def deserialize(params)
@@ -7702,6 +7706,7 @@ module TencentCloud
             end
           end
           @Comment = params['Comment']
+          @RecordFormat = params['RecordFormat']
         end
       end
 
@@ -15621,10 +15626,10 @@ module TencentCloud
 
         attr_accessor :QualityControlResults, :DiagnoseResults, :QualityControlResultSet, :DiagnoseResultSet
         extend Gem::Deprecate
-        deprecate :QualityControlResults, :none, 2025, 6
-        deprecate :QualityControlResults=, :none, 2025, 6
-        deprecate :DiagnoseResults, :none, 2025, 6
-        deprecate :DiagnoseResults=, :none, 2025, 6
+        deprecate :QualityControlResults, :none, 2025, 7
+        deprecate :QualityControlResults=, :none, 2025, 7
+        deprecate :DiagnoseResults, :none, 2025, 7
+        deprecate :DiagnoseResults=, :none, 2025, 7
 
         def initialize(qualitycontrolresults=nil, diagnoseresults=nil, qualitycontrolresultset=nil, diagnoseresultset=nil)
           @QualityControlResults = qualitycontrolresults
@@ -16106,10 +16111,13 @@ module TencentCloud
         # @param SteadyState: 稳态标记。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SteadyState: Boolean
+        # @param UserId: websocket与trtc识别结果的UserId
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserId: String
 
-        attr_accessor :Text, :StartPtsTime, :EndPtsTime, :Confidence, :StartTime, :EndTime, :SteadyState
+        attr_accessor :Text, :StartPtsTime, :EndPtsTime, :Confidence, :StartTime, :EndTime, :SteadyState, :UserId
 
-        def initialize(text=nil, startptstime=nil, endptstime=nil, confidence=nil, starttime=nil, endtime=nil, steadystate=nil)
+        def initialize(text=nil, startptstime=nil, endptstime=nil, confidence=nil, starttime=nil, endtime=nil, steadystate=nil, userid=nil)
           @Text = text
           @StartPtsTime = startptstime
           @EndPtsTime = endptstime
@@ -16117,6 +16125,7 @@ module TencentCloud
           @StartTime = starttime
           @EndTime = endtime
           @SteadyState = steadystate
+          @UserId = userid
         end
 
         def deserialize(params)
@@ -16127,6 +16136,7 @@ module TencentCloud
           @StartTime = params['StartTime']
           @EndTime = params['EndTime']
           @SteadyState = params['SteadyState']
+          @UserId = params['UserId']
         end
       end
 
@@ -16481,10 +16491,13 @@ module TencentCloud
         # @param SteadyState: 稳态标记。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SteadyState: Boolean
+        # @param UserId: websocket与trtc实时翻译的UserId
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserId: String
 
-        attr_accessor :Text, :StartPtsTime, :EndPtsTime, :Confidence, :Trans, :StartTime, :EndTime, :SteadyState
+        attr_accessor :Text, :StartPtsTime, :EndPtsTime, :Confidence, :Trans, :StartTime, :EndTime, :SteadyState, :UserId
 
-        def initialize(text=nil, startptstime=nil, endptstime=nil, confidence=nil, trans=nil, starttime=nil, endtime=nil, steadystate=nil)
+        def initialize(text=nil, startptstime=nil, endptstime=nil, confidence=nil, trans=nil, starttime=nil, endtime=nil, steadystate=nil, userid=nil)
           @Text = text
           @StartPtsTime = startptstime
           @EndPtsTime = endptstime
@@ -16493,6 +16506,7 @@ module TencentCloud
           @StartTime = starttime
           @EndTime = endtime
           @SteadyState = steadystate
+          @UserId = userid
         end
 
         def deserialize(params)
@@ -16504,6 +16518,7 @@ module TencentCloud
           @StartTime = params['StartTime']
           @EndTime = params['EndTime']
           @SteadyState = params['SteadyState']
+          @UserId = params['UserId']
         end
       end
 
@@ -18840,14 +18855,18 @@ module TencentCloud
         # @type Comment: String
         # @param QualityControlItemSet: 媒体质检配置参数。
         # @type QualityControlItemSet: Array
+        # @param RecordFormat: 录制文件格式。可选值：
+        # <li>PNG: PNG图片</li>
+        # @type RecordFormat: String
 
-        attr_accessor :Definition, :Name, :Comment, :QualityControlItemSet
+        attr_accessor :Definition, :Name, :Comment, :QualityControlItemSet, :RecordFormat
 
-        def initialize(definition=nil, name=nil, comment=nil, qualitycontrolitemset=nil)
+        def initialize(definition=nil, name=nil, comment=nil, qualitycontrolitemset=nil, recordformat=nil)
           @Definition = definition
           @Name = name
           @Comment = comment
           @QualityControlItemSet = qualitycontrolitemset
+          @RecordFormat = recordformat
         end
 
         def deserialize(params)
@@ -18862,6 +18881,7 @@ module TencentCloud
               @QualityControlItemSet << qualitycontrolitemconfig_tmp
             end
           end
+          @RecordFormat = params['RecordFormat']
         end
       end
 
@@ -20747,7 +20767,13 @@ module TencentCloud
 
       # ProcessLiveStream请求参数结构体
       class ProcessLiveStreamRequest < TencentCloud::Common::AbstractModel
-        # @param Url: 直播流 URL（必须是直播文件地址，支持 rtmp，hls 和 flv 等）。
+        # @param Url: 直播流 URL（必须是直播文件地址，支持 rtmp，hls 和 flv, trtc 等）。
+        # trtc地址如下：
+        #  trtc: //trtc.rtc.qq.com/mps/`<roomid>`?sdkappid=`<sdkappid>`&userid=`<userid>`&usersig=<`usersig>`
+        # `<roomid>` 为trtc的房间号id, 为数字
+        # `<sdkappid>` 为trtc的sdk app id
+        # `<userid>` 为服务进入房间的用户id,可以区分谁是机器人
+        # <`usersig>` 为trtc 用户的签名
         # @type Url: String
         # @param TaskNotifyConfig: 任务的事件通知信息，用于指定直播流处理的结果。
         # @type TaskNotifyConfig: :class:`Tencentcloud::Mps.v20190612.models.LiveStreamTaskNotifyConfig`

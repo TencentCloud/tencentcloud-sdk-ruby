@@ -74,10 +74,10 @@ module TencentCloud
 
         attr_accessor :Account, :LoginAccount, :LoginPassword, :DeviceId, :InstanceId, :Password, :PrivateKey, :PrivateKeyPassword, :Exe, :Drivers, :Width, :Height, :IntranetAccess, :AutoManageAccessCredential
         extend Gem::Deprecate
-        deprecate :LoginAccount, :none, 2025, 6
-        deprecate :LoginAccount=, :none, 2025, 6
-        deprecate :LoginPassword, :none, 2025, 6
-        deprecate :LoginPassword=, :none, 2025, 6
+        deprecate :LoginAccount, :none, 2025, 7
+        deprecate :LoginAccount=, :none, 2025, 7
+        deprecate :LoginPassword, :none, 2025, 7
+        deprecate :LoginPassword=, :none, 2025, 7
 
         def initialize(account=nil, loginaccount=nil, loginpassword=nil, deviceid=nil, instanceid=nil, password=nil, privatekey=nil, privatekeypassword=nil, exe=nil, drivers=nil, width=nil, height=nil, intranetaccess=nil, automanageaccesscredential=nil)
           @Account = account
@@ -974,6 +974,94 @@ module TencentCloud
           @Name = params['Name']
           @CmdList = params['CmdList']
           @Type = params['Type']
+        end
+      end
+
+      # 命令集合
+      class Command < TencentCloud::Common::AbstractModel
+        # @param Cmd: 命令
+        # @type Cmd: String
+        # @param Time: 命令输入的时间
+        # @type Time: String
+        # @param TimeOffset: 命令执行时间相对于所属会话开始时间的偏移量，单位ms
+        # @type TimeOffset: Integer
+        # @param Action: 命令执行情况，1--允许，2--拒绝，3--确认
+        # @type Action: Integer
+        # @param Sid: 会话id
+        # @type Sid: String
+        # @param UserName: 用户名
+        # @type UserName: String
+        # @param Account: 设备account
+        # @type Account: String
+        # @param InstanceId: 设备ip
+        # @type InstanceId: String
+        # @param FromIp: source ip
+        # @type FromIp: String
+        # @param SessTime: 该命令所属会话的会话开始时间
+        # @type SessTime: String
+        # @param SessionTime: 该命令所属会话的会话开始时间
+        # @type SessionTime: String
+        # @param ConfirmTime: 复核时间
+        # @type ConfirmTime: String
+        # @param UserDepartmentId: 用户部门id
+        # @type UserDepartmentId: String
+        # @param UserDepartmentName: 用户部门name
+        # @type UserDepartmentName: String
+        # @param DeviceDepartmentId: 设备部门id
+        # @type DeviceDepartmentId: String
+        # @param DeviceDepartmentName: 设备部门name
+        # @type DeviceDepartmentName: String
+        # @param Size: 会话大小
+        # @type Size: Integer
+        # @param SignValue: 签名值
+        # @type SignValue: String
+        # @param DeviceKind: 资产类型
+        # @type DeviceKind: String
+
+        attr_accessor :Cmd, :Time, :TimeOffset, :Action, :Sid, :UserName, :Account, :InstanceId, :FromIp, :SessTime, :SessionTime, :ConfirmTime, :UserDepartmentId, :UserDepartmentName, :DeviceDepartmentId, :DeviceDepartmentName, :Size, :SignValue, :DeviceKind
+
+        def initialize(cmd=nil, time=nil, timeoffset=nil, action=nil, sid=nil, username=nil, account=nil, instanceid=nil, fromip=nil, sesstime=nil, sessiontime=nil, confirmtime=nil, userdepartmentid=nil, userdepartmentname=nil, devicedepartmentid=nil, devicedepartmentname=nil, size=nil, signvalue=nil, devicekind=nil)
+          @Cmd = cmd
+          @Time = time
+          @TimeOffset = timeoffset
+          @Action = action
+          @Sid = sid
+          @UserName = username
+          @Account = account
+          @InstanceId = instanceid
+          @FromIp = fromip
+          @SessTime = sesstime
+          @SessionTime = sessiontime
+          @ConfirmTime = confirmtime
+          @UserDepartmentId = userdepartmentid
+          @UserDepartmentName = userdepartmentname
+          @DeviceDepartmentId = devicedepartmentid
+          @DeviceDepartmentName = devicedepartmentname
+          @Size = size
+          @SignValue = signvalue
+          @DeviceKind = devicekind
+        end
+
+        def deserialize(params)
+          @Cmd = params['Cmd']
+          @Time = params['Time']
+          @TimeOffset = params['TimeOffset']
+          @Action = params['Action']
+          @Sid = params['Sid']
+          @UserName = params['UserName']
+          @Account = params['Account']
+          @InstanceId = params['InstanceId']
+          @FromIp = params['FromIp']
+          @SessTime = params['SessTime']
+          @SessionTime = params['SessionTime']
+          @ConfirmTime = params['ConfirmTime']
+          @UserDepartmentId = params['UserDepartmentId']
+          @UserDepartmentName = params['UserDepartmentName']
+          @DeviceDepartmentId = params['DeviceDepartmentId']
+          @DeviceDepartmentName = params['DeviceDepartmentName']
+          @Size = params['Size']
+          @SignValue = params['SignValue']
+          @DeviceKind = params['DeviceKind']
         end
       end
 
@@ -4706,8 +4794,8 @@ module TencentCloud
 
         attr_accessor :ResourceId, :Status, :ResourceEdition, :ResourceNode, :AutoRenewFlag, :PackageBandwidth, :PackageNode, :LogDelivery
         extend Gem::Deprecate
-        deprecate :Status, :none, 2025, 6
-        deprecate :Status=, :none, 2025, 6
+        deprecate :Status, :none, 2025, 7
+        deprecate :Status=, :none, 2025, 7
 
         def initialize(resourceid=nil, status=nil, resourceedition=nil, resourcenode=nil, autorenewflag=nil, packagebandwidth=nil, packagenode=nil, logdelivery=nil)
           @ResourceId = resourceid
@@ -4950,6 +5038,34 @@ module TencentCloud
         end
       end
 
+      # 回放所需字段信息
+      class ReplayInformation < TencentCloud::Common::AbstractModel
+        # @param Token: 令牌
+        # @type Token: String
+        # @param StartTime: 会话开始时间
+        # @type StartTime: String
+        # @param Address: 回放链接
+        # @type Address: String
+        # @param ReplayType: 回放类型 ，默认0， 1-rfb 2-mp4 3-ssh
+        # @type ReplayType: Integer
+
+        attr_accessor :Token, :StartTime, :Address, :ReplayType
+
+        def initialize(token=nil, starttime=nil, address=nil, replaytype=nil)
+          @Token = token
+          @StartTime = starttime
+          @Address = address
+          @ReplayType = replaytype
+        end
+
+        def deserialize(params)
+          @Token = params['Token']
+          @StartTime = params['StartTime']
+          @Address = params['Address']
+          @ReplayType = params['ReplayType']
+        end
+      end
+
       # ReplaySession请求参数结构体
       class ReplaySessionRequest < TencentCloud::Common::AbstractModel
         # @param Sid: 会话Sid
@@ -4968,16 +5084,23 @@ module TencentCloud
 
       # ReplaySession返回参数结构体
       class ReplaySessionResponse < TencentCloud::Common::AbstractModel
+        # @param ReplayInfo: 回放所需信息
+        # @type ReplayInfo: :class:`Tencentcloud::Bh.v20230418.models.ReplayInformation`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :ReplayInfo, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(replayinfo=nil, requestid=nil)
+          @ReplayInfo = replayinfo
           @RequestId = requestid
         end
 
         def deserialize(params)
+          unless params['ReplayInfo'].nil?
+            @ReplayInfo = ReplayInformation.new
+            @ReplayInfo.deserialize(params['ReplayInfo'])
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -5493,18 +5616,29 @@ module TencentCloud
       class SearchCommandBySidResponse < TencentCloud::Common::AbstractModel
         # @param TotalCount: 总记录数
         # @type TotalCount: Integer
+        # @param CommandSet: 命令列表
+        # @type CommandSet: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TotalCount, :RequestId
+        attr_accessor :TotalCount, :CommandSet, :RequestId
 
-        def initialize(totalcount=nil, requestid=nil)
+        def initialize(totalcount=nil, commandset=nil, requestid=nil)
           @TotalCount = totalcount
+          @CommandSet = commandset
           @RequestId = requestid
         end
 
         def deserialize(params)
           @TotalCount = params['TotalCount']
+          unless params['CommandSet'].nil?
+            @CommandSet = []
+            params['CommandSet'].each do |i|
+              command_tmp = Command.new
+              command_tmp.deserialize(i)
+              @CommandSet << command_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end

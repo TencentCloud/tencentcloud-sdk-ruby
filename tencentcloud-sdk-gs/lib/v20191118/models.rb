@@ -35,10 +35,12 @@ module TencentCloud
         # @type AppMode: String
         # @param UpdateState: 应用更新状态，取值：UPLOADING 上传中、CREATING 创建中、CREATE_FAIL 创建失败、CREATE_SUCCESS 创建成功、NORMAL 默认状态
         # @type UpdateState: String
+        # @param PackageName: 安卓应用包名
+        # @type PackageName: String
 
-        attr_accessor :AndroidAppId, :Name, :State, :AndroidAppVersionInfo, :CreateTime, :UserId, :AppMode, :UpdateState
+        attr_accessor :AndroidAppId, :Name, :State, :AndroidAppVersionInfo, :CreateTime, :UserId, :AppMode, :UpdateState, :PackageName
 
-        def initialize(androidappid=nil, name=nil, state=nil, androidappversioninfo=nil, createtime=nil, userid=nil, appmode=nil, updatestate=nil)
+        def initialize(androidappid=nil, name=nil, state=nil, androidappversioninfo=nil, createtime=nil, userid=nil, appmode=nil, updatestate=nil, packagename=nil)
           @AndroidAppId = androidappid
           @Name = name
           @State = state
@@ -47,6 +49,7 @@ module TencentCloud
           @UserId = userid
           @AppMode = appmode
           @UpdateState = updatestate
+          @PackageName = packagename
         end
 
         def deserialize(params)
@@ -65,6 +68,7 @@ module TencentCloud
           @UserId = params['UserId']
           @AppMode = params['AppMode']
           @UpdateState = params['UpdateState']
+          @PackageName = params['PackageName']
         end
       end
 
@@ -104,12 +108,16 @@ module TencentCloud
         # @type UninstallCommand: String
         # @param CleanupMode: 应用资源清理模式（实例安装应用所用资源），取值：CLEANUP_ON_UNINSTALL（默认值），卸载 App 时清理；CLEANUP_AFTER_INSTALL，安装 App 后立即清理。普通应用只有 CLEANUP_AFTER_INSTALL 模式。
         # @type CleanupMode: String
-        # @param AndroidAppVersionName: 安卓应用版本名称
+        # @param AndroidAppVersionName: 安卓应用版本名称（版本描述、备注）
         # @type AndroidAppVersionName: String
+        # @param Activity: 安卓应用启动页
+        # @type Activity: String
+        # @param VersionName: 应用版本号（Version Name）
+        # @type VersionName: String
 
-        attr_accessor :AndroidAppVersion, :State, :CreateTime, :Command, :UninstallCommand, :CleanupMode, :AndroidAppVersionName
+        attr_accessor :AndroidAppVersion, :State, :CreateTime, :Command, :UninstallCommand, :CleanupMode, :AndroidAppVersionName, :Activity, :VersionName
 
-        def initialize(androidappversion=nil, state=nil, createtime=nil, command=nil, uninstallcommand=nil, cleanupmode=nil, androidappversionname=nil)
+        def initialize(androidappversion=nil, state=nil, createtime=nil, command=nil, uninstallcommand=nil, cleanupmode=nil, androidappversionname=nil, activity=nil, versionname=nil)
           @AndroidAppVersion = androidappversion
           @State = state
           @CreateTime = createtime
@@ -117,6 +125,8 @@ module TencentCloud
           @UninstallCommand = uninstallcommand
           @CleanupMode = cleanupmode
           @AndroidAppVersionName = androidappversionname
+          @Activity = activity
+          @VersionName = versionname
         end
 
         def deserialize(params)
@@ -127,6 +137,8 @@ module TencentCloud
           @UninstallCommand = params['UninstallCommand']
           @CleanupMode = params['CleanupMode']
           @AndroidAppVersionName = params['AndroidAppVersionName']
+          @Activity = params['Activity']
+          @VersionName = params['VersionName']
         end
       end
 
@@ -1923,19 +1935,30 @@ module TencentCloud
         # @type Limit: Integer
         # @param AndroidAppIds: 应用 ID 列表。通过应用 ID 做集合查询
         # @type AndroidAppIds: Array
+        # @param Filters: 字段过滤器。Filter 的 Name 有以下值： AndroidInstanceId：实例 ID
+        # @type Filters: Array
 
-        attr_accessor :Offset, :Limit, :AndroidAppIds
+        attr_accessor :Offset, :Limit, :AndroidAppIds, :Filters
 
-        def initialize(offset=nil, limit=nil, androidappids=nil)
+        def initialize(offset=nil, limit=nil, androidappids=nil, filters=nil)
           @Offset = offset
           @Limit = limit
           @AndroidAppIds = androidappids
+          @Filters = filters
         end
 
         def deserialize(params)
           @Offset = params['Offset']
           @Limit = params['Limit']
           @AndroidAppIds = params['AndroidAppIds']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
         end
       end
 

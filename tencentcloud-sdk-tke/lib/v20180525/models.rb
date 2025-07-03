@@ -1129,7 +1129,9 @@ module TencentCloud
         # @type OsCustomizeType: String
         # @param NeedWorkSecurityGroup: 是否开启节点的默认安全组(默认: 否，Alpha特性)
         # @type NeedWorkSecurityGroup: Boolean
-        # @param SubnetId: 当选择Cilium Overlay网络插件时，TKE会从该子网获取2个IP用来创建内网负载均衡
+        # @param SubnetId: 控制面子网信息，仅在以下场景使用时要求必填。
+        # - 容器网络插件为CiliumOverlay时，TKE会从该子网获取2个IP用来创建内网负载均衡。
+        # - 创建支持CDC的托管集群，且网络插件为VPC-CNI时，要求预留至少12个IP。
         # @type SubnetId: String
         # @param ClusterLevel: 集群等级，针对托管集群生效
         # @type ClusterLevel: String
@@ -2297,10 +2299,12 @@ module TencentCloud
         # @type ExtensionAddons: Array
         # @param CdcId: 本地专用集群Id
         # @type CdcId: String
+        # @param DisableAddons: 屏蔽安装指定Addon组件，填写相应的AddonName
+        # @type DisableAddons: Array
 
-        attr_accessor :ClusterType, :ClusterCIDRSettings, :RunInstancesForNode, :ClusterBasicSettings, :ClusterAdvancedSettings, :InstanceAdvancedSettings, :ExistedInstancesForNode, :InstanceDataDiskMountSettings, :ExtensionAddons, :CdcId
+        attr_accessor :ClusterType, :ClusterCIDRSettings, :RunInstancesForNode, :ClusterBasicSettings, :ClusterAdvancedSettings, :InstanceAdvancedSettings, :ExistedInstancesForNode, :InstanceDataDiskMountSettings, :ExtensionAddons, :CdcId, :DisableAddons
 
-        def initialize(clustertype=nil, clustercidrsettings=nil, runinstancesfornode=nil, clusterbasicsettings=nil, clusteradvancedsettings=nil, instanceadvancedsettings=nil, existedinstancesfornode=nil, instancedatadiskmountsettings=nil, extensionaddons=nil, cdcid=nil)
+        def initialize(clustertype=nil, clustercidrsettings=nil, runinstancesfornode=nil, clusterbasicsettings=nil, clusteradvancedsettings=nil, instanceadvancedsettings=nil, existedinstancesfornode=nil, instancedatadiskmountsettings=nil, extensionaddons=nil, cdcid=nil, disableaddons=nil)
           @ClusterType = clustertype
           @ClusterCIDRSettings = clustercidrsettings
           @RunInstancesForNode = runinstancesfornode
@@ -2311,6 +2315,7 @@ module TencentCloud
           @InstanceDataDiskMountSettings = instancedatadiskmountsettings
           @ExtensionAddons = extensionaddons
           @CdcId = cdcid
+          @DisableAddons = disableaddons
         end
 
         def deserialize(params)
@@ -2364,6 +2369,7 @@ module TencentCloud
             end
           end
           @CdcId = params['CdcId']
+          @DisableAddons = params['DisableAddons']
         end
       end
 
@@ -2473,13 +2479,13 @@ module TencentCloud
 
       # CreateClusterVirtualNodePool请求参数结构体
       class CreateClusterVirtualNodePoolRequest < TencentCloud::Common::AbstractModel
-        # @param ClusterId: 集群Id
+        # @param ClusterId: 集群ID，通过DescribeClusters接口获取
         # @type ClusterId: String
         # @param Name: 节点池名称
         # @type Name: String
         # @param SubnetIds: 子网ID列表
         # @type SubnetIds: Array
-        # @param SecurityGroupIds: 安全组ID列表
+        # @param SecurityGroupIds: 安全组ID列表，必选参数
         # @type SecurityGroupIds: Array
         # @param Labels: 虚拟节点label
         # @type Labels: Array
@@ -2487,7 +2493,7 @@ module TencentCloud
         # @type Taints: Array
         # @param VirtualNodes: 节点列表
         # @type VirtualNodes: Array
-        # @param DeletionProtection: 删除保护开关
+        # @param DeletionProtection: 删除保护开关，默认关闭
         # @type DeletionProtection: Boolean
         # @param OS: 节点池操作系统：
         # - linux（默认）
@@ -2564,15 +2570,15 @@ module TencentCloud
 
       # CreateClusterVirtualNode请求参数结构体
       class CreateClusterVirtualNodeRequest < TencentCloud::Common::AbstractModel
-        # @param ClusterId: 集群ID
+        # @param ClusterId: 集群ID，通过DescribeClusters接口获取
         # @type ClusterId: String
-        # @param NodePoolId: 虚拟节点所属节点池
+        # @param NodePoolId: 虚拟节点所属节点池，通过DescribeNodePools接口获取
         # @type NodePoolId: String
-        # @param SubnetId: 虚拟节点所属子网
+        # @param SubnetId: 虚拟节点所属子网，SubnetId、SubnetIds、VirtualNodes必选一个。
         # @type SubnetId: String
-        # @param SubnetIds: 虚拟节点子网ID列表，和参数SubnetId互斥
+        # @param SubnetIds: 虚拟节点子网ID列表，SubnetId、SubnetIds、VirtualNodes必选一个。
         # @type SubnetIds: Array
-        # @param VirtualNodes: 虚拟节点列表
+        # @param VirtualNodes: 虚拟节点列表，SubnetId、SubnetIds、VirtualNodes必选一个。
         # @type VirtualNodes: Array
 
         attr_accessor :ClusterId, :NodePoolId, :SubnetId, :SubnetIds, :VirtualNodes
@@ -4277,9 +4283,9 @@ module TencentCloud
 
       # DeleteClusterVirtualNodePool请求参数结构体
       class DeleteClusterVirtualNodePoolRequest < TencentCloud::Common::AbstractModel
-        # @param ClusterId: 集群ID
+        # @param ClusterId: 集群ID，通过DescribeClusters接口获取
         # @type ClusterId: String
-        # @param NodePoolIds: 超级节点池ID列表
+        # @param NodePoolIds: 节点池ID，通过DescribeNodePools接口获取
         # @type NodePoolIds: Array
         # @param Force: 是否强制删除，在超级节点上有pod的情况下，如果选择非强制删除，则删除会失败
         # @type Force: Boolean
@@ -4317,9 +4323,9 @@ module TencentCloud
 
       # DeleteClusterVirtualNode请求参数结构体
       class DeleteClusterVirtualNodeRequest < TencentCloud::Common::AbstractModel
-        # @param ClusterId: 集群ID
+        # @param ClusterId: 集群ID，通过DescribeClusters接口获取
         # @type ClusterId: String
-        # @param NodeNames: 虚拟节点列表
+        # @param NodeNames: 虚拟节点ID列表
         # @type NodeNames: Array
         # @param Force: 是否强制删除：如果虚拟节点上有运行中Pod，则非强制删除状态下不会进行删除
         # @type Force: Boolean
@@ -6653,7 +6659,7 @@ module TencentCloud
 
       # DescribeClusterVirtualNodePools请求参数结构体
       class DescribeClusterVirtualNodePoolsRequest < TencentCloud::Common::AbstractModel
-        # @param ClusterId: 集群ID
+        # @param ClusterId: 集群ID，通过DescribeClusters接口获取
         # @type ClusterId: String
 
         attr_accessor :ClusterId
@@ -6700,11 +6706,11 @@ module TencentCloud
 
       # DescribeClusterVirtualNode请求参数结构体
       class DescribeClusterVirtualNodeRequest < TencentCloud::Common::AbstractModel
-        # @param ClusterId: 集群ID
+        # @param ClusterId: 集群ID，通过DescribeClusters接口获取
         # @type ClusterId: String
-        # @param NodePoolId: 节点池ID
+        # @param NodePoolId: 节点池ID，通过DescribeNodePools接口获取
         # @type NodePoolId: String
-        # @param NodeNames: 节点名称
+        # @param NodeNames: 节点名称，可搜索DescribeClusterVirtualNode接口节点
         # @type NodeNames: Array
 
         attr_accessor :ClusterId, :NodePoolId, :NodeNames
@@ -10692,9 +10698,9 @@ module TencentCloud
 
       # DrainClusterVirtualNode请求参数结构体
       class DrainClusterVirtualNodeRequest < TencentCloud::Common::AbstractModel
-        # @param ClusterId: 集群ID
+        # @param ClusterId: 集群ID，通过DescribeClusters接口获取
         # @type ClusterId: String
-        # @param NodeName: 节点名
+        # @param NodeName: 节点ID
         # @type NodeName: String
 
         attr_accessor :ClusterId, :NodeName
@@ -14089,19 +14095,19 @@ module TencentCloud
 
       # ModifyClusterVirtualNodePool请求参数结构体
       class ModifyClusterVirtualNodePoolRequest < TencentCloud::Common::AbstractModel
-        # @param ClusterId: 集群ID
+        # @param ClusterId: 集群ID，通过DescribeClusters接口获取
         # @type ClusterId: String
-        # @param NodePoolId: 节点池ID
+        # @param NodePoolId: 节点池ID，通过DescribeNodePools接口获取
         # @type NodePoolId: String
-        # @param Name: 节点池名称
+        # @param Name: 节点池名称，必须修改至少一个参数
         # @type Name: String
-        # @param SecurityGroupIds: 安全组ID列表
+        # @param SecurityGroupIds: 安全组ID列表，必须修改至少一个参数
         # @type SecurityGroupIds: Array
-        # @param Labels: 虚拟节点label
+        # @param Labels: 虚拟节点label，必须修改至少一个参数
         # @type Labels: Array
-        # @param Taints: 虚拟节点taint
+        # @param Taints: 虚拟节点taint，必须修改至少一个参数
         # @type Taints: Array
-        # @param DeletionProtection: 删除保护开关
+        # @param DeletionProtection: 删除保护开关，必须修改至少一个参数
         # @type DeletionProtection: Boolean
 
         attr_accessor :ClusterId, :NodePoolId, :Name, :SecurityGroupIds, :Labels, :Taints, :DeletionProtection
@@ -19373,6 +19379,9 @@ module TencentCloud
         # @param Name: 节点池名称
         # @type Name: String
         # @param LifeState: 节点池生命周期
+        # - creating：创建中
+        # - normal：正常
+        # - updating：更新中
         # @type LifeState: String
         # @param Labels: 虚拟节点label
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -19418,7 +19427,7 @@ module TencentCloud
 
       # 超级节点
       class VirtualNodeSpec < TencentCloud::Common::AbstractModel
-        # @param DisplayName: 节点展示名称
+        # @param DisplayName: 节点展示名称，建议不超过20个字符
         # @type DisplayName: String
         # @param SubnetId: 子网ID
         # @type SubnetId: String

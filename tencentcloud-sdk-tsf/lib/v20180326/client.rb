@@ -1522,6 +1522,30 @@ module TencentCloud
 
         # 部署容器应用-更新
 
+        # @param request: Request instance for DeployContainerApplication.
+        # @type request: :class:`Tencentcloud::tsf::V20180326::DeployContainerApplicationRequest`
+        # @rtype: :class:`Tencentcloud::tsf::V20180326::DeployContainerApplicationResponse`
+        def DeployContainerApplication(request)
+          body = send_request('DeployContainerApplication', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeployContainerApplicationResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 部署容器应用-更新
+
         # @param request: Request instance for DeployContainerGroup.
         # @type request: :class:`Tencentcloud::tsf::V20180326::DeployContainerGroupRequest`
         # @rtype: :class:`Tencentcloud::tsf::V20180326::DeployContainerGroupResponse`

@@ -126,6 +126,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 包月集群转按量集群（不含cdb）
+
+        # @param request: Request instance for ConvertPreToPostCluster.
+        # @type request: :class:`Tencentcloud::emr::V20190103::ConvertPreToPostClusterRequest`
+        # @rtype: :class:`Tencentcloud::emr::V20190103::ConvertPreToPostClusterResponse`
+        def ConvertPreToPostCluster(request)
+          body = send_request('ConvertPreToPostCluster', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ConvertPreToPostClusterResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建EMR容器集群实例
 
         # @param request: Request instance for CreateCloudInstance.
@@ -944,6 +968,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询节点规格
+
+        # @param request: Request instance for DescribeNodeSpec.
+        # @type request: :class:`Tencentcloud::emr::V20190103::DescribeNodeSpecRequest`
+        # @rtype: :class:`Tencentcloud::emr::V20190103::DescribeNodeSpecResponse`
+        def DescribeNodeSpec(request)
+          body = send_request('DescribeNodeSpec', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeNodeSpecResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询YARN资源调度数据信息。已废弃，请使用`DescribeYarnQueue`去查询队列信息。
 
         # @param request: Request instance for DescribeResourceSchedule.
@@ -1026,6 +1074,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeSLInstanceListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 描述服务配置组信息
+
+        # @param request: Request instance for DescribeServiceConfGroupInfos.
+        # @type request: :class:`Tencentcloud::emr::V20190103::DescribeServiceConfGroupInfosRequest`
+        # @rtype: :class:`Tencentcloud::emr::V20190103::DescribeServiceConfGroupInfosResponse`
+        def DescribeServiceConfGroupInfos(request)
+          body = send_request('DescribeServiceConfGroupInfos', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeServiceConfGroupInfosResponse.new
             model.deserialize(response['Response'])
             model
           else

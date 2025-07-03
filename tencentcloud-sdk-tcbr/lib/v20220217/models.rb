@@ -1074,10 +1074,12 @@ module TencentCloud
         # @param SessionAffinity: 会话亲和性开关
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SessionAffinity: String
+        # @param VpcConf: Vpc 配置参数
+        # @type VpcConf: :class:`Tencentcloud::Tcbr.v20220217.models.VpcConf`
 
-        attr_accessor :EnvId, :ServerName, :OpenAccessTypes, :Cpu, :Mem, :MinNum, :MaxNum, :PolicyDetails, :CustomLogs, :EnvParams, :InitialDelaySeconds, :CreateTime, :Port, :HasDockerfile, :Dockerfile, :BuildDir, :LogType, :LogSetId, :LogTopicId, :LogParseType, :Tag, :InternalAccess, :InternalDomain, :OperationMode, :TimerScale, :EntryPoint, :Cmd, :SessionAffinity
+        attr_accessor :EnvId, :ServerName, :OpenAccessTypes, :Cpu, :Mem, :MinNum, :MaxNum, :PolicyDetails, :CustomLogs, :EnvParams, :InitialDelaySeconds, :CreateTime, :Port, :HasDockerfile, :Dockerfile, :BuildDir, :LogType, :LogSetId, :LogTopicId, :LogParseType, :Tag, :InternalAccess, :InternalDomain, :OperationMode, :TimerScale, :EntryPoint, :Cmd, :SessionAffinity, :VpcConf
 
-        def initialize(envid=nil, servername=nil, openaccesstypes=nil, cpu=nil, mem=nil, minnum=nil, maxnum=nil, policydetails=nil, customlogs=nil, envparams=nil, initialdelayseconds=nil, createtime=nil, port=nil, hasdockerfile=nil, dockerfile=nil, builddir=nil, logtype=nil, logsetid=nil, logtopicid=nil, logparsetype=nil, tag=nil, internalaccess=nil, internaldomain=nil, operationmode=nil, timerscale=nil, entrypoint=nil, cmd=nil, sessionaffinity=nil)
+        def initialize(envid=nil, servername=nil, openaccesstypes=nil, cpu=nil, mem=nil, minnum=nil, maxnum=nil, policydetails=nil, customlogs=nil, envparams=nil, initialdelayseconds=nil, createtime=nil, port=nil, hasdockerfile=nil, dockerfile=nil, builddir=nil, logtype=nil, logsetid=nil, logtopicid=nil, logparsetype=nil, tag=nil, internalaccess=nil, internaldomain=nil, operationmode=nil, timerscale=nil, entrypoint=nil, cmd=nil, sessionaffinity=nil, vpcconf=nil)
           @EnvId = envid
           @ServerName = servername
           @OpenAccessTypes = openaccesstypes
@@ -1106,6 +1108,7 @@ module TencentCloud
           @EntryPoint = entrypoint
           @Cmd = cmd
           @SessionAffinity = sessionaffinity
+          @VpcConf = vpcconf
         end
 
         def deserialize(params)
@@ -1151,6 +1154,10 @@ module TencentCloud
           @EntryPoint = params['EntryPoint']
           @Cmd = params['Cmd']
           @SessionAffinity = params['SessionAffinity']
+          unless params['VpcConf'].nil?
+            @VpcConf = VpcConf.new
+            @VpcConf.deserialize(params['VpcConf'])
+          end
         end
       end
 
@@ -1451,14 +1458,17 @@ module TencentCloud
         # @type DeployInfo: :class:`Tencentcloud::Tcbr.v20220217.models.DeployParam`
         # @param ServerConfig: 服务配置信息
         # @type ServerConfig: :class:`Tencentcloud::Tcbr.v20220217.models.ServerBaseConfig`
+        # @param Business: 业务类型，默认tcr
+        # @type Business: String
 
-        attr_accessor :EnvId, :ServerName, :DeployInfo, :ServerConfig
+        attr_accessor :EnvId, :ServerName, :DeployInfo, :ServerConfig, :Business
 
-        def initialize(envid=nil, servername=nil, deployinfo=nil, serverconfig=nil)
+        def initialize(envid=nil, servername=nil, deployinfo=nil, serverconfig=nil, business=nil)
           @EnvId = envid
           @ServerName = servername
           @DeployInfo = deployinfo
           @ServerConfig = serverconfig
+          @Business = business
         end
 
         def deserialize(params)
@@ -1472,6 +1482,7 @@ module TencentCloud
             @ServerConfig = ServerBaseConfig.new
             @ServerConfig.deserialize(params['ServerConfig'])
           end
+          @Business = params['Business']
         end
       end
 
@@ -1531,6 +1542,34 @@ module TencentCloud
             @UrlParam.deserialize(params['UrlParam'])
           end
           @Priority = params['Priority']
+        end
+      end
+
+      # 云托管服务 Vpc 配置
+      class VpcConf < TencentCloud::Common::AbstractModel
+        # @param VpcId: vpc id
+        # @type VpcId: String
+        # @param VpcCIDR: vpc 网段
+        # @type VpcCIDR: String
+        # @param SubnetId: subnet id
+        # @type SubnetId: String
+        # @param SubnetCIDR: subnet 网段
+        # @type SubnetCIDR: String
+
+        attr_accessor :VpcId, :VpcCIDR, :SubnetId, :SubnetCIDR
+
+        def initialize(vpcid=nil, vpccidr=nil, subnetid=nil, subnetcidr=nil)
+          @VpcId = vpcid
+          @VpcCIDR = vpccidr
+          @SubnetId = subnetid
+          @SubnetCIDR = subnetcidr
+        end
+
+        def deserialize(params)
+          @VpcId = params['VpcId']
+          @VpcCIDR = params['VpcCIDR']
+          @SubnetId = params['SubnetId']
+          @SubnetCIDR = params['SubnetCIDR']
         end
       end
 

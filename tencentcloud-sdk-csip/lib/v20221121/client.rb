@@ -173,6 +173,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询云边界分析-暴露路径下主机节点的进程列表
+
+        # @param request: Request instance for DescribeAssetProcessList.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DescribeAssetProcessListRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DescribeAssetProcessListResponse`
+        def DescribeAssetProcessList(request)
+          body = send_request('DescribeAssetProcessList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAssetProcessListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 资产视角下云资源配置风险列表
 
         # @param request: Request instance for DescribeAssetRiskList.
@@ -461,7 +485,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 暴露面资产分类
+        # 云边界分析资产分类
 
         # @param request: Request instance for DescribeExposeAssetCategory.
         # @type request: :class:`Tencentcloud::csip::V20221121::DescribeExposeAssetCategoryRequest`
@@ -485,7 +509,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询互联网暴露节点
+        # 查询云边界分析路径节点
 
         # @param request: Request instance for DescribeExposePath.
         # @type request: :class:`Tencentcloud::csip::V20221121::DescribeExposePathRequest`
@@ -509,7 +533,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 互联网暴露资产列表
+        # 云边界分析资产列表
 
         # @param request: Request instance for DescribeExposures.
         # @type request: :class:`Tencentcloud::csip::V20221121::DescribeExposuresRequest`
@@ -543,6 +567,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeGatewayAssetsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询云边界分析-暴露路径下主机节点的高危基线风险列表
+
+        # @param request: Request instance for DescribeHighBaseLineRiskList.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DescribeHighBaseLineRiskListRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DescribeHighBaseLineRiskListResponse`
+        def DescribeHighBaseLineRiskList(request)
+          body = send_request('DescribeHighBaseLineRiskList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeHighBaseLineRiskListResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1037,7 +1085,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询互联网暴露扫描结果统计信息
+        # 查询云边界分析扫描结果统计信息
 
         # @param request: Request instance for DescribeScanStatistic.
         # @type request: :class:`Tencentcloud::csip::V20221121::DescribeScanStatisticRequest`
@@ -1335,6 +1383,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeVpcAssetsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询云边界分析-暴露路径下主机节点的漏洞列表
+
+        # @param request: Request instance for DescribeVulRiskList.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DescribeVulRiskListRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DescribeVulRiskListResponse`
+        def DescribeVulRiskList(request)
+          body = send_request('DescribeVulRiskList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeVulRiskListResponse.new
             model.deserialize(response['Response'])
             model
           else

@@ -1721,8 +1721,8 @@ module TencentCloud
 
         attr_accessor :Switch, :CacheTime, :IgnoreCacheControl
         extend Gem::Deprecate
-        deprecate :IgnoreCacheControl, :none, 2025, 6
-        deprecate :IgnoreCacheControl=, :none, 2025, 6
+        deprecate :IgnoreCacheControl, :none, 2025, 7
+        deprecate :IgnoreCacheControl=, :none, 2025, 7
 
         def initialize(switch=nil, cachetime=nil, ignorecachecontrol=nil)
           @Switch = switch
@@ -3797,8 +3797,8 @@ module TencentCloud
 
         attr_accessor :ZoneId, :Targets, :EncodeUrl, :Headers, :PrefetchMediaSegments
         extend Gem::Deprecate
-        deprecate :EncodeUrl, :none, 2025, 6
-        deprecate :EncodeUrl=, :none, 2025, 6
+        deprecate :EncodeUrl, :none, 2025, 7
+        deprecate :EncodeUrl=, :none, 2025, 7
 
         def initialize(zoneid=nil, targets=nil, encodeurl=nil, headers=nil, prefetchmediasegments=nil)
           @ZoneId = zoneid
@@ -3880,8 +3880,8 @@ module TencentCloud
 
         attr_accessor :ZoneId, :Type, :Method, :Targets, :EncodeUrl, :CacheTag
         extend Gem::Deprecate
-        deprecate :EncodeUrl, :none, 2025, 6
-        deprecate :EncodeUrl=, :none, 2025, 6
+        deprecate :EncodeUrl, :none, 2025, 7
+        deprecate :EncodeUrl=, :none, 2025, 7
 
         def initialize(zoneid=nil, type=nil, method=nil, targets=nil, encodeurl=nil, cachetag=nil)
           @ZoneId = zoneid
@@ -4248,10 +4248,10 @@ module TencentCloud
 
         attr_accessor :Type, :ZoneName, :Area, :PlanId, :AliasZoneName, :Tags, :AllowDuplicates, :JumpStart
         extend Gem::Deprecate
-        deprecate :AllowDuplicates, :none, 2025, 6
-        deprecate :AllowDuplicates=, :none, 2025, 6
-        deprecate :JumpStart, :none, 2025, 6
-        deprecate :JumpStart=, :none, 2025, 6
+        deprecate :AllowDuplicates, :none, 2025, 7
+        deprecate :AllowDuplicates=, :none, 2025, 7
+        deprecate :JumpStart, :none, 2025, 7
+        deprecate :JumpStart=, :none, 2025, 7
 
         def initialize(type=nil, zonename=nil, area=nil, planid=nil, aliaszonename=nil, tags=nil, allowduplicates=nil, jumpstart=nil)
           @Type = type
@@ -6332,7 +6332,7 @@ module TencentCloud
       class DescribeDDoSAttackDataRequest < TencentCloud::Common::AbstractModel
         # @param StartTime: 开始时间。
         # @type StartTime: String
-        # @param EndTime: 结束时间。
+        # @param EndTime: 结束时间。查询时间范围（`EndTime` - `StartTime`）需小于等于 31 天。
         # @type EndTime: String
         # @param MetricNames: 统计指标列表，取值有：
         # <li>ddos_attackMaxBandwidth：攻击带宽峰值；</li>
@@ -6340,7 +6340,7 @@ module TencentCloud
         # <li>ddos_attackBandwidth：攻击带宽曲线；</li>
         # <li>ddos_attackPackageRate：攻击包速率曲线。</li>
         # @type MetricNames: Array
-        # @param ZoneIds: 站点集合，此参数必填。
+        # @param ZoneIds: 站点 ID 集合，此参数必填。最多传入 100 个站点 ID。若需查询腾讯云主账号下所有站点数据，请用 `*` 代替，查询账号级别数据需具备本接口全部站点资源权限。
         # @type ZoneIds: Array
         # @param PolicyIds: DDoS策略组ID列表，不填默认选择全部策略ID。
         # @type PolicyIds: Array
@@ -6415,11 +6415,11 @@ module TencentCloud
       class DescribeDDoSAttackEventRequest < TencentCloud::Common::AbstractModel
         # @param StartTime: 开始时间，时间范围为 30 天。
         # @type StartTime: String
-        # @param EndTime: 结束时间，时间范围为 30 天。
+        # @param EndTime: 结束时间。查询时间范围（`EndTime` - `StartTime`）需小于等于 31 天。
         # @type EndTime: String
         # @param PolicyIds: ddos策略组集合，不填默认选择全部策略。
         # @type PolicyIds: Array
-        # @param ZoneIds: 站点集合，此参数必填。
+        # @param ZoneIds: 站点 ID 集合，此参数必填。最多传入 100 个站点 ID。若需查询腾讯云主账号下所有站点数据，请用 `*` 代替，查询账号级别数据需具备本接口全部站点资源权限。
         # @type ZoneIds: Array
         # @param Limit: 分页查询的限制数目，默认值为20，最大查询条目为1000。
         # @type Limit: Integer
@@ -6506,7 +6506,7 @@ module TencentCloud
       class DescribeDDoSAttackTopDataRequest < TencentCloud::Common::AbstractModel
         # @param StartTime: 开始时间。
         # @type StartTime: String
-        # @param EndTime: 结束时间。
+        # @param EndTime: 结束时间。查询时间范围（`EndTime` - `StartTime`）需小于等于 31 天。
         # @type EndTime: String
         # @param MetricName: 查询的统计指标，取值有：
         # <li>ddos_attackFlux_protocol：按各协议的攻击流量排行；</li>
@@ -6516,7 +6516,7 @@ module TencentCloud
         # <li>ddos_attackFlux_sip：按攻击源IP的攻击数量排行；</li>
         # <li>ddos_attackFlux_sregion：按攻击源地区的攻击数量排行。</li>
         # @type MetricName: String
-        # @param ZoneIds: 站点ID集合，此参数必填。
+        # @param ZoneIds: 站点 ID 集合，此参数必填。最多传入 100 个站点 ID。若需查询腾讯云主账号下所有站点数据，请用 `*` 代替，查询账号级别数据需具备本接口全部站点资源权限。
         # @type ZoneIds: Array
         # @param PolicyIds: DDoS策略组ID集合，不填默认选择全部策略ID。
         # @type PolicyIds: Array
@@ -8456,7 +8456,7 @@ module TencentCloud
       class DescribeTimingL4DataRequest < TencentCloud::Common::AbstractModel
         # @param StartTime: 开始时间。
         # @type StartTime: String
-        # @param EndTime: 结束时间。
+        # @param EndTime: 结束时间。查询时间范围（`EndTime` - `StartTime`）需小于等于 31 天。
         # @type EndTime: String
         # @param MetricNames: 查询指标，取值有：
         # <li>l4Flow_connections: 访问并发连接数；</li>
@@ -8466,7 +8466,7 @@ module TencentCloud
         # <li>l4Flow_inBandwidth: 访问入向带宽峰值；</li>
         # <li>l4Flow_outBandwidth: 访问出向带宽峰值。</li>
         # @type MetricNames: Array
-        # @param ZoneIds: 站点 ID 集合，此参数必填。
+        # @param ZoneIds: 站点 ID 集合，此参数必填。最多传入 100 个站点 ID。若需查询腾讯云主账号下所有站点数据，请用 `*` 代替，查询账号级别数据需具备本接口全部站点资源权限。
         # @type ZoneIds: Array
         # @param ProxyIds: 四层实例列表, 不填表示选择全部实例。
         # @type ProxyIds: Array
@@ -8551,7 +8551,7 @@ module TencentCloud
       class DescribeTimingL7AnalysisDataRequest < TencentCloud::Common::AbstractModel
         # @param StartTime: 开始时间。
         # @type StartTime: String
-        # @param EndTime: 结束时间。
+        # @param EndTime: 结束时间。查询时间范围（`EndTime` - `StartTime`）需小于等于 31 天。
         # @type EndTime: String
         # @param MetricNames: 指标列表，取值有:
         # <li>l7Flow_outFlux: L7 EdgeOne 响应流量，单位：Byte；</li>
@@ -8564,7 +8564,7 @@ module TencentCloud
         # <li> l7Flow_avgResponseTime: L7 访问平均响应耗时，单位：ms；</li>
         # <li> l7Flow_avgFirstByteResponseTime: L7 访问平均首字节响应耗时，单位：ms。</li>
         # @type MetricNames: Array
-        # @param ZoneIds: 站点 ID 集合，此参数必填。
+        # @param ZoneIds: 站点 ID 集合，此参数必填。最多传入 100 个站点 ID。若需查询腾讯云主账号下所有站点数据，请用 `*` 代替，查询账号级别数据需具备本接口全部站点资源权限。
         # @type ZoneIds: Array
         # @param Interval: 查询时间粒度，取值有：
         # <li>min: 1分钟；</li>
@@ -8757,7 +8757,7 @@ module TencentCloud
       class DescribeTopL7AnalysisDataRequest < TencentCloud::Common::AbstractModel
         # @param StartTime: 开始时间。
         # @type StartTime: String
-        # @param EndTime: 结束时间。
+        # @param EndTime: 结束时间。查询时间范围（`EndTime` - `StartTime`）需小于等于 31 天。
         # @type EndTime: String
         # @param MetricName: 查询的指标，取值有：
         # <li> l7Flow_outFlux_country：按国家/地区维度统计 L7 EdgeOne 响应流量指标；</li>
@@ -8786,7 +8786,7 @@ module TencentCloud
         # <li> l7Flow_request_ua：按 User-Agent 维度统计 L7 访问请求数指标。</li>
 
         # @type MetricName: String
-        # @param ZoneIds: 站点 ID 集合，此参数必填。
+        # @param ZoneIds: 站点 ID 集合，此参数必填。最多传入 100 个站点 ID。若需查询腾讯云主账号下所有站点数据，请用 `*` 代替，查询账号级别数据需具备本接口全部站点资源权限。
         # @type ZoneIds: Array
         # @param Limit: 查询前多少个 top 数据，最大值为1000。不填默认为10，表示查询 top10 的数据。
         # @type Limit: Integer
@@ -9808,21 +9808,19 @@ module TencentCloud
 
       # EnableOriginACL请求参数结构体
       class EnableOriginACLRequest < TencentCloud::Common::AbstractModel
-        # @param ZoneId: 站点ID。
+        # @param ZoneId: 站点 ID。
         # @type ZoneId: String
-        # @param L7EnableMode: 七层加速域名开启回源白名单的模式。
-        # <li>all：为站点下的所有七层加速域名开启回源白名单。</li>
-        # <li>specific：为站点下指定的七层加速域名开启回源白名单。</li>
-        # 当参数为空时，默认为specific。
+        # @param L7EnableMode: 七层加速域名开启源站防护的模式。
+        # <li>all：针对站点下的所有七层加速域名开启。</li>
+        # <li>specific：针对站点下指定的七层加速域名开启。</li>当参数为空时，默认为 specific。
         # @type L7EnableMode: String
-        # @param L7Hosts: 开启回源白名单的七层加速域名列表，当请求参数 L7EnableMode 为 all 时必须为空。
+        # @param L7Hosts: 开启源站防护的七层加速域名列表，仅当参数 L7EnableMode 为 specific 时生效。L7EnableMode 为 all 时，请保留此参数为空。单次最大仅支持填写 200 个七层加速域名。
         # @type L7Hosts: Array
-        # @param L4EnableMode: 四层代理 ID 开启回源白名单的模式。
-        # <li>all：为站点下的所有四层代理开启回源白名单。</li>
-        # <li>specific：为站点下指定的四层代理 ID 开启回源白名单。</li>
-        # 当参数为空时，默认为specific。
+        # @param L4EnableMode: 四层代理实例开启源站防护的模式。
+        # <li>all：针对站点下的所有四层代理实例开启。</li>
+        # <li>specific：针对站点下指定的四层代理实例开启。</li>当参数为空时，默认为 specific。
         # @type L4EnableMode: String
-        # @param L4ProxyIds: 开启回源白名单的四层代理 ID 列表，当请求参数 L4EnableMode 为 all 时必须为空。单次最多支持 200 个实例。
+        # @param L4ProxyIds: 开启源站防护的四层代理实例列表，仅当参数 L4EnableMode 为 specific 时生效。L4EnableMode 为 all 时，请保留此参数为空。单次最大仅支持填写 100 个四层代理实例。
         # @type L4ProxyIds: Array
 
         attr_accessor :ZoneId, :L7EnableMode, :L7Hosts, :L4EnableMode, :L4ProxyIds
@@ -13110,8 +13108,8 @@ module TencentCloud
 
         attr_accessor :ZoneId, :Hosts, :Mode, :ServerCertInfo, :ApplyType, :ClientCertInfo
         extend Gem::Deprecate
-        deprecate :ApplyType, :none, 2025, 6
-        deprecate :ApplyType=, :none, 2025, 6
+        deprecate :ApplyType, :none, 2025, 7
+        deprecate :ApplyType=, :none, 2025, 7
 
         def initialize(zoneid=nil, hosts=nil, mode=nil, servercertinfo=nil, applytype=nil, clientcertinfo=nil)
           @ZoneId = zoneid
@@ -14690,12 +14688,12 @@ module TencentCloud
 
         attr_accessor :OriginType, :Origin, :BackupOrigin, :OriginGroupName, :BackOriginGroupName, :PrivateAccess, :PrivateParameters, :HostHeader, :VodeoSubAppId, :VodeoDistributionRange, :VodeoBucketId, :VodOriginScope, :VodBucketId
         extend Gem::Deprecate
-        deprecate :VodeoSubAppId, :none, 2025, 6
-        deprecate :VodeoSubAppId=, :none, 2025, 6
-        deprecate :VodeoDistributionRange, :none, 2025, 6
-        deprecate :VodeoDistributionRange=, :none, 2025, 6
-        deprecate :VodeoBucketId, :none, 2025, 6
-        deprecate :VodeoBucketId=, :none, 2025, 6
+        deprecate :VodeoSubAppId, :none, 2025, 7
+        deprecate :VodeoSubAppId=, :none, 2025, 7
+        deprecate :VodeoDistributionRange, :none, 2025, 7
+        deprecate :VodeoDistributionRange=, :none, 2025, 7
+        deprecate :VodeoBucketId, :none, 2025, 7
+        deprecate :VodeoBucketId=, :none, 2025, 7
 
         def initialize(origintype=nil, origin=nil, backuporigin=nil, origingroupname=nil, backorigingroupname=nil, privateaccess=nil, privateparameters=nil, hostheader=nil, vodeosubappid=nil, vodeodistributionrange=nil, vodeobucketid=nil, vodoriginscope=nil, vodbucketid=nil)
           @OriginType = origintype
@@ -15000,12 +14998,12 @@ module TencentCloud
 
         attr_accessor :OriginType, :Origin, :BackupOrigin, :PrivateAccess, :PrivateParameters, :HostHeader, :VodeoSubAppId, :VodeoDistributionRange, :VodeoBucketId, :VodOriginScope, :VodBucketId
         extend Gem::Deprecate
-        deprecate :VodeoSubAppId, :none, 2025, 6
-        deprecate :VodeoSubAppId=, :none, 2025, 6
-        deprecate :VodeoDistributionRange, :none, 2025, 6
-        deprecate :VodeoDistributionRange=, :none, 2025, 6
-        deprecate :VodeoBucketId, :none, 2025, 6
-        deprecate :VodeoBucketId=, :none, 2025, 6
+        deprecate :VodeoSubAppId, :none, 2025, 7
+        deprecate :VodeoSubAppId=, :none, 2025, 7
+        deprecate :VodeoDistributionRange, :none, 2025, 7
+        deprecate :VodeoDistributionRange=, :none, 2025, 7
+        deprecate :VodeoBucketId, :none, 2025, 7
+        deprecate :VodeoBucketId=, :none, 2025, 7
 
         def initialize(origintype=nil, origin=nil, backuporigin=nil, privateaccess=nil, privateparameters=nil, hostheader=nil, vodeosubappid=nil, vodeodistributionrange=nil, vodeobucketid=nil, vodoriginscope=nil, vodbucketid=nil)
           @OriginType = origintype
@@ -15255,9 +15253,13 @@ module TencentCloud
         # @type PlanId: String
         # @param Area: 服务区域，取值有：
         # <li>mainland: 中国大陆；</li>
-        # <li>overseas: 全球（不包括中国大陆)；</li>
-        # <li>global: 全球（包括中国大陆)。</li>
+        # <li>overseas: 全球（不包括中国大陆）；</li>
+        # <li>global: 全球（包括中国大陆）。</li>
         # @type Area: String
+        # @param AutoRenewal: 自动续费开关。取值有：
+        # <li>true: 已开启自动续费；</li>
+        # <li>false: 未开启自动续费。</li>
+        # @type AutoRenewal: Boolean
         # @param Status: 套餐状态，取值有：
         # <li>normal：正常状态；</li>
         # <li>expiring-soon：即将到期状态；</li>
@@ -15300,12 +15302,13 @@ module TencentCloud
         # @param Features: 套餐所支持的功能，取值有：<li>ContentAcceleration：内容加速功能；</li><li>SmartAcceleration：智能加速功能；</li><li>L4：四层加速功能；</li><li>Waf：高级 Web 防护；</li><li>QUIC：QUIC功能；</li><li>CrossMLC：中国大陆网络优化功能；</li><li>ProcessMedia：媒体处理功能；</li><li>L4DDoS：四层DDoS防护功能；</li>L7DDoS功能只会出现以下所有规格中的一项<li>L7DDoS.CM30G；七层DDoS防护功能-中国大陆30G保底带宽规格；</li><li>L7DDoS.CM60G；七层DDoS防护功能-中国大陆60G保底带宽规格；</li><li>L7DDoS.CM100G；七层DDoS防护功能-中国大陆100G保底带宽规格；</li><li>L7DDoS.Anycast300G；七层DDoS防护功能-中国大陆以外Anycast300G保底带宽规格；</li><li>L7DDoS.AnycastUnlimited；七层DDoS防护功能-中国大陆以外Anycast无上限全力防护规格；</li><li>L7DDoS.CM30G_Anycast300G；七层DDoS防护功能-中国大陆30G保底带宽规格，中国大陆以外Anycast300G保底带宽规格；</li><li>L7DDoS.CM60G_Anycast300G；七层DDoS防护功能-中国大陆60G保底带宽规格，中国大陆以外Anycast300G保底带宽规格；</li><li>L7DDoS.CM100G_Anycast300G；七层DDoS防护功能-中国大陆100G保底带宽规格，中国大陆以外Anycast300G保底带宽规格；</li><li>L7DDoS.CM30G_AnycastUnlimited；七层DDoS防护功能-中国大陆30G保底带宽规格，中国大陆以外Anycast无上限全力防护规格；</li><li>L7DDoS.CM60G_AnycastUnlimited；七层DDoS防护功能-中国大陆60G保底带宽规格，中国大陆以外Anycast无上限全力防护规格；</li><li>L7DDoS.CM100G_AnycastUnlimited；七层DDoS防护功能-中国大陆100G保底带宽规格，中国大陆以外Anycast无上限全力防护规格；</li>
         # @type Features: Array
 
-        attr_accessor :PlanType, :PlanId, :Area, :Status, :PayMode, :ZonesInfo, :SmartRequestCapacity, :VAUCapacity, :AccTrafficCapacity, :SmartTrafficCapacity, :DDoSTrafficCapacity, :SecTrafficCapacity, :SecRequestCapacity, :L4TrafficCapacity, :CrossMLCTrafficCapacity, :Bindable, :EnabledTime, :ExpiredTime, :Features
+        attr_accessor :PlanType, :PlanId, :Area, :AutoRenewal, :Status, :PayMode, :ZonesInfo, :SmartRequestCapacity, :VAUCapacity, :AccTrafficCapacity, :SmartTrafficCapacity, :DDoSTrafficCapacity, :SecTrafficCapacity, :SecRequestCapacity, :L4TrafficCapacity, :CrossMLCTrafficCapacity, :Bindable, :EnabledTime, :ExpiredTime, :Features
 
-        def initialize(plantype=nil, planid=nil, area=nil, status=nil, paymode=nil, zonesinfo=nil, smartrequestcapacity=nil, vaucapacity=nil, acctrafficcapacity=nil, smarttrafficcapacity=nil, ddostrafficcapacity=nil, sectrafficcapacity=nil, secrequestcapacity=nil, l4trafficcapacity=nil, crossmlctrafficcapacity=nil, bindable=nil, enabledtime=nil, expiredtime=nil, features=nil)
+        def initialize(plantype=nil, planid=nil, area=nil, autorenewal=nil, status=nil, paymode=nil, zonesinfo=nil, smartrequestcapacity=nil, vaucapacity=nil, acctrafficcapacity=nil, smarttrafficcapacity=nil, ddostrafficcapacity=nil, sectrafficcapacity=nil, secrequestcapacity=nil, l4trafficcapacity=nil, crossmlctrafficcapacity=nil, bindable=nil, enabledtime=nil, expiredtime=nil, features=nil)
           @PlanType = plantype
           @PlanId = planid
           @Area = area
+          @AutoRenewal = autorenewal
           @Status = status
           @PayMode = paymode
           @ZonesInfo = zonesinfo
@@ -15328,6 +15331,7 @@ module TencentCloud
           @PlanType = params['PlanType']
           @PlanId = params['PlanId']
           @Area = params['Area']
+          @AutoRenewal = params['AutoRenewal']
           @Status = params['Status']
           @PayMode = params['PayMode']
           unless params['ZonesInfo'].nil?
@@ -16631,8 +16635,8 @@ module TencentCloud
 
         attr_accessor :Operator, :Target, :Values, :IgnoreCase, :Name, :IgnoreNameCase
         extend Gem::Deprecate
-        deprecate :IgnoreNameCase, :none, 2025, 6
-        deprecate :IgnoreNameCase=, :none, 2025, 6
+        deprecate :IgnoreNameCase, :none, 2025, 7
+        deprecate :IgnoreNameCase=, :none, 2025, 7
 
         def initialize(operator=nil, target=nil, values=nil, ignorecase=nil, name=nil, ignorenamecase=nil)
           @Operator = operator

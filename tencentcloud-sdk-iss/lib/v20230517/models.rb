@@ -5939,7 +5939,7 @@ module TencentCloud
         # @type ChannelName: String
         # @param Status: 任务状态（0：准备中，1：执行中，2：已完成，3：失败）
         # @type Status: Integer
-        # @param SortRule: 排序规则（仅支持 StartTime，EndTime，倒序为-StartTime，-EndTime）
+        # @param SortRule: 排序规则（仅支持 StartTime，倒序为-StartTime）
         # @type SortRule: String
         # @param WithPreviewUrl: 响应是否携带预览地址(0:不携带；1:携带)
         # @type WithPreviewUrl: Integer
@@ -5951,10 +5951,12 @@ module TencentCloud
         # @type DownloadTaskId: String
         # @param UrlExpires: 下载地址过期时间，单位秒，最大为 1 天， 86400秒
         # @type UrlExpires: Integer
+        # @param Date: 任务日期，默认当天
+        # @type Date: String
 
-        attr_accessor :DeviceName, :ChannelName, :Status, :SortRule, :WithPreviewUrl, :PageNumber, :PageSize, :DownloadTaskId, :UrlExpires
+        attr_accessor :DeviceName, :ChannelName, :Status, :SortRule, :WithPreviewUrl, :PageNumber, :PageSize, :DownloadTaskId, :UrlExpires, :Date
 
-        def initialize(devicename=nil, channelname=nil, status=nil, sortrule=nil, withpreviewurl=nil, pagenumber=nil, pagesize=nil, downloadtaskid=nil, urlexpires=nil)
+        def initialize(devicename=nil, channelname=nil, status=nil, sortrule=nil, withpreviewurl=nil, pagenumber=nil, pagesize=nil, downloadtaskid=nil, urlexpires=nil, date=nil)
           @DeviceName = devicename
           @ChannelName = channelname
           @Status = status
@@ -5964,6 +5966,7 @@ module TencentCloud
           @PageSize = pagesize
           @DownloadTaskId = downloadtaskid
           @UrlExpires = urlexpires
+          @Date = date
         end
 
         def deserialize(params)
@@ -5976,6 +5979,7 @@ module TencentCloud
           @PageSize = params['PageSize']
           @DownloadTaskId = params['DownloadTaskId']
           @UrlExpires = params['UrlExpires']
+          @Date = params['Date']
         end
       end
 

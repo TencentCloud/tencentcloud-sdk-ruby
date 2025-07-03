@@ -727,8 +727,8 @@ module TencentCloud
 
         attr_accessor :ProjectId, :RoleIdList, :UserList, :UserInfoList
         extend Gem::Deprecate
-        deprecate :UserList, :none, 2025, 6
-        deprecate :UserList=, :none, 2025, 6
+        deprecate :UserList, :none, 2025, 7
+        deprecate :UserList=, :none, 2025, 7
 
         def initialize(projectid=nil, roleidlist=nil, userlist=nil, userinfolist=nil)
           @ProjectId = projectid
@@ -809,16 +809,19 @@ module TencentCloud
         # @type UserList: Array
         # @param UserInfoList: 用户列表（新）
         # @type UserInfoList: Array
+        # @param UserGroups: 用户组id列表
+        # @type UserGroups: Array
 
-        attr_accessor :RoleIdList, :UserList, :UserInfoList
+        attr_accessor :RoleIdList, :UserList, :UserInfoList, :UserGroups
         extend Gem::Deprecate
-        deprecate :UserList, :none, 2025, 6
-        deprecate :UserList=, :none, 2025, 6
+        deprecate :UserList, :none, 2025, 7
+        deprecate :UserList=, :none, 2025, 7
 
-        def initialize(roleidlist=nil, userlist=nil, userinfolist=nil)
+        def initialize(roleidlist=nil, userlist=nil, userinfolist=nil, usergroups=nil)
           @RoleIdList = roleidlist
           @UserList = userlist
           @UserInfoList = userinfolist
+          @UserGroups = usergroups
         end
 
         def deserialize(params)
@@ -839,6 +842,7 @@ module TencentCloud
               @UserInfoList << userinfo_tmp
             end
           end
+          @UserGroups = params['UserGroups']
         end
       end
 

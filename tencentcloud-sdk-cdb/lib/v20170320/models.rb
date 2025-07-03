@@ -61,8 +61,8 @@ module TencentCloud
 
         attr_accessor :Notes, :Host, :User, :ModifyTime, :ModifyPasswordTime, :CreateTime, :MaxUserConnections, :OpenCam
         extend Gem::Deprecate
-        deprecate :CreateTime, :none, 2025, 6
-        deprecate :CreateTime=, :none, 2025, 6
+        deprecate :CreateTime, :none, 2025, 7
+        deprecate :CreateTime=, :none, 2025, 7
 
         def initialize(notes=nil, host=nil, user=nil, modifytime=nil, modifypasswordtime=nil, createtime=nil, maxuserconnections=nil, opencam=nil)
           @Notes = notes
@@ -440,8 +440,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :StartTime, :EndTime, :AggregationConditions, :AuditLogFilter, :LogFilter
         extend Gem::Deprecate
-        deprecate :AuditLogFilter, :none, 2025, 6
-        deprecate :AuditLogFilter=, :none, 2025, 6
+        deprecate :AuditLogFilter, :none, 2025, 7
+        deprecate :AuditLogFilter=, :none, 2025, 7
 
         def initialize(instanceid=nil, starttime=nil, endtime=nil, aggregationconditions=nil, auditlogfilter=nil, logfilter=nil)
           @InstanceId = instanceid
@@ -1100,10 +1100,10 @@ module TencentCloud
 
         attr_accessor :ExpandThreshold, :ShrinkThreshold, :ExpandPeriod, :ShrinkPeriod, :ExpandSecondPeriod, :ShrinkSecondPeriod
         extend Gem::Deprecate
-        deprecate :ExpandPeriod, :none, 2025, 6
-        deprecate :ExpandPeriod=, :none, 2025, 6
-        deprecate :ShrinkPeriod, :none, 2025, 6
-        deprecate :ShrinkPeriod=, :none, 2025, 6
+        deprecate :ExpandPeriod, :none, 2025, 7
+        deprecate :ExpandPeriod=, :none, 2025, 7
+        deprecate :ShrinkPeriod, :none, 2025, 7
+        deprecate :ShrinkPeriod=, :none, 2025, 7
 
         def initialize(expandthreshold=nil, shrinkthreshold=nil, expandperiod=nil, shrinkperiod=nil, expandsecondperiod=nil, shrinksecondperiod=nil)
           @ExpandThreshold = expandthreshold
@@ -2148,8 +2148,10 @@ module TencentCloud
       # 集群版的节点拓扑配置。
       class ClusterTopology < TencentCloud::Common::AbstractModel
         # @param ReadWriteNode: RW 节点拓扑。
+        # 说明：NodeId 可通过 [DescribeDBInstances](https://cloud.tencent.com/document/product/236/15872) 获取。
         # @type ReadWriteNode: :class:`Tencentcloud::Cdb.v20170320.models.ReadWriteNode`
         # @param ReadOnlyNodes: RO 节点拓扑。
+        # 说明：NodeId 可通过 [DescribeDBInstances](https://cloud.tencent.com/document/product/236/15872) 获取。
         # @type ReadOnlyNodes: Array
 
         attr_accessor :ReadWriteNode, :ReadOnlyNodes
@@ -2342,8 +2344,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :StartTime, :EndTime, :Order, :OrderBy, :Filter, :LogFilter, :ColumnFilter
         extend Gem::Deprecate
-        deprecate :Filter, :none, 2025, 6
-        deprecate :Filter=, :none, 2025, 6
+        deprecate :Filter, :none, 2025, 7
+        deprecate :Filter=, :none, 2025, 7
 
         def initialize(instanceid=nil, starttime=nil, endtime=nil, order=nil, orderby=nil, filter=nil, logfilter=nil, columnfilter=nil)
           @InstanceId = instanceid
@@ -5060,10 +5062,10 @@ module TencentCloud
 
         attr_accessor :StartTimeMin, :StartTimeMax, :BackupExpireDays, :BackupMethod, :BinlogExpireDays, :BackupTimeWindow, :EnableBackupPeriodSave, :BackupPeriodSaveDays, :BackupPeriodSaveInterval, :BackupPeriodSaveCount, :StartBackupPeriodSaveDate, :EnableBackupArchive, :BackupArchiveDays, :EnableBinlogArchive, :BinlogArchiveDays, :EnableBackupStandby, :BackupStandbyDays, :EnableBinlogStandby, :BinlogStandbyDays, :RequestId
         extend Gem::Deprecate
-        deprecate :StartTimeMin, :none, 2025, 6
-        deprecate :StartTimeMin=, :none, 2025, 6
-        deprecate :StartTimeMax, :none, 2025, 6
-        deprecate :StartTimeMax=, :none, 2025, 6
+        deprecate :StartTimeMin, :none, 2025, 7
+        deprecate :StartTimeMin=, :none, 2025, 7
+        deprecate :StartTimeMax, :none, 2025, 7
+        deprecate :StartTimeMax=, :none, 2025, 7
 
         def initialize(starttimemin=nil, starttimemax=nil, backupexpiredays=nil, backupmethod=nil, binlogexpiredays=nil, backuptimewindow=nil, enablebackupperiodsave=nil, backupperiodsavedays=nil, backupperiodsaveinterval=nil, backupperiodsavecount=nil, startbackupperiodsavedate=nil, enablebackuparchive=nil, backuparchivedays=nil, enablebinlogarchive=nil, binlogarchivedays=nil, enablebackupstandby=nil, backupstandbydays=nil, enablebinlogstandby=nil, binlogstandbydays=nil, requestid=nil)
           @StartTimeMin = starttimemin
@@ -6368,9 +6370,10 @@ module TencentCloud
         # @type CdbErrors: Array
         # @param OrderBy: 返回结果集排序的字段，目前支持："InstanceId"，"InstanceName"，"CreateTime"，"DeadlineTime"。
         # @type OrderBy: String
-        # @param OrderDirection: 返回结果集排序方式，目前支持："ASC" 或者 "DESC"。
+        # @param OrderDirection: 返回结果集排序方式。目前支持值："ASC" - 表示升序，"DESC" - 表示降序，默认为 "DESC"。
         # @type OrderDirection: String
         # @param WithSecurityGroup: 是否以安全组 ID 为过滤条件。
+        # 说明：0表示否，1表示是。
         # @type WithSecurityGroup: Integer
         # @param WithExCluster: 是否包含独享集群详细信息，可取值：0 - 不包含，1 - 包含。
         # @type WithExCluster: Integer
@@ -6405,9 +6408,9 @@ module TencentCloud
         # @type ProxyVips: Array
         # @param ProxyIds: 数据库代理 ID 。
         # @type ProxyIds: Array
-        # @param EngineTypes: 数据库引擎类型。
+        # @param EngineTypes: 数据库引擎类型。可选值为：InnoDB、RocksDB。
         # @type EngineTypes: Array
-        # @param QueryClusterInfo: 是否获取集群版实例节点信息，可填：true或false
+        # @param QueryClusterInfo: 是否获取集群版实例节点信息，可填：true 或 false。默认为 false。
         # @type QueryClusterInfo: Boolean
 
         attr_accessor :ProjectId, :InstanceTypes, :Vips, :Status, :Offset, :Limit, :SecurityGroupId, :PayTypes, :InstanceNames, :TaskStatus, :EngineVersions, :VpcIds, :ZoneIds, :SubnetIds, :CdbErrors, :OrderBy, :OrderDirection, :WithSecurityGroup, :WithExCluster, :ExClusterId, :InstanceIds, :InitFlag, :WithDr, :WithRo, :WithMaster, :DeployGroupIds, :TagKeysForSearch, :CageIds, :TagValues, :UniqueVpcIds, :UniqSubnetIds, :Tags, :ProxyVips, :ProxyIds, :EngineTypes, :QueryClusterInfo
@@ -7125,7 +7128,7 @@ module TencentCloud
 
       # DescribeInstanceAlarmEvents请求参数结构体
       class DescribeInstanceAlarmEventsRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例 ID。
+        # @param InstanceId: 实例 ID。可通过 [DescribeDBInstances](https://cloud.tencent.com/document/product/236/15872) 接口获取。
         # @type InstanceId: String
         # @param StartTime: 事件查询范围开始时间，闭区间。
         # @type StartTime: String
@@ -7137,7 +7140,7 @@ module TencentCloud
         # @type EventStatus: String
         # @param Order: 排序方式。按事件发生事件进行排序，"DESC"-倒排；”ASC“-正序，默认倒排。
         # @type Order: String
-        # @param Limit: 事件展示数量。
+        # @param Limit: 事件展示数量。默认为100，最大为200。
         # @type Limit: String
         # @param Offset: 偏移量。
         # @type Offset: String
@@ -8397,11 +8400,11 @@ module TencentCloud
 
       # DescribeTagsOfInstanceIds请求参数结构体
       class DescribeTagsOfInstanceIdsRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceIds: 实例列表。
+        # @param InstanceIds: 实例列表。实例 ID 可通过 [DescribeDBInstances](https://cloud.tencent.com/document/product/236/15872) 接口获取。可传入的数组长度暂无限制。
         # @type InstanceIds: Array
         # @param Offset: 分页偏移量。
         # @type Offset: Integer
-        # @param Limit: 分页大小。
+        # @param Limit: 分页大小。默认为15。
         # @type Limit: Integer
 
         attr_accessor :InstanceIds, :Offset, :Limit
@@ -8952,11 +8955,11 @@ module TencentCloud
 
       # 导入任务记录
       class ImportRecord < TencentCloud::Common::AbstractModel
-        # @param Status: 状态值
+        # @param Status: 状态值。0 - 初始化中，1 - 运行中，2 - 运行成功，3 - 运行失败。
         # @type Status: Integer
-        # @param Code: 状态值
+        # @param Code: 状态值，为负数时任务异常。
         # @type Code: Integer
-        # @param CostTime: 执行时间
+        # @param CostTime: 执行时间，单位：秒。
         # @type CostTime: Integer
         # @param InstanceId: 实例ID
         # @type InstanceId: String
@@ -8964,11 +8967,11 @@ module TencentCloud
         # @type WorkId: String
         # @param FileName: 导入文件名
         # @type FileName: String
-        # @param Process: 执行进度
+        # @param Process: 执行进度，单位：百分比。
         # @type Process: Integer
         # @param CreateTime: 任务创建时间
         # @type CreateTime: String
-        # @param FileSize: 文件大小
+        # @param FileSize: 文件大小，单位：byte。
         # @type FileSize: String
         # @param Message: 任务执行信息
         # @type Message: String
@@ -9541,9 +9544,9 @@ module TencentCloud
 
       # 实例预期重启时间
       class InstanceRebootTime < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID，格式如：cdb-c1nl9rpv，与云数据库控制台页面中显示的实例ID相同
+        # @param InstanceId: 实例 ID，格式如：cdb-c1nl9rpv，与云数据库控制台页面中显示的实例 ID 相同。
         # @type InstanceId: String
-        # @param TimeInSeconds: 预期重启时间
+        # @param TimeInSeconds: 预期重启时间，单位：秒。
         # @type TimeInSeconds: Integer
 
         attr_accessor :InstanceId, :TimeInSeconds
@@ -9619,8 +9622,8 @@ module TencentCloud
 
         attr_accessor :AsyncRequestId, :RequestId
         extend Gem::Deprecate
-        deprecate :AsyncRequestId, :none, 2025, 6
-        deprecate :AsyncRequestId=, :none, 2025, 6
+        deprecate :AsyncRequestId, :none, 2025, 7
+        deprecate :AsyncRequestId=, :none, 2025, 7
 
         def initialize(asyncrequestid=nil, requestid=nil)
           @AsyncRequestId = asyncrequestid
@@ -10360,8 +10363,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :LogExpireDay, :HighLogExpireDay, :AuditAll, :AuditRuleFilters, :RuleTemplateIds
         extend Gem::Deprecate
-        deprecate :AuditRuleFilters, :none, 2025, 6
-        deprecate :AuditRuleFilters=, :none, 2025, 6
+        deprecate :AuditRuleFilters, :none, 2025, 7
+        deprecate :AuditRuleFilters=, :none, 2025, 7
 
         def initialize(instanceid=nil, logexpireday=nil, highlogexpireday=nil, auditall=nil, auditrulefilters=nil, ruletemplateids=nil)
           @InstanceId = instanceid
@@ -10857,7 +10860,7 @@ module TencentCloud
       class ModifyDBInstanceNameRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例 ID，格式如：cdb-c1nl9rpv，与云数据库控制台页面中显示的实例 ID 相同，可使用 [查询实例列表](https://cloud.tencent.com/document/api/236/15872) 接口获取，其值为输出参数中字段 InstanceId 的值。
         # @type InstanceId: String
-        # @param InstanceName: 修改后的实例名称。
+        # @param InstanceName: 修改后的实例名称，仅支持数字,英文大小写字母、中文以及特殊字符-_./()[]（）+=:：@ 且长度不能超过60。
         # @type InstanceName: String
 
         attr_accessor :InstanceId, :InstanceName
@@ -11061,8 +11064,8 @@ module TencentCloud
 
         attr_accessor :AsyncRequestId, :RequestId
         extend Gem::Deprecate
-        deprecate :AsyncRequestId, :none, 2025, 6
-        deprecate :AsyncRequestId=, :none, 2025, 6
+        deprecate :AsyncRequestId, :none, 2025, 7
+        deprecate :AsyncRequestId=, :none, 2025, 7
 
         def initialize(asyncrequestid=nil, requestid=nil)
           @AsyncRequestId = asyncrequestid
@@ -11483,8 +11486,8 @@ module TencentCloud
 
         attr_accessor :RoGroupId, :RoGroupInfo, :RoWeightValues, :IsBalanceRoLoad, :ReplicationDelayTime
         extend Gem::Deprecate
-        deprecate :ReplicationDelayTime, :none, 2025, 6
-        deprecate :ReplicationDelayTime=, :none, 2025, 6
+        deprecate :ReplicationDelayTime, :none, 2025, 7
+        deprecate :ReplicationDelayTime=, :none, 2025, 7
 
         def initialize(rogroupid=nil, rogroupinfo=nil, roweightvalues=nil, isbalanceroload=nil, replicationdelaytime=nil)
           @RoGroupId = rogroupid
@@ -11675,8 +11678,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :LogExpireDay, :HighLogExpireDay, :AuditRuleFilters, :RuleTemplateIds, :AuditAll
         extend Gem::Deprecate
-        deprecate :AuditRuleFilters, :none, 2025, 6
-        deprecate :AuditRuleFilters=, :none, 2025, 6
+        deprecate :AuditRuleFilters, :none, 2025, 7
+        deprecate :AuditRuleFilters=, :none, 2025, 7
 
         def initialize(instanceid=nil, logexpireday=nil, highlogexpireday=nil, auditrulefilters=nil, ruletemplateids=nil, auditall=nil)
           @InstanceId = instanceid
@@ -11955,8 +11958,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :ParamName, :OldValue, :NewValue, :IsSucess, :ModifyTime, :IsSuccess
         extend Gem::Deprecate
-        deprecate :IsSucess, :none, 2025, 6
-        deprecate :IsSucess=, :none, 2025, 6
+        deprecate :IsSucess, :none, 2025, 7
+        deprecate :IsSucess=, :none, 2025, 7
 
         def initialize(instanceid=nil, paramname=nil, oldvalue=nil, newvalue=nil, issucess=nil, modifytime=nil, issuccess=nil)
           @InstanceId = instanceid
@@ -12364,9 +12367,9 @@ module TencentCloud
         # @type ProxyId: String
         # @param Cpu: CPU核数
         # @type Cpu: Integer
-        # @param Mem: 内存大小
+        # @param Mem: 内存大小，单位为 MB。
         # @type Mem: Integer
-        # @param Status: 节点状态
+        # @param Status: 节点状态，0 - 初始化中，1 - 在线中，2 - 下线中，3 - 销毁中，4 - 故障恢复中，5 - 节点故障，6 - 切换中。
         # @type Status: String
         # @param Zone: 代理节点可用区
         # @type Zone: String
@@ -14487,15 +14490,16 @@ module TencentCloud
       class UpgradeDBInstanceEngineVersionRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例 ID，格式如：cdb-c1nl9rpv 或者 cdbro-c1nl9rpv。与云数据库控制台页面中显示的实例 ID 相同，可使用 [查询实例列表](https://cloud.tencent.com/document/api/236/15872) 接口获取，其值为输出参数中字段 InstanceId 的值。
         # @type InstanceId: String
-        # @param EngineVersion: 主实例数据库引擎版本，支持值包括：5.6 和 5.7。
+        # @param EngineVersion: 主实例数据库引擎版本，支持值包括：5.6、5.7、8.0。
+        # 说明：不支持越级升级，升级后不支持降级。
         # @type EngineVersion: String
         # @param WaitSwitch: 切换访问新实例的方式，默认为 0。支持值包括：0 - 立刻切换，1 - 时间窗切换；当该值为 1 时，升级过程中，切换访问新实例的流程将会在时间窗内进行，或者用户主动调用接口 [切换访问新实例](https://cloud.tencent.com/document/product/236/15864) 触发该流程。
         # @type WaitSwitch: Integer
-        # @param UpgradeSubversion: 是否是内核子版本升级，支持的值：1 - 升级内核子版本；0 - 升级数据库引擎版本。
+        # @param UpgradeSubversion: 是否是内核子版本升级，支持的值：1 - 升级内核子版本；0 - 升级数据库引擎版本。无默认值，请指定要升级的版本类型。
         # @type UpgradeSubversion: Integer
-        # @param MaxDelayTime: 延迟阈值。取值范围1~10
+        # @param MaxDelayTime: 延迟阈值。取值范围：1 - 10。无默认值，不传此参数时，延迟阈值为0，表示延迟阈值不做设置。
         # @type MaxDelayTime: Integer
-        # @param IgnoreErrKeyword: 5.7升级8.0是否忽略关键字错误，取值范围[0,1]，1表示忽略，0表示不忽略
+        # @param IgnoreErrKeyword: 5.7升级8.0是否忽略关键字错误，取值范围[0,1]，1表示忽略，0表示不忽略。无默认值，不传此参数表示不做处理。
         # @type IgnoreErrKeyword: Integer
         # @param ParamList: 版本升级支持指定参数
         # @type ParamList: Array

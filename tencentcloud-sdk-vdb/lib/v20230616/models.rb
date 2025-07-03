@@ -134,32 +134,32 @@ module TencentCloud
 
         attr_accessor :VpcId, :SubnetId, :PayMode, :InstanceName, :SecurityGroupIds, :PayPeriod, :AutoRenew, :Params, :ResourceTags, :Project, :InstanceType, :Mode, :GoodsNum, :NetworkType, :TemplateId, :Components, :Zone, :SlaveZones, :IsNoExpired, :EngineName, :EngineVersion, :Brief, :Chief, :DBA, :NodeType, :Cpu, :Memory, :DiskSize, :WorkerNodeNum
         extend Gem::Deprecate
-        deprecate :Project, :none, 2025, 4
-        deprecate :Project=, :none, 2025, 4
-        deprecate :NetworkType, :none, 2025, 4
-        deprecate :NetworkType=, :none, 2025, 4
-        deprecate :TemplateId, :none, 2025, 4
-        deprecate :TemplateId=, :none, 2025, 4
-        deprecate :Components, :none, 2025, 4
-        deprecate :Components=, :none, 2025, 4
-        deprecate :Zone, :none, 2025, 4
-        deprecate :Zone=, :none, 2025, 4
-        deprecate :SlaveZones, :none, 2025, 4
-        deprecate :SlaveZones=, :none, 2025, 4
-        deprecate :IsNoExpired, :none, 2025, 4
-        deprecate :IsNoExpired=, :none, 2025, 4
-        deprecate :EngineName, :none, 2025, 4
-        deprecate :EngineName=, :none, 2025, 4
-        deprecate :EngineVersion, :none, 2025, 4
-        deprecate :EngineVersion=, :none, 2025, 4
-        deprecate :Brief, :none, 2025, 4
-        deprecate :Brief=, :none, 2025, 4
-        deprecate :Chief, :none, 2025, 4
-        deprecate :Chief=, :none, 2025, 4
-        deprecate :DBA, :none, 2025, 4
-        deprecate :DBA=, :none, 2025, 4
-        deprecate :NodeType, :none, 2025, 4
-        deprecate :NodeType=, :none, 2025, 4
+        deprecate :Project, :none, 2025, 7
+        deprecate :Project=, :none, 2025, 7
+        deprecate :NetworkType, :none, 2025, 7
+        deprecate :NetworkType=, :none, 2025, 7
+        deprecate :TemplateId, :none, 2025, 7
+        deprecate :TemplateId=, :none, 2025, 7
+        deprecate :Components, :none, 2025, 7
+        deprecate :Components=, :none, 2025, 7
+        deprecate :Zone, :none, 2025, 7
+        deprecate :Zone=, :none, 2025, 7
+        deprecate :SlaveZones, :none, 2025, 7
+        deprecate :SlaveZones=, :none, 2025, 7
+        deprecate :IsNoExpired, :none, 2025, 7
+        deprecate :IsNoExpired=, :none, 2025, 7
+        deprecate :EngineName, :none, 2025, 7
+        deprecate :EngineName=, :none, 2025, 7
+        deprecate :EngineVersion, :none, 2025, 7
+        deprecate :EngineVersion=, :none, 2025, 7
+        deprecate :Brief, :none, 2025, 7
+        deprecate :Brief=, :none, 2025, 7
+        deprecate :Chief, :none, 2025, 7
+        deprecate :Chief=, :none, 2025, 7
+        deprecate :DBA, :none, 2025, 7
+        deprecate :DBA=, :none, 2025, 7
+        deprecate :NodeType, :none, 2025, 7
+        deprecate :NodeType=, :none, 2025, 7
 
         def initialize(vpcid=nil, subnetid=nil, paymode=nil, instancename=nil, securitygroupids=nil, payperiod=nil, autorenew=nil, params=nil, resourcetags=nil, project=nil, instancetype=nil, mode=nil, goodsnum=nil, networktype=nil, templateid=nil, components=nil, zone=nil, slavezones=nil, isnoexpired=nil, enginename=nil, engineversion=nil, brief=nil, chief=nil, dba=nil, nodetype=nil, cpu=nil, memory=nil, disksize=nil, workernodenum=nil)
           @VpcId = vpcid
@@ -487,15 +487,17 @@ module TencentCloud
         # @type ResourceTags: Array
         # @param TaskStatus: 任务状态：1-待执行任务；2-密钥更新中；3-网络变更中；4-参数变更中；5-embedding变更中；6-ai套件变更中；7-滚动升级中；8-纵向扩容中；9-纵向缩容中；10-横向扩容中；11-横向缩容中
         # @type TaskStatus: Array
+        # @param Networks: 根据实例vip搜索实例
+        # @type Networks: Array
 
-        attr_accessor :InstanceIds, :InstanceNames, :InstanceKeys, :Status, :EngineNames, :EngineVersions, :ApiVersions, :CreateAt, :Zones, :OrderBy, :OrderDirection, :Offset, :Limit, :ResourceTags, :TaskStatus
+        attr_accessor :InstanceIds, :InstanceNames, :InstanceKeys, :Status, :EngineNames, :EngineVersions, :ApiVersions, :CreateAt, :Zones, :OrderBy, :OrderDirection, :Offset, :Limit, :ResourceTags, :TaskStatus, :Networks
         extend Gem::Deprecate
-        deprecate :EngineNames, :none, 2025, 4
-        deprecate :EngineNames=, :none, 2025, 4
-        deprecate :Zones, :none, 2025, 4
-        deprecate :Zones=, :none, 2025, 4
+        deprecate :EngineNames, :none, 2025, 7
+        deprecate :EngineNames=, :none, 2025, 7
+        deprecate :Zones, :none, 2025, 7
+        deprecate :Zones=, :none, 2025, 7
 
-        def initialize(instanceids=nil, instancenames=nil, instancekeys=nil, status=nil, enginenames=nil, engineversions=nil, apiversions=nil, createat=nil, zones=nil, orderby=nil, orderdirection=nil, offset=nil, limit=nil, resourcetags=nil, taskstatus=nil)
+        def initialize(instanceids=nil, instancenames=nil, instancekeys=nil, status=nil, enginenames=nil, engineversions=nil, apiversions=nil, createat=nil, zones=nil, orderby=nil, orderdirection=nil, offset=nil, limit=nil, resourcetags=nil, taskstatus=nil, networks=nil)
           @InstanceIds = instanceids
           @InstanceNames = instancenames
           @InstanceKeys = instancekeys
@@ -511,6 +513,7 @@ module TencentCloud
           @Limit = limit
           @ResourceTags = resourcetags
           @TaskStatus = taskstatus
+          @Networks = networks
         end
 
         def deserialize(params)
@@ -536,6 +539,7 @@ module TencentCloud
             end
           end
           @TaskStatus = params['TaskStatus']
+          @Networks = params['Networks']
         end
       end
 
@@ -737,6 +741,12 @@ module TencentCloud
         # @type ExpiredAt: String
         # @param IsNoExpired: 是否不过期(永久)。
         # @type IsNoExpired: Boolean
+        # @param ProductType: 产品版本，0-标准版，1-容量增强版
+        # @type ProductType: Integer
+        # @param InstanceType: 实例类型
+        # @type InstanceType: String
+        # @param NodeType: 节点类型
+        # @type NodeType: String
         # @param WanAddress: 外网地址。
         # @type WanAddress: String
         # @param IsolateAt: 隔离时间
@@ -745,17 +755,19 @@ module TencentCloud
         # @type AutoRenew: Integer
         # @param TaskStatus: 任务状态：0-无任务；1-待执行任务；2-密钥更新中；3-网络变更中；4-参数变更中；5-embedding变更中；6-ai套件变更中；7-滚动升级中；8-纵向扩容中；9-纵向缩容中；10-横向扩容中；11-横向缩容中
         # @type TaskStatus: Integer
+        # @param SecurityGroupIds: 绑定的安全组id
+        # @type SecurityGroupIds: Array
 
-        attr_accessor :InstanceId, :Name, :AppId, :Region, :Zone, :Product, :Networks, :ShardNum, :ReplicaNum, :Cpu, :Memory, :Disk, :HealthScore, :Warning, :Project, :ResourceTags, :CreatedAt, :Status, :EngineName, :EngineVersion, :ApiVersion, :PayMode, :Extend, :ExpiredAt, :IsNoExpired, :WanAddress, :IsolateAt, :AutoRenew, :TaskStatus
+        attr_accessor :InstanceId, :Name, :AppId, :Region, :Zone, :Product, :Networks, :ShardNum, :ReplicaNum, :Cpu, :Memory, :Disk, :HealthScore, :Warning, :Project, :ResourceTags, :CreatedAt, :Status, :EngineName, :EngineVersion, :ApiVersion, :PayMode, :Extend, :ExpiredAt, :IsNoExpired, :ProductType, :InstanceType, :NodeType, :WanAddress, :IsolateAt, :AutoRenew, :TaskStatus, :SecurityGroupIds
         extend Gem::Deprecate
-        deprecate :HealthScore, :none, 2025, 4
-        deprecate :HealthScore=, :none, 2025, 4
-        deprecate :Warning, :none, 2025, 4
-        deprecate :Warning=, :none, 2025, 4
-        deprecate :Project, :none, 2025, 4
-        deprecate :Project=, :none, 2025, 4
+        deprecate :HealthScore, :none, 2025, 7
+        deprecate :HealthScore=, :none, 2025, 7
+        deprecate :Warning, :none, 2025, 7
+        deprecate :Warning=, :none, 2025, 7
+        deprecate :Project, :none, 2025, 7
+        deprecate :Project=, :none, 2025, 7
 
-        def initialize(instanceid=nil, name=nil, appid=nil, region=nil, zone=nil, product=nil, networks=nil, shardnum=nil, replicanum=nil, cpu=nil, memory=nil, disk=nil, healthscore=nil, warning=nil, project=nil, resourcetags=nil, createdat=nil, status=nil, enginename=nil, engineversion=nil, apiversion=nil, paymode=nil, extend=nil, expiredat=nil, isnoexpired=nil, wanaddress=nil, isolateat=nil, autorenew=nil, taskstatus=nil)
+        def initialize(instanceid=nil, name=nil, appid=nil, region=nil, zone=nil, product=nil, networks=nil, shardnum=nil, replicanum=nil, cpu=nil, memory=nil, disk=nil, healthscore=nil, warning=nil, project=nil, resourcetags=nil, createdat=nil, status=nil, enginename=nil, engineversion=nil, apiversion=nil, paymode=nil, extend=nil, expiredat=nil, isnoexpired=nil, producttype=nil, instancetype=nil, nodetype=nil, wanaddress=nil, isolateat=nil, autorenew=nil, taskstatus=nil, securitygroupids=nil)
           @InstanceId = instanceid
           @Name = name
           @AppId = appid
@@ -781,10 +793,14 @@ module TencentCloud
           @Extend = extend
           @ExpiredAt = expiredat
           @IsNoExpired = isnoexpired
+          @ProductType = producttype
+          @InstanceType = instancetype
+          @NodeType = nodetype
           @WanAddress = wanaddress
           @IsolateAt = isolateat
           @AutoRenew = autorenew
           @TaskStatus = taskstatus
+          @SecurityGroupIds = securitygroupids
         end
 
         def deserialize(params)
@@ -827,10 +843,14 @@ module TencentCloud
           @Extend = params['Extend']
           @ExpiredAt = params['ExpiredAt']
           @IsNoExpired = params['IsNoExpired']
+          @ProductType = params['ProductType']
+          @InstanceType = params['InstanceType']
+          @NodeType = params['NodeType']
           @WanAddress = params['WanAddress']
           @IsolateAt = params['IsolateAt']
           @AutoRenew = params['AutoRenew']
           @TaskStatus = params['TaskStatus']
+          @SecurityGroupIds = params['SecurityGroupIds']
         end
       end
 

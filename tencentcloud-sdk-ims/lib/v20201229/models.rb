@@ -376,14 +376,12 @@ module TencentCloud
         # @param LibId: 该字段用于返回自定义库的ID，以方便自定义库管理和配置。
         # @type LibId: String
         # @param LibName: 该字段用于返回自定义库的名称,以方便自定义库管理和配置。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LibName: String
         # @param ImageId: 该字段用于返回识别图像对象的ID以方便文件管理。
         # @type ImageId: String
         # @param Label: 该字段用于返回检测结果所对应的恶意标签。<br>返回值：**Normal**：正常，**Porn**：色情，**Abuse**：谩骂，**Ad**：广告；以及其他令人反感、不安全或不适宜的内容类型。
         # @type Label: String
         # @param Tag: 该字段用于返回其他自定义标签以满足您的定制化场景需求，若无需求则可略过。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tag: String
         # @param Score: 该字段用于返回对应模型命中的分值，取值为**0-100**，如：*Porn 99* 则代表相应识别内容命中色情标签的分值为99。
         # @type Score: Integer

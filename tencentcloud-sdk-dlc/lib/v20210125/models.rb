@@ -1736,8 +1736,8 @@ module TencentCloud
 
         attr_accessor :EngineType, :DataEngineName, :ClusterType, :Mode, :AutoResume, :MinClusters, :MaxClusters, :DefaultDataEngine, :CidrBlock, :Message, :Size, :PayMode, :TimeSpan, :TimeUnit, :AutoRenew, :Tags, :AutoSuspend, :CrontabResumeSuspend, :CrontabResumeSuspendStrategy, :EngineExecType, :MaxConcurrency, :TolerableQueueTime, :AutoSuspendTime, :ResourceType, :DataEngineConfigPairs, :ImageVersionName, :MainClusterName, :ElasticSwitch, :ElasticLimit, :SessionResourceTemplate, :AutoAuthorization, :EngineNetworkId, :EngineGeneration
         extend Gem::Deprecate
-        deprecate :DefaultDataEngine, :none, 2025, 6
-        deprecate :DefaultDataEngine=, :none, 2025, 6
+        deprecate :DefaultDataEngine, :none, 2025, 7
+        deprecate :DefaultDataEngine=, :none, 2025, 7
 
         def initialize(enginetype=nil, dataenginename=nil, clustertype=nil, mode=nil, autoresume=nil, minclusters=nil, maxclusters=nil, defaultdataengine=nil, cidrblock=nil, message=nil, size=nil, paymode=nil, timespan=nil, timeunit=nil, autorenew=nil, tags=nil, autosuspend=nil, crontabresumesuspend=nil, crontabresumesuspendstrategy=nil, engineexectype=nil, maxconcurrency=nil, tolerablequeuetime=nil, autosuspendtime=nil, resourcetype=nil, dataengineconfigpairs=nil, imageversionname=nil, mainclustername=nil, elasticswitch=nil, elasticlimit=nil, sessionresourcetemplate=nil, autoauthorization=nil, enginenetworkid=nil, enginegeneration=nil)
           @EngineType = enginetype
@@ -3229,6 +3229,26 @@ module TencentCloud
         end
       end
 
+      # 自定义参数
+      class CustomConfig < TencentCloud::Common::AbstractModel
+        # @param ConfigKey: 自定义参数名
+        # @type ConfigKey: String
+        # @param ConfigValue: 自定义参数值
+        # @type ConfigValue: String
+
+        attr_accessor :ConfigKey, :ConfigValue
+
+        def initialize(configkey=nil, configvalue=nil)
+          @ConfigKey = configkey
+          @ConfigValue = configvalue
+        end
+
+        def deserialize(params)
+          @ConfigKey = params['ConfigKey']
+          @ConfigValue = params['ConfigValue']
+        end
+      end
+
       # DLC 数据目录访问权限
       class DLCCatalogAccess < TencentCloud::Common::AbstractModel
         # @param VpcId: VPCID
@@ -4621,10 +4641,14 @@ module TencentCloud
         # @type ConnectivityState: Integer
         # @param ConnectivityTips: 连通性测试提示信息
         # @type ConnectivityTips: String
+        # @param CustomConfig: 自定义参数
+        # @type CustomConfig: Array
+        # @param AllowRollback: 是否允许回退
+        # @type AllowRollback: Boolean
 
-        attr_accessor :Id, :DatasourceConnectionId, :DatasourceConnectionName, :DatasourceConnectionDesc, :DatasourceConnectionType, :DatasourceConnectionConfig, :State, :Region, :AppId, :CreateTime, :UpdateTime, :Message, :DataEngines, :UserAlias, :NetworkConnectionSet, :ConnectivityState, :ConnectivityTips
+        attr_accessor :Id, :DatasourceConnectionId, :DatasourceConnectionName, :DatasourceConnectionDesc, :DatasourceConnectionType, :DatasourceConnectionConfig, :State, :Region, :AppId, :CreateTime, :UpdateTime, :Message, :DataEngines, :UserAlias, :NetworkConnectionSet, :ConnectivityState, :ConnectivityTips, :CustomConfig, :AllowRollback
 
-        def initialize(id=nil, datasourceconnectionid=nil, datasourceconnectionname=nil, datasourceconnectiondesc=nil, datasourceconnectiontype=nil, datasourceconnectionconfig=nil, state=nil, region=nil, appid=nil, createtime=nil, updatetime=nil, message=nil, dataengines=nil, useralias=nil, networkconnectionset=nil, connectivitystate=nil, connectivitytips=nil)
+        def initialize(id=nil, datasourceconnectionid=nil, datasourceconnectionname=nil, datasourceconnectiondesc=nil, datasourceconnectiontype=nil, datasourceconnectionconfig=nil, state=nil, region=nil, appid=nil, createtime=nil, updatetime=nil, message=nil, dataengines=nil, useralias=nil, networkconnectionset=nil, connectivitystate=nil, connectivitytips=nil, customconfig=nil, allowrollback=nil)
           @Id = id
           @DatasourceConnectionId = datasourceconnectionid
           @DatasourceConnectionName = datasourceconnectionname
@@ -4642,6 +4666,8 @@ module TencentCloud
           @NetworkConnectionSet = networkconnectionset
           @ConnectivityState = connectivitystate
           @ConnectivityTips = connectivitytips
+          @CustomConfig = customconfig
+          @AllowRollback = allowrollback
         end
 
         def deserialize(params)
@@ -4679,6 +4705,15 @@ module TencentCloud
           end
           @ConnectivityState = params['ConnectivityState']
           @ConnectivityTips = params['ConnectivityTips']
+          unless params['CustomConfig'].nil?
+            @CustomConfig = []
+            params['CustomConfig'].each do |i|
+              customconfig_tmp = CustomConfig.new
+              customconfig_tmp.deserialize(i)
+              @CustomConfig << customconfig_tmp
+            end
+          end
+          @AllowRollback = params['AllowRollback']
         end
       end
 
@@ -10520,10 +10555,12 @@ module TencentCloud
         # @param DatasourceConnectionSubnetCidrBlock: 数据源SubnetCidrBlock
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DatasourceConnectionSubnetCidrBlock: String
+        # @param EGSupport: 支持 eg
+        # @type EGSupport: Integer
 
-        attr_accessor :Id, :AssociateId, :HouseId, :DatasourceConnectionId, :State, :CreateTime, :UpdateTime, :Appid, :HouseName, :DatasourceConnectionName, :NetworkConnectionType, :Uin, :SubAccountUin, :NetworkConnectionDesc, :DatasourceConnectionVpcId, :DatasourceConnectionSubnetId, :DatasourceConnectionCidrBlock, :DatasourceConnectionSubnetCidrBlock
+        attr_accessor :Id, :AssociateId, :HouseId, :DatasourceConnectionId, :State, :CreateTime, :UpdateTime, :Appid, :HouseName, :DatasourceConnectionName, :NetworkConnectionType, :Uin, :SubAccountUin, :NetworkConnectionDesc, :DatasourceConnectionVpcId, :DatasourceConnectionSubnetId, :DatasourceConnectionCidrBlock, :DatasourceConnectionSubnetCidrBlock, :EGSupport
 
-        def initialize(id=nil, associateid=nil, houseid=nil, datasourceconnectionid=nil, state=nil, createtime=nil, updatetime=nil, appid=nil, housename=nil, datasourceconnectionname=nil, networkconnectiontype=nil, uin=nil, subaccountuin=nil, networkconnectiondesc=nil, datasourceconnectionvpcid=nil, datasourceconnectionsubnetid=nil, datasourceconnectioncidrblock=nil, datasourceconnectionsubnetcidrblock=nil)
+        def initialize(id=nil, associateid=nil, houseid=nil, datasourceconnectionid=nil, state=nil, createtime=nil, updatetime=nil, appid=nil, housename=nil, datasourceconnectionname=nil, networkconnectiontype=nil, uin=nil, subaccountuin=nil, networkconnectiondesc=nil, datasourceconnectionvpcid=nil, datasourceconnectionsubnetid=nil, datasourceconnectioncidrblock=nil, datasourceconnectionsubnetcidrblock=nil, egsupport=nil)
           @Id = id
           @AssociateId = associateid
           @HouseId = houseid
@@ -10542,6 +10579,7 @@ module TencentCloud
           @DatasourceConnectionSubnetId = datasourceconnectionsubnetid
           @DatasourceConnectionCidrBlock = datasourceconnectioncidrblock
           @DatasourceConnectionSubnetCidrBlock = datasourceconnectionsubnetcidrblock
+          @EGSupport = egsupport
         end
 
         def deserialize(params)
@@ -10563,6 +10601,7 @@ module TencentCloud
           @DatasourceConnectionSubnetId = params['DatasourceConnectionSubnetId']
           @DatasourceConnectionCidrBlock = params['DatasourceConnectionCidrBlock']
           @DatasourceConnectionSubnetCidrBlock = params['DatasourceConnectionSubnetCidrBlock']
+          @EGSupport = params['EGSupport']
         end
       end
 
@@ -12678,10 +12717,10 @@ module TencentCloud
 
         attr_accessor :DatabaseName, :TableName, :DatasourceConnectionName, :TableComment, :Type, :TableFormat, :UserAlias, :UserSubUin, :GovernPolicy, :DbGovernPolicyIsDisable, :SmartPolicy, :PrimaryKeys
         extend Gem::Deprecate
-        deprecate :GovernPolicy, :none, 2025, 6
-        deprecate :GovernPolicy=, :none, 2025, 6
-        deprecate :DbGovernPolicyIsDisable, :none, 2025, 6
-        deprecate :DbGovernPolicyIsDisable=, :none, 2025, 6
+        deprecate :GovernPolicy, :none, 2025, 7
+        deprecate :GovernPolicy=, :none, 2025, 7
+        deprecate :DbGovernPolicyIsDisable, :none, 2025, 7
+        deprecate :DbGovernPolicyIsDisable=, :none, 2025, 7
 
         def initialize(databasename=nil, tablename=nil, datasourceconnectionname=nil, tablecomment=nil, type=nil, tableformat=nil, useralias=nil, usersubuin=nil, governpolicy=nil, dbgovernpolicyisdisable=nil, smartpolicy=nil, primarykeys=nil)
           @DatabaseName = databasename

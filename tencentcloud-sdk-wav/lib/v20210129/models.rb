@@ -2330,7 +2330,7 @@ module TencentCloud
 
       # QueryCrmStatistics返回参数结构体
       class QueryCrmStatisticsResponse < TencentCloud::Common::AbstractModel
-        # @param NextCursor: 分页游标，再下次请求时填写以获取之后分页的记录，如果已经没有更多的数据则返回空
+        # @param NextCursor: 分页游标，在下次请求时填写以获取之后分页的记录，如果已经没有更多的数据则返回空
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NextCursor: String
         # @param PageData: CRM统计响应数据
@@ -2391,7 +2391,7 @@ module TencentCloud
 
       # QueryCustomerEventDetailStatistics返回参数结构体
       class QueryCustomerEventDetailStatisticsResponse < TencentCloud::Common::AbstractModel
-        # @param NextCursor: 分页游标，再下次请求时填写以获取之后分页的记录，如果已经没有更多的数据则返回空
+        # @param NextCursor: 分页游标，在下次请求时填写以获取之后分页的记录，如果已经没有更多的数据则返回空
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NextCursor: String
         # @param PageData: 外部联系人SaaS使用明细统计响应数据
@@ -3070,7 +3070,7 @@ module TencentCloud
 
       # QueryStaffEventDetailStatistics返回参数结构体
       class QueryStaffEventDetailStatisticsResponse < TencentCloud::Common::AbstractModel
-        # @param NextCursor: 分页游标，再下次请求时填写以获取之后分页的记录，如果已经没有更多的数据则返回空
+        # @param NextCursor: 分页游标，在下次请求时填写以获取之后分页的记录，如果已经没有更多的数据则返回空
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NextCursor: String
         # @param PageData: 企业成员SaaS使用明细统计响应数据

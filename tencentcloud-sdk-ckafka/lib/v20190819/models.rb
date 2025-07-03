@@ -1781,8 +1781,8 @@ module TencentCloud
 
         attr_accessor :TaskName, :TaskType, :SourceResource, :TargetResource, :TransformParam, :PrivateLinkParam, :SchemaId, :TransformsParam, :TaskId, :Tags, :Description
         extend Gem::Deprecate
-        deprecate :PrivateLinkParam, :none, 2025, 6
-        deprecate :PrivateLinkParam=, :none, 2025, 6
+        deprecate :PrivateLinkParam, :none, 2025, 7
+        deprecate :PrivateLinkParam=, :none, 2025, 7
 
         def initialize(taskname=nil, tasktype=nil, sourceresource=nil, targetresource=nil, transformparam=nil, privatelinkparam=nil, schemaid=nil, transformsparam=nil, taskid=nil, tags=nil, description=nil)
           @TaskName = taskname
@@ -2280,8 +2280,8 @@ module TencentCloud
 
         attr_accessor :ReturnCode, :ReturnMessage, :Data, :DeleteRouteTimestamp
         extend Gem::Deprecate
-        deprecate :DeleteRouteTimestamp, :none, 2025, 6
-        deprecate :DeleteRouteTimestamp=, :none, 2025, 6
+        deprecate :DeleteRouteTimestamp, :none, 2025, 7
+        deprecate :DeleteRouteTimestamp=, :none, 2025, 7
 
         def initialize(returncode=nil, returnmessage=nil, data=nil, deleteroutetimestamp=nil)
           @ReturnCode = returncode
@@ -2702,7 +2702,7 @@ module TencentCloud
       class CreateTopicRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例Id
         # @type InstanceId: String
-        # @param TopicName: 主题名称，是一个不超过 128 个字符的字符串，必须以字母为首字符，剩余部分可以包含字母、数字和横划线(-)
+        # @param TopicName: 只能包含字母、数字、下划线、“-”、“.”
         # @type TopicName: String
         # @param PartitionNum: Partition个数，大于0
         # @type PartitionNum: Integer
@@ -4725,10 +4725,14 @@ module TencentCloud
         # @type ErrorMessage: String
         # @param Tags: 任务标签列表
         # @type Tags: Array
+        # @param Description: 任务描述信息
+        # @type Description: String
+        # @param IsolateStatus: 1:正常 2:隔离中
+        # @type IsolateStatus: Integer
 
-        attr_accessor :TaskId, :TaskName, :TaskType, :Status, :SourceResource, :TargetResource, :Connections, :CreateTime, :TransformParam, :DatahubId, :SchemaId, :SchemaName, :TransformsParam, :ErrorMessage, :Tags
+        attr_accessor :TaskId, :TaskName, :TaskType, :Status, :SourceResource, :TargetResource, :Connections, :CreateTime, :TransformParam, :DatahubId, :SchemaId, :SchemaName, :TransformsParam, :ErrorMessage, :Tags, :Description, :IsolateStatus
 
-        def initialize(taskid=nil, taskname=nil, tasktype=nil, status=nil, sourceresource=nil, targetresource=nil, connections=nil, createtime=nil, transformparam=nil, datahubid=nil, schemaid=nil, schemaname=nil, transformsparam=nil, errormessage=nil, tags=nil)
+        def initialize(taskid=nil, taskname=nil, tasktype=nil, status=nil, sourceresource=nil, targetresource=nil, connections=nil, createtime=nil, transformparam=nil, datahubid=nil, schemaid=nil, schemaname=nil, transformsparam=nil, errormessage=nil, tags=nil, description=nil, isolatestatus=nil)
           @TaskId = taskid
           @TaskName = taskname
           @TaskType = tasktype
@@ -4744,6 +4748,8 @@ module TencentCloud
           @TransformsParam = transformsparam
           @ErrorMessage = errormessage
           @Tags = tags
+          @Description = description
+          @IsolateStatus = isolatestatus
         end
 
         def deserialize(params)
@@ -4788,6 +4794,8 @@ module TencentCloud
               @Tags << tag_tmp
             end
           end
+          @Description = params['Description']
+          @IsolateStatus = params['IsolateStatus']
         end
       end
 
@@ -5333,8 +5341,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :SearchWord, :Status, :Offset, :Limit, :TagKey, :Filters, :InstanceIds, :InstanceIdList, :TagList
         extend Gem::Deprecate
-        deprecate :InstanceIds, :none, 2025, 6
-        deprecate :InstanceIds=, :none, 2025, 6
+        deprecate :InstanceIds, :none, 2025, 7
+        deprecate :InstanceIds=, :none, 2025, 7
 
         def initialize(instanceid=nil, searchword=nil, status=nil, offset=nil, limit=nil, tagkey=nil, filters=nil, instanceids=nil, instanceidlist=nil, taglist=nil)
           @InstanceId = instanceid
@@ -5419,8 +5427,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :SearchWord, :Status, :Offset, :Limit, :TagKey, :VpcId
         extend Gem::Deprecate
-        deprecate :TagKey, :none, 2025, 6
-        deprecate :TagKey=, :none, 2025, 6
+        deprecate :TagKey, :none, 2025, 7
+        deprecate :TagKey=, :none, 2025, 7
 
         def initialize(instanceid=nil, searchword=nil, status=nil, offset=nil, limit=nil, tagkey=nil, vpcid=nil)
           @InstanceId = instanceid
@@ -9181,8 +9189,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :MsgRetentionTime, :InstanceName, :Config, :DynamicRetentionConfig, :RebalanceTime, :PublicNetwork, :DynamicDiskConfig, :MaxMessageByte, :UncleanLeaderElectionEnable, :DeleteProtectionEnable
         extend Gem::Deprecate
-        deprecate :DynamicDiskConfig, :none, 2025, 6
-        deprecate :DynamicDiskConfig=, :none, 2025, 6
+        deprecate :DynamicDiskConfig, :none, 2025, 7
+        deprecate :DynamicDiskConfig=, :none, 2025, 7
 
         def initialize(instanceid=nil, msgretentiontime=nil, instancename=nil, config=nil, dynamicretentionconfig=nil, rebalancetime=nil, publicnetwork=nil, dynamicdiskconfig=nil, maxmessagebyte=nil, uncleanleaderelectionenable=nil, deleteprotectionenable=nil)
           @InstanceId = instanceid
@@ -12218,8 +12226,8 @@ module TencentCloud
 
         attr_accessor :ZoneId, :IsInternalApp, :AppId, :Flag, :ZoneName, :ZoneStatus, :Exflag, :SoldOut, :SalesInfo, :ExtraFlag
         extend Gem::Deprecate
-        deprecate :Exflag, :none, 2025, 6
-        deprecate :Exflag=, :none, 2025, 6
+        deprecate :Exflag, :none, 2025, 7
+        deprecate :Exflag=, :none, 2025, 7
 
         def initialize(zoneid=nil, isinternalapp=nil, appid=nil, flag=nil, zonename=nil, zonestatus=nil, exflag=nil, soldout=nil, salesinfo=nil, extraflag=nil)
           @ZoneId = zoneid

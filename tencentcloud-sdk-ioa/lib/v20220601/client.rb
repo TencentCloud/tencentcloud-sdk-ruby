@@ -341,6 +341,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 展示自定义分组终端列表，私有化调用path为：/capi/Assets/DescribeVirtualDevices
+
+        # @param request: Request instance for DescribeVirtualDevices.
+        # @type request: :class:`Tencentcloud::ioa::V20220601::DescribeVirtualDevicesRequest`
+        # @rtype: :class:`Tencentcloud::ioa::V20220601::DescribeVirtualDevicesResponse`
+        def DescribeVirtualDevices(request)
+          body = send_request('DescribeVirtualDevices', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeVirtualDevicesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 终端自定义分组增减终端，私有化调用path为：/capi/Assets/Device/ModifyVirtualDeviceGroups
+
+        # @param request: Request instance for ModifyVirtualDeviceGroups.
+        # @type request: :class:`Tencentcloud::ioa::V20220601::ModifyVirtualDeviceGroupsRequest`
+        # @rtype: :class:`Tencentcloud::ioa::V20220601::ModifyVirtualDeviceGroupsResponse`
+        def ModifyVirtualDeviceGroups(request)
+          body = send_request('ModifyVirtualDeviceGroups', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyVirtualDeviceGroupsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
 
       end
     end

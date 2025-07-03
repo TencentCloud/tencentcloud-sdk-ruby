@@ -1561,10 +1561,14 @@ module TencentCloud
         # @type TaskRegionName: String
         # @param TaskArchId: 架构ID
         # @type TaskArchId: String
+        # @param TaskScenario: 演练场景
+        # @type TaskScenario: Array
+        # @param TaskPurpose: 演练目的
+        # @type TaskPurpose: Array
 
-        attr_accessor :TaskId, :TaskTitle, :TaskDescription, :TaskTag, :TaskStatus, :TaskStatusType, :TaskProtectStrategy, :TaskCreateTime, :TaskUpdateTime, :TaskGroups, :TaskStartTime, :TaskEndTime, :TaskExpect, :TaskSummary, :TaskMode, :TaskPauseDuration, :TaskOwnerUin, :TaskRegionId, :TaskMonitors, :TaskPolicy, :Tags, :TaskPlanId, :TaskPlanTitle, :ApplicationId, :ApplicationName, :AlarmPolicy, :ApmServiceList, :VerifyId, :PolicyDealType, :TaskPlanStartTime, :TaskPlanEndTime, :TaskOrg, :TaskIssue, :TaskRegionName, :TaskArchId
+        attr_accessor :TaskId, :TaskTitle, :TaskDescription, :TaskTag, :TaskStatus, :TaskStatusType, :TaskProtectStrategy, :TaskCreateTime, :TaskUpdateTime, :TaskGroups, :TaskStartTime, :TaskEndTime, :TaskExpect, :TaskSummary, :TaskMode, :TaskPauseDuration, :TaskOwnerUin, :TaskRegionId, :TaskMonitors, :TaskPolicy, :Tags, :TaskPlanId, :TaskPlanTitle, :ApplicationId, :ApplicationName, :AlarmPolicy, :ApmServiceList, :VerifyId, :PolicyDealType, :TaskPlanStartTime, :TaskPlanEndTime, :TaskOrg, :TaskIssue, :TaskRegionName, :TaskArchId, :TaskScenario, :TaskPurpose
 
-        def initialize(taskid=nil, tasktitle=nil, taskdescription=nil, tasktag=nil, taskstatus=nil, taskstatustype=nil, taskprotectstrategy=nil, taskcreatetime=nil, taskupdatetime=nil, taskgroups=nil, taskstarttime=nil, taskendtime=nil, taskexpect=nil, tasksummary=nil, taskmode=nil, taskpauseduration=nil, taskowneruin=nil, taskregionid=nil, taskmonitors=nil, taskpolicy=nil, tags=nil, taskplanid=nil, taskplantitle=nil, applicationid=nil, applicationname=nil, alarmpolicy=nil, apmservicelist=nil, verifyid=nil, policydealtype=nil, taskplanstarttime=nil, taskplanendtime=nil, taskorg=nil, taskissue=nil, taskregionname=nil, taskarchid=nil)
+        def initialize(taskid=nil, tasktitle=nil, taskdescription=nil, tasktag=nil, taskstatus=nil, taskstatustype=nil, taskprotectstrategy=nil, taskcreatetime=nil, taskupdatetime=nil, taskgroups=nil, taskstarttime=nil, taskendtime=nil, taskexpect=nil, tasksummary=nil, taskmode=nil, taskpauseduration=nil, taskowneruin=nil, taskregionid=nil, taskmonitors=nil, taskpolicy=nil, tags=nil, taskplanid=nil, taskplantitle=nil, applicationid=nil, applicationname=nil, alarmpolicy=nil, apmservicelist=nil, verifyid=nil, policydealtype=nil, taskplanstarttime=nil, taskplanendtime=nil, taskorg=nil, taskissue=nil, taskregionname=nil, taskarchid=nil, taskscenario=nil, taskpurpose=nil)
           @TaskId = taskid
           @TaskTitle = tasktitle
           @TaskDescription = taskdescription
@@ -1600,6 +1604,8 @@ module TencentCloud
           @TaskIssue = taskissue
           @TaskRegionName = taskregionname
           @TaskArchId = taskarchid
+          @TaskScenario = taskscenario
+          @TaskPurpose = taskpurpose
         end
 
         def deserialize(params)
@@ -1676,6 +1682,22 @@ module TencentCloud
           @TaskIssue = params['TaskIssue']
           @TaskRegionName = params['TaskRegionName']
           @TaskArchId = params['TaskArchId']
+          unless params['TaskScenario'].nil?
+            @TaskScenario = []
+            params['TaskScenario'].each do |i|
+              tasktarget_tmp = TaskTarget.new
+              tasktarget_tmp.deserialize(i)
+              @TaskScenario << tasktarget_tmp
+            end
+          end
+          unless params['TaskPurpose'].nil?
+            @TaskPurpose = []
+            params['TaskPurpose'].each do |i|
+              tasktarget_tmp = TaskTarget.new
+              tasktarget_tmp.deserialize(i)
+              @TaskPurpose << tasktarget_tmp
+            end
+          end
         end
       end
 
@@ -2048,8 +2070,8 @@ module TencentCloud
 
         attr_accessor :TaskGroupInstanceId, :TaskGroupInstanceObjectId, :TaskGroupInstanceStatus, :TaskGroupInstanceCreateTime, :TaskGroupInstanceUpdateTime, :TaskGroupInstanceStatusType, :TaskGroupInstanceStartTime, :TaskGroupInstanceEndTime, :TaskGroupInstanceExecuteLog, :TaskGroupInstanceIsRedo, :TaskGroupInstanceExecuteTime
         extend Gem::Deprecate
-        deprecate :TaskGroupInstanceExecuteLog, :none, 2025, 4
-        deprecate :TaskGroupInstanceExecuteLog=, :none, 2025, 4
+        deprecate :TaskGroupInstanceExecuteLog, :none, 2025, 7
+        deprecate :TaskGroupInstanceExecuteLog=, :none, 2025, 7
 
         def initialize(taskgroupinstanceid=nil, taskgroupinstanceobjectid=nil, taskgroupinstancestatus=nil, taskgroupinstancecreatetime=nil, taskgroupinstanceupdatetime=nil, taskgroupinstancestatustype=nil, taskgroupinstancestarttime=nil, taskgroupinstanceendtime=nil, taskgroupinstanceexecutelog=nil, taskgroupinstanceisredo=nil, taskgroupinstanceexecutetime=nil)
           @TaskGroupInstanceId = taskgroupinstanceid
@@ -2286,6 +2308,35 @@ module TencentCloud
           @ArchiveStage = params['ArchiveStage']
           @ArchiveTime = params['ArchiveTime']
           @ArchiveUuid = params['ArchiveUuid']
+        end
+      end
+
+      # 演练目标
+      class TaskTarget < TencentCloud::Common::AbstractModel
+        # @param TargetId: 目标标签ID
+        # @type TargetId: Integer
+        # @param TargetDesc: 目标描述
+        # @type TargetDesc: String
+        # @param Type: 1:演练场景
+        # 2:演练目标
+        # @type Type: Integer
+        # @param Source: 1:平台 2:用户个人
+        # @type Source: Integer
+
+        attr_accessor :TargetId, :TargetDesc, :Type, :Source
+
+        def initialize(targetid=nil, targetdesc=nil, type=nil, source=nil)
+          @TargetId = targetid
+          @TargetDesc = targetdesc
+          @Type = type
+          @Source = source
+        end
+
+        def deserialize(params)
+          @TargetId = params['TargetId']
+          @TargetDesc = params['TargetDesc']
+          @Type = params['Type']
+          @Source = params['Source']
         end
       end
 

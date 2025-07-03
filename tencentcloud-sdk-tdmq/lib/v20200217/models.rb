@@ -209,6 +209,50 @@ module TencentCloud
         end
       end
 
+      # Pulsar集群TLS证书信息
+      class CertificateInfo < TencentCloud::Common::AbstractModel
+        # @param CertificateId: SSL证书管理中的id
+        # @type CertificateId: String
+        # @param ExpireTime: 证书到期时间
+        # @type ExpireTime: String
+        # @param DomainName: 证书绑定的域名
+        # @type DomainName: String
+        # @param Status: 证书状态：0 已签发
+        # 1 即将过期
+        # 2 未启用
+        # 3 已过期
+        # 4 不可用
+        # @type Status: String
+        # @param Type: 证书类型：0：根证书，1：服务端证书
+        # @type Type: String
+        # @param Origin: TencentCloud：SSL证书；Default：TDMQ官方默认证书
+        # @type Origin: String
+        # @param ModifyTime: 证书添加/更新时间
+        # @type ModifyTime: String
+
+        attr_accessor :CertificateId, :ExpireTime, :DomainName, :Status, :Type, :Origin, :ModifyTime
+
+        def initialize(certificateid=nil, expiretime=nil, domainname=nil, status=nil, type=nil, origin=nil, modifytime=nil)
+          @CertificateId = certificateid
+          @ExpireTime = expiretime
+          @DomainName = domainname
+          @Status = status
+          @Type = type
+          @Origin = origin
+          @ModifyTime = modifytime
+        end
+
+        def deserialize(params)
+          @CertificateId = params['CertificateId']
+          @ExpireTime = params['ExpireTime']
+          @DomainName = params['DomainName']
+          @Status = params['Status']
+          @Type = params['Type']
+          @Origin = params['Origin']
+          @ModifyTime = params['ModifyTime']
+        end
+      end
+
       # ClearCmqQueue请求参数结构体
       class ClearCmqQueueRequest < TencentCloud::Common::AbstractModel
         # @param QueueName: 队列名字，在单个地域同一账号下唯一。队列名称是一个不超过64个字符的字符串，必须以字母为首字符，剩余部分可以包含字母、数字和横划线(-)。
@@ -1739,10 +1783,12 @@ module TencentCloud
         # @type Bandwidth: Integer
         # @param EnablePublicAccess: 是否打开公网接入，不传默认为false
         # @type EnablePublicAccess: Boolean
+        # @param EnableDeletionProtection: 是否打开集群删除保护，不传默认为 false
+        # @type EnableDeletionProtection: Boolean
 
-        attr_accessor :ZoneIds, :VpcId, :SubnetId, :ClusterName, :NodeSpec, :NodeNum, :StorageSize, :EnableCreateDefaultHaMirrorQueue, :AutoRenewFlag, :TimeSpan, :PayMode, :ClusterVersion, :IsIntl, :ResourceTags, :Bandwidth, :EnablePublicAccess
+        attr_accessor :ZoneIds, :VpcId, :SubnetId, :ClusterName, :NodeSpec, :NodeNum, :StorageSize, :EnableCreateDefaultHaMirrorQueue, :AutoRenewFlag, :TimeSpan, :PayMode, :ClusterVersion, :IsIntl, :ResourceTags, :Bandwidth, :EnablePublicAccess, :EnableDeletionProtection
 
-        def initialize(zoneids=nil, vpcid=nil, subnetid=nil, clustername=nil, nodespec=nil, nodenum=nil, storagesize=nil, enablecreatedefaulthamirrorqueue=nil, autorenewflag=nil, timespan=nil, paymode=nil, clusterversion=nil, isintl=nil, resourcetags=nil, bandwidth=nil, enablepublicaccess=nil)
+        def initialize(zoneids=nil, vpcid=nil, subnetid=nil, clustername=nil, nodespec=nil, nodenum=nil, storagesize=nil, enablecreatedefaulthamirrorqueue=nil, autorenewflag=nil, timespan=nil, paymode=nil, clusterversion=nil, isintl=nil, resourcetags=nil, bandwidth=nil, enablepublicaccess=nil, enabledeletionprotection=nil)
           @ZoneIds = zoneids
           @VpcId = vpcid
           @SubnetId = subnetid
@@ -1759,6 +1805,7 @@ module TencentCloud
           @ResourceTags = resourcetags
           @Bandwidth = bandwidth
           @EnablePublicAccess = enablepublicaccess
+          @EnableDeletionProtection = enabledeletionprotection
         end
 
         def deserialize(params)
@@ -1785,6 +1832,7 @@ module TencentCloud
           end
           @Bandwidth = params['Bandwidth']
           @EnablePublicAccess = params['EnablePublicAccess']
+          @EnableDeletionProtection = params['EnableDeletionProtection']
         end
       end
 
@@ -5520,7 +5568,7 @@ module TencentCloud
 
       # DescribeRabbitMQVipInstance请求参数结构体
       class DescribeRabbitMQVipInstanceRequest < TencentCloud::Common::AbstractModel
-        # @param ClusterId: 集群 ID
+        # @param ClusterId: 实例 ID，形如 amqp-xxxxxxxx。有效的 InstanceId 可通过登录 [TDMQ RabbitMQ 控制台](https://console.cloud.tencent.com/trabbitmq/cluster?rid=1)查询。
         # @type ClusterId: String
 
         attr_accessor :ClusterId
@@ -5550,12 +5598,14 @@ module TencentCloud
         # @type ExchangeQuota: :class:`Tencentcloud::Tdmq.v20200217.models.ExchangeQuota`
         # @param QueueQuota: queue配额信息
         # @type QueueQuota: :class:`Tencentcloud::Tdmq.v20200217.models.QueueQuota`
+        # @param UserQuota: 用户配额信息
+        # @type UserQuota: :class:`Tencentcloud::Tdmq.v20200217.models.RabbitMQUserQuota`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ClusterInfo, :ClusterSpecInfo, :ClusterNetInfo, :ClusterWhiteListInfo, :VirtualHostQuota, :ExchangeQuota, :QueueQuota, :RequestId
+        attr_accessor :ClusterInfo, :ClusterSpecInfo, :ClusterNetInfo, :ClusterWhiteListInfo, :VirtualHostQuota, :ExchangeQuota, :QueueQuota, :UserQuota, :RequestId
 
-        def initialize(clusterinfo=nil, clusterspecinfo=nil, clusternetinfo=nil, clusterwhitelistinfo=nil, virtualhostquota=nil, exchangequota=nil, queuequota=nil, requestid=nil)
+        def initialize(clusterinfo=nil, clusterspecinfo=nil, clusternetinfo=nil, clusterwhitelistinfo=nil, virtualhostquota=nil, exchangequota=nil, queuequota=nil, userquota=nil, requestid=nil)
           @ClusterInfo = clusterinfo
           @ClusterSpecInfo = clusterspecinfo
           @ClusterNetInfo = clusternetinfo
@@ -5563,6 +5613,7 @@ module TencentCloud
           @VirtualHostQuota = virtualhostquota
           @ExchangeQuota = exchangequota
           @QueueQuota = queuequota
+          @UserQuota = userquota
           @RequestId = requestid
         end
 
@@ -5594,6 +5645,10 @@ module TencentCloud
           unless params['QueueQuota'].nil?
             @QueueQuota = QueueQuota.new
             @QueueQuota.deserialize(params['QueueQuota'])
+          end
+          unless params['UserQuota'].nil?
+            @UserQuota = RabbitMQUserQuota.new
+            @UserQuota.deserialize(params['UserQuota'])
           end
           @RequestId = params['RequestId']
         end
@@ -6321,8 +6376,8 @@ module TencentCloud
 
         attr_accessor :ClusterId, :EnvironmentId, :TopicName, :MsgId, :PulsarMsgId, :QueryDlqMsg, :QueryDeadLetterMessage, :Offset, :Limit, :FilterTrackGroup
         extend Gem::Deprecate
-        deprecate :QueryDlqMsg, :none, 2025, 6
-        deprecate :QueryDlqMsg=, :none, 2025, 6
+        deprecate :QueryDlqMsg, :none, 2025, 7
+        deprecate :QueryDlqMsg=, :none, 2025, 7
 
         def initialize(clusterid=nil, environmentid=nil, topicname=nil, msgid=nil, pulsarmsgid=nil, querydlqmsg=nil, querydeadlettermessage=nil, offset=nil, limit=nil, filtertrackgroup=nil)
           @ClusterId = clusterid
@@ -6427,8 +6482,8 @@ module TencentCloud
 
         attr_accessor :ClusterId, :EnvironmentId, :TopicName, :MsgId, :GroupName, :QueryDLQMsg, :QueryDeadLetterMessage
         extend Gem::Deprecate
-        deprecate :QueryDLQMsg, :none, 2025, 6
-        deprecate :QueryDLQMsg=, :none, 2025, 6
+        deprecate :QueryDLQMsg, :none, 2025, 7
+        deprecate :QueryDLQMsg=, :none, 2025, 7
 
         def initialize(clusterid=nil, environmentid=nil, topicname=nil, msgid=nil, groupname=nil, querydlqmsg=nil, querydeadlettermessage=nil)
           @ClusterId = clusterid
@@ -7268,8 +7323,8 @@ module TencentCloud
 
         attr_accessor :ClusterId, :EnvironmentId, :TopicName, :StartTime, :EndTime, :MsgId, :MsgKey, :Offset, :Limit, :TaskRequestId, :QueryDlqMsg, :NumOfLatestMsg, :Tag, :QueryDeadLetterMessage
         extend Gem::Deprecate
-        deprecate :QueryDlqMsg, :none, 2025, 6
-        deprecate :QueryDlqMsg=, :none, 2025, 6
+        deprecate :QueryDlqMsg, :none, 2025, 7
+        deprecate :QueryDlqMsg=, :none, 2025, 7
 
         def initialize(clusterid=nil, environmentid=nil, topicname=nil, starttime=nil, endtime=nil, msgid=nil, msgkey=nil, offset=nil, limit=nil, taskrequestid=nil, querydlqmsg=nil, numoflatestmsg=nil, tag=nil, querydeadlettermessage=nil)
           @ClusterId = clusterid
@@ -9173,23 +9228,27 @@ module TencentCloud
       class ModifyRabbitMQVipInstanceRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例Id
         # @type InstanceId: String
-        # @param ClusterName: 集群名称
+        # @param ClusterName: 集群名称，不填则不修改。非空字符串时必须 3-64 个字符，只能包含数字、字母、“-”和“_”
         # @type ClusterName: String
-        # @param Remark: 备注
+        # @param Remark: 备注，不填则不修改
         # @type Remark: String
+        # @param EnableDeletionProtection: 是否开启删除保护，不填则不修改
+        # @type EnableDeletionProtection: Boolean
 
-        attr_accessor :InstanceId, :ClusterName, :Remark
+        attr_accessor :InstanceId, :ClusterName, :Remark, :EnableDeletionProtection
 
-        def initialize(instanceid=nil, clustername=nil, remark=nil)
+        def initialize(instanceid=nil, clustername=nil, remark=nil, enabledeletionprotection=nil)
           @InstanceId = instanceid
           @ClusterName = clustername
           @Remark = remark
+          @EnableDeletionProtection = enabledeletionprotection
         end
 
         def deserialize(params)
           @InstanceId = params['InstanceId']
           @ClusterName = params['ClusterName']
           @Remark = params['Remark']
+          @EnableDeletionProtection = params['EnableDeletionProtection']
         end
       end
 
@@ -10144,10 +10203,14 @@ module TencentCloud
         # @param ZoneName: 可用区信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ZoneName: String
+        # @param Tls: 是否开启TLS加密
+        # @type Tls: Boolean
+        # @param CustomUrl: 接入点自定义域名
+        # @type CustomUrl: String
 
-        attr_accessor :VpcId, :SubnetId, :Endpoint, :InstanceId, :RouteType, :OperationType, :AccessPointsType, :Bandwidth, :SecurityPolicy, :StandardAccessPoint, :ZoneName
+        attr_accessor :VpcId, :SubnetId, :Endpoint, :InstanceId, :RouteType, :OperationType, :AccessPointsType, :Bandwidth, :SecurityPolicy, :StandardAccessPoint, :ZoneName, :Tls, :CustomUrl
 
-        def initialize(vpcid=nil, subnetid=nil, endpoint=nil, instanceid=nil, routetype=nil, operationtype=nil, accesspointstype=nil, bandwidth=nil, securitypolicy=nil, standardaccesspoint=nil, zonename=nil)
+        def initialize(vpcid=nil, subnetid=nil, endpoint=nil, instanceid=nil, routetype=nil, operationtype=nil, accesspointstype=nil, bandwidth=nil, securitypolicy=nil, standardaccesspoint=nil, zonename=nil, tls=nil, customurl=nil)
           @VpcId = vpcid
           @SubnetId = subnetid
           @Endpoint = endpoint
@@ -10159,6 +10222,8 @@ module TencentCloud
           @SecurityPolicy = securitypolicy
           @StandardAccessPoint = standardaccesspoint
           @ZoneName = zonename
+          @Tls = tls
+          @CustomUrl = customurl
         end
 
         def deserialize(params)
@@ -10180,6 +10245,8 @@ module TencentCloud
           end
           @StandardAccessPoint = params['StandardAccessPoint']
           @ZoneName = params['ZoneName']
+          @Tls = params['Tls']
+          @CustomUrl = params['CustomUrl']
         end
       end
 
@@ -10361,10 +10428,12 @@ module TencentCloud
         # @type BillingLabelVersion: String
         # @param Tenant: 自定义租户
         # @type Tenant: String
+        # @param CertificateList: 集群的证书列表
+        # @type CertificateList: Array
 
-        attr_accessor :InstanceId, :InstanceName, :InstanceVersion, :Status, :ConfigDisplay, :MaxTps, :MaxStorage, :ExpireTime, :AutoRenewFlag, :PayMode, :Remark, :SpecName, :ScalableTps, :VpcId, :SubnetId, :MaxBandWidth, :Tags, :CreateTime, :BillingLabelVersion, :Tenant
+        attr_accessor :InstanceId, :InstanceName, :InstanceVersion, :Status, :ConfigDisplay, :MaxTps, :MaxStorage, :ExpireTime, :AutoRenewFlag, :PayMode, :Remark, :SpecName, :ScalableTps, :VpcId, :SubnetId, :MaxBandWidth, :Tags, :CreateTime, :BillingLabelVersion, :Tenant, :CertificateList
 
-        def initialize(instanceid=nil, instancename=nil, instanceversion=nil, status=nil, configdisplay=nil, maxtps=nil, maxstorage=nil, expiretime=nil, autorenewflag=nil, paymode=nil, remark=nil, specname=nil, scalabletps=nil, vpcid=nil, subnetid=nil, maxbandwidth=nil, tags=nil, createtime=nil, billinglabelversion=nil, tenant=nil)
+        def initialize(instanceid=nil, instancename=nil, instanceversion=nil, status=nil, configdisplay=nil, maxtps=nil, maxstorage=nil, expiretime=nil, autorenewflag=nil, paymode=nil, remark=nil, specname=nil, scalabletps=nil, vpcid=nil, subnetid=nil, maxbandwidth=nil, tags=nil, createtime=nil, billinglabelversion=nil, tenant=nil, certificatelist=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @InstanceVersion = instanceversion
@@ -10385,6 +10454,7 @@ module TencentCloud
           @CreateTime = createtime
           @BillingLabelVersion = billinglabelversion
           @Tenant = tenant
+          @CertificateList = certificatelist
         end
 
         def deserialize(params)
@@ -10415,6 +10485,14 @@ module TencentCloud
           @CreateTime = params['CreateTime']
           @BillingLabelVersion = params['BillingLabelVersion']
           @Tenant = params['Tenant']
+          unless params['CertificateList'].nil?
+            @CertificateList = []
+            params['CertificateList'].each do |i|
+              certificateinfo_tmp = CertificateInfo.new
+              certificateinfo_tmp.deserialize(i)
+              @CertificateList << certificateinfo_tmp
+            end
+          end
         end
       end
 
@@ -10526,10 +10604,12 @@ module TencentCloud
         # @type WebConsoleDomainEndpoint: String
         # @param ControlPlaneEndpointInfo: 控制面所使用的VPC信息
         # @type ControlPlaneEndpointInfo: :class:`Tencentcloud::Tdmq.v20200217.models.VpcEndpointInfo`
+        # @param PublicTlsAccessEndpoint: TLS加密的数据流公网接入点
+        # @type PublicTlsAccessEndpoint: String
 
-        attr_accessor :PublicAccessEndpoint, :WebConsoleEndpoint, :WebConsoleUsername, :WebConsolePassword, :PublicAccessEndpointStatus, :PublicControlConsoleSwitchStatus, :VpcControlConsoleSwitchStatus, :VpcWebConsoleEndpoint, :PublicWebConsoleSwitchStatus, :VpcWebConsoleSwitchStatus, :PublicDataStreamStatus, :PrometheusEndpointInfo, :WebConsoleDomainEndpoint, :ControlPlaneEndpointInfo
+        attr_accessor :PublicAccessEndpoint, :WebConsoleEndpoint, :WebConsoleUsername, :WebConsolePassword, :PublicAccessEndpointStatus, :PublicControlConsoleSwitchStatus, :VpcControlConsoleSwitchStatus, :VpcWebConsoleEndpoint, :PublicWebConsoleSwitchStatus, :VpcWebConsoleSwitchStatus, :PublicDataStreamStatus, :PrometheusEndpointInfo, :WebConsoleDomainEndpoint, :ControlPlaneEndpointInfo, :PublicTlsAccessEndpoint
 
-        def initialize(publicaccessendpoint=nil, webconsoleendpoint=nil, webconsoleusername=nil, webconsolepassword=nil, publicaccessendpointstatus=nil, publiccontrolconsoleswitchstatus=nil, vpccontrolconsoleswitchstatus=nil, vpcwebconsoleendpoint=nil, publicwebconsoleswitchstatus=nil, vpcwebconsoleswitchstatus=nil, publicdatastreamstatus=nil, prometheusendpointinfo=nil, webconsoledomainendpoint=nil, controlplaneendpointinfo=nil)
+        def initialize(publicaccessendpoint=nil, webconsoleendpoint=nil, webconsoleusername=nil, webconsolepassword=nil, publicaccessendpointstatus=nil, publiccontrolconsoleswitchstatus=nil, vpccontrolconsoleswitchstatus=nil, vpcwebconsoleendpoint=nil, publicwebconsoleswitchstatus=nil, vpcwebconsoleswitchstatus=nil, publicdatastreamstatus=nil, prometheusendpointinfo=nil, webconsoledomainendpoint=nil, controlplaneendpointinfo=nil, publictlsaccessendpoint=nil)
           @PublicAccessEndpoint = publicaccessendpoint
           @WebConsoleEndpoint = webconsoleendpoint
           @WebConsoleUsername = webconsoleusername
@@ -10544,6 +10624,7 @@ module TencentCloud
           @PrometheusEndpointInfo = prometheusendpointinfo
           @WebConsoleDomainEndpoint = webconsoledomainendpoint
           @ControlPlaneEndpointInfo = controlplaneendpointinfo
+          @PublicTlsAccessEndpoint = publictlsaccessendpoint
         end
 
         def deserialize(params)
@@ -10567,6 +10648,7 @@ module TencentCloud
             @ControlPlaneEndpointInfo = VpcEndpointInfo.new
             @ControlPlaneEndpointInfo.deserialize(params['ControlPlaneEndpointInfo'])
           end
+          @PublicTlsAccessEndpoint = params['PublicTlsAccessEndpoint']
         end
       end
 
@@ -10625,10 +10707,14 @@ module TencentCloud
         # @type IsolatedTime: Integer
         # @param Container: 是否为容器实例，默认 true
         # @type Container: Boolean
+        # @param Tags: 标签列表
+        # @type Tags: Array
+        # @param EnableDeletionProtection: 是否已开启删除保护
+        # @type EnableDeletionProtection: Boolean
 
-        attr_accessor :ClusterId, :ClusterName, :Region, :CreateTime, :Remark, :Vpcs, :ZoneIds, :VirtualHostNumber, :QueueNumber, :MessagePublishRate, :MessageStackNumber, :ExpireTime, :ChannelNumber, :ConnectionNumber, :ConsumerNumber, :ExchangeNumber, :ExceptionInformation, :ClusterStatus, :AutoRenewFlag, :MirrorQueuePolicyFlag, :MessageConsumeRate, :ClusterVersion, :PayMode, :InstanceType, :IsolatedTime, :Container
+        attr_accessor :ClusterId, :ClusterName, :Region, :CreateTime, :Remark, :Vpcs, :ZoneIds, :VirtualHostNumber, :QueueNumber, :MessagePublishRate, :MessageStackNumber, :ExpireTime, :ChannelNumber, :ConnectionNumber, :ConsumerNumber, :ExchangeNumber, :ExceptionInformation, :ClusterStatus, :AutoRenewFlag, :MirrorQueuePolicyFlag, :MessageConsumeRate, :ClusterVersion, :PayMode, :InstanceType, :IsolatedTime, :Container, :Tags, :EnableDeletionProtection
 
-        def initialize(clusterid=nil, clustername=nil, region=nil, createtime=nil, remark=nil, vpcs=nil, zoneids=nil, virtualhostnumber=nil, queuenumber=nil, messagepublishrate=nil, messagestacknumber=nil, expiretime=nil, channelnumber=nil, connectionnumber=nil, consumernumber=nil, exchangenumber=nil, exceptioninformation=nil, clusterstatus=nil, autorenewflag=nil, mirrorqueuepolicyflag=nil, messageconsumerate=nil, clusterversion=nil, paymode=nil, instancetype=nil, isolatedtime=nil, container=nil)
+        def initialize(clusterid=nil, clustername=nil, region=nil, createtime=nil, remark=nil, vpcs=nil, zoneids=nil, virtualhostnumber=nil, queuenumber=nil, messagepublishrate=nil, messagestacknumber=nil, expiretime=nil, channelnumber=nil, connectionnumber=nil, consumernumber=nil, exchangenumber=nil, exceptioninformation=nil, clusterstatus=nil, autorenewflag=nil, mirrorqueuepolicyflag=nil, messageconsumerate=nil, clusterversion=nil, paymode=nil, instancetype=nil, isolatedtime=nil, container=nil, tags=nil, enabledeletionprotection=nil)
           @ClusterId = clusterid
           @ClusterName = clustername
           @Region = region
@@ -10655,6 +10741,8 @@ module TencentCloud
           @InstanceType = instancetype
           @IsolatedTime = isolatedtime
           @Container = container
+          @Tags = tags
+          @EnableDeletionProtection = enabledeletionprotection
         end
 
         def deserialize(params)
@@ -10691,6 +10779,15 @@ module TencentCloud
           @InstanceType = params['InstanceType']
           @IsolatedTime = params['IsolatedTime']
           @Container = params['Container']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
+          @EnableDeletionProtection = params['EnableDeletionProtection']
         end
       end
 
@@ -11122,6 +11219,26 @@ module TencentCloud
         end
       end
 
+      # RabbitMQ 实例用户配额信息
+      class RabbitMQUserQuota < TencentCloud::Common::AbstractModel
+        # @param MaxUser: 最大可创建用户数
+        # @type MaxUser: Integer
+        # @param UsedUser: 已使用用户数
+        # @type UsedUser: Integer
+
+        attr_accessor :MaxUser, :UsedUser
+
+        def initialize(maxuser=nil, useduser=nil)
+          @MaxUser = maxuser
+          @UsedUser = useduser
+        end
+
+        def deserialize(params)
+          @MaxUser = params['MaxUser']
+          @UsedUser = params['UsedUser']
+        end
+      end
+
       # RabbitMQ 托管版实例信息
       class RabbitMQVipInstance < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例 ID
@@ -11174,14 +11291,18 @@ module TencentCloud
         # @type Vpcs: Array
         # @param CreateTime: 创建时间，毫秒为单位。unix 时间戳
         # @type CreateTime: Integer
-        # @param InstanceType: 实例类型，0 专享版、1 Serverless 版
+        # @param InstanceType: 实例类型，0 托管版、1 Serverless 版
         # @type InstanceType: Integer
-        # @param IsolatedTime: 隔离时间，毫秒为单位
+        # @param IsolatedTime: 隔离时间，毫秒为单位。unix 时间戳
         # @type IsolatedTime: Integer
+        # @param EnableDeletionProtection: 是否已开启删除保护
+        # @type EnableDeletionProtection: Boolean
+        # @param Tags: 标签列表
+        # @type Tags: Array
 
-        attr_accessor :InstanceId, :InstanceName, :InstanceVersion, :Status, :NodeCount, :ConfigDisplay, :MaxTps, :MaxBandWidth, :MaxStorage, :ExpireTime, :AutoRenewFlag, :PayMode, :Remark, :SpecName, :ExceptionInformation, :ClusterStatus, :PublicAccessEndpoint, :Vpcs, :CreateTime, :InstanceType, :IsolatedTime
+        attr_accessor :InstanceId, :InstanceName, :InstanceVersion, :Status, :NodeCount, :ConfigDisplay, :MaxTps, :MaxBandWidth, :MaxStorage, :ExpireTime, :AutoRenewFlag, :PayMode, :Remark, :SpecName, :ExceptionInformation, :ClusterStatus, :PublicAccessEndpoint, :Vpcs, :CreateTime, :InstanceType, :IsolatedTime, :EnableDeletionProtection, :Tags
 
-        def initialize(instanceid=nil, instancename=nil, instanceversion=nil, status=nil, nodecount=nil, configdisplay=nil, maxtps=nil, maxbandwidth=nil, maxstorage=nil, expiretime=nil, autorenewflag=nil, paymode=nil, remark=nil, specname=nil, exceptioninformation=nil, clusterstatus=nil, publicaccessendpoint=nil, vpcs=nil, createtime=nil, instancetype=nil, isolatedtime=nil)
+        def initialize(instanceid=nil, instancename=nil, instanceversion=nil, status=nil, nodecount=nil, configdisplay=nil, maxtps=nil, maxbandwidth=nil, maxstorage=nil, expiretime=nil, autorenewflag=nil, paymode=nil, remark=nil, specname=nil, exceptioninformation=nil, clusterstatus=nil, publicaccessendpoint=nil, vpcs=nil, createtime=nil, instancetype=nil, isolatedtime=nil, enabledeletionprotection=nil, tags=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @InstanceVersion = instanceversion
@@ -11203,6 +11324,8 @@ module TencentCloud
           @CreateTime = createtime
           @InstanceType = instancetype
           @IsolatedTime = isolatedtime
+          @EnableDeletionProtection = enabledeletionprotection
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -11234,6 +11357,15 @@ module TencentCloud
           @CreateTime = params['CreateTime']
           @InstanceType = params['InstanceType']
           @IsolatedTime = params['IsolatedTime']
+          @EnableDeletionProtection = params['EnableDeletionProtection']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
         end
       end
 
@@ -11666,8 +11798,8 @@ module TencentCloud
 
         attr_accessor :MaxTpsPerNamespace, :MaxNamespaceNum, :UsedNamespaceNum, :MaxTopicNum, :UsedTopicNum, :MaxGroupNum, :UsedGroupNum, :MaxRetentionTime, :MaxLatencyTime, :MaxQueuesPerTopic, :TopicDistribution, :MaxRoleNum, :MaxTpsLimit
         extend Gem::Deprecate
-        deprecate :MaxTpsPerNamespace, :none, 2025, 6
-        deprecate :MaxTpsPerNamespace=, :none, 2025, 6
+        deprecate :MaxTpsPerNamespace, :none, 2025, 7
+        deprecate :MaxTpsPerNamespace=, :none, 2025, 7
 
         def initialize(maxtpspernamespace=nil, maxnamespacenum=nil, usednamespacenum=nil, maxtopicnum=nil, usedtopicnum=nil, maxgroupnum=nil, usedgroupnum=nil, maxretentiontime=nil, maxlatencytime=nil, maxqueuespertopic=nil, topicdistribution=nil, maxrolenum=nil, maxtpslimit=nil)
           @MaxTpsPerNamespace = maxtpspernamespace
@@ -13816,17 +13948,29 @@ module TencentCloud
         # @type MaxVirtualHost: Integer
         # @param UsedVirtualHost: 已创建vhost数
         # @type UsedVirtualHost: Integer
+        # @param MaxConnectionPerVhost: 单个 vhost 下允许的最大连接数
+        # @type MaxConnectionPerVhost: Integer
+        # @param MaxExchangePerVhost: 单个 vhost 下允许的最大交换机数
+        # @type MaxExchangePerVhost: Integer
+        # @param MaxQueuePerVhost: 单个 vhost 下允许的最大队列机数
+        # @type MaxQueuePerVhost: Integer
 
-        attr_accessor :MaxVirtualHost, :UsedVirtualHost
+        attr_accessor :MaxVirtualHost, :UsedVirtualHost, :MaxConnectionPerVhost, :MaxExchangePerVhost, :MaxQueuePerVhost
 
-        def initialize(maxvirtualhost=nil, usedvirtualhost=nil)
+        def initialize(maxvirtualhost=nil, usedvirtualhost=nil, maxconnectionpervhost=nil, maxexchangepervhost=nil, maxqueuepervhost=nil)
           @MaxVirtualHost = maxvirtualhost
           @UsedVirtualHost = usedvirtualhost
+          @MaxConnectionPerVhost = maxconnectionpervhost
+          @MaxExchangePerVhost = maxexchangepervhost
+          @MaxQueuePerVhost = maxqueuepervhost
         end
 
         def deserialize(params)
           @MaxVirtualHost = params['MaxVirtualHost']
           @UsedVirtualHost = params['UsedVirtualHost']
+          @MaxConnectionPerVhost = params['MaxConnectionPerVhost']
+          @MaxExchangePerVhost = params['MaxExchangePerVhost']
+          @MaxQueuePerVhost = params['MaxQueuePerVhost']
         end
       end
 
@@ -13897,14 +14041,17 @@ module TencentCloud
         # @type VpcEndpoint: String
         # @param VpcDataStreamEndpointStatus: vpc接入点状态 OFF/ON/CREATING/DELETING
         # @type VpcDataStreamEndpointStatus: String
+        # @param VpcTlsEndpoint: TLS加密的数据流接入点
+        # @type VpcTlsEndpoint: String
 
-        attr_accessor :VpcId, :SubnetId, :VpcEndpoint, :VpcDataStreamEndpointStatus
+        attr_accessor :VpcId, :SubnetId, :VpcEndpoint, :VpcDataStreamEndpointStatus, :VpcTlsEndpoint
 
-        def initialize(vpcid=nil, subnetid=nil, vpcendpoint=nil, vpcdatastreamendpointstatus=nil)
+        def initialize(vpcid=nil, subnetid=nil, vpcendpoint=nil, vpcdatastreamendpointstatus=nil, vpctlsendpoint=nil)
           @VpcId = vpcid
           @SubnetId = subnetid
           @VpcEndpoint = vpcendpoint
           @VpcDataStreamEndpointStatus = vpcdatastreamendpointstatus
+          @VpcTlsEndpoint = vpctlsendpoint
         end
 
         def deserialize(params)
@@ -13912,6 +14059,7 @@ module TencentCloud
           @SubnetId = params['SubnetId']
           @VpcEndpoint = params['VpcEndpoint']
           @VpcDataStreamEndpointStatus = params['VpcDataStreamEndpointStatus']
+          @VpcTlsEndpoint = params['VpcTlsEndpoint']
         end
       end
 

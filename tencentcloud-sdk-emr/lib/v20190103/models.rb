@@ -347,10 +347,14 @@ module TencentCloud
         # @type DeleteWithInstance: Boolean
         # @param SelectiveConfServices: 新挂磁盘时可支持配置的服务名称列表
         # @type SelectiveConfServices: Array
+        # @param ChargeType: 磁盘计费类型（1包月、3包销）
+        # @type ChargeType: Integer
+        # @param UnderWriteDuration: 磁盘包销购买时长（仅支持12、24、36、48、60）
+        # @type UnderWriteDuration: Integer
 
-        attr_accessor :InstanceId, :DiskIds, :AlignType, :CvmInstanceIds, :CreateDisk, :DiskSpec, :DeleteWithInstance, :SelectiveConfServices
+        attr_accessor :InstanceId, :DiskIds, :AlignType, :CvmInstanceIds, :CreateDisk, :DiskSpec, :DeleteWithInstance, :SelectiveConfServices, :ChargeType, :UnderWriteDuration
 
-        def initialize(instanceid=nil, diskids=nil, aligntype=nil, cvminstanceids=nil, createdisk=nil, diskspec=nil, deletewithinstance=nil, selectiveconfservices=nil)
+        def initialize(instanceid=nil, diskids=nil, aligntype=nil, cvminstanceids=nil, createdisk=nil, diskspec=nil, deletewithinstance=nil, selectiveconfservices=nil, chargetype=nil, underwriteduration=nil)
           @InstanceId = instanceid
           @DiskIds = diskids
           @AlignType = aligntype
@@ -359,6 +363,8 @@ module TencentCloud
           @DiskSpec = diskspec
           @DeleteWithInstance = deletewithinstance
           @SelectiveConfServices = selectiveconfservices
+          @ChargeType = chargetype
+          @UnderWriteDuration = underwriteduration
         end
 
         def deserialize(params)
@@ -373,6 +379,8 @@ module TencentCloud
           end
           @DeleteWithInstance = params['DeleteWithInstance']
           @SelectiveConfServices = params['SelectiveConfServices']
+          @ChargeType = params['ChargeType']
+          @UnderWriteDuration = params['UnderWriteDuration']
         end
       end
 
@@ -632,10 +640,12 @@ module TencentCloud
         # @type Shareable: Boolean
         # @param EmrResourceId: emr节点ID
         # @type EmrResourceId: String
+        # @param UnderwriteExpiredTime: 包销到期时间
+        # @type UnderwriteExpiredTime: String
 
-        attr_accessor :DiskId, :DiskUsage, :DiskName, :DiskSize, :DiskType, :DeleteWithInstance, :DiskChargeType, :DiskState, :RenewFlag, :DeadlineTime, :Attached, :DifferDaysOfDeadline, :InstanceIdList, :InstanceId, :Shareable, :EmrResourceId
+        attr_accessor :DiskId, :DiskUsage, :DiskName, :DiskSize, :DiskType, :DeleteWithInstance, :DiskChargeType, :DiskState, :RenewFlag, :DeadlineTime, :Attached, :DifferDaysOfDeadline, :InstanceIdList, :InstanceId, :Shareable, :EmrResourceId, :UnderwriteExpiredTime
 
-        def initialize(diskid=nil, diskusage=nil, diskname=nil, disksize=nil, disktype=nil, deletewithinstance=nil, diskchargetype=nil, diskstate=nil, renewflag=nil, deadlinetime=nil, attached=nil, differdaysofdeadline=nil, instanceidlist=nil, instanceid=nil, shareable=nil, emrresourceid=nil)
+        def initialize(diskid=nil, diskusage=nil, diskname=nil, disksize=nil, disktype=nil, deletewithinstance=nil, diskchargetype=nil, diskstate=nil, renewflag=nil, deadlinetime=nil, attached=nil, differdaysofdeadline=nil, instanceidlist=nil, instanceid=nil, shareable=nil, emrresourceid=nil, underwriteexpiredtime=nil)
           @DiskId = diskid
           @DiskUsage = diskusage
           @DiskName = diskname
@@ -652,6 +662,7 @@ module TencentCloud
           @InstanceId = instanceid
           @Shareable = shareable
           @EmrResourceId = emrresourceid
+          @UnderwriteExpiredTime = underwriteexpiredtime
         end
 
         def deserialize(params)
@@ -671,6 +682,7 @@ module TencentCloud
           @InstanceId = params['InstanceId']
           @Shareable = params['Shareable']
           @EmrResourceId = params['EmrResourceId']
+          @UnderwriteExpiredTime = params['UnderwriteExpiredTime']
         end
       end
 
@@ -1076,15 +1088,17 @@ module TencentCloud
         # @param ClusterRelationInfoList: rss集群的绑定列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterRelationInfoList: Array
+        # @param RedisId: Redis信息
+        # @type RedisId: String
 
-        attr_accessor :Id, :ClusterId, :Ftitle, :ClusterName, :RegionId, :ZoneId, :AppId, :Uin, :ProjectId, :VpcId, :SubnetId, :Status, :AddTime, :RunTime, :Config, :MasterIp, :EmrVersion, :ChargeType, :TradeVersion, :ResourceOrderId, :IsTradeCluster, :AlarmInfo, :IsWoodpeckerCluster, :MetaDb, :Tags, :HiveMetaDb, :ServiceClass, :AliasInfo, :ProductId, :Zone, :SceneName, :SceneServiceClass, :SceneEmrVersion, :DisplayName, :VpcName, :SubnetName, :ClusterExternalServiceInfo, :UniqVpcId, :UniqSubnetId, :TopologyInfoList, :IsMultiZoneCluster, :IsCvmReplace, :ClusterTitle, :ConfigDetail, :BindFileSystemNum, :ClusterRelationInfoList
+        attr_accessor :Id, :ClusterId, :Ftitle, :ClusterName, :RegionId, :ZoneId, :AppId, :Uin, :ProjectId, :VpcId, :SubnetId, :Status, :AddTime, :RunTime, :Config, :MasterIp, :EmrVersion, :ChargeType, :TradeVersion, :ResourceOrderId, :IsTradeCluster, :AlarmInfo, :IsWoodpeckerCluster, :MetaDb, :Tags, :HiveMetaDb, :ServiceClass, :AliasInfo, :ProductId, :Zone, :SceneName, :SceneServiceClass, :SceneEmrVersion, :DisplayName, :VpcName, :SubnetName, :ClusterExternalServiceInfo, :UniqVpcId, :UniqSubnetId, :TopologyInfoList, :IsMultiZoneCluster, :IsCvmReplace, :ClusterTitle, :ConfigDetail, :BindFileSystemNum, :ClusterRelationInfoList, :RedisId
         extend Gem::Deprecate
-        deprecate :Ftitle, :none, 2025, 6
-        deprecate :Ftitle=, :none, 2025, 6
-        deprecate :Config, :none, 2025, 6
-        deprecate :Config=, :none, 2025, 6
+        deprecate :Ftitle, :none, 2025, 7
+        deprecate :Ftitle=, :none, 2025, 7
+        deprecate :Config, :none, 2025, 7
+        deprecate :Config=, :none, 2025, 7
 
-        def initialize(id=nil, clusterid=nil, ftitle=nil, clustername=nil, regionid=nil, zoneid=nil, appid=nil, uin=nil, projectid=nil, vpcid=nil, subnetid=nil, status=nil, addtime=nil, runtime=nil, config=nil, masterip=nil, emrversion=nil, chargetype=nil, tradeversion=nil, resourceorderid=nil, istradecluster=nil, alarminfo=nil, iswoodpeckercluster=nil, metadb=nil, tags=nil, hivemetadb=nil, serviceclass=nil, aliasinfo=nil, productid=nil, zone=nil, scenename=nil, sceneserviceclass=nil, sceneemrversion=nil, displayname=nil, vpcname=nil, subnetname=nil, clusterexternalserviceinfo=nil, uniqvpcid=nil, uniqsubnetid=nil, topologyinfolist=nil, ismultizonecluster=nil, iscvmreplace=nil, clustertitle=nil, configdetail=nil, bindfilesystemnum=nil, clusterrelationinfolist=nil)
+        def initialize(id=nil, clusterid=nil, ftitle=nil, clustername=nil, regionid=nil, zoneid=nil, appid=nil, uin=nil, projectid=nil, vpcid=nil, subnetid=nil, status=nil, addtime=nil, runtime=nil, config=nil, masterip=nil, emrversion=nil, chargetype=nil, tradeversion=nil, resourceorderid=nil, istradecluster=nil, alarminfo=nil, iswoodpeckercluster=nil, metadb=nil, tags=nil, hivemetadb=nil, serviceclass=nil, aliasinfo=nil, productid=nil, zone=nil, scenename=nil, sceneserviceclass=nil, sceneemrversion=nil, displayname=nil, vpcname=nil, subnetname=nil, clusterexternalserviceinfo=nil, uniqvpcid=nil, uniqsubnetid=nil, topologyinfolist=nil, ismultizonecluster=nil, iscvmreplace=nil, clustertitle=nil, configdetail=nil, bindfilesystemnum=nil, clusterrelationinfolist=nil, redisid=nil)
           @Id = id
           @ClusterId = clusterid
           @Ftitle = ftitle
@@ -1131,6 +1145,7 @@ module TencentCloud
           @ConfigDetail = configdetail
           @BindFileSystemNum = bindfilesystemnum
           @ClusterRelationInfoList = clusterrelationinfolist
+          @RedisId = redisid
         end
 
         def deserialize(params)
@@ -1214,6 +1229,7 @@ module TencentCloud
               @ClusterRelationInfoList << clusterrelationmeta_tmp
             end
           end
+          @RedisId = params['RedisId']
         end
       end
 
@@ -1567,6 +1583,66 @@ module TencentCloud
         def deserialize(params)
           @Classification = params['Classification']
           @Properties = params['Properties']
+        end
+      end
+
+      # 配置项（配置管理页）
+      class ConfigurationItem < TencentCloud::Common::AbstractModel
+        # @param Name: 配置项名称
+        # @type Name: String
+        # @param Value: 配置项值
+        # @type Value: String
+        # @param InFile: 所在的配置文件名
+        # @type InFile: String
+
+        attr_accessor :Name, :Value, :InFile
+
+        def initialize(name=nil, value=nil, infile=nil)
+          @Name = name
+          @Value = value
+          @InFile = infile
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Value = params['Value']
+          @InFile = params['InFile']
+        end
+      end
+
+      # ConvertPreToPostCluster请求参数结构体
+      class ConvertPreToPostClusterRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 集群实例ID。
+        # @type InstanceId: String
+        # @param ClientToken: 5min内不可重入标识，订单标识
+        # @type ClientToken: String
+
+        attr_accessor :InstanceId, :ClientToken
+
+        def initialize(instanceid=nil, clienttoken=nil)
+          @InstanceId = instanceid
+          @ClientToken = clienttoken
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @ClientToken = params['ClientToken']
+        end
+      end
+
+      # ConvertPreToPostCluster返回参数结构体
+      class ConvertPreToPostClusterResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 
@@ -2056,10 +2132,12 @@ module TencentCloud
         # @type CosBucket: String
         # @param NodeMarks: 节点标识信息，目前只提供给tf平台使用
         # @type NodeMarks: Array
+        # @param LoadBalancerId: CLB id
+        # @type LoadBalancerId: String
 
-        attr_accessor :ProductId, :Software, :SupportHA, :InstanceName, :PayMode, :TimeSpan, :TimeUnit, :LoginSettings, :VPCSettings, :ResourceSpec, :COSSettings, :Placement, :SgId, :PreExecutedFileSettings, :AutoRenew, :ClientToken, :NeedMasterWan, :RemoteLoginAtCreate, :CheckSecurity, :ExtendFsField, :Tags, :DisasterRecoverGroupIds, :CbsEncrypt, :MetaType, :UnifyMetaInstanceId, :MetaDBInfo, :ApplicationRole, :SceneName, :ExternalService, :VersionID, :MultiZone, :MultiZoneSettings, :CosBucket, :NodeMarks
+        attr_accessor :ProductId, :Software, :SupportHA, :InstanceName, :PayMode, :TimeSpan, :TimeUnit, :LoginSettings, :VPCSettings, :ResourceSpec, :COSSettings, :Placement, :SgId, :PreExecutedFileSettings, :AutoRenew, :ClientToken, :NeedMasterWan, :RemoteLoginAtCreate, :CheckSecurity, :ExtendFsField, :Tags, :DisasterRecoverGroupIds, :CbsEncrypt, :MetaType, :UnifyMetaInstanceId, :MetaDBInfo, :ApplicationRole, :SceneName, :ExternalService, :VersionID, :MultiZone, :MultiZoneSettings, :CosBucket, :NodeMarks, :LoadBalancerId
 
-        def initialize(productid=nil, software=nil, supportha=nil, instancename=nil, paymode=nil, timespan=nil, timeunit=nil, loginsettings=nil, vpcsettings=nil, resourcespec=nil, cossettings=nil, placement=nil, sgid=nil, preexecutedfilesettings=nil, autorenew=nil, clienttoken=nil, needmasterwan=nil, remoteloginatcreate=nil, checksecurity=nil, extendfsfield=nil, tags=nil, disasterrecovergroupids=nil, cbsencrypt=nil, metatype=nil, unifymetainstanceid=nil, metadbinfo=nil, applicationrole=nil, scenename=nil, externalservice=nil, versionid=nil, multizone=nil, multizonesettings=nil, cosbucket=nil, nodemarks=nil)
+        def initialize(productid=nil, software=nil, supportha=nil, instancename=nil, paymode=nil, timespan=nil, timeunit=nil, loginsettings=nil, vpcsettings=nil, resourcespec=nil, cossettings=nil, placement=nil, sgid=nil, preexecutedfilesettings=nil, autorenew=nil, clienttoken=nil, needmasterwan=nil, remoteloginatcreate=nil, checksecurity=nil, extendfsfield=nil, tags=nil, disasterrecovergroupids=nil, cbsencrypt=nil, metatype=nil, unifymetainstanceid=nil, metadbinfo=nil, applicationrole=nil, scenename=nil, externalservice=nil, versionid=nil, multizone=nil, multizonesettings=nil, cosbucket=nil, nodemarks=nil, loadbalancerid=nil)
           @ProductId = productid
           @Software = software
           @SupportHA = supportha
@@ -2094,6 +2172,7 @@ module TencentCloud
           @MultiZoneSettings = multizonesettings
           @CosBucket = cosbucket
           @NodeMarks = nodemarks
+          @LoadBalancerId = loadbalancerid
         end
 
         def deserialize(params)
@@ -2184,6 +2263,7 @@ module TencentCloud
               @NodeMarks << nodemark_tmp
             end
           end
+          @LoadBalancerId = params['LoadBalancerId']
         end
       end
 
@@ -4420,6 +4500,177 @@ module TencentCloud
         end
       end
 
+      # 节点规格
+      class DescribeNodeSpec < TencentCloud::Common::AbstractModel
+        # @param NodeType: 节点类型
+        # @type NodeType: String
+        # @param NodeName: 节点类型名称
+        # @type NodeName: String
+        # @param Types: Types数组
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Types: Array
+        # @param CmnTypes: 云托管节点机型规格列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CmnTypes: Array
+
+        attr_accessor :NodeType, :NodeName, :Types, :CmnTypes
+
+        def initialize(nodetype=nil, nodename=nil, types=nil, cmntypes=nil)
+          @NodeType = nodetype
+          @NodeName = nodename
+          @Types = types
+          @CmnTypes = cmntypes
+        end
+
+        def deserialize(params)
+          @NodeType = params['NodeType']
+          @NodeName = params['NodeName']
+          unless params['Types'].nil?
+            @Types = []
+            params['Types'].each do |i|
+              nodespectype_tmp = NodeSpecType.new
+              nodespectype_tmp.deserialize(i)
+              @Types << nodespectype_tmp
+            end
+          end
+          unless params['CmnTypes'].nil?
+            @CmnTypes = []
+            params['CmnTypes'].each do |i|
+              nodespectype_tmp = NodeSpecType.new
+              nodespectype_tmp.deserialize(i)
+              @CmnTypes << nodespectype_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeNodeSpec请求参数结构体
+      class DescribeNodeSpecRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 可用区Id，可以通过https://document.capi.woa.com/document/api/1605/76892查询相关信息
+        # @type ZoneId: Integer
+        # @param CvmPayMode: 0,按量，1包年包月，99按量+包年包月，错填将不会展示费用信息
+        # @type CvmPayMode: Integer
+        # @param NodeType: 节点类型,Master,Core,Task,Router,All
+        # @type NodeType: String
+        # @param TradeType: 0:旧计费页面,1:新计费页面。 错填，默认为旧计费
+        # @type TradeType: Integer
+        # @param ProductId: 产品Id，不填为0，则表示所有productId，前台使用必填
+
+        # 44	EMR	V3.5.0
+        # 43	EMR	V3.4.0.tlinux
+        # 42	EMR	V2.7.0.tlinux
+        # 41	DRUID	V1.1.0
+        # 67	STARROCKS	V2.2.0
+        # 45	DRUID	V1.1.0.tlinux
+        # 40	EMRCLOUD	v3.2.0
+        # 47	EMR	V4.0.0
+        # 48	STARROCKS	V1.2.0
+        # 49	STARROCKS	V1.3.0
+        # 50	KAFKA	V2.0.0
+        # 51	STARROCKS	V1.4.0
+        # 52	EMR-TKE	V1.0.0
+        # 53	EMR	V3.6.0
+        # 54	STARROCKS	V2.0.0
+        # 55	EMR-TKE	V1.0.1
+        # 56	EMR-TKE	DLCV1.0.0
+        # 57	EMR	V2.8.0
+        # 58	EMR	V3.6.1
+        # 59	SERVERLESS	V1.0.0
+        # 60	EMR-TKE	V1.1.0
+        # 62	STARROCKS	V2.1.1
+        # 63	STARROCKS	V2.1.1.tlinux
+        # 64	EMR-TKE	TCCV1.0.0
+        # 65	EMR-TKE-AI	V1.0.0
+        # 66	RSS	V1.0.0
+        # 24	EMR	TianQiong-V1.0.0
+        # 3	EMR	V2.0.1.tlinux
+        # 4	EMR	V2.1.0
+        # 7	EMR	V3.0.0
+        # 8	EMR	V3.0.0.tlinux
+        # 9	EMR	V2.2.0
+        # 11	CLICKHOUSE	V1.0.0
+        # 12	CLICKHOUSE	V1.0.0.tlinux
+        # 16	EMR	V2.3.0
+        # 17	CLICKHOUSE	V1.1.0
+        # 18	CLICKHOUSE	V1.1.0.tlinux
+        # 19	EMR	V2.4.0
+        # 20	EMR	V2.5.0
+        # 21	USERCUSTOM	V1.0.0
+        # 22	CLICKHOUSE	V1.2.0
+        # 39	STARROCKS	V1.1.0
+        # 25	EMR	V3.1.0
+        # 26	DORIS	V1.0.0
+        # 27	KAFKA	V1.0.0
+        # 28	EMR	V3.2.0
+        # 29	EMR	V2.5.1
+        # 30	EMR	V2.6.0
+        # 32	DORIS	V1.1.0
+        # 33	EMR	V3.2.1
+        # 34	EMR	V3.3.0
+        # 35	DORIS	V1.2.0
+        # 36	STARROCKS	V1.0.0
+        # 37	EMR	V3.4.0
+        # 38	EMR	V2.7.0
+        # @type ProductId: Integer
+        # @param SceneName: 场景名
+        # @type SceneName: String
+        # @param ResourceBaseType: 类型为ComputeResource和EMR以及默认，默认为EMR
+        # @type ResourceBaseType: String
+        # @param ComputeResourceId: 计算资源id
+        # @type ComputeResourceId: String
+
+        attr_accessor :ZoneId, :CvmPayMode, :NodeType, :TradeType, :ProductId, :SceneName, :ResourceBaseType, :ComputeResourceId
+
+        def initialize(zoneid=nil, cvmpaymode=nil, nodetype=nil, tradetype=nil, productid=nil, scenename=nil, resourcebasetype=nil, computeresourceid=nil)
+          @ZoneId = zoneid
+          @CvmPayMode = cvmpaymode
+          @NodeType = nodetype
+          @TradeType = tradetype
+          @ProductId = productid
+          @SceneName = scenename
+          @ResourceBaseType = resourcebasetype
+          @ComputeResourceId = computeresourceid
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @CvmPayMode = params['CvmPayMode']
+          @NodeType = params['NodeType']
+          @TradeType = params['TradeType']
+          @ProductId = params['ProductId']
+          @SceneName = params['SceneName']
+          @ResourceBaseType = params['ResourceBaseType']
+          @ComputeResourceId = params['ComputeResourceId']
+        end
+      end
+
+      # DescribeNodeSpec返回参数结构体
+      class DescribeNodeSpecResponse < TencentCloud::Common::AbstractModel
+        # @param NodeSpecs: 节点规格类型
+        # @type NodeSpecs: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :NodeSpecs, :RequestId
+
+        def initialize(nodespecs=nil, requestid=nil)
+          @NodeSpecs = nodespecs
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['NodeSpecs'].nil?
+            @NodeSpecs = []
+            params['NodeSpecs'].each do |i|
+              describenodespec_tmp = DescribeNodeSpec.new
+              describenodespec_tmp.deserialize(i)
+              @NodeSpecs << describenodespec_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeResourceConfig接口出参
       class DescribeResourceConfig < TencentCloud::Common::AbstractModel
         # @param ResourceType: 规格管理类型
@@ -4728,6 +4979,69 @@ module TencentCloud
           @Status = params['Status']
           @AutoRenewFlag = params['AutoRenewFlag']
           @NodeNum = params['NodeNum']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeServiceConfGroupInfos请求参数结构体
+      class DescribeServiceConfGroupInfosRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 集群id
+        # @type InstanceId: String
+        # @param ServiceName: 组件名
+        # @type ServiceName: String
+        # @param ConfGroupName: 配置组名称
+        # @type ConfGroupName: String
+        # @param PageNo: 页码，从1开始
+        # @type PageNo: Integer
+        # @param PageSize: 页大小
+        # @type PageSize: Integer
+
+        attr_accessor :InstanceId, :ServiceName, :ConfGroupName, :PageNo, :PageSize
+
+        def initialize(instanceid=nil, servicename=nil, confgroupname=nil, pageno=nil, pagesize=nil)
+          @InstanceId = instanceid
+          @ServiceName = servicename
+          @ConfGroupName = confgroupname
+          @PageNo = pageno
+          @PageSize = pagesize
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @ServiceName = params['ServiceName']
+          @ConfGroupName = params['ConfGroupName']
+          @PageNo = params['PageNo']
+          @PageSize = params['PageSize']
+        end
+      end
+
+      # DescribeServiceConfGroupInfos返回参数结构体
+      class DescribeServiceConfGroupInfosResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 列表大小
+        # @type TotalCount: Integer
+        # @param ConfItemKVList: 配置项key value列表
+        # @type ConfItemKVList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :ConfItemKVList, :RequestId
+
+        def initialize(totalcount=nil, confitemkvlist=nil, requestid=nil)
+          @TotalCount = totalcount
+          @ConfItemKVList = confitemkvlist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['ConfItemKVList'].nil?
+            @ConfItemKVList = []
+            params['ConfItemKVList'].each do |i|
+              configurationitem_tmp = ConfigurationItem.new
+              configurationitem_tmp.deserialize(i)
+              @ConfItemKVList << configurationitem_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -7788,11 +8102,15 @@ module TencentCloud
         # @param LoadMetrics: 触发规则条件
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LoadMetrics: Array
+        # @param Match: 0:所有条件满足
+        # 1：满足任意一个
+        # @type Match: Integer
 
-        attr_accessor :LoadMetrics
+        attr_accessor :LoadMetrics, :Match
 
-        def initialize(loadmetrics=nil)
+        def initialize(loadmetrics=nil, match=nil)
           @LoadMetrics = loadmetrics
+          @Match = match
         end
 
         def deserialize(params)
@@ -7804,6 +8122,7 @@ module TencentCloud
               @LoadMetrics << loadmetricscondition_tmp
             end
           end
+          @Match = params['Match']
         end
       end
 
@@ -9227,10 +9546,14 @@ module TencentCloud
         # @type ConfigurableServices: Array
         # @param NodeMark: 节点标注信息，目前只提供给tf平台使用
         # @type NodeMark: String
+        # @param UnderwriteSetAutoRenew: 包销资源是否支持设置自动续费
+        # @type UnderwriteSetAutoRenew: Boolean
+        # @param GpuDesc: Gpu信息
+        # @type GpuDesc: String
 
-        attr_accessor :AppId, :SerialNo, :OrderNo, :WanIp, :Flag, :Spec, :CpuNum, :MemSize, :MemDesc, :RegionId, :ZoneId, :ApplyTime, :FreeTime, :DiskSize, :NameTag, :Services, :StorageType, :RootSize, :ChargeType, :CdbIp, :CdbPort, :HwDiskSize, :HwDiskSizeDesc, :HwMemSize, :HwMemSizeDesc, :ExpireTime, :EmrResourceId, :IsAutoRenew, :DeviceClass, :Mutable, :MCMultiDisk, :CdbNodeInfo, :Ip, :Destroyable, :Tags, :AutoFlag, :HardwareResourceType, :IsDynamicSpec, :DynamicPodSpec, :SupportModifyPayMode, :RootStorageType, :Zone, :SubnetInfo, :Clients, :CurrentTime, :IsFederation, :DeviceName, :ServiceClient, :DisableApiTermination, :TradeVersion, :ServicesStatus, :Remark, :SharedClusterId, :SharedClusterIdDesc, :TimingResource, :TkeClusterId, :ConfigurableServices, :NodeMark
+        attr_accessor :AppId, :SerialNo, :OrderNo, :WanIp, :Flag, :Spec, :CpuNum, :MemSize, :MemDesc, :RegionId, :ZoneId, :ApplyTime, :FreeTime, :DiskSize, :NameTag, :Services, :StorageType, :RootSize, :ChargeType, :CdbIp, :CdbPort, :HwDiskSize, :HwDiskSizeDesc, :HwMemSize, :HwMemSizeDesc, :ExpireTime, :EmrResourceId, :IsAutoRenew, :DeviceClass, :Mutable, :MCMultiDisk, :CdbNodeInfo, :Ip, :Destroyable, :Tags, :AutoFlag, :HardwareResourceType, :IsDynamicSpec, :DynamicPodSpec, :SupportModifyPayMode, :RootStorageType, :Zone, :SubnetInfo, :Clients, :CurrentTime, :IsFederation, :DeviceName, :ServiceClient, :DisableApiTermination, :TradeVersion, :ServicesStatus, :Remark, :SharedClusterId, :SharedClusterIdDesc, :TimingResource, :TkeClusterId, :ConfigurableServices, :NodeMark, :UnderwriteSetAutoRenew, :GpuDesc
 
-        def initialize(appid=nil, serialno=nil, orderno=nil, wanip=nil, flag=nil, spec=nil, cpunum=nil, memsize=nil, memdesc=nil, regionid=nil, zoneid=nil, applytime=nil, freetime=nil, disksize=nil, nametag=nil, services=nil, storagetype=nil, rootsize=nil, chargetype=nil, cdbip=nil, cdbport=nil, hwdisksize=nil, hwdisksizedesc=nil, hwmemsize=nil, hwmemsizedesc=nil, expiretime=nil, emrresourceid=nil, isautorenew=nil, deviceclass=nil, mutable=nil, mcmultidisk=nil, cdbnodeinfo=nil, ip=nil, destroyable=nil, tags=nil, autoflag=nil, hardwareresourcetype=nil, isdynamicspec=nil, dynamicpodspec=nil, supportmodifypaymode=nil, rootstoragetype=nil, zone=nil, subnetinfo=nil, clients=nil, currenttime=nil, isfederation=nil, devicename=nil, serviceclient=nil, disableapitermination=nil, tradeversion=nil, servicesstatus=nil, remark=nil, sharedclusterid=nil, sharedclusteriddesc=nil, timingresource=nil, tkeclusterid=nil, configurableservices=nil, nodemark=nil)
+        def initialize(appid=nil, serialno=nil, orderno=nil, wanip=nil, flag=nil, spec=nil, cpunum=nil, memsize=nil, memdesc=nil, regionid=nil, zoneid=nil, applytime=nil, freetime=nil, disksize=nil, nametag=nil, services=nil, storagetype=nil, rootsize=nil, chargetype=nil, cdbip=nil, cdbport=nil, hwdisksize=nil, hwdisksizedesc=nil, hwmemsize=nil, hwmemsizedesc=nil, expiretime=nil, emrresourceid=nil, isautorenew=nil, deviceclass=nil, mutable=nil, mcmultidisk=nil, cdbnodeinfo=nil, ip=nil, destroyable=nil, tags=nil, autoflag=nil, hardwareresourcetype=nil, isdynamicspec=nil, dynamicpodspec=nil, supportmodifypaymode=nil, rootstoragetype=nil, zone=nil, subnetinfo=nil, clients=nil, currenttime=nil, isfederation=nil, devicename=nil, serviceclient=nil, disableapitermination=nil, tradeversion=nil, servicesstatus=nil, remark=nil, sharedclusterid=nil, sharedclusteriddesc=nil, timingresource=nil, tkeclusterid=nil, configurableservices=nil, nodemark=nil, underwritesetautorenew=nil, gpudesc=nil)
           @AppId = appid
           @SerialNo = serialno
           @OrderNo = orderno
@@ -9289,6 +9612,8 @@ module TencentCloud
           @TkeClusterId = tkeclusterid
           @ConfigurableServices = configurableservices
           @NodeMark = nodemark
+          @UnderwriteSetAutoRenew = underwritesetautorenew
+          @GpuDesc = gpudesc
         end
 
         def deserialize(params)
@@ -9370,6 +9695,8 @@ module TencentCloud
           @TkeClusterId = params['TkeClusterId']
           @ConfigurableServices = params['ConfigurableServices']
           @NodeMark = params['NodeMark']
+          @UnderwriteSetAutoRenew = params['UnderwriteSetAutoRenew']
+          @GpuDesc = params['GpuDesc']
         end
       end
 
@@ -9631,6 +9958,34 @@ module TencentCloud
       end
 
       # 节点磁盘类型
+      class NodeSpecDisk < TencentCloud::Common::AbstractModel
+        # @param Count: 数量
+        # @type Count: Integer
+        # @param Name: 名字
+        # @type Name: String
+        # @param DiskType: 磁盘类型
+        # @type DiskType: String
+        # @param DefaultDiskSize: 指定磁盘大小
+        # @type DefaultDiskSize: Integer
+
+        attr_accessor :Count, :Name, :DiskType, :DefaultDiskSize
+
+        def initialize(count=nil, name=nil, disktype=nil, defaultdisksize=nil)
+          @Count = count
+          @Name = name
+          @DiskType = disktype
+          @DefaultDiskSize = defaultdisksize
+        end
+
+        def deserialize(params)
+          @Count = params['Count']
+          @Name = params['Name']
+          @DiskType = params['DiskType']
+          @DefaultDiskSize = params['DefaultDiskSize']
+        end
+      end
+
+      # 节点磁盘类型
       class NodeSpecDiskV2 < TencentCloud::Common::AbstractModel
         # @param Count: 数量
         # @type Count: Integer
@@ -9655,6 +10010,199 @@ module TencentCloud
           @Name = params['Name']
           @DiskType = params['DiskType']
           @DefaultDiskSize = params['DefaultDiskSize']
+        end
+      end
+
+      # 节点机型列族
+      class NodeSpecFamily < TencentCloud::Common::AbstractModel
+        # @param InstanceFamily: 机型
+        # @type InstanceFamily: String
+        # @param FamilyName: 机型名称
+        # @type FamilyName: String
+        # @param Order: 排序
+        # @type Order: Integer
+        # @param InstanceTypes: InstanceType的列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceTypes: Array
+
+        attr_accessor :InstanceFamily, :FamilyName, :Order, :InstanceTypes
+
+        def initialize(instancefamily=nil, familyname=nil, order=nil, instancetypes=nil)
+          @InstanceFamily = instancefamily
+          @FamilyName = familyname
+          @Order = order
+          @InstanceTypes = instancetypes
+        end
+
+        def deserialize(params)
+          @InstanceFamily = params['InstanceFamily']
+          @FamilyName = params['FamilyName']
+          @Order = params['Order']
+          unless params['InstanceTypes'].nil?
+            @InstanceTypes = []
+            params['InstanceTypes'].each do |i|
+              nodespecinstancetype_tmp = NodeSpecInstanceType.new
+              nodespecinstancetype_tmp.deserialize(i)
+              @InstanceTypes << nodespecinstancetype_tmp
+            end
+          end
+        end
+      end
+
+      # 节点规格类型
+      class NodeSpecInstanceType < TencentCloud::Common::AbstractModel
+        # @param InstanceType: 规格
+        # @type InstanceType: String
+        # @param Cpu: 4
+        # @type Cpu: Integer
+        # @param Memory: 8，单位G
+        # @type Memory: Integer
+        # @param Order: 排序，越小排的越前
+        # @type Order: Integer
+        # @param Num: 数量
+        # @type Num: Integer
+        # @param SellOutReason: 售罄原因
+        # @type SellOutReason: String
+        # @param SystemDisk: 系统盘
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SystemDisk: Array
+        # @param DataDisk: 数据盘
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DataDisk: Array
+        # @param LocalDataDisk: 本地数据盘
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LocalDataDisk: Array
+        # @param SoldOutReason: 售罄原因
+        # @type SoldOutReason: String
+        # @param InstanceFamily: 机型类别
+        # @type InstanceFamily: String
+        # @param NodeName: 节点名称
+        # @type NodeName: String
+        # @param NodeType: 节点类型
+        # @type NodeType: String
+        # @param Type: 类别
+        # @type Type: String
+        # @param TypeName: 类别名称
+        # @type TypeName: String
+        # @param FamilyName: 类别分类
+        # @type FamilyName: String
+        # @param CpuType: cpu类型
+        # @type CpuType: String
+        # @param Remark: 售罄 RunOut、库存少 Less、充足 Enough
+        # @type Remark: String
+        # @param OriginPrice: 原价
+        # @type OriginPrice: Float
+        # @param PrepaidUnderwritePeriods: 包销计费机型支持的购买时长
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PrepaidUnderwritePeriods: Array
+        # @param GpuDesc: GPU信息
+        # @type GpuDesc: String
+
+        attr_accessor :InstanceType, :Cpu, :Memory, :Order, :Num, :SellOutReason, :SystemDisk, :DataDisk, :LocalDataDisk, :SoldOutReason, :InstanceFamily, :NodeName, :NodeType, :Type, :TypeName, :FamilyName, :CpuType, :Remark, :OriginPrice, :PrepaidUnderwritePeriods, :GpuDesc
+
+        def initialize(instancetype=nil, cpu=nil, memory=nil, order=nil, num=nil, selloutreason=nil, systemdisk=nil, datadisk=nil, localdatadisk=nil, soldoutreason=nil, instancefamily=nil, nodename=nil, nodetype=nil, type=nil, typename=nil, familyname=nil, cputype=nil, remark=nil, originprice=nil, prepaidunderwriteperiods=nil, gpudesc=nil)
+          @InstanceType = instancetype
+          @Cpu = cpu
+          @Memory = memory
+          @Order = order
+          @Num = num
+          @SellOutReason = selloutreason
+          @SystemDisk = systemdisk
+          @DataDisk = datadisk
+          @LocalDataDisk = localdatadisk
+          @SoldOutReason = soldoutreason
+          @InstanceFamily = instancefamily
+          @NodeName = nodename
+          @NodeType = nodetype
+          @Type = type
+          @TypeName = typename
+          @FamilyName = familyname
+          @CpuType = cputype
+          @Remark = remark
+          @OriginPrice = originprice
+          @PrepaidUnderwritePeriods = prepaidunderwriteperiods
+          @GpuDesc = gpudesc
+        end
+
+        def deserialize(params)
+          @InstanceType = params['InstanceType']
+          @Cpu = params['Cpu']
+          @Memory = params['Memory']
+          @Order = params['Order']
+          @Num = params['Num']
+          @SellOutReason = params['SellOutReason']
+          unless params['SystemDisk'].nil?
+            @SystemDisk = []
+            params['SystemDisk'].each do |i|
+              nodespecdisk_tmp = NodeSpecDisk.new
+              nodespecdisk_tmp.deserialize(i)
+              @SystemDisk << nodespecdisk_tmp
+            end
+          end
+          unless params['DataDisk'].nil?
+            @DataDisk = []
+            params['DataDisk'].each do |i|
+              nodespecdisk_tmp = NodeSpecDisk.new
+              nodespecdisk_tmp.deserialize(i)
+              @DataDisk << nodespecdisk_tmp
+            end
+          end
+          unless params['LocalDataDisk'].nil?
+            @LocalDataDisk = []
+            params['LocalDataDisk'].each do |i|
+              nodespecdisk_tmp = NodeSpecDisk.new
+              nodespecdisk_tmp.deserialize(i)
+              @LocalDataDisk << nodespecdisk_tmp
+            end
+          end
+          @SoldOutReason = params['SoldOutReason']
+          @InstanceFamily = params['InstanceFamily']
+          @NodeName = params['NodeName']
+          @NodeType = params['NodeType']
+          @Type = params['Type']
+          @TypeName = params['TypeName']
+          @FamilyName = params['FamilyName']
+          @CpuType = params['CpuType']
+          @Remark = params['Remark']
+          @OriginPrice = params['OriginPrice']
+          @PrepaidUnderwritePeriods = params['PrepaidUnderwritePeriods']
+          @GpuDesc = params['GpuDesc']
+        end
+      end
+
+      # 节点机型类型
+      class NodeSpecType < TencentCloud::Common::AbstractModel
+        # @param Type: 机型序列
+        # @type Type: String
+        # @param TypeName: 机型序列名字
+        # @type TypeName: String
+        # @param Order: 排序
+        # @type Order: Integer
+        # @param InstanceFamilies: InstanceFamily数组
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceFamilies: Array
+
+        attr_accessor :Type, :TypeName, :Order, :InstanceFamilies
+
+        def initialize(type=nil, typename=nil, order=nil, instancefamilies=nil)
+          @Type = type
+          @TypeName = typename
+          @Order = order
+          @InstanceFamilies = instancefamilies
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @TypeName = params['TypeName']
+          @Order = params['Order']
+          unless params['InstanceFamilies'].nil?
+            @InstanceFamilies = []
+            params['InstanceFamilies'].each do |i|
+              nodespecfamily_tmp = NodeSpecFamily.new
+              nodespecfamily_tmp.deserialize(i)
+              @InstanceFamilies << nodespecfamily_tmp
+            end
+          end
         end
       end
 
@@ -12175,12 +12723,12 @@ module TencentCloud
 
         attr_accessor :DetectAlert, :DetetcFunctionKey, :DetetcFunctionValue, :DetetcTime, :DetectFunctionKey, :DetectFunctionValue, :DetectTime
         extend Gem::Deprecate
-        deprecate :DetetcFunctionKey, :none, 2025, 6
-        deprecate :DetetcFunctionKey=, :none, 2025, 6
-        deprecate :DetetcFunctionValue, :none, 2025, 6
-        deprecate :DetetcFunctionValue=, :none, 2025, 6
-        deprecate :DetetcTime, :none, 2025, 6
-        deprecate :DetetcTime=, :none, 2025, 6
+        deprecate :DetetcFunctionKey, :none, 2025, 7
+        deprecate :DetetcFunctionKey=, :none, 2025, 7
+        deprecate :DetetcFunctionValue, :none, 2025, 7
+        deprecate :DetetcFunctionValue=, :none, 2025, 7
+        deprecate :DetetcTime, :none, 2025, 7
+        deprecate :DetetcTime=, :none, 2025, 7
 
         def initialize(detectalert=nil, detetcfunctionkey=nil, detetcfunctionvalue=nil, detetctime=nil, detectfunctionkey=nil, detectfunctionvalue=nil, detecttime=nil)
           @DetectAlert = detectalert

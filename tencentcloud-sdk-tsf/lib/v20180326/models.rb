@@ -1324,8 +1324,8 @@ module TencentCloud
 
         attr_accessor :ConfigId, :ConfigName, :ConfigPath, :ConfigDesc, :ConfigTags, :ConfigPipeline, :ConfigCreateTime, :ConfigUpdateTime, :ConfigSchema, :ConfigAssociatedGroups, :ConfigAssociatedGroupList, :FilebeatConfigEnable, :FilebeatCloseTimeout
         extend Gem::Deprecate
-        deprecate :ConfigAssociatedGroups, :none, 2025, 6
-        deprecate :ConfigAssociatedGroups=, :none, 2025, 6
+        deprecate :ConfigAssociatedGroups, :none, 2025, 7
+        deprecate :ConfigAssociatedGroups=, :none, 2025, 7
 
         def initialize(configid=nil, configname=nil, configpath=nil, configdesc=nil, configtags=nil, configpipeline=nil, configcreatetime=nil, configupdatetime=nil, configschema=nil, configassociatedgroups=nil, configassociatedgrouplist=nil, filebeatconfigenable=nil, filebeatclosetimeout=nil)
           @ConfigId = configid
@@ -2901,6 +2901,28 @@ module TencentCloud
         end
       end
 
+      # 可观测配置
+      class ContainerGroupObservabilityConfig < TencentCloud::Common::AbstractModel
+        # @param BusinessLogConfigIdList: 日志配置项ID列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BusinessLogConfigIdList: Array
+        # @param BusinessLogDeliveryConfigIdList: 投递配置项ID列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BusinessLogDeliveryConfigIdList: Array
+
+        attr_accessor :BusinessLogConfigIdList, :BusinessLogDeliveryConfigIdList
+
+        def initialize(businesslogconfigidlist=nil, businesslogdeliveryconfigidlist=nil)
+          @BusinessLogConfigIdList = businesslogconfigidlist
+          @BusinessLogDeliveryConfigIdList = businesslogdeliveryconfigidlist
+        end
+
+        def deserialize(params)
+          @BusinessLogConfigIdList = params['BusinessLogConfigIdList']
+          @BusinessLogDeliveryConfigIdList = params['BusinessLogDeliveryConfigIdList']
+        end
+      end
+
       # 部署组列表-其它字段
       class ContainerGroupOther < TencentCloud::Common::AbstractModel
         # @param InstanceNum: 实例总数
@@ -2971,6 +2993,233 @@ module TencentCloud
             @HealthCheckSettings.deserialize(params['HealthCheckSettings'])
           end
           @IsNotEqualServiceConfig = params['IsNotEqualServiceConfig']
+        end
+      end
+
+      # 服务治理相关配置项
+      class ContainerGroupServiceGovernanceConfig < TencentCloud::Common::AbstractModel
+        # @param EnableGovernance: 是否开启服务治理
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnableGovernance: Boolean
+        # @param ServiceConfigList: 控制台场景使用 mesh服务配置信息列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ServiceConfigList: Array
+        # @param ExclusiveInstances: 注册服务治理实例
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExclusiveInstances: Array
+        # @param GovernanceType: 服务治理类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GovernanceType: String
+
+        attr_accessor :EnableGovernance, :ServiceConfigList, :ExclusiveInstances, :GovernanceType
+
+        def initialize(enablegovernance=nil, serviceconfiglist=nil, exclusiveinstances=nil, governancetype=nil)
+          @EnableGovernance = enablegovernance
+          @ServiceConfigList = serviceconfiglist
+          @ExclusiveInstances = exclusiveinstances
+          @GovernanceType = governancetype
+        end
+
+        def deserialize(params)
+          @EnableGovernance = params['EnableGovernance']
+          unless params['ServiceConfigList'].nil?
+            @ServiceConfigList = []
+            params['ServiceConfigList'].each do |i|
+              serviceconfig_tmp = ServiceConfig.new
+              serviceconfig_tmp.deserialize(i)
+              @ServiceConfigList << serviceconfig_tmp
+            end
+          end
+          unless params['ExclusiveInstances'].nil?
+            @ExclusiveInstances = []
+            params['ExclusiveInstances'].each do |i|
+              exclusiveinstance_tmp = ExclusiveInstance.new
+              exclusiveinstance_tmp.deserialize(i)
+              @ExclusiveInstances << exclusiveinstance_tmp
+            end
+          end
+          @GovernanceType = params['GovernanceType']
+        end
+      end
+
+      # 容器详细信息
+      class ContainerInfo < TencentCloud::Common::AbstractModel
+        # @param Name: 容器名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param ContainerId: 容器ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ContainerId: String
+        # @param Status: 容器状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: String
+        # @param Reason: 容器的Reason
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Reason: String
+        # @param Image: 镜像地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Image: String
+        # @param IsBusinessMainContainer: 是否为业务主容器
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsBusinessMainContainer: Boolean
+        # @param Server: 镜像Server
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Server: String
+        # @param RepoName: 镜像名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RepoName: String
+        # @param RepoType: 仓库类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RepoType: String
+        # @param TcrRepoInfo: TCR 仓库信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TcrRepoInfo: :class:`Tencentcloud::Tsf.v20180326.models.TcrRepoInfo`
+        # @param SecretName: 容器访问凭证名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SecretName: String
+        # @param TagName: 镜像版本号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TagName: String
+        # @param HealthCheckSettings: 健康检查
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HealthCheckSettings: :class:`Tencentcloud::Tsf.v20180326.models.HealthCheckSettings`
+        # @param CpuRequest: 容器Cpu request
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CpuRequest: String
+        # @param CpuLimit: 容器Cpu limit
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CpuLimit: String
+        # @param MemRequest: 容器Mem request
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MemRequest: String
+        # @param MemLimit: 容器Mem Limit
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MemLimit: String
+        # @param Envs: 环境变量参数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Envs: Array
+        # @param UserEnvs: 环境变量参数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserEnvs: Array
+        # @param JvmOpts: JVM参数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type JvmOpts: String
+        # @param VolumeMountInfoList: 挂载信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VolumeMountInfoList: Array
+        # @param InitContainerEnable: 是否为初始化容器
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InitContainerEnable: Boolean
+        # @param LifeCycleHookList: 生命周期钩子
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LifeCycleHookList: Array
+        # @param PrivilegeContainerEnable: 是否为特权容器
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PrivilegeContainerEnable: Boolean
+        # @param RunCommand: 运行命令
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RunCommand: String
+        # @param RunArg: 运行参数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RunArg: String
+        # @param ContainerName: 容器名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ContainerName: String
+
+        attr_accessor :Name, :ContainerId, :Status, :Reason, :Image, :IsBusinessMainContainer, :Server, :RepoName, :RepoType, :TcrRepoInfo, :SecretName, :TagName, :HealthCheckSettings, :CpuRequest, :CpuLimit, :MemRequest, :MemLimit, :Envs, :UserEnvs, :JvmOpts, :VolumeMountInfoList, :InitContainerEnable, :LifeCycleHookList, :PrivilegeContainerEnable, :RunCommand, :RunArg, :ContainerName
+
+        def initialize(name=nil, containerid=nil, status=nil, reason=nil, image=nil, isbusinessmaincontainer=nil, server=nil, reponame=nil, repotype=nil, tcrrepoinfo=nil, secretname=nil, tagname=nil, healthchecksettings=nil, cpurequest=nil, cpulimit=nil, memrequest=nil, memlimit=nil, envs=nil, userenvs=nil, jvmopts=nil, volumemountinfolist=nil, initcontainerenable=nil, lifecyclehooklist=nil, privilegecontainerenable=nil, runcommand=nil, runarg=nil, containername=nil)
+          @Name = name
+          @ContainerId = containerid
+          @Status = status
+          @Reason = reason
+          @Image = image
+          @IsBusinessMainContainer = isbusinessmaincontainer
+          @Server = server
+          @RepoName = reponame
+          @RepoType = repotype
+          @TcrRepoInfo = tcrrepoinfo
+          @SecretName = secretname
+          @TagName = tagname
+          @HealthCheckSettings = healthchecksettings
+          @CpuRequest = cpurequest
+          @CpuLimit = cpulimit
+          @MemRequest = memrequest
+          @MemLimit = memlimit
+          @Envs = envs
+          @UserEnvs = userenvs
+          @JvmOpts = jvmopts
+          @VolumeMountInfoList = volumemountinfolist
+          @InitContainerEnable = initcontainerenable
+          @LifeCycleHookList = lifecyclehooklist
+          @PrivilegeContainerEnable = privilegecontainerenable
+          @RunCommand = runcommand
+          @RunArg = runarg
+          @ContainerName = containername
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @ContainerId = params['ContainerId']
+          @Status = params['Status']
+          @Reason = params['Reason']
+          @Image = params['Image']
+          @IsBusinessMainContainer = params['IsBusinessMainContainer']
+          @Server = params['Server']
+          @RepoName = params['RepoName']
+          @RepoType = params['RepoType']
+          unless params['TcrRepoInfo'].nil?
+            @TcrRepoInfo = TcrRepoInfo.new
+            @TcrRepoInfo.deserialize(params['TcrRepoInfo'])
+          end
+          @SecretName = params['SecretName']
+          @TagName = params['TagName']
+          unless params['HealthCheckSettings'].nil?
+            @HealthCheckSettings = HealthCheckSettings.new
+            @HealthCheckSettings.deserialize(params['HealthCheckSettings'])
+          end
+          @CpuRequest = params['CpuRequest']
+          @CpuLimit = params['CpuLimit']
+          @MemRequest = params['MemRequest']
+          @MemLimit = params['MemLimit']
+          unless params['Envs'].nil?
+            @Envs = []
+            params['Envs'].each do |i|
+              env_tmp = Env.new
+              env_tmp.deserialize(i)
+              @Envs << env_tmp
+            end
+          end
+          unless params['UserEnvs'].nil?
+            @UserEnvs = []
+            params['UserEnvs'].each do |i|
+              env_tmp = Env.new
+              env_tmp.deserialize(i)
+              @UserEnvs << env_tmp
+            end
+          end
+          @JvmOpts = params['JvmOpts']
+          unless params['VolumeMountInfoList'].nil?
+            @VolumeMountInfoList = []
+            params['VolumeMountInfoList'].each do |i|
+              volumemountinfo_tmp = VolumeMountInfo.new
+              volumemountinfo_tmp.deserialize(i)
+              @VolumeMountInfoList << volumemountinfo_tmp
+            end
+          end
+          @InitContainerEnable = params['InitContainerEnable']
+          unless params['LifeCycleHookList'].nil?
+            @LifeCycleHookList = []
+            params['LifeCycleHookList'].each do |i|
+              lifecyclehook_tmp = LifeCycleHook.new
+              lifecyclehook_tmp.deserialize(i)
+              @LifeCycleHookList << lifecyclehook_tmp
+            end
+          end
+          @PrivilegeContainerEnable = params['PrivilegeContainerEnable']
+          @RunCommand = params['RunCommand']
+          @RunArg = params['RunArg']
+          @ContainerName = params['ContainerName']
         end
       end
 
@@ -3356,10 +3605,10 @@ module TencentCloud
 
         attr_accessor :ApplicationName, :ApplicationType, :MicroserviceType, :ApplicationDesc, :ApplicationLogConfig, :ApplicationResourceType, :ApplicationRuntimeType, :ProgramId, :ServiceConfigList, :IgnoreCreateImageRepository, :ProgramIdList, :ApmInstanceId, :ProgramLanguage, :FrameworkType, :ServiceGovernanceConfig, :CreateSameNameImageRepository
         extend Gem::Deprecate
-        deprecate :ApplicationLogConfig, :none, 2025, 6
-        deprecate :ApplicationLogConfig=, :none, 2025, 6
-        deprecate :ApplicationResourceType, :none, 2025, 6
-        deprecate :ApplicationResourceType=, :none, 2025, 6
+        deprecate :ApplicationLogConfig, :none, 2025, 7
+        deprecate :ApplicationLogConfig=, :none, 2025, 7
+        deprecate :ApplicationResourceType, :none, 2025, 7
+        deprecate :ApplicationResourceType=, :none, 2025, 7
 
         def initialize(applicationname=nil, applicationtype=nil, microservicetype=nil, applicationdesc=nil, applicationlogconfig=nil, applicationresourcetype=nil, applicationruntimetype=nil, programid=nil, serviceconfiglist=nil, ignorecreateimagerepository=nil, programidlist=nil, apminstanceid=nil, programlanguage=nil, frameworktype=nil, servicegovernanceconfig=nil, createsamenameimagerepository=nil)
           @ApplicationName = applicationname
@@ -6240,6 +6489,368 @@ module TencentCloud
         end
       end
 
+      # DeployContainerApplication请求参数结构体
+      class DeployContainerApplicationRequest < TencentCloud::Common::AbstractModel
+        # @param ApplicationId: 应用ID
+        # @type ApplicationId: String
+        # @param ObservabilityConfig: 可观测配置
+        # @type ObservabilityConfig: :class:`Tencentcloud::Tsf.v20180326.models.ContainerGroupObservabilityConfig`
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param GroupId: 部署组ID，分组唯一标识
+        # @type GroupId: String
+        # @param Envs: 业务容器的环境变量参数
+        # @type Envs: Array
+        # @param VolumeMountInfoList: 业务容器的挂载信息
+        # @type VolumeMountInfoList: Array
+        # @param LifeCycleHookList: 业务主容器生命周期钩子列表
+        # @type LifeCycleHookList: Array
+        # @param AdditionalContainerList: 附属容器列表
+        # @type AdditionalContainerList: Array
+        # @param VolumeInfoList: 容器卷信息
+        # @type VolumeInfoList: Array
+        # @param ServiceSettingList: Service访问配置列表
+        # @type ServiceSettingList: Array
+        # @param Alias: 备注
+        # @type Alias: String
+        # @param GroupName: 部署组名称
+        # @type GroupName: String
+        # @param Tags: 标签列表
+        # @type Tags: Array
+        # @param ContainerKind: 容器类型
+        # @type ContainerKind: String
+        # @param Server: 业务容器的 镜像Server ccr.ccs.tencentyun.com
+        # @type Server: String
+        # @param RepoName: 业务容器的镜像名
+        # @type RepoName: String
+        # @param RepoType: 仓库类型
+        # @type RepoType: String
+        # @param TcrRepoInfo: TCR仓库信息
+        # @type TcrRepoInfo: :class:`Tencentcloud::Tsf.v20180326.models.TcrRepoInfo`
+        # @param SecretName: 容器访问凭证名称
+        # @type SecretName: String
+        # @param TagName: 业务容器的镜像版本号
+        # @type TagName: String
+        # @param HealthCheckSettings: 健康检查
+        # @type HealthCheckSettings: :class:`Tencentcloud::Tsf.v20180326.models.HealthCheckSettings`
+        # @param CpuRequest: 业务容器的 cpu  request
+        # @type CpuRequest: String
+        # @param CpuLimit: 业务容器的 cpu limit
+        # @type CpuLimit: String
+        # @param MemRequest: 业务容器的 mem request
+        # @type MemRequest: String
+        # @param MemLimit: 业务容器的 mem limit
+        # @type MemLimit: String
+        # @param JvmOpts: 业务容器的 jvm 参数
+        # @type JvmOpts: String
+        # @param InitContainerEnable: 是否为初始化容器 业务主容器不能为初始化容
+        # @type InitContainerEnable: Boolean
+        # @param PrivilegeContainerEnable: 业务主容器是否为特权容器
+        # @type PrivilegeContainerEnable: Boolean
+        # @param RunCommand: 业务主容器运行命令(转base64)
+        # @type RunCommand: String
+        # @param RunArg: 业务主容器运行参数(转base64)
+        # @type RunArg: String
+        # @param InstanceNum: 实例数量
+        # @type InstanceNum: Integer
+        # @param SchedulingStrategy: 调度策略
+        # @type SchedulingStrategy: :class:`Tencentcloud::Tsf.v20180326.models.SchedulingStrategy`
+        # @param RestartPolicy: 重启策略
+        # @type RestartPolicy: String
+        # @param ServiceSpecEncode: 服务治理配置
+        # @type ServiceSpecEncode: String
+        # @param IstioMemRequest: istio容器的 mem Request
+        # @type IstioMemRequest: String
+        # @param IstioCpuRequest:  istio容器的 cpu Request
+        # @type IstioCpuRequest: String
+        # @param IstioMemLimit: istio容器的 mem Limit
+        # @type IstioMemLimit: String
+        # @param IstioCpuLimit: istio容器的 cpu Limit
+        # @type IstioCpuLimit: String
+        # @param ServiceGovernanceConfig: 服务治理配置
+        # @type ServiceGovernanceConfig: :class:`Tencentcloud::Tsf.v20180326.models.ContainerGroupServiceGovernanceConfig`
+        # @param AgentMemRequest: agent容器的 mem Request
+        # @type AgentMemRequest: String
+        # @param AgentCpuRequest: agent容器的 cpu Request
+        # @type AgentCpuRequest: String
+        # @param AgentMemLimit: agent容器的 mem Limit
+        # @type AgentMemLimit: String
+        # @param AgentCpuLimit: agent容器的 cpu Limit
+        # @type AgentCpuLimit: String
+        # @param UpdateType: 发布策略(0表示快速更新，1表示滚动更新。默认值为0)
+        # @type UpdateType: Integer
+        # @param UpdateIvl: 更新间隔,单位秒
+        # @type UpdateIvl: Integer
+        # @param MaxSurge: 对应更新策略和策略配置参数
+        # @type MaxSurge: String
+        # @param MaxUnavailable: 对应更新策略和策略配置参数
+        # @type MaxUnavailable: String
+        # @param WarmupSetting: 预热参数配置
+        # @type WarmupSetting: :class:`Tencentcloud::Tsf.v20180326.models.WarmupSetting`
+        # @param ConfigTemplateId: 配置模版ID
+        # @type ConfigTemplateId: String
+        # @param ConfigTemplateVersion: 配置模版Version
+        # @type ConfigTemplateVersion: Integer
+        # @param VolumeClean: 是否清除数据卷信息
+        # @type VolumeClean: Boolean
+        # @param NamespaceId: 命名空间Id
+        # @type NamespaceId: String
+        # @param DeployAgent: 是否部署agent容器
+        # @type DeployAgent: Boolean
+        # @param AgentProfileList: javaagent信息: SERVICE_AGENT/OT_AGENT
+        # @type AgentProfileList: Array
+        # @param ServiceClean: 是否清除Service信息
+        # @type ServiceClean: Boolean
+        # @param EnvClean: 是否清除Env信息
+        # @type EnvClean: Boolean
+        # @param DeployDesc: 本次部署的描述信息
+        # @type DeployDesc: String
+
+        attr_accessor :ApplicationId, :ObservabilityConfig, :ClusterId, :GroupId, :Envs, :VolumeMountInfoList, :LifeCycleHookList, :AdditionalContainerList, :VolumeInfoList, :ServiceSettingList, :Alias, :GroupName, :Tags, :ContainerKind, :Server, :RepoName, :RepoType, :TcrRepoInfo, :SecretName, :TagName, :HealthCheckSettings, :CpuRequest, :CpuLimit, :MemRequest, :MemLimit, :JvmOpts, :InitContainerEnable, :PrivilegeContainerEnable, :RunCommand, :RunArg, :InstanceNum, :SchedulingStrategy, :RestartPolicy, :ServiceSpecEncode, :IstioMemRequest, :IstioCpuRequest, :IstioMemLimit, :IstioCpuLimit, :ServiceGovernanceConfig, :AgentMemRequest, :AgentCpuRequest, :AgentMemLimit, :AgentCpuLimit, :UpdateType, :UpdateIvl, :MaxSurge, :MaxUnavailable, :WarmupSetting, :ConfigTemplateId, :ConfigTemplateVersion, :VolumeClean, :NamespaceId, :DeployAgent, :AgentProfileList, :ServiceClean, :EnvClean, :DeployDesc
+
+        def initialize(applicationid=nil, observabilityconfig=nil, clusterid=nil, groupid=nil, envs=nil, volumemountinfolist=nil, lifecyclehooklist=nil, additionalcontainerlist=nil, volumeinfolist=nil, servicesettinglist=nil, _alias=nil, groupname=nil, tags=nil, containerkind=nil, server=nil, reponame=nil, repotype=nil, tcrrepoinfo=nil, secretname=nil, tagname=nil, healthchecksettings=nil, cpurequest=nil, cpulimit=nil, memrequest=nil, memlimit=nil, jvmopts=nil, initcontainerenable=nil, privilegecontainerenable=nil, runcommand=nil, runarg=nil, instancenum=nil, schedulingstrategy=nil, restartpolicy=nil, servicespecencode=nil, istiomemrequest=nil, istiocpurequest=nil, istiomemlimit=nil, istiocpulimit=nil, servicegovernanceconfig=nil, agentmemrequest=nil, agentcpurequest=nil, agentmemlimit=nil, agentcpulimit=nil, updatetype=nil, updateivl=nil, maxsurge=nil, maxunavailable=nil, warmupsetting=nil, configtemplateid=nil, configtemplateversion=nil, volumeclean=nil, namespaceid=nil, deployagent=nil, agentprofilelist=nil, serviceclean=nil, envclean=nil, deploydesc=nil)
+          @ApplicationId = applicationid
+          @ObservabilityConfig = observabilityconfig
+          @ClusterId = clusterid
+          @GroupId = groupid
+          @Envs = envs
+          @VolumeMountInfoList = volumemountinfolist
+          @LifeCycleHookList = lifecyclehooklist
+          @AdditionalContainerList = additionalcontainerlist
+          @VolumeInfoList = volumeinfolist
+          @ServiceSettingList = servicesettinglist
+          @Alias = _alias
+          @GroupName = groupname
+          @Tags = tags
+          @ContainerKind = containerkind
+          @Server = server
+          @RepoName = reponame
+          @RepoType = repotype
+          @TcrRepoInfo = tcrrepoinfo
+          @SecretName = secretname
+          @TagName = tagname
+          @HealthCheckSettings = healthchecksettings
+          @CpuRequest = cpurequest
+          @CpuLimit = cpulimit
+          @MemRequest = memrequest
+          @MemLimit = memlimit
+          @JvmOpts = jvmopts
+          @InitContainerEnable = initcontainerenable
+          @PrivilegeContainerEnable = privilegecontainerenable
+          @RunCommand = runcommand
+          @RunArg = runarg
+          @InstanceNum = instancenum
+          @SchedulingStrategy = schedulingstrategy
+          @RestartPolicy = restartpolicy
+          @ServiceSpecEncode = servicespecencode
+          @IstioMemRequest = istiomemrequest
+          @IstioCpuRequest = istiocpurequest
+          @IstioMemLimit = istiomemlimit
+          @IstioCpuLimit = istiocpulimit
+          @ServiceGovernanceConfig = servicegovernanceconfig
+          @AgentMemRequest = agentmemrequest
+          @AgentCpuRequest = agentcpurequest
+          @AgentMemLimit = agentmemlimit
+          @AgentCpuLimit = agentcpulimit
+          @UpdateType = updatetype
+          @UpdateIvl = updateivl
+          @MaxSurge = maxsurge
+          @MaxUnavailable = maxunavailable
+          @WarmupSetting = warmupsetting
+          @ConfigTemplateId = configtemplateid
+          @ConfigTemplateVersion = configtemplateversion
+          @VolumeClean = volumeclean
+          @NamespaceId = namespaceid
+          @DeployAgent = deployagent
+          @AgentProfileList = agentprofilelist
+          @ServiceClean = serviceclean
+          @EnvClean = envclean
+          @DeployDesc = deploydesc
+        end
+
+        def deserialize(params)
+          @ApplicationId = params['ApplicationId']
+          unless params['ObservabilityConfig'].nil?
+            @ObservabilityConfig = ContainerGroupObservabilityConfig.new
+            @ObservabilityConfig.deserialize(params['ObservabilityConfig'])
+          end
+          @ClusterId = params['ClusterId']
+          @GroupId = params['GroupId']
+          unless params['Envs'].nil?
+            @Envs = []
+            params['Envs'].each do |i|
+              env_tmp = Env.new
+              env_tmp.deserialize(i)
+              @Envs << env_tmp
+            end
+          end
+          unless params['VolumeMountInfoList'].nil?
+            @VolumeMountInfoList = []
+            params['VolumeMountInfoList'].each do |i|
+              volumemountinfo_tmp = VolumeMountInfo.new
+              volumemountinfo_tmp.deserialize(i)
+              @VolumeMountInfoList << volumemountinfo_tmp
+            end
+          end
+          unless params['LifeCycleHookList'].nil?
+            @LifeCycleHookList = []
+            params['LifeCycleHookList'].each do |i|
+              lifecyclehook_tmp = LifeCycleHook.new
+              lifecyclehook_tmp.deserialize(i)
+              @LifeCycleHookList << lifecyclehook_tmp
+            end
+          end
+          unless params['AdditionalContainerList'].nil?
+            @AdditionalContainerList = []
+            params['AdditionalContainerList'].each do |i|
+              containerinfo_tmp = ContainerInfo.new
+              containerinfo_tmp.deserialize(i)
+              @AdditionalContainerList << containerinfo_tmp
+            end
+          end
+          unless params['VolumeInfoList'].nil?
+            @VolumeInfoList = []
+            params['VolumeInfoList'].each do |i|
+              volumeinfo_tmp = VolumeInfo.new
+              volumeinfo_tmp.deserialize(i)
+              @VolumeInfoList << volumeinfo_tmp
+            end
+          end
+          unless params['ServiceSettingList'].nil?
+            @ServiceSettingList = []
+            params['ServiceSettingList'].each do |i|
+              servicesetting_tmp = ServiceSetting.new
+              servicesetting_tmp.deserialize(i)
+              @ServiceSettingList << servicesetting_tmp
+            end
+          end
+          @Alias = params['Alias']
+          @GroupName = params['GroupName']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
+          @ContainerKind = params['ContainerKind']
+          @Server = params['Server']
+          @RepoName = params['RepoName']
+          @RepoType = params['RepoType']
+          unless params['TcrRepoInfo'].nil?
+            @TcrRepoInfo = TcrRepoInfo.new
+            @TcrRepoInfo.deserialize(params['TcrRepoInfo'])
+          end
+          @SecretName = params['SecretName']
+          @TagName = params['TagName']
+          unless params['HealthCheckSettings'].nil?
+            @HealthCheckSettings = HealthCheckSettings.new
+            @HealthCheckSettings.deserialize(params['HealthCheckSettings'])
+          end
+          @CpuRequest = params['CpuRequest']
+          @CpuLimit = params['CpuLimit']
+          @MemRequest = params['MemRequest']
+          @MemLimit = params['MemLimit']
+          @JvmOpts = params['JvmOpts']
+          @InitContainerEnable = params['InitContainerEnable']
+          @PrivilegeContainerEnable = params['PrivilegeContainerEnable']
+          @RunCommand = params['RunCommand']
+          @RunArg = params['RunArg']
+          @InstanceNum = params['InstanceNum']
+          unless params['SchedulingStrategy'].nil?
+            @SchedulingStrategy = SchedulingStrategy.new
+            @SchedulingStrategy.deserialize(params['SchedulingStrategy'])
+          end
+          @RestartPolicy = params['RestartPolicy']
+          @ServiceSpecEncode = params['ServiceSpecEncode']
+          @IstioMemRequest = params['IstioMemRequest']
+          @IstioCpuRequest = params['IstioCpuRequest']
+          @IstioMemLimit = params['IstioMemLimit']
+          @IstioCpuLimit = params['IstioCpuLimit']
+          unless params['ServiceGovernanceConfig'].nil?
+            @ServiceGovernanceConfig = ContainerGroupServiceGovernanceConfig.new
+            @ServiceGovernanceConfig.deserialize(params['ServiceGovernanceConfig'])
+          end
+          @AgentMemRequest = params['AgentMemRequest']
+          @AgentCpuRequest = params['AgentCpuRequest']
+          @AgentMemLimit = params['AgentMemLimit']
+          @AgentCpuLimit = params['AgentCpuLimit']
+          @UpdateType = params['UpdateType']
+          @UpdateIvl = params['UpdateIvl']
+          @MaxSurge = params['MaxSurge']
+          @MaxUnavailable = params['MaxUnavailable']
+          unless params['WarmupSetting'].nil?
+            @WarmupSetting = WarmupSetting.new
+            @WarmupSetting.deserialize(params['WarmupSetting'])
+          end
+          @ConfigTemplateId = params['ConfigTemplateId']
+          @ConfigTemplateVersion = params['ConfigTemplateVersion']
+          @VolumeClean = params['VolumeClean']
+          @NamespaceId = params['NamespaceId']
+          @DeployAgent = params['DeployAgent']
+          unless params['AgentProfileList'].nil?
+            @AgentProfileList = []
+            params['AgentProfileList'].each do |i|
+              agentprofile_tmp = AgentProfile.new
+              agentprofile_tmp.deserialize(i)
+              @AgentProfileList << agentprofile_tmp
+            end
+          end
+          @ServiceClean = params['ServiceClean']
+          @EnvClean = params['EnvClean']
+          @DeployDesc = params['DeployDesc']
+        end
+      end
+
+      # 部署后返回的结构体
+      class DeployContainerApplicationResp < TencentCloud::Common::AbstractModel
+        # @param GroupId: 部署组ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GroupId: String
+        # @param TaskId: 任务ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskId: String
+
+        attr_accessor :GroupId, :TaskId
+
+        def initialize(groupid=nil, taskid=nil)
+          @GroupId = groupid
+          @TaskId = taskid
+        end
+
+        def deserialize(params)
+          @GroupId = params['GroupId']
+          @TaskId = params['TaskId']
+        end
+      end
+
+      # DeployContainerApplication返回参数结构体
+      class DeployContainerApplicationResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 部署容器应用是否成功。
+        # true：成功。
+        # false：失败。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Tsf.v20180326.models.DeployContainerApplicationResp`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = DeployContainerApplicationResp.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeployContainerGroup请求参数结构体
       class DeployContainerGroupRequest < TencentCloud::Common::AbstractModel
         # @param GroupId: 部署组ID，分组唯一标识
@@ -6321,8 +6932,8 @@ module TencentCloud
 
         attr_accessor :GroupId, :TagName, :InstanceNum, :Server, :Reponame, :CpuLimit, :MemLimit, :JvmOpts, :CpuRequest, :MemRequest, :DoNotStart, :RepoName, :UpdateType, :UpdateIvl, :AgentCpuRequest, :AgentCpuLimit, :AgentMemRequest, :AgentMemLimit, :IstioCpuRequest, :IstioCpuLimit, :IstioMemRequest, :IstioMemLimit, :MaxSurge, :MaxUnavailable, :HealthCheckSettings, :Envs, :ServiceSetting, :DeployAgent, :SchedulingStrategy, :IncrementalDeployment, :RepoType, :VolumeInfos, :VolumeMountInfos, :VolumeInfoList, :VolumeMountInfoList, :VolumeClean, :AgentProfileList, :WarmupSetting
         extend Gem::Deprecate
-        deprecate :Reponame, :none, 2025, 6
-        deprecate :Reponame=, :none, 2025, 6
+        deprecate :Reponame, :none, 2025, 7
+        deprecate :Reponame=, :none, 2025, 7
 
         def initialize(groupid=nil, tagname=nil, instancenum=nil, server=nil, cpulimit=nil, memlimit=nil, jvmopts=nil, cpurequest=nil, memrequest=nil, donotstart=nil, reponame=nil, updatetype=nil, updateivl=nil, agentcpurequest=nil, agentcpulimit=nil, agentmemrequest=nil, agentmemlimit=nil, istiocpurequest=nil, istiocpulimit=nil, istiomemrequest=nil, istiomemlimit=nil, maxsurge=nil, maxunavailable=nil, healthchecksettings=nil, envs=nil, servicesetting=nil, deployagent=nil, schedulingstrategy=nil, incrementaldeployment=nil, repotype=nil, volumeinfos=nil, volumemountinfos=nil, volumeinfolist=nil, volumemountinfolist=nil, volumeclean=nil, agentprofilelist=nil, warmupsetting=nil)
           @GroupId = groupid
@@ -13546,6 +14157,38 @@ module TencentCloud
         end
       end
 
+      # HttpGet 执行内容
+      class HttpGetOption < TencentCloud::Common::AbstractModel
+        # @param Host: 主机地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Host: String
+        # @param Path: 路径
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Path: String
+        # @param Port: 端口
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Port: String
+        # @param Scheme: 协议：HTTP｜HTTPS
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Scheme: String
+
+        attr_accessor :Host, :Path, :Port, :Scheme
+
+        def initialize(host=nil, path=nil, port=nil, scheme=nil)
+          @Host = host
+          @Path = path
+          @Port = port
+          @Scheme = scheme
+        end
+
+        def deserialize(params)
+          @Host = params['Host']
+          @Path = params['Path']
+          @Port = params['Port']
+          @Scheme = params['Scheme']
+        end
+      end
+
       # 镜像仓库
       class ImageRepository < TencentCloud::Common::AbstractModel
         # @param Reponame: 仓库名,含命名空间,如tsf/nginx
@@ -14758,6 +15401,41 @@ module TencentCloud
               lanerule_tmp.deserialize(i)
               @Content << lanerule_tmp
             end
+          end
+        end
+      end
+
+      # LifeCycleHook
+      class LifeCycleHook < TencentCloud::Common::AbstractModel
+        # @param HookType: 生命周期函数类型：PostStart|PreStop
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HookType: String
+        # @param ExecMode: 函数执行方式：execCommand|httpGet|none
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExecMode: String
+        # @param ExecCommandContent: execCommand函数执行内容
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExecCommandContent: String
+        # @param HttpGetOption: HttpGet执行内容
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HttpGetOption: :class:`Tencentcloud::Tsf.v20180326.models.HttpGetOption`
+
+        attr_accessor :HookType, :ExecMode, :ExecCommandContent, :HttpGetOption
+
+        def initialize(hooktype=nil, execmode=nil, execcommandcontent=nil, httpgetoption=nil)
+          @HookType = hooktype
+          @ExecMode = execmode
+          @ExecCommandContent = execcommandcontent
+          @HttpGetOption = httpgetoption
+        end
+
+        def deserialize(params)
+          @HookType = params['HookType']
+          @ExecMode = params['ExecMode']
+          @ExecCommandContent = params['ExecCommandContent']
+          unless params['HttpGetOption'].nil?
+            @HttpGetOption = HttpGetOption.new
+            @HttpGetOption.deserialize(params['HttpGetOption'])
           end
         end
       end

@@ -190,7 +190,6 @@ module TencentCloud
       # 音频呻吟审核结果
       class AudioResultDetailMoanResult < TencentCloud::Common::AbstractModel
         # @param Label: 该字段用于返回检测结果需要检测的内容类型，此处固定为**Moan**（呻吟）以调用呻吟检测功能。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Label: String
         # @param Score: 该字段用于返回呻吟检测的置信度，取值范围：0（**置信度最低**）-100（**置信度最高**），越高代表音频越有可能属于呻吟内容。
         # @type Score: Integer
@@ -201,15 +200,14 @@ module TencentCloud
         # @param SubLabelCode: *内测中，敬请期待*
         # @type SubLabelCode: String
         # @param SubLabel: 该字段用于返回当前标签（Lable）下的二级标签。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubLabel: String
         # @param Suggestion: 该字段用于返回基于恶意标签的后续操作建议。当您获取到判定结果后，返回值表示系统推荐的后续操作；建议您按照业务所需，对不同违规类型与建议值进行处理。<br>返回值：**Block**：建议屏蔽，**Review** ：建议人工复审，**Pass**：建议通过
         # @type Suggestion: String
 
         attr_accessor :Label, :Score, :StartTime, :EndTime, :SubLabelCode, :SubLabel, :Suggestion
         extend Gem::Deprecate
-        deprecate :SubLabelCode, :none, 2025, 6
-        deprecate :SubLabelCode=, :none, 2025, 6
+        deprecate :SubLabelCode, :none, 2025, 7
+        deprecate :SubLabelCode=, :none, 2025, 7
 
         def initialize(label=nil, score=nil, starttime=nil, endtime=nil, sublabelcode=nil, sublabel=nil, suggestion=nil)
           @Label = label
@@ -235,16 +233,12 @@ module TencentCloud
       # 音频说话人声纹识别返回结果
       class AudioResultDetailSpeakerResult < TencentCloud::Common::AbstractModel
         # @param Label: 该字段用于返回检测结果需要检测的内容类型。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Label: String
         # @param Score: 该字段用于返回呻吟检测的置信度，取值范围：0（置信度最低）-100（置信度最高），越高代表音频越有可能属于说话人声纹。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Score: Integer
         # @param StartTime: 该字段用于返回对应说话人的片段在音频文件内的开始时间，单位为秒。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StartTime: Float
         # @param EndTime: 该字段用于返回对应说话人的片段在音频文件内的结束时间，单位为秒。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EndTime: Float
 
         attr_accessor :Label, :Score, :StartTime, :EndTime
@@ -907,7 +901,7 @@ module TencentCloud
       class LabelResults < TencentCloud::Common::AbstractModel
         # @param Scene: 场景
         # @type Scene: String
-        # @param Suggestion: 建议
+        # @param Suggestion: 建议值
         # @type Suggestion: Integer
         # @param Label: 标签
         # @type Label: String

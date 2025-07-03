@@ -17,6 +17,38 @@
 module TencentCloud
   module Tione
     module V20211111
+      # 镜像属性
+      class Attribute < TencentCloud::Common::AbstractModel
+        # @param Type: 为‘List’时属性值取Values 否则取Value
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+        # @param Key: 属性key
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Key: String
+        # @param Value: 属性值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Value: String
+        # @param Values: 属性值列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Values: Array
+
+        attr_accessor :Type, :Key, :Value, :Values
+
+        def initialize(type=nil, key=nil, value=nil, values=nil)
+          @Type = type
+          @Key = key
+          @Value = value
+          @Values = values
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @Key = params['Key']
+          @Value = params['Value']
+          @Values = params['Values']
+        end
+      end
+
       # 在线服务的 AuthToken 数据
       class AuthToken < TencentCloud::Common::AbstractModel
         # @param Base: AuthToken 基础信息
@@ -3631,6 +3663,68 @@ module TencentCloud
         end
       end
 
+      # DescribePlatformImages请求参数结构体
+      class DescribePlatformImagesRequest < TencentCloud::Common::AbstractModel
+        # @param Filters: 过滤器,  Name支持ImageId/ImageName/SupportDataPipeline/AllowSaveAllContent/ImageRange，其中ImageRange支持枚举值Train,Inference,Notebook
+        # @type Filters: Array
+        # @param Offset: 偏移信息
+        # @type Offset: Integer
+        # @param Limit: 返回数量, 默认100
+        # @type Limit: Integer
+
+        attr_accessor :Filters, :Offset, :Limit
+
+        def initialize(filters=nil, offset=nil, limit=nil)
+          @Filters = filters
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribePlatformImages返回参数结构体
+      class DescribePlatformImagesResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 数量
+        # @type TotalCount: Integer
+        # @param PlatformImageInfos: 镜像列表
+        # @type PlatformImageInfos: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :PlatformImageInfos, :RequestId
+
+        def initialize(totalcount=nil, platformimageinfos=nil, requestid=nil)
+          @TotalCount = totalcount
+          @PlatformImageInfos = platformimageinfos
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['PlatformImageInfos'].nil?
+            @PlatformImageInfos = []
+            params['PlatformImageInfos'].each do |i|
+              platformimageinfo_tmp = PlatformImageInfo.new
+              platformimageinfo_tmp.deserialize(i)
+              @PlatformImageInfos << platformimageinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeTrainingModelVersion请求参数结构体
       class DescribeTrainingModelVersionRequest < TencentCloud::Common::AbstractModel
         # @param TrainingModelVersionId: 模型版本ID
@@ -4593,9 +4687,10 @@ module TencentCloud
         # DEPLOYING: 部署中
         # RUNNING: 运行中
         # DEPLOY_FAILED: 部署失败
-        #  RELEASING 释放中
+        # RELEASING 释放中
         # RELEASED：已释放
         # EXCEPTION：异常
+        # DEBT_OR_EXPIRED: 欠费过期
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceStatus: String
         # @param SubUin: 创建人
@@ -6213,6 +6308,95 @@ module TencentCloud
         end
       end
 
+      # 平台镜像信息详情
+      class PlatformImageInfo < TencentCloud::Common::AbstractModel
+        # @param Framework: 框架名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Framework: String
+        # @param ImageType: 镜像类型: ccr or tcr
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ImageType: String
+        # @param ImageUrl: 镜像地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ImageUrl: String
+        # @param RegistryRegion: TCR镜像示例所属地域
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RegistryRegion: String
+        # @param RegistryId: TCR镜像所属实例ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RegistryId: String
+        # @param ImageName: 镜像名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ImageName: String
+        # @param ImageId: 镜像Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ImageId: String
+        # @param FrameworkVersion: 框架版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FrameworkVersion: String
+        # @param SupportGpuList: 支持的gpu列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SupportGpuList: Array
+        # @param Description: 描述信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+        # @param ExtraAttributes: 业务属性
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExtraAttributes: Array
+        # @param ImageRange: 镜像适用场景Train/Inference/Notebook
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ImageRange: Array
+        # @param SupportDistributedDeploy: 是否支持分布式部署
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SupportDistributedDeploy: Boolean
+        # @param RegionScope: 支持的地域 all(所有地域)/autonomous(自动驾驶地域)/general(通用地域)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RegionScope: String
+
+        attr_accessor :Framework, :ImageType, :ImageUrl, :RegistryRegion, :RegistryId, :ImageName, :ImageId, :FrameworkVersion, :SupportGpuList, :Description, :ExtraAttributes, :ImageRange, :SupportDistributedDeploy, :RegionScope
+
+        def initialize(framework=nil, imagetype=nil, imageurl=nil, registryregion=nil, registryid=nil, imagename=nil, imageid=nil, frameworkversion=nil, supportgpulist=nil, description=nil, extraattributes=nil, imagerange=nil, supportdistributeddeploy=nil, regionscope=nil)
+          @Framework = framework
+          @ImageType = imagetype
+          @ImageUrl = imageurl
+          @RegistryRegion = registryregion
+          @RegistryId = registryid
+          @ImageName = imagename
+          @ImageId = imageid
+          @FrameworkVersion = frameworkversion
+          @SupportGpuList = supportgpulist
+          @Description = description
+          @ExtraAttributes = extraattributes
+          @ImageRange = imagerange
+          @SupportDistributedDeploy = supportdistributeddeploy
+          @RegionScope = regionscope
+        end
+
+        def deserialize(params)
+          @Framework = params['Framework']
+          @ImageType = params['ImageType']
+          @ImageUrl = params['ImageUrl']
+          @RegistryRegion = params['RegistryRegion']
+          @RegistryId = params['RegistryId']
+          @ImageName = params['ImageName']
+          @ImageId = params['ImageId']
+          @FrameworkVersion = params['FrameworkVersion']
+          @SupportGpuList = params['SupportGpuList']
+          @Description = params['Description']
+          unless params['ExtraAttributes'].nil?
+            @ExtraAttributes = []
+            params['ExtraAttributes'].each do |i|
+              attribute_tmp = Attribute.new
+              attribute_tmp.deserialize(i)
+              @ExtraAttributes << attribute_tmp
+            end
+          end
+          @ImageRange = params['ImageRange']
+          @SupportDistributedDeploy = params['SupportDistributedDeploy']
+          @RegionScope = params['RegionScope']
+        end
+      end
+
       # Pod信息展示
       class Pod < TencentCloud::Common::AbstractModel
         # @param Name: pod名
@@ -6253,8 +6437,8 @@ module TencentCloud
 
         attr_accessor :Name, :Uid, :ChargeType, :Phase, :IP, :CreateTime, :Containers, :ContainerInfos, :CrossTenantENIInfo, :Status, :StartScheduleTime, :Message, :NodeIP
         extend Gem::Deprecate
-        deprecate :Containers, :none, 2025, 6
-        deprecate :Containers=, :none, 2025, 6
+        deprecate :Containers, :none, 2025, 7
+        deprecate :Containers=, :none, 2025, 7
 
         def initialize(name=nil, uid=nil, chargetype=nil, phase=nil, ip=nil, createtime=nil, containers=nil, containerinfos=nil, crosstenanteniinfo=nil, status=nil, startscheduletime=nil, message=nil, nodeip=nil)
           @Name = name
@@ -7033,10 +7217,10 @@ module TencentCloud
 
         attr_accessor :ServiceGroupId, :ServiceId, :ServiceGroupName, :ServiceDescription, :ServiceInfo, :ClusterId, :Region, :Namespace, :ChargeType, :ResourceGroupId, :ResourceGroupName, :Tags, :IngressName, :CreatedBy, :CreateTime, :UpdateTime, :Uin, :SubUin, :AppId, :BusinessStatus, :ServiceLimit, :ScheduledAction, :CreateFailedReason, :Status, :BillingInfo, :Weight, :CreateSource, :Version, :LatestVersion, :ResourceGroupSWType, :ArchiveStatus, :DeployType, :InstancePerReplicas, :MonitorSource
         extend Gem::Deprecate
-        deprecate :ServiceLimit, :none, 2025, 6
-        deprecate :ServiceLimit=, :none, 2025, 6
-        deprecate :ScheduledAction, :none, 2025, 6
-        deprecate :ScheduledAction=, :none, 2025, 6
+        deprecate :ServiceLimit, :none, 2025, 7
+        deprecate :ServiceLimit=, :none, 2025, 7
+        deprecate :ScheduledAction, :none, 2025, 7
+        deprecate :ScheduledAction=, :none, 2025, 7
 
         def initialize(servicegroupid=nil, serviceid=nil, servicegroupname=nil, servicedescription=nil, serviceinfo=nil, clusterid=nil, region=nil, namespace=nil, chargetype=nil, resourcegroupid=nil, resourcegroupname=nil, tags=nil, ingressname=nil, createdby=nil, createtime=nil, updatetime=nil, uin=nil, subuin=nil, appid=nil, businessstatus=nil, servicelimit=nil, scheduledaction=nil, createfailedreason=nil, status=nil, billinginfo=nil, weight=nil, createsource=nil, version=nil, latestversion=nil, resourcegroupswtype=nil, archivestatus=nil, deploytype=nil, instanceperreplicas=nil, monitorsource=nil)
           @ServiceGroupId = servicegroupid
@@ -7562,10 +7746,10 @@ module TencentCloud
 
         attr_accessor :Replicas, :ImageInfo, :Env, :Resources, :InstanceType, :ModelInfo, :LogEnable, :LogConfig, :AuthorizationEnable, :HorizontalPodAutoscaler, :Status, :Weight, :ResourceTotal, :OldReplicas, :HybridBillingPrepaidReplicas, :OldHybridBillingPrepaidReplicas, :ModelHotUpdateEnable, :InstanceAlias, :ScaleMode, :CronScaleJobs, :ScaleStrategy, :ScheduledAction, :PodList, :Pods, :PodInfos, :ServiceLimit, :ModelTurboEnable, :VolumeMount, :InferCodeInfo, :Command, :ServiceEIP, :ServicePort, :TerminationGracePeriodSeconds, :PreStopCommand, :GrpcEnable, :HealthProbe, :RollingUpdate
         extend Gem::Deprecate
-        deprecate :PodList, :none, 2025, 6
-        deprecate :PodList=, :none, 2025, 6
-        deprecate :Pods, :none, 2025, 6
-        deprecate :Pods=, :none, 2025, 6
+        deprecate :PodList, :none, 2025, 7
+        deprecate :PodList=, :none, 2025, 7
+        deprecate :Pods, :none, 2025, 7
+        deprecate :Pods=, :none, 2025, 7
 
         def initialize(replicas=nil, imageinfo=nil, env=nil, resources=nil, instancetype=nil, modelinfo=nil, logenable=nil, logconfig=nil, authorizationenable=nil, horizontalpodautoscaler=nil, status=nil, weight=nil, resourcetotal=nil, oldreplicas=nil, hybridbillingprepaidreplicas=nil, oldhybridbillingprepaidreplicas=nil, modelhotupdateenable=nil, instancealias=nil, scalemode=nil, cronscalejobs=nil, scalestrategy=nil, scheduledaction=nil, podlist=nil, pods=nil, podinfos=nil, servicelimit=nil, modelturboenable=nil, volumemount=nil, infercodeinfo=nil, command=nil, serviceeip=nil, serviceport=nil, terminationgraceperiodseconds=nil, prestopcommand=nil, grpcenable=nil, healthprobe=nil, rollingupdate=nil)
           @Replicas = replicas
@@ -8819,8 +9003,8 @@ module TencentCloud
 
         attr_accessor :Replicas, :UpdatedReplicas, :ReadyReplicas, :AvailableReplicas, :UnavailableReplicas, :Status, :StatefulSetCondition, :Conditions, :Reason
         extend Gem::Deprecate
-        deprecate :StatefulSetCondition, :none, 2025, 6
-        deprecate :StatefulSetCondition=, :none, 2025, 6
+        deprecate :StatefulSetCondition, :none, 2025, 7
+        deprecate :StatefulSetCondition=, :none, 2025, 7
 
         def initialize(replicas=nil, updatedreplicas=nil, readyreplicas=nil, availablereplicas=nil, unavailablereplicas=nil, status=nil, statefulsetcondition=nil, conditions=nil, reason=nil)
           @Replicas = replicas

@@ -793,8 +793,8 @@ module TencentCloud
 
         attr_accessor :AddressCount, :InternetServiceProvider, :InternetChargeType, :InternetMaxBandwidthOut, :AddressChargePrepaid, :AddressType, :AnycastZone, :VipCluster, :ApplicableForCLB, :Tags, :BandwidthPackageId, :AddressName, :DedicatedClusterId, :IsDedicatedAddressPool, :Egress, :AntiDDoSPackageId, :ClientToken
         extend Gem::Deprecate
-        deprecate :ApplicableForCLB, :none, 2025, 6
-        deprecate :ApplicableForCLB=, :none, 2025, 6
+        deprecate :ApplicableForCLB, :none, 2025, 7
+        deprecate :ApplicableForCLB=, :none, 2025, 7
 
         def initialize(addresscount=nil, internetserviceprovider=nil, internetchargetype=nil, internetmaxbandwidthout=nil, addresschargeprepaid=nil, addresstype=nil, anycastzone=nil, vipcluster=nil, applicableforclb=nil, tags=nil, bandwidthpackageid=nil, addressname=nil, dedicatedclusterid=nil, isdedicatedaddresspool=nil, egress=nil, antiddospackageid=nil, clienttoken=nil)
           @AddressCount = addresscount
@@ -4807,8 +4807,8 @@ module TencentCloud
 
         attr_accessor :NatGatewayName, :VpcId, :InternetMaxBandwidthOut, :MaxConcurrentConnection, :AddressCount, :PublicIpAddresses, :Zone, :Tags, :SubnetId, :StockPublicIpAddressesBandwidthOut, :PublicIpAddressesBandwidthOut, :PublicIpFromSameZone, :NatProductVersion
         extend Gem::Deprecate
-        deprecate :SubnetId, :none, 2025, 6
-        deprecate :SubnetId=, :none, 2025, 6
+        deprecate :SubnetId, :none, 2025, 7
+        deprecate :SubnetId=, :none, 2025, 7
 
         def initialize(natgatewayname=nil, vpcid=nil, internetmaxbandwidthout=nil, maxconcurrentconnection=nil, addresscount=nil, publicipaddresses=nil, zone=nil, tags=nil, subnetid=nil, stockpublicipaddressesbandwidthout=nil, publicipaddressesbandwidthout=nil, publicipfromsamezone=nil, natproductversion=nil)
           @NatGatewayName = natgatewayname
@@ -18725,8 +18725,8 @@ module TencentCloud
 
         attr_accessor :EncryptAlgorithm, :IntegrityAlgorith, :IPSECSaLifetimeSeconds, :PfsDhGroup, :IPSECSaLifetimeTraffic, :IntegrityAlgorithm
         extend Gem::Deprecate
-        deprecate :IntegrityAlgorith, :none, 2025, 6
-        deprecate :IntegrityAlgorith=, :none, 2025, 6
+        deprecate :IntegrityAlgorith, :none, 2025, 7
+        deprecate :IntegrityAlgorith=, :none, 2025, 7
 
         def initialize(encryptalgorithm=nil, integrityalgorith=nil, ipsecsalifetimeseconds=nil, pfsdhgroup=nil, ipsecsalifetimetraffic=nil, integrityalgorithm=nil)
           @EncryptAlgorithm = encryptalgorithm
@@ -20113,10 +20113,10 @@ module TencentCloud
 
         attr_accessor :AddressIds, :InternetMaxBandwidthOut, :StartTime, :EndTime
         extend Gem::Deprecate
-        deprecate :StartTime, :none, 2025, 6
-        deprecate :StartTime=, :none, 2025, 6
-        deprecate :EndTime, :none, 2025, 6
-        deprecate :EndTime=, :none, 2025, 6
+        deprecate :StartTime, :none, 2025, 7
+        deprecate :StartTime=, :none, 2025, 7
+        deprecate :EndTime, :none, 2025, 7
+        deprecate :EndTime=, :none, 2025, 7
 
         def initialize(addressids=nil, internetmaxbandwidthout=nil, starttime=nil, endtime=nil)
           @AddressIds = addressids

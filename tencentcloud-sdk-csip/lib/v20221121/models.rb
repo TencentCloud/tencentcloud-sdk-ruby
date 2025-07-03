@@ -1027,6 +1027,62 @@ module TencentCloud
         end
       end
 
+      # 主机进程内容
+      class AssetProcessItem < TencentCloud::Common::AbstractModel
+        # @param CloudAccountID: 云账号ID
+        # @type CloudAccountID: String
+        # @param InstanceName: 实例名称
+        # @type InstanceName: String
+        # @param AppID: 租户ID
+        # @type AppID: Integer
+        # @param CloudAccountName: 云账号名称
+        # @type CloudAccountName: String
+        # @param InstanceID: 实例ID
+        # @type InstanceID: String
+        # @param PublicIp: 公网IP
+        # @type PublicIp: String
+        # @param PrivateIp: 内网IP
+        # @type PrivateIp: String
+        # @param ProcessID: 进程ID
+        # @type ProcessID: String
+        # @param ProcessName: 进程名称
+        # @type ProcessName: String
+        # @param CmdLine: 命令行
+        # @type CmdLine: String
+        # @param Port: 监听端口列表
+        # @type Port: String
+
+        attr_accessor :CloudAccountID, :InstanceName, :AppID, :CloudAccountName, :InstanceID, :PublicIp, :PrivateIp, :ProcessID, :ProcessName, :CmdLine, :Port
+
+        def initialize(cloudaccountid=nil, instancename=nil, appid=nil, cloudaccountname=nil, instanceid=nil, publicip=nil, privateip=nil, processid=nil, processname=nil, cmdline=nil, port=nil)
+          @CloudAccountID = cloudaccountid
+          @InstanceName = instancename
+          @AppID = appid
+          @CloudAccountName = cloudaccountname
+          @InstanceID = instanceid
+          @PublicIp = publicip
+          @PrivateIp = privateip
+          @ProcessID = processid
+          @ProcessName = processname
+          @CmdLine = cmdline
+          @Port = port
+        end
+
+        def deserialize(params)
+          @CloudAccountID = params['CloudAccountID']
+          @InstanceName = params['InstanceName']
+          @AppID = params['AppID']
+          @CloudAccountName = params['CloudAccountName']
+          @InstanceID = params['InstanceID']
+          @PublicIp = params['PublicIp']
+          @PrivateIp = params['PrivateIp']
+          @ProcessID = params['ProcessID']
+          @ProcessName = params['ProcessName']
+          @CmdLine = params['CmdLine']
+          @Port = params['Port']
+        end
+      end
+
       # 资产视角风险项
       class AssetRiskItem < TencentCloud::Common::AbstractModel
         # @param AppId: 租户ID
@@ -3076,6 +3132,84 @@ module TencentCloud
         end
       end
 
+      # DescribeAssetProcessList请求参数结构体
+      class DescribeAssetProcessListRequest < TencentCloud::Common::AbstractModel
+        # @param MemberId: 集团账号的成员id
+        # @type MemberId: Array
+        # @param Filters: 过滤内容
+        # @type Filters: Array
+        # @param Limit: 分页大小
+        # @type Limit: Integer
+        # @param Offset: 偏移量
+        # @type Offset: Integer
+        # @param Order: 排序类型
+        # @type Order: String
+        # @param By: 排序字段
+        # @type By: String
+        # @param Provider: 云厂商
+        # @type Provider: String
+
+        attr_accessor :MemberId, :Filters, :Limit, :Offset, :Order, :By, :Provider
+
+        def initialize(memberid=nil, filters=nil, limit=nil, offset=nil, order=nil, by=nil, provider=nil)
+          @MemberId = memberid
+          @Filters = filters
+          @Limit = limit
+          @Offset = offset
+          @Order = order
+          @By = by
+          @Provider = provider
+        end
+
+        def deserialize(params)
+          @MemberId = params['MemberId']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filters_tmp = Filters.new
+              filters_tmp.deserialize(i)
+              @Filters << filters_tmp
+            end
+          end
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @Order = params['Order']
+          @By = params['By']
+          @Provider = params['Provider']
+        end
+      end
+
+      # DescribeAssetProcessList返回参数结构体
+      class DescribeAssetProcessListResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 进程数量
+        # @type TotalCount: Integer
+        # @param AssetProcessList: 进程列表
+        # @type AssetProcessList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :AssetProcessList, :RequestId
+
+        def initialize(totalcount=nil, assetprocesslist=nil, requestid=nil)
+          @TotalCount = totalcount
+          @AssetProcessList = assetprocesslist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['AssetProcessList'].nil?
+            @AssetProcessList = []
+            params['AssetProcessList'].each do |i|
+              assetprocessitem_tmp = AssetProcessItem.new
+              assetprocessitem_tmp.deserialize(i)
+              @AssetProcessList << assetprocessitem_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeAssetRiskList请求参数结构体
       class DescribeAssetRiskListRequest < TencentCloud::Common::AbstractModel
         # @param MemberId: 集团账号的成员id
@@ -4205,7 +4339,7 @@ module TencentCloud
 
       # DescribeExposeAssetCategory返回参数结构体
       class DescribeExposeAssetCategoryResponse < TencentCloud::Common::AbstractModel
-        # @param ExposeAssetTypeList: 暴露资产分类列表
+        # @param ExposeAssetTypeList: 云边界分析资产分类列表
         # @type ExposeAssetTypeList: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4264,7 +4398,7 @@ module TencentCloud
 
       # DescribeExposePath返回参数结构体
       class DescribeExposePathResponse < TencentCloud::Common::AbstractModel
-        # @param Content: 暴露路径节点内容
+        # @param Content: 云边界分析路径节点内容
         # @type Content: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4327,9 +4461,9 @@ module TencentCloud
 
       # DescribeExposures返回参数结构体
       class DescribeExposuresResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 互联网暴露资产数量
+        # @param TotalCount: 云边界分析资产数量
         # @type TotalCount: Integer
-        # @param ExposeList: 互联网暴露资产列表
+        # @param ExposeList: 云边界分析资产列表
         # @type ExposeList: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4448,6 +4582,88 @@ module TencentCloud
               filterdataobject_tmp = FilterDataObject.new
               filterdataobject_tmp.deserialize(i)
               @AppIdList << filterdataobject_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeHighBaseLineRiskList请求参数结构体
+      class DescribeHighBaseLineRiskListRequest < TencentCloud::Common::AbstractModel
+        # @param MemberId: 集团账号的成员id
+        # @type MemberId: Array
+        # @param Filters: 过滤内容
+        # @type Filters: Array
+        # @param Limit: 分页大小
+        # @type Limit: Integer
+        # @param Offset: 偏移量
+        # @type Offset: Integer
+        # @param Order: 排序类型
+        # @type Order: String
+        # @param By: 排序字段
+        # @type By: String
+        # @param CloudAccountID: 云账号ID
+        # @type CloudAccountID: String
+        # @param Provider: 云厂商
+        # @type Provider: String
+
+        attr_accessor :MemberId, :Filters, :Limit, :Offset, :Order, :By, :CloudAccountID, :Provider
+
+        def initialize(memberid=nil, filters=nil, limit=nil, offset=nil, order=nil, by=nil, cloudaccountid=nil, provider=nil)
+          @MemberId = memberid
+          @Filters = filters
+          @Limit = limit
+          @Offset = offset
+          @Order = order
+          @By = by
+          @CloudAccountID = cloudaccountid
+          @Provider = provider
+        end
+
+        def deserialize(params)
+          @MemberId = params['MemberId']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filters_tmp = Filters.new
+              filters_tmp.deserialize(i)
+              @Filters << filters_tmp
+            end
+          end
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @Order = params['Order']
+          @By = params['By']
+          @CloudAccountID = params['CloudAccountID']
+          @Provider = params['Provider']
+        end
+      end
+
+      # DescribeHighBaseLineRiskList返回参数结构体
+      class DescribeHighBaseLineRiskListResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 高危基线风险数量
+        # @type TotalCount: Integer
+        # @param HighBaseLineRiskList: 高危基线风险列表
+        # @type HighBaseLineRiskList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :HighBaseLineRiskList, :RequestId
+
+        def initialize(totalcount=nil, highbaselinerisklist=nil, requestid=nil)
+          @TotalCount = totalcount
+          @HighBaseLineRiskList = highbaselinerisklist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['HighBaseLineRiskList'].nil?
+            @HighBaseLineRiskList = []
+            params['HighBaseLineRiskList'].each do |i|
+              highbaselineriskitem_tmp = HighBaseLineRiskItem.new
+              highbaselineriskitem_tmp.deserialize(i)
+              @HighBaseLineRiskList << highbaselineriskitem_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -4763,22 +4979,16 @@ module TencentCloud
       # DescribeOtherCloudAssets返回参数结构体
       class DescribeOtherCloudAssetsResponse < TencentCloud::Common::AbstractModel
         # @param Total: 总数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Total: Integer
         # @param Data: 资产总数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: Array
         # @param RegionList: 地域枚举
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RegionList: Array
         # @param AssetTypeList: 资产类型枚举
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AssetTypeList: Array
         # @param VpcList: Vpc枚举
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VpcList: Array
         # @param AppIdList: Appid枚举
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AppIdList: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4998,7 +5208,6 @@ module TencentCloud
       # DescribeRepositoryImageAssets返回参数结构体
       class DescribeRepositoryImageAssetsResponse < TencentCloud::Common::AbstractModel
         # @param Data: 仓库镜像列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: Array
         # @param Total: 总数
         # @type Total: Integer
@@ -7329,6 +7538,88 @@ module TencentCloud
         end
       end
 
+      # DescribeVulRiskList请求参数结构体
+      class DescribeVulRiskListRequest < TencentCloud::Common::AbstractModel
+        # @param MemberId: 集团账号的成员id
+        # @type MemberId: Array
+        # @param Filters: 过滤内容
+        # @type Filters: Array
+        # @param Limit: 分页大小
+        # @type Limit: Integer
+        # @param Offset: 偏移量
+        # @type Offset: Integer
+        # @param Order: 排序类型
+        # @type Order: String
+        # @param By: 排序字段
+        # @type By: String
+        # @param CloudAccountID: 云账号ID
+        # @type CloudAccountID: String
+        # @param Provider: 云厂商
+        # @type Provider: String
+
+        attr_accessor :MemberId, :Filters, :Limit, :Offset, :Order, :By, :CloudAccountID, :Provider
+
+        def initialize(memberid=nil, filters=nil, limit=nil, offset=nil, order=nil, by=nil, cloudaccountid=nil, provider=nil)
+          @MemberId = memberid
+          @Filters = filters
+          @Limit = limit
+          @Offset = offset
+          @Order = order
+          @By = by
+          @CloudAccountID = cloudaccountid
+          @Provider = provider
+        end
+
+        def deserialize(params)
+          @MemberId = params['MemberId']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filters_tmp = Filters.new
+              filters_tmp.deserialize(i)
+              @Filters << filters_tmp
+            end
+          end
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @Order = params['Order']
+          @By = params['By']
+          @CloudAccountID = params['CloudAccountID']
+          @Provider = params['Provider']
+        end
+      end
+
+      # DescribeVulRiskList返回参数结构体
+      class DescribeVulRiskListResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 漏洞数量
+        # @type TotalCount: Integer
+        # @param VulRiskList: 漏洞列表
+        # @type VulRiskList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :VulRiskList, :RequestId
+
+        def initialize(totalcount=nil, vulrisklist=nil, requestid=nil)
+          @TotalCount = totalcount
+          @VulRiskList = vulrisklist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['VulRiskList'].nil?
+            @VulRiskList = []
+            params['VulRiskList'].each do |i|
+              vulriskitem_tmp = VulRiskItem.new
+              vulriskitem_tmp.deserialize(i)
+              @VulRiskList << vulriskitem_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeVulViewVulRiskList请求参数结构体
       class DescribeVulViewVulRiskListRequest < TencentCloud::Common::AbstractModel
         # @param MemberId: 集团账号的成员id
@@ -7858,10 +8149,10 @@ module TencentCloud
 
       # filter过滤条件
       class Filters < TencentCloud::Common::AbstractModel
-        # @param Name: 无
+        # @param Name: 实例ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
-        # @param Values: 无
+        # @param Values: 实例ID内容
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Values: Array
         # @param ExactMatch: 模糊匹配
@@ -8015,6 +8306,82 @@ module TencentCloud
           @IsNewAsset = params['IsNewAsset']
           @Status = params['Status']
           @EngineRegion = params['EngineRegion']
+        end
+      end
+
+      # 高危基线风险内容
+      class HighBaseLineRiskItem < TencentCloud::Common::AbstractModel
+        # @param CloudAccountID: 云账号ID
+        # @type CloudAccountID: String
+        # @param AssetID: 实例ID
+        # @type AssetID: String
+        # @param InstanceStatus: 实例状态
+        # @type InstanceStatus: String
+        # @param InstanceName: 实例名称
+        # @type InstanceName: String
+        # @param RiskName: 风险名称
+        # @type RiskName: String
+        # @param RiskCategory: 风险分类
+        # @type RiskCategory: String
+        # @param RiskLevel: 风险等级
+        # @type RiskLevel: String
+        # @param RiskDesc: 风险描述
+        # @type RiskDesc: String
+        # @param RiskResult: 风险结果
+        # @type RiskResult: String
+        # @param FixAdvice: 修复建议
+        # @type FixAdvice: String
+        # @param RiskCategoryName: Linux漏洞
+        # @type RiskCategoryName: String
+        # @param RiskLevelName: 风险等级名称
+        # @type RiskLevelName: String
+        # @param InstanceStatusName: 实例状态
+        # @type InstanceStatusName: String
+        # @param CreateTime: 首次发现时间
+        # @type CreateTime: String
+        # @param UpdateTime: 最近发现时间
+        # @type UpdateTime: String
+        # @param AppID: 租户ID
+        # @type AppID: Integer
+
+        attr_accessor :CloudAccountID, :AssetID, :InstanceStatus, :InstanceName, :RiskName, :RiskCategory, :RiskLevel, :RiskDesc, :RiskResult, :FixAdvice, :RiskCategoryName, :RiskLevelName, :InstanceStatusName, :CreateTime, :UpdateTime, :AppID
+
+        def initialize(cloudaccountid=nil, assetid=nil, instancestatus=nil, instancename=nil, riskname=nil, riskcategory=nil, risklevel=nil, riskdesc=nil, riskresult=nil, fixadvice=nil, riskcategoryname=nil, risklevelname=nil, instancestatusname=nil, createtime=nil, updatetime=nil, appid=nil)
+          @CloudAccountID = cloudaccountid
+          @AssetID = assetid
+          @InstanceStatus = instancestatus
+          @InstanceName = instancename
+          @RiskName = riskname
+          @RiskCategory = riskcategory
+          @RiskLevel = risklevel
+          @RiskDesc = riskdesc
+          @RiskResult = riskresult
+          @FixAdvice = fixadvice
+          @RiskCategoryName = riskcategoryname
+          @RiskLevelName = risklevelname
+          @InstanceStatusName = instancestatusname
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @AppID = appid
+        end
+
+        def deserialize(params)
+          @CloudAccountID = params['CloudAccountID']
+          @AssetID = params['AssetID']
+          @InstanceStatus = params['InstanceStatus']
+          @InstanceName = params['InstanceName']
+          @RiskName = params['RiskName']
+          @RiskCategory = params['RiskCategory']
+          @RiskLevel = params['RiskLevel']
+          @RiskDesc = params['RiskDesc']
+          @RiskResult = params['RiskResult']
+          @FixAdvice = params['FixAdvice']
+          @RiskCategoryName = params['RiskCategoryName']
+          @RiskLevelName = params['RiskLevelName']
+          @InstanceStatusName = params['InstanceStatusName']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          @AppID = params['AppID']
         end
       end
 
@@ -9053,61 +9420,42 @@ module TencentCloud
       # 仓库镜像列表
       class RepositoryImageVO < TencentCloud::Common::AbstractModel
         # @param AppId: 用户appid
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AppId: Integer
         # @param Uin: 用户uin
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Uin: String
         # @param NickName: 昵称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NickName: String
         # @param InstanceId: 镜像id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceId: String
         # @param InstanceName: 镜像名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceName: String
         # @param InstanceCreateTime: 镜像创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceCreateTime: String
         # @param InstanceSize: 镜像大小带单位
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceSize: String
         # @param BuildCount: 构建次数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BuildCount: Integer
         # @param InstanceType: 镜像类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceType: String
         # @param AuthStatus: 授权状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AuthStatus: Integer
         # @param InstanceVersion: 镜像版本
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceVersion: String
         # @param Region: 地域
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Region: String
         # @param RepositoryUrl: 仓库地址
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RepositoryUrl: String
         # @param RepositoryName: 仓库名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RepositoryName: String
         # @param IsCore: 是否核心
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsCore: Integer
         # @param VulRisk: 漏洞风险
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VulRisk: Integer
         # @param CheckCount: 检查任务
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CheckCount: Integer
         # @param CheckTime: 体检时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CheckTime: String
         # @param IsNewAsset: 是否新资产 1新
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsNewAsset: Integer
 
         attr_accessor :AppId, :Uin, :NickName, :InstanceId, :InstanceName, :InstanceCreateTime, :InstanceSize, :BuildCount, :InstanceType, :AuthStatus, :InstanceVersion, :Region, :RepositoryUrl, :RepositoryName, :IsCore, :VulRisk, :CheckCount, :CheckTime, :IsNewAsset
@@ -11279,6 +11627,86 @@ module TencentCloud
         def deserialize(params)
           @Component = params['Component']
           @Version = params['Version']
+        end
+      end
+
+      # 主机漏洞风险内容
+      class VulRiskItem < TencentCloud::Common::AbstractModel
+        # @param CloudAccountID: 云账号ID
+        # @type CloudAccountID: String
+        # @param AssetID: 实例ID
+        # @type AssetID: String
+        # @param InstanceStatus: 实例状态
+        # @type InstanceStatus: String
+        # @param InstanceName: 实例名称
+        # @type InstanceName: String
+        # @param CreateTime: 创建时间
+        # @type CreateTime: String
+        # @param UpdateTime: 更新时间
+        # @type UpdateTime: String
+        # @param VulName: 漏洞名称
+        # @type VulName: String
+        # @param VulCategory: 漏洞类型
+        # @type VulCategory: String
+        # @param VulLevel: 漏洞等级
+        # @type VulLevel: String
+        # @param CveID: CVE编号
+        # @type CveID: String
+        # @param Description: 漏洞描述
+        # @type Description: String
+        # @param ContainerID: 容器ID
+        # @type ContainerID: String
+        # @param Fix: 漏洞风险修复建议
+        # @type Fix: String
+        # @param VulCategoryName: Linux漏洞
+        # @type VulCategoryName: String
+        # @param VulLevelName: 漏洞等级名称
+        # @type VulLevelName: String
+        # @param InstanceStatusName: 实例状态中文信息
+        # @type InstanceStatusName: String
+        # @param AppID: 租户ID
+        # @type AppID: Integer
+
+        attr_accessor :CloudAccountID, :AssetID, :InstanceStatus, :InstanceName, :CreateTime, :UpdateTime, :VulName, :VulCategory, :VulLevel, :CveID, :Description, :ContainerID, :Fix, :VulCategoryName, :VulLevelName, :InstanceStatusName, :AppID
+
+        def initialize(cloudaccountid=nil, assetid=nil, instancestatus=nil, instancename=nil, createtime=nil, updatetime=nil, vulname=nil, vulcategory=nil, vullevel=nil, cveid=nil, description=nil, containerid=nil, fix=nil, vulcategoryname=nil, vullevelname=nil, instancestatusname=nil, appid=nil)
+          @CloudAccountID = cloudaccountid
+          @AssetID = assetid
+          @InstanceStatus = instancestatus
+          @InstanceName = instancename
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @VulName = vulname
+          @VulCategory = vulcategory
+          @VulLevel = vullevel
+          @CveID = cveid
+          @Description = description
+          @ContainerID = containerid
+          @Fix = fix
+          @VulCategoryName = vulcategoryname
+          @VulLevelName = vullevelname
+          @InstanceStatusName = instancestatusname
+          @AppID = appid
+        end
+
+        def deserialize(params)
+          @CloudAccountID = params['CloudAccountID']
+          @AssetID = params['AssetID']
+          @InstanceStatus = params['InstanceStatus']
+          @InstanceName = params['InstanceName']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          @VulName = params['VulName']
+          @VulCategory = params['VulCategory']
+          @VulLevel = params['VulLevel']
+          @CveID = params['CveID']
+          @Description = params['Description']
+          @ContainerID = params['ContainerID']
+          @Fix = params['Fix']
+          @VulCategoryName = params['VulCategoryName']
+          @VulLevelName = params['VulLevelName']
+          @InstanceStatusName = params['InstanceStatusName']
+          @AppID = params['AppID']
         end
       end
 

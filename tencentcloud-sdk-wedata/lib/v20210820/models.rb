@@ -2687,8 +2687,8 @@ module TencentCloud
 
         attr_accessor :ProjectId, :AlarmRegularName, :TaskId, :Id, :TaskType, :MonitorType
         extend Gem::Deprecate
-        deprecate :TaskId, :none, 2025, 6
-        deprecate :TaskId=, :none, 2025, 6
+        deprecate :TaskId, :none, 2025, 7
+        deprecate :TaskId=, :none, 2025, 7
 
         def initialize(projectid=nil, alarmregularname=nil, taskid=nil, id=nil, tasktype=nil, monitortype=nil)
           @ProjectId = projectid
@@ -10113,12 +10113,12 @@ module TencentCloud
 
         attr_accessor :ProjectId, :Category, :PageNumber, :PageSize, :EventName, :EventType, :EventSubType, :EventBroadcastType, :Status, :CreationTimeStart, :CreationTimeEnd, :EventTriggeredTimeStart, :EventTriggeredTimeEnd, :LogTimeStart, :LogTimeEnd, :Dimension, :TimeToLive, :SortItem, :SortType
         extend Gem::Deprecate
-        deprecate :EventType, :none, 2025, 6
-        deprecate :EventType=, :none, 2025, 6
-        deprecate :EventBroadcastType, :none, 2025, 6
-        deprecate :EventBroadcastType=, :none, 2025, 6
-        deprecate :Status, :none, 2025, 6
-        deprecate :Status=, :none, 2025, 6
+        deprecate :EventType, :none, 2025, 7
+        deprecate :EventType=, :none, 2025, 7
+        deprecate :EventBroadcastType, :none, 2025, 7
+        deprecate :EventBroadcastType=, :none, 2025, 7
+        deprecate :Status, :none, 2025, 7
+        deprecate :Status=, :none, 2025, 7
 
         def initialize(projectid=nil, category=nil, pagenumber=nil, pagesize=nil, eventname=nil, eventtype=nil, eventsubtype=nil, eventbroadcasttype=nil, status=nil, creationtimestart=nil, creationtimeend=nil, eventtriggeredtimestart=nil, eventtriggeredtimeend=nil, logtimestart=nil, logtimeend=nil, dimension=nil, timetolive=nil, sortitem=nil, sorttype=nil)
           @ProjectId = projectid
@@ -17595,8 +17595,8 @@ module TencentCloud
 
         attr_accessor :DimType, :Count, :QualityDim
         extend Gem::Deprecate
-        deprecate :DimType, :none, 2025, 6
-        deprecate :DimType=, :none, 2025, 6
+        deprecate :DimType, :none, 2025, 7
+        deprecate :DimType=, :none, 2025, 7
 
         def initialize(dimtype=nil, count=nil, qualitydim=nil)
           @DimType = dimtype
@@ -26143,8 +26143,8 @@ module TencentCloud
 
         attr_accessor :ProjectId, :TaskId, :DelayTime, :StartupTime, :SelfDepend, :StartTime, :EndTime, :TaskAction, :CycleType, :CycleStep, :CrontabExpression, :ExecutionStartTime, :ExecutionEndTime, :TaskName, :RetryWait, :TryLimit, :Retriable, :RunPriority, :TaskExt, :ResourceGroup, :YarnQueue, :BrokerIp, :InCharge, :Notes, :TaskParamInfos, :SourceServer, :TargetServer, :DependencyWorkflow, :DependencyConfigDTOs, :ExecutionTTL, :ScriptChange, :InChargeIds
         extend Gem::Deprecate
-        deprecate :InCharge, :none, 2025, 6
-        deprecate :InCharge=, :none, 2025, 6
+        deprecate :InCharge, :none, 2025, 7
+        deprecate :InCharge=, :none, 2025, 7
 
         def initialize(projectid=nil, taskid=nil, delaytime=nil, startuptime=nil, selfdepend=nil, starttime=nil, endtime=nil, taskaction=nil, cycletype=nil, cyclestep=nil, crontabexpression=nil, executionstarttime=nil, executionendtime=nil, taskname=nil, retrywait=nil, trylimit=nil, retriable=nil, runpriority=nil, taskext=nil, resourcegroup=nil, yarnqueue=nil, brokerip=nil, incharge=nil, notes=nil, taskparaminfos=nil, sourceserver=nil, targetserver=nil, dependencyworkflow=nil, dependencyconfigdtos=nil, executionttl=nil, scriptchange=nil, inchargeids=nil)
           @ProjectId = projectid
@@ -28723,12 +28723,12 @@ module TencentCloud
 
         attr_accessor :ProjectId, :Name, :EventSubType, :TimeToLive, :TimeUnit, :Owner, :Description, :EventType, :EventBroadcastType, :DimensionFormat
         extend Gem::Deprecate
-        deprecate :EventType, :none, 2025, 6
-        deprecate :EventType=, :none, 2025, 6
-        deprecate :EventBroadcastType, :none, 2025, 6
-        deprecate :EventBroadcastType=, :none, 2025, 6
-        deprecate :DimensionFormat, :none, 2025, 6
-        deprecate :DimensionFormat=, :none, 2025, 6
+        deprecate :EventType, :none, 2025, 7
+        deprecate :EventType=, :none, 2025, 7
+        deprecate :EventBroadcastType, :none, 2025, 7
+        deprecate :EventBroadcastType=, :none, 2025, 7
+        deprecate :DimensionFormat, :none, 2025, 7
+        deprecate :DimensionFormat=, :none, 2025, 7
 
         def initialize(projectid=nil, name=nil, eventsubtype=nil, timetolive=nil, timeunit=nil, owner=nil, description=nil, eventtype=nil, eventbroadcasttype=nil, dimensionformat=nil)
           @ProjectId = projectid
@@ -31976,10 +31976,12 @@ module TencentCloud
         # @param MinuteNum: 分钟任务
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MinuteNum: Integer
+        # @param WorkflowNum: 工作流总数
+        # @type WorkflowNum: Integer
 
-        attr_accessor :CountTag, :TotalNum, :RunningNum, :StoppingNum, :StoppedNum, :FrozenNum, :InvalidNum, :YearNum, :MonthNum, :WeekNum, :DayNum, :HourNum, :MinuteNum
+        attr_accessor :CountTag, :TotalNum, :RunningNum, :StoppingNum, :StoppedNum, :FrozenNum, :InvalidNum, :YearNum, :MonthNum, :WeekNum, :DayNum, :HourNum, :MinuteNum, :WorkflowNum
 
-        def initialize(counttag=nil, totalnum=nil, runningnum=nil, stoppingnum=nil, stoppednum=nil, frozennum=nil, invalidnum=nil, yearnum=nil, monthnum=nil, weeknum=nil, daynum=nil, hournum=nil, minutenum=nil)
+        def initialize(counttag=nil, totalnum=nil, runningnum=nil, stoppingnum=nil, stoppednum=nil, frozennum=nil, invalidnum=nil, yearnum=nil, monthnum=nil, weeknum=nil, daynum=nil, hournum=nil, minutenum=nil, workflownum=nil)
           @CountTag = counttag
           @TotalNum = totalnum
           @RunningNum = runningnum
@@ -31993,6 +31995,7 @@ module TencentCloud
           @DayNum = daynum
           @HourNum = hournum
           @MinuteNum = minutenum
+          @WorkflowNum = workflownum
         end
 
         def deserialize(params)
@@ -32009,6 +32012,7 @@ module TencentCloud
           @DayNum = params['DayNum']
           @HourNum = params['HourNum']
           @MinuteNum = params['MinuteNum']
+          @WorkflowNum = params['WorkflowNum']
         end
       end
 

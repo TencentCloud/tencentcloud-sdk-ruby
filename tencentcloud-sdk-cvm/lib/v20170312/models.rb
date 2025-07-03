@@ -2004,8 +2004,8 @@ module TencentCloud
 
         attr_accessor :GroupQuota, :CurrentNum, :CvmInHostGroupQuota, :CvmInSwGroupQuota, :CvmInRackGroupQuota, :CvmInSwitchGroupQuota, :RequestId
         extend Gem::Deprecate
-        deprecate :CvmInSwGroupQuota, :none, 2025, 6
-        deprecate :CvmInSwGroupQuota=, :none, 2025, 6
+        deprecate :CvmInSwGroupQuota, :none, 2025, 7
+        deprecate :CvmInSwGroupQuota=, :none, 2025, 7
 
         def initialize(groupquota=nil, currentnum=nil, cvminhostgroupquota=nil, cvminswgroupquota=nil, cvminrackgroupquota=nil, cvminswitchgroupquota=nil, requestid=nil)
           @GroupQuota = groupquota
@@ -3927,8 +3927,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :Password, :Username, :ForceStop, :StopType
         extend Gem::Deprecate
-        deprecate :ForceStop, :none, 2025, 6
-        deprecate :ForceStop=, :none, 2025, 6
+        deprecate :ForceStop, :none, 2025, 7
+        deprecate :ForceStop=, :none, 2025, 7
 
         def initialize(instanceid=nil, password=nil, username=nil, forcestop=nil, stoptype=nil)
           @InstanceId = instanceid
@@ -4396,8 +4396,7 @@ module TencentCloud
         # CREATING-创建中
         # NORMAL-正常
         # CREATEFAILED-创建失败
-        # USING-使用中
-        # SYNCING-同步中
+        # SYNCING-复制中
         # IMPORTING-导入中
         # IMPORTFAILED-导入失败
         # @type ImageState: String
@@ -7483,8 +7482,8 @@ module TencentCloud
 
         attr_accessor :InstanceIds, :ForceReboot, :StopType
         extend Gem::Deprecate
-        deprecate :ForceReboot, :none, 2025, 6
-        deprecate :ForceReboot=, :none, 2025, 6
+        deprecate :ForceReboot, :none, 2025, 7
+        deprecate :ForceReboot=, :none, 2025, 7
 
         def initialize(instanceids=nil, forcereboot=nil, stoptype=nil)
           @InstanceIds = instanceids
@@ -8554,10 +8553,12 @@ module TencentCloud
         # @type ChcIds: Array
         # @param DisableApiTermination: 实例销毁保护标志，表示是否允许通过api接口删除实例。取值范围：<br><li>true：表示开启实例保护，不允许通过api接口删除实例</li><br><li>false：表示关闭实例保护，允许通过api接口删除实例</li><br><br>默认取值：false。
         # @type DisableApiTermination: Boolean
+        # @param EnableJumboFrame: 实例是否开启巨型帧，取值范围：<br><li/> true：表示实例开启巨型帧，只有支持巨型帧的机型可设置为true。<br><li/>false：表示实例关闭巨型帧，只有支持巨型帧的机型可设置为false。<br> 支持巨型帧的实例规格： [实例规格](https://cloud.tencent.com/document/product/213/11518)
+        # @type EnableJumboFrame: Boolean
 
-        attr_accessor :InstanceChargeType, :InstanceChargePrepaid, :Placement, :InstanceType, :ImageId, :SystemDisk, :DataDisks, :VirtualPrivateCloud, :InternetAccessible, :InstanceCount, :InstanceName, :LoginSettings, :SecurityGroupIds, :EnhancedService, :ClientToken, :HostName, :ActionTimer, :DisasterRecoverGroupIds, :TagSpecification, :InstanceMarketOptions, :UserData, :Metadata, :DryRun, :CpuTopology, :CamRoleName, :HpcClusterId, :LaunchTemplate, :DedicatedClusterId, :ChcIds, :DisableApiTermination
+        attr_accessor :InstanceChargeType, :InstanceChargePrepaid, :Placement, :InstanceType, :ImageId, :SystemDisk, :DataDisks, :VirtualPrivateCloud, :InternetAccessible, :InstanceCount, :InstanceName, :LoginSettings, :SecurityGroupIds, :EnhancedService, :ClientToken, :HostName, :ActionTimer, :DisasterRecoverGroupIds, :TagSpecification, :InstanceMarketOptions, :UserData, :Metadata, :DryRun, :CpuTopology, :CamRoleName, :HpcClusterId, :LaunchTemplate, :DedicatedClusterId, :ChcIds, :DisableApiTermination, :EnableJumboFrame
 
-        def initialize(instancechargetype=nil, instancechargeprepaid=nil, placement=nil, instancetype=nil, imageid=nil, systemdisk=nil, datadisks=nil, virtualprivatecloud=nil, internetaccessible=nil, instancecount=nil, instancename=nil, loginsettings=nil, securitygroupids=nil, enhancedservice=nil, clienttoken=nil, hostname=nil, actiontimer=nil, disasterrecovergroupids=nil, tagspecification=nil, instancemarketoptions=nil, userdata=nil, metadata=nil, dryrun=nil, cputopology=nil, camrolename=nil, hpcclusterid=nil, launchtemplate=nil, dedicatedclusterid=nil, chcids=nil, disableapitermination=nil)
+        def initialize(instancechargetype=nil, instancechargeprepaid=nil, placement=nil, instancetype=nil, imageid=nil, systemdisk=nil, datadisks=nil, virtualprivatecloud=nil, internetaccessible=nil, instancecount=nil, instancename=nil, loginsettings=nil, securitygroupids=nil, enhancedservice=nil, clienttoken=nil, hostname=nil, actiontimer=nil, disasterrecovergroupids=nil, tagspecification=nil, instancemarketoptions=nil, userdata=nil, metadata=nil, dryrun=nil, cputopology=nil, camrolename=nil, hpcclusterid=nil, launchtemplate=nil, dedicatedclusterid=nil, chcids=nil, disableapitermination=nil, enablejumboframe=nil)
           @InstanceChargeType = instancechargetype
           @InstanceChargePrepaid = instancechargeprepaid
           @Placement = placement
@@ -8588,6 +8589,7 @@ module TencentCloud
           @DedicatedClusterId = dedicatedclusterid
           @ChcIds = chcids
           @DisableApiTermination = disableapitermination
+          @EnableJumboFrame = enablejumboframe
         end
 
         def deserialize(params)
@@ -8671,6 +8673,7 @@ module TencentCloud
           @DedicatedClusterId = params['DedicatedClusterId']
           @ChcIds = params['ChcIds']
           @DisableApiTermination = params['DisableApiTermination']
+          @EnableJumboFrame = params['EnableJumboFrame']
         end
       end
 
@@ -8868,8 +8871,8 @@ module TencentCloud
 
         attr_accessor :InstanceIds, :ForceStop, :StopType, :StoppedMode
         extend Gem::Deprecate
-        deprecate :ForceStop, :none, 2025, 6
-        deprecate :ForceStop=, :none, 2025, 6
+        deprecate :ForceStop, :none, 2025, 7
+        deprecate :ForceStop=, :none, 2025, 7
 
         def initialize(instanceids=nil, forcestop=nil, stoptype=nil, stoppedmode=nil)
           @InstanceIds = instanceids

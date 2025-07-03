@@ -319,8 +319,8 @@ module TencentCloud
 
         attr_accessor :Created, :Usage, :Note, :Id, :Choices, :ErrorMsg, :ModerationLevel, :SearchInfo, :Replaces, :RecommendedQuestions, :Processes, :RequestId
         extend Gem::Deprecate
-        deprecate :ModerationLevel, :none, 2025, 6
-        deprecate :ModerationLevel=, :none, 2025, 6
+        deprecate :ModerationLevel, :none, 2025, 7
+        deprecate :ModerationLevel=, :none, 2025, 7
 
         def initialize(created=nil, usage=nil, note=nil, id=nil, choices=nil, errormsg=nil, moderationlevel=nil, searchinfo=nil, replaces=nil, recommendedquestions=nil, processes=nil, requestid=nil)
           @Created = created
@@ -1068,10 +1068,10 @@ module TencentCloud
 
         attr_accessor :Data, :FirstID, :LastID, :HasMore, :Object, :FirstMsgID, :LastMsgID, :RequestId
         extend Gem::Deprecate
-        deprecate :FirstID, :none, 2025, 6
-        deprecate :FirstID=, :none, 2025, 6
-        deprecate :LastID, :none, 2025, 6
-        deprecate :LastID=, :none, 2025, 6
+        deprecate :FirstID, :none, 2025, 7
+        deprecate :FirstID=, :none, 2025, 7
+        deprecate :LastID, :none, 2025, 7
+        deprecate :LastID=, :none, 2025, 7
 
         def initialize(data=nil, firstid=nil, lastid=nil, hasmore=nil, object=nil, firstmsgid=nil, lastmsgid=nil, requestid=nil)
           @Data = data

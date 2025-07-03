@@ -177,6 +177,98 @@ module TencentCloud
         end
       end
 
+      # 资源信息
+      class CNResource < TencentCloud::Common::AbstractModel
+        # @param ID: 无
+        # @type ID: Integer
+        # @param InstanceID: 无
+        # @type InstanceID: String
+        # @param AppID: 无
+        # @type AppID: Integer
+        # @param Uin: 无
+        # @type Uin: String
+        # @param Component: 无
+        # @type Component: String
+        # @param DeployMode: 无
+        # @type DeployMode: Integer
+        # @param SpecName: 无
+        # @type SpecName: String
+        # @param ResourceID: 无
+        # @type ResourceID: String
+        # @param Status: 无
+        # @type Status: Integer
+        # @param IP: 无
+        # @type IP: String
+        # @param CPU: 无
+        # @type CPU: Integer
+        # @param Memory: 无
+        # @type Memory: Integer
+        # @param Storage: 无
+        # @type Storage: Integer
+        # @param UUID: 无
+        # @type UUID: String
+        # @param Region: 无
+        # @type Region: String
+        # @param Zone: 无
+        # @type Zone: String
+        # @param Details: 无
+        # @type Details: String
+        # @param CreateTime: 无
+        # @type CreateTime: String
+        # @param ModifyTime: 无
+        # @type ModifyTime: String
+        # @param ExpireTime: 无
+        # @type ExpireTime: String
+
+        attr_accessor :ID, :InstanceID, :AppID, :Uin, :Component, :DeployMode, :SpecName, :ResourceID, :Status, :IP, :CPU, :Memory, :Storage, :UUID, :Region, :Zone, :Details, :CreateTime, :ModifyTime, :ExpireTime
+
+        def initialize(id=nil, instanceid=nil, appid=nil, uin=nil, component=nil, deploymode=nil, specname=nil, resourceid=nil, status=nil, ip=nil, cpu=nil, memory=nil, storage=nil, uuid=nil, region=nil, zone=nil, details=nil, createtime=nil, modifytime=nil, expiretime=nil)
+          @ID = id
+          @InstanceID = instanceid
+          @AppID = appid
+          @Uin = uin
+          @Component = component
+          @DeployMode = deploymode
+          @SpecName = specname
+          @ResourceID = resourceid
+          @Status = status
+          @IP = ip
+          @CPU = cpu
+          @Memory = memory
+          @Storage = storage
+          @UUID = uuid
+          @Region = region
+          @Zone = zone
+          @Details = details
+          @CreateTime = createtime
+          @ModifyTime = modifytime
+          @ExpireTime = expiretime
+        end
+
+        def deserialize(params)
+          @ID = params['ID']
+          @InstanceID = params['InstanceID']
+          @AppID = params['AppID']
+          @Uin = params['Uin']
+          @Component = params['Component']
+          @DeployMode = params['DeployMode']
+          @SpecName = params['SpecName']
+          @ResourceID = params['ResourceID']
+          @Status = params['Status']
+          @IP = params['IP']
+          @CPU = params['CPU']
+          @Memory = params['Memory']
+          @Storage = params['Storage']
+          @UUID = params['UUID']
+          @Region = params['Region']
+          @Zone = params['Zone']
+          @Details = params['Details']
+          @CreateTime = params['CreateTime']
+          @ModifyTime = params['ModifyTime']
+          @ExpireTime = params['ExpireTime']
+        end
+      end
+
       # 集群计费相关信息
       class Charge < TencentCloud::Common::AbstractModel
         # @param ChargeType: 计费类型，“PREPAID” 预付费，“POSTPAID_BY_HOUR” 后付费
@@ -282,6 +374,68 @@ module TencentCloud
         def deserialize(params)
           @ClusterName = params['ClusterName']
           @NodeIps = params['NodeIps']
+        end
+      end
+
+      # 云原生实例详情
+      class CnInstanceInfo < TencentCloud::Common::AbstractModel
+        # @param ID: ID值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ID: Integer
+        # @param InstanceType: cdwch-cn或者其他
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceType: String
+        # @param InstanceName: cdwch-cn或者其他
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceName: String
+        # @param Status: Running
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: String
+        # @param StatusDesc: 运行中
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StatusDesc: String
+        # @param InstanceStateInfo: 无
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceStateInfo: :class:`Tencentcloud::Cdwch.v20200915.models.InstanceStateInfo`
+        # @param InstanceID: -
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceID: String
+        # @param Resources: 无
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Resources: Array
+
+        attr_accessor :ID, :InstanceType, :InstanceName, :Status, :StatusDesc, :InstanceStateInfo, :InstanceID, :Resources
+
+        def initialize(id=nil, instancetype=nil, instancename=nil, status=nil, statusdesc=nil, instancestateinfo=nil, instanceid=nil, resources=nil)
+          @ID = id
+          @InstanceType = instancetype
+          @InstanceName = instancename
+          @Status = status
+          @StatusDesc = statusdesc
+          @InstanceStateInfo = instancestateinfo
+          @InstanceID = instanceid
+          @Resources = resources
+        end
+
+        def deserialize(params)
+          @ID = params['ID']
+          @InstanceType = params['InstanceType']
+          @InstanceName = params['InstanceName']
+          @Status = params['Status']
+          @StatusDesc = params['StatusDesc']
+          unless params['InstanceStateInfo'].nil?
+            @InstanceStateInfo = InstanceStateInfo.new
+            @InstanceStateInfo.deserialize(params['InstanceStateInfo'])
+          end
+          @InstanceID = params['InstanceID']
+          unless params['Resources'].nil?
+            @Resources = []
+            params['Resources'].each do |i|
+              cnresource_tmp = CNResource.new
+              cnresource_tmp.deserialize(i)
+              @Resources << cnresource_tmp
+            end
+          end
         end
       end
 
@@ -423,8 +577,8 @@ module TencentCloud
 
         attr_accessor :Zone, :HaFlag, :UserVPCId, :UserSubnetId, :ProductVersion, :ChargeProperties, :InstanceName, :DataSpec, :Tags, :ClsLogSetId, :CosBucketName, :MountDiskType, :HAZk, :CommonSpec, :TagItems, :SecondaryZoneInfo
         extend Gem::Deprecate
-        deprecate :Tags, :none, 2025, 6
-        deprecate :Tags=, :none, 2025, 6
+        deprecate :Tags, :none, 2025, 7
+        deprecate :Tags=, :none, 2025, 7
 
         def initialize(zone=nil, haflag=nil, uservpcid=nil, usersubnetid=nil, productversion=nil, chargeproperties=nil, instancename=nil, dataspec=nil, tags=nil, clslogsetid=nil, cosbucketname=nil, mountdisktype=nil, hazk=nil, commonspec=nil, tagitems=nil, secondaryzoneinfo=nil)
           @Zone = zone
@@ -813,6 +967,91 @@ module TencentCloud
               backuptablecontent_tmp = BackupTableContent.new
               backuptablecontent_tmp.deserialize(i)
               @AvailableTables << backuptablecontent_tmp
+            end
+          end
+          @ErrorMsg = params['ErrorMsg']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCNInstances请求参数结构体
+      class DescribeCNInstancesRequest < TencentCloud::Common::AbstractModel
+        # @param SearchInstanceID: 搜索的集群id名称
+        # @type SearchInstanceID: String
+        # @param SearchInstanceName: 搜索的集群name
+        # @type SearchInstanceName: String
+        # @param Offset: 分页参数，第一页为0，第二页为10
+        # @type Offset: Integer
+        # @param Limit: 分页参数，分页步长，默认为10
+        # @type Limit: Integer
+        # @param SearchTags: 搜索标签列表
+        # @type SearchTags: Array
+        # @param InstanceType: 集群类型，弹性版或自研数仓版
+        # @type InstanceType: String
+        # @param Components: 组件名称列表
+        # @type Components: Array
+
+        attr_accessor :SearchInstanceID, :SearchInstanceName, :Offset, :Limit, :SearchTags, :InstanceType, :Components
+
+        def initialize(searchinstanceid=nil, searchinstancename=nil, offset=nil, limit=nil, searchtags=nil, instancetype=nil, components=nil)
+          @SearchInstanceID = searchinstanceid
+          @SearchInstanceName = searchinstancename
+          @Offset = offset
+          @Limit = limit
+          @SearchTags = searchtags
+          @InstanceType = instancetype
+          @Components = components
+        end
+
+        def deserialize(params)
+          @SearchInstanceID = params['SearchInstanceID']
+          @SearchInstanceName = params['SearchInstanceName']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          unless params['SearchTags'].nil?
+            @SearchTags = []
+            params['SearchTags'].each do |i|
+              searchtags_tmp = SearchTags.new
+              searchtags_tmp.deserialize(i)
+              @SearchTags << searchtags_tmp
+            end
+          end
+          @InstanceType = params['InstanceType']
+          @Components = params['Components']
+        end
+      end
+
+      # DescribeCNInstances返回参数结构体
+      class DescribeCNInstancesResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 实例总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+        # @param InstancesList: 实例数组
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstancesList: Array
+        # @param ErrorMsg: -
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorMsg: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :InstancesList, :ErrorMsg, :RequestId
+
+        def initialize(totalcount=nil, instanceslist=nil, errormsg=nil, requestid=nil)
+          @TotalCount = totalcount
+          @InstancesList = instanceslist
+          @ErrorMsg = errormsg
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['InstancesList'].nil?
+            @InstancesList = []
+            params['InstancesList'].each do |i|
+              cninstanceinfo_tmp = CnInstanceInfo.new
+              cninstanceinfo_tmp.deserialize(i)
+              @InstancesList << cninstanceinfo_tmp
             end
           end
           @ErrorMsg = params['ErrorMsg']
