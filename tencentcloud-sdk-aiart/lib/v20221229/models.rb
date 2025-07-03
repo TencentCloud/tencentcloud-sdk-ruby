@@ -243,6 +243,26 @@ module TencentCloud
         end
       end
 
+      # 图片
+      class Image < TencentCloud::Common::AbstractModel
+        # @param Base64: 图片Base64
+        # @type Base64: String
+        # @param Url: 图片Url
+        # @type Url: String
+
+        attr_accessor :Base64, :Url
+
+        def initialize(base64=nil, url=nil)
+          @Base64 = base64
+          @Url = url
+        end
+
+        def deserialize(params)
+          @Base64 = params['Base64']
+          @Url = params['Url']
+        end
+      end
+
       # ImageInpaintingRemoval请求参数结构体
       class ImageInpaintingRemovalRequest < TencentCloud::Common::AbstractModel
         # @param InputImage: 输入图 Base64 数据。
@@ -1458,6 +1478,210 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # TextToImageLite请求参数结构体
+      class TextToImageLiteRequest < TencentCloud::Common::AbstractModel
+        # @param Prompt: 文本描述。将根据输入的文本智能生成与之相关的图像。
+        # 不能为空，推荐使用中文。最多可传1024个 utf-8 字符。
+        # @type Prompt: String
+        # @param NegativePrompt: 反向提示词。 减少生成结果中出现描述内容。
+        # 推荐使用中文。最多可传1024个 utf-8 字符。
+        # @type NegativePrompt: String
+        # @param Resolution: 生成图分辨率，默认1024:1024。
+        # 支持的图像宽高比例: 1:1，3:4，4:3，9:16，16:9。
+        # 支持的长边分辨率: 160，200，225，258，512，520，608，768，1024，1080，1280，1600，1620，1920，2048，2400，2560，2592，3440，3840，4096。
+        # @type Resolution: String
+        # @param Seed: 随机种子，默认随机。
+        # 0：随机种子生成。
+        # 不传：随机种子生成。
+        # 正数：固定种子生成。
+        # @type Seed: Integer
+        # @param LogoAdd: 为生成结果图添加标识的开关，默认为1。
+        # 1：添加标识。
+        # 0：不添加标识。
+        # 其他数值：默认按1处理。
+        # 建议您使用显著标识来提示结果图使用了 AI 绘画技术，是 AI 生成的图片。
+        # @type LogoAdd: Integer
+        # @param LogoParam: 标识内容设置。
+        # 默认在生成结果图右下角添加“图片由 AI 生成”字样，您可根据自身需要替换为其他的标识图片。
+        # @type LogoParam: :class:`Tencentcloud::Aiart.v20221229.models.LogoParam`
+        # @param RspImgType: 返回图像方式（base64 或 url），二选一，默认为 base64。url 有效期为1小时。
+        # @type RspImgType: String
+
+        attr_accessor :Prompt, :NegativePrompt, :Resolution, :Seed, :LogoAdd, :LogoParam, :RspImgType
+
+        def initialize(prompt=nil, negativeprompt=nil, resolution=nil, seed=nil, logoadd=nil, logoparam=nil, rspimgtype=nil)
+          @Prompt = prompt
+          @NegativePrompt = negativeprompt
+          @Resolution = resolution
+          @Seed = seed
+          @LogoAdd = logoadd
+          @LogoParam = logoparam
+          @RspImgType = rspimgtype
+        end
+
+        def deserialize(params)
+          @Prompt = params['Prompt']
+          @NegativePrompt = params['NegativePrompt']
+          @Resolution = params['Resolution']
+          @Seed = params['Seed']
+          @LogoAdd = params['LogoAdd']
+          unless params['LogoParam'].nil?
+            @LogoParam = LogoParam.new
+            @LogoParam.deserialize(params['LogoParam'])
+          end
+          @RspImgType = params['RspImgType']
+        end
+      end
+
+      # TextToImageLite返回参数结构体
+      class TextToImageLiteResponse < TencentCloud::Common::AbstractModel
+        # @param ResultImage: 根据入参 RspImgType 填入不同，返回不同的内容。
+        # 如果传入 base64 则返回生成图 Base64 编码。
+        # 如果传入 url 则返回的生成图 URL , 有效期1小时，请及时保存。
+        # @type ResultImage: String
+        # @param Seed: Seed
+        # @type Seed: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ResultImage, :Seed, :RequestId
+
+        def initialize(resultimage=nil, seed=nil, requestid=nil)
+          @ResultImage = resultimage
+          @Seed = seed
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ResultImage = params['ResultImage']
+          @Seed = params['Seed']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # TextToImageRapid请求参数结构体
+      class TextToImageRapidRequest < TencentCloud::Common::AbstractModel
+        # @param Prompt: 文本描述。
+        # 算法将根据输入的文本智能生成与之相关的图像。建议详细描述画面主体、细节、场景等，文本描述越丰富，生成效果越精美。
+        # 不能为空，推荐使用中文。最多可传256个 utf-8 字符。
+        # @type Prompt: String
+        # @param Resolution: 生成图分辨率，默认1024:1024。
+        # 支持的图像宽高比例: 1:1，3:4，4:3，9:16，16:9。
+        # 支持的长边分辨率: 160，200，225，258，512，520，608，768，1024，1080，1280，1600，1620，1920，2048，2400，2560，2592，3440，3840，4096。
+        # @type Resolution: String
+        # @param Seed: 随机种子，默认随机。
+        # 0：随机种子生成。
+        # 不传：随机种子生成。
+        # 正数：固定种子生成。
+        # @type Seed: Integer
+        # @param Image: 参考图。
+
+        # - Base64 和 Url 必须提供一个，如果都提供以 Url 为准。
+        # - 当传入Image参数时，Style和Resolution参数不生效，输出图分辨率将保持Image传入图分辨率。
+        # - 图片限制：单边分辨率大于128且小于2048；图片小于6M；格式支持 jpg、jpeg、png、bmp、tiff、webp。
+        # @type Image: :class:`Tencentcloud::Aiart.v20221229.models.Image`
+        # @param Style: 生成的图片风格，参考值：
+
+        # 1：宫崎骏风格；
+        # 2：新海诚风格；
+        # 3：去旅行风格；
+        # 4：水彩风格；
+        # 5：像素风格；
+        # 6：童话世界风格；
+        # 7：奇趣卡通风格；
+        # 8：赛博朋克风格；
+        # 9：极简风格；
+        # 10：复古风格；
+        # 11：暗黑系风格；
+        # 12：波普风风格；
+        # 13：糖果色风格；
+        # 14：胶片电影风格；
+        # 15：素描风格；
+        # 16：水墨画风格；
+        # 17：油画风格；
+        # 18：粉笔风格；
+        # 19：粘土风格；
+        # 20：毛毡风格；
+        # 21：刺绣风格；
+        # 22：彩铅风格；
+        # 23：莫奈风格；
+        # 24：毕加索风格；
+        # 25：穆夏风格；
+        # 26：古风二次元风格；
+        # 27：都市二次元风格；
+        # 28：悬疑风格；
+        # 29：校园风格；
+        # 30：都市异能风格。
+        # @type Style: String
+        # @param LogoAdd: 为生成结果图添加标识的开关，默认为1。
+        # 1：添加标识。
+        # 0：不添加标识。
+        # 其他数值：默认按1处理。
+        # 建议您使用显著标识来提示结果图使用了 AI 绘画技术，是 AI 生成的图片。
+        # @type LogoAdd: Integer
+        # @param LogoParam: 标识内容设置。
+        # 默认在生成结果图右下角添加“图片由 AI 生成”字样，您可根据自身需要替换为其他的标识图片。
+        # @type LogoParam: :class:`Tencentcloud::Aiart.v20221229.models.LogoParam`
+        # @param RspImgType: 返回图像方式（base64 或 url) ，二选一，默认为 base64。url 有效期为1小时。
+        # @type RspImgType: String
+
+        attr_accessor :Prompt, :Resolution, :Seed, :Image, :Style, :LogoAdd, :LogoParam, :RspImgType
+
+        def initialize(prompt=nil, resolution=nil, seed=nil, image=nil, style=nil, logoadd=nil, logoparam=nil, rspimgtype=nil)
+          @Prompt = prompt
+          @Resolution = resolution
+          @Seed = seed
+          @Image = image
+          @Style = style
+          @LogoAdd = logoadd
+          @LogoParam = logoparam
+          @RspImgType = rspimgtype
+        end
+
+        def deserialize(params)
+          @Prompt = params['Prompt']
+          @Resolution = params['Resolution']
+          @Seed = params['Seed']
+          unless params['Image'].nil?
+            @Image = Image.new
+            @Image.deserialize(params['Image'])
+          end
+          @Style = params['Style']
+          @LogoAdd = params['LogoAdd']
+          unless params['LogoParam'].nil?
+            @LogoParam = LogoParam.new
+            @LogoParam.deserialize(params['LogoParam'])
+          end
+          @RspImgType = params['RspImgType']
+        end
+      end
+
+      # TextToImageRapid返回参数结构体
+      class TextToImageRapidResponse < TencentCloud::Common::AbstractModel
+        # @param ResultImage: 根据入参 RspImgType 填入不同，返回不同的内容。
+        # 如果传入 base64 则返回生成图 Base64 编码。
+        # 如果传入 url 则返回的生成图 URL , 有效期1小时，请及时保存。
+        # @type ResultImage: String
+        # @param Seed: Seed
+        # @type Seed: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ResultImage, :Seed, :RequestId
+
+        def initialize(resultimage=nil, seed=nil, requestid=nil)
+          @ResultImage = resultimage
+          @Seed = seed
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ResultImage = params['ResultImage']
+          @Seed = params['Seed']
           @RequestId = params['RequestId']
         end
       end

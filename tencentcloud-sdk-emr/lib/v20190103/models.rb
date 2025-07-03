@@ -11212,10 +11212,12 @@ module TencentCloud
         # @type DiskNum: Integer
         # @param LocalDiskNum: 本地盘的数量
         # @type LocalDiskNum: Integer
+        # @param GpuDesc: GPU信息
+        # @type GpuDesc: String
 
-        attr_accessor :Spec, :StorageType, :DiskType, :RootSize, :MemSize, :Cpu, :DiskSize, :MultiDisks, :DiskCnt, :InstanceType, :Tags, :DiskNum, :LocalDiskNum
+        attr_accessor :Spec, :StorageType, :DiskType, :RootSize, :MemSize, :Cpu, :DiskSize, :MultiDisks, :DiskCnt, :InstanceType, :Tags, :DiskNum, :LocalDiskNum, :GpuDesc
 
-        def initialize(spec=nil, storagetype=nil, disktype=nil, rootsize=nil, memsize=nil, cpu=nil, disksize=nil, multidisks=nil, diskcnt=nil, instancetype=nil, tags=nil, disknum=nil, localdisknum=nil)
+        def initialize(spec=nil, storagetype=nil, disktype=nil, rootsize=nil, memsize=nil, cpu=nil, disksize=nil, multidisks=nil, diskcnt=nil, instancetype=nil, tags=nil, disknum=nil, localdisknum=nil, gpudesc=nil)
           @Spec = spec
           @StorageType = storagetype
           @DiskType = disktype
@@ -11229,6 +11231,7 @@ module TencentCloud
           @Tags = tags
           @DiskNum = disknum
           @LocalDiskNum = localdisknum
+          @GpuDesc = gpudesc
         end
 
         def deserialize(params)
@@ -11259,6 +11262,7 @@ module TencentCloud
           end
           @DiskNum = params['DiskNum']
           @LocalDiskNum = params['LocalDiskNum']
+          @GpuDesc = params['GpuDesc']
         end
       end
 
@@ -11597,10 +11601,12 @@ module TencentCloud
         # @type LocalDiskNum: Integer
         # @param DiskNum: 本地盘数量，如2
         # @type DiskNum: Integer
+        # @param GpuDesc: GPU信息
+        # @type GpuDesc: String
 
-        attr_accessor :Spec, :StorageType, :DiskType, :MemSize, :Cpu, :DiskSize, :RootSize, :MultiDisks, :Tags, :InstanceType, :LocalDiskNum, :DiskNum
+        attr_accessor :Spec, :StorageType, :DiskType, :MemSize, :Cpu, :DiskSize, :RootSize, :MultiDisks, :Tags, :InstanceType, :LocalDiskNum, :DiskNum, :GpuDesc
 
-        def initialize(spec=nil, storagetype=nil, disktype=nil, memsize=nil, cpu=nil, disksize=nil, rootsize=nil, multidisks=nil, tags=nil, instancetype=nil, localdisknum=nil, disknum=nil)
+        def initialize(spec=nil, storagetype=nil, disktype=nil, memsize=nil, cpu=nil, disksize=nil, rootsize=nil, multidisks=nil, tags=nil, instancetype=nil, localdisknum=nil, disknum=nil, gpudesc=nil)
           @Spec = spec
           @StorageType = storagetype
           @DiskType = disktype
@@ -11613,6 +11619,7 @@ module TencentCloud
           @InstanceType = instancetype
           @LocalDiskNum = localdisknum
           @DiskNum = disknum
+          @GpuDesc = gpudesc
         end
 
         def deserialize(params)
@@ -11642,6 +11649,7 @@ module TencentCloud
           @InstanceType = params['InstanceType']
           @LocalDiskNum = params['LocalDiskNum']
           @DiskNum = params['DiskNum']
+          @GpuDesc = params['GpuDesc']
         end
       end
 

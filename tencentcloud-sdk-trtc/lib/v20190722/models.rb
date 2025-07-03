@@ -4088,10 +4088,10 @@ module TencentCloud
 
         attr_accessor :Language, :AlternativeLanguage, :Model, :TranslationLanguage, :HotWordList, :VadSilenceTime
         extend Gem::Deprecate
-        deprecate :Model, :none, 2025, 6
-        deprecate :Model=, :none, 2025, 6
-        deprecate :TranslationLanguage, :none, 2025, 6
-        deprecate :TranslationLanguage=, :none, 2025, 6
+        deprecate :Model, :none, 2025, 7
+        deprecate :Model=, :none, 2025, 7
+        deprecate :TranslationLanguage, :none, 2025, 7
+        deprecate :TranslationLanguage=, :none, 2025, 7
 
         def initialize(language=nil, alternativelanguage=nil, model=nil, translationlanguage=nil, hotwordlist=nil, vadsilencetime=nil)
           @Language = language
@@ -4445,15 +4445,18 @@ module TencentCloud
         # @type VadSilenceTime: Integer
         # @param HotWordList: 热词表：该参数用于提升识别准确率。 单个热词限制："热词|权重"，单个热词不超过30个字符（最多10个汉字），权重[1-11]或者100，如：“腾讯云|5” 或 “ASR|11”； 热词表限制：多个热词用英文逗号分割，最多支持128个热词，如：“腾讯云|10,语音识别|5,ASR|11”；
         # @type HotWordList: String
+        # @param VadLevel: vad的远场人声抑制能力（不会对asr识别效果造成影响），范围为[0, 3]，默认为0。推荐设置为2，有较好的远场人声抑制能力。
+        # @type VadLevel: Integer
 
-        attr_accessor :Language, :AlternativeLanguage, :CustomParam, :VadSilenceTime, :HotWordList
+        attr_accessor :Language, :AlternativeLanguage, :CustomParam, :VadSilenceTime, :HotWordList, :VadLevel
 
-        def initialize(language=nil, alternativelanguage=nil, customparam=nil, vadsilencetime=nil, hotwordlist=nil)
+        def initialize(language=nil, alternativelanguage=nil, customparam=nil, vadsilencetime=nil, hotwordlist=nil, vadlevel=nil)
           @Language = language
           @AlternativeLanguage = alternativelanguage
           @CustomParam = customparam
           @VadSilenceTime = vadsilencetime
           @HotWordList = hotwordlist
+          @VadLevel = vadlevel
         end
 
         def deserialize(params)
@@ -4462,6 +4465,7 @@ module TencentCloud
           @CustomParam = params['CustomParam']
           @VadSilenceTime = params['VadSilenceTime']
           @HotWordList = params['HotWordList']
+          @VadLevel = params['VadLevel']
         end
       end
 
@@ -4632,16 +4636,19 @@ module TencentCloud
         # - Priority=1、Interrupt=true，会打断现有交互，立刻播报，播报过程中不会被打断
         # - Priority=1、Interrupt=false、DropMode=1，会等待当前交互结束，再进行播报，播报过程中不会被打断
         # @type Priority: Integer
+        # @param AddHistory: 是否将文本加入到llm历史上下文中
+        # @type AddHistory: Boolean
 
-        attr_accessor :Text, :Interrupt, :StopAfterPlay, :Audio, :DropMode, :Priority
+        attr_accessor :Text, :Interrupt, :StopAfterPlay, :Audio, :DropMode, :Priority, :AddHistory
 
-        def initialize(text=nil, interrupt=nil, stopafterplay=nil, audio=nil, dropmode=nil, priority=nil)
+        def initialize(text=nil, interrupt=nil, stopafterplay=nil, audio=nil, dropmode=nil, priority=nil, addhistory=nil)
           @Text = text
           @Interrupt = interrupt
           @StopAfterPlay = stopafterplay
           @Audio = audio
           @DropMode = dropmode
           @Priority = priority
+          @AddHistory = addhistory
         end
 
         def deserialize(params)
@@ -4651,6 +4658,7 @@ module TencentCloud
           @Audio = params['Audio']
           @DropMode = params['DropMode']
           @Priority = params['Priority']
+          @AddHistory = params['AddHistory']
         end
       end
 
@@ -5133,12 +5141,12 @@ module TencentCloud
 
         attr_accessor :SdkAppId, :RoomId, :RoomIdType, :UserId, :UserSig, :StreamUrl, :PrivateMapKey, :VideoEncodeParams, :AudioEncodeParams, :SourceUrl, :SeekSecond, :AutoPush, :RepeatNum, :MaxDuration, :Volume
         extend Gem::Deprecate
-        deprecate :VideoEncodeParams, :none, 2025, 6
-        deprecate :VideoEncodeParams=, :none, 2025, 6
-        deprecate :AudioEncodeParams, :none, 2025, 6
-        deprecate :AudioEncodeParams=, :none, 2025, 6
-        deprecate :SourceUrl, :none, 2025, 6
-        deprecate :SourceUrl=, :none, 2025, 6
+        deprecate :VideoEncodeParams, :none, 2025, 7
+        deprecate :VideoEncodeParams=, :none, 2025, 7
+        deprecate :AudioEncodeParams, :none, 2025, 7
+        deprecate :AudioEncodeParams=, :none, 2025, 7
+        deprecate :SourceUrl, :none, 2025, 7
+        deprecate :SourceUrl=, :none, 2025, 7
 
         def initialize(sdkappid=nil, roomid=nil, roomidtype=nil, userid=nil, usersig=nil, streamurl=nil, privatemapkey=nil, videoencodeparams=nil, audioencodeparams=nil, sourceurl=nil, seeksecond=nil, autopush=nil, repeatnum=nil, maxduration=nil, volume=nil)
           @SdkAppId = sdkappid
@@ -5783,15 +5791,17 @@ module TencentCloud
         # @param TargetUserIdList: 机器人订阅的用户列表
         # 仅 TranscriptionMode 为 1或者 TranscriptionMode 为无限上麦模式支持传入多个用户列表
         # @type TargetUserIdList: Array
+        # @param VoicePrint: 声纹配置
+        # @type VoicePrint: :class:`Tencentcloud::Trtc.v20190722.models.VoicePrint`
 
-        attr_accessor :UserId, :UserSig, :IMAdminUserId, :IMAdminUserSig, :MaxIdleTime, :TranscriptionMode, :TargetUserId, :TargetUserIdList
+        attr_accessor :UserId, :UserSig, :IMAdminUserId, :IMAdminUserSig, :MaxIdleTime, :TranscriptionMode, :TargetUserId, :TargetUserIdList, :VoicePrint
         extend Gem::Deprecate
-        deprecate :IMAdminUserId, :none, 2025, 6
-        deprecate :IMAdminUserId=, :none, 2025, 6
-        deprecate :IMAdminUserSig, :none, 2025, 6
-        deprecate :IMAdminUserSig=, :none, 2025, 6
+        deprecate :IMAdminUserId, :none, 2025, 7
+        deprecate :IMAdminUserId=, :none, 2025, 7
+        deprecate :IMAdminUserSig, :none, 2025, 7
+        deprecate :IMAdminUserSig=, :none, 2025, 7
 
-        def initialize(userid=nil, usersig=nil, imadminuserid=nil, imadminusersig=nil, maxidletime=nil, transcriptionmode=nil, targetuserid=nil, targetuseridlist=nil)
+        def initialize(userid=nil, usersig=nil, imadminuserid=nil, imadminusersig=nil, maxidletime=nil, transcriptionmode=nil, targetuserid=nil, targetuseridlist=nil, voiceprint=nil)
           @UserId = userid
           @UserSig = usersig
           @IMAdminUserId = imadminuserid
@@ -5800,6 +5810,7 @@ module TencentCloud
           @TranscriptionMode = transcriptionmode
           @TargetUserId = targetuserid
           @TargetUserIdList = targetuseridlist
+          @VoicePrint = voiceprint
         end
 
         def deserialize(params)
@@ -5811,6 +5822,10 @@ module TencentCloud
           @TranscriptionMode = params['TranscriptionMode']
           @TargetUserId = params['TargetUserId']
           @TargetUserIdList = params['TargetUserIdList']
+          unless params['VoicePrint'].nil?
+            @VoicePrint = VoicePrint.new
+            @VoicePrint.deserialize(params['VoicePrint'])
+          end
         end
       end
 

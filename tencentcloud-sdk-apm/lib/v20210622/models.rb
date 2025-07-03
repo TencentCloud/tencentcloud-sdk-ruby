@@ -330,12 +330,36 @@ module TencentCloud
         # @type LogIndexType: Integer
         # @param LogTraceIdKey: traceId的索引key: 当CLS索引类型为键值索引时生效
         # @type LogTraceIdKey: String
+        # @param IsDeleteAnyFileAnalysis: 是否开启删除任意文件检测（0-关闭，1-开启）
+        # @type IsDeleteAnyFileAnalysis: Integer
+        # @param IsReadAnyFileAnalysis: 是否开启读取任意文件检测（0-关闭，1-开启）
+        # @type IsReadAnyFileAnalysis: Integer
+        # @param IsUploadAnyFileAnalysis: 是否开启上传任意文件检测（0-关闭，1-开启）
+        # @type IsUploadAnyFileAnalysis: Integer
+        # @param IsIncludeAnyFileAnalysis: 是否开启包含任意文件检测（0-关闭，1-开启）
+        # @type IsIncludeAnyFileAnalysis: Integer
+        # @param IsDirectoryTraversalAnalysis: 是否开启目录遍历检测（0-关闭，1-开启）
+        # @type IsDirectoryTraversalAnalysis: Integer
+        # @param IsTemplateEngineInjectionAnalysis: 是否开启模板引擎注入检测（0-关闭，1-开启）
+        # @type IsTemplateEngineInjectionAnalysis: Integer
+        # @param IsScriptEngineInjectionAnalysis: 是否开启脚本引擎注入检测（0-关闭，1-开启）
+        # @type IsScriptEngineInjectionAnalysis: Integer
+        # @param IsExpressionInjectionAnalysis: 是否开启表达式注入检测（0-关闭，1-开启）
+        # @type IsExpressionInjectionAnalysis: Integer
+        # @param IsJNDIInjectionAnalysis: 是否开启JNDI注入检测（0-关闭，1-开启）
+        # @type IsJNDIInjectionAnalysis: Integer
+        # @param IsJNIInjectionAnalysis: 是否开启JNI注入检测（0-关闭，1-开启）
+        # @type IsJNIInjectionAnalysis: Integer
+        # @param IsWebshellBackdoorAnalysis: 是否开启Webshell后门检测（0-关闭，1-开启）
+        # @type IsWebshellBackdoorAnalysis: Integer
+        # @param IsDeserializationAnalysis: 是否开启反序列化检测（0-关闭，1-开启）
+        # @type IsDeserializationAnalysis: Integer
         # @param Token: 业务系统鉴权 token
         # @type Token: String
 
-        attr_accessor :InstanceId, :Name, :Description, :Status, :Region, :Tags, :AppId, :CreateUin, :AmountOfUsedStorage, :ServiceCount, :CountOfReportSpanPerDay, :TraceDuration, :SpanDailyCounters, :BillingInstance, :ErrRateThreshold, :SampleRate, :ErrorSample, :SlowRequestSavedThreshold, :LogRegion, :LogSource, :IsRelatedLog, :LogTopicID, :ClientCount, :TotalCount, :LogSet, :MetricDuration, :CustomShowTags, :PayMode, :PayModeEffective, :ResponseDurationWarningThreshold, :Free, :DefaultTSF, :IsRelatedDashboard, :DashboardTopicID, :IsInstrumentationVulnerabilityScan, :IsSqlInjectionAnalysis, :StopReason, :IsRemoteCommandExecutionAnalysis, :IsMemoryHijackingAnalysis, :LogIndexType, :LogTraceIdKey, :Token
+        attr_accessor :InstanceId, :Name, :Description, :Status, :Region, :Tags, :AppId, :CreateUin, :AmountOfUsedStorage, :ServiceCount, :CountOfReportSpanPerDay, :TraceDuration, :SpanDailyCounters, :BillingInstance, :ErrRateThreshold, :SampleRate, :ErrorSample, :SlowRequestSavedThreshold, :LogRegion, :LogSource, :IsRelatedLog, :LogTopicID, :ClientCount, :TotalCount, :LogSet, :MetricDuration, :CustomShowTags, :PayMode, :PayModeEffective, :ResponseDurationWarningThreshold, :Free, :DefaultTSF, :IsRelatedDashboard, :DashboardTopicID, :IsInstrumentationVulnerabilityScan, :IsSqlInjectionAnalysis, :StopReason, :IsRemoteCommandExecutionAnalysis, :IsMemoryHijackingAnalysis, :LogIndexType, :LogTraceIdKey, :IsDeleteAnyFileAnalysis, :IsReadAnyFileAnalysis, :IsUploadAnyFileAnalysis, :IsIncludeAnyFileAnalysis, :IsDirectoryTraversalAnalysis, :IsTemplateEngineInjectionAnalysis, :IsScriptEngineInjectionAnalysis, :IsExpressionInjectionAnalysis, :IsJNDIInjectionAnalysis, :IsJNIInjectionAnalysis, :IsWebshellBackdoorAnalysis, :IsDeserializationAnalysis, :Token
 
-        def initialize(instanceid=nil, name=nil, description=nil, status=nil, region=nil, tags=nil, appid=nil, createuin=nil, amountofusedstorage=nil, servicecount=nil, countofreportspanperday=nil, traceduration=nil, spandailycounters=nil, billinginstance=nil, errratethreshold=nil, samplerate=nil, errorsample=nil, slowrequestsavedthreshold=nil, logregion=nil, logsource=nil, isrelatedlog=nil, logtopicid=nil, clientcount=nil, totalcount=nil, logset=nil, metricduration=nil, customshowtags=nil, paymode=nil, paymodeeffective=nil, responsedurationwarningthreshold=nil, free=nil, defaulttsf=nil, isrelateddashboard=nil, dashboardtopicid=nil, isinstrumentationvulnerabilityscan=nil, issqlinjectionanalysis=nil, stopreason=nil, isremotecommandexecutionanalysis=nil, ismemoryhijackinganalysis=nil, logindextype=nil, logtraceidkey=nil, token=nil)
+        def initialize(instanceid=nil, name=nil, description=nil, status=nil, region=nil, tags=nil, appid=nil, createuin=nil, amountofusedstorage=nil, servicecount=nil, countofreportspanperday=nil, traceduration=nil, spandailycounters=nil, billinginstance=nil, errratethreshold=nil, samplerate=nil, errorsample=nil, slowrequestsavedthreshold=nil, logregion=nil, logsource=nil, isrelatedlog=nil, logtopicid=nil, clientcount=nil, totalcount=nil, logset=nil, metricduration=nil, customshowtags=nil, paymode=nil, paymodeeffective=nil, responsedurationwarningthreshold=nil, free=nil, defaulttsf=nil, isrelateddashboard=nil, dashboardtopicid=nil, isinstrumentationvulnerabilityscan=nil, issqlinjectionanalysis=nil, stopreason=nil, isremotecommandexecutionanalysis=nil, ismemoryhijackinganalysis=nil, logindextype=nil, logtraceidkey=nil, isdeleteanyfileanalysis=nil, isreadanyfileanalysis=nil, isuploadanyfileanalysis=nil, isincludeanyfileanalysis=nil, isdirectorytraversalanalysis=nil, istemplateengineinjectionanalysis=nil, isscriptengineinjectionanalysis=nil, isexpressioninjectionanalysis=nil, isjndiinjectionanalysis=nil, isjniinjectionanalysis=nil, iswebshellbackdooranalysis=nil, isdeserializationanalysis=nil, token=nil)
           @InstanceId = instanceid
           @Name = name
           @Description = description
@@ -377,6 +401,18 @@ module TencentCloud
           @IsMemoryHijackingAnalysis = ismemoryhijackinganalysis
           @LogIndexType = logindextype
           @LogTraceIdKey = logtraceidkey
+          @IsDeleteAnyFileAnalysis = isdeleteanyfileanalysis
+          @IsReadAnyFileAnalysis = isreadanyfileanalysis
+          @IsUploadAnyFileAnalysis = isuploadanyfileanalysis
+          @IsIncludeAnyFileAnalysis = isincludeanyfileanalysis
+          @IsDirectoryTraversalAnalysis = isdirectorytraversalanalysis
+          @IsTemplateEngineInjectionAnalysis = istemplateengineinjectionanalysis
+          @IsScriptEngineInjectionAnalysis = isscriptengineinjectionanalysis
+          @IsExpressionInjectionAnalysis = isexpressioninjectionanalysis
+          @IsJNDIInjectionAnalysis = isjndiinjectionanalysis
+          @IsJNIInjectionAnalysis = isjniinjectionanalysis
+          @IsWebshellBackdoorAnalysis = iswebshellbackdooranalysis
+          @IsDeserializationAnalysis = isdeserializationanalysis
           @Token = token
         end
 
@@ -429,6 +465,18 @@ module TencentCloud
           @IsMemoryHijackingAnalysis = params['IsMemoryHijackingAnalysis']
           @LogIndexType = params['LogIndexType']
           @LogTraceIdKey = params['LogTraceIdKey']
+          @IsDeleteAnyFileAnalysis = params['IsDeleteAnyFileAnalysis']
+          @IsReadAnyFileAnalysis = params['IsReadAnyFileAnalysis']
+          @IsUploadAnyFileAnalysis = params['IsUploadAnyFileAnalysis']
+          @IsIncludeAnyFileAnalysis = params['IsIncludeAnyFileAnalysis']
+          @IsDirectoryTraversalAnalysis = params['IsDirectoryTraversalAnalysis']
+          @IsTemplateEngineInjectionAnalysis = params['IsTemplateEngineInjectionAnalysis']
+          @IsScriptEngineInjectionAnalysis = params['IsScriptEngineInjectionAnalysis']
+          @IsExpressionInjectionAnalysis = params['IsExpressionInjectionAnalysis']
+          @IsJNDIInjectionAnalysis = params['IsJNDIInjectionAnalysis']
+          @IsJNIInjectionAnalysis = params['IsJNIInjectionAnalysis']
+          @IsWebshellBackdoorAnalysis = params['IsWebshellBackdoorAnalysis']
+          @IsDeserializationAnalysis = params['IsDeserializationAnalysis']
           @Token = params['Token']
         end
       end
@@ -1537,10 +1585,34 @@ module TencentCloud
         # @type LogIndexType: Integer
         # @param LogTraceIdKey: traceId的索引key: 当CLS索引类型为键值索引时生效
         # @type LogTraceIdKey: String
+        # @param IsDeleteAnyFileAnalysis: 是否开启删除任意文件检测（0-关闭，1-开启）
+        # @type IsDeleteAnyFileAnalysis: Integer
+        # @param IsReadAnyFileAnalysis: 是否开启读取任意文件检测（0-关闭，1-开启）
+        # @type IsReadAnyFileAnalysis: Integer
+        # @param IsUploadAnyFileAnalysis: 是否开启上传任意文件检测（0-关闭，1-开启）
+        # @type IsUploadAnyFileAnalysis: Integer
+        # @param IsIncludeAnyFileAnalysis: 是否开启包含任意文件检测（0-关闭，1-开启）
+        # @type IsIncludeAnyFileAnalysis: Integer
+        # @param IsDirectoryTraversalAnalysis: 是否开启目录遍历检测（0-关闭，1-开启）
+        # @type IsDirectoryTraversalAnalysis: Integer
+        # @param IsTemplateEngineInjectionAnalysis: 是否开启模板引擎注入检测（0-关闭，1-开启）
+        # @type IsTemplateEngineInjectionAnalysis: Integer
+        # @param IsScriptEngineInjectionAnalysis: 是否开启脚本引擎注入检测（0-关闭，1-开启）
+        # @type IsScriptEngineInjectionAnalysis: Integer
+        # @param IsExpressionInjectionAnalysis: 是否开启表达式注入检测（0-关闭，1-开启）
+        # @type IsExpressionInjectionAnalysis: Integer
+        # @param IsJNDIInjectionAnalysis: 是否开启JNDI注入检测（0-关闭，1-开启）
+        # @type IsJNDIInjectionAnalysis: Integer
+        # @param IsJNIInjectionAnalysis: 是否开启JNI注入检测（0-关闭，1-开启）
+        # @type IsJNIInjectionAnalysis: Integer
+        # @param IsWebshellBackdoorAnalysis: 是否开启Webshell后门检测（0-关闭，1-开启）
+        # @type IsWebshellBackdoorAnalysis: Integer
+        # @param IsDeserializationAnalysis: 是否开启反序列化检测（0-关闭，1-开启）
+        # @type IsDeserializationAnalysis: Integer
 
-        attr_accessor :InstanceId, :Name, :Tags, :Description, :TraceDuration, :OpenBilling, :SpanDailyCounters, :ErrRateThreshold, :SampleRate, :ErrorSample, :SlowRequestSavedThreshold, :IsRelatedLog, :LogRegion, :LogTopicID, :LogSet, :LogSource, :CustomShowTags, :PayMode, :ResponseDurationWarningThreshold, :Free, :IsRelatedDashboard, :DashboardTopicID, :IsSqlInjectionAnalysis, :IsInstrumentationVulnerabilityScan, :IsRemoteCommandExecutionAnalysis, :IsMemoryHijackingAnalysis, :LogIndexType, :LogTraceIdKey
+        attr_accessor :InstanceId, :Name, :Tags, :Description, :TraceDuration, :OpenBilling, :SpanDailyCounters, :ErrRateThreshold, :SampleRate, :ErrorSample, :SlowRequestSavedThreshold, :IsRelatedLog, :LogRegion, :LogTopicID, :LogSet, :LogSource, :CustomShowTags, :PayMode, :ResponseDurationWarningThreshold, :Free, :IsRelatedDashboard, :DashboardTopicID, :IsSqlInjectionAnalysis, :IsInstrumentationVulnerabilityScan, :IsRemoteCommandExecutionAnalysis, :IsMemoryHijackingAnalysis, :LogIndexType, :LogTraceIdKey, :IsDeleteAnyFileAnalysis, :IsReadAnyFileAnalysis, :IsUploadAnyFileAnalysis, :IsIncludeAnyFileAnalysis, :IsDirectoryTraversalAnalysis, :IsTemplateEngineInjectionAnalysis, :IsScriptEngineInjectionAnalysis, :IsExpressionInjectionAnalysis, :IsJNDIInjectionAnalysis, :IsJNIInjectionAnalysis, :IsWebshellBackdoorAnalysis, :IsDeserializationAnalysis
 
-        def initialize(instanceid=nil, name=nil, tags=nil, description=nil, traceduration=nil, openbilling=nil, spandailycounters=nil, errratethreshold=nil, samplerate=nil, errorsample=nil, slowrequestsavedthreshold=nil, isrelatedlog=nil, logregion=nil, logtopicid=nil, logset=nil, logsource=nil, customshowtags=nil, paymode=nil, responsedurationwarningthreshold=nil, free=nil, isrelateddashboard=nil, dashboardtopicid=nil, issqlinjectionanalysis=nil, isinstrumentationvulnerabilityscan=nil, isremotecommandexecutionanalysis=nil, ismemoryhijackinganalysis=nil, logindextype=nil, logtraceidkey=nil)
+        def initialize(instanceid=nil, name=nil, tags=nil, description=nil, traceduration=nil, openbilling=nil, spandailycounters=nil, errratethreshold=nil, samplerate=nil, errorsample=nil, slowrequestsavedthreshold=nil, isrelatedlog=nil, logregion=nil, logtopicid=nil, logset=nil, logsource=nil, customshowtags=nil, paymode=nil, responsedurationwarningthreshold=nil, free=nil, isrelateddashboard=nil, dashboardtopicid=nil, issqlinjectionanalysis=nil, isinstrumentationvulnerabilityscan=nil, isremotecommandexecutionanalysis=nil, ismemoryhijackinganalysis=nil, logindextype=nil, logtraceidkey=nil, isdeleteanyfileanalysis=nil, isreadanyfileanalysis=nil, isuploadanyfileanalysis=nil, isincludeanyfileanalysis=nil, isdirectorytraversalanalysis=nil, istemplateengineinjectionanalysis=nil, isscriptengineinjectionanalysis=nil, isexpressioninjectionanalysis=nil, isjndiinjectionanalysis=nil, isjniinjectionanalysis=nil, iswebshellbackdooranalysis=nil, isdeserializationanalysis=nil)
           @InstanceId = instanceid
           @Name = name
           @Tags = tags
@@ -1569,6 +1641,18 @@ module TencentCloud
           @IsMemoryHijackingAnalysis = ismemoryhijackinganalysis
           @LogIndexType = logindextype
           @LogTraceIdKey = logtraceidkey
+          @IsDeleteAnyFileAnalysis = isdeleteanyfileanalysis
+          @IsReadAnyFileAnalysis = isreadanyfileanalysis
+          @IsUploadAnyFileAnalysis = isuploadanyfileanalysis
+          @IsIncludeAnyFileAnalysis = isincludeanyfileanalysis
+          @IsDirectoryTraversalAnalysis = isdirectorytraversalanalysis
+          @IsTemplateEngineInjectionAnalysis = istemplateengineinjectionanalysis
+          @IsScriptEngineInjectionAnalysis = isscriptengineinjectionanalysis
+          @IsExpressionInjectionAnalysis = isexpressioninjectionanalysis
+          @IsJNDIInjectionAnalysis = isjndiinjectionanalysis
+          @IsJNIInjectionAnalysis = isjniinjectionanalysis
+          @IsWebshellBackdoorAnalysis = iswebshellbackdooranalysis
+          @IsDeserializationAnalysis = isdeserializationanalysis
         end
 
         def deserialize(params)
@@ -1607,6 +1691,18 @@ module TencentCloud
           @IsMemoryHijackingAnalysis = params['IsMemoryHijackingAnalysis']
           @LogIndexType = params['LogIndexType']
           @LogTraceIdKey = params['LogTraceIdKey']
+          @IsDeleteAnyFileAnalysis = params['IsDeleteAnyFileAnalysis']
+          @IsReadAnyFileAnalysis = params['IsReadAnyFileAnalysis']
+          @IsUploadAnyFileAnalysis = params['IsUploadAnyFileAnalysis']
+          @IsIncludeAnyFileAnalysis = params['IsIncludeAnyFileAnalysis']
+          @IsDirectoryTraversalAnalysis = params['IsDirectoryTraversalAnalysis']
+          @IsTemplateEngineInjectionAnalysis = params['IsTemplateEngineInjectionAnalysis']
+          @IsScriptEngineInjectionAnalysis = params['IsScriptEngineInjectionAnalysis']
+          @IsExpressionInjectionAnalysis = params['IsExpressionInjectionAnalysis']
+          @IsJNDIInjectionAnalysis = params['IsJNDIInjectionAnalysis']
+          @IsJNIInjectionAnalysis = params['IsJNIInjectionAnalysis']
+          @IsWebshellBackdoorAnalysis = params['IsWebshellBackdoorAnalysis']
+          @IsDeserializationAnalysis = params['IsDeserializationAnalysis']
         end
       end
 

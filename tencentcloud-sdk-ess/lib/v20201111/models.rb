@@ -10371,6 +10371,7 @@ module TencentCloud
         # @param FlowDescription: 合同流程描述信息。
         # @type FlowDescription: String
         # @param FlowType: 合同流程的类别分类（如销售合同/入职合同等）。
+        # 该字段将被废弃，不建议使用。	请使用 UserFlowType。
         # @type FlowType: String
         # @param FlowStatus: 合同流程当前的签署状态, 会存在下列的状态值
         # <ul><li> **0** : 未开启流程(合同中不存在填写环节)</li>
@@ -10394,10 +10395,17 @@ module TencentCloud
         # @type Creator: String
         # @param Deadline: 合同流程的签署截止时间，格式为Unix标准时间戳（秒）。
         # @type Deadline: Integer
+        # @param UserFlowType: 用户合同的自定义分类。
 
-        attr_accessor :FlowId, :FlowName, :FlowDescription, :FlowType, :FlowStatus, :CreatedOn, :FlowMessage, :Creator, :Deadline
+        # 自定义合同类型的位置，在下图所示地方:
+        # ![image](https://qcloudimg.tencent-cloud.cn/raw/00d72934c31bd49115a566e4e1a4530d.png)
+        # @type UserFlowType: :class:`Tencentcloud::Ess.v20201111.models.UserFlowType`
+        # @param TemplateId: 发起模板时,使用的模板Id
+        # @type TemplateId: String
 
-        def initialize(flowid=nil, flowname=nil, flowdescription=nil, flowtype=nil, flowstatus=nil, createdon=nil, flowmessage=nil, creator=nil, deadline=nil)
+        attr_accessor :FlowId, :FlowName, :FlowDescription, :FlowType, :FlowStatus, :CreatedOn, :FlowMessage, :Creator, :Deadline, :UserFlowType, :TemplateId
+
+        def initialize(flowid=nil, flowname=nil, flowdescription=nil, flowtype=nil, flowstatus=nil, createdon=nil, flowmessage=nil, creator=nil, deadline=nil, userflowtype=nil, templateid=nil)
           @FlowId = flowid
           @FlowName = flowname
           @FlowDescription = flowdescription
@@ -10407,6 +10415,8 @@ module TencentCloud
           @FlowMessage = flowmessage
           @Creator = creator
           @Deadline = deadline
+          @UserFlowType = userflowtype
+          @TemplateId = templateid
         end
 
         def deserialize(params)
@@ -10419,6 +10429,11 @@ module TencentCloud
           @FlowMessage = params['FlowMessage']
           @Creator = params['Creator']
           @Deadline = params['Deadline']
+          unless params['UserFlowType'].nil?
+            @UserFlowType = UserFlowType.new
+            @UserFlowType.deserialize(params['UserFlowType'])
+          end
+          @TemplateId = params['TemplateId']
         end
       end
 
@@ -10707,6 +10722,7 @@ module TencentCloud
         # @param FlowName: 合同流程的名称（可自定义此名称），长度不能超过200，只能由中文、字母、数字和下划线组成。
         # @type FlowName: String
         # @param FlowType: 合同流程的类别分类（如销售合同/入职合同等）。
+        # 该字段将被废弃，不建议使用。
         # @type FlowType: String
         # @param FlowStatus: 合同流程当前的签署状态, 会存在下列的状态值 <ul><li> **0** : 未开启流程(合同中不存在填写环节)</li> <li> **1** : 待签署</li> <li> **2** : 部分签署</li> <li> **3** : 已拒签</li> <li> **4** : 已签署</li> <li> **5** : 已过期</li> <li> **6** : 已撤销</li> <li> **7** : 未开启流程(合同中存在填写环节)</li> <li> **8** : 等待填写</li> <li> **9** : 部分填写</li> <li> **10** : 已拒填</li> <li> **16** : 已失效（可能因为参与方修改姓名等原因）</li> <li> **21** : 已解除</li></ul>
         # @type FlowStatus: Integer
@@ -10722,10 +10738,17 @@ module TencentCloud
         # @type CcInfos: Array
         # @param Creator: 合同流程发起方的员工编号, 即员工在腾讯电子签平台的唯一身份标识。
         # @type Creator: String
+        # @param UserFlowType: 用户合同的自定义分类。
 
-        attr_accessor :FlowId, :FlowName, :FlowType, :FlowStatus, :FlowMessage, :FlowDescription, :CreatedOn, :FlowApproverInfos, :CcInfos, :Creator
+        # 自定义合同类型的位置，在下图所示地方:
+        # ![image](https://qcloudimg.tencent-cloud.cn/raw/00d72934c31bd49115a566e4e1a4530d.png)
+        # @type UserFlowType: :class:`Tencentcloud::Ess.v20201111.models.UserFlowType`
+        # @param TemplateId: 发起模板时,使用的模板Id
+        # @type TemplateId: String
 
-        def initialize(flowid=nil, flowname=nil, flowtype=nil, flowstatus=nil, flowmessage=nil, flowdescription=nil, createdon=nil, flowapproverinfos=nil, ccinfos=nil, creator=nil)
+        attr_accessor :FlowId, :FlowName, :FlowType, :FlowStatus, :FlowMessage, :FlowDescription, :CreatedOn, :FlowApproverInfos, :CcInfos, :Creator, :UserFlowType, :TemplateId
+
+        def initialize(flowid=nil, flowname=nil, flowtype=nil, flowstatus=nil, flowmessage=nil, flowdescription=nil, createdon=nil, flowapproverinfos=nil, ccinfos=nil, creator=nil, userflowtype=nil, templateid=nil)
           @FlowId = flowid
           @FlowName = flowname
           @FlowType = flowtype
@@ -10736,6 +10759,8 @@ module TencentCloud
           @FlowApproverInfos = flowapproverinfos
           @CcInfos = ccinfos
           @Creator = creator
+          @UserFlowType = userflowtype
+          @TemplateId = templateid
         end
 
         def deserialize(params)
@@ -10763,6 +10788,11 @@ module TencentCloud
             end
           end
           @Creator = params['Creator']
+          unless params['UserFlowType'].nil?
+            @UserFlowType = UserFlowType.new
+            @UserFlowType.deserialize(params['UserFlowType'])
+          end
+          @TemplateId = params['TemplateId']
         end
       end
 

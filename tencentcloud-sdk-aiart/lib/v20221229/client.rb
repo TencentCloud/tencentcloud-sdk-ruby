@@ -551,6 +551,56 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 混元文生图接口，基于混元大模型，根据输入的文本描述智能生成图片
+        # 默认提供1个并发，代表最多能同时处理1个已提交的任务，上一个任务处理完毕后，才能开始处理下一个任务。
+
+        # @param request: Request instance for TextToImageLite.
+        # @type request: :class:`Tencentcloud::aiart::V20221229::TextToImageLiteRequest`
+        # @rtype: :class:`Tencentcloud::aiart::V20221229::TextToImageLiteResponse`
+        def TextToImageLite(request)
+          body = send_request('TextToImageLite', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = TextToImageLiteResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 混元文生图接口，基于混元大模型，根据输入的文本描述智能生成图片
+        # 默认提供1个并发，代表最多能同时处理1个已提交的任务，上一个任务处理完毕后，才能开始处理下一个任务。
+
+        # @param request: Request instance for TextToImageRapid.
+        # @type request: :class:`Tencentcloud::aiart::V20221229::TextToImageRapidRequest`
+        # @rtype: :class:`Tencentcloud::aiart::V20221229::TextToImageRapidResponse`
+        def TextToImageRapid(request)
+          body = send_request('TextToImageRapid', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = TextToImageRapidResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # AI 写真分为上传训练图片、训练写真模型（可选跳过）、生成写真图片3个环节，需要依次调用对应接口。
         # 本接口用于上传人像图片并指定对应的写真模型 ID。上传的图片要求是同一个人，建议上传单人、正脸、脸部区域占比较大、脸部清晰无遮挡、无大角度偏转、无夸张表情的图片。
         # 可选模式：

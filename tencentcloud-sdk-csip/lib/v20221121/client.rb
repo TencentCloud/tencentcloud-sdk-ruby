@@ -149,6 +149,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取用户访问密钥资产列表
+
+        # @param request: Request instance for DescribeAccessKeyAsset.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DescribeAccessKeyAssetRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DescribeAccessKeyAssetResponse`
+        def DescribeAccessKeyAsset(request)
+          body = send_request('DescribeAccessKeyAsset', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAccessKeyAssetResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 告警中心全量告警列表接口
 
         # @param request: Request instance for DescribeAlertList.
@@ -327,6 +351,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeCVMAssetsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取调用记录列表
+
+        # @param request: Request instance for DescribeCallRecord.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DescribeCallRecordRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DescribeCallRecordResponse`
+        def DescribeCallRecord(request)
+          body = send_request('DescribeCallRecord', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCallRecordResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1143,6 +1191,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeSearchBugInfoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取用户访问密钥资产列表（源IP视角）
+
+        # @param request: Request instance for DescribeSourceIPAsset.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DescribeSourceIPAssetRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DescribeSourceIPAssetResponse`
+        def DescribeSourceIPAsset(request)
+          body = send_request('DescribeSourceIPAsset', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeSourceIPAssetResponse.new
             model.deserialize(response['Response'])
             model
           else

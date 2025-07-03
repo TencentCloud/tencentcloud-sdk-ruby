@@ -261,10 +261,13 @@ module TencentCloud
         # @param Setats: setats集群
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Setats: :class:`Tencentcloud::Oceanus.v20190422.models.Setats`
+        # @param Yarns: []
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Yarns: Array
 
-        attr_accessor :ClusterId, :Name, :Region, :AppId, :OwnerUin, :CreatorUin, :Status, :Remark, :CreateTime, :UpdateTime, :CuNum, :CuMem, :Zone, :StatusDesc, :CCNs, :NetEnvironmentType, :FreeCuNum, :Tags, :IsolatedTime, :ExpireTime, :SecondsUntilExpiry, :AutoRenewFlag, :DefaultCOSBucket, :CLSLogSet, :CLSTopicId, :CLSLogName, :CLSTopicName, :Version, :FreeCu, :DefaultLogCollectConf, :CustomizedDNSEnabled, :Correlations, :RunningCu, :PayMode, :IsNeedManageNode, :ClusterSessions, :ArchGeneration, :ClusterType, :Orders, :SqlGateways, :WebUIType, :Type, :SubEks, :AgentSerialId, :ResourceType, :BillingResourceMode, :MemRatio, :CrossTenantEniMode, :TotalCpu, :TotalMem, :RunningCpu, :RunningMem, :Setats
+        attr_accessor :ClusterId, :Name, :Region, :AppId, :OwnerUin, :CreatorUin, :Status, :Remark, :CreateTime, :UpdateTime, :CuNum, :CuMem, :Zone, :StatusDesc, :CCNs, :NetEnvironmentType, :FreeCuNum, :Tags, :IsolatedTime, :ExpireTime, :SecondsUntilExpiry, :AutoRenewFlag, :DefaultCOSBucket, :CLSLogSet, :CLSTopicId, :CLSLogName, :CLSTopicName, :Version, :FreeCu, :DefaultLogCollectConf, :CustomizedDNSEnabled, :Correlations, :RunningCu, :PayMode, :IsNeedManageNode, :ClusterSessions, :ArchGeneration, :ClusterType, :Orders, :SqlGateways, :WebUIType, :Type, :SubEks, :AgentSerialId, :ResourceType, :BillingResourceMode, :MemRatio, :CrossTenantEniMode, :TotalCpu, :TotalMem, :RunningCpu, :RunningMem, :Setats, :Yarns
 
-        def initialize(clusterid=nil, name=nil, region=nil, appid=nil, owneruin=nil, creatoruin=nil, status=nil, remark=nil, createtime=nil, updatetime=nil, cunum=nil, cumem=nil, zone=nil, statusdesc=nil, ccns=nil, netenvironmenttype=nil, freecunum=nil, tags=nil, isolatedtime=nil, expiretime=nil, secondsuntilexpiry=nil, autorenewflag=nil, defaultcosbucket=nil, clslogset=nil, clstopicid=nil, clslogname=nil, clstopicname=nil, version=nil, freecu=nil, defaultlogcollectconf=nil, customizeddnsenabled=nil, correlations=nil, runningcu=nil, paymode=nil, isneedmanagenode=nil, clustersessions=nil, archgeneration=nil, clustertype=nil, orders=nil, sqlgateways=nil, webuitype=nil, type=nil, subeks=nil, agentserialid=nil, resourcetype=nil, billingresourcemode=nil, memratio=nil, crosstenantenimode=nil, totalcpu=nil, totalmem=nil, runningcpu=nil, runningmem=nil, setats=nil)
+        def initialize(clusterid=nil, name=nil, region=nil, appid=nil, owneruin=nil, creatoruin=nil, status=nil, remark=nil, createtime=nil, updatetime=nil, cunum=nil, cumem=nil, zone=nil, statusdesc=nil, ccns=nil, netenvironmenttype=nil, freecunum=nil, tags=nil, isolatedtime=nil, expiretime=nil, secondsuntilexpiry=nil, autorenewflag=nil, defaultcosbucket=nil, clslogset=nil, clstopicid=nil, clslogname=nil, clstopicname=nil, version=nil, freecu=nil, defaultlogcollectconf=nil, customizeddnsenabled=nil, correlations=nil, runningcu=nil, paymode=nil, isneedmanagenode=nil, clustersessions=nil, archgeneration=nil, clustertype=nil, orders=nil, sqlgateways=nil, webuitype=nil, type=nil, subeks=nil, agentserialid=nil, resourcetype=nil, billingresourcemode=nil, memratio=nil, crosstenantenimode=nil, totalcpu=nil, totalmem=nil, runningcpu=nil, runningmem=nil, setats=nil, yarns=nil)
           @ClusterId = clusterid
           @Name = name
           @Region = region
@@ -318,6 +321,7 @@ module TencentCloud
           @RunningCpu = runningcpu
           @RunningMem = runningmem
           @Setats = setats
+          @Yarns = yarns
         end
 
         def deserialize(params)
@@ -424,6 +428,14 @@ module TencentCloud
           unless params['Setats'].nil?
             @Setats = Setats.new
             @Setats.deserialize(params['Setats'])
+          end
+          unless params['Yarns'].nil?
+            @Yarns = []
+            params['Yarns'].each do |i|
+              hadoopyarnitem_tmp = HadoopYarnItem.new
+              hadoopyarnitem_tmp.deserialize(i)
+              @Yarns << hadoopyarnitem_tmp
+            end
           end
         end
       end
@@ -957,10 +969,16 @@ module TencentCloud
         # @type TaskManagerCpu: Float
         # @param TaskManagerMem: TaskManager 内存
         # @type TaskManagerMem: Float
+        # @param UseOldSystemConnector: 0=默认使用老的 1=使用新的
+        # @type UseOldSystemConnector: Integer
+        # @param ProgramArgsAfterGzip: 压缩参数
+        # @type ProgramArgsAfterGzip: String
+        # @param CheckpointTimeoutSecond: checkpoint 超时时间
+        # @type CheckpointTimeoutSecond: Integer
 
-        attr_accessor :JobId, :EntrypointClass, :ProgramArgs, :Remark, :ResourceRefs, :DefaultParallelism, :Properties, :AutoDelete, :COSBucket, :LogCollect, :JobManagerSpec, :TaskManagerSpec, :ClsLogsetId, :ClsTopicId, :LogCollectType, :PythonVersion, :WorkSpaceId, :LogLevel, :AutoRecover, :ClazzLevels, :ExpertModeOn, :ExpertModeConfiguration, :TraceModeOn, :TraceModeConfiguration, :CheckpointRetainedNum, :JobGraph, :EsServerlessIndex, :EsServerlessSpace, :FlinkVersion, :JobManagerCpu, :JobManagerMem, :TaskManagerCpu, :TaskManagerMem
+        attr_accessor :JobId, :EntrypointClass, :ProgramArgs, :Remark, :ResourceRefs, :DefaultParallelism, :Properties, :AutoDelete, :COSBucket, :LogCollect, :JobManagerSpec, :TaskManagerSpec, :ClsLogsetId, :ClsTopicId, :LogCollectType, :PythonVersion, :WorkSpaceId, :LogLevel, :AutoRecover, :ClazzLevels, :ExpertModeOn, :ExpertModeConfiguration, :TraceModeOn, :TraceModeConfiguration, :CheckpointRetainedNum, :JobGraph, :EsServerlessIndex, :EsServerlessSpace, :FlinkVersion, :JobManagerCpu, :JobManagerMem, :TaskManagerCpu, :TaskManagerMem, :UseOldSystemConnector, :ProgramArgsAfterGzip, :CheckpointTimeoutSecond
 
-        def initialize(jobid=nil, entrypointclass=nil, programargs=nil, remark=nil, resourcerefs=nil, defaultparallelism=nil, properties=nil, autodelete=nil, cosbucket=nil, logcollect=nil, jobmanagerspec=nil, taskmanagerspec=nil, clslogsetid=nil, clstopicid=nil, logcollecttype=nil, pythonversion=nil, workspaceid=nil, loglevel=nil, autorecover=nil, clazzlevels=nil, expertmodeon=nil, expertmodeconfiguration=nil, tracemodeon=nil, tracemodeconfiguration=nil, checkpointretainednum=nil, jobgraph=nil, esserverlessindex=nil, esserverlessspace=nil, flinkversion=nil, jobmanagercpu=nil, jobmanagermem=nil, taskmanagercpu=nil, taskmanagermem=nil)
+        def initialize(jobid=nil, entrypointclass=nil, programargs=nil, remark=nil, resourcerefs=nil, defaultparallelism=nil, properties=nil, autodelete=nil, cosbucket=nil, logcollect=nil, jobmanagerspec=nil, taskmanagerspec=nil, clslogsetid=nil, clstopicid=nil, logcollecttype=nil, pythonversion=nil, workspaceid=nil, loglevel=nil, autorecover=nil, clazzlevels=nil, expertmodeon=nil, expertmodeconfiguration=nil, tracemodeon=nil, tracemodeconfiguration=nil, checkpointretainednum=nil, jobgraph=nil, esserverlessindex=nil, esserverlessspace=nil, flinkversion=nil, jobmanagercpu=nil, jobmanagermem=nil, taskmanagercpu=nil, taskmanagermem=nil, useoldsystemconnector=nil, programargsaftergzip=nil, checkpointtimeoutsecond=nil)
           @JobId = jobid
           @EntrypointClass = entrypointclass
           @ProgramArgs = programargs
@@ -994,6 +1012,9 @@ module TencentCloud
           @JobManagerMem = jobmanagermem
           @TaskManagerCpu = taskmanagercpu
           @TaskManagerMem = taskmanagermem
+          @UseOldSystemConnector = useoldsystemconnector
+          @ProgramArgsAfterGzip = programargsaftergzip
+          @CheckpointTimeoutSecond = checkpointtimeoutsecond
         end
 
         def deserialize(params)
@@ -1060,6 +1081,9 @@ module TencentCloud
           @JobManagerMem = params['JobManagerMem']
           @TaskManagerCpu = params['TaskManagerCpu']
           @TaskManagerMem = params['TaskManagerMem']
+          @UseOldSystemConnector = params['UseOldSystemConnector']
+          @ProgramArgsAfterGzip = params['ProgramArgsAfterGzip']
+          @CheckpointTimeoutSecond = params['CheckpointTimeoutSecond']
         end
       end
 
@@ -3120,6 +3144,52 @@ module TencentCloud
         end
       end
 
+      # hadoopYarn资源信息
+      class HadoopYarnItem < TencentCloud::Common::AbstractModel
+        # @param ClusterGroupSerialId: ClusterGroupSerialId
+        # @type ClusterGroupSerialId: String
+        # @param Status: 状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Integer
+        # @param Cpu: cpu
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Cpu: Float
+        # @param Mem: mem
+        # @type Mem: Float
+        # @param CreateTime: 创建时间
+        # @type CreateTime: String
+        # @param UpdateTime: 更新时间
+        # @type UpdateTime: String
+        # @param Config: 配置文件内容
+        # @type Config: String
+        # @param CreatorUin: CreatorUin
+        # @type CreatorUin: String
+
+        attr_accessor :ClusterGroupSerialId, :Status, :Cpu, :Mem, :CreateTime, :UpdateTime, :Config, :CreatorUin
+
+        def initialize(clustergroupserialid=nil, status=nil, cpu=nil, mem=nil, createtime=nil, updatetime=nil, config=nil, creatoruin=nil)
+          @ClusterGroupSerialId = clustergroupserialid
+          @Status = status
+          @Cpu = cpu
+          @Mem = mem
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @Config = config
+          @CreatorUin = creatoruin
+        end
+
+        def deserialize(params)
+          @ClusterGroupSerialId = params['ClusterGroupSerialId']
+          @Status = params['Status']
+          @Cpu = params['Cpu']
+          @Mem = params['Mem']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          @Config = params['Config']
+          @CreatorUin = params['CreatorUin']
+        end
+      end
+
       # 作业配置详情
       class JobConfig < TencentCloud::Common::AbstractModel
         # @param JobId: 作业Id
@@ -3233,10 +3303,12 @@ module TencentCloud
         # @param JobConfigItem: 运行中配置
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type JobConfigItem: :class:`Tencentcloud::Oceanus.v20190422.models.JobConfig`
+        # @param CheckpointTimeoutSecond: checkpoint 超时时间
+        # @type CheckpointTimeoutSecond: Integer
 
-        attr_accessor :JobId, :EntrypointClass, :ProgramArgs, :Remark, :CreateTime, :Version, :DefaultParallelism, :Properties, :ResourceRefDetails, :CreatorUin, :UpdateTime, :COSBucket, :LogCollect, :MaxParallelism, :JobManagerSpec, :TaskManagerSpec, :ClsLogsetId, :ClsTopicId, :PythonVersion, :AutoRecover, :LogLevel, :ClazzLevels, :ExpertModeOn, :ExpertModeConfiguration, :TraceModeOn, :TraceModeConfiguration, :CheckpointRetainedNum, :JobGraph, :EsServerlessIndex, :EsServerlessSpace, :IndexName, :WorkspaceName, :FlinkVersion, :JobManagerCpu, :JobManagerMem, :TaskManagerCpu, :TaskManagerMem, :JobConfigItem
+        attr_accessor :JobId, :EntrypointClass, :ProgramArgs, :Remark, :CreateTime, :Version, :DefaultParallelism, :Properties, :ResourceRefDetails, :CreatorUin, :UpdateTime, :COSBucket, :LogCollect, :MaxParallelism, :JobManagerSpec, :TaskManagerSpec, :ClsLogsetId, :ClsTopicId, :PythonVersion, :AutoRecover, :LogLevel, :ClazzLevels, :ExpertModeOn, :ExpertModeConfiguration, :TraceModeOn, :TraceModeConfiguration, :CheckpointRetainedNum, :JobGraph, :EsServerlessIndex, :EsServerlessSpace, :IndexName, :WorkspaceName, :FlinkVersion, :JobManagerCpu, :JobManagerMem, :TaskManagerCpu, :TaskManagerMem, :JobConfigItem, :CheckpointTimeoutSecond
 
-        def initialize(jobid=nil, entrypointclass=nil, programargs=nil, remark=nil, createtime=nil, version=nil, defaultparallelism=nil, properties=nil, resourcerefdetails=nil, creatoruin=nil, updatetime=nil, cosbucket=nil, logcollect=nil, maxparallelism=nil, jobmanagerspec=nil, taskmanagerspec=nil, clslogsetid=nil, clstopicid=nil, pythonversion=nil, autorecover=nil, loglevel=nil, clazzlevels=nil, expertmodeon=nil, expertmodeconfiguration=nil, tracemodeon=nil, tracemodeconfiguration=nil, checkpointretainednum=nil, jobgraph=nil, esserverlessindex=nil, esserverlessspace=nil, indexname=nil, workspacename=nil, flinkversion=nil, jobmanagercpu=nil, jobmanagermem=nil, taskmanagercpu=nil, taskmanagermem=nil, jobconfigitem=nil)
+        def initialize(jobid=nil, entrypointclass=nil, programargs=nil, remark=nil, createtime=nil, version=nil, defaultparallelism=nil, properties=nil, resourcerefdetails=nil, creatoruin=nil, updatetime=nil, cosbucket=nil, logcollect=nil, maxparallelism=nil, jobmanagerspec=nil, taskmanagerspec=nil, clslogsetid=nil, clstopicid=nil, pythonversion=nil, autorecover=nil, loglevel=nil, clazzlevels=nil, expertmodeon=nil, expertmodeconfiguration=nil, tracemodeon=nil, tracemodeconfiguration=nil, checkpointretainednum=nil, jobgraph=nil, esserverlessindex=nil, esserverlessspace=nil, indexname=nil, workspacename=nil, flinkversion=nil, jobmanagercpu=nil, jobmanagermem=nil, taskmanagercpu=nil, taskmanagermem=nil, jobconfigitem=nil, checkpointtimeoutsecond=nil)
           @JobId = jobid
           @EntrypointClass = entrypointclass
           @ProgramArgs = programargs
@@ -3275,6 +3347,7 @@ module TencentCloud
           @TaskManagerCpu = taskmanagercpu
           @TaskManagerMem = taskmanagermem
           @JobConfigItem = jobconfigitem
+          @CheckpointTimeoutSecond = checkpointtimeoutsecond
         end
 
         def deserialize(params)
@@ -3349,6 +3422,7 @@ module TencentCloud
             @JobConfigItem = JobConfig.new
             @JobConfigItem.deserialize(params['JobConfigItem'])
           end
+          @CheckpointTimeoutSecond = params['CheckpointTimeoutSecond']
         end
       end
 
@@ -3664,10 +3738,12 @@ module TencentCloud
         # @param ProgressDesc: 操作中描述
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProgressDesc: String
+        # @param ContinueAlarm: 停止持续告警
+        # @type ContinueAlarm: Integer
 
-        attr_accessor :JobId, :Region, :Zone, :AppId, :OwnerUin, :CreatorUin, :Name, :JobType, :Status, :CreateTime, :StartTime, :StopTime, :UpdateTime, :TotalRunMillis, :Remark, :LastOpResult, :ClusterName, :LatestJobConfigVersion, :PublishedJobConfigVersion, :RunningCuNum, :CuMem, :StatusDesc, :CurrentRunMillis, :ClusterId, :WebUIUrl, :SchedulerType, :ClusterStatus, :RunningCu, :FlinkVersion, :WorkSpaceId, :WorkSpaceName, :Tags, :EventInfo, :Description, :ScalingType, :RunningCpu, :RunningMem, :OpenJobDefaultAlarm, :ProgressDesc
+        attr_accessor :JobId, :Region, :Zone, :AppId, :OwnerUin, :CreatorUin, :Name, :JobType, :Status, :CreateTime, :StartTime, :StopTime, :UpdateTime, :TotalRunMillis, :Remark, :LastOpResult, :ClusterName, :LatestJobConfigVersion, :PublishedJobConfigVersion, :RunningCuNum, :CuMem, :StatusDesc, :CurrentRunMillis, :ClusterId, :WebUIUrl, :SchedulerType, :ClusterStatus, :RunningCu, :FlinkVersion, :WorkSpaceId, :WorkSpaceName, :Tags, :EventInfo, :Description, :ScalingType, :RunningCpu, :RunningMem, :OpenJobDefaultAlarm, :ProgressDesc, :ContinueAlarm
 
-        def initialize(jobid=nil, region=nil, zone=nil, appid=nil, owneruin=nil, creatoruin=nil, name=nil, jobtype=nil, status=nil, createtime=nil, starttime=nil, stoptime=nil, updatetime=nil, totalrunmillis=nil, remark=nil, lastopresult=nil, clustername=nil, latestjobconfigversion=nil, publishedjobconfigversion=nil, runningcunum=nil, cumem=nil, statusdesc=nil, currentrunmillis=nil, clusterid=nil, webuiurl=nil, schedulertype=nil, clusterstatus=nil, runningcu=nil, flinkversion=nil, workspaceid=nil, workspacename=nil, tags=nil, eventinfo=nil, description=nil, scalingtype=nil, runningcpu=nil, runningmem=nil, openjobdefaultalarm=nil, progressdesc=nil)
+        def initialize(jobid=nil, region=nil, zone=nil, appid=nil, owneruin=nil, creatoruin=nil, name=nil, jobtype=nil, status=nil, createtime=nil, starttime=nil, stoptime=nil, updatetime=nil, totalrunmillis=nil, remark=nil, lastopresult=nil, clustername=nil, latestjobconfigversion=nil, publishedjobconfigversion=nil, runningcunum=nil, cumem=nil, statusdesc=nil, currentrunmillis=nil, clusterid=nil, webuiurl=nil, schedulertype=nil, clusterstatus=nil, runningcu=nil, flinkversion=nil, workspaceid=nil, workspacename=nil, tags=nil, eventinfo=nil, description=nil, scalingtype=nil, runningcpu=nil, runningmem=nil, openjobdefaultalarm=nil, progressdesc=nil, continuealarm=nil)
           @JobId = jobid
           @Region = region
           @Zone = zone
@@ -3707,6 +3783,7 @@ module TencentCloud
           @RunningMem = runningmem
           @OpenJobDefaultAlarm = openjobdefaultalarm
           @ProgressDesc = progressdesc
+          @ContinueAlarm = continuealarm
         end
 
         def deserialize(params)
@@ -3759,6 +3836,7 @@ module TencentCloud
           @RunningMem = params['RunningMem']
           @OpenJobDefaultAlarm = params['OpenJobDefaultAlarm']
           @ProgressDesc = params['ProgressDesc']
+          @ContinueAlarm = params['ContinueAlarm']
         end
       end
 
@@ -3891,16 +3969,19 @@ module TencentCloud
         # @type WorkSpaceId: String
         # @param Description: 作业描述
         # @type Description: String
+        # @param ContinueAlarm: 停止持续告警
+        # @type ContinueAlarm: Integer
 
-        attr_accessor :JobId, :Name, :Remark, :TargetFolderId, :WorkSpaceId, :Description
+        attr_accessor :JobId, :Name, :Remark, :TargetFolderId, :WorkSpaceId, :Description, :ContinueAlarm
 
-        def initialize(jobid=nil, name=nil, remark=nil, targetfolderid=nil, workspaceid=nil, description=nil)
+        def initialize(jobid=nil, name=nil, remark=nil, targetfolderid=nil, workspaceid=nil, description=nil, continuealarm=nil)
           @JobId = jobid
           @Name = name
           @Remark = remark
           @TargetFolderId = targetfolderid
           @WorkSpaceId = workspaceid
           @Description = description
+          @ContinueAlarm = continuealarm
         end
 
         def deserialize(params)
@@ -3910,6 +3991,7 @@ module TencentCloud
           @TargetFolderId = params['TargetFolderId']
           @WorkSpaceId = params['WorkSpaceId']
           @Description = params['Description']
+          @ContinueAlarm = params['ContinueAlarm']
         end
       end
 

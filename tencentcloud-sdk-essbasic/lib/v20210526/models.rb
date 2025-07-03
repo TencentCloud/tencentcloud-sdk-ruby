@@ -9490,6 +9490,7 @@ module TencentCloud
         # @param FlowName: 合同流程的名称（可自定义此名称），长度不能超过200，只能由中文、字母、数字和下划线组成。
         # @type FlowName: String
         # @param FlowType: 合同流程的类别分类（如销售合同/入职合同等）。
+        # 该字段将被废弃，不建议使用。	请使用 UserFlowType
         # @type FlowType: String
         # @param FlowStatus: 合同流程当前的签署状态, 会存在下列的状态值
         # <ul><li> **INIT** :合同创建</li>
@@ -9518,10 +9519,17 @@ module TencentCloud
         # <ul><li>当NeedCreateReview为true，表明当前流程是需要发起前审核的合同，可能无法进行查看，签署操作，需要等审核完成后，才可以继续后续流程</li>
         # <li>当NeedCreateReview为false，不需要发起前审核的合同</li></ul>
         # @type NeedCreateReview: Boolean
+        # @param UserFlowType: 用户合同的自定义分类。
 
-        attr_accessor :FlowId, :FlowName, :FlowType, :FlowStatus, :FlowMessage, :CreateOn, :DeadLine, :CustomData, :FlowApproverInfos, :CcInfos, :NeedCreateReview
+        # 自定义合同类型的位置，在下图所示地方:
+        # ![image](https://qcloudimg.tencent-cloud.cn/raw/37138cc5f3c38e6f788f4b82f695cebf.png)
+        # @type UserFlowType: :class:`Tencentcloud::Essbasic.v20210526.models.UserFlowType`
+        # @param TemplateId: 发起模板时,使用的模板Id
+        # @type TemplateId: String
 
-        def initialize(flowid=nil, flowname=nil, flowtype=nil, flowstatus=nil, flowmessage=nil, createon=nil, deadline=nil, customdata=nil, flowapproverinfos=nil, ccinfos=nil, needcreatereview=nil)
+        attr_accessor :FlowId, :FlowName, :FlowType, :FlowStatus, :FlowMessage, :CreateOn, :DeadLine, :CustomData, :FlowApproverInfos, :CcInfos, :NeedCreateReview, :UserFlowType, :TemplateId
+
+        def initialize(flowid=nil, flowname=nil, flowtype=nil, flowstatus=nil, flowmessage=nil, createon=nil, deadline=nil, customdata=nil, flowapproverinfos=nil, ccinfos=nil, needcreatereview=nil, userflowtype=nil, templateid=nil)
           @FlowId = flowid
           @FlowName = flowname
           @FlowType = flowtype
@@ -9533,6 +9541,8 @@ module TencentCloud
           @FlowApproverInfos = flowapproverinfos
           @CcInfos = ccinfos
           @NeedCreateReview = needcreatereview
+          @UserFlowType = userflowtype
+          @TemplateId = templateid
         end
 
         def deserialize(params)
@@ -9561,6 +9571,11 @@ module TencentCloud
             end
           end
           @NeedCreateReview = params['NeedCreateReview']
+          unless params['UserFlowType'].nil?
+            @UserFlowType = UserFlowType.new
+            @UserFlowType.deserialize(params['UserFlowType'])
+          end
+          @TemplateId = params['TemplateId']
         end
       end
 

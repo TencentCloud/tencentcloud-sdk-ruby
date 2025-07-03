@@ -1742,21 +1742,21 @@ module TencentCloud
 
       # CheckMigrateCluster请求参数结构体
       class CheckMigrateClusterRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例Id。
+        # @param InstanceId: 实例 ID。可通过 [DescribeDBInstances](https://cloud.tencent.com/document/product/236/15872) 接口获取。
         # @type InstanceId: String
-        # @param Cpu: 实例CPU核数
+        # @param Cpu: 实例 CPU 核数。当 InstanceId 为主实例时必传。
         # @type Cpu: Integer
-        # @param Memory: 实例内存大小，单位：MB
+        # @param Memory: 实例内存大小，单位：MB。当 InstanceId 为主实例时必传。
         # @type Memory: Integer
-        # @param Volume: 实例硬盘大小，单位：GB
+        # @param Volume: 实例硬盘大小，单位：GB。
         # @type Volume: Integer
-        # @param DiskType: 磁盘类型。 CLOUD_SSD: SSD云硬盘; CLOUD_HSSD: 增强型SSD云硬盘
+        # @param DiskType: 磁盘类型。 CLOUD_SSD: SSD 云硬盘; CLOUD_HSSD: 增强型 SSD 云硬盘。
         # @type DiskType: String
-        # @param ClusterTopology: 云盘版节点拓扑配置。
+        # @param ClusterTopology: 云盘版节点拓扑配置。当 InstanceId 为主实例时必传。
         # @type ClusterTopology: :class:`Tencentcloud::Cdb.v20170320.models.ClusterTopology`
         # @param DeviceType: 迁移实例类型。支持值包括： "CLOUD_NATIVE_CLUSTER" - 标准型云盘版实例， "CLOUD_NATIVE_CLUSTER_EXCLUSIVE" - 加强型云盘版实例。
         # @type DeviceType: String
-        # @param RoInfo: 只读实例信息
+        # @param RoInfo: 只读实例信息。
         # @type RoInfo: Array
 
         attr_accessor :InstanceId, :Cpu, :Memory, :Volume, :DiskType, :ClusterTopology, :DeviceType, :RoInfo
@@ -2322,18 +2322,15 @@ module TencentCloud
 
       # CreateAuditLogFile请求参数结构体
       class CreateAuditLogFileRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例 ID，与云数据库控制台页面中显示的实例 ID 相同。
+        # @param InstanceId: 实例 ID。可通过 [DescribeDBInstances](https://cloud.tencent.com/document/product/236/15872) 接口获取。
         # @type InstanceId: String
-        # @param StartTime: 开始时间。
+        # @param StartTime: 开始时间(建议开始到结束时间区间最大7天)。
         # @type StartTime: String
-        # @param EndTime: 结束时间。
+        # @param EndTime: 结束时间(建议开始到结束时间区间最大7天）。
         # @type EndTime: String
-        # @param Order: 排序方式。支持值包括："ASC" - 升序，"DESC" - 降序。
+        # @param Order: 排序方式。支持值包括："ASC" - 升序，"DESC" - 降序，默认降序排序。
         # @type Order: String
-        # @param OrderBy: 排序字段。支持值包括：
-        # "timestamp" - 时间戳；
-        # "affectRows" - 影响行数；
-        # "execTime" - 执行时间。
+        # @param OrderBy: 排序字段。支持值包括(默认按照时间戳排序)： "timestamp" - 时间戳； "affectRows" - 影响行数； "execTime" - 执行时间。
         # @type OrderBy: String
         # @param Filter: 已废弃。
         # @type Filter: :class:`Tencentcloud::Cdb.v20170320.models.AuditLogFilter`
@@ -4001,7 +3998,7 @@ module TencentCloud
 
       # DeleteAuditRuleTemplates请求参数结构体
       class DeleteAuditRuleTemplatesRequest < TencentCloud::Common::AbstractModel
-        # @param RuleTemplateIds: 审计规则模板ID。
+        # @param RuleTemplateIds: 审计规则模板ID,可通过[DescribeAuditRuleTemplates](https://cloud.tencent.com/document/api/236/101811)接口获取，单次允许最多删除5个规则模板。
         # @type RuleTemplateIds: Array
 
         attr_accessor :RuleTemplateIds
@@ -4651,19 +4648,19 @@ module TencentCloud
 
       # DescribeAuditLogs请求参数结构体
       class DescribeAuditLogsRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例 ID。
+        # @param InstanceId: 实例 ID。可通过 [DescribeDBInstances](https://cloud.tencent.com/document/product/236/15872) 接口获取。
         # @type InstanceId: String
-        # @param StartTime: 开始时间。
+        # @param StartTime: 开始时间(建议开始到结束时间区间最大7天)。
         # @type StartTime: String
-        # @param EndTime: 结束时间。
+        # @param EndTime: 结束时间(建议开始到结束时间区间最大7天）。
         # @type EndTime: String
         # @param Limit: 分页参数，单次返回的数据条数。默认值为100，最大值为100。
         # @type Limit: Integer
         # @param Offset: 日志偏移量，最多支持偏移查询65535条日志。可填写范围：0 - 65535。
         # @type Offset: Integer
-        # @param Order: 排序方式。支持值包括："ASC" - 升序，"DESC" - 降序。
+        # @param Order: 排序方式。支持值包括："ASC" - 升序，"DESC" - 降序，默认降序排序。
         # @type Order: String
-        # @param OrderBy: 排序字段。支持值包括：
+        # @param OrderBy: 排序字段。支持值包括(默认按照时间戳排序)：
         # "timestamp" - 时间戳；
         # "affectRows" - 影响行数；
         # "execTime" - 执行时间。
@@ -4809,17 +4806,17 @@ module TencentCloud
 
       # DescribeAuditRuleTemplateModifyHistory请求参数结构体
       class DescribeAuditRuleTemplateModifyHistoryRequest < TencentCloud::Common::AbstractModel
-        # @param RuleTemplateIds: 模板ID
+        # @param RuleTemplateIds: 审计规则模板ID,可通过[DescribeAuditRuleTemplates](https://cloud.tencent.com/document/api/236/101811)接口获取。
         # @type RuleTemplateIds: Array
         # @param StartTime: 查询范围的开始时间。
         # @type StartTime: String
         # @param EndTime: 查询范围的结束时间。
         # @type EndTime: String
-        # @param Limit: 返回条数。
+        # @param Limit: 返回条数,默认值-20，最大值-1000。
         # @type Limit: Integer
         # @param Offset: 偏移量。
         # @type Offset: Integer
-        # @param Order: 排序方式。DESC-按修改时间倒排，ASC-正序。
+        # @param Order: 排序方式，DESC-按修改时间倒排，ASC-正序，默认：DESC。
         # @type Order: String
 
         attr_accessor :RuleTemplateIds, :StartTime, :EndTime, :Limit, :Offset, :Order
@@ -5841,15 +5838,15 @@ module TencentCloud
 
       # DescribeCpuExpandHistory请求参数结构体
       class DescribeCpuExpandHistoryRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例 ID
+        # @param InstanceId: 实例 ID。可通过 [DescribeDBInstances](https://cloud.tencent.com/document/product/236/15872) 接口获取。
         # @type InstanceId: String
         # @param ExpandStrategy: 扩容策略，值包括：all，manual，auto
         # @type ExpandStrategy: String
         # @param Status: 扩容状态，值包括：all，extend，reduce，extend_failed
         # @type Status: String
-        # @param StartTime: 查询的开始时间。只能查看30天内的扩容历史
+        # @param StartTime: 查询的开始时间。只能查看30天内的扩容历史，格式为 Integer 的时间戳（秒级）。
         # @type StartTime: Integer
-        # @param EndTime: 查询的结束时间。只能查看30天内的扩容历史
+        # @param EndTime: 查询的结束时间。只能查看30天内的扩容历史，格式为 Integer 的时间戳（秒级）。
         # @type EndTime: Integer
         # @param Offset: 分页入参
         # @type Offset: Integer
@@ -7354,31 +7351,31 @@ module TencentCloud
 
       # DescribeInstanceUpgradeType请求参数结构体
       class DescribeInstanceUpgradeTypeRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例 ID。
+        # @param InstanceId: 实例 ID。可通过 [DescribeDBInstances](https://cloud.tencent.com/document/product/236/15872) 接口获取。
         # @type InstanceId: String
-        # @param DstCpu: 目标实例 CPU 的核数。
+        # @param DstCpu: 目标实例 CPU 的核数。为保证传入值有效，请使用 [DescribeCdbZoneConfig](https://cloud.tencent.com/document/product/236/80281) 获取实例可售卖的 CPU 值范围。
         # @type DstCpu: Float
-        # @param DstMemory: 目标实例内存大小，单位：MB。
+        # @param DstMemory: 目标实例内存大小，单位：MB。为保证传入值有效，请使用 [DescribeCdbZoneConfig](https://cloud.tencent.com/document/product/236/80281) 获取实例可售卖的内存大小范围。
         # @type DstMemory: Integer
-        # @param DstDisk: 目标实例磁盘大小，单位：GB。
+        # @param DstDisk: 目标实例磁盘大小，单位：GB。为保证传入值有效，请使用 [DescribeCdbZoneConfig](https://cloud.tencent.com/document/product/236/80281) 获取实例可售卖的磁盘大小范围。
         # @type DstDisk: Integer
-        # @param DstVersion: 目标实例数据库版本。
+        # @param DstVersion: 目标实例数据库版本。可选值：5.6，5.7，8.0。
         # @type DstVersion: String
-        # @param DstDeployMode: 目标实例部署模型。
+        # @param DstDeployMode: 目标实例部署模型。默认为0，支持值包括：0 - 表示单可用区，1 - 表示多可用区。
         # @type DstDeployMode: Integer
-        # @param DstProtectMode: 目标实例复制类型。
+        # @param DstProtectMode: 目标实例复制类型，支持值包括：0 - 表示异步复制，1 - 表示半同步复制，2 - 表示强同步复制。
         # @type DstProtectMode: Integer
-        # @param DstSlaveZone: 目标实例备机1可用区。
+        # @param DstSlaveZone: 目标实例备机1可用区 ID。可使用 [DescribeCdbZoneConfig](https://cloud.tencent.com/document/product/236/80281) 获取可用区 ID。
         # @type DstSlaveZone: Integer
-        # @param DstBackupZone: 目标实例备机2可用区。
+        # @param DstBackupZone: 目标实例备机2可用区 ID。可使用 [DescribeCdbZoneConfig](https://cloud.tencent.com/document/product/236/80281) 获取可用区 ID。
         # @type DstBackupZone: Integer
-        # @param DstCdbType: 目标实例类型。
+        # @param DstCdbType: 目标实例类型。支持值包括："CUSTOM" - 通用型实例，"EXCLUSIVE" - 独享型实例，"ONTKE" - ONTKE 单节点实例，"CLOUD_NATIVE_CLUSTER" - 云盘版标准型，"CLOUD_NATIVE_CLUSTER_EXCLUSIVE" - 云盘版加强型。
         # @type DstCdbType: String
-        # @param DstZoneId: 目标实例主可用区。
+        # @param DstZoneId: 目标实例主可用区 ID。可使用 [DescribeCdbZoneConfig](https://cloud.tencent.com/document/product/236/80281) 获取可用区 ID。
         # @type DstZoneId: Integer
         # @param NodeDistribution: 独享集群 CDB 实例的节点分布情况。
         # @type NodeDistribution: :class:`Tencentcloud::Cdb.v20170320.models.NodeDistribution`
-        # @param ClusterTopology: 集群版的节点拓扑配置
+        # @param ClusterTopology: 集群版的节点拓扑配置。Nodeld信息可通过 [DescribeClusterInfo](https://cloud.tencent.com/document/api/236/105116) 接口获取。
         # @type ClusterTopology: :class:`Tencentcloud::Cdb.v20170320.models.ClusterTopology`
 
         attr_accessor :InstanceId, :DstCpu, :DstMemory, :DstDisk, :DstVersion, :DstDeployMode, :DstProtectMode, :DstSlaveZone, :DstBackupZone, :DstCdbType, :DstZoneId, :NodeDistribution, :ClusterTopology
@@ -7426,7 +7423,7 @@ module TencentCloud
       class DescribeInstanceUpgradeTypeResponse < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例 ID。
         # @type InstanceId: String
-        # @param UpgradeType: 实例升级类型。
+        # @param UpgradeType: 实例升级类型。Trsf - 迁移升级，InPlace - 原地升级，Topology - 架构升级。
         # @type UpgradeType: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -8804,11 +8801,11 @@ module TencentCloud
 
       # DisassociateSecurityGroups请求参数结构体
       class DisassociateSecurityGroupsRequest < TencentCloud::Common::AbstractModel
-        # @param SecurityGroupId: 安全组 ID。
+        # @param SecurityGroupId: 安全组 ID。可通过 [DescribeDBSecurityGroups](https://cloud.tencent.com/document/api/236/15854) 接口获取。
         # @type SecurityGroupId: String
-        # @param InstanceIds: 实例 ID 列表，一个或者多个实例 ID 组成的数组。
+        # @param InstanceIds: 实例 ID 列表，一个或者多个实例 ID 组成的数组。可通过 [DescribeDBInstances](https://cloud.tencent.com/document/product/236/15872) 接口获取。
         # @type InstanceIds: Array
-        # @param ForReadonlyInstance: 当传入只读实例ID时，默认操作的是对应只读组的安全组。如果需要操作只读实例ID的安全组， 需要将该入参置为True
+        # @param ForReadonlyInstance: 当传入只读实例 ID 时，默认操作的是对应只读组的安全组。如果需要操作只读实例 ID 的安全组，需要将该入参置为 True，默认为 False。
         # @type ForReadonlyInstance: Boolean
 
         attr_accessor :SecurityGroupId, :InstanceIds, :ForReadonlyInstance
@@ -9219,17 +9216,32 @@ module TencentCloud
         # @type AuditStatus: String
         # @param AuditTask: 任务状态。0-无任务；1-审计开启中，2-审计关闭中。
         # @type AuditTask: Integer
-        # @param LogExpireDay: 日志保留时长。
+        # @param LogExpireDay: 日志保留时长。支持值包括：
+        # 7 - 一周；
+        # 30 - 一个月；
+        # 90 - 三个月；
+        # 180 - 六个月；
+        # 365 - 一年；
+        # 1095 - 三年；
+        # 1825 - 五年。
         # @type LogExpireDay: Integer
-        # @param HighLogExpireDay: 高频存储时长。
+        # @param HighLogExpireDay: 高频存储时长。支持值包括：
+        # 3 - 3天；
+        # 7 - 一周；
+        # 30 - 一个月；
+        # 90 - 三个月；
+        # 180 - 六个月；
+        # 365 - 一年；
+        # 1095 - 三年；
+        # 1825 - 五年。
         # @type HighLogExpireDay: Integer
-        # @param LowLogExpireDay: 低频存储时长。
+        # @param LowLogExpireDay: 低频存储时长。单位：天，等于日志保存时长减去高频存储时长。
         # @type LowLogExpireDay: Integer
-        # @param BillingAmount: 日志存储量。
+        # @param BillingAmount: 日志存储量(单位：GB)。
         # @type BillingAmount: Float
-        # @param HighRealStorage: 高频存储量。
+        # @param HighRealStorage: 高频存储量(单位：GB)。
         # @type HighRealStorage: Float
-        # @param LowRealStorage: 低频存储量。
+        # @param LowRealStorage: 低频存储量(单位：GB)。
         # @type LowRealStorage: Float
         # @param AuditAll: 是否为全审计。true-表示全审计。
         # @type AuditAll: Boolean
@@ -9237,7 +9249,7 @@ module TencentCloud
         # @type CreateAt: String
         # @param InstanceInfo: 实例相关信息
         # @type InstanceInfo: :class:`Tencentcloud::Cdb.v20170320.models.AuditInstanceInfo`
-        # @param RealStorage: 总存储量。
+        # @param RealStorage: 总存储量(单位：GB)。
         # @type RealStorage: Float
         # @param OldRule: 是否包含审计策略
         # @type OldRule: Boolean
@@ -9868,9 +9880,9 @@ module TencentCloud
       class ModifyAccountDescriptionRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例 ID，格式如：cdb-c1nl9rpv，与云数据库控制台页面中显示的实例 ID 相同。
         # @type InstanceId: String
-        # @param Accounts: 云数据库账号。
+        # @param Accounts: 云数据库账号。可通过 [DescribeAccounts](https://cloud.tencent.com/document/api/236/17499) 接口获取。
         # @type Accounts: Array
-        # @param Description: 数据库账号的备注信息。
+        # @param Description: 数据库账号的备注信息。最多支持输入255个字符。
         # @type Description: String
 
         attr_accessor :InstanceId, :Accounts, :Description
@@ -10974,12 +10986,12 @@ module TencentCloud
       class ModifyDBInstanceSecurityGroupsRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例 ID，格式如：cdb-c1nl9rpv 或者 cdbro-c1nl9rpv，与云数据库控制台页面中显示的实例 ID 相同。
         # @type InstanceId: String
-        # @param SecurityGroupIds: 要修改的安全组 ID 列表，一个或者多个安全组 ID 组成的数组。
+        # @param SecurityGroupIds: 要修改的安全组 ID 列表，一个或者多个安全组 ID 组成的数组。可通过 [DescribeDBSecurityGroups](hhttps://cloud.tencent.com/document/api/236/15854) 接口获取。输入的安全组 ID 数组无长度限制。
         # 注意：该入参会全量替换存量已有集合，非增量更新。修改需传入预期的全量集合。
         # @type SecurityGroupIds: Array
-        # @param ForReadonlyInstance: 当传入只读实例ID时，默认操作的是对应只读组的安全组。如果需要操作只读实例ID的安全组， 需要将该入参置为True
+        # @param ForReadonlyInstance: 当传入只读实例 ID 时，默认操作的是对应只读组的安全组。如果需要操作只读实例 ID 的安全组， 需要将该入参置为 True。默认为 False。
         # @type ForReadonlyInstance: Boolean
-        # @param OpResourceId: 变更集群版实例只读组时，InstanceId传实例id，需要额外指定该参数表示操作只读组。 如果操作读写节点则不需指定该参数。
+        # @param OpResourceId: 变更集群版实例只读组时，InstanceId 传实例 ID，需要额外指定该参数表示操作只读组。 如果操作读写节点则不需指定该参数。
         # @type OpResourceId: String
 
         attr_accessor :InstanceId, :SecurityGroupIds, :ForReadonlyInstance, :OpResourceId
@@ -12255,9 +12267,9 @@ module TencentCloud
         # @type ProxyVersion: String
         # @param SupportUpgradeProxyVersion: 代理支持升级版本
         # @type SupportUpgradeProxyVersion: String
-        # @param Status: 代理状态
+        # @param Status: 代理状态。0 - 初始化中，1 - 在线中，2 - 在线中-读写分离中，3 - 下线，4 - 销毁。
         # @type Status: String
-        # @param TaskStatus: 代理任务状态
+        # @param TaskStatus: 代理任务状态，Upgrading - 升级中，UpgradeTo - 升级待切换，UpgradeSwitching - 升级切换中，ProxyCreateAddress - 配置地址中，ProxyModifyAddress - 修改地址中，ProxyCloseAddress - 关闭地址中。
         # @type TaskStatus: String
         # @param ProxyNode: 代理组节点信息
         # @type ProxyNode: Array
@@ -12551,9 +12563,9 @@ module TencentCloud
 
       # ReloadBalanceProxyNode请求参数结构体
       class ReloadBalanceProxyNodeRequest < TencentCloud::Common::AbstractModel
-        # @param ProxyGroupId: 代理组ID
+        # @param ProxyGroupId: 代理组 ID。可通过 [DescribeCdbProxyInfo](https://cloud.tencent.com/document/api/236/90585) 接口获取。
         # @type ProxyGroupId: String
-        # @param ProxyAddressId: 代理组地址ID
+        # @param ProxyAddressId: 代理组地址 ID。可通过 [DescribeCdbProxyInfo](https://cloud.tencent.com/document/api/236/90585) 接口获取。如果不传则会对所有代理组地址进行负载均衡。
         # @type ProxyAddressId: String
 
         attr_accessor :ProxyGroupId, :ProxyAddressId
@@ -14310,7 +14322,7 @@ module TencentCloud
 
       # 实例任务详情
       class TaskDetail < TencentCloud::Common::AbstractModel
-        # @param Code: 错误码。
+        # @param Code: 错误码。0代表成功，其他对应不同的报错场景。
         # @type Code: Integer
         # @param Message: 错误信息。
         # @type Message: String

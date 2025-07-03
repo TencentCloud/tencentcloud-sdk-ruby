@@ -17,6 +17,165 @@
 module TencentCloud
   module Csip
     module V20221121
+      # AK简要信息
+      class AKInfo < TencentCloud::Common::AbstractModel
+        # @param ID: ak对应id
+        # @type ID: Integer
+        # @param Name: ak具体值
+        # 临时密钥时返回临时密钥
+        # @type Name: String
+        # @param User: 所属账号
+        # @type User: String
+        # @param Remark: 备注
+        # @type Remark: String
+
+        attr_accessor :ID, :Name, :User, :Remark
+
+        def initialize(id=nil, name=nil, user=nil, remark=nil)
+          @ID = id
+          @Name = name
+          @User = user
+          @Remark = remark
+        end
+
+        def deserialize(params)
+          @ID = params['ID']
+          @Name = params['Name']
+          @User = params['User']
+          @Remark = params['Remark']
+        end
+      end
+
+      # 访问密钥资产告警信息
+      class AccessKeyAlarmInfo < TencentCloud::Common::AbstractModel
+        # @param Type: 告警类型/风险类型
+        # 告警类型：
+        # 0异常调用
+        # 1泄漏检测
+        # 2自定义
+
+        # 风险类型：
+        # 0：配置风险
+        # 1: 自定义风险
+        # @type Type: Integer
+        # @param Count: 告警数量/风险数量
+        # @type Count: Integer
+
+        attr_accessor :Type, :Count
+
+        def initialize(type=nil, count=nil)
+          @Type = type
+          @Count = count
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @Count = params['Count']
+        end
+      end
+
+      # 访问密钥资产信息
+      class AccessKeyAsset < TencentCloud::Common::AbstractModel
+        # @param ID: AK 的id
+        # @type ID: Integer
+        # @param Name: AK名称
+        # @type Name: String
+        # @param Remark: 备注
+        # @type Remark: String
+        # @param AppID: 账号所属APPID
+        # @type AppID: Integer
+        # @param Uin: 所属主账号Uin
+        # @type Uin: String
+        # @param Nickname: 主账号昵称
+        # @type Nickname: String
+        # @param SubUin: 所属子账号Uin
+        # @type SubUin: String
+        # @param SubNickname: 所属子账号昵称
+        # @type SubNickname: String
+        # @param Type: 0 主账号AK
+        # 1 子账号AK
+        # 2 临时密钥
+        # @type Type: Integer
+        # @param Advice: 安全建议 枚举
+        # 0 正常
+        # 1 立即处理
+        # 2 建议加固
+        # @type Advice: Integer
+        # @param AccessKeyAlarmList: 告警信息列表
+        # @type AccessKeyAlarmList: Array
+        # @param AccessKeyRiskList: 风险信息列表
+        # @type AccessKeyRiskList: Array
+        # @param IPCount: 源IP数量
+        # @type IPCount: Integer
+        # @param CreateTime: 创建时间
+        # @type CreateTime: String
+        # @param LastAccessTime: 最近访问时间
+        # @type LastAccessTime: String
+        # @param Status: AK状态
+        # 0:禁用
+        # 1:已启用
+        # @type Status: Integer
+        # @param CheckStatus: 0 表示已检测
+        # 1 表示检测中
+        # @type CheckStatus: Integer
+
+        attr_accessor :ID, :Name, :Remark, :AppID, :Uin, :Nickname, :SubUin, :SubNickname, :Type, :Advice, :AccessKeyAlarmList, :AccessKeyRiskList, :IPCount, :CreateTime, :LastAccessTime, :Status, :CheckStatus
+
+        def initialize(id=nil, name=nil, remark=nil, appid=nil, uin=nil, nickname=nil, subuin=nil, subnickname=nil, type=nil, advice=nil, accesskeyalarmlist=nil, accesskeyrisklist=nil, ipcount=nil, createtime=nil, lastaccesstime=nil, status=nil, checkstatus=nil)
+          @ID = id
+          @Name = name
+          @Remark = remark
+          @AppID = appid
+          @Uin = uin
+          @Nickname = nickname
+          @SubUin = subuin
+          @SubNickname = subnickname
+          @Type = type
+          @Advice = advice
+          @AccessKeyAlarmList = accesskeyalarmlist
+          @AccessKeyRiskList = accesskeyrisklist
+          @IPCount = ipcount
+          @CreateTime = createtime
+          @LastAccessTime = lastaccesstime
+          @Status = status
+          @CheckStatus = checkstatus
+        end
+
+        def deserialize(params)
+          @ID = params['ID']
+          @Name = params['Name']
+          @Remark = params['Remark']
+          @AppID = params['AppID']
+          @Uin = params['Uin']
+          @Nickname = params['Nickname']
+          @SubUin = params['SubUin']
+          @SubNickname = params['SubNickname']
+          @Type = params['Type']
+          @Advice = params['Advice']
+          unless params['AccessKeyAlarmList'].nil?
+            @AccessKeyAlarmList = []
+            params['AccessKeyAlarmList'].each do |i|
+              accesskeyalarminfo_tmp = AccessKeyAlarmInfo.new
+              accesskeyalarminfo_tmp.deserialize(i)
+              @AccessKeyAlarmList << accesskeyalarminfo_tmp
+            end
+          end
+          unless params['AccessKeyRiskList'].nil?
+            @AccessKeyRiskList = []
+            params['AccessKeyRiskList'].each do |i|
+              accesskeyalarminfo_tmp = AccessKeyAlarmInfo.new
+              accesskeyalarminfo_tmp.deserialize(i)
+              @AccessKeyRiskList << accesskeyalarminfo_tmp
+            end
+          end
+          @IPCount = params['IPCount']
+          @CreateTime = params['CreateTime']
+          @LastAccessTime = params['LastAccessTime']
+          @Status = params['Status']
+          @CheckStatus = params['CheckStatus']
+        end
+      end
+
       # AddNewBindRoleUser请求参数结构体
       class AddNewBindRoleUserRequest < TencentCloud::Common::AbstractModel
 
@@ -2300,6 +2459,118 @@ module TencentCloud
         end
       end
 
+      # 调用记录详情
+      class CallRecord < TencentCloud::Common::AbstractModel
+        # @param CallID: 调用记录ID
+        # @type CallID: String
+        # @param AccessKey: 访问密钥
+        # @type AccessKey: String
+        # @param AccessKeyRemark: 访问密钥备注
+        # @type AccessKeyRemark: String
+        # @param AccessKeyID: 访问密钥ID
+        # @type AccessKeyID: Integer
+        # @param SourceIP: 调用源IP
+        # @type SourceIP: String
+        # @param SourceIPRemark: 调用源IP备注
+        # @type SourceIPRemark: String
+        # @param Region: 调用源IP地域
+        # @type Region: String
+        # @param IPType: IP类型 0:账号内（未备注） 1:账号外（未备注） 2:账号内 (已备注) 3:账号外 (已备注)
+        # @type IPType: Integer
+        # @param EventName: 调用接口名称
+        # @type EventName: String
+        # @param ProductName: 调用产品名称
+        # @type ProductName: String
+        # @param EventType: 调用类型
+        # 0:控制台调用
+        # 1:API
+        # @type EventType: Integer
+        # @param UserType: 用户类型
+        # CAMUser/root/AssumedRole
+        # @type UserType: String
+        # @param UserName: 用户/角色名称
+        # @type UserName: String
+        # @param PolicySet: 策略列表
+        # @type PolicySet: Array
+        # @param CallCount: 调用次数
+        # @type CallCount: Integer
+        # @param Code: 调用错误码
+        # 0表示成功
+        # @type Code: Integer
+        # @param FirstCallTime: 首次调用时间
+        # @type FirstCallTime: String
+        # @param LastCallTime: 最后调用时间
+        # @type LastCallTime: String
+        # @param InstanceID: IP关联资产ID，如果为空字符串，表示没有关联
+        # @type InstanceID: String
+        # @param InstanceName: IP关联资产名称
+        # @type InstanceName: String
+        # @param Date: 聚合日期
+        # @type Date: String
+        # @param AppID: appid
+        # @type AppID: Integer
+        # @param ShowStatus: 展示状态
+        # @type ShowStatus: Boolean
+        # @param ISP: 运营商
+        # @type ISP: String
+
+        attr_accessor :CallID, :AccessKey, :AccessKeyRemark, :AccessKeyID, :SourceIP, :SourceIPRemark, :Region, :IPType, :EventName, :ProductName, :EventType, :UserType, :UserName, :PolicySet, :CallCount, :Code, :FirstCallTime, :LastCallTime, :InstanceID, :InstanceName, :Date, :AppID, :ShowStatus, :ISP
+
+        def initialize(callid=nil, accesskey=nil, accesskeyremark=nil, accesskeyid=nil, sourceip=nil, sourceipremark=nil, region=nil, iptype=nil, eventname=nil, productname=nil, eventtype=nil, usertype=nil, username=nil, policyset=nil, callcount=nil, code=nil, firstcalltime=nil, lastcalltime=nil, instanceid=nil, instancename=nil, date=nil, appid=nil, showstatus=nil, isp=nil)
+          @CallID = callid
+          @AccessKey = accesskey
+          @AccessKeyRemark = accesskeyremark
+          @AccessKeyID = accesskeyid
+          @SourceIP = sourceip
+          @SourceIPRemark = sourceipremark
+          @Region = region
+          @IPType = iptype
+          @EventName = eventname
+          @ProductName = productname
+          @EventType = eventtype
+          @UserType = usertype
+          @UserName = username
+          @PolicySet = policyset
+          @CallCount = callcount
+          @Code = code
+          @FirstCallTime = firstcalltime
+          @LastCallTime = lastcalltime
+          @InstanceID = instanceid
+          @InstanceName = instancename
+          @Date = date
+          @AppID = appid
+          @ShowStatus = showstatus
+          @ISP = isp
+        end
+
+        def deserialize(params)
+          @CallID = params['CallID']
+          @AccessKey = params['AccessKey']
+          @AccessKeyRemark = params['AccessKeyRemark']
+          @AccessKeyID = params['AccessKeyID']
+          @SourceIP = params['SourceIP']
+          @SourceIPRemark = params['SourceIPRemark']
+          @Region = params['Region']
+          @IPType = params['IPType']
+          @EventName = params['EventName']
+          @ProductName = params['ProductName']
+          @EventType = params['EventType']
+          @UserType = params['UserType']
+          @UserName = params['UserName']
+          @PolicySet = params['PolicySet']
+          @CallCount = params['CallCount']
+          @Code = params['Code']
+          @FirstCallTime = params['FirstCallTime']
+          @LastCallTime = params['LastCallTime']
+          @InstanceID = params['InstanceID']
+          @InstanceName = params['InstanceName']
+          @Date = params['Date']
+          @AppID = params['AppID']
+          @ShowStatus = params['ShowStatus']
+          @ISP = params['ISP']
+        end
+      end
+
       # 检查项视角风险
       class CheckViewRiskItem < TencentCloud::Common::AbstractModel
         # @param RiskRuleId: 检查项规则ID
@@ -3051,6 +3322,60 @@ module TencentCloud
         end
       end
 
+      # DescribeAccessKeyAsset请求参数结构体
+      class DescribeAccessKeyAssetRequest < TencentCloud::Common::AbstractModel
+        # @param MemberId: 集团账号的成员id
+        # @type MemberId: Array
+        # @param Filter: 过滤器
+        # @type Filter: :class:`Tencentcloud::Csip.v20221121.models.Filter`
+
+        attr_accessor :MemberId, :Filter
+
+        def initialize(memberid=nil, filter=nil)
+          @MemberId = memberid
+          @Filter = filter
+        end
+
+        def deserialize(params)
+          @MemberId = params['MemberId']
+          unless params['Filter'].nil?
+            @Filter = Filter.new
+            @Filter.deserialize(params['Filter'])
+          end
+        end
+      end
+
+      # DescribeAccessKeyAsset返回参数结构体
+      class DescribeAccessKeyAssetResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 访问密钥资产列表
+        # @type Data: Array
+        # @param Total: 全部数量
+        # @type Total: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :Total, :RequestId
+
+        def initialize(data=nil, total=nil, requestid=nil)
+          @Data = data
+          @Total = total
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              accesskeyasset_tmp = AccessKeyAsset.new
+              accesskeyasset_tmp.deserialize(i)
+              @Data << accesskeyasset_tmp
+            end
+          end
+          @Total = params['Total']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeAlertList请求参数结构体
       class DescribeAlertListRequest < TencentCloud::Common::AbstractModel
         # @param Filter: 标签搜索筛选
@@ -3753,6 +4078,68 @@ module TencentCloud
               @ProtectStatusList << filterdataobject_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCallRecord请求参数结构体
+      class DescribeCallRecordRequest < TencentCloud::Common::AbstractModel
+        # @param MemberId: 集团账号的成员id
+        # @type MemberId: Array
+        # @param AccessKeyID: 访问密钥的ID
+        # @type AccessKeyID: Integer
+        # @param SourceIPID: 调用源IP的ID
+        # @type SourceIPID: Integer
+        # @param Filter: 过滤器
+        # @type Filter: :class:`Tencentcloud::Csip.v20221121.models.Filter`
+
+        attr_accessor :MemberId, :AccessKeyID, :SourceIPID, :Filter
+
+        def initialize(memberid=nil, accesskeyid=nil, sourceipid=nil, filter=nil)
+          @MemberId = memberid
+          @AccessKeyID = accesskeyid
+          @SourceIPID = sourceipid
+          @Filter = filter
+        end
+
+        def deserialize(params)
+          @MemberId = params['MemberId']
+          @AccessKeyID = params['AccessKeyID']
+          @SourceIPID = params['SourceIPID']
+          unless params['Filter'].nil?
+            @Filter = Filter.new
+            @Filter.deserialize(params['Filter'])
+          end
+        end
+      end
+
+      # DescribeCallRecord返回参数结构体
+      class DescribeCallRecordResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 调用记录列表
+        # @type Data: Array
+        # @param Total: 调用记录总数
+        # @type Total: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :Total, :RequestId
+
+        def initialize(data=nil, total=nil, requestid=nil)
+          @Data = data
+          @Total = total
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              callrecord_tmp = CallRecord.new
+              callrecord_tmp.deserialize(i)
+              @Data << callrecord_tmp
+            end
+          end
+          @Total = params['Total']
           @RequestId = params['RequestId']
         end
       end
@@ -6711,6 +7098,60 @@ module TencentCloud
           end
           @ReturnCode = params['ReturnCode']
           @ReturnMsg = params['ReturnMsg']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeSourceIPAsset请求参数结构体
+      class DescribeSourceIPAssetRequest < TencentCloud::Common::AbstractModel
+        # @param MemberId: 集团账号的成员id
+        # @type MemberId: Array
+        # @param Filter: 过滤器
+        # @type Filter: :class:`Tencentcloud::Csip.v20221121.models.Filter`
+
+        attr_accessor :MemberId, :Filter
+
+        def initialize(memberid=nil, filter=nil)
+          @MemberId = memberid
+          @Filter = filter
+        end
+
+        def deserialize(params)
+          @MemberId = params['MemberId']
+          unless params['Filter'].nil?
+            @Filter = Filter.new
+            @Filter.deserialize(params['Filter'])
+          end
+        end
+      end
+
+      # DescribeSourceIPAsset返回参数结构体
+      class DescribeSourceIPAssetResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 访问密钥资产列表
+        # @type Data: Array
+        # @param Total: 全部数量
+        # @type Total: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :Total, :RequestId
+
+        def initialize(data=nil, total=nil, requestid=nil)
+          @Data = data
+          @Total = total
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              sourceipasset_tmp = SourceIPAsset.new
+              sourceipasset_tmp.deserialize(i)
+              @Data << sourceipasset_tmp
+            end
+          end
+          @Total = params['Total']
           @RequestId = params['RequestId']
         end
       end
@@ -10171,6 +10612,106 @@ module TencentCloud
           @SupportHandledCount = params['SupportHandledCount']
           @SupportTotalCount = params['SupportTotalCount']
           @IsSupport = params['IsSupport']
+        end
+      end
+
+      # 访问密钥资产信息（源IP角度）
+      class SourceIPAsset < TencentCloud::Common::AbstractModel
+        # @param ID: 源IP id
+        # @type ID: Integer
+        # @param SourceIP: 源IP
+        # @type SourceIP: String
+        # @param Remark: 备注
+        # @type Remark: String
+        # @param AppID: 账号所属APPID
+        # @type AppID: Integer
+        # @param Region: IP地域
+        # @type Region: String
+        # @param EventType: 调用方式
+        # 0:控制台调用
+        # 1:API
+        # @type EventType: Integer
+        # @param IPType: IP类型
+        # 0:账号内（未备注）
+        # 1:账号外（未备注）
+        # 2:账号内   (已备注)
+        # 3:账号外   (已备注)
+        # @type IPType: Integer
+        # @param AccessKeyAlarmList: 告警信息列表
+        # @type AccessKeyAlarmList: Array
+        # @param AKInfo: ak信息列表
+        # @type AKInfo: Array
+        # @param ActionCount: 调用接口数量
+        # @type ActionCount: Integer
+        # @param LastAccessTime: 最近访问时间
+        # @type LastAccessTime: String
+        # @param InstanceID: IP关联实例ID，如果为空字符串，代表非账号内资产
+        # @type InstanceID: String
+        # @param InstanceName: IP关联实例名称
+        # @type InstanceName: String
+        # @param Uin: 账号所属Uin
+        # @type Uin: String
+        # @param Nickname: 昵称
+        # @type Nickname: String
+        # @param ShowStatus: 展示状态
+        # @type ShowStatus: Boolean
+        # @param ISP: 运营商字段
+        # @type ISP: String
+
+        attr_accessor :ID, :SourceIP, :Remark, :AppID, :Region, :EventType, :IPType, :AccessKeyAlarmList, :AKInfo, :ActionCount, :LastAccessTime, :InstanceID, :InstanceName, :Uin, :Nickname, :ShowStatus, :ISP
+
+        def initialize(id=nil, sourceip=nil, remark=nil, appid=nil, region=nil, eventtype=nil, iptype=nil, accesskeyalarmlist=nil, akinfo=nil, actioncount=nil, lastaccesstime=nil, instanceid=nil, instancename=nil, uin=nil, nickname=nil, showstatus=nil, isp=nil)
+          @ID = id
+          @SourceIP = sourceip
+          @Remark = remark
+          @AppID = appid
+          @Region = region
+          @EventType = eventtype
+          @IPType = iptype
+          @AccessKeyAlarmList = accesskeyalarmlist
+          @AKInfo = akinfo
+          @ActionCount = actioncount
+          @LastAccessTime = lastaccesstime
+          @InstanceID = instanceid
+          @InstanceName = instancename
+          @Uin = uin
+          @Nickname = nickname
+          @ShowStatus = showstatus
+          @ISP = isp
+        end
+
+        def deserialize(params)
+          @ID = params['ID']
+          @SourceIP = params['SourceIP']
+          @Remark = params['Remark']
+          @AppID = params['AppID']
+          @Region = params['Region']
+          @EventType = params['EventType']
+          @IPType = params['IPType']
+          unless params['AccessKeyAlarmList'].nil?
+            @AccessKeyAlarmList = []
+            params['AccessKeyAlarmList'].each do |i|
+              accesskeyalarminfo_tmp = AccessKeyAlarmInfo.new
+              accesskeyalarminfo_tmp.deserialize(i)
+              @AccessKeyAlarmList << accesskeyalarminfo_tmp
+            end
+          end
+          unless params['AKInfo'].nil?
+            @AKInfo = []
+            params['AKInfo'].each do |i|
+              akinfo_tmp = AKInfo.new
+              akinfo_tmp.deserialize(i)
+              @AKInfo << akinfo_tmp
+            end
+          end
+          @ActionCount = params['ActionCount']
+          @LastAccessTime = params['LastAccessTime']
+          @InstanceID = params['InstanceID']
+          @InstanceName = params['InstanceName']
+          @Uin = params['Uin']
+          @Nickname = params['Nickname']
+          @ShowStatus = params['ShowStatus']
+          @ISP = params['ISP']
         end
       end
 
