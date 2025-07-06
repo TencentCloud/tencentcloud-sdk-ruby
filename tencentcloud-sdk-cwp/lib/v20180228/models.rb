@@ -4235,10 +4235,12 @@ module TencentCloud
         # @type MachineType: Integer
         # @param DetectBy: 检测来源 0:bash日志 1:实时监控
         # @type DetectBy: Integer
+        # @param BashCmdDecoded: 执行命令(解码后)
+        # @type BashCmdDecoded: String
 
-        attr_accessor :Id, :Uuid, :Quuid, :HostIp, :Platform, :BashCmd, :RuleId, :RuleName, :RuleLevel, :Status, :CreateTime, :MachineName, :Exe, :ModifyTime, :RuleCategory, :RegexBashCmd, :PsTree, :SuggestScheme, :HarmDescribe, :Tags, :References, :MachineWanIp, :MachineStatus, :User, :Pid, :MachineType, :DetectBy
+        attr_accessor :Id, :Uuid, :Quuid, :HostIp, :Platform, :BashCmd, :RuleId, :RuleName, :RuleLevel, :Status, :CreateTime, :MachineName, :Exe, :ModifyTime, :RuleCategory, :RegexBashCmd, :PsTree, :SuggestScheme, :HarmDescribe, :Tags, :References, :MachineWanIp, :MachineStatus, :User, :Pid, :MachineType, :DetectBy, :BashCmdDecoded
 
-        def initialize(id=nil, uuid=nil, quuid=nil, hostip=nil, platform=nil, bashcmd=nil, ruleid=nil, rulename=nil, rulelevel=nil, status=nil, createtime=nil, machinename=nil, exe=nil, modifytime=nil, rulecategory=nil, regexbashcmd=nil, pstree=nil, suggestscheme=nil, harmdescribe=nil, tags=nil, references=nil, machinewanip=nil, machinestatus=nil, user=nil, pid=nil, machinetype=nil, detectby=nil)
+        def initialize(id=nil, uuid=nil, quuid=nil, hostip=nil, platform=nil, bashcmd=nil, ruleid=nil, rulename=nil, rulelevel=nil, status=nil, createtime=nil, machinename=nil, exe=nil, modifytime=nil, rulecategory=nil, regexbashcmd=nil, pstree=nil, suggestscheme=nil, harmdescribe=nil, tags=nil, references=nil, machinewanip=nil, machinestatus=nil, user=nil, pid=nil, machinetype=nil, detectby=nil, bashcmddecoded=nil)
           @Id = id
           @Uuid = uuid
           @Quuid = quuid
@@ -4266,6 +4268,7 @@ module TencentCloud
           @Pid = pid
           @MachineType = machinetype
           @DetectBy = detectby
+          @BashCmdDecoded = bashcmddecoded
         end
 
         def deserialize(params)
@@ -4296,6 +4299,7 @@ module TencentCloud
           @Pid = params['Pid']
           @MachineType = params['MachineType']
           @DetectBy = params['DetectBy']
+          @BashCmdDecoded = params['BashCmdDecoded']
         end
       end
 
@@ -4419,8 +4423,8 @@ module TencentCloud
 
         attr_accessor :Id, :Uuid, :Name, :Level, :Rule, :Decription, :Operator, :IsGlobal, :Status, :CreateTime, :ModifyTime, :Hostip, :Uuids, :White, :DealOldEvents, :Description
         extend Gem::Deprecate
-        deprecate :Decription, :none, 2025, 6
-        deprecate :Decription=, :none, 2025, 6
+        deprecate :Decription, :none, 2025, 7
+        deprecate :Decription=, :none, 2025, 7
 
         def initialize(id=nil, uuid=nil, name=nil, level=nil, rule=nil, decription=nil, operator=nil, isglobal=nil, status=nil, createtime=nil, modifytime=nil, hostip=nil, uuids=nil, white=nil, dealoldevents=nil, description=nil)
           @Id = id
@@ -17209,16 +17213,16 @@ module TencentCloud
 
         attr_accessor :MachineCnt, :TencentCloudMachineCnt, :AliCloudMachineCnt, :BaiduCloudMachineCnt, :IDCMachineCnt, :OtherCloudMachineCnt, :ProtectMachineCnt, :BaseMachineCnt, :SpecialtyMachineCnt, :FlagshipMachineCnt, :RiskMachineCnt, :CompareYesterdayRiskMachineCnt, :CompareYesterdayNotProtectMachineCnt, :CompareYesterdayDeadlineMachineCnt, :DeadlineMachineCnt, :NotProtectMachineCnt, :LHGeneralDiscountCnt, :CompareYesterdayMachineCnt, :MachineDestroyAfterOfflineHours, :CloudFrom, :RequestId
         extend Gem::Deprecate
-        deprecate :TencentCloudMachineCnt, :none, 2025, 6
-        deprecate :TencentCloudMachineCnt=, :none, 2025, 6
-        deprecate :AliCloudMachineCnt, :none, 2025, 6
-        deprecate :AliCloudMachineCnt=, :none, 2025, 6
-        deprecate :BaiduCloudMachineCnt, :none, 2025, 6
-        deprecate :BaiduCloudMachineCnt=, :none, 2025, 6
-        deprecate :IDCMachineCnt, :none, 2025, 6
-        deprecate :IDCMachineCnt=, :none, 2025, 6
-        deprecate :OtherCloudMachineCnt, :none, 2025, 6
-        deprecate :OtherCloudMachineCnt=, :none, 2025, 6
+        deprecate :TencentCloudMachineCnt, :none, 2025, 7
+        deprecate :TencentCloudMachineCnt=, :none, 2025, 7
+        deprecate :AliCloudMachineCnt, :none, 2025, 7
+        deprecate :AliCloudMachineCnt=, :none, 2025, 7
+        deprecate :BaiduCloudMachineCnt, :none, 2025, 7
+        deprecate :BaiduCloudMachineCnt=, :none, 2025, 7
+        deprecate :IDCMachineCnt, :none, 2025, 7
+        deprecate :IDCMachineCnt=, :none, 2025, 7
+        deprecate :OtherCloudMachineCnt, :none, 2025, 7
+        deprecate :OtherCloudMachineCnt=, :none, 2025, 7
 
         def initialize(machinecnt=nil, tencentcloudmachinecnt=nil, alicloudmachinecnt=nil, baiducloudmachinecnt=nil, idcmachinecnt=nil, othercloudmachinecnt=nil, protectmachinecnt=nil, basemachinecnt=nil, specialtymachinecnt=nil, flagshipmachinecnt=nil, riskmachinecnt=nil, compareyesterdayriskmachinecnt=nil, compareyesterdaynotprotectmachinecnt=nil, compareyesterdaydeadlinemachinecnt=nil, deadlinemachinecnt=nil, notprotectmachinecnt=nil, lhgeneraldiscountcnt=nil, compareyesterdaymachinecnt=nil, machinedestroyafterofflinehours=nil, cloudfrom=nil, requestid=nil)
           @MachineCnt = machinecnt
@@ -18365,12 +18369,18 @@ module TencentCloud
         # @type ProtectMode: Integer
         # @param ProtectFileScope: 查杀范围 0 脚本类之外的恶意文件，1全部恶意文件
         # @type ProtectFileScope: Integer
+        # @param DoClean: 执行清理开关 0未开启 1开启
+        # @type DoClean: Integer
+        # @param QuaraUuids: 自选的隔离主机集合
+        # @type QuaraUuids: Array
+        # @param QuaraScope: 用户选择的隔离范围，0：默认全隔离 1：用户自选
+        # @type QuaraScope: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :CheckPattern, :StartTime, :EndTime, :IsGlobal, :QuuidList, :MonitoringPattern, :Cycle, :EnableScan, :Id, :RealTimeMonitoring, :AutoIsolation, :ClickTimeout, :KillProcess, :EngineType, :EnableInspiredEngine, :EnableMemShellScan, :ProtectMode, :ProtectFileScope, :RequestId
+        attr_accessor :CheckPattern, :StartTime, :EndTime, :IsGlobal, :QuuidList, :MonitoringPattern, :Cycle, :EnableScan, :Id, :RealTimeMonitoring, :AutoIsolation, :ClickTimeout, :KillProcess, :EngineType, :EnableInspiredEngine, :EnableMemShellScan, :ProtectMode, :ProtectFileScope, :DoClean, :QuaraUuids, :QuaraScope, :RequestId
 
-        def initialize(checkpattern=nil, starttime=nil, endtime=nil, isglobal=nil, quuidlist=nil, monitoringpattern=nil, cycle=nil, enablescan=nil, id=nil, realtimemonitoring=nil, autoisolation=nil, clicktimeout=nil, killprocess=nil, enginetype=nil, enableinspiredengine=nil, enablememshellscan=nil, protectmode=nil, protectfilescope=nil, requestid=nil)
+        def initialize(checkpattern=nil, starttime=nil, endtime=nil, isglobal=nil, quuidlist=nil, monitoringpattern=nil, cycle=nil, enablescan=nil, id=nil, realtimemonitoring=nil, autoisolation=nil, clicktimeout=nil, killprocess=nil, enginetype=nil, enableinspiredengine=nil, enablememshellscan=nil, protectmode=nil, protectfilescope=nil, doclean=nil, quarauuids=nil, quarascope=nil, requestid=nil)
           @CheckPattern = checkpattern
           @StartTime = starttime
           @EndTime = endtime
@@ -18389,6 +18399,9 @@ module TencentCloud
           @EnableMemShellScan = enablememshellscan
           @ProtectMode = protectmode
           @ProtectFileScope = protectfilescope
+          @DoClean = doclean
+          @QuaraUuids = quarauuids
+          @QuaraScope = quarascope
           @RequestId = requestid
         end
 
@@ -18411,6 +18424,9 @@ module TencentCloud
           @EnableMemShellScan = params['EnableMemShellScan']
           @ProtectMode = params['ProtectMode']
           @ProtectFileScope = params['ProtectFileScope']
+          @DoClean = params['DoClean']
+          @QuaraUuids = params['QuaraUuids']
+          @QuaraScope = params['QuaraScope']
           @RequestId = params['RequestId']
         end
       end
@@ -27529,10 +27545,10 @@ module TencentCloud
 
         attr_accessor :Filters, :Fileds, :Fields, :Where
         extend Gem::Deprecate
-        deprecate :Fileds, :none, 2025, 6
-        deprecate :Fileds=, :none, 2025, 6
-        deprecate :Fields, :none, 2025, 6
-        deprecate :Fields=, :none, 2025, 6
+        deprecate :Fileds, :none, 2025, 7
+        deprecate :Fileds=, :none, 2025, 7
+        deprecate :Fields, :none, 2025, 7
+        deprecate :Fields=, :none, 2025, 7
 
         def initialize(filters=nil, fileds=nil, fields=nil, where=nil)
           @Filters = filters
@@ -31751,10 +31767,14 @@ module TencentCloud
         # @type MD5: String
         # @param MachineExtraInfo: 附加信息
         # @type MachineExtraInfo: :class:`Tencentcloud::Cwp.v20180228.models.MachineExtraInfo`
+        # @param DoClean: 是否可以清理
+        # @type DoClean: Boolean
+        # @param FirstDetectionMethod: 首次检出方式 0扫描；1实时监控
+        # @type FirstDetectionMethod: Integer
 
-        attr_accessor :HostIp, :Uuid, :FilePath, :VirusName, :Status, :Id, :Alias, :Tags, :FileCreateTime, :FileModifierTime, :CreateTime, :LatestScanTime, :Level, :CheckPlatform, :ProcessExists, :FileExists, :Quuid, :MD5, :MachineExtraInfo
+        attr_accessor :HostIp, :Uuid, :FilePath, :VirusName, :Status, :Id, :Alias, :Tags, :FileCreateTime, :FileModifierTime, :CreateTime, :LatestScanTime, :Level, :CheckPlatform, :ProcessExists, :FileExists, :Quuid, :MD5, :MachineExtraInfo, :DoClean, :FirstDetectionMethod
 
-        def initialize(hostip=nil, uuid=nil, filepath=nil, virusname=nil, status=nil, id=nil, _alias=nil, tags=nil, filecreatetime=nil, filemodifiertime=nil, createtime=nil, latestscantime=nil, level=nil, checkplatform=nil, processexists=nil, fileexists=nil, quuid=nil, md5=nil, machineextrainfo=nil)
+        def initialize(hostip=nil, uuid=nil, filepath=nil, virusname=nil, status=nil, id=nil, _alias=nil, tags=nil, filecreatetime=nil, filemodifiertime=nil, createtime=nil, latestscantime=nil, level=nil, checkplatform=nil, processexists=nil, fileexists=nil, quuid=nil, md5=nil, machineextrainfo=nil, doclean=nil, firstdetectionmethod=nil)
           @HostIp = hostip
           @Uuid = uuid
           @FilePath = filepath
@@ -31774,6 +31794,8 @@ module TencentCloud
           @Quuid = quuid
           @MD5 = md5
           @MachineExtraInfo = machineextrainfo
+          @DoClean = doclean
+          @FirstDetectionMethod = firstdetectionmethod
         end
 
         def deserialize(params)
@@ -31799,6 +31821,8 @@ module TencentCloud
             @MachineExtraInfo = MachineExtraInfo.new
             @MachineExtraInfo.deserialize(params['MachineExtraInfo'])
           end
+          @DoClean = params['DoClean']
+          @FirstDetectionMethod = params['FirstDetectionMethod']
         end
       end
 
@@ -31902,10 +31926,12 @@ module TencentCloud
         # @type FileExists: Boolean
         # @param ProcessExists: 木马进程是否存在
         # @type ProcessExists: Boolean
+        # @param FirstDetectionMethod: 首次检出方式0扫描;1实时监控
+        # @type FirstDetectionMethod: Integer
 
-        attr_accessor :VirusName, :FileSize, :MD5, :FilePath, :FileCreateTime, :FileModifierTime, :HarmDescribe, :SuggestScheme, :ServersName, :HostIp, :ProcessName, :ProcessID, :Tags, :Breadth, :Heat, :Id, :FileName, :CreateTime, :LatestScanTime, :Reference, :MachineWanIp, :PsTree, :MachineStatus, :Status, :Level, :CheckPlatform, :Uuid, :ModifyTime, :StrFileAccessTime, :MachineExtraInfo, :References, :FileExists, :ProcessExists
+        attr_accessor :VirusName, :FileSize, :MD5, :FilePath, :FileCreateTime, :FileModifierTime, :HarmDescribe, :SuggestScheme, :ServersName, :HostIp, :ProcessName, :ProcessID, :Tags, :Breadth, :Heat, :Id, :FileName, :CreateTime, :LatestScanTime, :Reference, :MachineWanIp, :PsTree, :MachineStatus, :Status, :Level, :CheckPlatform, :Uuid, :ModifyTime, :StrFileAccessTime, :MachineExtraInfo, :References, :FileExists, :ProcessExists, :FirstDetectionMethod
 
-        def initialize(virusname=nil, filesize=nil, md5=nil, filepath=nil, filecreatetime=nil, filemodifiertime=nil, harmdescribe=nil, suggestscheme=nil, serversname=nil, hostip=nil, processname=nil, processid=nil, tags=nil, breadth=nil, heat=nil, id=nil, filename=nil, createtime=nil, latestscantime=nil, reference=nil, machinewanip=nil, pstree=nil, machinestatus=nil, status=nil, level=nil, checkplatform=nil, uuid=nil, modifytime=nil, strfileaccesstime=nil, machineextrainfo=nil, references=nil, fileexists=nil, processexists=nil)
+        def initialize(virusname=nil, filesize=nil, md5=nil, filepath=nil, filecreatetime=nil, filemodifiertime=nil, harmdescribe=nil, suggestscheme=nil, serversname=nil, hostip=nil, processname=nil, processid=nil, tags=nil, breadth=nil, heat=nil, id=nil, filename=nil, createtime=nil, latestscantime=nil, reference=nil, machinewanip=nil, pstree=nil, machinestatus=nil, status=nil, level=nil, checkplatform=nil, uuid=nil, modifytime=nil, strfileaccesstime=nil, machineextrainfo=nil, references=nil, fileexists=nil, processexists=nil, firstdetectionmethod=nil)
           @VirusName = virusname
           @FileSize = filesize
           @MD5 = md5
@@ -31939,6 +31965,7 @@ module TencentCloud
           @References = references
           @FileExists = fileexists
           @ProcessExists = processexists
+          @FirstDetectionMethod = firstdetectionmethod
         end
 
         def deserialize(params)
@@ -31978,6 +32005,7 @@ module TencentCloud
           @References = params['References']
           @FileExists = params['FileExists']
           @ProcessExists = params['ProcessExists']
+          @FirstDetectionMethod = params['FirstDetectionMethod']
         end
       end
 
@@ -33628,10 +33656,14 @@ module TencentCloud
         # @type ProtectMode: Integer
         # @param ProtectFileScope: 查杀范围 0 脚本类之外的恶意文件，1全部恶意文件
         # @type ProtectFileScope: Integer
+        # @param QuaraUuids: 自选的隔离主机集合
+        # @type QuaraUuids: Array
+        # @param QuaraScope: 用户选择的隔离范围，0：默认全隔离 1：用户自选
+        # @type QuaraScope: Integer
 
-        attr_accessor :CheckPattern, :StartTime, :EndTime, :IsGlobal, :EnableScan, :MonitoringPattern, :Cycle, :RealTimeMonitoring, :QuuidList, :AutoIsolation, :KillProcess, :DoClean, :EngineType, :EnableInspiredEngine, :EnableMemShellScan, :ProtectMode, :ProtectFileScope
+        attr_accessor :CheckPattern, :StartTime, :EndTime, :IsGlobal, :EnableScan, :MonitoringPattern, :Cycle, :RealTimeMonitoring, :QuuidList, :AutoIsolation, :KillProcess, :DoClean, :EngineType, :EnableInspiredEngine, :EnableMemShellScan, :ProtectMode, :ProtectFileScope, :QuaraUuids, :QuaraScope
 
-        def initialize(checkpattern=nil, starttime=nil, endtime=nil, isglobal=nil, enablescan=nil, monitoringpattern=nil, cycle=nil, realtimemonitoring=nil, quuidlist=nil, autoisolation=nil, killprocess=nil, doclean=nil, enginetype=nil, enableinspiredengine=nil, enablememshellscan=nil, protectmode=nil, protectfilescope=nil)
+        def initialize(checkpattern=nil, starttime=nil, endtime=nil, isglobal=nil, enablescan=nil, monitoringpattern=nil, cycle=nil, realtimemonitoring=nil, quuidlist=nil, autoisolation=nil, killprocess=nil, doclean=nil, enginetype=nil, enableinspiredengine=nil, enablememshellscan=nil, protectmode=nil, protectfilescope=nil, quarauuids=nil, quarascope=nil)
           @CheckPattern = checkpattern
           @StartTime = starttime
           @EndTime = endtime
@@ -33649,6 +33681,8 @@ module TencentCloud
           @EnableMemShellScan = enablememshellscan
           @ProtectMode = protectmode
           @ProtectFileScope = protectfilescope
+          @QuaraUuids = quarauuids
+          @QuaraScope = quarascope
         end
 
         def deserialize(params)
@@ -33669,6 +33703,8 @@ module TencentCloud
           @EnableMemShellScan = params['EnableMemShellScan']
           @ProtectMode = params['ProtectMode']
           @ProtectFileScope = params['ProtectFileScope']
+          @QuaraUuids = params['QuaraUuids']
+          @QuaraScope = params['QuaraScope']
         end
       end
 
@@ -37679,10 +37715,12 @@ module TencentCloud
         # @type MachineExtraInfo: :class:`Tencentcloud::Cwp.v20180228.models.MachineExtraInfo`
         # @param Uuid: 主机uuid
         # @type Uuid: String
+        # @param FirstDetectionMethod: 首次检出方式 0扫描;1实时监控
+        # @type FirstDetectionMethod: Integer
 
-        attr_accessor :EventId, :HostName, :HostIp, :WanIp, :ProcessId, :FilePath, :CmdLine, :StartTime, :DetectTime, :VirusName, :CheckPlatform, :VirusTags, :ThreatDesc, :SuggestSolution, :ReferenceLink, :HandleStatus, :OnlineStatus, :MachineExtraInfo, :Uuid
+        attr_accessor :EventId, :HostName, :HostIp, :WanIp, :ProcessId, :FilePath, :CmdLine, :StartTime, :DetectTime, :VirusName, :CheckPlatform, :VirusTags, :ThreatDesc, :SuggestSolution, :ReferenceLink, :HandleStatus, :OnlineStatus, :MachineExtraInfo, :Uuid, :FirstDetectionMethod
 
-        def initialize(eventid=nil, hostname=nil, hostip=nil, wanip=nil, processid=nil, filepath=nil, cmdline=nil, starttime=nil, detecttime=nil, virusname=nil, checkplatform=nil, virustags=nil, threatdesc=nil, suggestsolution=nil, referencelink=nil, handlestatus=nil, onlinestatus=nil, machineextrainfo=nil, uuid=nil)
+        def initialize(eventid=nil, hostname=nil, hostip=nil, wanip=nil, processid=nil, filepath=nil, cmdline=nil, starttime=nil, detecttime=nil, virusname=nil, checkplatform=nil, virustags=nil, threatdesc=nil, suggestsolution=nil, referencelink=nil, handlestatus=nil, onlinestatus=nil, machineextrainfo=nil, uuid=nil, firstdetectionmethod=nil)
           @EventId = eventid
           @HostName = hostname
           @HostIp = hostip
@@ -37702,6 +37740,7 @@ module TencentCloud
           @OnlineStatus = onlinestatus
           @MachineExtraInfo = machineextrainfo
           @Uuid = uuid
+          @FirstDetectionMethod = firstdetectionmethod
         end
 
         def deserialize(params)
@@ -37727,6 +37766,7 @@ module TencentCloud
             @MachineExtraInfo.deserialize(params['MachineExtraInfo'])
           end
           @Uuid = params['Uuid']
+          @FirstDetectionMethod = params['FirstDetectionMethod']
         end
       end
 
@@ -38066,18 +38106,26 @@ module TencentCloud
       class ScanVulResponse < TencentCloud::Common::AbstractModel
         # @param TaskId: 任务id
         # @type TaskId: Integer
+        # @param BasicVersionCount: 自选主机里面包含基础版个数
+        # @type BasicVersionCount: Integer
+        # @param SuccessCount: 创建扫描任务机器个数
+        # @type SuccessCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TaskId, :RequestId
+        attr_accessor :TaskId, :BasicVersionCount, :SuccessCount, :RequestId
 
-        def initialize(taskid=nil, requestid=nil)
+        def initialize(taskid=nil, basicversioncount=nil, successcount=nil, requestid=nil)
           @TaskId = taskid
+          @BasicVersionCount = basicversioncount
+          @SuccessCount = successcount
           @RequestId = requestid
         end
 
         def deserialize(params)
           @TaskId = params['TaskId']
+          @BasicVersionCount = params['BasicVersionCount']
+          @SuccessCount = params['SuccessCount']
           @RequestId = params['RequestId']
         end
       end
@@ -41336,7 +41384,7 @@ module TencentCloud
 
       # 告警更新或插入的参数
       class WarningObject < TencentCloud::Common::AbstractModel
-        # @param Type: 事件告警类型；1：离线，2：木马，3：异常登录，4：爆破，5：漏洞（已拆分为9-12四种类型）6：高位命令，7：反弹sell，8：本地提权，9：系统组件漏洞，10：web应用漏洞，11：应急漏洞，12：安全基线，14：恶意请求，15: 网络攻击，16：Windows系统漏洞，17：Linux软件漏洞
+        # @param Type: 事件告警类型；1：离线，2：木马，3：异常登录，4：爆破，5：漏洞（已拆分为9-12四种类型）6：高危命令，7：反弹sell，8：本地提权，9：系统组件漏洞，10：web应用漏洞，11：应急漏洞，12：安全基线，14：恶意请求，15: 网络攻击，16：Windows系统漏洞，17：Linux软件漏洞
         # @type Type: Integer
         # @param DisablePhoneWarning: 1: 关闭告警 0: 开启告警
         # @type DisablePhoneWarning: Integer
@@ -41348,16 +41396,19 @@ module TencentCloud
         # @type ControlBits: String
         # @param HostRange: 告警主机范围类型，0:全部主机，1:按所属项目选，2:按腾讯云标签选，3:按主机安全标签选，4:自选主机
         # @type HostRange: Integer
+        # @param Unit: 单位
+        # @type Unit: String
 
-        attr_accessor :Type, :DisablePhoneWarning, :BeginTime, :EndTime, :ControlBits, :HostRange
+        attr_accessor :Type, :DisablePhoneWarning, :BeginTime, :EndTime, :ControlBits, :HostRange, :Unit
 
-        def initialize(type=nil, disablephonewarning=nil, begintime=nil, endtime=nil, controlbits=nil, hostrange=nil)
+        def initialize(type=nil, disablephonewarning=nil, begintime=nil, endtime=nil, controlbits=nil, hostrange=nil, unit=nil)
           @Type = type
           @DisablePhoneWarning = disablephonewarning
           @BeginTime = begintime
           @EndTime = endtime
           @ControlBits = controlbits
           @HostRange = hostrange
+          @Unit = unit
         end
 
         def deserialize(params)
@@ -41367,6 +41418,7 @@ module TencentCloud
           @EndTime = params['EndTime']
           @ControlBits = params['ControlBits']
           @HostRange = params['HostRange']
+          @Unit = params['Unit']
         end
       end
 

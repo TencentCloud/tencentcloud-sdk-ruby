@@ -260,16 +260,22 @@ module TencentCloud
         # @type PackageVersion: String
         # @param PackageLabel: 应用包标签
         # @type PackageLabel: String
+        # @param VersionName: 应用包版本号
+        # @type VersionName: String
 
-        attr_accessor :AndroidAppId, :Name, :AndroidAppVersion, :PackageName, :PackageVersion, :PackageLabel
+        attr_accessor :AndroidAppId, :Name, :AndroidAppVersion, :PackageName, :PackageVersion, :PackageLabel, :VersionName
+        extend Gem::Deprecate
+        deprecate :PackageVersion, :none, 2025, 7
+        deprecate :PackageVersion=, :none, 2025, 7
 
-        def initialize(androidappid=nil, name=nil, androidappversion=nil, packagename=nil, packageversion=nil, packagelabel=nil)
+        def initialize(androidappid=nil, name=nil, androidappversion=nil, packagename=nil, packageversion=nil, packagelabel=nil, versionname=nil)
           @AndroidAppId = androidappid
           @Name = name
           @AndroidAppVersion = androidappversion
           @PackageName = packagename
           @PackageVersion = packageversion
           @PackageLabel = packagelabel
+          @VersionName = versionname
         end
 
         def deserialize(params)
@@ -279,6 +285,7 @@ module TencentCloud
           @PackageName = params['PackageName']
           @PackageVersion = params['PackageVersion']
           @PackageLabel = params['PackageLabel']
+          @VersionName = params['VersionName']
         end
       end
 
@@ -394,6 +401,33 @@ module TencentCloud
         def deserialize(params)
           @Key = params['Key']
           @Value = params['Value']
+        end
+      end
+
+      # 安卓实例标签详情
+      class AndroidInstanceLabelDetail < TencentCloud::Common::AbstractModel
+        # @param Label: 标签
+        # @type Label: :class:`Tencentcloud::Gs.v20191118.models.AndroidInstanceLabel`
+        # @param Description: 标签描述
+        # @type Description: String
+        # @param CreateTime: 标签创建时间
+        # @type CreateTime: String
+
+        attr_accessor :Label, :Description, :CreateTime
+
+        def initialize(label=nil, description=nil, createtime=nil)
+          @Label = label
+          @Description = description
+          @CreateTime = createtime
+        end
+
+        def deserialize(params)
+          unless params['Label'].nil?
+            @Label = AndroidInstanceLabel.new
+            @Label.deserialize(params['Label'])
+          end
+          @Description = params['Description']
+          @CreateTime = params['CreateTime']
         end
       end
 
@@ -918,19 +952,23 @@ module TencentCloud
       class CreateAndroidInstanceLabelRequest < TencentCloud::Common::AbstractModel
         # @param Key: 标签键
         # @type Key: String
-        # @param Value: 标签值
+        # @param Value: 标签值。普通场景下，该值不需要填写；高级场景下，需要两个层级进行分组时才填写。
         # @type Value: String
+        # @param Description: 标签描述
+        # @type Description: String
 
-        attr_accessor :Key, :Value
+        attr_accessor :Key, :Value, :Description
 
-        def initialize(key=nil, value=nil)
+        def initialize(key=nil, value=nil, description=nil)
           @Key = key
           @Value = value
+          @Description = description
         end
 
         def deserialize(params)
           @Key = params['Key']
           @Value = params['Value']
+          @Description = params['Description']
         end
       end
 
@@ -1132,15 +1170,18 @@ module TencentCloud
         # @type HostSerialNumbers: Array
         # @param ImageId: 镜像 ID。如果不填，将使用默认的系统镜像
         # @type ImageId: String
+        # @param Labels: 安卓实例标签列表
+        # @type Labels: Array
 
-        attr_accessor :Zone, :Type, :Number, :HostSerialNumbers, :ImageId
+        attr_accessor :Zone, :Type, :Number, :HostSerialNumbers, :ImageId, :Labels
 
-        def initialize(zone=nil, type=nil, number=nil, hostserialnumbers=nil, imageid=nil)
+        def initialize(zone=nil, type=nil, number=nil, hostserialnumbers=nil, imageid=nil, labels=nil)
           @Zone = zone
           @Type = type
           @Number = number
           @HostSerialNumbers = hostserialnumbers
           @ImageId = imageid
+          @Labels = labels
         end
 
         def deserialize(params)
@@ -1149,6 +1190,14 @@ module TencentCloud
           @Number = params['Number']
           @HostSerialNumbers = params['HostSerialNumbers']
           @ImageId = params['ImageId']
+          unless params['Labels'].nil?
+            @Labels = []
+            params['Labels'].each do |i|
+              androidinstancelabel_tmp = AndroidInstanceLabel.new
+              androidinstancelabel_tmp.deserialize(i)
+              @Labels << androidinstancelabel_tmp
+            end
+          end
         end
       end
 
@@ -1792,14 +1841,20 @@ module TencentCloud
         # @type Total: Integer
         # @param Labels: 安卓实例标签列表
         # @type Labels: Array
+        # @param AndroidInstanceLabels: 安卓实例标签详情列表
+        # @type AndroidInstanceLabels: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Total, :Labels, :RequestId
+        attr_accessor :Total, :Labels, :AndroidInstanceLabels, :RequestId
+        extend Gem::Deprecate
+        deprecate :Labels, :none, 2025, 7
+        deprecate :Labels=, :none, 2025, 7
 
-        def initialize(total=nil, labels=nil, requestid=nil)
+        def initialize(total=nil, labels=nil, androidinstancelabels=nil, requestid=nil)
           @Total = total
           @Labels = labels
+          @AndroidInstanceLabels = androidinstancelabels
           @RequestId = requestid
         end
 
@@ -1811,6 +1866,14 @@ module TencentCloud
               androidinstancelabel_tmp = AndroidInstanceLabel.new
               androidinstancelabel_tmp.deserialize(i)
               @Labels << androidinstancelabel_tmp
+            end
+          end
+          unless params['AndroidInstanceLabels'].nil?
+            @AndroidInstanceLabels = []
+            params['AndroidInstanceLabels'].each do |i|
+              androidinstancelabeldetail_tmp = AndroidInstanceLabelDetail.new
+              androidinstancelabeldetail_tmp.deserialize(i)
+              @AndroidInstanceLabels << androidinstancelabeldetail_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -1931,11 +1994,11 @@ module TencentCloud
       class DescribeAndroidInstancesByAppsRequest < TencentCloud::Common::AbstractModel
         # @param Offset: 偏移量，默认为 0
         # @type Offset: Integer
-        # @param Limit: 限制量，默认为20，最大值为100
+        # @param Limit: 限制量，默认为 20，最大值为 500
         # @type Limit: Integer
-        # @param AndroidAppIds: 应用 ID 列表。通过应用 ID 做集合查询
+        # @param AndroidAppIds: 应用 ID 列表。当 AndroidIds 为多条数据时（例如 app1, app2），返回的实例列表为：安装了 app1 应用的实例和安装了 app2 应用的实例集合（并集）。
         # @type AndroidAppIds: Array
-        # @param Filters: 字段过滤器。Filter 的 Name 有以下值： AndroidInstanceId：实例 ID
+        # @param Filters: 字段过滤器，Filter 的 Name 有以下值： AndroidInstanceId：实例 Id
         # @type Filters: Array
 
         attr_accessor :Offset, :Limit, :AndroidAppIds, :Filters
@@ -2959,21 +3022,22 @@ module TencentCloud
       class ModifyAndroidInstancesLabelsRequest < TencentCloud::Common::AbstractModel
         # @param AndroidInstanceIds: 安卓实例 ID 列表
         # @type AndroidInstanceIds: Array
-        # @param AndroidInstanceLabels: 安卓实例标签列表
-        # @type AndroidInstanceLabels: Array
         # @param Operation: 操作类型。ADD：标签键不存在的添加新标签，标签键存在的将覆盖原有标签REMOVE：根据标签键删除标签REPLACE：使用请求标签列表替换原来所有标签CLEAR：清除所有标签
         # @type Operation: String
+        # @param AndroidInstanceLabels: 安卓实例标签列表
+        # @type AndroidInstanceLabels: Array
 
-        attr_accessor :AndroidInstanceIds, :AndroidInstanceLabels, :Operation
+        attr_accessor :AndroidInstanceIds, :Operation, :AndroidInstanceLabels
 
-        def initialize(androidinstanceids=nil, androidinstancelabels=nil, operation=nil)
+        def initialize(androidinstanceids=nil, operation=nil, androidinstancelabels=nil)
           @AndroidInstanceIds = androidinstanceids
-          @AndroidInstanceLabels = androidinstancelabels
           @Operation = operation
+          @AndroidInstanceLabels = androidinstancelabels
         end
 
         def deserialize(params)
           @AndroidInstanceIds = params['AndroidInstanceIds']
+          @Operation = params['Operation']
           unless params['AndroidInstanceLabels'].nil?
             @AndroidInstanceLabels = []
             params['AndroidInstanceLabels'].each do |i|
@@ -2982,7 +3046,6 @@ module TencentCloud
               @AndroidInstanceLabels << androidinstancelabel_tmp
             end
           end
-          @Operation = params['Operation']
         end
       end
 

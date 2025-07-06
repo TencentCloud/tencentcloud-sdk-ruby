@@ -685,16 +685,16 @@ module TencentCloud
 
         attr_accessor :GoodsNum, :Memory, :Storage, :ClusterId, :Zone, :ProjectId, :Pid, :Machine, :VpcId, :SubnetId, :DbVersionId, :Manual, :DeviceNo, :SecurityGroupIds, :DcnInstanceId, :DcnRegion, :InstanceName, :ResourceTags, :Ipv6Flag, :InitParams, :NodeNum, :MasterHostId, :SlaveHostIds, :RollbackInstanceId, :RollbackTime, :DcnSyncMode
         extend Gem::Deprecate
-        deprecate :Zone, :none, 2025, 6
-        deprecate :Zone=, :none, 2025, 6
-        deprecate :Pid, :none, 2025, 6
-        deprecate :Pid=, :none, 2025, 6
-        deprecate :Machine, :none, 2025, 6
-        deprecate :Machine=, :none, 2025, 6
-        deprecate :Manual, :none, 2025, 6
-        deprecate :Manual=, :none, 2025, 6
-        deprecate :DeviceNo, :none, 2025, 6
-        deprecate :DeviceNo=, :none, 2025, 6
+        deprecate :Zone, :none, 2025, 7
+        deprecate :Zone=, :none, 2025, 7
+        deprecate :Pid, :none, 2025, 7
+        deprecate :Pid=, :none, 2025, 7
+        deprecate :Machine, :none, 2025, 7
+        deprecate :Machine=, :none, 2025, 7
+        deprecate :Manual, :none, 2025, 7
+        deprecate :Manual=, :none, 2025, 7
+        deprecate :DeviceNo, :none, 2025, 7
+        deprecate :DeviceNo=, :none, 2025, 7
 
         def initialize(goodsnum=nil, memory=nil, storage=nil, clusterid=nil, zone=nil, projectid=nil, pid=nil, machine=nil, vpcid=nil, subnetid=nil, dbversionid=nil, manual=nil, deviceno=nil, securitygroupids=nil, dcninstanceid=nil, dcnregion=nil, instancename=nil, resourcetags=nil, ipv6flag=nil, initparams=nil, nodenum=nil, masterhostid=nil, slavehostids=nil, rollbackinstanceid=nil, rollbacktime=nil, dcnsyncmode=nil)
           @GoodsNum = goodsnum
@@ -5890,16 +5890,25 @@ module TencentCloud
         # @type VoucherIds: Array
         # @param Zones: 变更部署时指定的新可用区列表，第1个为主可用区，其余为从可用区
         # @type Zones: Array
+        # @param SwitchStartTime: 切换开始时间，格式如: "2019-12-12 07:00:00"。开始时间必须在当前时间一个小时以后，3天以内。
+        # @type SwitchStartTime: String
+        # @param SwitchEndTime: 切换结束时间, 格式如: "2019-12-12 07:15:00"，结束时间必须大于开始时间。
+        # @type SwitchEndTime: String
+        # @param SwitchAutoRetry: 是否自动重试。 0：不自动重试 1：自动重试
+        # @type SwitchAutoRetry: Integer
 
-        attr_accessor :InstanceId, :Memory, :Storage, :AutoVoucher, :VoucherIds, :Zones
+        attr_accessor :InstanceId, :Memory, :Storage, :AutoVoucher, :VoucherIds, :Zones, :SwitchStartTime, :SwitchEndTime, :SwitchAutoRetry
 
-        def initialize(instanceid=nil, memory=nil, storage=nil, autovoucher=nil, voucherids=nil, zones=nil)
+        def initialize(instanceid=nil, memory=nil, storage=nil, autovoucher=nil, voucherids=nil, zones=nil, switchstarttime=nil, switchendtime=nil, switchautoretry=nil)
           @InstanceId = instanceid
           @Memory = memory
           @Storage = storage
           @AutoVoucher = autovoucher
           @VoucherIds = voucherids
           @Zones = zones
+          @SwitchStartTime = switchstarttime
+          @SwitchEndTime = switchendtime
+          @SwitchAutoRetry = switchautoretry
         end
 
         def deserialize(params)
@@ -5909,6 +5918,9 @@ module TencentCloud
           @AutoVoucher = params['AutoVoucher']
           @VoucherIds = params['VoucherIds']
           @Zones = params['Zones']
+          @SwitchStartTime = params['SwitchStartTime']
+          @SwitchEndTime = params['SwitchEndTime']
+          @SwitchAutoRetry = params['SwitchAutoRetry']
         end
       end
 

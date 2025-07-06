@@ -2592,16 +2592,20 @@ module TencentCloud
         # @param Position: 类目顺序
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Position: Integer
+        # @param NameEn: 类目名称英文
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NameEn: String
 
-        attr_accessor :AppId, :Id, :Level, :Name, :ParentId, :Position
+        attr_accessor :AppId, :Id, :Level, :Name, :ParentId, :Position, :NameEn
 
-        def initialize(appid=nil, id=nil, level=nil, name=nil, parentid=nil, position=nil)
+        def initialize(appid=nil, id=nil, level=nil, name=nil, parentid=nil, position=nil, nameen=nil)
           @AppId = appid
           @Id = id
           @Level = level
           @Name = name
           @ParentId = parentid
           @Position = position
+          @NameEn = nameen
         end
 
         def deserialize(params)
@@ -2611,6 +2615,7 @@ module TencentCloud
           @Name = params['Name']
           @ParentId = params['ParentId']
           @Position = params['Position']
+          @NameEn = params['NameEn']
         end
       end
 

@@ -1084,6 +1084,49 @@ module TencentCloud
         end
       end
 
+      # CancelTasks请求参数结构体
+      class CancelTasksRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务Id数组，全局唯一
+        # @type TaskId: Array
+        # @param Config: 配置信息，key-value数组，对外不可见。key1：AuthorityRole（鉴权角色，默认传SubUin，base64加密，仅在jdbc提交任务时使用）
+        # @type Config: Array
+
+        attr_accessor :TaskId, :Config
+
+        def initialize(taskid=nil, config=nil)
+          @TaskId = taskid
+          @Config = config
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          unless params['Config'].nil?
+            @Config = []
+            params['Config'].each do |i|
+              kvpair_tmp = KVPair.new
+              kvpair_tmp.deserialize(i)
+              @Config << kvpair_tmp
+            end
+          end
+        end
+      end
+
+      # CancelTasks返回参数结构体
+      class CancelTasksResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CheckDataEngineConfigPairsValidity请求参数结构体
       class CheckDataEngineConfigPairsValidityRequest < TencentCloud::Common::AbstractModel
         # @param ChildImageVersionId: 引擎小版本ID

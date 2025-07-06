@@ -705,7 +705,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询安装指定应用的安卓实例
+        # 批量查询安装指定应用的安卓实例
 
         # @param request: Request instance for DescribeAndroidInstancesByApps.
         # @type request: :class:`Tencentcloud::gs::V20191118::DescribeAndroidInstancesByAppsRequest`

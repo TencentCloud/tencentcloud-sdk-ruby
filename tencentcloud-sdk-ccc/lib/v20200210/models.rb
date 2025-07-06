@@ -5773,16 +5773,19 @@ module TencentCloud
         # - Priority=1、Interrupt=true，会打断现有交互，立刻播报，播报过程中不会被打断
         # - Priority=1、Interrupt=false、DropMode=1，会等待当前交互结束，再进行播报，播报过程中不会被打断
         # @type Priority: Integer
+        # @param AddHistory: 是否将文本加入到llm历史上下文中
+        # @type AddHistory: Boolean
 
-        attr_accessor :Text, :Interrupt, :StopAfterPlay, :Audio, :DropMode, :Priority
+        attr_accessor :Text, :Interrupt, :StopAfterPlay, :Audio, :DropMode, :Priority, :AddHistory
 
-        def initialize(text=nil, interrupt=nil, stopafterplay=nil, audio=nil, dropmode=nil, priority=nil)
+        def initialize(text=nil, interrupt=nil, stopafterplay=nil, audio=nil, dropmode=nil, priority=nil, addhistory=nil)
           @Text = text
           @Interrupt = interrupt
           @StopAfterPlay = stopafterplay
           @Audio = audio
           @DropMode = dropmode
           @Priority = priority
+          @AddHistory = addhistory
         end
 
         def deserialize(params)
@@ -5792,6 +5795,7 @@ module TencentCloud
           @Audio = params['Audio']
           @DropMode = params['DropMode']
           @Priority = params['Priority']
+          @AddHistory = params['AddHistory']
         end
       end
 

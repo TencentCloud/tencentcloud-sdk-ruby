@@ -221,6 +221,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询终端自定义分组列表，私有化调用path为：/capi/Assets/Device/DescribeDeviceVirtualGroups
+
+        # @param request: Request instance for DescribeDeviceVirtualGroups.
+        # @type request: :class:`Tencentcloud::ioa::V20220601::DescribeDeviceVirtualGroupsRequest`
+        # @rtype: :class:`Tencentcloud::ioa::V20220601::DescribeDeviceVirtualGroupsResponse`
+        def DescribeDeviceVirtualGroups(request)
+          body = send_request('DescribeDeviceVirtualGroups', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDeviceVirtualGroupsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询满足条件的终端数据详情，私有化调用path为：/capi/Assets/Device/DescribeDevices
 
         # @param request: Request instance for DescribeDevices.

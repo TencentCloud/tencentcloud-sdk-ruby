@@ -1848,10 +1848,12 @@ module TencentCloud
         # @type CosBucket: String
         # @param NodeMarks: 节点标识信息，目前只提供给tf平台使用
         # @type NodeMarks: Array
+        # @param LoadBalancerId: clb id
+        # @type LoadBalancerId: String
 
-        attr_accessor :ProductVersion, :EnableSupportHAFlag, :InstanceName, :InstanceChargeType, :LoginSettings, :SceneSoftwareConfig, :InstanceChargePrepaid, :SecurityGroupIds, :ScriptBootstrapActionConfig, :ClientToken, :NeedMasterWan, :EnableRemoteLoginFlag, :EnableKerberosFlag, :CustomConf, :Tags, :DisasterRecoverGroupIds, :EnableCbsEncryptFlag, :MetaDBInfo, :DependService, :ZoneResourceConfiguration, :CosBucket, :NodeMarks
+        attr_accessor :ProductVersion, :EnableSupportHAFlag, :InstanceName, :InstanceChargeType, :LoginSettings, :SceneSoftwareConfig, :InstanceChargePrepaid, :SecurityGroupIds, :ScriptBootstrapActionConfig, :ClientToken, :NeedMasterWan, :EnableRemoteLoginFlag, :EnableKerberosFlag, :CustomConf, :Tags, :DisasterRecoverGroupIds, :EnableCbsEncryptFlag, :MetaDBInfo, :DependService, :ZoneResourceConfiguration, :CosBucket, :NodeMarks, :LoadBalancerId
 
-        def initialize(productversion=nil, enablesupporthaflag=nil, instancename=nil, instancechargetype=nil, loginsettings=nil, scenesoftwareconfig=nil, instancechargeprepaid=nil, securitygroupids=nil, scriptbootstrapactionconfig=nil, clienttoken=nil, needmasterwan=nil, enableremoteloginflag=nil, enablekerberosflag=nil, customconf=nil, tags=nil, disasterrecovergroupids=nil, enablecbsencryptflag=nil, metadbinfo=nil, dependservice=nil, zoneresourceconfiguration=nil, cosbucket=nil, nodemarks=nil)
+        def initialize(productversion=nil, enablesupporthaflag=nil, instancename=nil, instancechargetype=nil, loginsettings=nil, scenesoftwareconfig=nil, instancechargeprepaid=nil, securitygroupids=nil, scriptbootstrapactionconfig=nil, clienttoken=nil, needmasterwan=nil, enableremoteloginflag=nil, enablekerberosflag=nil, customconf=nil, tags=nil, disasterrecovergroupids=nil, enablecbsencryptflag=nil, metadbinfo=nil, dependservice=nil, zoneresourceconfiguration=nil, cosbucket=nil, nodemarks=nil, loadbalancerid=nil)
           @ProductVersion = productversion
           @EnableSupportHAFlag = enablesupporthaflag
           @InstanceName = instancename
@@ -1874,6 +1876,7 @@ module TencentCloud
           @ZoneResourceConfiguration = zoneresourceconfiguration
           @CosBucket = cosbucket
           @NodeMarks = nodemarks
+          @LoadBalancerId = loadbalancerid
         end
 
         def deserialize(params)
@@ -1946,6 +1949,7 @@ module TencentCloud
               @NodeMarks << nodemark_tmp
             end
           end
+          @LoadBalancerId = params['LoadBalancerId']
         end
       end
 
@@ -4047,15 +4051,18 @@ module TencentCloud
         # @param MetaInfo: 用户所有的标签键列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MetaInfo: Array
+        # @param RedisInfo: 集群依赖的Redis实例Id
+        # @type RedisInfo: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TotalCnt, :NodeList, :MetaInfo, :RequestId
+        attr_accessor :TotalCnt, :NodeList, :MetaInfo, :RedisInfo, :RequestId
 
-        def initialize(totalcnt=nil, nodelist=nil, metainfo=nil, requestid=nil)
+        def initialize(totalcnt=nil, nodelist=nil, metainfo=nil, redisinfo=nil, requestid=nil)
           @TotalCnt = totalcnt
           @NodeList = nodelist
           @MetaInfo = metainfo
+          @RedisInfo = redisinfo
           @RequestId = requestid
         end
 
@@ -4070,6 +4077,7 @@ module TencentCloud
             end
           end
           @MetaInfo = params['MetaInfo']
+          @RedisInfo = params['RedisInfo']
           @RequestId = params['RequestId']
         end
       end

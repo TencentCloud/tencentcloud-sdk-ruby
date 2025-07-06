@@ -847,6 +847,90 @@ module TencentCloud
         end
       end
 
+      # 查询返回终端自定义分组的Data数据
+      class DescribeDeviceVirtualGroupsPageRsp < TencentCloud::Common::AbstractModel
+        # @param Page: 分页公共对象
+        # @type Page: :class:`Tencentcloud::Ioa.v20220601.models.Paging`
+        # @param Items: 终端自定义分组列表数据
+        # @type Items: Array
+
+        attr_accessor :Page, :Items
+
+        def initialize(page=nil, items=nil)
+          @Page = page
+          @Items = items
+        end
+
+        def deserialize(params)
+          unless params['Page'].nil?
+            @Page = Paging.new
+            @Page.deserialize(params['Page'])
+          end
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              devicevirtualdevicegroupsdetail_tmp = DeviceVirtualDeviceGroupsDetail.new
+              devicevirtualdevicegroupsdetail_tmp.deserialize(i)
+              @Items << devicevirtualdevicegroupsdetail_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeDeviceVirtualGroups请求参数结构体
+      class DescribeDeviceVirtualGroupsRequest < TencentCloud::Common::AbstractModel
+        # @param DomainInstanceId: 管理域实例ID，用于CAM管理域权限分配。若企业未进行管理域的划分，可直接传入根域"1"，此时表示针对当前企业的全部设备和账号进行接口CRUD，具体CRUD的影响范围限制于相应接口的入参。
+        # @type DomainInstanceId: String
+        # @param Condition: 滤条件、分页参数 <li>Name - String - 是否必填：否 - 操作符: like  - 排序支持：否- 按终端自定义分组过滤。</li> <li>DeviceVirtualGroupName - String - 是否必填：否 - 操作符: like  - 排序支持：否- 按终端自定义分组过滤。</li>
+        # @type Condition: :class:`Tencentcloud::Ioa.v20220601.models.Condition`
+        # @param OsType: 必填，系统类型（0: win，1：linux，2: mac，4：android，5：ios   默认值0）
+        # @type OsType: Integer
+        # @param VirtualGroupIds: 非必填，自定义分组ids
+        # @type VirtualGroupIds: Array
+
+        attr_accessor :DomainInstanceId, :Condition, :OsType, :VirtualGroupIds
+
+        def initialize(domaininstanceid=nil, condition=nil, ostype=nil, virtualgroupids=nil)
+          @DomainInstanceId = domaininstanceid
+          @Condition = condition
+          @OsType = ostype
+          @VirtualGroupIds = virtualgroupids
+        end
+
+        def deserialize(params)
+          @DomainInstanceId = params['DomainInstanceId']
+          unless params['Condition'].nil?
+            @Condition = Condition.new
+            @Condition.deserialize(params['Condition'])
+          end
+          @OsType = params['OsType']
+          @VirtualGroupIds = params['VirtualGroupIds']
+        end
+      end
+
+      # DescribeDeviceVirtualGroups返回参数结构体
+      class DescribeDeviceVirtualGroupsResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 查询终端自定义分组的Data数据
+        # @type Data: :class:`Tencentcloud::Ioa.v20220601.models.DescribeDeviceVirtualGroupsPageRsp`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = DescribeDeviceVirtualGroupsPageRsp.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 分页的data数据
       class DescribeDevicesPageRsp < TencentCloud::Common::AbstractModel
         # @param Paging: 数据分页信息
@@ -1935,6 +2019,42 @@ module TencentCloud
           @StartType = params['StartType']
           @State = params['State']
           @User = params['User']
+        end
+      end
+
+      # 终端自定义分组列表数据
+      class DeviceVirtualDeviceGroupsDetail < TencentCloud::Common::AbstractModel
+        # @param Id: 终端自定义分组id
+        # @type Id: Integer
+        # @param DeviceVirtualGroupName: 自定义分组名称
+        # @type DeviceVirtualGroupName: String
+        # @param DeviceCount: 设备数
+        # @type DeviceCount: Integer
+        # @param OsType: 系统类型（0: win，1：linux，2: mac，4：android，5：ios  ）
+        # @type OsType: Integer
+        # @param Itime: 创建时间
+        # @type Itime: String
+        # @param Utime: 更新时间
+        # @type Utime: String
+
+        attr_accessor :Id, :DeviceVirtualGroupName, :DeviceCount, :OsType, :Itime, :Utime
+
+        def initialize(id=nil, devicevirtualgroupname=nil, devicecount=nil, ostype=nil, itime=nil, utime=nil)
+          @Id = id
+          @DeviceVirtualGroupName = devicevirtualgroupname
+          @DeviceCount = devicecount
+          @OsType = ostype
+          @Itime = itime
+          @Utime = utime
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @DeviceVirtualGroupName = params['DeviceVirtualGroupName']
+          @DeviceCount = params['DeviceCount']
+          @OsType = params['OsType']
+          @Itime = params['Itime']
+          @Utime = params['Utime']
         end
       end
 
