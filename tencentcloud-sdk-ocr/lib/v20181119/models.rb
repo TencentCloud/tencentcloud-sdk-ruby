@@ -1251,15 +1251,23 @@ module TencentCloud
         # 0：正常
         # 1：有PS
         # @type PSCheck: Integer
+        # @param BlurCheck: 是否模糊：
+        # 0:正常
+        # 1:模糊
+        # @type BlurCheck: Integer
+        # @param BlurScore: 模糊分数， 范围：0.0-1.0，分数越高越模糊，建议阈值为0.5
+        # @type BlurScore: Float
 
-        attr_accessor :BorderCheck, :OcclusionCheck, :CopyCheck, :ReshootCheck, :PSCheck
+        attr_accessor :BorderCheck, :OcclusionCheck, :CopyCheck, :ReshootCheck, :PSCheck, :BlurCheck, :BlurScore
 
-        def initialize(bordercheck=nil, occlusioncheck=nil, copycheck=nil, reshootcheck=nil, pscheck=nil)
+        def initialize(bordercheck=nil, occlusioncheck=nil, copycheck=nil, reshootcheck=nil, pscheck=nil, blurcheck=nil, blurscore=nil)
           @BorderCheck = bordercheck
           @OcclusionCheck = occlusioncheck
           @CopyCheck = copycheck
           @ReshootCheck = reshootcheck
           @PSCheck = pscheck
+          @BlurCheck = blurcheck
+          @BlurScore = blurscore
         end
 
         def deserialize(params)
@@ -1268,6 +1276,8 @@ module TencentCloud
           @CopyCheck = params['CopyCheck']
           @ReshootCheck = params['ReshootCheck']
           @PSCheck = params['PSCheck']
+          @BlurCheck = params['BlurCheck']
+          @BlurScore = params['BlurScore']
         end
       end
 
@@ -3048,6 +3058,9 @@ module TencentCloud
         # Table -- 表格模版
         # SteelLabel -- 实物标签识别模板
         # CarInsurance -- 车辆保险单识别模板
+        # MultiRealEstateCertificate -- 房产材料识别模板
+        # MultiRealEstateMaterial -- 房产证明识别模板
+        # HongKongUtilityBill -- 香港水电煤单识别模板
         # @type ConfigId: String
         # @param EnableCoord: 是否开启全文字段坐标值的识别
         # @type EnableCoord: Boolean
@@ -9765,10 +9778,12 @@ module TencentCloud
         # @type EnablePSCheck: Boolean
         # @param EnableWordCheck: 默认值为false，打开返回字段级反光和字段级完整性告警。类型为：临时、港澳台居住证、外国人居住证失效
         # @type EnableWordCheck: Boolean
+        # @param EnableQualityCheck: 默认值为false，打开返回证件是否模糊。
+        # @type EnableQualityCheck: Boolean
 
-        attr_accessor :ImageBase64, :ImageUrl, :CardType, :EnablePortrait, :EnableCropImage, :EnableBorderCheck, :EnableOcclusionCheck, :EnableCopyCheck, :EnableReshootCheck, :EnablePSCheck, :EnableWordCheck
+        attr_accessor :ImageBase64, :ImageUrl, :CardType, :EnablePortrait, :EnableCropImage, :EnableBorderCheck, :EnableOcclusionCheck, :EnableCopyCheck, :EnableReshootCheck, :EnablePSCheck, :EnableWordCheck, :EnableQualityCheck
 
-        def initialize(imagebase64=nil, imageurl=nil, cardtype=nil, enableportrait=nil, enablecropimage=nil, enablebordercheck=nil, enableocclusioncheck=nil, enablecopycheck=nil, enablereshootcheck=nil, enablepscheck=nil, enablewordcheck=nil)
+        def initialize(imagebase64=nil, imageurl=nil, cardtype=nil, enableportrait=nil, enablecropimage=nil, enablebordercheck=nil, enableocclusioncheck=nil, enablecopycheck=nil, enablereshootcheck=nil, enablepscheck=nil, enablewordcheck=nil, enablequalitycheck=nil)
           @ImageBase64 = imagebase64
           @ImageUrl = imageurl
           @CardType = cardtype
@@ -9780,6 +9795,7 @@ module TencentCloud
           @EnableReshootCheck = enablereshootcheck
           @EnablePSCheck = enablepscheck
           @EnableWordCheck = enablewordcheck
+          @EnableQualityCheck = enablequalitycheck
         end
 
         def deserialize(params)
@@ -9794,6 +9810,7 @@ module TencentCloud
           @EnableReshootCheck = params['EnableReshootCheck']
           @EnablePSCheck = params['EnablePSCheck']
           @EnableWordCheck = params['EnableWordCheck']
+          @EnableQualityCheck = params['EnableQualityCheck']
         end
       end
 

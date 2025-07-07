@@ -5514,10 +5514,12 @@ module TencentCloud
         # @param LatestOperationErrorMsg: 实例的最新操作错误信息。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LatestOperationErrorMsg: String
+        # @param PublicIPv6Addresses: 实例绑定的公网IPv6地址。
+        # @type PublicIPv6Addresses: Array
 
-        attr_accessor :Placement, :InstanceId, :InstanceType, :CPU, :Memory, :RestrictState, :InstanceName, :InstanceChargeType, :SystemDisk, :DataDisks, :PrivateIpAddresses, :PublicIpAddresses, :InternetAccessible, :VirtualPrivateCloud, :ImageId, :RenewFlag, :CreatedTime, :ExpiredTime, :OsName, :SecurityGroupIds, :LoginSettings, :InstanceState, :Tags, :StopChargingMode, :Uuid, :LatestOperation, :LatestOperationState, :LatestOperationRequestId, :DisasterRecoverGroupId, :IPv6Addresses, :CamRoleName, :HpcClusterId, :RdmaIpAddresses, :DedicatedClusterId, :IsolatedSource, :GPUInfo, :LicenseType, :DisableApiTermination, :DefaultLoginUser, :DefaultLoginPort, :LatestOperationErrorMsg
+        attr_accessor :Placement, :InstanceId, :InstanceType, :CPU, :Memory, :RestrictState, :InstanceName, :InstanceChargeType, :SystemDisk, :DataDisks, :PrivateIpAddresses, :PublicIpAddresses, :InternetAccessible, :VirtualPrivateCloud, :ImageId, :RenewFlag, :CreatedTime, :ExpiredTime, :OsName, :SecurityGroupIds, :LoginSettings, :InstanceState, :Tags, :StopChargingMode, :Uuid, :LatestOperation, :LatestOperationState, :LatestOperationRequestId, :DisasterRecoverGroupId, :IPv6Addresses, :CamRoleName, :HpcClusterId, :RdmaIpAddresses, :DedicatedClusterId, :IsolatedSource, :GPUInfo, :LicenseType, :DisableApiTermination, :DefaultLoginUser, :DefaultLoginPort, :LatestOperationErrorMsg, :PublicIPv6Addresses
 
-        def initialize(placement=nil, instanceid=nil, instancetype=nil, cpu=nil, memory=nil, restrictstate=nil, instancename=nil, instancechargetype=nil, systemdisk=nil, datadisks=nil, privateipaddresses=nil, publicipaddresses=nil, internetaccessible=nil, virtualprivatecloud=nil, imageid=nil, renewflag=nil, createdtime=nil, expiredtime=nil, osname=nil, securitygroupids=nil, loginsettings=nil, instancestate=nil, tags=nil, stopchargingmode=nil, uuid=nil, latestoperation=nil, latestoperationstate=nil, latestoperationrequestid=nil, disasterrecovergroupid=nil, ipv6addresses=nil, camrolename=nil, hpcclusterid=nil, rdmaipaddresses=nil, dedicatedclusterid=nil, isolatedsource=nil, gpuinfo=nil, licensetype=nil, disableapitermination=nil, defaultloginuser=nil, defaultloginport=nil, latestoperationerrormsg=nil)
+        def initialize(placement=nil, instanceid=nil, instancetype=nil, cpu=nil, memory=nil, restrictstate=nil, instancename=nil, instancechargetype=nil, systemdisk=nil, datadisks=nil, privateipaddresses=nil, publicipaddresses=nil, internetaccessible=nil, virtualprivatecloud=nil, imageid=nil, renewflag=nil, createdtime=nil, expiredtime=nil, osname=nil, securitygroupids=nil, loginsettings=nil, instancestate=nil, tags=nil, stopchargingmode=nil, uuid=nil, latestoperation=nil, latestoperationstate=nil, latestoperationrequestid=nil, disasterrecovergroupid=nil, ipv6addresses=nil, camrolename=nil, hpcclusterid=nil, rdmaipaddresses=nil, dedicatedclusterid=nil, isolatedsource=nil, gpuinfo=nil, licensetype=nil, disableapitermination=nil, defaultloginuser=nil, defaultloginport=nil, latestoperationerrormsg=nil, publicipv6addresses=nil)
           @Placement = placement
           @InstanceId = instanceid
           @InstanceType = instancetype
@@ -5559,6 +5561,7 @@ module TencentCloud
           @DefaultLoginUser = defaultloginuser
           @DefaultLoginPort = defaultloginport
           @LatestOperationErrorMsg = latestoperationerrormsg
+          @PublicIPv6Addresses = publicipv6addresses
         end
 
         def deserialize(params)
@@ -5635,6 +5638,7 @@ module TencentCloud
           @DefaultLoginUser = params['DefaultLoginUser']
           @DefaultLoginPort = params['DefaultLoginPort']
           @LatestOperationErrorMsg = params['LatestOperationErrorMsg']
+          @PublicIPv6Addresses = params['PublicIPv6Addresses']
         end
       end
 
@@ -5968,14 +5972,55 @@ module TencentCloud
         # @type PublicIpAssigned: Boolean
         # @param BandwidthPackageId: 带宽包ID。可通过[ DescribeBandwidthPackages ](https://cloud.tencent.com/document/api/215/19209)接口返回值中的`BandwidthPackageId`获取。该参数仅在RunInstances接口中作为入参使用。
         # @type BandwidthPackageId: String
+        # @param InternetServiceProvider: 线路类型。各种线路类型详情可参考：[EIP 的 IP 地址类型](https://cloud.tencent.com/document/product/1199/41646)。默认值：BGP。
 
-        attr_accessor :InternetChargeType, :InternetMaxBandwidthOut, :PublicIpAssigned, :BandwidthPackageId
+        # - BGP：常规 BGP 线路
 
-        def initialize(internetchargetype=nil, internetmaxbandwidthout=nil, publicipassigned=nil, bandwidthpackageid=nil)
+        # 已开通静态单线IP白名单的用户，可选值：
+
+        #  - CMCC：中国移动
+        #  - CTCC：中国电信
+        #  - CUCC：中国联通
+
+        # 注意：仅部分地域支持静态单线IP。
+        # 示例值：BGP
+        # @type InternetServiceProvider: String
+        # @param IPv4AddressType: 公网 IP 类型。
+
+        # - WanIP：普通公网IP。
+        # - HighQualityEIP：精品 IP。仅新加坡和中国香港支持精品IP。
+        # - AntiDDoSEIP：高防 IP。仅部分地域支持高防IP，详情可见[弹性公网IP产品概述](https://cloud.tencent.com/document/product/1199/41646)。
+
+        # 如需为资源分配公网IPv4地址，请指定公网IPv4地址类型。
+
+        # 示例值：WanIP
+
+        # 此功能仅部分地区灰度开发，如需使用[请提交工单咨询](https://console.cloud.tencent.com/workorder/category)
+        # @type IPv4AddressType: String
+        # @param IPv6AddressType: 弹性公网 IPv6 类型。
+        # - EIPv6：弹性公网 IPv6。
+        # - HighQualityEIPv6：精品 IPv6。仅中国香港支持精品IPv6。
+
+        # 如需为资源分配IPv6地址，请指定弹性公网IPv6类型。
+        # 示例值：EIPv6
+
+        # 此功能仅部分地区灰度开发，如需使用[请提交工单咨询](https://console.cloud.tencent.com/workorder/category)
+        # @type IPv6AddressType: String
+        # @param AntiDDoSPackageId: 高防包唯一ID，申请高防IP时，该字段必传。
+        # 示例值：bgp-12345678
+        # @type AntiDDoSPackageId: String
+
+        attr_accessor :InternetChargeType, :InternetMaxBandwidthOut, :PublicIpAssigned, :BandwidthPackageId, :InternetServiceProvider, :IPv4AddressType, :IPv6AddressType, :AntiDDoSPackageId
+
+        def initialize(internetchargetype=nil, internetmaxbandwidthout=nil, publicipassigned=nil, bandwidthpackageid=nil, internetserviceprovider=nil, ipv4addresstype=nil, ipv6addresstype=nil, antiddospackageid=nil)
           @InternetChargeType = internetchargetype
           @InternetMaxBandwidthOut = internetmaxbandwidthout
           @PublicIpAssigned = publicipassigned
           @BandwidthPackageId = bandwidthpackageid
+          @InternetServiceProvider = internetserviceprovider
+          @IPv4AddressType = ipv4addresstype
+          @IPv6AddressType = ipv6addresstype
+          @AntiDDoSPackageId = antiddospackageid
         end
 
         def deserialize(params)
@@ -5983,6 +6028,10 @@ module TencentCloud
           @InternetMaxBandwidthOut = params['InternetMaxBandwidthOut']
           @PublicIpAssigned = params['PublicIpAssigned']
           @BandwidthPackageId = params['BandwidthPackageId']
+          @InternetServiceProvider = params['InternetServiceProvider']
+          @IPv4AddressType = params['IPv4AddressType']
+          @IPv6AddressType = params['IPv6AddressType']
+          @AntiDDoSPackageId = params['AntiDDoSPackageId']
         end
       end
 
@@ -9138,19 +9187,26 @@ module TencentCloud
       class TerminateInstancesRequest < TencentCloud::Common::AbstractModel
         # @param InstanceIds: 一个或多个待操作的实例ID。可通过 [DescribeInstances](https://cloud.tencent.com/document/api/213/15728) 接口返回值中的`InstanceId`获取。每次请求批量实例的上限为100。
         # @type InstanceIds: Array
+        # @param ReleaseAddress: 释放弹性IP。EIP2.0下，仅提供主网卡下首个EIP，EIP类型限定在HighQualityEIP、AntiDDoSEIP、EIPv6、HighQualityEIPv6这几种类型。默认行为不释放。
+
+        # 示例值：true
+        # 默认值：false
+        # @type ReleaseAddress: Boolean
         # @param ReleasePrepaidDataDisks: 释放实例挂载的包年包月数据盘。true表示销毁实例同时释放包年包月数据盘，false表示只销毁实例。
         # 默认值：false
         # @type ReleasePrepaidDataDisks: Boolean
 
-        attr_accessor :InstanceIds, :ReleasePrepaidDataDisks
+        attr_accessor :InstanceIds, :ReleaseAddress, :ReleasePrepaidDataDisks
 
-        def initialize(instanceids=nil, releaseprepaiddatadisks=nil)
+        def initialize(instanceids=nil, releaseaddress=nil, releaseprepaiddatadisks=nil)
           @InstanceIds = instanceids
+          @ReleaseAddress = releaseaddress
           @ReleasePrepaidDataDisks = releaseprepaiddatadisks
         end
 
         def deserialize(params)
           @InstanceIds = params['InstanceIds']
+          @ReleaseAddress = params['ReleaseAddress']
           @ReleasePrepaidDataDisks = params['ReleasePrepaidDataDisks']
         end
       end
