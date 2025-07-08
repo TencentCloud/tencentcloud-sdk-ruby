@@ -1,5 +1,5 @@
 require 'minitest/autorun'
-require_relative '../../tencentcloud-sdk-common/lib/tencentcloud-sdk-common'
+$LOAD_PATH.unshift(File.expand_path('../../tencentcloud-sdk-common/lib', __dir__))
 require_relative '../../tencentcloud-sdk-cvm/lib/tencentcloud-sdk-cvm'
 
 include TencentCloud::Common
@@ -57,6 +57,22 @@ class TestSignV3 < Minitest::Test
     cp.http_profile = hp
     cp.language = "en-US"
     cli = Client.new(cred, 'ap-guangzhou', cp)
+    req = DescribeInstancesRequest.new(nil, nil, 0, 1)
+    rsp = cli.DescribeInstances(req)
+    assert rsp.TotalCount >= 0
+  end
+
+  def test_sts_token_empty_ok
+    cred = Credential.new(ENV["TENCENTCLOUD_SECRET_ID"], ENV["TENCENTCLOUD_SECRET_KEY"], "")
+    cli = Client.new(cred, 'ap-guangzhou')
+    req = DescribeInstancesRequest.new(nil, nil, 0, 1)
+    rsp = cli.DescribeInstances(req)
+    assert rsp.TotalCount >= 0
+  end
+
+  def test_sts_token_nil_ok
+    cred = Credential.new(ENV["TENCENTCLOUD_SECRET_ID"], ENV["TENCENTCLOUD_SECRET_KEY"], nil)
+    cli = Client.new(cred, 'ap-guangzhou')
     req = DescribeInstancesRequest.new(nil, nil, 0, 1)
     rsp = cli.DescribeInstances(req)
     assert rsp.TotalCount >= 0
