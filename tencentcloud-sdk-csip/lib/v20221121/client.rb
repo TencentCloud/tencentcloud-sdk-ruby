@@ -53,6 +53,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 检测AK 异步任务
+
+        # @param request: Request instance for CreateAccessKeyCheckTask.
+        # @type request: :class:`Tencentcloud::csip::V20221121::CreateAccessKeyCheckTaskRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::CreateAccessKeyCheckTaskResponse`
+        def CreateAccessKeyCheckTask(request)
+          body = send_request('CreateAccessKeyCheckTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateAccessKeyCheckTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 发起AK资产同步任务
+
+        # @param request: Request instance for CreateAccessKeySyncTask.
+        # @type request: :class:`Tencentcloud::csip::V20221121::CreateAccessKeySyncTaskRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::CreateAccessKeySyncTaskResponse`
+        def CreateAccessKeySyncTask(request)
+          body = send_request('CreateAccessKeySyncTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateAccessKeySyncTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建域名、ip相关信息
 
         # @param request: Request instance for CreateDomainAndIp.
@@ -149,6 +197,78 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取调用记录列表
+
+        # @param request: Request instance for DescribeAbnormalCallRecord.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DescribeAbnormalCallRecordRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DescribeAbnormalCallRecordResponse`
+        def DescribeAbnormalCallRecord(request)
+          body = send_request('DescribeAbnormalCallRecord', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAbnormalCallRecordResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 访问密钥告警记录列表
+
+        # @param request: Request instance for DescribeAccessKeyAlarm.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DescribeAccessKeyAlarmRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DescribeAccessKeyAlarmResponse`
+        def DescribeAccessKeyAlarm(request)
+          body = send_request('DescribeAccessKeyAlarm', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAccessKeyAlarmResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 访问密钥告警记录详情
+
+        # @param request: Request instance for DescribeAccessKeyAlarmDetail.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DescribeAccessKeyAlarmDetailRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DescribeAccessKeyAlarmDetailResponse`
+        def DescribeAccessKeyAlarmDetail(request)
+          body = send_request('DescribeAccessKeyAlarmDetail', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAccessKeyAlarmDetailResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取用户访问密钥资产列表
 
         # @param request: Request instance for DescribeAccessKeyAsset.
@@ -159,6 +279,102 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeAccessKeyAssetResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 访问密钥风险记录列表
+
+        # @param request: Request instance for DescribeAccessKeyRisk.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DescribeAccessKeyRiskRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DescribeAccessKeyRiskResponse`
+        def DescribeAccessKeyRisk(request)
+          body = send_request('DescribeAccessKeyRisk', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAccessKeyRiskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 访问密钥风险记录详情
+
+        # @param request: Request instance for DescribeAccessKeyRiskDetail.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DescribeAccessKeyRiskDetailRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DescribeAccessKeyRiskDetailResponse`
+        def DescribeAccessKeyRiskDetail(request)
+          body = send_request('DescribeAccessKeyRiskDetail', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAccessKeyRiskDetailResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询用户的账号详情
+
+        # @param request: Request instance for DescribeAccessKeyUserDetail.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DescribeAccessKeyUserDetailRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DescribeAccessKeyUserDetailResponse`
+        def DescribeAccessKeyUserDetail(request)
+          body = send_request('DescribeAccessKeyUserDetail', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAccessKeyUserDetailResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询用户的账号列表
+
+        # @param request: Request instance for DescribeAccessKeyUserList.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DescribeAccessKeyUserListRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DescribeAccessKeyUserListResponse`
+        def DescribeAccessKeyUserList(request)
+          body = send_request('DescribeAccessKeyUserList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAccessKeyUserListResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -821,6 +1037,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取风险调用记录列表
+
+        # @param request: Request instance for DescribeRiskCallRecord.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DescribeRiskCallRecordRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DescribeRiskCallRecordResponse`
+        def DescribeRiskCallRecord(request)
+          body = send_request('DescribeRiskCallRecord', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeRiskCallRecordResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取资产视角的配置风险列表
 
         # @param request: Request instance for DescribeRiskCenterAssetViewCFGRiskList.
@@ -1373,6 +1613,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取账号调用记录列表
+
+        # @param request: Request instance for DescribeUserCallRecord.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DescribeUserCallRecordRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DescribeUserCallRecordResponse`
+        def DescribeUserCallRecord(request)
+          body = send_request('DescribeUserCallRecord', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeUserCallRecordResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 新安全中心风险中心-漏洞列表
 
         # @param request: Request instance for DescribeVULList.
@@ -1623,6 +1887,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = StopRiskCenterTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 标记风险或者告警为 已处置/已忽略
+
+        # @param request: Request instance for UpdateAccessKeyAlarmStatus.
+        # @type request: :class:`Tencentcloud::csip::V20221121::UpdateAccessKeyAlarmStatusRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::UpdateAccessKeyAlarmStatusResponse`
+        def UpdateAccessKeyAlarmStatus(request)
+          body = send_request('UpdateAccessKeyAlarmStatus', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdateAccessKeyAlarmStatusResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 编辑访问密钥/源IP备注
+
+        # @param request: Request instance for UpdateAccessKeyRemark.
+        # @type request: :class:`Tencentcloud::csip::V20221121::UpdateAccessKeyRemarkRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::UpdateAccessKeyRemarkResponse`
+        def UpdateAccessKeyRemark(request)
+          body = send_request('UpdateAccessKeyRemark', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdateAccessKeyRemarkResponse.new
             model.deserialize(response['Response'])
             model
           else

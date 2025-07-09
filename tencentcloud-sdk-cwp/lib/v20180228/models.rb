@@ -24033,15 +24033,19 @@ module TencentCloud
       class DescribeVulInfoCvssRequest < TencentCloud::Common::AbstractModel
         # @param VulId: 漏洞id
         # @type VulId: Integer
+        # @param Source: 兼容应用防护漏洞防御容器视角告警里漏洞详情，默认是主机视角，可选字段，Source=tcss则为容器视角漏洞详情，后端会把VulId转为主机vul_vuls里的VulId
+        # @type Source: String
 
-        attr_accessor :VulId
+        attr_accessor :VulId, :Source
 
-        def initialize(vulid=nil)
+        def initialize(vulid=nil, source=nil)
           @VulId = vulid
+          @Source = source
         end
 
         def deserialize(params)
           @VulId = params['VulId']
+          @Source = params['Source']
         end
       end
 

@@ -46,6 +46,123 @@ module TencentCloud
         end
       end
 
+      # 访问密钥告警记录
+      class AccessKeyAlarm < TencentCloud::Common::AbstractModel
+        # @param Name: 告警名称
+        # @type Name: String
+        # @param Level: 告警等级
+        # 0-无效 1-提示 2-低危 3-中危 4-高危 5-严重
+        # @type Level: Integer
+        # @param ID: 告警记录ID
+        # @type ID: Integer
+        # @param AlarmRuleID: 告警规则ID
+        # @type AlarmRuleID: Integer
+        # @param AlarmType: 告警类型
+        # 0 异常调用
+        # 1 泄漏监测
+        # @type AlarmType: Integer
+        # @param AccessKey: 访问密钥
+        # @type AccessKey: String
+        # @param AccessKeyID: 访问密钥ID
+        # @type AccessKeyID: Integer
+        # @param AccessKeyRemark: 访问密钥备注
+        # @type AccessKeyRemark: String
+        # @param LastAlarmTime: 最后告警时间
+        # @type LastAlarmTime: String
+        # @param Status: 告警状态
+        # 0-未处理 1-已处理 2-已忽略
+        # @type Status: Integer
+        # @param Date: 聚合日期
+        # @type Date: String
+        # @param Tag: 告警标签
+        # @type Tag: Array
+        # @param Uin: 所属主账号Uin
+        # @type Uin: String
+        # @param Nickname: 所属主账号昵称
+        # @type Nickname: String
+        # @param SubUin: 所属子账号Uin
+        # @type SubUin: String
+        # @param SubNickname: 所属子账号昵称
+        # @type SubNickname: String
+        # @param Type: 账号类型
+        # 0 主账号AK 1 子账号AK 2 临时密钥
+        # @type Type: Integer
+        # @param AppID: 所属appid
+        # @type AppID: Integer
+        # @param LeakEvidence: 泄漏证据
+        # @type LeakEvidence: Array
+
+        attr_accessor :Name, :Level, :ID, :AlarmRuleID, :AlarmType, :AccessKey, :AccessKeyID, :AccessKeyRemark, :LastAlarmTime, :Status, :Date, :Tag, :Uin, :Nickname, :SubUin, :SubNickname, :Type, :AppID, :LeakEvidence
+
+        def initialize(name=nil, level=nil, id=nil, alarmruleid=nil, alarmtype=nil, accesskey=nil, accesskeyid=nil, accesskeyremark=nil, lastalarmtime=nil, status=nil, date=nil, tag=nil, uin=nil, nickname=nil, subuin=nil, subnickname=nil, type=nil, appid=nil, leakevidence=nil)
+          @Name = name
+          @Level = level
+          @ID = id
+          @AlarmRuleID = alarmruleid
+          @AlarmType = alarmtype
+          @AccessKey = accesskey
+          @AccessKeyID = accesskeyid
+          @AccessKeyRemark = accesskeyremark
+          @LastAlarmTime = lastalarmtime
+          @Status = status
+          @Date = date
+          @Tag = tag
+          @Uin = uin
+          @Nickname = nickname
+          @SubUin = subuin
+          @SubNickname = subnickname
+          @Type = type
+          @AppID = appid
+          @LeakEvidence = leakevidence
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Level = params['Level']
+          @ID = params['ID']
+          @AlarmRuleID = params['AlarmRuleID']
+          @AlarmType = params['AlarmType']
+          @AccessKey = params['AccessKey']
+          @AccessKeyID = params['AccessKeyID']
+          @AccessKeyRemark = params['AccessKeyRemark']
+          @LastAlarmTime = params['LastAlarmTime']
+          @Status = params['Status']
+          @Date = params['Date']
+          @Tag = params['Tag']
+          @Uin = params['Uin']
+          @Nickname = params['Nickname']
+          @SubUin = params['SubUin']
+          @SubNickname = params['SubNickname']
+          @Type = params['Type']
+          @AppID = params['AppID']
+          @LeakEvidence = params['LeakEvidence']
+        end
+      end
+
+      # 访问密钥告警数量
+      class AccessKeyAlarmCount < TencentCloud::Common::AbstractModel
+        # @param ID: 访问密钥的ID
+        # @type ID: Integer
+        # @param AccessKey: 访问密钥
+        # @type AccessKey: String
+        # @param AlarmCount: 告警数量
+        # @type AlarmCount: Integer
+
+        attr_accessor :ID, :AccessKey, :AlarmCount
+
+        def initialize(id=nil, accesskey=nil, alarmcount=nil)
+          @ID = id
+          @AccessKey = accesskey
+          @AlarmCount = alarmcount
+        end
+
+        def deserialize(params)
+          @ID = params['ID']
+          @AccessKey = params['AccessKey']
+          @AlarmCount = params['AlarmCount']
+        end
+      end
+
       # 访问密钥资产告警信息
       class AccessKeyAlarmInfo < TencentCloud::Common::AbstractModel
         # @param Type: 告警类型/风险类型
@@ -172,6 +289,213 @@ module TencentCloud
           @CreateTime = params['CreateTime']
           @LastAccessTime = params['LastAccessTime']
           @Status = params['Status']
+          @CheckStatus = params['CheckStatus']
+        end
+      end
+
+      # 访问密钥风险记录
+      class AccessKeyRisk < TencentCloud::Common::AbstractModel
+        # @param Name: 风险名称
+        # @type Name: String
+        # @param Level: 风险等级
+        # 0-无效 1-提示 2-低危 3-中危 4-高危 5-严重
+        # @type Level: Integer
+        # @param ID: 风险记录ID
+        # @type ID: Integer
+        # @param RiskRuleID: 风险规则ID
+        # @type RiskRuleID: Integer
+        # @param RiskType: 风险类型
+        # 0-配置风险
+        # @type RiskType: Integer
+        # @param AccessKey: 访问密钥
+        # @type AccessKey: String
+        # @param AccessKeyID: 访问密钥ID
+        # @type AccessKeyID: Integer
+        # @param AccessKeyRemark: 访问密钥备注
+        # @type AccessKeyRemark: String
+        # @param RiskTime: 风险检出时间
+        # @type RiskTime: String
+        # @param Status: 风险状态
+        # 0-未处理 2-已忽略 3-已收敛
+        # @type Status: Integer
+        # @param Tag: 风险标签
+        # @type Tag: Array
+        # @param Evidence: 风险证据
+        # @type Evidence: String
+        # @param Description: 风险描述
+        # @type Description: String
+        # @param Uin: 所属主账号Uin
+        # @type Uin: String
+        # @param Nickname: 所属主账号昵称
+        # @type Nickname: String
+        # @param SubUin: 所属子账号Uin
+        # @type SubUin: String
+        # @param SubNickname: 所属子账号昵称
+        # @type SubNickname: String
+        # @param Type: 账号类型
+        # 0 主账号AK 1子账号AK
+        # 2 临时密钥
+        # @type Type: Integer
+        # @param CheckStatus: 检测状态
+        # 0表示 已检测
+        # 1表示 检测中
+        # @type CheckStatus: Integer
+        # @param AppID: 所属appid
+        # @type AppID: Integer
+
+        attr_accessor :Name, :Level, :ID, :RiskRuleID, :RiskType, :AccessKey, :AccessKeyID, :AccessKeyRemark, :RiskTime, :Status, :Tag, :Evidence, :Description, :Uin, :Nickname, :SubUin, :SubNickname, :Type, :CheckStatus, :AppID
+
+        def initialize(name=nil, level=nil, id=nil, riskruleid=nil, risktype=nil, accesskey=nil, accesskeyid=nil, accesskeyremark=nil, risktime=nil, status=nil, tag=nil, evidence=nil, description=nil, uin=nil, nickname=nil, subuin=nil, subnickname=nil, type=nil, checkstatus=nil, appid=nil)
+          @Name = name
+          @Level = level
+          @ID = id
+          @RiskRuleID = riskruleid
+          @RiskType = risktype
+          @AccessKey = accesskey
+          @AccessKeyID = accesskeyid
+          @AccessKeyRemark = accesskeyremark
+          @RiskTime = risktime
+          @Status = status
+          @Tag = tag
+          @Evidence = evidence
+          @Description = description
+          @Uin = uin
+          @Nickname = nickname
+          @SubUin = subuin
+          @SubNickname = subnickname
+          @Type = type
+          @CheckStatus = checkstatus
+          @AppID = appid
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Level = params['Level']
+          @ID = params['ID']
+          @RiskRuleID = params['RiskRuleID']
+          @RiskType = params['RiskType']
+          @AccessKey = params['AccessKey']
+          @AccessKeyID = params['AccessKeyID']
+          @AccessKeyRemark = params['AccessKeyRemark']
+          @RiskTime = params['RiskTime']
+          @Status = params['Status']
+          @Tag = params['Tag']
+          @Evidence = params['Evidence']
+          @Description = params['Description']
+          @Uin = params['Uin']
+          @Nickname = params['Nickname']
+          @SubUin = params['SubUin']
+          @SubNickname = params['SubNickname']
+          @Type = params['Type']
+          @CheckStatus = params['CheckStatus']
+          @AppID = params['AppID']
+        end
+      end
+
+      # 访问密钥账号信息
+      class AccessKeyUser < TencentCloud::Common::AbstractModel
+        # @param ID: 账号ID
+        # @type ID: Integer
+        # @param Name: 账号名称
+        # @type Name: String
+        # @param Type: 0 主账号 1子账号
+        # @type Type: Integer
+        # @param AccessType: 访问方式
+        # 0 API
+        # 1 控制台与API
+        # @type AccessType: Integer
+        # @param Advice: 安全建议 枚举 0 正常 1 立即处理 2 建议加固
+        # @type Advice: Integer
+        # @param AccessKeyAlarmList: 告警信息列表
+        # @type AccessKeyAlarmList: Array
+        # @param AccessKeyRiskList: 风险信息列表
+        # @type AccessKeyRiskList: Array
+        # @param AppID: 账号所属APPID
+        # @type AppID: Integer
+        # @param Nickname: 主账号昵称
+        # @type Nickname: String
+        # @param SubNickname: 子账号昵称
+        # @type SubNickname: String
+        # @param Uin: 账号所属主账号Uin
+        # @type Uin: String
+        # @param SubUin: 账号自身uin，主账号时与主账号uin一致
+        # @type SubUin: String
+        # @param LoginIP: 登录IP
+        # @type LoginIP: String
+        # @param LoginLocation: 登录地址
+        # @type LoginLocation: String
+        # @param LoginTime: 登录时间
+        # @type LoginTime: String
+        # @param ISP: 运营商名称
+        # @type ISP: String
+        # @param ActionFlag: 操作保护是否开启
+        # 0 未开启
+        # 1 已开启
+        # @type ActionFlag: Integer
+        # @param LoginFlag: 登录保护是否开启
+        # 0 未开启
+        # 1 已开启
+        # @type LoginFlag: Integer
+        # @param CheckStatus: 0 表示已检测 1 表示检测中
+        # @type CheckStatus: Integer
+
+        attr_accessor :ID, :Name, :Type, :AccessType, :Advice, :AccessKeyAlarmList, :AccessKeyRiskList, :AppID, :Nickname, :SubNickname, :Uin, :SubUin, :LoginIP, :LoginLocation, :LoginTime, :ISP, :ActionFlag, :LoginFlag, :CheckStatus
+
+        def initialize(id=nil, name=nil, type=nil, accesstype=nil, advice=nil, accesskeyalarmlist=nil, accesskeyrisklist=nil, appid=nil, nickname=nil, subnickname=nil, uin=nil, subuin=nil, loginip=nil, loginlocation=nil, logintime=nil, isp=nil, actionflag=nil, loginflag=nil, checkstatus=nil)
+          @ID = id
+          @Name = name
+          @Type = type
+          @AccessType = accesstype
+          @Advice = advice
+          @AccessKeyAlarmList = accesskeyalarmlist
+          @AccessKeyRiskList = accesskeyrisklist
+          @AppID = appid
+          @Nickname = nickname
+          @SubNickname = subnickname
+          @Uin = uin
+          @SubUin = subuin
+          @LoginIP = loginip
+          @LoginLocation = loginlocation
+          @LoginTime = logintime
+          @ISP = isp
+          @ActionFlag = actionflag
+          @LoginFlag = loginflag
+          @CheckStatus = checkstatus
+        end
+
+        def deserialize(params)
+          @ID = params['ID']
+          @Name = params['Name']
+          @Type = params['Type']
+          @AccessType = params['AccessType']
+          @Advice = params['Advice']
+          unless params['AccessKeyAlarmList'].nil?
+            @AccessKeyAlarmList = []
+            params['AccessKeyAlarmList'].each do |i|
+              accesskeyalarminfo_tmp = AccessKeyAlarmInfo.new
+              accesskeyalarminfo_tmp.deserialize(i)
+              @AccessKeyAlarmList << accesskeyalarminfo_tmp
+            end
+          end
+          unless params['AccessKeyRiskList'].nil?
+            @AccessKeyRiskList = []
+            params['AccessKeyRiskList'].each do |i|
+              accesskeyalarminfo_tmp = AccessKeyAlarmInfo.new
+              accesskeyalarminfo_tmp.deserialize(i)
+              @AccessKeyRiskList << accesskeyalarminfo_tmp
+            end
+          end
+          @AppID = params['AppID']
+          @Nickname = params['Nickname']
+          @SubNickname = params['SubNickname']
+          @Uin = params['Uin']
+          @SubUin = params['SubUin']
+          @LoginIP = params['LoginIP']
+          @LoginLocation = params['LoginLocation']
+          @LoginTime = params['LoginTime']
+          @ISP = params['ISP']
+          @ActionFlag = params['ActionFlag']
+          @LoginFlag = params['LoginFlag']
           @CheckStatus = params['CheckStatus']
         end
       end
@@ -2724,6 +3048,102 @@ module TencentCloud
         end
       end
 
+      # CreateAccessKeyCheckTask请求参数结构体
+      class CreateAccessKeyCheckTaskRequest < TencentCloud::Common::AbstractModel
+        # @param MemberId: 集团账号的成员id
+        # @type MemberId: Array
+        # @param RiskIDList: 风险列表
+        # @type RiskIDList: Array
+        # @param AccessKeyList: 访问密钥列表
+        # @type AccessKeyList: Array
+        # @param SubUinList: 账号uin列表
+        # @type SubUinList: Array
+
+        attr_accessor :MemberId, :RiskIDList, :AccessKeyList, :SubUinList
+
+        def initialize(memberid=nil, riskidlist=nil, accesskeylist=nil, subuinlist=nil)
+          @MemberId = memberid
+          @RiskIDList = riskidlist
+          @AccessKeyList = accesskeylist
+          @SubUinList = subuinlist
+        end
+
+        def deserialize(params)
+          @MemberId = params['MemberId']
+          @RiskIDList = params['RiskIDList']
+          @AccessKeyList = params['AccessKeyList']
+          @SubUinList = params['SubUinList']
+        end
+      end
+
+      # CreateAccessKeyCheckTask返回参数结构体
+      class CreateAccessKeyCheckTaskResponse < TencentCloud::Common::AbstractModel
+        # @param Code: 0表示成功 1表示失败
+        # @type Code: Integer
+        # @param Msg: 错误信息
+        # @type Msg: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Code, :Msg, :RequestId
+
+        def initialize(code=nil, msg=nil, requestid=nil)
+          @Code = code
+          @Msg = msg
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Code = params['Code']
+          @Msg = params['Msg']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateAccessKeySyncTask请求参数结构体
+      class CreateAccessKeySyncTaskRequest < TencentCloud::Common::AbstractModel
+        # @param MemberId: 集团账号的成员id
+        # @type MemberId: Array
+
+        attr_accessor :MemberId
+
+        def initialize(memberid=nil)
+          @MemberId = memberid
+        end
+
+        def deserialize(params)
+          @MemberId = params['MemberId']
+        end
+      end
+
+      # CreateAccessKeySyncTask返回参数结构体
+      class CreateAccessKeySyncTaskResponse < TencentCloud::Common::AbstractModel
+        # @param TaskID: 发起同步任务
+        # @type TaskID: Integer
+        # @param Code: 0成功 1失败
+        # @type Code: Integer
+        # @param Msg: 错误信息
+        # @type Msg: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskID, :Code, :Msg, :RequestId
+
+        def initialize(taskid=nil, code=nil, msg=nil, requestid=nil)
+          @TaskID = taskid
+          @Code = code
+          @Msg = msg
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskID = params['TaskID']
+          @Code = params['Code']
+          @Msg = params['Msg']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateDomainAndIp请求参数结构体
       class CreateDomainAndIpRequest < TencentCloud::Common::AbstractModel
         # @param Content: 公网IP/域名
@@ -3322,6 +3742,193 @@ module TencentCloud
         end
       end
 
+      # DescribeAbnormalCallRecord请求参数结构体
+      class DescribeAbnormalCallRecordRequest < TencentCloud::Common::AbstractModel
+        # @param AlarmRuleID: 告警规则ID
+        # @type AlarmRuleID: Integer
+        # @param MemberId: 集团账号的成员id
+        # @type MemberId: Array
+        # @param AccessKey: 访问密钥
+        # @type AccessKey: String
+        # @param SourceIP: 调用源IP
+        # @type SourceIP: String
+        # @param Filter: 过滤器
+        # @type Filter: :class:`Tencentcloud::Csip.v20221121.models.Filter`
+
+        attr_accessor :AlarmRuleID, :MemberId, :AccessKey, :SourceIP, :Filter
+
+        def initialize(alarmruleid=nil, memberid=nil, accesskey=nil, sourceip=nil, filter=nil)
+          @AlarmRuleID = alarmruleid
+          @MemberId = memberid
+          @AccessKey = accesskey
+          @SourceIP = sourceip
+          @Filter = filter
+        end
+
+        def deserialize(params)
+          @AlarmRuleID = params['AlarmRuleID']
+          @MemberId = params['MemberId']
+          @AccessKey = params['AccessKey']
+          @SourceIP = params['SourceIP']
+          unless params['Filter'].nil?
+            @Filter = Filter.new
+            @Filter.deserialize(params['Filter'])
+          end
+        end
+      end
+
+      # DescribeAbnormalCallRecord返回参数结构体
+      class DescribeAbnormalCallRecordResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 调用记录列表
+        # @type Data: Array
+        # @param Total: 调用记录总数
+        # @type Total: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :Total, :RequestId
+
+        def initialize(data=nil, total=nil, requestid=nil)
+          @Data = data
+          @Total = total
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              callrecord_tmp = CallRecord.new
+              callrecord_tmp.deserialize(i)
+              @Data << callrecord_tmp
+            end
+          end
+          @Total = params['Total']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAccessKeyAlarmDetail请求参数结构体
+      class DescribeAccessKeyAlarmDetailRequest < TencentCloud::Common::AbstractModel
+        # @param ID: 告警记录ID
+        # @type ID: Integer
+        # @param MemberId: 集团账号的成员id
+        # @type MemberId: Array
+
+        attr_accessor :ID, :MemberId
+
+        def initialize(id=nil, memberid=nil)
+          @ID = id
+          @MemberId = memberid
+        end
+
+        def deserialize(params)
+          @ID = params['ID']
+          @MemberId = params['MemberId']
+        end
+      end
+
+      # DescribeAccessKeyAlarmDetail返回参数结构体
+      class DescribeAccessKeyAlarmDetailResponse < TencentCloud::Common::AbstractModel
+        # @param AlarmInfo: 告警信息
+        # @type AlarmInfo: :class:`Tencentcloud::Csip.v20221121.models.AccessKeyAlarm`
+        # @param CamCount: 所属账号CAM策略数量
+        # @type CamCount: Integer
+        # @param RiskCount: AK风险数量
+        # @type RiskCount: Integer
+        # @param AlarmDesc: 告警策略描述
+        # @type AlarmDesc: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :AlarmInfo, :CamCount, :RiskCount, :AlarmDesc, :RequestId
+
+        def initialize(alarminfo=nil, camcount=nil, riskcount=nil, alarmdesc=nil, requestid=nil)
+          @AlarmInfo = alarminfo
+          @CamCount = camcount
+          @RiskCount = riskcount
+          @AlarmDesc = alarmdesc
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['AlarmInfo'].nil?
+            @AlarmInfo = AccessKeyAlarm.new
+            @AlarmInfo.deserialize(params['AlarmInfo'])
+          end
+          @CamCount = params['CamCount']
+          @RiskCount = params['RiskCount']
+          @AlarmDesc = params['AlarmDesc']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAccessKeyAlarm请求参数结构体
+      class DescribeAccessKeyAlarmRequest < TencentCloud::Common::AbstractModel
+        # @param Filter: 过滤器
+        # @type Filter: :class:`Tencentcloud::Csip.v20221121.models.Filter`
+        # @param MemberId: 集团账号的成员id
+        # @type MemberId: Array
+        # @param AccessKeyID: 访问密钥的ID
+        # @type AccessKeyID: Integer
+        # @param SourceIPID: 源IP的ID
+        # @type SourceIPID: Integer
+        # @param SubUin: 账号uin
+        # @type SubUin: String
+
+        attr_accessor :Filter, :MemberId, :AccessKeyID, :SourceIPID, :SubUin
+
+        def initialize(filter=nil, memberid=nil, accesskeyid=nil, sourceipid=nil, subuin=nil)
+          @Filter = filter
+          @MemberId = memberid
+          @AccessKeyID = accesskeyid
+          @SourceIPID = sourceipid
+          @SubUin = subuin
+        end
+
+        def deserialize(params)
+          unless params['Filter'].nil?
+            @Filter = Filter.new
+            @Filter.deserialize(params['Filter'])
+          end
+          @MemberId = params['MemberId']
+          @AccessKeyID = params['AccessKeyID']
+          @SourceIPID = params['SourceIPID']
+          @SubUin = params['SubUin']
+        end
+      end
+
+      # DescribeAccessKeyAlarm返回参数结构体
+      class DescribeAccessKeyAlarmResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 告警列表
+        # @type Data: Array
+        # @param Total: 总数
+        # @type Total: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :Total, :RequestId
+
+        def initialize(data=nil, total=nil, requestid=nil)
+          @Data = data
+          @Total = total
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              accesskeyalarm_tmp = AccessKeyAlarm.new
+              accesskeyalarm_tmp.deserialize(i)
+              @Data << accesskeyalarm_tmp
+            end
+          end
+          @Total = params['Total']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeAccessKeyAsset请求参数结构体
       class DescribeAccessKeyAssetRequest < TencentCloud::Common::AbstractModel
         # @param MemberId: 集团账号的成员id
@@ -3369,6 +3976,239 @@ module TencentCloud
               accesskeyasset_tmp = AccessKeyAsset.new
               accesskeyasset_tmp.deserialize(i)
               @Data << accesskeyasset_tmp
+            end
+          end
+          @Total = params['Total']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAccessKeyRiskDetail请求参数结构体
+      class DescribeAccessKeyRiskDetailRequest < TencentCloud::Common::AbstractModel
+        # @param ID: 风险记录ID
+        # @type ID: Integer
+        # @param MemberId: 集团账号的成员id
+        # @type MemberId: Array
+
+        attr_accessor :ID, :MemberId
+
+        def initialize(id=nil, memberid=nil)
+          @ID = id
+          @MemberId = memberid
+        end
+
+        def deserialize(params)
+          @ID = params['ID']
+          @MemberId = params['MemberId']
+        end
+      end
+
+      # DescribeAccessKeyRiskDetail返回参数结构体
+      class DescribeAccessKeyRiskDetailResponse < TencentCloud::Common::AbstractModel
+        # @param RiskInfo: 风险列表
+        # @type RiskInfo: :class:`Tencentcloud::Csip.v20221121.models.AccessKeyRisk`
+        # @param CamCount: CAM策略总数
+        # @type CamCount: Integer
+        # @param AlarmCount: 账号关联告警数量
+        # @type AlarmCount: Integer
+        # @param AccessType: 访问方式 0 API 1 控制台与API
+        # @type AccessType: Integer
+        # @param AccessKeyAlarmCount: 访问密钥告警数量列表
+        # @type AccessKeyAlarmCount: Array
+        # @param ActionFlag: 操作保护是否开启 0 未开启 1 已开启
+        # @type ActionFlag: Integer
+        # @param LoginFlag: 登录保护是否开启 0 未开启 1 已开启
+        # @type LoginFlag: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RiskInfo, :CamCount, :AlarmCount, :AccessType, :AccessKeyAlarmCount, :ActionFlag, :LoginFlag, :RequestId
+
+        def initialize(riskinfo=nil, camcount=nil, alarmcount=nil, accesstype=nil, accesskeyalarmcount=nil, actionflag=nil, loginflag=nil, requestid=nil)
+          @RiskInfo = riskinfo
+          @CamCount = camcount
+          @AlarmCount = alarmcount
+          @AccessType = accesstype
+          @AccessKeyAlarmCount = accesskeyalarmcount
+          @ActionFlag = actionflag
+          @LoginFlag = loginflag
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['RiskInfo'].nil?
+            @RiskInfo = AccessKeyRisk.new
+            @RiskInfo.deserialize(params['RiskInfo'])
+          end
+          @CamCount = params['CamCount']
+          @AlarmCount = params['AlarmCount']
+          @AccessType = params['AccessType']
+          unless params['AccessKeyAlarmCount'].nil?
+            @AccessKeyAlarmCount = []
+            params['AccessKeyAlarmCount'].each do |i|
+              accesskeyalarmcount_tmp = AccessKeyAlarmCount.new
+              accesskeyalarmcount_tmp.deserialize(i)
+              @AccessKeyAlarmCount << accesskeyalarmcount_tmp
+            end
+          end
+          @ActionFlag = params['ActionFlag']
+          @LoginFlag = params['LoginFlag']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAccessKeyRisk请求参数结构体
+      class DescribeAccessKeyRiskRequest < TencentCloud::Common::AbstractModel
+        # @param Filter: 过滤器
+        # @type Filter: :class:`Tencentcloud::Csip.v20221121.models.Filter`
+        # @param MemberId: 集团账号的成员id
+        # @type MemberId: Array
+        # @param AccessKeyID: 访问密钥的ID
+        # @type AccessKeyID: Integer
+        # @param SubUin: 账号uin
+        # @type SubUin: String
+
+        attr_accessor :Filter, :MemberId, :AccessKeyID, :SubUin
+
+        def initialize(filter=nil, memberid=nil, accesskeyid=nil, subuin=nil)
+          @Filter = filter
+          @MemberId = memberid
+          @AccessKeyID = accesskeyid
+          @SubUin = subuin
+        end
+
+        def deserialize(params)
+          unless params['Filter'].nil?
+            @Filter = Filter.new
+            @Filter.deserialize(params['Filter'])
+          end
+          @MemberId = params['MemberId']
+          @AccessKeyID = params['AccessKeyID']
+          @SubUin = params['SubUin']
+        end
+      end
+
+      # DescribeAccessKeyRisk返回参数结构体
+      class DescribeAccessKeyRiskResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 风险列表
+        # @type Data: Array
+        # @param Total: 总数
+        # @type Total: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :Total, :RequestId
+
+        def initialize(data=nil, total=nil, requestid=nil)
+          @Data = data
+          @Total = total
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              accesskeyrisk_tmp = AccessKeyRisk.new
+              accesskeyrisk_tmp.deserialize(i)
+              @Data << accesskeyrisk_tmp
+            end
+          end
+          @Total = params['Total']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAccessKeyUserDetail请求参数结构体
+      class DescribeAccessKeyUserDetailRequest < TencentCloud::Common::AbstractModel
+        # @param SubUin: 账号自身uin
+        # @type SubUin: String
+        # @param MemberId: 集团账号的成员id
+        # @type MemberId: Array
+
+        attr_accessor :SubUin, :MemberId
+
+        def initialize(subuin=nil, memberid=nil)
+          @SubUin = subuin
+          @MemberId = memberid
+        end
+
+        def deserialize(params)
+          @SubUin = params['SubUin']
+          @MemberId = params['MemberId']
+        end
+      end
+
+      # DescribeAccessKeyUserDetail返回参数结构体
+      class DescribeAccessKeyUserDetailResponse < TencentCloud::Common::AbstractModel
+        # @param User: 账号详情信息
+        # @type User: :class:`Tencentcloud::Csip.v20221121.models.AccessKeyUser`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :User, :RequestId
+
+        def initialize(user=nil, requestid=nil)
+          @User = user
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['User'].nil?
+            @User = AccessKeyUser.new
+            @User.deserialize(params['User'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAccessKeyUserList请求参数结构体
+      class DescribeAccessKeyUserListRequest < TencentCloud::Common::AbstractModel
+        # @param MemberId: 集团账号的成员id
+        # @type MemberId: Array
+        # @param Filter: 过滤器
+        # @type Filter: :class:`Tencentcloud::Csip.v20221121.models.Filter`
+
+        attr_accessor :MemberId, :Filter
+
+        def initialize(memberid=nil, filter=nil)
+          @MemberId = memberid
+          @Filter = filter
+        end
+
+        def deserialize(params)
+          @MemberId = params['MemberId']
+          unless params['Filter'].nil?
+            @Filter = Filter.new
+            @Filter.deserialize(params['Filter'])
+          end
+        end
+      end
+
+      # DescribeAccessKeyUserList返回参数结构体
+      class DescribeAccessKeyUserListResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 账号列表
+        # @type Data: Array
+        # @param Total: 总数
+        # @type Total: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :Total, :RequestId
+
+        def initialize(data=nil, total=nil, requestid=nil)
+          @Data = data
+          @Total = total
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              accesskeyuser_tmp = AccessKeyUser.new
+              accesskeyuser_tmp.deserialize(i)
+              @Data << accesskeyuser_tmp
             end
           end
           @Total = params['Total']
@@ -5634,6 +6474,64 @@ module TencentCloud
         end
       end
 
+      # DescribeRiskCallRecord请求参数结构体
+      class DescribeRiskCallRecordRequest < TencentCloud::Common::AbstractModel
+        # @param RiskID: 风险记录ID
+        # @type RiskID: Integer
+        # @param MemberId: 集团账号的成员id
+        # @type MemberId: Array
+        # @param Filter: 过滤器
+        # @type Filter: :class:`Tencentcloud::Csip.v20221121.models.Filter`
+
+        attr_accessor :RiskID, :MemberId, :Filter
+
+        def initialize(riskid=nil, memberid=nil, filter=nil)
+          @RiskID = riskid
+          @MemberId = memberid
+          @Filter = filter
+        end
+
+        def deserialize(params)
+          @RiskID = params['RiskID']
+          @MemberId = params['MemberId']
+          unless params['Filter'].nil?
+            @Filter = Filter.new
+            @Filter.deserialize(params['Filter'])
+          end
+        end
+      end
+
+      # DescribeRiskCallRecord返回参数结构体
+      class DescribeRiskCallRecordResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 风险调用记录列表
+        # @type Data: Array
+        # @param Total: 调用记录总数
+        # @type Total: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :Total, :RequestId
+
+        def initialize(data=nil, total=nil, requestid=nil)
+          @Data = data
+          @Total = total
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              riskcallrecord_tmp = RiskCallRecord.new
+              riskcallrecord_tmp.deserialize(i)
+              @Data << riskcallrecord_tmp
+            end
+          end
+          @Total = params['Total']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeRiskCenterAssetViewCFGRiskList请求参数结构体
       class DescribeRiskCenterAssetViewCFGRiskListRequest < TencentCloud::Common::AbstractModel
         # @param MemberId: 集团账号的成员id
@@ -7589,6 +8487,64 @@ module TencentCloud
               @AlterType << filterdataobject_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeUserCallRecord请求参数结构体
+      class DescribeUserCallRecordRequest < TencentCloud::Common::AbstractModel
+        # @param SubUin: 账号uin
+        # @type SubUin: String
+        # @param MemberId: 集团账号的成员id
+        # @type MemberId: Array
+        # @param Filter: 过滤器
+        # @type Filter: :class:`Tencentcloud::Csip.v20221121.models.Filter`
+
+        attr_accessor :SubUin, :MemberId, :Filter
+
+        def initialize(subuin=nil, memberid=nil, filter=nil)
+          @SubUin = subuin
+          @MemberId = memberid
+          @Filter = filter
+        end
+
+        def deserialize(params)
+          @SubUin = params['SubUin']
+          @MemberId = params['MemberId']
+          unless params['Filter'].nil?
+            @Filter = Filter.new
+            @Filter.deserialize(params['Filter'])
+          end
+        end
+      end
+
+      # DescribeUserCallRecord返回参数结构体
+      class DescribeUserCallRecordResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 账号调用记录列表
+        # @type Data: Array
+        # @param Total: 调用记录总数
+        # @type Total: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :Total, :RequestId
+
+        def initialize(data=nil, total=nil, requestid=nil)
+          @Data = data
+          @Total = total
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              usercallrecord_tmp = UserCallRecord.new
+              usercallrecord_tmp.deserialize(i)
+              @Data << usercallrecord_tmp
+            end
+          end
+          @Total = params['Total']
           @RequestId = params['RequestId']
         end
       end
@@ -9946,6 +10902,42 @@ module TencentCloud
         end
       end
 
+      # 风险调用记录详情
+      class RiskCallRecord < TencentCloud::Common::AbstractModel
+        # @param EventName: 接口名称
+        # @type EventName: String
+        # @param EventDescCN: 接口中文描述
+        # @type EventDescCN: String
+        # @param EventDescEN: 接口英文描述
+        # @type EventDescEN: String
+        # @param ProductName: 产品名称
+        # @type ProductName: String
+        # @param ProductNameCN: 产品中文名称
+        # @type ProductNameCN: String
+        # @param CallCount: 调用次数
+        # @type CallCount: Integer
+
+        attr_accessor :EventName, :EventDescCN, :EventDescEN, :ProductName, :ProductNameCN, :CallCount
+
+        def initialize(eventname=nil, eventdesccn=nil, eventdescen=nil, productname=nil, productnamecn=nil, callcount=nil)
+          @EventName = eventname
+          @EventDescCN = eventdesccn
+          @EventDescEN = eventdescen
+          @ProductName = productname
+          @ProductNameCN = productnamecn
+          @CallCount = callcount
+        end
+
+        def deserialize(params)
+          @EventName = params['EventName']
+          @EventDescCN = params['EventDescCN']
+          @EventDescEN = params['EventDescEN']
+          @ProductName = params['ProductName']
+          @ProductNameCN = params['ProductNameCN']
+          @CallCount = params['CallCount']
+        end
+      end
+
       # 风险中心状态处理Key
       class RiskCenterStatusKey < TencentCloud::Common::AbstractModel
         # @param Id: 风险ID
@@ -11478,6 +12470,118 @@ module TencentCloud
         end
       end
 
+      # UpdateAccessKeyAlarmStatus请求参数结构体
+      class UpdateAccessKeyAlarmStatusRequest < TencentCloud::Common::AbstractModel
+        # @param Status: 状态  0:未处理 1:已处理 2:已忽略
+        # @type Status: Integer
+        # @param MemberId: 集团账号的成员id
+        # @type MemberId: Array
+        # @param AlarmIDList: 告警ID列表
+        # @type AlarmIDList: Array
+        # @param RiskIDList: 风险ID列表
+        # @type RiskIDList: Array
+
+        attr_accessor :Status, :MemberId, :AlarmIDList, :RiskIDList
+
+        def initialize(status=nil, memberid=nil, alarmidlist=nil, riskidlist=nil)
+          @Status = status
+          @MemberId = memberid
+          @AlarmIDList = alarmidlist
+          @RiskIDList = riskidlist
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @MemberId = params['MemberId']
+          @AlarmIDList = params['AlarmIDList']
+          @RiskIDList = params['RiskIDList']
+        end
+      end
+
+      # UpdateAccessKeyAlarmStatus返回参数结构体
+      class UpdateAccessKeyAlarmStatusResponse < TencentCloud::Common::AbstractModel
+        # @param Code: 0成功，1失败
+        # @type Code: Integer
+        # @param Msg: 错误信息
+        # @type Msg: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Code, :Msg, :RequestId
+
+        def initialize(code=nil, msg=nil, requestid=nil)
+          @Code = code
+          @Msg = msg
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Code = params['Code']
+          @Msg = params['Msg']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # UpdateAccessKeyRemark请求参数结构体
+      class UpdateAccessKeyRemarkRequest < TencentCloud::Common::AbstractModel
+        # @param Remark: 备注
+        # @type Remark: String
+        # @param MemberId: 集团账号的成员id
+        # @type MemberId: Array
+        # @param SourceIPList: 源IP 名称
+        # @type SourceIPList: Array
+        # @param AccessKeyList: ak名称
+        # @type AccessKeyList: Array
+        # @param SourceIPIDList: 源IP的ID
+        # @type SourceIPIDList: Array
+        # @param AccessKeyIDList: AK的ID
+        # @type AccessKeyIDList: Array
+
+        attr_accessor :Remark, :MemberId, :SourceIPList, :AccessKeyList, :SourceIPIDList, :AccessKeyIDList
+
+        def initialize(remark=nil, memberid=nil, sourceiplist=nil, accesskeylist=nil, sourceipidlist=nil, accesskeyidlist=nil)
+          @Remark = remark
+          @MemberId = memberid
+          @SourceIPList = sourceiplist
+          @AccessKeyList = accesskeylist
+          @SourceIPIDList = sourceipidlist
+          @AccessKeyIDList = accesskeyidlist
+        end
+
+        def deserialize(params)
+          @Remark = params['Remark']
+          @MemberId = params['MemberId']
+          @SourceIPList = params['SourceIPList']
+          @AccessKeyList = params['AccessKeyList']
+          @SourceIPIDList = params['SourceIPIDList']
+          @AccessKeyIDList = params['AccessKeyIDList']
+        end
+      end
+
+      # UpdateAccessKeyRemark返回参数结构体
+      class UpdateAccessKeyRemarkResponse < TencentCloud::Common::AbstractModel
+        # @param Code: 0:成功 1:失败
+        # @type Code: Integer
+        # @param Msg: 错误信息
+        # @type Msg: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Code, :Msg, :RequestId
+
+        def initialize(code=nil, msg=nil, requestid=nil)
+          @Code = code
+          @Msg = msg
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Code = params['Code']
+          @Msg = params['Msg']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # UpdateAlertStatusList请求参数结构体
       class UpdateAlertStatusListRequest < TencentCloud::Common::AbstractModel
         # @param ID: 告警ID列表
@@ -11539,6 +12643,69 @@ module TencentCloud
           @Msg = params['Msg']
           @Code = params['Code']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 调用记录详情
+      class UserCallRecord < TencentCloud::Common::AbstractModel
+        # @param SourceIP: 调用源IP
+        # @type SourceIP: String
+        # @param EventType: 调用类型
+        # 0:控制台调用
+        # 1:API
+        # @type EventType: Integer
+        # @param CallCount: 调用次数
+        # @type CallCount: Integer
+        # @param Code: 调用错误码
+        # 0表示成功
+        # @type Code: Integer
+        # @param FirstCallTime: 首次调用时间
+        # @type FirstCallTime: String
+        # @param LastCallTime: 最后调用时间
+        # @type LastCallTime: String
+        # @param SourceIPRemark: 调用源IP备注
+        # @type SourceIPRemark: String
+        # @param Region: 调用源IP地域
+        # @type Region: String
+        # @param UserName: 用户/角色名称
+        # @type UserName: String
+        # @param Date: 聚合日期
+        # @type Date: String
+        # @param AppID: appid
+        # @type AppID: Integer
+        # @param ISP: 运营商
+        # @type ISP: String
+
+        attr_accessor :SourceIP, :EventType, :CallCount, :Code, :FirstCallTime, :LastCallTime, :SourceIPRemark, :Region, :UserName, :Date, :AppID, :ISP
+
+        def initialize(sourceip=nil, eventtype=nil, callcount=nil, code=nil, firstcalltime=nil, lastcalltime=nil, sourceipremark=nil, region=nil, username=nil, date=nil, appid=nil, isp=nil)
+          @SourceIP = sourceip
+          @EventType = eventtype
+          @CallCount = callcount
+          @Code = code
+          @FirstCallTime = firstcalltime
+          @LastCallTime = lastcalltime
+          @SourceIPRemark = sourceipremark
+          @Region = region
+          @UserName = username
+          @Date = date
+          @AppID = appid
+          @ISP = isp
+        end
+
+        def deserialize(params)
+          @SourceIP = params['SourceIP']
+          @EventType = params['EventType']
+          @CallCount = params['CallCount']
+          @Code = params['Code']
+          @FirstCallTime = params['FirstCallTime']
+          @LastCallTime = params['LastCallTime']
+          @SourceIPRemark = params['SourceIPRemark']
+          @Region = params['Region']
+          @UserName = params['UserName']
+          @Date = params['Date']
+          @AppID = params['AppID']
+          @ISP = params['ISP']
         end
       end
 

@@ -2616,14 +2616,55 @@ module TencentCloud
         # @type PublicIpAssigned: Boolean
         # @param BandwidthPackageId: 带宽包ID。可通过[ DescribeBandwidthPackages ](https://cloud.tencent.com/document/api/215/19209)接口返回值中的`BandwidthPackageId`获取。该参数仅在RunInstances接口中作为入参使用。
         # @type BandwidthPackageId: String
+        # @param InternetServiceProvider: 线路类型。各种线路类型详情可参考：[EIP 的 IP 地址类型](https://cloud.tencent.com/document/product/1199/41646)。默认值：BGP。
 
-        attr_accessor :InternetChargeType, :InternetMaxBandwidthOut, :PublicIpAssigned, :BandwidthPackageId
+        # - BGP：常规 BGP 线路
 
-        def initialize(internetchargetype=nil, internetmaxbandwidthout=nil, publicipassigned=nil, bandwidthpackageid=nil)
+        # 已开通静态单线IP白名单的用户，可选值：
+
+        #  - CMCC：中国移动
+        #  - CTCC：中国电信
+        #  - CUCC：中国联通
+
+        # 注意：仅部分地域支持静态单线IP。
+        # 示例值：BGP
+        # @type InternetServiceProvider: String
+        # @param IPv4AddressType: 公网 IP 类型。
+
+        # - WanIP：普通公网IP。
+        # - HighQualityEIP：精品 IP。仅新加坡和中国香港支持精品IP。
+        # - AntiDDoSEIP：高防 IP。仅部分地域支持高防IP，详情可见[弹性公网IP产品概述](https://cloud.tencent.com/document/product/1199/41646)。
+
+        # 如需为资源分配公网IPv4地址，请指定公网IPv4地址类型。
+
+        # 示例值：WanIP
+
+        # 此功能仅部分地区灰度开发，如需使用[请提交工单咨询](https://console.cloud.tencent.com/workorder/category)
+        # @type IPv4AddressType: String
+        # @param IPv6AddressType: 弹性公网 IPv6 类型。
+        # - EIPv6：弹性公网 IPv6。
+        # - HighQualityEIPv6：精品 IPv6。仅中国香港支持精品IPv6。
+
+        # 如需为资源分配IPv6地址，请指定弹性公网IPv6类型。
+        # 示例值：EIPv6
+
+        # 此功能仅部分地区灰度开发，如需使用[请提交工单咨询](https://console.cloud.tencent.com/workorder/category)
+        # @type IPv6AddressType: String
+        # @param AntiDDoSPackageId: 高防包唯一ID，申请高防IP时，该字段必传。
+        # 示例值：bgp-12345678
+        # @type AntiDDoSPackageId: String
+
+        attr_accessor :InternetChargeType, :InternetMaxBandwidthOut, :PublicIpAssigned, :BandwidthPackageId, :InternetServiceProvider, :IPv4AddressType, :IPv6AddressType, :AntiDDoSPackageId
+
+        def initialize(internetchargetype=nil, internetmaxbandwidthout=nil, publicipassigned=nil, bandwidthpackageid=nil, internetserviceprovider=nil, ipv4addresstype=nil, ipv6addresstype=nil, antiddospackageid=nil)
           @InternetChargeType = internetchargetype
           @InternetMaxBandwidthOut = internetmaxbandwidthout
           @PublicIpAssigned = publicipassigned
           @BandwidthPackageId = bandwidthpackageid
+          @InternetServiceProvider = internetserviceprovider
+          @IPv4AddressType = ipv4addresstype
+          @IPv6AddressType = ipv6addresstype
+          @AntiDDoSPackageId = antiddospackageid
         end
 
         def deserialize(params)
@@ -2631,6 +2672,10 @@ module TencentCloud
           @InternetMaxBandwidthOut = params['InternetMaxBandwidthOut']
           @PublicIpAssigned = params['PublicIpAssigned']
           @BandwidthPackageId = params['BandwidthPackageId']
+          @InternetServiceProvider = params['InternetServiceProvider']
+          @IPv4AddressType = params['IPv4AddressType']
+          @IPv6AddressType = params['IPv6AddressType']
+          @AntiDDoSPackageId = params['AntiDDoSPackageId']
         end
       end
 

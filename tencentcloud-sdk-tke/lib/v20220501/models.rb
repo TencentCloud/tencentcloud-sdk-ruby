@@ -2317,6 +2317,46 @@ module TencentCloud
         end
       end
 
+      # SetMachineLogin请求参数结构体
+      class SetMachineLoginRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群 ID
+        # @type ClusterId: String
+        # @param MachineName: 节点名称
+        # @type MachineName: String
+        # @param KeyIds: 密钥 ID 列表
+        # @type KeyIds: Array
+
+        attr_accessor :ClusterId, :MachineName, :KeyIds
+
+        def initialize(clusterid=nil, machinename=nil, keyids=nil)
+          @ClusterId = clusterid
+          @MachineName = machinename
+          @KeyIds = keyids
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @MachineName = params['MachineName']
+          @KeyIds = params['KeyIds']
+        end
+      end
+
+      # SetMachineLogin返回参数结构体
+      class SetMachineLoginResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 排序信息
       class SortBy < TencentCloud::Common::AbstractModel
         # @param FieldName: 排序指标

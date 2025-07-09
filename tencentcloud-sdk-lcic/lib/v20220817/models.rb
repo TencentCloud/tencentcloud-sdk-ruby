@@ -931,10 +931,10 @@ module TencentCloud
 
         attr_accessor :Name, :StartTime, :EndTime, :SdkAppId, :Resolution, :MaxMicNumber, :SubType, :TeacherId, :AutoMic, :TurnOffMic, :AudioQuality, :DisableRecord, :Assistants, :RTCAudienceNumber, :AudienceType, :RecordLayout, :GroupId, :EnableDirectControl, :InteractionMode, :VideoOrientation, :IsGradingRequiredPostClass, :RoomType, :EndDelayTime, :LiveType, :RecordLiveUrl, :EnableAutoStart, :RecordBackground, :RecordScene, :RecordLang, :RecordStream, :WhiteBoardSnapshotMode, :SubtitlesTranscription
         extend Gem::Deprecate
-        deprecate :RTCAudienceNumber, :none, 2025, 4
-        deprecate :RTCAudienceNumber=, :none, 2025, 4
-        deprecate :RecordLang, :none, 2025, 4
-        deprecate :RecordLang=, :none, 2025, 4
+        deprecate :RTCAudienceNumber, :none, 2025, 7
+        deprecate :RTCAudienceNumber=, :none, 2025, 7
+        deprecate :RecordLang, :none, 2025, 7
+        deprecate :RecordLang=, :none, 2025, 7
 
         def initialize(name=nil, starttime=nil, endtime=nil, sdkappid=nil, resolution=nil, maxmicnumber=nil, subtype=nil, teacherid=nil, automic=nil, turnoffmic=nil, audioquality=nil, disablerecord=nil, assistants=nil, rtcaudiencenumber=nil, audiencetype=nil, recordlayout=nil, groupid=nil, enabledirectcontrol=nil, interactionmode=nil, videoorientation=nil, isgradingrequiredpostclass=nil, roomtype=nil, enddelaytime=nil, livetype=nil, recordliveurl=nil, enableautostart=nil, recordbackground=nil, recordscene=nil, recordlang=nil, recordstream=nil, whiteboardsnapshotmode=nil, subtitlestranscription=nil)
           @Name = name
@@ -2842,6 +2842,53 @@ module TencentCloud
         end
       end
 
+      # DescribeUserDetail请求参数结构体
+      class DescribeUserDetailRequest < TencentCloud::Common::AbstractModel
+        # @param UserId: 用户id。支持通过 user_id 或 OriginId 查询用户信息，优先使用 user_id 进行查询。
+        # @type UserId: String
+        # @param OriginId: 用户在客户系统的Id。支持通过 user_id 或 OriginId 查询用户信息，优先使用 user_id 进行查询（UserId不为空时，OriginId不生效）。
+        # @type OriginId: String
+
+        attr_accessor :UserId, :OriginId
+
+        def initialize(userid=nil, originid=nil)
+          @UserId = userid
+          @OriginId = originid
+        end
+
+        def deserialize(params)
+          @UserId = params['UserId']
+          @OriginId = params['OriginId']
+        end
+      end
+
+      # DescribeUserDetail返回参数结构体
+      class DescribeUserDetailResponse < TencentCloud::Common::AbstractModel
+        # @param Users: 当前获取用户信息数组列表
+        # @type Users: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Users, :RequestId
+
+        def initialize(users=nil, requestid=nil)
+          @Users = users
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Users'].nil?
+            @Users = []
+            params['Users'].each do |i|
+              userinfo_tmp = UserInfo.new
+              userinfo_tmp.deserialize(i)
+              @Users << userinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeUser请求参数结构体
       class DescribeUserRequest < TencentCloud::Common::AbstractModel
         # @param UserId: 用户id。支持通过 user_id 或 OriginId 查询用户信息，优先使用 user_id 进行查询。
@@ -4067,8 +4114,8 @@ module TencentCloud
 
         attr_accessor :RoomId, :SdkAppId, :StartTime, :EndTime, :TeacherId, :Name, :Resolution, :MaxMicNumber, :AutoMic, :AudioQuality, :SubType, :DisableRecord, :Assistants, :GroupId, :EnableDirectControl, :InteractionMode, :VideoOrientation, :IsGradingRequiredPostClass, :RoomType, :RecordLayout, :EndDelayTime, :LiveType, :RecordLiveUrl, :EnableAutoStart, :RecordScene, :RecordLang, :WhiteBoardSnapshotMode, :SubtitlesTranscription
         extend Gem::Deprecate
-        deprecate :RecordLang, :none, 2025, 4
-        deprecate :RecordLang=, :none, 2025, 4
+        deprecate :RecordLang, :none, 2025, 7
+        deprecate :RecordLang=, :none, 2025, 7
 
         def initialize(roomid=nil, sdkappid=nil, starttime=nil, endtime=nil, teacherid=nil, name=nil, resolution=nil, maxmicnumber=nil, automic=nil, audioquality=nil, subtype=nil, disablerecord=nil, assistants=nil, groupid=nil, enabledirectcontrol=nil, interactionmode=nil, videoorientation=nil, isgradingrequiredpostclass=nil, roomtype=nil, recordlayout=nil, enddelaytime=nil, livetype=nil, recordliveurl=nil, enableautostart=nil, recordscene=nil, recordlang=nil, whiteboardsnapshotmode=nil, subtitlestranscription=nil)
           @RoomId = roomid
@@ -4419,10 +4466,10 @@ module TencentCloud
 
         attr_accessor :Name, :StartTime, :EndTime, :Resolution, :MaxMicNumber, :SubType, :TeacherId, :AutoMic, :TurnOffMic, :AudioQuality, :DisableRecord, :Assistants, :RTCAudienceNumber, :AudienceType, :RecordLayout, :GroupId, :EnableDirectControl, :InteractionMode, :VideoOrientation, :IsGradingRequiredPostClass, :RoomType, :EndDelayTime, :LiveType, :RecordLiveUrl, :EnableAutoStart, :RecordBackground, :RecordScene, :RecordLang, :RecordStream, :WhiteBoardSnapshotMode, :SubtitlesTranscription
         extend Gem::Deprecate
-        deprecate :RTCAudienceNumber, :none, 2025, 4
-        deprecate :RTCAudienceNumber=, :none, 2025, 4
-        deprecate :RecordLang, :none, 2025, 4
-        deprecate :RecordLang=, :none, 2025, 4
+        deprecate :RTCAudienceNumber, :none, 2025, 7
+        deprecate :RTCAudienceNumber=, :none, 2025, 7
+        deprecate :RecordLang, :none, 2025, 7
+        deprecate :RecordLang=, :none, 2025, 7
 
         def initialize(name=nil, starttime=nil, endtime=nil, resolution=nil, maxmicnumber=nil, subtype=nil, teacherid=nil, automic=nil, turnoffmic=nil, audioquality=nil, disablerecord=nil, assistants=nil, rtcaudiencenumber=nil, audiencetype=nil, recordlayout=nil, groupid=nil, enabledirectcontrol=nil, interactionmode=nil, videoorientation=nil, isgradingrequiredpostclass=nil, roomtype=nil, enddelaytime=nil, livetype=nil, recordliveurl=nil, enableautostart=nil, recordbackground=nil, recordscene=nil, recordlang=nil, recordstream=nil, whiteboardsnapshotmode=nil, subtitlestranscription=nil)
           @Name = name

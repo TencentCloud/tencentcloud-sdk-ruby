@@ -865,6 +865,26 @@ module TencentCloud
         end
       end
 
+      # Web 安全 Allow 的附加参数
+      class AllowActionParameters < TencentCloud::Common::AbstractModel
+        # @param MinDelayTime: 最小延迟响应时间，当配置为 0s 时，表示不延迟直接响应。支持的单位有：<li>s：秒，取值范围 0～5。</li>
+        # @type MinDelayTime: String
+        # @param MaxDelayTime: 最大延迟响应时间，支持的单位有：<li>s：秒，取值范围 5～10。</li>
+        # @type MaxDelayTime: String
+
+        attr_accessor :MinDelayTime, :MaxDelayTime
+
+        def initialize(mindelaytime=nil, maxdelaytime=nil)
+          @MinDelayTime = mindelaytime
+          @MaxDelayTime = maxdelaytime
+        end
+
+        def deserialize(params)
+          @MinDelayTime = params['MinDelayTime']
+          @MaxDelayTime = params['MaxDelayTime']
+        end
+      end
+
       # 应用代理实例
       class ApplicationProxy < TencentCloud::Common::AbstractModel
         # @param ZoneId: 站点ID。
@@ -1517,6 +1537,25 @@ module TencentCloud
           @CapManagedIds = params['CapManagedIds']
           @MonManagedIds = params['MonManagedIds']
           @DropManagedIds = params['DropManagedIds']
+        end
+      end
+
+      # Web 安全的 BOT 规则结构。
+      class BotManagement < TencentCloud::Common::AbstractModel
+        # @param ClientAttestationRules: 客户端认证规则的定义列表。该功能内测中，如需使用，请提工单或联系智能客服。
+        # @type ClientAttestationRules: :class:`Tencentcloud::Teo.v20220901.models.ClientAttestationRules`
+
+        attr_accessor :ClientAttestationRules
+
+        def initialize(clientattestationrules=nil)
+          @ClientAttestationRules = clientattestationrules
+        end
+
+        def deserialize(params)
+          unless params['ClientAttestationRules'].nil?
+            @ClientAttestationRules = ClientAttestationRules.new
+            @ClientAttestationRules.deserialize(params['ClientAttestationRules'])
+          end
         end
       end
 
@@ -2324,6 +2363,83 @@ module TencentCloud
               originhealthstatus_tmp = OriginHealthStatus.new
               originhealthstatus_tmp.deserialize(i)
               @OriginHealthStatus << originhealthstatus_tmp
+            end
+          end
+        end
+      end
+
+      # 客户端认证规则
+      class ClientAttestationRule < TencentCloud::Common::AbstractModel
+        # @param Id: 客户端认证规则的 ID。<br>通过规则 ID 可支持不同的规则配置操作：<br> <li> <b>增加</b>新规则：ID 为空或不指定 ID 参数；</li><li> <b>修改</b>已有规则：指定需要更新/修改的规则 ID；</li><li> <b>删除</b>已有规则：BotManagement 参数中，ClientAttestationRule 列表中未包含的已有规则将被删除。</li>
+        # @type Id: String
+        # @param Name: 客户端认证规则的名称。
+        # @type Name: String
+        # @param Enabled: 规则是否开启。取值有：<li>on：开启；</li><li>off：关闭。</li>
+        # @type Enabled: String
+        # @param Priority: 规则的优先级，数值越小越优先执行，范围是 0 ~ 100，默认为 0。
+        # @type Priority: Integer
+        # @param Condition: 规则的具体内容，需符合表达式语法，详细规范参见产品文档。
+        # @type Condition: String
+        # @param AttesterId: 客户端认证选项 ID。
+        # @type AttesterId: String
+        # @param DeviceProfiles: 客户端设备配置。若 ClientAttestationRules 参数中，未指定 DeviceProfiles 参数值：保持已有客户端设备配置，不做修改。
+        # @type DeviceProfiles: Array
+        # @param InvalidAttestationAction: 客户端认证未通过的处置方式。SecurityAction 的 Name 取值支持：<li>Deny：拦截；</li><li>Monitor：观察；</li><li>Redirect：重定向；</li><li>Challenge：挑战。</li>默认值为 Monitor。
+        # @type InvalidAttestationAction: :class:`Tencentcloud::Teo.v20220901.models.SecurityAction`
+
+        attr_accessor :Id, :Name, :Enabled, :Priority, :Condition, :AttesterId, :DeviceProfiles, :InvalidAttestationAction
+
+        def initialize(id=nil, name=nil, enabled=nil, priority=nil, condition=nil, attesterid=nil, deviceprofiles=nil, invalidattestationaction=nil)
+          @Id = id
+          @Name = name
+          @Enabled = enabled
+          @Priority = priority
+          @Condition = condition
+          @AttesterId = attesterid
+          @DeviceProfiles = deviceprofiles
+          @InvalidAttestationAction = invalidattestationaction
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Name = params['Name']
+          @Enabled = params['Enabled']
+          @Priority = params['Priority']
+          @Condition = params['Condition']
+          @AttesterId = params['AttesterId']
+          unless params['DeviceProfiles'].nil?
+            @DeviceProfiles = []
+            params['DeviceProfiles'].each do |i|
+              deviceprofile_tmp = DeviceProfile.new
+              deviceprofile_tmp.deserialize(i)
+              @DeviceProfiles << deviceprofile_tmp
+            end
+          end
+          unless params['InvalidAttestationAction'].nil?
+            @InvalidAttestationAction = SecurityAction.new
+            @InvalidAttestationAction.deserialize(params['InvalidAttestationAction'])
+          end
+        end
+      end
+
+      # 客户端认证的配置。
+      class ClientAttestationRules < TencentCloud::Common::AbstractModel
+        # @param Rules: 客户端认证的列表。使用 ModifySecurityPolicy 修改 Web 防护配置时：<li>  若未指定 SecurityPolicy.BotManagement.ClientAttestationRules 中的 Rules 参数，或 Rules 参数长度为零：清空所有客户端认证规则配置。</li> <li> 若 SecurityPolicy.BotManagement 参数中，未指定 ClientAttestationRules 参数值：保持已有客户端认证规则配置，不做修改。</li>
+        # @type Rules: Array
+
+        attr_accessor :Rules
+
+        def initialize(rules=nil)
+          @Rules = rules
+        end
+
+        def deserialize(params)
+          unless params['Rules'].nil?
+            @Rules = []
+            params['Rules'].each do |i|
+              clientattestationrule_tmp = ClientAttestationRule.new
+              clientattestationrule_tmp.deserialize(i)
+              @Rules << clientattestationrule_tmp
             end
           end
         end
@@ -8322,7 +8438,7 @@ module TencentCloud
 
       # DescribeSecurityIPGroup返回参数结构体
       class DescribeSecurityIPGroupResponse < TencentCloud::Common::AbstractModel
-        # @param IPGroups: 安全 IP 组的详细配置信息。包含每个安全 IP 组的 ID 、名称、 IP / 网段列表信息和过期时间信息。
+        # @param IPGroups: 安全 IP 组的详细配置信息。包含每个安全 IP 组的 ID 、名称、IP / 网段总数量、 IP / 网段列表信息和过期时间信息。
         # @type IPGroups: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -9439,6 +9555,44 @@ module TencentCloud
             end
           end
           @Action = params['Action']
+        end
+      end
+
+      # 客户端设备配置
+      class DeviceProfile < TencentCloud::Common::AbstractModel
+        # @param ClientType: 客户端设备类型。取值有：<li>iOS；</li><li>Android；</li><li>WebView。</li>
+        # @type ClientType: String
+        # @param HighRiskMinScore: 判定请求为高风险的最低值，取值范围为 1～99。数值越大请求风险越高越接近 Bot 客户端发起的请求。默认值为 50，对应含义 51～100 为高风险。
+        # @type HighRiskMinScore: Integer
+        # @param HighRiskRequestAction: 高风险请求的处置方式。SecurityAction 的 Name 取值支持：<li>Deny：拦截；</li><li>Monitor：观察；</li><li>Redirect：重定向；</li><li>Challenge：挑战。</li>默认值为 Monitor。
+        # @type HighRiskRequestAction: :class:`Tencentcloud::Teo.v20220901.models.SecurityAction`
+        # @param MediumRiskMinScore: 判定请求为中风险的最低值，取值范围为 1～99。数值越大请求风险越高越接近 Bot 客户端发起的请求。默认值为 15，对应含义 16～50 为中风险。
+        # @type MediumRiskMinScore: Integer
+        # @param MediumRiskRequestAction: 中风险请求的处置方式。SecurityAction 的 Name 取值支持：<li>Deny：拦截；</li><li>Monitor：观察；</li><li>Redirect：重定向；</li><li>Challenge：挑战。</li>默认值为 Monitor。
+        # @type MediumRiskRequestAction: :class:`Tencentcloud::Teo.v20220901.models.SecurityAction`
+
+        attr_accessor :ClientType, :HighRiskMinScore, :HighRiskRequestAction, :MediumRiskMinScore, :MediumRiskRequestAction
+
+        def initialize(clienttype=nil, highriskminscore=nil, highriskrequestaction=nil, mediumriskminscore=nil, mediumriskrequestaction=nil)
+          @ClientType = clienttype
+          @HighRiskMinScore = highriskminscore
+          @HighRiskRequestAction = highriskrequestaction
+          @MediumRiskMinScore = mediumriskminscore
+          @MediumRiskRequestAction = mediumriskrequestaction
+        end
+
+        def deserialize(params)
+          @ClientType = params['ClientType']
+          @HighRiskMinScore = params['HighRiskMinScore']
+          unless params['HighRiskRequestAction'].nil?
+            @HighRiskRequestAction = SecurityAction.new
+            @HighRiskRequestAction.deserialize(params['HighRiskRequestAction'])
+          end
+          @MediumRiskMinScore = params['MediumRiskMinScore']
+          unless params['MediumRiskRequestAction'].nil?
+            @MediumRiskRequestAction = SecurityAction.new
+            @MediumRiskRequestAction.deserialize(params['MediumRiskRequestAction'])
+          end
         end
       end
 
@@ -11157,19 +11311,22 @@ module TencentCloud
         # @type Name: String
         # @param Content: IP 组内容，仅支持 IP 及 IP 网段。
         # @type Content: Array
+        # @param IPTotalCount: IP 组中正在生效的 IP 或网段个数。作为出参时有效，作为入参时无需填写该字段。
+        # @type IPTotalCount: Integer
         # @param IPExpireInfo: IP 定时过期信息。
-        # 作为入参：用于为指定的 IP 地址或网段配置定时过期时间。
+        # 作为入参，用于为指定的 IP 地址或网段配置定时过期时间。
         # 作为出参，包含以下两类信息：
         # <li>当前未到期的定时过期信息：尚未触发的过期配置。</li>
         # <li>一周内已到期的定时过期信息：已触发的过期配置。</li>
         # @type IPExpireInfo: Array
 
-        attr_accessor :GroupId, :Name, :Content, :IPExpireInfo
+        attr_accessor :GroupId, :Name, :Content, :IPTotalCount, :IPExpireInfo
 
-        def initialize(groupid=nil, name=nil, content=nil, ipexpireinfo=nil)
+        def initialize(groupid=nil, name=nil, content=nil, iptotalcount=nil, ipexpireinfo=nil)
           @GroupId = groupid
           @Name = name
           @Content = content
+          @IPTotalCount = iptotalcount
           @IPExpireInfo = ipexpireinfo
         end
 
@@ -11177,6 +11334,7 @@ module TencentCloud
           @GroupId = params['GroupId']
           @Name = params['Name']
           @Content = params['Content']
+          @IPTotalCount = params['IPTotalCount']
           unless params['IPExpireInfo'].nil?
             @IPExpireInfo = []
             params['IPExpireInfo'].each do |i|
@@ -15220,7 +15378,9 @@ module TencentCloud
       # 例外规则的详细模块配置。
       class PartialModule < TencentCloud::Common::AbstractModel
         # @param Module: 模块名称，取值为：
-        # <li>waf：托管规则。</li>
+        # <li>managed-rule：托管规则 Id；</li>
+        # <li>managed-group：托管规则组；</li>
+        # <li>waf：待废弃，托管规则。</li>
         # @type Module: String
         # @param Include: 模块下的需要例外的具体规则ID列表。
         # @type Include: Array
@@ -17423,6 +17583,8 @@ module TencentCloud
         # @type DenyActionParameters: :class:`Tencentcloud::Teo.v20220901.models.DenyActionParameters`
         # @param RedirectActionParameters: 当 Name 为 Redirect 时的附加参数。
         # @type RedirectActionParameters: :class:`Tencentcloud::Teo.v20220901.models.RedirectActionParameters`
+        # @param AllowActionParameters: 当 Name 为 Allow 时的附加参数。
+        # @type AllowActionParameters: :class:`Tencentcloud::Teo.v20220901.models.AllowActionParameters`
         # @param ChallengeActionParameters: 当 Name 为 Challenge 时的附加参数。
         # @type ChallengeActionParameters: :class:`Tencentcloud::Teo.v20220901.models.ChallengeActionParameters`
         # @param BlockIPActionParameters: 待废弃，当 Name 为 BlockIP 时的附加参数。
@@ -17430,12 +17592,13 @@ module TencentCloud
         # @param ReturnCustomPageActionParameters: 待废弃，当 Name 为 ReturnCustomPage 时的附加参数。
         # @type ReturnCustomPageActionParameters: :class:`Tencentcloud::Teo.v20220901.models.ReturnCustomPageActionParameters`
 
-        attr_accessor :Name, :DenyActionParameters, :RedirectActionParameters, :ChallengeActionParameters, :BlockIPActionParameters, :ReturnCustomPageActionParameters
+        attr_accessor :Name, :DenyActionParameters, :RedirectActionParameters, :AllowActionParameters, :ChallengeActionParameters, :BlockIPActionParameters, :ReturnCustomPageActionParameters
 
-        def initialize(name=nil, denyactionparameters=nil, redirectactionparameters=nil, challengeactionparameters=nil, blockipactionparameters=nil, returncustompageactionparameters=nil)
+        def initialize(name=nil, denyactionparameters=nil, redirectactionparameters=nil, allowactionparameters=nil, challengeactionparameters=nil, blockipactionparameters=nil, returncustompageactionparameters=nil)
           @Name = name
           @DenyActionParameters = denyactionparameters
           @RedirectActionParameters = redirectactionparameters
+          @AllowActionParameters = allowactionparameters
           @ChallengeActionParameters = challengeactionparameters
           @BlockIPActionParameters = blockipactionparameters
           @ReturnCustomPageActionParameters = returncustompageactionparameters
@@ -17450,6 +17613,10 @@ module TencentCloud
           unless params['RedirectActionParameters'].nil?
             @RedirectActionParameters = RedirectActionParameters.new
             @RedirectActionParameters.deserialize(params['RedirectActionParameters'])
+          end
+          unless params['AllowActionParameters'].nil?
+            @AllowActionParameters = AllowActionParameters.new
+            @AllowActionParameters.deserialize(params['AllowActionParameters'])
           end
           unless params['ChallengeActionParameters'].nil?
             @ChallengeActionParameters = ChallengeActionParameters.new
@@ -17561,21 +17728,24 @@ module TencentCloud
         # @type CustomRules: :class:`Tencentcloud::Teo.v20220901.models.CustomRules`
         # @param ManagedRules: 托管规则配置。
         # @type ManagedRules: :class:`Tencentcloud::Teo.v20220901.models.ManagedRules`
-        # @param HttpDDoSProtection: HTTP DDOS防护配置。
+        # @param HttpDDoSProtection: HTTP DDOS 防护配置。
         # @type HttpDDoSProtection: :class:`Tencentcloud::Teo.v20220901.models.HttpDDoSProtection`
         # @param RateLimitingRules: 速率限制规则配置。
         # @type RateLimitingRules: :class:`Tencentcloud::Teo.v20220901.models.RateLimitingRules`
         # @param ExceptionRules: 例外规则配置。
         # @type ExceptionRules: :class:`Tencentcloud::Teo.v20220901.models.ExceptionRules`
+        # @param BotManagement: Bot 管理配置。
+        # @type BotManagement: :class:`Tencentcloud::Teo.v20220901.models.BotManagement`
 
-        attr_accessor :CustomRules, :ManagedRules, :HttpDDoSProtection, :RateLimitingRules, :ExceptionRules
+        attr_accessor :CustomRules, :ManagedRules, :HttpDDoSProtection, :RateLimitingRules, :ExceptionRules, :BotManagement
 
-        def initialize(customrules=nil, managedrules=nil, httpddosprotection=nil, ratelimitingrules=nil, exceptionrules=nil)
+        def initialize(customrules=nil, managedrules=nil, httpddosprotection=nil, ratelimitingrules=nil, exceptionrules=nil, botmanagement=nil)
           @CustomRules = customrules
           @ManagedRules = managedrules
           @HttpDDoSProtection = httpddosprotection
           @RateLimitingRules = ratelimitingrules
           @ExceptionRules = exceptionrules
+          @BotManagement = botmanagement
         end
 
         def deserialize(params)
@@ -17598,6 +17768,10 @@ module TencentCloud
           unless params['ExceptionRules'].nil?
             @ExceptionRules = ExceptionRules.new
             @ExceptionRules.deserialize(params['ExceptionRules'])
+          end
+          unless params['BotManagement'].nil?
+            @BotManagement = BotManagement.new
+            @BotManagement.deserialize(params['BotManagement'])
           end
         end
       end

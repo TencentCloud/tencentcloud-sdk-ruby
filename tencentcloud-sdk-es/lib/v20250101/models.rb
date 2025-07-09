@@ -347,14 +347,20 @@ module TencentCloud
         # @type FileContent: String
         # @param FileName: 文件名称，当使用 base64上传的时候使用。
         # @type FileName: String
+        # @param FileStartPageNumber: 文档的起始页码
+        # @type FileStartPageNumber: Integer
+        # @param FileEndPageNumber: 文档的结束页码
+        # @type FileEndPageNumber: Integer
 
-        attr_accessor :FileType, :FileUrl, :FileContent, :FileName
+        attr_accessor :FileType, :FileUrl, :FileContent, :FileName, :FileStartPageNumber, :FileEndPageNumber
 
-        def initialize(filetype=nil, fileurl=nil, filecontent=nil, filename=nil)
+        def initialize(filetype=nil, fileurl=nil, filecontent=nil, filename=nil, filestartpagenumber=nil, fileendpagenumber=nil)
           @FileType = filetype
           @FileUrl = fileurl
           @FileContent = filecontent
           @FileName = filename
+          @FileStartPageNumber = filestartpagenumber
+          @FileEndPageNumber = fileendpagenumber
         end
 
         def deserialize(params)
@@ -362,6 +368,8 @@ module TencentCloud
           @FileUrl = params['FileUrl']
           @FileContent = params['FileContent']
           @FileName = params['FileName']
+          @FileStartPageNumber = params['FileStartPageNumber']
+          @FileEndPageNumber = params['FileEndPageNumber']
         end
       end
 

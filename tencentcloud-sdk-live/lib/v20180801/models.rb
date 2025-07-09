@@ -1500,6 +1500,121 @@ module TencentCloud
         end
       end
 
+      # 自适应码率转码模板，子模板，出入参数。
+      class ChildTemplateInfo < TencentCloud::Common::AbstractModel
+        # @param TemplateId: 自适应码率转码模板，子模板Id。
+        # 入参时候，填写此字段，表示更新子模板，否则是新增子模板。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TemplateId: Integer
+        # @param TemplateName: 子模板名称。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TemplateName: String
+        # @param Vcodec: 视频编码：h264/h265/origin，默认origin。
+
+        # origin: 保持原始编码格式。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Vcodec: String
+        # @param VideoBitrate: 视频码率。范围：0kbps - 8000kbps。
+        # 0为保持原始码率。
+        # 注: 转码模板有码率唯一要求，最终保存的码率可能与输入码率有所差别。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VideoBitrate: Integer
+        # @param Width: 宽，默认0。
+        # 范围[0-3000]。
+        # 数值必须是2的倍数，0是原始宽度。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Width: Integer
+        # @param Height: 高，默认0。
+        # 范围[0-3000]
+        # 数值必须是2的倍数，0是原始高度。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Height: Integer
+        # @param Fps: 帧率，默认0。
+        # 范围0-60fps。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Fps: Integer
+        # @param Gop: 关键帧间隔，单位：秒。
+        # 默认原始的间隔。
+        # 范围2-6。
+        # 同一个父模板下面的所有子模板，gop必须相等且存在。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Gop: Integer
+        # @param NeedVideo: 是否保留视频，0：否，1：是。默认1。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NeedVideo: Integer
+        # @param NeedAudio: 是否保留音频，0：否，1：是。默认1。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NeedAudio: Integer
+        # @param BitrateToOrig: 当设置的码率>原始码率时，是否以原始码率为准。
+        # 0：否， 1：是
+        # 默认 0。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BitrateToOrig: Integer
+        # @param HeightToOrig: 当设置的高度>原始高度时，是否以原始高度为准。
+        # 0：否， 1：是
+        # 默认 0。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HeightToOrig: Integer
+        # @param FpsToOrig: 当设置的帧率>原始帧率时，是否以原始帧率为准。
+        # 0：否， 1：是
+        # 默认 0。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FpsToOrig: Integer
+        # @param ShortEdgeAsHeight: 是否以短边作为高度，0：否，1：是。默认0。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ShortEdgeAsHeight: Integer
+        # @param HlsContainerFormat: HLS 分片类型。
+        # 可选值：ts、fmp4。
+        # 注：编码方式为 H.265 时生效。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HlsContainerFormat: String
+        # @param HlsMp4VideoCodecTag: 编码标签。
+        # 可选值：hvc1、hev1。
+        # 注：HLS 分片类型选择 fmp4 时生效。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HlsMp4VideoCodecTag: String
+
+        attr_accessor :TemplateId, :TemplateName, :Vcodec, :VideoBitrate, :Width, :Height, :Fps, :Gop, :NeedVideo, :NeedAudio, :BitrateToOrig, :HeightToOrig, :FpsToOrig, :ShortEdgeAsHeight, :HlsContainerFormat, :HlsMp4VideoCodecTag
+
+        def initialize(templateid=nil, templatename=nil, vcodec=nil, videobitrate=nil, width=nil, height=nil, fps=nil, gop=nil, needvideo=nil, needaudio=nil, bitratetoorig=nil, heighttoorig=nil, fpstoorig=nil, shortedgeasheight=nil, hlscontainerformat=nil, hlsmp4videocodectag=nil)
+          @TemplateId = templateid
+          @TemplateName = templatename
+          @Vcodec = vcodec
+          @VideoBitrate = videobitrate
+          @Width = width
+          @Height = height
+          @Fps = fps
+          @Gop = gop
+          @NeedVideo = needvideo
+          @NeedAudio = needaudio
+          @BitrateToOrig = bitratetoorig
+          @HeightToOrig = heighttoorig
+          @FpsToOrig = fpstoorig
+          @ShortEdgeAsHeight = shortedgeasheight
+          @HlsContainerFormat = hlscontainerformat
+          @HlsMp4VideoCodecTag = hlsmp4videocodectag
+        end
+
+        def deserialize(params)
+          @TemplateId = params['TemplateId']
+          @TemplateName = params['TemplateName']
+          @Vcodec = params['Vcodec']
+          @VideoBitrate = params['VideoBitrate']
+          @Width = params['Width']
+          @Height = params['Height']
+          @Fps = params['Fps']
+          @Gop = params['Gop']
+          @NeedVideo = params['NeedVideo']
+          @NeedAudio = params['NeedAudio']
+          @BitrateToOrig = params['BitrateToOrig']
+          @HeightToOrig = params['HeightToOrig']
+          @FpsToOrig = params['FpsToOrig']
+          @ShortEdgeAsHeight = params['ShortEdgeAsHeight']
+          @HlsContainerFormat = params['HlsContainerFormat']
+          @HlsMp4VideoCodecTag = params['HlsMp4VideoCodecTag']
+        end
+      end
+
       # 客户端ip播放汇总信息。
       class ClientIpPlaySumInfo < TencentCloud::Common::AbstractModel
         # @param ClientIp: 客户端 IP，点分型。
@@ -15021,10 +15136,18 @@ module TencentCloud
         # @param DRMTracks: DRM 加密项，多个用|分割，可选值：AUDIO、SD、HD、UHD1、UHD2，后四个为一组，同组中的内容只能选一个。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DRMTracks: String
+        # @param IsAdaptiveBitRate: 是否创建自适应码率，默认值 0。
+        # 0：否。
+        # 1：是。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsAdaptiveBitRate: Integer
+        # @param AdaptiveChildren: 自适应码率，子转码模板信息，当 IsAdaptiveBitRate 为 1 时有效。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AdaptiveChildren: Array
 
-        attr_accessor :Vcodec, :VideoBitrate, :Acodec, :AudioBitrate, :Width, :Height, :Fps, :Gop, :Rotate, :Profile, :BitrateToOrig, :HeightToOrig, :FpsToOrig, :NeedVideo, :NeedAudio, :TemplateId, :TemplateName, :Description, :AiTransCode, :AdaptBitratePercent, :ShortEdgeAsHeight, :DRMType, :DRMTracks
+        attr_accessor :Vcodec, :VideoBitrate, :Acodec, :AudioBitrate, :Width, :Height, :Fps, :Gop, :Rotate, :Profile, :BitrateToOrig, :HeightToOrig, :FpsToOrig, :NeedVideo, :NeedAudio, :TemplateId, :TemplateName, :Description, :AiTransCode, :AdaptBitratePercent, :ShortEdgeAsHeight, :DRMType, :DRMTracks, :IsAdaptiveBitRate, :AdaptiveChildren
 
-        def initialize(vcodec=nil, videobitrate=nil, acodec=nil, audiobitrate=nil, width=nil, height=nil, fps=nil, gop=nil, rotate=nil, profile=nil, bitratetoorig=nil, heighttoorig=nil, fpstoorig=nil, needvideo=nil, needaudio=nil, templateid=nil, templatename=nil, description=nil, aitranscode=nil, adaptbitratepercent=nil, shortedgeasheight=nil, drmtype=nil, drmtracks=nil)
+        def initialize(vcodec=nil, videobitrate=nil, acodec=nil, audiobitrate=nil, width=nil, height=nil, fps=nil, gop=nil, rotate=nil, profile=nil, bitratetoorig=nil, heighttoorig=nil, fpstoorig=nil, needvideo=nil, needaudio=nil, templateid=nil, templatename=nil, description=nil, aitranscode=nil, adaptbitratepercent=nil, shortedgeasheight=nil, drmtype=nil, drmtracks=nil, isadaptivebitrate=nil, adaptivechildren=nil)
           @Vcodec = vcodec
           @VideoBitrate = videobitrate
           @Acodec = acodec
@@ -15048,6 +15171,8 @@ module TencentCloud
           @ShortEdgeAsHeight = shortedgeasheight
           @DRMType = drmtype
           @DRMTracks = drmtracks
+          @IsAdaptiveBitRate = isadaptivebitrate
+          @AdaptiveChildren = adaptivechildren
         end
 
         def deserialize(params)
@@ -15074,6 +15199,15 @@ module TencentCloud
           @ShortEdgeAsHeight = params['ShortEdgeAsHeight']
           @DRMType = params['DRMType']
           @DRMTracks = params['DRMTracks']
+          @IsAdaptiveBitRate = params['IsAdaptiveBitRate']
+          unless params['AdaptiveChildren'].nil?
+            @AdaptiveChildren = []
+            params['AdaptiveChildren'].each do |i|
+              childtemplateinfo_tmp = ChildTemplateInfo.new
+              childtemplateinfo_tmp.deserialize(i)
+              @AdaptiveChildren << childtemplateinfo_tmp
+            end
+          end
         end
       end
 

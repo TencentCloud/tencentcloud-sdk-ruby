@@ -747,35 +747,35 @@ module TencentCloud
       class CreateMigrationTaskRequest < TencentCloud::Common::AbstractModel
         # @param TaskName: 迁移任务名称
         # @type TaskName: String
-        # @param MigrationType: 迁移方式标志位，默认为0。0: 桶迁移；1: 清单迁移
+        # @param MigrationType: 迁移方式标志位，默认为0。0：桶迁移；1：清单迁移
         # @type MigrationType: Integer
         # @param MigrationMode: 迁移模式，默认为0。0: 全量迁移
         # @type MigrationMode: Integer
-        # @param SrcSecretId: 数据源账号的SecretId
+        # @param SrcSecretId: 数据源账号的 SecretId
         # @type SrcSecretId: String
-        # @param SrcSecretKey: 数据源账号的SecretKey
+        # @param SrcSecretKey: 数据源账号的 SecretKey
         # @type SrcSecretKey: String
-        # @param FileSystemId: 文件系统实例Id
+        # @param FileSystemId: 文件系统实例 ID，通过查询文件系统 [DescribeCfsFileSystems](https://cloud.tencent.com/document/product/582/38170) 获取
         # @type FileSystemId: String
         # @param FsPath: 文件系统路径
         # @type FsPath: String
         # @param CoverType: 同名文件迁移时覆盖策略，默认为0。0: 最后修改时间优先；1: 全覆盖；2: 不覆盖
         # @type CoverType: Integer
-        # @param SrcService: 数据源服务商。COS: 腾讯云COS，OSS: 阿里云OSS，OBS:华为云OBS
+        # @param SrcService: 数据源服务商。COS：腾讯云COS，OSS：阿里云OSS，OBS：华为云OBS
         # @type SrcService: String
-        # @param BucketName: 数据源桶名称，名称和地址至少有一个
+        # @param BucketName: 数据源桶名称；桶迁移时，BucketName 和 BucketAddress 必填其一，清单迁移时无需填写此参数
         # @type BucketName: String
         # @param BucketRegion: 数据源桶地域
         # @type BucketRegion: String
-        # @param BucketAddress: 数据源桶地址，名称和地址至少有一个
+        # @param BucketAddress: 数据源桶地址；桶迁移时，BucketName 和 BucketAddress 必填其一，清单迁移时无需填写此参数
         # @type BucketAddress: String
         # @param ListAddress: 清单地址，迁移方式为清单迁移时必填
         # @type ListAddress: String
         # @param FsName: 目标文件系统名称
         # @type FsName: String
-        # @param BucketPath: 源桶路径，默认为/
+        # @param BucketPath: 源桶路径，默认为 /
         # @type BucketPath: String
-        # @param Direction: 迁移方向。0: 对象存储迁移至文件系统，1: 文件系统迁移至对象存储。默认 0
+        # @param Direction: 迁移方向；0：对象存储迁移至文件系统，1：文件系统迁移至对象存储。默认为0
         # @type Direction: Integer
 
         attr_accessor :TaskName, :MigrationType, :MigrationMode, :SrcSecretId, :SrcSecretKey, :FileSystemId, :FsPath, :CoverType, :SrcService, :BucketName, :BucketRegion, :BucketAddress, :ListAddress, :FsName, :BucketPath, :Direction
@@ -821,7 +821,7 @@ module TencentCloud
 
       # CreateMigrationTask返回参数结构体
       class CreateMigrationTaskResponse < TencentCloud::Common::AbstractModel
-        # @param TaskId: 迁移任务Id
+        # @param TaskId: 迁移任务 ID
         # @type TaskId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

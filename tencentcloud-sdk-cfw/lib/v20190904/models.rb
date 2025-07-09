@@ -3987,6 +3987,99 @@ module TencentCloud
         end
       end
 
+      # DescribeLogStorageStatistic请求参数结构体
+      class DescribeLogStorageStatisticRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeLogStorageStatistic返回参数结构体
+      class DescribeLogStorageStatisticResponse < TencentCloud::Common::AbstractModel
+        # @param ReturnCode: 返回状态码 0 成功 非0不成功
+        # @type ReturnCode: Integer
+        # @param ReturnMsg: 返回信息  success 成功 其他 不成功
+        # @type ReturnMsg: String
+        # @param UsedSize: 已使用存储量，单位B
+        # @type UsedSize: Integer
+        # @param TotalSize: 配额存储总量，单位B
+        # @type TotalSize: Integer
+        # @param StorageDay: 存储天数
+        # @type StorageDay: Integer
+        # @param AclSize: 访问控制日志存储量，单位B
+        # @type AclSize: Integer
+        # @param IdsSize: 入侵防御日志存储量，单位B
+        # @type IdsSize: Integer
+        # @param NetFlowSize: 流量日志存储量，单位B
+        # @type NetFlowSize: Integer
+        # @param OperateSize: 操作日志存储量，单位B
+        # @type OperateSize: Integer
+        # @param LeftSize: 剩余存储量，单位B
+        # @type LeftSize: Integer
+        # @param PayMode: 计费模式，0后付费，1预付费
+        # @type PayMode: Integer
+        # @param TimeHistogram: 每日增加日志存储量柱状图
+        # @type TimeHistogram: Array
+        # @param TimeHistogramShow: 柱形图格式数据
+        # @type TimeHistogramShow: :class:`Tencentcloud::Cfw.v20190904.models.StorageHistogramShow`
+        # @param ArrearsStopWriting: 后付费模式存储状态，0正常，1欠费停止写入
+        # @type ArrearsStopWriting: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ReturnCode, :ReturnMsg, :UsedSize, :TotalSize, :StorageDay, :AclSize, :IdsSize, :NetFlowSize, :OperateSize, :LeftSize, :PayMode, :TimeHistogram, :TimeHistogramShow, :ArrearsStopWriting, :RequestId
+
+        def initialize(returncode=nil, returnmsg=nil, usedsize=nil, totalsize=nil, storageday=nil, aclsize=nil, idssize=nil, netflowsize=nil, operatesize=nil, leftsize=nil, paymode=nil, timehistogram=nil, timehistogramshow=nil, arrearsstopwriting=nil, requestid=nil)
+          @ReturnCode = returncode
+          @ReturnMsg = returnmsg
+          @UsedSize = usedsize
+          @TotalSize = totalsize
+          @StorageDay = storageday
+          @AclSize = aclsize
+          @IdsSize = idssize
+          @NetFlowSize = netflowsize
+          @OperateSize = operatesize
+          @LeftSize = leftsize
+          @PayMode = paymode
+          @TimeHistogram = timehistogram
+          @TimeHistogramShow = timehistogramshow
+          @ArrearsStopWriting = arrearsstopwriting
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ReturnCode = params['ReturnCode']
+          @ReturnMsg = params['ReturnMsg']
+          @UsedSize = params['UsedSize']
+          @TotalSize = params['TotalSize']
+          @StorageDay = params['StorageDay']
+          @AclSize = params['AclSize']
+          @IdsSize = params['IdsSize']
+          @NetFlowSize = params['NetFlowSize']
+          @OperateSize = params['OperateSize']
+          @LeftSize = params['LeftSize']
+          @PayMode = params['PayMode']
+          unless params['TimeHistogram'].nil?
+            @TimeHistogram = []
+            params['TimeHistogram'].each do |i|
+              storagehistogram_tmp = StorageHistogram.new
+              storagehistogram_tmp.deserialize(i)
+              @TimeHistogram << storagehistogram_tmp
+            end
+          end
+          unless params['TimeHistogramShow'].nil?
+            @TimeHistogramShow = StorageHistogramShow.new
+            @TimeHistogramShow.deserialize(params['TimeHistogramShow'])
+          end
+          @ArrearsStopWriting = params['ArrearsStopWriting']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeLogs请求参数结构体
       class DescribeLogsRequest < TencentCloud::Common::AbstractModel
         # @param Index: 日志类型标识
@@ -6065,6 +6158,23 @@ module TencentCloud
           @SubnetId = params['SubnetId']
           @VPCName = params['VPCName']
           @VpcId = params['VpcId']
+        end
+      end
+
+      # 用于构造二维数组
+      class IntArray < TencentCloud::Common::AbstractModel
+        # @param List: 数组
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type List: Array
+
+        attr_accessor :List
+
+        def initialize(list=nil)
+          @List = list
+        end
+
+        def deserialize(params)
+          @List = params['List']
         end
       end
 
@@ -9431,6 +9541,77 @@ module TencentCloud
         def deserialize(params)
           @Status = params['Status']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 日志存储统计柱形图
+      class StorageHistogram < TencentCloud::Common::AbstractModel
+        # @param AclSize: 访问控制日志存储量，单位B
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AclSize: Integer
+        # @param IdsSize: 入侵防御日志存储量，单位B
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IdsSize: Integer
+        # @param NetFlowSize: 流量日志存储量，单位B
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NetFlowSize: Integer
+        # @param OperateSize: 操作日志存储量，单位B
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OperateSize: Integer
+        # @param Time: 统计时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Time: String
+
+        attr_accessor :AclSize, :IdsSize, :NetFlowSize, :OperateSize, :Time
+
+        def initialize(aclsize=nil, idssize=nil, netflowsize=nil, operatesize=nil, time=nil)
+          @AclSize = aclsize
+          @IdsSize = idssize
+          @NetFlowSize = netflowsize
+          @OperateSize = operatesize
+          @Time = time
+        end
+
+        def deserialize(params)
+          @AclSize = params['AclSize']
+          @IdsSize = params['IdsSize']
+          @NetFlowSize = params['NetFlowSize']
+          @OperateSize = params['OperateSize']
+          @Time = params['Time']
+        end
+      end
+
+      # 前端图表使用日志存储统计柱形图数据
+      class StorageHistogramShow < TencentCloud::Common::AbstractModel
+        # @param StorageType: 存储类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StorageType: Array
+        # @param Dates: 日期
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Dates: Array
+        # @param Data: 数据
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: Array
+
+        attr_accessor :StorageType, :Dates, :Data
+
+        def initialize(storagetype=nil, dates=nil, data=nil)
+          @StorageType = storagetype
+          @Dates = dates
+          @Data = data
+        end
+
+        def deserialize(params)
+          @StorageType = params['StorageType']
+          @Dates = params['Dates']
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              intarray_tmp = IntArray.new
+              intarray_tmp.deserialize(i)
+              @Data << intarray_tmp
+            end
+          end
         end
       end
 

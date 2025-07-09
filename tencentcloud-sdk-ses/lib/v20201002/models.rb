@@ -1943,10 +1943,15 @@ module TencentCloud
         # @type UserUnsubscribed: Boolean
         # @param UserComplainted: 用户是否举报该发送者
         # @type UserComplainted: Boolean
+        # @param UserComplained: 用户是否举报该发送者
+        # @type UserComplained: Boolean
 
-        attr_accessor :MessageId, :ToEmailAddress, :FromEmailAddress, :SendStatus, :DeliverStatus, :DeliverMessage, :RequestTime, :DeliverTime, :UserOpened, :UserClicked, :UserUnsubscribed, :UserComplainted
+        attr_accessor :MessageId, :ToEmailAddress, :FromEmailAddress, :SendStatus, :DeliverStatus, :DeliverMessage, :RequestTime, :DeliverTime, :UserOpened, :UserClicked, :UserUnsubscribed, :UserComplainted, :UserComplained
+        extend Gem::Deprecate
+        deprecate :UserComplainted, :none, 2025, 7
+        deprecate :UserComplainted=, :none, 2025, 7
 
-        def initialize(messageid=nil, toemailaddress=nil, fromemailaddress=nil, sendstatus=nil, deliverstatus=nil, delivermessage=nil, requesttime=nil, delivertime=nil, useropened=nil, userclicked=nil, userunsubscribed=nil, usercomplainted=nil)
+        def initialize(messageid=nil, toemailaddress=nil, fromemailaddress=nil, sendstatus=nil, deliverstatus=nil, delivermessage=nil, requesttime=nil, delivertime=nil, useropened=nil, userclicked=nil, userunsubscribed=nil, usercomplainted=nil, usercomplained=nil)
           @MessageId = messageid
           @ToEmailAddress = toemailaddress
           @FromEmailAddress = fromemailaddress
@@ -1959,6 +1964,7 @@ module TencentCloud
           @UserClicked = userclicked
           @UserUnsubscribed = userunsubscribed
           @UserComplainted = usercomplainted
+          @UserComplained = usercomplained
         end
 
         def deserialize(params)
@@ -1974,6 +1980,7 @@ module TencentCloud
           @UserClicked = params['UserClicked']
           @UserUnsubscribed = params['UserUnsubscribed']
           @UserComplainted = params['UserComplainted']
+          @UserComplained = params['UserComplained']
         end
       end
 

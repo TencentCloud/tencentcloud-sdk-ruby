@@ -1211,6 +1211,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 租户日志存储统计
+
+        # @param request: Request instance for DescribeLogStorageStatistic.
+        # @type request: :class:`Tencentcloud::cfw::V20190904::DescribeLogStorageStatisticRequest`
+        # @rtype: :class:`Tencentcloud::cfw::V20190904::DescribeLogStorageStatisticResponse`
+        def DescribeLogStorageStatistic(request)
+          body = send_request('DescribeLogStorageStatistic', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeLogStorageStatisticResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 日志审计日志查询
 
         # @param request: Request instance for DescribeLogs.

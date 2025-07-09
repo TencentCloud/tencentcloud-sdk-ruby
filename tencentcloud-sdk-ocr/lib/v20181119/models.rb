@@ -702,14 +702,17 @@ module TencentCloud
         # @type EnableCopyWarn: Boolean
         # @param EnablePeriodComplete: 是否返回自动拼接的有效期，默认为true
         # @type EnablePeriodComplete: Boolean
+        # @param EnableBusinessCertificate: 是否支持营业类证件识别（包括营业执照和非营业执照的其他证件），默认为false
+        # @type EnableBusinessCertificate: Boolean
 
-        attr_accessor :ImageBase64, :ImageUrl, :EnableCopyWarn, :EnablePeriodComplete
+        attr_accessor :ImageBase64, :ImageUrl, :EnableCopyWarn, :EnablePeriodComplete, :EnableBusinessCertificate
 
-        def initialize(imagebase64=nil, imageurl=nil, enablecopywarn=nil, enableperiodcomplete=nil)
+        def initialize(imagebase64=nil, imageurl=nil, enablecopywarn=nil, enableperiodcomplete=nil, enablebusinesscertificate=nil)
           @ImageBase64 = imagebase64
           @ImageUrl = imageurl
           @EnableCopyWarn = enablecopywarn
           @EnablePeriodComplete = enableperiodcomplete
+          @EnableBusinessCertificate = enablebusinesscertificate
         end
 
         def deserialize(params)
@@ -717,6 +720,7 @@ module TencentCloud
           @ImageUrl = params['ImageUrl']
           @EnableCopyWarn = params['EnableCopyWarn']
           @EnablePeriodComplete = params['EnablePeriodComplete']
+          @EnableBusinessCertificate = params['EnableBusinessCertificate']
         end
       end
 
@@ -771,12 +775,14 @@ module TencentCloud
         # @type RegistrationAuthority: String
         # @param Electronic: 是否是电子营业执照。false为没有，true为有。
         # @type Electronic: Boolean
+        # @param BusinessCertificate: 非营业执照的营业类证件识别结果，将以结构化形式呈现。
+        # @type BusinessCertificate: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RegNum, :Name, :Capital, :Person, :Address, :Business, :Type, :Period, :ComposingForm, :SetDate, :RecognizeWarnCode, :RecognizeWarnMsg, :IsDuplication, :RegistrationDate, :Angle, :NationalEmblem, :QRCode, :Seal, :Title, :SerialNumber, :RegistrationAuthority, :Electronic, :RequestId
+        attr_accessor :RegNum, :Name, :Capital, :Person, :Address, :Business, :Type, :Period, :ComposingForm, :SetDate, :RecognizeWarnCode, :RecognizeWarnMsg, :IsDuplication, :RegistrationDate, :Angle, :NationalEmblem, :QRCode, :Seal, :Title, :SerialNumber, :RegistrationAuthority, :Electronic, :BusinessCertificate, :RequestId
 
-        def initialize(regnum=nil, name=nil, capital=nil, person=nil, address=nil, business=nil, type=nil, period=nil, composingform=nil, setdate=nil, recognizewarncode=nil, recognizewarnmsg=nil, isduplication=nil, registrationdate=nil, angle=nil, nationalemblem=nil, qrcode=nil, seal=nil, title=nil, serialnumber=nil, registrationauthority=nil, electronic=nil, requestid=nil)
+        def initialize(regnum=nil, name=nil, capital=nil, person=nil, address=nil, business=nil, type=nil, period=nil, composingform=nil, setdate=nil, recognizewarncode=nil, recognizewarnmsg=nil, isduplication=nil, registrationdate=nil, angle=nil, nationalemblem=nil, qrcode=nil, seal=nil, title=nil, serialnumber=nil, registrationauthority=nil, electronic=nil, businesscertificate=nil, requestid=nil)
           @RegNum = regnum
           @Name = name
           @Capital = capital
@@ -799,6 +805,7 @@ module TencentCloud
           @SerialNumber = serialnumber
           @RegistrationAuthority = registrationauthority
           @Electronic = electronic
+          @BusinessCertificate = businesscertificate
           @RequestId = requestid
         end
 
@@ -825,6 +832,14 @@ module TencentCloud
           @SerialNumber = params['SerialNumber']
           @RegistrationAuthority = params['RegistrationAuthority']
           @Electronic = params['Electronic']
+          unless params['BusinessCertificate'].nil?
+            @BusinessCertificate = []
+            params['BusinessCertificate'].each do |i|
+              businesscertificateinfo_tmp = BusinessCertificateInfo.new
+              businesscertificateinfo_tmp.deserialize(i)
+              @BusinessCertificate << businesscertificateinfo_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -1111,6 +1126,33 @@ module TencentCloud
           @RetImageBase64 = params['RetImageBase64']
           @Angle = params['Angle']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 非营业执照的营业类证件识别结果，将以结构化形式呈现。
+      class BusinessCertificateInfo < TencentCloud::Common::AbstractModel
+        # @param Name: 识别出的名称
+        # @type Name: String
+        # @param Value: 识别出的字段名称对应的值
+        # @type Value: String
+        # @param Rect: 坐标
+        # @type Rect: :class:`Tencentcloud::Ocr.v20181119.models.Rect`
+
+        attr_accessor :Name, :Value, :Rect
+
+        def initialize(name=nil, value=nil, rect=nil)
+          @Name = name
+          @Value = value
+          @Rect = rect
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Value = params['Value']
+          unless params['Rect'].nil?
+            @Rect = Rect.new
+            @Rect.deserialize(params['Rect'])
+          end
         end
       end
 
