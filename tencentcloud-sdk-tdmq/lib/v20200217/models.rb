@@ -4567,10 +4567,12 @@ module TencentCloud
         # @type Bundle: String
         # @param OwnerBroker: bundle 所属的 broker IP 地址，支持模糊查询
         # @type OwnerBroker: String
+        # @param Tenant: 租户(如果没有自定义租户名称，和 tenantId 相同；如果有配置自定义租户名称，则为自定义租户名 user_tenant)
+        # @type Tenant: String
 
-        attr_accessor :ClusterName, :TenantId, :NamespaceName, :NeedMetrics, :Limit, :Offset, :Bundle, :OwnerBroker
+        attr_accessor :ClusterName, :TenantId, :NamespaceName, :NeedMetrics, :Limit, :Offset, :Bundle, :OwnerBroker, :Tenant
 
-        def initialize(clustername=nil, tenantid=nil, namespacename=nil, needmetrics=nil, limit=nil, offset=nil, bundle=nil, ownerbroker=nil)
+        def initialize(clustername=nil, tenantid=nil, namespacename=nil, needmetrics=nil, limit=nil, offset=nil, bundle=nil, ownerbroker=nil, tenant=nil)
           @ClusterName = clustername
           @TenantId = tenantid
           @NamespaceName = namespacename
@@ -4579,6 +4581,7 @@ module TencentCloud
           @Offset = offset
           @Bundle = bundle
           @OwnerBroker = ownerbroker
+          @Tenant = tenant
         end
 
         def deserialize(params)
@@ -4590,6 +4593,7 @@ module TencentCloud
           @Offset = params['Offset']
           @Bundle = params['Bundle']
           @OwnerBroker = params['OwnerBroker']
+          @Tenant = params['Tenant']
         end
       end
 

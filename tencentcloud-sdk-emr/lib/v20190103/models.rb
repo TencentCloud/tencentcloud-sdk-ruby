@@ -2295,9 +2295,9 @@ module TencentCloud
       class CreateSLInstanceRequest < TencentCloud::Common::AbstractModel
         # @param InstanceName: 实例名称。
         # @type InstanceName: String
-        # @param PayMode: 实例计费模式，0表示后付费，即按量计费。
+        # @param PayMode: 实例计费模式，0表示后付费，即按量计费，1表示预付费，即包年包月。
         # @type PayMode: Integer
-        # @param DiskType: 实例存储类型，填写CLOUD_HSSD，表示性能云存储。
+        # @param DiskType: 实例存储类型，CLOUD_HSSD表示性能云存储， CLOUD_BSSD表示标准云存储。
         # @type DiskType: String
         # @param DiskSize: 实例单节点磁盘容量，单位GB，单节点磁盘容量需大于等于100，小于等于250*CPU核心数，容量调整步长为100。
         # @type DiskSize: Integer
@@ -2311,10 +2311,12 @@ module TencentCloud
         # @type PrePaySetting: :class:`Tencentcloud::Emr.v20190103.models.PrePaySetting`
         # @param ClientToken: 唯一随机标识，时效性为5分钟，需要调用者指定 防止客户端重复创建资源，例如 a9a90aa6-****-****-****-fae360632808
         # @type ClientToken: String
+        # @param DeploymentMode: 部署模式
+        # @type DeploymentMode: String
 
-        attr_accessor :InstanceName, :PayMode, :DiskType, :DiskSize, :NodeType, :ZoneSettings, :Tags, :PrePaySetting, :ClientToken
+        attr_accessor :InstanceName, :PayMode, :DiskType, :DiskSize, :NodeType, :ZoneSettings, :Tags, :PrePaySetting, :ClientToken, :DeploymentMode
 
-        def initialize(instancename=nil, paymode=nil, disktype=nil, disksize=nil, nodetype=nil, zonesettings=nil, tags=nil, prepaysetting=nil, clienttoken=nil)
+        def initialize(instancename=nil, paymode=nil, disktype=nil, disksize=nil, nodetype=nil, zonesettings=nil, tags=nil, prepaysetting=nil, clienttoken=nil, deploymentmode=nil)
           @InstanceName = instancename
           @PayMode = paymode
           @DiskType = disktype
@@ -2324,6 +2326,7 @@ module TencentCloud
           @Tags = tags
           @PrePaySetting = prepaysetting
           @ClientToken = clienttoken
+          @DeploymentMode = deploymentmode
         end
 
         def deserialize(params)
@@ -2353,6 +2356,7 @@ module TencentCloud
             @PrePaySetting.deserialize(params['PrePaySetting'])
           end
           @ClientToken = params['ClientToken']
+          @DeploymentMode = params['DeploymentMode']
         end
       end
 
@@ -4929,12 +4933,14 @@ module TencentCloud
         # @type AutoRenewFlag: Integer
         # @param NodeNum: 实例节点总数。
         # @type NodeNum: Integer
+        # @param SLInstance: Serverless Instance infomation
+        # @type SLInstance: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :InstanceId, :InstanceName, :PayMode, :DiskType, :DiskSize, :NodeType, :ZoneSettings, :Tags, :ClusterId, :RegionId, :Zone, :ExpireTime, :IsolateTime, :CreateTime, :Status, :AutoRenewFlag, :NodeNum, :RequestId
+        attr_accessor :InstanceId, :InstanceName, :PayMode, :DiskType, :DiskSize, :NodeType, :ZoneSettings, :Tags, :ClusterId, :RegionId, :Zone, :ExpireTime, :IsolateTime, :CreateTime, :Status, :AutoRenewFlag, :NodeNum, :SLInstance, :RequestId
 
-        def initialize(instanceid=nil, instancename=nil, paymode=nil, disktype=nil, disksize=nil, nodetype=nil, zonesettings=nil, tags=nil, clusterid=nil, regionid=nil, zone=nil, expiretime=nil, isolatetime=nil, createtime=nil, status=nil, autorenewflag=nil, nodenum=nil, requestid=nil)
+        def initialize(instanceid=nil, instancename=nil, paymode=nil, disktype=nil, disksize=nil, nodetype=nil, zonesettings=nil, tags=nil, clusterid=nil, regionid=nil, zone=nil, expiretime=nil, isolatetime=nil, createtime=nil, status=nil, autorenewflag=nil, nodenum=nil, slinstance=nil, requestid=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @PayMode = paymode
@@ -4952,6 +4958,7 @@ module TencentCloud
           @Status = status
           @AutoRenewFlag = autorenewflag
           @NodeNum = nodenum
+          @SLInstance = slinstance
           @RequestId = requestid
         end
 
@@ -4987,6 +4994,14 @@ module TencentCloud
           @Status = params['Status']
           @AutoRenewFlag = params['AutoRenewFlag']
           @NodeNum = params['NodeNum']
+          unless params['SLInstance'].nil?
+            @SLInstance = []
+            params['SLInstance'].each do |i|
+              slinstance_tmp = SLInstance.new
+              slinstance_tmp.deserialize(i)
+              @SLInstance << slinstance_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -11883,6 +11898,104 @@ module TencentCloud
         end
       end
 
+      # Serverless Instance
+      class SLInstance < TencentCloud::Common::AbstractModel
+        # @param InstanceId: EMR Instance Id
+        # @type InstanceId: String
+        # @param ClusterId: EMR Numeric Instance Id
+        # @type ClusterId: Integer
+        # @param InstanceName: Instance Name
+        # @type InstanceName: String
+        # @param RegionId: Region id
+        # @type RegionId: Integer
+        # @param Zone: Zone Name
+        # @type Zone: String
+        # @param PayMode: Pay Mode
+        # @type PayMode: Integer
+        # @param DiskType: Disk Type
+        # @type DiskType: String
+        # @param DiskSize: Disk Size
+        # @type DiskSize: Integer
+        # @param NodeType: Node Type
+        # @type NodeType: String
+        # @param NodeNum: Node Number
+        # @type NodeNum: Integer
+        # @param ExpireTime: Expire Time
+        # @type ExpireTime: String
+        # @param IsolateTime: Isolate Time
+        # @type IsolateTime: String
+        # @param CreateTime: Create Time
+        # @type CreateTime: String
+        # @param AutoRenewFlag: Auto Renew Flag
+        # @type AutoRenewFlag: Integer
+        # @param Status: EMR Numeric Instance Status
+        # @type Status: Integer
+        # @param ZoneSettings: Zone Setting
+        # @type ZoneSettings: Array
+        # @param Tags: Bound Tags
+        # @type Tags: Array
+        # @param DeployRole: Deploy Role
+        # @type DeployRole: String
+
+        attr_accessor :InstanceId, :ClusterId, :InstanceName, :RegionId, :Zone, :PayMode, :DiskType, :DiskSize, :NodeType, :NodeNum, :ExpireTime, :IsolateTime, :CreateTime, :AutoRenewFlag, :Status, :ZoneSettings, :Tags, :DeployRole
+
+        def initialize(instanceid=nil, clusterid=nil, instancename=nil, regionid=nil, zone=nil, paymode=nil, disktype=nil, disksize=nil, nodetype=nil, nodenum=nil, expiretime=nil, isolatetime=nil, createtime=nil, autorenewflag=nil, status=nil, zonesettings=nil, tags=nil, deployrole=nil)
+          @InstanceId = instanceid
+          @ClusterId = clusterid
+          @InstanceName = instancename
+          @RegionId = regionid
+          @Zone = zone
+          @PayMode = paymode
+          @DiskType = disktype
+          @DiskSize = disksize
+          @NodeType = nodetype
+          @NodeNum = nodenum
+          @ExpireTime = expiretime
+          @IsolateTime = isolatetime
+          @CreateTime = createtime
+          @AutoRenewFlag = autorenewflag
+          @Status = status
+          @ZoneSettings = zonesettings
+          @Tags = tags
+          @DeployRole = deployrole
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @ClusterId = params['ClusterId']
+          @InstanceName = params['InstanceName']
+          @RegionId = params['RegionId']
+          @Zone = params['Zone']
+          @PayMode = params['PayMode']
+          @DiskType = params['DiskType']
+          @DiskSize = params['DiskSize']
+          @NodeType = params['NodeType']
+          @NodeNum = params['NodeNum']
+          @ExpireTime = params['ExpireTime']
+          @IsolateTime = params['IsolateTime']
+          @CreateTime = params['CreateTime']
+          @AutoRenewFlag = params['AutoRenewFlag']
+          @Status = params['Status']
+          unless params['ZoneSettings'].nil?
+            @ZoneSettings = []
+            params['ZoneSettings'].each do |i|
+              zonesetting_tmp = ZoneSetting.new
+              zonesetting_tmp.deserialize(i)
+              @ZoneSettings << zonesetting_tmp
+            end
+          end
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
+          @DeployRole = params['DeployRole']
+        end
+      end
+
       # Serverless HBase实例信息
       class SLInstanceInfo < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群实例字符串ID
@@ -11925,10 +12038,12 @@ module TencentCloud
         # @type IsolateTime: String
         # @param ExpireTime: 过期时间，后付费返回0000-00-00 00:00:00
         # @type ExpireTime: String
+        # @param DeployRole: 主备部署角色
+        # @type DeployRole: String
 
-        attr_accessor :ClusterId, :Id, :StatusDesc, :HealthStatus, :ClusterName, :RegionId, :ZoneId, :Zone, :AppId, :VpcId, :SubnetId, :Status, :AddTime, :PayMode, :ZoneSettings, :Tags, :AutoRenewFlag, :IsolateTime, :ExpireTime
+        attr_accessor :ClusterId, :Id, :StatusDesc, :HealthStatus, :ClusterName, :RegionId, :ZoneId, :Zone, :AppId, :VpcId, :SubnetId, :Status, :AddTime, :PayMode, :ZoneSettings, :Tags, :AutoRenewFlag, :IsolateTime, :ExpireTime, :DeployRole
 
-        def initialize(clusterid=nil, id=nil, statusdesc=nil, healthstatus=nil, clustername=nil, regionid=nil, zoneid=nil, zone=nil, appid=nil, vpcid=nil, subnetid=nil, status=nil, addtime=nil, paymode=nil, zonesettings=nil, tags=nil, autorenewflag=nil, isolatetime=nil, expiretime=nil)
+        def initialize(clusterid=nil, id=nil, statusdesc=nil, healthstatus=nil, clustername=nil, regionid=nil, zoneid=nil, zone=nil, appid=nil, vpcid=nil, subnetid=nil, status=nil, addtime=nil, paymode=nil, zonesettings=nil, tags=nil, autorenewflag=nil, isolatetime=nil, expiretime=nil, deployrole=nil)
           @ClusterId = clusterid
           @Id = id
           @StatusDesc = statusdesc
@@ -11948,6 +12063,7 @@ module TencentCloud
           @AutoRenewFlag = autorenewflag
           @IsolateTime = isolatetime
           @ExpireTime = expiretime
+          @DeployRole = deployrole
         end
 
         def deserialize(params)
@@ -11984,6 +12100,7 @@ module TencentCloud
           @AutoRenewFlag = params['AutoRenewFlag']
           @IsolateTime = params['IsolateTime']
           @ExpireTime = params['ExpireTime']
+          @DeployRole = params['DeployRole']
         end
       end
 

@@ -6934,6 +6934,10 @@ module TencentCloud
         extend Gem::Deprecate
         deprecate :Reponame, :none, 2025, 7
         deprecate :Reponame=, :none, 2025, 7
+        deprecate :VolumeInfos, :none, 2025, 7
+        deprecate :VolumeInfos=, :none, 2025, 7
+        deprecate :VolumeMountInfos, :none, 2025, 7
+        deprecate :VolumeMountInfos=, :none, 2025, 7
 
         def initialize(groupid=nil, tagname=nil, instancenum=nil, server=nil, cpulimit=nil, memlimit=nil, jvmopts=nil, cpurequest=nil, memrequest=nil, donotstart=nil, reponame=nil, updatetype=nil, updateivl=nil, agentcpurequest=nil, agentcpulimit=nil, agentmemrequest=nil, agentmemlimit=nil, istiocpurequest=nil, istiocpulimit=nil, istiomemrequest=nil, istiomemlimit=nil, maxsurge=nil, maxunavailable=nil, healthchecksettings=nil, envs=nil, servicesetting=nil, deployagent=nil, schedulingstrategy=nil, incrementaldeployment=nil, repotype=nil, volumeinfos=nil, volumemountinfos=nil, volumeinfolist=nil, volumemountinfolist=nil, volumeclean=nil, agentprofilelist=nil, warmupsetting=nil)
           @GroupId = groupid
@@ -14233,6 +14237,9 @@ module TencentCloud
         # @type RepoType: String
 
         attr_accessor :Reponame, :Repotype, :TagCount, :IsPublic, :IsUserFavor, :IsQcloudOfficial, :FavorCount, :PullCount, :Description, :CreationTime, :UpdateTime, :TcrRepoInfo, :TcrBindingId, :ApplicationId, :ApplicationName, :ApplicationNameReal, :Public, :CreateMode, :RepoName, :RepoType
+        extend Gem::Deprecate
+        deprecate :ApplicationName, :none, 2025, 7
+        deprecate :ApplicationName=, :none, 2025, 7
 
         def initialize(reponame=nil, repotype=nil, tagcount=nil, ispublic=nil, isuserfavor=nil, isqcloudofficial=nil, favorcount=nil, pullcount=nil, description=nil, creationtime=nil, updatetime=nil, tcrrepoinfo=nil, tcrbindingid=nil, applicationid=nil, applicationname=nil, applicationnamereal=nil, public=nil, createmode=nil, reponame=nil, repotype=nil)
           @Reponame = reponame
@@ -19764,6 +19771,9 @@ module TencentCloud
         # @type DaemonThreadCount: Array
 
         attr_accessor :ThreadCount, :ThreadActive, :DeamonThreadCount, :DaemonThreadCount
+        extend Gem::Deprecate
+        deprecate :DeamonThreadCount, :none, 2025, 7
+        deprecate :DeamonThreadCount=, :none, 2025, 7
 
         def initialize(threadcount=nil, threadactive=nil, deamonthreadcount=nil, daemonthreadcount=nil)
           @ThreadCount = threadcount

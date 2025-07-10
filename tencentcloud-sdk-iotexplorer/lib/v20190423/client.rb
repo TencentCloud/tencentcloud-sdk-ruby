@@ -461,7 +461,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 开通免费云存服务
+        # 开通云存卡服务
 
         # @param request: Request instance for CreateFreeCloudStorage.
         # @type request: :class:`Tencentcloud::iotexplorer::V20190423::CreateFreeCloudStorageRequest`

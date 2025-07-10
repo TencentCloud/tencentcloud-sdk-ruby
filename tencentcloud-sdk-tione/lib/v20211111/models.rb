@@ -5320,10 +5320,12 @@ module TencentCloud
         # @type IsPrivateModel: Boolean
         # @param ModelCategory: 模型的类别 多模态MultiModal, 文本大模型 LLM
         # @type ModelCategory: String
+        # @param PublicDataSource: 数据源的配置
+        # @type PublicDataSource: :class:`Tencentcloud::Tione.v20211111.models.PublicDataSourceFS`
 
-        attr_accessor :ModelVersionId, :ModelId, :ModelName, :ModelVersion, :ModelSource, :CosPathInfo, :GooseFSx, :AlgorithmFramework, :ModelType, :ModelFormat, :IsPrivateModel, :ModelCategory
+        attr_accessor :ModelVersionId, :ModelId, :ModelName, :ModelVersion, :ModelSource, :CosPathInfo, :GooseFSx, :AlgorithmFramework, :ModelType, :ModelFormat, :IsPrivateModel, :ModelCategory, :PublicDataSource
 
-        def initialize(modelversionid=nil, modelid=nil, modelname=nil, modelversion=nil, modelsource=nil, cospathinfo=nil, goosefsx=nil, algorithmframework=nil, modeltype=nil, modelformat=nil, isprivatemodel=nil, modelcategory=nil)
+        def initialize(modelversionid=nil, modelid=nil, modelname=nil, modelversion=nil, modelsource=nil, cospathinfo=nil, goosefsx=nil, algorithmframework=nil, modeltype=nil, modelformat=nil, isprivatemodel=nil, modelcategory=nil, publicdatasource=nil)
           @ModelVersionId = modelversionid
           @ModelId = modelid
           @ModelName = modelname
@@ -5336,6 +5338,7 @@ module TencentCloud
           @ModelFormat = modelformat
           @IsPrivateModel = isprivatemodel
           @ModelCategory = modelcategory
+          @PublicDataSource = publicdatasource
         end
 
         def deserialize(params)
@@ -5357,6 +5360,10 @@ module TencentCloud
           @ModelFormat = params['ModelFormat']
           @IsPrivateModel = params['IsPrivateModel']
           @ModelCategory = params['ModelCategory']
+          unless params['PublicDataSource'].nil?
+            @PublicDataSource = PublicDataSourceFS.new
+            @PublicDataSource.deserialize(params['PublicDataSource'])
+          end
         end
       end
 
@@ -6650,6 +6657,17 @@ module TencentCloud
             @TCPSocket.deserialize(params['TCPSocket'])
           end
           @ActionType = params['ActionType']
+        end
+      end
+
+      # 公有云数据源结构
+      class PublicDataSourceFS < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
         end
       end
 

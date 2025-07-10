@@ -19,7 +19,7 @@ module TencentCloud
     module V20250513
       # 3D文件
       class File3D < TencentCloud::Common::AbstractModel
-        # @param Type: 3D文件的格式。取值范围：OBJ
+        # @param Type: 文件格式
         # @type Type: String
         # @param Url: 文件的Url（有效期24小时）
         # @type Url: String
