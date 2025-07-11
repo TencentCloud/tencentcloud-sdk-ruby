@@ -734,6 +734,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建安全策略配置模板
+
+        # @param request: Request instance for CreateWebSecurityTemplate.
+        # @type request: :class:`Tencentcloud::teo::V20220901::CreateWebSecurityTemplateRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::CreateWebSecurityTemplateResponse`
+        def CreateWebSecurityTemplate(request)
+          body = send_request('CreateWebSecurityTemplate', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateWebSecurityTemplateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # EdgeOne 为您提供 CNAME、NS 和无域名接入三种接入方式，您需要先通过此接口完成站点创建。CNAME 和 NS 接入站点的场景可参考 [从零开始快速接入 EdgeOne](https://cloud.tencent.com/document/product/1552/87601); 无域名接入的场景可参考 [快速启用四层代理服务](https://cloud.tencent.com/document/product/1552/96051)。
 
         # > 建议您在账号下已存在套餐时调用本接口创建站点，请在入参时传入 PlanId ，直接将站点绑定至该套餐；不传入 PlanId 时，创建出来的站点会处于未激活状态，无法正常服务，您需要通过 [BindZoneToPlan](https://cloud.tencent.com/document/product/1552/83042) 完成套餐绑定之后，站点才可正常提供服务 。若您当前没有可绑定的套餐时，请前往控制台购买套餐完成站点创建。
@@ -1181,6 +1205,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteSharedCNAMEResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除安全策略配置模板
+
+        # @param request: Request instance for DeleteWebSecurityTemplate.
+        # @type request: :class:`Tencentcloud::teo::V20220901::DeleteWebSecurityTemplateRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::DeleteWebSecurityTemplateResponse`
+        def DeleteWebSecurityTemplate(request)
+          body = send_request('DeleteWebSecurityTemplate', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteWebSecurityTemplateResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -2402,6 +2450,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询安全策略配置模板详情
+
+        # @param request: Request instance for DescribeWebSecurityTemplate.
+        # @type request: :class:`Tencentcloud::teo::V20220901::DescribeWebSecurityTemplateRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::DescribeWebSecurityTemplateResponse`
+        def DescribeWebSecurityTemplate(request)
+          body = send_request('DescribeWebSecurityTemplate', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeWebSecurityTemplateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询安全策略配置模板列表
+
+        # @param request: Request instance for DescribeWebSecurityTemplates.
+        # @type request: :class:`Tencentcloud::teo::V20220901::DescribeWebSecurityTemplatesRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::DescribeWebSecurityTemplatesResponse`
+        def DescribeWebSecurityTemplates(request)
+          body = send_request('DescribeWebSecurityTemplates', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeWebSecurityTemplatesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询站点配置项导入结果接口，本接口用于站点配置导入接口（ImportZoneConfig）的结果查询。该功能仅支持标准版或企业版套餐的站点使用。
 
         # @param request: Request instance for DescribeZoneConfigImportResult.
@@ -3465,6 +3561,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifySecurityPolicyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改安全策略配置模板
+
+        # @param request: Request instance for ModifyWebSecurityTemplate.
+        # @type request: :class:`Tencentcloud::teo::V20220901::ModifyWebSecurityTemplateRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::ModifyWebSecurityTemplateResponse`
+        def ModifyWebSecurityTemplate(request)
+          body = send_request('ModifyWebSecurityTemplate', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyWebSecurityTemplateResponse.new
             model.deserialize(response['Response'])
             model
           else

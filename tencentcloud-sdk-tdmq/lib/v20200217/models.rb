@@ -10291,10 +10291,12 @@ module TencentCloud
         # @type DefaultPartitionNumber: Integer
         # @param Tenant: 用户自定义的租户别名，如果没有，会复用专业集群 ID
         # @type Tenant: String
+        # @param DeleteProtection: 删除保护开关标识
+        # @type DeleteProtection: Integer
 
-        attr_accessor :ClusterId, :ClusterName, :Remark, :CreateTime, :Status, :Version, :NodeDistribution, :MaxStorage, :CanEditRoute, :BillingLabelVersion, :ExpireTime, :AutoCreateTopicStatus, :DefaultPartitionNumber, :Tenant
+        attr_accessor :ClusterId, :ClusterName, :Remark, :CreateTime, :Status, :Version, :NodeDistribution, :MaxStorage, :CanEditRoute, :BillingLabelVersion, :ExpireTime, :AutoCreateTopicStatus, :DefaultPartitionNumber, :Tenant, :DeleteProtection
 
-        def initialize(clusterid=nil, clustername=nil, remark=nil, createtime=nil, status=nil, version=nil, nodedistribution=nil, maxstorage=nil, caneditroute=nil, billinglabelversion=nil, expiretime=nil, autocreatetopicstatus=nil, defaultpartitionnumber=nil, tenant=nil)
+        def initialize(clusterid=nil, clustername=nil, remark=nil, createtime=nil, status=nil, version=nil, nodedistribution=nil, maxstorage=nil, caneditroute=nil, billinglabelversion=nil, expiretime=nil, autocreatetopicstatus=nil, defaultpartitionnumber=nil, tenant=nil, deleteprotection=nil)
           @ClusterId = clusterid
           @ClusterName = clustername
           @Remark = remark
@@ -10309,6 +10311,7 @@ module TencentCloud
           @AutoCreateTopicStatus = autocreatetopicstatus
           @DefaultPartitionNumber = defaultpartitionnumber
           @Tenant = tenant
+          @DeleteProtection = deleteprotection
         end
 
         def deserialize(params)
@@ -10333,6 +10336,7 @@ module TencentCloud
           @AutoCreateTopicStatus = params['AutoCreateTopicStatus']
           @DefaultPartitionNumber = params['DefaultPartitionNumber']
           @Tenant = params['Tenant']
+          @DeleteProtection = params['DeleteProtection']
         end
       end
 

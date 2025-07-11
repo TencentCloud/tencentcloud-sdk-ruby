@@ -269,6 +269,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 探测任务包详情
+
+        # @param request: Request instance for DescribeDetectPackageDetail.
+        # @type request: :class:`Tencentcloud::igtm::V20231024::DescribeDetectPackageDetailRequest`
+        # @rtype: :class:`Tencentcloud::igtm::V20231024::DescribeDetectPackageDetailResponse`
+        def DescribeDetectPackageDetail(request)
+          body = send_request('DescribeDetectPackageDetail', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDetectPackageDetailResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 探测任务套餐列表
+
+        # @param request: Request instance for DescribeDetectTaskPackageList.
+        # @type request: :class:`Tencentcloud::igtm::V20231024::DescribeDetectTaskPackageListRequest`
+        # @rtype: :class:`Tencentcloud::igtm::V20231024::DescribeDetectTaskPackageListResponse`
+        def DescribeDetectTaskPackageList(request)
+          body = send_request('DescribeDetectTaskPackageList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDetectTaskPackageListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取探测节点列表接口
 
         # @param request: Request instance for DescribeDetectors.
@@ -351,6 +399,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeInstanceListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 实例套餐列表
+
+        # @param request: Request instance for DescribeInstancePackageList.
+        # @type request: :class:`Tencentcloud::igtm::V20231024::DescribeInstancePackageListRequest`
+        # @rtype: :class:`Tencentcloud::igtm::V20231024::DescribeInstancePackageListResponse`
+        def DescribeInstancePackageList(request)
+          body = send_request('DescribeInstancePackageList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeInstancePackageListResponse.new
             model.deserialize(response['Response'])
             model
           else

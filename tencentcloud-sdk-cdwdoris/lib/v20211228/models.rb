@@ -130,10 +130,12 @@ module TencentCloud
         # @type IsUserDefineBucket: Boolean
         # @param ErrorReason: 错误原因
         # @type ErrorReason: String
+        # @param SnapshotRemainPolicy: 快照保留策略
+        # @type SnapshotRemainPolicy: :class:`Tencentcloud::Cdwdoris.v20211228.models.SnapshotRemainPolicy`
 
-        attr_accessor :JobId, :Snapshot, :BackUpSize, :BackUpSingleSize, :BackUpTime, :ExpireTime, :JobStatus, :BackupType, :BackupTimeType, :DorisSourceInfo, :JobStatusNum, :BackupCosInfo, :IsUserDefineBucket, :ErrorReason
+        attr_accessor :JobId, :Snapshot, :BackUpSize, :BackUpSingleSize, :BackUpTime, :ExpireTime, :JobStatus, :BackupType, :BackupTimeType, :DorisSourceInfo, :JobStatusNum, :BackupCosInfo, :IsUserDefineBucket, :ErrorReason, :SnapshotRemainPolicy
 
-        def initialize(jobid=nil, snapshot=nil, backupsize=nil, backupsinglesize=nil, backuptime=nil, expiretime=nil, jobstatus=nil, backuptype=nil, backuptimetype=nil, dorissourceinfo=nil, jobstatusnum=nil, backupcosinfo=nil, isuserdefinebucket=nil, errorreason=nil)
+        def initialize(jobid=nil, snapshot=nil, backupsize=nil, backupsinglesize=nil, backuptime=nil, expiretime=nil, jobstatus=nil, backuptype=nil, backuptimetype=nil, dorissourceinfo=nil, jobstatusnum=nil, backupcosinfo=nil, isuserdefinebucket=nil, errorreason=nil, snapshotremainpolicy=nil)
           @JobId = jobid
           @Snapshot = snapshot
           @BackUpSize = backupsize
@@ -148,6 +150,7 @@ module TencentCloud
           @BackupCosInfo = backupcosinfo
           @IsUserDefineBucket = isuserdefinebucket
           @ErrorReason = errorreason
+          @SnapshotRemainPolicy = snapshotremainpolicy
         end
 
         def deserialize(params)
@@ -171,6 +174,10 @@ module TencentCloud
           end
           @IsUserDefineBucket = params['IsUserDefineBucket']
           @ErrorReason = params['ErrorReason']
+          unless params['SnapshotRemainPolicy'].nil?
+            @SnapshotRemainPolicy = SnapshotRemainPolicy.new
+            @SnapshotRemainPolicy.deserialize(params['SnapshotRemainPolicy'])
+          end
         end
       end
 
@@ -182,19 +189,23 @@ module TencentCloud
         # @type CosPath: String
         # @param SnapShotPath: 备份文件名称
         # @type SnapShotPath: String
+        # @param Region: cos桶所在地域
+        # @type Region: String
 
-        attr_accessor :CosBucket, :CosPath, :SnapShotPath
+        attr_accessor :CosBucket, :CosPath, :SnapShotPath, :Region
 
-        def initialize(cosbucket=nil, cospath=nil, snapshotpath=nil)
+        def initialize(cosbucket=nil, cospath=nil, snapshotpath=nil, region=nil)
           @CosBucket = cosbucket
           @CosPath = cospath
           @SnapShotPath = snapshotpath
+          @Region = region
         end
 
         def deserialize(params)
           @CosBucket = params['CosBucket']
           @CosPath = params['CosPath']
           @SnapShotPath = params['SnapShotPath']
+          @Region = params['Region']
         end
       end
 
@@ -721,7 +732,7 @@ module TencentCloud
         # @type BackupType: Integer
         # @param DorisSourceInfo: 远端doris集群的连接信息
         # @type DorisSourceInfo: :class:`Tencentcloud::Cdwdoris.v20211228.models.DorisSourceInfo`
-        # @param BackupTimeType: 0为默认。1时是一次性备份。2时是远端备份
+        # @param BackupTimeType: 0为周期备份。1时是立即备份。3时是定时备份。
         # @type BackupTimeType: Integer
         # @param RestoreType: 0为默认。1时是备份完成后立即恢复
         # @type RestoreType: Integer
@@ -740,15 +751,29 @@ module TencentCloud
         # @type UpdateStatus: Integer
         # @param CosBucket: 当前任务的cos桶信息
         # @type CosBucket: String
+        # @param SnapshotRemainPolicy: 快照保留策略
+        # @type SnapshotRemainPolicy: :class:`Tencentcloud::Cdwdoris.v20211228.models.SnapshotRemainPolicy`
+        # @param DataRemoteRegion: 备份数据所在地域，当前地域应该为空
+        # @type DataRemoteRegion: String
 
-        attr_accessor :InstanceId, :OperationType, :ScheduleId, :WeekDays, :ExecuteHour, :BackUpTables, :BackupType, :DorisSourceInfo, :BackupTimeType, :RestoreType, :AuthType, :CosSourceInfo, :ScheduleName, :ScheduleInfo, :UpdateStatus, :CosBucket
+        attr_accessor :InstanceId, :OperationType, :ScheduleId, :WeekDays, :ExecuteHour, :BackUpTables, :BackupType, :DorisSourceInfo, :BackupTimeType, :RestoreType, :AuthType, :CosSourceInfo, :ScheduleName, :ScheduleInfo, :UpdateStatus, :CosBucket, :SnapshotRemainPolicy, :DataRemoteRegion
         extend Gem::Deprecate
         deprecate :WeekDays, :none, 2025, 7
         deprecate :WeekDays=, :none, 2025, 7
         deprecate :ExecuteHour, :none, 2025, 7
         deprecate :ExecuteHour=, :none, 2025, 7
+        deprecate :BackupType, :none, 2025, 7
+        deprecate :BackupType=, :none, 2025, 7
+        deprecate :DorisSourceInfo, :none, 2025, 7
+        deprecate :DorisSourceInfo=, :none, 2025, 7
+        deprecate :RestoreType, :none, 2025, 7
+        deprecate :RestoreType=, :none, 2025, 7
+        deprecate :AuthType, :none, 2025, 7
+        deprecate :AuthType=, :none, 2025, 7
+        deprecate :CosSourceInfo, :none, 2025, 7
+        deprecate :CosSourceInfo=, :none, 2025, 7
 
-        def initialize(instanceid=nil, operationtype=nil, scheduleid=nil, weekdays=nil, executehour=nil, backuptables=nil, backuptype=nil, dorissourceinfo=nil, backuptimetype=nil, restoretype=nil, authtype=nil, cossourceinfo=nil, schedulename=nil, scheduleinfo=nil, updatestatus=nil, cosbucket=nil)
+        def initialize(instanceid=nil, operationtype=nil, scheduleid=nil, weekdays=nil, executehour=nil, backuptables=nil, backuptype=nil, dorissourceinfo=nil, backuptimetype=nil, restoretype=nil, authtype=nil, cossourceinfo=nil, schedulename=nil, scheduleinfo=nil, updatestatus=nil, cosbucket=nil, snapshotremainpolicy=nil, dataremoteregion=nil)
           @InstanceId = instanceid
           @OperationType = operationtype
           @ScheduleId = scheduleid
@@ -765,6 +790,8 @@ module TencentCloud
           @ScheduleInfo = scheduleinfo
           @UpdateStatus = updatestatus
           @CosBucket = cosbucket
+          @SnapshotRemainPolicy = snapshotremainpolicy
+          @DataRemoteRegion = dataremoteregion
         end
 
         def deserialize(params)
@@ -800,6 +827,11 @@ module TencentCloud
           end
           @UpdateStatus = params['UpdateStatus']
           @CosBucket = params['CosBucket']
+          unless params['SnapshotRemainPolicy'].nil?
+            @SnapshotRemainPolicy = SnapshotRemainPolicy.new
+            @SnapshotRemainPolicy.deserialize(params['SnapshotRemainPolicy'])
+          end
+          @DataRemoteRegion = params['DataRemoteRegion']
         end
       end
 
@@ -3008,10 +3040,12 @@ module TencentCloud
         # @type DatabaseName: String
         # @param TableName: 表名
         # @type TableName: String
+        # @param UserNames: 用户名列表
+        # @type UserNames: Array
 
-        attr_accessor :InstanceId, :ApiType, :UserName, :WhiteHost, :Catalog, :Catalogs, :DatabaseName, :TableName
+        attr_accessor :InstanceId, :ApiType, :UserName, :WhiteHost, :Catalog, :Catalogs, :DatabaseName, :TableName, :UserNames
 
-        def initialize(instanceid=nil, apitype=nil, username=nil, whitehost=nil, catalog=nil, catalogs=nil, databasename=nil, tablename=nil)
+        def initialize(instanceid=nil, apitype=nil, username=nil, whitehost=nil, catalog=nil, catalogs=nil, databasename=nil, tablename=nil, usernames=nil)
           @InstanceId = instanceid
           @ApiType = apitype
           @UserName = username
@@ -3020,6 +3054,7 @@ module TencentCloud
           @Catalogs = catalogs
           @DatabaseName = databasename
           @TableName = tablename
+          @UserNames = usernames
         end
 
         def deserialize(params)
@@ -3031,6 +3066,7 @@ module TencentCloud
           @Catalogs = params['Catalogs']
           @DatabaseName = params['DatabaseName']
           @TableName = params['TableName']
+          @UserNames = params['UserNames']
         end
       end
 
@@ -3664,14 +3700,16 @@ module TencentCloud
         # @type UUID: String
         # @param Zone: 可用区
         # @type Zone: String
+        # @param VirtualZone: 虚拟可用区
+        # @type VirtualZone: String
         # @param CreateTime: 创建时间
         # @type CreateTime: String
         # @param ComputeGroupId: 计算组ID
         # @type ComputeGroupId: String
 
-        attr_accessor :Ip, :Spec, :Core, :Memory, :DiskType, :DiskSize, :Role, :Status, :Rip, :FeRole, :UUID, :Zone, :CreateTime, :ComputeGroupId
+        attr_accessor :Ip, :Spec, :Core, :Memory, :DiskType, :DiskSize, :Role, :Status, :Rip, :FeRole, :UUID, :Zone, :VirtualZone, :CreateTime, :ComputeGroupId
 
-        def initialize(ip=nil, spec=nil, core=nil, memory=nil, disktype=nil, disksize=nil, role=nil, status=nil, rip=nil, ferole=nil, uuid=nil, zone=nil, createtime=nil, computegroupid=nil)
+        def initialize(ip=nil, spec=nil, core=nil, memory=nil, disktype=nil, disksize=nil, role=nil, status=nil, rip=nil, ferole=nil, uuid=nil, zone=nil, virtualzone=nil, createtime=nil, computegroupid=nil)
           @Ip = ip
           @Spec = spec
           @Core = core
@@ -3684,6 +3722,7 @@ module TencentCloud
           @FeRole = ferole
           @UUID = uuid
           @Zone = zone
+          @VirtualZone = virtualzone
           @CreateTime = createtime
           @ComputeGroupId = computegroupid
         end
@@ -3701,6 +3740,7 @@ module TencentCloud
           @FeRole = params['FeRole']
           @UUID = params['UUID']
           @Zone = params['Zone']
+          @VirtualZone = params['VirtualZone']
           @CreateTime = params['CreateTime']
           @ComputeGroupId = params['ComputeGroupId']
         end
@@ -4176,20 +4216,23 @@ module TencentCloud
         # @type UserPrivileges: :class:`Tencentcloud::Cdwdoris.v20211228.models.UpdateUserPrivileges`
         # @param WhiteHost: 用户链接来自的 IP
         # @type WhiteHost: String
-        # @param UpdateType: 更新类型，默认0，1为更新绑定计算组
+        # @param UpdateType: 更新类型，默认0，1为更新绑定计算组，2为更新默认计算组
         # @type UpdateType: Integer
         # @param UpdateComputeGroups: 需绑定计算组列表
         # @type UpdateComputeGroups: Array
+        # @param DefaultComputeGroup: 默认计算组
+        # @type DefaultComputeGroup: String
 
-        attr_accessor :InstanceId, :UserName, :UserPrivileges, :WhiteHost, :UpdateType, :UpdateComputeGroups
+        attr_accessor :InstanceId, :UserName, :UserPrivileges, :WhiteHost, :UpdateType, :UpdateComputeGroups, :DefaultComputeGroup
 
-        def initialize(instanceid=nil, username=nil, userprivileges=nil, whitehost=nil, updatetype=nil, updatecomputegroups=nil)
+        def initialize(instanceid=nil, username=nil, userprivileges=nil, whitehost=nil, updatetype=nil, updatecomputegroups=nil, defaultcomputegroup=nil)
           @InstanceId = instanceid
           @UserName = username
           @UserPrivileges = userprivileges
           @WhiteHost = whitehost
           @UpdateType = updatetype
           @UpdateComputeGroups = updatecomputegroups
+          @DefaultComputeGroup = defaultcomputegroup
         end
 
         def deserialize(params)
@@ -4202,6 +4245,7 @@ module TencentCloud
           @WhiteHost = params['WhiteHost']
           @UpdateType = params['UpdateType']
           @UpdateComputeGroups = params['UpdateComputeGroups']
+          @DefaultComputeGroup = params['DefaultComputeGroup']
         end
       end
 
@@ -4360,10 +4404,12 @@ module TencentCloud
         # @type ComputeGroupId: String
         # @param CreateTime: 创建时间
         # @type CreateTime: String
+        # @param VirtualZone: 虚拟可用区
+        # @type VirtualZone: String
 
-        attr_accessor :Ip, :Status, :NodeName, :ComponentName, :NodeRole, :LastRestartTime, :Zone, :Id, :RIp, :ComputeGroupId, :CreateTime
+        attr_accessor :Ip, :Status, :NodeName, :ComponentName, :NodeRole, :LastRestartTime, :Zone, :Id, :RIp, :ComputeGroupId, :CreateTime, :VirtualZone
 
-        def initialize(ip=nil, status=nil, nodename=nil, componentname=nil, noderole=nil, lastrestarttime=nil, zone=nil, id=nil, rip=nil, computegroupid=nil, createtime=nil)
+        def initialize(ip=nil, status=nil, nodename=nil, componentname=nil, noderole=nil, lastrestarttime=nil, zone=nil, id=nil, rip=nil, computegroupid=nil, createtime=nil, virtualzone=nil)
           @Ip = ip
           @Status = status
           @NodeName = nodename
@@ -4375,6 +4421,7 @@ module TencentCloud
           @RIp = rip
           @ComputeGroupId = computegroupid
           @CreateTime = createtime
+          @VirtualZone = virtualzone
         end
 
         def deserialize(params)
@@ -4389,6 +4436,7 @@ module TencentCloud
           @RIp = params['RIp']
           @ComputeGroupId = params['ComputeGroupId']
           @CreateTime = params['CreateTime']
+          @VirtualZone = params['VirtualZone']
         end
       end
 
@@ -4416,10 +4464,12 @@ module TencentCloud
         # @type ComputeGroupId: String
         # @param RIp: rip
         # @type RIp: String
+        # @param VirtualZone: 虚拟可用区
+        # @type VirtualZone: String
 
-        attr_accessor :NodeName, :Status, :Ip, :NodeRole, :ComponentName, :LastRestartTime, :Id, :Zone, :CreateTime, :ComputeGroupId, :RIp
+        attr_accessor :NodeName, :Status, :Ip, :NodeRole, :ComponentName, :LastRestartTime, :Id, :Zone, :CreateTime, :ComputeGroupId, :RIp, :VirtualZone
 
-        def initialize(nodename=nil, status=nil, ip=nil, noderole=nil, componentname=nil, lastrestarttime=nil, id=nil, zone=nil, createtime=nil, computegroupid=nil, rip=nil)
+        def initialize(nodename=nil, status=nil, ip=nil, noderole=nil, componentname=nil, lastrestarttime=nil, id=nil, zone=nil, createtime=nil, computegroupid=nil, rip=nil, virtualzone=nil)
           @NodeName = nodename
           @Status = status
           @Ip = ip
@@ -4431,6 +4481,7 @@ module TencentCloud
           @CreateTime = createtime
           @ComputeGroupId = computegroupid
           @RIp = rip
+          @VirtualZone = virtualzone
         end
 
         def deserialize(params)
@@ -4445,6 +4496,7 @@ module TencentCloud
           @CreateTime = params['CreateTime']
           @ComputeGroupId = params['ComputeGroupId']
           @RIp = params['RIp']
+          @VirtualZone = params['VirtualZone']
         end
       end
 
@@ -5137,10 +5189,12 @@ module TencentCloud
         # @type BackupJobId: Integer
         # @param TaskId: 实例对应snapshot的id
         # @type TaskId: Integer
+        # @param ID: 恢复任务id
+        # @type ID: Integer
 
-        attr_accessor :JobId, :Label, :Timestamp, :DbName, :State, :AllowLoad, :ReplicationNum, :ReplicaAllocation, :RestoreObjects, :CreateTime, :MetaPreparedTime, :SnapshotFinishedTime, :DownloadFinishedTime, :FinishedTime, :UnfinishedTasks, :Progress, :TaskErrMsg, :Status, :Timeout, :ReserveReplica, :ReserveDynamicPartitionEnable, :BackupJobId, :TaskId
+        attr_accessor :JobId, :Label, :Timestamp, :DbName, :State, :AllowLoad, :ReplicationNum, :ReplicaAllocation, :RestoreObjects, :CreateTime, :MetaPreparedTime, :SnapshotFinishedTime, :DownloadFinishedTime, :FinishedTime, :UnfinishedTasks, :Progress, :TaskErrMsg, :Status, :Timeout, :ReserveReplica, :ReserveDynamicPartitionEnable, :BackupJobId, :TaskId, :ID
 
-        def initialize(jobid=nil, label=nil, timestamp=nil, dbname=nil, state=nil, allowload=nil, replicationnum=nil, replicaallocation=nil, restoreobjects=nil, createtime=nil, metapreparedtime=nil, snapshotfinishedtime=nil, downloadfinishedtime=nil, finishedtime=nil, unfinishedtasks=nil, progress=nil, taskerrmsg=nil, status=nil, timeout=nil, reservereplica=nil, reservedynamicpartitionenable=nil, backupjobid=nil, taskid=nil)
+        def initialize(jobid=nil, label=nil, timestamp=nil, dbname=nil, state=nil, allowload=nil, replicationnum=nil, replicaallocation=nil, restoreobjects=nil, createtime=nil, metapreparedtime=nil, snapshotfinishedtime=nil, downloadfinishedtime=nil, finishedtime=nil, unfinishedtasks=nil, progress=nil, taskerrmsg=nil, status=nil, timeout=nil, reservereplica=nil, reservedynamicpartitionenable=nil, backupjobid=nil, taskid=nil, id=nil)
           @JobId = jobid
           @Label = label
           @Timestamp = timestamp
@@ -5164,6 +5218,7 @@ module TencentCloud
           @ReserveDynamicPartitionEnable = reservedynamicpartitionenable
           @BackupJobId = backupjobid
           @TaskId = taskid
+          @ID = id
         end
 
         def deserialize(params)
@@ -5190,6 +5245,7 @@ module TencentCloud
           @ReserveDynamicPartitionEnable = params['ReserveDynamicPartitionEnable']
           @BackupJobId = params['BackupJobId']
           @TaskId = params['TaskId']
+          @ID = params['ID']
         end
       end
 
@@ -5472,6 +5528,30 @@ module TencentCloud
           @CatalogName = params['CatalogName']
           @CpuTimeMs = params['CpuTimeMs']
           @ComputeGroup = params['ComputeGroup']
+        end
+      end
+
+      # 备份快照保留策略
+      class SnapshotRemainPolicy < TencentCloud::Common::AbstractModel
+        # @param Type: 0-不主动删除；1-超过指定时间周期自动删除；2-保留指定数据快照
+        # @type Type: Integer
+        # @param RemainDays: 保留快照的时间
+        # @type RemainDays: Integer
+        # @param RemainLatestNum: 保留最新快照的数量
+        # @type RemainLatestNum: Integer
+
+        attr_accessor :Type, :RemainDays, :RemainLatestNum
+
+        def initialize(type=nil, remaindays=nil, remainlatestnum=nil)
+          @Type = type
+          @RemainDays = remaindays
+          @RemainLatestNum = remainlatestnum
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @RemainDays = params['RemainDays']
+          @RemainLatestNum = params['RemainLatestNum']
         end
       end
 

@@ -14154,7 +14154,7 @@ module TencentCloud
         # off：关闭
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Switch: String
-        # @param FilterRules: UA黑白名单生效规则列表
+        # @param FilterRules: UA黑白名单生效规则列表，不能超过10条规则
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FilterRules: Array
 
@@ -14190,7 +14190,7 @@ module TencentCloud
         # @param RulePaths: 访问路径生效内容
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RulePaths: Array
-        # @param UserAgents: UserAgent列表
+        # @param UserAgents: UserAgent列表，UserAgent 个数不能超过 10个
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UserAgents: Array
         # @param FilterType: 黑名单或白名单，blacklist或whitelist

@@ -44,8 +44,8 @@ module TencentCloud
 
         attr_accessor :Type, :ApplicationVersionId, :Name, :Description, :Entrypoint, :CreateTime, :CreatorName, :CreatorId, :GitInfo, :GitSource, :CosSource
         extend Gem::Deprecate
-        deprecate :GitInfo, :none, 2025, 5
-        deprecate :GitInfo=, :none, 2025, 5
+        deprecate :GitInfo, :none, 2025, 7
+        deprecate :GitInfo=, :none, 2025, 7
 
         def initialize(type=nil, applicationversionid=nil, name=nil, description=nil, entrypoint=nil, createtime=nil, creatorname=nil, creatorid=nil, gitinfo=nil, gitsource=nil, cossource=nil)
           @Type = type
@@ -139,15 +139,21 @@ module TencentCloud
         # @type ResourceQuota: :class:`Tencentcloud::Omics.v20221128.models.ResourceQuota`
         # @param LimitRange: 限制范围。
         # @type LimitRange: :class:`Tencentcloud::Omics.v20221128.models.LimitRange`
+        # @param SystemNodeInstanceType: 系统节点池实例规格。
+        # @type SystemNodeInstanceType: String
+        # @param SystemNodeCount: 系统节点池实例数量。
+        # @type SystemNodeCount: Integer
 
-        attr_accessor :Zone, :Type, :ServiceCidr, :ResourceQuota, :LimitRange
+        attr_accessor :Zone, :Type, :ServiceCidr, :ResourceQuota, :LimitRange, :SystemNodeInstanceType, :SystemNodeCount
 
-        def initialize(zone=nil, type=nil, servicecidr=nil, resourcequota=nil, limitrange=nil)
+        def initialize(zone=nil, type=nil, servicecidr=nil, resourcequota=nil, limitrange=nil, systemnodeinstancetype=nil, systemnodecount=nil)
           @Zone = zone
           @Type = type
           @ServiceCidr = servicecidr
           @ResourceQuota = resourcequota
           @LimitRange = limitrange
+          @SystemNodeInstanceType = systemnodeinstancetype
+          @SystemNodeCount = systemnodecount
         end
 
         def deserialize(params)
@@ -162,6 +168,8 @@ module TencentCloud
             @LimitRange = LimitRange.new
             @LimitRange.deserialize(params['LimitRange'])
           end
+          @SystemNodeInstanceType = params['SystemNodeInstanceType']
+          @SystemNodeCount = params['SystemNodeCount']
         end
       end
 
@@ -1391,10 +1399,14 @@ module TencentCloud
         # @type CVMId: String
         # @param EKSId: 弹性容器集群ID。
         # @type EKSId: String
+        # @param TKEId: TKE容器集群ID。
+        # @type TKEId: String
+        # @param TKESystemNodePoolId: TKE系统节点池ID。
+        # @type TKESystemNodePoolId: String
 
-        attr_accessor :VPCId, :SubnetId, :SecurityGroupId, :TDSQLCId, :CFSId, :CFSStorageType, :CVMId, :EKSId
+        attr_accessor :VPCId, :SubnetId, :SecurityGroupId, :TDSQLCId, :CFSId, :CFSStorageType, :CVMId, :EKSId, :TKEId, :TKESystemNodePoolId
 
-        def initialize(vpcid=nil, subnetid=nil, securitygroupid=nil, tdsqlcid=nil, cfsid=nil, cfsstoragetype=nil, cvmid=nil, eksid=nil)
+        def initialize(vpcid=nil, subnetid=nil, securitygroupid=nil, tdsqlcid=nil, cfsid=nil, cfsstoragetype=nil, cvmid=nil, eksid=nil, tkeid=nil, tkesystemnodepoolid=nil)
           @VPCId = vpcid
           @SubnetId = subnetid
           @SecurityGroupId = securitygroupid
@@ -1403,6 +1415,8 @@ module TencentCloud
           @CFSStorageType = cfsstoragetype
           @CVMId = cvmid
           @EKSId = eksid
+          @TKEId = tkeid
+          @TKESystemNodePoolId = tkesystemnodepoolid
         end
 
         def deserialize(params)
@@ -1414,6 +1428,8 @@ module TencentCloud
           @CFSStorageType = params['CFSStorageType']
           @CVMId = params['CVMId']
           @EKSId = params['EKSId']
+          @TKEId = params['TKEId']
+          @TKESystemNodePoolId = params['TKESystemNodePoolId']
         end
       end
 
@@ -1536,8 +1552,8 @@ module TencentCloud
 
         attr_accessor :RunUuid, :ProjectId, :ApplicationId, :RunGroupId, :EnvironmentId, :UserDefinedId, :TableId, :TableRowUuid, :Status, :Input, :Option, :ExecutionTime, :Cache, :ErrorMessage, :CreateTime, :UpdateTime
         extend Gem::Deprecate
-        deprecate :Option, :none, 2025, 5
-        deprecate :Option=, :none, 2025, 5
+        deprecate :Option, :none, 2025, 7
+        deprecate :Option=, :none, 2025, 7
 
         def initialize(runuuid=nil, projectid=nil, applicationid=nil, rungroupid=nil, environmentid=nil, userdefinedid=nil, tableid=nil, tablerowuuid=nil, status=nil, input=nil, option=nil, executiontime=nil, cache=nil, errormessage=nil, createtime=nil, updatetime=nil)
           @RunUuid = runuuid

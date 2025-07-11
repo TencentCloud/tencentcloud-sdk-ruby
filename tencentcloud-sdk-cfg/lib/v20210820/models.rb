@@ -2381,10 +2381,14 @@ module TencentCloud
         # @type AlarmPolicy: Array
         # @param PolicyDealType: 护栏处理方式，1--顺序回滚，2--演练暂停
         # @type PolicyDealType: Integer
+        # @param TemplateScenario: 演练场景
+        # @type TemplateScenario: Array
+        # @param TemplatePurpose: 演练目的
+        # @type TemplatePurpose: Array
 
-        attr_accessor :TemplateId, :TemplateTitle, :TemplateDescription, :TemplateTag, :TemplateIsUsed, :TemplateCreateTime, :TemplateUpdateTime, :TemplateMode, :TemplatePauseDuration, :TemplateOwnerUin, :TemplateRegionId, :TemplateGroups, :TemplateMonitors, :TemplatePolicy, :Tags, :TemplateSource, :ApmServiceList, :AlarmPolicy, :PolicyDealType
+        attr_accessor :TemplateId, :TemplateTitle, :TemplateDescription, :TemplateTag, :TemplateIsUsed, :TemplateCreateTime, :TemplateUpdateTime, :TemplateMode, :TemplatePauseDuration, :TemplateOwnerUin, :TemplateRegionId, :TemplateGroups, :TemplateMonitors, :TemplatePolicy, :Tags, :TemplateSource, :ApmServiceList, :AlarmPolicy, :PolicyDealType, :TemplateScenario, :TemplatePurpose
 
-        def initialize(templateid=nil, templatetitle=nil, templatedescription=nil, templatetag=nil, templateisused=nil, templatecreatetime=nil, templateupdatetime=nil, templatemode=nil, templatepauseduration=nil, templateowneruin=nil, templateregionid=nil, templategroups=nil, templatemonitors=nil, templatepolicy=nil, tags=nil, templatesource=nil, apmservicelist=nil, alarmpolicy=nil, policydealtype=nil)
+        def initialize(templateid=nil, templatetitle=nil, templatedescription=nil, templatetag=nil, templateisused=nil, templatecreatetime=nil, templateupdatetime=nil, templatemode=nil, templatepauseduration=nil, templateowneruin=nil, templateregionid=nil, templategroups=nil, templatemonitors=nil, templatepolicy=nil, tags=nil, templatesource=nil, apmservicelist=nil, alarmpolicy=nil, policydealtype=nil, templatescenario=nil, templatepurpose=nil)
           @TemplateId = templateid
           @TemplateTitle = templatetitle
           @TemplateDescription = templatedescription
@@ -2404,6 +2408,8 @@ module TencentCloud
           @ApmServiceList = apmservicelist
           @AlarmPolicy = alarmpolicy
           @PolicyDealType = policydealtype
+          @TemplateScenario = templatescenario
+          @TemplatePurpose = templatepurpose
         end
 
         def deserialize(params)
@@ -2457,6 +2463,22 @@ module TencentCloud
           end
           @AlarmPolicy = params['AlarmPolicy']
           @PolicyDealType = params['PolicyDealType']
+          unless params['TemplateScenario'].nil?
+            @TemplateScenario = []
+            params['TemplateScenario'].each do |i|
+              tasktarget_tmp = TaskTarget.new
+              tasktarget_tmp.deserialize(i)
+              @TemplateScenario << tasktarget_tmp
+            end
+          end
+          unless params['TemplatePurpose'].nil?
+            @TemplatePurpose = []
+            params['TemplatePurpose'].each do |i|
+              tasktarget_tmp = TaskTarget.new
+              tasktarget_tmp.deserialize(i)
+              @TemplatePurpose << tasktarget_tmp
+            end
+          end
         end
       end
 

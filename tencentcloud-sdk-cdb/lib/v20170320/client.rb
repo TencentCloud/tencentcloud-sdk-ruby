@@ -842,7 +842,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 删除审计规则模板
+        # 本接口（DeleteAuditRuleTemplates）用于删除审计规则模板。
 
         # @param request: Request instance for DeleteAuditRuleTemplates.
         # @type request: :class:`Tencentcloud::cdb::V20170320::DeleteAuditRuleTemplatesRequest`

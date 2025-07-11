@@ -361,17 +361,28 @@ module TencentCloud
         # @type EmailIdentity: String
         # @param DKIMOption: 生成的dkim密钥长度。0:1024，1:2048
         # @type DKIMOption: Integer
+        # @param TagList: tag 标签
+        # @type TagList: Array
 
-        attr_accessor :EmailIdentity, :DKIMOption
+        attr_accessor :EmailIdentity, :DKIMOption, :TagList
 
-        def initialize(emailidentity=nil, dkimoption=nil)
+        def initialize(emailidentity=nil, dkimoption=nil, taglist=nil)
           @EmailIdentity = emailidentity
           @DKIMOption = dkimoption
+          @TagList = taglist
         end
 
         def deserialize(params)
           @EmailIdentity = params['EmailIdentity']
           @DKIMOption = params['DKIMOption']
+          unless params['TagList'].nil?
+            @TagList = []
+            params['TagList'].each do |i|
+              taglist_tmp = TagList.new
+              taglist_tmp.deserialize(i)
+              @TagList << taglist_tmp
+            end
+          end
         end
       end
 
@@ -906,16 +917,19 @@ module TencentCloud
         # @type DailyQuota: Integer
         # @param SendIp: 域名配置的独立ip
         # @type SendIp: Array
+        # @param TagList: tag 标签
+        # @type TagList: Array
 
-        attr_accessor :IdentityName, :IdentityType, :SendingEnabled, :CurrentReputationLevel, :DailyQuota, :SendIp
+        attr_accessor :IdentityName, :IdentityType, :SendingEnabled, :CurrentReputationLevel, :DailyQuota, :SendIp, :TagList
 
-        def initialize(identityname=nil, identitytype=nil, sendingenabled=nil, currentreputationlevel=nil, dailyquota=nil, sendip=nil)
+        def initialize(identityname=nil, identitytype=nil, sendingenabled=nil, currentreputationlevel=nil, dailyquota=nil, sendip=nil, taglist=nil)
           @IdentityName = identityname
           @IdentityType = identitytype
           @SendingEnabled = sendingenabled
           @CurrentReputationLevel = currentreputationlevel
           @DailyQuota = dailyquota
           @SendIp = sendip
+          @TagList = taglist
         end
 
         def deserialize(params)
@@ -925,6 +939,14 @@ module TencentCloud
           @CurrentReputationLevel = params['CurrentReputationLevel']
           @DailyQuota = params['DailyQuota']
           @SendIp = params['SendIp']
+          unless params['TagList'].nil?
+            @TagList = []
+            params['TagList'].each do |i|
+              taglist_tmp = TagList.new
+              taglist_tmp.deserialize(i)
+              @TagList << taglist_tmp
+            end
+          end
         end
       end
 
@@ -1392,12 +1414,32 @@ module TencentCloud
 
       # ListEmailIdentities请求参数结构体
       class ListEmailIdentitiesRequest < TencentCloud::Common::AbstractModel
+        # @param TagList: tag 标签
+        # @type TagList: Array
+        # @param Limit: 分页 limit
+        # @type Limit: Integer
+        # @param Offset: 分页 offset
+        # @type Offset: Integer
 
+        attr_accessor :TagList, :Limit, :Offset
 
-        def initialize()
+        def initialize(taglist=nil, limit=nil, offset=nil)
+          @TagList = taglist
+          @Limit = limit
+          @Offset = offset
         end
 
         def deserialize(params)
+          unless params['TagList'].nil?
+            @TagList = []
+            params['TagList'].each do |i|
+              taglist_tmp = TagList.new
+              taglist_tmp.deserialize(i)
+              @TagList << taglist_tmp
+            end
+          end
+          @Limit = params['Limit']
+          @Offset = params['Offset']
         end
       end
 
@@ -1409,15 +1451,18 @@ module TencentCloud
         # @type MaxReputationLevel: Integer
         # @param MaxDailyQuota: 单域名最高日发送量
         # @type MaxDailyQuota: Integer
+        # @param Total: 总数
+        # @type Total: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :EmailIdentities, :MaxReputationLevel, :MaxDailyQuota, :RequestId
+        attr_accessor :EmailIdentities, :MaxReputationLevel, :MaxDailyQuota, :Total, :RequestId
 
-        def initialize(emailidentities=nil, maxreputationlevel=nil, maxdailyquota=nil, requestid=nil)
+        def initialize(emailidentities=nil, maxreputationlevel=nil, maxdailyquota=nil, total=nil, requestid=nil)
           @EmailIdentities = emailidentities
           @MaxReputationLevel = maxreputationlevel
           @MaxDailyQuota = maxdailyquota
+          @Total = total
           @RequestId = requestid
         end
 
@@ -1432,6 +1477,7 @@ module TencentCloud
           end
           @MaxReputationLevel = params['MaxReputationLevel']
           @MaxDailyQuota = params['MaxDailyQuota']
+          @Total = params['Total']
           @RequestId = params['RequestId']
         end
       end
@@ -2088,6 +2134,26 @@ module TencentCloud
         def deserialize(params)
           @Html = params['Html']
           @Text = params['Text']
+        end
+      end
+
+      # 标签
+      class TagList < TencentCloud::Common::AbstractModel
+        # @param TagKey: 产品
+        # @type TagKey: String
+        # @param TagValue: ses
+        # @type TagValue: String
+
+        attr_accessor :TagKey, :TagValue
+
+        def initialize(tagkey=nil, tagvalue=nil)
+          @TagKey = tagkey
+          @TagValue = tagvalue
+        end
+
+        def deserialize(params)
+          @TagKey = params['TagKey']
+          @TagValue = params['TagValue']
         end
       end
 

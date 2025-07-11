@@ -342,17 +342,23 @@ module TencentCloud
         # @type AndroidInstanceImageState: String
         # @param AndroidInstanceImageZone: 镜像可用区
         # @type AndroidInstanceImageZone: String
+        # @param AndroidInstanceImageDescription: 镜像描述
+        # @type AndroidInstanceImageDescription: String
         # @param AndroidVersion: 安卓10
         # @type AndroidVersion: String
+        # @param CreateTime: 创建时间
+        # @type CreateTime: String
 
-        attr_accessor :AndroidInstanceImageId, :AndroidInstanceImageName, :AndroidInstanceImageState, :AndroidInstanceImageZone, :AndroidVersion
+        attr_accessor :AndroidInstanceImageId, :AndroidInstanceImageName, :AndroidInstanceImageState, :AndroidInstanceImageZone, :AndroidInstanceImageDescription, :AndroidVersion, :CreateTime
 
-        def initialize(androidinstanceimageid=nil, androidinstanceimagename=nil, androidinstanceimagestate=nil, androidinstanceimagezone=nil, androidversion=nil)
+        def initialize(androidinstanceimageid=nil, androidinstanceimagename=nil, androidinstanceimagestate=nil, androidinstanceimagezone=nil, androidinstanceimagedescription=nil, androidversion=nil, createtime=nil)
           @AndroidInstanceImageId = androidinstanceimageid
           @AndroidInstanceImageName = androidinstanceimagename
           @AndroidInstanceImageState = androidinstanceimagestate
           @AndroidInstanceImageZone = androidinstanceimagezone
+          @AndroidInstanceImageDescription = androidinstanceimagedescription
           @AndroidVersion = androidversion
+          @CreateTime = createtime
         end
 
         def deserialize(params)
@@ -360,7 +366,9 @@ module TencentCloud
           @AndroidInstanceImageName = params['AndroidInstanceImageName']
           @AndroidInstanceImageState = params['AndroidInstanceImageState']
           @AndroidInstanceImageZone = params['AndroidInstanceImageZone']
+          @AndroidInstanceImageDescription = params['AndroidInstanceImageDescription']
           @AndroidVersion = params['AndroidVersion']
+          @CreateTime = params['CreateTime']
         end
       end
 
@@ -914,17 +922,21 @@ module TencentCloud
         # @type AndroidInstanceImageName: String
         # @param AndroidInstanceId: 安卓实例 ID
         # @type AndroidInstanceId: String
+        # @param AndroidInstanceImageDescription: 安卓实例镜像描述
+        # @type AndroidInstanceImageDescription: String
 
-        attr_accessor :AndroidInstanceImageName, :AndroidInstanceId
+        attr_accessor :AndroidInstanceImageName, :AndroidInstanceId, :AndroidInstanceImageDescription
 
-        def initialize(androidinstanceimagename=nil, androidinstanceid=nil)
+        def initialize(androidinstanceimagename=nil, androidinstanceid=nil, androidinstanceimagedescription=nil)
           @AndroidInstanceImageName = androidinstanceimagename
           @AndroidInstanceId = androidinstanceid
+          @AndroidInstanceImageDescription = androidinstanceimagedescription
         end
 
         def deserialize(params)
           @AndroidInstanceImageName = params['AndroidInstanceImageName']
           @AndroidInstanceId = params['AndroidInstanceId']
+          @AndroidInstanceImageDescription = params['AndroidInstanceImageDescription']
         end
       end
 
@@ -1758,14 +1770,20 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 限制量，默认为20，最大值为100
         # @type Limit: Integer
+        # @param Filters: 字段过滤器。Filter 的 Name 有以下值：
+        # ImageName：镜像名称
+        # ImageState：镜像状态
+        # AndroidVersion：安卓版本
+        # @type Filters: Array
 
-        attr_accessor :AndroidInstanceImageIds, :AndroidInstanceImageZones, :Offset, :Limit
+        attr_accessor :AndroidInstanceImageIds, :AndroidInstanceImageZones, :Offset, :Limit, :Filters
 
-        def initialize(androidinstanceimageids=nil, androidinstanceimagezones=nil, offset=nil, limit=nil)
+        def initialize(androidinstanceimageids=nil, androidinstanceimagezones=nil, offset=nil, limit=nil, filters=nil)
           @AndroidInstanceImageIds = androidinstanceimageids
           @AndroidInstanceImageZones = androidinstanceimagezones
           @Offset = offset
           @Limit = limit
+          @Filters = filters
         end
 
         def deserialize(params)
@@ -1773,6 +1791,14 @@ module TencentCloud
           @AndroidInstanceImageZones = params['AndroidInstanceImageZones']
           @Offset = params['Offset']
           @Limit = params['Limit']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
         end
       end
 

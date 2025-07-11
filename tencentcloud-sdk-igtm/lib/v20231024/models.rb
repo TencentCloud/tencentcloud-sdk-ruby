@@ -230,6 +230,26 @@ module TencentCloud
         end
       end
 
+      # 计费项
+      class CostItem < TencentCloud::Common::AbstractModel
+        # @param CostName: 计费项名称
+        # @type CostName: String
+        # @param CostValue: 计费项值
+        # @type CostValue: Integer
+
+        attr_accessor :CostName, :CostValue
+
+        def initialize(costname=nil, costvalue=nil)
+          @CostName = costname
+          @CostValue = costvalue
+        end
+
+        def deserialize(params)
+          @CostName = params['CostName']
+          @CostValue = params['CostValue']
+        end
+      end
+
       # CreateAddressPool请求参数结构体
       class CreateAddressPoolRequest < TencentCloud::Common::AbstractModel
         # @param PoolName: 地址池名称，不允许重复
@@ -811,6 +831,147 @@ module TencentCloud
         end
       end
 
+      # DescribeDetectPackageDetail请求参数结构体
+      class DescribeDetectPackageDetailRequest < TencentCloud::Common::AbstractModel
+        # @param ResourceId: 资源id
+        # @type ResourceId: String
+
+        attr_accessor :ResourceId
+
+        def initialize(resourceid=nil)
+          @ResourceId = resourceid
+        end
+
+        def deserialize(params)
+          @ResourceId = params['ResourceId']
+        end
+      end
+
+      # DescribeDetectPackageDetail返回参数结构体
+      class DescribeDetectPackageDetailResponse < TencentCloud::Common::AbstractModel
+        # @param ResourceId: 资源id
+        # @type ResourceId: String
+        # @param ResourceType: 资源类型 TASK 探测任务
+        # @type ResourceType: String
+        # @param Quota: 额度
+        # @type Quota: Integer
+        # @param CurrentDeadline: 过期时间
+        # @type CurrentDeadline: String
+        # @param CreateTime: 创建时间
+        # @type CreateTime: String
+        # @param IsExpire: 是否过期
+        # @type IsExpire: Integer
+        # @param Status: 状态 ENABLED: 正常 ISOLATED: 隔离 DESTROYED：销毁 REFUNDED：已退款
+        # @type Status: String
+        # @param AutoRenewFlag: 是否自动续费0不1是
+        # @type AutoRenewFlag: Integer
+        # @param Remark: 备注
+        # @type Remark: String
+        # @param CostItemList: 计费项
+        # @type CostItemList: Array
+        # @param UsedNum: 使用数量
+        # @type UsedNum: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ResourceId, :ResourceType, :Quota, :CurrentDeadline, :CreateTime, :IsExpire, :Status, :AutoRenewFlag, :Remark, :CostItemList, :UsedNum, :RequestId
+
+        def initialize(resourceid=nil, resourcetype=nil, quota=nil, currentdeadline=nil, createtime=nil, isexpire=nil, status=nil, autorenewflag=nil, remark=nil, costitemlist=nil, usednum=nil, requestid=nil)
+          @ResourceId = resourceid
+          @ResourceType = resourcetype
+          @Quota = quota
+          @CurrentDeadline = currentdeadline
+          @CreateTime = createtime
+          @IsExpire = isexpire
+          @Status = status
+          @AutoRenewFlag = autorenewflag
+          @Remark = remark
+          @CostItemList = costitemlist
+          @UsedNum = usednum
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ResourceId = params['ResourceId']
+          @ResourceType = params['ResourceType']
+          @Quota = params['Quota']
+          @CurrentDeadline = params['CurrentDeadline']
+          @CreateTime = params['CreateTime']
+          @IsExpire = params['IsExpire']
+          @Status = params['Status']
+          @AutoRenewFlag = params['AutoRenewFlag']
+          @Remark = params['Remark']
+          unless params['CostItemList'].nil?
+            @CostItemList = []
+            params['CostItemList'].each do |i|
+              costitem_tmp = CostItem.new
+              costitem_tmp.deserialize(i)
+              @CostItemList << costitem_tmp
+            end
+          end
+          @UsedNum = params['UsedNum']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDetectTaskPackageList请求参数结构体
+      class DescribeDetectTaskPackageListRequest < TencentCloud::Common::AbstractModel
+        # @param Limit: 每页条数
+        # @type Limit: Integer
+        # @param Filters: 探测任务过滤条件：ResourceId 探测任务的资源id，PeriodStart 最小过期时间,PeriodEnd 最大过期时间
+        # @type Filters: Array
+
+        attr_accessor :Limit, :Filters
+
+        def initialize(limit=nil, filters=nil)
+          @Limit = limit
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @Limit = params['Limit']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              resourcefilter_tmp = ResourceFilter.new
+              resourcefilter_tmp.deserialize(i)
+              @Filters << resourcefilter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeDetectTaskPackageList返回参数结构体
+      class DescribeDetectTaskPackageListResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总数
+        # @type TotalCount: Integer
+        # @param TaskPackageSet: 探测任务套餐列表
+        # @type TaskPackageSet: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :TaskPackageSet, :RequestId
+
+        def initialize(totalcount=nil, taskpackageset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @TaskPackageSet = taskpackageset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['TaskPackageSet'].nil?
+            @TaskPackageSet = []
+            params['TaskPackageSet'].each do |i|
+              detecttaskpackage_tmp = DetectTaskPackage.new
+              detecttaskpackage_tmp.deserialize(i)
+              @TaskPackageSet << detecttaskpackage_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeDetectors请求参数结构体
       class DescribeDetectorsRequest < TencentCloud::Common::AbstractModel
 
@@ -991,6 +1152,68 @@ module TencentCloud
           end
           @TotalCount = params['TotalCount']
           @SystemAccessEnabled = params['SystemAccessEnabled']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeInstancePackageList请求参数结构体
+      class DescribeInstancePackageListRequest < TencentCloud::Common::AbstractModel
+        # @param Limit: 每页条数
+        # @type Limit: Integer
+        # @param Filters: InstanceId实例Id，InstanceName实例名称，ResourceId套餐Id，PackageType套餐类型
+        # @type Filters: Array
+        # @param IsUsed: 是否使用：0未使用1已使用
+        # @type IsUsed: Integer
+
+        attr_accessor :Limit, :Filters, :IsUsed
+
+        def initialize(limit=nil, filters=nil, isused=nil)
+          @Limit = limit
+          @Filters = filters
+          @IsUsed = isused
+        end
+
+        def deserialize(params)
+          @Limit = params['Limit']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              resourcefilter_tmp = ResourceFilter.new
+              resourcefilter_tmp.deserialize(i)
+              @Filters << resourcefilter_tmp
+            end
+          end
+          @IsUsed = params['IsUsed']
+        end
+      end
+
+      # DescribeInstancePackageList返回参数结构体
+      class DescribeInstancePackageListResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总数
+        # @type TotalCount: Integer
+        # @param InstanceSet: 实例套餐列表
+        # @type InstanceSet: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :InstanceSet, :RequestId
+
+        def initialize(totalcount=nil, instanceset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @InstanceSet = instanceset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['InstanceSet'].nil?
+            @InstanceSet = []
+            params['InstanceSet'].each do |i|
+              instancepackage_tmp = InstancePackage.new
+              instancepackage_tmp.deserialize(i)
+              @InstanceSet << instancepackage_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -1239,6 +1462,75 @@ module TencentCloud
           end
           @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 探测任务套餐
+      class DetectTaskPackage < TencentCloud::Common::AbstractModel
+        # @param ResourceId: 资源id
+        # @type ResourceId: String
+        # @param ResourceType: 资源类型
+        # TASK 探测任务
+        # @type ResourceType: String
+        # @param Quota: 额度
+        # @type Quota: Integer
+        # @param CurrentDeadline: 套餐过期时间
+        # @type CurrentDeadline: String
+        # @param CreateTime: 套餐创建时间
+        # @type CreateTime: String
+        # @param IsExpire: 是否过期0否1是
+        # @type IsExpire: Integer
+        # @param Status: 状态
+        # ENABLED: 正常
+        # ISOLATED: 隔离
+        # DESTROYED：销毁
+        # REFUNDED：已退款
+        # @type Status: String
+        # @param AutoRenewFlag: 是否自动续费0不1是
+        # @type AutoRenewFlag: Integer
+        # @param Remark: 备注
+        # @type Remark: String
+        # @param CostItemList: 计费项
+        # @type CostItemList: Array
+        # @param Group: 探测任务类型：100系统设定；200计费；300管理系统；110D监控迁移的免费任务；120容灾切换任务
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Group: Integer
+
+        attr_accessor :ResourceId, :ResourceType, :Quota, :CurrentDeadline, :CreateTime, :IsExpire, :Status, :AutoRenewFlag, :Remark, :CostItemList, :Group
+
+        def initialize(resourceid=nil, resourcetype=nil, quota=nil, currentdeadline=nil, createtime=nil, isexpire=nil, status=nil, autorenewflag=nil, remark=nil, costitemlist=nil, group=nil)
+          @ResourceId = resourceid
+          @ResourceType = resourcetype
+          @Quota = quota
+          @CurrentDeadline = currentdeadline
+          @CreateTime = createtime
+          @IsExpire = isexpire
+          @Status = status
+          @AutoRenewFlag = autorenewflag
+          @Remark = remark
+          @CostItemList = costitemlist
+          @Group = group
+        end
+
+        def deserialize(params)
+          @ResourceId = params['ResourceId']
+          @ResourceType = params['ResourceType']
+          @Quota = params['Quota']
+          @CurrentDeadline = params['CurrentDeadline']
+          @CreateTime = params['CreateTime']
+          @IsExpire = params['IsExpire']
+          @Status = params['Status']
+          @AutoRenewFlag = params['AutoRenewFlag']
+          @Remark = params['Remark']
+          unless params['CostItemList'].nil?
+            @CostItemList = []
+            params['CostItemList'].each do |i|
+              costitem_tmp = CostItem.new
+              costitem_tmp.deserialize(i)
+              @CostItemList << costitem_tmp
+            end
+          end
+          @Group = params['Group']
         end
       end
 
@@ -1603,6 +1895,91 @@ module TencentCloud
         def deserialize(params)
           @InstanceId = params['InstanceId']
           @InstanceName = params['InstanceName']
+        end
+      end
+
+      # 实例套餐
+      class InstancePackage < TencentCloud::Common::AbstractModel
+        # @param ResourceId: 实例套餐资源id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceId: String
+        # @param InstanceId: 实例id
+        # @type InstanceId: String
+        # @param InstanceName: 实例名
+        # @type InstanceName: String
+        # @param PackageType: 套餐类型
+        # FREE: 免费版
+        # STANDARD：标准版
+        # ULTIMATE：旗舰版
+        # @type PackageType: String
+        # @param CurrentDeadline: 套餐过期时间
+        # @type CurrentDeadline: String
+        # @param CreateTime: 套餐创建时间
+        # @type CreateTime: String
+        # @param IsExpire: 是否过期0否1是
+        # @type IsExpire: Integer
+        # @param Status: 实例状态
+        # ENABLED: 正常
+        # DISABLED: 禁用
+        # @type Status: String
+        # @param AutoRenewFlag: 是否自动续费0不1是
+        # @type AutoRenewFlag: Integer
+        # @param Remark: 备注
+        # @type Remark: String
+        # @param CostItemList: 计费项
+        # @type CostItemList: Array
+        # @param MinCheckInterval: 最小检查间隔时间s
+        # @type MinCheckInterval: Integer
+        # @param MinGlobalTtl: 最小TTL s
+        # @type MinGlobalTtl: Integer
+        # @param TrafficStrategy: 流量策略类型：ALL返回全部，WEIGHT权重
+        # @type TrafficStrategy: Array
+        # @param ScheduleStrategy: 策略类型：LOCATION按地理位置调度，DELAY按延迟调度
+        # @type ScheduleStrategy: Array
+
+        attr_accessor :ResourceId, :InstanceId, :InstanceName, :PackageType, :CurrentDeadline, :CreateTime, :IsExpire, :Status, :AutoRenewFlag, :Remark, :CostItemList, :MinCheckInterval, :MinGlobalTtl, :TrafficStrategy, :ScheduleStrategy
+
+        def initialize(resourceid=nil, instanceid=nil, instancename=nil, packagetype=nil, currentdeadline=nil, createtime=nil, isexpire=nil, status=nil, autorenewflag=nil, remark=nil, costitemlist=nil, mincheckinterval=nil, minglobalttl=nil, trafficstrategy=nil, schedulestrategy=nil)
+          @ResourceId = resourceid
+          @InstanceId = instanceid
+          @InstanceName = instancename
+          @PackageType = packagetype
+          @CurrentDeadline = currentdeadline
+          @CreateTime = createtime
+          @IsExpire = isexpire
+          @Status = status
+          @AutoRenewFlag = autorenewflag
+          @Remark = remark
+          @CostItemList = costitemlist
+          @MinCheckInterval = mincheckinterval
+          @MinGlobalTtl = minglobalttl
+          @TrafficStrategy = trafficstrategy
+          @ScheduleStrategy = schedulestrategy
+        end
+
+        def deserialize(params)
+          @ResourceId = params['ResourceId']
+          @InstanceId = params['InstanceId']
+          @InstanceName = params['InstanceName']
+          @PackageType = params['PackageType']
+          @CurrentDeadline = params['CurrentDeadline']
+          @CreateTime = params['CreateTime']
+          @IsExpire = params['IsExpire']
+          @Status = params['Status']
+          @AutoRenewFlag = params['AutoRenewFlag']
+          @Remark = params['Remark']
+          unless params['CostItemList'].nil?
+            @CostItemList = []
+            params['CostItemList'].each do |i|
+              costitem_tmp = CostItem.new
+              costitem_tmp.deserialize(i)
+              @CostItemList << costitem_tmp
+            end
+          end
+          @MinCheckInterval = params['MinCheckInterval']
+          @MinGlobalTtl = params['MinGlobalTtl']
+          @TrafficStrategy = params['TrafficStrategy']
+          @ScheduleStrategy = params['ScheduleStrategy']
         end
       end
 

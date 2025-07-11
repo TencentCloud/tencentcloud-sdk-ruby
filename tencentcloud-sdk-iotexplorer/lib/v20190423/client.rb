@@ -173,6 +173,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 业务已下线
+
         # 取消分配
 
         # @param request: Request instance for CancelAssignTWeCallLicense.

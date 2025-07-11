@@ -70,8 +70,8 @@ module TencentCloud
 
         attr_accessor :AutoScalingGroupId, :ActivityId, :ActivityType, :StatusCode, :StatusMessage, :Cause, :Description, :StartTime, :EndTime, :CreatedTime, :ActivityRelatedInstanceSet, :StatusMessageSimplified, :LifecycleActionResultSet, :DetailedStatusMessageSet, :InvocationResultSet, :RelatedInstanceSet
         extend Gem::Deprecate
-        deprecate :ActivityRelatedInstanceSet, :none, 2025, 6
-        deprecate :ActivityRelatedInstanceSet=, :none, 2025, 6
+        deprecate :ActivityRelatedInstanceSet, :none, 2025, 7
+        deprecate :ActivityRelatedInstanceSet=, :none, 2025, 7
 
         def initialize(autoscalinggroupid=nil, activityid=nil, activitytype=nil, statuscode=nil, statusmessage=nil, cause=nil, description=nil, starttime=nil, endtime=nil, createdtime=nil, activityrelatedinstanceset=nil, statusmessagesimplified=nil, lifecycleactionresultset=nil, detailedstatusmessageset=nil, invocationresultset=nil, relatedinstanceset=nil)
           @AutoScalingGroupId = autoscalinggroupid
@@ -2745,8 +2745,8 @@ module TencentCloud
 
         attr_accessor :SecurityService, :MonitorService, :AutomationService, :AutomationToolsService
         extend Gem::Deprecate
-        deprecate :AutomationService, :none, 2025, 6
-        deprecate :AutomationService=, :none, 2025, 6
+        deprecate :AutomationService, :none, 2025, 7
+        deprecate :AutomationService=, :none, 2025, 7
 
         def initialize(securityservice=nil, monitorservice=nil, automationservice=nil, automationtoolsservice=nil)
           @SecurityService = securityservice
@@ -4791,12 +4791,15 @@ module TencentCloud
         # @type RollingUpdateSettings: :class:`Tencentcloud::As.v20180419.models.RollingUpdateSettings`
         # @param CheckInstanceTargetHealth: 实例后端服务健康状态检查，默认为 FALSE。仅针对绑定应用型负载均衡器的伸缩组生效，开启该检查后，如刷新后实例未通过检查，负载均衡器端口权重始终为 0，且标记为刷新失败。取值范围如下：<li>TRUE：开启检查</li><li>FALSE：不开启检查</li>
         # @type CheckInstanceTargetHealth: Boolean
+        # @param CheckInstanceTargetHealthTimeout: 实例后端服务健康状态检查的超时时间，单位为秒，取值范围[60,7200]，默认时间1800秒。仅在CheckInstanceTargetHealth参数开启后生效，若实例健康检查超时，则标记为刷新失败。
+        # @type CheckInstanceTargetHealthTimeout: Integer
 
-        attr_accessor :RollingUpdateSettings, :CheckInstanceTargetHealth
+        attr_accessor :RollingUpdateSettings, :CheckInstanceTargetHealth, :CheckInstanceTargetHealthTimeout
 
-        def initialize(rollingupdatesettings=nil, checkinstancetargethealth=nil)
+        def initialize(rollingupdatesettings=nil, checkinstancetargethealth=nil, checkinstancetargethealthtimeout=nil)
           @RollingUpdateSettings = rollingupdatesettings
           @CheckInstanceTargetHealth = checkinstancetargethealth
+          @CheckInstanceTargetHealthTimeout = checkinstancetargethealthtimeout
         end
 
         def deserialize(params)
@@ -4805,6 +4808,7 @@ module TencentCloud
             @RollingUpdateSettings.deserialize(params['RollingUpdateSettings'])
           end
           @CheckInstanceTargetHealth = params['CheckInstanceTargetHealth']
+          @CheckInstanceTargetHealthTimeout = params['CheckInstanceTargetHealthTimeout']
         end
       end
 
