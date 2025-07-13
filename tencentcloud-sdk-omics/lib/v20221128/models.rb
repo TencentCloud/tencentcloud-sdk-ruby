@@ -1754,7 +1754,7 @@ module TencentCloud
         # @type InputType: String
         # @param InputCosUri: 输入COS地址。
         # @type InputCosUri: String
-        # @param InputTemplateId: 输入模版ID。
+        # @param InputTemplateId: 输入模板ID。
         # @type InputTemplateId: String
         # @param Option: WDL运行选项。
         # @type Option: :class:`Tencentcloud::Omics.v20221128.models.RunOption`

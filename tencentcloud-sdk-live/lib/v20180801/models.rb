@@ -1995,6 +1995,33 @@ module TencentCloud
         end
       end
 
+      # CreateAuditKeywords请求参数结构体
+      class CreateAuditKeywordsRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # CreateAuditKeywords返回参数结构体
+      class CreateAuditKeywordsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateCasterInputPushUrl请求参数结构体
       class CreateCasterInputPushUrlRequest < TencentCloud::Common::AbstractModel
         # @param CasterId: 导播台ID
@@ -3970,6 +3997,33 @@ module TencentCloud
         end
       end
 
+      # DeleteAuditKeywords请求参数结构体
+      class DeleteAuditKeywordsRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DeleteAuditKeywords返回参数结构体
+      class DeleteAuditKeywordsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteCasterInputInfo请求参数结构体
       class DeleteCasterInputInfoRequest < TencentCloud::Common::AbstractModel
         # @param CasterId: 导播台ID
@@ -5054,6 +5108,33 @@ module TencentCloud
               @DataInfoList << billareainfo_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAuditKeywords请求参数结构体
+      class DescribeAuditKeywordsRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeAuditKeywords返回参数结构体
+      class DescribeAuditKeywordsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end

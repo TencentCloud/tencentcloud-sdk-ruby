@@ -295,6 +295,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建关键词，并关联到关键词库。
+
+        # @param request: Request instance for CreateAuditKeywords.
+        # @type request: :class:`Tencentcloud::live::V20180801::CreateAuditKeywordsRequest`
+        # @rtype: :class:`Tencentcloud::live::V20180801::CreateAuditKeywordsResponse`
+        def CreateAuditKeywords(request)
+          body = send_request('CreateAuditKeywords', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateAuditKeywordsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 该接口用来创建新的导播台
 
         # @param request: Request instance for CreateCaster.
@@ -937,6 +961,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CreateScreenshotTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除关键词信息。
+
+        # @param request: Request instance for DeleteAuditKeywords.
+        # @type request: :class:`Tencentcloud::live::V20180801::DeleteAuditKeywordsRequest`
+        # @rtype: :class:`Tencentcloud::live::V20180801::DeleteAuditKeywordsResponse`
+        def DeleteAuditKeywords(request)
+          body = send_request('DeleteAuditKeywords', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteAuditKeywordsResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1640,6 +1688,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeAreaBillBandwidthAndFluxListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取关键词信息。
+
+        # @param request: Request instance for DescribeAuditKeywords.
+        # @type request: :class:`Tencentcloud::live::V20180801::DescribeAuditKeywordsRequest`
+        # @rtype: :class:`Tencentcloud::live::V20180801::DescribeAuditKeywordsResponse`
+        def DescribeAuditKeywords(request)
+          body = send_request('DescribeAuditKeywords', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAuditKeywordsResponse.new
             model.deserialize(response['Response'])
             model
           else

@@ -3292,10 +3292,14 @@ module TencentCloud
         # @type IsHoneypot: Boolean
         # @param ScreenshotUrl: 截图
         # @type ScreenshotUrl: String
+        # @param Status: 状态：unrepaired:未修复，repaired:已修复, offline:资产已下线, ignore:已忽略, checking:复测中
+        # @type Status: String
+        # @param LastCheckTime: 上次复测时间
+        # @type LastCheckTime: String
 
-        attr_accessor :Id, :DisplayToolCommon, :Ip, :Port, :Url, :Type, :Account, :Password, :IsHoneypot, :ScreenshotUrl
+        attr_accessor :Id, :DisplayToolCommon, :Ip, :Port, :Url, :Type, :Account, :Password, :IsHoneypot, :ScreenshotUrl, :Status, :LastCheckTime
 
-        def initialize(id=nil, displaytoolcommon=nil, ip=nil, port=nil, url=nil, type=nil, account=nil, password=nil, ishoneypot=nil, screenshoturl=nil)
+        def initialize(id=nil, displaytoolcommon=nil, ip=nil, port=nil, url=nil, type=nil, account=nil, password=nil, ishoneypot=nil, screenshoturl=nil, status=nil, lastchecktime=nil)
           @Id = id
           @DisplayToolCommon = displaytoolcommon
           @Ip = ip
@@ -3306,6 +3310,8 @@ module TencentCloud
           @Password = password
           @IsHoneypot = ishoneypot
           @ScreenshotUrl = screenshoturl
+          @Status = status
+          @LastCheckTime = lastchecktime
         end
 
         def deserialize(params)
@@ -3322,6 +3328,8 @@ module TencentCloud
           @Password = params['Password']
           @IsHoneypot = params['IsHoneypot']
           @ScreenshotUrl = params['ScreenshotUrl']
+          @Status = params['Status']
+          @LastCheckTime = params['LastCheckTime']
         end
       end
 

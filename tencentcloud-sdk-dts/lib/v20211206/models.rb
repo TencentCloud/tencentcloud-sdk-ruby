@@ -3425,6 +3425,8 @@ module TencentCloud
       class DifferenceItem < TencentCloud::Common::AbstractModel
         # @param Db: 数据库名
         # @type Db: String
+        # @param Schema: schema
+        # @type Schema: String
         # @param Table: 表名
         # @type Table: String
         # @param Chunk: 分块号
@@ -3444,10 +3446,11 @@ module TencentCloud
         # @param FinishedAt: 完成时间
         # @type FinishedAt: String
 
-        attr_accessor :Db, :Table, :Chunk, :SrcItem, :DstItem, :IndexName, :LowerBoundary, :UpperBoundary, :CostTime, :FinishedAt
+        attr_accessor :Db, :Schema, :Table, :Chunk, :SrcItem, :DstItem, :IndexName, :LowerBoundary, :UpperBoundary, :CostTime, :FinishedAt
 
-        def initialize(db=nil, table=nil, chunk=nil, srcitem=nil, dstitem=nil, indexname=nil, lowerboundary=nil, upperboundary=nil, costtime=nil, finishedat=nil)
+        def initialize(db=nil, schema=nil, table=nil, chunk=nil, srcitem=nil, dstitem=nil, indexname=nil, lowerboundary=nil, upperboundary=nil, costtime=nil, finishedat=nil)
           @Db = db
+          @Schema = schema
           @Table = table
           @Chunk = chunk
           @SrcItem = srcitem
@@ -3461,6 +3464,7 @@ module TencentCloud
 
         def deserialize(params)
           @Db = params['Db']
+          @Schema = params['Schema']
           @Table = params['Table']
           @Chunk = params['Chunk']
           @SrcItem = params['SrcItem']
@@ -5918,21 +5922,25 @@ module TencentCloud
       class SkippedItem < TencentCloud::Common::AbstractModel
         # @param Db: 数据库名
         # @type Db: String
+        # @param Schema: schema名
+        # @type Schema: String
         # @param Table: 表名
         # @type Table: String
         # @param Reason: 未发起检查的原因
         # @type Reason: String
 
-        attr_accessor :Db, :Table, :Reason
+        attr_accessor :Db, :Schema, :Table, :Reason
 
-        def initialize(db=nil, table=nil, reason=nil)
+        def initialize(db=nil, schema=nil, table=nil, reason=nil)
           @Db = db
+          @Schema = schema
           @Table = table
           @Reason = reason
         end
 
         def deserialize(params)
           @Db = params['Db']
+          @Schema = params['Schema']
           @Table = params['Table']
           @Reason = params['Reason']
         end
@@ -6690,7 +6698,7 @@ module TencentCloud
         # @param StepInfos: 详细步骤信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StepInfos: Array
-        # @param CauseOfCompareDisable: 不能发起一致性校验的原因
+        # @param CauseOfCompareDisable: 不能发起内置校验的原因
         # @type CauseOfCompareDisable: String
         # @param ErrInfo: 任务的错误和解决方案信息
         # @type ErrInfo: :class:`Tencentcloud::Dts.v20211206.models.ErrInfo`

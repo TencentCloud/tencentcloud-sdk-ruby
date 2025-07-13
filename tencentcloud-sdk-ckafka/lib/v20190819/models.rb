@@ -1975,105 +1975,6 @@ module TencentCloud
         end
       end
 
-      # CreateInstancePost请求参数结构体
-      class CreateInstancePostRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceName: ckafka集群实例Name，是一个不超过 64 个字符的字符串，必须以字母为首字符，剩余部分可以包含字母、数字和横划线(-)
-        # @type InstanceName: String
-        # @param VpcId: 私有网络Id 创建的实例默认接入点所在的 vpc 对应 vpcId。目前不支持创建基础网络实例，因此该参数必填
-        # @type VpcId: String
-        # @param SubnetId: 子网id。创建实例默认接入点所在的子网对应的子网 id
-        # @type SubnetId: String
-        # @param BandWidth: 实例内网峰值带宽。单位 MB/s。标准版需传入当前实例规格所对应的峰值带宽。注意如果创建的实例为专业版实例，峰值带宽，分区数等参数配置需要满足专业版的计费规格。
-        # @type BandWidth: Integer
-        # @param InstanceType: 国际站标准版实例规格。目前只有国际站标准版使用当前字段区分规格，国内站标准版使用峰值带宽区分规格。除了国际站标准版外的所有实例填写 1 即可。国际站标准版实例：入门型(general)]填写1；[标准型(standard)]填写2；[进阶型(advanced)]填写3；[容量型(capacity)]填写4；[高阶型1(specialized-1)]填写5；[高阶型2(specialized-2)]填写6；[高阶型3(specialized-3)]填写7；[高阶型4(specialized-4)]填写8。
-        # @type InstanceType: Integer
-        # @param MsgRetentionTime: 实例日志的默认最长保留时间，单位分钟。不传入该参数时默认为 1440 分钟（1天），最大30天。当 topic 显式设置消息保留时间时，以 topic 保留时间为准
-        # @type MsgRetentionTime: Integer
-        # @param ClusterId: 创建实例时可以选择集群Id, 该入参表示集群Id。不指定实例所在集群则不传入该参数
-        # @type ClusterId: Integer
-        # @param KafkaVersion: 实例版本。目前支持 "0.10.2","1.1.1","2.4.1","2.4.2","2.8.1"。"2.4.1" 与 "2.4.2" 属于同一个版本，传任意一个均可。
-        # @type KafkaVersion: String
-        # @param SpecificationsType: 实例类型。"standard"：标准版，"profession"：专业版
-        # @type SpecificationsType: String
-        # @param DiskType: 专业版实例磁盘类型，标准版实例不需要填写。"CLOUD_SSD"：SSD云硬盘；"CLOUD_BASIC"：高性能云硬盘。不传默认值为 "CLOUD_BASIC"
-        # @type DiskType: String
-        # @param DiskSize: 实例硬盘大小，需要满足当前实例的计费规格
-        # @type DiskSize: Integer
-        # @param Partition: 实例最大分区数量，需要满足当前实例的计费规格
-        # @type Partition: Integer
-        # @param TopicNum: 实例最大 topic 数量，需要满足当前实例的计费规格
-        # @type TopicNum: Integer
-        # @param ZoneId: 实例所在的可用区。当创建多可用区实例时，该参数为创建的默认接入点所在子网的可用区 id
-        # @type ZoneId: Integer
-        # @param MultiZoneFlag: 当前实例是否为多可用区实例。
-        # @type MultiZoneFlag: Boolean
-        # @param ZoneIds: 当实例为多可用区实例时，多可用区 id 列表。注意参数 ZoneId 对应的多可用区需要包含在该参数数组中
-        # @type ZoneIds: Array
-        # @param InstanceNum: 购买实例数量。非必填，默认值为 1。当传入该参数时，会创建多个 instanceName 加后缀区分的实例
-        # @type InstanceNum: Integer
-        # @param PublicNetworkMonthly: 公网带宽大小，单位 Mbps。默认是没有加上免费 3Mbps 带宽。例如总共需要 3Mbps 公网带宽，此处传 0；总共需要 6Mbps 公网带宽，此处传 3。需要保证传入参数为 3 的整数倍
-        # @type PublicNetworkMonthly: Integer
-        # @param Tags: 标签
-        # @type Tags: Array
-        # @param ElasticBandwidthSwitch: 弹性带宽开关 0不开启  1开启（0默认）
-        # @type ElasticBandwidthSwitch: Integer
-
-        attr_accessor :InstanceName, :VpcId, :SubnetId, :BandWidth, :InstanceType, :MsgRetentionTime, :ClusterId, :KafkaVersion, :SpecificationsType, :DiskType, :DiskSize, :Partition, :TopicNum, :ZoneId, :MultiZoneFlag, :ZoneIds, :InstanceNum, :PublicNetworkMonthly, :Tags, :ElasticBandwidthSwitch
-
-        def initialize(instancename=nil, vpcid=nil, subnetid=nil, bandwidth=nil, instancetype=nil, msgretentiontime=nil, clusterid=nil, kafkaversion=nil, specificationstype=nil, disktype=nil, disksize=nil, partition=nil, topicnum=nil, zoneid=nil, multizoneflag=nil, zoneids=nil, instancenum=nil, publicnetworkmonthly=nil, tags=nil, elasticbandwidthswitch=nil)
-          @InstanceName = instancename
-          @VpcId = vpcid
-          @SubnetId = subnetid
-          @BandWidth = bandwidth
-          @InstanceType = instancetype
-          @MsgRetentionTime = msgretentiontime
-          @ClusterId = clusterid
-          @KafkaVersion = kafkaversion
-          @SpecificationsType = specificationstype
-          @DiskType = disktype
-          @DiskSize = disksize
-          @Partition = partition
-          @TopicNum = topicnum
-          @ZoneId = zoneid
-          @MultiZoneFlag = multizoneflag
-          @ZoneIds = zoneids
-          @InstanceNum = instancenum
-          @PublicNetworkMonthly = publicnetworkmonthly
-          @Tags = tags
-          @ElasticBandwidthSwitch = elasticbandwidthswitch
-        end
-
-        def deserialize(params)
-          @InstanceName = params['InstanceName']
-          @VpcId = params['VpcId']
-          @SubnetId = params['SubnetId']
-          @BandWidth = params['BandWidth']
-          @InstanceType = params['InstanceType']
-          @MsgRetentionTime = params['MsgRetentionTime']
-          @ClusterId = params['ClusterId']
-          @KafkaVersion = params['KafkaVersion']
-          @SpecificationsType = params['SpecificationsType']
-          @DiskType = params['DiskType']
-          @DiskSize = params['DiskSize']
-          @Partition = params['Partition']
-          @TopicNum = params['TopicNum']
-          @ZoneId = params['ZoneId']
-          @MultiZoneFlag = params['MultiZoneFlag']
-          @ZoneIds = params['ZoneIds']
-          @InstanceNum = params['InstanceNum']
-          @PublicNetworkMonthly = params['PublicNetworkMonthly']
-          unless params['Tags'].nil?
-            @Tags = []
-            params['Tags'].each do |i|
-              tag_tmp = Tag.new
-              tag_tmp.deserialize(i)
-              @Tags << tag_tmp
-            end
-          end
-          @ElasticBandwidthSwitch = params['ElasticBandwidthSwitch']
-        end
-      end
-
       # 后付费实例相关接口返回结构
       class CreateInstancePostResp < TencentCloud::Common::AbstractModel
         # @param ReturnCode: 返回的code，0为正常，非0为错误
@@ -2098,29 +1999,6 @@ module TencentCloud
             @Data = CreateInstancePostData.new
             @Data.deserialize(params['Data'])
           end
-        end
-      end
-
-      # CreateInstancePost返回参数结构体
-      class CreateInstancePostResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 返回结果
-        # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.JgwOperateResponse`
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Result, :RequestId
-
-        def initialize(result=nil, requestid=nil)
-          @Result = result
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          unless params['Result'].nil?
-            @Result = JgwOperateResponse.new
-            @Result.deserialize(params['Result'])
-          end
-          @RequestId = params['RequestId']
         end
       end
 

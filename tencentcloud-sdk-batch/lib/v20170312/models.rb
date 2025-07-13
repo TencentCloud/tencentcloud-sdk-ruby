@@ -2639,7 +2639,7 @@ module TencentCloud
 
         # 示例值：WanIP
 
-        # 此功能仅部分地区灰度开发，如需使用[请提交工单咨询](https://console.cloud.tencent.com/workorder/category)
+        # 此功能仅部分地区灰度开放，如需使用[请提交工单咨询](https://console.cloud.tencent.com/workorder/category)
         # @type IPv4AddressType: String
         # @param IPv6AddressType: 弹性公网 IPv6 类型。
         # - EIPv6：弹性公网 IPv6。
@@ -2648,7 +2648,7 @@ module TencentCloud
         # 如需为资源分配IPv6地址，请指定弹性公网IPv6类型。
         # 示例值：EIPv6
 
-        # 此功能仅部分地区灰度开发，如需使用[请提交工单咨询](https://console.cloud.tencent.com/workorder/category)
+        # 此功能仅部分地区灰度开放，如需使用[请提交工单咨询](https://console.cloud.tencent.com/workorder/category)
         # @type IPv6AddressType: String
         # @param AntiDDoSPackageId: 高防包唯一ID，申请高防IP时，该字段必传。
         # 示例值：bgp-12345678

@@ -1872,7 +1872,7 @@ module TencentCloud
         # @type MasterSummary: :class:`Tencentcloud::Cdwch.v20200915.models.NodesSummary`
         # @param CommonSummary: zookeeper节点描述信息
         # @type CommonSummary: :class:`Tencentcloud::Cdwch.v20200915.models.NodesSummary`
-        # @param HA: 高可用，“true" "false"
+        # @param HA: 高可用,"true" "false"
         # @type HA: String
         # @param AccessInfo: 访问地址，例如 "10.0.0.1:9000"
         # @type AccessInfo: String
@@ -1952,10 +1952,12 @@ module TencentCloud
         # @type BindSGs: Array
         # @param HasPublicCloudClb: 是否开启公网clb
         # @type HasPublicCloudClb: Boolean
+        # @param UpgradeZkVersions: 可升级的zk版本
+        # @type UpgradeZkVersions: String
 
-        attr_accessor :InstanceId, :InstanceName, :Status, :Version, :Region, :Zone, :VpcId, :SubnetId, :PayMode, :CreateTime, :ExpireTime, :MasterSummary, :CommonSummary, :HA, :AccessInfo, :Id, :RegionId, :ZoneDesc, :FlowMsg, :StatusDesc, :RenewFlag, :Tags, :Monitor, :HasClsTopic, :ClsTopicId, :ClsLogSetId, :EnableXMLConfig, :RegionDesc, :Eip, :CosMoveFactor, :Kind, :IsElastic, :InstanceStateInfo, :HAZk, :MountDiskType, :CHProxyVip, :CosBucketName, :CanAttachCbs, :CanAttachCbsLvm, :CanAttachCos, :Components, :UpgradeVersions, :EsIndexId, :EsIndexUsername, :EsIndexPassword, :HasEsIndex, :IsSecondaryZone, :SecondaryZoneInfo, :ClickHouseKeeper, :Details, :IsWhiteSGs, :BindSGs, :HasPublicCloudClb
+        attr_accessor :InstanceId, :InstanceName, :Status, :Version, :Region, :Zone, :VpcId, :SubnetId, :PayMode, :CreateTime, :ExpireTime, :MasterSummary, :CommonSummary, :HA, :AccessInfo, :Id, :RegionId, :ZoneDesc, :FlowMsg, :StatusDesc, :RenewFlag, :Tags, :Monitor, :HasClsTopic, :ClsTopicId, :ClsLogSetId, :EnableXMLConfig, :RegionDesc, :Eip, :CosMoveFactor, :Kind, :IsElastic, :InstanceStateInfo, :HAZk, :MountDiskType, :CHProxyVip, :CosBucketName, :CanAttachCbs, :CanAttachCbsLvm, :CanAttachCos, :Components, :UpgradeVersions, :EsIndexId, :EsIndexUsername, :EsIndexPassword, :HasEsIndex, :IsSecondaryZone, :SecondaryZoneInfo, :ClickHouseKeeper, :Details, :IsWhiteSGs, :BindSGs, :HasPublicCloudClb, :UpgradeZkVersions
 
-        def initialize(instanceid=nil, instancename=nil, status=nil, version=nil, region=nil, zone=nil, vpcid=nil, subnetid=nil, paymode=nil, createtime=nil, expiretime=nil, mastersummary=nil, commonsummary=nil, ha=nil, accessinfo=nil, id=nil, regionid=nil, zonedesc=nil, flowmsg=nil, statusdesc=nil, renewflag=nil, tags=nil, monitor=nil, hasclstopic=nil, clstopicid=nil, clslogsetid=nil, enablexmlconfig=nil, regiondesc=nil, eip=nil, cosmovefactor=nil, kind=nil, iselastic=nil, instancestateinfo=nil, hazk=nil, mountdisktype=nil, chproxyvip=nil, cosbucketname=nil, canattachcbs=nil, canattachcbslvm=nil, canattachcos=nil, components=nil, upgradeversions=nil, esindexid=nil, esindexusername=nil, esindexpassword=nil, hasesindex=nil, issecondaryzone=nil, secondaryzoneinfo=nil, clickhousekeeper=nil, details=nil, iswhitesgs=nil, bindsgs=nil, haspubliccloudclb=nil)
+        def initialize(instanceid=nil, instancename=nil, status=nil, version=nil, region=nil, zone=nil, vpcid=nil, subnetid=nil, paymode=nil, createtime=nil, expiretime=nil, mastersummary=nil, commonsummary=nil, ha=nil, accessinfo=nil, id=nil, regionid=nil, zonedesc=nil, flowmsg=nil, statusdesc=nil, renewflag=nil, tags=nil, monitor=nil, hasclstopic=nil, clstopicid=nil, clslogsetid=nil, enablexmlconfig=nil, regiondesc=nil, eip=nil, cosmovefactor=nil, kind=nil, iselastic=nil, instancestateinfo=nil, hazk=nil, mountdisktype=nil, chproxyvip=nil, cosbucketname=nil, canattachcbs=nil, canattachcbslvm=nil, canattachcos=nil, components=nil, upgradeversions=nil, esindexid=nil, esindexusername=nil, esindexpassword=nil, hasesindex=nil, issecondaryzone=nil, secondaryzoneinfo=nil, clickhousekeeper=nil, details=nil, iswhitesgs=nil, bindsgs=nil, haspubliccloudclb=nil, upgradezkversions=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @Status = status
@@ -2009,6 +2011,7 @@ module TencentCloud
           @IsWhiteSGs = iswhitesgs
           @BindSGs = bindsgs
           @HasPublicCloudClb = haspubliccloudclb
+          @UpgradeZkVersions = upgradezkversions
         end
 
         def deserialize(params)
@@ -2091,6 +2094,7 @@ module TencentCloud
           @IsWhiteSGs = params['IsWhiteSGs']
           @BindSGs = params['BindSGs']
           @HasPublicCloudClb = params['HasPublicCloudClb']
+          @UpgradeZkVersions = params['UpgradeZkVersions']
         end
       end
 
