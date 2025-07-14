@@ -341,6 +341,78 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取代码泄露数据
+
+        # @param request: Request instance for DescribeLeakageCodes.
+        # @type request: :class:`Tencentcloud::ctem::V20231128::DescribeLeakageCodesRequest`
+        # @rtype: :class:`Tencentcloud::ctem::V20231128::DescribeLeakageCodesResponse`
+        def DescribeLeakageCodes(request)
+          body = send_request('DescribeLeakageCodes', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeLeakageCodesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取数据泄露事件
+
+        # @param request: Request instance for DescribeLeakageDatas.
+        # @type request: :class:`Tencentcloud::ctem::V20231128::DescribeLeakageDatasRequest`
+        # @rtype: :class:`Tencentcloud::ctem::V20231128::DescribeLeakageDatasResponse`
+        def DescribeLeakageDatas(request)
+          body = send_request('DescribeLeakageDatas', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeLeakageDatasResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取邮箱泄露数据
+
+        # @param request: Request instance for DescribeLeakageEmails.
+        # @type request: :class:`Tencentcloud::ctem::V20231128::DescribeLeakageEmailsRequest`
+        # @rtype: :class:`Tencentcloud::ctem::V20231128::DescribeLeakageEmailsResponse`
+        def DescribeLeakageEmails(request)
+          body = send_request('DescribeLeakageEmails', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeLeakageEmailsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查看后台管理数据
 
         # @param request: Request instance for DescribeManages.

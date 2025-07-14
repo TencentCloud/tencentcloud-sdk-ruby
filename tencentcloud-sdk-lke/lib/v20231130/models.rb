@@ -1904,83 +1904,6 @@ module TencentCloud
         end
       end
 
-      # ConvertDocument请求参数结构体
-      class ConvertDocumentRequest < TencentCloud::Common::AbstractModel
-        # @param FileUrl: 图片的 Url 地址。 支持的图片格式：PNG、JPG、JPEG、PDF，暂不支持 GIF 格式。 支持的图片大小：所下载图片经 Base64 编码后不超过 8M。图片下载时间不超过 3 秒。 支持的图片像素：单边介于20-10000px之间。 图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。 非腾讯云存储的 Url 速度和稳定性可能受一定影响。
-        # @type FileUrl: String
-        # @param FileBase64: 图片的 Base64 值。 支持的图片格式：PNG、JPG、JPEG、PDF，暂不支持 GIF 格式。 支持的图片大小：所下载图片经Base64编码后不超过 8M。图片下载时间不超过 3 秒。 支持的图片像素：单边介于20-10000px之间。 图片的 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。
-        # @type FileBase64: String
-        # @param FileStartPageNumber: 当传入文件是PDF类型（FileType=PDF）时，用来指定pdf识别的起始页码，识别的页码包含当前值。
-        # @type FileStartPageNumber: Integer
-        # @param FileEndPageNumber: 当传入文件是PDF类型（FileType=PDF）时，用来指定pdf识别的结束页码，识别的页码包含当前值。
-        # 建议一次请求的页面不超过3页。
-        # @type FileEndPageNumber: Integer
-
-        attr_accessor :FileUrl, :FileBase64, :FileStartPageNumber, :FileEndPageNumber
-
-        def initialize(fileurl=nil, filebase64=nil, filestartpagenumber=nil, fileendpagenumber=nil)
-          @FileUrl = fileurl
-          @FileBase64 = filebase64
-          @FileStartPageNumber = filestartpagenumber
-          @FileEndPageNumber = fileendpagenumber
-        end
-
-        def deserialize(params)
-          @FileUrl = params['FileUrl']
-          @FileBase64 = params['FileBase64']
-          @FileStartPageNumber = params['FileStartPageNumber']
-          @FileEndPageNumber = params['FileEndPageNumber']
-        end
-      end
-
-      # ConvertDocument返回参数结构体
-      class ConvertDocumentResponse < TencentCloud::Common::AbstractModel
-        # @param WordRecognizeInfo: 识别生成的word文件base64编码的字符串
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type WordRecognizeInfo: Array
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :WordRecognizeInfo, :RequestId
-
-        def initialize(wordrecognizeinfo=nil, requestid=nil)
-          @WordRecognizeInfo = wordrecognizeinfo
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          unless params['WordRecognizeInfo'].nil?
-            @WordRecognizeInfo = []
-            params['WordRecognizeInfo'].each do |i|
-              wordrecognizeinfo_tmp = WordRecognizeInfo.new
-              wordrecognizeinfo_tmp.deserialize(i)
-              @WordRecognizeInfo << wordrecognizeinfo_tmp
-            end
-          end
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # 坐标
-      class Coord < TencentCloud::Common::AbstractModel
-        # @param X: 横坐标
-        # @type X: Integer
-        # @param Y: 纵坐标
-        # @type Y: Integer
-
-        attr_accessor :X, :Y
-
-        def initialize(x=nil, y=nil)
-          @X = x
-          @Y = y
-        end
-
-        def deserialize(params)
-          @X = params['X']
-          @Y = params['Y']
-        end
-      end
-
       # CreateAgent请求参数结构体
       class CreateAgentRequest < TencentCloud::Common::AbstractModel
         # @param AppBizId: 应用ID
@@ -2136,54 +2059,6 @@ module TencentCloud
 
         def deserialize(params)
           @AttrBizId = params['AttrBizId']
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # CreateCorp请求参数结构体
-      class CreateCorpRequest < TencentCloud::Common::AbstractModel
-        # @param FullName: 企业全称
-        # @type FullName: String
-        # @param ContactName: 联系人名称
-        # @type ContactName: String
-        # @param Email: 联系人邮箱
-        # @type Email: String
-        # @param Telephone: 联系人手机号
-        # @type Telephone: String
-
-        attr_accessor :FullName, :ContactName, :Email, :Telephone
-
-        def initialize(fullname=nil, contactname=nil, email=nil, telephone=nil)
-          @FullName = fullname
-          @ContactName = contactname
-          @Email = email
-          @Telephone = telephone
-        end
-
-        def deserialize(params)
-          @FullName = params['FullName']
-          @ContactName = params['ContactName']
-          @Email = params['Email']
-          @Telephone = params['Telephone']
-        end
-      end
-
-      # CreateCorp返回参数结构体
-      class CreateCorpResponse < TencentCloud::Common::AbstractModel
-        # @param CorpBizId: 企业ID
-        # @type CorpBizId: String
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :CorpBizId, :RequestId
-
-        def initialize(corpbizid=nil, requestid=nil)
-          @CorpBizId = corpbizid
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @CorpBizId = params['CorpBizId']
           @RequestId = params['RequestId']
         end
       end
@@ -3533,61 +3408,6 @@ module TencentCloud
         end
       end
 
-      # DescribeCorp请求参数结构体
-      class DescribeCorpRequest < TencentCloud::Common::AbstractModel
-
-
-        def initialize()
-        end
-
-        def deserialize(params)
-        end
-      end
-
-      # DescribeCorp返回参数结构体
-      class DescribeCorpResponse < TencentCloud::Common::AbstractModel
-        # @param CorpBizId: 企业ID
-        # @type CorpBizId: String
-        # @param RobotQuota: 应用配额
-        # @type RobotQuota: Integer
-        # @param FullName: 企业全称
-        # @type FullName: String
-        # @param IsTrial: 是否试用
-        # @type IsTrial: Boolean
-        # @param IsTrialExpired: 是否试用过期
-        # @type IsTrialExpired: Boolean
-        # @param AvailableAppQuota: 可用应用数量
-        # @type AvailableAppQuota: Integer
-        # @param IsSupportCustomModel: 是否支持自定义模型配置
-        # @type IsSupportCustomModel: Boolean
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :CorpBizId, :RobotQuota, :FullName, :IsTrial, :IsTrialExpired, :AvailableAppQuota, :IsSupportCustomModel, :RequestId
-
-        def initialize(corpbizid=nil, robotquota=nil, fullname=nil, istrial=nil, istrialexpired=nil, availableappquota=nil, issupportcustommodel=nil, requestid=nil)
-          @CorpBizId = corpbizid
-          @RobotQuota = robotquota
-          @FullName = fullname
-          @IsTrial = istrial
-          @IsTrialExpired = istrialexpired
-          @AvailableAppQuota = availableappquota
-          @IsSupportCustomModel = issupportcustommodel
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @CorpBizId = params['CorpBizId']
-          @RobotQuota = params['RobotQuota']
-          @FullName = params['FullName']
-          @IsTrial = params['IsTrial']
-          @IsTrialExpired = params['IsTrialExpired']
-          @AvailableAppQuota = params['AvailableAppQuota']
-          @IsSupportCustomModel = params['IsSupportCustomModel']
-          @RequestId = params['RequestId']
-        end
-      end
-
       # DescribeDoc请求参数结构体
       class DescribeDocRequest < TencentCloud::Common::AbstractModel
         # @param BotBizId: 应用ID
@@ -4893,143 +4713,6 @@ module TencentCloud
         end
       end
 
-      # 文档元素字段
-      class DocumentElement < TencentCloud::Common::AbstractModel
-        # @param Index: 文档元素索引
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Index: Integer
-        # @param Type: 元素类型，包括paragraph、table、formula、figure、title、header、footer、figure_text
-
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Type: String
-        # @param Text: 元素内容，当type为figure或formula(公式识别关闭)时该字段内容为图片的位置
-
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Text: String
-        # @param Polygon: 元素坐标，左上角(x1, y1)，右上角(x2, y2)，右下角(x3, y3)，左下角(x4, y4)
-
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Polygon: :class:`Tencentcloud::Lke.v20231130.models.Polygon`
-        # @param Level: 元素层级
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Level: Integer
-        # @param InsetImageName: 入参开启EnableInsetImage后返回，表示在InsetImagePackage中的内嵌图片名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type InsetImageName: String
-        # @param Elements: 嵌套的文档元素信息，一般包含的是文档内嵌入图片的文字识别结果
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Elements: Array
-
-        attr_accessor :Index, :Type, :Text, :Polygon, :Level, :InsetImageName, :Elements
-
-        def initialize(index=nil, type=nil, text=nil, polygon=nil, level=nil, insetimagename=nil, elements=nil)
-          @Index = index
-          @Type = type
-          @Text = text
-          @Polygon = polygon
-          @Level = level
-          @InsetImageName = insetimagename
-          @Elements = elements
-        end
-
-        def deserialize(params)
-          @Index = params['Index']
-          @Type = params['Type']
-          @Text = params['Text']
-          unless params['Polygon'].nil?
-            @Polygon = Polygon.new
-            @Polygon.deserialize(params['Polygon'])
-          end
-          @Level = params['Level']
-          @InsetImageName = params['InsetImageName']
-          unless params['Elements'].nil?
-            @Elements = []
-            params['Elements'].each do |i|
-              documentelement_tmp = DocumentElement.new
-              documentelement_tmp.deserialize(i)
-              @Elements << documentelement_tmp
-            end
-          end
-        end
-      end
-
-      # 单页文档识别的内容
-      class DocumentRecognizeInfo < TencentCloud::Common::AbstractModel
-        # @param PageNumber: 输入PDF文件的页码，从1开始。输入图片的话值始终为1
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type PageNumber: Integer
-        # @param Angle: 旋转角度
-
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Angle: Integer
-        # @param Height: AI算法识别处理后的图片高度
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Height: Integer
-        # @param Width: AI算法识别处理后的图片宽度
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Width: Integer
-        # @param OriginHeight: 图片的原始高度，输入PDF文件则表示单页PDF转图片之后的图片高度
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type OriginHeight: Integer
-        # @param OriginWidth: 图片的原始宽度，输入PDF文件则表示单页PDF转图片之后的图片宽度
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type OriginWidth: Integer
-        # @param Elements: 文档元素信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Elements: Array
-        # @param RotatedAngle: 旋转角度
-
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type RotatedAngle: Float
-
-        attr_accessor :PageNumber, :Angle, :Height, :Width, :OriginHeight, :OriginWidth, :Elements, :RotatedAngle
-
-        def initialize(pagenumber=nil, angle=nil, height=nil, width=nil, originheight=nil, originwidth=nil, elements=nil, rotatedangle=nil)
-          @PageNumber = pagenumber
-          @Angle = angle
-          @Height = height
-          @Width = width
-          @OriginHeight = originheight
-          @OriginWidth = originwidth
-          @Elements = elements
-          @RotatedAngle = rotatedangle
-        end
-
-        def deserialize(params)
-          @PageNumber = params['PageNumber']
-          @Angle = params['Angle']
-          @Height = params['Height']
-          @Width = params['Width']
-          @OriginHeight = params['OriginHeight']
-          @OriginWidth = params['OriginWidth']
-          unless params['Elements'].nil?
-            @Elements = []
-            params['Elements'].each do |i|
-              documentelement_tmp = DocumentElement.new
-              documentelement_tmp.deserialize(i)
-              @Elements << documentelement_tmp
-            end
-          end
-          @RotatedAngle = params['RotatedAngle']
-        end
-      end
-
-      # 向量
-      class EmbeddingObject < TencentCloud::Common::AbstractModel
-        # @param Embedding: 向量
-        # @type Embedding: Array
-
-        attr_accessor :Embedding
-
-        def initialize(embedding=nil)
-          @Embedding = embedding
-        end
-
-        def deserialize(params)
-          @Embedding = params['Embedding']
-        end
-      end
-
       # ExportAttributeLabel请求参数结构体
       class ExportAttributeLabelRequest < TencentCloud::Common::AbstractModel
         # @param BotBizId: 应用ID
@@ -5556,64 +5239,6 @@ module TencentCloud
         end
       end
 
-      # GetEmbedding请求参数结构体
-      class GetEmbeddingRequest < TencentCloud::Common::AbstractModel
-        # @param Model: 模型名称
-        # @type Model: String
-        # @param Inputs: 需要 embedding 的文本, 单条文本最大长度500个字符, 总条数最大7条
-        # @type Inputs: Array
-        # @param Online: 是否在线, 后台异步任务使用离线, 实时任务使用在线, 默认值: false
-        # @type Online: Boolean
-
-        attr_accessor :Model, :Inputs, :Online
-
-        def initialize(model=nil, inputs=nil, online=nil)
-          @Model = model
-          @Inputs = inputs
-          @Online = online
-        end
-
-        def deserialize(params)
-          @Model = params['Model']
-          @Inputs = params['Inputs']
-          @Online = params['Online']
-        end
-      end
-
-      # GetEmbedding返回参数结构体
-      class GetEmbeddingResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 特征
-        # @type Data: Array
-        # @param Usage: 消耗量，返回TotalToken
-        # @type Usage: :class:`Tencentcloud::Lke.v20231130.models.Usage`
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Data, :Usage, :RequestId
-
-        def initialize(data=nil, usage=nil, requestid=nil)
-          @Data = data
-          @Usage = usage
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          unless params['Data'].nil?
-            @Data = []
-            params['Data'].each do |i|
-              embeddingobject_tmp = EmbeddingObject.new
-              embeddingobject_tmp.deserialize(i)
-              @Data << embeddingobject_tmp
-            end
-          end
-          unless params['Usage'].nil?
-            @Usage = Usage.new
-            @Usage.deserialize(params['Usage'])
-          end
-          @RequestId = params['RequestId']
-        end
-      end
-
       # GetLikeDataCount请求参数结构体
       class GetLikeDataCountRequest < TencentCloud::Common::AbstractModel
         # @param StartTime: 开始日期
@@ -5766,57 +5391,6 @@ module TencentCloud
             end
           end
           @SessionDisassociatedTimestamp = params['SessionDisassociatedTimestamp']
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # GetReconstructDocumentResult请求参数结构体
-      class GetReconstructDocumentResultRequest < TencentCloud::Common::AbstractModel
-        # @param TaskId: 任务唯一Id。[CreateReconstructDocumentFlow](https://cloud.tencent.com/document/product/1759/107506) 返回的TaskId。
-        # @type TaskId: String
-
-        attr_accessor :TaskId
-
-        def initialize(taskid=nil)
-          @TaskId = taskid
-        end
-
-        def deserialize(params)
-          @TaskId = params['TaskId']
-        end
-      end
-
-      # GetReconstructDocumentResult返回参数结构体
-      class GetReconstructDocumentResultResponse < TencentCloud::Common::AbstractModel
-        # @param Status: 任务状态: Success->执行完成；Processing->执行中；Failed->执行失败；WaitExecute->等待执行。
-        # @type Status: String
-        # @param DocumentRecognizeResultUrl: 本次文档解析的结果文件，存储在腾讯云COS的下载URL，下载URL的有效期为10分钟。
-        # @type DocumentRecognizeResultUrl: String
-        # @param FailedPages: 本次文档解析失败的页码信息。
-        # @type FailedPages: Array
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Status, :DocumentRecognizeResultUrl, :FailedPages, :RequestId
-
-        def initialize(status=nil, documentrecognizeresulturl=nil, failedpages=nil, requestid=nil)
-          @Status = status
-          @DocumentRecognizeResultUrl = documentrecognizeresulturl
-          @FailedPages = failedpages
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @Status = params['Status']
-          @DocumentRecognizeResultUrl = params['DocumentRecognizeResultUrl']
-          unless params['FailedPages'].nil?
-            @FailedPages = []
-            params['FailedPages'].each do |i|
-              reconstructdocumentfailedpage_tmp = ReconstructDocumentFailedPage.new
-              reconstructdocumentfailedpage_tmp.deserialize(i)
-              @FailedPages << reconstructdocumentfailedpage_tmp
-            end
-          end
           @RequestId = params['RequestId']
         end
       end
@@ -8740,31 +8314,6 @@ module TencentCloud
         end
       end
 
-      # 一条message代表一条对话记录
-      # role表示角色  user或者assistant
-      # content表示对话内容
-      class Message < TencentCloud::Common::AbstractModel
-        # @param Role: role表示角色  user标识用户提问，assistant标识返回的答案
-
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Role: String
-        # @param Content: 对话内容
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Content: String
-
-        attr_accessor :Role, :Content
-
-        def initialize(role=nil, content=nil)
-          @Role = role
-          @Content = content
-        end
-
-        def deserialize(params)
-          @Role = params['Role']
-          @Content = params['Content']
-        end
-      end
-
       # 模型信息
       class ModelInfo < TencentCloud::Common::AbstractModel
         # @param ModelName: 模型名称
@@ -10036,47 +9585,6 @@ module TencentCloud
         end
       end
 
-      # 文本的坐标，以四个顶点坐标表示
-      # 注意：此字段可能返回 null，表示取不到有效值
-      class Polygon < TencentCloud::Common::AbstractModel
-        # @param LeftTop: 左上顶点坐标
-        # @type LeftTop: :class:`Tencentcloud::Lke.v20231130.models.Coord`
-        # @param RightTop: 右上顶点坐标
-        # @type RightTop: :class:`Tencentcloud::Lke.v20231130.models.Coord`
-        # @param RightBottom: 右下顶点坐标
-        # @type RightBottom: :class:`Tencentcloud::Lke.v20231130.models.Coord`
-        # @param LeftBottom: 左下顶点坐标
-        # @type LeftBottom: :class:`Tencentcloud::Lke.v20231130.models.Coord`
-
-        attr_accessor :LeftTop, :RightTop, :RightBottom, :LeftBottom
-
-        def initialize(lefttop=nil, righttop=nil, rightbottom=nil, leftbottom=nil)
-          @LeftTop = lefttop
-          @RightTop = righttop
-          @RightBottom = rightbottom
-          @LeftBottom = leftbottom
-        end
-
-        def deserialize(params)
-          unless params['LeftTop'].nil?
-            @LeftTop = Coord.new
-            @LeftTop.deserialize(params['LeftTop'])
-          end
-          unless params['RightTop'].nil?
-            @RightTop = Coord.new
-            @RightTop.deserialize(params['RightTop'])
-          end
-          unless params['RightBottom'].nil?
-            @RightBottom = Coord.new
-            @RightBottom.deserialize(params['RightBottom'])
-          end
-          unless params['LeftBottom'].nil?
-            @LeftBottom = Coord.new
-            @LeftBottom.deserialize(params['LeftBottom'])
-          end
-        end
-      end
-
       # 执行过程信息记录
       class Procedure < TencentCloud::Common::AbstractModel
         # @param Name: 执行过程英语名
@@ -10348,64 +9856,6 @@ module TencentCloud
         end
       end
 
-      # QueryRewrite请求参数结构体
-      class QueryRewriteRequest < TencentCloud::Common::AbstractModel
-        # @param Question: 需要改写的问题
-        # @type Question: String
-        # @param Messages: 需要改写的多轮历史会话，每轮历史对话需要包含user（问）和assistant（答）成对输入，由于模型字符限制，最多提供4轮对话。
-        # @type Messages: Array
-        # @param Model: 模型名称
-        # @type Model: String
-
-        attr_accessor :Question, :Messages, :Model
-
-        def initialize(question=nil, messages=nil, model=nil)
-          @Question = question
-          @Messages = messages
-          @Model = model
-        end
-
-        def deserialize(params)
-          @Question = params['Question']
-          unless params['Messages'].nil?
-            @Messages = []
-            params['Messages'].each do |i|
-              message_tmp = Message.new
-              message_tmp.deserialize(i)
-              @Messages << message_tmp
-            end
-          end
-          @Model = params['Model']
-        end
-      end
-
-      # QueryRewrite返回参数结构体
-      class QueryRewriteResponse < TencentCloud::Common::AbstractModel
-        # @param Content: 改写结果
-        # @type Content: String
-        # @param Usage: 消耗量，返回输入token数，输出token数以及总token数
-        # @type Usage: :class:`Tencentcloud::Lke.v20231130.models.Usage`
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Content, :Usage, :RequestId
-
-        def initialize(content=nil, usage=nil, requestid=nil)
-          @Content = content
-          @Usage = usage
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @Content = params['Content']
-          unless params['Usage'].nil?
-            @Usage = Usage.new
-            @Usage.deserialize(params['Usage'])
-          end
-          @RequestId = params['RequestId']
-        end
-      end
-
       # 搜索引擎参考来源索引
       class QuoteInfo < TencentCloud::Common::AbstractModel
         # @param Position: 参考来源位置
@@ -10468,132 +9918,6 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # 重排数据, 计算2段内容的关联性
-      class ReRankDataObject < TencentCloud::Common::AbstractModel
-        # @param PromptA: 第一段内容
-        # @type PromptA: String
-        # @param PromptB: 第二段内容
-        # @type PromptB: String
-
-        attr_accessor :PromptA, :PromptB
-
-        def initialize(prompta=nil, promptb=nil)
-          @PromptA = prompta
-          @PromptB = promptb
-        end
-
-        def deserialize(params)
-          @PromptA = params['PromptA']
-          @PromptB = params['PromptB']
-        end
-      end
-
-      # ReconstructDocument配置选项
-      class ReconstructDocumentConfig < TencentCloud::Common::AbstractModel
-        # @param EnableInsetImage: 生成的Markdown中是否嵌入图片
-        # @type EnableInsetImage: Boolean
-
-        attr_accessor :EnableInsetImage
-
-        def initialize(enableinsetimage=nil)
-          @EnableInsetImage = enableinsetimage
-        end
-
-        def deserialize(params)
-          @EnableInsetImage = params['EnableInsetImage']
-        end
-      end
-
-      # 文档解析失败记录
-      class ReconstructDocumentFailedPage < TencentCloud::Common::AbstractModel
-        # @param PageNumber: 失败页码
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type PageNumber: Integer
-
-        attr_accessor :PageNumber
-
-        def initialize(pagenumber=nil)
-          @PageNumber = pagenumber
-        end
-
-        def deserialize(params)
-          @PageNumber = params['PageNumber']
-        end
-      end
-
-      # ReconstructDocument请求参数结构体
-      class ReconstructDocumentRequest < TencentCloud::Common::AbstractModel
-        # @param FileBase64: 文件的 Base64 值。 支持的文件格式：PNG、JPG、JPEG、PDF。 支持的文件大小：所下载文件经Base64编码后不超过 8M。文件下载时间不超过 3 秒。 支持的图片像素：单边介于20-10000px之间。 文件的 FileUrl、FileBase64 必须提供一个，如果都提供，只使用 FileUrl。
-        # @type FileBase64: String
-        # @param FileUrl: 文件的 Url 地址。 支持的文件格式：PNG、JPG、JPEG、PDF。 支持的文件大小：所下载文件经 Base64 编码后不超过 8M。文件下载时间不超过 3 秒。 支持的图片像素：单边介于20-10000px之间。 文件存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议文件存储于腾讯云。 非腾讯云存储的 Url 速度和稳定性可能受一定影响。
-        # @type FileUrl: String
-        # @param FileStartPageNumber: 当传入文件是PDF类型时，用来指定pdf识别的起始页码，识别的页码包含当前值。默认为1，表示从pdf文件的第1页开始识别。
-        # @type FileStartPageNumber: Integer
-        # @param FileEndPageNumber: 当传入文件是PDF类型时，用来指定pdf识别的结束页码，识别的页码包含当前值。默认为10，表示识别到pdf文件的第10页。单次调用最多支持识别10页内容，即FileEndPageNumber-FileStartPageNumber需要不大于10。
-        # @type FileEndPageNumber: Integer
-        # @param Config: 配置选项，支持配置是否在生成的Markdown中是否嵌入图片
-        # @type Config: :class:`Tencentcloud::Lke.v20231130.models.ReconstructDocumentConfig`
-
-        attr_accessor :FileBase64, :FileUrl, :FileStartPageNumber, :FileEndPageNumber, :Config
-
-        def initialize(filebase64=nil, fileurl=nil, filestartpagenumber=nil, fileendpagenumber=nil, config=nil)
-          @FileBase64 = filebase64
-          @FileUrl = fileurl
-          @FileStartPageNumber = filestartpagenumber
-          @FileEndPageNumber = fileendpagenumber
-          @Config = config
-        end
-
-        def deserialize(params)
-          @FileBase64 = params['FileBase64']
-          @FileUrl = params['FileUrl']
-          @FileStartPageNumber = params['FileStartPageNumber']
-          @FileEndPageNumber = params['FileEndPageNumber']
-          unless params['Config'].nil?
-            @Config = ReconstructDocumentConfig.new
-            @Config.deserialize(params['Config'])
-          end
-        end
-      end
-
-      # ReconstructDocument返回参数结构体
-      class ReconstructDocumentResponse < TencentCloud::Common::AbstractModel
-        # @param MarkdownBase64: 识别生成的Markdown文件base64编码的字符串
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type MarkdownBase64: String
-        # @param InsetImagePackage: 输入文件中嵌入的图片放在一个文件夹中打包为.zip压缩文件，识别生成的Markdown文件通过路径关联插入本文件夹中的图片。
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type InsetImagePackage: String
-        # @param DocumentRecognizeInfo: 输入文件中嵌入的图片中文字内容的识别结果
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type DocumentRecognizeInfo: Array
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :MarkdownBase64, :InsetImagePackage, :DocumentRecognizeInfo, :RequestId
-
-        def initialize(markdownbase64=nil, insetimagepackage=nil, documentrecognizeinfo=nil, requestid=nil)
-          @MarkdownBase64 = markdownbase64
-          @InsetImagePackage = insetimagepackage
-          @DocumentRecognizeInfo = documentrecognizeinfo
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @MarkdownBase64 = params['MarkdownBase64']
-          @InsetImagePackage = params['InsetImagePackage']
-          unless params['DocumentRecognizeInfo'].nil?
-            @DocumentRecognizeInfo = []
-            params['DocumentRecognizeInfo'].each do |i|
-              documentrecognizeinfo_tmp = DocumentRecognizeInfo.new
-              documentrecognizeinfo_tmp.deserialize(i)
-              @DocumentRecognizeInfo << documentrecognizeinfo_tmp
-            end
-          end
           @RequestId = params['RequestId']
         end
       end
@@ -11167,77 +10491,6 @@ module TencentCloud
               @SlotValues << valueinfo_tmp
             end
           end
-        end
-      end
-
-      # RunReRank请求参数结构体
-      class RunReRankRequest < TencentCloud::Common::AbstractModel
-        # @param Query: 查询内容，必填
-        # @type Query: String
-        # @param Docs: 文档列表，必填，最多20个
-        # @type Docs: Array
-        # @param Model: 模型名称, 非必填，默认: lke-reranker-base
-        # @type Model: String
-        # @param DataList: 需要计算关联性的2段内容
-        # @type DataList: Array
-        # @param Online: 是否在线, 后台异步任务使用离线, 实时任务使用在线, 默认值: false
-        # @type Online: Boolean
-
-        attr_accessor :Query, :Docs, :Model, :DataList, :Online
-        extend Gem::Deprecate
-        deprecate :DataList, :none, 2025, 7
-        deprecate :DataList=, :none, 2025, 7
-        deprecate :Online, :none, 2025, 7
-        deprecate :Online=, :none, 2025, 7
-
-        def initialize(query=nil, docs=nil, model=nil, datalist=nil, online=nil)
-          @Query = query
-          @Docs = docs
-          @Model = model
-          @DataList = datalist
-          @Online = online
-        end
-
-        def deserialize(params)
-          @Query = params['Query']
-          @Docs = params['Docs']
-          @Model = params['Model']
-          unless params['DataList'].nil?
-            @DataList = []
-            params['DataList'].each do |i|
-              rerankdataobject_tmp = ReRankDataObject.new
-              rerankdataobject_tmp.deserialize(i)
-              @DataList << rerankdataobject_tmp
-            end
-          end
-          @Online = params['Online']
-        end
-      end
-
-      # RunReRank返回参数结构体
-      class RunReRankResponse < TencentCloud::Common::AbstractModel
-        # @param ScoreList: 相关性, 数值越大越相关
-        # @type ScoreList: Array
-        # @param Usage: 消耗量，仅返回TotalToken
-        # @type Usage: :class:`Tencentcloud::Lke.v20231130.models.Usage`
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :ScoreList, :Usage, :RequestId
-
-        def initialize(scorelist=nil, usage=nil, requestid=nil)
-          @ScoreList = scorelist
-          @Usage = usage
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @ScoreList = params['ScoreList']
-          unless params['Usage'].nil?
-            @Usage = Usage.new
-            @Usage.deserialize(params['Usage'])
-          end
-          @RequestId = params['RequestId']
         end
       end
 
@@ -12156,34 +11409,6 @@ module TencentCloud
         end
       end
 
-      # 消耗量
-      class Usage < TencentCloud::Common::AbstractModel
-        # @param TotalPages: 文档页数
-        # @type TotalPages: Integer
-        # @param InputTokens: 输入token数
-        # @type InputTokens: Integer
-        # @param OutputTokens: 输出token数
-        # @type OutputTokens: Integer
-        # @param TotalTokens: 总token数
-        # @type TotalTokens: Integer
-
-        attr_accessor :TotalPages, :InputTokens, :OutputTokens, :TotalTokens
-
-        def initialize(totalpages=nil, inputtokens=nil, outputtokens=nil, totaltokens=nil)
-          @TotalPages = totalpages
-          @InputTokens = inputtokens
-          @OutputTokens = outputtokens
-          @TotalTokens = totaltokens
-        end
-
-        def deserialize(params)
-          @TotalPages = params['TotalPages']
-          @InputTokens = params['InputTokens']
-          @OutputTokens = params['OutputTokens']
-          @TotalTokens = params['TotalTokens']
-        end
-      end
-
       # 用户基础信息
       class UserBaseInfo < TencentCloud::Common::AbstractModel
         # @param UserBizId: 用户ID
@@ -12332,28 +11557,6 @@ module TencentCloud
           @VoiceType = params['VoiceType']
           @TimbreKey = params['TimbreKey']
           @VoiceName = params['VoiceName']
-        end
-      end
-
-      # 解析为 word 文档的结果
-      class WordRecognizeInfo < TencentCloud::Common::AbstractModel
-        # @param PageNumber: 输入文件的页码数
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type PageNumber: Integer
-        # @param WordBase64: word的base64
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type WordBase64: String
-
-        attr_accessor :PageNumber, :WordBase64
-
-        def initialize(pagenumber=nil, wordbase64=nil)
-          @PageNumber = pagenumber
-          @WordBase64 = wordbase64
-        end
-
-        def deserialize(params)
-          @PageNumber = params['PageNumber']
-          @WordBase64 = params['WordBase64']
         end
       end
 

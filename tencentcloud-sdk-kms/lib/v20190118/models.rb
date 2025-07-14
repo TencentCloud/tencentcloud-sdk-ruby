@@ -515,10 +515,24 @@ module TencentCloud
         # @type HsmClusterId: String
         # @param ResourceId: 资源ID，格式：creatorUin/$creatorUin/$dataKeyId
         # @type ResourceId: String
+        # @param IsSyncReplica: 密钥是否是主副本。0:主本，1:同步副本。
+        # @type IsSyncReplica: Integer
+        # @param SourceRegion: 同步的原始地域
+        # @type SourceRegion: String
+        # @param SyncStatus: 密钥同步的状态，0:未同步，1:同步成功，2:同步失败，3:同步中。
+        # @type SyncStatus: Integer
+        # @param SyncMessages: 同步的结果描述
+        # @type SyncMessages: String
+        # @param SyncStartTime: 同步的开始时间
+        # @type SyncStartTime: Integer
+        # @param SyncEndTime: 同步的结束时间
+        # @type SyncEndTime: Integer
+        # @param SourceHsmClusterId: 同步的原始集群，如果为空，是公有云公共集群
+        # @type SourceHsmClusterId: String
 
-        attr_accessor :DataKeyId, :KeyId, :DataKeyName, :NumberOfBytes, :CreateTime, :Description, :KeyState, :CreatorUin, :Owner, :DeletionDate, :Origin, :HsmClusterId, :ResourceId
+        attr_accessor :DataKeyId, :KeyId, :DataKeyName, :NumberOfBytes, :CreateTime, :Description, :KeyState, :CreatorUin, :Owner, :DeletionDate, :Origin, :HsmClusterId, :ResourceId, :IsSyncReplica, :SourceRegion, :SyncStatus, :SyncMessages, :SyncStartTime, :SyncEndTime, :SourceHsmClusterId
 
-        def initialize(datakeyid=nil, keyid=nil, datakeyname=nil, numberofbytes=nil, createtime=nil, description=nil, keystate=nil, creatoruin=nil, owner=nil, deletiondate=nil, origin=nil, hsmclusterid=nil, resourceid=nil)
+        def initialize(datakeyid=nil, keyid=nil, datakeyname=nil, numberofbytes=nil, createtime=nil, description=nil, keystate=nil, creatoruin=nil, owner=nil, deletiondate=nil, origin=nil, hsmclusterid=nil, resourceid=nil, issyncreplica=nil, sourceregion=nil, syncstatus=nil, syncmessages=nil, syncstarttime=nil, syncendtime=nil, sourcehsmclusterid=nil)
           @DataKeyId = datakeyid
           @KeyId = keyid
           @DataKeyName = datakeyname
@@ -532,6 +546,13 @@ module TencentCloud
           @Origin = origin
           @HsmClusterId = hsmclusterid
           @ResourceId = resourceid
+          @IsSyncReplica = issyncreplica
+          @SourceRegion = sourceregion
+          @SyncStatus = syncstatus
+          @SyncMessages = syncmessages
+          @SyncStartTime = syncstarttime
+          @SyncEndTime = syncendtime
+          @SourceHsmClusterId = sourcehsmclusterid
         end
 
         def deserialize(params)
@@ -548,6 +569,13 @@ module TencentCloud
           @Origin = params['Origin']
           @HsmClusterId = params['HsmClusterId']
           @ResourceId = params['ResourceId']
+          @IsSyncReplica = params['IsSyncReplica']
+          @SourceRegion = params['SourceRegion']
+          @SyncStatus = params['SyncStatus']
+          @SyncMessages = params['SyncMessages']
+          @SyncStartTime = params['SyncStartTime']
+          @SyncEndTime = params['SyncEndTime']
+          @SourceHsmClusterId = params['SourceHsmClusterId']
         end
       end
 
@@ -1044,6 +1072,26 @@ module TencentCloud
         def deserialize(params)
           @ServiceEnabled = params['ServiceEnabled']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 同步任务的目标地域列表，包括地域和集群信息。如果集群为空，表示公有云共享集群，如果集群不为空，表示独享集群。
+      class DestinationSyncConfig < TencentCloud::Common::AbstractModel
+        # @param DestinationRegion: 同步任务的目标地域
+        # @type DestinationRegion: String
+        # @param HsmClusterId: HsmClusterId为空表示公有云共享版，如果不为空表示地域下独享版集群。
+        # @type HsmClusterId: String
+
+        attr_accessor :DestinationRegion, :HsmClusterId
+
+        def initialize(destinationregion=nil, hsmclusterid=nil)
+          @DestinationRegion = destinationregion
+          @HsmClusterId = hsmclusterid
+        end
+
+        def deserialize(params)
+          @DestinationRegion = params['DestinationRegion']
+          @HsmClusterId = params['HsmClusterId']
         end
       end
 
@@ -2048,12 +2096,16 @@ module TencentCloud
         # @type FreeDataKeyLimit: Integer
         # @param DataKeyUsedCount: IsAllowedDataKeyHosted为1时有效，已使用的数据密钥数量。
         # @type DataKeyUsedCount: Integer
+        # @param SyncTaskList: 同步任务的目标地域信息
+        # @type SyncTaskList: Array
+        # @param IsAllowedSync: 是否支持同步任务。true:支持，false:不支持。
+        # @type IsAllowedSync: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ServiceEnabled, :InvalidType, :UserLevel, :ProExpireTime, :ProRenewFlag, :ProResourceId, :ExclusiveVSMEnabled, :ExclusiveHSMEnabled, :SubscriptionInfo, :CmkUserCount, :CmkLimit, :ExclusiveHSMList, :IsAllowedDataKeyHosted, :DataKeyLimit, :FreeDataKeyLimit, :DataKeyUsedCount, :RequestId
+        attr_accessor :ServiceEnabled, :InvalidType, :UserLevel, :ProExpireTime, :ProRenewFlag, :ProResourceId, :ExclusiveVSMEnabled, :ExclusiveHSMEnabled, :SubscriptionInfo, :CmkUserCount, :CmkLimit, :ExclusiveHSMList, :IsAllowedDataKeyHosted, :DataKeyLimit, :FreeDataKeyLimit, :DataKeyUsedCount, :SyncTaskList, :IsAllowedSync, :RequestId
 
-        def initialize(serviceenabled=nil, invalidtype=nil, userlevel=nil, proexpiretime=nil, prorenewflag=nil, proresourceid=nil, exclusivevsmenabled=nil, exclusivehsmenabled=nil, subscriptioninfo=nil, cmkusercount=nil, cmklimit=nil, exclusivehsmlist=nil, isalloweddatakeyhosted=nil, datakeylimit=nil, freedatakeylimit=nil, datakeyusedcount=nil, requestid=nil)
+        def initialize(serviceenabled=nil, invalidtype=nil, userlevel=nil, proexpiretime=nil, prorenewflag=nil, proresourceid=nil, exclusivevsmenabled=nil, exclusivehsmenabled=nil, subscriptioninfo=nil, cmkusercount=nil, cmklimit=nil, exclusivehsmlist=nil, isalloweddatakeyhosted=nil, datakeylimit=nil, freedatakeylimit=nil, datakeyusedcount=nil, synctasklist=nil, isallowedsync=nil, requestid=nil)
           @ServiceEnabled = serviceenabled
           @InvalidType = invalidtype
           @UserLevel = userlevel
@@ -2070,6 +2122,8 @@ module TencentCloud
           @DataKeyLimit = datakeylimit
           @FreeDataKeyLimit = freedatakeylimit
           @DataKeyUsedCount = datakeyusedcount
+          @SyncTaskList = synctasklist
+          @IsAllowedSync = isallowedsync
           @RequestId = requestid
         end
 
@@ -2097,6 +2151,15 @@ module TencentCloud
           @DataKeyLimit = params['DataKeyLimit']
           @FreeDataKeyLimit = params['FreeDataKeyLimit']
           @DataKeyUsedCount = params['DataKeyUsedCount']
+          unless params['SyncTaskList'].nil?
+            @SyncTaskList = []
+            params['SyncTaskList'].each do |i|
+              destinationsyncconfig_tmp = DestinationSyncConfig.new
+              destinationsyncconfig_tmp.deserialize(i)
+              @SyncTaskList << destinationsyncconfig_tmp
+            end
+          end
+          @IsAllowedSync = params['IsAllowedSync']
           @RequestId = params['RequestId']
         end
       end
@@ -2260,10 +2323,24 @@ module TencentCloud
         # @type RotateDays: Integer
         # @param LastRotateTime: 上次乱转时间（Unix timestamp）
         # @type LastRotateTime: Integer
+        # @param IsSyncReplica:  密钥是否是主副本。0:主本，1:同步副本。
+        # @type IsSyncReplica: Integer
+        # @param SourceRegion: 同步的原始地域
+        # @type SourceRegion: String
+        # @param SyncStatus: 密钥同步的状态，0:未同步,1:同步成功,2:同步失败,3:同步中。
+        # @type SyncStatus: Integer
+        # @param SyncMessages: 同步的结果描述
+        # @type SyncMessages: String
+        # @param SyncStartTime: 同步的开始时间
+        # @type SyncStartTime: Integer
+        # @param SyncEndTime: 同步的结束时间
+        # @type SyncEndTime: Integer
+        # @param SourceHsmClusterId: 同步的原始集群，如果为空，是公有云公共集群
+        # @type SourceHsmClusterId: String
 
-        attr_accessor :KeyId, :Alias, :CreateTime, :Description, :KeyState, :KeyUsage, :Type, :CreatorUin, :KeyRotationEnabled, :Owner, :NextRotateTime, :DeletionDate, :Origin, :ValidTo, :ResourceId, :HsmClusterId, :RotateDays, :LastRotateTime
+        attr_accessor :KeyId, :Alias, :CreateTime, :Description, :KeyState, :KeyUsage, :Type, :CreatorUin, :KeyRotationEnabled, :Owner, :NextRotateTime, :DeletionDate, :Origin, :ValidTo, :ResourceId, :HsmClusterId, :RotateDays, :LastRotateTime, :IsSyncReplica, :SourceRegion, :SyncStatus, :SyncMessages, :SyncStartTime, :SyncEndTime, :SourceHsmClusterId
 
-        def initialize(keyid=nil, _alias=nil, createtime=nil, description=nil, keystate=nil, keyusage=nil, type=nil, creatoruin=nil, keyrotationenabled=nil, owner=nil, nextrotatetime=nil, deletiondate=nil, origin=nil, validto=nil, resourceid=nil, hsmclusterid=nil, rotatedays=nil, lastrotatetime=nil)
+        def initialize(keyid=nil, _alias=nil, createtime=nil, description=nil, keystate=nil, keyusage=nil, type=nil, creatoruin=nil, keyrotationenabled=nil, owner=nil, nextrotatetime=nil, deletiondate=nil, origin=nil, validto=nil, resourceid=nil, hsmclusterid=nil, rotatedays=nil, lastrotatetime=nil, issyncreplica=nil, sourceregion=nil, syncstatus=nil, syncmessages=nil, syncstarttime=nil, syncendtime=nil, sourcehsmclusterid=nil)
           @KeyId = keyid
           @Alias = _alias
           @CreateTime = createtime
@@ -2282,6 +2359,13 @@ module TencentCloud
           @HsmClusterId = hsmclusterid
           @RotateDays = rotatedays
           @LastRotateTime = lastrotatetime
+          @IsSyncReplica = issyncreplica
+          @SourceRegion = sourceregion
+          @SyncStatus = syncstatus
+          @SyncMessages = syncmessages
+          @SyncStartTime = syncstarttime
+          @SyncEndTime = syncendtime
+          @SourceHsmClusterId = sourcehsmclusterid
         end
 
         def deserialize(params)
@@ -2303,6 +2387,13 @@ module TencentCloud
           @HsmClusterId = params['HsmClusterId']
           @RotateDays = params['RotateDays']
           @LastRotateTime = params['LastRotateTime']
+          @IsSyncReplica = params['IsSyncReplica']
+          @SourceRegion = params['SourceRegion']
+          @SyncStatus = params['SyncStatus']
+          @SyncMessages = params['SyncMessages']
+          @SyncStartTime = params['SyncStartTime']
+          @SyncEndTime = params['SyncEndTime']
+          @SourceHsmClusterId = params['SourceHsmClusterId']
         end
       end
 

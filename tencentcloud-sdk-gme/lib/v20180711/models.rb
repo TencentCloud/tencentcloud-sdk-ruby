@@ -158,10 +158,18 @@ module TencentCloud
         # @type PcuDataOversea: Array
         # @param PcuDataSum: 大陆和海外地区Pcu统计数据汇总，单位人
         # @type PcuDataSum: Array
+        # @param MiniGameDataNum: 小游戏时长统计项数目
+        # @type MiniGameDataNum: Integer
+        # @param MiniGameDataMainland: 大陆地区小游戏时长统计数据，单位分钟
+        # @type MiniGameDataMainland: Array
+        # @param MiniGameDataOversea: 海外地区小游戏时长统计数据，单位分钟
+        # @type MiniGameDataOversea: Array
+        # @param MiniGameDataSum: 大陆和海外地区小游戏时长统计数据汇总，单位分钟
+        # @type MiniGameDataSum: Array
 
-        attr_accessor :BizId, :DauDataNum, :DauDataMainland, :DauDataOversea, :DauDataSum, :DurationDataNum, :DurationDataMainland, :DurationDataOversea, :DurationDataSum, :PcuDataNum, :PcuDataMainland, :PcuDataOversea, :PcuDataSum
+        attr_accessor :BizId, :DauDataNum, :DauDataMainland, :DauDataOversea, :DauDataSum, :DurationDataNum, :DurationDataMainland, :DurationDataOversea, :DurationDataSum, :PcuDataNum, :PcuDataMainland, :PcuDataOversea, :PcuDataSum, :MiniGameDataNum, :MiniGameDataMainland, :MiniGameDataOversea, :MiniGameDataSum
 
-        def initialize(bizid=nil, daudatanum=nil, daudatamainland=nil, daudataoversea=nil, daudatasum=nil, durationdatanum=nil, durationdatamainland=nil, durationdataoversea=nil, durationdatasum=nil, pcudatanum=nil, pcudatamainland=nil, pcudataoversea=nil, pcudatasum=nil)
+        def initialize(bizid=nil, daudatanum=nil, daudatamainland=nil, daudataoversea=nil, daudatasum=nil, durationdatanum=nil, durationdatamainland=nil, durationdataoversea=nil, durationdatasum=nil, pcudatanum=nil, pcudatamainland=nil, pcudataoversea=nil, pcudatasum=nil, minigamedatanum=nil, minigamedatamainland=nil, minigamedataoversea=nil, minigamedatasum=nil)
           @BizId = bizid
           @DauDataNum = daudatanum
           @DauDataMainland = daudatamainland
@@ -175,6 +183,10 @@ module TencentCloud
           @PcuDataMainland = pcudatamainland
           @PcuDataOversea = pcudataoversea
           @PcuDataSum = pcudatasum
+          @MiniGameDataNum = minigamedatanum
+          @MiniGameDataMainland = minigamedatamainland
+          @MiniGameDataOversea = minigamedataoversea
+          @MiniGameDataSum = minigamedatasum
         end
 
         def deserialize(params)
@@ -252,6 +264,31 @@ module TencentCloud
               statisticsitem_tmp = StatisticsItem.new
               statisticsitem_tmp.deserialize(i)
               @PcuDataSum << statisticsitem_tmp
+            end
+          end
+          @MiniGameDataNum = params['MiniGameDataNum']
+          unless params['MiniGameDataMainland'].nil?
+            @MiniGameDataMainland = []
+            params['MiniGameDataMainland'].each do |i|
+              statisticsitem_tmp = StatisticsItem.new
+              statisticsitem_tmp.deserialize(i)
+              @MiniGameDataMainland << statisticsitem_tmp
+            end
+          end
+          unless params['MiniGameDataOversea'].nil?
+            @MiniGameDataOversea = []
+            params['MiniGameDataOversea'].each do |i|
+              statisticsitem_tmp = StatisticsItem.new
+              statisticsitem_tmp.deserialize(i)
+              @MiniGameDataOversea << statisticsitem_tmp
+            end
+          end
+          unless params['MiniGameDataSum'].nil?
+            @MiniGameDataSum = []
+            params['MiniGameDataSum'].each do |i|
+              statisticsitem_tmp = StatisticsItem.new
+              statisticsitem_tmp.deserialize(i)
+              @MiniGameDataSum << statisticsitem_tmp
             end
           end
         end

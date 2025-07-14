@@ -2467,10 +2467,12 @@ module TencentCloud
         # @type Status: Integer
         # @param CreateTime: 托管资源创建时间
         # @type CreateTime: String
+        # @param PendingTotalCount: 待部署总数
+        # @type PendingTotalCount: Integer
 
-        attr_accessor :TotalCount, :SuccessTotalCount, :FailedTotalCount, :RunningTotalCount, :Type, :RecordDetailList, :Status, :CreateTime
+        attr_accessor :TotalCount, :SuccessTotalCount, :FailedTotalCount, :RunningTotalCount, :Type, :RecordDetailList, :Status, :CreateTime, :PendingTotalCount
 
-        def initialize(totalcount=nil, successtotalcount=nil, failedtotalcount=nil, runningtotalcount=nil, type=nil, recorddetaillist=nil, status=nil, createtime=nil)
+        def initialize(totalcount=nil, successtotalcount=nil, failedtotalcount=nil, runningtotalcount=nil, type=nil, recorddetaillist=nil, status=nil, createtime=nil, pendingtotalcount=nil)
           @TotalCount = totalcount
           @SuccessTotalCount = successtotalcount
           @FailedTotalCount = failedtotalcount
@@ -2479,6 +2481,7 @@ module TencentCloud
           @RecordDetailList = recorddetaillist
           @Status = status
           @CreateTime = createtime
+          @PendingTotalCount = pendingtotalcount
         end
 
         def deserialize(params)
@@ -2497,6 +2500,7 @@ module TencentCloud
           end
           @Status = params['Status']
           @CreateTime = params['CreateTime']
+          @PendingTotalCount = params['PendingTotalCount']
         end
       end
 
@@ -4583,17 +4587,20 @@ module TencentCloud
         # @type FailedTotalCount: Integer
         # @param RunningTotalCount: 部署中总数
         # @type RunningTotalCount: Integer
+        # @param PendingTotalCount: 带部署总数
+        # @type PendingTotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TotalCount, :DeployRecordDetailList, :SuccessTotalCount, :FailedTotalCount, :RunningTotalCount, :RequestId
+        attr_accessor :TotalCount, :DeployRecordDetailList, :SuccessTotalCount, :FailedTotalCount, :RunningTotalCount, :PendingTotalCount, :RequestId
 
-        def initialize(totalcount=nil, deployrecorddetaillist=nil, successtotalcount=nil, failedtotalcount=nil, runningtotalcount=nil, requestid=nil)
+        def initialize(totalcount=nil, deployrecorddetaillist=nil, successtotalcount=nil, failedtotalcount=nil, runningtotalcount=nil, pendingtotalcount=nil, requestid=nil)
           @TotalCount = totalcount
           @DeployRecordDetailList = deployrecorddetaillist
           @SuccessTotalCount = successtotalcount
           @FailedTotalCount = failedtotalcount
           @RunningTotalCount = runningtotalcount
+          @PendingTotalCount = pendingtotalcount
           @RequestId = requestid
         end
 
@@ -4610,6 +4617,7 @@ module TencentCloud
           @SuccessTotalCount = params['SuccessTotalCount']
           @FailedTotalCount = params['FailedTotalCount']
           @RunningTotalCount = params['RunningTotalCount']
+          @PendingTotalCount = params['PendingTotalCount']
           @RequestId = params['RequestId']
         end
       end
@@ -5022,17 +5030,20 @@ module TencentCloud
         # @type FailedTotalCount: Integer
         # @param RunningTotalCount: 部署中总数,如果取不到返回0
         # @type RunningTotalCount: Integer
+        # @param PendingTotalCount: 待部署总数
+        # @type PendingTotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TotalCount, :RecordDetailList, :SuccessTotalCount, :FailedTotalCount, :RunningTotalCount, :RequestId
+        attr_accessor :TotalCount, :RecordDetailList, :SuccessTotalCount, :FailedTotalCount, :RunningTotalCount, :PendingTotalCount, :RequestId
 
-        def initialize(totalcount=nil, recorddetaillist=nil, successtotalcount=nil, failedtotalcount=nil, runningtotalcount=nil, requestid=nil)
+        def initialize(totalcount=nil, recorddetaillist=nil, successtotalcount=nil, failedtotalcount=nil, runningtotalcount=nil, pendingtotalcount=nil, requestid=nil)
           @TotalCount = totalcount
           @RecordDetailList = recorddetaillist
           @SuccessTotalCount = successtotalcount
           @FailedTotalCount = failedtotalcount
           @RunningTotalCount = runningtotalcount
+          @PendingTotalCount = pendingtotalcount
           @RequestId = requestid
         end
 
@@ -5049,6 +5060,7 @@ module TencentCloud
           @SuccessTotalCount = params['SuccessTotalCount']
           @FailedTotalCount = params['FailedTotalCount']
           @RunningTotalCount = params['RunningTotalCount']
+          @PendingTotalCount = params['PendingTotalCount']
           @RequestId = params['RequestId']
         end
       end
@@ -8214,7 +8226,7 @@ module TencentCloud
       class UploadCertificateResponse < TencentCloud::Common::AbstractModel
         # @param CertificateId: 证书 ID。
         # @type CertificateId: String
-        # @param RepeatCertId: 重复证书的ID
+        # @param RepeatCertId: 当入参Repeatable为false的时候 返回的重复证书的ID，注意当用户上传相同的证书超过5000张的时候，当前接口会无视入参Repeatable，直接返回重复证书的ID。
         # @type RepeatCertId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

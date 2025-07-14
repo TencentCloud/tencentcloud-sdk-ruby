@@ -1265,6 +1265,315 @@ module TencentCloud
         end
       end
 
+      # DescribeLeakageCodes请求参数结构体
+      class DescribeLeakageCodesRequest < TencentCloud::Common::AbstractModel
+        # @param IsAggregation: 是否聚合数据
+        # @type IsAggregation: Boolean
+        # @param IsNew: 是否新增数据
+        # @type IsNew: Boolean
+        # @param CustomerId: 企业ID
+        # @type CustomerId: Integer
+        # @param Limit: 分页大小
+        # @type Limit: Integer
+        # @param Offset: 分页偏移
+        # @type Offset: Integer
+        # @param EnterpriseUidList: 子公司ID列表
+        # @type EnterpriseUidList: Array
+        # @param Format: 数据输出格式：json、file，默认不填为json
+        # @type Format: String
+        # @param CreateAtStart: 创建时间-开始
+        # @type CreateAtStart: String
+        # @param CreateAtEnd: 创建时间-结束
+        # @type CreateAtEnd: String
+        # @param UpdateAtStart: 更新时间-开始
+        # @type UpdateAtStart: String
+        # @param UpdateAtEnd: 更新时间-结束
+        # @type UpdateAtEnd: String
+        # @param Filters: 查询数组
+        # @type Filters: Array
+        # @param Ignored: 是否显示被忽略的数据
+        # @type Ignored: Boolean
+
+        attr_accessor :IsAggregation, :IsNew, :CustomerId, :Limit, :Offset, :EnterpriseUidList, :Format, :CreateAtStart, :CreateAtEnd, :UpdateAtStart, :UpdateAtEnd, :Filters, :Ignored
+
+        def initialize(isaggregation=nil, isnew=nil, customerid=nil, limit=nil, offset=nil, enterpriseuidlist=nil, format=nil, createatstart=nil, createatend=nil, updateatstart=nil, updateatend=nil, filters=nil, ignored=nil)
+          @IsAggregation = isaggregation
+          @IsNew = isnew
+          @CustomerId = customerid
+          @Limit = limit
+          @Offset = offset
+          @EnterpriseUidList = enterpriseuidlist
+          @Format = format
+          @CreateAtStart = createatstart
+          @CreateAtEnd = createatend
+          @UpdateAtStart = updateatstart
+          @UpdateAtEnd = updateatend
+          @Filters = filters
+          @Ignored = ignored
+        end
+
+        def deserialize(params)
+          @IsAggregation = params['IsAggregation']
+          @IsNew = params['IsNew']
+          @CustomerId = params['CustomerId']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @EnterpriseUidList = params['EnterpriseUidList']
+          @Format = params['Format']
+          @CreateAtStart = params['CreateAtStart']
+          @CreateAtEnd = params['CreateAtEnd']
+          @UpdateAtStart = params['UpdateAtStart']
+          @UpdateAtEnd = params['UpdateAtEnd']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @Ignored = params['Ignored']
+        end
+      end
+
+      # DescribeLeakageCodes返回参数结构体
+      class DescribeLeakageCodesResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 总数
+        # @type Total: Integer
+        # @param List: 数组
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type List: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :List, :RequestId
+
+        def initialize(total=nil, list=nil, requestid=nil)
+          @Total = total
+          @List = list
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              displayleakagecode_tmp = DisplayLeakageCode.new
+              displayleakagecode_tmp.deserialize(i)
+              @List << displayleakagecode_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeLeakageDatas请求参数结构体
+      class DescribeLeakageDatasRequest < TencentCloud::Common::AbstractModel
+        # @param IsAggregation: 是否聚合数据
+        # @type IsAggregation: Boolean
+        # @param IsNew: 是否新增数据
+        # @type IsNew: Boolean
+        # @param CustomerId: 企业ID
+        # @type CustomerId: Integer
+        # @param Limit: 分页大小
+        # @type Limit: Integer
+        # @param Offset: 分页偏移
+        # @type Offset: Integer
+        # @param EnterpriseUidList: 子公司ID列表
+        # @type EnterpriseUidList: Array
+        # @param Format: 数据输出格式：json、file，默认不填为json
+        # @type Format: String
+        # @param CreateAtStart: 创建时间-开始
+        # @type CreateAtStart: String
+        # @param CreateAtEnd: 创建时间-结束
+        # @type CreateAtEnd: String
+        # @param UpdateAtStart: 更新时间-开始
+        # @type UpdateAtStart: String
+        # @param UpdateAtEnd: 更新时间-结束
+        # @type UpdateAtEnd: String
+        # @param Filters: 查询数组
+        # @type Filters: Array
+        # @param Ignored: 是否显示被忽略的数据
+        # @type Ignored: Boolean
+
+        attr_accessor :IsAggregation, :IsNew, :CustomerId, :Limit, :Offset, :EnterpriseUidList, :Format, :CreateAtStart, :CreateAtEnd, :UpdateAtStart, :UpdateAtEnd, :Filters, :Ignored
+
+        def initialize(isaggregation=nil, isnew=nil, customerid=nil, limit=nil, offset=nil, enterpriseuidlist=nil, format=nil, createatstart=nil, createatend=nil, updateatstart=nil, updateatend=nil, filters=nil, ignored=nil)
+          @IsAggregation = isaggregation
+          @IsNew = isnew
+          @CustomerId = customerid
+          @Limit = limit
+          @Offset = offset
+          @EnterpriseUidList = enterpriseuidlist
+          @Format = format
+          @CreateAtStart = createatstart
+          @CreateAtEnd = createatend
+          @UpdateAtStart = updateatstart
+          @UpdateAtEnd = updateatend
+          @Filters = filters
+          @Ignored = ignored
+        end
+
+        def deserialize(params)
+          @IsAggregation = params['IsAggregation']
+          @IsNew = params['IsNew']
+          @CustomerId = params['CustomerId']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @EnterpriseUidList = params['EnterpriseUidList']
+          @Format = params['Format']
+          @CreateAtStart = params['CreateAtStart']
+          @CreateAtEnd = params['CreateAtEnd']
+          @UpdateAtStart = params['UpdateAtStart']
+          @UpdateAtEnd = params['UpdateAtEnd']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @Ignored = params['Ignored']
+        end
+      end
+
+      # DescribeLeakageDatas返回参数结构体
+      class DescribeLeakageDatasResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 总数
+        # @type Total: Integer
+        # @param List: 数组
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type List: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :List, :RequestId
+
+        def initialize(total=nil, list=nil, requestid=nil)
+          @Total = total
+          @List = list
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              displayleakagedata_tmp = DisplayLeakageData.new
+              displayleakagedata_tmp.deserialize(i)
+              @List << displayleakagedata_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeLeakageEmails请求参数结构体
+      class DescribeLeakageEmailsRequest < TencentCloud::Common::AbstractModel
+        # @param IsAggregation: 是否聚合数据
+        # @type IsAggregation: Boolean
+        # @param IsNew: 是否新增数据
+        # @type IsNew: Boolean
+        # @param CustomerId: 企业ID
+        # @type CustomerId: Integer
+        # @param Limit: 分页大小
+        # @type Limit: Integer
+        # @param Offset: 分页偏移
+        # @type Offset: Integer
+        # @param EnterpriseUidList: 子公司ID列表
+        # @type EnterpriseUidList: Array
+        # @param Format: 数据输出格式：json、file，默认不填为json
+        # @type Format: String
+        # @param CreateAtStart: 创建时间-开始
+        # @type CreateAtStart: String
+        # @param CreateAtEnd: 创建时间-结束
+        # @type CreateAtEnd: String
+        # @param UpdateAtStart: 更新时间-开始
+        # @type UpdateAtStart: String
+        # @param UpdateAtEnd: 更新时间-结束
+        # @type UpdateAtEnd: String
+        # @param Filters: 查询数组
+        # @type Filters: Array
+        # @param Ignored: 是否显示被忽略的数据
+        # @type Ignored: Boolean
+
+        attr_accessor :IsAggregation, :IsNew, :CustomerId, :Limit, :Offset, :EnterpriseUidList, :Format, :CreateAtStart, :CreateAtEnd, :UpdateAtStart, :UpdateAtEnd, :Filters, :Ignored
+
+        def initialize(isaggregation=nil, isnew=nil, customerid=nil, limit=nil, offset=nil, enterpriseuidlist=nil, format=nil, createatstart=nil, createatend=nil, updateatstart=nil, updateatend=nil, filters=nil, ignored=nil)
+          @IsAggregation = isaggregation
+          @IsNew = isnew
+          @CustomerId = customerid
+          @Limit = limit
+          @Offset = offset
+          @EnterpriseUidList = enterpriseuidlist
+          @Format = format
+          @CreateAtStart = createatstart
+          @CreateAtEnd = createatend
+          @UpdateAtStart = updateatstart
+          @UpdateAtEnd = updateatend
+          @Filters = filters
+          @Ignored = ignored
+        end
+
+        def deserialize(params)
+          @IsAggregation = params['IsAggregation']
+          @IsNew = params['IsNew']
+          @CustomerId = params['CustomerId']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @EnterpriseUidList = params['EnterpriseUidList']
+          @Format = params['Format']
+          @CreateAtStart = params['CreateAtStart']
+          @CreateAtEnd = params['CreateAtEnd']
+          @UpdateAtStart = params['UpdateAtStart']
+          @UpdateAtEnd = params['UpdateAtEnd']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @Ignored = params['Ignored']
+        end
+      end
+
+      # DescribeLeakageEmails返回参数结构体
+      class DescribeLeakageEmailsResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 总数
+        # @type Total: Integer
+        # @param List: 数组
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type List: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :List, :RequestId
+
+        def initialize(total=nil, list=nil, requestid=nil)
+          @Total = total
+          @List = list
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              displayleakageemail_tmp = DisplayLeakageEmail.new
+              displayleakageemail_tmp.deserialize(i)
+              @List << displayleakageemail_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeManages请求参数结构体
       class DescribeManagesRequest < TencentCloud::Common::AbstractModel
         # @param IsAggregation: 是否聚合数据
@@ -2814,6 +3123,66 @@ module TencentCloud
               @Data << idndvalue_tmp
             end
           end
+        end
+      end
+
+      # 代码泄露详情
+      class DisplayLeakageCode < TencentCloud::Common::AbstractModel
+        # @param Id: 主键ID
+        # @type Id: Integer
+        # @param Url: 链接
+        # @type Url: String
+
+        attr_accessor :Id, :Url
+
+        def initialize(id=nil, url=nil)
+          @Id = id
+          @Url = url
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Url = params['Url']
+        end
+      end
+
+      # 数据泄露详情
+      class DisplayLeakageData < TencentCloud::Common::AbstractModel
+        # @param Id: 主键ID
+        # @type Id: Integer
+        # @param Url: 链接
+        # @type Url: String
+
+        attr_accessor :Id, :Url
+
+        def initialize(id=nil, url=nil)
+          @Id = id
+          @Url = url
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Url = params['Url']
+        end
+      end
+
+      # 邮箱泄露详情
+      class DisplayLeakageEmail < TencentCloud::Common::AbstractModel
+        # @param Id: 主键ID
+        # @type Id: Integer
+        # @param Email: 邮箱
+        # @type Email: String
+
+        attr_accessor :Id, :Email
+
+        def initialize(id=nil, email=nil)
+          @Id = id
+          @Email = email
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Email = params['Email']
         end
       end
 

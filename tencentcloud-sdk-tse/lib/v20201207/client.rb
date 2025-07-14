@@ -1421,6 +1421,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 轻量查询云原生网关服务列表
+
+        # @param request: Request instance for DescribeCloudNativeAPIGatewayServicesLight.
+        # @type request: :class:`Tencentcloud::tse::V20201207::DescribeCloudNativeAPIGatewayServicesLightRequest`
+        # @rtype: :class:`Tencentcloud::tse::V20201207::DescribeCloudNativeAPIGatewayServicesLightResponse`
+        def DescribeCloudNativeAPIGatewayServicesLight(request)
+          body = send_request('DescribeCloudNativeAPIGatewayServicesLight', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCloudNativeAPIGatewayServicesLightResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取云原生网关服务详情下的Upstream列表
 
         # @param request: Request instance for DescribeCloudNativeAPIGatewayUpstream.
