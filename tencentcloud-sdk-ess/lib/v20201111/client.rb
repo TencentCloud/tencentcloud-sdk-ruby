@@ -222,6 +222,36 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 此接口（CreateBatchInformationExtractionTask）用来通过上传后的PDF资源编号来批量创建合同智能审查任务。<br/>
+
+        # 适用场景：根据合同关键词（字段名称）来提取PDF合同文件的字段结果信息。
+
+        # 注:
+        # 1. PDF格式限制大小为10M以下
+        # 2. 仅支持5个PDF文件批量发起
+
+        # @param request: Request instance for CreateBatchInformationExtractionTask.
+        # @type request: :class:`Tencentcloud::ess::V20201111::CreateBatchInformationExtractionTaskRequest`
+        # @rtype: :class:`Tencentcloud::ess::V20201111::CreateBatchInformationExtractionTaskResponse`
+        def CreateBatchInformationExtractionTask(request)
+          body = send_request('CreateBatchInformationExtractionTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateBatchInformationExtractionTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 支持企业进行批量初始化操作：
 
         # 此接口存在以下限制：
@@ -2759,6 +2789,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeFlowTemplatesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（DescribeInformationExtractionTask）用于获取合同智能提取任务详情，包括任务的状态和提取的字段结果信息。
+
+        # @param request: Request instance for DescribeInformationExtractionTask.
+        # @type request: :class:`Tencentcloud::ess::V20201111::DescribeInformationExtractionTaskRequest`
+        # @rtype: :class:`Tencentcloud::ess::V20201111::DescribeInformationExtractionTaskResponse`
+        def DescribeInformationExtractionTask(request)
+          body = send_request('DescribeInformationExtractionTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeInformationExtractionTaskResponse.new
             model.deserialize(response['Response'])
             model
           else

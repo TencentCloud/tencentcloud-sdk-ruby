@@ -4414,15 +4414,9 @@ module TencentCloud
         # @type ReturnHeadImage: Boolean
         # @param DetectFake: 是否鉴伪。
         # @type DetectFake: Boolean
-        # @param ImageBase64: 图片的 Base64 值。
-        # 支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。
-        # 支持的图片大小：所下载图片经Base64编码后不超过 7M。图片下载时间不超过 3 秒。
+        # @param ImageBase64: 图片的 Base64 值。支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。支持的图片大小：所下载图片经Base64编码后不超过 10M。图片下载时间不超过 3 秒。
         # @type ImageBase64: String
-        # @param ImageUrl: 图片的 Url 地址。
-        # 支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。
-        # 支持的图片大小：所下载图片经 Base64 编码后不超过 3M。图片下载时间不超过 3 秒。
-        # 图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。
-        # 非腾讯云存储的 Url 速度和稳定性可能受一定影响。
+        # @param ImageUrl: 图片的 Url 地址。支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。支持的图片大小：所下载图片经 Base64 编码后不超过 10M。图片下载时间不超过 3 秒。图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。非腾讯云存储的 Url 速度和稳定性可能受一定影响。
         # @type ImageUrl: String
 
         attr_accessor :ReturnHeadImage, :DetectFake, :ImageBase64, :ImageUrl
@@ -4476,12 +4470,14 @@ module TencentCloud
         # 2：真。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FakeDetectResult: Integer
-        # @param HeadImage: 人像照片Base64后的结果
+        # @param HeadImage: Base64编码的证件左侧人像大图
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HeadImage: String
-        # @param WarningCode: 多重告警码，当身份证是翻拍、复印件时返回对应告警码。
-        # -9102：证照复印件告警
-        # -9103：证照翻拍告警
+        # @param SmallHeadImage: Base64编码的证件右侧人像小图
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SmallHeadImage: String
+        # @param WarningCode: 该字段已废弃， 将固定返回空数组，不建议使用。
+        # This field is deprecated and will always return an empty array. Usage is not recommended.
         # @type WarningCode: Array
         # @param WarnCardInfos: 告警码
         # -9101 证件边框不完整告警
@@ -4492,17 +4488,19 @@ module TencentCloud
         # -9108 证件模糊告警
         # -9109 告警能力未开通
         # @type WarnCardInfos: Array
+        # @param WindowEmbeddedText: 证件透明视窗内的文本信息
+        # @type WindowEmbeddedText: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :CnName, :EnName, :TelexCode, :Sex, :Birthday, :Permanent, :IdNum, :Symbol, :FirstIssueDate, :CurrentIssueDate, :FakeDetectResult, :HeadImage, :WarningCode, :WarnCardInfos, :RequestId
+        attr_accessor :CnName, :EnName, :TelexCode, :Sex, :Birthday, :Permanent, :IdNum, :Symbol, :FirstIssueDate, :CurrentIssueDate, :FakeDetectResult, :HeadImage, :SmallHeadImage, :WarningCode, :WarnCardInfos, :WindowEmbeddedText, :RequestId
         extend Gem::Deprecate
         deprecate :FakeDetectResult, :none, 2025, 7
         deprecate :FakeDetectResult=, :none, 2025, 7
         deprecate :WarningCode, :none, 2025, 7
         deprecate :WarningCode=, :none, 2025, 7
 
-        def initialize(cnname=nil, enname=nil, telexcode=nil, sex=nil, birthday=nil, permanent=nil, idnum=nil, symbol=nil, firstissuedate=nil, currentissuedate=nil, fakedetectresult=nil, headimage=nil, warningcode=nil, warncardinfos=nil, requestid=nil)
+        def initialize(cnname=nil, enname=nil, telexcode=nil, sex=nil, birthday=nil, permanent=nil, idnum=nil, symbol=nil, firstissuedate=nil, currentissuedate=nil, fakedetectresult=nil, headimage=nil, smallheadimage=nil, warningcode=nil, warncardinfos=nil, windowembeddedtext=nil, requestid=nil)
           @CnName = cnname
           @EnName = enname
           @TelexCode = telexcode
@@ -4515,8 +4513,10 @@ module TencentCloud
           @CurrentIssueDate = currentissuedate
           @FakeDetectResult = fakedetectresult
           @HeadImage = headimage
+          @SmallHeadImage = smallheadimage
           @WarningCode = warningcode
           @WarnCardInfos = warncardinfos
+          @WindowEmbeddedText = windowembeddedtext
           @RequestId = requestid
         end
 
@@ -4533,8 +4533,10 @@ module TencentCloud
           @CurrentIssueDate = params['CurrentIssueDate']
           @FakeDetectResult = params['FakeDetectResult']
           @HeadImage = params['HeadImage']
+          @SmallHeadImage = params['SmallHeadImage']
           @WarningCode = params['WarningCode']
           @WarnCardInfos = params['WarnCardInfos']
+          @WindowEmbeddedText = params['WindowEmbeddedText']
           @RequestId = params['RequestId']
         end
       end

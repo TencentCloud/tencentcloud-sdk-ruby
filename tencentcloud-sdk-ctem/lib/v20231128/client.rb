@@ -245,6 +245,102 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询仿冒应用
+
+        # @param request: Request instance for DescribeFakeApps.
+        # @type request: :class:`Tencentcloud::ctem::V20231128::DescribeFakeAppsRequest`
+        # @rtype: :class:`Tencentcloud::ctem::V20231128::DescribeFakeAppsResponse`
+        def DescribeFakeApps(request)
+          body = send_request('DescribeFakeApps', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeFakeAppsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询仿冒小程序
+
+        # @param request: Request instance for DescribeFakeMiniPrograms.
+        # @type request: :class:`Tencentcloud::ctem::V20231128::DescribeFakeMiniProgramsRequest`
+        # @rtype: :class:`Tencentcloud::ctem::V20231128::DescribeFakeMiniProgramsResponse`
+        def DescribeFakeMiniPrograms(request)
+          body = send_request('DescribeFakeMiniPrograms', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeFakeMiniProgramsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询仿冒网站
+
+        # @param request: Request instance for DescribeFakeWebsites.
+        # @type request: :class:`Tencentcloud::ctem::V20231128::DescribeFakeWebsitesRequest`
+        # @rtype: :class:`Tencentcloud::ctem::V20231128::DescribeFakeWebsitesResponse`
+        def DescribeFakeWebsites(request)
+          body = send_request('DescribeFakeWebsites', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeFakeWebsitesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询仿冒公众号
+
+        # @param request: Request instance for DescribeFakeWechatOfficials.
+        # @type request: :class:`Tencentcloud::ctem::V20231128::DescribeFakeWechatOfficialsRequest`
+        # @rtype: :class:`Tencentcloud::ctem::V20231128::DescribeFakeWechatOfficialsResponse`
+        def DescribeFakeWechatOfficials(request)
+          body = send_request('DescribeFakeWechatOfficials', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeFakeWechatOfficialsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查看Github泄露数据
 
         # @param request: Request instance for DescribeGithubs.

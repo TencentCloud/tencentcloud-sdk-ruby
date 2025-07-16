@@ -940,6 +940,402 @@ module TencentCloud
         end
       end
 
+      # DescribeFakeApps请求参数结构体
+      class DescribeFakeAppsRequest < TencentCloud::Common::AbstractModel
+        # @param IsNew: 是否新增数据
+        # @type IsNew: Boolean
+        # @param CustomerId: 企业ID
+        # @type CustomerId: Integer
+        # @param Limit: 分页大小
+        # @type Limit: Integer
+        # @param Offset: 分页偏移
+        # @type Offset: Integer
+        # @param EnterpriseUidList: 子公司ID列表
+        # @type EnterpriseUidList: Array
+        # @param Format: 数据输出格式：json、file，默认不填为json
+        # @type Format: String
+        # @param CreateAtStart: 创建时间-开始
+        # @type CreateAtStart: String
+        # @param CreateAtEnd: 创建时间-结束
+        # @type CreateAtEnd: String
+        # @param UpdateAtStart: 更新时间-开始
+        # @type UpdateAtStart: String
+        # @param UpdateAtEnd: 更新时间-结束
+        # @type UpdateAtEnd: String
+        # @param Filters: 查询数组
+        # @type Filters: Array
+        # @param Ignored: 是否显示被忽略的数据
+        # @type Ignored: Boolean
+
+        attr_accessor :IsNew, :CustomerId, :Limit, :Offset, :EnterpriseUidList, :Format, :CreateAtStart, :CreateAtEnd, :UpdateAtStart, :UpdateAtEnd, :Filters, :Ignored
+
+        def initialize(isnew=nil, customerid=nil, limit=nil, offset=nil, enterpriseuidlist=nil, format=nil, createatstart=nil, createatend=nil, updateatstart=nil, updateatend=nil, filters=nil, ignored=nil)
+          @IsNew = isnew
+          @CustomerId = customerid
+          @Limit = limit
+          @Offset = offset
+          @EnterpriseUidList = enterpriseuidlist
+          @Format = format
+          @CreateAtStart = createatstart
+          @CreateAtEnd = createatend
+          @UpdateAtStart = updateatstart
+          @UpdateAtEnd = updateatend
+          @Filters = filters
+          @Ignored = ignored
+        end
+
+        def deserialize(params)
+          @IsNew = params['IsNew']
+          @CustomerId = params['CustomerId']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @EnterpriseUidList = params['EnterpriseUidList']
+          @Format = params['Format']
+          @CreateAtStart = params['CreateAtStart']
+          @CreateAtEnd = params['CreateAtEnd']
+          @UpdateAtStart = params['UpdateAtStart']
+          @UpdateAtEnd = params['UpdateAtEnd']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @Ignored = params['Ignored']
+        end
+      end
+
+      # DescribeFakeApps返回参数结构体
+      class DescribeFakeAppsResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 总数
+        # @type Total: Integer
+        # @param List: 仿冒应用
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type List: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :List, :RequestId
+
+        def initialize(total=nil, list=nil, requestid=nil)
+          @Total = total
+          @List = list
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              displayfakeapp_tmp = DisplayFakeApp.new
+              displayfakeapp_tmp.deserialize(i)
+              @List << displayfakeapp_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeFakeMiniPrograms请求参数结构体
+      class DescribeFakeMiniProgramsRequest < TencentCloud::Common::AbstractModel
+        # @param IsNew: 是否新增数据
+        # @type IsNew: Boolean
+        # @param CustomerId: 企业ID
+        # @type CustomerId: Integer
+        # @param Limit: 分页大小
+        # @type Limit: Integer
+        # @param Offset: 分页偏移
+        # @type Offset: Integer
+        # @param EnterpriseUidList: 子公司ID列表
+        # @type EnterpriseUidList: Array
+        # @param Format: 数据输出格式：json、file，默认不填为json
+        # @type Format: String
+        # @param CreateAtStart: 创建时间-开始
+        # @type CreateAtStart: String
+        # @param CreateAtEnd: 创建时间-结束
+        # @type CreateAtEnd: String
+        # @param UpdateAtStart: 更新时间-开始
+        # @type UpdateAtStart: String
+        # @param UpdateAtEnd: 更新时间-结束
+        # @type UpdateAtEnd: String
+        # @param Filters: 查询数组
+        # @type Filters: Array
+        # @param Ignored: 是否显示被忽略的数据
+        # @type Ignored: Boolean
+
+        attr_accessor :IsNew, :CustomerId, :Limit, :Offset, :EnterpriseUidList, :Format, :CreateAtStart, :CreateAtEnd, :UpdateAtStart, :UpdateAtEnd, :Filters, :Ignored
+
+        def initialize(isnew=nil, customerid=nil, limit=nil, offset=nil, enterpriseuidlist=nil, format=nil, createatstart=nil, createatend=nil, updateatstart=nil, updateatend=nil, filters=nil, ignored=nil)
+          @IsNew = isnew
+          @CustomerId = customerid
+          @Limit = limit
+          @Offset = offset
+          @EnterpriseUidList = enterpriseuidlist
+          @Format = format
+          @CreateAtStart = createatstart
+          @CreateAtEnd = createatend
+          @UpdateAtStart = updateatstart
+          @UpdateAtEnd = updateatend
+          @Filters = filters
+          @Ignored = ignored
+        end
+
+        def deserialize(params)
+          @IsNew = params['IsNew']
+          @CustomerId = params['CustomerId']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @EnterpriseUidList = params['EnterpriseUidList']
+          @Format = params['Format']
+          @CreateAtStart = params['CreateAtStart']
+          @CreateAtEnd = params['CreateAtEnd']
+          @UpdateAtStart = params['UpdateAtStart']
+          @UpdateAtEnd = params['UpdateAtEnd']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @Ignored = params['Ignored']
+        end
+      end
+
+      # DescribeFakeMiniPrograms返回参数结构体
+      class DescribeFakeMiniProgramsResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 总数
+        # @type Total: Integer
+        # @param List: 仿冒小程序
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type List: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :List, :RequestId
+
+        def initialize(total=nil, list=nil, requestid=nil)
+          @Total = total
+          @List = list
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              displayfakeminiprogram_tmp = DisplayFakeMiniProgram.new
+              displayfakeminiprogram_tmp.deserialize(i)
+              @List << displayfakeminiprogram_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeFakeWebsites请求参数结构体
+      class DescribeFakeWebsitesRequest < TencentCloud::Common::AbstractModel
+        # @param IsNew: 是否新增数据
+        # @type IsNew: Boolean
+        # @param CustomerId: 企业ID
+        # @type CustomerId: Integer
+        # @param Limit: 分页大小
+        # @type Limit: Integer
+        # @param Offset: 分页偏移
+        # @type Offset: Integer
+        # @param EnterpriseUidList: 子公司ID列表
+        # @type EnterpriseUidList: Array
+        # @param Format: 数据输出格式：json、file，默认不填为json
+        # @type Format: String
+        # @param CreateAtStart: 创建时间-开始
+        # @type CreateAtStart: String
+        # @param CreateAtEnd: 创建时间-结束
+        # @type CreateAtEnd: String
+        # @param UpdateAtStart: 更新时间-开始
+        # @type UpdateAtStart: String
+        # @param UpdateAtEnd: 更新时间-结束
+        # @type UpdateAtEnd: String
+        # @param Filters: 查询数组
+        # @type Filters: Array
+        # @param Ignored: 是否显示被忽略的数据
+        # @type Ignored: Boolean
+
+        attr_accessor :IsNew, :CustomerId, :Limit, :Offset, :EnterpriseUidList, :Format, :CreateAtStart, :CreateAtEnd, :UpdateAtStart, :UpdateAtEnd, :Filters, :Ignored
+
+        def initialize(isnew=nil, customerid=nil, limit=nil, offset=nil, enterpriseuidlist=nil, format=nil, createatstart=nil, createatend=nil, updateatstart=nil, updateatend=nil, filters=nil, ignored=nil)
+          @IsNew = isnew
+          @CustomerId = customerid
+          @Limit = limit
+          @Offset = offset
+          @EnterpriseUidList = enterpriseuidlist
+          @Format = format
+          @CreateAtStart = createatstart
+          @CreateAtEnd = createatend
+          @UpdateAtStart = updateatstart
+          @UpdateAtEnd = updateatend
+          @Filters = filters
+          @Ignored = ignored
+        end
+
+        def deserialize(params)
+          @IsNew = params['IsNew']
+          @CustomerId = params['CustomerId']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @EnterpriseUidList = params['EnterpriseUidList']
+          @Format = params['Format']
+          @CreateAtStart = params['CreateAtStart']
+          @CreateAtEnd = params['CreateAtEnd']
+          @UpdateAtStart = params['UpdateAtStart']
+          @UpdateAtEnd = params['UpdateAtEnd']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @Ignored = params['Ignored']
+        end
+      end
+
+      # DescribeFakeWebsites返回参数结构体
+      class DescribeFakeWebsitesResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 总数
+        # @type Total: Integer
+        # @param List: 仿冒网站
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type List: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :List, :RequestId
+
+        def initialize(total=nil, list=nil, requestid=nil)
+          @Total = total
+          @List = list
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              displayfakewebsite_tmp = DisplayFakeWebsite.new
+              displayfakewebsite_tmp.deserialize(i)
+              @List << displayfakewebsite_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeFakeWechatOfficials请求参数结构体
+      class DescribeFakeWechatOfficialsRequest < TencentCloud::Common::AbstractModel
+        # @param IsNew: 是否新增数据
+        # @type IsNew: Boolean
+        # @param CustomerId: 企业ID
+        # @type CustomerId: Integer
+        # @param Limit: 分页大小
+        # @type Limit: Integer
+        # @param Offset: 分页偏移
+        # @type Offset: Integer
+        # @param EnterpriseUidList: 子公司ID列表
+        # @type EnterpriseUidList: Array
+        # @param Format: 数据输出格式：json、file，默认不填为json
+        # @type Format: String
+        # @param CreateAtStart: 创建时间-开始
+        # @type CreateAtStart: String
+        # @param CreateAtEnd: 创建时间-结束
+        # @type CreateAtEnd: String
+        # @param UpdateAtStart: 更新时间-开始
+        # @type UpdateAtStart: String
+        # @param UpdateAtEnd: 更新时间-结束
+        # @type UpdateAtEnd: String
+        # @param Filters: 查询数组
+        # @type Filters: Array
+        # @param Ignored: 是否显示被忽略的数据
+        # @type Ignored: Boolean
+
+        attr_accessor :IsNew, :CustomerId, :Limit, :Offset, :EnterpriseUidList, :Format, :CreateAtStart, :CreateAtEnd, :UpdateAtStart, :UpdateAtEnd, :Filters, :Ignored
+
+        def initialize(isnew=nil, customerid=nil, limit=nil, offset=nil, enterpriseuidlist=nil, format=nil, createatstart=nil, createatend=nil, updateatstart=nil, updateatend=nil, filters=nil, ignored=nil)
+          @IsNew = isnew
+          @CustomerId = customerid
+          @Limit = limit
+          @Offset = offset
+          @EnterpriseUidList = enterpriseuidlist
+          @Format = format
+          @CreateAtStart = createatstart
+          @CreateAtEnd = createatend
+          @UpdateAtStart = updateatstart
+          @UpdateAtEnd = updateatend
+          @Filters = filters
+          @Ignored = ignored
+        end
+
+        def deserialize(params)
+          @IsNew = params['IsNew']
+          @CustomerId = params['CustomerId']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @EnterpriseUidList = params['EnterpriseUidList']
+          @Format = params['Format']
+          @CreateAtStart = params['CreateAtStart']
+          @CreateAtEnd = params['CreateAtEnd']
+          @UpdateAtStart = params['UpdateAtStart']
+          @UpdateAtEnd = params['UpdateAtEnd']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @Ignored = params['Ignored']
+        end
+      end
+
+      # DescribeFakeWechatOfficials返回参数结构体
+      class DescribeFakeWechatOfficialsResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 总数
+        # @type Total: Integer
+        # @param List: 仿冒公众号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type List: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :List, :RequestId
+
+        def initialize(total=nil, list=nil, requestid=nil)
+          @Total = total
+          @List = list
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              displayfakewechatofficial_tmp = DisplayFakeWechatOfficial.new
+              displayfakewechatofficial_tmp.deserialize(i)
+              @List << displayfakewechatofficial_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeGithubs请求参数结构体
       class DescribeGithubsRequest < TencentCloud::Common::AbstractModel
         # @param IsNew: 是否新增数据
@@ -2897,6 +3293,202 @@ module TencentCloud
           @SubDomainCount = params['SubDomainCount']
           @HttpCount = params['HttpCount']
           @VulCount = params['VulCount']
+        end
+      end
+
+      # 仿冒应用详情
+      class DisplayFakeApp < TencentCloud::Common::AbstractModel
+        # @param Id: 主键ID
+        # @type Id: Integer
+        # @param DisplayToolCommon: 公共字段
+        # @type DisplayToolCommon: :class:`Tencentcloud::Ctem.v20231128.models.DisplayToolCommon`
+        # @param AppName: 仿冒应用名称
+        # @type AppName: String
+        # @param PackageName: 仿冒应用包名称
+        # @type PackageName: String
+        # @param DownloadUrl: 下载链接
+        # @type DownloadUrl: String
+        # @param HandlingStatus: 处置状态：0-待处理 1-处理中 2-已处理
+        # @type HandlingStatus: Integer
+        # @param ShutdownStatus: 关停状态：0-(默认状态) 1-关停审核中 2-已拦截 3-已拒绝 4-下线流程中 5-已下线 6-下线失败
+        # @type ShutdownStatus: Integer
+        # @param ShutdownTime: 关停时间
+        # @type ShutdownTime: String
+
+        attr_accessor :Id, :DisplayToolCommon, :AppName, :PackageName, :DownloadUrl, :HandlingStatus, :ShutdownStatus, :ShutdownTime
+
+        def initialize(id=nil, displaytoolcommon=nil, appname=nil, packagename=nil, downloadurl=nil, handlingstatus=nil, shutdownstatus=nil, shutdowntime=nil)
+          @Id = id
+          @DisplayToolCommon = displaytoolcommon
+          @AppName = appname
+          @PackageName = packagename
+          @DownloadUrl = downloadurl
+          @HandlingStatus = handlingstatus
+          @ShutdownStatus = shutdownstatus
+          @ShutdownTime = shutdowntime
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          unless params['DisplayToolCommon'].nil?
+            @DisplayToolCommon = DisplayToolCommon.new
+            @DisplayToolCommon.deserialize(params['DisplayToolCommon'])
+          end
+          @AppName = params['AppName']
+          @PackageName = params['PackageName']
+          @DownloadUrl = params['DownloadUrl']
+          @HandlingStatus = params['HandlingStatus']
+          @ShutdownStatus = params['ShutdownStatus']
+          @ShutdownTime = params['ShutdownTime']
+        end
+      end
+
+      # 仿冒小程序详情
+      class DisplayFakeMiniProgram < TencentCloud::Common::AbstractModel
+        # @param Id: 主键ID
+        # @type Id: Integer
+        # @param DisplayToolCommon: 公共字段
+        # @type DisplayToolCommon: :class:`Tencentcloud::Ctem.v20231128.models.DisplayToolCommon`
+        # @param ProgramName: 仿冒小程序名称
+        # @type ProgramName: String
+        # @param ProgramId: 小程序ID
+        # @type ProgramId: String
+        # @param Category: 类别
+        # @type Category: String
+        # @param QrCode: 二维码
+        # @type QrCode: String
+        # @param HandlingStatus: 处置状态：0-待处理 1-处理中 2-已处理
+        # @type HandlingStatus: Integer
+        # @param ShutdownStatus: 关停状态：0-(默认状态) 1-关停审核中 2-已拦截 3-已拒绝 4-下线流程中 5-已下线 6-下线失败
+        # @type ShutdownStatus: Integer
+        # @param ShutdownTime: 关停时间
+        # @type ShutdownTime: String
+
+        attr_accessor :Id, :DisplayToolCommon, :ProgramName, :ProgramId, :Category, :QrCode, :HandlingStatus, :ShutdownStatus, :ShutdownTime
+
+        def initialize(id=nil, displaytoolcommon=nil, programname=nil, programid=nil, category=nil, qrcode=nil, handlingstatus=nil, shutdownstatus=nil, shutdowntime=nil)
+          @Id = id
+          @DisplayToolCommon = displaytoolcommon
+          @ProgramName = programname
+          @ProgramId = programid
+          @Category = category
+          @QrCode = qrcode
+          @HandlingStatus = handlingstatus
+          @ShutdownStatus = shutdownstatus
+          @ShutdownTime = shutdowntime
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          unless params['DisplayToolCommon'].nil?
+            @DisplayToolCommon = DisplayToolCommon.new
+            @DisplayToolCommon.deserialize(params['DisplayToolCommon'])
+          end
+          @ProgramName = params['ProgramName']
+          @ProgramId = params['ProgramId']
+          @Category = params['Category']
+          @QrCode = params['QrCode']
+          @HandlingStatus = params['HandlingStatus']
+          @ShutdownStatus = params['ShutdownStatus']
+          @ShutdownTime = params['ShutdownTime']
+        end
+      end
+
+      # 仿冒网站详情
+      class DisplayFakeWebsite < TencentCloud::Common::AbstractModel
+        # @param Id: 主键ID
+        # @type Id: Integer
+        # @param DisplayToolCommon: 公共字段
+        # @type DisplayToolCommon: :class:`Tencentcloud::Ctem.v20231128.models.DisplayToolCommon`
+        # @param Website: 仿冒网站
+        # @type Website: String
+        # @param IPLocation: ip位置
+        # @type IPLocation: String
+        # @param Screenshot: 截图
+        # @type Screenshot: String
+        # @param HandlingStatus: 处置状态：0-待处理 1-处理中 2-已处理
+        # @type HandlingStatus: Integer
+        # @param ShutdownStatus: 关停状态：0-(默认状态) 1-关停审核中 2-已拦截 3-已拒绝 4-下线流程中 5-已下线 6-下线失败
+        # @type ShutdownStatus: Integer
+        # @param ShutdownTime: 关停时间
+        # @type ShutdownTime: String
+
+        attr_accessor :Id, :DisplayToolCommon, :Website, :IPLocation, :Screenshot, :HandlingStatus, :ShutdownStatus, :ShutdownTime
+
+        def initialize(id=nil, displaytoolcommon=nil, website=nil, iplocation=nil, screenshot=nil, handlingstatus=nil, shutdownstatus=nil, shutdowntime=nil)
+          @Id = id
+          @DisplayToolCommon = displaytoolcommon
+          @Website = website
+          @IPLocation = iplocation
+          @Screenshot = screenshot
+          @HandlingStatus = handlingstatus
+          @ShutdownStatus = shutdownstatus
+          @ShutdownTime = shutdowntime
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          unless params['DisplayToolCommon'].nil?
+            @DisplayToolCommon = DisplayToolCommon.new
+            @DisplayToolCommon.deserialize(params['DisplayToolCommon'])
+          end
+          @Website = params['Website']
+          @IPLocation = params['IPLocation']
+          @Screenshot = params['Screenshot']
+          @HandlingStatus = params['HandlingStatus']
+          @ShutdownStatus = params['ShutdownStatus']
+          @ShutdownTime = params['ShutdownTime']
+        end
+      end
+
+      # 仿冒公众号详情
+      class DisplayFakeWechatOfficial < TencentCloud::Common::AbstractModel
+        # @param Id: 主键ID
+        # @type Id: Integer
+        # @param DisplayToolCommon: 公共字段
+        # @type DisplayToolCommon: :class:`Tencentcloud::Ctem.v20231128.models.DisplayToolCommon`
+        # @param AccountName: 仿冒公众号名称
+        # @type AccountName: String
+        # @param WechatId: 公众号ID
+        # @type WechatId: String
+        # @param Avatar: 头像
+        # @type Avatar: String
+        # @param QrCode: 二维码
+        # @type QrCode: String
+        # @param HandlingStatus: 处置状态：0-待处理 1-处理中 2-已处理
+        # @type HandlingStatus: Integer
+        # @param ShutdownStatus: 关停状态：0-(默认状态) 1-关停审核中 2-已拦截 3-已拒绝 4-下线流程中 5-已下线 6-下线失败
+        # @type ShutdownStatus: Integer
+        # @param ShutdownTime: 关停时间
+        # @type ShutdownTime: String
+
+        attr_accessor :Id, :DisplayToolCommon, :AccountName, :WechatId, :Avatar, :QrCode, :HandlingStatus, :ShutdownStatus, :ShutdownTime
+
+        def initialize(id=nil, displaytoolcommon=nil, accountname=nil, wechatid=nil, avatar=nil, qrcode=nil, handlingstatus=nil, shutdownstatus=nil, shutdowntime=nil)
+          @Id = id
+          @DisplayToolCommon = displaytoolcommon
+          @AccountName = accountname
+          @WechatId = wechatid
+          @Avatar = avatar
+          @QrCode = qrcode
+          @HandlingStatus = handlingstatus
+          @ShutdownStatus = shutdownstatus
+          @ShutdownTime = shutdowntime
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          unless params['DisplayToolCommon'].nil?
+            @DisplayToolCommon = DisplayToolCommon.new
+            @DisplayToolCommon.deserialize(params['DisplayToolCommon'])
+          end
+          @AccountName = params['AccountName']
+          @WechatId = params['WechatId']
+          @Avatar = params['Avatar']
+          @QrCode = params['QrCode']
+          @HandlingStatus = params['HandlingStatus']
+          @ShutdownStatus = params['ShutdownStatus']
+          @ShutdownTime = params['ShutdownTime']
         end
       end
 

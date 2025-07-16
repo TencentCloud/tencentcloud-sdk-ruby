@@ -1668,6 +1668,81 @@ module TencentCloud
         end
       end
 
+      # CreateBatchInformationExtractionTask请求参数结构体
+      class CreateBatchInformationExtractionTaskRequest < TencentCloud::Common::AbstractModel
+        # @param Operator: 执行合同智能提取的员工信息。
+        # 注: `在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。`
+        # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
+        # @param ResourceIds: 合同智能提取的PDF文件资源编号列表，通过[UploadFiles](https://qian.tencent.com/developers/companyApis/templatesAndFiles/UploadFiles)接口获取PDF文件资源编号。  注:  `目前，此接口仅支持5个文件发起。每个文件限制在10M以下`
+        # @type ResourceIds: Array
+        # @param Agent: 代理企业和员工的信息。
+        # 在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
+        # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
+        # @param FieldTemplateId: 用户配置的合同智能提取字段模板ID，会基于此模板批量创建合同智能提取任务，为32位字符串。
+        # [点击查看模板Id在控制台上的位置](https://qcloudimg.tencent-cloud.cn/raw/99008608577532423ea437c7fdbedca1.png)
+
+        # 注:  `此配置优先级最高，设置了模板ID后Fields配置就会无效`
+        # @type FieldTemplateId: String
+        # @param Fields: 用于合同智能提取的字段信息。
+
+        # 注意：`字段模板优先级最高，如果设置了FieldTemplateId值，此配置就无效`
+        # @type Fields: Array
+
+        attr_accessor :Operator, :ResourceIds, :Agent, :FieldTemplateId, :Fields
+
+        def initialize(operator=nil, resourceids=nil, agent=nil, fieldtemplateid=nil, fields=nil)
+          @Operator = operator
+          @ResourceIds = resourceids
+          @Agent = agent
+          @FieldTemplateId = fieldtemplateid
+          @Fields = fields
+        end
+
+        def deserialize(params)
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
+          @ResourceIds = params['ResourceIds']
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
+          @FieldTemplateId = params['FieldTemplateId']
+          unless params['Fields'].nil?
+            @Fields = []
+            params['Fields'].each do |i|
+              extractionfield_tmp = ExtractionField.new
+              extractionfield_tmp.deserialize(i)
+              @Fields << extractionfield_tmp
+            end
+          end
+        end
+      end
+
+      # CreateBatchInformationExtractionTask返回参数结构体
+      class CreateBatchInformationExtractionTaskResponse < TencentCloud::Common::AbstractModel
+        # @param TaskIds: 合同智能提取的任务ID列表，每个任务ID为32位字符串。
+        # 建议开发者保存此任务ID，后续查询合同智能提取详情需要此任务ID。
+
+        # 注意：`返回的索引和ResourceIds数组一致`
+        # @type TaskIds: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskIds, :RequestId
+
+        def initialize(taskids=nil, requestid=nil)
+          @TaskIds = taskids
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskIds = params['TaskIds']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateBatchInitOrganizationUrl请求参数结构体
       class CreateBatchInitOrganizationUrlRequest < TencentCloud::Common::AbstractModel
         # @param Operator: 执行本接口操作的员工信息。
@@ -8641,6 +8716,83 @@ module TencentCloud
         end
       end
 
+      # DescribeInformationExtractionTask请求参数结构体
+      class DescribeInformationExtractionTaskRequest < TencentCloud::Common::AbstractModel
+        # @param Operator: 执行本接口操作的员工信息。
+        # 注: `在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。`
+        # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
+        # @param Agent: 代理企业和员工的信息。
+        # 在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
+        # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
+        # @param TaskId: 批量创建合同智能提取任务接口返回的合同智能提取任务ID。
+        # @type TaskId: String
+
+        attr_accessor :Operator, :Agent, :TaskId
+
+        def initialize(operator=nil, agent=nil, taskid=nil)
+          @Operator = operator
+          @Agent = agent
+          @TaskId = taskid
+        end
+
+        def deserialize(params)
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
+          @TaskId = params['TaskId']
+        end
+      end
+
+      # DescribeInformationExtractionTask返回参数结构体
+      class DescribeInformationExtractionTaskResponse < TencentCloud::Common::AbstractModel
+        # @param Fields: 信息提取任务结果
+        # @type Fields: Array
+        # @param Status: 合同智能提取任务状态。
+        # 状态如下：
+        # <ul>
+        #     <li>**0** - 任务创建成功（还未执行）</li>
+        #     <li>**1** - 排队中（等待执行）</li>
+        #     <li>**2** - 提取中（正在执行）</li>
+        #     <li>**3** - 提取成功</li>
+        #     <li>**4** - 提取失败</li>
+        # </ul>
+        # @type Status: Integer
+        # @param Url: 合同智能提取结果下载，文件格式为`xlsx`。
+
+        # 注意：`链接有效期为5分钟，过期后可重新获取`
+        # @type Url: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Fields, :Status, :Url, :RequestId
+
+        def initialize(fields=nil, status=nil, url=nil, requestid=nil)
+          @Fields = fields
+          @Status = status
+          @Url = url
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Fields'].nil?
+            @Fields = []
+            params['Fields'].each do |i|
+              extractionfield_tmp = ExtractionField.new
+              extractionfield_tmp.deserialize(i)
+              @Fields << extractionfield_tmp
+            end
+          end
+          @Status = params['Status']
+          @Url = params['Url']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeIntegrationDepartments请求参数结构体
       class DescribeIntegrationDepartmentsRequest < TencentCloud::Common::AbstractModel
         # @param Operator: 执行本接口操作的员工信息。
@@ -9868,6 +10020,46 @@ module TencentCloud
           @GenerateType = params['GenerateType']
           @GenerateTypeDesc = params['GenerateTypeDesc']
           @GenerateTypeLogo = params['GenerateTypeLogo']
+        end
+      end
+
+      # 合同智能提取字段信息
+      class ExtractionField < TencentCloud::Common::AbstractModel
+        # @param Name: 用于合同智能提取的字段名称。
+
+        # 注意: `长度不能超过30个字符`
+        # @type Name: String
+        # @param Type: 指定合同智能提取的字段类型，目前仅支持`TEXT`、`DATE`、`NUMBER`、`OPTION`类型。
+
+        # 类型支持如下：
+        # 1、TEXT（文本）
+        # 2、DATE（日期）
+        # 3、NUMBER（数字）
+        # 4、OPTION（选项值）
+        # @type Type: String
+        # @param Description: 用于描述字段信息。
+
+        # 注意：
+        # 1、`如果Type值为OPTION时，需要在字段描述中填写选项值，用,分隔`
+        # 2、描述字段不能超过100个字符
+        # @type Description: String
+        # @param Values: 提取出合同中的字段信息。
+        # @type Values: Array
+
+        attr_accessor :Name, :Type, :Description, :Values
+
+        def initialize(name=nil, type=nil, description=nil, values=nil)
+          @Name = name
+          @Type = type
+          @Description = description
+          @Values = values
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Type = params['Type']
+          @Description = params['Description']
+          @Values = params['Values']
         end
       end
 

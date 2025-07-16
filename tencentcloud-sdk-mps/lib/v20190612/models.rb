@@ -206,11 +206,8 @@ module TencentCloud
         # <li>action-SmartSubtitles：智能字幕</li>
 
 
-
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ActivityType: String
         # @param ReardriveIndex: 后驱节点索引数组
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReardriveIndex: Array
         # @param ActivityPara: 原子任务参数
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -525,12 +522,10 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AddOnSubtitles: Array
         # @param DrmInfo: Drm信息。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DrmInfo: :class:`Tencentcloud::Mps.v20190612.models.DrmInfo`
         # @param DefinitionType: 自适应转码模板类型：
         # Common：音视频类型
         # PureAudio：纯音频类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DefinitionType: String
 
         attr_accessor :Definition, :WatermarkSet, :OutputStorage, :OutputObjectPath, :SubStreamObjectName, :SegmentObjectName, :AddOnSubtitles, :DrmInfo, :DefinitionType
@@ -1076,10 +1071,8 @@ module TencentCloud
         # @param OutputStorage: 擦除后文件的存储位置。
         # @type OutputStorage: :class:`Tencentcloud::Mps.v20190612.models.TaskOutputStorage`
         # @param OriginSubtitlePath: 基于画面提取的字幕文件路径。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OriginSubtitlePath: String
         # @param TranslateSubtitlePath: 基于画面提取的字幕翻译文件路径。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TranslateSubtitlePath: String
 
         attr_accessor :Path, :OutputStorage, :OriginSubtitlePath, :TranslateSubtitlePath
@@ -2371,35 +2364,26 @@ module TencentCloud
         # @param Gender: 人物性别：
         # <li>Male：男性；</li>
         # <li>Female：女性。</li>
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Gender: String
         # @param Birthday: 人物出生日期。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Birthday: String
         # @param Profession: 人物职业或者职务。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Profession: String
         # @param SchoolOfGraduation: 人物毕业院校。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SchoolOfGraduation: String
         # @param Abstract: 人物简介。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Abstract: String
         # @param PlaceOfBirth: 人物出生地或者籍贯。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PlaceOfBirth: String
         # @param PersonType: 人物类型：
         # <li>Politician：官员；</li>
         # <li>Artist：艺人。</li>
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PersonType: String
         # @param Remark: 敏感度标注：
         # <li>Normal：正常；</li>
         # <li>Sensitive：敏感。</li>
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Remark: String
         # @param Url: 截图链接
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Url: String
 
         attr_accessor :Id, :Type, :Name, :SegmentSet, :Gender, :Birthday, :Profession, :SchoolOfGraduation, :Abstract, :PlaceOfBirth, :PersonType, :Remark, :Url
@@ -5778,7 +5762,7 @@ module TencentCloud
       class ComposeSubtitleItem < TencentCloud::Common::AbstractModel
         # @param StyleId: 字幕样式，Styles 列表中对应的 Subtitle样式的 ID。
         # @type StyleId: String
-        # @param Text: 字幕文本。
+        # @param Text: 字幕文本。<br/>注：长文本可能超出画面范围，建议使用 \n 进行换行。
         # @type Text: String
         # @param TrackTime: 元素在轨道时间轴上的时间信息，不填则紧跟上一个元素。
         # @type TrackTime: :class:`Tencentcloud::Mps.v20190612.models.ComposeTrackTime`
@@ -7306,6 +7290,82 @@ module TencentCloud
 
         def deserialize(params)
           @Definition = params['Definition']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateMediaEvaluation请求参数结构体
+      class CreateMediaEvaluationRequest < TencentCloud::Common::AbstractModel
+        # @param InputInfo: 评测的原文件输入信息。目前输入对象的类型有 COS 和 URL。
+        # @type InputInfo: :class:`Tencentcloud::Mps.v20190612.models.MediaInputInfo`
+        # @param EvaluationTask: 评测任务参数。
+        # @type EvaluationTask: :class:`Tencentcloud::Mps.v20190612.models.EvaluationTaskInput`
+        # @param OutputStorage: 评测的输出文件的目标存储。不填则继承 InputInfo 中的存储位置。目前输出对象存储位置的类型有COS。
+        # @type OutputStorage: :class:`Tencentcloud::Mps.v20190612.models.TaskOutputStorage`
+        # @param OutputDir: 评测生成文件的输出目录，必选以 / 开头和结尾，如/movie/201907/。 如果不填，表示与 InputInfo 中文件所在的目录一致。
+        # @type OutputDir: String
+        # @param TaskNotifyConfig: 任务的事件通知信息，不填代表不获取事件通知。
+        # @type TaskNotifyConfig: :class:`Tencentcloud::Mps.v20190612.models.TaskNotifyConfig`
+        # @param TasksPriority: 任务优先级，数值越大优先级越高，取值范围是-10到 10，不填代表0。
+        # @type TasksPriority: Integer
+        # @param SessionId: 用于去重的识别码，如果三天内曾有过相同的识别码的请求，则本次的请求会返回错误。最长 50 个字符，不带或者带空字符串表示不做去重。
+        # @type SessionId: String
+        # @param SessionContext: 来源上下文，用于透传用户请求信息，任务流状态变更回调将返回该字段值，最长 1000 个字符。
+        # @type SessionContext: String
+
+        attr_accessor :InputInfo, :EvaluationTask, :OutputStorage, :OutputDir, :TaskNotifyConfig, :TasksPriority, :SessionId, :SessionContext
+
+        def initialize(inputinfo=nil, evaluationtask=nil, outputstorage=nil, outputdir=nil, tasknotifyconfig=nil, taskspriority=nil, sessionid=nil, sessioncontext=nil)
+          @InputInfo = inputinfo
+          @EvaluationTask = evaluationtask
+          @OutputStorage = outputstorage
+          @OutputDir = outputdir
+          @TaskNotifyConfig = tasknotifyconfig
+          @TasksPriority = taskspriority
+          @SessionId = sessionid
+          @SessionContext = sessioncontext
+        end
+
+        def deserialize(params)
+          unless params['InputInfo'].nil?
+            @InputInfo = MediaInputInfo.new
+            @InputInfo.deserialize(params['InputInfo'])
+          end
+          unless params['EvaluationTask'].nil?
+            @EvaluationTask = EvaluationTaskInput.new
+            @EvaluationTask.deserialize(params['EvaluationTask'])
+          end
+          unless params['OutputStorage'].nil?
+            @OutputStorage = TaskOutputStorage.new
+            @OutputStorage.deserialize(params['OutputStorage'])
+          end
+          @OutputDir = params['OutputDir']
+          unless params['TaskNotifyConfig'].nil?
+            @TaskNotifyConfig = TaskNotifyConfig.new
+            @TaskNotifyConfig.deserialize(params['TaskNotifyConfig'])
+          end
+          @TasksPriority = params['TasksPriority']
+          @SessionId = params['SessionId']
+          @SessionContext = params['SessionContext']
+        end
+      end
+
+      # CreateMediaEvaluation返回参数结构体
+      class CreateMediaEvaluationResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务 ID。
+        # @type TaskId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
           @RequestId = params['RequestId']
         end
       end
@@ -9866,41 +9926,30 @@ module TencentCloud
         # @param HotwordsId: 需要查询的热词库 id
         # @type HotwordsId: String
         # @param Status: 当前热词库 id 状态，为 0 表示查询的时刻，没有模板绑定这个热词库，可以删除
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
         # @param Name: 热词库的名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Type: 临时热词库为 0，返回创建时候的字符串
         # 文件热词库为 1，返回创建是上传的文件内容
 
-
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: Integer
         # @param FileName: 热词文件上传时的文件名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FileName: String
         # @param HotWords: 查询返回的热词库列表
         # @type HotWords: Array
         # @param Content: 热词库文本，根据 Type 区分
         # 如果 Type 为 0，是热词库字符串
         # 如果 Type 是 1，是热词库文本文件的文件内容 base64 编码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Content: String
         # @param WordCount: 当前热词库包含的词语数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WordCount: Integer
         # @param Offset: 分页偏移量，默认值：0。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Offset: Integer
         # @param Limit: 返回记录条数，默认值：10，最大值：100。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Limit: Integer
         # @param CreateTime: 热词库创建时间 ISOUTC 格式 "2006-01-02T15:04:05Z"
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
         # @param UpdateTime: 热词库修改时间 ISOUTC 格式 "2006-01-02T15:04:05Z"
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -9982,7 +10031,6 @@ module TencentCloud
         # @param TaskId: 媒体处理任务 ID。
         # @type TaskId: String
         # @param BatchTaskResult: 视频处理任务信息，仅当 TaskType 为 BatchTask，该字段有值。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BatchTaskResult: :class:`Tencentcloud::Mps.v20190612.models.BatchSubTaskResult`
         # @param TaskNotifyConfig: 任务的事件通知信息。
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -12999,7 +13047,6 @@ module TencentCloud
       # DescribeWordSamples返回参数结构体
       class DescribeWordSamplesResponse < TencentCloud::Common::AbstractModel
         # @param TotalCount: 符合条件的记录总数。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
         # @param WordSet: 关键词信息。
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -13303,16 +13350,29 @@ module TencentCloud
       # Drm 加密信息。
       class DrmInfo < TencentCloud::Common::AbstractModel
         # @param Type: 加密类型：
-        # <li> simpleaes: aes-128 加密</li>
-        # <li> widevine</li>
-        # <li> fairplay：Dash不支持fairplay加密</li>
-        # <li> playready</li>
-        # 注意：此字段可能返回 null，表示取不到有效值。
+
+        # - simpleaes
+        # 只能用于HLS，切片格式支持ts和mp4
+        # 只能使用切片模式，不能使用singlefile模式
+
+        # - fairplay：
+        # 只能用于HLS，切片格式只能是mp4
+        # 可以使用切片模式或singlefile模式
+
+        # - widevine：
+        # 可以用于HLS和DASH，切片格式只能是mp4
+        # 输出HLS：可以使用切片模式或singlefile模式
+        # 输出DASH：只能singlefile模式
+
+        # - playready：
+        # 可以用于HLS和DASH，切片格式只能是mp4
+        # 输出HLS：可以使用切片模式或singlefile模式
+        # 输出DASH：只能singlefile模式
         # @type Type: String
         # @param SimpleAesDrm: SimpleAes 加密信息。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SimpleAesDrm: :class:`Tencentcloud::Mps.v20190612.models.SimpleAesDrm`
-        # @param SpekeDrm: FairPlay, WideVine， PlayReady 加密信息。
+        # @param SpekeDrm: FairPlay，WideVine，PlayReady 加密信息。
         # @type SpekeDrm: :class:`Tencentcloud::Mps.v20190612.models.SpekeDrm`
 
         attr_accessor :Type, :SimpleAesDrm, :SpekeDrm
@@ -13676,6 +13736,137 @@ module TencentCloud
             @AudioEnhance = AudioEnhanceConfig.new
             @AudioEnhance.deserialize(params['AudioEnhance'])
           end
+        end
+      end
+
+      # 视频评测任务的视频来源信息
+      class EvaluationMediaInputInfo < TencentCloud::Common::AbstractModel
+        # @param SourceId: 对比视频的来源 ID，当评测任务的类型为 BD_RATE 且对比视频来自用户输入时有效；当对比视频来自转码模版时为空
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SourceId: String
+        # @param InputInfo: 对比视频的输入信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InputInfo: :class:`Tencentcloud::Mps.v20190612.models.MediaInputInfo`
+
+        attr_accessor :SourceId, :InputInfo
+
+        def initialize(sourceid=nil, inputinfo=nil)
+          @SourceId = sourceid
+          @InputInfo = inputinfo
+        end
+
+        def deserialize(params)
+          @SourceId = params['SourceId']
+          unless params['InputInfo'].nil?
+            @InputInfo = MediaInputInfo.new
+            @InputInfo.deserialize(params['InputInfo'])
+          end
+        end
+      end
+
+      # 评测任务输入参数类型
+      class EvaluationTaskInput < TencentCloud::Common::AbstractModel
+        # @param TaskType: 评测任务类型，可选 NORMAL、BD_RATE
+        # @type TaskType: String
+        # @param EvaluationTypeSet: 评测类型，可选 PSNR、SSIM、VMAF、VMAF_NEG
+        # @type EvaluationTypeSet: Array
+        # @param EvaluationRangeType: 评测范围类型，可选 ALL（全部时长）、TIME（指定时长范围）、FRAME（指定帧数范围）
+        # @type EvaluationRangeType: String
+        # @param ContrastInfoSet: 对比视频信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ContrastInfoSet: Array
+        # @param ContrastMediaSet: 对比视频信息。
+        # @type ContrastMediaSet: Array
+        # @param ContrastTemplateSet: 对比转码模板信息。
+        # @type ContrastTemplateSet: Array
+        # @param StartTime: 开始评测时间，单位秒，当 EvaluationRangeType 为 TIME 时有效。
+        # @type StartTime: Integer
+        # @param EndTime: 结束评测时间，单位秒，当 EvaluationRangeType 为 TIME 时有效。
+        # @type EndTime: Integer
+        # @param StartFrameIndex: 评测开始帧，默认从0开始，当 EvaluationRangeType 为FRAME 时有效。
+        # @type StartFrameIndex: Integer
+        # @param EndFrameIndex: 评测结束帧，默认为视频中可以参与评测的最后一帧，当 EvaluationRangeType 为 FRAME 时有效。
+        # @type EndFrameIndex: Integer
+        # @param ResolutionAlignmentMode: 分辨率对齐模式，默认对齐到低分辨率的视频，可选 ALIGN_HIGH_RESOLUTION、ALIGN_LOW_RESOLUTION
+        # @type ResolutionAlignmentMode: String
+        # @param BitrateSet: 指定码率评测，当评测任务类型为 BD_RATE 有效。
+        # @type BitrateSet: Array
+        # @param VCRFSet: 指定 vcrf 评测，当评测任务类型为 BD_RATE 有效。
+        # @type VCRFSet: Array
+
+        attr_accessor :TaskType, :EvaluationTypeSet, :EvaluationRangeType, :ContrastInfoSet, :ContrastMediaSet, :ContrastTemplateSet, :StartTime, :EndTime, :StartFrameIndex, :EndFrameIndex, :ResolutionAlignmentMode, :BitrateSet, :VCRFSet
+        extend Gem::Deprecate
+        deprecate :ContrastInfoSet, :none, 2025, 7
+        deprecate :ContrastInfoSet=, :none, 2025, 7
+
+        def initialize(tasktype=nil, evaluationtypeset=nil, evaluationrangetype=nil, contrastinfoset=nil, contrastmediaset=nil, contrasttemplateset=nil, starttime=nil, endtime=nil, startframeindex=nil, endframeindex=nil, resolutionalignmentmode=nil, bitrateset=nil, vcrfset=nil)
+          @TaskType = tasktype
+          @EvaluationTypeSet = evaluationtypeset
+          @EvaluationRangeType = evaluationrangetype
+          @ContrastInfoSet = contrastinfoset
+          @ContrastMediaSet = contrastmediaset
+          @ContrastTemplateSet = contrasttemplateset
+          @StartTime = starttime
+          @EndTime = endtime
+          @StartFrameIndex = startframeindex
+          @EndFrameIndex = endframeindex
+          @ResolutionAlignmentMode = resolutionalignmentmode
+          @BitrateSet = bitrateset
+          @VCRFSet = vcrfset
+        end
+
+        def deserialize(params)
+          @TaskType = params['TaskType']
+          @EvaluationTypeSet = params['EvaluationTypeSet']
+          @EvaluationRangeType = params['EvaluationRangeType']
+          unless params['ContrastInfoSet'].nil?
+            @ContrastInfoSet = []
+            params['ContrastInfoSet'].each do |i|
+              mediainputinfo_tmp = MediaInputInfo.new
+              mediainputinfo_tmp.deserialize(i)
+              @ContrastInfoSet << mediainputinfo_tmp
+            end
+          end
+          unless params['ContrastMediaSet'].nil?
+            @ContrastMediaSet = []
+            params['ContrastMediaSet'].each do |i|
+              evaluationmediainputinfo_tmp = EvaluationMediaInputInfo.new
+              evaluationmediainputinfo_tmp.deserialize(i)
+              @ContrastMediaSet << evaluationmediainputinfo_tmp
+            end
+          end
+          unless params['ContrastTemplateSet'].nil?
+            @ContrastTemplateSet = []
+            params['ContrastTemplateSet'].each do |i|
+              evaluationtemplateinputinfo_tmp = EvaluationTemplateInputInfo.new
+              evaluationtemplateinputinfo_tmp.deserialize(i)
+              @ContrastTemplateSet << evaluationtemplateinputinfo_tmp
+            end
+          end
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @StartFrameIndex = params['StartFrameIndex']
+          @EndFrameIndex = params['EndFrameIndex']
+          @ResolutionAlignmentMode = params['ResolutionAlignmentMode']
+          @BitrateSet = params['BitrateSet']
+          @VCRFSet = params['VCRFSet']
+        end
+      end
+
+      # 在评测中使用的转码模版的信息
+      class EvaluationTemplateInputInfo < TencentCloud::Common::AbstractModel
+        # @param Definition: 转码模版的 ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Definition: Integer
+
+        attr_accessor :Definition
+
+        def initialize(definition=nil)
+          @Definition = definition
+        end
+
+        def deserialize(params)
+          @Definition = params['Definition']
         end
       end
 
@@ -17379,13 +17570,10 @@ module TencentCloud
         # @param Input: 对视频截雪碧图任务的输入。
         # @type Input: :class:`Tencentcloud::Mps.v20190612.models.ImageSpriteTaskInput`
         # @param Output: 对视频截雪碧图任务的输出。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Output: :class:`Tencentcloud::Mps.v20190612.models.MediaImageSpriteItem`
         # @param BeginProcessTime: 任务开始执行的时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/862/37710#52)。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BeginProcessTime: String
         # @param FinishTime: 任务执行完毕的时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/862/37710#52)。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FinishTime: String
 
         attr_accessor :Status, :ErrCodeExt, :ErrCode, :Message, :Input, :Output, :BeginProcessTime, :FinishTime
@@ -17581,13 +17769,10 @@ module TencentCloud
         # @param Input: 对视频做采样截图任务输入。
         # @type Input: :class:`Tencentcloud::Mps.v20190612.models.SampleSnapshotTaskInput`
         # @param Output: 对视频做采样截图任务输出。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Output: :class:`Tencentcloud::Mps.v20190612.models.MediaSampleSnapshotItem`
         # @param BeginProcessTime: 任务开始执行的时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/862/37710#52)。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BeginProcessTime: String
         # @param FinishTime: 任务执行完毕的时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/862/37710#52)。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FinishTime: String
 
         attr_accessor :Status, :ErrCodeExt, :ErrCode, :Message, :Input, :Output, :BeginProcessTime, :FinishTime
@@ -17634,13 +17819,10 @@ module TencentCloud
         # @param Input: 对视频按指定时间点截图任务输入。
         # @type Input: :class:`Tencentcloud::Mps.v20190612.models.SnapshotByTimeOffsetTaskInput`
         # @param Output: 对视频按指定时间点截图任务输出。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Output: :class:`Tencentcloud::Mps.v20190612.models.MediaSnapshotByTimeOffsetItem`
         # @param BeginProcessTime: 任务开始执行的时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/862/37710#52)。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BeginProcessTime: String
         # @param FinishTime: 任务执行完毕的时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/862/37710#52)。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FinishTime: String
 
         attr_accessor :Status, :ErrCodeExt, :ErrCode, :Message, :Input, :Output, :BeginProcessTime, :FinishTime
@@ -17690,7 +17872,6 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Output: :class:`Tencentcloud::Mps.v20190612.models.MediaTranscodeItem`
         # @param Progress: 转码进度，取值范围 [0-100]
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Progress: Integer
 
         attr_accessor :Status, :ErrCodeExt, :ErrCode, :Message, :Input, :Output, :Progress
@@ -18815,7 +18996,6 @@ module TencentCloud
         # @param Person: 素材信息。
         # @type Person: :class:`Tencentcloud::Mps.v20190612.models.AiSamplePerson`
         # @param FailFaceInfoSet: 处理失败的五官信息。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FailFaceInfoSet: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -19943,16 +20123,12 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TEHDConfig: :class:`Tencentcloud::Mps.v20190612.models.TEHDConfigForUpdate`
         # @param SubtitleTemplate: 字幕流配置参数。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubtitleTemplate: :class:`Tencentcloud::Mps.v20190612.models.SubtitleTemplate`
         # @param AddonAudioStream: 外挂音轨参数。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AddonAudioStream: Array
         # @param StdExtInfo: 转码扩展字段。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StdExtInfo: String
         # @param AddOnSubtitles: 要插入的字幕文件。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AddOnSubtitles: Array
 
         attr_accessor :Container, :RemoveVideo, :RemoveAudio, :VideoTemplate, :AudioTemplate, :TEHDConfig, :SubtitleTemplate, :AddonAudioStream, :StdExtInfo, :AddOnSubtitles
@@ -20060,10 +20236,8 @@ module TencentCloud
         # @param SessionContext: 来源上下文，用于透传用户请求信息，任务流状态变更回调将返回该字段值，最长1000个字符。
         # @type SessionContext: String
         # @param Timestamp: - 过期时间，事件通知签名过期 UNIX 时间戳。 - 来自媒体处理的消息通知默认过期时间是10分钟，如果一条消息通知中的 Timestamp 值所指定的时间已经过期，则可以判定这条通知无效，进而可以防止网络重放攻击。 - Timestamp 的格式为十进制 UNIX 时间戳，即从1970年01月01日（UTC/GMT 的午夜）开始所经过的秒数。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Timestamp: Integer
         # @param Sign: 事件通知安全签名 Sign = MD5（Timestamp + NotifyKey）。说明：媒体处理把Timestamp 和 TaskNotifyConfig 里面的NotifyKey 进行字符串拼接后通过 MD5 计算得出 Sign 值，并将其放在通知消息里，您的后台服务器在收到通知消息后可以根据同样的算法确认 Sign 是否正确，进而确认消息是否确实来自媒体处理后台。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Sign: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -21692,7 +21866,6 @@ module TencentCloud
         # @param TEHDConfig: 极速高清转码参数。
         # @type TEHDConfig: :class:`Tencentcloud::Mps.v20190612.models.TEHDConfig`
         # @param StdExtInfo: 扩展参数，序列化的 json 字符串。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StdExtInfo: String
         # @param EnhanceConfig: 音视频增强配置
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -22420,13 +22593,10 @@ module TencentCloud
         # @param Input: 识别任务的输入。
         # @type Input: :class:`Tencentcloud::Mps.v20190612.models.AiRecognitionTaskInput`
         # @param Output: 识别任务的输出。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Output: Array
         # @param BeginProcessTime: 任务开始执行的时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/862/37710#52)。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BeginProcessTime: String
         # @param FinishTime: 任务执行完毕的时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/862/37710#52)。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FinishTime: String
 
         attr_accessor :Status, :ErrCodeExt, :ErrCode, :Message, :Input, :Output, :BeginProcessTime, :FinishTime
@@ -22532,16 +22702,12 @@ module TencentCloud
         # @param Message: 错误信息。
         # @type Message: String
         # @param Input: 识别任务的输入。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Input: :class:`Tencentcloud::Mps.v20190612.models.SmartSubtitlesTaskInput`
         # @param Output: 识别任务的输出。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Output: Array
         # @param BeginProcessTime: 任务开始执行的时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/862/37710#52)。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BeginProcessTime: String
         # @param FinishTime: 任务执行完毕的时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/862/37710#52)。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FinishTime: String
 
         attr_accessor :Status, :ErrCodeExt, :ErrCode, :Message, :Input, :Output, :BeginProcessTime, :FinishTime
@@ -22844,24 +23010,18 @@ module TencentCloud
         # @param EndTimeOffset: 片段结束时间偏移。
         # @type EndTimeOffset: Float
         # @param SegmentUrl: 拆条片段URL。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SegmentUrl: String
         # @param CovImgUrl: 拆条片段封面。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CovImgUrl: String
         # @param Title: 分段标题。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Title: String
         # @param Summary: 分段概要。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Summary: String
         # @param Keywords: 分段关键词。
         # @type Keywords: Array
         # @param BeginTime: 直播切片对应直播起始时间点，采用 ISO 日期格式。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BeginTime: String
         # @param EndTime: 直播切片对应直播结束时间点，采用 ISO 日期格式。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EndTime: String
         # @param AudioUrl: 直播拆条用，音频url。
         # @type AudioUrl: String
@@ -23794,8 +23954,9 @@ module TencentCloud
         # @param Path: 要压制到视频中的字幕文件地址。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Path: String
-        # @param StreamIndex: 指定要压制到视频中的字幕轨道，Path 和 StreamIndex 至少指定一个；如果指定了Path，则优先使用Path。
-        # Streamindex的取值须与源文件中的字幕轨索引一致。例如，源文件中的字幕轨为stream#0:3，则StreamIndex应为3，否则可能导致任务处理失败。
+        # @param StreamIndex: 指定要压制到视频中的字幕轨道，Streamindex的取值从0开始，0表示使用源视频中的第一条字幕轨。如果指定了Path，则优先使用Path。Path 和 StreamIndex 至少指定一个。
+
+        # - 注意：StreamIndex必须与源文件中的字幕轨索引一致。例如，源文件中的字幕轨为stream#0:3，则StreamIndex应为3，否则可能导致任务处理失败。
 
 
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -23818,7 +23979,7 @@ module TencentCloud
         # <li>korean.ttf：韩语</li>
         # <li>japanese.ttf：日语</li>
         # <li>thai.ttf：泰语</li>
-        # 默认：hei.ttf 黑体。
+        # 默认：hei.ttf 黑体。注意：楷体推荐使用kai.ttf
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FontType: String
         # @param FontSize: 字体大小，格式：Npx，N 为数值，不指定则以字幕文件中为准。
@@ -24108,7 +24269,7 @@ module TencentCloud
         # <li>URL：指定URL时HTTP回调推送到 NotifyUrl 指定的地址，回调协议http+json，包体内容同解析事件通知接口的输出参数 </li>
         # <li>SCF：不推荐使用，需要在控制台额外配置SCF</li>
         # <li>AWS-SQS：AWS 队列，只适用于 AWS 任务，且要求同区域</li>
-        # <font color="red"> 注：不填或为空时默认 CMQ，如需采用其他类型需填写对应类型值。 </font>
+        # <font color="red"> 注：不填或为空时默认 TDMQ-CMQ，如需采用其他类型需填写对应类型值；如果使用TDMQ-CMQ消息队列，任务回包过大可能会写入队列失败 </font>
         # @type NotifyType: String
         # @param NotifyMode: 工作流通知的模式，可取值有 Finish 和 Change，不填代表 Finish。
         # @type NotifyMode: String
@@ -24127,7 +24288,6 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AwsSQS: :class:`Tencentcloud::Mps.v20190612.models.AwsSQS`
         # @param NotifyKey: 用于生成回调签名的key。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NotifyKey: String
 
         attr_accessor :NotifyType, :NotifyMode, :NotifyUrl, :CmqModel, :CmqRegion, :TopicName, :QueueName, :AwsSQS, :NotifyKey
@@ -24525,7 +24685,6 @@ module TencentCloud
         # @type Definition: Integer
         # @param RawParameter: 视频转码自定义参数，当 Definition 填 0 时有效。
         # 该参数用于高度定制场景，建议您优先使用 Definition 指定转码参数。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RawParameter: :class:`Tencentcloud::Mps.v20190612.models.RawTranscodeParameter`
         # @param OverrideParameter: 视频转码自定义参数，当 Definition 不填 0 时有效。
         # 当填写了该结构中的部分转码参数时，将使用填写的参数覆盖转码模板中的参数。
@@ -24533,7 +24692,6 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OverrideParameter: :class:`Tencentcloud::Mps.v20190612.models.OverrideTranscodeParameter`
         # @param WatermarkSet: 水印列表，支持多张图片或文字水印，最大可支持 10 张。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WatermarkSet: Array
         # @param MosaicSet: 马赛克列表，最大可支持 10 张。
         # @type MosaicSet: Array

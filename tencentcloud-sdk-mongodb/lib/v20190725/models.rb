@@ -2637,7 +2637,7 @@ module TencentCloud
       class InquirePriceCreateDBInstancesRequest < TencentCloud::Common::AbstractModel
         # @param Zone: 实例所属区域及可用区信息。格式：ap-guangzhou-2。
         # @type Zone: String
-        # @param NodeNum: - 创建副本集实例，指每个副本集内主从节点数量。每个副本集所支持的的最大节点数与最小节点数，请通过接口 [DescribeSpecInfo](https://cloud.tencent.com/document/product/240/38567) 获取。
+        # @param NodeNum: - 创建副本集实例，指每个副本集内主从节点数量。每个副本集所支持的最大节点数与最小节点数，请通过接口 [DescribeSpecInfo](https://cloud.tencent.com/document/product/240/38567) 获取。
         # - 创建分片集群实例，指每个分片的主从节点数量。每个分片所支持的最大节点数与最小节点数，请通过接口 [DescribeSpecInfo](https://cloud.tencent.com/document/product/240/38567) 获取。
         # @type NodeNum: Integer
         # @param Memory: 实例内存大小。
@@ -3551,6 +3551,7 @@ module TencentCloud
         # @param InstanceId: 实例 ID。例如：cmgo-7pje****。
         # @type InstanceId: String
         # @param SecurityGroupIds: 目标安全组 ID。请通过接口[DescribeSecurityGroup](https://cloud.tencent.com/document/product/240/55675)查看具体的安全组 ID。
+        # **注意**：该入参会全量替换存量已有集合，非增量更新。修改需传入预期的全量集合。
         # @type SecurityGroupIds: Array
 
         attr_accessor :InstanceId, :SecurityGroupIds
@@ -3622,8 +3623,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :Memory, :Volume, :OplogSize, :NodeNum, :ReplicateSetNum, :InMaintenance, :MongosMemory, :AddNodeList, :RemoveNodeList
         extend Gem::Deprecate
-        deprecate :OplogSize, :none, 2025, 6
-        deprecate :OplogSize=, :none, 2025, 6
+        deprecate :OplogSize, :none, 2025, 7
+        deprecate :OplogSize=, :none, 2025, 7
 
         def initialize(instanceid=nil, memory=nil, volume=nil, oplogsize=nil, nodenum=nil, replicatesetnum=nil, inmaintenance=nil, mongosmemory=nil, addnodelist=nil, removenodelist=nil)
           @InstanceId = instanceid

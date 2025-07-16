@@ -406,17 +406,21 @@ module TencentCloud
         # 4：返回全文MD + 每一页的MD，
         # 默认值为0
         # @type ResultType: String
+        # @param IgnoreFailedPage: 是否忽略失败页，返回已成功的页数据。默认为true。
+        # @type IgnoreFailedPage: Boolean
 
-        attr_accessor :TableResultType, :ResultType
+        attr_accessor :TableResultType, :ResultType, :IgnoreFailedPage
 
-        def initialize(tableresulttype=nil, resulttype=nil)
+        def initialize(tableresulttype=nil, resulttype=nil, ignorefailedpage=nil)
           @TableResultType = tableresulttype
           @ResultType = resulttype
+          @IgnoreFailedPage = ignorefailedpage
         end
 
         def deserialize(params)
           @TableResultType = params['TableResultType']
           @ResultType = params['ResultType']
+          @IgnoreFailedPage = params['IgnoreFailedPage']
         end
       end
 
@@ -433,8 +437,8 @@ module TencentCloud
         #  - `TXT`、`MD` 最大10M
         #  - 其他 最大20M
         # @type FileType: String
-        # @param FileUrl: 文件的 URL 地址。
-        # 文件存储于腾讯云的 URL 可保障更高的下载速度和稳定性，建议文件存储于腾讯云。 非腾讯云存储的 URL 速度和稳定性可能受一定影响。
+        # @param FileUrl: 说明：文件的 URL 地址。
+        # 备注：文件存储于腾讯云的 URL 可保障更高的下载速度和稳定性，建议文件存储于腾讯云。 非腾讯云存储的 URL 速度和稳定性可能受一定影响。
         # 参考：[腾讯云COS文档](https://cloud.tencent.com/document/product/436/7749)
         # @type FileUrl: String
         # @param FileBase64: 文件的 Base64 值。
@@ -443,13 +447,17 @@ module TencentCloud
         # 支持的图片像素：单边介于20-10000px之间。
         # 文件的 FileUrl、FileBase64 必须提供一个，如果都提供，只使用 FileUrl。
         # @type FileBase64: String
-        # @param FileStartPageNumber: 文档的起始页码。
-        # 当传入文件是PDF、PDF、PPT、PPTX、DOC类型时，用来指定识别的起始页码，识别的页码包含当前值。
+        # @param FileStartPageNumber: 说明：文档的起始页码。
+        # 备注：当传入文件是PDF、PDF、PPT、PPTX、DOC类型时，用来指定识别的起始页码，识别的页码包含当前值。
+        # 默认值：无
         # @type FileStartPageNumber: Integer
-        # @param FileEndPageNumber: 文档的结束页码。
-        # 当传入文件是PDF、PDF、PPT、PPTX、DOC类型时，用来指定识别的结束页码，识别的页码包含当前值。
+        # @param FileEndPageNumber: 说明：文档的结束页码。
+        # 备注：当传入文件是PDF、PDF、PPT、PPTX、DOC类型时，用来指定识别的结束页码，识别的页码包含当前值。
+        # 默认值：无
         # @type FileEndPageNumber: Integer
-        # @param Config: 创建文档解析任务配置信息。
+        # @param Config: 说明：创建文档解析任务配置信息。
+        # 备注：可设置结果的返回格式
+        # 默认值：无
         # @type Config: :class:`Tencentcloud::Lkeap.v20240522.models.CreateReconstructDocumentFlowConfig`
 
         attr_accessor :FileType, :FileUrl, :FileBase64, :FileStartPageNumber, :FileEndPageNumber, :Config
@@ -516,19 +524,22 @@ module TencentCloud
         # @type EnableMllm: Boolean
         # @param MaxChunkSize: 最大分片长度
         # @type MaxChunkSize: Integer
+        # @param IgnoreFailedPage: 是否忽略返回失败页码
+        # @type IgnoreFailedPage: Boolean
 
-        attr_accessor :TableResultType, :ResultType, :EnableMllm, :MaxChunkSize
+        attr_accessor :TableResultType, :ResultType, :EnableMllm, :MaxChunkSize, :IgnoreFailedPage
         extend Gem::Deprecate
         deprecate :TableResultType, :none, 2025, 7
         deprecate :TableResultType=, :none, 2025, 7
         deprecate :ResultType, :none, 2025, 7
         deprecate :ResultType=, :none, 2025, 7
 
-        def initialize(tableresulttype=nil, resulttype=nil, enablemllm=nil, maxchunksize=nil)
+        def initialize(tableresulttype=nil, resulttype=nil, enablemllm=nil, maxchunksize=nil, ignorefailedpage=nil)
           @TableResultType = tableresulttype
           @ResultType = resulttype
           @EnableMllm = enablemllm
           @MaxChunkSize = maxchunksize
+          @IgnoreFailedPage = ignorefailedpage
         end
 
         def deserialize(params)
@@ -536,6 +547,7 @@ module TencentCloud
           @ResultType = params['ResultType']
           @EnableMllm = params['EnableMllm']
           @MaxChunkSize = params['MaxChunkSize']
+          @IgnoreFailedPage = params['IgnoreFailedPage']
         end
       end
 
@@ -923,18 +935,24 @@ module TencentCloud
         # @type SplitTokens: Integer
         # @param MllmTokens: mllm消耗的token数
         # @type MllmTokens: Integer
+        # @param SuccessPageNum: 解析成功页数
+        # @type SuccessPageNum: Integer
+        # @param FailPageNum: 解析失败页数
+        # @type FailPageNum: Integer
 
-        attr_accessor :PageNumber, :TotalToken, :TotalTokens, :SplitTokens, :MllmTokens
+        attr_accessor :PageNumber, :TotalToken, :TotalTokens, :SplitTokens, :MllmTokens, :SuccessPageNum, :FailPageNum
         extend Gem::Deprecate
         deprecate :TotalToken, :none, 2025, 7
         deprecate :TotalToken=, :none, 2025, 7
 
-        def initialize(pagenumber=nil, totaltoken=nil, totaltokens=nil, splittokens=nil, mllmtokens=nil)
+        def initialize(pagenumber=nil, totaltoken=nil, totaltokens=nil, splittokens=nil, mllmtokens=nil, successpagenum=nil, failpagenum=nil)
           @PageNumber = pagenumber
           @TotalToken = totaltoken
           @TotalTokens = totaltokens
           @SplitTokens = splittokens
           @MllmTokens = mllmtokens
+          @SuccessPageNum = successpagenum
+          @FailPageNum = failpagenum
         end
 
         def deserialize(params)
@@ -943,6 +961,8 @@ module TencentCloud
           @TotalTokens = params['TotalTokens']
           @SplitTokens = params['SplitTokens']
           @MllmTokens = params['MllmTokens']
+          @SuccessPageNum = params['SuccessPageNum']
+          @FailPageNum = params['FailPageNum']
         end
       end
 
@@ -1055,7 +1075,8 @@ module TencentCloud
 
       # GetReconstructDocumentResult请求参数结构体
       class GetReconstructDocumentResultRequest < TencentCloud::Common::AbstractModel
-        # @param TaskId: 解析任务ID
+        # @param TaskId: 说明：解析任务ID
+        # 备注：仅支持单个任务ID
         # @type TaskId: String
 
         attr_accessor :TaskId
@@ -1082,15 +1103,18 @@ module TencentCloud
         # @type DocumentRecognizeResultUrl: String
         # @param FailedPages: 文档解析失败的页码
         # @type FailedPages: Array
+        # @param Usage: 文档拆分任务的用量
+        # @type Usage: :class:`Tencentcloud::Lkeap.v20240522.models.DocumentUsage`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Status, :DocumentRecognizeResultUrl, :FailedPages, :RequestId
+        attr_accessor :Status, :DocumentRecognizeResultUrl, :FailedPages, :Usage, :RequestId
 
-        def initialize(status=nil, documentrecognizeresulturl=nil, failedpages=nil, requestid=nil)
+        def initialize(status=nil, documentrecognizeresulturl=nil, failedpages=nil, usage=nil, requestid=nil)
           @Status = status
           @DocumentRecognizeResultUrl = documentrecognizeresulturl
           @FailedPages = failedpages
+          @Usage = usage
           @RequestId = requestid
         end
 
@@ -1104,6 +1128,10 @@ module TencentCloud
               reconstructdocumentfailedpage_tmp.deserialize(i)
               @FailedPages << reconstructdocumentfailedpage_tmp
             end
+          end
+          unless params['Usage'].nil?
+            @Usage = DocumentUsage.new
+            @Usage.deserialize(params['Usage'])
           end
           @RequestId = params['RequestId']
         end
@@ -1698,14 +1726,17 @@ module TencentCloud
         # @type ReturnPageFormat: Boolean
         # @param PageFormat: 自定义输出页码样式,{{p}}为页码占位符，开启ReturnPageFormat生效。未填默认样式:<page_num>page {{p}}</page_num>
         # @type PageFormat: String
+        # @param IgnoreFailedPage: 是否忽略失败页，返回已成功的页数据
+        # @type IgnoreFailedPage: Boolean
 
-        attr_accessor :TableResultType, :MarkdownImageResponseType, :ReturnPageFormat, :PageFormat
+        attr_accessor :TableResultType, :MarkdownImageResponseType, :ReturnPageFormat, :PageFormat, :IgnoreFailedPage
 
-        def initialize(tableresulttype=nil, markdownimageresponsetype=nil, returnpageformat=nil, pageformat=nil)
+        def initialize(tableresulttype=nil, markdownimageresponsetype=nil, returnpageformat=nil, pageformat=nil, ignorefailedpage=nil)
           @TableResultType = tableresulttype
           @MarkdownImageResponseType = markdownimageresponsetype
           @ReturnPageFormat = returnpageformat
           @PageFormat = pageformat
+          @IgnoreFailedPage = ignorefailedpage
         end
 
         def deserialize(params)
@@ -1713,34 +1744,41 @@ module TencentCloud
           @MarkdownImageResponseType = params['MarkdownImageResponseType']
           @ReturnPageFormat = params['ReturnPageFormat']
           @PageFormat = params['PageFormat']
+          @IgnoreFailedPage = params['IgnoreFailedPage']
         end
       end
 
       # ReconstructDocumentSSE请求参数结构体
       class ReconstructDocumentSSERequest < TencentCloud::Common::AbstractModel
-        # @param FileType: 文件类型。
+        # @param FileType: 支持解析的文件类型。
         # **支持的文件类型**：PDF、DOC、DOCX、PPT、PPTX、MD、TXT、XLS、XLSX、CSV、PNG、JPG、JPEG、BMP、GIF、WEBP、HEIC、EPS、ICNS、IM、PCX、PPM、TIFF、XBM、HEIF、JP2
         # **支持的文件大小**：
         # - PDF、DOC、DOCX、PPT、PPTX 支持100M
         # - MD、TXT、XLS、XLSX、CSV 支持10M
         # - 其他支持20M
         # @type FileType: String
-        # @param FileUrl: 文件的 URL 地址。
-        # 文件存储于腾讯云的 URL 可保障更高的下载速度和稳定性，建议文件存储于腾讯云。 非腾讯云存储的 URL 速度和稳定性可能受一定影响。
+        # @param FileUrl: 文件的 URL 地址。文件存储于腾讯云的 URL 可保障更高的下载速度和稳定性，建议文件存储于腾讯云。 非腾讯云存储的 URL 速度和稳定性可能受一定影响。文件的 FileUrl、FileBase64 必须提供一个，如果都提供，只使用 FileUrl。
         # 参考：[腾讯云COS文档](https://cloud.tencent.com/document/product/436/7749)
+
+        # 默认值：无
         # @type FileUrl: String
-        # @param FileBase64: 文件的 Base64 值。
-        # 支持的文件大小：所下载文件经Base64编码后不超过 8M。文件下载时间不超过 3 秒。
-        # 支持的图片像素：单边介于20-10000px之间。
-        # 文件的 FileUrl、FileBase64 必须提供一个，如果都提供，只使用 FileUrl。
+        # @param FileBase64: 说明：文件的 Base64 值。
+        # 备注：支持的文件大小：所下载文件经Base64编码后不超过 8M。文件下载时间不超过 3 秒。
+        # 支持的图片像素：单边介于20-10000px之间。文件的 FileUrl、FileBase64 必须提供一个，如果都提供，只使用 FileUrl。
+
+        # 默认值：无
         # @type FileBase64: String
-        # @param FileStartPageNumber: 文档的起始页码。
-        # 当传入文件是PDF、PDF、PPT、PPTX、DOC类型时，用来指定识别的起始页码，识别的页码包含当前值。
+        # @param FileStartPageNumber: 说明：文档的起始页码。
+        # 备注：当传入文件是PDF、PDF、PPT、PPTX、DOC类型时，用来指定识别的起始页码，识别的页码包含当前值。
+        # 默认值：无
         # @type FileStartPageNumber: Integer
-        # @param FileEndPageNumber: 文档的结束页码。
-        # 当传入文件是PDF、PDF、PPT、PPTX、DOC类型时，用来指定识别的结束页码，识别的页码包含当前值。
+        # @param FileEndPageNumber: 说明：文档的结束页码。
+        # 备注：当传入文件是PDF、PDF、PPT、PPTX、DOC类型时，用来指定识别的结束页码，识别的页码包含当前值。
+        # 默认值：无
         # @type FileEndPageNumber: Integer
-        # @param Config: 文档解析配置信息
+        # @param Config: 说明：文档解析配置信息
+        # 备注：可设置返回markdown结果的格式
+        # 默认值：无
         # @type Config: :class:`Tencentcloud::Lkeap.v20240522.models.ReconstructDocumentSSEConfig`
 
         attr_accessor :FileType, :FileUrl, :FileBase64, :FileStartPageNumber, :FileEndPageNumber, :Config
@@ -1771,30 +1809,34 @@ module TencentCloud
       class ReconstructDocumentSSEResponse < TencentCloud::Common::AbstractModel
         # @param TaskId: 任务ID。本次请求的唯一标识
         # @type TaskId: String
-        # @param ResponseType: 响应类型。1：返回进度信息，2：返回解析结果
+        # @param ResponseType: 响应类型。1：返回进度信息， 2：返回解析结果
         # @type ResponseType: String
         # @param Progress: 进度。0~100
         # @type Progress: String
         # @param ProgressMessage: 进度信息。
         # @type ProgressMessage: String
-        # @param DocumentRecognizeResultUrl: 文档解析结果的临时下载地址。
-        # 文件类型为zip压缩包，下载链接有效期30分钟。
-        # 压缩包内包含*.md、*.json以及images文件夹。
+        # @param DocumentRecognizeResultUrl: 文档解析结果的临时下载地址。文件类型为zip压缩包，下载链接有效期30分钟。压缩包内包含*.md、*.json以及images文件夹。
         # @type DocumentRecognizeResultUrl: String
         # @param FailedPages: 文档解析失败的页码。
         # @type FailedPages: Array
+        # @param FailPageNum: 文档解析失败页数
+        # @type FailPageNum: Integer
+        # @param SuccessPageNum: 文档解析成功页数
+        # @type SuccessPageNum: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。本接口为流式响应接口，当请求成功时，RequestId 会被放在 HTTP 响应的 Header "X-TC-RequestId" 中。
         # @type RequestId: String
 
-        attr_accessor :TaskId, :ResponseType, :Progress, :ProgressMessage, :DocumentRecognizeResultUrl, :FailedPages, :RequestId
+        attr_accessor :TaskId, :ResponseType, :Progress, :ProgressMessage, :DocumentRecognizeResultUrl, :FailedPages, :FailPageNum, :SuccessPageNum, :RequestId
 
-        def initialize(taskid=nil, responsetype=nil, progress=nil, progressmessage=nil, documentrecognizeresulturl=nil, failedpages=nil, requestid=nil)
+        def initialize(taskid=nil, responsetype=nil, progress=nil, progressmessage=nil, documentrecognizeresulturl=nil, failedpages=nil, failpagenum=nil, successpagenum=nil, requestid=nil)
           @TaskId = taskid
           @ResponseType = responsetype
           @Progress = progress
           @ProgressMessage = progressmessage
           @DocumentRecognizeResultUrl = documentrecognizeresulturl
           @FailedPages = failedpages
+          @FailPageNum = failpagenum
+          @SuccessPageNum = successpagenum
           @RequestId = requestid
         end
 
@@ -1812,6 +1854,8 @@ module TencentCloud
               @FailedPages << reconstructdocumentfailedpage_tmp
             end
           end
+          @FailPageNum = params['FailPageNum']
+          @SuccessPageNum = params['SuccessPageNum']
           @RequestId = params['RequestId']
         end
       end

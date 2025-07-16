@@ -3740,6 +3740,159 @@ module TencentCloud
         end
       end
 
+      # CreateMultiPathGatewayLine请求参数结构体
+      class CreateMultiPathGatewayLineRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点 ID 。
+        # @type ZoneId: String
+        # @param GatewayId: 多通道安全网关 ID 。
+        # @type GatewayId: String
+        # @param LineType: 线路类型，取值有：
+        #  <li>direct ：直连线路，不支持修改和删除。</li> <li>proxy ：EdgeOne 四层代理线路，支持修改实例 ID 和规则 ID，不支持删除。</li> <li>custom ：自定义线路，支持修改、删除实例 ID 和规则 ID。</li>
+        # @type LineType: String
+        # @param LineAddress: 线路地址，格式为 ip:port。
+        # @type LineAddress: String
+        # @param ProxyId: 四层代理实例 ID，当线路类型 LineType 取值为 proxy（EdgeOne 四层代理）必传，可由接口 [DescribeL4Proxy](https://cloud.tencent.com/document/api/1552/103413) 获取。
+        # @type ProxyId: String
+        # @param RuleId: 转发规则 ID ，当线路类型 LineType 取值为 proxy（EdgeOne 四层代理）必传，可以从接口 [DescribeL4ProxyRules](https://cloud.tencent.com/document/api/1552/103412) 获取。
+        # @type RuleId: String
+
+        attr_accessor :ZoneId, :GatewayId, :LineType, :LineAddress, :ProxyId, :RuleId
+
+        def initialize(zoneid=nil, gatewayid=nil, linetype=nil, lineaddress=nil, proxyid=nil, ruleid=nil)
+          @ZoneId = zoneid
+          @GatewayId = gatewayid
+          @LineType = linetype
+          @LineAddress = lineaddress
+          @ProxyId = proxyid
+          @RuleId = ruleid
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @GatewayId = params['GatewayId']
+          @LineType = params['LineType']
+          @LineAddress = params['LineAddress']
+          @ProxyId = params['ProxyId']
+          @RuleId = params['RuleId']
+        end
+      end
+
+      # CreateMultiPathGatewayLine返回参数结构体
+      class CreateMultiPathGatewayLineResponse < TencentCloud::Common::AbstractModel
+        # @param LineId: 线路 ID ， 取值有:
+        # <li> line-1： EdgeOne 四层代理线路，支持修改实例和规则，不支持删除；</li>
+        # <li> line-2 及以上：EdgeOne 四层代理线路或者自定义线路，支持修改、删除实例和规则。</li>
+        # @type LineId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :LineId, :RequestId
+
+        def initialize(lineid=nil, requestid=nil)
+          @LineId = lineid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @LineId = params['LineId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateMultiPathGateway请求参数结构体
+      class CreateMultiPathGatewayRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点 ID。
+        # @type ZoneId: String
+        # @param GatewayType: 网关类型，取值有：
+        # <li> cloud：云上网关，腾讯云创建和管理的网关；</li>
+        # <li> private：自有网关，用户部署的私有网关。</li>
+        # @type GatewayType: String
+        # @param GatewayName: 网关名称，16 个字符以内，可用字符（a-z,A-Z,0-9,-,_）。
+        # @type GatewayName: String
+        # @param GatewayPort: 网关端口，范围 1～65535（除去 8888 ）。
+        # @type GatewayPort: Integer
+        # @param RegionId: 网关地域，GatewayType 取值为 cloud（云上网关）必填。可以从接口 DescribeMultiPathGatewayRegions 获取 RegionId 列表。
+        # @type RegionId: String
+        # @param GatewayIP: 网关地址，GatewayType 取值为 private（自有网关）必填，使用该地址时，请确保该地址已录入腾讯云多通道安全加速网关系统。如未录入，需要在本接口调用前通过工单或者联系架构师把网关 IP 地址提前录入腾讯云多通道安全加速网关系统。
+        # @type GatewayIP: String
+
+        attr_accessor :ZoneId, :GatewayType, :GatewayName, :GatewayPort, :RegionId, :GatewayIP
+
+        def initialize(zoneid=nil, gatewaytype=nil, gatewayname=nil, gatewayport=nil, regionid=nil, gatewayip=nil)
+          @ZoneId = zoneid
+          @GatewayType = gatewaytype
+          @GatewayName = gatewayname
+          @GatewayPort = gatewayport
+          @RegionId = regionid
+          @GatewayIP = gatewayip
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @GatewayType = params['GatewayType']
+          @GatewayName = params['GatewayName']
+          @GatewayPort = params['GatewayPort']
+          @RegionId = params['RegionId']
+          @GatewayIP = params['GatewayIP']
+        end
+      end
+
+      # CreateMultiPathGateway返回参数结构体
+      class CreateMultiPathGatewayResponse < TencentCloud::Common::AbstractModel
+        # @param GatewayId: 网关 ID。
+        # @type GatewayId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :GatewayId, :RequestId
+
+        def initialize(gatewayid=nil, requestid=nil)
+          @GatewayId = gatewayid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @GatewayId = params['GatewayId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateMultiPathGatewaySecretKey请求参数结构体
+      class CreateMultiPathGatewaySecretKeyRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点 ID。
+        # @type ZoneId: String
+        # @param SecretKey: 多通道安全加速网关接入密钥，base64字符串，编码前字符串长度为 32-48 个字符，非必填，不填系统自动生成，可通过接口 DescribeMultiPathGatewaySecretKey 查询。
+        # @type SecretKey: String
+
+        attr_accessor :ZoneId, :SecretKey
+
+        def initialize(zoneid=nil, secretkey=nil)
+          @ZoneId = zoneid
+          @SecretKey = secretkey
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @SecretKey = params['SecretKey']
+        end
+      end
+
+      # CreateMultiPathGatewaySecretKey返回参数结构体
+      class CreateMultiPathGatewaySecretKeyResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateOriginGroup请求参数结构体
       class CreateOriginGroupRequest < TencentCloud::Common::AbstractModel
         # @param ZoneId: 站点 ID
@@ -5449,6 +5602,82 @@ module TencentCloud
 
       # DeleteLoadBalancer返回参数结构体
       class DeleteLoadBalancerResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteMultiPathGatewayLine请求参数结构体
+      class DeleteMultiPathGatewayLineRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点 ID。
+        # @type ZoneId: String
+        # @param GatewayId: 网关 ID。
+        # @type GatewayId: String
+        # @param LineId: 线路 ID。
+        # @type LineId: String
+
+        attr_accessor :ZoneId, :GatewayId, :LineId
+
+        def initialize(zoneid=nil, gatewayid=nil, lineid=nil)
+          @ZoneId = zoneid
+          @GatewayId = gatewayid
+          @LineId = lineid
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @GatewayId = params['GatewayId']
+          @LineId = params['LineId']
+        end
+      end
+
+      # DeleteMultiPathGatewayLine返回参数结构体
+      class DeleteMultiPathGatewayLineResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteMultiPathGateway请求参数结构体
+      class DeleteMultiPathGatewayRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点 ID。
+        # @type ZoneId: String
+        # @param GatewayId: 网关 ID。
+        # @type GatewayId: String
+
+        attr_accessor :ZoneId, :GatewayId
+
+        def initialize(zoneid=nil, gatewayid=nil)
+          @ZoneId = zoneid
+          @GatewayId = gatewayid
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @GatewayId = params['GatewayId']
+        end
+      end
+
+      # DeleteMultiPathGateway返回参数结构体
+      class DeleteMultiPathGatewayResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -7743,6 +7972,243 @@ module TencentCloud
               @LoadBalancerList << loadbalancer_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeMultiPathGatewayLine请求参数结构体
+      class DescribeMultiPathGatewayLineRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点 ID。
+        # @type ZoneId: String
+        # @param GatewayId: 网关 ID。
+        # @type GatewayId: String
+        # @param LineId: 线路 ID。
+        # @type LineId: String
+
+        attr_accessor :ZoneId, :GatewayId, :LineId
+
+        def initialize(zoneid=nil, gatewayid=nil, lineid=nil)
+          @ZoneId = zoneid
+          @GatewayId = gatewayid
+          @LineId = lineid
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @GatewayId = params['GatewayId']
+          @LineId = params['LineId']
+        end
+      end
+
+      # DescribeMultiPathGatewayLine返回参数结构体
+      class DescribeMultiPathGatewayLineResponse < TencentCloud::Common::AbstractModel
+        # @param Line: 线路信息。
+        # @type Line: :class:`Tencentcloud::Teo.v20220901.models.MultiPathGatewayLine`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Line, :RequestId
+
+        def initialize(line=nil, requestid=nil)
+          @Line = line
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Line'].nil?
+            @Line = MultiPathGatewayLine.new
+            @Line.deserialize(params['Line'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeMultiPathGatewayRegions请求参数结构体
+      class DescribeMultiPathGatewayRegionsRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点 ID。
+        # @type ZoneId: String
+
+        attr_accessor :ZoneId
+
+        def initialize(zoneid=nil)
+          @ZoneId = zoneid
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+        end
+      end
+
+      # DescribeMultiPathGatewayRegions返回参数结构体
+      class DescribeMultiPathGatewayRegionsResponse < TencentCloud::Common::AbstractModel
+        # @param GatewayRegions: 网关可用地域列表。
+        # @type GatewayRegions: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :GatewayRegions, :RequestId
+
+        def initialize(gatewayregions=nil, requestid=nil)
+          @GatewayRegions = gatewayregions
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['GatewayRegions'].nil?
+            @GatewayRegions = []
+            params['GatewayRegions'].each do |i|
+              gatewayregion_tmp = GatewayRegion.new
+              gatewayregion_tmp.deserialize(i)
+              @GatewayRegions << gatewayregion_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeMultiPathGateway请求参数结构体
+      class DescribeMultiPathGatewayRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点 ID。
+        # @type ZoneId: String
+        # @param GatewayId: 网关 ID。
+        # @type GatewayId: String
+
+        attr_accessor :ZoneId, :GatewayId
+
+        def initialize(zoneid=nil, gatewayid=nil)
+          @ZoneId = zoneid
+          @GatewayId = gatewayid
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @GatewayId = params['GatewayId']
+        end
+      end
+
+      # DescribeMultiPathGateway返回参数结构体
+      class DescribeMultiPathGatewayResponse < TencentCloud::Common::AbstractModel
+        # @param GatewayDetail: 网关详情。
+        # @type GatewayDetail: :class:`Tencentcloud::Teo.v20220901.models.MultiPathGateway`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :GatewayDetail, :RequestId
+
+        def initialize(gatewaydetail=nil, requestid=nil)
+          @GatewayDetail = gatewaydetail
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['GatewayDetail'].nil?
+            @GatewayDetail = MultiPathGateway.new
+            @GatewayDetail.deserialize(params['GatewayDetail'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeMultiPathGatewaySecretKey请求参数结构体
+      class DescribeMultiPathGatewaySecretKeyRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点 ID。
+        # @type ZoneId: String
+
+        attr_accessor :ZoneId
+
+        def initialize(zoneid=nil)
+          @ZoneId = zoneid
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+        end
+      end
+
+      # DescribeMultiPathGatewaySecretKey返回参数结构体
+      class DescribeMultiPathGatewaySecretKeyResponse < TencentCloud::Common::AbstractModel
+        # @param SecretKey: 接入密钥。
+        # @type SecretKey: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :SecretKey, :RequestId
+
+        def initialize(secretkey=nil, requestid=nil)
+          @SecretKey = secretkey
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @SecretKey = params['SecretKey']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeMultiPathGateways请求参数结构体
+      class DescribeMultiPathGatewaysRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点 ID。
+        # @type ZoneId: String
+        # @param Offset: 分页查询偏移量。默认值：0。
+        # @type Offset: Integer
+        # @param Limit: 分页查询限制数目。默认值：20，最大值：1000。
+        # @type Limit: Integer
+        # @param Filters: 网关列表的过滤字段，该参数不填写时，返回当前 appid 下所有网关信息，详细的过滤条件如下：
+        # <li> gateway-type：按照网关类型进行过滤，支持取值 cloud 和 private，分别代表过滤云上网关和自由网关；</li>
+        # <li> keyword：按照网关名的关键字进行过滤。</li>
+        # @type Filters: Array
+
+        attr_accessor :ZoneId, :Offset, :Limit, :Filters
+
+        def initialize(zoneid=nil, offset=nil, limit=nil, filters=nil)
+          @ZoneId = zoneid
+          @Offset = offset
+          @Limit = limit
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeMultiPathGateways返回参数结构体
+      class DescribeMultiPathGatewaysResponse < TencentCloud::Common::AbstractModel
+        # @param Gateways: 网关详情。
+        # @type Gateways: Array
+        # @param TotalCount: 总条数。
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Gateways, :TotalCount, :RequestId
+
+        def initialize(gateways=nil, totalcount=nil, requestid=nil)
+          @Gateways = gateways
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Gateways'].nil?
+            @Gateways = []
+            params['Gateways'].each do |i|
+              multipathgateway_tmp = MultiPathGateway.new
+              multipathgateway_tmp.deserialize(i)
+              @Gateways << multipathgateway_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
       end
@@ -10996,6 +11462,30 @@ module TencentCloud
         end
       end
 
+      # 多通道安全网关可用地域
+      class GatewayRegion < TencentCloud::Common::AbstractModel
+        # @param RegionId: 地域 ID 。
+        # @type RegionId: String
+        # @param CNName: 中文地域名称。
+        # @type CNName: String
+        # @param ENName: 英文地域名称。
+        # @type ENName: String
+
+        attr_accessor :RegionId, :CNName, :ENName
+
+        def initialize(regionid=nil, cnname=nil, enname=nil)
+          @RegionId = regionid
+          @CNName = cnname
+          @ENName = enname
+        end
+
+        def deserialize(params)
+          @RegionId = params['RegionId']
+          @CNName = params['CNName']
+          @ENName = params['ENName']
+        end
+      end
+
       # Grpc配置项
       class Grpc < TencentCloud::Common::AbstractModel
         # @param Switch: 是否开启 Grpc 配置，取值有：
@@ -13884,6 +14374,150 @@ module TencentCloud
         end
       end
 
+      # ModifyMultiPathGatewayLine请求参数结构体
+      class ModifyMultiPathGatewayLineRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点 ID。
+        # @type ZoneId: String
+        # @param GatewayId: 多通道安全加速网关 ID 。
+        # @type GatewayId: String
+        # @param LineId: 线路 ID ， 取值有:
+        # <li> line-1： EdgeOne 四层代理线路，支持修改实例和规则，不支持删除；</li>
+        # <li> line-2 及以上：EdgeOne 四层代理线路或者自定义线路，支持修改、删除实例和规则。</li>
+        # @type LineId: String
+        # @param LineType: 线路类型，取值有：
+        # <li>proxy ：EdgeOne 四层代理线路，支持修改实例和规则，不支持删除；</li>
+        # <li>custom ：自定义线路，支持编辑、删除实例和规则。</li>
+        # @type LineType: String
+        # @param LineAddress: 线路地址，格式为 host:port，直连线路（ LineType 取值为 direct ）不允许修改，其余类型支持修改。
+        # @type LineAddress: String
+        # @param ProxyId: 四层代理实例 ID  ，当线路类型 LineType  取值为 proxy（EdgeOne 四层代理）可传入，进行修改。
+        # @type ProxyId: String
+        # @param RuleId: 转发规则 ID ，当线路类型 LineType 取值为 proxy（EdgeOne 四层代理）可传入，进行修改。
+        # @type RuleId: String
+
+        attr_accessor :ZoneId, :GatewayId, :LineId, :LineType, :LineAddress, :ProxyId, :RuleId
+
+        def initialize(zoneid=nil, gatewayid=nil, lineid=nil, linetype=nil, lineaddress=nil, proxyid=nil, ruleid=nil)
+          @ZoneId = zoneid
+          @GatewayId = gatewayid
+          @LineId = lineid
+          @LineType = linetype
+          @LineAddress = lineaddress
+          @ProxyId = proxyid
+          @RuleId = ruleid
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @GatewayId = params['GatewayId']
+          @LineId = params['LineId']
+          @LineType = params['LineType']
+          @LineAddress = params['LineAddress']
+          @ProxyId = params['ProxyId']
+          @RuleId = params['RuleId']
+        end
+      end
+
+      # ModifyMultiPathGatewayLine返回参数结构体
+      class ModifyMultiPathGatewayLineResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyMultiPathGateway请求参数结构体
+      class ModifyMultiPathGatewayRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点 ID。
+        # @type ZoneId: String
+        # @param GatewayId: 网关 ID。
+        # @type GatewayId: String
+        # @param GatewayName: 网关名称，16 个字符以内，可用字符（a-z,A-Z,0-9,-,_）。
+        # @type GatewayName: String
+        # @param GatewayIP: 网关地址，GatewayType 取值为 private（自有网关）可填入进行修改，使用该地址时，请确保该地址已录入腾讯云多通道安全加速网关系统。如未录入，需要在本接口调用前通过工单或者联系架构师把网关 IP 地址提前录入腾讯云多通道安全加速网关系统。
+        # @type GatewayIP: String
+        # @param GatewayPort: 网关端口，范围 1～65535（除去 8888 ），只支持修改 GatewayType 取值为 private 的自有网关。
+        # @type GatewayPort: Integer
+
+        attr_accessor :ZoneId, :GatewayId, :GatewayName, :GatewayIP, :GatewayPort
+
+        def initialize(zoneid=nil, gatewayid=nil, gatewayname=nil, gatewayip=nil, gatewayport=nil)
+          @ZoneId = zoneid
+          @GatewayId = gatewayid
+          @GatewayName = gatewayname
+          @GatewayIP = gatewayip
+          @GatewayPort = gatewayport
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @GatewayId = params['GatewayId']
+          @GatewayName = params['GatewayName']
+          @GatewayIP = params['GatewayIP']
+          @GatewayPort = params['GatewayPort']
+        end
+      end
+
+      # ModifyMultiPathGateway返回参数结构体
+      class ModifyMultiPathGatewayResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyMultiPathGatewaySecretKey请求参数结构体
+      class ModifyMultiPathGatewaySecretKeyRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点 ID。
+        # @type ZoneId: String
+        # @param SecretKey: 多通道安全加速网关接入密钥，base64 字符串，编码前字符串长度为 32-48 个字符。
+        # @type SecretKey: String
+
+        attr_accessor :ZoneId, :SecretKey
+
+        def initialize(zoneid=nil, secretkey=nil)
+          @ZoneId = zoneid
+          @SecretKey = secretkey
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @SecretKey = params['SecretKey']
+        end
+      end
+
+      # ModifyMultiPathGatewaySecretKey返回参数结构体
+      class ModifyMultiPathGatewaySecretKeyResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyOriginACL请求参数结构体
       class ModifyOriginACLRequest < TencentCloud::Common::AbstractModel
         # @param ZoneId: 站点 ID。
@@ -14746,6 +15380,101 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 多通道安全网关详情
+      class MultiPathGateway < TencentCloud::Common::AbstractModel
+        # @param GatewayId: 网关 ID。
+        # @type GatewayId: String
+        # @param GatewayName: 网关名。
+        # @type GatewayName: String
+        # @param GatewayType: 网关类型，取值有：
+        # <li> cloud：云上网关，腾讯云创建和管理的网关。</li>
+        # <li> private：自有网关，用户部署的私有网关。</li>
+        # @type GatewayType: String
+        # @param GatewayPort: 网关端口，范围 1～65535（除去 8888 ）。
+        # @type GatewayPort: Integer
+        # @param Status: 网关状态，取值有：
+        # <li> creating : 创建中；</li>
+        # <li> online : 在线；</li>
+        # <li> offline : 离线；</li>
+        # <li> disable : 已停用。</li>
+        # @type Status: String
+        # @param GatewayIP: 网关 IP， 格式为 IPv4。
+        # @type GatewayIP: String
+        # @param RegionId: 网关地域 Id，可以从接口 DescribeMultiPathGatewayRegions 获取 RegionId 列表。
+        # @type RegionId: String
+        # @param Lines: 线路信息，当查询网关信息详情 DescribeMultiPathGateway 的时候会返回，当查询网关列表 DescribeMultiPathGateways 的时候不会返回。
+        # @type Lines: Array
+
+        attr_accessor :GatewayId, :GatewayName, :GatewayType, :GatewayPort, :Status, :GatewayIP, :RegionId, :Lines
+
+        def initialize(gatewayid=nil, gatewayname=nil, gatewaytype=nil, gatewayport=nil, status=nil, gatewayip=nil, regionid=nil, lines=nil)
+          @GatewayId = gatewayid
+          @GatewayName = gatewayname
+          @GatewayType = gatewaytype
+          @GatewayPort = gatewayport
+          @Status = status
+          @GatewayIP = gatewayip
+          @RegionId = regionid
+          @Lines = lines
+        end
+
+        def deserialize(params)
+          @GatewayId = params['GatewayId']
+          @GatewayName = params['GatewayName']
+          @GatewayType = params['GatewayType']
+          @GatewayPort = params['GatewayPort']
+          @Status = params['Status']
+          @GatewayIP = params['GatewayIP']
+          @RegionId = params['RegionId']
+          unless params['Lines'].nil?
+            @Lines = []
+            params['Lines'].each do |i|
+              multipathgatewayline_tmp = MultiPathGatewayLine.new
+              multipathgatewayline_tmp.deserialize(i)
+              @Lines << multipathgatewayline_tmp
+            end
+          end
+        end
+      end
+
+      # 多通道安全网关线路信息
+      class MultiPathGatewayLine < TencentCloud::Common::AbstractModel
+        # @param LineId: 线路 ID ， 其中 line-0 和 line-1 为系统内置线路 ID，取值有:
+        # <li> line-0：直连线路，不支持添加、编辑和删除；</li>
+        # <li> line-1： EdgeOne 四层代理线路，支持修改实例和规则，不支持删除；</li>
+        # <li> line-2 及以上：EdgeOne 四层代理线路或者自定义线路，支持修改、删除实例和规则。</li>
+        # @type LineId: String
+        # @param LineType: 线路类型，取值有：
+        # <li>direct ：直连线路，不支持编辑、不支持删除；</li>
+        # <li>proxy ：EdgeOne 四层代理线路，支持编辑修改实例和规则，不支持删除；</li>
+        # <li>custom ：自定义线路，支持编辑、支持删除。</li>
+        # @type LineType: String
+        # @param LineAddress: 线路地址，格式为 host:port 。
+        # @type LineAddress: String
+        # @param ProxyId: 四层代理实例 ID  ，当线路类型 LineType 取值为 proxy（EdgeOne 四层代理）返回。
+        # @type ProxyId: String
+        # @param RuleId: 转发规则 ID ，当线路类型 LineType 取值为 proxy（EdgeOne 四层代理）返回。
+        # @type RuleId: String
+
+        attr_accessor :LineId, :LineType, :LineAddress, :ProxyId, :RuleId
+
+        def initialize(lineid=nil, linetype=nil, lineaddress=nil, proxyid=nil, ruleid=nil)
+          @LineId = lineid
+          @LineType = linetype
+          @LineAddress = lineaddress
+          @ProxyId = proxyid
+          @RuleId = ruleid
+        end
+
+        def deserialize(params)
+          @LineId = params['LineId']
+          @LineType = params['LineType']
+          @LineAddress = params['LineAddress']
+          @ProxyId = params['ProxyId']
+          @RuleId = params['RuleId']
         end
       end
 
@@ -16533,6 +17262,42 @@ module TencentCloud
 
         def deserialize(params)
           @URL = params['URL']
+        end
+      end
+
+      # RefreshMultiPathGatewaySecretKey请求参数结构体
+      class RefreshMultiPathGatewaySecretKeyRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点 ID。
+        # @type ZoneId: String
+
+        attr_accessor :ZoneId
+
+        def initialize(zoneid=nil)
+          @ZoneId = zoneid
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+        end
+      end
+
+      # RefreshMultiPathGatewaySecretKey返回参数结构体
+      class RefreshMultiPathGatewaySecretKeyResponse < TencentCloud::Common::AbstractModel
+        # @param SecretKey: 多通道安全加速网关接入密钥。
+        # @type SecretKey: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :SecretKey, :RequestId
+
+        def initialize(secretkey=nil, requestid=nil)
+          @SecretKey = secretkey
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @SecretKey = params['SecretKey']
+          @RequestId = params['RequestId']
         end
       end
 

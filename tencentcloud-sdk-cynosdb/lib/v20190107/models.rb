@@ -165,19 +165,23 @@ module TencentCloud
         # @type SlaveZone: String
         # @param BinlogSyncWay: binlog同步方式。默认值：async。可选值：sync、semisync、async
         # @type BinlogSyncWay: String
+        # @param SemiSyncTimeout: 半同步超时时间，单位ms。为保证业务稳定性，半同步复制存在退化逻辑，当主可用区集群在等待备可用区集群确认事务时若超过该超时时间，复制方式将降为异步复制。最低设置为1000ms，最高支持4294967295ms，默认10000ms。
+        # @type SemiSyncTimeout: Integer
 
-        attr_accessor :ClusterId, :SlaveZone, :BinlogSyncWay
+        attr_accessor :ClusterId, :SlaveZone, :BinlogSyncWay, :SemiSyncTimeout
 
-        def initialize(clusterid=nil, slavezone=nil, binlogsyncway=nil)
+        def initialize(clusterid=nil, slavezone=nil, binlogsyncway=nil, semisynctimeout=nil)
           @ClusterId = clusterid
           @SlaveZone = slavezone
           @BinlogSyncWay = binlogsyncway
+          @SemiSyncTimeout = semisynctimeout
         end
 
         def deserialize(params)
           @ClusterId = params['ClusterId']
           @SlaveZone = params['SlaveZone']
           @BinlogSyncWay = params['BinlogSyncWay']
+          @SemiSyncTimeout = params['SemiSyncTimeout']
         end
       end
 
@@ -243,8 +247,8 @@ module TencentCloud
 
         attr_accessor :ClusterId, :Cpu, :Memory, :ReadOnlyCount, :DeviceType, :InstanceGrpId, :VpcId, :SubnetId, :Port, :InstanceName, :AutoVoucher, :DbType, :OrderSource, :DealMode, :ParamTemplateId, :InstanceParams, :SecurityGroupIds, :UpgradeProxy
         extend Gem::Deprecate
-        deprecate :InstanceGrpId, :none, 2025, 6
-        deprecate :InstanceGrpId=, :none, 2025, 6
+        deprecate :InstanceGrpId, :none, 2025, 7
+        deprecate :InstanceGrpId=, :none, 2025, 7
 
         def initialize(clusterid=nil, cpu=nil, memory=nil, readonlycount=nil, devicetype=nil, instancegrpid=nil, vpcid=nil, subnetid=nil, port=nil, instancename=nil, autovoucher=nil, dbtype=nil, ordersource=nil, dealmode=nil, paramtemplateid=nil, instanceparams=nil, securitygroupids=nil, upgradeproxy=nil)
           @ClusterId = clusterid
@@ -1113,10 +1117,10 @@ module TencentCloud
 
         attr_accessor :ID, :AppId, :ClusterId, :Region, :CreateTime, :DelayTime, :ErrMsg, :FlowId, :Input, :InstanceGrpId, :InstanceGroupId, :InstanceId, :ObjectId, :ObjectType, :Operator, :Output, :Status, :TaskType, :TriggerTaskId, :UpdateTime, :StartTime, :EndTime, :ClusterName, :InstanceName, :Process, :ModifyParamsData, :CreateClustersData, :RollbackData, :ModifyInstanceData, :ManualBackupData, :ModifyDbVersionData, :ClusterSlaveData, :SwitchClusterLogBin, :ModifyInstanceParamsData, :TaskMaintainInfo, :InstanceCLSDeliveryInfos, :TaskProgressInfo, :GdnTaskInfo
         extend Gem::Deprecate
-        deprecate :InstanceGrpId, :none, 2025, 6
-        deprecate :InstanceGrpId=, :none, 2025, 6
-        deprecate :ModifyParamsData, :none, 2025, 6
-        deprecate :ModifyParamsData=, :none, 2025, 6
+        deprecate :InstanceGrpId, :none, 2025, 7
+        deprecate :InstanceGrpId=, :none, 2025, 7
+        deprecate :ModifyParamsData, :none, 2025, 7
+        deprecate :ModifyParamsData=, :none, 2025, 7
 
         def initialize(id=nil, appid=nil, clusterid=nil, region=nil, createtime=nil, delaytime=nil, errmsg=nil, flowid=nil, input=nil, instancegrpid=nil, instancegroupid=nil, instanceid=nil, objectid=nil, objecttype=nil, operator=nil, output=nil, status=nil, tasktype=nil, triggertaskid=nil, updatetime=nil, starttime=nil, endtime=nil, clustername=nil, instancename=nil, process=nil, modifyparamsdata=nil, createclustersdata=nil, rollbackdata=nil, modifyinstancedata=nil, manualbackupdata=nil, modifydbversiondata=nil, clusterslavedata=nil, switchclusterlogbin=nil, modifyinstanceparamsdata=nil, taskmaintaininfo=nil, instanceclsdeliveryinfos=nil, taskprogressinfo=nil, gdntaskinfo=nil)
           @ID = id
@@ -1574,8 +1578,8 @@ module TencentCloud
 
         attr_accessor :InstanceGrpId, :InstanceGroupId, :InstanceId
         extend Gem::Deprecate
-        deprecate :InstanceGrpId, :none, 2025, 6
-        deprecate :InstanceGrpId=, :none, 2025, 6
+        deprecate :InstanceGrpId, :none, 2025, 7
+        deprecate :InstanceGrpId=, :none, 2025, 7
 
         def initialize(instancegrpid=nil, instancegroupid=nil, instanceid=nil)
           @InstanceGrpId = instancegrpid
@@ -1944,8 +1948,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :StartTime, :EndTime, :Order, :OrderBy, :Filter, :LogFilter, :ColumnFilter
         extend Gem::Deprecate
-        deprecate :Filter, :none, 2025, 6
-        deprecate :Filter=, :none, 2025, 6
+        deprecate :Filter, :none, 2025, 7
+        deprecate :Filter=, :none, 2025, 7
 
         def initialize(instanceid=nil, starttime=nil, endtime=nil, order=nil, orderby=nil, filter=nil, logfilter=nil, columnfilter=nil)
           @InstanceId = instanceid
@@ -4902,8 +4906,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :StartTime, :EndTime, :Order, :OrderBy, :Filter, :Limit, :Offset, :LogFilter
         extend Gem::Deprecate
-        deprecate :Filter, :none, 2025, 6
-        deprecate :Filter=, :none, 2025, 6
+        deprecate :Filter, :none, 2025, 7
+        deprecate :Filter=, :none, 2025, 7
 
         def initialize(instanceid=nil, starttime=nil, endtime=nil, order=nil, orderby=nil, filter=nil, limit=nil, offset=nil, logfilter=nil)
           @InstanceId = instanceid
@@ -5940,8 +5944,8 @@ module TencentCloud
 
         attr_accessor :TotalCount, :InstanceGrpInfoList, :InstanceGroupInfoList, :RequestId
         extend Gem::Deprecate
-        deprecate :InstanceGrpInfoList, :none, 2025, 6
-        deprecate :InstanceGrpInfoList=, :none, 2025, 6
+        deprecate :InstanceGrpInfoList, :none, 2025, 7
+        deprecate :InstanceGrpInfoList=, :none, 2025, 7
 
         def initialize(totalcount=nil, instancegrpinfolist=nil, instancegroupinfolist=nil, requestid=nil)
           @TotalCount = totalcount
@@ -6338,8 +6342,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :InstanceGroupId
         extend Gem::Deprecate
-        deprecate :InstanceId, :none, 2025, 6
-        deprecate :InstanceId=, :none, 2025, 6
+        deprecate :InstanceId, :none, 2025, 7
+        deprecate :InstanceId=, :none, 2025, 7
 
         def initialize(instanceid=nil, instancegroupid=nil)
           @InstanceId = instanceid
@@ -10364,14 +10368,17 @@ module TencentCloud
         # @type NewSlaveZone: String
         # @param BinlogSyncWay: binlog同步方式。默认值：async。可选值：sync、semisync、async
         # @type BinlogSyncWay: String
+        # @param SemiSyncTimeout: 半同步超时时间，单位ms。为保证业务稳定性，半同步复制存在退化逻辑，当主可用区集群在等待备可用区集群确认事务时若超过该超时时间，复制方式将降为异步复制。最低设置为1000ms，最高支持4294967295ms，默认10000ms。
+        # @type SemiSyncTimeout: Integer
 
-        attr_accessor :ClusterId, :OldSlaveZone, :NewSlaveZone, :BinlogSyncWay
+        attr_accessor :ClusterId, :OldSlaveZone, :NewSlaveZone, :BinlogSyncWay, :SemiSyncTimeout
 
-        def initialize(clusterid=nil, oldslavezone=nil, newslavezone=nil, binlogsyncway=nil)
+        def initialize(clusterid=nil, oldslavezone=nil, newslavezone=nil, binlogsyncway=nil, semisynctimeout=nil)
           @ClusterId = clusterid
           @OldSlaveZone = oldslavezone
           @NewSlaveZone = newslavezone
           @BinlogSyncWay = binlogsyncway
+          @SemiSyncTimeout = semisynctimeout
         end
 
         def deserialize(params)
@@ -10379,6 +10386,7 @@ module TencentCloud
           @OldSlaveZone = params['OldSlaveZone']
           @NewSlaveZone = params['NewSlaveZone']
           @BinlogSyncWay = params['BinlogSyncWay']
+          @SemiSyncTimeout = params['SemiSyncTimeout']
         end
       end
 
@@ -11244,8 +11252,8 @@ module TencentCloud
 
         attr_accessor :ClusterId, :InstanceGrpId, :InstanceGroupId, :Vip, :Vport, :DbType, :OldIpReserveHours
         extend Gem::Deprecate
-        deprecate :InstanceGrpId, :none, 2025, 6
-        deprecate :InstanceGrpId=, :none, 2025, 6
+        deprecate :InstanceGrpId, :none, 2025, 7
+        deprecate :InstanceGrpId=, :none, 2025, 7
 
         def initialize(clusterid=nil, instancegrpid=nil, instancegroupid=nil, vip=nil, vport=nil, dbtype=nil, oldipreservehours=nil)
           @ClusterId = clusterid
@@ -11545,8 +11553,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :LogExpireDay, :HighLogExpireDay, :AuditRuleFilters, :RuleTemplateIds, :AuditAll
         extend Gem::Deprecate
-        deprecate :AuditRuleFilters, :none, 2025, 6
-        deprecate :AuditRuleFilters=, :none, 2025, 6
+        deprecate :AuditRuleFilters, :none, 2025, 7
+        deprecate :AuditRuleFilters=, :none, 2025, 7
 
         def initialize(instanceid=nil, logexpireday=nil, highlogexpireday=nil, auditrulefilters=nil, ruletemplateids=nil, auditall=nil)
           @InstanceId = instanceid
@@ -11853,8 +11861,8 @@ module TencentCloud
 
         attr_accessor :InstanceGrpId, :InstanceId, :InstanceGroupId
         extend Gem::Deprecate
-        deprecate :InstanceGrpId, :none, 2025, 6
-        deprecate :InstanceGrpId=, :none, 2025, 6
+        deprecate :InstanceGrpId, :none, 2025, 7
+        deprecate :InstanceGrpId=, :none, 2025, 7
 
         def initialize(instancegrpid=nil, instanceid=nil, instancegroupid=nil)
           @InstanceGrpId = instancegrpid
@@ -14369,17 +14377,21 @@ module TencentCloud
         # @type Zone: String
         # @param BinlogSyncWay: binlog同步方式
         # @type BinlogSyncWay: String
+        # @param SemiSyncTimeout: 半同步超时时间，单位ms
+        # @type SemiSyncTimeout: Integer
 
-        attr_accessor :Zone, :BinlogSyncWay
+        attr_accessor :Zone, :BinlogSyncWay, :SemiSyncTimeout
 
-        def initialize(zone=nil, binlogsyncway=nil)
+        def initialize(zone=nil, binlogsyncway=nil, semisynctimeout=nil)
           @Zone = zone
           @BinlogSyncWay = binlogsyncway
+          @SemiSyncTimeout = semisynctimeout
         end
 
         def deserialize(params)
           @Zone = params['Zone']
           @BinlogSyncWay = params['BinlogSyncWay']
+          @SemiSyncTimeout = params['SemiSyncTimeout']
         end
       end
 

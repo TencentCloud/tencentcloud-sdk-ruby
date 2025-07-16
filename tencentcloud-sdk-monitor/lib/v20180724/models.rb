@@ -2503,7 +2503,7 @@ module TencentCloud
         # 3 -- 禁用
         # 不为空时会覆盖 `Rules`字段下所有告警规则状态
         # @type GroupState: Integer
-        # @param AMPReceivers: 云监控告警通知模板ID列表，形如Consumer-xxxx或notice-xxxx
+        # @param AMPReceivers: 腾讯云可观测平台告警通知模板ID列表，形如Consumer-xxxx或notice-xxxx
         # @type AMPReceivers: Array
         # @param CustomReceiver: 自定义告警通知模板
         # @type CustomReceiver: :class:`Tencentcloud::Monitor.v20180724.models.PrometheusAlertCustomReceiver`
@@ -11550,14 +11550,29 @@ module TencentCloud
         # @type EventID: String
         # @param RuleID: 规则ID
         # @type RuleID: Integer
+        # @param MetricName: 重构后的eventType
+        # @type MetricName: String
+        # @param Description: 事件描述信息
+        # @type Description: String
 
-        attr_accessor :AlarmNotifyPeriod, :AlarmNotifyType, :EventID, :RuleID
+        attr_accessor :AlarmNotifyPeriod, :AlarmNotifyType, :EventID, :RuleID, :MetricName, :Description
+        extend Gem::Deprecate
+        deprecate :AlarmNotifyPeriod, :none, 2025, 7
+        deprecate :AlarmNotifyPeriod=, :none, 2025, 7
+        deprecate :AlarmNotifyType, :none, 2025, 7
+        deprecate :AlarmNotifyType=, :none, 2025, 7
+        deprecate :EventID, :none, 2025, 7
+        deprecate :EventID=, :none, 2025, 7
+        deprecate :RuleID, :none, 2025, 7
+        deprecate :RuleID=, :none, 2025, 7
 
-        def initialize(alarmnotifyperiod=nil, alarmnotifytype=nil, eventid=nil, ruleid=nil)
+        def initialize(alarmnotifyperiod=nil, alarmnotifytype=nil, eventid=nil, ruleid=nil, metricname=nil, description=nil)
           @AlarmNotifyPeriod = alarmnotifyperiod
           @AlarmNotifyType = alarmnotifytype
           @EventID = eventid
           @RuleID = ruleid
+          @MetricName = metricname
+          @Description = description
         end
 
         def deserialize(params)
@@ -11565,6 +11580,8 @@ module TencentCloud
           @AlarmNotifyType = params['AlarmNotifyType']
           @EventID = params['EventID']
           @RuleID = params['RuleID']
+          @MetricName = params['MetricName']
+          @Description = params['Description']
         end
       end
 
@@ -12751,7 +12768,7 @@ module TencentCloud
         # @param GroupName: 告警分组名称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GroupName: String
-        # @param AMPReceivers: 云监控告警模板ID ，返回告警模板转换后的notice ID。
+        # @param AMPReceivers: 腾讯云可观测平台告警模板ID ，返回告警模板转换后的notice ID。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AMPReceivers: Array
         # @param CustomReceiver: 自定义告警模板
@@ -14290,10 +14307,10 @@ module TencentCloud
 
         attr_accessor :URL, :URLRelabelConfig, :BasicAuth, :MaxBlockSize, :Label, :Headers
         extend Gem::Deprecate
-        deprecate :MaxBlockSize, :none, 2025, 6
-        deprecate :MaxBlockSize=, :none, 2025, 6
-        deprecate :Label, :none, 2025, 6
-        deprecate :Label=, :none, 2025, 6
+        deprecate :MaxBlockSize, :none, 2025, 7
+        deprecate :MaxBlockSize=, :none, 2025, 7
+        deprecate :Label, :none, 2025, 7
+        deprecate :Label=, :none, 2025, 7
 
         def initialize(url=nil, urlrelabelconfig=nil, basicauth=nil, maxblocksize=nil, label=nil, headers=nil)
           @URL = url
@@ -15607,7 +15624,7 @@ module TencentCloud
         # 3 -- 禁用
         # 不为空时会覆盖 `Rules`字段下所有告警规则状态
         # @type GroupState: Integer
-        # @param AMPReceivers: 云监控告警通知模板ID列表，形如Consumer-xxxx或notice-xxxx
+        # @param AMPReceivers: 腾讯云可观测平台告警通知模板ID列表，形如Consumer-xxxx或notice-xxxx
         # @type AMPReceivers: Array
         # @param CustomReceiver: 自定义告警通知模板
         # @type CustomReceiver: :class:`Tencentcloud::Monitor.v20180724.models.PrometheusAlertCustomReceiver`

@@ -1093,9 +1093,9 @@ module TencentCloud
         # @param ShrinkPeriod: 自动缩容观测周期，单位是分钟，可选值5、10、15、30。后台会按照配置的周期进行缩容判断。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ShrinkPeriod: Integer
-        # @param ExpandSecondPeriod: 弹性扩容观测周期（秒级），可取值为：5，30，45，60，180，300，600，900，1800。
+        # @param ExpandSecondPeriod: 弹性扩容观测周期（秒级），可取值为：15，30，45，60，180，300，600，900，1800。
         # @type ExpandSecondPeriod: Integer
-        # @param ShrinkSecondPeriod: 缩容观测周期（秒级），可取值为：300。
+        # @param ShrinkSecondPeriod: 缩容观测周期（秒级），可取值为：300、600、900、1800。
         # @type ShrinkSecondPeriod: Integer
 
         attr_accessor :ExpandThreshold, :ShrinkThreshold, :ExpandPeriod, :ShrinkPeriod, :ExpandSecondPeriod, :ShrinkSecondPeriod

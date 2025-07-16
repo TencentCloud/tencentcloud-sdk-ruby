@@ -318,6 +318,33 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 发起视频评测任务，功能包括：
+
+        # 1. 对一个原视频和多个转码后的视频进行评分。
+        # 2. 计算不同转码方式的 BD-Rate。
+
+        # @param request: Request instance for CreateMediaEvaluation.
+        # @type request: :class:`Tencentcloud::mps::V20190612::CreateMediaEvaluationRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::CreateMediaEvaluationResponse`
+        def CreateMediaEvaluation(request)
+          body = send_request('CreateMediaEvaluation', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateMediaEvaluationResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 该接口用于创建素材样本，用于通过五官定位等技术，进行内容识别、内容不适宜等视频处理。
 
         # @param request: Request instance for CreatePersonSample.

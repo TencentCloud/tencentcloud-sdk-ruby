@@ -143,10 +143,12 @@ module TencentCloud
         # @type SystemNodeInstanceType: String
         # @param SystemNodeCount: 系统节点池实例数量。
         # @type SystemNodeCount: Integer
+        # @param AutoUpgradeClusterLevel: 纳管环境自动升配
+        # @type AutoUpgradeClusterLevel: Boolean
 
-        attr_accessor :Zone, :Type, :ServiceCidr, :ResourceQuota, :LimitRange, :SystemNodeInstanceType, :SystemNodeCount
+        attr_accessor :Zone, :Type, :ServiceCidr, :ResourceQuota, :LimitRange, :SystemNodeInstanceType, :SystemNodeCount, :AutoUpgradeClusterLevel
 
-        def initialize(zone=nil, type=nil, servicecidr=nil, resourcequota=nil, limitrange=nil, systemnodeinstancetype=nil, systemnodecount=nil)
+        def initialize(zone=nil, type=nil, servicecidr=nil, resourcequota=nil, limitrange=nil, systemnodeinstancetype=nil, systemnodecount=nil, autoupgradeclusterlevel=nil)
           @Zone = zone
           @Type = type
           @ServiceCidr = servicecidr
@@ -154,6 +156,7 @@ module TencentCloud
           @LimitRange = limitrange
           @SystemNodeInstanceType = systemnodeinstancetype
           @SystemNodeCount = systemnodecount
+          @AutoUpgradeClusterLevel = autoupgradeclusterlevel
         end
 
         def deserialize(params)
@@ -170,6 +173,7 @@ module TencentCloud
           end
           @SystemNodeInstanceType = params['SystemNodeInstanceType']
           @SystemNodeCount = params['SystemNodeCount']
+          @AutoUpgradeClusterLevel = params['AutoUpgradeClusterLevel']
         end
       end
 

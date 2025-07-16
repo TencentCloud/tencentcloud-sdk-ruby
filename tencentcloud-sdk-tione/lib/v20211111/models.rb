@@ -5629,10 +5629,12 @@ module TencentCloud
         # @type RollingUpdate: :class:`Tencentcloud::Tione.v20211111.models.RollingUpdate`
         # @param Sidecar: sidecar配置
         # @type Sidecar: :class:`Tencentcloud::Tione.v20211111.models.SidecarSpec`
+        # @param ResourceGroupId: 资源组 id
+        # @type ResourceGroupId: String
 
-        attr_accessor :ServiceId, :ModelInfo, :ImageInfo, :Env, :Resources, :InstanceType, :ScaleMode, :Replicas, :HorizontalPodAutoscaler, :LogEnable, :LogConfig, :ServiceAction, :ServiceDescription, :ScaleStrategy, :CronScaleJobs, :HybridBillingPrepaidReplicas, :ModelHotUpdateEnable, :ScheduledAction, :ServiceLimit, :VolumeMount, :ModelTurboEnable, :Command, :ServiceEIP, :CommandBase64, :ServicePort, :InstancePerReplicas, :TerminationGracePeriodSeconds, :PreStopCommand, :GrpcEnable, :HealthProbe, :RollingUpdate, :Sidecar
+        attr_accessor :ServiceId, :ModelInfo, :ImageInfo, :Env, :Resources, :InstanceType, :ScaleMode, :Replicas, :HorizontalPodAutoscaler, :LogEnable, :LogConfig, :ServiceAction, :ServiceDescription, :ScaleStrategy, :CronScaleJobs, :HybridBillingPrepaidReplicas, :ModelHotUpdateEnable, :ScheduledAction, :ServiceLimit, :VolumeMount, :ModelTurboEnable, :Command, :ServiceEIP, :CommandBase64, :ServicePort, :InstancePerReplicas, :TerminationGracePeriodSeconds, :PreStopCommand, :GrpcEnable, :HealthProbe, :RollingUpdate, :Sidecar, :ResourceGroupId
 
-        def initialize(serviceid=nil, modelinfo=nil, imageinfo=nil, env=nil, resources=nil, instancetype=nil, scalemode=nil, replicas=nil, horizontalpodautoscaler=nil, logenable=nil, logconfig=nil, serviceaction=nil, servicedescription=nil, scalestrategy=nil, cronscalejobs=nil, hybridbillingprepaidreplicas=nil, modelhotupdateenable=nil, scheduledaction=nil, servicelimit=nil, volumemount=nil, modelturboenable=nil, command=nil, serviceeip=nil, commandbase64=nil, serviceport=nil, instanceperreplicas=nil, terminationgraceperiodseconds=nil, prestopcommand=nil, grpcenable=nil, healthprobe=nil, rollingupdate=nil, sidecar=nil)
+        def initialize(serviceid=nil, modelinfo=nil, imageinfo=nil, env=nil, resources=nil, instancetype=nil, scalemode=nil, replicas=nil, horizontalpodautoscaler=nil, logenable=nil, logconfig=nil, serviceaction=nil, servicedescription=nil, scalestrategy=nil, cronscalejobs=nil, hybridbillingprepaidreplicas=nil, modelhotupdateenable=nil, scheduledaction=nil, servicelimit=nil, volumemount=nil, modelturboenable=nil, command=nil, serviceeip=nil, commandbase64=nil, serviceport=nil, instanceperreplicas=nil, terminationgraceperiodseconds=nil, prestopcommand=nil, grpcenable=nil, healthprobe=nil, rollingupdate=nil, sidecar=nil, resourcegroupid=nil)
           @ServiceId = serviceid
           @ModelInfo = modelinfo
           @ImageInfo = imageinfo
@@ -5665,6 +5667,7 @@ module TencentCloud
           @HealthProbe = healthprobe
           @RollingUpdate = rollingupdate
           @Sidecar = sidecar
+          @ResourceGroupId = resourcegroupid
         end
 
         def deserialize(params)
@@ -5750,6 +5753,7 @@ module TencentCloud
             @Sidecar = SidecarSpec.new
             @Sidecar.deserialize(params['Sidecar'])
           end
+          @ResourceGroupId = params['ResourceGroupId']
         end
       end
 

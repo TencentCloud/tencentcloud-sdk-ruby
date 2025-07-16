@@ -411,6 +411,86 @@ module TencentCloud
         end
       end
 
+      # 直播审核关键词信息
+      class AuditKeyword < TencentCloud::Common::AbstractModel
+        # @param Content: 关键词内容。
+        # @type Content: String
+        # @param Label: 关键词标签。
+        # 可取值：Normal: 正常 ，Polity: 政治，Porn: 色情，Sexy：性感，Ad: 广告，Illegal: 违法，Abuse: 谩骂，Terror: 暴恐，Spam: 灌水，Moan:呻吟。
+        # @type Label: String
+
+        attr_accessor :Content, :Label
+
+        def initialize(content=nil, label=nil)
+          @Content = content
+          @Label = label
+        end
+
+        def deserialize(params)
+          @Content = params['Content']
+          @Label = params['Label']
+        end
+      end
+
+      # 直播审核删除关键词结果详情。
+      class AuditKeywordDeleteDetail < TencentCloud::Common::AbstractModel
+        # @param KeywordId: 关键词 Id。
+        # @type KeywordId: String
+        # @param Content: 关键词内容。
+        # @type Content: String
+        # @param Deleted: 是否删除成功。
+        # @type Deleted: Boolean
+        # @param Error: 如果删除失败，错误信息。
+        # @type Error: String
+
+        attr_accessor :KeywordId, :Content, :Deleted, :Error
+
+        def initialize(keywordid=nil, content=nil, deleted=nil, error=nil)
+          @KeywordId = keywordid
+          @Content = content
+          @Deleted = deleted
+          @Error = error
+        end
+
+        def deserialize(params)
+          @KeywordId = params['KeywordId']
+          @Content = params['Content']
+          @Deleted = params['Deleted']
+          @Error = params['Error']
+        end
+      end
+
+      # 直播审核关键词查询信息。
+      class AuditKeywordInfo < TencentCloud::Common::AbstractModel
+        # @param KeywordId: 关键词 Id。
+        # @type KeywordId: String
+        # @param Content: 关键词内容。
+        # @type Content: String
+        # @param Label: 关键词标签。
+        # 可取值：Normal: 正常 ，Polity: 政治，Porn: 色情，Sexy：性感，Ad: 广告，Illegal: 违法，Abuse: 谩骂，Terror: 暴恐，Spam: 灌水，Moan:呻吟。
+        # @type Label: String
+        # @param CreateTime: 创建时间。UTC 格式，例如：2018-11-29T19:00:00Z。
+        # 注意：
+        # 1. 北京时间值为 UTC 时间值 + 8 小时，格式按照 ISO 8601 标准表示。
+        # @type CreateTime: String
+
+        attr_accessor :KeywordId, :Content, :Label, :CreateTime
+
+        def initialize(keywordid=nil, content=nil, label=nil, createtime=nil)
+          @KeywordId = keywordid
+          @Content = content
+          @Label = label
+          @CreateTime = createtime
+        end
+
+        def deserialize(params)
+          @KeywordId = params['KeywordId']
+          @Content = params['Content']
+          @Label = params['Label']
+          @CreateTime = params['CreateTime']
+        end
+      end
+
       # AuthenticateDomainOwner请求参数结构体
       class AuthenticateDomainOwnerRequest < TencentCloud::Common::AbstractModel
         # @param DomainName: 要验证的域名。
@@ -1997,27 +2077,58 @@ module TencentCloud
 
       # CreateAuditKeywords请求参数结构体
       class CreateAuditKeywordsRequest < TencentCloud::Common::AbstractModel
+        # @param Keywords: 关键词列表。
+        # @type Keywords: Array
+        # @param LibId: 直播审核词库Id。
+        # @type LibId: String
 
+        attr_accessor :Keywords, :LibId
 
-        def initialize()
+        def initialize(keywords=nil, libid=nil)
+          @Keywords = keywords
+          @LibId = libid
         end
 
         def deserialize(params)
+          unless params['Keywords'].nil?
+            @Keywords = []
+            params['Keywords'].each do |i|
+              auditkeyword_tmp = AuditKeyword.new
+              auditkeyword_tmp.deserialize(i)
+              @Keywords << auditkeyword_tmp
+            end
+          end
+          @LibId = params['LibId']
         end
       end
 
       # CreateAuditKeywords返回参数结构体
       class CreateAuditKeywordsResponse < TencentCloud::Common::AbstractModel
+        # @param KeywordIds: 添加成功的关键词 Id 列表。
+        # @type KeywordIds: Array
+        # @param DupInfos: 重复关键词列表。
+        # @type DupInfos: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :KeywordIds, :DupInfos, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(keywordids=nil, dupinfos=nil, requestid=nil)
+          @KeywordIds = keywordids
+          @DupInfos = dupinfos
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @KeywordIds = params['KeywordIds']
+          unless params['DupInfos'].nil?
+            @DupInfos = []
+            params['DupInfos'].each do |i|
+              auditkeywordinfo_tmp = AuditKeywordInfo.new
+              auditkeywordinfo_tmp.deserialize(i)
+              @DupInfos << auditkeywordinfo_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -3585,10 +3696,16 @@ module TencentCloud
         # @param DRMTracks: DRM 加密项，可选值：AUDIO、SD、HD、UHD1、UHD2，后四个为一组，同组中的内容只能选一个。
         # 不传递或者为空字符串，清空之前的DRM配置。
         # @type DRMTracks: String
+        # @param IsAdaptiveBitRate: 是否创建自适应码率，默认值 0。
+        # 0：否。
+        # 1：是。
+        # @type IsAdaptiveBitRate: Integer
+        # @param AdaptiveChildren: 自适应码率，子转码模板信息，当 IsAdaptiveBitRate 为 1 时有效。
+        # @type AdaptiveChildren: Array
 
-        attr_accessor :TemplateName, :VideoBitrate, :Acodec, :AudioBitrate, :Vcodec, :Description, :NeedVideo, :Width, :NeedAudio, :Height, :Fps, :Gop, :Rotate, :Profile, :BitrateToOrig, :HeightToOrig, :FpsToOrig, :AiTransCode, :AdaptBitratePercent, :ShortEdgeAsHeight, :DRMType, :DRMTracks
+        attr_accessor :TemplateName, :VideoBitrate, :Acodec, :AudioBitrate, :Vcodec, :Description, :NeedVideo, :Width, :NeedAudio, :Height, :Fps, :Gop, :Rotate, :Profile, :BitrateToOrig, :HeightToOrig, :FpsToOrig, :AiTransCode, :AdaptBitratePercent, :ShortEdgeAsHeight, :DRMType, :DRMTracks, :IsAdaptiveBitRate, :AdaptiveChildren
 
-        def initialize(templatename=nil, videobitrate=nil, acodec=nil, audiobitrate=nil, vcodec=nil, description=nil, needvideo=nil, width=nil, needaudio=nil, height=nil, fps=nil, gop=nil, rotate=nil, profile=nil, bitratetoorig=nil, heighttoorig=nil, fpstoorig=nil, aitranscode=nil, adaptbitratepercent=nil, shortedgeasheight=nil, drmtype=nil, drmtracks=nil)
+        def initialize(templatename=nil, videobitrate=nil, acodec=nil, audiobitrate=nil, vcodec=nil, description=nil, needvideo=nil, width=nil, needaudio=nil, height=nil, fps=nil, gop=nil, rotate=nil, profile=nil, bitratetoorig=nil, heighttoorig=nil, fpstoorig=nil, aitranscode=nil, adaptbitratepercent=nil, shortedgeasheight=nil, drmtype=nil, drmtracks=nil, isadaptivebitrate=nil, adaptivechildren=nil)
           @TemplateName = templatename
           @VideoBitrate = videobitrate
           @Acodec = acodec
@@ -3611,6 +3728,8 @@ module TencentCloud
           @ShortEdgeAsHeight = shortedgeasheight
           @DRMType = drmtype
           @DRMTracks = drmtracks
+          @IsAdaptiveBitRate = isadaptivebitrate
+          @AdaptiveChildren = adaptivechildren
         end
 
         def deserialize(params)
@@ -3636,6 +3755,15 @@ module TencentCloud
           @ShortEdgeAsHeight = params['ShortEdgeAsHeight']
           @DRMType = params['DRMType']
           @DRMTracks = params['DRMTracks']
+          @IsAdaptiveBitRate = params['IsAdaptiveBitRate']
+          unless params['AdaptiveChildren'].nil?
+            @AdaptiveChildren = []
+            params['AdaptiveChildren'].each do |i|
+              childtemplateinfo_tmp = ChildTemplateInfo.new
+              childtemplateinfo_tmp.deserialize(i)
+              @AdaptiveChildren << childtemplateinfo_tmp
+            end
+          end
         end
       end
 
@@ -3999,27 +4127,51 @@ module TencentCloud
 
       # DeleteAuditKeywords请求参数结构体
       class DeleteAuditKeywordsRequest < TencentCloud::Common::AbstractModel
+        # @param KeywordIds: 要删除的关键词 Id 列表。
+        # @type KeywordIds: Array
+        # @param LibId: 关键词库 Id。
+        # @type LibId: String
 
+        attr_accessor :KeywordIds, :LibId
 
-        def initialize()
+        def initialize(keywordids=nil, libid=nil)
+          @KeywordIds = keywordids
+          @LibId = libid
         end
 
         def deserialize(params)
+          @KeywordIds = params['KeywordIds']
+          @LibId = params['LibId']
         end
       end
 
       # DeleteAuditKeywords返回参数结构体
       class DeleteAuditKeywordsResponse < TencentCloud::Common::AbstractModel
+        # @param SuccessCount: 成功删除关键词的数量。
+        # @type SuccessCount: Integer
+        # @param Infos: 关键词详情列表。
+        # @type Infos: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :SuccessCount, :Infos, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(successcount=nil, infos=nil, requestid=nil)
+          @SuccessCount = successcount
+          @Infos = infos
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @SuccessCount = params['SuccessCount']
+          unless params['Infos'].nil?
+            @Infos = []
+            params['Infos'].each do |i|
+              auditkeyworddeletedetail_tmp = AuditKeywordDeleteDetail.new
+              auditkeyworddeletedetail_tmp.deserialize(i)
+              @Infos << auditkeyworddeletedetail_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -5114,27 +5266,64 @@ module TencentCloud
 
       # DescribeAuditKeywords请求参数结构体
       class DescribeAuditKeywordsRequest < TencentCloud::Common::AbstractModel
+        # @param Offset: 获取偏移量。
+        # @type Offset: Integer
+        # @param Limit: 单页条数，最大为100条，超过则按100条返回。
+        # @type Limit: Integer
+        # @param LibId: 关键词库 Id。
+        # @type LibId: String
+        # @param Content: 关键词搜索字段。
+        # 为空字符串时忽略。
+        # @type Content: String
+        # @param Labels: 标签类别搜索。
+        # @type Labels: Array
 
+        attr_accessor :Offset, :Limit, :LibId, :Content, :Labels
 
-        def initialize()
+        def initialize(offset=nil, limit=nil, libid=nil, content=nil, labels=nil)
+          @Offset = offset
+          @Limit = limit
+          @LibId = libid
+          @Content = content
+          @Labels = labels
         end
 
         def deserialize(params)
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @LibId = params['LibId']
+          @Content = params['Content']
+          @Labels = params['Labels']
         end
       end
 
       # DescribeAuditKeywords返回参数结构体
       class DescribeAuditKeywordsResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 关键词总条数。
+        # @type Total: Integer
+        # @param Infos: 关键词详情列表。
+        # @type Infos: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :Total, :Infos, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(total=nil, infos=nil, requestid=nil)
+          @Total = total
+          @Infos = infos
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @Total = params['Total']
+          unless params['Infos'].nil?
+            @Infos = []
+            params['Infos'].each do |i|
+              auditkeywordinfo_tmp = AuditKeywordInfo.new
+              auditkeywordinfo_tmp.deserialize(i)
+              @Infos << auditkeywordinfo_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -12845,10 +13034,16 @@ module TencentCloud
         # @param DRMTracks: DRM 加密项，可选值：AUDIO、SD、HD、UHD1、UHD2，后四个为一组，同组中的内容只能选一个。
         # 不传递或者为空字符串，清空之前的DRM配置。
         # @type DRMTracks: String
+        # @param IsAdaptiveBitRate: 是否创建自适应码率，默认值 0。
+        # 0：否。
+        # 1：是。
+        # @type IsAdaptiveBitRate: Integer
+        # @param AdaptiveChildren: 自适应码率，子转码模板信息，当 IsAdaptiveBitRate 为 1 时有效。
+        # @type AdaptiveChildren: Array
 
-        attr_accessor :TemplateId, :Vcodec, :Acodec, :AudioBitrate, :Description, :VideoBitrate, :Width, :NeedVideo, :NeedAudio, :Height, :Fps, :Gop, :Rotate, :Profile, :BitrateToOrig, :HeightToOrig, :FpsToOrig, :AdaptBitratePercent, :ShortEdgeAsHeight, :DRMType, :DRMTracks
+        attr_accessor :TemplateId, :Vcodec, :Acodec, :AudioBitrate, :Description, :VideoBitrate, :Width, :NeedVideo, :NeedAudio, :Height, :Fps, :Gop, :Rotate, :Profile, :BitrateToOrig, :HeightToOrig, :FpsToOrig, :AdaptBitratePercent, :ShortEdgeAsHeight, :DRMType, :DRMTracks, :IsAdaptiveBitRate, :AdaptiveChildren
 
-        def initialize(templateid=nil, vcodec=nil, acodec=nil, audiobitrate=nil, description=nil, videobitrate=nil, width=nil, needvideo=nil, needaudio=nil, height=nil, fps=nil, gop=nil, rotate=nil, profile=nil, bitratetoorig=nil, heighttoorig=nil, fpstoorig=nil, adaptbitratepercent=nil, shortedgeasheight=nil, drmtype=nil, drmtracks=nil)
+        def initialize(templateid=nil, vcodec=nil, acodec=nil, audiobitrate=nil, description=nil, videobitrate=nil, width=nil, needvideo=nil, needaudio=nil, height=nil, fps=nil, gop=nil, rotate=nil, profile=nil, bitratetoorig=nil, heighttoorig=nil, fpstoorig=nil, adaptbitratepercent=nil, shortedgeasheight=nil, drmtype=nil, drmtracks=nil, isadaptivebitrate=nil, adaptivechildren=nil)
           @TemplateId = templateid
           @Vcodec = vcodec
           @Acodec = acodec
@@ -12870,6 +13065,8 @@ module TencentCloud
           @ShortEdgeAsHeight = shortedgeasheight
           @DRMType = drmtype
           @DRMTracks = drmtracks
+          @IsAdaptiveBitRate = isadaptivebitrate
+          @AdaptiveChildren = adaptivechildren
         end
 
         def deserialize(params)
@@ -12894,6 +13091,15 @@ module TencentCloud
           @ShortEdgeAsHeight = params['ShortEdgeAsHeight']
           @DRMType = params['DRMType']
           @DRMTracks = params['DRMTracks']
+          @IsAdaptiveBitRate = params['IsAdaptiveBitRate']
+          unless params['AdaptiveChildren'].nil?
+            @AdaptiveChildren = []
+            params['AdaptiveChildren'].each do |i|
+              childtemplateinfo_tmp = ChildTemplateInfo.new
+              childtemplateinfo_tmp.deserialize(i)
+              @AdaptiveChildren << childtemplateinfo_tmp
+            end
+          end
         end
       end
 
