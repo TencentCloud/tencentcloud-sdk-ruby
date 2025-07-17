@@ -79,6 +79,35 @@ module TencentCloud
         end
 
         # 接口说明：
+        # 启动云端审核功能，完成房间内的音视频切片，视频截帧，或者录制音频流，送审到指定的审核商，完成审核。
+
+        # 您可以通过此接口实现如下目标：
+        # * 指定审核参数（ModerationParams）来指定审核需要的详细参数。
+        # * 指定存储参数（ModerationStorageParams）将命中的审核文件指定上传到您希望的云存储，目前支持腾讯云（对象存储COS）和第三方AWS
+
+        # @param request: Request instance for CreateCloudModeration.
+        # @type request: :class:`Tencentcloud::trtc::V20190722::CreateCloudModerationRequest`
+        # @rtype: :class:`Tencentcloud::trtc::V20190722::CreateCloudModerationResponse`
+        def CreateCloudModeration(request)
+          body = send_request('CreateCloudModeration', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateCloudModerationResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 接口说明：
         # 启动云端录制功能，完成房间内的音视频录制，并上传到指定的云存储。您可以通过此 API 接口把TRTC 房间中的每一路音视频流做单独的录制又或者多路视频画面合流混成一路。
 
         # 您可以通过此接口实现如下目标：
@@ -99,6 +128,35 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CreateCloudRecordingResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 接口说明：
+        # 启动云端切片功能，完成房间内的音视频切片，并上传到指定的云存储。
+
+        # 您可以通过此接口实现如下目标：
+        # * 指定切片参数（SliceParams）来指定需要切片的主播的黑名单或者白名单。
+        # * 指定存储参数（SliceStorageParams）来指定上传到您希望的云存储，目前支持腾讯云（对象存储COS）和第三方AWS
+
+        # @param request: Request instance for CreateCloudSliceTask.
+        # @type request: :class:`Tencentcloud::trtc::V20190722::CreateCloudSliceTaskRequest`
+        # @rtype: :class:`Tencentcloud::trtc::V20190722::CreateCloudSliceTaskResponse`
+        def CreateCloudSliceTask(request)
+          body = send_request('CreateCloudSliceTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateCloudSliceTaskResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -161,6 +219,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 成功开启云端审核任务后，可以使用此接口来停止送审。
+
+        # @param request: Request instance for DeleteCloudModeration.
+        # @type request: :class:`Tencentcloud::trtc::V20190722::DeleteCloudModerationRequest`
+        # @rtype: :class:`Tencentcloud::trtc::V20190722::DeleteCloudModerationResponse`
+        def DeleteCloudModeration(request)
+          body = send_request('DeleteCloudModeration', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteCloudModerationResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 成功开启录制后，可以使用此接口来停止录制任务。停止录制成功后不代表文件全部传输完成，如果未完成后台将会继续上传文件，成功后通过事件回调通知客户文件全部传输完成状态。
 
         # @param request: Request instance for DeleteCloudRecording.
@@ -171,6 +253,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteCloudRecordingResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 成功开启切片任务后，可以使用此接口来停止任务。停止切片成功后不代表文件全部传输完成，如果未完成后台将会继续上传文件，成功后通过事件回调通知客户文件全部传输完成状态。
+
+        # @param request: Request instance for DeleteCloudSliceTask.
+        # @type request: :class:`Tencentcloud::trtc::V20190722::DeleteCloudSliceTaskRequest`
+        # @rtype: :class:`Tencentcloud::trtc::V20190722::DeleteCloudSliceTaskResponse`
+        def DeleteCloudSliceTask(request)
+          body = send_request('DeleteCloudSliceTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteCloudSliceTaskResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -310,6 +416,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 成功开启审核任务后，可以使用此接口来查询审核任务状态和订阅的黑白名单信息。仅在任务进行时有效，任务退出后查询将会返回错误。
+
+        # @param request: Request instance for DescribeCloudModeration.
+        # @type request: :class:`Tencentcloud::trtc::V20190722::DescribeCloudModerationRequest`
+        # @rtype: :class:`Tencentcloud::trtc::V20190722::DescribeCloudModerationResponse`
+        def DescribeCloudModeration(request)
+          body = send_request('DescribeCloudModeration', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCloudModerationResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 成功开启录制后，可以使用此接口来查询录制状态。仅在录制任务进行时有效，录制退出后查询将会返回错误。
         # 录制文件上传到云点播VOD时，StorageFileList中不会返回录制文件信息，请订阅相关录制文件回调事件，获取录制文件信息。
 
@@ -321,6 +451,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeCloudRecordingResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 成功开启切片后，可以使用此接口来查询切片任务状态。仅在任务进行时有效，任务退出后查询将会返回错误。
+
+        # @param request: Request instance for DescribeCloudSliceTask.
+        # @type request: :class:`Tencentcloud::trtc::V20190722::DescribeCloudSliceTaskRequest`
+        # @rtype: :class:`Tencentcloud::trtc::V20190722::DescribeCloudSliceTaskResponse`
+        def DescribeCloudSliceTask(request)
+          body = send_request('DescribeCloudSliceTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCloudSliceTaskResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1055,6 +1209,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 成功开启云端审核任务后，可以使用此接口来更新订阅黑白名单。
+
+        # @param request: Request instance for ModifyCloudModeration.
+        # @type request: :class:`Tencentcloud::trtc::V20190722::ModifyCloudModerationRequest`
+        # @rtype: :class:`Tencentcloud::trtc::V20190722::ModifyCloudModerationResponse`
+        def ModifyCloudModeration(request)
+          body = send_request('ModifyCloudModeration', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyCloudModerationResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 成功开启录制后，可以使用此接口来更新录制任务。仅在录制任务进行时有效，录制退出后更新将会返回错误。更新操作是全量覆盖，并不是增量更新的模式，也就是说每次更新都需要携带全量的信息。
 
         # @param request: Request instance for ModifyCloudRecording.
@@ -1065,6 +1243,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyCloudRecordingResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 成功开启切片任务后，可以使用此接口来更新任务。用于更新指定订阅流白名单或者黑名单。
+
+        # @param request: Request instance for ModifyCloudSliceTask.
+        # @type request: :class:`Tencentcloud::trtc::V20190722::ModifyCloudSliceTaskRequest`
+        # @rtype: :class:`Tencentcloud::trtc::V20190722::ModifyCloudSliceTaskResponse`
+        def ModifyCloudSliceTask(request)
+          body = send_request('ModifyCloudSliceTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyCloudSliceTaskResponse.new
             model.deserialize(response['Response'])
             model
           else

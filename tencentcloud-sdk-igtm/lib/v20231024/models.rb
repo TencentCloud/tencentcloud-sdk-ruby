@@ -21,28 +21,21 @@ module TencentCloud
       class Address < TencentCloud::Common::AbstractModel
         # @param Addr: 地址值：只支持ipv4、ipv6和域名格式；
         # 不支持回环地址、保留地址、内网地址与腾讯保留网段
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Addr: String
         # @param IsEnable: 是否启用:DISABLED不启用；ENABLED启用
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsEnable: String
         # @param AddressId: 地址id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AddressId: Integer
         # @param Location: 地址名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Location: String
         # @param Status: OK正常，DOWN故障，WARN风险，UNKNOWN探测中，UNMONITORED未知
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: String
         # @param Weight: 权重，流量策略为WEIGHT时，必填；范围1-100
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Weight: Integer
         # @param CreatedOn: 创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreatedOn: String
         # @param UpdatedOn: 修改时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdatedOn: String
 
         attr_accessor :Addr, :IsEnable, :AddressId, :Location, :Status, :Weight, :CreatedOn, :UpdatedOn
@@ -73,10 +66,8 @@ module TencentCloud
       # 地址所属地域
       class AddressLocation < TencentCloud::Common::AbstractModel
         # @param Addr: ip地址
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Addr: String
         # @param Location: 所属地域
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Location: String
 
         attr_accessor :Addr, :Location
@@ -186,25 +177,19 @@ module TencentCloud
       # 地址池详情
       class AddressPoolDetail < TencentCloud::Common::AbstractModel
         # @param PoolId: 地址池 id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PoolId: Integer
         # @param PoolName: 地址池名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PoolName: String
         # @param AddrType: 地址池地址类型：IPV4、IPV6、DOMAIN
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AddrType: String
         # @param TrafficStrategy: 流量策略: WEIGHT负载均衡，ALL解析全部
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TrafficStrategy: String
         # @param MonitorId: 监控器id
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MonitorId: Integer
         # @param CreatedOn: 创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreatedOn: String
         # @param UpdatedOn: 更新时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdatedOn: String
 
         attr_accessor :PoolId, :PoolName, :AddrType, :TrafficStrategy, :MonitorId, :CreatedOn, :UpdatedOn
@@ -1570,28 +1555,20 @@ module TencentCloud
       # 线路列表
       class GroupLine < TencentCloud::Common::AbstractModel
         # @param DnsLineId: 分组线路id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DnsLineId: Integer
         # @param Parent: 父节点 0为根节点
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Parent: Integer
         # @param LineName: 线路名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LineName: String
         # @param LineId: 10=9 DNSPod 线路 id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LineId: String
         # @param Useful: 是否已使用过
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Useful: Boolean
         # @param SubGroup: 0为未使用
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubGroup: Integer
         # @param LinePackage: 权限标识
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LinePackage: Integer
         # @param Weight: 1
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Weight: Integer
 
         attr_accessor :DnsLineId, :Parent, :LineName, :LineId, :Useful, :SubGroup, :LinePackage, :Weight
@@ -1626,7 +1603,6 @@ module TencentCloud
         # @param InstanceName: 实例名
         # @type InstanceName: String
         # @param ResourceId: 资源 id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceId: String
         # @param Domain: 业务域名
         # @type Domain: String
@@ -1644,39 +1620,28 @@ module TencentCloud
         # FREE: 免费版
         # STANDARD：标准版
         # ULTIMATE：旗舰版
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PackageType: String
         # @param WorkingStatus: 实例运行状态
         # NORMAL: 健康
         # FAULTY: 有风险
         # DOWN: 宕机
         # UNKNOWN: 未知
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WorkingStatus: String
-        # @param Status: 实例状态
-        # ENABLED: 正常
-        # DISABLED: 禁用
+        # @param Status: 实例状态，ENABLED: 正常，DISABLED: 禁用
         # @type Status: String
         # @param IsCnameConfigured: 是否cname接入：true已接入；false未接入
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsCnameConfigured: Boolean
         # @param Remark: 备注
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Remark: String
         # @param StrategyNum: 策略数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StrategyNum: Integer
         # @param AddressPoolNum: 绑定地址池个数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AddressPoolNum: Integer
         # @param MonitorNum: 绑定监控器数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MonitorNum: Integer
         # @param PoolId: 地址池id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PoolId: Integer
         # @param PoolName: 地址池名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PoolName: String
         # @param CreatedOn: 实例创建时间
         # @type CreatedOn: String
@@ -1738,16 +1703,15 @@ module TencentCloud
         # @type InstanceName: String
         # @param Domain: 业务域名
         # @type Domain: String
-        # @param AccessType: CUSTOM: 自定义接入域名
-        # SYSTEM: 系统接入域名
+        # @param AccessType: CUSTOM: 自定义接入域名，SYSTEM: 系统接入域名
         # @type AccessType: String
         # @param Remark: 备注
         # @type Remark: String
         # @param GlobalTtl: 全局记录过期时间
         # @type GlobalTtl: Integer
-        # @param AccessDomain: 接入主域名，自定义接入域名时必填
+        # @param AccessDomain: 接入主域名
         # @type AccessDomain: String
-        # @param AccessSubDomain: 接入子域名，自定义接入域名时必填
+        # @param AccessSubDomain: 接入子域名
         # @type AccessSubDomain: String
 
         attr_accessor :InstanceName, :Domain, :AccessType, :Remark, :GlobalTtl, :AccessDomain, :AccessSubDomain
@@ -1795,7 +1759,6 @@ module TencentCloud
         # FREE: 免费版
         # STANDARD：标准版
         # ULTIMATE：旗舰版
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PackageType: String
         # @param WorkingStatus: 实例运行状态
         # NORMAL: 健康
@@ -1803,15 +1766,11 @@ module TencentCloud
         # DOWN: 宕机
         # UNKNOWN: 未知
         # @type WorkingStatus: String
-        # @param Status: 实例状态
-        # ENABLED: 正常
-        # DISABLED: 禁用
+        # @param Status: 实例状态，ENABLED: 正常；DISABLED: 禁用
         # @type Status: String
         # @param IsCnameConfigured: cname是否接入：true已接入；false未接入
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsCnameConfigured: Boolean
         # @param Remark: 备注
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Remark: String
         # @param StrategyNum: 策略数量
         # @type StrategyNum: Integer
@@ -1820,7 +1779,6 @@ module TencentCloud
         # @param MonitorNum: 绑定监控器数量
         # @type MonitorNum: Integer
         # @param ResourceId: 实例绑定套餐资源id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceId: String
         # @param NotifyEventSet: 订阅事件列表
         # @type NotifyEventSet: Array
@@ -1879,10 +1837,8 @@ module TencentCloud
       # 实例相关信息
       class InstanceInfo < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceId: String
         # @param InstanceName: 实例名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceName: String
 
         attr_accessor :InstanceId, :InstanceName
@@ -2025,7 +1981,6 @@ module TencentCloud
       # 主力地址池id与权重
       class MainPoolWeight < TencentCloud::Common::AbstractModel
         # @param PoolId: 地址池id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PoolId: Integer
         # @param Weight: 权重
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -2346,69 +2301,48 @@ module TencentCloud
         # @param MonitorId: 探测规则id
         # @type MonitorId: Integer
         # @param MonitorName: 监控器名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MonitorName: String
         # @param Uin: 所属用户
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Uin: String
         # @param DetectorGroupIds: 监控节点id组
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DetectorGroupIds: Array
         # @param CheckProtocol: 探测协议 PING TCP HTTP HTTPS
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CheckProtocol: String
         # @param CheckInterval: 探测周期
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CheckInterval: Integer
         # @param PingNum: 发包数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PingNum: Integer
         # @param TcpPort: tcp端口
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TcpPort: Integer
         # @param Host: 探测 host
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Host: String
         # @param Path: 探测路径
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Path: String
         # @param ReturnCodeThreshold: 返回值阈值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReturnCodeThreshold: Integer
         # @param EnableRedirect: 是否开启3xx重定向跟随 ENABLED DISABLED
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EnableRedirect: String
         # @param EnableSni: 是否启用 sni
         # ENABLED DISABLED
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EnableSni: String
         # @param PacketLossRate: 丢包率上限
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PacketLossRate: Integer
         # @param Timeout: 探测超时
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Timeout: Integer
         # @param FailTimes: 失败次数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FailTimes: Integer
         # @param FailRate: 失败率上限100
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FailRate: Integer
         # @param CreatedOn: 创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreatedOn: String
         # @param UpdatedOn: 更新时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdatedOn: String
         # @param DetectorStyle: 监控节点类型
         # AUTO INTERNAL OVERSEAS IPV6 ALL
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DetectorStyle: String
         # @param DetectNum: 探测次数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DetectNum: Integer
         # @param ContinuePeriod: 持续周期数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ContinuePeriod: Integer
 
         attr_accessor :MonitorId, :MonitorName, :Uin, :DetectorGroupIds, :CheckProtocol, :CheckInterval, :PingNum, :TcpPort, :Host, :Path, :ReturnCodeThreshold, :EnableRedirect, :EnableSni, :PacketLossRate, :Timeout, :FailTimes, :FailRate, :CreatedOn, :UpdatedOn, :DetectorStyle, :DetectNum, :ContinuePeriod

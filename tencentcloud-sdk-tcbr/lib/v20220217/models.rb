@@ -1181,10 +1181,12 @@ module TencentCloud
         # @type ServerType: String
         # @param TrafficType: 流量类型，目前只有 FLOW
         # @type TrafficType: String
+        # @param CreateTime: 创建时间
+        # @type CreateTime: String
 
-        attr_accessor :ServerName, :DefaultDomainName, :CustomDomainName, :Status, :UpdateTime, :AccessTypes, :CustomDomainNames, :ServerType, :TrafficType
+        attr_accessor :ServerName, :DefaultDomainName, :CustomDomainName, :Status, :UpdateTime, :AccessTypes, :CustomDomainNames, :ServerType, :TrafficType, :CreateTime
 
-        def initialize(servername=nil, defaultdomainname=nil, customdomainname=nil, status=nil, updatetime=nil, accesstypes=nil, customdomainnames=nil, servertype=nil, traffictype=nil)
+        def initialize(servername=nil, defaultdomainname=nil, customdomainname=nil, status=nil, updatetime=nil, accesstypes=nil, customdomainnames=nil, servertype=nil, traffictype=nil, createtime=nil)
           @ServerName = servername
           @DefaultDomainName = defaultdomainname
           @CustomDomainName = customdomainname
@@ -1194,6 +1196,7 @@ module TencentCloud
           @CustomDomainNames = customdomainnames
           @ServerType = servertype
           @TrafficType = traffictype
+          @CreateTime = createtime
         end
 
         def deserialize(params)
@@ -1206,6 +1209,7 @@ module TencentCloud
           @CustomDomainNames = params['CustomDomainNames']
           @ServerType = params['ServerType']
           @TrafficType = params['TrafficType']
+          @CreateTime = params['CreateTime']
         end
       end
 

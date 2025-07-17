@@ -3058,14 +3058,17 @@ module TencentCloud
         # @type AccessKeyList: Array
         # @param SubUinList: 账号uin列表
         # @type SubUinList: Array
+        # @param RiskRuleIDList: 风险规则id列表
+        # @type RiskRuleIDList: Array
 
-        attr_accessor :MemberId, :RiskIDList, :AccessKeyList, :SubUinList
+        attr_accessor :MemberId, :RiskIDList, :AccessKeyList, :SubUinList, :RiskRuleIDList
 
-        def initialize(memberid=nil, riskidlist=nil, accesskeylist=nil, subuinlist=nil)
+        def initialize(memberid=nil, riskidlist=nil, accesskeylist=nil, subuinlist=nil, riskruleidlist=nil)
           @MemberId = memberid
           @RiskIDList = riskidlist
           @AccessKeyList = accesskeylist
           @SubUinList = subuinlist
+          @RiskRuleIDList = riskruleidlist
         end
 
         def deserialize(params)
@@ -3073,6 +3076,7 @@ module TencentCloud
           @RiskIDList = params['RiskIDList']
           @AccessKeyList = params['AccessKeyList']
           @SubUinList = params['SubUinList']
+          @RiskRuleIDList = params['RiskRuleIDList']
         end
       end
 
@@ -3701,7 +3705,7 @@ module TencentCloud
 
       # DeleteRiskScanTask请求参数结构体
       class DeleteRiskScanTaskRequest < TencentCloud::Common::AbstractModel
-        # @param TaskIdList: 任务id 列表
+        # @param TaskIdList: 任务id 和目标AppID列表
         # @type TaskIdList: Array
         # @param MemberId: 集团账号的成员id
         # @type MemberId: Array
@@ -12176,15 +12180,19 @@ module TencentCloud
       class TaskIdListKey < TencentCloud::Common::AbstractModel
         # @param TaskId: 任务ID
         # @type TaskId: String
+        # @param TargetAppId: APP ID
+        # @type TargetAppId: String
 
-        attr_accessor :TaskId
+        attr_accessor :TaskId, :TargetAppId
 
-        def initialize(taskid=nil)
+        def initialize(taskid=nil, targetappid=nil)
           @TaskId = taskid
+          @TargetAppId = targetappid
         end
 
         def deserialize(params)
           @TaskId = params['TaskId']
+          @TargetAppId = params['TargetAppId']
         end
       end
 

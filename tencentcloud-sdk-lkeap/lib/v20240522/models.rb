@@ -426,16 +426,7 @@ module TencentCloud
 
       # CreateReconstructDocumentFlow请求参数结构体
       class CreateReconstructDocumentFlowRequest < TencentCloud::Common::AbstractModel
-        # @param FileType: 文件类型。
-
-        # **支持的文件类型：**
-        # - `PDF`、`DOC`、`DOCX`、`XLS`、`XLSX`、`PPT`、`PPTX`、`MD`、`TXT`、`PNG`、`JPG`、`JPEG`、`CSV`、`HTML`、`EPUB`、`BMP`、`GIF`、`WEBP`、`HEIC`、`EPS`、`ICNS`、`IM`、`PCX`、`PPM`、`TIFF`、`XBM`、`HEIF`、`JP2`
-
-        # **支持的文件大小：**
-        #  - `PDF` 最大300M
-        #  - `DOCX`、`DOC`、`PPT`、`PPTX` 最大 200M
-        #  - `TXT`、`MD` 最大10M
-        #  - 其他 最大20M
+        # @param FileType: 文件类型。**支持的文件类型：**- `WPS、PDF`、`DOC`、`DOCX`、`XLS`、`XLSX`、`PPT`、`PPTX`、`MD`、`TXT`、`PNG`、`JPG`、`JPEG`、`CSV`、`HTML`、`EPUB`、`BMP`、`GIF`、`WEBP`、`HEIC`、`EPS`、`ICNS`、`IM`、`PCX`、`PPM`、`TIFF`、`XBM`、`HEIF`、`JP2`**支持的文件大小：** - `PDF` 最大300M - `WPS`、`DOCX`、`DOC`、`PPT`、`PPTX` 最大 200M - `TXT`、`MD` 最大10M - 其他 最大20M
         # @type FileType: String
         # @param FileUrl: 说明：文件的 URL 地址。
         # 备注：文件存储于腾讯云的 URL 可保障更高的下载速度和稳定性，建议文件存储于腾讯云。 非腾讯云存储的 URL 速度和稳定性可能受一定影响。
@@ -553,16 +544,7 @@ module TencentCloud
 
       # CreateSplitDocumentFlow请求参数结构体
       class CreateSplitDocumentFlowRequest < TencentCloud::Common::AbstractModel
-        # @param FileType: 文件类型。
-
-        # **支持的文件类型：**
-        # - `PDF`、`DOC`、`DOCX`、`XLS`、`XLSX`、`PPT`、`PPTX`、`MD`、`TXT`、`PNG`、`JPG`、`JPEG`、`CSV`、`HTML`、`EPUB`
-
-        # **支持的文件大小：**
-        #  - `PDF` 最大300M
-        #  - `DOCX`、`DOC`、`PPT`、`PPTX` 最大 200M
-        #  - `TXT`、`MD` 最大10M
-        #  - 其他 最大20M
+        # @param FileType: 文件类型。**支持的文件类型：**- `WPS`、`PDF`、`DOC`、`DOCX`、`XLS`、`XLSX`、`PPT`、`PPTX`、`MD`、`TXT`、`PNG`、`JPG`、`JPEG`、`CSV`、`HTML`、`EPUB`**支持的文件大小：** - `PDF` 最大300M - `WPS`、`DOCX`、`DOC`、`PPT`、`PPTX` 最大 200M - `TXT`、`MD` 最大10M - 其他 最大20M
         # @type FileType: String
         # @param FileUrl: 文件的 URL 地址。
         # 文件存储于腾讯云的 URL 可保障更高的下载速度和稳定性，建议文件存储于腾讯云。 非腾讯云存储的 URL 速度和稳定性可能受一定影响。
@@ -1750,12 +1732,7 @@ module TencentCloud
 
       # ReconstructDocumentSSE请求参数结构体
       class ReconstructDocumentSSERequest < TencentCloud::Common::AbstractModel
-        # @param FileType: 支持解析的文件类型。
-        # **支持的文件类型**：PDF、DOC、DOCX、PPT、PPTX、MD、TXT、XLS、XLSX、CSV、PNG、JPG、JPEG、BMP、GIF、WEBP、HEIC、EPS、ICNS、IM、PCX、PPM、TIFF、XBM、HEIF、JP2
-        # **支持的文件大小**：
-        # - PDF、DOC、DOCX、PPT、PPTX 支持100M
-        # - MD、TXT、XLS、XLSX、CSV 支持10M
-        # - 其他支持20M
+        # @param FileType: 支持解析的文件类型。**支持的文件类型**：WPS、PDF、DOC、DOCX、PPT、PPTX、MD、TXT、XLS、XLSX、CSV、PNG、JPG、JPEG、BMP、GIF、WEBP、HEIC、EPS、ICNS、IM、PCX、PPM、TIFF、XBM、HEIF、JP2**支持的文件大小**：- WPS、PDF、DOC、DOCX、PPT、PPTX 支持100M- MD、TXT、XLS、XLSX、CSV 支持10M- 其他支持20M
         # @type FileType: String
         # @param FileUrl: 文件的 URL 地址。文件存储于腾讯云的 URL 可保障更高的下载速度和稳定性，建议文件存储于腾讯云。 非腾讯云存储的 URL 速度和稳定性可能受一定影响。文件的 FileUrl、FileBase64 必须提供一个，如果都提供，只使用 FileUrl。
         # 参考：[腾讯云COS文档](https://cloud.tencent.com/document/product/436/7749)

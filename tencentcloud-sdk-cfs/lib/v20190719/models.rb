@@ -1905,6 +1905,26 @@ module TencentCloud
         end
       end
 
+      # 购买完额外性能之后的值
+      class ExstraPerformanceInfo < TencentCloud::Common::AbstractModel
+        # @param Type: fixed: 最终值固定
+        # @type Type: String
+        # @param Performance: 额外购买的CFS性能值，单位MB/s。
+        # @type Performance: Integer
+
+        attr_accessor :Type, :Performance
+
+        def initialize(type=nil, performance=nil)
+          @Type = type
+          @Performance = performance
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @Performance = params['Performance']
+        end
+      end
+
       # 绑定快照策略的文件系统信息
       class FileSystemByPolicy < TencentCloud::Common::AbstractModel
         # @param CreationToken: 文件系统名称
@@ -2044,10 +2064,16 @@ module TencentCloud
         # @type AutoScaleUpRule: :class:`Tencentcloud::Cfs.v20190719.models.AutoScaleUpRule`
         # @param Version: 文件系统版本
         # @type Version: String
+        # @param ExstraPerformanceInfo: 额外性能信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExstraPerformanceInfo: Array
+        # @param MetaType: basic：标准版元数据类型
+        # enhanced：增项版元数据类型
+        # @type MetaType: String
 
-        attr_accessor :CreationTime, :CreationToken, :FileSystemId, :LifeCycleState, :SizeByte, :SizeLimit, :ZoneId, :Zone, :Protocol, :StorageType, :StorageResourcePkg, :BandwidthResourcePkg, :PGroup, :FsName, :Encrypted, :KmsKeyId, :AppId, :BandwidthLimit, :AutoSnapshotPolicyId, :SnapStatus, :Capacity, :Tags, :TieringState, :TieringDetail, :AutoScaleUpRule, :Version
+        attr_accessor :CreationTime, :CreationToken, :FileSystemId, :LifeCycleState, :SizeByte, :SizeLimit, :ZoneId, :Zone, :Protocol, :StorageType, :StorageResourcePkg, :BandwidthResourcePkg, :PGroup, :FsName, :Encrypted, :KmsKeyId, :AppId, :BandwidthLimit, :AutoSnapshotPolicyId, :SnapStatus, :Capacity, :Tags, :TieringState, :TieringDetail, :AutoScaleUpRule, :Version, :ExstraPerformanceInfo, :MetaType
 
-        def initialize(creationtime=nil, creationtoken=nil, filesystemid=nil, lifecyclestate=nil, sizebyte=nil, sizelimit=nil, zoneid=nil, zone=nil, protocol=nil, storagetype=nil, storageresourcepkg=nil, bandwidthresourcepkg=nil, pgroup=nil, fsname=nil, encrypted=nil, kmskeyid=nil, appid=nil, bandwidthlimit=nil, autosnapshotpolicyid=nil, snapstatus=nil, capacity=nil, tags=nil, tieringstate=nil, tieringdetail=nil, autoscaleuprule=nil, version=nil)
+        def initialize(creationtime=nil, creationtoken=nil, filesystemid=nil, lifecyclestate=nil, sizebyte=nil, sizelimit=nil, zoneid=nil, zone=nil, protocol=nil, storagetype=nil, storageresourcepkg=nil, bandwidthresourcepkg=nil, pgroup=nil, fsname=nil, encrypted=nil, kmskeyid=nil, appid=nil, bandwidthlimit=nil, autosnapshotpolicyid=nil, snapstatus=nil, capacity=nil, tags=nil, tieringstate=nil, tieringdetail=nil, autoscaleuprule=nil, version=nil, exstraperformanceinfo=nil, metatype=nil)
           @CreationTime = creationtime
           @CreationToken = creationtoken
           @FileSystemId = filesystemid
@@ -2074,6 +2100,8 @@ module TencentCloud
           @TieringDetail = tieringdetail
           @AutoScaleUpRule = autoscaleuprule
           @Version = version
+          @ExstraPerformanceInfo = exstraperformanceinfo
+          @MetaType = metatype
         end
 
         def deserialize(params)
@@ -2119,6 +2147,15 @@ module TencentCloud
             @AutoScaleUpRule.deserialize(params['AutoScaleUpRule'])
           end
           @Version = params['Version']
+          unless params['ExstraPerformanceInfo'].nil?
+            @ExstraPerformanceInfo = []
+            params['ExstraPerformanceInfo'].each do |i|
+              exstraperformanceinfo_tmp = ExstraPerformanceInfo.new
+              exstraperformanceinfo_tmp.deserialize(i)
+              @ExstraPerformanceInfo << exstraperformanceinfo_tmp
+            end
+          end
+          @MetaType = params['MetaType']
         end
       end
 

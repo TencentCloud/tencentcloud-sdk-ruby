@@ -507,10 +507,12 @@ module TencentCloud
         # "NORMAL": 普通套餐
         # "CAREFREE": 无忧套餐
         # @type BundleDisplayLabel: String
+        # @param TrafficUnlimited: 流量是否无上限。
+        # @type TrafficUnlimited: Boolean
 
-        attr_accessor :BundleId, :Memory, :SystemDiskType, :SystemDiskSize, :MonthlyTraffic, :SupportLinuxUnixPlatform, :SupportWindowsPlatform, :Price, :CPU, :InternetMaxBandwidthOut, :InternetChargeType, :BundleSalesState, :BundleType, :BundleTypeDescription, :BundleDisplayLabel
+        attr_accessor :BundleId, :Memory, :SystemDiskType, :SystemDiskSize, :MonthlyTraffic, :SupportLinuxUnixPlatform, :SupportWindowsPlatform, :Price, :CPU, :InternetMaxBandwidthOut, :InternetChargeType, :BundleSalesState, :BundleType, :BundleTypeDescription, :BundleDisplayLabel, :TrafficUnlimited
 
-        def initialize(bundleid=nil, memory=nil, systemdisktype=nil, systemdisksize=nil, monthlytraffic=nil, supportlinuxunixplatform=nil, supportwindowsplatform=nil, price=nil, cpu=nil, internetmaxbandwidthout=nil, internetchargetype=nil, bundlesalesstate=nil, bundletype=nil, bundletypedescription=nil, bundledisplaylabel=nil)
+        def initialize(bundleid=nil, memory=nil, systemdisktype=nil, systemdisksize=nil, monthlytraffic=nil, supportlinuxunixplatform=nil, supportwindowsplatform=nil, price=nil, cpu=nil, internetmaxbandwidthout=nil, internetchargetype=nil, bundlesalesstate=nil, bundletype=nil, bundletypedescription=nil, bundledisplaylabel=nil, trafficunlimited=nil)
           @BundleId = bundleid
           @Memory = memory
           @SystemDiskType = systemdisktype
@@ -526,6 +528,7 @@ module TencentCloud
           @BundleType = bundletype
           @BundleTypeDescription = bundletypedescription
           @BundleDisplayLabel = bundledisplaylabel
+          @TrafficUnlimited = trafficunlimited
         end
 
         def deserialize(params)
@@ -547,6 +550,7 @@ module TencentCloud
           @BundleType = params['BundleType']
           @BundleTypeDescription = params['BundleTypeDescription']
           @BundleDisplayLabel = params['BundleDisplayLabel']
+          @TrafficUnlimited = params['TrafficUnlimited']
         end
       end
 

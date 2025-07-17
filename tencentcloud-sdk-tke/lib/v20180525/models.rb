@@ -3143,10 +3143,12 @@ module TencentCloud
         # @param ResolveConfig: 自定义制作镜像缓存过程中容器实例的宿主机上的 DNS。如：
         # "nameserver 4.4.4.4\nnameserver 8.8.8.8"
         # @type ResolveConfig: String
+        # @param Tags: 腾讯云标签
+        # @type Tags: Array
 
-        attr_accessor :Images, :SubnetId, :VpcId, :ImageCacheName, :SecurityGroupIds, :ImageRegistryCredentials, :ExistedEipId, :AutoCreateEip, :AutoCreateEipAttribute, :ImageCacheSize, :RetentionDays, :RegistrySkipVerifyList, :RegistryHttpEndPointList, :ResolveConfig
+        attr_accessor :Images, :SubnetId, :VpcId, :ImageCacheName, :SecurityGroupIds, :ImageRegistryCredentials, :ExistedEipId, :AutoCreateEip, :AutoCreateEipAttribute, :ImageCacheSize, :RetentionDays, :RegistrySkipVerifyList, :RegistryHttpEndPointList, :ResolveConfig, :Tags
 
-        def initialize(images=nil, subnetid=nil, vpcid=nil, imagecachename=nil, securitygroupids=nil, imageregistrycredentials=nil, existedeipid=nil, autocreateeip=nil, autocreateeipattribute=nil, imagecachesize=nil, retentiondays=nil, registryskipverifylist=nil, registryhttpendpointlist=nil, resolveconfig=nil)
+        def initialize(images=nil, subnetid=nil, vpcid=nil, imagecachename=nil, securitygroupids=nil, imageregistrycredentials=nil, existedeipid=nil, autocreateeip=nil, autocreateeipattribute=nil, imagecachesize=nil, retentiondays=nil, registryskipverifylist=nil, registryhttpendpointlist=nil, resolveconfig=nil, tags=nil)
           @Images = images
           @SubnetId = subnetid
           @VpcId = vpcid
@@ -3161,6 +3163,7 @@ module TencentCloud
           @RegistrySkipVerifyList = registryskipverifylist
           @RegistryHttpEndPointList = registryhttpendpointlist
           @ResolveConfig = resolveconfig
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -3188,6 +3191,14 @@ module TencentCloud
           @RegistrySkipVerifyList = params['RegistrySkipVerifyList']
           @RegistryHttpEndPointList = params['RegistryHttpEndPointList']
           @ResolveConfig = params['ResolveConfig']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
         end
       end
 
@@ -12359,10 +12370,16 @@ module TencentCloud
         # UpdateFailed：更新失败
         # 只有状态为Ready时，才能正常使用镜像缓存
         # @type Status: String
+        # @param RetentionDays: 镜像缓存保留时间天数，过期将会自动清理，默认为0，永不过期。
+        # @type RetentionDays: Integer
+        # @param ImageRegistryCredentials: 镜像拉取凭证
+        # @type ImageRegistryCredentials: Array
+        # @param Tags: 腾讯云标签
+        # @type Tags: Array
 
-        attr_accessor :ImageCacheId, :ImageCacheName, :ImageCacheSize, :Images, :CreationTime, :ExpireDateTime, :Events, :LastMatchedTime, :SnapshotId, :Status
+        attr_accessor :ImageCacheId, :ImageCacheName, :ImageCacheSize, :Images, :CreationTime, :ExpireDateTime, :Events, :LastMatchedTime, :SnapshotId, :Status, :RetentionDays, :ImageRegistryCredentials, :Tags
 
-        def initialize(imagecacheid=nil, imagecachename=nil, imagecachesize=nil, images=nil, creationtime=nil, expiredatetime=nil, events=nil, lastmatchedtime=nil, snapshotid=nil, status=nil)
+        def initialize(imagecacheid=nil, imagecachename=nil, imagecachesize=nil, images=nil, creationtime=nil, expiredatetime=nil, events=nil, lastmatchedtime=nil, snapshotid=nil, status=nil, retentiondays=nil, imageregistrycredentials=nil, tags=nil)
           @ImageCacheId = imagecacheid
           @ImageCacheName = imagecachename
           @ImageCacheSize = imagecachesize
@@ -12373,6 +12390,9 @@ module TencentCloud
           @LastMatchedTime = lastmatchedtime
           @SnapshotId = snapshotid
           @Status = status
+          @RetentionDays = retentiondays
+          @ImageRegistryCredentials = imageregistrycredentials
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -12393,6 +12413,23 @@ module TencentCloud
           @LastMatchedTime = params['LastMatchedTime']
           @SnapshotId = params['SnapshotId']
           @Status = params['Status']
+          @RetentionDays = params['RetentionDays']
+          unless params['ImageRegistryCredentials'].nil?
+            @ImageRegistryCredentials = []
+            params['ImageRegistryCredentials'].each do |i|
+              imageregistrycredential_tmp = ImageRegistryCredential.new
+              imageregistrycredential_tmp.deserialize(i)
+              @ImageRegistryCredentials << imageregistrycredential_tmp
+            end
+          end
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
         end
       end
 
@@ -18960,10 +18997,12 @@ module TencentCloud
         # @type RetentionDays: Integer
         # @param SecurityGroupIds: 安全组Id
         # @type SecurityGroupIds: Array
+        # @param Tags: 腾讯云标签
+        # @type Tags: Array
 
-        attr_accessor :ImageCacheId, :ImageCacheName, :ImageRegistryCredentials, :Images, :ImageCacheSize, :RetentionDays, :SecurityGroupIds
+        attr_accessor :ImageCacheId, :ImageCacheName, :ImageRegistryCredentials, :Images, :ImageCacheSize, :RetentionDays, :SecurityGroupIds, :Tags
 
-        def initialize(imagecacheid=nil, imagecachename=nil, imageregistrycredentials=nil, images=nil, imagecachesize=nil, retentiondays=nil, securitygroupids=nil)
+        def initialize(imagecacheid=nil, imagecachename=nil, imageregistrycredentials=nil, images=nil, imagecachesize=nil, retentiondays=nil, securitygroupids=nil, tags=nil)
           @ImageCacheId = imagecacheid
           @ImageCacheName = imagecachename
           @ImageRegistryCredentials = imageregistrycredentials
@@ -18971,6 +19010,7 @@ module TencentCloud
           @ImageCacheSize = imagecachesize
           @RetentionDays = retentiondays
           @SecurityGroupIds = securitygroupids
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -18988,6 +19028,14 @@ module TencentCloud
           @ImageCacheSize = params['ImageCacheSize']
           @RetentionDays = params['RetentionDays']
           @SecurityGroupIds = params['SecurityGroupIds']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
         end
       end
 

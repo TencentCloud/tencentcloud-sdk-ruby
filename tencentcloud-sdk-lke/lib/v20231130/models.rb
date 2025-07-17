@@ -9884,9 +9884,9 @@ module TencentCloud
         # @type BotAppKey: String
         # @param RecordId: 消息ID 【大模型回复答案的RecordID】
         # @type RecordId: String
-        # @param Score: 1点赞2点踩
+        # @param Score: 1: 点赞,  2: 点踩
         # @type Score: Integer
-        # @param Reasons: 原因
+        # @param Reasons: 原因，只有Score参数为2即点踩的时候才需要输入
         # @type Reasons: Array
 
         attr_accessor :BotAppKey, :RecordId, :Score, :Reasons

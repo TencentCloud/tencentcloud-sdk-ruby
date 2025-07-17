@@ -195,9 +195,11 @@ module TencentCloud
 
       # 人脸属性信息
       class AttributeItem < TencentCloud::Common::AbstractModel
-        # @param Type: 属性值
+        # @param Type: 属性值。
         # @type Type: Integer
-        # @param Probability: Type识别概率值,[0,1],代表判断正确的概率。
+        # @param Probability: Type识别概率值。
+        # - 取值范围：[0,1]。
+        # - 代表判断正确的概率。
         # @type Probability: Float
 
         attr_accessor :Type, :Probability
@@ -1018,20 +1020,21 @@ module TencentCloud
       # DetectFaceAttributes请求参数结构体
       class DetectFaceAttributesRequest < TencentCloud::Common::AbstractModel
         # @param MaxFaceNum: 最多处理的人脸数目。
-        # 默认值为1（仅检测图片中面积最大的那张人脸），最大值为120。
-        # 此参数用于控制处理待检测图片中的人脸个数，值越小，处理速度越快。
+        # - 默认值为1（仅检测图片中面积最大的那张人脸），最大值为120。
+        # - 此参数用于控制处理待检测图片中的人脸个数，值越小，处理速度越快。
         # @type MaxFaceNum: Integer
-        # @param Image: 图片 base64 数据，base64 编码后大小不可超过5M。
-        # jpg格式长边像素不可超过4000，其他格式图片长边像素不可超2000。
-        # 支持PNG、JPG、JPEG、BMP，不支持 GIF 图片。
+        # @param Image: 图片 base64 数据。
+        # - base64 编码后大小不可超过5M。
+        # - jpg格式长边像素不可超过4000，其他格式图片长边像素不可超2000。
+        # - 支持PNG、JPG、JPEG、BMP，不支持 GIF 图片。
         # @type Image: String
         # @param Url: 图片的 Url 。
-        # 对应图片 base64 编码后大小不可超过5M。
-        # jpg格式长边像素不可超过4000，其他格式图片长边像素不可超2000。
-        # Url、Image必须提供一个，如果都提供，只使用 Url。
-        # 图片存储于腾讯云的Url可保障更高下载速度和稳定性，建议图片存储于腾讯云。
-        # 非腾讯云存储的Url速度和稳定性可能受一定影响。
-        # 支持PNG、JPG、JPEG、BMP，不支持 GIF 图片。
+        # - 对应图片 base64 编码后大小不可超过5M。
+        # - jpg格式长边像素不可超过4000，其他格式图片长边像素不可超2000。
+        # - Url、Image必须提供一个，如果都提供，只使用 Url。
+        # - 图片存储于腾讯云的Url可保障更高下载速度和稳定性，建议图片存储于腾讯云。
+        # - 非腾讯云存储的Url速度和稳定性可能受一定影响。
+        # - 支持PNG、JPG、JPEG、BMP，不支持 GIF 图片。
         # @type Url: String
         # @param FaceAttributesType: 是否返回年龄、性别、情绪等属性。
         # 合法值为（大小写不敏感）：None、Age、Beauty、Emotion、Eye、Eyebrow、
@@ -1041,7 +1044,11 @@ module TencentCloud
         # 关于各属性的详细描述，参见下文出参。
         # 最多返回面积最大的 5 张人脸属性信息，超过 5 张人脸（第 6 张及以后的人脸）的 AttributesInfo 不具备参考意义。
         # @type FaceAttributesType: String
-        # @param NeedRotateDetection: 是否开启图片旋转识别支持。0为不开启，1为开启。默认为0。本参数的作用为，当图片中的人脸被旋转且图片没有exif信息时，如果不开启图片旋转识别支持则无法正确检测、识别图片中的人脸。若您确认图片包含exif信息或者您确认输入图中人脸不会出现被旋转情况，请不要开启本参数。开启后，整体耗时将可能增加数百毫秒。
+        # @param NeedRotateDetection: 是否开启图片旋转识别支持。
+        # - 0为不开启，1为开启。
+        # - 默认为0。
+        # - 本参数的作用为，当图片中的人脸被旋转且图片没有exif信息时，如果不开启图片旋转识别支持则无法正确检测、识别图片中的人脸。
+        # - 若您确认图片包含exif信息或者您确认输入图中人脸不会出现被旋转情况，请不要开启本参数。开启后，整体耗时将可能增加数百毫秒。
         # @type NeedRotateDetection: Integer
         # @param FaceModelVersion: 人脸识别服务所用的算法模型版本。本接口仅支持“3.0”输入
         # @type FaceModelVersion: String
@@ -1280,16 +1287,16 @@ module TencentCloud
       # 眼睛信息
       class Eye < TencentCloud::Common::AbstractModel
         # @param Glass: 识别是否佩戴眼镜。
-        # AttributeItem对应的Type为 —— 0：无眼镜，1：普通眼镜，2：墨镜
+        # - AttributeItem对应的Type为 —— 0：无眼镜，1：普通眼镜，2：墨镜。
         # @type Glass: :class:`Tencentcloud::Iai.v20180301.models.AttributeItem`
         # @param EyeOpen: 识别眼睛的睁开、闭合状态。
-        # AttributeItem对应的Type为 —— 0：睁开，1：闭眼
+        # - AttributeItem对应的Type为 —— 0：睁开，1：闭眼。
         # @type EyeOpen: :class:`Tencentcloud::Iai.v20180301.models.AttributeItem`
         # @param EyelidType: 识别是否双眼皮。
-        # AttributeItem对应的Type为 —— 0：无，1：有。
+        # - AttributeItem对应的Type为 —— 0：无，1：有。
         # @type EyelidType: :class:`Tencentcloud::Iai.v20180301.models.AttributeItem`
         # @param EyeSize: 眼睛大小。
-        # AttributeItem对应的Type为 —— 0：小眼睛，1：普通眼睛，2：大眼睛。
+        # - AttributeItem对应的Type为 —— 0：小眼睛，1：普通眼睛，2：大眼睛。
         # @type EyeSize: :class:`Tencentcloud::Iai.v20180301.models.AttributeItem`
 
         attr_accessor :Glass, :EyeOpen, :EyelidType, :EyeSize
@@ -1324,13 +1331,13 @@ module TencentCloud
       # 眉毛信息
       class Eyebrow < TencentCloud::Common::AbstractModel
         # @param EyebrowDensity: 眉毛浓密。
-        # AttributeItem对应的Type为 —— 0：淡眉，1：浓眉。
+        # - AttributeItem对应的Type为 —— 0：淡眉，1：浓眉。
         # @type EyebrowDensity: :class:`Tencentcloud::Iai.v20180301.models.AttributeItem`
         # @param EyebrowCurve: 眉毛弯曲。
-        # AttributeItem对应的Type为 —— 0：不弯，1：弯眉。
+        # - AttributeItem对应的Type为  —— 0：不弯，1：弯眉。
         # @type EyebrowCurve: :class:`Tencentcloud::Iai.v20180301.models.AttributeItem`
         # @param EyebrowLength: 眉毛长短。
-        # AttributeItem对应的Type为 —— 0：短眉毛，1：长眉毛。
+        # - AttributeItem对应的Type为 —— 0：短眉毛，1：长眉毛。
         # @type EyebrowLength: :class:`Tencentcloud::Iai.v20180301.models.AttributeItem`
 
         attr_accessor :EyebrowDensity, :EyebrowCurve, :EyebrowLength
@@ -1434,60 +1441,70 @@ module TencentCloud
       # 鼻子（Nose）、脸型（Shape）、肤色（Skin）、微笑（Smile）等人脸属性信息。
       # 若 FaceAttributesType 没有输入相关类型，则FaceDetaiAttributesInfo返回的细项不具备参考意义。
       class FaceDetailAttributesInfo < TencentCloud::Common::AbstractModel
-        # @param Age: 年龄 [0,65]，其中65代表“65岁及以上”。
-        # FaceAttributesType 不含Age 或检测超过 5 张人脸时，此参数仍返回，但不具备参考意义。
+        # @param Age: 年龄。
+        # - 取值范围：[0,65]，其中65代表“65岁及以上”。
+        # - FaceAttributesType 不含Age 或检测超过 5 张人脸时，此参数仍返回，但不具备参考意义。
         # @type Age: Integer
-        # @param Beauty: 美丑打分[0,100]。
-        # FaceAttributesType 不含 Beauty 或检测超过 5 张人脸时，此参数仍返回，但不具备参考意义。
+        # @param Beauty: 美丑打分。
+        # - 取值范围：[0,100]。
+        # - FaceAttributesType不含 Beauty或检测超过 5 张人脸时，此参数仍返回，但不具备参考意义。
         # @type Beauty: Integer
         # @param Emotion: 情绪，可识别自然、高兴、惊讶、生气、悲伤、厌恶、害怕。
-        # AttributeItem对应的Type为 —— 0：自然，1：高兴，2：惊讶，3：生气，4：悲伤，5：厌恶，6：害怕
-        # FaceAttributesType 不含Emotion 或检测超过 5 张人脸时，此参数仍返回，但不具备参考意义。
+        # - AttributeItem对应的Type为 —— 0：自然，1：高兴，2：惊讶，3：生气，4：悲伤，5：厌恶，6：害怕。
+        # - FaceAttributesType 不含Emotion 或检测超过 5 张人脸时，此参数仍返回，但不具备参考意义。
         # @type Emotion: :class:`Tencentcloud::Iai.v20180301.models.AttributeItem`
-        # @param Eye: 眼睛相关信息，可识别是否戴眼镜、是否闭眼、是否双眼皮和眼睛大小。
-        # FaceAttributesType 不含Eye 或检测超过 5 张人脸时，此参数仍返回，但不具备参考意义。
+        # @param Eye: 眼睛相关信息。
+        # - 可识别是否戴眼镜、是否闭眼、是否双眼皮和眼睛大小。
+        # - FaceAttributesType 不含Eye 或检测超过 5 张人脸时，此参数仍返回，但不具备参考意义。
         # @type Eye: :class:`Tencentcloud::Iai.v20180301.models.Eye`
-        # @param Eyebrow: 眉毛相关信息，可识别眉毛浓密、弯曲、长短信息。
-        # FaceAttributesType 不含Eyebrow 或检测超过 5 张人脸时，此参数仍返回，但不具备参考意义。
+        # @param Eyebrow: 眉毛相关信息。
+        # - 可识别眉毛浓密、弯曲、长短信息。
+        # - FaceAttributesType 不含Eyebrow 或检测超过 5 张人脸时，此参数仍返回，但不具备参考意义。
         # @type Eyebrow: :class:`Tencentcloud::Iai.v20180301.models.Eyebrow`
         # @param Gender: 性别信息。
-        # AttributeItem对应的Type为 —— 	0：男性，1：女性。
-        # FaceAttributesType 不含Gender 或检测超过 5 张人脸时，此参数仍返回，但不具备参考意义。
+        # - AttributeItem对应的Type为 —— 0：男性，1：女性。
+        # - FaceAttributesType 不含Gender 或检测超过 5 张人脸时，此参数仍返回，但不具备参考意义。
         # @type Gender: :class:`Tencentcloud::Iai.v20180301.models.AttributeItem`
-        # @param Hair: 头发信息，包含头发长度、有无刘海、头发颜色。
-        # FaceAttributesType 不含Hair 或检测超过 5 张人脸时，此参数仍返回，但不具备参考意义。
+        # @param Hair: 头发信息。
+        # - 包含头发长度、有无刘海、头发颜色。
+        # - FaceAttributesType 不含Hair 或检测超过 5 张人脸时，此参数仍返回，但不具备参考意义。
         # @type Hair: :class:`Tencentcloud::Iai.v20180301.models.Hair`
-        # @param Hat: 帽子信息，可识别是否佩戴帽子、帽子款式、帽子颜色。
-        # FaceAttributesType 不含Hat 或检测超过 5 张人脸时，此参数仍返回，但不具备参考意义。
+        # @param Hat: 帽子信息。
+
+        # - 可识别是否佩戴帽子、帽子款式、帽子颜色。
+        # - FaceAttributesType 不含Hat 或检测超过 5 张人脸时，此参数仍返回，但不具备参考意义。
         # @type Hat: :class:`Tencentcloud::Iai.v20180301.models.Hat`
-        # @param HeadPose: 姿态信息，包含人脸的上下偏移、左右偏移、平面旋转信息。
-        # FaceAttributesType 不含Headpose 或检测超过 5 张人脸时，此参数仍返回，但不具备参考意义。
+        # @param HeadPose: 姿态信息。
+        # - 包含人脸的上下偏移、左右偏移、平面旋转信息。
+        # - FaceAttributesType 不含Headpose 或检测超过 5 张人脸时，此参数仍返回，但不具备参考意义。
         # @type HeadPose: :class:`Tencentcloud::Iai.v20180301.models.HeadPose`
         # @param Mask: 口罩佩戴信息。
-        # AttributeItem对应的Type为 —— 0: 无口罩， 1: 有口罩不遮脸，2: 有口罩遮下巴，3: 有口罩遮嘴，4: 正确佩戴口罩。
-        # FaceAttributesType 不含Mask 或检测超过 5 张人脸时，此参数仍返回，但不具备参考意义。
+        # - AttributeItem对应的Type为 —— 0: 无口罩， 1: 有口罩不遮脸，2: 有口罩遮下巴，3: 有口罩遮嘴，4: 正确佩戴口罩。
+        # - FaceAttributesType 不含Mask 或检测超过 5 张人脸时，此参数仍返回，但不具备参考意义。
         # @type Mask: :class:`Tencentcloud::Iai.v20180301.models.AttributeItem`
-        # @param Mouth: 嘴巴信息，可识别是否张嘴、嘴唇厚度。
-        # FaceAttributesType 不含 Mouth 或检测超过 5 张人脸时，此参数仍返回，但不具备参考意义。
+        # @param Mouth: 嘴巴信息。
+        # - 可识别是否张嘴、嘴唇厚度。
+        # - FaceAttributesType 不含 Mouth 或检测超过 5 张人脸时，此参数仍返回，但不具备参考意义。
         # @type Mouth: :class:`Tencentcloud::Iai.v20180301.models.Mouth`
         # @param Moustache: 胡子信息。
-        # AttributeItem对应的Type为 —— 0：无胡子，1：有胡子。
-        # FaceAttributesType 不含 Moustache 或检测超过 5 张人脸时，此参数仍返回，但不具备参考意义。
+        # - AttributeItem对应的Type为 —— 0：无胡子，1：有胡子。
+        # - FaceAttributesType 不含 Moustache 或检测超过 5 张人脸时，此参数仍返回，但不具备参考意义。
         # @type Moustache: :class:`Tencentcloud::Iai.v20180301.models.AttributeItem`
         # @param Nose: 鼻子信息。
-        # AttributeItem对应的Type为 —— 0：朝天鼻，1：鹰钩鼻，2：普通，3：圆鼻头
-        # FaceAttributesType 不含 Nose 或检测超过 5 张人脸时，此参数仍返回，但不具备参考意义。
+        # - AttributeItem对应的Type为 —— 0：朝天鼻，1：鹰钩鼻，2：普通，3：圆鼻头。
+        # - FaceAttributesType 不含 Nose 或检测超过 5 张人脸时，此参数仍返回，但不具备参考意义。
         # @type Nose: :class:`Tencentcloud::Iai.v20180301.models.AttributeItem`
         # @param Shape: 脸型信息。
-        # AttributeItem对应的Type为 —— 0：方脸，1：三角脸，2：鹅蛋脸，3：心形脸，4：圆脸。
-        # FaceAttributesType 不含 Shape 或检测超过 5 张人脸时，此参数仍返回，但不具备参考意义。
+        # - AttributeItem对应的Type为 —— 0：方脸，1：三角脸，2：鹅蛋脸，3：心形脸，4：圆脸。
+        # - FaceAttributesType 不含 Shape 或检测超过 5 张人脸时，此参数仍返回，但不具备参考意义。
         # @type Shape: :class:`Tencentcloud::Iai.v20180301.models.AttributeItem`
         # @param Skin: 肤色信息。
-        # AttributeItem对应的Type为 —— 0：黄色皮肤，1：棕色皮肤，2：黑色皮肤，3：白色皮肤。
-        # FaceAttributesType 不含 Skin 或检测超过 5 张人脸时，此参数仍返回，但不具备参考意义。
+        # - AttributeItem对应的Type为 ——  0：黄色皮肤，1：棕色皮肤，2：黑色皮肤，3：白色皮肤。
+        # - FaceAttributesType 不含 Skin 或检测超过 5 张人脸时，此参数仍返回，但不具备参考意义。
         # @type Skin: :class:`Tencentcloud::Iai.v20180301.models.AttributeItem`
-        # @param Smile: 微笑程度，[0,100]。
-        # FaceAttributesType 不含 Smile 或检测超过 5 张人脸时，此参数仍返回，但不具备参考意义。
+        # @param Smile: 微笑程度。
+        # - 取值范围：[0,100]。
+        # - FaceAttributesType 不含 Smile 或检测超过 5 张人脸时，此参数仍返回，但不具备参考意义。
         # @type Smile: Integer
 
         attr_accessor :Age, :Beauty, :Emotion, :Eye, :Eyebrow, :Gender, :Hair, :Hat, :HeadPose, :Mask, :Mouth, :Moustache, :Nose, :Shape, :Skin, :Smile
@@ -2439,13 +2456,13 @@ module TencentCloud
       # 头发信息
       class Hair < TencentCloud::Common::AbstractModel
         # @param Length: 头发长度信息。
-        # AttributeItem对应的Type为 —— 0：光头，1：短发，2：中发，3：长发，4：绑发。
+        # - AttributeItem对应的Type为 —— 0：光头，1：短发，2：中发，3：长发，4：绑发。
         # @type Length: :class:`Tencentcloud::Iai.v20180301.models.AttributeItem`
         # @param Bang: 刘海信息。
-        # AttributeItem对应的Type为 —— 0：无刘海，1：有刘海。
+        # - AttributeItem对应的Type为 —— 0：无刘海，1：有刘海。
         # @type Bang: :class:`Tencentcloud::Iai.v20180301.models.AttributeItem`
         # @param Color: 头发颜色信息。
-        # AttributeItem对应的Type为 —— 0：黑色，1：金色，2：棕色，3：灰白色。
+        # - AttributeItem对应的Type为 —— 0：黑色，1：金色，2：棕色，3：灰白色。
         # @type Color: :class:`Tencentcloud::Iai.v20180301.models.AttributeItem`
 
         attr_accessor :Length, :Bang, :Color
@@ -2475,10 +2492,10 @@ module TencentCloud
       # 帽子信息
       class Hat < TencentCloud::Common::AbstractModel
         # @param Style: 帽子佩戴状态信息。
-        # AttributeItem对应的Type为 —— 0：不戴帽子，1：普通帽子，2：头盔，3：保安帽。
+        # - AttributeItem对应的Type为 —— 0：不戴帽子，1：普通帽子，2：头盔，3：保安帽。
         # @type Style: :class:`Tencentcloud::Iai.v20180301.models.AttributeItem`
         # @param Color: 帽子颜色。
-        # AttributeItem对应的Type为 —— 0：不戴帽子，1：红色系，2：黄色系，3：蓝色系，4：黑色系，5：灰白色系，6：混色系。
+        # - AttributeItem对应的Type为 —— 0：不戴帽子，1：红色系，2：黄色系，3：蓝色系，4：黑色系，5：灰白色系，6：混色系。
         # @type Color: :class:`Tencentcloud::Iai.v20180301.models.AttributeItem`
 
         attr_accessor :Style, :Color
@@ -2502,11 +2519,14 @@ module TencentCloud
 
       # 姿态信息
       class HeadPose < TencentCloud::Common::AbstractModel
-        # @param Pitch: 上下偏移[-30,30]。
+        # @param Pitch: 上下偏移。
+        # - 取值范围：[-30,30]。
         # @type Pitch: Integer
-        # @param Yaw: 左右偏移[-30,30]。
+        # @param Yaw: 左右偏移。
+        # - 取值范围：[-30,30]。
         # @type Yaw: Integer
-        # @param Roll: 平面旋转[-180,180]。
+        # @param Roll: 平面旋转。
+        # - 取值范围：[-180,180]。
         # @type Roll: Integer
 
         attr_accessor :Pitch, :Yaw, :Roll
@@ -2665,7 +2685,8 @@ module TencentCloud
       # 嘴巴信息。
       class Mouth < TencentCloud::Common::AbstractModel
         # @param MouthOpen: 是否张嘴信息。
-        # AttributeItem对应的Type为 —— 0：不张嘴，1：张嘴。
+
+        # - AttributeItem对应的Type为 —— 0：不张嘴，1：张嘴。
         # @type MouthOpen: :class:`Tencentcloud::Iai.v20180301.models.AttributeItem`
 
         attr_accessor :MouthOpen

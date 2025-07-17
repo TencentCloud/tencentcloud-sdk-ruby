@@ -421,11 +421,11 @@ module TencentCloud
         # @type EventPattern: String
         # @param EventBusId: 事件集ID
         # @type EventBusId: String
-        # @param RuleName: 事件集名称，只能包含字母、中文、数字、下划线、连字符，以字母/中文开头，以数字、字母或中文结尾，2~60个字符
+        # @param RuleName: 事件规则名称，只能包含字母、中文、数字、下划线、连字符，以字母/中文开头，以数字、字母或中文结尾，2~60个字符
         # @type RuleName: String
         # @param Enable: 使能开关。
         # @type Enable: Boolean
-        # @param Description: 事件集描述，只能包含数字、中英文及常用标点符号，不超过200个字符
+        # @param Description: 事件规则描述，只能包含数字、中英文及常用标点符号，不超过200个字符
         # @type Description: String
 
         attr_accessor :EventPattern, :EventBusId, :RuleName, :Enable, :Description
@@ -1420,7 +1420,7 @@ module TencentCloud
 
       # ListEventBuses请求参数结构体
       class ListEventBusesRequest < TencentCloud::Common::AbstractModel
-        # @param OrderBy: 根据哪个字段进行返回结果排序,支持以下字段：AddTime（创建时间）, ModTime（修改时间）
+        # @param OrderBy: 根据哪个字段进行返回结果排序,支持以下字段：created_at（创建时间）, updated_at（修改时间）
         # @type OrderBy: String
         # @param Limit: 返回数量，默认为20，最大值为100。
         # @type Limit: Integer
@@ -2574,7 +2574,7 @@ module TencentCloud
         # @type EventBusId: String
         # @param Enable: 使能开关。
         # @type Enable: Boolean
-        # @param Description: 规则描述，只能包含数字、中英文及常用标点符号，不超过200个字符
+        # @param Description: 事件规则描述，只能包含数字、中英文及常用标点符号，不超过200个字符
         # @type Description: String
         # @param EventPattern: 参考：[事件模式](https://cloud.tencent.com/document/product/1359/56084)
         # @type EventPattern: String

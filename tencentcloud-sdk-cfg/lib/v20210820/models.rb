@@ -2322,14 +2322,17 @@ module TencentCloud
         # @type Type: Integer
         # @param Source: 1:平台 2:用户个人
         # @type Source: Integer
+        # @param TargetStatus: 目标标签是否已被删除
+        # @type TargetStatus: Integer
 
-        attr_accessor :TargetId, :TargetDesc, :Type, :Source
+        attr_accessor :TargetId, :TargetDesc, :Type, :Source, :TargetStatus
 
-        def initialize(targetid=nil, targetdesc=nil, type=nil, source=nil)
+        def initialize(targetid=nil, targetdesc=nil, type=nil, source=nil, targetstatus=nil)
           @TargetId = targetid
           @TargetDesc = targetdesc
           @Type = type
           @Source = source
+          @TargetStatus = targetstatus
         end
 
         def deserialize(params)
@@ -2337,6 +2340,7 @@ module TencentCloud
           @TargetDesc = params['TargetDesc']
           @Type = params['Type']
           @Source = params['Source']
+          @TargetStatus = params['TargetStatus']
         end
       end
 

@@ -2572,6 +2572,54 @@ module TencentCloud
         end
       end
 
+      # BindProjectExecutorResource请求参数结构体
+      class BindProjectExecutorResourceRequest < TencentCloud::Common::AbstractModel
+        # @param ExecutorGroupId: 执行资源组id
+        # @type ExecutorGroupId: String
+        # @param ProjectId: 项目id
+        # @type ProjectId: String
+        # @param ExecutorResourcePackageIds: 需要绑定项目的资源包id集合，为空则绑定整个资源组
+        # @type ExecutorResourcePackageIds: Array
+        # @param ProjectIdList: 可选: 需要绑定的多个项目id, 若申明将带上ProjectId一起绑定
+        # @type ProjectIdList: Array
+
+        attr_accessor :ExecutorGroupId, :ProjectId, :ExecutorResourcePackageIds, :ProjectIdList
+
+        def initialize(executorgroupid=nil, projectid=nil, executorresourcepackageids=nil, projectidlist=nil)
+          @ExecutorGroupId = executorgroupid
+          @ProjectId = projectid
+          @ExecutorResourcePackageIds = executorresourcepackageids
+          @ProjectIdList = projectidlist
+        end
+
+        def deserialize(params)
+          @ExecutorGroupId = params['ExecutorGroupId']
+          @ProjectId = params['ProjectId']
+          @ExecutorResourcePackageIds = params['ExecutorResourcePackageIds']
+          @ProjectIdList = params['ProjectIdList']
+        end
+      end
+
+      # BindProjectExecutorResource返回参数结构体
+      class BindProjectExecutorResourceResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 绑定成功为true，其他为异常信息
+        # @type Data: Boolean
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Data = params['Data']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 数据地图-数据类目信息
       class BizCatalogsInfo < TencentCloud::Common::AbstractModel
         # @param AppId: 应用id
@@ -4160,6 +4208,33 @@ module TencentCloud
         end
       end
 
+      # CreateBaseProject请求参数结构体
+      class CreateBaseProjectRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # CreateBaseProject返回参数结构体
+      class CreateBaseProjectResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateCodeTemplate请求参数结构体
       class CreateCodeTemplateRequest < TencentCloud::Common::AbstractModel
         # @param ProjectId: 项目Id
@@ -4172,18 +4247,21 @@ module TencentCloud
         # @type CodeTemplateDesc: String
         # @param FolderId: 文件夹ID
         # @type FolderId: String
-        # @param Content: 指定脚本内容
+        # @param Content: Base64转化的脚本内容
         # @type Content: String
+        # @param ProductName: 代码模板类型
+        # @type ProductName: String
 
-        attr_accessor :ProjectId, :CodeTemplateName, :TaskType, :CodeTemplateDesc, :FolderId, :Content
+        attr_accessor :ProjectId, :CodeTemplateName, :TaskType, :CodeTemplateDesc, :FolderId, :Content, :ProductName
 
-        def initialize(projectid=nil, codetemplatename=nil, tasktype=nil, codetemplatedesc=nil, folderid=nil, content=nil)
+        def initialize(projectid=nil, codetemplatename=nil, tasktype=nil, codetemplatedesc=nil, folderid=nil, content=nil, productname=nil)
           @ProjectId = projectid
           @CodeTemplateName = codetemplatename
           @TaskType = tasktype
           @CodeTemplateDesc = codetemplatedesc
           @FolderId = folderid
           @Content = content
+          @ProductName = productname
         end
 
         def deserialize(params)
@@ -4193,6 +4271,7 @@ module TencentCloud
           @CodeTemplateDesc = params['CodeTemplateDesc']
           @FolderId = params['FolderId']
           @Content = params['Content']
+          @ProductName = params['ProductName']
         end
       end
 
@@ -7629,6 +7708,49 @@ module TencentCloud
       class DeleteTaskDsResponse < TencentCloud::Common::AbstractModel
         # @param Data: 是否删除成功
         # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: Boolean
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Data = params['Data']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteTaskLineage请求参数结构体
+      class DeleteTaskLineageRequest < TencentCloud::Common::AbstractModel
+        # @param Task: 任务信息
+        # @type Task: :class:`Tencentcloud::Wedata.v20210820.models.LineageTask`
+        # @param ChannelType: wedata内部任务默认SQL
+        # @type ChannelType: String
+
+        attr_accessor :Task, :ChannelType
+
+        def initialize(task=nil, channeltype=nil)
+          @Task = task
+          @ChannelType = channeltype
+        end
+
+        def deserialize(params)
+          unless params['Task'].nil?
+            @Task = LineageTask.new
+            @Task.deserialize(params['Task'])
+          end
+          @ChannelType = params['ChannelType']
+        end
+      end
+
+      # DeleteTaskLineage返回参数结构体
+      class DeleteTaskLineageResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 操作结果
         # @type Data: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -17690,6 +17812,46 @@ module TencentCloud
         end
       end
 
+      # DisableProject请求参数结构体
+      class DisableProjectRequest < TencentCloud::Common::AbstractModel
+        # @param ProjectId: 项目id
+        # @type ProjectId: String
+        # @param ModuleKey: 模块名称
+        # @type ModuleKey: String
+
+        attr_accessor :ProjectId, :ModuleKey
+
+        def initialize(projectid=nil, modulekey=nil)
+          @ProjectId = projectid
+          @ModuleKey = modulekey
+        end
+
+        def deserialize(params)
+          @ProjectId = params['ProjectId']
+          @ModuleKey = params['ModuleKey']
+        end
+      end
+
+      # DisableProject返回参数结构体
+      class DisableProjectResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 无
+        # @type Data: Boolean
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Data = params['Data']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 数据治理配置项
       class DlcDataGovernPolicy < TencentCloud::Common::AbstractModel
         # @param RewriteDataPolicy: 数据排布治理项
@@ -18344,6 +18506,46 @@ module TencentCloud
               @Duty << duty_tmp
             end
           end
+        end
+      end
+
+      # EnableProject请求参数结构体
+      class EnableProjectRequest < TencentCloud::Common::AbstractModel
+        # @param ProjectId: 项目id
+        # @type ProjectId: String
+        # @param ModuleKey: 模块名称
+        # @type ModuleKey: String
+
+        attr_accessor :ProjectId, :ModuleKey
+
+        def initialize(projectid=nil, modulekey=nil)
+          @ProjectId = projectid
+          @ModuleKey = modulekey
+        end
+
+        def deserialize(params)
+          @ProjectId = params['ProjectId']
+          @ModuleKey = params['ModuleKey']
+        end
+      end
+
+      # EnableProject返回参数结构体
+      class EnableProjectResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 无
+        # @type Data: Boolean
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Data = params['Data']
+          @RequestId = params['RequestId']
         end
       end
 
@@ -25532,6 +25734,69 @@ module TencentCloud
         end
       end
 
+      # ModifyProject请求参数结构体
+      class ModifyProjectRequest < TencentCloud::Common::AbstractModel
+        # @param ProjectId: 目标修改的项目ID
+        # @type ProjectId: String
+        # @param TaskSubmitApproval: true/false则修改，不带该参数不修改。
+        # @type TaskSubmitApproval: Boolean
+        # @param ResourcePoolInfo: 资源池信息
+        # @type ResourcePoolInfo: :class:`Tencentcloud::Wedata.v20210820.models.ResourcePoolInfo`
+        # @param ProjectManagers: 项目管理员
+        # @type ProjectManagers: Array
+        # @param TaskStrictMode: 调度任务严格模式
+        # @type TaskStrictMode: Boolean
+        # @param ExtraOptions: 以后新增选项可以直接通过前端的json格式写入去实现
+        # @type ExtraOptions: String
+        # @param Model: 项目类型，SIMPLE：简单模式 STANDARD：标准模式
+        # @type Model: String
+        # @param ProjectOwner: 项目负责人
+        # @type ProjectOwner: Array
+
+        attr_accessor :ProjectId, :TaskSubmitApproval, :ResourcePoolInfo, :ProjectManagers, :TaskStrictMode, :ExtraOptions, :Model, :ProjectOwner
+
+        def initialize(projectid=nil, tasksubmitapproval=nil, resourcepoolinfo=nil, projectmanagers=nil, taskstrictmode=nil, extraoptions=nil, model=nil, projectowner=nil)
+          @ProjectId = projectid
+          @TaskSubmitApproval = tasksubmitapproval
+          @ResourcePoolInfo = resourcepoolinfo
+          @ProjectManagers = projectmanagers
+          @TaskStrictMode = taskstrictmode
+          @ExtraOptions = extraoptions
+          @Model = model
+          @ProjectOwner = projectowner
+        end
+
+        def deserialize(params)
+          @ProjectId = params['ProjectId']
+          @TaskSubmitApproval = params['TaskSubmitApproval']
+          unless params['ResourcePoolInfo'].nil?
+            @ResourcePoolInfo = ResourcePoolInfo.new
+            @ResourcePoolInfo.deserialize(params['ResourcePoolInfo'])
+          end
+          @ProjectManagers = params['ProjectManagers']
+          @TaskStrictMode = params['TaskStrictMode']
+          @ExtraOptions = params['ExtraOptions']
+          @Model = params['Model']
+          @ProjectOwner = params['ProjectOwner']
+        end
+      end
+
+      # ModifyProject返回参数结构体
+      class ModifyProjectResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyRuleGroupSubscription请求参数结构体
       class ModifyRuleGroupSubscriptionRequest < TencentCloud::Common::AbstractModel
         # @param RuleGroupId: 规则组ID
@@ -29469,6 +29734,38 @@ module TencentCloud
         end
       end
 
+      # 资源池信息
+      class ResourcePoolInfo < TencentCloud::Common::AbstractModel
+        # @param ResourcePools: 资源池id
+        # @type ResourcePools: Array
+        # @param StorageSize: 存储空间大小，单位 MB
+        # @type StorageSize: Integer
+        # @param StorageFileNum: 存储文件数大小
+        # @type StorageFileNum: Integer
+        # @param ClusterId: 集群id
+        # @type ClusterId: String
+        # @param StorageType: 存储类型，0 代表HDFS，1 代表OZONE
+        # @type StorageType: String
+
+        attr_accessor :ResourcePools, :StorageSize, :StorageFileNum, :ClusterId, :StorageType
+
+        def initialize(resourcepools=nil, storagesize=nil, storagefilenum=nil, clusterid=nil, storagetype=nil)
+          @ResourcePools = resourcepools
+          @StorageSize = storagesize
+          @StorageFileNum = storagefilenum
+          @ClusterId = clusterid
+          @StorageType = storagetype
+        end
+
+        def deserialize(params)
+          @ResourcePools = params['ResourcePools']
+          @StorageSize = params['StorageSize']
+          @StorageFileNum = params['StorageFileNum']
+          @ClusterId = params['ClusterId']
+          @StorageType = params['StorageType']
+        end
+      end
+
       # ResumeIntegrationTask请求参数结构体
       class ResumeIntegrationTaskRequest < TencentCloud::Common::AbstractModel
         # @param TaskId: 任务id
@@ -33058,10 +33355,12 @@ module TencentCloud
         # @type ScriptContent: String
         # @param VersionId: 版本号
         # @type VersionId: String
+        # @param SubmitTaskTestRunType: 提交任务测试运行类型
+        # @type SubmitTaskTestRunType: String
 
-        attr_accessor :TaskIds, :ProjectId, :WorkFlowId, :Name, :Tasks, :Description, :RunParams, :ScriptContent, :VersionId
+        attr_accessor :TaskIds, :ProjectId, :WorkFlowId, :Name, :Tasks, :Description, :RunParams, :ScriptContent, :VersionId, :SubmitTaskTestRunType
 
-        def initialize(taskids=nil, projectid=nil, workflowid=nil, name=nil, tasks=nil, description=nil, runparams=nil, scriptcontent=nil, versionid=nil)
+        def initialize(taskids=nil, projectid=nil, workflowid=nil, name=nil, tasks=nil, description=nil, runparams=nil, scriptcontent=nil, versionid=nil, submittasktestruntype=nil)
           @TaskIds = taskids
           @ProjectId = projectid
           @WorkFlowId = workflowid
@@ -33071,6 +33370,7 @@ module TencentCloud
           @RunParams = runparams
           @ScriptContent = scriptcontent
           @VersionId = versionid
+          @SubmitTaskTestRunType = submittasktestruntype
         end
 
         def deserialize(params)
@@ -33090,6 +33390,7 @@ module TencentCloud
           @RunParams = params['RunParams']
           @ScriptContent = params['ScriptContent']
           @VersionId = params['VersionId']
+          @SubmitTaskTestRunType = params['SubmitTaskTestRunType']
         end
       end
 
@@ -38202,6 +38503,54 @@ module TencentCloud
             @Data = ManualTriggerRecordOpsDto.new
             @Data.deserialize(params['Data'])
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # UnboundProjectExecutorResource请求参数结构体
+      class UnboundProjectExecutorResourceRequest < TencentCloud::Common::AbstractModel
+        # @param ExecutorGroupId: 执行资源组id
+        # @type ExecutorGroupId: String
+        # @param ProjectId: 项目id
+        # @type ProjectId: String
+        # @param ProjectIdList: 可选: 需要绑定的多个项目id, 若申明将带上ProjectId一起绑定
+        # @type ProjectIdList: Array
+        # @param ExecutorResourcePackageIds: 需要绑定项目的资源包id集合，为空则绑定整个资源组
+        # @type ExecutorResourcePackageIds: Array
+
+        attr_accessor :ExecutorGroupId, :ProjectId, :ProjectIdList, :ExecutorResourcePackageIds
+
+        def initialize(executorgroupid=nil, projectid=nil, projectidlist=nil, executorresourcepackageids=nil)
+          @ExecutorGroupId = executorgroupid
+          @ProjectId = projectid
+          @ProjectIdList = projectidlist
+          @ExecutorResourcePackageIds = executorresourcepackageids
+        end
+
+        def deserialize(params)
+          @ExecutorGroupId = params['ExecutorGroupId']
+          @ProjectId = params['ProjectId']
+          @ProjectIdList = params['ProjectIdList']
+          @ExecutorResourcePackageIds = params['ExecutorResourcePackageIds']
+        end
+      end
+
+      # UnboundProjectExecutorResource返回参数结构体
+      class UnboundProjectExecutorResourceResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 是否绑定成功，失败返回异常
+        # @type Data: Boolean
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Data = params['Data']
           @RequestId = params['RequestId']
         end
       end
