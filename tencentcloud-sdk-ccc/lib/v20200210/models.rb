@@ -5819,10 +5819,12 @@ module TencentCloud
         # @type SkillGroupType: Integer
         # @param Alias: 技能组内线号码
         # @type Alias: String
+        # @param RingAll: 是否同振
+        # @type RingAll: Boolean
 
-        attr_accessor :SkillGroupId, :SkillGroupName, :Type, :RoutePolicy, :UsingLastSeat, :MaxConcurrency, :LastModifyTimestamp, :SkillGroupType, :Alias
+        attr_accessor :SkillGroupId, :SkillGroupName, :Type, :RoutePolicy, :UsingLastSeat, :MaxConcurrency, :LastModifyTimestamp, :SkillGroupType, :Alias, :RingAll
 
-        def initialize(skillgroupid=nil, skillgroupname=nil, type=nil, routepolicy=nil, usinglastseat=nil, maxconcurrency=nil, lastmodifytimestamp=nil, skillgrouptype=nil, _alias=nil)
+        def initialize(skillgroupid=nil, skillgroupname=nil, type=nil, routepolicy=nil, usinglastseat=nil, maxconcurrency=nil, lastmodifytimestamp=nil, skillgrouptype=nil, _alias=nil, ringall=nil)
           @SkillGroupId = skillgroupid
           @SkillGroupName = skillgroupname
           @Type = type
@@ -5832,6 +5834,7 @@ module TencentCloud
           @LastModifyTimestamp = lastmodifytimestamp
           @SkillGroupType = skillgrouptype
           @Alias = _alias
+          @RingAll = ringall
         end
 
         def deserialize(params)
@@ -5844,6 +5847,7 @@ module TencentCloud
           @LastModifyTimestamp = params['LastModifyTimestamp']
           @SkillGroupType = params['SkillGroupType']
           @Alias = params['Alias']
+          @RingAll = params['RingAll']
         end
       end
 

@@ -4834,10 +4834,18 @@ module TencentCloud
         # @type Metric: String
         # @param Region: 地域。
         # @type Region: String
+        # @param ClusterId: 集群ID。
+        # @type ClusterId: String
+        # @param ClusterName: 集群名称。
+        # @type ClusterName: String
+        # @param Vip: vip地址。
+        # @type Vip: String
+        # @param Vport: vip端口。
+        # @type Vport: Integer
 
-        attr_accessor :DiagType, :EndTime, :StartTime, :EventId, :Severity, :Outline, :DiagItem, :InstanceId, :Metric, :Region
+        attr_accessor :DiagType, :EndTime, :StartTime, :EventId, :Severity, :Outline, :DiagItem, :InstanceId, :Metric, :Region, :ClusterId, :ClusterName, :Vip, :Vport
 
-        def initialize(diagtype=nil, endtime=nil, starttime=nil, eventid=nil, severity=nil, outline=nil, diagitem=nil, instanceid=nil, metric=nil, region=nil)
+        def initialize(diagtype=nil, endtime=nil, starttime=nil, eventid=nil, severity=nil, outline=nil, diagitem=nil, instanceid=nil, metric=nil, region=nil, clusterid=nil, clustername=nil, vip=nil, vport=nil)
           @DiagType = diagtype
           @EndTime = endtime
           @StartTime = starttime
@@ -4848,6 +4856,10 @@ module TencentCloud
           @InstanceId = instanceid
           @Metric = metric
           @Region = region
+          @ClusterId = clusterid
+          @ClusterName = clustername
+          @Vip = vip
+          @Vport = vport
         end
 
         def deserialize(params)
@@ -4861,6 +4873,10 @@ module TencentCloud
           @InstanceId = params['InstanceId']
           @Metric = params['Metric']
           @Region = params['Region']
+          @ClusterId = params['ClusterId']
+          @ClusterName = params['ClusterName']
+          @Vip = params['Vip']
+          @Vport = params['Vport']
         end
       end
 

@@ -33,7 +33,7 @@ module TencentCloud
         # @type UserId: String
         # @param AppMode: 应用模式（NORMAL : 普通模式；ADVANCED : 高级模式）
         # @type AppMode: String
-        # @param UpdateState: 应用更新状态，取值：UPLOADING 上传中、CREATING 创建中、CREATE_FAIL 创建失败、CREATE_SUCCESS 创建成功、NORMAL 默认状态
+        # @param UpdateState: 应用更新状态，取值：UPLOADING 上传中、CREATING 创建中、CREATE_FAIL 创建失败、CREATE_SUCCESS 创建成功、PACKAGE_NAME_MISMATCH 包名不匹配、VERSION_ALREADY_EXISTS 版本已存在、APP_PARSE_FAIL app 解析失败、APP_EXISTS_SECURITY_RISK app 存在安全风险、NORMAL 默认状态
         # @type UpdateState: String
         # @param PackageName: 安卓应用包名
         # @type PackageName: String
@@ -96,9 +96,7 @@ module TencentCloud
       class AndroidAppVersionInfo < TencentCloud::Common::AbstractModel
         # @param AndroidAppVersion: 安卓应用版本
         # @type AndroidAppVersion: String
-        # @param State: 安卓应用版本创建状态（NORMAL：无、UPLOADING：上传中、
-        # CREATING： 创建中、
-        # CREATE_FAIL：创建失败、CREATE_SUCCESS：创建成功）
+        # @param State: 安卓应用版本创建状态，取值：NORMAL：无（默认）、UPLOADING：上传中、CREATING： 创建中、CREATE_FAIL：创建失败、PACKAGE_NAME_MISMATCH：包名不匹配、VERSION_ALREADY_EXISTS：版本已存在、APP_PARSE_FAIL： app 解析失败、APP_EXISTS_SECURITY_RISK：app 存在安全风险、CREATE_SUCCESS：创建成功
         # @type State: String
         # @param CreateTime: 安卓应用版本创建时间
         # @type CreateTime: String
@@ -114,10 +112,16 @@ module TencentCloud
         # @type Activity: String
         # @param VersionName: 应用版本号（Version Name）
         # @type VersionName: String
+        # @param MD5: 应用包 MD5
+        # @type MD5: String
+        # @param FileSize: 应用包文件大小（字节）
+        # @type FileSize: Integer
+        # @param PackageName: 安卓应用包名
+        # @type PackageName: String
 
-        attr_accessor :AndroidAppVersion, :State, :CreateTime, :Command, :UninstallCommand, :CleanupMode, :AndroidAppVersionName, :Activity, :VersionName
+        attr_accessor :AndroidAppVersion, :State, :CreateTime, :Command, :UninstallCommand, :CleanupMode, :AndroidAppVersionName, :Activity, :VersionName, :MD5, :FileSize, :PackageName
 
-        def initialize(androidappversion=nil, state=nil, createtime=nil, command=nil, uninstallcommand=nil, cleanupmode=nil, androidappversionname=nil, activity=nil, versionname=nil)
+        def initialize(androidappversion=nil, state=nil, createtime=nil, command=nil, uninstallcommand=nil, cleanupmode=nil, androidappversionname=nil, activity=nil, versionname=nil, md5=nil, filesize=nil, packagename=nil)
           @AndroidAppVersion = androidappversion
           @State = state
           @CreateTime = createtime
@@ -127,6 +131,9 @@ module TencentCloud
           @AndroidAppVersionName = androidappversionname
           @Activity = activity
           @VersionName = versionname
+          @MD5 = md5
+          @FileSize = filesize
+          @PackageName = packagename
         end
 
         def deserialize(params)
@@ -139,6 +146,9 @@ module TencentCloud
           @AndroidAppVersionName = params['AndroidAppVersionName']
           @Activity = params['Activity']
           @VersionName = params['VersionName']
+          @MD5 = params['MD5']
+          @FileSize = params['FileSize']
+          @PackageName = params['PackageName']
         end
       end
 

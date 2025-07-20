@@ -866,7 +866,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口(DeleteBackup)用于删除数据库备份。本接口只支持删除手动发起的备份。
+        # 本接口（DeleteBackup）用于删除数据库备份。本接口只支持删除手动发起的备份。
 
         # @param request: Request instance for DeleteBackup.
         # @type request: :class:`Tencentcloud::cdb::V20170320::DeleteBackupRequest`

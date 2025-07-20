@@ -1673,10 +1673,14 @@ module TencentCloud
         # @type IsSupportIpv6: Boolean
         # @param EngineType: 可支持的售卖数据库引擎类型
         # @type EngineType: Array
+        # @param CloudNativeClusterStatus: 集群版实例在当前可用区的售卖状态。可能的返回值为：1-上线；3-停售；4-不展示
+        # @type CloudNativeClusterStatus: Integer
+        # @param DiskTypeConf: 集群版或者单节点基础型支持的磁盘类型。
+        # @type DiskTypeConf: Array
 
-        attr_accessor :Status, :ZoneName, :IsCustom, :IsSupportDr, :IsSupportVpc, :HourInstanceSaleMaxNum, :IsDefaultZone, :IsBm, :PayType, :ProtectMode, :Zone, :ZoneConf, :DrZone, :IsSupportRemoteRo, :RemoteRoZone, :ExClusterStatus, :ExClusterRemoteRoZone, :ExClusterZoneConf, :SellType, :ZoneId, :IsSupportIpv6, :EngineType
+        attr_accessor :Status, :ZoneName, :IsCustom, :IsSupportDr, :IsSupportVpc, :HourInstanceSaleMaxNum, :IsDefaultZone, :IsBm, :PayType, :ProtectMode, :Zone, :ZoneConf, :DrZone, :IsSupportRemoteRo, :RemoteRoZone, :ExClusterStatus, :ExClusterRemoteRoZone, :ExClusterZoneConf, :SellType, :ZoneId, :IsSupportIpv6, :EngineType, :CloudNativeClusterStatus, :DiskTypeConf
 
-        def initialize(status=nil, zonename=nil, iscustom=nil, issupportdr=nil, issupportvpc=nil, hourinstancesalemaxnum=nil, isdefaultzone=nil, isbm=nil, paytype=nil, protectmode=nil, zone=nil, zoneconf=nil, drzone=nil, issupportremotero=nil, remoterozone=nil, exclusterstatus=nil, exclusterremoterozone=nil, exclusterzoneconf=nil, selltype=nil, zoneid=nil, issupportipv6=nil, enginetype=nil)
+        def initialize(status=nil, zonename=nil, iscustom=nil, issupportdr=nil, issupportvpc=nil, hourinstancesalemaxnum=nil, isdefaultzone=nil, isbm=nil, paytype=nil, protectmode=nil, zone=nil, zoneconf=nil, drzone=nil, issupportremotero=nil, remoterozone=nil, exclusterstatus=nil, exclusterremoterozone=nil, exclusterzoneconf=nil, selltype=nil, zoneid=nil, issupportipv6=nil, enginetype=nil, cloudnativeclusterstatus=nil, disktypeconf=nil)
           @Status = status
           @ZoneName = zonename
           @IsCustom = iscustom
@@ -1699,6 +1703,8 @@ module TencentCloud
           @ZoneId = zoneid
           @IsSupportIpv6 = issupportipv6
           @EngineType = enginetype
+          @CloudNativeClusterStatus = cloudnativeclusterstatus
+          @DiskTypeConf = disktypeconf
         end
 
         def deserialize(params)
@@ -1737,6 +1743,15 @@ module TencentCloud
           @ZoneId = params['ZoneId']
           @IsSupportIpv6 = params['IsSupportIpv6']
           @EngineType = params['EngineType']
+          @CloudNativeClusterStatus = params['CloudNativeClusterStatus']
+          unless params['DiskTypeConf'].nil?
+            @DiskTypeConf = []
+            params['DiskTypeConf'].each do |i|
+              disktypeconfigitem_tmp = DiskTypeConfigItem.new
+              disktypeconfigitem_tmp.deserialize(i)
+              @DiskTypeConf << disktypeconfigitem_tmp
+            end
+          end
         end
       end
 
@@ -8844,6 +8859,26 @@ module TencentCloud
         end
       end
 
+      # 磁盘售卖类型
+      class DiskTypeConfigItem < TencentCloud::Common::AbstractModel
+        # @param DeviceType: 磁盘对应的实例类型。仅支持单节点基础型和集群版。
+        # @type DeviceType: String
+        # @param DiskType: 可以选择的磁盘类型列表。
+        # @type DiskType: Array
+
+        attr_accessor :DeviceType, :DiskType
+
+        def initialize(devicetype=nil, disktype=nil)
+          @DeviceType = devicetype
+          @DiskType = disktype
+        end
+
+        def deserialize(params)
+          @DeviceType = params['DeviceType']
+          @DiskType = params['DiskType']
+        end
+      end
+
       # 灾备实例信息
       class DrInfo < TencentCloud::Common::AbstractModel
         # @param Status: 灾备实例状态
@@ -9653,11 +9688,11 @@ module TencentCloud
         end
       end
 
-      # 本地binlog保留配置
+      # 本地 binlog 保留配置
       class LocalBinlogConfig < TencentCloud::Common::AbstractModel
-        # @param SaveHours: 本地binlog保留时长，可取值范围：[72,168]。
+        # @param SaveHours: 本地 binlog 保留时长，可取值范围：[6,168]。
         # @type SaveHours: Integer
-        # @param MaxUsage: 本地binlog空间使用率，可取值范围：[30,50]。
+        # @param MaxUsage: 本地 binlog 空间使用率，可取值范围：[30,50]。
         # @type MaxUsage: Integer
 
         attr_accessor :SaveHours, :MaxUsage
@@ -9673,11 +9708,11 @@ module TencentCloud
         end
       end
 
-      # 本地binlog保留策略默认配置。
+      # 本地 binlog 保留策略默认配置
       class LocalBinlogConfigDefault < TencentCloud::Common::AbstractModel
-        # @param SaveHours: 本地binlog保留时长，可取值范围：[72,168]。
+        # @param SaveHours: 本地 binlog 保留时长，可取值范围：[6,168]。
         # @type SaveHours: Integer
-        # @param MaxUsage: 本地binlog空间使用率，可取值范围：[30,50]。
+        # @param MaxUsage: 本地 binlog 空间使用率，可取值范围：[30,50]。
         # @type MaxUsage: Integer
 
         attr_accessor :SaveHours, :MaxUsage
@@ -13515,7 +13550,7 @@ module TencentCloud
         # @type Name: String
         # @param Size: 备份文件大小，单位：Byte
         # @type Size: Integer
-        # @param Date: 备份快照时间，时间格式：2016-03-17 02:10:37
+        # @param Date: 备份快照时间，时间格式：2016-03-17
         # @type Date: String
         # @param IntranetUrl: 内网下载地址
         # @type IntranetUrl: String

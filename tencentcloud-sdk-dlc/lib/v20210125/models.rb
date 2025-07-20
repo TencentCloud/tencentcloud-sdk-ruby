@@ -8480,6 +8480,41 @@ module TencentCloud
         end
       end
 
+      # DescribeUserRegisterTime请求参数结构体
+      class DescribeUserRegisterTimeRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeUserRegisterTime返回参数结构体
+      class DescribeUserRegisterTimeResponse < TencentCloud::Common::AbstractModel
+        # @param RegisterTime: 用户注册时间
+        # @type RegisterTime: Integer
+        # @param IsOldUser: 是否时老用户
+        # @type IsOldUser: Boolean
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RegisterTime, :IsOldUser, :RequestId
+
+        def initialize(registertime=nil, isolduser=nil, requestid=nil)
+          @RegisterTime = registertime
+          @IsOldUser = isolduser
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RegisterTime = params['RegisterTime']
+          @IsOldUser = params['IsOldUser']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeUserRoles请求参数结构体
       class DescribeUserRolesRequest < TencentCloud::Common::AbstractModel
         # @param Limit: 列举的数量限制

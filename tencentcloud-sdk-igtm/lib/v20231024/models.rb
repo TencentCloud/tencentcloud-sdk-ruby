@@ -86,31 +86,23 @@ module TencentCloud
       # 地址池
       class AddressPool < TencentCloud::Common::AbstractModel
         # @param PoolId: 地址池 id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PoolId: Integer
         # @param PoolName: 地址池名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PoolName: String
         # @param AddrType: 地址池地址类型：IPV4、IPV6、DOMAIN
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AddrType: String
         # @param TrafficStrategy: 流量策略: WEIGHT负载均衡，ALL解析全部
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TrafficStrategy: String
         # @param MonitorId: 监控器id
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MonitorId: Integer
         # @param Status: OK正常，DOWN故障，WARN风险，UNKNOWN未知
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: String
         # @param AddressNum: 地址数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AddressNum: Integer
         # @param MonitorGroupNum: 探点数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MonitorGroupNum: Integer
         # @param MonitorTaskNum: 探测任务数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MonitorTaskNum: Integer
         # @param InstanceInfo: 实例相关信息
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -119,10 +111,8 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AddressSet: Array
         # @param CreatedOn: 创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreatedOn: String
         # @param UpdatedOn: 更新时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdatedOn: String
 
         attr_accessor :PoolId, :PoolName, :AddrType, :TrafficStrategy, :MonitorId, :Status, :AddressNum, :MonitorGroupNum, :MonitorTaskNum, :InstanceInfo, :AddressSet, :CreatedOn, :UpdatedOn
@@ -848,7 +838,7 @@ module TencentCloud
         # @type IsExpire: Integer
         # @param Status: 状态 ENABLED: 正常 ISOLATED: 隔离 DESTROYED：销毁 REFUNDED：已退款
         # @type Status: String
-        # @param AutoRenewFlag: 是否自动续费0不1是
+        # @param AutoRenewFlag: 是否自动续费：0否1是
         # @type AutoRenewFlag: Integer
         # @param Remark: 备注
         # @type Remark: String
@@ -1222,7 +1212,6 @@ module TencentCloud
       # DescribeMonitorDetail返回参数结构体
       class DescribeMonitorDetailResponse < TencentCloud::Common::AbstractModel
         # @param MonitorDetail: 探测规则
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MonitorDetail: :class:`Tencentcloud::Igtm.v20231024.models.MonitorDetail`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1318,7 +1307,6 @@ module TencentCloud
       # DescribeQuotas返回参数结构体
       class DescribeQuotasResponse < TencentCloud::Common::AbstractModel
         # @param Quotas: 配额id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Quotas: :class:`Tencentcloud::Igtm.v20231024.models.Quota`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1945,13 +1933,10 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AddressPools: Array
         # @param MainAddressPoolId: 地址池集合id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MainAddressPoolId: Integer
         # @param MinSurviveNum: 切换阀值，不能大于主力集合内地址总数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MinSurviveNum: Integer
         # @param TrafficStrategy: 切换策略:ALL解析所有地址；WEIGHT：负载均衡。当为ALL时，解析地址的权重值为1；当为WEIGHT时；权重为地址池权重*地址权重
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TrafficStrategy: String
 
         attr_accessor :AddressPools, :MainAddressPoolId, :MinSurviveNum, :TrafficStrategy
@@ -2401,37 +2386,26 @@ module TencentCloud
       # 配额
       class Quota < TencentCloud::Common::AbstractModel
         # @param TaskQuota: 探测任务配额
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskQuota: Integer
         # @param PoolQuota: 地址池配额
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PoolQuota: Integer
         # @param AddressQuota: 地址配额
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AddressQuota: Integer
         # @param MonitorQuota: 探点资源数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MonitorQuota: Integer
         # @param MessageQuota: 消息资源数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MessageQuota: Integer
         # @param UsedTaskQuota: 已使用探测任务数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UsedTaskQuota: Integer
         # @param UsedFreeInstanceNum: 已使用体验实例数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UsedFreeInstanceNum: Integer
         # @param UsedBillInstanceNum: 已使用付费实例
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UsedBillInstanceNum: Integer
         # @param FreePackageNum: 体验套餐总数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FreePackageNum: Integer
         # @param UsedBillPackageNum: 已使用付费套餐数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UsedBillPackageNum: Integer
         # @param BillPackageNum: 付费套餐总数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BillPackageNum: Integer
 
         attr_accessor :TaskQuota, :PoolQuota, :AddressQuota, :MonitorQuota, :MessageQuota, :UsedTaskQuota, :UsedFreeInstanceNum, :UsedBillInstanceNum, :FreePackageNum, :UsedBillPackageNum, :BillPackageNum
@@ -2497,7 +2471,6 @@ module TencentCloud
         # @param DnsLineId: 解析请求来源线路id
         # @type DnsLineId: Integer
         # @param Name: 解析请求来源线路名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
 
         attr_accessor :DnsLineId, :Name
@@ -2516,19 +2489,15 @@ module TencentCloud
       # 地址池
       class Strategy < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceId: String
         # @param Name: 策略名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Source: 地址来源
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Source: Array
         # @param StrategyId: 策略id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StrategyId: Integer
         # @param Status: 健康状态：ok健康、warn风险、down故障
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: String
         # @param ActivateMainPoolId: 生效的主力池id，null则为未知
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -2537,28 +2506,20 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ActivateLevel: Integer
         # @param ActivePoolType: 当前生效地址池集合类型：main主力；fallback兜底
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ActivePoolType: String
         # @param ActiveTrafficStrategy: 当前生效地址池流量策略：all解析所有；weight负载均衡
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ActiveTrafficStrategy: String
         # @param MonitorNum: 监控器数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MonitorNum: Integer
         # @param IsEnabled: 是否开启：ENABLED开启；DISABLED关闭
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsEnabled: String
         # @param KeepDomainRecords: 是否保留线路：enabled保留，disabled不保留，只保留默认线路
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type KeepDomainRecords: String
         # @param SwitchPoolType: 调度模式：AUTO默认；PAUSE仅暂停不切换
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SwitchPoolType: String
         # @param CreatedOn: 创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreatedOn: String
         # @param UpdatedOn: 更新时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdatedOn: String
 
         attr_accessor :InstanceId, :Name, :Source, :StrategyId, :Status, :ActivateMainPoolId, :ActivateLevel, :ActivePoolType, :ActiveTrafficStrategy, :MonitorNum, :IsEnabled, :KeepDomainRecords, :SwitchPoolType, :CreatedOn, :UpdatedOn
@@ -2610,13 +2571,10 @@ module TencentCloud
       # 策略详情
       class StrategyDetail < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceId: String
         # @param StrategyId: 策略id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StrategyId: Integer
         # @param Name: 策略名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Source: 线路
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -2628,19 +2586,15 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FallbackAddressPoolSet: Array
         # @param KeepDomainRecords: 是否保留线路：enabled保留，disabled不保留，只保留默认线路
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type KeepDomainRecords: String
         # @param ActivateMainPoolId: 生效主力地址池id
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ActivateMainPoolId: Integer
         # @param CreatedOn: 创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreatedOn: String
         # @param UpdatedOn: 更新时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdatedOn: String
         # @param SwitchPoolType: 调度模式：AUTO默认；PAUSE仅暂停不切换
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SwitchPoolType: String
 
         attr_accessor :InstanceId, :StrategyId, :Name, :Source, :MainAddressPoolSet, :FallbackAddressPoolSet, :KeepDomainRecords, :ActivateMainPoolId, :CreatedOn, :UpdatedOn, :SwitchPoolType

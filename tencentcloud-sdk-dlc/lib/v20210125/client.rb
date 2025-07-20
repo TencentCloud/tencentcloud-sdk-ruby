@@ -2551,6 +2551,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 该接口（DescribeUserRegisterTime）用于查询当前用户注册时间，并判断是否是老用户。
+
+        # @param request: Request instance for DescribeUserRegisterTime.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::DescribeUserRegisterTimeRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::DescribeUserRegisterTimeResponse`
+        def DescribeUserRegisterTime(request)
+          body = send_request('DescribeUserRegisterTime', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeUserRegisterTimeResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 列举用户角色信息
 
         # @param request: Request instance for DescribeUserRoles.
