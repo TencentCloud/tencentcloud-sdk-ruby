@@ -1161,6 +1161,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 不再使用
+
         # 表格数据回档
 
         # @param request: Request instance for RollbackTables.

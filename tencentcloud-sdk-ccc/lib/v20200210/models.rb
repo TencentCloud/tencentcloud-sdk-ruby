@@ -1334,13 +1334,19 @@ module TencentCloud
         # 2.  dify-inputs-user 为dify的user值
         # 3.  dify-inputs-conversation_id 为dify的conversation_id值
         # @type Variables: Array
+        # @param TopP: 模型topP
+        # @type TopP: Float
+        # @param VadLevel: vad的远场人声抑制能力（不会对asr识别效果造成影响），范围为[0, 3]，默认为0。推荐设置为2，有较好的远场人声抑制能力。
+        # @type VadLevel: Integer
+        # @param ToneWord: 衔接语
+        # @type ToneWord: :class:`Tencentcloud::Ccc.v20200210.models.ToneWordInfo`
 
-        attr_accessor :SdkAppId, :Callee, :LLMType, :APIKey, :APIUrl, :SystemPrompt, :Model, :VoiceType, :Callers, :WelcomeMessage, :WelcomeType, :WelcomeMessagePriority, :MaxDuration, :Languages, :InterruptMode, :InterruptSpeechDuration, :EndFunctionEnable, :EndFunctionDesc, :TransferFunctionEnable, :TransferItems, :NotifyDuration, :NotifyMessage, :NotifyMaxCount, :CustomTTSConfig, :PromptVariables, :VadSilenceTime, :ExtractConfig, :Temperature, :Variables
+        attr_accessor :SdkAppId, :Callee, :LLMType, :APIKey, :APIUrl, :SystemPrompt, :Model, :VoiceType, :Callers, :WelcomeMessage, :WelcomeType, :WelcomeMessagePriority, :MaxDuration, :Languages, :InterruptMode, :InterruptSpeechDuration, :EndFunctionEnable, :EndFunctionDesc, :TransferFunctionEnable, :TransferItems, :NotifyDuration, :NotifyMessage, :NotifyMaxCount, :CustomTTSConfig, :PromptVariables, :VadSilenceTime, :ExtractConfig, :Temperature, :Variables, :TopP, :VadLevel, :ToneWord
         extend Gem::Deprecate
         deprecate :PromptVariables, :none, 2025, 7
         deprecate :PromptVariables=, :none, 2025, 7
 
-        def initialize(sdkappid=nil, callee=nil, llmtype=nil, apikey=nil, apiurl=nil, systemprompt=nil, model=nil, voicetype=nil, callers=nil, welcomemessage=nil, welcometype=nil, welcomemessagepriority=nil, maxduration=nil, languages=nil, interruptmode=nil, interruptspeechduration=nil, endfunctionenable=nil, endfunctiondesc=nil, transferfunctionenable=nil, transferitems=nil, notifyduration=nil, notifymessage=nil, notifymaxcount=nil, customttsconfig=nil, promptvariables=nil, vadsilencetime=nil, extractconfig=nil, temperature=nil, variables=nil)
+        def initialize(sdkappid=nil, callee=nil, llmtype=nil, apikey=nil, apiurl=nil, systemprompt=nil, model=nil, voicetype=nil, callers=nil, welcomemessage=nil, welcometype=nil, welcomemessagepriority=nil, maxduration=nil, languages=nil, interruptmode=nil, interruptspeechduration=nil, endfunctionenable=nil, endfunctiondesc=nil, transferfunctionenable=nil, transferitems=nil, notifyduration=nil, notifymessage=nil, notifymaxcount=nil, customttsconfig=nil, promptvariables=nil, vadsilencetime=nil, extractconfig=nil, temperature=nil, variables=nil, topp=nil, vadlevel=nil, toneword=nil)
           @SdkAppId = sdkappid
           @Callee = callee
           @LLMType = llmtype
@@ -1370,6 +1376,9 @@ module TencentCloud
           @ExtractConfig = extractconfig
           @Temperature = temperature
           @Variables = variables
+          @TopP = topp
+          @VadLevel = vadlevel
+          @ToneWord = toneword
         end
 
         def deserialize(params)
@@ -1429,6 +1438,12 @@ module TencentCloud
               variable_tmp.deserialize(i)
               @Variables << variable_tmp
             end
+          end
+          @TopP = params['TopP']
+          @VadLevel = params['VadLevel']
+          unless params['ToneWord'].nil?
+            @ToneWord = ToneWordInfo.new
+            @ToneWord.deserialize(params['ToneWord'])
           end
         end
       end
@@ -6471,6 +6486,29 @@ module TencentCloud
         end
       end
 
+      # 承接语气词信息
+      class ToneWordInfo < TencentCloud::Common::AbstractModel
+        # @param FirstSentenceTimeout: 首句超时时间，单位秒
+        # @type FirstSentenceTimeout: Float
+        # @param ZHToneWords: 承接语气词
+        # @type ZHToneWords: :class:`Tencentcloud::Ccc.v20200210.models.ZHToneWordsInfo`
+
+        attr_accessor :FirstSentenceTimeout, :ZHToneWords
+
+        def initialize(firstsentencetimeout=nil, zhtonewords=nil)
+          @FirstSentenceTimeout = firstsentencetimeout
+          @ZHToneWords = zhtonewords
+        end
+
+        def deserialize(params)
+          @FirstSentenceTimeout = params['FirstSentenceTimeout']
+          unless params['ZHToneWords'].nil?
+            @ZHToneWords = ZHToneWordsInfo.new
+            @ZHToneWords.deserialize(params['ZHToneWords'])
+          end
+        end
+      end
+
       # TransferToManual请求参数结构体
       class TransferToManualRequest < TencentCloud::Common::AbstractModel
         # @param SdkAppId: 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
@@ -6871,6 +6909,30 @@ module TencentCloud
         def deserialize(params)
           @Key = params['Key']
           @Value = params['Value']
+        end
+      end
+
+      # 承接语气词
+      class ZHToneWordsInfo < TencentCloud::Common::AbstractModel
+        # @param Neutral: 中性词列表
+        # @type Neutral: Array
+        # @param Positive: 正面词列表
+        # @type Positive: Array
+        # @param Negative: 负面词列表
+        # @type Negative: Array
+
+        attr_accessor :Neutral, :Positive, :Negative
+
+        def initialize(neutral=nil, positive=nil, negative=nil)
+          @Neutral = neutral
+          @Positive = positive
+          @Negative = negative
+        end
+
+        def deserialize(params)
+          @Neutral = params['Neutral']
+          @Positive = params['Positive']
+          @Negative = params['Negative']
         end
       end
 

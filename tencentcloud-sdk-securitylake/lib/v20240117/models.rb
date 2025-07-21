@@ -194,7 +194,6 @@ module TencentCloud
         # @param SdlId: 实例id
         # @type SdlId: String
         # @param RichCustomInfos: 自定义富化字段信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RichCustomInfos: Array
         # @param AttackerIp: 攻击者ip
         # @type AttackerIp: String

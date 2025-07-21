@@ -258,9 +258,9 @@ module TencentCloud
         # @type ProjectId: Integer
         # @param ModelType: 模型类型，1-默认模型。
         # @type ModelType: Integer
-        # @param VoiceType: 音色 ID，包括标准音色、精品音色、大模型音色与基础版复刻音色。不同音色价格有差异，详情请参见[购买指南](https://cloud.tencent.com/document/product/1073/34112)。完整的音色 ID 列表请参见[音色列表](https://cloud.tencent.com/document/product/1073/92668)。
+        # @param VoiceType: 音色 ID，包括标准音色、精品音色、大模型音色与基础版复刻音色。不同音色价格有差异，详情请参见[购买指南](https://cloud.tencent.com/document/product/1073/34112)。完整的音色 ID 列表请参见[音色列表](https://cloud.tencent.com/document/product/1073/92668)。<br>若使用一句话版声音复刻，请填入固定值“200000000”。
         # @type VoiceType: Integer
-        # @param FastVoiceType: 一句话版声音复刻音色ID，使用一句话版声音复刻音色时需填写。【已废弃】
+        # @param FastVoiceType: 一句话版声音复刻音色ID，使用一句话版声音复刻音色时需填写。
         # @type FastVoiceType: String
         # @param PrimaryLanguage: 主语言类型：<li>1-中文（默认）</li><li>2-英文</li><li>3-日文</li>
         # @type PrimaryLanguage: Integer

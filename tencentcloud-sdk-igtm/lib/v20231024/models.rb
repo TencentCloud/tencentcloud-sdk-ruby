@@ -431,7 +431,6 @@ module TencentCloud
       # CreateMonitor返回参数结构体
       class CreateMonitorResponse < TencentCloud::Common::AbstractModel
         # @param MonitorId: 监控器id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MonitorId: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -513,7 +512,6 @@ module TencentCloud
       # CreateStrategy返回参数结构体
       class CreateStrategyResponse < TencentCloud::Common::AbstractModel
         # @param StrategyId: 新增策略id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StrategyId: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -550,7 +548,6 @@ module TencentCloud
       # DeleteAddressPool返回参数结构体
       class DeleteAddressPoolResponse < TencentCloud::Common::AbstractModel
         # @param Msg: 是否成功
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Msg: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -587,7 +584,6 @@ module TencentCloud
       # DeleteMonitor返回参数结构体
       class DeleteMonitorResponse < TencentCloud::Common::AbstractModel
         # @param Msg: 成功返回
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Msg: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -628,7 +624,6 @@ module TencentCloud
       # DeleteStrategy返回参数结构体
       class DeleteStrategyResponse < TencentCloud::Common::AbstractModel
         # @param Msg: 是否成功
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Msg: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -665,7 +660,6 @@ module TencentCloud
       # DescribeAddressLocation返回参数结构体
       class DescribeAddressLocationResponse < TencentCloud::Common::AbstractModel
         # @param AddressLocation: 所属地域
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AddressLocation: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -709,10 +703,8 @@ module TencentCloud
       # DescribeAddressPoolDetail返回参数结构体
       class DescribeAddressPoolDetailResponse < TencentCloud::Common::AbstractModel
         # @param AddressPool: 资源组详情描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AddressPool: :class:`Tencentcloud::Igtm.v20231024.models.AddressPoolDetail`
         # @param AddressSet: 资源组中的资源列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AddressSet: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -776,10 +768,8 @@ module TencentCloud
       # DescribeAddressPoolList返回参数结构体
       class DescribeAddressPoolListResponse < TencentCloud::Common::AbstractModel
         # @param AddressPoolSet: 资源组列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AddressPoolSet: Array
         # @param TotalCount: 总数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1096,13 +1086,10 @@ module TencentCloud
       # DescribeInstanceList返回参数结构体
       class DescribeInstanceListResponse < TencentCloud::Common::AbstractModel
         # @param InstanceSet: 实例列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceSet: Array
         # @param TotalCount: 列表总数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
         # @param SystemAccessEnabled: 是否支持系统域名接入：true支持；false不支持
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SystemAccessEnabled: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1259,7 +1246,6 @@ module TencentCloud
       # DescribeMonitors返回参数结构体
       class DescribeMonitorsResponse < TencentCloud::Common::AbstractModel
         # @param MonitorDataSet: 监控器列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MonitorDataSet: Array
         # @param TotalCount: 数量
         # @type TotalCount: Integer
@@ -1408,10 +1394,8 @@ module TencentCloud
       # DescribeStrategyList返回参数结构体
       class DescribeStrategyListResponse < TencentCloud::Common::AbstractModel
         # @param StrategySet: 策略列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StrategySet: Array
         # @param TotalCount: 总数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1990,7 +1974,7 @@ module TencentCloud
         # @type PoolId: Integer
         # @param PoolName: 地址池名称，不允许重复
         # @type PoolName: String
-        # @param TrafficStrategy: 流量策略: WEIGHT负载均衡，ALl解析全部
+        # @param TrafficStrategy: 流量策略: WEIGHT负载均衡，ALL解析全部
         # @type TrafficStrategy: String
         # @param MonitorId: 监控器id
         # @type MonitorId: Integer
@@ -2026,7 +2010,6 @@ module TencentCloud
       # ModifyAddressPool返回参数结构体
       class ModifyAddressPoolResponse < TencentCloud::Common::AbstractModel
         # @param Msg: 是否修改成功
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Msg: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2173,7 +2156,6 @@ module TencentCloud
       # ModifyMonitor返回参数结构体
       class ModifyMonitorResponse < TencentCloud::Common::AbstractModel
         # @param Msg: success 为修改成功
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Msg: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2263,7 +2245,6 @@ module TencentCloud
       # ModifyStrategy返回参数结构体
       class ModifyStrategyResponse < TencentCloud::Common::AbstractModel
         # @param Msg: 是否成功
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Msg: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

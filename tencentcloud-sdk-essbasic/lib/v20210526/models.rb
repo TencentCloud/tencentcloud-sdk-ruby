@@ -4046,8 +4046,7 @@ module TencentCloud
         # </ul>
         # 注: `同名字的Key的过滤条件会冲突,  只能填写一个`
         # @type Filters: Array
-        # @param Offset: 指定分页返回第几页的数据，如果不传默认返回第一页。
-        # 页码从 0 开始，即首页为 0，最大20000。
+        # @param Offset: 偏移量:从 0 开始，最大20000。
         # @type Offset: Integer
         # @param Operator: 暂未开放
         # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
@@ -5084,15 +5083,50 @@ module TencentCloud
       class CommonApproverOption < TencentCloud::Common::AbstractModel
         # @param CanEditApprover: 是否允许修改签署人信息
         # @type CanEditApprover: Boolean
+        # @param NoRefuse: 是否可以拒签 默认false-可以拒签 true-不可以拒签
+        # @type NoRefuse: Boolean
+        # @param NoTransfer: 是否可以转发 默认false-可以转发 true-不可以转发
+        # @type NoTransfer: Boolean
+        # @param HideOneKeySign: 当签署方有多个签署区时候，是否隐藏一键所有的签署区
 
-        attr_accessor :CanEditApprover
+        # false：（默认）不隐藏
+        # true：隐藏，每个签署区要单独选择印章或者签名
+        # @type HideOneKeySign: Boolean
+        # @param FlowReadLimit: 签署人阅读合同限制参数
+        #  <br/>取值：
+        # <ul>
+        # <li> LimitReadTimeAndBottom，阅读合同必须限制阅读时长并且必须阅读到底</li>
+        # <li> LimitReadTime，阅读合同仅限制阅读时长</li>
+        # <li> LimitBottom，阅读合同仅限制必须阅读到底</li>
+        # <li> NoReadTimeAndBottom，阅读合同不限制阅读时长且不限制阅读到底（白名单功能，请联系客户经理开白使用）</li>
+        # </ul>
+        # @type FlowReadLimit: String
+        # @param ForbidAddSignDate: 禁止在签署过程中添加签署日期控件
+        #  <br/>前置条件：文件发起合同时，指定SignBeanTag=1（可以在签署过程中添加签署控件）：
+        # <ul>
+        # <li> 默认值：false，在开启：签署过程中添加签署控件时，添加签署控件会默认自带签署日期控件</li>
+        # <li> 可选值：true，在开启：签署过程中添加签署控件时，添加签署控件不会自带签署日期控件</li>
+        # </ul>
+        # @type ForbidAddSignDate: Boolean
 
-        def initialize(caneditapprover=nil)
+        attr_accessor :CanEditApprover, :NoRefuse, :NoTransfer, :HideOneKeySign, :FlowReadLimit, :ForbidAddSignDate
+
+        def initialize(caneditapprover=nil, norefuse=nil, notransfer=nil, hideonekeysign=nil, flowreadlimit=nil, forbidaddsigndate=nil)
           @CanEditApprover = caneditapprover
+          @NoRefuse = norefuse
+          @NoTransfer = notransfer
+          @HideOneKeySign = hideonekeysign
+          @FlowReadLimit = flowreadlimit
+          @ForbidAddSignDate = forbidaddsigndate
         end
 
         def deserialize(params)
           @CanEditApprover = params['CanEditApprover']
+          @NoRefuse = params['NoRefuse']
+          @NoTransfer = params['NoTransfer']
+          @HideOneKeySign = params['HideOneKeySign']
+          @FlowReadLimit = params['FlowReadLimit']
+          @ForbidAddSignDate = params['ForbidAddSignDate']
         end
       end
 

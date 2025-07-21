@@ -179,45 +179,45 @@ module TencentCloud
 
       # 资源信息
       class CNResource < TencentCloud::Common::AbstractModel
-        # @param ID: 无
+        # @param ID: 资源id
         # @type ID: Integer
-        # @param InstanceID: 无
+        # @param InstanceID: 集群的id
         # @type InstanceID: String
-        # @param AppID: 无
+        # @param AppID: 用户appid
         # @type AppID: Integer
-        # @param Uin: 无
+        # @param Uin: 用户uin
         # @type Uin: String
-        # @param Component: 无
+        # @param Component: 组件
         # @type Component: String
-        # @param DeployMode: 无
+        # @param DeployMode: 部署模式
         # @type DeployMode: Integer
-        # @param SpecName: 无
+        # @param SpecName: 规格名称
         # @type SpecName: String
-        # @param ResourceID: 无
+        # @param ResourceID: 资源id
         # @type ResourceID: String
-        # @param Status: 无
+        # @param Status: 资源的状态
         # @type Status: Integer
-        # @param IP: 无
+        # @param IP: 私有网络ip
         # @type IP: String
-        # @param CPU: 无
+        # @param CPU: 核数
         # @type CPU: Integer
-        # @param Memory: 无
+        # @param Memory: 内存
         # @type Memory: Integer
-        # @param Storage: 无
+        # @param Storage: 存储大小
         # @type Storage: Integer
-        # @param UUID: 无
+        # @param UUID: 服务器ID
         # @type UUID: String
-        # @param Region: 无
+        # @param Region: 地域
         # @type Region: String
-        # @param Zone: 无
+        # @param Zone: 地区
         # @type Zone: String
-        # @param Details: 无
+        # @param Details: 详细信息
         # @type Details: String
-        # @param CreateTime: 无
+        # @param CreateTime: 创建时间
         # @type CreateTime: String
-        # @param ModifyTime: 无
+        # @param ModifyTime: 修改时间
         # @type ModifyTime: String
-        # @param ExpireTime: 无
+        # @param ExpireTime: 过期时间
         # @type ExpireTime: String
 
         attr_accessor :ID, :InstanceID, :AppID, :Uin, :Component, :DeployMode, :SpecName, :ResourceID, :Status, :IP, :CPU, :Memory, :Storage, :UUID, :Region, :Zone, :Details, :CreateTime, :ModifyTime, :ExpireTime
@@ -380,28 +380,20 @@ module TencentCloud
       # 云原生实例详情
       class CnInstanceInfo < TencentCloud::Common::AbstractModel
         # @param ID: ID值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ID: Integer
         # @param InstanceType: cdwch-cn或者其他
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceType: String
         # @param InstanceName: cdwch-cn或者其他
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceName: String
         # @param Status: Running
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: String
         # @param StatusDesc: 运行中
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StatusDesc: String
         # @param InstanceStateInfo: 无
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceStateInfo: :class:`Tencentcloud::Cdwch.v20200915.models.InstanceStateInfo`
         # @param InstanceID: -
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceID: String
         # @param Resources: 无
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Resources: Array
 
         attr_accessor :ID, :InstanceType, :InstanceName, :Status, :StatusDesc, :InstanceStateInfo, :InstanceID, :Resources
@@ -1024,13 +1016,10 @@ module TencentCloud
       # DescribeCNInstances返回参数结构体
       class DescribeCNInstancesResponse < TencentCloud::Common::AbstractModel
         # @param TotalCount: 实例总数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
         # @param InstancesList: 实例数组
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstancesList: Array
         # @param ErrorMsg: 错误信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrorMsg: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

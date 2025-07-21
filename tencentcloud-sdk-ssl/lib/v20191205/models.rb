@@ -2550,10 +2550,14 @@ module TencentCloud
         # @type Region: String
         # @param Url: 部署CLB监听器的Url
         # @type Url: Array
+        # @param Algorithm: 当前部署证书加密算法
+        # @type Algorithm: String
+        # @param OldAlgorithm: 原证书加密算法
+        # @type OldAlgorithm: String
 
-        attr_accessor :Id, :CertId, :OldCertId, :InstanceId, :InstanceName, :ListenerId, :Domains, :Protocol, :Status, :ErrorMsg, :CreateTime, :UpdateTime, :ListenerName, :SniSwitch, :Bucket, :Namespace, :SecretName, :Port, :EnvId, :TCBType, :Region, :Url
+        attr_accessor :Id, :CertId, :OldCertId, :InstanceId, :InstanceName, :ListenerId, :Domains, :Protocol, :Status, :ErrorMsg, :CreateTime, :UpdateTime, :ListenerName, :SniSwitch, :Bucket, :Namespace, :SecretName, :Port, :EnvId, :TCBType, :Region, :Url, :Algorithm, :OldAlgorithm
 
-        def initialize(id=nil, certid=nil, oldcertid=nil, instanceid=nil, instancename=nil, listenerid=nil, domains=nil, protocol=nil, status=nil, errormsg=nil, createtime=nil, updatetime=nil, listenername=nil, sniswitch=nil, bucket=nil, namespace=nil, secretname=nil, port=nil, envid=nil, tcbtype=nil, region=nil, url=nil)
+        def initialize(id=nil, certid=nil, oldcertid=nil, instanceid=nil, instancename=nil, listenerid=nil, domains=nil, protocol=nil, status=nil, errormsg=nil, createtime=nil, updatetime=nil, listenername=nil, sniswitch=nil, bucket=nil, namespace=nil, secretname=nil, port=nil, envid=nil, tcbtype=nil, region=nil, url=nil, algorithm=nil, oldalgorithm=nil)
           @Id = id
           @CertId = certid
           @OldCertId = oldcertid
@@ -2576,6 +2580,8 @@ module TencentCloud
           @TCBType = tcbtype
           @Region = region
           @Url = url
+          @Algorithm = algorithm
+          @OldAlgorithm = oldalgorithm
         end
 
         def deserialize(params)
@@ -2601,6 +2607,8 @@ module TencentCloud
           @TCBType = params['TCBType']
           @Region = params['Region']
           @Url = params['Url']
+          @Algorithm = params['Algorithm']
+          @OldAlgorithm = params['OldAlgorithm']
         end
       end
 
@@ -7483,14 +7491,17 @@ module TencentCloud
         # failed：申请失败；
         # issued：绑定失败。
         # @type Status: String
+        # @param Algorithm: 证书加密算法
+        # @type Algorithm: String
 
-        attr_accessor :Host, :CertId, :ZoneId, :Status
+        attr_accessor :Host, :CertId, :ZoneId, :Status, :Algorithm
 
-        def initialize(host=nil, certid=nil, zoneid=nil, status=nil)
+        def initialize(host=nil, certid=nil, zoneid=nil, status=nil, algorithm=nil)
           @Host = host
           @CertId = certid
           @ZoneId = zoneid
           @Status = status
+          @Algorithm = algorithm
         end
 
         def deserialize(params)
@@ -7498,6 +7509,7 @@ module TencentCloud
           @CertId = params['CertId']
           @ZoneId = params['ZoneId']
           @Status = params['Status']
+          @Algorithm = params['Algorithm']
         end
       end
 
@@ -7962,10 +7974,14 @@ module TencentCloud
         # @type TCBType: String
         # @param Url: 监听器Url(clb专属)
         # @type Url: String
+        # @param Algorithm: 新证书加密算法
+        # @type Algorithm: String
+        # @param OldAlgorithm: 旧证书加密算法
+        # @type OldAlgorithm: String
 
-        attr_accessor :Id, :CertId, :OldCertId, :Domains, :ResourceType, :Region, :Status, :ErrorMsg, :CreateTime, :UpdateTime, :InstanceId, :InstanceName, :ListenerId, :ListenerName, :Protocol, :SniSwitch, :Bucket, :Port, :Namespace, :SecretName, :EnvId, :TCBType, :Url
+        attr_accessor :Id, :CertId, :OldCertId, :Domains, :ResourceType, :Region, :Status, :ErrorMsg, :CreateTime, :UpdateTime, :InstanceId, :InstanceName, :ListenerId, :ListenerName, :Protocol, :SniSwitch, :Bucket, :Port, :Namespace, :SecretName, :EnvId, :TCBType, :Url, :Algorithm, :OldAlgorithm
 
-        def initialize(id=nil, certid=nil, oldcertid=nil, domains=nil, resourcetype=nil, region=nil, status=nil, errormsg=nil, createtime=nil, updatetime=nil, instanceid=nil, instancename=nil, listenerid=nil, listenername=nil, protocol=nil, sniswitch=nil, bucket=nil, port=nil, namespace=nil, secretname=nil, envid=nil, tcbtype=nil, url=nil)
+        def initialize(id=nil, certid=nil, oldcertid=nil, domains=nil, resourcetype=nil, region=nil, status=nil, errormsg=nil, createtime=nil, updatetime=nil, instanceid=nil, instancename=nil, listenerid=nil, listenername=nil, protocol=nil, sniswitch=nil, bucket=nil, port=nil, namespace=nil, secretname=nil, envid=nil, tcbtype=nil, url=nil, algorithm=nil, oldalgorithm=nil)
           @Id = id
           @CertId = certid
           @OldCertId = oldcertid
@@ -7989,6 +8005,8 @@ module TencentCloud
           @EnvId = envid
           @TCBType = tcbtype
           @Url = url
+          @Algorithm = algorithm
+          @OldAlgorithm = oldalgorithm
         end
 
         def deserialize(params)
@@ -8015,6 +8033,8 @@ module TencentCloud
           @EnvId = params['EnvId']
           @TCBType = params['TCBType']
           @Url = params['Url']
+          @Algorithm = params['Algorithm']
+          @OldAlgorithm = params['OldAlgorithm']
         end
       end
 

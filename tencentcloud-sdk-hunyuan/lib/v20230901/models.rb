@@ -1858,11 +1858,21 @@ module TencentCloud
         # 说明：
         # 1. type 为 image 时，地址为图片的预览地址；其他类型时，地址为封面图地址。
         # @type Url: String
+        # @param Width: 如果Url为图片地址，标识图片宽度。
+        # @type Width: Integer
+        # @param Height: 如果Url为图片地址，标识图片高度。
+        # @type Height: Integer
         # @param JumpUrl: 多媒体详情地址。
         # 说明：
         # 1. 仅 type 为 image 时，该字段有值。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type JumpUrl: String
+        # @param ThumbURL: 缩略图地址。
+        # @type ThumbURL: String
+        # @param ThumbWidth: 缩略图宽度
+        # @type ThumbWidth: Integer
+        # @param ThumbHeight: 缩略图高度
+        # @type ThumbHeight: Integer
         # @param Title: 名称。
         # 说明：
         # 1. type 为 image 时，该字段为空。
@@ -1881,23 +1891,42 @@ module TencentCloud
         # 1. 仅 type 为 music 时，该字段有值。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Ext: :class:`Tencentcloud::Hunyuan.v20230901.models.SongExt`
+        # @param PublishTime: 发布时间。
+        # @type PublishTime: String
+        # @param SiteName: 站点名称
+        # @type SiteName: String
+        # @param SiteIcon: 站点图标
+        # @type SiteIcon: String
 
-        attr_accessor :Type, :Url, :JumpUrl, :Title, :Desc, :Singer, :Ext
+        attr_accessor :Type, :Url, :Width, :Height, :JumpUrl, :ThumbURL, :ThumbWidth, :ThumbHeight, :Title, :Desc, :Singer, :Ext, :PublishTime, :SiteName, :SiteIcon
 
-        def initialize(type=nil, url=nil, jumpurl=nil, title=nil, desc=nil, singer=nil, ext=nil)
+        def initialize(type=nil, url=nil, width=nil, height=nil, jumpurl=nil, thumburl=nil, thumbwidth=nil, thumbheight=nil, title=nil, desc=nil, singer=nil, ext=nil, publishtime=nil, sitename=nil, siteicon=nil)
           @Type = type
           @Url = url
+          @Width = width
+          @Height = height
           @JumpUrl = jumpurl
+          @ThumbURL = thumburl
+          @ThumbWidth = thumbwidth
+          @ThumbHeight = thumbheight
           @Title = title
           @Desc = desc
           @Singer = singer
           @Ext = ext
+          @PublishTime = publishtime
+          @SiteName = sitename
+          @SiteIcon = siteicon
         end
 
         def deserialize(params)
           @Type = params['Type']
           @Url = params['Url']
+          @Width = params['Width']
+          @Height = params['Height']
           @JumpUrl = params['JumpUrl']
+          @ThumbURL = params['ThumbURL']
+          @ThumbWidth = params['ThumbWidth']
+          @ThumbHeight = params['ThumbHeight']
           @Title = params['Title']
           @Desc = params['Desc']
           @Singer = params['Singer']
@@ -1905,6 +1934,9 @@ module TencentCloud
             @Ext = SongExt.new
             @Ext.deserialize(params['Ext'])
           end
+          @PublishTime = params['PublishTime']
+          @SiteName = params['SiteName']
+          @SiteIcon = params['SiteIcon']
         end
       end
 

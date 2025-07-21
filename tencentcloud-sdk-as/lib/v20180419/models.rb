@@ -2048,6 +2048,7 @@ module TencentCloud
         # @param Filters: 过滤条件。
         # <li> instance-id - String - 是否必填：否 -（过滤条件）按照实例ID过滤。可通过登录[控制台](https://console.cloud.tencent.com/cvm/index)或调用接口 [DescribeInstances](https://cloud.tencent.com/document/api/213/15728) ，取返回信息中的 `InstanceId` 获取实例ID。</li>
         # <li> auto-scaling-group-id - String - 是否必填：否 -（过滤条件）按照伸缩组ID过滤。可通过登录 [控制台](https://console.cloud.tencent.com/autoscaling/group) 或调用接口 [DescribeAutoScalingGroups](https://cloud.tencent.com/document/api/377/20438) ，取返回信息中的 AutoScalingGroupId 获取伸缩组ID。</li>
+        # <li> private-ip-address - String - 是否必填：否 -（过滤条件）按照实例内网IP过滤。可通过登录 [控制台](https://console.cloud.tencent.com/autoscaling/group) 或调用接口 [DescribeInstances](https://cloud.tencent.com/document/api/213/15728) ，取返回信息中的 `PrivateIpAddresses`获取实例内网IP。</li>
         # 每次请求的`Filters`的上限为10，`Filter.Values`的上限为5。参数不支持同时指定`InstanceIds`和`Filters`。
         # @type Filters: Array
         # @param Offset: 偏移量，默认为0。关于`Offset`的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/api/213/15688)中的相关小节。
@@ -3298,14 +3299,47 @@ module TencentCloud
         # @param BandwidthPackageId: 带宽包ID。可通过[DescribeBandwidthPackages](https://cloud.tencent.com/document/api/215/19209)接口返回值中的`BandwidthPackageId`获取。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BandwidthPackageId: String
+        # @param InternetServiceProvider: 线路类型。各种线路类型详情可参考：[EIP 的 IP 地址类型](https://cloud.tencent.com/document/product/1199/41646)。默认值：BGP。
 
-        attr_accessor :InternetChargeType, :InternetMaxBandwidthOut, :PublicIpAssigned, :BandwidthPackageId
+        # <li>BGP：常规 BGP 线路</li>
+        # 已开通静态单线IP白名单的用户，可选值：
 
-        def initialize(internetchargetype=nil, internetmaxbandwidthout=nil, publicipassigned=nil, bandwidthpackageid=nil)
+        # <li>CMCC：中国移动</li>
+        # <li>CTCC：中国电信</li>
+        # <li>CUCC：中国联通</li>
+        # 注意：仅部分地域支持静态单线IP。
+        # @type InternetServiceProvider: String
+        # @param IPv4AddressType: 公网 IP 类型。
+
+        # <li> WanIP：普通公网IP。</li>
+        # <li> HighQualityEIP：精品 IP。仅新加坡和中国香港支持精品IP。</li>
+        # <li> AntiDDoSEIP：高防 IP。仅部分地域支持高防IP，详情可见[弹性公网IP产品概述](https://cloud.tencent.com/document/product/1199/41646) 。  </li>
+        # 如需为资源分配公网IPv4地址，请指定公网IPv4地址类型。
+
+        # 精品IP 高防IP功能仅部分地区灰度开放，如需使用[请提交工单咨询](https://console.cloud.tencent.com/workorder/category)
+        # @type IPv4AddressType: String
+        # @param AntiDDoSPackageId: 高防包唯一ID，申请高防IP时，该字段必传。
+        # @type AntiDDoSPackageId: String
+        # @param IsKeepEIP: 实例销毁时是否一并销毁绑定的弹性IP。
+
+        # 取值范围：
+        # <li>TRUE：表示保留EIP</li>
+        # <li>FALSE：表示不保留</li>
+        # 请注意，当IPv4AddressType字段指定EIP类型时，默认不保留EIP。WanIP不受此字段影响始终随实例销毁。
+        # 变更配置此字段，已绑定伸缩组会立刻生效。
+        # @type IsKeepEIP: Boolean
+
+        attr_accessor :InternetChargeType, :InternetMaxBandwidthOut, :PublicIpAssigned, :BandwidthPackageId, :InternetServiceProvider, :IPv4AddressType, :AntiDDoSPackageId, :IsKeepEIP
+
+        def initialize(internetchargetype=nil, internetmaxbandwidthout=nil, publicipassigned=nil, bandwidthpackageid=nil, internetserviceprovider=nil, ipv4addresstype=nil, antiddospackageid=nil, iskeepeip=nil)
           @InternetChargeType = internetchargetype
           @InternetMaxBandwidthOut = internetmaxbandwidthout
           @PublicIpAssigned = publicipassigned
           @BandwidthPackageId = bandwidthpackageid
+          @InternetServiceProvider = internetserviceprovider
+          @IPv4AddressType = ipv4addresstype
+          @AntiDDoSPackageId = antiddospackageid
+          @IsKeepEIP = iskeepeip
         end
 
         def deserialize(params)
@@ -3313,6 +3347,10 @@ module TencentCloud
           @InternetMaxBandwidthOut = params['InternetMaxBandwidthOut']
           @PublicIpAssigned = params['PublicIpAssigned']
           @BandwidthPackageId = params['BandwidthPackageId']
+          @InternetServiceProvider = params['InternetServiceProvider']
+          @IPv4AddressType = params['IPv4AddressType']
+          @AntiDDoSPackageId = params['AntiDDoSPackageId']
+          @IsKeepEIP = params['IsKeepEIP']
         end
       end
 
